@@ -2,147 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4211606A8AF
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A83606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D3oF4dqR;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=aPD2NMO6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oTQPiCdD;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gK8jig75
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Cc:To:
-	In-Reply-To:References:Message-Id:Content-Transfer-Encoding:Content-Type:
-	Subject:Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=/Bnkn8Vf1EEaYR7RLcnQOlbGPOhCMSEvnRNwN9pGwZ0=; b=D3oF4dqRdncfXNhQYHViOEFSDR
-	r4Rp0uEg5rv59GJffTOSqLRtpeOCFCPTRfrlU8kgwXrvYZHK9wq6LdK6bQsh7uPGKttiwBM/DNWnM
-	RiyfzR/73m/rKENVOxaFb9zgmfIJDZuEHeFhg60Og2yB/E98lg4RyR0qx1Rv5vzTZCtAC359Ce6Cw
-	8J7pZ9Rh370v1AI0+Hmn8WjXbUBfMhzQBSNauBC0KDV0XpJmO2oQYSMeqcD0UM5+DTjzaxH9CAcTu
-	/e3nh7g683zQ/Xc0rdZIdcHML12NOtWhnm+Uub7y/FDmCz5cgzxgnb7Qiqg5ETz3VdggV+hy4338v
-	yOGXzcng==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=bPhouWL64Ss7xA+3PtWE37jW1mEzq4J5HXL5n/CanOg=; b=oTQPiCdDa1XF0i
+	1VJH7EsR+mSScPGPraJuyqFxaauP/dFzoCkqmbdbvcT2FKCewEpTkS1MgeoYJFpnj6XkBFCQQKN/a
+	tMfTbnecwsrxB+3e3iA0dVPGXoY/55TEzaKMl1D+FyaIyg8IKyPMzcg7tefFohfEuUIOWDcpotHaT
+	v6YKetRPGXk2Bv5GgzzTqTGdU4xINXW5HEuXLvAQAhP3+x3mn7aFZJc6nNWuy+7HsItr7NnWaCcgy
+	LbVLe4iaikHbc4yY4nFf1ceTO3oJGb+b8NUhgngJcYGqZr+AUvNVsOVTGnbS83WzpA3jF6TDsYZ9A
+	BiY0UKsl15SjC+AbCYSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRrFp-0000000CuVN-3zTc;
-	Fri, 13 Nov 2026 13:23:45 +0000
-Received: from mail-northeuropeazon11010016.outbound.protection.outlook.com ([52.101.84.16] helo=DB3PR0202CU003.outbound.protection.outlook.com)
+	id 1xRrFq-0000000CuWQ-3BMF;
+	Fri, 13 Nov 2026 13:23:46 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRrFa-0000000CuIb-0OrI
+	id 1xRrFj-0000000CuP1-00R5
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 13:23:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ulchIREVUnZQYOJ+pXSxsIbuVkbRrBxs/WXTK4Q/Q6A2PcZzMhUVO8t5mrljbaQuBT38xLQEyD/l/2Wnb4di9GEQNSek1Ws3sLKCWcPN+SjBu0KJfkZXV+82Rv67J3qcPsIdOSZ9JLBGtltqKUJh5DDG8tQSjHyLFhIEHcioc3v4javCShXH4SWLfCQOXqvMl3k9UI683oQm63XRR8bs2lVWTATyxY/c7WsCy5CuO8IVXKUzs8uk6bd7u00PZMRIP5shC4RDzg+vL91jMK5p1rBH4e8xZ4fwQrp2XTJT6MVZmtCrgq1PKgVc+rZ4SQIxfBTrC9rqFw328OdrbzcxUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/Bnkn8Vf1EEaYR7RLcnQOlbGPOhCMSEvnRNwN9pGwZ0=;
- b=rxNtOdGYaws+82plv2onkD4Mx72+wit4819ZtvSn3g8/UU59HbSzQqeOqk74i2Njv+ibChxambnYRXSv5CB5pcR4FL8TrBYGaq8TCdup2oXePfPDaVjlKOJ1Ey6lMfZtsgGgtsa1rnOTu3tiZ8j3tTnQWeM86anEkn4ZHNZYMB0jUpNzhR2EFfHLWq3rGu1MSXY2Kb1v93GcVcwkuW41NPAbFbSFcgx7EsyxBMRyI68iFxRYobg7eMJuKKUtM0ZdooMP2IMg3OmGeq+0Ri33gSBkpQ0LlMfHXqAi6J12XctMZgD26TpdtFbYAQVvN5h0NIEkn3T3v5oNzN0rQ4+fvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/Bnkn8Vf1EEaYR7RLcnQOlbGPOhCMSEvnRNwN9pGwZ0=;
- b=aPD2NMO6DYxdpQAlqx6XsGc9JOYLVdjJA/lZwiWMbOxe1LYwWMatS4j1+LB3Qyta3jRPoYvvA8rm3rbhjI2xKWhkd/+UNk3pIIXNovnDkD+YlSCy9px0Z6HC3OQSm2oRJqVnhrFK9Yfw+ntz0JN6Jws4OzGjXLnUZ2WKbhujleWXLAVKE/FqSDCDQLXwQewxRyKKf/kJJccU+unbjkL3Y412SEyEvRDB4LY5+2aF8Xy94QuzC9/m4ecnKrG70QEoDakBZH9XQ/d1I/xAqyvhinlezCxfaoYQ4EUTvoVSDEp+YgaG+WBo5VJPPlPbAazjSmYl8Ih4Bpm+Z4uwBMYCzA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
- by BR2PR04MB007356.eurprd04.prod.outlook.com (2603:10a6:2c8:6::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
- 2026 13:23:25 +0000
-Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
- ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
- ([fe80::ac38:1699:6f18:c5d9%5]) with mapi id 15.21.0615.008; Fri, 13 Nov 2026
- 13:23:25 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Fri, 13 Nov 2026 21:27:19 +0800
-Subject: [PATCH RFC v8 7/9] iommu/arm-smmu-v3: Wire up shared-SID STE
- ordering and feature gating
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-b4-smmu-shared-sid-ver8-v8-7-587307a77f3a@nxp.com>
-References: <20261113-b4-smmu-shared-sid-ver8-v8-0-587307a77f3a@nxp.com>
-In-Reply-To: <20261113-b4-smmu-shared-sid-ver8-v8-0-587307a77f3a@nxp.com>
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
- "Joerg Roedel (AMD)" <joro@8bytes.org>, 
- Jean-Philippe Brucker <jpb@kernel.org>, Nicolin Chen <nicolinc@nvidia.com>, 
- Jason Gunthorpe <jgg@ziepe.ca>, Thierry Reding <thierry.reding@kernel.org>, 
- Krishna Reddy <vdumpa@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
- Jason Gunthorpe <jgg@ziepe.ca>
-Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
- linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
- Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.16-dev-7bc12
-X-ClientProxiedBy: SI2PR02CA0041.apcprd02.prod.outlook.com
- (2603:1096:4:196::20) To AM8PR04MB7874.eurprd04.prod.outlook.com
- (2603:10a6:20b:24d::9)
+	Fri, 13 Nov 2026 13:23:40 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a1fbd52ab6so10344595e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 05:23:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794576217; x=1795181017; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=bPhouWL64Ss7xA+3PtWE37jW1mEzq4J5HXL5n/CanOg=;
+        b=gK8jig75ZgI701ePh70qa9edXsST5TY2TIUB9LWrANrXxfEO+eLAXnLwy1TF90ajSw
+         l3Q/R2WDpGo9OPp3ItIAnT+1f8BArmb9VfLvizHfvNirInFiKUzhwgy3BAjgtKGpKnNg
+         8/A/90d0nm+tu3s2NQIcK2owYiRLYz1uTp9iCYrBto54QTixJwYNvtNEgnFmuAulmcin
+         cbVgtmov45PS7KUlgos/gnOfXzwjA4z1rF9fI5acJRZLVcExnfbAtpL7eiKydVN5jr2v
+         3W4291uk9x+06Tw4Dpx4v0ujiOeIheWCNI+JjGyUzKH2NuaVCe1kD4JiNqd0O6sVSNTF
+         kI5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794576217; x=1795181017;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=bPhouWL64Ss7xA+3PtWE37jW1mEzq4J5HXL5n/CanOg=;
+        b=LRAdQk9Oo6sa61koN3c04MapFxKJzj1TXzhltcGIak6aW88mzrH448x5Mp81Acwbwk
+         ZyFm6TA60virYckYBDI+i+ejlGGvkA8txeaZz71XFJ6ZDcX6Za/aWGTDUVRx5a1pBfRh
+         T5e2TOU4UH0DOYAHGyU7F54hdm+VIBN0YNla5WvTSJJYO/UmltklA7ULOfo5Cx53jgQY
+         2eTCJU9FkOZW7bgEXc5hLe5C19d/dsfeIukB56caEDoaVIYp6YiAGqITTNmenVWjxynO
+         TgxtwQPsoC3AYOJlad7q9U9IVOKN1OVBpcupSAgs6ZhnX4xgrkmkf8zM2PJ7HuWfYnt9
+         C7kg==
+X-Forwarded-Encrypted: i=1; AL+hErHTHXbdFjBmKuTvgPX2g5miiYsbpbIroXaKLTS5vdn8RtH5l5Gwtd1NxOoH0eRKCslzze4TSfFfgwwTepc4B0Hd@lists.infradead.org
+X-Gm-Message-State: APuU4Z9xIhRYP4qmuCuk0jCEMur9yt1uu1KYocph28jiFUxDa0t/aLEe
+	UbjCOHH4Wa1XIqRbloh41i60hVptDz41hSZb79OBNi5YQ15K8haen52c
+X-Gm-Gg: AYBFou3PST5phOXRpaWXuELEGc/RqQG7qWxjnm2yusOkCyThVjySDroA+g28oH6+0yE
+	5si/R3Oc58Ox7QBKUXou5TFf841xIsNJZAfXkF3E5UeKKWHLsD/MrlAsqx60qIURCQTL/BoYxkh
+	YvloQq0SzcsPMKGqslV6vZfkrtAc0UuWcGHtGIft5wn0QPxAFWNlrk8Oos+dIcpswatrfqUdo3O
+	vPozlcBeYOOX4Zs+0sS2bt2GAFL77EwwkW9WlHBzLLpcy66YHxdXFWX9YZEmewLDgNC2mMwsyuv
+	RDaQwQR7yzPEpo0mylDdbAPD12B3fYn1l/4MgNxumolUos53wr6OihXTcr8jNkG3gwpDNfVfptN
+	mDLuN9/oy0F4fzqCfwfdIZbcusXam/QP2BFYWxFGiD62chAfPTzmCAy0w8JJrCcDxur65XlqNem
+	CnsKvkwBfLMWiQz/77677wkzLsbhZRpVHwOm24tR6JSiiBREZ2OdL6Qk7R5sZs8Ldv3lEh1odRf
+	8ZRDN7077DfF588Jy+wSK4+Z6OiWytyx2MKDrTpjoVMh675QvIs2jJbhLpiBJyyi3GrEStNr65a
+	9mwq9CerYg4dQFCFDOov29TcYsJGgAXlGAFCiNlJ6H7ZHPq0QycYARTMkJZTpuoF3Oicmo9bHcQ
+	=
+X-Received: by 2002:a05:600c:8010:b0:4a7:9025:5c3b with SMTP id 5b1f17b1804b1-4bb55a6a5f0mr53609575e9.19.1794576216701;
+        Fri, 13 Nov 2026 05:23:36 -0800 (PST)
+Received: from vlw-PC.. (static.18.103.245.188.clients.your-server.de. [188.245.103.18])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e284339sm136419825e9.5.2026.11.13.05.23.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Nov 2026 05:23:36 -0800 (PST)
+From: Vladimir Bely <vlwwwwww@gmail.com>
+To: Jiaxing Hu <gahing@gahingwoo.com>
+Cc: heiko@sntech.de,
+	ulfh@kernel.org,
+	finley.xiao@rock-chips.com,
+	zhangqing@rock-chips.com,
+	abel.vesa@oss.qualcomm.com,
+	tomeu@tomeuvizoso.net,
+	royalnet026@gmail.com,
+	sebastian.reichel@collabora.com,
+	shawn.lin@rock-chips.com,
+	chaoyi.chen@rock-chips.com,
+	diederik@cknow-tech.com,
+	linux-rockchip@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v16 09/16] pmdomain: rockchip: add optional per-domain power-on settle delay
+Date: Fri, 13 Nov 2026 16:23:22 +0300
+Message-ID: <20261113132323.159015-1-vlwwwwww@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261108065917.135194-10-gahing@gahingwoo.com>
+References: <20261108065917.135194-1-gahing@gahingwoo.com> <20261108065917.135194-10-gahing@gahingwoo.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|BR2PR04MB007356:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1dca71f4-b494-44be-e77d-08df41894bf7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|23010399003|1800799024|18002099003|22082099003|6133799003|921020|11063799006|5023799004|261102123227099003|261026140227099003|261028144727099003|261026121527099003|261022075727099003|261022105027099003|261021121427099003|56012099006|261021123027099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: Oog0j7bEo+rISGBw5yoS4rJNjYqWmNEX+VEMzprB4xkHl21+ygL2SEVH1C4DO9fTOXc3sZHHwZMjT5i3oPl+BjnYTVSVfVLNyduZWyYxnhmlLuB7dgkH/Q6owsvkCLwYpYPeGidLZyALVKa8SpKWDf+x6hMyHognh1qhcXb5bkmgnj3ZWl8jNyZ1OKcIynuu5H/38qV4gKMpT7ld8kyPXQ/MjcUVK7gFO9ST8xLRtI9j1xxdo8+X7eA/9zKC8ARfVPFImdX9Eq+vA3Noy5py4/6pu+yf3Qc0PdMIje1V9JY8O1lbzk0vcGx+9VPerOWDia/QSkfp6/ROr62oWDHkFvxwJ27lJyPbQEcwHZeI+gp01O5o/rGhGWqmCl21+o3J7zmPeLGnOPW7lwc/flo+1cYYo32KoVQWuezzmGg5etUyruC2CZc/07TZPwiT4oASh6ivQgU9r353dO0p7hX6qhitWbHBe0OTZSMS/Zde/99LTb5Ac7Oz+n+qCi1y60VYgABXV8rZ8K0CfCzGty42pEWT4ePY+UDooNWkI4xa7w86FwAR1T6xGOhRhcGkZrpbIWj6hpysOt4oHXEJFUiEQtyXComYUi7+Kz3GPGyOa2Cp2Sq9j93JiI06+DsiMK8qFm0PyqchY1I6Pu30Xisdv9AsB/IhqsQEqjDvgdIHsP0c3PrqfNq+1ndoGrOY0zKVgybsX+KLiVVrozeOwbjyjA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(23010399003)(1800799024)(18002099003)(22082099003)(6133799003)(921020)(11063799006)(5023799004)(261102123227099003)(261026140227099003)(261028144727099003)(261026121527099003)(261022075727099003)(261022105027099003)(261021121427099003)(56012099006)(261021123027099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bUNWOG9mTnpGNmlFbG5nSUFrcmQ4ZmFHTFZrUUZqalA4WmJpWS9aN05vZzlw?=
- =?utf-8?B?enF2ZkpXcnd3OVlyanV3a0MyZ3NGR251M3BFRTlMbk9iUXc3N1p5L1lJS1NW?=
- =?utf-8?B?MFBYVUlOZEo3SFJxb1Ryakx3amFRb3VNUUZIMU5TZjAxOFdvVURjNE5pTTVv?=
- =?utf-8?B?ZmFUYkJUbVlJT2RZTWk5WFU3MU1KZUpoSFVybjFXNmhGcitqZ2d4b2J0QWha?=
- =?utf-8?B?R2NNdC9SbTRiL0ZxMWwwTE1tU1FrYURyTm0yRFBERE1lRXRPdGkxdWhBNUtR?=
- =?utf-8?B?SGlXN2RmTHhVcW5jdThabi9od2dSZjB3WkNzNml6SFE3dFNPQ1h1MjFnWDNW?=
- =?utf-8?B?Y2pwSFZDcHRjc0l2SGJpdmFyYkh5NmQ5cmJPVDd3bkY3OXNlWVVQRXB2YlJv?=
- =?utf-8?B?OVNiZUhIdUhTTjJoT2d0Nk1rZ1pjK0pVa3d5b3F1NDgwbmljdXUxZEc1SE9J?=
- =?utf-8?B?NVNOWVR5QlFuaFZYaHEydldwOTRoRXhBNUV2dW9QeGhRMzhQdkpXNVhUalpH?=
- =?utf-8?B?ZGUxTjhLamljc0pGc2xjWjVnTGJhb09NZWhLcDhmZEZmMTRNU2JpVkd4a2U2?=
- =?utf-8?B?OFFuOFNUUHlpOUx5MjJlK3hDY0hJRnkwU3lKS1ErRHdKMXArRFh4dXpXME5B?=
- =?utf-8?B?VGMrcXFhdi9heVRjM3U4UVdvQWNsWSs3ZWx3dkJ6cjFUWE40WlFUL0krRDgz?=
- =?utf-8?B?UW01SllGQWltc3lQVU9OMXpNRnJKY0RrQzg5TUhhVitPb3ZvVTlrYWlydzBW?=
- =?utf-8?B?UUlxai9XSHBpZUF3Z1A0b3MzYTV2V2hENTFHU0lpcWpxbFF2QlVYWlVFZDRQ?=
- =?utf-8?B?OW9PM3RmKzY3Z1RKdnpvUzhwMDlEVlJEbXBKTG4zNEV2L1FXTEZCVXRWUzly?=
- =?utf-8?B?UE5oVzFweVlkcVFyMkFlbS9tNCtiaFVNcUZnb2NqeVZMSGtLZFhqQnlFYnBJ?=
- =?utf-8?B?U21URnRtUHA5QTl3WjQ3RDZ0SXhOSkJFaEhMNUNRS3BFeVVhdDBlVUp2dnRG?=
- =?utf-8?B?TFhlbTlYTGVtVDZkcUJqOHdHUUpOQWt3Uno4ZDdvMlJvTDV3akhlL3RjSm55?=
- =?utf-8?B?M1dSTVRqOVMrWVRibmF0NTM4NS9SaTFyMzZPN0pDZTUyYjVvNm9wcUk5NVl1?=
- =?utf-8?B?eTZRaVVCdno3TTBEckVpbzhWb0FLaWc0L21ieHlOMEc0K3lRMjF4YXpBanJU?=
- =?utf-8?B?RW13M1ZlN2RPU1NzNU8zdkg2Tkc3TkJRNk5HWXJENFMwVkUyWnN4UXZveEcw?=
- =?utf-8?B?NnEybzBnZW1wNThkbHhlTWVZYjZDdUk5UE9tTzJSN3RqS0V5bWhTMzBUZitl?=
- =?utf-8?B?cWhhclNoSk0wVFYxMkM1RjdFM3RjTFQvQnErMCtYbk15OTRmM3lHYXlxVVAr?=
- =?utf-8?B?eWp4MitEZjBMdlowaGJpTFEydzU1TE9ZUHRsVkxjaWZLUkt2Z0E0eGUvWE5H?=
- =?utf-8?B?TEpZVVovbndNQmdSYm9ZenhhWHhhRG9qT1JKSG9sUUh1Y3FXSStieVFVUHpl?=
- =?utf-8?B?dk9zR0JnS3lnOUQ5aVN4eXB1ZTdZaGNMRW9OZjFicVNhZFgxSGdKSE9yZnBq?=
- =?utf-8?B?a3p1OFFQV3FwTmZCb3UyYWhpR1pDUVM0d1cyM1N2MUgzRENDZlhXaTdvUng3?=
- =?utf-8?B?bjc5Z1UrNjFQTjZTRVplQnYrMnVxeGVEUzZlRXlGYW9sOStvU0EyMWNPNTg0?=
- =?utf-8?B?R2pWcHVGZjZFeXhLRHMwampmMU5KSFYrWkhhdFpyb1A5SjdlZ09KV1JxTDJY?=
- =?utf-8?B?NkFnY0ticnNTYnM1Rmh4NXgzUk9JaGEwdE9VaUxRQWhSKy9DZFVnY2lOSVpx?=
- =?utf-8?B?NkljV25TSlh1N3J5ZUQ3N0xRS1NLVlFtRGxybElGNVA3a0hFc1RoMUVTc05B?=
- =?utf-8?B?MkZPdStYckIrRFRxL0h6Z3cwU2g5T3B2UkhyRlRtNHA1cFJEcy9LSnE3S0U5?=
- =?utf-8?B?R29KOG9NbE4ySFY4QjlQL1lMVVdLMk1pZ2FmZ2JNTEhpeGNqdnE2SCtTNVhq?=
- =?utf-8?B?QWhnZkZoZlhmbGlwTVlYaDl4OFBKTCt3cWpWRkJ6SFFpOWthdjJub0RsSUZK?=
- =?utf-8?B?bEt3RmhrTFlmVzBYVytYaTFic2lZM1kyK2JmNHBuZnhNOEVET0tybVpzUWhK?=
- =?utf-8?B?L28rc1pZY3hBcUJYU2J1N0lmTXJPMVRWWnVzNUZRZVk1WFFUZm5kUkRDUGUx?=
- =?utf-8?B?VHlpWDVoMFdDdDhsYlhIZnlTRXQ3Wk5ROGlUY09sMFd5NGJVaWYyYWpFY3dF?=
- =?utf-8?B?WHhQdXJSdnhDRFY1cENCdlJTa09DRmFQNXBJOThnc1FOdE5ZOGVsT0R0czFZ?=
- =?utf-8?B?bktHYUl3bU1PNEw4WStOY2Y2OThhbHUydzNmc2s5Y2c5a3FsaTZwVGZOQzh6?=
- =?utf-8?Q?U7HNC80wlWOI/W1Ai+m1xWqSHi4rAqhajBOsF?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1dca71f4-b494-44be-e77d-08df41894bf7
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 13:23:25.3780
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4xDsrRZWTUc2EdQ8QyjH+SBxbbKPEs/zN+FHZzj65DYpYlBtErLPdpvvKuV2M7C0MWM5shPJEztblx4cVgp2RKmurqNn6k4xwjz1IOlUMg2cyB2TwWS/6jTC/TfXYydf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR2PR04MB007356
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_052330_322072_8DC7E083 
-X-CRM114-Status: GOOD (  17.25  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261113_052339_099758_467F27A9 
+X-CRM114-Status: GOOD (  16.80  )
+X-Spam-Score: 0.4 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,558 +115,75 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,FROM_LOCAL_NOVOWEL,HEADER_FROM_DIFFERENT_DOMAINS,
+	HK_RANDOM_FROM,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Peng Fan <peng.fan@nxp.com>
+On Sun, Nov 08, 2026 at 07:59:10PM +1300, Jiaxing Hu wrote:
+> The NPU power domain is switched off when the driver probes, so the first
+> power-on goes through this wait even when the bootloader left the NPU on.
 
-With the per-domain CD table, every non-PASID sharer of a SID builds the
-same normal-domain STE: same S1ContextPtr, S1DSS and S1CDMAX. Disable
-PASID and ATS for shared SIDs as well, so the remaining STE fields are
-common too, and let any sharer program the STE. This also handles the
-case where one device's driver attaches before the stream owner's driver:
-the first attach now installs a valid STE instead of leaving the boot or
-firmware STE in place.
+[...]
 
-A per-device release must not abort a shared STE while other sharers
-remain, otherwise it would break their ongoing DMA. Use a dedicated
-release domain instead of inferring release from the STE contents:
-group-wide BLOCKED attaches still program the abort STE, while the
-release domain skips writes until the last master no longer shares the
-SID.
+> +	[RK3576_PD_NPU]		= DOMAIN_RK3576_R("npu",  0x0, BIT(0),  BIT(0), 0,       0x0, 0,       0,       0,       0,    false),
 
-Disable SVA, PASID, vSMMU nesting, ATS and IOPF/stall for shared-SID
-masters since all of them require an unambiguous SID-to-device mapping.
-Reject sharing at insert_master() time if either master wants stalling,
-if the incoming master requires ATS, if the existing master has PASID,
-ATS or vSMMU state enabled, or if a PCI and a non-PCI master would share
-the SID. Other ATS-capable shared devices have their ATS capability
-prepared, but ATS is not enabled while the SID is shared.
+Hi Jiaxing,
 
-Resolve stall_enabled before insert_master(), and use master->stall_enabled
-directly for CD.S, STE.S1STALLD and STE.S2S. A shared master can never
-have stalling enabled.
+(reply to https://lore.kernel.org/all/20261108065917.135194-10-gahing@gahingwoo.com/ )
 
-Add arm_smmu_master_shares_sid() as an inline helper in arm-smmu-v3.h so
-that arm-smmu-v3-sva.c and arm-smmu-v3-iommufd.c can use it without
-repeating the list_empty() pattern.
+This probe-time power-off hangs a board that does not enable the NPU.
+I hit it with v14 as Armbian carries it on 7.3.3; v16 has the same
+DOMAIN_RK3576_R("npu", ...), so I expect the same there, but I have not
+run v16.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- .../iommu/arm/arm-smmu-v3/arm-smmu-v3-iommufd.c    |   7 +-
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c    |   3 +
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c   |   5 +
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c        | 236 ++++++++++++++++-----
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h        |   5 +
- drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c     |   2 +-
- 6 files changed, 200 insertions(+), 58 deletions(-)
+Board: FriendlyElec NanoPi R76S. Its DTS has no domain-supply on pd_npu
+and the NPU nodes stay disabled. vdd_npu_s0 is RK806 dcdc-reg2,
+regulator-boot-on, no consumers.
 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-iommufd.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-iommufd.c
-index 853276dd5453..1fa512a655d2 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-iommufd.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-iommufd.c
-@@ -168,6 +168,8 @@ static int arm_smmu_attach_dev_nested(struct iommu_domain *domain,
- 
- 	if (nested_domain->vsmmu->smmu != master->smmu)
- 		return -EINVAL;
-+	if (arm_smmu_master_shares_sid(master))
-+		return -EOPNOTSUPP;
- 	if (arm_smmu_ssids_in_use(&master->cd_table))
- 		return -EBUSY;
- 
-@@ -310,7 +312,7 @@ static int arm_vsmmu_vdevice_init(struct iommufd_vdevice *vdev)
- 	 * arm_vsmmu_vsid_to_sid() maps a vSID to master->streams[0] alone, so
- 	 * more streams would leave the rest stale and none reads out of bounds.
- 	 */
--	if (master->num_streams != 1)
-+	if (master->num_streams != 1 || arm_smmu_master_shares_sid(master))
- 		return -EOPNOTSUPP;
- 	return 0;
- }
-@@ -545,6 +547,9 @@ size_t arm_smmu_get_viommu_size(struct device *dev,
- 	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
- 	struct arm_smmu_device *smmu = master->smmu;
- 
-+	if (arm_smmu_master_shares_sid(master))
-+		return 0;
-+
- 	if (!(smmu->features & ARM_SMMU_FEAT_NESTING))
- 		return 0;
- 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
-index 7f89bb7a2e9c..f65c60652c0d 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
-@@ -281,6 +281,9 @@ static int arm_smmu_sva_set_dev_pasid(struct iommu_domain *domain,
- 	if (!(master->smmu->features & ARM_SMMU_FEAT_SVA))
- 		return -EOPNOTSUPP;
- 
-+	if (arm_smmu_master_shares_sid(master))
-+		return -EOPNOTSUPP;
-+
- 	/* Prevent arm_smmu_mm_release from being called while we are attaching */
- 	if (!mmget_not_zero(domain->mm))
- 		return -EINVAL;
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c
-index 864d9f2350bc..a3fbcd88675a 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c
-@@ -215,6 +215,7 @@ static void arm_smmu_test_make_cdtable_ste(struct arm_smmu_ste *ste,
- 		.stall_enabled = stall_enabled,
- 	};
- 
-+	INIT_LIST_HEAD(&master.shared_masters_elm);
- 	arm_smmu_make_cdtable_ste(ste, &master, &master.cd_table, ats_enabled,
- 				  s1dss);
- 	if (feat & ARM_SMMU_MASTER_TEST_NESTED) {
-@@ -351,6 +352,7 @@ static void arm_smmu_test_make_s2_ste(struct arm_smmu_ste *ste,
- 		.pgtbl_ops = &io_pgtable.ops,
- 	};
- 
-+	INIT_LIST_HEAD(&master.shared_masters_elm);
- 	io_pgtable.cfg.arm_lpae_s2_cfg.vttbr = 0xdaedbeefdeadbeefULL;
- 	io_pgtable.cfg.arm_lpae_s2_cfg.vtcr.ps = 1;
- 	io_pgtable.cfg.arm_lpae_s2_cfg.vtcr.tg = 2;
-@@ -506,6 +508,7 @@ static void arm_smmu_test_make_s1_cd(struct arm_smmu_cd *cd, unsigned int asid)
- 		},
- 	};
- 
-+	INIT_LIST_HEAD(&master.shared_masters_elm);
- 	io_pgtable.cfg.arm_lpae_s1_cfg.ttbr = 0xdaedbeefdeadbeefULL;
- 	io_pgtable.cfg.arm_lpae_s1_cfg.tcr.ips = 1;
- 	io_pgtable.cfg.arm_lpae_s1_cfg.tcr.tg = 2;
-@@ -549,6 +552,7 @@ static void arm_smmu_test_make_sva_cd(struct arm_smmu_cd *cd, unsigned int asid)
- 		.smmu = &smmu,
- 	};
- 
-+	INIT_LIST_HEAD(&master.shared_masters_elm);
- 	arm_smmu_make_sva_cd(cd, &master, &sva_mm, asid);
- }
- 
-@@ -559,6 +563,7 @@ static void arm_smmu_test_make_sva_release_cd(struct arm_smmu_cd *cd,
- 		.smmu = &smmu,
- 	};
- 
-+	INIT_LIST_HEAD(&master.shared_masters_elm);
- 	arm_smmu_make_sva_cd(cd, &master, NULL, asid);
- }
- 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 20cbad032846..790a6e54c24a 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -3209,28 +3209,18 @@ arm_smmu_get_step_for_sid(struct arm_smmu_device *smmu, u32 sid)
- 	}
- }
- 
--void arm_smmu_install_ste_for_dev(struct arm_smmu_master *master,
--				  const struct arm_smmu_ste *target)
-+static void
-+arm_smmu_install_ste_for_dev_flags(struct arm_smmu_master *master,
-+				   const struct arm_smmu_ste *target,
-+				   bool skip_shared)
- {
- 	int i, j;
-+	bool written = false;
- 	struct arm_smmu_device *smmu = master->smmu;
--	u64 ste = le64_to_cpu(target->data[0]);
--
--	master->cd_table.in_ste =
--		FIELD_GET(STRTAB_STE_0_CFG, ste) ==
--			STRTAB_STE_0_CFG_S1_TRANS &&
--		(ste & STRTAB_STE_0_S1CTXPTR_MASK) ==
--			(master->cd_table.cdtab_dma &
--			 STRTAB_STE_0_S1CTXPTR_MASK);
--	master->ste_ats_enabled =
--		FIELD_GET(STRTAB_STE_1_EATS,
--			  le64_to_cpu(target->data[1])) ==
--		STRTAB_STE_1_EATS_TRANS;
- 
- 	for (i = 0; i < master->num_streams; ++i) {
- 		u32 sid = master->streams[i]->id;
--		struct arm_smmu_ste *step =
--			arm_smmu_get_step_for_sid(smmu, sid);
-+		struct arm_smmu_ste *step;
- 
- 		/* Bridged PCI devices may end up with duplicated IDs */
- 		for (j = 0; j < i; j++)
-@@ -3239,11 +3229,43 @@ void arm_smmu_install_ste_for_dev(struct arm_smmu_master *master,
- 		if (j < i)
- 			continue;
- 
-+		/*
-+		 * A shared STE represents the group's domain, not a single
-+		 * master. The release domain is attached to one device at a
-+		 * time while the other sharers must keep translating; leave
-+		 * the STE untouched until the last master is released.
-+		 */
-+		if (skip_shared && arm_smmu_master_shares_sid(master))
-+			continue;
-+
-+		step = arm_smmu_get_step_for_sid(smmu, sid);
- 		arm_smmu_write_ste(master, sid, step, target);
-+		written = true;
-+	}
-+
-+	if (written) {
-+		u64 ste = le64_to_cpu(target->data[0]);
-+
-+		master->cd_table.in_ste =
-+			FIELD_GET(STRTAB_STE_0_CFG, ste) ==
-+				STRTAB_STE_0_CFG_S1_TRANS &&
-+			(ste & STRTAB_STE_0_S1CTXPTR_MASK) ==
-+				(master->cd_table.cdtab_dma &
-+				 STRTAB_STE_0_S1CTXPTR_MASK);
-+		master->ste_ats_enabled =
-+			FIELD_GET(STRTAB_STE_1_EATS,
-+				  le64_to_cpu(target->data[1])) ==
-+			STRTAB_STE_1_EATS_TRANS;
- 	}
- }
- 
--static bool arm_smmu_ats_supported(struct arm_smmu_master *master)
-+void arm_smmu_install_ste_for_dev(struct arm_smmu_master *master,
-+				  const struct arm_smmu_ste *target)
-+{
-+	arm_smmu_install_ste_for_dev_flags(master, target, false);
-+}
-+
-+static bool arm_smmu_ats_capable(struct arm_smmu_master *master)
- {
- 	struct device *dev = master->dev;
- 	struct arm_smmu_device *smmu = master->smmu;
-@@ -3258,6 +3280,18 @@ static bool arm_smmu_ats_supported(struct arm_smmu_master *master)
- 	return dev_is_pci(dev) && pci_ats_supported(to_pci_dev(dev));
- }
- 
-+static bool arm_smmu_ats_supported(struct arm_smmu_master *master)
-+{
-+	return !arm_smmu_master_shares_sid(master) &&
-+	       arm_smmu_ats_capable(master);
-+}
-+
-+static bool arm_smmu_master_pasid_enabled(struct arm_smmu_master *master)
-+{
-+	return dev_is_pci(master->dev) &&
-+	       to_pci_dev(master->dev)->pasid_enabled;
-+}
-+
- static void arm_smmu_enable_ats(struct arm_smmu_master *master)
- {
- 	size_t stu;
-@@ -3386,8 +3420,7 @@ static int arm_smmu_enable_iopf(struct arm_smmu_master *master,
- 	if (!master->stall_enabled)
- 		return 0;
- 
--	/* We're not keeping track of SIDs in fault events */
--	if (master->num_streams != 1)
-+	if (master->num_streams != 1 || arm_smmu_master_shares_sid(master))
- 		return -EOPNOTSUPP;
- 
- 	if (master->iopf_refcount) {
-@@ -3994,6 +4027,9 @@ static int arm_smmu_s1_set_dev_pasid(struct iommu_domain *domain,
- 	if (smmu_domain->stage != ARM_SMMU_DOMAIN_S1)
- 		return -EINVAL;
- 
-+	if (arm_smmu_master_shares_sid(master))
-+		return -EOPNOTSUPP;
-+
- 	/*
- 	 * We can read cd.asid outside the lock because arm_smmu_set_pasid()
- 	 * will fix it
-@@ -4192,11 +4228,11 @@ static int arm_smmu_blocking_set_dev_pasid(struct iommu_domain *new_domain,
- 	return ret;
- }
- 
--static void arm_smmu_attach_dev_ste(struct iommu_domain *domain,
--				    struct iommu_domain *old_domain,
--				    struct device *dev,
--				    struct arm_smmu_ste *ste,
--				    unsigned int s1dss)
-+static int arm_smmu_attach_dev_ste(struct iommu_domain *domain,
-+				   struct iommu_domain *old_domain,
-+				   struct device *dev,
-+				   struct arm_smmu_ste *ste,
-+				   unsigned int s1dss, bool release)
- {
- 	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
- 	struct arm_smmu_attach_state state = {
-@@ -4206,6 +4242,7 @@ static void arm_smmu_attach_dev_ste(struct iommu_domain *domain,
- 	};
- 	bool ats_always_on = master->ats_always_on &&
- 			     s1dss != STRTAB_STE_1_S1DSS_TERMINATE;
-+	int ret;
- 
- 	/*
- 	 * Do not allow any ASID to be changed while are working on the STE,
-@@ -4226,13 +4263,17 @@ static void arm_smmu_attach_dev_ste(struct iommu_domain *domain,
- 		 * and allows for ATS on the RID to work.
- 		 */
- 		state.cd_needs_ats = true;
--		arm_smmu_attach_prepare(&state, domain);
-+		ret = arm_smmu_attach_prepare(&state, domain);
-+		if (ret)
-+			goto out_unlock;
- 		arm_smmu_make_cdtable_ste(ste, master, &master->cd_table,
- 					  state.ats_enabled, s1dss);
- 	} else {
--		arm_smmu_attach_prepare(&state, domain);
-+		ret = arm_smmu_attach_prepare(&state, domain);
-+		if (ret)
-+			goto out_unlock;
- 	}
--	arm_smmu_install_ste_for_dev(master, ste);
-+	arm_smmu_install_ste_for_dev_flags(master, ste, release);
- 	arm_smmu_attach_commit(&state);
- 	mutex_unlock(&arm_smmu_asid_lock);
- 	arm_smmu_attach_release(&state);
-@@ -4243,6 +4284,11 @@ static void arm_smmu_attach_dev_ste(struct iommu_domain *domain,
- 	 * descriptor from arm_smmu_share_asid().
- 	 */
- 	arm_smmu_clear_cd(master, IOMMU_NO_PASID);
-+	return 0;
-+
-+out_unlock:
-+	mutex_unlock(&arm_smmu_asid_lock);
-+	return ret;
- }
- 
- static int arm_smmu_attach_dev_identity(struct iommu_domain *domain,
-@@ -4254,9 +4300,8 @@ static int arm_smmu_attach_dev_identity(struct iommu_domain *domain,
- 
- 	arm_smmu_master_clear_vmaster(master);
- 	arm_smmu_make_bypass_ste(master->smmu, &ste);
--	arm_smmu_attach_dev_ste(domain, old_domain, dev, &ste,
--				STRTAB_STE_1_S1DSS_BYPASS);
--	return 0;
-+	return arm_smmu_attach_dev_ste(domain, old_domain, dev, &ste,
-+				       STRTAB_STE_1_S1DSS_BYPASS, false);
- }
- 
- static const struct iommu_domain_ops arm_smmu_identity_ops = {
-@@ -4277,9 +4322,8 @@ static int arm_smmu_attach_dev_blocked(struct iommu_domain *domain,
- 
- 	arm_smmu_master_clear_vmaster(master);
- 	arm_smmu_make_abort_ste(&ste);
--	arm_smmu_attach_dev_ste(domain, old_domain, dev, &ste,
--				STRTAB_STE_1_S1DSS_TERMINATE);
--	return 0;
-+	return arm_smmu_attach_dev_ste(domain, old_domain, dev, &ste,
-+				       STRTAB_STE_1_S1DSS_TERMINATE, false);
- }
- 
- static const struct iommu_domain_ops arm_smmu_blocked_ops = {
-@@ -4292,6 +4336,37 @@ static struct iommu_domain arm_smmu_blocked_domain = {
- 	.ops = &arm_smmu_blocked_ops,
- };
- 
-+static int arm_smmu_attach_dev_release(struct iommu_domain *domain,
-+				       struct device *dev,
-+				       struct iommu_domain *old_domain)
-+{
-+	struct arm_smmu_ste ste;
-+	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
-+	bool require_direct = dev->iommu && dev->iommu->require_direct;
-+	unsigned int s1dss;
-+
-+	arm_smmu_master_clear_vmaster(master);
-+	if (require_direct) {
-+		arm_smmu_make_bypass_ste(master->smmu, &ste);
-+		s1dss = STRTAB_STE_1_S1DSS_BYPASS;
-+	} else {
-+		arm_smmu_make_abort_ste(&ste);
-+		s1dss = STRTAB_STE_1_S1DSS_TERMINATE;
-+	}
-+
-+	return arm_smmu_attach_dev_ste(domain, old_domain, dev, &ste, s1dss,
-+				       true);
-+}
-+
-+static const struct iommu_domain_ops arm_smmu_release_ops = {
-+	.attach_dev = arm_smmu_attach_dev_release,
-+};
-+
-+static struct iommu_domain arm_smmu_release_domain = {
-+	.type = IOMMU_DOMAIN_BLOCKED,
-+	.ops = &arm_smmu_release_ops,
-+};
-+
- static struct iommu_domain *
- arm_smmu_domain_alloc_paging_flags(struct device *dev, u32 flags,
- 				   const struct iommu_user_data *user_data)
-@@ -4537,9 +4612,40 @@ static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
- 				break;
- 			}
- 
--			if (stream->master->stall_enabled) {
-+			if (dev_is_pci(master->dev) !=
-+			    dev_is_pci(stream->master->dev)) {
-+				dev_warn(master->dev,
-+					 "Shared StreamID 0x%x across PCI and non-PCI masters unsupported\n",
-+					 sid);
-+				ret = -ENODEV;
-+				break;
-+			}
-+
-+			if (dev_is_pci(master->dev) &&
-+			    pci_ats_required(to_pci_dev(master->dev))) {
-+				dev_warn(master->dev,
-+					 "Shared StreamID 0x%x rejected: incoming master requires ATS\n",
-+					 sid);
-+				ret = -EBUSY;
-+				break;
-+			}
-+
-+			if (stream->master->stall_enabled ||
-+			    master->stall_enabled) {
-+				dev_warn(master->dev,
-+					 "Shared StreamID 0x%x rejected: stall enabled\n",
-+					 sid);
-+				ret = -EBUSY;
-+				break;
-+			}
-+
-+			if (stream->master->ats_always_on ||
-+			    stream->master->ats_enabled ||
-+			    arm_smmu_master_pasid_enabled(stream->master) ||
-+			    arm_smmu_ssids_in_use(&stream->master->cd_table) ||
-+			    stream->master->vmaster) {
- 				dev_warn(master->dev,
--					 "Shared StreamID 0x%x rejected: existing master has stall enabled\n",
-+					 "Shared StreamID 0x%x rejected: existing master has PASID/ATS/vSMMU enabled\n",
- 					 sid);
- 				ret = -EBUSY;
- 				break;
-@@ -4612,7 +4718,7 @@ static int arm_smmu_master_prepare_ats(struct arm_smmu_master *master)
- 		return 0;
- 	pdev = to_pci_dev(master->dev);
- 
--	if (!arm_smmu_ats_supported(master)) {
-+	if (!arm_smmu_ats_capable(master)) {
- 		if (pci_ats_required(pdev)) {
- 			dev_err_once(master->dev, "SMMU doesn't support ATS\n");
- 			return -EOPNOTSUPP;
-@@ -4624,6 +4730,9 @@ static int arm_smmu_master_prepare_ats(struct arm_smmu_master *master)
- 	if (ret || !pci_ats_required(pdev))
- 		return ret;
- 
-+	if (arm_smmu_master_shares_sid(master))
-+		return -EOPNOTSUPP;
-+
- 	/*
- 	 * S1DSS is required for ATS to be always on for identity domain cases.
- 	 * However, the S1DSS field is ignored if !IDR0_S1P or !IDR1_SSIDSIZE.
-@@ -4661,32 +4770,47 @@ static struct iommu_device *arm_smmu_probe_device(struct device *dev)
- 	master->smmu = smmu;
- 	dev_iommu_priv_set(dev, master);
- 
--	ret = arm_smmu_insert_master(smmu, master);
--	if (ret)
--		goto err_free_master;
--
--	device_property_read_u32(dev, "pasid-num-bits", &master->ssid_bits);
--	master->ssid_bits = min(smmu->ssid_bits, master->ssid_bits);
--
- 	/*
--	 * Note that PASID must be enabled before, and disabled after ATS:
--	 * PCI Express Base 4.0r1.0 - 10.5.1.3 ATS Control Register
--	 *
--	 *   Behavior is undefined if this bit is Set and the value of the PASID
--	 *   Enable, Execute Requested Enable, or Privileged Mode Requested bits
--	 *   are changed.
-+	 * Resolve the stall policy before inserting the master. StreamID
-+	 * sharing is rejected when either device wants stalling, and the
-+	 * insert path needs to know the incoming master's policy.
- 	 */
--	arm_smmu_enable_pasid(master);
--
--	if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB))
--		master->ssid_bits = min_t(u8, master->ssid_bits,
--					  CTXDESC_LINEAR_CDMAX);
--
- 	if ((smmu->features & ARM_SMMU_FEAT_STALLS &&
- 	     device_property_read_bool(dev, "dma-can-stall")) ||
- 	    smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
- 		master->stall_enabled = true;
- 
-+	ret = arm_smmu_insert_master(smmu, master);
-+	if (ret)
-+		goto err_free_master;
-+
-+	if (arm_smmu_master_shares_sid(master)) {
-+		/*
-+		 * A shared StreamID cannot use PASID because all sharers must
-+		 * point at the same, domain-owned CD table.
-+		 */
-+		master->ssid_bits = 0;
-+	} else {
-+		device_property_read_u32(dev, "pasid-num-bits",
-+					 &master->ssid_bits);
-+		master->ssid_bits = min(smmu->ssid_bits, master->ssid_bits);
-+
-+		/*
-+		 * Note that PASID must be enabled before, and disabled after
-+		 * ATS:
-+		 * PCI Express Base 4.0r1.0 - 10.5.1.3 ATS Control Register
-+		 *
-+		 *   Behavior is undefined if this bit is Set and the value of
-+		 *   the PASID Enable, Execute Requested Enable, or Privileged
-+		 *   Mode Requested bits are changed.
-+		 */
-+		arm_smmu_enable_pasid(master);
-+
-+		if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB))
-+			master->ssid_bits = min_t(u8, master->ssid_bits,
-+						  CTXDESC_LINEAR_CDMAX);
-+	}
-+
- 	ret = arm_smmu_master_prepare_ats(master);
- 	if (ret)
- 		goto err_disable_pasid;
-@@ -4811,7 +4935,7 @@ static int arm_smmu_def_domain_type(struct device *dev)
- static const struct iommu_ops arm_smmu_ops = {
- 	.identity_domain	= &arm_smmu_identity_domain,
- 	.blocked_domain		= &arm_smmu_blocked_domain,
--	.release_domain		= &arm_smmu_blocked_domain,
-+	.release_domain		= &arm_smmu_release_domain,
- 	.capable		= arm_smmu_capable,
- 	.hw_info		= arm_smmu_hw_info,
- 	.domain_alloc_sva       = arm_smmu_sva_domain_alloc,
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-index 444b88cc67c5..cd659590dfe5 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-@@ -1242,6 +1242,11 @@ int arm_smmu_init_one_queue(struct arm_smmu_device *smmu,
- int arm_smmu_cmdq_init(struct arm_smmu_device *smmu,
- 		       struct arm_smmu_cmdq *cmdq);
- 
-+static inline bool arm_smmu_master_shares_sid(struct arm_smmu_master *master)
-+{
-+	return !list_empty(&master->shared_masters_elm);
-+}
-+
- static inline bool arm_smmu_master_canwbs(struct arm_smmu_master *master)
- {
- 	return dev_iommu_fwspec_get(master->dev)->flags &
-diff --git a/drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c b/drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c
-index 8166cece943c..ffb0ac93a4f4 100644
---- a/drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c
-@@ -1264,7 +1264,7 @@ static int tegra241_vintf_init_vsid(struct iommufd_vdevice *vdev)
- 	if (virt_sid > FIELD_MAX(VINTF_SID_MATCH_VIRT_SID))
- 		return -EINVAL;
- 
--	if (master->num_streams != 1)
-+	if (master->num_streams != 1 || arm_smmu_master_shares_sid(master))
- 		return -EOPNOTSUPP;
- 
- 	/* Find an empty pair of SID_REPLACE and SID_MATCH */
+On about every second boot the SoC hangs hard ~30 s after start: no
+oops, no answer to SysRq over the serial console, only the watchdog
+gets it out. The last console line is "vdd_npu_s0: disabling" from
+regulator_late_cleanup(). The kernel without the series (7.2.8) does
+not hang. 10 boots each, no hang, with any of:
 
--- 
-2.34.1
+  - regulator_ignore_unused
+  - regulator-always-on on vdd_npu_s0 only
+  - the NPU enabled as in your ROCK 4D patch (domain-supply and
+    npu-supply on vdd_npu_s0, cores and MMUs okay)
 
+PMU registers after boot (regmap debugfs of 27380000.power-management):
+
+               NPU not enabled   NPU enabled as on ROCK 4D
+  0x110 req    0x000013e0        0x000013fe
+  0x128 idle   0x000313e0        0x000313fe
+  0x214 pwr    0x0000003e        0x000001fe
+  0x230 stat   0x003e4181        0x01fe4181
+
+With the NPU not enabled, nputop/npu0/npu1 (bits 6..8 at 0x214) are
+still powered and their idle requests (bits 1..4 at 0x110) are not set,
+while pm_genpd_summary lists npu, nputop, npu0 and npu1 as off-0 from
+early boot.
+
+My reading: rockchip_pm_add_one_domain() powers the parent "npu" domain
+off at probe because of need_regulator, but the children U-Boot left on
+are neither idled nor powered off first, and genpd then treats them as
+off, so nothing cleans them up. When vdd_npu_s0 is cut later, the bus
+hangs on those NIUs. I have not dumped the PMU on a kernel without the
+series and have not tested a kernel fix, so this is a report rather
+than a diagnosis. Idling and powering off the children that are on
+before the parent at probe, or skipping the probe power-off when there
+is no domain-supply, look like possible directions.
+
+This would hit every RK3576 board that does not enable the NPU, which
+is most of them.
+
+More detail: https://github.com/gahingwoo/linux-rk3576-npu/issues/4
+I am happy to test patches on the R76S; it has a serial console.
+
+Thanks,
+Vladimir
 
