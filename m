@@ -2,75 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AFFE606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 08:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D5D60A3801
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 09:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l8aDmN4+;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=LYW78VGY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eQ4X7q3k;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=T6sINKU0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ms1ju7huIjhl6AXZ2LHEfgvi0JgbTGMgbEyfAcNQlLA=; b=l8aDmN4+ZtARyD
-	xF+Alux7ae4EscndN09ZUTe1PNj1qNxPO0laxdW0RFGPeNIa4lJ6jzfe6Zw37DHWifeHEzDXEG99q
-	fKth+eUqtgKTc07Tx/AOTinH3c53XMFYGXkoA8YVZg3Umr688wncEoKsogT5rlwnSx7ncomMpBf/0
-	4ZlhYE8fAbMxEQwvKWSP5IJs6dufKN6WTY8A6Jy2bhxQuuU94sViek1rdyzTTjTB6z/bCNWhdexM1
-	WITEinc/I78tLpJppzSY3saf4uPGISMbcNFfeGey3UI9iOcl5NLZO8V9AKq7w7WtYj+gQ4Wqyx23N
-	PfRlGqiyW32Ua2dGQRrQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=1HmPxNcC5h5Z+poiYPyHoJvZUob7IYj5py5ybpq1DpY=; b=eQ4X7q3ka6WGu606Qi5XK/hjDO
+	6LXPlVsrek5MYyj/rdMFJPz/pF1y1R5wb4Iwt1Jq1H+E1p3VfiV7CRwKySVIylLWp45LvtF11HUE4
+	vq1P/JiZDr9YdlZ7GTQP3bagjYt5GmvkhVJIfiFZspgHLORdK3yAv2eAXDYliTwiX9EP9jXP3ggcM
+	uWl7XWFbLpo+iGRoBHuEZDGGz95403pcNT7+uKZbWOXPU7SdRvMR8sEUoqdDJW8am64gudkjGV5OX
+	/arfnG6dLHzJIUnsappHjzu5iQkfXpJdhoSCODJDWnO3G94Ph3Br+Kn6MzhWg43z8BHYJquVc0EIX
+	oaysPvcg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS9Db-0000000Fbci-1KAi;
-	Sat, 14 Nov 2026 08:34:39 +0000
-Received: from mail-m81155.netease.com ([47.88.81.155])
+	id 1xS9oL-0000000Fdq1-4Az2;
+	Sat, 14 Nov 2026 09:12:38 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS9Cv-0000000FbC4-0WdV;
-	Sat, 14 Nov 2026 08:34:00 +0000
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 54aa88684;
-	Sat, 14 Nov 2026 16:33:47 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dave Jones <s.dave.jones@gmail.com>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v6 2/4] phy: rockchip: Add support for Naneng eDP phy
-Date: Sat, 14 Nov 2026 16:33:37 +0800
-Message-Id: <20261114083339.600986-3-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261114083339.600986-1-damon.ding@rock-chips.com>
-References: <20261114083339.600986-1-damon.ding@rock-chips.com>
+	id 1xS9oK-0000000FdpB-2A32
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 14 Nov 2026 09:12:36 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4394546341;
+	Sat, 14 Nov 2026 09:12:36 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794647556;
+	b=rZCLe0HFq+7aykuvj+t3iTtWT36H7IebQ8BxagqCGd5kV1InW2LwNux42FxLr3cEEjR3
+	 XO5dpNRQyVJp4TRVnwcFnmZn+XthkPj7CFcYc5pvqPfT19syztK+keIc1ULI7xOjP9hXR
+	 fW79jNB0CQgoqjxsHyPBhdkXFNCjWA1IDRwb2AYOUKZgKb0xt71uwpnFL7N3zZWneOsUY
+	 djbJEp6t4H0jkKj3A69sDIeP4NVGwxJviAhhyhmV6zB6r5kAxMCTj0wrWfxP++em6GlQq
+	 YxGkv7jMbktv2cgpyahCSB9ByX9M7SCp6d+g5XKZ7+Y4OnZKAU5SV/V5VGRtV6jCBBw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794647556;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=1HmPxNcC5h5Z+poiYPyHoJvZUob7IYj5py5ybpq1DpY=;
+	b=jc1MNirikhdl+He6U75GDpn/z9KSN7wp9W53LUxQILm/CgU4tLeC/4FODNx+bhFKbMAI
+	 HMvlan0ppKnbPZm4Hc2Ho+tufia2Sng00wWc0uefs9mUMzOfr6jhjC6QmdYgFr4Fz2NHH
+	 Z4KQpJT5ml09NR/KtYrd3svwZ+C9Gt7YJS2PDc5TYrcTPpMScGXLrrvbq2F+lE0/aXul7
+	 /50T3cJZgURqzdLNdSQ+n/XIJ3cRdiVBPCrss47KbzRpYKTnyDq87d41NYej3y2ZFGpLN
+	 tVewIoV+M/mrFeM8SN76otiTxiNl1cxZdCLbZfA8544FwP0ODupV/V77n/wxLMMgQgQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 52A5D1F000CA;
+	Sat, 14 Nov 2026 09:12:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794647556;
+	bh=1HmPxNcC5h5Z+poiYPyHoJvZUob7IYj5py5ybpq1DpY=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=T6sINKU0T0eu9aq0FQg03io4hzFXO0s/OS4NRp4hV9DRRXum6U2fipsSoRPwdx5a8
+	 QA/4HepGNDpCcdLJcWYdWA3GMOdXHLE9vHk7ZzfDOjz3OjY+woNAMBMUX13f3cKKtX
+	 /aKpVP5tRr1pn3f0omiLI8muNNEBtMd9wgnx6ZnweodazBGPzJeoee6EydbU6S+cuE
+	 a2sZIVATacqll51pkJzb2lMKOg+rGQdbGWImy6A5Rfsh7I5jY/excbpYXBjy81Bxp4
+	 eMFomoOcRViadrmOu0I7zRY/sjYevjXIjzMnX04F+0UAdhRwITMoWRcz9iGcZ2ZKuj
+	 WKNweqBIzhvlg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id C1CE349D0A;
+	Sat, 14 Nov 2026 09:12:33 +0000 (UTC)
+From: Vincent Jardin via B4 Relay <devnull+vjardin.free.fr@kernel.org>
+Date: Sat, 14 Nov 2026 10:12:28 +0100
+Subject: [PATCH v4 1/5] dt-bindings: pinctrl: add the NXP LX2160A RCW pad
+ mux
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1d930f66b03a8kunmf52e9804102258
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaGhgfVk0aTUIfGh9IGUsfSVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	JDQ0xVSktLVUtZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=LYW78VGYuSWSZGV02cSGRYmTSTc0wv6XtEVUpvMXSHngJZwZ87O9Pkc/4K2cBzdPOZZA1O7JKa6llhDJJ5XE9URWO4rfEnZpZbg9JHIgaJ++SIN/OfV5upBAsYOFgaUStFyePgaokDPVZl2ECKLik9H/AZK4S6PsLFxI5uxUd7k=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=ms1ju7huIjhl6AXZ2LHEfgvi0JgbTGMgbEyfAcNQlLA=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_003358_255632_FCA67971 
-X-CRM114-Status: GOOD (  21.70  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-1-eefcea066a55@free.fr>
+References: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
+In-Reply-To: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
+To: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
+ Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
+ Vladimir Oltean <vladimir.oltean@nxp.com>, 
+ Ioana Ciornei <ioana.ciornei@nxp.com>, Vincent Jardin <vjardin@free.fr>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794647552; l=7949;
+ i=vjardin@free.fr; s=20260525; h=from:subject:message-id;
+ bh=R4TmEm1LLxqWdwqJt3KI4iBHK65rYx8frtZO+ZBgiN8=;
+ b=n8ILXGIQxnCBdXgROJU5zgFrMlpl8K2wBA1oelVuZxQpKEQF1oO5zgKgSf7XV42O2q8jFGrod
+ c+NoU7rN8Y/BMtnizZjPKe/rYFc5CMIaRDy3YH0tpFaZqMArHLg1yGV
+X-Developer-Key: i=vjardin@free.fr; a=ed25519;
+ pk=hppgLeFpGpKOi7LNwGEZ4jOYofJCoGd4Jf1ltAabiLw=
+X-Endpoint-Received: by B4 Relay for vjardin@free.fr/20260525 with
+ auth_id=871
+X-Original-From: Vincent Jardin <vjardin@free.fr>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,6 +117,7 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: vjardin@free.fr
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -89,563 +127,299 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a driver for the Rockchip eDP transmitter PHY with Naneng IP
-block, as found on the RK3568 SoC.
+From: Vincent Jardin <vjardin@free.fr>
 
-The PHY has its own register window inside the eDP PHY GRF, so its
-node is modeled as a child of the eDP PHY GRF syscon with a reg
-property describing that window, and the driver maps that window
-directly.  The PHY supports 1/2/4 lanes at 1.62 Gbps and 2.7 Gbps,
-optional spread spectrum clocking, as well as per-lane voltage swing
-and pre-emphasis tuning, all exposed through the generic PHY
-DisplayPort configuration interface.
+The LX2160A muxes its IIC, XSPI, SDHC, UART, IRQ and EVT pads from
+fields of the RCW: read-only in RCWSR12..14 of DCFG, changed at runtime
+through the override registers of its DCSR view.
 
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+Describe the pad mux as a child of DCFG at its RCWSR12 to RCWSR14
+window: the override registers are at the same offset of the DCSR view
+of the parent. One group per RCW field, one function per encoding.
 
+Each function lists the groups that take it, so a pair the driver
+would refuse, such as can on iic1, is refused by the schema.
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Vincent Jardin <vjardin@free.fr>
 ---
+ .../bindings/pinctrl/fsl,lx2160a-rcw-pinmux.yaml   | 264 +++++++++++++++++++++
+ 1 file changed, 264 insertions(+)
 
-Changes in v2:
-- Apply the lane-dependent TX configurations in set_lanes() instead of
-  set_rate(), and store the lane count for set_voltages(), since the
-  Analogix DP core issues separate phy_configure() calls and the lane
-  count is only valid in the set_lanes/set_voltages calls. (Sashiko)
-- Initialize val to zero in rockchip_edp_phy_enabled() to avoid using
-  an uninitialized variable when regmap_read() fails. (Sashiko)
-
-Changes in v3:
-- Add the changes which were missing in v2 for unexpected reasons.
-
-Changes in v4:
-- Map the PHY registers from its own reg property instead of
-  accessing them through the parent syscon regmap.
-
-Changes in v5:
-- Move the APB clock (PCLK_EDPPHY_GRF) from the parent syscon node to
-  the PHY node and enable it in the driver. (Sashiko)
-- Validate the voltages against the effective lane count, to also
-  cover combined set_lanes + set_voltages requests. (Sashiko)
-- Select REGMAP_MMIO. (Sashiko)
-- Rename the reference clock to "ref", following the review of the
-  binding.
----
- drivers/phy/rockchip/Kconfig                  |  11 +
- drivers/phy/rockchip/Makefile                 |   1 +
- .../phy/rockchip/phy-rockchip-naneng-edp.c    | 471 ++++++++++++++++++
- 3 files changed, 483 insertions(+)
- create mode 100644 drivers/phy/rockchip/phy-rockchip-naneng-edp.c
-
-diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
-index 39759bb2fa1d..efa49d6b620d 100644
---- a/drivers/phy/rockchip/Kconfig
-+++ b/drivers/phy/rockchip/Kconfig
-@@ -74,6 +74,17 @@ config PHY_ROCKCHIP_NANENG_COMBO_PHY
- 	  Enable this to support the Rockchip PCIe/USB3.0/SATA/QSGMII
- 	  combo PHY with NaNeng IP block.
- 
-+config PHY_ROCKCHIP_NANENG_EDP
-+	tristate "Rockchip Naneng eDP Transmitter PHY driver"
-+	depends on ARCH_ROCKCHIP && OF
-+	select GENERIC_PHY
-+	select REGMAP_MMIO
-+	help
-+	  Enable this to support the Rockchip eDP Transmitter PHY with
-+	  Naneng IP block. The PHY, which is controlled through the eDP
-+	  PHY GRF, provides 1/2/4 lanes running at 1.62/2.7 Gbps per lane
-+	  for the eDP controller found on the RK3568 SoC.
-+
- config PHY_ROCKCHIP_PCIE
- 	tristate "Rockchip PCIe PHY Driver"
- 	depends on (ARCH_ROCKCHIP && OF) || COMPILE_TEST
-diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
-index 117aaffd037d..260a10157461 100644
---- a/drivers/phy/rockchip/Makefile
-+++ b/drivers/phy/rockchip/Makefile
-@@ -7,6 +7,7 @@ obj-$(CONFIG_PHY_ROCKCHIP_INNO_DSIDPHY)	+= phy-rockchip-inno-dsidphy.o
- obj-$(CONFIG_PHY_ROCKCHIP_INNO_HDMI)	+= phy-rockchip-inno-hdmi.o
- obj-$(CONFIG_PHY_ROCKCHIP_INNO_USB2)	+= phy-rockchip-inno-usb2.o
- obj-$(CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY)	+= phy-rockchip-naneng-combphy.o
-+obj-$(CONFIG_PHY_ROCKCHIP_NANENG_EDP)	+= phy-rockchip-naneng-edp.o
- obj-$(CONFIG_PHY_ROCKCHIP_PCIE)		+= phy-rockchip-pcie.o
- obj-$(CONFIG_PHY_ROCKCHIP_SAMSUNG_DCPHY)	+= phy-rockchip-samsung-dcphy.o
- obj-$(CONFIG_PHY_ROCKCHIP_SAMSUNG_HDPTX)	+= phy-rockchip-samsung-hdptx.o
-diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-edp.c b/drivers/phy/rockchip/phy-rockchip-naneng-edp.c
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,lx2160a-rcw-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/fsl,lx2160a-rcw-pinmux.yaml
 new file mode 100644
-index 000000000000..7f0ecc347c78
+index 000000000000..6bd21c27a00c
 --- /dev/null
-+++ b/drivers/phy/rockchip/phy-rockchip-naneng-edp.c
-@@ -0,0 +1,471 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (c) 2026 Rockchip Electronics Co., Ltd.
-+ *
-+ * Author: Damon Ding <damon.ding@rock-chips.com>
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/hw_bitfield.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define EDP_PHY_GRF_CON0		0x0000
-+#define EDP_PHY_TX_IDLE_MASK		GENMASK(11, 8)
-+#define EDP_PHY_TX_PD_MASK		GENMASK(7, 4)
-+#define EDP_PHY_IDDQ_EN_MASK		BIT(1)
-+#define EDP_PHY_PD_PLL_MASK		BIT(0)
-+
-+#define EDP_PHY_GRF_CON1		0x0004
-+#define EDP_PHY_PLL_DIV_MASK		GENMASK(14, 0)
-+
-+#define EDP_PHY_GRF_CON2		0x0008
-+#define EDP_PHY_TX_RTERM_MASK		GENMASK(10, 8)
-+#define EDP_PHY_RATE_MASK		GENMASK(5, 4)
-+#define EDP_PHY_REF_DIV_MASK		GENMASK(3, 0)
-+
-+#define EDP_PHY_GRF_CON3		0x000c
-+#define EDP_PHY_TX3_EMP_MASK		GENMASK(15, 12)
-+#define EDP_PHY_TX2_EMP_MASK		GENMASK(11, 8)
-+#define EDP_PHY_TX1_EMP_MASK		GENMASK(7, 4)
-+#define EDP_PHY_TX0_EMP_MASK		GENMASK(3, 0)
-+
-+#define EDP_PHY_GRF_CON4		0x0010
-+#define EDP_PHY_TX3_AMP_MASK		GENMASK(14, 12)
-+#define EDP_PHY_TX2_AMP_MASK		GENMASK(10, 8)
-+#define EDP_PHY_TX1_AMP_MASK		GENMASK(6, 4)
-+#define EDP_PHY_TX0_AMP_MASK		GENMASK(2, 0)
-+
-+#define EDP_PHY_GRF_CON5		0x0014
-+#define EDP_PHY_TX_MODE_MASK		GENMASK(9, 8)
-+#define EDP_PHY_TX3_AMP_SCALE_MASK	GENMASK(7, 6)
-+#define EDP_PHY_TX2_AMP_SCALE_MASK	GENMASK(5, 4)
-+#define EDP_PHY_TX1_AMP_SCALE_MASK	GENMASK(3, 2)
-+#define EDP_PHY_TX0_AMP_SCALE_MASK	GENMASK(1, 0)
-+
-+#define EDP_PHY_GRF_CON6		0x0018
-+#define EDP_PHY_SSC_DEPTH_MASK		GENMASK(15, 12)
-+#define EDP_PHY_SSC_EN_MASK		BIT(11)
-+#define EDP_PHY_SSC_CNT_MASK		GENMASK(9, 0)
-+
-+#define EDP_PHY_GRF_CON7		0x001c
-+
-+#define EDP_PHY_GRF_CON8		0x0020
-+#define EDP_PHY_PLL_CTL_H_MASK		GENMASK(15, 0)
-+
-+#define EDP_PHY_GRF_CON9		0x0024
-+#define EDP_PHY_TX_CTL_MASK		GENMASK(15, 0)
-+
-+#define EDP_PHY_GRF_CON10		0x0028
-+#define EDP_PHY_AUX_RCV_PD_SEL_MASK	BIT(5)
-+#define EDP_PHY_AUX_DRV_PD_SEL_MASK	BIT(4)
-+#define EDP_PHY_AUX_IDLE_MASK		BIT(2)
-+#define EDP_PHY_AUX_RCV_PD_MASK		BIT(1)
-+#define EDP_PHY_AUX_DRV_PD_MASK		BIT(0)
-+
-+#define EDP_PHY_GRF_CON11		0x002c
-+#define EDP_PHY_AUX_RCV_VCM_MASK	GENMASK(14, 12)
-+#define EDP_PHY_AUX_MODE_MASK		GENMASK(11, 10)
-+#define EDP_PHY_AUX_AMP_SCALE_MASK	GENMASK(9, 8)
-+#define EDP_PHY_AUX_AMP_MASK		GENMASK(6, 4)
-+#define EDP_PHY_AUX_RTERM_MASK		GENMASK(2, 0)
-+
-+#define EDP_PHY_GRF_STATUS0		0x0030
-+#define PLL_RDY				BIT(0)
-+
-+#define EDP_PHY_GRF_STATUS1		0x0034
-+
-+struct rockchip_edp_phy {
-+	struct regmap *regmap;
-+	struct device *dev;
-+	struct clk *refclk;
-+	u8 lanes;
-+};
-+
-+static struct {
-+	int amp;
-+	int amp_scale;
-+	int emp;
-+} swing_pre_emph_table[4][4] = {
-+	{ {0x1, 0x1, 0x0}, {0x2, 0x1, 0x4}, {0x3, 0x1, 0x8}, {0x4, 0x1, 0xd} },
-+	{ {0x3, 0x1, 0x0}, {0x5, 0x1, 0x7}, {0x6, 0x1, 0x6}, { -1,  -1,  -1} },
-+	{ {0x5, 0x1, 0x0}, {0x7, 0x1, 0x4}, { -1,  -1,  -1}, { -1,  -1,  -1} },
-+	{ {0x7, 0x1, 0x0}, { -1,  -1,  -1}, { -1,  -1,  -1}, { -1,  -1,  -1} },
-+};
-+
-+static void rockchip_edp_phy_set_voltage(struct rockchip_edp_phy *edpphy,
-+					 struct phy_configure_opts_dp *dp,
-+					 u8 lane)
-+{
-+	u32 amp, amp_scale, emp;
-+
-+	amp = swing_pre_emph_table[dp->voltage[lane]][dp->pre[lane]].amp;
-+	amp_scale = swing_pre_emph_table[dp->voltage[lane]][dp->pre[lane]].amp_scale;
-+	emp = swing_pre_emph_table[dp->voltage[lane]][dp->pre[lane]].emp;
-+
-+	switch (lane) {
-+	case 0:
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON3,
-+			     FIELD_PREP_WM16(EDP_PHY_TX0_EMP_MASK, emp));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON4,
-+			     FIELD_PREP_WM16(EDP_PHY_TX0_AMP_MASK, amp));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON5,
-+			     FIELD_PREP_WM16(EDP_PHY_TX0_AMP_SCALE_MASK, amp_scale));
-+		break;
-+	case 1:
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON3,
-+			     FIELD_PREP_WM16(EDP_PHY_TX1_EMP_MASK, emp));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON4,
-+			     FIELD_PREP_WM16(EDP_PHY_TX1_AMP_MASK, amp));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON5,
-+			     FIELD_PREP_WM16(EDP_PHY_TX1_AMP_SCALE_MASK, amp_scale));
-+		break;
-+	case 2:
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON3,
-+			     FIELD_PREP_WM16(EDP_PHY_TX2_EMP_MASK, emp));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON4,
-+			     FIELD_PREP_WM16(EDP_PHY_TX2_AMP_MASK, amp));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON5,
-+			     FIELD_PREP_WM16(EDP_PHY_TX2_AMP_SCALE_MASK, amp_scale));
-+		break;
-+	case 3:
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON3,
-+			     FIELD_PREP_WM16(EDP_PHY_TX3_EMP_MASK, emp));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON4,
-+			     FIELD_PREP_WM16(EDP_PHY_TX3_AMP_MASK, amp));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON5,
-+			     FIELD_PREP_WM16(EDP_PHY_TX3_AMP_SCALE_MASK, amp_scale));
-+		break;
-+	}
-+}
-+
-+static int rockchip_edp_phy_set_voltages(struct rockchip_edp_phy *edpphy,
-+					 struct phy_configure_opts_dp *dp)
-+{
-+	u8 lane;
-+
-+	for (lane = 0; lane < edpphy->lanes; lane++)
-+		rockchip_edp_phy_set_voltage(edpphy, dp, lane);
-+
-+	return 0;
-+}
-+
-+static int rockchip_edp_phy_set_rate(struct rockchip_edp_phy *edpphy,
-+				     struct phy_configure_opts_dp *dp)
-+{
-+	u32 value;
-+	int ret;
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON0,
-+		     FIELD_PREP_WM16(EDP_PHY_TX_IDLE_MASK, 0xf) |
-+		     FIELD_PREP_WM16(EDP_PHY_TX_PD_MASK, 0xf));
-+	usleep_range(100, 101);
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON5, FIELD_PREP_WM16(EDP_PHY_TX_MODE_MASK, 0x3));
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON0, FIELD_PREP_WM16(EDP_PHY_PD_PLL_MASK, 0x1));
-+
-+	switch (dp->link_rate) {
-+	case 1620:
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON1,
-+			     FIELD_PREP_WM16(EDP_PHY_PLL_DIV_MASK, 0x4380));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON2,
-+			     FIELD_PREP_WM16(EDP_PHY_TX_RTERM_MASK, 0x1) |
-+			     FIELD_PREP_WM16(EDP_PHY_RATE_MASK, 0x1) |
-+			     FIELD_PREP_WM16(EDP_PHY_REF_DIV_MASK, 0x0));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON8,
-+			     FIELD_PREP_WM16(EDP_PHY_PLL_CTL_H_MASK, 0x0800));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON9,
-+			     FIELD_PREP_WM16(EDP_PHY_TX_CTL_MASK, 0x0000));
-+		break;
-+	case 2700:
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON1,
-+			     FIELD_PREP_WM16(EDP_PHY_PLL_DIV_MASK, 0x3840));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON2,
-+			     FIELD_PREP_WM16(EDP_PHY_TX_RTERM_MASK, 0x1) |
-+			     FIELD_PREP_WM16(EDP_PHY_RATE_MASK, 0x0) |
-+			     FIELD_PREP_WM16(EDP_PHY_REF_DIV_MASK, 0x0));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON8,
-+			     FIELD_PREP_WM16(EDP_PHY_PLL_CTL_H_MASK, 0x0800));
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON9,
-+			     FIELD_PREP_WM16(EDP_PHY_TX_CTL_MASK, 0x0000));
-+		break;
-+	}
-+
-+	if (dp->ssc)
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON6,
-+			     FIELD_PREP_WM16(EDP_PHY_SSC_DEPTH_MASK, 0x9) |
-+			     FIELD_PREP_WM16(EDP_PHY_SSC_EN_MASK, 0x1) |
-+			     FIELD_PREP_WM16(EDP_PHY_SSC_CNT_MASK, 0x17d));
-+	else
-+		regmap_write(edpphy->regmap, EDP_PHY_GRF_CON6,
-+			     FIELD_PREP_WM16(EDP_PHY_SSC_EN_MASK, 0x0));
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON0, FIELD_PREP_WM16(EDP_PHY_PD_PLL_MASK, 0));
-+	ret = regmap_read_poll_timeout(edpphy->regmap, EDP_PHY_GRF_STATUS0,
-+				       value, value & PLL_RDY, 100, 1000);
-+	if (ret) {
-+		dev_err(edpphy->dev, "Failed to wait for PHY PLL ready: %d\n", ret);
-+		return ret;
-+	}
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON5, FIELD_PREP_WM16(EDP_PHY_TX_MODE_MASK, 0x0));
-+
-+	return 0;
-+}
-+
-+static int rockchip_edp_phy_set_lanes(struct rockchip_edp_phy *edpphy,
-+				      struct phy_configure_opts_dp *dp)
-+{
-+	edpphy->lanes = dp->lanes;
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON0,
-+		     FIELD_PREP_WM16(EDP_PHY_TX_PD_MASK, ~GENMASK(dp->lanes - 1, 0)));
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON0,
-+		     FIELD_PREP_WM16(EDP_PHY_TX_IDLE_MASK, ~GENMASK(dp->lanes - 1, 0)));
-+
-+	return 0;
-+}
-+
-+static int rockchip_edp_phy_verify_config(struct rockchip_edp_phy *edpphy,
-+					  struct phy_configure_opts_dp *dp)
-+{
-+	int i;
-+
-+	/* If changing link rate was required, verify it's supported. */
-+	if (dp->set_rate) {
-+		switch (dp->link_rate) {
-+		case 1620:
-+		case 2700:
-+			/* valid bit rate */
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+
-+	if (dp->set_lanes) {
-+		/* Verify lane count. */
-+		switch (dp->lanes) {
-+		case 1:
-+		case 2:
-+		case 4:
-+			/* valid lane count. */
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+
-+	/*
-+	 * If changing voltages is required, check swing and pre-emphasis
-+	 * levels, per-lane.  The effective lane count is dp->lanes when
-+	 * set_lanes is requested, or the previously stored count otherwise.
-+	 */
-+	if (dp->set_voltages) {
-+		u8 lanes = dp->set_lanes ? dp->lanes : edpphy->lanes;
-+
-+		for (i = 0; i < lanes; i++) {
-+			if (dp->voltage[i] > 3 || dp->pre[i] > 3)
-+				return -EINVAL;
-+
-+			/*
-+			 * Sum of voltage swing and pre-emphasis levels cannot
-+			 * exceed 3.
-+			 */
-+			if (dp->voltage[i] + dp->pre[i] > 3)
-+				return -EINVAL;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int rockchip_edp_phy_configure(struct phy *phy, union phy_configure_opts *opts)
-+{
-+	struct rockchip_edp_phy *edpphy = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = rockchip_edp_phy_verify_config(edpphy, &opts->dp);
-+	if (ret) {
-+		dev_err(edpphy->dev, "Invalid params for phy configure\n");
-+		return ret;
-+	}
-+
-+	if (opts->dp.set_rate) {
-+		ret = rockchip_edp_phy_set_rate(edpphy, &opts->dp);
-+		if (ret) {
-+			dev_err(edpphy->dev, "Failed to set rate\n");
-+			return ret;
-+		}
-+	}
-+
-+	if (opts->dp.set_lanes) {
-+		ret = rockchip_edp_phy_set_lanes(edpphy, &opts->dp);
-+		if (ret) {
-+			dev_err(edpphy->dev, "Failed to set lanes\n");
-+			return ret;
-+		}
-+	}
-+
-+	if (opts->dp.set_voltages) {
-+		ret = rockchip_edp_phy_set_voltages(edpphy, &opts->dp);
-+		if (ret) {
-+			dev_err(edpphy->dev, "Failed to set voltages\n");
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static bool rockchip_edp_phy_enabled(struct rockchip_edp_phy *edpphy)
-+{
-+	u32 val = 0;
-+
-+	regmap_read(edpphy->regmap, EDP_PHY_GRF_STATUS0, &val);
-+
-+	return FIELD_GET(PLL_RDY, val);
-+}
-+
-+static int rockchip_edp_phy_power_on(struct phy *phy)
-+{
-+	struct rockchip_edp_phy *edpphy = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = clk_prepare_enable(edpphy->refclk);
-+	if (ret < 0) {
-+		dev_err(edpphy->dev, "Failed to prepare_enable refclk [%d]\n", ret);
-+		return ret;
-+	}
-+
-+	if (rockchip_edp_phy_enabled(edpphy))
-+		return 0;
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON10,
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_RCV_PD_MASK, 0x1) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_DRV_PD_MASK, 0x1) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_IDLE_MASK, 0x1));
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON0,
-+		     FIELD_PREP_WM16(EDP_PHY_TX_IDLE_MASK, 0xf) |
-+		     FIELD_PREP_WM16(EDP_PHY_TX_PD_MASK, 0xf) |
-+		     FIELD_PREP_WM16(EDP_PHY_PD_PLL_MASK, 0x1));
-+	usleep_range(100, 101);
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON11,
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_RCV_VCM_MASK, 0x4) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_MODE_MASK, 0x1) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_AMP_SCALE_MASK, 0x1) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_AMP_MASK, 0x3) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_RTERM_MASK, 0x1));
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON10,
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_RCV_PD_MASK, 0x0) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_DRV_PD_MASK, 0x0));
-+	usleep_range(100, 101);
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON10,
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_IDLE_MASK, 0x0));
-+	usleep_range(10000, 11000);
-+
-+	return 0;
-+}
-+
-+static int rockchip_edp_phy_power_off(struct phy *phy)
-+{
-+	struct rockchip_edp_phy *edpphy = phy_get_drvdata(phy);
-+
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON0,
-+		     FIELD_PREP_WM16(EDP_PHY_TX_IDLE_MASK, 0xf) |
-+		     FIELD_PREP_WM16(EDP_PHY_TX_PD_MASK, 0xf));
-+	usleep_range(100, 101);
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON5, FIELD_PREP_WM16(EDP_PHY_TX_MODE_MASK, 0x3));
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON0, FIELD_PREP_WM16(EDP_PHY_PD_PLL_MASK, 0x1));
-+	regmap_write(edpphy->regmap, EDP_PHY_GRF_CON10,
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_RCV_PD_MASK, 0x1) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_DRV_PD_MASK, 0x1) |
-+		     FIELD_PREP_WM16(EDP_PHY_AUX_IDLE_MASK, 0x1));
-+
-+	clk_disable_unprepare(edpphy->refclk);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops rockchip_edp_phy_ops = {
-+	.power_on = rockchip_edp_phy_power_on,
-+	.power_off = rockchip_edp_phy_power_off,
-+	.configure = rockchip_edp_phy_configure,
-+	.owner = THIS_MODULE,
-+};
-+
-+static const struct regmap_config rockchip_edp_phy_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = EDP_PHY_GRF_STATUS1,
-+};
-+
-+static int rockchip_edp_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct rockchip_edp_phy *edpphy;
-+	void __iomem *regs;
-+	struct clk *clk;
-+	struct phy *phy;
-+	struct phy_provider *phy_provider;
-+
-+	edpphy = devm_kzalloc(dev, sizeof(*edpphy), GFP_KERNEL);
-+	if (!edpphy)
-+		return -ENOMEM;
-+
-+	edpphy->dev = dev;
-+
-+	regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+	edpphy->regmap = devm_regmap_init_mmio(dev, regs, &rockchip_edp_phy_regmap_config);
-+	if (IS_ERR(edpphy->regmap))
-+		return dev_err_probe(dev, PTR_ERR(edpphy->regmap), "Failed to init regmap\n");
-+
-+	clk = devm_clk_get_enabled(dev, "apb");
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk), "Failed to get apb clock\n");
-+
-+	edpphy->refclk = devm_clk_get(dev, "ref");
-+	if (IS_ERR(edpphy->refclk))
-+		return dev_err_probe(dev, PTR_ERR(edpphy->refclk), "Failed to get reference clk\n");
-+
-+	phy = devm_phy_create(dev, NULL, &rockchip_edp_phy_ops);
-+	if (IS_ERR(phy))
-+		return dev_err_probe(dev, PTR_ERR(phy), "Failed to create PHY\n");
-+
-+	phy_set_drvdata(phy, edpphy);
-+
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	if (IS_ERR(phy_provider))
-+		return dev_err_probe(dev, PTR_ERR(phy_provider),
-+				     "Failed to register PHY provider\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id rockchip_edp_phy_of_match[] = {
-+	{ .compatible = "rockchip,rk3568-edp-phy", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rockchip_edp_phy_of_match);
-+
-+static struct platform_driver rockchip_edp_phy_driver = {
-+	.driver = {
-+		.name = "rockchip-edpphy-naneng",
-+		.of_match_table	= of_match_ptr(rockchip_edp_phy_of_match),
-+	},
-+	.probe = rockchip_edp_phy_probe,
-+};
-+module_platform_driver(rockchip_edp_phy_driver);
-+
-+MODULE_AUTHOR("Damon Ding <damon.ding@rock-chips.com>");
-+MODULE_DESCRIPTION("Rockchip Naneng eDP Transmitter PHY driver");
-+MODULE_LICENSE("GPL");
++++ b/Documentation/devicetree/bindings/pinctrl/fsl,lx2160a-rcw-pinmux.yaml
+@@ -0,0 +1,264 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/fsl,lx2160a-rcw-pinmux.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP LX2160A RCW pad muxes
++
++maintainers:
++  - Vincent Jardin <vjardin@free.fr>
++
++description:
++  The LX2160A muxes its IIC, XSPI, SDHC, UART, IRQ and EVT pads based on its
++  RCW. The related fields are from the read-only RCWSR12 to RCWSR14 registers
++  of DCFG, and can be changed at runtime by writing the RCW override registers
++  in the DCSR view of DCFG. The node is a child of the DCFG node, which owns
++  both views. Its reg is the RCWSR12 to RCWSR14 window of the CCSR view, and
++  the override registers are at the same offset of the DCSR view.
++
++properties:
++  compatible:
++    const: fsl,lx2160a-rcw-pinmux
++
++  reg:
++    maxItems: 1
++
++patternProperties:
++  '-pins$':
++    type: object
++    $ref: pinmux-node.yaml#
++    additionalProperties: false
++
++    properties:
++      function:
++        enum: [ asleep, can, evt, flexspi, flextimer, gpio, i2c, irq,
++                reset-req, sdhc, sdhc-clk, sdhc-data, sdhc-data4, sdhc-spi,
++                spi, uart, uart3, uart4 ]
++
++      groups:
++        items:
++          enum: [ iic1, iic2, iic3, iic4, iic5, iic6, xspi1-data74,
++                  xspi1-data30, xspi1-base, sdhc1-base, sdhc1-dir,
++                  sdhc2-data74, sdhc2-base, uart1-soutsin, uart1-rtscts,
++                  uart2-soutsin, uart2-rtscts, irq11-8, irq7-4, irq3-0,
++                  evt4-3, evt2-0, clk-out, asleep, reset-req ]
++
++    required:
++      - function
++      - groups
++
++    allOf:
++      - if:
++          properties:
++            function:
++              const: asleep
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ asleep ]
++
++      - if:
++          properties:
++            function:
++              const: can
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ iic3, iic4 ]
++
++      - if:
++          properties:
++            function:
++              const: evt
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ iic3, iic4, evt4-3, evt2-0, asleep ]
++
++      - if:
++          properties:
++            function:
++              const: flexspi
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ xspi1-data74, xspi1-data30, xspi1-base,
++                        sdhc2-data74, sdhc2-base ]
++
++      - if:
++          properties:
++            function:
++              const: flextimer
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ iic2, irq7-4, irq3-0, evt4-3, evt2-0, clk-out ]
++
++      - if:
++          properties:
++            function:
++              const: gpio
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ iic2, iic3, iic4, iic5, iic6, xspi1-data74,
++                        xspi1-data30, xspi1-base, sdhc1-base, sdhc1-dir,
++                        sdhc2-data74, sdhc2-base, uart1-soutsin,
++                        uart1-rtscts, uart2-soutsin, uart2-rtscts,
++                        irq11-8, irq7-4, irq3-0, evt4-3, evt2-0, clk-out,
++                        asleep, reset-req, iic1 ]
++
++      - if:
++          properties:
++            function:
++              const: i2c
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ iic2, iic3, iic4, iic5, iic6, sdhc2-data74, iic1 ]
++
++      - if:
++          properties:
++            function:
++              const: irq
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ irq11-8, irq7-4, irq3-0 ]
++
++      - if:
++          properties:
++            function:
++              const: reset-req
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ reset-req ]
++
++      - if:
++          properties:
++            function:
++              const: sdhc
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ iic2, sdhc1-base, sdhc1-dir, sdhc2-data74,
++                        sdhc2-base ]
++
++      - if:
++          properties:
++            function:
++              const: sdhc-clk
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ iic5, iic6 ]
++
++      - if:
++          properties:
++            function:
++              const: sdhc-data
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ sdhc1-dir ]
++
++      - if:
++          properties:
++            function:
++              const: sdhc-data4
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ sdhc1-base ]
++
++      - if:
++          properties:
++            function:
++              const: sdhc-spi
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ sdhc1-base ]
++
++      - if:
++          properties:
++            function:
++              const: spi
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ iic5, sdhc1-base, sdhc1-dir, sdhc2-base ]
++
++      - if:
++          properties:
++            function:
++              const: uart
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ uart1-soutsin, uart1-rtscts, uart2-soutsin,
++                        uart2-rtscts ]
++
++      - if:
++          properties:
++            function:
++              const: uart3
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ uart1-rtscts ]
++
++      - if:
++          properties:
++            function:
++              const: uart4
++        then:
++          properties:
++            groups:
++              items:
++                enum: [ uart2-rtscts ]
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: pinctrl.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pinctrl@12c {
++        compatible = "fsl,lx2160a-rcw-pinmux";
++        reg = <0x12c 0xc>;
++
++        iic3-i2c-pins {
++            function = "i2c";
++            groups = "iic3";
++        };
++
++        iic3-gpio-pins {
++            function = "gpio";
++            groups = "iic3";
++        };
++    };
+
 -- 
-2.34.1
+2.43.0
+
 
 
