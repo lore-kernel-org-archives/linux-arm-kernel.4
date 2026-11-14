@@ -2,97 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22241606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 09:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894DB606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 09:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YZCq5Eoc;
-	dkim=pass (2048-bit key, unprotected) header.d=gmx.net header.i=wahrenst@gmx.net header.a=rsa-sha256 header.s=s31663417 header.b=P/92H3v7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TO5pkKia;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Q0hfoM5a
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/og/MwJW0u2IXqQeL20UF4e8Z72CcuByBeXCuDNbtDc=; b=YZCq5Eocwkk/UY
-	YtuA40fNdpc1nHKS/ffxpUTYJWKDX/7TRABhQDkg70dXqTOVEaArc83o61ZHO21AQfur+33fu4Bpi
-	eEMNaQ4MkxDHTdMeHe2Kvt2rRyJkcfvcPzvKbN4M/toc2/CwtRZqaBZU8Q0RwONR94/1qeSXsYp/A
-	INsVese0IGuatj/tFMBuTulTlbFG2JaMLRcFjrX2bCujstPisIj3/BqxxzpAg2XpUgxtPzyQHzGf9
-	tWpl9QjdlINF5mp8++vLyM3Dawn4KhIIMazfsjwOFhzeCioKzbny9jySjUgNP22PC9rGOQB9VMYjW
-	5+Yk+bztjbeAcAM3d7Gw==;
+	List-Owner; bh=1aAu2p5q+46k4xT0nfJKDCSVnUNtpAw2+j4NQOXi/aU=; b=TO5pkKiajyoi2q
+	ObTeks5WN7pXIguZChSaBVrTlGG2mZ5P/74+z7BTTyVMhRHBnpKpfCgBl/co5UBTGYrIIUTT32N5n
+	eFWfpnUpBO1HU8cdwbn118sas6dV4VjLWfC/oydJ8tYDKoGqb4wOTZ8LBnxK0NjNiM1rmSdvKD/bj
+	IQI5mDxETN/U+GLGUOsFp0rW/XM+Nw5oPamT7ojMqbnFyJv/cGK0rkayYhlH5XJVY1s7m/Xl0lsqF
+	1pcs49Jdp1GoRUttvlam/9jLIk18gWIeLfyNeUnkyXxbV2lMzBMSlM8Pa+P5/H6J/PkcCex/4SfLY
+	PNs+6pM9WYaINN87hpcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSAPC-0000000Fhfh-1WYf;
-	Sat, 14 Nov 2026 09:50:42 +0000
-Received: from mout.gmx.net ([212.227.17.20])
+	id 1xSAWO-0000000Fi22-1cNh;
+	Sat, 14 Nov 2026 09:58:08 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSAP8-0000000Fhez-3l4U
+	id 1xSAWM-0000000Fi1t-2RNM
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 09:50:40 +0000
-DKIM2-Signature: i=1; m=1; t=1794649834;
- mf=PHdhaHJlbnN0QGdteC5uZXQ+;
- rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
- d=gmx.net;
- s=s31663417:rsa-sha256:aPKwk5i16ynwlHpL7MDCzy1blo/q
-   q+qYYyfF+ycabMFfBaQgl5zlOyA7BZX3Bn/0BAJpkKa+klg9gBzAm5p/NlWmXvg0YftDnWo8Nv/
-   WH7JguhDYCCUMeiCr8ClGH+w11VREt3vKlItniktFoxTt/0nL+5Yxr4aJOhUzd+2rBmJggEXO54
-   ms2+hlrzBAGlz+aSdOmMbhhklYdFSokTuKiprHsWbxI7qY0l6gfgyCzMKs45RdeoA1d8j2TA5+J
-   Cvn4KYCJ8vKyzCve5lvp7EyZIHIrGs4jvqGOIjYQay4yewuib8eZDZQX60daFRhMQGr9Rt+p/8e
-   rnfcLEdkd+TGlQ==;
-Message-Instance: m=1;
- h=sha256:
-   bhOUi8ovHiSa0950V5yr/KSU5LgousjsI22Xb2pE8Ig=:
-   rhOjPF4xaT4byzoZ8RKZUNIlqMn5D8AxUkjeiMzwIdY=,
-  sha512:
-   8rdoip1ZWJEkNQe4ve8KuPC+pHJdKer3cTesRuZ5TSZIEyXPhELnFu/9Ii1Yopcv3nLgs0wkYRf99YVBCjND5Q==:
-   RGiNmEa1kDE/U537G6wWnOQVE2GYRvELbCoXFV9IipPA1KaK71VQoZE9rt4HvBt9ifjmAFd+wd2N5WtONblznw==;
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1794649833; x=1795254633; i=wahrenst@gmx.net;
-	bh=/og/MwJW0u2IXqQeL20UF4e8Z72CcuByBeXCuDNbtDc=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=P/92H3v73ok1fQCSEEAJGSMpACWirjCSl6cMeJ8qxmib6orlEJm/CxClibI1VpGS
-	 NkLzeKVHZ+5pafqKj7CukXBJT0jYfzVftLnIzfLhetaWUmORx1AWmnyIUccz0Fr3n
-	 OJefRkmMTEzpTKGpJ/qGNDlnkbil96sNkbGpYi1KzfrvE0y0+YKUwt5RReBX0/naE
-	 k/eaRlUxzOsrSg3W7DbsbC762r1if624+c5N52mpP0igSlO6NE9FgGk1thbDVPrcF
-	 bYR6jNQ31WV8EkVq72/nVE4HuZ2XUCww+1KxxLrt24PI87s/pxM6a0Pj+pMtzoRGD
-	 o1jPgsXhJsR8w9R7jA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MBUqF-1xJ2md40cR-0053fu; Sat, 14
- Nov 2026 10:50:33 +0100
-Message-ID: <132b7ffc-c1b7-4adb-ac66-6f40cc512048@gmx.net>
-Date: Sat, 14 Nov 2026 10:50:31 +0100
+	Sat, 14 Nov 2026 09:58:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 9877660236;
+	Sat, 14 Nov 2026 09:58:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E09DB1F000C4;
+	Sat, 14 Nov 2026 09:57:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794650285;
+	bh=1aAu2p5q+46k4xT0nfJKDCSVnUNtpAw2+j4NQOXi/aU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=Q0hfoM5aikZN44ro7I4hnoYExts32CDZbuGMBnIhCaHhrl990JWcBKEh9QFaxRyf5
+	 yjiMrWzO7sz9jEgbFIwNHvrhA7JUFXV3nMl9yu+nK5D9We6jpY+EEBqTyWtIetEA6T
+	 kx0XghcDNQ3Ft1dgE8yrxi2z3W+Wnf6ZDVME6BSiWmYcl63CJfq2aTcbFJY/SCI4hU
+	 JpwonnmWW9/d22xtCdbe+oG2u7LheAXYxZQr4nr8eIEfSCqRevKU6Wi9BGmuoSnD/O
+	 w/xlbNWWUGIOKKwOejCBmgbC1SkEz+4hXpqt7Dc8brSGT3wi0qSsnt7vkrEKKXPTxk
+	 zk0mZX5OkUfmw==
+Message-ID: <d0f781bf-a325-4eee-9431-7eb387279934@kernel.org>
+Date: Sat, 14 Nov 2026 10:57:55 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] mmc: bcm2835: restore scatterlist after DMA setup failure
-To: Artem Novak <artem122novak@gmail.com>, Ulf Hansson <ulfh@kernel.org>
-Cc: linux-mmc@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- Hemanth Selam <hemanth.selam@gmail.com>, John Garry <john.garry@linux.dev>,
- Gerd Hoffmann <kraxel@redhat.com>
-References: <20261114051011.275554-1-artem122novak@gmail.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20261114051011.275554-1-artem122novak@gmail.com>
+Subject: Re: [PATCH v4 3/5] soc: fsl: guts: add the RCW override of any RCWSR
+To: vjardin@free.fr, Dong Aisheng <aisheng.dong@nxp.com>,
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+ Jacky Bai <ping.bai@nxp.com>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>,
+ Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Ioana Ciornei <ioana.ciornei@nxp.com>
+References: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
+ <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-3-eefcea066a55@free.fr>
+Content-Language: fr-FR
+From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+In-Reply-To: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-3-eefcea066a55@free.fr>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:nrH/vxNRBhZ6a0ipo7FcbE1OmnofzWbaUMQ5yErUsGQM/wmlgB2
- OZy1dXo2tRK8O14aJZ4QmVbYfaA1fMfmOcGuDJ0O29B0cG6T4F8hyp+Ul/YIxyauf9yFWeP
- BrDbTfkMtR2LJy8l8pski7YDXVV39ddAtVbTw99QyqvYc1X4uxJ81CHVsG19m5+EQR8HMFr
- rGm+PRt21soOpL/uIFmKQ==
-UI-OutboundReport: notjunk:1;M01:P0:7RB0z1SjRpo=;5vzJeIRSDRyhu8fielYIyrrl8Ob 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
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_015039_348116_8D0302CB 
-X-CRM114-Status: GOOD (  18.89  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,89 +79,139 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Aartem,
 
-Am 14.11.26 um 06:10 schrieb Artem Novak:
-> The DMA preparation path shortens the final scatterlist entry
-> to reserve space for FIFO drain words.
->
-> If DMA mapping or descriptor preparation fails, the request
-> falls back to PIO, but the shortened scatterlist entry is left
-> unchanged. Restore its original length and clear drain_words
-> before returning to the fallback path.
->
-> Fixes: 660fc733bd74 ("mmc: bcm2835: Add new driver for the sdhost contro=
-ller.")
-> Signed-off-by: Artem Novak <artem122novak@gmail.com>
-are there real potential negative consequences? I'm asking because there=
-=20
-is a fixes tag.
+
+Le 14/11/2026 à 10:12, Vincent Jardin via B4 Relay a écrit :
+> From: Vincent Jardin <vjardin@free.fr>
+> 
+> fsl_guts_rcw_rmw() only serves the SerDes lane modes. Export it for
+> other fields of the RCW:
+>   - fsl_guts_rcw_read() reads a status register
+>   - fsl_guts_rcw_override() changes fields of one under rcwcr_lock and
+>     waits for the status register to follow
+>   - fsl_guts_rcw_override_supported() tells whether the DCSR view of DCFG,
+>     which holds the override registers, is mapped
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Acked-by: Frank Li <Frank.li@nxp.com>
+> Signed-off-by: Vincent Jardin <vjardin@free.fr>
+
+
+Acked-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+
+
+
 > ---
->   drivers/mmc/host/bcm2835.c | 13 ++++++++++++-
->   1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/mmc/host/bcm2835.c b/drivers/mmc/host/bcm2835.c
-> index efd1903c3ccd..49a975e984df 100644
-> --- a/drivers/mmc/host/bcm2835.c
-> +++ b/drivers/mmc/host/bcm2835.c
-> @@ -449,6 +449,8 @@ static
->   void bcm2835_prepare_dma(struct bcm2835_host *host, struct mmc_data *d=
-ata)
+>   drivers/soc/fsl/guts.c   | 73 ++++++++++++++++++++++++++++++++++++++++++++++++
+>   include/linux/fsl/guts.h |  3 ++
+>   2 files changed, 76 insertions(+)
+> 
+> diff --git a/drivers/soc/fsl/guts.c b/drivers/soc/fsl/guts.c
+> index 28361c63e26c..d2e3f66d0da4 100644
+> --- a/drivers/soc/fsl/guts.c
+> +++ b/drivers/soc/fsl/guts.c
+> @@ -369,6 +369,79 @@ int fsl_guts_lane_set_mode(int serdes_idx, int lane, enum lynx_lane_mode lane_mo
+>   }
+>   EXPORT_SYMBOL_NS_GPL(fsl_guts_lane_set_mode, "FSL_GUTS");
+>   
+> +/**
+> + * fsl_guts_rcw_read() - read a RCW status register
+> + * @index: one-based index, RCWSR1 to RCWSR32
+> + * @val: the value read
+> + *
+> + * Return: 0 on success, -ENODEV before the DCFG block is mapped,
+> + * -EINVAL when @index is not 1 to 32
+> + */
+> +int fsl_guts_rcw_read(unsigned int index, u32 *val)
+> +{
+> +	if (!soc.dcfg_ccsr)
+> +		return -ENODEV;
+> +	if (index < 1 || index > ARRAY_SIZE(soc.dcfg_ccsr->rcwsr))
+> +		return -EINVAL;
+> +
+> +	*val = fsl_guts_read(&soc.dcfg_ccsr->rcwsr[index - 1]);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(fsl_guts_rcw_read, "FSL_GUTS");
+> +
+> +/**
+> + * fsl_guts_rcw_override() - override fields of a RCW
+> + * @index: one-based index of the RCWSR and RCWCR pair
+> + * @val: the new value of the fields, in place
+> + * @mask: the fields to change
+> + *
+> + * The fields outside @mask keep the value the status register shows. The
+> + * override register is written and the status register polled until it
+> + * shows the result, as fsl_guts_lane_set_mode() does for a SerDes lane.
+> + *
+> + * Context: takes rcwcr_lock, shared with fsl_guts_lane_set_mode(), and
+> + * busy-polls the status register for up to RCW_TIMEOUT_US. Does not
+> + * sleep; must not be called from interrupt context.
+> + *
+> + * Return: 0 on success, -EOPNOTSUPP without a DCSR mapping of DCFG,
+> + * negative error otherwise
+> + */
+> +int fsl_guts_rcw_override(unsigned int index, u32 val, u32 mask)
+> +{
+> +	int err;
+> +
+> +	if (!soc.dcfg_ccsr)
+> +		return -ENODEV;
+> +	if (!soc.dcfg_dcsr)
+> +		return -EOPNOTSUPP;
+> +	if (index < 1 || index > ARRAY_SIZE(soc.dcfg_ccsr->rcwsr))
+> +		return -EINVAL;
+> +
+> +	spin_lock(&soc.rcwcr_lock);
+> +	err = fsl_guts_rcw_rmw(index - 1, val & mask, mask);
+> +	spin_unlock(&soc.rcwcr_lock);
+> +	if (err)
+> +		pr_err("RCW override of RCWSR%u failed: %pe\n", index,
+> +		       ERR_PTR(err));
+> +
+> +	return err;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(fsl_guts_rcw_override, "FSL_GUTS");
+> +
+> +/**
+> + * fsl_guts_rcw_override_supported() - can a Reset Configuration Word be
+> + *				       overridden?
+> + *
+> + * Return: true when the DCFG block is mapped with its DCSR view, the
+> + * second reg of the dcfg node, which holds the override registers
+> + */
+> +bool fsl_guts_rcw_override_supported(void)
+> +{
+> +	return soc.dcfg_ccsr && soc.dcfg_dcsr;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(fsl_guts_rcw_override_supported, "FSL_GUTS");
+> +
+>   static u64 fsl_guts_get_soc_uid(const char *compat, unsigned int offset)
 >   {
->   	int sg_len, dir_data, dir_slave;
-> +	struct scatterlist *trimmed_sg =3D NULL;
-> +	unsigned int original_len =3D 0;
->   	struct dma_async_tx_descriptor *desc =3D NULL;
->   	struct dma_chan *dma_chan;
->  =20
-> @@ -480,6 +482,8 @@ void bcm2835_prepare_dma(struct bcm2835_host *host, =
-struct mmc_data *data)
->   		for_each_sg(data->sg, sg, data->sg_len, i) {
->   			if (sg_is_last(sg)) {
->   				WARN_ON(sg->length < len);
-> +				trimmed_sg =3D sg;
-> +				original_len =3D sg->length;
->   				sg->length -=3D len;
->   				host->drain_page =3D sg_page(sg);
->   				host->drain_offset =3D sg->offset + sg->length;
-> @@ -495,14 +499,21 @@ void bcm2835_prepare_dma(struct bcm2835_host *host=
-, struct mmc_data *data)
->   				     &host->dma_cfg_tx);
->  =20
->   	sg_len =3D dma_map_sg(host->dma_dev, data->sg, data->sg_len, dir_data=
-);
-> -	if (!sg_len)
-> +	if (!sg_len) {
-> +		if (trimmed_sg)
-> +			trimmed_sg->length =3D original_len;
+>   	struct device_node *np;
+> diff --git a/include/linux/fsl/guts.h b/include/linux/fsl/guts.h
+> index 8d5ffb985fee..7127de897c23 100644
+> --- a/include/linux/fsl/guts.h
+> +++ b/include/linux/fsl/guts.h
+> @@ -142,6 +142,9 @@ int fsl_guts_lane_validate(int serdes_idx, int lane,
+>   			   enum lynx_lane_mode lane_mode);
+>   int fsl_guts_lane_set_mode(int serdes_idx, int lane,
+>   			   enum lynx_lane_mode lane_mode);
+> +int fsl_guts_rcw_read(unsigned int index, u32 *val);
+> +int fsl_guts_rcw_override(unsigned int index, u32 val, u32 mask);
+> +bool fsl_guts_rcw_override_supported(void);
+>   
+>   /* Alternate function signal multiplex control */
+>   #define MPC85xx_PMUXCR_QE(x) (0x8000 >> (x))
+> 
 
-Maybe I missed something, but why do we need trimmed_sg? Can't we just=20
-check original_len instead?
-
-Best regards
-
-> +		host->drain_words =3D 0;
->   		return;
-> +	}
->  =20
->   	desc =3D dmaengine_prep_slave_sg(dma_chan, data->sg, sg_len, dir_slav=
-e,
->   				       DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
->  =20
->   	if (!desc) {
->   		dma_unmap_sg(host->dma_dev, data->sg, data->sg_len, dir_data);
-> +		if (trimmed_sg)
-> +			trimmed_sg->length =3D original_len;
-> +		host->drain_words =3D 0;
->   		return;
->   	}
->  =20
 
