@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB673606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 04:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A59606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 04:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WGhajGtK;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Ec+L+orn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CXAxes2r;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=LuNi5PEo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,90 +14,90 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=jlWU+LetvIC/3AgkoO5NcAsGhswOcH4rtrYp5MfQMCg=; b=WGhajGtKQcTk2k5HQDwO60mU6U
-	KKvgSNjaPv5Q4hyfcnbTo3EBpkby3H8iTdtFwW6eI1QQSqmg9ZFQLuu1GH35ADr1Ls3EE0jSkI5FX
-	5GuDaRP3Tet4uB20mSwZajwM260fn6dq7k6ZmFmzpnsU1tPyIPAlMajpZJAg4+87ksdnEQjb11zoV
-	fixyI+sl6+aIoYuUTWWYdyoaiQqmSs7FFL+cwqhcdvkJZm1yO+9At05JiEYytYZjmlV6RRccZxbeU
-	HVs6icvgyhrsJ02ffAOFP3VuMYsvnTJTu9PPRPupS+Gmd1cL04fC5WCkhz6VhAuxLVVttsEJ0eHmi
-	7o1yGb5g==;
+	bh=fl1s83XUSSgJEmjMrzHDXuBkyCkMWW9Bq4zRv3Gu3C8=; b=CXAxes2reBU1uyWkf4XVLa+YD+
+	hvbx7oza0xNlICw2rlB01R3DVYMBMRSqa5iQxWkoDccC1XdqIDybhkw6oF4ZtOABRAAem74tysFmT
+	kpV16k1mhWMhG4SnQGZEpRV98xXPP9q8EVgkEAOnTCB6+XkFmjq31KNzQPSw7I0igLmUJha9iRL+G
+	BOa8l2PdHLYKArszi4Bu+FwoVZ6cKCDi7Ia2sPZva96TdyCBa0zIVWFFqCYuITIOsxDSZfLnLeVmm
+	7zUlKxF7wkM0N6I1Ve9naXTzYS7MIAJ2yE3pV42p2OX3OCXu+aVk17VWZR6aV8Wh7xV56h5gYmN8V
+	WE1fQAvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS5iU-0000000FPmC-215h;
-	Sat, 14 Nov 2026 04:50:18 +0000
-Received: from mail-pj1-x102d.google.com ([2607:f8b0:4864:20::102d])
+	id 1xS5iZ-0000000FPnu-2nSv;
+	Sat, 14 Nov 2026 04:50:23 +0000
+Received: from mail-pl1-x62b.google.com ([2607:f8b0:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS5iR-0000000FPkq-3jbh
+	id 1xS5iS-0000000FPlH-3gGs
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 04:50:17 +0000
-Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-3b1c2c31a6fso128379a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 20:50:15 -0800 (PST)
+	Sat, 14 Nov 2026 04:50:18 +0000
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-2eac4936dfdso3169075ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 20:50:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794631815; x=1795236615; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794631816; x=1795236616; darn=lists.infradead.org;
         h=mime-version:content-transfer-encoding:content-type:message-id:date
          :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=jlWU+LetvIC/3AgkoO5NcAsGhswOcH4rtrYp5MfQMCg=;
-        b=Ec+L+ornYA9V4I7YJmj0WU69C+g/sIH+PbCx7aXPOUQWBpA9Z77bjwT1yqoj5ZIAn/
-         tSgwPiDUtVQZL8wdI1O2Fwf34sJSK/1iOI9jgZGDq2wdXXZzZlcn7kDk0ElcuBgyl1N3
-         lbaLm08f3hTY34C1+KzjQKlE73zEmBbUVczRDpqu6vQX6L6kU2vQIEbWQtiqoBV6E/vn
-         7Fmk1j4VCZXNFrUg7WGUcJ8UFgUhM2C6bwCcm9LqdcFT/XF/PVJrDbq5jjh10B0hfvr0
-         R7vOVvVG8UtmQDtHY6Ny0b8cGXU8P3C8JwcJ6gsAr9gkiOGlqpPDpfn55YbTix9DCJAE
-         oogQ==
+        bh=fl1s83XUSSgJEmjMrzHDXuBkyCkMWW9Bq4zRv3Gu3C8=;
+        b=LuNi5PEorFVVzFzcEjm6Gduh3EuxNqRFxbAGKiJ0bEb/BIyY6sOxW3+SghdRTlDNv3
+         hZzBiL5gM/KAqQHOeh5/mVkjDGiWthbIvk5cMzos1HsQKQIf5m0wNNocw5L4UcUFgDMT
+         SrP3Kxmiwoljo1eKhX6TRxIGuYPDMNl0Np2v+/PkojYx7w1fPc7QBRGenZkmrBf7xBD6
+         lxTUEVr5fsM3TSxejppRmtOlEURotlcWgtjI7wzJs/73cLUQUizrGQ3mAllktPAsUmKH
+         SdmKc1CJtJvF8+vABZl2+XisdwsHzrSBVuF1JPDaPfR2ULw8GoXpVrOsOz5lHcrvkdxD
+         oOCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794631815; x=1795236615;
+        d=1e100.net; s=20260707; t=1794631816; x=1795236616;
         h=mime-version:content-transfer-encoding:content-type:message-id:date
          :references:in-reply-to:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=jlWU+LetvIC/3AgkoO5NcAsGhswOcH4rtrYp5MfQMCg=;
-        b=aBwIOUhtFRadO5V5G3RF1OEyRl0B5KiK0jbewhVTTu9rWoLw+0ln5v4dy2AberAT2y
-         NG+94mIm3/ibl+VpYSFdWy4OkTudNzXIxs7cLq9QFANBZ3tsm8yAwkC2vS8iiXZiNmhH
-         Jyb1nVrUKq7SqTWVAc3G2L2lbO77lu9NDibmZMt2B5uo0ARwNSF8cPRkyaRwohphWUze
-         ifbauSgSo1Q44U+ieHPUydLZ0tV63MXA2Poa7Qy1+abOqyykMZ1Rt4KwHlXUQ5nuvUIy
-         P72JQxtXLOAmoCCbHgfAYi+FfBN4exW4mGyOub8rUlTcsseu5TO517c+CIhkjcmW6cMI
-         dnYw==
-X-Forwarded-Encrypted: i=1; AL+hErFfV1ScvxymVOL/ZKC/JsNlXkgqqeUDrF9ZqC2i5fOAdqOVkEvIykgjhA+v20MvzGfxu+MMufc31rbf1P461FX4@lists.infradead.org
-X-Gm-Message-State: APuU4Z9WvNHw2SU/OE9Q3jztyPncYJ7eR7yA8JzeIk7HmmdD6GWhna9J
-	rWNubQKPnRqT29RbLpI1XWNHcAiDJQxvHYBG2BRx3ivpIwencbWkaTwC
-X-Gm-Gg: AYBFou0jCppYrk31sz7dVtpe0TP1Bvk/UHcQWLh9SLb2Yp/02lXzLv+3VHXyb6Wug0r
-	Zo5QlPy0DmHQ/qsk+3FgB2G7d0S2N//4zf4jym1SM1qDQygqApOjzsFoJTflWDCTSemg+JdXflU
-	S2bc0418Y7NqRAvikMeEM30bbZh9bJ7IhWBwKYLTq1HIedeinaEzrWl6thoF0TaS1t9A3XQsKIn
-	hiOWGHoLvtMxC0p/PYgp03gE+OD0h1ntjucx6bvKeDayP+v+2FJSv5cV2HkhQWwXvRTfvYqk2cO
-	tiKlrEU58iR4uyVrl2jaFRa5vOOi/MA+T4nP4foN9TyRgOxs7sP1ClZCVokGoakhO/SEvGNjjlI
-	CKGEE+Qb0Qz81vPw83Bgqe4E9/dfmEzfvww9++Pq1OtrXwP4v5cegjrvnjgmrd1KD5+XrYJb5Ct
-	+F7gaerBZGD+z0r8ydfVMVlX1E8Y3jzkyGLng6X2LA8pLwTwlJ8Sy9mULCI3QjPhmkeivlzwZSl
-	Ul9AOKsfacJW+AtqC1+cGFVqlCOhXSqdCMAg7mL+1YXTpO0TmdAE4R5d2AG1PrbdH80WQLINHB/
-	Hyk8afxHGuMDTFDKCvPA9B7T1SeRj0EEoMONmZoYWv+x8hWCKfPAcQMD8ynmuOY1FaphsKo3i3a
-	k7RsW4RM=
-X-Received: by 2002:a17:90b:3dc7:b0:3b0:9e2f:cfc5 with SMTP id 98e67ed59e1d1-3b1b0826e52mr8146982a91.1.1794631814909;
-        Fri, 13 Nov 2026 20:50:14 -0800 (PST)
+        bh=fl1s83XUSSgJEmjMrzHDXuBkyCkMWW9Bq4zRv3Gu3C8=;
+        b=W00r4Qh5IIXJtdJXxy8LCSRype+9AAFDbXo5BHewc8s+3oQ3NDYIHoZnsIruXUsatz
+         cZyFdV28aTUpeIAMJW0yK++igoChvrmBNWVBY86iy2lP2JjgQAJV8LdM2PNng5EQtApx
+         8DJ2QDK+R4u6HTzL+QO80hKkEk2KZnFhLvbCERe9dnfIckk07ODz87jFEPSIo6rtUuAu
+         YnGf7l6idPTLo8p7lGPMObNKO0MwAwX6H+OnwSRqUP//vY+7p9Ei9j2gwnswdBSNXOnl
+         oR/3hI93o3j3CjvftQKCcKtlwDfHs4Z9SQahHOWOR42TkrWBrSkJD5ffzUzRw7J1l18+
+         4+Vg==
+X-Forwarded-Encrypted: i=1; AL+hErGO0tDAe0Nu93MtbhMGgdLrQ2KVF3VvaAXda916knENODMqb2T9uGKQV0LKbTYR6M4P8PAL8RBu7a84kcB/z3Lv@lists.infradead.org
+X-Gm-Message-State: APuU4Z/ygn+kIG3OU8/Iewac0rtSc02DDuX4kryO4DjFogS7vTGjkc0v
+	t3jJa2MoONn1Zp6xwnnZx58wf59swRxQjIsMTZ/oKtWmlMll+rIHnVAf
+X-Gm-Gg: AYBFou1bfPQMFTP1khRmc2NJi5et5B7iB6ks7YZvAWC0Qm/6zUzotIAN6IQxg4Hh/C2
+	8XcwJmmHLadSeOb5id+xBQyzj5ePUIG98CHxQg/Sf9JJX9AIMank+Qi71MBlkYi1hrxk0iLOsIu
+	1hfXt3yCNvAWcFagFRsBp7PS+BkFXBKIwNHRCY09xotM9OgZmaqaZBY01p8pqazxaLAESCNlHKO
+	AJW6yLiu21iJUZ2niMRAv98lsbuyXC7uA2R19GMJ7AA00mh6iEsGXETIB654oVXQ887p9XWTOBN
+	KN2SD3+jFUpaQSPR28ng1suj7JpjgmVtNCs7iO8jij7NYYHXe1LtizC8vApV4oG3c6tsntih0iY
+	ZCQgEvI64KmgdpjUIy0GgbHIGqzfZmPGzUgso8Df+ryLL0UCdZMRge2ToT/MZL4BlKaJcuHj7sr
+	JXeALmWj+Kg+iU3Zgea7M/isLIC/qP1RdrFNcyhXzOncTirUh+eN8AAzMZoCDdcIMvGcBDzI2QJ
+	FPx7eJgx+vqLulQkpJTnC4UouQEqV9k0ElTxwlwQkGXZ6a6uKiyZ9GiGnQXNM61dyxZuMvN+0NX
+	JIv3BTEyftcS/jSr0+ddK2IRAPN56NniB+D3Yv7ZWSC3i6qPMTqsm4Lbe5B4SEtWqBxdjJstqgf
+	0f2/Slg==
+X-Received: by 2002:a17:90b:1d47:b0:3ac:9e76:aa96 with SMTP id 98e67ed59e1d1-3b1b09f966bmr6902083a91.3.1794631815820;
+        Fri, 13 Nov 2026 20:50:15 -0800 (PST)
 Received: from claudebox.iyengar.cloud ([50.39.139.68])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b197d04336sm12649072a91.7.2026.11.13.20.50.12
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b197d04336sm12649072a91.7.2026.11.13.20.50.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 20:50:14 -0800 (PST)
+        Fri, 13 Nov 2026 20:50:15 -0800 (PST)
 From: Arun Iyengar <aiyengar1990@gmail.com>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: Sven =?utf-8?q?P=C3=BCschel?= <s.pueschel@pengutronix.de>
+Cc: Jacob Chen <jacob-chen@iotwrt.com>,
  Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Heiko Stuebner <heiko@sntech.de>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, hverkuil+cisco@kernel.org,
- Jonas Karlman <jonas@kwiboo.se>,
- Sven =?utf-8?q?P=C3=BCschel?= <s.pueschel@pengutronix.de>,
- kernel@collabora.com, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/5] media: rkvdec: Enable multi-core support
-In-Reply-To: <20260810-rkvdec-multicore-v2-0-986f89d22cdc@collabora.com>
-References: <20260810-rkvdec-multicore-v2-0-986f89d22cdc@collabora.com>
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Michael Tretter <m.tretter@pengutronix.de>, lgs201920130244@gmail.com,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Subject: Re: [PATCH v2 00/17] media: rockchip: rga: Add multi-core support
+In-Reply-To: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
+References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
 Date: Sat, 14 Nov 2026 04:50:12 -0000
-Message-ID: <179463181227.3521962.172866405609790742@gmail.com>
+Message-ID: <179463181227.3521962.17897555296763209132@gmail.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_205015_935010_BC7389F6 
-X-CRM114-Status: UNSURE (   7.19  )
+X-CRM114-CacheID: sfid-20261113_205016_983513_EE66595A 
+X-CRM114-Status: UNSURE (   7.59  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -118,17 +118,18 @@ X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Detlev,
+Hi Sven,
 
 Tested on an Orange Pi 5 (RK3588S), v7.3 with rga/ and rkvdec/ synced
-to the 7.4 merge window, together with Sven's RGA multi-core v2 (whose
-patch 7 already carries the export of your 3/5; your 4/5 needed a
-small hand merge there). Decode-only, 4K HEVC streams in parallel:
-1/2/4 streams 105/202/206 fps total (single core: 105/111/129).
-4 parallel 4K HEVC and 2 parallel 4K H.264 streams are bit-exact
-against FFmpeg's software decoder, and both cores take interrupts.
-v4l2-compliance is unchanged, with no IOMMU faults or timeouts. Not
-tested: 8K, long runs, runtime PM idle cycling, unbind under load.
+to the 7.4 merge window, all 17 patches, together with Detlev's rkvdec
+multi-core v2 on top of your two v4l2-mem2mem patches. Both RGA3 cores
+bind into one video node, and 4 parallel NV12 to BGRx jobs complete
+with interrupts on both cores. rkvdec runs parallel jobs on both
+cores through 06 and 07 (2 parallel 4K HEVC streams: 202 fps against
+111 on one core, bit-exact). No IOMMU faults or timeouts.
+
+One cosmetic thing: the core bound first prints "HW Version: 0x00.00",
+probably because the version is read before that core is powered.
 
 Tested-by: Arun Iyengar <aiyengar1990@gmail.com>
 
