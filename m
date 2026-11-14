@@ -2,160 +2,160 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C284D606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 10:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAC3606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 10:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cHelZXzz;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=a8T9NsW8;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=RZfOk9ay
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IMMRMJqC;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=gxYcyGch;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=WPIkmlFh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DGFPoUFp3t53fChFBXjug+JBh7L+UZESY63HviqEWfU=; b=cHelZXzzd37QaA
-	u0jmHFI9CXRjDpcXHqF0s2NvxftKtUNu3myo+WRLViuRDBlqqOmXl3HP2hfzfjiyEiHElELAER1WG
-	rOk5xlRfbN65brThqyPv+d7ERXN39fskdsAxKFFs3cBQor4guUaII4MDLCuzrsPxFk495P3knSULg
-	eWG/u1jqGXINxQKTFf5s07NMUBed/dQxG9dRrT5Wrg8ZntpV3NUtxth1r46GoUoSLPlW77kl3+pgN
-	NN5MHHwBV9pfCDwabQ5Co9qXmcKGpGSxXdxqOka+rd5RZDanihyr2/A4m2+q14nmDxzUOLiHVPu+J
-	pgbbf5nNyzITowgqBNAA==;
+	List-Owner; bh=Dh7Colfd+Fpplt6I89BdRicnbNHfXKnIWNbhbS/Qr68=; b=IMMRMJqCVlP7W+
+	MJPLsXbYOvTOP9fGwa0vM4otxG60l/TlnUo97b1fin1oCF0MlnhNDj4NpMdCwm88S3pP1HzLCX/FU
+	yc4NE8cHIlhsiaTPi6pBF8lQstUdujQpY1/d1jMkZI4V3RvChq/jEwXSO64JK7Lc99JyIZ83SnIVe
+	YuSf7t8adtcoogJ3fy38HjrE+6y2MmDRDFJAexsZGnpr4794wuWj/NipeBc+ibT+ncP18j8XlCwyp
+	lEjPXAiPOPwUpLd2OnImYLsE7epOnLzBFMIs+PU4zHolT8PBYTLBeqrwd7U3pT/ReKfTJYjw173/x
+	7NIiOPsf9tyvN4ygosIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSAzo-0000000FlCu-0VAI;
-	Sat, 14 Nov 2026 10:28:32 +0000
+	id 1xSB5m-0000000Fls6-3u2U;
+	Sat, 14 Nov 2026 10:34:42 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSAzl-0000000FlCF-2QUD
+	id 1xSB5k-0000000Flrh-2DGz
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 10:28:31 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AE9wKKL3379492
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 10:28:28 GMT
+	Sat, 14 Nov 2026 10:34:41 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AE9winX1750637
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 10:34:39 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DGFPoUFp3t53fChFBXjug+JBh7L+UZESY63HviqEWfU=; b=a8T9NsW8Qtkzm2OA
-	wTXhAP4j3z4dEq5b1dzSux/5NfpP+TGTmcynSUWUjORJfbmA81ixFnKR33dJrCQq
-	GP2kYsFuD9U2rAzmKLdGHPffE7bdPQZhJu0c8egNQzVvcOPsCAeZdMF8tJ2kmlNq
-	Xy43dqmNrH74x+n4gbouuLiYpb8UIAokQXXb0FYNaCJs8jFwx96+OhpiP0KbcXal
-	jtJiyAnCeecDKkv8puFaE76DN+n9V2PzeNEf+BzXGUD780m9Yr2cOho4BJzEtQIJ
-	Jm8PKACog5/Kg384ClwTlpG5qjdWDZNyzauDWd6Ieig+aY4dvQbhielPtmhERZcH
-	z95IFw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hxhnx0hee-1
+	Dh7Colfd+Fpplt6I89BdRicnbNHfXKnIWNbhbS/Qr68=; b=gxYcyGch9+cPb4FH
+	n98Ykn7pArnMkE2S4TViKEWtLROj0U6F+5LSs2MypMrJ9piRF6B+uyk9zXP5jDmW
+	xotKFL9aJnmtl7IH/urvnpgIsSzbraNwclKh5Z7YlRdTcVdgOfLx/n1Qw9KD/AIj
+	ppqANTaaq3U66TUbjDncG51BXDnjOsNfj4TMJoE8ep6l/46nqH2sYjtQyf8eg3VR
+	0ns1BP+RrdUeGXjY8Sq3h8RR6pIyLDl7RcBwMM1feabPnWfhA2hXMnzdoaRDljFM
+	xB3Ivpy9eD4KqFJ6pfjjlWa/5uuwotNXgxw87TU5+tE8CI6yQrrMcJUd4Ev16GNH
+	hJukdQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hxhj40hvd-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 10:28:28 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2ea381ce04fso25011685ad.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 02:28:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794652107; cv=none;
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 10:34:38 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3acc98e3b3cso1270692a91.3
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 02:34:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794652478; cv=none;
         d=google.com; s=arc-20260327;
-        b=qvXTe854fYeFryPMQk/X1bmzu7XdrdLFqNSsZgOLofoDCyqJWH9LHS6S4IX6BMwG6g
-         zwUHn6ZnNy+fT3iD/m2IgIktReQqIiKnrm8Jk1ijMXX+p+evx+Fi++FiMMJ9ue4Nt7BF
-         xo8ph23IerKwdV5dhplm/qbaqXkB9KJeFb2Zzq5ZLOCLo62aHY4DYGF3i3oLYPYgZZ02
-         SJftPtsDsNRzdtjG3nVNSvm6UQSv0tRWYZiDF/JytW0J/KGB7P36taz6VsrJbxvwR0Lh
-         T+AbzZiJroTh7ZwbFRl2LKshxfufHEWwAVRH2p64PUcV8Y7tPnVSXeqvOki9HhoMS9Wl
-         9d/A==
+        b=Ax1deLRpXt2kY3UrZRFDggdQS5iJONIO0uhAFYP7axOVDJdB7oUfBwFbLzCNWALgto
+         mARvKT9gFv5KaceRYy8RDb9wWF1YoIfnejCLQuqfHyPoYn/JjM1uypeg3qJ3d11mc7a3
+         q7Au+kYw0/N52I0x8ENlm6Cg4zioyGyC+UbFLI/9mzPB4O2EjfTc/jm05k3qNpZ5xKy1
+         ndz7VLt/Q3oBW4PvdwR9RdZBV+HHAgeYrMfz8oo70KD3ermKISVodiKIiRl4JZdj8qNr
+         m7vz/EwFgt9nL1+ju3+yG42sbR1KWpHhyX/mDIPL9sFZRaGVXlrXjxCHWegm8EKHYWHC
+         cgIw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=DGFPoUFp3t53fChFBXjug+JBh7L+UZESY63HviqEWfU=;
-        fh=g/j2hqRejE8kgroRlnhFSVW15kxa4v0A2dUjUb/WjDk=;
-        b=LtxwoUN5lr95KiRiFf4qxXl+CgEpm8E/3cdQeVNDDFjGEapa+hRJKqF08/dpeTBY73
-         wRWQEeFHsrxLBz60gUPB49e1Lk5S4spt6E3PVk2LD+RZLQSK4pBNu/hpwAw/Vej7mmiY
-         HwgxmU+r1PFInSAEbQA3m9jSHrG3mAhiC/0d0lUPM/OISaSHSSuOmCKCcKdB0Zo+tlwl
-         vrLrwE/ryhnAMDsOZNE6uFklY6XFj8Jy02Wlk1dzw4HKbSUH9OWQsY1/aDMWvSox3CBF
-         N2YNXSKmCVVv6vDyOFe2WMUvXyNuh/5NPYhAGKk849VTh7YWnIoEw+cuEduexxX2JEnW
-         4I6w==;
+        bh=Dh7Colfd+Fpplt6I89BdRicnbNHfXKnIWNbhbS/Qr68=;
+        fh=pgI+8VKVr7vDone5jopiOMMZvZD4avw3OqOomztbUO8=;
+        b=oKoGnKdNjnid6wbe56yZNFWyNgEd11nzXv0Wt5Rrspg69FUuvuf2rUBVId3b+6l/UE
+         r1Ca3/JQrpjaC7i5FHoNBYD8XlJEamCO6McIRUqzsPyczWIB1oXhTlg5KrAtAS9ftwUF
+         Q+IhQolNqs2AbBWRex7ZsuedCjW7yf80LU6gcTRIGockdl3wNaTZfHXMQTKMikJupnAw
+         v8GUElawFnTMjsGuyVpZW5ZLBlj2HrTtZKx4lis7latdI2sFJzOV1OLDjGq2KuPMPkkM
+         lSZyAK5tkmb7aehFSQV+dr/17ZmYH0E3NyMMelZzP8R/1sD5TYRXv06zTWUCFjXCJzep
+         z+/Q==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794652107; x=1795256907; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1794652478; x=1795257278; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=DGFPoUFp3t53fChFBXjug+JBh7L+UZESY63HviqEWfU=;
-        b=RZfOk9ayJpm1faUh19JUoyMUCiL6h6jjMSFLsClGF/oQ0bZx8SXMFYcXjqxGlE5gmu
-         jDyfxUvC74fLZnH/byQRtSpTRqnE3txBpMprBagaOaLHsSWOD6kAZB7A2h6lfXdyWqok
-         fIsotpd9VVDVElLbzL52kSCjfNoXxRplArq4+Ox1V4oGCfr/ARcNapPOYn0tcQhjicbQ
-         kXxtPYVeas4p6fS/QPcnkgqLJShmUO0FT5gj8guKugr4vz/SU1/Y2l+jpf4jLlsjZMVG
-         0MX8ASWyMgkDwuwZSXzxUCf0ul67y7wEa2FkZOFEXfK2Sax9It6HXKSTnzESITPUM32V
-         xKfA==
+        bh=Dh7Colfd+Fpplt6I89BdRicnbNHfXKnIWNbhbS/Qr68=;
+        b=WPIkmlFh0JK+jyncJxXpFUyhFt2TH/EUtS2dVI7xWQRjU2q99JbBaFz1v3TRr/q1WW
+         Qe10bg1/s5WthwJINHKBBcOrcmVYGI2nGSjkAgz/GGRUz64XXSnY6vwpYieWpadc77f0
+         qyz6boZO/1S5uCqOe5HDZ2K7I7q89l5+GPOxDgN9WgBeel0eMgUgHnC3CbeHpaWcU5nn
+         cazjLuxREr2kHGLtE18++9kvg08FOYDg+K7xxCV+09cTkeuxw1SWwsq6f+AU8xadswZo
+         aHyPbhLhJy33ByM8fhWaUEiRdCXfEZyozMyGWVYLOSVAtItKIDIVFtB/ovuq/bN9iZLt
+         S7zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794652107; x=1795256907;
+        d=1e100.net; s=20260707; t=1794652478; x=1795257278;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=DGFPoUFp3t53fChFBXjug+JBh7L+UZESY63HviqEWfU=;
-        b=IulHcQr5snrqLNOPgTYpfH94qIE4HdkFideo++tXFO2/TIvskcJt9mdgH7XiUbrv2W
-         cadEE71PipiwVE0wgz0kuzTspa6xAGu3TTL7MfxznO2MdfWzBE5Sk0EbK8MW+sdgC5wX
-         BEAPoM1KDhbam8jmw/O0Nl8oUX35clWUw0IRmKjBtkezhxTyrYWVpX1GnUzxwiLnmGad
-         O9wdMM+0b2k/JMHleivLGOkd3SDTUZ6EMBsSY9ycl3M3DGSQSyTGDg7kcwyvlERO0U+g
-         Zbu37vnyiE80E/GpqIe5DbHPQytpXKMxiMKlLOWCfjnrIEKbPkQKlqRwNb6rn3IqG+P7
-         1niw==
-X-Forwarded-Encrypted: i=1; AL+hErHeMDhIM1PBMSqabQ/0eDkMl/DoYBwdLv1u+HXOt4ofsUUZfvL0i6a7g7WKeaW48l5+Cx6K1gIYHQ/yLH35XqtD@lists.infradead.org
-X-Gm-Message-State: APuU4Z95RLJ68JpLJdIGOX/te3RhSGK6Z8YRE7iXopunytR1NrmgKHe9
-	S9T8D67WTKydb8Q824wG1m+/h+2gAC8HRtuwR6yPS2zNt1wbuEMLFDI0/9IgJENT/GTqpraeDVx
-	Q9XcanX3hFn+0IF+33TagpgKWiIfC8mkpU9YLWlMYonNlLAQLIsulbdSYaPKwmdT6SLP6FKcsDS
-	tRlfmXAgcH6UNZR/7bOfsSfWpYUGDzNmrPXhf7qljuBW37iwRvazGd
-X-Gm-Gg: AYBFou06qInjDMeU8NOodxH7oweGF/q8RUAjlblSuWozBnfRjZxcdnEoVg6MYpYYN+Z
-	W20xrVnp5VZnGTY5bQoqLgRPIbmAYLip4avim+46FtcaSJjeeBEaObbyj6xv54CaZSL99UNzgoc
-	B7vMTjvV7sithYtzh/vHNRDArF+Wmy9DGtVzLrII6N7S/aDZoE1QmKFWEl4g==
-X-Received: by 2002:a17:903:3bc7:b0:2e4:ade3:7290 with SMTP id d9443c01a7336-2edf2161b1bmr54625045ad.30.1794652107257;
-        Sat, 14 Nov 2026 02:28:27 -0800 (PST)
-X-Received: by 2002:a17:903:3bc7:b0:2e4:ade3:7290 with SMTP id
- d9443c01a7336-2edf2161b1bmr54624825ad.30.1794652106635; Sat, 14 Nov 2026
- 02:28:26 -0800 (PST)
+        bh=Dh7Colfd+Fpplt6I89BdRicnbNHfXKnIWNbhbS/Qr68=;
+        b=Pn1KZdL5tb7kN0a7T8xpqQCC6AqbPZ9Xi2evucVQcjRNMghCri47lZguBqvbTiiSlX
+         1bd4uIAr14Hxf80tMR2Zoq07+ogBPTWRzSccxKPmJrpOk5vBDC9SGAe3feiNqUMydbBH
+         BDC2AmifSpNRris31CZCnKA67SCb9ht6P2Jj10TvX4YS88BuYVHbCn4PdBgaJ1QEovCE
+         axxnzTV5Uwv4mrjyH3CrbkWgI0QeQxe/82j6R2P1Fv79mjB5DHvFC6xKaqMOWqdHynY1
+         67xjLq/51jd0srHTNlvvlJNbgNFGwjaaxhtknDrn8mV2PiQMt2mdew1QL579Jbgm9KPx
+         QBCQ==
+X-Forwarded-Encrypted: i=1; AL+hErFvtHJSUAl22kM5htJXBWq6pJ7IeRGF/1YgKI7LMEEotAwvdHIzisM9QquBzVWRF/ho0107Dj2OsL/2gkoWZGPC@lists.infradead.org
+X-Gm-Message-State: APuU4Z+HNx7Q+ceLmj5K16GSN2/ahinzdK8Gmm3n9M8j7s0uDzqKV1yn
+	O9LS20zqHQSWRbMVZMZBoKgRkXfZ07rzdKCPvmT3CK2ycqT6vAJ6UHnGvdJujy/335uaX1ctja/
+	MujLWzW5pTWyo2atFbxedfBZpHsor2OOY8NCW95VetNeO7TRhlEkGBWNcyVmmbjtKxtMPHp+sCE
+	zBrPfHsqz1kSkWz+53lEBKcnze0f6ZfTDp6yRJZvGCFXELcC9ZQ/Ye
+X-Gm-Gg: AYBFou3hXx1kIMRyvCwd0OKOo1zoS6c3P20lm2msvzmFIgeYXPEKwLCkcn7NLf+OSUn
+	mVvBKFz9er1+bjqD8Hs6bn4UIBCKgjsoGCeMv5qDhbvlLSrbJsLDQs9NS7QVpr7a74Wyeuj7NmF
+	eslIp5s1gpisc4U+EyTyC7Ea8mqFgooi9l2gefFXAlKWvl4SO1KCCs5uIIuQ==
+X-Received: by 2002:a17:90b:3ec4:b0:3a0:4668:4cb0 with SMTP id 98e67ed59e1d1-3b1b0b83494mr5437872a91.47.1794652477759;
+        Sat, 14 Nov 2026 02:34:37 -0800 (PST)
+X-Received: by 2002:a17:90b:3ec4:b0:3a0:4668:4cb0 with SMTP id
+ 98e67ed59e1d1-3b1b0b83494mr5437854a91.47.1794652477282; Sat, 14 Nov 2026
+ 02:34:37 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261104-add-board-ok3572-c-pmdomain-v4-0-15cf8b5a6e59@qq.com>
-In-Reply-To: <20261104-add-board-ok3572-c-pmdomain-v4-0-15cf8b5a6e59@qq.com>
+References: <20261104135604.907283-1-patrick.delaunay@foss.st.com>
+In-Reply-To: <20261104135604.907283-1-patrick.delaunay@foss.st.com>
 From: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Date: Sat, 14 Nov 2026 11:28:15 +0100
-X-Gm-Features: AclHuK8CTcJQlL9BkywlS1ynPK24J1pLlK3GHhNiwRM1F-ARTEv9AUD_jeySnPU
-Message-ID: <CAPx+jO_88-xLLiPeE1QPjceCBpBuX0ZXsB=-vVVcGmx_6vnWCA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] pmdomain: rockchip: Add RK3572 power domains
-To: 1579567540@qq.com
+Date: Sat, 14 Nov 2026 11:34:25 +0100
+X-Gm-Features: AclHuK94u1eOHPpWE8nBMTRpf4tqar4SIHPxdb5PqkdOcIBUQwLxrM5M47Vzypo
+Message-ID: <CAPx+jO8ByMju7HofLyZywRQRW4W7_15LoRVDn4K5oM+vsmrSrg@mail.gmail.com>
+Subject: Re: [PATCH 0/7] arm64: dts: st: add STM32MP2 power domains
+To: Patrick Delaunay <patrick.delaunay@foss.st.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Elaine Zhang <zhangqing@rock-chips.com>, Ulf Hansson <ulfh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Ulf Hansson <ulfh@kernel.org>,
+        Linux STM32 <linux-stm32@st-md-mailman.stormreply.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Finley Xiao <finley.xiao@rock-chips.com>
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE0MDA0MSBTYWx0ZWRfXzNun3rhOAWsC
- h1LJlwfasrxFkbD3tWTfALZvfG/aQphyDhrWK5Bpyl9vmzW4gX34LqnJMrMJ2gvsKCZb62mMRgV
- 7jfCo+SWKKC8kSsO3oitttBHpv5BF71eTdONCcogDC5jJqloDcqaVvSkLVKiceIg+CjLqnoUzDG
- TqIQm54wz6B2a1b0+HLxsLjq4F88a67/SIL+8tR/fWTTbIC1ZBokf7lnAhdXbe3dHfpOQbyjhLe
- BpZpfuaz+4ptZLYee/8Gg0jUUqMF43yr1fPChRffoLZ1BHlNk8rXNuvKJliScdFRAud21EqzuNg
- hTdFMI2TIc08QEw1hiI/wSZKT9kSiIt0z0RQj47zoFQAq4zbG/KNXMQNScfZ6px8xoPss9NBK/v
- ff/dTApdbpz5F+GJ25CPljPohU76D/8ubMfG8pzCzgGOJA0dz1voziUY0fUWC+W6+RtaZOo7j05
- GS8FmU2HKdsNjF7E/kA==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE0MDA0MSBTYWx0ZWRfX4wdyJloD93Mk
- PSsKgJ4zsJEnbHkbqw8SmTXcd6fA6oXcGNn9l2NsONFibbZCQYRoQtaJgASCOTCuUwwQmjBCJIT
- +Iey1dYSXt6qFkcNXAIr+qlbN+Ze7Lw=
-X-Proofpoint-ORIG-GUID: E83Y5G1wppd0pT5f-6Jx8mj1kl0AZ_93
-X-Proofpoint-GUID: E83Y5G1wppd0pT5f-6Jx8mj1kl0AZ_93
-X-Authority-Analysis: v=2.4 cv=Jr5kP84C c=1 sm=1 tr=0 ts=6af837cc cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE0MDA0MSBTYWx0ZWRfX9XLWDQ+6DEqm
+ KOed9St7BtHKOTMTDX3hJTnG6QsKcLWx2FlqzpD/mWkV9YF0EdnxbitP3+Vz39gXfSO8FuFA/sn
+ FKz2uL9hMDiO4+XUcLnGUxE7uT1RxZBXQFJzZkkZd6mHMHNbEMDgJl5NN+ELiRlyCe4EOAf15/d
+ iWIuR/kYxkIi/+VzG2wb1H2+5cnyJSRA8BDb3S/soXamXt6GjBRI4r5dv2c0hw7d/dd9y9VKCf0
+ WtPBlSUpfqBiWrhZDowIB5ukXFZ+rBkthtNgBop5iIyCWjmb6T6hB/SO7Ti9J1CntnaubyzbD5E
+ lJLCbE3iquIqTfWMBjMDQSrVjRhP4agFsDL0QplUx5t2E/xRk+DzpMrltLpSgLyCmL5LM/IuEOw
+ ZcXaHZWOf5Tgv3s0IEZC0r80QgK+H46lZTC0l3Qqcunr6Hy6vNySK+kiRg3iAJQNl6lpQhNDI/r
+ a0fYBiRcOod9WG7RK4A==
+X-Authority-Analysis: v=2.4 cv=av0nmiZV c=1 sm=1 tr=0 ts=6af8393e cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
  a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=ZpdpYltYx_vBUK5n70dp:22 a=bC-a23v3AAAA:8 a=dZbOZ2KzAAAA:8 a=VwQbUJbxAAAA:8
- a=s8YR1HE3AAAA:8 a=JfrnYn6hAAAA:8 a=4uetKMasqe67zdwg2QcA:9 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22 a=FO4_E8m0qiDe52t0p3_H:22 a=jGH_LyMDp9YhSvY-UuyI:22
- a=1CNFftbPRP8L7MoqJWF3:22
+ a=rJkE3RaqiGZ5pbrm-msn:22 a=8b9GpE9nAAAA:8 a=UgPYzwtURW4JLmgtzPsA:9
+ a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22 a=T3LWEMljR5ZiDmsYVIUa:22
+X-Proofpoint-GUID: DpbJ0RUsEsu_dPy0a-FpabpN_RIaOHDA
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE0MDA0MSBTYWx0ZWRfXxGjcfsMHkdKY
+ 7sgge5QIpcwVowQceEfHAFIeZgWGQci2LvFvmlbiSwqZI8r/VHM/YSzqYJ1M22v/ZFVYnzU/eKP
+ 862svUFFrIB13KK3zdov11Mv0tILiyo=
+X-Proofpoint-ORIG-GUID: DpbJ0RUsEsu_dPy0a-FpabpN_RIaOHDA
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-14_03,2026-11-11_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0 phishscore=0
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0
+ impostorscore=0 clxscore=1015 spamscore=0 priorityscore=1501 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611140041
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_022829_752392_020BA38B 
-X-CRM114-Status: GOOD (  36.65  )
+X-CRM114-CacheID: sfid-20261114_023440_686099_EBCE3368 
+X-CRM114-Status: GOOD (  23.21  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -167,183 +167,81 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 4, 2026 at 9:57=E2=80=AFAM Cunhao Lu via B4 Relay
-<devnull+1579567540.qq.com@kernel.org> wrote:
+On Wed, Nov 4, 2026 at 3:02=E2=80=AFPM Patrick Delaunay
+<patrick.delaunay@foss.st.com> wrote:
 >
-> This is one of the subsystem submissions for RK3572 support.
 >
-> This series adds the RK3572 power-controller binding and power IDs,
-> followed by support for all 14 power domains. It includes system GRF
-> firmware shift-ready checks, NPU voltage-domain control and genpd startup
-> protection for boot-enabled IMG, VOP, VOP_PRE and VO.
+> Hello,
 >
-> The RK3572 SoC has eight CPU cores: two Cortex-A73 cores and six
-> Cortex-A53 cores. It also integrates an Arm Mali-G310V2 MC1 GPU.
-> The OK3572-C board provides two Gigabit Ethernet ports, three USB3 Type-A
-> ports, a Type-C dual-role port, eMMC, microSD, and UART.
+> This series adds support for the D1 power domain used by the STM32MP2
+> families.
 >
-> This series depends on the separately submitted power-on rollback fix [1]=
-.
-> Firmware readiness failures reuse it, preserving the original error and
-> saved QoS. If rollback fails, the domain may remain on while resources ar=
-e
-> released and genpd may power down its parent.
+> The new power-domain driver uses runtime PM and the clock framework to
+> keep the Cortex-A35 cluster in Run1 for devices that require it, while
+> S2Idle wake-up is handled through EXTI1 and retention PSCI power domain
+> (RET_PD).
 >
-> [1] https://patch.msgid.link/20261101-fix-rockchip-pmdomain-power-on-roll=
-back-v1-1-59a45783e33e@qq.com
+> The power sub-domain D1 without GENPD_FLAG_ACTIVE_WAKEUP is required
+> because PSCI domains manage the wake-up path since the commit
+> bfd5859709ee ("cpuidle: psci: Activate GENPD_FLAG_ACTIVE_WAKEUP with
+> OSI").
 >
-> Testing was performed with Debian 13 minimal and Linux 7.3 on the
-> OK3572-C with the FET3572-C module. Shared peripheral tests were run with
-> the system booted from SD, while eMMC validation covered the complete
-> boot chain.
+> This patch is a preliminary step to support PSCI OSI in STM32MP2
+> platform and the same power domain will be used also in STM32MP1
+> series.
 >
-> Passed functionality:
+> The first 3 patches introduce the new power domain drivers.
 >
-> - SD and eMMC complete the firmware, kernel, and root filesystem
->   boot chain.
-> - UART console works at 1500000 baud.
-> - SD read/write and data persistence checks pass.
-> - All eight CPUs start; CPU frequency scaling and hotplug checks pass.
-> - Both Ethernet ports obtain IPv4 addresses and pass bidirectional file
->   transfers.
-> - All three Type-A ports pass USB2 and USB3 enumeration, data transfers,
->   and reconnect persistence checks.
-> - Type-C host and device modes pass in both plug orientations. Physical
->   reconnects correctly select the expected device, host, and device roles
->   in sequence.
+> The next patches add this power domain in device tree for each STM32MP2
+> SoCs: STM32MP25, STM32MP23 and STM32MP21.
 >
-> Stability:
+> Regards,
+> Patrick
 >
-> - Repeated cold and software reboots complete on SD and eMMC without
->   data integrity failures or power-domain transition failures.
-> - A combined CPU, memory, network, SD, and USB3 stress test completes
->   without a crash, lockup, CPU offline event, or thermal shutdown.
-> - Ethernet error and drop counters do not increase during bidirectional
->   network tests.
 >
-> Power-domain validation:
+> Patrick Delaunay (7):
+>   dt-bindings: power: st: add STM32MP PM domain binding
+>   pmdomain: st: add STM32MP power domain
+>   MAINTAINERS: add entry for ST STM32 power domain driver
+>   arm64: dts: st: add D1 domain for STM32MP25 family
+>   arm64: dts: st: fix power-domain labels DT coding style in STM32MP25
+>   arm64: dts: st: add D1 domain for STM32MP23 family
+>   arm64: dts: st: add power domains for STM32MP21 family
 >
-> - All 14 domains register; 11 complete 1,140 runtime-PM cycles. NPU VD
->   sequencing and startup-protection release are checked.
-> - Physical cold boot with an eMMC root filesystem succeeds. Read/write
->   checks pass on eMMC, SD and two USB storage devices; both Ethernet
->   ports pass ping tests bound to their respective interfaces.
-> - Thirteen return-value injections after successful operations check
->   idle-exit and firmware-readiness rollback, NPU cleanup, original errors
->   and saved QoS. Retries succeed after removing injection.
-> - 124 host model cases using the driver and genpd pass ASan and UBSan.
->
-> Build and checks:
->
-> - The kernel, modules, and board DTB build successfully.
-> - Strict checkpatch reports no errors.
->
-> Untested hardware and paths:
->
-> - NPU
-> - PCIe
-> - GPU, video output, and audio
-> - CPU rates above 1.2 GHz and voltage scaling
-> - Other low-speed external interfaces
->
-> Some files in this series are derived from the Forlinx OK3572-C BSP
-> Alpha1. Thanks to Forlinx for their support.
-> Thanks also to Rockchip's David Wu, Elaine Zhang, Finley Xiao, Frank
-> Wang, William Wu, and Ye Zhang for providing the driver source files.
->
-> AI assistance:
->
-> - Codex / DeepSeek V4.1 Flash were used for:
->   - Reviewing and adjusting code style to follow community conventions
->   - Automating tests
->   - Collecting data
->
-> Signed-off-by: Cunhao Lu <1579567540@qq.com>
-> ---
-> Changes in v4:
-> - Drop generic pending-state tracking and power-off recovery; reuse the
->   separate power-on rollback fix for firmware readiness errors.
-> - Support all 14 domains, including NPU voltage-domain control and
->   cleanup after failed transitions.
-> - Retain boot-enabled IMG, VOP, VOP_PRE and VO domains until sync_state.
-> - Use firmware shift-ready naming for the GRF status.
-> - Build ungate write masks with unsigned arithmetic.
-> - Link to v3:
->   https://patch.msgid.link/20261026-add-board-ok3572-c-pmdomain-v3-0-70d6=
-14d3d921@qq.com
->
-> Changes in v3:
-> - Track incomplete shutdowns to preserve QoS and complete firmware update=
-s.
-> - Preserve pending memory resets across shutdown and cancel unfinished
->   power-on requests.
-> - Attempt to restore the domain after power-off errors, while preserving
->   the original error returned to genpd.
-> - Link to v2:
->   https://patch.msgid.link/20261023-add-board-ok3572-c-pmdomain-v2-0-79dd=
-d42e92c1@qq.com
->
-> Changes in v2:
-> - Split the original RK3572 support series by subsystem.
-> - Track low-level power-on and restoration separately. Retain unfinished
->   memory resets across retries, avoid repeating completed resets, and
->   preserve QoS snapshots when shutting down after a failed power-on.
-> - Link to v1:
->   https://patch.msgid.link/20261022-add-board-ok3572-c-v1-0-0b0fd85a31ee@=
-qq.com
+>  .../bindings/power/st,stm32mp-pm-domain.yaml  |  46 +++++++
+>  MAINTAINERS                                   |   7 +
+>  arch/arm64/boot/dts/st/stm32mp211.dtsi        |  37 +++++
+>  arch/arm64/boot/dts/st/stm32mp231.dtsi        |  54 +++++---
+>  arch/arm64/boot/dts/st/stm32mp233.dtsi        |   1 +
+>  arch/arm64/boot/dts/st/stm32mp235.dtsi        |   2 +-
+>  arch/arm64/boot/dts/st/stm32mp251.dtsi        | 126 ++++++++++-------
+>  arch/arm64/boot/dts/st/stm32mp253.dtsi        |   9 +-
+>  arch/arm64/boot/dts/st/stm32mp255.dtsi        |   2 +-
+>  drivers/pmdomain/st/Kconfig                   |  14 ++
+>  drivers/pmdomain/st/Makefile                  |   1 +
+>  drivers/pmdomain/st/stm32mp-pm-domain.c       | 128 ++++++++++++++++++
+>  12 files changed, 353 insertions(+), 74 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/st,stm32mp-pm=
+-domain.yaml
+>  create mode 100644 drivers/pmdomain/st/stm32mp-pm-domain.c
 >
 > ---
-> Raw dmesg: see v2 cover letter.
+> base-commit: 7b3f3e772d5107c3a59b9f2278e9aeab227b26db
+> branch: master
 >
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Heiko Stuebner <heiko@sntech.de>
-> To: Elaine Zhang <zhangqing@rock-chips.com>
-> To: Ulf Hansson <ulfh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
->
-> ---
-> Cunhao Lu (1):
->       pmdomain: rockchip: Add RK3572 power domains
->
-> Finley Xiao (1):
->       dt-bindings: power: rockchip: Add RK3572 power domains
->
->  .../bindings/power/rockchip,power-controller.yaml  |  17 +++
->  drivers/pmdomain/rockchip/pm-domains.c             | 168 +++++++++++++++=
-++++--
->  .../power/rockchip,rk3572-power-controller.h       |  30 ++++
->  3 files changed, 204 insertions(+), 11 deletions(-)
-> ---
-> base-commit: 99e3bb2c6f246f38179cc569e38a45d9555206ed
-> change-id: 20261023-add-board-ok3572-c-pmdomain-2f02da11386e
->
-> Best regards,
 > --
-> Cunhao Lu <1579567540@qq.com>
->
+> 2.43.0
 >
 
-There are quite a lot of patches on the rockchip power domain driver
-in the pipe. On my end, I can only try to apply pieces by piece, but
-it would be nice if you could start reviewing each other's patches to
-help coordinate this bit.
-
-Anyway, this series needs to be rebased on top of the latest changes
-that I have queued for next. I will have a look when that's done.
+Please re-submit this so all patches are sent to me and linx-pm,
+including the dt patches.
 
 Kind regards
 Uffe
