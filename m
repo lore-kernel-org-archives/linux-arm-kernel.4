@@ -2,89 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CC9606A88C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10281606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dO5FaJnc;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GAJ92nS9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lsm50vW+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h3soLgCJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=a3dOC7IM/J9MOb41ZczbXOtg6Erx7oHExSHGxrl93Vg=; b=dO5FaJnc0bTURf/t6xwyDSecdY
-	Ef9k6ZKkNahjylagvroOn8bTZU03CnNdQ1w0Kg/T224aAUeuQ5TiFe4hqY/+6+zElNohLPZZcfpnk
-	00498/fF8PijB50I4Ac9lntJ8CqRb3W/6S63oc480IMnlZMGznje6RHQpo5z/VeXMrc+j9915yWHV
-	lrJlZYVzn/VbUTX3fNpBgfjKIorjpb8e4vo3wScqkVzv256abdxxwmAfhtAQNFVvQecdS28Zv6V2L
-	bRgujARX/sE3vOB6ULZLTc/aV7Di7nnHjgKr0FjMg/BiocmoaazfZ8yftybW80N9La/+gl/9Uazqd
-	6zbVKkow==;
+	bh=1nL03MBSTpW+t/jOuo1Bo2Pb/7wKI1Rte6iAFtfXmns=; b=lsm50vW+b/cOBtr1mB3ffbc1Oz
+	Bl8GA6xsgW4i+bYC+4rC6t4VvTWIy0tlz69VOA593hvXpCk6Yq39eFjUxNZqDdtres6xmDIO0fw+5
+	RIApXHWrTPFDsuUgd1dmh6eambdRxhK7Px+bg8ARc79HZ9qQw9MLvkyb30mKIvdXH3uj22tJekMW7
+	MDq3bcFCFcY895iQgNQ+nXV/7bTk3mMJzNjeN5aI9wuNG4fqR3A8G615GevfJN5eELvqUNmzfKL9M
+	tL9mT+ufaRdUzhmcOT4HXCwEWWNt2X7nS/tWShdYqnFZIYRK6xFxTup0rGPww9FWZW6nJfVgeJAZR
+	Xq9g2GtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1dU-0000000EuXH-2j72;
-	Sat, 14 Nov 2026 00:28:52 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xS1df-0000000EufN-02er;
+	Sat, 14 Nov 2026 00:29:03 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1dT-0000000EuW5-31iV;
-	Sat, 14 Nov 2026 00:28:51 +0000
+	id 1xS1dU-0000000EuWN-0Z0p;
+	Sat, 14 Nov 2026 00:28:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5DE1543DD3;
+	by sea.source.kernel.org (Postfix) with ESMTP id DEF2B43F22;
 	Sat, 14 Nov 2026 00:28:51 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794616131;
-	b=fVRXdj2iRGAwGdOqPk6HUxtFGD2aeoGuzmjYWOwTBT2w97PJmOHt9GXW9JN7QU7LLQAh
-	 QgKLKxXOuuE1708fM1EWZzyLBXilR53V5c0wS+zYIznTA/l/AsK74a6vBSSDU1SLOE2i6
-	 WizG3DOrJiuk+oqXZyaS9bDse2Be12l8ElTX0JQ36IfWfemzFTsTUOnCZfVkocoAg52HX
-	 jbEq09k8acv/J/Ux0dENSzR6OCWHukReVVWjvbEk/ve8NPR4ayePQw7VLWsdkDsFX7UvE
-	 16c/Oz7dno8IrPbGYgp+LkMxKFpF5ybhFC2ucffhZ+BU70CHdQsvbXyZme2wjCEdVqg==
+	b=Xha2Xh4WCQlLDG2LTabAS2zXVdf7rPyf2xFo+lirNnatw9m0G9k+Uld0QmsNWvHjQjeo
+	 O1KjyLu+HLF7SXWo5AUFmBVeN5F1jMHybz4pTlyZHHX8padU5WZ2fe4Hxu+L0kGdhfvX+
+	 ONROcTmdwpDarHfJH9yy9wstPtVL7skrQYbAqM7vT6gpFacPFoN2YI8wGjMkIjCc3GTDS
+	 0WXZyKOiu12hHk02T0ngMGaMbQKgFAujMrSFiYpCH9iQ6l1ZWBmmbHa3MEbyfMGtMx/e6
+	 m3dMjZ73z69PmWiSxStdS3zDB7XaICdKIeFjZWMr+iYIUGh7lfW5cyRpT9VGwnJ+sEw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794616131;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=a3dOC7IM/J9MOb41ZczbXOtg6Erx7oHExSHGxrl93Vg=;
-	b=10vvNfbq4zEQwY1bUCfKQuJ8fxP3MVQeQPmu9eDbNecBMmQgsWdUSi69dbownCBgLpt5
-	 6APcE5xGJKfNhvm/KjLfei8MOiAmMJ0vPxIbkbqCNL9gnyiTWu5R31h+W71iZDnjBkukJ
-	 djZCbUmnqFzX+wjYuHuwzZYV8BJ9MeeT2lzLCq9NmdlgPc8NYaWSm4S0R77UmL/RVJSDi
-	 LQe20AJNg4KXLWkWVCd5IEmavKaIZxmrqJZv8d6o6sdbXPZ+cd6BQyemD2P5Beno5PqFJ
-	 MdpKlu8NyuTtcnl71Q5pJB7DuSsVYWkIIggUhWkuu8k4L1ZbdwpX6LccL17XYzQmcxA==
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=1nL03MBSTpW+t/jOuo1Bo2Pb/7wKI1Rte6iAFtfXmns=;
+	b=tDlv0g+D5SPCJbiZEhNADZoex78HgXDR0QeYsnnsJ8Ehq92kpKTxoQwcCkUKSgXnB3Qj
+	 XL4lex2Sv1gDXxlb6U2jap+MsM9yCeHGQUaAJRzg6cRT7UYEeucMIqRrL9Mx3NPBeGn6e
+	 QxgamS64gWjYBGSGFMKTsTyflMSb504khuabl0SHDHfvboWtdb/CY++7N3THoEAHgCcuH
+	 7UR7nIfoIHpu4qfT0rAdvQyA2hXvXAcXNrNvwzFHogwXC6odBxes/w2BmGz7HslUCZfhT
+	 RbtEl+2FYacfnhre84gVf0JCDiOxviyMDr+5b1R5vTyLW87RDsYiarCfxc8MBtxo6Yw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 9D04E1F000C4;
+	by smtp.kernel.org (Postfix) with ESMTPS id CFFA01F000C6;
 	Sat, 14 Nov 2026 00:28:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794616131;
-	bh=a3dOC7IM/J9MOb41ZczbXOtg6Erx7oHExSHGxrl93Vg=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=GAJ92nS9mlMhHmlFozv1/5Vnu2ruyn/Ymv9h4icba+tONJ00ZUFdDmbpC75ED2Af5
-	 +YiAHafnPEefLArrvZ7uOMeus2yzsGVO8rUKIegOQWUy2KDWiNxmkNAiaL/x4qfLa6
-	 phtihDcBd1EGxYCDBB+qyWIefShbThCnhSqlot9T+3N6Z+MdiwpyngU9fota1KwqUe
-	 Cw72F+ESC3hOSzcJCp+p7DjDFbXo/erWnxJZh2jxJwfqBT6nVpM8OQ5AAdVM08bzB1
-	 DhZMgr73SwTJDHwg1DLOUMTdnqDzap6up37mfVGyEuCwy30zN33ZhiiLtnx1IK5BiO
-	 KTaDMzZqA+03w==
+	bh=1nL03MBSTpW+t/jOuo1Bo2Pb/7wKI1Rte6iAFtfXmns=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=h3soLgCJL0w8MuLp6PrQKX9kgyZWLN9jIcw4wKqx7pPWqo3OifhYJ9UY5665iCDYO
+	 QY37lZPO3cZElWU/CpnT9GhcdT6T3/ZAoT9eBJWimOdnH7m9NjN3jXDAGgOEQJIuuG
+	 4K0UkTtAm4onpN7cG4Un5BK5POTP5YRqbdGPvAPSceA3JKW3xa/fMHWSny4uwkLiKa
+	 gL2o+8jLogeZ/gRvxy2HU/QZ6N7txAwrwuawWkt87rt+2Jg1JQGkmehIwhrUcpW9Aq
+	 tizZbRdnRNfhClgDWfoUR4nJOv0MEMPW5uw5ptC5tiCj2SdJ6Bf+1NVFAXsWb88JKn
+	 gXhnukafHKCVw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 2AE6A49BDF;
+	by lkml.kernel.org (Postfix) with ESMTP id 5949149BE3;
 	Sat, 14 Nov 2026 00:28:50 +0000 (UTC)
 From: Matt Thompson via B4 Relay <devnull+matt.boondocker.io@kernel.org>
-Subject: [PATCH RFC 0/3] PCI: rockchip-host: Handle unavailable downstream
- config space
-Date: Fri, 13 Nov 2026 17:28:48 -0700
-Message-Id: <20261113-rfc-b4-v1-0-b91dcb502250@boondocker.io>
+Date: Fri, 13 Nov 2026 17:28:50 -0700
+Subject: [PATCH RFC 2/3] arm64: Allow synchronous abort fixups for guarded
+ MMIO reads
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAECr92oC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzNDQ0Nj3aK0ZN0kE12zJHNL0yRTY7MUy0QloOKCotS0zAqwQdFKQW7OSrE
- QweLSpKzU5BKQEUq1tQDuAOiObwAAAA==
-X-Change-ID: 20261113-rfc-b4-6b795b536d9a
+Message-Id: <20261113-rfc-b4-v1-2-b91dcb502250@boondocker.io>
+References: <20261113-rfc-b4-v1-0-b91dcb502250@boondocker.io>
+In-Reply-To: <20261113-rfc-b4-v1-0-b91dcb502250@boondocker.io>
 To: Shawn Lin <shawn.lin@rock-chips.com>, 
  Bjorn Helgaas <bhelgaas@google.com>, 
  Lorenzo Pieralisi <lpieralisi@kernel.org>, 
@@ -95,16 +92,17 @@ Cc: Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794616129; l=2536;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794616129; l=3185;
  i=matt@boondocker.io; s=rk3399-rfc-20261113; h=from:subject:message-id;
- bh=hJTcfTu09wCmC3nbBjFL8A2h4aeAyl+zKDrvafc3W0g=;
- b=Wrbv/DxX6/CcK1kGw5KAZv4ngfmBYI0xgnWa6Hh1DHmljEanXeUthQA5Oz/06+fRdc+zyaY0u
- PL67CUK6M+HAHQeXCvoW6JrSYjcIojnkyKaBvh8zvovMwkPZldqRGTT
+ bh=+Rysg52MQ+WEH6U9bLqWMjonnyRMjgwZRj3Gm/L1z2c=;
+ b=ivVIwpe9aQT6YH1SgFrUGUyAEZu4oOmIHxxnVxegwaq4g31oxKOagJc5lROvzRq9fuKPwg4vx
+ yF+wEx3J69hCEMKYrIWpInK/vgWmpsDqq5yoGfMy5rE5sN+BOPEvhcR
 X-Developer-Key: i=matt@boondocker.io; a=ed25519;
  pk=WMnh3kwFFRkrqamL/FbDcdl1/9rBF2uT03VdvGGP40k=
 X-Endpoint-Received: by B4 Relay for matt@boondocker.io/rk3399-rfc-20261113
  with auth_id=1517
 X-Original-From: Matt Thompson <matt@boondocker.io>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,67 +114,97 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: matt@boondocker.io
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On a RockPro64 v2.1 with a Kintex-7 FPGA endpoint, a downstream
-vendor-ID read during a PCI rescan raised a synchronous external
-abort (ESR 0x96000210) in rockchip_pcie_rd_conf(). The rescan task
-exited with IRQs disabled and a watchdog lockup followed.
+From: Matt Thompson <matt@boondocker.io>
 
-The first patch skips downstream config accesses while the controller
-reports the link unavailable. The remaining patches handle synchronous
-external aborts on explicitly annotated arm64 config reads, including
-when the link changes after the status check. The final patch also
-clears the AXI link-down latch before downstream config accesses
-once the controller reports the link ready.
+An RK3399 PCI configuration read can raise a synchronous external data
+abort if it does not get a usable response. Allow an explicitly annotated
+MMIO load to return an error in this case.
 
-The arm64 change is limited to marked load instructions. Asynchronous
-SError, BAR accesses, and config writes that race a link change are
-outside that recovery path. Feedback on the exception-table interface
-and whether the controller can handle absent completions directly is
-welcome.
+Match only a current-EL synchronous external abort on a read instruction
+with the new exception table type. Keep existing handling for other
+faults, including asynchronous SError and translation table walk aborts.
 
-A related discussion covers an RK3399 endpoint that trains but fails
-to answer config requests:
-https://lore.kernel.org/linux-pci/20261024-rockchip-pcie-resume-v1-0-58e54a5cf5f1@iav.lv/
-
-Validation: applied these three RFC patches to upstream commit
-97d73c8251226cf27cc6656b4c542869bb8c69fa and booted the resulting
-7.4.0-rc2 kernel on a RockPro64 v2.1. The test config enabled Rust
-and built in the required board drivers.
-
-Three test cycles completed on that kernel. Each removed the FPGA
-from Linux, disabled the link and rescanned, then re-enabled the link,
-requested retraining and rescanned. The FPGA stayed absent in each
-disabled scan and returned at 01:00.0 after each retrain without a host
-driver rebind. The log showed no synchronous external abort or
-watchdog lockup. The test did not establish whether the arm64 fixup ran.
-
+Signed-off-by: Matt Thompson <matt@boondocker.io>
 ---
-Matt Thompson (3):
-      PCI: rockchip-host: Skip downstream config access while link is down
-      arm64: Allow synchronous abort fixups for guarded MMIO reads
-      PCI: rockchip-host: Recover downstream configuration access
+ arch/arm64/include/asm/asm-extable.h |  9 +++++++++
+ arch/arm64/mm/extable.c              |  1 +
+ arch/arm64/mm/fault.c                | 11 +++++++++++
+ 3 files changed, 21 insertions(+)
 
- arch/arm64/include/asm/asm-extable.h        |  9 ++++
- arch/arm64/mm/extable.c                     |  1 +
- arch/arm64/mm/fault.c                       | 11 +++++
- drivers/pci/controller/pcie-rockchip-host.c | 69 +++++++++++++++++++++++++++++
- drivers/pci/controller/pcie-rockchip.h      |  1 +
- 5 files changed, 91 insertions(+)
----
-base-commit: a72c40386d63746568fb027900faaa8ec0054127
-change-id: 20261113-rfc-b4-6b795b536d9a
+diff --git a/arch/arm64/include/asm/asm-extable.h b/arch/arm64/include/asm/asm-extable.h
+index d67e2fd..ed80aec 100644
+--- a/arch/arm64/include/asm/asm-extable.h
++++ b/arch/arm64/include/asm/asm-extable.h
+@@ -11,6 +11,7 @@
+ #define EX_TYPE_KACCESS_ERR_ZERO	3
+ #define EX_TYPE_UACCESS_CPY		4
+ #define EX_TYPE_LOAD_UNALIGNED_ZEROPAD	5
++#define EX_TYPE_MMIO_READ_ERR_ZERO	6
+ 
+ /* Data fields for EX_TYPE_UACCESS_ERR_ZERO */
+ #define EX_DATA_REG_ERR_SHIFT	0
+@@ -123,6 +124,14 @@
+ #define _ASM_EXTABLE_KACCESS(insn, fixup)				\
+ 	_ASM_EXTABLE_KACCESS_ERR_ZERO(insn, fixup, wzr, wzr)
+ 
++#define _ASM_EXTABLE_MMIO_READ_ERR_ZERO(insn, fixup, err, zero)		\
++	__ASM_EXTABLE_RAW(insn, fixup,					\
++			  __stringify(EX_TYPE_MMIO_READ_ERR_ZERO),	\
++			  "((.L__gpr_num_" err " << "			\
++			  __stringify(EX_DATA_REG_ERR_SHIFT) ") | "	\
++			  "(.L__gpr_num_" zero " << "			\
++			  __stringify(EX_DATA_REG_ZERO_SHIFT) "))")
++
+ #define _ASM_EXTABLE_LOAD_UNALIGNED_ZEROPAD(insn, fixup, data, addr)		\
+ 	__DEFINE_ASM_GPR_NUMS							\
+ 	__ASM_EXTABLE_RAW(#insn, #fixup,					\
+diff --git a/arch/arm64/mm/extable.c b/arch/arm64/mm/extable.c
+index 299a244..c9b5944 100644
+--- a/arch/arm64/mm/extable.c
++++ b/arch/arm64/mm/extable.c
+@@ -100,6 +100,7 @@ bool fixup_exception(struct pt_regs *regs, unsigned long esr)
+ 		return ex_handler_bpf(ex, regs);
+ 	case EX_TYPE_UACCESS_ERR_ZERO:
+ 	case EX_TYPE_KACCESS_ERR_ZERO:
++	case EX_TYPE_MMIO_READ_ERR_ZERO:
+ 		return ex_handler_uaccess_err_zero(ex, regs);
+ 	case EX_TYPE_UACCESS_CPY:
+ 		return ex_handler_uaccess_cpy(ex, regs, esr);
+diff --git a/arch/arm64/mm/fault.c b/arch/arm64/mm/fault.c
+index b227368..148f7c9 100644
+--- a/arch/arm64/mm/fault.c
++++ b/arch/arm64/mm/fault.c
+@@ -877,8 +877,19 @@ static int do_bad(unsigned long far, unsigned long esr, struct pt_regs *regs)
+ static int do_sea(unsigned long far, unsigned long esr, struct pt_regs *regs)
+ {
+ 	const struct fault_info *inf;
++	const struct exception_table_entry *ex;
+ 	unsigned long siaddr;
+ 
++	/* Only a synchronous data abort on an explicitly guarded MMIO read. */
++	if (ESR_ELx_EC(esr) == ESR_ELx_EC_DABT_CUR &&
++	    (esr & ESR_ELx_FSC) == ESR_ELx_FSC_EXTABT &&
++	    !(esr & ESR_ELx_WNR)) {
++		ex = search_exception_tables(instruction_pointer(regs));
++		if (ex && ex->type == EX_TYPE_MMIO_READ_ERR_ZERO &&
++		    fixup_exception(regs, esr))
++			return 0;
++	}
++
+ 	inf = esr_to_fault_info(esr);
+ 
+ 	if (user_mode(regs) && apei_claim_sea(regs) == 0) {
 
-Best regards,
---  
-Matt Thompson <matt@boondocker.io>
+-- 
+Git-155)
 
 
 
