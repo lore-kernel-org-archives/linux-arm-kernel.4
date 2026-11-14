@@ -2,86 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED26606A8B5
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CC9606A88C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:28:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h1Yx2kYl;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OG42TKth
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dO5FaJnc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GAJ92nS9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Kf5Lt7yzOAUQ5ueELRwWwf4JNFuNEzgr8IOrFVpUyq8=; b=h1Yx2kYlUZDgkt/xYC2LKsETTX
-	MTpzaJm/sQOJlG30ToRQCgbLuoGXvdj1O4WiNovldlpqFH2Ldg4Jgxabuxjw+jHANMNApq1xukqDs
-	d30044DYx3GjBhkHkWTXiL2HvRyWG+MYh9MtF4ub0Jg+KgGLXfKT466C9gCCbzrMUsj3wO0RlbvVl
-	r2mE50Jgvzd5zpIfCZJyyg8ZnsFvHu9T6eZr9K6EnRh2Axz61X3abnyRaJzmsKtOKfQKvcI3Azhvs
-	A3s/nEv2HPv9grV7wNfMYamI7Zfv6Grt5yRjcJ5UbOIcwz4RLogU39I9pegv7bwccJqRld/7vpw2H
-	YHQG8rgw==;
+	bh=a3dOC7IM/J9MOb41ZczbXOtg6Erx7oHExSHGxrl93Vg=; b=dO5FaJnc0bTURf/t6xwyDSecdY
+	Ef9k6ZKkNahjylagvroOn8bTZU03CnNdQ1w0Kg/T224aAUeuQ5TiFe4hqY/+6+zElNohLPZZcfpnk
+	00498/fF8PijB50I4Ac9lntJ8CqRb3W/6S63oc480IMnlZMGznje6RHQpo5z/VeXMrc+j9915yWHV
+	lrJlZYVzn/VbUTX3fNpBgfjKIorjpb8e4vo3wScqkVzv256abdxxwmAfhtAQNFVvQecdS28Zv6V2L
+	bRgujARX/sE3vOB6ULZLTc/aV7Di7nnHjgKr0FjMg/BiocmoaazfZ8yftybW80N9La/+gl/9Uazqd
+	6zbVKkow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1dU-0000000EuWw-2Hew;
+	id 1xS1dU-0000000EuXH-2j72;
 	Sat, 14 Nov 2026 00:28:52 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1dT-0000000EuW6-31b6;
+	id 1xS1dT-0000000EuW5-31iV;
 	Sat, 14 Nov 2026 00:28:51 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7059644FF4;
+	by sea.source.kernel.org (Postfix) with ESMTP id 5DE1543DD3;
 	Sat, 14 Nov 2026 00:28:51 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794616131;
-	b=YQiOuav8So4UNAsPiliX3fAJmXQO8yqVUam7edSPaD+gGcmxwo9ZFPLfR0vKcwVaNTSJ
-	 EhYL7KBg3f4dxH9krhYHeb4LIxqxQ8PPujoflwJQ7uyhS6IZ5I9JZtZqKH6U5NpHrY28J
-	 clebEBhekqqFtSJdRYOyEKiIhZd5eN5B3RqMTNj5Giv/LdJNE9R9c7/Nq+9OxB0+oaSfw
-	 A5CQ3SFuzKY/hlNR5FaNjD7rDqLEFfkKRAS+vTV+djlYyKxbPmpGLeVR3ZKWsBrlWaMkL
-	 wX8lII2kGPHALEMmBfLCGHJ48GUidV3+qX6kUktFUKFYbi6+mNdkEGufM5zhCeDGLFw==
+	b=fVRXdj2iRGAwGdOqPk6HUxtFGD2aeoGuzmjYWOwTBT2w97PJmOHt9GXW9JN7QU7LLQAh
+	 QgKLKxXOuuE1708fM1EWZzyLBXilR53V5c0wS+zYIznTA/l/AsK74a6vBSSDU1SLOE2i6
+	 WizG3DOrJiuk+oqXZyaS9bDse2Be12l8ElTX0JQ36IfWfemzFTsTUOnCZfVkocoAg52HX
+	 jbEq09k8acv/J/Ux0dENSzR6OCWHukReVVWjvbEk/ve8NPR4ayePQw7VLWsdkDsFX7UvE
+	 16c/Oz7dno8IrPbGYgp+LkMxKFpF5ybhFC2ucffhZ+BU70CHdQsvbXyZme2wjCEdVqg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794616131;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Kf5Lt7yzOAUQ5ueELRwWwf4JNFuNEzgr8IOrFVpUyq8=;
-	b=qd5g7kpc+OMqU1G1eiwuWsY/u7fp6qShzx0mmJS6CuTdvrPBJToQmA5s20fgdeCAKJDR
-	 ON4cdPujY+c9LR62Xg1/zG7QmwKWK7y84/jw3ncdM1pMAyYG2uzetjvMB41W8Imo3Idl9
-	 GG5Qi6+VTIoJBQvw8fhRHhpDdZC2KYhIAOeDKX9CF5ekq6cMsISrpCTTOZcljwsilzSir
-	 pNQCo/JIATjyVoXRiibt+7nkbmjm2nobSTDjcADQHBsldzv3N7D/B5K9IhjN1GPG32Mzm
-	 JzfFD6LIIaBZcJpz9u9ejaD4CIglNWgvEq6P6SaEzrQ0BJq/9QSdwOkCABKQqfjI+8g==
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=a3dOC7IM/J9MOb41ZczbXOtg6Erx7oHExSHGxrl93Vg=;
+	b=10vvNfbq4zEQwY1bUCfKQuJ8fxP3MVQeQPmu9eDbNecBMmQgsWdUSi69dbownCBgLpt5
+	 6APcE5xGJKfNhvm/KjLfei8MOiAmMJ0vPxIbkbqCNL9gnyiTWu5R31h+W71iZDnjBkukJ
+	 djZCbUmnqFzX+wjYuHuwzZYV8BJ9MeeT2lzLCq9NmdlgPc8NYaWSm4S0R77UmL/RVJSDi
+	 LQe20AJNg4KXLWkWVCd5IEmavKaIZxmrqJZv8d6o6sdbXPZ+cd6BQyemD2P5Beno5PqFJ
+	 MdpKlu8NyuTtcnl71Q5pJB7DuSsVYWkIIggUhWkuu8k4L1ZbdwpX6LccL17XYzQmcxA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id BA3B41F000C5;
+	by smtp.kernel.org (Postfix) with ESMTPS id 9D04E1F000C4;
 	Sat, 14 Nov 2026 00:28:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794616131;
-	bh=Kf5Lt7yzOAUQ5ueELRwWwf4JNFuNEzgr8IOrFVpUyq8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=OG42TKthNV3+D24nHG8puXdYOgOTtlQldzxnYKIdWABgYCmqKpVvtwjSP2z8oqFkN
-	 oQiEI96p7xhPAfMSM20x9zNCpNxLTli4uvBtUOCpiaYFJtBcdPhbmABUvTcaEK1e3e
-	 tOafL5nSVpxFxbYEjr1w8R9MYzcMDn0A9SJM8YkweTqbGFdiDPpzZtK/ti8iauhFXp
-	 cRXFOI84z6f7truieORG+pAFeIlolCzq2FRFLpalTiGufI6de6SIfK/MmsLOsJcUPS
-	 tUdkVpB2aXkOILbFq5YgRodXFEM0KPunX7Mdbkxa86n7gFXQHbkur1Rtustoz/MWt6
-	 Y5CNz14BCY8FA==
+	bh=a3dOC7IM/J9MOb41ZczbXOtg6Erx7oHExSHGxrl93Vg=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=GAJ92nS9mlMhHmlFozv1/5Vnu2ruyn/Ymv9h4icba+tONJ00ZUFdDmbpC75ED2Af5
+	 +YiAHafnPEefLArrvZ7uOMeus2yzsGVO8rUKIegOQWUy2KDWiNxmkNAiaL/x4qfLa6
+	 phtihDcBd1EGxYCDBB+qyWIefShbThCnhSqlot9T+3N6Z+MdiwpyngU9fota1KwqUe
+	 Cw72F+ESC3hOSzcJCp+p7DjDFbXo/erWnxJZh2jxJwfqBT6nVpM8OQ5AAdVM08bzB1
+	 DhZMgr73SwTJDHwg1DLOUMTdnqDzap6up37mfVGyEuCwy30zN33ZhiiLtnx1IK5BiO
+	 KTaDMzZqA+03w==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 4440949BDE;
+	by lkml.kernel.org (Postfix) with ESMTP id 2AE6A49BDF;
 	Sat, 14 Nov 2026 00:28:50 +0000 (UTC)
 From: Matt Thompson via B4 Relay <devnull+matt.boondocker.io@kernel.org>
-Date: Fri, 13 Nov 2026 17:28:49 -0700
-Subject: [PATCH RFC 1/3] PCI: rockchip-host: Skip downstream config access
- while link is down
+Subject: [PATCH RFC 0/3] PCI: rockchip-host: Handle unavailable downstream
+ config space
+Date: Fri, 13 Nov 2026 17:28:48 -0700
+Message-Id: <20261113-rfc-b4-v1-0-b91dcb502250@boondocker.io>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261113-rfc-b4-v1-1-b91dcb502250@boondocker.io>
-References: <20261113-rfc-b4-v1-0-b91dcb502250@boondocker.io>
-In-Reply-To: <20261113-rfc-b4-v1-0-b91dcb502250@boondocker.io>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAECr92oC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDQ0Nj3aK0ZN0kE12zJHNL0yRTY7MUy0QloOKCotS0zAqwQdFKQW7OSrE
+ QweLSpKzU5BKQEUq1tQDuAOiObwAAAA==
+X-Change-ID: 20261113-rfc-b4-6b795b536d9a
 To: Shawn Lin <shawn.lin@rock-chips.com>, 
  Bjorn Helgaas <bhelgaas@google.com>, 
  Lorenzo Pieralisi <lpieralisi@kernel.org>, 
@@ -92,17 +95,16 @@ Cc: Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794616129; l=2087;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794616129; l=2536;
  i=matt@boondocker.io; s=rk3399-rfc-20261113; h=from:subject:message-id;
- bh=dQmkjngK0wLJ2jAFS1PjdlLb7zJkoCy2sJ8WeTsPps4=;
- b=JR1YncO5hnReTvvhdAwSDCsA13bb6Uh5v/R/4psAbauJ2HbOSxQ7HxJxRJcKSmMovrv74WMdl
- mW6ULFx5WvtAmnsrDSHcGia9vEWR2Zu6zpVW62Hb7KUok9Or2TYt6YW
+ bh=hJTcfTu09wCmC3nbBjFL8A2h4aeAyl+zKDrvafc3W0g=;
+ b=Wrbv/DxX6/CcK1kGw5KAZv4ngfmBYI0xgnWa6Hh1DHmljEanXeUthQA5Oz/06+fRdc+zyaY0u
+ PL67CUK6M+HAHQeXCvoW6JrSYjcIojnkyKaBvh8zvovMwkPZldqRGTT
 X-Developer-Key: i=matt@boondocker.io; a=ed25519;
  pk=WMnh3kwFFRkrqamL/FbDcdl1/9rBF2uT03VdvGGP40k=
 X-Endpoint-Received: by B4 Relay for matt@boondocker.io/rk3399-rfc-20261113
  with auth_id=1517
 X-Original-From: Matt Thompson <matt@boondocker.io>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,73 +116,67 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: matt@boondocker.io
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Matt Thompson <matt@boondocker.io>
+On a RockPro64 v2.1 with a Kintex-7 FPGA endpoint, a downstream
+vendor-ID read during a PCI rescan raised a synchronous external
+abort (ESR 0x96000210) in rockchip_pcie_rd_conf(). The rescan task
+exited with IRQs disabled and a watchdog lockup followed.
 
-On a RockPro64, a PCI bus rescan with the downstream FPGA unavailable
-faulted in rockchip_pcie_rd_conf() during a vendor ID read. The rescan
-task exited with interrupts disabled and the watchdog reported a lockup.
+The first patch skips downstream config accesses while the controller
+reports the link unavailable. The remaining patches handle synchronous
+external aborts on explicitly annotated arm64 config reads, including
+when the link changes after the status check. The final patch also
+clears the AXI link-down latch before downstream config accesses
+once the controller reports the link ready.
 
-Check the controller's link-up and link-training status before issuing
-downstream config requests. Return PCIBIOS_DEVICE_NOT_FOUND while the
-link is unavailable. Root port config access still uses the local
-controller registers.
+The arm64 change is limited to marked load instructions. Asynchronous
+SError, BAR accesses, and config writes that race a link change are
+outside that recovery path. Feedback on the exception-table interface
+and whether the controller can handle absent completions directly is
+welcome.
 
-This check cannot prevent the link from dropping during the transaction.
+A related discussion covers an RK3399 endpoint that trains but fails
+to answer config requests:
+https://lore.kernel.org/linux-pci/20261024-rockchip-pcie-resume-v1-0-58e54a5cf5f1@iav.lv/
 
-Signed-off-by: Matt Thompson <matt@boondocker.io>
+Validation: applied these three RFC patches to upstream commit
+97d73c8251226cf27cc6656b4c542869bb8c69fa and booted the resulting
+7.4.0-rc2 kernel on a RockPro64 v2.1. The test config enabled Rust
+and built in the required board drivers.
+
+Three test cycles completed on that kernel. Each removed the FPGA
+from Linux, disabled the link and rescanned, then re-enabled the link,
+requested retraining and rescanned. The FPGA stayed absent in each
+disabled scan and returned at 01:00.0 after each retrain without a host
+driver rebind. The log showed no synchronous external abort or
+watchdog lockup. The test did not establish whether the arm64 fixup ran.
+
 ---
- drivers/pci/controller/pcie-rockchip-host.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Matt Thompson (3):
+      PCI: rockchip-host: Skip downstream config access while link is down
+      arm64: Allow synchronous abort fixups for guarded MMIO reads
+      PCI: rockchip-host: Recover downstream configuration access
 
-diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
-index 5b071bd..35105c1 100644
---- a/drivers/pci/controller/pcie-rockchip-host.c
-+++ b/drivers/pci/controller/pcie-rockchip-host.c
-@@ -143,12 +143,23 @@ static int rockchip_pcie_wr_own_conf(struct rockchip_pcie *rockchip,
- 	return PCIBIOS_SUCCESSFUL;
- }
- 
-+static bool rockchip_pcie_downstream_ready(struct rockchip_pcie *rockchip)
-+{
-+	return PCIE_LINK_UP(rockchip_pcie_read(rockchip, PCIE_CLIENT_BASIC_STATUS1)) &&
-+	       PCIE_LINK_TRAINING_DONE(rockchip_pcie_read(rockchip, PCIE_CORE_CTRL));
-+}
-+
- static int rockchip_pcie_rd_other_conf(struct rockchip_pcie *rockchip,
- 				       struct pci_bus *bus, u32 devfn,
- 				       int where, int size, u32 *val)
- {
- 	void __iomem *addr;
- 
-+	if (!rockchip_pcie_downstream_ready(rockchip)) {
-+		*val = ~0U;
-+		return PCIBIOS_DEVICE_NOT_FOUND;
-+	}
-+
- 	addr = rockchip->reg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
- 
- 	if (!IS_ALIGNED((uintptr_t)addr, size)) {
-@@ -182,6 +193,9 @@ static int rockchip_pcie_wr_other_conf(struct rockchip_pcie *rockchip,
- {
- 	void __iomem *addr;
- 
-+	if (!rockchip_pcie_downstream_ready(rockchip))
-+		return PCIBIOS_DEVICE_NOT_FOUND;
-+
- 	addr = rockchip->reg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
- 
- 	if (!IS_ALIGNED((uintptr_t)addr, size))
+ arch/arm64/include/asm/asm-extable.h        |  9 ++++
+ arch/arm64/mm/extable.c                     |  1 +
+ arch/arm64/mm/fault.c                       | 11 +++++
+ drivers/pci/controller/pcie-rockchip-host.c | 69 +++++++++++++++++++++++++++++
+ drivers/pci/controller/pcie-rockchip.h      |  1 +
+ 5 files changed, 91 insertions(+)
+---
+base-commit: a72c40386d63746568fb027900faaa8ec0054127
+change-id: 20261113-rfc-b4-6b795b536d9a
 
--- 
-Git-155)
+Best regards,
+--  
+Matt Thompson <matt@boondocker.io>
 
 
 
