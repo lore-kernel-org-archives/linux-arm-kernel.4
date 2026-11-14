@@ -2,82 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F71606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 16:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C72606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 16:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qCvD6vMm;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Z1jg6YDn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iYKnRU5D;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=LQef3x9T
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HWjhff4U2bfbc71lpan6VjQI381x45+6j+0ZgY5DOCA=; b=qCvD6vMmHTXBkK
-	TOHUfJ8lv8DDIb83kqfTcfMt5si1AZUJmCUS7tWIqcZ4STlXJx/uCzgBKfbFG2ZjYsDmgwKSYksMo
-	Wf8EnpUlp6xVb2UCgds0trBj/+y2mSvf/zkDslFPv3MjK4Iyj3KcC2k5pFnT6B/sBe8AC9TatvWlr
-	LCvMrU3AW3c/wdgkmXgoPK2ZG3W+qNk1Co3k47E5yoeNBJZvDr5jMMUBrs9uyg3aoLtfbz5grzZig
-	jK2uAC9TzIzfZSU4ndMGvwvXBrYrpIBRXR31hxgmHr5nOY7TqCyev6PtJg+lYoy+/BIwJ2IXLpnBU
-	nuX7l8IWfGg5bY+B7kvg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=g/WOkBC9oooEcGEsmNj6CUsgiTKwZCs78ZjQCVM3bLg=; b=iYKnRU5DuPSPFLYNTbQFQMe6uP
+	rE6JBUDu78l9VnwNmZrwJSBVPNQONlr8HJjbY6rAsu/NBHvhKBq36J2ze7nsOrqBhCePBF/PrQbXF
+	o6PeHgotL9Bs4cRwhmttniMDwdzPiukuItlPyKYb1yqDeUhSdGY3f3o5ZQ9jN9ulqZujx5TreXTTq
+	RVPvPoKgKb/LXgZiS3NIIbVMaPXn14XdIp8Z08qiUwiWVKUvj92tTXHeaSRBiImWRXQC8mz9LSwtu
+	R8eir8xXzdTKJs8OePgOJVioXk7W8nF4eUck/MeZbyJhIEdipc31jGdRe0NpsBNG7OND8MIV3+K6j
+	D21xaa7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSGsf-0000000GUBe-1M7n;
-	Sat, 14 Nov 2026 16:45:33 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xSGvK-0000000GURL-3i2E;
+	Sat, 14 Nov 2026 16:48:18 +0000
+Received: from omta38.uswest2.a.cloudfilter.net ([35.89.44.37])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSGsb-0000000GUAT-3R6Y;
-	Sat, 14 Nov 2026 16:45:31 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id CF21AC5845B;
-	Sat, 14 Nov 2026 16:45:27 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5D504601F0;
-	Sat, 14 Nov 2026 16:45:24 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B413211BC0620;
-	Sat, 14 Nov 2026 17:45:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794674722; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=HWjhff4U2bfbc71lpan6VjQI381x45+6j+0ZgY5DOCA=;
-	b=Z1jg6YDnUBA7PClXCcfYhR7Uf9hJgkLnLFMB21wsFkQhpM70Rlejx/ZOAbvYYdnxaWkBPh
-	Ee0mhP7Cx8pmPI0bZn+XIHUhDfVJheuDyvgueA1ppsONBX0SlcIpyHaZ5sy6RBsKJKRM1Z
-	oB34W/wB8rPoJye4hQgp/cqavMxw+hs9QeQewuE/YFLq+ahRll0CoH4HMQmU+Eo8nQwGYo
-	Sxdc3m/QN1nkN/RAV5uL8gbcepKXhRHL8v/ddK7jozmgn1X59ZJasNvR09lYQpPHe6b8gU
-	JpwDw1q0Bie6dhMYqvaVBcwkmgZT1BabnuKtsXleYLftkzHU+wKk0CU40tEH6w==
-Message-ID: <ebea9af3-5edc-403e-bcd1-de875137d68a@bootlin.com>
-Date: Sat, 14 Nov 2026 17:45:10 +0100
+	id 1xSGvH-0000000GUQy-3Mtk
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 14 Nov 2026 16:48:16 +0000
+Received: from eig-obgw-6005b.ext.cloudfilter.net ([10.0.30.162])
+	by cmsmtp with ESMTPS
+	id SDcgxKIjOVK9USGvHxmMie; Sat, 14 Nov 2026 16:48:15 +0000
+Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
+	by cmsmtp with ESMTPS
+	id SGvFxezcQ0288SGvGxads5; Sat, 14 Nov 2026 16:48:14 +0000
+X-Authority-Analysis: v=2.4 cv=a5Iw9VSF c=1 sm=1 tr=0 ts=6af890ce
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10
+ a=am1Lr7bG9l61o50XTrMA:9 a=CjuIK1q_8ugA:10 a=mshYcpSARKEtRsk-hzoo:22
+ a=KPbNTLLc3YvdawN95zVk:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+	:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+	:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=g/WOkBC9oooEcGEsmNj6CUsgiTKwZCs78ZjQCVM3bLg=; b=LQef3x9TKxEsj/azRFTjtluC2A
+	s9zWVsXiEKhkKDKbC3ASHmTxXKKfbbaoJ+ZUcMOvr2ZqpgTb9nr4nvWGPhLh+BOeEoeqna1xX+FGw
+	NgZJvmv3rYfMdsIS2IhQe5EWmw1N8jYpZhMT5Y8jYVwKk6ogZri5dPExhkiF8gSKk6tjRshQIpOoB
+	qCw/jm8tRvGA+ry2m+378tKVRygHN0vy4bb2osa2DmDP1JSHRvXxezRyNhD/RB0GZBZ5Rd63wClKC
+	J72oFY/vTYwoWGWLdzhk18tfR5Bm2+An1vX7YGbaSquAHIF18wdDjGrZQw05x/+BMdtEwb+9O3ZB1
+	Pe7HoFLQ==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:34036 helo=server.roeck-us.net)
+	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <linux@roeck-us.net>)
+	id 1xSGvE-00000000MIg-2pOP;
+	Sat, 14 Nov 2026 22:18:12 +0530
+Date: Sat, 14 Nov 2026 08:48:11 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	corbet@lwn.net, skhan@linuxfoundation.org, rdunlap@infradead.org,
+	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, luka.perkov@sartura.hr
+Subject: Re: [PATCH v3 3/4] hwmon: Add Microchip LAN969x fan controller driver
+Message-ID: <118d242e-6511-4374-acde-80efbe7bbc34@roeck-us.net>
+References: <20261111161619.232141-1-robert.marko@sartura.hr>
+ <20261111161619.232141-3-robert.marko@sartura.hr>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v5 10/10] net: stmmac: mediatek: add support for
- MT8189 SoC
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Biao Huang <biao.huang@mediatek.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Eric Dumazet <edumazet@kernel.org>
-Cc: kernel@collabora.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
- <20261110-dwmac-mediatek-mt8189-v5-10-7d99d6292962@collabora.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20261110-dwmac-mediatek-mt8189-v5-10-7d99d6292962@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261111161619.232141-3-robert.marko@sartura.hr>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1xSGvE-00000000MIg-2pOP
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (server.roeck-us.net) [108.223.40.66]:34036
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 116
+X-Org: HG=direseller_whb_net_legacy;ORG=directi;
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfKpzSzPKbm1f2MduA/6pxPS/EYpDHzKkeHTYGGeNqfPwS38NLfIF2gNcE/6Yuwz7g8natG+w0zqqLwhCT6q3iLCJSfA1UJrfGUfAK1QtaqFQIb/4Jph0
+ 117G19bnxh9U6aS8NS+SVRQMEVa1VpwxsuzW1AdaazdW8qi631iDaYzygusOd/oFN2VuV4ffgvW2mL+FsB8PxYhERs5ALplFEVcRTmLpw6LcXUESAEWLPTvA
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_084530_055933_E767C266 
-X-CRM114-Status: GOOD (  19.69  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261114_084815_897644_4301119E 
+X-CRM114-Status: UNSURE (   4.39  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.4 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,98 +111,23 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
-
-On 11/10/26 13:08, Louis-Alexis Eyraud wrote:
-> Like MT8195 SoC, MT8189 SoC uses the Ethernet control registers from
-> the peripheral configuration (pericfg) but at a different offset.
-> It also has different RX and TX internal delay stage dividers (290ps
-> for MT8195, 180ps for MT8189), and by consequence a reduced value range
-> for these delays. It finally needs additional feature such as the
-> TX clock output enable one.
+On Wed, Nov 11, 2026 at 05:12:47PM +0100, Robert Marko wrote:
+> The LAN969x fan controller has its own register block, separate
+> from the Sparx5-compatible temperature sensor.
 > 
-> Thus, add compatible, clock definitions and specific platform data to
-> support the MT8189 SoC.
+> Add a dedicated hwmon driver for tachometer, PWM, and thermal cooling.
 > 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Applied.
 
-Maxime
-
-> ---
->  .../net/ethernet/stmicro/stmmac/dwmac-mediatek.c   | 27 ++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> index 1a0ab95dfbf0..ce232313014d 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> @@ -42,8 +42,15 @@
->  #define MT2712_RGMII_DELAY_MAX		5440 /* 32 x 170ps */
->  
->  /* Peri Configuration register for mt8189 */
-> +#define MT8189_PERI_ETH_CTRL_OFFSET	0x270
-> +
->  #define MT8189_CTRL0_TXC_OUT_OP_EN	BIT(20)
->  
-> +#define MT8189_MII_DLY_STAGE_DIV	180  /* 180ps per stage */
-> +#define MT8189_MII_DELAY_MAX		5760 /* 32 x 180ps */
-> +#define MT8189_RGMII_DLY_STAGE_DIV	180  /* 180ps per stage */
-> +#define MT8189_RGMII_DELAY_MAX		5760 /* 32 x 180ps */
-> +
->  /* Peri Configuration register for mt8195 */
->  #define MT8195_PERI_ETH_CTRL_OFFSET	0xFD0
->  
-> @@ -124,6 +131,10 @@ static const char * const mt2712_dwmac_clk_l[] = {
->  	"axi", "apb", "mac_main", "ptp_ref"
->  };
->  
-> +static const char * const mt8189_dwmac_clk_l[] = {
-> +	"axi", "apb", "mac_main", "ptp_ref"
-> +};
-> +
->  static const char * const mt8195_dwmac_clk_l[] = {
->  	"axi", "apb", "mac_cg", "mac_main", "ptp_ref"
->  };
-> @@ -440,6 +451,20 @@ static int mt8195_set_delay(struct mediatek_dwmac_plat_data *plat)
->  	return 0;
->  }
->  
-> +static const struct mediatek_dwmac_variant mt8189_gmac_variant = {
-> +	.dwmac_set_phy_interface = mt8195_set_interface,
-> +	.dwmac_set_delay = mt8195_set_delay,
-> +	.clk_list = mt8189_dwmac_clk_l,
-> +	.num_clks = ARRAY_SIZE(mt8189_dwmac_clk_l),
-> +	.dma_bit_mask = 35,
-> +	.mii_delay_max = MT8189_MII_DELAY_MAX,
-> +	.rgmii_delay_max = MT8189_RGMII_DELAY_MAX,
-> +	.mii_delay_stage_div = MT8189_MII_DLY_STAGE_DIV,
-> +	.rgmii_delay_stage_div = MT8189_RGMII_DLY_STAGE_DIV,
-> +	.peri_eth_ctrl_offset = MT8189_PERI_ETH_CTRL_OFFSET,
-> +	.mac_txclk_out_en = true,
-> +};
-> +
->  static const struct mediatek_dwmac_variant mt8195_gmac_variant = {
->  	.dwmac_set_phy_interface = mt8195_set_interface,
->  	.dwmac_set_delay = mt8195_set_delay,
-> @@ -729,6 +754,8 @@ static void mediatek_dwmac_remove(struct platform_device *pdev)
->  static const struct of_device_id mediatek_dwmac_match[] = {
->  	{ .compatible = "mediatek,mt2712-gmac",
->  	  .data = &mt2712_gmac_variant },
-> +	{ .compatible = "mediatek,mt8189-gmac",
-> +	  .data = &mt8189_gmac_variant },
->  	{ .compatible = "mediatek,mt8195-gmac",
->  	  .data = &mt8195_gmac_variant },
->  	{ }
-> 
-
+Thanks,
+Guenter
 
