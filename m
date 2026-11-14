@@ -2,142 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29E8606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 15:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18682606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 16:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jpvfukZU;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=Hus3msys
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Eywdww8;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=bBafYCOL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=p+Jyx/3SNbd8LRAUKMO+bqq+INYj8uTh6OWad9ZPL3k=; b=jpvfukZUX6F3Zh
-	Gjgz+sy2S+N84Ch8WVrw+FA3AKz1YVLde8LU7ip//0QopQySbru74HUXnIYMYKSQuqx0dMyONfuda
-	hOf5tG2nZBOb5PgxFs2nmU430GXXRYzM8fDvVkZueC9xFi0sgh4BdpjUWQaWziVnFWc1lHYYUw/IX
-	+H2huKuKbQHJXxIPIrhzVYHcY0W7SYdAnRSx/iAwHkqQ8S8zvCX+X0dBoOrAjLR2/QUwsyx4XikAX
-	tMvJ2UaPCbE+OLEgOevprgqN8tDwTPxC7i3kDnkb1Xa/ssXdVCH2s1qE0XKwV/gFo8HGKLeSkTh0E
-	xwaIyeaMVSLP5uuhvw/A==;
+	Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AcPZdHRdSNsPahoZF47dsbH78l7FWuZxfz//QqM7BiE=; b=1Eywdww8P9/SaVoUT9v+7r05L8
+	rqTVXcGEDaXFxgNT2fJ0dkdMJef32imE5fPtxQPDlQvZPHalVXCYINjYdvBpC6e1B8dL1KDvLK04Z
+	tftndDMEOFd3ojCNHEFA1qRnPrCVeMAacn3IWo0zvnYy/TGD5tUDVStU1CPJhXeFhJ4Ukn90AVmc/
+	qkvoOx3XqG3hGk79m09a4lSI9XnvUJW7ubH6D5fDtz8d3ppSxIOAODqAh/VXVIXb4q8iNtMeMePsX
+	RK9swedFN8A4PUCLecnuynKjdKq6lBYvxiMHLDrOWGYrJh8yqAPkpChS+WqJaukOF03aCxnt74eRh
+	kvNnIO4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSG7B-0000000GPn1-3axu;
-	Sat, 14 Nov 2026 15:56:29 +0000
-Received: from omta040.useast.a.cloudfilter.net ([44.202.169.39])
+	id 1xSGcz-0000000GSra-2pza;
+	Sat, 14 Nov 2026 16:29:21 +0000
+Received: from mout.web.de ([212.227.17.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSG78-0000000GPlt-2yQC
+	id 1xSGcv-0000000GSrA-3T9D
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 15:56:27 +0000
-Received: from eig-obgw-6006b.ext.cloudfilter.net ([10.0.30.211])
-	by cmsmtp with ESMTPS
-	id S27gxYHaFOOJnSG6wxuz0W; Sat, 14 Nov 2026 15:56:14 +0000
-Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
-	by cmsmtp with ESMTPS
-	id SG6vxWn9gFhzrSG6vxKsX1; Sat, 14 Nov 2026 15:56:13 +0000
-X-Authority-Analysis: v=2.4 cv=JY+8rVKV c=1 sm=1 tr=0 ts=6af8849d
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=pGLkceISAAAA:8
- a=hOo1w0eeKtI6XsFcmb0A:9 a=QEXdDO2ut3YA:10 a=KPbNTLLc3YvdawN95zVk:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:
-	List-Archive; bh=p+Jyx/3SNbd8LRAUKMO+bqq+INYj8uTh6OWad9ZPL3k=; b=Hus3msysfDoo
-	/aM2EWOJkJULKWGqSvbNlwOmzR7Uy5Ke28dF00TRkypiyCGHzKdZ/msgYvIehf6tMZlzmzCn8QinM
-	Ila+JWKZIprpOeB40tBy86/fK+lWqWaM+VsonwqEEAZ5oJL7KHk7tPuMs+gxeHpb3IpHrzx0Gr+n0
-	vCbSYHtoy+YSRioWsm71Rys2ZdAvXMsACR0RPaYiSwzDSqSThcpiq2eU77xjv8/rZso6IacDXcjxk
-	f8UdZMZ1m4t2SLGkAJ8E2Je8fIocIzz6C2f7kKARy05eEQ0K9ftM9+FHzB9W++RXE1l1Vg/olVenZ
-	Bs89wDvUKrVupVmgaQBnZQ==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:47996)
-	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <linux@roeck-us.net>)
-	id 1xSG6v-00000004MEQ-12rL;
-	Sat, 14 Nov 2026 21:26:13 +0530
-Message-ID: <db3a09f6-a560-4522-9954-8aa63eb2d5fb@roeck-us.net>
-Date: Sat, 14 Nov 2026 07:56:12 -0800
+	Sat, 14 Nov 2026 16:29:19 +0000
+DKIM2-Signature: i=1; m=1; t=1794673755;
+ mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
+ rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+ d=web.de;
+ s=s29768273:rsa-sha256:vhZX3vdQJu68rRiEudZPxH3sG7QW
+   vCtkrDUcdkc5bqqgaBqByFum/5KJmCP0bIU1fCtnzWUpZ4ELkNbdYSoSH7QCOIU+sGoVWOlRvxl
+   BCeUuY7S0VFQzNjnDkTq5Q1UbisxHuRosyAjw2AADEUoHmKifPPt90Dg92zzoauKfYUkkmiKHy5
+   3dNpHE1LsLQ2FDk/IGHYBr2n2UVOCVlI/cYIOdpgNut3jfm0qTfbXHuJ5tCEcskQrmcwrQsYNAe
+   l+7YTK8oalEESQGVJkLz+SfWiaeoDY1bDzLN4RfScGE0K11TxnB1vffzE2gvg4xzxTRiFU1LV1A
+   JRIqB+iVNGX9SA==;
+Message-Instance: m=1;
+ h=sha256:
+   LmZJPrMpy+1Cb3iUbcjNwR52GKcJtrcYdk/mcngl/nU=:
+   PDy4DKtgXQr5TwZ4DuYRHtSIuKhXnqHzeanv1sSzNBc=,
+  sha512:
+   qlMBq08OZ4oYBm3K0p2TnZDUgY5iO/Vb+sHZiwh3Yyvto2Z92Bu7HQxdFf1TXTViTl9dJBeaf4JoVPWix/QGMg==:
+   x4vAremxFZ9qbjCjk0gISaOW+iyt5r9vFTdeGjVlfoqTPzYa85LQuC2UMUnSoFJ953Vdb3J/QnnTBxv2FlarZQ==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1794673705; x=1795278505; i=markus.elfring@web.de;
+	bh=AcPZdHRdSNsPahoZF47dsbH78l7FWuZxfz//QqM7BiE=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
+	 Subject:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=bBafYCOLWc7Ht3/Ds6IebAlG70CcFwcoqu1ghf8A0+B4ofAmmhAiXYzyO3838mUy
+	 wgG/MaFqvFsW73gSg62CVqqXYeWxUjD16JWdbwabUReK6NwjF5EM7aHZSnMywUsEA
+	 YyaaMYMq50e1aq8SITJ2kXJEkXeTpCIuw6Z85KQj93UZ6M1iAZB1FRtvDbEmvtrCl
+	 vaUO9bM9b+y2+CJ3STVThuasSoATHeakDMxryFyqIfWr+0nMwGoLEcndRMG8q0l6e
+	 bhM/J9rf0ueFr/uiMvFrh50b25G0HFQMWFD1s2zAZut+/fuh1cqXE4Jsl+n74n2M/
+	 4JlufIjQyPcmBsajog==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MdwNg-1wua1X0ab0-00aMcG; Sat, 14
+ Nov 2026 17:28:25 +0100
+Message-ID: <bbbc7228-cf98-437d-b240-ad29ee7fb4ac@web.de>
+Date: Sat, 14 Nov 2026 17:28:19 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] watchdog: Add ARM TWD (MPCore private) watchdog driver
-To: filipp.dunsky@gmail.com, Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc: linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
- Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org
-References: <20261114-arm-twd-wdt-v4-1-5a3104b36331@gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20261114-arm-twd-wdt-v4-1-5a3104b36331@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1xSG6v-00000004MEQ-12rL
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:47996
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 1
-X-Org: HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfGW/A0Wm0VIrR04cUltaacQaIeEviJHbjoNn5WH4snef0lPj1XM8xPfojVX8lNidRk4Z+7VU24op3wVdiirvK0dF5nOeNxHYb06ZuDmW4UpHMVPYR7zp
- RoMwePTUaeBKDBz9da11NvUN7YJekdACvUPvcsY+PF2gh23sXJ1SwFglDgtcVMgZGrzCMvnbl0RLvQYSWnDNN863oEs9wzXYkjmsDVUI/r6xF/Zux4w9Bk8P
+To: linux-aspeed@lists.ozlabs.org, linux-hwmon@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Billy Tsai <billy_tsai@aspeedtech.com>, =?UTF-8?B?R8O8bnRlciBSw7Zjaw==?=
+ <linux@roeck-us.net>, Joel Stanley <joel@jms.id.au>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Ryan Chen
+ <ryan_chen@aspeedtech.com>, Tan Siewert <tan.siewert@9elements.com>
+Content-Language: en-GB, de-DE
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+ Felix Gu <ustc.gu@gmail.com>
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: [PATCH] hwmon: (aspeed-g6-pwm-tach) Use
+ devm_reset_control_get_exclusive_deasserted() in aspeed_pwm_tach_probe()
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:1pT97BuWi454FNKaCo2ZE4Bc56WgZ5gBMlF9gSjUzfe+zn4fDt/
+ e2A7Xxvn5powU/en6gXeySeZEG2NmB/g42UDu6jUE+nVYsLteujMe5ET5ETNJkp/BVu9ZD/
+ Vb9etjAtlILvUP/cD70xF+ZnU/a0NQYUXwHv8+kJJ6RQbZixWqKZriVLDhNZYyg42elOiiy
+ BmpyAO3RXbYTSEYgnZkIQ==
+UI-OutboundReport: notjunk:1;M01:P0:uAtSn12W8Po=;Sk064MOoP4g3u8dTl3sxBouLnU0 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
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_075626_883141_57F67C01 
-X-CRM114-Status: GOOD (  10.95  )
-X-Spam-Score: 1.3 (+)
+X-CRM114-CacheID: sfid-20261114_082918_252292_3D60841C 
+X-CRM114-Status: UNSURE (   8.03  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -148,34 +104,74 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/14/26 06:11, Fil Dunsky via B4 Relay wrote:
-> From: Fil Dunsky <filipp.dunsky@gmail.com>
-> 
-> ARM11 MPCore, Cortex-A5 and Cortex-A9 MPCore systems have a watchdog
-> next to the local timer of every CPU, banked at the same address. The
-> binding "arm,cortex-a9-twd-wdt" exists, but there has been no driver
-> since mpcore_wdt was removed in v3.11, among other reasons because it
-> only ever programmed the CPU that ran the ioctl.
-> 
-> Program, ping and stop the watchdogs of all online CPUs together with
-> on_each_cpu(), and use a CPU hotplug state to arm the watchdog of a CPU
-> coming online while the device is active and to stop it on a CPU going
-> offline, which could not ping it any more. The watchdog is used in reset
-> mode only, its interrupt is not needed.
-> 
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Sat, 14 Nov 2026 17:11:34 +0100
 
-Watchdog drivers are supposed to watch the system as a whole, not on a
-per-CPU level. This patch goes way beyond the scope of a system watchdog
-driver. Per-CPU watchdogs are handled in kernel/watchdog.c. I do not think
-it is a good idea to overlay that with a second per-CPU watchdog mechanism.
+Use devm_reset_control_get_exclusive_deasserted() to replace the
+explicit reset acquisition, deassertion, and cleanup action registered
+with devm_add_action_or_reset().
+Simplify reset handling and remove the custom reset assertion callback
+while preserving reset assertion during cleanup.
 
-Guenter
+The source code was transformed by using the Coccinelle software.
+
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/hwmon/aspeed-g6-pwm-tach.c | 20 ++------------------
+ 1 file changed, 2 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/hwmon/aspeed-g6-pwm-tach.c b/drivers/hwmon/aspeed-g6-=
+pwm-tach.c
+index f07c9a036b69..a26a0d48dde7 100644
+=2D-- a/drivers/hwmon/aspeed-g6-pwm-tach.c
++++ b/drivers/hwmon/aspeed-g6-pwm-tach.c
+@@ -448,13 +448,6 @@ static int aspeed_create_fan_monitor(struct device *d=
+ev,
+ 	return 0;
+ }
+=20
+-static void aspeed_pwm_tach_reset_assert(void *data)
+-{
+-	struct reset_control *rst =3D data;
+-
+-	reset_control_assert(rst);
+-}
+-
+ static int aspeed_pwm_tach_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev =3D &pdev->dev, *hwmon;
+@@ -475,19 +468,10 @@ static int aspeed_pwm_tach_probe(struct platform_dev=
+ice *pdev)
+ 		return dev_err_probe(dev, PTR_ERR(priv->clk),
+ 				     "Couldn't get clock\n");
+ 	priv->clk_rate =3D clk_get_rate(priv->clk);
+-	priv->reset =3D devm_reset_control_get_exclusive(dev, NULL);
++	priv->reset =3D devm_reset_control_get_exclusive_deasserted(dev, NULL);
+ 	if (IS_ERR(priv->reset))
+ 		return dev_err_probe(dev, PTR_ERR(priv->reset),
+-				     "Couldn't get reset control\n");
+-
+-	ret =3D reset_control_deassert(priv->reset);
+-	if (ret)
+-		return dev_err_probe(dev, ret,
+-				     "Couldn't deassert reset control\n");
+-	ret =3D devm_add_action_or_reset(dev, aspeed_pwm_tach_reset_assert,
+-				       priv->reset);
+-	if (ret)
+-		return ret;
++				     "failed to get and deassert reset\n");
+=20
+ 	chip =3D devm_pwmchip_alloc(dev, PWM_ASPEED_NR_PWMS, 0);
+ 	if (IS_ERR(chip))
+=2D-=20
+2.56.0
 
 
