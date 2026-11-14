@@ -2,79 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68DD36077E16
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 13:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E134606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 13:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N+7N+vpq;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=cVGwYf1e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ie80uKJ9;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Zv0p5Oqa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=3ZTzQECzP8zCA4zZIUOYcMmNhdFsxwT6/XtJiNtrnio=; b=N+7N+vpqJ3t5yOdL/f9L/NEvFL
-	3DFk1jxHmavHVfLRZoq1A4GyYJEoZS3AefGOT3BPuYToGiTbHqra8a2LKteXKGhP0aCnbgADg20Qo
-	/ZgbN6B0q+Sep6aL1UyfsoavdW8IvS/+JLnNYKPa6C9kxCUyw03hU4CjrTLGVorZJJQFzeDyu2leX
-	/D1LF/y2UA1Sue00WbhfJqIij+1VVAHLwh6JQGwvNoXH1k8KolGbolbR3RBPCuTLsXmePfbar9gP8
-	Thcq1VYiDROUHWfwS9DEWKRWCisiCH07qQFiCnlC+Nulp7QOY9ki9vX1dMvJkCl/73jHxISBTmewf
-	IWniqUow==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Xu1Ch5SXzmukBzjwhfrUVAX6Y1aXdcS/DpJ5yAXyxco=; b=ie80uKJ9orBPys
+	AB997vCTt8HynRCRey9TCIyKhX+ziStcLBtGtkBYoYHtMt+UPpV0WFUBID5R+hJYl8KXfVJf/m2y0
+	ZoApLXz7cdugU3Mnp9zFsGwGjxZqoLbmkSHkR++r14NF7mstKyRMCo0HdCYIc8bil2oiec5ihadSW
+	EjvSlsWcvsUaZHXX8HUCyVb5yeE4h+JyN+ZxgnxUz+wqBD1wSe+yq+0N16Zap220mCcmA3JDYO4fZ
+	IKRWYmna/8bjQWAOAmvMkNQfgGXtoyAUGjoRn/tNxwNzPS1Kp/8R5TeDSj/xy+SC35q78k4VVrmZB
+	xhhQ5iR2BCLGrxniRbtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSDVZ-0000000G4fw-14h2;
-	Sat, 14 Nov 2026 13:09:29 +0000
-Received: from mgamail.intel.com ([192.198.163.18])
+	id 1xSDa2-0000000G5PI-0ykd;
+	Sat, 14 Nov 2026 13:14:06 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSDVV-0000000G4d2-0nP0
+	id 1xSDa0-0000000G5Ov-3nvL
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 13:09:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794661765; x=1826197765;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3LrEAWD2vso0+yzov29pKHt2uGcBzvsMBwzmMMJMss8=;
-  b=cVGwYf1eQ3SbkOsXKnm9vZwk30XqMO82lJ5uLZjPbwLzgZ0dheOBGsyT
-   u9rQoN0HU7pJHuLtvdn8k5eekJ8IuiXyJlaI6l+rKyfM8k648/Z5Y4eYQ
-   RY5ofKVcxTN9B58Z8fwnDX5e4V8s9EQRk4cBGmCxVzkctSLytiBt0aJIL
-   AfvKUeIRC9NTXnxfh60sQWAiETdSbxWwKYdRpwc/7zqVZoTQM8idbKKHy
-   U9kLhXJxgpRVOlUS2fFUM7TZ1ZqylCds3SFbQ8RX95Y3BBbDMpzfrkQnv
-   AuJO1/89hz9EX45ykFkoMcUcm13GR//FGnd/wF+EXaANDnepo1tAuYZGy
-   Q==;
-X-CSE-ConnectionGUID: 4ruVhv03Tu+gue3q1AQ8DQ==
-X-CSE-MsgGUID: NTm8PgfBQPyJBS4K3wYnnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11966"; a="3488614"
-X-IronPort-AV: E=Sophos;i="6.27,213,1787036400"; 
-   d="scan'208";a="3488614"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2026 05:09:24 -0800
-X-CSE-ConnectionGUID: vx3GMDnIRuiBOgprM3V5lA==
-X-CSE-MsgGUID: vf8gb478SwiF8fB8umKoTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,213,1787036400"; 
-   d="scan'208";a="9685598"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.47.46])
-  by fmviesa010.fm.intel.com with ESMTP; 14 Nov 2026 05:09:23 -0800
-Date: Sat, 14 Nov 2026 21:00:58 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Aravind Thokala <aravind.thokala@amd.com>
-Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Michal Simek <michal.simek@amd.com>,
-	linux-fpga@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, git@amd.com
-Subject: Re: [PATCH] fpga: xilinx-pr-decoupler: add shutdown() handler
-Message-ID: <avhbivs3HDdvzrtB@yilunxu-OptiPlex-7050>
-References: <20261110-pr_decoupler_shutdown_handler-v1-1-b833dfe9d380@amd.com>
+	Sat, 14 Nov 2026 13:14:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7C18A45999
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 13:14:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C64B1F00927
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 13:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794662044;
+	bh=Xu1Ch5SXzmukBzjwhfrUVAX6Y1aXdcS/DpJ5yAXyxco=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=Zv0p5OqaUOwOAG7H6IinOG7MKZZLjNtn8OpRuk/AMQ7IhMTG2AbPgDz35aF4yoDo8
+	 DMBl1Cjp+ggQQPruYxZxsi4T92QMfMU7YlzFFCLOeYooScYmtjd+qfYgMLJ+TgLlZv
+	 Z5NtnB0j5jlAg9G7Dixlnfug9472vn/X8f9ftZe5sM+2bpZcK0t8gwsnTeKc3X1OM4
+	 VP1RHgjt/00kaQLWuTi1rmeqCC+huv95dY1n93DRFw8FixtteLaYiG6SVGFZdNtvti
+	 m/lJLJz1BEC4f2Lfd6Ewa3QZYnKvvjbtwSDGU/EnnIotuM/pp1L34UTab1BhcblTYD
+	 SlTYSEgtX6IJg==
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-49134c8509fso2051252f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 05:14:04 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGmUC+d8yREYlUnFuKijOG7dRnHAQ6A/8KInXN/CNQQuEiu2kAIFKkbSH8bZxvn00TIjTIXjGkcu1iSuPQnykSd@lists.infradead.org
+X-Gm-Message-State: APuU4Z9bk/e3c68RVv76lzSKkoSF3Cc1J2SV1P3T6UDoa2AWPIHM0aKh
+	q99Z7zTyLtqrieddO6G4H+XXolbQ5TdoTz/T81kOw+BMxgQKHKvEgX5+sZaHa+VQpGKQlXIXFvl
+	hVa30Iup8uY3wCC8Ba5Ou2jBwpgcpnhs=
+X-Received: by 2002:adf:e00b:0:20b0:491:45bc:d69a with SMTP id
+ ffacd0b85a97d-49c72e852c4mr9010555f8f.44.1794662042739; Sat, 14 Nov 2026
+ 05:14:02 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261110-pr_decoupler_shutdown_handler-v1-1-b833dfe9d380@amd.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_050925_285077_91835CDA 
-X-CRM114-Status: GOOD (  22.38  )
-X-Spam-Score: -4.2 (----)
+References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn> <20261114-v861-v1-1-eb71ec3ee523@iscas.ac.cn>
+In-Reply-To: <20261114-v861-v1-1-eb71ec3ee523@iscas.ac.cn>
+From: Guo Ren <guoren@kernel.org>
+Date: Sat, 14 Nov 2026 21:13:49 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTF0b-dkLdznGzwYZmC6rP6GozX1j0Rre5t-aw6i5uDvg@mail.gmail.com>
+X-Gm-Features: AclHuK-h5N3J841s1gOOr7kF2F78LtoydmQ7sQ-jEgbZErj4cvRoD35qUys8ixA
+Message-ID: <CAJF2gTTF0b-dkLdznGzwYZmC6rP6GozX1j0Rre5t-aw6i5uDvg@mail.gmail.com>
+Subject: Re: [PATCH 01/19] riscv: sunxi: describe the wider Allwinner SoC family
+To: gaohan@iscas.ac.cn
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
+	Samuel Holland <samuel.holland@sifive.com>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Maxime Ripard <mripard@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
+	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
+	linux-csky@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,71 +92,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 10, 2026 at 12:46:35PM +0530, Aravind Thokala wrote:
-> Add a .shutdown() handler to decouple the Reconfigurable Partition
-> from the static logic on reboot, shutdown, and kexec.
-
-I'm not sure what problem are you going to solve by gating the PR region
-from static region regardless. Please specify.
-
-Before I get enough information, I generally think that's not the right
-way to solve problems. You need to gracefully handle the specific logic
-inside the PR region which actually impact kexec, so that they work in
-expected ways, rather than abruptly cutting down the HW connection
-regardless.
-
-> 
-> The handler writes CTRL_CMD_DECOUPLE to the control register. On the
-> PR Decoupler, this turns decoupling on, which stops signal changes
-> passing through the bridge. On the DFX AXI Shutdown Manager, it
-> requests that the IP stop passing AXI transactions through.
-> 
-> Signed-off-by: Aravind Thokala <aravind.thokala@amd.com>
+On Sat, Nov 14, 2026 at 6:33=E2=80=AFAM Han Gao via B4 Relay
+<devnull+gaohan.iscas.ac.cn@kernel.org> wrote:
+>
+> From: Han Gao <gaohan@iscas.ac.cn>
+>
+> ARCH_SUNXI is about to cover the V861 as well. Update its prompt and
+> help text instead of adding another option.
+>
+> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 > ---
->  drivers/fpga/xilinx-pr-decoupler.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/fpga/xilinx-pr-decoupler.c b/drivers/fpga/xilinx-pr-decoupler.c
-> index 1405ddbe88f1..75b59edbf440 100644
-> --- a/drivers/fpga/xilinx-pr-decoupler.c
-> +++ b/drivers/fpga/xilinx-pr-decoupler.c
-> @@ -137,6 +137,13 @@ static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static void xlnx_pr_decoupler_shutdown(struct platform_device *pdev)
-> +{
-> +	struct fpga_bridge *bridge = platform_get_drvdata(pdev);
-> +
-> +	xlnx_pr_decoupler_enable_set(bridge, false);
-> +}
-> +
->  static void xlnx_pr_decoupler_remove(struct platform_device *pdev)
->  {
->  	struct fpga_bridge *bridge = platform_get_drvdata(pdev);
-> @@ -147,6 +154,7 @@ static void xlnx_pr_decoupler_remove(struct platform_device *pdev)
->  static struct platform_driver xlnx_pr_decoupler_driver = {
->  	.probe = xlnx_pr_decoupler_probe,
->  	.remove = xlnx_pr_decoupler_remove,
-> +	.shutdown = xlnx_pr_decoupler_shutdown,
->  	.driver = {
->  		.name = "xlnx_pr_decoupler",
->  		.of_match_table = xlnx_pr_decoupler_of_match,
-> 
-> ---
-> base-commit: b3dfbde62cf1981c4638939c159dfd087b7a72e9
-> change-id: 20261110-pr_decoupler_shutdown_handler-bf2596f6d1de
-> 
-> Best regards,
-> --  
-> Aravind Thokala <aravind.thokala@amd.com>
-> 
-> 
+>  arch/riscv/Kconfig.socs | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index cecbce0c4983..4cf3b24467e8 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -61,13 +61,13 @@ config SOC_STARFIVE
+>           This enables support for StarFive SoC platform hardware.
+>
+>  config ARCH_SUNXI
+> -       bool "Allwinner sun20i SoCs"
+> +       bool "Allwinner SoCs"
+>         depends on MMU
+>         select ERRATA_THEAD
+>         select SUN4I_TIMER
+>         help
+> -         This enables support for Allwinner sun20i platform hardware,
+> -         including boards based on the D1 and D1s SoCs.
+> +         This enables support for Allwinner SoC platform hardware,
+> +         including boards based on the D1, D1s and V861 SoCs.
+Perhaps we could keep the help text generic and omit the specific SoC
+models, so it won't need updating whenever support for another
+Allwinner SoC is added:
+This enables support for Allwinner SoC platform hardware.
+
+>
+>  config ARCH_TENSTORRENT
+>         bool "Tenstorrent SoCs"
+>
+> --
+> 2.55.0
+>
+>
+
+
+--=20
+Best Regards
+ Guo Ren
 
