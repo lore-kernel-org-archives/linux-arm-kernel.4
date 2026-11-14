@@ -2,78 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA84C606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 19:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3534D606A885
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 19:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2EhFJ3IM;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=NI3vHdVu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lAJ4YV3S;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=s/qvznh/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9ar4Opp2H1k6OcNUZh0cDsgFhCHm2e923NlD+vqOgvM=; b=2EhFJ3IMAignVU
-	3C/+hdKZDCtzvA+ahoWGPVeYI5TY1Atjtrz4qfUHdrnBM+nRUbrArjSBJgklNELUEwa8cUPhn0GKH
-	W6YrItqaGDLKmNVkjniW17cPCE1vlDT70VsPdcWHk6nBuhHVc+i9WCgs+2FKPBUa44j47O1tWvcUH
-	u4IIWb3YLGrTzdCGQ8xBrXrTNkwTXrmchxyGtwsHT0v3jKevx65bDATG2pDK2WiH6veLjjyzG5HRQ
-	KuIKnUG75ZiZHyCHNHgBFMB9+ep0dKtsjm54vwrB8jdTLFcb7YVjWSLs9IwMO+CbeS/ZGXKLNrhV/
-	+0qrpISroqQVxuXnYYVg==;
+	List-Owner; bh=GqHSBBvuKVnGq+xQNg0Da7XlBn10HLSlZo3Xm5Uwi08=; b=lAJ4YV3SYdqnPX
+	+UybbD1E+UPASG1ipPzh4y45OYFBKqG8aC/tWnm5/Jqp7IKx+Ks5WUCZBrkZjXGjTLHvZovrQ/KPu
+	oHL6Op3yBU+aKaYwTkggiDxWvkREtIDcc89xMtQLkeZDWuOJzNClKhCbIvpRc78qsq+0wgSeRTDkw
+	yzqef3JYsKvS1ifzroVYSvDsWxPIku46Cgg+ovSS5QvziS9Vl5aggZyzM1LlTZyRAFeFlo7zEgEhg
+	n5Rzq2Gy35BM3F0l7EUYE0+RSKr2ZrcvqHxVB3wVaotCG/hAz9mlzCAIsU89cXHNOs3ZaZuHj021t
+	0vS5zqfbq8/IPVEYmGjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSJWS-0000000GgV3-3NMx;
-	Sat, 14 Nov 2026 19:34:48 +0000
-Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
+	id 1xSJWT-0000000GgWD-0LaU;
+	Sat, 14 Nov 2026 19:34:49 +0000
+Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSJWL-0000000GgSg-0DRe
+	id 1xSJWO-0000000GgTs-0rTZ
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 19:34:43 +0000
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-3adac5b29ebso2041830a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 11:34:40 -0800 (PST)
+	Sat, 14 Nov 2026 19:34:45 +0000
+Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-cd62c570b5dso2164051a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 11:34:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794684880; x=1795289680; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794684883; x=1795289683; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=9ar4Opp2H1k6OcNUZh0cDsgFhCHm2e923NlD+vqOgvM=;
-        b=NI3vHdVufG40Qe8gcn9Ceenl3r4pPjW6ZBL77S3uOvn/aOaKVIdOVV+Qlpa5nFkpmW
-         p10MHyg7+Nb/ww1sDIYsVCe9E9425z5ezlfjDdtSgjGvPwvOEkwpXXMx7AEliu6pO3vm
-         G1EEagI2JDakRHK65S6a7zykw6Z0SVESJk0zpJdBui1Jw32v2MMw3CTSGQGnaPTArZTQ
-         lqk8VQ9KWwBQ6qkMvWlq1Nix9Woy2ZckLNc1Gop7QbtbkiQ9PbcLh2AecyV0ruBTxMiV
-         Dj9W2/fMwb6xKK+RUigVEpPu1dk4zmHB3QOjrgkcRuQMcoRkXp6XlSpY6rW9CVmKvGyu
-         XnsQ==
+        bh=GqHSBBvuKVnGq+xQNg0Da7XlBn10HLSlZo3Xm5Uwi08=;
+        b=s/qvznh/OVtqA9QjTqdrFjCKE2o9dYjiXQ5Z+GYdnyj58qearSgyFA2M10Gd9z5eVg
+         r+DKieXTbgZvv7E65f4FlPCZDaO9uH4wX2KV9zZKD2FI2oNqsvu3CcgOId8Yj13BNmlk
+         r0mA0AMvL8f9UPek1XRvopAnsIaeYtIT5G2GhYfd5oWSSGEddJnoxc1prmvHVRAXfbKd
+         tjgYnRBEXnSr7UWLjy6CHAgFdLJO7Kx2vuwfUSOxDz8ghAQyLdZNr/jTOvxaRYVTcCiq
+         8/iGqJfrI2pPPtFkAmG+E5OCuEYS/lb21gI3t15vzKYCNpllKxf/XUgGLH4R4MBTRpwu
+         bkcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794684880; x=1795289680;
+        d=1e100.net; s=20260707; t=1794684883; x=1795289683;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=9ar4Opp2H1k6OcNUZh0cDsgFhCHm2e923NlD+vqOgvM=;
-        b=N3igwoA9joc7u12x3KJoXgRhVGwdYdY8n1co/qMB86z1gd8G2POIM3FLGBFFtlWmjz
-         csLrvg5QabGwDE4T2iA3FbjAdLtc8uCrOmp6X09RahWBlL/lvN7h5eaJLoLJHCnK3bek
-         6dekMRUAhaXNoZTHL6GScfL7G9/gNlZGmsDit+FE+iV0O5WBcKN+uWHJ5ANr/H8gBn0I
-         KyH27YLMbNPxR5BFnYCcW6IEQiHishyXeY4+9c+V+um2Uv+LoCVhhLG6R/AC9SnlESdp
-         Ux/zS2nbIDr6DIbWKGoN6OPuX1qnQki0d4fob4Ezk45bwmLDSHd/M20hfKxCrGOKM5vS
-         gHhQ==
-X-Forwarded-Encrypted: i=1; AL+hErF2kRvLnPu/nMhJN0OvUkpOR5Pj+8E9h2loevtuW5I3tbEZRkI/MQ2xmEhQizsNOxv3FFaqYbIwBtgNYnZSeG6u@lists.infradead.org
-X-Gm-Message-State: APuU4Z/nY42KQUcW1Mf8IjwNUKhDztrJWN2GZTKX74h1j9BXb4plkbHH
-	/SazHHc+kdpCnjQfTRMUnMfR6IkjnH4zi2SLomzjlkVq6anfYXIJELw9
-X-Gm-Gg: AYBFou0c9YE+CT77Xa9zqnowbJ7upeZjjiXIbXVQxjWB0KK2Pwp6wbg4DxzIWb40Ixg
-	MvqlJBdGpUoRsTZU7t7QLTIrtZTEiKp9DaxR0ZU/6XJnVy1Jh7lQh2FC2bkRVbiHP+mOe6GaAwg
-	+5UCMRFuZuv8tuylkg5TV5FjywD4diF4FVZgdGrcDIjMeK7TBUzCaJX9wLde+oLaoCXRGQ7SbqI
-	1azH7F7+i2tPtTbatCsMW07jHTMKkWCChNbnB9XzmeUBAMV+XBbLkhEtf4PbYzSzH1iY+ZlZTES
-	MNuDueHRNyyNXT0tXBUjawJ3UaUsp+0YV7LzpYMmlGuFFhS6LYjQXiOhByDuJfmYi6VdWnfzzi4
-	7EipRhiSYExkaquC0UszogoGS1softa8DB5Rxd04XWMeSqPUrWfJhKOhreS6rYH3mfmtifzcwz3
-	ke4aySzsK5uAx6/F2Zl2ghlkMknJzrSQ/5ZLZy2UFgf+8ETOn82WEFFbhkoawJ4KhnBdZy7mrad
-	zY50WOeCC5pU+WQ07hy78Tr0vEw+QomyNFlRdSNBP+68NNtMbJN4sMVT1/3HFTgeLPUN//M/JNh
-	X+erlS4Njk2fEUcaS+cSY/HKdQ/lfFlB9kkHGBXO7HLZmKlB1KPM84ukBrJbeUFAyVfZ4QDIhgD
-	JEK92o1679s2T9F+DxFDRPtnonkiWdft1y0/mxx7w6bapC1ItbOX6jLZ3vLqttdLzEp4wjlRytm
-	PyPMy3nvWZ24etXtekc5HMeDoDCfvzbT1OUlH16Gf4e3DvI2S/L2fWL97//QOHHw==
-X-Received: by 2002:a17:90a:c88b:b0:3ac:3588:b548 with SMTP id 98e67ed59e1d1-3b1b09e69c6mr6471730a91.13.1794684880041;
-        Sat, 14 Nov 2026 11:34:40 -0800 (PST)
+        bh=GqHSBBvuKVnGq+xQNg0Da7XlBn10HLSlZo3Xm5Uwi08=;
+        b=ZtoCqbv1tlvP3H0KMzc6QaNLJw/wEAPThcIJqAXK6/Lp2BZHMfqctgNb3B8TaAGdlk
+         Ffqycw73Otp14bBPbuKm4/up1QhDBIZU7suLVYDwsJRbVjeN4eiHwuQmlD0a3xHt1mOc
+         KH/+bYsofOQ2vqCZqop8g7uGS8sxhZLNC8E7zPK/otbJE+CKt9LRE3XDj5csnmt1kqkq
+         sNsR2bKZaioVNKuY3yVQzMMuQ/3s/mL6bk6FvauHoVS45CjuRBss3y348wlkyiAIldbD
+         EUDH8fKGjt5k8EaeFfFxm56ouece2g2w02lbJ74wUYtCt7lbLWK3d9MD6ethMy/ABTCL
+         hofA==
+X-Forwarded-Encrypted: i=1; AL+hErGLgi0tdaWv/CDQuAhRlCYjUh82uPCxop4qF7DXngoBi/h2MhdcZex/ynWJuiBA1QJUW/WX5KAnr2vL2jR/U1tG@lists.infradead.org
+X-Gm-Message-State: APuU4Z8adW0mFgjKT0ptugwZt4RqwDaNhOz5FVMWfKLfQKLCTN4EabBA
+	aA0Po938YL5IkGW3hkIAq+nBjarvvgkj7ekZV/jiVv5gmmuOjiLuhNZE
+X-Gm-Gg: AYBFou1Yo0mHKs/XnWu+DOBtbwCXtOSN/ve7DP0u7dmukDcagnz6BJGk2xIPvinB+Pm
+	F+XNLQUxaIW1HCEBwaaK3ZcWHvI04OOJgn3YF8oaA8GgXa/HefXBBUTGsni8t3rJpIkRXuIpFWS
+	gqP25qsxDevWTPse/SJIyonAouG05mttzzx4xMAHNikj9+GfFcKtCA4dcYMvJnfwSP10DQQCHLI
+	Txz018U7ZcPWKyb25iRTV0FpecRpvpRc7jdBQz4Xe3fnbk58gdIXRXoLaYqydInApmKRIPjPky9
+	R7q3NgkFj45PeDIdeZkOkZXAKx1OquHZ5xvTkpW4XDTJBWyt044DGHkK580HRQ7pavMPhrzvegJ
+	V9ViX7sLe73Ji5ZOxUdQDLtcpojTMYtRYGTWE8R0WPBpkX4I9AbnN3ttkqosRy4DNz9VfOzSC1h
+	lhL+WZruizIqM+FuAqFsuEhtvQr/WvtTRBpV/DCd+jRyigNwz7am3OhzRKPF04d1fagGhbw6jZX
+	75Nq2UkXYEAuBPvC7av0fIL++7WFD+LpDHB39V40fLqc5ckUNgNTVumPaBy430sJIfMmtZ17zEe
+	3rLiM22v5jjHLXvfDYBM4KtEll0hXCWlaGgn8fpXT8J5GbEl0KL81gjjfV4ESmxV7rc2ftz0vcT
+	5u9WpllXuyIOSZ41uLBQiDtSUjgU0lpuRYC0xODVi7nzSi/fvgAQGfWYm+J/QJOcedeuVhd1NC6
+	XzMk4SY4yzhafP+UDODFyUQje3uPezIla5dfEP5350
+X-Received: by 2002:a17:90b:58f0:b0:3b1:4eb6:b3a with SMTP id 98e67ed59e1d1-3b1b081887amr6439067a91.8.1794684883214;
+        Sat, 14 Nov 2026 11:34:43 -0800 (PST)
 Received: from sid-dev-env.cgrhrlrrq2nuffriizdlnb1x4b.xx.internal.cloudapp.net ([4.155.54.158])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1b24938bdsm5093969a91.1.2026.11.14.11.34.38
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1b24938bdsm5093969a91.1.2026.11.14.11.34.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2026 11:34:39 -0800 (PST)
+        Sat, 14 Nov 2026 11:34:42 -0800 (PST)
 From: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
 To: Peter Huewe <peterhuewe@gmx.de>,
 	Jarkko Sakkinen <jarkko@kernel.org>
@@ -88,9 +88,9 @@ Cc: Jason Gunthorpe <jgg@ziepe.ca>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Siddharth Chintamaneni <sidchintamaneni@gmail.com>
-Subject: [PATCH v2 1/4] tpm: Cache TPM2 start method
-Date: Sat, 14 Nov 2026 19:34:31 +0000
-Message-ID: <20261114193434.117714-2-sidchintamaneni@gmail.com>
+Subject: [PATCH v2 4/4] tpm: tpm_crb: Use cached tpm2_acpi_start_method
+Date: Sat, 14 Nov 2026 19:34:34 +0000
+Message-ID: <20261114193434.117714-5-sidchintamaneni@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261114193434.117714-1-sidchintamaneni@gmail.com>
 References: <20261114193434.117714-1-sidchintamaneni@gmail.com>
@@ -98,8 +98,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_113441_092679_0D09B285 
-X-CRM114-Status: GOOD (  13.32  )
+X-CRM114-CacheID: sfid-20261114_113444_275220_9200DF76 
+X-CRM114-Status: GOOD (  13.28  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,77 +119,51 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Jarkko Sakkinen <jarkko@kernel.org>
+Check the cached tpm2_acpi_start_method value at the start of
+crb_acpi_probe() before mapping the ACPI TPM2 table for CRB-specific
+parameters. This avoids mapping the table when it is absent or when the
+device uses ACPI_TPM2_MEMORY_MAPPED and belongs to tpm_tis.
 
-Both tpm_tis and tpm_crb retrieve the start method from the ACPI TPM2
-table during device probe, and tpm_crb_ffa also needs it before chip
-allocation.
-
-Cache the start method in tpm2_acpi_start_method during tpm_init() and
-export it for the leaf drivers, defaulting to ACPI_TPM2_NOT_ALLOWED when
-the table is absent or invalid.
-
-Signed-off-by: Jarkko Sakkinen <jarkko@kernel.org>
-Co-developed-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
 Signed-off-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
 ---
- drivers/char/tpm/tpm-interface.c | 21 +++++++++++++++++++++
- drivers/char/tpm/tpm.h           |  1 +
- 2 files changed, 22 insertions(+)
+ drivers/char/tpm/tpm_crb.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/char/tpm/tpm-interface.c b/drivers/char/tpm/tpm-interface.c
-index e0385b16616b..7b7da79bee7c 100644
---- a/drivers/char/tpm/tpm-interface.c
-+++ b/drivers/char/tpm/tpm-interface.c
-@@ -534,8 +534,17 @@ int tpm_get_random(struct tpm_chip *chip, u8 *out, size_t max)
- }
- EXPORT_SYMBOL_GPL(tpm_get_random);
+diff --git a/drivers/char/tpm/tpm_crb.c b/drivers/char/tpm/tpm_crb.c
+index 4749a9183726..c1c2b72459a2 100644
+--- a/drivers/char/tpm/tpm_crb.c
++++ b/drivers/char/tpm/tpm_crb.c
+@@ -945,18 +945,23 @@ static int crb_acpi_probe(struct platform_device *pdev)
+ 	if (!device)
+ 		return -ENODEV;
  
-+#ifdef CONFIG_ACPI
-+u32 tpm2_acpi_start_method = ACPI_TPM2_NOT_ALLOWED;
-+EXPORT_SYMBOL_GPL(tpm2_acpi_start_method);
-+#endif
-+
- static int __init tpm_init(void)
- {
-+#ifdef CONFIG_ACPI
-+	struct acpi_table_tpm2 *tbl;
-+	acpi_status status;
-+#endif
- 	int rc;
- 
- 	rc = class_register(&tpm_class);
-@@ -562,6 +571,18 @@ static int __init tpm_init(void)
- 		goto out_unreg_chrdev;
+-	status = acpi_get_table(ACPI_SIG_TPM2, 1,
+-				(struct acpi_table_header **) &buf);
+-	if (ACPI_FAILURE(status) || buf->header.length < sizeof(*buf)) {
++	sm = tpm2_acpi_start_method;
++	if (sm == ACPI_TPM2_NOT_ALLOWED) {
+ 		dev_err(dev, FW_BUG "failed to get TPM2 ACPI table\n");
+ 		return -EINVAL;
  	}
  
-+#ifdef CONFIG_ACPI
-+	if (!acpi_disabled) {
-+		status = acpi_get_table(ACPI_SIG_TPM2, 1,
-+					(struct acpi_table_header **)&tbl);
-+		if (ACPI_SUCCESS(status)) {
-+			if (tbl->header.length >= sizeof(*tbl))
-+				tpm2_acpi_start_method = tbl->start_method;
-+			acpi_put_table((struct acpi_table_header *)tbl);
-+		}
-+	}
-+#endif
+ 	/* Should the FIFO driver handle this? */
+-	sm = buf->start_method;
+-	if (sm == ACPI_TPM2_MEMORY_MAPPED) {
+-		rc = -ENODEV;
+-		goto out;
++	if (sm == ACPI_TPM2_MEMORY_MAPPED)
++		return -ENODEV;
 +
- 	return 0;
++	status = acpi_get_table(ACPI_SIG_TPM2, 1,
++				(struct acpi_table_header **)&buf);
++	if (ACPI_FAILURE(status) || buf->header.length < sizeof(*buf)) {
++		dev_err(dev, FW_BUG "failed to get TPM2 ACPI table\n");
++		if (ACPI_SUCCESS(status))
++			acpi_put_table((struct acpi_table_header *)buf);
++		return -EINVAL;
+ 	}
  
- out_unreg_chrdev:
-diff --git a/drivers/char/tpm/tpm.h b/drivers/char/tpm/tpm.h
-index fa554c5ad80b..212ca2410c93 100644
---- a/drivers/char/tpm/tpm.h
-+++ b/drivers/char/tpm/tpm.h
-@@ -100,6 +100,7 @@ void tpm_sysfs_add_device(struct tpm_chip *chip);
- 
- 
- #ifdef CONFIG_ACPI
-+extern u32 tpm2_acpi_start_method;
- extern void tpm_add_ppi(struct tpm_chip *chip);
- #else
- static inline void tpm_add_ppi(struct tpm_chip *chip)
+ 	priv = devm_kzalloc_obj(dev, struct crb_priv);
 -- 
 2.45.4
 
