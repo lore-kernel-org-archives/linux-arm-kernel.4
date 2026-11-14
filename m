@@ -2,118 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0F2606A8B0
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 03:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DC51606A8B7
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 03:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V6WEwGCb;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=Yu8uSYAG;
-	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm1 header.b=BCjYoXHC;
-	dkim=neutral header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=oDAt/bYZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yB8tirvd;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=wXhbmIXf;
+	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm1 header.b=JOyZ0CFr;
+	dkim=neutral header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=GAFzTvD0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZxUyROuDthVLtFanIfBp0sfv7UFu/s7kRd8U8ZoQom8=; b=V6WEwGCbA6CMBg
-	Y9LDoCRSGzSVI3LVZg3IlYjBq+VAAiQOuTpxdEpisth8Z8novRnLMY3UpJ+rSwLNiugl3BhzZwBZR
-	r5AgD30naE7qUHd33VgBaqm9Di132d2Nv2s7VCXzOHiJAGYqzk2S0fwkqg7lZwnLzYcLvUCjLfAR/
-	ATYuyoOqXtUbvqvo/QmDpKsGF8s0/Fn7xFQJOPXDAVMlQxMZ26LwfrYkHVLK9ssYEWo+T7+K2CXGV
-	BqtSEmm9KnI2jIBeOeC+tCFFr0tCDrc05CIvol0m4vRW9TTXG34Dufoq1bysFqQidzjXqECWAL859
-	ZdIJewQgE2W5JzJC2urw==;
+	List-Owner; bh=6x2DdXPRXEfWTwXK9W5PcsBc7yr8Bb9BaYYA36DgAhY=; b=yB8tirvdhxem2G
+	AZOPSmQzH1H+OS/Bv2FMA9Mi5zxSE7V3qZKlaW61gaUGx9Gi271HVPfFpoD0lFkY23WqFNB8TDO7r
+	iwVWF8OpJnifnONwH7qMD3VIf0XUFVbQfMKwUih0UcitZmuc3a0QZvqUtvWIiqslf8aAtoGlXBH/a
+	nbA0skS1P71wwP3vWT4+bFoR807IkREV8ohfBcQcgj7dUbcWb4DXPJ20DHlPMdtHWgN3VCqper8HG
+	A6xkiirOD50SsiGp1JWc9Pbx7SEYpkgVor8GgOo+bkTJ1mWNepIWNhhgAz80XMcf/LLt6LxTBrCD6
+	DhcFDNboFszu5jiPjzQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS46y-0000000FByu-2Coa;
-	Sat, 14 Nov 2026 03:07:28 +0000
+	id 1xS476-0000000FC6P-3VTa;
+	Sat, 14 Nov 2026 03:07:36 +0000
 Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS46x-0000000FBx7-05XV
+	id 1xS475-0000000FC52-2iSe
 	for linux-arm-kernel@bombadil.infradead.org;
-	Sat, 14 Nov 2026 03:07:27 +0000
+	Sat, 14 Nov 2026 03:07:35 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=ZxUyROuDthVLtFanIfBp0sfv7UFu/s7kRd8U8ZoQom8=; b=Yu8uSYAGKsO2qiNKD0PThRwxml
-	DDw9cfABL9lgkRFrxvQnxA3YWN/1japCsbNqyNJzVgXuEjv8KeSrMi2MlzQIBoNKewXcJKsuPcuA1
-	K2wHt2GYaI1o8jOINKPeIkBlxXhrBEYT4BwfCS0Z6vskJ+1s6ECC4v0GsJhv0x+hT+GEcsmSq+2Ev
-	g6W/fqmZkEu3sYpT8B1su7Av6F2IbAYn4ZjOW6C4bUV8GJoyfNDBVW6IJbrbKsowSd2SsXCOgjOeV
-	r1xNF1u5T/LF/bGKK1wM6r/UcYPrX/bsSmVOGtD5c+RVhlOrQxu5O/iAri9XZO8mOkAn6dhYIsb/c
-	gR52UGLw==;
+	bh=6x2DdXPRXEfWTwXK9W5PcsBc7yr8Bb9BaYYA36DgAhY=; b=wXhbmIXf9B3NA2Vs0QrgQSrGYf
+	C1Eq4ZOJzvy0oGDXExdhCQGYMVlMqldnI3CowIsCJvPNJwVBWqNcrMsq9jRGE/Dv9U9fur8Vd8ro/
+	bTnVd4TFUjmDefhk2UhLKbIQQjx1i8QaTAxpK0oOwrTOGhtH6GZLWqIU3vPRCcVayaku5fI4u0EB1
+	I/e8cFvoJ8gHwojF2eSDG2QGV3iFejNl/lwWeEN9WLgnjZ9BTZ6OhbdZFgFmSjRb+RIWSdvTZ4SWo
+	2NwVa5QIjjqGDD2b4gHIhQ2i6sSH/LWGao+GkWCz8yMJBWdmVDvOVlos34UivI8KuOsuGdaGPN794
+	GeFmRwsQ==;
 Received: from flow-a4-smtp.messagingengine.com ([103.168.172.139])
 	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS46s-00000006X8r-1Jvf
+	id 1xS46a-00000006X32-1Jnx
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 03:07:25 +0000
-Received: from phl-compute-07.internal (phl-compute-07.internal [10.202.2.47])
-	by mailflow.phl.internal (Postfix) with ESMTP id 48A501381A4D
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 22:07:21 -0500 (EST)
+	Sat, 14 Nov 2026 03:07:34 +0000
+Received: from phl-compute-10.internal (phl-compute-10.internal [10.202.2.50])
+	by mailflow.phl.internal (Postfix) with ESMTP id D5B3D1381A4F
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 22:06:58 -0500 (EST)
 Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-07.internal (MEProxy); Fri, 13 Nov 2026 22:07:21 -0500
+  by phl-compute-10.internal (MEProxy); Fri, 13 Nov 2026 22:06:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
 	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
 	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm1; t=1794625641; x=
-	1794632841; bh=ZxUyROuDthVLtFanIfBp0sfv7UFu/s7kRd8U8ZoQom8=; b=B
-	CjYoXHC60d7oK4R4g7YqMcyUqG6Dy1AoKYQE6F0y0chzDx1+LDxcGXvkgHLoRWtd
-	7d5p6vApXNbn4BPPK4WArEyZ3L+Kmcv994SgZnhI6Z6F4IX7co2N48IrW53YC+ip
-	4ozpgeUw+/C3X9pn0t6ggdxlC6Q/wey86HuiOi//ul52Pqx9j8xWu7di0NoBFhBO
-	5wSXp3a3F2HyOSFJtLlh6bgtdjLXS6pG4VhKrIu5QDBX6ajtuR+HVSJLGd0OAAUS
-	6o77X8A5GDvW0uq0l46XMuaHF3U9ee+DxMMT926O/45bTcZ8u41NVCDKW/Zwuh2h
-	sSvLKAZmXQNtMrg3G7rfQ==
+	:reply-to:subject:subject:to:to; s=fm1; t=1794625618; x=
+	1794632818; bh=6x2DdXPRXEfWTwXK9W5PcsBc7yr8Bb9BaYYA36DgAhY=; b=J
+	OyZ0CFrc5h94lMOBy1I/MbIxQTNbfZFe/ma9Zcp7QWWAoi8lm5u2Gv/PC9yGqF7j
+	oumzmUj27S2v/Xzj1Fv/2ruxortxHN76VunmsvZr0hFlaVAvLTmL8Qonx+02Atbv
+	IwXFwgF6JVAeZpl5B3ElH6H3fx5Ewjy7ptdzPS7bJy26O5TDGUlTmU1SPAFtFgtS
+	+E0RUWfb+Kav8ZcUlKzjFTbzCH5HsbwPvJlUEhBb22FY1gGKlioTbi1Qfqat5ePw
+	3O7WCsS8lEUhxL9EngPXdkAF45DLIkeJRkvjLZjgJbcJWroIrafv8ctRHBXrwJxw
+	anjXaYOprKfj+aZ3xL2nA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
 	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1794625641; x=1794632841; bh=Z
-	xUyROuDthVLtFanIfBp0sfv7UFu/s7kRd8U8ZoQom8=; b=oDAt/bYZmpRtxNBkX
-	rsikVhlCHC0YpYN6JfJHAQbUYYrY0B5yLtr0fwYXRUgxIhJKXrT+uCGwV+OsIdRG
-	dhqRE//cBrJeR29Y8qkCgRGhjUMws3V3QR3Vff8oPT7jHqJTQfNGJmG1mZ0GUPgU
-	5S7DX0bwZaREhQ3MsuyU4nlxHu1KS71diIHsDI1tm+/yqSDC4s8ZxPBO8gU6kv3v
-	cG8SkGViY+EDpVTIOUFLQjqSWCzl+dil8TFrY804TcD4yhRekE6mVv6uoHJbcob8
-	mig3efvaEta/CC39oRPP6TBYT9I8bpFBGwAGPx/q3UVrshjb7H0Vd90d2Lvba+OY
-	JZyDg==
+	:x-me-sender:x-sasl-enc; s=fm3; t=1794625618; x=1794632818; bh=6
+	x2DdXPRXEfWTwXK9W5PcsBc7yr8Bb9BaYYA36DgAhY=; b=GAFzTvD0voW6TAMrF
+	L0u2FO9DBlnV9kNHR2Bch7rKfiBlOZywpeFUry1+DoO1mPn1ZyrXV7KyFQCRAYwe
+	XmKkqwjRB+HYj8uzBL61tdeWtqM7H5zgcTVL27pVScmzd2cYVLhdi5s7GusSXtBd
+	uOmezDELh8D0SEir88q+zwuYaEKmgGOOIgvDVAEeKvueHm6LtxjEjHejBp308CuY
+	/qudBwTYLw7DzkDDPhaf9Kb/Rh3jK5TjLS3sIo1uD4qYBCESmEpdzkISoHTL3VN9
+	a5boz5pdhexkaUBG13Nop/kw3bbs23NY+62MXxF/7V1KxXZ57nX8N7ywxl0brkoC
+	QvvCw==
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=sign d=gahingwoo.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794625641; d=gahingwoo.com;
+DKIM2-Signature: i=1; m=1; t=1794625618; d=gahingwoo.com;
 	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
 	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm1:rsa-sha256:YJLZVpTlghXRFZgkzXceisRJ6O0igaKVxagl1f+PM3lAM7Q
-	KYndeEdsvklge1iJX3NWPxeQAO2soBvGQvwvFWrM65Mu/J6VJ3ZCSgZkzFz4tdlP
-	BwnlGJK0ysr/F8rfrLutcX4AwUPoj215GyJriD00J6Yr4hgEW51V9ikC4PjpHsFq
-	WI2NG6QwMmQzy6pBYG3c6RUE2mLiTVK9YDYHTh0e2s9b/zTukHWv87BNI3z4aRqK
-	azr/224Y9upl1LMlqSQUdxkr5fdVxIcntKl06jVJjdvfXkUyHCHN916waI48/3XG
-	F5H4vTIdqGZX0Hjln7P6IwtfVH9+ZPH6TFUqKyg==;
+	s=fm1:rsa-sha256:MMdcToXGX/1LR3uWy7N1mt+3uQ+7QZKqr3KB6YT5HUB76Zc
+	wuW5aZXMd08H5ucsk0ESRpYm1PjOSrehA5R1cQljnSZD7t19uftGeJqxfieE1/Eh
+	3yAjFI1xmMtp/jcNIklghin60vvfVhalP2F1c24YQ8VNDsROdbjyNCxi1oxTw6uN
+	Kf6VU/oinDAeiX2uqbva0yVvHdML4/UO+HOBh24Yx3i0W4bmgSH7v482hw+7GCu1
+	BcqAd5398YxXSO48NKbCRDqjKA2XVASnGl8Soy7NcwuHFyTvBKoMb8+6zmcYBrTs
+	axbwFI2/1iyGYXrevVwMNMnIENqjGtTh6yFD4xg==;
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=mi-m=1; hc=11;
 	hn=cc,content-transfer-encoding,date,feedback-id,from,
 	in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:X5ESKhpGyixR+D89Fb0Ja8nTlYtS8VLcsQwSjmxxrXM=:ebLMyHUtp2h/cZGBOQS5t6ujg1UFzw5hcjwxzwQhJYU=;
-X-ME-Sender: <xms:aND3ak4iaLvrt7-F119nkCWV4U4gVayzbXvNtJGNPQYIyo7Zz0J7Qw>
-    <xme:aND3aiUwoIG6dnhreqaa0CEHFSuKG4aOIPVyTUWbuep1kha5aZg3RuBKt6yQ9KCGD
-    qi7KCjt5EV2IYHVZMKHTk_IxzbKSRRSBHtKSm7ZuTEE5zqxLuJKlygm>
-X-ME-Received: <xmr:aND3aqsIcJ8eldb4Etughh2F0-BEWpzdKZkDypk5ZeQeYQSl385DDWeYrEdYWG8u0PDMsa8_>
-X-ME-Proxy-Cause: dmFkZTGLv1hz09a3Z3EXCwmORUpwC+Cy72ChFuKnGtX6ZU8GGLHgxpuX6WqGXEA/YZrryv
-    vv0prpdLfBwpQpLWmeD6AMfy7KlCfIGstcy+mENKkf07iojtVvEya/NHDu3GuWT4c2rhqI
-    ZONNY3wWPMjfN9lDAHW9TqItupPiJk+3wyJf0nnsl70tYmnvYemNXYszDru2blGoT8EQgR
-    h1/Ss5vi/yXiM3iowxUh2VDtjNJEl9yaMnp9yw432jsGdApevC/sGgaH7cyYWyAVXTJw6p
-    6LHSFyjkbDMd9Mymm1VF44oN6b4dfIstLoOUWpNdcumuV3L/vQ1Ryv1ZYSCAHCK+wZoelk
-    iMYij8HqJFVdFvx8k/yzupStm23xdFlZBIJmaIwJpUMFeufkNaUnN/Y6ihJE3Wobfo5362
-    DP9ip92GHJlA3oHxsh3fz6s8OIUZBC+a4/GAp5GFYfdJgmy0/b7hSf17wiplKi+DGYI2ve
-    6UrA145QYBwQgXzX8bGm89lB/ZdAZMPnUvqu9zkMyRtKtQKg/s1RyOl8Q+96cnD4oHRBkh
-    R7FAwIyhLW9GAILzcPrdQUqjO6fyA/K4tW1OiTU+OLmfc4mcCFf8e2EUGGvvcFnfQDjF+Q
-    kyfRqSKRpw98aojJhZzBVXsrwA4SAZbMvviKHTPGH+Q5MxF86dpPHH54uC4w
-X-ME-Proxy: <xmx:aND3avpudo-sP_8_CdJ-WFMQB6aculeBDsg5kLiImq3MZxYHVqN9cw>
-    <xmx:aND3aoZBfesLwIxXgoG5aUKXFfDqoYdIkl73pCficBgziTLzNML5jg>
-    <xmx:aND3agxBO79eN31h2yX4EynXdU9fU5ynla1X7lMqKeRNe8lrk76FmQ>
-    <xmx:aND3au9undxGOqnW8gup2TQpxubP7hN7sZy-y-jDWxM3nMtBv2KZOQ>
-    <xmx:adD3avtPqcdm1iifGHlgumTTqOyGdfsaeAWBSfR0rAEav9rnAQl90kk7>
+Message-Instance: m=1; h=sha256:QUCw6nHb/ESRMlEU+4iCUgaybt4lsW+WIT1tNwjwXlo=:laoGVPMLf2LRqPKwP6T2FlWgv2jsQM2NXAuJVqlbhm0=;
+X-ME-Sender: <xms:UtD3atyx9XcV4JYgGux7RZ5m5aXt6dzTZWkZTG_gvhVC_2ZnLZDmxA>
+    <xme:UtD3apvjx3P719V9fqo8RTvhBCXY_kJC8aIEZc9n16Pjxei8zJ_Pqq7ON6tf7Ks5W
+    iMajoKTfXFHIwWIEV2MqiKnOOPaOg4-XRUWKsCy2Q-_yk1FnjOK0_c>
+X-ME-Received: <xmr:UtD3aul1WypVUr3XzWXUVL_o_sxMkuBW19nixzbEBAow5F_Nlx6IHd_gXqK3VGs1nUXzVCCK>
+X-ME-Proxy-Cause: dmFkZTENh3Cq6bNtRDDqH//naJpK03OGhXB8Cp3eHHX2EpHYf2oBjZ1/43ruyqVDLzR5bI
+    q7gV+k53czH7SJj0JMNaMvWBGkaUqaereb01ifHpul1q14DobEKJC2mDvQQE3HzqoOU9gl
+    QO0UnCSJOnNpWmY1qWdj/IivEZ+5eJmA8XcRYmqsfPBSZaKqk9zCnQvCGUQuYFJdsYZGP5
+    L8zECb373LU+oefpY9jKwOjkFDiU4CWxV3iExHL3zPnpeZwM1wkFJxhm/yJk+2AJ3ju4OO
+    RXCknd9xSS299sQU1FiikwzYfEAyF9m0XTBIDoIn2qfRRJDU3uzKkImCFIAQPMS5Q++UrR
+    WNEsUDtSeFBcBLt71bjQrvXXjb3WFgLUhsbvDWF80ZOJvDja3u+zakrCtyEU1urx1F6ck1
+    6F+8USBSfsd0wejYoVC9t8qjupZOwoSsBjG3q0ewwaUG6VRRZ/oDrWvdfAbQNuabm9mzH8
+    /BL5Nw2T3bIFzu3ItLq4PVCVIvnchLyuy57qeQrNb6X6qS/noci8K9DlljvDG7eMCy7Tna
+    SeoXVIQOlFrSqDLv5yt63f6wvnCWhk0p0PcEA6IH5GcynMFezoctP1nehgj7tijUh2aAd+
+    zczBCZ6zuHNG0zlVYh+D7cfW9NSI/FTr55zdEGblHoHReNCLIkjVHMJT0cpQ
+X-ME-Proxy: <xmx:UtD3amCmAbO9I8j2oAWINT2bwsq7fUcrVKwzS8WyHgSNlish6endgQ>
+    <xmx:UtD3avR7kadzBjo9OlY1hqWr7NVniMScNrXwQa-tNPAt60dVPqws-w>
+    <xmx:UtD3auL1vkGOR792CIpfzNyS5GxJBxgt667RCKfbg_BqWB53LaqAZQ>
+    <xmx:UtD3ag2ycQzQWCpTODyfrBed_NBZ3DS5bwaGccWr7ZxbVmJsuMsMvg>
+    <xmx:UtD3amG1kHLPu0HQitsT2mvQOhQQflP7JmDKsHnMJgwo76z463zfT6fr>
 Feedback-ID: i7a5e4b5f:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 13 Nov 2026 22:07:12 -0500 (EST)
+ 13 Nov 2026 22:06:49 -0500 (EST)
 From: Jiaxing Hu <gahing@gahingwoo.com>
 To: tomeu@tomeuvizoso.net,
 	heiko@sntech.de,
@@ -147,9 +147,9 @@ Cc: royalnet026@gmail.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v17 09/12] accel/rocket: add RK3576 NPU (RKNN) support
-Date: Sat, 14 Nov 2026 16:05:26 +1300
-Message-ID: <57874e7459ed84ad47b2e31a62871ff535da249b.1794615323.git.gahing@gahingwoo.com>
+Subject: [PATCH v17 07/12] dt-bindings: iommu: rockchip: describe the RK3576 NPU MMU
+Date: Sat, 14 Nov 2026 16:05:24 +1300
+Message-ID: <f2e91cd17bab66e4fd8901704c89ce0d717cff18.1794615323.git.gahing@gahingwoo.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1794615324.git.gahing@gahingwoo.com>
 References: <cover.1794615324.git.gahing@gahingwoo.com>
@@ -157,8 +157,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_030722_797005_78130DA6 
-X-CRM114-Status: GOOD (  15.96  )
+X-CRM114-CacheID: sfid-20261114_030705_005222_8D173A6F 
+X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -177,178 +178,83 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support for the RK3576 NPU. It has two cores; each core needs six
-clocks and one reset, with aclk_cbuf and hclk_cbuf on top of what the
-RK3588 has.
+The RK3576 NPU IOMMU is compatible with rk3568-iommu but needs four
+clocks: aclk, iface and the two CBUF clocks.
 
-The task number in PC_TASK_CON is 16 bits wide, not 12. BIT16, BIT17 and
-BIT18 are pp_en, count_clear and last_layer_clear. Chaoyi Chen confirmed
-this layout on the list:
+Measured: with only aclk and iface, the IOMMU reset fails and the NPU does
+not probe. Without either one of the CBUF clocks it fails as well, and one
+of those configurations does not even boot.
 
-  https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/
+With all four clocks the IOMMU works, and the npu clock is not needed.
 
-The number of NPU cores is taken from the driver's own match table.
+rk_iommu enables every clock listed in the device tree (841363ebb508), so
+this list decides whether the IOMMU can reset.
 
 Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
-
-# Conflicts:
-#	drivers/accel/rocket/rocket_core.c
-#	drivers/accel/rocket/rocket_core.h
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- drivers/accel/rocket/rocket_core.c   |  2 ++
- drivers/accel/rocket/rocket_core.h   |  3 +++
- drivers/accel/rocket/rocket_device.c |  3 ++-
- drivers/accel/rocket/rocket_drv.c    | 14 +++++++++++---
- drivers/accel/rocket/rocket_drv.h    |  2 ++
- drivers/accel/rocket/rocket_job.c    | 20 ++++++++++++++++----
- 6 files changed, 36 insertions(+), 8 deletions(-)
+ .../bindings/iommu/rockchip,iommu.yaml        | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/drivers/accel/rocket/rocket_core.c b/drivers/accel/rocket/rocket_core.c
-index 040272573a72..638061a97bf3 100644
---- a/drivers/accel/rocket/rocket_core.c
-+++ b/drivers/accel/rocket/rocket_core.c
-@@ -32,6 +32,8 @@ int rocket_core_init(struct rocket_core *core)
- 	core->clks[ROCKET_CLK_HCLK].id = "hclk";
- 	core->clks[ROCKET_CLK_NPU].id = "npu";
- 	core->clks[ROCKET_CLK_PCLK].id = "pclk";
-+	core->clks[ROCKET_CLK_ACLK_CBUF].id = "aclk_cbuf";
-+	core->clks[ROCKET_CLK_HCLK_CBUF].id = "hclk_cbuf";
- 	err = devm_clk_bulk_get(dev, core->soc->num_clks, core->clks);
- 	if (err)
- 		return dev_err_probe(dev, err, "failed to get clocks for core %d\n", core->index);
-diff --git a/drivers/accel/rocket/rocket_core.h b/drivers/accel/rocket/rocket_core.h
-index 05d34e538e36..ef7043046bc6 100644
---- a/drivers/accel/rocket/rocket_core.h
-+++ b/drivers/accel/rocket/rocket_core.h
-@@ -32,12 +32,15 @@ enum rocket_clk {
- 	ROCKET_CLK_HCLK,
- 	ROCKET_CLK_NPU,
- 	ROCKET_CLK_PCLK,
-+	ROCKET_CLK_ACLK_CBUF,
-+	ROCKET_CLK_HCLK_CBUF,
- 	ROCKET_CLK_MAX,
- };
+diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+index 6ce41d11ff5e..e40c9ac2b463 100644
+--- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
++++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+@@ -26,6 +26,7 @@ properties:
+       - items:
+           - enum:
+               - rockchip,rk3576-iommu
++              - rockchip,rk3576-npu-iommu
+               - rockchip,rk3588-iommu
+           - const: rockchip,rk3568-iommu
  
- struct rocket_soc_data {
- 	unsigned int num_clks;
- 	unsigned int num_resets;
-+	bool task_con_16bit;
- };
+@@ -42,14 +43,20 @@ properties:
+     minItems: 1
  
- struct rocket_core {
-diff --git a/drivers/accel/rocket/rocket_device.c b/drivers/accel/rocket/rocket_device.c
-index db137e2ec15e..868af86d00ce 100644
---- a/drivers/accel/rocket/rocket_device.c
-+++ b/drivers/accel/rocket/rocket_device.c
-@@ -9,6 +9,7 @@
- #include <linux/of.h>
+   clocks:
++    minItems: 2
+     items:
+       - description: Core clock
+       - description: Interface clock
++      - description: Convolution buffer core clock
++      - description: Convolution buffer interface clock
  
- #include "rocket_device.h"
-+#include "rocket_drv.h"
+   clock-names:
++    minItems: 2
+     items:
+       - const: aclk
+       - const: iface
++      - const: aclk_cbuf
++      - const: hclk_cbuf
  
- struct rocket_device *rocket_device_init(struct platform_device *pdev,
- 					 const struct drm_driver *rocket_drm_driver)
-@@ -27,7 +28,7 @@ struct rocket_device *rocket_device_init(struct platform_device *pdev,
- 	ddev = &rdev->ddev;
- 	dev_set_drvdata(dev, rdev);
+   "#iommu-cells":
+     const: 0
+@@ -72,6 +79,25 @@ required:
+   - clock-names
+   - "#iommu-cells"
  
--	for_each_compatible_node(core_node, NULL, "rockchip,rk3588-rknn-core")
-+	for_each_matching_node(core_node, rocket_dt_match)
- 		if (of_device_is_available(core_node))
- 			num_cores++;
- 
-diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/rocket_drv.c
-index 1030d8407b78..fff31c1ebe52 100644
---- a/drivers/accel/rocket/rocket_drv.c
-+++ b/drivers/accel/rocket/rocket_drv.c
-@@ -226,13 +226,21 @@ static void rocket_remove(struct platform_device *pdev)
- static const struct rocket_soc_data rk3588_soc_data = {
- 	.num_clks = 4,
- 	.num_resets = 2,
-+	.task_con_16bit = false,
- };
- 
--static const struct of_device_id dt_match[] = {
-+static const struct rocket_soc_data rk3576_soc_data = {
-+	.num_clks = 6,
-+	.num_resets = 1,
-+	.task_con_16bit = true,
-+};
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: rockchip,rk3576-npu-iommu
++    then:
++      properties:
++        clocks:
++          minItems: 4
++        clock-names:
++          minItems: 4
++    else:
++      properties:
++        clocks:
++          maxItems: 2
++        clock-names:
++          maxItems: 2
 +
-+const struct of_device_id rocket_dt_match[] = {
- 	{ .compatible = "rockchip,rk3588-rknn-core", .data = &rk3588_soc_data },
-+	{ .compatible = "rockchip,rk3576-rknn-core", .data = &rk3576_soc_data },
- 	{}
- };
--MODULE_DEVICE_TABLE(of, dt_match);
-+MODULE_DEVICE_TABLE(of, rocket_dt_match);
+ additionalProperties: false
  
- static int find_core_for_dev(struct device *dev)
- {
-@@ -291,7 +299,7 @@ static struct platform_driver rocket_driver = {
- 	.driver	 = {
- 		.name = "rocket",
- 		.pm = pm_ptr(&rocket_pm_ops),
--		.of_match_table = dt_match,
-+		.of_match_table = rocket_dt_match,
- 	},
- };
- 
-diff --git a/drivers/accel/rocket/rocket_drv.h b/drivers/accel/rocket/rocket_drv.h
-index 9421e48ec5d8..eb1e243ff75a 100644
---- a/drivers/accel/rocket/rocket_drv.h
-+++ b/drivers/accel/rocket/rocket_drv.h
-@@ -6,10 +6,12 @@
- 
- #include <drm/drm_mm.h>
- #include <drm/gpu_scheduler.h>
-+#include <linux/device-id/of.h>
- 
- #include "rocket_device.h"
- 
- extern const struct dev_pm_ops rocket_pm_ops;
-+extern const struct of_device_id rocket_dt_match[];
- 
- struct rocket_iommu_domain {
- 	struct iommu_domain *domain;
-diff --git a/drivers/accel/rocket/rocket_job.c b/drivers/accel/rocket/rocket_job.c
-index 68df1596014e..59a6f548e108 100644
---- a/drivers/accel/rocket/rocket_job.c
-+++ b/drivers/accel/rocket/rocket_job.c
-@@ -31,6 +31,11 @@
- /* Bits 3:0 of PC_BASE_ADDRESS hold the mode selection bit and reserved bits */
- #define ROCKET_REGCMD_ALIGN	16
- 
-+#define RK3576_PC_TASK_CON_TASK_NUMBER(n)	((n) & 0xffff)
-+#define RK3576_PC_TASK_CON_PP_EN		BIT(16)
-+#define RK3576_PC_TASK_CON_COUNT_CLEAR		BIT(17)
-+#define RK3576_PC_TASK_CON_LAST_LAYER_CLEAR	BIT(18)
-+
- static struct rocket_job *
- to_rocket_job(struct drm_sched_job *sched_job)
- {
-@@ -166,10 +171,17 @@ static void rocket_job_hw_submit(struct rocket_core *core, struct rocket_job *jo
- 	rocket_pc_writel(core, INTERRUPT_MASK, PC_INTERRUPT_MASK_DPU_0 | PC_INTERRUPT_MASK_DPU_1);
- 	rocket_pc_writel(core, INTERRUPT_CLEAR, PC_INTERRUPT_CLEAR_DPU_0 | PC_INTERRUPT_CLEAR_DPU_1);
- 
--	rocket_pc_writel(core, TASK_CON, PC_TASK_CON_RESERVED_0(1) |
--					 PC_TASK_CON_TASK_COUNT_CLEAR(1) |
--					 PC_TASK_CON_TASK_NUMBER(1) |
--					 PC_TASK_CON_TASK_PP_EN(1));
-+	if (core->soc->task_con_16bit)
-+		rocket_pc_writel(core, TASK_CON,
-+				 RK3576_PC_TASK_CON_LAST_LAYER_CLEAR |
-+				 RK3576_PC_TASK_CON_COUNT_CLEAR |
-+				 RK3576_PC_TASK_CON_PP_EN |
-+				 RK3576_PC_TASK_CON_TASK_NUMBER(1));
-+	else
-+		rocket_pc_writel(core, TASK_CON, PC_TASK_CON_RESERVED_0(1) |
-+						 PC_TASK_CON_TASK_COUNT_CLEAR(1) |
-+						 PC_TASK_CON_TASK_NUMBER(1) |
-+						 PC_TASK_CON_TASK_PP_EN(1));
- 
- 	rocket_pc_writel(core, TASK_DMA_BASE_ADDR, PC_TASK_DMA_BASE_ADDR_DMA_BASE_ADDR(0x0));
- 
+ examples:
 -- 
 2.43.0
 
