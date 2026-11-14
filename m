@@ -2,68 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1EF0606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 08:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FE21606A887
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 08:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xfLWDYHB;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=aujXAkEF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gI1l4SaP;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=jtpUoGu9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=CEs83Sr1XhEd2DXMpAa750j5Z0GIbDWQqMk0/gmeD7o=; b=xfLWDYHBEh4IfHka0D27X+HTVt
-	9/om2b5zvwY4XiBLy9fKu+Xqj9HC5iLtikT0e8KYbfyRU/Q2zMD6qLOf5y+iPP46WrnZOuVXhev/w
-	O3kKSRRdstXfXwnK2qHYKak7iRUMPBFCE4J4xH1jtRpgFGZ0+CZV1suUXUzzu0++6GbXnH8bWiBCz
-	HJ2Mg8TPztm0nzU6+FI1FHhU8BZtQklkKF/zo0QYR++95+mWX3OKVjIsfzpMCCG+NsGJvRNW8/MiX
-	dnADGtwYMLLtJo2N2hAp3s8qRkWOQMTOaDWO/is1M/VEpB8AjsxtUaLdkR0z7t/p32qVziQMpHdaN
-	4nng2MvQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=KKnJ9j2I4wwMNUFVM40Ukd6sfFrm3+y8FEhOVW263CY=; b=gI1l4SaPGKI7yM
+	xHDIHmiynKyZSJY2AkekMTZ6eyYKq/fUNfOZh4b4mRQqJc9Mdq4FZZWzBsK5LLNJMvKgUq9rjcOdW
+	+OR36kDrHcmcwUpHH/RE8KWo2xLItWuClYeRbyClzbAE2lyFPcUHPZ2aJZSeYKTQUmTA9dK2GAT0O
+	IjT8DpJShrgYQQXTX2+3BJunU2cPW9yyzXbP+xYJe5lLFWSJqcBWDi09hlZ6vNRRcJ6NApYTO9kSZ
+	O75eJgzmrjqC9ZRe3H4IJUyEoswflNq3OFT/9cxG/q9U1Nnk9o9IV8BJrc/iXHUAhPkUzUnPhJKS/
+	7rHzndncTL4PeIf6IwMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS8se-0000000Fa1V-0YHV;
-	Sat, 14 Nov 2026 08:13:00 +0000
-Received: from canpmsgout11.his.huawei.com ([113.46.200.226])
+	id 1xS9Cx-0000000FbDt-1pkv;
+	Sat, 14 Nov 2026 08:33:59 +0000
+Received: from mail-m12888.netease.com ([103.209.128.88])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS8sa-0000000Fa0y-0FHo
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 08:12:58 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=CEs83Sr1XhEd2DXMpAa750j5Z0GIbDWQqMk0/gmeD7o=;
-	b=aujXAkEFYwrNXIPo4ckxgDufLTx5qGt/hEp7zFk59xz7QEt+p/rbiBbMuz8i+P+gBrKNMmlBp
-	VxJ+9i2PUlJapnVw5FIgoT0xSmO79EUvhfjmrzJ7cJ8LdKhA6eNdz2Q9pykTEwI0LkbNO61qTDZ
-	m3nxNath3ymLz4QlpZ49xNQ=
-Received: from mail.maildlp.com (unknown [172.19.163.15])
-	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4jRRgh0vw6zKm6K;
-	Sat, 14 Nov 2026 16:12:32 +0800 (CST)
-Received: from kwepemo200009.china.huawei.com (unknown [7.202.195.26])
-	by mail.maildlp.com (Postfix) with ESMTPS id EEC4240578;
-	Sat, 14 Nov 2026 16:12:43 +0800 (CST)
-Received: from localhost.localdomain (10.50.159.234) by
- kwepemo200009.china.huawei.com (7.202.195.26) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Sat, 14 Nov 2026 16:12:43 +0800
-From: Long Wei <longwei27@huawei.com>
-To: <catalin.marinas@arm.com>, <will@kernel.org>, <shuah@kernel.org>
-CC: <mark.rutland@arm.com>, <broonie@kernel.org>, <kevin.brodsky@arm.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kselftest@vger.kernel.org>,
-	<hewenliang4@huawei.com>, Long Wei <longwei27@huawei.com>
-Subject: [PATCH] selftests/arm64: signal: fix inverted feature mask in diagnostics
-Date: Sat, 14 Nov 2026 16:10:13 +0800
-Message-ID: <20261114081013.964933-1-longwei27@huawei.com>
-X-Mailer: git-send-email 2.43.0
+	id 1xS9Ct-0000000FbC5-3bqU;
+	Sat, 14 Nov 2026 08:33:58 +0000
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 54aa88686;
+	Sat, 14 Nov 2026 16:33:48 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Dave Jones <s.dave.jones@gmail.com>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v6 3/4] arm64: dts: rockchip: rk356x: Add eDP controller and phy nodes
+Date: Sat, 14 Nov 2026 16:33:38 +0800
+Message-Id: <20261114083339.600986-4-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261114083339.600986-1-damon.ding@rock-chips.com>
+References: <20261114083339.600986-1-damon.ding@rock-chips.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
- kwepemo200009.china.huawei.com (7.202.195.26)
+X-HM-Tid: 0aa1d930fb2403a8kunmf52e9804102260
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZS0wZVhpMSklJSh8dTx0ZQ1YVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	JDQ0xVSktLVUtZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=jtpUoGu9c0gtIa9KpDgD57+0b56m+gtVDig0YvoWIAlkjmVlJhAvAMPoOA8GZZD+YTSH8FJGSUVYPw7z+4uGMBaI9SgCxmcVIoswlgdzQuGjDfZAvwN5Gk5Y0iLNkQNQoEl0SGqhrZ00lZQ93M7ToroZeoADtwT/AZwdHSdyWys=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=KKnJ9j2I4wwMNUFVM40Ukd6sfFrm3+y8FEhOVW263CY=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_001256_650404_28D859BA 
-X-CRM114-Status: GOOD (  10.10  )
+X-CRM114-CacheID: sfid-20261114_003356_507369_2B7A4C34 
+X-CRM114-Status: UNSURE (   7.64  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,40 +90,89 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When a testcase is skipped because an incompatible CPU feature is
-present, test_init() reports the feature set with:
+Add the eDP PHY GRF (with the eDP PHY child node mapped by its own
+register window) and the eDP controller nodes for the RK3568/RK3566
+SoCs.
 
-        feats_incompatible & ~feats_supported
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 
-That is the set of incompatible features which are *not* supported,
-i.e. always empty, instead of the incompatible features which actually
-triggered the skip.  As a result the diagnostic prints an empty list and
-gives no hint about why the test was skipped.
-
-Use the supported set so the offending feature is reported:
-
-        feats_incompatible & feats_supported
-
-Fixes: 32de73e89099 ("kselftest/arm64: signal: Allow tests to be incompatible with features")
-Signed-off-by: Long Wei <longwei27@huawei.com>
 ---
- tools/testing/selftests/arm64/signal/test_signals_utils.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tools/testing/selftests/arm64/signal/test_signals_utils.c b/tools/testing/selftests/arm64/signal/test_signals_utils.c
-index 4b12dbd7669d..16036e06d6c1 100644
---- a/tools/testing/selftests/arm64/signal/test_signals_utils.c
-+++ b/tools/testing/selftests/arm64/signal/test_signals_utils.c
-@@ -365,7 +365,7 @@ int test_init(struct tdescr *td)
- 				fprintf(stderr,
- 					"Incompatible Features: [%s] supported\n",
- 					feats_to_string(td->feats_incompatible &
--							~td->feats_supported));
-+							td->feats_supported));
+Changes in v4:
+- Model the PHY node with a reg property under the parent syscon.
+
+Changes in v5:
+- Move the APB clock (PCLK_EDPPHY_GRF) from the parent syscon node to
+  the PHY node, matching the updated binding and driver. (Sashiko)
+- Rename the PHY reference clock to "ref", matching the binding.
+---
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+index 1a4562df20ee..e3f370cad5d5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+@@ -402,6 +402,24 @@ usb2phy1_grf: syscon@fdca8000 {
+ 		reg = <0x0 0xfdca8000 0x0 0x8000>;
+ 	};
  
++	edp_phy_grf: syscon@fdcb0000 {
++		compatible = "rockchip,rk3568-edp-phy-grf", "syscon", "simple-mfd";
++		reg = <0x0 0xfdcb0000 0x0 0x8000>;
++		clocks = <&cru PCLK_EDPPHY_GRF>;
++		ranges = <0x0 0x0 0xfdcb0000 0x100>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		edp_phy: phy@0 {
++			compatible = "rockchip,rk3568-edp-phy";
++			reg = <0x0 0x100>;
++			clocks = <&pmucru XIN_OSC0_EDPPHY_G>, <&cru PCLK_EDPPHY_GRF>;
++			clock-names = "ref", "apb";
++			#phy-cells = <0>;
++			status = "disabled";
++		};
++	};
++
+ 	pmucru: clock-controller@fdd00000 {
+ 		compatible = "rockchip,rk3568-pmucru";
+ 		reg = <0x0 0xfdd00000 0x0 0x1000>;
+@@ -878,6 +896,33 @@ hdmi_out: port@1 {
+ 		};
+ 	};
  
- 			td->result = KSFT_SKIP;
++	edp: edp@fe0c0000 {
++		compatible = "rockchip,rk3568-edp";
++		reg = <0x0 0xfe0c0000 0x0 0x10000>;
++		clocks = <&pmucru XIN_OSC0_EDPPHY_G>, <&cru PCLK_EDP_CTRL>, <&cru HCLK_VO>;
++		clock-names = "dp", "pclk", "hclk";
++		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
++		phys = <&edp_phy>;
++		phy-names = "dp";
++		power-domains = <&power RK3568_PD_VO>;
++		resets = <&cru SRST_EDP_24M>, <&cru SRST_P_EDP_CTRL>;
++		reset-names = "dp", "apb";
++		status = "disabled";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			edp_in: port@0 {
++				reg = <0>;
++			};
++
++			edp_out: port@1 {
++				reg = <1>;
++			};
++		};
++	};
++
+ 	qos_gpu: qos@fe128000 {
+ 		compatible = "rockchip,rk3568-qos", "syscon";
+ 		reg = <0x0 0xfe128000 0x0 0x20>;
 -- 
-2.43.0
+2.34.1
 
 
