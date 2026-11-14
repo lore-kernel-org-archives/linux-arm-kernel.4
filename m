@@ -2,139 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E250A606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 21:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6DD1606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 22:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1P16punB;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=aYs2gOYv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EUgs++fX;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ic4LP4E6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:References:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=O9JHKYz3e1iiwcxO5S9MaYk/lsi3O665sENSzeAWiTo=; b=1P16punBHEb0Zj
-	u55y+vRdooWd4AlJmuEFT5NJ2InKnM6HJtbwgNRi5r3i+2NRLxVIV2HNZgw388CHrXcWxLlxo3H6E
-	BlYbjQ6aTcJ3ELcFACJzjNi7rHbs8RgzduACOnoUv5RiCWMLpabC0uNv3tfMMtnCFdPlJOQhSt6xG
-	B5XXPGAvC6NO8eYWBukW/tYIi0PGRRVMlZrgRb9cZ1FJ/vdqx6MEvKXxIn+KlELdNOrzfOfhQJ1N2
-	WJ3IL4LiV44OnNMcDL89RUJ9QCuRtCLrcT2d2EjluDg/akAYmU+BSwbIsnz4qlpyGWR1xvf54Im+H
-	zwFr4wssU9G0sC16Ao9g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xD0xEpGLTFZEGCKBw1uu0nGyfMUoZ5twgYLHOtEZVcc=; b=EUgs++fX3Fwuk2yP9/Rr87JYsv
+	smTll6zWo4hxLIKGHnSNQAfMjF/PwtViE01PM9yxSpB59hnAWAwmScISU/SRlBMXTBigSeKSXwW0F
+	WJ4zdBh4Ml+UMTPMTqC/y1Go/tTuLMamEVvAUtsSU12Wd6AiuGVQrECVFLk3sjnNiJede+KTdq66w
+	Br9BiExdxdSgN7UMZobGk3PI1u5i5NJqzSQZ+tJ0hEdSyPWYQp5zN/dn3fC5g/9zYzLxWaRDQbh6S
+	XX27JpxergMsYjgtMlwe4hHT1wFgrI3YzjxGtnFY480jlrtI/vEkdH79t9A6zbohtl4G6uWsBZfAf
+	EobeM5pw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSLaq-0000000Gnro-0k3L;
-	Sat, 14 Nov 2026 21:47:28 +0000
-Received: from mail-francecentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20a::7] helo=PA4PR04CU001.outbound.protection.outlook.com)
+	id 1xSLze-0000000Goph-1HXO;
+	Sat, 14 Nov 2026 22:13:06 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSLao-0000000GnrC-0RRH
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 21:47:27 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JwD+2GRns2luPeI1LN+WBniEtLHq7d1/Xwk5mYfX5RLOdYoTcxZHX9gHPBJmhDoyEwWlia6hD1oDvL+9eh21J8XvY32davbMnqa+U8/JzzFexFJ9YhLijXD17/37dVkA0d+U5N2Ld2Dm2sGUbxUsXz5OVkzfRoPOUXTA1gUlNWFedtnPjSSRPvQIU92iWkix6JOF433qiGyaDjrodA6T3OfEPmRk2diXJQbJQPlxMql1aVV4+FR8Y7UA6QhlY10TxJa8bUiW0zLwH7Js5szR4D4KQzALgsLvd1X3pWnyKpXEu/QLLl80VFsW7204GWCSEFgBxLraRYC8vfWX9DAMRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O9JHKYz3e1iiwcxO5S9MaYk/lsi3O665sENSzeAWiTo=;
- b=JF5jHWLzxXGAKqSPXuNFuBT/CQ0cN1PDD/nchKr2Uy/TJnGwvW9+yE7zyihghvw1yttNGYIRf0Xg7nbsL26gUkk0ZVm4w3oFhJVPTV5eXmUqfKN0vCI4lvnbtnCMZxtvhNnhlqCV7kY4aTyPtbTOnSD1t3tIH2uJZ/Z4eiuEb7RGmU/SXGoRZwvW8L+OB3fEOLAYLlX9XhEehePBanP0dFfN/tsd5FFuKHf88gEEOTQj5UTIogOfeHVwLsP58HO6jjjW3ljdztriLYemBpJ22MfHg9yA1mtLhnRlZm0Xfyfh2WyPVywqW3OVziWnbw5LfS9uqDTfiPxGAqJLYxFErw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O9JHKYz3e1iiwcxO5S9MaYk/lsi3O665sENSzeAWiTo=;
- b=aYs2gOYvNxBuKpk5KACNiSCLdqGhCGNOWrZwQpAjaBkTFcXthGXLbjDclxIPd8MppMppWUMcpvl4lqQvLMrr7myS7N59jvRChfk+9ofJ3MIwEsxF01algRoxP+V5evXzCGGjtQfRwC3CB0o01y8pO/c5Equ+DhxQGLrf6ubqEyvUFz6iRaLSluEbMxOTdP3tBxrjJGajEnCjFdlZNNiBkBHiM0adJ4PnvueKj0mLlPeabTQ92jj8vWz9XgjPvRQpKT/dMjAtpn9HieXVfdsYpS0py4FtXOQCVZ6+BWF/Yg5tImN3HpK5TH3wKPL/q/WdD8rem8t6X9HUaoM2j4jmbw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
- by DU4PR04MB11029.eurprd04.prod.outlook.com (2603:10a6:10:590::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Sat, 14 Nov
- 2026 21:47:18 +0000
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023%4]) with mapi id 15.21.0615.009; Sat, 14 Nov 2026
- 21:47:18 +0000
-Date: Sat, 14 Nov 2026 23:47:13 +0200
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: vjardin@free.fr
-Cc: Dong Aisheng <aisheng.dong@nxp.com>, 
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>, 
-	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH v4 3/5] soc: fsl: guts: add the RCW override of any RCWSR
-Message-ID: <avi9N8P34X5uel7a@skbuf>
-References: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
- <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-3-eefcea066a55@free.fr>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-3-eefcea066a55@free.fr>
-X-ClientProxiedBy: WA1PEPF00005B90.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d8::627) To AM0PR04MB6900.eurprd04.prod.outlook.com
- (2603:10a6:208:17d::10)
+	id 1xSLzc-0000000GopB-2Wna;
+	Sat, 14 Nov 2026 22:13:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id CC40740C06;
+	Sat, 14 Nov 2026 22:13:03 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794694383;
+	b=PGkdZKBRu6YAIrZp3TnMSfSk5NZwQ76bkPeI1r8wHzrG01AT1pPir4pBlB8l+sDkAiiw
+	 3rxoODOY6F4gOJ8r3LqNWfZDoDAYqtgBsEFobHm783NtXV3zcOTLVy0Rp+1ooH8a3kRys
+	 6NzahJtkV3/Q57+rSUDyXG/XzoYHTSYuLnf9UI7gtcNUDY1hLu0b6FzUbyRcNA41xhope
+	 9eLN+vDUQ98vr2TDvgNhG1prAk3OT13ZbywaMA57YBgM4MCTsumftf4RR+FWZkRDcrXlp
+	 Dgz2CSxukPxcbHcDK6O4LFJm6w03uyVow7xYpRHJU3LgZHf/8G3EpUslMcWmFlEie7g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794694383;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=xD0xEpGLTFZEGCKBw1uu0nGyfMUoZ5twgYLHOtEZVcc=;
+	b=wMjbsL7p4sA2Dhvo3rr1Hw+XvZQB7k8MD/t9pYJmVbQMG/44uzFwElQLyoXmUx9klDEs
+	 KUOqkKOlYFMwa444+J45/dfYsZ0MGJ5n4DMnZN5hfCXU7v949OouBajjMxKe7j9BrfbXR
+	 fvBAJxprds4IxzfoKvH/A6+kqcDvS/Qv7vS/HUNJC+JGTt8TBXPllRlhG2eDgqPHf/TSl
+	 AcygW6QZjOneGil7SZIySXWFG2swVVCqWZyEc0izZ3ZxOaZDL/gwQm2ynuI07lQv+HiBO
+	 yo/8k5yxjHZkZBbFYdDB60lyh8g6XmoMaSEu0cz/8/4vTQcq9QgrPHXa9n41DSBsK0Q==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 2BBE81F000C4;
+	Sat, 14 Nov 2026 22:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794694383;
+	bh=xD0xEpGLTFZEGCKBw1uu0nGyfMUoZ5twgYLHOtEZVcc=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=Ic4LP4E6oMYtk1rZ2CEP4s2MllSFTCpTdqKniFLhHLjjCvcQRmsmKa9cTyZnypFlt
+	 vhFK88TMsY5zfg2o6l7uvvzdEcvWF4KVEphKsTfTOxdrEuLj7MvLNNkHaQYhfpA6hJ
+	 REpvMgRd2UHedpTMZuo3TT5BxPtJBB0jePQTx1J+4WUHabhe1w1QtlQ3NS7YoKVOTb
+	 uIbDeCSnv/FBTobhcqz1hyTCEF/8fRmM8Fzr7C0PcrK5/V/fIQ1iJI072Ct7LEE9pu
+	 aJ8B5ojSGhW7tFlWv6IqKuWv4EoRfMbqc2mLFp9PuLj9zACZeFmXOGizmRB2ou+tUK
+	 /o6c736UaehGg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id ABDFB49EA8;
+	Sat, 14 Nov 2026 22:13:02 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Subject: [PATCH 0/2] PCI: meson: Add system suspend/resume support
+Date: Sat, 14 Nov 2026 22:12:57 +0000
+Message-Id: <20261114-b4-pci-meson-suspend-v1-0-be3d04a13304@iav.lv>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|DU4PR04MB11029:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1cf823a-a99e-45d0-24b2-08df4298daa5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|10070799003|23010399003|19092799006|10067099003|11063799006|4143699003|56012099006|261022105027099003|261022075727099003|261021121427099003|261026121527099003|261026140227099003|261028144727099003|261102130727099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003|3023799007|41080700001|15866825006;
-X-Microsoft-Antispam-Message-Info: wortIPmyB9rNEp3Iap+z8boinPUAey4azTgaiOf2n4elsuME0yzdbtFJuSSXNMDXr7zhviqzuTdoTxVk552HyFrgEL1oprU+arlSRfSF63HFs/VC6G7H140/oWlqu3rg44hCVrerD7En8WaQEmmYMIBERqH5sGnTQgnqdFXxuxsEeRquGZM2rRCsrHZ3NC9frNAivF2oqashul4H0EfgfKl74oIvTu5dGO61vigA+yxoXkuEvdrSORSlqo15/7ij90mW2R+OiwUg1kKiObUMby2EQur3xNm+XvhM68z1j1wjRRzOS1b+wRHFiX/QD7e/vi/G2o/ZF+JtNsNyrveituhN/ezH3zju4J0Ics+4CT+JGzwNoxKPzWJeezxi3otAggpBME4L+2HAk/GBWLZbY5qa0lg1CfGzH7bLRYP25yQLtCzPNXauR6z/08DPxeI1VQHzW4647qC6PLAROhZjzVDvDjl9/XO9lpMFdtXku82qC4K7oBApZJ1Ty3isgtj4lCxukW64GmQs+a2b5MKTQvPNvf/OaOgHvfO95CaXC+RNKBXPk9xsbsdgKvY32rkBeT0Sg1EndQUnYvrb/0js0xiL7PiBKF6glnE7N+YFWi4B/ASkTeietYC9VijTy8vKN+byNef75jzM5DI2BD2xKApfstNx7fL5gMiIrSlYfyekYhmXfTmirl3tkJG1vfjjBb5b86myeMuW6OWVi9Nh2Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(10070799003)(23010399003)(19092799006)(10067099003)(11063799006)(4143699003)(56012099006)(261022105027099003)(261022075727099003)(261021121427099003)(261026121527099003)(261026140227099003)(261028144727099003)(261102130727099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003)(3023799007)(41080700001)(15866825006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?xiMhDwuOBfD3GohdMhbdLNFwNfFE3B9tgTsXgyAOznOILYDB/RNRdGT3os?=
- =?iso-8859-1?Q?OqGOpRTPM/7YuRgLF/ldzTTRUmwBGr4BVw6GVnNBcfXKztL4IgsDjc6WbX?=
- =?iso-8859-1?Q?mjwVxfyAN4kkCZ69iq99DC9Asj3WLG4E0uSSETndLWwz1QsZbd84iPyipD?=
- =?iso-8859-1?Q?Zbls16YOQGdI9fjND7ly/eCffA/2mHJ98XtTNnRA/B4yQE+dBxHHnkAc7y?=
- =?iso-8859-1?Q?kRL9f34SzJHG1A6U5qgZI899yBxTehaDcQQ41dqI2BwfCPHJzUpkNGAL1m?=
- =?iso-8859-1?Q?oBwYEdROT/iWqeG36n9YhENvyJiDbZAh3FCgNJbq/y14UMpdlbLqEZUsmB?=
- =?iso-8859-1?Q?J8N4s73LNRDXF8m62T1LOwB61q6dHDKhVi0SteZXZsGtQmvGfFIO60JniC?=
- =?iso-8859-1?Q?V0sipCpIEc/UgqZ5L5Cg+qnCgmCZOiEpJ0h2Fhq8hp4gZM7Trb3mVN8+7e?=
- =?iso-8859-1?Q?v3g3xok8c6w0KDZ7HUCCYkP8vePvl8hXphb6ZhN0er9ZKlgWD4BrtC+YIZ?=
- =?iso-8859-1?Q?AwlO31JnGGMlZ+TVjJ19cUkMBbS1z2NGD2N9CK4D9o4/ESW+Uyeui6M/m9?=
- =?iso-8859-1?Q?8wFys7mNXkk0vzeYKbN/89Z+KZvcAs7xU+iquOeiOAgUTs4cHTmEUsYRPD?=
- =?iso-8859-1?Q?Rp4H+LQ90Snql7bb3MtTqirhmtJPYdMy0A0ckIj80KYqH5fOryCr5RCRIs?=
- =?iso-8859-1?Q?z6QXOp282IEc0Z1pBvN4Vni/6dsy8LcF78pfP29OBQmFo03MgreZlVoMzZ?=
- =?iso-8859-1?Q?UAL3/Eh6kp6kF5gv01nZdBDZh2uJhhtfj2sZNBolLgRgN6xsW4p76f6X5u?=
- =?iso-8859-1?Q?0OOPfQ5RZRPtSoCLDhRQbYB9QS/kto/qytXrJqe00x2ccgeHB6iWR2ayWt?=
- =?iso-8859-1?Q?qczCd0dQAppxiKhgd1t4Fa71QVD8cBH238LZWSVeF1ai/3NkyKFvc+5gAa?=
- =?iso-8859-1?Q?XV1e0AMYfShQ2Rn+Mw7zgNW4x5SOjxBR/sWQZlbxxO5of67D6tZZsxjWoC?=
- =?iso-8859-1?Q?wIlkyCjxeW1yofgwKArjRqkYcZO05xpkVIOhXAuDHJsKOt5Jz2n8RGwYww?=
- =?iso-8859-1?Q?2SerHvl0R5XpMArhxzBzXdOPYXViaDPB0tq6UXXRBroY/C6dgZENZhsTr8?=
- =?iso-8859-1?Q?fYxLwXY7UT9X8DI+H4PsmQagVoa01fZ/Y01K5qDWFP+fnZXHzaOdw/5dZT?=
- =?iso-8859-1?Q?Ifr71s+v6lt1H/2N0JbeoOgrHl++JrtMYAMI157DGguSkPcEt2jaofQPhu?=
- =?iso-8859-1?Q?YUalmuovf3bSAjJx6C7gsrqokUYUW92gC5HKtFYRJ4hYdAjjcEle9qZAzw?=
- =?iso-8859-1?Q?FELheRE9L8d+Y4jdS5RIWFn7TMbO2Fy1kOLBq8JMVoYJah0/M1bI5JozaS?=
- =?iso-8859-1?Q?40XzlGIzXpMcYS2/24DwiCtJTxqZaPZL8fEnZZBcPGNzrGehxgsIP+ntRK?=
- =?iso-8859-1?Q?eWpUu/ARdTC1oKpW4aDjVRHvBPGWUmC5zFI1OgaC/DnGsDkAduh6rfhgjz?=
- =?iso-8859-1?Q?4TZYSvZ4qmKki/sO1CaSte7dYXZ4IfSZW/4c5rPhoVNy59PFehej1VktxB?=
- =?iso-8859-1?Q?TWoW2G5tY/zEKMOgPaAglmB/6w4hqY7A4qT6zw1KsjzwRaebvDrPKYp7QA?=
- =?iso-8859-1?Q?dzLxY7d2P2Ascjeirpo5fSHYdUZI7RSsHjGGmgdUxOK/5GX8o7RHx5By//?=
- =?iso-8859-1?Q?Fn+AMPu/oIAnoI2rVb7t7rYOSHBv17CIy7/CAgW7Lot27oRGUmpm3T+Uxe?=
- =?iso-8859-1?Q?wXHcRbDO7qonYwjmipynpPpvl75AN6PJbcJOo5DzoE28F/mi5caTTZq4Nt?=
- =?iso-8859-1?Q?rXrBTLIjdi/U/Mx8koZzkDRPHR6OyjgdqCToy5TN/6NzcQeSkVzO1L1m2s?=
- =?iso-8859-1?Q?JE?=
-X-MS-Exchange-AntiSpam-MessageData-1: BdzXFMhigOvNZHJpFzD+Nqqm2SgmXg40Wgo=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1cf823a-a99e-45d0-24b2-08df4298daa5
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2026 21:47:18.2676
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cylMh1hRMwyZeiFZxaIXP3UKJk2NW87UoNLzuKNp6xGtTyOjmaYrW9BhUe5pr+icRoPx71GVfrLRYSeoXmtP8A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB11029
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_134726_159840_A5C43EFA 
-X-CRM114-Status: GOOD (  19.21  )
-X-Spam-Score: -1.1 (-)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOnc+GoC/x3MPQqAMAxA4atIZgO2+FevIg61Rs1gLQ2KULy7x
+ fEb3ksgFJkEhiJBpJuFT5+hygLcbv1GyEs26Eq3Sqka5xqDYzxITo9ySSC/oK4609tuNqZpIac
+ h0srPvx2n9/0ANe3ZJGYAAAA=
+To: Yue Wang <yue.wang@Amlogic.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1569; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=WDRaiZdaKfWEl03glQcVn0OXt/DJd9CPRnnp+NTL/5A=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFk/7rxZufzRhJb192SkltcdWJYU2THlgliwe4DGbp7jB
+ 8wDkxeGdJSyMIhxMciKKbJMOKRxK2PJ1b/+HuYPYOawMoEMYeDiFICJqFYzMsyucdxqUKj5M+3y
+ 2bsLl6Ud+el8J6iud4/v0mWiF8tU779m+Gd0g6cyZrKVi8deMcXNF+4YnjU6vlWTafdV55PPxN5
+ /escFAA==
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,58 +115,53 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Vincent,
+On SM1 the PCIe controller loses power in system suspend and the driver
+has no PM callbacks, so the first config access after resume hangs the
+CPU; on ODROID-HC4 s2idle never returns.
 
-On Fri, Nov 13, 2026 at 05:39:05PM +0100, Vincent Jardin wrote:
-> Hi Christophe, or Vladimir,
-> 
-> Le 08/11/26 11:06, Vincent Jardin via B4 Relay a écrit :
-> > From: Vincent Jardin <vjardin@free.fr>
-> > 
-> > fsl_guts_rcw_rmw() only serves the SerDes lane modes. Export it for
-> > other fields of the RCW:
-> >  - fsl_guts_rcw_read() reads a status register
-> >  - fsl_guts_rcw_override() changes fields of one under rcwcr_lock and
-> >    waits for the status register to follow
-> >  - fsl_guts_rcw_override_supported() tells whether the DCSR view of DCFG,
-> >    which holds the override registers, is mapped
-> 
-> May I ask for your advise on this topic ?
-> 
-> I am looking for the review of this serie, then I'll adapt it
-> for u-boot along with the integration of Linux.
-> 
-> thank you,
->   Vincent
+Patch 1 moves the PHY power on and the resets into the host .init and
+.deinit callbacks.  Patch 2 adds noirq suspend/resume through the DWC
+helpers, for SM1 only.
 
-Sorry for the late review. Responding here to your question on v3:
-https://lore.kernel.org/lkml/avc9KbxQ4dxlibGQ@L30177.local/
+Tested on ODROID-HC4 (SM1, ASM1061 SATA with two disks behind the port)
+on an Armbian v7.4-rc2 kernel with this series, which also carries
+Hans Zhang's pending MPS series (v9): 20 s2idle and 20 suspend-to-RAM
+cycles, the link back at Gen2 x1 and the disk readable after each.
+Suspend-to-RAM woke on the VRTC alarm via a patched BL301; the stock
+firmware has no timer wake on this board.
 
-I cannot agree with your API proposal. It exports to the rest of the
-kernel a blanket API for RCW override of any RCWSR1-RCWSR31 register,
-*including* the SerDes fields for which the fsl_guts module already
-exposes an API. So with your proposal, what can be done with
-fsl_guts_lane_set_mode() can also be (un)done with fsl_guts_rcw_override().
-The possibilities of abusing this API design are endless, and I don't
-want to have to deal with them when I can avoid them.
+Not tested on G12A, G12B or AXG.  There patch 1 changes probe and
+remove, and patch 2 leaves suspend alone.
 
-At a minimum, I would recommend renaming the API as fsl_guts_pmux_override(),
-and make guts enforce which register fields it permits overriding via
-this API. Example:
+After a failed resume, dw_pcie_suspend_noirq() calls .deinit a second
+time; pci-imx6 and pcie-rcar-gen4 have no guard against it.  Patch 2
+guards with a flag; I can fix it in the DWC core instead if preferred.
 
-static const struct fsl_soc_pmux_mask lx2160a_pmux[] = {
-	{ 12, GENMASK(29, 0) }, /* IIC2..SDHC1_DIR */
-	{ 13, GENMASK(29, 0) }, /* SDHC2_DAT74..EVT43 */
-	{ 14, GENMASK(10, 0) }, /* EVT20..IIC1 */
-	{ 27, GENMASK(7, 0) },  /* EC1, EC2, USB_EXT, GTX_CLK, SDHC1_DS <- your series is missing these */
-	{}
-};
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+Igor Velkov (2):
+      PCI: meson: Power the PHY on and reset the controller in host .init
+      PCI: meson: Add system suspend/resume support
+
+ drivers/pci/controller/dwc/pci-meson.c | 108 +++++++++++++++++++++++++++------
+ 1 file changed, 89 insertions(+), 19 deletions(-)
+---
+base-commit: 35f800669ce835aa77364a2ab5b61be19b778d3c
+change-id: 20261114-b4-pci-meson-suspend-20798a7b9956
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
+
+
 
