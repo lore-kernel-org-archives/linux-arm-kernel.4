@@ -2,118 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36E69606A8B5
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 13:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13436606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 14:05:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bzx2nB+w;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jHVBR3Ku
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OcGuTvan;
+	dkim=pass (2048-bit key, unprotected) header.d=yahoo.pl header.i=@yahoo.pl header.a=rsa-sha256 header.s=s2048 header.b=KhTMtRM2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Mi2l+E7kG7ksr6J6hLn7TfrppB/bd4wie0v0KH3M3Zg=; b=bzx2nB+wGYiLK3GCATADN/znl0
-	WA6FOt9Ov+BdvAvYi3SZ9EWM+zlnD8IMEIku7QjmbXTE5IMlK0Lcvygj51yORWOzNvuFq6b1WKdFb
-	+4P47Oty4NaDqP8sqILy5J+RoHxkHrXwaaRUsnu7776RRM6E+BnNVVT0/NpdgH+PQmSp6LlXhaMfm
-	5f/HRk7gxvHx/IoAREC8UpmHOWMT/lVqUhrPenJWnbmXJCtHotNdkwIpGojdCu+YJX3CEy0g5O15+
-	b736dVZJLlvdyQR9oVnagNDlEPKf4jB0nfLJVdiw/AV+kXw5lSMKEOSKRQji1drLPxJ2l2tDOEGJG
-	ITj6H6TA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Unsubscribe-Post:
+	List-Owner; bh=LArHksXx882LvxvjREY6QLDBRLeXNNSTIylaOqhXQaM=; b=OcGuTvanmZABHl
+	Y/4utLgPFLp5rymabYsNFOIunl8sDpZU4oyCpBXUBDCBIZasI9NBMwWpMs9fL423fcudI761opapk
+	XmL+sf5QngVvRuTYh0CIe2KgLyTSLslRbfQ2UJFs5G9PdJUGswRti9dFeP5rIqLrIHECLSeLpn8HU
+	m/sBIY6TPRyEjeHU/mTN1kjlsXIJZ31CcIS9F3byIVRbD8HI6+kIGicLIGDsxx3eVuDdI7mDYH/k0
+	aFNqc/Tl408iuAykcOB0dh2SCS+gc7POmUbTSfNxGe+rDccbLR0+Hn43Xv0CSARD05zKuQGaC2LQe
+	gKox4o8X3kXYA2P40kQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSE0N-0000000G8qw-22qj;
-	Sat, 14 Nov 2026 13:41:19 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSENB-0000000GEoU-3qo5;
+	Sat, 14 Nov 2026 14:04:53 +0000
+Received: from sonic-euwe1-0017.asd.mail.yahoo.com ([34.2.82.16] helo=sonic.asd.mail.yahoo.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSE0I-0000000G8lW-1PfG
+	id 1xSEN7-0000000GEnj-2jIT
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 13:41:14 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1A79845A49;
-	Sat, 14 Nov 2026 13:41:14 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794663674;
-	b=vyk6TbYxoElQtd3S1YxLFsD+uOvg0UcePnpeTqlAL4CbVLow8VqMdfhDmAD1aJjeWSpM
-	 b8PqdUbq7W2T90s3IKSO6ikAhzUnJ02sZZSMfHZrKtaMBgc3Io9CkUDl5/PhKKS/yVc15
-	 4LXpjuLTyIspjeCmWx/TVomRPqZtOkVLixY0SLz0XvjVlu3ROhOAwCrFQ7rGMuSB8NyyA
-	 JNuxDjTt5oW7gc1fKcsiOHOjcjdJUod0H3S2y2c3zz1nWC84fBLKhkS8JvosymOqMjfSz
-	 bJFNYKrWXiQr3fz3MTqKduAJgKKlWtFP9Icl45Vd8wVN5m1nVGzDOyRXPrO25eUM4ew==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794663674;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=Mi2l+E7kG7ksr6J6hLn7TfrppB/bd4wie0v0KH3M3Zg=;
-	b=OMlW5p7ZLmEfqdYobT6DspGqg9Ihskdud4NeXF0aXwRUpa5hf9txMt9FS1wwSe6XKVkW
-	 UvdRNB8dEmPG9g0s8Tujv8XptOzZNoN5VbISxtZwEvJlMXQSHfK4lWwe7fGC4DHfnChvv
-	 StukokIRXeUAVrXX30K5wi+QBSfOu7r1subbjRU6efwU80LjROYJcky01sUtTSBtflids
-	 /s8GxaIl3d38FOGPw5DVumjp0tDqETKtUaMy/KfOvUnKR5tdK4FoesGyPQwS4ZcnWgFHV
-	 yVtUSC4XDJgXKR194+eIZGMUeD3Pf604JvTUGxw3v5ipErxdSJ0xv0WXE7uHlADZq/g==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A6F571F000C7;
-	Sat, 14 Nov 2026 13:41:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794663673;
-	bh=Mi2l+E7kG7ksr6J6hLn7TfrppB/bd4wie0v0KH3M3Zg=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=jHVBR3KuNSwNm/+7zN1P2P44Qpua/hWQPjunppAf8rhNY+L4GKlSKi5H4EuV5yttf
-	 DRpi1PwUApWMeQx856dGURnhzZR8zwXAjRRepkaF4ULOO1FglFpUFvgtpZaXcqjKJu
-	 su6l8/99+0xti2lHtgjA0NMcivU73vsB030kpJvWu6+xPd8sd0+bhCHhzhy/6hVa2M
-	 h+Qd3wknVBtYqh2V5tolB7kfInvfIBfuyN2iGiNmIgUK/03J2OvwGLPgcncTnMNBYN
-	 jbuf011uCITa00FRYxBVLfi6/gWdyvzYzW6wv/j5RaBLyKyEfRu+DyX6D4+WOBhklz
-	 C1n+5QedyeWHg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 06C5E49DBE;
-	Sat, 14 Nov 2026 13:41:09 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Subject: [PATCH v7 00/10] ARM: Add support for Cortina Systems CS75xx and
- Securifi Almond+
-Date: Sat, 14 Nov 2026 16:41:05 +0300
-Message-Id: <20261114-b4-cs75xx-v7-0-8f17f38821b4@gmail.com>
+	Sat, 14 Nov 2026 14:04:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.pl; s=s2048; t=1794665087; bh=LArHksXx882LvxvjREY6QLDBRLeXNNSTIylaOqhXQaM=; h=From:Date:Subject:Content-Type:To:Cc:References:From:Subject:Reply-To:Content-Type; b=KhTMtRM2bwwNdd6lgu0V+1ySGpmlqwbxNe+Tp2epGyYfDJONj6qu4clAETZffxPav7ev2xXqs9cMtrMmVB+5emOY/P23qVgZqoqYAHIdGoTGIDYACeyU6aXMvw3o27QM1D7jj6PVxHVZTGDMG7Nd/t/eko9oSEJVuHxndsxWDYqg7jT9ISZB870QYrSGYsxEyqlWmJw4l21iiU75OrpbsPCfX3B1audnoNaMO+Z/fEHYgKYXatOavQfwwiV8FsfLjAnLgyjh1ek/i9z7QznwG8UDeEBFK6tGuOC7jIi80QvhtUFXGlIWCX2/4vp5zvByeWvcgFB2JF+IrTO/QSiNkw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1794665087; bh=nja7FquGY0bVxl6cGwjrnXL3GPFDzIRUnUyDyk3v0Hg=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=Xx4BoLNtxJ+eKbJWpu+z4zdKZoj08+eTPUyhRbjcqT/yMRvqlOzLrw+xJ6VSLbTC4ArpBmra32g9K9vRDMhymtjqeu+8uLIzxyoREnqZj3y56Wb4Nhc4dP7WdwxX/Zo1k8dSTo+m/i4bFxaNt6RyYveJ5i8NJ/A42lfvAZPYT7n6+NFXW0c4x4bfZ0zHSnf7w7VII+z1xxNTLzikN37C5tk3JaF0v8XT26RddFOUih3mNiktJnFisaw7qOKsmsK8SgruNgTf3UL2ryBpj+LSWqtz9AY6BMoOKBh+2h4S4FOCVkjdj3vVyTElOM3Ej6slr+3hXW1JVMy905vwEyqbNw==
+X-YMail-OSG: NxudaJ4VM1nJnKdLE5.aAHPU1R9vlfucBKMZrYLzxN4nT.f.wxmDZ.vl8nbkH4.
+ BgZ2ZLMKGPoKseFLvIVpXUEWO7bGKkdgJ8B7crHJCoGlrhdXZXjzJgGmEkmdxsnl0CBsYzrO.Jpb
+ ZbctTNhVrnsl6wglpxkpLQfTq.tbNjtkQhyA7TtXc7Vaofsqa6nmkYY0xdzb9tPB0PKtARpB55b4
+ 3dHwxxz8T6um5Gpxtlb1zMzPcQcVkQzpT3NeTjdr06Tm2j0UwDXd_6yT6w_bxnmGB1d05ZRsfX6y
+ p9.qWyOgljzma.nIdwMTA2bSDkJKZw.WFiWnJpsMnYXIyXCtBY_KRV85i_cg85e5dOSQT9VvFyG2
+ ozI6mpNivN2T.IG.eMCmsNbjpZ.Xwo1wtGE.IpiqkqYKWgSp5txjEYtSfzsjp3XyrAaMwwFlm_jP
+ SCMCFmJHeEfERUKoPBRyOoIizTm8ayrLcCzu6V86bmNRmOsekal8KWf20lyTAJhpyO.Ag0kj5MIX
+ gKk47eNfx26bTUFiGQRG4vw9c6HA.jxMz.9xEZc3maxsg7HEl9HHdxXcqKLfs2sPho4pJLsmYTes
+ KVMee2N87uCowovwhEYInMPPbHvlF5KbOFp4UzqyWKSnGfnY2n39yKSefDeNC76GhHbLXpuTsRLg
+ sUFJYve5IEiPcxWHAlNUHoxwQm9U.vbuDWojw5ElB_OS8mxv2Fc43qZutM8vOmlJLB8z9GU.UAjU
+ PonH.GSDaiDeYA57L8fgA4WYo2C7qezO0PTV5c0seHa4jQexRKOsLncCncOTHl8iquylDpfZvBKF
+ umkP1Sz9ytFwh10eg12R1bokiYZAQtAVhaSeQ4KE.xwjfpbKUYwl4MxzsFpr7qC1_pV5_uTNFCam
+ VG1aX4Zs.xL6S_NmVYqbOM76nnuNFpIpiaW8KnC2rZbt8Y3DiNuhcoAV51ckyZrewifi4Rze_le6
+ 3XbzRl8p0P4AQTC3NWd..np9dXEe_0yGUROP7QWv4HAVh6SRKsY7T.WM8xf6l_cYZqAqnBbC70XM
+ EcJQ4GJ0qz367sSf_s16jAPtBVPetXxFhs8Jn4REVAOqIcZjOUbXtFaLgMyEkDS1BNUmihGbRwnv
+ Ci2xfESmjwq50SxIVkUc92V7DzpKJKtYg81QrbOlAlEO9yzZ01ogiTyDjvSnQjZowaosYUL12hJv
+ DiVWp16BSnzhQucPwkqOZadxIni.Ba_MKaKWvSpfu.XzpndoUJib_MjLDz5Gt66oQFKSvSUmwcys
+ 6ffGbPpC8hReaVlhwT_oeLCdu08c6.7SKOEt07tekhjkrCZVpbndANup8oFcSVoBkeax2qSFWIV9
+ nMAAC5w2UDU_UG.RGN7o3pYUMpuGdhzyYiK9OTzQFWanjpYJ0yQGdxZZHRHsSb3fR1qz8.VTA5zq
+ bcnYvgGq.1Y.ihx5YqI0J8wiFeRuAHJEzs73a0KnH4lzn7ZiMxQ5Ovw0ye8ZgzYPch0Mqxhj6nBD
+ XuNyS14qxuoyyOgeFfMfIrXIRihvf0TzKiy6hSV2bUpnrdQoq9q3koSp7xOgcEqpYBKCvSpqaRgf
+ Cs1H3KBrMY3D9JyFbNNcjm9ymX_8pnghigELzzL4HfF6PlQKtJElp2eQJ4D9Kx3K80GPDlA1skR6
+ NMnGoTJ.1_S14kUKthM6KZlsR0pjgVpg3f2vt_bEOcdeFBBWDfET4BItXKppeTugLUT.yY0LopN0
+ hX5BRhZnraUIWC7jHUne1S0ql_ZfSWJbS1S3PQmgP0thkkFZyAxRtBYFGXp1HFZjWFfcz3PrdyGj
+ nXn9GFjPT4WXcHDv.2JlzejJ0WOnx6es.QoYKAZ1O6BIiqAyqSGU7TcccPDjELoSfpitvJIrPOku
+ cWiA7JYymNx_TTkZWZvVuZKWWcFWD3g1w5DbyO99dq3yoKe2NJ_to8nQRZWyku17dRk8ItSoRZFH
+ OoiQxuu.1vXUlQEComp1wCYrQFpadDOFQYZM.zgYQZd0kqGgMwPkJJp8c.SrQCfqCZGZ22DMzzHL
+ 94lB7dMxCF1QSoJ9oNtVqwQPF1hQEEpnieFiBYqw-
+X-Sonic-MF: <tomasz.unger@yahoo.pl>
+X-Sonic-ID: d54309e1-8636-4d48-b2d0-538bedfe1ee3
+Received: from sonic.gate.mail.ne1.yahoo.com by mail-asdoutdeli-p-cin-euwe1-prod-sonicconsumer-svc-104 with HTTP; Sat, 14 Nov 2026 14:04:47 +0000
+Received: from dip46.lsn.ir2.yahoo.com ([87.248.99.55])
+          by hello (SMTP) with SMTP ID 83da8b2aca0211a601e704a13be817fa;
+          Sat, 14 Nov 2026 14:04:43 +0000 (UTC)
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Sat, 14 Nov 2026 15:04:41 +0100
+Subject: [PATCH v2] platform/raspberrypi: vchiq: Stop kthreads on
+ vchiq_platform_init() failure
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XOTWrDMBAF4KsErasw0ui3q9wjdCFL40SliYuVG
- pfgu1dKoJi0WT5435u5skJjpsJeN1c20pRLHs412JcNi8dwPhDPqWYmQRrwCLxTPBar55kDYpA
- RlNXgWO1/jtTn+ba1f7vn8tW9U7y0gdY45nIZxu/bsUm03n+7k+DAlRE2KmVQS787nEL+2Mbhx
- NruhL9SgJBriVUCQRI2gHexf5TqqVRVpl5qSB7QOPko9VriWur2LVkZAjpM+Odb81SaKtGS69E
- b39m4lsuy/AB8rJMbnAEAAA==
-X-Change-ID: 20260930-b4-cs75xx-033a2c047508
-To: Arnd Bergmann <arnd@arndb.de>, Linus Walleij <linusw@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
+Message-Id: <20261114-vchiq-probe-kthread-leak-v2-1-72735334a731@yahoo.pl>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/42NQQ6CMBBFr0Jm7RimSEVX3sOwaGGwFUKxxUZCu
+ LuAF3D5kvffnyGwtxzgmszgOdpgXb+COCRQGdU/GG29MohUSCI6YayMfeHgnWZsR+NZ1dixarF
+ oJJ0LeclVlsE6Hzw39rOn7+WPw1s/uRq33mYYG0bnp/070ub9cRMJCbXUoiHORJqnt0kZ545DB
+ +WyLF/JUZg00QAAAA==
+X-Change-ID: 20261114-vchiq-probe-kthread-leak-8f6178695a33
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Drew Fustini <fustini@kernel.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
- Jason Li <jason.li@cortina-access.com>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- Fil Dunsky <filipp.dunsky@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794663665; l=11175;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=8fuxBT7k9meZsdmrlSFLl9K3l0mTXJ0LczVKq14txmI=;
- b=dhg4UO9EAjaKzHyGhm+GParB94SSxeS8w//MA5ncw9jsd5+9M2C5GbkKlPgISanKU9L9wn0SV
- bntj5GY9+yYB+fhiz6UB3cDUO3NhFoUFewk/0rp4jEaYdzJ+1tq3oY2
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+ Umang Jain <uajain@igalia.com>, Stefan Wahren <wahrenst@gmx.net>, 
+ Jai Luthra <jai.luthra@ideasonboard.com>, 
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Tomasz Unger <tomasz.unger@yahoo.pl>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794665082; l=5445;
+ i=tomasz.unger@yahoo.pl; s=20260311; h=from:subject:message-id;
+ bh=nFskL7sdI0QtBpVIAxqrSqNa+hu6nhp1HW6ukvKlzhI=;
+ b=jY67Lg5Pk/Tla8gXiL+D1BEYX1mbVtEAvhg8VE4uBs2DRWo34SRtTsMCLOwaUBtP+/t33cL0u
+ vWVc+XS3KcZDoGTsC+LjzudZ5DTKRMOGntf18iI8QeOG4aqhoHd/qSh
+X-Developer-Key: i=tomasz.unger@yahoo.pl; a=ed25519;
+ pk=EPPsO91uz/0J2cTQ6ol+dgxYaieEc9dKSXWUb51n46c=
+References: <20261114-vchiq-probe-kthread-leak-v2-1-72735334a731.ref@yahoo.pl>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261114_060449_895410_BFA42FF0 
+X-CRM114-Status: GOOD (  18.00  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,225 +107,150 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds initial support for the Cortina Systems CS75xx
-("Goldengate G2") network processors and the first board using one, the
-Securifi Almond+ touchscreen Wi-Fi router (CS7542, 2x Cortex-A9 r2p1,
-PL310 r3p1, 512 MiB DDR3, 512 MiB NAND).
+vchiq_init_state() creates and wakes the slot handler, recycle and sync
+kthreads. If a later step in vchiq_platform_init() fails, the function
+returns without stopping them and vchiq_probe() only propagates the
+error. devres then frees what probe allocated, including the driver
+data and the slot memory the kthreads operate on.
 
-There is no public documentation for the SoC. The register information
-comes from the GPL vendor kernels (Linux 2.6.36 for the Almond+, Linux
-4.9 for the Verizon FiOS G1100 which uses the same SoC) and from
-disassembly of the stock U-Boot 2009.11. A full out-of-tree port
-(clock, irqchip, GPIO, I2C, RTC, NAND, PCIe, MDIO and the packet engine)
-runs on Linux 6.18 in OpenWrt; this series is the first, minimal step to
-get the platform into mainline:
+Forcing the devm_request_irq() error path on a Raspberry Pi 4 Model B
+makes all three kthreads fault right after the failed probe:
 
-  - bindings: vendor prefix, SoC/board compatibles, an SMP enable method
-    and the UART,
-  - the platform Kconfig and SMP bring-up (the generic DT machine is
-    used, there is no DT_MACHINE_START),
-  - DEBUG_LL for UART0,
-  - a UART driver with console and earlycon support,
-  - SoC dtsi and board dts describing the CPUs, GIC, SCU, timers, L2,
-    UARTs and memory,
-  - multi_v7_defconfig and MAINTAINERS updates.
+ bcm2835_vchiq fe00b840.mailbox: failed to register irq=34
+ bcm2835_vchiq fe00b840.mailbox: arm: Could not initialize vchiq platform
+ Unable to handle kernel paging request at virtual address ffff800080ba402c
+ Internal error: Oops: 0000000096000007 [#1]  SMP
+ CPU: 1 UID: 0 PID: 370 Comm: vchiq-sync/0 Not tainted 7.4.0-rc1-trace #1
+ pc : sync_func+0x44/0x3a8 [vchiq]
+ Call trace:
+  sync_func+0x44/0x3a8 [vchiq] (P)
+  kthread+0x128/0x150
+  ret_from_fork+0x10/0x20
 
-The serial binding and driver (patches 6-7) are meant to go through the
-soc tree together with the rest of the series rather than through the
-tty tree, with an Ack from the tty maintainers.
+If the kthreads are asleep at that point they are left behind instead,
+three per failed probe, still pointing at the freed memory.
 
-Testing: build tested with multi_v7_defconfig (GCC 14 and Clang 21,
-W=1) and checked with dt_binding_check/dtbs_check. On a Securifi
-Almond+ this series boots v7.4-rc1 to an initramfs shell with
-both CPUs online ("smp: Brought up 1 node, 2 CPUs"; IPIs and the TWD
-timer tick on both cores); the L2C-310, the global and TWD timers and
-the UART driver (ttyCS0) come up. The kernel was started from a
-running OpenWrt system with a small kexec-style loader rather than
-from the stock U-Boot, because U-Boot enters the kernel with the MMU
-on (see 2 below). The same patches on Linux 6.18 in OpenWrt, with the
-head.S workaround from 2, also boot from NAND through the stock U-Boot;
-that is how the secondary CPU wake-up fix in v4 was found.
+Map the registers and look up the interrupt before vchiq_init_state().
+Neither depends on the VCHIQ state, so these two failures need no
+unwinding. On the remaining failures stop the kthreads with
+vchiq_platform_uninit(), as is already done when registering the
+character device fails. Add a forward declaration of
+vchiq_platform_uninit() for that.
 
-Open questions:
+The missing unwind is older than the commit named below, but the
+kthreads could not be stopped before it, so it is the earliest point
+this fix applies to.
 
-1. The stock U-Boot arms the CPU0 private (TWD) watchdog before
-   starting the kernel; without a driver the board resets after ~300
-   seconds. The OpenWrt port disarms it in init_early, which I did not
-   want to propose here. Instead, a driver for "arm,cortex-a9-twd-wdt"
-   (the binding exists, but there is currently no driver for it) that
-   takes over the running watchdog on all CPUs is written and tested
-   on this board and posted on its own to the watchdog list, together
-   with a restart handler (this series has no way to restart the SoC).
-   Until it is merged, this series on its own boots but resets after
-   ~5 minutes.
-   Is a TWD watchdog driver the preferred way to deal with this?
+The bug was found and the fix drafted with the help of an AI coding
+assistant (Claude).
 
-2. The same U-Boot enters the kernel with the MMU and data cache
-   enabled (identity map with XN set, dirty lines left in the D-cache),
-   which breaks the decompressor. The OpenWrt port carries a small
-   workaround at the start of arch/arm/boot/compressed/head.S that
-   cleans the cache and turns the MMU off. It is not part of this series.
-   Replacing the bootloader is possible but risky for users of this
-   (discontinued) device. Would a quirk of that kind be acceptable in
-   head.S at all, or should this be solved outside the kernel (e.g. a
-   chain-loaded bootloader)? For the tests below the kernel was started
-   from a running Linux with the MMU off, so this was not an issue.
-
-3. The APB clock is 100, 150 or 170 MHz depending on the boot strap pins.
-   It is modelled as a fixed-clock with the rate set in the board dts.
-   A clock driver for the global control block, which also contains the
-   strap, pinmux and reset registers, will follow and replace it.
-
-4. The Cortex-A9 r2p1 is also affected by errata 742230, 742231, 743622
-   and 751472, whose workarounds are not available on multiplatform
-   kernels because they are expected to be applied by the bootloader.
-   The stock U-Boot does not apply them. Is there a preferred way to
-   deal with this?
-
-5. The UART ports are named ttyCS to avoid clashing with the 8250 driver
-   in multi_v7_defconfig, and PORT_GENERIC is used instead of a new port
-   type. The FIFO depth is not documented; the driver assumes 16.
-
-6. The top 64 MiB of RAM are reserved: the vendor firmware gives them to
-   the packet engine queue manager and the stock kernel is booted with
-   mem=448M. The reservation will be referenced by the network driver
-   later; I kept it now so that the memory is not handed out and later
-   claimed.
-
-Planned follow-ups, as separate series: the peripheral interrupt
-controller, GPIO and I2C drivers (posted separately, one series per
-subsystem, with their device tree nodes to follow once this series is
-merged), the TWD watchdog (posted separately), then the global control
-block/clock, RTC, NAND,
-PCIe (DesignWare glue), MDIO, the Ethernet/packet engine and a fix for
-the SX8650 touchscreen.
-
+Fixes: 863a756aaf49 ("staging: vc04_services: vchiq_core: Stop kthreads on vchiq module unload")
+Assisted-by: Claude:claude-fable-5-2
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
 ---
-Changes in v7:
-- rebase on v7.4-rc1
-- cpus binding: the boot loader parks the secondary core in a WFI loop
-  that polls the release register, not in a WFE loop
-- goldengate: drop Linus' Reviewed-by, the patch changed in v4 and v5
-  (wakeup IPI for the secondary core, PL310 erratum 769419); Linus,
-  could you have another look?
-- board dts: drop the ramoops region, it is only useful for development
-- cover: the serial patches go with the rest of the series, not through
-  the tty tree on their own (Krzysztof)
-- move Signed-off-by after the other trailers
-- collect Reviewed-by tags
-- Link to v6: https://patch.msgid.link/20261013-b4-cs75xx-v6-0-37e8f3969b7c@gmail.com
-
-Changes in v6:
-- serial: also ignore overruns when CREAD is cleared, everything received
-  is dropped then (sashiko-bot)
-- Link to v5: https://patch.msgid.link/20261013-b4-cs75xx-v5-0-4e72aa383d39@gmail.com
-
-Changes in v5:
-- goldengate: select PL310_ERRATA_769419, the PL310 is r3p1-50rel0
-  (CACHE_ID 0x410000c7), not r3p2 as v4 said; fix the revision in the
-  commit message and here
-- serial: scale the TX FIFO wait in putchar with the frame time, 10 ms is
-  shorter than one character below 1200 baud (sashiko-bot)
-- serial: no change for the other two sashiko-bot points on v4:
-  uart_port_tx() checks tx_ready before it sends x_char, and SysRq is
-  reachable through MAGIC_SYSRQ_SERIAL_SEQUENCE; the UART has no break
-  indication that the driver could use
-- Link to v4: https://patch.msgid.link/20261012-b4-cs75xx-v4-0-df250d903682@gmail.com
-
-Changes in v4:
-- serial: use guard()/scoped_guard() for the port lock and the port
-  table mutex (Jiri Slaby)
-- serial: honour INPCK/IGNPAR: report parity and framing errors with
-  TTY_PARITY/TTY_FRAME and insert the overrun marker after the characters
-  still in the FIFO (sashiko-bot)
-- goldengate: also send a wakeup IPI to the secondary core: the stock
-  U-Boot parks it in WFI, SEV alone only worked when it was parked by
-  another kernel (found booting from NAND instead of from RAM); the
-  change is small, I kept Linus' Reviewed-by
-- drop the RFC prefix
-- Link to v3: https://patch.msgid.link/20261012-b4-cs75xx-v3-0-0e0d17a098cf@gmail.com
-
-Changes in v3:
-- serial: do not put the console setup callback in .init.text, it is
-  called from a probe that may be deferred past boot (sashiko-bot)
-- collect Reviewed-by tags
-- Link to v2: https://patch.msgid.link/20261006-b4-cs75xx-v2-0-b7d6e1e24d44@gmail.com
-
-Changes in v2:
-- serial: drop the empty break_ctl, request_port and release_port
-  callbacks, comment why set_mctrl stays, add a copyright line (Greg)
-- serial: take the port lock around all IE accesses in startup, flush
-  stale RX data on startup and disable the receiver on shutdown
-- serial: bound the RX loop per interrupt, check RXDAT_VALID in
-  poll_get_char, scale the console TX drain timeout with the frame time
-- serial: serialise port index allocation, reject too low clock rates
-- serial: name the driver after the vendor (cortina-uart.c,
-  SERIAL_CORTINA), as the same block is used in the Cortina Access SoCs
-  (Linus Walleij, Arnd Bergmann); the binding and the help text name
-  the Cortina Systems CS75xx and Cortina Access parts (Jason Li)
-- serial binding: describe the CS7542 only; other SoCs get their own
-  compatible with "cortina,cs7542-uart" as fallback (Conor Dooley)
-- debug: keep the character register intact on BE8 in senduart
-- platform: move arch/arm/mach-cortina to arch/arm/mach-goldengate, as
-  mach-gemini is a Cortina SoC too, and use one ARCH_CORTINA_ACCESS
-  symbol for the whole family, as for the 64-bit Cortina Access parts,
-  with the rationale in the commit message (Linus Walleij, Krzysztof
-  Kozlowski, Arnd Bergmann); mach-goldengate vs. mach-cortina is still
-  open, I am happy to rename the directory if mach-cortina is preferred
-- collect Reviewed-by and Acked-by tags
-- Link to v1: https://patch.msgid.link/20260930-b4-cs75xx-v1-0-4617c4463529@gmail.com
-
+Verified on a Raspberry Pi 4 Model B with a test-only one-line change
+that forces the devm_request_irq() error path. Without this patch the
+kthreads either oops as shown above or, as in the test run for v2, are
+left behind: 12 of them after four failed probe attempts. With it probe
+fails cleanly, no vchiq kthreads remain after four failed attempts and
+the module unloads. Without the forced error the driver probes normally
+and audio playback over VCHIQ works.
 ---
-Fil Dunsky (10):
-      dt-bindings: vendor-prefixes: Add Securifi
-      dt-bindings: arm: Add Cortina Systems CS7542 and Securifi Almond+
-      dt-bindings: arm: cpus: Add Cortina Systems CS7542 enable method
-      ARM: goldengate: Add support for the CS75xx SoC family
-      ARM: debug: Add Cortina Systems CS75xx UART0 support
-      dt-bindings: serial: Add Cortina Systems CS7542 UART
-      tty: serial: Add Cortina UART driver
-      ARM: dts: cortina: Add CS7542 SoC and Securifi Almond+ board
-      ARM: multi_v7_defconfig: Enable Cortina Systems CS75xx support
-      MAINTAINERS: Add entry for Cortina Systems CS75xx
+Changes in v2 (per Stefan Wahren's review):
+- Use a forward declaration of vchiq_platform_uninit() instead of
+  moving it and vchiq_platform_get_arm_state() above
+  vchiq_platform_init(). vchiq_platform_get_arm_state() needs no
+  declaration, all its callers are below its definition.
+- Link to v1: https://patch.msgid.link/20261114-vchiq-probe-kthread-leak-v1-1-b6b2f1e32050@yahoo.pl
+---
+ .../raspberrypi/vchiq-interface/vchiq_arm.c         | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
- Documentation/devicetree/bindings/arm/cortina.yaml |  31 ++
- Documentation/devicetree/bindings/arm/cpus.yaml    |   2 +
- .../bindings/serial/cortina,cs7542-uart.yaml       |  52 ++
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- MAINTAINERS                                        |  11 +
- arch/arm/Kconfig                                   |   2 +
- arch/arm/Kconfig.debug                             |  16 +-
- arch/arm/Makefile                                  |   1 +
- arch/arm/boot/dts/Makefile                         |   1 +
- arch/arm/boot/dts/cortina/Makefile                 |   3 +
- .../dts/cortina/cs7542-securifi-almondplus.dts     |  46 ++
- arch/arm/boot/dts/cortina/cs7542.dtsi              | 127 +++++
- arch/arm/configs/multi_v7_defconfig                |   3 +
- arch/arm/include/debug/cs75xx.S                    |  37 ++
- arch/arm/mach-goldengate/Kconfig                   |  19 +
- arch/arm/mach-goldengate/Makefile                  |   2 +
- arch/arm/mach-goldengate/platsmp.c                 |  72 +++
- drivers/tty/serial/Kconfig                         |  24 +
- drivers/tty/serial/Makefile                        |   1 +
- drivers/tty/serial/cortina-uart.c                  | 601 +++++++++++++++++++++
- 20 files changed, 1051 insertions(+), 2 deletions(-)
+diff --git a/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c b/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
+index e78641703252..3e5c10039b4e 100644
+--- a/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
++++ b/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
+@@ -187,6 +187,8 @@ void vchiq_add_connected_callback(struct vchiq_device *device, void (*callback)(
+ }
+ EXPORT_SYMBOL(vchiq_add_connected_callback);
+ 
++static void vchiq_platform_uninit(struct vchiq_drv_mgmt *mgmt);
++
+ static int vchiq_platform_init(struct platform_device *pdev, struct vchiq_state *state)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -243,10 +245,6 @@ static int vchiq_platform_init(struct platform_device *pdev, struct vchiq_state
+ 	sema_init(&drv_mgmt->free_fragments_sema, MAX_FRAGMENTS);
+ 	sema_init(&drv_mgmt->free_fragments_mutex, 1);
+ 
+-	err = vchiq_init_state(state, vchiq_slot_zero, dev);
+-	if (err)
+-		return err;
+-
+ 	drv_mgmt->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(drv_mgmt->regs))
+ 		return PTR_ERR(drv_mgmt->regs);
+@@ -255,11 +253,15 @@ static int vchiq_platform_init(struct platform_device *pdev, struct vchiq_state
+ 	if (irq <= 0)
+ 		return irq;
+ 
++	err = vchiq_init_state(state, vchiq_slot_zero, dev);
++	if (err)
++		return err;
++
+ 	err = devm_request_irq(dev, irq, vchiq_doorbell_irq, IRQF_IRQPOLL,
+ 			       "VCHIQ doorbell", state);
+ 	if (err) {
+ 		dev_err(dev, "failed to register irq=%d\n", irq);
+-		return err;
++		goto err_stop_threads;
+ 	}
+ 
+ 	/* Send the base address of the slots to VideoCore */
+@@ -268,13 +270,14 @@ static int vchiq_platform_init(struct platform_device *pdev, struct vchiq_state
+ 				    &channelbase, sizeof(channelbase));
+ 	if (err) {
+ 		dev_err(dev, "failed to send firmware property: %d\n", err);
+-		return err;
++		goto err_stop_threads;
+ 	}
+ 
+ 	if (channelbase) {
+ 		dev_err(dev, "failed to set channelbase (response: %x)\n",
+ 			channelbase);
+-		return -ENXIO;
++		err = -ENXIO;
++		goto err_stop_threads;
+ 	}
+ 
+ 	dev_dbg(&pdev->dev, "arm: vchiq_init - done (slots %p, phys %pad)\n",
+@@ -284,6 +287,10 @@ static int vchiq_platform_init(struct platform_device *pdev, struct vchiq_state
+ 	vchiq_call_connected_callbacks(drv_mgmt);
+ 
+ 	return 0;
++
++err_stop_threads:
++	vchiq_platform_uninit(drv_mgmt);
++	return err;
+ }
+ 
+ int
+
 ---
 base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20260930-b4-cs75xx-033a2c047508
+change-id: 20261114-vchiq-probe-kthread-leak-8f6178695a33
 
 Best regards,
 --  
-Fil Dunsky <filipp.dunsky@gmail.com>
-
+Tomasz Unger <tomasz.unger@yahoo.pl>
 
 
