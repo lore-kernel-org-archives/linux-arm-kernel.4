@@ -2,103 +2,147 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4094606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 17:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5737E606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 17:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3C/LyqLo;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cVH10VSU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NIJXHZy3;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=LugsiSZs;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=Gi/FVru2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=jCgnmtgOCdPYkEDmr+VTaAMsNukSPghc49+bvrtNoAA=; b=3C/LyqLob0XLCAl5oUmQtFup+H
-	IGs3ItUeavv+CBNczGtCLmOZGzudH9F8Sy2ZmkrZN8YmbWJPn4U27Vz7ypzYsS3kzqGoAcIWV35pZ
-	k9ww2s/u9gGgUPtb8UNH8oxrBqz4TNV2Tv/D9yG6xd0hhKw6sq2sUUM1Y7D/hlualdAHSFKG2Nm/y
-	WAHwjAvi53Ai1X0G4kpTCex3xDLs2fhLu1qnStvoZ+GqQ7WBjjbNIJ93GSF6Zq/+BnqnjfL6ga4Ni
-	yHhNGb/Kqd05nkmWCOiJVmuhxzjf4ZU78f6tJ4clUA+I9thKZWuxwfVAsKGUEmGAm3sRv+P8mNoQo
-	hXiKx+MQ==;
+	bh=ya1SkaOxN+nS5fikk2w3MoZXNnvyzLHOp+OqqLQDueM=; b=NIJXHZy32plquhf96RtPA7vfac
+	thtWwmBJiFRmYYXbnJ4Bh/2lqTR7EH1WikxpTIT+f+xm+gq3gogSDYOARVudyIuAtF0YaEZ4CRC89
+	kqLVywm3C2IPXl6ey1KF54BK4wZp3hYpcdKnbxlUrjrNzQmCepOlrFOdzShAkpARPFnDAGwaJ6iah
+	oOJXZS5mHY0fcw+V0ZeD95LLunnyc6C5KYBaJ0InMN1v/xAAaGM1L8HTlZLvFid2vJ3fwaw5zSWAt
+	qSlaz+VxoQh5E/JTJWJ7aBMa9+ERbQnM8AhJ/6bybtgAQuGJb8PGG+ZE8HEFmt1MgFUcaAIaV/D3C
+	c43kwZRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSHTn-0000000GWVz-1bax;
-	Sat, 14 Nov 2026 17:23:55 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSHf6-0000000GY4i-3UzZ;
+	Sat, 14 Nov 2026 17:35:36 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSHTm-0000000GWVY-0GnM
+	id 1xSHf3-0000000GY4J-3Xen
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 17:23:54 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 781C640871;
-	Sat, 14 Nov 2026 17:23:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05CB21F000C4;
-	Sat, 14 Nov 2026 17:23:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794677033;
-	bh=jCgnmtgOCdPYkEDmr+VTaAMsNukSPghc49+bvrtNoAA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=cVH10VSU7hl5YcDZSYF7i2POZOcTnx2uLsHfvyXL6HXXY89/pdwTo84I4mtY3aUGy
-	 VGcpOEv/ycaxIsJcpg1qczl9+hr1LSfFcBDEk8WmmMimYp7bYFra3WOrXwPTIfoqhT
-	 qRHO7swK1RIOrMcqmc0e1+GmzufCKoA4ZRIe0VtWGiRPZ5vXbHsRZfKo/AAbq9RDRV
-	 AyhN4o10/D81jgESOZKmqOjpzpo7oJ2sOqpfNxp9+22RIns1l7ifNffcSjiYaGDFrQ
-	 75D18SAdBX+bI3AqEidhNDJyiSrB4lIpbX9DBK7UjnoTu4jttoHb3muNtBO+cFW/F7
-	 A7X1UiQa4EVxA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xSHTi-0000000Fpux-2LPy;
-	Sat, 14 Nov 2026 17:23:50 +0000
-Date: Sat, 14 Nov 2026 17:27:09 +0000
-Message-ID: <87ik1z8gsy.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Steffen Eiden <seiden@linux.ibm.com>
-Cc: Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Andreas Grapentin <gra@linux.ibm.com>,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	Janosch Frank <frankja@linux.ibm.com>,
-	Claudio Imbrenda <imbrenda@linux.ibm.com>,
-	David Hildenbrand <david@kernel.org>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Vasily Gorbik <gor@linux.ibm.com>,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Sven Schnelle <svens@linux.ibm.com>,
-	Friedrich Welter <fritz@linux.ibm.com>,
-	Gautam Gala <ggala@linux.ibm.com>,
-	Hariharan Mari <hari55@linux.ibm.com>,
-	Hendrik Brueckner <brueckner@linux.ibm.com>,
-	Nico Boehr <nrb@linux.ibm.com>,
-	Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	kvm@vger.kernel.org,
-	linux-s390@vger.kernel.org,
-	Nina Schoetterl-Glausch <nsg@linux.ibm.com>
-Subject: Re: [PATCH v3 01/23] KVM: arm64: Refactor idreg caching into dedicated structure
-In-Reply-To: <20261106-sysreg-v3-1-75e95980fb10@linux.ibm.com>
-References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
-	<20261106-sysreg-v3-1-75e95980fb10@linux.ibm.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Sat, 14 Nov 2026 17:35:35 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AEDkTLo640570
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 17:35:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ya1SkaOxN+nS5fikk2w3MoZX
+	NnvyzLHOp+OqqLQDueM=; b=LugsiSZsik90iK3dBFx3l+VUGOfHWx7eatFVAfqS
+	+KIfOQdGvqZabGJzU6ZqlxjefnYB+dtqoW1+A1ZrlFHQzsnfdUakG2v8cWa7Ppou
+	a8jYG3E8BOE0MfZuO+vN7Xt4wTii41bXBaLJipaY8wQ9lDfN94P87aJBYvF8ZoUQ
+	sfE1pSOS+jJx7TOStiUFz1iVuqi4uYXmp8WEjFVSj9hYQjDzjAW80YUUNgYpbVTB
+	uDEiHjcEFhpZF2Bk+CmR/2Kerubb8Oj3xKqt0C5hCU2Mi7mWvqZOhiwptK4x1aWt
+	nxBpsWFUu8cPWm5GdyYSHF7D8OsUbo5evNTvtViXsxLceQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hxhmahaek-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 17:35:32 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-9495876f8beso219812885a.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 09:35:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1794677732; x=1795282532; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=ya1SkaOxN+nS5fikk2w3MoZXNnvyzLHOp+OqqLQDueM=;
+        b=Gi/FVru28ser7xdRaFVJSROw45fpxd20Wdw4WIgWR5eQn30mf5iuB66CuQmvwr1sWQ
+         ukoZxhPYJ5wsJlKqnPdO3IMbMXp8zwHUVTuWyxGUDUi4wleVkHhEI7IAg1WNN/TE6IpA
+         dFzunIsl4TmVTuLgLCiuayjP9jzwO5j2Fu0AuyLKDmQllPdPkiXPUVAlExv975CU/KoO
+         2Bzs3nMbPPbrkR1QCxCDM01iM29Z16mpdWxl+/+CrsAMmgdYKTa7CXF3BO/R7s9OFORk
+         ZPBwMpPyTQNoeJqVuPYgd5aaUU8e939tpd0b5dZlJHBH6yFSvfEMrDxxwvrgpkepu3Gw
+         7QRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794677732; x=1795282532;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ya1SkaOxN+nS5fikk2w3MoZXNnvyzLHOp+OqqLQDueM=;
+        b=ikoMkxzjx5UVZ7ZTHHYEIqXLiM3Gs+bhlpLNC7SPDODAnSQD1Z6RxES4HnLyddw4aB
+         F3StZqVWEGft6SKzyoBMyApR693JvZTMCcA2PgL7CAcurmfSHeNcI/AgnFCBN2xKFa3E
+         mCdq+UaiUW4+UAfPjrz7LO44IOsPf21QE+W+FDyZKbUC/QP8XUsRkyDvkuaEksDG1Lgt
+         wE8GyAEI2NNqdJjnCvnkjsK9ifMvubLHsijHdJ0CP2UyWsKMiHD6ZwH5R6MKo+ySypKe
+         t83xgsMaKV50X+AeJSSBok4fnw5ascSHLisW7RbFJ+O6v7kvLFr7SFc/fXCY9Kw7eB+H
+         6yuQ==
+X-Forwarded-Encrypted: i=1; AL+hErEJukHXuQGZO7lhBA3pUUqPxJfy30bM18ufyTG8ejdCeATTPPGgiIvWpeVHGHntcZEQMcSS4iGLkr77p7igKJg1@lists.infradead.org
+X-Gm-Message-State: APuU4Z+tNtVU/RkdMibsnfveJNWUfHKxHdTfVYxjLccIC9ZafKbqY2tW
+	AML/a+dOnX6cF3N7LH+DPJ0qLkQ+1o0+2WG/vVrh9Em8QJASsBbYvZZ3B/+kJWZxrwxLffksAPk
+	4QL772i9aUhLB8bCvYfmde3PQBShfxZ9WWTpUVFFnyUHtgEWnGcD+FvybX2qrIjluVplw/WHZsf
+	nUF7+JNWkVsg==
+X-Gm-Gg: AYBFou1HsAAy+XhgWIERF5KZmHPj2mcQvQJzRlTEvhSCoFRGuu5n0o1YfJHq4G/2pgm
+	Hb5kXAIJoBcyPZXWOxLJJj/fo82DjfpnbLCh8vSUgAGZs4AQ3vAQU5RJTRrsQ/0r5B4gmhsq6qY
+	zFGLQLnDwE/7pODfyhUdArqN15ahwway+fAUPDaHX+w6Yc8OcJjRGce8XdkK4/sPo27C2gXpGFc
+	Tat65nUw7m7BmCz5S5VN8EZxgcfWT0hr7dnDcFU0RDGcDrmjiZ5xmknv+pnQ1E4DZT2B9+sQtrJ
+	sDjTQ9TU/vFCCUdkOym0WQbSIZrWiH2letdUVM6AM4iUPn/g8kzZPO4wy5hGg+Fn72vkU7eA20j
+	SdNQhTtgwzRJnBMnQzFYlAqqH2fwr6wbSyPZTSi1gg1qAaaXRBQLg71rGKuocEg==
+X-Received: by 2002:a05:620a:2a14:b0:93c:6534:d04d with SMTP id af79cd13be357-9494bbcd0ebmr940945585a.35.1794677731452;
+        Sat, 14 Nov 2026 09:35:31 -0800 (PST)
+X-Received: by 2002:a05:620a:2a14:b0:93c:6534:d04d with SMTP id af79cd13be357-9494bbcd0ebmr940941885a.35.1794677730859;
+        Sat, 14 Nov 2026 09:35:30 -0800 (PST)
+Received: from localhost ([93.66.91.216])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb55ac0e3fsm125451425e9.5.2026.11.14.09.35.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Nov 2026 09:35:29 -0800 (PST)
+Date: Sat, 14 Nov 2026 18:35:28 +0100
+From: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+To: netdev-bot+sashiko@kernel.org
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+        edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        richardcochran@gmail.com, Jose.Abreu@synopsys.com,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net] net: stmmac: re-base EST after PTP settime64
+Message-ID: <avib4GD-_vySRw70@lore-desk>
+References: <20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6@oss.qualcomm.com>
+ <179461436943.2199510.3966572269599982119@kernel.org>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: seiden@linux.ibm.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, gra@linux.ibm.com, borntraeger@linux.ibm.com, frankja@linux.ibm.com, imbrenda@linux.ibm.com, david@kernel.org, hca@linux.ibm.com, gor@linux.ibm.com, agordeev@linux.ibm.com, svens@linux.ibm.com, fritz@linux.ibm.com, ggala@linux.ibm.com, hari55@linux.ibm.com, brueckner@linux.ibm.com, nrb@linux.ibm.com, Ulrich.Weigand@de.ibm.com, arnd@arndb.de, pbonzini@redhat.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, kvm@vger.kernel.org, linux-s390@vger.kernel.org, nsg@linux.ibm.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7ZBwauAhLgdMSXs7"
+Content-Disposition: inline
+In-Reply-To: <179461436943.2199510.3966572269599982119@kernel.org>
+X-Proofpoint-ORIG-GUID: ryfkdD9J-UxOit4RCl2Aj1eJq6NA_4zQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE0MDA2OSBTYWx0ZWRfX2lUoX7TRNUgh
+ S+u2FR85Wwp8u1Z1xgeZZXYUVJucmiHhxcT/VwM+1qtMZmfBGzbo2kcWHVVzlx4vgPWRPh3b+rn
+ oeczlT2UMcD2BvBUrXQmMiriFhN0w2QImVIRVhTF79/T+wSVJcoj92aAqhdDI35fmJLGxEl+6gY
+ Rl0UFzi/6CZJx/0ZzmYkOkK83mqJZ0CBwfVuLbI0uGQHqHNptHcU/ZBcJSugxkX2TcdFWuYuRrk
+ sIeQhaL0EB5VusfF/p7cU7ZvuG8YGnh5cPj+4UDVGN04pwbhJ07sqJR2yNOjOSzW1Pmybvu02/a
+ kDdXERREjBbufvC2T4TfjC7K425fxAuYbJ8/q9OkKEDvk6OyIexlUM2H8Duc22Nesc4pI9sLdAV
+ 1xj643RC3KhCQ7RSOOCJeDzQzZwaMeaKcRahgTrOQoHeFs1w0/KRiPDSAwtzgU6bCBBH8QjRlHh
+ 1xD16OXjbRG3MjI2+XA==
+X-Authority-Analysis: v=2.4 cv=NdhzRGD4 c=1 sm=1 tr=0 ts=6af89be4 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=8zQ3sPA27H7dy4zktjPBAQ==:17
+ a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=bC-a23v3AAAA:8
+ a=EUspDBNiAAAA:8 a=9R54UkLUAAAA:8 a=VwQbUJbxAAAA:8 a=P-IC7800AAAA:8
+ a=WSH4S4wLhjpOz4qybXQA:9 a=QEXdDO2ut3YA:10 a=wVBckmvFIwzeoRS6_l8A:9
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=FO4_E8m0qiDe52t0p3_H:22 a=YTcpBFlVQWkNscrzJ_Dz:22
+ a=d3PnA9EDa4IxuAV0gXij:22
+X-Proofpoint-GUID: ryfkdD9J-UxOit4RCl2Aj1eJq6NA_4zQ
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE0MDA2OSBTYWx0ZWRfXzKaNPXGRH1P7
+ G+8GF+rLuV7aRaJ/ddQeqxCVBN0rpMNibY7jz6yypSKGWfOaFU2+FrCPv42pjw0N8RQ2Xx9ZUa9
+ 1vNke1zheLWFjbnJs3z7b0ZJ9fWtdG4=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-14_04,2026-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 clxscore=1015 adultscore=0 lowpriorityscore=0
+ spamscore=0 impostorscore=0 priorityscore=1501 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611140069
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261114_093534_009880_EFB774D9 
+X-CRM114-Status: GOOD (  35.70  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,271 +161,298 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 06 Nov 2026 16:07:34 +0000,
-Steffen Eiden <seiden@linux.ibm.com> wrote:
-> 
-> Move VM-wide ID register emulation fields from struct kvm_arch into a
-> new struct kvm_vm_id_regs. The new struct is placed in a shared region.
-> Update all users to use the new structure.
-> 
-> No functional changes.
-> 
-> Co-developed-by: Nina Schoetterl-Glausch <nsg@linux.ibm.com>
-> Signed-off-by: Nina Schoetterl-Glausch <nsg@linux.ibm.com>
-> Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
-> Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
-> Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
-> ---
->  arch/arm64/include/asm/kvm_host.h  | 50 ++++++++++++++++++++------------------
->  arch/arm64/kvm/config.c            | 10 ++++----
->  arch/arm64/kvm/hyp/nvhe/pkvm.c     |  7 +++---
->  arch/arm64/kvm/hyp/nvhe/sys_regs.c |  4 +--
->  arch/arm64/kvm/sys_regs.c          |  2 +-
->  5 files changed, 39 insertions(+), 34 deletions(-)
-> 
-> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-> index 97332ffcb130..7f051dad79c7 100644
-> --- a/arch/arm64/include/asm/kvm_host.h
-> +++ b/arch/arm64/include/asm/kvm_host.h
-> @@ -105,6 +105,25 @@ struct vcpu_reset_state {
->  	bool		reset;
->  };
->  
-> +struct kvm_vm_id_regs {
-> +	/*
-> +	 * Emulated CPU ID registers per VM
-> +	 * (Op0, Op1, CRn, CRm, Op2) of the ID registers to be saved in it
-> +	 * is (3, 0, 0, crm, op2), where 1<=crm<8, 0<=op2<8.
-> +	 *
-> +	 * These emulated idregs are VM-wide, but accessed from the context of a vCPU.
-> +	 * Atomic access to multiple idregs are guarded by kvm_arch.config_lock.
-> +	 */
-> +#define IDREG_IDX(id)		(((sys_reg_CRm(id) - 1) << 3) | sys_reg_Op2(id))
-> +#define KVM_ARM_ID_REG_NUM	(IDREG_IDX(sys_reg(3, 0, 0, 7, 7)) + 1)
-> +	u64 ftr_reg[KVM_ARM_ID_REG_NUM];
+--7ZBwauAhLgdMSXs7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I'm OK with changing the name of the array, but then you need to be
-consistent and change the name of the indexing macros throughout the
-code. This should be a preliminary change.
+> Thank you for your contribution! Sashiko AI review found 3 potential
+> issue(s) to consider.
+>=20
+> Critical: 0 =C2=B7 High: 0 =C2=B7 Medium: 3 =C2=B7 Low: 0
+>=20
+> If you believe none of the issues are legitimate, please reply to each
+> issue of Medium severity or higher and explain why the AI is wrong.
+> If any of them are legitimate and you plan to respin, please let patchwork
+> know by including "pw-bot: cr" as a separate line at the end of your reply
+> (one such reply per series is enough).
+>=20
+> - [Medium] The commit message gets stmmac_adjust_time() wrong, and it
+>   uses that function as the model for the new code.
+> - [Medium] stmmac_adjust_time() and stmmac_set_time() are the .adjtime
+>   and .settime64 callbacks in the same ops tables (stmmac_ptp.c lines=E2=
+=80=A6
+> - [Medium] In stmmac_set_time() the new code ignores the return values of
+>   both stmmac_est_configure(..., false) and __stmmac_setup_est(), and=E2=
+=80=A6
+>=20
+> --
+>=20
+> net: stmmac: re-base EST after PTP settime64
+>=20
+> This patch makes stmmac_set_time() take est_lock and disable EST before
+> it steps the PHC with stmmac_init_systime(). Afterwards it re-bases EST
+> through __stmmac_setup_est(). The goal is to stop EST from running with
+> a stale base time after clock_settime() on the PHC.
+>=20
+> > stmmac_set_time() initializes the PTP clock through
+> > stmmac_init_systime() (TSINIT) while holding only ptp_lock.  It neither
+> > takes est_lock nor disables and re-bases EST around the step, unlike
+> > stmmac_adjust_time(), which performs TSUPDT through
+> > stmmac_adjust_systime() under est_lock.
+>=20
+> [ ... ]
+>=20
+> > Take est_lock for the whole disable/step/reprogram sequence, as
+> > stmmac_adjust_time() does: disable EST before initializing the clock and
+> > call __stmmac_setup_est() afterwards so the base time is recomputed from
+> > the reserved taprio base time and the new clock.
+>=20
+> [Severity: Medium]
+> Does this match what stmmac_adjust_time() does? In stmmac_ptp.c,
+> stmmac_adjust_time() releases est_lock before the step and takes it
+> again afterwards:
+>=20
+> stmmac_adjust_time() {
+>     ...
+> 	mutex_lock(&priv->est_lock);
+> 	if (priv->est && priv->est->enable)
+> 		stmmac_est_configure(priv, priv, priv->est,
+> 				     priv->plat->clk_ptp_rate, false);
+> 	mutex_unlock(&priv->est_lock);
+>=20
+> 	write_lock_irqsave(&priv->ptp_lock, flags);
+> 	stmmac_adjust_systime(priv, priv->ptpaddr, sec, nsec, neg_adj, xmac);
+> 	write_unlock_irqrestore(&priv->ptp_lock, flags);
+>=20
+> 	mutex_lock(&priv->est_lock);
+> 	if (priv->est && priv->est->enable)
+> 		__stmmac_setup_est(priv);
+> 	mutex_unlock(&priv->est_lock);
+>     ...
+> }
+>=20
+> So TSUPDT runs under ptp_lock only, not under est_lock. The new
+> stmmac_set_time() holds est_lock across the write side of ptp_lock, and
+> stmmac_adjust_time() never nests the locks that way.
+>=20
+> The est_lock -> ptp_lock (read) ordering does already exist through
+> __stmmac_setup_est()->gettimex64(), and stmmac_init_systime() does use
+> readl_poll_timeout_atomic(). That part of the ordering argument holds. The
+> precedent of stmmac_adjust_time() holding est_lock across the step does
+> not.
+>=20
+> Could the commit message describe what stmmac_adjust_time() actually
+> does?
 
-> +
-> +	u64 midr_el1;
-> +	u64 revidr_el1;
-> +	u64 aidr_el1;
-> +	u64 ctr_el0;
-> +};
-> +
->  #endif /* ARM64_S390_COMMON == 1 */
->  
->  #define KVM_DIRTY_LOG_MANUAL_CAPS   (KVM_DIRTY_LOG_MANUAL_PROTECT_ENABLE | \
-> @@ -478,22 +497,7 @@ struct kvm_arch {
->  	struct kvm_smccc_features smccc_feat;
->  	struct maple_tree smccc_filter;
->  
-> -	/*
-> -	 * Emulated CPU ID registers per VM
-> -	 * (Op0, Op1, CRn, CRm, Op2) of the ID registers to be saved in it
-> -	 * is (3, 0, 0, crm, op2), where 1<=crm<8, 0<=op2<8.
-> -	 *
-> -	 * These emulated idregs are VM-wide, but accessed from the context of a vCPU.
-> -	 * Atomic access to multiple idregs are guarded by kvm_arch.config_lock.
-> -	 */
-> -#define IDREG_IDX(id)		(((sys_reg_CRm(id) - 1) << 3) | sys_reg_Op2(id))
-> -#define KVM_ARM_ID_REG_NUM	(IDREG_IDX(sys_reg(3, 0, 0, 7, 7)) + 1)
-> -	u64 id_regs[KVM_ARM_ID_REG_NUM];
-> -
-> -	u64 midr_el1;
-> -	u64 revidr_el1;
-> -	u64 aidr_el1;
-> -	u64 ctr_el0;
-> +	struct kvm_vm_id_regs id_regs;
->  
->  	/* Masks for VNCR-backed and general EL2 sysregs */
->  	struct kvm_sysreg_masks	*sysreg_masks;
-> @@ -1634,19 +1638,19 @@ void kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu);
->  bool kvm_arm_vcpu_stopped(struct kvm_vcpu *vcpu);
->  bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu);
->  
-> -static inline u64 *__vm_id_reg(struct kvm_arch *ka, u32 reg)
-> +static inline u64 *__vm_id_reg(struct kvm_vm_id_regs *id_regs, u32 reg)
->  {
->  	switch (reg) {
->  	case sys_reg(3, 0, 0, 1, 0) ... sys_reg(3, 0, 0, 7, 7):
-> -		return &ka->id_regs[IDREG_IDX(reg)];
-> +		return &id_regs->ftr_reg[IDREG_IDX(reg)];
->  	case SYS_CTR_EL0:
-> -		return &ka->ctr_el0;
-> +		return &id_regs->ctr_el0;
->  	case SYS_MIDR_EL1:
-> -		return &ka->midr_el1;
-> +		return &id_regs->midr_el1;
->  	case SYS_REVIDR_EL1:
-> -		return &ka->revidr_el1;
-> +		return &id_regs->revidr_el1;
->  	case SYS_AIDR_EL1:
-> -		return &ka->aidr_el1;
-> +		return &id_regs->aidr_el1;
->  	default:
->  		WARN_ON_ONCE(1);
->  		return NULL;
-> @@ -1654,7 +1658,7 @@ static inline u64 *__vm_id_reg(struct kvm_arch *ka, u32 reg)
->  }
->  
->  #define kvm_read_vm_id_reg(kvm, reg)					\
-> -	({ u64 __val = *__vm_id_reg(&(kvm)->arch, reg); __val; })
-> +	({ u64 __val = *__vm_id_reg(&(kvm)->arch.id_regs, reg); __val; })
->  
->  void kvm_set_vm_id_reg(struct kvm *kvm, u32 reg, u64 val);
->  
-> diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
-> index adaf26ab93b8..49bbe68c0b9e 100644
-> --- a/arch/arm64/kvm/config.c
-> +++ b/arch/arm64/kvm/config.c
-> @@ -1467,11 +1467,11 @@ static bool idreg_apply_deps(struct kvm *kvm, const struct reg_feat_map_desc *r)
->  			resx.res0 |= reg_feat_map_bits(&r->bit_feat_map[i]);
->  	}
->  
-> -	val = kvm->arch.id_regs[r->idreg_idx];
-> -	kvm->arch.id_regs[r->idreg_idx] &= ~resx.res0;
-> -	kvm->arch.id_regs[r->idreg_idx] |= resx.res1;
-> +	val = kvm->arch.id_regs.ftr_reg[r->idreg_idx];
-> +	kvm->arch.id_regs.ftr_reg[r->idreg_idx] &= ~resx.res0;
-> +	kvm->arch.id_regs.ftr_reg[r->idreg_idx] |= resx.res1;
->
-> -	return val != kvm->arch.id_regs[r->idreg_idx];
-> +	return val != kvm->arch.id_regs.ftr_reg[r->idreg_idx];
->  }
->  
->  void kvm_idregs_enforce_dependencies(struct kvm *kvm)
-> @@ -1488,7 +1488,7 @@ void kvm_idregs_enforce_dependencies(struct kvm *kvm)
->  
->  static bool idreg_feat_match(struct kvm *kvm, const struct reg_bits_to_feat_map *map)
->  {
-> -	u64 regval = kvm->arch.id_regs[map->regidx];
-> +	u64 regval = kvm->arch.id_regs.ftr_reg[map->regidx];
->  	u64 regfld = (regval >> map->shift) & GENMASK(map->width - 1, 0);
->  
->  	if (map->sign) {
+This issue is already fixed in the following commit:
 
-All this stuff should really be cleaned up by introducing the correct
-level of abstraction. I have a local untested hack that does this:
+commit b0816917a4f7194cca81288fd339d285d8d793b5
+Author: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+Date:   Mon Nov 2 18:37:56 2026 +0100
 
-diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-index ed00637f1d7a8..65d34e2da17d2 100644
---- a/arch/arm64/include/asm/kvm_host.h
-+++ b/arch/arm64/include/asm/kvm_host.h
-@@ -1639,11 +1639,16 @@ void kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu);
- bool kvm_arm_vcpu_stopped(struct kvm_vcpu *vcpu);
- bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu);
- 
-+static inline u64 *__vm_ftr_reg_by_idx(struct kvm_vm_id_regs *id_regs, u32 idx)
-+{
-+	return &id_regs->ftr_reg[idx];
-+}
-+
- static inline u64 *__vm_id_reg(struct kvm_vm_id_regs *id_regs, u32 reg)
- {
- 	switch (reg) {
- 	case sys_reg(3, 0, 0, 1, 0) ... sys_reg(3, 0, 0, 7, 7):
--		return &id_regs->ftr_reg[IDREG_IDX(reg)];
-+		return __vm_ftr_reg_by_idx(id_regs, IDREG_IDX(reg));
- 	case SYS_CTR_EL0:
- 		return &id_regs->ctr_el0;
- 	case SYS_MIDR_EL1:
-@@ -1658,8 +1663,14 @@ static inline u64 *__vm_id_reg(struct kvm_vm_id_regs *id_regs, u32 reg)
- 	}
- }
- 
--#define kvm_read_vm_id_reg(kvm, reg)					\
--	({ u64 __val = *__vm_id_reg(&(kvm)->arch.id_regs, reg); __val; })
-+#define kvm_get_vm_ftr_reg_by_idx(kvm, idx)					\
-+	({ u64 *__valp = __vm_ftr_reg_by_idx(&(kvm)->arch.id_regs, idx); __valp; })
-+
-+#define kvm_get_vm_id_reg(kvm, reg)					\
-+	({ u64 *__valp = __vm_id_reg(&(kvm)->arch.id_regs, reg); __valp; })
-+
-+#define kvm_read_vm_id_reg(kvm, reg)				\
-+	({ u64 __val = *kvm_get_vm_id_reg(kvm, reg); __val; })
- 
- void kvm_set_vm_id_reg(struct kvm *kvm, u32 reg, u64 val);
- 
-diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
-index 399693203e934..37eae14c3924a 100644
---- a/arch/arm64/kvm/config.c
-+++ b/arch/arm64/kvm/config.c
-@@ -1565,7 +1565,7 @@ static const struct reg_feat_map_desc *idreg_feat_maps[] = {
- static bool idreg_apply_deps(struct kvm *kvm, const struct reg_feat_map_desc *r)
- {
- 	struct resx resx = {};
--	u64 val;
-+	u64 val, *valp;
- 
- 	for (int i = 0; i < r->bit_feat_map_sz; i++) {
- 		if ((r->bit_feat_map[i].flags & CALL_FUNC) &&
-@@ -1573,11 +1573,12 @@ static bool idreg_apply_deps(struct kvm *kvm, const struct reg_feat_map_desc *r)
- 			resx.res0 |= reg_feat_map_bits(&r->bit_feat_map[i]);
- 	}
- 
--	val = kvm->arch.id_regs.ftr_reg[r->idreg_idx];
--	kvm->arch.id_regs.ftr_reg[r->idreg_idx] &= ~resx.res0;
--	kvm->arch.id_regs.ftr_reg[r->idreg_idx] |= resx.res1;
-+	valp = kvm_get_vm_ftr_reg_by_idx(kvm, r->idreg_idx);
-+	val = *valp;
-+	*valp &= ~resx.res0;
-+	*valp |= resx.res1;
- 
--	return val != kvm->arch.id_regs.ftr_reg[r->idreg_idx];
-+	return val != *valp;
- }
- 
- void kvm_idregs_enforce_dependencies(struct kvm *kvm)
-@@ -1594,7 +1595,7 @@ void kvm_idregs_enforce_dependencies(struct kvm *kvm)
- 
- static bool idreg_feat_match(struct kvm *kvm, const struct reg_bits_to_feat_map *map)
- {
--	u64 regval = kvm->arch.id_regs.ftr_reg[map->regidx];
-+	u64 regval = *kvm_get_vm_ftr_reg_by_idx(kvm, map->regidx);
- 	u64 regfld = (regval >> map->shift) & GENMASK(map->width - 1, 0);
- 
- 	if (map->sign) {
+    net: stmmac: keep est_lock across PTP clock adjustment
 
-> diff --git a/arch/arm64/kvm/hyp/nvhe/pkvm.c b/arch/arm64/kvm/hyp/nvhe/pkvm.c
-> index fc0475f0877d..41ee83290697 100644
-> --- a/arch/arm64/kvm/hyp/nvhe/pkvm.c
-> +++ b/arch/arm64/kvm/hyp/nvhe/pkvm.c
-> @@ -399,7 +399,7 @@ static void pkvm_init_features_from_host(struct pkvm_hyp_vm *hyp_vm, const struc
->  	DECLARE_BITMAP(allowed_features, KVM_VCPU_MAX_FEATURES);
->  
->  	/* CTR_EL0 is always under host control, even for protected VMs. */
-> -	hyp_vm->kvm.arch.ctr_el0 = host_kvm->arch.ctr_el0;
-> +	hyp_vm->kvm.arch.id_regs.ctr_el0 = host_kvm->arch.id_regs.ctr_el0;
+    stmmac_adjust_time() disables EST, drops est_lock to step the PTP clock,
+    and then reacquires the lock to reprogram EST using a base time computed
+    from the new clock value.
 
-This stuff is just terrible code, and needs to be cleaned up. It
-should read something like:
+    That leaves a window where a concurrent tc_taprio_configure() can progr=
+am
+    EST enabled with a base time derived from the pre-step clock.  The gate
+    schedule then runs across the PTP step with a stale base time until
+    stmmac_adjust_time() reprograms it.
 
-diff --git a/arch/arm64/kvm/hyp/nvhe/pkvm.c b/arch/arm64/kvm/hyp/nvhe/pkvm.c
-index ef936dee20ad3..ad100df6a8b0d 100644
---- a/arch/arm64/kvm/hyp/nvhe/pkvm.c
-+++ b/arch/arm64/kvm/hyp/nvhe/pkvm.c
-@@ -413,7 +413,7 @@ static void pkvm_init_features_from_host(struct pkvm_hyp_vm *hyp_vm, const struc
- 	DECLARE_BITMAP(allowed_features, KVM_VCPU_MAX_FEATURES);
- 
- 	/* CTR_EL0 is always under host control, even for protected VMs. */
--	hyp_vm->kvm.arch.id_regs.ctr_el0 = host_kvm->arch.id_regs.ctr_el0;
-+	*kvm_get_vm_id_reg(kvm, SYS_CTR_EL0) = kvm_read_vm_id_reg((struct kvm *)host_kvm, SYS_CTR_EL0);
- 
- 	/*
- 	 * pKVM runs only GICv3. Anything else becomes 0, the model of a VM
+    Keep est_lock held for the whole disable/step/reprogram sequence so no
+    other EST user can program the block while the clock is being stepped.
 
-Overall, I'd like to see a first patch introducing helpers that the
-code uses everywhere possible, then another patch that introduces the
-structure, the renaming, and changes the accessors without touching
-the rest of the code.
+    This does not introduce a new lock ordering: __stmmac_setup_est() alrea=
+dy
+    takes ptp_lock through gettimex64() while holding est_lock, and
+    stmmac_adjust_systime() uses readl_poll_timeout_atomic(), so it does not
+    sleep under ptp_lock.
 
-Thanks,
+    Cc: stable+noautosel@kernel.org # LLM report + LLM fix, not seen in rea=
+l life
+    Fixes: 23d96de472f7 ("net: stmmac: re-apply taprio offload in __stmmac_=
+open() and stmmac_resume()")
+    Signed-off-by: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+    Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+    Link: https://patch.msgid.link/20261102-stmmac-ptp-est-lock-v1-1-76fbc0=
+cb230d@oss.qualcomm.com
+    Signed-off-by: Jakub Kicinski <kuba@kernel.org>
 
-	M.
+>=20
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c b/drivers=
+/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+> > index 31a66e855d6b1..6370bdc6c58b5 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+> > @@ -129,10 +129,19 @@ static int stmmac_set_time(struct ptp_clock_info =
+*ptp,
+> >  	    container_of(ptp, struct stmmac_priv, ptp_clock_ops);
+> >  	unsigned long flags;
+> > =20
+> > +	mutex_lock(&priv->est_lock);
+>=20
+> [Severity: Medium]
+> stmmac_set_time() now holds est_lock for the whole disable/step/re-base
+> sequence. Its sibling .adjtime callback, stmmac_adjust_time(), still
+> releases est_lock between disabling EST and the TSUPDT step (see the
+> snippet above).
+>=20
+> Can tc_taprio_configure() still get into that window?
+>=20
+> CPU1                                  CPU2
+> stmmac_adjust_time()
+>   mutex_lock(&priv->est_lock)
+>   stmmac_est_configure(..., false)
+>   mutex_unlock(&priv->est_lock)
+>                                       tc_taprio_configure()
+>                                         mutex_lock(&priv->est_lock)
+>                                         gettimex64()  /* pre-step clock */
+>                                         stmmac_est_configure(..., true)
+>                                         priv->est->enable =3D true
+>                                         mutex_unlock(&priv->est_lock)
+>   write_lock_irqsave(&priv->ptp_lock)
+>   stmmac_adjust_systime()  /* EST enabled in hardware */
+>   write_unlock_irqrestore(&priv->ptp_lock)
+>   mutex_lock(&priv->est_lock)
+>   __stmmac_setup_est()
+>=20
+> In that case EST is running in hardware while the clock is stepped. That
+> goes against the "If EST is enabled, disabled it before adjust ptp time"
+> comment in stmmac_adjust_time(). The later __stmmac_setup_est() re-base
+> corrects the base time, so the effect lasts only as long as the window.
+>=20
+> The commit message treats stmmac_adjust_time() as already covering this
+> case. Should stmmac_adjust_time() also hold est_lock across the step, so
+> that the .adjtime and .settime64 paths behave the same way?
 
--- 
-Jazz isn't dead. It just smells funny.
+This issue is already fixed in the following commit:
+
+commit b0816917a4f7194cca81288fd339d285d8d793b5
+Author: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+Date:   Mon Nov 2 18:37:56 2026 +0100
+
+    net: stmmac: keep est_lock across PTP clock adjustment
+
+    stmmac_adjust_time() disables EST, drops est_lock to step the PTP clock,
+    and then reacquires the lock to reprogram EST using a base time computed
+    from the new clock value.
+
+    That leaves a window where a concurrent tc_taprio_configure() can progr=
+am
+    EST enabled with a base time derived from the pre-step clock.  The gate
+    schedule then runs across the PTP step with a stale base time until
+    stmmac_adjust_time() reprograms it.
+
+    Keep est_lock held for the whole disable/step/reprogram sequence so no
+    other EST user can program the block while the clock is being stepped.
+
+    This does not introduce a new lock ordering: __stmmac_setup_est() alrea=
+dy
+    takes ptp_lock through gettimex64() while holding est_lock, and
+    stmmac_adjust_systime() uses readl_poll_timeout_atomic(), so it does not
+    sleep under ptp_lock.
+
+    Cc: stable+noautosel@kernel.org # LLM report + LLM fix, not seen in rea=
+l life
+    Fixes: 23d96de472f7 ("net: stmmac: re-apply taprio offload in __stmmac_=
+open() and stmmac_resume()")
+    Signed-off-by: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+    Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+    Link: https://patch.msgid.link/20261102-stmmac-ptp-est-lock-v1-1-76fbc0=
+cb230d@oss.qualcomm.com
+    Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+
+>=20
+> > +	if (priv->est && priv->est->enable)
+> > +		stmmac_est_configure(priv, priv, priv->est,
+> > +				     priv->plat->clk_ptp_rate, false);
+> > +
+> >  	write_lock_irqsave(&priv->ptp_lock, flags);
+> >  	stmmac_init_systime(priv, priv->ptpaddr, ts->tv_sec, ts->tv_nsec);
+> >  	write_unlock_irqrestore(&priv->ptp_lock, flags);
+> > =20
+> > +	if (priv->est && priv->est->enable)
+> > +		__stmmac_setup_est(priv);
+> > +	mutex_unlock(&priv->est_lock);
+> > +
+> >  	return 0;
+> >  }
+>=20
+> [Severity: Medium]
+> Should the return values of stmmac_est_configure(..., false) and
+> __stmmac_setup_est() be checked here?
+>=20
+> est_configure() in stmmac_est.c writes each register through est_write().
+> est_write() polls with readl_poll_timeout() and can return -ETIMEDOUT. On
+> any failure, est_configure() returns early, before it writes EST_CONTROL
+> and EST_INT_EN:
+>=20
+> est_configure() {
+>     ...
+> 	if (ret)
+> 		return ret;
+>=20
+> 	for (i =3D 0; i < cfg->gcl_size; i++) {
+> 		ret =3D est_write(est_addr, i, cfg->gcl[i], true);
+> 		if (ret)
+> 			return ret;
+> 	}
+>     ...
+> }
+>=20
+> If the disable call fails, EEST stays set and stmmac_init_systime()
+> steps the clock while EST is still running. That is the situation this
+> patch is meant to avoid.
+>=20
+> If the disable succeeds but the re-enable inside __stmmac_setup_est()
+> fails, EST stays off in hardware. __stmmac_setup_est() only logs the
+> error:
+>=20
+> __stmmac_setup_est() {
+>     ...
+> 	if (err) {
+> 		netdev_err(priv->dev, "failed to re-configure EST\n");
+> 		return err;
+> 	}
+>     ...
+> }
+>=20
+> priv->est->enable is still true and stmmac_set_time() returns 0. Taprio
+> then believes the gate schedule is active until taprio is reconfigured.
+> On a similar failure, tc_taprio_configure() clears priv->est->enable, and
+> stmmac_setup_est() passes the error up.
+>=20
+> stmmac_adjust_time() already ignores these return values in the same way.
+> This patch adds the same pattern to the settime64 path.
+
+I implemented the same approach used in stmmac_adjust_time() where we do not
+consider the stmmac_est_configure()/__stmmac_setup_est() return value.
+I think we can address it with a follow-up patch for both stmmac_adjust_tim=
+e()
+and stmmac_set_time().
+
+Regards,
+Lorenzo
+
+>=20
+> --=20
+> Sashiko AI review =C2=B7 https://netdev-ai.bots.linux.dev/sashiko/#/patch=
+set/20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6%40oss.qualcomm.com
+
+--7ZBwauAhLgdMSXs7
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCavib4AAKCRA6cBh0uS2t
+rKeBAQC2Gvy2hZlkLB8Y7T5dOa/LBcq3pba1rqG796bNNAgMYQD+LHsnF5ayVxiw
+CcoIJH2dEgoUduex0WUA4duoBGSdUAM=
+=ORkf
+-----END PGP SIGNATURE-----
+
+--7ZBwauAhLgdMSXs7--
 
