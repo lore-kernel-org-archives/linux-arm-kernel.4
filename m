@@ -2,86 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58485606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 13:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3899606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 13:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lldaWul1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z/JaHfwV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rhd/uLU0;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=wBAQqr1U
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NWrVtl/dzsYg5YxNip4eBu5kQCyqGy37ampUlkGDtH4=; b=lldaWul1YEGjE7
-	xJnx+4l+KQs2nFtMslNOrArJ/Xk/f0E8/MgMQBGKM38RXrN7kUyzxxfZ/ctxdBH4bLI0s/tS0dkSg
-	CrCVvPQlgPFx/5DIAhFIe11PAxG8A8Z9Yo9vYdWKCGAvG4FBuF4hZRa62yh00ZpCYiOeoBbZzKXGE
-	uJVctSAcDuFN9cuzou4hll1UJmQEjI3dftn6AJofj3zOxZCrihYUjjen56gnJ07HOnj6heBtEswtw
-	Z6p/y4raraV5pAqQnTeTBiJMpmHSyqlsN6LbXLeKz1zykUYzX5LqGt48F1+4CnuroK96tYRGcigtI
-	hr5Bge0LpdiBVVEy4/Zw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:To:
+	Subject:Message-ID:From:Content-Transfer-Encoding:Content-Type:Date:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=gT8R01frXqoIJvl9RGVpwuWi3b4gIIdQyqgCn7ucTZU=; b=rhd/uLU08ZcgN+HOfhRIhVDcBo
+	JD3MFIhJrLpsYn6NTxN1OLBRc6BzAkQLGHhdh3xy9RoephyCOxqeqNdR308wY4mmQIAdmdH5bGFkk
+	npzhoT25mQRtG6OhVI75bXcRLKb1RsGs/XE3709p5PwYkRJCVg3axlLosDXPXzUvmdgKpQZvwwCIj
+	5GqqBQ4kxPOOGlmTPmUsmc7XK+aUvahJHSll0GOjqDzHj/gDIsoqB4bUZH5m1KTefSOIKSUiFH3Fp
+	TKQ7LNljacFqoJn5foW0b1qh4suKGRwzQBujx9lMQ4tzubz9jq4XRxDHR2o67Pg5shQhRJihSEX1O
+	q+7WkBmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSDjX-0000000G6gd-05eA;
-	Sat, 14 Nov 2026 13:23:55 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSDnY-0000000G76Q-3EHe;
+	Sat, 14 Nov 2026 13:28:04 +0000
+Received: from out-60.mta0.migadu.com ([2001:41d0:1004:224b::3c] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSDjW-0000000G6gL-1hge
+	id 1xSDnV-0000000G75Z-3v5z
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 13:23:54 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7A779624AB
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 13:23:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 184911F00933
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 13:23:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794662633;
-	bh=NWrVtl/dzsYg5YxNip4eBu5kQCyqGy37ampUlkGDtH4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=Z/JaHfwVTYprVbWfpFU7g3ktMRESzquCvhkj0RIQUFukyUsp10fgxhSo1uAjw4+xe
-	 hXJYIBAhtdVOFaXkSepxaktDFW1dftiCFQGeiW09EFbEiJeHdxCyIT0gl0F8BLPsCH
-	 ocx3QrHQd43oO8a9U5rcXF9QoK2s/necUs5HCVjzA0QjpYtO9MHLVtRmb0QoHMby8s
-	 o8LuqySq1rIHxK+ZT4GJc0ULrMjU+ylGPL9IaPKjTFMbhnh0hikF7qZAEizhR9e1QF
-	 1Isd+fYCQ5aD8DCsue4Fck+Zykiw7VOKqhPI0MMLetZwHIIn+G2oiXVZbAI4CRpZUH
-	 7xKmAAPiaedmg==
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-4910b863b84so1699391f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 05:23:52 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHx2J7Jv8fCoiF45bzUVQKpK/EaWU/wRFQcZ8ILASk/gGUkot9JIfVHTLJMSnZvyOFL/GpT16uV0Ukb8et4eC9F@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Xhq91PBDDZfQD6NwSPLdne6kVzyEuA1mvFBkEqMZ6TUBkEsQD
-	0v8pugNuZnijxH41z38Ff4TgzlUG8ZdA9I+dVvSad6lpMHfTuGDiJdOEvowSZkQeUiiSyP7XoGR
-	hzbH/ehLJZJYGwUw01aSsJhA5mWX777Y=
-X-Received: by 2002:a05:6000:1787:b0:495:728a:5f6f with SMTP id
- ffacd0b85a97d-49c70823789mr12754306f8f.19.1794662631468; Sat, 14 Nov 2026
- 05:23:51 -0800 (PST)
+	Sat, 14 Nov 2026 13:28:03 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=gT8R01frXqoIJvl9RGVpwuWi3b4gIIdQyqgCn7ucTZU=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1794662879; v=1; x=1795267679;
+ b=wBAQqr1UDyU3stJVqU9DxG5eszmFIcq3qH+qxe9rHQHOh5WReHXL0sIEpiKTocxXHc/h852W
+ Lv3v8ViWLsm8tfk8hsFZHv4fR78V47Jh8u7Es8iS50eMsSSsv83DbT+K8PeMZoV4iX9kMV5i5bk
+ mE0u9rxlrzjmKBPSHY2Lj8Pw=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 8b8a5b5b05980967;
+	Sat, 14 Nov 2026 13:27:59 +0000
+X-Mizu-Trace-ID: 8b8a5b5b05980967
+X-Migadu-Flow: FLOW_OUT
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn> <20261114-v861-v1-16-eb71ec3ee523@iscas.ac.cn>
-In-Reply-To: <20261114-v861-v1-16-eb71ec3ee523@iscas.ac.cn>
-From: Guo Ren <guoren@kernel.org>
-Date: Sat, 14 Nov 2026 21:23:39 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTRuczsSR81XcGRGCmYzXpLP3_PXs=uaJZ_zSF+-UXeLcQ@mail.gmail.com>
-X-Gm-Features: AclHuK-htEuUz8jr2TmuXA-X0UbKgsu6ZtLQ4PTtSqP0l4D8RPQK228uAOlkZD4
-Message-ID: <CAJF2gTRuczsSR81XcGRGCmYzXpLP3_PXs=uaJZ_zSF+-UXeLcQ@mail.gmail.com>
-Subject: Re: [PATCH 16/19] riscv: dts: allwinner: add the Allwinner V861 SoC
-To: gaohan@iscas.ac.cn
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
-	Samuel Holland <samuel.holland@sifive.com>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
-	Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Maxime Ripard <mripard@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
-	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
-	linux-csky@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Sat, 14 Nov 2026 13:27:58 +0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+From: "Frank Wunderlich" <frank.wunderlich@linux.dev>
+Message-ID: <4427785e421caa5ceba5b64ceb7c7e4cfdb607ec@linux.dev>
+TLS-Required: No
+Subject: Re: [PATCH net-next v20 00/15] net: pcs: Introduce support for
+ fwnode PCS
+To: "Christian Marangi" <ansuelsmth@gmail.com>, "Maxime Chevallier"
+ <maxime.chevallier@bootlin.com>, "Andrew Lunn" <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, "Eric Dumazet"
+ <edumazet@kernel.org>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo Abeni"
+ <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Simon Horman" <horms@kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+ "Shuah Khan" <skhan@linuxfoundation.org>, "Randy Dunlap"
+ <rdunlap@infradead.org>, "Lorenzo Bianconi" <lorenzo@kernel.org>, "Heiner
+ Kallweit" <hkallweit1@gmail.com>, "Russell King" <linux@armlinux.org.uk>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Nathan Chancellor"
+ <nathan@kernel.org>, "Nick Desaulniers" <ndesaulniers@google.com>, "Bill
+ Wendling" <morbo@google.com>, "Justin Stitt" <justinstitt@google.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ llvm@lists.linux.dev
+In-Reply-To: <20261114104426.235620-1-ansuelsmth@gmail.com>
+References: <20261114104426.235620-1-ansuelsmth@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261114_052802_256344_BCF6D0C7 
+X-CRM114-Status: UNSURE (   6.43  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,391 +86,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 14, 2026 at 6:33=E2=80=AFAM Han Gao via B4 Relay
-<devnull+gaohan.iscas.ac.cn@kernel.org> wrote:
->
-> From: Han Gao <gaohan@iscas.ac.cn>
->
-> Add the V861 SoC with its two C907 harts, PLIC, CLINT, clock
-> controllers, RTC, pin controllers and UART0.
->
-> The cache geometry and PMU events come from the V861 and C907 manuals.
-> Zcb, Zbkc and Zvfh were also checked to work on the hardware.
->
-> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
-> ---
->  arch/riscv/boot/dts/allwinner/sun252i-v861.dtsi | 272 ++++++++++++++++++=
-++++++
->  1 file changed, 272 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/allwinner/sun252i-v861.dtsi b/arch/riscv=
-/boot/dts/allwinner/sun252i-v861.dtsi
-> new file mode 100644
-> index 000000000000..7a18b973ee32
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/allwinner/sun252i-v861.dtsi
-> @@ -0,0 +1,272 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +/* Copyright (c) 2026 Han Gao <gaohan@iscas.ac.cn> */
-> +
-> +#include <dt-bindings/clock/sun252i-v861-ccu.h>
-> +#include <dt-bindings/clock/sun252i-v861-r-ccu.h>
-> +#include <dt-bindings/clock/sun6i-rtc.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/reset/sun252i-v861-ccu.h>
-> +#include <dt-bindings/reset/sun252i-v861-r-ccu.h>
-> +
-> +/ {
-> +       #address-cells =3D <2>;
-> +       #size-cells =3D <2>;
-> +
-> +       cpus {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +               timebase-frequency =3D <24000000>;
-> +
-> +               cpu0: cpu@0 {
-> +                       compatible =3D "csky,c907", "riscv";
-> +                       device_type =3D "cpu";
-> +                       reg =3D <0>;
-> +                       d-cache-block-size =3D <64>;
-> +                       d-cache-sets =3D <64>;
-> +                       d-cache-size =3D <16384>;
-> +                       i-cache-block-size =3D <64>;
-> +                       i-cache-sets =3D <64>;
-> +                       i-cache-size =3D <16384>;
-> +                       mmu-type =3D "riscv,sv39";
-> +                       next-level-cache =3D <&l2_cache>;
-> +                       riscv,isa-base =3D "rv64i";
-> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c", "b", "v",
-> +                               "zicbom", "zicbop", "zicboz", "zicntr", "=
-zicond",
-> +                               "zicsr", "zifencei", "zihintntl", "zihint=
-pause",
-> +                               "zihpm", "zawrs", "zfa", "zfbfmin", "zfh"=
-,
-> +                               "zca", "zcb", "zcd", "zba", "zbb", "zbc",=
- "zbkc",
-> +                               "zbs", "zkt", "zvfbfmin", "zvfbfwma", "zv=
-fh",
-> +                               "sscofpmf", "sstc", "svinval", "svnapot",=
- "svpbmt";
-> +                       riscv,cbom-block-size =3D <64>;
-> +                       riscv,cbop-block-size =3D <64>;
-> +                       riscv,cboz-block-size =3D <64>;
-> +
-> +                       cpu0_intc: interrupt-controller {
-> +                               compatible =3D "riscv,cpu-intc";
-> +                               interrupt-controller;
-> +                               #interrupt-cells =3D <1>;
-> +                       };
-> +               };
-> +
-> +               cpu1: cpu@1 {
-> +                       compatible =3D "csky,c907", "riscv";
-> +                       device_type =3D "cpu";
-> +                       reg =3D <1>;
-> +                       d-cache-block-size =3D <64>;
-> +                       d-cache-sets =3D <64>;
-> +                       d-cache-size =3D <16384>;
-> +                       i-cache-block-size =3D <64>;
-> +                       i-cache-sets =3D <64>;
-> +                       i-cache-size =3D <16384>;
-> +                       mmu-type =3D "riscv,sv39";
-> +                       next-level-cache =3D <&l2_cache>;
-> +                       riscv,isa-base =3D "rv64i";
-> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c", "b", "v",
-> +                               "zicbom", "zicbop", "zicboz", "zicntr", "=
-zicond",
-> +                               "zicsr", "zifencei", "zihintntl", "zihint=
-pause",
-> +                               "zihpm", "zawrs", "zfa", "zfbfmin", "zfh"=
-,
-> +                               "zca", "zcb", "zcd", "zba", "zbb", "zbc",=
- "zbkc",
-> +                               "zbs", "zkt", "zvfbfmin", "zvfbfwma", "zv=
-fh",
-> +                               "sscofpmf", "sstc", "svinval", "svnapot",=
- "svpbmt";
-> +                       riscv,cbom-block-size =3D <64>;
-> +                       riscv,cbop-block-size =3D <64>;
-> +                       riscv,cboz-block-size =3D <64>;
-> +
-> +                       cpu1_intc: interrupt-controller {
-> +                               compatible =3D "riscv,cpu-intc";
-> +                               interrupt-controller;
-> +                               #interrupt-cells =3D <1>;
-> +                       };
-> +               };
-> +
-> +               l2_cache: l2-cache {
-> +                       compatible =3D "cache";
-> +                       cache-block-size =3D <64>;
-> +                       cache-level =3D <2>;
-> +                       cache-sets =3D <128>;
-> +                       cache-size =3D <131072>;
-> +                       cache-unified;
-> +               };
-> +       };
-> +
-> +       osc24M: osc24M-clk {
-> +               compatible =3D "fixed-clock";
-> +               #clock-cells =3D <0>;
-> +               clock-frequency =3D <24000000>;
-> +               clock-output-names =3D "osc24M";
-> +       };
-> +
-> +       pmu {
-> +               compatible =3D "riscv,pmu";
-> +               riscv,event-to-mhpmcounters =3D
-> +                       <0x00003 0x00006 0x0007fff8>,
-> +                       <0x00008 0x00009 0x0007fff8>,
-> +                       <0x10000 0x10003 0x0007fff8>,
-> +                       <0x10008 0x10009 0x0007fff8>,
-> +                       <0x10019 0x10019 0x0007fff8>,
-> +                       <0x1001b 0x1001b 0x0007fff8>,
-> +                       <0x10021 0x10021 0x0007fff8>,
-> +                       <0x10028 0x10029 0x0007fff8>;
-> +               riscv,event-to-mhpmevent =3D
-> +                       <0x00003 0x00000000 0x000000a5>,
-> +                       <0x00004 0x00000000 0x000000a6>,
-> +                       <0x00005 0x00000000 0x00000036>,
-> +                       <0x00006 0x00000000 0x00000038>,
-> +                       <0x00008 0x00000000 0x00000027>,
-> +                       <0x00009 0x00000000 0x00000028>,
-> +                       <0x10000 0x00000000 0x0000000c>,
-> +                       <0x10001 0x00000000 0x0000000d>,
-> +                       <0x10002 0x00000000 0x0000000e>,
-> +                       <0x10003 0x00000000 0x0000000f>,
-> +                       <0x10008 0x00000000 0x00000001>,
-> +                       <0x10009 0x00000000 0x00000002>,
-> +                       <0x10019 0x00000000 0x000000a4>,
-> +                       <0x1001b 0x00000000 0x000000a3>,
-> +                       <0x10021 0x00000000 0x00000003>,
-> +                       <0x10028 0x00000000 0x00000036>,
-> +                       <0x10029 0x00000000 0x00000038>;
-> +               riscv,raw-event-to-mhpmcounters =3D
-> +                       <0x00000000 0x00000001 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000002 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000003 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000005 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000006 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000007 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000008 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000009 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000000b 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000000c 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000000d 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000000e 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000000f 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000016 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000001b 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000001c 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000001d 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000001f 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000020 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000021 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000023 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000025 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000027 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000028 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000029 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000002a 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000030 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000036 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x00000038 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000009b 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000009c 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x0000009e 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x000000a3 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x000000a4 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x000000a5 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x000000a6 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x000000a7 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x000000a8 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x000000a9 0xffffffff 0xffffffff 0x00=
-07fff8>,
-> +                       <0x00000000 0x000000aa 0xffffffff 0xffffffff 0x00=
-07fff8>;
-> +       };
-> +
-> +       soc {
-> +               compatible =3D "simple-bus";
-> +               #address-cells =3D <2>;
-> +               #size-cells =3D <2>;
-> +               interrupt-parent =3D <&plic>;
-> +               ranges;
-> +               dma-noncoherent;
-> +
-> +               pio: pinctrl@2000000 {
-> +                       compatible =3D "allwinner,sun252i-v861-pinctrl";
-> +                       reg =3D <0 0x02000000 0 0x400>;
-> +                       interrupts =3D <67 IRQ_TYPE_LEVEL_HIGH>, <71 IRQ_=
-TYPE_LEVEL_HIGH>,
-> +                                    <73 IRQ_TYPE_LEVEL_HIGH>, <75 IRQ_TY=
-PE_LEVEL_HIGH>,
-> +                                    <77 IRQ_TYPE_LEVEL_HIGH>, <79 IRQ_TY=
-PE_LEVEL_HIGH>,
-> +                                    <81 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&ccu CLK_APB0>, <&osc24M>, <&rtc CLK_=
-OSC32K>;
-> +                       clock-names =3D "apb", "hosc", "losc";
-> +                       gpio-controller;
-> +                       #gpio-cells =3D <3>;
-> +                       interrupt-controller;
-> +                       #interrupt-cells =3D <3>;
-> +
-> +                       uart0_ph_pins: uart0-ph-pins {
-> +                               pins =3D "PH9", "PH10";
-> +                               function =3D "uart0";
-> +                               allwinner,pinmux =3D <5>;
-> +                               bias-pull-up;
-> +                       };
-> +               };
-> +
-> +               r_pio: pinctrl@2000540 {
-> +                       compatible =3D "allwinner,sun252i-v861-r-pinctrl"=
-;
-> +                       reg =3D <0 0x02000540 0 0x60>;
-> +                       interrupts =3D <85 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&ccu CLK_APB0>, <&osc24M>, <&rtc CLK_=
-OSC32K>;
-> +                       clock-names =3D "apb", "hosc", "losc";
-> +                       gpio-controller;
-> +                       #gpio-cells =3D <3>;
-> +                       interrupt-controller;
-> +                       #interrupt-cells =3D <3>;
-> +               };
-> +
-> +               ccu: clock-controller@2001000 {
-> +                       compatible =3D "allwinner,sun252i-v861-ccu";
-> +                       reg =3D <0 0x02001000 0 0x1000>;
-> +                       clocks =3D <&osc24M>, <&rtc CLK_OSC32K>, <&rtc CL=
-K_IOSC>;
-> +                       clock-names =3D "hosc", "losc", "iosc";
-> +                       #clock-cells =3D <1>;
-> +                       #reset-cells =3D <1>;
-> +               };
-> +
-> +               uart0: serial@2500000 {
-> +                       compatible =3D "snps,dw-apb-uart";
-> +                       reg =3D <0 0x02500000 0 0x400>;
-> +                       interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH>;
-> +                       reg-shift =3D <2>;
-> +                       reg-io-width =3D <4>;
-> +                       clocks =3D <&ccu CLK_BUS_UART0>;
-> +                       resets =3D <&ccu RST_BUS_UART0>;
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               r_ccu: clock-controller@7010000 {
-> +                       compatible =3D "allwinner,sun252i-v861-r-ccu";
-> +                       reg =3D <0 0x07010000 0 0x400>;
-> +                       clocks =3D <&osc24M>, <&rtc CLK_OSC32K>, <&rtc CL=
-K_IOSC>,
-> +                                <&ccu CLK_PLL_PERIPH0_200M>;
-> +                       clock-names =3D "hosc", "losc", "iosc", "pll-peri=
-ph";
-> +                       #clock-cells =3D <1>;
-> +                       #reset-cells =3D <1>;
-> +               };
-> +
-> +               rtc: rtc@7090000 {
-> +                       compatible =3D "allwinner,sun252i-v861-rtc",
-> +                                    "allwinner,sun50i-r329-rtc";
-> +                       reg =3D <0 0x07090000 0 0x400>;
-> +                       interrupts =3D <138 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&r_ccu CLK_BUS_R_RTC>, <&osc24M>,
-> +                                <&r_ccu CLK_R_AHB>;
-> +                       clock-names =3D "bus", "hosc", "ahb";
-> +                       #clock-cells =3D <1>;
-> +               };
-> +
-> +               plic: interrupt-controller@30000000 {
-> +                       compatible =3D "allwinner,sun252i-v861-plic", "th=
-ead,c900-plic";
-> +                       reg =3D <0 0x30000000 0 0x4000000>;
-> +                       interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_i=
-ntc 9>,
-> +                                             <&cpu1_intc 11>, <&cpu1_int=
-c 9>;
-> +                       riscv,ndev =3D <150>;
-> +                       interrupt-controller;
-> +                       #interrupt-cells =3D <2>;
-> +                       #address-cells =3D <0>;
-> +               };
-> +
-> +               clint: timer@34000000 {
-> +                       compatible =3D "allwinner,sun252i-v861-clint", "t=
-head,c900-clint";
-For CPU & clint & PLIC parts, LGTM!
+Am 14. November 2026 um 11:43 schrieb "Christian Marangi":
+>=20
+>=20This series introduce a most awaited feature that is correctly
+> provide PCS with fwnode without having to use specific export symbol
+> and additional handling of PCS in phylink.
+>=20
+>=20At times there were 2 different implementation (this and the one
+> from Sean) but Sean agreed that this can be picked and used in favor
+> of his implementation as long as his case with race condition is
+> correctly handled.
+Hi Christian
 
-Reviewed-by: GUO Ren (XuanTie) <guoren@kernel.org>
+Thank you very much for taking care of this!
 
-> +                       reg =3D <0 0x34000000 0 0x10000>;
-> +                       interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_in=
-tc 7>,
-> +                                             <&cpu1_intc 3>, <&cpu1_intc=
- 7>;
-> +               };
-> +       };
-> +};
->
-> --
-> 2.55.0
->
->
+sorry for html mail (have not found setting to force to text in
+linux.dev webmailer - if someone knows it please tell me).
 
+@netdev maintainers:
+is this now in shape enough to getting merged? or which part needs to be =
+changed?
 
---=20
-Best Regards
- Guo Ren
+Some boards (e.g. mt7988a based) are stalled because not having network s=
+upport
+yet in last 2 LTS kernels due to this part is unclear/missing.
+
+regards Frank
 
