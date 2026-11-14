@@ -2,59 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FE0606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 05:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3C6606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 05:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d+VYl8hv;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Z2WRjd4F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cheyBLI8;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=V/oY3YUM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=g7wfeDExUQ/bTqhEjFTlnZiHFNlm2fV470IeBuscq50=; b=d+VYl8hvEumNci
-	CV3aX0y7+5Ox1I1r4Tv8/CVUuANZDJOvManm4tP7mZPS1lcAY3CS8nL+556Nzh9yIjhVDFN1fctEF
-	5hmKqun6klFxIaS4h001IgyyCnr4zjIV4TXKLTLvwkjcHyCmVGDjoY6A3bSDMFIgDBrUkTaELPZ0h
-	X+j2foGyhzb5JfO04U4HY8ZDhW1clfBcIOT96716IpRmMiDBXqZNoFdpt9KyyoF9JPu7ZMbaoTvzC
-	VwIenOM1KN3/TknIz16ER8XzsMg6629VCk1orzhR8kk96RJS9bqge4E78YjP7bjzin4fQdqIwVS7p
-	0LrjodoBWX78PHGa1U3g==;
+	List-Owner; bh=bmLMMVTFjy3Q/suULlR+6eXg/weAuTSTYFCnu2xngSk=; b=cheyBLI8tX9YoC
+	TqVxA48bnua+wk+yrHQmIuGhbe0cbqTxsQ0M9Mo2ajlebLtxUunApx3X+ytHhh73C6J/tlM0qw/V8
+	dBmu7Qy7Vw6tIG4MpTh88O//mskJTYfl6RkFtnZ4uDhae8HSqdfpfr9tllGyOGcGUdukSptgtdu8H
+	yeEJhGX414cpf5sX6Eea1DoW3ynsnCVdnGSf7BLJRFRx4M9kB+ICXdyObtHiV1CfaLQwqrkMp3WpF
+	0lyGZe5/ocvDdWfN6RZA0SCNO0Qq8MTivMKGogiINf3xBZrvMFdWxwgpP0WPcBU9kVsYbIbaQ/6JU
+	bCBgOFAs8PrvxBEQuLpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS5tY-0000000FR1h-0EVE;
-	Sat, 14 Nov 2026 05:01:44 +0000
+	id 1xS5tX-0000000FR0z-2jxs;
+	Sat, 14 Nov 2026 05:01:43 +0000
 Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS5ss-0000000FQIP-3okS;
-	Sat, 14 Nov 2026 05:01:09 +0000
+	id 1xS5su-0000000FQIt-11cI;
+	Sat, 14 Nov 2026 05:01:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794632456;
-	bh=LgZG1JUuYKTJ7lvvqoNlqpaH94dmMLvKwmDihxkOtrI=;
+	s=mail; t=1794632457;
+	bh=GpnBpqyy46Ez4LTGmSkCOWuQ1xcTftBjGoq1pGuIDVk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Z2WRjd4FqD26jRv78qCtaqN10OFVotbLW81EQbwK5Ys1jU54ljfv/FvJYldkdMAp/
-	 31dR36WTF2KKOIKMzZRDoI880aSuVbSBfXvmePllfEVqOK9xXRTefhUnVTNWg2zWol
-	 j2e6OkHEWJqO5vBo2JUAjNnStEFUkwThYV5vefvDWp9zyL6k/FquPIKihk27zujLap
-	 4VkMfPPNGIwyUiSsoExtCfraJXiV6h3avc/DjyxwNtEvPVP+v9ee011EasyGPMDLzb
-	 a0ZBJotkrYh96cjS2ppCB+tEF2bsBK/D//NlNCNzYiTN5/aXVX+5PErnCP5fT8cZPo
-	 rZasB3Cw0nihQ==
+	b=V/oY3YUMk24DO2LuksYMEZbE2Z2LSuCywYKaPkHBTuyWgLyGI4JRz/3BTmIRsONG+
+	 WXhmj9MC1qRntXXdPDYEGL8SKt1ai0ijpYPU85b2SBxMU7PHGEhUtkKoTPqQqWeUip
+	 S+FRwlG+SGMDzRqbz/WJ4Wqs7XouV71eL+OzZZLFd/ODxlAQ+wE+2EKixE0bbRNedX
+	 c1TXME/trc3DsadBBba/A0F2x/DYcUK7eYS2sH5ZMoUZuN4boRuBsmyznYvjd4oxkD
+	 LtAEyyG1kUQ6p0tr/Sm1uUqK6zmSBL0aq9Mbf6NenqpQ8Deb+RUjd7zKDxinT+NQkv
+	 TTLcgsbF/wwaA==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A676517E14D8;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C813517E3BE7;
 	Sat, 14 Nov 2026 06:00:56 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 12705480038; Sat, 14 Nov 2026 06:00:56 +0100 (CET)
+	id 1D83A48004E; Sat, 14 Nov 2026 06:00:56 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Sat, 14 Nov 2026 06:00:38 +0100
-Subject: [PATCH v12 05/23] drm/bridge: synopsys: dw-dp: Add missing mutex
- cleanups on module removal
+Date: Sat, 14 Nov 2026 06:00:45 +0100
+Subject: [PATCH v12 12/23] drm/bridge: synopsys: dw-dp: Support software
+ triggered OOB HPD
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261114-synopsys-dw-dp-improvements-v12-5-d42d3dc5bdd4@collabora.com>
+Message-Id: <20261114-synopsys-dw-dp-improvements-v12-12-d42d3dc5bdd4@collabora.com>
 References: <20261114-synopsys-dw-dp-improvements-v12-0-d42d3dc5bdd4@collabora.com>
 In-Reply-To: <20261114-synopsys-dw-dp-improvements-v12-0-d42d3dc5bdd4@collabora.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -79,29 +79,28 @@ Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
  devicetree@vger.kernel.org, kernel@collabora.com, 
  linux-arm-kernel@lists.infradead.org, 
  Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Sashiko <sashiko-bot@kernel.org>, Igor Paunovic <royalnet026@gmail.com>, 
- Andy Yan <andyshrk@163.com>
+ Igor Paunovic <royalnet026@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1280;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3865;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=LgZG1JUuYKTJ7lvvqoNlqpaH94dmMLvKwmDihxkOtrI=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr36wf6xPbbDb/0onY8OomJxwqVzi/gYB6AH
- 5geI7567E4MgIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq9+sHAAoJENju1/PI
- O/qaZ+cP/AlXUbdThvBVezoKDjxeiWxwYCjj0UQuTw922XA/LzmrZAfj6RqP463CMzaj09buxir
- QxqBaZRJBbowOdtWyTZ47a67AmqkXrowMXHnAWBUDQsbKmaTcCnadG+Rktk/RcKuNz88Oo0NUWX
- WXvdxsyobkFD+y2PL/SSHMdeAPYHUUufLFtGWYV4EpW5l6HVOXMchZcYlUmQ/6fOgVh2s0TWi/2
- ovmOlZ5dbzXjHFkzE1Vq/E+jmsoZ7hpozeAZYqYwPHwS5145I4Kx9hsrd+FM0isvqZ+iz5JSZl7
- 6PJjyFRVeHLXwQgCKOokxUqzrvllfyYif9WEadL3VL7zXL/XNSSRPolMH+qIv8ocKZn1dFQt2zo
- DTMdOTwV4sfWS+T4TXRK1/9kRHXJvJg/N8XHTG/GS2g1d3AWsrvtJ4vSvH99OleIhTioNijVg4o
- D2ePeejsdyE+YWIN5gSHrACyBFDSdCY62/X2hRNuwE9QHtGQMeRdxmuHOMh0BeUv/SB3kv0jCxs
- FCvqx0fmvvtQC84Ly2PcwCuDo2E4jxqyLkqvAs+AlnMmVfD0lGMHFGjCw+P1sZGU8ak7IMeF1i3
- i/VXevaNQi5E5DXPD6cQgLLpTOqib0bp7aLLy+PkZRC852pBLM9uUmcB2o5hrSkyJVuuahbPOt+
- 935skL03+/jFIJPGYzDEsug==
+ bh=GpnBpqyy46Ez4LTGmSkCOWuQ1xcTftBjGoq1pGuIDVk=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr36wcCgnukFFPLnUGlzPnTRdyTyLwNCnij0
+ 5DIIGK9BxtFSokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq9+sHAAoJENju1/PI
+ O/qaBvcP/RWsXBY1HJAnFh6ipqBYjtQ0tYHPfUYzCVmTJKtspig6LFu26eqmPlEn2SiNPCUbiDz
+ mQUtr7eaALpTgIDofy/z3YlBSYOeUI1TUS1PklJKNPqfMELU8DplyOeD9LbkZnq1PTmDQf1kZf2
+ x36/OAh/AbM+qzIrDhryD4aa0RzxVZv/VXJ5TK8C6Ex1BY7SvhS18npNi7tyO+jJFpEIeFrICDN
+ O38yLJRHfC4tYaWy9dd0tQ97YBG8UR8zknRxVsoCQUqvBCEL8HuDW/alLcHfE74EiT1FwJ9mRd6
+ sKInOVwy2spkfot/d3RwZfGxD1i1dhj6G+kmkf3+xXNFrpIUa1CK7eC91QNAj1Uw3lWlhH+brgg
+ RCaeTSRvCCVHyJpY+ZuTF8eGM01kWUxjpIX0yv+7KEW7FoQ9XUP3ivWsFfJPBQcLkiZW8FyA4UA
+ g90Puj+LuJ3eGgKM0lTzMNNeVZHkyMS2cLGH67WavHCle2kpLftJ3jVte7aMIFKilHdmYoO9qFO
+ eMg1JVFb0X8aPe2fjxcQ7Jsg/ErV+hCqp1b932GOfNwYGka6hg0bZn9dxl4mrNAnk6Uq7ezFjlB
+ HfELQsjgnk0KKI6a6WfHVbuFSaPciu1+1zv/T7VVNVO7LCUTTF2p1zJoUsbuGXrPfmUqTk8b4Jw
+ h4XaTECafMwXNt0yeQPcpyw==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_210105_513367_A0FBFA01 
-X-CRM114-Status: GOOD (  11.84  )
+X-CRM114-CacheID: sfid-20261113_210105_535204_6BB063F1 
+X-CRM114-Status: GOOD (  14.77  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,37 +120,113 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The driver is currently missing to fully clean up after itself. Ensure
-that the mutex is cleaned up.
+Add support for USB-C DP AltMode out-of-band hotplug handling. The
+handling itself is implemented in the platform specific driver as the
+registers to force HPD state are not part of the Designware DisplayPort
+IP itself. Instead the platform integration might provide the necessary
+functionality to mux the HPD signal.
 
-Fixes: 86eecc3a9c2e ("drm/bridge: synopsys: Add DW DPTX Controller support library")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Reviewed-by: Andy Yan <andy.yan@rock-chips.com>
 Tested-by: Igor Paunovic <royalnet026@gmail.com> # Orange Pi 5+
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-dp.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c | 41 +++++++++++++++++++++++++++++++++
+ include/drm/bridge/dw_dp.h              |  3 +++
+ 2 files changed, 44 insertions(+)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-dp.c b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-index 9677f789c986..7351b70bdac9 100644
+index 74ba1306caee..b4eed4d0a520 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-dp.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-@@ -2041,10 +2041,13 @@ struct dw_dp *dw_dp_probe(struct platform_device *pdev, const struct dw_dp_plat_
+@@ -1875,6 +1875,19 @@ static struct drm_bridge_state *dw_dp_bridge_atomic_duplicate_state(struct drm_b
+ 	return &state->base;
+ }
+ 
++static bool dw_dp_is_routed_to_usb_c(struct drm_encoder *encoder)
++{
++	struct drm_bridge *last_bridge __free(drm_bridge_put) = NULL;
++	struct fwnode_handle *fwnode;
++
++	last_bridge = drm_bridge_chain_get_last_bridge(encoder);
++	if (!last_bridge)
++		return false;
++
++	fwnode = of_fwnode_handle(last_bridge->of_node);
++	return fwnode_device_is_compatible(fwnode, "usb-c-connector");
++}
++
+ static int dw_dp_bridge_attach(struct drm_bridge *bridge,
+ 			       struct drm_encoder *encoder,
+ 			       enum drm_bridge_attach_flags flags)
+@@ -1903,6 +1916,13 @@ static int dw_dp_bridge_attach(struct drm_bridge *bridge,
+ 		goto err_disable_irq;
+ 	}
+ 
++	if (dw_dp_is_routed_to_usb_c(encoder)) {
++		dev_dbg(dev, "USB-C mode\n");
++
++		if (dp->plat_data.hpd_sw_sel)
++			dp->plat_data.hpd_sw_sel(dp->plat_data.data, 1);
++	}
++
+ 	return 0;
+ 
+ err_disable_irq:
+@@ -1923,6 +1943,22 @@ static void dw_dp_bridge_detach(struct drm_bridge *bridge)
+ 	drm_dp_aux_unregister(&dp->aux);
+ }
+ 
++static void dw_dp_bridge_oob_notify(struct drm_bridge *bridge,
++				    struct drm_connector *connector,
++				    enum drm_connector_status status)
++{
++	bool hpd_high = status != connector_status_disconnected;
++	struct dw_dp *dp = bridge_to_dp(bridge);
++
++	if (!dp->plat_data.hpd_sw_cfg) {
++		dev_err_once(dp->dev, "Missing platform handler for OOB HPD handling\n");
++		return;
++	}
++
++	dev_dbg(dp->dev, "Force HPD connected=%s\n", str_yes_no(hpd_high));
++	dp->plat_data.hpd_sw_cfg(dp->plat_data.data, hpd_high);
++}
++
+ static const struct drm_bridge_funcs dw_dp_bridge_funcs = {
+ 	.attach = dw_dp_bridge_attach,
+ 	.detach = dw_dp_bridge_detach,
+@@ -1937,6 +1973,7 @@ static const struct drm_bridge_funcs dw_dp_bridge_funcs = {
+ 	.atomic_disable = dw_dp_bridge_atomic_disable,
+ 	.detect = dw_dp_bridge_detect,
+ 	.edid_read = dw_dp_bridge_edid_read,
++	.oob_notify = dw_dp_bridge_oob_notify,
+ };
+ 
+ static int dw_dp_link_retrain(struct dw_dp *dp)
+@@ -2105,6 +2142,10 @@ struct dw_dp *dw_dp_probe(struct platform_device *pdev, const struct dw_dp_plat_
+ 
+ 	dp->dev = dev;
  	dp->pixel_mode = plat_data->pixel_mode;
++
++	dp->plat_data.hpd_sw_sel = plat_data->hpd_sw_sel;
++	dp->plat_data.hpd_sw_cfg = plat_data->hpd_sw_cfg;
++	dp->plat_data.data = plat_data->data;
  	dp->plat_data.max_link_rate = plat_data->max_link_rate;
  
--	mutex_init(&dp->irq_lock);
  	INIT_WORK(&dp->hpd_work, dw_dp_hpd_work);
- 	init_completion(&dp->complete);
+diff --git a/include/drm/bridge/dw_dp.h b/include/drm/bridge/dw_dp.h
+index a82412a9e769..79b2cdf0df99 100644
+--- a/include/drm/bridge/dw_dp.h
++++ b/include/drm/bridge/dw_dp.h
+@@ -20,6 +20,9 @@ enum {
+ struct dw_dp_plat_data {
+ 	u32 max_link_rate;
+ 	u8 pixel_mode;
++	void *data;
++	void (*hpd_sw_sel)(void *data, bool hpd);
++	void (*hpd_sw_cfg)(void *data, bool hpd);
+ };
  
-+	ret = devm_mutex_init(dev, &dp->irq_lock);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
- 	res = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(res))
- 		return ERR_CAST(res);
+ int dw_dp_bind(struct dw_dp *dp, struct drm_encoder *encoder);
 
 -- 
 2.53.0
