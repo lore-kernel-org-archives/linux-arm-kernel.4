@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 574A6606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 21:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC196606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 21:15:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4hX390VZ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Epo60wIk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HYgjG4cJ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=d3gNtaXa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,37 +14,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ab/t9OlRcWN3zbc3eY5ad8JX/kABGcfzSiIaPltDaFA=; b=4hX390VZkHhGxB4XZUFNwwajy+
-	ER0Dt2kefpDO4sy8MvbJNwryacJ7PlqM2nxZG11R2QAHAx7Y+Zy45iASkKj/mMFMhPeB2TjkOw8Q2
-	bBrhO9auHtyJQfXYRdacfPLRM2bDuvVYJF4I+Hx4rHnbqSrtI2WMX0pqKe220xTavvkK4I3ePA9LM
-	kiEavzFWTtWKLdu+cV6dEIC40F42TouJxd1iFPRzJYMjgdzD4PcAGMTUVHTvjIAPNqJpP5d+/5JAa
-	1NLyYKHBXYBFrNCDAdOqS87JuUdZYDTUvm0NBnGE+cnTi5BnyO8CZ97Yhp8qEYAtmwmXegtq6PRWi
-	DNJG3qIw==;
+	bh=I/xn5VK9WmirnuCgk0IeQxX3/IaOL/2L/hCjRfFD/1Q=; b=HYgjG4cJ5Xb89Lb5Hzd0Im1ASS
+	boabnmG+tJXt5/4cLCdRiglNYskKD2SwlZylUv9EzZIV0VWgwxKHlVuklXtwyQEEiSvlaBncwRYZD
+	yGOjJYT3SNu7M29QH2uczldPveolEXQLjLqfrrhvHyiCT3ODv6evYL0aKvn0iHIlH5O31rjOSP4PY
+	s6A73tNMwvnJxuYq9PfPSTBWMrKT56QJxC08JpezoUB5A6WDv4/wLdcBc5opI6WnqKzHa8fyokT4v
+	FqLDXgXTTT89Ti98O0myQJZ0PqFCyte0/+3fgPcAZoLy7Io5uQG5JLsULJo4m+HM9AyGGIbTqegVF
+	LkWz2nRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSL27-0000000GlnN-1cqO;
-	Sat, 14 Nov 2026 21:11:35 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSL5L-0000000Glwi-3HUL;
+	Sat, 14 Nov 2026 21:14:55 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSL25-0000000Gln4-3kxz
+	id 1xSL5L-0000000Glwc-1ifh
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 21:11:33 +0000
+	Sat, 14 Nov 2026 21:14:55 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with UTF8SMTP id CAAC2602CA;
-	Sat, 14 Nov 2026 21:11:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id F3CC61F000C4;
-	Sat, 14 Nov 2026 21:11:31 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with UTF8SMTP id 3F251602CA;
+	Sat, 14 Nov 2026 21:14:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 603081F000C4;
+	Sat, 14 Nov 2026 21:14:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794690692;
-	bh=Ab/t9OlRcWN3zbc3eY5ad8JX/kABGcfzSiIaPltDaFA=;
+	s=k20260515; t=1794690893;
+	bh=I/xn5VK9WmirnuCgk0IeQxX3/IaOL/2L/hCjRfFD/1Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Epo60wIkMirZbSuxFm2i6OvGJPLDjpxK4I8tjwGqzpNdVC1VYb4sVpiEtJ9w3UsVD
-	 /qopc2LRxxbPt2eT/+8B6gAbGKht0K1psVVsuskdwHK0yPK7/cpe22sO5W3ZOJGF1N
-	 cGg4LyPSdN/9jlFAlpe2EJtSlkOYgWBLuoj51EJsJh04ZGjzHe5NC/gfGfSEaknhjT
-	 30E885Bri4EQ1PkYXzxmlDf0zLt6h9uEuSdZSvDS4mTg5oSz9EuyKrX6+Opl6Bv+Jd
-	 249hMrANIWsjTuVQ2hOtMFVXbrk+CyC8zvpxE0PPNlcqNpKkaFh3H5EK7EJxOPnGOM
-	 WhjIBtQapX4GQ==
-Date: Sat, 14 Nov 2026 23:11:28 +0200
+	b=d3gNtaXaNXqkaGoQ4AtB/oTBLMitBuphKFfRbX7Z41cO4CnPTcWHw+rd/4N9ZoO9F
+	 IeqZabYwMFiduGBtdt00T+vS7LzcuIbtpO8R/jZRuuzfFV1RLZG2cBdkSwIW7hiMuT
+	 fnA7IVj9i5W+K6bdZUrfRzi98L0Ayd05hPfq+NahLdJ5svWdmQFcPH01Y55EHLHu4l
+	 x9RrwrToIVfnfmtVrR3xdPHvbhhp6ek0M8d2pnFLircO8UnRPwG+wEoQMCWHWuvR+6
+	 YtN7+jHezeBmf3F865Dhp9siQXh1Ob3D6TZHrYzvWBpsgfs0g5Og77dJM4rIZ6Vtlv
+	 yeKyYZtaH5NzA==
+Date: Sat, 14 Nov 2026 23:14:50 +0200
 From: Jarkko Sakkinen <jarkko@kernel.org>
 To: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
 Cc: Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>,
@@ -54,15 +54,15 @@ Cc: Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>,
 	rlmenge@gmail.com, hargar@linux.microsoft.com,
 	linux-integrity@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] tpm: tpm_crb: Use cached tpm2_acpi_start_method
-Message-ID: <avjOgDySmUiklnN1@kernel.org>
+Subject: Re: [PATCH v2 3/4] tpm: tpm_tis: Use cached tpm2_acpi_start_method
+Message-ID: <avjPSnd2nhnBpsfZ@kernel.org>
 References: <20261114193434.117714-1-sidchintamaneni@gmail.com>
- <20261114193434.117714-5-sidchintamaneni@gmail.com>
+ <20261114193434.117714-4-sidchintamaneni@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261114193434.117714-5-sidchintamaneni@gmail.com>
+In-Reply-To: <20261114193434.117714-4-sidchintamaneni@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,74 +81,75 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 14, 2026 at 07:34:34PM +0000, Siddharth Chintamaneni wrote:
-> Check the cached tpm2_acpi_start_method value at the start of
-> crb_acpi_probe() before mapping the ACPI TPM2 table for CRB-specific
-> parameters. This avoids mapping the table when it is absent or when the
-> device uses ACPI_TPM2_MEMORY_MAPPED and belongs to tpm_tis.
+On Sat, Nov 14, 2026 at 07:34:33PM +0000, Siddharth Chintamaneni wrote:
+> Use the cached tpm2_acpi_start_method value in check_acpi_tpm2() instead
+> of mapping and unmapping the ACPI TPM2 table again during probe.
 > 
 > Signed-off-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
 > ---
->  drivers/char/tpm/tpm_crb.c | 19 ++++++++++++-------
->  1 file changed, 12 insertions(+), 7 deletions(-)
+>  drivers/char/tpm/tpm_tis.c | 18 +++++++-----------
+>  1 file changed, 7 insertions(+), 11 deletions(-)
 > 
-> diff --git a/drivers/char/tpm/tpm_crb.c b/drivers/char/tpm/tpm_crb.c
-> index 4749a9183726..c1c2b72459a2 100644
-> --- a/drivers/char/tpm/tpm_crb.c
-> +++ b/drivers/char/tpm/tpm_crb.c
-> @@ -945,18 +945,23 @@ static int crb_acpi_probe(struct platform_device *pdev)
->  	if (!device)
->  		return -ENODEV;
+> diff --git a/drivers/char/tpm/tpm_tis.c b/drivers/char/tpm/tpm_tis.c
+> index 6f8344894ea5..a6fb6f889e7d 100644
+> --- a/drivers/char/tpm/tpm_tis.c
+> +++ b/drivers/char/tpm/tpm_tis.c
+> @@ -138,28 +138,24 @@ MODULE_DEVICE_TABLE(acpi, tpm_acpi_tbl);
+>  static int check_acpi_tpm2(struct device *dev)
+
+
+
+>  {
+>  	const struct acpi_device_id *aid = acpi_match_device(tpm_acpi_tbl, dev);
+> -	struct acpi_table_tpm2 *tbl;
+> -	acpi_status st;
+> -	int ret = 0;
 >  
-> -	status = acpi_get_table(ACPI_SIG_TPM2, 1,
-> -				(struct acpi_table_header **) &buf);
-> -	if (ACPI_FAILURE(status) || buf->header.length < sizeof(*buf)) {
-> +	sm = tpm2_acpi_start_method;
+>  	if (!aid || aid->driver_data != DEVICE_IS_TPM2)
+>  		return 0;
+>  
+> -	/* If the ACPI TPM2 signature is matched then a global ACPI_SIG_TPM2
+> -	 * table is mandatory
+> +	/*
+> +	 * If the ACPI TPM2 signature is matched then a global ACPI_SIG_TPM2
+> +	 * table is mandatory.
+>  	 */
 
-sm and also priv->sm should be removed
+Delete this comment entirely. It has a low value.
 
-The global should be accessed across the board when querying start
-method. It should be the single source for it post-tpm_init.
-
-> +	if (sm == ACPI_TPM2_NOT_ALLOWED) {
+> -	st = acpi_get_table(ACPI_SIG_TPM2, 1, (struct acpi_table_header **)&tbl);
+> -	if (ACPI_FAILURE(st) || tbl->header.length < sizeof(*tbl)) {
+> +	if (tpm2_acpi_start_method == ACPI_TPM2_NOT_ALLOWED) {
 >  		dev_err(dev, FW_BUG "failed to get TPM2 ACPI table\n");
 
-Drop this message.
+Delete dev_err()
 
 >  		return -EINVAL;
 
 -ENODEV
 
-
 >  	}
 >  
->  	/* Should the FIFO driver handle this? */
-> -	sm = buf->start_method;
-> -	if (sm == ACPI_TPM2_MEMORY_MAPPED) {
-> -		rc = -ENODEV;
-> -		goto out;
-> +	if (sm == ACPI_TPM2_MEMORY_MAPPED)
+>  	/* The tpm2_crb driver handles this device */
+> -	if (tbl->start_method != ACPI_TPM2_MEMORY_MAPPED)
+> -		ret = -ENODEV;
+> +	if (tpm2_acpi_start_method != ACPI_TPM2_MEMORY_MAPPED)
 > +		return -ENODEV;
-> +
-> +	status = acpi_get_table(ACPI_SIG_TPM2, 1,
-> +				(struct acpi_table_header **)&buf);
-> +	if (ACPI_FAILURE(status) || buf->header.length < sizeof(*buf)) {
-> +		dev_err(dev, FW_BUG "failed to get TPM2 ACPI table\n");
-
-Drop this message.
-
-> +		if (ACPI_SUCCESS(status))
-> +			acpi_put_table((struct acpi_table_header *)buf);
-> +		return -EINVAL;
-
--ENODEV
-
->  	}
 >  
->  	priv = devm_kzalloc_obj(dev, struct crb_priv);
+> -	acpi_put_table((struct acpi_table_header *)tbl);
+> -	return ret;
+> +	return 0;
+>  }
+>  #else
+>  static int check_acpi_tpm2(struct device *dev)
 > -- 
 > 2.45.4
 > 
+
+
+Finally after those suggestions this collapses into almost nothing i.e.,
+please remove check_acpi_tpm2 entirely and open-code to the two call
+sites.
 
 Br, Jarkko
 
