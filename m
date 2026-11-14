@@ -2,149 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADD89606A885
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 03:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C0D606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 03:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wl6xwTBs;
-	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm1 header.b=G0YZ6fvl;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=RMvLJ2mH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c44YtM7C;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TeIucKOM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=minVMPaxKdnfyCJpbOwFdJHL/LDtX3McHU8H1MIv0Xk=; b=Wl6xwTBs+eTwth
-	zGH237EskcU30uoevuINlmBLD9a1sZwwLnNgRYv0NTCGzxadBSxvHG/LAD2amHOX8/RteOiG2OCnG
-	maGzAlwFVupNTc7ZF2W+tJzhP1rZ1anl1JgObWti9vUIWeJGxl0kfo4UrH/2P3LLboEAJduTBvDcN
-	dp3sCRCXhH7AYdxJuH8UutquDxwzuYwEd6ev/mjPcIRjDcpB4Hsjn4IGpbkho4p5GebL6sW6dD4Nk
-	ah/wZEbLvwXXUnpWK/iIeS/1pUnjohseVhHzbB19cSqV+6ltXw+aWIVxT2LJQxS0cxdE6NG1k4j06
-	XyJ9JG8+OW2Z8nsrL99A==;
+	List-Owner; bh=FKtAAVfNMBtdDOun0q+aZRlZBry8DYf1T2KDGjW+TD0=; b=c44YtM7CyuxgrE
+	5vAzTEprtHGdZc5WmnJJ6gyVgFjTWdu3Av9jjMO03nq3Jex5/C42QmapYgAfEiR2/PBJstvxMuqIA
+	xsc+TWupJ7TfingCqJ2J5Lstlug2bH9Oe9S6Dr4S5+b+M3SmZig/wZgF1bubePb5NgutqBNMcmQTo
+	tAlBT4eX6PpR2YSeOlzTdgTDVwgPQP5McUpkPGFTwgUAGd+y5+J+dKbryXUm4uQeE7YNrcuWiLWuS
+	jAZ6/XIZWUed6YN+l92ZYjyWul40LiDczBQMWMipBBSNPqxFUds3NeynAzSechGYL4w8MnrQ4FxZN
+	tKrP43+XYngzn3BIXH3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS47Y-0000000FCUX-1S6A;
-	Sat, 14 Nov 2026 03:08:04 +0000
-Received: from flow-a4-smtp.messagingengine.com ([103.168.172.139])
+	id 1xS4DM-0000000FDSB-2Wc0;
+	Sat, 14 Nov 2026 03:14:04 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS47P-0000000FCM5-1xK3
+	id 1xS4DL-0000000FDS4-13K5
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 03:08:02 +0000
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
-	by mailflow.phl.internal (Postfix) with ESMTP id 9E0C71381A47
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 22:07:54 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-03.internal (MEProxy); Fri, 13 Nov 2026 22:07:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm1; t=1794625673; x=
-	1794632873; bh=minVMPaxKdnfyCJpbOwFdJHL/LDtX3McHU8H1MIv0Xk=; b=G
-	0YZ6fvl6B4tixy1wuMCXH+idyIMOSp4jjzZ7M7Hj8CzycVMT4AF+SDYteWzoWqxw
-	m3uc1Nq8duDFr0ctKemt1q/jVCVwXKtvpsMZW/4XJBNcJy2Xz8TuxPUiSbDEtb+c
-	ncEz7MaXQt/EoJNHWb9yo30UOipbQzywD7XmausfL35RePjNkPmM9xvYErV4yciE
-	dXSzvReFA8FZ39CAp8+0r7I5dL6eoVuM6HQa5M24HbUTNB8r6793akan+E8WTsb4
-	9iMNcIt2k+dICgof6mQjU1kl+BF7ts7C9a7/bU8yLJzj4UB+ZnEwB8TRecm0MOiS
-	eqgJ7lbV8+eaGI4stiFuA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1794625673; x=1794632873; bh=m
-	inVMPaxKdnfyCJpbOwFdJHL/LDtX3McHU8H1MIv0Xk=; b=RMvLJ2mHq78DESybD
-	OLlxdyf7DHWJp8kTm5F5UEwKJqv3W3V94V7p9sZwxhjg8A53pfrVe4gk5r5SlVGB
-	4xhWz4MKLf6mrRQDjuIUYpIDtdknFGok7/fYyUdimZAbl7L4kvcpAZ4vZry7Zfyd
-	Y6RwL4bGs0TrGhkBjk3OSO242f4fnqTBzLHw11YW6P8tEthMvJF09CalnmH+1xUV
-	3TXCcCr0I8FsrqdIM2j0DBYvif7sqGfQ/tBiEq+Kbgr9ZPoBHoOvXwWnUe85sVK7
-	RkPTx7V8FPTiYhIWLfAAsqL6JtZ/29uot8jRcch00hAuWXLo8EvWIrVDZ5jywTlr
-	4tWMg==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=gahingwoo.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794625673; d=gahingwoo.com;
-	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm1:rsa-sha256:ZPV1DvfH1rzPCRQCW6s+UXI+dbCqMFF4IIAcLTASCd9bVgB
-	1SRs8JsuWKEimZ6EypqLc7HLSa5W9eX79wvLTKWJgPAo79Pvxlnc/NBE73KosaVK
-	bydBRtdaky/fW/DQvK1c67XXEi+34FyD+uKPVlK5jiUYalInsbn7q5F64MuDkZZ9
-	M+9hnP+INvRKD1JiMSwA711KXMUZAK9JTgwDBAXBnzOVB4PsXBW3MC65/4RwfRXK
-	QjcDLK6KF2cgB+2R8plDJevgBK5FQEzeNcQSYituf7J5rfU3QEwSXsa/SslW7bpu
-	dXcLEfrDxw8feoajO7PP0vkzcPg9n6duvivuxGg==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=11;
-	hn=cc,content-transfer-encoding,date,feedback-id,from,
-	in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:EMxXy9xAZ5ctopLWqVNQ7sYHei75wDpLzcRuSICud9k=:1+NbzSznMYt1rSZBGDikCAdMHVRI7t6SMcI79gsQSUo=;
-X-ME-Sender: <xms:idD3asggZHPb6KVJz0QsCPiYaIw8HheB9OdtoD5gNHmgxHHn2xIjCA>
-    <xme:idD3ahcmBaNnnqD3b4ZsxIKV0vuRhkPRvty7O-46vy5oSj6oleZEZBFw5N8D5aUNI
-    mhXROYcs52Qb6mOv68TVc3g7zjRqxtVp3w-ZcEtxfw_0yKv-P1Ydzt5>
-X-ME-Received: <xmr:idD3arUsfCPuwhEV0dCco3vJ5bB2O5ef0vJESHkq6vWAUAgCECRjPaFht-FdAC7xAmgNtMTe>
-X-ME-Proxy-Cause: dmFkZTEGMxOoH3y/fMppx2r36gm4cx9GYI3ohK01ZShvs6zT+8h1mVWufLahBuei4Ed1/3
-    xRbUYha+QR045BDD8FCRFVIM91rSGwUQ7zMnQH1Bkat2KqUfUo8S4YHSEorvk8zLj3SaDW
-    2cnjQVg1N4cjgYIFaRpoqGeOaFHkoldyad78tsE+DecFb61BS2EtavEyFF5qPgk+LGIze3
-    1pj9uE4MqQ3E6Y1sY03sy7yic0nfNy3N91ax17Z8mzLg+z2lmCVcb4QExTOBMVx/MohP3G
-    wnkdi+msWCJW4WkcwQvXo9jRKjLop8wk5fKsg/aLeHj4SFgb7u29HtVGx3Iv5RN6/FH7Uc
-    6ooYTCQJTzCVoGpAgAOmwgxnP95SyZGhb8IR/gfhtnijNjnwmL3vbyASIyngaAVfisingC
-    GkviKl5cAo2XuBatVdj2coWGf5yhq22IF6VSCnwNzJJ2E0mtQ6yjIqq4HmOZ6VKl8Z4d3e
-    X2B8vBYoqK8/+zjBwKDw0izgWXV42sdfCA2e0t1lPz/Ykp6UJfZ++jkgGOhfH7d+aTDQEt
-    TCpElkeA0wPvN93ga5P72J62SBRc/yT75IqclhylkonazCl9gpFSajqnOdSGtopXM5KZDO
-    wMS1pA9TfyaKBIlIAIVfQfdS9IO5fB8CLCXkTmCXCClcW0oSh1hBkOrNisnA
-X-ME-Proxy: <xmx:idD3ajzDOpbOOQc8Yg1u-nL5gWfN6FrghzInKre29s418eOebadD0Q>
-    <xmx:idD3aqBtoBm22JnKIWQR3pBacPBPyxTNK72MjlN58vw1YLrf875DZg>
-    <xmx:idD3ah5kzDEaglxuAKYLpZrUT9Yj2NlaiF1tCFQ2ywaxDCw73p_sww>
-    <xmx:idD3apmJg_oBatXvv1KumlntFngQbdaEiBW4Ct9ySiYK6IeEbEuyOA>
-    <xmx:idD3ahnsXtrmaMGRBFmy1XPDGlTs7p4on_Cem-lDS41XzCKHZc31BRXB>
-Feedback-ID: i7a5e4b5f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 13 Nov 2026 22:07:45 -0500 (EST)
-From: Jiaxing Hu <gahing@gahingwoo.com>
-To: tomeu@tomeuvizoso.net,
-	heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	joro@8bytes.org,
-	will@kernel.org,
-	robin.murphy@arm.com,
-	p.zabel@pengutronix.de,
-	ogabbay@kernel.org,
-	zhangqing@rock-chips.com
-Cc: royalnet026@gmail.com,
-	ulf.hansson@oss.qualcomm.com,
-	abel.vesa@oss.qualcomm.com,
-	sebastian.reichel@collabora.com,
-	sidong.yang@furiosa.ai,
-	u.kleine-koenig@baylibre.com,
-	chaoyi.chen@rock-chips.com,
-	shawn.lin@rock-chips.com,
-	finley.xiao@rock-chips.com,
-	diederik@cknow-tech.com,
-	alchark@flipper.net,
-	leonard@lausen.nl,
-	vlwwwwww@gmail.com,
-	jeff.hugo@oss.qualcomm.com,
-	rfoss@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v17 12/12] arm64: dts: rockchip: enable the NPU on rk3576-rock-4d
-Date: Sat, 14 Nov 2026 16:05:29 +1300
-Message-ID: <c0d64d55586774802bdd70defa016be6912ab83e.1794615323.git.gahing@gahingwoo.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1794615324.git.gahing@gahingwoo.com>
-References: <cover.1794615324.git.gahing@gahingwoo.com>
+	Sat, 14 Nov 2026 03:14:03 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 39E7660D12;
+	Sat, 14 Nov 2026 03:14:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7592F1F000C4;
+	Sat, 14 Nov 2026 03:14:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794626041;
+	bh=FKtAAVfNMBtdDOun0q+aZRlZBry8DYf1T2KDGjW+TD0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=TeIucKOMzI8X5GBiYa3bjYfTKSS7ohSu1mx5zfLshvLzb0yyDpMZIkoi+O5NhHljf
+	 A0Aw/wvC9anU1NR58RfJEBuv8bobmliOGhVQoENBSQYcaWLzRFvcUV+376M8nlQQE1
+	 4WkK9H8lfZ2xcB6ophmWCz5KgvT8kyBfek5QEjpJvIiTyMBNJGwiRq+PtT79PNNb2W
+	 WqjxGxug7ngh/xlTaBwsBxv8RAHA+NzohbmZULJ743/RP9K0iChedSolkZwR5idgrE
+	 h0wlOXQ/V/uOy6zBD1PiYqrla9FiU+9+qlD22QIpSIFXqayYfFYpHos4YO48vVfZb3
+	 yRvDz2GkTvDAA==
+Date: Fri, 13 Nov 2026 19:14:00 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Daniel Machon <daniel.machon@microchip.com>
+Cc: <netdev-bot+sashiko@kernel.org>, <andrew+netdev@lunn.ch>,
+ <davem@davemloft.net>, <edumazet@kernel.org>, <pabeni@redhat.com>,
+ <Steen.Hegelund@microchip.com>, <UNGLinuxDriver@microchip.com>,
+ <richardcochran@gmail.com>, <linux@armlinux.org.uk>,
+ <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <robert.marko@sartura.hr>,
+ <horatiu.vultur@microchip.com>, <jensemil.schulzostergaard@microchip.com>
+Subject: Re: [PATCH net-next v2 2/9] net: sparx5/lan969x: free the FDMA
+ buffers on init errors and deinit
+Message-ID: <20261113191400.2451b854@kernel.org>
+In-Reply-To: <20261113075946.fptcvcesbmjlahpc@DEN-DL-M70577.microsemi.net>
+References: <20261111-sparx5-mtu-change-v2-2-59c91357e8f6@microchip.com>
+	<179450479633.2199510.4808333993834819818@kernel.org>
+	<20261113075946.fptcvcesbmjlahpc@DEN-DL-M70577.microsemi.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_190755_603837_A5D6852C 
-X-CRM114-Status: UNSURE (   9.35  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,64 +74,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable both NPU cores and their IOMMUs in the ROCK 4D device tree.
+On Fri, 13 Nov 2026 08:59:46 +0100 Daniel Machon wrote:
+> > Would it work to set rx->page[fdma->dcb_index][fdma->db_index] = NULL
+> > after page_pool_recycle_direct()? The poll loop would also need to
+> > consume or refill that DB, or reuse the page in place, instead of
+> > recycling the page while the DB still references it.  
+> 
+> I believe this issue is being addressed on net by Zhang Hewei [1]. I asked for
+> changes on v3, but no response so far, so I see three options:
+> 
+>   1) Wait for Zhang to eventually post a v4.
+>   2) Send a follow-up fix for this, in case Zhang does not.
+>   3) Incorporate the fix in v3 of this series.
+> 
+> Either of these works for me, but as I dont know if a v4 is ever sent and how
+> many respins that fix will require, it'll probably be fastest for me with 2) or
+> 3)
+> 
+> BTW. The high severity issues on patch #6 and #9 have the same root cause as
+> this. So my response to those are the same as this.
+> 
+> [1] https://lore.kernel.org/netdev/tencent_6BAC076E552C6F338052FC02794D9B28ED0A@qq.com/
+> [2] https://lore.kernel.org/netdev/20261110105239.5olhrlwa3mck74f4@DEN-DL-M70577/
 
-Make vdd_npu_s0 the supply of the NPU power domain, so the NPU rail is
-switched on and off with the domain.
-
-Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
----
- .../boot/dts/rockchip/rk3576-rock-4d.dts      | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-index f068794e48d4..72b251d396fe 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-@@ -722,6 +722,10 @@ &pcie0 {
- 	status = "okay";
- };
- 
-+&pd_npu {
-+	domain-supply = <&vdd_npu_s0>;
-+};
-+
- &pinctrl {
- 	hdmi {
- 		hdmi_tx_on_h: hdmi-tx-on-h {
-@@ -779,6 +783,24 @@ wifi_en_h: wifi-en-h {
- 	};
- };
- 
-+&rknn_core_0 {
-+	npu-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_0 {
-+	status = "okay";
-+};
-+
-+&rknn_core_1 {
-+	npu-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_1 {
-+	status = "okay";
-+};
-+
- &sai6 {
- 	status = "okay";
- };
+Looks like the author respun twice since your response.
+Let's wait for the fixes to make it to net-next, v5 conflicts with 
+the changes you are making. Don't hesitate to post your own version
+of the fixes if you prefer. I'd bet it's an LLM jokey blindly feeding
+sashiko pre-existing issue reports into an LLM.
 -- 
-2.43.0
-
+pw-bot: defer
 
