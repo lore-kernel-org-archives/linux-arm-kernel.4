@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F34606A899
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 11:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB46606A8A9
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 11:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BxwRbLID
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bqEHRBzF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -13,27 +13,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=y7VwAXIR3LZ+LfLuKx6LSuovTYdHUSxNKCSscFFqjLw=; b=BxwRbLIDVBv+MPTlzMDs7hj+PW
-	GlO6Vf5zrafMkEagtoXReICTlC2KT2gh+XD81agzOuxuMnIPRPj/coUpsz5SRwiYhm3bWT+IQ47VH
-	wCwQs+6aG8bpb4Uu3i34Ju3N35Zin6dLH8gGzA4gJ3hNqCcie+MLJV5mjjgYE22ZAvn3uMtv1XQFz
-	hTgXRdeNXgFPNuExxTDlNtw1hlqmOTcxMrrg04JuK/BhGh0nKWemb+WmEFPlEv/TkHuRPpTaPkZnD
-	9zItc6atb4+L/kC9tsOZi3pCPsSgO4DWdgWVj8EiIuT58H097ecN/4t454a0ceZpaSroIQ/MZd0C3
-	rOTdxQlA==;
+	bh=nxNur07JedLwdgeoyM/idjM87N/Ou3v+0VvVn90Adw8=; b=bqEHRBzFL0ZR1iANhCjwnmmTgN
+	MyiJ9v2RRBkGHBxxv47l8AWEPbmuO6LxzbIC8H57V+dJ7/SdO8lsPKog1Zz+vpkbzJJcRi8JuZxPq
+	DtZfyklKzi24nM+s7dcUzgV+QZE51jYfNg+eRKsnVQ4mfzS5s458cS8efqFdkdIr/xIqEnW9kuH5t
+	r8gXp0YRl1QTkYkRD8FC+gf3trhfBkpaAAS6YHVuV0g3V3MGv0mXKhP2YKqnII4Us0DD1+TW4dY5F
+	+eOKai3MSBEN0rxefZV/gjVuS+HIHUu0OO42udOFRsp3FsVV8l1MGS4ZACD9uF0pXnEqec4RTEgws
+	N2hYo5dQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSBeP-0000000Fs1V-2HfM;
-	Sat, 14 Nov 2026 11:10:29 +0000
+	id 1xSBex-0000000FsFl-06wZ;
+	Sat, 14 Nov 2026 11:11:03 +0000
 Received: from pidgin.makrotopia.org ([2a07:2ec0:3002::65])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSBeN-0000000Fryz-0Sb9;
-	Sat, 14 Nov 2026 11:10:28 +0000
+	id 1xSBeu-0000000FsET-2ycC;
+	Sat, 14 Nov 2026 11:11:01 +0000
 Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256:X25519MLKEM768)
 	 (Exim 4.100.1)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1xSBeE-000000003za-3d22;
-	Sat, 14 Nov 2026 11:10:18 +0000
-Date: Sat, 14 Nov 2026 11:10:15 +0000
+	id 1xSBem-0000000040T-34qQ;
+	Sat, 14 Nov 2026 11:10:52 +0000
+Date: Sat, 14 Nov 2026 11:10:49 +0000
 From: Daniel Golle <daniel@makrotopia.org>
 To: Detlev Casanova <detlev.casanova@collabora.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
@@ -50,8 +50,8 @@ To: Detlev Casanova <detlev.casanova@collabora.com>,
 	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 6/7] arm64: dts: rockchip: rk356x: Order vdec regs by address
-Message-ID: <9f72ce4790da9658a62171ca5ca91b44ce922b62.1794654074.git.daniel@makrotopia.org>
+Subject: [PATCH 7/7] arm64: dts: rockchip: rk356x: Clock the vdec at 400 MHz
+Message-ID: <64aa864c176a6ca898535c12ceb85ee69b89028a.1794654074.git.daniel@makrotopia.org>
 References: <cover.1794654074.git.daniel@makrotopia.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
@@ -59,8 +59,8 @@ Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <cover.1794654074.git.daniel@makrotopia.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_031027_158394_35D5720F 
-X-CRM114-Status: GOOD (  10.75  )
+X-CRM114-CacheID: sfid-20261114_031100_753514_9295675A 
+X-CRM114-Status: GOOD (  10.36  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,42 +79,38 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The rockchip,vdec binding lists the register blocks as link, function,
-cache since commit 35c8178ed2bd ("media: dt-bindings: rockchip,vdec:
-Add alternative reg-names order for RK35{76,88}") and marks the
-function, link, cache order deprecated. The RK356x node uses the
-deprecated order, which also leaves its unit address 0xfdf80100 on the
-second reg entry.
+The decoder AXI, core and CABAC clocks are assigned 297 MHz, the rate
+the vendor kernel derives as a quarter of its 1188 MHz GPLL. This dtsi
+runs the GPLL at 1200 MHz, from which the closest rate below 297 MHz
+is 240 MHz.
 
-List the blocks as link, function, cache. The driver looks them up by
-name.
+Assign 400 MHz, a third of the GPLL. The vendor kernel clocks the
+decoder at a third of its GPLL for streams above 1920x1088 and lists
+400 MHz at 900 mV as the highest decoder operating point.
 
 Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
 v4: new patch
 
 ---
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-index fac41e34005f2..eefcaa2c26ffe 100644
+index eefcaa2c26ffe..bb30c2939a269 100644
 --- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-@@ -653,10 +653,10 @@ vepu_mmu: iommu@fdee0800 {
- 
- 	vdec: video-codec@fdf80100 {
- 		compatible = "rockchip,rk3568-vdec";
--		reg = <0x0 0xfdf80200 0x0 0x500>,
--		      <0x0 0xfdf80100 0x0 0x100>,
-+		reg = <0x0 0xfdf80100 0x0 0x100>,
-+		      <0x0 0xfdf80200 0x0 0x500>,
- 		      <0x0 0xfdf80700 0x0 0x100>;
--		reg-names = "function", "link", "cache";
-+		reg-names = "link", "function", "cache";
- 		interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>,
- 			 <&cru CLK_RKVDEC_CA>, <&cru CLK_RKVDEC_CORE>,
+@@ -666,8 +666,8 @@ vdec: video-codec@fdf80100 {
+ 				  <&cru CLK_RKVDEC_CORE>,
+ 				  <&cru CLK_RKVDEC_CA>,
+ 				  <&cru CLK_RKVDEC_HEVC_CA>;
+-		assigned-clock-rates = <297000000>, <297000000>,
+-				       <297000000>, <600000000>;
++		assigned-clock-rates = <400000000>, <400000000>,
++				       <400000000>, <600000000>;
+ 		iommus = <&vdec_mmu>;
+ 		power-domains = <&power RK3568_PD_RKVDEC>;
+ 		resets = <&cru SRST_A_RKVDEC>, <&cru SRST_H_RKVDEC>,
 -- 
 2.56.0
 
