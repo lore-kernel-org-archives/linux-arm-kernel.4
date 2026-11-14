@@ -2,59 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7DE606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 05:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4BB7606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 05:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0o4cjtx4;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=miJIMTj2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RUudXub4;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=KoBbhMlG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xTbCP+YKu9nQUSdthSEZBjag7EgR8WQkPX0xvCC1olk=; b=0o4cjtx4XOHbf4
-	BvfefXIjyMaknrBkkb0fkTWCxuaDzVkjCYcFpeUX6jLfb0kh+KTCK/guGUgvigBVB2zAX9y35E4BJ
-	NMVUY1BcAeBaPETCubAEaVnhxEgFbxGQFYhxzQOJog3nKOGAn1DFIVHT4FMovMiFDxt0rWTriUgak
-	wsvyxxvUIH1QoijrUL/UlEOz9SBoD1Y8xIdi6AoHw1LIS0bRk8FHHNawWnW4BqJuhDHpxWGUTpvuH
-	UHqIjkJOkOQqANjXp5bkn0DndqC+fBFP3XlY6PXuBUzP7Rhf9Slu9p0xMBEpfrWMVcf6q0aS6KGEW
-	JslwPZX4Pji9RkB6QoGg==;
+	List-Owner; bh=RRboAnMHodl3XbcR5ba9SsX8/xJOVDLo4IDHvLIOpyw=; b=RUudXub4Wnh10U
+	Y2XmJlMb3jiu7t9kqf0KDdIcOwaIZhroWfypz7lufQlp666DJWYGDSAQ3JLbPtgDl4k3D2+KahNM+
+	EMSfTHTUEE69ZIm+IU9i3YLjqFjVsV2yBnSa1+tbso1AjpDFLworssWKWFFmtSFsn3ou2ehrxqoIi
+	ldBK0yuT/mE/rl0YWzJlBx5Afr0ECSr5QqtEYhe4n4My2k9rFfgC05UAlnSa5vLIiOWWheTGUht8J
+	DSUpspSiMlnQU6v6H8gFIAXj5J94v+4Sl5qQnQ+YQdL8UecMHiuy81ZbpRBH4rVnV8UkMNNf5M57C
+	mkzBiHjITbkX5WHzlO9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS5vK-0000000FSsG-2sKX;
-	Sat, 14 Nov 2026 05:03:34 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xS5vR-0000000FT15-2Cb9;
+	Sat, 14 Nov 2026 05:03:41 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS5uW-0000000FS2v-34v4;
+	id 1xS5uW-0000000FS2u-1var;
 	Sat, 14 Nov 2026 05:02:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1794632562;
-	bh=0r7U5Yg6sSGfBgWp0m+HU9sSss4Q+sJk0BLGFEcJOgY=;
+	bh=WCH3joQTwHDZO9+k8imnq+hta8rBNGbqZDWXf+Ud0mI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=miJIMTj2t3lScQjMk3opzUCdWer8efaScumrg+B4yeufIM+RosJDVVBfgm6x71N0P
-	 m92Wk0hhumGVYYr0UUZ93h99tYOmVoMq8dELAXRgJGwOTIPU4UvmP0Y8h4+KyyU9J2
-	 MQeFvVYtA39WLrvEvKlZoDxPC0MClvhxJ634PVdIWiwbvZKqEm0pG/21Q1iSmP0c1L
-	 rxoMGUOZKvZlxVnToO6sAD4n7A+8GHWM49mBnHWxbPeLBtmO33Cejfwy+Bt0YcefXK
-	 bN0UxghoZZXUv6kfRLtOP3nBBbOJODRQwAmNDKFGruc8fqggNjMAp1uA2U/QLGa+ea
-	 JP0oQkl/V/p+Q==
+	b=KoBbhMlGolq3HqiyBhchsj0pGdExpqSIlAn9nox2KevJUew2+ZqubHLtSYSZB7Rfr
+	 mE2jyaB4gHbYtEM9OsEGXG4Fd6M9i4KldZwZh9Z+5my69DJxChCqGVb8P8V/lQUwNe
+	 UkxjCes8jChlXyKJLbLkTXI7GRGLs0lA1q2DBpvQz4NUGuzVZrIk7lz2lKSzrIbJNT
+	 mz3/2JByuKfkf6nbZeQqFJZVkZVsg1e9mbkStjO+rKkiW4eJxm+M49iMZlCw470YEs
+	 +cKPNiSOTKyZ3gyQMAiUZMKsr5OKuCTeSSBb8qirQ6HzCbsv/twDs9shPeobQ+6ks8
+	 M/F5GvrY27VkQ==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7BEC417E0FCC;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 762ED17E0F7F;
 	Sat, 14 Nov 2026 06:02:42 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 2716F480065; Sat, 14 Nov 2026 06:00:56 +0100 (CET)
+	id 25569480064; Sat, 14 Nov 2026 06:00:56 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Sat, 14 Nov 2026 06:00:51 +0100
-Subject: [PATCH v12 18/23] drm/bridge: synopsys: dw-dp: Drop useless
- reservation of first slot
+Date: Sat, 14 Nov 2026 06:00:50 +0100
+Subject: [PATCH v12 17/23] drm/bridge: synopsys: dw-dp: Protect
+ sdp_reg_bank from concurrent access
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261114-synopsys-dw-dp-improvements-v12-18-d42d3dc5bdd4@collabora.com>
+Message-Id: <20261114-synopsys-dw-dp-improvements-v12-17-d42d3dc5bdd4@collabora.com>
 References: <20261114-synopsys-dw-dp-improvements-v12-0-d42d3dc5bdd4@collabora.com>
 In-Reply-To: <20261114-synopsys-dw-dp-improvements-v12-0-d42d3dc5bdd4@collabora.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -81,26 +81,26 @@ Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
  Sebastian Reichel <sebastian.reichel@collabora.com>, 
  Igor Paunovic <royalnet026@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1365;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2443;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=0r7U5Yg6sSGfBgWp0m+HU9sSss4Q+sJk0BLGFEcJOgY=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr36wfQ6i3dgeRXOjgQnMgr9bqJmKz48UtxY
- dfrDyRbacbwIokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq9+sHAAoJENju1/PI
- O/qaRXAP/ipivOXI9FeMImp3dNekh6NiWVgRlbRPC0pN9hQtqAvSu/ibaioKHjziPePkunrdFFR
- jVqhmn8IMUqZCCD7GNTFYwVEweMojWi8DiwjaJIjNn06QiqajTaLAFTFtoJSnH6hCB0DAIWrqCQ
- JbdFEEDNNt8lMfhZvf/gzcc2y3rQna7qcI+jcCgPr9hUfhamH+rsclYxANtXiCSmA2ybKD2m2aq
- d27QGjz/KPYnnJ8k82sg57687V5AtlbU50ahzbgT2ZRYaufagZZ/n4Pkg+JWnmtgsBN6xQFVg0h
- gBw0QoRCYU8PTOmw3ur/MomSGvqhbQ5mxnok5AQD62zLbiYss/7iy3cF8LIAdXeqSZiZuydxEU8
- E2ifc4X7FdyKK5spG63s6tkQculEd5wGFPYoGBNpGUVPmjjNOFm4CwfQfkeGqB1jm0oSvurvTiD
- U3CbkhIadUI0/LRQaES7PrXY1eyzgOAoUxw9hcTpN/dZMQC4I007ng9kgVgMDoFHNPZ3a2IAPGo
- sz0tXcqpbQt7V0rfZ9XPY8vtKRu/0XpwOm5PbhIumivzln6n42iNsQ0W2DPWNNs9K1D2+G/itjX
- DcJ72TZabBlNSv1NAK/JpyspP139vyksmI8+Qj9m/LY30MPCTZMqTTytlPOGtdc0OABrwADx6Db
- xMmJzwJCryq/iyLkblv4rkA==
+ bh=WCH3joQTwHDZO9+k8imnq+hta8rBNGbqZDWXf+Ud0mI=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr36wfkDczpe3NpCoYHjrLJ+FZ95bPzQ+RDy
+ tcDN2uLgt4jNYkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq9+sHAAoJENju1/PI
+ O/qaNjAQAKNvCQI48qH2yD+bOxyXjS9BfimRr1TtI5OaPhHLJ9X7SvcBnXTBaco4fdvtcKHloJN
+ kcMDx8UNHeyVMrqzYAedyKxJ3PAZjxBexkmt4VzvrP2rg5jmmFom7uba3icThbD1Z7Xin2b4ayt
+ D3k2bTwXdN/IdPtVj7Jj10Th//CQYTTipbJxQD8yc0KHQRTZFGoZWF6GJbW2Nq0kLO1htGz5dJK
+ CmEhdeJmG8r1WUiqZGuIEFOVANBWqOZsFVESZF1zr47yuUdubfpfRSsnywGmf0Ob6H1W7dsu6aQ
+ 6DZESj/pf/fa8HjCjNYJeynolABx9IXiDkwU5nllyN9mnf6VUJMD2bZHgoZfO3P26H/DudjOXxp
+ tlApIUn+yIKEE6GNqtg6vxZtJ0N3CCIC5L+PS3K6tf+kQkYn+lo6K6T88Q+8UCfys37ppdziiWn
+ 9SCrT7EvQZiDMbhuFlD28bXyjGBc7Jq7vDxb6zYPVBOsT81L1bLNdngNNsiY3coCuOC5eYvdWAQ
+ 8QFBSCU/1xMB9JvijQq9oUwKS9f1IlK9ao/91TyIwjIfgEzTmRw1VJie+qNumUbX7tkqvI2B6SE
+ 5lUiN8iiU+l8QioXIZKmZqgF3UhLgV5tCjxaYjZBKVZTuXPKDKM0vFtLdpBQAVudptZcBDzSjqU
+ 8B8k5RRknk3dOrkUVyjcpRw==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_210245_579312_53E6B47E 
-X-CRM114-Status: GOOD (  13.44  )
+X-CRM114-CacheID: sfid-20261113_210245_638060_7752C7D6 
+X-CRM114-Status: GOOD (  12.21  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,37 +120,81 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The origin of this reservation is unclear, but it is a problem in the
-atomic_enable code since it potentially races with the audio SDP
-reservation once that feature is added. I suppose it was either meant to
-be bitmap_zero(), but that is obviously not needed (and would also be a
-problem for audio support) or some left-over development code before the
-VSC SDP slot was allocated automatically.
+Right now sdp_reg_bank is only used during atomic enable/disable and
+thus there is no risk of two threads accidently claiming the same bit.
 
-From my tests SDP slot 0 works fine and can be used. If SDP slot 0
-really needs to be reserved for some reason, the bit should be set in
-the probe function to ensure there are no race conditions.
+This changes once more SDP users (like audio support) are added, so
+introduce a mutex to protect concurrent access to the bitmap.
 
 Tested-by: Igor Paunovic <royalnet026@gmail.com> # Orange Pi 5+
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-dp.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c | 24 +++++++++++++++++-------
+ 1 file changed, 17 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-dp.c b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-index cd1499ae449e..1ae5c842a782 100644
+index 4d61ca8f0174..cd1499ae449e 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-dp.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-@@ -1712,9 +1712,6 @@ static void dw_dp_bridge_atomic_enable(struct drm_bridge *bridge,
+@@ -322,6 +322,8 @@ struct dw_dp {
+ 	struct dw_dp_hotplug hotplug;
+ 	/* Serialize hpd status access */
+ 	struct mutex irq_lock;
++	/* Serialize sdp_reg_bank access */
++	struct mutex sdp_lock;
+ 
+ 	struct drm_dp_aux aux;
+ 
+@@ -1046,11 +1048,13 @@ static int dw_dp_send_sdp(struct dw_dp *dp, struct dw_dp_sdp *sdp)
+ 	u32 reg;
+ 	int i, nr;
+ 
+-	nr = find_first_zero_bit(dp->sdp_reg_bank, SDP_REG_BANK_SIZE);
+-	if (nr < SDP_REG_BANK_SIZE)
+-		set_bit(nr, dp->sdp_reg_bank);
+-	else
+-		return -EBUSY;
++	scoped_guard(mutex, &dp->sdp_lock) {
++		nr = find_first_zero_bit(dp->sdp_reg_bank, SDP_REG_BANK_SIZE);
++		if (nr < SDP_REG_BANK_SIZE)
++			set_bit(nr, dp->sdp_reg_bank);
++		else
++			return -EBUSY;
++	}
+ 
+ 	reg = DW_DP_SDP_REGISTER_BANK + nr * 9 * 4;
+ 
+@@ -1708,7 +1712,8 @@ static void dw_dp_bridge_atomic_enable(struct drm_bridge *bridge,
  		return;
  	}
  
--	scoped_guard(mutex, &dp->sdp_lock)
--		set_bit(0, dp->sdp_reg_bank);
--
+-	set_bit(0, dp->sdp_reg_bank);
++	scoped_guard(mutex, &dp->sdp_lock)
++		set_bit(0, dp->sdp_reg_bank);
+ 
  	ret = dw_dp_link_enable(dp);
  	if (ret < 0) {
- 		dev_err(dp->dev, "failed to enable link: %d\n", ret);
+@@ -1752,7 +1757,8 @@ static void dw_dp_bridge_atomic_disable(struct drm_bridge *bridge,
+ 
+ 	dw_dp_video_disable(dp);
+ 	dw_dp_link_disable(dp);
+-	bitmap_zero(dp->sdp_reg_bank, SDP_REG_BANK_SIZE);
++	scoped_guard(mutex, &dp->sdp_lock)
++		bitmap_zero(dp->sdp_reg_bank, SDP_REG_BANK_SIZE);
+ 	dw_dp_reset(dp);
+ 	pm_runtime_put_autosuspend(dp->dev);
+ }
+@@ -2230,6 +2236,10 @@ int dw_dp_probe(struct dw_dp *dp)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = devm_mutex_init(dev, &dp->sdp_lock);
++	if (ret)
++		return ret;
++
+ 	res = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(res))
+ 		return PTR_ERR(res);
 
 -- 
 2.53.0
