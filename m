@@ -2,62 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F4B606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F1AF606A8B7
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fevIzRkx;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=Tw6QA9lE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CIaJbRYr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UK4YRzX7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FzNyz7yhFcBQjfkQZoaz61o5ksLdg7kgJM8huxwbLGc=; b=fevIzRkxFslFa0
-	XkyH4qqnF7Z1jzlnGSZPtf0YkKSWuBadwlny0Lxubls1KZpbmN9ibHB3QUT4biowplGq0/JNThH5D
-	8RC00+dvVZDQR6zyas3Hf2mp62eNfmctY/fbCmI47uD3WfXasae2uBvL/hla75HWV4gp5jMXRXLU4
-	nZtQ2Dz2DvcchTVUh686aJ+/ypPWFaaxMi7tvU+qo/JI0qivYgrwvX/CABEZ6JqJsSTUFNo0XT24S
-	pRUYHcp7CEPMx2YO2nZimwluiGTF6pSlJQPfo2kqAVZ5Ccs6qo3Vb5fOwHGvDgl54row0ipLR2N3Y
-	JKqA1y2gYXnr4TkZzHpw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=YJIqsMHXUd36NytjdySw+FUQZNq6eqzvdp3DyLOfBec=; b=CIaJbRYr0q+CeMD8yKJ6F5BHpV
+	oWgnHXlY5D742FYSaSjkhyUJyxJu4WY114n55PUWMzWUxIGYl0EJvVMvFpvSkt2DrqtPzxUoI7wlM
+	TCQK9vG337xToetI6kygzNkB4qK4l10+tqwMhXloVvhfSYTAQJ/x8cd3+Z7P/0Ra00ZB1MFOejr3y
+	kALdpxsdy4993RtIVEmxhtyZolTiDA7bydsKWvJ9lKQm6IpBLhoPiutQzGEGOOWaj0W0JbthDiZGe
+	IkWVA73p7Ig11qeI6uJ8akIyF8UlfZOOBWYU9qKdNc/SNnW8ertlV4JJvFTpFbe0YHryiONNZx6uH
+	qHX4dK7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1Ji-0000000ErCc-1Lb1;
-	Sat, 14 Nov 2026 00:08:26 +0000
-Received: from sender-op-o15.zoho.eu ([136.143.169.15])
+	id 1xS1P0-0000000Erxs-3qWn;
+	Sat, 14 Nov 2026 00:13:54 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1Jf-0000000ErBs-1lPN
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 00:08:24 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794614899; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=DrKnYk5/ce/YxEmKMgWHZSRMRfIag2BiQgXQ7cAnO26ZcEfmIjLhkJFrKafzGdtTJ05Cb4e2o2JgxSeDnJOrYLIizvRSKU9nwmXvuPX+n7DoB7C1bxMGQiSPM1iJAgYA1MFRST+VbUOLD5VcFO/7WahP2TyjkUIzXGXRJlU7yCU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1794614899; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=FzNyz7yhFcBQjfkQZoaz61o5ksLdg7kgJM8huxwbLGc=; 
-	b=PmhHZvRQCYuww+zOAwYMU6iXEmnwFUgvSH4RmLg532IqtS+QxbburtGqlFBF6Hs0kIedFFwA0kMr2JK/rgIrCZIZmuFriONCpURTZv5uMPfnLrMXGddpjf/ZiCP2yuKDwFcfupZ/ke/zHBk3Z7jQjVf9+DC065QrMTWvwwcaClc=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=iav.lv;
-	spf=pass  smtp.mailfrom=iav@iav.lv;
-	dmarc=pass header.from=<iav@iav.lv>
-DKIM-Signature: a=rsa-sha256; b=Tw6QA9lEIQ7DnNYcjerjQZ5IPJ+NiMVrjjEY8XA60Y93oBSfPMn11b6HLL8RrC7izumbrekU8stiEAPxIOTn57kjZNI3iGBYJB//csjK8jayTshy5pQWsoC+t6AgxDr66KY0j847/I7MeaRDTft/05QXGcbgCSpFwncDaw0v/x0=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=FzNyz7yhFcBQjfkQZoaz61o5ksLdg7kgJM8huxwbLGc=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zoho.eu with SMTPS id 1794614897039526.1916855131218;
-	Sat, 14 Nov 2026 01:08:17 +0100 (CET)
-Date: Sat, 14 Nov 2026 02:08:16 +0200
-From: Igor Velkov <iav@iav.lv>
-To: Leo Yan <leo.yan@arm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>, coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, Igor Velkov <iav@iav.lv>
-Subject: Re: coresight: cpu-debug: PC sampling via PMPCSR (FEAT_PCSRv8p2)?
-Message-ID: <20261114-coresight-pmpcsr-reply-leo-1@iav.lv>
-In-Reply-To: <20261113144623.GQ9176@e132581.arm.com>
-References: <20261113-coresight-pmpcsr-question-1@iav.lv> <20261113144623.GQ9176@e132581.arm.com>
+	id 1xS1Oy-0000000ErxF-3lFz;
+	Sat, 14 Nov 2026 00:13:52 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 933E742A83;
+	Sat, 14 Nov 2026 00:13:52 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794615232;
+	b=rDT4QYgG/0mXnV1sGaio42y3s78CYtv2s2wYve0rpbyodSl8w7jqrLnRr2hzKwayRjO3
+	 oNug+WFq/gpznwM8Am+ldVsj60Ttk/LR/N3zApQl8VSWQjT25/bp+rLxt6AjqmEcYnoDr
+	 LiiTFrv3BTExBCwZ/fi8rm8UHLHdgbtcqa+YA8G/jLJad9RXwz++T43rDVY6a5Y3iV1cP
+	 JoCwP3s6XJOvioUoFnNsYXQeE8g+8qiEeOLRTL/tHcmiCQkzNla6NYgKu3M6ulrJqfqku
+	 cyffeDuyqRqaaqn98oiScLk7DXErthJsDrj+FD7UGyj+a3zo/pqKyepnluXEBGQ7Tiw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794615232;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=YJIqsMHXUd36NytjdySw+FUQZNq6eqzvdp3DyLOfBec=;
+	b=YOxLIqc9YAl4WHvnu33Ih51WogbwyDiggSoJvnH6Kuw2tFUbGLd1niMiK00y2rEDkDrK
+	 CrtrJS6cLeHCIEdcb9AIApMvw5KndYuF92LlJ1RVe2WVJjwpdBHkNA40LTSbkskVv9Ca0
+	 JOeJNOcEwFiMg61heYbsDhSyCIQgnPowhvtYZ19lzUQQqHz47SZoT7BDmFyiN69mmtKyP
+	 LbkIiZAv5VI4Nnt45WLv3MSVvOfqMi4RKK3oLiUl4fHofgEzuk2NbBR0S3yiDAE8wBoxI
+	 WW+g4mREJwbjXn87jbEPgcZDytrwbGvcyOZFuxta+TU3pRKNqpT7dH47nPUt0MmzUxA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 20CF11F000C7;
+	Sat, 14 Nov 2026 00:13:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794615232;
+	bh=YJIqsMHXUd36NytjdySw+FUQZNq6eqzvdp3DyLOfBec=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=UK4YRzX7Vyj7XxYAQmb/5XT8ft2ohXSHUZawNeIeuR0ILDdr9HtBxgWwUKBk2Jwpd
+	 LAmF1VBLPxwWKfxxYA3LA5fwmJ4sSRlDrmf11oI9mrdl33kuoB4xqla8SIOCXAh0aH
+	 ZkmRPFJJuYLLs6g3MIq3L5edUYRZuIQsN5kXKQMM/Am97wlYTXk/IYHl7BHCNxjwL8
+	 8XlKBZfAZEBR9KyXIEjXHAdfAYjVq2aDOBZ16mN3Pd48ieKhES/rRQn5hh/5Q2D+9R
+	 RDtoUsFlTCyT61vehsaSbiFAtelqbX2Eri8MowtOr2l/+rJUExbAOJddd++u6rsYWf
+	 7JdkCltii3Ggw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9DB9949BBB;
+	Sat, 14 Nov 2026 00:13:50 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Sat, 14 Nov 2026 00:13:52 +0000
+Subject: [PATCH 3/3] arm64: dts: rockchip: Add IEP2 deinterlacer to RK3588
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_160823_734270_D0561C8D 
-X-CRM114-Status: GOOD (  10.88  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261114-iep2-v1-3-a8edde5a21e1@gmail.com>
+References: <20261114-iep2-v1-0-a8edde5a21e1@gmail.com>
+In-Reply-To: <20261114-iep2-v1-0-a8edde5a21e1@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil@kernel.org>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Alex Bee <knaerzche@gmail.com>, Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794615229; l=1739;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=WgCd6FsHVVdbiiKnG9YJDyBq5Nk8EKW+LFZEF7P5gec=;
+ b=ZDkYJl5rlhy4ikFsVvxMmPNwylnSlks+4jVcGClUXWdaR5HiEWXTskWM/CQq764zS2h/UVIv+
+ UFc2pkGlrtTCeQeHdCvKdqHns76LCR1Oz5Rerec4vd/2zx0jWdwHCJT
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,48 +111,65 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 13, 2026 at 02:46:23PM +0000, Leo Yan wrote:
-> For example, with CPUidle enabled, a CPU can be powered off any time so
-> it still race even move sampling in smp_send_stop().
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-I tested this on S905X3 (Cortex-A55, PMPCSR) and RK3399 (Cortex-A53 +
-A72, EDPCSR, idle states with core powerdown).
+Add the IEP2 deinterlacer and its IOMMU to the RK3588 base dtsi. Both
+share GIC SPI 117 and sit in the VDPU power domain.
 
-Sampling only the CPUs still online after the stop request avoids the
-race: a CPU that did not stop within the timeout did not take the stop
-IPI, so it is not in a powerdown state; it spins with IRQs off or is
-stuck on the bus. On RK3399 the CPUs found powered down in idle all
-stopped.
+Addresses, clocks, resets and the interrupt are taken from the Rockchip
+BSP rk3588s.dtsi (develop-6.1).
 
-EDPRSR still has to be checked, and PU alone is not enough:
-- A55 after CPU_OFF on the crash path: PU=0; reading PMPCSR aborts.
-- A72 after CPU_OFF: PU=1, R=1 (the same in idle); reading EDPCSR
-  aborts.
-- S905X3: once every other core is off, even EDPRSR reads do not
-  return. With a stuck core still on, reading it from the panic CPU
-  worked on both SoCs, across clusters on RK3399.
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-The cpu-debug panic notifier reads every possible CPU after COREPURQ;
-on RK3399 on the crash path without pseudo-NMI it hit an SError on the
-first CPU that was off.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+index aa69fd3793fd..5297519bd251 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+@@ -1397,6 +1397,28 @@ vepu121_3_mmu: iommu@fdbac800 {
+ 		#iommu-cells = <0>;
+ 	};
+ 
++	iep: deinterlace@fdbb0000 {
++		compatible = "rockchip,rk3588-iep2", "rockchip,rk3568-iep2";
++		reg = <0x0 0xfdbb0000 0x0 0x500>;
++		interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
++		clocks = <&cru ACLK_IEP2P0>, <&cru HCLK_IEP2P0>, <&cru CLK_IEP2P0_CORE>;
++		clock-names = "aclk", "hclk", "sclk";
++		resets = <&cru SRST_A_IEP2P0>, <&cru SRST_H_IEP2P0>, <&cru SRST_IEP2P0_CORE>;
++		reset-names = "axi", "ahb", "core";
++		power-domains = <&power RK3588_PD_VDPU>;
++		iommus = <&iep_mmu>;
++	};
++
++	iep_mmu: iommu@fdbb0800 {
++		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
++		reg = <0x0 0xfdbb0800 0x0 0x100>;
++		interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
++		clocks = <&cru ACLK_IEP2P0>, <&cru HCLK_IEP2P0>;
++		clock-names = "aclk", "iface";
++		power-domains = <&power RK3588_PD_VDPU>;
++		#iommu-cells = <0>;
++	};
++
+ 	vdec0: video-codec@fdc38000 {
+ 		compatible = "rockchip,rk3588-vdec";
+ 		reg = <0x0 0xfdc38000 0x0 0x100>,
 
-So I would send:
-1. cpu-debug notifier: online CPUs other than the panic CPU, read only
-   with PU=1, R=0 and DLK=0, no COREPURQ;
-2. PMPCSR when EDDEVID.PCSample is 0 and PMDEVID.PCSample is not.
+-- 
+2.55.0
 
-Panic notifiers run after the stop only with crash_kexec_post_notifiers;
-with a crash kernel loaded and without it, they do not run at all. Is
-that acceptable, or would you rather see a hook in the crash stop path?
 
-Thanks,
-Igor
 
