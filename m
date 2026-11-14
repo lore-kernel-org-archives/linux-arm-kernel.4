@@ -2,114 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACADE606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 13:21:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58485606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 13:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WZ/X/PAR;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fKBvEdPK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lldaWul1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z/JaHfwV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KmDx6U5+aB6NguJULNw+IbB2BgxvC/BPaH6qaeSGzC4=; b=WZ/X/PARRZ6WlQ
-	O2IyM/oUXMzXzJJq+vbHVNdVAA9+w3dQ++HF1zp6AwD2iBzj/h2nG1qNtGCPgVqvXct813o/hlUrl
-	V/LXSBpBv+OGyp9qP8lygHj36hHjxvN+7QoWDVd+2W8HcwGnYUVBpKa6O3T//t7Ca0BWpTp/gscFt
-	eP3uU0Hx7UQ/cYrVLtJ6TByNZ7ePtaO2/bvRazaJIouXxNVrUgG3OF4OTNdkzLl1OQ34wJXChmgCx
-	FlghEM23WNIjU5fAO4qw7Enp5ND2MqaYexqN4LIPtieolYPkCrH++NQzUwUMiqFP5BP6l3iz8h86c
-	eG6z7MWUOLwpxbuCrVCQ==;
+	List-Owner; bh=NWrVtl/dzsYg5YxNip4eBu5kQCyqGy37ampUlkGDtH4=; b=lldaWul1YEGjE7
+	xJnx+4l+KQs2nFtMslNOrArJ/Xk/f0E8/MgMQBGKM38RXrN7kUyzxxfZ/ctxdBH4bLI0s/tS0dkSg
+	CrCVvPQlgPFx/5DIAhFIe11PAxG8A8Z9Yo9vYdWKCGAvG4FBuF4hZRa62yh00ZpCYiOeoBbZzKXGE
+	uJVctSAcDuFN9cuzou4hll1UJmQEjI3dftn6AJofj3zOxZCrihYUjjen56gnJ07HOnj6heBtEswtw
+	Z6p/y4raraV5pAqQnTeTBiJMpmHSyqlsN6LbXLeKz1zykUYzX5LqGt48F1+4CnuroK96tYRGcigtI
+	hr5Bge0LpdiBVVEy4/Zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSDhV-0000000G6Sp-3DZB;
-	Sat, 14 Nov 2026 13:21:49 +0000
-Received: from mail-yx1-xb12a.google.com ([2607:f8b0:4864:20::b12a])
+	id 1xSDjX-0000000G6gd-05eA;
+	Sat, 14 Nov 2026 13:23:55 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSDhS-0000000G6SP-1P62
+	id 1xSDjW-0000000G6gL-1hge
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 13:21:48 +0000
-Received: by mail-yx1-xb12a.google.com with SMTP id 956f58d0204a3-67990a45e02so2013997d50.3
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 05:21:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794662505; cv=none;
-        d=google.com; s=arc-20260327;
-        b=U+Ggp3hKGtHkzX8OErN+/XbFZ5MUW5erZaKGejsnx8l8LxflIUrARPE6+jaJRoS8yF
-         NyzO+/N1HLlffDXLcj9zYIYMfwbzCgt7xHX8lBkUSAdw7bJ4lWmHWpKKBxBceawAMSlR
-         mviy7jPUR4Ep6cG6zt4uBcm+gAzDzm1np2bgZ8iBWI677PTwvJKgDUV489EfHt89AMkw
-         eLfGHC+7MeEx1DiWYcPmdaI/p+ibFCTdOV7LyuZf78Q3wZn98P4pNkoMI2oZmiCY36yw
-         RjAxbFfcmRO/QFJA3S8bUZ3GuvKFx3sBvWg1RKggL/I3oBHYEantZKLwUxc4EZMcpwM/
-         MybQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=KmDx6U5+aB6NguJULNw+IbB2BgxvC/BPaH6qaeSGzC4=;
-        fh=R3yAcLs8jxnsBRaj0XMElAGRaNmpsZAtWGyFUmHY/6A=;
-        b=GLnn581CWlvo8cWCGX7Tf3jyYqso74gWAEl3ZQ2uCmYvc5vz5/g1nCVCOk2uAq7Tlc
-         Iity9Q4zp3WBcG+Dp/G2atBvpfqH+YRraSRo998gVfkbl8xIYK35y6pJxGwNrigPrS7g
-         8u3tAlMkIzJqO36P5T5cJ7kzCd09/xPj+VdhuXxkwNAG2umaBFA9Y+Cm23CySDHGHFpx
-         M5xu9TSVa0oWAWntAAFp5ed5GY8Re/AuFxU9Yp50MEZpy73ivRbrrF4XDGADWer6fV21
-         XfcaiMiZUvkwQxyiaGvukQB55wXOIdf5JjvUURfdA9otyLOdD6mykUBJL7WrvFlubDwb
-         rz0g==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794662505; x=1795267305; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=KmDx6U5+aB6NguJULNw+IbB2BgxvC/BPaH6qaeSGzC4=;
-        b=fKBvEdPKhPtZPJ5EFvE5y2AHgrs0enw0iH2Bfh1d5mvSGkC80qzbe/0CSuTON0yGDG
-         s+vTdDawhF3fhN1cZeZXGtXsyePx/TsjvpePVygc9le2puisNEBbIdZGYvT9NgCEeVC3
-         bzIFVe9eK0Q0eR1DxxJSr7+xfDjOSqNsNhqtf+7JH4RhNrMBymtYwXWYVWhGoyGOcSUL
-         gs4roxkZLHtqbDExfNdViWaKqxtGUSvlFlbIxiugZJsjfKTqPct/hr+oHeZCj884khC8
-         Flcca20L9bBSZEUVdlX0GxRWh8pl4GY+zi80D47V/H0+q6btjGz49nm08sqkUd1j7T7d
-         gfWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794662505; x=1795267305;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=KmDx6U5+aB6NguJULNw+IbB2BgxvC/BPaH6qaeSGzC4=;
-        b=h9NjoSoo1zoZnTHtqSuEoszLvQJAhdy4BkE+laLP5GDM07Q3qv3CzST6ozD13Ip7Z4
-         fUPmtqRLxY/XCBccKq/GCrr1/KyBqpeX5mOknyMyGELCeFvAz0PpMycd+mrp0yJD9f8w
-         AjxRL1nlzdvYZbbCZoD2vy0VqKNZ62+thtMTVwwS739WhG3tD2QqVKMG62a90NUW3dAR
-         2ytLG7uCT6j+USdzDuMnwGdKqEXbzgVG3xcaO25lAqXXhj8G3K296imZLe/nSdZkA/mD
-         fARPSUe6tKPkJJaW3/fwdV+uUDvyftTGBH24i6V0MlnPpxT2EIfMpS2j38vSGsIpc6RJ
-         6/7w==
-X-Forwarded-Encrypted: i=1; AL+hErHtHWbkv3EWGbIp98OFVDJMyGjuigDWzCT1te1jpbzco7f/227ZuxvqHPVySf2v+MvK61VPz3chi1g0eGeDQxGn@lists.infradead.org
-X-Gm-Message-State: APuU4Z/hY9y8bxcDC6azYSqNU0zg20d+FBPyEToCUFLiMJuRIWJUpi+7
-	eFAUVlnZs1sS81b68yllUzV3MDcd8XYsE7qy7XEPtHztlvqIQznSIH2CnlH/pvfm9MwKy4Q01sL
-	1QoTmfIlX2vQXQbOI5TY0wAWVuEoEpLY=
-X-Gm-Gg: AYBFou19i/F+rtE/6wuB1cUsy5jZftH1cZRrkVpt5m2nV0Zh0CJYu8yJzfCQkTVmjws
-	in69TInf9SvmRl+hEMQGLJgAzyWKhHrKk2hvcoQp8REJSpAgCgT9z26hc3RXRq1kMK8dBprNRDj
-	JvBuuPCsSkP6SC0Equ7BQBb+3knGablG8VY22tIwP0HlrL+vhAmY9pkNaODGGqA7cBoWBQ5Ygsb
-	etDuXLaP9IVTPlPE1L2X3KyKE7q8lNt2RPsB7Z9fgQlbvKJmJydyZ8Zq11sW0DUdNtCae80FiLW
-	lODP+ha5VTTlPr5I4d5vwlbppvh5R1oclUziY4pv6zaiQOvF6PnLSALfVq/QSC3qQ1na605cDJr
-	R3yFcPkjSovruSVy8rAuh9zTaJwrlCIASyNoyNQ==
-X-Received: by 2002:a05:690e:4186:b0:679:9b73:bfaa with SMTP id
- 956f58d0204a3-67d896a4118mr3259172d50.35.1794662504580; Sat, 14 Nov 2026
- 05:21:44 -0800 (PST)
+	Sat, 14 Nov 2026 13:23:54 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 7A779624AB
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 13:23:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 184911F00933
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 13:23:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794662633;
+	bh=NWrVtl/dzsYg5YxNip4eBu5kQCyqGy37ampUlkGDtH4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=Z/JaHfwVTYprVbWfpFU7g3ktMRESzquCvhkj0RIQUFukyUsp10fgxhSo1uAjw4+xe
+	 hXJYIBAhtdVOFaXkSepxaktDFW1dftiCFQGeiW09EFbEiJeHdxCyIT0gl0F8BLPsCH
+	 ocx3QrHQd43oO8a9U5rcXF9QoK2s/necUs5HCVjzA0QjpYtO9MHLVtRmb0QoHMby8s
+	 o8LuqySq1rIHxK+ZT4GJc0ULrMjU+ylGPL9IaPKjTFMbhnh0hikF7qZAEizhR9e1QF
+	 1Isd+fYCQ5aD8DCsue4Fck+Zykiw7VOKqhPI0MMLetZwHIIn+G2oiXVZbAI4CRpZUH
+	 7xKmAAPiaedmg==
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-4910b863b84so1699391f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 05:23:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHx2J7Jv8fCoiF45bzUVQKpK/EaWU/wRFQcZ8ILASk/gGUkot9JIfVHTLJMSnZvyOFL/GpT16uV0Ukb8et4eC9F@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Xhq91PBDDZfQD6NwSPLdne6kVzyEuA1mvFBkEqMZ6TUBkEsQD
+	0v8pugNuZnijxH41z38Ff4TgzlUG8ZdA9I+dVvSad6lpMHfTuGDiJdOEvowSZkQeUiiSyP7XoGR
+	hzbH/ehLJZJYGwUw01aSsJhA5mWX777Y=
+X-Received: by 2002:a05:6000:1787:b0:495:728a:5f6f with SMTP id
+ ffacd0b85a97d-49c70823789mr12754306f8f.19.1794662631468; Sat, 14 Nov 2026
+ 05:23:51 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261113034213.158390-1-prasanth.padarthi10@gmail.com>
- <20261113034213.158390-2-prasanth.padarthi10@gmail.com> <c6c39058-ebb2-433a-ab0e-5e35f5ccae24@9elements.com>
-In-Reply-To: <c6c39058-ebb2-433a-ab0e-5e35f5ccae24@9elements.com>
-From: Prasanth <prasanth.padarthi10@gmail.com>
-Date: Sat, 14 Nov 2026 18:51:33 +0530
-X-Gm-Features: AclHuK-FBB5fFc4DfRzJ7P3nSgE9AFp8MWyKWEQCRTCQCeEWO5BzkBKMu-5J_dE
-Message-ID: <CAMFFDGgowje2Vky0zXJ=2r+jmgp8WbsznPRE6ZNONBVoYx74tg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/1] nvmem: aspeed: Add read-only AST2600 OTP support
-To: Tan Siewert <tan.siewert@9elements.com>
-Cc: srini@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, 
-	ryan_chen@aspeedtech.com, billy_tsai@aspeedtech.com, neal_liu@aspeedtech.com, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org
+References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn> <20261114-v861-v1-16-eb71ec3ee523@iscas.ac.cn>
+In-Reply-To: <20261114-v861-v1-16-eb71ec3ee523@iscas.ac.cn>
+From: Guo Ren <guoren@kernel.org>
+Date: Sat, 14 Nov 2026 21:23:39 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTRuczsSR81XcGRGCmYzXpLP3_PXs=uaJZ_zSF+-UXeLcQ@mail.gmail.com>
+X-Gm-Features: AclHuK-htEuUz8jr2TmuXA-X0UbKgsu6ZtLQ4PTtSqP0l4D8RPQK228uAOlkZD4
+Message-ID: <CAJF2gTRuczsSR81XcGRGCmYzXpLP3_PXs=uaJZ_zSF+-UXeLcQ@mail.gmail.com>
+Subject: Re: [PATCH 16/19] riscv: dts: allwinner: add the Allwinner V861 SoC
+To: gaohan@iscas.ac.cn
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
+	Samuel Holland <samuel.holland@sifive.com>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Maxime Ripard <mripard@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
+	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
+	linux-csky@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_052146_483680_41F5754A 
-X-CRM114-Status: GOOD (  54.17  )
-X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,531 +92,391 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Tan,
-
-Thank you for the review. I am preparing v2 with these MOdifications:
-- Renamed the driver to nvmem-aspeed-otp.c; updated Kconfig, headers,
-and attribution comments.
-- Used GENMASK(2, 1) and read_poll_timeout() with an initial delay.
-- Reused read_pair() for CONF0 and removed its redundant bounds check.
-- Moved secure-prefix initialization into probe and registered an NVMEM kee=
-pout.
-- Simplified word copying using put_unaligned_le32() to preserve byte
-order and support unaligned buffers.
-- Added scoped mutex locking, devm_mutex_init(), and the probe cleanups.
-- Added timeout error logging and clarified the SEC00 completion-flush read=
-back.
-- Prepared the NVMEM binding update as a separate patch.
-I also tested the updated driver on the B650D4U, AST2600 A3, running
-Linux 7.4-rc1, base commit 6628e7d4c. The test used the working board
-DTB and OpenBMC initramfs, with temporary diagnostics enabled.
-
-The provider registered successfully. A 12-byte read at offsets
-8172=E2=80=938183, covering an odd starting word and a pair boundary,
-completed successfully and matched the saved vendor-derived reference.
-
-I have requested ASPEED clarification separately on double completion
-polling, timeout recovery/value, mode-register initialization, and
-SEC54 interpretation. These decisions remain pending; the current 100
-ms timeout is an engineering choice.
-
-I will finalize v2 after resolving those points and validating the
-code without temporary diagnostics.
-
-Thanks,
-Prasanth Kumar Padarthi
-
-On Fri, Nov 13, 2026 at 6:35=E2=80=AFPM Tan Siewert <tan.siewert@9elements.=
-com> wrote:
+On Sat, Nov 14, 2026 at 6:33=E2=80=AFAM Han Gao via B4 Relay
+<devnull+gaohan.iscas.ac.cn@kernel.org> wrote:
 >
-> On 11/13/26 4:42 AM, Prasanth Kumar Padarthi wrote:
-> > Expose permitted AST2600 OTP data through NVMEM using the existing SBC
-> > node. Serialize controller transactions, bound completion polling and
-> > reject reads into the configured secure prefix.
+> From: Han Gao <gaohan@iscas.ac.cn>
 >
-> This only repeats what the code does. Please explain *why*. Who uses the
-> data and which cells?
+> Add the V861 SoC with its two C907 harts, PLIC, CLINT, clock
+> controllers, RTC, pin controllers and UART0.
 >
-> >
-> > Adapt the read sequence from ASPEED's downstream driver, preserving its
-> > attribution. Register the driver for ASPEED review and restrict raw OTP
-> > access to root.
+> The cache geometry and PMU events come from the V861 and C907 manuals.
+> Zcb, Zbkc and Zvfh were also checked to work on the hardware.
 >
-> If you mean the MAINTAINERS hunk, just say so.
+> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+> ---
+>  arch/riscv/boot/dts/allwinner/sun252i-v861.dtsi | 272 ++++++++++++++++++=
+++++++
+>  1 file changed, 272 insertions(+)
 >
-> >
-> > Link: https://github.com/AspeedTech-BMC/linux/blob/769f62b7baa84d699872=
-3b0ea60280e380183553/drivers/soc/aspeed/ast2600-otp.c
->
-> No DCO Sign-off (neither from you nor Neal). And given that you've used
-> the downstream driver as base it'd be cool if you can keep Neal as
-> Co-developed-by in (with Neal's agreement).
->
-> > ---
-> > Tested on ASRock Rack B650D4U, AST2600 A3, OpenBMC Linux 6.18.24:
->
-> Please test against the base commit you've used (i.e. 7.4-rc3). Using a
-> vendor / OpenBMC tree here is not useful at all.
->
-> > - Repeated, paired and cross-pair reads matched.
-> > - Four concurrent readers completed 40 matching reads.
-> > - Bytes 8172..8183 matched a separate vendor-derived reader.
-> > - Synthetic pre-MMIO timeout, failure latching and rebind recovery pass=
-ed.
-> > Host fault-injection tests passed all 42 polling-timeout cases.
-> >
-> >   MAINTAINERS                 |   1 +
-> >   drivers/nvmem/Kconfig       |  12 ++
-> >   drivers/nvmem/Makefile      |   1 +
-> >   drivers/nvmem/ast2600-otp.c | 259 +++++++++++++++++++++++++++++++++++=
-+
-> >   4 files changed, 273 insertions(+)
-> >   create mode 100644 drivers/nvmem/ast2600-otp.c
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 93abbb3..c92ea8e 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -2813,6 +2813,7 @@ F:      Documentation/devicetree/bindings/arm/asp=
-eed/
-> >   F:  arch/arm/boot/dts/aspeed/
-> >   F:  arch/arm/mach-aspeed/
-> >   F:  arch/arm64/boot/dts/aspeed/
-> > +F:   drivers/nvmem/ast2600-otp.c
-> >   N:  aspeed
-> >
-> >   ARM/AXIADO ARCHITECTURE
-> > diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> > index d2f5bb2..cdcd071 100644
-> > --- a/drivers/nvmem/Kconfig
-> > +++ b/drivers/nvmem/Kconfig
-> > @@ -164,6 +164,18 @@ config NVMEM_APPLE_SPMI
-> >         This driver can also be built as a module. If so, the module
-> >         will be called apple-nvmem-spmi.
-> >
-> > +config NVMEM_ASPEED_AST2600_OTP
-> > +     tristate "ASPEED AST2600 OTP support"
-> > +     depends on ARCH_ASPEED || COMPILE_TEST
-> > +     depends on HAS_IOMEM
-> > +     help
-> > +       Read-only access to the AST2600 OTP data region. The configured
-> > +       secure prefix is not exposed. Fuse programming is not supported=
-.
-> > +       The controller reads paired 32-bit words through command regist=
-ers.
->
-> This is implementation-specific and doesn't help whether to enable the
-> option. Drop.
->
-> > +       Access to raw OTP data is restricted to root.
-> > +
-> > +       If built as a module, the module will be called ast2600-otp.
-> > +
->
-> "If unsure, select N"?
->
-> >   config NVMEM_BCM_OCOTP
-> >       tristate "Broadcom On-Chip OTP Controller support"
-> >       depends on ARCH_BCM_IPROC || COMPILE_TEST
-> > diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> > index 5e70bad..9fac69d 100644
-> > --- a/drivers/nvmem/Makefile
-> > +++ b/drivers/nvmem/Makefile
-> > @@ -23,6 +23,7 @@ obj-$(CONFIG_NVMEM_APPLE_EFUSES)    +=3D nvmem-apple-=
-efuses.o
-> >   nvmem-apple-efuses-y                        :=3D apple-efuses.o
-> >   obj-$(CONFIG_NVMEM_APPLE_SPMI)              +=3D apple_nvmem_spmi.o
-> >   apple_nvmem_spmi-y                  :=3D apple-spmi-nvmem.o
-> > +obj-$(CONFIG_NVMEM_ASPEED_AST2600_OTP)       +=3D ast2600-otp.o
->
-> Maybe call the file "nvmem-aspeed-otp" or so? Would be nice if we can
-> extend the driver for AST2700 support later on.
->
-> >   obj-$(CONFIG_NVMEM_BCM_OCOTP)               +=3D nvmem-bcm-ocotp.o
-> >   nvmem-bcm-ocotp-y                   :=3D bcm-ocotp.o
-> >   obj-$(CONFIG_NVMEM_BRCM_NVRAM)              +=3D nvmem_brcm_nvram.o
-> > diff --git a/drivers/nvmem/ast2600-otp.c b/drivers/nvmem/ast2600-otp.c
-> > new file mode 100644
-> > index 0000000..94b1225
-> > --- /dev/null
-> > +++ b/drivers/nvmem/ast2600-otp.c
-> > @@ -0,0 +1,259 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) ASPEED Technology Inc.
-> > + *
-> > + * ASPEED AST2600 OTP Controller driver
-> > + * Read sequencing adapted from ASPEED's downstream ast2600-otp driver=
-.
->
-> This comment feels unnecessary. It's already been said in the commit
-> description.
->
-> > + */
-> > +
-> > +#include <linux/align.h>
->
-> align could be removed if you use round_down() or word & ~1 maybe?
->
-> > +#include <linux/bitfield.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/io.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/nvmem-provider.h>
-> > +#include <linux/of.h>
->
-> You don't call any of_ functions. Replace with mod_devicetable.h.
->
-> > +#include <linux/platform_device.h>
-> > +#include <linux/slab.h>
->
-> unused. devm_kzalloc comes through platform_device.h.
->
-> > +#include <linux/string.h>
-> > +
-> > +#define AST2600_OTP_PROTECT_KEY              0x00
-> > +#define AST2600_OTP_CMD                      0x04
-> > +#define AST2600_OTP_ADDR             0x10
-> > +#define AST2600_OTP_STATUS           0x14
->
-> The SB Controller driver checks for the OTP_PROTECTED bit. What happens
-> if OTP protection is enabled?
->
-> > +#define AST2600_OTP_COMPARE_1                0x20
-> > +#define AST2600_OTP_COMPARE_2                0x24
-> > +
-> > +#define AST2600_OTP_CMD_READ         0x23b1e361
-> > +#define AST2600_OTP_CMD_WRITE_MODE   0x23b1e362
-> > +#define AST2600_OTP_UNLOCK_KEY               0x349fe38a
-> > +#define AST2600_OTP_STATUS_DONE              0x6
->
-> Describe the bits here. Either two BIT() or GENMASK(2, 1).
->
-> > +#define AST2600_OTP_TIMEOUT_US               100000
->
-> Where does this come from?
->
-> > +
-> > +#define AST2600_OTP_DATA_WORDS               0x800
-> > +#define AST2600_OTP_SIZE                     (AST2600_OTP_DATA_WORDS *=
- sizeof(u32))
-> > +#define AST2600_OTP_CONF0_ADDR               0x800
-> > +#define AST2600_OTP_CONF0_SEC_SIZE           GENMASK(21, 16)
-> > +#define AST2600_OTP_SEC_SIZE_UNIT            (32 * sizeof(u32))
-> > +
-> > +struct ast2600_otp {
-> > +     void __iomem *base;
-> > +     /* Serialize the complete unlock, read and relock sequence. */
-> > +     struct mutex lock;
-> > +     bool failed;
-> > +};
-> > +
-> > +static int ast2600_otp_wait_complete(struct ast2600_otp *otp)
-> > +{
-> > +     u32 status;
-> > +     int i, ret;
-> > +
-> > +     /* Allow the command to start before sampling the idle flags. */
-> > +     udelay(1);
->
-> You could use read_poll_timeout too?
->
-> > +
-> > +     /* Match the downstream sequence: observe both idle flags twice. =
-*/
-> > +     for (i =3D 0; i < 2; i++) {
->
-> This is not a valid reason. Do you really have to poll twice? Is this an
-> erratum? If so, please cite it.
->
-> > +             ret =3D readl_poll_timeout(otp->base + AST2600_OTP_STATUS=
+> diff --git a/arch/riscv/boot/dts/allwinner/sun252i-v861.dtsi b/arch/riscv=
+/boot/dts/allwinner/sun252i-v861.dtsi
+> new file mode 100644
+> index 000000000000..7a18b973ee32
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/allwinner/sun252i-v861.dtsi
+> @@ -0,0 +1,272 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +/* Copyright (c) 2026 Han Gao <gaohan@iscas.ac.cn> */
+> +
+> +#include <dt-bindings/clock/sun252i-v861-ccu.h>
+> +#include <dt-bindings/clock/sun252i-v861-r-ccu.h>
+> +#include <dt-bindings/clock/sun6i-rtc.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/reset/sun252i-v861-ccu.h>
+> +#include <dt-bindings/reset/sun252i-v861-r-ccu.h>
+> +
+> +/ {
+> +       #address-cells =3D <2>;
+> +       #size-cells =3D <2>;
+> +
+> +       cpus {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               timebase-frequency =3D <24000000>;
+> +
+> +               cpu0: cpu@0 {
+> +                       compatible =3D "csky,c907", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <0>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-sets =3D <64>;
+> +                       d-cache-size =3D <16384>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-sets =3D <64>;
+> +                       i-cache-size =3D <16384>;
+> +                       mmu-type =3D "riscv,sv39";
+> +                       next-level-cache =3D <&l2_cache>;
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "b", "v",
+> +                               "zicbom", "zicbop", "zicboz", "zicntr", "=
+zicond",
+> +                               "zicsr", "zifencei", "zihintntl", "zihint=
+pause",
+> +                               "zihpm", "zawrs", "zfa", "zfbfmin", "zfh"=
 ,
-> > +                                      status,
-> > +                                      (status & AST2600_OTP_STATUS_DON=
-E) =3D=3D
-> > +                                      AST2600_OTP_STATUS_DONE,
-> > +                                      1, AST2600_OTP_TIMEOUT_US);
-> > +             if (ret) {
-> > +                     /* Do not reuse a controller with an outstanding =
-command. */
-> > +                     otp->failed =3D true;
+> +                               "zca", "zcb", "zcd", "zba", "zbb", "zbc",=
+ "zbkc",
+> +                               "zbs", "zkt", "zvfbfmin", "zvfbfwma", "zv=
+fh",
+> +                               "sscofpmf", "sstc", "svinval", "svnapot",=
+ "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +
+> +                       cpu0_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               cpu1: cpu@1 {
+> +                       compatible =3D "csky,c907", "riscv";
+> +                       device_type =3D "cpu";
+> +                       reg =3D <1>;
+> +                       d-cache-block-size =3D <64>;
+> +                       d-cache-sets =3D <64>;
+> +                       d-cache-size =3D <16384>;
+> +                       i-cache-block-size =3D <64>;
+> +                       i-cache-sets =3D <64>;
+> +                       i-cache-size =3D <16384>;
+> +                       mmu-type =3D "riscv,sv39";
+> +                       next-level-cache =3D <&l2_cache>;
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "b", "v",
+> +                               "zicbom", "zicbop", "zicboz", "zicntr", "=
+zicond",
+> +                               "zicsr", "zifencei", "zihintntl", "zihint=
+pause",
+> +                               "zihpm", "zawrs", "zfa", "zfbfmin", "zfh"=
+,
+> +                               "zca", "zcb", "zcd", "zba", "zbb", "zbc",=
+ "zbkc",
+> +                               "zbs", "zkt", "zvfbfmin", "zvfbfwma", "zv=
+fh",
+> +                               "sscofpmf", "sstc", "svinval", "svnapot",=
+ "svpbmt";
+> +                       riscv,cbom-block-size =3D <64>;
+> +                       riscv,cbop-block-size =3D <64>;
+> +                       riscv,cboz-block-size =3D <64>;
+> +
+> +                       cpu1_intc: interrupt-controller {
+> +                               compatible =3D "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells =3D <1>;
+> +                       };
+> +               };
+> +
+> +               l2_cache: l2-cache {
+> +                       compatible =3D "cache";
+> +                       cache-block-size =3D <64>;
+> +                       cache-level =3D <2>;
+> +                       cache-sets =3D <128>;
+> +                       cache-size =3D <131072>;
+> +                       cache-unified;
+> +               };
+> +       };
+> +
+> +       osc24M: osc24M-clk {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <24000000>;
+> +               clock-output-names =3D "osc24M";
+> +       };
+> +
+> +       pmu {
+> +               compatible =3D "riscv,pmu";
+> +               riscv,event-to-mhpmcounters =3D
+> +                       <0x00003 0x00006 0x0007fff8>,
+> +                       <0x00008 0x00009 0x0007fff8>,
+> +                       <0x10000 0x10003 0x0007fff8>,
+> +                       <0x10008 0x10009 0x0007fff8>,
+> +                       <0x10019 0x10019 0x0007fff8>,
+> +                       <0x1001b 0x1001b 0x0007fff8>,
+> +                       <0x10021 0x10021 0x0007fff8>,
+> +                       <0x10028 0x10029 0x0007fff8>;
+> +               riscv,event-to-mhpmevent =3D
+> +                       <0x00003 0x00000000 0x000000a5>,
+> +                       <0x00004 0x00000000 0x000000a6>,
+> +                       <0x00005 0x00000000 0x00000036>,
+> +                       <0x00006 0x00000000 0x00000038>,
+> +                       <0x00008 0x00000000 0x00000027>,
+> +                       <0x00009 0x00000000 0x00000028>,
+> +                       <0x10000 0x00000000 0x0000000c>,
+> +                       <0x10001 0x00000000 0x0000000d>,
+> +                       <0x10002 0x00000000 0x0000000e>,
+> +                       <0x10003 0x00000000 0x0000000f>,
+> +                       <0x10008 0x00000000 0x00000001>,
+> +                       <0x10009 0x00000000 0x00000002>,
+> +                       <0x10019 0x00000000 0x000000a4>,
+> +                       <0x1001b 0x00000000 0x000000a3>,
+> +                       <0x10021 0x00000000 0x00000003>,
+> +                       <0x10028 0x00000000 0x00000036>,
+> +                       <0x10029 0x00000000 0x00000038>;
+> +               riscv,raw-event-to-mhpmcounters =3D
+> +                       <0x00000000 0x00000001 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000002 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000003 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000005 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000006 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000007 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000008 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000009 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000000b 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000000c 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000000d 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000000e 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000000f 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000016 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000001b 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000001c 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000001d 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000001f 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000020 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000021 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000023 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000025 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000027 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000028 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000029 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000002a 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000030 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000036 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x00000038 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000009b 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000009c 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x0000009e 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x000000a3 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x000000a4 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x000000a5 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x000000a6 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x000000a7 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x000000a8 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x000000a9 0xffffffff 0xffffffff 0x00=
+07fff8>,
+> +                       <0x00000000 0x000000aa 0xffffffff 0xffffffff 0x00=
+07fff8>;
+> +       };
+> +
+> +       soc {
+> +               compatible =3D "simple-bus";
+> +               #address-cells =3D <2>;
+> +               #size-cells =3D <2>;
+> +               interrupt-parent =3D <&plic>;
+> +               ranges;
+> +               dma-noncoherent;
+> +
+> +               pio: pinctrl@2000000 {
+> +                       compatible =3D "allwinner,sun252i-v861-pinctrl";
+> +                       reg =3D <0 0x02000000 0 0x400>;
+> +                       interrupts =3D <67 IRQ_TYPE_LEVEL_HIGH>, <71 IRQ_=
+TYPE_LEVEL_HIGH>,
+> +                                    <73 IRQ_TYPE_LEVEL_HIGH>, <75 IRQ_TY=
+PE_LEVEL_HIGH>,
+> +                                    <77 IRQ_TYPE_LEVEL_HIGH>, <79 IRQ_TY=
+PE_LEVEL_HIGH>,
+> +                                    <81 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&ccu CLK_APB0>, <&osc24M>, <&rtc CLK_=
+OSC32K>;
+> +                       clock-names =3D "apb", "hosc", "losc";
+> +                       gpio-controller;
+> +                       #gpio-cells =3D <3>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells =3D <3>;
+> +
+> +                       uart0_ph_pins: uart0-ph-pins {
+> +                               pins =3D "PH9", "PH10";
+> +                               function =3D "uart0";
+> +                               allwinner,pinmux =3D <5>;
+> +                               bias-pull-up;
+> +                       };
+> +               };
+> +
+> +               r_pio: pinctrl@2000540 {
+> +                       compatible =3D "allwinner,sun252i-v861-r-pinctrl"=
+;
+> +                       reg =3D <0 0x02000540 0 0x60>;
+> +                       interrupts =3D <85 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&ccu CLK_APB0>, <&osc24M>, <&rtc CLK_=
+OSC32K>;
+> +                       clock-names =3D "apb", "hosc", "losc";
+> +                       gpio-controller;
+> +                       #gpio-cells =3D <3>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells =3D <3>;
+> +               };
+> +
+> +               ccu: clock-controller@2001000 {
+> +                       compatible =3D "allwinner,sun252i-v861-ccu";
+> +                       reg =3D <0 0x02001000 0 0x1000>;
+> +                       clocks =3D <&osc24M>, <&rtc CLK_OSC32K>, <&rtc CL=
+K_IOSC>;
+> +                       clock-names =3D "hosc", "losc", "iosc";
+> +                       #clock-cells =3D <1>;
+> +                       #reset-cells =3D <1>;
+> +               };
+> +
+> +               uart0: serial@2500000 {
+> +                       compatible =3D "snps,dw-apb-uart";
+> +                       reg =3D <0 0x02500000 0 0x400>;
+> +                       interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH>;
+> +                       reg-shift =3D <2>;
+> +                       reg-io-width =3D <4>;
+> +                       clocks =3D <&ccu CLK_BUS_UART0>;
+> +                       resets =3D <&ccu RST_BUS_UART0>;
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               r_ccu: clock-controller@7010000 {
+> +                       compatible =3D "allwinner,sun252i-v861-r-ccu";
+> +                       reg =3D <0 0x07010000 0 0x400>;
+> +                       clocks =3D <&osc24M>, <&rtc CLK_OSC32K>, <&rtc CL=
+K_IOSC>,
+> +                                <&ccu CLK_PLL_PERIPH0_200M>;
+> +                       clock-names =3D "hosc", "losc", "iosc", "pll-peri=
+ph";
+> +                       #clock-cells =3D <1>;
+> +                       #reset-cells =3D <1>;
+> +               };
+> +
+> +               rtc: rtc@7090000 {
+> +                       compatible =3D "allwinner,sun252i-v861-rtc",
+> +                                    "allwinner,sun50i-r329-rtc";
+> +                       reg =3D <0 0x07090000 0 0x400>;
+> +                       interrupts =3D <138 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&r_ccu CLK_BUS_R_RTC>, <&osc24M>,
+> +                                <&r_ccu CLK_R_AHB>;
+> +                       clock-names =3D "bus", "hosc", "ahb";
+> +                       #clock-cells =3D <1>;
+> +               };
+> +
+> +               plic: interrupt-controller@30000000 {
+> +                       compatible =3D "allwinner,sun252i-v861-plic", "th=
+ead,c900-plic";
+> +                       reg =3D <0 0x30000000 0 0x4000000>;
+> +                       interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_i=
+ntc 9>,
+> +                                             <&cpu1_intc 11>, <&cpu1_int=
+c 9>;
+> +                       riscv,ndev =3D <150>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells =3D <2>;
+> +                       #address-cells =3D <0>;
+> +               };
+> +
+> +               clint: timer@34000000 {
+> +                       compatible =3D "allwinner,sun252i-v861-clint", "t=
+head,c900-clint";
+For CPU & clint & PLIC parts, LGTM!
+
+Reviewed-by: GUO Ren (XuanTie) <guoren@kernel.org>
+
+> +                       reg =3D <0 0x34000000 0 0x10000>;
+> +                       interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_in=
+tc 7>,
+> +                                             <&cpu1_intc 3>, <&cpu1_intc=
+ 7>;
+> +               };
+> +       };
+> +};
 >
-> That'd disable the device on a single timeout. Do we really have to do
-> this, or would it be enough to retry on the next access? If you want to
-> keep it, then a dev_err() would be good instead of failing it silently.
+> --
+> 2.55.0
 >
-> > +                     return ret;
-> > +             }
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int ast2600_otp_prepare_read(struct ast2600_otp *otp)
-> > +{
-> > +     static const u32 mode_addresses[] =3D { 0x3000, 0x5000, 0x1000 };
-> > +     int i, ret;
-> > +
-> > +     ret =3D ast2600_otp_wait_complete(otp);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     /*
-> > +      * Restore the macro's default read mode, as in otp_soak(ctx, 0).
-> > +      * These writes target volatile mode registers, not OTP fuse cell=
-s.
-> > +      * No fuse programming command or programming timing is used.
-> > +      */
-> > +     for (i =3D 0; i < ARRAY_SIZE(mode_addresses); i++) {
-> > +             writel(mode_addresses[i], otp->base + AST2600_OTP_ADDR);
-> > +             writel(0, otp->base + AST2600_OTP_COMPARE_1);
-> > +             writel(AST2600_OTP_CMD_WRITE_MODE, otp->base + AST2600_OT=
-P_CMD);
 >
-> Setting the OTP back to default doesn't need write mode if I understand
-> the datasheet correctly.
->
-> > +             ret =3D ast2600_otp_wait_complete(otp);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int ast2600_otp_read_pair(struct ast2600_otp *otp,
-> > +                              unsigned int aligned_word,
-> > +                              u32 *word0, u32 *word1)
-> > +{
-> > +     int ret;
-> > +
-> > +     /* The hardware reads two words starting at an even word index. *=
-/
-> > +     if ((aligned_word & 1) || aligned_word >=3D AST2600_OTP_DATA_WORD=
-S)
-> > +             return -EINVAL;
->
-> You're already passing an aligned index everywhere which makes this code
-> redundant. It also blocks the read for CONF0, so please drop this check
-> and use read_pair() for CONF0 too.
->
-> > +
-> > +     writel(aligned_word, otp->base + AST2600_OTP_ADDR);
-> > +
-> > +     writel(AST2600_OTP_CMD_READ,
-> > +            otp->base + AST2600_OTP_CMD);
-> > +
-> > +     ret =3D ast2600_otp_wait_complete(otp);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     *word0 =3D readl(otp->base + AST2600_OTP_COMPARE_1);
-> > +     *word1 =3D readl(otp->base + AST2600_OTP_COMPARE_2);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int ast2600_otp_read(void *context, unsigned int offset,
-> > +                         void *val, size_t bytes)
-> > +{
-> > +     struct ast2600_otp *otp =3D context;
-> > +     u8 *buf =3D val;
-> > +     unsigned int word_index;
-> > +     unsigned int aligned_word;
-> > +     unsigned int secure_size;
-> > +     __le32 pair[2];
-> > +     u32 conf0;
-> > +     u32 word0, word1;
-> > +     size_t chunk, skip;
-> > +     int ret;
-> > +
-> > +     if (!bytes)
-> > +             return -EINVAL;
->
-> OTP could be empty too?
->
-> > +
-> > +     if (offset % sizeof(u32) || bytes % sizeof(u32))
-> > +             return -EINVAL;
-> > +
-> > +     if (offset >=3D AST2600_OTP_SIZE ||
-> > +         bytes > AST2600_OTP_SIZE - offset)
-> > +             return -EINVAL;
-> > +
-> > +     mutex_lock(&otp->lock);
->
-> guard(mutex)(&priv->lock); ? Requires <linux/cleanup.h>.
->
-> > +
-> > +     if (otp->failed) {
-> > +             ret =3D -EIO;
-> > +             goto out_unlock;
-> > +     }
-> > +
-> > +     writel(AST2600_OTP_UNLOCK_KEY, otp->base + AST2600_OTP_PROTECT_KE=
-Y);
-> > +
-> > +     ret =3D ast2600_otp_prepare_read(otp);
-> > +     if (ret)
-> > +             goto out_lock;
->
-> The secure region size is fixed once programmed. Maybe read it once in
-> probe instead of on every access? With nvmem_keepout, this would clean
-> up the read path a bit.
->
-> > +
-> > +     /* Configuration word 0 describes the unreadable secure data pref=
-ix. */
-> > +     writel(AST2600_OTP_CONF0_ADDR, otp->base + AST2600_OTP_ADDR);
-> > +     writel(AST2600_OTP_CMD_READ, otp->base + AST2600_OTP_CMD);
-> > +     ret =3D ast2600_otp_wait_complete(otp);
-> > +     if (ret)
-> > +             goto out_lock;
-> > +
-> > +     conf0 =3D readl(otp->base + AST2600_OTP_COMPARE_1);
-> > +     secure_size =3D FIELD_GET(AST2600_OTP_CONF0_SEC_SIZE, conf0) *
-> > +                   AST2600_OTP_SEC_SIZE_UNIT;
->
-> You can also keep out the secure region by using nvmem_keepout.
->
-> > +     /* Conservatively deny the entire secure prefix, including its he=
-ader. */
-> > +     if (offset < secure_size) {
-> > +             ret =3D -EACCES;
-> > +             goto out_lock;
-> > +     }
-> > +
-> > +     while (bytes) {
-> > +             word_index =3D offset / sizeof(u32);
-> > +             aligned_word =3D ALIGN_DOWN(word_index, 2);
-> > +
-> > +             ret =3D ast2600_otp_read_pair(otp, aligned_word,
-> > +                                         &word0, &word1);
-> > +             if (ret)
-> > +                     goto out_lock;
-> > +
-> > +             pair[0] =3D cpu_to_le32(word0);
-> > +             pair[1] =3D cpu_to_le32(word1);
-> > +             skip =3D (word_index - aligned_word) * sizeof(u32);
-> > +             chunk =3D min(bytes, sizeof(pair) - skip);
-> > +
-> > +             memcpy(buf, (u8 *)pair + skip, chunk);
-> > +             buf +=3D chunk;
-> > +             offset +=3D chunk;
-> > +             bytes -=3D chunk;
->
-> NVMEM already returns the data in the correct order if I see this right.
-> You can store the readl() results directly into a u32*buf var. That'd
-> make the pair/skip/chunk code and endianness conversion unnecessary.
->
-> > +     }
-> > +
-> > +     ret =3D 0;
-> > +
-> > +out_lock:
-> > +     writel(0, otp->base + AST2600_OTP_PROTECT_KEY);
-> > +     /* Flush the protection write before another reader takes the mut=
-ex. */
-> > +     readl(otp->base + AST2600_OTP_PROTECT_KEY);
->
-> for what are you reading the otp key register here?
->
-> > +out_unlock:
-> > +     mutex_unlock(&otp->lock);
-> > +     return ret;
-> > +}
-> > +
-> > +static int ast2600_otp_probe(struct platform_device *pdev)
-> > +{
-> > +     struct nvmem_config config =3D {};
-> > +     struct nvmem_device *nvmem;
-> > +     struct ast2600_otp *otp;
->
-> Can we name this priv maybe?
->
-> > +
-> > +     otp =3D devm_kzalloc(&pdev->dev, sizeof(*otp), GFP_KERNEL);
->
-> Maybe assign &pdev->dev as struct device * variable and use that one
-> instead?
->
-> > +     if (!otp)
-> > +             return -ENOMEM;
-> > +
-> > +     otp->base =3D devm_platform_ioremap_resource(pdev, 0);
-> > +     if (IS_ERR(otp->base))
-> > +             return PTR_ERR(otp->base);
-> > +
-> > +     mutex_init(&otp->lock);
->
-> devm_mutex_init?
->
-> > +
-> > +     config.dev =3D &pdev->dev;
->
-> Same here with the var.
->
-> > +     config.name =3D "ast2600-otp";
-> > +     config.id =3D NVMEM_DEVID_AUTO;
-> > +     config.owner =3D THIS_MODULE;
-> > +     config.type =3D NVMEM_TYPE_OTP;
-> > +     config.read_only =3D true;
-> > +     config.root_only =3D true;
-> > +     config.word_size =3D sizeof(u32);
-> > +     config.stride =3D sizeof(u32);
-> > +     config.size =3D AST2600_OTP_SIZE;
-> > +     config.reg_read =3D ast2600_otp_read;
->
-> These can already be set in the config struct before.
->
-> > +     config.priv =3D otp;
-> > +
-> > +     nvmem =3D devm_nvmem_register(&pdev->dev, &config);
->
-> And here.
->
-> > +     return PTR_ERR_OR_ZERO(nvmem);
-> > +}
-> > +
-> > +static const struct of_device_id ast2600_otp_of_match[] =3D {
-> > +     { .compatible =3D "aspeed,ast2600-sbc" },
->
-> The SB Controller driver has "additionalProperties: false" set and
-> doesn't allow nvmem properties.
->
-> Please add "$ref: /schemas/nvmem/nvmem.yaml#" and
-> "unevaluatedProperties: false" as a separate patch.
->
-> Tan
->
-> > +     { }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, ast2600_otp_of_match);
-> > +
-> > +static struct platform_driver ast2600_otp_driver =3D {
-> > +     .probe =3D ast2600_otp_probe,
-> > +     .driver =3D {
-> > +             .name =3D "ast2600-otp",
-> > +             .of_match_table =3D ast2600_otp_of_match,
-> > +     },
-> > +};
-> > +module_platform_driver(ast2600_otp_driver);
-> > +
-> > +MODULE_AUTHOR("Neal Liu <neal_liu@aspeedtech.com>");
-> > +MODULE_AUTHOR("Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>=
-");
-> > +MODULE_DESCRIPTION("ASPEED AST2600 read-only OTP NVMEM driver");
-> > +MODULE_LICENSE("GPL");
-> > base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
->
+
+
+--=20
+Best Regards
+ Guo Ren
 
