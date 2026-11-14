@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BD0606A897
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 18:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEBF8606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 18:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u4hODVV1;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Wy7zf2d5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C2F9Vw0U;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=CRSxQBZc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=mq6H3Yk0JrFv5l8WLfRXbMeBtR7JEva3mGz5jMiUVns=; b=u4hODVV1xzdV+OpR9zRhl7e+6r
-	CclgTl2Fd0yhPNr+sxpM4vLWyJWfem7JurHAzDW9thqi8yUc3ihCF6kBnn1lnLqS+z4Az4CF20J1q
-	iZKsdipIP0OdQF732vJzLTZmN6tFVfnJ2L31vwMGqCLxXaZK3px+eddAI0I1YSZmiWjBgOkd0u1XX
-	dPo6r0Lp/XuZYE7VsWHRjmU9fTo30qKBPo/aPBLMmGoeEoZJuvtwpKt3APPBQ9kTdwpHjnWSg946y
-	aSb34ypIwX90zIUoEOpeh+BYAbLL6/DKDgMMxXWpn1sxzC5acrbwtOp6ZYluPJbsFLAASvTUlwa2P
-	VstzeNow==;
+	bh=nYDYoF3gGW5p7HLPxBjiU8e9F6de3Kcrrviy0toSoXI=; b=C2F9Vw0UO83wpIC6hVfde+WmBk
+	oRh5dmNuYeOc9X7U7qW4twtgAPtJA+Ck8POn3DWEt9swhmuXbDeTHsw0prX2wWqLUgCXwYArxzRGK
+	8qMvqm4kvowmYlpJQ+Hgy5EGfmZyfzPY9a2pRo0P+VZHyHOWCvN9+pFZzosIADweuUxsxmO8WSQrS
+	yFe9EuzJD3kUWhqqQSyE0OXDacDzuEnIDHNuYLSEPEKlG7571EK8d83AiL+wAvM0r6PmIxSr7VHBp
+	fMgeoz4ybnbfYNBk1x6ZPLWZ/PaYy4rNylehWT7jgeIx3TKwt0Ae1kku1+jOBzXhnlioCH7Ks0mWJ
+	kASLtMVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSIVv-0000000GbMm-2D2G;
-	Sat, 14 Nov 2026 18:30:11 +0000
-Received: from mail-westusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c001::5] helo=BYAPR05CU005.outbound.protection.outlook.com)
+	id 1xSIW0-0000000GbO8-38PQ;
+	Sat, 14 Nov 2026 18:30:16 +0000
+Received: from mail-southcentralusazlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c10d::1] helo=SN4PR2101CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSIVr-0000000GbMB-3u3M
+	id 1xSIVx-0000000GbN7-45zI
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 18:30:10 +0000
+	Sat, 14 Nov 2026 18:30:15 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yCI2Wt69ciX425apVxdaSJiFuT/2BS4dzLS/Mrp1e852Tx0jlteHpWb6eva2JJ96wCJ3A+EqMTZW9epSgojSw3QBbU8JLl6xAnkWVSwIST8U+N23QQKD6iPh/mfnrkc9MJPed5Dk2zGNyj5R9GXeBWoyi9zPqqZUN4lqhx3nFFbi7lkhRVnQByvahnvRca0hOGkc7MgQyKJMESX1b7pGvOs8id71P9m+9LugyurOGV7qXnMK0PUxFBhFK70K2VvqQFbOR8cD+CvZuYfkCCfPpRmvF8ngf4LgqXQHQYAbGYMnfMD6OBwOfYL4IN2q+aG1ixYbVBsegaZDk2hTIJzmdA==
+ b=ZdxX6un/Di7Wakd4pmfwRB8Ums6V/GcieETjy9qrA9CrdUv2KXjI4Ciq7ozCgxpBqutdWFUnagYGUjhsm/1R+gtf/IjvX1oxHkhN1S1BvdcfE8KtWbKyt/dHhxHexlFV93FWxwQf9NTE0RerPkguOh0DUMMz+i4+kN0SLHs46eBtvxWxNGE4+bHFoIDgoqmEQwVC39VGph90sJQNwe+rXJd3qnnZvLMnmlMrGdluY8IGZp74fwSBXYS4A121/SyYIHr3IKFLttdysxe7daB1UCiMjZpqVPYGXu7eyPAZ/xuDBGiuZ8jvZGZLDz87+rKUHf5nCV1q3afoArU7ZYXm7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mq6H3Yk0JrFv5l8WLfRXbMeBtR7JEva3mGz5jMiUVns=;
- b=YwivSwXwLoAgdy+0E3EfjdCAiNUkDfLoblGviefrubVe/WMd/VlWgJvNgcNhIf9/TD+AA3qOtQ4zOKllQPT0UrbUmhQ2MtAfbBfEumP9IEiEynJlwSLQ2IZ9VFFyokm5kNmdz9qTOeNmYTemiM/sn0u9yK8H7I7N/e+ashxNWcmSXZ7mrnw7X3x/d5gkvA8I3AvDmVfmxStzN0Ovv+97zPJ+9aTl6LdoljW9Hfn2P6DxWEKbGy6wNRbsH1i/9uQQ6cPob5aw3WSHJczofdxIw/vNky/HJzrGDBEcgMpwqaYPLQBLq53Mte/IcCp4+KkxiliXb9MWzfDkaKKG30mXlg==
+ bh=nYDYoF3gGW5p7HLPxBjiU8e9F6de3Kcrrviy0toSoXI=;
+ b=J6iWmgxrMZLRZXLPBKHrlGmgjRuGuZwXx5VsREWpFuBem0VJq7+iDRgdIrhy3TyiWJb5N3UQSa2SDFyUT0BL/baLeQaJzFe75jySZ3DG7PueRbj1F4WHI09bWXcvQF1ITZ58KhsGXWUY3FvHAbZ4f7pSzy0lFS0HpLqLVdoIKYLck4sqJ7dsomOedHLy4W8oyfXcih8RAp5eUwtDdCSFg33vg8JQwmE8LGPpy543Qwid6KE2R8Bf7qlavz/U0AoIJ/NBor+ySZtr2c1NuaNfPjk5jRDW9NYc8wMR5ZcivZFX3JSc7aRo0P3fbXbDR1exm+//cUhslcvd9iDBZ1go2w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lunn.ch smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mq6H3Yk0JrFv5l8WLfRXbMeBtR7JEva3mGz5jMiUVns=;
- b=Wy7zf2d5TOHL3qskMkUnivgGNNCDj6j8250hrZzXrLJxctzNKyD5hgOjyyIVRVIj+JlVHOkW4RqJts+nSapSbvcX+DgZyzAv7672SNtohR+llaMvwjq1OAXc7/YLJftwA/qLAM0lkw1LKTde0ehVys/OG4YjdKZQ9uYKAFiTUes=
-Received: from BN9PR03CA0329.namprd03.prod.outlook.com (2603:10b6:408:112::34)
- by SA3PR12MB196577.namprd12.prod.outlook.com (2603:10b6:806:533::23) with
+ bh=nYDYoF3gGW5p7HLPxBjiU8e9F6de3Kcrrviy0toSoXI=;
+ b=CRSxQBZchgh6pbCP5vU/qpcRa0Vyx+bS4W3ekzVKL8o3rrBsmAIsQGdg+GyYUjJYwapfZuYa43Ya0sVxZD25E+NzGnynG6WBDNBc2XaytMXuFe/bEowE0X5eI0vaPrSGEIbM61Haoftrij8nNAsgdC9HG8SSaz9nu4CwWLBSbn8=
+Received: from BN9PR03CA0214.namprd03.prod.outlook.com (2603:10b6:408:f8::9)
+ by BL1PR12MB5875.namprd12.prod.outlook.com (2603:10b6:208:397::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Sat, 14 Nov
- 2026 18:29:58 +0000
-Received: from BN7PEPF00000097.namprd03.prod.outlook.com
- (2603:10b6:408:112:cafe::19) by BN9PR03CA0329.outlook.office365.com
- (2603:10b6:408:112::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.10 via Frontend Transport; Sat,
- 14 Nov 2026 18:29:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Sat, 14 Nov
+ 2026 18:30:06 +0000
+Received: from BN7PEPF00000092.namprd03.prod.outlook.com
+ (2603:10b6:408:f8:cafe::59) by BN9PR03CA0214.outlook.office365.com
+ (2603:10b6:408:f8::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Sat, 14
+ Nov 2026 18:30:06 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -61,16 +61,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BN7PEPF00000097.mail.protection.outlook.com (10.167.245.75) with Microsoft
+ BN7PEPF00000092.mail.protection.outlook.com (10.167.245.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Sat, 14 Nov 2026 18:29:57 +0000
+ 15.21.615.4 via Frontend Transport; Sat, 14 Nov 2026 18:30:06 +0000
 Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Sat, 14 Nov
- 2026 12:29:57 -0600
+ 2026 12:30:06 -0600
 Received: from xhdsuragupt40.xilinx.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
- Transport; Sat, 14 Nov 2026 12:29:53 -0600
+ Transport; Sat, 14 Nov 2026 12:30:02 -0600
 From: Suraj Gupta <suraj.gupta2@amd.com>
 To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>, Andrew Lunn
 	<andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, "Eric
@@ -80,38 +80,40 @@ To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>, Andrew Lunn
 CC: Michal Simek <michal.simek@amd.com>, Russell King <linux@armlinux.org.uk>,
 	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH net-next v5 0/6] net: xilinx: axienet: Add 10G/25G (XXV) ethernet support
-Date: Sat, 14 Nov 2026 23:59:41 +0530
-Message-ID: <20261114182947.2908628-1-suraj.gupta2@amd.com>
+Subject: [PATCH net-next v5 2/6] dt-bindings: net: xlnx,xxv-ethernet: Add Xilinx XXV 10G/25G Ethernet
+Date: Sat, 14 Nov 2026 23:59:43 +0530
+Message-ID: <20261114182947.2908628-3-suraj.gupta2@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20261114182947.2908628-1-suraj.gupta2@amd.com>
+References: <20261114182947.2908628-1-suraj.gupta2@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN7PEPF00000097:EE_|SA3PR12MB196577:EE_
-X-MS-Office365-Filtering-Correlation-Id: c745b8b4-070d-4ffc-4d65-08df427d4961
+X-MS-TrafficTypeDiagnostic: BN7PEPF00000092:EE_|BL1PR12MB5875:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5321a706-db22-4217-2b89-08df427d4eb0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|1800799024|82310400026|376014|23010399003|7416014|18002099003|261009223027099003|3023799007|13003099007|11063799006|56012099006|10067099003|261102123227099003|261022075727099003|261026121527099003|261028144727099003|261026140227099003|261022105027099003|261021123027099003|261021121427099003;
-X-Microsoft-Antispam-Message-Info: SuXdl5vHbM+X85E3wYu0iJPekanMmF4d3sWeesvjUgaKeer9SRKaZLBhXcS8CmH2iV/DipjxuWOLi87sc3lsP+wDjtkIw9WJ8+v0GejDtqA5hhPjj9ctX/I7AtRwQA/ybcpBaIA8l0sv2K3S0Wz+8N0Cbf073/mEdfrU0nNIXGzIW0W8+W+HHT6pNbNpqKK5sgWL6eprBJl6gamAex3IxO4IO6CitzVNwA/uw/Om089RHL9tDyHippIdxaFZyGsheYCLkymOOXMpWP8AXrO58uFZU7Mdd283xv0u94XQZbYN/K3zp46Escz9eBhGddvHp6wZDsd32Mt0GLPFMnzF7GWu7n9X8r9hVy2TeM+FO5HNtfIBkyMnnhlZITxmYm9v7VDfGPmoBcjxkvtS3dnOn2uW2AQbkh1PQIhLVtw7j4LMg2xkVrGnXwDsPvf8upf2v/XVybBiAwyfv34u/XQVimqp7OssH8lh3DfeUkaxhsqoHmB6EDiE1/63Xz6X05PCQ64u+QxYoPcg5Ei8b6bp8cwDnnZSJHbrsL4TgTg/dizP05JRPcEOgmXd64K5K6jmrjsnXu9rqxIEzI52x/tEeldjh49EWsV6IsJtOvlKHaOY8uGWekmCuaQugZFcWGLOx+YShNVK+ST04CIX6MJ0jjWdQanzDY4LTK4WTLSfYTo=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014)(23010399003)(7416014)(18002099003)(261009223027099003)(3023799007)(13003099007)(11063799006)(56012099006)(10067099003)(261102123227099003)(261022075727099003)(261026121527099003)(261028144727099003)(261026140227099003)(261022105027099003)(261021123027099003)(261021121427099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|376014|7416014|1800799024|23010399003|82310400026|10067099003|11063799006|56012099006|261026121527099003|261026140227099003|261028144727099003|261021121427099003|261022105027099003|261022075727099003|261102123227099003|261009223027099003|18002099003|22082099003|13003099007|3023799007;
+X-Microsoft-Antispam-Message-Info: C0ey7IC9S92pftQ69zdS8zuBxJiy2y9mB6I2NEmd/o2OZhDcpH3lCwJ/PXIGIMO/TZJgBa+PMEqb7dXnAx9WGUwOe/SIptw6WBYlwV/ynuG2Y35tI28ZXKtr78rg+h/T6SaqH+9fI7CiqSOIFj0b+nVh7XqE/Hay4cdYd7PKC+bOSFsAytRyICBWkAdlJk8+Ky/jpwmAU8nIB3aP9pUwHt+SIMKWFx/Rpn2UkQ4WC5lmKwF0PB6P6SWZrh4oBn5ujZY9CTA3Of3+FV5TCtfRf/0ek8zGslF09LF6meSO8k1/QTbevF2XyFdPiq3y+Ku4lbWk2yHnE0fYSE4SA/msBWToZWbOVFxg5vwbsCm0/PWubm2sEzxUm0R0OrD2D/S6p+Xdljb2tn0jUWS4JN6qFKeuZY45RCmJ2XGY7NSavusX17+dTTlF2i/IG9Q0IWRDv+/+3rZ2MsUuTTyjG9VpxLQi78jGP2yAWu2IjukuOP6sa61SUHKN6fbzJg5VuldZWlchSWphqCxbtSuWgZ2C6Qe2KlS+XkBdjpaUJIxCy/qUKEJMq80xCy6Kf3bsxnEnyKkdNv+I6j+M8+AhJhKlG+eJGA7YPo2MS11Ehbb8EsUciP4/qw4E/WP8kupyNTbDdAdpkrbYbqRa8mtXar1ovg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(376014)(7416014)(1800799024)(23010399003)(82310400026)(10067099003)(11063799006)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261021121427099003)(261022105027099003)(261022075727099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(13003099007)(3023799007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: vpMYzYGkS3CilCjPGOLqRQLuKnXAwLUQOFbEeXBwfzMbFdNpHUdrc1fvilI9rkEkWbBNJlb/BxopQuiLSbLQKjKqe732l+FNbwkDx+/5+zs9sLeguF8i7kTHRgguuFO/sXck1XGZEONsOIa+ShMLfvKmqxAYIx8bBduwaClhV0VJPHWyFwAIWPkWI8uTvVOX6h6385n7UeH505UQMrVHMpCPhIN2GUPLfUJvFuOoWEMWW/FlAxvHlnPkasa1c+cUvITZdKIe4sVlgZ+V2qjh6Ds8gX//y1V9gVYKVmvEaYzoIMOeAGPKlJ1RZqrorwKEjVjA4BbdiwS8w6DXSF89JQTn8N8L7+cW9Oh1yLS9UXve6pc3zV4WaZXwoGH6hEz3aniBNK3OEDChh51X44P6qENlzyibqIFvPNsxiWbuDRH6zHo9Mu3D1212JaNcaVcc
+X-MS-Exchange-AntiSpam-MessageData-0: xsUpcrx723oIVl2KTNujGNerFECsMBoeTxo1y5WX4Va1dfNp8GjSUK0mwrOVDp7aeW2GXxIWD5zMBTEVXJaBCFKKb6S1d1z8lDcH985wV6tmfs0gpqYf/k1n9BeTtRP2EWrDI49iaIl9EmwJi0Cl+kHypwi59Vnb6YrxpPp/5ZPHILLOuQN+iS09qoV4GMBYKU/2S1hoiEbKh7bfO308k0n8YxbRazYiOhCeIck7cP4twCTd4zwC7NoXPdf+L+eWN/W8sGsQJC12TlnFaDlpJImMVsp+gVr7wmsg+jnaar7zrc+pxcejZH0T4jBfjUnrVWVDf63G66J4tGMPdcm+xxoDF1EIa3TFsgGtGcsSSirQv29gqi6rmyVQLtVyJHt8AyuKHCsAXIS7I5iuXE/Di/b9W3Y6J4KttyhmR8ktypngbEdh07x42gSe2gTE3wyK
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2026 18:29:57.8919
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2026 18:30:06.7951
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c745b8b4-070d-4ffc-4d65-08df427d4961
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5321a706-db22-4217-2b89-08df427d4eb0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN7PEPF00000097.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN7PEPF00000092.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB196577
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5875
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_103008_005547_186D37CA 
-X-CRM114-Status: GOOD (  27.63  )
+X-CRM114-CacheID: sfid-20261114_103014_075828_61F6BC05 
+X-CRM114-Status: GOOD (  24.23  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,156 +133,207 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This patch series extends the AXI Ethernet driver to support the
-XXV Ethernet subsystem.
+The XXV Ethernet IP integrates a 10G/25G Ethernet MAC with an in-core
+PCS/PMA driving a high-speed serial transceiver. Its payload is moved by
+an external AXI DMA (or multichannel DMA) controller referenced through
+the dmas/dma-names properties. Document the IP in a dedicated schema
+file.
 
-- Refactor through struct axienet_config so per-MAC behaviour is
-  expressed as capability flags and callbacks instead of runtime
-  MAC-type checks in the shared code.
+Add the "xlnx,xxv-ethernet-1.0" compatible with the 10gbase-r and
+25gbase-r phy-modes, the rx_core/drp/s_axi clocks and the AXI DMA
+channel properties. The GT transceiver reference clock is described as
+an optional fourth "ref" clock, for boards where it is supplied by a
+Linux-managed clock provider rather than a fixed oscillator.
 
-- Document the XXV IP in Devicetree.
+Add "xlnx,has-statistics-counters" as well. The statistics counters are
+an optional part of the IP, selected by the "Include Statistics Counters"
+build option (PG210), and unlike the 1G MAC the subsystem has no ability
+register that reports whether they were included, so the devicetree has
+to describe it.
 
-- Propagate a device reset failure out of ndo_open, which XXV bring-up
-  needs, and keep a later ndo_stop safe after a failed resume.
+Require "xlnx,rxmem". The driver reads it unconditionally at probe time
+and fails if it is absent, and the value is what bounds the largest frame
+the device accepts, both when validating a new MTU and when deciding
+whether jumbo frames can be enabled.
 
-- Add support for the XXV Ethernet subsystem.
+Disallow phy-handle, its deprecated phy and phy-device spellings, and
+pcs-handle. All are inherited from ethernet-controller.yaml, so
+unevaluatedProperties does not reject them, but the subsystem has no MDIO
+bus master and its PCS is in-core, so neither an external PHY nor an
+external PCS can be attached. Constrain managed to in-band-status for the
+same reason; it stays optional, as the link is always managed in-band.
 
-- Refactor the statistics into struct axienet_config ops, and add
-  ethtool / ndo_get_stats64 counter reporting for XXV.
+Signed-off-by: Suraj Gupta <suraj.gupta2@amd.com>
 ---
-Notes:
-- This series is developed on top of [1]. Only "net: xilinx: axienet:
-  Derive RX frame length from residue in dmaengine path" from that series
-  is still outstanding; the rest is already in net-next. This series
-  builds and applies without it, but that change is required to get the
-  correct RX completion length on the dmaengine path, which is the only
-  path XXV supports. It is not included here to avoid duplication.
-- The series advertises the core's active 10G or 25G rate only. Runtime
-  switching between 10GBASE-R and 25GBASE-R is not supported and can be
-  added later.
-- Pause/flow control is not advertised for XXV yet; it is not validated
-  on this IP and will be enabled in a later change.
-
-[1]: https://lore.kernel.org/all/20260929081316.803997-1-srinivas.neeli@amd.com/
-
-Changes in v5:
-- Patch 1/6:
-  * Move the comment on why axienet_dma_err_handler() ignores the
-    mac_init() return value into the patch that adds the call.
-  * Explain the lp->mii_bus NULL guard in the commit message, and fix the
-    axienet_config kernel-doc for pcs_ops, stats_update and internal_pcs.
-  * Keep a single axienet_setoptions() and put the option table in
-    axienet_config instead of adding a setoptions callback, which every
-    MAC would have implemented identically.
-- Patch 2/6:
-  * Constrain "managed" to in-band-status and disallow phy-handle,
-    pcs-handle and the deprecated phy and phy-device spellings.
-  * Add an optional "ref" GT reference clock, clarify that the second
-    clock is the GT helper (dclk), and require the first Tx/Rx DMA
-    channel pair. Note that dmas and dma-names pair up by position.
-  * Add xlnx,has-statistics-counters: the counters are a PG210 build
-    option and no ability register reports whether they were included.
-  * Explain in the commit message why xlnx,rxmem is required: probe reads
-    it unconditionally and it bounds the largest frame accepted.
-  * Drop Rob Herring's Reviewed-by, as the binding has changed since v3.
-- Patch 3/6 (new):
-  * Split the ndo_open / ndo_stop / resume changes out of the XXV patch,
-    as they change 1G behaviour and are a prerequisite for it.
-  * Propagate the axienet_device_reset() error, previously overwritten
-    by phylink_fwnode_phy_connect() before being checked.
-  * Clear reset_in_progress on the __axienet_device_reset() error paths,
-    which the propagated error would otherwise leave set, freezing the 1G
-    statistics readers.
-  * Make axienet_stop() a no-op after a failed open, replacing the
-    per-pointer NULL checks posted earlier, which covered neither the
-    NAPI and interrupt paths nor a failed dma_request_chan().
-- Patch 4/6:
-  * Derive the line rate from phy-mode instead of STAT_CORE_SPEED, which
-    PG210 provides only on 64-bit AXI4-Stream builds.
-  * Program the MAC RX max packet length from max_frm_size so oversized
-    frames are truncated rather than spilling across descriptors, and
-    finalize max_mtu from the MAC's jumbo capability.
-  * Set default_an_inband, request the optional "ref" clock, and skip the
-    GT registers in ethtool -d on IP versions that lack them.
-  * Stop advertising pause until flow control is validated, and demote
-    the RX block-lock timeout to a debug message.
-  * Name the XXV status registers after PG210; two of them described the
-    wrong register (0x0400 is STAT_TX_STATUS, 0x0408 is STAT_STATUS).
-- Drop the "Make axienet_rmon_ranges non-static for reuse" patch. The XXV
-  RMON callback reports only aggregate counters and leaves ranges NULL, so
-  the table was never reused and can stay static.
-- Patch 6/6:
-  * Gate XAE_FEATURE_STATS on xlnx,has-statistics-counters, and gate the
-    TICK drain, the periodic work and the final snapshot on it, so a
-    design without the block is never touched.
-  * Move the draining tick after GT reset-done, as the readable STAT_*
-    registers hold unknown data until the first TICK.
-  * Mask the counter MSB to its low 16 bits, so bits outside the 48-bit
-    counter are not accumulated.
-  * Report FrameCheckSequenceErrors / rx_crc_errors from
-    stat_rx_packet_bad_fcs, and drop "TX Bad FCS" and "TX Frame Error"
-    from ethtool -S, as both are already folded into tx_errors.
-  * Keep collection on the periodic work; queries copy the software
-    accumulator and can therefore lag it.
-
-V4: https://lore.kernel.org/all/20261006110550.1990213-1-suraj.gupta2@amd.com/
-
-Changes in v4:
-- Drop the "legacy" nomenclature and use dmaengine / non-dmaengine terminology
- as it might confuse with MAC instead of driver flow (Andrew Lunn).
-- Patch 1/6: Gate the "xlnx,txcsum" DT property behind the MAC's tx_csum
-  capability, so TX checksum offload is not advertised for a MAC whose
-  hardware cannot complete checksums.
-- Patch 2/6: Reword the binding description to state that the
-  PCS/PMA is integrated into the IP, and that MDIO bus unavailability and
-  SFP module (I2C) management are detailed in the IP (Andrew Lunn).
-- Patch 3/6: Reword the dma_err_handler comment from "legacy embedded-DMA
-  (1G) path" to "non-dmaengine flow (1G MAC)" (Andrew Lunn).
-- Advertise only the core's active line rate.
-
-V3: https://lore.kernel.org/all/20260831150816.1020883-1-suraj.gupta2@amd.com/
-
-Changes in v3:
-- Dropped patch 1/7 ("clk: Add devm_clk_bulk_get_enable()"); it has been
-  applied to mainline as commit b698927accb1.
-- Patch 2/6 (dt-bindings):
-  * Added Reviewed-by from Rob Herring. Thanks Rob!
-
-V2: https://lore.kernel.org/all/20260806181153.1213996-1-suraj.gupta2@amd.com/
-
-Changes in v2:
-- Patch 1/7:
-  * Add Reviewed-by: Brian Masney <bmasney@redhat.com>. Thanks Brian!
-- Patch 3/7:
-  * Split the XXV binding into its own schema file
-    (xlnx,xxv-ethernet.yaml) instead of extending xlnx,axi-ethernet.yaml
-    with if/then branches, per Rob Herring's review.
-  * Add a multichannel (MCDMA) example.
-- Patch 4/7:
-  * Require both GT reset-done bits in axienet_xxv_poll_link_ready()
-    so polling does not exit before both the TX and RX resets complete.
-V1: https://lore.kernel.org/all/20260723123838.125145-1-suraj.gupta2@amd.com/
-
-Suraj Gupta (6):
-  net: xilinx: axienet: Introduce axienet_config for MAC-specific ops
-  dt-bindings: net: xlnx,xxv-ethernet: Add Xilinx XXV 10G/25G Ethernet
-  net: xilinx: axienet: Propagate device reset failure from ndo_open
-  net: xilinx: axienet: Add 10G/25G (XXV) ethernet support
-  net: xilinx: axienet: Dispatch statistics through axienet_config ops
-  net: xilinx: axienet: Add statistics support for XXV ethernet
-
- .../bindings/net/xlnx,xxv-ethernet.yaml       | 146 ++++
+ .../bindings/net/xlnx,xxv-ethernet.yaml       | 146 ++++++++++++++++++
  MAINTAINERS                                   |   1 +
- drivers/net/ethernet/xilinx/Makefile          |   3 +-
- drivers/net/ethernet/xilinx/xilinx_axienet.h  |  96 ++-
- .../net/ethernet/xilinx/xilinx_axienet_main.c | 659 +++++++++++++-----
- .../net/ethernet/xilinx/xilinx_axienet_xxv.c  | 633 +++++++++++++++++
- .../net/ethernet/xilinx/xilinx_axienet_xxv.h  | 151 ++++
- 7 files changed, 1506 insertions(+), 183 deletions(-)
+ 2 files changed, 147 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
- create mode 100644 drivers/net/ethernet/xilinx/xilinx_axienet_xxv.c
- create mode 100644 drivers/net/ethernet/xilinx/xilinx_axienet_xxv.h
 
+diff --git a/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
+new file mode 100644
+index 000000000000..caf582c72a8d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
+@@ -0,0 +1,146 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/xlnx,xxv-ethernet.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xilinx XXV 10G/25G Ethernet Subsystem
++
++maintainers:
++  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
++  - Suraj Gupta <suraj.gupta2@amd.com>
++
++description:
++  The Xilinx XXV Ethernet Subsystem implements a 10G/25G Ethernet MAC with an
++  in-core PCS/PMA driving a high-speed serial transceiver. It supports the
++  10GBASE-R and 25GBASE-R line rates, with 25G operation following the 25G
++  Ethernet Consortium specification. Because the PCS/PMA is integrated into
++  the IP, the subsystem has no MDIO bus master and is not managed through an
++  external MDIO PHY; link state is read from the MAC's own status registers.
++  As there is no PHY to manage, the link is always managed in-band.
++  Any SFP module management (e.g. I2C) is handled by separate IP outside this
++  binding. Its payload is moved by an external AXI DMA (or multichannel DMA)
++  controller referenced through the "dmas" property.
++
++properties:
++  compatible:
++    const: xlnx,xxv-ethernet-1.0
++
++  reg:
++    maxItems: 1
++    description: MAC control and status register space.
++
++  clocks:
++    minItems: 3
++    items:
++      - description: RX AXI4-Stream clock.
++      - description: GT helper (dclk) stable clock.
++      - description: AXI4-Lite register clock.
++      - description: GT transceiver reference clock (refclk).
++
++  clock-names:
++    minItems: 3
++    items:
++      - const: rx_core
++      - const: drp
++      - const: s_axi
++      - const: ref
++
++  phy-mode:
++    enum:
++      - 10gbase-r
++      - 25gbase-r
++
++  # The subsystem has no MDIO bus master and its PCS is in-core, so neither
++  # an external PHY nor an external PCS can be attached. phy and phy-device
++  # are the deprecated spellings of phy-handle.
++  phy-handle: false
++  phy: false
++  phy-device: false
++  pcs-handle: false
++
++  managed:
++    const: in-band-status
++
++  xlnx,rxmem:
++    description:
++      Size in bytes of the Rx/Tx packet buffer memory built into the IP. It is
++      fixed by the hardware design and bounds the largest frame (jumbo MTU) the
++      device can accept.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  xlnx,has-statistics-counters:
++    description:
++      The statistics counters are an optional part of the IP, selected by the
++      "Include Statistics Counters" build option, and the subsystem does not
++      advertise whether they were included. Present when the design was built
++      with them, in which case the driver reports the MAC counters through
++      ethtool and ndo_get_stats64.
++    type: boolean
++
++  dmas:
++    minItems: 2
++    maxItems: 32
++    description:
++      TX and RX DMA channel phandles, one per entry in "dma-names".
++
++  dma-names:
++    minItems: 2
++    maxItems: 32
++    items:
++      pattern: "^[tr]x_chan([0-9]|1[0-5])$"
++    allOf:
++      - contains:
++          const: tx_chan0
++      - contains:
++          const: rx_chan0
++    description:
++      Should be "tx_chan0", "tx_chan1" ... "tx_chan15" for DMA Tx channel and
++      "rx_chan0", "rx_chan1" ... "rx_chan15" for DMA Rx channel. The first
++      Tx/Rx channel pair ("tx_chan0" and "rx_chan0") is always required. There
++      is one name per entry in "dmas", in the same order.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - phy-mode
++  - xlnx,rxmem
++  - dmas
++  - dma-names
++
++allOf:
++  - $ref: /schemas/net/ethernet-controller.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  # Single AXI DMA channel pair
++  - |
++    ethernet@80000000 {
++        compatible = "xlnx,xxv-ethernet-1.0";
++        reg = <0x80000000 0x10000>;
++        clock-names = "rx_core", "drp", "s_axi";
++        clocks = <&rx_clk>, <&drp_clk>, <&axi_clk>;
++        dma-names = "tx_chan0", "rx_chan0";
++        dmas = <&axi_dma 0>, <&axi_dma 1>;
++        phy-mode = "25gbase-r";
++        managed = "in-band-status";
++        xlnx,rxmem = <0x8000>;
++        xlnx,has-statistics-counters;
++    };
++  # Multichannel DMA (MCDMA) with multiple Tx/Rx channels
++  - |
++    ethernet@80010000 {
++        compatible = "xlnx,xxv-ethernet-1.0";
++        reg = <0x80010000 0x10000>;
++        clock-names = "rx_core", "drp", "s_axi";
++        clocks = <&rx_clk>, <&drp_clk>, <&axi_clk>;
++        dma-names = "tx_chan0", "tx_chan1", "rx_chan0", "rx_chan1";
++        dmas = <&axi_mcdma 0>, <&axi_mcdma 1>,
++               <&axi_mcdma 16>, <&axi_mcdma 17>;
++        phy-mode = "10gbase-r";
++        managed = "in-band-status";
++        xlnx,rxmem = <0x8000>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 893b0670a7b6..b33fd70d242f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -30683,6 +30683,7 @@ XILINX AXI ETHERNET DRIVER
+ M:	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
++F:	Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
+ F:	drivers/net/ethernet/xilinx/xilinx_axienet*
+ 
+ XILINX CAN DRIVER
 -- 
 2.25.1
 
