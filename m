@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F1AF606A8B7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535DD606A8BA
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CIaJbRYr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UK4YRzX7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X0OP2H7p;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GsNO6W9U
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,71 +14,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=YJIqsMHXUd36NytjdySw+FUQZNq6eqzvdp3DyLOfBec=; b=CIaJbRYr0q+CeMD8yKJ6F5BHpV
-	oWgnHXlY5D742FYSaSjkhyUJyxJu4WY114n55PUWMzWUxIGYl0EJvVMvFpvSkt2DrqtPzxUoI7wlM
-	TCQK9vG337xToetI6kygzNkB4qK4l10+tqwMhXloVvhfSYTAQJ/x8cd3+Z7P/0Ra00ZB1MFOejr3y
-	kALdpxsdy4993RtIVEmxhtyZolTiDA7bydsKWvJ9lKQm6IpBLhoPiutQzGEGOOWaj0W0JbthDiZGe
-	IkWVA73p7Ig11qeI6uJ8akIyF8UlfZOOBWYU9qKdNc/SNnW8ertlV4JJvFTpFbe0YHryiONNZx6uH
-	qHX4dK7w==;
+	bh=tt3zLwRlEbhHHzfvqBg3SbCShwsAMAa6tuNoWsaaWnE=; b=X0OP2H7p0RFxO7gBhXDcnsBZhb
+	cK+3Eq1fklfPhP3aIOZtE3HS0enhM/u9kJQpdSTVkiEHw5GWpu54GsU3w51rNYz4AyfIs2MC5MRVb
+	2Pj8YMFwGbOsRRyh4F3+E75pzkwj5dvLDCgz5PBIqpyF91LZL1jhqyRswbyG5baPjgx/FkZh4ZQQu
+	Orkvo8LsE7CRWM+MGeGiWee0vf00FeqybMvnEWz3dvszzFWVL+7AHyz/AY3Z00mlVqu4ZuuNjXSX8
+	EPUu45IKr5CVbh6sZ4cngDWqElrj2IGiF5OgGCRyGXcijGIefk49fwqpWjZpxs3KUUgNeXVJgA+Wk
+	O0utQcpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1P0-0000000Erxs-3qWn;
-	Sat, 14 Nov 2026 00:13:54 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xS1P1-0000000EryP-0sm1;
+	Sat, 14 Nov 2026 00:13:55 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1Oy-0000000ErxF-3lFz;
-	Sat, 14 Nov 2026 00:13:52 +0000
+	id 1xS1Oy-0000000ErxD-3lGU;
+	Sat, 14 Nov 2026 00:13:53 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 933E742A83;
-	Sat, 14 Nov 2026 00:13:52 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id F1C6E60A8D;
+	Sat, 14 Nov 2026 00:13:51 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794615232;
-	b=rDT4QYgG/0mXnV1sGaio42y3s78CYtv2s2wYve0rpbyodSl8w7jqrLnRr2hzKwayRjO3
-	 oNug+WFq/gpznwM8Am+ldVsj60Ttk/LR/N3zApQl8VSWQjT25/bp+rLxt6AjqmEcYnoDr
-	 LiiTFrv3BTExBCwZ/fi8rm8UHLHdgbtcqa+YA8G/jLJad9RXwz++T43rDVY6a5Y3iV1cP
-	 JoCwP3s6XJOvioUoFnNsYXQeE8g+8qiEeOLRTL/tHcmiCQkzNla6NYgKu3M6ulrJqfqku
-	 cyffeDuyqRqaaqn98oiScLk7DXErthJsDrj+FD7UGyj+a3zo/pqKyepnluXEBGQ7Tiw==
+	t=1794615231;
+	b=byHabmVDx7rx3qAo2JtLnmQIB+E9RGx3avrlkHtT9Zs2JKhYS/BWttpuxD0ybeYCElyh
+	 R5Fqzt32ueZEE3to4KgPOi+BhS5rGDns/MuVCJrqWJ9zMoc365deQiYmUrnUf6/ZK2AYe
+	 RDcMkg74DcnUij4J+1if77qMVdueXkx5dxPmq4jW3w9oRRFlzb0weg2PKLAIQ1ZlGXPbh
+	 5Jg/crFgsU7H6j7dAG2xgOlPXn9jKkwIdkt66xSg28geyvuzYwmwMT+mDdOuYOeq0MFl6
+	 yEk31uIsSZr89JHuxG19betu0SDioUh35zZTNb2zBDZDiywIpGkraKl3qgiedrTxsrg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794615232;
+	c=relaxed/relaxed; t=1794615231;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=YJIqsMHXUd36NytjdySw+FUQZNq6eqzvdp3DyLOfBec=;
-	b=YOxLIqc9YAl4WHvnu33Ih51WogbwyDiggSoJvnH6Kuw2tFUbGLd1niMiK00y2rEDkDrK
-	 CrtrJS6cLeHCIEdcb9AIApMvw5KndYuF92LlJ1RVe2WVJjwpdBHkNA40LTSbkskVv9Ca0
-	 JOeJNOcEwFiMg61heYbsDhSyCIQgnPowhvtYZ19lzUQQqHz47SZoT7BDmFyiN69mmtKyP
-	 LbkIiZAv5VI4Nnt45WLv3MSVvOfqMi4RKK3oLiUl4fHofgEzuk2NbBR0S3yiDAE8wBoxI
-	 WW+g4mREJwbjXn87jbEPgcZDytrwbGvcyOZFuxta+TU3pRKNqpT7dH47nPUt0MmzUxA==
+	bh=tt3zLwRlEbhHHzfvqBg3SbCShwsAMAa6tuNoWsaaWnE=;
+	b=HU7ciRT5OtLPjuExmzHw9U0G1OXV9x1/pVarEbL3kUm+LysbfgW0u+HgOZdkCByPdiAU
+	 32tpsFSbgOonvOAN8wdxj7cC5QgI23beuTHdpke93Kz/joaRgPGlV6qDNe7HlbEJqjiTK
+	 cn8ufZurPTBtvJz9gLLk2cvGw7pPkXVjgBHRaHWUtGwu7HXtukc9HHlTtzanwWzIhZTN5
+	 gTMbHjcnk91m5FWbiJOKLIkIvFSGaaXNYZ/Fl0Y6HJywRGhucWB8MqNGRvJvpw3AJ1wCP
+	 d5BNjD3BoljbhX9Piecfn32BxXcnD+dBdKTgIMYP8GIEU22qXi0QPxSKhLaBsA4CS5A==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 20CF11F000C7;
+	by smtp.kernel.org (Postfix) with ESMTPS id 048DC1F000C5;
 	Sat, 14 Nov 2026 00:13:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794615232;
-	bh=YJIqsMHXUd36NytjdySw+FUQZNq6eqzvdp3DyLOfBec=;
+	s=k20260515; t=1794615231;
+	bh=tt3zLwRlEbhHHzfvqBg3SbCShwsAMAa6tuNoWsaaWnE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=UK4YRzX7Vyj7XxYAQmb/5XT8ft2ohXSHUZawNeIeuR0ILDdr9HtBxgWwUKBk2Jwpd
-	 LAmF1VBLPxwWKfxxYA3LA5fwmJ4sSRlDrmf11oI9mrdl33kuoB4xqla8SIOCXAh0aH
-	 ZkmRPFJJuYLLs6g3MIq3L5edUYRZuIQsN5kXKQMM/Am97wlYTXk/IYHl7BHCNxjwL8
-	 8XlKBZfAZEBR9KyXIEjXHAdfAYjVq2aDOBZ16mN3Pd48ieKhES/rRQn5hh/5Q2D+9R
-	 RDtoUsFlTCyT61vehsaSbiFAtelqbX2Eri8MowtOr2l/+rJUExbAOJddd++u6rsYWf
-	 7JdkCltii3Ggw==
+	b=GsNO6W9UCL0xMthTVg8wBbf9nSBusLt1+3sl78ODODtPxerzIcHaSTdHDQuWANzxF
+	 Y/N5K2GQnjp5NTg9DRG9fjI176zHmU9WcNvtwFFp9ZV5tzAd304tGKMVgSYESsaUyn
+	 EgeLUDYrvRCAxlHrIgDl/pBxbwbEXwaEeG+M9hTloVNB9AOB5Y2cGdp9eJgKz2HoSh
+	 onjvuCfZEMDdV+Vd0VhzGh+Ef2XnMNRKzF09dh28k7RcSktgpYQi1lF4wI1i8WdCn3
+	 x3kvbk+bjIpewqAw6x3GNk93jIurLc7bKsASLqjoOS3MIiEd6jAgyX3Z0VxDw417V8
+	 d14CepCWkM+sg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 9DB9949BBB;
+	by lkml.kernel.org (Postfix) with ESMTP id 72E7D49BA6;
 	Sat, 14 Nov 2026 00:13:50 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Sat, 14 Nov 2026 00:13:52 +0000
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add IEP2 deinterlacer to RK3588
+Date: Sat, 14 Nov 2026 00:13:50 +0000
+Subject: [PATCH 1/3] media: dt-bindings: Add Rockchip IEP2 deinterlacer
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261114-iep2-v1-3-a8edde5a21e1@gmail.com>
+Message-Id: <20261114-iep2-v1-1-a8edde5a21e1@gmail.com>
 References: <20261114-iep2-v1-0-a8edde5a21e1@gmail.com>
 In-Reply-To: <20261114-iep2-v1-0-a8edde5a21e1@gmail.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -91,11 +91,11 @@ Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
  Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
  Alex Bee <knaerzche@gmail.com>, Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794615229; l=1739;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794615229; l=3973;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=WgCd6FsHVVdbiiKnG9YJDyBq5Nk8EKW+LFZEF7P5gec=;
- b=ZDkYJl5rlhy4ikFsVvxMmPNwylnSlks+4jVcGClUXWdaR5HiEWXTskWM/CQq764zS2h/UVIv+
- UFc2pkGlrtTCeQeHdCvKdqHns76LCR1Oz5Rerec4vd/2zx0jWdwHCJT
+ bh=ChHZwNhLk4WNiGW3BpdABPaZ57+oP++kU/hOOD04E7I=;
+ b=uS4zfwgTX+5ZBvlB6DoFO8TpVG+Ewot7VmL7qXlTShSwggTjUBmz6Sjdtx3T/b/g8AM/3fyXW
+ OodGGE+F1E2BjfrznJDqt+oCdEOPnuvAemYgFKzSd7cWsIejY9oKhrY
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -123,50 +123,140 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Add the IEP2 deinterlacer and its IOMMU to the RK3588 base dtsi. Both
-share GIC SPI 117 and sit in the VDPU power domain.
+Add a binding for the IEP2 deinterlacer of the RK3568 and RK3588 SoCs.
+It is a different block from the IEP of RK3228/RK3288/RK3328/RK3399,
+hence "iep2". The RK3588 block falls back to the RK3568 compatible:
+the vendor kernel drives both with one compatible ("rockchip,iep-v2")
+and one driver.
 
-Addresses, clocks, resets and the interrupt are taken from the Rockchip
-BSP rk3588s.dtsi (develop-6.1).
+Clock and reset names follow the RGA binding. The resets are optional:
+the block has its own soft reset.
 
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ .../bindings/media/rockchip,rk3568-iep2.yaml       | 95 ++++++++++++++++++++++
+ MAINTAINERS                                        |  7 ++
+ 2 files changed, 102 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index aa69fd3793fd..5297519bd251 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1397,6 +1397,28 @@ vepu121_3_mmu: iommu@fdbac800 {
- 		#iommu-cells = <0>;
- 	};
+diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-iep2.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-iep2.yaml
+new file mode 100644
+index 000000000000..0c7666de19f8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-iep2.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/rockchip,rk3568-iep2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip IEP2 image enhancement processor
++
++maintainers:
++  - Arun Iyengar <aiyengar1990@gmail.com>
++
++description:
++  Memory to memory video deinterlacer of the Rockchip RK3568 and RK3588
++  SoCs. It has its own IOMMU, with which it shares its interrupt line.
++
++properties:
++  compatible:
++    oneOf:
++      - const: rockchip,rk3568-iep2
++      - items:
++          - const: rockchip,rk3588-iep2
++          - const: rockchip,rk3568-iep2
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: AXI bus clock
++      - description: AHB bus clock
++      - description: Core clock
++
++  clock-names:
++    items:
++      - const: aclk
++      - const: hclk
++      - const: sclk
++
++  resets:
++    items:
++      - description: AXI reset
++      - description: AHB reset
++      - description: Core reset
++
++  reset-names:
++    items:
++      - const: axi
++      - const: ahb
++      - const: core
++
++  power-domains:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - power-domains
++  - iommus
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/rk3588-power.h>
++    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
++
++    bus {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      deinterlace@fdbb0000 {
++        compatible = "rockchip,rk3588-iep2", "rockchip,rk3568-iep2";
++        reg = <0x0 0xfdbb0000 0x0 0x500>;
++        interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&cru ACLK_IEP2P0>, <&cru HCLK_IEP2P0>,
++                 <&cru CLK_IEP2P0_CORE>;
++        clock-names = "aclk", "hclk", "sclk";
++        resets = <&cru SRST_A_IEP2P0>, <&cru SRST_H_IEP2P0>,
++                 <&cru SRST_IEP2P0_CORE>;
++        reset-names = "axi", "ahb", "core";
++        power-domains = <&power RK3588_PD_VDPU>;
++        iommus = <&iep_mmu>;
++      };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f4456f4589a1..b32b7eeb0a9e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -24285,6 +24285,13 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+ F:	sound/soc/rockchip/rockchip_i2s_tdm.*
  
-+	iep: deinterlace@fdbb0000 {
-+		compatible = "rockchip,rk3588-iep2", "rockchip,rk3568-iep2";
-+		reg = <0x0 0xfdbb0000 0x0 0x500>;
-+		interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_IEP2P0>, <&cru HCLK_IEP2P0>, <&cru CLK_IEP2P0_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_A_IEP2P0>, <&cru SRST_H_IEP2P0>, <&cru SRST_IEP2P0_CORE>;
-+		reset-names = "axi", "ahb", "core";
-+		power-domains = <&power RK3588_PD_VDPU>;
-+		iommus = <&iep_mmu>;
-+	};
++ROCKCHIP IEP2 DEINTERLACER DRIVER
++M:	Arun Iyengar <aiyengar1990@gmail.com>
++L:	linux-media@vger.kernel.org
++L:	linux-rockchip@lists.infradead.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/media/rockchip,rk3568-iep2.yaml
 +
-+	iep_mmu: iommu@fdbb0800 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdbb0800 0x0 0x100>;
-+		interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_IEP2P0>, <&cru HCLK_IEP2P0>;
-+		clock-names = "aclk", "iface";
-+		power-domains = <&power RK3588_PD_VDPU>;
-+		#iommu-cells = <0>;
-+	};
-+
- 	vdec0: video-codec@fdc38000 {
- 		compatible = "rockchip,rk3588-vdec";
- 		reg = <0x0 0xfdc38000 0x0 0x100>,
+ ROCKCHIP ISP V1 DRIVER
+ M:	Dafna Hirschfeld <dafna@fastmail.com>
+ M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
 -- 
 2.55.0
