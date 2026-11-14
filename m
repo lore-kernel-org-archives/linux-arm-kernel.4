@@ -2,97 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237B8606A8A0
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 03:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C597606A893
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 03:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vpYO7Cgb;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=a4s3xqOW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EZog0m/n;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=gd8JTA2D
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yDc8YbhTZN4Lkq1WU0z5LX1Q8KhtfkMstUTQ2p2A56Y=; b=vpYO7CgbW2K7BV
-	VYPCjM0yNtCLCcHEuVjcEVbV5CBA3XQgVVjKUZgHVa8cGMvMbLi2kVpqHFMzv7tX7ZGot/nxxuHNp
-	FPaxICv3OhrW6VEKZWzIJYTTRmV/sRlM/GgxIFoJis2KGzYPYo4mJnVCFdhFMNocmzpM9mud6OCzd
-	apu1ypmentobyEl7WJd89WZl6SrWAot6HK3p5S4NwG/PLaLakEut72QeUFECHh+vS+8ZYidCaJazR
-	1ycg+r4dOf/j9tsjFeDnFTHAUA3CKewdmdaP3Cv7oONxEAxb52Hg1majcjNrMCvEJvUuQOk6k6kZR
-	Gkvku93xlPSP3GhThpaA==;
+	List-Owner; bh=5jsTRYk7KQN7825qF1InYK8P4ki41DeOjAFowmky3OA=; b=EZog0m/nvZfdjD
+	ILxWeArED17zpLGk/3Y5mVSB5hYjPS7XbOP9JazL0g/mwxuiSgJwMKTvUu5t1tdnoCyA08AeZ9PmK
+	5OHFJardZaW4VLWP9301q/pk7tG+FsC0mwTF3qaKMZ/GdoZ7pOngwn5xX0UfKRAVtRbn+FGFOsJ/f
+	0QI/4rf80fW7TjaYV+y+oIdySk8ggTYvAZ7sne0nbWkZITWcA5CEvZbgNgf3/yE+EUolT5yYMll3L
+	D0P2sNKN+D3x4qiRbsV9r3aF5qXQazGimFaZfa13PqIS5eDYJvYkE0rB4EztR49ErsaRFU5alKqL6
+	ZC2uMLlaDHCMm3ZE5V0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS4Sm-0000000FGoq-0shN;
-	Sat, 14 Nov 2026 03:30:00 +0000
-Received: from mail-pj1-x1064.google.com ([2607:f8b0:4864:20::1064])
+	id 1xS4Sv-0000000FGuq-1oqF;
+	Sat, 14 Nov 2026 03:30:09 +0000
+Received: from mail-pf1-x461.google.com ([2607:f8b0:4864:20::461])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS4Sj-0000000FGo1-0dPY
+	id 1xS4Ss-0000000FGsY-2ILL
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 03:29:58 +0000
-Received: by mail-pj1-x1064.google.com with SMTP id 98e67ed59e1d1-3b0d0b80fb9so1383748a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 19:29:56 -0800 (PST)
+	Sat, 14 Nov 2026 03:30:07 +0000
+Received: by mail-pf1-x461.google.com with SMTP id d2e1a72fcca58-8b32bc605d9so717318b3a.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 19:30:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794626996; x=1795231796;
+        d=1e100.net; s=20260707; t=1794627006; x=1795231806;
         h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:dkim-signature:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to:content-type;
-        bh=yDc8YbhTZN4Lkq1WU0z5LX1Q8KhtfkMstUTQ2p2A56Y=;
-        b=L25TaWOHf5KAXAshoX1xTNPq/iwL+kpMCu7RYb1EuOuFZ1G8ltIe/UfTd/qoGI1tsa
-         j074lN3I/ZKH4202gyjpv3rs6xeymQLeoLqCrB07Qx5dDq+msi/PyDdUJN8+QD6ehgLi
-         pOnwlzYpnLuD6Z9X9unyUezUipzB880JAtVP63b4QA+kOh/ZVN7P7t8FPHrZjEljL6ep
-         SOZIsI4Ao/UlxeN0fC9QQaPn2ClZm+cEK9UlBiLohVI9PRb9YAMz3b6+eOiiyr+e+yra
-         IhHu0YX8EelVvVAez7TlMETHlNefOAFfF6FCr1Xn7Ax0iGmESRMlt71jMsoGL3N6zFfC
-         7rjQ==
-X-Forwarded-Encrypted: i=1; AL+hErE7d1vi7q7qoX5IVqxtVtakUflf+bpdgqz+Q72vwl8wAs5ETuQUC0WIDQ6iS4mgvw6POQ3Ur8DIeZIviaz3Hevg@lists.infradead.org
-X-Gm-Message-State: APuU4Z9GRz89ry7/jQWdn8uWIkczRYZ1ryXLu2+gZwCdlUEREaSy6J6O
-	TbCWa3NsCEJ70w2MLW9lCVCSs/S5Mf+yJPziMMvPkiQ+dnKYenZADb7m5pUBqOieefEa/ifdX9U
-	NUzQzgCv3bXcZ1WAiG870qW94h4JcbjMdHZrG5FdshYMdX+GIkUCnUp+vTeDBwsEhzWd4aG5QbO
-	PHlzc3jJUQqYvOcA+gxBZIJXjy+nSKP3lMzTG+Dyff9oz2/8Mr25hJWdYITfnrO7rwwP4FCIgXb
-	Q8DZ9afpc/TJ5wCtYh0pnDVMpS4Qo0SfVU=
-X-Gm-Gg: AYBFou0N/GPJebUnppD6eGEdVDTvM+itp6SNVmSBwcT5bESm/seEEkrnSs1lTMVOXDZ
-	PvgWvDfGD2BouKleV/RibKvogXSR3FpRxx/NfCPCX6Wf8EBaJoK8hbph19tPr4t2cAsk6QGyZ7T
-	94F/xPcPMw9y+qUHMHOa4V5e+8bdfWHLwI6vqk6nUQQUYDrsV7yJXlbtb26hnu/1XkpnLCmk6YW
-	/s0Vg0a5AfH4WcAqHqP+jQMImLuSH29wG/PgMbkuRJrJeDS95n87iNURPN9tnLKr6Ln06jlm0Rf
-	6wC9h8+ujzCO3M77cOD/Mn198EkYe/KAVATnGE2AzhUhC+EOaRmIjfnDf53UAeMo1VZGp/tojZu
-	tDDvwwwoE76gUTH65o/m3tiOU6Fudq9ThALKtTe6Zlt913UlhOsRUOFjvhsVcpWckBzzk8XXd0J
-	+hIYJaLVHLnoLaL1XJh/z4XLUeV9gGhuwTFhbjwHpR
-X-Received: by 2002:a17:90b:4d0b:b0:3a2:b16d:928b with SMTP id 98e67ed59e1d1-3b1b0a48f95mr4018407a91.46.1794626996234;
-        Fri, 13 Nov 2026 19:29:56 -0800 (PST)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-26.dlp.protect.broadcom.com. [144.49.247.26])
-        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b1b3af131bsm1719241a91.2.2026.11.13.19.29.55
+        bh=5jsTRYk7KQN7825qF1InYK8P4ki41DeOjAFowmky3OA=;
+        b=UMj0DgQrSj+WJ2XOho5ZnOrqeQJISNKrxUmSVwK3Fo6QSckKFoG6hm+NAyjbV+U2Er
+         KGNue73MgYqLjxjVPiYkErlSCIeMN5IjnHAojpTnTWqpmsirj874idYlEY4AfwGwXT+v
+         PZMJGd9YLON3ap+D46we+cGlfA5ivDUTcxEdDQDKllB+QvgSYR5D8zwEmQYpl7KHwDJo
+         xt8rjrliOJ0rjtv6IrvUHyLtpjaHA+eF2U8VsLPQtr5aRFSVktFJrjL3Q69q/9LBnQ3J
+         2uzmjG3JitKcujnbPkulFpIQhaU9hYHWh65fUqz23aJyECF0Nw3PN9ImWFxvEET1EbA6
+         X8kA==
+X-Forwarded-Encrypted: i=1; AL+hErHv/Ic/LM/OGal5QFm1RMql49YNQHqjHsMKpcR4ltN917xAMeRfFXx/+5p/8tlJJ72mxx5+rtsx59FAUsbtnUJo@lists.infradead.org
+X-Gm-Message-State: APuU4Z8QuqZK+RQtXBeTmd1VrTsM4IzPLxcrFMOW19QzJZjkVyZF9baH
+	uVrp45lpbvqIjGhzDYhSbLecZscGu6McPuIlkoVVLnn70NuzHRvxfCYWwPFCyI8pi7lZjp6vBvh
+	zVnQsy7bPdcl+yN9v6qwJ7rLa0xLZGTNhvB2o3TqlUSKmDGUaUMy/obhfF2dg70eYcofQf+2zbO
+	U2rIrsD2X1OuyV9r+QFzV/VNEUTluWkeNYJmJArRE4L54oBIBmYAQG1sYD20YH+6ToXSGqI5VyM
+	Fz9kriOK7pKH9SxdpLA0UeqCjzLwq+yb5Q=
+X-Gm-Gg: AYBFou2LB/ZNAL2FRFTDyZhhov0VWOnUReZ6wygW6WPvC3GXEWWLk7xB8uieods96kx
+	LBNsaePDFa2iWU7uBtDBKG2zwFpNU25PRuWJ3lzmJnrrvIYC5tmXYZwjCQ2ccFA8S8akIGQbbKO
+	U4odjrP7CINljRAcP8tR1HPIHVD7NbUq9NBELcuG6NP4gqNbU2ytfXUbrcT1d40jOdsPOANL3hi
+	/B93ni3+45KkkWz1Y+7XpHWkjWpdmysSKTzj3NAoXI19BAniamSgqjmNWjO46l0Zl4UDzKvg8ov
+	alul06FlpFIcVvEyo/J2ndH5IrPiSdTeZIffG3sub/qSDQyDnfSlJJelF5Zv2jZ8/ZDdynXfbKB
+	DRVGA9vxDxslJIGbZwGHtjxLQn3Cm9xTkt7o+Ln8w1VtS+/59ppFQv5xG9sigaz+LsE4X6dCJDz
+	JegKMrd5GGYAuAkFl+MavQThkfZ8XFb5EdSCO/ov5N
+X-Received: by 2002:a17:90b:4a48:b0:3ae:a531:4e73 with SMTP id 98e67ed59e1d1-3b1b07ef468mr4367967a91.7.1794627004968;
+        Fri, 13 Nov 2026 19:30:04 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-17.dlp.protect.broadcom.com. [144.49.247.17])
+        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b1b1ed0b73sm3135181a91.0.2026.11.13.19.30.03
         for <linux-arm-kernel@lists.infradead.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 13 Nov 2026 19:29:56 -0800 (PST)
+        Fri, 13 Nov 2026 19:30:04 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 X-CFilter-Loop: Reflected
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-36efb506f29so2320591eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 19:29:54 -0800 (PST)
+Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-36de26cb4b3so2006235eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 19:30:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1794626994; x=1795231794; darn=lists.infradead.org;
+        d=broadcom.com; s=google; t=1794627002; x=1795231802; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=yDc8YbhTZN4Lkq1WU0z5LX1Q8KhtfkMstUTQ2p2A56Y=;
-        b=a4s3xqOWCUzomECuxatBNeKbjf6FnBjL1u9KvAzBmvk7MpT3ZNXLl7pc6H9mh0v7DC
-         NWZy/wDGH5tBf70S4p89EOVCAjDcRUgTlvhST8N94HID03BizOc7pStMVGKcfq/GQfR8
-         QOQ4xoiWuDYphvP9wuWfqHU8/MfI/rBM4KwKI=
-X-Forwarded-Encrypted: i=1; AL+hErG/YuoaxNiGPl5ysCzjZrZzxDp8rKpe1tB0E6EKzV6HUveoecd+7QHW5GpZeyjiR2KK4nqFs28IgJM0G/UNv7tW@lists.infradead.org
-X-Received: by 2002:a05:7301:c02:b0:36a:50f4:ed0d with SMTP id 5a478bee46e88-37966766d98mr3676488eec.25.1794626994165;
-        Fri, 13 Nov 2026 19:29:54 -0800 (PST)
-X-Received: by 2002:a05:7301:c02:b0:36a:50f4:ed0d with SMTP id 5a478bee46e88-37966766d98mr3676459eec.25.1794626993492;
-        Fri, 13 Nov 2026 19:29:53 -0800 (PST)
+        bh=5jsTRYk7KQN7825qF1InYK8P4ki41DeOjAFowmky3OA=;
+        b=gd8JTA2DUW0OFWu+b7upYH+2wdKGkc9eR04RYHqV79gVN4jcobPJTsH0Smk0gTfPUh
+         mZAeoOwlUwCmbDhus46LOW1HLjKWkoIzV0VOJcAL5P1QvYp+YAgT743OPkZEQVyvnxfi
+         PCYpTUZcmgniwBcuqgi+mIr6ttjuIOsMmg/oc=
+X-Forwarded-Encrypted: i=1; AL+hErFIsb29z3DkF19HBwH9h7tXLfoKHf5ocIb2s3u2Cl5i9U8gngJmQkIdCO9LBek9/RkbMtvhdfhIk2gGl6N9Ykpg@lists.infradead.org
+X-Received: by 2002:a05:693c:26c6:b0:36a:1cbc:1093 with SMTP id 5a478bee46e88-379684b548bmr3674707eec.30.1794627001859;
+        Fri, 13 Nov 2026 19:30:01 -0800 (PST)
+X-Received: by 2002:a05:693c:26c6:b0:36a:1cbc:1093 with SMTP id 5a478bee46e88-379684b548bmr3674674eec.30.1794627001180;
+        Fri, 13 Nov 2026 19:30:01 -0800 (PST)
 Received: from [192.168.10.3] (ip70-187-214-22.oc.oc.cox.net. [70.187.214.22])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37955f02ff0sm11295736eec.16.2026.11.13.19.29.52
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37955f02ff0sm11295736eec.16.2026.11.13.19.29.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Nov 2026 19:29:52 -0800 (PST)
-Message-ID: <beae6d07-e25d-45ba-bcf0-39422feb3295@broadcom.com>
-Date: Fri, 13 Nov 2026 19:29:49 -0800
+        Fri, 13 Nov 2026 19:30:00 -0800 (PST)
+Message-ID: <68e0e1d1-37e4-44c5-9830-dcfcbacde762@broadcom.com>
+Date: Fri, 13 Nov 2026 19:29:58 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 04/11] platform/raspberrypi: vchiq-mmal: Use vc-sm-cma
- to support zero copy
+Subject: Re: [PATCH v5 05/11] platform/raspberrypi: vchiq-mmal: Support
+ sending data to MMAL ports
 To: Jai Luthra <jai.luthra@ideasonboard.com>, Stefan Wahren
  <wahrenst@gmx.net>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
  Phil Elwell <phil@raspberrypi.com>,
@@ -105,7 +105,7 @@ Cc: Martin Wetterwald <martin@wetterwald.eu>,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-rpi-kernel@lists.infradead.org, linux-media@vger.kernel.org
 References: <20261112-b4-vc-sm-cma-v5-0-d25e3b687e71@ideasonboard.com>
- <20261112-b4-vc-sm-cma-v5-4-d25e3b687e71@ideasonboard.com>
+ <20261112-b4-vc-sm-cma-v5-5-d25e3b687e71@ideasonboard.com>
 Content-Language: en-US
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
@@ -140,13 +140,13 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20261112-b4-vc-sm-cma-v5-4-d25e3b687e71@ideasonboard.com>
+In-Reply-To: <20261112-b4-vc-sm-cma-v5-5-d25e3b687e71@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_192957_200036_0E94DAD7 
-X-CRM114-Status: UNSURE (   9.20  )
+X-CRM114-CacheID: sfid-20261113_193006_586500_1C42487D 
+X-CRM114-Status: UNSURE (   8.43  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -172,8 +172,9 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 On 11/12/2026 3:18 AM, Jai Luthra wrote:
 > From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 > 
-> With the vc-sm-cma driver we can support zero copy of buffers between
-> the kernel and VPU. Add this support to mmal-vchiq.
+> Add the ability to send data to ports. This only supports
+> zero copy mode as the required bulk transfer setup calls
+> are not done.
 > 
 > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 > Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
