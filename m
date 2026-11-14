@@ -2,34 +2,34 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FE21606A887
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 08:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D199606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 08:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gI1l4SaP;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=jtpUoGu9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1im9IWF7;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=PnSAMjBp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KKnJ9j2I4wwMNUFVM40Ukd6sfFrm3+y8FEhOVW263CY=; b=gI1l4SaPGKI7yM
-	xHDIHmiynKyZSJY2AkekMTZ6eyYKq/fUNfOZh4b4mRQqJc9Mdq4FZZWzBsK5LLNJMvKgUq9rjcOdW
-	+OR36kDrHcmcwUpHH/RE8KWo2xLItWuClYeRbyClzbAE2lyFPcUHPZ2aJZSeYKTQUmTA9dK2GAT0O
-	IjT8DpJShrgYQQXTX2+3BJunU2cPW9yyzXbP+xYJe5lLFWSJqcBWDi09hlZ6vNRRcJ6NApYTO9kSZ
-	O75eJgzmrjqC9ZRe3H4IJUyEoswflNq3OFT/9cxG/q9U1Nnk9o9IV8BJrc/iXHUAhPkUzUnPhJKS/
-	7rHzndncTL4PeIf6IwMA==;
+	List-Owner; bh=PWh9Kr0XFJPQCqbWVOwCtKI5Lauc8b6aI2PRFLhyIx8=; b=1im9IWF7J18E4Y
+	Cer06zAHTMP+vapX20AW1/cP7sV8D5pI/GwpF/xTGKJ4/EPl8tHpcsPfp+XBnTMy95BXkZ8R4nsFC
+	YwIH64bsYahWwUXga4jeVPq87ybmBePCw7nNHPrY2rh7zjAv5Wu5a4EqcQAPgbPTUH0ohkDjKjjdP
+	pvGoh+00PVzTXr9xWJg4Yjm3Wsuwh6TCme9SfvmgBm8tP4H7sVYbvupkFArIpfPML6oxIv2+00aQE
+	WC5+yZK2TSKEtWqwtWAn25VgEFGcWmYUkvQHc+pSXHR/oRV2oeiYqx/PrIunJ5x2H7vlaGmCbJCj8
+	BmcjxKp7S7ZldaHS/uiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS9Cx-0000000FbDt-1pkv;
-	Sat, 14 Nov 2026 08:33:59 +0000
-Received: from mail-m12888.netease.com ([103.209.128.88])
+	id 1xS9D4-0000000FbIO-0Pnc;
+	Sat, 14 Nov 2026 08:34:06 +0000
+Received: from mail-m1602365393.xmail.ntesmail.com ([160.236.53.93])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS9Ct-0000000FbC5-3bqU;
+	id 1xS9Ct-0000000FbC6-3aEt;
 	Sat, 14 Nov 2026 08:33:58 +0000
 Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 54aa88686;
-	Sat, 14 Nov 2026 16:33:48 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 54aa8868b;
+	Sat, 14 Nov 2026 16:33:49 +0800 (GMT+08:00)
 From: Damon Ding <damon.ding@rock-chips.com>
 To: Vinod Koul <vkoul@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -48,28 +48,28 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v6 3/4] arm64: dts: rockchip: rk356x: Add eDP controller and phy nodes
-Date: Sat, 14 Nov 2026 16:33:38 +0800
-Message-Id: <20261114083339.600986-4-damon.ding@rock-chips.com>
+Subject: [PATCH v6 4/4] MAINTAINERS: Add entry for Rockchip eDP phy
+Date: Sat, 14 Nov 2026 16:33:39 +0800
+Message-Id: <20261114083339.600986-5-damon.ding@rock-chips.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261114083339.600986-1-damon.ding@rock-chips.com>
 References: <20261114083339.600986-1-damon.ding@rock-chips.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1d930fb2403a8kunmf52e9804102260
+X-HM-Tid: 0aa1d930ff2603a8kunmf52e9804102266
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZS0wZVhpMSklJSh8dTx0ZQ1YVFA
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaQh5MVksaTUNOSEJJTUxDHVYVFA
 	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	JDQ0xVSktLVUtZBg++
+	9PT0hVSktLVUpCS0tZBg++
 DKIM-Signature: a=rsa-sha256;
-	b=jtpUoGu9c0gtIa9KpDgD57+0b56m+gtVDig0YvoWIAlkjmVlJhAvAMPoOA8GZZD+YTSH8FJGSUVYPw7z+4uGMBaI9SgCxmcVIoswlgdzQuGjDfZAvwN5Gk5Y0iLNkQNQoEl0SGqhrZ00lZQ93M7ToroZeoADtwT/AZwdHSdyWys=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=KKnJ9j2I4wwMNUFVM40Ukd6sfFrm3+y8FEhOVW263CY=;
+	b=PnSAMjBpUSh/RdCNFtNWPMPcKjFnQug4jv28YwHMo/UnlDHGhfSE0L/a39lSuzM5OxsDWBM5YQsIwMf0FS9ukpw5Aw/5cQlTyjeRojQoCyNUl7MKBhsEELDwDYOZAh9JxHF2CnZ54z1VhABnot0ny3/FQ83LNxaJnCALp21EwMk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=PWh9Kr0XFJPQCqbWVOwCtKI5Lauc8b6aI2PRFLhyIx8=;
 	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_003356_507369_2B7A4C34 
-X-CRM114-Status: UNSURE (   7.64  )
+X-CRM114-CacheID: sfid-20261114_003356_506404_3E2034B8 
+X-CRM114-Status: UNSURE (   6.91  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -90,88 +90,35 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the eDP PHY GRF (with the eDP PHY child node mapped by its own
-register window) and the eDP controller nodes for the RK3568/RK3566
-SoCs.
+Add a MAINTAINERS entry for the Rockchip eDP Transmitter PHY driver,
+covering "rockchip,rk3568-edp-phy" and "rockchip,rk3568-edp-phy-grf"
+DT binding schemas and the PHY driver file.
 
 Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-
 ---
+ MAINTAINERS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Changes in v4:
-- Model the PHY node with a reg property under the parent syscon.
-
-Changes in v5:
-- Move the APB clock (PCLK_EDPPHY_GRF) from the parent syscon node to
-  the PHY node, matching the updated binding and driver. (Sashiko)
-- Rename the PHY reference clock to "ref", matching the binding.
----
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-index 1a4562df20ee..e3f370cad5d5 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-@@ -402,6 +402,24 @@ usb2phy1_grf: syscon@fdca8000 {
- 		reg = <0x0 0xfdca8000 0x0 0x8000>;
- 	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c4f4e48774d0..824f1b8d9c3b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -24375,6 +24375,15 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+ F:	drivers/crypto/rockchip/
  
-+	edp_phy_grf: syscon@fdcb0000 {
-+		compatible = "rockchip,rk3568-edp-phy-grf", "syscon", "simple-mfd";
-+		reg = <0x0 0xfdcb0000 0x0 0x8000>;
-+		clocks = <&cru PCLK_EDPPHY_GRF>;
-+		ranges = <0x0 0x0 0xfdcb0000 0x100>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
++ROCKCHIP EDP TRANSMITTER PHY DRIVER
++M:	Damon Ding <damon.ding@rock-chips.com>
++M:	Heiko Stuebner <heiko@sntech.de>
++L:	linux-rockchip@lists.infradead.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/phy/rockchip,rk3568-edp-phy.yaml
++F:	Documentation/devicetree/bindings/soc/rockchip/rockchip,rk3568-edp-phy-grf.yaml
++F:	drivers/phy/rockchip/phy-rockchip-naneng-edp.c
 +
-+		edp_phy: phy@0 {
-+			compatible = "rockchip,rk3568-edp-phy";
-+			reg = <0x0 0x100>;
-+			clocks = <&pmucru XIN_OSC0_EDPPHY_G>, <&cru PCLK_EDPPHY_GRF>;
-+			clock-names = "ref", "apb";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+	};
-+
- 	pmucru: clock-controller@fdd00000 {
- 		compatible = "rockchip,rk3568-pmucru";
- 		reg = <0x0 0xfdd00000 0x0 0x1000>;
-@@ -878,6 +896,33 @@ hdmi_out: port@1 {
- 		};
- 	};
- 
-+	edp: edp@fe0c0000 {
-+		compatible = "rockchip,rk3568-edp";
-+		reg = <0x0 0xfe0c0000 0x0 0x10000>;
-+		clocks = <&pmucru XIN_OSC0_EDPPHY_G>, <&cru PCLK_EDP_CTRL>, <&cru HCLK_VO>;
-+		clock-names = "dp", "pclk", "hclk";
-+		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&edp_phy>;
-+		phy-names = "dp";
-+		power-domains = <&power RK3568_PD_VO>;
-+		resets = <&cru SRST_EDP_24M>, <&cru SRST_P_EDP_CTRL>;
-+		reset-names = "dp", "apb";
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			edp_in: port@0 {
-+				reg = <0>;
-+			};
-+
-+			edp_out: port@1 {
-+				reg = <1>;
-+			};
-+		};
-+	};
-+
- 	qos_gpu: qos@fe128000 {
- 		compatible = "rockchip,rk3568-qos", "syscon";
- 		reg = <0x0 0xfe128000 0x0 0x20>;
+ ROCKCHIP I2S TDM DRIVER
+ M:	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+ L:	linux-rockchip@lists.infradead.org
 -- 
 2.34.1
 
