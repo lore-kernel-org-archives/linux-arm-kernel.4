@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E81606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 11:57:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7300606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 11:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D696cKGW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DndSCsDd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QPVGGJ5Z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KmChuDWg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=gvxclcujdulxuOzNB06B2gMDxqEIGkemCRahDgIKSr4=; b=D696cKGW3AE8kSfjyUbv5oGYO0
-	o4f37Ak4prtQE7vhNR10OzwwKObYknlBx4lDXczPzn0SaGiEDQxGM7KNT/dluoDkw4VzIE0Kk29Ss
-	GAfatoKu1psj4fGuTd4Vw8OgHBd+RAU4S6kdViKc5Qham0EMLgVhxzMC9DUwfcPpnuUGgMbA2VM89
-	3et4up0NX7irJuab+o5ExQf4lGadrNTmf0e5knOQncPR8gWEEIF0lTOT7jsfsXyvEQ1/8CQB9CgpJ
-	D582OBlLnoll4YBo+UBu+3Vug9gsijSlomICBMiTtBTSgFL4V/xlFzINd8LR71Qm52IkdY5Tf+xjU
-	yu7Qeemg==;
+	bh=E+zp59WQed7YxZCI3wK5Srz7X+mFoqmMB0RPFqcEGKc=; b=QPVGGJ5Z96SKDSlfGTId+xwz5v
+	e15Tz+XdsqT0e7WhYyDud9cyGShrkY5dTCDhYjjLO0Aidu506y5yZqMk5Okv/enEtB87OKp7x7AJ5
+	qFehClV9Di81Q325GCN62uikFtJ0I7WFO9epUiVI7449MtLmNPw2aslxYmO1yaiS6tl0IO0eEOFFw
+	CANN20DAZf4p+f1y5iHZ6JpLeSOlagHJnvCjKETelqcT7bVmYWSJjQxM8fmQTnyjmsD37TSniShuu
+	WWKoE9DdQiOVjZv3bpzJo/2rVHDExfJeRwxY3JesWCXkN7uOqBoq5K8rTt22+LTYVXq1fkWZI1HrL
+	ZUC5OTSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSCNV-0000000FwwT-0dvA;
-	Sat, 14 Nov 2026 11:57:05 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSCNX-0000000Fx2t-2tKI;
+	Sat, 14 Nov 2026 11:57:07 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSCMk-0000000Fw0r-3t1S;
-	Sat, 14 Nov 2026 11:56:18 +0000
+	id 1xSCMl-0000000Fw0H-00a9;
+	Sat, 14 Nov 2026 11:56:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9D8F545DCA;
+	by sea.source.kernel.org (Postfix) with ESMTP id C012545AD9;
 	Sat, 14 Nov 2026 11:56:18 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794657378;
-	b=hlUhCOnHgqcY4WKXOD4XVbL9eU1DNO6P8gxly4BO4hWme0mp9pNnj29C/fXqzLcJ49DH
-	 Ck3vBPLXB84gvq1LL11GTOgGrAwUQXiu+9vsFwIXo3rAa1nbuuphuFxlHD4LkGDusUfmg
-	 Mx6qJybFaD+NwtXC8yEUf/i68FF1Fp8qUf/B8wM19sK4bJjL1a+FT8LKiiCBhh7vFL9nK
-	 kpQP4AWetwgUgnF6K+CNrsQOa5yKO7Hhm6Ee3Y8H5KWHk6vwhT/7+9rL+cPpHGMNt/t/+
-	 LA6w2ZHnPBpWRdvhlbPtx8j1I1QqXMQAMaH7ovm9qEek1sb+mUsPx6v6EjAzg4q75RQ==
+	b=IO66ODzLE+j3Kqn9qXsTNJObhyfFXeLXF5Hv+0ftu/m+OIrjvz+tsYU8oPQcmfzL5Xnn
+	 J7DN/N3mCGs9PAskc3v1AUWMP524dA8Ny+hOiUMInWoNI6odn9bhYUG1oSI0T2+ETkm0p
+	 iZlbgBvahXBUprSo0Sz0g0r6Yt39mu7KkLqxtiHICDF4J1zFzfiOKyTKQCN2rnkgiKWj4
+	 I38+s5Z2Ko7ZJdaEOlbxGon+r1U76t3CK6oz8LFRNb9xxNe5phO7/odQmxYkXyZks8urS
+	 LjOyLN0oMd1+1/Y+QPTcQTwj9pXeGYwKttru53Jz02Z40c+BdnSVJ3yseHdVIUzbqJg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794657378;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=gvxclcujdulxuOzNB06B2gMDxqEIGkemCRahDgIKSr4=;
-	b=EPoZQZ3pm+6rpVMSPttFOPhxaxLcBsC8bIsGKOLkmXzC8xnWfv+yRN3Y/VE/RoKF09hh
-	 OfsCewj/RjTYGg1vByOu7X6NkT6pQuNVVW4BWOjeqagmpP/F/8N4GH940PzVXjFp5wXDO
-	 OsRjd/9gBuh03e4Nu+ZErWNuN38/2LtDM1AzjOLLvKm41A2Dv4bttvPSckxe5D78FWR4L
-	 WsuTFQqac+WS9LbIHMoztRfBSkkqdgqzNrnxD9FconGDqmllbGp2Nwmf6n+TubPMWJ1ww
-	 Di3UvFYUsbNrPw2q7UFACQK8KgH3cUdBxyl59hFVBSbF+F0rvOUx5HOg2rx7MkLWNJQ==
+	bh=E+zp59WQed7YxZCI3wK5Srz7X+mFoqmMB0RPFqcEGKc=;
+	b=GOCUBQWJ1UMh4riEMlh2je0A8Kd5MVoCVT8ok6iTssgze0W+lVgjEzo8mRddRBMEtoIR
+	 clNeRQhwgJcGvE28DSsEf+EIBXpSyQ/KOPMhV22El0VaVG+Uem0ayQMH3bq4gZnrFrBuf
+	 bJRaYUWeEAq9lvM7BQS2ie3MqnhpD3UxcC6amys8tSjcbyJAGyBebD86IkOl6j/p8mWhS
+	 /S8XAkQq7I9lF3bh4Or7Rw/XT8DlrYtBqoJTp864c4zBteEOmqLbGwOSQQ2VRAXV0DwY1
+	 wEZ3zcBGK0UxwmtNn9KkFdIOma6K5wGI1/I38VNZHGKg551Dhp2wKjxY+m3jv4bXqBA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 3092A1F00923;
-	Sat, 14 Nov 2026 11:56:16 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id D80B41F000CB;
+	Sat, 14 Nov 2026 11:56:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794657378;
-	bh=gvxclcujdulxuOzNB06B2gMDxqEIGkemCRahDgIKSr4=;
+	bh=E+zp59WQed7YxZCI3wK5Srz7X+mFoqmMB0RPFqcEGKc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=DndSCsDdYMMbjVHc4XfUyFbQJGkH/34L/Wj+VDDb/K0f17GcO5JMup4rZ7v/IU1Bv
-	 8tLcK+rA6RWg/60SrxCY8O1S6fIHhcAGekMyOwNCdyzTWesIkdQYN55Eh6rY1ZUk2N
-	 GiWLulgEaUjfhS4wXbVHkdAB50OS9eBkNV5/WDvncM7YYvZ7Jd+ie7UIg1w/Kn0MLR
-	 kjqBKyzLxiCioLq9Z2H8XhSuGrHqE592NddehPddv1ZRbDsxL7UmrMuSYfs+/sFfcG
-	 +0XuvUSb0+rRB6+vOyIqTdjuGurgybSzhDzxbx4+KBat7DrqOcXqFeqtyrc9ByicjA
-	 dNaDR8yovkOvg==
+	b=KmChuDWgFLslMxvkq114/r9yPFysmeNGSZ8xtjjp+4AaMfZrGNqaM4cZ+MT3MNVrq
+	 vCQiIMBdduomoH/5hM9IN6NXgNTE6NADxPF9FuexqFF0+W1eU9k8V2xV5emqGZ5Wsj
+	 LW1SsMGfVpr44+uObuECTjYSXfNbu9WASPGukbqTHEwNUor9sWsWxO7D51fnuaKlFZ
+	 +uuWc82ZdgO42U1catpbVvbVKUt7MoATiRvtH71I+cPXhXmpYZM/VJmbfXhez3AUqB
+	 a5gxMrphMJymrggksjmQszsaXoZv+y7wMNLJ1KFsNI9fWiJOBYQZM/XT4JYeyW3tYa
+	 niEjKQ1y58aAQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 0FFBB49D91;
-	Sat, 14 Nov 2026 11:56:14 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 7BD5C49D7A;
+	Sat, 14 Nov 2026 11:56:13 +0000 (UTC)
 From: Larisa Grigore via B4 Relay <devnull+larisa.grigore.oss.nxp.com@kernel.org>
-Date: Sat, 14 Nov 2026 12:55:44 +0100
-Subject: [PATCH v11 12/14] dt-bindings: ufs: Add NXP S32N79 UFS host
- controller
+Date: Sat, 14 Nov 2026 12:55:38 +0100
+Subject: [PATCH v11 06/14] ufs: dwc: Move Versal2 M-PHY CREG access helpers
+ into ufshcd-dwc
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261114-b4-ufs-s32n7-v11-12-dc36e11919d5@oss.nxp.com>
+Message-Id: <20261114-b4-ufs-s32n7-v11-6-dc36e11919d5@oss.nxp.com>
 References: <20261114-b4-ufs-s32n7-v11-0-dc36e11919d5@oss.nxp.com>
 In-Reply-To: <20261114-b4-ufs-s32n7-v11-0-dc36e11919d5@oss.nxp.com>
 To: "Martin K. Petersen" <mkp@kernel.org>, 
@@ -109,11 +109,11 @@ Cc: devicetree@vger.kernel.org, Ajay Neeli <ajay.neeli@amd.com>,
  Orson Zhai <orsonzhai@gmail.com>, aruizrui@redhat.com, 
  linux-renesas-soc@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794657370; l=2031;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794657369; l=10425;
  i=larisa.grigore@oss.nxp.com; s=20261114; h=from:subject:message-id;
- bh=YYl3EEWAWWlWf9vgv8+hTMcxMkUxXw0sNyAAv7y+7v8=;
- b=grj4bxHay3UiQwY3Y+llZRPNOlqdy8VVUdF16qhNA9OBB9J1gnpkTxGSpk2iFsF/YT5/poww7
- UeW88SqJX0DCQwKl1+ROR3qJEHpBDKFlw3Jdzl21NOrxH1i0nkoCzJv
+ bh=9RAKmLFhADjt+6uzQJ+UzFSzjkAffJGQInKNZDFX7po=;
+ b=4O16NIA/pLJadjdg0BK1N7PcIrRX5fnnjdDqQZ+yLdKRL7CZuhHqA5ywTIKhQFpuEWy1ncUPq
+ V43lbp+0VssA9U6eE//2uN/Y6eMhdjjpEDbRl7gQOwEFrNtx6liKQaO
 X-Developer-Key: i=larisa.grigore@oss.nxp.com; a=ed25519;
  pk=Jpt52sb6ETKTtvWjUzhz5Sv5FjB9AEg9QKCcbpWFx3w=
 X-Endpoint-Received: by B4 Relay for larisa.grigore@oss.nxp.com/20261114
@@ -134,91 +134,307 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Larisa Grigore <larisa.grigore@oss.nxp.com>
 
-Document the UFS host controller on the NXP S32N79 SoC.
+The AMD Versal Gen 2 UFS platform driver carries local helpers to access
+M-PHY control registers through the UniPro CREG interface.
 
-The S32N79 M-PHY has two data lanes per direction, so restrict
-lanes-per-direction to 2.
+Move these helpers into the common Synopsys DWC layer as
+ufshcd_dwc_phy_reg_read() and ufshcd_dwc_phy_reg_write(). This avoids code
+duplication in DWC-based glue drivers and provides a single implementation
+for future reuse.
 
-The controller has a single functional clock, "core", whose rate is set
-by the clock provider and is not scaled.
+Drop the static storage class from phy_write_attrs[] and phy_read_attrs[].
+In the Versal2 driver these were static arrays whose mib_val fields were
+modified on every call, so two concurrent callers (e.g. two host
+instances) could overwrite each other's address/value. Building the
+arrays on the stack with the values filled in at initialization removes
+this shared mutable state.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Update the AMD Versal2 glue driver to use the new ufshcd-dwc helpers.
+
 Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 ---
- .../devicetree/bindings/ufs/nxp,s32n79-ufshc.yaml  | 58 ++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+ drivers/ufs/host/ufs-amd-versal2.c | 85 ++++++++------------------------------
+ drivers/ufs/host/ufshcd-dwc.c      | 69 +++++++++++++++++++++++++++++++
+ drivers/ufs/host/ufshcd-dwc.h      |  2 +
+ 3 files changed, 88 insertions(+), 68 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/ufs/nxp,s32n79-ufshc.yaml b/Documentation/devicetree/bindings/ufs/nxp,s32n79-ufshc.yaml
-new file mode 100644
-index 000000000000..ffd8ab98e9cc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ufs/nxp,s32n79-ufshc.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ufs/nxp,s32n79-ufshc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/ufs/host/ufs-amd-versal2.c b/drivers/ufs/host/ufs-amd-versal2.c
+index 45403c2a9b05..4d6e08ac6ced 100644
+--- a/drivers/ufs/host/ufs-amd-versal2.c
++++ b/drivers/ufs/host/ufs-amd-versal2.c
+@@ -43,57 +43,6 @@ struct ufs_versal2_host {
+ 	u8 ctlecompval1;
+ };
+ 
+-static int ufs_versal2_phy_reg_write(struct ufs_hba *hba, u32 addr, u32 val)
+-{
+-	static struct ufshcd_dme_attr_val phy_write_attrs[] = {
+-		{ UIC_ARG_MIB(CBCREGADDRLSB), 0, DME_LOCAL },
+-		{ UIC_ARG_MIB(CBCREGADDRMSB), 0, DME_LOCAL },
+-		{ UIC_ARG_MIB(CBCREGWRLSB), 0, DME_LOCAL },
+-		{ UIC_ARG_MIB(CBCREGWRMSB), 0, DME_LOCAL },
+-		{ UIC_ARG_MIB(CBCREGRDWRSEL), 1, DME_LOCAL },
+-		{ UIC_ARG_MIB(VS_MPHYCFGUPDT), 1, DME_LOCAL }
+-	};
+-
+-	phy_write_attrs[0].mib_val = (u8)addr;
+-	phy_write_attrs[1].mib_val = (u8)(addr >> 8);
+-	phy_write_attrs[2].mib_val = (u8)val;
+-	phy_write_attrs[3].mib_val = (u8)(val >> 8);
+-
+-	return ufshcd_dwc_dme_set_attrs(hba, phy_write_attrs, ARRAY_SIZE(phy_write_attrs));
+-}
+-
+-static int ufs_versal2_phy_reg_read(struct ufs_hba *hba, u32 addr, u32 *val)
+-{
+-	u32 mib_val;
+-	int ret;
+-	static struct ufshcd_dme_attr_val phy_read_attrs[] = {
+-		{ UIC_ARG_MIB(CBCREGADDRLSB), 0, DME_LOCAL },
+-		{ UIC_ARG_MIB(CBCREGADDRMSB), 0, DME_LOCAL },
+-		{ UIC_ARG_MIB(CBCREGRDWRSEL), 0, DME_LOCAL },
+-		{ UIC_ARG_MIB(VS_MPHYCFGUPDT), 1, DME_LOCAL }
+-	};
+-
+-	phy_read_attrs[0].mib_val = (u8)addr;
+-	phy_read_attrs[1].mib_val = (u8)(addr >> 8);
+-
+-	ret = ufshcd_dwc_dme_set_attrs(hba, phy_read_attrs, ARRAY_SIZE(phy_read_attrs));
+-	if (ret)
+-		return ret;
+-
+-	ret = ufshcd_dme_get(hba, UIC_ARG_MIB(CBCREGRDLSB), &mib_val);
+-	if (ret)
+-		return ret;
+-
+-	*val = mib_val;
+-	ret = ufshcd_dme_get(hba, UIC_ARG_MIB(CBCREGRDMSB), &mib_val);
+-	if (ret)
+-		return ret;
+-
+-	*val |= (mib_val << 8);
+-
+-	return 0;
+-}
+-
+ static int ufs_versal2_enable_phy(struct ufs_hba *hba)
+ {
+ 	u32 offset, reg;
+@@ -162,64 +111,64 @@ static int ufs_versal2_setup_phy(struct ufs_hba *hba)
+ 	u32 reg;
+ 
+ 	/* Bypass RX-AFE offset calibrations (ATT/CTLE) */
+-	ret = ufs_versal2_phy_reg_read(hba, FAST_FLAGS(0), &reg);
++	ret = ufshcd_dwc_phy_reg_read(hba, FAST_FLAGS(0), &reg);
+ 	if (ret)
+ 		return ret;
+ 
+ 	reg |= MPHY_FAST_RX_AFE_CAL;
+-	ret = ufs_versal2_phy_reg_write(hba, FAST_FLAGS(0), reg);
++	ret = ufshcd_dwc_phy_reg_write(hba, FAST_FLAGS(0), reg);
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = ufs_versal2_phy_reg_read(hba, FAST_FLAGS(1), &reg);
++	ret = ufshcd_dwc_phy_reg_read(hba, FAST_FLAGS(1), &reg);
+ 	if (ret)
+ 		return ret;
+ 
+ 	reg |= MPHY_FAST_RX_AFE_CAL;
+-	ret = ufs_versal2_phy_reg_write(hba, FAST_FLAGS(1), reg);
++	ret = ufshcd_dwc_phy_reg_write(hba, FAST_FLAGS(1), reg);
+ 	if (ret)
+ 		return ret;
+ 
+ 	/* Program ATT and CTLE compensation values */
+ 	if (host->attcompval0) {
+-		ret = ufs_versal2_phy_reg_write(hba, RX_AFE_ATT_IDAC(0), host->attcompval0);
++		ret = ufshcd_dwc_phy_reg_write(hba, RX_AFE_ATT_IDAC(0), host->attcompval0);
+ 		if (ret)
+ 			return ret;
+ 	}
+ 
+ 	if (host->attcompval1) {
+-		ret = ufs_versal2_phy_reg_write(hba, RX_AFE_ATT_IDAC(1), host->attcompval1);
++		ret = ufshcd_dwc_phy_reg_write(hba, RX_AFE_ATT_IDAC(1), host->attcompval1);
+ 		if (ret)
+ 			return ret;
+ 	}
+ 
+ 	if (host->ctlecompval0) {
+-		ret = ufs_versal2_phy_reg_write(hba, RX_AFE_CTLE_IDAC(0), host->ctlecompval0);
++		ret = ufshcd_dwc_phy_reg_write(hba, RX_AFE_CTLE_IDAC(0), host->ctlecompval0);
+ 		if (ret)
+ 			return ret;
+ 	}
+ 
+ 	if (host->ctlecompval1) {
+-		ret = ufs_versal2_phy_reg_write(hba, RX_AFE_CTLE_IDAC(1), host->ctlecompval1);
++		ret = ufshcd_dwc_phy_reg_write(hba, RX_AFE_CTLE_IDAC(1), host->ctlecompval1);
+ 		if (ret)
+ 			return ret;
+ 	}
+ 
+-	ret = ufs_versal2_phy_reg_read(hba, FW_CALIB_CCFG(0), &reg);
++	ret = ufshcd_dwc_phy_reg_read(hba, FW_CALIB_CCFG(0), &reg);
+ 	if (ret)
+ 		return ret;
+ 
+ 	reg |= MPHY_FW_CALIB_CFG_VAL;
+-	ret = ufs_versal2_phy_reg_write(hba, FW_CALIB_CCFG(0), reg);
++	ret = ufshcd_dwc_phy_reg_write(hba, FW_CALIB_CCFG(0), reg);
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = ufs_versal2_phy_reg_read(hba, FW_CALIB_CCFG(1), &reg);
++	ret = ufshcd_dwc_phy_reg_read(hba, FW_CALIB_CCFG(1), &reg);
+ 	if (ret)
+ 		return ret;
+ 
+ 	reg |= MPHY_FW_CALIB_CFG_VAL;
+-	return ufs_versal2_phy_reg_write(hba, FW_CALIB_CCFG(1), reg);
++	return ufshcd_dwc_phy_reg_write(hba, FW_CALIB_CCFG(1), reg);
+ }
+ 
+ static int ufs_versal2_phy_init(struct ufs_hba *hba)
+@@ -384,7 +333,7 @@ static int ufs_versal2_phy_ratesel(struct ufs_hba *hba, u32 activelanes, u32 rx_
+ 
+ 	for (lane = 0; lane < activelanes; lane++) {
+ 		time_left = TIMEOUT_MICROSEC;
+-		ret = ufs_versal2_phy_reg_read(hba, RX_OVRD_IN_1(lane), &reg);
++		ret = ufshcd_dwc_phy_reg_read(hba, RX_OVRD_IN_1(lane), &reg);
+ 		if (ret)
+ 			return ret;
+ 
+@@ -394,12 +343,12 @@ static int ufs_versal2_phy_ratesel(struct ufs_hba *hba, u32 activelanes, u32 rx_
+ 		else
+ 			reg &= ~MPHY_RX_OVRD_VAL;
+ 
+-		ret = ufs_versal2_phy_reg_write(hba, RX_OVRD_IN_1(lane), reg);
++		ret = ufshcd_dwc_phy_reg_write(hba, RX_OVRD_IN_1(lane), reg);
+ 		if (ret)
+ 			return ret;
+ 
+ 		do {
+-			ret = ufs_versal2_phy_reg_read(hba, RX_PCS_OUT(lane), &reg);
++			ret = ufshcd_dwc_phy_reg_read(hba, RX_PCS_OUT(lane), &reg);
+ 			if (ret)
+ 				return ret;
+ 
+@@ -461,12 +410,12 @@ static int ufs_versal2_pwr_change_notify(struct ufs_hba *hba, enum ufs_notify_ch
+ 
+ 		/* Remove rx_req override */
+ 		for (lane = 0; lane < dev_req_params->lane_tx; lane++) {
+-			ret = ufs_versal2_phy_reg_read(hba, RX_OVRD_IN_1(lane), &reg);
++			ret = ufshcd_dwc_phy_reg_read(hba, RX_OVRD_IN_1(lane), &reg);
+ 			if (ret)
+ 				return ret;
+ 
+ 			reg &= ~MPHY_RX_OVRD_EN;
+-			ret = ufs_versal2_phy_reg_write(hba, RX_OVRD_IN_1(lane), reg);
++			ret = ufshcd_dwc_phy_reg_write(hba, RX_OVRD_IN_1(lane), reg);
+ 			if (ret)
+ 				return ret;
+ 		}
+diff --git a/drivers/ufs/host/ufshcd-dwc.c b/drivers/ufs/host/ufshcd-dwc.c
+index 71433b4d04aa..37876e863672 100644
+--- a/drivers/ufs/host/ufshcd-dwc.c
++++ b/drivers/ufs/host/ufshcd-dwc.c
+@@ -144,6 +144,75 @@ int ufshcd_dwc_link_startup_notify(struct ufs_hba *hba,
+ }
+ EXPORT_SYMBOL(ufshcd_dwc_link_startup_notify);
+ 
++/**
++ * ufshcd_dwc_phy_reg_write() - Write a DWC M-PHY CREG register
++ * @hba: private structure pointer
++ * @addr: M-PHY CREG register address
++ * @val: value to write
++ *
++ * Write a 16-bit M-PHY CREG register through the Synopsys DesignWare
++ * UniPro indirect register access interface.
++ *
++ * Return: 0 on success, non-zero value on failure.
++ */
++int ufshcd_dwc_phy_reg_write(struct ufs_hba *hba, u32 addr, u32 val)
++{
++	const struct ufshcd_dme_attr_val phy_write_attrs[] = {
++		{ UIC_ARG_MIB(CBCREGADDRLSB), (u8)addr,        DME_LOCAL },
++		{ UIC_ARG_MIB(CBCREGADDRMSB), (u8)(addr >> 8), DME_LOCAL },
++		{ UIC_ARG_MIB(CBCREGWRLSB),   (u8)val,         DME_LOCAL },
++		{ UIC_ARG_MIB(CBCREGWRMSB),   (u8)(val >> 8),  DME_LOCAL },
++		{ UIC_ARG_MIB(CBCREGRDWRSEL), 1,               DME_LOCAL },
++		{ UIC_ARG_MIB(VS_MPHYCFGUPDT), 1,              DME_LOCAL }
++	};
 +
-+title: NXP S32N79 Universal Flash Storage (UFS) Controller
++	return ufshcd_dwc_dme_set_attrs(hba, phy_write_attrs,
++					ARRAY_SIZE(phy_write_attrs));
++}
++EXPORT_SYMBOL(ufshcd_dwc_phy_reg_write);
 +
-+maintainers:
-+  - Larisa Grigore <larisa.grigore@oss.nxp.com>
++/**
++ * ufshcd_dwc_phy_reg_read() - Read a DWC M-PHY CREG register
++ * @hba: private structure pointer
++ * @addr: M-PHY CREG register address
++ * @val: pointer where the read value is stored
++ *
++ * Read a 16-bit M-PHY CREG register through the Synopsys DesignWare
++ * UniPro indirect register access interface.
++ *
++ * Return: 0 on success, non-zero value on failure.
++ */
++int ufshcd_dwc_phy_reg_read(struct ufs_hba *hba, u32 addr, u32 *val)
++{
++	const struct ufshcd_dme_attr_val phy_read_attrs[] = {
++		{ UIC_ARG_MIB(CBCREGADDRLSB), (u8)addr,        DME_LOCAL },
++		{ UIC_ARG_MIB(CBCREGADDRMSB), (u8)(addr >> 8), DME_LOCAL },
++		{ UIC_ARG_MIB(CBCREGRDWRSEL), 0,               DME_LOCAL },
++		{ UIC_ARG_MIB(VS_MPHYCFGUPDT), 1,              DME_LOCAL }
++	};
++	u32 mib_val;
++	int ret;
 +
-+properties:
-+  compatible:
-+    const: nxp,s32n79-ufshc
++	ret = ufshcd_dwc_dme_set_attrs(hba, phy_read_attrs,
++				       ARRAY_SIZE(phy_read_attrs));
++	if (ret)
++		return ret;
 +
-+  reg:
-+    items:
-+      - description: UFS Host Controller registers
-+      - description: System Control Module registers
++	ret = ufshcd_dme_get(hba, UIC_ARG_MIB(CBCREGRDLSB), &mib_val);
++	if (ret)
++		return ret;
 +
-+  reg-names:
-+    items:
-+      - const: ufshc
-+      - const: scm
++	*val = mib_val;
++	ret = ufshcd_dme_get(hba, UIC_ARG_MIB(CBCREGRDMSB), &mib_val);
++	if (ret)
++		return ret;
 +
-+  clocks:
-+    maxItems: 1
++	*val |= (mib_val << 8);
 +
-+  clock-names:
-+    items:
-+      - const: core
++	return 0;
++}
++EXPORT_SYMBOL(ufshcd_dwc_phy_reg_read);
 +
-+  lanes-per-direction:
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - $ref: ufs-common.yaml
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    ufshc@4ac80000 {
-+        compatible = "nxp,s32n79-ufshc";
-+        reg = <0x4ac80000 0x1000>, <0x4ac40000 0x1000>;
-+        reg-names = "ufshc", "scm";
-+        interrupt-parent = <&irqsteer_coss>;
-+        interrupts = <211>;
-+        clocks = <&clks 0x92>;
-+        clock-names = "core";
-+    };
+ MODULE_AUTHOR("Joao Pinto <Joao.Pinto@synopsys.com>");
+ MODULE_DESCRIPTION("UFS Host driver for Synopsys Designware Core");
+ MODULE_LICENSE("Dual BSD/GPL");
+diff --git a/drivers/ufs/host/ufshcd-dwc.h b/drivers/ufs/host/ufshcd-dwc.h
+index 0406f2bb576b..d8673cd54d4c 100644
+--- a/drivers/ufs/host/ufshcd-dwc.h
++++ b/drivers/ufs/host/ufshcd-dwc.h
+@@ -45,4 +45,6 @@ int ufshcd_dwc_link_startup_notify(struct ufs_hba *hba,
+ 					enum ufs_notify_change_status status);
+ int ufshcd_dwc_dme_set_attrs(struct ufs_hba *hba,
+ 				const struct ufshcd_dme_attr_val *v, int n);
++int ufshcd_dwc_phy_reg_write(struct ufs_hba *hba, u32 addr, u32 val);
++int ufshcd_dwc_phy_reg_read(struct ufs_hba *hba, u32 addr, u32 *val);
+ #endif /* End of Header */
 
 -- 
 2.43.0
