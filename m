@@ -2,114 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A830A606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 10:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0FB0606A882
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 10:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k72K7VeG;
-	dkim=pass (2048-bit key) header.d=osyx-tech.20260707.gappssmtp.com header.i=@osyx-tech.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=fFtuKV3U
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h0FaWYF5;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.a=rsa-sha256 header.s=s31663417 header.b=SldLD6LO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eC04+x1Aj5L0dZDAOuUn9+6Z9aX/XkxoD9/WXm06rNo=; b=k72K7VeG1yQ9gh
-	7M3tgJHhQcFFa5p1DbKEXIUxaKyWC14JTEBoxYjJBCqzCedVVHz47T8x+4UMdxzxW2ehJIzn40kRl
-	5Oe2gDtoKgb4OBBoTXFZDkkUNg7qInE4YYgF6vL1djxDkcE29ujelfWtWATUkq56t8VKhYI5/Glsd
-	kuqL7ASIeRhJcdUEWW28AsaBBozX2/fzsMV7zCT958ynV5M66LhtDnBvnih7mJimTPTkshznd6PG7
-	0WakEvmGbLuZZNgUy6WXEaBf89tJN7XAMoPeVamO6ptwtyTnPHwie5bqVSxR7hro1YC7erCM9QTyb
-	9FcmDo251JNSC7GSIeFQ==;
+	List-Owner; bh=5WBg+miv8Y/HhJR/hIBUkmrE9cr5uLAIFyuysJ6/Jds=; b=h0FaWYF538RzHg
+	stpd3TKm+yoqPRUjBgGfJvmLH9NJL2TPYO3ixCkaHWmlhKSGOkEOEvd04VG4v5vwC0of46hpjer8W
+	1IBrTAI1tKxxaJ4H7xVYOmJyHUGhjBfPVo4NLHr94c41fPnUECMRy1c4fH3qTBZqX2J0EMk/5GX1d
+	2BvmLAryqJJhOMsMIqVl5ABhv8w++faJSCd+YD7T2gh6ZAqV92rXva3tKKpNJ+lmSaChBD+2iQOnE
+	IbccBVACUIi/wEq3jck9GKAtPUeAhLTTJOLiSz8e5SHB0AtGECHSrYJqCNzXLN73Cde1kUiYd2bLh
+	bU6tKjhcRyUyEevr86sA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSAZX-0000000FiR3-1lvq;
-	Sat, 14 Nov 2026 10:01:23 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1xSAeM-0000000FjB8-14Qc;
+	Sat, 14 Nov 2026 10:06:22 +0000
+Received: from mout.gmx.net ([212.227.17.21])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSAZF-0000000FiGY-3Pfo
+	id 1xSAeH-0000000Fj7b-3yLn
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 10:01:17 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-491aaed7565so789748f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 02:01:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=osyx-tech.20260707.gappssmtp.com; s=20260707; t=1794650464; x=1795255264; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=eC04+x1Aj5L0dZDAOuUn9+6Z9aX/XkxoD9/WXm06rNo=;
-        b=fFtuKV3UpbTmsQAN+xHLesX9SFool5NPW41dFreCXGNFb/dX5a1AoGsEb9PKTWtYN8
-         3CPBx2CySWicDsmVhygKhoeD4g2Ez9T533kNzh6m4kYavXSqvT638dNLHvlL65AnFVeU
-         XA4+Mc0Ma8dgTOGDdV78N0E1zAdMqhhmJ03JKb5Uur+rZG8UlksbB01W6/OQEuY9eURE
-         klIsgLQzS7gBtagZhSmZwW4hsmC+ZQ3+2vGReKS2Oovbq7rpyEcVSDHEKUF5nfo0N3tG
-         QkqiHD3VXJs7KBcgKZ/lTpZYcp3ZacTN4vZCcWOOqDJYqwLNX7BeZ2ef7OdAQcPMfgwm
-         FK1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794650464; x=1795255264;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=eC04+x1Aj5L0dZDAOuUn9+6Z9aX/XkxoD9/WXm06rNo=;
-        b=xO752VvwZ8dzIoDyAw9L1kVgoucXWSPNK81FUJP7UboU32N+SUpjBWFkpbNmZFC76v
-         ehsRfYjqbpPCvQl8f4SKPwMrYdKtaaiZU6cARrDNLU5wx/aWJ5NikGBMBykk/nIXswWe
-         1FdL4Uj7qJqG4TcM0OpCI5u2WjhqsM8PvTjUNRI0gKDUCkPWwvzHsWTg6qYacbfOiBSV
-         Vqv/1h0VSMJevpCm3/I9AQrvX6PXjtq2nxI8OVB7sW2DIvHIBEXHLDkM3mLZzYGTKZGq
-         N8bRmc3SX8dPYZWWWpWdkwScfwMFJjyeyjRFlAZmuVuw2lgVxEVfLT7YZEk/7RiZgiRe
-         WD4w==
-X-Forwarded-Encrypted: i=1; AL+hErEPyktWxIxU1LTHtfZLHvYwd8Kn8GFNnbg2YU4vNJqqBYq6j+ai19uYQS9XYe3MY8t0A53lVSUipu3BmmGupra7@lists.infradead.org
-X-Gm-Message-State: APuU4Z8axl4bFsgDoRRiwOJHbPGmEE6fNu2clJcUyJzhGfdrQAuOQsTi
-	1dcOPN/sUV6/lXJ29a4K+HM4MRTkaN0fGMCMnRm/iHevaTk66/8cn63ylHKQPWz3lCqQ
-X-Gm-Gg: AYBFou1VWbKD9X2ZVd63+5CUqAYBL5c3FV5n1v7OWygw14l/WxO8auSvEufbXhkGNcT
-	Nf6lwdUXFo2tu7iE6yuzY57wZzRgb6ZGgLNtG1RyGJLy4AFuWbmMriDqh6dCwsmmahMkaVDtJJs
-	GSKpwj+fLoaz1zIJSwgXGU4XenD7a9C0LsezyJDI/05TWbPbEoPvXFeR5AJZRKdY3onsXxRBgHR
-	mDjzNKZQ3tyZcliTokzxcC07POcZDE7y4iZJoUZNSsdw0mkrsPzKx9SwgRkMf15zYhQi9c+SpF1
-	n36MFFirtIc6qKHDzTzzn6sgffpojhqKMx5UpXGevSd4tA9JSWlvnEG21VuXyDTXKgipYm/fWEC
-	Sa4Fhk/CDzcHQDYEv+wGznZl/ShjIw43x3IgYYA8io8kQ5+Etllv5iXI7N9+BxuM+UdYnPf384H
-	ndy7H1I4IbDhsSptqWb2yL11Kz9Kcj6pJ8si9iXsF8iWXAfo3qVpg6h3iB9QiJIc+rq4a07IUab
-	TlMiF89+VfjTZvJvYEHSCYqtGub5W74F8s7qEhZO/qxol+quvn8HckAlIPFGLBhAkDRFlMZMaAt
-	4PJ9nb6Ew6zoit6Yk0HD8tri7eimy5Xptw==
-X-Received: by 2002:a05:6000:4918:b0:492:b1c5:6db4 with SMTP id ffacd0b85a97d-49c723fc793mr10335695f8f.26.1794650464192;
-        Sat, 14 Nov 2026 02:01:04 -0800 (PST)
-Received: from jp-linux.Home ([2001:8a0:f59c:a900:a084:d599:46a5:5c31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c608d10b2sm16920053f8f.44.2026.11.14.02.01.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2026 02:01:03 -0800 (PST)
-From: =?UTF-8?q?Jo=C3=A3o=20Peixoto?= <jpeixoto@osyx.tech>
-To: gregkh@linuxfoundation.org,
-	will@kernel.org
-Cc: catalin.marinas@arm.com,
-	andrew.jones@linux.dev,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	skhan@linuxfoundation.org,
-	rdunlap@infradead.org,
-	jose@osyx.tech,
-	davidmcerdeira@osyx.tech,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v7 3/3] MAINTAINERS: add Bao hypervisor entry
-Date: Sat, 14 Nov 2026 10:00:49 +0000
-Message-ID: <ab06a2173b01f4e18dd24c68e03ef846ea933098.1794649714.git.jpeixoto@osyx.tech>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <cover.1794649714.git.jpeixoto@osyx.tech>
-References: <cover.1794649714.git.jpeixoto@osyx.tech>
+	Sat, 14 Nov 2026 10:06:20 +0000
+DKIM2-Signature: i=1; m=1; t=1794650775;
+ mf=PHdhaHJlbnN0QGdteC5uZXQ+;
+ rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+ d=gmx.net;
+ s=s31663417:rsa-sha256:adGu/UcB7r4x624BcEANnr4Ea25L
+   Q02Je6gbJwG3XNZkBoQGpmkfKWmEJXqM4oavJHn8qq365O7odELb1SJMY7DkoCsFbobfnjrfpOo
+   8bG5cEKKxIrmXBlbLW3W+qpd+Q1d5JNyaSqs6PL23VDgLLUKrD4kJ9LypfghFPt8Ik1wYIhkYK+
+   FLkxw6PHkG5TSFEGTpAKTzYKivgKl9TdnWHNub4wIkbOq/LiRxCrSCKl4wf4lg2+zECk10CH42X
+   bRsU5sTl977OWblmV4bWN5K6WiyIlB5RLd3MMGCHT1VkwU4m1YSm9h2HHmC8/MY3E07UZ/LREoC
+   19eeA17HSjJskA==;
+Message-Instance: m=1;
+ h=sha256:
+   2dL5+kTKQpN/sOiPWSexVd1BHDCNQCKLIe3piKpxPZY=:
+   r5SwbIEy3WWSTqi6YZZJaXQMcxcIS3PIHpliylPjeZg=,
+  sha512:
+   H7h3M42q168bKNgKQnfWyw5sq0fI/x9OvEprG6MGlVGy5W3OcWP0ZmYHnzMFGH6VX7PIWx3pYrYry3JDvxUTBA==:
+   zcR4ynWDO3NaZBsiCIURkgXmrgkfhsl4YjqRPvplzSP8jWq7zf2E23Y6F9WmKGrKKgpqruIfDY3IDcctSzNGAw==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1794650768; x=1795255568; i=wahrenst@gmx.net;
+	bh=5WBg+miv8Y/HhJR/hIBUkmrE9cr5uLAIFyuysJ6/Jds=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=SldLD6LOaWNyMiokcViiFknA7bH+fkqDnPEpvThgRbeyHGOkMt8RpvkTIS/dTaIL
+	 M646CUFK2PS+khBUXFG1TxyIlTVJXSy3d8GwfjelGMoa5NL0KJdfm212tytqWXtOO
+	 VLGUUa2aszf2g1abzCNS2IX07L7NCzjTWtnRpOxcpNzlSQCOhReopVSoJ/1in6Quo
+	 KX17mxFtsrwh+TTiYtyq5YwjU3yzbVIXzKkCpM7ZUlS9McYeVpiKGydq1IgkXQTM5
+	 CbQT9sqLIk7r0bPe0HpjC5GPE8Zz5ANKA6kRsGuj+53G3BY8pj0HMpl2TqdUIfuuP
+	 YmlRH1o+sX3mBEF6BQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MAOJP-1xHyBP0H3j-00Cq08; Sat, 14
+ Nov 2026 11:06:08 +0100
+Message-ID: <0b965d32-0706-4014-a69d-048db91698b3@gmx.net>
+Date: Sat, 14 Nov 2026 11:06:06 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] platform/raspberrypi: vchiq: Stop kthreads on
+ vchiq_platform_init() failure
+To: Tomasz Unger <tomasz.unger@yahoo.pl>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Umang Jain <uajain@igalia.com>, Jai Luthra <jai.luthra@ideasonboard.com>,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261114-vchiq-probe-kthread-leak-v1-1-b6b2f1e32050.ref@yahoo.pl>
+ <20261114-vchiq-probe-kthread-leak-v1-1-b6b2f1e32050@yahoo.pl>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20261114-vchiq-probe-kthread-leak-v1-1-b6b2f1e32050@yahoo.pl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:qKzSuh09ncg69mdxFuxZPXL7bfq8uMqs8HH9218SI84AdR6vPBc
+ 5agaDzFKU0/lJyTqFaHafiY4X+KJt8gNU7bh90ADj72oFSoICu+VSmbwLeK99qqBP0YhOYk
+ XmGovGzJmUMBhupv0AqUm1iQ3ULy47HrvOpbjoqKWdVVpnkKedbbIh1dYCxs3OCXCSHyM8m
+ AeDR7mzYhmITwz+N2bbOQ==
+UI-OutboundReport: notjunk:1;M01:P0:H5m+b1VGcNE=;RD4EN87Sy9FzUR2vNRSoJEwEje1 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 8ueCLtX
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_020106_651130_C8CED466 
-X-CRM114-Status: UNSURE (   9.82  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261114_020618_286862_6EE738EF 
+X-CRM114-Status: GOOD (  28.22  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,51 +106,212 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a MAINTAINERS entry covering the Bao hypervisor drivers and their
-UAPI header.
+Hi Tomasz,
 
-Signed-off-by: João Peixoto <jpeixoto@osyx.tech>
----
-v7:
-- No change.
-v6:
-- No change.
-v5:
-- No change.
-v4:
-- Drop the arch/*/include/asm/bao.h and include/linux/bao.h entries (the
-  files are gone); use the directory form for drivers/virt/bao/.
+Am 14.11.26 um 01:01 schrieb Tomasz Unger:
+> vchiq_init_state() creates and wakes the slot handler, recycle and sync
+> kthreads. If a later step in vchiq_platform_init() fails, the function
+> returns without stopping them and vchiq_probe() only propagates the
+> error. devres then frees what probe allocated, including the driver
+> data and the slot memory the kthreads operate on.
+>
+> Forcing devm_request_irq() to fail on a Raspberry Pi 4 Model B makes
+> all three kthreads fault right after the failed probe:
+>
+>    bcm2835_vchiq fe00b840.mailbox: failed to register irq=3D34
+>    bcm2835_vchiq fe00b840.mailbox: arm: Could not initialize vchiq platf=
+orm
+>    Unable to handle kernel paging request at virtual address ffff800080b=
+a402c
+>    Internal error: Oops: 0000000096000007 [#1]  SMP
+>    CPU: 1 UID: 0 PID: 370 Comm: vchiq-sync/0 Not tainted 7.4.0-rc1-trace=
+ #1
+>    pc : sync_func+0x44/0x3a8 [vchiq]
+>    Call trace:
+>     sync_func+0x44/0x3a8 [vchiq] (P)
+>     kthread+0x128/0x150
+>     ret_from_fork+0x10/0x20
+>
+> If the kthreads are asleep at that point they are left behind instead,
+> three per failed probe, still pointing at the freed memory.
+>
+> Map the registers and look up the interrupt before vchiq_init_state().
+> Neither depends on the VCHIQ state, so these two failures need no
+> unwinding. On the remaining failures stop the kthreads with
+> vchiq_platform_uninit(), as is already done when registering the
+> character device fails. Move vchiq_platform_uninit() and
+> vchiq_platform_get_arm_state() above vchiq_platform_init() for that,
+> without changing them.
+>
+> The missing unwind is older than the commit named below, but the
+> kthreads could not be stopped before it, so it is the earliest point
+> this fix applies to.
+>
+> The bug was found and the fix drafted with the help of an AI coding
+> assistant (Claude).
+>
+> Fixes: 863a756aaf49 ("staging: vc04_services: vchiq_core: Stop kthreads =
+on vchiq module unload")
+> Assisted-by: Claude:claude-fable-5-2
+> Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+> ---
+> Verified on a Raspberry Pi 4 Model B with a test-only one-line change
+> that forces devm_request_irq() to fail. Without this patch the three
+> kthreads oops as shown above. With it probe fails cleanly, no vchiq
+> kthreads remain after four failed attempts and the module unloads.
+> Without the forced error the driver probes normally and audio playback
+> over VCHIQ works.
+> ---
+>   .../raspberrypi/vchiq-interface/vchiq_arm.c        | 57 ++++++++++++--=
+=2D-------
+>   1 file changed, 31 insertions(+), 26 deletions(-)
+>
+> diff --git a/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c b/=
+drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
+> index e78641703252..11764a2590e4 100644
+> --- a/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
+> +++ b/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
+> @@ -187,6 +187,25 @@ void vchiq_add_connected_callback(struct vchiq_devi=
+ce *device, void (*callback)(
+>   }
+>   EXPORT_SYMBOL(vchiq_add_connected_callback);
+>  =20
+> +static struct vchiq_arm_state *vchiq_platform_get_arm_state(struct vchi=
+q_state *state)
+> +{
+> +	return (struct vchiq_arm_state *)state->platform_state;
+> +}
+> +
+> +static void
+> +vchiq_platform_uninit(struct vchiq_drv_mgmt *mgmt)
+> +{
+> +	struct vchiq_arm_state *arm_state;
+> +
+> +	kthread_stop(mgmt->state.sync_thread);
+> +	kthread_stop(mgmt->state.recycle_thread);
+> +	kthread_stop(mgmt->state.slot_handler_thread);
+> +
+> +	arm_state =3D vchiq_platform_get_arm_state(&mgmt->state);
+> +	if (!IS_ERR_OR_NULL(arm_state->ka_thread))
+> +		kthread_stop(arm_state->ka_thread);
+> +}
+> +
 
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+instead of moving the defintion of vchiq_platform_get_arm_state() and=20
+vchiq_platform_uninit() upwards, I would suggest to make forward=20
+declarations of them. This should avoid backporting conflicts and makes=20
+the patch easier to review.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 93abbb315065..dbea081447e2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4712,6 +4712,14 @@ F:	drivers/video/backlight/
- F:	include/linux/backlight.h
- F:	include/linux/pwm_backlight.h
- 
-+BAO HYPERVISOR
-+M:	José Martins <jose@osyx.tech>
-+M:	David Cerdeira <davidmcerdeira@osyx.tech>
-+M:	João Peixoto <jpeixoto@osyx.tech>
-+S:	Maintained
-+F:	drivers/virt/bao/
-+F:	include/uapi/linux/bao.h
-+
- BARCO P50 GPIO DRIVER
- M:	Santosh Kumar Yadav <santoshkumar.yadav@barco.com>
- M:	Peter Korsgaard <peter.korsgaard@barco.com>
--- 
-2.53.0
+Beside of this, looks good to me.
 
+Thanks
+
+>   static int vchiq_platform_init(struct platform_device *pdev, struct vc=
+hiq_state *state)
+>   {
+>   	struct device *dev =3D &pdev->dev;
+> @@ -243,10 +262,6 @@ static int vchiq_platform_init(struct platform_devi=
+ce *pdev, struct vchiq_state
+>   	sema_init(&drv_mgmt->free_fragments_sema, MAX_FRAGMENTS);
+>   	sema_init(&drv_mgmt->free_fragments_mutex, 1);
+>  =20
+> -	err =3D vchiq_init_state(state, vchiq_slot_zero, dev);
+> -	if (err)
+> -		return err;
+> -
+>   	drv_mgmt->regs =3D devm_platform_ioremap_resource(pdev, 0);
+>   	if (IS_ERR(drv_mgmt->regs))
+>   		return PTR_ERR(drv_mgmt->regs);
+> @@ -255,11 +270,15 @@ static int vchiq_platform_init(struct platform_dev=
+ice *pdev, struct vchiq_state
+>   	if (irq <=3D 0)
+>   		return irq;
+>  =20
+> +	err =3D vchiq_init_state(state, vchiq_slot_zero, dev);
+> +	if (err)
+> +		return err;
+> +
+>   	err =3D devm_request_irq(dev, irq, vchiq_doorbell_irq, IRQF_IRQPOLL,
+>   			       "VCHIQ doorbell", state);
+>   	if (err) {
+>   		dev_err(dev, "failed to register irq=3D%d\n", irq);
+> -		return err;
+> +		goto err_stop_threads;
+>   	}
+>  =20
+>   	/* Send the base address of the slots to VideoCore */
+> @@ -268,13 +287,14 @@ static int vchiq_platform_init(struct platform_dev=
+ice *pdev, struct vchiq_state
+>   				    &channelbase, sizeof(channelbase));
+>   	if (err) {
+>   		dev_err(dev, "failed to send firmware property: %d\n", err);
+> -		return err;
+> +		goto err_stop_threads;
+>   	}
+>  =20
+>   	if (channelbase) {
+>   		dev_err(dev, "failed to set channelbase (response: %x)\n",
+>   			channelbase);
+> -		return -ENXIO;
+> +		err =3D -ENXIO;
+> +		goto err_stop_threads;
+>   	}
+>  =20
+>   	dev_dbg(&pdev->dev, "arm: vchiq_init - done (slots %p, phys %pad)\n",
+> @@ -284,6 +304,10 @@ static int vchiq_platform_init(struct platform_devi=
+ce *pdev, struct vchiq_state
+>   	vchiq_call_connected_callbacks(drv_mgmt);
+>  =20
+>   	return 0;
+> +
+> +err_stop_threads:
+> +	vchiq_platform_uninit(drv_mgmt);
+> +	return err;
+>   }
+>  =20
+>   int
+> @@ -309,25 +333,6 @@ vchiq_platform_init_state(struct vchiq_state *state=
+)
+>   	return 0;
+>   }
+>  =20
+> -static struct vchiq_arm_state *vchiq_platform_get_arm_state(struct vchi=
+q_state *state)
+> -{
+> -	return (struct vchiq_arm_state *)state->platform_state;
+> -}
+> -
+> -static void
+> -vchiq_platform_uninit(struct vchiq_drv_mgmt *mgmt)
+> -{
+> -	struct vchiq_arm_state *arm_state;
+> -
+> -	kthread_stop(mgmt->state.sync_thread);
+> -	kthread_stop(mgmt->state.recycle_thread);
+> -	kthread_stop(mgmt->state.slot_handler_thread);
+> -
+> -	arm_state =3D vchiq_platform_get_arm_state(&mgmt->state);
+> -	if (!IS_ERR_OR_NULL(arm_state->ka_thread))
+> -		kthread_stop(arm_state->ka_thread);
+> -}
+> -
+>   void vchiq_dump_platform_state(struct seq_file *f)
+>   {
+>   	seq_puts(f, "  Platform: 2835 (VC master)\n");
+>
+> ---
+> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+> change-id: 20261114-vchiq-probe-kthread-leak-8f6178695a33
+>
+> Best regards,
+> --
+> Tomasz Unger <tomasz.unger@yahoo.pl>
 
