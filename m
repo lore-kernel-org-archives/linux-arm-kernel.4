@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B2A606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 11:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA44606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 11:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vfrRZIGN;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VdovlbP9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TSGWBUiq;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XRJKy710
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KgJ0Pm3uUKFfqIYROp0Tn0x08IPuOauF02gVYJBPO9c=; b=vfrRZIGNtEVeJC7ULV+kjDpOSl
-	joXS6Lh9HgjHyaynjpmXhBI83cffeo/VbsU4KQ20k8Tj/DVrh8GTlOSnM/duYvv1g9azoozTDKGsS
-	Gyb2UyNzIXyKdXBynpFFSjoTeLixFi/iTGuF2Vi84CJLYepmGFCLW8vCvnTg6XqbfcYAOkIh2Fp+K
-	tAlqX6RdoDsJSYFDgWRV6Vh2vIHaxAts9zUtA5oS0/71ogLLfY+U1k85hcfTCCmVUnwkAzFsQqcph
-	Aos/FUj1oeu/+XhMg7ND1cVVM0FVx1CftkUvX+QUin0P9LYjuMMtFMOtpDdfoHJ5/bRlQa0ebj7lG
-	wAD/wHWQ==;
+	bh=/2hjrB65D30vCvt5YWlJ2EoRPo0VzzXwxqoyF2Wo8n8=; b=TSGWBUiqbeIwN2I8XNZ8Nb4KPu
+	QuNK8OHPp54Uguf03Avuv2Pu8xoYhB6ukjGu0f3IIpsTvpdRYnJ3oUQeeXBWcRa9ZlEm+YgmoP5B5
+	YWQXZMp1Mhp2yKYq7qm0+z2vc0zFnsjZyWbQP/awyl1cj4L3r8FNUSEU1L0jHSGPK4sNmvmcSpwAm
+	6OdmZIQbDkCL7V07SZMHr+FfhfKLoje07VxeFRBsCmKW5KzbCxbG8o0QGUKaaxnJjteOpItuAF0io
+	e08xDBTvcajmOe5H91HRThBPg7LtSutyCn3vI4demrOseCqsp/R+SVZjdPrzr76fxeBz6DA2zhHSY
+	TZQSRj4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSCNb-0000000FxAV-2mHA;
-	Sat, 14 Nov 2026 11:57:11 +0000
+	id 1xSCNp-0000000Fxh3-1z6c;
+	Sat, 14 Nov 2026 11:57:25 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSCMl-0000000Fw0H-0wDE;
-	Sat, 14 Nov 2026 11:56:19 +0000
+	id 1xSCMk-0000000Fvzk-0kzP;
+	Sat, 14 Nov 2026 11:56:18 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id EE90743CF2;
-	Sat, 14 Nov 2026 11:56:18 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id E3F0745A79;
+	Sat, 14 Nov 2026 11:56:17 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794657378;
-	b=FCo08ZgTPylmzl+2jrW9romfGO1AQKu52luceHBEUuq5rbRK+O1fJFCuwKtJe4f9WydD
-	 pZhBZCd3nX/EbBNy1gn2l8rHdugxwFGLi2wwG+MzbcQ02+Tr2jTCTBbQ//F65bd1lm0+h
-	 8/NhZAr1W+gE+hQu5nbux3EdbVRitABai9U8ph3OQ3cGeGQkkD12nBm4d/+ZnYRl5xdVy
-	 as/WEwjaSHhMDbjJZMdQv+cVcAjoivKKt0yr3XWDov9PNKOebJqF4OfIHnjIGiaeCYX2R
-	 NqmbAyLemr9Y5kc4X4mh6lp7De/kKSxIBfsSeWHfzSuRU2FE+cKHQ/547NScUGcx6PA==
+	t=1794657377;
+	b=X9w88yv2cVMn690pprbfKgcB9kiPM2Qca4FoSCLjUwAYACkYc9YRwIIlhwo6WTHLkA2g
+	 tXG6e2wHbVs1fQ372uo5z4rPhRLObHef5hDFWnuQTAC4CkmkyObcAtciaVes9A3uWFpVh
+	 RPRuIhAtx61qkdp92Eyecj0QlZNmqrheUBswdwpZ1h6vHF5l757FrKXJ17NF2yyZsCiJq
+	 Sv7F2NhF50UfPtT4p2NcH7S8/xO9f0BJtLq5bfDzgS93PtyMbrCK6N08PjB/WGM96LKdZ
+	 O3MswlYuHqNPdrr9MhHY8zHXV/dcmuwmdg2c3/mqHld5v7zq6C+/90EUi+o6c/5c7Ew==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794657378;
+	c=relaxed/relaxed; t=1794657377;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=KgJ0Pm3uUKFfqIYROp0Tn0x08IPuOauF02gVYJBPO9c=;
-	b=ztChbI3baXm0XMh6tiIdiwuxiU8cw5ZG+fpfP6uiAYnl3cnvuNF7ylKC5kVUpiDETyGl
-	 +qt/6jdMrfYd5d8Mzi/h0LhAsZZXyGXPNSnoKADph+DYNhIpOJMvT7ZqblPLNiux+BLlx
-	 pR2r8x6A9DLQnYup+B9VemmcQhYN41DM7rE0zha+rkLMpq+85gY6EPDymC36iSCNpAy9c
-	 v3yUxJ5czA7YipGYb/GmCnjAuTLqaqSE17M7PTXPZeS520Af7a88DvPsID2duUEr8w/5c
-	 udn6LbM0m7xoFburYklyey0ZIQLrzLzus6gVedqJUMFJOxNmBUYEe2jNXTewK/XrqvA==
+	bh=/2hjrB65D30vCvt5YWlJ2EoRPo0VzzXwxqoyF2Wo8n8=;
+	b=QeIutcXurMmZcBtNSScXag3uEh5ChX0W0EeGopFM8IFWYPmjF/DCcNjTwJ/NBNkR+pnz
+	 +SLs1LsJKo9NOlT/uo+IYDFs+9cZA5Po078NvLzSrB5t1KTOsQEqtcaEVCu3yYmYyTWJ8
+	 vCATrBCK6sGc7cuP359M04tw9v68RQnGh1K1oHET3IJp0zf6ac51mE++9rVVOvqIFTe6N
+	 swBFlI40/F6BZhfxGs9NW/LOc8t3Y+PsxGdr2s7z1OE0WomO+Lh/b9OAX364LY1keNAvG
+	 tFXYgdk+PlVzP4eXkwAv0FgYBlV3qOXyIljhbXXK4fMas9VxBAycpIWizoBR3e88Ntg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 2E9B41F000C5;
-	Sat, 14 Nov 2026 11:56:17 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 91FF31F000CC;
+	Sat, 14 Nov 2026 11:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794657378;
-	bh=KgJ0Pm3uUKFfqIYROp0Tn0x08IPuOauF02gVYJBPO9c=;
+	s=k20260515; t=1794657377;
+	bh=/2hjrB65D30vCvt5YWlJ2EoRPo0VzzXwxqoyF2Wo8n8=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=VdovlbP9SZTqXTWcko84tZwYRN1zQ1U9Zt2VkD3dWthdidtTvqlHfMSPMvC/I+tkr
-	 xNhrLeP/8u3iMotTV+0puHxLf39YvKu6myK6AEYmYDrjNGWzvhnzEci6HVXzEiOWdv
-	 7nCzVLt2ky2pCNWsWFDm4QzVlaTyLMlrA3LSq/EMX4dwtjvoUS11UWU0Dz0POMrMfE
-	 zdNV5XUcfu5v8tKfjJcU3tQPWL5lIqnUnn8SIWGeORcn9A97KUCzfxRSvZNTACCu3p
-	 TCJhYX22GeUeRhqsRNAafg/mF7AxP20Lu/BiF2Ecoxfih4Z9TQDB5Q4uzMaMKuegBJ
-	 nAspvriAvkstg==
+	b=XRJKy710p3Q3Vy9N2rLX7+O0oSzynf3BvVGFFPy1/U8mHEqxZjqyaW+lXtNO9+tgG
+	 msFXEkXuPEnDE/2K9JbBeSEQhYvIzyuh4x6RtAdn8ihXZaschKQ4nMRUA1N+Fnff3Z
+	 Fc7iFRWdCLY2ZVA5uQGKhqoHhSuKwILrk/Ko3D3ZNscLe+PiiDCEZ2s49QkMMCa0Y0
+	 qwaIlswDHZLPmcmvOBnDeQ83nm+evqH/lTusGpPcGwt293V4rTHXYz/KgxSFjllvhH
+	 oabXXb2NMLhZ0tAC5eGBxFyr/MSg/2wUPqrX9/sLZbNfNqZOUDhjC++n+BXg85VrJ2
+	 bXptoHXs6WTUA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3CCFB49D99;
-	Sat, 14 Nov 2026 11:56:14 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id A895849D82;
+	Sat, 14 Nov 2026 11:56:13 +0000 (UTC)
 From: Larisa Grigore via B4 Relay <devnull+larisa.grigore.oss.nxp.com@kernel.org>
-Date: Sat, 14 Nov 2026 12:55:46 +0100
-Subject: [PATCH v11 14/14] MAINTAINERS: Add NXP S32N7 UFS host controller
- entry
+Date: Sat, 14 Nov 2026 12:55:40 +0100
+Subject: [PATCH v11 08/14] ufs: dwc: Sort CBCRCTRL and CBREFCLKCTRL2 by
+ offset
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261114-b4-ufs-s32n7-v11-14-dc36e11919d5@oss.nxp.com>
+Message-Id: <20261114-b4-ufs-s32n7-v11-8-dc36e11919d5@oss.nxp.com>
 References: <20261114-b4-ufs-s32n7-v11-0-dc36e11919d5@oss.nxp.com>
 In-Reply-To: <20261114-b4-ufs-s32n7-v11-0-dc36e11919d5@oss.nxp.com>
 To: "Martin K. Petersen" <mkp@kernel.org>, 
@@ -109,11 +109,11 @@ Cc: devicetree@vger.kernel.org, Ajay Neeli <ajay.neeli@amd.com>,
  Orson Zhai <orsonzhai@gmail.com>, aruizrui@redhat.com, 
  linux-renesas-soc@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794657371; l=855;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794657370; l=1160;
  i=larisa.grigore@oss.nxp.com; s=20261114; h=from:subject:message-id;
- bh=q5fZZi6nGFZkAZqMhOp7pecYYzCKqjcJFotJcqJPipY=;
- b=XTzPlY0kewuUk2HgpvABviMk35KnNXD6c7hF6CM4XR3AqV60Kh5fBHv7SebJgKCtDnOBfXZjh
- Ah0PN2vBsktB8yOmeXgs+wwMJMDppf1WrA/lXBTM+2uNzhE22ypoAvd
+ bh=jFPb09TEw+o0co3IKimWFQwdujSqoSGN2BKqE5DQhEI=;
+ b=ixpsDc5UGD5DMWn3XWZWIo71JIdLStTqgwVuwD42MliFUu4v4d8dPwsTNw9xryPPVqxhBXeFW
+ B+Cnmgy6MATB1HDgNV7Osmu4wXB0v9u16j7fle2yFFwau9gIp59++8f
 X-Developer-Key: i=larisa.grigore@oss.nxp.com; a=ed25519;
  pk=Jpt52sb6ETKTtvWjUzhz5Sv5FjB9AEg9QKCcbpWFx3w=
 X-Endpoint-Received: by B4 Relay for larisa.grigore@oss.nxp.com/20261114
@@ -141,33 +141,41 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Larisa Grigore <larisa.grigore@oss.nxp.com>
 
-Add maintainer for S32N7 UFS host controller driver.
+The RMMI attribute defines in ufshcd-dwc.h are otherwise listed in
+ascending register-offset order, but CBREFCLKCTRL2 (0x8132) and
+CBCRCTRL (0x811F) were placed at the top out of order. Move them down
+into their sorted position next to the other CBCREG* attributes.
+
+Pure cleanup, no functional change.
 
 Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 ---
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/ufs/host/ufshcd-dwc.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 056408bc086e..dad017aa9d81 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -28862,6 +28862,15 @@ L:	linux-scsi@vger.kernel.org
- S:	Maintained
- F:	drivers/ufs/host/ufs-renesas.c
+diff --git a/drivers/ufs/host/ufshcd-dwc.h b/drivers/ufs/host/ufshcd-dwc.h
+index 53b523ef59df..1abf2b1deac4 100644
+--- a/drivers/ufs/host/ufshcd-dwc.h
++++ b/drivers/ufs/host/ufshcd-dwc.h
+@@ -13,8 +13,6 @@
+ #include <ufs/ufshcd.h>
  
-+UNIVERSAL FLASH STORAGE HOST CONTROLLER DRIVER S32N7 HOOKS
-+M:	Larisa Grigore <larisa.grigore@oss.nxp.com>
-+R:	NXP S32 Linux Team <s32@nxp.com>
-+L:	imx@lists.linux.dev
-+L:	linux-scsi@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/ufs/nxp,s32n79-ufshc.yaml
-+F:	drivers/ufs/host/ufs-nxp-s32n7.c
-+
- UNIWILL LAPTOP DRIVER
- M:	Armin Wolf <W_Armin@gmx.de>
- L:	platform-driver-x86@vger.kernel.org
+ /* RMMI Attributes */
+-#define CBREFCLKCTRL2		0x8132
+-#define CBCRCTRL		0x811F
+ #define CBC10DIRECTCONF2	0x810E
+ #define CBRATESEL		0x8114
+ #define CBCREGADDRLSB		0x8116
+@@ -24,6 +22,8 @@
+ #define CBCREGRDLSB		0x811A
+ #define CBCREGRDMSB		0x811B
+ #define CBCREGRDWRSEL		0x811C
++#define CBCRCTRL		0x811F
++#define CBREFCLKCTRL2		0x8132
+ 
+ #define CBREFREFCLK_GATE_OVR_EN		BIT(7)
+ 
 
 -- 
 2.43.0
