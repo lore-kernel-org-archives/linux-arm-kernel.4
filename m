@@ -2,70 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C831A606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 18:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FEB606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 18:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=goKAuYky;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NlsSzBI4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nMwsUjg5;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PEUdNnF7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sMXrHsolRG3J/I2nE1oI1F3DJZKjH3O2j2E6lRmGAtI=; b=goKAuYkyJCHuZJ
-	BLNB4sZYws0auIOYMlIyk5T93WDKti78fRegMmak688srmqEJAX/R0n+SR6qT6KYzIXrKbo+dIpCR
-	HgJ9KcRtlBz5HJxam56pQrv2q9nrXWpCosGba3xrWo1zGpsAA7gT1x3IkWu9WnSn4jYu50BCKtx8V
-	kEjRScuofSeJU27nZHbA/NZvxs33Yvs1sZVWHRCCcWWyUDTJvj13e7WNHYR8hsLPKE20FlFY9qkdA
-	lVdIQHQTICicgBwPrt/8We+CWRj7KCml3trNtV+LxVfkwOdkd/+nlMBcc+0W19LS9YG5F+2sVZyDI
-	dGs1w7wbDAk1D5v05pkA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Message-ID:Date:References:In-Reply-To
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=zLZrkub1iNWGcsUrG6AoUeFQUZNpk/XAt3E+7j4A0WQ=; b=nMwsUjg5WiWZdoH0LGjkcPeJRR
+	7h/bBMOWbVqV07C06Sj6qnI1LFv2hrYY1TI2WDP5KAXsaBGNR16GiVZTqJ03VVkpOHmNXaSieV9/L
+	B9hOBdVGMR+rgJppLI+ihfPHNooAegBwMM1WGCjnbX0YJ8GxCwp/A6Y8ZN1ys74S5th/3FluT+Kkd
+	4pUFLHwnYm9exXf3lkmL1/F+LLL5Y/dFumoKE/ZV3e+N1owEoqTv7hb5U87FYFON2h14ksK4b9aPG
+	n41nTV7ucMiV+tC+XjAyv1T1W2hNV7ED8wzdU4u7F0KP9gobRsY2Xz8wxCaPxYJkZ86/3oPDZNJlg
+	yRKg9thQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSIq6-0000000GdLf-0u2j;
-	Sat, 14 Nov 2026 18:51:02 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSIrm-0000000GdUD-2Qrx;
+	Sat, 14 Nov 2026 18:52:46 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSIq4-0000000GdLV-43ZB;
-	Sat, 14 Nov 2026 18:51:01 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1B4EB600CB;
-	Sat, 14 Nov 2026 18:51:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CCB71F000C4;
-	Sat, 14 Nov 2026 18:50:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794682259;
-	bh=sMXrHsolRG3J/I2nE1oI1F3DJZKjH3O2j2E6lRmGAtI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=NlsSzBI45RTY2QD9JZZw15/cPFKHjhMg1sEMEBxkV8amdg1yO+DFVQ8AQqHYY0z5L
-	 jLO7hZiQS0cqtBZ68PLHxfjCWzE7EJAJHPFzXQx63FHzG0S4XE6FZ4grX2dWC4Ih5f
-	 rvcGcgSTx6Fs7qzSYnN+fiGVYf997qz9wsTJFwqspOPNZI5xchKyzHRea03RDyxBUx
-	 ZV8pGBQREZ5dfECdGUF/1oOF7pOed9HxTfJ5JMRvWaN73lIXS/Jdw1fm/FldNWmZrZ
-	 JtH6Ok24KutZDvWBMjCZuXBj25LaiYExQ04VwC7l62ECsPgSZocMAVi/fgXZweQn7Z
-	 +fNbHAAymlQGg==
-Date: Sat, 14 Nov 2026 18:50:50 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Roman Vivchar <rva333@protonmail.com>
-Cc: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>,
- David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, "=?UTF-8?B?TsOtY29sYXM=?= F. R.
- A. Prado" <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/3] iio: adc: mt6359-auxadc: mask conversion ready bit
- in mt6358_read_imp
-Message-ID: <20261114185050.1aa08612@jic23-hlaptop>
-In-Reply-To: <hAkgxe6jt5EJW-8bHBs53r3CWCxKxjjzGm6u-l-RzYaGedsBunJrv8nOB48zDSLaMD_jJqtC1Xt1wlz0zDdGF28li-clCdIjUzE9xSbh7Hk=@protonmail.com>
-References: <20261103-6768-6358-fixes-v1-0-2a868a33152b@protonmail.com>
-	<20261103-6768-6358-fixes-v1-2-2a868a33152b@protonmail.com>
-	<20261103234540.46cc8c1b@jic23-hlaptop>
-	<hAkgxe6jt5EJW-8bHBs53r3CWCxKxjjzGm6u-l-RzYaGedsBunJrv8nOB48zDSLaMD_jJqtC1Xt1wlz0zDdGF28li-clCdIjUzE9xSbh7Hk=@protonmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	id 1xSIri-0000000GdTo-04tl
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 14 Nov 2026 18:52:43 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a2000d5fb1so9916455e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 10:52:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794682360; x=1795287160; darn=lists.infradead.org;
+        h=mime-version:content-transfer-encoding:content-type:message-id:date
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=zLZrkub1iNWGcsUrG6AoUeFQUZNpk/XAt3E+7j4A0WQ=;
+        b=PEUdNnF740yL40h7mgn75gbHvv0WSaly0M0mDwIJsLJvykli0qCcwO2bFxtyO+SsTn
+         yKrEH+4nzWrKBAZdciGLJrrXK12yTy2zwbRqdmmtYGCnBLdkACM+Z0x3qt+VDRoWLe25
+         oPaDp4jTXFKw0l4MUrCJRBcw4XpHufp23d/2joTJsARL+NNRQpLMAoHoAWIHDjDNNe3l
+         Tf/vMVV1F6nXkN9Bu7CypeDU20Jd5FJTYRPq8l584LSS1yd+DAve1EMNdu7bzduk5APG
+         KzCG6LC2gqHqqiJ1Adu+M22eHjV9kFWomclWya0+Rg4TZBZK/v4Vm0HTZQHxR3HkvoJq
+         SAxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794682360; x=1795287160;
+        h=mime-version:content-transfer-encoding:content-type:message-id:date
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=zLZrkub1iNWGcsUrG6AoUeFQUZNpk/XAt3E+7j4A0WQ=;
+        b=zpezVIiKDNBlNK5YIHKjGvkbADkyhAMimlSut7j7avbY8dHIIezGtYMZ+808japJGv
+         5dgIQVird7gLRUiLxXZzkzzdvpMyiJwcqvwM5FCecpGZOCAqlKBmkCejbw7WC2eoWdzb
+         1/5E0A41+m+UiNFQ+ccP6aqn7hhLYWtBqlfICzxHP0K2CU8z1OSlsB3B6H1zD0nVbIzI
+         QILoUFNBu6RmudmskLYBjnMC0bK4VDG8r9wFNek40Qy/OFHrCmz1pLkPCbV4T2NgLfX9
+         EfGItfm4tvsJNsBt2J2PQHE3oZ9NZ9CwqeO661Te++FrBnuo5hwTQPTAQJzQzBsqJTGp
+         JghA==
+X-Forwarded-Encrypted: i=1; AL+hErFZlxmd0yvUrh99wS2Tg8FTX7jpx5u0Uzlh21Hshzl7u9SfPnT9AqfryYO5igx0+8h10oJkIRVEQsdybDZSAIg6@lists.infradead.org
+X-Gm-Message-State: APuU4Z9Dp7Q+LjYl3ELo7CcRM5VRIxnDgrxgjFPSz3E69wDiSVkEP0E8
+	ZVysOpDJuSvc/sDpeLgjRGiBOLFD6AJLpts/gmQLc/YKNZWDvPL0PbQn
+X-Gm-Gg: AYBFou0DarPrnJYiCi5TULexVzbTZnfnBzQqMEB8VABNeOP3kAQNVM1EQdep4XrBp7o
+	hu5GmlZz5YsLYQAbGl+iYx8KM1g+LXQr9VCaE3uOHg3/8x0y6bCp3srSkNQKFAG9M6vC8Kl7J3V
+	kYhIVVzNpFyFx9fYLyMRvj5Psc7gJlB9J1JajtNEsvKnGzjNCY3Bg4iQLs3px0R2GxA8a0707M/
+	tsvlf8wJ7+UB/GYiqBqIXhw16msr3bS3FEKzQ6Eb+eyKIbOHsl7gGMscOTGbfRq9NeNU5Bb0/9M
+	p2NTGF2a5KT+C1Glpy2qM7K1x9C919e5Xs/QeBqU5DV5O+mO+7bYYsIl2Y7Yq/JU5hKtCxaFy62
+	gVg0J5zwo0kDMYaZx3ZFQBAH8txhziUC/8HqTUDVkUQwm5AuKa/3sfQ56g7h6oijm5d+Ye8MwqQ
+	4puLxDvvgxxBAp/wGJLDTFKi8yoi5jt57i9LaQZLYIij5dVhybNx9P4loS3fK5WYYz3GRYwXQ6r
+	jfSMo1DhbsasaxOfaZu21Z0D6NnXKw/QSc5wubTUR448nPUWLDnHv6kWnEwoswmNgZIeep9tEkk
+	j5umw6Yixm8lcA1RsDAR3czTTbPqlXJ8UQTdvm3v8a/IdLco0Ujc+H4=
+X-Received: by 2002:a05:600c:a14:b0:4bb:6994:abe0 with SMTP id 5b1f17b1804b1-4bb6994b7eemr9745705e9.1.1794682359704;
+        Sat, 14 Nov 2026 10:52:39 -0800 (PST)
+Received: from [127.0.1.1] (ip-024-180.users.dtel.ru. [91.210.24.180])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb55ae4414sm161858265e9.9.2026.11.14.10.52.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Nov 2026 10:52:39 -0800 (PST)
+From: Fil Dunsky <filipp.dunsky@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Russell King <linux@armlinux.org.uk>, linux-watchdog@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] watchdog: Add ARM TWD (MPCore private) watchdog driver
+In-Reply-To: <db3a09f6-a560-4522-9954-8aa63eb2d5fb@roeck-us.net>
+References: <20261114-arm-twd-wdt-v4-1-5a3104b36331@gmail.com>
+ <db3a09f6-a560-4522-9954-8aa63eb2d5fb@roeck-us.net>
+Date: Sat, 14 Nov 2026 21:52:32 +0300
+Message-ID: <179468235262.1897695.7261271002700550095@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261114_105242_081541_3ACFD444 
+X-CRM114-Status: GOOD (  15.88  )
+X-Spam-Score: 0.4 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,79 +103,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 04 Nov 2026 00:19:33 +0000
-Roman Vivchar <rva333@protonmail.com> wrote:
+Hi Guenter,
 
-> On Wednesday, November 4th, 2026 at 1:45 AM, Jonathan Cameron <jic23@kernel.org> wrote:
-> 
-> > On Tue, 03 Nov 2026 18:32:08 +0200
-> > Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org> wrote:
-> >   
-> > > From: Roman Vivchar <rva333@protonmail.com>
-> > >
-> > > In mt6358_read_imp() the raw ADC value is returned directly without
-> > > masking out ready bit, resulting in incorrect battery voltage reporting.  
-> > 
-> > Can you add where the ready bit is.  That might help someone
-> > looking at wrong values and wondering if this is what is causing them.  
-> 
-> It's at the end of mt6359_auxadc_read_adc() function, which is included in
-> the commit message. Do you mean include the code part too?
-> "*out = val & GENMASK(chan->scan_type.realbits - 1, 0);"
+On Sat, Nov 14, 2026 at 07:56:12AM -0800, Guenter Roeck wrote:
+> Watchdog drivers are supposed to watch the system as a whole, not on a
+> per-CPU level. This patch goes way beyond the scope of a system watchdog
+> driver. Per-CPU watchdogs are handled in kernel/watchdog.c. I do not think
+> it is a good idea to overlay that with a second per-CPU watchdog mechanism.
 
-Nope. I mean which bit is the one that will be set and shouldn't be.
-Is it Bit 15 for instance? 
+Thanks, understood. Watching individual CPUs was not the intent: all the
+watchdogs get the same timeout and are pinged together from the ioctl,
+so the driver acts as one system watchdog. Going through every CPU only
+follows from the registers being banked, and it is what made the driver
+grow (hotplug state, CPU PM, the races Sashiko found).
 
-Just having a note in the commit message may help someone (or these days
-an LLM most likely) find this.
+The board needs one system watchdog and nothing per CPU: its boot loader
+starts the watchdog of CPU0 only, and the SoC has no other watchdog.
+Would a driver along these lines be acceptable?
 
+- use the watchdog of CPU0 only: start, stop, ping and get_timeleft run
+  there through smp_call_function_single();
+- no CPU hotplug state: on 32-bit ARM CPU0 cannot be taken offline
+  unless the platform allows it with cpu_can_disable(), and the driver
+  would not probe if CPU0 is hotpluggable;
+- the watchdogs of the other CPUs are not used, one found running at
+  probe time is stopped;
+- keep following clock rate changes and set the watchdog up again on
+  resume;
+- keep the restart handler.
 
-> 
-> > This one is pretty glaring as bugs go (given I think this means the
-> > top bit is set?) so any reason it wasn't obvious to anyone testing
-> > this device?  
-> 
-> I can't really tell if the driver was properly tested. As far as I understand,
-> Chromebook devices use some embedded controller, which likely manages this
-> kind of stuff without PMIC ADC. There's no in-tree mobile SoCs with mt6357,
-> 6358 or 6359, nor fuel gauge or thermal drivers (yet), so maybe that's why.
-> 
-> > Jonathan
-> > 
-> >   
-> > >
-> > > Apply the mask to strip the ready bit, matching the behavior in
-> > > mt6359_auxadc_read_adc() function.
-> > >
-> > > Fixes: 3587914bf61d ("iio: adc: Add support for MediaTek MT6357/8/9 Auxiliary ADC")
-> > > Signed-off-by: Roman Vivchar <rva333@protonmail.com>
-> > > ---
-> > >  drivers/iio/adc/mt6359-auxadc.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/iio/adc/mt6359-auxadc.c b/drivers/iio/adc/mt6359-auxadc.c
-> > > index 951d236f972b..09432d0974cf 100644
-> > > --- a/drivers/iio/adc/mt6359-auxadc.c
-> > > +++ b/drivers/iio/adc/mt6359-auxadc.c
-> > > @@ -502,7 +502,7 @@ static int mt6358_read_imp(struct mt6359_auxadc *adc_dev,
-> > >  	mt6358_stop_imp_conv(adc_dev);
-> > >
-> > >  	if (vbat)
-> > > -		*vbat = val_v;
-> > > +		*vbat = val_v & GENMASK(chan->scan_type.realbits - 1, 0);
-> > >  	if (ibat)
-> > >  		*ibat = 0;
-> > >
-> > >  
-> > 
-> >  
+Fil
 
 
