@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C40F9606A89F
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 10:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F86A606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 10:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AErD2Duu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nTUXq5gB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -13,27 +13,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ECmqalV3vVXhuW7AJJvBBOVkwd6W+mrSEV8Bq0CD+AY=; b=AErD2DuuoSqMVF7X8zgL65NGm9
-	b4CgSaEcjVejd4l8IM8WtOwgnGDafYz1VYvcKxwEcnIE7UgT8b+VTqQtjEk+DrsBrHjaUlmuPO30k
-	GO77Rd2M+hktNPIbzOOLx9A0w02+FpW1g1v0TsBKH7RwoPCt2xXL1zMJ7TaZlPfspU4byoGFLSjWN
-	yynMzCjNTZDURs5p+3f8aLDU3EBjGI78ApcJAYLqzg1Orfm2+q74IcpvS2i3naZBuP4rDf2agBiSG
-	mWmEHdhoCSG67Lh58IREK0QMBmH12zMVosZR+UmguEa6GyDZBDy4O5/+XZiWOqLGQ2K4yKTvcReWp
-	BAB6DD6w==;
+	bh=h+vA9r9n4WkcSpsjfAj26/xWi1Iy6en+RLiUeVeS0jI=; b=nTUXq5gBrQMvON2lWnP5QkR7KL
+	HfJTTuj0MjDsRQ3JY6cX/BAN5E3je7G7mMCUbhdWjLU0GDO9bMpNxVZN88RXbJZD1ATTOz7cCbPUP
+	AlFYVrUKJ0i5Zd3cveefxV2Bqj9pQtbOc7/oW3uaWJHwFzz118Sz/GzMA75CooJa6F5H6bPMylKWk
+	k3fSRnDGuGJvQuCDfp7SbRst3WITmwSYMX5Bxzz0cLRUFmsw0N2OtptZ1nZrgrxXOEVTsW5Lmc80f
+	YXCxQMd3potENX99DeNstnDZB/ZkHAW2yGW7QpfdeB0jaF7V5+Oftd/GS0awx2HGPbdDHMtIvMKzz
+	ILsjwtIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSAuM-0000000Fk78-23wn;
-	Sat, 14 Nov 2026 10:22:54 +0000
+	id 1xSAuU-0000000FkDo-44NZ;
+	Sat, 14 Nov 2026 10:23:02 +0000
 Received: from pidgin.makrotopia.org ([2a07:2ec0:3002::65])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSAuK-0000000Fk5y-1Uzk;
-	Sat, 14 Nov 2026 10:22:53 +0000
+	id 1xSAuR-0000000FkAY-3CED;
+	Sat, 14 Nov 2026 10:23:00 +0000
 Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256:X25519MLKEM768)
 	 (Exim 4.100.1)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1xSAuD-000000003aW-1gHM;
-	Sat, 14 Nov 2026 10:22:45 +0000
-Date: Sat, 14 Nov 2026 10:22:42 +0000
+	id 1xSAuK-000000003aj-37ZX;
+	Sat, 14 Nov 2026 10:22:52 +0000
+Date: Sat, 14 Nov 2026 10:22:50 +0000
 From: Daniel Golle <daniel@makrotopia.org>
 To: Detlev Casanova <detlev.casanova@collabora.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
@@ -46,8 +46,8 @@ To: Detlev Casanova <detlev.casanova@collabora.com>,
 	Sebastian Fricke <sebastian.fricke@collabora.com>,
 	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/7] media: rkvdec: hevc: apply request controls first
-Message-ID: <0050fba7666592bb95c784eda4013a6054016d84.1794645268.git.daniel@makrotopia.org>
+Subject: [PATCH 2/7] media: rkvdec: vdpu383: complete refused HEVC requests
+Message-ID: <1c2a7d695a34ff9a1603d981da53fbeb564f6dfe.1794645268.git.daniel@makrotopia.org>
 References: <cover.1794645268.git.daniel@makrotopia.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
@@ -55,8 +55,9 @@ Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <cover.1794645268.git.daniel@makrotopia.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_022252_416910_3E21C3E5 
-X-CRM114-Status: GOOD (  12.62  )
+X-CRM114-CacheID: sfid-20261114_022259_816251_CF48AF57 
+X-CRM114-Status: UNSURE (   9.28  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,49 +76,37 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-rkvdec_hevc_run_preamble() takes the control pointers and the slice
-count before rkvdec_run_preamble() applies the request. When a request
-carries more elements of a dynamic array control than the control has
-held so far, v4l2_ctrl_request_setup() reallocates the array and frees
-the old one, which leaves run->slices_params, run->ext_sps_st_rps or
-run->ext_sps_lt_rps pointing to freed memory, and run->num_slices holds
-the element count of the previous request. The EXT SPS RPS controls are
-also looked up depending on has_sps_st_rps and has_sps_lt_rps before
-the request's own controls could set them.
+rkvdec_hevc_run() returns -EINVAL when the RPS controls are missing,
+after rkvdec_hevc_run_preamble() applied the request's controls but
+without completing them. rkvdec_device_run() then returns the buffers
+with VB2_BUF_STATE_ERROR, which unbinds the source buffer from the
+request, while the request's control handler object stays incomplete.
+The request never reaches MEDIA_REQUEST_STATE_COMPLETE: poll() on its
+file descriptor never reports it, and MEDIA_REQUEST_IOC_REINIT fails
+with -EBUSY.
 
-A userspace V4L2 client that can open the RKVDEC m2m decoder can submit
-a request that grows one of these dynamic array controls and reach the
-freed array through the stale pointer.
+Complete the request's controls before returning the error, as
+rkvdec_vp9_run() does.
 
-Apply the request first, as rkvdec_vp9_run_preamble() does.
-
-Fixes: 3595375c2301 ("media: rkvdec: Add HEVC backend")
+Fixes: e3b5b77e3689 ("media: rkvdec: Add HEVC support for the VDPU383 variant")
 Cc: stable@vger.kernel.org
 Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
- drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-index 2b8e04dd15727..c249e3f16f42c 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-@@ -429,6 +429,8 @@ void rkvdec_hevc_run_preamble(struct rkvdec_ctx *ctx,
- {
- 	struct v4l2_ctrl *ctrl;
- 
-+	rkvdec_run_preamble(ctx, &run->base);
-+
- 	ctrl = v4l2_ctrl_find(&ctx->ctrl_hdl,
- 			      V4L2_CID_STATELESS_HEVC_DECODE_PARAMS);
- 	run->decode_params = ctrl ? ctrl->p_cur.p : NULL;
-@@ -460,6 +462,4 @@ void rkvdec_hevc_run_preamble(struct rkvdec_ctx *ctx,
- 	} else {
- 		run->ext_sps_lt_rps = NULL;
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
+index 3462d995d4cf0..e9d8b590f0d58 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
+@@ -553,6 +553,7 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+ 	if ((!ctx->has_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
+ 	    (!ctx->has_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
+ 		dev_err_ratelimited(rkvdec->dev, "Long and short term RPS not set\n");
++		rkvdec_run_postamble(ctx, &run.base);
+ 		return -EINVAL;
  	}
--
--	rkvdec_run_preamble(ctx, &run->base);
- }
+ 
 -- 
 2.56.0
 
