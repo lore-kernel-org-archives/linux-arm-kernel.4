@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9467606D25E
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 11:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA8C2606A8BA
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 11:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LWw9vTbZ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aiSf3J1J
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dmAnlmVz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OevaAhq0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=i/qff6vV9GpqqckqMDaVakLKsz4Q1suNmsJ/DaXLKtw=; b=LWw9vTbZQtbktfa1S/Doh+xt7c
-	FA5ucibYAoePPjSzx4ivxYn4CvoozKvgEiMqdAf9neMRno/xuelqM0TR02h6moz0HOe+ZeyIJd/ap
-	XX9FUEy0FC3mAyb06lAXeJDdIFP1fuvtvUd0qeiOVDPQaQHnBwQLJs4WRRSJgtTD0VvJMqfgZtp/+
-	HcIcaO4zUOc02NnBug7yPOY9vUc1/SBFsZICUvuDCiwvaS30CAYjMZfND4ux4/V9y2txX9bbkPY87
-	pzNlrckvnQSP/Kns4WJmQ69nhX3Lj2AifOG4KF1vNt487/JHqlLwBDhqjR+5Y4PaOXz4WfZr7kjGx
-	skZZkQMQ==;
+	bh=gdJ+j079/tz92iQCRVcdVPV5S6mtELTh8SSjxTPVU+k=; b=dmAnlmVzO1oWryFEpIyWvp7rKV
+	nNWtziHMp6fiItN1FY3ozphB8fucTFiRDynUaSQ0uCsGwDqVihjyibjCDPqDU9TALbZoVv+B5y8fT
+	s8doyaY4HPKO7Npxa7p2861XHT4gYrtA1Of6WawGyEghFlCOSACtn6UVfzlzlZYBRtng/uGdV9qw5
+	NxoQPLi7gnIoBGpCH1w+yzBiG6l+MPZ8l+FyEO/TA64H8tmqf3chDGF1F/9Ykj89IhK9D51Nwq6jI
+	OR+WE93uIXjApikvDsTMAuahAObOtrDcWs7JHbAqooowAlQHnk7xEpS+uwyF2cCx2bIvQLKnX5d+B
+	omYKeU2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSCMu-0000000Fw95-03JN;
-	Sat, 14 Nov 2026 11:56:28 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSCN8-0000000FwQ0-283C;
+	Sat, 14 Nov 2026 11:56:42 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSCMh-0000000Fvxq-3TT1;
-	Sat, 14 Nov 2026 11:56:15 +0000
+	id 1xSCMj-0000000FvzW-3srH;
+	Sat, 14 Nov 2026 11:56:17 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 647E645A10;
-	Sat, 14 Nov 2026 11:56:15 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 777F545850;
+	Sat, 14 Nov 2026 11:56:17 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794657375;
-	b=s7/1nKsjQFaZfxQnxas+0LDkE292A5MOP4IAYzta5Pa8xUsujvSScYoZBXYuUJBj1fzd
-	 Kyolg6V9mLWE4YZg8jWxaNTaWhSSX/9onsswu7enNjQqxbS/rHXH7U/TM6a7V/ET/vVOV
-	 rBKHM5P2R9KYsbmqBEu5VO4DF2bm9672Qkz+ePHbVWkZnuvarNUtD6a3pcnzHFVdT/oP/
-	 IBxUG4o7ITtC8t4sHmtUUd+/59K3Qy7RxdlMfgOQ2MCGluZHsDZ83DXSA/UHa6eWWC3Zs
-	 oqxoMc1qKOK1sCLL0V0EYekhSM34ksaJBOlfjr+gcFeUgAsDfmIAiC2cSvjsunx7fxA==
+	t=1794657377;
+	b=dcxpX3I8HDVcmCNwCPi8OM5kogKh+VqqdC0rX72ZJqgp4QPxNPVCVoSKkEBfrNdXmV35
+	 lMkRE5qMePguwTZOdl5zkN9qXt5O8MW9R0cOwptZP94r6dzfJCkZoRgOfd89Qv6+XZKMG
+	 hJMHQ8ZJgfU0Q1/OJE57nmAi8DYWllF6asI4bFhJ31ArMcfrJLPXUDTYivyC5TL6TGYvL
+	 5LfikVwKB1QyQB6XBh0/ByQXjP8Unh87gPFWSmrP3Ml+pNKK6KUcnTPQjmLoDM8dq9WCL
+	 vKQ4/hqyNdg8dGqwOeZxEftwKR2AkgauJ+aZCv3XciTUNX9PMBm9SAdaDS8YUAwnVfg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794657375;
+	c=relaxed/relaxed; t=1794657377;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=i/qff6vV9GpqqckqMDaVakLKsz4Q1suNmsJ/DaXLKtw=;
-	b=m308EkOrJErWLZF4j17R0Nrv7FTIU1lDZ2CbrGonn88Nb0yLVyqyJIXyusaPLUujfhH0
-	 M/mJGphoPa0fSmPbGUtZTLqIYDGDrpiDxZUvTRQbWHASd9hZ2tn0bgLsMCw0ZVJejYN6B
-	 6nqi7medZwROOba2IgsY5WqrU71vD4VsRh5hYhua+ryvdGb/KJQ9uDdwe/jrXERPaHI3Y
-	 NR/KC95R2GmPOjt91n8rc8+FEqkrRrN7XqjjPC1G4VuO0kUHv+pBOWHcsVKbbldJojOtG
-	 QNQyCPoz8nfwAaZojC9kLzVDaQunWw2xNzGtuErwu6WR0yS1to+wjCeQvy2JwfKffyw==
+	bh=gdJ+j079/tz92iQCRVcdVPV5S6mtELTh8SSjxTPVU+k=;
+	b=lwMtL7dAcdOw/MigKHsXZZ6C9f8EG4VZoUw3mzHuPfkMsch4HvHpUUYdKvTtk6bOc88Z
+	 0HlHvjBTKts4/1lD8lzX3lbKUUKMID98vYBl8Q1iJSislquhD/qclARWNbHN34bE65z9E
+	 qSVN0udasirOI8J6nTcdAE0HQC3Vq3A2XVJ0uiHJvn3gN63+IJjnRo2fAu7is70DkGj6b
+	 ZchvrtJBvUvXZQrmDzpalIOi6t5mn5wjoAeGnrzdfmH8S5QU9giWX8RaDmIo2C94Jibgo
+	 is9+bIX9Y5MpmzD0UdBTaMvyU048vqgaHdVKtO1pFgdz5/Ur3bFyvIbsdZzV38AJkXA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B41261F000C7;
-	Sat, 14 Nov 2026 11:56:13 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id D60381F000CA;
+	Sat, 14 Nov 2026 11:56:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794657375;
-	bh=i/qff6vV9GpqqckqMDaVakLKsz4Q1suNmsJ/DaXLKtw=;
+	s=k20260515; t=1794657377;
+	bh=gdJ+j079/tz92iQCRVcdVPV5S6mtELTh8SSjxTPVU+k=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=aiSf3J1Ji+dYRGlzBmnX3u8wr4zpA20dGlqgq7VzJ+dIZoYG1QLBptK8x7Yvr+UUS
-	 OMBzukvLIVfB+8wmZChbeMdrGBeCdR+/K65L8PxX320HvicKlM40Wa9N7ryrVM/XRZ
-	 F+3aSI6C0TBgEG1i4XRZ6TobZpehrfCRYBHotCgJpp3DkZLrDte24otshmPJ9CCY5B
-	 QbeAO5X9u2hDLD/BcasFHspDApC8Rl9bIO05ZZ0+2E5ramoyLbxNoWcp5Wa6xHhnJ4
-	 XhGetlwdEK15iwRQfOCQ2IDNM9XryYr7saN2uchthNpAV5bF449NvbQ1gcAKyxlA0p
-	 dS4OBduN+peHQ==
+	b=OevaAhq0SbP/urN4dH7OYYCCFc7OE2RxMzeKBRfJJElrxU9P/Dsb0Kt39Qgo+aTXt
+	 Te5NQtVFBFWJMcK/X3b+L/d/+nbKPRlOh8M4itk8/NWnOsAsxUHihrng8p8QbYqj3B
+	 7nNsn8OGsNnEi+l42K4OgbFiYclV8E3lGOvd+GceEdEpVtXmAQg0BQuXFku7LJv71f
+	 Tq3OjXv5ZhqukuTeiHVPNkNVnsFmiyyf6B3ehooNeSvhBFRdzXwDhndE6gTh0iEh2D
+	 BXylfCc8UuMLB6Wh9/GxKkg+/Ksa0DFEDSmHw3UFceF1SFSMOXYTtcd/xpoJeABlPU
+	 J7BGyEnNTJ/Kg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 39D1649D6F;
+	by lkml.kernel.org (Postfix) with ESMTP id 654FA49D76;
 	Sat, 14 Nov 2026 11:56:13 +0000 (UTC)
 From: Larisa Grigore via B4 Relay <devnull+larisa.grigore.oss.nxp.com@kernel.org>
-Date: Sat, 14 Nov 2026 12:55:35 +0100
-Subject: [PATCH v11 03/14] ufs: unipro: Move Tx/Rx FSM state definitions to
- unipro.h
+Date: Sat, 14 Nov 2026 12:55:37 +0100
+Subject: [PATCH v11 05/14] ufs: core: Add common Hibern8 TX FSM polling
+ helper
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261114-b4-ufs-s32n7-v11-3-dc36e11919d5@oss.nxp.com>
+Message-Id: <20261114-b4-ufs-s32n7-v11-5-dc36e11919d5@oss.nxp.com>
 References: <20261114-b4-ufs-s32n7-v11-0-dc36e11919d5@oss.nxp.com>
 In-Reply-To: <20261114-b4-ufs-s32n7-v11-0-dc36e11919d5@oss.nxp.com>
 To: "Martin K. Petersen" <mkp@kernel.org>, 
@@ -109,11 +109,11 @@ Cc: devicetree@vger.kernel.org, Ajay Neeli <ajay.neeli@amd.com>,
  Orson Zhai <orsonzhai@gmail.com>, aruizrui@redhat.com, 
  linux-renesas-soc@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794657369; l=6648;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794657369; l=9301;
  i=larisa.grigore@oss.nxp.com; s=20261114; h=from:subject:message-id;
- bh=trkoKEdgDJvEOwdUNPcivOaHNBCVHWr9HRiB/HK5M28=;
- b=7xexXiN/+K95N4rP6JaB2Vjpy/SOGGA3L9L2eLybPOHkrxWTLlw3BnEHhkxLByvRpXhe2rnF5
- j4JlbwxZEaxDciA9YRwS80mh4JXoJUNIbBIMINQZP36DLEn4Lt6Dl4B
+ bh=4qonTc/Um2UG9wkdhK2e+Hz460fp+LEpHAWSOS8XOD4=;
+ b=6RA5Ig2W1R2Xt2fNnEQnGKMV4afJaVfCpLq/X42KY62ZN/pPdXAsdwSxoc/bJ3Ip0Anlumu1v
+ I2gvjbGnA42BRoemA/Yi/F6o3JPRdjtB1Kzx0XvX1QxhzdOfN7a7i1W
 X-Developer-Key: i=larisa.grigore@oss.nxp.com; a=ed25519;
  pk=Jpt52sb6ETKTtvWjUzhz5Sv5FjB9AEg9QKCcbpWFx3w=
 X-Endpoint-Received: by B4 Relay for larisa.grigore@oss.nxp.com/20261114
@@ -141,194 +141,281 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Larisa Grigore <larisa.grigore@oss.nxp.com>
 
-Move the Tx/Rx FSM state definitions from ufshcd-dwc.h to
-include/ufs/unipro.h.
+Factor out the common logic used to poll TX_FSM_STATE until the TX lanes
+enter Hibern8 into ufshcd_dme_check_tx_hibern8().
 
-These state values are UniPro/M-PHY related and are not specific to
-the DesignWare UFS host controller implementation, so unipro.h is a
-more appropriate location for sharing them.
+The HiSilicon and Qualcomm drivers currently implement similar checks
+using the M-PHY TX_FSM_STATE attribute after PHY bring-up. Move this logic
+to a common helper in ufshcd so it can be shared across host controller
+drivers.
 
-As part of this move, drop the driver-private TX_FSM_HIBERN8 define in
-ufs-hisi and ufs-qcom and repoint their Hibern8 checks at the shared
-UFS_TX_STATE_HIBERN8 enum constant. This is a no-op change.
+Switch the HiSilicon and Qualcomm drivers to use the new helper and drop
+their local implementations. While at it, normalize the "TX lane failed to
+reach Hibern8" error path to return -ETIMEDOUT instead of the raw
+TX_FSM_STATE value (qcom) or -1 (hisi), so all callers get a proper errno.
+A failed TX_FSM_STATE read that completes with a positive UIC result code
+is reported as -EIO. This is an intentional, harmless change of the
+returned error value; the pass/fail behaviour at the call sites is
+unchanged.
 
-Since the definitions become visible to every user of the shared
-header, prefix the enum constants with UFS_ (e.g. RX_STATE_HIBERN8
-becomes UFS_RX_STATE_HIBERN8) to avoid polluting the global namespace,
-and update the existing AMD Versal2 users accordingly.
+This also prepares for reusing the same M-PHY specific Hibern8 check in
+a subsequent commit.
 
-This also prepares for using these definitions in a subsequent commit.
-
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
 Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
-Reviewed-by: Bart Van Assche <bvanassche@acm.org>
 ---
- drivers/ufs/host/ufs-amd-versal2.c |  8 ++++----
- drivers/ufs/host/ufs-hisi.c        |  8 ++++----
- drivers/ufs/host/ufs-hisi.h        |  1 -
- drivers/ufs/host/ufs-qcom.c        |  4 ++--
- drivers/ufs/host/ufs-qcom.h        |  1 -
- drivers/ufs/host/ufshcd-dwc.h      | 19 -------------------
- include/ufs/unipro.h               | 20 ++++++++++++++++++++
- 7 files changed, 30 insertions(+), 31 deletions(-)
+ drivers/ufs/core/ufshcd.c   | 97 +++++++++++++++++++++++++++++++++++++++++++++
+ drivers/ufs/host/ufs-hisi.c | 48 +---------------------
+ drivers/ufs/host/ufs-qcom.c | 42 +-------------------
+ include/ufs/ufshcd.h        |  2 +
+ 4 files changed, 101 insertions(+), 88 deletions(-)
 
-diff --git a/drivers/ufs/host/ufs-amd-versal2.c b/drivers/ufs/host/ufs-amd-versal2.c
-index 65cb0b5028b9..3469e49df133 100644
---- a/drivers/ufs/host/ufs-amd-versal2.c
-+++ b/drivers/ufs/host/ufs-amd-versal2.c
-@@ -118,8 +118,8 @@ static int ufs_versal2_enable_phy(struct ufs_hba *hba)
- 			if (ret)
- 				return ret;
+diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
+index a6817e4bd1f8..9b893e4ada19 100644
+--- a/drivers/ufs/core/ufshcd.c
++++ b/drivers/ufs/core/ufshcd.c
+@@ -4494,6 +4494,103 @@ int ufshcd_dme_get_attr(struct ufs_hba *hba, u32 attr_sel,
+ }
+ EXPORT_SYMBOL_GPL(ufshcd_dme_get_attr);
  
--			if (reg == TX_STATE_HIBERN8 || reg == TX_STATE_SLEEP ||
--			    reg == TX_STATE_LSBURST)
-+			if (reg == UFS_TX_STATE_HIBERN8 || reg == UFS_TX_STATE_SLEEP ||
-+			    reg == UFS_TX_STATE_LSBURST)
- 				break;
- 
- 			time_left--;
-@@ -138,8 +138,8 @@ static int ufs_versal2_enable_phy(struct ufs_hba *hba)
- 			if (ret)
- 				return ret;
- 
--			if (reg == RX_STATE_HIBERN8 || reg == RX_STATE_SLEEP ||
--			    reg == RX_STATE_LSBURST)
-+			if (reg == UFS_RX_STATE_HIBERN8 || reg == UFS_RX_STATE_SLEEP ||
-+			    reg == UFS_RX_STATE_LSBURST)
- 				break;
- 
- 			time_left--;
++/**
++ * ufshcd_tx_lanes_in_hibern8 - Check TX_FSM_STATE of all TX lanes once
++ * @hba: host controller instance
++ * @num_lanes: number of TX lanes to check
++ *
++ * Read TX_FSM_STATE for every lane and verify it reached Hibern8.
++ *
++ * Return: 0 if all lanes are in Hibern8, -EAGAIN if at least one lane is
++ * not in Hibern8 yet, or a negative errno if reading TX_FSM_STATE failed.
++ */
++static int ufshcd_tx_lanes_in_hibern8(struct ufs_hba *hba,
++				      unsigned int num_lanes)
++{
++	u32 tx_fsm_val = 0;
++	unsigned int i;
++	int err;
++
++	for (i = 0; i < num_lanes; i++) {
++		err = ufshcd_dme_get(hba,
++				     UIC_ARG_MIB_SEL(TX_FSM_STATE,
++						     UIC_ARG_MPHY_TX_GEN_SEL_INDEX(i)),
++				     &tx_fsm_val);
++		if (err) {
++			dev_err(hba->dev,
++				"%s: unable to get TX_FSM_STATE for lane %u, err %d\n",
++				__func__, i, err);
++			/* A positive value is a UIC result code, not an errno. */
++			return err > 0 ? -EIO : err;
++		}
++
++		if (tx_fsm_val != UFS_TX_STATE_HIBERN8)
++			return -EAGAIN;
++	}
++
++	return 0;
++}
++
++/**
++ * ufshcd_dme_check_tx_hibern8 - Check if all TX lanes entered Hibern8 state
++ * @hba: host controller instance
++ * @num_lanes: number of TX lanes to check
++ * @timeout_ms: overall timeout in milliseconds shared by all lanes
++ *
++ * Return: 0 on success, negative errno on failure.
++ */
++int ufshcd_dme_check_tx_hibern8(struct ufs_hba *hba, unsigned int num_lanes,
++				unsigned int timeout_ms)
++{
++	unsigned int i;
++	int err, ret;
++	u32 state;
++
++	if (!num_lanes)
++		return -EINVAL;
++
++	/*
++	 * Poll every lane until ufshcd_tx_lanes_in_hibern8() stops returning
++	 * -EAGAIN, i.e. all lanes reached HIBERN8 (err == 0) or a real error
++	 * was hit. A read error has already been reported by the helper.
++	 */
++	ret = read_poll_timeout(ufshcd_tx_lanes_in_hibern8, err,
++				err != -EAGAIN, 200,
++				(u64)timeout_ms * USEC_PER_MSEC, false,
++				hba, num_lanes);
++	if (!ret)
++		return err;
++
++	/*
++	 * Timed out. The poll helper stops at the first lane that is not in
++	 * HIBERN8, so read every lane again to report each one that is stuck,
++	 * together with its TX_FSM_STATE.
++	 */
++	ret = 0;
++	for (i = 0; i < num_lanes; i++) {
++		err = ufshcd_dme_get(hba,
++				     UIC_ARG_MIB_SEL(TX_FSM_STATE,
++						     UIC_ARG_MPHY_TX_GEN_SEL_INDEX(i)),
++				     &state);
++		if (err) {
++			dev_err(hba->dev,
++				"%s: unable to get TX_FSM_STATE for lane %u, err %d\n",
++				__func__, i, err);
++			/* A positive value is a UIC result code, not an errno. */
++			return err > 0 ? -EIO : err;
++		}
++		if (state != UFS_TX_STATE_HIBERN8) {
++			dev_err(hba->dev,
++				"%s: TX lane %u stuck in TX_FSM_STATE %u\n",
++				__func__, i, state);
++			ret = -ETIMEDOUT;
++		}
++	}
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(ufshcd_dme_check_tx_hibern8);
++
+ /**
+  * ufshcd_dme_rmw - get modify set a DME attribute
+  * @hba: per adapter instance
 diff --git a/drivers/ufs/host/ufs-hisi.c b/drivers/ufs/host/ufs-hisi.c
-index 73eef0e0d278..d3fd340f2dd1 100644
+index 3e3d44ee0c14..5217e2e294f8 100644
 --- a/drivers/ufs/host/ufs-hisi.c
 +++ b/drivers/ufs/host/ufs-hisi.c
-@@ -34,8 +34,8 @@ static int ufs_hisi_check_hibern8(struct ufs_hba *hba)
- 				      &tx_fsm_val_0);
- 		err |= ufshcd_dme_get(hba,
- 		    UIC_ARG_MIB_SEL(MPHY_TX_FSM_STATE, 1), &tx_fsm_val_1);
--		if (err || (tx_fsm_val_0 == TX_FSM_HIBERN8 &&
--			tx_fsm_val_1 == TX_FSM_HIBERN8))
-+		if (err || (tx_fsm_val_0 == UFS_TX_STATE_HIBERN8 &&
-+			tx_fsm_val_1 == UFS_TX_STATE_HIBERN8))
- 			break;
+@@ -22,50 +22,6 @@
+ #include <ufs/ufshci.h>
+ #include <ufs/ufs_quirks.h>
  
- 		/* sleep for max. 200us */
-@@ -56,8 +56,8 @@ static int ufs_hisi_check_hibern8(struct ufs_hba *hba)
- 	if (err) {
- 		dev_err(hba->dev, "%s: unable to get TX_FSM_STATE, err %d\n",
- 			__func__, err);
--	} else if (tx_fsm_val_0 != TX_FSM_HIBERN8 ||
--			 tx_fsm_val_1 != TX_FSM_HIBERN8) {
-+	} else if (tx_fsm_val_0 != UFS_TX_STATE_HIBERN8 ||
-+			 tx_fsm_val_1 != UFS_TX_STATE_HIBERN8) {
- 		err = -1;
- 		dev_err(hba->dev, "%s: invalid TX_FSM_STATE, lane0 = %d, lane1 = %d\n",
- 			__func__, tx_fsm_val_0, tx_fsm_val_1);
-diff --git a/drivers/ufs/host/ufs-hisi.h b/drivers/ufs/host/ufs-hisi.h
-index 5a90c0f4e90c..6af6a268458d 100644
---- a/drivers/ufs/host/ufs-hisi.h
-+++ b/drivers/ufs/host/ufs-hisi.h
-@@ -43,7 +43,6 @@
-  * M-TX Configuration Attributes for Hixxxx
-  */
- #define MPHY_TX_FSM_STATE	0x41
--#define TX_FSM_HIBERN8	0x1
+-static int ufs_hisi_check_hibern8(struct ufs_hba *hba)
+-{
+-	int err = 0;
+-	u32 tx_fsm_val_0 = 0;
+-	u32 tx_fsm_val_1 = 0;
+-	unsigned long timeout = jiffies + msecs_to_jiffies(HBRN8_POLL_TOUT_MS);
+-
+-	do {
+-		err = ufshcd_dme_get(hba, UIC_ARG_MIB_SEL(TX_FSM_STATE, 0),
+-				      &tx_fsm_val_0);
+-		err |= ufshcd_dme_get(hba,
+-		    UIC_ARG_MIB_SEL(TX_FSM_STATE, 1), &tx_fsm_val_1);
+-		if (err || (tx_fsm_val_0 == UFS_TX_STATE_HIBERN8 &&
+-			tx_fsm_val_1 == UFS_TX_STATE_HIBERN8))
+-			break;
+-
+-		/* sleep for max. 200us */
+-		usleep_range(100, 200);
+-	} while (time_before(jiffies, timeout));
+-
+-	/*
+-	 * we might have scheduled out for long during polling so
+-	 * check the state again.
+-	 */
+-	if (time_after(jiffies, timeout)) {
+-		err = ufshcd_dme_get(hba, UIC_ARG_MIB_SEL(TX_FSM_STATE, 0),
+-				     &tx_fsm_val_0);
+-		err |= ufshcd_dme_get(hba,
+-		 UIC_ARG_MIB_SEL(TX_FSM_STATE, 1), &tx_fsm_val_1);
+-	}
+-
+-	if (err) {
+-		dev_err(hba->dev, "%s: unable to get TX_FSM_STATE, err %d\n",
+-			__func__, err);
+-	} else if (tx_fsm_val_0 != UFS_TX_STATE_HIBERN8 ||
+-			 tx_fsm_val_1 != UFS_TX_STATE_HIBERN8) {
+-		err = -1;
+-		dev_err(hba->dev, "%s: invalid TX_FSM_STATE, lane0 = %d, lane1 = %d\n",
+-			__func__, tx_fsm_val_0, tx_fsm_val_1);
+-	}
+-
+-	return err;
+-}
+-
+ static void ufs_hisi_clk_init(struct ufs_hba *hba)
+ {
+ 	struct ufs_hisi_host *host = ufshcd_get_variant(hba);
+@@ -224,9 +180,7 @@ static int ufs_hisi_link_startup_pre_change(struct ufs_hba *hba)
  
- /*
-  * Hixxxx UFS HC specific Registers
+ 	/* Unipro VS_mphy_disable */
+ 	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xD0C1, 0x0), 0x0);
+-	err = ufs_hisi_check_hibern8(hba);
+-	if (err)
+-		dev_err(hba->dev, "ufs_hisi_check_hibern8 error\n");
++	err = ufshcd_dme_check_tx_hibern8(hba, 2, HBRN8_POLL_TOUT_MS);
+ 
+ 	if (!(host->caps & UFS_HISI_CAP_PHY10nm))
+ 		ufshcd_writel(hba, UFS_HCLKDIV_NORMAL_VALUE, UFS_REG_HCLKDIV);
 diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-index 67c2a3b95e58..31ea7b294a42 100644
+index a96ac35994de..979d223230a6 100644
 --- a/drivers/ufs/host/ufs-qcom.c
 +++ b/drivers/ufs/host/ufs-qcom.c
-@@ -424,7 +424,7 @@ static int ufs_qcom_check_hibern8(struct ufs_hba *hba)
- 				UIC_ARG_MIB_SEL(MPHY_TX_FSM_STATE,
- 					UIC_ARG_MPHY_TX_GEN_SEL_INDEX(0)),
- 				&tx_fsm_val);
--		if (err || tx_fsm_val == TX_FSM_HIBERN8)
-+		if (err || tx_fsm_val == UFS_TX_STATE_HIBERN8)
- 			break;
+@@ -413,46 +413,6 @@ static int ufs_qcom_init_lane_clks(struct ufs_qcom_host *host)
+ 	return 0;
+ }
  
- 		/* sleep for max. 200us */
-@@ -444,7 +444,7 @@ static int ufs_qcom_check_hibern8(struct ufs_hba *hba)
- 	if (err) {
- 		dev_err(hba->dev, "%s: unable to get TX_FSM_STATE, err %d\n",
- 				__func__, err);
--	} else if (tx_fsm_val != TX_FSM_HIBERN8) {
-+	} else if (tx_fsm_val != UFS_TX_STATE_HIBERN8) {
- 		err = tx_fsm_val;
- 		dev_err(hba->dev, "%s: invalid TX_FSM_STATE = %d\n",
- 				__func__, err);
-diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
-index 944b2e532a09..1bda960c1d87 100644
---- a/drivers/ufs/host/ufs-qcom.h
-+++ b/drivers/ufs/host/ufs-qcom.h
-@@ -11,7 +11,6 @@
- #include <ufs/ufshcd.h>
- 
- #define MPHY_TX_FSM_STATE       0x41
--#define TX_FSM_HIBERN8          0x1
- #define HBRN8_POLL_TOUT_MS      100
- #define DEFAULT_CLK_RATE_HZ     1000000
- #define MAX_SUPP_MAC		64
-diff --git a/drivers/ufs/host/ufshcd-dwc.h b/drivers/ufs/host/ufshcd-dwc.h
-index c618bb914904..a5e40e7604a1 100644
---- a/drivers/ufs/host/ufshcd-dwc.h
-+++ b/drivers/ufs/host/ufshcd-dwc.h
-@@ -39,25 +39,6 @@
- #define RX_AFE_CTLE_IDAC(n)	(0x4001 + ((n) * 0x100))
- #define FW_CALIB_CCFG(n)	(0x404D + ((n) * 0x100))
- 
--/* Tx/Rx FSM state */
--enum rx_fsm_state {
--	RX_STATE_DISABLED = 0,
--	RX_STATE_HIBERN8 = 1,
--	RX_STATE_SLEEP = 2,
--	RX_STATE_STALL = 3,
--	RX_STATE_LSBURST = 4,
--	RX_STATE_HSBURST = 5,
--};
+-static int ufs_qcom_check_hibern8(struct ufs_hba *hba)
+-{
+-	int err;
+-	u32 tx_fsm_val;
+-	unsigned long timeout = jiffies + msecs_to_jiffies(HBRN8_POLL_TOUT_MS);
 -
--enum tx_fsm_state {
--	TX_STATE_DISABLED = 0,
--	TX_STATE_HIBERN8 = 1,
--	TX_STATE_SLEEP = 2,
--	TX_STATE_STALL = 3,
--	TX_STATE_LSBURST = 4,
--	TX_STATE_HSBURST = 5,
--};
+-	do {
+-		err = ufshcd_dme_get(hba,
+-				UIC_ARG_MIB_SEL(TX_FSM_STATE,
+-					UIC_ARG_MPHY_TX_GEN_SEL_INDEX(0)),
+-				&tx_fsm_val);
+-		if (err || tx_fsm_val == UFS_TX_STATE_HIBERN8)
+-			break;
 -
- struct ufshcd_dme_attr_val {
- 	u32 attr_sel;
- 	u32 mib_val;
-diff --git a/include/ufs/unipro.h b/include/ufs/unipro.h
-index 9c168703b104..16b2051f7241 100644
---- a/include/ufs/unipro.h
-+++ b/include/ufs/unipro.h
-@@ -466,4 +466,24 @@ enum {
- 	CPORT_CONNECTED,
- };
- 
-+/* RX_FSM_State encoding, MIPI M-PHY v6.0 Table 50 (M-RX Status Attributes) */
-+enum ufs_rx_fsm_state {
-+	UFS_RX_STATE_DISABLED = 0,
-+	UFS_RX_STATE_HIBERN8 = 1,
-+	UFS_RX_STATE_SLEEP = 2,
-+	UFS_RX_STATE_STALL = 3,
-+	UFS_RX_STATE_LSBURST = 4,
-+	UFS_RX_STATE_HSBURST = 5,
-+};
-+
-+/* TX_FSM_State encoding, MIPI M-PHY v6.0 Table 47 (M-TX Status Attributes) */
-+enum ufs_tx_fsm_state {
-+	UFS_TX_STATE_DISABLED = 0,
-+	UFS_TX_STATE_HIBERN8 = 1,
-+	UFS_TX_STATE_SLEEP = 2,
-+	UFS_TX_STATE_STALL = 3,
-+	UFS_TX_STATE_LSBURST = 4,
-+	UFS_TX_STATE_HSBURST = 5,
-+};
-+
- #endif /* _UNIPRO_H_ */
+-		/* sleep for max. 200us */
+-		usleep_range(100, 200);
+-	} while (time_before(jiffies, timeout));
+-
+-	/*
+-	 * we might have scheduled out for long during polling so
+-	 * check the state again.
+-	 */
+-	if (time_after(jiffies, timeout))
+-		err = ufshcd_dme_get(hba,
+-				UIC_ARG_MIB_SEL(TX_FSM_STATE,
+-					UIC_ARG_MPHY_TX_GEN_SEL_INDEX(0)),
+-				&tx_fsm_val);
+-
+-	if (err) {
+-		dev_err(hba->dev, "%s: unable to get TX_FSM_STATE, err %d\n",
+-				__func__, err);
+-	} else if (tx_fsm_val != UFS_TX_STATE_HIBERN8) {
+-		err = tx_fsm_val;
+-		dev_err(hba->dev, "%s: invalid TX_FSM_STATE = %d\n",
+-				__func__, err);
+-	}
+-
+-	return err;
+-}
+-
+ static void ufs_qcom_select_unipro_mode(struct ufs_qcom_host *host)
+ {
+ 	ufshcd_rmwl(host->hba, QUNIPRO_SEL, QUNIPRO_SEL, REG_UFS_CFG1);
+@@ -638,7 +598,7 @@ static int ufs_qcom_hce_enable_notify(struct ufs_hba *hba,
+ 		break;
+ 	case POST_CHANGE:
+ 		/* check if UFS PHY moved from DISABLED to HIBERN8 */
+-		err = ufs_qcom_check_hibern8(hba);
++		err = ufshcd_dme_check_tx_hibern8(hba, 1, HBRN8_POLL_TOUT_MS);
+ 		ufs_qcom_enable_hw_clk_gating(hba);
+ 		ufs_qcom_ice_enable(host);
+ 		ufs_qcom_config_ice_allocator(host);
+diff --git a/include/ufs/ufshcd.h b/include/ufs/ufshcd.h
+index be62165b785e..09ad11f7165f 100644
+--- a/include/ufs/ufshcd.h
++++ b/include/ufs/ufshcd.h
+@@ -1505,6 +1505,8 @@ int ufshcd_make_hba_operational(struct ufs_hba *hba);
+ void ufshcd_remove(struct ufs_hba *);
+ int ufshcd_uic_hibern8_enter(struct ufs_hba *hba);
+ int ufshcd_uic_hibern8_exit(struct ufs_hba *hba);
++int ufshcd_dme_check_tx_hibern8(struct ufs_hba *hba, unsigned int num_lanes,
++				unsigned int timeout_ms);
+ void ufshcd_delay_us(unsigned long us, unsigned long tolerance);
+ void ufshcd_parse_dev_ref_clk_freq(struct ufs_hba *hba, struct clk *refclk);
+ void ufshcd_update_evt_hist(struct ufs_hba *hba, u32 id, u32 val);
 
 -- 
 2.43.0
