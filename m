@@ -2,105 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C887606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 19:34:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E338C606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 20:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZhaKy4Wn;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=u1stEIzY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fGRF5adi;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aIXCbvlh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4XRaUjntmnwgXMBa6bG6H6t68ZP5x01BzH1Lhm94CSs=; b=ZhaKy4Wnjq2iyv
-	KjBSrBWfZ/MtXmhAOJc5yY01oiRlHkshYssxBloKLwPRP16vVgurp4xUC4XwIPGA2kOBq3XduGxxu
-	6cTcIjFmu7Dmqbxmz9zCTmKgvc/1Ak4A2DSl5AOi/sv0DSNM+8HwLuo6jTmwaWWSPeGNU+7MqeFoe
-	jxw0r6IUsTsAEE5BwmG6p3EIRpciSNJUCkC0XykJio2vhXZb4LGHiOExpHbQwfWqvxu+nLiSBJPiA
-	Ci1sWV/2oZSMYadBW1GcTfpo27dHv9B5C+brwWKVn9tkAjtA0gukEsuY1l3kxGB8ksGWgAT/1V+nC
-	cXlZTRv34JdbfWPmb9uw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=3cTSklSM869HvZ/lNR+9JrA84aFdBBlR64yvM3C+hpM=; b=fGRF5adiypLuvNqSr1BY2EWpk6
+	N7BbKgX1eQC+KH+w5tYtFZ9tgHoTOhg8+lgThgaTocf8PKb31vlvkBpocJggJG1M1ncl898W040OD
+	1U94Ei9gDzl6DiwrbH7CLXURYOaGxJhsEz5GNjWm5G/KrmsLAININhD5qrzS+Znmci0SRL6G93I8j
+	b/NxCEjbuQJrBy8P6Gf02ggsbGYNFLAeIPgQRlCbGyHb962lGQ/pf3jSc0q2h/7uCSjeax3z2R2tv
+	GrTfI/8cWI/fMnU46C2Ot1VP9NarlcjiHyu6JQ7Z0XNIn6+7R1HpJejSgnvtfysfvsqQpxMpyyCaI
+	kgG5IjXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSJWS-0000000GgVN-3ii1;
-	Sat, 14 Nov 2026 19:34:48 +0000
-Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
+	id 1xSKaX-0000000Gkv0-1Dqf;
+	Sat, 14 Nov 2026 20:43:05 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSJWM-0000000GgT6-0hg9
+	id 1xSKaV-0000000Gkus-3nKH
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 19:34:43 +0000
-Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-3acb11973c3so2618539a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 11:34:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794684881; x=1795289681; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=4XRaUjntmnwgXMBa6bG6H6t68ZP5x01BzH1Lhm94CSs=;
-        b=u1stEIzYAbr5tqxhVog6iEgC3EhvfZzJQwffMnJRoLt1vk1t7Z9eDOoh4n/VfEtqcI
-         mBN6Vtz+QMXZGgLar7+JZJiTMHmNIMeu9ZUF/4vi88vOz52omCeGvM7spD/VMTU8UnPz
-         IDownyF00r3K0AAcWbAtKlCJjax7HODPHjfjGsH4uVkWgceu7dL1JDYgvJ6YpY2qPUO9
-         0+FTk91i6T3eYlIDBnX/wGlOgvjYnA2vngykZ0REV28q/slUwU3VX9nO2puC/xM2op7v
-         HLb/lodPhFqCggM3DJWTk4sWy8BzNuwTrPFtwQPmpxh126qN7x0eVytPWkMKa/kI1Qcc
-         DLSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794684881; x=1795289681;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=4XRaUjntmnwgXMBa6bG6H6t68ZP5x01BzH1Lhm94CSs=;
-        b=xWnv09PcbXngNLHO6R+d6NN8mjwUlZ4R1ZoU5B2c80WcgB7E0/p5a3nL9FTaBN8WsT
-         nN9Ub6NH07yjXtG55Fdyi71xju8Ck+s+KdHU+Jxwk9Yz4aqPS4r6HHHbWRdxf13vAetp
-         evkAOwQwD1B0v8K6lQ+cg3sQgsU0Wupfa6WVUWTGPJda0f+TXAT46yAvSIrhljtdHIG1
-         hsE3GuXM2UVhbcMiWQvzwnN6yMJsT/Ls2W38+Sq+Jvcag8ZDcGUsJ/7GWMhbLSJ6yXW3
-         qRzeB6LQMDTxBZqr+foRann1l1LqFg1QPOmBPNHNZVx3zo3wLHl6q0GUlqPQWpCu2ByK
-         pdgw==
-X-Forwarded-Encrypted: i=1; AL+hErGaL6NUnxaJ8lNxO7oLmtzCRBrqEYp1oTHP+5X/GYHAzfXZx+tegEj7N0hHOCdfP8vlhAzqh46dPxE8tihqAmTz@lists.infradead.org
-X-Gm-Message-State: APuU4Z8xGNI6J/6fCSyOcQs4/s2UYJ+xRFXQvcuzb/gQYzc6J+H9gwnn
-	wbYrtiYOL3QxXWlKy/L/Ke1Hq5dPz2ztnw65nXJdDBp+r7orqEpqVV0q
-X-Gm-Gg: AYBFou32H+zJ/hpm0pcpmdC8eVFTdUZSib4Udmj5n3LasSV+Ws/pM91L4kXwyYQQPJ4
-	bbFmReYvvRm6IahPnH5N1e5gLBof32LN3cqZJSFPSLXmfWgNWQBOHZIKK5NEIeAwMksjDWU0KMG
-	U44L4caF8g+mM3OSwQ9CGpThjwueSlOESbN/xtQ98v48PxYajirWZ8n78KMZerFpdmZzHvHMAYl
-	saR4i2dnPDwkek93p+Nv3sw0hob0jH1oLxtqaAlHdl625P+75y9HgY3LQOErqyMVpTrVyIFFOLZ
-	3f3pwRVIAwhr7mZSkr6iPmbH7ejXyJuEKP2t9m8L6G3oYAyXRs/z+F/A9AIV24Ow6zkoAlR8RkR
-	CAGnwb6rI9r2y7IfrNyrfDas3Jp+1vvn3sYDLg2N2RUn1gv5tmD9Mt1lfPdFcNC+2IweT+U8IyG
-	VbicfbCT8uoHiSGkPsurOyGcWGt66ld7McVNSYSL9vAOXTM7LdzP6fhwBVmUGt/z9yd50kYniMd
-	Lm24dPRiWduaaAtz5EVEzblNuDhOZGiQpy7UMKSFwq5dcVtg7ZzUjREFH6G71RZuZ6mqYx/FNha
-	yrgZfv+WfdWPng2uX6w6rf/g/cNbLfEArP+Voyj8PezVzmJvrgzzxM+uY6Y2JBNHYW3ItdmPCZM
-	WjyYchfkVTMaVCwl4quYyzFOsjl8mv+Aiz0bav/8BOMDikOLg4qlIFgc3tx6cq88BzbGKVuZKBB
-	uMCefijscmiZ90tbQHAV+ZZGjREJYxS8GdGknK7l8e
-X-Received: by 2002:a17:90b:1f8d:b0:3a8:6045:5a19 with SMTP id 98e67ed59e1d1-3b1b0a20e04mr6004859a91.37.1794684881101;
-        Sat, 14 Nov 2026 11:34:41 -0800 (PST)
-Received: from sid-dev-env.cgrhrlrrq2nuffriizdlnb1x4b.xx.internal.cloudapp.net ([4.155.54.158])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1b24938bdsm5093969a91.1.2026.11.14.11.34.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2026 11:34:40 -0800 (PST)
-From: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
-To: Peter Huewe <peterhuewe@gmx.de>,
-	Jarkko Sakkinen <jarkko@kernel.org>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Yeoreum Yun <yeoreum.yun@arm.com>,
-	Stuart Yoder <stuart.yoder@arm.com>,
-	apais@microsoft.com,
-	rlmenge@gmail.com,
-	hargar@linux.microsoft.com,
-	linux-integrity@vger.kernel.org,
+	Sat, 14 Nov 2026 20:43:03 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3A5D045A27;
+	Sat, 14 Nov 2026 20:43:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF92A1F000C4;
+	Sat, 14 Nov 2026 20:43:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794688983;
+	bh=3cTSklSM869HvZ/lNR+9JrA84aFdBBlR64yvM3C+hpM=;
+	h=From:To:Cc:Subject:Date;
+	b=aIXCbvlhiSeCGeX2Vjg/JhSiD5e/b0zXPWRMnxwOdQgKGOp2bF0J3AIUvTqBQvKBS
+	 DbiXlXjZMb2f2mO5eYROkQRN6+U2WOLCILc4lvmy+uOZaZUIcKguZTHpnvc8p8hkuY
+	 p2mnXXJhoA3HB4NxJtZCpiwnCGFvmCq1rW4jpTyg8BqPvwgx+A1TXuiJVZ1VTBD4j/
+	 P0d50oLZlWpS9E0hJSRT3Nxg4MXQXshzLaisb4X5U1b168cjWMRHzGrvRUD9NtnDiA
+	 39B0sVPuvxzVTJWfB01ZJ+H/4Ws/8kBr2JaaOVT0djSRqWChXMW3rG/tVjVyfRWlpG
+	 GHZL3kPRZRyAg==
+From: Eric Biggers <ebiggers@kernel.org>
+To: linux-crypto@vger.kernel.org
+Cc: Ard Biesheuvel <ardb@kernel.org>,
+	"Jason A . Donenfeld" <Jason@zx2c4.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Siddharth Chintamaneni <sidchintamaneni@gmail.com>
-Subject: [PATCH v2 2/4] tpm: tpm_crb_ffa: Only probe when ACPI TPM2 uses FF-A
-Date: Sat, 14 Nov 2026 19:34:32 +0000
-Message-ID: <20261114193434.117714-3-sidchintamaneni@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261114193434.117714-1-sidchintamaneni@gmail.com>
-References: <20261114193434.117714-1-sidchintamaneni@gmail.com>
+	Emanuele Rocca <emanuele.rocca@arm.com>,
+	Eric Biggers <ebiggers@kernel.org>
+Subject: [PATCH] lib/crypto: arm64/sha3: Use assembler for sha3 instructions
+Date: Sat, 14 Nov 2026 12:42:45 -0800
+Message-ID: <20261114204245.67919-1-ebiggers@kernel.org>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_113442_219043_E3428633 
-X-CRM114-Status: GOOD (  14.58  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,89 +69,136 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Prior to commit 677042afb97a ("tpm: tpm_crb_ffa: revert defered_probed
-when tpm_crb_ffa is built-in"), built-in tpm_crb_ffa only registered
-tpm_crb_ffa_driver from tpm_crb_ffa_init() after crb_acpi_probe()
-confirmed start_method == ACPI_TPM2_CRB_WITH_ARM_FFA. After that
-commit, tpm_crb_ffa unconditionally registers on the FF-A bus at
-device_initcall time (and when loaded as a module) without checking
-the platform's ACPI TPM2 start method.
+All supported assemblers (binutils 2.30 and later, and clang 17.0.1 and
+later) support the sha3 instructions now.
 
-A platform's firmware may expose a TPM CRB over FF-A Secure Partition
-for UEFI boot services while advertising a non-FF-A start method to
-the OS in the ACPI TPM2 table. When the ACPI TPM2 table designates a
-non-FF-A start method, Linux has no consumer for tpm_crb_ffa and
-should not probe the FF-A TPM service.
+Therefore, drop the use of '.inst' in sha3-ce-core.S and just have the
+assembler generate the instructions.
 
-On Microsoft Cobalt 200 systems, the ACPI TPM2 table does not use
-ACPI_TPM2_CRB_WITH_ARM_FFA, yet ffa_init() discovers the FF-A TPM
-partition and tpm_crb_ffa_probe() unconditionally sends
-CRB_FFA_GET_INTERFACE_VERSION via FFA_MSG_SEND_DIRECT_REQ2/REQ SMC.
-That request wedges the calling CPU in Secure World (with Non-Secure
-interrupts and GICv3 pseudo-NMIs masked), hanging boot with an RCU CPU
-stall:
+This requires adding '.arch armv8.2-a+sha3'.  I also tried just
+'.arch_extension sha3', but that doesn't work with binutils 2.40 and
+earlier because they consider sha3 to depend on armv8.2-a or later (and
+this file isn't built with -march=armv8.2-a or later).  This was fixed
+in binutils 2.41 commit 205e4380c800, but the kernel currently supports
+binutils 2.30 and later.
 
-  [    5.507519] ARM FF-A: Driver version 1.2
-  [    5.507519] ARM FF-A: Firmware version 1.2 found
-  [    5.507551] ARM FF-A: Notification setup failed -61, not enabled
-  [    7.150580] Freeing initrd memory: 293640K
-  [   65.515248] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
-  [   65.521346] rcu:     10-...0: (3 GPs behind) idle=dd9c/1/0x4000000000000000 softirq=37/37 fqs=5262
-  [   65.530031] rcu:              hardirqs   softirqs   csw/system
-  [   65.535589] rcu:      number:        0          0            0
-  [   65.541146] rcu:     cputime:        0          0            0   ==> 30028(ms)
-  [   65.548102] rcu:     (detected by 66, t=15010 jiffies, g=-951, q=1384 ncpus=132)
-  [   65.555228] Sending NMI from CPU 66 to CPUs 10:
-  [   75.560686] After 10 seconds, these CPUS still haven't responded to the NMI: 10
+Also prefix the immediate operands to 'xar' with '#', now that they no
+longer need to be plain numbers to generate an .inst.  This isn't
+required, but it follows the standard convention for immediates in arm64
+assembly, including elsewhere in the same file.
 
-Check tpm2_acpi_start_method in tpm_crb_ffa_probe() and return -ENODEV
-unless it equals ACPI_TPM2_CRB_WITH_ARM_FFA. Checking in probe() rather
-than module_init allows tpm_crb_ffa.ko to load as a symbol dependency
-of tpm_crb.ko on non-FF-A platforms when built as modules, while
-skipping FF-A TPM requests unless ACPI advertises the FF-A start
-method.
+No change in the resulting .text section with either binutils or clang.
 
-Fixes: eb93f0734ef1 ("tpm_crb: ffa_tpm: Implement driver compliant to CRB over FF-A")
-Signed-off-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Signed-off-by: Eric Biggers <ebiggers@kernel.org>
 ---
- drivers/char/tpm/tpm_crb_ffa.c | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/char/tpm/tpm_crb_ffa.c b/drivers/char/tpm/tpm_crb_ffa.c
-index 025c4d4b17ca..da676da6f3f0 100644
---- a/drivers/char/tpm/tpm_crb_ffa.c
-+++ b/drivers/char/tpm/tpm_crb_ffa.c
-@@ -9,9 +9,11 @@
+This patch is intended to be taken through libcrypto-next
+
+ lib/crypto/arm64/sha3-ce-core.S | 73 ++++++++++++---------------------
+ 1 file changed, 26 insertions(+), 47 deletions(-)
+
+diff --git a/lib/crypto/arm64/sha3-ce-core.S b/lib/crypto/arm64/sha3-ce-core.S
+index b8ab01987ae07..02f225fd86ced 100644
+--- a/lib/crypto/arm64/sha3-ce-core.S
++++ b/lib/crypto/arm64/sha3-ce-core.S
+@@ -12,29 +12,8 @@
+ #include <linux/linkage.h>
+ #include <asm/assembler.h>
  
- #define pr_fmt(fmt) "CRB_FFA: " fmt
+-	.irp	b,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
+-	.set	.Lv\b\().2d, \b
+-	.set	.Lv\b\().16b, \b
+-	.endr
+-
+-	/*
+-	 * ARMv8.2 Crypto Extensions instructions
+-	 */
+-	.macro	eor3, rd, rn, rm, ra
+-	.inst	0xce000000 | .L\rd | (.L\rn << 5) | (.L\ra << 10) | (.L\rm << 16)
+-	.endm
+-
+-	.macro	rax1, rd, rn, rm
+-	.inst	0xce608c00 | .L\rd | (.L\rn << 5) | (.L\rm << 16)
+-	.endm
+-
+-	.macro	bcax, rd, rn, rm, ra
+-	.inst	0xce200000 | .L\rd | (.L\rn << 5) | (.L\ra << 10) | (.L\rm << 16)
+-	.endm
+-
+-	.macro	xar, rd, rn, rm, imm6
+-	.inst	0xce800000 | .L\rd | (.L\rn << 5) | ((\imm6) << 10) | (.L\rm << 16)
+-	.endm
++	/* In binutils 2.40 and earlier, sha3 depends on armv8.2-a or later. */
++	.arch	armv8.2-a+sha3
  
-+#include <linux/acpi.h>
- #include <linux/arm_ffa.h>
- #include <linux/delay.h>
- #include <linux/moduleparam.h>
-+#include "tpm.h"
- #include "tpm_crb_ffa.h"
+ 	/*
+ 	 * void sha3_ce_transform(struct sha3_state *state, const u8 *data,
+@@ -125,30 +104,30 @@ SYM_FUNC_START(sha3_ce_transform)
+ 	rax1	v27.2d, v27.2d, v29.2d	// bc[3]
  
- static unsigned int busy_timeout_ms = 2000;
-@@ -324,6 +326,9 @@ static int tpm_crb_ffa_probe(struct ffa_device *ffa_dev)
- 	struct tpm_crb_ffa *p;
- 	int rc;
+ 	eor	 v0.16b,  v0.16b, v30.16b
+-	xar	 v29.2d,   v1.2d,  v25.2d, (64 - 1)
+-	xar	  v1.2d,   v6.2d,  v25.2d, (64 - 44)
+-	xar	  v6.2d,   v9.2d,  v28.2d, (64 - 20)
+-	xar	  v9.2d,  v22.2d,  v26.2d, (64 - 61)
+-	xar	 v22.2d,  v14.2d,  v28.2d, (64 - 39)
+-	xar	 v14.2d,  v20.2d,  v30.2d, (64 - 18)
+-	xar	 v31.2d,   v2.2d,  v26.2d, (64 - 62)
+-	xar	  v2.2d,  v12.2d,  v26.2d, (64 - 43)
+-	xar	 v12.2d,  v13.2d,  v27.2d, (64 - 25)
+-	xar	 v13.2d,  v19.2d,  v28.2d, (64 - 8)
+-	xar	 v19.2d,  v23.2d,  v27.2d, (64 - 56)
+-	xar	 v23.2d,  v15.2d,  v30.2d, (64 - 41)
+-	xar	 v15.2d,   v4.2d,  v28.2d, (64 - 27)
+-	xar	 v28.2d,  v24.2d,  v28.2d, (64 - 14)
+-	xar	 v24.2d,  v21.2d,  v25.2d, (64 - 2)
+-	xar	  v8.2d,   v8.2d,  v27.2d, (64 - 55)
+-	xar	  v4.2d,  v16.2d,  v25.2d, (64 - 45)
+-	xar	 v16.2d,   v5.2d,  v30.2d, (64 - 36)
+-	xar	  v5.2d,   v3.2d,  v27.2d, (64 - 28)
+-	xar	 v27.2d,  v18.2d,  v27.2d, (64 - 21)
+-	xar	  v3.2d,  v17.2d,  v26.2d, (64 - 15)
+-	xar	 v25.2d,  v11.2d,  v25.2d, (64 - 10)
+-	xar	 v26.2d,   v7.2d,  v26.2d, (64 - 6)
+-	xar	 v30.2d,  v10.2d,  v30.2d, (64 - 3)
++	xar	 v29.2d,   v1.2d,  v25.2d, #64 - 1
++	xar	  v1.2d,   v6.2d,  v25.2d, #64 - 44
++	xar	  v6.2d,   v9.2d,  v28.2d, #64 - 20
++	xar	  v9.2d,  v22.2d,  v26.2d, #64 - 61
++	xar	 v22.2d,  v14.2d,  v28.2d, #64 - 39
++	xar	 v14.2d,  v20.2d,  v30.2d, #64 - 18
++	xar	 v31.2d,   v2.2d,  v26.2d, #64 - 62
++	xar	  v2.2d,  v12.2d,  v26.2d, #64 - 43
++	xar	 v12.2d,  v13.2d,  v27.2d, #64 - 25
++	xar	 v13.2d,  v19.2d,  v28.2d, #64 - 8
++	xar	 v19.2d,  v23.2d,  v27.2d, #64 - 56
++	xar	 v23.2d,  v15.2d,  v30.2d, #64 - 41
++	xar	 v15.2d,   v4.2d,  v28.2d, #64 - 27
++	xar	 v28.2d,  v24.2d,  v28.2d, #64 - 14
++	xar	 v24.2d,  v21.2d,  v25.2d, #64 - 2
++	xar	  v8.2d,   v8.2d,  v27.2d, #64 - 55
++	xar	  v4.2d,  v16.2d,  v25.2d, #64 - 45
++	xar	 v16.2d,   v5.2d,  v30.2d, #64 - 36
++	xar	  v5.2d,   v3.2d,  v27.2d, #64 - 28
++	xar	 v27.2d,  v18.2d,  v27.2d, #64 - 21
++	xar	  v3.2d,  v17.2d,  v26.2d, #64 - 15
++	xar	 v25.2d,  v11.2d,  v25.2d, #64 - 10
++	xar	 v26.2d,   v7.2d,  v26.2d, #64 - 6
++	xar	 v30.2d,  v10.2d,  v30.2d, #64 - 3
  
-+	if (tpm2_acpi_start_method != ACPI_TPM2_CRB_WITH_ARM_FFA)
-+		return -ENODEV;
-+
- 	/* only one instance of a TPM partition is supported */
- 	if (tpm_crb_ffa && !IS_ERR_VALUE(tpm_crb_ffa))
- 		return -EEXIST;
+ 	bcax	v20.16b, v31.16b, v22.16b,  v8.16b
+ 	bcax	v21.16b,  v8.16b, v23.16b, v22.16b
+
+base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
 -- 
-2.45.4
+2.56.1
 
 
