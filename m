@@ -2,104 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53D5606AB77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98B0606C205
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 05:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IHtrvQi3;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=iZnIxVtK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tPfeM3Zu;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=AwU4ZKVz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Message-ID:Date:References:In-Reply-To
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=7aG/eE5olsJwInv+bEoP1V0eDG7IVNV9VWAhiP+RMC4=; b=IHtrvQi3P4pEKbQ1COGYEoem6y
-	W6eizNgKBNWupzTZWMACC/BWjLRysMVyVWgqdFFsosbytj8lHmb2pBXNg1O18fmGJ+FP4ZATqT/T/
-	nTp2jSjGpd5zBpAOOE9b0M0KiVLMubxAsPc2o8vZFFDlzd2DrFEm7jUYuXqzYhBhHYnP5WagUHXgV
-	bvxU4fEspg55IKjEWmSGtXExgcmOGAA23JTJtVc1L14fxmaYnrVo/OL8ISUS/NxZtz/tqeNoU/Dzy
-	EWr1wXfAjDPGCKhqtbKeymCE/7uYmAI99ZUxhMga6jOcWsdJkZgOWKCHi4qNCzfGNG0WWlG1RNcud
-	awP4XqCA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+U3SCyKNAEAYmdSpLmyLetCIP4LmLHZ4OH/uMMRkuWk=; b=tPfeM3ZuVzurnI
+	fpzghk/m4Dc8b3fURHyFhdA2JTPKMVfOmpVVXy3wHgZloRCHZhADRrDrRB0h6d9iSYj83UIXlPuaV
+	qDiEY5fL+9kNwzhHJyf3/VW/APfR6e8bQwPkV9hL4CdvomTeqmQCS/onWA8sEz3rlS3jyJuLHU44n
+	VT+iqAi1VvzbiTO0/TPysfsOsAFbNPHiicWymzJGxRVvochG1kFqvqzgZcBMRyZ3HC6xhxVPH4alw
+	mg34ISfOz+1PxqzkjAFjlFtUjEU/hCHG/nKD42BgD4TZjeBYPgQoLyCViKYdC7bPe4wRhm8bDuGIR
+	D/yK0kMmHt30zk4K+dVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS5uM-0000000FRvZ-1rIM;
+	id 1xS5uL-0000000FRuS-3Yde;
 	Sat, 14 Nov 2026 05:02:34 +0000
-Received: from mail-pj1-x1035.google.com ([2607:f8b0:4864:20::1035])
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS5sy-0000000FQO5-0JgU
-	for linux-arm-kernel@lists.infradead.org;
+	id 1xS5sy-0000000FQNz-3EBY;
 	Sat, 14 Nov 2026 05:01:11 +0000
-Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-3b147e50af1so268864a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 21:01:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794632467; x=1795237267; darn=lists.infradead.org;
-        h=mime-version:content-transfer-encoding:content-type:message-id:date
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=7aG/eE5olsJwInv+bEoP1V0eDG7IVNV9VWAhiP+RMC4=;
-        b=iZnIxVtKSYp9LjwYy/+AP8DQ2SEtVhdwt19g5FIiYsNs1/XThu0kjpDjTciE+/I4c/
-         YMeg9noWcOase15pmWynsTWm+OD7xr1ytqSVhNc0SeNXLb8dDjDyn9eygYCbGDImQa9e
-         JBerLTEj16xVF8gG6SmU5SIBLP+TB/kyix+5IPVvIqJX9ZJ6DU6Vb3c5dEEbGuZ6oWlw
-         fp+xuKhsx7qWYyxVvATwygZ01PdBZxy4N8E3HobTkI2z2VT5k+m1puLzemDGGF9sTZ1T
-         00GBD0pPbruw+SdKT17fOsIFXd7IBA+B/VM2jEQnM4SGaHXILBXdrMIm9GLKPADiWSWE
-         V+Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794632467; x=1795237267;
-        h=mime-version:content-transfer-encoding:content-type:message-id:date
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=7aG/eE5olsJwInv+bEoP1V0eDG7IVNV9VWAhiP+RMC4=;
-        b=l7Rp2q4GObDbFJt0CSSdz59E9FLgWpRVTCsG+gxeoW4KuN2EMej2p9cMxsOBiLenLD
-         WQXCJRIniLBf4be88HAHeaeAfJPAWieSWYu2gD2JY/YQHWNpdhkDe5HZJHOu21wM84SX
-         CDo5mFkr22O5IMimiToNFTF6e1WqVIMwFn8GliEG2gQJkPdR3HXicuNr+cZl2nHD0hRi
-         ncjsAnbZIPLwPZR37/wBIVtUOJbUblZECpWtIs/xu8ZbokheVHqYtT7FJ3BFBu+RKfBj
-         iR2XHmH+JaTIVtzwMDAiiNHjvTASjO+ml+n2ROkSfn1kygPNSPAv3VClhSE6Suu9ZcHd
-         DzKQ==
-X-Forwarded-Encrypted: i=1; AL+hErFv6fjNBZuguzFPL7ZCsbx0OvQMxf31BxdMPaR1KkF9jt/IEP5wVtL76Ta+n3On/Pi6OmB4oxTz1WS4P3ZlwVNu@lists.infradead.org
-X-Gm-Message-State: APuU4Z9Y9+1Gl57TpM/0RzxnWAqVSWZa+ldtMygpnnp/p2oMi5b0jS8B
-	/yU9Q/tpQdThowTLn/8R+3me1KdObCWgOfzu45k7MZ4RrldnqsD6j1AW
-X-Gm-Gg: AYBFou05uD++MaNM0SZLow2eFmdW1w8/bkUVBQ07Xl0raKeC5+A/RomgbOF9ebY7aWX
-	hvxYZtzG+UPs/w+r44++/qcbU31Y+13DgQlVL6YZZpPOjZNRSmor8yGNcRQ+WPtCrJIfegKB2Ux
-	iUZbNkFu42RVp/J/5I0MjlA6HHhOaIMghBFAYgkOVAvOYGnZ6GgC7Comcsm40fanqGzaPrs8jo8
-	hwu8HrhtU8Wz4x46nhC2dCeVdhHWk0bZsBfGQTMcnsTJLFOX+s2PSWtkJrnEjtF8FvCMJEp5myg
-	9RCk2hEb9qFPB1ENbOzrQVGvwTFosXjmHv6V77dATvNSuSDVbeU5m4nCCQKFXavSjwSnrrqbh52
-	pfmOZ1knILZb9kIGqDVdExxZhVXlaoKudhIq24QtroEwSWQlRxzTpJEXI5KY+XpNOBZze+D9JKX
-	nCH5la4bJz0jKwSb3LC2XusSOfndUYBXIYrHi+Vrv1l7ZJEO1Alzm9IdoSH9EagbLN9xlygPX6s
-	KDtP2F8EKVWjMfLAd7kB/JTbl4wkqGRH1ss1oWx/99lbzpdIayJJ9NhrAZdhha1aTS/882zZ949
-	KsJeyQ32TU4PC0U/pj3+Zx7xqtPw3njJ6IApSNdIxLPZ75wemreaPR735YVrGWCVC8jE/eZFNsH
-	9BqphB0ZJ8ecnF/sI+gX7b9yB5t0=
-X-Received: by 2002:a17:90b:1b06:b0:3a4:c895:570 with SMTP id 98e67ed59e1d1-3b1b0a0e7c9mr7131064a91.4.1794632466846;
-        Fri, 13 Nov 2026 21:01:06 -0800 (PST)
-Received: from claudebox.iyengar.cloud ([50.39.139.68])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cdded58a9b9sm125917a12.12.2026.11.13.21.01.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 21:01:06 -0800 (PST)
-From: Arun Iyengar <aiyengar1990@gmail.com>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Heiko Stuebner <heiko@sntech.de>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, hverkuil+cisco@kernel.org,
- Jonas Karlman <jonas@kwiboo.se>,
- Sven =?utf-8?q?P=C3=BCschel?= <s.pueschel@pengutronix.de>,
- kernel@collabora.com, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/5] media: rkvdec: Enable multi-core support
-In-Reply-To: <20260810-rkvdec-multicore-v2-0-986f89d22cdc@collabora.com>
-References: <20260810-rkvdec-multicore-v2-0-986f89d22cdc@collabora.com>
-Date: Sat, 14 Nov 2026 05:01:04 -0000
-Message-ID: <179463246494.3611640.18079808669048880957@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794632457;
+	bh=qiTnNJ+ur0YxXmV+nt05zCuHB94myasDkxur83iCFBk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=AwU4ZKVzF8jDvmTXv5KxJT3byOWTHPEKnoYi6WSFYgThhCO5lb+eDqVrcRoYo0s4R
+	 Hvh/djDGXzNlycGOs3cjqzKJ170/Tl1yGyXG7zyHlQPeXawgUNkn/NjWMa2lSAMkM9
+	 LUe+g9gJsaDWQZaU3EZ1K08u6AgYSJ7PARRk/VmRVN3w2jeO0k1c9nGknwjVjH1Cnx
+	 TUxfdYFr9PFcSTI7Q7eMOyzpW+Z/APqacg8s8Tx2Nju2BMnut36jBNkeGkDnnu5zzV
+	 zxF5D7MH/sQCOqi4Il2WCAFNTNrh7rq/hhscIkUwNETgjLXZ+uyWh9iDyCp6w24+Tv
+	 d3wVTf/r5QtVg==
+Received: from jupiter.universe (unknown [100.64.1.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1B0EA17E3BFD;
+	Sat, 14 Nov 2026 06:00:57 +0100 (CET)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 2A267480067; Sat, 14 Nov 2026 06:00:56 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date: Sat, 14 Nov 2026 06:00:53 +0100
+Subject: [PATCH v12 20/23] drm/bridge: synopsys: dw-dp: Use regmap_set_bits
+ in dw_dp_send_sdp
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261114-synopsys-dw-dp-improvements-v12-20-d42d3dc5bdd4@collabora.com>
+References: <20261114-synopsys-dw-dp-improvements-v12-0-d42d3dc5bdd4@collabora.com>
+In-Reply-To: <20261114-synopsys-dw-dp-improvements-v12-0-d42d3dc5bdd4@collabora.com>
+To: Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andyshrk@163.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+ Damon Ding <damon.ding@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Alexey Charkov <alchark@flipper.net>, dri-devel@lists.freedesktop.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@collabora.com, 
+ linux-arm-kernel@lists.infradead.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Igor Paunovic <royalnet026@gmail.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1320;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=qiTnNJ+ur0YxXmV+nt05zCuHB94myasDkxur83iCFBk=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr36wf4v07B4qdQilfmkg+Uyh3Lo+yP8VsVu
+ FXfwNb9sqBh94kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq9+sHAAoJENju1/PI
+ O/qa8SoP/0YImbqbgVdXBLzRUNM4BOriNDKJzweEyk9m+MVlwRxd4vZmJA83LzGmYyBEIPK6JHt
+ wMytUCYMR5fQXoKZRfFBPP/tIQlULp7XvssuRPFWOYeKTyJ+rpBFObJLVuBo+y9nV0RZkxKlkvy
+ 7Xl5fZFiBpb0u+lstfbaT2oRI6p9bCdkWHiRB0smPaQMaCtMnr0GNHq+aqciLJH9hz7/R2RaC41
+ gBPaJG+rgsABX4CwiOtf3XmxUrjbooR67QaGLYToSjlwnGkzm8vbgoOvOYMxKkcy59hBs/w9ycm
+ Dml3mkqBI6ARBh8zrHOXMNijqTwzffvWGnExKDdjlkuoR1VkYJjg42RuTSb1hh3wKGziYE+WBSW
+ SCWuhGNHicpZG725GvSpHyz/pEs7ix3rwVZodurDLNi/DUMk5RswimgPkKM3OLBCyI+jZ6yArP+
+ FA8M1fJJ3Y3PYTibcQw0jnQnvVVTpGsgGnwr5CCU9UFmATFbbtTBNMcgcVqlRdtj+rTj2gAcl2d
+ hBd1wqY3Nz2DPoMrybdTW30frn4GjWuwcN2PU/LOYrJJVfth63EScfz61wZD+KMTFECjzldZNyy
+ iQXL3KfF5yxwxXUV9irsNHlGzMTkYVQVGLddwsi0SqDjBqMMADQWVjZJufPFokXipRvNmf4LQiK
+ i3f7iiWsSPlAAeJMWzm8sOA==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_210108_143469_916EE363 
-X-CRM114-Status: UNSURE (   9.12  )
+X-CRM114-CacheID: sfid-20261113_210109_011943_882718BF 
+X-CRM114-Status: UNSURE (   9.64  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,27 +113,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Detlev,
+Simplify dw_dp_send_sdp() a little bit by making use of
+regmap_set_bits.
 
-One more data point for this series. On top of it I have one stream
-decoded on both RK3588 cores at once through the CCU, as the Rockchip
-BSP does ("soft CCU": each frame goes to the idle core, and the CCU
-holds back reference reads until the other core has written them).
-For a single 4K stream that gives HEVC 227 fps instead of 130 and
-H.264 121 fps instead of 67, bit-exact. It needs two v4l2-mem2mem
-additions, so that the next job of a context can be scheduled while
-the previous one is still decoding.
+No functional change intended.
 
-I'll post it as an RFC once this series has settled, so it can be
-rebased on what lands. The code was developed with Claude (Anthropic);
-I review and test every change.
+Tested-by: Igor Paunovic <royalnet026@gmail.com> # Orange Pi 5+
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-Arun
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-dp.c b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
+index 6e165e39b1f8..3c10cdb9ca28 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-dp.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
+@@ -1068,14 +1068,12 @@ static int dw_dp_send_sdp(struct dw_dp *dp, struct dw_dp_sdp *sdp)
+ 			     FIELD_PREP(SDP_REGS, get_unaligned_le32(payload)));
+ 
+ 	if (sdp->flags & DW_DP_SDP_VERTICAL_INTERVAL)
+-		regmap_update_bits(dp->regmap, DW_DP_SDP_VERTICAL_CTRL,
+-				   EN_VERTICAL_SDP << nr,
+-				   EN_VERTICAL_SDP << nr);
++		regmap_set_bits(dp->regmap, DW_DP_SDP_VERTICAL_CTRL,
++				EN_VERTICAL_SDP << nr);
+ 
+ 	if (sdp->flags & DW_DP_SDP_HORIZONTAL_INTERVAL)
+-		regmap_update_bits(dp->regmap, DW_DP_SDP_HORIZONTAL_CTRL,
+-				   EN_HORIZONTAL_SDP << nr,
+-				   EN_HORIZONTAL_SDP << nr);
++		regmap_set_bits(dp->regmap, DW_DP_SDP_HORIZONTAL_CTRL,
++				EN_HORIZONTAL_SDP << nr);
+ 
+ 	return nr;
+ }
+
+-- 
+2.53.0
+
 
