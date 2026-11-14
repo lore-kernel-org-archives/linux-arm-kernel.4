@@ -2,93 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8C1606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 17:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02D5606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 17:58:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R5e11ql5;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=G6IJMeDa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PaQANTbz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jMtLVM9h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=JNaJcXdU6JL88Hplnr1u9aTEynknq2tK7kpa3hgYbA8=; b=R5e11ql5EEjRVhjSMY8+nQGThK
-	a0ytUEBZ7l58GP7OJ6B4/bf3TgCNeOaI7XGABFnqyrhXNonMzJFCv8I31LhYKb8NbXxPKbZIiJF8R
-	c88twOgT/BdjBA0v1VY8sEU1RuMgejRKDyIGLjyMUfqUaNRH6/lsiix/fK5q2ALqp68rXjC7H5gZ4
-	mkTqZoQGi/H2VSPJ15zgay+3u5HZlss/Nb7mqr4LRYcaFIu4B53hrjEj5zuXiWYRtLsPfnlADL+Hs
-	Z4u0aGcYgPb0kHXNwHU/uCLBLsq+vdvsCI8wFmQ31pjECrZzz1StdC7opZHGhHkLAKdhtWfVgPVTT
-	cidjw7LA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=qFHfirH5vChjL8wVOpZRT6SwMpXMf+RApUPlogONKaE=; b=PaQANTbz5amXek
+	0CbG/0LWm1AtXr6HmcB9I/oiBWK79tDW4+JSFWhHKQqaRLfEnUknzz2KVjsZHiNcntp5dx+PY0Pld
+	B2slxULPzW+8g3LNIHoaEDzoh7ScufsVsyN2phT8OeH9g7kUdI8OpzAZQCELBdaZBw5Tyjr9332ez
+	gu6b5kCkUUi3Hkb1iwwls6clcy9YG/2HMjhbPhDnFXIUghXqBZYrFjZ9ET+41ZlcnYsDOm4KDblgX
+	TB7JkCq0tQnbJc7EAbxtDgcn3guDPxBw7Uht7ZFDjwXMKqLoWnBNEDK+qu7/7PTtlS1FAZWseIEnF
+	cUFGimisKbey0G0+I6AQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSHfS-0000000GY95-3z8w;
-	Sat, 14 Nov 2026 17:35:58 +0000
-Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
+	id 1xSI0i-0000000GZBX-0Cyk;
+	Sat, 14 Nov 2026 17:57:56 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSHfL-0000000GY6f-06nL
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 17:35:54 +0000
-Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c50b0de2139so49523266b.3
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 09:35:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794677748; x=1795282548; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=JNaJcXdU6JL88Hplnr1u9aTEynknq2tK7kpa3hgYbA8=;
-        b=G6IJMeDaUi1eOo0oNvqt/VEzSCFMtNzGOab1/IMNLfvDn0NtNfGnz0XUA7gGKxBSLP
-         T+mGEEBegJzdYVQMoQv0jjjuiQgInQpMDU3Gj8mU0WoKsqRbxMiyWUxhSNvPogazo35+
-         F4iErExvxGdAhE2RzHBrxIU9mmnfENOT0w+ax/u3GCyPAsyC81ElCr/G9PHB9mEMv0PC
-         ANSW5gYX+QYTh3rkJDypJkAvleHSHk3xtofS/EDUZNemh8bux+gCdN4gVr3ypWX255BS
-         92UZyLHFM+3PAW24ii13ZGLlEjQn1Mj5e04hhYmL0FI0bOEd5/x9DXU7S4BJC0FRx3HS
-         WnDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794677748; x=1795282548;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=JNaJcXdU6JL88Hplnr1u9aTEynknq2tK7kpa3hgYbA8=;
-        b=fnqI12Vsd196k1ykjF6tBFhdj/g5tWQTwzW6cKJu5LVGgvOLnns6AZlF76gf4xUE3C
-         BGy7TsSsR6QQwsFD1ulSo1bnMP93sE49vmDNgOCiDo4wqR9n+LuMCx43j56+RjOP+MLq
-         //4veJSXPhTckm3tx01fJVzjHv7sg/A7e3Auy89wHrF/1zUO3P///bkxzz3VzvGaw9QI
-         IBQ7XfRNcn8wtRmG8n235kXuF8gW1qhUOUwSxAwHe9WqRpyrIG9IzWFcz2cj4e9Lk+e1
-         5TD/vlDE0nSrbyYOpLxytHodn3HGxJhwcLD9/Y3/nioUu/MH/pMorIP2AtidOZtmKezl
-         R4oQ==
-X-Forwarded-Encrypted: i=1; AL+hErFhnX6fHBXVrHvvedSaNRvP1+a5+vNiQRBcTjnUY0dPMZaqdISfsgttq72CuqQcsgeZX1eNYlpfOCwuXY6u0CMo@lists.infradead.org
-X-Gm-Message-State: APuU4Z9KgrGWmx4oyZTyP5mDSW2PdHh/XOSxTEl7mgBm3HlNT+gXavej
-	WtUQ7Hodtsz4GG0VtX3UaVBazULF28tuMK++Z6QggT+yZNzY8BfB4KYjRmuNLAYmuD7TKCdB1kg
-	01vvklStdAuyILAS0pA==
-X-Received: from ejfz7.prod.google.com ([2002:a17:906:ac7:b0:c2e:3202:ef75])
- (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:868f:b0:c33:ae8b:817d with SMTP id a640c23a62f3a-c509654f9admr515384166b.46.1794677747981;
- Sat, 14 Nov 2026 09:35:47 -0800 (PST)
-Date: Sat, 14 Nov 2026 17:35:47 +0000
-In-Reply-To: <DMRO4QXXB8H4.127C1CPT3RZ18@google.com>
+	id 1xSI0h-0000000GZAu-1GpB;
+	Sat, 14 Nov 2026 17:57:55 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 4843F62773;
+	Sat, 14 Nov 2026 17:57:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77AC11F000C6;
+	Sat, 14 Nov 2026 17:57:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794679074;
+	bh=qFHfirH5vChjL8wVOpZRT6SwMpXMf+RApUPlogONKaE=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=jMtLVM9hF5qvIFJ1wFC288HB7lswk+NBuqc6nhfyd9qGG7Ke0jNb+zXx+PMopFDbr
+	 Zf9BXU6maqkNYL+JJe3Ujg2Tu4+Oh5x28k9LkVpfE7mR91MMsdvI6q+H/rJDgxhzTa
+	 2M0JjSlpRUMnm8eMnuYGB6NMHzgIwZrkQtrCE0e/z7nH4kbzlcRKXAaRQWFeAmWPhY
+	 229+2zd17p1Hv1hERAhHToWrMH+z8M9PozzfPUi1p78A8deOGrEsm0wC2AgJVRw7mW
+	 zuAUTVNjTCnA13kGWxhiIzS2hrQdZlZJwW6+2ygV1Db9Ij4vv6foLkScOsFAts+JA+
+	 HB7oAwyUbS8jQ==
+Message-ID: <b4d6cc36-e986-41ce-a887-d7d9076cabd4@kernel.org>
+Date: Sat, 14 Nov 2026 18:57:46 +0100
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261110050202.529473-1-tarunsahu@google.com> <20261110050202.529473-17-tarunsahu@google.com>
- <DMRO4QXXB8H4.127C1CPT3RZ18@google.com>
-Message-ID: <9huzmrrbpb7w.fsf@tarunix.c.googlers.com>
-Subject: Re: [PATCH v4 16/19] PCI: liveupdate: Add feature header to struct pci_dev_ser
-From: tarunsahu@google.com
-To: David Matlack <dmatlack@google.com>, Pasha Tatashin <pasha.tatashin@soleen.com>, 
-	Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, maz@kernel.org, will@kernel.org, 
-	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
-	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
-	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
-	gle.com@google.com, pbonzini@redhat.com, 
-	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org
-Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
-	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
-	linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_093553_514756_AED7B912 
-X-CRM114-Status: GOOD (  33.62  )
-X-Spam-Score: -9.5 (---------)
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] media: dt-bindings: rockchip: Add RK3568 Video
+ Decoder bindings
+To: Daniel Golle <daniel@makrotopia.org>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ David Heidelberg <david@ixit.cz>,
+ Christian Hewitt <christianshewitt@gmail.com>, Marc Zyngier
+ <maz@kernel.org>, linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <cover.1794654074.git.daniel@makrotopia.org>
+ <90878fc566a9752eb582a82d1324d811ebb324e7.1794654074.git.daniel@makrotopia.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <90878fc566a9752eb582a82d1324d811ebb324e7.1794654074.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,124 +122,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-"David Matlack" <dmatlack@google.com> writes:
+On 14/11/2026 12:09, Daniel Golle wrote:
+> From: Christian Hewitt <christianshewitt@gmail.com>
+> 
+> The video decoder in RK356X (vdpu346) is described in the same way as
+> the one in RK3588 (vdpu381). A new compatible is added as the decoder
+> capabilities are a subset of the vdpu381 capabilities.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> On Tue Nov 10, 2026 at 5:01 AM UTC, Tarun Sahu wrote:
->> Precede each serialized PCI device entry in the PCI Live Update KHO block
->> set with struct kho_ser_hdr via DECLARE_KHO_SER so future per-device PCI
->> Live Update features can append fields to struct pci_dev_ser without
->> breaking compatibility between adjacent kernels.
->
-> Elements of a collection should not have their own feature headers. This
-> applies to patches 10, 12, 14, 16 and 18. I raised this during the v2
-> discussion [1][2], but I don't think it was addressed.
->
+> Tested-by: Diederik de Haas <diederik@cknow-tech.com> # PineTab2, Quartz64-A, NanoPi R5S
 
-As per [3], I tried to add feature header to all possible instances of
-ser structs. Maybe this is the right time to audit these structs and decide
-which one will never need feature header.
+How v1 could get it?
 
-[3]: https://lore.kernel.org/kexec/CA+CK2bB9xoAWP0kC+KtXeDTdwt0kWqb-PLHN=6DsA=mnRpMfxA@mail.gmail.com/
+Anyway, drop, not applicable here. You cannot test a binding on PineTab2.
 
-> All entries in a KHO block set are written by the same kernel using the
-> same struct, and the block set has a single entry_size, so every entry
-> header is necessarily identical. They don't convey anything that the
-> header of the struct that owns the collection can't. In this case,
-> struct pci_ser's header can define features that describe fields in
-> struct pci_dev_ser, and the PCI core checks them once before iterating.
-> If a feature only applies to some devices, the field's value in each
-> entry says whether that device uses it.
->
-
-pci_dev_ser can be refrained from using kho_ser_hdr but not
-memfd_luo_folio_ser.
-
-The difference lies in their API usage. one use kho block and other one
-kho_vmalloc. With kho block, we carry entry_size, so the parent
-pci_ser's kho_ser_hdr can communicate about the new field/feature in the
-pci_dev_ser and entry_size will carry correct the size of pci_dev_ser
-for iterator on deserialization. But for memfd_luo_ser, kho_vmalloc does
-not carry such entry_size. So we can solve this by adding the
-folio_ser_size into memfd_luo_ser struct.
-
-Without entry_size, we can only add new changes to such structs by
-adding feature in parent struct with required = 1. That way rollback or
-upgrade will fail to the kernel which does not support this required
-feature. Incase, if we have entry_size (folio_ser_size in above
-example), it will help marking such feature to be optional also and
-deserialization can correctly parse with entry_size and can ignore those
-changes if the kernel wants to.
-
-
-> Per-entry headers also cost a lot for small entries. struct pci_dev_ser
-> goes from 8 to 16 bytes, and to 24 bytes once the first feature is
-> added. Patch 18 does the same for every preserved memfd folio, which for
-> a large guest backed by 4K pages adds gigabytes of preserved metadata.
->
-
-Yeah, we are carrying 8/16 byte of extra memory where every entry share
-the same header. Which is a waste.
-
-> They also add new ways to read out of bounds. kho_ser_payload() trusts
-> nr_required/nr_optional in each entry, and nothing checks that the entry
-> header plus payload fit within entry_size. In patches 14 and 18 the walk
-> uses each entry's fhdr->size to find the next entry, so one bad header
-> throws off every entry after it.
-
-Bad feature header is not the reasoning here we should back this
-requirement. A bad feature header already imply the deserialization is
-compromised and hence accessing anything further is undefined. This
-holds true for any struct with feature header.
-
->
-> Instead I would keep struct pci_dev_ser as a plain struct, take the
-> entry size from the KHO block header (patch 2), and in pci_flb_retrieve()
-> check once that the entry size covers the base fields, plus the fields
-> of any features set in struct pci_ser's header, e.g.:
->
-> 	entry_size = kho_block_set_entry_size(&incoming->block_set);
-> 	if (entry_size < offsetofend(struct pci_dev_ser, refcount))
-> 		panic(...);
->
-> That also restores the minimum entry size check that the v10 PCI series
-> had with PCI_DEV_SER_MIN_SIZE, which this version drops.
-
-offsetofend() is a good idea to replace PCI_DEV_SER_MIN_SIZE.
-
->
-> [...]
->
->> -	kho_block_set_init(&incoming->block_set, sizeof(struct pci_dev_ser));
->> +	kho_block_set_init(&incoming->block_set, kho_ser_size(pci_dev_ser));
->
-> This size is never used. kho_block_set_restore() overwrites it with the
-> entry size recorded by the previous kernel. Passing this kernel's size
-> here is misleading: pci_flb_retrieve() (and the LUO session/file restore
-> paths) read as if they iterate incoming entries with the outgoing entry
-> size, which would be a bug.
->
-> Incoming block sets should not take an entry size at all.
-> kho_block_set_restore() should initialize the block set itself from the
-> incoming block headers, and the incoming paths should drop the
-> kho_block_set_init() call.
-
-Yes, We can avoid this dual initialization. kho_block_set_restore can
-take care of it. Also once we will agree on having having
-kho_block_set_ser to have entry_size which will be part of only
-block[0], then we will not have to update the entry_size inside the loop
-again and again and count_per_block can also be calculated before the
-loop for block 0 and 1..N.
-
-~Tarun
->
-> [1] https://lore.kernel.org/kexec/atl6K2Juy6Bh29lh@google.com/
-> [2] https://lore.kernel.org/kexec/at-8vkVpN2SF3XgB@google.com/
+Best regards,
+Krzysztof
 
