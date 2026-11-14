@@ -2,109 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC1B606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 17:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4094606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 17:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1vIU0Sb7;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=olhmTTFX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3C/LyqLo;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cVH10VSU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=YTwcRMSWQ/WwFbflIYFwTeimqUcsUNTJOHfLHF8Dqo0=; b=1vIU0Sb7TekOPTsbAi3DSOaCPC
-	TxdJor10oyYXBJfQweGvT2tLgxvUSyEF5gIVpCMvvq2NYRpB2C0mGo6xhnY6AtyoPDU1BaBRZdi6S
-	S4GdQy/zaVau3ypcE9gIGq/pDIZS8vaz6ofEy0xjwvP4USd2+F9qoHnXnjxXPg2YLWfq9UNOn0Jqe
-	tAYmZJA1kdMOIfKcR8jEATxQnM5IV0xrpT0CDTxX2KumE1amo8qgeo+51w9XY82E/yxrHuOxt4Y8b
-	qMTm0Xv62ZhgHffriitfIQdp/QhKj6rC9aeR9ICuQrsfU7jEsgE5dKLpbQRYzEAbtxQ5v+9jjK1Sr
-	QjLhKkZg==;
+	bh=jCgnmtgOCdPYkEDmr+VTaAMsNukSPghc49+bvrtNoAA=; b=3C/LyqLob0XLCAl5oUmQtFup+H
+	IGs3ItUeavv+CBNczGtCLmOZGzudH9F8Sy2ZmkrZN8YmbWJPn4U27Vz7ypzYsS3kzqGoAcIWV35pZ
+	k9ww2s/u9gGgUPtb8UNH8oxrBqz4TNV2Tv/D9yG6xd0hhKw6sq2sUUM1Y7D/hlualdAHSFKG2Nm/y
+	WAHwjAvi53Ai1X0G4kpTCex3xDLs2fhLu1qnStvoZ+GqQ7WBjjbNIJ93GSF6Zq/+BnqnjfL6ga4Ni
+	yHhNGb/Kqd05nkmWCOiJVmuhxzjf4ZU78f6tJ4clUA+I9thKZWuxwfVAsKGUEmGAm3sRv+P8mNoQo
+	hXiKx+MQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSHPL-0000000GVwq-2c2k;
-	Sat, 14 Nov 2026 17:19:19 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xSHTn-0000000GWVz-1bax;
+	Sat, 14 Nov 2026 17:23:55 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSHPJ-0000000GVwI-09Nr
+	id 1xSHTm-0000000GWVY-0GnM
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 17:19:18 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4b79502c27aso15251675e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 09:19:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794676754; x=1795281554; darn=lists.infradead.org;
-        h=content-type:content-transfer-encoding:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=YTwcRMSWQ/WwFbflIYFwTeimqUcsUNTJOHfLHF8Dqo0=;
-        b=olhmTTFXZCakO2qKn7w6Nkvds5VOG0TAqvVYUCG9rmf1aAjR6K7AUDy4Lt+Dlx35lc
-         R0BR59lhrdlDgirQyXHhSTC1YYbNW3vZfvyM4AA3Ihjy5OfJLQW/DIhHLvw9ZIi3I2Hg
-         9jtIpdCP5RIyxowgy3Kxndn50bnLcaiMli+d5f4ods6U6IIxgGH6fivqXwiJKhy7xfgp
-         6k0Ao4OpaHXSPAGAupNHP/FLlh8cU08Mw4OiLMnsx2gZQ0DfCjmfBDhmk7vKB5TYvY2N
-         tZHdyKQtu4sEhEUp6UUVilzG56azWFeaW95bmVxAG/0oLNFMGju4/g4PT5P3vrP528v7
-         usmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794676754; x=1795281554;
-        h=content-type:content-transfer-encoding:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=YTwcRMSWQ/WwFbflIYFwTeimqUcsUNTJOHfLHF8Dqo0=;
-        b=Ki5yODK0Y/BR6a9TD8Sl5wUrKM1GhJrLOTIi0Mhe2NuWQ5Ad/NIxlunXuSKGFXyR1t
-         ETtXxrsGQcH2zzt965OwnrtYia3SYyn6muHCmoGWbosMHlE4FeKXW9pfG5BDDD8sIEZE
-         HBKc2jTkGWAmRmXcGJ0+NMhHvW44CjLiCn/BvdqbAV492e6VOQa3lxsu3WaSqjJYXL4A
-         aebBTc+5Fl+1QGq0oMfAIH6DG0vyJXhfK5GJeuOKkHgVUBXyGHzB3UB6t4lye7vfgbFF
-         AFPCy1My5K9dQ4RSiRpqi/sxB3hVgAlPOmrUTTRhCapMcUoPAfMgxpSOemMC5ERob49T
-         nEWw==
-X-Forwarded-Encrypted: i=1; AL+hErF3y54ntHeaoGX+akAiSKkZu+N7of5LNkfbPhkN0YL1XOjuF3MvNOqydpi5o/Jzf73ginw1tGoE3IjCRL36OKNQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/MJSyRkRTg/MQEs7XXrfkJ8jg9P8laqfqExC444Ro3q0Wfa3qm
-	W2raDNyAXv6njQqbNN5hx0SXVHXle+7E3r/gDRhI55sAoh9jBy5/XxiS
-X-Gm-Gg: AYBFou35zIpYswk5ZdXIt/+g9eGWehCNBPexQ4uFgjnayVFrdHy5u6BTi2QGnftXB7Z
-	sIJ275GHw6L/u3QHjb8BAlNNxN0S83aPdGXmQ+lY5ouM/lOxzCFiTKSXjZIms3HTGmd2pMiE7B5
-	EDTFUC2CYbd96pdVdAAgQZ0Mxh+PiKPMyVJJPT48bNcxB15H07BVkHQhvFqRv1vlS0BYwaqxvS7
-	3SdLfyXuSRn7cU6DRV16E/h5iT6XhHzVAuelLRoDz+ZmdDgHq2xOSFgpWWdFtIyyVyD3s+Mg+Lo
-	QiMtvEo26If1hTnUID0VKxwAhsdK4iSGqDPU7Y9x46tQogya1EIIxE2ubl81hFuhF54Gut/0K5n
-	bi47z02nyjb82+44k0/12gWxAGA9SHfAHE2yyOW54QMe7gFGksWOU7vB2EPGP0Pm0S7L+Sletgl
-	RCjU5xgfpQRL3HBFNJL3BiwrqHn19iyaOt+jeVV/jrqq9BiX6GwnvDQTibTMufj16EcTEKc309B
-	F5zJfzLifTPwpmuAePe4Gzfao1jf93FeX/R5APy/1Zu8pVo3G6KePTTbaS3Ckro4xk41/z39Mdu
-	PvKHMn1ClZxA2IuEIDYyXVMtzsMGnq6+MyafZCJ+fzn6R26Fg4YDeflr2BmLm8vRpnCbkLCDlFw
-	XspD5uePlRzAXf0ODMgtyYAulZYNlgIiw+BbjNbiLLP/0SPCMdGnAl2wpZ0kOhepqFr5Na9Nk/J
-	tTm+eh6wtFBMmjLoNz4Sk+ClWrdZ/9fmSAx4kVYUegaHZTOQcXnrlVrQhdYn2J+NBu2/Rrwp6HL
-	RSjPrzhkQnxNwHfM87KGzsD5w==
-X-Received: by 2002:a05:600c:5395:b0:49f:ce78:356d with SMTP id 5b1f17b1804b1-4bb55abba24mr132258135e9.30.1794676754290;
-        Sat, 14 Nov 2026 09:19:14 -0800 (PST)
-Received: from jernej-laptop.localnet ([2a00:ee2:6a02:9300:bb69:6bcf:1b11:e85b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c8d286480sm20031827f8f.7.2026.11.14.09.19.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2026 09:19:13 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-sunxi@lists.linux.dev, linux-iio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Andy Shevchenko <andy@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Chen-Yu Tsai <wens@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Giorgi Tchankvetadze <giorgitchankvetadze1997@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>,
- Michal Piekos <michal.piekos@mmpsystems.pl>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Samuel Holland <samuel@sholland.org>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
- Markus Elfring <Markus.Elfring@web.de>
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
- Felix Gu <ustc.gu@gmail.com>
-Subject: Re: [PATCH] iio: adc: sun20i-gpadc: Use
- devm_reset_control_get_exclusive_deasserted() in sun20i_gpadc_probe()
-Date: Sat, 14 Nov 2026 18:19:12 +0100
-Message-ID: <lGotwwBTRaeZcOCAphaQBQ@gmail.com>
-In-Reply-To: <368d548f-2b86-4da5-857a-6ee9473a8d0e@web.de>
-References: <368d548f-2b86-4da5-857a-6ee9473a8d0e@web.de>
+	Sat, 14 Nov 2026 17:23:54 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 781C640871;
+	Sat, 14 Nov 2026 17:23:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05CB21F000C4;
+	Sat, 14 Nov 2026 17:23:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794677033;
+	bh=jCgnmtgOCdPYkEDmr+VTaAMsNukSPghc49+bvrtNoAA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=cVH10VSU7hl5YcDZSYF7i2POZOcTnx2uLsHfvyXL6HXXY89/pdwTo84I4mtY3aUGy
+	 VGcpOEv/ycaxIsJcpg1qczl9+hr1LSfFcBDEk8WmmMimYp7bYFra3WOrXwPTIfoqhT
+	 qRHO7swK1RIOrMcqmc0e1+GmzufCKoA4ZRIe0VtWGiRPZ5vXbHsRZfKo/AAbq9RDRV
+	 AyhN4o10/D81jgESOZKmqOjpzpo7oJ2sOqpfNxp9+22RIns1l7ifNffcSjiYaGDFrQ
+	 75D18SAdBX+bI3AqEidhNDJyiSrB4lIpbX9DBK7UjnoTu4jttoHb3muNtBO+cFW/F7
+	 A7X1UiQa4EVxA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xSHTi-0000000Fpux-2LPy;
+	Sat, 14 Nov 2026 17:23:50 +0000
+Date: Sat, 14 Nov 2026 17:27:09 +0000
+Message-ID: <87ik1z8gsy.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Steffen Eiden <seiden@linux.ibm.com>
+Cc: Oliver Upton <oupton@kernel.org>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Andreas Grapentin <gra@linux.ibm.com>,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	Janosch Frank <frankja@linux.ibm.com>,
+	Claudio Imbrenda <imbrenda@linux.ibm.com>,
+	David Hildenbrand <david@kernel.org>,
+	Heiko Carstens <hca@linux.ibm.com>,
+	Vasily Gorbik <gor@linux.ibm.com>,
+	Alexander Gordeev <agordeev@linux.ibm.com>,
+	Sven Schnelle <svens@linux.ibm.com>,
+	Friedrich Welter <fritz@linux.ibm.com>,
+	Gautam Gala <ggala@linux.ibm.com>,
+	Hariharan Mari <hari55@linux.ibm.com>,
+	Hendrik Brueckner <brueckner@linux.ibm.com>,
+	Nico Boehr <nrb@linux.ibm.com>,
+	Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	kvm@vger.kernel.org,
+	linux-s390@vger.kernel.org,
+	Nina Schoetterl-Glausch <nsg@linux.ibm.com>
+Subject: Re: [PATCH v3 01/23] KVM: arm64: Refactor idreg caching into dedicated structure
+In-Reply-To: <20261106-sysreg-v3-1-75e95980fb10@linux.ibm.com>
+References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
+	<20261106-sysreg-v3-1-75e95980fb10@linux.ibm.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_091917_097504_0DCD3FC9 
-X-CRM114-Status: GOOD (  17.37  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: seiden@linux.ibm.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, gra@linux.ibm.com, borntraeger@linux.ibm.com, frankja@linux.ibm.com, imbrenda@linux.ibm.com, david@kernel.org, hca@linux.ibm.com, gor@linux.ibm.com, agordeev@linux.ibm.com, svens@linux.ibm.com, fritz@linux.ibm.com, ggala@linux.ibm.com, hari55@linux.ibm.com, brueckner@linux.ibm.com, nrb@linux.ibm.com, Ulrich.Weigand@de.ibm.com, arnd@arndb.de, pbonzini@redhat.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, kvm@vger.kernel.org, linux-s390@vger.kernel.org, nsg@linux.ibm.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,84 +109,279 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Dne sobota, 14. november 2026 ob 18:08:10 Srednjeevropski standardni =C4=8D=
-as je Markus Elfring napisal(a):
-> From: Markus Elfring <elfring@users.sourceforge.net>
-> Date: Sat, 14 Nov 2026 17:55:16 +0100
->=20
-> Use devm_reset_control_get_exclusive_deasserted() to replace the
-> explicit reset acquisition, deassertion, and cleanup action registered
-> with devm_add_action_or_reset().
-> Simplify reset handling and remove the custom reset assertion callback
-> while preserving reset assertion during cleanup.
->=20
-> The source code was transformed by using the Coccinelle software.
->=20
-> Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
+On Fri, 06 Nov 2026 16:07:34 +0000,
+Steffen Eiden <seiden@linux.ibm.com> wrote:
+> 
+> Move VM-wide ID register emulation fields from struct kvm_arch into a
+> new struct kvm_vm_id_regs. The new struct is placed in a shared region.
+> Update all users to use the new structure.
+> 
+> No functional changes.
+> 
+> Co-developed-by: Nina Schoetterl-Glausch <nsg@linux.ibm.com>
+> Signed-off-by: Nina Schoetterl-Glausch <nsg@linux.ibm.com>
+> Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
+> Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
+> Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 > ---
->  drivers/iio/adc/sun20i-gpadc-iio.c | 20 +++-----------------
->  1 file changed, 3 insertions(+), 17 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/sun20i-gpadc-iio.c b/drivers/iio/adc/sun20i-=
-gpadc-iio.c
-> index baa7661db13b..070d061572c6 100644
-> --- a/drivers/iio/adc/sun20i-gpadc-iio.c
-> +++ b/drivers/iio/adc/sun20i-gpadc-iio.c
-> @@ -157,13 +157,6 @@ static const struct iio_info sun20i_gpadc_iio_info =
-=3D {
->  	.fwnode_xlate =3D sun20i_gpadc_fwnode_xlate,
+>  arch/arm64/include/asm/kvm_host.h  | 50 ++++++++++++++++++++------------------
+>  arch/arm64/kvm/config.c            | 10 ++++----
+>  arch/arm64/kvm/hyp/nvhe/pkvm.c     |  7 +++---
+>  arch/arm64/kvm/hyp/nvhe/sys_regs.c |  4 +--
+>  arch/arm64/kvm/sys_regs.c          |  2 +-
+>  5 files changed, 39 insertions(+), 34 deletions(-)
+> 
+> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+> index 97332ffcb130..7f051dad79c7 100644
+> --- a/arch/arm64/include/asm/kvm_host.h
+> +++ b/arch/arm64/include/asm/kvm_host.h
+> @@ -105,6 +105,25 @@ struct vcpu_reset_state {
+>  	bool		reset;
 >  };
-> =20
-> -static void sun20i_gpadc_reset_assert(void *data)
-> -{
-> -	struct reset_control *rst =3D data;
-> -
-> -	reset_control_assert(rst);
-> -}
-> -
->  static const struct iio_chan_spec sun20i_gpadc_chan_template =3D {
->  	.type =3D IIO_VOLTAGE,
->  	.indexed =3D 1,
-> @@ -225,17 +218,10 @@ static int sun20i_gpadc_probe(struct platform_devic=
-e *pdev)
->  	if (ret =3D=3D 0)
->  		return dev_err_probe(dev, -ENODEV, "needs at least one clocks\n");
-> =20
-> -	rst =3D devm_reset_control_get_exclusive(dev, NULL);
-> +	rst =3D devm_reset_control_get_exclusive_deasserted(dev, NULL);
->  	if (IS_ERR(rst))
-> -		return dev_err_probe(dev, PTR_ERR(rst), "failed to get reset control\n=
-");
-> -
-> -	ret =3D reset_control_deassert(rst);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret, "failed to deassert reset\n");
-> -
-> -	ret =3D devm_add_action_or_reset(dev, sun20i_gpadc_reset_assert, rst);
-> -	if (ret)
-> -		return ret;
-> +		return dev_err_probe(dev, PTR_ERR(rst),
-> +				     "failed to get and deassert reset\n");
-> =20
->  	irq =3D platform_get_irq(pdev, 0);
->  	if (irq < 0)
->=20
+>  
+> +struct kvm_vm_id_regs {
+> +	/*
+> +	 * Emulated CPU ID registers per VM
+> +	 * (Op0, Op1, CRn, CRm, Op2) of the ID registers to be saved in it
+> +	 * is (3, 0, 0, crm, op2), where 1<=crm<8, 0<=op2<8.
+> +	 *
+> +	 * These emulated idregs are VM-wide, but accessed from the context of a vCPU.
+> +	 * Atomic access to multiple idregs are guarded by kvm_arch.config_lock.
+> +	 */
+> +#define IDREG_IDX(id)		(((sys_reg_CRm(id) - 1) << 3) | sys_reg_Op2(id))
+> +#define KVM_ARM_ID_REG_NUM	(IDREG_IDX(sys_reg(3, 0, 0, 7, 7)) + 1)
+> +	u64 ftr_reg[KVM_ARM_ID_REG_NUM];
 
+I'm OK with changing the name of the array, but then you need to be
+consistent and change the name of the indexing macros throughout the
+code. This should be a preliminary change.
 
+> +
+> +	u64 midr_el1;
+> +	u64 revidr_el1;
+> +	u64 aidr_el1;
+> +	u64 ctr_el0;
+> +};
+> +
+>  #endif /* ARM64_S390_COMMON == 1 */
+>  
+>  #define KVM_DIRTY_LOG_MANUAL_CAPS   (KVM_DIRTY_LOG_MANUAL_PROTECT_ENABLE | \
+> @@ -478,22 +497,7 @@ struct kvm_arch {
+>  	struct kvm_smccc_features smccc_feat;
+>  	struct maple_tree smccc_filter;
+>  
+> -	/*
+> -	 * Emulated CPU ID registers per VM
+> -	 * (Op0, Op1, CRn, CRm, Op2) of the ID registers to be saved in it
+> -	 * is (3, 0, 0, crm, op2), where 1<=crm<8, 0<=op2<8.
+> -	 *
+> -	 * These emulated idregs are VM-wide, but accessed from the context of a vCPU.
+> -	 * Atomic access to multiple idregs are guarded by kvm_arch.config_lock.
+> -	 */
+> -#define IDREG_IDX(id)		(((sys_reg_CRm(id) - 1) << 3) | sys_reg_Op2(id))
+> -#define KVM_ARM_ID_REG_NUM	(IDREG_IDX(sys_reg(3, 0, 0, 7, 7)) + 1)
+> -	u64 id_regs[KVM_ARM_ID_REG_NUM];
+> -
+> -	u64 midr_el1;
+> -	u64 revidr_el1;
+> -	u64 aidr_el1;
+> -	u64 ctr_el0;
+> +	struct kvm_vm_id_regs id_regs;
+>  
+>  	/* Masks for VNCR-backed and general EL2 sysregs */
+>  	struct kvm_sysreg_masks	*sysreg_masks;
+> @@ -1634,19 +1638,19 @@ void kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu);
+>  bool kvm_arm_vcpu_stopped(struct kvm_vcpu *vcpu);
+>  bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu);
+>  
+> -static inline u64 *__vm_id_reg(struct kvm_arch *ka, u32 reg)
+> +static inline u64 *__vm_id_reg(struct kvm_vm_id_regs *id_regs, u32 reg)
+>  {
+>  	switch (reg) {
+>  	case sys_reg(3, 0, 0, 1, 0) ... sys_reg(3, 0, 0, 7, 7):
+> -		return &ka->id_regs[IDREG_IDX(reg)];
+> +		return &id_regs->ftr_reg[IDREG_IDX(reg)];
+>  	case SYS_CTR_EL0:
+> -		return &ka->ctr_el0;
+> +		return &id_regs->ctr_el0;
+>  	case SYS_MIDR_EL1:
+> -		return &ka->midr_el1;
+> +		return &id_regs->midr_el1;
+>  	case SYS_REVIDR_EL1:
+> -		return &ka->revidr_el1;
+> +		return &id_regs->revidr_el1;
+>  	case SYS_AIDR_EL1:
+> -		return &ka->aidr_el1;
+> +		return &id_regs->aidr_el1;
+>  	default:
+>  		WARN_ON_ONCE(1);
+>  		return NULL;
+> @@ -1654,7 +1658,7 @@ static inline u64 *__vm_id_reg(struct kvm_arch *ka, u32 reg)
+>  }
+>  
+>  #define kvm_read_vm_id_reg(kvm, reg)					\
+> -	({ u64 __val = *__vm_id_reg(&(kvm)->arch, reg); __val; })
+> +	({ u64 __val = *__vm_id_reg(&(kvm)->arch.id_regs, reg); __val; })
+>  
+>  void kvm_set_vm_id_reg(struct kvm *kvm, u32 reg, u64 val);
+>  
+> diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
+> index adaf26ab93b8..49bbe68c0b9e 100644
+> --- a/arch/arm64/kvm/config.c
+> +++ b/arch/arm64/kvm/config.c
+> @@ -1467,11 +1467,11 @@ static bool idreg_apply_deps(struct kvm *kvm, const struct reg_feat_map_desc *r)
+>  			resx.res0 |= reg_feat_map_bits(&r->bit_feat_map[i]);
+>  	}
+>  
+> -	val = kvm->arch.id_regs[r->idreg_idx];
+> -	kvm->arch.id_regs[r->idreg_idx] &= ~resx.res0;
+> -	kvm->arch.id_regs[r->idreg_idx] |= resx.res1;
+> +	val = kvm->arch.id_regs.ftr_reg[r->idreg_idx];
+> +	kvm->arch.id_regs.ftr_reg[r->idreg_idx] &= ~resx.res0;
+> +	kvm->arch.id_regs.ftr_reg[r->idreg_idx] |= resx.res1;
+>
+> -	return val != kvm->arch.id_regs[r->idreg_idx];
+> +	return val != kvm->arch.id_regs.ftr_reg[r->idreg_idx];
+>  }
+>  
+>  void kvm_idregs_enforce_dependencies(struct kvm *kvm)
+> @@ -1488,7 +1488,7 @@ void kvm_idregs_enforce_dependencies(struct kvm *kvm)
+>  
+>  static bool idreg_feat_match(struct kvm *kvm, const struct reg_bits_to_feat_map *map)
+>  {
+> -	u64 regval = kvm->arch.id_regs[map->regidx];
+> +	u64 regval = kvm->arch.id_regs.ftr_reg[map->regidx];
+>  	u64 regfld = (regval >> map->shift) & GENMASK(map->width - 1, 0);
+>  
+>  	if (map->sign) {
 
+All this stuff should really be cleaned up by introducing the correct
+level of abstraction. I have a local untested hack that does this:
 
+diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+index ed00637f1d7a8..65d34e2da17d2 100644
+--- a/arch/arm64/include/asm/kvm_host.h
++++ b/arch/arm64/include/asm/kvm_host.h
+@@ -1639,11 +1639,16 @@ void kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu);
+ bool kvm_arm_vcpu_stopped(struct kvm_vcpu *vcpu);
+ bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu);
+ 
++static inline u64 *__vm_ftr_reg_by_idx(struct kvm_vm_id_regs *id_regs, u32 idx)
++{
++	return &id_regs->ftr_reg[idx];
++}
++
+ static inline u64 *__vm_id_reg(struct kvm_vm_id_regs *id_regs, u32 reg)
+ {
+ 	switch (reg) {
+ 	case sys_reg(3, 0, 0, 1, 0) ... sys_reg(3, 0, 0, 7, 7):
+-		return &id_regs->ftr_reg[IDREG_IDX(reg)];
++		return __vm_ftr_reg_by_idx(id_regs, IDREG_IDX(reg));
+ 	case SYS_CTR_EL0:
+ 		return &id_regs->ctr_el0;
+ 	case SYS_MIDR_EL1:
+@@ -1658,8 +1663,14 @@ static inline u64 *__vm_id_reg(struct kvm_vm_id_regs *id_regs, u32 reg)
+ 	}
+ }
+ 
+-#define kvm_read_vm_id_reg(kvm, reg)					\
+-	({ u64 __val = *__vm_id_reg(&(kvm)->arch.id_regs, reg); __val; })
++#define kvm_get_vm_ftr_reg_by_idx(kvm, idx)					\
++	({ u64 *__valp = __vm_ftr_reg_by_idx(&(kvm)->arch.id_regs, idx); __valp; })
++
++#define kvm_get_vm_id_reg(kvm, reg)					\
++	({ u64 *__valp = __vm_id_reg(&(kvm)->arch.id_regs, reg); __valp; })
++
++#define kvm_read_vm_id_reg(kvm, reg)				\
++	({ u64 __val = *kvm_get_vm_id_reg(kvm, reg); __val; })
+ 
+ void kvm_set_vm_id_reg(struct kvm *kvm, u32 reg, u64 val);
+ 
+diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
+index 399693203e934..37eae14c3924a 100644
+--- a/arch/arm64/kvm/config.c
++++ b/arch/arm64/kvm/config.c
+@@ -1565,7 +1565,7 @@ static const struct reg_feat_map_desc *idreg_feat_maps[] = {
+ static bool idreg_apply_deps(struct kvm *kvm, const struct reg_feat_map_desc *r)
+ {
+ 	struct resx resx = {};
+-	u64 val;
++	u64 val, *valp;
+ 
+ 	for (int i = 0; i < r->bit_feat_map_sz; i++) {
+ 		if ((r->bit_feat_map[i].flags & CALL_FUNC) &&
+@@ -1573,11 +1573,12 @@ static bool idreg_apply_deps(struct kvm *kvm, const struct reg_feat_map_desc *r)
+ 			resx.res0 |= reg_feat_map_bits(&r->bit_feat_map[i]);
+ 	}
+ 
+-	val = kvm->arch.id_regs.ftr_reg[r->idreg_idx];
+-	kvm->arch.id_regs.ftr_reg[r->idreg_idx] &= ~resx.res0;
+-	kvm->arch.id_regs.ftr_reg[r->idreg_idx] |= resx.res1;
++	valp = kvm_get_vm_ftr_reg_by_idx(kvm, r->idreg_idx);
++	val = *valp;
++	*valp &= ~resx.res0;
++	*valp |= resx.res1;
+ 
+-	return val != kvm->arch.id_regs.ftr_reg[r->idreg_idx];
++	return val != *valp;
+ }
+ 
+ void kvm_idregs_enforce_dependencies(struct kvm *kvm)
+@@ -1594,7 +1595,7 @@ void kvm_idregs_enforce_dependencies(struct kvm *kvm)
+ 
+ static bool idreg_feat_match(struct kvm *kvm, const struct reg_bits_to_feat_map *map)
+ {
+-	u64 regval = kvm->arch.id_regs.ftr_reg[map->regidx];
++	u64 regval = *kvm_get_vm_ftr_reg_by_idx(kvm, map->regidx);
+ 	u64 regfld = (regval >> map->shift) & GENMASK(map->width - 1, 0);
+ 
+ 	if (map->sign) {
+
+> diff --git a/arch/arm64/kvm/hyp/nvhe/pkvm.c b/arch/arm64/kvm/hyp/nvhe/pkvm.c
+> index fc0475f0877d..41ee83290697 100644
+> --- a/arch/arm64/kvm/hyp/nvhe/pkvm.c
+> +++ b/arch/arm64/kvm/hyp/nvhe/pkvm.c
+> @@ -399,7 +399,7 @@ static void pkvm_init_features_from_host(struct pkvm_hyp_vm *hyp_vm, const struc
+>  	DECLARE_BITMAP(allowed_features, KVM_VCPU_MAX_FEATURES);
+>  
+>  	/* CTR_EL0 is always under host control, even for protected VMs. */
+> -	hyp_vm->kvm.arch.ctr_el0 = host_kvm->arch.ctr_el0;
+> +	hyp_vm->kvm.arch.id_regs.ctr_el0 = host_kvm->arch.id_regs.ctr_el0;
+
+This stuff is just terrible code, and needs to be cleaned up. It
+should read something like:
+
+diff --git a/arch/arm64/kvm/hyp/nvhe/pkvm.c b/arch/arm64/kvm/hyp/nvhe/pkvm.c
+index ef936dee20ad3..ad100df6a8b0d 100644
+--- a/arch/arm64/kvm/hyp/nvhe/pkvm.c
++++ b/arch/arm64/kvm/hyp/nvhe/pkvm.c
+@@ -413,7 +413,7 @@ static void pkvm_init_features_from_host(struct pkvm_hyp_vm *hyp_vm, const struc
+ 	DECLARE_BITMAP(allowed_features, KVM_VCPU_MAX_FEATURES);
+ 
+ 	/* CTR_EL0 is always under host control, even for protected VMs. */
+-	hyp_vm->kvm.arch.id_regs.ctr_el0 = host_kvm->arch.id_regs.ctr_el0;
++	*kvm_get_vm_id_reg(kvm, SYS_CTR_EL0) = kvm_read_vm_id_reg((struct kvm *)host_kvm, SYS_CTR_EL0);
+ 
+ 	/*
+ 	 * pKVM runs only GICv3. Anything else becomes 0, the model of a VM
+
+Overall, I'd like to see a first patch introducing helpers that the
+code uses everywhere possible, then another patch that introduces the
+structure, the renaming, and changes the accessors without touching
+the rest of the code.
+
+Thanks,
+
+	M.
+
+-- 
+Jazz isn't dead. It just smells funny.
 
