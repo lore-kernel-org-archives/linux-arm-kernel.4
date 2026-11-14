@@ -2,94 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE1A606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 23:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83389606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 23:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LUqFyxmM;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=OAquq2I1;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=eF/qvGIk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tRYpvQQ4;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ALMKIsIq;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=aBla3IJ9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=7geNsF7T4O0mTVMJaLXXou2YLhZ7jg1pGHtKeqN1hXc=; b=LUqFyxmMQlDCrOaJao3hcRvR2/
-	awj96K81EOU+Euxxw7ohMeRLWcdzKuCxEHRokw0ZL5LxJdXobXuVqlt4P0XuvT8Jul8bzaysutils
-	/WXTtPoEECcCqJ8gs+AypTOSyc1tX6PGu+GaOSmCZWNauWZFhGi5rVD6OSxuQElPpS5c/VkTbXL0K
-	L9g7iWxuFv5efFTnxZYCihRKUw7tUzQqaEApkRoUdZe2wUIG6kMWx51rdsOB0dg8UdrJ4C+CV0WUh
-	6YjdlsYpxSMwjBcDpvuhn9kSren+bxyRNvkaZUmU8RxFtgSd3fTcKsTtbHG25U0MhvQkDXsNZo7cc
-	UM0fzsfA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=SHz7obOecCms5SYEVnrbzhdor6lxm5HlXrthgoBerCE=; b=tRYpvQQ4zVnz5t
+	n7G+ElcgfdZaOmIRaTq9pq5h4pPFCLqKMD4itrqmJoRJn7U+pBujBW6cCXHwF+/1jWobWmuOYAb5+
+	vp4sDNQ4MCA+zAcaMjaiF3/nubcxlMxf0EaP8YzAjkNoV/j0UkOF+BFSKKsRrAqChp5IpVVkgknbt
+	xt+Vb2iBmEKTUxryM3F0Ec1ErETJi7I1axYyPLs99Oi+sbTn2lmkhX++es54pDAeTcB93Fn5S+H6U
+	GEg+rs17etR4AeoFn7Sik3DAYRHgqUaZmHToEVUdtonQnTTh23u58bjqgKt7jqeqywTaeofcAoyHf
+	uEjiaFbO04HlCapKeIHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSNVY-0000000Gtjk-2vtT;
-	Sat, 14 Nov 2026 23:50:08 +0000
+	id 1xSNVm-0000000Gtnb-0JUO;
+	Sat, 14 Nov 2026 23:50:22 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSNVW-0000000GtjJ-0GgM
+	id 1xSNVf-0000000Gtm1-3RJ8
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 14 Nov 2026 23:50:07 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AELGGix465278
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 23:50:05 GMT
+	Sat, 14 Nov 2026 23:50:17 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AELG6PS570781
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 23:50:14 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=7geNsF7T4O0mTVMJaLXXou2YLhZ7jg1pGHt
-	KeqN1hXc=; b=OAquq2I15Qtfs2s6bq3u7oU9WDcwHyUcjcTee+tBnhVkaZ2ADq7
-	T+RLDOp75nORBbyaPSZoj+U9othw4bqKr8lMflze/57EDnXMML2T/6e5gIxgWeWq
-	l+zFn1IbjPI4opea9RtsMAddnLsIDT4Bgi4Peu5yMr63FkGp56d28e7g8IzRAPNT
-	ShUQAHXYy0y4IhVLthjMWSfeeEVGYqtGmJNb6SM4ktwsEqOxrg5Om6rE25kNp8Nn
-	X//HtzNL/sNEnLi/uCNKsoEWhtTb/AjgvcGeQw9Tot6hsVCSYr++RO1McwAJCe2p
-	bpPO6UlwzpVWUlEcocK0FKxKtRSIRocDssg==
-Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hxhjqj14f-1
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=SHz7obOecCm
+	s5SYEVnrbzhdor6lxm5HlXrthgoBerCE=; b=ALMKIsIqCdJo0yIZO9Br3MlT8LE
+	solRjI/+vbvXjtY7mGMDdfrVG86VTTfsHVBJpa8g4vbZj5UOzkFmg50VbNYDbfGM
+	0GwsFjRDtPVOxLKCMjH+XkS/yClPC/B5b2uxaPofECLxrjsybjE5fbGOwfE41w2D
+	mqewlec+MtzV9QutsK8HwpHFk0TG4+2JBBMFbIANj2lBT10GTGJLDVBqbh4dh8TL
+	WHXQXvdrDS6+KzPX2E96TSte6PeWIocc/p+737k55lYvC+oInYTD8G961+sZRgkS
+	gN0Y3CKTXz8m9kz+vVbIyjjBlYscM9JX2aMGfR+YbV0o28FHSueNecu8iOg==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hxhnx209v-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 23:50:04 +0000 (GMT)
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-37549877380so2982264eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 15:50:04 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 23:50:13 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-36de26cb4b3so2776687eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 15:50:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794700204; x=1795305004; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=7geNsF7T4O0mTVMJaLXXou2YLhZ7jg1pGHtKeqN1hXc=;
-        b=eF/qvGIkI5TWgOCbzbwUeHLgETCsoblsPSZ9XsiAtWyJZ3YDK8lcMiR5JGfpCbXwll
-         5Mkry/q1SyyQPGUT9B1E0zdSp6Ca5uq5Dt233rTmIJYzThMLkewB3f3bxWwPVSpLmx0x
-         SDQHufdbLZfuhZ3vvVqXA0gEWsrKgaO+/tr6/go13ymtfQa9glEeJDVCvZPPCXWhDVsf
-         oKFwodeqcX34QI28vZAs+a+6nQ/mgxjPtQ6UrthhrHDShetjegs2rdOcXr8GfOPDKuC8
-         iXIVwnxaihrCtI2DO1jxlBQKbSPTh6EdpKFseylIkNE2nsyjjVJBABV7FdrrTDms7mak
-         7wDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794700204; x=1795305004;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1794700213; x=1795305013; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=7geNsF7T4O0mTVMJaLXXou2YLhZ7jg1pGHtKeqN1hXc=;
-        b=z/+ZDXWZD4vLkM3SYrBM7BqUsdPWtbrwyD2ggPzOVnMk0X8FoQyWWaMc1aG6aSHVtk
-         tTXQBa20saWBMGZ5usykFT4m8xpzAhyNpWZQmEQggLTTWea/mf+R5jqulihp7PNbUiCs
-         uzOp6XO5F+9jjiQqwQ5jUqldwGyhPF1H0HBfknZvNcNR/YNwHF1NlEcY7tdSYaEo3/QS
-         BqNg03Xi6IKGfXtMGv4sSVp2JeKW58jT1AOSJSi9NQTPFaIgl9zw4QkMbW+o/tnzuLNF
-         GJc46auShcBs+vUPqkzyaotb6/8FTV0eUx7XNaScO+YKUc2djTQlclAVkBtAL/MBLXqH
-         Rp0g==
-X-Gm-Message-State: APuU4Z9247OvxC87s0YjaaYgU5drd2z/m749OiVcROJeC3euzt9/r2Ds
-	cnzU4Of0J1Jkg5n46OJJIsyReXT0USOR/jVsXZL9d097CQbakWNBpb015dePzGAKTYJJrGXBa3d
-	/QiBEBGpVtwT3z9pRkZxwxp8Qm3lXA0QL/eVJWLeo4RiYLGCy8QAUAHFwqsFTeHooHwfzIcIEuD
-	5kEq4CKKb7B+g7
-X-Gm-Gg: AYBFou2vA/u/NcOcRcEyoKf3jeO/oZ3GutuH0pZFXd7Zfb0qW5SuyzzAdqWpuxNJ11m
-	Z6iGg2ApSO3p1oxfXIGejHZSZ38sACZrGcWpREGXV3e7AapDcV20XHi0OEHuH1kQ2TuKyZk4ZwI
-	txIc+pGX6A+uXdFMXg9UfdGtm+VnB6Im6a0xNomJwY8n2N+AypK+RRR8aWfawYYU6pdZwyVleRy
-	JLdfOcMG6aJQIB6W+tKOoUkluVMJOBR9Vvjt56s8pFK3zjr9d2xqNP8fV4/R75b0XKpV5OdHASi
-	VwV74abl814wnl88Lra2zeUC5z5rfbdxwv6XO5iU9J0/M0qdKhAJD8a5T00ExoPbrC4AGWbeybS
-	uy8aeKafyIkahnvos05whAJmaVaF0NS12K/KITC9MJX3NAMDo0UDM4FxXvhHsm8zvRCe2YiUqVL
-	Dt+I7ASyg1x+MDV0biyi1lMA==
-X-Received: by 2002:a05:693c:639a:20b0:37b:5343:2dd5 with SMTP id 5a478bee46e88-37b5352798cmr2530339eec.36.1794700203824;
-        Sat, 14 Nov 2026 15:50:03 -0800 (PST)
-X-Received: by 2002:a05:693c:639a:20b0:37b:5343:2dd5 with SMTP id 5a478bee46e88-37b5352798cmr2530315eec.36.1794700203064;
-        Sat, 14 Nov 2026 15:50:03 -0800 (PST)
+        bh=SHz7obOecCms5SYEVnrbzhdor6lxm5HlXrthgoBerCE=;
+        b=aBla3IJ9SvFVXgZUX7U7EbGKcKZzRFHi/NXMf9sGY9/86EbcaltZ1yKIaBnKVMV46+
+         pU9J3GSqgWqO9C/b25vDUsxsaMN8D2uBjhWfWcqcw+48Z2y2C7MuWP+FBjmogD5bjo2S
+         W0dvApDOKSceEx5GYMW1WZoI8gpyj6gBH0IjgRA+ZMwGgAbjxG98ebl6A2MGxziEA6Vi
+         RBmQX4erO4nk5nb4vR5O1NesyY1POZyHTdqzrhYz6T8V5q6RUmmrw/OcMx+N3KYVk4HO
+         Xt51JFZHjKqjtU9OoxR9YgH1HMPXV5NjuNd5Xo7c4ptdj4shFGpYAQgYCVOXOOCKLUTx
+         2MaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794700213; x=1795305013;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=SHz7obOecCms5SYEVnrbzhdor6lxm5HlXrthgoBerCE=;
+        b=b//nX9Nxp1+yzqbZslL34CJkljdGVFrOKpBScAIxjfstWAnXyuIVM/tMrcT+slO3sv
+         HSnLbz0vWs+Q+1heEv6V4eWxDYiTsJLrwJH24jqvYWW48G3Q4ITtxdwaPbc7rLvpR2sm
+         kS8AL1+8UB9WRFAwLmpjK4SGBAk2BQgTJrqsUAh9Hh9dB+QlSOGJwd7clsnahoB0Yhrm
+         +psqwtouAlX9A6PqaHt1kaNT4tyfYNnvWaTiYVjv3+3VfT6zih74pStfqx9X8b2Y591X
+         FC55r+hLkB7ql7s5Qg/Y5jX/rNV2Ew4SjnPI8s2+mFyWqEWNhKC6STuu9hNyxGb3QiLk
+         TYiQ==
+X-Gm-Message-State: APuU4Z9I/5Gj9QNlv7DzivsL8Q6TyHWTL2iPTFeS2+oWcV/xXHCxVdl4
+	H1o4Mb968y7rdvh4Z+Esco78NQLFveuZaKWoXHPna8oMQu+yf0br5d/qBcp1S2DH7kXtOU3vCH3
+	I3YZM1i7/awRcFMvWRj6OGn34rPsiSSMYLb6jCi+UE1yPFE56E96IpyHhd2ekJ0Vk5Q8D+gQkWf
+	PVQtn6u8EzUA==
+X-Gm-Gg: AYBFou0ULCNHpwWXsHtUwJUSaudYCeAMGz+fw2JsHrwe6pgJqNYiqSy2/KEmUT/PdQ/
+	VhyAkTld3xM5f6WD8r9IzRJkbicd5/m1YGEm0KNa3L6K3Z3mPknTQv0bOFcVPBZq0tmPflxuaqn
+	HZ2/PHPO5axBBfvEgfdOIu2QjEH/PUpZ+H06NSms0mf52DuC/GZZDc/ynIdsgavz5CnZvlX0rQc
+	sFhf7lQQXpBLTVPDyWRS9k3NFkXEeY2ZYL8jsRkZUT05SUBEBuQ2dlpDK7/atckGl2QDrSP4F9k
+	FEFlVM3Bg2FraDktiiSFZhNWv1+8r43NbEKsWpjR2g3HfRWk6cZYzDb2SrCyui7PGQWdZGtIUS8
+	gUo43U4d8coQ8DMu/aPZbyVO43m35QEsrGV0KgKaUl8rC0RJ3Dxd69PKd/OdKSmYfKc9lg0ovfI
+	DiJf/J8IdxeWROwx4Aez4b8w==
+X-Received: by 2002:a05:7300:fd05:b0:35d:4e41:d2c2 with SMTP id 5a478bee46e88-37968b848d9mr9239199eec.33.1794700212933;
+        Sat, 14 Nov 2026 15:50:12 -0800 (PST)
+X-Received: by 2002:a05:7300:fd05:b0:35d:4e41:d2c2 with SMTP id 5a478bee46e88-37968b848d9mr9239171eec.33.1794700212458;
+        Sat, 14 Nov 2026 15:50:12 -0800 (PST)
 Received: from hu-ashoraj-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-379563df84fsm39456313eec.20.2026.11.14.15.49.59
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-379563df84fsm39456313eec.20.2026.11.14.15.50.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2026 15:50:00 -0800 (PST)
+        Sat, 14 Nov 2026 15:50:09 -0800 (PST)
 From: Ashok Raj <ashok.raj@oss.qualcomm.com>
 To: "Linux ARM Kernel" <linux-arm-kernel@lists.infradead.org>
 Cc: "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
@@ -103,43 +103,44 @@ Cc: "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
         "Jonathan Cameron" <jonathan.cameron@oss.qualcomm.com>,
         "Ashok Raj" <ashok.raj@oss.qualcomm.com>,
         "Sathvika Vasireddy" <sathvika.vasireddy@oss.qualcomm.com>
-Subject: [RFC PATCH v1 0/2] genirq: add migratable NMI registration and show NMI counts
-Date: Sat, 14 Nov 2026 15:49:44 -0800
-Message-ID: <20261114234946.818072-1-ashok.raj@oss.qualcomm.com>
+Subject: [RFC PATCH v1 2/2] genirq/proc: Show NMI interrupt counts in /proc/interrupts
+Date: Sat, 14 Nov 2026 15:49:46 -0800
+Message-ID: <20261114234946.818072-3-ashok.raj@oss.qualcomm.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261114234946.818072-1-ashok.raj@oss.qualcomm.com>
+References: <20261114234946.818072-1-ashok.raj@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=KelHIgYD c=1 sm=1 tr=0 ts=6af8f3ad cx=c_pps
- a=cFYjgdjTJScbgFmBucgdfQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE0MDA5NCBTYWx0ZWRfX6hPxf6oysf9U
+ Vu0yrM8tP+9i2APYtZG++noV6IH0I6HSy8FZilcHIriC3FOCi6YfeGJ66LlDzjWsQM+ORqziOAt
+ uHA6EI52YXu3auwEKZ+8qpGIpgICBJtCTp/zAxpXUSSUndUFBoy8G0bfDj+W/LWUgZ0pqV2hOsD
+ hsjXaganJ87ApEaowGmgLJRepnSEj6v+nFpEsdKN84yEY+8edvsP53qS3bV/zsAbUjSSb+9C+PX
+ DihBurlvCqXF7m2BORYoHjgPR+eNPDJmaHI9Z3GMi4aAwgySAX5q9bAnUaMKmpFOUKOmgVmg+OO
+ AYd3M7wILl2lEuKKrGUtWZ6v9AMC8TY3H2zMey7Mz0zj3fin3g9y6KsHMO02waY4CIQg8+NHsC/
+ +wpiIcXCydhUdnAatzvlzprRggWZh3mfyhJZf11xOEIgmcMSytuAO0OendG5WN5WongeVXIoyS9
+ Vn3NGSV2g/Psww0mEvA==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE0MDA5NCBTYWx0ZWRfX/uP/z1ikAoX8
+ ULnCJhNoqfbMpaU80dvDyEjo8vEV6bUG4pGrbV/l7BG9pR1diycwj/GLiOv0kdYAPXoJNsocZQp
+ dioErMraSoeDmSK7f1BoodngSQT6DIg=
+X-Proofpoint-ORIG-GUID: JlmniEvul5y45zqi5bSO2_vWzPb6fN2w
+X-Proofpoint-GUID: JlmniEvul5y45zqi5bSO2_vWzPb6fN2w
+X-Authority-Analysis: v=2.4 cv=Jr5kP84C c=1 sm=1 tr=0 ts=6af8f3b5 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=VwQbUJbxAAAA:8
- a=7CQSdrXTAAAA:8 a=kooc1xV3sY2Plk4Jpm8A:9 a=scEy_gLbYbu1JhEsrz4S:22
- a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE0MDA5NCBTYWx0ZWRfX0rmadWTnBgVy
- 3fYBpyIE+J6+Vi/Jj1FyXiFghNZwG1+WceakaYpKKsxzPWxFZ/9ykclpzfNO3SQYM0hklQ7VDJ4
- dp98ig288vngTojbEGgepQddcgeIpDg=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE0MDA5NCBTYWx0ZWRfX0zgNNTaFnc/H
- SiDUUvNT8MAOpvfMq3hxeT8aKEF1wlvLzos4Q4F4isjCd7cR7s/A/mXj9WYl/aUQGrErFnb9Khf
- FpYFEBPBWjwaGyd0KAUszYSMdBVqpktWrQm/smO5Z7cHdYXjliHxTx8oKJwvia2QHDdAxsmIEbh
- OWDHg5/0KQdxUYebxqjIkjLGr+9xYhHuwcjI83ZW6o63JzzBUTCh7d+fPQ7LDHAyZcYA96JFiGM
- sMV6EZy+OJAZ3PqZFg0a1e9Xto8hDQJWw1pe8Tz2PTloHwPycAEvMMW2+khTkQsDuSrTTJNtXNh
- GdzCcZQRMydZFF4WFvy/QnHyNYB8Y+GUQqDeAkpb0XaPZHRJa+Gw+ovAT0BLxN2zzSRNPXUKVy3
- V193x/zTCzzbUJgTONZs6vRgexNcYDIK4VoPc/BBPIGEVE4RzsLveWd6iPccfWkna2YWuycdzAf
- GuUicrwAc5iBIP9Tf6w==
-X-Proofpoint-GUID: xxNbiZYtb61hY28ak4TIKK4W-C0V4sJC
-X-Proofpoint-ORIG-GUID: xxNbiZYtb61hY28ak4TIKK4W-C0V4sJC
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
+ a=wU795yvDvLEqae5DVKgA:9 a=6Ab_bkdmUrQuMsNx7PHu:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-14_06,2026-11-11_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0 phishscore=0
- clxscore=1015 spamscore=0 adultscore=0 priorityscore=1501 malwarescore=0
+ spamscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611140094
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_155006_254658_B7AE7025 
-X-CRM114-Status: GOOD (  13.08  )
+X-CRM114-CacheID: sfid-20261114_155015_986932_B161F495 
+X-CRM114-Status: GOOD (  13.00  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -151,69 +152,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-request_nmi() currently models NMIs as per-CPU sources. This does not
-represent a globally routed NMI source with an affinity-capable irqchip,
-which needs to be rerouted when its target CPU is offlined.
+NMI flow handlers update only the per-CPU counters because
+irq_desc::tot_count is not safe to update in NMI context. As a result,
+/proc/interrupts shows zero counts for a non-per-CPU NMI.
 
-This RFC adds IRQF_NMI_MIGRATABLE as a request_nmi() registration mode
-for such a source. It remains excluded from normal IRQ balancing, but the
-generic startup and CPU-hotplug paths may select an online target. The
-second patch fixes the related /proc/interrupts display: NMI-safe flow
-handling updates the per-CPU counters rather than irq_desc::tot_count.
-
-Patch 1: Add the migratable-NMI registration mode, validate that it is
-used only through request_nmi() with an affinity-capable non-per-CPU
-irqchip, and add IRQ KUnit coverage for registration and CPU-offline
-migration.
-
-Patch 2: Emit the per-CPU counters for all NMI descriptors, matching
+Display the per-CPU counters for NMI descriptors, matching
 kstat_irqs_desc().
 
-Testing:
-  - ARM64 changed-object builds with WERROR=1
-  - ARM64 !SMP changed-object build
-  - ARM64 IRQ KUnit run under QEMU with two CPUs, including registration
-    validation and CPU-offline migration
-  - local downstream GHES delivery and migration validation for the intended
-    consumer topology (not part of this series)
+Signed-off-by: Ashok Raj <ashok.raj@oss.qualcomm.com>
+---
+ kernel/irq/proc.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-Base and dependencies:
-
-This RFC was developed and tested on v7.4-rc2 plus the FEAT_NMI v2 series
-[1]. It depends on that series' GIC NMI support and is therefore not directly
-applicable to mainline or linux-next as posted. This RFC is for design
-feedback; it will need rebasing onto the upstream form of those prerequisites
-before submission.
-
-[1] https://lore.kernel.org/linux-arm-kernel/20261112132042.129062-1-vladimir.murzin@arm.com/
-
-A separate GHES Type-4 series is the intended first consumer and is not
-included here.
-
-Feedback is particularly welcome on the IRQF_NMI_MIGRATABLE API and its
-placement in the generic IRQ API, as well as the NMI accounting presentation
-in /proc/interrupts.
-
-Ashok Raj (2):
-  genirq: Add migratable NMI registration mode
-  genirq/proc: Show NMI interrupt counts in /proc/interrupts
-
- include/linux/interrupt.h |   2 +
- kernel/irq/irq_test.c     | 141 +++++++++++++++++++++++++++++++++++++-
- kernel/irq/manage.c       |  33 +++++++--
- kernel/irq/proc.c         |   7 +-
- 4 files changed, 172 insertions(+), 11 deletions(-)
-
-
---
+diff --git a/kernel/irq/proc.c b/kernel/irq/proc.c
+index 0c0df16de581..490b2df9c105 100644
+--- a/kernel/irq/proc.c
++++ b/kernel/irq/proc.c
+@@ -559,11 +559,12 @@ static int irq_seq_show(struct seq_file *p, void *v)
+ 	seq_putc(p, ':');
+ 
+ 	/*
+-	 * Always output per CPU interrupts. Output device interrupts only when
+-	 * desc::tot_count is not zero.
++	 * Always output per CPU interrupts and NMIs, which only account in
++	 * per-CPU counters. Output device interrupts only when desc::tot_count
++	 * is not zero.
+ 	 */
+ 	if (irq_settings_is_per_cpu(desc) || irq_settings_is_per_cpu_devid(desc) ||
+-	    data_race(desc->tot_count))
++	    irq_is_nmi(desc) || data_race(desc->tot_count))
+ 		irq_proc_emit_counts(p, &desc->kstat_irqs->cnt);
+ 	else
+ 		irq_proc_emit_zero_counts(p, num_online_cpus());
+-- 
 2.43.0
 
 
