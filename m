@@ -2,67 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC553606A8A3
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00351606A88A
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 14 Nov 2026 00:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Kf2+tRkD;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LlDq+DeU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ndFsmwxo;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oVMcLii0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=av1K61twRr3YmYkxqE3loSPySCWqt28yd74ZsgUfme4=; b=Kf2+tRkDFNYH1e
-	1DK9BeKSjN5ZImqeFfPVcmcey2Kud7F2LR4IDJes1cgLWMaetaMZ7lGykzIRX0bXVSZ9owRDh4P1L
-	O6TJXsSgw5L4n5KOX0rKsu64AIUkKgqesXDXGaLYLwHkkc1cd1Bk7j/2e62ws9z3BhpNvycJDfZ3J
-	JD4CoRxIXaafyrlII0G+rktO+XpRim7RYXmWUv6S81IHKI3/dg97qZNcMuEREh6emOJiO8VNoDv4L
-	GApMzDtsIbYRXMQdjZPbtaRz5YmKCceidS3bjoy765SNXAxH0yQWC02Z4TBmpP3ZpNWTOd3GBtP14
-	Hvx//n36gUP1XTYikzaQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=4P7DMRpzI67L+ckc1ZBMVeAzQ4J+BH4io4JBuf9M6QI=; b=ndFsmwxoEQMlG+WVYMZmrjlnjt
+	og3ERNY877HU/AZTrkAD2guCNluqGXuyUJHpLLrBqT/Fozhq8n4uDa3kWDuwhgXh55OSGGy77/ScE
+	NpB8TsrEyRwlJPRGcinBNAJnjm5t4KWXp6K6kvvIYz4TdWkoD6Tk0csI5weEHYwCeBOJXCM4vB3xR
+	Mx8ShrZ7zvHGHRHbkBDKCQj7Z2mDBx1G0Zoqgtu9FgQDCoHGbJXGCvLL+NK9OPARpnU/AaJRj00qd
+	syviovv6+GzWaxpNJlbe7d5qXRkJUS7Snmd/r5DjX3saEW7Ff+dAHiUvOzditOqy0fFtTNyDbf1hA
+	oO9OXE6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1oT-0000000EwGu-2148;
-	Sat, 14 Nov 2026 00:40:13 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xS1z4-0000000ExEP-21P6;
+	Sat, 14 Nov 2026 00:51:10 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS1oS-0000000EwG7-231Y;
-	Sat, 14 Nov 2026 00:40:12 +0000
+	id 1xS1z3-0000000ExED-0Owh;
+	Sat, 14 Nov 2026 00:51:09 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8C57061CF9;
-	Sat, 14 Nov 2026 00:40:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 437141F000C5;
-	Sat, 14 Nov 2026 00:40:11 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 91698439C1;
+	Sat, 14 Nov 2026 00:51:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 560D81F000C4;
+	Sat, 14 Nov 2026 00:51:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794616811;
-	bh=av1K61twRr3YmYkxqE3loSPySCWqt28yd74ZsgUfme4=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=LlDq+DeUZiAI+BHUrcyL5l3n7ruZ86Zv03rxJbgLG7XNgBHwZaozunN4+zeWWv38y
-	 uFk4AH2sjXAfrI8zYqTFEmHM0U/YbABuHOWvaf/7M2HLE5vCm0rqMkxVa+Iv5Vzxp6
-	 H0crPCraQw1k4V5a16UHmh48Y7GzAJwWheOxq0Kz9sj5rzK5VuJiqjQDZ2YddKFvpm
-	 RlLHmHiviI2QOyURRZLQHlLqvObxjwisjNgNnAzJINnxFDFr+5Fa7jemjyKMoytIzz
-	 xzIm6/QNU99fHuRqqM4JtqqbxjEu2lptaiMSTdqJgEHc3XbAWidNr/0EfnmIW0VZPu
-	 SQeP1uctW2XIA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 3A3CB380821F;
-	Sat, 14 Nov 2026 00:40:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20260515; t=1794617468;
+	bh=4P7DMRpzI67L+ckc1ZBMVeAzQ4J+BH4io4JBuf9M6QI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=oVMcLii0dUHW5lJ0aO2FOmzV+DtpO2BAO3mNVRP0i0LIE6D5kLt6SrgDhXsucm8mC
+	 C8ZQpUMueJXSpnm7ywh3lwmbIMgUwhyXiAAfrus8oblsQmbj0zZCRx0MfWCawJGdDa
+	 EefuKEHnAmO6bpzC8yMwOuUfyQSeK5FtDKXYNT4eduq0M3/iHfMDpUCgQUOM1dJoiF
+	 Sqbplwg5b3TwtDDG/NEY3JqGAqMM9xSxxoJ4Dy7xxpu9dhxQ1hJP7vvENFbql46WqB
+	 CXreMYZzU80aPeCqlP634fGxyAOCYtEuGDKtqDac3RsNQF8BdP16XOxkOkI3lmUP51
+	 C/CJ9RPPV57Lw==
+Received: by traversing.sirena.org.uk (Postfix, from userid 1000)
+	id 8D99C32AA096; Sat, 14 Nov 2026 00:51:06 +0000 (GMT)
+Date: Sat, 14 Nov 2026 00:51:06 +0000
+From: Mark Brown <broonie@kernel.org>
+To: shao.mingyin@zte.com.cn
+Cc: william.zhang@broadcom.com, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	pjw@kernel.org, samuel.holland@sifive.com, kursad.oney@broadcom.com,
+	jonas.gorski@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+	anand.gore@broadcom.com, florian.fainelli@broadcom.com,
+	rafal@milecki.pl, linux-arm-kernel@lists.infradead.org,
+	sven@kernel.org, j@jannau.net, neal@gompa.dev,
+	asahi@lists.linux.dev, ryan.wanner@microchip.com,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev
+Subject: Re: [PATCH v2 3/5] spi: bcmbca-hsspi: fix division by zero for
+ devices without a max speed
+Message-ID: <1d8b7784-f217-45ef-8f09-658044e441ea@sirena.org.uk>
+References: <CAHi4H7GHGO27Q=O8Upfds8jk-ujSHU5h91hCZw6qjftNX7a2Ng@mail.gmail.com>
+ <20261111173637687ugnRPRBKJkF0zihl662i2@zte.com.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] net: stmmac: dwmac-rk: only read the delays the
- MAC applies
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179461680977.1918448.16146594996456604743.git-patchwork-notify@kernel.org>
-Date: Sat, 14 Nov 2026 00:40:09 +0000
-References: <20261110-stmmac-dwmac-rk-delays-v1-1-87abb6592921@gmail.com>
-In-Reply-To: <20261110-stmmac-dwmac-rk-delays-v1-1-87abb6592921@gmail.com>
-To: Arun Iyengar <aiyengar1990@gmail.com>
-Cc: heiko@sntech.de, maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-kernel@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="D7xosyWN3K0hIeX/"
+Content-Disposition: inline
+In-Reply-To: <20261111173637687ugnRPRBKJkF0zihl662i2@zte.com.cn>
+X-Cookie: I'm wet!  I'm wild!
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,37 +80,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+--D7xosyWN3K0hIeX/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Tue, 10 Nov 2026 07:13:55 +0000 you wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> The tx_delay and rx_delay properties are only used for the directions in
-> which the MAC inserts the RGMII clock delay itself: both for "rgmii",
-> TX for "rgmii-rxid" and RX for "rgmii-txid". For "rgmii-id" (the PHY
-> adds both delays, the recommended setup) and for RMII they are ignored
-> by rk_gmac_powerup().
-> 
-> [...]
+On Wed, Nov 11, 2026 at 05:36:37PM +0800, shao.mingyin@zte.com.cn wrote:
 
-Here is the summary with links:
-  - [net-next] net: stmmac: dwmac-rk: only read the delays the MAC applies
-    https://git.kernel.org/netdev/net-next/c/6b8e9712d031
+> > IMHO the upper layer should fail ... rather than having the controller
+> > driver to override with a risky 1Hz clock.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> Agreed; the fix belongs upstream of the driver, not in ->set_clk().
+> Mark, which do you prefer: reject max_speed_hz == 0 in spi core, or
+> have these two drivers clamp FCW >= 1?  I'll wait for your call and
+> won't spin a v3 meanwhile.
 
+Ideally the core should do this but that's quite hard to do due to knock
+on effects of handling 0 as a default everywhere, together with having a
+bunch of existing drivers that don't provide any information.
 
+--D7xosyWN3K0hIeX/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQReagvpf3TrrA7BoYYv73Ows9A4iQUCavewegAKCRAv73Ows9A4
+iWN2AQClR5sOK8gylXjPGozoKNkL8che7F9VYkofFkYIAbamjwD/ReYiG72diC+8
+NHMu21kmTY9APQadD0105SE1A4OM0wg=
+=FhG5
+-----END PGP SIGNATURE-----
+
+--D7xosyWN3K0hIeX/--
 
