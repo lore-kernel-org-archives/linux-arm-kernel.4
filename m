@@ -2,97 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D72F606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 06:39:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B33CD606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 06:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BLH0qd4L;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XY6g0QDN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xctIBsLX;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=XgjSjiPn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=5uzNQjIqKu1Z5H5h4ULFcPsML/9M2qNB6yySUHBpd2Q=; b=BLH0qd4Lw1jbt4n2GFBjdi0NyB
-	1kXUCcU3tfFQbOsHBRHQEuu0NA3zwMOtIhlHTzxq4q6PV0jn9RWRd1RvEmDsex8FH+6aDrUPbCV1V
-	BJ2p3+uXUJBXIC0e+pJytr8fRCP+AwjRa41g3MlzYC5ayHVN2VF951DJ630zV/CziZJ6FYQuuisHh
-	uxzYra9BV4zr2ErJsWl9su62xC62AbDV3xrNh+Rn8UMnzbL5ue0ZKyXSi07++6GMjLakyfG8wyk9k
-	u9J8QYHJy0+kF6XSOzffT6PSYJSgHyaBR0SP/wlKYQ+Q6L9n50OHwQggqNdBz14Wgl51VvFQFn409
-	apn0avfQ==;
+	bh=Ae1bG6w+qmEf9x2v/m2p04gxYPsvd0s6dg1OJhqCxXE=; b=xctIBsLX0jm86YvzHTdFSw81bI
+	pO9a9tGNsZfPYgj1WDzD0wyELSyKB8JMVoS8UXHxdSDUivudfMy6BJPmmWQCnBaihOQanzDgkUAKn
+	5aeK0PfLbnja2Uv8R+S6Ya5kzSB4GqJLyrv04AiJCyXNG5F3YsghtytSpu1aFkjL0FY4NSe0USbpp
+	TPCAnNCedHXWcqVOAEQ+zd3Y2PQn3v2xxCoGLfjy2l55UzAI/aiVLJfBzwIiaQVOCK+fJ6P1o33eb
+	OdrvVVJ4JjDJpHJthG0FvcDQW8r+Xb1AD8gGVda9ZMEjqWcyiqp9hFz453kQoT2nunnQvJLhz5/FE
+	RC9HONkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSTtJ-0000000H8bV-2rLa;
-	Sun, 15 Nov 2026 06:39:05 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSTzN-0000000H8xm-1Kqf;
+	Sun, 15 Nov 2026 06:45:21 +0000
+Received: from mail-qt1-x833.google.com ([2607:f8b0:4864:20::833])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSTtI-0000000H8bB-2P9A;
-	Sun, 15 Nov 2026 06:39:04 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B208B43965;
-	Sun, 15 Nov 2026 06:39:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF9C1F000C4;
-	Sun, 15 Nov 2026 06:38:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794724743;
-	bh=5uzNQjIqKu1Z5H5h4ULFcPsML/9M2qNB6yySUHBpd2Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=XY6g0QDNlp+U9PsTjMW6Z7U+4AKhATHLs5He0CZN49f2Nu0bcao4bAPuuwEsft6FI
-	 TWnoj+VGBoUPTmb0EJCJXCsTtwSE0k13bv5Te+OZ5Acn6pVLSE5i/fhLT5QGKgwaOk
-	 Ucb2W6afh0Q1yzMIuWl0IoyL1xjTDc8J5WHHCJWlw82oKPLfFptJE13O1Ok9X62IyP
-	 xkoneXTm1OtIXF7WSDiXJH8M/fRN/bG7+qbjc7kJUeud8mWA9cz/xm6XTt15y1BZge
-	 qGkeMJ/mOBJIxREW4t6uml5kStkcI3+UGIwjK5RYkeEIMSPndyRf3R1y4lpuaoL/kN
-	 M2jExDr2sEOLQ==
-Date: Sun, 15 Nov 2026 08:38:46 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	"Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
-	Alexandre Ghiti <alexghiti@rivosinc.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	=?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Donald Dutile <ddutile@redhat.com>,
-	Eric Chanudet <echanude@redhat.com>,
-	Heiko Carstens <hca@linux.ibm.com>, Helge Deller <deller@gmx.de>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Kent Overstreet <kent.overstreet@linux.dev>,
-	Liviu Dudau <liviu@dudau.co.uk>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nadav Amit <nadav.amit@gmail.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Philippe =?iso-8859-1?Q?Mathieu-Daud=E9?= <philmd@linaro.org>,
-	Rick Edgecombe <rick.p.edgecombe@intel.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Sam Ravnborg <sam@ravnborg.org>, Song Liu <song@kernel.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Thomas Gleixner <tglx@linutronix.de>, Will Deacon <will@kernel.org>,
-	bpf@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-	linux-mm@kvack.org, linux-modules@vger.kernel.org,
-	linux-parisc@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-s390@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev,
-	netdev@vger.kernel.org, sparclinux@vger.kernel.org, x86@kernel.org
-Subject: Re: [PATCH RESEND v8 11/16] powerpc: extend execmem_params for
- kprobes allocations
-Message-ID: <avlTdlK9ErlqVRYl@kernel.org>
-References: <20240505160628.2323363-1-rppt@kernel.org>
- <20240505160628.2323363-12-rppt@kernel.org>
- <3f7af771-87a7-4ae7-9919-bc4c23bd31c9@kernel.org>
+	id 1xSTzJ-0000000H8wz-3sId
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 15 Nov 2026 06:45:19 +0000
+Received: by mail-qt1-x833.google.com with SMTP id d75a77b69052e-55d2d380f6aso5668051cf.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 22:45:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794725116; cv=none;
+        d=google.com; s=arc-20260327;
+        b=PIJXL4Q3x3QOjvGArHFak0OpFP+sUgvvyJhyACYFiTFZjf5qCQKNHORpb6O9EpOKfr
+         MHcArvoD3RwPqtFzq59R45epbT1iG/EN2sn2GsyNQwOeq5jrf8GOKPWhKsZ3/eCCGzUl
+         4a+yNKPiWufOJm9GhGuxx1sgAC2c1cUy9FPhLRCku1bRVVy5v6hjO/KYyatGaspenHvc
+         hfv5qUC5TTvFfHG9UyhMEF7QTUDVJDk50MJRs78J3Rz4xsJGfmc7TBKBwyJDjqoKg3if
+         YmxctQfIsMssPG+xoCyxsvCbLXnlQrDqcuchQKB3AewHEYD5IrTG73aOSKLc6YHFO5UH
+         gdoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Ae1bG6w+qmEf9x2v/m2p04gxYPsvd0s6dg1OJhqCxXE=;
+        fh=BgdkGHWk7cI1Z+0CIjeCkog8kKScLe/124AHcQBWu3w=;
+        b=jtZTgJBUiNrdGhyLJP36ZvFY2ivSS05WqeIwkE6HRawvNmWcnlbvLZn3ZjjSyYpD1o
+         D59qw5m03QHRI34JB8lSzHC8yrxm8DvRZwoZ1kYnR+vVGZhsJSA2CEfiYnK6/6CT788A
+         4Hxhnf5r8m25Dr11krBZWi0itx5g9Fb+onGs2Kaj0ryE3a0RdzYc1vuy66gb9XYSXCny
+         6cRrrq2rfbmRtIqCFR383X9J68XhFY6/KDvd/H9nzDbss3erejYL7exC6SvuMGPw6XDZ
+         X/CQ/oErNpsxludDJDPFpnpKQ4DhuTYZWaqLuhEAmtaCVOursQ+yYa1TJdCnwcPGNsWX
+         V6RQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794725116; x=1795329916; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Ae1bG6w+qmEf9x2v/m2p04gxYPsvd0s6dg1OJhqCxXE=;
+        b=XgjSjiPn4I4FWOC2dk37MgPpllVjDedkkNyeDbppNANdED6mxJHwcdGLNTfDNic6gi
+         mGxfyEBtL7x5ABoYUXc0HIZDGS7P+n6l++LfXyEHulN0/SWrsZIgB5IGf8t3FVsdIBBQ
+         aoRJnhQngO+Mqt7cnhIzMqGViVIIblcUD1mG4VM4gk0Kr6720NPFVBHChVuLs0IAq/3s
+         uYsBcp/eoEnUIF92N20NDUjai/ftsUMzl3mkWS6yNEmM5RH7AjcQGHb8F8yiTS3Nr0uW
+         3ih+DKRQ7CukaEfHDLhBpEhmkCSiq052dWDtugh8n40n0dypmxw+HbYHDmsLOlgTrhJN
+         wdZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794725116; x=1795329916;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=Ae1bG6w+qmEf9x2v/m2p04gxYPsvd0s6dg1OJhqCxXE=;
+        b=ap846u6GlWKq6eTiLT/Y1gb+0jggPAmYvEDAlPymhekZg57LivJWuVhT2/cRk5lA85
+         rvOOC36je105HDC39q6Mz78xjBf2AIoR2Ze2VulkqaFzZ0CPQA69DH2CK8iLsI+Dcbl5
+         nDFkiBi9hpf2XRpFYZNKU5/tnny4Yh90YuNyP/h9xd6s5teUoJEgjujOhMGVYWnQ2d7Q
+         6Gcjp+stkM75d9JozeEnW8h6FG1PWSQqQmes+OigNVEfIU/vrlkPMKxNYmFZLcdIZwAf
+         NfJcqolQjxnJXakRvM7JHzpDGz2BCZV/J0MkACz7+FK+SIxqJDLn7QjXUBE/46I8iEO8
+         J2VA==
+X-Forwarded-Encrypted: i=1; AL+hErHl79DHEd3TiBmTfs56tQyYAnsMBk22jELKdM4TgOnP7DKQC+5hTRRnAfe0zQ8uLf6iJtI56iFIoIX3Z3UWhCl/@lists.infradead.org
+X-Gm-Message-State: APuU4Z/odIjNAFB4JOKETeZkBZcNFWxLyc4tF82rzfcGfu8rxszdG9G4
+	T1HaOojGwNMLaPV7JOQEcV+DVc0XrI8Wy8qyRDfCCSaxTdzo9bCu3VrpuOjQ9WCK4ptVliHRNU7
+	F8giRs841SbxJ7eVunR2YbHbXsY5LcBY=
+X-Gm-Gg: AYBFou0P9AtFtbm4qUjoxFwVkArlzM2FRFtoJsMa7WhajCZ/5FeehWCPD6c4W71bf7J
+	xWlektJDYS8gVUXGHOPOXx7XNAAcqXhZZgOGbAA9estG6aFvHIcGYeJ3OIh92WB20JXHCnGDDPr
+	BO+vF3YOjd9JqGfAa2Lh3jdlkJ7NNKGuoepOlp7j+lcG5WrQNLJZXNa9f8gLzl9COA28WqBW7fH
+	alyRh7X4ueiMsJjuxYDmglfRkjXqbmd1GAJVPM8E7wtQvPq/YYe5av7h6sk9srjRZ6OllEDdi/S
+	QkWkMFWRhYMR5ne++qhjNh4SGgD9aBWJigkVdYrZuVCAhyen7kzRy0Zt2wps2Hvhj8W/r5jBmeX
+	WRg6+og5Tba10JV6er8lpKnA3633aAataeB4tqFc5ARgw5q1x8ocACYGdEJA3Sk6uinHA
+X-Received: by 2002:ac8:5746:0:b0:535:a5fb:644f with SMTP id
+ d75a77b69052e-55ac9877608mr106957761cf.73.1794725116540; Sat, 14 Nov 2026
+ 22:45:16 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3f7af771-87a7-4ae7-9919-bc4c23bd31c9@kernel.org>
+From: Alex Guo <alexguo1023@gmail.com>
+Date: Sun, 15 Nov 2026 14:45:05 +0800
+X-Gm-Features: AclHuK-2co-82s-DL-Ir9lk3bEMvqaIe8ZDqkSHlEPOMFzGbM_JIO5KSnIMrJc8
+Message-ID: <CAAi4Z-d5eV8FM5sYJj1gqudWyioF++fG8P6uGX_LxbiKSXjekw@mail.gmail.com>
+Subject: [PATCH] dmaengine: owl: Check IRQ lookup result
+To: vkoul@kernel.org, afaerber@suse.de, mani@kernel.org
+Cc: Frank.Li@kernel.org, dmaengine@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-actions@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261114_224517_979051_916EE11D 
+X-CRM114-Status: GOOD (  12.16  )
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,46 +113,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Christophe,
+owl_dma_probe() passes the result of platform_get_irq() to
+devm_request_irq() even when the lookup fails. The request can replace
+the original error with -EINVAL.
 
-On Fri, Nov 13, 2026 at 03:36:01PM +0100, Christophe Leroy (CS GROUP) wrote:
-> Hi Mike,
-> 
-> Looks like I missed this change ...
-> 
-> Le 05/05/2024 à 18:06, Mike Rapoport a écrit :
-> > From: "Mike Rapoport (IBM)" <rppt@kernel.org>
-> > 
-> > powerpc overrides kprobes::alloc_insn_page() to remove writable
-> > permissions when STRICT_MODULE_RWX is on.
-> > 
-> > Add definition of EXECMEM_KRPOBES to execmem_params to allow using the
-> > generic kprobes::alloc_insn_page() with the desired permissions.
-> > 
-> > As powerpc uses breakpoint instructions to inject kprobes, it does not
-> > need to constrain kprobe allocations to the modules area and can use the
-> > entire vmalloc address space.
-> 
-> Using breakpoint means the segment must still be executable.
-> On book3s/32 VMALLOC segment is not executable, while module segment is.
-> 
-> See commit 6ca055322da8 ("powerpc/32s: Use dedicated segment for modules
-> with STRICT_KERNEL_RWX")
-> 
-> See report and fix at https://lore.kernel.org/all/ed03d290d440d579a81ae0b7de5243721291d903.1794543909.git.ritesh.list@gmail.com/
+Return the lookup error before requesting the DMA interrupt, so a
+deferred probe can be retried.
 
-I'll take a look, thanks!
- 
-> Christophe
+A similar issue was fixed in commit 47c3e06ed95a
+("spi: tegra210-quad: Fix missing IRQ check in tegra_qspi_probe").
 
--- 
-Sincerely yours,
-Mike.
+Fixes: 47e20577c24d ("dmaengine: Add Actions Semi Owl family S900 DMA driver")
+Signed-off-by: Alex Guo <alexguo1023@gmail.com>
+---
+Build-tested the affected driver object with Clang 18 for arm64.
+No hardware test was performed.
+
+ drivers/dma/owl-dma.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/dma/owl-dma.c b/drivers/dma/owl-dma.c
+index 31a6c6e01a75..daea82718229 100644
+--- a/drivers/dma/owl-dma.c
++++ b/drivers/dma/owl-dma.c
+@@ -1156,6 +1156,9 @@ static int owl_dma_probe(struct platform_device *pdev)
+         * simplification.
+         */
+        od->irq = platform_get_irq(pdev, 0);
++       if (od->irq < 0)
++               return od->irq;
++
+        ret = devm_request_irq(&pdev->dev, od->irq, owl_dma_interrupt, 0,
+                               dev_name(&pdev->dev), od);
+        if (ret) {
+--
+2.43.0
 
