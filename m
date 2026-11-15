@@ -2,77 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 437A7606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 18:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC3C606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 18:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=omqWL6+p;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MuMFYA2z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vDF2BFPW;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HwtEBNat
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=l52lI99/u0xLVXzwr8zRMu9sPhDs2lTdZmlj21zNAjs=; b=omqWL6+pEb9/ew
-	mPhp9/Vz+ois20aq2wSitw8JeW8B8kb4JPz5v8S0639TcPg8zE+ZQSx/33yjRDOkyOB0PKW8yvnGL
-	TozuNRFafnLG5M24Hmq36yWci7t7Pw5y/MAMhuiAntZQyGF0aQd88x/D0Z1XxOZ1eznIgQWgmIgDx
-	y5y3MaW+z4S+9m1ZAY1kFA4xyax68oK0gd/FXUiJNBRVBbA62RqxTL5NiJH73Vcs8RvxRMZqHBBTf
-	YUfEa2QtWVtAHKlHuGz/BuYsBzozExZrw0P4YwgFaenn2EjZfXsoHxRHIEg5zfBV+zbvYHGXp4XOb
-	uKLxdMP4xhile1DIwl+g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=08ECguGEt5mKY5O0zhlWhlszKnOmF7Z1WUHLZizEhZg=; b=vDF2BFPWLo/uGswXFvaCX/7wlN
+	e/sSvwGiumBXKHETodGL4o1AEwbkV9YhjmdX3URhW4tAGixjUWDbKQSvDTHy1AT1ytwkHFZngyAuS
+	0SK5UwQ4weIbNiBdrF/3xjMiddfa1HIMaBGTHaC2gEC625DGpZCl50yXF6ZOInr5cRyUEUCEXUEl+
+	vxlr19EnczYjyPiO3t2NfOdljDGhbSrXZLy7k0vzSkVi/Uoai9rPWKB3UyVcYfOX8pipbJ01y7vqH
+	6HGxapNkNPOar1HUYWac/97UpQjgjYsO6BdFoWncxo8NoYvW5AinDTs5ufWWqdToVnviCmPi1iXab
+	HfRwR0MQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSedQ-00000000JOE-185f;
-	Sun, 15 Nov 2026 18:07:24 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSedm-00000000JSD-1c8E;
+	Sun, 15 Nov 2026 18:07:46 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSedP-00000000JO3-2alz
+	id 1xSedk-00000000JRV-3Gv4
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 18:07:23 +0000
+	Sun, 15 Nov 2026 18:07:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AAEC8623D1;
-	Sun, 15 Nov 2026 18:07:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D7851F000C4;
-	Sun, 15 Nov 2026 18:07:21 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E7D1E62449
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 18:07:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A03341F000C4
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 18:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794766042;
-	bh=l52lI99/u0xLVXzwr8zRMu9sPhDs2lTdZmlj21zNAjs=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=MuMFYA2z1Y2oba2gPNcM+zLsP2IUACKuanMnCLrN260zUZnESn85Z40vT22j5b6xc
-	 nACu68Pg8AhhMNoGRfXFwas+reHN1Du6ib6Z65hBpGbcxZtmh5bidPRyscMphxzlZW
-	 AGh4J54081G2eEjo2ipnC2lgl2r3B6kUk1jxu0o4UV3Ok/WoQnvgF3eVIZbmv8N1hz
-	 rgoZHTrsi5C7Cb55VBnya2/jWTEgAkIFz6hxwn73bycIF8eme6s5qX9NOVIFXZmuSJ
-	 KWI9n8zW9uiKC34D028T69IuZDbFO7lmzrdOapo1eVAn/sPIRzTpHAccn5SEHCru9Q
-	 9U1t+wfcHbieA==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 21FCA33BA091;
-	Sun, 15 Nov 2026 18:06:15 +0000 (GMT)
+	s=k20260515; t=1794766063;
+	bh=08ECguGEt5mKY5O0zhlWhlszKnOmF7Z1WUHLZizEhZg=;
+	h=From:Date:Subject:To:Cc;
+	b=HwtEBNatawJhYBqAdi26+Fuw/aOPiZ3JNzspnfWuZrU+HIohjDxnDHSDqTzUgchiF
+	 ZOkcMXpKMfHTj9TbH2VDCFjSP4KG9RGJ45kCqedfev5aSOdpdGmod5B3htnOaRTGSC
+	 8GgSkOMEMrDhn8eGEzrjbNtaAUrkdwgf8TE8cAdtRDvpm2LdK0obcXMoBOoJKvDFWL
+	 LsltVAOsbM6/5PSEcfJoS7ABwP7vdKMlGOLyWbb/dTDbnDS2EPbMDTD3qrLQL6DeIk
+	 93EAjCKz+lEmyCBxcSWA3YB4Ggn1bup8+iQgkvPh2ZfVgFvTEBnKyLnXkrU6ulcWi5
+	 IKI2Gp7s3XfsQ==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5c14f3dab0cso2440156e87.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 10:07:43 -0800 (PST)
+X-Gm-Message-State: APuU4Z9JVcX4JJuvT7QtJeK/DOA4m3UvqlGnoWfR5869u9K4BckYZ8lZ
+	/h7EvK/MVmLWVhwG11+2kO03dRIWhzGPSB2/JgvxpR6FA7iKXcE/RTaaRZ11d54dWybZRUw8jhq
+	Xlf/IRbLXfLvx/BsmaLsv238202FQLqk=
+X-Received: by 2002:a05:6512:b88:b0:5bf:dd05:3a89 with SMTP id
+ 2adb3069b0e04-5c170a0fce2mr3165979e87.61.1794766062318; Sun, 15 Nov 2026
+ 10:07:42 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] ASoC: sun8i-codec-analog: Add the headphone inversion
- control
-From: Mark Brown <broonie@kernel.org>
-To: Romain TISSERAND <romain.tisserand@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, sashiko-reviews@lists.linux.dev
-In-Reply-To: <20261103133935.2892210-1-romain.tisserand@gmail.com>
-References: <20261103133935.2892210-1-romain.tisserand@gmail.com>
-Date: Sun, 15 Nov 2026 18:06:13 +0000
-Message-Id: <179476597358.140154.17606905713832103924.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1189; i=broonie@kernel.org;
- h=from:subject:message-id; bh=JgOmomTwucmHGBaErYnCPL+02hVS1hGD2s2sgscCOI4=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLJ+fpl+JKtdsfh+mP0xrYU1ff+61NW5mvkvzQozvvjmy
- EOJi1L6HaUsDGJcDLJiiixxWdwv60ter+E7uLANZg4rE8gQBi5OAZhI01dGhluTWo2fXDxisKTV
- +OyTR3nfn1p2PN7zZdfql3z3XHKfL2Zk+O+vdl7807Rn4pYhl17yLZb0npt7UaKl/XvrNNupt5Z
- w9jIBAA==
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+From: Linus Walleij <linusw@kernel.org>
+Date: Sun, 15 Nov 2026 19:07:29 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=z=i8dKwA7XBjjM+tNXPmZDttCYz00gpkZE86Wwh1Mzw@mail.gmail.com>
+X-Gm-Features: AclHuK8USlSPTfgH0T_EpOBmC23ixDquMOtn57B_dNGjY89wO27Ifa-8NHjtVYI
+Message-ID: <CAD++jL=z=i8dKwA7XBjjM+tNXPmZDttCYz00gpkZE86Wwh1Mzw@mail.gmail.com>
+Subject: [GIT PULL] U8500 defconfig updates
+To: soc@lists.linux.dev
+Cc: Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,34 +73,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Bits 1 and 0 of PAEN_HP_CTRL (analog register 0x07; LTRNMUTE, RTLNMUTE)
-> feed the inverted left output to the right one and the inverted right
-> output to the left one ("Left HPOUT Negative To Right HPOUT Mute" and
-> the reverse in the A23 and A33 user manuals and the V3s datasheet; 0 =
-> mute, the reset value). The driver defines them but nothing can set
-> them.
-> 
-> They are needed when a mono speaker amplifier is bridged across HPL and
-> HPR, as on the PocketGo S30 (A33): with the same signal on both outputs
-> the speaker gets almost nothing. With a mono mix on both DACs and the
-> inverted left added to the right output, HPL - HPR carries the signal.
-> 
-> Expose them as one enum, "Off", "Left to Right" or "Right to Left", so
-> that the two outputs are never fed with each other at the same time. It
-> defaults to "Off" (both muted), so nothing changes for existing boards.
+Hi SoC maintainers,
 
-What about the configuration with both set simultaneously, so HPL = L-R
-and HPR = R-L - that's fairly standard with an actual mono signal (ie,
-one channel as opposed to two copies of the mono signal), doubling the
-signal over the speaker?
+the posted update of U8500 defconfigs.
 
--- 
-Mark Brown <broonie@kernel.org>
+I have been told in the past, sharply, to split up these updates, so a lot
+of patches. Feel free to just squash them into one or however you like it!
+A rundown of the changes in the signed tag.
+
+Please pull it in!
+
+Yours,
+Linus Walleij
+
+The following changes since commit 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4:
+
+  Linux 7.4-rc1 (2026-11-01 13:26:31 -0800)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git
+tags/u8500-defconfig-v7.5-soc
+
+for you to fetch changes up to f908ea8a0f2de52dca6b19ef14885ed6f034fe58:
+
+  ARM: configs: u8500: Enable compressed firmware loading (2026-11-15
+18:52:05 +0100)
+
+----------------------------------------------------------------
+Annual U8500 defconfig update
+
+This config is mostly used by the Nura (former PostmarketOS) project.
+
+- Refresh to Kconfig changes.
+- Update to contemporary scheduling and using e.g. the TEO cpuidle
+  governor, BSD process accounting, PSI and autogrouping.
+- Enable control groups and namespacing, checkpoint-restore.
+- Enable generational LRU, DMA-CMA for memory management, disable
+  PAN (too slow) and ramdisk commandline.
+- Enable FUSE, DM/dmcrypt, squashfs, ZRAM.
+- Enable basic IP routing, nftables, TUN and VETH.
+- Move a bunch of U8500-applicable device drivers to be modules.
+- Enable I2C mux (MPU3050 is the sole user but we need to support
+  it.)
+- Move V4L2 support (used for flash) into modules.
+- Disable devices such as the STM32 MMCI we don't use.
+- Move all IIO sensor drivers to modules.
+- Enable some security features, crypto XTS, EXT4 ACLs, BPF
+  jit compiler.
+- Update Coresight debugging options and move it to modules.
+- Enabled the Audio Graph Card2 as introduced for U8500 in
+  kernel v7.4-rc1.
+- Finally enable compressed firmware loading as Nura uses this.
+
+----------------------------------------------------------------
+Linus Walleij (15):
+      ARM: configs: Refresh U8500 defconfig
+      ARM: configs: u8500: Update scheduling and accounting
+      ARM: configs: u8500: Enable control groups and namespaces
+      ARM: configs: u8500: Update boot and memory configuration
+      ARM: configs: u8500: Enable storage support
+      ARM: configs: u8500: Enable IP routing and filtering
+      ARM: configs: u8500: Build peripheral drivers as modules
+      ARM: configs: u8500: Enable I2C mux support
+      ARM: configs: u8500: Update media support
+      ARM: configs: u8500: Disable unused drivers
+      ARM: configs: u8500: Build IIO sensors as modules
+      ARM: configs: u8500: Enable security features
+      ARM: configs: u8500: Update debug and CoreSight support
+      ARM: configs: u8500: Enable audio graph card2
+      ARM: configs: u8500: Enable compressed firmware loading
+
+ arch/arm/configs/u8500_defconfig | 187 +++++++++++++++++++++++++++++----------
+ 1 file changed, 140 insertions(+), 47 deletions(-)
 
