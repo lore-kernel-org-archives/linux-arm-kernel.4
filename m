@@ -2,68 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25DDC606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 07:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C792606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 07:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rXwBCTDH;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eDfdSkQN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iFAii1xf;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=AYUcnqeZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NzpBRw/cBkBhGgg5TTiPsQ+nsl4pu7G97F49dIghoks=; b=rXwBCTDHbqXOaGUpEtkgIA7+Kf
-	KRmUeUCp72A8bYIUhNawO6jQTOZYvF0niKW8/btsq5c2Tdg3SWXUq41F4tS58z4RRsbQihT+lEjvD
-	n+mMNSeFifcyhuzRhtwg01NRJQmKU3GyUTGs7dwvGO5aDQzklKwNz3ssSrnPh4TYb33D+E/EGUQEr
-	5UrO3D2rKHM+dJkmp1Tn0EU7mXN+1Lt5OILnQV5nctCqGgfiVI3g1RPenqDMV+zgVq1+qjme7ITHI
-	2Q9+wOpshJTAKdizAh4oFi9qJhdVx/nBaKOVikF137SY7MKLZqvOYtJXs1yKNW0Rj5VgqZOGDWn7X
-	OqTKF3PQ==;
+	bh=qI3xoqr08MTqFKH89OHdawFy9+IYpxgrM6eMy9hh1r0=; b=iFAii1xfD1JTxCRW1vuE3PTuFF
+	GrQthH8NUhVpuEHX40x4Su/rVnmFELfuS2mB2neUy7deVFQ6S5h+eHgAZciSI0xopIO2/c90Bde3m
+	fe3cxSqevqdipNpGuSKFqDAqmaqDbu8CjcMRa6/1TE8kTXojd7fiKwtAC5eq5WTaCKySfuqauCmPD
+	jSXsLMfR+FXzk1E7CotpkDPMP1kgnWdad3tQL0ZK+tgPUSqK22eHwAbYqbKBcLy1g6VuRlHx+H1r5
+	uNFqKvcQdYPuJH+5uc52scoDDV7GYCkMsQwogJ+VD5tov74IlL4My8YIZSw5KmG2UQkE+kgWQ+QOA
+	whkOXCUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSUbM-0000000HAHa-0xau;
-	Sun, 15 Nov 2026 07:24:36 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSUhs-0000000HB5I-1kee;
+	Sun, 15 Nov 2026 07:31:20 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSUbD-0000000HAFk-3Gom
+	id 1xSUho-0000000HB49-3P7O
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 07:24:27 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B459C60CF7;
-	Sun, 15 Nov 2026 07:24:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 815CF1F000C4;
-	Sun, 15 Nov 2026 07:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794727466;
-	bh=NzpBRw/cBkBhGgg5TTiPsQ+nsl4pu7G97F49dIghoks=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=eDfdSkQNh1lPjw015Splx3gPWiIVtpKuozkc9f7ptmS8U5jifBLBq29LFmeK6rDoQ
-	 HqNK+c4xZVVvkdXR1fuMvjE3k1+c2hYzHGEsaoWcD5KVvNK+s7yDfFLgELibpBtmgW
-	 JKx5k4iIS0dVnPhszuxMvoB/2fFLA5RlyMjhmKI4EI6XTmNHkJlgT41ja0wAgevt/4
-	 i/XQntGJDMRKhFmWCPN8Q18duYH3juIRoCFMz3/voMvNGNbgQ0+wjXWDE9oTtYjD4d
-	 1kkQcJVUhPkRDLurQzaMYbi5Frvx3SYtADB/Nn7TEOKsoE+d1JaBiSY3aPD3Bt8viY
-	 Ct0cgORoJdbQQ==
-Subject: Re: [PATCH v7 net-next 6/9] net: dsa: netc: check return value of
- ntmp_ipft_delete_entry()
-From: netdev-bot+sashiko@kernel.org
-To: wei.fang@oss.nxp.com
-Cc: xiaoning.wang@nxp.com, andrew@lunn.ch, olteanv@gmail.com,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, horms@kernel.org,
- richardcochran@gmail.com, linusw@kernel.org, linux@armlinux.org.uk,
- wei.fang@nxp.com, imx@lists.linux.dev, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org
-Date: Sun, 15 Nov 2026 07:24:25 +0000
-Message-ID: <179472746510.2199510.5500169981091992734@kernel.org>
-In-Reply-To: <20261111062753.1397582-7-wei.fang@oss.nxp.com>
-References: <20261111062753.1397582-7-wei.fang@oss.nxp.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Sun, 15 Nov 2026 07:31:19 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-49134c8509fso2480099f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 23:31:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794727875; x=1795332675; darn=lists.infradead.org;
+        h=content-type:content-transfer-encoding:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=qI3xoqr08MTqFKH89OHdawFy9+IYpxgrM6eMy9hh1r0=;
+        b=AYUcnqeZIIKnUOdR5VJZYQvaaFRk1X4LeQYbvme+qilr4CISLX3sjakG3BkI+PzYu0
+         yvNAyiVZutysYOMwrZaeCVEAlpRNHPWuF5epQ6be+Uhb5eb1NzlZTjJW8monlU6/O79P
+         rv+bXkHFqFoxWw+jZzCw0fLee/u4gthtywaDfKimohdF8jkzlBLB20AYGg9q4Iql1EhR
+         fJ/GBNiT5ijKx0t99/aoYvV0ZvM5ZYiQ4qvA5taZX76EX3gMpLvmpi68VosR8uabK5bY
+         480fh4btH13iYwaqE4/OiGURhttGZbyN5Qk362a8NUN28YvOa4oLz6XoboYRwLo/23/W
+         NLZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794727875; x=1795332675;
+        h=content-type:content-transfer-encoding:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=qI3xoqr08MTqFKH89OHdawFy9+IYpxgrM6eMy9hh1r0=;
+        b=RuHlOhRBzpXWjGv+ChF7Qk4b+Rm6AqkdtXIbDdA1cScKR54HZ3TFMGiw2ZTJQWRbyx
+         7XNyrTO9+7AcynKvtYG/sgHMij8uZg/j0kkiLGZfrtDsvyG0qejNYVb+3K0XBy+vRHom
+         mgBy2zNOUyGAL2WscqN59iAYlZHbAx0PUtOI1KlcYioSN8PYw3RjpBn1/LMbFbHyIJVb
+         jbPJdiudt2sRCFsqrJMKPv9qxE6kGGX6cTKG2JeYwVco23KxHK73u2ib2EdbKKbW4CvA
+         Qi7QqbKt1Iu2e4I5qpnbuNXEuonVnD2KKH6VYEL+zDRwqMiUnwUKqE81cZC+R6yfp+qD
+         iTaQ==
+X-Forwarded-Encrypted: i=1; AL+hErGd/IUHDt3M6FExZltInOPz29MewB8O90bSpqWEVh9YOW8q1K998YeiJmU6FX6UmmNb1+Ci6RQxFEedD8XvuG5/@lists.infradead.org
+X-Gm-Message-State: APuU4Z8rM6a/OABTfNPFHydcjhvd6xJq0z05SKyPAmwVDCkuT2OtagoC
+	nWSjmT5S5N0FpcdMlw33pAiO3qcub4G2y4Oy5e/ek8bI2Bg5BiVBQXOu
+X-Gm-Gg: AYBFou3bT760i9tlpQcYu2eW3I2U/ge+mVjHFzZWWvcKH1NAe+kBeWl0wgyFvidrCgj
+	a88NDhtyNwlQ9NRW4JvGXJX1Fpi9qRRnjuHPI88ZQNtk653IZ13wDvVUXvsQN5remiJY41IUQfJ
+	grgbgimAfBZSP1le5HPXas74j10cvcL5R/4dynRwZUj1wvPxq/2mWiYntgO/1BOZuQ9u6BVRvIe
+	UcPtMTgsN952iXEWXTJx45WPdCIbUdcuxauPa2Bg4M/U4BbBD7P+Q3BeE2bRNyOCPqDSKF2kyvC
+	0m7A7FpF22oTAMK9vj4sdJb6wX9VF81HG4EUiQK7Qzn4e1uxakBmBCvmK4WlxlnBfCr3XBX5b/I
+	BfxpD+5S0X3UfYhCVs53ebuVhYPmIcJnplpnIxVun5lDslX+GSY7jLE9xKOMdXssz8ooua/m12W
+	WHd5Fux5xbS57eBG9+xj+powQK1xd7Rtg2Mq9O4b6PL2Y6OxwACNbn6BXvhdIgfGi/sq28Cq20n
+	CaTaOoqMrv1VTWyhveR2ojoNDraox0mm7FbJz93m46xjgC0GHvzOFmcrFitMbtTqb/tKS39pj17
+	nKeP3m5pqI+ON3KKIVKb0OgGilGmsD9XAQdCnMM4p69v/jweJ9232iQIqnQlNstqOHPpeC+KF3O
+	HCoJ0rQWXA0zgmFSdeI4n2aAo0IckBg1JKsoNjn4832xYs8WzEJ0mSmRNACTquRDDfl9r8YYcCZ
+	0rUUnPxVgA88PsEcNMWsdFHAPii0he0FXiDBGqz2mpepbV295n7/VRM7MYXO4Y5kFfO3LANKwZQ
+	RoKiYfwSAD69YkVWLmAbVRb3Q==
+X-Received: by 2002:a05:6000:25ec:b0:493:803e:800f with SMTP id ffacd0b85a97d-49c725e5749mr15660384f8f.29.1794727874441;
+        Sat, 14 Nov 2026 23:31:14 -0800 (PST)
+Received: from jernej-laptop.localnet ([2a00:ee2:6a02:9300:bb69:6bcf:1b11:e85b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c5f1c0e31sm12992274f8f.19.2026.11.14.23.31.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Nov 2026 23:31:13 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
+ Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Anup Patel <anup@brainfault.org>,
+ Han Gao <gaohan@iscas.ac.cn>, Stephen Boyd <sboyd@kernel.org>,
+ Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Maxime Ripard <mripard@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Andre Przywara <andre.przywara@arm.com>, gaohan@iscas.ac.cn
+Cc: Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
+ devicetree@vger.kernel.org, linux-csky@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 06/19] clk: sunxi-ng: add support for the Allwinner V861 CCU
+Date: Sun, 15 Nov 2026 08:31:11 +0100
+Message-ID: <c8OwiyQSR8ivEFULfFWNow@gmail.com>
+In-Reply-To: <20261114-v861-v1-6-eb71ec3ee523@iscas.ac.cn>
+References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
+ <20261114-v861-v1-6-eb71ec3ee523@iscas.ac.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261114_233117_596993_B37C4A50 
+X-CRM114-Status: GOOD (  11.70  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,195 +123,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issue(s) to consider.
+Dne petek, 13. november 2026 ob 23:33:32 Srednjeevropski standardni =C4=8Da=
+s je Han Gao via B4 Relay napisal(a):
+> From: Han Gao <gaohan@iscas.ac.cn>
+>=20
+> Add the main CCU driver for the V861, based on the A523 one. The CPU
+> PLL, the CPU subsystem clocks and the E907 clocks are left to the
+> firmware.
+>=20
+> Unlike on the A523, the second divider of the 27 MHz output is a power
+> of two. pll-audio-4x does not pass rate changes up, as its parent also
+> feeds the UART clock mux.
+>=20
+> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 
-Critical: 0 · High: 0 · Medium: 2 · Low: 1
+Do you have any user manual for it? Or at least BSP code? It's hard to
+review patches without any of those references.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Best regards,
+Jernej
 
-- [Medium] netc_port_remove_host_flood()
-  (drivers/net/dsa/netc/netc_main.c:1874-1898) keeps np->ipft_hf_eid on…
-- [Medium] The new retry loop in netc_port_set_host_flood()
-  (drivers/net/dsa/netc/netc_main.c:1943-1952) sends another IPFT ADD…
-- [Low] The commit message says that if adding the new host flood rule
-  fails, the driver will "log an error to help users find out why host…
 
---
-
-net: dsa: netc: check return value of ntmp_ipft_delete_entry()
-
-This patch makes netc_port_remove_host_flood() return errors from
-ntmp_ipft_delete_entry(), and it only clears the tracked entry ID after
-the delete succeeds. Host flood rule replacement changes from
-add-then-delete to delete-then-add, with a retry loop on the add. Bridge
-join now fails if the existing host flood rule cannot be deleted.
-
-> diff --git a/drivers/net/dsa/netc/netc_main.c b/drivers/net/dsa/netc/netc_main.c
-> index d23cfa076e842..6756bf9edfdb2 100644
-> --- a/drivers/net/dsa/netc/netc_main.c
-> +++ b/drivers/net/dsa/netc/netc_main.c
-
-[ ... ]
-
-> @@ -1877,32 +1871,37 @@ static int netc_port_add_host_flood_rule(struct netc_port *np,
->  	return err;
->  }
->  
-> -static void netc_port_remove_host_flood(struct netc_port *np, u32 entry_id)
-> +static int netc_port_remove_host_flood(struct netc_port *np)
->  {
->  	struct netc_switch *priv = np->switch_priv;
-> -	bool disable_host_flood = false;
-> +	u32 entry_id = np->ipft_hf_eid;
-> +	int err;
->  
->  	if (entry_id == NTMP_NULL_ENTRY_ID)
-> -		return;
-> +		return 0;
->  
-> -	if (np->ipft_hf_eid == entry_id)
-> -		disable_host_flood = true;
-> +	/* The command BD ring is always enabled here, with the ring
-> +	 * enabled, the hardware completes a command well within 1 ms,
-> +	 * so -ETIMEDOUT cannot happen here. Any error therefore means
-> +	 * that the entry has not been deleted, so keep tracking it.
-> +	 */
-> +	err = ntmp_ipft_delete_entry(&priv->ntmp, entry_id);
-> +	if (err)
-> +		return err;
-
-[Severity: Medium]
-Does the NTMP command layer actually guarantee what this comment assumes?
-
-ntmp_ipft_delete_entry()->ntmp_delete_entry_by_id() passes back whatever
-netc_xmit_ntmp_cmd() returns. In netc_xmit_ntmp_cmd() in
-drivers/net/ethernet/freescale/enetc/ntmp.c, the BD goes to hardware
-before the completion poll starts:
-
-	netc_write(cbdr->regs.pir, i);
-
-	err = read_poll_timeout(netc_read, val,
-				(val & NETC_CBDRCIR_INDEX) == i,
-				NETC_CBDR_DELAY_US, NETC_CBDR_TIMEOUT,
-				true, cbdr->regs.cir);
-	if (unlikely(err))
-		return err;
-
-On -ETIMEDOUT the BD stays queued, so hardware could still carry out the
-delete later. NETC_CBDR_TIMEOUT is exactly the 1 ms this comment relies
-on, with no margin.
-
-The -EIO returns (NETC_CBDRCIR_SBE and the writeback error status) are
-only raised after hardware has consumed the BD. Only -ENOMEM and -EBUSY
-seem to prove that the command never reached hardware.
-
-Suppose the delete did take effect but np->ipft_hf_eid is kept. Wouldn't
-every later delete of that ID fail?
-
-In that case netc_port_set_host_flood() would always return early. Also,
-netc_port_bridge_join() would always fail with "Failed to delete host
-flood rule", so the port could not join a bridge again until the driver
-is reloaded. Before this patch, the error was ignored and the state was
-cleared.
-
-IPFT entry IDs are assigned by hardware. Could a freed ID be reused by
-another rule? Examples are the PTP trap entries tracked in
-np->ptp_ipft_eid[] later in the series, or another port's host flood
-rule. A later netc_port_remove_host_flood() would then silently delete
-that unrelated entry and report success.
-
-The commit message's statement that "the software state always stays
-consistent with the hardware" seems to depend on this assumption holding.
-
-[ ... ]
-
-> @@ -1919,19 +1923,33 @@ static void netc_port_set_host_flood(struct dsa_switch *ds, int port,
-
-[ ... ]
-
-> +	/* Restoring the previous configuration is pointless because
-> +	 * .port_set_host_flood() returns void, so the upper layer cannot
-> +	 * detect the error and the RX flags have changed. Furthermore, we
-> +	 * cannot guarantee that we can successfully restore the previous
-> +	 * state.
-> +	 */
-> +retry:
-> +	if (netc_port_add_host_flood_rule(np, uc, mc)) {
-> +		if (retry_num++ < 2) {
-> +			usleep_range(100, 110);
-> +			goto retry;
-> +		}
-
-[Severity: Low]
-This isn't a bug, but the commit message only says it will "log an error
-to help users find out why host flooding is not working". Neither the
-commit message nor a code comment mentions this retry loop with
-usleep_range(). Could the reason for it be documented?
-
-The loop retries no matter which error code is returned. Errors that will
-fail the same way again, such as -EIO from a writeback error status when
-the table is full, get retried too. Each retry also widens the
-delete-to-add window that the commit message calls "very short".
-
-The other add sites don't retry: the restore path in
-netc_port_bridge_join() and the add in netc_port_bridge_leave(). Is that
-difference intentional?
-
-[Severity: Medium]
-Can this retry leave an untracked IPFT entry behind?
-
-netc_port_add_host_flood_rule()->ntmp_ipft_add_entry()->netc_xmit_ntmp_cmd()
-writes PIR before polling. On -ETIMEDOUT, or on -EIO after the BD has been
-consumed, hardware may still carry out the ADD. In that case
-ntmp_ipft_add_entry() returns before reading back the entry ID:
-
-	err = netc_xmit_ntmp_cmd(cbdr, &cbd, &swcbd);
-	if (err) {
-		...
-		goto unlock_cbdr;
-	}
-
-	resp = (struct ipft_resp_query *)req;
-	entry->entry_id = le32_to_cpu(resp->entry_id);
-
-netc_port_add_host_flood_rule() also records np->ipft_hf_eid only on
-success.
-
-The retry then queues another ADD. If that one succeeds, only its ID is
-tracked. Up to two FLTFA=REDIRECT / NETC_HR_HOST_FLOOD entries keyed on
-this source port could be left with no tracked ID. ntmp_ipft_delete_entry()
-would never remove them.
-
-netc_port_bridge_join() deletes only np->ipft_hf_eid, so such an entry
-would survive bridge join. The comment at the top of
-netc_port_set_host_flood() says this kind of entry sends bridged ingress
-frames straight to the CPU, which skips FDB lookup and learning.
-
-Isn't this the untracked-entry problem the commit message says the patch
-removes? The -ETIMEDOUT argument in netc_port_remove_host_flood() covers
-only the delete path, but this loop retries the add on any error code.
-
-> +
-> +		dev_err(ds->dev,
-> +			"Failed to add host flood rule on port %d\n", port);
-> +	}
->  }
-
-[ ... ]
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111062753.1397582-1-wei.fang%40oss.nxp.com
 
