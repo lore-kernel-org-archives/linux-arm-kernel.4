@@ -2,102 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D120D606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 08:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC1E606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 08:31:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NkzJudXh;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=EsLmvRlr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OPQY+dfl;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YXpjp03n
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Message-ID:Date:References:In-Reply-To
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=AEWA9iOD08SFA/zlaE7wGAZjLwI2QLYLqoPd1RCuPRs=; b=NkzJudXhKqXLatJY706VZGMYrL
-	a0OdiPF/W7DuFZn1rfwLGEYcCG45fj/7EqU4Y8BI54PQfsIFK8qH/UaYMOWMpUMilMjWvI3h5LAsE
-	xrS0GTSxoWtKQfmaZgzckNXOG9/JFDvvxjpntEx6JD7LqC6kQbtI/c0a3WQX/P/2cJ9+Pz4wAAJ8m
-	EpwbFsvs9zs/QiuUokvLD5M29OFiNWyOzINWuLAGskZm3CrNtmvN3VXvwvxLFv6xRHJD/01QqFrJz
-	fIeRpsV7F1stIYsSdRAl3IHpZSDM2cApuZ8RU5SMv6g7FeKrHua7UPPURtxfAT0ziG6No1FfN/zQf
-	he9UOBKQ==;
+	bh=aFeYl4T8YSSyDpYz53OCJzQoOO6eMGhxEhZmG97u5pM=; b=OPQY+dflX0VXzjHltrhHkbglTY
+	9NC+o5wS6zSaFqYFE+tCp+2oKOaqIGzjJO4aghDw8bsBygACK1c0QAOWOR5vTQ5nATtIlMiE/HYxk
+	rdKMIGlZWZfQHNMvLD4Y4jEFO9UKrc58Wap3xrGRHvadJwtvrnD8TjqXPt6W7yRM+x4RmJmMgCt1D
+	cCJB3prsC6QCSys0hxtxk6xCHKTTUuM05H+IHFFcWEz2clgcpsQYP7iRF4lxGXwOa6xz77kNnEArN
+	+Na5sslhojC47+A/WCdt+HRrHCtTDSph7587GYLwbARGpWCGw+HaLvtzLNDDOjZjS7KV8U0yOQxMm
+	GLQZKfzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSVZO-0000000HEO5-1Flq;
-	Sun, 15 Nov 2026 08:26:38 +0000
-Received: from mail-pj1-x1035.google.com ([2607:f8b0:4864:20::1035])
+	id 1xSVeM-0000000HEu2-3GOP;
+	Sun, 15 Nov 2026 08:31:46 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSVZK-0000000HEMy-2snW
+	id 1xSVeK-0000000HEtv-1prr
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 08:26:37 +0000
-Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-3b09cc7ed1aso319259a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 00:26:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794731194; x=1795335994; darn=lists.infradead.org;
-        h=mime-version:content-transfer-encoding:content-type:message-id:date
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=AEWA9iOD08SFA/zlaE7wGAZjLwI2QLYLqoPd1RCuPRs=;
-        b=EsLmvRlrq/KdtO75lYMgS4gzX8S7SFT94fx5iEgDUKp6Q5w4D6zpWVmOAepppDMbEf
-         e0w7juWYQ/rp9IOBFgFIebxDSG/jfGF2q1cNVj+FM+TU+dnAkGrnHjpjG561GCqEklW0
-         LbtFxJ1gi5mmpantHZ4Z+EJKqxytkoI1IHuoC2kte47oCmJ6wdICpm/qaKjDKfD1TYm/
-         wt/C9i5+J+OV1mDa1yRyHlmoxFgiaOmXCqHcySEyEhp8xGy2RkTfRoOvQHS1F49fXB+r
-         kWPAyJ5UdeZojUIoWjMRkTx9fUD0xHHZ9tQG+TmbW1f7AejPLyqZsGqCBS+PtQhtfhjm
-         cLSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794731194; x=1795335994;
-        h=mime-version:content-transfer-encoding:content-type:message-id:date
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=AEWA9iOD08SFA/zlaE7wGAZjLwI2QLYLqoPd1RCuPRs=;
-        b=dHVoV2JHi9J9ox7oB9aUQCYxggQvv33c8G247dUs9P40yPhg87NJKuwqbYLpKFXhQ/
-         0N+/DhnCJP8PuTNSb59Ayd+nkZhy2ei5k7Aqd9kDMEyVKRbnYm0JGjs7YXm/lkCgid8L
-         hHtiJSvMsRyACfb6WYY11cldqCyQIXhgLZVic1V0QWEa1WeJXeDVHCaIt8Ys5GBghkoG
-         ILvADuWqTU0jYCl97KkrQGMnKlROAzKag2H0kxeRzRbBYWbQRphKHTmOuN/Gh2Uzafn9
-         7C/i9f1b5wmMRivAu9jfj3aakBMYb/VYpwDaoWcAUDhkCBEnQ2p8bTscXEJZQxzoDv56
-         iAwA==
-X-Forwarded-Encrypted: i=1; AL+hErGBS7C2RKbwPpg4W1E4uUCsFWXzTfTUDCxnK06KM1CRGNnOy1Wwb3Fqd+DxzcUSA6YcuWRy6bS7gGuo1GfXxO32@lists.infradead.org
-X-Gm-Message-State: APuU4Z9dr37ml4bcC3ek3L7J1WpPY8l0L8tPDzro0bpdmZJvJSBezF/F
-	21SCr0iafM/LF6GWBviDG0pv/sjulz0MM8bW6+u9Olsmej4Mq99kEgeC
-X-Gm-Gg: AYBFou31ZAnDyubiwKnvJpfhaZR7SR4bk0AUjJk8Y67DN+COih4LZujtQMWgtFTK1/w
-	/WlETpbfYmR/lGtvH1wHRYsWSGICtGQDGXUj3LGiM/HhC7Jm8JTE6b9QuKXlWMSxX9XgISr59XJ
-	7x6+Dp8AC009QgKWqqNM7NY+ItShWDyEbX4Im38PKu2/IXau3Ind2op9vDeh0xktr0VdD77cdOf
-	cvrzgoU1r4nk/BTf26fkRo6zIVtFLvTVeKI7jLRtHUwp7FIHCJKFtWRnhYv3lr48g64YPCM1563
-	itGr8zCRk8Tmcx/aGeRwwPyf0O64aUpdNFRb4EXRup/I1GXilXZcWJbgRSoVDJf6Hd4F0EgYot9
-	AFI8crva1HRHucDw2VjtGuBD4aaFnf0fvpFFP/yXrJSx/lqirRDeVaybgEQozhBSrC99Blk6Ey0
-	YMdMXCEplRLBlztySV0/Da98BfRmEgUZdRf+3wLhKx7N4NjDL7uXlV7Ajhzaz7AEzRgwKM8taqe
-	BiwLPUu3e4dMybHILmT1N+qOMjX9VIm/SZYk43tZlVdVzfUz6cor0/0/oRyuQWmOvF2OiQ5EynK
-	yZ8DOA1HooruXoRzJmsUynlXuSLz4dt3ytSoT83Kkrr/6Nq7MvKBDmvLw8L+rG8iNCGTGAEncjj
-	bHd/SYw==
-X-Received: by 2002:a17:90b:568b:b0:3a6:e61f:749d with SMTP id 98e67ed59e1d1-3b1b0815b27mr11488600a91.1.1794731193623;
-        Sun, 15 Nov 2026 00:26:33 -0800 (PST)
-Received: from claudebox.iyengar.cloud ([50.39.139.68])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1aec622b6sm12961779a91.11.2026.11.15.00.26.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2026 00:26:33 -0800 (PST)
-From: Arun Iyengar <aiyengar1990@gmail.com>
-To: Alex Kazinsky <a.kazinsky@ideco.ru>
-Cc: Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org
-Subject: Re: [PATCH v3] media: rkvdec: Handle interrupts without a current context
-In-Reply-To: <20261113102456.4155237-1-a.kazinsky@ideco.ru>
-References: <20261113102456.4155237-1-a.kazinsky@ideco.ru>
-Date: Sun, 15 Nov 2026 08:26:32 -0000
-Message-ID: <179473119253.4041300.13173694154528880101@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+	Sun, 15 Nov 2026 08:31:44 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8F52F6141F;
+	Sun, 15 Nov 2026 08:31:43 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794731503;
+	b=RCm1fi/bqNf9QtzHIv8cjl5611YMFo3m83QDyBDXKg5Z+CfEtisyBMLkzMvdmBBBi2MJ
+	 vGlZR5OpNdtwncrcm4VPP4X5rMAkOpxCaPNLN1jJ5XLqRQRdVgecGpSd2RiwBPt46Q/Q8
+	 cHI7MC/JijIPb6u8kVD9f2yavnm0C47jGNiEzb30DJGxCHh4CXeTt2CclGXIzzSmV+flX
+	 UkTHZhDdKM78M9EmZxiY1sAsIKjNKI/t0mqRpPSO27BmAHj/8RkF9wqhFajIBuRCWoxtU
+	 PMSMZfv3NQEAwa0pM5U4nQ1BEmnngTYqBfauKERU6GZPbCZHMR6XeMHEmjTlRVDDCmQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794731503;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=aFeYl4T8YSSyDpYz53OCJzQoOO6eMGhxEhZmG97u5pM=;
+	b=O3QwJi5BmVSqmMaikZLDqbhsGj2xdq4szwfAf7IfEWFgLcdKsqQBK812wAljyN2Iz6ia
+	 +Mt2rOxQ0O1abgVey8PbQwuEKyjIR0iaVhUpyrdpFYxWrtuDPfeI2xCj11I8CXTKjnhEb
+	 tRncRhVktJkN/kJmeldeZq6UxMhEzx+0FksmQJ4h+0YAvnG36MGJZ/Np8wlJmX2mQDfKh
+	 TanNBkTC6uLym+n+/gbduTc304fvh9/IY/ScwFY3Pl92yFF8xKwGYNxv5Y3P3ZOOwlg/i
+	 KcJbuywnLv4DBMBQNvhNS6EGz1oV7RPE2ufHIppOeF0j4pwDlUkkfZ5fQrTKjWv06Rw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id A32111F000C4;
+	Sun, 15 Nov 2026 08:31:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794731503;
+	bh=aFeYl4T8YSSyDpYz53OCJzQoOO6eMGhxEhZmG97u5pM=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=YXpjp03nCUNQHMutdG82lQRp+51FuSkwy2Oi8jJAk9vOe33BLDS4OPXLtFYHBaeks
+	 FFsgGsnjSg1x5X3aOqEEAW2zTSwXpIDq2AEecAda2BUXa7mUtiz0It5oj3YxmnQs15
+	 gZ89vO56FTsz5PJWFpnUshZ339mD6v0a3Y62Y2g7xu4z8/lRAQ50ltU3iUAg88nzXr
+	 GNNqEXKo6Tmj026fBD3x18KUxT/Oc7c7qj2K3+GYUeBSeDzWSkPBQiwRRSxOJX5vrO
+	 nw73f5+CUUmHDsIcwCTNN6xdmA+K4wEel2ZHsM7zamrUYPj6twDazDJpHbQKj8f07C
+	 zH3sOwsXOeQ1A==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 06E3A49FE6;
+	Sun, 15 Nov 2026 08:31:42 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Sun, 15 Nov 2026 08:31:42 +0000
+Subject: [PATCH] clk: sunxi-ng: h616: Gate the PLLs with their output
+ enable bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_002635_906383_E9290F73 
-X-CRM114-Status: UNSURE (   7.09  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261115-h616-pll-output-gate-v1-1-4cb3fc4d6c48@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQqDMBBA4avIrDvg2BCIV5EuYjLVKaIhP1IQ7
+ 25sl9/ivQMSR+EEfXNA5F2SbGsFPRpws10nRvHV0LWdJiKFsyaNYVlwKzmUjJPNjM74p1dWtYY
+ N1DREfsv3tx1ef6cyftjl+wXneQFswm10eAAAAA==
+X-Change-ID: 20261114-h616-pll-output-gate-c9d3d4a409e9
+To: Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>
+Cc: Andre Przywara <andre.przywara@arm.com>, linux-clk@vger.kernel.org, 
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794731501; l=5371;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=5Vv85VfVPju/Igwsb+cpuc7jYn8XWlxuDjDD7l4TQCg=;
+ b=QCRHF0O3JplLAB6RsnHmUj4RBDxn54eIU3pvv4s3WPOBKl1ni4J/ys9QUw1OQKW1ERki6XpdX
+ WcXhHQLNsjxC4yOr27rLRlEnzJtvn0NIrqp2V24ANDTjX/Rk8AxfZpV
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,23 +114,171 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Tested on an Orange Pi 5 (RK3588S, VDPU381): 7.3-based kernel with media
-next's rkvdec, this patch and my watchdog fix [1], KASAN on, 4K HEVC and
-H.264 decode with the watchdog cut to a few ms: 5955 timeouts, no NULL
-dereference or KASAN report. I did not check that a timeout actually
-raced the IRQ handler.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Tested-by: Arun Iyengar <aiyengar1990@gmail.com>
+Gate the H616 PLLs with the output enable bit (27) instead of the enable
+bit (31), which powers the PLL down, as the manual (3.3.3.6) recommends
+and the A100, D1 and A523 drivers do. Power them up once at probe.
 
-[1] https://lore.kernel.org/r/20261115-rkvdec-wdt-stop-v1-0-59e687c6cc63@gmai=
-l.com
+On an Orange Pi Zero2, powering pll-video0 down at 453 MHz crashes the
+CPU doing the write.
+
+Fixes: 88dde5e23da1 ("clk: sunxi-ng: Add support for the Allwinner H616 CCU")
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+No Cc: stable: the crash needs out-of-tree H616 HDMI. Tested on an
+Orange Pi Zero2 (7.3.4 with HDMI patches): the failing mode set 40
+times without an oops. Idle power not measured.
+
+Developed with Claude (Anthropic); I reviewed it.
+---
+ drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 31 +++++++++++++++++++------------
+ 1 file changed, 19 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+index 955c614830fa..da4156b39c2c 100644
+--- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
++++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+@@ -36,7 +36,7 @@
+  */
+ #define SUN50I_H616_PLL_CPUX_REG	0x000
+ static struct ccu_mult pll_cpux_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.mult		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.common		= {
+@@ -50,7 +50,7 @@ static struct ccu_mult pll_cpux_clk = {
+ /* Some PLLs are input * N / div1 / P. Model them as NKMP with no K */
+ #define SUN50I_H616_PLL_DDR0_REG	0x010
+ static struct ccu_nkmp pll_ddr0_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -65,7 +65,7 @@ static struct ccu_nkmp pll_ddr0_clk = {
+ 
+ #define SUN50I_H616_PLL_DDR1_REG	0x018
+ static struct ccu_nkmp pll_ddr1_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -80,7 +80,7 @@ static struct ccu_nkmp pll_ddr1_clk = {
+ 
+ #define SUN50I_H616_PLL_PERIPH0_REG	0x020
+ static struct ccu_nkmp pll_periph0_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -97,7 +97,7 @@ static struct ccu_nkmp pll_periph0_clk = {
+ 
+ #define SUN50I_H616_PLL_PERIPH1_REG	0x028
+ static struct ccu_nkmp pll_periph1_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -114,7 +114,7 @@ static struct ccu_nkmp pll_periph1_clk = {
+ 
+ #define SUN50I_H616_PLL_GPU_REG		0x030
+ static struct ccu_nkmp pll_gpu_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -133,7 +133,7 @@ static struct ccu_nkmp pll_gpu_clk = {
+  */
+ #define SUN50I_H616_PLL_VIDEO0_REG	0x040
+ static struct ccu_nm pll_video0_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -151,7 +151,7 @@ static struct ccu_nm pll_video0_clk = {
+ 
+ #define SUN50I_H616_PLL_VIDEO1_REG	0x048
+ static struct ccu_nm pll_video1_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -169,7 +169,7 @@ static struct ccu_nm pll_video1_clk = {
+ 
+ #define SUN50I_H616_PLL_VIDEO2_REG	0x050
+ static struct ccu_nm pll_video2_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -187,7 +187,7 @@ static struct ccu_nm pll_video2_clk = {
+ 
+ #define SUN50I_H616_PLL_VE_REG		0x058
+ static struct ccu_nkmp pll_ve_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -202,7 +202,7 @@ static struct ccu_nkmp pll_ve_clk = {
+ 
+ #define SUN50I_H616_PLL_DE_REG		0x060
+ static struct ccu_nkmp pll_de_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+@@ -229,7 +229,7 @@ static struct ccu_sdm_setting pll_audio_sdm_table[] = {
+ 
+ #define SUN50I_H616_PLL_AUDIO_REG	0x078
+ static struct ccu_nm pll_audio_hs_clk = {
+-	.enable		= BIT(31),
++	.enable		= BIT(27),
+ 	.lock		= BIT(28),
+ 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+ 	.m		= _SUNXI_CCU_DIV(16, 6),
+@@ -1214,6 +1214,13 @@ static int sun50i_h616_ccu_probe(struct platform_device *pdev)
+ 	val |= BIT(0);
+ 	writel(val, reg + SUN50I_H616_PLL_AUDIO_REG);
+ 
++	/* Keep the PLLs powered and gate them with bit 27 (manual 3.3.3.6). */
++	for (i = 0; i < ARRAY_SIZE(pll_regs); i++) {
++		val = readl(reg + pll_regs[i]);
++		val |= BIT(31);
++		writel(val, reg + pll_regs[i]);
++	}
++
+ 	/*
+ 	 * Set the input-divider for the gpu1 clock to 3, to reach a safe 400 MHz.
+ 	 */
+
+---
+base-commit: 280af24c860569000b375edda6436ba8e3ee4b3a
+change-id: 20261114-h616-pll-output-gate-c9d3d4a409e9
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
+
+
 
