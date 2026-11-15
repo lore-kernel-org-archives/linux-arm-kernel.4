@@ -2,74 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EC0606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 10:45:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD96606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 10:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=g5hpnRX3;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Cq/fBV6D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Lmlw5Ng9;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JFbrhBwC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5uo/8JWKiktnTJAVi7eZ1RA0ug1j3vdnO8lLDK/Mx7M=; b=g5hpnRX3aRKt+y
-	8269nxOMA9N8FAOJ/ikmg+uzc3B0WploKdjLR9QtGVv09p2vgpi75c7d5wue1d8dOPwu1PXtEyRIs
-	ClF2Me5f8nt6naJkVerkRru4/32UUx/0w/8AD57Our56wxZ/2sek7huY2Ev701RknPSrEOVsdavNp
-	967Ni+Kna4vxYmYYhpEApeKeqV0FKUIEiA7H2Cicl16BLYVW7pxL2FqMSYMsL7OEgt/35uKRQ1Eaa
-	SeCCanlfHKlAl2JYmjOW92IJefoVwCHiD8G5wTrnpQdAItSIvXzO9+BXt05MsxBXjm9uuXjsXXYcf
-	oxCE/cfFx+YYyC59yM9g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=7DTQ+ilab30T+Zv/iDCe98ocWkWdeLKP4PE9a5e/7Dw=; b=Lmlw5Ng9ixfoB0bZxA4hD1K6jQ
+	+o0YPcSbisf1UBCiIaDkFsoiR/dTBxsoKjVIkkYtkCYZcGluvXTxyB6prebba+VEmO6RWjT4g3jeL
+	xaDU3NJ8QRbnHtKyWROWDxiVBF7pOkDYuCE7b5XILOv92nLE+94FftVHcDzlKRtpq6GBERpLlxaEG
+	/x+1L7bIG/NbqfwcDOjykGW9kFnqaGGmPFbyUeKZiZYtGb/OPM9nNW75W4Ei3znyquy9voJMgBwtL
+	47P+idBuz0/ugX7gm6i5CtuGd0zskgkD/lTRSzNMNX4+yIXKP8X2vMbsKyeolavSYgKHkRk+7VaxZ
+	/Rb2T1jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSXjm-0000000HOrc-2PDj;
-	Sun, 15 Nov 2026 10:45:30 +0000
+	id 1xSXpX-0000000HPi9-428l;
+	Sun, 15 Nov 2026 10:51:27 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSXjY-0000000HOew-1KZR
+	id 1xSXpW-0000000HPi2-1JrB
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 10:45:16 +0000
+	Sun, 15 Nov 2026 10:51:26 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 12F9F417A9;
-	Sun, 15 Nov 2026 10:45:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1762E1F000C4;
-	Sun, 15 Nov 2026 10:45:11 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id D573D456F0
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 10:51:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA55D1F000CC
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 10:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794739516;
-	bh=5uo/8JWKiktnTJAVi7eZ1RA0ug1j3vdnO8lLDK/Mx7M=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Cq/fBV6DO28TdOkve7xeW0TnNfam72jxw66JkzDrcU8hHdZtfGE2nLC1HxsM0fFxT
-	 yWSprfOjr8AEQknXXG8nr5XbRu+roJHpNfkIHfiXcJyeCuonrz3AkwfohHuOw2cTzi
-	 Xe6eGhtP5iE2+B88s+Ppdo7N6llE40TMJL/8xSqTfiXVDRj+DelavEHmtaXMdZgzmG
-	 9GqI03ud6SU3U32oZZEOjZwyVCxm07+rEu299HFZwSRJEehs0+z2gcEpWW7aQcQrAa
-	 X28xEqsU5ze8JWks4EvX7/eiyAsXkgE8xj0cVOrk17ndnah4Ehkdb+vc3hohKwtVEN
-	 LUW5WJqqahpeQ==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: [PATCH v2 12/13] arm64: dts: synaptics: add SL2610 family SoCs
-Date: Sun, 15 Nov 2026 18:23:51 +0800
-Message-ID: <20261115102401.3520-13-jszhang@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261115102401.3520-1-jszhang@kernel.org>
-References: <20261115102401.3520-1-jszhang@kernel.org>
+	s=k20260515; t=1794739885;
+	bh=7DTQ+ilab30T+Zv/iDCe98ocWkWdeLKP4PE9a5e/7Dw=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
+	b=JFbrhBwCSgbkxt7pujKUY9zMMDpruMpZPoGoVimkLdFTRt+YMaPEQxmHjxjG0+gSw
+	 yFrzjsl8fgqFOYnsTQ7pFT8QAEeXDFeoblGeAMmxN+8jx0naXanE7y2kjubAcJqMo6
+	 1Zq5KpHe1OtMJTK8SObA5BHtEA2AMwPlp/v1Gz/PChsEN3MeOWH2GaAIWBrcJvlPOe
+	 +P7H7cNxSbrX0e4xodkKjkrTrKvHdMRX5a8em6RsoTuoBjUs/4VuYxu7wI1BSRR6Ld
+	 wjHmPIRu9vNB4K2xxOrmE9VPnZVvb24wINjOGKAtoVCt+1O1vHmt98BZ8AFT5tWI3m
+	 yEHbsxKYuD5FA==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-3ae25d9e2fdso29232031fa.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 02:51:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErEf8NEnEhWYtDT200KbYdnzU5AH4+eUZXSTf9fm8n+dj8H/jYzYPiE5efh4iuVjWBAMqzdqiU5fZfmqxZQVBO1g@lists.infradead.org
+X-Gm-Message-State: APuU4Z9bV3v/wZHo3cc4EYECB1uObYZZIJU9IvadG3mTM/iacctT02+1
+	OuQpweDSrUC+estuM49vmwfSvEMk3CmwpWx3s3sK31xJaveC5vT4pCXmP3QfJuaxXZbzRMtofDC
+	6Yuae3MYHbCE3i5/htd9UpGMJFlikess=
+X-Received: by 2002:a05:651c:1544:b0:3a6:70bf:622e with SMTP id
+ 38308e7fff4ca-3ae2b5373femr23084821fa.4.1794739884136; Sun, 15 Nov 2026
+ 02:51:24 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261112-h616-zero2-dt-v3-0-1cd2664230c8@gmail.com> <20261112-h616-zero2-dt-v3-2-1cd2664230c8@gmail.com>
+In-Reply-To: <20261112-h616-zero2-dt-v3-2-1cd2664230c8@gmail.com>
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sun, 15 Nov 2026 18:51:10 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65Jw5zPWG0HD75_nJQLRD7QJhHRw4Zs3fvFxyOFFUuGew@mail.gmail.com>
+X-Gm-Features: AclHuK8Xtqejh0T-mPLGkGVR4M7UNRwaVG1Eqq6UzreOqahz90WQKJmVFXxqRSg
+Message-ID: <CAGb2v65Jw5zPWG0HD75_nJQLRD7QJhHRw4Zs3fvFxyOFFUuGew@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] arm64: dts: allwinner: orangepi-zero2: Let the PHY
+ add the RX delay
+To: aiyengar1990@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>, 
+	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,672 +82,76 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Describe the CPUs, interrupt controller, system controllers and supported
-serial, I2C, I3C, SPI and GPIO peripherals for the SL2610 family.
+On Thu, Nov 12, 2026 at 5:22=E2=80=AFPM Arun Iyengar via B4 Relay
+<devnull+aiyengar1990.gmail.com@kernel.org> wrote:
+>
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+>
+> The Orange Pi Zero2 describes its RTL8211F link as "rgmii", with the
+> whole RX clock delay (3100 ps, the maximum the H616 EMAC syscon can
+> add) inserted by the MAC. With "rgmii" the Realtek PHY driver also
+> clears the PHY's own RX delay bit, so RX sampling relies on the MAC
+> delay alone and sits at the edge of the window.
+>
+> On the board this shows up as intermittent boots with a dead receive
+> path, after cold and warm resets alike: the link comes up at
+> 1000/full and frames are transmitted and seen by the peer, but nothing
+> is ever received and the EMAC raises no RX interrupt. All EMAC clock,
+> pinmux, drive strength and syscon registers are the same on good and
+> bad boots. On a bad boot, setting the PHY RX delay bit and clearing
+> the syscon RX delay restores reception at once, without a link reset.
+>
+> Use "rgmii-rxid" (RX delay in the PHY, none in the MAC), as the Orange
+> Pi Zero3 with the same PHY already does, and as the vendor BSP does.
 
-Use the SL2610 peripheral compatibles already documented in the upstream
-bindings and share clock, reset and pin configuration providers through
-the system controller nodes.
+Flagged by my review agent, and documents reviewed by me:
 
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
- arch/arm64/boot/dts/synaptics/sl2611.dtsi | 457 ++++++++++++++++++++++
- arch/arm64/boot/dts/synaptics/sl2613.dtsi |  12 +
- arch/arm64/boot/dts/synaptics/sl2615.dtsi |  46 +++
- arch/arm64/boot/dts/synaptics/sl2617.dtsi |  46 +++
- arch/arm64/boot/dts/synaptics/sl2619.dtsi |  44 +++
- 5 files changed, 605 insertions(+)
- create mode 100644 arch/arm64/boot/dts/synaptics/sl2611.dtsi
- create mode 100644 arch/arm64/boot/dts/synaptics/sl2613.dtsi
- create mode 100644 arch/arm64/boot/dts/synaptics/sl2615.dtsi
- create mode 100644 arch/arm64/boot/dts/synaptics/sl2617.dtsi
- create mode 100644 arch/arm64/boot/dts/synaptics/sl2619.dtsi
+The Orange Pi Zero3 uses a different PHY, but the pin strapping is the
+same, and has the same meaning: the PHY provides the RX delays, while
+the MAC provides the TX delays.
 
-diff --git a/arch/arm64/boot/dts/synaptics/sl2611.dtsi b/arch/arm64/boot/dts/synaptics/sl2611.dtsi
-new file mode 100644
-index 000000000000..663fe6034ba0
---- /dev/null
-+++ b/arch/arm64/boot/dts/synaptics/sl2611.dtsi
-@@ -0,0 +1,457 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2024 Synaptics Incorporated
-+ *
-+ * Author: Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+#include <dt-bindings/clock/syna,sl2610.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/reset/syna,sl2610-reset.h>
-+
-+/ {
-+	compatible = "syna,sl2611";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	optee {
-+		compatible = "linaro,optee-tz";
-+		method = "smc";
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			compatible = "arm,cortex-a55";
-+			device_type = "cpu";
-+			reg = <0x0>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CPU_SLEEP_0>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&L2_0>;
-+
-+			L2_0: l2-cache {
-+				compatible = "cache";
-+				cache-size = <65536>;
-+				cache-line-size = <64>;
-+				cache-sets = <256>;
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+
-+		L3: l3-cache0 {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-unified;
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <256>;
-+		};
-+
-+		idle-states {
-+			entry-method = "psci";
-+			CPU_SLEEP_0: cpu-sleep-0 {
-+				compatible = "arm,idle-state";
-+				local-timer-stop;
-+				arm,psci-suspend-param = <0x0010000>;
-+				entry-latency-us = <75>;
-+				exit-latency-us = <155>;
-+				min-residency-us = <50000>;
-+			};
-+		};
-+	};
-+
-+	osc: osc {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+	};
-+
-+	pmu {
-+		compatible = "arm,cortex-a55-pmu";
-+		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>;
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0 0 0xffffffff>;
-+
-+		sm-bus {
-+			compatible = "simple-bus";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges;
-+			dma-ranges = <0xa0000000 0x00000000 0x10000000>;
-+
-+			sm_clk: sm_pinctrl: sm_rst: sm_chip: syscon@e5025000 {
-+				compatible = "syna,sl2610-mcu-syscon", "syscon";
-+				reg = <0xe5025000 0x1000>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+				clocks = <&osc>;
-+			};
-+
-+			sm_uart0: serial@e5030000 {
-+				compatible = "syna,sl2610-uart", "snps,dw-apb-uart";
-+				reg = <0xe5030000 0x100>;
-+				interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&sm_clk CLK_SER_UART0>, <&sm_clk CLK_CFG_UART0>;
-+				clock-names = "baudclk", "apb_pclk";
-+				reg-shift = <2>;
-+				status = "disabled";
-+			};
-+
-+			sm_uart1: serial@e5031000 {
-+				compatible = "syna,sl2610-uart", "snps,dw-apb-uart";
-+				reg = <0xe5031000 0x100>;
-+				interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&sm_clk CLK_SER_UART1>, <&sm_clk CLK_CFG_UART1>;
-+				clock-names = "baudclk", "apb_pclk";
-+				reg-shift = <2>;
-+				status = "disabled";
-+			};
-+
-+			sm_uart2: serial@e5032000 {
-+				compatible = "syna,sl2610-uart", "snps,dw-apb-uart";
-+				reg = <0xe5032000 0x100>;
-+				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&sm_clk CLK_SER_UART2>, <&sm_clk CLK_CFG_UART2>;
-+				clock-names = "baudclk", "apb_pclk";
-+				reg-shift = <2>;
-+				status = "disabled";
-+			};
-+
-+			sm_uart3: serial@e5033000 {
-+				compatible = "syna,sl2610-uart", "snps,dw-apb-uart";
-+				reg = <0xe5033000 0x100>;
-+				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&sm_clk CLK_SER_UART3>, <&sm_clk CLK_CFG_UART3>;
-+				clock-names = "baudclk", "apb_pclk";
-+				reg-shift = <2>;
-+				status = "disabled";
-+			};
-+
-+			sm_spi1: spi@e5034000 {
-+				compatible = "syna,sl2610-spi", "snps,dw-apb-ssi";
-+				reg = <0xe5034000 0x100>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				num-cs = <4>;
-+				clocks = <&sm_clk CLK_SER_SPIM>, <&sm_clk CLK_CFG_SPIM>;
-+				clock-names = "ssi_clk", "pclk";
-+				interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
-+			sm_i2c0: i2c@e5035000 {
-+				compatible = "syna,sl2610-i2c", "snps,designware-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0xe5035000 0x100>;
-+				clocks = <&sm_clk CLK_SER_I2CM0>, <&sm_clk CLK_CFG_I2CM0>;
-+				clock-names = "ref", "pclk";
-+				i2c-sda-falling-time-ns = <510>;
-+				i2c-scl-falling-time-ns = <510>;
-+				interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
-+			sm_i2c1: i2c@e5036000 {
-+				compatible = "syna,sl2610-i2c", "snps,designware-i2c";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0xe5036000 0x100>;
-+				clocks = <&sm_clk CLK_SER_I2CM1>, <&sm_clk CLK_CFG_I2CM1>;
-+				clock-names = "ref", "pclk";
-+				i2c-sda-falling-time-ns = <510>;
-+				i2c-scl-falling-time-ns = <510>;
-+				interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+			};
-+
-+			sm_i3c0: i3c@e5037000 {
-+				compatible = "syna,sl2610-i3c", "snps,dw-i3c-master-1.00a";
-+				#address-cells = <3>;
-+				#size-cells = <0>;
-+				reg = <0xe5037000 0x1000>;
-+				interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
-+				resets = <&sm_rst RST_SM_I3CSRST>, <&sm_rst RST_SM_I3CPRST>;
-+				clocks = <&sm_clk CLK_SER_I3C>, <&sm_clk CLK_CFG_I3C>;
-+				clock-names = "core", "apb";
-+				status = "disabled";
-+			};
-+
-+			sm_gpio0: gpio@e5038000 {
-+				compatible = "snps,dw-apb-gpio";
-+				reg = <0xe5038000 0x400>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&sm_clk CLK_CFG_GPIO>, <&sm_clk CLK_DEB_GPIO>;
-+				clock-names = "bus", "db";
-+
-+				portc: gpio-port@0 {
-+					compatible = "snps,dw-apb-gpio-port";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					ngpios = <16>;
-+					reg = <0>;
-+				};
-+			};
-+
-+			sm_gpio1: gpio@e5039000 {
-+				compatible = "snps,dw-apb-gpio";
-+				reg = <0xe5039000 0x400>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&sm_clk CLK_CFG_GPIO>, <&sm_clk CLK_DEB_GPIO>;
-+				clock-names = "bus", "db";
-+
-+				portd: gpio-port@0 {
-+					compatible = "snps,dw-apb-gpio-port";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					ngpios = <8>;
-+					reg = <0>;
-+				};
-+			};
-+
-+			sm_gpio2: gpio@e503a000 {
-+				compatible = "snps,dw-apb-gpio";
-+				reg = <0xe503a000 0x400>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&sm_clk CLK_CFG_GPIO>, <&sm_clk CLK_DEB_GPIO>;
-+				clock-names = "bus", "db";
-+
-+				porte: gpio-port@0 {
-+					compatible = "snps,dw-apb-gpio-port";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					ngpios = <8>;
-+					reg = <0>;
-+				};
-+			};
-+
-+			sm_gpio3: gpio@e503b000 {
-+				compatible = "snps,dw-apb-gpio";
-+				reg = <0xe503b000 0x400>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&sm_clk CLK_CFG_GPIO>, <&sm_clk CLK_DEB_GPIO>;
-+				clock-names = "bus", "db";
-+
-+				portf: gpio-port@0 {
-+					compatible = "snps,dw-apb-gpio-port";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					ngpios = <8>;
-+					reg = <0>;
-+				};
-+			};
-+		};
-+
-+		aioclk: aviogbl: syscon@f7490000 {
-+			compatible = "syna,sl2610-avio-syscon", "syscon";
-+			reg = <0xf7490000 0x4000>;
-+			clocks = <&osc>;
-+		};
-+
-+		clk: pinctrl: rst: chip: syscon@f7e10000 {
-+			compatible = "syna,sl2610-soc-syscon", "syscon";
-+			reg = <0xf7e10000 0x10000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			clocks = <&osc>;
-+		};
-+
-+		cpuclk: cpu_wrap: syscon@f7e30000 {
-+			compatible = "syna,sl2610-cpu-syscon", "syscon";
-+			reg = <0xf7e30000 0x4000>;
-+			#clock-cells = <1>;
-+			clocks = <&osc>;
-+			syna,gbl-syscon = <&chip>;
-+		};
-+
-+		gic: interrupt-controller@f7e59000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			reg = <0xf7e59000 0x1000>,
-+			      <0xf7e5a000 0x2000>,
-+			      <0xf7e5c000 0x2000>,
-+			      <0xf7e5e000 0x2000>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+
-+		soc_uart0: serial@f7f00000 {
-+			compatible = "syna,sl2610-uart", "snps,dw-apb-uart";
-+			reg = <0xf7f00000 0x100>;
-+			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk CLK_APBUART0>;
-+			reg-shift = <2>;
-+			status = "disabled";
-+		};
-+
-+		soc_uart1: serial@f7f01000 {
-+			compatible = "syna,sl2610-uart", "snps,dw-apb-uart";
-+			reg = <0xf7f01000 0x100>;
-+			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk CLK_APBUART1>;
-+			reg-shift = <2>;
-+			status = "disabled";
-+		};
-+
-+		soc_uart2: serial@f7f02000 {
-+			compatible = "syna,sl2610-uart", "snps,dw-apb-uart";
-+			reg = <0xf7f02000 0x100>;
-+			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk CLK_APBUART2>;
-+			reg-shift = <2>;
-+			status = "disabled";
-+		};
-+
-+		soc_uart3: serial@f7f03000 {
-+			compatible = "syna,sl2610-uart", "snps,dw-apb-uart";
-+			reg = <0xf7f03000 0x100>;
-+			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk CLK_APBUART3>;
-+			reg-shift = <2>;
-+			status = "disabled";
-+		};
-+
-+		soc_spi0: spi@f7f04000 {
-+			compatible = "syna,sl2610-spi", "snps,dw-apb-ssi";
-+			reg = <0xf7f04000 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			num-cs = <4>;
-+			clocks = <&clk CLK_APBSPI0>;
-+			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		soc_i2c0: i2c@f7f05000 {
-+			compatible = "syna,sl2610-i2c", "snps,designware-i2c";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0xf7f05000 0x100>;
-+			clocks = <&clk CLK_APBI2C0>;
-+			i2c-sda-hold-time-ns = <449>;
-+			i2c-sda-falling-time-ns = <425>;
-+			i2c-scl-falling-time-ns = <205>;
-+			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		soc_i2c1: i2c@f7f06000 {
-+			compatible = "syna,sl2610-i2c", "snps,designware-i2c";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0xf7f06000 0x100>;
-+			clocks = <&clk CLK_APBI2C1>;
-+			i2c-sda-hold-time-ns = <449>;
-+			i2c-sda-falling-time-ns = <425>;
-+			i2c-scl-falling-time-ns = <205>;
-+			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		soc_gpio0: gpio@f7f07000 {
-+			compatible = "snps,dw-apb-gpio";
-+			reg = <0xf7f07000 0x400>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clk CLK_APBGPIO>;
-+			clock-names = "bus";
-+
-+			porta: gpio-port@0 {
-+				compatible = "snps,dw-apb-gpio-port";
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				ngpios = <32>;
-+				reg = <0>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+		};
-+
-+		soc_spi1: spi@f7f0b000 {
-+			compatible = "syna,sl2610-spi", "snps,dw-apb-ssi";
-+			reg = <0xf7f0b000 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			num-cs = <4>;
-+			clocks = <&clk CLK_APBSPI1>;
-+			interrupts = <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		soc_spi2: spi@f7f0c000 {
-+			compatible = "syna,sl2610-spi", "snps,dw-apb-ssi";
-+			reg = <0xf7f0c000 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			num-cs = <4>;
-+			clocks = <&clk CLK_APBSPI2>;
-+			interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		soc_spi3: spi@f7f0d000 {
-+			compatible = "syna,sl2610-spi", "snps,dw-apb-ssi";
-+			reg = <0xf7f0d000 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			num-cs = <4>;
-+			clocks = <&clk CLK_APBSPI3>;
-+			interrupts = <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		soc_gpio1: gpio@f7f0e000 {
-+			compatible = "snps,dw-apb-gpio";
-+			reg = <0xf7f0e000 0x400>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clk CLK_APBGPIO>;
-+			clock-names = "bus";
-+
-+			portb: gpio-port@0 {
-+				compatible = "snps,dw-apb-gpio-port";
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				ngpios = <32>;
-+				reg = <0>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/synaptics/sl2613.dtsi b/arch/arm64/boot/dts/synaptics/sl2613.dtsi
-new file mode 100644
-index 000000000000..379809901677
---- /dev/null
-+++ b/arch/arm64/boot/dts/synaptics/sl2613.dtsi
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Synaptics Incorporated
-+ *
-+ * Author: Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+#include "sl2611.dtsi"
-+
-+/ {
-+	compatible = "syna,sl2613";
-+};
-diff --git a/arch/arm64/boot/dts/synaptics/sl2615.dtsi b/arch/arm64/boot/dts/synaptics/sl2615.dtsi
-new file mode 100644
-index 000000000000..11b1fe316aa6
---- /dev/null
-+++ b/arch/arm64/boot/dts/synaptics/sl2615.dtsi
-@@ -0,0 +1,46 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Synaptics Incorporated
-+ *
-+ * Author: Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+#include "sl2613.dtsi"
-+
-+/ {
-+	compatible = "syna,sl2615";
-+
-+	cpus {
-+		cpu1: cpu@100 {
-+			compatible = "arm,cortex-a55";
-+			device_type = "cpu";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CPU_SLEEP_0>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&L2_1>;
-+
-+			L2_1: l2-cache {
-+				compatible = "cache";
-+				cache-size = <65536>;
-+				cache-line-size = <64>;
-+				cache-sets = <256>;
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+	};
-+
-+	pmu {
-+		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>,
-+				     <&cpu1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/synaptics/sl2617.dtsi b/arch/arm64/boot/dts/synaptics/sl2617.dtsi
-new file mode 100644
-index 000000000000..a0de686d1fae
---- /dev/null
-+++ b/arch/arm64/boot/dts/synaptics/sl2617.dtsi
-@@ -0,0 +1,46 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Synaptics Incorporated
-+ *
-+ * Author: Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+#include "sl2613.dtsi"
-+
-+/ {
-+	compatible = "syna,sl2617";
-+
-+	cpus {
-+		cpu1: cpu@100 {
-+			compatible = "arm,cortex-a55";
-+			device_type = "cpu";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CPU_SLEEP_0>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&L2_1>;
-+
-+			L2_1: l2-cache {
-+				compatible = "cache";
-+				cache-size = <65536>;
-+				cache-line-size = <64>;
-+				cache-sets = <256>;
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+	};
-+
-+	pmu {
-+		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>,
-+				     <&cpu1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/synaptics/sl2619.dtsi b/arch/arm64/boot/dts/synaptics/sl2619.dtsi
-new file mode 100644
-index 000000000000..96bd58bbed3e
---- /dev/null
-+++ b/arch/arm64/boot/dts/synaptics/sl2619.dtsi
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Synaptics Incorporated
-+ *
-+ * Author: Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+#include "sl2613.dtsi"
-+
-+/ {
-+	cpus {
-+		cpu1: cpu@100 {
-+			compatible = "arm,cortex-a55";
-+			device_type = "cpu";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CPU_SLEEP_0>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&L2_1>;
-+
-+			L2_1: l2-cache {
-+				compatible = "cache";
-+				cache-size = <65536>;
-+				cache-line-size = <64>;
-+				cache-sets = <256>;
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+	};
-+
-+	pmu {
-+		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>,
-+				     <&cpu1>;
-+	};
-+};
--- 
-2.55.0
+I can fix up the commit message when applying.
 
+> The 700 ps MAC TX delay is kept. With this change 10 of 10 cold boots
+> had a working receive path.
+>
+> Fixes: 5a378f9f2b15 ("arm64: dts: allwinner: h616: Add OrangePi Zero 2 bo=
+ard support")
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts=
+ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+> index f2e3300e078a..1fdf2d3c1a87 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+> @@ -18,9 +18,9 @@ &cpu0 {
+>  };
+>
+>  &emac0 {
+> -       allwinner,rx-delay-ps =3D <3100>;
+>         allwinner,tx-delay-ps =3D <700>;
+> -       phy-mode =3D "rgmii";
+> +       /* RX delay is added by the PHY, TX delay by the EMAC */
+> +       phy-mode =3D "rgmii-rxid";
+>         phy-supply =3D <&reg_dcdce>;
+>  };
+>
+>
+> --
+> 2.55.0
+>
+>
 
