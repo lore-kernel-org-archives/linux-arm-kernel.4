@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B03A606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 00:54:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F6A606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 00:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gAsWxIKV;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YPs+OaY5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZC4uHNSC;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=03NpYBQg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,74 +14,74 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wom25+2wqiUds1POyI+eHp228E/IXzic3h0qgPh6IYw=; b=gAsWxIKVN/fJtwUh8XAhKWd2Ee
-	XCjjqyyrcT6BpprEbf+tN/UO7aQ9XK9riD7pjvlnGnvYtQUG6N4Ur7Cdrr5tpesqkN48DfggyH4pn
-	gqTLU10zDWSpuffPCRFox3E3liHv/e+yyRBPwtYm4DtKW7lOHL2hcuJtGtFPLPMjepat9yEpcW90n
-	dQo6FKxIvN+ilrUrDl+ZwXcLEhgVLXtdz6LJzGn7mQSoihSGXYyzCoQGpJifL0y9T5v7DDWieCnSf
-	E4Kt6BuojCJNJ2lOCgaxLEXevAgBsTs2YqzZjokVmqyF1bR5PICxzzKTIxeTKFKhX1kGut+Do86TP
-	rTE8U5bg==;
+	bh=k7NOu9mRwqKS6KEdePuU/ewkkmtEQ/cj2Ubt3cKxgyM=; b=ZC4uHNSCKT2255iOvHs3C6JmEf
+	q0CQQBOp5vnRBeYxuFET+dmwMO4lpSrMvdVYCNlPY27t8/8MnmBHFygOIva44CZxLjwHm7rEOUPkb
+	nNH3Vbq8rnr7ogyysV6Q4p7AXruve+kaRHIe8fJlnOA3Al/8fnFJe920pGZ6msCmEQJZIA9K9zBXN
+	CS39GDigzBMoreppJ3TkRFELMfg3uolfr8anssjzo/83ZIIpdj/7QXeuwh0NvELf3SAYtUo7hVIzd
+	FiB2xSnyP7CqMzPEItmjDhon5ntrDDTDFNPfM8bT1b/AS37odMtONFRCNkm0pUJVxaHv32CsLKc3A
+	D4MRPzcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSOVm-0000000GwJx-2pu2;
-	Sun, 15 Nov 2026 00:54:26 +0000
-Received: from mail-dl1-x122e.google.com ([2607:f8b0:4864:20::122e])
+	id 1xSOa8-0000000GwWj-0ryK;
+	Sun, 15 Nov 2026 00:58:56 +0000
+Received: from mail-dl1-x122f.google.com ([2607:f8b0:4864:20::122f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSOVi-0000000GwJF-3CyT
+	id 1xSOa6-0000000GwW4-0oKp
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 00:54:24 +0000
-Received: by mail-dl1-x122e.google.com with SMTP id a92af1059eb24-1a3c08d6928so3035032c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 16:54:21 -0800 (PST)
+	Sun, 15 Nov 2026 00:58:55 +0000
+Received: by mail-dl1-x122f.google.com with SMTP id a92af1059eb24-1b3beeaf6f9so2503922c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 16:58:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794704061; x=1795308861; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794704333; x=1795309133; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:from:references
          :cc:to:content-language:subject:reply-to:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=wom25+2wqiUds1POyI+eHp228E/IXzic3h0qgPh6IYw=;
-        b=YPs+OaY5t7hwUWnOOLi1oeBcXCNfdK7ZCbCiYq5xwOuQaxGv0PBGt2vX7tHMZ8WDOK
-         o5vKyCjSwwqiCoDzpMcJ94rVxyix1bZGaixC/ndqNqkq9NbPl6nZr/qDZ4omyUNWfK4n
-         ftO5WZl3slqzTWhW9cFD1zl0lFKyD25HzGZGIxPrLOJ6moYKVO8UqTtQHbq+sRqkTP62
-         3B/qOmNfAyRbuEVBjB2Et+7iDsLV0htASif0bXGkUPvq4nEUUF5UqoWfVi6L0wFPCZf7
-         iCzs9pygKULkYQcLp2ie4kCAyUqXTtB0dBF4111CSBnD8H/GGl5V6fxV0TrztgHqxl64
-         mv+Q==
+        bh=k7NOu9mRwqKS6KEdePuU/ewkkmtEQ/cj2Ubt3cKxgyM=;
+        b=03NpYBQgpkTj6pvPMI9qwY4X0mxDyMYoB1ofP9luVWmM2Dpb5uIRui3F1VvOL//owm
+         caHMeeakGbC8WK7kaLzJdHlO4OccAIaxbJP53fOQsHZkMnm6UqhLtm+CqJzIjasF5evq
+         ZHhmOX7RpEq6IwQ683Jymsw2rRFKL1k6d/78eNtKzPEY4IqvPrM2k7kDqogZ7txEwhXc
+         h/eLSVS78GPeoB1XLBBaOrmK/Moc09ZiSSvk9lPWDqMyHqAzK2IIjmgcyL63XrceAy7g
+         QsYPGpTBNaTfNZWeQYo0zXlWfrdYNG9EpgRaI7VA6wuf8WPUt2vXImyIhlYY24v0Q8y2
+         0Grg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794704061; x=1795308861;
+        d=1e100.net; s=20260707; t=1794704333; x=1795309133;
         h=content-transfer-encoding:content-type:in-reply-to:from:references
          :cc:to:content-language:subject:reply-to:user-agent:mime-version
          :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=wom25+2wqiUds1POyI+eHp228E/IXzic3h0qgPh6IYw=;
-        b=JHgR1OsiC2GI6RKVdBL7Y885mIx/LJ/9HLq4dr3GoOMLxErNp5dbjxdHx3pXKBFYRp
-         7PH7Mt8k/V15xkiMZrWEtXOGE01IFc5dilldkh/VPyHQ5CSsfMcAx/UkaZkJi3f5Fnmf
-         +3DZmyC+mij4Pb+ZnCWrDBfSvmsvdvl5/idvJuPzxvuf3JRjh2WoWPlbCNtFPAZejGko
-         B13DM6AH2NV52OUXtclnLrRfLeuxIhLnUzNd+J1FPct8c99weTMWD+9pBARLlhXIbO4f
-         93L6edq8hac/l1OgCkDKsemkrNNJbod9m1B8qD0GjsYhpDITEAnisUoIUKbAmc/PAlKn
-         R+hQ==
-X-Forwarded-Encrypted: i=1; AL+hErEXTh9mu1icqbOVJVP14YuMGF8U98FHkwmSAFh8AZuCHGyB9PWGGnZ81qAhHSSp6MlAf4B9I/VgNjmEhjW6rvpd@lists.infradead.org
-X-Gm-Message-State: APuU4Z+c/GdJGEQBV8TebPnjr7yu24DjzOs0bk1350Su3ZtZ6GCF2VVf
-	n+mPrprNcVa7VeKDxPcVQul8PGl4sVFeUjkfquwXewd5+urXCcoY8UcZGlF1xw+fgDk=
-X-Gm-Gg: AYBFou1Dvb1nMW+h/8ehyjxMOEy+8oWhFz7iy9CYaEcJoXZg14Ll7BnmaNISf6ZuTvz
-	YcK6jfPNpKocUY+RwJM4BQlSHZOrwPJHkH28/wT71098KL1BSkV+ofvZqcq7PfyTiFU7kqQ7ZQR
-	upAnJdo38H2adX9F3qo6YVtc0bRrNrJe3NR3vgC+LVZtMoaRoEuXKVtyru6UMQgNsUrIOwzasrw
-	eTYhxuxxvhN5Aj0Dt2TLWCqDW4XDQrvPxYQ8HW11kNf1thJIql4FmD4oLiQJxq7Rr58Ee/6nqkC
-	2AQ6wwi0SZ+T2AkcaIt81HtkFIkIulNfx7e9ZSS4OLLmn7+CSqqxBBttlInBtTW5bEiIlHejD4d
-	y83pqc7x/8feC1UcpVZa1i65sfi65XbuR93ox9tCSo69FuxbAnZdfZS1WN7xnv44dDZn/Fma7PH
-	GxeAt2i9QOb0A3Mq691GryMkidye1CjwMrEhRJj0jIIS+x0KXXJU4RJ1nitUJrUL5XyrBdqcBN3
-	/Ysd5RBNh1jX1eU8pvbbG5RdrFO/GICRW/D1a8ewBIUlEu2fuQeutaVGJ2ugbWc+DphOjPSF3C/
-	RSMlGH6/7UuUfvHo7VLWG+phBW+r1tA6rJRZ0PtFK5O13wAHvBKBGCV75jLOmnLwrt4=
-X-Received: by 2002:a05:701b:2706:b0:16d:dd5c:4261 with SMTP id a92af1059eb24-1b503120981mr6267107c88.46.1794704060898;
-        Sat, 14 Nov 2026 16:54:20 -0800 (PST)
+        bh=k7NOu9mRwqKS6KEdePuU/ewkkmtEQ/cj2Ubt3cKxgyM=;
+        b=JSMKOuSB6A9dJg+Sufdgir0kco6guMrY6CQpWVnv1VkgIrNZS4VNEsHA/6Zp0SCh1h
+         /+VbQsLkX7jedr4JMJGy36l44oAs8OxxRZ/8/MidwzUheRoi+/RL0edeU7nXXPZ18tJ3
+         RkAlTh31O/1evrjhgsPsv9P8zov9vZJI4h+nNj9Zvncdsdy0eXhoWQqv+tDqwB7J6Hom
+         Esc2TLOaTjR8g1E5O49mN3o8v9TNT4A+/KFd847NRkNufXj5NJPt4lWcrCA6iS4/xzed
+         PdugxSZBYlA1MnESawDjvAO/cr5jIIqgIcXShw83JJcxc54ki4CmRBrf6UbpsDPSRSkh
+         yVXA==
+X-Forwarded-Encrypted: i=1; AL+hErGJc6jBW3D6E/+eNheHjLqSP/DMF/MYS8cQ66FXEilgmJ4mY+2mm5N+pXsE4v7Jx4LI33bRnW7Ro5zkkpMZgf3F@lists.infradead.org
+X-Gm-Message-State: APuU4Z9dioNFytYwapr09F2rpcH0CwBoREhVGdw7U1yu41jYqcXxKpkx
+	mhw/fIfewLbr+ulrMuEa00SWxw4NQy6f5mwY4MdpmPdzhxyMuR8uLFrv
+X-Gm-Gg: AYBFou1Kj2Tg1EFZMU181iCbVgupJ3zg1s77XlhvNlE6VY8242MSnsTLV8r8D7q8QDP
+	p5OIvKyWaU01StY9/ULO3TczFrumcvZeeNy06JCdjjJZx3Ymca9Vmu4YpIqqOqC+i/5j//uDces
+	EAwPJ6V/ub5tSOOsUW5je67UeF/gfzaWnM4Ubb17MNEmEJKW6kaIxmPwybAhRvXWHo0p0VyWnaW
+	utE+e0KwiMezAv7qB17kYd6i2TKzXMa/IkQTadAvrGsUyZP3p0RzkEIt93/aemSReuLvAWCyL9y
+	gPSxyBFzgpFKj9R7U61G1Ghet2IwgyI/lyQBMVLZo4XASVJn0LDe0DaySywjRk73rlQ9iQVQxBT
+	DEGsiCHP2VMVPbvou610OykBmMMiJi7hlvac7hDFgr+T2aZ2bhkQZw6fct+zbus9AFtVbnDefZ6
+	1J2zLIt6+mEe+LZ4TayEjEfxievdFsaBBhM31R+6Zk8y6aJS5CRzIb9vdEVl8VI4C0BVuP6fkVZ
+	gl5macDDEQfocg0lGTdJl9yc72Grvr5n9qCcJXvii3X5DMajn63SYARiWPXhLuNhixsdAqjXDvj
+	nJrCEJPu7ougDTmj5d/zXBHoxjLy9Ev/JZ9KxCLR8VapPydzXMFk115+S7JNFcRa8nE=
+X-Received: by 2002:a05:7300:e9c5:20b0:361:167c:2364 with SMTP id 5a478bee46e88-37966e3ab7cmr7375931eec.8.1794704333340;
+        Sat, 14 Nov 2026 16:58:53 -0800 (PST)
 Received: from [192.168.35.43] ([218.50.238.131])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b50313d8f5sm29598546c88.3.2026.11.14.16.54.17
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-379563e6b6dsm35679526eec.21.2026.11.14.16.58.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Nov 2026 16:54:20 -0800 (PST)
-Message-ID: <9c1a915b-dbf5-44d9-88eb-680449348dcd@gmail.com>
-Date: Sun, 15 Nov 2026 09:54:15 +0900
+        Sat, 14 Nov 2026 16:58:52 -0800 (PST)
+Message-ID: <0f536451-9f7b-46f7-acca-e10e54dec37e@gmail.com>
+Date: Sun, 15 Nov 2026 09:58:48 +0900
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] PM / devfreq: rockchip-dfi: add NO_INTERRUPT perf
- capability
+Subject: Re: [PATCH v2 3/7] dt-bindings: devfreq: event: rockchip,dfi: add
+ rk3576
 Content-Language: ko
 To: Sebastian Reichel <sebastian.reichel@collabora.com>,
  Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
@@ -95,15 +95,15 @@ Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
  linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com
-References: <20260921-rockchip-dfi-cleanup-v2-0-43ff34ac8599@collabora.com>
- <20260921-rockchip-dfi-cleanup-v2-4-43ff34ac8599@collabora.com>
+References: <20260921-b4-rockchip-dfi-rk3576-support-v2-0-04f847016321@collabora.com>
+ <20260921-b4-rockchip-dfi-rk3576-support-v2-3-04f847016321@collabora.com>
 From: Choi Chanwoo <cwchoi00@gmail.com>
-In-Reply-To: <20260921-rockchip-dfi-cleanup-v2-4-43ff34ac8599@collabora.com>
+In-Reply-To: <20260921-b4-rockchip-dfi-rk3576-support-v2-3-04f847016321@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_165422_823212_3F43681E 
-X-CRM114-Status: GOOD (  24.43  )
+X-CRM114-CacheID: sfid-20261114_165854_241156_C16E82EA 
+X-CRM114-Status: GOOD (  18.24  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,47 +124,63 @@ X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 9/22/2026 5:32 AM, Sebastian Reichel wrote:
+On 9/22/2026 6:15 AM, Sebastian Reichel wrote:
 > From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > 
-> The perf subsystem's PERF_PMU_CAP_NO_INTERRUPT is a bit of a
-> misnomer.[1] Instead of meaning that the PMU has no interrupt, it
-> actually means that the PMU does support sampling. On CPU PMUs, this is
-> equivalent to not having an interrupt, but for uncore PMUs like the
-> rockchip-dfi PMU is, no meaningful sample data could ever be generated
-> regardless of whether or not there is an interrupt, as it is not a CPU.
+> The RK3576 has DFI hardware for monitoring the DDR's bandwidth much
+> like other rockchip SoCs do. Unlike the RK3588 however, it only has two
+> memory channels, so only two per-channel pclks for DFI.
 > 
-> Since rockchip-dfi doesn't seem to make use of the interrupt the DT
-> provides it with anyway, this was probably never a confusion that
-> existed in this case; the capability flag was likely just forgotten.
+> Add a compatible for this SoC's variant, and add it to the conditionals
+> at the bottom of the bindings file.
 > 
-> Add PERF_PMU_CAP_NO_INTERRUPT to the set flags for the pmu struct's
-> capabilities member, so that the perf core knows about this limitation.
-> 
-> Fixes: 4d586b5724d3 ("PM / devfreq: rockchip-dfi: Add perf support")
-> Link: https://lore.kernel.org/all/20250619140442.GH1613376@noisy.programming.kicks-ass.net/ [1]
 > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  drivers/devfreq/event/rockchip-dfi.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/devfreq/event/rockchip,dfi.yaml          | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> index 5339616f7ca6..dd9edfd6a674 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -646,7 +646,7 @@ static int rockchip_ddr_perf_init(struct rockchip_dfi *dfi)
->  	seqlock_init(&dfi->count_seqlock);
+> diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+> index 3450e28b4020..dcf3bbde3e8d 100644
+> --- a/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+> +++ b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+> @@ -14,6 +14,7 @@ properties:
+>      enum:
+>        - rockchip,rk3399-dfi
+>        - rockchip,rk3568-dfi
+> +      - rockchip,rk3576-dfi
+>        - rockchip,rk3588-dfi
 >  
->  	pmu->module = THIS_MODULE;
-> -	pmu->capabilities = PERF_PMU_CAP_NO_EXCLUDE;
-> +	pmu->capabilities = PERF_PMU_CAP_NO_EXCLUDE | PERF_PMU_CAP_NO_INTERRUPT;
->  	pmu->task_ctx_nr = perf_invalid_context;
->  	pmu->attr_groups = attr_groups;
->  	pmu->event_init  = rockchip_ddr_perf_event_init;
+>    clocks:
+> @@ -64,6 +65,24 @@ allOf:
+>          - clocks
+>          - clock-names
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,rk3576-dfi
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          minItems: 2
+> +          maxItems: 2
+> +      required:
+> +        - clocks
+> +        - clock-names
+> +
+>    - if:
+>        properties:
+>          compatible:
 > 
 
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+When I applied it, there are some error.
+Could you please resend it on latest commit?
 
 -- 
 Best Regards,
