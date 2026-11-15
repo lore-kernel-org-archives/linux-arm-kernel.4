@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB34606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 17:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7777C606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 17:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bZgnHQbM;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=RECBTGaT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uhPHuju4;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=lWAbZS8R
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,88 +14,89 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=d/WXFyP+++CG4z1tVSrqfN8fTdb2bD0x6lw2FR6noEM=; b=bZgnHQbMpFZBMkT40ISC77iVzV
-	xUumElsTamE7XPqQhp6TNZ+I16xPZGIP18HFt+jpRWGO+3KysU1ZFpDpIhAwlghg2exw3/snHgB2Z
-	8IFmZZF1tM4ami2F77LacTqyTSMxdhQtwbIEKILPiMxDc0CpAeOnbACPlvftcfQYf6YHodQAeWC0m
-	GjXdZFWgCsXSIafZwUgjycZgmLuXB/+5bFcpBJkyC+TL5CBo9KI/AdBnRm2UjTfapP1lTV8iRDRh6
-	jcjWyrGlA0shluK42XZpzxCh3lJB2wN/JvQ7wDnkefEm7D2xC7bHoOQbQ6zPMA1wwUMbyZaIoupL/
-	RSVGjRlg==;
+	bh=dBdYXLHSNjF/d84cRLaI7Cq4Vv2L1S+rQoNIA2JWRWE=; b=uhPHuju4uYdl79/JQhsC6496zZ
+	+yq/L0x68Xk9yqEsJPuPm7zU8VHekXpG7DDz74+rYVi4jiaCoqBMq1eG5q1xbtGARrtWfNid2A9hv
+	tFDEi4cj44NCk/5ZDQ4lbeMxdOARfAtSq+n7DpCORPjhDxDFOY9qYkqC5Nd17/iOq3h0ZSZMDPjCk
+	i5c++Sf4OQ0RNUXZd6S6iwL82b4cRB3D/Y/f04mk3ijn7LOqI4aevdNYMarxq1VDLYHOKhavD9hsS
+	FtRvpQQBbuEr2juHuAgSUp7daAeER03BPLuJ3+NIwN/iEIZw2DLh78xcoeNQDNiU4xl92TLUaJgz5
+	g3qZybcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSddf-00000000Eif-3QPn;
-	Sun, 15 Nov 2026 17:03:35 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xSdlj-00000000Ew4-2RuJ;
+	Sun, 15 Nov 2026 17:11:55 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSddd-00000000EiJ-2gCY
+	id 1xSdlh-00000000Evj-3wvX
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 17:03:34 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so29654475e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 09:03:33 -0800 (PST)
+	Sun, 15 Nov 2026 17:11:55 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4a207b02a2cso14216795e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 09:11:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794762212; x=1795367012; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794762712; x=1795367512; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=d/WXFyP+++CG4z1tVSrqfN8fTdb2bD0x6lw2FR6noEM=;
-        b=RECBTGaTQTC6/rkG15+46Dfb967A8k4SzVMf2tBuYabBrIHtavKqOpF/SHFcr58GPG
-         YUTnv1acil4fkgFpQFm1dRVQTsvCIe/YMDALbnSQUj/8+Et6XovJ+4ZOhkja0CTLV+XZ
-         /9eRxVnV8iioAG03MNHhgmISiJ5z3jAjx9jkWv7m83LBVrdR87rypKwMv5nWONa6BIXZ
-         g7bDjDtgqTyjE49aPu/MQOekmFuAVIjuZRxT1lY5MBBkXjF2bph/68/BaCYcjefgIVKU
-         v9TNWMavfxGrgaDaTXRYA7+rdcG2QdcOb913HkGms/SfnuZecFmc8Sq0bWzexQad0Gpn
-         nn+w==
+        bh=dBdYXLHSNjF/d84cRLaI7Cq4Vv2L1S+rQoNIA2JWRWE=;
+        b=lWAbZS8RzGOdAJEGJBP5nqHJt1exmVCERbwblLkhzIzxstP/ByPcYU7EWKknD9xIRI
+         sIRYrvqaNQFfjS5OMPTFLtMewFqEyE6BL/ZTZzQg9WLn9cxh2yEWe/Z9XBW2g8IUjSey
+         HmFOWblQQCgFccG04pMjX/5Uoebq8H5aq971tA4/mVC0EEHyi/wouGi6CPqLjIEosWTx
+         7gJYfJEaDrjT/AX7twKp1Dso+hQkDrz5WMcNgFE8FvLDyQSp4V6Hng9NCr4f/Pef+MR0
+         6it2PbDM81EdLXE3Fif9gN84Kjq6M9HtbOa1gRUYG60ECFvdnTD6DI/Cwmuev0Is+cPK
+         3nBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794762212; x=1795367012;
+        d=1e100.net; s=20260707; t=1794762712; x=1795367512;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=d/WXFyP+++CG4z1tVSrqfN8fTdb2bD0x6lw2FR6noEM=;
-        b=qHOUkSpG/iAcB1LlqeOXsXipGI4KowBu1lzadAlg8z3iZUUGHGS2a3LKfgZGUUVyXa
-         KrmnaBwZscHCPnSC4/z0JCNtuEdOuRPCMXRcSdDPqjPqRFUo4MJb/L2x5Wbki69Qimif
-         ZYjl0+ZXylZia46j8ffAqS3vvbDWx3VdGFwNlOMNWF4TytZsK9MV20WXU6XwwN6be6UY
-         nckEl7mTx6YlomzR8ZsBcTlQvYUPvYmBtO6bpxB9BvJsXCgwiiN+73obAXWbHVck4rlL
-         pjytLrgWJkUmKuGtcNxs3XehnkX/1OSilBONxyGDOxGg+4vsQ1A0zDQty5pVLSpePibR
-         vdww==
-X-Forwarded-Encrypted: i=1; AL+hErG5N4m6R2t0Q+MEec4wK+1zc//Y7ak1PzSoZtE4Siz/7xUnbwZLVPhDezdl7zEQKdMnOE6Hx/1gwWpulzAddzC/@lists.infradead.org
-X-Gm-Message-State: APuU4Z9qN9iVPYIQJQ4i+JRXnnSPfsF9ET04hwhuezRo2l5uAn5E9Fs7
-	DoSvszO+TMgAtdrNyHoVAatdhXlDRPEFbzjidmWuOZ9mAhyIRN/YOubP
-X-Gm-Gg: AYBFou16El4JNFQlUgZAeb0dLOwXRANMJb1Yu4EduO2aV5H0x6M0c/BniaEvZMoShOI
-	bxaRltkvTt8nexLthQHcnVDlrQChCUR7BVgtOpfH77HZ+FCbSp2tByWDYga+IsRpUTz+gbD9/Zq
-	GydwximtyQh+b6maioGkLDdvdo3h7jfO1WKquNA1VL0irsytCxcy7V1chcPas9bJOa5DSLmPCPb
-	HkXQGVz5/86negy1aNhZxJEt0qcbf1tXpi22s6W6Q9CE39erlcl89y98Js6jAMhwnT++5fL1XP5
-	eJmXvH90afLEiiDQt+Tbu7K9U9ccrUE0VZ3XTGzCaY5ptwjYPtMb6pNFkXPwDoWqk4/wKros1bG
-	wVnkGv2x83M/oyrKNXfE+Mfj8wA6sFHaMIpne5s2anVVNI3PBvZL2yS8wsit8JiuwDIcxKT/RvE
-	CsAYCTtyajhw2hr3j5ZyqFichGyLqC1s66VMoEIcE7tI8kA6WiK4CkhRbvsPz8URDd9ioAUb8KT
-	WCDj+ez3X4DKI0nRFNM6ydPBjifAQnzbMGPTUDxxxZv7v+dxZebdJdNEgr3IPTAP8Ga/WqF+BxR
-	J4xHUpSEH/xSbtofTTsZ6x/tifvNu0upaiW3sIdLv2+MLsLa8LDK+aeoPeqKrIi3t+SLCpEloVI
-	FDlFka8mvASbIRHq5gZiFx+HSits3F4sCvZuu333zOqhaKjv1OETC3T2k5XIFxNgBJfnWuAvxuW
-	s2XTGqtU64nUWNstvZGwrPvBvutfOSgWIWU8HSns5s2//+NITUOaeqobP6m+BAPF/5QqmaqTHWp
-	3Bl9BGTcDLGM+xdFgpqIxTLeaNeNJwX/20=
-X-Received: by 2002:a05:6000:2084:b0:498:be72:6371 with SMTP id ffacd0b85a97d-49c713aa624mr18863165f8f.21.1794762211674;
-        Sun, 15 Nov 2026 09:03:31 -0800 (PST)
+        bh=dBdYXLHSNjF/d84cRLaI7Cq4Vv2L1S+rQoNIA2JWRWE=;
+        b=qU8hC3ZexcOqPfYwL5zwwbHKNUYhhTx94/fS//Jmdlcb7EHUfmUZlE9EUNYBc3jN5Z
+         nj6tkQ4FbdaNC8uWK7YUhjYSORzuXFjAFYtZ+ihP2Jvn0Gb7hSqSthrF+SOZ2ZulXd3q
+         UZ7HxxRLoTTiKzegx5Gn0kBwBc7XuhrZ3XYJ4xlSXJPtCX9CHfcPAR01kkiXueNfzwf0
+         ATf+mZgOJTfFqEeHwweNq70+5xQU81X4Pwo9zDFA69lBh2q5H5hFzDWo9FqfDNi/MYNJ
+         KetgU845AC24J4KCHdXgKmo9ddIwwFGJqHCjeanACEZ8/72QvyYAmVTFZhRY0FEyM6IT
+         jNZA==
+X-Forwarded-Encrypted: i=1; AL+hErHvlXw8U+VxGuwlDjNvc0L7EFYIZaKjPS8urBTr9rWjYpE65vkkdEKZYHci6BJoGrNiTyLIJa6yhAnY9/eb7nvN@lists.infradead.org
+X-Gm-Message-State: APuU4Z/+vKG/RW4E3/Gwr6Q7Uk/mmyEX4iv4wqFgOgsCQunssEm3fXwB
+	FsSlDel6r20uR5PWR/bxxm0uQ75udCkZ/sWL3l3iiII56AdDw7GIAL0n
+X-Gm-Gg: AYBFou02XQeeDeV7kjRsPlN5oLRgW/XdbuVShE2EHNwlSN2K5Q1PmHWIIJI1jP1m2qm
+	Wap7Ot2bFYqvg7keUzDHiv1/M5X8jdikvh5lyPs0CmUlab0NxOAX4FRf6mHY/uMwPwKqhRDfoTa
+	TJwSauxZZ1ywCq0HFVLsRjmz4lGolRJFzO/lgwT6sN08EZcNqZ3Nkn4L7SaZeSy2dBNwyEkWTvp
+	wZ7MV+4hMgqMi4zwVxktVICeSfXIdr3+eodbkKQ/VOc8ufVTJ89Vle+bw56bo8eGFSkICZX3d/L
+	+fvx+gM3uMAoh56k3n03Lt2n6Zm35z9DAsuWItVZLM9J1rWglRM+LThzR0cIsjuMfU9kkp21o47
+	TyOukWCIXngTzcpRS8Vq14SpeSQVZl2ziTHnw99LZxe3zCoXO9ETqGvcx/tiCCDQOYJ3VM3CqTL
+	S6vQ+ixmz3Eme4AwoGM3BHi1l8YKh+h0DrP3DlYsDUvdY2VOfSlDp7FuEkmTfotK8/FrxY1Pv+c
+	s+NErTETK0D+7g1E2LYV7c9Q+tZtHl/eBw3mGQKUTskPcn5UQUhbWvYpovK7VI1ROsEMMnbehNg
+	6mprTJco7Zh73dSUzPlhXrBI0fmxqrXlh1SPhjDsS5J4IRU+4aSUyRxEGBnPp7h8N5VFy83spWb
+	2lmGZTdEvQG9GvvbOpUCs4FPE+HIT1MVHsEuAsKR+DQtg+rOt8W6sgaktG1D0jiFiB5GBhBitjp
+	6iKrLAemRZRecIbikQLWfvv70os/vE7yUeIztAG6tbqe14dMhYOrArrJVvsMqJ4UhqNrjgDFOrA
+	q3fDluleXMgzQ==
+X-Received: by 2002:a05:600c:6994:b0:4bb:647d:dabe with SMTP id 5b1f17b1804b1-4bb647ddc1bmr101003735e9.3.1794762712078;
+        Sun, 15 Nov 2026 09:11:52 -0800 (PST)
 Received: from jernej-laptop ([2a00:ee2:6a02:9300:bb69:6bcf:1b11:e85b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c77393700sm16719512f8f.18.2026.11.15.09.03.30
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e2538b9sm501415845e9.1.2026.11.15.09.11.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2026 09:03:30 -0800 (PST)
+        Sun, 15 Nov 2026 09:11:51 -0800 (PST)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>,
+To: Chen-Yu Tsai <wens@kernel.org>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org,
+	James Hilliard <james.hilliard1@gmail.com>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH] arm64: dts: allwinner: h6: orangepi: Raise CPU regulator max voltage
-Date: Sun, 15 Nov 2026 18:03:28 +0100
-Message-ID: <20261115170328.34338-1-jernej.skrabec@gmail.com>
+Subject: [PATCH 0/2] arm64: dts: allwinner: h6: Enable Ethernet on Tanix TX6
+Date: Sun, 15 Nov 2026 18:11:46 +0100
+Message-ID: <20261115171148.37784-1-jernej.skrabec@gmail.com>
 X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_090333_741839_838F970E 
-X-CRM114-Status: GOOD (  14.13  )
+X-CRM114-CacheID: sfid-20261115_091153_996321_347EB90D 
+X-CRM114-Status: GOOD (  10.03  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,45 +108,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The vdd-cpu regulator on the Orange Pi One Plus and Lite2 is limited to
-1.08 V, so the OPP core drops all CPU OPPs that need more. Depending on
-the speed bin, that caps the CPU at 1488 or 1704 MHz instead of
-1800 MHz.
+The AC200 MFD and Ethernet PHY drivers and their bindings were merged
+in v7.4-rc1. This series adds the device tree parts needed to use them
+on H6, starting with the Tanix TX6 and TX6 mini TV boxes, whose only
+Ethernet port goes through the PHY in the AC200 co-packaged with the
+H6.
 
-The limit dates back to the initial board support and isn't a hardware
-constraint. Raise it to 1.16 V, the highest voltage in the H6 CPU OPP
-table, as was done on the Orange Pi 3 and Pine H64 when they gained
-CPU DVFS. The actual voltage still comes from the OPP for the chip's
-speed bin.
+Patch 1 describes the AC200 in the H6 dtsi: the I2C3 controller with
+the AC200 on it, a pwm-clock that provides its 24 MHz reference clock
+from PWM1, the RMII pins and the EPHY calibration value in the SID.
+Everything stays disabled.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Patch 2 enables Ethernet on the Tanix boards.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-index a2a2e4cb0256..57b137755227 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-@@ -207,7 +207,7 @@ reg_cldo3: cldo3 {
- 			reg_dcdca: dcdca {
- 				regulator-always-on;
- 				regulator-min-microvolt = <810000>;
--				regulator-max-microvolt = <1080000>;
-+				regulator-max-microvolt = <1160000>;
- 				regulator-ramp-delay = <2500>;
- 				regulator-name = "vdd-cpu";
- 			};
+Tested on a Tanix TX6: 100 Mbit/s full duplex, about 11 MB/s in each
+direction, and the link comes up both after cold boots with no
+Ethernet initialisation in U-Boot and after U-Boot has used it. The
+TX6 mini shares the same dtsi and was not tested separately.
 
-base-commit: c3b0d2bd3ba62c39c131e80d940cabbb8441bbf2
+The arm64 defconfig does not enable CONFIG_MFD_AC200 and
+CONFIG_XPOWERS_ACX00_PHY yet; I can send a separate patch for that.
+
+Best regards,
+Jernej
+
+Jernej Skrabec (2):
+  arm64: dts: allwinner: sun50i-h6: Add AC200 companion chip
+  arm64: dts: allwinner: tanix: Enable Ethernet
+
+ .../boot/dts/allwinner/sun50i-h6-tanix.dtsi   | 40 ++++++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 53 +++++++++++++++++++
+ 2 files changed, 93 insertions(+)
+
 -- 
 2.43.0
 
