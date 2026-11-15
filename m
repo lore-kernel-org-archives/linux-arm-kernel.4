@@ -2,100 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66D0606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 08:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED5B606A31D
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ADvOqwKB;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bnNzd/sX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eWo78BAr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H7qQBefS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qDP4N5+jJcRg7Y6okxsTnefvSa683G32wQT+RQCKUfI=; b=ADvOqwKBMdVeOX7/54cEkWxE1f
-	9AerH5iogW0n3Rhk/xBJ/g6NU5EkD/KrGPR8K5xF0rR1bLZ1UqPMHmVOFVMgigygXOabhmXJhJC9j
-	M6mq0ORN5lWtAzV5TyJ3OMHh0w2n42XvhhQ8+aHekLSpRlhuz96fUBbNdHxmiExuZ9utOxC+7YjbF
-	QMix3rW4C+Vda+BVlEOM+pLNnCsg38fyN3L/52VB1Y3ADTVuUHv+R2IHq42+4UkZjg18+r4iZ+Ss3
-	Ud51V2M+MT0N6bhImbFDsfWYug+TsRS4eCBGymbQh9I7C3++HcksCWmIU3oK2Ix3nv50m2r1ai7fC
-	pFc/uqXw==;
+	bh=SWwLvN5yU83ZBCHPhXtyXSkK0RHhvvZ/0hRhOydSxnQ=; b=eWo78BArOvtU6aHQ+GAxJpmGMZ
+	D22AOEKBavRWRmEfP/ZuSpWsyosAOBkWqZ3H3CsTFK1zL/zYC8ail6tcWCzc2wM9Wa6hhL1oBqusV
+	GLAlMELPscEK3ZAhDkQlKjDkzfa8lFQg6m7HX3ka4L692+Ru0njCTzE/hIXEKpAiJB7mkEh3TTPGZ
+	w7ciSKNr3pOe55dI4JzW36G7+K0gfLR0+sLAz31y4U5Gx6KNibsofQX4mfYqeSSFKAOzaAonaoC7a
+	VjxChgOQu1QOs29rqqqVvF7djqV/jcTQn+RFNv/Z2QXYQEaKehDuO7r2Q3eVEQl6HB3WzDmK3YXda
+	SXGWJhjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSW4t-0000000HHQo-22Yy;
-	Sun, 15 Nov 2026 08:59:11 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSWAg-0000000HI4c-1j1F;
+	Sun, 15 Nov 2026 09:05:10 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSW4o-0000000HHMj-1l5G;
-	Sun, 15 Nov 2026 08:59:06 +0000
+	id 1xSWAf-0000000HI4V-0ZcU
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 15 Nov 2026 09:05:09 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 736E161D80;
-	Sun, 15 Nov 2026 08:59:05 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7701241886;
+	Sun, 15 Nov 2026 09:05:08 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794733145;
-	b=3VCcJPh7sC3qOSHJKnhhIQP3488ZooJiKXJsTvq6arCxfQv9SvGIW64ca46kkULl4zV5
-	 dTMrpMpDmD+QzEnTO8KU4WcsoKnBhqB62dPik6fMCFmBVch9kRMuTbJ3Uk8Ig0cH8LJjr
-	 gwlkSZ1xknW1ogUZN8hXTRf6RUJ3Rrl9W8J8anKnRLVPbWNeSJ9QeyM4wVhWGNmr9K0wt
-	 tubITSZE8W+2BV7/K2HhasMEaTgszx9YnBbCC7L6/5c95yhWU4w07eB0+uk0h4mxpsqtu
-	 QbvcM6QcEytwD72IY7owHB72sFrfEWi0iOwl1fK8zUSEr6wW0AgzPRZWbZLJhs88L7w==
+	t=1794733508;
+	b=fmn9mMLINAdI3b31dx7fl4/htTvC8ovdMwnsGo2D2qv7wYh61GN0BTP9yyunEFLUV6JX
+	 YfqQUM2YKCwntnmRmPad819+BtHyFFvymQYDZ58Pv5HhdHj722CPc+Ak0sAiybpGjQd8p
+	 SKAH1Dp8QooPMCzs3MmPTTbXKps9T4Qd1vTmtfnOExnRcSMJOVa8nCBQ6LQEkeZvCaJlJ
+	 A0hKb0WzkN/yIWA4i/ilN5ClvMVlol5P2T293rnFjw3CQPS+WJ8hZIFTBXFKXe+lhjOFe
+	 DvYWDnjsrZbAufGBSYRU83Q7f0MPYzEXeaTG0nbiMY334qCQCaQEYVX123exbNiVIeA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794733145;
+	c=relaxed/relaxed; t=1794733508;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=qDP4N5+jJcRg7Y6okxsTnefvSa683G32wQT+RQCKUfI=;
-	b=kjkAsNjw6kyIzC63goa3HXohc0xOQF0U9p6Pz5Jyx8l9TKw8C4vaz2R331jxJ2CTcw3T
-	 W7JDql3W2/4Jhm9bX+pRauc8TYrzMdaFtfpwQltVIJUZBNaNQfHeb35MdHFhP6KLNZdFh
-	 21Ra0Z1qwEx9J/0KB+fc3uv0kgq9vUSC0F1r93K1JeJqZLPmTFEeW6DqILy5nBAONKBr+
-	 tb6Hzqozfmliv5xTZk/hbiG+zN5vYfG142Q4PhGpLXQU/8lGgcqAo6DPfEvWLsRtKrC9N
-	 Qpxz2LOc/368Mj6tQOFuym3f2JWzueDB3BHl8HKticn5eK7KhFBNpVvutKtNwUVfEZA==
+	bh=SWwLvN5yU83ZBCHPhXtyXSkK0RHhvvZ/0hRhOydSxnQ=;
+	b=SRV+lHk/qJNEgLwUf6p0peY74acWbnMmLBsv0Jq1MDPfSC/AVgUdW7sWUoY53QCOFbxD
+	 X5IKHOkA1meRX/1TupSynlWPJUr0PYAuabwUEvKdZUuopvTCYQsRFGAL8MQCjAEYMFtXB
+	 y2Ae+b/1bsY7/KwY0LtEWbhtdbTaB60M1IaY41AdOzhZG9mx6bYDNY6gN4tLy9bw+M7va
+	 EzogctxgiX9PCGXTJRbmGStXIT4p9S7BuMx+2DAYHyU5tlkwoN2SHFLsq4tO0wgSddGRX
+	 qbN2ZvwO5ic4iVQMSB9rcfRr5aVsN5r8NHus12HbJJQuGh/iCdOONwqR0C7gnH9wHCg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5DBC61F000C7;
-	Sun, 15 Nov 2026 08:59:04 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id D830E1F000C4;
+	Sun, 15 Nov 2026 09:05:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794733145;
-	bh=qDP4N5+jJcRg7Y6okxsTnefvSa683G32wQT+RQCKUfI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=bnNzd/sXXPmZiuZJrsHt+ORFsP3a28E/vdosEXAB49sTdYrp+h5Jdu7kuA9pmwx/x
-	 0Sq8yy0xRVscOf9vNTfi2TklVDUKf1O55bFW1qDo31iGcI2Li1jOgZvSm5v0WrM6zd
-	 S3HD2lmbcM2UpDtURGh7ycIDn9PQ0HIbcNqpmBTiP9SXUddF3ivSaHkahhLjQ6zjvH
-	 eVBCXxl6hZZmA72EDcCGXyeBVKyzjhdufMY41JTei9QaYpOtpKRAyLme0dGK0DgryC
-	 m9KKS8XFGIRVMMYCAQNslV1inMnvTOhkZ7COpaOakLGYXqJwfrdH4Ye5/w8YTgcTzc
-	 gPKZ5uQi76VEw==
+	s=k20260515; t=1794733508;
+	bh=SWwLvN5yU83ZBCHPhXtyXSkK0RHhvvZ/0hRhOydSxnQ=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=H7qQBefSjjR2IwpJigL66Q2xaCI88wcALhDKH2LL147sCbE2I3/p89S9IU4R+Agro
+	 jwKbSp9q0ZVxkdSbtK4bJLtIL4Qa1BfK/n6g34vMnD3k+I26eI6NqBf+WaDhGWjXsG
+	 1v16zPzhy9EMx2e8V7KG+W2GAozwc7Ubr7+Ucg5Mh0ZkW0DzMIUaWPwuhu95WRYLZQ
+	 ar/2dsn+waVeh/rLXQXGpjmr6iBqn/TRErPKVdIyMVeD3dqiBrgKkypTMVOE6AWuOY
+	 JSttsKOP81SA8edIgnX/Td/1zzzexeXiSeQqw+fafqh2S/xTVVFLXZtKyA5de6bue0
+	 aS5d9aTCc9fwQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id DB74C4A023;
-	Sun, 15 Nov 2026 08:59:03 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 544294A021;
+	Sun, 15 Nov 2026 09:05:07 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Sun, 15 Nov 2026 08:59:05 +0000
-Subject: [PATCH 2/2] media: verisilicon: av1: Read the segmentation map at
- the reference's offset
+Date: Sun, 15 Nov 2026 09:05:07 +0000
+Subject: [PATCH net-next v3] net: stmmac: dwmac-sun8i: Fix use-after-free
+ in the MDIO mux error path
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261115-b4-vpu981-av1-refs-v1-2-c65769715db9@gmail.com>
-References: <20261115-b4-vpu981-av1-refs-v1-0-c65769715db9@gmail.com>
-In-Reply-To: <20261115-b4-vpu981-av1-refs-v1-0-c65769715db9@gmail.com>
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Hans Verkuil <hverkuil@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- stable@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
+Message-Id: <20261115-sun8i-emac-mux-uaf-v3-1-c69d4189539d@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NQQ6CMBAF0KuYrh1Dp7FUV97DuCh1CjVSDKUNh
+ nB3C25YGJc/M//9iQXqHQV23k2sp+SC63wOYr9jptG+JnD3nBkWKDnnCCF65YBabaCNI0RtgVd
+ aqSPykyViufjqybpxRa/M0wCexoHdvpcQqweZYTGX38aFoevf637ia+PfVOLAQRRKU0nSGouXu
+ tXueTBduw4k3BLiJ4GZkFgIKWWFUpVbYp7nD9R3qGETAQAA
+X-Change-ID: 20261112-sun8i-emac-mux-uaf-1ba885219fee
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794733143; l=2088;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794733507; l=1719;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=0GThhk2z/cRQbgXeldqMBs3lGFcw7t5kkHOX/IFY9c4=;
- b=o3Cf4VWabdI+ePII3AjfgP52dIS0jsu4DNRqWTn/g2TqG+UlYC8uLuWyOC/OOPpWjZvQis/fo
- uxdVrh9Py6TAnNb9XgZFsUNMdVEna1ZFJOoNvCMQp9GVaAwjVg16/vs
+ bh=+y0GcY4/PVmv5CEIOUChNpzRjsd6qAFwqN8yUicaQ8g=;
+ b=WGxB9GPqMj1G3uOyPfh5GdwBrWsH+43WV1Oy91ghXj3UHSYqtPOjYOO9ZUbcawnPfHKKSQZIV
+ wqJkLbTlGtqAaq9v9D/6boTgG+ufsgKqVVr5mtNEHt4mj2Rq7hd9I9S
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -123,49 +131,52 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The segmentation map of the primary reference is read at the motion
-vector offset of the current CAPTURE format. After a switch to a larger
-format, that is past the end of a reference held in a smaller buffer.
+If mdio_mux_init() fails after the internal PHY was powered, the error
+path releases rst_ephy and ephy_clk before sun8i_dwmac_exit() uses them
+to unpower it. Unpower the PHY first, as sun8i_dwmac_remove() does.
 
-Use the reference's own offset, and skip the map of a reference of
-another size (the spec then uses segment 0, load_previous_segment_ids()
-in section 6.8.2).
-
-Fixes: 727a400686a2 ("media: verisilicon: Add Rockchip AV1 decoder")
-Cc: stable@vger.kernel.org
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+Found by Sashiko's review of another dwmac-sun8i series of mine.
+Build-tested only (arm64 and arm, W=1): I have no board with the
+internal PHY (H3, H5 or V3s), so the error path was not exercised.
 
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-index 59f2adf74850..f23af435f961 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-@@ -899,15 +899,17 @@ static void rockchip_vpu981_av1_dec_set_segmentation(struct hantro_ctx *ctx)
- 	if (!!(seg->flags & V4L2_AV1_SEGMENTATION_FLAG_ENABLED) &&
- 	    frame->primary_ref_frame < V4L2_AV1_REFS_PER_FRAME) {
- 		int idx = rockchip_vpu981_get_frame_index(ctx, frame->primary_ref_frame);
-+		int mi_cols = DIV_ROUND_UP(frame->frame_width_minus_1 + 1, 8);
-+		int mi_rows = DIV_ROUND_UP(frame->frame_height_minus_1 + 1, 8);
- 
--		if (idx >= 0) {
-+		if (idx >= 0 && av1_dec->frame_refs[idx].mi_cols == mi_cols &&
-+		    av1_dec->frame_refs[idx].mi_rows == mi_rows) {
- 			dma_addr_t luma_addr, mv_addr = 0;
- 			struct hantro_decoded_buffer *seg;
--			size_t mv_offset = rockchip_vpu981_av1_dec_chroma_size(ctx);
- 
- 			seg = vb2_to_hantro_decoded_buf(rockchip_vpu981_av1_dec_ref_buf(ctx, idx));
- 			luma_addr = hantro_get_dec_buf_addr(ctx, &seg->base.vb.vb2_buf);
--			mv_addr = luma_addr + mv_offset;
-+			mv_addr = luma_addr + seg->av1.mv_offset;
- 
- 			hantro_write_addr(vpu, AV1_SEGMENTATION, mv_addr);
- 			hantro_reg_write(vpu, &av1_use_temporal3_mvs, 1);
+Developed with Claude (Anthropic); I reviewed it.
+---
+Changes in v3:
+- Drop the Fixes tag (Andrew Lunn)
+- Shorter commit message
+- Link to v2: https://patch.msgid.link/20261113-sun8i-emac-mux-uaf-v2-1-6203666b2687@gmail.com
 
--- 
-2.55.0
+Changes in v2:
+- Target net-next instead of net, drop Cc: stable (Andrew Lunn)
+- Shorter commit message
+- Rebased onto net-next
+- Link to v1: https://patch.msgid.link/20261112-sun8i-emac-mux-uaf-v1-1-308ae7e6fcf2@gmail.com
+---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+index 2ece7ba9dd73..898560e8e95c 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+@@ -1245,6 +1245,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+ 	return 0;
+ 
+ dwmac_mux:
++	sun8i_dwmac_unpower_internal_phy(gmac);
+ 	reset_control_put(gmac->rst_ephy);
+ 	clk_put(gmac->ephy_clk);
+ dwmac_remove:
+
+---
+base-commit: 6964ff21c5d8b75649211a52dbfd92753e605649
+change-id: 20261112-sun8i-emac-mux-uaf-1ba885219fee
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
 
 
