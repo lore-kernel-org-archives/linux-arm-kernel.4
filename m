@@ -2,79 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43FF606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 15:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC53C606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 15:41:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lX1tok6H;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=j21gX6zX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uq3p0Tto;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=Y9GYloHx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qIkegvM0vM7wyeDCr9yTjV+nCu5PD6X7FTu58o7P70U=; b=lX1tok6Hw6jlqEZ9RJ/y0fCIlJ
-	DN0RBc3EX7xElMDHBJ/uJN3x6qGRJKf7JHRBbHvic2vvoYd3/77WsM1DM36eRKaudp3pPH5ACcnja
-	jA9C0e64RakSXD7reopKEbzAoI09XKdSslTxRuESnH5hnY8TQOJE1JUOXRs8WfZR/mNZ3XCcj+l0n
-	grEkCgErjVr+jh02opO2Ih3gpNlt+wYX3akbUNSeTiqn8F+/0ZS09hQdnuFd9Kf2fLuWDKm8mBIZ3
-	JVaxYDhqYxpU4XJog4I1++0NFjg4YXajK/3XSYkV4NhDSoR81UTUzR3fkHGTQu0N73GQZhmdiUD6/
-	hrfsMwAQ==;
+	bh=PVuohZ8xLFR5YiCoEYGFhyPTULZBGZj7Wpwh1r3TICY=; b=uq3p0TtoslstI7eOPucl/Wf5Fe
+	F6JXDWCt7WtPs630w3y4gZAmyvw7Qy5AJp7mMYwmmucdMQzFpODg7kGvlNtBntaJQOIQU9+RnMsW8
+	Wwkc6pEoMoKi8oRabc2+du4TvkKczPnU4DluY7tOu4+jq88qsQFSRwhFrnlkBz61gi7x6/4i0U6T6
+	+Wr1g32M23YLPmLy+hzBZv5bzy4kdE5NkckgoCw6p1K9Ok9T1s3R51mkllv6BK6A8VFJk/Y1wDY3p
+	yETh5BT5SeIl+tx0ieg0P9n07vbSyhzhQP2EeFNCRzB1sW4WZ6IY88tJdU6JigUIcFYAYb2JsoNb7
+	SzgkeAoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbz4-000000007DP-27iP;
-	Sun, 15 Nov 2026 15:17:34 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xScLu-000000009TG-3REj;
+	Sun, 15 Nov 2026 15:41:10 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbz3-000000007DJ-1C8o
+	id 1xScLq-000000009SN-1LTl
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 15:17:33 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 59ED562435
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 15:17:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ECA51F000CE
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 15:17:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794755852;
-	bh=qIkegvM0vM7wyeDCr9yTjV+nCu5PD6X7FTu58o7P70U=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=j21gX6zXDBAG6MY8+WrsN8mJnhvZS4pEbMFH0rtgAa1XpBrQm6P08/9TekLTD+bOZ
-	 PIRV7sVtKt5MnbaTDLds8nZQQezw0XhqDoxV53rnoMKBc5AYEQn0JaiCJrUPFqPK0U
-	 ue+K0988nl5towhzBXn5IbmCl62WlRdtXNyBKNm6GOEarDFZ222c29FIp5MKtwF8Ps
-	 mt78rrH1qpiSccpfhI73dCPhARZmJAtGdyDt6z7aestGq9dqS7cjJIIkxP33QBY7SJ
-	 ZNHC7iZgah3JsgA7ZSEk1ooZHARvLnjWxkEVoPIywnZk6sikOyQZf9LDZLHYWhgzGj
-	 CyCwsPAjqCgUA==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3ad5529ae64so26539411fa.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 07:17:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHtsMCYb/W1zq+Lm0G6sdnSygu/WcsRNsoJ8tPeO5kR85LNngd48TZcSoZppsmJucEhINPxg4R06yzVx9eE0T4V@lists.infradead.org
-X-Gm-Message-State: APuU4Z8otVRh/YJL2HOUDN88bqEQE3ZFygtJjXtMrKKV5EgN58mT0mJw
-	mvmWHa908cp1LG/NdiyrvX6Kf8/DTlmaKvJVomuZ6HksW2/SI6XCV0NceLbyO8dOK+syuumhjsD
-	wCB1fstv22o9AguEd2F2xJMEW9RkGEkA=
-X-Received: by 2002:a05:651c:31d0:b0:3ab:344e:3740 with SMTP id
- 38308e7fff4ca-3ae2b41f7efmr26811011fa.2.1794755850446; Sun, 15 Nov 2026
- 07:17:30 -0800 (PST)
+	Sun, 15 Nov 2026 15:41:09 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-497614c95f0so1129766f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 07:41:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1794757264; x=1795362064; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=PVuohZ8xLFR5YiCoEYGFhyPTULZBGZj7Wpwh1r3TICY=;
+        b=Y9GYloHxMkVPMJfP+XWrbrQjxFppVBWkZmrhtxCzCBsGLFu5FEjn/vFL4mn1YoW/yF
+         zHMMzS+jFyuZYi9MoN5Cj/zY2S7DasoJTjiONoHdJNVnTYOtw0cFLbi3yoKiHBhGG3I6
+         ZRdu9Q0VZbSgj5rkdFcmQ3yA5OhuUSer4LMkodjpbzUNNVkw5VAQ3woA+RNft8SvlUAH
+         7IaLKTiAouqAw0uwN2dVzz918Fi4YzZ9dpZoB6GkQCTvPa8rxomZArwwuNX87Wjj0TdQ
+         1SE+jUMXiywmhHWItt5LT/9ZsDscCLVeoQDRVXx8eEh4j1atUkC1O812nM2EHjv4O4Zj
+         G0pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794757264; x=1795362064;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=PVuohZ8xLFR5YiCoEYGFhyPTULZBGZj7Wpwh1r3TICY=;
+        b=KgZnC5nsMxlqnJiH3HQogY9ZWLwr74WjqhzZIUWCXqkYA3M9PKW4r92efNNp+nKtR0
+         KA+7V4I0JKSkRDI7t4nuyKDkOQhziWYq4h686h3WscEWsPQWmC6flA9Og8ZxvnrqAx9I
+         5ttxXZhwaw4EL2TUeBwHCgv8AOsSVs9nKEQns83VQUy+ToOokVCSlZOv0ePxoeyAPsrT
+         TW+3tVKC71dj2OOq5CPB8DKu1nKHDPgNPeFVRHISb4DhwV5dUi28ddcFz//ALU/22iBX
+         jWDFt5Br6oRG1cvSr/v3482sLrFL70i4R057bP8ydij9rzoCQydA2giKdnAO+H5Tmklt
+         +8gQ==
+X-Forwarded-Encrypted: i=1; AL+hErF4wTPHKMMBzRVi09UtoD9FaJC7BPS5uh60qrMw/7owegUOIFJ8nFDDuum99cmeDo8VA/4mnxLoPQzAKpFuk1Ef@lists.infradead.org
+X-Gm-Message-State: APuU4Z+yLrt/P8+RRxdsX+hC4mYAsVgjGFPS6fu+l5aqNI9RbChW7GvM
+	rrcVPYZ3Wa8jT6E4aErpkzoBOkzpNA39zP87aBPVUxN+UdL+/qElgo3EnzUje1Yt7Y8=
+X-Gm-Gg: AYBFou3JFlg+w3RPM+zgAMGue75JCORmHUagCf/AvOXVpOAHTSpv9wzupYdI5BO5+Pi
+	OyQEs3Ry3fx6Cjk0rkLvvdwn1hFVGPUzLf8G8z9X/x6eeYjEYjNsNrp1YjBfnuemm5vzokT+ltU
+	c3XYiFrT+J0tExcdJdxkpqDdhhl2snVKV8DHkbTrGU4ux2HE9mfoBZkkYItTBySleIs5KBO3hgm
+	G1I4krYnvu4qiFqUksBIbkZ3cP1mMtyRN7bCofZ93WUQfg4AVHr5xL9BrjgNHKuWZS9/lNWs69k
+	ukPQNxzTPIAfFCpibmMewy+USwbtGI0GSeEY6I1Lqv9ySt41rGto7fdOQKQU7aH7iEVncFUwXF0
+	1aRGOn9fnPKkpuoIkBys5E28EowjCJVOUUav1R5rZI4q1oPmJKu+liDMrKH3Di/dUFf0gGNZB6j
+	gjnP+xjijr8/7dIPWPVqUhPxjisGLXcNPiG3m6Xu9i6TWjLtgSQShw6MvAEh+f8HbvG8z/WlcrQ
+	twXoidWSkI/Qn2GuNPrNYEupAfWFbP0kTLPsUC40a/afvjfNbJOrVRApfcGaqMWJIY51JFqEYqz
+	bT5aA1oOFZJ46wgWEQ99U4E4QD1LfYWlhM4=
+X-Received: by 2002:a05:6000:2c04:b0:48e:d36:77 with SMTP id ffacd0b85a97d-49c6fc9db5bmr19465481f8f.4.1794757264141;
+        Sun, 15 Nov 2026 07:41:04 -0800 (PST)
+Received: from localhost ([2a02:8071:56d1:2de0:1d24:d58d:2b65:c291])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-49c888b90d4sm16462060f8f.9.2026.11.15.07.41.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2026 07:41:03 -0800 (PST)
+Date: Sun, 15 Nov 2026 16:41:01 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: gaohan@iscas.ac.cn
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>, 
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
+	Samuel Holland <samuel.holland@sifive.com>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Maxime Ripard <mripard@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
+	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@sifive.com>, 
+	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, linux-csky@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 14/19] pinctrl: sunxi: add support for the Allwinner V861
+ PIO
+Message-ID: <avnR67LnZo4Mo0Tf@monoceros>
+References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
+ <20261114-v861-v1-14-eb71ec3ee523@iscas.ac.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261115-sun8i-emac-mux-uaf-v3-1-c69d4189539d@gmail.com>
-In-Reply-To: <20261115-sun8i-emac-mux-uaf-v3-1-c69d4189539d@gmail.com>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Sun, 15 Nov 2026 23:17:17 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64aOydKdTWJEhF+0GVc45aap4AsHfF5RrL1pzOHF54D0A@mail.gmail.com>
-X-Gm-Features: AclHuK9BiEy8NKHYdASo3pcVR5VPMQUIfo9KOqeQ5VGeVR52SQ6tBFPl-jC43Jc
-Message-ID: <CAGb2v64aOydKdTWJEhF+0GVc45aap4AsHfF5RrL1pzOHF54D0A@mail.gmail.com>
-Subject: Re: [PATCH net-next v3] net: stmmac: dwmac-sun8i: Fix use-after-free
- in the MDIO mux error path
-To: aiyengar1990@gmail.com
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fgskattfdxvvv7hb"
+Content-Disposition: inline
+In-Reply-To: <20261114-v861-v1-14-eb71ec3ee523@iscas.ac.cn>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261115_074106_379956_FD7838FC 
+X-CRM114-Status: GOOD (  16.37  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,83 +117,72 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 15, 2026 at 5:05=E2=80=AFPM Arun Iyengar via B4 Relay
-<devnull+aiyengar1990.gmail.com@kernel.org> wrote:
->
-> From: Arun Iyengar <aiyengar1990@gmail.com>
->
-> If mdio_mux_init() fails after the internal PHY was powered, the error
-> path releases rst_ephy and ephy_clk before sun8i_dwmac_exit() uses them
-> to unpower it. Unpower the PHY first, as sun8i_dwmac_remove() does.
 
-And sun8i_dwmac_remove() also indirectly calls sun8i_dwmac_exit() through
-stmmac_pltfr_remove() after reset_control_put() and clk_put(), so it is
-no better.
+--fgskattfdxvvv7hb
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH 14/19] pinctrl: sunxi: add support for the Allwinner V861
+ PIO
+MIME-Version: 1.0
 
-I think the correct fix is to move stmmac_pltfr_remove() before the
-*_put() calls (but still after mdio_mux_uninit() in sun8i_dwmac_remove).
+Hello,
 
->
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
-> Found by Sashiko's review of another dwmac-sun8i series of mine.
-> Build-tested only (arm64 and arm, W=3D1): I have no board with the
-> internal PHY (H3, H5 or V3s), so the error path was not exercised.
->
-> Developed with Claude (Anthropic); I reviewed it.
+On Sat, Nov 14, 2026 at 06:33:40AM +0800, Han Gao via B4 Relay wrote:
+> new file mode 100644
+> index 000000000000..742465076d86
+> --- /dev/null
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun252i-v861.c
+> @@ -0,0 +1,49 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Allwinner V861 SoC pinctrl driver.
+> + *
+> + * Copyright (c) 2026 Han Gao <gaohan@iscas.ac.cn>
+> + */
+> +
+> +#include <linux/mod_devicetable.h>
 
-It feels like your agent needs to do a bit more deep diving through the
-surrounding code.
+Don't include <linux/mod_devicetable.h>. <linux/platform_device.h>
+already provides of_device_id with less dependencies, so please just
+drop including <linux/mod_devicetable.h>.
 
-> ---
-> Changes in v3:
-> - Drop the Fixes tag (Andrew Lunn)
-> - Shorter commit message
-> - Link to v2: https://patch.msgid.link/20261113-sun8i-emac-mux-uaf-v2-1-6=
-203666b2687@gmail.com
->
-> Changes in v2:
-> - Target net-next instead of net, drop Cc: stable (Andrew Lunn)
-> - Shorter commit message
-> - Rebased onto net-next
-> - Link to v1: https://patch.msgid.link/20261112-sun8i-emac-mux-uaf-v1-1-3=
-08ae7e6fcf2@gmail.com
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/=
-net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> index 2ece7ba9dd73..898560e8e95c 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> @@ -1245,6 +1245,7 @@ static int sun8i_dwmac_probe(struct platform_device=
- *pdev)
->         return 0;
->
->  dwmac_mux:
-> +       sun8i_dwmac_unpower_internal_phy(gmac);
->         reset_control_put(gmac->rst_ephy);
->         clk_put(gmac->ephy_clk);
->  dwmac_remove:
->
-> ---
-> base-commit: 6964ff21c5d8b75649211a52dbfd92753e605649
-> change-id: 20261112-sun8i-emac-mux-uaf-1ba885219fee
->
-> Best regards,
-> --
-> Arun Iyengar <aiyengar1990@gmail.com>
->
->
+> +#include <linux/platform_device.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +
+> [...]
+> +static const struct of_device_id v861_pinctrl_match[] = {
+> +	{ .compatible = "allwinner,sun252i-v861-pinctrl", },
+> +	{}
+> +};
+
+Please drop the comma before the closing } and add a space in the list
+terminator.
+
+Best regards
+Uwe
+
+--fgskattfdxvvv7hb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmr50okACgkQj4D7WH0S
+/k78BwgAggANSfiR3lIax5U5QxcHapAeEwjkuu5kUUd7ThVymu6geBziPkTKM9LN
+kV1vp14gkKuMuThllE6yPhDE+jBai3H2dmZPRAVxRmkHkRXaCGvN2Qy6QvjG7hn+
+pKrIhNm9FD3gtJcf3syW5npYiRAxG/6TkK+Gz1PXPgmg9Yj7puOzJ5ZZsZ+kBOcS
+xiSHHn5ujqEIP4jnBc7Dv7UpeDH4NxdbQ6ssuWEYpdmNKvGpbP4Xi4tlxo4RAMXF
+XWXJcAtussx3dylMOghSQ5VBKABwOqksAb/tX5/oaY13ScR8Lg/M3WzfjwXPwvtR
+yRXJHXEAk7lxYPB9WoXGrz3bVWm0dg==
+=Eo1Y
+-----END PGP SIGNATURE-----
+
+--fgskattfdxvvv7hb--
 
