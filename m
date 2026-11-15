@@ -2,88 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9B4606A329
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37B5606A31F
 	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 22:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kvD2bm7Z;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Dgi850dJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0z4mOLqg;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mF6LNayV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wl+4Tz8A0GGe1CXQyGwndmidqOtappn2vfXIYFkPz9w=; b=kvD2bm7ZPH1th+7lsuUbGxhILQ
-	urZjS1ns6pQL9U5qN2Q6STHeCy8ctiKzOBQlnMzYLmWnkOzJmDykmzuY5soKyk+DfbyZWGz4ivVZW
-	vQGf/oqtBUZqnlalHOx3SLmMHmLZ1Loa5F5upFXJo/4X+Rig6JrFJ8djnUm/4WiGvHCf1GTAN2LEZ
-	Vur18KhTDWVHk8WwV6ig9ygJOeTyU6ZJt1ZGB+0L1x24J2N3U0Y0f68lSK7e79aRwBKEA9vfMPsLP
-	WnIDFHA152Mpu62218Cf8+6a/nvDEO4yUXE3jCv2DOeqddaElkZof8TgUQDDB4c54uUMIvBg7Qrfi
-	HG8s6hfw==;
+	bh=1Au+xYSfXXUZsK5FaRuCPg8J01k6DSd9f+PtsGeFr/Y=; b=0z4mOLqgg7OML+VPFL79ixJ8Wb
+	CfnrMmaOVjwAg+KsndYvHr7qDqwRnkqivYSHeI/i4vK5mv7lmYLxdp8vNlewnjiI4tiGvKr5c2GjA
+	JFebx/eW4mO9I8iOY3prSKs28g+ZWvx3qjAKB0kWk/qC7HZU+s5Bq4fs+aq+YeNDIzc00ryGujAwt
+	Ba3suO05J7idOlbQH/LIuPaWtQt31A9jD4PTNdGD7hZ1gB3Szjf+sonyO613Nx9PiD26bwmSYmF6B
+	W1gHNxesf5n585JeLOGceT6H5s1eP0/XLe7iA9x5J3qtDLFKuEn/MjmUpL8MrawQklwEbHhbRi67n
+	bn4GfV+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSijl-00000000e7O-3A6J;
+	id 1xSijl-00000000e6O-266x;
 	Sun, 15 Nov 2026 22:30:13 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSijf-00000000e3W-36vg;
+	id 1xSijg-00000000e3j-1XKz;
 	Sun, 15 Nov 2026 22:30:10 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CAF0F61408;
-	Sun, 15 Nov 2026 22:30:06 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 23E66456E4;
+	Sun, 15 Nov 2026 22:30:08 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794781806;
-	b=EVVoVBBJtCskQoQYrIoq2UfMHL9WWm6qiZdEldl5Y3WEq4YohLwuCB6i1FNN4SM5OqbM
-	 Q2WJZ4M0EfnQY7Ez1gv11FvOTIFVyu0rVVR758K3RaQZdQ/12QQ5VAvVWAH9H3wStc9IF
-	 1bAXWKeLLPcpcZz0Uv3HZxgcvm2j4eakSmxA21CepbHaeKE56HFk6hI3KbJWZOL+CrV4N
-	 vnDcFp/8lZuL4UYl9mtKLggqa8oLPulg6nA8rE0L8Dap976rH3rrGsL/cTPjfvm0X5mQ6
-	 Hc9A3iFFfqK/2Bk/YpEl+EqqRg3hyg0qidKJlq9+Lz1l4/Igd19LGVYLemLX70gNDiQ==
+	t=1794781808;
+	b=huI5dGtnZM+PRYoVGxpeqgXK6eFyx1YtxSSnPH4jdc6i6CVjHDVu0ghE+uqQz2+VJ0R0
+	 UHRIb/50r9wnSSrCHTuoJRn+0IyabJ0vLB36podK5tM1LfZvutc/ALn/LHzDVoYXBM4vO
+	 PaqDOOlS7Ud0LO0Upy1ByfFq0OHWen/kOdzSO2ddvfBVLbyaQO9FjW/tuShcHBxChrclS
+	 pxn6cBuJbqiEFKQA1/WGeG1rUOuVEtNevshrcROPwf9QWEymnbKBSAGoWNx3KUrdGfnpg
+	 PLQzXuSapTc0pmL2EpqO2Jy8RwS2Q3SPVegx4dmzTZFGc3VD83eoEUMVPjshGbodIuw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794781806;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=wl+4Tz8A0GGe1CXQyGwndmidqOtappn2vfXIYFkPz9w=;
-	b=U0XlaS4yiwjPUtSKzkgfXJq6qS1ytMxPXlewwk3Cw8Vspu5LfrGN0OhLdYY4QaQSI5x0
-	 jGhTI9cjxIiMI7/2dKgGjVfFnkn5UhWcZ+ikXrv7h75n5xGChaCZ7KgcheFj4sIOAwpGq
-	 OYY3IcrZyygJd6RR8OM6C+YsuPXuy+/3G7NnwyhkWp7XCVRWBDzi2cdbrbLPvYFqUJcWn
-	 flMM9y6b9L6w4gDBIatN9k/sz4k6bL1Fv5EFOoQIGggCvZ4pmnRxIF6WDNYZlm3QPhgUo
-	 GCCq1XqgLmwSWmR84aAkBrZlxGGpYMKCvf0WZ3hqQmS/6xFm2FWvslevTp3q8DE2tRw==
+	c=relaxed/relaxed; t=1794781808;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=1Au+xYSfXXUZsK5FaRuCPg8J01k6DSd9f+PtsGeFr/Y=;
+	b=tu5uYGXewXVbPTYNZpboSezidhXfSxPez4bp9EkzwR5nbjKN0Pz+yS8N88gQG8QhaGnG
+	 VRAB0kjsg/wFImWtzj+biONOE6dHUoZOFjyM/uaQUFCoENAYFg99jt2zYiuBsIOPyRXs8
+	 Q4GAl7fwohQ4X1V3I/aouEKdJEqbyMjX9h8Zp8IoTRDJ9c2HkHsI/chMMBANeDFlEcScY
+	 OPwLPzO3bnF0gywgXTzGDOOP0pFDFUU/wDJAcjknhLAvsGmApnTHSvu9h50feAz6riA7N
+	 adr1EAQAQQcej4fw0w3TJyqqIOIbq5v8PhvgaTyDJPmARmydQoswNKF3J9gi9cLFGfQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E5E5F1F000C5;
-	Sun, 15 Nov 2026 22:30:05 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 1C0101F000CB;
+	Sun, 15 Nov 2026 22:30:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794781806;
-	bh=wl+4Tz8A0GGe1CXQyGwndmidqOtappn2vfXIYFkPz9w=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=Dgi850dJX1otjviqGes3svHYWT5Zqn4d4HKpHoiCUNIguRniaqm2anOabhfINEo+v
-	 c4n1aw4VnSq5Bu/+JX4UCuWSc9PlglQJhCyCuAnPaFh0Df1K80JTGMKMQmrnopAeR9
-	 +bXlaLQEpo+YUke83RM4bm/8cg1gl8CElvevWqGXYF21a/hTSe4wdh0V2YV5jeXLkT
-	 FZ+SPhXRGD0iTFDumCWbOa65EZxa67GvnGYMH8y8eJy8huPrcZjs16oqJysAmZCLS0
-	 Af0J3MJxrlYY8SzfGF/U69FoO7Vw/ClBbC3L+zoZb9NOKIa3hKPs/tk0KeW41mo2lX
-	 kRIyfad8C9Cow==
+	s=k20260515; t=1794781808;
+	bh=1Au+xYSfXXUZsK5FaRuCPg8J01k6DSd9f+PtsGeFr/Y=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=mF6LNayVjYYYbdXmWKqFaM8qLfAjVbsSEZpRasi3T6RwTM+zYLJaF0h6+unE2B2MZ
+	 +GVxwt0jiPzL0esvDM403WBSinSA2bgM4mWNNN2FI4kCYg7CPKdYug0JMp+pYA+KIM
+	 CGSoBdilEnLLE94F88iX03nwxQ5G7wMKPvK29BfGIhvOz/JALNBMEuoPkowgDqBJz8
+	 dqdlc9TOsbmF0y9rVqAZEWqr80Vnska9j2vrb2MfDb3eD0DrqMze/bzo8QyjnL98DP
+	 iEl0gwdtSYtIWGqt5olqyJ+7NuRj1nD25heWDU2Mapzzf5dUPklYbz24FV/wd+UHFZ
+	 W+V/QlrYFEN8Q==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 471994A220;
+	by lkml.kernel.org (Postfix) with ESMTP id B1D2D4A230;
 	Sun, 15 Nov 2026 22:30:05 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Subject: [PATCH 0/7] arm64: dts: amlogic: Fix dtc warnings with W=1
-Date: Sun, 15 Nov 2026 23:29:35 +0100
-Message-Id: <20261115-fix-amlogic-dt-warnings-v1-0-94cbd67a32ea@aliel.fr>
+Date: Sun, 15 Nov 2026 23:29:40 +0100
+Subject: [PATCH 5/7] arm64: dts: amlogic: gxbb: Add ranges to periphs
+ pinctrl node
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAE8y+moC/yXMywrCMBCF4Vcps3agCVWxryIuJskYp9i0ZHoRS
- t/dWJcfnPNvoJyFFdpqg8yLqAypwJwq8C9KkVFCMdjaXowxZ3zKB6l/D1E8hglXyklSVLx6R5Y
- adrfQQHmPmcv0KN8ff+vsOvbTLwf7/gWbLGOhewAAAA==
-X-Change-ID: 20261115-fix-amlogic-dt-warnings-7cba2a4eb9d4
+Message-Id: <20261115-fix-amlogic-dt-warnings-v1-5-94cbd67a32ea@aliel.fr>
+References: <20261115-fix-amlogic-dt-warnings-v1-0-94cbd67a32ea@aliel.fr>
+In-Reply-To: <20261115-fix-amlogic-dt-warnings-v1-0-94cbd67a32ea@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
@@ -93,18 +91,19 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1829;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1719;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=fJbFmYVki+HyXICr6npVABZfI45eU0/vUz5bVXUuFtM=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9YvoyjJUmvJU9cSilvftfhdY49Ty5vLINazp032/d5Tc
- Y5CKnUdpSwMYlwMsmKKLP1zLU+8u3z0zNc96ikwc1iZQIYwcHEKwESkHjL84TumxJK1bbb403c3
- 0zUEigP4xSp0T9kl3Dq3Zvu3/nN9howMD/O9a0986b2Wrh+2w25x3YMpdzginn9MWh+ZxNl24l0
- 7LwA=
+ bh=xtEn26a5+bgSMy2fwvSPiUC0qAEwWIS7vuMdhcOzhwo=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9Yvo4wHp8KVcjec2G+9VWt/tEnDm1evw5ZGy/auMOCt+
+ dLZtm9FRykLgxgXg6yYIkv/XMsT7y4fPfN1j3oKzBxWJpAhDFycAjCROVmMDC83LlQxzVe4Oili
+ 0YULf9YVOIrLymyI6lv4U/nBGau4K9cY/gdr1bR+O80u/f/t5kDmeX8v27hec9ld9VxxPauH5XK
+ JJZwA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
  auth_id=744
 X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,49 +123,54 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Building the Amlogic device trees with W=1 CHECK_DTBS=y currently
-produces several dtc warnings, all related to the same pattern:
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-  Warning (unit_address_vs_reg): /soc/bus@.../pinctrl@XXXX: node has a
-  unit name, but no reg or ranges property
-  Warning (simple_bus_reg): /soc/bus@.../pinctrl@XXXX: missing or
-  empty reg/ranges property
+  meson-gxbb.dtsi:88.28-265.4: Warning (unit_address_vs_reg):
+  /soc/bus@c8100000/pinctrl@14: node has a unit name, but no reg
+  or ranges property
+  meson-gxbb.dtsi:367.31-739.4: Warning (unit_address_vs_reg):
+  /soc/bus@c8834000/pinctrl@4b0: node has a unit name, but no reg
+  or ranges property
+  meson-gxbb.dtsi:88.28-265.4: Warning (simple_bus_reg):
+  /soc/bus@c8100000/pinctrl@14: missing or empty reg/ranges property
+  meson-gxbb.dtsi:367.31-739.4: Warning (simple_bus_reg):
+  /soc/bus@c8834000/pinctrl@4b0: missing or empty reg/ranges property
 
-The pinctrl nodes use an empty "ranges;" while having a unit address.
-
-With this series applied, the Amlogic DTBs build without any warning
-with:
-
-  make ARCH=arm64 W=1 CHECK_DTBS=y amlogic/
-
-Boot tested on Khadas VIM1 (GXL) and Khadas VIM4 (T7)
+The pinctrl node has no reg property of its own, and its empty
+"ranges;" does not describe which address space is translated to the
+children.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
-Ronald Claveau (7):
-      arm64: dts: amlogic: t7: Add ranges to periphs pinctrl node
-      arm64: dts: amlogic: a1: Add ranges to periphs pinctrl node
-      arm64: dts: amlogic: axg: Add ranges to periphs pinctrl node
-      arm64: dts: amlogic: g12: Add ranges to periphs pinctrl node
-      arm64: dts: amlogic: gxbb: Add ranges to periphs pinctrl node
-      arm64: dts: amlogic: gxl: Add ranges to periphs pinctrl node
-      arm64: dts: amlogic: s4: Add ranges to periphs pinctrl node
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi       | 2 +-
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 2 +-
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 5 +++--
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 5 +++--
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 5 +++--
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi         | 2 +-
- 7 files changed, 14 insertions(+), 13 deletions(-)
----
-base-commit: 6d582d78fad9d828e575ca0cdcff8ea47a77220b
-change-id: 20261115-fix-amlogic-dt-warnings-7cba2a4eb9d4
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 5c2fe9dc4f80..71bdb66e4f6d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -89,7 +89,7 @@ pinctrl_aobus: pinctrl@14 {
+ 		compatible = "amlogic,meson-gxbb-aobus-pinctrl";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-		ranges;
++		ranges = <0x0 0x14 0x0 0x14 0x0 0x1c>;
+ 
+ 		gpio_ao: bank@14 {
+ 			reg = <0x0 0x00014 0x0 0x8>,
+@@ -368,7 +368,8 @@ pinctrl_periphs: pinctrl@4b0 {
+ 		compatible = "amlogic,meson-gxbb-periphs-pinctrl";
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-		ranges;
++		ranges = <0x0 0x4b0 0x0 0x4b0 0x0 0x84>,
++			 <0x0 0x430 0x0 0x430 0x0 0x40>;
+ 
+ 		gpio: bank@4b0 {
+ 			reg = <0x0 0x004b0 0x0 0x28>,
 
-Best regards,
---  
-Ronald Claveau <linux-kernel-dev@aliel.fr>
+-- 
+2.43.0
 
 
 
