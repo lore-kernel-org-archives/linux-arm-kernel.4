@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05343606A88F
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 07:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30602606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 07:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U6mBSOVH;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J9D0afPn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nki4LXxo;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bjCdzTFF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=AidHs0Awemb2NZ24itVBVZKYL6ptkEfvldQHKQBgGl0=; b=U6mBSOVHa/1HI3JxFSDjlqqIYJ
-	QR2ticW4S4EvOrOWTRt5yK/duk0x9L+W7N9PPgHeIIh+dHsMyzX04LcBK9KqY7c/RR/rzeYjx11Yz
-	jZdrlhBT0mFMvktgZRaFzsAVmWipOUNxh0CKXzp7wBTSJL+LLz0XgOOFYEEPmlaxCeOTCepDJTzZN
-	p1mgxglKl36m9KaN1Yb4i2kmfeJbocasKUl/llfCT8nHyO9DNnHaKcsBnYh71KQyXE7Kwgcm4+vXr
-	e85dpKk4tWjypQUoXBOGY1DGbct7eojLZeC16yUUjBOXlB2GOqkbb8tZP6UBG21ttti6bItnSuTRV
-	QcgE6nZQ==;
+	bh=XJvoq1Xx3i//LS85IKNJhTpt4GaOTRDB2ZKGZaEdhIM=; b=nki4LXxoSf8u+JQG8uDi7H13Bv
+	ME3ZjQlnZz6HN55UW/A+E5Yfa/lH2kVbVKRAdhi7ChWX/tyTCep+oubUD6lSdIikFe5gL9VVKwMPs
+	TVilOEq2ESMshane3oFBEH4sUXQttkavPEX18mrZ9Ors+3siMxlx3hxrTxTiN9R40sBTF2TAMbIxq
+	puQLhis8yL2SlvbkefX+U20LFmIyN3qPLDe/Clg6nVPiMtX08rFdsguccazMCcA5wNERmWbaivu0p
+	kINk16QEX125hIfzlO0bvwvQbtTZ7AWnYMqDZErv96U9xfKoHaxt/S1FHC1zPZBIYm++CnSJszVdl
+	+F6WtxqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSUbD-0000000HAFl-0aBz;
-	Sun, 15 Nov 2026 07:24:27 +0000
+	id 1xSUbM-0000000HAIP-26Ee;
+	Sun, 15 Nov 2026 07:24:36 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSUbC-0000000HAFe-0aJv
+	id 1xSUbG-0000000HAGV-1yII
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 07:24:26 +0000
+	Sun, 15 Nov 2026 07:24:30 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 385D6609F7;
-	Sun, 15 Nov 2026 07:24:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E50281F000C4;
-	Sun, 15 Nov 2026 07:24:23 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E4BF4609F7;
+	Sun, 15 Nov 2026 07:24:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFDAF1F000CB;
+	Sun, 15 Nov 2026 07:24:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794727464;
-	bh=AidHs0Awemb2NZ24itVBVZKYL6ptkEfvldQHKQBgGl0=;
+	s=k20260515; t=1794727469;
+	bh=XJvoq1Xx3i//LS85IKNJhTpt4GaOTRDB2ZKGZaEdhIM=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=J9D0afPnqD/0sfW+WAvE5yqR5xx4q5F1P40g3fB8SgXIXt03kybektbsmLTAz7ka8
-	 BJYYsvbzT8Gdg0OhCrqbtEy+XcVDpZ4a35cEv0HPLPFVVlWZ2kK2ZYzkgU6PBTirG1
-	 jdCVoZEWD0S9FFoVdgkaVOATKn2i8CeA3IzhKCKpMnzmgcnYKup3qc6NCqFxO158/Q
-	 bOMhJB9UPKjOH9abL0QMfx5HzjwGol/FqCgZ6VhfPZ4ncbzwmrJcNpR2zNlZsoGppH
-	 kNItHofx6sfPkth1MoRpH8Jm8k98VOgu0i6oqaAtlej0fdJtp+KlOy7Q++TodO8fYd
-	 flN96cmOMKOQg==
-Subject: Re: [PATCH v7 net-next 4/9] net: dsa: netc: tie setup resources and
- reset to DSA setup/teardown
+	b=bjCdzTFFWOTQxYzdNReFNPy7ZvRQqVahtRIZC2T6jYZvNMXHdRGUcTk+G/es81Gzd
+	 XyHevjYjEx3BAvNNCrG0bddehM0wH2Cxkczo7zAXWq0pcAoPfbFeK/JpmpZp//T6i4
+	 PwJLUMw+HMhjcRcgjqIP08F9kvS9TWI4nmCMLKVDWv8Dq4D5HHzkqtzvQ5Cc0ZtcQU
+	 4UhG6sfbm91CAh1sIXcOvWqjoFB1PYgtceNoL4lO7XmkJIoeRt3RKDDzX0k/CtwMpe
+	 8AF1SxC9A/0BHheAo4iNj8ZwRT4vPzk/vRY41D55fTkM7XVLekiBE4ekuaID/1qVkN
+	 ox/df4CzkDifQ==
+Subject: Re: [PATCH v7 net-next 9/9] net: dsa: netc: add PTP one-step
+ timestamping support
 From: netdev-bot+sashiko@kernel.org
 To: wei.fang@oss.nxp.com
 Cc: xiaoning.wang@nxp.com, andrew@lunn.ch, olteanv@gmail.com,
@@ -55,10 +55,10 @@ Cc: xiaoning.wang@nxp.com, andrew@lunn.ch, olteanv@gmail.com,
  wei.fang@nxp.com, imx@lists.linux.dev, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
  linux-arm-kernel@lists.infradead.org
-Date: Sun, 15 Nov 2026 07:24:23 +0000
-Message-ID: <179472746345.2199510.13684304240938201686@kernel.org>
-In-Reply-To: <20261111062753.1397582-5-wei.fang@oss.nxp.com>
-References: <20261111062753.1397582-5-wei.fang@oss.nxp.com>
+Date: Sun, 15 Nov 2026 07:24:28 +0000
+Message-ID: <179472746829.2199510.2714083926199671078@kernel.org>
+In-Reply-To: <20261111062753.1397582-10-wei.fang@oss.nxp.com>
+References: <20261111062753.1397582-10-wei.fang@oss.nxp.com>
 X-sashiko-severity: Medium
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -77,15 +77,14 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 1 potential
+Thank you for your contribution! Sashiko AI review found 4 potential
 issue(s) to consider.
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 0
+Critical: 0 · High: 0 · Medium: 1 · Low: 3
 
 If you believe none of the issues are legitimate, please reply to each
 issue of Medium severity or higher and explain why the AI is wrong.
@@ -93,102 +92,210 @@ If any of them are legitimate and you plan to respin, please let patchwork
 know by including "pw-bot: cr" as a separate line at the end of your reply
 (one such reply per series is enough).
 
-- [Medium] The patch makes the first netc_setup() skip the reset
-  (priv->configured == false) on the grounds that "the probe path…
+- [Medium] In one-step mode, netc_port_prepare_onestep_sync()
+  (drivers/net/dsa/netc/netc_ptp.c) falls back to two-step whenever…
+- [Low] The comment in netc_onestep_timeout()
+  (drivers/net/dsa/netc/netc_ptp.c) says that adding one tick makes 'the…
+- [Low] When one-step mode is enabled, every Sync-classified frame on a
+  user port goes through one per-port FIFO, onestep_queue, capped at…
+- [Low] PM_SINGLE_STEP is a single per-port register that the hardware
+  applies when a subtype-3-tagged frame egresses.
 
 --
 
-net: dsa: netc: tie setup resources and reset to DSA setup/teardown
+net: dsa: netc: add PTP one-step timestamping support
 
-This patch adds netc_switch_reset(), which netc_setup() calls first so
-each DSA setup starts from a clean hardware state. The first setup skips
-the reset and relies on the probe-time FLR. The patch also turns the
-setup-path devm_ allocations into explicit alloc/free calls, released in
-netc_teardown() and on the error paths.
+This commit adds one-step PTP Sync offload for NETC switch user ports.
+The tagger hands one-step Sync frames to the switch driver. The driver
+queues them per port and sends them one at a time from a work item,
+programming the shared PM_SINGLE_STEP register and inserting a To_Port
+subtype 3 tag. Other PTP frames still fall back to two-step timestamping.
 
-> diff --git a/drivers/net/dsa/netc/netc_main.c b/drivers/net/dsa/netc/netc_main.c
-> index 77077352c1a57..c291123f53170 100644
-> --- a/drivers/net/dsa/netc/netc_main.c
-> +++ b/drivers/net/dsa/netc/netc_main.c
+> diff --git a/drivers/net/dsa/netc/netc_ptp.c b/drivers/net/dsa/netc/netc_ptp.c
+> index 0bcc01ebf01de..738855bd4bbf8 100644
+> --- a/drivers/net/dsa/netc/netc_ptp.c
+> +++ b/drivers/net/dsa/netc/netc_ptp.c
 
 [ ... ]
 
-> +static int netc_switch_reset(struct netc_switch *priv)
+> @@ -68,8 +97,283 @@ static int netc_get_ts_req_id(struct netc_port *np)
+
+[ ... ]
+
+> +static bool netc_onestep_timeout(struct netc_port *np)
 > +{
-> +	struct pci_dev *pdev = priv->pdev;
-> +	int err;
+> +	u64 expire_time;
 > +
-> +	if (!priv->configured) {
-> +		/* The hardware will be configured after netc_switch_reset()
-> +		 * is called, so set priv->configured to true.
-> +		 */
-> +		priv->configured = true;
-> +		return 0;
+> +	/* Use monotonic jiffies_64, as the PHC may be stepped backwards.
+> +	 * Add one tick since the ns-to-jiffies conversion rounds down, so
+> +	 * the software window is never shorter than the hardware window.
+> +	 */
+> +	expire_time = np->onestep_tx_time + 1 +
+> +		      nsecs_to_jiffies64(NETC_ONESTEP_VALID_WINDOW);
+
+[Severity: Low]
+Is the "never shorter than the hardware window" guarantee accurate?
+
+The hardware window is 2^30 ns of PHC time, because the 30-bit tag
+timestamp and the SFD capture both come from the NETC timer. This window
+is measured in jiffies instead. The one tick margin is about 0.26 ms over
+1.07 s at HZ=1000 (roughly 240 ppm), and about 2100 ppm at HZ=250.
+
+The NETC timer driver allows a much larger frequency adjustment:
+
+drivers/ptp/ptp_netc.c:
+	.max_adj	= 500000000,
+
+Say the PHC runs slower than the system tick, during servo convergence or
+just from crystal tolerance. Could netc_onestep_timeout() then return true
+and let netc_port_onestep_sync_enqueue() reprogram PM_SINGLE_STEP before
+2^30 ns of PHC time have passed for the in-flight frame?
+
+Should the comment be softened, or the margin widened by the maximum
+frequency adjustment?
+
+> +	if (np->onestep_state == NETC_ONESTEP_IN_FLIGHT &&
+> +	    time_is_before_jiffies64(expire_time))
+> +		return true;
+
+[Severity: Low]
+Is it safe to treat PM_SINGLE_STEP as free based only on elapsed time?
+
+After netc_port_onestep_work() programs the register and calls
+onestep_sync_xmit(), the tagged frame may not have left yet. It can still
+be in the conduit qdisc, the ENETC TX ring, or a switch egress queue (for
+example under pause/PFC or a closed Qbv gate).
+
+Three paths seem to reprogram the register without knowing whether the
+previous subtype 3 frame has gone out:
+
+  netc_port_onestep_sync_enqueue(), once netc_onestep_timeout() is true
+
+  netc_port_tstamp_timeout_work(), which sets resume_onestep after 5 s
+
+  netc_mac_link_down()->netc_port_disable_onestep() followed by
+  netc_mac_link_up()->netc_port_enable_onestep(), which sets
+  NETC_ONESTEP_IDLE without tracking frames already handed to the conduit
+
+Suppose the old frame goes out after the register has been rewritten for
+a new Sync with a different layout (L2 vs UDPv4 vs UDPv6, or VLAN vs
+untagged). Would the MAC then apply the new correction offset and CH bit
+to the old frame?
+
+The NETC_ONESTEP_VALID_WINDOW comment says such a frame "is already
+invalid, whether it has been dropped or not". In this case, though, the
+hardware could add the residence time at the wrong byte offset, for
+example inside the IPv4 header or the originTimestamp. It could also
+update or skip the UDP checksum wrongly. The frame on the wire would then
+be malformed, not just carrying a stale correction field.
+
+This depends on when the hardware latches PM_SINGLE_STEP. That point is
+inferred from the commit message, not checked against a datasheet.
+
+[ ... ]
+
+> +void netc_port_onestep_sync_enqueue(struct dsa_switch *ds, int port,
+> +				    struct sk_buff *skb)
+> +{
+> +	struct netc_port *np = NETC_PORT(ds, port);
+> +
+> +	spin_lock_bh(&np->onestep_lock);
+> +	if (unlikely(np->onestep_state == NETC_ONESTEP_PORT_INACTIVE))
+> +		goto free_skb;
+> +
+> +	if (unlikely(skb_queue_len(&np->onestep_queue) >= NETC_ONESTEP_QTH))
+> +		goto free_skb;
+
+[Severity: Low]
+Can an unprivileged local sender crowd the real Sync frames out of
+onestep_queue?
+
+SOF_TIMESTAMPING_TX_HARDWARE needs no capability. ptp_classify_raw()
+treats any UDP datagram to port 319 as a PTP event, and the sender
+controls the payload (msgtype Sync, twoStepFlag clear). With
+HWTSTAMP_TX_ONESTEP_SYNC set, such frames take this path:
+
+  dsa_user_xmit()
+    dsa_skb_tx_timestamp()
+      netc_port_txtstamp()
+        netc_port_prepare_onestep_sync()   /* NETC_PTP_FLAG_ONESTEP */
+  netc_xmit()
+    netc_port_onestep_sync_enqueue()       /* shared FIFO, drop at 512 */
+  netc_port_onestep_work()                 /* one frame per response */
+
+These frames share the single per-port onestep_queue with the ptp4l
+Syncs. A flood would delay the real Syncs, or get them dropped once
+NETC_ONESTEP_QTH is reached.
+
+The same sender can also send non-Sync event frames. Those take the
+two-step path and can use up the 16-entry ts_req_id pool. Then
+netc_port_onestep_work() drops the real Syncs when netc_get_ts_req_id()
+fails. If tagged frames are also lost in the conduit, the queue stays
+stuck until the window check fires on a later enqueue or the 5 s timeout
+runs.
+
+The ts_req_id pool exhaustion already exists before this patch. What is
+new is the serialized one-step FIFO.
+
+[ ... ]
+
+> @@ -409,6 +718,67 @@ int netc_port_hwtstamp_get(struct dsa_switch *ds, int port,
+>  	return 0;
+>  }
+>  
+> +static void netc_port_prepare_onestep_sync(struct netc_port *np,
+> +					   struct sk_buff *skb,
+> +					   u32 ptp_class, bool *twostep)
+> +{
+
+[ ... ]
+
+> +	/* Ensure the buffer is linear and writable so the packet can be
+> +	 * parsed and updated in place. Otherwise, fall back to two-step.
+> +	 */
+> +	if (unlikely(skb_linearize_cow(skb))) {
+> +		*twostep = true;
+> +		return;
 > +	}
 
 [Severity: Medium]
-Can the first netc_setup() start on stale hardware tables if the FLR in
-probe failed?
+What happens here if the frame really is a one-step Sync (msgtype Sync,
+twoStepFlag clear)?
+
+skb_linearize_cow() makes a GFP_ATOMIC copy whenever the skb is cloned or
+nonlinear. A clone is common, for example from dev_queue_xmit_nit() when
+tcpdump is attached to the user port. So this can fail under memory
+pressure before the message type is checked.
+
+netc_port_txtstamp() then sends the frame down the two-step path:
+
+	if (tx_type == HWTSTAMP_TX_ON || twostep)
+		netc_port_prepare_twostep(np, skb);
+
+netc_xmit() then gives the frame a subtype 2 tag. On this path
+originTimestamp is never written, PM_SINGLE_STEP is not programmed, and
+the correction field is not updated. The frame still says it is one-step,
+so no Follow_Up will be sent.
+
+Would the slave then compute its offset from whatever originTimestamp
+user space left in the frame? The socket would also get an unexpected
+hardware TX timestamp through skb_complete_tx_timestamp().
 
 The commit message says:
 
-    The probe path already performs a FLR in netc_switch_pci_init(), so
-    the first setup will skip the reset because the priv->configured flag
-    is not set.
+  "Frames that are not one-step Sync still fall back to two-step
+  timestamping."
 
-But netc_switch_pci_init() ignores the pcie_flr() return value:
+and:
 
-drivers/net/dsa/netc/netc_main.c:netc_switch_pci_init() {
-    ...
-	pcie_flr(pdev);
-	err = pcim_enable_device(pdev);
-    ...
-}
+  "If the originTimestamp field of the sync frame is not in the linear
+  buffer of the skb or the correction offset exceeds the hardware
+  capability, the frame will be dropped."
 
-pcie_flr() can fail. It returns -ENOTTY if config space is not
-accessible or if pci_dev_wait() times out. It can also fail through
-pci_dev_reset_iommu_prepare() for an ATS-capable device behind an IOMMU.
-
-Suppose that happens after an unbind/rebind:
-
-netc_switch_probe()
-  netc_switch_pci_init()
-    pcie_flr()            <- fails, error ignored
-  dsa_register_switch()
-    netc_setup()
-      netc_switch_reset() <- returns 0 early, !priv->configured
-
-The FDB, VLAN filter, IPFT, BPT and ETT entries from the previous binding
-would then stay in hardware. netc_setup() builds empty software state on
-top of them, and the driver has no record of those entries to remove.
-
-Later setups treat an FLR failure as fatal, so a failed first FLR is
-handled differently. Should the probe path check the pcie_flr() result
-and fail probe? Alternatively, priv->configured could be set only after
-a successful FLR, so that the first setup retries the reset.
-
-> +
-> +	/* Block user space config access and other PCI resets, which take
-> +	 * pci_cfg_access_lock() via pci_dev_lock(), during the FLR.
-> +	 */
-> +	pci_cfg_access_lock(pdev);
-> +	err = pci_save_state(pdev);
-> +	if (err)
-> +		goto unlock_cfg_access;
-> +
-> +	err = pcie_flr(pdev);
-> +	if (err)
-> +		dev_err(priv->dev, "FLR failed: %pe\n", ERR_PTR(err));
-> +
-> +	pci_restore_state(pdev);
-> +
-> +unlock_cfg_access:
-> +	pci_cfg_access_unlock(pdev);
-> +
-> +	return err;
->  }
-
-[ ... ]
+Should this path drop the frame and count it in tx_dropped, like the
+offset check further down? The ptp_parse_header() failure falls back the
+same way. There the header is incomplete, though, so that frame cannot be
+a well-formed Sync.
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111062753.1397582-1-wei.fang%40oss.nxp.com
