@@ -2,78 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B636606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 01:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B727606A884
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 01:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CDXolDa4;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=ilqVIflI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SBDKmarO;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=RjjYRbup
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xg9g6C/5fZ2E7eZtJQ3y3FzrxJXQqr0QulKYhlA7ksE=; b=CDXolDa4JI+RKyWhqSo/VCxpq0
-	98CLbiqogD9bhcK70otyTdQnTdTPvs6xQx6kjVvAQ2LLMlV7x0Vb9cFWHYIobtLytMEz+2uSxmacm
-	FT6J102oLLUKga4xi2ZBmeGyA29zQAPNqKJPRymxnRS2vcKqDg5o94DMI/XpwRR4GGtmPPtnpBDq6
-	0NSqFFDWCHmHalvWO3ExrGNMHh+MUEWwIaRkyzJzQMuQAxSkJ8IsiABV8u3dk78Cye8qhKUu832yx
-	io3OERFmPjGP745lTDweDkHU1AOXG5y/NSqTAxGdoOMzttNnjuLZHhByAB5DrvE7cHdmWp2B5w6oP
-	T2AruE/w==;
+	bh=OczTFag+4rrpYiC7SwR0JFMdaa1DWemeh7STu5Jts6Q=; b=SBDKmarOB8qA4NfmRC+QuCn1dF
+	qZN7/rKj/EMD+xl5EixYtC2RwGOpJogfnUSWF8bGVdzw+9eVkOvGU2DUu4qxADuuVA875Fw1KLzng
+	Gk7XWlaAuWu1oISua3eVHVkId56btUgmFzjeEZHLYXYN2lolfp5bM6Ab84v1nUnWoTpEGWGA5RroY
+	p/sUihApjBaIgPV472DKt8mtwaw7fA5DOpOFNzOeNufZ+q3SHsGnp9f04x4ccQKtybnlElAj5GnIk
+	3NMMBG2EHgoK39vlgXIaNgMDgpaEFQ4s3DNEQ0MtUDoC6sFpZbMc29sxTNkTIQQiUhQUdhwqD82Ru
+	hPUs5jRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSP7T-0000000GyNM-25lu;
-	Sun, 15 Nov 2026 01:33:23 +0000
-Received: from sender6-op-o11.zoho.com ([165.173.180.11])
+	id 1xSP95-0000000GyY7-3ZPV;
+	Sun, 15 Nov 2026 01:35:03 +0000
+Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSP7R-0000000GyMy-0oOJ;
-	Sun, 15 Nov 2026 01:33:22 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794706389; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=nLJRCzEYNbLoxN3S1NuockbI2t6ExOS23/WUmS8imsFw1bdVB162TD/2mKLacUCgQm7Gr2a8QUMk/lBuc5iQ/0D2qoL5zrklHAzMFCxuhotseq+gsqT8gH74i+5tBiwFp7oJiRzuZynEOKp/5TVtsowCCQfzdCfad9cd2V58aDY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794706389; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=xg9g6C/5fZ2E7eZtJQ3y3FzrxJXQqr0QulKYhlA7ksE=; 
-	b=BZg97skBHgr8As2NVh6NVmc1Np/xV+lQUT6hna+UQynunVRpjihw0H6izlenFsq0urQxDxW3DSWHW5hI1fS/N/KxC5JJu4hSGbidcVs9LZCjeD9u+GG+NvvP7eo7IqMYwzGFLszXZ8Ub+LVBQ1jL3rjL4L8dv2YuQJrqraYJmk8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=ilqVIflIqTQHTbEk4//3nZQG1ccH+/ue3B6IcZj6f0+SY9ewX40telS1hLr2G2DE0hLzkrM187SX5g3pePrywofm0nhJ21QwYvWpEoHLH7fZ0VypZtNPkeEzcJ7Rmjn4Yk8hujNb6+hRNkypuV2sGCSRZnWOWJfO8ZGkPMXHMug=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=xg9g6C/5fZ2E7eZtJQ3y3FzrxJXQqr0QulKYhlA7ksE=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794706386483224.14966488591017;
-	Sat, 14 Nov 2026 17:33:06 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id E94731801C7; Sun, 15 Nov 2026 02:32:59 +0100 (CET)
-Date: Sun, 15 Nov 2026 02:32:59 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: chanwoo@kernel.org
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	MyungJoo Ham <myungjoo.ham@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	kernel@collabora.com
-Subject: Re: [PATCH v2 3/7] dt-bindings: devfreq: event: rockchip,dfi: add
- rk3576
-Message-ID: <avkHvso6ljhn693V@venus>
-References: <20260921-b4-rockchip-dfi-rk3576-support-v2-0-04f847016321@collabora.com>
- <20260921-b4-rockchip-dfi-rk3576-support-v2-3-04f847016321@collabora.com>
- <0f536451-9f7b-46f7-acca-e10e54dec37e@gmail.com>
+	id 1xSP92-0000000GyWu-2fOA
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 15 Nov 2026 01:35:02 +0000
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-2e99b1e5b4cso13178565ad.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 17:35:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794706500; x=1795311300; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=OczTFag+4rrpYiC7SwR0JFMdaa1DWemeh7STu5Jts6Q=;
+        b=RjjYRbupDuucfMUWR6QFo20Gz09BJXyYfgIuMS9piRUMyFXM8mqNgbeL0QTv7lV1Ig
+         IBdt3/qv8SWSdipI9z+4bXRSARfBtDmwPCopWsjMowc3IWlk2+3pgR/SJ2vJcGmnvFo/
+         h8/XeWDig2xfZz3ze4JtfMHda8l2ZlgRvespU6OUh1GGSkcX8dG7Bv7cp6qgBh0Z+YRw
+         00jUYSr3nOk6eYCIZdRxklF59M8ujdEAfU2bAjl70x34mLjZ84W7RrdJ5avrHBo1pFLq
+         z622Jhly8LfY3TEsTO0Age0vLjwVzGBtTWrBkRx+TepuTsfhdtANKXDVsALNgBwzQNRU
+         F5XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794706500; x=1795311300;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=OczTFag+4rrpYiC7SwR0JFMdaa1DWemeh7STu5Jts6Q=;
+        b=pG3eLxBCENnH1zJqeKs7Jx2qvC4nheA6lLKGMKl1+SGpDkd3a1F+mVnhIgqESDyhnT
+         cGoMHx0p2DEED+1+yq+ddoJh5Wbn+NXHfJeoNZcSsYDliiLi9qZN+OS2sLhFdAc9DW4Z
+         2HcaYCvL0M9i8EXNorah9smm11z2TxUMQJ5p7e3ffHItgkywU0ry1/kff05TrshbA6i0
+         2ndl5csENI4Nw/2zM/yMI3pbQ+ayO1P8d9tUgJ3VnNtr9ceccf00audeSge3y+BreXDF
+         9wO+VkA4ZwL/aPnwQAdDzIdLvFARMHFS8MbZJ8QCMw2u9N1uILpfUXebPhtysiAO45HZ
+         uueg==
+X-Forwarded-Encrypted: i=1; AL+hErEk0pW7q6Bd9nBceS2RAWdTGDLck1xnWixJbMditeOLwvZst7QehhC/3ncxBuO/UoXMxYjPWnA71MoD60XSQVEt@lists.infradead.org
+X-Gm-Message-State: APuU4Z/ZSxbqLXDCIEY+nALjLmnytCqJrcjEGJuNKOdBHou59SLgePAn
+	MYTQXipCgpnqgiTqel9oiB1AdEgTAhFnUwRgBfafA4PrP43vhlhEVsjK
+X-Gm-Gg: AYBFou0N76TD1Z9iOOLVDo0z6UCtCoqeSZe9pS2ikTy456EPTXxj/c+EOHRAUtn5Kwk
+	c/XIVGQnt8fde+k0qX4rOGIZjTzm3+xEVNqvt24KcvCt8Jgsn2FiY7ejDjGAodeJpZBvQfoAlwK
+	UD3sJv+NvV+ufMxGZh1Yc4ypC7Jtaepl+HnY5k0/tq4Su42Lf6CUBdp4EtRS6sW27kRDbUMhRrJ
+	maqFYewyf4PC0OllmvY6TKmiYY5SGVV8FU4ME3FdsirIAH1QcUOlXxAP69BKv7NklJEIehS8krR
+	TwZrlu76w5/2N4VoNgbDiFMY+zOMUTWhHaoGWUdUfE/B+PlU0aX4YGFNPV3aet8nNGPUjkcJwmS
+	OxQnhZFUiyafgbxspbDmcw5ZM/fdj+Mr0fmo0/JEs351ZBGo0KNZZfR0QHl1ET8Z5ES94BS0e8o
+	rOP1o1Dqjxt6HNsN9YJ1ENJHOre1/Fgo+3WXP+cG44aEvEH8QNwhtjHBBdV4eAbYyPZtI9rJByf
+	4GlUHZHB7maKc0yr29gbC5fkaRMCHOU7y/GUT+hH2rDLryXC0h4FOeCtFL+WGb9ulXYTDShB7u9
+	zV0q2EeE8YD7Goq+icC9HxdrT25JAVctM30C0fX268XAiiTkNiXshZm11XpaFtyVUEZazlasgL5
+	AVQmyO13YkcfgBG+BCfR/5kzhCfcn/+FKyIR7gl5odi617xGPhHL3vfMfsf9yD37RUqJy03oAbi
+	hNRKU4cDJn0nse6BZokcvUpnqH2tQbZ1SAcXJwxi6gd1x5hk5VNWlkroj3L4Vrig==
+X-Received: by 2002:a17:903:3c2e:b0:2ed:3f47:9691 with SMTP id d9443c01a7336-2ee0dc05bc1mr66811655ad.42.1794706499678;
+        Sat, 14 Nov 2026 17:34:59 -0800 (PST)
+Received: from sid-dev-env.cgrhrlrrq2nuffriizdlnb1x4b.xx.internal.cloudapp.net ([4.155.54.158])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ee0f75dde9sm23671935ad.22.2026.11.14.17.34.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Nov 2026 17:34:58 -0800 (PST)
+From: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+To: Peter Huewe <peterhuewe@gmx.de>,
+	Jarkko Sakkinen <jarkko@kernel.org>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Yeoreum Yun <yeoreum.yun@arm.com>,
+	Stuart Yoder <stuart.yoder@arm.com>,
+	apais@microsoft.com,
+	rachelmenge@linux.microsoft.com,
+	hargar@linux.microsoft.com,
+	linux-integrity@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Subject: [PATCH v3 0/4] tpm: Cache ACPI TPM2 start method and gate tpm_crb_ffa probe
+Date: Sun, 15 Nov 2026 01:34:52 +0000
+Message-ID: <20261115013456.212141-1-sidchintamaneni@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4opafguzx4x2ylyg"
-Content-Disposition: inline
-In-Reply-To: <0f536451-9f7b-46f7-acca-e10e54dec37e@gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.637.76
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_173321_271712_BC83C207 
-X-CRM114-Status: GOOD (  25.08  )
+X-CRM114-CacheID: sfid-20261114_173500_735342_1557B394 
+X-CRM114-Status: UNSURE (   9.85  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,126 +110,68 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+This series caches the ACPI TPM2 start method in tpm_init() and uses
+the cached tpm2_acpi_start_method value across tpm_crb_ffa, tpm_tis,
+and tpm_crb.
 
---4opafguzx4x2ylyg
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 3/7] dt-bindings: devfreq: event: rockchip,dfi: add
- rk3576
-MIME-Version: 1.0
+Patch 1 caches the ACPI TPM2 start method once in tpm_init() into
+tpm2_acpi_start_method (defaulting to ACPI_TPM2_NOT_ALLOWED when
+absent or invalid) and logs it when a TPM2 ACPI table is present.
+Patch 2 checks tpm2_acpi_start_method in tpm_crb_ffa_probe() and
+returns -ENODEV unless ACPI advertises ACPI_TPM2_CRB_WITH_ARM_FFA,
+skipping FF-A probing on non-FF-A platforms while keeping modular
+tpm_crb/tpm_crb_ffa loading intact.
+Patches 3 and 4 update tpm_tis and tpm_crb to use the cached
+tpm2_acpi_start_method value directly.
 
-Hi,
+Changes in v3:
+- Log tpm2_acpi_start_method in tpm_init() after acpi_put_table() and
+  use a single-line acpi_get_table() call with typeof(tbl->header)
+  cast (Jarkko Sakkinen).
+- Remove check_acpi_tpm2() in tpm_tis and open-code the check in
+  tpm_tis_init(), dropping dev_err() and returning -ENODEV (Jarkko
+  Sakkinen).
+- Remove priv->sm and local sm in tpm_crb, use tpm2_acpi_start_method
+  throughout, drop the probe dev_err() messages, and return -ENODEV
+  (Jarkko Sakkinen).
 
-On Sun, Nov 15, 2026 at 09:58:48AM +0900, Choi Chanwoo wrote:
-> On 9/22/2026 6:15 AM, Sebastian Reichel wrote:
-> > From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> >=20
-> > The RK3576 has DFI hardware for monitoring the DDR's bandwidth much
-> > like other rockchip SoCs do. Unlike the RK3588 however, it only has two
-> > memory channels, so only two per-channel pclks for DFI.
-> >=20
-> > Add a compatible for this SoC's variant, and add it to the conditionals
-> > at the bottom of the bindings file.
-> >=20
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  .../bindings/devfreq/event/rockchip,dfi.yaml          | 19 +++++++++++=
-++++++++
-> >  1 file changed, 19 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/devfreq/event/rockchip,d=
-fi.yaml b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-> > index 3450e28b4020..dcf3bbde3e8d 100644
-> > --- a/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-> > +++ b/Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
-> > @@ -14,6 +14,7 @@ properties:
-> >      enum:
-> >        - rockchip,rk3399-dfi
-> >        - rockchip,rk3568-dfi
-> > +      - rockchip,rk3576-dfi
-> >        - rockchip,rk3588-dfi
-> > =20
-> >    clocks:
-> > @@ -64,6 +65,24 @@ allOf:
-> >          - clocks
-> >          - clock-names
-> > =20
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - rockchip,rk3576-dfi
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 2
-> > +          maxItems: 2
-> > +        clock-names:
-> > +          minItems: 2
-> > +          maxItems: 2
-> > +      required:
-> > +        - clocks
-> > +        - clock-names
-> > +
-> >    - if:
-> >        properties:
-> >          compatible:
-> >=20
->=20
-> When I applied it, there are some error.
-> Could you please resend it on latest commit?
+Changes in v2:
+- Expand into a 4-patch series caching tpm2_acpi_start_method in
+  tpm_init() and converting tpm_crb_ffa, tpm_tis, and tpm_crb to use
+  it (Jarkko Sakkinen).
+- Move the tpm_crb_ffa start_method check from module_init into
+  tpm_crb_ffa_probe() so tpm_crb.ko and tpm_crb_ffa.ko still load
+  cleanly on non-FF-A systems when built as modules.
 
-This patch should still apply cleanly, when you merge this one first:
+v2: https://lore.kernel.org/linux-integrity/20261114193434.117714-1-sidchintamaneni@gmail.com/
+v1: https://lore.kernel.org/linux-integrity/20261112233807.70664-1-sidchintamaneni@gmail.com/
 
-https://lore.kernel.org/linux-rockchip/20260921-rockchip-dfi-cleanup-v2-2-4=
-3ff34ac8599@collabora.com/
+Jarkko Sakkinen (1):
+  tpm: Cache TPM2 start method
 
-Generally all DFI patches from the linked "PM / devfreq:
-rockchip-dfi: cleanups" series are backwarts and forward compatible.
-You can just pick them up (i.e. patches 2, 3, 4, 5, and 7).
+Siddharth Chintamaneni (3):
+  tpm: tpm_crb_ffa: Only probe when ACPI TPM2 uses FF-A
+  tpm: tpm_tis: Use cached tpm2_acpi_start_method
+  tpm: tpm_crb: Use cached tpm2_acpi_start_method
 
-Afterwards from this series you can pick up 3, 5, 6, 7.
+ drivers/char/tpm/tpm-interface.c | 21 ++++++++
+ drivers/char/tpm/tpm.h           |  1 +
+ drivers/char/tpm/tpm_crb.c       | 82 +++++++++++++++-----------------
+ drivers/char/tpm/tpm_crb_ffa.c   |  5 ++
+ drivers/char/tpm/tpm_tis.c       | 45 +++---------------
+ 5 files changed, 71 insertions(+), 83 deletions(-)
 
-I can then ask Heiko to pick the clock and DT changes.
 
-I probably should have structured this submission a bit differently,
-sorry for the mess.
+base-commit: 7e52fc165aa50e70e8df3c879d04fc0ff1673d4a
+-- 
+2.45.4
 
-Thanks for your reviews.
-
-Greetings,
-
--- Sebastian
-
---4opafguzx4x2ylyg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmr5C8gACgkQ2O7X88g7
-+po+tQ/8DXaiXv5bhz6X8EjEPpQ/FjCstJcZ2thsSB3EUjQHwKBpqrVQo9rS0eB3
-ctkdzB6OUpFRJGWTG1tAlhbkHhnwi9ZfnXmM2TDHd6EdNjNzd9uAtUeUt0BrWsiY
-rLBX1sTC45nh4eMaAT7IAFAHDZxa5jOAr2UnDqUKy9H/Hb1s382gpkSn7nXltkLS
-pfQ741MqDbiIx/AvU6tvJVF4Q/RSC6+Pr2/x8qURUZs5ZeEOxkXEZ9LYgt2oVYWk
-H27BfOgnwfxLiomWLOWAY4vOo2ujWyW9bSIMhxqvcQxdtimZ8EJmY4a8IHo0AL8J
-JbHyLadHU2DzT94WF2K47VVC15M4vwukyCy532OLHPAkfWoyBguNLd4dbu0oYDOn
-zakprRwAY3knNSta2f4m+NGJyce2haAd9Rb/NGpR6X4GymQ4JOg1Q24duwrsUUz5
-OmCJL80VCKNy22H9SnPhat/Q6Sd/88hfxFlDwsO86GKUutobkeZ1ymY5mu8Wld6L
-DiWYnKGy5WVlth7lOg59k5X6C7hJMNuNKVDBaXUIpGzvrUWcZLkai/3KHQJrhOKL
-AowPuTyo8CHqKYNJXuxvv5120Sxg6Wo6h0Snrd6HWArsMdrt+ICCPBmj334FiL79
-MAv3osTwm9leJMHRhWTfxGkvc6Rhy6E+8cW88URrOx3TyjE1Nfc=
-=OpSE
------END PGP SIGNATURE-----
-
---4opafguzx4x2ylyg--
 
