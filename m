@@ -2,69 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 025CA606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C79D606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Enl7REQa;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DmNHNRbH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gtuzOB30;
+	dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.a=rsa-sha256 header.s=smtp-20201208 header.b=ik6dsrXJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=p+Fjjmdi5J4B2FWifS6RftoxIK+iRHp+m6I2lL5hB/0=; b=Enl7REQag3zOo0
-	n44EFb/PV91NdEtmz/gebt0jplpoWKJs3+m8fi4+am6YVw6uoKCwPhiWhBAHwjQTAHhcJr30niFGz
-	oyzJuCSAdEaMZnJx+OheoGY7ZXgMDflAZei8WUe1O26GeMo1D2dDoKMYX9lVQHHyYLOdfDgw98oIt
-	EtGbUgohtBxZ8+1l4fHYfTQpv7DkociHp1cD2v4ebfueTGposc09prw7L/VhdLQh0bGLmHnt7OKo+
-	fViFOhMDYrJYlBwvT/zRkYHB0XQs7bxHFsr0HRhudXXPumGK6KN5rAhrblqvyKd7zjTjfatFBJS7S
-	okIMuzgo/F1KINLuya7g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=I6M9drfNN7zCNsaSrSObIiphbvQS2j9fYF//SvIIVu0=; b=gtuzOB30rDfL/Cc9WyG4z804sl
+	NGtRDENcMNFhEWw9D+5BlRZ6t4Rd7Mr0QJGJjwqF2jp3V4t+dPWDtofd4/o39D5g1/wkWpSgQ4Tw0
+	f3yMTK8Qq1+eGNzn1iW5yYcWs3GNBg+w7ktIuUIOmf349/1NoIF7hRXSe/2s3zuPWHSK6EWP6nEF4
+	G1c0/pFOB9PgyiSVo9j7xzbQvWt98NaHgeEDPpEX630yCt5ALIjMcX/M93BaNwSiUnD4WpuwHqdBL
+	y9hPmTdEIdfajU5ACMVcux8K+n74doIYQ7+TJ7FB+pSp8zWTCGE+5Q3VierTY4XsFYGhqYkxpD9xQ
+	2XjV3GYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSY6T-0000000HQeq-01Ru;
-	Sun, 15 Nov 2026 11:08:57 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSY6K-0000000HQbl-2t57
+	id 1xSYGq-0000000HRB1-26aj;
+	Sun, 15 Nov 2026 11:19:41 +0000
+Received: from smtp1-g21.free.fr ([2a01:e0c:1:1599::10])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSYGk-0000000HRAf-3PLq
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 11:08:50 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AC9E8143D;
-	Sun, 15 Nov 2026 03:08:42 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5D3EB3F632;
-	Sun, 15 Nov 2026 03:08:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794740925; bh=2FbQWd8+1RdCTUXDBA/AQ00/PGxMHoc55uKyePXnWLE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DmNHNRbHnQzt3VBNgCI+olJ6UTmkBv1ScBnqVQw+73ClKFd+0gAqE3qeKSaishPDk
-	 MFuSkn4Ask6INPqGxkwLbI9sJnwTScojYATQ+D05cJ0aaAF6g4tTe33TIg9HlShEHS
-	 qXDWRJ0iYFNW6B38jiPRAS4507J7ak7YkONsH+8E=
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	arm-scmi@vger.kernel.org
-Cc: sudeep.holla@kernel.org,
-	philip.radford@arm.com,
-	Guangshuo Li <liguangshuo@mail.sdu.edu.cn>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	stable@vger.kernel.org,
-	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH 1/3] powercap: arm_scmi: Fix potential stale zones after a skipped leaf
-Date: Sun, 15 Nov 2026 11:05:44 +0000
-Message-ID: <20261115110546.2344308-2-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20261115110546.2344308-1-cristian.marussi@arm.com>
-References: <20261115110546.2344308-1-cristian.marussi@arm.com>
+	Sun, 15 Nov 2026 11:19:39 +0000
+Received: from L30177.local (unknown [78.242.88.98])
+	(Authenticated sender: vjardin@free.fr)
+	by smtp1-g21.free.fr (Postfix) with ESMTPSA id D792CB0051B;
+	Sun, 15 Nov 2026 12:18:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1794741571;
+	bh=JQD3/EFXCa4lxF1FzAPYk7PWu+NKW3cxCD9tTy0x1cs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ik6dsrXJYrk/VQXyRed2GD1Pp5tDkQSbJ83ictljm1FKfb4Ox8x+nlLt0T2YU9kJR
+	 rvmjalYzY7TiZJfQAbCUy1e2Zt84pL9OLjTa20g1DK2yews6kwKo/vq20kUD9jonZL
+	 C46MPyDT7DhMhbvQOOqe6zl38xuHODDxKCvm8MTp8HuV003/CEC1zxqnvfncFbp4uR
+	 TOIgfbpbbZ1do+E1PYz0KZTcBnbc79rLlddNWRWGBeCMkjN3nAjd7ARCpRdywXrX63
+	 xo/tKnRt+jx2nfY5H7izHPB8sfV3RfaNPrIK0MBzXPHbN/jYZbsEyHnJBMRKnw+v7t
+	 Gn8OC0dkrijwg==
+Date: Sun, 15 Nov 2026 12:18:57 +0100
+From: Vincent Jardin <vjardin@free.fr>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: Re: [PATCH v4 3/5] soc: fsl: guts: add the RCW override of any RCWSR
+Message-ID: <avmVIb5-l2DUq75m@L30177.local>
+References: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
+ <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-3-eefcea066a55@free.fr>
+ <avi9N8P34X5uel7a@skbuf>
+ <avjy-lCL2A9gEhcL@L30177.local>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <avjy-lCL2A9gEhcL@L30177.local>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_030848_762650_393CA8F6 
-X-CRM114-Status: UNSURE (   9.44  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261115_031936_874996_EDCA7448 
+X-CRM114-Status: GOOD (  16.95  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,49 +85,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+Hi Vladimir,
 
-scmi_zones_register() skips leaf zones that cannot be registered, but
-returns the last leaf error when that leaf ends the traversal. Probe
-then fails without unregistering the successfully registered zones,
-whose private data is device-managed.
+Le 15/11/26 00:47, Vincent Jardin a écrit :
+> Hi Vladimir,
+> 
+> > I cannot agree with your API proposal. It exports to the rest of the
+> > kernel a blanket API for RCW override of any RCWSR1-RCWSR31 register,
+> > *including* the SerDes fields for which the fsl_guts module already
+> > exposes an API. So with your proposal, what can be done with
+> > fsl_guts_lane_set_mode() can also be (un)done with fsl_guts_rcw_override().
+> > The possibilities of abusing this API design are endless, and I don't
+> > want to have to deal with them when I can avoid them.
+> > 
+> > At a minimum, I would recommend renaming the API as fsl_guts_pmux_override(),
+> > and make guts enforce which register fields it permits overriding via
+> > this API. Example:
+> > 
+> > static const struct fsl_soc_pmux_mask lx2160a_pmux[] = {
+> > 	{ 12, GENMASK(29, 0) }, /* IIC2..SDHC1_DIR */
+> > 	{ 13, GENMASK(29, 0) }, /* SDHC2_DAT74..EVT43 */
+> > 	{ 14, GENMASK(10, 0) }, /* EVT20..IIC1 */
+> > 	{ 27, GENMASK(7, 0) },  /* EC1, EC2, USB_EXT, GTX_CLK, SDHC1_DS <- your series is missing these */
+> > 	{}
+> > };
+> 
 
-Return success after completing the traversal. Keep the existing error
-return and full rollback for a failed non-leaf zone.
+I did test it on the board and sent the related v5 based on your suggestion.
 
-This issue was found by our static analysis tool under development.
+For instance, when I did a forced bus recovery of IIC1, it
+moves only its related field of RCWSR14, and the first override of RCWCR27
+does not touch USB3_CLK_FSEL.
 
-Fixes: 3e767d6850f8 ("powercap: arm_scmi: Remove recursion while parsing zones")
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: stable@vger.kernel.org
-Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
- drivers/powercap/arm_scmi_powercap.c | 1 +
- 1 file changed, 1 insertion(+)
+The v5 is here:
+https://lore.kernel.org/all/20261115-for-upstream-lx2160a-rcw-pinmux-v1-v5-0-d246166ea469@free.fr/
 
-diff --git a/drivers/powercap/arm_scmi_powercap.c b/drivers/powercap/arm_scmi_powercap.c
-index 63a956cf8d2b..e2270476a98c 100644
---- a/drivers/powercap/arm_scmi_powercap.c
-+++ b/drivers/powercap/arm_scmi_powercap.c
-@@ -407,6 +407,7 @@ static int scmi_zones_register(struct device *dev,
- 							       node);
- 		}
- 	}
-+	ret = 0;
- 
- out:
- 	kfree(zones_stack);
--- 
-2.54.0
-
+thanks for you help,
+  Vincent
 
