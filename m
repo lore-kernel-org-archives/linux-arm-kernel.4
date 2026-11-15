@@ -2,67 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9C7606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 08:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974CD606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 08:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5CS3mvpb;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=dGFRbzx3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oVv640bX;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BpyRBYU2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2cHoKfMTCq8qVifnRs0Z8Ntt3pn0su/nfO0nJQ9487s=; b=5CS3mvpbyAEAMDuMHTMY9o4LI7
-	dBPjgD0mrV7JGWlkrUjGDWkk2K2fkKmN/PTAdxQ0OwxfWydBKnU8guQOuhStfP55b8jG4Ytqty4eL
-	nTuYD3CMxI65wI5MtAGpN7vpG8XtZ3XeGt3Y8fspklaWFK/vKLXiirPvs5SO00Vx3izcpUz1SYT2Q
-	znX7LuaSy5o/cqu5Fw8JTqGMQE9fugxKQ+Hlz83SD2wvuVl0dsCrDDVWCEXpEwke+vge1P+z29pn4
-	b4eXp2szPhw0zkK85W0Wxh38GJbEqV3wkN+YFyRQh2B3KIWqlkXqGHO0oKs+IyQo/WcCQpM/zC2ep
-	jJ58zjUQ==;
+	bh=ENmgzf/tl3n2tKo2JxTzXWou+7h9tZdT57vOa3F26Cc=; b=oVv640bXwgoNRFgRl5OeeVyp4Y
+	G4ntDRujF4MsXR76LsSBHT5PRmPBjNqC8VafX5nFFmg+Q67wKMnVqjNevrwlUHnZ4LroLnfZuTROm
+	ia0TIMSgruKQAQeLLlqYoxkJGigd5ALBd6KsowfdzmMmV2OR7SqenVJahDei5nZB3ZEjKGWd+lTG3
+	PZUin72jP/BbFhtMkPLSHS4Rt1x/LkGiD090+B1oTYh/trebYsKDQ1fNTeenYsov0ogpweYC5s3ze
+	+OveycHizwjrO7G7No+P8dxG/DfF556nYOTj47ucJF5wElnYr1oDZ/CKwzbCIRSs/fp5iJ/psQ3e1
+	t55g1h1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSVCT-0000000HD4W-45dp;
-	Sun, 15 Nov 2026 08:02:57 +0000
-Received: from m16.mail.163.com ([220.197.31.3])
+	id 1xSVUR-0000000HDZf-3svX;
+	Sun, 15 Nov 2026 08:21:31 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSVCR-0000000HD34-1lhW
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 08:02:56 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=2c
-	HoKfMTCq8qVifnRs0Z8Ntt3pn0su/nfO0nJQ9487s=; b=dGFRbzx3fNZVhnYwa2
-	mdZ982tnEwZzeHvABeQ1FQjbJZeTHWYKl92Yo+9Sv2o8j1g/LIeUNFkGhblbfiZh
-	smQZMvkfAZQ0y3SulsA6GlanApw9VU1EV4c8/9eL9fBf3wJnzngR0LzNYpXd8w9C
-	6qy/Q8wajVI4z7kJHuVXR8cYY=
-Received: from user-VMware-Virtual-Platform.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id _____wB3fJUmZ_lqQz57HA--.24354S2;
-	Sun, 15 Nov 2026 16:02:46 +0800 (CST)
-From: Ziheng Wei <zihengw03@163.com>
-To: Ludovic Desroches <ludovic.desroches@microchip.com>,
-	Vinod Koul <vkoul@kernel.org>
-Cc: Frank Li <Frank.Li@kernel.org>,
-	dmaengine@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH] dmaengine: at_xdmac: handle empty transfer list in tx_status
-Date: Sun, 15 Nov 2026 16:02:45 +0800
-Message-ID: <20261115080245.910534-1-zihengw03@163.com>
-X-Mailer: git-send-email 2.43.0
+	id 1xSVUQ-0000000HDZ7-05jK;
+	Sun, 15 Nov 2026 08:21:30 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id C39244471F;
+	Sun, 15 Nov 2026 08:21:29 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794730889;
+	b=MzrAL84BkU0iS4w4dm81jOX1zb9NCzBQ5v0LUUhQK3a4fDcSpHwXyh3OagNS/9Z3h/qv
+	 Cxkhs5CN4syrX/xbitBQVJI/Oi/5/1bEUiUM2nvdKoszbqjCQWBJRN8zPViWM5H4IqiQC
+	 dj4JpGZF8uzusBQqusEf8ze8cySWxlo8aG7gblWoY1aATvlIYAEvuwQ+KGLZCXulEB8Hu
+	 mNd2ZOjGlFVJKst6JfiF0HcIsyXPCGv9vNbIk94Iaee0gEChfgH/HNKZ26kSUnPmzFJp3
+	 Md/CeOom7aneVRGBhaUjJ0wPk/+u91vKn0/Kj4aaI7B/niCrehDz3xqTBNnKaWaCTYw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794730889;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=ENmgzf/tl3n2tKo2JxTzXWou+7h9tZdT57vOa3F26Cc=;
+	b=xezzN3HvdI9p1/MhKJgFkMzQHvczVPzaehsHZb0F4mRFMBo75zpnqVCHDHeacrUxkGue
+	 zvXjn6Hkpf1cGkCKl4xNOKrf0HVtM/tmPd+qC2RpQ+ZU8BAG2U+xFbzsHyt1CjWFgQqHV
+	 I9lwNYR2xSE99VmjXTosWXhMr1d3ZMhoFaACKXr91vxcuKazYWrBrYUALlOZ3Q5M5NMR1
+	 sGuA54k4+j7xM+V7TQFFyvCOe5JXNot/Rnipo11hVcE8tkvMYNRhsdx9hjxb8jpNL/w4P
+	 kOfte4nfVxyhMb3+qyt9+mt0DTZ5CrUrTSD6ZvwT42zZdQ1RJtzlCJeqvwOX+hbOrHg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id D75E71F000C6;
+	Sun, 15 Nov 2026 08:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794730889;
+	bh=ENmgzf/tl3n2tKo2JxTzXWou+7h9tZdT57vOa3F26Cc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=BpyRBYU2KY3sEJXEWT64YFXWDBxtN8Tss1AhHeNFf6F215TqWrLS6QmHHvQ3ChHUr
+	 CDBP8SbivO0j86mlFJpDeIgS7Be81LvBdY5M0jcI3r2Hfhg28fYccbeRSpxjLgdQtS
+	 d46NFsZMQEAtrrtRUmf4gMz+5GoX7G+cHMkQXZo+9Xx/pZqASlIIVr0UTb3cMs5HDn
+	 7KBgzoZqaEuiz82XAG1nnSlOa9TIknPCaLZGDExOwQdGmTI4Fzabb2QFi4O6/AWR7l
+	 o30Ts/r4mza7H9uc6nRmwtnmlYoAlAkovumLq0pyIjHX1ZN7LQI39a+heu681F9iRf
+	 N73lxqf5PngOw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 62B4A49FE2;
+	Sun, 15 Nov 2026 08:21:28 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Sun, 15 Nov 2026 08:21:29 +0000
+Subject: [PATCH 2/2] media: rkvdec: Stop the VDPU383 core on timeout
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wB3fJUmZ_lqQz57HA--.24354S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxCry3Aw1kAw17CF45GrWDXFb_yoW5Gr43pa
-	yfG3y5CryktF4ruF1kG3W09ay5ZF4rCayUuayDW3s8uF4Yvr4rW3s7t34jqF98Wrs5XFyv
-	yF4Ut3s3CryDGrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07bU-erUUUUU=
-X-CM-SenderInfo: p2lkv0ljzqjqqrwthudrp/xtbC7Qb7TGr5ZyavCQAA3o
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_000255_832915_0C72F8B0 
-X-CRM114-Status: GOOD (  15.17  )
-X-Spam-Score: -1.8 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261115-rkvdec-wdt-stop-v1-2-59e687c6cc63@gmail.com>
+References: <20261115-rkvdec-wdt-stop-v1-0-59e687c6cc63@gmail.com>
+In-Reply-To: <20261115-rkvdec-wdt-stop-v1-0-59e687c6cc63@gmail.com>
+To: Detlev Casanova <detlev.casanova@collabora.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Hans Verkuil <hverkuil+cisco@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alex Kazinsky <a.kazinsky@ideco.ru>, stable@vger.kernel.org, 
+ Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794730887; l=2992;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=igPIRoqR10XhXtRMntnOpxbLAunwjLzr9JIJfVVGwv8=;
+ b=uDK7aEpPgMbGShhyHDHLQc5AGfT0UOsY5Ar/vSvRfvtp0JO7iOAsFrAIYv26VDvlfCA84Yf7c
+ BNKe0CtcK23BXvO7k1DdQN0BDVFHfHaZXly0aQybwFwW5F0cxzPhAS0
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,77 +112,96 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-at_xdmac_device_terminate_all() removes every descriptor from
-atchan->xfers_list without completing their cookies, so
-dma_cookie_status() keeps reporting a terminated cookie as
-DMA_IN_PROGRESS. at_xdmac_tx_status() then calls list_first_entry()
-on the empty list and uses the list head, which lives inside struct
-at_xdmac_chan, as a descriptor: active_xfer and xfer_size are read
-from neighbouring channel fields, and if active_xfer happens to be
-non-zero the residue loop walks a descs_list made of those fields.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-For audio this is a routine path. The generic dmaengine PCM calls
-dmaengine_terminate_async() on TRIGGER_STOP and later
-dmaengine_tx_status() on the same cookie from
-snd_dmaengine_pcm_sync_stop() and on close. What happens depends on
-the struct layout. On a 32-bit build active_xfer overlays
-sconfig.device_fc, which is normally false, so only a bogus residue
-is reported. With CONFIG_DEBUG_SPINLOCK the larger spinlock_t puts
-active_xfer on the held lock word and descs_list on the owner_cpu and
-owner fields, so the loop follows a pointer that is not a descriptor.
+The watchdog's RK3399 register write does not stop a VDPU383 core
+either. Use the IP reset, as the Rockchip BSP does, then reprogram the
+IOMMU, which the reset leaves in bypass. No reset line pulse: on RK3576
+the DT lines are the BIU resets.
 
-Report a residue of 0 when no descriptor is queued.
+Compile-tested only.
 
-Found by LLM-assisted source review. Not tested on hardware; the
-layout analysis above is from reading the code only.
-
-Fixes: e1f7c9eee707 ("dmaengine: at_xdmac: creation of the atmel eXtended DMA Controller driver")
+Fixes: fde24907570d ("media: rkvdec: Add H264 support for the VDPU383 variant")
 Cc: stable@vger.kernel.org
-Signed-off-by: Ziheng Wei <zihengw03@163.com>
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
+ .../platform/rockchip/rkvdec/rkvdec-vdpu383-regs.h   |  4 ++++
+ drivers/media/platform/rockchip/rkvdec/rkvdec.c      | 20 +++++++++++++++++++-
+ 2 files changed, 23 insertions(+), 1 deletion(-)
 
-Notes:
-    The changelog was drafted with an AI assistant from my analysis;
-    I have reviewed the code, the fix and the text.
-
- drivers/dma/at_xdmac.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/dma/at_xdmac.c b/drivers/dma/at_xdmac.c
-index ef0dfe9d3..bcfbb41ea 100644
---- a/drivers/dma/at_xdmac.c
-+++ b/drivers/dma/at_xdmac.c
-@@ -1553,7 +1553,16 @@ at_xdmac_tx_status(struct dma_chan *chan, dma_cookie_t cookie,
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-regs.h b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-regs.h
+index 04eb23297e37..b8ee9c4dd294 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-regs.h
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-regs.h
+@@ -33,6 +33,9 @@
+ #define VDPU383_LINK_DEC_ENABLE		0x40
+ #define VDPU383_DEC_E_BIT		BIT(0)
  
- 	spin_lock_irqsave(&atchan->lock, flags);
++#define VDPU383_LINK_IP_RESET		0x044
++#define VDPU383_IP_RESET_EN		BIT(0)
++
+ #define VDPU383_LINK_INT_EN		0x048
+ #define VDPU383_INT_EN_IRQ		BIT(0)
+ #define VDPU383_INT_EN_LINE_IRQ		BIT(1)
+@@ -40,6 +43,7 @@
+ #define VDPU383_LINK_STA_INT		0x04c
+ #define VDPU383_STA_INT_DEC_RDY_STA	BIT(0)
+ #define VDPU383_STA_INT_SOFTRESET_RDY	(BIT(10) | BIT(11))
++#define VDPU383_STA_INT_IP_RESET_RDY	BIT(11)
+ #define VDPU383_STA_INT_ALL		0x3ff
  
--	desc = list_first_entry(&atchan->xfers_list, struct at_xdmac_desc, xfer_node);
-+	desc = list_first_entry_or_null(&atchan->xfers_list, struct at_xdmac_desc,
-+					xfer_node);
-+	/*
-+	 * The list is empty once the channel has been terminated, while the
-+	 * cookie of the terminated transfer is still reported as in progress.
-+	 */
-+	if (!desc) {
-+		dma_set_residue(txstate, 0);
-+		goto spin_unlock;
-+	}
+ struct vdpu383_regs_common {
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+index a8fdad2850fb..63482354bc2e 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+@@ -1644,6 +1644,24 @@ static void vdpu381_stop(struct rkvdec_dev *rkvdec)
+ 	rkvdec_iommu_restore(rkvdec);
+ }
  
- 	/*
- 	 * If the transfer has not been started yet, don't need to compute the
++static void vdpu383_stop(struct rkvdec_dev *rkvdec)
++{
++	void __iomem *link = rkvdec->link;
++	u32 status;
++
++	writel(FIELD_PREP_WM16(VDPU383_INT_EN_IRQ | VDPU383_INT_EN_LINE_IRQ, 0),
++	       link + VDPU383_LINK_INT_EN);
++	writel(VDPU383_IP_RESET_EN, link + VDPU383_LINK_IP_RESET);
++	if (readl_poll_timeout_atomic(link + VDPU383_LINK_STA_INT, status,
++				      status & VDPU383_STA_INT_IP_RESET_RDY,
++				      1, 200))
++		dev_warn(rkvdec->dev, "IP reset failed\n");
++	writel(FIELD_PREP_WM16(VDPU383_STA_INT_ALL | VDPU383_STA_INT_SOFTRESET_RDY, 0),
++	       link + VDPU383_LINK_STA_INT);
++
++	rkvdec_iommu_restore(rkvdec);
++}
++
+ static void rkvdec_watchdog_func(struct work_struct *work)
+ {
+ 	struct rkvdec_dev *rkvdec;
+@@ -1779,7 +1797,7 @@ static const struct rcb_size_info vdpu383_rcb_sizes[] = {
+ 
+ static const struct rkvdec_variant_ops vdpu383_variant_ops = {
+ 	.irq_handler = vdpu383_irq_handler,
+-	.stop = rk3399_stop,
++	.stop = vdpu383_stop,
+ 	.colmv_size = vdpu383_colmv_size,
+ 	.flatten_matrices = vdpu383_flatten_matrices,
+ };
 
-base-commit: 97d73c8251226cf27cc6656b4c542869bb8c69fa
 -- 
-2.43.0
+2.55.0
+
 
 
