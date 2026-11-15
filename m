@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0915606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473C1606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:09:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rRJzrHng;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=p2fn5iyI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rpf6YKFP;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=maYAFS7L
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=s8pBft0CdYm72gM2FDBjkmUGraVLk92qFzft6iRlcsc=; b=rRJzrHngZK1ATa
-	IxC6iLHZ4TnxbZtTdma38KWUZ35gCC2d+O03oOC8Yq0E13reDzOuU/QPjF3xmycWzHJoVmyrpSP2U
-	nw3GmVV87fKABfLy9f3BfUwpFwMLKsLmAyvWL2kWWblniy9Xx4a3OSzWoKnV0gIYXY9xXF+Vd1++C
-	JshYeEwiDp4WybD74boQVduWAMDwtnAHctG1pBvjMo6fveW5CV76xaOwOZB8281OTRiD7uJIFIKSx
-	jrBxtibEVsPU/MgJmgCFj2N4RV87UqVnoN+BaqiP/P2wki1tR3tYQjGp5MjH9d5aA/pzNOHMlKZZr
-	Hq3BCasUQMB4TZTs35iQ==;
+	List-Owner; bh=aY1FUVzzYUMqybTrHy9jtFlDRFG7VeirsrOfiyiEqu4=; b=rpf6YKFPG8hHuW
+	33JYx+HNkjxaTr3c6sGS1oyqlDDfrbrVBWDMQkq00/PEOUJBQRiJkmSJ6OnFV5T2I3cxcvyg+W4lu
+	thA85fKlhtjNhqZP6PYXDUdme/Gb5QIXhMBW1JdLwj+/BF0CJnyerbJonakGokKpfE9WivxMHXSkj
+	Uo1pbtPlN5byc7ue3pl9aPv80vSP102R96NvoNQKi982amjYZdPhOnvWjsyBk3AnN1DMJD2MJf+bW
+	HhMuYHw4GH+Ua4rwGLKPMb1HXU5XXAVttsROhPojisZ3GH7TAQZZWE2eHhvFQZ7Ud5Ui117K8eYOI
+	XopCpgz7E5u8AjVG+IJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSY6Q-0000000HQe7-3bXe;
-	Sun, 15 Nov 2026 11:08:56 +0000
+	id 1xSY6T-0000000HQfD-0Vwc;
+	Sun, 15 Nov 2026 11:08:57 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSY6K-0000000HQby-1q0y
+	id 1xSY6L-0000000HQcO-032U
 	for linux-arm-kernel@lists.infradead.org;
 	Sun, 15 Nov 2026 11:08:50 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2F21B153B;
-	Sun, 15 Nov 2026 03:08:44 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED0BC3F632;
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 85B911576;
 	Sun, 15 Nov 2026 03:08:45 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6D5BD3F632;
+	Sun, 15 Nov 2026 03:08:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794740927; bh=dmQn6Bh6dp5f3+dq/JzrJw2D9XEMlAuy1xwcIOAHdWI=;
+	t=1794740928; bh=8XYAIqtuEIboOHoTpgs3rKIeXDomMa1zPXW7EouXHw0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=p2fn5iyI/EaJzeJ/7OO8DNYKSn8PfCdxfAK8TIqTT/HdPzlaO879ZqYjWMeKs7zQl
-	 Yga/urQEr2c++AKAz4KkOE+pjOWnuk4ocnoN3ZSx3Z+fSceCfMamV1cBCfi7T6LvIQ
-	 ZqgXWlvRGuT4riHTSzYuw+vpns17+IA/EbtI3/J4=
+	b=maYAFS7LKNSu9ZvS5gAJjVprCUwxmdczl1rZA/MGPT8Vw37dJhphmswHpCfvc6zjY
+	 uhEe8tEuqXrJrbdWyuYXNlBPIuxsTsR5DC7vFdyxKb9rt7IQe7Mqikqr7yQBLdyEbF
+	 jc0th20yALxZoMiQgGIH0C4xBml4/5h+uCCZGmTU=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -48,11 +48,10 @@ To: linux-kernel@vger.kernel.org,
 Cc: sudeep.holla@kernel.org,
 	philip.radford@arm.com,
 	Cristian Marussi <cristian.marussi@arm.com>,
-	Sashiko <sashiko-bot@kernel.org>,
 	"Rafael J. Wysocki" <rafael@kernel.org>
-Subject: [PATCH 2/3] powercap: arm_scmi: Reject zones hierarchy containing cycles or holes
-Date: Sun, 15 Nov 2026 11:05:45 +0000
-Message-ID: <20261115110546.2344308-3-cristian.marussi@arm.com>
+Subject: [PATCH 3/3] powercap: arm_scmi: Refactor scmi_zones_register error path
+Date: Sun, 15 Nov 2026 11:05:46 +0000
+Message-ID: <20261115110546.2344308-4-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261115110546.2344308-1-cristian.marussi@arm.com>
 References: <20261115110546.2344308-1-cristian.marussi@arm.com>
@@ -60,8 +59,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_030848_561395_07080F96 
-X-CRM114-Status: GOOD (  15.54  )
+X-CRM114-CacheID: sfid-20261115_030849_089081_91A282A6 
+X-CRM114-Status: GOOD (  12.71  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -81,77 +80,92 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-While walking the hierarchy of powercap zones received from the SCMI server
-bailout with an error if any cycle or hole is detected in the received set
-of zones which has to represent a tree or a forest.
+Refactor and simplify scmi_zones_register error path by using
+cleanup handlers.
 
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://sashiko.dev/#/bug/linux-6466cd8d-c2b1-43da-8141-bf8bf49a17b1
-Closes: https://sashiko.dev/#/bug/linux-4895c0ac-74f4-4860-a006-9f5ef7b0a012
-Fixes: 3e767d6850f8 ("powercap: arm_scmi: Remove recursion while parsing zones")
+No functional change.
+
 Cc: "Rafael J. Wysocki" <rafael@kernel.org>
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
- drivers/powercap/arm_scmi_powercap.c | 23 +++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+ drivers/powercap/arm_scmi_powercap.c | 26 +++++++++++---------------
+ 1 file changed, 11 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/powercap/arm_scmi_powercap.c b/drivers/powercap/arm_scmi_powercap.c
-index e2270476a98c..dbc9871fc1e2 100644
+index dbc9871fc1e2..6346037c889d 100644
 --- a/drivers/powercap/arm_scmi_powercap.c
 +++ b/drivers/powercap/arm_scmi_powercap.c
-@@ -22,6 +22,7 @@ static const struct scmi_powercap_proto_ops *powercap_ops;
- struct scmi_powercap_zone {
- 	bool registered;
- 	bool invalid;
-+	bool visited;
- 	unsigned int height;
- 	struct device *dev;
- 	struct scmi_protocol_handle *ph;
-@@ -316,6 +317,7 @@ static int scmi_powercap_register_zone(struct scmi_powercap_root *pr,
- 			spz->info->name, parent ? parent->info->name : "ROOT",
- 			spz->height);
- 	} else {
-+		spz->invalid = true;
- 		list_del(&spz->node);
- 		ret = PTR_ERR(z);
- 		dev_err(spz->dev,
-@@ -379,8 +381,25 @@ static int scmi_zones_register(struct device *dev,
- 	while (spz) {
- 		struct scmi_powercap_zone *parent;
+@@ -5,6 +5,7 @@
+  * Copyright (C) 2022 ARM Ltd.
+  */
  
-+		spz->visited = true;
- 		parent = scmi_powercap_get_parent_zone(spz);
- 		if (parent && !parent->registered) {
-+			/*
-+			 * An un-registered parent node is never visited twice:
-+			 * when that happens it is either a cycle or a hole, i.e.
-+			 * the attempt to walk again through a node which was already
-+			 * removed from @scmi_zones since it previously failed to
-+			 * register.
-+			 */
-+			if (parent->visited) {
-+				dev_err(dev, "Found a %s in zone ID %u\n",
-+					parent->invalid ? "hole" : "cycle",
-+					parent->info->id);
-+				scmi_powercap_unregister_all_zones(pr);
-+				ret = -EINVAL;
-+				reg_zones = 0;
-+				goto out;
-+			}
++#include <linux/cleanup.h>
+ #include <linux/device.h>
+ #include <linux/math.h>
+ #include <linux/limits.h>
+@@ -368,11 +369,12 @@ static int scmi_powercap_register_zone(struct scmi_powercap_root *pr,
+ static int scmi_zones_register(struct device *dev,
+ 			       struct scmi_powercap_root *pr)
+ {
+-	int ret = 0;
+ 	unsigned int sp = 0, reg_zones = 0;
+-	struct scmi_powercap_zone *spz, **zones_stack;
++	struct scmi_powercap_zone *spz;
++	int ret = 0;
+ 
+-	zones_stack = kzalloc_objs(spz, pr->num_zones);
++	struct scmi_powercap_zone **zones_stack __free(kfree) =
++		kzalloc_objs(spz, pr->num_zones);
+ 	if (!zones_stack)
+ 		return -ENOMEM;
+ 
+@@ -396,9 +398,7 @@ static int scmi_zones_register(struct device *dev,
+ 					parent->invalid ? "hole" : "cycle",
+ 					parent->info->id);
+ 				scmi_powercap_unregister_all_zones(pr);
+-				ret = -EINVAL;
+-				reg_zones = 0;
+-				goto out;
++				return -EINVAL;
+ 			}
  			zones_stack[sp++] = spz;
  			spz = parent;
- 		} else {
-@@ -392,8 +411,8 @@ static int scmi_zones_register(struct device *dev,
- 				 * Bail-out.
- 				 */
+@@ -407,16 +407,14 @@ static int scmi_zones_register(struct device *dev,
+ 			if (!ret) {
+ 				reg_zones++;
+ 			} else if (sp) {
+-				/* Failed to register a non-leaf zone.
+-				 * Bail-out.
+-				 */
++				/* Failed to register a non-leaf zone. Bail-out. */
  				dev_err(dev,
--					"Failed to register non-leaf zone - ret:%d\n",
--					ret);
-+					"Failed to register non-leaf zone ID %u - ret:%d\n",
-+					spz->info->id, ret);
+ 					"Failed to register non-leaf zone ID %u - ret:%d\n",
+ 					spz->info->id, ret);
  				scmi_powercap_unregister_all_zones(pr);
- 				reg_zones = 0;
- 				goto out;
+-				reg_zones = 0;
+-				goto out;
++				return ret;
+ 			}
++
+ 			/* Pick next zone to process */
+ 			if (sp)
+ 				spz = zones_stack[--sp];
+@@ -426,13 +424,11 @@ static int scmi_zones_register(struct device *dev,
+ 							       node);
+ 		}
+ 	}
+-	ret = 0;
+ 
+-out:
+-	kfree(zones_stack);
++	/* If we get here any previous error was on a leaf zone, so ignored */
+ 	dev_info(dev, "Registered %d SCMI Powercap domains !\n", reg_zones);
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ static int scmi_powercap_probe(struct scmi_device *sdev)
 -- 
 2.54.0
 
