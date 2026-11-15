@@ -2,107 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DAE606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 13:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6587606A31D
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 13:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zc8E/R7b;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VPhPRW9x
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bWdSG/l9;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ICvD+HIh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/rYsyjftvDCPeS9SbbyhKVYUDY9LVQRgCngM6FVnSFQ=; b=Zc8E/R7biMFDDLIJFAJt1/RtNf
-	tO3vCF7QbqJ+oTYIFZAgCLwb1ZVdUSbx73RZ/OTHhtC2jyy6ZR3zojm4/8Y7HxoTTUvInkyfTpjKM
-	pq4qBnLYklUihaXXj7IH3VG0z1jYKYqcxd324OEWGKxUd8MmyX714mbPgrZAZwLn2gaq3Nv8ytr4Y
-	iRwp7/4jhbyslym/4HnrOP9Yr7zimxxshBAI7lcwX2QNdBu4OFNR4Aul7vY4jPjKedkgPqvMfYOiu
-	w4CMzmrNcu4ANZlDCxYU0Mu+TEoWAQEJCoNwPa1MNgeBdFk3RVAAwTHE2pzsteVCx/VSyhCXylmNI
-	BzudxOMA==;
+	bh=e+XhTX2eaPWhWUwMyLtivdGIpKoHtQC9s8D9BjgPLlI=; b=bWdSG/l9Uho0uAUybdNU54Eh37
+	Ir63gK6AwdCnteGJXvNwSko1mB+91BQ1Re/nzZqrDU5KWELBxsXmO6L5pLCIsBM8R6i8BBNyKQcXW
+	bxrAv2JWAFfC0t0SRFDOV3v+lkdyebR0N4QzD0H/nqKkYeGuXKjmPlgS8Qv9b56zQrbs2eNPeDTmS
+	XLnIoRe6959pJrPwON3sFVILFFFnnrjVmRJQldEarbFXPYS1CUGe1epxBce66zIEXDlWM5w3G3S0B
+	tE3zcIS9bNXppXh34yDzvSLRNJSib4+XueZNU8I2onZZJEBJrUj1Jh5W/nY1CI4cimPb88LfTE4mY
+	5jDDncaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSa9l-0000000HYDt-40sM;
-	Sun, 15 Nov 2026 13:20:29 +0000
-Received: from mail-dl1-x1231.google.com ([2607:f8b0:4864:20::1231])
+	id 1xSaBf-0000000HYQL-1fy7;
+	Sun, 15 Nov 2026 13:22:27 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSa9i-0000000HYD7-3CHz
+	id 1xSaBc-0000000HYPd-1PJY
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 13:20:28 +0000
-Received: by mail-dl1-x1231.google.com with SMTP id a92af1059eb24-1b3acec6677so3358807c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 05:20:26 -0800 (PST)
+	Sun, 15 Nov 2026 13:22:25 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-492fcbfaa88so1252272f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 05:22:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794748826; x=1795353626; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=/rYsyjftvDCPeS9SbbyhKVYUDY9LVQRgCngM6FVnSFQ=;
-        b=VPhPRW9xI8XF9aS+C0ZfMrtks+l9XtIXNSvzdeWbv1wjBKScFsPqBfqGT9Juw2ubK1
-         /9zoOhFLQABA8bc3bOpaNW9yn8OuOXMEH7MfiiYU4erWKouq5vT4B6jPEmKxVBWpFWql
-         n2DedRBgkf22zTFmDQ5dz7VzdLg6W+mTlyDat/1Rf+bcRenb1tQxTZhRTIuYDJADveXJ
-         gSCYGNAsNl3HwRQqpfsjCc3hKOaOHoce5mmaSNWGM8hHxxNnBDc8dD4i9XIKPT2Ow+rR
-         3MWCVGxVI8dQfwZLCJeGqcrsQSV4N+KbscuDjXT23Vxc2IPD4Xt+fouvv8q18wThJ56b
-         aFfw==
+        d=gmail.com; s=20260707; t=1794748942; x=1795353742; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=e+XhTX2eaPWhWUwMyLtivdGIpKoHtQC9s8D9BjgPLlI=;
+        b=ICvD+HIhU0mT17AlCJXEWdGFIIDI1E+qWSqc8+rrgATj2ht+xo7p4wKGh8kN1QLP9c
+         E9y099yJAjYEIXcohkCf3QvnQAjt2TgaR4oe+kP0pm+bKGvPQ10aNhFZ3oBfPKRozGao
+         mgAiGQJPLc0myqI/vga4Qcpnh6SOX9UmCqeO7PoLZWqYCwO0qNVofK1okAnUJfRKEHAA
+         PZ5013nCtsM4RfsElvEBPna3CuemTnOV3R5lvIQ1ZEqUn5hr69lEPZm3X1izaxwRJ9hf
+         6oEKo7G7p4cIC/fYnnHlnxaEIkwAsWFaScETkD4HWFJnOhzGBMtO5jYFfT3bi45XhG6w
+         5XSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794748826; x=1795353626;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20260707; t=1794748942; x=1795353742;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=/rYsyjftvDCPeS9SbbyhKVYUDY9LVQRgCngM6FVnSFQ=;
-        b=HVCWorFUlmXmsnlMtclCkboJ8RxlG84iayilF7S/u1Pdu7FkYLpv4MoOKOsd8zxyEk
-         p3G929/tMX6MXrI4HTT/tV6kJJOW0k3XVTYgpn+MEVcIVvBLXVfz/av0mZ6Hpeg5imS7
-         ybL54Mm5xk5vSEQGvAmX0lVj8jLU6l9EGxSSMleQkJ6UsC38NFcCOZlqA20pEmZyztE0
-         SmEtMEno/Hgpg2hU0xxUtLgN54rRN128b6vf4dyOrnYI1RPDuPgpKQul00pQFb/D0srl
-         ykdJt0h3qNvUvvkMWk3f4CLFOGpObhl3XNbmtclQh48s27QG2rl434EHM+KQdBzLUR8f
-         At3Q==
-X-Forwarded-Encrypted: i=1; AL+hErHD1JX+0pRMLjx6J1FB6hpC46xiozsiD7Qd1okIP7HYP0k14nF7uGrWq2pHj2jtVTwZE4D2BgUBDv3l0xW8ByMu@lists.infradead.org
-X-Gm-Message-State: APuU4Z8EcgqKoh+tMpa2ktqQtNR3U60KmVWclPUBjRlg8+2NrA1bJRRG
-	qPrvqSiiJ8X1i4YEJnNQuIvUXDjpQUaDhKlm/khLKSnUz+zSbKXwP+t8
-X-Gm-Gg: AYBFou1MPT78wEOE3qi40R/sGO5wuQj75XHoBXnmvFoNtujzV+Vv4aJysLTjqiPpj6q
-	QIMM0sdKFh5rrK8dj2s1/uGRo/0Vx1PBlcYwflMXoeqK80ODySw9CJupoYKUcD/3uruS1zKwTQs
-	nVPJx/4fLuWqFbzyyBc7k5nks9DHeJDmwBUP0tKiWFBuj1WY5MSLSrqfrROnOMmzT7+Lyv/SriL
-	5D5fhDZ0cCK0QCVgioQwTaoSnZPeEMY16EUEsubi4hlyBxHvN81bb+seioTj9XoDarMbWK/pBJB
-	kAhcSe8fZKD0cVX4/BFw5KUkPcED2jcgGY48i7yrpYTMTrwO88xCPP7pFAeMPVefqF5DfQOXlxM
-	KNZLBKrhGVnyxlOQhGEXdz8wwRqGbr0S7qXbnhoxmBH2wUZ7oZkLZhlXDbEhWLehUAFEXUV2du2
-	dFrJAeCHD1t+NRacKXxBF/8kdVTm5CVouoy9rpdFGE7yg+LpXXwr7QTsX0R7U3exYWZP+SPM2gO
-	BB1Ig6vUZPztiBhqUdI7mDLINiPFbA064DCOhKJ5c9Yua0+YjveIjFySJRqITb9kFENBni6F0QP
-	l6Ns595Xk5373wC24X3Sm2sjsCLVQou4dDt7VnJLiQQQ8oeVk87fb/HU52dk9hyaqknF
-X-Received: by 2002:a05:701a:c9c1:20b0:1ae:e7c4:9a15 with SMTP id a92af1059eb24-1b51828ef74mr4571335c88.3.1794748825692;
-        Sun, 15 Nov 2026 05:20:25 -0800 (PST)
-Received: from [192.168.35.213] ([218.50.238.131])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-379565d3e37sm28084123eec.24.2026.11.15.05.20.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Nov 2026 05:20:25 -0800 (PST)
-Message-ID: <9f85f4a5-ee4a-4c0e-b902-abea050bb204@gmail.com>
-Date: Sun, 15 Nov 2026 22:20:20 +0900
+        bh=e+XhTX2eaPWhWUwMyLtivdGIpKoHtQC9s8D9BjgPLlI=;
+        b=b/ssWZhY3UGTnZFblPGcoCIzXwAG4ZQtmiSF965wzShKwzkVdlaeXt6Bnc2ShVQ1L2
+         mhJgy2ascHKaw1DIUu2wVkevRsg0xJHx8Ig5dbZuDkf3rkdNgn6sq06jExWlnCIPbMO9
+         OfIlqsLCFKloqLh5kS8QnNBRLBfK5tEO8ewraamG/RRSqa2SxjGigYQ/yWwcEgJjGxJJ
+         l7HNAqryqtYdm4UfgCPN9n0T7QSO7hvn5a76XFpsoWKdl+0hcTAn4o5cF68pGfRYgsFA
+         mxXv879hUxLzmxKfaa26UHeehhsdO6Z6GwYre+92Zr/LkRkkYOywFgYfiAEWYLq7pp52
+         y2RQ==
+X-Forwarded-Encrypted: i=1; AL+hErFbyNS4DNeS8Q7DVtS85LKM1MnO6Vmp2NDN54XLrB77aNeoGmgNbeNIcl5F0JfZ4008dX+3ROXql9ov2GurU6RQ@lists.infradead.org
+X-Gm-Message-State: APuU4Z8nP4A4QgLXPN/zF4lMNANJTXO1O8WVbMRTP+TWRVAV7dcmteTq
+	0wvbBIiecYf1TP60qzyJ2gV7lfMCd2jCGapJ7ogDAmZfrsaGKFlGVACN
+X-Gm-Gg: AYBFou1tFP4GsHrl56OTC60K3Ee1QInyYdla3suaXIWi9zMul1uPihBtada4sTSJNO4
+	TvB/T2yJuYMpSavhXHsGkc++IdWjIkO3nr9bsRpspaDzby4lFGu4+SR00q/IY/DpCYMJ3wnlXOQ
+	fTRe/NLImRMjLDY+lXJRDTlE8O8EM43iH3RvjcuHOj+z8wXZvk/tZVJMKky3FfNNDmd/IQnjoX7
+	udaEIpq12idGrr7AY2AlaJMLFt6roMk4aygAVtprqtMOfn4Dpcf0rlFCdr7wzdM/8HJwAY0TPKb
+	nCMNn8CgSAgRUQ9yqaSbzsqDta5iHs93340IUNQUqb7weVwwEp9L+nsuQ08uFkaUYfUf9HgkK6Q
+	D29KR8DpN2pb+nn/DmXrxKdtGNGxd/ZD18KqNdJfNlsMyDBtrayHjk9nqw1HeZhGAH9G5InGovk
+	2ULTk1gwMkcn9jtXB+2WjkuFhaIOFIIoCxdbOEstb6h6/XSQ6LMzPYvtY1qUGxUt794+DB+4x7e
+	11/PvTiDLcZVeNAIEjR8PbSJy9p6x800lyWDH9j6bTmnrjdtSwVXRJcaEvfCg9na+4Iwqge5b07
+	WzgwC4QwgD/fFRj/sHOeAAx1REsnCm6fkfssT/oLInIIB+5713Rnftv6+se0owm1OPUJDD6TteB
+	Og/OlzNHeCyeCCRyzOnouvf5suOvNTB9nnG8e9vYAFwttDz5S6Z400GD/6YG788ELWEfbWKUkj7
+	0QT3N+Z4/FAlsEAt3co8DjsKub9+L5UC0lRvinZ2BjNC87nCIg3+XtggQshu634J4oan+FroDVM
+	Y1r5xLxAkzNGSYEPTcSjOZ4kghcCj6V6rQ=
+X-Received: by 2002:a05:600c:3b07:b0:4bb:5de1:e912 with SMTP id 5b1f17b1804b1-4bb5de1f216mr129069365e9.1.1794748942112;
+        Sun, 15 Nov 2026 05:22:22 -0800 (PST)
+Received: from jernej-laptop ([2a00:ee2:6a02:9300:bb69:6bcf:1b11:e85b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c5d03b10fsm18406672f8f.1.2026.11.15.05.22.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2026 05:22:21 -0800 (PST)
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: [PATCH v2 0/3] arm64: dts: allwinner: h6: Enable GPU and CPU DVFS on more boards
+Date: Sun, 15 Nov 2026 14:22:11 +0100
+Message-ID: <20261115132215.289236-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] PM / devfreq: rockchip-dfi: cleanups
-Content-Language: ko
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chanwoo Choi <cw00.choi@samsung.com>, MyungJoo Ham
- <myungjoo.ham@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com
-References: <20260921-rockchip-dfi-cleanup-v2-0-43ff34ac8599@collabora.com>
-From: Choi Chanwoo <cwchoi00@gmail.com>
-In-Reply-To: <20260921-rockchip-dfi-cleanup-v2-0-43ff34ac8599@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_052026_827265_D21E86BE 
-X-CRM114-Status: GOOD (  21.35  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261115_052224_385705_4256A997 
+X-CRM114-Status: GOOD (  10.23  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,67 +106,39 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: chanwoo@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 9/22/2026 5:32 AM, Sebastian Reichel wrote:
-> This adds proper handling of the RK3588 clocks required for DDR memory
-> monitoring, which involves adding them to the clock driver and the DT
-> bindings first. The change is done in a backwards compatible way by
-> marking them as CLK_IGNORE_UNUSED and using optional clock get in the
-> DFI driver. The series also applies a few cleanups to the DFI driver
-> while at it. This is done in preparation for RK3576 support, which
-> will also come with some DFI specific clocks.
-> 
-> As everything is done backwards compatible, patches do not need to
-> be merged together. So Heiko can take the Rockchip specific patches
-> and Chanwoo Choi can take the DFI driver patches.
-> 
-> Changes in v2:
-> - Link to v1: https://patch.msgid.link/20260917-rockchip-dfi-cleanup-v1-0-4f00a97a69a6@collabora.com
-> - DT binding: Do not specify maxItems in the generic part as it has a list
->   of items
-> - DT binding: Only set minItems/maxItems for specific SoCs
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
-> Nicolas Frattaroli (8):
->       dt-bindings: clock: rk3588: add PCLK_DDR_MON_CH clocks
->       dt-bindings: devfreq: event: rockchip,dfi: add clocks to rk3588
->       PM / devfreq: rockchip-dfi: move to per-variant const structs
->       PM / devfreq: rockchip-dfi: add NO_INTERRUPT perf capability
->       PM / devfreq: rockchip-dfi: use bulk clock APIs
->       clk: rockchip: rk3588: add PCLK_DDR_MON_CH gate branches
->       PM / devfreq: rockchip-dfi: make RK3588 use its clocks
->       arm64: dts: rockchip: add dfi clocks on RK3588
-> 
->  .../bindings/devfreq/event/rockchip,dfi.yaml       |  70 +++++++--
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |   4 +
->  drivers/clk/rockchip/clk-rk3588.c                  |   8 ++
->  drivers/devfreq/event/rockchip-dfi.c               | 160 ++++++++++++++-------
->  include/dt-bindings/clock/rockchip,rk3588-cru.h    |   4 +
->  5 files changed, 184 insertions(+), 62 deletions(-)
-> ---
-> base-commit: cee9395acd8043be0644b25c34bfa86623f2b935
-> change-id: 20260917-rockchip-dfi-cleanup-feae6eefae9c
-> 
-> Best regards,
-> --  
-> Sebastian Reichel <sebastian.reichel@collabora.com>
+Most H6 boards don't use the GPU OPP table, and the Orange Pi One Plus
+and Lite2 lack CPU DVFS as well, so their GPU and CPU run at a fixed
+clock rate. This series enables both.
+
+Changes in v2:
+- new patch 1: add regulator-ramp-delay to vdd-cpu and vdd-gpu on the
+  Orange Pi One Plus and Lite2, like on the other AXP805-based H6 boards
+
+Link to v1: https://lore.kernel.org/linux-sunxi/20261104184940.882833-1-jernej.skrabec@gmail.com/
+
+Jernej Skrabec (3):
+  arm64: dts: allwinner: h6: orangepi: Add regulator ramp delays
+  arm64: dts: allwinner: h6: Add GPU OPP table to all boards
+  arm64: dts: allwinner: h6: orangepi: Enable CPU frequency scaling
+
+ arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi  | 8 ++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts   | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi     | 1 +
+ 4 files changed, 11 insertions(+)
 
 
-When I tried to apply them, there is conflict on devfreq-next branch.
-I'd like you to resend this series on based on devfreq-next and [PATCH v2 0/7] PM / devfreq: rockchip-dfi: RK3576 support.
-
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 -- 
-Best Regards,
-Chanwoo Choi
-Principal Engineer, Samsung Electronics
+2.43.0
+
 
