@@ -2,57 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B5D606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 16:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C74606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 16:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sih8DrRv;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=BOMaKQFI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xSf6HyCj;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=0TueWoRo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
 	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/vbyAapQEeNQyvs3/I0cIKEWJL+CCecgNCUg/Ya7iig=; b=sih8DrRv/7Sv0u
-	jcrRr3lig7mUk1i4Xutyjm6o8BAJ7NQuS1hgrkzEcBmmCs6vFZIV5Jxv1oeDnnwXdL3F1g4Ob7fEm
-	0FX825GFrl4B0WV0p+olWgTA7qYaqU2y6F8lOL2E7TYgPcLs331WoKqOCCFY78pMk4d0OsliZHZE+
-	1rQ1qHMt0n00usH0HOK05/KzhTgE38LchMIFm9MqkJza+jkQPbxzPMN2i/ArfyfXg3J1rEyEEiBcc
-	3RhTMAOb+7qmQ4NvTl6m/kVo6LdNzD33gKLggCMQp1/0mgtKw5tFw35UHLrCE+XRpVB2JEVLlABY5
-	tV9Y9NJtSXojHGIIv0PQ==;
+	List-Owner; bh=HmeQbw7jMfLA/ETtC5sTdn/ENgWCTOOgdRGlwupEjEw=; b=xSf6HyCjReqbjE
+	9bXQH5D6Om07teJAQIkV4fMpc34M43EAI+QjaLHsDjzQ4l7TVFFAFxhDdvHPrzKSlix506zulKf2r
+	npq3Y68CWpULoxvqv/jNn9gNRpfSU/1Jcx5b/pwf4M37h3VXy8L6Nkj/uwCI1NLa/VNDqBnQY1XoV
+	NL17BtAJMxzLnGz1ydMhussCDlP3OtgXrEMkQTebxh10U5tfOEcTaLFCTS9LLTGKzrt8RsV9JcdFQ
+	dJo+y1ePIlS3V7fDctTDZ4kR2TlriJDDsTAWAWol0fRFsgqDe2zy5LsLvqKhoRlN10utpjxVY5c16
+	d+hVjJxhnJtOOnWKKlhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSdXL-00000000DmU-3WXK;
-	Sun, 15 Nov 2026 16:57:03 +0000
-Received: from mail-southcentralusazlp170130001.outbound.protection.outlook.com ([2a01:111:f403:c10c::1] helo=SA9PR02CU001.outbound.protection.outlook.com)
+	id 1xSdXV-00000000Drr-0gax;
+	Sun, 15 Nov 2026 16:57:13 +0000
+Received: from mail-eastusazlp17011000f.outbound.protection.outlook.com ([2a01:111:f403:c100::f] helo=BL2PR02CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSdXH-00000000Dk0-0WbY
+	id 1xSdXM-00000000Dlv-1SQB
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 16:57:00 +0000
+	Sun, 15 Nov 2026 16:57:05 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a7OReDpYhO/UxNF0wuI6gUwjQXxAFNfgbW+SfbyFuiW1mOdNhZ7BMg9BpDHdCj0sKdrazAU5w61djieEAJEVd6bw9b2mZny1B4NfEWVI2dCk+4J7ONKzZPFfSQf4SPhq6TTcN/3jKaPErU6PUrMkojfY033AMKV1Dx/f8H9l81rNvrLNMm2BtpXQCkG5p1RQl/TD7HmUvz+PfbUY50mIyxHTKm2LLy5rK75cP2YdwzshoasCTioC5djjKBOhArUX5MXn4H78MAMdJiuD2np4rqafcdGs7xicCxgT6JlrquVUyrFYAHBPP86P6M0//Zm6FY7z1H8HYIFAWuxPA9jiKA==
+ b=NfSyIJfqcQKs0/OCiILRXbATcOxd7fcL7v3SswQZU29lvA1Wy53lsv+Giuh6vwbId3U+Gvo//pmMeGm6Q5stYxrOLicz+2PoE8bhbtGic/Rk5lh9zD0U6ImUjZN6CWaeMAbmT47Q4pFfBXuLY4zZXYOqVHFkSiyJVEf2iOItLi1NP4tmiKqNS6aCh45PJ/WBUnJZOkRV9xHTVy5UDwIVC3+Drq/u2KKHYVsp6vbiNFwiLEYdGd3AT4fKR8GRNyx4ohw3Vm7UBJvAFSYxb/rHVlL98I1QDVa9o7QR5qlMtDEuoh6G5xRFgfq0v3lt4IprFOiItDXqAJSo0kh+M3Tk3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/vbyAapQEeNQyvs3/I0cIKEWJL+CCecgNCUg/Ya7iig=;
- b=m93by/lpPhurMhDJb0cnjqxyRr2NKKQeG/781BS5favxAQlUk66jxvoLWSxmeHwaXesw0V27m0vADPYozQuhoZpeUbtqTlev3adravk57Pd/05vj0VOZwI/FnYK2cQ1bMYqj04zDMW9aMjPEYY1X6Jw/3IXLk+InXaThKTSBbFBZJJnAebvDHBheqsA3ZhVu4RlUj+tSpQn9qhMey012dJIYXlmJkLNQTmNY6ei3kcpSwkV1Ux8bh56Tfoe4kLqC1rpIqr69ylYaZQ0WvRoS6lmN85GDVvM9dp0ZusZitD6wKH35w5KuLbQk7DZjOcKaaAvw8k0NeNBK98OihyO5Dg==
+ bh=HmeQbw7jMfLA/ETtC5sTdn/ENgWCTOOgdRGlwupEjEw=;
+ b=WMIAQilKdRQW9AuGPItDIlF8RhyJYB2pKn8+l+77uYN6EDiVTiRoKC7RskoxBcEpQiwZW8A+cDyeQJ2azw+tHyCCOy/M2MnU73mFY26u0XCZH/3RHtzsGf9b1CnY3njXCbWNHjp3OY8gimH2aeqDSRm40kCix//6kY/2617TRti2nLPnATb7I0XpJW+WdiZ0aEIEsSf3+/d8cZ/iiu/NOZfGmDd+VLNrK4IxMQOfHoD6tTBMZqAxPByFXhHVlwuKz3iEZHdy8kHVx/DNnDhL4Ey2G5tprkuq835jd0sJzYoxXEKwwofYgisbLh/M3S+aaxQoyjAWBq3QtUTxXyzYfw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/vbyAapQEeNQyvs3/I0cIKEWJL+CCecgNCUg/Ya7iig=;
- b=BOMaKQFIG9Qs8RpU6T7/H6mv3bVXbpH6uZYgu/SI1Iwnx4ab63xx64o4bZtpYvETI58I++mwTvb4vin4cR8750wWQOwaAYFtSoEp+g5mDi58M0ENitUasZolN6rOZpmq4np0tSD+hGcBFb4elnqwmCOP4D8x1MprRdIvRBVu2H0=
-Received: from PH7P220CA0177.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:33b::25)
- by CH3PR12MB8073.namprd12.prod.outlook.com (2603:10b6:610:126::8) with
+ bh=HmeQbw7jMfLA/ETtC5sTdn/ENgWCTOOgdRGlwupEjEw=;
+ b=0TueWoRoO5d06ziAJg/+1I0tCCIdAj2TwZQ8wHRk9TzVGGGBbMlNBhgzcu6iaWlGYy91b5qYc6HoOhVDwTQ4desSXJ1XosY4rTwyKL1w7rVykFDDX2zqAtUsOu7zllvrJWqOBB7PgZxdB4SAgdjuJjkgS/jfVPWfOl3K4Y2rVIA=
+Received: from PH7P220CA0152.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:33b::10)
+ by SA1PR12MB6893.namprd12.prod.outlook.com (2603:10b6:806:24c::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Sun, 15 Nov
- 2026 16:56:51 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Sun, 15 Nov
+ 2026 16:56:56 +0000
 Received: from BY1PEPF00026956.namprd05.prod.outlook.com
- (2603:10b6:510:33b:cafe::62) by PH7P220CA0177.outlook.office365.com
- (2603:10b6:510:33b::25) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:510:33b:cafe::18) by PH7P220CA0152.outlook.office365.com
+ (2603:10b6:510:33b::10) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Sun,
- 15 Nov 2026 16:56:51 +0000
+ 15 Nov 2026 16:56:55 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -62,64 +62,64 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  BY1PEPF00026956.mail.protection.outlook.com (10.167.244.164) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Sun, 15 Nov 2026 16:56:51 +0000
+ 15.21.615.4 via Frontend Transport; Sun, 15 Nov 2026 16:56:55 +0000
 Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Sun, 15 Nov
- 2026 10:56:50 -0600
+ 2026 10:56:55 -0600
 Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
  (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Sun, 15 Nov
- 2026 10:56:49 -0600
+ 2026 10:56:54 -0600
 Received: from xhdsboyapal40x.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
- Transport; Sun, 15 Nov 2026 10:56:47 -0600
+ Transport; Sun, 15 Nov 2026 10:56:52 -0600
 From: Srikanth Boyapally <srikanth.boyapally@amd.com>
-Date: Sun, 15 Nov 2026 22:26:41 +0530
-Subject: [PATCH 2/5] spi: spi-zynqmp-gqspi: Mask the interrupt before
- gating clocks on remove
+Date: Sun, 15 Nov 2026 22:26:43 +0530
+Subject: [PATCH 4/5] spi: spi-zynqmp-gqspi: Drain RX FIFO on RXNEMPTY in IO
+ mode
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20261115-qspi_14_11-v1-2-23425ed177bf@amd.com>
+Message-ID: <20261115-qspi_14_11-v1-4-23425ed177bf@amd.com>
 References: <20261115-qspi_14_11-v1-0-23425ed177bf@amd.com>
 In-Reply-To: <20261115-qspi_14_11-v1-0-23425ed177bf@amd.com>
 To: <michal.simek@amd.com>, <ranjit.waghmode@xilinx.com>, <broonie@kernel.org>
 CC: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-spi@vger.kernel.org>, <git@amd.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794761802; l=1455;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794761802; l=2587;
  i=srikanth.boyapally@amd.com; s=20261106; h=from:subject:message-id;
- bh=uHCAuYwl1cNDFRU6tbxaJfzJqSMxdv5Tj9+b9NWvH20=;
- b=V5GPntZpjSHL7ToyV2Jmy7yOJ3218eNy6wgfwuQHcXKdXFM9WRq/j5GX6Xbe2d63xE2CQ9LIY
- PEUbdnc8CG9CNkzBVb+289FhTBx7nZzaQOLMgTTw7+/Z9j08AmMFeaM
+ bh=+QQsPESySobSuHhTeWHnq+TR+Guw33o1WGBUJSE3i4M=;
+ b=nc3ON6bymKpivLqgFe7rvcedbN4MlnNQzTo0owL/qYCP7gTRXVKAAWfWntXwja2kIuobxoLTf
+ O5hzAN+gNAyCKrgrZGHm6BJ6YBpHKA/9//h7ANpQ72Icmyep9y0gisy
 X-Developer-Key: i=srikanth.boyapally@amd.com; a=ed25519;
  pk=VZiIwz5+m6FvZJ+3hzpXDQl0u531OPVeBcB2OVGeZVk=
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY1PEPF00026956:EE_|CH3PR12MB8073:EE_
-X-MS-Office365-Filtering-Correlation-Id: 03b50d3d-9226-4482-d4be-08df433971cd
+X-MS-TrafficTypeDiagnostic: BY1PEPF00026956:EE_|SA1PR12MB6893:EE_
+X-MS-Office365-Filtering-Correlation-Id: c21fa6b2-8846-43d7-002c-08df43397493
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|36860700016|1800799024|376014|23010399003|18002099003|22082099003|261009223327099003|261009220027099003|261009223027099003|261009221727099003|261009221227099003|11063799006|56012099006|10067099003|261102123227099003|261028144727099003|261026140227099003|261026121527099003|261021121427099003|261022105027099003;
-X-Microsoft-Antispam-Message-Info: u/3dgXQIYL0yOabJ5pGsKMtgxxc7woub1Xik6vSHaLtOZjsM5yBQmY1WegAhvDqSUMVqc41+q8RqT7KsvUy10uDTsSOfRVyeUxhfgKjk/1uuvJMTGthcjefKvjxK40z6S5OjdaWLpklhJCZDyWj6bR2/LBk48EQWz1oY1psp5PB5pecnhlqCXWoT9slAOOS4e7mNvoB8VjEry2BVsau8cXMz/UQ7qxusl7yGEPwvj5TLJcTp7xzUgSzRFNdeN3xBCeCCOb+dwgPo0qgJUKBwUbdI9h3tbG+oPrLdejtMtDJ8G47q/o6j5Cu3+J0GJF73w3gshwpPZjvdFyksDrzLljirlx684u4UxU0bnDUsvriSXTaHGoCSs0bFvL2+zW1xAeDxXxkWHw2lkD6+NnZI7Z3i90DfbmeqGDHcbpDABJZIHXE+T4hSYBZzez3OkwLlIJCuOPfCocYVBHCtVX90tmUY1akDzLLPSt3WNjibKoN6Z4IpAdsOGh5EroS0Geyy/mgUGnjeerJ4HZjno4julnK3oh0uaqzfFCavmHS76DlGtHBuxWYT0SQ68EbaQC03BrwYq1iSLDRibEU08rrfMibXRQh0kW/Ph0r7iIQoeGQtskOKl6teMbLxamnPkwyyEXQKKpgqgLp5MHCNb6aSDsFHSuXoW14s6sdXBGuhvb+SGea+R8DHwlo0KnFbQvzlGdOgtqdzZres3Ael9Y9BXg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(1800799024)(376014)(23010399003)(18002099003)(22082099003)(261009223327099003)(261009220027099003)(261009223027099003)(261009221727099003)(261009221227099003)(11063799006)(56012099006)(10067099003)(261102123227099003)(261028144727099003)(261026140227099003)(261026121527099003)(261021121427099003)(261022105027099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|10067099003|11063799006|56012099006|261026121527099003|261026140227099003|261028144727099003|261021123027099003|261022105027099003|261021121427099003|261102123227099003|261009221727099003|261009221227099003|261009220027099003|261009223027099003|261009223327099003|18002099003|22082099003|3023799007;
+X-Microsoft-Antispam-Message-Info: +YcyzsHt3fx2c6qq72HzZpR1PVPnZijHOBtdDmQ8UuTH0aIhHtReI4ffVt/9X/HZC5U2MBK5cp/0Z3dLGUgynxEtVH8mH+1hLktXAUfoa4PZmcOwQJ9bNwsf5fO9wo7kkk5UhBOH/GsCj4cltUkqbgj+9lVXPOWy9QY0inFDfJ6t/AB5OFiCX50bgpE+uuu/VP3pkQTGxZR674RdOosR8661YHH0Xc2oZpvpiO7zCtDS75rIDNmkU5+xTUcywKFfZ9BuPC9bzhcBF4NRNXGi/B80H4s+TWZfubMqrYMcyvoGjJPYsVwQDggpvYna+kAkAb2gcG7snX3o0C04U6l0iIENb5nPFOQwPXPNAqoHQgmxFhRYNK8+spZUUDGq+Uhii5XO29VFxv3XjmWl/kznM61ZiOOnhIhFT2tQDUmCMM9uc512NkS7abex64Jicag+MBVvZHs/QBp8A7IzUU8/kMGE/jiY1AZHuSXUWpS6aio8t+MF7jK2fJtpJ31ar7+z1cdEQEmR2cj8VS/PZUBSVYyrXfjZARIRnlnuk42CLSdMJ3SalXEaOV0eaFrEgq7AdY4fxXKtF8roeA/VKA6vqN90zedk65l6mxu5yC4qmZK8NcJSHPMRpp50Y+lf/HGlnqqakYDKE1JENAYW/0sjMJP1lzxd0x34nGMdU5udaMNTAqcyvV4ygx0jUbpsFym9QTwvE41Hu0dDB/mbqstoWQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(10067099003)(11063799006)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261021123027099003)(261022105027099003)(261021121427099003)(261102123227099003)(261009221727099003)(261009221227099003)(261009220027099003)(261009223027099003)(261009223327099003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: m7vbARJAS/yszRY5wETtnWbvsbeuB1UqLEXsW7AEFN+i6CFMwaeR+43I7OPYL+PK+HWRxd8dGCaXROr38hLUyDz3GEyVJSq2JT4eXL6uc0cTdakfaN25zAbw96Qfe1ZqxG0JtP8aukM6RL+fT6OYOnXGBsMt6ty5XDg8MQgF4TJ9W9jqeXjVuxpz6Vw+wl2aQxQYhmrY2qv4BtBK56UOlChB0+SrJWtV+7wf5vM8zUsrOcEY+Pg00Ob9KJ/dIqhIXPTs/LpBFW0PAkJHXrohmRtMdOFLeC478//1bnLMPQWBJnq0WoxV04uTcPidtw0bkYs6WbvEdBUbshEB6FEmY6qo2Melh05cwn4xHQp0y+L4rc6cqo/4CyBnUD7K5yaE3By5QLzCVZvlhTJ36Io0pnhapQD/sm4WtyPjf4jJGNIcnH4y4cwVtdAnJsDOGPsN
+X-MS-Exchange-AntiSpam-MessageData-0: xg0xRtkfyXqE+JRhUcQJDpC9PCQ9dOjnk749EtPUBv4JEnMebkKApzxxZ/ysEXqmDU3k10dyv39nFadi4u8mKIF+epygULZO2sU8jP0XJIsYPnQrxvtI62N4IS3lpmOHEEhuwxI5qd/VXLofvqO9uXFzWIq8yWPaCalf0iyiAnqA3vW2q+sDoAXW69MmONg6HSorIprOjXDbpS0QNtek4P/0niD94OJ1Ev/duC7Ksq3TwFL+C8Tc3VrRrkEu6G/IDmhoC/JlPpn2pE9XSQ1Vyq+CNxybbyq/wS5OAV7AnJcvNWGa6CvyXHcudMBs4wZHxE4/JlUSiTSiMdy3j5tb7SGkCtKHtAvN3rcBsT6N0MHs8VmlexABaVq3qamoEiYArO4uX/8zU9H/cin5JYk386pRbFvvaIR19vk3IA8UFmFNCSiN/F2WVFeyKkJEeXpz
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2026 16:56:51.0119
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2026 16:56:55.6604
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03b50d3d-9226-4482-d4be-08df433971cd
+X-MS-Exchange-CrossTenant-Network-Message-Id: c21fa6b2-8846-43d7-002c-08df43397493
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF00026956.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8073
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6893
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_085659_172689_EC426661 
-X-CRM114-Status: GOOD (  12.69  )
+X-CRM114-CacheID: sfid-20261115_085704_406971_479D1583 
+X-CRM114-Status: GOOD (  19.00  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -141,42 +141,59 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Mohammad Zeeshan <zeeshan.mohammad2@amd.com>
 
-zynqmp_qspi_remove() clears GQSPI_EN, then gates both clocks, while the
-IRQ is only released by devres after remove() returns. An interrupt
-raised in that window enters the handler and reads registers with pclk
-gated.
+In IO mode the IRQ handler drains the RX FIFO only when GENFIFOEMPTY
+is set. IO mode is used for a read shorter than 8 bytes, and for any
+read whose buffer is not 4-byte aligned. The unaligned case uses IO
+mode for the whole transfer, so the length can exceed the RX FIFO.
+Once the FIFO is full the controller stops clocking, pending GENFIFO
+commands do not complete, GENFIFOEMPTY never arrives, and the transfer
+times out with "Chip select timed out".
 
-Mask at the interrupt controller instead of relying on the device-level
-write to have already silenced the source: disable_irq() closes this
-regardless of what GQSPI_EN or any other register says once it returns,
-whereas the write below cannot recall a handler the GIC already
-dispatched.
+RXNEMPTY is already enabled for those transfers and signals that RX
+data is ready. Drain the FIFO on that interrupt as well, so the
+controller keeps clocking and the transfer can finish.
 
 Fixes: dfe11a11d523 ("spi: Add support for Zynq Ultrascale+ MPSoC GQSPI controller")
 Signed-off-by: Mohammad Zeeshan <zeeshan.mohammad2@amd.com>
 Signed-off-by: Srikanth Boyapally <srikanth.boyapally@amd.com>
 ---
- drivers/spi/spi-zynqmp-gqspi.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/spi/spi-zynqmp-gqspi.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/spi/spi-zynqmp-gqspi.c b/drivers/spi/spi-zynqmp-gqspi.c
-index 0da44ebaf39c..cf22ae8d2163 100644
+index 39f90fc3f453..28edc5e82c16 100644
 --- a/drivers/spi/spi-zynqmp-gqspi.c
 +++ b/drivers/spi/spi-zynqmp-gqspi.c
-@@ -1377,6 +1377,13 @@ static void zynqmp_qspi_remove(struct platform_device *pdev)
+@@ -810,9 +810,10 @@ static void zynqmp_process_dma_irq(struct zynqmp_qspi *xqspi)
+  * @irq:	IRQ number
+  * @dev_id:	Pointer to the xqspi structure
+  *
+- * This function handles TX empty only.
++ * This function handles TX empty, and RXNEMPTY in IO mode.
+  * On TX empty interrupt this function reads the received data from RX FIFO
+  * and fills the TX FIFO if there is any data remaining to be transferred.
++ * On RXNEMPTY in IO mode, read up to GQSPI_RX_FIFO_FILL bytes from the RX FIFO.
+  *
+  * Return:	IRQ_HANDLED when interrupt is handled
+  *		IRQ_NONE otherwise.
+@@ -840,11 +841,14 @@ static irqreturn_t zynqmp_qspi_irq(int irq, void *dev_id)
+ 	if (mask & GQSPI_ISR_TXNOT_FULL_MASK)
+ 		zynqmp_qspi_filltxfifo(xqspi, GQSPI_TX_FIFO_FILL);
  
- 	spi_unregister_controller(xqspi->ctlr);
+-	if (dma_status & GQSPI_QSPIDMA_DST_I_STS_DONE_MASK)
++	if (dma_status & GQSPI_QSPIDMA_DST_I_STS_DONE_MASK) {
+ 		zynqmp_process_dma_irq(xqspi);
+-	else if (!(mask & GQSPI_IER_RXEMPTY_MASK) &&
+-			(mask & GQSPI_IER_GENFIFOEMPTY_MASK))
++	} else if ((mask & GQSPI_IER_RXNEMPTY_MASK) ||
++		   (!(mask & GQSPI_IER_RXEMPTY_MASK) &&
++		    (mask & GQSPI_IER_GENFIFOEMPTY_MASK))) {
++		/* Drain on RXNEMPTY for IO-mode transfers > GQSPI_RX_FIFO_FILL. */
+ 		zynqmp_qspi_readrxfifo(xqspi, GQSPI_RX_FIFO_FILL);
++	}
  
-+	/*
-+	 * Mask at the interrupt controller, same reasoning as
-+	 * zynqmp_qspi_shutdown(): the write below cannot recall a handler
-+	 * the GIC already dispatched.
-+	 */
-+	disable_irq(xqspi->irq);
-+
- 	zynqmp_gqspi_write(xqspi, GQSPI_EN_OFST, 0x0);
- 
- 	pm_runtime_disable(&pdev->dev);
+ 	if (xqspi->bytes_to_receive == 0 && xqspi->bytes_to_transfer == 0 &&
+ 	    ((status & GQSPI_IRQ_MASK) == GQSPI_IRQ_MASK)) {
 
 -- 
 2.43.0
