@@ -2,84 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83EAA606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 05:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E639F60A262D
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 06:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tq4qh/LL;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=icenowy.me header.i=@icenowy.me header.a=rsa-sha256 header.s=zmail2 header.b=Shf9I945
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zPLSNKd3;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=d4VwE87c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sxOBPrCyzV/VX68JlD+bnzHrsOO/mwcMVPnkr3sQCJE=; b=tq4qh/LLxOsmJmwXFTW/agRGvy
-	WUje6uEd0RXQGTjtRLxXqThMePjw7MkcC70VLp1o3DqH0nyQpjNM9XGrS0Xd2pfM0sp21ql1R2iK0
-	kzlcJU4Bz2cFYabIUUqDWmzjuohXW8LxC0AeOIhNTgsyL3IXCuiM8IYIoh2QdBd1dKMY1gvC/2+tt
-	ZZJHYKr5Jrgy10C5cIlzb8c9fvrdMiZhg1tLTx+zugKWFwMwPXJo2PsvnmXpCgmYXn9vp9Y/v168F
-	EBw/yKgHHUiLdr2uzF5HrLH2w9N0qnM5QZmOq0sbGvA06ip5rokrNcM0/j6sIp0DfjYzFiS/6E2Dt
-	9ujCO+rw==;
+	bh=jucsGGsP4A94CkjewiCz+sSfRnTZY+EbzcNS/u6Mk/w=; b=zPLSNKd3qOfg0bEqJJUhONlt+u
+	oK5QysYa7zf45nTSHs9e66Bq57XZZ9JkrjdtTXNbo1V2Gab8xv3Kfv658WhkQ3d/uAo41bUJmjnGr
+	O9fSuCRmusbhqvQUndE90cpJsw3yRHlbu/USLbauWWT9yN6LEU2hFN+9Rdz5P8RsHXuQJiqPT/KI0
+	ZouMNp192+UZLbQJXc1qBp4PBS39HQvaIn9bX6UkUfaTEEL6fveWqQs00uGokwXLeWikbVHrRBj6H
+	ZlcaBgCuN0k2HaLOc70RU00VM8XF4y/PU4ZU81EuRYJwoAg+O346nWl9wpipvX7U5alSKwMnPz9oS
+	cWNa6ykQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSSXl-0000000H4uw-0U4V;
-	Sun, 15 Nov 2026 05:12:45 +0000
-Received: from sender5-op-o15.zoho.com ([165.173.182.15])
+	id 1xSTSX-0000000H6bb-2k96;
+	Sun, 15 Nov 2026 06:11:25 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSSXg-0000000H4uP-3x3C;
-	Sun, 15 Nov 2026 05:12:44 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794719509; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=JOGlxjHP0/DLspL53khKYZ0SgtKL6wuFzI00xEcjsX2X0naxDeDwG+mN0JTsz+5zf0ZCsFsBMFVqrfaYnQkAUR3t8lbRG8f1BqRhvEj48tV95ZrVQTmeVdXAt/QIi6mKdxRQO4HSe+Y2wYyGGmY5++jbPgiD+NxssVDB9aWoBjQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794719509; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=sxOBPrCyzV/VX68JlD+bnzHrsOO/mwcMVPnkr3sQCJE=; 
-	b=JTenAkqIMAIIKYfr7QF4ukYjfy4yNh7djxPijM5gJBR3O9VQkxjSsfcuEF+p9XA5MdQEuNgbt7oMj340d21QTX0xU1gbejcKMOP0wnSw4pDSpshTztxX0p8eRsiJSxdrfO19Rmjh226WJc5Bx5ELVWdzILkLoI3UZafzszEw3oM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: a=rsa-sha256; b=Shf9I945a9oA67J+8Ds7UcvmrKj5kNlbGheeRhdtymi+TrNqZRK6TwdNA0v0w0R1b75OQzmI+Pyn/9GuzyrrZRQfM0JQGmkR68MafrCHVXz++GT9O2md5umoQoi44aXHOxbY6STIXDFBFIAEQXgeWQUE//D0QAsCIq6o9b5zNPUZt+5+wuziXnY35ZuNhZHvxU7OHkjnTNRyt2a3mSonSL2WllJDuNrDRkoqTTG0IN5p2Lc+cTSCHPlIF9dSfOHF+TkdKAJJrJV1uxIjEm7+Zqpjmq88uP2UTLimDIQ3QB1f6xrpwLEoaunTnY0SDU7qEWPeTq0v3mNjL5iZ6ia4tA==; c=relaxed/relaxed; s=zmail2; d=icenowy.me; v=1; bh=sxOBPrCyzV/VX68JlD+bnzHrsOO/mwcMVPnkr3sQCJE=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794719506138787.2843822660936;
-	Sat, 14 Nov 2026 21:11:46 -0800 (PST)
-Message-ID: <45f41ca4bcc76a6c5d0b9180c6492308ec3e85c9.camel@icenowy.me>
-Subject: Re: [PATCH 19/19] MAINTAINERS: add an entry for the Allwinner V861
- SoC
-From: Icenowy Zheng <uwu@icenowy.me>
-To: gaohan@iscas.ac.cn, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt	
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti	
- <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Guo Ren	
- <guoren@kernel.org>, Thomas Gleixner <tglx@kernel.org>, Radu Rendec	
- <radu@rendec.net>, Samuel Holland <samuel.holland@sifive.com>, Daniel
- Lezcano	 <daniel.lezcano@kernel.org>, Anup Patel <anup@brainfault.org>,
- Stephen Boyd	 <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet	 <jbrunet+clk@baylibre.com>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec	 <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Philipp Zabel	 <p.zabel@pengutronix.de>, Alexandre
- Belloni <alexandre.belloni@bootlin.com>,  Maxime Ripard
- <mripard@kernel.org>, Linus Walleij <linusw@kernel.org>, Andre Przywara
- <andre.przywara@arm.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
- devicetree@vger.kernel.org, 	linux-csky@vger.kernel.org,
- linux-sunxi@lists.linux.dev, 	linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-rtc@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Date: Sun, 15 Nov 2026 13:11:31 +0800
-In-Reply-To: <20261114-v861-v1-19-eb71ec3ee523@iscas.ac.cn>
-References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
-	 <20261114-v861-v1-19-eb71ec3ee523@iscas.ac.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	id 1xSTSU-0000000H6ar-2yaz
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 15 Nov 2026 06:11:24 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4bb6adaf0f1so1247615e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 22:11:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794723081; x=1795327881; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=jucsGGsP4A94CkjewiCz+sSfRnTZY+EbzcNS/u6Mk/w=;
+        b=d4VwE87cp9JotJcc+jTuKE9D4iDqhkD+9zDOWRxSfYrmrKJXVLbnyo1tYiY+8O22o8
+         PGYG6uJvqcm9yYymSYK5zGHwDzie4UTtzxfSW9PYG+fDyrCIzb0EAEq9M8VVDaZRA/BJ
+         i1EGWnHdd/tVWOyZzN1SXD3V1/WvIWTePW2RekqngCml4ahNal8WJ3TDI77ZannJqLsZ
+         wz3i0iiTLFQc/d6Lt9csR+OvjxMXsXaSWBhLRDePPLwEwayECY9UGYx3rnbQo6faHXjd
+         5KNkNLUQknAESzAehBD+uEt8Ny9SBpVIxgoD8te6v7JxVy3FskjmTBToPd/cMEwlDNPv
+         4Bug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794723081; x=1795327881;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=jucsGGsP4A94CkjewiCz+sSfRnTZY+EbzcNS/u6Mk/w=;
+        b=UkYIKVe1JwXjbMxaj/PHDKdUF1bqYalYIGjVTWRZJ9DfV5lJo/dEAetAH9kjBLGlxw
+         dIT+H6mDy/DA1RLF4ShXYuDswIJ/l/1iwNli5DsWYaTnBe3YBPq5TMlZLjuWAMgsrZcv
+         3jV9Zb5O6hcPY5334Nrhe3xE/SLfA8qCvk4mgRTGVYtTFy42+Q/GJEXt+DExNHXjmFjt
+         bOZTDB2dc6c6+YiMcyroQBuPAxPAMSTa2o+lybks8p3MSe7PkZ5FoEXr+bkALrQq4sSl
+         +NW2OlyE/WG4zroBhRICMvQ0wrtdtH4vGFfAUYiOa5FZUq+UWjOB421Rh7wefrc2YMsM
+         BE2Q==
+X-Forwarded-Encrypted: i=1; AL+hErFrwoqsDixzJN0d2ahVUKLPpEBXdrFb302UeN5m4ERZs6lMj6FpeyCm0jyC1GFLUDRylpa6V8CGyN2dvYw07Otm@lists.infradead.org
+X-Gm-Message-State: APuU4Z+QNclaL2JF/PNqeHunWwyav3pX/O7VtWseXWo8WpPvR792XMpP
+	aX7aDgSjWTnOXonW7W7qtJvPCF6LIhKsgQg+55kR4eO/AYhmSSTWzfq9
+X-Gm-Gg: AYBFou2PKmT62sk57owztfpiSiQsh/vG8ULpETGvsqx7XsqLLrGPGYvyq0UqnF+btY5
+	VdsLcxDjUm55pQKN17iwhpWga/tRHmofZ4Acpf5RuShjS11VZYsfaj23O5hX7shRc4ZD7tYgXgC
+	521hzgGDXiraLLjwf7B+bk0xDyuvcXC/xICeQgBoc8oGeAeB+eFNCNrVxupoj+R3lCWePZ4Sqck
+	hBCpTKYHawDBSttR7V0K0Ro7V5octz0ovbshRL323xwRxr5/+zfqnZb4uEj0LN/xKbfUFnwyce0
+	iVAplr2Q44tLB8dVQoRZMi41sI6AFsI7arS8W1LG14Fp02rkM7+PVj5BxuZZ0ffWKBkgRmJO7mz
+	8hb88prZPotBYJuwUG6iGqYH2q9a6X61HuRTKwFnd8qfaYrblzq2fVvg+p+KSNYhxjm3GTuWYx4
+	kuphWHQlWbcIOXwqP48A0KTO+wrYCfnUEHDDnOEbWvpqZRd/++WuR1GEd7B69Sq7qfNwhVnxh6P
+	i9BP4n1no4ABrF023pe2QowqP5HApdvcw3Wz2RScyAu99x4Rn8Uj3a5c79v0KcdaohVTkxYNcqt
+	2bgZb3sIYcNN9Ki5Q0GFh4Utqmif5DTkz4Gc0xn1miFBUzTjIrWVmDaCb3vOVknKnsw0RRGqavk
+	9sQajpIEptOB53Ip+YCgE08EyFDBSozFpiOJHrP2DLwXrFslsVHhCM89JUTtkTqO95RXTNb/Vyc
+	c1r3BgVrk9CbCiOKqTmdaFP6hUEpXgpEDO4LOupsBeTddxzvsaMwT2VnQ7DE6Rb+GJXyjuZmoxI
+	02qsnMOK6CTjw==
+X-Received: by 2002:a05:600c:4e56:b0:4ac:aae6:6400 with SMTP id 5b1f17b1804b1-4bb55a48042mr148514035e9.13.1794723080596;
+        Sat, 14 Nov 2026 22:11:20 -0800 (PST)
+Received: from jernej-laptop ([2a00:ee2:6a02:9300:bb69:6bcf:1b11:e85b])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb5ba25b50sm139331075e9.14.2026.11.14.22.11.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Nov 2026 22:11:20 -0800 (PST)
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Chen-Yu Tsai <wens@kernel.org>,
+	Samuel Holland <samuel@sholland.org>
+Cc: mripard@kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	bmasney+clk@redhat.com,
+	jbrunet+clk@baylibre.com,
+	sboyd@kernel.org,
+	Andre Przywara <andre.przywara@arm.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v3 0/8] drm/sun4i: update DE33 support
+Date: Sun, 15 Nov 2026 07:10:54 +0100
+Message-ID: <20261115061102.229680-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_211241_069936_E72A5644 
-X-CRM114-Status: GOOD (  10.17  )
+X-CRM114-CacheID: sfid-20261114_221122_800809_05639CCC 
+X-CRM114-Status: GOOD (  15.85  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,56 +117,96 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-=E5=9C=A8 2026-11-14=E5=85=AD=E7=9A=84 06:33 +0800=EF=BC=8CHan Gao via B4 R=
-elay=E5=86=99=E9=81=93=EF=BC=9A
-> From: Han Gao <gaohan@iscas.ac.cn>
->=20
-> Add myself as maintainer for the V861 bindings, clock and pin control
-> drivers and device trees.
+This is second series out of tree which aims at properly introducing
+support for H616 Display Engine 3.3. Previous series [1] reorganized
+driver so proper DE33 support can be easily implemented.
 
-I think traditionally sunxi do not add maintainers for specific SoCs.
+H616 DE33 support was actually introduced a while back, but it was done
+without fully understanding hardware design. Issue with existing binding
+is that it considers planes as resource which is hardwired to each mixer
+as it was done on older Display Engine generations (DE3 and lower). That
+is not the case anymore. This series introduces new driver for planes
+management, which allows doing proper plane assignments.
 
-Maybe you should patch the regexp of "ARM/Allwinner sunXi SoC support"
-item instead.
+Note that this series intentionally breaks existing H616 DE33 mixer
+binding, which was released in v6.17. Old binding can't describe shared
+planes, so second mixer can't be supported with it, and it never had any
+user - there is no H616 Display Engine node in upstream DT, rest of H616
+display pipeline is not upstream yet and no other known DT consumer
+implements it. Reasons are documented in patch 7 and driver prints error
+asking to update DT if old binding is detected (patch 8). See v2
+discussion for more details.
 
-Thanks,
-Icenowy
+Remaining patches, which introduce all the missing bits to fully support
+display pipeline on H616 SoC, will be sent once this series is merged.
+WIP patches, which can be used for testing purposes, can be found at [2].
 
->=20
-> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
-> ---
-> =C2=A0MAINTAINERS | 12 ++++++++++++
-> =C2=A01 file changed, 12 insertions(+)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 93abbb315065..dfc300dc1eb2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -24031,6 +24031,18 @@ F:	drivers/irqchip/irq-riscv-intc.c
-> =C2=A0F:	include/linux/irqchip/riscv-aplic.h
-> =C2=A0F:	include/linux/irqchip/riscv-imsic.h
-> =C2=A0
-> +RISC-V ALLWINNER V861 SoC SUPPORT
-> +M:	Han Gao <gaohan@iscas.ac.cn>
-> +L:	linux-riscv@lists.infradead.org
-> +L:	linux-sunxi@lists.linux.dev
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/clock/allwinner,sun252i-
-> v861-ccu.yaml
-> +F:	arch/riscv/boot/dts/allwinner/sun252i-v861*
-> +F:	drivers/clk/sunxi-ng/ccu-sun252i-v861*.c
-> +F:	drivers/pinctrl/sunxi/pinctrl-sun252i-v861*.c
-> +F:	include/dt-bindings/clock/sun252i-v861*.h
-> +F:	include/dt-bindings/reset/sun252i-v861*.h
-> +
-> =C2=A0RISC-V ANDES SoC Support
-> =C2=A0M:	Ben Zong-You Xie <ben717@andestech.com>
-> =C2=A0S:	Maintained
+Please take a look.
+
+Best regards,
+Jernej
+
+Changes since v2:
+- rebased on v7.4-rc3+ (mainline sun4i fixes)
+- patch 1: explain in commit message that DE33 has only one bus clock
+- patch 2: don't register regmap with syscon, drop preset plane mapping
+  and reword commit message
+- patch 4: don't expose YCbCr color properties on planes without YUV
+  formats (kept Chen-Yu's R-b)
+- patch 5: collected Krzysztof's R-b
+- patch 6: renamed, get mapping regmap from display clocks device and
+  add device link instead of using syscon, defer probe until display
+  clocks are bound, set drvdata only after mapping is initialized,
+  register driver from mixer module instead of module_platform_driver()
+- patch 7: explain in commit message why old binding is incompatible and
+  will not be supported
+- patch 8: renamed, initialize blender pipe modes for DE33, add device
+  link to planes device, limit DE33 display regmap to its 128 KiB region,
+  print error asking to update DT when old binding is detected
+
+Link to v2: https://lore.kernel.org/linux-sunxi/20260509190015.79086-1-jernej.skrabec@siol.net/
+Link to v1: https://lore.kernel.org/linux-sunxi/20251115141347.13087-1-jernej.skrabec@gmail.com/
+
+[1] https://lore.kernel.org/linux-sunxi/20251104180942.61538-1-jernej.skrabec@gmail.com/T/#t
+[2] https://github.com/jernejsk/linux-1/commits/sun4i-drm-refactor/
+
+Jernej Skrabec (8):
+  clk: sunxi-ng: de2: Fix Display Engine 3.3 definitions
+  clk: sunxi-ng: de2: Export register regmap for DE33
+  drm/sun4i: Add support for DE33 CSC
+  drm/sun4i: vi_layer: Limit formats for DE33
+  dt-bindings: display: allwinner: Add DE33 planes
+  drm/sun4i: Add DE33 shared plane driver
+  dt-bindings: display: allwinner: Split H616 DE33 layer reg space
+  drm/sun4i: Switch DE33 to split plane bindings
+
+ .../allwinner,sun50i-h616-de33-planes.yaml    |  46 ++++
+ .../allwinner,sun8i-a83t-de2-mixer.yaml       |  16 +-
+ drivers/clk/sunxi-ng/ccu-sun8i-de2.c          |  82 ++++++-
+ drivers/gpu/drm/sun4i/Makefile                |   3 +-
+ drivers/gpu/drm/sun4i/sun50i_planes.c         | 215 ++++++++++++++++++
+ drivers/gpu/drm/sun4i/sun50i_planes.h         |  43 ++++
+ drivers/gpu/drm/sun4i/sun8i_csc.c             |  71 ++++++
+ drivers/gpu/drm/sun4i/sun8i_csc.h             |   5 +
+ drivers/gpu/drm/sun4i/sun8i_mixer.c           | 193 +++++++++++-----
+ drivers/gpu/drm/sun4i/sun8i_mixer.h           |  10 +-
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c        |  72 ++++--
+ 11 files changed, 663 insertions(+), 93 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
+ create mode 100644 drivers/gpu/drm/sun4i/sun50i_planes.c
+ create mode 100644 drivers/gpu/drm/sun4i/sun50i_planes.h
+
+
+base-commit: b3dfbde62cf1981c4638939c159dfd087b7a72e9
+-- 
+2.43.0
+
 
