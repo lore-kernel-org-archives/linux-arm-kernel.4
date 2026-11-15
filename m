@@ -2,93 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117EA606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 06:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D72F606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 06:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Kk20On6k;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=EK685C6B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BLH0qd4L;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XY6g0QDN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=aE92BuA/q+u7mWs8kchTDkcjs1m/i8lsv1ezZ7OruqU=; b=Kk20On6kKxJcOftw4jFQF52rko
-	1Zz6UHrCreBQy+P/W12vf3y/0STXtu3dGyJDxQPgOPtn/J2yrjJCncBVFC1M4smI9Pel37xKtZPvA
-	BBzXM3gcnHpGcCpBEXBTQsL3j4qXEI1Sv6M+/iY/obj/XXF/uTcCrIhr3fY3SqHoJvW/jmdIrFLsL
-	KjIxJ/ztgOIjiZDZKDo+iT3M3F+73i9fnupEN7fmVNS92bWnBhvU2gbhetSpz1gw3fO0cv19HcXuV
-	TDPaXoUYCC3fllVODanEi2cebPUHMnLikK2YwUWcCDwQ5eMrW61eoTg4BuJ6GyV9CoZeE/jlcQAfi
-	7AtY+HZQ==;
+	bh=5uzNQjIqKu1Z5H5h4ULFcPsML/9M2qNB6yySUHBpd2Q=; b=BLH0qd4Lw1jbt4n2GFBjdi0NyB
+	1kXUCcU3tfFQbOsHBRHQEuu0NA3zwMOtIhlHTzxq4q6PV0jn9RWRd1RvEmDsex8FH+6aDrUPbCV1V
+	BJ2p3+uXUJBXIC0e+pJytr8fRCP+AwjRa41g3MlzYC5ayHVN2VF951DJ630zV/CziZJ6FYQuuisHh
+	uxzYra9BV4zr2ErJsWl9su62xC62AbDV3xrNh+Rn8UMnzbL5ue0ZKyXSi07++6GMjLakyfG8wyk9k
+	u9J8QYHJy0+kF6XSOzffT6PSYJSgHyaBR0SP/wlKYQ+Q6L9n50OHwQggqNdBz14Wgl51VvFQFn409
+	apn0avfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSTru-0000000H8RF-1L2l;
-	Sun, 15 Nov 2026 06:37:38 +0000
-Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
+	id 1xSTtJ-0000000H8bV-2rLa;
+	Sun, 15 Nov 2026 06:39:05 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSTrr-0000000H8QJ-01Bi
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 06:37:36 +0000
-Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c293e604f0eso151932266b.3
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 22:37:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794724652; x=1795329452; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=aE92BuA/q+u7mWs8kchTDkcjs1m/i8lsv1ezZ7OruqU=;
-        b=EK685C6B4qvgHeOjdPFHNpRqiBOop4zjSDapTbg6z3Z2OZI+O4eT0cdpQZm8CyYHKD
-         T0BvzlOGfSdTOoL+T9xrAe11laGd2tXQZHPcbz2TbxIoYWwIbeapbogZPYAmy+v+8li4
-         Ep6EA7jTiu97eNrSxAvdgQ6xwtloXhK1/epxpUwDLJwjhHvOmPM51N93DM+Iy8qd0CU/
-         e+t9lxI1UphxyeY4HwFTmhUJXHrC/sxsIidUjplf+b3GetFVE+LfGufIRyDhQBtPFBm1
-         NRZhpbhx9mOtft/maLkSY543RWK4Nls0NIQSVLwM+Mgfk8L5pEnwtZ45atR82aqiBQIz
-         h1Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794724652; x=1795329452;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=aE92BuA/q+u7mWs8kchTDkcjs1m/i8lsv1ezZ7OruqU=;
-        b=eelG+GSubaiHcmlyaVjdzxUmgpkJwtNNYVIVFLAhRJ1hqkJVmbNAHFrJKRzxkYO2xT
-         leAMC5qmTcrmtU2/yWWjDX9wP+18kMQGouPjzf2KVvbNGa3cFBG1ahHQGCGX/lm9a8EC
-         2K++eKDiJr8z5zU+Tuczbx3LNPkssMsfk4BPT6Met7SwFYQo83OgsPR5A+1mQLqUaudi
-         r0XMMH5b8bFWZ9SuJCFYkE26kN7r43POAKCcHGz71zwLx3Jjycj7zyhPsOt1oywlwhoS
-         Bcw/bs3gxhcWuzlhuZJBvSnIp4K7PrDxfMluGr1xfgUhIOL70XgMgLywfnOABpnHIDGC
-         QY7Q==
-X-Forwarded-Encrypted: i=1; AL+hErE2pGWG/l5iDmRozAx/GS6vJXvWYAbybHcsXg7RKKJzIuXgUnBfqBgH3/iTANhTmXr660diLBJe1tBCDSWMaACq@lists.infradead.org
-X-Gm-Message-State: APuU4Z/kLpc92j1duherLgxjBn4J3GVbBUEv39XiFnXufGIngIr3AmZQ
-	kXwxTJ+BHlYixDxMVQP+HnogDQHWBk1qRJImZXlAwLqEknGUMoaoCRjAazcJzhzO8oEL5Mu/uYS
-	LZSOFumu1cEdumDh+KA==
-X-Received: from ejbge24.prod.google.com ([2002:a17:907:9098:b0:c46:7bd3:aa06])
- (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:a714:b0:c42:5363:38dc with SMTP id a640c23a62f3a-c509637e20cmr533164966b.25.1794724652053;
- Sat, 14 Nov 2026 22:37:32 -0800 (PST)
-Date: Sun, 15 Nov 2026 06:37:31 +0000
-In-Reply-To: <DMROZB8DPEWD.W2BFC7JIBVZP@google.com>
+	id 1xSTtI-0000000H8bB-2P9A;
+	Sun, 15 Nov 2026 06:39:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B208B43965;
+	Sun, 15 Nov 2026 06:39:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF9C1F000C4;
+	Sun, 15 Nov 2026 06:38:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794724743;
+	bh=5uzNQjIqKu1Z5H5h4ULFcPsML/9M2qNB6yySUHBpd2Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=XY6g0QDNlp+U9PsTjMW6Z7U+4AKhATHLs5He0CZN49f2Nu0bcao4bAPuuwEsft6FI
+	 TWnoj+VGBoUPTmb0EJCJXCsTtwSE0k13bv5Te+OZ5Acn6pVLSE5i/fhLT5QGKgwaOk
+	 Ucb2W6afh0Q1yzMIuWl0IoyL1xjTDc8J5WHHCJWlw82oKPLfFptJE13O1Ok9X62IyP
+	 xkoneXTm1OtIXF7WSDiXJH8M/fRN/bG7+qbjc7kJUeud8mWA9cz/xm6XTt15y1BZge
+	 qGkeMJ/mOBJIxREW4t6uml5kStkcI3+UGIwjK5RYkeEIMSPndyRf3R1y4lpuaoL/kN
+	 M2jExDr2sEOLQ==
+Date: Sun, 15 Nov 2026 08:38:46 +0200
+From: Mike Rapoport <rppt@kernel.org>
+To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	"Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
+	Alexandre Ghiti <alexghiti@rivosinc.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	=?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Donald Dutile <ddutile@redhat.com>,
+	Eric Chanudet <echanude@redhat.com>,
+	Heiko Carstens <hca@linux.ibm.com>, Helge Deller <deller@gmx.de>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Kent Overstreet <kent.overstreet@linux.dev>,
+	Liviu Dudau <liviu@dudau.co.uk>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nadav Amit <nadav.amit@gmail.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Philippe =?iso-8859-1?Q?Mathieu-Daud=E9?= <philmd@linaro.org>,
+	Rick Edgecombe <rick.p.edgecombe@intel.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Sam Ravnborg <sam@ravnborg.org>, Song Liu <song@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Thomas Gleixner <tglx@linutronix.de>, Will Deacon <will@kernel.org>,
+	bpf@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+	linux-mm@kvack.org, linux-modules@vger.kernel.org,
+	linux-parisc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-s390@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev,
+	netdev@vger.kernel.org, sparclinux@vger.kernel.org, x86@kernel.org
+Subject: Re: [PATCH RESEND v8 11/16] powerpc: extend execmem_params for
+ kprobes allocations
+Message-ID: <avlTdlK9ErlqVRYl@kernel.org>
+References: <20240505160628.2323363-1-rppt@kernel.org>
+ <20240505160628.2323363-12-rppt@kernel.org>
+ <3f7af771-87a7-4ae7-9919-bc4c23bd31c9@kernel.org>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261110050202.529473-1-tarunsahu@google.com> <20261110050202.529473-3-tarunsahu@google.com>
- <DMROZB8DPEWD.W2BFC7JIBVZP@google.com>
-Message-ID: <9huzjymepplg.fsf@tarunix.c.googlers.com>
-Subject: Re: [PATCH v4 02/19] kho: block: Record the entry size in the block header
-From: tarunsahu@google.com
-To: David Matlack <dmatlack@google.com>, Pasha Tatashin <pasha.tatashin@soleen.com>, 
-	Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, maz@kernel.org, will@kernel.org, 
-	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
-	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
-	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
-	gle.com@google.com, pbonzini@redhat.com, 
-	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org
-Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
-	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
-	linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_223735_063590_AE8923BB 
-X-CRM114-Status: GOOD (  24.15  )
-X-Spam-Score: -9.5 (---------)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3f7af771-87a7-4ae7-9919-bc4c23bd31c9@kernel.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,67 +103,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-"David Matlack" <dmatlack@google.com> writes:
+Hi Christophe,
 
-> On Tue Nov 10, 2026 at 5:01 AM UTC, Tarun Sahu wrote:
->> Add an entry_size field to struct kho_block_header_ser. On the outgoing
->> side, record bs->entry_size into every block header during allocation.
->> During restoration, derive the entry stride directly from the block
->> header instead of relying on caller-supplied dimensions. The
->> kho_block_set_init() interface remains unchanged. A zero entry size,
->
-> Since the entry size now comes from the block headers, incoming block
-> sets should not take an entry size at all. I pointed this out on the
-> PCI patch (16/19) as well. As is, every incoming path still calls
-> kho_block_set_init() with this kernel's (outgoing) entry size, which
-> kho_block_set_restore() then silently overwrites. That makes the
-> callers (e.g. pci_flb_retrieve() and the LUO session/file restore
-> paths) read as if they iterate incoming entries with the outgoing entry
-> size. kho_block_set_restore() should initialize the block set itself
-> from the incoming block headers, and the incoming paths should drop the
-> kho_block_set_init() call.
->
-I agree, responded to the PCI 16/19 patch.
+On Fri, Nov 13, 2026 at 03:36:01PM +0100, Christophe Leroy (CS GROUP) wrote:
+> Hi Mike,
+> 
+> Looks like I missed this change ...
+> 
+> Le 05/05/2024 à 18:06, Mike Rapoport a écrit :
+> > From: "Mike Rapoport (IBM)" <rppt@kernel.org>
+> > 
+> > powerpc overrides kprobes::alloc_insn_page() to remove writable
+> > permissions when STRICT_MODULE_RWX is on.
+> > 
+> > Add definition of EXECMEM_KRPOBES to execmem_params to allow using the
+> > generic kprobes::alloc_insn_page() with the desired permissions.
+> > 
+> > As powerpc uses breakpoint instructions to inject kprobes, it does not
+> > need to constrain kprobe allocations to the modules area and can use the
+> > entire vmalloc address space.
+> 
+> Using breakpoint means the segment must still be executable.
+> On book3s/32 VMALLOC segment is not executable, while module segment is.
+> 
+> See commit 6ca055322da8 ("powerpc/32s: Use dedicated segment for modules
+> with STRICT_KERNEL_RWX")
+> 
+> See report and fix at https://lore.kernel.org/all/ed03d290d440d579a81ae0b7de5243721291d903.1794543909.git.ritesh.list@gmail.com/
 
-> Please also add an accessor for the entry size, e.g.
-> kho_block_set_entry_size(). Users of the block set need it to check that
-> incoming entries are large enough for the fields they read, and that
-> the fields of a feature are within the entry.
+I'll take a look, thanks!
+ 
+> Christophe
 
-Sure, Will update it.
-
-> [...]
->
->> + * Each block header also records the size of its entries. A newer kernel may
->> + * append fields to an entry, so the kernel that writes a block and the kernel
->> + * that reads it can use different entry sizes. The reader steps through the
->> + * entries with the recorded size, so every entry is found, and it does not read
->> + * beyond the recorded size of an entry.
->
-> KHO blocks can't guarantee the last part. The iterator returns a void *
-> that the caller casts to its own struct, so it is up to the caller to
-> not read fields beyond the entry size. Please document that callers must
-> check the entry size before accessing fields that may not be present.
-
-Yes, I meant the same thing. by having a check on entry_size reader must
-prevent itself to read beyong the provded entry_size. I update the
-correct the documentation.
-
-Also, I realize tha, after checking the base fields using offsetofend,
-for any following new feature fields, a entry_size should also be
-compared against the readers offsetofend till this feature field for
-required fields. Incase reader does not have that field and
-kho_ser_validate passes, that means that field certainly is optional.
-
-I can add this also part of the documentation.
-
-~Tarun
+-- 
+Sincerely yours,
+Mike.
 
