@@ -2,65 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB26606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 00:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86EAF606A8AE
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 00:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f+jGfmZ2;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=l/hFXcNe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wqD/eaiT;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=B9oIFjIp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=kHIIHcLqTbRuwWpPuK1atPf48K3n1KHOK4sFy1WmaxY=; b=f+jGfmZ2d8ghKznyloWrcHGr2m
-	7JX09WhPvp2Nulg0pzyjBmsCX4+iTtB3EH0wBPWOfcWzfdmJ2NNhbEsUSjyxTKCN5uwbAe+dDbZ3q
-	ieUtD7fx8r8HiXFgUOvlp3Y9seYN+dJVvLmzOcx6BTWAQv4e8OgilmQ5U3PXSgRSJhJS25/5wmPbT
-	t78Ts9D0jdzt398S+01oqCMIa3nSiFoWgQWYfDYX8Fxie03oPr3OvHWyg0e7Q1hAX3RE+3fUdIEtb
-	qsxJMcZKQ/bb5/a3yjGki6jWVNeMJyQAp8z1oCBv8iUKMiIXKsyCko2Vp8TUi9b3PdnK/r0xAEslj
-	MoDnMtRg==;
+	bh=RiNYzztBiVox2P9vASzVZ5SqLcQATUvhICdg6qPjINc=; b=wqD/eaiTb0Ow2wA+svAU1hmeEw
+	iKHeO0c59yckBZbetk9rdv4K7HIrE4KcILnPEdpLuU99S9zmt9J+xIaeDWjpoWQzFraz8JXmgraYy
+	HfrHshH8gEfAu2whA+neGQHlXEnDXzWtCIsEn+cgqnzfGgmUQF12jNMvK/xoIlWFKMD5plBEz+HQ+
+	ve2lh+0o66lhEoZ3zFpEi09K2fEJnCVzWGQbNZQLkmoL7GQtpjHQb3CUR6i7Uot5klazJimuVe9EH
+	zKE6voE0rYX9SK/VHbQ1CAldgHkYVAr795TP4emBhrdaEELSeJZL3VnahaBT3F6KxMeqagQvQ0hQr
+	YxIEM4WQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSNw5-0000000GuiF-1NZX;
-	Sun, 15 Nov 2026 00:17:33 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSNw2-0000000Guhq-2TNu
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 00:17:32 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E3CD7143D;
-	Sat, 14 Nov 2026 16:17:23 -0800 (PST)
-Received: from thinkpad-e142931.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F3B413F673;
-	Sat, 14 Nov 2026 16:17:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794701846; bh=kxN6iZQ2hHfg8DYo4csM3MJfm3vVSM5qRDmT3A1+2W0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l/hFXcNe8QEyaDd4jcOXCx55+lmgETEBj2/kKhVTD/bva2xXH7EwHo8zRK5h90eqp
-	 jJcOmEZd/XnSZJLLNtqOgJugnslkeGoAEaYuygjR++Klc0hNPsBLLrQB3BxFZ3x2YO
-	 xGITULcfZFoG+tqE/7EeWQhAcExE2i200ZhG2uig=
-Date: Sun, 15 Nov 2026 00:17:19 +0000
-From: Wei-Lin Chang <weilin.chang@arm.com>
-To: Sascha Bischoff <sascha.bischoff@arm.com>, 
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, kvm@vger.kernel.org
-Cc: maz@kernel.org, oliver.upton@linux.dev, joey.gouly@arm.com, 
-	suzuki.poulose@arm.com, yuzenghui@huawei.com, peter.maydell@linaro.org, 
-	lpieralisi@kernel.org, timothy.hayes@arm.com, fuad.tabba@linux.dev
-Subject: Re: [PATCH v2 11/16] irqchip/gic-v5: Enable direct injection in ITS
-Message-ID: <jjok7alo24golbl53cpyo2j7ypnm57eheoz2cimsizied6l5ru@nt2wy2klyoiq>
-References: <20261102194454.4086911-1-sascha.bischoff@arm.com>
- <20261102194454.4086911-12-sascha.bischoff@arm.com>
+	id 1xSOMn-0000000Gvml-28qN;
+	Sun, 15 Nov 2026 00:45:09 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSOMl-0000000GvmC-2mkL;
+	Sun, 15 Nov 2026 00:45:07 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E53D843784;
+	Sun, 15 Nov 2026 00:45:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D23961F000C6;
+	Sun, 15 Nov 2026 00:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794703506;
+	bh=RiNYzztBiVox2P9vASzVZ5SqLcQATUvhICdg6qPjINc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=B9oIFjIpjbmmPQ+cWOXhJq27CVqHZyMqMXeRl0v0fIqJUPmhOAKcHMx5KH964FbWa
+	 JytEmlvgcb06DNNDmXNvsxW/WOMXVjUudSCAK5fQ4Jtu5+GyhhihJFhh0+E5aD4LSV
+	 GaJFmAHqKaIbM1KMdJBgQ9Hq2ROYo2jjX/M5VJSWP6chZdXE+7rbkiwIJ895jBD+qN
+	 UyCp8lni+zNkBTTa+HlbEkZHOd6VH5KMo/UFGeZoJC6gVA+Z1fRzW6wT4zc+4JCPmW
+	 vqPG7LqdsN3DWUOVrzq6jos3lFVumqCw/LyUVHmGJFeJQ3aWG6CUEm0Mz5iZnjHkmp
+	 T1arq23Wx508Q==
+Subject: Re: [PATCH net-next v6 2/3] net: ethernet: mtk_eth_soc: skip page_pool
+From: netdev-bot+sashiko@kernel.org
+To: sandeeph@loljews.com
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, linux@armlinux.org.uk,
+ daniel@makrotopia.org, mason-cw.chang@mediatek.com, frank-w@public-files.de,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Sun, 15 Nov 2026 00:45:05 +0000
+Message-ID: <179470350538.2199510.6670148874523069932@kernel.org>
+In-Reply-To: <patch-2a89212e66b84e37783e0d2ebdaa0a75@loljews.com>
+References: <patch-2a89212e66b84e37783e0d2ebdaa0a75@loljews.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261102194454.4086911-12-sascha.bischoff@arm.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_161730_778210_8450FCEE 
-X-CRM114-Status: GOOD (  18.53  )
-X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,62 +74,193 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 02, 2026 at 07:44:49PM +0000, Sascha Bischoff wrote:
-> Allow KVM to replace a host ITTE with a virtual translation that
-> directly injects an interrupt into a guest. Add an irq_chip callback to
-> install and remove the virtual translation, and disable lazy masking
-> while the interrupt is forwarded. The KVM caller is added later.
-> 
-> The ITS writes the ITTE before invalidating its cache. If invalidation
-> times out, hardware may still use the virtual translation even though
-> setup failed. Allow disable to restore the host ITTE when the forwarded
-> flag is clear, and retain retryable state if restoration also times
-> out. Keep lazy masking disabled until the host mapping is restored.
-> 
-> Co-authored-by: Timothy Hayes <timothy.hayes@arm.com>
-> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> ---
->  drivers/irqchip/irq-gic-v5-its.c   | 141 +++++++++++++++++++++++++++++
->  include/linux/irqchip/arm-gic-v5.h |   8 ++
->  2 files changed, 149 insertions(+)
-> 
-> diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
-> index 28e39b065de0e..d91f4ea1ef440 100644
-> --- a/drivers/irqchip/irq-gic-v5-its.c
-> +++ b/drivers/irqchip/irq-gic-v5-its.c
-> @@ -61,6 +61,48 @@ static void its_writeq_relaxed(struct gicv5_its_chip_data *its_node, const u64 v
->  	writeq_relaxed(val, its_node->its_base + reg_offset);
->  }
+Thank you for your contribution! Sashiko AI review found 2 potential
+issue(s) to consider.
+
+Critical: 0 · High: 0 · Medium: 1 (2) · Low: 1
+
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
+
+- [Medium] mtk_rx_alloc() (drivers/net/ethernet/mediatek/mtk_eth_soc.c)
+  now creates the page_pool only when `ring->buf_size <=…
+- [Low] The new comment in mtk_rx_alloc() and this commit's message both
+  name `mtk_max_buf_alloc()` as the fallback allocator.
+
+Pre-existing issues:
+- [Medium] This problem wasn't introduced by this patch, but
+  mtk_rx_alloc() leaks ring->data on two error paths.
+- [Medium] This problem wasn't introduced by this patch, but
+  mtk_rx_clean() calls `dma_unmap_single(eth->dma_dev, rxd1|addr64,…
+
+--
+
+net: ethernet: mtk_eth_soc: skip page_pool
+
+This patch makes mtk_rx_alloc() create a page_pool only when the ring's
+descriptor length (ring->buf_size) fits within MTK_PP_MAX_BUF_SIZE. Larger
+rings fall back to the netdev_alloc_frag() path. With the current MTU
+limits the gate always passes. It is meant to take effect with the 9K
+jumbo support that follows.
+
+Link: https://github.com/mediatek/mtk-openwrt-feeds
+
+> diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> index 6c8b039fad415..16c3e4157085b 100644
+> --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> @@ -2824,7 +2824,13 @@ static int mtk_rx_alloc(struct mtk_eth *eth, int ring_no, int rx_flag)
+>  	if (!ring->data)
+>  		return -ENOMEM;
 >  
+> -	if (mtk_page_pool_enabled(eth)) {
+> +	/* A page_pool hands out order-0 pages and is created with
+> +	 * MTK_PP_MAX_BUF_SIZE, so it can only back a ring whose descriptor
+> +	 * length fits.  Larger rings use the netdev_alloc_frag()/
+> +	 * mtk_max_buf_alloc() path below instead.
+> +	 */
 
-[...]
+[Severity: Low]
+This isn't a bug, but mtk_max_buf_alloc() doesn't exist yet at this commit.
+The fallback below still calls the LRO-sized allocator:
 
-> +
->  static const struct irq_chip gicv5_its_irq_chip = {
->  	.name			= "GICv5-ITS-MSI",
->  	.irq_mask		= irq_chip_mask_parent,
+			if (ring->frag_size <= PAGE_SIZE)
+				data = netdev_alloc_frag(ring->frag_size);
+			else
+				data = mtk_max_lro_buf_alloc(GFP_KERNEL);
 
-We should also update gicv5_its_irq_chip.irq_mask/irq_unmask to consider
-direct injected vLPIs right?
+The commit message has the same forward reference:
 
-Thanks,
-Wei-Lin Chang
+    Gate the pool on ring->buf_size <= MTK_PP_MAX_BUF_SIZE and let larger
+    rings use the netdev_alloc_frag()/mtk_max_buf_alloc() path that already
+    exists.
 
-> @@ -732,6 +870,9 @@ static const struct irq_chip gicv5_its_irq_chip = {
->  	.irq_get_irqchip_state	= irq_chip_get_parent_state,
->  	.irq_set_irqchip_state	= irq_chip_set_parent_state,
->  	.irq_compose_msi_msg	= gicv5_its_compose_msi_msg,
-> +#ifdef CONFIG_KVM
-> +	.irq_set_vcpu_affinity	= gicv5_its_set_vcpu_affinity,
-> +#endif /* CONFIG_KVM */
->  };
+mtk_max_buf_alloc() comes from the next patch, "net: ethernet:
+mtk_eth_soc: add 9K jumbo". That patch renames mtk_max_lro_buf_alloc() and
+sizes the buffer from ring->frag_size.
+
+Could this patch name mtk_max_lro_buf_alloc() instead, or leave the
+reference to the later patch?
+
+> +	if (mtk_page_pool_enabled(eth) &&
+> +	    ring->buf_size <= MTK_PP_MAX_BUF_SIZE) {
+
+[Severity: Medium]
+When this condition is false on a netsys v2+ SoC, ring->page_pool stays
+NULL and ring->xdp_q is never registered. XDP only runs inside the
+page_pool branch of mtk_poll_rx():
+
+mtk_poll_rx() {
+    ...
+		if (ring->page_pool) {
+			...
+			ret = mtk_xdp_run(eth, ring, &xdp, netdev);
+			...
+		} else {
+			...
+}
+
+At this commit, the XDP admission checks still compare only the per-device
+MTU against MTK_PP_MAX_BUF_SIZE:
+
+mtk_xdp_setup() {
+    ...
+	if (dev->mtu > MTK_PP_MAX_BUF_SIZE) {
+    ...
+}
+
+mtk_change_mtu() {
+	int length = new_mtu + MTK_RX_ETH_HLEN;
+    ...
+	if (rcu_access_pointer(eth->prog) &&
+	    length > MTK_PP_MAX_BUF_SIZE) {
+    ...
+}
+
+Once the shared rings can grow past MTK_PP_MAX_BUF_SIZE, could an XDP
+program attach successfully and then never run? Every packet would then be
+handled as if the program returned XDP_PASS.
+
+This can't trigger at this commit. Non-LRO rings have a buf_size of about
+2110, and HW-LRO rings only exist on netsys v1, where the page_pool is
+disabled.
+
+The next patch, "net: ethernet: mtk_eth_soc: add 9K jumbo", changes
+mtk_xdp_setup() and mtk_change_mtu() to check the shared rx_buf_len. That
+appears to make the admission checks match this gate.
+
+Would it be cleaner to make the admission checks use the same length as
+this gate in this patch, so each step of the series stays consistent?
+
+>  		struct page_pool *pp;
 >  
+>  		pp = mtk_create_page_pool(eth, &ring->xdp_q, ring_no,
 
-[...]
+[Severity: Medium]
+This isn't a bug introduced by this patch, but does mtk_rx_alloc() leak
+ring->data on the error paths right after this?
+
+		if (IS_ERR(pp))
+			return PTR_ERR(pp);
+	...
+	ring->dma = mtk_dma_ring_alloc(eth,
+				       rx_dma_size * eth->soc->rx.desc_size,
+				       &ring->phys,
+				       rx_flag == MTK_RX_FLAGS_NORMAL);
+	if (!ring->dma)
+		return -ENOMEM;
+
+Both paths return with ring->data allocated and ring->dma still NULL. The
+cleanup through mtk_start_dma()->mtk_dma_free()->mtk_rx_clean() only frees
+the array when both pointers are set:
+
+mtk_rx_clean() {
+	...
+	if (ring->data && ring->dma) {
+		...
+		kfree(ring->data);
+		ring->data = NULL;
+	}
+	...
+}
+
+The next mtk_rx_alloc() then overwrites ring->data. So each time ndo_open
+fails at either step, the old array of rx_dma_size pointers is lost.
+
+[Severity: Medium]
+This is a pre-existing issue, but now that the page_pool decision is made
+per ring, should mtk_rx_clean() follow it too? It unmaps every live RX
+buffer unconditionally:
+
+mtk_rx_clean() {
+	...
+			dma_unmap_single(eth->dma_dev, ((u64)rxd->rxd1 | addr64),
+					 ring->buf_size, DMA_FROM_DEVICE);
+			mtk_rx_put_buff(ring, ring->data[i], false);
+	...
+}
+
+For page_pool rings, the pool owns the mapping (PP_FLAG_DMA_MAP), and
+rxd1 holds page_pool_get_dma_addr(page) + MTK_PP_HEADROOM from
+mtk_page_pool_get_buff().
+
+Doesn't this unmap an offset address with ring->buf_size, and then have
+the pool unmap the same page again with PAGE_SIZE when it is destroyed?
+With CONFIG_DMA_API_DEBUG this would be reported. With an IOMMU or swiotlb
+bouncing, it could corrupt the mapping state.
+
+mtk_rx_put_buff() already checks ring->page_pool to decide how to free the
+buffer. Should dma_unmap_single() be skipped under the same condition?
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/patch-4b4c5003bcf028fafd094e719c5e910b%40loljews.com
 
