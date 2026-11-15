@@ -2,66 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EDF606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 00:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B03A606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 00:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i6stAZs0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Wd70A3+b
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gAsWxIKV;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YPs+OaY5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=p1qeezPkjYvl7m0buWilarmr+j2OC6NCeVnUky5I7Ec=; b=i6stAZs0g2mz6ZKTbOqWEpH8rr
-	azxRkHecxi/3wX8P1H7O4IrTfbpaKFXxmlZ68B5Tyd1M98ssKLiBeV3bSjnCjkdhYAtX8uBEz5edn
-	+J/ec9/x4w26+D218BQ3D+wKJwCMUwJBvn2BC01RukbXLnzkw5VUcecsAiUCQfW02MizshuberGhc
-	p7Kxp6C34wPJx1Ug+0UVqFF78n9a33QDt2iPSMj09nfjBXI/fESiW62GqA5tkxP33GlW1oMy7VE4J
-	64yHgqXiWKKipqMaFbPucnCLsO+3AsWtdw3p2vMGY3hxrxuf4oFx6fQXTaLfia28MaKYUVgUPmHCi
-	A6EI3sMg==;
+	bh=wom25+2wqiUds1POyI+eHp228E/IXzic3h0qgPh6IYw=; b=gAsWxIKVN/fJtwUh8XAhKWd2Ee
+	XCjjqyyrcT6BpprEbf+tN/UO7aQ9XK9riD7pjvlnGnvYtQUG6N4Ur7Cdrr5tpesqkN48DfggyH4pn
+	gqTLU10zDWSpuffPCRFox3E3liHv/e+yyRBPwtYm4DtKW7lOHL2hcuJtGtFPLPMjepat9yEpcW90n
+	dQo6FKxIvN+ilrUrDl+ZwXcLEhgVLXtdz6LJzGn7mQSoihSGXYyzCoQGpJifL0y9T5v7DDWieCnSf
+	E4Kt6BuojCJNJ2lOCgaxLEXevAgBsTs2YqzZjokVmqyF1bR5PICxzzKTIxeTKFKhX1kGut+Do86TP
+	rTE8U5bg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSOMn-0000000GvmV-1OXW;
-	Sun, 15 Nov 2026 00:45:09 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSOVm-0000000GwJx-2pu2;
+	Sun, 15 Nov 2026 00:54:26 +0000
+Received: from mail-dl1-x122e.google.com ([2607:f8b0:4864:20::122e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSOMl-0000000GvmB-13Fk;
-	Sun, 15 Nov 2026 00:45:07 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7F99561B38;
-	Sun, 15 Nov 2026 00:45:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 547D91F000C5;
-	Sun, 15 Nov 2026 00:45:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794703505;
-	bh=p1qeezPkjYvl7m0buWilarmr+j2OC6NCeVnUky5I7Ec=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Wd70A3+bv0aZmQ/elxnY9+B8Gdb5zZ2T+8MT97x8b2jpwba7sdix9RBhgo5wJFd/u
-	 0ZL7dD+iz69zk+ANATes9YnkytLrURvVag+CDosKM10OQGRvQJBDOMzvf8uZ/q6Bmp
-	 TBI+RwiaJUmaGAleMRXQVo2rUDEeGSrWwrIfGZqtC1ES3Mw2HJ3UzYtyPuAjwoWQLj
-	 70rMAV2CdmsnwHGCPOsc/suOiBD2aLgqMXe5MoLtaCVSDAz2R4IGqmjZFaAqTOwbyv
-	 gyKvkbwhwIwO3RqBzg/v4oA0O8Rra4qENJDC0yYFsf7JBI7yn+Iq+pWz5T9Bjz79U/
-	 Z6wnD3unudI5A==
-Subject: Re: [PATCH net-next v6 1/3] net: ethernet: mtk_eth_soc: fix the RX
-From: netdev-bot+sashiko@kernel.org
-To: sandeeph@loljews.com
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, linux@armlinux.org.uk,
- daniel@makrotopia.org, mason-cw.chang@mediatek.com, frank-w@public-files.de,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Sun, 15 Nov 2026 00:45:03 +0000
-Message-ID: <179470350391.2199510.1485391861090132860@kernel.org>
-In-Reply-To: <patch-4b4c5003bcf028fafd094e719c5e910b@loljews.com>
-References: <patch-4b4c5003bcf028fafd094e719c5e910b@loljews.com>
-X-sashiko-severity: Low
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	id 1xSOVi-0000000GwJF-3CyT
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 15 Nov 2026 00:54:24 +0000
+Received: by mail-dl1-x122e.google.com with SMTP id a92af1059eb24-1a3c08d6928so3035032c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 16:54:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794704061; x=1795308861; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=wom25+2wqiUds1POyI+eHp228E/IXzic3h0qgPh6IYw=;
+        b=YPs+OaY5t7hwUWnOOLi1oeBcXCNfdK7ZCbCiYq5xwOuQaxGv0PBGt2vX7tHMZ8WDOK
+         o5vKyCjSwwqiCoDzpMcJ94rVxyix1bZGaixC/ndqNqkq9NbPl6nZr/qDZ4omyUNWfK4n
+         ftO5WZl3slqzTWhW9cFD1zl0lFKyD25HzGZGIxPrLOJ6moYKVO8UqTtQHbq+sRqkTP62
+         3B/qOmNfAyRbuEVBjB2Et+7iDsLV0htASif0bXGkUPvq4nEUUF5UqoWfVi6L0wFPCZf7
+         iCzs9pygKULkYQcLp2ie4kCAyUqXTtB0dBF4111CSBnD8H/GGl5V6fxV0TrztgHqxl64
+         mv+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794704061; x=1795308861;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=wom25+2wqiUds1POyI+eHp228E/IXzic3h0qgPh6IYw=;
+        b=JHgR1OsiC2GI6RKVdBL7Y885mIx/LJ/9HLq4dr3GoOMLxErNp5dbjxdHx3pXKBFYRp
+         7PH7Mt8k/V15xkiMZrWEtXOGE01IFc5dilldkh/VPyHQ5CSsfMcAx/UkaZkJi3f5Fnmf
+         +3DZmyC+mij4Pb+ZnCWrDBfSvmsvdvl5/idvJuPzxvuf3JRjh2WoWPlbCNtFPAZejGko
+         B13DM6AH2NV52OUXtclnLrRfLeuxIhLnUzNd+J1FPct8c99weTMWD+9pBARLlhXIbO4f
+         93L6edq8hac/l1OgCkDKsemkrNNJbod9m1B8qD0GjsYhpDITEAnisUoIUKbAmc/PAlKn
+         R+hQ==
+X-Forwarded-Encrypted: i=1; AL+hErEXTh9mu1icqbOVJVP14YuMGF8U98FHkwmSAFh8AZuCHGyB9PWGGnZ81qAhHSSp6MlAf4B9I/VgNjmEhjW6rvpd@lists.infradead.org
+X-Gm-Message-State: APuU4Z+c/GdJGEQBV8TebPnjr7yu24DjzOs0bk1350Su3ZtZ6GCF2VVf
+	n+mPrprNcVa7VeKDxPcVQul8PGl4sVFeUjkfquwXewd5+urXCcoY8UcZGlF1xw+fgDk=
+X-Gm-Gg: AYBFou1Dvb1nMW+h/8ehyjxMOEy+8oWhFz7iy9CYaEcJoXZg14Ll7BnmaNISf6ZuTvz
+	YcK6jfPNpKocUY+RwJM4BQlSHZOrwPJHkH28/wT71098KL1BSkV+ofvZqcq7PfyTiFU7kqQ7ZQR
+	upAnJdo38H2adX9F3qo6YVtc0bRrNrJe3NR3vgC+LVZtMoaRoEuXKVtyru6UMQgNsUrIOwzasrw
+	eTYhxuxxvhN5Aj0Dt2TLWCqDW4XDQrvPxYQ8HW11kNf1thJIql4FmD4oLiQJxq7Rr58Ee/6nqkC
+	2AQ6wwi0SZ+T2AkcaIt81HtkFIkIulNfx7e9ZSS4OLLmn7+CSqqxBBttlInBtTW5bEiIlHejD4d
+	y83pqc7x/8feC1UcpVZa1i65sfi65XbuR93ox9tCSo69FuxbAnZdfZS1WN7xnv44dDZn/Fma7PH
+	GxeAt2i9QOb0A3Mq691GryMkidye1CjwMrEhRJj0jIIS+x0KXXJU4RJ1nitUJrUL5XyrBdqcBN3
+	/Ysd5RBNh1jX1eU8pvbbG5RdrFO/GICRW/D1a8ewBIUlEu2fuQeutaVGJ2ugbWc+DphOjPSF3C/
+	RSMlGH6/7UuUfvHo7VLWG+phBW+r1tA6rJRZ0PtFK5O13wAHvBKBGCV75jLOmnLwrt4=
+X-Received: by 2002:a05:701b:2706:b0:16d:dd5c:4261 with SMTP id a92af1059eb24-1b503120981mr6267107c88.46.1794704060898;
+        Sat, 14 Nov 2026 16:54:20 -0800 (PST)
+Received: from [192.168.35.43] ([218.50.238.131])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b50313d8f5sm29598546c88.3.2026.11.14.16.54.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Nov 2026 16:54:20 -0800 (PST)
+Message-ID: <9c1a915b-dbf5-44d9-88eb-680449348dcd@gmail.com>
+Date: Sun, 15 Nov 2026 09:54:15 +0900
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/8] PM / devfreq: rockchip-dfi: add NO_INTERRUPT perf
+ capability
+Content-Language: ko
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chanwoo Choi <cw00.choi@samsung.com>, MyungJoo Ham
+ <myungjoo.ham@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com
+References: <20260921-rockchip-dfi-cleanup-v2-0-43ff34ac8599@collabora.com>
+ <20260921-rockchip-dfi-cleanup-v2-4-43ff34ac8599@collabora.com>
+From: Choi Chanwoo <cwchoi00@gmail.com>
+In-Reply-To: <20260921-rockchip-dfi-cleanup-v2-4-43ff34ac8599@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261114_165422_823212_3F43681E 
+X-CRM114-Status: GOOD (  24.43  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,122 +114,60 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: chanwoo@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found more severe
-issue(s) in other patches of this series. This mail is only an FYI, in case
-you want to address the nit picks below when you respin.
+On 9/22/2026 5:32 AM, Sebastian Reichel wrote:
+> From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> 
+> The perf subsystem's PERF_PMU_CAP_NO_INTERRUPT is a bit of a
+> misnomer.[1] Instead of meaning that the PMU has no interrupt, it
+> actually means that the PMU does support sampling. On CPU PMUs, this is
+> equivalent to not having an interrupt, but for uncore PMUs like the
+> rockchip-dfi PMU is, no meaningful sample data could ever be generated
+> regardless of whether or not there is an interrupt, as it is not a CPU.
+> 
+> Since rockchip-dfi doesn't seem to make use of the interrupt the DT
+> provides it with anyway, this was probably never a confusion that
+> existed in this case; the capability flag was likely just forgotten.
+> 
+> Add PERF_PMU_CAP_NO_INTERRUPT to the set flags for the pmu struct's
+> capabilities member, so that the perf core knows about this limitation.
+> 
+> Fixes: 4d586b5724d3 ("PM / devfreq: rockchip-dfi: Add perf support")
+> Link: https://lore.kernel.org/all/20250619140442.GH1613376@noisy.programming.kicks-ass.net/ [1]
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  drivers/devfreq/event/rockchip-dfi.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+> index 5339616f7ca6..dd9edfd6a674 100644
+> --- a/drivers/devfreq/event/rockchip-dfi.c
+> +++ b/drivers/devfreq/event/rockchip-dfi.c
+> @@ -646,7 +646,7 @@ static int rockchip_ddr_perf_init(struct rockchip_dfi *dfi)
+>  	seqlock_init(&dfi->count_seqlock);
+>  
+>  	pmu->module = THIS_MODULE;
+> -	pmu->capabilities = PERF_PMU_CAP_NO_EXCLUDE;
+> +	pmu->capabilities = PERF_PMU_CAP_NO_EXCLUDE | PERF_PMU_CAP_NO_INTERRUPT;
+>  	pmu->task_ctx_nr = perf_invalid_context;
+>  	pmu->attr_groups = attr_groups;
+>  	pmu->event_init  = rockchip_ddr_perf_event_init;
+> 
 
-Low priority / nit picks for your consideration:
-
-- [Low] The commit message for "net: ethernet: mtk_eth_soc: fix the RX"
-  gets the history and cause backwards.
-- [Low] The subject line "net: ethernet: mtk_eth_soc: fix the RX" does
-  not say what is being fixed.
-
---
-
-net: ethernet: mtk_eth_soc: fix the RX
-
-This patch resets dma_addr to DMA_MAPPING_ERROR at the start of every
-loop iteration in mtk_poll_rx(). Without it, a descriptor that goes to
-release_desc without a new mapping can pick up high address bits left
-over from an earlier iteration. That matters on MTK_36BIT_DMA SoCs with
-DRAM above 4 GiB.
-
-> That protection was added by commit 6e0490fc36cd ("net: ethernet:
-> mtk_eth_soc: fix SER panic with 4GB+ RAM") for the MTK_RESETTING path,
-> but commit e10a35abb3da ("net: ethernet: mtk_eth_soc: fix
-> uninitialized variable") moved the DMA_MAPPING_ERROR initialisation
-> out of the loop, so it only holds for the first iteration.
-
-[Severity: Low]
-Is this history accurate? e10a35abb3da is dated 2023-09-10 and
-6e0490fc36cd is dated 2025-04-27, so e10a35abb3da came first.
-
-e10a35abb3da also does not appear to move an initialiser out of the
-loop. Before it, mtk_poll_rx() declared dma_addr inside the while loop
-with no initialiser:
-
-    dma_addr_t dma_addr;
-
-e10a35abb3da moved the declaration to function scope:
-
-    dma_addr_t dma_addr = DMA_MAPPING_ERROR;
-
-It also added the first dma_addr != DMA_MAPPING_ERROR check at
-release_desc. Later, 6e0490fc36cd replaced that check with the FIELD_GET()
-branch:
-
-    if (unlikely(dma_addr == DMA_MAPPING_ERROR))
-        addr64 = FIELD_GET(RX_DMA_ADDR64_MASK,
-                           rxd->rxd2);
-    else
-        addr64 = RX_DMA_PREP_ADDR64(dma_addr);
-
-So that branch only ever worked for the first loop iteration. Nothing
-broke it later. Could the message give the order that way?
-
-The message also does not say that this fix depends on the FIELD_GET()
-branch from 6e0490fc36cd. Both hunks touch only the declaration and the
-top of the loop, which have looked the same since e10a35abb3da. So the
-patch would apply cleanly to a tree that has e10a35abb3da but not
-6e0490fc36cd.
-
-In that tree, every descriptor reaching release_desc would hit the
-dma_addr == DMA_MAPPING_ERROR case and skip RX_DMA_PREP_ADDR64(). Its
-high address bits would then be cleared. That is the original SER
-failure, now on every iteration instead of only the first.
-
-6e0490fc36cd carries Fixes: 2d75891ebc09, so most stable trees probably
-have it already. Would it still help to name 6e0490fc36cd as a
-prerequisite?
-
-> net: ethernet: mtk_eth_soc: fix the RX
-
-[Severity: Low]
-This isn't a bug, but the subject does not say what is being fixed.
-Something like "reset dma_addr per RX descriptor" or "keep descriptor
-high address bits on release" would be more specific.
-
-> With MTK_36BIT_DMA and DRAM above 4 GiB the hardware then DMAs the next
-> frame to an address that is neither buffer, and the driver passes the
-> stale contents of the untouched buffer up the stack.
-
-Could the consequence be stated more directly? Before this patch, a
-stale dma_addr from an earlier iteration reaches release_desc in
-mtk_poll_rx() and goes through:
-
-    addr64 = RX_DMA_PREP_ADDR64(dma_addr);
-    ...
-    rxd->rxd2 = RX_DMA_PREP_PLEN0(ring->buf_size) | addr64;
-
-RX_DMA_PREP_ADDR64() fills RX_DMA_ADDR64_MASK, which holds physical
-address bits 35:32. These bits are combined with the current buffer's
-low bits in rxd1. The device then writes received frames to the same
-offset in a different 4 GiB window. That is silent DMA corruption of
-memory the driver does not own.
-
-The mismatched address is also passed to dma_unmap_single() later. One
-caller is mtk_poll_rx() itself, on the non-page_pool path:
-
-    if (MTK_HAS_CAPS(eth->soc->caps, MTK_36BIT_DMA))
-        addr64 = RX_DMA_GET_ADDR64(trxd.rxd2);
-
-    dma_unmap_single(eth->dma_dev, ((u64)trxd.rxd1 | addr64),
-                     ring->buf_size, DMA_FROM_DEVICE);
-
-The other is mtk_rx_clean() during SER.
-
-Would it be worth calling this memory corruption in the message, so
-stable and security triage can judge how urgent it is?
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/patch-4b4c5003bcf028fafd094e719c5e910b%40loljews.com
+Best Regards,
+Chanwoo Choi
+Principal Engineer, Samsung Electronics
 
