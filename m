@@ -2,141 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CAD606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC3B5606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AU+WefDg;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=lCCe/zC0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k75IGGQh;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=h1zRix9h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=07WOKYUWzc5l6SRYMycvBjujniheSXKsXpF0DlJErRc=; b=AU+WefDgQtkcfouskd4sYu15g2
-	UmTFKt3/n/3yYQ2ash+FfOMzNSGTfNlxN7hfSJHkuwYVhsaSbu9UxGLn0Mpa8IveSq1agyCCn0hNq
-	onYkmyd3Pi7bipExG1xj2+fhNeAOvQR3/nl0XTrYkb87jrU8rq3gd51RKd1QVSm+L7WeTP85pt2Oh
-	Lp8BwS7H+FjXdNEMVOYOchhNvH76qPC0kubmLuX683CJwiosJf462w6y+xM4OR+aINzAyd3VRML7M
-	gBjVFSQC/srUigRfXc4PCG2MsDODIolQXIWqXExXQcdMYqcLeOuZaOwnm+arPPQsRIDMMFZUCLhhZ
-	CM3RBLbA==;
+	bh=EICA2+Ii2qgfcuNngaTE7AGwJ5yMZFSeIndPaowbVuc=; b=k75IGGQh+gEnQvpVVae0cWmiov
+	iwE5UTDVlZcW99ThosjRLZDX65Y6uggChyOginUOT7Xx0SGRLZGATDHlxruvaKQ7JE/WbS6eEv9O2
+	EbomUIQknjX+OlCeiPvNTCzIPIlFJ6Pl8MuuRU6rAcoeS4I5xXWj6tOSUFRczFo2nie4g8Go/7s6q
+	5pjdny2j5QypnGrPlT9o4jjEIzkP7Jojhvp99o3+1rV5LPG9//CWxKz8YsMHjL2msi+pIEYNi+6vx
+	FsuxAe46Bufil5+mvNCYhDxNr2MNgagCOYMpUCJWer6zAmOZgm2pb0cOwWgUg2tKyFIa9PgiAzWz3
+	qzAR1z9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWBH-0000000HIBN-2guW;
-	Sun, 15 Nov 2026 09:05:47 +0000
-Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
+	id 1xSWCM-0000000HIJf-3naO;
+	Sun, 15 Nov 2026 09:06:54 +0000
+Received: from mail-ot1-x334.google.com ([2607:f8b0:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWBE-0000000HIAL-3yGL
+	id 1xSWCK-0000000HIIc-0tOG
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 09:05:46 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BI2ML/2GV+lsbfV8Il5uJCijrPpZn1O1Xxg+i30MqcAQLIwltSuDjskSeMGEfBaDDZLkAlBgkNSXIDr3qRlTa7hFfc1qTbZTDAGw/EJFNwvgnhW/zGq1fv1+xOaJhlScxSxhAbgzAs14jPJfw2ZchJoHg9Wfom9TOgM0lERWF23Yb/Fx9tI1PR5EPIwKYtRTtgbJEul1j32j5OEAzU6elrPY4VRPMnMsypbe4n42JtgG9bZff9ZP/oKXZDjKjm73NUEwav3xqZRsTETxwe3rVsgBv7jYCMtPP74EiKtM7jFEfWLIHr8X9iI5r15NuSXMFzsidkF9TrpaGqZLYP07jQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=07WOKYUWzc5l6SRYMycvBjujniheSXKsXpF0DlJErRc=;
- b=tbKVMtGv/v7ch2cOBriH3FIjtEcwi3ghPqDTfY874ikt7TU8QCCaKux+Ceos9bcI7lvUEY25Kyea87UBHi1EmPmLtf8jhY6jZ+XKJxSeffsWfe5E0xa5/QFEqwm9vNcV6e8xF/cBblPI+M131JMsuC1XZ2fQFAJOllJt9ZWl5XeWav111rjz9ftAEqYj61HbiVfTxMXvOxWFS3yRrKEzwT9B9PwX0ib9w9uNu8IBWkvqyqg9OM1Ox6tY0QR2YAHVO+65pMK0HSelztqU/R4KndzB9C2pbi4ssEr/DXr5c5NPsk/UfOKVD4gDSklEhhSRfxoZvtDYgLRyNQSzPG3VLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=07WOKYUWzc5l6SRYMycvBjujniheSXKsXpF0DlJErRc=;
- b=lCCe/zC0q8M1BMfQ8wOoowEINuz+BkMGFVYGzzM0YuK5+fPGSQnSk0RV0CdYT2MQSDziVWvZP0SYBESuakn9dsJDCSQ54M447yM9wfQUdRMl/5aq3H1yquek1Y5ju82RMkwYAO8z+0jnQWE4qO2QagRbA6deJD1yyAMtiuwr16sfPglrEDhMxhgAsvGFhixKmWEZiRzAD69hQwdAYYAsTCiDeEawl/uFEw6lU2PgdxhhfTVMTkxvw2envlIdMsrMoR/CHGNe9rMzdcS6zZ/nm+f0KzJ8mig4AbOwFRPfrgVLw1ju3E0o7W3dxJH9JH17RKyIenvDZzplUA2u1r2ONQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
- by DB9PR04MB8446.eurprd04.prod.outlook.com (2603:10a6:10:2ce::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Sun, 15 Nov
- 2026 09:05:40 +0000
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023%4]) with mapi id 15.21.0615.012; Sun, 15 Nov 2026
- 09:05:39 +0000
-Date: Sun, 15 Nov 2026 11:05:35 +0200
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: vjardin@free.fr
-Cc: Dong Aisheng <aisheng.dong@nxp.com>, 
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>, 
-	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH v4 4/5] pinctrl: freescale: add the LX2160A RCW pad-mux
- driver
-Message-ID: <avjaK3cOj3iQ6G6w@skbuf>
-References: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
- <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
- <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-4-eefcea066a55@free.fr>
- <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-4-eefcea066a55@free.fr>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-4-eefcea066a55@free.fr>
- <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-4-eefcea066a55@free.fr>
-X-ClientProxiedBy: WA0P291CA0016.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1::28) To AM0PR04MB6900.eurprd04.prod.outlook.com
- (2603:10a6:208:17d::10)
+	Sun, 15 Nov 2026 09:06:53 +0000
+Received: by mail-ot1-x334.google.com with SMTP id 46e09a7af769-833e671ee9fso3628487a34.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 01:06:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794733610; x=1795338410; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=EICA2+Ii2qgfcuNngaTE7AGwJ5yMZFSeIndPaowbVuc=;
+        b=h1zRix9hEbCO5zfzm1XjjrtgSiQ2OrVqLhnEhvFcQqjyVnSIeLGXPAv4Z2WtDG8eu6
+         oTq13bBSwtZ+4Cn7M1go97cB7vK8NGwSnPty/YrICvO6pO1HZC8dzpHJ4dpSHJx8y5rt
+         uNb+bXHrZz5+oJpUngeVo5pVZSDNboVam4a2dLBjjo1SHVD1ryTBmiUoXNXvQdnp+j5z
+         PSHWhwoOyBRkYfCKe1o/4w/KprXbfDCn0bkcsnrN711ZJnbRLVBtFSveC1TH/NZx3dA2
+         zPr+6QKz1xufylCyVyY1u0o/aE6ypSFZoKDtYaIJTOVG3sdZydP5jfk1wXUX+r0voOKS
+         2kmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794733610; x=1795338410;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=EICA2+Ii2qgfcuNngaTE7AGwJ5yMZFSeIndPaowbVuc=;
+        b=Kk/qqG8od69nam+k3KK+g6JM56tQDosc+vV0EHgZXhdjy9+gzs8x89IoYaD8KSb6yc
+         dKRsdT9zgsg9viE9TEOzMLo3Zp5acdn835Zad9kRSqP8sgJMAr+t/HbiAAj7mPoER6tD
+         xAI+srO7Z/zuanuqUlP38VsNOknY6WM/p+e2h7nNg5rZHaCkgEw34XkM32Uy+GHieoUk
+         K6NHcVrUdfcNuEV3iMFkuB0KezhkookwBnohkqoww6pxsUNONbZdubqe0D2iI3TL4ED5
+         PB6zeLkrRTMtBhWwMwytxOxMmHZg3VRqvk7oqrCo0SlnMpFru+B6XuZ3fILbTkd8PC97
+         ulAw==
+X-Forwarded-Encrypted: i=1; AL+hErHa0Zek4lW+Uvh69fzNXZNZJ6nJf/rkIquxuLOHbEpcOkz2bLcSJiJTerP5Dp22p+AHT6JsPI2M8I4Yj98Ab/Ul@lists.infradead.org
+X-Gm-Message-State: APuU4Z+uwgmaso0ZPezMG45rj3LDIbm+H14gJq1PQ4bybRHKHKShXnbs
+	cQ2o/OMIP8ga0XadZDjZwg4nB15LaokV9NO4Fo/xQyTe3BOTKecXy1GyrPKhRw==
+X-Gm-Gg: AYBFou2/BEP94AaTu2GGqrJRg/fdOa8ojCWVj91mH39bXtPMqv6esB65fQ0XTHf1jZC
+	dUuYPNWoTlKX0bZEDW1+2HidkshbbwroCqWOgk8ZBs7DAHlIWHRZoigdZRWPdF0WNfsOqO57hUy
+	XMeScX6rqxmYX1olG2ygTTU3JN43+SRsPuc2j1SX5LwuBidGkRs59ehZoXwX79tsTNS4LwglA8T
+	1SPghZ+/TqR6x2WsM7CE5FolJh6i6m1Tr4MJZhfXD1QU52qfmA6NfBZ9KVe0JEb4iV9OY3UrxGK
+	vpDrbwb+zNLgjFk/idvY9Jzi4DollJkaEqyaDHXrCU0OmAzeROqtxrBHeeQ+gph/HJN5Zuy01fV
+	lQuluv1exeIXV4vjsCuh/EhXbWH6L+UM/TYM07xw9C266gXStTH7KWzDHFwH/PIAbkVO0v+rLFk
+	c7QGbtloKMA9kFzxJRjgl4PRrkVEGf31H+PjODMUU0ZFeMawSf+RW4S32ehQYq5Q+c3jvSkCj9s
+	NEzKuhr8SYCMRl5Y7MyDHS4GwOCdjZ0aACfkgN56xKgYl6hjv1sPW9Qh/jKOCVLwV31/cgMx00n
+	Ti8jNDbnc5xh8DxZV92OU40fgB4dFQ3AP57kRqChJguAt8HM07S8Bb4CCM92t2DkP3MHuz4jlfU
+	rYXke/+vURf+8FitLBC+VVMgTEZuWX3DcVNbtv3j01qsXmu/uV1Zv6LIKeLM1wQ8nfFOmus5MiA
+	IxfryKi195r2hZCeMJvG8hwwzKHIFZHBjp0G8cb+0MgTubXyVniPiT
+X-Received: by 2002:a05:6820:2d8a:b0:71a:e62f:62ee with SMTP id 006d021491bc7-71ae62f6ac9mr968000eaf.23.1794733610517;
+        Sun, 15 Nov 2026 01:06:50 -0800 (PST)
+Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71ab4338765sm6198902eaf.14.2026.11.15.01.06.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2026 01:06:49 -0800 (PST)
+From: James Hilliard <james.hilliard1@gmail.com>
+Subject: [PATCH v2 0/3] dmaengine: sun4i: retain cyclic descriptors until
+ callbacks drain
+Date: Sun, 15 Nov 2026 02:06:33 -0700
+Message-Id: <20261115-submit-sun4i-dma-callback-lifetime-v1-v2-0-fb7d258702f8@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|DB9PR04MB8446:EE_
-X-MS-Office365-Filtering-Correlation-Id: d9758e83-962e-4103-7fb1-08df42f79eaa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|10070799003|23010399003|19092799006|10067099003|11063799006|4143699003|56012099006|261022105027099003|261021121427099003|261026121527099003|261026140227099003|261028144727099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003|3023799007|41080700001|15866825006;
-X-Microsoft-Antispam-Message-Info: XDIrN0D2pHLSQxl0uOMAvnEcSTebakSzkQw6nU5frKdmdB31sjmaoDN+EeTEAqwlVIa+/J3vkBvm+ER8IUTMZNoyi2Fi4wUTH6gbv/m2ttTr7FRFB6HcIkV3FpykYC14gzfKHu/X9MY+f824hQqoxauVxSRVp8TBDVw2RI+m1G2PkwUXNgLPox0JLe86+PmXJfJLKo6TkKEYYJ0ohkthwRAYYYYgf9y+0tjI7K14mmQzLcoz9o4j2Mg5M0kbXHMvzvorsBqngVq9qBKqMm6EHVMbIrUhYmwwlz3uiVOs+tDxrvUUhcWE214XyAq9fW+SNozhupGUNRnj3mPG9h32792SB1IOwRPv3mNu5EN1Mm9Uu8V+bwFZKqBkzpdAQWwJzGCXVyRgTaQKcUH3Bt6JmISHtPCMBS7Q6QniowJdkVyIMy945czP+P6ePzI9Qa3X/xiNFQTVZD1qkEy2m+wuJIaZvjETw+XMFFzU0uIAWCQ5fFIfGhgZ8rRi9/1YRO244IiVthCpGxy2bHpAdxtoMs+15HENROQRKWuvUtmPlz6owiEEmL2Gruv7JTDDdG37huS4uuJInjQjQh8Gz2uAsHMgzIbG1guDm+PsZph9x7RiTD5y15oQ57V7A5gpafJ9DIjXaDWYwD7keUiLR6SFEO2bo2sxmcswgUDkrzUyQiZ/fCmPEvEKAdiLR4AtPvoXalqqnjuZxqRGzJGGgDE0btlOCpN63b/+dygoj75HN3VIYuPH0IKfZSzsyYgF/Ihd
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(10070799003)(23010399003)(19092799006)(10067099003)(11063799006)(4143699003)(56012099006)(261022105027099003)(261021121427099003)(261026121527099003)(261026140227099003)(261028144727099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003)(3023799007)(41080700001)(15866825006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?so3WQjPWcmwII292CZo/EAYB4KR6dIV+MfPdNQfY/WnvR/cVKRpQrRwhPLiM?=
- =?us-ascii?Q?SpTvmt6IBHCdsoY3IXZ3EUWsyrPcaGHZMzEars3hzMBVFt3JurM2uqqjBo0s?=
- =?us-ascii?Q?1CwPUsaWPTVjoBSnqvABoQVroT5DHwXwvlTtQMXNJXjcSY3ftI3RKFIV/8nC?=
- =?us-ascii?Q?BLOhJ7Sbq4Qm5eCdGWQ5Ui6GzJyIYl04sqmZrJLxzCYXYZWqXRTCNq+6evUX?=
- =?us-ascii?Q?SrkDZrv5WmLgX32Fnh4iHfCmgy4OcgYXqoDtoOJrvqZdZSCgnp4oswNFAjos?=
- =?us-ascii?Q?at0DAzz5ow2gyvAaXem0SeqvfBKRJC/FoBpXeKYfhbcDmKmsNfpTAKvbjmA8?=
- =?us-ascii?Q?oYfp922qLZeWBNOjFUUlL2p5jrTMkpDdEJfk90iYsL7bvwigudsUzPwFXNPG?=
- =?us-ascii?Q?9DQLlmcrb/OMmTY5BDUyrSudiBTq1dNhaCygXtBcizKNMTfkpzB/MrCowmle?=
- =?us-ascii?Q?HDGweRqr7/gWr/pzvHnzn2cwAOcToFoOq3L/hy7OvSskAnJhj2HEweIvXXey?=
- =?us-ascii?Q?vEcg8buzF3LSrxqWxdxnsSiSmjVbjkmF3rr5TrOaQXgB7SE934arl2ZklQXu?=
- =?us-ascii?Q?fyjhZcXWmTuZzCm7h9fXkjKY1SnnZWreBk6RVYQu0N+alx/fZnwYNsVrFqiQ?=
- =?us-ascii?Q?EXSP2mDMU8C0mjagT80BHNAPuPSp1FUGUyvLoht5EDMhrZ+c6YBLONQv8wbl?=
- =?us-ascii?Q?uosrXYHfKTsOKxNlV24ghQJBSaCOd0pox9/x4w2ZRO2u5rtINKGgPHLW8tOC?=
- =?us-ascii?Q?GzCx6DE5PfGRdpy77yJa4ilDPsfcLuwM4JY3yfdW8ooHKjownFUPN5x0WsJH?=
- =?us-ascii?Q?6auuoUnAQ959MJVsLJsqMXTLprF82ADTr1/ugETrMBz3JgPIt/gZCnCbLbA0?=
- =?us-ascii?Q?ZEIiYz/os4H7mgLyWDVE0CG+bZHp11M+CxJz6qe5LpgsklaQsHgxX4Hku05q?=
- =?us-ascii?Q?GYQzjtzT2GUWHF/QJgworp9TbxiXQXvxLP7OfTdHlcgcuaRjickrp254+P+h?=
- =?us-ascii?Q?/R8iK3UUD08Wr46gwAMp1d6+GZX9THJMG8vGqEKadEOR0sRNF91tqvxYa3wz?=
- =?us-ascii?Q?u7Yn1058HyCAwSYKHXREqHcNCBkuZUg2UPIurizgjKJ1BcpIJtRMExWOxxcI?=
- =?us-ascii?Q?AEB5caV1AY1QZvkxIa6I1upXmKhybcqyv7EXGpaLQhlsJK2kuHhkq9Rwcrr7?=
- =?us-ascii?Q?QA1tp7O1ZMPg1JvXFcDvynZCf2OYmSJmJFyOsH49h56b0VNjGaQ0SAyc6Fqn?=
- =?us-ascii?Q?mwNuDFYAGpO+DWVDQOOf0iTCynNOYt3wkvwM0e2d2x8pCBc60K7epEkPELYh?=
- =?us-ascii?Q?ogv6sjk6UzifN+yYPbtHjtKIhBYLFpzpjFiw5+AQwr7sLI0nWhkBGJFbtw71?=
- =?us-ascii?Q?hRJ54y1tS+38RVT2l6laA5/T59co/e0fOQQVDLoOo/XKK8enmTksGlsSlh8U?=
- =?us-ascii?Q?tj/K/y9N2UyGB/0AU3w45xQ6sTFjHgyCZoTDhygj/FyoWl5aHGvKi0hjfvM7?=
- =?us-ascii?Q?95LxlbAVREtZFK6QIePaZ2C4QpMJzgC0mGoxmnRUm6Gr3nrxyBiMEbNfQHFG?=
- =?us-ascii?Q?/wL/3mAoTS0XdM9kZB0gzV/M5XpBs+tvBWIeiRNPBShmrETaiotvPSlJeB72?=
- =?us-ascii?Q?bFDWClbuUvojJUsKhW5yJnUUBrf9WDEIUlcvy7oSlaFKyCxVeRbSo1ykwpEj?=
- =?us-ascii?Q?Bvllys0v69dsfdP5ermvYhfEx9Dyg8Cm+/YaM4fg4xvf0yJiZk7lV4grJL2j?=
- =?us-ascii?Q?bHZ0aad4vti1kJvOlR60zTJnyisgWjj62tAbFP+rIWwBrBr9HZZBlB+GxHHE?=
-X-MS-Exchange-AntiSpam-MessageData-1: 4nNRGeLfM8jOEei3DzE8y14+Sl6VcY+C06E=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9758e83-962e-4103-7fb1-08df42f79eaa
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2026 09:05:39.7843
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yGlyP9vtN1+NGbtW82T+SKSCNl6ea5y7iFcnlAP5DMPNZyfeQHkUNJ5crYFnNnmx2ALU19lqYuDq7MqLUIIRVg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8446
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/5WOQQ6CMBBFr0K6dkxboEZX3sOwaMsURimYthIN4
+ e4WPIHJJD8v+Xl/FhYxEEZ2KRYWcKZI05hBHgpmez12CNRmZpJLJQQvIb6Mp5RjrAhar8HqYTD
+ aPmAgh4k8wizAKHGWXHFzUo5l1zOgo/e+c2t+nEV3tGmTb42eYprCZ39kFlvv3818Aipba67qU
+ vDKXTuvaTjaybNmXdcv6o9WGuwAAAA=
+X-Change-ID: 20261103-submit-sun4i-dma-callback-lifetime-v1-b6192060b76f
+To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Hans de Goede <hansg@kernel.org>, 
+ =?utf-8?q?Emilio_L=C3=B3pez?= <emilio@elopez.com.ar>, 
+ Maxime Ripard <mripard@kernel.org>
+Cc: dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ James Hilliard <james.hilliard1@gmail.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_010545_000670_4B1E5FCC 
-X-CRM114-Status: GOOD (  26.95  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261115_010652_289197_A4DBFEAB 
+X-CRM114-Status: UNSURE (   8.23  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,102 +113,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 14, 2026 at 10:12:31AM +0100, Vincent Jardin via B4 Relay wrote:
-> From: Vincent Jardin <vjardin@free.fr>
-> 
-> The LX2160A muxes its IIC, XSPI, SDHC, UART, IRQ and EVT pads from
-> fields of the RCW, read-only in RCWSR12..14 of DCFG and changed at
-> runtime through the same fields of the override registers in its DCSR
-> view, which read 0 until written.
-> 
-> Since commit 8a1365c7bbc1 ("arm64: dts: lx2160a: add pinmux and i2c
-> gpio to support bus recovery") Linux drives them with pinctrl-single on
-> the override registers, so its first pin state clears every other field
-> of the word: a board whose RCW programs a non-zero pad mux loses those
-> pads at the first I2C probe.
-> 
-> Add a driver for the pad mux as a child of the DCFG node: the fields
-> of RCWSR12..14 and their encoding.
-> Then pin states select them with the generic function and groups
-> properties, and every change goes through the RCW override
-> of fsl-guts, which reads the status register, writes the override and
-> waits for the status register to follow.
-> 
-> Signed-off-by: Vincent Jardin <vjardin@free.fr>
-> ---
->  MAINTAINERS                                 |   8 +
->  drivers/pinctrl/freescale/Kconfig           |  15 ++
->  drivers/pinctrl/freescale/Makefile          |   1 +
->  drivers/pinctrl/freescale/pinctrl-lx2160a.c | 368 ++++++++++++++++++++++++++++
->  4 files changed, 392 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 93abbb315065..106a0cc7f25c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20207,6 +20207,14 @@ F:	Documentation/devicetree/bindings/clock/*imx*
->  F:	drivers/clk/imx/
->  F:	include/dt-bindings/clock/*imx*
->  
-> +NXP LX2160A RCW PAD-MUX DRIVER
-> +M:	Vincent Jardin <vjardin@free.fr>
-> +L:	linux-gpio@vger.kernel.org
-> +L:	imx@lists.linux.dev
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/pinctrl/fsl,lx2160a-rcw-pinmux.yaml
-> +F:	drivers/pinctrl/freescale/pinctrl-lx2160a.c
-> +
->  NXP NETC ETHERNET SWITCH DRIVER
->  M:	Wei Fang <wei.fang@nxp.com>
->  R:	Clark Wang <xiaoning.wang@nxp.com>
-> diff --git a/drivers/pinctrl/freescale/Kconfig b/drivers/pinctrl/freescale/Kconfig
-> index fd53cf5bb843..a3222714c970 100644
-> --- a/drivers/pinctrl/freescale/Kconfig
-> +++ b/drivers/pinctrl/freescale/Kconfig
-> @@ -283,3 +283,18 @@ config PINCTRL_IMXRT1170
->  	select PINCTRL_IMX
->  	help
->  	  Say Y here to enable the imxrt1170 pinctrl driver
-> +
-> +config PINCTRL_LX2160A
-> +	bool "NXP LX2160A RCW pad-mux driver"
-> +	depends on OF
-> +	depends on ARCH_LAYERSCAPE || COMPILE_TEST
-> +	default ARCH_LAYERSCAPE
-> +	select FSL_GUTS
-> +	select GENERIC_PINCTRL_GROUPS
-> +	select GENERIC_PINMUX_FUNCTIONS
-> +	select GENERIC_PINCONF
-> +	help
-> +	  Say Y here to mux the IIC, XSPI, SDHC, UART, IRQ and EVT pads of the
-> +	  LX2160A at runtime. The pads are muxed by fields of the RCW:
-> +	  the driver changes it in the DCSR view of the DCFG that fsl-guts
-> +	  drives, and is what the I2C bus recovery of the LX2160A needs.
+Retain descriptors through callback synchronization using a shared virt-dma
+termination helper, then use it to fix sun4i cyclic callback lifetime
+and IRQ serialization. The helper keeps termination usable in atomic
+context while callbacks finish in process-context synchronization.
 
-I'm sorry if this was discussed before, but did you consider targeting a
-wider range of Layerscape SoCs with this driver? It's pretty generic
-apart from the pinmux functions and groups, which are all data, not code.
+Also serialize pending IRQ handling with physical-channel reuse so an
+old transfer's interrupt state cannot complete its replacement or disable
+the replacement's interrupts.
 
-For example LS1028A, which is part of the same chassis 3.2 as LX2160A,
-has a pretty similar pinmux group layout (subset of LX2160A except for
-SoC-specific pinmuxing in RCWSR27). The functions are a superset of
-LX2160A though (for example IIC3_PMUX and IIC4_PMUX can also take the
-values of 3 and 4).
+Assisted-by: Codex:gpt-6-astra
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 
-The older chassis have a dissimilar layout to LX2160A/LS1028A, but
-similar among themselves (they have a two-level I2C_EXT + I2C_BASE
-system), and their core mechanism remains through the same RCW override
-API.
+---
+Changes in v2:
+- Add a shared virt-dma descriptor-retirement helper before the sun4i
+  fix, following Frank's review.
+- Retain all collected descriptors until synchronization, avoiding
+  provider-specific cyclic checks and preserving repeated termination.
+- Retire pending IRQ state before physical-channel reuse and acknowledge
+  events under the owning virtual channel's lock in a separate fix.
+- Link to v1: https://patch.msgid.link/20261103-submit-sun4i-dma-callback-lifetime-v1-v1-1-4c5a0653104f@gmail.com
 
-I'm not saying to add driver support for those other platforms, but to
-have them in mind and to leave some space so that they could be added to
-the same driver without having to rename it and most of the code.
+---
+James Hilliard (3):
+      dmaengine: virt-dma: share deferred descriptor retirement
+      dmaengine: sun4i: retain cyclic descriptors until callbacks drain
+      dmaengine: sun4i: retire interrupt state before channel reuse
+
+ drivers/dma/sun4i-dma.c | 68 +++++++++++++++++++++++++++++--------------------
+ drivers/dma/virt-dma.h  | 20 ++++++++++++++-
+ 2 files changed, 59 insertions(+), 29 deletions(-)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261103-submit-sun4i-dma-callback-lifetime-v1-b6192060b76f
+
+Best regards,
+--  
+James Hilliard <james.hilliard1@gmail.com>
+
 
