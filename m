@@ -2,93 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC3B5606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD0A606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k75IGGQh;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=h1zRix9h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t9WpxTaY;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jgi90Lvn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=EICA2+Ii2qgfcuNngaTE7AGwJ5yMZFSeIndPaowbVuc=; b=k75IGGQh+gEnQvpVVae0cWmiov
-	iwE5UTDVlZcW99ThosjRLZDX65Y6uggChyOginUOT7Xx0SGRLZGATDHlxruvaKQ7JE/WbS6eEv9O2
-	EbomUIQknjX+OlCeiPvNTCzIPIlFJ6Pl8MuuRU6rAcoeS4I5xXWj6tOSUFRczFo2nie4g8Go/7s6q
-	5pjdny2j5QypnGrPlT9o4jjEIzkP7Jojhvp99o3+1rV5LPG9//CWxKz8YsMHjL2msi+pIEYNi+6vx
-	FsuxAe46Bufil5+mvNCYhDxNr2MNgagCOYMpUCJWer6zAmOZgm2pb0cOwWgUg2tKyFIa9PgiAzWz3
-	qzAR1z9Q==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=WVskqBN7adAe0blUmUVhbRXdugopDwsXLNQtgww94JA=; b=t9WpxTaYaHOgzi
+	XBIWNhAQFxa1wgA7Hx9jJWlY4AEuYcouZglE4ug2UWybAjJtpyuNUfrnJnrtNKghsumjw45hR0QVW
+	CJvgW4UAEUMRlhUp7PiwLkqdyxTjLItjXQVHiTsRTcXTm6ILWm5cJARQ/J541RGAl7lZggMarCfbx
+	Kohs0C0UkdfUazB4oMu94UvFbGTCq9aS7AzoZLSqU0UMTOG2FDugOJ9pGmzDsoAKn0lt8iZAQYhob
+	mSPD/o234hFui33Ld0yxMBU951AyH3XvyUTepbXDOi3AFXxfYUaca1mnbQEhwYbhfurZIo60co+Lh
+	KDkoRufe5PLz6K4PIvag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWCM-0000000HIJf-3naO;
-	Sun, 15 Nov 2026 09:06:54 +0000
-Received: from mail-ot1-x334.google.com ([2607:f8b0:4864:20::334])
+	id 1xSWCN-0000000HIK0-0EOj;
+	Sun, 15 Nov 2026 09:06:55 +0000
+Received: from mail-oo1-xc36.google.com ([2607:f8b0:4864:20::c36])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWCK-0000000HIIc-0tOG
+	id 1xSWCK-0000000HIIg-360I
 	for linux-arm-kernel@lists.infradead.org;
 	Sun, 15 Nov 2026 09:06:53 +0000
-Received: by mail-ot1-x334.google.com with SMTP id 46e09a7af769-833e671ee9fso3628487a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 01:06:51 -0800 (PST)
+Received: by mail-oo1-xc36.google.com with SMTP id 006d021491bc7-71af0656bedso15923eaf.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 01:06:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794733610; x=1795338410; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=EICA2+Ii2qgfcuNngaTE7AGwJ5yMZFSeIndPaowbVuc=;
-        b=h1zRix9hEbCO5zfzm1XjjrtgSiQ2OrVqLhnEhvFcQqjyVnSIeLGXPAv4Z2WtDG8eu6
-         oTq13bBSwtZ+4Cn7M1go97cB7vK8NGwSnPty/YrICvO6pO1HZC8dzpHJ4dpSHJx8y5rt
-         uNb+bXHrZz5+oJpUngeVo5pVZSDNboVam4a2dLBjjo1SHVD1ryTBmiUoXNXvQdnp+j5z
-         PSHWhwoOyBRkYfCKe1o/4w/KprXbfDCn0bkcsnrN711ZJnbRLVBtFSveC1TH/NZx3dA2
-         zPr+6QKz1xufylCyVyY1u0o/aE6ypSFZoKDtYaIJTOVG3sdZydP5jfk1wXUX+r0voOKS
-         2kmQ==
+        d=gmail.com; s=20260707; t=1794733611; x=1795338411; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=WVskqBN7adAe0blUmUVhbRXdugopDwsXLNQtgww94JA=;
+        b=jgi90Lvnj6vSIFbM0raMCx1Ftyk/rAlpFyvJOWsO7UIkFT4YMGAucXb4JAQ+KV/iSB
+         lOZ58xPCb3oaVS3EDX0u6HTjTGjq6OC12XeL9Y1Q/N137yiGYvmaPWRCFaTXc2nHAJMh
+         1Sj7eD2dqZ5J/4VfMgrs1Y1w2ENaaqFbL18XJl2GvMXXBweUH+14gNctoKC6LRkWlpAp
+         Om8Mj7IJhdy7sRMzvVBzRDLtKSMUQUpVkk0P3MBFzeyYEmKxz504Zg+iFdCiNuPSbBf0
+         HtSiygNVGZsqyd7k1Ar1yGOL38DKh/cS521pPO9w/D3j/RQRXaSVToo6r+i3Y4yOVsDX
+         b7gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794733610; x=1795338410;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=EICA2+Ii2qgfcuNngaTE7AGwJ5yMZFSeIndPaowbVuc=;
-        b=Kk/qqG8od69nam+k3KK+g6JM56tQDosc+vV0EHgZXhdjy9+gzs8x89IoYaD8KSb6yc
-         dKRsdT9zgsg9viE9TEOzMLo3Zp5acdn835Zad9kRSqP8sgJMAr+t/HbiAAj7mPoER6tD
-         xAI+srO7Z/zuanuqUlP38VsNOknY6WM/p+e2h7nNg5rZHaCkgEw34XkM32Uy+GHieoUk
-         K6NHcVrUdfcNuEV3iMFkuB0KezhkookwBnohkqoww6pxsUNONbZdubqe0D2iI3TL4ED5
-         PB6zeLkrRTMtBhWwMwytxOxMmHZg3VRqvk7oqrCo0SlnMpFru+B6XuZ3fILbTkd8PC97
-         ulAw==
-X-Forwarded-Encrypted: i=1; AL+hErHa0Zek4lW+Uvh69fzNXZNZJ6nJf/rkIquxuLOHbEpcOkz2bLcSJiJTerP5Dp22p+AHT6JsPI2M8I4Yj98Ab/Ul@lists.infradead.org
-X-Gm-Message-State: APuU4Z+uwgmaso0ZPezMG45rj3LDIbm+H14gJq1PQ4bybRHKHKShXnbs
-	cQ2o/OMIP8ga0XadZDjZwg4nB15LaokV9NO4Fo/xQyTe3BOTKecXy1GyrPKhRw==
-X-Gm-Gg: AYBFou2/BEP94AaTu2GGqrJRg/fdOa8ojCWVj91mH39bXtPMqv6esB65fQ0XTHf1jZC
-	dUuYPNWoTlKX0bZEDW1+2HidkshbbwroCqWOgk8ZBs7DAHlIWHRZoigdZRWPdF0WNfsOqO57hUy
-	XMeScX6rqxmYX1olG2ygTTU3JN43+SRsPuc2j1SX5LwuBidGkRs59ehZoXwX79tsTNS4LwglA8T
-	1SPghZ+/TqR6x2WsM7CE5FolJh6i6m1Tr4MJZhfXD1QU52qfmA6NfBZ9KVe0JEb4iV9OY3UrxGK
-	vpDrbwb+zNLgjFk/idvY9Jzi4DollJkaEqyaDHXrCU0OmAzeROqtxrBHeeQ+gph/HJN5Zuy01fV
-	lQuluv1exeIXV4vjsCuh/EhXbWH6L+UM/TYM07xw9C266gXStTH7KWzDHFwH/PIAbkVO0v+rLFk
-	c7QGbtloKMA9kFzxJRjgl4PRrkVEGf31H+PjODMUU0ZFeMawSf+RW4S32ehQYq5Q+c3jvSkCj9s
-	NEzKuhr8SYCMRl5Y7MyDHS4GwOCdjZ0aACfkgN56xKgYl6hjv1sPW9Qh/jKOCVLwV31/cgMx00n
-	Ti8jNDbnc5xh8DxZV92OU40fgB4dFQ3AP57kRqChJguAt8HM07S8Bb4CCM92t2DkP3MHuz4jlfU
-	rYXke/+vURf+8FitLBC+VVMgTEZuWX3DcVNbtv3j01qsXmu/uV1Zv6LIKeLM1wQ8nfFOmus5MiA
-	IxfryKi195r2hZCeMJvG8hwwzKHIFZHBjp0G8cb+0MgTubXyVniPiT
-X-Received: by 2002:a05:6820:2d8a:b0:71a:e62f:62ee with SMTP id 006d021491bc7-71ae62f6ac9mr968000eaf.23.1794733610517;
-        Sun, 15 Nov 2026 01:06:50 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794733611; x=1795338411;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=WVskqBN7adAe0blUmUVhbRXdugopDwsXLNQtgww94JA=;
+        b=d0NoABcaYhr38zf7t62b4oBhLHJRB9UcuCipeoWfXShKbpDK4EdpOVFaSZlFMGtQl6
+         qBkwBzQzvihZoXGJbKUKU+Uqkwy4G64PPN8yq6sav/LrTR83rEs+qBG9k6l7U6b3BRWF
+         DoSfys+2yjNZSYw4u5sOrI0dX7ly6nPMuk8fWFncKSi+QTs1YkK3XdrmfxPiu16frbwA
+         KUFROqRbib5XsU52Lcr9IoRiPhNGuBQP/r6pQJoP0q9mlOKwI+L0tv6NXGKEnFEE5zlp
+         MJVsCs0c+njm+3ORBhjvDOMwFehi0PQfKjrqQ0P4TV+o2iJioGRx18Be1Q1SbmnwGMuF
+         rIAQ==
+X-Forwarded-Encrypted: i=1; AL+hErEDxloFCaagDq2q3inf68J5187T/89gow9CFDk5LZ9maCC3m3ao9sbae+dirI3APBXOAgzhALqPWdy1iv/gc8DA@lists.infradead.org
+X-Gm-Message-State: APuU4Z9jOxW2iprE7pJamtiXGaRaMVrCGsSTXvH1SHCZqjIEyWRgzrg0
+	HzJR0gLXOTsyC4nxZcxMZTCss5sAdSUkDWjg1xAktIt6ri2YO6D/4OsOt48y0w==
+X-Gm-Gg: AYBFou20R2B1dgXlBpxi2pnkT7tFDCJs/cUek5r0md0k+r/RpqByJi1QboCRar5/aNP
+	VgzFsJHo6PkwI4GdYH8HxiNL07Lw3Jpz5d//C18R5Uqt7lPKCE6H/Re/hLS4MfsoF8+qvOFy60I
+	G8sYiaGVQj6ezzNm5jwVzUW/V/hmJqYLJdL34SGrNhDZkgVFgD6y4etmcBT7DfzR25YhavMfnW+
+	Me26Riq0fx9/xjlKim2aVa0G22UTsKY0GubN1w795aoYSoVr+OoJ5ueSxubPfYFb5TXLox/wyYt
+	Iu/jGkZ841tZMccLA4DLbfsUByq2iO5LQEn/jvm//dp0k9kvfwwp10DML2Xv8PZcQbmC80RiUbt
+	EWs+fR89ckg/pYrVczDH4zNeR9r5S2m2IhIzdVR2sWLZq8BgpQAQrFWWdHXsiXXgGzQoFRd4Fkk
+	cGHHMCAibmSBPuiwKVIMr9LWP+qZontu+URswjbE4dn/VpatB/Vm77i1s4GOu2tIsB3y8xPFFz2
+	ZiBtAp30MDfX0qulBWAQyc8SWZgCNS0KI24hTb411h+vj+jDG2+7pcRjWBvoGjLdybOlV0AqFFG
+	4yGfT7DBEClNnYWHU0/s78yLnnazwrisSmQJFpY8GhPw/uQHBAxc0jry5RLytFlGS6uW/BGhZw4
+	4B5EPlAT5bEMjZUMgGfcuHfXqKLC+5UvucFlKWyO1HhgNL/YF83q//RyawUxSIpLO0iNluPTgqR
+	ToRVo8YZ2mxihU3A8tB2nDnm1rNhjYegj61koVA7NvVS59Nf+UopFi
+X-Received: by 2002:a05:6820:418b:b0:716:c34d:c2aa with SMTP id 006d021491bc7-71ab509ed1amr5396398eaf.37.1794733611590;
+        Sun, 15 Nov 2026 01:06:51 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71ab4338765sm6198902eaf.14.2026.11.15.01.06.49
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71ab4338765sm6198902eaf.14.2026.11.15.01.06.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2026 01:06:49 -0800 (PST)
+        Sun, 15 Nov 2026 01:06:51 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Subject: [PATCH v2 0/3] dmaengine: sun4i: retain cyclic descriptors until
- callbacks drain
-Date: Sun, 15 Nov 2026 02:06:33 -0700
-Message-Id: <20261115-submit-sun4i-dma-callback-lifetime-v1-v2-0-fb7d258702f8@gmail.com>
+Date: Sun, 15 Nov 2026 02:06:34 -0700
+Subject: [PATCH v2 1/3] dmaengine: virt-dma: share deferred descriptor
+ retirement
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/5WOQQ6CMBBFr0K6dkxboEZX3sOwaMsURimYthIN4
- e4WPIHJJD8v+Xl/FhYxEEZ2KRYWcKZI05hBHgpmez12CNRmZpJLJQQvIb6Mp5RjrAhar8HqYTD
- aPmAgh4k8wizAKHGWXHFzUo5l1zOgo/e+c2t+nEV3tGmTb42eYprCZ39kFlvv3818Aipba67qU
- vDKXTuvaTjaybNmXdcv6o9WGuwAAAA=
-X-Change-ID: 20261103-submit-sun4i-dma-callback-lifetime-v1-b6192060b76f
+Message-Id: <20261115-submit-sun4i-dma-callback-lifetime-v1-v2-1-fb7d258702f8@gmail.com>
+References: <20261115-submit-sun4i-dma-callback-lifetime-v1-v2-0-fb7d258702f8@gmail.com>
+In-Reply-To: <20261115-submit-sun4i-dma-callback-lifetime-v1-v2-0-fb7d258702f8@gmail.com>
 To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
  Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
  Samuel Holland <samuel@sholland.org>, Hans de Goede <hansg@kernel.org>, 
@@ -99,9 +96,8 @@ Cc: dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  James Hilliard <james.hilliard1@gmail.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_010652_289197_A4DBFEAB 
-X-CRM114-Status: UNSURE (   8.23  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261115_010652_785299_2A13F5CA 
+X-CRM114-Status: GOOD (  13.42  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,43 +117,66 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Retain descriptors through callback synchronization using a shared virt-dma
-termination helper, then use it to fix sun4i cyclic callback lifetime
-and IRQ serialization. The helper keeps termination usable in atomic
-context while callbacks finish in process-context synchronization.
+A cyclic callback can retain its descriptor after the tasklet drops the
+virtual-channel lock. Collecting and freeing descriptors during atomic
+termination does not wait for that callback, and clearing vc->cyclic alone
+only cancels a callback which has not started.
 
-Also serialize pending IRQ handling with physical-channel reuse so an
-old transfer's interrupt state cannot complete its replacement or disable
-the replacement's interrupts.
+Provide vchan_terminate_all() to clear the pending cyclic callback and
+move all channel-owned descriptors to desc_terminated. This also retains
+a cyclic descriptor moved to the completed list by an error path, without
+requiring provider-specific descriptor-type checks. Already detached
+completed descriptors remain owned by the tasklet.
 
-Assisted-by: Codex:gpt-6-astra
+vchan_synchronize() drains callbacks before freeing or recycling the
+retired descriptors. Repeated termination leaves them on the terminated
+list until that synchronization occurs.
+
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-
 ---
-Changes in v2:
-- Add a shared virt-dma descriptor-retirement helper before the sun4i
-  fix, following Frank's review.
-- Retain all collected descriptors until synchronization, avoiding
-  provider-specific cyclic checks and preserving repeated termination.
-- Retire pending IRQ state before physical-channel reuse and acknowledge
-  events under the owning virtual channel's lock in a separate fix.
-- Link to v1: https://patch.msgid.link/20261103-submit-sun4i-dma-callback-lifetime-v1-v1-1-4c5a0653104f@gmail.com
+ drivers/dma/virt-dma.h | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
----
-James Hilliard (3):
-      dmaengine: virt-dma: share deferred descriptor retirement
-      dmaengine: sun4i: retain cyclic descriptors until callbacks drain
-      dmaengine: sun4i: retire interrupt state before channel reuse
+diff --git a/drivers/dma/virt-dma.h b/drivers/dma/virt-dma.h
+index abf2ae737c30..d3057fc85a9b 100644
+--- a/drivers/dma/virt-dma.h
++++ b/drivers/dma/virt-dma.h
+@@ -199,6 +199,24 @@ static inline void vchan_get_all_descriptors(struct virt_dma_chan *vc,
+ 	list_splice_tail_init(&vc->desc_terminated, head);
+ }
+ 
++/**
++ * vchan_terminate_all - retire descriptors until callbacks have drained
++ * @vc: virtual channel to terminate
++ *
++ * The caller must hold vc.lock and prevent further callback publication.
++ * Descriptors detached by the completion tasklet remain owned by that tasklet.
++ * All other descriptors are retained until vchan_synchronize(), including any
++ * descriptor still referenced by an executing cyclic callback.
++ */
++static inline void vchan_terminate_all(struct virt_dma_chan *vc)
++{
++	LIST_HEAD(head);
++
++	vchan_get_all_descriptors(vc, &head);
++	vc->cyclic = NULL;
++	list_splice_tail_init(&head, &vc->desc_terminated);
++}
++
+ static inline void vchan_free_chan_resources(struct virt_dma_chan *vc)
+ {
+ 	struct virt_dma_desc *vd;
+@@ -232,7 +250,7 @@ static inline const char *vchan_chan_name(struct virt_dma_chan *vc)
+  * Makes sure that all scheduled or active callbacks have finished running. For
+  * proper operation the caller has to ensure that no new callbacks are scheduled
+  * after the invocation of this function started.
+- * Free up the terminated cyclic descriptor to prevent memory leakage.
++ * Free or recycle terminated descriptors after their callbacks have drained.
+  */
+ static inline void vchan_synchronize(struct virt_dma_chan *vc)
+ {
 
- drivers/dma/sun4i-dma.c | 68 +++++++++++++++++++++++++++++--------------------
- drivers/dma/virt-dma.h  | 20 ++++++++++++++-
- 2 files changed, 59 insertions(+), 29 deletions(-)
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261103-submit-sun4i-dma-callback-lifetime-v1-b6192060b76f
-
-Best regards,
---  
-James Hilliard <james.hilliard1@gmail.com>
+-- 
+2.53.0
 
 
