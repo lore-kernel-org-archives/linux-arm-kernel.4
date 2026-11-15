@@ -2,70 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 376C9606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 07:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A3B3606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 08:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wbokx0lO;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Kq6fvGzS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bBz2yc4G;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=OnA1xoy1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Message-ID:Date:References:In-Reply-To
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1y5feySbZxYFKfGlVP6b+/eacqeZv86DnLdBtPAZn5k=; b=wbokx0lOF3FERZ9bAWHN5SRL/R
-	ja/jG9H0gK0FhiaiFOIvbf3XxX9QM0tPsPFPszJ6VtTGnB/8MkRMQ1fgRSdV/TkPHUiLmGgw9fa40
-	9ZJ1vevGSa/s84eVVUKcKki252XkP5zoTtlbsSzN/Td2tnnpp8z9+8ehQiWp65I37rXh0Pi5ExHTz
-	Nl92lRkrWu2zCZya0LOUBS/guM549hMGqwb3y+nygqQQtGzaRXlpAZ3iexIGk/GkYz1X4iS1iLAqy
-	74LuKgv36iIz8/+lsx+HbtrJVUO2gdu38slNs6vuP9wzDPzLUOQAZWMtJJy0bi73KuZ2hahfmcT85
-	Q101WwrQ==;
+	bh=wvcPZqOydbJbZA93vSX5EHd5IDhKbwwDJ1uTA6X1prk=; b=bBz2yc4GlPaWitFDVjp5DSpgeQ
+	S4VYsRVtPqIvjO+XeXaySlqU0PSq2Ovun5LA5bwjJ/+nejYcSHOwAwmXBrr2+umNoBquHpgvSpTML
+	tpT+tyQTsT+h97PnJKKJW40wuXg36PHiKUCdCA2qqKsQiUarZUA/BtVgDY2pSsF4p1FKNK6qwQvcN
+	BVE49lyEFIMDE3BgVdx0xEPQ8s1zNQR3/mWKvOzfHJYnkm6Xu0+YC+GwYdtfGfYII97WHWs0vtPig
+	B2zZ6TqcU2/9BuzzWT2WEgPzmh/idsnC0hNM7sa1Zh1p6p0IaQR8seTHk8tz2XuhNn+F+BYPkB2FH
+	HLijxCIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSV9S-0000000HCZW-3sQ4;
-	Sun, 15 Nov 2026 07:59:50 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSV9Q-0000000HCZA-2Ztn
+	id 1xSVAb-0000000HCjQ-1M7u;
+	Sun, 15 Nov 2026 08:01:01 +0000
+Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSVAY-0000000HChz-129f
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 07:59:50 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3D310143D;
-	Sat, 14 Nov 2026 23:59:43 -0800 (PST)
-Received: from thinkpad-e142931.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D161A3F85F;
-	Sat, 14 Nov 2026 23:59:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794729586; bh=RtREhx24vm0xSN0YvyO2whbcheqdh4KYyhiGt77tUTE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kq6fvGzS8bBURKe01268mPdpM12ho4S6qynQTk8jmqiVaRhJfXajAOJIT3pqRfkUs
-	 M43cpozGBFMd398we6ec41e9aChcKPLImqq2CGG8rQJaaYx0uKUbb92OSQWOalzEdk
-	 YIY1ep1quTfxzuB6Kf87xb5/4W8/IuPmHR2p3z8E=
-Date: Sun, 15 Nov 2026 07:59:27 +0000
-From: Wei-Lin Chang <weilin.chang@arm.com>
-To: Dan Carpenter <dan@cryspen.com>, Eric Auger <eric.auger@redhat.com>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
-	Steffen Eiden <seiden@linux.ibm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Sascha Bischoff <Sascha.Bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Christoffer Dall <cdall@linaro.org>, 
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	Karthik Bhargavan <karthik@pereq.eu>, =?utf-8?Q?Cl=C3=A9ment?= Blaudeau <clement@cryspen.com>
-Subject: Re: [PATCH v2] KVM: arm64: vgic: Don't truncate offsets in
- vgic_find_mmio_region()
-Message-ID: <dreynmxfzebsybkwjor74uddje6edmth5joj3rijtezrdh5c6n@i5xwud5ix7t5>
-References: <avRLLMOiudnKoSlk@stanley.mountain>
+	Sun, 15 Nov 2026 08:00:59 +0000
+Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-3b18bae2d56so387391a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 00:00:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794729657; x=1795334457; darn=lists.infradead.org;
+        h=mime-version:content-transfer-encoding:content-type:message-id:date
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=wvcPZqOydbJbZA93vSX5EHd5IDhKbwwDJ1uTA6X1prk=;
+        b=OnA1xoy1KQdumG7nLPEXXq77sJSf+QmmBanzSIwSVzGLEv9VOsDyvitiwilro3rqZV
+         oKDZTi82hZRnUmhX0lpo3GyZpRLScK7PMCzyi0wbN1/RGaJ/Wdwskeqr1lk7c+VWEc8z
+         Wo6+zHQH1MICURsSoVm+InXO8M7tcXSw1oa4CPJqTl2wcuySX/m+i9Vw3bKgZPDNPG48
+         aArAQ+IFivDF0ANDoJa7Ivi+v1gYpi+qXpfAgFNlIF9YU/YBWY4ziKhY+XPCnY+T/xgE
+         Z8Msy0JDCBp2Ge5dpM5EB23fxEFByXP4CJ3P+aQzovwzFMoC3TgI/OEwvjUmopr8Oak0
+         sS7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794729657; x=1795334457;
+        h=mime-version:content-transfer-encoding:content-type:message-id:date
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=wvcPZqOydbJbZA93vSX5EHd5IDhKbwwDJ1uTA6X1prk=;
+        b=poUnYViOZ7BRCYzBNUA0Z4ubsjsqzNhnXFWeZuPOMF7GoVqbyobTrcGjvI3imFnQqA
+         ch20fy//NIhpw2vA2NAt104nq6Wji6qMltT8GKQ/hY9X0WYBm0MiVX+8aoEKt8kwVsOf
+         xbiOwBqBwsocqRhuT7TNlPpP9VpuEmeEQEZVe0Kcr1B+BS7CdRaBSKjODR1hNgNi5Cl6
+         wxjiUmauEsReYLwrHJObCdsufb35D2dC5rz0fHJJKAl19+Al128DHbLyH9R8YIHnIJKR
+         mOVPTJphM3VNnKEgKBzAON68IeNxuuMAF2giWsofrEeVZ5eVMYqzEv7l5dNpENpV54JZ
+         z5pA==
+X-Forwarded-Encrypted: i=1; AL+hErHp+C1qvUAiZS20t5BFdxqaXupYn6xaxB44PAWcsYlDi2OVfOof2+Vrnlz2EzPQYNaFMkJ22HBtmgSWW8L88rka@lists.infradead.org
+X-Gm-Message-State: APuU4Z/Vy06A7YDMjX81CdSXJ+PSeyG3MCnFdtRDXS18Q+u8johxjPzF
+	iA/0k8s9Nu4HYm2agSXbTqhv0YlsvStmAs3iKdyKGiaNL5OlS+ZRlgFl
+X-Gm-Gg: AYBFou1g+50Bbxy+I+BLWvPYz0N/cdK6sUuabUEea8I763vQu9LuxIVegA7jLQwLw6k
+	nb9t17z4/uMQOQQYdhjgbIgkW88jI9IMFwgLuIY9SSe9Q43N5Ayrg1gY4ciBXnNGgQt+X5VxlMG
+	OLsFMa3o7FNtbpUUdRYPcIvKvBrp4beHULvqnfISKqvXTni+xXqEbBr6j4sYCwDO3rH31GKHx3g
+	QgLnS2fFsEcRkpt3bN/O7Qc8uGn6eGGpmCZ2fL1rFuZN4g+BhHcCDPVlsAgztKoCItg7M9xp4JN
+	0SBTDyzatUsuXkckU3uhA6bhmRQUe9O83OVkcYPe+f3rUI58kyJic8wQLwPAV+HuyWkeICmz8px
+	KMVOP4Xq9qTGqN/oAyupxYVlI/k8a7AFPpAnJ4JhMfLj2bci++Q4Lqg+j/rm1UxfQxarG6e3m3Q
+	N7vZL8A93jhQvsCQ2aJTQHMGsfNlbGcl1prKdCUh9RUOb6Xcuf7HG5ZCL+bfYr/rGwKq4UVlciO
+	kLdiNtMG+ZbnPsF5J59h1kfLqQtVSk9q4ng4ljCx2f1eX4/p5m6BbgHNAK28852Dx3wXSa4iIZz
+	YdMsvTT8luLAj0wtUi45i4+7gorkAy75trWmBPxSgkJ7yO0iazsz06n7VhsbifzT+bbTICwhLsb
+	woXg2CQ==
+X-Received: by 2002:a17:90b:5844:b0:3ac:a7ee:6785 with SMTP id 98e67ed59e1d1-3b1b081cd6amr12270088a91.1.1794729656691;
+        Sun, 15 Nov 2026 00:00:56 -0800 (PST)
+Received: from claudebox.iyengar.cloud ([50.39.139.68])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1aeb179fasm11795937a91.4.2026.11.15.00.00.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2026 00:00:56 -0800 (PST)
+From: Arun Iyengar <aiyengar1990@gmail.com>
+To: Venkata Atchuta Bheemeswara Sarma Darbha <vdarbha0473@gmail.com>
+Cc: Igor Paunovic <royalnet026@gmail.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, hverkuil+cisco@kernel.org,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/4] media: rkvdec: Add VP9 support for VDPU381 variant
+In-Reply-To: <20260726-b4-add-rkvdec2-vp9-vdpu381-v1-0-180fb2d1f10c@gmail.com>
+References: <20260726-b4-add-rkvdec2-vp9-vdpu381-v1-0-180fb2d1f10c@gmail.com>
+Date: Sun, 15 Nov 2026 08:00:55 -0000
+Message-ID: <179472965541.3841740.13087399923892139638@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <avRLLMOiudnKoSlk@stanley.mountain>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_235948_933299_81CF1175 
-X-CRM114-Status: GOOD (  30.55  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261115_000058_291183_A2EDE456 
+X-CRM114-Status: UNSURE (   7.11  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,111 +109,19 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 02:02:04PM +0300, Dan Carpenter wrote:
-> In vgic_its_has_attr_regs() and vgic_its_attr_regs_access() we take a
-> u64 "offset" from the user and pass it to vgic_find_mmio_region() to
-> find the correct region.  The problem is that vgic_find_mmio_region()
-> truncates the "offset" to 32 bits so we might find a region even
-> though really we shouldn't.
-> 
-> Later the untruncated offset is used to calculate "addr".
-> 
-> 	addr = its->vgic_its_base + offset;
-> 
-> For example, an offset of 0x100000084 finds the 64-bit GITS_CBASER
-> register at 0x80, and the write reaches update_64bit_reg() with an
-> offset of 4 into the register and a length of 8.  It exhibits as a
-> UBSAN warning.
-> 
-> [  183.796046] UBSAN: shift-out-of-bounds in arch/arm64/kvm/vgic/vgic-mmio-v3.c:35:10
-> [  183.796198] shift exponent 18446744073709551584 is too large for 64-bit type 'long long unsigned int'
-> 
-> The GICv5 IRS code has the same problem in vgic_v5_has_attr_regs() and
-> vgic_v5_irs_attr_regs_access().
-> 
-> Make vgic_find_mmio_region() and match_region() take the offset as a
-> u64, so an offset of 2^32 or more no longer matches any region.  The
-> other callers only pass offsets which fit in 32 bits so they are not
-> affected.
+Tested on an Orange Pi 5 (RK3588S), media next 48fe5a7834cc with this
+series, KASAN on, GStreamer 1.28.6: fluster VP9 224/305 as in your
+cover, Profile 2 output md5-identical to FFmpeg and libvpx, HEVC
+unchanged at 146/147, v4l2-compliance 0 failures, no KASAN or IOMMU
+fault. Not tested: 8K, long runs.
 
-Just wanted to point out that GICv5 IRS could have avoided this if the
-code used reg_attr.addr produced by vgic_v5_parse_attr():
-
-reg_attr->addr = attr->attr & KVM_DEV_ARM_VGIC_OFFSET_MASK;
-
-This is why GICv3 isn't affected, it uses the masked value.
-
-However this patch solves the problem in a more fundamental way, making
-using reg_attr.addr produced by vgic_v5_parse_attr() more of a cleanup.
-
-For the patch:
-
-Reviewed-by: Wei-Lin Chang <weilin.chang@arm.com>
-
-Thanks,
-Wei-Lin Chang
-
-> 
-> Fortunately the effect of this bug is very minor.  The worst case is that
-> the VMM accesses an emulated register and sets something nonsensical
-> and users are already allowed to do that without the bug.
-> 
-> Fixes: 8331c23c28e8 ("KVM: arm64: vgic-its: Implement vgic_its_has_attr_regs and attr_regs_access")
-> Fixes: 71091136d145 ("KVM: arm64: gic-v5: Handle userspace accesses to IRS MMIO region")
-> Signed-off-by: Dan Carpenter <dan@cryspen.com>
-> ---
-> v2: Change vgic_find_mmio_region() to take a u64 instead of rejecting
->     large offsets in the ITS callers, as Marc suggested.  This also
->     fixes the GICv5 IRS code which my previous patch didn't.  Drop the
->     Cc: stable.
-> 
->  arch/arm64/kvm/vgic/vgic-mmio.c | 4 ++--
->  arch/arm64/kvm/vgic/vgic-mmio.h | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/kvm/vgic/vgic-mmio.c b/arch/arm64/kvm/vgic/vgic-mmio.c
-> index fddb9da0403d..59bdec495cd7 100644
-> --- a/arch/arm64/kvm/vgic/vgic-mmio.c
-> +++ b/arch/arm64/kvm/vgic/vgic-mmio.c
-> @@ -820,7 +820,7 @@ void vgic_write_irq_line_level_info(struct kvm_vcpu *vcpu, u32 intid,
->  
->  static int match_region(const void *key, const void *elt)
->  {
-> -	const unsigned int offset = (unsigned long)key;
-> +	const u64 offset = (unsigned long)key;
->  	const struct vgic_register_region *region = elt;
->  
->  	if (offset < region->reg_offset)
-> @@ -834,7 +834,7 @@ static int match_region(const void *key, const void *elt)
->  
->  const struct vgic_register_region *
->  vgic_find_mmio_region(const struct vgic_register_region *regions,
-> -		      int nr_regions, unsigned int offset)
-> +		      int nr_regions, u64 offset)
->  {
->  	return bsearch((void *)(uintptr_t)offset, regions, nr_regions,
->  		       sizeof(regions[0]), match_region);
-> diff --git a/arch/arm64/kvm/vgic/vgic-mmio.h b/arch/arm64/kvm/vgic/vgic-mmio.h
-> index 38ed730d68ac..6c3c4de6883e 100644
-> --- a/arch/arm64/kvm/vgic/vgic-mmio.h
-> +++ b/arch/arm64/kvm/vgic/vgic-mmio.h
-> @@ -228,6 +228,6 @@ u64 vgic_sanitise_field(u64 reg, u64 field_mask, int field_shift,
->  /* Find the proper register handler entry given a certain address offset */
->  const struct vgic_register_region *
->  vgic_find_mmio_region(const struct vgic_register_region *regions,
-> -		      int nr_regions, unsigned int offset);
-> +		      int nr_regions, u64 offset);
->  
->  #endif
-> -- 
-> 2.53.0
-> 
+Tested-by: Arun Iyengar <aiyengar1990@gmail.com>
 
