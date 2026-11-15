@@ -2,66 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98AC7606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A005A606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yyIRgfng;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QElKHK9x
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F6luilV5;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Li9higuZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pV3RfH8ZjTvrrrn6TMV0Tczqaj2UAbnPkRQiyUXlJgk=; b=yyIRgfngk4Z5n8bwjAi/tfcH4o
-	mu32mxBPPoIAH49EJ3JOkiTplm3dgyPNeAiL6+XCuL6bOuOuy5UsGErciII2P9HwaVex5G0X8j9Q9
-	8molNUhJUniVd5N75KzF2xdgFeQl602dO+Vn7kw+MXxvNGvR4JfZkLgOCTlg6c7NMQFbaxuImdvRX
-	oCHigyd5kH7+PWwsCf2ZndTtNyu+kD0p6DI7f1blzVGXTtaCpZveFvTONyTSE6aGF+K9yU051FK9C
-	srosocTHn4KhLjj9KprZX3/kpjojndimnx1IJSVG6dGw28t1jKLKraIcJUG0J3hywNZ9dJER0nCFV
-	dF++WsuA==;
+	bh=lMoHIuDGeBYbm95jv2X9pK5hAUAsdszbYLukExBu7bs=; b=F6luilV5m5Nr0uZJ+Kc1MNoX0V
+	rUofAxBB62r0BA6Lyb45cvq6aGVheQxZICwvP15EGk9WnX9UBG3F5dMn7ykJJaGQ5vz42s55ej/pk
+	LIQXQF5qbNyNNa5+/kO2IvG3v4LA9/pgZKUbOofRMvs8+/Q2IOdXg+XQSKszXCooJWOy/S8UwoD4Q
+	dswnKh0C3vY2OaXOUmS+KdRJlasySOGcMRB6ZDBLwivr+H0k5VmuULISSwMRoYWSrSui20KUwh4Nx
+	TsRdCsgHLfnh5Yo6pLCOU2ZNwA4QxWJQhH+QrKb5mbg/z2PV0gRUhxyK4z5PfBA5B5kSr5khzlIkI
+	PBJ02uEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbWY-000000005rR-3JEy;
-	Sun, 15 Nov 2026 14:48:06 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSbaR-0000000068x-1aAK;
+	Sun, 15 Nov 2026 14:52:07 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbWX-000000005r8-1PuC
+	id 1xSbaQ-0000000068q-38Gj
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 14:48:05 +0000
+	Sun, 15 Nov 2026 14:52:06 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 740B861250;
-	Sun, 15 Nov 2026 14:48:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 381571F000C5;
-	Sun, 15 Nov 2026 14:48:02 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3698D42AED;
+	Sun, 15 Nov 2026 14:52:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CF7E1F000C4;
+	Sun, 15 Nov 2026 14:52:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794754084;
-	bh=pV3RfH8ZjTvrrrn6TMV0Tczqaj2UAbnPkRQiyUXlJgk=;
-	h=From:Date:Subject:To:Cc;
-	b=QElKHK9xRw3VQ5/3jUboTdQ1GqhG2n4aI/DxuPLl5bz/hu4F0GbyA+TBMpNRiZvYs
-	 meXogTpYIG6A9I6Qo1tEinOWCt3wqDGKC5LoCEr3ldjtHj0WsqQntbkvJbgu9At0N/
-	 MCxDeGBdMobedtu+sTG4j1SVT3Pptxa08F+Wf9zj5xemx9I3y2azIzrCR9swyHqozE
-	 aEz0hzj7wHYCh4w2h1XIBSU4PQc4SPllihw1R9D3fxYWZVvhvdswTVUb9mgp0xvcHt
-	 tkQZEXKfF2HTNmRqJUHxBnebhep/srfcwPqUUzo6tj03Ce6vk67/hpZijRjDmCjNRY
-	 /fRDMmcHbvqhg==
-From: Linus Walleij <linusw@kernel.org>
-Date: Sun, 15 Nov 2026 15:47:57 +0100
-Subject: [PATCH] mfd/regulator: db8500-prcmu: Remove EPOD regulators
+	s=k20260515; t=1794754326;
+	bh=lMoHIuDGeBYbm95jv2X9pK5hAUAsdszbYLukExBu7bs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=Li9higuZRHWSG490oa42d1zrCcZBOYB3YvISXH6iSVcr3axoYntPIDmqsP20aZYAT
+	 5EGKn/xvwOyIarpE84lZ4vODVE9ryGcs09g2m9+lo+wveJwgViFSmRXVY1/VscQDB9
+	 poCcmeYpMyYKzKYqJZdBhcCviu3c0H3xnJI1SzJni/k5Kp/wMgh+STifpnM4m3jBn0
+	 i1oR4+eZZ8CkpksDdkz91KPilRWm8/roktLEflR3PvfsDKi5UNBQM3Z30Hw37jU14w
+	 NxbKxrN20KqlLGEMUb4e2FQ+u2g3Etqspe3PJ1MP51elZZb09nUaJ2bVAbf0e8iVsb
+	 3otdDfOBzk1qA==
+Subject: Re: [PATCH] net: stmmac: program the FSM timeout timer
+From: netdev-bot+sashiko@kernel.org
+To: zxyan0222@gmail.com
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ netdev@vger.kernel.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ rmk+kernel@armlinux.org.uk, Jose.Abreu@synopsys.com
+Date: Sun, 15 Nov 2026 14:52:04 +0000
+Message-ID: <179475432482.2199510.1145189790252763539@kernel.org>
+In-Reply-To: <20261111143322.2234321-1-zxyan0222@gmail.com>
+References: <20261111143322.2234321-1-zxyan0222@gmail.com>
+X-sashiko-severity: High
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261115-ux500-epod-regulator-removal-v1-1-f550c95dfa9c@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MQQqEMAwAwK+EnA0kFT30K7KHolEDaiVdRRD/L
- jgPmBuLumnBCDe6nlYsbxhBKsB+TtukZANGwMChFZGGjqthJt3zQK7TsaR/dnJd85kWkpETh7b
- ulQNWgLvraNfXd7/neQGOYvTRbgAAAA==
-X-Change-ID: 20261115-ux500-epod-regulator-removal-1f0a0263ce02
-To: Lee Jones <lee@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Ulf Hansson <ulfh@kernel.org>, mfd@lists.linux.dev, 
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Linus Walleij <linusw@kernel.org>
-X-Mailer: b4 0.16.0
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,1115 +72,195 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Remove the obsolete DB8500 PRCMU regulator drivers.
+Thank you for your contribution! Sashiko AI review found 3 potential
+issue(s) to consider.
 
-Drop the regulator build hooks and the db8500-prcmu-regulators MFD
-cell now that EPODs are power domains.
+Critical: 0 · High: 2 · Medium: 1 · Low: 0
 
-Acked-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Linus Walleij <linusw@kernel.org>
----
-Let's just merge this, it is ACKed and prerequisites are in place
-in the powerdomain subsystem.
----
-Hi Lee, go ahead and just apply this patch please.
----
- drivers/mfd/db8500-prcmu.c             | 239 ----------------
- drivers/regulator/Kconfig              |  12 -
- drivers/regulator/Makefile             |   2 -
- drivers/regulator/db8500-prcmu.c       | 501 ---------------------------------
- drivers/regulator/dbx500-prcmu.c       | 155 ----------
- drivers/regulator/dbx500-prcmu.h       |  55 ----
- include/linux/regulator/db8500-prcmu.h |  38 ---
- 7 files changed, 1002 deletions(-)
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-diff --git a/drivers/mfd/db8500-prcmu.c b/drivers/mfd/db8500-prcmu.c
-index 6672c55f2ebc..687bbf79559e 100644
---- a/drivers/mfd/db8500-prcmu.c
-+++ b/drivers/mfd/db8500-prcmu.c
-@@ -34,8 +34,6 @@
- #include <linux/mfd/core.h>
- #include <linux/mfd/db8500-prcmu.h>
- #include <linux/mfd/abx500/ab8500.h>
--#include <linux/regulator/db8500-prcmu.h>
--#include <linux/regulator/machine.h>
- #include "db8500-prcmu-regs.h"
- 
- /* Index of different voltages to be used when accessing AVSData */
-@@ -2704,249 +2702,12 @@ static void init_prcm_registers(void)
- 	writel(val, (PRCM_A9PL_FORCE_CLKEN));
- }
- 
--/*
-- * Power domain switches (ePODs) modeled as regulators for the DB8500 SoC
-- */
--static struct regulator_consumer_supply db8500_vape_consumers[] = {
--	REGULATOR_SUPPLY("v-ape", NULL),
--	REGULATOR_SUPPLY("v-i2c", "nmk-i2c.0"),
--	REGULATOR_SUPPLY("v-i2c", "nmk-i2c.1"),
--	REGULATOR_SUPPLY("v-i2c", "nmk-i2c.2"),
--	REGULATOR_SUPPLY("v-i2c", "nmk-i2c.3"),
--	REGULATOR_SUPPLY("v-i2c", "nmk-i2c.4"),
--	/* "v-mmc" changed to "vcore" in the mainline kernel */
--	REGULATOR_SUPPLY("vcore", "sdi0"),
--	REGULATOR_SUPPLY("vcore", "sdi1"),
--	REGULATOR_SUPPLY("vcore", "sdi2"),
--	REGULATOR_SUPPLY("vcore", "sdi3"),
--	REGULATOR_SUPPLY("vcore", "sdi4"),
--	REGULATOR_SUPPLY("v-dma", "dma40.0"),
--	REGULATOR_SUPPLY("v-ape", "ab8500-usb.0"),
--	/* "v-uart" changed to "vcore" in the mainline kernel */
--	REGULATOR_SUPPLY("vcore", "uart0"),
--	REGULATOR_SUPPLY("vcore", "uart1"),
--	REGULATOR_SUPPLY("vcore", "uart2"),
--	REGULATOR_SUPPLY("v-ape", "nmk-ske-keypad.0"),
--	REGULATOR_SUPPLY("v-hsi", "ste_hsi.0"),
--	REGULATOR_SUPPLY("vddvario", "smsc911x.0"),
--};
--
--static struct regulator_consumer_supply db8500_vsmps2_consumers[] = {
--	REGULATOR_SUPPLY("musb_1v8", "ab8500-usb.0"),
--	/* AV8100 regulator */
--	REGULATOR_SUPPLY("hdmi_1v8", "0-0070"),
--};
--
--static struct regulator_consumer_supply db8500_b2r2_mcde_consumers[] = {
--	REGULATOR_SUPPLY("vsupply", "b2r2_bus"),
--	REGULATOR_SUPPLY("vsupply", "mcde"),
--};
--
--/* SVA MMDSP regulator switch */
--static struct regulator_consumer_supply db8500_svammdsp_consumers[] = {
--	REGULATOR_SUPPLY("sva-mmdsp", "cm_control"),
--};
--
--/* SVA pipe regulator switch */
--static struct regulator_consumer_supply db8500_svapipe_consumers[] = {
--	REGULATOR_SUPPLY("sva-pipe", "cm_control"),
--};
--
--/* SIA MMDSP regulator switch */
--static struct regulator_consumer_supply db8500_siammdsp_consumers[] = {
--	REGULATOR_SUPPLY("sia-mmdsp", "cm_control"),
--};
--
--/* SIA pipe regulator switch */
--static struct regulator_consumer_supply db8500_siapipe_consumers[] = {
--	REGULATOR_SUPPLY("sia-pipe", "cm_control"),
--};
--
--static struct regulator_consumer_supply db8500_sga_consumers[] = {
--	REGULATOR_SUPPLY("v-mali", NULL),
--};
--
--/* ESRAM1 and 2 regulator switch */
--static struct regulator_consumer_supply db8500_esram12_consumers[] = {
--	REGULATOR_SUPPLY("esram12", "cm_control"),
--};
--
--/* ESRAM3 and 4 regulator switch */
--static struct regulator_consumer_supply db8500_esram34_consumers[] = {
--	REGULATOR_SUPPLY("v-esram34", "mcde"),
--	REGULATOR_SUPPLY("esram34", "cm_control"),
--	REGULATOR_SUPPLY("lcla_esram", "dma40.0"),
--};
--
--static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
--	[DB8500_REGULATOR_VAPE] = {
--		.constraints = {
--			.name = "db8500-vape",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--			.always_on = true,
--		},
--		.consumer_supplies = db8500_vape_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_vape_consumers),
--	},
--	[DB8500_REGULATOR_VARM] = {
--		.constraints = {
--			.name = "db8500-varm",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_VMODEM] = {
--		.constraints = {
--			.name = "db8500-vmodem",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_VPLL] = {
--		.constraints = {
--			.name = "db8500-vpll",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_VSMPS1] = {
--		.constraints = {
--			.name = "db8500-vsmps1",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_VSMPS2] = {
--		.constraints = {
--			.name = "db8500-vsmps2",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_vsmps2_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_vsmps2_consumers),
--	},
--	[DB8500_REGULATOR_VSMPS3] = {
--		.constraints = {
--			.name = "db8500-vsmps3",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_VRF1] = {
--		.constraints = {
--			.name = "db8500-vrf1",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_SWITCH_SVAMMDSP] = {
--		/* dependency to u8500-vape is handled outside regulator framework */
--		.constraints = {
--			.name = "db8500-sva-mmdsp",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_svammdsp_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_svammdsp_consumers),
--	},
--	[DB8500_REGULATOR_SWITCH_SVAMMDSPRET] = {
--		.constraints = {
--			/* "ret" means "retention" */
--			.name = "db8500-sva-mmdsp-ret",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_SWITCH_SVAPIPE] = {
--		/* dependency to u8500-vape is handled outside regulator framework */
--		.constraints = {
--			.name = "db8500-sva-pipe",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_svapipe_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_svapipe_consumers),
--	},
--	[DB8500_REGULATOR_SWITCH_SIAMMDSP] = {
--		/* dependency to u8500-vape is handled outside regulator framework */
--		.constraints = {
--			.name = "db8500-sia-mmdsp",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_siammdsp_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_siammdsp_consumers),
--	},
--	[DB8500_REGULATOR_SWITCH_SIAMMDSPRET] = {
--		.constraints = {
--			.name = "db8500-sia-mmdsp-ret",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_SWITCH_SIAPIPE] = {
--		/* dependency to u8500-vape is handled outside regulator framework */
--		.constraints = {
--			.name = "db8500-sia-pipe",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_siapipe_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_siapipe_consumers),
--	},
--	[DB8500_REGULATOR_SWITCH_SGA] = {
--		.supply_regulator = "db8500-vape",
--		.constraints = {
--			.name = "db8500-sga",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_sga_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_sga_consumers),
--
--	},
--	[DB8500_REGULATOR_SWITCH_B2R2_MCDE] = {
--		.supply_regulator = "db8500-vape",
--		.constraints = {
--			.name = "db8500-b2r2-mcde",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_b2r2_mcde_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_b2r2_mcde_consumers),
--	},
--	[DB8500_REGULATOR_SWITCH_ESRAM12] = {
--		/*
--		 * esram12 is set in retention and supplied by Vsafe when Vape is off,
--		 * no need to hold Vape
--		 */
--		.constraints = {
--			.name = "db8500-esram12",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_esram12_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_esram12_consumers),
--	},
--	[DB8500_REGULATOR_SWITCH_ESRAM12RET] = {
--		.constraints = {
--			.name = "db8500-esram12-ret",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--	[DB8500_REGULATOR_SWITCH_ESRAM34] = {
--		/*
--		 * esram34 is set in retention and supplied by Vsafe when Vape is off,
--		 * no need to hold Vape
--		 */
--		.constraints = {
--			.name = "db8500-esram34",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--		.consumer_supplies = db8500_esram34_consumers,
--		.num_consumer_supplies = ARRAY_SIZE(db8500_esram34_consumers),
--	},
--	[DB8500_REGULATOR_SWITCH_ESRAM34RET] = {
--		.constraints = {
--			.name = "db8500-esram34-ret",
--			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
--		},
--	},
--};
--
- static const struct mfd_cell common_prcmu_devs[] = {
- 	MFD_CELL_NAME("db8500_wdt"),
- 	MFD_CELL_NAME("db8500-cpuidle"),
- };
- 
- static const struct mfd_cell db8500_prcmu_devs[] = {
--	MFD_CELL_OF("db8500-prcmu-regulators", NULL,
--		    &db8500_regulators, sizeof(db8500_regulators), 0,
--		    "stericsson,db8500-prcmu-regulator"),
- 	MFD_CELL_OF("db8500-thermal",
- 		    NULL, NULL, 0, 0, "stericsson,db8500-thermal"),
- };
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 121554168ec0..b63753d14b44 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -408,18 +408,6 @@ config REGULATOR_DA9211
- 	  step down converter 12A or 16A DC-DC Buck controlled through an I2C
- 	  interface.
- 
--config REGULATOR_DBX500_PRCMU
--	bool
--
--config REGULATOR_DB8500_PRCMU
--	bool "ST-Ericsson DB8500 Voltage Domain Regulators"
--	depends on MFD_DB8500_PRCMU
--	depends on !UX500_PM_DOMAIN
--	select REGULATOR_DBX500_PRCMU
--	help
--	  This driver supports the voltage domain regulators controlled by the
--	  DB8500 PRCMU
--
- config REGULATOR_FAN53555
- 	tristate "Fairchild FAN53555 Regulator"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 6aabcc54382a..025a5ac55f8b 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -48,8 +48,6 @@ obj-$(CONFIG_REGULATOR_DA9063)	+= da9063-regulator.o
- obj-$(CONFIG_REGULATOR_DA9121) += da9121-regulator.o
- obj-$(CONFIG_REGULATOR_DA9210) += da9210-regulator.o
- obj-$(CONFIG_REGULATOR_DA9211) += da9211-regulator.o
--obj-$(CONFIG_REGULATOR_DBX500_PRCMU) += dbx500-prcmu.o
--obj-$(CONFIG_REGULATOR_DB8500_PRCMU) += db8500-prcmu.o
- obj-$(CONFIG_REGULATOR_FAN53555) += fan53555.o
- obj-$(CONFIG_REGULATOR_FAN53880) += fan53880.o
- obj-$(CONFIG_REGULATOR_GPIO) += gpio-regulator.o
-diff --git a/drivers/regulator/db8500-prcmu.c b/drivers/regulator/db8500-prcmu.c
-deleted file mode 100644
-index 751fe36580fa..000000000000
---- a/drivers/regulator/db8500-prcmu.c
-+++ /dev/null
-@@ -1,501 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) ST-Ericsson SA 2010
-- *
-- * Authors: Sundar Iyer <sundar.iyer@stericsson.com> for ST-Ericsson
-- *          Bengt Jonsson <bengt.g.jonsson@stericsson.com> for ST-Ericsson
-- *
-- * Power domain regulators on DB8500
-- */
--
--#include <linux/kernel.h>
--#include <linux/init.h>
--#include <linux/err.h>
--#include <linux/spinlock.h>
--#include <linux/platform_device.h>
--#include <linux/mfd/db8500-prcmu.h>
--#include <linux/regulator/driver.h>
--#include <linux/regulator/machine.h>
--#include <linux/regulator/db8500-prcmu.h>
--#include <linux/regulator/of_regulator.h>
--#include <linux/of.h>
--#include <linux/module.h>
--#include "dbx500-prcmu.h"
--
--static int db8500_regulator_enable(struct regulator_dev *rdev)
--{
--	struct dbx500_regulator_info *info = rdev_get_drvdata(rdev);
--
--	if (info == NULL)
--		return -EINVAL;
--
--	dev_vdbg(rdev_get_dev(rdev), "regulator-%s-enable\n",
--		info->desc.name);
--
--	if (!info->is_enabled) {
--		info->is_enabled = true;
--		if (!info->exclude_from_power_state)
--			power_state_active_enable();
--	}
--
--	return 0;
--}
--
--static int db8500_regulator_disable(struct regulator_dev *rdev)
--{
--	struct dbx500_regulator_info *info = rdev_get_drvdata(rdev);
--	int ret = 0;
--
--	if (info == NULL)
--		return -EINVAL;
--
--	dev_vdbg(rdev_get_dev(rdev), "regulator-%s-disable\n",
--		info->desc.name);
--
--	if (info->is_enabled) {
--		info->is_enabled = false;
--		if (!info->exclude_from_power_state)
--			ret = power_state_active_disable();
--	}
--
--	return ret;
--}
--
--static int db8500_regulator_is_enabled(struct regulator_dev *rdev)
--{
--	struct dbx500_regulator_info *info = rdev_get_drvdata(rdev);
--
--	if (info == NULL)
--		return -EINVAL;
--
--	dev_vdbg(rdev_get_dev(rdev), "regulator-%s-is_enabled (is_enabled):"
--		" %i\n", info->desc.name, info->is_enabled);
--
--	return info->is_enabled;
--}
--
--/* db8500 regulator operations */
--static const struct regulator_ops db8500_regulator_ops = {
--	.enable			= db8500_regulator_enable,
--	.disable		= db8500_regulator_disable,
--	.is_enabled		= db8500_regulator_is_enabled,
--};
--
--/*
-- * EPOD control
-- */
--static bool epod_on[NUM_EPOD_ID];
--static bool epod_ramret[NUM_EPOD_ID];
--
--static int enable_epod(u16 epod_id, bool ramret)
--{
--	int ret;
--
--	if (ramret) {
--		if (!epod_on[epod_id]) {
--			ret = db8500_prcmu_set_epod(epod_id, EPOD_STATE_RAMRET);
--			if (ret < 0)
--				return ret;
--		}
--		epod_ramret[epod_id] = true;
--	} else {
--		ret = db8500_prcmu_set_epod(epod_id, EPOD_STATE_ON);
--		if (ret < 0)
--			return ret;
--		epod_on[epod_id] = true;
--	}
--
--	return 0;
--}
--
--static int disable_epod(u16 epod_id, bool ramret)
--{
--	int ret;
--
--	if (ramret) {
--		if (!epod_on[epod_id]) {
--			ret = db8500_prcmu_set_epod(epod_id, EPOD_STATE_OFF);
--			if (ret < 0)
--				return ret;
--		}
--		epod_ramret[epod_id] = false;
--	} else {
--		if (epod_ramret[epod_id]) {
--			ret = db8500_prcmu_set_epod(epod_id, EPOD_STATE_RAMRET);
--			if (ret < 0)
--				return ret;
--		} else {
--			ret = db8500_prcmu_set_epod(epod_id, EPOD_STATE_OFF);
--			if (ret < 0)
--				return ret;
--		}
--		epod_on[epod_id] = false;
--	}
--
--	return 0;
--}
--
--/*
-- * Regulator switch
-- */
--static int db8500_regulator_switch_enable(struct regulator_dev *rdev)
--{
--	struct dbx500_regulator_info *info = rdev_get_drvdata(rdev);
--	int ret;
--
--	if (info == NULL)
--		return -EINVAL;
--
--	dev_vdbg(rdev_get_dev(rdev), "regulator-switch-%s-enable\n",
--		info->desc.name);
--
--	ret = enable_epod(info->epod_id, info->is_ramret);
--	if (ret < 0) {
--		dev_err(rdev_get_dev(rdev),
--			"regulator-switch-%s-enable: prcmu call failed\n",
--			info->desc.name);
--		goto out;
--	}
--
--	info->is_enabled = true;
--out:
--	return ret;
--}
--
--static int db8500_regulator_switch_disable(struct regulator_dev *rdev)
--{
--	struct dbx500_regulator_info *info = rdev_get_drvdata(rdev);
--	int ret;
--
--	if (info == NULL)
--		return -EINVAL;
--
--	dev_vdbg(rdev_get_dev(rdev), "regulator-switch-%s-disable\n",
--		info->desc.name);
--
--	ret = disable_epod(info->epod_id, info->is_ramret);
--	if (ret < 0) {
--		dev_err(rdev_get_dev(rdev),
--			"regulator_switch-%s-disable: prcmu call failed\n",
--			info->desc.name);
--		goto out;
--	}
--
--	info->is_enabled = false;
--out:
--	return ret;
--}
--
--static int db8500_regulator_switch_is_enabled(struct regulator_dev *rdev)
--{
--	struct dbx500_regulator_info *info = rdev_get_drvdata(rdev);
--
--	if (info == NULL)
--		return -EINVAL;
--
--	dev_vdbg(rdev_get_dev(rdev),
--		"regulator-switch-%s-is_enabled (is_enabled): %i\n",
--		info->desc.name, info->is_enabled);
--
--	return info->is_enabled;
--}
--
--static const struct regulator_ops db8500_regulator_switch_ops = {
--	.enable			= db8500_regulator_switch_enable,
--	.disable		= db8500_regulator_switch_disable,
--	.is_enabled		= db8500_regulator_switch_is_enabled,
--};
--
--/*
-- * Regulator information
-- */
--static struct dbx500_regulator_info
--dbx500_regulator_info[DB8500_NUM_REGULATORS] = {
--	[DB8500_REGULATOR_VAPE] = {
--		.desc = {
--			.name	= "db8500-vape",
--			.of_match = of_match_ptr("db8500_vape"),
--			.id	= DB8500_REGULATOR_VAPE,
--			.ops	= &db8500_regulator_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--	},
--	[DB8500_REGULATOR_VARM] = {
--		.desc = {
--			.name	= "db8500-varm",
--			.of_match = of_match_ptr("db8500_varm"),
--			.id	= DB8500_REGULATOR_VARM,
--			.ops	= &db8500_regulator_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--	},
--	[DB8500_REGULATOR_VMODEM] = {
--		.desc = {
--			.name	= "db8500-vmodem",
--			.of_match = of_match_ptr("db8500_vmodem"),
--			.id	= DB8500_REGULATOR_VMODEM,
--			.ops	= &db8500_regulator_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--	},
--	[DB8500_REGULATOR_VPLL] = {
--		.desc = {
--			.name	= "db8500-vpll",
--			.of_match = of_match_ptr("db8500_vpll"),
--			.id	= DB8500_REGULATOR_VPLL,
--			.ops	= &db8500_regulator_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--	},
--	[DB8500_REGULATOR_VSMPS1] = {
--		.desc = {
--			.name	= "db8500-vsmps1",
--			.of_match = of_match_ptr("db8500_vsmps1"),
--			.id	= DB8500_REGULATOR_VSMPS1,
--			.ops	= &db8500_regulator_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--	},
--	[DB8500_REGULATOR_VSMPS2] = {
--		.desc = {
--			.name	= "db8500-vsmps2",
--			.of_match = of_match_ptr("db8500_vsmps2"),
--			.id	= DB8500_REGULATOR_VSMPS2,
--			.ops	= &db8500_regulator_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--			.fixed_uV = 1800000,
--			.n_voltages = 1,
--		},
--		.exclude_from_power_state = true,
--	},
--	[DB8500_REGULATOR_VSMPS3] = {
--		.desc = {
--			.name	= "db8500-vsmps3",
--			.of_match = of_match_ptr("db8500_vsmps3"),
--			.id	= DB8500_REGULATOR_VSMPS3,
--			.ops	= &db8500_regulator_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--	},
--	[DB8500_REGULATOR_VRF1] = {
--		.desc = {
--			.name	= "db8500-vrf1",
--			.of_match = of_match_ptr("db8500_vrf1"),
--			.id	= DB8500_REGULATOR_VRF1,
--			.ops	= &db8500_regulator_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--	},
--	[DB8500_REGULATOR_SWITCH_SVAMMDSP] = {
--		.desc = {
--			.name	= "db8500-sva-mmdsp",
--			.of_match = of_match_ptr("db8500_sva_mmdsp"),
--			.id	= DB8500_REGULATOR_SWITCH_SVAMMDSP,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_SVAMMDSP,
--	},
--	[DB8500_REGULATOR_SWITCH_SVAMMDSPRET] = {
--		.desc = {
--			.name	= "db8500-sva-mmdsp-ret",
--			.of_match = of_match_ptr("db8500_sva_mmdsp_ret"),
--			.id	= DB8500_REGULATOR_SWITCH_SVAMMDSPRET,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_SVAMMDSP,
--		.is_ramret = true,
--	},
--	[DB8500_REGULATOR_SWITCH_SVAPIPE] = {
--		.desc = {
--			.name	= "db8500-sva-pipe",
--			.of_match = of_match_ptr("db8500_sva_pipe"),
--			.id	= DB8500_REGULATOR_SWITCH_SVAPIPE,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_SVAPIPE,
--	},
--	[DB8500_REGULATOR_SWITCH_SIAMMDSP] = {
--		.desc = {
--			.name	= "db8500-sia-mmdsp",
--			.of_match = of_match_ptr("db8500_sia_mmdsp"),
--			.id	= DB8500_REGULATOR_SWITCH_SIAMMDSP,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_SIAMMDSP,
--	},
--	[DB8500_REGULATOR_SWITCH_SIAMMDSPRET] = {
--		.desc = {
--			.name	= "db8500-sia-mmdsp-ret",
--			.of_match = of_match_ptr("db8500_sia_mmdsp_ret"),
--			.id	= DB8500_REGULATOR_SWITCH_SIAMMDSPRET,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_SIAMMDSP,
--		.is_ramret = true,
--	},
--	[DB8500_REGULATOR_SWITCH_SIAPIPE] = {
--		.desc = {
--			.name	= "db8500-sia-pipe",
--			.of_match = of_match_ptr("db8500_sia_pipe"),
--			.id	= DB8500_REGULATOR_SWITCH_SIAPIPE,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_SIAPIPE,
--	},
--	[DB8500_REGULATOR_SWITCH_SGA] = {
--		.desc = {
--			.name	= "db8500-sga",
--			.of_match = of_match_ptr("db8500_sga"),
--			.id	= DB8500_REGULATOR_SWITCH_SGA,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_SGA,
--	},
--	[DB8500_REGULATOR_SWITCH_B2R2_MCDE] = {
--		.desc = {
--			.name	= "db8500-b2r2-mcde",
--			.of_match = of_match_ptr("db8500_b2r2_mcde"),
--			.id	= DB8500_REGULATOR_SWITCH_B2R2_MCDE,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_B2R2_MCDE,
--	},
--	[DB8500_REGULATOR_SWITCH_ESRAM12] = {
--		.desc = {
--			.name	= "db8500-esram12",
--			.of_match = of_match_ptr("db8500_esram12"),
--			.id	= DB8500_REGULATOR_SWITCH_ESRAM12,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id	= EPOD_ID_ESRAM12,
--		.is_enabled	= true,
--	},
--	[DB8500_REGULATOR_SWITCH_ESRAM12RET] = {
--		.desc = {
--			.name	= "db8500-esram12-ret",
--			.of_match = of_match_ptr("db8500_esram12_ret"),
--			.id	= DB8500_REGULATOR_SWITCH_ESRAM12RET,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_ESRAM12,
--		.is_ramret = true,
--	},
--	[DB8500_REGULATOR_SWITCH_ESRAM34] = {
--		.desc = {
--			.name	= "db8500-esram34",
--			.of_match = of_match_ptr("db8500_esram34"),
--			.id	= DB8500_REGULATOR_SWITCH_ESRAM34,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id	= EPOD_ID_ESRAM34,
--		.is_enabled	= true,
--	},
--	[DB8500_REGULATOR_SWITCH_ESRAM34RET] = {
--		.desc = {
--			.name	= "db8500-esram34-ret",
--			.of_match = of_match_ptr("db8500_esram34_ret"),
--			.id	= DB8500_REGULATOR_SWITCH_ESRAM34RET,
--			.ops	= &db8500_regulator_switch_ops,
--			.type	= REGULATOR_VOLTAGE,
--			.owner	= THIS_MODULE,
--		},
--		.epod_id = EPOD_ID_ESRAM34,
--		.is_ramret = true,
--	},
--};
--
--static int db8500_regulator_probe(struct platform_device *pdev)
--{
--	struct regulator_init_data *db8500_init_data;
--	struct dbx500_regulator_info *info;
--	struct regulator_config config = { };
--	struct regulator_dev *rdev;
--	int err, i;
--
--	db8500_init_data = dev_get_platdata(&pdev->dev);
--
--	for (i = 0; i < ARRAY_SIZE(dbx500_regulator_info); i++) {
--		/* assign per-regulator data */
--		info = &dbx500_regulator_info[i];
--
--		config.driver_data = info;
--		config.dev = &pdev->dev;
--		if (db8500_init_data)
--			config.init_data = &db8500_init_data[i];
--
--		rdev = devm_regulator_register(&pdev->dev, &info->desc,
--					       &config);
--		if (IS_ERR(rdev)) {
--			err = PTR_ERR(rdev);
--			dev_err(&pdev->dev, "failed to register %s: err %i\n",
--				info->desc.name, err);
--			return err;
--		}
--		dev_dbg(&pdev->dev, "regulator-%s-probed\n", info->desc.name);
--	}
--
--	ux500_regulator_debug_init(pdev, dbx500_regulator_info,
--				   ARRAY_SIZE(dbx500_regulator_info));
--	return 0;
--}
--
--static void db8500_regulator_remove(struct platform_device *pdev)
--{
--	ux500_regulator_debug_exit();
--}
--
--static struct platform_driver db8500_regulator_driver = {
--	.driver = {
--		.name = "db8500-prcmu-regulators",
--		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
--	},
--	.probe = db8500_regulator_probe,
--	.remove = db8500_regulator_remove,
--};
--
--static int __init db8500_regulator_init(void)
--{
--	return platform_driver_register(&db8500_regulator_driver);
--}
--
--static void __exit db8500_regulator_exit(void)
--{
--	platform_driver_unregister(&db8500_regulator_driver);
--}
--
--arch_initcall(db8500_regulator_init);
--module_exit(db8500_regulator_exit);
--
--MODULE_AUTHOR("STMicroelectronics/ST-Ericsson");
--MODULE_DESCRIPTION("DB8500 regulator driver");
--MODULE_LICENSE("GPL v2");
-diff --git a/drivers/regulator/dbx500-prcmu.c b/drivers/regulator/dbx500-prcmu.c
-deleted file mode 100644
-index a45c1e1ac7ef..000000000000
---- a/drivers/regulator/dbx500-prcmu.c
-+++ /dev/null
-@@ -1,155 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) ST-Ericsson SA 2010
-- *
-- * Authors: Sundar Iyer <sundar.iyer@stericsson.com> for ST-Ericsson
-- *          Bengt Jonsson <bengt.g.jonsson@stericsson.com> for ST-Ericsson
-- *
-- * UX500 common part of Power domain regulators
-- */
--
--#include <linux/kernel.h>
--#include <linux/err.h>
--#include <linux/regulator/driver.h>
--#include <linux/debugfs.h>
--#include <linux/seq_file.h>
--#include <linux/slab.h>
--#include <linux/module.h>
--
--#include "dbx500-prcmu.h"
--
--/*
-- * power state reference count
-- */
--static int power_state_active_cnt; /* will initialize to zero */
--static DEFINE_SPINLOCK(power_state_active_lock);
--
--void power_state_active_enable(void)
--{
--	unsigned long flags;
--
--	spin_lock_irqsave(&power_state_active_lock, flags);
--	power_state_active_cnt++;
--	spin_unlock_irqrestore(&power_state_active_lock, flags);
--}
--
--int power_state_active_disable(void)
--{
--	int ret = 0;
--	unsigned long flags;
--
--	spin_lock_irqsave(&power_state_active_lock, flags);
--	if (power_state_active_cnt <= 0) {
--		pr_err("power state: unbalanced enable/disable calls\n");
--		ret = -EINVAL;
--		goto out;
--	}
--
--	power_state_active_cnt--;
--out:
--	spin_unlock_irqrestore(&power_state_active_lock, flags);
--	return ret;
--}
--
--#ifdef CONFIG_REGULATOR_DEBUG
--
--static int power_state_active_get(void)
--{
--	unsigned long flags;
--	int cnt;
--
--	spin_lock_irqsave(&power_state_active_lock, flags);
--	cnt = power_state_active_cnt;
--	spin_unlock_irqrestore(&power_state_active_lock, flags);
--
--	return cnt;
--}
--
--static struct ux500_regulator_debug {
--	struct dentry *dir;
--	struct dbx500_regulator_info *regulator_array;
--	int num_regulators;
--	u8 *state_before_suspend;
--	u8 *state_after_suspend;
--} rdebug;
--
--static int ux500_regulator_power_state_cnt_show(struct seq_file *s, void *p)
--{
--	/* print power state count */
--	seq_printf(s, "ux500-regulator power state count: %i\n",
--		   power_state_active_get());
--
--	return 0;
--}
--DEFINE_SHOW_ATTRIBUTE(ux500_regulator_power_state_cnt);
--
--static int ux500_regulator_status_show(struct seq_file *s, void *p)
--{
--	int i;
--
--	/* print dump header */
--	seq_puts(s, "ux500-regulator status:\n");
--	seq_printf(s, "%31s : %8s : %8s\n", "current", "before", "after");
--
--	for (i = 0; i < rdebug.num_regulators; i++) {
--		struct dbx500_regulator_info *info;
--		/* Access per-regulator data */
--		info = &rdebug.regulator_array[i];
--
--		/* print status */
--		seq_printf(s, "%20s : %8s : %8s : %8s\n",
--			   info->desc.name,
--			   info->is_enabled ? "enabled" : "disabled",
--			   rdebug.state_before_suspend[i] ? "enabled" : "disabled",
--			   rdebug.state_after_suspend[i] ? "enabled" : "disabled");
--	}
--
--	return 0;
--}
--DEFINE_SHOW_ATTRIBUTE(ux500_regulator_status);
--
--int
--ux500_regulator_debug_init(struct platform_device *pdev,
--	struct dbx500_regulator_info *regulator_info,
--	int num_regulators)
--{
--	/* create directory */
--	rdebug.dir = debugfs_create_dir("ux500-regulator", NULL);
--
--	/* create "status" file */
--	debugfs_create_file("status", 0444, rdebug.dir, &pdev->dev,
--			    &ux500_regulator_status_fops);
--
--	/* create "power-state-count" file */
--	debugfs_create_file("power-state-count", 0444, rdebug.dir,
--			    &pdev->dev, &ux500_regulator_power_state_cnt_fops);
--
--	rdebug.regulator_array = regulator_info;
--	rdebug.num_regulators = num_regulators;
--
--	rdebug.state_before_suspend = kzalloc(num_regulators, GFP_KERNEL);
--	if (!rdebug.state_before_suspend)
--		goto exit_destroy_power_state;
--
--	rdebug.state_after_suspend = kzalloc(num_regulators, GFP_KERNEL);
--	if (!rdebug.state_after_suspend)
--		goto exit_free;
--
--	return 0;
--
--exit_free:
--	kfree(rdebug.state_before_suspend);
--exit_destroy_power_state:
--	debugfs_remove_recursive(rdebug.dir);
--	return -ENOMEM;
--}
--
--int ux500_regulator_debug_exit(void)
--{
--	debugfs_remove_recursive(rdebug.dir);
--	kfree(rdebug.state_after_suspend);
--	kfree(rdebug.state_before_suspend);
--
--	return 0;
--}
--#endif
-diff --git a/drivers/regulator/dbx500-prcmu.h b/drivers/regulator/dbx500-prcmu.h
-deleted file mode 100644
-index 2fb3aaef9dbb..000000000000
---- a/drivers/regulator/dbx500-prcmu.h
-+++ /dev/null
-@@ -1,55 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) ST-Ericsson SA 2010
-- *
-- * Author: Bengt Jonsson <bengt.jonsson@stericsson.com> for ST-Ericsson,
-- *	   Jonas Aaberg <jonas.aberg@stericsson.com> for ST-Ericsson
-- */
--
--#ifndef DBX500_REGULATOR_H
--#define DBX500_REGULATOR_H
--
--#include <linux/platform_device.h>
--
--/**
-- * struct dbx500_regulator_info - dbx500 regulator information
-- * @desc: regulator description
-- * @is_enabled: status of the regulator
-- * @epod_id: id for EPOD (power domain)
-- * @is_ramret: RAM retention switch for EPOD (power domain)
-- *
-- */
--struct dbx500_regulator_info {
--	struct regulator_desc desc;
--	bool is_enabled;
--	u16 epod_id;
--	bool is_ramret;
--	bool exclude_from_power_state;
--};
--
--void power_state_active_enable(void);
--int power_state_active_disable(void);
--
--
--#ifdef CONFIG_REGULATOR_DEBUG
--int ux500_regulator_debug_init(struct platform_device *pdev,
--			       struct dbx500_regulator_info *regulator_info,
--			       int num_regulators);
--
--int ux500_regulator_debug_exit(void);
--#else
--
--static inline int ux500_regulator_debug_init(struct platform_device *pdev,
--			     struct dbx500_regulator_info *regulator_info,
--			     int num_regulators)
--{
--	return 0;
--}
--
--static inline int ux500_regulator_debug_exit(void)
--{
--	return 0;
--}
--
--#endif
--#endif
-diff --git a/include/linux/regulator/db8500-prcmu.h b/include/linux/regulator/db8500-prcmu.h
-deleted file mode 100644
-index d58ff273157e..000000000000
---- a/include/linux/regulator/db8500-prcmu.h
-+++ /dev/null
-@@ -1,38 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) ST-Ericsson SA 2010
-- *
-- * Author: Bengt Jonsson <bengt.g.jonsson@stericsson.com> for ST-Ericsson
-- *
-- * Interface to power domain regulators on DB8500
-- */
--
--#ifndef __REGULATOR_H__
--#define __REGULATOR_H__
--
--/* Number of DB8500 regulators and regulator enumeration */
--enum db8500_regulator_id {
--	DB8500_REGULATOR_VAPE,
--	DB8500_REGULATOR_VARM,
--	DB8500_REGULATOR_VMODEM,
--	DB8500_REGULATOR_VPLL,
--	DB8500_REGULATOR_VSMPS1,
--	DB8500_REGULATOR_VSMPS2,
--	DB8500_REGULATOR_VSMPS3,
--	DB8500_REGULATOR_VRF1,
--	DB8500_REGULATOR_SWITCH_SVAMMDSP,
--	DB8500_REGULATOR_SWITCH_SVAMMDSPRET,
--	DB8500_REGULATOR_SWITCH_SVAPIPE,
--	DB8500_REGULATOR_SWITCH_SIAMMDSP,
--	DB8500_REGULATOR_SWITCH_SIAMMDSPRET,
--	DB8500_REGULATOR_SWITCH_SIAPIPE,
--	DB8500_REGULATOR_SWITCH_SGA,
--	DB8500_REGULATOR_SWITCH_B2R2_MCDE,
--	DB8500_REGULATOR_SWITCH_ESRAM12,
--	DB8500_REGULATOR_SWITCH_ESRAM12RET,
--	DB8500_REGULATOR_SWITCH_ESRAM34,
--	DB8500_REGULATOR_SWITCH_ESRAM34RET,
--	DB8500_NUM_REGULATORS
--};
--
--#endif
+- [High] On every in-tree XGMAC platform, the XGMAC half of this fix
+  never runs.
+- [High] The new code takes the CSR clock rate only from
+  priv->plat->stmmac_clk (stmmac_safety_feat_configuration(),…
+- [Medium] dwmac5_safety_feat_config() (dwmac5.c:261-263) and
+  dwxgmac3_safety_feat_config() (dwxgmac2_core.c, around lines 887-889)…
 
----
-base-commit: 9ae477db090b44816741fd9c49a3c459fc7d407b
-change-id: 20261115-ux500-epod-regulator-removal-1f0a0263ce02
+--
 
-Best regards,
---  
-Linus Walleij <linusw@kernel.org>
+net: stmmac: program the FSM timeout timer
 
+This commit programs MAC_FSM_ACT_Timer right after TMOUTEN is enabled, in
+both dwmac5_safety_feat_config() and dwxgmac3_safety_feat_config(). TMR is
+derived from the CSR clock rate and NTMRMD defaults to a 1s timeout. A new
+ntmrmd field in stmmac_safety_feature_cfg lets a platform override that
+default, and csr_clk_mhz is passed through the safety_feat_config callback.
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
+> index f1bb981cab7cd..4ab7a3df98c6d 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
+
+[ ... ]
+
+> @@ -245,6 +247,22 @@ int dwmac5_safety_feat_config(void __iomem *ioaddr, unsigned int asp,
+>  		value |= TMOUTEN; /* FSM Timeout Feature */
+>  	writel(value, ioaddr + MAC_FSM_CONTROL);
+>  
+> +	/* Program the FSM active timer so the timeout checker actually fires.
+> +	 * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in MHz.
+> +	 * Default to a 1s timeout when the platform did not select one.
+> +	 */
+> +	if (safety_feat_cfg->tmouten && csr_clk_mhz) {
+> +		u32 ntmrmd = safety_feat_cfg->ntmrmd;
+> +
+> +		ntmrmd = (ntmrmd >= STMMAC_NTMRMD_1US &&
+> +			  ntmrmd <= STMMAC_NTMRMD_64SEC) ?
+> +			 ntmrmd : STMMAC_NTMRMD_1SEC;
+> +
+> +		writel(FIELD_PREP(MAC_FSM_ACT_TIMER_NTMRMD, ntmrmd) |
+> +		       FIELD_PREP(MAC_FSM_ACT_TIMER_TMR, csr_clk_mhz),
+> +		       ioaddr + MAC_FSM_ACT_TIMER);
+
+[Severity: Medium]
+This writel() replaces the whole MAC_FSM_ACT_Timer register with only the
+NTMRMD and TMR fields set. Every other bit becomes zero. Is that intended?
+
+In the Synopsys EQoS/XGMAC layout, this register also has a large-mode
+timeout field (LTMRMD, bits 23:20) for FSMs that need longer timeouts. The
+patch doesn't define or program it.
+
+The commit message says a zero mode field disables the timer. If that also
+applies to LTMRMD, would the large-mode FSMs stay unmonitored after this
+write? And if reset or boot firmware had set LTMRMD, would this write turn
+that monitoring off?
+
+Should this be a read-modify-write, or should LTMRMD be programmed too? The
+same whole-register write is in dwxgmac3_safety_feat_config().
+
+> +	}
+> +
+
+[ ... ]
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> index 1a88cbaed70ca..76c850ea13a5c 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+
+[ ... ]
+
+> @@ -871,6 +873,22 @@ dwxgmac3_safety_feat_config(void __iomem *ioaddr, unsigned int asp,
+>  	value |= XGMAC_TMOUTEN; /* FSM Timeout Feature */
+>  	writel(value, ioaddr + XGMAC_MAC_FSM_CONTROL);
+>  
+> +	/* Program the FSM active timer so the timeout checker actually fires.
+> +	 * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in MHz.
+> +	 * Default to a 1s timeout when the platform did not select one.
+> +	 */
+> +	if (safety_cfg && safety_cfg->tmouten && csr_clk_mhz) {
+
+[Severity: High]
+Can this block run on any in-tree XGMAC platform?
+
+When safety_cfg is NULL, dwmac5_safety_feat_config() substitutes a default
+config, but dwxgmac3_safety_feat_config() does not:
+
+dwmac5_safety_feat_config() {
+    ...
+	if (!safety_feat_cfg)
+		safety_feat_cfg = &all_safety_feats;
+    ...
+}
+
+stmmac_safety_feat_configuration() passes priv->plat->safety_feat_cfg
+through unchanged. The only in-tree platforms that allocate it appear to be
+dwmac-intel.c, dwmac-mediatek.c and stmmac_pci.c, and all of them are
+GMAC/GMAC4 cores.
+
+The XGMAC users leave it NULL: dwmac-socfpga.c, dwmac-tegra.c and generic
+"snps,dwxgmac" DT through stmmac_platform.c. Both dwxgmac210_ops and
+dwxlgmac2_ops use this function.
+
+On those platforms, XGMAC_TMOUTEN is still set unconditionally above, but
+the timer write is skipped. The hardware stays in the state the commit
+message describes as the bug, even though the patch carries:
+
+    Fixes: 56e58d6c8a56 ("net: stmmac: Implement Safety Features in XGMAC core")
+
+This also contradicts the new comment "Default to a 1s timeout when the
+platform did not select one".
+
+There is a related mismatch when a cfg is passed with tmouten = 0: TMOUTEN
+is still set, but the timer is not programmed.
+
+Should TMOUTEN and the timer write be gated on the same condition? And
+should a NULL cfg be handled the same way dwmac5 handles it?
+
+[ ... ]
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index f8dceafdda2d2..52f63f624d67c 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -3639,10 +3639,16 @@ static void stmmac_mtl_configuration(struct stmmac_priv *priv)
+>  
+>  static void stmmac_safety_feat_configuration(struct stmmac_priv *priv)
+>  {
+> +	unsigned int csr_clk_mhz = 0;
+> +
+>  	if (priv->dma_cap.asp) {
+>  		netdev_info(priv->dev, "Enabling Safety Features\n");
+> +		if (priv->plat->stmmac_clk)
+> +			csr_clk_mhz = clk_get_rate(priv->plat->stmmac_clk) /
+> +				      1000000;
+
+[Severity: High]
+What happens when priv->plat->stmmac_clk is NULL here? csr_clk_mhz stays 0.
+By the time dwmac5_safety_feat_config() reaches the timer block it has
+already set TMOUTEN, and it then skips the MAC_FSM_ACT_Timer write without
+any message:
+
+	if (safety_feat_cfg->tmouten && csr_clk_mhz) {
+
+Both in-tree platforms that explicitly set safety_feat_cfg->tmouten = 1
+appear to have no stmmac_clk.
+
+In stmmac_pci.c, stmmac_pci_probe() sets tmouten = 1 for snps_gmac5. The
+only CSR clock information is plat->clk_csr = STMMAC_CSR_250_300M in
+snps_gmac5_default_data(), and nothing in stmmac_pci.c assigns stmmac_clk.
+
+In dwmac-mediatek.c, mediatek_dwmac_common_data() sets tmouten = 1. The
+mediatek binding and dtsi files have no "stmmaceth" clock-name. As a result,
+devm_clk_get() fails in stmmac_probe_config_dt(), which prints "Cannot get
+CSR clock" and sets plat->stmmac_clk = NULL.
+
+On both platforms the timer is never programmed and nothing is logged. That
+doesn't match the new comment on stmmac_safety_feature_cfg.ntmrmd, which
+says TMR "is derived from the CSR clock by stmmac" and that "0 selects the
+default 1s timeout".
+
+Could this fall back to plat->clk_csr, use a different clock source, or at
+least warn when the timer can't be programmed?
+
+>  		stmmac_safety_feat_config(priv, priv->ioaddr, priv->dma_cap.asp,
+> -					  priv->plat->safety_feat_cfg);
+> +					  priv->plat->safety_feat_cfg,
+> +					  csr_clk_mhz);
+
+[ ... ]
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111143322.2234321-1-zxyan0222%40gmail.com
 
