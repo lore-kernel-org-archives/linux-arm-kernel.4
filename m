@@ -2,60 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14BB606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BD3606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uARO2/v1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ahOqZNj9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GQS5jwV0;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ho5zCD20
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RX9M2Q9yHe35cQMeMTw9O3Neu5+DoenTf9tNEWOOjXg=; b=uARO2/v1WJix6n
-	JyPyBAS+aOGTZxvkekvu8K/zGzUc8kl1xmZ1lbnoxhwDCL/j6PQyowGjVCiIh5jyGN5xMuljDoqDz
-	QVU7ssd2wTP0yZi8fH/8cpoZxFl5remCWXhQmtaE+yEdJbu+aFnJtIvUmv2AoDWYELGgzCGSRPr9N
-	X/HZGOGvttzKGcTfnzM5XovScShjC4ii3K5NuJeEZ5xB+F+FpkfFIdPCiPM4qMWZAC31NbwGaunWI
-	4dCsdHqmMy+fiCz+OWL0xJ0aA3h0giRxURC9knOTbIkAmB8deHmJF4tWRbKlK5/EVfQk/5xyCnGIk
-	xpq9g2lVxDW+cTsEB1GQ==;
+	List-Owner; bh=LZYkjRr27NpPjrqvd+JcqlBpgfomsPg1KNU4BHdFI7w=; b=GQS5jwV08tNqfO
+	Xi1YwhJYw8VPevZAcQ07rcAIWflaB0Ai6T8tLsxtkd4YRLKTur+az44b8XtULoxgUxSbVUsOhx1kh
+	hkfNrJDFSrbEhUuybJ1ajgrda7sf2xTW5IlbifhbqQ7/KxLfEXOzXP5jmAvvTgEUQS+xGr5gprDBV
+	AvDetfN6BqGq4PQaB+Z8huFiKhUeL3jnhKgPA0sDHepEbdglVRvn7aRBvMLFazQBY/k8t3A9Gk3qv
+	4/nI/3Nye6/WjJJbTE6F5gVyIdBMAQC4NRltoHKJe+DFb2fomnDtJTQmnpwJkw1LQ1szu4YZX6j+0
+	5Rp5feMhgFrjwQZXkNbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWjq-0000000HLOK-25Ac;
-	Sun, 15 Nov 2026 09:41:30 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSWjy-0000000HLQG-3L5I;
+	Sun, 15 Nov 2026 09:41:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWjo-0000000HLOC-2qzq
+	id 1xSWjr-0000000HLOL-21h5
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 09:41:28 +0000
+	Sun, 15 Nov 2026 09:41:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0E84743A57;
+	by tor.source.kernel.org (Postfix) with ESMTP id 8633261E4E;
+	Sun, 15 Nov 2026 09:41:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53C761F000C5;
 	Sun, 15 Nov 2026 09:41:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D2BE1F000C4;
-	Sun, 15 Nov 2026 09:41:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794735687;
-	bh=RX9M2Q9yHe35cQMeMTw9O3Neu5+DoenTf9tNEWOOjXg=;
+	s=k20260515; t=1794735690;
+	bh=LZYkjRr27NpPjrqvd+JcqlBpgfomsPg1KNU4BHdFI7w=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=ahOqZNj9pHkSthlPWL8OW7Aua6Zten/GwqyJ51FQc4krJQmLsf5YcdAdb344vBMFG
-	 br0JsDqDkTEHpDedsRkPDwFRIyQtnkBdEHMykVmgywDidDfX1jOJ0O/uMiMSqQROoI
-	 kqHtQJzDtM1T0ec8M73V41Ag+ObF51sAO+CJaiifEpdWSgL3Wj1sBvtUdfdaYDzPJV
-	 wEzAOfqEXdWySoa/fLIOs2Xef9z75uh5WnLcn2k2PVhgRkceJC5GCtHrCF0nWngSrp
-	 1OeYGrrDFXJ8hXdvp1PFygJ81LX6RMrtmml9ea3MMAEcKGpfohutqUZHuvzoSo+qkC
-	 rm7cZf8mf4qGw==
+	b=ho5zCD206rnLx852iEbpOOVmyKXF9i1DcDHzYqIy49aE1868GulR5Fc8133qXK/Ic
+	 LeR+Tzh4NSpecXTspBUF9AHQtoBSEmpsLIEANVGtXmSv06kvXp/qApitlJW99rzwcM
+	 wPt31ShaNPD8AuPxv/u5lvrCkj3vK6aunE1Hzy5zE8zlF6VaX+Zo4gsbgnt9ECBQB9
+	 /ybTm1IOLrEH1NDTDw8oMbP4zCRK8KkodgWfZSO2bMOt+hJ92/8lyb3g+90dWRyj0G
+	 j7z+Ktc9ET8NSwMG+yfA2XPG6rRmbrmSNJhg13B6fbHi9tDOjtamZS0S9IthLx7ZV3
+	 ib+zo8PBh7+rQ==
 From: Chen-Yu Tsai <wens@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
- Icenowy Zheng <icenowy@aosc.io>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-In-Reply-To: <20261110163904.1098187-1-jernej.skrabec@gmail.com>
-References: <20261110163904.1098187-1-jernej.skrabec@gmail.com>
-Subject: Re: [PATCH] clk: sunxi-ng: h6: Keep both parents running while
- switching VP9 clock
-Message-Id: <179473568594.3056166.4191724693999844076.b4-ty@kernel.org>
-Date: Sun, 15 Nov 2026 17:41:25 +0800
+To: sboyd@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, 
+ andre.przywara@arm.com, Ilya Titov <ilya.titov@wirenboard.com>
+Cc: bmasney+clk@redhat.com, jbrunet+clk@baylibre.com, 
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org
+In-Reply-To: <20261109090914.46872-1-ilya.titov@wirenboard.com>
+References: <20261109090914.46872-1-ilya.titov@wirenboard.com>
+Subject: Re: [PATCH] clk: sunxi-ng: h616: register CPU PLL notifier before
+ mux notifier
+Message-Id: <179473568811.3056166.5724569905086596761.b4-ty@kernel.org>
+Date: Sun, 15 Nov 2026 17:41:28 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -79,20 +79,20 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 10 Nov 2026 17:39:04 +0100, Jernej Skrabec wrote:
-> The VP9 clock mux only switches while both parents are running. Its
-> reset default parent is pll-ve, which is off at boot. When the Hantro
-> driver sets the clock rate to 300 MHz, the clock gets reparented to
-> pll-periph0-2x, but the mux doesn't actually switch until pll-ve is
-> enabled for the video engine. Until then, the VP9 decoder has no clock
-> and every frame times out.
+On Mon, 09 Nov 2026 12:09:14 +0300, Ilya Titov wrote:
+> Currently the CPU mux notifier is registered first, so on
+> POST_RATE_CHANGE the CPU is switched back to PLL_CPUX before the PLL
+> notifier re-locks it. The CPU then runs from the PLL while it is still
+> settling. The comment for ccu_pll_notifier_cb() says it must be
+> registered first, and the other sunxi-ng drivers (A33, H3, R40, A64,
+> A100) do it in that order.
 > 
 > [...]
 
 Applied to sunxi/clk-for-7.5 in sunxi, thanks!
 
-[1/1] clk: sunxi-ng: h6: Keep both parents running while switching VP9 clock
-      https://git.kernel.org/sunxi/linux/c/b6844de23cd2
+[1/1] clk: sunxi-ng: h616: register CPU PLL notifier before mux notifier
+      https://git.kernel.org/sunxi/linux/c/0ec5e7572ddc
 
 Best regards,
 -- 
