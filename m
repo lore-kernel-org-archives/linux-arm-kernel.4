@@ -2,66 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A005A606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180B7606A31D
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 15:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F6luilV5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Li9higuZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XFO5arDR;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hm5I51Hh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=lMoHIuDGeBYbm95jv2X9pK5hAUAsdszbYLukExBu7bs=; b=F6luilV5m5Nr0uZJ+Kc1MNoX0V
-	rUofAxBB62r0BA6Lyb45cvq6aGVheQxZICwvP15EGk9WnX9UBG3F5dMn7ykJJaGQ5vz42s55ej/pk
-	LIQXQF5qbNyNNa5+/kO2IvG3v4LA9/pgZKUbOofRMvs8+/Q2IOdXg+XQSKszXCooJWOy/S8UwoD4Q
-	dswnKh0C3vY2OaXOUmS+KdRJlasySOGcMRB6ZDBLwivr+H0k5VmuULISSwMRoYWSrSui20KUwh4Nx
-	TsRdCsgHLfnh5Yo6pLCOU2ZNwA4QxWJQhH+QrKb5mbg/z2PV0gRUhxyK4z5PfBA5B5kSr5khzlIkI
-	PBJ02uEg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=cuIPeSmMQumt6Xz/JP9UG4bk+SAVXVlRFXLYgQ+8MVY=; b=XFO5arDRzSiy3w
+	xRhGIVeHdmE89qlNArEueUw5TEAiVEQYtun+5cJWnjm4Wc/QlYWOVtFm/R2Z7lT3bZnFd61mKpisu
+	NUtgQcIw2d8NWuakOmmvWRr8M1Zs8eLqjy2TFDClVfO9MLRnP+JqivtLJgXguS8YVG3fKAxRmffw8
+	sii3LShoI6n4uv0FaSpodC4uDP1MYCpr1ZgVQp5Q6Yq95F0/xlJPNJdsj5DQagI/FX6ZDMJexnGt7
+	LpsRJ/faTkSjkAxob+wrJIZFvG0oltd5YC85VnAoTSiuedL07oEm5NHEcGCAQgXkugrQwSGiu4hB9
+	CZF3orv5tmaS7Fvted6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbaR-0000000068x-1aAK;
-	Sun, 15 Nov 2026 14:52:07 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSblY-000000006Pk-1KpH;
+	Sun, 15 Nov 2026 15:03:36 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbaQ-0000000068q-38Gj
+	id 1xSblW-000000006Pd-43Xj
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 14:52:06 +0000
+	Sun, 15 Nov 2026 15:03:35 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3698D42AED;
-	Sun, 15 Nov 2026 14:52:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CF7E1F000C4;
-	Sun, 15 Nov 2026 14:52:05 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 652C740175;
+	Sun, 15 Nov 2026 15:03:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 821021F000C4;
+	Sun, 15 Nov 2026 15:03:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794754326;
-	bh=lMoHIuDGeBYbm95jv2X9pK5hAUAsdszbYLukExBu7bs=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Li9higuZRHWSG490oa42d1zrCcZBOYB3YvISXH6iSVcr3axoYntPIDmqsP20aZYAT
-	 5EGKn/xvwOyIarpE84lZ4vODVE9ryGcs09g2m9+lo+wveJwgViFSmRXVY1/VscQDB9
-	 poCcmeYpMyYKzKYqJZdBhcCviu3c0H3xnJI1SzJni/k5Kp/wMgh+STifpnM4m3jBn0
-	 i1oR4+eZZ8CkpksDdkz91KPilRWm8/roktLEflR3PvfsDKi5UNBQM3Z30Hw37jU14w
-	 NxbKxrN20KqlLGEMUb4e2FQ+u2g3Etqspe3PJ1MP51elZZb09nUaJ2bVAbf0e8iVsb
-	 3otdDfOBzk1qA==
-Subject: Re: [PATCH] net: stmmac: program the FSM timeout timer
-From: netdev-bot+sashiko@kernel.org
-To: zxyan0222@gmail.com
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- netdev@vger.kernel.org, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- rmk+kernel@armlinux.org.uk, Jose.Abreu@synopsys.com
-Date: Sun, 15 Nov 2026 14:52:04 +0000
-Message-ID: <179475432482.2199510.1145189790252763539@kernel.org>
-In-Reply-To: <20261111143322.2234321-1-zxyan0222@gmail.com>
-References: <20261111143322.2234321-1-zxyan0222@gmail.com>
-X-sashiko-severity: High
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20260515; t=1794755014;
+	bh=cuIPeSmMQumt6Xz/JP9UG4bk+SAVXVlRFXLYgQ+8MVY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=hm5I51HhmteSNslariNAGq3luQb33RBBUVD8h6cTRV733B9WRFMMxIfAZh95Y34AP
+	 omVgGGvPDO+j2+glRsgfzVhl+HsD0unPwDT8n8qnQzc1oVLmucPm9lyLWBXH6UHkBg
+	 fTxZY0J8INyk4qujuHLbma3GE0cH/QnFvu1IOj+dwF1sact5wTZvlKpKV/J3Xf0YVq
+	 Od66PSwJRQaQLArlPZ8rHNvivVRmFQk6TfwgYYp/iDFJG9X23oPMOy9Z9PzrWMzzN+
+	 HYC5mmsdmxoJyyOzxgBG4iUrztSgUAGiRIy3f82glCCfYl6932ep8nT9d78z8HuWaF
+	 Ug/ashFhhiJ8Q==
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+In-Reply-To: <20261104185659.884455-1-jernej.skrabec@gmail.com>
+References: <20261104185659.884455-1-jernej.skrabec@gmail.com>
+Subject: Re: [PATCH] drm/sun4i: dw-hdmi: Deinit PHY in bind error path
+Message-Id: <179475501230.3244977.13845276937669658695.b4-ty@kernel.org>
+Date: Sun, 15 Nov 2026 23:03:32 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,195 +71,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issue(s) to consider.
+On Wed, 04 Nov 2026 19:56:59 +0100, Jernej Skrabec wrote:
+> sun8i_hdmi_phy_init() enables the PHY clocks and deasserts the PHY
+> reset. When dw_hdmi_bind() fails afterwards, the error path doesn't
+> undo that, so the clocks stay enabled and every further bind attempt
+> enables them once more.
+> 
+> Call sun8i_hdmi_phy_deinit() in the error path, like unbind does.
+> 
+> [...]
 
-Critical: 0 · High: 2 · Medium: 1 · Low: 0
+Applied to drm-misc-next in drm-misc, thanks!
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+[1/1] drm/sun4i: dw-hdmi: Deinit PHY in bind error path
+      commit: 39e407b553ec15d4a233b651531ad431ed7542be
 
-- [High] On every in-tree XGMAC platform, the XGMAC half of this fix
-  never runs.
-- [High] The new code takes the CSR clock rate only from
-  priv->plat->stmmac_clk (stmmac_safety_feat_configuration(),…
-- [Medium] dwmac5_safety_feat_config() (dwmac5.c:261-263) and
-  dwxgmac3_safety_feat_config() (dwxgmac2_core.c, around lines 887-889)…
-
---
-
-net: stmmac: program the FSM timeout timer
-
-This commit programs MAC_FSM_ACT_Timer right after TMOUTEN is enabled, in
-both dwmac5_safety_feat_config() and dwxgmac3_safety_feat_config(). TMR is
-derived from the CSR clock rate and NTMRMD defaults to a 1s timeout. A new
-ntmrmd field in stmmac_safety_feature_cfg lets a platform override that
-default, and csr_clk_mhz is passed through the safety_feat_config callback.
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
-> index f1bb981cab7cd..4ab7a3df98c6d 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
-
-[ ... ]
-
-> @@ -245,6 +247,22 @@ int dwmac5_safety_feat_config(void __iomem *ioaddr, unsigned int asp,
->  		value |= TMOUTEN; /* FSM Timeout Feature */
->  	writel(value, ioaddr + MAC_FSM_CONTROL);
->  
-> +	/* Program the FSM active timer so the timeout checker actually fires.
-> +	 * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in MHz.
-> +	 * Default to a 1s timeout when the platform did not select one.
-> +	 */
-> +	if (safety_feat_cfg->tmouten && csr_clk_mhz) {
-> +		u32 ntmrmd = safety_feat_cfg->ntmrmd;
-> +
-> +		ntmrmd = (ntmrmd >= STMMAC_NTMRMD_1US &&
-> +			  ntmrmd <= STMMAC_NTMRMD_64SEC) ?
-> +			 ntmrmd : STMMAC_NTMRMD_1SEC;
-> +
-> +		writel(FIELD_PREP(MAC_FSM_ACT_TIMER_NTMRMD, ntmrmd) |
-> +		       FIELD_PREP(MAC_FSM_ACT_TIMER_TMR, csr_clk_mhz),
-> +		       ioaddr + MAC_FSM_ACT_TIMER);
-
-[Severity: Medium]
-This writel() replaces the whole MAC_FSM_ACT_Timer register with only the
-NTMRMD and TMR fields set. Every other bit becomes zero. Is that intended?
-
-In the Synopsys EQoS/XGMAC layout, this register also has a large-mode
-timeout field (LTMRMD, bits 23:20) for FSMs that need longer timeouts. The
-patch doesn't define or program it.
-
-The commit message says a zero mode field disables the timer. If that also
-applies to LTMRMD, would the large-mode FSMs stay unmonitored after this
-write? And if reset or boot firmware had set LTMRMD, would this write turn
-that monitoring off?
-
-Should this be a read-modify-write, or should LTMRMD be programmed too? The
-same whole-register write is in dwxgmac3_safety_feat_config().
-
-> +	}
-> +
-
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-> index 1a88cbaed70ca..76c850ea13a5c 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-
-[ ... ]
-
-> @@ -871,6 +873,22 @@ dwxgmac3_safety_feat_config(void __iomem *ioaddr, unsigned int asp,
->  	value |= XGMAC_TMOUTEN; /* FSM Timeout Feature */
->  	writel(value, ioaddr + XGMAC_MAC_FSM_CONTROL);
->  
-> +	/* Program the FSM active timer so the timeout checker actually fires.
-> +	 * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in MHz.
-> +	 * Default to a 1s timeout when the platform did not select one.
-> +	 */
-> +	if (safety_cfg && safety_cfg->tmouten && csr_clk_mhz) {
-
-[Severity: High]
-Can this block run on any in-tree XGMAC platform?
-
-When safety_cfg is NULL, dwmac5_safety_feat_config() substitutes a default
-config, but dwxgmac3_safety_feat_config() does not:
-
-dwmac5_safety_feat_config() {
-    ...
-	if (!safety_feat_cfg)
-		safety_feat_cfg = &all_safety_feats;
-    ...
-}
-
-stmmac_safety_feat_configuration() passes priv->plat->safety_feat_cfg
-through unchanged. The only in-tree platforms that allocate it appear to be
-dwmac-intel.c, dwmac-mediatek.c and stmmac_pci.c, and all of them are
-GMAC/GMAC4 cores.
-
-The XGMAC users leave it NULL: dwmac-socfpga.c, dwmac-tegra.c and generic
-"snps,dwxgmac" DT through stmmac_platform.c. Both dwxgmac210_ops and
-dwxlgmac2_ops use this function.
-
-On those platforms, XGMAC_TMOUTEN is still set unconditionally above, but
-the timer write is skipped. The hardware stays in the state the commit
-message describes as the bug, even though the patch carries:
-
-    Fixes: 56e58d6c8a56 ("net: stmmac: Implement Safety Features in XGMAC core")
-
-This also contradicts the new comment "Default to a 1s timeout when the
-platform did not select one".
-
-There is a related mismatch when a cfg is passed with tmouten = 0: TMOUTEN
-is still set, but the timer is not programmed.
-
-Should TMOUTEN and the timer write be gated on the same condition? And
-should a NULL cfg be handled the same way dwmac5 handles it?
-
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index f8dceafdda2d2..52f63f624d67c 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -3639,10 +3639,16 @@ static void stmmac_mtl_configuration(struct stmmac_priv *priv)
->  
->  static void stmmac_safety_feat_configuration(struct stmmac_priv *priv)
->  {
-> +	unsigned int csr_clk_mhz = 0;
-> +
->  	if (priv->dma_cap.asp) {
->  		netdev_info(priv->dev, "Enabling Safety Features\n");
-> +		if (priv->plat->stmmac_clk)
-> +			csr_clk_mhz = clk_get_rate(priv->plat->stmmac_clk) /
-> +				      1000000;
-
-[Severity: High]
-What happens when priv->plat->stmmac_clk is NULL here? csr_clk_mhz stays 0.
-By the time dwmac5_safety_feat_config() reaches the timer block it has
-already set TMOUTEN, and it then skips the MAC_FSM_ACT_Timer write without
-any message:
-
-	if (safety_feat_cfg->tmouten && csr_clk_mhz) {
-
-Both in-tree platforms that explicitly set safety_feat_cfg->tmouten = 1
-appear to have no stmmac_clk.
-
-In stmmac_pci.c, stmmac_pci_probe() sets tmouten = 1 for snps_gmac5. The
-only CSR clock information is plat->clk_csr = STMMAC_CSR_250_300M in
-snps_gmac5_default_data(), and nothing in stmmac_pci.c assigns stmmac_clk.
-
-In dwmac-mediatek.c, mediatek_dwmac_common_data() sets tmouten = 1. The
-mediatek binding and dtsi files have no "stmmaceth" clock-name. As a result,
-devm_clk_get() fails in stmmac_probe_config_dt(), which prints "Cannot get
-CSR clock" and sets plat->stmmac_clk = NULL.
-
-On both platforms the timer is never programmed and nothing is logged. That
-doesn't match the new comment on stmmac_safety_feature_cfg.ntmrmd, which
-says TMR "is derived from the CSR clock by stmmac" and that "0 selects the
-default 1s timeout".
-
-Could this fall back to plat->clk_csr, use a different clock source, or at
-least warn when the timer can't be programmed?
-
->  		stmmac_safety_feat_config(priv, priv->ioaddr, priv->dma_cap.asp,
-> -					  priv->plat->safety_feat_cfg);
-> +					  priv->plat->safety_feat_cfg,
-> +					  csr_clk_mhz);
-
-[ ... ]
-
+Best regards,
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111143322.2234321-1-zxyan0222%40gmail.com
+Chen-Yu Tsai <wens@kernel.org>
+
 
