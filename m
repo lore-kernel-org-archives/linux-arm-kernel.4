@@ -2,117 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C96606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 21:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D63F606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 21:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OsanHZTy;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=xVtLiVPR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rLsuwxqI;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nFEZvwMx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LDJ9mV97bkkNMHmuEk5zxwCzRbf60DW+NGGRcWDMJuA=; b=OsanHZTyc01tY1
-	VUc+mSG7g1rnAB9gryhFGOfffQ72YgM0REOG9/AtjmPedTrNfbpUlCdEABE1FfIA+iyXy1ZMxsWPl
-	528Yh262KSEC++Mx2VLuuiOmzGDTHyFTqNZmnwRlOZPWNfmeeIMGGzyoZGpE16n3wbEPl3v7GI9fc
-	KhMw0lnw/ZIErZX3EPHg09g3jvBB/dLqFcMS6mPpBSNTsf+9dj6zlmoWHubcgMaLSxCd45d+zvaVV
-	2MEsd2jKB1Oxehm9GlU5A7XDwjb7jJ3+28zj0BtauQ3MHSKPT3Y4ZmwEMlgiUeog6kYiGzN73NDF6
-	EGDEWVH63qoTeB4WBTzQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=6XvkMDi42j7sY0SuX8WsFlM/u5/0v+BfHkwMgWB/hdM=; b=rLsuwxqINW2qTdIxz5Q42kB5gp
+	qO9J4rQCvJp4dwOwDLFRtXDxzXEr3aV23aFQm6ymRkB7wEkM6JS5uQaD/H86yMBjv2nJfU8SbUXzT
+	dKfd8/eTtYljrah9ZyqJ1MN9zxflR2vNsp/WLepcdtbO2wKdQ7XhQJjhgHZ9HRw0Akg+btxg5SNJ9
+	O++1/YdYJqb9/0xLgYt9ZWO7E+9no+rMY6borWQyclZHXaJSP4wIgTY06XZP3TXVB6nZBvqVc+Thx
+	WaQa7lx5IxtA2yC32jl97exK87R8AjXG2/ETCoC28mKkHCnE5tG1SmDmxNx6VtLtglp+sYpuUKFce
+	8p529c5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xShmk-00000000Vp7-0lPK;
-	Sun, 15 Nov 2026 21:29:14 +0000
-Received: from mail-yx1-xb12b.google.com ([2607:f8b0:4864:20::b12b])
+	id 1xSi7B-00000000Ynu-1A8h;
+	Sun, 15 Nov 2026 21:50:21 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xShmh-00000000Vo8-1Lzz
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 21:29:12 +0000
-Received: by mail-yx1-xb12b.google.com with SMTP id 956f58d0204a3-67583c777abso2812247d50.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 13:29:10 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794778150; cv=none;
-        d=google.com; s=arc-20260327;
-        b=oX+fe6vfU6Kltadh/HsdYAFpZq1SnUMjsyOjaL1DjRkBuhjtyjtKvWKiTZlBMFCcy5
-         1q3HlxQouawfyGinXwwFfrx0o3PrqrXos3LFWhBfaruk1ho6rTOEQSrC4vvWoVeH//5O
-         Xs/6y5M+2OMHiljrdJPlPAGunvl3RvuZ9fy/TMBKbfeybsciiuR5pQZq3VyZ/87TYwV2
-         IfUS6OH5qTHFYEQgnmrf3/TJWDzGlWP1LwuOfIwl4uOwzF3VR4AeynaOFOOnwLVsB20D
-         WUILTmW0x1pH8vU/FbkLnCQd+vuFdQ1PQ2MnZsjIuczUc/GO4bBpZ0F8/PnVi0kHuWvQ
-         zj5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=LDJ9mV97bkkNMHmuEk5zxwCzRbf60DW+NGGRcWDMJuA=;
-        fh=pk5MVrjXWilYluKcxbRm/cZRpQMndcorVQ9Z/mjij70=;
-        b=FFY/t0pm0WimcoR1SEHNlawuDDXucsBLBSlgX1qGKPWZjV4B73E/J4C6sfiLL29Iqj
-         5WAiEFxeKgzBInFBIg66GNf255Ix1BcRVjk7DasfgpNTuPRqMNkZKZQpusrPInyB4JgU
-         FNPZm4ByvT35CFesErJd+WW7ZmkpDhUPK4e2szNVRPb32QuliTHBdIUgzWYFLpgT+tjx
-         qxDjKQhFLa9Yalc4EtobDcXdFTnj9q2+ZEM3/pVJRKYOL5v0fSu5Uz9TZmNEd7PMWd+O
-         cH8HEj+YsnXgGc9pdcDTG1uFKW2Jblw7wuBBMug4/KykvATSvOYAzhS+h72vvumuf0Mk
-         u+ew==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1794778150; x=1795382950; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=LDJ9mV97bkkNMHmuEk5zxwCzRbf60DW+NGGRcWDMJuA=;
-        b=xVtLiVPRWLpwqK1qzdnX/vgyaSB1RmgMVHEXfLHaFAgyKG9lSYUrfPKetY+VaNjLIZ
-         Triws1FUK6wzAy7/n7i51KSxWseFUGiRgXxJxvRqvN1u79omq5NRWn2+vLX+uuvW79Da
-         kqRZ+H+Jkr4fYL0aVT6Wb73srkVX4w98BVdMmNkVlcM2HctnwGWmyVFbVhwutPPmwklI
-         KXXD6yKeAiRVoaotZCl5TdmgSxbj7A2reP7lnpROt8AkokFx7y+bDa7lFOmCVoGdZwxT
-         7wyWO8S4aQf0wMgosKSXOrOU6JAuYyGo1flO9Ad/rmnULonRkty9LnICMrIod2kSK5U7
-         xvWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794778150; x=1795382950;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=LDJ9mV97bkkNMHmuEk5zxwCzRbf60DW+NGGRcWDMJuA=;
-        b=r34OPPj+rLki+VmFhWZK8yyBKIiMqwAFVZ8r2inT5o9M7400/y5vfnvTWWG3vvAYko
-         4i4T+V/c2A8eL6qzV1QYcENQhsyTD/kJVsAys6K86XwOBPz99ZsdtfL29Jin7cHub8bg
-         pLg7PhsjMoAVgFKiNvmRU1dxQsCaKFRvq634n9pWumqcE3Y9BmszkQGxxSvWR5QVCvXZ
-         XHDxLMuQjOVHyhICZQiMm6uguPmSkMG213Zo78laiAXaijeFPvPM1B9gytoreXWels0l
-         LOtqLEmgRdXvWa68d/fpfTdVVF5OQbs0+BifSrYJbGaavFZTIabG72FUOKG77d1iND9F
-         73Gw==
-X-Forwarded-Encrypted: i=1; AL+hErGqgYkrs9ZjNkjcKSjsBal7jnFkJU/Dnxpa970dNFS/AiPibMXQytxfPtlfULmGBecn14dcCSRS6UODr9oD4CxC@lists.infradead.org
-X-Gm-Message-State: APuU4Z9yvIqyTAtiebgmOLVf+VxKSsdYAVR8Ml2MOvUq7q92dcXZDQsU
-	GEEn1KV7EtbgsmcLEuX1BJ2dA3DaMUj1zEmr7SX8ULwnJreGGjQiU8xcvzIgsY8xYWDRE2kZ8Uo
-	NqEuWcAz0su5yzckCp7QVANyhRrtHX90=
-X-Gm-Gg: AYBFou3YfMKc2DtX9LKJy6+AqK6MuSFsFySrU4CfWNOvXuSFJA/aq9tkFBbLgf3Ac6B
-	Cskw2JsxDOBe2t9QGzjMtHSDaHN/F2H5OvXHJk2xEC+QDW57o31K+XoXZ3N4RIvLapZxYOnvU5j
-	zjWi0Hbx4maFSkAtMxisIfCThcCCBc1xlsOC05bdN2nEev7w3Ec8wT8OFEmCFrJD1CddO9ExCKj
-	mScuJj6sS6IJsxt1ki2OBj1zD0pG/dq7dh19bc1KRnNGXf4hYDuiIGMqNI4pprtzSPolNKxz7Bu
-	bvvHQSGzecT1zd6Qdj0becRJC/KOtd9A86GVnXXHJiCANXEcr7+BwTqNr9+jJKk7wzkcyeH2L/A
-	yhg7feshy/fkAVzP0tM0kqcfN1L7TrMt2olKm8AfGMyzzoP0bKINcZc2XOby14/WOAoMeCQ==
-X-Received: by 2002:a05:690e:1c0f:b0:67d:b0a1:c9c3 with SMTP id
- 956f58d0204a3-67db0a1d2ebmr1094277d50.32.1794778149875; Sun, 15 Nov 2026
- 13:29:09 -0800 (PST)
+	id 1xSi78-00000000YnF-3q3v;
+	Sun, 15 Nov 2026 21:50:18 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id BAFC360F01;
+	Sun, 15 Nov 2026 21:50:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE831F000C6;
+	Sun, 15 Nov 2026 21:50:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794779417;
+	bh=6XvkMDi42j7sY0SuX8WsFlM/u5/0v+BfHkwMgWB/hdM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=nFEZvwMxQUzhZeELmnZEHAe8BYEEgWRUOfxA44QqBHDNEHKqgSvZInB5g+iW8EEVD
+	 pj76uae/e92fD9oa7MNfKcgyS4hY2nZlIL17HBe7xjGKguIZu4LibMj7CQX65gLdlC
+	 yUo+VjdlP1+vkZAuaIRoxfs1kj5AwLhAQdCo42VQe8nfnuhcZ3hXYN39CpJgvecOuQ
+	 OPbR4u1buCNQRULF38yfpYWseRPD1F7jg8lXJQQJYmcs8oZQa6WkiiLB7B5pkjQTHZ
+	 K+MwzTlKdAZbS9JOeVLV4XkiLpInJkLVuIRCWXH6oroJApZnFqC5JG6gu0J1Vnd/Zo
+	 nMGHujxVcHOZg==
+Date: Sun, 15 Nov 2026 16:50:10 -0500
+From: Brian Masney <masneyb@kernel.org>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Nicolai Buchwitz <nb@tipi-net.de>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Andrew Lunn <andrew@lunn.ch>, Stefan Wahren <wahrenst@gmx.net>,
+	Phil Elwell <phil@raspberrypi.com>, netdev@vger.kernel.org,
+	James Clark <jjc@jclark.com>
+Subject: Re: (subset) [PATCH 0/3] clk: bcm2835: describe the BCM2711 GISB
+ clock for the GENET MDIO controller
+Message-ID: <avopEsR4AqMUUKBU@x1g10>
+References: <20261020-devel-bcm2711-gisb-clk-v1-0-a1728724d0f8@tipi-net.de>
+ <179358503716.355577.9187303706042543606.b4-ty@b4>
+ <2e846fdb-32e9-4ba9-a6e7-ef67d24c4f8d@broadcom.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261018-audin-v5-0-4b8cc13a1b22@baylibre.com> <20261018-audin-v5-6-4b8cc13a1b22@baylibre.com>
-In-Reply-To: <20261018-audin-v5-6-4b8cc13a1b22@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Nov 2026 22:28:59 +0100
-X-Gm-Features: AclHuK_mrwYOs88jQPUihYmd8k-bNvXzF9c0J2wcB0Lmj_2uDGdqbd4QCFY5NB0
-Message-ID: <CAFBinCA12FvOi=9gB1xj3MDvNWstx1N4TtyyrrndJ_JT5eLX=Q@mail.gmail.com>
-Subject: Re: [PATCH v5 6/7] ASoC: meson: gx-card: add support for audin FIFO
-To: Valerio Setti <vsetti@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_132911_366717_2C360A0E 
-X-CRM114-Status: UNSURE (   9.24  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2e846fdb-32e9-4ba9-a6e7-ef67d24c4f8d@broadcom.com>
+User-Agent: Mutt/2.4.3 (2026-10-09)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,20 +81,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Oct 18, 2026 at 12:18=E2=80=AFPM Valerio Setti <vsetti@baylibre.com=
-> wrote:
-[...]
-> +       if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "gxbb-audin", =
-"FIFO"))
-> +               return meson_card_set_fe_link(card, dai_link, np, false);
-I suggest using the "audin" prefix. AIU / audin seem close enough on
-all supported SoCs that we don't need a SoC generation prefix  in
-there to handle this differently.
+On Fri, Nov 13, 2026 at 07:39:42PM -0800, Florian Fainelli wrote:
+> On 11/1/2026 6:03 PM, Brian Masney wrote:
+> > 
+> > On Tue, 20 Oct 2026 16:58:08 +0200, Nicolai Buchwitz wrote:
+> > > clk: bcm2835: describe the BCM2711 GISB clock for the GENET MDIO controller
+> > > 
+> > > The timestamped MDIO write series [1] needs the reference clock the
+> > > GENET MDIO controller divides its MDC from. On BCM2711 that clock is
+> > > not described anywhere, so 5/5 of that series hardcodes 200 MHz behind
+> > > a compatible match, and mdio-bcm-unimac's clock-frequency handling
+> > > assumes the 250 MHz of the STB chips.
+> > > 
+> > > [...]
+> > 
+> > Applied, thanks!
+> > 
+> > [1/3] dt-bindings: clock: bcm2835: add the BCM2711 GISB clock
+> >        https://git.kernel.org/clk/linux/c/af7994af5228
+> > [2/3] clk: bcm2835: register the BCM2711 GISB clock
+> >        https://git.kernel.org/clk/linux/c/ab94dbf30233
+> 
+> Brian, can you also take patch #3, or you would have create an immutable
+> branch for me to pull from. Patch #3 depends upon the BCM2711_CLOCK_GISB
+> constant being defined.
+
+It's a bit late to do the immutable branch now and I don't want to have
+to rebase the clk trees.
+
+Can you provide an Acked-by for patch 3 so I can take it?
+
+Brian
 
