@@ -2,59 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3153606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:11:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8DE606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OJ1Zxr54;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=NZCmnVXC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=g1r3fjqW;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=HMFtC04U
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=a8ettMTIMLv2Wh6ztg/2TP5SGbNIvkE4ulbl7gtN2Rk=; b=OJ1Zxr54hdqPev983QSB+2FlQB
-	hw+af50y6E5tAm09uSaQjLjT9zr1fCTw6tVoF9Xya1BLX2KoWKCQ8czhoLn7Nmb9ymLQLLeuLNEL0
-	TDxQAnPNEbvTouC1HuAWGxOxSbFpeZZkOAS9r/JFX3Z94P1DVvhbTOjLOB7Cy8yAukLx2zJ06NiQD
-	Z3/OpKnotC2awG3ceAGjG9y/ohmrjD3c2SymT4ZGHuxJ907MDALjQvjYKjbe67C7Fsw6O8O0rIj0K
-	X/kbEfHNvLp6jZoXbhozkpvVQ69Rf5mM8lMmN4CKZib7CJh63Hp4XXHzvbM+x7W82SMr4RMkpf7+W
-	nEVO5OKA==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=fX4x/DwPozKPTud5FkAAKQrO1M5Mc9gEHPAUZrZ+dhU=; b=g1r3fjqWff5jo8
+	zgti/NQjeMVX3+COTHh/b1Srwwx6QrmtXry2pnQPS8S61QGrPHWSEgzWBluexC8VRCeJ0mF4uCfkw
+	mkWzakOOkAZ8oszm1SHBc4DCa5Ch0Fr/kS9AO8Mofu9b61yl/EzIbsYLIL2G+YN1RuIJURNEsl85F
+	nrjw99Xo6xn5IDmNKALerUCkvBNBhe/eVYT8WuKeEdFI+0FlEIWndtVxHOI+TXKUhhNA4iQ5syGyT
+	va4rEOjDzyT596CzWpbSo0YZzSH7qsBjAj/cZON5qPUqs1YNabgxPVxWc/dgvMWtLDPqzgOq7bRmg
+	djBDGawcaVRrqm00Ftyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSaxL-000000001Oy-2FGB;
-	Sun, 15 Nov 2026 14:11:43 +0000
-Received: from out-88.mta1.migadu.com ([95.215.58.88] helo=mta1.migadu.com)
+	id 1xSaxR-000000001QM-2bv4;
+	Sun, 15 Nov 2026 14:11:49 +0000
+Received: from out-84.mta0.migadu.com ([2001:41d0:1004:224b::54] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSaxI-000000001Od-049C
+	id 1xSaxO-000000001PJ-1VtF
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 14:11:42 +0000
+	Sun, 15 Nov 2026 14:11:47 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=aPxa4y3+ppxmpAAuJ70W++p4hkmg2eJERKnjs9y4jWo=;
+DKIM-Signature: a=rsa-sha256; bh=dYZVjHUUnYJbCP3BEmxFNbYbsLJb5S56W4DO//XaLI8=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794751897; v=1; x=1795356697;
- b=NZCmnVXC7qxU1dw6OfZEl8mzxNY+bk1+Pzf9KIvRNb3qrU81NHXNTBwgl+SPUbXmO/H3k/JB
- AoR65PIvRjWMjH/YS84ZSTG7n7dYby+f4TN/sQDYpi+rHoXaoDBwInXpcj67GkEk8HrOP3vlqMN
- HV6X8opinCETepsMaLPSc0UI=
+ t=1794751903; v=1; x=1795356703;
+ b=HMFtC04Uf+2QnwCff9CM65z7x9EnmQ/4oIK+o6iTNwJK4zdPaDuvygZ2NIP3ED2jFy8M28p5
+ BpxKBDDT87szR2FwqdETrrPmtk7mUs++bEt1HCjSuzPCOwB3kb7rAlwYNk6c6xG9gIiEtbpFSfp
+ v0A/J8LEdGQEUf2lzH8m1eLM=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 4b04229f9dcdc18d;
-	Sun, 15 Nov 2026 14:11:37 +0000
-X-Mizu-Trace-ID: 4b04229f9dcdc18d
+Received: by smtp.migadu.com with ESMTPS id 616e2252748b30ee;
+	Sun, 15 Nov 2026 14:11:43 +0000
+X-Mizu-Trace-ID: 616e2252748b30ee
 X-Migadu-Flow: FLOW_OUT
 From: Peng Fan <peng.fan@linux.dev>
-Subject: [PATCH 0/2] irqchip/imx-mu-msi: Fix MSI dispatch and probe error
- handling
-Date: Sun, 15 Nov 2026 22:11:24 +0800
-Message-Id: <20261115-imx-mu-msi-v1-0-8beb58854ca4@nxp.com>
+Date: Sun, 15 Nov 2026 22:11:25 +0800
+Subject: [PATCH 1/2] irqchip/imx-mu-msi: Fix MSI dispatch through the
+ parent domain
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzNDQ0NT3czcCt3cUt3c4kxdi2QTUyPjNEuDJMNkJaCGgqLUtMwKsGHRsbW
- 1AKHbSYNcAAAA
-X-Change-ID: 20261115-imx-mu-msi-8c4523f90b1c
+Message-Id: <20261115-imx-mu-msi-v1-1-8beb58854ca4@nxp.com>
+References: <20261115-imx-mu-msi-v1-0-8beb58854ca4@nxp.com>
+In-Reply-To: <20261115-imx-mu-msi-v1-0-8beb58854ca4@nxp.com>
 To: Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
  Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
  Pengutronix Kernel Team <kernel@pengutronix.de>, 
@@ -66,9 +63,8 @@ Cc: linux-kernel@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
 X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_061140_290893_5A7C239F 
-X-CRM114-Status: UNSURE (   5.86  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261115_061146_587426_D0776283 
+X-CRM114-Status: GOOD (  10.39  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,27 +84,40 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Two small patches to fix bugs in the i.MX MU MSI controller driver.
+From: Peng Fan <peng.fan@nxp.com>
 
-Patch 1: Fix MSI dispatch through the parent domain.
-Patch 2: Fix PM domain teardown on probe errors.
+Since commit 7b2f8aa005bc ("irqchip/imx-mu-msi: Switch to MSI parent")
+the driver creates the MSI parent (nexus) domain in
+imx_mu_msi_domains_init(), but never stores it in msi_data->msi_domain.
+The chained interrupt handler therefore calls generic_handle_domain_irq()
+with a NULL domain, which resolves the hardware interrupt against
+irq_default_domain instead of the MU domain. Depending on the platform
+this dispatches an unrelated interrupt or drops the MSI completely.
 
-More information could be found in commit message of each patch.
+Save the nexus domain so that the handler resolves MU channel numbers
+through the domain whose reverse map was populated when the MSI was
+allocated.
 
+Fixes: 7b2f8aa005bc ("irqchip/imx-mu-msi: Switch to MSI parent")
 Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
-Peng Fan (2):
-      irqchip/imx-mu-msi: Fix MSI dispatch through the parent domain
-      irqchip/imx-mu-msi: Fix PM domain teardown on probe errors
+ drivers/irqchip/irq-imx-mu-msi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
- drivers/irqchip/irq-imx-mu-msi.c | 70 ++++++++++++++++++++++++----------------
- 1 file changed, 42 insertions(+), 28 deletions(-)
----
-base-commit: 84abb955b1015477aa11a96e2f3ac1b938b77f48
-change-id: 20261115-imx-mu-msi-8c4523f90b1c
+diff --git a/drivers/irqchip/irq-imx-mu-msi.c b/drivers/irqchip/irq-imx-mu-msi.c
+index 6d7baeeb2bc8..c42ea0797624 100644
+--- a/drivers/irqchip/irq-imx-mu-msi.c
++++ b/drivers/irqchip/irq-imx-mu-msi.c
+@@ -238,6 +238,7 @@ static int imx_mu_msi_domains_init(struct imx_mu_msi *msi_data, struct device *d
+ 		return -ENOMEM;
+ 	}
+ 	parent->dev = parent->pm_dev = dev;
++	msi_data->msi_domain = parent;
+ 	return 0;
+ }
+ 
 
-Best regards,
 -- 
-Peng Fan <peng.fan@nxp.com>
+2.56.0
 
 
