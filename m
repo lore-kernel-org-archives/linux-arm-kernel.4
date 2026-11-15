@@ -2,68 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0795606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 12:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0C1606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 13:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=utOuP++T;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Mo2xO+ZY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DeqoGl0P;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=lAbr702A
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6nAdsUOd3sfLiZ5il0Rjkey++jxOa1KVm/OVFeybvpI=; b=utOuP++Ts/XTOmbEvIEC+mMTRa
-	9CN+nW3vOzHM20LO7MfxjCk+HqXNCEjHrd2wEpMbJ/+/w41SOd9s9LFtlVEWm+llj9CvgNBoRMg+7
-	w2iNSealxkGZ5RN3X0/nnNo+i/wG92LNeRGsYilWmQ1bciWPzaZ6xp/kMzZ4qAtd5V78hnden82Pp
-	uVbaR6irFyD+jY2ifUXUUY09btlJWPAtd/GAzfH50ubfSFJLL2rKESJ3NX+ve+9lv5dGmxpu34/sV
-	7wPlBtSXnnYmhz9YjoIIlXn3FuWG0mrMc58iK0QrMyPz1319fJ3q1zY2ZtTY3KUQRt46HmekKYLza
-	nwuqm8qQ==;
+	bh=P/iZWwmcm3GJ6CC8MhWTY8Sc2xzYlGTS5W4HDt6HJ9I=; b=DeqoGl0PCAm3593a8rDt+Llw8V
+	QmRNyBxb/3ucQcHMXb7Y/9dexfDxkjlt+i4hWicBTHJDn429+Z/tLr/4S7ZhTgT6ZjR0zo0MQuEaF
+	2fM2sRUKgNUsWkCqYT1ABL8RmRcZzSocyY2yLLXoikNCtiY5jGN0BaJoaxD4tNzckX2HkdzYHCEH6
+	vhvE9b8fG28DQ52NBiSXnh9TWt07qjYLw8dOhGQj0n6Fje0oPu7nd1iantHvt/YMb3LpUeu73DDZJ
+	qfZNY/GQtHT1JE0RTi9htpFM+BNwoA7tWxfWSNTWqXVrWw6P4BHiZ7wqxQYJVKK/ApZSuCXVQUpgy
+	kGErmDsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSZ6T-0000000HV3q-3shs;
-	Sun, 15 Nov 2026 12:13:01 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSa6D-0000000HXuo-1ZsD;
+	Sun, 15 Nov 2026 13:16:49 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSZ6T-0000000HV3k-1ExA
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 12:13:01 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A57094023F;
-	Sun, 15 Nov 2026 12:13:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6322F1F000C4;
-	Sun, 15 Nov 2026 12:13:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794744780;
-	bh=6nAdsUOd3sfLiZ5il0Rjkey++jxOa1KVm/OVFeybvpI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Mo2xO+ZYdxrOq1t6MQZL84cjQftKeJE/GIENXYn0PQU8insGkFBGT2ua4+7ydBMOn
-	 YV6tZB4gCbby9XENAeB0SHLW7dkIk8EpeD0Zsk2RRjKdCPlMoGfyeNRXsKP9xNun5E
-	 dAyU2h2+QNH5AxERDAr1eUTPneTOESDp9yh7NRlUJmWZqeGjIcrjdkYUZGHcnrYbjV
-	 rYUhu2Z+fMschPXLeay3giGQLt+9+cobo0UxJ+xqqw8Pwr4qwn1SoT2EgS820P//Lh
-	 dLhjVRmcmYe5w+j+sVPNY3zfHFZKW5G34HcXxCXrqY/4EQiJNipCMO92kkhV8fscRh
-	 cpXugzJH7QIkg==
-Received: by traversing.sirena.org.uk (Postfix, from userid 1000)
-	id E5F0E336AA00; Sun, 15 Nov 2026 12:12:57 +0000 (GMT)
-Date: Sun, 15 Nov 2026 12:12:57 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Long Wei <longwei27@huawei.com>
-Cc: catalin.marinas@arm.com, will@kernel.org, shuah@kernel.org,
-	mark.rutland@arm.com, kevin.brodsky@arm.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kselftest@vger.kernel.org, hewenliang4@huawei.com
-Subject: Re: [PATCH] selftests/arm64: signal: fix inverted feature mask in
- diagnostics
-Message-ID: <d7ad4591-ace3-4c56-80b5-7130b9954051@sirena.org.uk>
-References: <20261114081013.964933-1-longwei27@huawei.com>
+	id 1xSa6A-0000000HXu4-1G7k;
+	Sun, 15 Nov 2026 13:16:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=P/iZWwmcm3GJ6CC8MhWTY8Sc2xzYlGTS5W4HDt6HJ9I=; b=lAbr702A7r84NtQz1gujPywg4k
+	yBT3Z0xSGQanL5I3/5xJUV+0Kw/mxXBjjQVHsF+Y65CpJPrGrjj1WvwqFPn/FKwmPvq28ATkzAryg
+	7Il7K3vQmQ1CdSmPyCIxYdECs6NT761RlmgOQBsDViniBQ5rzBTlw58PiveEVMo7haTgv61jeyIWI
+	wJDMN5VktCHa8leoByjVNmFuI9VrXrjzsNIRgbElQ8vk6JixqXyqygiUu7WCRi7OvhFpEVj+F3lRq
+	xMrKretk6AlxK4EUzCTFqOaMsKlh0xRYsvyxrfiP4VxUeNPBrT33PkZRK3gl36hQ/BLdHMD07Asxf
+	f+pybMTA==;
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: tomeu@tomeuvizoso.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+ p.zabel@pengutronix.de, ogabbay@kernel.org, zhangqing@rock-chips.com,
+ Jiaxing Hu <gahing@gahingwoo.com>
+Cc: royalnet026@gmail.com, ulf.hansson@oss.qualcomm.com,
+ abel.vesa@oss.qualcomm.com, sebastian.reichel@collabora.com,
+ sidong.yang@furiosa.ai, u.kleine-koenig@baylibre.com,
+ chaoyi.chen@rock-chips.com, shawn.lin@rock-chips.com,
+ finley.xiao@rock-chips.com, diederik@cknow-tech.com, alchark@flipper.net,
+ leonard@lausen.nl, vlwwwwww@gmail.com, jeff.hugo@oss.qualcomm.com,
+ rfoss@kernel.org, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v17 03/12] accel/rocket: wait for a running IRQ handler before
+ resetting a core
+Date: Sun, 15 Nov 2026 14:16:01 +0100
+Message-ID: <hvfzY-vMTP2qEvT5CAWuhg@sntech.de>
+In-Reply-To: <18667b2afdcaae217fa1038f5348ab23ed756bdc.1794615323.git.gahing@gahingwoo.com>
+References: <cover.1794615324.git.gahing@gahingwoo.com>
+ <18667b2afdcaae217fa1038f5348ab23ed756bdc.1794615323.git.gahing@gahingwoo.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BTX7ICWH0mABSo9W"
-Content-Disposition: inline
-In-Reply-To: <20261114081013.964933-1-longwei27@huawei.com>
-X-Cookie: A watched clock never boils.
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261115_051646_386386_9970DA04 
+X-CRM114-Status: UNSURE (   9.70  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,37 +85,28 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
---BTX7ICWH0mABSo9W
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Nov 14, 2026 at 04:10:13PM +0800, Long Wei wrote:
-> When a testcase is skipped because an incompatible CPU feature is
-> present, test_init() reports the feature set with:
+Am Samstag, 14. November 2026, 04:05:20 Mitteleurop=C3=A4ische Normalzeit s=
+chrieb Jiaxing Hu:
+> drm_sched_stop() does not wait for a threaded IRQ handler that is already
+> running, so call synchronize_irq() after it to make sure the handler has
+> finished before the reset.
 >=20
->         feats_incompatible & ~feats_supported
+> Before synchronize_irq(), mask the interrupt and clear the raw status, so
+> that the NPU core cannot report a completion afterwards.
 >=20
-> That is the set of incompatible features which are *not* supported,
-> i.e. always empty, instead of the incompatible features which actually
-> triggered the skip.  As a result the diagnostic prints an empty list and
-> gives no hint about why the test was skipped.
+> Do this under job_lock, because the submit path sets the interrupt mask
+> under the same lock.
+>=20
+> Only touch these registers when the device is powered: check with
+> pm_runtime_get_if_active(), so that a register access with the power
+> domain off cannot raise an SError.
+>=20
+> Suggested-by: Igor Paunovic <royalnet026@gmail.com>
+> Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
+> Tested-by: Igor Paunovic <royalnet026@gmail.com> # RK3588, three cores, i=
+nduced reset, JOB_TIMEOUT_MS=3D2
 
-Looks like a cut'n'paste error.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
 
---BTX7ICWH0mABSo9W
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQReagvpf3TrrA7BoYYv73Ows9A4iQUCavmhyQAKCRAv73Ows9A4
-iUjQAP9HxqvWC55RPim1gX0a2Sr/cSbCgGYMKfepsoaZAyZlCAD/Z7ytZn0cKXRD
-vHVjI3eoYdcb4IGW2zHgB0nH+HBA7Qw=
-=Tm+H
------END PGP SIGNATURE-----
-
---BTX7ICWH0mABSo9W--
 
