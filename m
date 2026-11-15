@@ -2,114 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2702606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 22:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4310C606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 22:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kR8gVsmI;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=zLSOwd5w
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OKo/gi6I;
+	dkim=pass (2048-bit key, unprotected) header.d=yahoo.pl header.i=@yahoo.pl header.a=rsa-sha256 header.s=s2048 header.b=S9cTi6Lh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=V+qix4MwBv7O5yjEyViR1F6mCZNMRdVo4wwBMAHfu4A=; b=kR8gVsmIv2B4qy
-	f7dQQzCByH3Mt6vMzG5dc3/EMjAU1aVUOQzYuUg51CPe7sIXg8EFCtkPqUOPvLrmCwdvjcisnXNU+
-	9dgbVQSaoxO+jKunbqju+ohJIV1Lcek0S/9npDtDs/H/YfL9NaLRU7BCvcdOpZE/+yOU8OWuYrpaZ
-	5Qf7XOPpiBsrg8GkQOzTWV1VwibxJB9pLW+DdSqWffB0oSsK5dJuXkj3qzusqzDNylTb8gHG3dBKh
-	UQ+fXNi7J/200c8ygyYEnsnOUc6N/Rohrfz0bsOCJmTkWczvWSwO4HwAcLFsHg9Zwp/7AxZNcWxzE
-	l77r+xREe+xhZghnEVvg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Unsubscribe-Post:
+	List-Owner; bh=2F2z0ZuZcbyuAjZU7VnocXFK2M42aX34gNp3ecJ79HQ=; b=OKo/gi6IOxor6Q
+	TrI2HLdJMHpjRDblTwgb3xTah5LT2a/JSTX4sDrI/GC7KQfzCqbf7c/nP2MLWV50k24gaPxKdi2vX
+	jHul0c7GxdNDJr0sHh7FwjlEwFAvH7iXmsoUGZwHaaOEE4vXMqaq0L/Zkh1Shnf3POHaxL4YSrpXT
+	fvYtdvxmTX8bM31cW5/wHZKVIMkoFt6mlE5dgrlApBfy+zNk+lp/7JE36VuDH26BGm9ExSsrpFdFO
+	ygxnOrP/g5o/wjnMcGi9IqLavF7dfz4Goxra8iipjZ6HdENQcawPolQOVeLKQBGi7a8YdBG/TXErS
+	rzSNO6L5kXmIjIkeHP0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSiUP-00000000cJS-0piT;
-	Sun, 15 Nov 2026 22:14:21 +0000
-Received: from mail-yx1-xb132.google.com ([2607:f8b0:4864:20::b132])
+	id 1xSiVS-00000000cVI-200S;
+	Sun, 15 Nov 2026 22:15:26 +0000
+Received: from sonic-euwe1-0017.asd.mail.yahoo.com ([34.2.82.16] helo=sonic.asd.mail.yahoo.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSiUM-00000000cIB-1Y6O
+	id 1xSiVP-00000000cUG-3tVo
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 22:14:19 +0000
-Received: by mail-yx1-xb132.google.com with SMTP id 956f58d0204a3-67db8985419so287830d50.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 14:14:17 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794780857; cv=none;
-        d=google.com; s=arc-20260327;
-        b=A3Sfx8sLgIGtTOFliCRcQakfqY4G1g5zK4mo59z8ZjkDV/0YrFvSstSH72CYU8uNdt
-         /v6vcgrFmJtS8VxrOfWxGDc5N3R9qunvtpC9u3ZtWzvD5AsNnz5Cl3b/EVgnQBMffvtd
-         1JtGc6uVEiyjSHGdecgU2CqbPvSZeMO0zLkIQS8TDZxttivZ3iBZ3MQkBTJghxenVr/M
-         /q9sPPT2+t1XAV8iQEbopbMCzfM3ague2RkW3O4Z0POMiH3hPi0aJt0ICe4AGB95l8Q1
-         FI8b2WE6Pn/SVrCBDYoAHCD6RICpggIekCsSIqK2G5vCWAApLnOgrBsnBTdVcNY7gx7f
-         t1hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=V+qix4MwBv7O5yjEyViR1F6mCZNMRdVo4wwBMAHfu4A=;
-        fh=x93K9TGcu51qj1HH6vNjTC4OmUTWAfYBY6CkwLnf69w=;
-        b=OOVy6pVhRncuEDkmXvEMunWG66yhet51CScwdrtKHa9ZYsU0tMdmY9LZPdp/YuLe0M
-         0/ZROSfGZWS0jGNh1AYLfbZHbp5uZHtW7L2c0am/Je3HIjta+Ko2JymWYybaSQXmuRkt
-         eoZxqpbxQu4qWw4ojnnuTzV6TkvUbtTg71K4iD9oAGPe0J9e0xKx7hERHWrviuHtVGpR
-         Y1B+momeM4Q7CuXc05pvdfISJpc68uZIfbs+9ZKxLgSc2GK2SbRYcLvYZkYlOsZpTK4e
-         og4x1uhRL45q2Irn6Ml+Zey62/FWNmu+MYoD2ye4Ias1vpkrA2wq4+FuVgS8PhkiTCJd
-         e4cA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1794780857; x=1795385657; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=V+qix4MwBv7O5yjEyViR1F6mCZNMRdVo4wwBMAHfu4A=;
-        b=zLSOwd5wypJJwGCmm/VB9woQmuuDOCCb5/ySgqLOt5PU6orn8B8fPZfqtG812yvNQh
-         jktdLyBhJckqPIWfRiHpO/cI4k8YHGafo5b6y8/hwXRoCIWfI3J9Qu3NY4F6Iw57hlQh
-         3BSblOuOxn1KqRaJ9lybD3m59b2NpEEyj1vqjV+JVvZC0ET41lU45aF7MiuOraJPFEQO
-         oLQVhvbdZED3A6jNorLo+bqusnM0S/bBws7QrsIvUSmPcHSEzIoQ2Emu5RcCotzWnJbE
-         Ftg+pdqiJSjDkRjc3tJCcZeIHHWG6RCgXVpNWb5oImniG2bx2YmY5h7sHdXhURWq81J1
-         T4jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794780857; x=1795385657;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=V+qix4MwBv7O5yjEyViR1F6mCZNMRdVo4wwBMAHfu4A=;
-        b=jTZCvjGEYVON3OIliFs5/BS4Fp+W/L7zCKIs3A/a9b6lehrPD4T/IkO2DeJOJO9Owy
-         r3OlRuvfh+/vM4Ymu7gv+rruXyunA/dAooTXHQ4MhHf1rELBoJm/RQydsxU266PGtLBM
-         8vJjD46F2XAEr0kJ2+mV2sH7pyjag+CIvWw12P9RgI6It1hbkK39FCjRwzt6dfHwrAHw
-         kGKlomZfUfF8+yz1+QXrvejQtCFzxKfyWVipEK85XBWyZaqR/foPO61MCreSYskqCXgW
-         wJZlKXNahqRYLGeOXJDpDADNa1fsYzcNzB8Dqkp9jOxh4FV8B5gdZiSrWfZVHg5mRYv7
-         A18w==
-X-Forwarded-Encrypted: i=1; AL+hErEN3AF4RKxAn3AoaxjzecpNqUrGog52kQ+7svxA1liUxWC7Mk5Sy4Qag0xUQ/uDRFz8pCAaO8j5y/rbtDibHV7D@lists.infradead.org
-X-Gm-Message-State: APuU4Z8EA7PUqHyBWB21IPm7178hZ8xj5naNvtlOD002SqNPUf65ghsY
-	s+i7OmxhZpOPp3K6LYyRUcjaIDTFd2qebzEcHGxl/XM5vgCUl4k+03WottmE53slKqJtiPxEjgT
-	9dPcEn/rf5TbOdKA4z9t0koApYYR+O64=
-X-Gm-Gg: AZFdTZe18zzD3tG9RvIhtzLXUPrrTFr/xPxuazzmk3+teEI7fdlODXeGb8u2Vn1MLTz
-	HXTrJMpywkrhz4mZHYlmjFtP1cl9uv3ZPMWWqlaqhaocsP/w3SXLezzbSREmL6O0Vmzsy+i3cSb
-	wmlD6h+Y8FMmbFtLCICIrAuAiTYhT5Ac+9huY86qPjz9OOg/RTuU/77gXy67EsogMf8YGS5URY9
-	N7NKC8qyizKQB9/4N9/FKLCk1rhsk/GwwX19adVOdeYcW7vmOQKeBUIgQmr+IGw3hfqqpV2bAyx
-	KjMoHesLyPo+1f87Un0pCKnf4skX3Fk5gqYlVcFmwjglT3xhFAamkUslIsNpKzEVTbL1cGWuMsI
-	skpdNYKE+oEwB1tHI4r5f2lxYZzMu8adRnpV5sHpHAGV/Eotr0dIstIELCfbfGzVKp3w0zg==
-X-Received: by 2002:a05:690e:4383:b0:679:f97f:fdf6 with SMTP id
- 956f58d0204a3-67d896a8f2bmr3982114d50.66.1794780857112; Sun, 15 Nov 2026
- 14:14:17 -0800 (PST)
+	Sun, 15 Nov 2026 22:15:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.pl; s=s2048; t=1794780920; bh=2F2z0ZuZcbyuAjZU7VnocXFK2M42aX34gNp3ecJ79HQ=; h=From:Date:Subject:Content-Type:To:Cc:References:From:Subject:Reply-To:Content-Type; b=S9cTi6LhY2apmj7BjKqKoB6081fiDVvPkhdFmk6IwYe/09zZLaOALZS+Dgd39bOOaURQXTmpUXUNTeGq6AapHsf6rFcejEiMyrOnGlpP3G347uE/xqLWTG7kVIbX8CZcl/m2TugR3VWfHHYQ1e0G7exbuFw/5E9baKIRDRvbpTfL5fjNRNyONjgApKeJJBd428H85pJBkXIGpNvPqmSUrTkx3LG5DkNnz91ZeKR211hJ55XGzsQv2oZPWyC6jXvqVZ++VGlWB6kBnN1GSf6F+Ye2DT4Tno+M1PwRsKKe1BZEuicwof73VUu4zbgrvg1oziaukydIYavc0NXVoGeGpg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1794780920; bh=8io4HMmBHjf90ncS3kftgptXmHBAbxhh8oY345FWlNT=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=BgYWuToiTRfg8CGs5ho8lBXG0m6MxIayP55YOLU24JCSnH5KZcEGxc/emTtCNbnIIxTkcbKAe3qSp4LCBai7PAXFjiwwlCrihLx7G8LkcYfVegDz2DBW/ycqvYZRkbAV+BJUR2vYhfXaiMUnQDE4K2UNhg4OnqoopMhBOd/OFoRic3zHXh9WZ/NPpprNRJnUTMH8LBtmLXmlfuAtqz5ouqTWUZNbMXtQ/56Lt5oPRWO3rudL96J5bHBC9IaHSjGw8ZibxYrfXQwBkX/fmfI5XOx0ICypgiQhHiOgDsj8Z3BZXuPfDeyOCTNLitzllj+NWTN1mX0riP6Nc4pKk2pPXw==
+X-YMail-OSG: cKdOGDwVM1nsX0eogjTveVDoZYwLm_y6FI.Lo4VvAN2AVen6dCWuS3SKdH8QymF
+ HeJz658itmZov0GrRBecn.AnHGSmNhlVPkLpFcVLhDHZp65m0SpLum7F0c8I6VN095Ni6vJA0yvu
+ aR13Ze84FTAL8N71GQ2rcTkzY3FR.ywrLd7V5SxvHaMPoaM8r_bF8Ocy8cdLjt3Wcra2YvWY41nN
+ Y0i9u6K1puJGacQTAfFBOAw8646rzO.MEiGkEPr85mUrnXyqqVRQgULk1AJFF7bMPM9c4wT_1e3B
+ nUVnNAR0g_NZlSemHcWAV1HDRLUpNKMy8.uwby7FpgcmVuRB7jqjWUkHGvUZ7UNDrSljjqYY8jc8
+ LYDJyZXqK2xSiEaIRpAxf9ZqSQFCW._7kuXjXI1wrAhA7oLup7M_1r9wD3vZyODwJb5efhm_9qfY
+ 0_WPdJxsMklP.dgbiwQHyztaGnc7A1GA2GX2rmS73yRiIPRiZV2r923nXBDYRwPcatT2SYMtbHWQ
+ N7zm1.F__3c9DGGAz9JmACjUNI2VIb3Ugsl_cJmDVI2GZ5oCVhZrOjlvSOkYPcA7tSjca9zQLmWe
+ LcOuTlNd18fUalEYUqcBmwaYTfhBOWna0PbTRkCDB6VWo4eQINDGVezm2JrKrASq0tfJcCloJ829
+ 7ZayR39ZYVjrll5hGGKl68BINKvC7Iv7UatLzhoyjaNJB3AeKP7QfixrLX4_7rHcExm4PTleGxKw
+ vXC03llRSI7HTYrLGpZhVS45_duPX_jr1wtrd3sajsHb4nQXSR1cSKEZBBGBL6P_x8VQiHFdPiAE
+ DQeY0oDEgDbuwcQWqrpZEMpKB1_j.aYtNoIf2HKkAy1c1I_dM4uNzuG2M0_AvAoWsJ9JdlzGBvHB
+ hoCbZ270BCJ3mS4KhQy3.LpBXg4Fk6qdS.bzvyHxEMEiMtQpeX8qddNMEQFGLX1PBQgCKIQm3vq1
+ toB910W0hy_5BuY3AH69x06uPh0JV6FBrbhy0vg0RLhq.h8q4vYjwG8isaL8Mrpwh8CIAHzOB5Bn
+ nEH2xcYQ2gxXANdy_jfdbWyaVc1GkMSgAp3co9JJJHoK4E6LH3PxjqeVYMjTJ_d8XkxiXAPG_oMo
+ 8Idse8deYm181fMvYMo5ust2.FJbJVxd18dDmEahAOLt9mvmYgtEIgaSADih0kIwyVVjJnNUSGZW
+ LvKoNECYZO319rDu3YIIV_IE7Q0zY3cRmNvOsKOxMRX5v9_y4u3rRRlELD1C1eD0E4xKLpm8c3CU
+ 6AgoMdd9IWse3SrmH2PyvmxqbgurRd.mJNSLx.nWnJOYddYQf5Bgn1P50oduQrV_0mzg7MTC05fO
+ 153eHdM1PiEnaEglv4J_98E_dBDkJmzxlUNQ_OxW5I1S6XVoN.mRj0t7P5LfK3o1bZdx5DqU83T9
+ FoCdZQ_g62dmz9M.yIF9alxZvegJLc2X_LCRK0in2aD1C3N4WVRFw.92KTHkzjOUnXAVnsUBZl4H
+ SZKmiVSsIxiU0j1_XmQD3AP0rJbMLGJz3uRvixs5gBTtUyaf6yU5epo9HnqhYzRDX_KqQN2SRX.r
+ KIzDNSHcxvy9AgdBm0W5p7sELB6lF3ZAza7U9cIGvjZsO_Lj7bShCJJMZUWNpwy44kDxsoHghqM.
+ ZjsWLg1_2riOdlWLtkADNqzTnSPUdhVl5MCHrlvi9p1cgpz0eBSn7iXvqepF6WojlLKzV7rK0Axj
+ I_b1VOMumhlWN7MNIZoLHjDpZcfLObnD06PsT3G3_JRgpJ_V2YgAfun9wr6DDHWtUfGBUwT69n5z
+ 5k1sMhrA5FNYYXTNH3mCNrBYND13Rs_fvJsFRXRAHxvj6SCchMevNSkuJPcTXsOj6jJ3t93sOXhh
+ JZCYhc97StbFWZI8bC8n8rBnA6TViv_Tk8P20cibLUy4abFCEXHY8qClTTzroImtoGNRhn1lf3QK
+ wfvfvV0tGYz8R.C9kKFj3r67Zfir17KzJ9osLThKbAwzxpBBOLeb5M52ArZK3jde8qrjmyxu8pyB
+ JFPkDhQ20RVFpKTj93t95wgE-
+X-Sonic-MF: <tomasz.unger@yahoo.pl>
+X-Sonic-ID: 49e5a92c-a159-440c-ab6e-d16bcb01beff
+Received: from sonic.gate.mail.ne1.yahoo.com by mail-asdoutdeli-p-cin-euwe1-prod-sonicconsumer-svc-104 with HTTP; Sun, 15 Nov 2026 22:15:20 +0000
+Received: from dip25.lsn.ir2.yahoo.com ([87.248.99.34])
+          by hello (SMTP) with SMTP ID c8d60a975a832e99b8d64eff3def6a17;
+          Sun, 15 Nov 2026 22:15:17 +0000 (UTC)
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Sun, 15 Nov 2026 23:15:15 +0100
+Subject: [PATCH] dmaengine: bcm2835-dma: Add missing
+ of_dma_controller_free()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261001-add-t7-sys-pwm-clk-v4-0-8ed2b1e0cdfe@aliel.fr> <20261001-add-t7-sys-pwm-clk-v4-2-8ed2b1e0cdfe@aliel.fr>
-In-Reply-To: <20261001-add-t7-sys-pwm-clk-v4-2-8ed2b1e0cdfe@aliel.fr>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Nov 2026 23:14:06 +0100
-X-Gm-Features: AclHuK8Jibqkumh92MwUwV6k9LdMNZ5aOXfzAlbMwGyKMualpiO_cItbFylPmew
-Message-ID: <CAFBinCB_Eam76VJWSWSyLRsnzXOTWohrE1NdqyJ8GhPFjWzfHQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] pwm: meson: Add optional bus clock for S4 PWM
-To: linux-kernel-dev@aliel.fr
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261115-bcm2835-dma-of-dma-free-v1-1-d539234bfec5@yahoo.pl>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMywqDMBCF4VeRWXfAiY2XvkrpQuOJnYIXklYK4
+ rs31dXhW5x/o4igiHTLNgpYNeo8JcglI/dspwGsfTKZ3JQiYrlzo6kLy/3Y8uyP8QFg+NpWVen
+ yRq6U3kuA1+9Rvj9Ox0/3gnv/c7TvPwce4ll7AAAA
+X-Change-ID: 20261115-bcm2835-dma-of-dma-free-ef85776c0914
+To: Vinod Koul <vkoul@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Frank Li <Frank.Li@kernel.org>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ dmaengine@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org, Tomasz Unger <tomasz.unger@yahoo.pl>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794780915; l=3260;
+ i=tomasz.unger@yahoo.pl; s=20260311; h=from:subject:message-id;
+ bh=jV0a/9DTGW1SPvNbP0Mt26tL8Imf7uBrc5dwl3yGkZM=;
+ b=CscCH9wbwWmQedrCZPpnmGMn+DkzApvTh/R9gV9+S6vD7i2g0um3z09nUEFA3pGeMASBZjqbA
+ dpj+AHnai5fDlH/VxgdEU7Wo+HF8NFz+66pNTc7PPRNQXcZNozKTnGp
+X-Developer-Key: i=tomasz.unger@yahoo.pl; a=ed25519;
+ pk=EPPsO91uz/0J2cTQ6ol+dgxYaieEc9dKSXWUb51n46c=
+References: <20261115-bcm2835-dma-of-dma-free-v1-1-d539234bfec5.ref@yahoo.pl>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_141418_415404_BD1DD3C2 
-X-CRM114-Status: GOOD (  12.01  )
+X-CRM114-CacheID: sfid-20261115_141524_109958_166E3E1E 
+X-CRM114-Status: GOOD (  16.34  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,27 +108,101 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 1, 2026 at 6:56=E2=80=AFPM Ronald Claveau via B4 Relay
-<devnull+linux-kernel-dev.aliel.fr@kernel.org> wrote:
->
-> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
->
-> On some SoCs (e.g. T7), the PWM controller has a system clock that must
-> be enabled to access its registers, in addition to the per-channel
-> input clocks.
->
-> Get and enable it with devm_clk_get_optional_enabled() using the
-> "bus" name. The clock is optional, so existing SoCs and device trees
-> that do not provide it keep working unchanged.
->
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+bcm2835_dma_probe() registers the controller with
+of_dma_controller_register(), but of_dma_controller_free() is never
+called, neither when dma_async_device_register() fails nor in
+bcm2835_dma_remove().
+
+The entry stays on the global of_dma_list and keeps a pointer to the
+driver data, which is devm-allocated and freed when the device is
+unbound. The next DMA channel request for this node is passed to
+bcm2835_dma_xlate() with the freed structure and, depending on what
+that memory holds by then, either fails or crashes. As the stale entry
+is found first, this still happens after the controller has been bound
+again.
+
+On a Raspberry Pi 4 Model B, unbinding vc4 and the DMA controller and
+then binding vc4 again results in:
+
+  Unable to handle kernel NULL pointer dereference at virtual address
+  0000000000000018
+  Call trace:
+   find_candidate+0x64/0x210 (P)
+   dma_get_any_slave_channel+0x64/0xd0
+   bcm2835_dma_xlate+0x24/0x48
+   of_dma_request_slave_channel+0x178/0x2a8
+   dma_request_chan+0x20c/0x380
+   snd_dmaengine_pcm_register+0xa4/0x2a0 [snd_soc_core]
+   devm_snd_dmaengine_pcm_register+0x60/0xc0 [snd_soc_core]
+   vc4_hdmi_bind+0x4d4/0x8e8 [vc4]
+
+Free the controller on the probe error path and in remove. In remove,
+do it before unregistering the DMA device, so that no channel can be
+requested through the node while the device is going away.
+
+The bug was found and the fix drafted with the help of an AI coding
+assistant (Claude).
+
+Fixes: 96286b576690 ("dmaengine: Add support for BCM2835")
+Cc: stable@vger.kernel.org
+Assisted-by: Claude:claude-fable-5-2
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+Verified on a Raspberry Pi 4 Model B: without the patch the sequence
+described in the commit message oopses; with it, binding vc4 while the
+controller is unbound is deferred and HDMI audio gets its DMA channels
+back once the controller is bound again. Both paths (remove and a forced
+dma_async_device_register() failure) were also run under KASAN in QEMU
+raspi4b: slab-use-after-free in find_candidate() without the patch, no
+report with it.
+---
+ drivers/dma/bcm2835-dma.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
+index 06d830d36882..cf29d897450e 100644
+--- a/drivers/dma/bcm2835-dma.c
++++ b/drivers/dma/bcm2835-dma.c
+@@ -1011,13 +1011,15 @@ static int bcm2835_dma_probe(struct platform_device *pdev)
+ 	if (rc) {
+ 		dev_err(&pdev->dev,
+ 			"Failed to register slave DMA engine device: %d\n", rc);
+-		goto err_no_dma;
++		goto err_of_dma;
+ 	}
+ 
+ 	dev_dbg(&pdev->dev, "Load BCM2835 DMA engine driver\n");
+ 
+ 	return 0;
+ 
++err_of_dma:
++	of_dma_controller_free(pdev->dev.of_node);
+ err_no_dma:
+ 	bcm2835_dma_free(od);
+ 	return rc;
+@@ -1027,6 +1029,7 @@ static void bcm2835_dma_remove(struct platform_device *pdev)
+ {
+ 	struct bcm2835_dmadev *od = platform_get_drvdata(pdev);
+ 
++	of_dma_controller_free(pdev->dev.of_node);
+ 	dma_async_device_unregister(&od->ddev);
+ 	bcm2835_dma_free(od);
+ }
+
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261115-bcm2835-dma-of-dma-free-ef85776c0914
+
+Best regards,
+--  
+Tomasz Unger <tomasz.unger@yahoo.pl>
+
 
