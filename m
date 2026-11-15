@@ -2,76 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333C8606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 10:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E756606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 10:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3A/dxJhq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iMgHHDZg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AQ5dJCiK;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JGI1V7Zz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0nqnviQtI0zVgBpLZforuUbgldUYw5y4JIwCb3k/byo=; b=3A/dxJhq6HdEVA2OZ64RHk78y/
-	3o6TLOBYhYUQL2jmTetVziYjsJGW8HgFz97z0IUF7Av5gOVmIpNT14WZmrqSdmeZNu7tN4f2qVf3Z
-	ACHYXLPcntuMVLg5CyhdvZJzb6A6T5WmPqElnfuFEsLzCGnXK4hL+oJbSPneL0GPT+uhWDkGbj4Pp
-	qzrMBKXTZsPp1ErJN0QEzet3WVovmlOzWiGU4ShaNR0SBzJkJ+4GlY1pb9kO9+oxEp7ygXjADIH7H
-	AOb0NJmjzVEZAMSXCZ55ndax8HcSwOT9M1hWZvQjkxcxNOJOOXLEr6/Yg8pYuakBP/bU6GOEoJSaF
-	5H7pDjSg==;
+	bh=K0usV5S3jHEW4yC1LWJVliW0T4AnD3cjicXTLsZKRec=; b=AQ5dJCiKHR3vvqGApS5XBN123j
+	hcmpHH1xYgmrtgChnvP1IbVnDMNN5WNhyjhwTkgWZ0pptcZfZQfqqG3z4V0yIDYZ41jJHFyZD2MMg
+	sOjJDK9G02O/9NFPHd8Gi83xPc3bMSglbAG2AawFd/IKgaHZVMNCfL/NvxDm553WaNpPFz5T+F+cS
+	L+ewdzBgozgDDF4F9gjL+KlHa6ihfan/ipN9Ic2bYiwo8psxCL48/2j+h/UFgHC5+qszCUwb0rtLw
+	1YwT4JGb3MhP+N0jtrGXM/VWXcLBWpjpNaVlHzeY5CXhBhVNkqJK3c7n/eq3TcJbT2tPPsbaxrR/l
+	BQbLjZAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSXht-0000000HNyQ-0sw6;
-	Sun, 15 Nov 2026 10:43:33 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSXig-0000000HO3S-1XEc;
+	Sun, 15 Nov 2026 10:44:22 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSXhs-0000000HNyJ-00MV
+	id 1xSXie-0000000HO32-3t7H
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 10:43:32 +0000
+	Sun, 15 Nov 2026 10:44:20 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3094D601E1
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 10:43:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEE1D1F000C5
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 10:43:30 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 43A6544737;
+	Sun, 15 Nov 2026 10:44:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 478141F000C4;
+	Sun, 15 Nov 2026 10:44:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794739410;
-	bh=0nqnviQtI0zVgBpLZforuUbgldUYw5y4JIwCb3k/byo=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=iMgHHDZgx9CCeW7jQ7Z0VvGlzs0uRoMnkwXwVYnMkgw3UfmNXwg7BPjCn3iJOmVAg
-	 Gg+SZ2dj1i/3RTRPgmZ2y+tJ9mrVdGFL3hC7La7eAhV57oFHczQI4RTSjKH5QnkKxe
-	 PRNwbnlancl3/A/4q7NR4LBteog+4r3S4N0arQL7cNeX0B4jXmChzh9wCKpcX1SQrZ
-	 o9hAKkK0rA/fb1i9+7UWNHwe0dRLM43LV//ByEEn/kYBRtxmBH4DjyPGew/PLrsyFt
-	 f1her53+EUpfBpeTRR6wldUdnPdu+GyEtCsdpiLOQRYeuOxZF5h4pue+tmjkFSCccq
-	 +x1FjiSrRjw7A==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-3adfc004920so28080271fa.3
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 02:43:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGbqxkcY5kCCeMoBt+ASudEwoMEDSmAj3Vlaz7iIvKjhsQjGrtNaVjF1+gwDgV1XNeHnpy3Zbr/uimNwAGowN97@lists.infradead.org
-X-Gm-Message-State: APuU4Z9eZKzROSsErv0RHp9CU4jF6Il6ZXaliTMbdCG7MZ6/ScZrR9fs
-	3kMj4nhj1tV/C6eWY1/yQikIgatZnanZodDDI2q42wfKlGI2o+4Br6p8rc6VJDg0ria1+AUIInr
-	tHXSi5HytwiEQKIIlB6IL/fg9oN7Q9TU=
-X-Received: by 2002:a2e:a543:0:b0:3ab:1862:25fe with SMTP id
- 38308e7fff4ca-3ae2b49f199mr27144831fa.4.1794739409347; Sun, 15 Nov 2026
- 02:43:29 -0800 (PST)
+	s=k20260515; t=1794739460;
+	bh=K0usV5S3jHEW4yC1LWJVliW0T4AnD3cjicXTLsZKRec=;
+	h=From:To:Cc:Subject:Date;
+	b=JGI1V7Zzd8yb3ZbfyVFj8g3xuja8R+tcIZwsWKaI5nHgHBQCEgMsI13pn7As7+1c2
+	 pQ0NRP1FKWRt4FOIHsyH6L0iEZXB+YTTdqqO2dXUG0whw3SlJ9jeSYgtDRsyfBOkkD
+	 0praGMeiXJ/4Fp0zSplJFa/mAZ4oM1Zu8q1j4Z8Tjn+RoL6GQ794C9klpN+4TcRGs+
+	 0jlO5/PNw+YYqATXiI7691pjXEnR1D0YklfYFW+QTOP16IB/0kcdzSwDeo8CAkDc2u
+	 8DUeWW9oqQfHUhzjz2nXG4G2k4Gs9NB2XNkuzWAWuOrwzByuRgC6YJO5gTiLLzOlRw
+	 DDr7ZNTtfLTPw==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: [PATCH v2 00/13] arm64: add Synaptics SL2610 SoCs and RDK boards
+Date: Sun, 15 Nov 2026 18:23:39 +0800
+Message-ID: <20261115102401.3520-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.55.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261112-h616-zero2-dt-v3-0-1cd2664230c8@gmail.com> <20261112-h616-zero2-dt-v3-3-1cd2664230c8@gmail.com>
-In-Reply-To: <20261112-h616-zero2-dt-v3-3-1cd2664230c8@gmail.com>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Sun, 15 Nov 2026 18:43:16 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66CYb5LmHrThjqh4i7kQeG3D=0=om33=mJJUS_u4r=UvQ@mail.gmail.com>
-X-Gm-Features: AclHuK8HzeMAHozlJAL7NvuOGHQVO3JAeAx6hsTa0bLpIvwSKJtCAkiSGEitsvM
-Message-ID: <CAGb2v66CYb5LmHrThjqh4i7kQeG3D=0=om33=mJJUS_u4r=UvQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] arm64: dts: allwinner: h616: Add GPU OPP table
-To: aiyengar1990@gmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>, 
-	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,75 +78,121 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 5:22=E2=80=AFPM Arun Iyengar via B4 Relay
-<devnull+aiyengar1990.gmail.com@kernel.org> wrote:
->
-> From: Arun Iyengar <aiyengar1990@gmail.com>
->
-> Add the operating points of the H616/H618 Mali-G31, so that boards can
-> enable GPU DVFS through panfrost devfreq: 306 to 600 MHz at 810 to
-> 950 mV. The table is the one of the vendor images (as recovered from a
-> KickPi K2B image, also carried by Armbian). Like the H6 GPU OPP table,
-> it uses <target target max> voltage triplets with a common 990 mV
-> maximum: a board whose GPU supply cannot reach an OPP's target voltage
-> loses that OPP, while a board whose supply minimum is above the target
-> of the lower OPPs keeps them, as their [target, max] range still
-> overlaps the supply's range.
->
-> Like sun50i-h616-cpu-opp.dtsi, the table is in a separate file that
-> boards include once their GPU supply is described.
->
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
->  .../boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi    | 62 ++++++++++++++++=
-++++++
->  1 file changed, 62 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi b/arc=
-h/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi
-> new file mode 100644
-> index 000000000000..18989d11c832
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi
-> @@ -0,0 +1,62 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +// Copyright (C) 2026 Arun Iyengar <aiyengar1990@gmail.com>
-> +
-> +/ {
-> +       gpu_opp_table: opp-table-gpu {
-> +               compatible =3D "operating-points-v2";
-> +
-> +               opp-306000000 {
-> +                       opp-hz =3D /bits/ 64 <306000000>;
-> +                       opp-microvolt =3D <810000 810000 990000>;
-> +               };
-> +
-> +               opp-336000000 {
-> +                       opp-hz =3D /bits/ 64 <336000000>;
-> +                       opp-microvolt =3D <810000 810000 990000>;
-> +               };
+Add initial support for the Synaptics SL261X SoCs and corresponding
+RDK boards.
 
-Just a note, found by my review agent:
+The SL261X SoCs include five pin-to-pin compatible SoCs: SL2611, SL2613,
+SL2615, SL2617, and SL2619.
 
-The temporary clock for the GPU module is currently pinned at 400 MHz.
-So say you are just jumping between the lower OPPs, you go from
-306 MHz -> 400 MHz -> 336 MHz, all the while the voltage could still be
-0.81V. This is likely going to cause issues.
+Only reset, pinctrl, clk/pll, uart, gpio, i2c, spi, i3c are included in
+this series. The support for Ethernet, USB, SDHCI, CAN, DMAC, XSPI will
+be submitted after this series is merged.
 
-I suggest sending a separate patch to increase the pinned divider for
-GPU_CLK1 from 3 to 4, which would give a *really* safe clock rate of
-300 MHz.
+since v1:
+ - rebase on latest rcN
+ - drop some patches which have been merged
+ - let the "gbl" node export pinctrl/reset/clk devices with
+   MFD_CELL_NAME()
+ - use <linux/platform_device.h> instead of <linux/mod_devicetable.h>
+ - adopt some coding suggestions from Uwe
+ - Use 0 and 1 to select normal and strong pull-up on 10-bit pads 
+ - collect Acked-by tag
 
+Jisheng Zhang (13):
+  arm64: kconfig: let ARCH_BERLIN cover Synaptics arm64 SoCs
+  pinctrl: berlin: use u16 instead of u8 for the offset
+  pinctrl: berlin: enable module build support
+  pinctrl: berlin: add optional pinconf support
+  dt-bindings: soc: synaptics: add SL2610 system controllers
+  soc: synaptics: add SL2610 system controller support
+  reset: add Synaptics SL2610 reset controller support
+  pinctrl: berlin: add Synaptics SL2610 pin controller support
+  clk: berlin: add Synaptics clock controller helpers
+  clk: berlin: add Synaptics SL2610 clocks and PLLs
+  dt-bindings: arm: berlin: add Synaptics SL2610 SoCs and RDK boards
+  arm64: dts: synaptics: add SL2610 family SoCs
+  arm64: dts: synaptics: add SL2610 family RDK boards
 
-ChenYu
+ .../bindings/arm/marvell,berlin.yaml          |  20 +
+ .../soc/synaptics/syna,sl2610-soc-syscon.yaml | 178 ++++
+ MAINTAINERS                                   |   8 +
+ arch/arm64/Kconfig.platforms                  |   4 +-
+ arch/arm64/boot/dts/synaptics/Makefile        |   5 +
+ arch/arm64/boot/dts/synaptics/sl2611-rdk.dts  |  16 +
+ arch/arm64/boot/dts/synaptics/sl2611.dtsi     | 457 +++++++++++
+ arch/arm64/boot/dts/synaptics/sl2613-rdk.dts  |  16 +
+ arch/arm64/boot/dts/synaptics/sl2613.dtsi     |  12 +
+ arch/arm64/boot/dts/synaptics/sl2615-rdk.dts  |  16 +
+ arch/arm64/boot/dts/synaptics/sl2615.dtsi     |  46 ++
+ arch/arm64/boot/dts/synaptics/sl2617-rdk.dts  |  16 +
+ arch/arm64/boot/dts/synaptics/sl2617.dtsi     |  46 ++
+ arch/arm64/boot/dts/synaptics/sl2619-rdk.dts  |  16 +
+ arch/arm64/boot/dts/synaptics/sl2619.dtsi     |  44 +
+ .../boot/dts/synaptics/sl261x-rdk-common.dtsi | 135 ++++
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/berlin/Kconfig                    |  34 +
+ drivers/clk/berlin/Makefile                   |   4 +
+ drivers/clk/berlin/clk-sl2610.c               | 360 +++++++++
+ drivers/clk/berlin/sl-clk.c                   | 279 +++++++
+ drivers/clk/berlin/sl-clk.h                   |  31 +
+ drivers/clk/berlin/sl-sysmgr-clk.c            | 241 ++++++
+ drivers/clk/berlin/sl-sysmgr-clk.h            |  44 +
+ drivers/clk/berlin/sl2610-pll.c               | 145 ++++
+ drivers/clk/berlin/sl2610-pll.h               |  14 +
+ drivers/pinctrl/berlin/Kconfig                |  16 +
+ drivers/pinctrl/berlin/Makefile               |   1 +
+ drivers/pinctrl/berlin/berlin.c               | 259 +++++-
+ drivers/pinctrl/berlin/berlin.h               |  17 +-
+ drivers/pinctrl/berlin/pinctrl-sl2610.c       | 759 ++++++++++++++++++
+ drivers/reset/Kconfig                         |  13 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sl2610.c                  | 224 ++++++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/synaptics/Kconfig                 |  14 +
+ drivers/soc/synaptics/Makefile                |   2 +
+ drivers/soc/synaptics/sl2610-syscon.c         |  84 ++
+ include/dt-bindings/clock/syna,sl2610.h       | 131 +++
+ include/dt-bindings/reset/syna,sl2610-reset.h |  80 ++
+ 41 files changed, 3771 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2611-rdk.dts
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2611.dtsi
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2613-rdk.dts
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2613.dtsi
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2615-rdk.dts
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2615.dtsi
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2617-rdk.dts
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2617.dtsi
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2619-rdk.dts
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl2619.dtsi
+ create mode 100644 arch/arm64/boot/dts/synaptics/sl261x-rdk-common.dtsi
+ create mode 100644 drivers/clk/berlin/Kconfig
+ create mode 100644 drivers/clk/berlin/clk-sl2610.c
+ create mode 100644 drivers/clk/berlin/sl-clk.c
+ create mode 100644 drivers/clk/berlin/sl-clk.h
+ create mode 100644 drivers/clk/berlin/sl-sysmgr-clk.c
+ create mode 100644 drivers/clk/berlin/sl-sysmgr-clk.h
+ create mode 100644 drivers/clk/berlin/sl2610-pll.c
+ create mode 100644 drivers/clk/berlin/sl2610-pll.h
+ create mode 100644 drivers/pinctrl/berlin/pinctrl-sl2610.c
+ create mode 100644 drivers/reset/reset-sl2610.c
+ create mode 100644 drivers/soc/synaptics/Kconfig
+ create mode 100644 drivers/soc/synaptics/Makefile
+ create mode 100644 drivers/soc/synaptics/sl2610-syscon.c
+ create mode 100644 include/dt-bindings/clock/syna,sl2610.h
+ create mode 100644 include/dt-bindings/reset/syna,sl2610-reset.h
+
+-- 
+2.55.0
+
 
