@@ -2,79 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095AF606A323
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD396606A323
 	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 06:11:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sSrtR/cA;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Lv3SBxuT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oc/IGoye;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=AhLpBM8s
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bKP+aWmCnAOyzY6tYN5Sieibvo/NSg7cNkXShke5YqE=; b=sSrtR/cAoYHDsc
-	OMDAZf1fVPO8TpmskiuLegYif7HxKP0cJ6EWnSSTl4akPBURqUB5DzEhLm7ARcrHjVa5pLTy+yAD0
-	U/O+wlFcTT90PCYWb1Qlv9T9j0S7sVM4gXz+0Hq+VcH3h39+UQhZG8fMDiFFMkz1faMDffqA0+4yi
-	ZWH/cJxeJEmKtZXccbdW0CEOWjFYrnSRpC64iSyV5tiE5vGtAqgp6U3Wu5T1BYKzc48ajrwyCan+a
-	GBN/EO2/OZEENMmvasLKB2mZzYUhZUJc3T1VczGPPMuTKNdqUkKGM0XUWcss+MHN508hXjUm0lRL9
-	5i9EorN4paUFdBkLIUGg==;
+	List-Owner; bh=HyRQC7LCLt2aLLScf7p5/WBb90iUzNQpHgR+zoYi5DQ=; b=oc/IGoyepwi/7w
+	fBgITkeiwaDe+QBLHVjYTJK93eaR4u5uLNWElS6CRPbNKejVHn4sYwE/iae3wEi28TbV16TEVTIvG
+	Djh6RfvNzMtqvmltjLRd88rCm7O0xB+wXtPm1ckHnEPK1jrxKIzsn34d/ro7kL40Enr59MuPzWAzg
+	cYW5jgowwZsjtj62DDpY7U7l70SVoVFUkYvDXFed29PqTiOKtfPOZbx3N96qGf/VW1jSDir76Bf+E
+	RS9RmU5Xn/b2RgTmFWyws7yGTezuFO4FirFHRJwMqM12fje2TG3ao3p+9E+bh/kZI46NNa4ZZIMph
+	LTusubzv3O+bO987qfkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSTSf-0000000H6eV-03hK;
+	id 1xSTSf-0000000H6fK-1d7F;
 	Sun, 15 Nov 2026 06:11:33 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSTSZ-0000000H6bv-3qnh
+	id 1xSTSb-0000000H6ck-3iTL
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 06:11:29 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a207b02a2cso12577295e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 22:11:27 -0800 (PST)
+	Sun, 15 Nov 2026 06:11:31 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4bb5b8ef642so11995765e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 14 Nov 2026 22:11:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794723086; x=1795327886; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794723088; x=1795327888; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=bKP+aWmCnAOyzY6tYN5Sieibvo/NSg7cNkXShke5YqE=;
-        b=Lv3SBxuT5iAf+idg/3dkZL98FZAV/SIfMIMatE+dhekNA3QJrCUGZ5zpHjhEwD5rZy
-         HGXFrk2q0CA0K1X90HyDv5L5xMFRxiM2V71R5zTriDzhzEbqjss8AZFd2/GK0O0OGFib
-         zMD9r8AYbKPoSp5c6lsBln67ulWytJzl3+UxNY1TLPoyZcC9TSyo50FXSHK1x/fc5sNN
-         G9gi3on1Y9HQ/WOvnqdHfP1jNEd5sBcQ57/6JHETZvsEQ+xlH4kR1LuGEmXJoKYE1yDU
-         gspqI4j1wgh14mkV7qAqXm0CPSZSn0Jg2xzRBrfTVBt6ZKL454n31xwci3FJyh0PFRHM
-         RuOA==
+        bh=HyRQC7LCLt2aLLScf7p5/WBb90iUzNQpHgR+zoYi5DQ=;
+        b=AhLpBM8sftlZ4yWQ+vwsr3gpClhjkuq86c/Z0VH0UutVTqZhRwrNA/0oumyNLnCFG2
+         3VESlnPtpuY7UCtQftzJTybwq1whJXLlqDItRwsa3upQGr1fMgnVz8QGzqPpD2Q3hFAn
+         t7lBeAuJp+/elyDD3/y7jFgBw7nHNJ5r8HcUuEtvxalcInqFh7ROW6eqNQRyN27hH37E
+         QRBFPexRZk4MtziW3V74lV+v3p0xB8sMkIW1d+JyGvyxf7UtjAD4xCUkrmlkyRaQC+lc
+         s332DmKA6TyQYchc8DjjolYThe/iM6NK0sEiTyNnNCrMRN33f1Tq5Yj100AyCgCtGFmx
+         Xzog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794723086; x=1795327886;
+        d=1e100.net; s=20260707; t=1794723088; x=1795327888;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=bKP+aWmCnAOyzY6tYN5Sieibvo/NSg7cNkXShke5YqE=;
-        b=ZZABA7LMRjLMP2dTyvuMAWcHuMYVWj/DqVvtT9IHIYHfhpn/L9NbbJlRnPcgCMdZna
-         WYNfius8QleQtU+0hzCxYnLvB/J/ZNhGGxxeluiQXFCYkO/uWnKSRsN/udr9avKU+6uo
-         qA9X+giQnq51WMVKyIZ+XaEUA6RZLsc7JPOrqjvIt/f2koP+qv6iWZRvmhm3uYaIKPB+
-         yFD7PId14Bhw5GsCr1hLj1pjsXuj/m6MrdZ7EaEnpz8MJCSDtXVD8P9bwylcoJwn8oXb
-         1mhFBdL1kXGSFSEFrLZvATurO0Uuphd426E9y9SRKk2hpovMd35bPTgqM9VDy8glrsju
-         un8g==
-X-Forwarded-Encrypted: i=1; AL+hErFmL4RmlbPcyRfrpT0bQGpQQaD2uqnAHOEuwHqtS4T5q3mev1uaQ40dpoZdajO9cDGnka13rFa9oATuON99LGXZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z82XLTG4urv1RCRYPHJIsrZnsZMNIRK/0e12ol/IExkq2S1QwDW
-	+GoSm0CITMDalBKnjNX/EsxmpxIQabiwO4/fQ2Q7Qz/kD/qkEaJ2Sz6L
-X-Gm-Gg: AYBFou2yhTlk00kfYcyF7LcHM4Hme4MsaKJ59omrpBVeQrLXInNA9B8nc3rOGAe49Mg
-	JT2EJ14SBAyw89q4vpJku3tyTY8cSA8mixpEqoJb7ywRyb5lm4fVIj/Tu/u9QQ4/+f3cFtIlGTj
-	dGc63+H62dt4t4Zje4cjbN+fpPHuySvOm2rjGV5aJL0YoxAVXY4QqhLt10AEDpHLsu9XxQW40wC
-	/rj9eYcrb8me4lPU9Qq7J3PVzDPkls01GJ8T5Da6HtE8s0OPw1IReRGCwfsKd60pcLpIEiAYXqe
-	YCf2Ti8Hw94bPvKZszldAxKAB4olP0pr6v/KLBCRq+ON72FpMACT2jWz3SZfuufdbyGwT0CPkVh
-	m/SOEYn0b3WqWN2PyIbqkRdsgtmQlPV1b2iL/03a2tKvet002DVu6fnbmJWBG4b2UQYbotTLZsj
-	T0+/oOoRfwRfJc79OkXINdqWM4oCSQEYwe1Kjtg6tqS1vKkilghLD1mBUKpP2AUuYo5s1bd+Gqq
-	MjfWeXr5SB6PU4/KoX+PfxdomPnIL0hv97pA/+QeccHT+MECGJEI9l8KTgt0gCvMCPM/uzusncD
-	A/XCjEZB2jcRaHBIWEJacLr1hyN6DtHUYVspqf13d/1uU+4aAU+x97tlydLSHVQ8iXG4T5QRfR7
-	BcqocQhFr/ufd9St/m/QJlo3mYcSHmEYzKsnvNnn7kcorqDuVuT9RmIueghr6f5FiZc2c/uJ8ww
-	RzlaV/aJ67fb4QEMiGslV2hpg/Xe6ghsDN61m3cXImDYAElUr25NsN/6usRJyVEryuODR2wReXn
-	2/VqQm3F1oISg==
-X-Received: by 2002:a05:600c:3487:b0:4a2:526b:d410 with SMTP id 5b1f17b1804b1-4bb55a4f1b4mr151025935e9.13.1794723086291;
-        Sat, 14 Nov 2026 22:11:26 -0800 (PST)
+        bh=HyRQC7LCLt2aLLScf7p5/WBb90iUzNQpHgR+zoYi5DQ=;
+        b=btzA5dDOs5GpoZHimg8t7rChv8MaPHASNWyFi05ZGeJfYQ2qEHENlbg9ZPHPMNJ0WO
+         9NpFTHBFcoA5Kw5Y5+5kVNvQ+FmqHxuuHwL4v3YE7dEKtaWc1UNd+yX1OMgPNGOsJJMR
+         Lc8bd4vUbdu7cAaqiavwHQoCzovQcegQNpPx+qJRYnrZKfTC4MSc5Afo4weRPeT128RX
+         6MYpuGgPA8Eo4c1TLF/5bL1Uk7S3Nnh550LulGOf61rgJYeXrsxLvtMUVIjtDw/MrEas
+         ZNIzCsaTwntPLJoCsGZi+iXFxJ/X7MX9DR4iKXcUr/w61pvEG4wcxK+9+0LXENe9ipHf
+         Ig8w==
+X-Forwarded-Encrypted: i=1; AL+hErGK0SsYADmEOCRPuDTIi+IIpUXCzu51JR6SzlBX9dKfD15CMUggmjVpMS8LzmEFfNAwwxQAbu1zHhcVFdT5g9n/@lists.infradead.org
+X-Gm-Message-State: APuU4Z9+VT7bPYvoTM1JSwGhmmdudqzY5h4j6udMFcoQQ1i2kswUgEqA
+	sxQD/IRnLVVsxuc64i60VUnQ6axUkLyFPalePldh+9dA5uDTsUnS82eL
+X-Gm-Gg: AYBFou37TzuYyZ8gpb51QcKBrXN/uB75Ko5OpQvEi7q9IBNLMwZfaPdyGlUOKBJmhOX
+	ly6bNnwNdn8uRYMfTb8EzDbPIgTVNL5KaO3klZTMyZnaaI6AuCh2zOwY2ocGv3ZKMHvHm2yK97m
+	fMj8ZYTlEfKgOndcAXXdUMCqY1dTDxIBY9fWBcLMk1d0gdD5DoeoVTWaxtW9oNh/AHAtjSC/Icu
+	CQlcKMZAqmzT2JJyBNojN5fY4nYLJqhlqHONF5ZFAxZ8zLAaiKVQRntXxelF5Hg3OfrpeMTrJdm
+	fGHzcbZv34Jgp4foYj0R/t5u95Nbk50ZSUmJxrRFgGmsdi8qt4/chclniq9U30ojXXsJRkL08X6
+	MFLvxleRDyMYBwS4WAQfJyx08fxChmq1x6MMPpqyjDJ3eJmTHYioMiFWFcuvnKIfLQwwAWBjMHS
+	N4F0c9UwtZwArNIvx2Hl7CdQLuGyB1vfYR6xvOAV4IWedn1pwqyIqZf5XSTiqxa/qY9+jTErozH
+	D9c15lmAU4RSHQvHMT/K4YRNdymGoe3pKCBdQcPXqMcz8JSrIUvd40GbRisup7KWpz5eYcoCs1h
+	TX5XBgivCj9J2PXzhhCGKNvoCM1ZznSDE9Lr2PdjDTh90ysZi3ZS3/a8mZ64Z7DdJG24Uvfw0OI
+	9CGaGzR1M7Z5ozNNqpZrftyd3cauWcKDSSbuCto7FlPZlWVmHHWZruvr1tdSSeZE6VtwIzRSBgn
+	4MmG+2J4RSKdxVzUrZzXBhLaeflN3r0FzfbTDwGZoK0F35+CKWzLsY0btFGB/OVvmgB3revwjc9
+	+ZFen5qz/Y1/w==
+X-Received: by 2002:a05:600c:34d6:b0:4a8:f2ad:a9e5 with SMTP id 5b1f17b1804b1-4bb559f609cmr135894335e9.3.1794723087765;
+        Sat, 14 Nov 2026 22:11:27 -0800 (PST)
 Received: from jernej-laptop ([2a00:ee2:6a02:9300:bb69:6bcf:1b11:e85b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb5ba25b50sm139331075e9.14.2026.11.14.22.11.25
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb5ba25b50sm139331075e9.14.2026.11.14.22.11.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2026 22:11:25 -0800 (PST)
+        Sat, 14 Nov 2026 22:11:27 -0800 (PST)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 To: Chen-Yu Tsai <wens@kernel.org>,
 	Samuel Holland <samuel@sholland.org>
@@ -95,10 +95,11 @@ Cc: mripard@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v3 4/8] drm/sun4i: vi_layer: Limit formats for DE33
-Date: Sun, 15 Nov 2026 07:10:58 +0100
-Message-ID: <20261115061102.229680-5-jernej.skrabec@gmail.com>
+	linux-clk@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v3 5/8] dt-bindings: display: allwinner: Add DE33 planes
+Date: Sun, 15 Nov 2026 07:10:59 +0100
+Message-ID: <20261115061102.229680-6-jernej.skrabec@gmail.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261115061102.229680-1-jernej.skrabec@gmail.com>
 References: <20261115061102.229680-1-jernej.skrabec@gmail.com>
@@ -106,8 +107,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261114_221128_224025_47E5929D 
-X-CRM114-Status: GOOD (  15.31  )
+X-CRM114-CacheID: sfid-20261114_221129_945782_3B87F0CA 
+X-CRM114-Status: GOOD (  13.36  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,122 +128,71 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-YUV formats need scaler support due to chroma upscaling, but that's not
-yet supported in the driver. Remove them from supported list until
-DE33 scaler is properly supported.
+Allwinner Display Engine 3.3 contains planes, which are shared resources
+between all mixers present in SoC. They can be assigned to specific
+mixer by using registers which reside in display clocks MMIO.
 
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+Add a binding for them.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 72 ++++++++++++++++++++------
- 1 file changed, 56 insertions(+), 16 deletions(-)
+ .../allwinner,sun50i-h616-de33-planes.yaml    | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-index 6b19fafd50ad..09d94f7f9977 100644
---- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-@@ -380,6 +380,33 @@ static const u32 sun8i_vi_layer_de3_formats[] = {
- 	DRM_FORMAT_YVU422,
- };
- 
-+static const u32 sun8i_vi_layer_de3_no_yuv_formats[] = {
-+	DRM_FORMAT_ABGR1555,
-+	DRM_FORMAT_ABGR2101010,
-+	DRM_FORMAT_ABGR4444,
-+	DRM_FORMAT_ABGR8888,
-+	DRM_FORMAT_ARGB1555,
-+	DRM_FORMAT_ARGB2101010,
-+	DRM_FORMAT_ARGB4444,
-+	DRM_FORMAT_ARGB8888,
-+	DRM_FORMAT_BGR565,
-+	DRM_FORMAT_BGR888,
-+	DRM_FORMAT_BGRA1010102,
-+	DRM_FORMAT_BGRA5551,
-+	DRM_FORMAT_BGRA4444,
-+	DRM_FORMAT_BGRA8888,
-+	DRM_FORMAT_BGRX8888,
-+	DRM_FORMAT_RGB565,
-+	DRM_FORMAT_RGB888,
-+	DRM_FORMAT_RGBA1010102,
-+	DRM_FORMAT_RGBA4444,
-+	DRM_FORMAT_RGBA5551,
-+	DRM_FORMAT_RGBA8888,
-+	DRM_FORMAT_RGBX8888,
-+	DRM_FORMAT_XBGR8888,
-+	DRM_FORMAT_XRGB8888,
-+};
+diff --git a/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml b/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
+new file mode 100644
+index 000000000000..0a07cb8a5f79
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/allwinner,sun50i-h616-de33-planes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- static const uint64_t sun8i_layer_modifiers[] = {
- 	DRM_FORMAT_MOD_LINEAR,
- 	DRM_FORMAT_MOD_INVALID
-@@ -395,6 +422,7 @@ struct sun8i_layer *sun8i_vi_layer_init_one(struct drm_device *drm,
- 	u32 supported_encodings, supported_ranges;
- 	unsigned int format_count;
- 	struct sun8i_layer *layer;
-+	bool yuv_support = true;
- 	const u32 *formats;
- 	int ret;
- 
-@@ -410,8 +438,18 @@ struct sun8i_layer *sun8i_vi_layer_init_one(struct drm_device *drm,
- 	layer->cfg = cfg;
- 
- 	if (layer->cfg->de_type >= SUN8I_MIXER_DE3) {
--		formats = sun8i_vi_layer_de3_formats;
--		format_count = ARRAY_SIZE(sun8i_vi_layer_de3_formats);
-+		/*
-+		 * TODO: DE33 drivers doesn't support scaling yet, which is a
-+		 * requirement for YUV support.
-+		 */
-+		yuv_support = layer->cfg->scaler_mask & BIT(phy_index);
-+		if (yuv_support) {
-+			formats = sun8i_vi_layer_de3_formats;
-+			format_count = ARRAY_SIZE(sun8i_vi_layer_de3_formats);
-+		} else {
-+			formats = sun8i_vi_layer_de3_no_yuv_formats;
-+			format_count = ARRAY_SIZE(sun8i_vi_layer_de3_no_yuv_formats);
-+		}
- 	} else {
- 		formats = sun8i_vi_layer_formats;
- 		format_count = ARRAY_SIZE(sun8i_vi_layer_formats);
-@@ -443,22 +481,24 @@ struct sun8i_layer *sun8i_vi_layer_init_one(struct drm_device *drm,
- 		return ERR_PTR(ret);
- 	}
- 
--	supported_encodings = BIT(DRM_COLOR_YCBCR_BT601) |
--			      BIT(DRM_COLOR_YCBCR_BT709);
--	if (layer->cfg->de_type >= SUN8I_MIXER_DE3)
--		supported_encodings |= BIT(DRM_COLOR_YCBCR_BT2020);
-+	if (yuv_support) {
-+		supported_encodings = BIT(DRM_COLOR_YCBCR_BT601) |
-+				      BIT(DRM_COLOR_YCBCR_BT709);
-+		if (layer->cfg->de_type >= SUN8I_MIXER_DE3)
-+			supported_encodings |= BIT(DRM_COLOR_YCBCR_BT2020);
- 
--	supported_ranges = BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
--			   BIT(DRM_COLOR_YCBCR_FULL_RANGE);
-+		supported_ranges = BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
-+				   BIT(DRM_COLOR_YCBCR_FULL_RANGE);
- 
--	ret = drm_plane_create_color_properties(&layer->plane,
--						supported_encodings,
--						supported_ranges,
--						DRM_COLOR_YCBCR_BT709,
--						DRM_COLOR_YCBCR_LIMITED_RANGE);
--	if (ret) {
--		dev_err(drm->dev, "Couldn't add encoding and range properties!\n");
--		return ERR_PTR(ret);
-+		ret = drm_plane_create_color_properties(&layer->plane,
-+							supported_encodings,
-+							supported_ranges,
-+							DRM_COLOR_YCBCR_BT709,
-+							DRM_COLOR_YCBCR_LIMITED_RANGE);
-+		if (ret) {
-+			dev_err(drm->dev, "Couldn't add encoding and range properties!\n");
-+			return ERR_PTR(ret);
-+		}
- 	}
- 
- 	drm_plane_helper_add(&layer->plane, &sun8i_vi_layer_helper_funcs);
++title: Allwinner H616 Display Engine 3.3 planes
++
++maintainers:
++  - Jernej Skrabec <jernej.skrabec@gmail.com>
++
++description:
++  Display Engine 3.3 planes are independent of mixers, contrary to
++  previous generations of Display Engine. Planes can be assigned to
++  mixers independently and even dynamically during runtime.
++
++properties:
++  compatible:
++    enum:
++      - allwinner,sun50i-h616-de33-planes
++
++  reg:
++    maxItems: 1
++
++  allwinner,plane-mapping:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle of the device responsible for assigning (mapping) planes
++      between mixers.
++
++required:
++  - compatible
++  - reg
++  - allwinner,plane-mapping
++
++additionalProperties: false
++
++examples:
++  - |
++    planes: planes@100000 {
++        compatible = "allwinner,sun50i-h616-de33-planes";
++        reg = <0x100000 0x180000>;
++        allwinner,plane-mapping = <&display_clocks>;
++    };
++
++...
 -- 
 2.43.0
 
