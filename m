@@ -2,81 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3B0606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CA9606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d9OF7iKQ;
-	dkim=pass (4096-bit key) header.d=lausen.nl header.i=@lausen.nl header.a=rsa-sha256 header.s=uberspace header.b=BXgAcNYY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rh1pc9K4;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SWNepf+F
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3MBdZCa3+pc0zEIK6T3rmt1yKKRJeNOUk5g02fXUNZc=; b=d9OF7iKQN1iCyb
-	EdFb445WDOoTQR8SSL96zv+ML9gXGo+sEWljMKEcMAgOP/BiMBh7E0VrHp/fzEfEitwsWl/iheJ9X
-	s8a/LW18dKb5YVn9Z1sFUBzOH/Pwak0iiiRsbQscqVHF4oBMjJ2qsljzbS0s6zUWrYOz78GtONnDh
-	nyoMaps9CB4uknDPiVhdtBvgrAiJbMpik4OGtSE6AAuMnDVpYIXmfnrZ9rnOenIyalS4QmVPNkyt3
-	DEjmquxgIx3gPAYhCde75q2z3Qh+ncc1QvXrPizIGDrkVe5786UkR40oGzIZfEnGZoZHR4igRI2DR
-	OXmtz+DRNamkKzpX0DGw==;
+	List-Owner; bh=tNzd3USh5F/V2q6XE6vwKSqMU60KollHCRdPjoA6L9w=; b=rh1pc9K42eR73h
+	obLdOQR2fqFHJQh61MA4ULHEC8e0WvcoPp/9eMHDj5uXIg1XJc+mxqjNsa2qpMtz2FbGDLIG9ZRR4
+	VrS6EFz8Ewy7mv9y/PN2gAyG6o8Irk3Kw+3l6RfwXsAD0wSA5epYlaMkkB7xBbXjIr1bvf9ugTBHK
+	bl5BXuxMKveTGhIqgFmt4HBdklhHfgTBTpjJ0//1JzW0wZWZnnaUgcrJ9MyGU1/Uib88wVO7jT6VD
+	PWs+X2clYzSPda/a2IpsdY43OnEgNHAxtJd7+z2UTq4yO0ZFBSw3ZcRV1iQf2eawhdUVfZO2ET9+q
+	qQnEoiq9QQ9Wnf8wQLgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbHc-000000004PT-1t2b;
-	Sun, 15 Nov 2026 14:32:40 +0000
-Received: from mailgate01.uberspace.is ([2001:1a50:11:0:c83f:a8ff:fea6:c8da])
+	id 1xSbJV-000000004kr-3Nb7;
+	Sun, 15 Nov 2026 14:34:37 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbHZ-000000004OR-0lQQ
+	id 1xSbJU-000000004kM-1K0S
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 14:32:38 +0000
-Received: from devico.uberspace.de (devico.uberspace.de [185.26.156.185])
-	by mailgate01.uberspace.is (Postfix) with ESMTPS id 9A49160D6D
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 15:32:35 +0100 (CET)
-Received: (qmail 32341 invoked by uid 990); 15 Nov 2026 14:32:35 -0000
-Authentication-Results: devico.uberspace.de;
-	auth=pass (plain)
-Received: from unknown (HELO unknown) (::1)
-	by devico.uberspace.de (Haraka/3.1.1) with ESMTPSA; Sun, 15 Nov 2026 15:32:35 +0100
-Message-ID: <7f2ea700-ddd3-41b9-9500-63a44c321648@lausen.nl>
-Date: Sun, 15 Nov 2026 15:32:34 +0100
+	Sun, 15 Nov 2026 14:34:36 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 90AAD60D67;
+	Sun, 15 Nov 2026 14:34:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 582A41F000C4;
+	Sun, 15 Nov 2026 14:34:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794753275;
+	bh=tNzd3USh5F/V2q6XE6vwKSqMU60KollHCRdPjoA6L9w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=SWNepf+FKsXuW9Qaef8jRNXzfwf3z4eamYnpgqM5tOpa5RIK7LwRgpvjEN5Ody1Lm
+	 9g8Zey9C2Rt2nRVHWz0px4JBnv2AATKNiABDAtdNmEvy6yq1/pc7N8Wvvo/R3q4tWG
+	 Mdc95ArXylLKf/DZCJ58eS3xME4yTvldULsodz43tDFWoTnYDcjU5MH4WUgEm9/a+k
+	 kYfhOwSYy0VeH1R/H9BpDUU5ibmxvjMKCTdeDArInnsuPMvfha8F/gKVHV45uwMAl+
+	 7auBwQV2NK9yPH8gh9iqCuBwrUCWIKbuU4g6ex8xzhrigQtEyylaN8igFcUGTgeZXs
+	 2qjRUwuFTt1ng==
+Message-ID: <5273baa7-aae5-4364-bb09-dccee581200b@kernel.org>
+Date: Sun, 15 Nov 2026 16:34:30 +0200
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Leonard Lausen <leonard@lausen.nl>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Enable Wi-Fi on the NanoPi M5
-To: Shawn Lin <shawn.lin@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261025205339.14539-2-leonard@lausen.nl>
- <4b7bd146-93fd-41f8-ad3c-88333adc73b4@rock-chips.com>
- <20261026070821.324094-1-leonard@lausen.nl>
- <e028ba53-0c69-4ba6-9b16-8648b8a787b2@rock-chips.com>
+Subject: Re: [PATCH v4 03/16] dt-bindings: clock: at91: Allow referencing main
+ rc oscillator in DT
+To: Alexander Dahl <ada@thorsis.com>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Ryan Wanner <ryan.wanner@microchip.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20261105110715.2486432-1-ada@thorsis.com>
+ <20261105110715.2486432-4-ada@thorsis.com>
 Content-Language: en-US
-In-Reply-To: <e028ba53-0c69-4ba6-9b16-8648b8a787b2@rock-chips.com>
+From: Claudiu Beznea <claudiu.beznea@kernel.org>
+In-Reply-To: <20261105110715.2486432-4-ada@thorsis.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Bar: -
-X-Rspamd-Report: SUSPICIOUS_RECIPS(1.5) BAYES_HAM(-2.992814) XM_UA_NO_VERSION(0.01) MIME_GOOD(-0.1)
-X-Rspamd-Score: -1.582814
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=lausen.nl; s=uberspace;
-	h=from:to:cc:subject:date;
-	bh=wEW9XVAV0DUg1t10qy3lbNxLg4TAA4TlBE4rFTXyck4=;
-	b=BXgAcNYYDk0LWEkWPTYakA9wmgidxf1/hV9wTaYI6vyCuqmEP/scby5qY/cCYeDzXWEZconqiN
-	muPFWqC+DU7CNGSzfqcwHPWaObKtp4vQA47ZWJlfrEoh82xWzq8HbgpRXZ8Pyyt4l8eBKh/cSNCg
-	C6ntv2511UkbwaQWWt3isuaFuf/iM/UGPidSups3frU2PQgq5r64se6LLRVlx6O9eBuYn5Q3NquI
-	E1q/eIprbxbg3mIaibNFL0GlFl7UHqi7P4jnf/Sazb2NXY54NIfBaeqWk3oThwOjACmUBtj/PijK
-	PVDGPGylSYucwzjhRFqJhDDROTRDv+cUXgJN8+yjw6tLstrJz05Yldy188qkJcpOMsUTmk0R8PaM
-	fg3hrlMu7uc7h7FVj/xTZkGUULMTaWA6PZ/jRVZdQH7iZgTHYfp2vbEM6n/Rrt00DswvMj4zXx41
-	VXjRH+hue9HpSJuo7pXv4ukSa8skt0sIvEKCKbShq1zgaZ5LFMcdz2c6KxN+tAjh8ceDM4UjFJB7
-	XFHCjNLyH+qRzezA2coUNCd+gdbQv7xl4SvPYy4EbqBVqGmBwjSLS8kV2yiqGxSUNNZLOU0HWtvT
-	ya/xwpBJF2Wr7sKWhWyHUgnKTk5P0Vj12+PZA0IlYF8uBBeK5m3+9+VxmumDlgR7EScC44ui9tD3
-	8=
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_063237_363931_88A36531 
-X-CRM114-Status: UNSURE (   7.03  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,25 +76,92 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
->> The NanoPi M5 has an M.2 E-key slot for SDIO Wi-Fi modules such as the
->> RTL8822CS-based AC200. The SDIO controller is disabled and the module's
->> power sequence is not described, preventing the card from enumerating.
->>
-> 
-> I suspect RTL8822CS doesn't work as-is, unless you need to apply it[1].
-> Please double check it.
+Hi, Alexander,
 
-Thank you, Shawn Confirmed your series fixes SDR104 and improves the 
-wifi throughput. Throughput still stays substantially below the 792 
-Mbit/s raw SDIO bandwidth. I prepared a few commits to remove overhead. 
-First two are at 
-https://lore.kernel.org/linux-wireless/20261115142330.359247-2-leonard@lausen.nl/
+On 11/5/26 13:06, Alexander Dahl wrote:
+> The main rc oscillator will be needed for the OTPC to work properly.
+> 
+> The new index introduced here was not used on the four affected SoC
+> clock drivers before.
+> 
+> Link: https://lore.kernel.org/linux-devicetree/20250207-jailbird-circus-bcc04ee90e05@thorsis.com/T/#u
+> Signed-off-by: Alexander Dahl <ada@thorsis.com>
+> ---
+> 
+> Notes:
+>      v4:
+>      - change index for sama7g5 and sama7d65 after re-adding unused PLLs in patch 2
+>      
+>      v3:
+>      - adapt to different base changes, added lines are the same
+>      
+>      v2:
+>      - new patch, not present in v1
+> 
+>   include/dt-bindings/clock/microchip,sam9x60-pmc.h  | 1 +
+>   include/dt-bindings/clock/microchip,sam9x7-pmc.h   | 1 +
+>   include/dt-bindings/clock/microchip,sama7d65-pmc.h | 1 +
+>   include/dt-bindings/clock/microchip,sama7g5-pmc.h  | 1 +
+>   4 files changed, 4 insertions(+)
+> 
+> diff --git a/include/dt-bindings/clock/microchip,sam9x60-pmc.h b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+> index 050e5e774b274..830e247ba2532 100644
+> --- a/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+> +++ b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+> @@ -10,6 +10,7 @@
+>   #define SAM9X60_PMC_MCK		1
+>   #define SAM9X60_PMC_UPLLCK	2
+>   #define SAM9X60_PMC_MAIN	3
+> +#define SAM9X60_PMC_MAIN_RC	6
+>   #define SAM9X60_PMC_PLLACK	7
+>   
+>   #endif
+> diff --git a/include/dt-bindings/clock/microchip,sam9x7-pmc.h b/include/dt-bindings/clock/microchip,sam9x7-pmc.h
+> index 292c5873e101e..58d2a08116795 100644
+> --- a/include/dt-bindings/clock/microchip,sam9x7-pmc.h
+> +++ b/include/dt-bindings/clock/microchip,sam9x7-pmc.h
+> @@ -10,6 +10,7 @@
+>   #define SAM9X7_PMC_MCK		1
+>   #define SAM9X7_PMC_UPLLCK	2
+>   #define SAM9X7_PMC_MAIN		3
+> +#define SAM9X7_PMC_MAIN_RC	6
+>   #define SAM9X7_PMC_PLLACK	7
+>   #define SAM9X7_PMC_AUDIOPMCPLL	9
+>   #define SAM9X7_PMC_AUDIOIOPLL	10
+> diff --git a/include/dt-bindings/clock/microchip,sama7d65-pmc.h b/include/dt-bindings/clock/microchip,sama7d65-pmc.h
+> index 08581418b9115..17105a6bedb54 100644
+> --- a/include/dt-bindings/clock/microchip,sama7d65-pmc.h
+> +++ b/include/dt-bindings/clock/microchip,sama7d65-pmc.h
+> @@ -19,6 +19,7 @@
+>   #define SAMA7D65_PMC_AUDIOIOPLL		10
+>   #define SAMA7D65_PMC_ETHPLL		11
+>   #define SAMA7D65_PMC_MCK1		13
+> +#define SAMA7D65_PMC_MAIN_RC		14
+>   #define SAMA7D65_PMC_LVDSPLL		15
+>   #define SAMA7D65_PMC_MCK3		16
+>   #define SAMA7D65_PMC_MCK5		17
+> diff --git a/include/dt-bindings/clock/microchip,sama7g5-pmc.h b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
+> index 27668634b0a2b..4a1c4af8ecc9a 100644
+> --- a/include/dt-bindings/clock/microchip,sama7g5-pmc.h
+> +++ b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
+> @@ -19,5 +19,6 @@
+>   #define SAMA7G5_PMC_AUDIOIOPLL	10
+>   #define SAMA7G5_PMC_ETHPLL	11
+>   #define SAMA7G5_PMC_MCK1	13
+> +#define SAMA7G5_PMC_MAIN_RC	14
+
+I think we can use 12 instead. Correct me if I'm wrong. Otherwise, you should 
+change also driver code to allocate space for this clock. See 
+pmc_data_allocate() in drivers/clk/at91/sama7g5.c
+
+Thank you,
+Claudiu
 
