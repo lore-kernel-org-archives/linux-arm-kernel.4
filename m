@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2946F606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 10:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE27606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 10:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U0b38I17;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JiiBcW3X
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cmMQfsIw;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oEqs71I7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oxCJiOICUUs74Xo0MPxD2a6PIQWU/RA5n1ab3q90to4=; b=U0b38I176Ix39O
-	YHAyJknDiG9i9k+Z17t+NZgloMORBDVlyChS5EKVHArok8nOVEjVQofnON9u9w6tFVtqTe1MxGKEe
-	3VNlhx8vk0lMUcf3V7Q9+sQDbJZBqdsUz3bhJTcgLuTxqTlurD27SMxAvfPRTVouFAEPS6emWI04d
-	zfbTICjfLTbIAbICDunNsGDzKyVhQGqeNDNPhHwXn2U7G2H8ijq+QwqGcUkOk3rQpj00puchJFnxU
-	OClmjHY3hDz2ymtYD5+T2J8CVW86kBKPSyXqrHt6adkaq9ef033SEhTx3Xw8MJNQ7UEvhkUzoSCBb
-	+KUX7le1+zOS1A95qM3g==;
+	List-Owner; bh=C9M1DffKSXo+cVMHY8IX2PaDpfQFRcHP/xAm1rjzLbw=; b=cmMQfsIwWwxdnt
+	74rcqZ4QPje218n01rk7/tLCqn/s9Fj/TXGLX1SUvY0ieZOeIelB+Dhit3tqf8xdOiDMsthxD2TS6
+	+Aqzn3tbHoBklMQeJDXmQXvfplZ26dWardRkuap1V4ZGlA90whMc3KBP3P3SIrMw0Z3OXKiTz9Fc5
+	Ub5oMw2TAJCqmR9B4V/loSq/2iyhQkulNEZ1bnC9RvBVXkyvJcbYBJpQr5E0c1YP1n3Y34qQ7Mtdw
+	KKmszEe3rO6r63g8lhTK0hwU/wBQ2/W2Eth/HgD+wg50I8CF/IPjnT7ZiWxK26DeECPPl881I0Nvc
+	/w9IGeU9vV1DUEGKiypA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSXj1-0000000HOCq-4BAV;
-	Sun, 15 Nov 2026 10:44:43 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSXjB-0000000HOHs-0tG2;
+	Sun, 15 Nov 2026 10:44:53 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSXj0-0000000HOBj-2WWT
+	id 1xSXj9-0000000HOGt-2pdb
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 10:44:42 +0000
+	Sun, 15 Nov 2026 10:44:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 32CDC458C2;
-	Sun, 15 Nov 2026 10:44:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 601241F000CA;
-	Sun, 15 Nov 2026 10:44:38 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 13FA061E8F;
+	Sun, 15 Nov 2026 10:44:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74F641F000CD;
+	Sun, 15 Nov 2026 10:44:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794739482;
-	bh=oxCJiOICUUs74Xo0MPxD2a6PIQWU/RA5n1ab3q90to4=;
+	s=k20260515; t=1794739490;
+	bh=C9M1DffKSXo+cVMHY8IX2PaDpfQFRcHP/xAm1rjzLbw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=JiiBcW3Xpm7P0APa3wxcDnkfwrNAoJA+QbjpuCDRZjfL3pUBVBsWBu5BCOFxWEBgO
-	 6EJKHYL1iF5GKBbOMIUnKYefftNdDoieFrxvmo8p/ad01psduSjcqnwhvkmHz9wjBe
-	 iFCyDdg96a/eJe4dBxFmwW4Xg895S/lEOgN202ZZJGlRNGfYXxvk8ImzXonx/PEkGE
-	 as+o5Lzwf7tsmTpmgzY7MPUKT9rplqRIkhL7IVpPHETosMF2rTAFP7qU7darMacrOD
-	 5UU5fDxLmV2dez+B0wZrJjZHadJ6MEMYabEosj8czI2O8eryo6tABgKTACu9TuAlbD
-	 zMRrOw1F4k12A==
+	b=oEqs71I7kKhkrtSiRbgcsRgiClvJ5jVx2SHi8Z5rocg4NWYRyy2l9VRKoMpNKOZBB
+	 2Zjf8G+zvQThkxRXAAwNI9qyU7QNGynH/18yMhakjNLiV7lEertR43oczutjMq3vbB
+	 x6afRZWudFap9q9hbzD6J6fnA6P5KFxw1kUFZYOaMhBPVVGZjJb2Lud5e7qb2ywguy
+	 6UK5/lihgQZUGWdCZSB2rOllNF2BBmf4tZpPy9VxarnmRp3JIMbfq1TI4JATpxrkfE
+	 PZGP6kSVw+uBMv0UIcx1iCC/0FquHo2ktRIotf8+WwwVi9xvIfEv2QYdELzoSa6iei
+	 5IY+ZuL4QcaVQ==
 From: Jisheng Zhang <jszhang@kernel.org>
 To: Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -61,9 +61,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-clk@vger.kernel.org,
 	linux-gpio@vger.kernel.org
-Subject: [PATCH v2 05/13] dt-bindings: soc: synaptics: add SL2610 system controllers
-Date: Sun, 15 Nov 2026 18:23:44 +0800
-Message-ID: <20261115102401.3520-6-jszhang@kernel.org>
+Subject: [PATCH v2 07/13] reset: add Synaptics SL2610 reset controller support
+Date: Sun, 15 Nov 2026 18:23:46 +0800
+Message-ID: <20261115102401.3520-8-jszhang@kernel.org>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261115102401.3520-1-jszhang@kernel.org>
 References: <20261115102401.3520-1-jszhang@kernel.org>
@@ -88,447 +88,299 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Describe the SoC, MCU, AVIO and CPU system control blocks, including their
-clock inputs, clock and reset providers, and pin configuration subnodes.
-The clock and reset providers share each register block node.
+Support the SoC and MCU reset controls exposed by the SL2610 system
+controllers. Match the MFD-created platform devices, use the parent
+syscon regmap and register each reset provider against the parent DT node.
 
-Add the clock and reset identifiers used by consumers of these blocks.
+Handle both pulse resets and sticky resets with assert/deassert controls.
 
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 ---
- .../soc/synaptics/syna,sl2610-soc-syscon.yaml | 178 ++++++++++++++++++
- MAINTAINERS                                   |   3 +
- include/dt-bindings/clock/syna,sl2610.h       | 131 +++++++++++++
- include/dt-bindings/reset/syna,sl2610-reset.h |  80 ++++++++
- 4 files changed, 392 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml
- create mode 100644 include/dt-bindings/clock/syna,sl2610.h
- create mode 100644 include/dt-bindings/reset/syna,sl2610-reset.h
+ MAINTAINERS                  |   1 +
+ drivers/reset/Kconfig        |  13 ++
+ drivers/reset/Makefile       |   1 +
+ drivers/reset/reset-sl2610.c | 224 +++++++++++++++++++++++++++++++++++
+ 4 files changed, 239 insertions(+)
+ create mode 100644 drivers/reset/reset-sl2610.c
 
-diff --git a/Documentation/devicetree/bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml b/Documentation/devicetree/bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml
-new file mode 100644
-index 000000000000..cdf947cb3e0f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml
-@@ -0,0 +1,178 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/synaptics/syna,sl2610-soc-syscon.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Synaptics SL2610 system control registers
-+
-+maintainers:
-+  - Jisheng Zhang <jszhang@kernel.org>
-+
-+description: |
-+  The SL2610 family has separate SoC, MCU, AVIO, and CPU system control
-+  register blocks. The SoC and MCU blocks provide clocks, resets, and pin
-+  control. The CPU block provides clocks. The AVIO block contains audio PLLs.
-+
-+  Clock and reset specifiers refer directly to the system control node.
-+  Pin group configurations are direct children of the SoC or MCU node.
-+  There are no separate clock, reset, or pin controller child nodes.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - syna,sl2610-soc-syscon
-+          - syna,sl2610-mcu-syscon
-+          - syna,sl2610-avio-syscon
-+          - syna,sl2610-cpu-syscon
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+    description: External reference clock input.
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  syna,gbl-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to the SoC system control registers for CPU PLL bypass.
-+
-+patternProperties:
-+  '-(pmux|pins)$':
-+    type: object
-+    description: Pin group mux and electrical configuration.
-+    allOf:
-+      - $ref: /schemas/pinctrl/pinmux-node.yaml#
-+      - $ref: /schemas/pinctrl/pincfg-node.yaml#
-+    properties:
-+      groups:
-+        $ref: /schemas/types.yaml#/definitions/string-array
-+      function:
-+        $ref: /schemas/types.yaml#/definitions/string
-+      bias-pull-up:
-+        description: |
-+          Enable pull-up bias and select its strength. A value of 0 selects
-+          normal pull-up and 1 selects strong pull-up. The boolean form is
-+          equivalent to 1 and selects strong pull-up. Use bias-disable to
-+          disable pull bias. Values are mode selectors, not resistance in Ohms.
-+        oneOf:
-+          - type: boolean
-+          - $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1]
-+      bias-pull-down:
-+        description: |
-+          Enable the default pull-down with a boolean or 1, or disable it with 0.
-+          Pull resistance is not selectable.
-+        oneOf:
-+          - type: boolean
-+          - $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1]
-+    required:
-+      - groups
-+      - function
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - syna,sl2610-soc-syscon
-+              - syna,sl2610-mcu-syscon
-+    then:
-+      required:
-+        - '#clock-cells'
-+        - '#reset-cells'
-+    else:
-+      properties:
-+        '#reset-cells': false
-+      patternProperties:
-+        '-(pmux|pins)$': false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: syna,sl2610-cpu-syscon
-+    then:
-+      required:
-+        - '#clock-cells'
-+        - syna,gbl-syscon
-+    else:
-+      properties:
-+        syna,gbl-syscon: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: syna,sl2610-avio-syscon
-+    then:
-+      properties:
-+        '#clock-cells': false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc_syscon: syscon@f7e10000 {
-+        compatible = "syna,sl2610-soc-syscon", "syscon";
-+        reg = <0xf7e10000 0x10000>;
-+        clocks = <&osc>;
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+
-+        i2c2-pmux {
-+            groups = "GPIO23", "GPIO24";
-+            function = "tw2";
-+            bias-pull-up = <0>;
-+        };
-+
-+        i2c3-pmux {
-+            groups = "GPIO27", "GPIO28";
-+            function = "tw3";
-+            bias-pull-up;
-+        };
-+    };
-+
-+    syscon@e5025000 {
-+        compatible = "syna,sl2610-mcu-syscon", "syscon";
-+        reg = <0xe5025000 0x1000>;
-+        clocks = <&osc>;
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+
-+        i2c0-pmux {
-+            groups = "SM_GPIO12", "SM_GPIO13";
-+            function = "tw0";
-+        };
-+    };
-+
-+    syscon@f7e30000 {
-+        compatible = "syna,sl2610-cpu-syscon", "syscon";
-+        reg = <0xf7e30000 0x4000>;
-+        clocks = <&osc>;
-+        #clock-cells = <1>;
-+        syna,gbl-syscon = <&soc_syscon>;
-+    };
-+
-+    syscon@f7490000 {
-+        compatible = "syna,sl2610-avio-syscon", "syscon";
-+        reg = <0xf7490000 0x4000>;
-+        clocks = <&osc>;
-+    };
-+...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 222b7fc2c3aa..e7c061ae5a87 100644
+index eae1493485ee..1bd3b2f39865 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -3808,9 +3808,12 @@ M:	Jisheng Zhang <jszhang@kernel.org>
- M:	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
-+F:	Documentation/devicetree/bindings/soc/synaptics/
+@@ -3812,6 +3812,7 @@ F:	Documentation/devicetree/bindings/soc/synaptics/
  F:	arch/arm/boot/dts/synaptics/
  F:	arch/arm/mach-berlin/
  F:	arch/arm64/boot/dts/synaptics/
-+F:	include/dt-bindings/clock/syna,sl2610.h
-+F:	include/dt-bindings/reset/syna,sl2610-reset.h
++F:	drivers/reset/reset-sl2610.c
+ F:	drivers/soc/synaptics/
+ F:	include/dt-bindings/clock/syna,sl2610.h
+ F:	include/dt-bindings/reset/syna,sl2610-reset.h
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index eda9c698a95f..98e973a8798c 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -358,6 +358,19 @@ config RESET_SUNXI
+ 	help
+ 	  This enables the reset driver for Allwinner SoCs.
  
- ARM/TEGRA HDMI CEC SUBSYSTEM SUPPORT
- M:	Hans Verkuil <hverkuil@kernel.org>
-diff --git a/include/dt-bindings/clock/syna,sl2610.h b/include/dt-bindings/clock/syna,sl2610.h
++config RESET_SL2610
++	tristate "Synaptics SL2610 Reset Driver"
++	depends on ARCH_BERLIN || COMPILE_TEST
++	depends on OF && HAS_IOMEM
++	select SOC_SL2610_SYSCON
++	help
++	  Support the reset controllers in the SoC and MCU system control
++	  blocks of Synaptics SL2610 SoCs. Both pulse and sticky reset lines
++	  are supported.
++
++	  To compile this driver as a module, choose M here. The module will
++	  be called reset-sl2610.
++
+ config RESET_TENSTORRENT_ATLANTIS
+ 	tristate "Tenstorrent atlantis reset driver"
+ 	depends on ARCH_TENSTORRENT || COMPILE_TEST
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index 489fafd6bbe3..d28276a4f2ea 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -42,6 +42,7 @@ obj-$(CONFIG_RESET_SCMI) += reset-scmi.o
+ obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
+ obj-$(CONFIG_RESET_SKY1) += reset-sky1.o
+ obj-$(CONFIG_RESET_SKY1_AUDSS) += reset-sky1-audss.o
++obj-$(CONFIG_RESET_SL2610) += reset-sl2610.o
+ obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
+ obj-$(CONFIG_RESET_SUNPLUS) += reset-sunplus.o
+ obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
+diff --git a/drivers/reset/reset-sl2610.c b/drivers/reset/reset-sl2610.c
 new file mode 100644
-index 000000000000..c563a2b5ed06
+index 000000000000..1ca58d5a3e71
 --- /dev/null
-+++ b/include/dt-bindings/clock/syna,sl2610.h
-@@ -0,0 +1,131 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Synaptics SL2610 clock tree IDs
-+ *
-+ * Copyright (C) 2025 Synaptics Incorporated
-+ *
-+ * Author: Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+/* SoC domain */
-+
-+/* GBL common clks */
-+#define CLK_CPUFASTREF		0
-+#define CLK_MEMFASTREF		1
-+#define CLK_CFG			2
-+#define CLK_SYS			3
-+#define CLK_PERIFSYS		4
-+#define CLK_APBCORE		5
-+#define CLK_APBSER		6
-+#define CLK_ATB			7
-+#define CLK_HPC			8
-+#define CLK_EMMC		9
-+#define CLK_SD0			10
-+#define CLK_SD1			11
-+#define CLK_GETHRGMII		12
-+#define CLK_GETHRGMII1		13
-+#define CLK_GE0_PTP_REF		14
-+#define CLK_GE1_PTP_REF		15
-+#define CLK_USB2TEST		16
-+#define CLK_USB2TEST480MG0	17
-+#define CLK_USB2TEST480MG1	18
-+#define CLK_USB2TEST480MG2	19
-+#define CLK_USB2TEST100MG0	20
-+#define CLK_USB2TEST100MG1	21
-+#define CLK_USB2TEST100MG2	22
-+#define CLK_USB2TEST100MG3	23
-+#define CLK_PERIFTEST125MG0	24
-+#define CLK_PERIFTEST200MG0	25
-+#define CLK_PERIFTEST200MG1	26
-+#define CLK_GPU			27
-+#define CLK_NPU			28
-+#define CLK_AVIOSYS		29
-+#define CLK_AIOSYS		30
-+#define CLK_AVIO_LCDC2SCAN	31
-+#define CLK_AVIO_IPI		32
-+#define CLK_AVIO_P		33
-+#define CLK_AVIO_DPHYRXTXESC	34
-+#define CLK_AVIOFPLL		35
-+#define CLK_AVIO_RX_SCANBYTE	36
-+#define CLK_AVIO_RX_SCANTEST	37
-+
-+/* GBL gate clks */
-+#define CLK_USB0CORE		38
-+#define CLK_SDIOSYS		39
-+#define CLK_EMMCSYS		40
-+#define CLK_GPUAXI		41
-+#define CLK_GETHRGMIISYS	42
-+#define CLK_SDIO1SYS		43
-+#define CLK_USB1CORE		44
-+#define CLK_GETHRGMII1SYS	45
-+#define CLK_USB0PHYREF		46
-+#define CLK_USB1PHYREF		47
-+#define CLK_APBUART0		48
-+#define CLK_APBUART1		49
-+#define CLK_APBUART2		50
-+#define CLK_APBUART3		51
-+#define CLK_APBI2C0		52
-+#define CLK_APBI2C1		53
-+#define CLK_APBSPI0		54
-+#define CLK_APBSPI1		55
-+#define CLK_APBSPI2		56
-+#define CLK_APBSPI3		57
-+#define CLK_APBGPIO		58
-+#define CLK_APBTIMERS		59
-+#define CLK_APBSYSCNT		60
-+#define CLK_APBWDT		61
-+#define CLK_APBDMA		62
-+#define SL2610_CLK_MAX		63
-+
-+/* cpuss */
-+#define CLK_CPU0		0
-+#define CLK_CPU1		1
-+#define CLK_DSU			2
-+#define SL2610_CPU_CLK_MAX	3
-+
-+
-+/* sysmgr domain */
-+
-+#define CLK_CFG_UART0		0
-+#define CLK_SER_UART0		1
-+#define CLK_CFG_UART1		2
-+#define CLK_CFG_UART2		3
-+#define CLK_CFG_UART3		4
-+#define CLK_CFG_GPIO		5
-+#define CLK_CFG_I2CM0		6
-+#define CLK_CFG_I2CM1		7
-+#define CLK_CFG_SPIM		8
-+#define CLK_CFG_SPIS		9
-+#define CLK_CFG_I3C		10
-+#define CLK_CFG_XSPI		11
-+#define CLK_AXI_XSPI		12
-+#define CLK_CFG_PVT		13
-+#define CLK_CFG_ADC		14
-+#define CLK_CFG_PWM		15
-+#define CLK_BUS_CAN0		16
-+#define CLK_BUS_CAN1		17
-+#define CLK_CFG_PDM		18
-+
-+#define CLK_SER_UART1		19
-+#define CLK_SER_UART2		20
-+#define CLK_SER_UART3		21
-+#define CLK_DEB_GPIO		22
-+#define CLK_SER_I2CM0		23
-+#define CLK_SER_I2CM1		24
-+#define CLK_SER_SPIM		25
-+#define CLK_SER_SPIS		26
-+#define CLK_SER_I3C		27
-+#define CLK_SER_XSPI		28
-+#define CLK_HS_PVT		29
-+#define CLK_CORE_ADC		30
-+#define CLK_SER_PWM		31
-+#define CLK_SER_CAN0		32
-+#define CLK_SER_CAN1		33
-+#define CLK_SER_PDM		34
-+#define CLK_REF_CALIB		35
-+
-+#define CLK_MCU_REF		36
-+#define CLK_MCU_PLL		37
-+#define CLK_MCU_IO_PLL		38
-+#define CLK_MCU_APB		39
-+#define CLK_MCU_AXI		40
-diff --git a/include/dt-bindings/reset/syna,sl2610-reset.h b/include/dt-bindings/reset/syna,sl2610-reset.h
-new file mode 100644
-index 000000000000..909d63147692
---- /dev/null
-+++ b/include/dt-bindings/reset/syna,sl2610-reset.h
-@@ -0,0 +1,80 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
++++ b/drivers/reset/reset-sl2610.c
+@@ -0,0 +1,224 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright (C) 2026 Synaptics Incorporated
 + *
++ * Synaptics SL2610 reset driver
++ *
 + * Author: Jisheng Zhang <jszhang@kernel.org>
 + */
 +
-+#ifndef _DT_BINDINGS_SL2610_RESET_H
-+#define _DT_BINDINGS_SL2610_RESET_H
++#include <dt-bindings/reset/syna,sl2610-reset.h>
++#include <linux/delay.h>
++#include <linux/io.h>
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_address.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/reset-controller.h>
++#include <linux/slab.h>
++#include <linux/types.h>
 +
-+/* ACPU subsystem */
-+#define RST_SOC_SDIO0		0
-+#define RST_SOC_USB0		1
-+#define RST_SOC_EMMC		2
-+#define RST_SOC_GETH0		3
-+#define RST_SOC_SDIO1		4
-+#define RST_SOC_USB1		5
-+#define RST_SOC_GETH1		6
-+#define RST_SOC_USB0PHY		7
-+#define RST_SOC_USB0CORE	8
-+#define RST_SOC_USB0MAHB	9
-+#define RST_SOC_USB1PHY		10
-+#define RST_SOC_USB1CORE	11
-+#define RST_SOC_USB1MAHB	12
-+#define RST_SOC_UART0		13
-+#define RST_SOC_UART1		14
-+#define RST_SOC_UART2		15
-+#define RST_SOC_UART3		16
-+#define RST_SOC_I2C0		17
-+#define RST_SOC_I2C1		18
-+#define RST_SOC_SPI0		19
-+#define RST_SOC_SPI1		20
-+#define RST_SOC_SPI2		21
-+#define RST_SOC_SPI3		22
-+#define RST_SOC_APBTIMERS	23
-+#define RST_SOC_APBSYSCNT	24
-+#define RST_SOC_APBWDT		25
-+#define RST_SOC_APBGPIO		26
-+#define RST_SOC_APBDMA		27
-+#define RST_SOC_GPUCORE		28
-+#define RST_SOC_NPUCORE		29
-+#define RST_SOC_AVIOAIOG	30
-+#define RST_SOC_AVIOVPPG	31
-+#define RST_SOC_AVIOVIPG	32
++/* SL2610 ACPU subsystem */
++#define SL2610_GBL_PERIFRESET			0x350
++#define SL2610_GBL_PERIFSTICKYRESET		0x360
++#define SL2610_GBL_APBPERIFRESET		0x370
++#define SL2610_GBL_TOPSTICKYRESET		0x378
++#define SL2610_GBL_AVIOSTICKYRESET		0x37c
 +
-+/* system subsystem */
-+#define RST_SM_ADCCORE		0
-+#define RST_SM_ADCPRST		1
-+#define RST_SM_CAN0PRST		2
-+#define RST_SM_CAN0SRST		3
-+#define RST_SM_CAN1PRST		4
-+#define RST_SM_CAN1SRST		5
-+#define RST_SM_GPIOPRST		6
-+#define RST_SM_GPIOSRST		7
-+#define RST_SM_I2CM0PRST	8
-+#define RST_SM_I2CM0SRST	9
-+#define RST_SM_I2CM1PRST	10
-+#define RST_SM_I2CM1SRST	11
-+#define RST_SM_I3CPRST		12
-+#define RST_SM_I3CSRST		13
-+#define RST_SM_PDMPRST		14
-+#define RST_SM_PDMSRST		15
-+#define RST_SM_PVTHSRST		16
-+#define RST_SM_PVTPRST		17
-+#define RST_SM_PWMPERIRST	18
-+#define RST_SM_PWMPRST		19
-+#define RST_SM_SPIMPRST		20
-+#define RST_SM_SPIMSRST		21
-+#define RST_SM_SPISPRST		22
-+#define RST_SM_SPISSRST		23
-+#define RST_SM_UART0PRST	24
-+#define RST_SM_UART0SRST	25
-+#define RST_SM_UART1PRST	26
-+#define RST_SM_UART1SRST	27
-+#define RST_SM_UART2PRST	28
-+#define RST_SM_UART2SRST	29
-+#define RST_SM_UART3PRST	30
-+#define RST_SM_UART3SRST	31
++/* SL2610 system subsystem */
++#define SL2610_SMGBL_STICKYRST0			0x400
 +
-+#endif /* _DT_BINDINGS_SL2610_RESET_H */
++#define to_sl2610_reset_priv(p)	container_of((p), struct sl2610_reset_priv, rcdev)
++
++#define SL2610_RESET(id, reg, bit, sticky)[id] = { reg, BIT(bit), sticky }
++
++struct sl2610_reset_cfg {
++	u32 reg;
++	u32 bit;
++	bool sticky;
++};
++
++struct sl2610_reset_data {
++	const struct sl2610_reset_cfg *cfgs;
++	size_t num;
++};
++
++struct sl2610_reset_priv {
++	struct regmap *regmap;
++	const struct sl2610_reset_cfg *cfgs;
++	struct reset_controller_dev rcdev;
++};
++
++static const struct sl2610_reset_cfg sl2610_reset_cfgs[] = {
++	SL2610_RESET(RST_SOC_SDIO0, SL2610_GBL_PERIFRESET, 2, false),
++	SL2610_RESET(RST_SOC_USB0, SL2610_GBL_PERIFRESET, 4, false),
++	SL2610_RESET(RST_SOC_EMMC, SL2610_GBL_PERIFRESET, 5, false),
++	SL2610_RESET(RST_SOC_GETH0, SL2610_GBL_PERIFRESET, 6, false),
++	SL2610_RESET(RST_SOC_SDIO1, SL2610_GBL_PERIFRESET, 7, false),
++	SL2610_RESET(RST_SOC_USB1, SL2610_GBL_PERIFRESET, 8, false),
++	SL2610_RESET(RST_SOC_GETH1, SL2610_GBL_PERIFRESET, 9, false),
++	SL2610_RESET(RST_SOC_USB0PHY, SL2610_GBL_PERIFSTICKYRESET, 0, true),
++	SL2610_RESET(RST_SOC_USB0CORE, SL2610_GBL_PERIFSTICKYRESET, 1, true),
++	SL2610_RESET(RST_SOC_USB0MAHB, SL2610_GBL_PERIFSTICKYRESET, 2, true),
++	SL2610_RESET(RST_SOC_USB1PHY, SL2610_GBL_PERIFSTICKYRESET, 3, true),
++	SL2610_RESET(RST_SOC_USB1CORE, SL2610_GBL_PERIFSTICKYRESET, 4, true),
++	SL2610_RESET(RST_SOC_USB1MAHB, SL2610_GBL_PERIFSTICKYRESET, 5, true),
++	SL2610_RESET(RST_SOC_UART0, SL2610_GBL_APBPERIFRESET, 0, false),
++	SL2610_RESET(RST_SOC_UART1, SL2610_GBL_APBPERIFRESET, 1, false),
++	SL2610_RESET(RST_SOC_UART2, SL2610_GBL_APBPERIFRESET, 2, false),
++	SL2610_RESET(RST_SOC_UART3, SL2610_GBL_APBPERIFRESET, 3, false),
++	SL2610_RESET(RST_SOC_I2C0, SL2610_GBL_APBPERIFRESET, 4, false),
++	SL2610_RESET(RST_SOC_I2C1, SL2610_GBL_APBPERIFRESET, 5, false),
++	SL2610_RESET(RST_SOC_SPI0, SL2610_GBL_APBPERIFRESET, 6, false),
++	SL2610_RESET(RST_SOC_SPI1, SL2610_GBL_APBPERIFRESET, 7, false),
++	SL2610_RESET(RST_SOC_SPI2, SL2610_GBL_APBPERIFRESET, 8, false),
++	SL2610_RESET(RST_SOC_SPI3, SL2610_GBL_APBPERIFRESET, 9, false),
++	SL2610_RESET(RST_SOC_APBTIMERS, SL2610_GBL_APBPERIFRESET, 10, false),
++	SL2610_RESET(RST_SOC_APBSYSCNT, SL2610_GBL_APBPERIFRESET, 11, false),
++	SL2610_RESET(RST_SOC_APBWDT, SL2610_GBL_APBPERIFRESET, 12, false),
++	SL2610_RESET(RST_SOC_APBGPIO, SL2610_GBL_APBPERIFRESET, 13, false),
++	SL2610_RESET(RST_SOC_APBDMA, SL2610_GBL_APBPERIFRESET, 14, false),
++	SL2610_RESET(RST_SOC_GPUCORE, SL2610_GBL_TOPSTICKYRESET, 0, true),
++	SL2610_RESET(RST_SOC_NPUCORE, SL2610_GBL_TOPSTICKYRESET, 1, true),
++	SL2610_RESET(RST_SOC_AVIOAIOG, SL2610_GBL_AVIOSTICKYRESET, 0, true),
++	SL2610_RESET(RST_SOC_AVIOVPPG, SL2610_GBL_AVIOSTICKYRESET, 1, true),
++	SL2610_RESET(RST_SOC_AVIOVIPG, SL2610_GBL_AVIOSTICKYRESET, 2, true),
++};
++
++static const struct sl2610_reset_cfg sl2610_system_reset_cfgs[] = {
++	SL2610_RESET(RST_SM_ADCCORE, SL2610_SMGBL_STICKYRST0, 0, true),
++	SL2610_RESET(RST_SM_ADCPRST, SL2610_SMGBL_STICKYRST0, 1, true),
++	SL2610_RESET(RST_SM_CAN0PRST, SL2610_SMGBL_STICKYRST0, 2, true),
++	SL2610_RESET(RST_SM_CAN0SRST, SL2610_SMGBL_STICKYRST0, 3, true),
++	SL2610_RESET(RST_SM_CAN1PRST, SL2610_SMGBL_STICKYRST0, 4, true),
++	SL2610_RESET(RST_SM_CAN1SRST, SL2610_SMGBL_STICKYRST0, 5, true),
++	SL2610_RESET(RST_SM_GPIOPRST, SL2610_SMGBL_STICKYRST0, 6, true),
++	SL2610_RESET(RST_SM_GPIOSRST, SL2610_SMGBL_STICKYRST0, 7, true),
++	SL2610_RESET(RST_SM_I2CM0PRST, SL2610_SMGBL_STICKYRST0, 8, true),
++	SL2610_RESET(RST_SM_I2CM0SRST, SL2610_SMGBL_STICKYRST0, 9, true),
++	SL2610_RESET(RST_SM_I2CM1PRST, SL2610_SMGBL_STICKYRST0, 10, true),
++	SL2610_RESET(RST_SM_I2CM1SRST, SL2610_SMGBL_STICKYRST0, 11, true),
++	SL2610_RESET(RST_SM_I3CPRST, SL2610_SMGBL_STICKYRST0, 12, true),
++	SL2610_RESET(RST_SM_I3CSRST, SL2610_SMGBL_STICKYRST0, 13, true),
++	SL2610_RESET(RST_SM_PDMPRST, SL2610_SMGBL_STICKYRST0, 14, true),
++	SL2610_RESET(RST_SM_PDMSRST, SL2610_SMGBL_STICKYRST0, 15, true),
++	SL2610_RESET(RST_SM_PVTHSRST, SL2610_SMGBL_STICKYRST0, 16, true),
++	SL2610_RESET(RST_SM_PVTPRST, SL2610_SMGBL_STICKYRST0, 17, true),
++	SL2610_RESET(RST_SM_PWMPERIRST, SL2610_SMGBL_STICKYRST0, 18, true),
++	SL2610_RESET(RST_SM_PWMPRST, SL2610_SMGBL_STICKYRST0, 19, true),
++	SL2610_RESET(RST_SM_SPIMPRST, SL2610_SMGBL_STICKYRST0, 20, true),
++	SL2610_RESET(RST_SM_SPIMSRST, SL2610_SMGBL_STICKYRST0, 21, true),
++	SL2610_RESET(RST_SM_SPISPRST, SL2610_SMGBL_STICKYRST0, 22, true),
++	SL2610_RESET(RST_SM_SPISSRST, SL2610_SMGBL_STICKYRST0, 23, true),
++	SL2610_RESET(RST_SM_UART0PRST, SL2610_SMGBL_STICKYRST0, 24, true),
++	SL2610_RESET(RST_SM_UART0SRST, SL2610_SMGBL_STICKYRST0, 25, true),
++	SL2610_RESET(RST_SM_UART1PRST, SL2610_SMGBL_STICKYRST0, 26, true),
++	SL2610_RESET(RST_SM_UART1SRST, SL2610_SMGBL_STICKYRST0, 27, true),
++	SL2610_RESET(RST_SM_UART2PRST, SL2610_SMGBL_STICKYRST0, 28, true),
++	SL2610_RESET(RST_SM_UART2SRST, SL2610_SMGBL_STICKYRST0, 29, true),
++	SL2610_RESET(RST_SM_UART3PRST, SL2610_SMGBL_STICKYRST0, 30, true),
++	SL2610_RESET(RST_SM_UART3SRST, SL2610_SMGBL_STICKYRST0, 31, true),
++};
++
++static const struct sl2610_reset_data sl2610_reset_data = {
++	.cfgs = sl2610_reset_cfgs,
++	.num = ARRAY_SIZE(sl2610_reset_cfgs),
++};
++
++static const struct sl2610_reset_data sl2610_system_reset_data = {
++	.cfgs = sl2610_system_reset_cfgs,
++	.num = ARRAY_SIZE(sl2610_system_reset_cfgs),
++};
++
++static int sl2610_reset_assert(struct reset_controller_dev *rcdev,
++			       unsigned long id)
++{
++	struct sl2610_reset_priv *priv = to_sl2610_reset_priv(rcdev);
++	const struct sl2610_reset_cfg *cfg = &priv->cfgs[id];
++
++	if (!cfg->sticky)
++		return -EINVAL;
++
++	return regmap_clear_bits(priv->regmap, cfg->reg, cfg->bit);
++}
++
++static int sl2610_reset_deassert(struct reset_controller_dev *rcdev,
++				 unsigned long id)
++{
++	struct sl2610_reset_priv *priv = to_sl2610_reset_priv(rcdev);
++	const struct sl2610_reset_cfg *cfg = &priv->cfgs[id];
++
++	if (!cfg->sticky)
++		return -EINVAL;
++
++	return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
++}
++
++static int sl2610_reset_reset(struct reset_controller_dev *rcdev,
++			      unsigned long id)
++{
++	struct sl2610_reset_priv *priv = to_sl2610_reset_priv(rcdev);
++	const struct sl2610_reset_cfg *cfg = &priv->cfgs[id];
++
++	if (cfg->sticky) {
++		regmap_clear_bits(priv->regmap, cfg->reg, cfg->bit);
++		usleep_range(10, 15);
++		return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
++	}
++
++	return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
++}
++
++static const struct reset_control_ops sl2610_reset_ops = {
++	.reset	= sl2610_reset_reset,
++	.assert = sl2610_reset_assert,
++	.deassert = sl2610_reset_deassert,
++};
++
++static int sl2610_reset_probe(struct platform_device *pdev)
++{
++	struct device_node *parent_np = pdev->dev.parent->of_node;
++	struct sl2610_reset_priv *priv;
++	const struct sl2610_reset_data *data =
++		(void *)platform_get_device_id(pdev)->driver_data;
++
++	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->regmap = syscon_node_to_regmap(parent_np);
++	if (IS_ERR(priv->regmap))
++		return PTR_ERR(priv->regmap);
++
++	priv->rcdev.owner = THIS_MODULE;
++	priv->rcdev.ops = &sl2610_reset_ops;
++	priv->rcdev.dev = &pdev->dev;
++	priv->rcdev.of_node = parent_np;
++	priv->rcdev.of_reset_n_cells = 1;
++	priv->rcdev.nr_resets = data->num;
++	priv->cfgs = data->cfgs;
++
++	return devm_reset_controller_register(&pdev->dev, &priv->rcdev);
++}
++
++static const struct platform_device_id sl2610_reset_ids[] = {
++	{ "sl2610-soc-reset", (kernel_ulong_t)&sl2610_reset_data },
++	{ "sl2610-mcu-reset", (kernel_ulong_t)&sl2610_system_reset_data },
++	{ }
++};
++MODULE_DEVICE_TABLE(platform, sl2610_reset_ids);
++
++static struct platform_driver sl2610_reset_driver = {
++	.probe = sl2610_reset_probe,
++	.id_table = sl2610_reset_ids,
++	.driver = {
++		.name = "sl2610-reset",
++	},
++};
++module_platform_driver(sl2610_reset_driver);
++
++MODULE_AUTHOR("Jisheng Zhang <jszhang@kernel.org>");
++MODULE_DESCRIPTION("Synaptics SL2610 reset controller");
++MODULE_LICENSE("GPL");
 -- 
 2.55.0
 
