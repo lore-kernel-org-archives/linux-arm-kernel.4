@@ -2,69 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84EB4606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 19:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6CB606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 19:22:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1x9oGFtI;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XhLu85Ua
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VHoHGeK+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ISgGePwb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fLaQUPcYKxXkir2twg3fsW7g9Gg8lBOZ22Z32cylxH0=; b=1x9oGFtIMbY/0tPBdk+5a03mCa
-	TrRoI6knLmcUmmLHADMVPTDOye9zT5Z4WCms0yFWwR/2X80EeeOST3BYWMb8QGLyCAjqjsGmNq1fZ
-	BFSP2V46bnIf29LhnuNAMaaDntmCFxC7TxK7Lgf9DGg8bX+LgL0I6gr7RL55UQVw5sTeHmeKifpRc
-	DH4WU0rMMgwKk/IWRkb2WxM2F69WQAjg9BaHrkrAR3uoIxl/us/bnFMrOYuUwTW0Xk57thOB3sids
-	6r+Hw/UNi8WZdJrrGLe38hzxzCgBGqQ2KsGH2KoxcteF0Dtzp+WGD0CSGTNlv9baLXPsU5z5xYg3I
-	kimufYMg==;
+	bh=8N8NLCTo0g5vPdM1WgGpCKsKl3w4IZ0gBgY6CLXYvYg=; b=VHoHGeK+AEzYmxAd5XidhsiOkk
+	uN6a66AESaREIl6ETCc7v/zHcY3TM6Rp7R67LGiFVDHj6dexbguL2xTYPjTalV28y3B21eZwXw/YK
+	8tDDdXNxGb/+qZPVYrxBNuGFvcR1iCwm1kvqHrKtW9eWvs8RYTzjTEN3ydk1eSLqiGCh0A35aGsRB
+	aLv+QEjsMK8wHIqU4M/Jw1utPDVULq/nhXAEmwsOTE7Pku8lVFo6P2hRP66d7cdMCl0pAUkQkkHkd
+	QU/xifiU/e3dqpNfT9Xuay/+X9UOmsi03RqyEkwtex5at9rD9i0w/lvfyWARIjTPJAOb3D/Sat97x
+	Vqso6ngw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSfmA-00000000NC2-1yPh;
-	Sun, 15 Nov 2026 19:20:30 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSfno-00000000NMf-3jdQ;
+	Sun, 15 Nov 2026 19:22:12 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSfm8-00000000NBw-3BXi
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 19:20:28 +0000
+	id 1xSfno-00000000NLu-1BO6;
+	Sun, 15 Nov 2026 19:22:12 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AB737601CC;
-	Sun, 15 Nov 2026 19:20:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC921F000C4;
-	Sun, 15 Nov 2026 19:20:19 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 801C6450B8;
+	Sun, 15 Nov 2026 19:22:11 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794770531;
+	b=xYRFjuWAVlDJt+GpEyku2jK05KjUb/MktKM1cjB0roVzaNOixjCzlFaV9trdNhihaq96
+	 shyUJEdZuURKUzangJrHVUlVYvQ4SYJx4VjotmKb7xx4piUdhGHAjSN9PhXZzbKvTA+Oe
+	 LYhHXkxaL5U7J2kcUpf3fGu1+MUQMJEPWhC0Z2yCa+5iyQsmp1zhb1LD1Vs8POJq3gUsv
+	 kj+TJmVGr9EY9m2cudOWF3LFOcXnY0jG/CsehwHzv8C2w3rkRFPAD+yve4171/wq2JGyR
+	 s/RoTG/1n+pJDuMblwfMs+CGONieCuk/gx71Pgr2wdpIWNSWTvfVwqHibp4NWjmIBgw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794770531;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
+	 Content-Transfer-Encoding;
+	bh=8N8NLCTo0g5vPdM1WgGpCKsKl3w4IZ0gBgY6CLXYvYg=;
+	b=iVS2DNy0yeHNIv7YW+O993qEpCA8pBLdJ0+zmpdvrY2+amZs0xvCMsi5nFExuovsdCK6
+	 p7f7Z82sStLYxSyp5PktXHP5YZ9PJz0rn1H6pZimQRJW/QBqFW07FRJpQkaZzdy3+yVmA
+	 tOBc2cKaty9ZHvyfoyX4noqYeQCTncnjx/al7UeD40hybNABuclTeijlOXj+O7YhRRkFI
+	 4D2/OCFH48DVpzE3AwpCeSj2djG0Ty0MgMX3Rrbjc6zDfhuRNqOvHS+nJX0hTqwDS6kMo
+	 LymGJH4Y0h4gcE8vG7SAwmU5McXVtS6Es6desWbV9P7zbWazT2upo3TeKz8ZdVx39Qw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id D7F071F000C4;
+	Sun, 15 Nov 2026 19:22:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794770427;
-	bh=fLaQUPcYKxXkir2twg3fsW7g9Gg8lBOZ22Z32cylxH0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=XhLu85Ua2c6WZLlLlAlu41R/VyenJMuIzs9+HeEnHjow/dZUNr5fsUxv33MVe0xR9
-	 NiqKgGZojOd6z653AmlAbwBWSNz0Y/J4dsO9oqMstKyh/UAzeOwqo1F24tatjYGczh
-	 Q0qBu2kvlSa0F8oIVuhxCAoOMhwI/hK6jFz/WnzR0a+3Y8LmbXpxRwMM+kxXmZY1iq
-	 25w3eguzUz3kcvSwQsQNl1CFRImzluQwZPqKEdduaE+/HXoeSbYwThL2YZMJLNU1I0
-	 E3zvrbGwhP652mJ1OL7CToELmOQZpBOaxBkQTr+i8KiSeA8Qj626ksqR9/Ha+aLwjb
-	 //TVlKyt3smmQ==
-Date: Sun, 15 Nov 2026 21:20:16 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: Vincent Donnefort <vdonnefort@google.com>
-Cc: catalin.marinas@arm.com, will@kernel.org, akpm@linux-foundation.org,
-	m.szyprowski@samsung.com, jenswi@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mark.rutland@arm.com,
-	robin.murphy@arm.com, hch@lst.de, ryan.roberts@arm.com,
-	sumit.garg@kernel.org, sudeep.holla@kernel.org, ardb@kernel.org,
-	thierry.reding@kernel.org, david@kernel.org, danielmentz@google.com,
-	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
-	iommu@lists.linux.dev, op-tee@lists.trustedfirmware.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/8] arm64: Add support for MEMBLOCK_PTEMAP
-Message-ID: <avoF8IbOxVJ9Uh8Y@kernel.org>
-References: <20261111110738.872947-1-vdonnefort@google.com>
- <20261111110738.872947-3-vdonnefort@google.com>
+	s=k20260515; t=1794770531;
+	bh=8N8NLCTo0g5vPdM1WgGpCKsKl3w4IZ0gBgY6CLXYvYg=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=ISgGePwbIF3dMM4JEP7VqeQPjJWkzOcneRlS3voc4blfvKsF7B2OAnah9vp5EL5Ek
+	 QL9fHfUAWtVIl2cM8xKdaW2jk1Jpqqx+lA23Hidgc1EP5s3TsbjDsJR+vQ20UbtK6P
+	 faJFkVnKlDdv8oLDvoSO0csVikZ350Kdls1EM96Yfa3RnXs+ZXbcfL1GJ1wEZ68s+j
+	 Zc01T/lafhvGuDuH9wiEjf3tubN06bq3EnDaXQZnjUdEw0cJ05sy6MDqFknoBMDg9n
+	 avhFVVJE5lhEXY2jMl/QUcKnSw+FD5B/RWkG4GVWkergAYLR3QSQrlRXuNO7R4f7ZL
+	 yTz4DcZ742NeQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 6B7094A153;
+	Sun, 15 Nov 2026 19:22:10 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Sun, 15 Nov 2026 19:22:08 +0000
+Subject: [PATCH net] net: mdio: mux-meson-g12a: keep the MAC data path when
+ switching MDIO
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261111110738.872947-3-vdonnefort@google.com>
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261115-g12a-mux-data-path-v1-1-011dad738698@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAF8G+moC/x3MQQqEMAxA0atI1gZMcBTnKoOL1EbNwiptZxDEu
+ 1tm+Rb/X5A0miZ4VxdE/VmyPRRQXcG0SlgUzRcDN9wR0QsXYsHte6KXLHhIXrFrWZx3U+94gBI
+ eUWc7/9MPBM0w3vcDR/PlzWkAAAA=
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4492; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=rixsLn/9QY2RgeRhk+RdadQVMXkG8S6mNv5cUWus1nk=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFm/2BK38l3+vnLXneB3c4Um/vN+9ndKXUs372TV2JmGP
+ g/ehh+70FHKwiDGxSArpsgy4ZDGrYwlV//6e5g/gJnDygQyhIGLUwAmcmonw//q4PWZTL6G15tS
+ ArUFlx2RiTr89XnppPMWR8ybJ/lerlrCyHDh/pOaGTX+SqGnXeY0aiQ3L36XLxrxqp1Zvtw+leX
+ 3Sg4A
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,98 +115,152 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 11:07:32AM +0000, Vincent Donnefort wrote:
-> With the MEMBLOCK_PTEMAP flag, force a PTE-level mapping. This also
+From: Igor Velkov <iav@iav.lv>
 
-I'd expand this to "Force a PTE-level mapping for memblock regions with
-MEMBLOCK_PTEMAP flag set".
+Switching the mux to the internal MDIO bus writes SMI_SRC_MAC together
+with USE_INTERNAL and RX_CLK_EPHY to ETH_PHY_CNTL2. The last two move the
+MAC data path and RX clock to the internal PHY. On boards whose MAC uses
+an external PHY, any access to the internal PHY stops reception until an
+access to the external bus switches the mux back.
 
-> disables contiguous PTEs to make sure any page from the memblock can be
+phylib suspends and resumes the unattached internal PHY across system
+sleep. stmmac sets mac_managed_pm, and with Wake-on-LAN in the MAC
+phylink_resume() does not start the external PHY, so nothing switches
+the mux back. On ODROID-HC4 (RTL8211F), after suspend-to-RAM with WoL in
+the MAC and an RTC wakeup, ETH_PHY_CNTL2 stays at 0x260 and the MAC
+receives nothing while TX works.
 
-                                     and memblock region here ^
+With the MAC on the external PHY, SMI_SRC_MAC alone is enough to read
+the internal PHY ID (0x0180/0x3301) while RX keeps running; adding
+USE_INTERNAL or RX_CLK_EPHY stops RX.
 
-> safely unmapped from the linear map.
-> 
-> Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
-> ---
->  arch/arm64/mm/mmu.c | 22 +++++++++++++++-------
->  1 file changed, 15 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
-> index 140520b351e2..a4cafafa1d82 100644
-> --- a/arch/arm64/mm/mmu.c
-> +++ b/arch/arm64/mm/mmu.c
-> @@ -1184,9 +1184,8 @@ static void __init map_mem(void)
->  	phys_addr_t init_begin = __pa_symbol(__init_begin);
->  	phys_addr_t init_end = __pa_symbol(__init_end);
->  	phys_addr_t kernel_end = __pa_symbol(__bss_stop);
-> -	phys_addr_t start, end;
->  	int flags = NO_EXEC_MAPPINGS;
-> -	u64 i;
-> +	struct memblock_region *r;
->  
->  	/*
->  	 * Setting hierarchical PXNTable attributes on table entries covering
-> @@ -1226,9 +1225,14 @@ static void __init map_mem(void)
->  		       flags);
->  
->  	/* map all the memory banks */
-> -	for_each_mem_range(i, &start, &end) {
-> +	for_each_mem_region(r) {
-> +		phys_addr_t start, end;
-> +		int rflags = flags;
-> +
-> +		if (memblock_is_nomap(r))
-> +			continue;
->  		/*
-> -		 * for_each_mem_range may return sub-page-aligned boundaries
-> +		 * for_each_mem_region may return sub-page-aligned boundaries
->  		 * after memblock_mark_nomap() splits regions at byte precision.
->  		 * __create_pgd_mapping_locked aligns phys down to PAGE_MASK,
->  		 * which could accidentally map no-map memory on the boundary.
-> @@ -1237,17 +1241,21 @@ static void __init map_mem(void)
->  		 * regions. The cost is at most one page of unmapped gap at
->  		 * each boundary.
->  		 */
-> -		start = PAGE_ALIGN(start);
-> -		end = end & PAGE_MASK;
-> +		start = PAGE_ALIGN(r->base);
-> +		end = (r->base + r->size) & PAGE_MASK;
+Set the data path bits only when the MAC's phy-handle names a PHY on
+the internal bus. As in dwmac-rk, which reads phy-is-integrated from
+that node, the node phy-handle names decides; here it is the mux bus
+the PHY sits on.
 
-Nit: as we anyway change the assignment to end, PAGE_ALIGN_DOWN() is
-slightly more explicit.
+Fixes: 7090425104db ("net: phy: add amlogic g12a mdio mux support")
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+Tested on ODROID-HC4: three RTC wakeups from suspend-to-RAM with WoL in
+the MAC (ETH_PHY_CNTL2 0x40, RX working), one without WoL.
+---
+ drivers/net/mdio/mdio-mux-meson-g12a.c | 49 ++++++++++++++++++++++++++++++----
+ 1 file changed, 44 insertions(+), 5 deletions(-)
 
->  		if (start >= end)
->  			continue;
-> +
-> +		if (memblock_is_ptemap(r))
-> +			rflags |= NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS;
-> +
->  		/*
->  		 * The linear map must allow allocation tags reading/writing
->  		 * if MTE is present. Otherwise, it has the same attributes as
->  		 * PAGE_KERNEL.
->  		 */
->  		__map_memblock(start, end, pgprot_tagged(PAGE_KERNEL),
-> -			       flags);
-> +			       rflags);
->  	}
->  }
->  
-> -- 
-> 2.56.0.542.g3ef89b7020-goog
-> 
+diff --git a/drivers/net/mdio/mdio-mux-meson-g12a.c b/drivers/net/mdio/mdio-mux-meson-g12a.c
+index 71c44385489d..ed688d48eaf0 100644
+--- a/drivers/net/mdio/mdio-mux-meson-g12a.c
++++ b/drivers/net/mdio/mdio-mux-meson-g12a.c
+@@ -12,6 +12,7 @@
+ #include <linux/iopoll.h>
+ #include <linux/mdio-mux.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/phy.h>
+ #include <linux/platform_device.h>
+ 
+@@ -56,6 +57,7 @@ struct g12a_mdio_mux {
+ 	void __iomem *regs;
+ 	void *mux_handle;
+ 	struct clk *pll;
++	bool mac_uses_internal_phy;
+ };
+ 
+ struct g12a_ephy_pll {
+@@ -149,7 +151,7 @@ static const struct clk_ops g12a_ephy_pll_ops = {
+ 
+ static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
+ {
+-	u32 value;
++	u32 value, cntl2;
+ 	int ret;
+ 
+ 	/* Enable the phy clock */
+@@ -169,10 +171,11 @@ static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
+ 		PHY_CNTL1_CLK_EN |
+ 		PHY_CNTL1_CLKFREQ;
+ 	writel(value, priv->regs + ETH_PHY_CNTL1);
+-	writel(PHY_CNTL2_USE_INTERNAL |
+-	       PHY_CNTL2_SMI_SRC_MAC |
+-	       PHY_CNTL2_RX_CLK_EPHY,
+-	       priv->regs + ETH_PHY_CNTL2);
++
++	cntl2 = PHY_CNTL2_SMI_SRC_MAC;
++	if (priv->mac_uses_internal_phy)
++		cntl2 |= PHY_CNTL2_USE_INTERNAL | PHY_CNTL2_RX_CLK_EPHY;
++	writel(cntl2, priv->regs + ETH_PHY_CNTL2);
+ 
+ 	value |= PHY_CNTL1_PHY_ENB;
+ 	writel(value, priv->regs + ETH_PHY_CNTL1);
+@@ -301,6 +304,41 @@ static int g12a_ephy_glue_clk_register(struct device *dev)
+ 	return 0;
+ }
+ 
++/* Like dwmac-rk: the PHY named by the MAC's phy-handle decides the data path */
++static bool g12a_mac_uses_internal_phy(struct device_node *mux_np)
++{
++	struct device_node *parent_bus, *mac, *phy, *phy_bus, *mux;
++	bool internal = false;
++	u32 reg;
++
++	parent_bus = of_parse_phandle(mux_np, "mdio-parent-bus", 0);
++	if (!parent_bus)
++		return false;
++
++	mac = of_get_parent(parent_bus);
++	of_node_put(parent_bus);
++	if (!mac)
++		return false;
++
++	phy = of_parse_phandle(mac, "phy-handle", 0);
++	of_node_put(mac);
++	if (!phy)
++		return false;
++
++	phy_bus = of_get_parent(phy);
++	of_node_put(phy);
++	if (!phy_bus)
++		return false;
++
++	mux = of_get_parent(phy_bus);
++	if (mux == mux_np && !of_property_read_u32(phy_bus, "reg", &reg))
++		internal = (reg == MESON_G12A_MDIO_INTERNAL_ID);
++	of_node_put(mux);
++	of_node_put(phy_bus);
++
++	return internal;
++}
++
+ static int g12a_mdio_mux_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -313,6 +351,7 @@ static int g12a_mdio_mux_probe(struct platform_device *pdev)
+ 		return -ENOMEM;
+ 
+ 	platform_set_drvdata(pdev, priv);
++	priv->mac_uses_internal_phy = g12a_mac_uses_internal_phy(dev->of_node);
+ 
+ 	priv->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(priv->regs))
 
+---
+base-commit: aa40afa831ebfe45e40a23721711059f2ac584d4
+change-id: 20261115-g12a-mux-data-path-642abdbc7b29
+
+Best regards,
 -- 
-Sincerely yours,
-Mike.
+Igor Velkov <iav@iav.lv>
+
+
 
