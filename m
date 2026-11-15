@@ -2,78 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94EFB606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF93606A8BF
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SaPTI7F8;
-	dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.a=rsa-sha256 header.s=smtp-20201208 header.b=ak4ncVZc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WhDBwbOS;
+	dkim=pass (1024-bit key) header.d=seu.edu.cn header.i=@seu.edu.cn header.a=rsa-sha256 header.s=default header.b=EErrNkKM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8ZCc0kYbccT1j2j1nFYSj16fkgBLnDHoEzJYA6Hd1Dg=; b=SaPTI7F8EeNqLnfTTQfCTZizqa
-	sUSOLGulPma0kYanKD3u2Xfmsz1uPU6iHr2HHeOy70onPK++o6w9x9QaMGGQo2iW3BitjQla1G+IJ
-	TFQHEhWcxs5nGCoqQF3jJ0WEWfGhU+2iYdCm7f/114k6wPV6tKLs3jcplFKkHUcGQEJzwn96eHqdY
-	YFJJOVPDj1vvyHoA3mE+c87jWdHVOkJvVhlLAldmLkQsO0WhPIrsCUVEdrEo15vUx5m7S25/5EQHv
-	WmnyVrSSd6bfg0xpCVy4+Zq7XWflFChOQk0h4KCAyHlDZTu/qgUzAu82FagzCPn7qY0PLJKUA7hWO
-	6Xsk7drQ==;
+	bh=oi51xaTG/HK0Yfo+7f/VbT3aH6dKHxeareUfdsGr6Fw=; b=WhDBwbOSwAerP/14iESxfZEXJK
+	FE6WK5wWIjNg2IFVqzbPYB3siZMeIVHzeUgwfQcfOXC3+xyTajbEyyehOofeIb5bPZf+T9xhTJ5Si
+	8vFD1dwJ2igJiE981ngsdzEaNhgHZqa2kI5hMqZAnCs6eTpyaZS7ejU84BKfQ5FCv0+xtElWzFjFi
+	0snsHAE+2Jxbcx+egK2gwVDKKt8bWP8FzVeB9CBeTLoCuKTjO+GYgfbfeUyOgumqua3aSnMFQ7TMy
+	3qwvCqqjhO2Yjeltzb/1oBCfn9ZfpJw5kG6YLp1G1ApgheLGPEs25cRNFe0B6c4CPn8GW3S8rnHYf
+	Yr6s9aNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSYgD-0000000HTYc-3Mfi;
-	Sun, 15 Nov 2026 11:45:53 +0000
-Received: from smtp1-g21.free.fr ([2a01:e0c:1:1599::10])
+	id 1xSYiK-0000000HTos-1IcB;
+	Sun, 15 Nov 2026 11:48:04 +0000
+Received: from mail-m49197.qiye.163.com ([45.254.49.197])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSYgA-0000000HTYE-2TA4
+	id 1xSYiG-0000000HTmZ-2XN9
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 11:45:52 +0000
-Received: from L30177.local (unknown [78.242.88.98])
-	(Authenticated sender: vjardin@free.fr)
-	by smtp1-g21.free.fr (Postfix) with ESMTPSA id 4BB8AB0051B;
-	Sun, 15 Nov 2026 12:45:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1794743149;
-	bh=8W7U3lk1daoKKwP7PjlQ54EL6MrGZ5IE9j29Mm2B3/w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ak4ncVZcgW2qLwK9X4/zElIA1HMdni3U+8SbMT5UJn4dFCQlROXyKI8G9BQvCqj/C
-	 85l6Z4oISGhzno9CeY6PTrTRE16V7rEvBAopAKZHId28/ngsYuwohsm5rhE03spsP4
-	 nID1pNcGQt1JAF+7EOp6kDRnQEx8qPLR5JJB2oheBDRAzcy1WKl8vf3sph6+E6QF72
-	 Oyjb3pyxSWpoFKCVmPAMDn5Eok8cg5T+kAEmQdHs7+LTQNZ+5guh1S2uQc3OBOUn5Q
-	 6lMfFyadDcci1ncA09egoRaOrl0cflBClFU7y+lWlhikwoJ5lZuqMlNVeo3IrjQP72
-	 SlnDToNGaCUuA==
-Date: Sun, 15 Nov 2026 12:45:23 +0100
-From: Vincent Jardin <vjardin@free.fr>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH v5 4/5] pinctrl: freescale: add the LX2160A RCW pad-mux
- driver
-Message-ID: <avmbUyfeTd_VMSYH@L30177.local>
-References: <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v5-0-d246166ea469@free.fr>
- <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v5-4-d246166ea469@free.fr>
- <avmX2HwOji6MBuhj@skbuf>
+	Sun, 15 Nov 2026 11:48:03 +0000
+Received: from [192.168.17.1] (unknown [124.79.98.159])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 54b7e04dd;
+	Sun, 15 Nov 2026 19:47:50 +0800 (GMT+08:00)
+From: Hongyan Xu <getshell@seu.edu.cn>
+To: Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org
+Cc: Marc Zyngier <maz@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof =?utf-8?b?V2lsY3p56ZG55Y27a2k=?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: [PATCH v2] PCI: apple: Prevent module unloading without IRQ teardown
+Date: Sun, 15 Nov 2026 19:47:48 +0800
+Message-ID: <179474326811.103840.15695658964160156282@seu.edu.cn>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <avmX2HwOji6MBuhj@skbuf>
+X-HM-Tid: 0aa1df08fd1c03a1kunmbac61c98bf77e
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDGRhNVh1DSUsdSxodGk5PSVYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSU9VTEJVQkNVSk5CWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
+	JKVUpLS1VLWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=EErrNkKM3bnude6pCFUBL9amXrTOPNrhxd6SCA0ewgEek6EvhfUarntmYQveXt7ckT5ElrNg60CEStL9uhOAOKfjMUJXNIMceZTlewS1lCIqfbsbmV7GjWHfHNKd+ONtCzvhdekiFv2bT0za3DOwEqZ9kEEb6YlNa12vK6xCaZM=; c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1;
+	bh=oi51xaTG/HK0Yfo+7f/VbT3aH6dKHxeareUfdsGr6Fw=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_034551_267596_375823EB 
-X-CRM114-Status: UNSURE (   8.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261115_034801_243889_EE079574 
+X-CRM114-Status: GOOD (  10.68  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,27 +70,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Vladimir,
+The driver suppresses userspace bind attributes but still registers
+a module exit callback. Unloading it leaves the PCI hierarchy and
+unmanaged IRQ domains and handlers referring to released resources
+and unloaded driver code. Removing only the root bus does not make
+the remaining IRQ state safe.
 
-> Did you see my feedback on this patch for v4? Comments?
-> https://lore.kernel.org/lkml/avjaK3cOj3iQ6G6w@skbuf/
+Register the driver without an exit callback so a normally loaded
+module cannot be unloaded. This follows the maintainer's suggested
+first step while complete controller removal remains unsupported.
+Keep the tristate option, so loading the driver as a module remains
+possible. This change addresses module unload, not dynamic removal
+of the platform device or existing probe-error cleanup.
 
-No !, for some reasons, I did miss it..., thanks.
+Found by the author's in-house static analysis tool.
 
-I can prepare a new serie to make it a bit more generic,
-but I'd need NXP/your reviews for those CPUs, since I
-cannot test.
+Fixes: 1e33888fbe44 ("PCI: apple: Add initial hardware bring-up")
+Cc: stable@vger.kernel.org
+Suggested-by: Marc Zyngier <maz@kernel.org>
+Link: https://lore.kernel.org/all/87mrrj8ku6.wl-maz@kernel.org/
+Signed-off-by: Hongyan Xu <getshell@seu.edu.cn>
+Signed-off-by: Zehao Gao <gaozehao@iie.ac.cn>
+---
 
-It seems to be quite easy to update, I'll just
-run some basic checks.
+Discovery: found by the author's in-house static analysis tool.
 
-best regards,
-  Vincent
+ drivers/pci/controller/pcie-apple.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
+index dfd0e34..061742b 100644
+--- a/drivers/pci/controller/pcie-apple.c
++++ b/drivers/pci/controller/pcie-apple.c
+@@ -892,7 +892,7 @@ static struct platform_driver apple_pcie_driver = {
+ 		.suppress_bind_attrs	= true,
+ 	},
+ };
+-module_platform_driver(apple_pcie_driver);
++builtin_platform_driver(apple_pcie_driver);
+ 
+ MODULE_DESCRIPTION("Apple PCIe host bridge driver");
+ MODULE_LICENSE("GPL v2");
+-- 
+2.50.1.windows.1
 
