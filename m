@@ -2,75 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FD6D606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94EFB606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HSXt7wnX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DhVWqplR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SaPTI7F8;
+	dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.a=rsa-sha256 header.s=smtp-20201208 header.b=ak4ncVZc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ox2hY5QH3jmgosgum8+KLHMofQ09oXBIrh5AAI9umjs=; b=HSXt7wnXPFG2j9
-	wjRaVjynPt6gkncg7yAGjl6v4SOF+9zW6aMvNumvGav3OnExbl7qJGMxoEtdyuIRwOwMxZ92fGjKq
-	gqxk0sHLhPLmC3sg57xdFxFvm47FXU0CO6oJacq6GtDkb2QcvKxGW+JrGj4Iu+8JV918gQRvy29DX
-	Sa8aB2W34p/mAjDAEoM2zwZEF4yDR6GR702XOSM3GZfXdgTGMb3WBgtbycyA52dNBoguYpW4LhRr2
-	s6g095gi+6GuiQJWGwD5cIstufC0ElMJKQib2IHD0h2XTOe+iDHLiLKcXof4416tGG1RKjMXi7Eim
-	dGCGxYpSLeJkXHFQRsoA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8ZCc0kYbccT1j2j1nFYSj16fkgBLnDHoEzJYA6Hd1Dg=; b=SaPTI7F8EeNqLnfTTQfCTZizqa
+	sUSOLGulPma0kYanKD3u2Xfmsz1uPU6iHr2HHeOy70onPK++o6w9x9QaMGGQo2iW3BitjQla1G+IJ
+	TFQHEhWcxs5nGCoqQF3jJ0WEWfGhU+2iYdCm7f/114k6wPV6tKLs3jcplFKkHUcGQEJzwn96eHqdY
+	YFJJOVPDj1vvyHoA3mE+c87jWdHVOkJvVhlLAldmLkQsO0WhPIrsCUVEdrEo15vUx5m7S25/5EQHv
+	WmnyVrSSd6bfg0xpCVy4+Zq7XWflFChOQk0h4KCAyHlDZTu/qgUzAu82FagzCPn7qY0PLJKUA7hWO
+	6Xsk7drQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSYe6-0000000HTEv-20GH;
-	Sun, 15 Nov 2026 11:43:42 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSYgD-0000000HTYc-3Mfi;
+	Sun, 15 Nov 2026 11:45:53 +0000
+Received: from smtp1-g21.free.fr ([2a01:e0c:1:1599::10])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSYe5-0000000HTEn-1uVv
+	id 1xSYgA-0000000HTYE-2TA4
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 11:43:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 928176142F;
-	Sun, 15 Nov 2026 11:43:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D75A1F000C7;
-	Sun, 15 Nov 2026 11:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794743020;
-	bh=ox2hY5QH3jmgosgum8+KLHMofQ09oXBIrh5AAI9umjs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=DhVWqplRc+i7a6wdBHIvf95NOR5h8jw8MQl2lhLwBwQX1dEXAJwipsf/63/MLyHPX
-	 BZ+B/gcK40oNdm0Lh6k6exCp+SX0WEcukedmCta/oB3ZOglV6jeZ5Iz7G/2kV58fAx
-	 fkuA23zdFd1HTS151C7xhPWdpBhbcGW19EBSGmwV7r6ncvPf6H/9qGVEskZYkK7tJw
-	 zpokrk2Fy+SjsNrlUF9RXhJM8uk2xUCgj2MUbPKOf4IDHbYbjGMvCS3lQKYmTO99ib
-	 GIWx+1z/GKu+SsCwRuB+GPcQo4VJIWM7SUYr3TyRUox28oNKEdgV45z82pw5ESDCRD
-	 cDjQYSmLR3XYQ==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 62DFC3366C17;
-	Sun, 15 Nov 2026 11:43:38 +0000 (GMT)
-From: Mark Brown <broonie@kernel.org>
-To: Zhu Jun <zhujun2@cmss.chinamobile.com>
-Cc: daniel@zonque.org, haojian.zhuang@gmail.com, robert.jarzmik@free.fr, 
- lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, 
- linux-arm-kernel@lists.infradead.org, linux-sound@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261112071757.154652-1-zhujun2@cmss.chinamobile.com>
-References: <20261112071757.154652-1-zhujun2@cmss.chinamobile.com>
-Subject: Re: [PATCH] ASoC: pxa-ssp: Release the SSP port when clock lookup
- fails
-Message-Id: <179460578277.448985.9924511056534604173.b4-ty@b4>
-Date: Fri, 13 Nov 2026 21:36:22 +0000
+	Sun, 15 Nov 2026 11:45:52 +0000
+Received: from L30177.local (unknown [78.242.88.98])
+	(Authenticated sender: vjardin@free.fr)
+	by smtp1-g21.free.fr (Postfix) with ESMTPSA id 4BB8AB0051B;
+	Sun, 15 Nov 2026 12:45:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1794743149;
+	bh=8W7U3lk1daoKKwP7PjlQ54EL6MrGZ5IE9j29Mm2B3/w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ak4ncVZcgW2qLwK9X4/zElIA1HMdni3U+8SbMT5UJn4dFCQlROXyKI8G9BQvCqj/C
+	 85l6Z4oISGhzno9CeY6PTrTRE16V7rEvBAopAKZHId28/ngsYuwohsm5rhE03spsP4
+	 nID1pNcGQt1JAF+7EOp6kDRnQEx8qPLR5JJB2oheBDRAzcy1WKl8vf3sph6+E6QF72
+	 Oyjb3pyxSWpoFKCVmPAMDn5Eok8cg5T+kAEmQdHs7+LTQNZ+5guh1S2uQc3OBOUn5Q
+	 6lMfFyadDcci1ncA09egoRaOrl0cflBClFU7y+lWlhikwoJ5lZuqMlNVeo3IrjQP72
+	 SlnDToNGaCUuA==
+Date: Sun, 15 Nov 2026 12:45:23 +0100
+From: Vincent Jardin <vjardin@free.fr>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: Re: [PATCH v5 4/5] pinctrl: freescale: add the LX2160A RCW pad-mux
+ driver
+Message-ID: <avmbUyfeTd_VMSYH@L30177.local>
+References: <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v5-0-d246166ea469@free.fr>
+ <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v5-4-d246166ea469@free.fr>
+ <avmX2HwOji6MBuhj@skbuf>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1131; i=broonie@kernel.org;
- h=from:subject:message-id; bh=gtSTmb7rNo9CHbbtSfMn4Vd2lX/MEhlHdywA0vrj8cs=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLJ+znq18m/mWXudbSx+h6QWyKX9l8jgOhSlnmV+P/fef
- JOkJ/tWdpSyMIhxMciKKbLEZXG/rC95vYbv4MI2mDmsTCBDGLg4BWAizyQZGS4LJ/7ZsvpGdJte
- dMgcxX8z73CwrBTfZVOoMoFTK9P3gT/D/+KIAqaS2fG5hsGa1u4G2pOsLPeHFyc4n157+9eBRTb
- +rAA=
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <avmX2HwOji6MBuhj@skbuf>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261115_034551_267596_375823EB 
+X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,43 +85,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.5 required=3.0 tests=BAYES_00,DATE_IN_PAST_24_48,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 12 Nov 2026 15:17:57 +0800, Zhu Jun wrote:
-> ASoC: pxa-ssp: Release the SSP port when clock lookup fails
+Hi Vladimir,
 
-Applied to
+> Did you see my feedback on this patch for v4? Comments?
+> https://lore.kernel.org/lkml/avjaK3cOj3iQ6G6w@skbuf/
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
+No !, for some reasons, I did miss it..., thanks.
 
-Thanks!
+I can prepare a new serie to make it a bit more generic,
+but I'd need NXP/your reviews for those CPUs, since I
+cannot test.
 
-[1/1] ASoC: pxa-ssp: Release the SSP port when clock lookup fails
-      https://git.kernel.org/broonie/sound/c/7072cf805de6
+It seems to be quite easy to update, I'll just
+run some basic checks.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+best regards,
+  Vincent
 
