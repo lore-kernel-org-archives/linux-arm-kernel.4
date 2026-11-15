@@ -2,102 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4310C606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 22:15:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA2D606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 22:20:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OKo/gi6I;
-	dkim=pass (2048-bit key, unprotected) header.d=yahoo.pl header.i=@yahoo.pl header.a=rsa-sha256 header.s=s2048 header.b=S9cTi6Lh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JXp5YsLY;
+	dkim=pass (2048-bit key, unprotected) header.d=a-marquet.fr header.i=@a-marquet.fr header.a=rsa-sha256 header.s=gm1 header.b=PCcS4G01
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Unsubscribe-Post:
-	List-Owner; bh=2F2z0ZuZcbyuAjZU7VnocXFK2M42aX34gNp3ecJ79HQ=; b=OKo/gi6IOxor6Q
-	TrI2HLdJMHpjRDblTwgb3xTah5LT2a/JSTX4sDrI/GC7KQfzCqbf7c/nP2MLWV50k24gaPxKdi2vX
-	jHul0c7GxdNDJr0sHh7FwjlEwFAvH7iXmsoUGZwHaaOEE4vXMqaq0L/Zkh1Shnf3POHaxL4YSrpXT
-	fvYtdvxmTX8bM31cW5/wHZKVIMkoFt6mlE5dgrlApBfy+zNk+lp/7JE36VuDH26BGm9ExSsrpFdFO
-	ygxnOrP/g5o/wjnMcGi9IqLavF7dfz4Goxra8iipjZ6HdENQcawPolQOVeLKQBGi7a8YdBG/TXErS
-	rzSNO6L5kXmIjIkeHP0Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=uVVWpXtmmKaz/e4u5ACa4C96jB5l+frR7pn7W/z1ssQ=; b=JXp5YsLY1CggUnwwqu0dbC1+jU
+	OskfAKOegaRzAFykM0XKIngZWHaujmhUgRj8ycA2LyqHq1ib2K7NO8K90X8LPLIf1DzHjyggwY0kd
+	P+mRWUB9yPzP15uNH8rYTb6xv5H2Nm7/d4DQtFB+bUBn4yDufZtql6BNIe1aWQ93UgFSeeV1mzIBJ
+	lYEkBCvCWsUniHnmmz0j4ctr8AGqGWkqDZ8u7cKNXeps4zytr0F8kR0GQpZa/pMF5cC0BxsTUrc7F
+	ga5Gkf00BYWoHqRMVM59RUc0RpNch8xsz4a5eAZtcCPHvD+qpvLiQmJq6svPzXkilQe/v5/gUcIWn
+	L4j59KuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSiVS-00000000cVI-200S;
-	Sun, 15 Nov 2026 22:15:26 +0000
-Received: from sonic-euwe1-0017.asd.mail.yahoo.com ([34.2.82.16] helo=sonic.asd.mail.yahoo.com)
+	id 1xSiaY-00000000ctr-1ohw;
+	Sun, 15 Nov 2026 22:20:42 +0000
+Received: from relay2-d.mail.gandi.net ([217.70.183.194])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSiVP-00000000cUG-3tVo
+	id 1xSiaU-00000000csd-3nld
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 22:15:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.pl; s=s2048; t=1794780920; bh=2F2z0ZuZcbyuAjZU7VnocXFK2M42aX34gNp3ecJ79HQ=; h=From:Date:Subject:Content-Type:To:Cc:References:From:Subject:Reply-To:Content-Type; b=S9cTi6LhY2apmj7BjKqKoB6081fiDVvPkhdFmk6IwYe/09zZLaOALZS+Dgd39bOOaURQXTmpUXUNTeGq6AapHsf6rFcejEiMyrOnGlpP3G347uE/xqLWTG7kVIbX8CZcl/m2TugR3VWfHHYQ1e0G7exbuFw/5E9baKIRDRvbpTfL5fjNRNyONjgApKeJJBd428H85pJBkXIGpNvPqmSUrTkx3LG5DkNnz91ZeKR211hJ55XGzsQv2oZPWyC6jXvqVZ++VGlWB6kBnN1GSf6F+Ye2DT4Tno+M1PwRsKKe1BZEuicwof73VUu4zbgrvg1oziaukydIYavc0NXVoGeGpg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1794780920; bh=8io4HMmBHjf90ncS3kftgptXmHBAbxhh8oY345FWlNT=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=BgYWuToiTRfg8CGs5ho8lBXG0m6MxIayP55YOLU24JCSnH5KZcEGxc/emTtCNbnIIxTkcbKAe3qSp4LCBai7PAXFjiwwlCrihLx7G8LkcYfVegDz2DBW/ycqvYZRkbAV+BJUR2vYhfXaiMUnQDE4K2UNhg4OnqoopMhBOd/OFoRic3zHXh9WZ/NPpprNRJnUTMH8LBtmLXmlfuAtqz5ouqTWUZNbMXtQ/56Lt5oPRWO3rudL96J5bHBC9IaHSjGw8ZibxYrfXQwBkX/fmfI5XOx0ICypgiQhHiOgDsj8Z3BZXuPfDeyOCTNLitzllj+NWTN1mX0riP6Nc4pKk2pPXw==
-X-YMail-OSG: cKdOGDwVM1nsX0eogjTveVDoZYwLm_y6FI.Lo4VvAN2AVen6dCWuS3SKdH8QymF
- HeJz658itmZov0GrRBecn.AnHGSmNhlVPkLpFcVLhDHZp65m0SpLum7F0c8I6VN095Ni6vJA0yvu
- aR13Ze84FTAL8N71GQ2rcTkzY3FR.ywrLd7V5SxvHaMPoaM8r_bF8Ocy8cdLjt3Wcra2YvWY41nN
- Y0i9u6K1puJGacQTAfFBOAw8646rzO.MEiGkEPr85mUrnXyqqVRQgULk1AJFF7bMPM9c4wT_1e3B
- nUVnNAR0g_NZlSemHcWAV1HDRLUpNKMy8.uwby7FpgcmVuRB7jqjWUkHGvUZ7UNDrSljjqYY8jc8
- LYDJyZXqK2xSiEaIRpAxf9ZqSQFCW._7kuXjXI1wrAhA7oLup7M_1r9wD3vZyODwJb5efhm_9qfY
- 0_WPdJxsMklP.dgbiwQHyztaGnc7A1GA2GX2rmS73yRiIPRiZV2r923nXBDYRwPcatT2SYMtbHWQ
- N7zm1.F__3c9DGGAz9JmACjUNI2VIb3Ugsl_cJmDVI2GZ5oCVhZrOjlvSOkYPcA7tSjca9zQLmWe
- LcOuTlNd18fUalEYUqcBmwaYTfhBOWna0PbTRkCDB6VWo4eQINDGVezm2JrKrASq0tfJcCloJ829
- 7ZayR39ZYVjrll5hGGKl68BINKvC7Iv7UatLzhoyjaNJB3AeKP7QfixrLX4_7rHcExm4PTleGxKw
- vXC03llRSI7HTYrLGpZhVS45_duPX_jr1wtrd3sajsHb4nQXSR1cSKEZBBGBL6P_x8VQiHFdPiAE
- DQeY0oDEgDbuwcQWqrpZEMpKB1_j.aYtNoIf2HKkAy1c1I_dM4uNzuG2M0_AvAoWsJ9JdlzGBvHB
- hoCbZ270BCJ3mS4KhQy3.LpBXg4Fk6qdS.bzvyHxEMEiMtQpeX8qddNMEQFGLX1PBQgCKIQm3vq1
- toB910W0hy_5BuY3AH69x06uPh0JV6FBrbhy0vg0RLhq.h8q4vYjwG8isaL8Mrpwh8CIAHzOB5Bn
- nEH2xcYQ2gxXANdy_jfdbWyaVc1GkMSgAp3co9JJJHoK4E6LH3PxjqeVYMjTJ_d8XkxiXAPG_oMo
- 8Idse8deYm181fMvYMo5ust2.FJbJVxd18dDmEahAOLt9mvmYgtEIgaSADih0kIwyVVjJnNUSGZW
- LvKoNECYZO319rDu3YIIV_IE7Q0zY3cRmNvOsKOxMRX5v9_y4u3rRRlELD1C1eD0E4xKLpm8c3CU
- 6AgoMdd9IWse3SrmH2PyvmxqbgurRd.mJNSLx.nWnJOYddYQf5Bgn1P50oduQrV_0mzg7MTC05fO
- 153eHdM1PiEnaEglv4J_98E_dBDkJmzxlUNQ_OxW5I1S6XVoN.mRj0t7P5LfK3o1bZdx5DqU83T9
- FoCdZQ_g62dmz9M.yIF9alxZvegJLc2X_LCRK0in2aD1C3N4WVRFw.92KTHkzjOUnXAVnsUBZl4H
- SZKmiVSsIxiU0j1_XmQD3AP0rJbMLGJz3uRvixs5gBTtUyaf6yU5epo9HnqhYzRDX_KqQN2SRX.r
- KIzDNSHcxvy9AgdBm0W5p7sELB6lF3ZAza7U9cIGvjZsO_Lj7bShCJJMZUWNpwy44kDxsoHghqM.
- ZjsWLg1_2riOdlWLtkADNqzTnSPUdhVl5MCHrlvi9p1cgpz0eBSn7iXvqepF6WojlLKzV7rK0Axj
- I_b1VOMumhlWN7MNIZoLHjDpZcfLObnD06PsT3G3_JRgpJ_V2YgAfun9wr6DDHWtUfGBUwT69n5z
- 5k1sMhrA5FNYYXTNH3mCNrBYND13Rs_fvJsFRXRAHxvj6SCchMevNSkuJPcTXsOj6jJ3t93sOXhh
- JZCYhc97StbFWZI8bC8n8rBnA6TViv_Tk8P20cibLUy4abFCEXHY8qClTTzroImtoGNRhn1lf3QK
- wfvfvV0tGYz8R.C9kKFj3r67Zfir17KzJ9osLThKbAwzxpBBOLeb5M52ArZK3jde8qrjmyxu8pyB
- JFPkDhQ20RVFpKTj93t95wgE-
-X-Sonic-MF: <tomasz.unger@yahoo.pl>
-X-Sonic-ID: 49e5a92c-a159-440c-ab6e-d16bcb01beff
-Received: from sonic.gate.mail.ne1.yahoo.com by mail-asdoutdeli-p-cin-euwe1-prod-sonicconsumer-svc-104 with HTTP; Sun, 15 Nov 2026 22:15:20 +0000
-Received: from dip25.lsn.ir2.yahoo.com ([87.248.99.34])
-          by hello (SMTP) with SMTP ID c8d60a975a832e99b8d64eff3def6a17;
-          Sun, 15 Nov 2026 22:15:17 +0000 (UTC)
-From: Tomasz Unger <tomasz.unger@yahoo.pl>
-Date: Sun, 15 Nov 2026 23:15:15 +0100
-Subject: [PATCH] dmaengine: bcm2835-dma: Add missing
- of_dma_controller_free()
+	Sun, 15 Nov 2026 22:20:40 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6FEE1429A6;
+	Sun, 15 Nov 2026 22:20:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=a-marquet.fr;
+	s=gm1; t=1794781233;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uVVWpXtmmKaz/e4u5ACa4C96jB5l+frR7pn7W/z1ssQ=;
+	b=PCcS4G01N/7oc+BSzISLMHLPlWllbCGKxopRR+PPW5K62whwu18llqJYWI3KZt+nvD8ZUV
+	MG2w2BYr9WXXuHfLPZw7vPkTsf6Kg7P6FeUE1zBmT3k1bu8/C8sIPD83HgJYvatZZfEDH3
+	mXrrmk6d+H9E+MxwGuBIa0W8BR7SCHwuJsG1NlxKn4K305MAQXmT2cFkOUfnHTBvlYV0ni
+	AsbT9VgQWDYn6uS68+28Z9AEZ2Yrup+g+MdqlTrCv2BofwlpTknfXF4BWCS9WMOvHcNVUv
+	AMnTiTUaBfQanm0ie0DUSDBTuneTa11fQpleRspM0dIoYuowRNNXWbkqoe8QjA==
+Date: Sun, 15 Nov 2026 23:20:24 +0100
+From: Alexandre Marquet <tb@a-marquet.fr>
+To: Inki Dae <daeinki@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Douglas Anderson <dianders@chromium.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	Lukas Timmermann <linux@timmermann.space>,
+	Henrik Grimler <henrik@grimler.se>,
+	Hendrik Noack <hendrik-noack@gmx.de>
+Subject: Re: [PATCH 1/3] drm/bridge: analogix_dp: deassert DP_PHY_PD on
+ power-on for exynos
+Message-ID: <avowKMv2v5gCxkIT@laptop-218>
+References: <20261027-drm-misc-next-manta-auxbus-v1-0-3a45c3cf531d@a-marquet.fr>
+ <20261027-drm-misc-next-manta-auxbus-v1-1-3a45c3cf531d@a-marquet.fr>
+ <CAAQKjZPYAn98+8Wtjesr7GCh1s_pX8mWizW=HoY5Pj9xO9St=Q@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261115-bcm2835-dma-of-dma-free-v1-1-d539234bfec5@yahoo.pl>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMywqDMBCF4VeRWXfAiY2XvkrpQuOJnYIXklYK4
- rs31dXhW5x/o4igiHTLNgpYNeo8JcglI/dspwGsfTKZ3JQiYrlzo6kLy/3Y8uyP8QFg+NpWVen
- yRq6U3kuA1+9Rvj9Ox0/3gnv/c7TvPwce4ll7AAAA
-X-Change-ID: 20261115-bcm2835-dma-of-dma-free-ef85776c0914
-To: Vinod Koul <vkoul@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Frank Li <Frank.Li@kernel.org>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- dmaengine@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org, Tomasz Unger <tomasz.unger@yahoo.pl>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794780915; l=3260;
- i=tomasz.unger@yahoo.pl; s=20260311; h=from:subject:message-id;
- bh=jV0a/9DTGW1SPvNbP0Mt26tL8Imf7uBrc5dwl3yGkZM=;
- b=CscCH9wbwWmQedrCZPpnmGMn+DkzApvTh/R9gV9+S6vD7i2g0um3z09nUEFA3pGeMASBZjqbA
- dpj+AHnai5fDlH/VxgdEU7Wo+HF8NFz+66pNTc7PPRNQXcZNozKTnGp
-X-Developer-Key: i=tomasz.unger@yahoo.pl; a=ed25519;
- pk=EPPsO91uz/0J2cTQ6ol+dgxYaieEc9dKSXWUb51n46c=
-References: <20261115-bcm2835-dma-of-dma-free-v1-1-d539234bfec5.ref@yahoo.pl>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAQKjZPYAn98+8Wtjesr7GCh1s_pX8mWizW=HoY5Pj9xO9St=Q@mail.gmail.com>
+X-GND-Sasl: tb@a-marquet.fr
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: dmFkZTGffJcFJiJh/3cNGj1MflHHS8lHdWXQPN/F7+YeyQJd8apnbMT9uBaByhqhThT3SwSVwNViRvDZ1+RgV+72iZnsonfba4nb1Pso/LksWX/AIFh1o2tFyEBZwEwylvkV2m00Wuq4XMPZVOIfhtkT/XAriiWqu2LuJOgzHDkx4fVGchrJJN2SgPl5n5EFxfF1t2x5qAqZjPK3pZZyUahNEXQ43z0OD31N8LVKJj+uSBRrdEEuXtK2g8aN9YrTUMWWhxvvz4Mc+Ym/xs51O/ER2UlTWDHcRJthgSMGcG7v7jaRGhaCruc/1h10IIgErJSdU+lLK9X5GSvqi4m87VUsAOdNF+IivHZ7Qt6xuB9wDS1TVLJQyQPd6oYlZ4hkOFnTNcBksvPZD+DLyMJuVg3GrKtJ+BbXrJMDTSYKxoGOxZiXl5TVijW2F72/PvNMLyAi08fKM6ngyOu1btKB0josxYaFF5MxqR8uQgUj2wsxF/0wu2yjk4ty+aZJ2hZzYJzheVb9CvEfsA7kq5kM4c2ZN+h0ZdQuFkizyHgZH0edpsDbeqKdO8l+ZFw3auOHTa4fkgZ6pBCqSmk37k1P9SoORMvsJvxLm2hfUcnpR7eMEJ6iMX3qF0+0o4l1GZnbrIjXvOYvGJ9+mOfDUHmLYcyviwKmbyAjU0DLkmErHS2nvuuRxQ
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_141524_109958_166E3E1E 
-X-CRM114-Status: GOOD (  16.34  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261115_142039_117100_CE4609FD 
+X-CRM114-Status: GOOD (  36.69  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,101 +101,191 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-bcm2835_dma_probe() registers the controller with
-of_dma_controller_register(), but of_dma_controller_free() is never
-called, neither when dma_async_device_register() fails nor in
-bcm2835_dma_remove().
+Hi,
 
-The entry stays on the global of_dma_list and keeps a pointer to the
-driver data, which is devm-allocated and freed when the device is
-unbound. The next DMA channel request for this node is passed to
-bcm2835_dma_xlate() with the freed structure and, depending on what
-that memory holds by then, either fails or crashes. As the stale entry
-is found first, this still happens after the controller has been bound
-again.
+Thank you for this feedback.
 
-On a Raspberry Pi 4 Model B, unbinding vc4 and the DMA controller and
-then binding vc4 again results in:
+Le Mon, Nov 09, 2026 at 02:15:25PM +0900, Inki Dae a écrit :
+> Hi,
+> 
+> 2026년 10월 27일 (화) 오후 9:17, Alexandre Marquet via B4 Relay
+> <devnull+tb.a-marquet.fr@kernel.org>님이 작성:
+> >
+> > From: Alexandre Marquet <tb@a-marquet.fr>
+> >
+> > On exynos platforms at least, calling
+> > analogix_dp_set_analog_power_down() to power on (with enable=false) CH0
+> > to CH3 or the AUX bus currently produces no effect, unless the function
+> > is first called to power on everything (by setting block to POWER_ALL or
+> > ANALOG_TOTAL). The reason for this is that DP_PHY_PD being asserted
+> > (which is its default state) renders every other register bit
+> > ineffective.
+> >
+> > This is particularly an issue for AUX bus initialization, that tends to
+> > happen before anything else (e.g., to request EDID), and thus, before
+> > anything has any chance to request a power on of the whole analog
+> > section of the chip.
+> >
+> > This commit allows analogix_dp_set_analog_power_down() to power on any
+> > block, by deasserting DP_PHY_PD if needed.
+> >
+> > Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
+> > ---
+> >  drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c | 19 +++++++++++++------
+> >  1 file changed, 13 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+> > index c1344a3f013a..9f634d4e4793 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+> > +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+> > @@ -256,6 +256,19 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+> >         if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type))
+> >                 phy_pd_addr = ANALOGIX_DP_PD;
+> >
+> > +       reg = readl(dp->reg_base + phy_pd_addr);
+> > +
+> > +       if (dp->plat_data && (dp->plat_data->dev_type == EXYNOS_DP)) {
+> > +               /* On exynos, register AUX_PD and CH[0-3]_PD have no effect if
+> > +                * DP_PHY_PD is asserted. So, when powering any of them up, we
+> > +                * need to deassert DP_PHY_PD first.
+> > +                */
+> > +               if (!enable && (reg & DP_PHY_PD)) {
+> > +                       reg &= ~DP_PHY_PD;
+> > +                       reg |= AUX_PD | CH0_PD | CH1_PD | CH2_PD | CH3_PD;
+> > +               }
+> 
+> When DP_PHY_PD is set, this path clears it but leaves the bandgap
+> power-down bits unchanged. If the register retains 0xff from
+> POWER_ALL(true), an AUX_BLOCK, false call produces 0xcf; both
+> DP_INC_BG and DP_EXP_BG remain set. Could you check whether AUX can
+> operate in that state?
 
-  Unable to handle kernel NULL pointer dereference at virtual address
-  0000000000000018
-  Call trace:
-   find_candidate+0x64/0x210 (P)
-   dma_get_any_slave_channel+0x64/0xd0
-   bcm2835_dma_xlate+0x24/0x48
-   of_dma_request_slave_channel+0x178/0x2a8
-   dma_request_chan+0x20c/0x380
-   snd_dmaengine_pcm_register+0xa4/0x2a0 [snd_soc_core]
-   devm_snd_dmaengine_pcm_register+0x60/0xc0 [snd_soc_core]
-   vc4_hdmi_bind+0x4d4/0x8e8 [vc4]
+It can. But what happens is that after calling POWER_ALL(true) (thus
+setting the register to 0xff), when reading the register again, then I
+get 0x7f.  Hence, after calling AUX_BLOCK(false), we get 0x4f and not
+0xcf.  And although DP_INC_BG remains set as a result, AUX still works.
+That being said, it sounds wrong not to deassert DP_INC_BG. This was
+likely added to POWER_ALL for a reason... DP_EXP_BG, on the other hand,
+does not seem to have any effect (and is not used anywhere, as far as I
+can tell).
 
-Free the controller on the probe error path and in remove. In remove,
-do it before unregistering the DMA device, so that no channel can be
-requested through the node while the device is going away.
+> I suggest limiting the new handling to AUX_BLOCK and CH[0-3]_BLOCK.
+> When the bandgap bits are set, keep the other blocks powered down,
+> release DP_INC_BG, wait as the existing POWER_ALL(false) path does,
+> and then release the remaining required bits and the requested block.
+> This also avoids changing ANALOG_TOTAL, false, which currently only
+> clears DP_PHY_PD.
 
-The bug was found and the fix drafted with the help of an AI coding
-assistant (Claude).
+Right, in this case I'm leaning towards writing a small helper function
+for AUX_BLOCK and CH[0-3]. Something like (not tested):
 
-Fixes: 96286b576690 ("dmaengine: Add support for BCM2835")
-Cc: stable@vger.kernel.org
-Assisted-by: Claude:claude-fable-5-2
-Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
----
-Verified on a Raspberry Pi 4 Model B: without the patch the sequence
-described in the commit message oopses; with it, binding vc4 while the
-controller is unbound is deferred and HDMI audio gets its DMA channels
-back once the controller is bound again. Both paths (remove and a forced
-dma_async_device_register() failure) were also run under KASAN in QEMU
-raspi4b: slab-use-after-free in find_candidate() without the patch, no
-report with it.
----
- drivers/dma/bcm2835-dma.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+void analogix_dp_write_analog_power_down(struct analogix_dp_device *dp,
+					 u32 phy_pd_addr,
+					 u32 mask,
+					 bool enable)
+{
+	u32 reg = readl(dp->reg_base + phy_pd_addr);
 
-diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-index 06d830d36882..cf29d897450e 100644
---- a/drivers/dma/bcm2835-dma.c
-+++ b/drivers/dma/bcm2835-dma.c
-@@ -1011,13 +1011,15 @@ static int bcm2835_dma_probe(struct platform_device *pdev)
- 	if (rc) {
- 		dev_err(&pdev->dev,
- 			"Failed to register slave DMA engine device: %d\n", rc);
--		goto err_no_dma;
-+		goto err_of_dma;
- 	}
- 
- 	dev_dbg(&pdev->dev, "Load BCM2835 DMA engine driver\n");
- 
- 	return 0;
- 
-+err_of_dma:
-+	of_dma_controller_free(pdev->dev.of_node);
- err_no_dma:
- 	bcm2835_dma_free(od);
- 	return rc;
-@@ -1027,6 +1029,7 @@ static void bcm2835_dma_remove(struct platform_device *pdev)
- {
- 	struct bcm2835_dmadev *od = platform_get_drvdata(pdev);
- 
-+	of_dma_controller_free(pdev->dev.of_node);
- 	dma_async_device_unregister(&od->ddev);
- 	bcm2835_dma_free(od);
- }
+	if (enable)
+		reg |= mask;
+	else {
+		if (reg & DP_INC_BG)) {
+			reg |= AUX_PD | CH0_PD | CH1_PD | CH2_PD | CH3_PD;
+			writel(reg, dp->reg_base + phy_pd_addr);
+			usleep_range(10, 15);
+			reg &= ~DP_INC_BG;
+			writel(reg, dp->reg_base + phy_pd_addr);
+			usleep_range(10, 15);
+		}
 
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261115-bcm2835-dma-of-dma-free-ef85776c0914
+		if (reg & DP_PHY_PD) {
+			reg |= AUX_PD | CH0_PD | CH1_PD | CH2_PD | CH3_PD;
+			reg &= ~DP_PHY_PD;
+		}
+
+		reg &= ~mask;
+	}
+
+	writel(reg, dp->reg_base + phy_pd_addr);
+}
+
+Also, since DP_INC_BG looks functionally equivalent to DP_PHY_PD on
+rockchip, I'm tented to make the behaviour consistent accross exynos and
+rockchip. But I have no rockchip board to test.
+
+> 
+> Thanks,
+> Inki Dae
+> 
 
 Best regards,
---  
-Tomasz Unger <tomasz.unger@yahoo.pl>
+Alex.
 
+> > +       }
+> > +
+> >         switch (block) {
+> >         case AUX_BLOCK:
+> >                 if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type))
+> > @@ -263,7 +276,6 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+> >                 else
+> >                         mask = AUX_PD;
+> >
+> > -               reg = readl(dp->reg_base + phy_pd_addr);
+> >                 if (enable)
+> >                         reg |= mask;
+> >                 else
+> > @@ -272,7 +284,6 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+> >                 break;
+> >         case CH0_BLOCK:
+> >                 mask = CH0_PD;
+> > -               reg = readl(dp->reg_base + phy_pd_addr);
+> >
+> >                 if (enable)
+> >                         reg |= mask;
+> > @@ -282,7 +293,6 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+> >                 break;
+> >         case CH1_BLOCK:
+> >                 mask = CH1_PD;
+> > -               reg = readl(dp->reg_base + phy_pd_addr);
+> >
+> >                 if (enable)
+> >                         reg |= mask;
+> > @@ -292,7 +302,6 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+> >                 break;
+> >         case CH2_BLOCK:
+> >                 mask = CH2_PD;
+> > -               reg = readl(dp->reg_base + phy_pd_addr);
+> >
+> >                 if (enable)
+> >                         reg |= mask;
+> > @@ -302,7 +311,6 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+> >                 break;
+> >         case CH3_BLOCK:
+> >                 mask = CH3_PD;
+> > -               reg = readl(dp->reg_base + phy_pd_addr);
+> >
+> >                 if (enable)
+> >                         reg |= mask;
+> > @@ -321,7 +329,6 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+> >                 else
+> >                         mask = DP_PHY_PD;
+> >
+> > -               reg = readl(dp->reg_base + phy_pd_addr);
+> >                 if (enable)
+> >                         reg |= mask;
+> >                 else
+> >
+> > --
+> > 2.43.0
+> >
+> >
+> >
 
