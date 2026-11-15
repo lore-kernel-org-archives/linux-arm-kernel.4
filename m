@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31020606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6375D606A323
 	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 23:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aD725yyP;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=g2Bc+tgs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zgavNXAU;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=e+Ihbon5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
 	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DPF3R2nyDFGBd23FCUBJCvWm9MUDvz76zdHLvUpJ8sA=; b=aD725yyPA8LhwY
-	mIqdHrSR6sZtbNl4phK0+XeniHdFtR80W19908BNx9SJP6TmqPlsXcaDbJPW7+I50G8db/Koonwb6
-	7glRtlth1VkV71ihiCRFFPWkx9I0CBR7RnOhXvBap4jgl86hAEt1/P/ydaLJ/3bBklAIL6WUUsZAF
-	e+y96vA/WRQ7ziraqJdplfUT8cGJ35P6xR7oZkEDmLT2hNVXB7ldTaUFvZtB3ozKQJDeCGrWZoI1r
-	9/R8k9u2j2TcJYEsCv2ql2v+uGFxzOwRiKQRRk6WCFtYwUqgG3ZciO8k4sCpCydoCoOoIC0yp3Z+d
-	SWBA4OUcCuyo/XxfBFOg==;
+	List-Owner; bh=yBceUHc0juSB4msgnOEx+rMbLLKcD6wtYjNEq68B84w=; b=zgavNXAUkHhvPZ
+	gpZS/XkoJZk686CtfgwxeDiMHEhcMaWvZjkqTvqn4xd6gN2JV0YqtoUbJYynBNN8hO2+m72k8CAlI
+	rtvNbqlFImolKO+ojzGBBXeML3P7h7f3VkZBdJVwReATUIPpgl2isLHVMjf5PaZM0YR9LYTDndIbT
+	ddMZBFSo3dt82WywbhWixxcTc003ap1P/9gYYHoO7rotSJd2ly/y1UhfDY/z7Y9YUch0m1ihSkWpY
+	hUkljflh+6IPx18loo+uGWd7mc//6xjaMSXB994mmx8ZDB3OPBsold2DerU3nPmGbqDCGUZB0t81a
+	+Xb4O++CEn10zzH05xsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSjgf-00000000j02-0oLB;
+	id 1xSjgf-00000000izo-0ECR;
 	Sun, 15 Nov 2026 23:31:05 +0000
-Received: from mail-eastus2azlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c110::1] helo=BN1PR04CU002.outbound.protection.outlook.com)
+Received: from mail-westus2azlp170120002.outbound.protection.outlook.com ([2a01:111:f403:c007::2] helo=MW6PR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSjgY-00000000irL-1cxe
+	id 1xSjgX-00000000irW-1SwZ
 	for linux-arm-kernel@lists.infradead.org;
 	Sun, 15 Nov 2026 23:30:59 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UPcyeiQqILKhzTCwjf0b7qCEsWkN0qEZBUhDbAbFTgGYDfEOZfiZ/Um5zQqe1rumc+lAtT+vSRj/+AytTjeRfXjJNCdKGcVJr1lS/CGoaj9u0gdvkjdkBtXXs/Q6ZoFjJa2QiEoCHGpwXz2GqCvk4jG11K+XEPR6po99hW1Yvbc4ZvWMv6RPpDwioxUu46M16J9pHDaAta8u9aTFfl0TKCcBGzjUyT9sFPfBEaChFU91Fby6uG5Ps0aVuG+JvVk02uyrlLFa65NDijBBzoJHifIR+iZzYZCQW5w/uvr3h0l5lD4fqa256CllAQpz6HDd2ACdhwfPGbzC3RUfByT0pw==
+ b=b4gQyQdm/z3npwHqi+kNhBAt9jrwY4Z9Kz+q0cFVyJhs3MWFxvxvK4+owO6Negy/S6BdIEiArYAZAl7s9vWHYqPiKaG6AbgP5tAzG1Qx5+c7aQeQ51D2rs0QKQ5kUAUd5edZs5VgdcxWI9tOT/f7nQiAe7zy1emZTlrCWNgN7IlkjpX54Ugy4UyTTnmEdBCr/8uAckQ6AWLGxfzxX4MBYYToXhwmtkrgymuT1seFtanMmc58LUN7n9Ok2RygWjn40ELbuOZQs/bm1POXFQDXThGrhteeYAI9KyrTTs1Kx5ffSk88SGwXQmIqqexhScVicDoxAd/frpOLuCqwv1AfgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DPF3R2nyDFGBd23FCUBJCvWm9MUDvz76zdHLvUpJ8sA=;
- b=yigAkuTHe1AQLWL+BoBkptmGOAEcL7XQU/lHmbesLzivibLZuu/ls/ldHwViQeD1MGdSzbYh9BxL6LHQK65nVifohS/jVOpjhfS+eXd0es4CsdyP1d2dZuTKI59DJ8kMUrOyHurg6nim9Be38tcpU3Z93Cc1u8rJr1R54/BQ+hoPTsXkq0EjgoHGgvCqJA5orRrj7koHbiuuY4k0LjToq8px7l2CiBcOEBMHikwwSLemQle/azHSgmjUVuDN4eBVEowPsMlnnTFSUKFjmWMwbH73c4S7+q9kiqalMzhnaBJF+zV7TT7kx2UrVXjmeQ2q9bymYOIUMIPJ140G4ujFTA==
+ bh=yBceUHc0juSB4msgnOEx+rMbLLKcD6wtYjNEq68B84w=;
+ b=RNCJNA83vtxT8WMBMMujo8oqkaWyiYFodqNpuXCsa8wkXyzr6wev3lOX0/Avh6yoxsfg/LuHzC3QHHc2vTczHG4tYHVu0Hsz7wpyie2djTnjrZ+ghv5wWsnRjQhzqkXokjiSDcUrjbgr06D7gnfl0Iv5IhPQRRpvFp8JQpbcdQ1JNc5tHNCdh85XgHuHqbmjiEWJK2GkgvuNqb3IkNHwTniEmvMrsj8vFci1mLojUxezrvXJULEYmUvdmbSSij2TW8R/dR+xqZhC/8+TXLZF+Pyh8A5PuMptZ2vQ3bbLHa4rzup6PXouuoOgIUYSJUxWamSrW/kzY0Q0e2RL9gDCzw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DPF3R2nyDFGBd23FCUBJCvWm9MUDvz76zdHLvUpJ8sA=;
- b=g2Bc+tgsEiFwCgzGGsaK2nzTcg23EVy/nn6VhZccG5zGjLuBEyzh63w/yJyJHu3qrD+Rvu2tzgdStLkYLn7l8O6sc+KxaHwodnsv/lt9Jgz4NrgKN8svgD0vPIoV11Fas+dVEVtgAKYpIUh1HQ61CJ0bdbfvrb4Y0/+u39p4rS/QrHRWkMYsaHKg+oLCXtqr2OcIly5msDg2OrDABaJxDRYohGB/bF4gs/6knaJHJu4aiW4Ot056zdp/c/SbFbQEKQ1hWRa9YBbrwYUYlDs+ap4RxQ/hJgZ2nZPtFWqmkPQq0EuN4YfdlA/+NDsft+dWUAxq2erdHHCPEvOq53AUsw==
+ bh=yBceUHc0juSB4msgnOEx+rMbLLKcD6wtYjNEq68B84w=;
+ b=e+Ihbon5E2EkgImcajZL37hITRCt08a/EUJd4flue6EhZGV52bB/hpO0/7bJwyur/xmPmeF2wtbkw6BlpfRVGJW4dHTt+CGMvtpC054A6hsbxxbN/zEyWDSNsKu327d4iWq03xczbyhP7ymcKOjGvKJ6GLgiOvpPam/V6qYjNCrRKgZ78fJ6x6cv9wqx7emZyX3cGfkl/t5dmNGLlhXqemzAGsGZj4HrL2SD+BqwYwgKKKstQR2jOvSYB0s+qnkQeZAIfDD7J+50UdRlbAUqaMwHoTV8fWXqeqeeOus7L4KELvudBa5BOMzCZjOPImfoSskbKE7IsDeLUilmFNlRIw==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from CHBPR12MB731189.namprd12.prod.outlook.com
- (2603:10b6:610:33d::12) by DS0PR12MB8815.namprd12.prod.outlook.com
- (2603:10b6:8:14f::16) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:610:33d::12) by CH4PR12MB540976.namprd12.prod.outlook.com
+ (2603:10b6:610:51e::22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Sun, 15 Nov
- 2026 23:30:45 +0000
+ 2026 23:30:49 +0000
 Received: from CHBPR12MB731189.namprd12.prod.outlook.com
  ([fe80::b0e5:123d:fe06:e10d]) by CHBPR12MB731189.namprd12.prod.outlook.com
  ([fe80::b0e5:123d:fe06:e10d%6]) with mapi id 15.21.0615.013; Sun, 15 Nov 2026
- 23:30:45 +0000
+ 23:30:49 +0000
 From: Jason Gunthorpe <jgg@nvidia.com>
 To: iommu@lists.linux.dev,
 	"Joerg Roedel (AMD)" <joro@8bytes.org>,
@@ -69,70 +69,70 @@ Cc: David Matlack <dmatlack@google.com>,
 	Pranjal Shrivastava <praan@google.com>,
 	Samiullah Khawaja <skhawaja@google.com>,
 	Mostafa Saleh <smostafa@google.com>
-Subject: [PATCH v3 02/13] iommu/arm-smmu-v3: Support the DS expansion of range invalidation SCALE
-Date: Sun, 15 Nov 2026 19:30:32 -0400
-Message-ID: <2-v3-97feb2edfbab+748d0a-iommupt_armv8_jgg@nvidia.com>
+Subject: [PATCH v3 13/13] iommu: Remove pgsize from iommu_iotlb_gather
+Date: Sun, 15 Nov 2026 19:30:43 -0400
+Message-ID: <13-v3-97feb2edfbab+748d0a-iommupt_armv8_jgg@nvidia.com>
 In-Reply-To: <0-v3-97feb2edfbab+748d0a-iommupt_armv8_jgg@nvidia.com>
 References: 
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: IA4P221CA0001.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:208:559::16) To CHBPR12MB731189.namprd12.prod.outlook.com
+X-ClientProxiedBy: IA4P221CA0005.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:208:559::10) To CHBPR12MB731189.namprd12.prod.outlook.com
  (2603:10b6:610:33d::12)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CHBPR12MB731189:EE_|DS0PR12MB8815:EE_
-X-MS-Office365-Filtering-Correlation-Id: e9fb610e-0f90-431d-1434-08df43707861
+X-MS-TrafficTypeDiagnostic: CHBPR12MB731189:EE_|CH4PR12MB540976:EE_
+X-MS-Office365-Filtering-Correlation-Id: f847bbd2-c46f-4e97-34ba-08df4370791c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|23010399003|10067099003|5023799004|11063799006|56012099006|261026121527099003|261026140227099003|261028144727099003|261021135927099003|261022105027099003|261022075727099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: Ojhd0EIhyGcfSVvSAjtFnduk91C67SnKs9jRzD5IQDPSJx3/KiXRmbSszDmF7yhZ+T3dPul2zfM9+Niqx2VZR3vZkH4RAYKSq3We2omdfsiU+2wTh+og513R1Dq9HypDiVyi6rZ+DgKCqtJVAWkxdLB+Rw8uyo2UpZTzY9waCX0EKCspxrRGCL85BZ1sPoLsXwe1LgLaAFfy+16d794BqcviwvegZj4p3EZdFYcEAF0E7tAwr4RxpAtVEb1fTyG4Dfs9uBMAucQH70dzxLJqwndKqwhG1BBM3HCttJtnENryzC9doujYDw7H1mcDwvMdTInmHG54xInP9ILmWRM9ml+/3ggpEwq08j+nnv2nSbEDL5/Ce7blQ8McmfzYlGn8nOGcLCsicbnK6zaGlcTOflu/bY3t8YmDheGpYPQHbKGLGdP4Lk7vhyaUAMj2MF/Vk01fSpw+/SYu0FjB0Vg75e0n8W7+lEVCVkWnFDNHwiCcKzJ8LJrYsoRu2LeB5j+eAhHUEWZrlSGu4SDP28RrkgQy2i7bMf/wY3EcMdHTVI+900tu7gFs+r5CTPC/Kv5/XumAIEFh6TIYnWsPwCON2FYf2+wkzAwU5iPjZnVTuWX7dCNWaqfJ651tpWrGe+Sjb9rcQNwS0x4eMD9P3rHFjkLBxzd/EnRW18OvGWtbF3M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CHBPR12MB731189.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(23010399003)(10067099003)(5023799004)(11063799006)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261021135927099003)(261022105027099003)(261022075727099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|1800799024|376014|7416014|10067099003|56012099006|11063799006|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261022075727099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003|3023799007;
+X-Microsoft-Antispam-Message-Info: 4Ss9kEqkxIMRqO6pxPVIXU7qHSseS5+kRzxztDLLYuVO79EsIqEUvSuHVhwpeuQ7clT8bnjYSr5WLeBbLNl/bTZhwfnhQkgOdu5FNbgirCT/6DCdq4NkCNboo+Ac0maWQloEQT2qN0ISimv81H82wnPAb1pFCXHD2PaMFw+mGpYNYoRuxn+afaPGDpg2s841Evxb7mJuazWumk1GQTwWCUNMiycFMihSA5kg0MS3amOIkl3JHPpXVh+ymfLhKh39vH4ChZiCHcq1nfUKaa9ZMMbnHq7udZXcN1kPte/XGXYnS56zVC+gZFvtV2+7Fq26vHB6zugo4UfVyDxd6u4nmlPsXWuJn7VjmMJ5APP69f0t90WKNyBsd99x32430yXDjehWgsFdDwxSMSb9XDOvhxVip+Ngvyu/O7oZs2djJ2qbZ7ORbHQsnkiovufd2wgwPHkSST9WhCExwPvZ/JKpb/CAtyu8l+Q+PzdaSb+ukz8fW8CmI4OCHQ9qbYrDPT57Bf3AC7dXUIk26qp/RTf9GNPEjBxnbuwRydXC+YGq7QQDyDYN+sxQrJT/tFSBNvCbroUUd9c8BDG39VnAWPWNWsk3wZUAMZdN9Jsa5rLRw5W3aTajM7fJGNxq2Y9vGZqJrNvX9Iy4X8iMisnEMYT2+/GQ8k59evPnxdUFEnHD8gE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CHBPR12MB731189.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(7416014)(10067099003)(56012099006)(11063799006)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hDRoUt+TUAzgotBhYqtBXnYJi8+WlCyFei6RiNd682XimIAFNGBOWaHLEMzR?=
- =?us-ascii?Q?WHerlVRR+kjI9w/k+YoIUBcd6h+qUUB06DdMwm2jwu26ymfDsxMnySeQ8CC7?=
- =?us-ascii?Q?5Nqr72uY3F24Si43zu4Go6symnZ0xBQgHkm1giJmS/4N1lPyq4gqe6qRETTM?=
- =?us-ascii?Q?Y5F6SrtVbBHfBLJq3FpeWghRD/L+OnKl3QGCqjf0hzW5QWk04zYkh5Kokfvc?=
- =?us-ascii?Q?hsZtLob1k0aBRIgOK65KO+tdGkLLaEtMGVUq5hwWfQsPQE9ypLSxPa7qHPsQ?=
- =?us-ascii?Q?c/a6b698FUkJ0ltVG6vDky7rhmwva7tlgJ0LtmO40CByCi/t9QIZBfaBiIgW?=
- =?us-ascii?Q?Fe1YRPCrw337/G6dPWmiaF9YJZZGprtYn7q2sSlFp2U5R/y7wH82Y/ugI06g?=
- =?us-ascii?Q?dinQfY000EhHck2zsfySm+HqoTyc8Ft4fZe+y/QyVC81nVPPRcVqQK5hDWDC?=
- =?us-ascii?Q?F+nWh0K9B58knqpWJXWzVORimk/1jS6n8rZ2A5ZMZ1t64csjArguSBJehYF5?=
- =?us-ascii?Q?mqgpLQ08unLvfdY9grOwNnvI3Ka2l5IAZADf2KhBn63pU0TTf9i4Fw8EHS0K?=
- =?us-ascii?Q?ftsqN2JInymyM1LW6DexKmsQZzQRDSGfqHXFVCQ1bd3hU1vv5w89mhB1K0Mt?=
- =?us-ascii?Q?6OA2zD/euxT5o10ul1jUdTj58f2ekBe5C6me5k4vGxWXKX4dlLNMna3zNa+G?=
- =?us-ascii?Q?OiMhWc5sCct1Wg/LIZ9/gysYrI8/d7nNlkHOUjIs/g7D5JWV3mqHcOpMtwgx?=
- =?us-ascii?Q?TzPu3k02floG/m0gxv2NEYyoVVZxXvXsn35f/OkO5nrV6qikNNxbseEYmO7a?=
- =?us-ascii?Q?N+gWaNJGASBkZxZClPU4jYWro85g1FUg4xZGcAhpAwtgAt61hpyoGnCtQQ5c?=
- =?us-ascii?Q?MP/fvsSFWg8nof0KI3m2PX/Laq+MhgdZUPd31Rh0n+pGSrnHuhNG16mUEiV4?=
- =?us-ascii?Q?X69aN9LK0f74ac3z/Z7v1AmBXStdJ+znF7R591H8U0AMFnUG4f7bkkhJl6lB?=
- =?us-ascii?Q?ZDG1WtHzNDc6Erfp08TaRJc08NGR8Ej0Dh92nZEmlEL0gq0kdPrisc5GjEYL?=
- =?us-ascii?Q?Y6ti5x6mCujXEjyonc9nnVSrZfJRHtgyqiRNK76iWrdfu5OpeNrG3DWsBxrn?=
- =?us-ascii?Q?7gzCd34pyWdBWGXqFpxoDcVBqWJ2kQI4oIRvbqOPrO/lh42LbV323KTg7p5l?=
- =?us-ascii?Q?1QZHD6nM4Tms9U2z8Kskk+CO5AFR9BqCWmf2gPbmtnp5515PN4q86Fb4oRjd?=
- =?us-ascii?Q?cGjIwrSg8kLk9WhuWFRnp03yII6Zv+Pa/efGcjAbIxWKbp2B9WqOloMpCGJn?=
- =?us-ascii?Q?YbJGZeEFz39EG+g1Idgbq0RXR6vQx9akYZ1dmye24X7bqU5elLgN4ng6jEus?=
- =?us-ascii?Q?KDnrkl0UaXvukBB9YM5Ti3Q9jxJpIz9f2H4UMSujkBJYBH7OydzeVDYXYvhG?=
- =?us-ascii?Q?dnXiUeB8u+TRWuMl+5Hzqc8BLPtc3fpXZAKgtJ1lQwfohNPflqkQPoJ3SSEn?=
- =?us-ascii?Q?/WjIfloMjnTv4C6WvWuU2SALn8U4RUqLrVxQHNH9MpEPyvpMmqaU1SDuN8OV?=
- =?us-ascii?Q?eCoxladQ+5SZueHBMp4nT7sI+EFT1RDQV4aZIviIKAt/RPu6oe7pE4bZ1VX3?=
- =?us-ascii?Q?+kmOwyKyVeQ45PGf9nGJ8YJbxVcDVaknkLqg1bDV3/GY62U7uyOeHoUbMBcr?=
- =?us-ascii?Q?UtGWvxROxFdeDXEwz4QZ1rS9IH4IFhsqxKVVIwlozK1D234T?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+/WblEDE8f9BflmpR29TF2yY/M6exEnEubNoe0+QkEw76EY9xOICpuMwZRgM?=
+ =?us-ascii?Q?WFmRrCvAxI7KaNpX13W6Ld53Bu4HCBxY8ARWEHnkhVCSKUJrEfX5GALzohFs?=
+ =?us-ascii?Q?pxgzOaizFFTAuvxrBNzR8DJJzSXcWFv4TgXjUc+EC9aFP5vA3ok7F8Cam8EU?=
+ =?us-ascii?Q?ZBwH26VXLO58Kjg/r/YNGT6Hk8E3MSvA8g0TmsQyHkZIx7IDk5AvJZw8Mn87?=
+ =?us-ascii?Q?3eUmpKPqqLvdCaW0t8UBS4VGhZ142Sgn6MOubixe7Zc0LFzje942sE4D1tkS?=
+ =?us-ascii?Q?ARWF3BDZ/0DZNDLb2T40N83pBh+UgenYgAB1nSUi9uTUBXRc2jv3l1AwXgse?=
+ =?us-ascii?Q?vtVZFLy2H8hdJbVRrbjOygH3aUUidU9DIm+gMxBbw7EQD1Y1KzUoRHqDMIES?=
+ =?us-ascii?Q?Nr1cMhbis/eNFk1VZOPUt85O+gG9cDgVcvNxQeLmpWW0eCfsy0mPbj7T07hH?=
+ =?us-ascii?Q?V9bUqndhBG6/n39NJ2FHKAHhJaklEAyg13IW88mpaqGC+GgJuB51OxR1NvcZ?=
+ =?us-ascii?Q?xiANwJkyLD/0tD8jOPgEe/wC1C1c1VAxYY3kBugm/Suiv9o2MnqpxZgKDbf+?=
+ =?us-ascii?Q?g+GL7aShhlHlEI0wQvaUgWQ3oGH0M8GoyUHqXhUFfggUnwZYmad/S/jw5g4S?=
+ =?us-ascii?Q?nK5sR2+mAetsxA8WFbieCelkFRDJM0Z9gs1jch8vtYPYY5Uvu7fL2VKZ3DN+?=
+ =?us-ascii?Q?nJdkyUlq3fXknlrgEXOpUt/Lz4TaYHQwGZdxG5UGMiGKJAx90FBFXzaqIKOb?=
+ =?us-ascii?Q?vX80EoxKAbooswKcWPwM3bOb9hEzJ1vvPUSEIqxZLTX7eOYTqfecgkbuIfqD?=
+ =?us-ascii?Q?d3UrgEKvNjEvAOQJvi7wf5sQ7E0VdlhZ06d+nnciLJpo4IUt00F8gliCfYNu?=
+ =?us-ascii?Q?sdroHXVVjroqVBVv8/dUTdBR7K3ZO86p2I00pL+JIyEwLdC+r1nXZVjHQhk6?=
+ =?us-ascii?Q?NF2FprAU+E29ap5p+HSh4sVuXOVQV90wFIMuLc2zwbQ9JUeGJ0026aOahbcB?=
+ =?us-ascii?Q?+NOSw9Y4M+5f3OOQZ4zwQuwkAX031JvoKMu9P1/ekWGvon+uAcvGCaKIL5PW?=
+ =?us-ascii?Q?azAfb8/PEzRdSszbqb9YHo/WIhW6tDjNbK3LN/lYT7KFsEM6T45yHCA0zEcn?=
+ =?us-ascii?Q?B4LoGA/xZdES4AnCeAuNLSodk7uWiRG5W6gABJ5YROJb3R1VA2XI0OsAYv5/?=
+ =?us-ascii?Q?2WkrIzw9dT15kubFDLCotKcnmzUhlvVAv5QAuYL2c+U/DEj4g5MHUmABa9iD?=
+ =?us-ascii?Q?F5nGxEioqGuJC+JjVu3pe26G4xz7RyOo24h4AsTrvJn/8ewgXrwnQnBpia/V?=
+ =?us-ascii?Q?7O3w6zpgyN029dIRnwz+N6vQoARsuxfsJMrN4iWpjtQcAfZbpTnXFSqN9bRv?=
+ =?us-ascii?Q?tf1v0KT0qBdrVdAzhAP1ERQtsDqkGjxxHFno0zqcaH49zUIU7xVnZHb1TL+j?=
+ =?us-ascii?Q?TEw4EwAorJsCqeaQ4/X56Cn43AAsj5vUjX+G4/7PgPYvaCfvzlO6PbGmhDbL?=
+ =?us-ascii?Q?puaHzD88RL8Bu8EznwwhWrNOJh5go5i+R+ngvxHcutW3HvqmJkEc0boEniEV?=
+ =?us-ascii?Q?2vrPic7TVqO0nw4MnZ6b5qRE3elsqDkGNYC6AGegFsjOryiG46vpNWVj9fl8?=
+ =?us-ascii?Q?WePG7lndN+pBeWCe7UD3PSQ0KBwvkN1s9i9fESPR5fbrbudks3uVSJLQsJ+V?=
+ =?us-ascii?Q?bF5BtY7uShKQpXGr0FR15u7Yw6kWoJckgzz0syabaFA2xOHj?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9fb610e-0f90-431d-1434-08df43707861
+X-MS-Exchange-CrossTenant-Network-Message-Id: f847bbd2-c46f-4e97-34ba-08df4370791c
 X-MS-Exchange-CrossTenant-AuthSource: CHBPR12MB731189.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2026 23:30:44.6066
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2026 23:30:45.7993
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /q5qTDkxerTcwfgVhia7+hnLi1IqHRNRwZ5U23IdI2xZGA8wKSKhIIbKAbh9Xpzf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8815
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8yMNNPPf0zuX0to59A17vH/e2i+Nlvpf6eGlJYRAGi3o+scEzKbRW5LQIefLS3a4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH4PR12MB540976
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_153058_446804_B299A1DC 
-X-CRM114-Status: GOOD (  16.19  )
+X-CRM114-CacheID: sfid-20261115_153057_658886_75070023 
+X-CRM114-Status: GOOD (  14.91  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -152,131 +152,96 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If DS is supported then SCALE can go up to 39. Compute a scale max that is
-compatible for the entire invs list.
+SMMUv3 was the only user, remove it and
+iommu_iotlb_gather_add_range_pgsize() which is also unused now.
 
-Replace the has_range_inv in the invs list with a 0 range_inv_scale_max
-to mean range invalidation is unavailable.
-
-Reviewed-by: Nicolin Chen <nicolinc@nvidia.com>
-Reviewed-by: Pranjal Shrivastava <praan@google.com>
-Tested-by: Nicolin Chen <nicolinc@nvidia.com>
-Tested-by: Pranjal Shrivastava <praan@google.com>
 Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 ---
- .../iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c  |  4 ++--
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   | 22 ++++++++++++++-----
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  5 +++--
- 3 files changed, 22 insertions(+), 9 deletions(-)
+ include/linux/iommu.h | 62 +++++++++----------------------------------
+ 1 file changed, 13 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c
-index 5a4e45e1512589..3a0fef761daea8 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-test.c
-@@ -647,7 +647,7 @@ static void arm_smmu_v3_invs_test_verify(struct kunit *test,
- {
- 	KUNIT_ASSERT_EQ(test, invs->num_invs, num_invs);
- 	KUNIT_EXPECT_EQ(test, invs->num_trashes, num_trashes);
--	KUNIT_EXPECT_TRUE(test, invs->has_range_inv);
-+	KUNIT_EXPECT_EQ(test, invs->range_inv_scale_max, 31);
- 	KUNIT_EXPECT_TRUE(test, invs->has_full_cont_range_inv);
- 	while (num_invs--) {
- 		KUNIT_EXPECT_EQ(test, invs->inv[num_invs].id, ids[num_invs]);
-@@ -715,7 +715,7 @@ static void arm_smmu_v3_invs_test(struct kunit *test)
- 	test_a = arm_smmu_invs_alloc(0);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, test_a);
- 	KUNIT_EXPECT_EQ(test, test_a->num_invs, 0);
--	KUNIT_EXPECT_FALSE(test, test_a->has_range_inv);
-+	KUNIT_EXPECT_EQ(test, test_a->range_inv_scale_max, 0);
- 	KUNIT_EXPECT_FALSE(test, test_a->has_full_cont_range_inv);
+diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+index ef5043752a3651..339ea708f352fb 100644
+--- a/include/linux/iommu.h
++++ b/include/linux/iommu.h
+@@ -361,29 +361,21 @@ struct iommu_iotlb_gather {
+ 	 */
+ 	unsigned long		end;
  
- 	/* Test1: merge invs1 (new array) */
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 54178af99c9407..294f9645cdc3db 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -1065,9 +1065,19 @@ static void arm_smmu_invs_update_caps(struct arm_smmu_invs *invs,
- 		invs->has_ats = true;
- 
- 	if (inv->smmu->features & ARM_SMMU_FEAT_RANGE_INV) {
--		invs->has_range_inv = true;
-+		unsigned int scale_max;
-+
- 		if (inv->smmu->options & ARM_SMMU_OPT_FULL_CONT_RANGE_INV)
- 			invs->has_full_cont_range_inv = true;
-+
-+		/*
-+		 * SCALE increases to 6 bits when SMMU_IDR5.DS == 1, values
-+		 * above 39 are treated as 39 (H.a 4.4.1.1)
+-	union {
++	struct {
+ 		/**
+-		 * @pgsize: The interval at which to perform the flush, only
+-		 *          used by arm-smmu-v3
++		 * @pt.leaf_levels_bitmap: Bitmap of generic_pt levels where
++		 * leaf entries were unmapped. Bit 0 means the leaf only level.
++		 * If 0 no leafs were unmapped.
+ 		 */
+-		size_t pgsize;
+-		struct {
+-			/**
+-			 * @pt.leaf_levels_bitmap: Bitmap of generic_pt
+-			 * levels where leaf entries were unmapped. Bit 0
+-			 * means the leaf only level. If 0 no leafs
+-			 * were unmapped.
+-			 */
+-			u8 leaf_levels_bitmap;
+-			/**
+-			 * @pt.table_levels_bitmap: Bitmap of generic_pt levels
+-			 * of table entries that were removed. Bit 0 is never
+-			 * set, bit 1 means a table of all leafs was removed.
+-			 * When freelist is empty this must be 0.
+-			 */
+-			u8 table_levels_bitmap;
+-		} pt;
+-	};
++		u8 leaf_levels_bitmap;
++		/**
++		 * @pt.table_levels_bitmap: Bitmap of generic_pt levels of table
++		 * entries that were removed. Bit 0 is never set, bit 1 means a
++		 * table of all leafs was removed. When freelist is empty this
++		 * must be 0.
 +		 */
-+		scale_max = (inv->smmu->features & ARM_SMMU_FEAT_DS) ? 39 : 31;
-+		if (!invs->range_inv_scale_max ||
-+		    scale_max < invs->range_inv_scale_max)
-+			invs->range_inv_scale_max = scale_max;
- 	}
++		u8 table_levels_bitmap;
++	} pt;
+ 
+ 	/**
+ 	 * @freelist: Removed pages to free after sync, only used by
+@@ -1062,34 +1054,6 @@ static inline void iommu_iotlb_gather_add_range(struct iommu_iotlb_gather *gathe
+ 		gather->end = end;
  }
  
-@@ -2659,7 +2669,8 @@ static unsigned int arm_smmu_compute_range_ttl(u8 leaf_bitmap, u8 table_bitmap,
-  * CONT is covered by one command.
-  */
- static void arm_smmu_tlbi_calc_range(struct arm_smmu_tlbi *tlbi,
--				     bool single_range_inv)
-+				     bool single_range_inv,
-+				     unsigned int scale_max)
+-/**
+- * iommu_iotlb_gather_add_page - Gather for page-based TLB invalidation
+- * @domain: IOMMU domain to be invalidated
+- * @gather: TLB gather data
+- * @iova: start of page to invalidate
+- * @size: size of page to invalidate
+- *
+- * Helper for IOMMU drivers to build invalidation commands based on individual
+- * pages, or with page size/table level hints which cannot be gathered if they
+- * differ.
+- */
+-static inline void iommu_iotlb_gather_add_page(struct iommu_domain *domain,
+-					       struct iommu_iotlb_gather *gather,
+-					       unsigned long iova, size_t size)
+-{
+-	/*
+-	 * If the new page is disjoint from the current range or is mapped at
+-	 * a different granularity, then sync the TLB so that the gather
+-	 * structure can be rewritten.
+-	 */
+-	if ((gather->pgsize && gather->pgsize != size) ||
+-	    iommu_iotlb_gather_is_disjoint(gather, iova, size))
+-		iommu_iotlb_sync(domain, gather);
+-
+-	gather->pgsize = size;
+-	iommu_iotlb_gather_add_range(gather, iova, size);
+-}
+-
+ static inline bool iommu_iotlb_gather_queued(struct iommu_iotlb_gather *gather)
  {
- 	u8 tgsz_lg2 = tlbi->tgsz_lg2;
- 	unsigned int ttl = arm_smmu_compute_range_ttl(
-@@ -2681,7 +2692,7 @@ static void arm_smmu_tlbi_calc_range(struct arm_smmu_tlbi *tlbi,
- 	 * address beyond alignment to tg (so long as TTL=0).
- 	 */
- 	first.scale = arm_smmu_range_inv_calc_scale(num_tg);
--	if (first.scale > 31) {
-+	if (first.scale > scale_max) {
- 		/* Range too large for a single command do full invalidation */
- 		tlbi->range.use_full_inv = true;
- 		return;
-@@ -2952,12 +2963,13 @@ void arm_smmu_domain_tlbi(struct arm_smmu_tlbi *tlbi,
- 	 * The invs generation ensures this matches the instances being
- 	 * invalidated.
- 	 */
--	if (invs->has_range_inv) {
-+	if (invs->range_inv_scale_max) {
- 		if (!tlbi->range.use_full_inv) {
- 			arm_smmu_tlbi_calc_range(
- 				tlbi,
- 				smmu_domain->stage == ARM_SMMU_DOMAIN_SVA &&
--					invs->has_full_cont_range_inv);
-+					invs->has_full_cont_range_inv,
-+				invs->range_inv_scale_max);
- 		}
- 	}
- 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-index b08c112875d3b6..7106bd3a8bd7f6 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-@@ -765,9 +765,10 @@ static inline bool arm_smmu_inv_is_ats(const struct arm_smmu_inv *inv)
-  *               Must not be greater than @num_invs
-  * @rwlock: optional rwlock to fence ATS operations
-  * @has_ats: flag if the array contains an INV_TYPE_ATS or INV_TYPE_ATS_FULL
-- * @has_range_inv: flag if any entry's SMMU supports range invalidation
-  * @has_full_cont_range_inv: flag if any entry's SMMU requires the CONT range
-  *                           invalidation workaround
-+ * @range_inv_scale_max: max SCALE usable by all range-capable SMMUs, or 0 if
-+ *                       no SMMU supports range invalidation
-  * @rcu: rcu head for kfree_rcu()
-  * @inv: flexible invalidation array
-  *
-@@ -797,8 +798,8 @@ struct arm_smmu_invs {
- 	size_t num_trashes;
- 	rwlock_t rwlock;
- 	bool has_ats;
--	bool has_range_inv;
- 	bool has_full_cont_range_inv;
-+	u8 range_inv_scale_max;
- 	struct rcu_head rcu;
- 	struct arm_smmu_inv inv[] __counted_by(max_invs);
- };
+ 	return gather && gather->queued;
 -- 
 2.43.0
 
