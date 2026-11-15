@@ -2,102 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF72606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD61606A8BD
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2zqimFM7;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=U6qATJdq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aY4fpdrY;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=kSqoY6Qo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dfbuM0pmbxDgRGHnvK9GVp1KbnVrBOX0xw08dSvpRRw=; b=2zqimFM7iieaQG
-	eUunZkVjHku1O2BHyV97+vt/PJZz8c7N+RkRjHkWUvWcpuzj5ANTOiqESgmzrUGoDwpG0oMgGQiwV
-	7TFjTzqmnOwuNzYlyRRk+kODKYy/1vo3qScuS7ayFAsZpHbHmrWUw5kEKBxEn+b8Ort+b8ta9W4No
-	rrg4CCcKjw2XsIHWuLvSjwurFzf3aYaGlXhif5W7yEI4zWEUBkBihamsQUeEbWlIWaj9EdnJMVG0U
-	qgLNk8axRnOQIVrkjVaWzxC0ryHKvp236q0DHBymhTgrAau5oRzu0kJkjGxwLDIgLfwGkAKQ5VTiL
-	PSabA6wjxBL/G/vNuVfA==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=5e7EmmrAmNsJKP6AOjhCJAku3QB+VBI4feI+to/QFAw=; b=aY4fpdrYNnskF0JPNmMP2V8nBD
+	KaqgLfRuDyfLZuuKj9KChASeEQiVu+NLFE7qaDxKzRpiBSsN2o5KiXjp2+I21XZ0iAOz9HIJK2bhc
+	LioS7t8gRITxK4TDB40/+cgCyBQ5AsXDhiKckvaLOa0uMc00/fwIIzJpP2ppPFinCEAl2fqbLzHsW
+	wwIySDHAfHjkKuQryxrA3KxAre+1hOsTveZXk64Au+bfx4LU9uT3jTaGoVLcyJNiI18RevkjuJldM
+	lauPUxu5UYDB3gIsaOcfa486///Dps3+D89Bfu6drF9g23phW8dnumeQIh6uY8B0Sr/UBb4yg1v7q
+	/ULZ4ajg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWCW-0000000HIOU-1SXB;
-	Sun, 15 Nov 2026 09:07:04 +0000
-Received: from mail-oo1-xc32.google.com ([2607:f8b0:4864:20::c32])
+	id 1xSWbt-0000000HJyd-3o57;
+	Sun, 15 Nov 2026 09:33:17 +0000
+Received: from mail-oo1-xc30.google.com ([2607:f8b0:4864:20::c30])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWCN-0000000HIJg-13FP
+	id 1xSWbp-0000000HJxb-2gRm
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 09:06:56 +0000
-Received: by mail-oo1-xc32.google.com with SMTP id 006d021491bc7-71acdd32a53so425529eaf.3
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 01:06:55 -0800 (PST)
+	Sun, 15 Nov 2026 09:33:15 +0000
+Received: by mail-oo1-xc30.google.com with SMTP id 006d021491bc7-6df7f544919so2084435eaf.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 01:33:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794733614; x=1795338414; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=dfbuM0pmbxDgRGHnvK9GVp1KbnVrBOX0xw08dSvpRRw=;
-        b=U6qATJdqP3ptvC3NyFsm0VtuAe+jFExp5ibK6CBiwTJId9Au5iBQRXFSyY61c0w6LR
-         ODYTyVfIEadYtVDJ/08lSiLes/Q9ayW5Mhvkp+TXUr6NHzycwlYuqgwKuzmE3eZGDmhY
-         wBt72a3xyRhP6zim9uElfvvlf042yETDdpcaP6y5/6bk0wuglE0Y0Q0DjbT2i+srYHGB
-         kRJkZjx4rKJZKkZqZpQtiSw6VPyTwPNxNoW8R3GwtogHJ63btbEsgP7GZexUF1lw5xj4
-         llbUXpGkiVq5bkS4J9CmHynEfyJiuL5bfkzN1c/IFUCKvxD1k4TZYzDDKbS510cwUqMW
-         QJHQ==
+        d=gmail.com; s=20260707; t=1794735192; x=1795339992; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=5e7EmmrAmNsJKP6AOjhCJAku3QB+VBI4feI+to/QFAw=;
+        b=kSqoY6Qo32X1NA13903TDfQuGlPZQpThOIReSUVvTnfR2qCW3A9QOAiMhx2mUtCIRh
+         Mv7UAcVtUgsm8DWE7z1VLvKtx8fBjjQJmM+6y1ig4TBVD7mHoOjZfHMjjZ7Pd2jo4IH7
+         KJKv2z6PLBX3+G984VlE4Ux+M+uUnoRWxH4y78K1OFFZpba8J8jtSLfRaeZEL8vyFADU
+         myrlSBY0WPPvWJdJWS24OhogYN0gvZQrmNDFTOucGsaxVSVkSYHdBEEIZkYF+t9P1Tcy
+         rN4O1VzPFFW6zGTLQ3IM/Ka3WCClv4XAbMdv0BKkzULMybmIqVlAQ/XEflYMGC5ny22R
+         CBSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794733614; x=1795338414;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=dfbuM0pmbxDgRGHnvK9GVp1KbnVrBOX0xw08dSvpRRw=;
-        b=yI83K3ffD0Aao615VyKMS2O0CQMITzE1MPnPJN2PgANEGWnk4dPd/vOXZMIvbLk63M
-         Jopx7DslnWmBjGV+Vap8hAh0B79JD6aCyW9Jfi2F7ZIsNsln6zJitLK3z7L91SscfMC0
-         2uHahnVCsIWwoF/vnZeETtPL5ezOIxiyCFboSU+Fku23DQu2qdmWbnoxYbqHBHe771cF
-         G9JAEJsBCO1ChiH2gh6C+hp8aN4ywt27IWShTsIdxRqeQp/ZD45n8P84ip599LRG61zC
-         C2ZHvyi+rm/ATAsf3MelvRFY6M6F2CIV3kNfMTqiccwVNsKJvrLWvIT/CDiSjt3+jBps
-         mCjg==
-X-Forwarded-Encrypted: i=1; AL+hErG+ANCF1q+6Vcp8L/UoaETl5tJJmHh7sDbb1c3WId1EbiUi2oOzi3c1g7balNTIeOYnTLZqnED9xkA9EBnXQipV@lists.infradead.org
-X-Gm-Message-State: APuU4Z/LXY6y9BDlABBLNU/R5vGqITDUHI8I72uu6NXMGHbKAgEVByqw
-	F2Q4zSnLUHc8578KaA6fIp5HOo5ki459KQXokMKCr6c2GR9u1EAVn8q1
-X-Gm-Gg: AYBFou3kJScJiOoYlFn94gm/vQEtFo/R1bHO2ovqtBMDYfZm0owNJWRj98fPtoGW0yj
-	ads7eivvptRAL/z+HfOMNcBSZiUHLMQL9zH29jzWni+AwkvpDr2guTn/wmvFBjVE7IWUwCBV+dy
-	VHuiiJzNNqTGzZPvC1Wx2wfBit6IQD0DmsMTPYRakcSK59O5myCCJCnjupRWr3onH1ngc7ZEaRO
-	aJT3mDzpOgUPJOL8KtGNUYaCWpM1Pu2uZhgp4Y3GgNoKvhRlCDpU9deNnVdPCSz0DuOnYrhyA3N
-	RVEbqfBWsBNbovfvOIFxZGfWwQ3dFwGdCbgONjoWfUl0OrzOvovtCPI0y69z77OtRjhkWG6BD1k
-	ATnaZ6zS8Fi/amyyIcyYO/FoRRJ/EiiOtJGWClQDS+oQ1gzvBNvRsEEUavintIr3w8Mr6ClFJzI
-	VIdC4tzMNw2Dmg2+7fQeNFJlt0UiLa4/WOQNwcaVoO1dVWQIhuD6VsBBXCHthuJKyN4DhP1mmHs
-	HTitjOSHBvvJjWDCyGgRH2KVORU15IX0Ghi0XSff9JWeB23SS4zvPPwSuavrILgNLsIlKmKV58a
-	ynxlvjCKmkQsUjKL475wrBuy8MLvAwDdebOvxK9FyaHmLIzh8pLnoDqqgI2AKw+czeikKR6jgnz
-	UPbi7e6+aAQ+hbdHg7G3DXgT15sBxCI4LB555CuAhBW4qK2eKXJADH0FQbi0de0SLnPyaGhK6xE
-	RS/1g6PLIKAxuvimGT2/8ibU3M9r1VsHih52lcQmRAEl4ONELdUVBf
-X-Received: by 2002:a05:6820:1caa:b0:71a:e9eb:6b9b with SMTP id 006d021491bc7-71ae9eb6f5amr480181eaf.21.1794733614395;
-        Sun, 15 Nov 2026 01:06:54 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794735192; x=1795339992;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=5e7EmmrAmNsJKP6AOjhCJAku3QB+VBI4feI+to/QFAw=;
+        b=HF3Qq/nFIGuBXkNz1htlLHCmBjE9I7MhVrzTExgRD9kvgswfCnb5yNf1J/E+fd0Rsu
+         FFKJmdO74yruX0y9H5dE1vPP4uO9hlhWIX75NZVL/1avzX0ZBNU6vZXwYgJ64r+D0MTz
+         Snki4aYFnElpk+1lN195cNVz1OW+WnAIBrbJRjIk5Cm3EGGzwUi5cuflDd228my9ayIh
+         anJO24uCXQFQPBm0CmbwSz3V2Xm1b984uSBWUvou3A4tWlZC596rVyPG6yvmuikKeGEf
+         q+WOs8tF+E6z9d/s5kEMQZ7aHarKe/LABwdCeWOBvbNStXCXYHes9kctm97ESbFXtHbX
+         T4BA==
+X-Forwarded-Encrypted: i=1; AL+hErHzqpwIaDX2sBDTcxgNmjjmkorp41xdILCIvEgVVIK/UwhSmoe2jWcw+VWDZrK7eBqpi2L6b+ryMc1EcNjutZD/@lists.infradead.org
+X-Gm-Message-State: APuU4Z95utXrHVDJQf4+wOuBwaQIUh61GA/xD4NIQxXL8gWpLFJEB96I
+	Gy+PfqsMKHMxCbGUQF8yCdKMGlPtqU7LooPMmL7nrkeJeqrFbSR0QSxH
+X-Gm-Gg: AYBFou2GTeejZPAMD/7dKjWfqPL6b99YibYkts9cb82uNUEnqFAqKuDJo4kJKDvJAP6
+	mxRY/27DFpPX7gO8I3F4I5cVIfotZfx8VMzjivyKb5irMKcqzpw1UhTPH4VR4eiM07jQXgOnPpC
+	/LRQosJ2qgDYVTcciuzpwe/ySrMjOZBdV0LUJyrYY7lVTTnM0eCKLvAybB3iFCa7XtcZc9MgXR1
+	eqeYEfUX5wfVrH1ZeNoHK4DUnF3m1OGaQM4Mo7vzz2qQKyRbnTV+OZGUSXDjiD7+27yJuGzuZLU
+	icKQGIyz4I0WiZufOeklILdmO5t/c0sCzgTWieWjM0W3asBsoCPUT1Gnlzrz2NtGwciyrOtr3QP
+	CjZFL3BgI8zj8FnP43huqLqDSSBwbhajOZqHevmlHSOzp9Lsi976/knibMguwXW3wq06gMhztAH
+	PpTLF9gT+UF4l7hLvrSXn/nIPQsNjvf3rL0u4RKNAwXrd9D7UETDjz0e4gbOB+O/9pMqLNaMhJn
+	qeV1yHE3drsZa2gw4IRxk8sgXXwejrlk1rsQjutg5H8hiNsY78nhFyyvUocDQPX+/NgF0z/R3Ce
+	eJrgbJF8+2yfCFeLSVQDQkODKiMU/Z4SwfVbJHBIXBSbSz0By8Z2G45cS6fwr4pdE0m7tgbeRp4
+	9evWwp88hYFU2ClvMYZb25WIBz2H251K6GavlSsN96R3mMWa5nO8I9z7Mn7ADdP9gKJijw9wBWr
+	UJ4vMpmcZOPBge9I66lxZguAJ4U9iI/EmOAwzL46ndVbWzGszZ+Nk=
+X-Received: by 2002:a05:6820:617:b0:71a:e82c:1eb8 with SMTP id 006d021491bc7-71ae82c267cmr724986eaf.7.1794735192405;
+        Sun, 15 Nov 2026 01:33:12 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71ab4338765sm6198902eaf.14.2026.11.15.01.06.53
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71ab43347b9sm5933617eaf.12.2026.11.15.01.33.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2026 01:06:53 -0800 (PST)
+        Sun, 15 Nov 2026 01:33:11 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Date: Sun, 15 Nov 2026 02:06:36 -0700
-Subject: [PATCH v2 3/3] dmaengine: sun4i: retire interrupt state before
- channel reuse
+Subject: [PATCH v4 0/9] dmaengine: sun6i: fix interrupt routing and channel
+ lifetime
+Date: Sun, 15 Nov 2026 02:32:48 -0700
+Message-Id: <20261115-submit-sun6i-dma-lifetime-next-v1-v4-0-043cd476a45f@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261115-submit-sun4i-dma-callback-lifetime-v1-v2-3-fb7d258702f8@gmail.com>
-References: <20261115-submit-sun4i-dma-callback-lifetime-v1-v2-0-fb7d258702f8@gmail.com>
-In-Reply-To: <20261115-submit-sun4i-dma-callback-lifetime-v1-v2-0-fb7d258702f8@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/5XQzW4cIQwA4FdZzblUBoyBPfU9qhwMmCxVZredm
+ awSRfvudSY9dHtqJCRkyf788zatsgxZp+PhbVrkOtZxOWuAXw5TPfH5UcxoGk8OHFlwzqzPZR6
+ bfmcaps1snkaXbcxizvKymas1wVdvQ+qY0E7q/Fykj5e9x/eHj1iRH1K3d/hPxiK/nrX59pE2F
+ V7F1MusrY4HIpckNqxUXKip2dStxyCeHTRnk8vMEgV3ird60pmPh0Y+J8RIGJmhlQIQShBqynA
+ mIXTSOdF9VadYbU8ttSxgsVYK0F33yiSdAz1UX2Is91XoI2AB9UqkmLlx6EAlh8wBLCCE6BEyT
+ +/7n8a6XZbX/eRXu6/7ievqA6NmCp0S1ty/Pc48nr7qsXb96v4W/f+ITsWq68ZaEUtP/4r+06J
+ XUbrlWqBIpDvxdrv9Bqn1lJV2AgAA
+X-Change-ID: 20261022-submit-sun6i-dma-lifetime-next-v1-53c3158f4841
 To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
  Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Hans de Goede <hansg@kernel.org>, 
- =?utf-8?q?Emilio_L=C3=B3pez?= <emilio@elopez.com.ar>, 
- Maxime Ripard <mripard@kernel.org>
-Cc: dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Samuel Holland <samuel@sholland.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Maxime Ripard <mripard@kernel.org>, Jens Kuske <jenskuske@gmail.com>, 
+ Jean-Francois Moine <moinejf@free.fr>
+Cc: Hongling Zeng <zenghongling@kylinos.cn>, 
+ Chengfeng Ye <cyeaa@connect.ust.hk>, 
+ Nguyen Minh Tien <tien.nguyenminh@embeddedlinux.blog>, 
+ dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- James Hilliard <james.hilliard1@gmail.com>
+ James Hilliard <james.hilliard1@gmail.com>, stable@vger.kernel.org, 
+ Frank Li <Frank.Li@nxp.com>, Sashiko <sashiko-bot@kernel.org>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_010655_310612_CD2B4474 
-X-CRM114-Status: GOOD (  19.52  )
+X-CRM114-CacheID: sfid-20261115_013314_515234_900361ED 
+X-CRM114-Status: GOOD (  12.64  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,113 +127,98 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The IRQ handler samples pending status before looking up the physical
-channel's virtual owner. Another CPU can terminate that owner and start
-a transfer on a different virtual channel using the same physical channel.
-The old pending bit then passes the new owner's association check and can
-complete its transfer before the DMA has finished.
+Correct interrupt routing and serialize physical-channel ownership across
+allocation, completion, pause and termination. Keep paused virtual channels
+off the allocator, drain completion callbacks before releasing resources,
+and associate cyclic state with the descriptor that owns it.
 
-The handler also releases a completed transfer's physical channel before
-masking and acknowledging its interrupts. A replacement transfer can start
-in between, only to have its interrupts disabled or cleared by the old
-handler's deferred cleanup.
+The first patch carries Hongling Zeng's physical-channel indexing fix [0],
+adapted to the configurable interrupt-bank size introduced for A733. The
+second handles partially populated banks, including H3's twelve channels.
+The ownership work is split into lock ordering, physical-channel locking,
+completed-descriptor retirement and interrupt cleanup. Pause bookkeeping,
+callback synchronization and per-descriptor cyclic state follow separately.
 
-Clear both pending interrupt sources when disabling a physical channel,
-and read the status back before allowing the channel to be reused. Disable
-the sources before releasing a completed transfer's channel. Re-read and
-acknowledge each pending event under the owning virtual channel's lock,
-before completing or rearming the transfer. This rejects stale status and
-keeps the old handler from clearing a replacement transfer's events.
+Based on DMAengine next at 6628e7d4c6b, with the posted IRQ-safe locking
+fix [1], channel pause-bit fix [2], and shared virt-dma synchronization
+helper [3] applied first. The synchronization patch uses that helper for
+the sun6i device_synchronize callback.
 
-Fixes: b096c1377d1e ("dmaengine: sun4i: Add support for the DMA engine on sun[457]i SoCs")
+[0] https://lore.kernel.org/r/20260706064123.66035-1-zenghongling@kylinos.cn
+[1] https://lore.kernel.org/r/20260926171049.841335-1-tien.nguyenminh@embeddedlinux.blog
+[2] https://lore.kernel.org/r/20261021-submit-sun6i-dma-pause-bit-v1-v1-1-38d286b69dab@gmail.com
+[3] https://lore.kernel.org/r/20261027-submit-mtk-uart-dma-synchronize-v1-v3-1-aad7a6b3c62e@gmail.com
+
+Assisted-by: Codex:gpt-6-astra
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- drivers/dma/sun4i-dma.c | 29 ++++++++++++++---------------
- 1 file changed, 14 insertions(+), 15 deletions(-)
+Changes in v4:
+- Explain that reading the pause register flushes the MMIO request
+  before returning to the client, following Frank's review.
+- Collect Frank's Reviewed-by tags on the interrupt-bank, lock-ordering,
+  ownership, completion, interrupt-retirement, synchronization and
+  cyclic-mode patches.
+- Rebase onto current DMAengine next, retaining the upstream residue
+  snapshot and NULL-descriptor fixes.
+- Use the standalone shared virt-dma helper from MediaTek synchronization
+  v3 as a prerequisite.
+- Link to v3: https://patch.msgid.link/20261023-submit-sun6i-dma-lifetime-next-v1-v3-0-ef1acb0be768@gmail.com
 
-diff --git a/drivers/dma/sun4i-dma.c b/drivers/dma/sun4i-dma.c
-index b0c91dab62f0..6ecc45cadd91 100644
---- a/drivers/dma/sun4i-dma.c
-+++ b/drivers/dma/sun4i-dma.c
-@@ -400,6 +400,13 @@ static void set_pchan_interrupt(struct sun4i_dma_dev *priv,
- 
- 	writel_relaxed(reg, priv->base + SUN4I_DMA_IRQ_ENABLE_REG);
- 
-+	/* Do not leave pending events for the channel's next owner. */
-+	if (!half && !end) {
-+		writel_relaxed(BIT(pchan_number * 2) | BIT(pchan_number * 2 + 1),
-+			       priv->base + SUN4I_DMA_IRQ_PENDING_STATUS_REG);
-+		readl(priv->base + SUN4I_DMA_IRQ_PENDING_STATUS_REG);
-+	}
-+
- 	spin_unlock_irqrestore(&priv->lock, flags);
- }
- 
-@@ -1125,14 +1132,13 @@ static irqreturn_t sun4i_dma_interrupt(int irq, void *dev_id)
- 	struct sun4i_dma_vchan *vchan;
- 	struct sun4i_dma_contract *contract;
- 	struct sun4i_dma_promise *promise;
--	unsigned long pendirq, irqs, disableirqs;
-+	unsigned long pendirq, irqs;
- 	int bit, i, free_room, allow_mitigation = 1;
- 
- 	pendirq = readl_relaxed(priv->base + SUN4I_DMA_IRQ_PENDING_STATUS_REG);
- 
- handle_pending:
- 
--	disableirqs = 0;
- 	free_room = 0;
- 
- 	for_each_set_bit(bit, &pendirq, 32) {
-@@ -1142,10 +1148,13 @@ static irqreturn_t sun4i_dma_interrupt(int irq, void *dev_id)
- 			continue;
- 
- 		spin_lock(&vchan->vc.lock);
--		if (vchan->pchan != pchan || !vchan->processing) {
-+		/* The channel may have been reused since pendirq was sampled. */
-+		irqs = readl_relaxed(priv->base + SUN4I_DMA_IRQ_PENDING_STATUS_REG);
-+		if (vchan->pchan != pchan || !vchan->processing || !(irqs & BIT(bit))) {
- 			spin_unlock(&vchan->vc.lock);
- 			continue;
- 		}
-+		writel_relaxed(BIT(bit), priv->base + SUN4I_DMA_IRQ_PENDING_STATUS_REG);
- 		contract = vchan->contract;
- 
- 		/*
-@@ -1183,7 +1192,7 @@ static irqreturn_t sun4i_dma_interrupt(int irq, void *dev_id)
- 				vchan->pchan = NULL;
- 
- 				free_room = 1;
--				disableirqs |= BIT(bit);
-+				set_pchan_interrupt(priv, pchan, 0, 0);
- 				release_pchan(priv, pchan);
- 			}
- 		} else {
-@@ -1191,21 +1200,11 @@ static irqreturn_t sun4i_dma_interrupt(int irq, void *dev_id)
- 			if (contract->is_cyclic)
- 				vchan_cyclic_callback(&contract->vd);
- 			else
--				disableirqs |= BIT(bit);
-+				set_pchan_interrupt(priv, pchan, 0, 1);
- 		}
- 		spin_unlock(&vchan->vc.lock);
- 	}
- 
--	/* Disable the IRQs for events we handled */
--	spin_lock(&priv->lock);
--	irqs = readl_relaxed(priv->base + SUN4I_DMA_IRQ_ENABLE_REG);
--	writel_relaxed(irqs & ~disableirqs,
--		       priv->base + SUN4I_DMA_IRQ_ENABLE_REG);
--	spin_unlock(&priv->lock);
--
--	/* Writing 1 to the pending field will clear the pending interrupt */
--	writel_relaxed(pendirq, priv->base + SUN4I_DMA_IRQ_PENDING_STATUS_REG);
--
- 	/*
- 	 * If a pchan was freed, we may be able to schedule something else,
- 	 * so have a look around
+Changes in v3:
+- Split the ownership patch into four commits covering lock ordering,
+  physical-channel locking, completed-descriptor retirement and interrupt
+  cleanup, following Frank Li's review.
+- Document why virt-dma still takes vc.lock independently of sdev->lock.
+- Check pending interrupt status first in the per-bank loop condition.
+- Link to v2: https://lore.kernel.org/r/20261023-submit-sun6i-dma-lifetime-next-v1-v2-0-c9e07cc44bf8@gmail.com
 
--- 
-2.53.0
+Changes in v2:
+- Clear the active descriptor pointer before handing finite completion to
+  virt-dma, replacing the completed-descriptor pointer.
+- Release completed physical channels while their virtual channels remain
+  paused, and clear the hardware pause request before reassignment.
+- Keep the ownership changes in patch 3 and the pause policy in patch 4.
+- Link to v1: https://lore.kernel.org/r/20261022-submit-sun6i-dma-lifetime-next-v1-v1-0-01085f684c9f@gmail.com
+
+To: Vinod Koul <vkoul@kernel.org>
+To: Frank Li <Frank.Li@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Samuel Holland <samuel@sholland.org>
+To: Arnd Bergmann <arnd@arndb.de>
+To: Maxime Ripard <mripard@kernel.org>
+To: Jens Kuske <jenskuske@gmail.com>
+To: Jean-Francois Moine <moinejf@free.fr>
+Cc: dmaengine@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org
+
+---
+Hongling Zeng (1):
+      dmaengine: sun6i: fix physical channel index in interrupt handler
+
+James Hilliard (8):
+      dmaengine: sun6i: handle the last partial interrupt bank
+      dmaengine: sun6i: take the device lock before the virtual channel lock
+      dmaengine: sun6i: serialize physical channel ownership
+      dmaengine: sun6i: detach completed descriptors before invoking callbacks
+      dmaengine: sun6i: retire interrupt state before reusing physical channels
+      dmaengine: sun6i: track paused virtual channels
+      dmaengine: sun6i: synchronize callbacks before releasing channel resources
+      dmaengine: sun6i: keep cyclic state with the prepared descriptor
+
+ drivers/dma/sun6i-dma.c | 184 ++++++++++++++++++++++++++++--------------------
+ 1 file changed, 107 insertions(+), 77 deletions(-)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261022-submit-sun6i-dma-lifetime-next-v1-53c3158f4841
+prerequisite-patch-id: d6398447647aa0dbb005b5e6dc6ba96e642efa86
+prerequisite-patch-id: f67c1f8d8d9e014cc650f2f37648662430c3b77b
+prerequisite-patch-id: 43704b0efab7679ada5f06b959a501040573409a
+
+Best regards,
+--  
+James Hilliard <james.hilliard1@gmail.com>
 
 
