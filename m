@@ -2,103 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3289F606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 17:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB39606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 17:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=idhW8n55;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=hqyAjYs2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AlP5xREK;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=pah1gaaT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=z6EkiZTsrK4weHp4bp257FUTfMCYoyNr2SVzcxt+tW8=; b=idhW8n55fBMibM
-	0hXN9ML6I8TYKaruuAeDanu+IGofO+lMP2NpGPsSRcNpkqQbRI0IjXswUyoq7RBfDV2cuJVSXKL7/
-	m8PRbusPlmWjX/GfLjGyboKppdAicEQBzumkPo3zK7aWTxlxM0XvYpPX9iXV+Q905jNqiC3FJR0jU
-	JicJRb8KrY78DbIaRWWgQAoNEkFthoz4XrA8npKOz7Wj71GunpNVRONyGGCDoJRH6vQl4Zvk+Jbed
-	KLwA2BSICjJ3iiwEBLl9PTUn4kPSNm6Fin6I5v3idcANli60YG37Sx40NT9poWWxd/P2Ua+HwgXn2
-	55QtRSQ4gE62gvufC35g==;
+	List-Owner; bh=OWp2aJVNli7UAjXW6hoQg5j8XmpNfGNSR1QLPhqZgnU=; b=AlP5xREKeyV20E
+	Om4T3NCFKJZ0Vy1OWCJFQzaz6sA10l91NRqNJMieAERuX3C2UQmGir2slR71nWT5AT+YRh5ZZfyLs
+	uYi/gBWX/ZSZMa9XWJVyZk5iYKPpuhCsGhnRLUzEt0NuBRfysXMTfwt1H79O9XH/7AsbY0InXdrlK
+	5o+J0b7GZeGfbhFS9y9ku2a+846ybUBdIl/4d1MING7fpTCmKFYD7B9MJ/pBwZAFXxfQWPxGZVhQA
+	T47NJwKhnVz0wPBbFd9R8bbstRLTx4BQMdeYC42fq4sHgL9Ipb1KaqDeiS8ISJU87EbFkQ+IJqo/M
+	oMrCfmzeAyrWrpaFOo0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSeUS-00000000I1e-3tLN;
-	Sun, 15 Nov 2026 17:58:08 +0000
-Received: from mail-yx1-xb12a.google.com ([2607:f8b0:4864:20::b12a])
+	id 1xSeVD-00000000IBe-1OWe;
+	Sun, 15 Nov 2026 17:58:55 +0000
+Received: from mail-yx1-xb134.google.com ([2607:f8b0:4864:20::b134])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSeUQ-00000000I0u-31hv
+	id 1xSeV9-00000000IAE-3UNO
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 17:58:07 +0000
-Received: by mail-yx1-xb12a.google.com with SMTP id 956f58d0204a3-67db35e7953so344083d50.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 09:58:06 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794765485; cv=none;
+	Sun, 15 Nov 2026 17:58:53 +0000
+Received: by mail-yx1-xb134.google.com with SMTP id 956f58d0204a3-677d35fd1d2so2585261d50.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 09:58:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794765530; cv=none;
         d=google.com; s=arc-20260327;
-        b=c00W78GrjFGyDn+ppd4BVvGctFESEzPu6ZD7ATiNJqKPfggdH4UBZAsjeW/TsHxlPx
-         ESj4pJuLb6Uvj8Nc3eUF8CIgx/3UkEgMS1RQ0fkRzMv8n6kFBgtLCFNE19NlYvR66erj
-         9ww+eYZ2R3xWj+3mBpg01nt3xb3OzTiy4afyRlPIpsQNhi4ggtrEoMVbtb6EbRlQrK9N
-         3S/MfMXUY+V5gzd/y33ySQhwwJxPyEdf6TudZX6aJnTmhLIT/KYKhszAQIWMxmIwh867
-         dD6r9ni516Lw/EzSEonJf9NfJRp0Eo2m9JJHFBWB3AeM5JGOahJIYzwjnXAcj0Lf9mbJ
-         iAxQ==
+        b=g6p4yuuNzOlDFVq8rZxLtx7yFRH/9BITGiLIZZ2s3EjHOirBAVpKExs9L8g4ADbApt
+         92BX0OdQ4NsnFuWyv7RmAE/Hdu9F7rQrEIKZPjFnj95S6YD/KKZFOfuhmIP+lUY7hGWl
+         EOG506rVLovUDcs5QBDj1RL2r1A1DysCm3/BmjCor2F7Ms0ghWNnNo2jGdW5WhRKRz5j
+         IimOBGa2+KrZHO1IePTgeEss5qo4F2rKllmNPmjPn+kS/Ly29kwEghysW+/onmt1Hgyl
+         dHwVn0om6XyrwYC6hGN3RE/PleDlWJILcp5aaWCGGHmfvjBH13TF4rAaEQoCSttV3+mK
+         QXTQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=z6EkiZTsrK4weHp4bp257FUTfMCYoyNr2SVzcxt+tW8=;
-        fh=U/faAblipGwXyJ9fiRwGydXxyfzFAdvjickpgwf/QwA=;
-        b=WExYuDJdOp+IMsRMXD+8xvoqd1JRFgWFYE94v0MiwrP0Ilh7DtohuVPsYAph5Qxojq
-         gFCz7Xur3vvpjnArM6+cx3nNScsS5U9F6NqQ4Nyp0k+opPknIDLjIkmtEe207J6Vnm17
-         qsiAoZ4h/00G4su/LIjsY+1Zce0rCBRzADk874Jh7AcN+BJVD3Wr5ljCtJ14aDuihjqY
-         +zGFo9Z8Dfcs7MKknDfDR+gQVM2RmQqlhLBUSh63o8ddDFXhqwrDucaN9MiKicdMTWhL
-         t1TD8MPRbOKy3eYLFMzco8TIEda9L9RIukFntr+Fi0glM35Oi+1oyvEtTdMitsO7dNSq
-         f10Q==;
+        bh=OWp2aJVNli7UAjXW6hoQg5j8XmpNfGNSR1QLPhqZgnU=;
+        fh=XSgQYXBmHlj2peg0hJSpTnHn2ztVSupmLMNntYpl6QY=;
+        b=rqnRz8HbiFYQVlXF7hhpUB3ifNfBPChaxcnI7Lw7p6jj2Uu/F6AHJDwkEU4gV8mD2w
+         P9cPgWBVttVwcqDjTV9PJpPFOlOHDiD5Wj8n61cwe9D86xHU+CfEjcDhNojmz/glmfUX
+         OEWzg1vB3QLWNr2hb6wNGN3OLeCniouT9Ddmd2dzaRFB2QQdwOYUkS48vRaUhzwhUjY7
+         WhfU7hPqL3k9XkJ1RzWEBrfsqyD9Ri6B5lPRazwCOsqqAO3Dp6h/0+fIGrsqcFLJF07L
+         w84dD8iIuAkbeubV8scgq+z3pRtsBgrHsWcpXHoCJ4vo7bQH2t+jmIrku39R2rnWytUb
+         8BhA==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1794765485; x=1795370285; darn=lists.infradead.org;
+        d=googlemail.com; s=20260707; t=1794765530; x=1795370330; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=z6EkiZTsrK4weHp4bp257FUTfMCYoyNr2SVzcxt+tW8=;
-        b=hqyAjYs2ikFgHxLvIo1XpaV/oumK0VRwoFYy2ZraLwngAsrsr5fVwfcJ+5koGB110L
-         IzLNX16m6+rX8TJMIykOi6EefpzZe9do7f9hx/63A5ei4ayMnPiIgBegsi/p8V1h1Kx9
-         XY7ZkCokOOXV/SOdLPzwUPB4BbM4P2x4MYgpQUK4DscewrYIRjr0zTBP0uZ9290+PQ/a
-         GVe7wFDz9XvuwNN2Tq/FhiuvxRXwSu9ALrLHB7yDgoNS9wFlQP4lJnDAzd1nngO55bt+
-         byKjnoztCYoQZEkfWGP4wM0OMshXLawiAvXRas5i0mv23wIpInJeZv59XCsmunrxyIKu
-         ML1g==
+        bh=OWp2aJVNli7UAjXW6hoQg5j8XmpNfGNSR1QLPhqZgnU=;
+        b=pah1gaaTvV0q540jY0p3hiN+oYnDKrruUVcQ7P8XOknqjKPHALuslGTMc3xQiDZ2k9
+         o+jNlru4vvTKPXawOfO4iUkBGxqhCcE119HNf944Lx84IWpVVuPt2NkTWfCEYoDyN4UB
+         7Ra4w9GW0Q22ZkUToWsmE7p3w/TP/mTaKRW10q/OW6P5y2gryR91Einih0424SpeBV29
+         soNytJWX1JRbe4zOSaoOWw1nDYCh2EK24vF4xEhc5t3epivb2A/X6Tv1ULYZgNp72mr+
+         SSRqFRdmsTk9vrE2U+n+/oEKStNICCsAeSZO0F3JhyBekFzKDLQ3qMLaupVhUwyQek41
+         JIVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794765485; x=1795370285;
+        d=1e100.net; s=20260707; t=1794765530; x=1795370330;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=z6EkiZTsrK4weHp4bp257FUTfMCYoyNr2SVzcxt+tW8=;
-        b=i+dB8DqkDLepz9uDXwYlRsmt7grAmrmblVTzgTcw3LQBWptWSB1O+ICzccRIz4RoAH
-         ec/ezFALlYILosZ21qrZrBwFYcvvCKaksdHzbYlXXK9iXglNNWEz+a6+b+3IhybsXF2c
-         wjOqapL+WoA2myYVGTwLizJ8Dkb79ui1umRd2dAhp23bLYXUQXR6t6QEorYX7TdkOKLP
-         Amhp516uF82vTpKXGeGoxBnnPkm3aMB+EQGkrTwOE49mev6s0sqoI4f3XLSdrcm5L80W
-         f6inswFgGVx36BtbhZs2RBHOLFht/yDT9PAUpH4eHZec7PIxFIL7jJ+dWV8BNgmz7uqQ
-         3e3Q==
-X-Forwarded-Encrypted: i=1; AL+hErGsw0F3y25+8EkocwosYoo188PdM46szix9IIKamvsc1+f1ImX2ztddk+aQjnG4h4EJp3nctA1ddSWaXkSxlYZL@lists.infradead.org
-X-Gm-Message-State: APuU4Z/s3kOLVXTGWsIg13kpbOV2yRVTVk8y7wQNZTGXouz8EeMOKs9k
-	jNmHhT3ZdIxRgeipOj3fa1eWMhk0XJMgm9PTBZiJgPQK/J+NhDSStmal7rC3AEQcYOWWFweEJxE
-	S1g21za+dvANQkmsxcfDVsScENfa4Ba0=
-X-Gm-Gg: AYBFou2P+BV57sIQea+t1rTz2Lt+VV9DgxfZN0UtxjlHLw1AvAU7qiZJVzgMdvZRAYM
-	Y1+FbNqeZFYaXh1o/GRdmWfDWTUxmKEJI0RaKHFt3QDN5DiYguEtJowzx/mNJbmXS7NsoLZlJn4
-	2BTxQPBCsm2/1wnMwrwZ4srlX99WygvzcLKEmhFENS7NAjTo3s9x+tN+hsMKbqAKlCYHgazAgVU
-	6XPBZ2lD+jG3whZgYmZYHc78bPJlVD+UhFl18bY/f2cl4Lt7S44iUNzou1X3uOImfvsryKiNk8m
-	oDuinyXxC5n1qR7FSt+VxnoTj1IRe0GHlYNxCCtmLuMqu30p1riPUVaPavh6PJHpta7jwqeX1Xv
-	lSmHbLv5y8t1wMsBTvzz9de0C8s5SWGg+Y0ojenK2CJe2vppH4lqrvkCJkSZlqhN/Um9pog==
-X-Received: by 2002:a05:690e:803:10b0:679:af57:d19e with SMTP id
- 956f58d0204a3-67d89661b52mr2605986d50.45.1794765485479; Sun, 15 Nov 2026
- 09:58:05 -0800 (PST)
+        bh=OWp2aJVNli7UAjXW6hoQg5j8XmpNfGNSR1QLPhqZgnU=;
+        b=0gxF+DbyapEdgX4Nyb1nX/pzFeea9pH8wu9o3/ci4Mys9DebH1KZDE+e8ml2DuVW7/
+         peiW/9yEcLxbAMDTJZLc8ykRZYzGoKFqBpVHY1AG8ZgwIqbrXYLgnCLyWJorKFBJ86CI
+         rIOwFkRscvnim+SyXIl6JQVo8gDLVxfYZv2mLGh3mVlmR0LYKh3AkbakFkt17I4J4WXQ
+         auxJazbqsJKu2w+9/PMfGvxjkJy3cxrajuqPCZW89h2X6J/9LGDURzBg12TYtquFwFu0
+         C3DbUUkmCC6tWYyA6jN46qcaeAAIFEQFJ5Yt/y/esI/iG/ZSMBCLEwrpqyUSJ5z8UFqK
+         9Arw==
+X-Forwarded-Encrypted: i=1; AL+hErHdkx6Rncz0nviGCUs487eDlCebeaY3FkfdnrzqELod6GMwvW2W9LpJx0gPiGw+bBAF+jfzAuFCrM6QrWX6dYxR@lists.infradead.org
+X-Gm-Message-State: APuU4Z82TcrM4yXybDOy54le6+wj12JJtvDPr7DPmzI3l1rx7WP1KNaj
+	tr/nt5lESr+kiQIPnEccbXNK1Wkp2EPGVSeEhPdEqMNlvzmHV8EMJ2mF8bGPdKkTRjZZN2wIchh
+	uvr7MesnzO/jl6NekxbcXA/W71gFoTLU=
+X-Gm-Gg: AYBFou22HlXso8iTjBG3tna+f/snJBOoBVmvkfjthm2fSs6WsEWLq8JLgRKQR4HkAQs
+	Js2SZlYCizE9nZJ4haXpfwxH5uT9Pd/e5/20f+5p1w5frlAEpyagCq1Dq5nGAsfIt5Ho8SNKXEY
+	fsC8PrzVqg5QY4+cHDLH53b3/dxmBFbG5VikGzkGz+0gKr+d8ELJoB2ivXWeK+8WrFk184zSoDK
+	qsEYjf2+hIGIet8v4Q0a/zYnCl76LkzDbgQq/LuvjpfBmTkrZ0lKG4BTy69waHqqIXOnkchzP0w
+	GeCTP0/pM54stjCpTbkDxebdGrsWXi9s98X3jJ3TPjoD/RYvfNYaNaeY6rjl+xI+VrxkM81umUR
+	FgWF3fkEIvOGiUFwRtgJOy6AF6feEbJS7iO9qxwIMBeZaT5Zx1y8taM9HAukkdQGySa0QNhE=
+X-Received: by 2002:a05:690e:118f:b0:67d:9fef:d61a with SMTP id
+ 956f58d0204a3-67d9fefe1a1mr1954166d50.8.1794765530625; Sun, 15 Nov 2026
+ 09:58:50 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261113121852.334604-1-tanure@linux.com> <20261113121852.334604-5-tanure@linux.com>
-In-Reply-To: <20261113121852.334604-5-tanure@linux.com>
+References: <20261113121852.334604-1-tanure@linux.com> <20261113121852.334604-6-tanure@linux.com>
+In-Reply-To: <20261113121852.334604-6-tanure@linux.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Nov 2026 18:57:54 +0100
-X-Gm-Features: AclHuK9m7YW9F8wMPiMsA7yThjtGjePZoU8lN6bMh8Ee4d6dZkum7e9qCRT0s2I
-Message-ID: <CAFBinCA7XhksQaTHoGP3jCCeSCBdwAYgamW2AfPTdK0ncSCzCw@mail.gmail.com>
-Subject: Re: [PATCH v7 4/7] net: stmmac: dwmac-meson8b: follow the generic
- RGMII delay rules on the T7
+Date: Sun, 15 Nov 2026 18:58:40 +0100
+X-Gm-Features: AclHuK_i44pvTA9IYISQzdnNKpkNilY1KX3H0SN4TaP7nH1OVG2B38AEZw9Q2Eo
+Message-ID: <CAFBinCBbL0F=2Wx66Ef11gUKHdz80vYrwjniMFRzeK-uiu5-rg@mail.gmail.com>
+Subject: Re: [PATCH v7 5/7] arm64: dts: amlogic: t7: add the ethernet pinctrl nodes
 To: Lucas Tanure <tanure@linux.com>
 Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
 	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
@@ -108,12 +107,12 @@ Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemlo
 	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
 	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_095806_761237_7E3A0F8A 
-X-CRM114-Status: GOOD (  12.79  )
+X-CRM114-CacheID: sfid-20261115_095851_874079_7D97EB17 
+X-CRM114-Status: GOOD (  10.36  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -136,19 +135,15 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 On Fri, Nov 13, 2026 at 1:18=E2=80=AFPM Lucas Tanure <tanure@linux.com> wro=
 te:
 >
-> The delay code reads phy-mode as the list of delays this glue has to
-> add, falls back to a 2ns transmit delay when no property asks for one,
-> and takes the vendor delay properties. ethernet-controller.yaml says
-> the opposite: the PHY adds the 2ns delays, and the MAC properties only
-> hold small fine tuning added on top. Every board in the tree depends on
-> the old reading, so it stays as it is.
+> The SoC brings its ethernet interface out on bank Z, but no pin groups
+> were described, so a board had no way to hand those pins over to the
+> MAC.
 >
-> No T7 board uses this glue yet, so the T7 gets a path of its own that
-> follows the generic rules: the receive delay line is fine tuning in
-> 200ps steps, and the transmit side, a quarter-period phase step, offers
-> none, so the transmit property is refused.
+> Describe them as the two sets a board actually needs: the nine pins the
+> interface always uses, and the five extra ones RGMII adds for its wider
+> data path.
 >
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 > Signed-off-by: Lucas Tanure <tanure@linux.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
