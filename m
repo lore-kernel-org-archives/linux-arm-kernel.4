@@ -2,68 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4E5606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 13:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E665F60A2620
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lM6Qnd5B;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dYZNTrwz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=22aSrgma;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LawYJ4Tw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=DOuKLQTv6yFSfHDgE4gwPAhy1aGA7qa0gtGA9y3WDVU=; b=lM6Qnd5B/JkNNHSsrC3rK2Am9F
-	nePIiKHOBaS4JNnfcWvr/Cf2k5UDSsYYvF4jYgMBQ/s5ccKP5XV9FewoAq7XLGD6yO8BpkE09YSy4
-	iKxDbF/Ik5AFb286fuFpxI999+X1CbHrkdm5IHnTKQyN5lrMVyJzGvbZvDryHK0POqIzDcoy0T17D
-	sNaAyrFhmFMRU0n+nCUfVUKoznaexQS/LqRMasQWbMqjh6ZdBca1tiGXj7TJhTqmgs9EdgzvtC430
-	2E3te0mbjhVKRvR50mjcNSbAbBa+nkKnNxkaRzVZZFn0sqJvD8CcRASh9dYICNrhNrIQD8OQMICzy
-	rxFKbTPg==;
+	bh=z2MWIKnJJ/fCIM3N2m1iMGulOZFzm+PJBkPqJtMbyaA=; b=22aSrgma/T2wqctgs0xZ2E9/Gv
+	qvzSkcu8P7jYDsUn8Qrv5KO0tAZDLEk5zDZqmnonIcHv4RpCQ1kv5QeyFKFNbDzw5zGj388giSCer
+	8XqvOpnGTkjefUtCjwLLZ3gBIAnYDNfPDgPHPhvPlFOeioymfmE2t7cCVJCJrKE8H7WUf9Sgr73Pg
+	PeV8emVdhw0snpblQVRhTiQV9XK/aTc61Mg3TYeOOla5lBTkWN4XfycdGnvNh2ZRJDmvfnPkiyuXE
+	4v7Zi40cOC6slgz3emEfTbbi2IvCpdxNEZEb6Sg9hAYURS1+LOSQs6ExOmmosJA7WfpaZLae1xfYI
+	EZOxPd6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSaLd-0000000HZrs-0FlY;
-	Sun, 15 Nov 2026 13:32:45 +0000
+	id 1xSaoC-000000000dg-3uvA;
+	Sun, 15 Nov 2026 14:02:16 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSaLb-0000000HZrk-2a71
+	id 1xSaoB-000000000da-2SrU
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 13:32:43 +0000
+	Sun, 15 Nov 2026 14:02:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with UTF8SMTP id 26F5C44780;
-	Sun, 15 Nov 2026 13:32:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 7A2301F000C4;
-	Sun, 15 Nov 2026 13:32:42 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 06F9845805
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 14:02:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE6731F000CA
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 14:02:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794749563;
-	bh=DOuKLQTv6yFSfHDgE4gwPAhy1aGA7qa0gtGA9y3WDVU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=dYZNTrwzCzvsmlvCKwiOB52eIoDDv/uMnNNFHuR9K21pgNtP5jQ2fiLmqSWkcgC6/
-	 JJY/F2Vd1QOnFfeviaLg3LA+9l+6GDh5FkprS4WzlZwH6Yz1OJiZUGl5FT7auVNtzY
-	 3MCB1x4jwybHNtlx4cTNcla47ijKkBEWvi/1VjhevTYkjaovg7gLg5nIJ3z0s+5oxR
-	 hTYDTvqSZxYhILTFp0r613hnQITDD3FO8nL6aUb6vzRhLHj4fJAb4QwNe61+RB3SSl
-	 F4QDBuBqU+2XeM0lx9szir6IiwzegEfNwZQTBRxCNfR/e6KQ2d9Vu/TaRAgq5ZjmSX
-	 2Gkbe/scHQmXA==
-Date: Sun, 15 Nov 2026 15:32:39 +0200
-From: Jarkko Sakkinen <jarkko@kernel.org>
-To: Siddharth Chintamaneni <sidchintamaneni@gmail.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Yeoreum Yun <yeoreum.yun@arm.com>,
-	Stuart Yoder <stuart.yoder@arm.com>, apais@microsoft.com,
-	rachelmenge@linux.microsoft.com, hargar@linux.microsoft.com,
-	linux-integrity@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] tpm: tpm_tis: Use cached tpm2_acpi_start_method
-Message-ID: <avm0d4iOX6V9O0-p@kernel.org>
-References: <20261115013456.212141-1-sidchintamaneni@gmail.com>
- <20261115013456.212141-4-sidchintamaneni@gmail.com>
+	s=k20260515; t=1794751333;
+	bh=z2MWIKnJJ/fCIM3N2m1iMGulOZFzm+PJBkPqJtMbyaA=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
+	b=LawYJ4TwvGqTNp8ftm33rlEmgQF3Qu6fFx3HWWsA9SN0Im34MzTtzf+j+A1wyPCvh
+	 Xls3Csqza885jSb8m5SaSsvHhLX7T7R9cY1ePWG8q88y/y4SrvOpjryA/Pzfzv2QDq
+	 SvUyiZGySPrGLe81mdDVZ4xavICgQm/qLcFzSLMwzUzdE9MOe58Y/11qdqmAo7bbBo
+	 5pJFIn4m0CD+T0u20JZE8hf3jFa0rZ5mVRd+8kPDRNevX/5z2h/8KYif0rQzxhhPJT
+	 wv5qsH7JSwFoacej9r/wLZ4I/mrxC8tYnaEUIZAn8FW7a6vzb57KGFtlWXlVo34iOZ
+	 dxCJqkKh44ApQ==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3adfed9a887so21575871fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 06:02:13 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGn849qxwAbQ6IzTQcZiFP9SjorFWkSdARb82G5AydCtnpcaJFwiPZh9ASP8oHziL6PUG7mLkOvbvI4EkBOrJS9@lists.infradead.org
+X-Gm-Message-State: APuU4Z80nweuXXxpi47TxRiYBtYH7Zgp2kp/ang+gReF4gy2Wk36Uekz
+	b9lOZBgSsQqWi0cuEp/BFnnKtr8WVrL6H0nN2bL1sbk3p17srkR03XBc8nFTzDJbsrUIVyL2+wz
+	RP2jw2qOCH6Z2P2V1KHMVBRQabqSVnhw=
+X-Received: by 2002:a05:651c:a150:b0:3a9:d70c:f75e with SMTP id
+ 38308e7fff4ca-3ae2b4a1dd7mr26302241fa.7.1794751332015; Sun, 15 Nov 2026
+ 06:02:12 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261115013456.212141-4-sidchintamaneni@gmail.com>
+References: <20261115061102.229680-1-jernej.skrabec@gmail.com> <20261115061102.229680-7-jernej.skrabec@gmail.com>
+In-Reply-To: <20261115061102.229680-7-jernej.skrabec@gmail.com>
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sun, 15 Nov 2026 22:01:58 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64X2hbU4wjv7C4NNkQ6W=0PW5C0xSUp1bzdDiAGrJF+ww@mail.gmail.com>
+X-Gm-Features: AclHuK8-o_bvwblkCzsTqNM8KJ9djH1Jg7AEAEwZv4SuwLt3JJu8d-EKluowQT0
+Message-ID: <CAGb2v64X2hbU4wjv7C4NNkQ6W=0PW5C0xSUp1bzdDiAGrJF+ww@mail.gmail.com>
+Subject: Re: [PATCH v3 6/8] drm/sun4i: Add DE33 shared plane driver
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Samuel Holland <samuel@sholland.org>, mripard@kernel.org, 
+	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	bmasney+clk@redhat.com, jbrunet+clk@baylibre.com, sboyd@kernel.org, 
+	Andre Przywara <andre.przywara@arm.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,6 +83,7 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -82,93 +93,364 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 15, 2026 at 01:34:55AM +0000, Siddharth Chintamaneni wrote:
-> Use the cached tpm2_acpi_start_method value instead of mapping and
-> unmapping the ACPI TPM2 table again during probe. Remove
-> check_acpi_tpm2() and open-code the start method check directly in
-> tpm_tis_init(), returning -ENODEV when the device does not use
-> ACPI_TPM2_MEMORY_MAPPED.
-> 
-> Signed-off-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+On Sun, Nov 15, 2026 at 2:11=E2=80=AFPM Jernej Skrabec <jernej.skrabec@gmai=
+l.com> wrote:
+>
+> DE33 makes its plane channels shared resources that mixers select through
+> routing registers in the display clock block. The existing mixer-local
+> plane initialization cannot represent that topology.
+>
+> Add a component that owns the shared plane register space, programs the
+> default channel-to-mixer mapping and creates each mixer's DRM planes
+> from that mapping.
+
+Just some nits.
+
+This should mention that this driver only gets hooked up in the last
+patch of the series. This patch alone doesn't register the driver.
+
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 > ---
->  drivers/char/tpm/tpm_tis.c | 45 +++++---------------------------------
->  1 file changed, 6 insertions(+), 39 deletions(-)
-> 
-> diff --git a/drivers/char/tpm/tpm_tis.c b/drivers/char/tpm/tpm_tis.c
-> index 6f8344894ea5..df2d8c1c2be0 100644
-> --- a/drivers/char/tpm/tpm_tis.c
-> +++ b/drivers/char/tpm/tpm_tis.c
-> @@ -127,45 +127,11 @@ static inline int is_itpm(struct acpi_device *dev)
->  #endif
->  
->  #if defined(CONFIG_ACPI)
-> -#define DEVICE_IS_TPM2 1
-> -
->  static const struct acpi_device_id tpm_acpi_tbl[] = {
-> -	{"MSFT0101", DEVICE_IS_TPM2},
-> +	{"MSFT0101"},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(acpi, tpm_acpi_tbl);
-> -
-> -static int check_acpi_tpm2(struct device *dev)
-> -{
-> -	const struct acpi_device_id *aid = acpi_match_device(tpm_acpi_tbl, dev);
-> -	struct acpi_table_tpm2 *tbl;
-> -	acpi_status st;
-> -	int ret = 0;
-> -
-> -	if (!aid || aid->driver_data != DEVICE_IS_TPM2)
-> -		return 0;
+>  drivers/gpu/drm/sun4i/Makefile        |   3 +-
+>  drivers/gpu/drm/sun4i/sun50i_planes.c | 215 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/sun4i/sun50i_planes.h |  43 ++++++
+>  3 files changed, 260 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/sun4i/sun50i_planes.c
+>  create mode 100644 drivers/gpu/drm/sun4i/sun50i_planes.h
+>
+> diff --git a/drivers/gpu/drm/sun4i/Makefile b/drivers/gpu/drm/sun4i/Makef=
+ile
+> index bad7497a0d11..501e3d867918 100644
+> --- a/drivers/gpu/drm/sun4i/Makefile
+> +++ b/drivers/gpu/drm/sun4i/Makefile
+> @@ -16,7 +16,8 @@ sun8i-drm-hdmi-y              +=3D sun8i_hdmi_phy_clk.o
+>
+>  sun8i-mixer-y                  +=3D sun8i_mixer.o sun8i_ui_layer.o \
+>                                    sun8i_vi_layer.o sun8i_ui_scaler.o \
+> -                                  sun8i_vi_scaler.o sun8i_csc.o
+> +                                  sun8i_vi_scaler.o sun8i_csc.o \
+> +                                  sun50i_planes.o
+>
+>  sun4i-tcon-y                   +=3D sun4i_crtc.o
+>  sun4i-tcon-y                   +=3D sun4i_tcon_dclk.o
+> diff --git a/drivers/gpu/drm/sun4i/sun50i_planes.c b/drivers/gpu/drm/sun4=
+i/sun50i_planes.c
+> new file mode 100644
+> index 000000000000..22b9f104a391
+> --- /dev/null
+> +++ b/drivers/gpu/drm/sun4i/sun50i_planes.c
+> @@ -0,0 +1,215 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/* Copyright (c) 2025 Jernej Skrabec <jernej.skrabec@gmail.com> */
+
+Need to update the year.
+
+> +
+> +#include <drm/drm_device.h>
+> +
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+
+> +#include <linux/of_graph.h>
+
+This is unused. Leftover from an older version?
+
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include "sun50i_planes.h"
+> +#include "sun8i_ui_layer.h"
+> +#include "sun8i_vi_layer.h"
+> +
+> +static const struct sun50i_planes_quirks sun50i_h616_planes_quirks =3D {
+> +       .def_map =3D {
+> +               {
+> +                       .map =3D {0, 6, 7},
+> +                       .num_ch =3D 3,
+> +               },
+> +               {
+> +                       .map =3D {1, 2, 8},
+> +                       .num_ch =3D 3,
+> +               },
+> +       },
+> +       .cfg =3D {
+> +               .de_type        =3D SUN8I_MIXER_DE33,
+> +               /*
+> +                * TODO: All planes support scaling, but driver needs
+> +                * improvements to properly support it.
+> +                */
+> +               .scaler_mask    =3D 0,
+> +               .scanline_yuv   =3D 4096,
+> +       },
+> +};
+> +
+> +static const struct of_device_id sun50i_planes_of_table[] =3D {
+> +       {
+> +               .compatible =3D "allwinner,sun50i-h616-de33-planes",
+> +               .data =3D &sun50i_h616_planes_quirks
+> +       },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, sun50i_planes_of_table);
+> +
+> +struct drm_plane **
+> +sun50i_planes_setup(struct device *dev, struct drm_device *drm,
+> +                   unsigned int mixer)
+> +{
+> +       struct sun50i_planes *planes =3D dev_get_drvdata(dev);
+> +       const struct sun50i_planes_quirks *quirks;
+> +       struct drm_plane **drm_planes;
+> +       const struct default_map *map;
+> +       unsigned int i;
+> +
+> +       if (!of_match_node(sun50i_planes_of_table, dev->of_node)) {
+> +               dev_err(dev, "Device is not planes driver!\n");
+> +               return ERR_PTR(-EINVAL);
+
+return dev_err_probe();
+
+> +       }
+> +
+> +       if (!planes) {
+> +               dev_err(dev, "Planes driver is not loaded yet!\n");
+> +               return ERR_PTR(-EINVAL);
+
+return dev_err_probe();
+
+> +       }
+> +
+> +       if (mixer > 1) {
+
+Use ">=3D MAX_DISP" or  "!(mixer < MAX_DISP)" here?
+
+> +               dev_err(dev, "Mixer index is too high!\n");
+> +               return ERR_PTR(-EINVAL);
+
+return dev_err_probe();
 
 
-Jason, can you remind me what was the deal with this flag?
+> +       }
+> +
+> +       quirks =3D planes->quirks;
+> +       map =3D &quirks->def_map[mixer];
+> +
+> +       drm_planes =3D devm_kcalloc(drm->dev, map->num_ch + 1,
+> +                                 sizeof(*drm_planes), GFP_KERNEL);
+> +       if (!drm_planes)
+> +               return ERR_PTR(-ENOMEM);
+> +
+> +       for (i =3D 0; i < map->num_ch; i++) {
+> +               unsigned int phy_ch =3D map->map[i];
+> +               struct sun8i_layer *layer;
+> +               enum drm_plane_type type;
+> +
+> +               if ((i =3D=3D 0 && map->num_ch =3D=3D 1) || i =3D=3D 1)
+> +                       type =3D DRM_PLANE_TYPE_PRIMARY;
+> +               else
+> +                       type =3D DRM_PLANE_TYPE_OVERLAY;
+> +
+> +               if (phy_ch < UI_PLANE_OFFSET)
+> +                       layer =3D sun8i_vi_layer_init_one(drm, type, plan=
+es->regs,
+> +                                                       i, phy_ch, map->n=
+um_ch,
+> +                                                       &quirks->cfg);
+> +               else
+> +                       layer =3D sun8i_ui_layer_init_one(drm, type, plan=
+es->regs,
+> +                                                       i, phy_ch, map->n=
+um_ch,
+> +                                                       &quirks->cfg);
+> +
+> +               if (IS_ERR(layer)) {
+> +                       dev_err(drm->dev,
+> +                               "Couldn't initialize DRM plane\n");
+> +                       return ERR_CAST(layer);
 
-> -
-> -	/* If the ACPI TPM2 signature is matched then a global ACPI_SIG_TPM2
-> -	 * table is mandatory
-> -	 */
-> -	st = acpi_get_table(ACPI_SIG_TPM2, 1, (struct acpi_table_header **)&tbl);
-> -	if (ACPI_FAILURE(st) || tbl->header.length < sizeof(*tbl)) {
-> -		dev_err(dev, FW_BUG "failed to get TPM2 ACPI table\n");
-> -		return -EINVAL;
-> -	}
-> -
-> -	/* The tpm2_crb driver handles this device */
-> -	if (tbl->start_method != ACPI_TPM2_MEMORY_MAPPED)
-> -		ret = -ENODEV;
-> -
-> -	acpi_put_table((struct acpi_table_header *)tbl);
-> -	return ret;
-> -}
-> -#else
-> -static int check_acpi_tpm2(struct device *dev)
-> -{
-> -	return 0;
-> -}
->  #endif
->  
->  static int tpm_tcg_read_bytes(struct tpm_tis_data *data, u32 addr, u16 len,
-> @@ -222,11 +188,12 @@ static int tpm_tis_init(struct device *dev, struct tpm_info *tpm_info)
->  {
->  	struct tpm_tis_tcg_phy *phy;
->  	int irq = -1;
-> -	int rc;
->  
-> -	rc = check_acpi_tpm2(dev);
-> -	if (rc)
-> -		return rc;
-> +#ifdef CONFIG_ACPI
-> +	if (acpi_match_device(tpm_acpi_tbl, dev) &&
-> +	    tpm2_acpi_start_method != ACPI_TPM2_MEMORY_MAPPED)
-> +		return -ENODEV;
-> +#endif
->  
->  	phy = devm_kzalloc_obj(dev, struct tpm_tis_tcg_phy);
->  	if (phy == NULL)
-> -- 
-> 2.45.4
-> 
+return dev_err_probe();
 
-Br, Jarkko
+
+Otherwise,
+
+Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+
+> +               }
+> +
+> +               drm_planes[i] =3D &layer->plane;
+> +       }
+> +
+> +       return drm_planes;
+> +}
+> +
+> +static void sun50i_planes_init_mapping(struct sun50i_planes *planes)
+> +{
+> +       const struct sun50i_planes_quirks *quirks =3D planes->quirks;
+> +       unsigned int i, j;
+> +       u32 mapping;
+> +
+> +       mapping =3D 0;
+> +       for (j =3D 0; j < MAX_DISP; j++)
+> +               for (i =3D 0; i < quirks->def_map[j].num_ch; i++) {
+> +                       unsigned int ch =3D quirks->def_map[j].map[i];
+> +
+> +                       if (ch < UI_PLANE_OFFSET)
+> +                               mapping |=3D j << (ch * 2);
+> +                       else
+> +                               mapping |=3D j << ((ch - UI_PLANE_OFFSET)=
+ * 2 + 16);
+> +               }
+> +       regmap_write(planes->mapping, SUNXI_DE33_DE_CHN2CORE_MUX_REG, map=
+ping);
+> +
+> +       for (j =3D 0; j < MAX_DISP; j++) {
+> +               mapping =3D 0;
+> +               for (i =3D 0; i < quirks->def_map[j].num_ch; i++) {
+> +                       unsigned int ch =3D quirks->def_map[j].map[i];
+> +
+> +                       if (ch >=3D UI_PLANE_OFFSET)
+> +                               ch +=3D 2;
+> +
+> +                       mapping |=3D ch << (i * 4);
+> +               }
+> +               regmap_write(planes->mapping, SUNXI_DE33_DE_PORT02CHN_MUX=
+_REG + j * 4, mapping);
+> +       }
+> +}
+> +
+> +static const struct regmap_config sun50i_planes_regmap_config =3D {
+> +       .name           =3D "planes",
+> +       .reg_bits       =3D 32,
+> +       .val_bits       =3D 32,
+> +       .reg_stride     =3D 4,
+> +       .max_register   =3D 0x17fffc,
+> +};
+> +
+> +static int sun50i_planes_probe(struct platform_device *pdev)
+> +{
+> +       struct platform_device *clk_pdev;
+> +       struct device *dev =3D &pdev->dev;
+> +       struct sun50i_planes *planes;
+> +       struct device_node *np;
+> +       void __iomem *regs;
+> +
+> +       planes =3D devm_kzalloc(dev, sizeof(*planes), GFP_KERNEL);
+> +       if (!planes)
+> +               return -ENOMEM;
+> +
+> +       planes->quirks =3D of_device_get_match_data(dev);
+> +       if (!planes->quirks)
+> +               return dev_err_probe(dev, -EINVAL, "Unable to get quirks\=
+n");
+> +
+> +       np =3D of_parse_phandle(dev->of_node,
+> +                             "allwinner,plane-mapping", 0);
+> +       if (!np)
+> +               return dev_err_probe(dev, -EINVAL, "Missing mapping phand=
+le\n");
+> +
+> +       clk_pdev =3D of_find_device_by_node(np);
+> +       of_node_put(np);
+> +       if (!clk_pdev)
+> +               return dev_err_probe(dev, -EPROBE_DEFER, "Unable to get m=
+apping\n");
+> +
+> +       /* Regmap is registered by display clocks driver during its probe=
+. */
+> +       planes->mapping =3D dev_get_regmap(&clk_pdev->dev, NULL);
+> +       if (!planes->mapping) {
+> +               platform_device_put(clk_pdev);
+> +               return dev_err_probe(dev, -EPROBE_DEFER, "Unable to get r=
+egmap\n");
+> +       }
+> +
+> +       if (!device_link_add(dev, &clk_pdev->dev,
+> +                            DL_FLAG_AUTOREMOVE_CONSUMER)) {
+> +               platform_device_put(clk_pdev);
+> +               return dev_err_probe(dev, -EINVAL, "Failed to create link=
+\n");
+> +       }
+> +       platform_device_put(clk_pdev);
+> +
+> +       regs =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(regs))
+> +               return PTR_ERR(regs);
+> +
+> +       planes->regs =3D devm_regmap_init_mmio(dev, regs, &sun50i_planes_=
+regmap_config);
+> +       if (IS_ERR(planes->regs))
+> +               return PTR_ERR(planes->regs);
+> +
+> +       sun50i_planes_init_mapping(planes);
+> +
+> +       dev_set_drvdata(dev, planes);
+> +
+> +       return 0;
+> +}
+> +
+> +struct platform_driver sun50i_planes_platform_driver =3D {
+> +       .probe          =3D sun50i_planes_probe,
+> +       .driver         =3D {
+> +               .name           =3D "sun50i-planes",
+> +               .of_match_table =3D sun50i_planes_of_table,
+> +       },
+> +};
+> diff --git a/drivers/gpu/drm/sun4i/sun50i_planes.h b/drivers/gpu/drm/sun4=
+i/sun50i_planes.h
+> new file mode 100644
+> index 000000000000..7be969491f9c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/sun4i/sun50i_planes.h
+> @@ -0,0 +1,43 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/* Copyright (c) 2025 Jernej Skrabec <jernej.skrabec@gmail.com> */
+
+2026 now (and almost over ...)
+
+> +
+> +#ifndef _SUN50I_PLANES_H_
+> +#define _SUN50I_PLANES_H_
+> +
+> +#include "sun8i_mixer.h"
+> +
+> +/* mapping registers, located in clock register space */
+> +#define SUNXI_DE33_DE_CHN2CORE_MUX_REG 0x24
+> +#define SUNXI_DE33_DE_PORT02CHN_MUX_REG        0x28
+> +#define SUNXI_DE33_DE_PORT12CHN_MUX_REG        0x2c
+> +
+> +#define MAX_DISP       2
+> +#define MAX_CHANNELS   8
+> +#define UI_PLANE_OFFSET        6
+> +
+> +struct regmap;
+> +struct drm_device;
+> +
+> +struct default_map {
+> +       unsigned int map[MAX_CHANNELS];
+> +       unsigned int num_ch;
+> +};
+> +
+> +struct sun50i_planes_quirks {
+> +       struct default_map      def_map[MAX_DISP];
+> +       struct sun8i_layer_cfg  cfg;
+> +};
+> +
+> +struct sun50i_planes {
+> +       struct regmap                           *regs;
+> +       struct regmap                           *mapping;
+> +       const struct sun50i_planes_quirks       *quirks;
+> +};
+> +
+> +struct drm_plane **
+> +sun50i_planes_setup(struct device *dev, struct drm_device *drm,
+> +                   unsigned int mixer);
+> +
+> +extern struct platform_driver sun50i_planes_platform_driver;
+> +
+> +#endif /* _SUN50I_PLANES_H_ */
+> --
+> 2.43.0
+>
 
