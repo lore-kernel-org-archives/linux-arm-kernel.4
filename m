@@ -2,125 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3762606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9FE606A31D
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 10:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VV/P6KmF;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=UTXdv+nO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A3AiG981;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZqO0/gD8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/H7ist9tJ0po06viy1vxuJ3/qEXrpm4LsgaJ7Obvc10=; b=VV/P6KmFFGafe/4b6DBw5ZTPEZ
-	wa5vctYvTj91C+zlci3XJG/+j8IvTpoZKfasMt6iFlRD5Vp7BSY58m5U/zoN46fnDS4mWtwOKM2Ud
-	cIrwLSTEx59oMtQn7YAaYdq0dHndUAVgxmhwCRzrjUlrxTFPSSMO3DTem23yiazE06CgZ3mlwiljN
-	wRazvaPawfDMRXR0XI/cW3sULlLizJrCl5hv5N8z470JabhIObAJTCvw/q5NCCbNtQPMIjhZ4P4Jy
-	Qh9bzKF5rQlwJh50W0S4vu6iCCRbh1vbhH5xOe+QyZGmsLC07S7Ee+2OEKFUPvE9V1Wa/ccWu+Xln
-	WPLAhlkg==;
+	bh=NyTNgU3MDKNHP7luxta/A/OzHHMqJA4oTLAdOlcpPMo=; b=A3AiG981ydDz4+E63klN3O8s03
+	TrR1JHP5xZP8dBdE2j9bcUeWkDD8VF0hjeYZrUs7FqHUGR2j9sA7+j8wk6OH7nqvdRy2PymjXvv7s
+	2neh3wlTkOZ3dhjPi3j0pPCRNHi4imWMh07A1l7laBKyVGQIaCynlyT71moZ2k6ZASnWm3ujDnGae
+	AgoVPAT6Z2gd4a3spkDb9mk55jf42TIODbao6k7CuXWBX9oag4Mx3tB8VEDzFUp1b9G0IFsr3VD/B
+	ZUD+zHIl0V+jt2ePu9GCJB1jdWBsRF3jvVOZBMShXxGHmtgL3/AHJtZqp1E64kk95F60IYSxA3S0Y
+	uGKy2zsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWoA-0000000HLqF-1z8F;
-	Sun, 15 Nov 2026 09:45:58 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xSX24-0000000HMDW-2m3T;
+	Sun, 15 Nov 2026 10:00:20 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWo7-0000000HLpu-2pzf
+	id 1xSX23-0000000HMDP-09EC
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 09:45:57 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AF7xdeR3780179;
-	Sun, 15 Nov 2026 09:45:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/H7ist9tJ0po06viy1vxuJ3/qEXrpm4LsgaJ7Obvc10=; b=UTXdv+nO8OZ8Cc9K
-	gd0ALDQficAKwW9yH3MsH02kOqksuFmHkpMfFiv4eJopGePEqCtRha9KcWLgwKHi
-	pFcJTUHlwr+pS5IoFChujYBKY86bCfGrdL8TR6NVOJQ1MDi+UvUszW+S4ur78miq
-	i3iRAmU+ZH9a71HPF0ffOJ2NKphCdPGC0IM1rZwDHSHQDrF8CusKgcTTs9mlzjzl
-	IngWrYvlYDFAq7UpFqJDoVNVxcCCw62n/n8jaU+s20kX24bPvx0QRGGhZtc00b1W
-	4pAU9SCqzdzGqN76q8N/I7kv8jqQAOjCbqcQFMTsmb2io7PqLxvgCTRauvbSGdfD
-	2KAQIg==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hxhm8tm86-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Sun, 15 Nov 2026 09:45:45 +0000 (GMT)
-Received: from pps.filterd (apblrppmta02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AF9jhKW2604307;
-	Sun, 15 Nov 2026 09:45:43 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-bibekkum-hyd.qualcomm.com [10.147.243.199])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 6AF9jgmu2604298
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Sun, 15 Nov 2026 09:45:42 +0000 (GMT)
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4253010)
-	id 99C045FF; Sun, 15 Nov 2026 15:15:41 +0530 (+0530)
-Date: Sun, 15 Nov 2026 15:15:41 +0530
-From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-To: Val Packett <val@packett.cool>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 3/6] arm64: dts: qcom: kodiak: Add GEM_NOC
- interconnect for adreno SMMU
-Message-ID: <20261115094541.axsybs55kedvlank@hu-bibekkum-hyd.qualcomm.com>
-References: <20260706-smmu_interconnect_addition-v3-0-afdca0125a65@oss.qualcomm.com>
- <20260706-smmu_interconnect_addition-v3-3-afdca0125a65@oss.qualcomm.com>
- <h6opbtr2ced3sannj3ym573qc2sjk7ek3clpto5j5mtqfrfk6w@34sk2zraoqtj>
- <807f145d-88d3-460a-9862-b63fe2a52cf7@oss.qualcomm.com>
- <a4f5sod3aflubxkk4mm4k5ozddydqcnqeac4s6vnozkd2nvxbi@hmh6zclsw5z3>
- <4e5a3d82-b946-4490-885a-ea7061939c32@oss.qualcomm.com>
- <ak5qkRKk2eHHLYmo@baldur>
- <2c21041d-f84c-4fa7-a977-555f9203d8b5@oss.qualcomm.com>
- <4ce436ed-63b7-4764-afc5-dc5ffa4f0ba1@packett.cool>
+	Sun, 15 Nov 2026 10:00:19 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 9D48F45996
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 10:00:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C7341F000CC
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 10:00:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794736817;
+	bh=NyTNgU3MDKNHP7luxta/A/OzHHMqJA4oTLAdOlcpPMo=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
+	b=ZqO0/gD8wARgSKe9l6FyvNO/C2sNi3avgTVknlRvd3LwKSQ5oivSMmvQrhi9cezBp
+	 YJ6KtEta/xSe0E4J7Z+gcdgJ/KicvPF0i74mWou4Lwf6DG3iXx/TICcvB87r6tOhjM
+	 jtHEo+wI0mi2xj1CTJsEwYlLfryOyjqmb+cQ6g0k/5FQOZpk/0V0y/ERJUMd7GSwh2
+	 MSadl/zDq2xVYQkmguXsC3Ed8hwF2D7MbK+FxkMG+lq7U9vvVMgzUA9q2HWLWrvUlr
+	 p+5GW+ujFuYIPF1EXAIBvf290XMq7AWd+1ymd+VsiN/RW3ihfNfUpmF5aQGuXJNa3B
+	 TQ1Rzuq79fGcg==
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-3ae0d0b9db2so26077791fa.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 02:00:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHf9i/FaN40FARawwQQ/EPcXg40JJKKtHgJyVH9R/0fQ6xLDxYDp8i0iH+YLXx/anPAjblzx7h82wj59mjXRCvt@lists.infradead.org
+X-Gm-Message-State: APuU4Z/dUFVWCP2w3kKjlyMP8C7+ROOyH3/lQzr8usrrJJZoouVjBK3i
+	iip2zbI1W4iFdWIvQtD47be33plQFZl2X1ULmnURYZPuf+uiGiKrFQXiWYjZcFHilB3tZtnpwaT
+	ZdAfvZ/NhxqkCWJdsRiatYF8Q3E5gPmM=
+X-Received: by 2002:a05:651c:a207:20b0:3ae:396d:18b with SMTP id
+ 38308e7fff4ca-3ae396d0372mr10442331fa.7.1794736814738; Sun, 15 Nov 2026
+ 02:00:14 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4ce436ed-63b7-4764-afc5-dc5ffa4f0ba1@packett.cool>
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Authority-Analysis: v=2.4 cv=ItKL47/g c=1 sm=1 tr=0 ts=6af97f49 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
- a=pq1cc4_aG4dz-00lW3QA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE1MDAzOCBTYWx0ZWRfXzsV0SrSfIXpR
- /0wykZDNvcv4ZERAEqt41SugVaLDzT6ujBhPpjCKfjXAMUvZc+S4e305U2nfxQbHAsBHstsusl1
- wMzd/npCxHAGzVIuAumMyIqqR+wLt6g=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE1MDAzOCBTYWx0ZWRfXzu+QoH68rj9B
- lHgtNsDWouxEPvzmlkd5pGrqcWS+V8DjK5mDcR6z4kahuGIXmmznL1xszZThYM1dwzfEDFn7Rxc
- hit7i2iVapBy1WKB1FJdX1SdopJ/yUgMbRCy/yympDpLdJvKo3q2+Ex9mszfzGlERhLRxWCpKpT
- MQmRnkYpbsjLPUcKtHaou29kPEfxJ0UQR9a0CWpUK3fJDzNASVfiH8XTp4IkiFL9en/fwGAj98T
- NUMfgii9Z3vunuLC8JACxUeK8tsfJNBTb2/YRACofwjhz/49ajWlt8oOVneUyX5nXOefkWAefLH
- EGF2KvIaRQQETN9NomuXzAP3dv5YoYEyDE2X9aIW1dRh+eIZqPHSm+gcW3iI6U1rxm1S0UoDCtz
- UdyZqfpQGxjxcuD9K/jUXGo3Y8v2Ufw4xnLM6B70gBX25O+6wVWd5+9WYV9db4U0bI/tUZJaGVf
- WxW9yv1iq2yVKJ3cUqw==
-X-Proofpoint-ORIG-GUID: eLMBCF6MfO3K9RJdKnVhAf8HqjIlwkPZ
-X-Proofpoint-GUID: eLMBCF6MfO3K9RJdKnVhAf8HqjIlwkPZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-15_03,2026-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 spamscore=0 adultscore=0 malwarescore=0 suspectscore=0
- priorityscore=1501 lowpriorityscore=0 phishscore=0 impostorscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611150038
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_014555_841084_9FD58980 
-X-CRM114-Status: GOOD (  24.50  )
-X-Spam-Score: -2.6 (--)
+References: <20261026-sunxi-orangepi-3-lts-v3-0-98fef4f75184@gmail.com>
+In-Reply-To: <20261026-sunxi-orangepi-3-lts-v3-0-98fef4f75184@gmail.com>
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sun, 15 Nov 2026 18:00:01 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66f5QFECs1L3K1C+1LMXS2KVCVgG_LgAnEuun9YNgHidg@mail.gmail.com>
+X-Gm-Features: AclHuK9eevfH2EBPHhmpLnWPjLF3ubeY3uOjfZRW9DwFb4Y-flxnXpQ0T_-B6OU
+Message-ID: <CAGb2v66f5QFECs1L3K1C+1LMXS2KVCVgG_LgAnEuun9YNgHidg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] arm64: dts: allwinner: Support Orange Pi 3 LTS
+To: filipescu.cristian@gmail.com
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Andre Przywara <andre.przywara@arm.com>, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,161 +81,71 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Nov 13, Val Packett wrote:
->Hi,
+On Tue, Oct 27, 2026 at 7:34=E2=80=AFAM Cristian Filipescu via B4 Relay
+<devnull+filipescu.cristian.gmail.com@kernel.org> wrote:
 >
->On 7/17/26 8:40 AM, Bibek Kumar Patro wrote:
->>
->>
->>On 7/8/2026 8:56 PM, Bjorn Andersson wrote:
->>>On Wed, Jul 08, 2026 at 03:31:07PM +0530, Bibek Kumar Patro wrote:
->>>>
->>>>
->>>>On 7/7/2026 10:14 PM, Dmitry Baryshkov wrote:
->>>>>On Tue, Jul 07, 2026 at 06:37:24PM +0530, Bibek Kumar Patro wrote:
->>>>>>
->>>>>>
->>>>>>On 7/6/2026 11:12 PM, Dmitry Baryshkov wrote:
->>>>>>>On Mon, Jul 06, 2026 at 10:26:36PM +0530, Bibek Kumar Patro wrote:
->>>>>>>>On Kodiak platforms, the Adreno SMMU requires a bandwidth vote on
->>>>>>>>the GEM_NOC path (MASTER_GPU_TCU -> SLAVE_EBI1) before 
->>>>>>>>its registers
->>>>>>>>are accessible. Without this vote, the SMMU may become unreachable,
->>>>>>>>leading to intermittent probe failures and runtime issues.
->>>>>>>>
->>>>>>>>Add the required interconnect to ensure reliable register access.
->>>>>>>>
->>>>>>>>Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
->>>>>>>>---
->>>>>>>>    arch/arm64/boot/dts/qcom/kodiak.dtsi | 2 ++
->>>>>>>>    1 file changed, 2 insertions(+)
->>>>>>>>
->>>>>>>>diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi 
->>>>>>>>b/arch/arm64/boot/dts/qcom/kodiak.dtsi
->>>>>>>>index 90e50c245c0c..721526f023dd 100644
->>>>>>>>--- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
->>>>>>>>+++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
->>>>>>>>@@ -3389,6 +3389,8 @@ adreno_smmu: iommu@3da0000 {
->>>>>>>>                power-domains = <&gpucc GPU_CC_CX_GDSC>;
->>>>>>>>                dma-coherent;
->>>>>>>>+            interconnects = <&gem_noc MASTER_GPU_TCU 
->>>>>>>>QCOM_ICC_TAG_ALWAYS
->>>>>>>>+                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
->>>>>>>
->>>>>>>Why is it ALWAYS? Would it be better to declare it as 
->>>>>>>ACTIVE_ONLY and
->>>>>>
->>>>>>Added QCOM_ICC_TAG_ALWAYS, to hold the vote in SLEEP bucket as well
->>>>>>preventing gem_noc going to sleep when icc_set_bw is being called.
->>>>>
->>>>>_why_?
->>>>>
->>>>
->>>>Now when i think of where we implemented the hooks, ALWAYS is 
->>>>not needed. We
->>>>should keep it ACTIVE_ONLY since we are already voting it
->>>>back in resume pah. I'll fix it in next revision.
->>>>
->>>
->>>The path is between the SMMU and DDR, so clearly it has to do with the
->>>TCU's ability to fetch things from DDR.
->>>
->>
->>Yes as you rightly mentioned, this series is helping to resolve the 
->>race in TCU DDR clink
->>
->>>ACTIVE_ONLY states that the vote should only be applied when the
->>>application subsystem (CPUSS) is not in low-power mode (CPU is active).
->>>
->>>So, are you saying that in all cases that cpuidle might select such
->>>low-power state the GPU TCU is "stopped", and does not need to perform
->>>any memory transactions?
->>>
->>
->>I rechecked the architectural block diagram, GPU TCU is
->>independent of the CPUSS, unlike system TCU.
->>
->>This means CPUSS can be powered down while the GPU TCU remains voted 
->>up. While this series was intended to avoid a DDR voting race 
->>between the
->>GPU TCU and its clients, using ACTIVE_ONLY could have possibly
->>introduced a race between CPUSS and the GPU TCU itself.
->>
->>Thanks for catching this in my reply Bjorn.
->>
->>ACTIVE_ONLY would have been suitable for system TCU (apps_smmu)
->>for which the interconnect field is anyways not needed, but
->>unsuitable for GPU TCU.
->>
->>>
->>>To me these two are orthogonal and TAG_ALWAYS is logically correct, but
->>>perhaps there's some practical dependency that I'm missing?
->>>
->>
->>We can ignore my acknowledgment [1] on previous response, Dmitry.
->>ALWAYS TAG is correct here instead of ACTIVE_ONLY in the 
->>interconnect field for adreno SMMU.
+> Continue Jernej Skrabec's April 2025 series, adding the board compatible
+> and device tree for the Allwinner H6-based Orange Pi 3 LTS.
 >
+> Board testing passed SD/eMMC reads, both LEDs at drive strength 10,
+> and five Ethernet interface cycles plus three MAC driver rebinds.
+> Each network cycle reached 1 Gbps/full duplex, obtained DHCP and passed
+> ping; PHY ID and 125 MHz clock-output configuration were read back.
+> eMMC DDR52 at 50 MHz and HS200 at 150 MHz each passed 768 MiB of direct
+> reads and 256 MiB of patterned writes with verified readbacks and data
+> restoration. All reported MMC error counters were zero. Both board DTBs
+> compile and pass schema checks.
 >
->This series seems to help with a really annoying bug on Kodiak phones 
->like sm7325-motorola-dubai where often boot would hang when 
->initializing the display panel (so it took a few reboots to 
->successfully boot the device).
+> Codex assisted with DTS updates, review analysis and build checks;
+> Cristian performed the board tests.
 >
->And indeed it only helps with the ALWAYS tag..
->
->I've had this patch applied for a while (without even realizing that 
->it fixed that!! thought the issue was gone because of something else) 
->and today I went around kodiak.dtsi trying to remove 
->unnecessary ALWAYS votes… first boot after changing this tag 
->to ACTIVE_ONLY and boom, hang.
->
->
->Tested-by: Val Packett <val@packett.cool> # sm7325-motorola-dubai
->
->(for patch 2 i.e. the driver code as well)
->
+> ---
+> Changes in v3:
+> - Keep green as power and red as status, matching Armbian LTS roles;
+>   default green on and red off without a boot-stage sequence.
 
-Thanks Val for reporting your issue scenarios and providing a
-Tested-by tag — this issue has been tough to reproduce consistently in our test setups.
+The roles should match the schematics, as the hardware vendor specified.
 
-As I understand your scenario, without the patch:
+> - Select drive strength 10 on PL4 and PL7 with per-LED pinctrl states.
+> - Move PHY reset to the MDIO bus, before discovery and outside detach.
+> - Specify the YT8531C PHY ID; MAC rebind fails with early autodetection.
 
-   arm_smmu_runtime_resume() enables clocks and immediately calls
-   arm_smmu_device_reset() to write SMMU registers. At that point there
-   is no GEM_NOC voter — the GMU may not be active yet and therefore holds
-   no vote on GEM_NOC either — leading to the observed hang.
+Why do you need the PHY ID if you moved the PHY reset up to the bus level?
 
-With the patch, the sequence in arm_smmu_runtime_resume() becomes:
+ChenYu
 
-    1. impl->runtime_resume()   -> icc_set_bw(icc_path, 0, 1)
-                                   (SMMU holds its own GEM_NOC vote)
-    2. clk_bulk_enable()        -> clocks on
-    3. arm_smmu_device_reset()  -> register writes, GEM_NOC is live
-
-And the reverse in arm_smmu_runtime_suspend():
-
-    1. clk_bulk_disable()       -> clocks off
-    2. impl->runtime_suspend()  -> icc_set_bw(icc_path, 0, 0)
-                                   (vote released after clocks are off)
-								  
-I'll address all v3 comments and send out v4 shortly with your
-Tested-by tag. Patch 2 will have minor structural changes (no functional
-difference), so your tag can be carried as-is.
-
-Thanks & regards,
-Bibek
-
+> - Enable 1.8 V eMMC DDR52 and HS200 after board testing; retain the
+>   existing H6 maximum frequency of 150 MHz.
+> - Shorten the descriptions and update validation status.
+> - Link to v2: https://lore.kernel.org/all/20261022-sunxi-orangepi-3-lts-v=
+2-0-70b899252c6a@gmail.com/
 >
->Thanks,
->~val
+> ---
+> Jernej Skrabec (2):
+>       dt-bindings: arm: sunxi: Add Orange Pi 3 LTS board
+>       arm64: dts: allwinner: h6: Add Orange Pi 3 LTS
+>
+>  Documentation/devicetree/bindings/arm/sunxi.yaml   |   5 +
+>  arch/arm64/boot/dts/allwinner/Makefile             |   1 +
+>  .../dts/allwinner/sun50i-h6-orangepi-3-lts.dts     | 379 +++++++++++++++=
+++++++
+>  3 files changed, 385 insertions(+)
+> ---
+> base-commit: 4403278e4ea2f654f8130a5c03eb8b4516a0f201
+> change-id: 20261022-sunxi-orangepi-3-lts-43b92246a8ed
+>
+> Best regards,
+> --
+> Cristian Filipescu <filipescu.cristian@gmail.com>
+>
 >
 
