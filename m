@@ -2,68 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055D3606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 08:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADED0606A885
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 08:47:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4vhWXCBK;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Dgo3lIre
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WiXuDATD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V6xOnUgl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0a7XVhGn17V8TFpaVOhUo8oPFMgmTGrO/81W2zXpJmE=; b=4vhWXCBKlX5NMy
-	um+H61+1kA03zmjpqGWM+L/BJQngsTfVJxQ6BJa9kSawQyj9Dm63ls6eJDYePgSlv+lTwQ6TdlpRn
-	gkt5NNolMKqx9FGwN3QmMrLaxyOqwfWUL1UscSV476UfbZD2zBW/WtJrwEMG9L06CDISKaG9he6Lw
-	5EOFAXfJdtF24E5MMH7k2QucVnu6pNRAOHk+JSjD9FBhM8/o/vARXQMIVXcVoC5dM2s4Ebg0S/Xwj
-	WhbkS40pujOrVMBgTYvu1yJOFu1PbqCfQX0Y1olROATe9Weu41SA0FUkB7XGOed+5Z/YezrM1LWwM
-	zWNVApGnfgbhg2osJHGQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=tt3zLwRlEbhHHzfvqBg3SbCShwsAMAa6tuNoWsaaWnE=; b=WiXuDATDa6W8BTyvu3KEJROHKf
+	xg0x3fOuqmAuvdP49N/xB3/fqMpozKs7ssNaAuR0JQMT74fA9gXZtINwqw3TgB/tT3yRv3UdGf4wU
+	y5sqPIknshutt9E+bU7eaf5pZvFZ2XIOiBAmlrSgyj+PrPhpk/t5S+6E3aJxP9XbcBbtliartHwwp
+	2OmLtVVXD5KIsn/GdsT2j86EtmuAWiUTU6m21BeN0MEF4LhVEChTYnqLr1Q4Zc39AL2lJohZ/rule
+	P/mtHBQgZBcNP7KsEusdRBMRD3czUsHLDfZ1MbSzy7D+Pr8e6UdRbQt9t7LV5jRBZffXZvrxJYTx9
+	BXZkDYiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSVfo-0000000HF3a-0EDM;
-	Sun, 15 Nov 2026 08:33:16 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSVto-0000000HG9w-1O0n;
+	Sun, 15 Nov 2026 08:47:44 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSVfl-0000000HF3O-3c7G
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 08:33:14 +0000
+	id 1xSVtn-0000000HG9g-3fcu;
+	Sun, 15 Nov 2026 08:47:43 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5132560215;
-	Sun, 15 Nov 2026 08:33:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D672E1F000C4;
-	Sun, 15 Nov 2026 08:33:10 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5613845986;
+	Sun, 15 Nov 2026 08:47:43 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794732463;
+	b=T7HNH51/GXx9vQKe3lAjyqW+BjevtypEanymiazSlsImQmJHkxjUbqQQItbkoaBHuUcm
+	 4DFDEG4MivzKnkOFSDfsNiT4l12B7M01s8kOZJTFTF4DKAPbWM4ugEd5uK8FsdXNm/jCb
+	 Qssk/KgCTgPpON/laJF8v6WwhIVMfvCsM8n6bDAk8whX6ONDvgRnyLHViLkXVpn03ArcM
+	 BX/yP1UFfmtwEBwST8hwiveBCpvacnoQdXMuH8qXu5y71tNRFPKB7mALl2uto0lnLOlgb
+	 qSF+XCG2BoyfCJMuHWSmQp5wqUI/dvH9klfTabygNUHsUnz5t/AuMrv2Ivt9b/j4duA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794732463;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=tt3zLwRlEbhHHzfvqBg3SbCShwsAMAa6tuNoWsaaWnE=;
+	b=o3t1Qx6qU74bL9nd6uxXZstkssxUZzcj8Xy7vlOSkoVEZc0Ruwrb2EF86pc3KFko+YAR
+	 d4MeeKLdM40rXNGfCYS2nfRgjGGQpAiVjexoWXf3ThSPuNbsdg9S7GGyl7HdWPFLebW8H
+	 ijeoqM422zmxqqbhSU/oOwFBMpe2NVSv+R+i4DlEOxUlQ2liK+lSWqDpxNyj/RmG1/Wvd
+	 Os7um1f32wkAFH2NLCyCEFG6Pz/6s46UlPTM1QMSdrWZY4IX4aR6usDNW5nUGewGp8L1P
+	 kiQvqh469xagIm+63vXg15fpfWRcDJWw7BlgfDfl5xcrFrUf4OPB9lN1qeR1Sv/enIg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 94C681F000C4;
+	Sun, 15 Nov 2026 08:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794731593;
-	bh=0a7XVhGn17V8TFpaVOhUo8oPFMgmTGrO/81W2zXpJmE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=Dgo3lIre3q7XG6O5LKbYyGKtZBbPw8+BzJSBCXZp8MBIns/SWJ3FWeI64HN5r6/jS
-	 iNPy6I3xlxW34GoIcGrNNLDyUhHtxXLec4ezJecpVaiEl/p5sRqN8RT4bNF4nuvnof
-	 6kWmkGxcIsuVD2HFa1JJRLKwg7lMevlGAIPNcC74W3tY+2NcqR/YsNOQqrEkl3/7CS
-	 3ZhQ9c1gBvzCSOBmHFEltL85e8sjBvopTzy2pAHBP/LAUw+vap/8EIWTZsFEx755vi
-	 5zBqy92Rqdl982HJiT5XQou01qVQF+yJRqYExa7NyDN+nlSepY8/Eh/vyBXc+iiamH
-	 M+mGmHuW1mbpA==
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Romain TISSERAND <romain.tisserand@gmail.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Maxime Ripard <mripard@kernel.org>, Frank Oltmanns <frank@oltmanns.dev>, 
- linux-clk@vger.kernel.org, linux-sunxi@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- sashiko-reviews@lists.linux.dev
-In-Reply-To: <20261101203336.1360239-1-romain.tisserand@gmail.com>
-References: <20261101203336.1360239-1-romain.tisserand@gmail.com>
-Subject: Re: [PATCH] clk: sunxi-ng: nkm: avoid 32-bit overflow in rate
- calculations
-Message-Id: <179473159063.3023207.9708704432594076650.b4-ty@kernel.org>
-Date: Sun, 15 Nov 2026 16:33:10 +0800
+	s=k20260515; t=1794732463;
+	bh=tt3zLwRlEbhHHzfvqBg3SbCShwsAMAa6tuNoWsaaWnE=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=V6xOnUglEeG2ZHbjfE1UbeOn3TF5z63ZdwjnEhTuJt/AuRJ1Wa8Xvg/qCg3neKzw+
+	 JaDY9qpDF7FAh4RtTNYnUsQNonZwFQpUDM86kEjujxKjs5/BEXopAkeKNcM8+kAoDF
+	 z7equn0exul0+62dbN91/tDZeQH/UqoBtVvq3wHU/QMPWe6IuGObnR4VHaYNZApr2J
+	 d1I1oMpU+hyLFIuyvmYEStYqRr/lKJBcZ3Q9aLTbAehEYt999UZSanCUkSjLJsXrsN
+	 xx8b/qotgYseRv0m8RsLUKs3yzaClTjFxZifR5kBS9f7h5QqQd22xB9QtN1Cs2Gl42
+	 wW7JkvQoKmbWg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 100714A002;
+	Sun, 15 Nov 2026 08:47:42 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Sun, 15 Nov 2026 08:47:42 +0000
+Subject: [PATCH v2 1/3] media: dt-bindings: Add Rockchip IEP2 deinterlacer
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261115-iep2-v2-1-3d8798cd9a55@gmail.com>
+References: <20261115-iep2-v2-0-3d8798cd9a55@gmail.com>
+In-Reply-To: <20261115-iep2-v2-0-3d8798cd9a55@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil@kernel.org>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Alex Bee <knaerzche@gmail.com>, Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794732461; l=3973;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=ChHZwNhLk4WNiGW3BpdABPaZ57+oP++kU/hOOD04E7I=;
+ b=GMNGd1IctVsCad3503Cxem0D/wvD8iX2XTLiziLurXuh92OaeUZOru9C3ms6+REWAICXf0tbg
+ hK6SE+93bLpDay4kLFR+xlh9oHd0FlwIDGW+z8gR/8b2FIEMucI8YiV
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,36 +111,155 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, 01 Nov 2026 21:33:36 +0100, Romain TISSERAND wrote:
-> The N-K-M rate code computes parent * n * k / m in an unsigned long,
-> which wraps on 32-bit ARM as soon as parent * n * k passes 4.29 GHz.
-> 
-> On the A33, pll-mipi (parent pll-video at 297 MHz) with N = 14, K = 2,
-> M = 14 runs at 594 MHz, but 297 MHz * 14 * 2 wraps around to
-> 4021032704 and the code computes 287.2 MHz. ccu_nkm_find_best() then
-> picks these factors for a 288 MHz request, and clk_get_rate() reports
-> 287.2 MHz while the PLL runs at twice that. On a PocketGo S30 (A33,
-> ILI9488 panel on one MIPI-DSI lane) the lane ended up at about
-> 594 Mbit/s instead of 288 and the picture broke up.
-> 
-> [...]
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Applied to sunxi/clk-for-7.5 in sunxi, thanks!
+Add a binding for the IEP2 deinterlacer of the RK3568 and RK3588 SoCs.
+It is a different block from the IEP of RK3228/RK3288/RK3328/RK3399,
+hence "iep2". The RK3588 block falls back to the RK3568 compatible:
+the vendor kernel drives both with one compatible ("rockchip,iep-v2")
+and one driver.
 
-[1/1] clk: sunxi-ng: nkm: avoid 32-bit overflow in rate calculations
-      https://git.kernel.org/sunxi/linux/c/e9d9dae0d248
+Clock and reset names follow the RGA binding. The resets are optional:
+the block has its own soft reset.
 
-Best regards,
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+ .../bindings/media/rockchip,rk3568-iep2.yaml       | 95 ++++++++++++++++++++++
+ MAINTAINERS                                        |  7 ++
+ 2 files changed, 102 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-iep2.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-iep2.yaml
+new file mode 100644
+index 000000000000..0c7666de19f8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-iep2.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/rockchip,rk3568-iep2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip IEP2 image enhancement processor
++
++maintainers:
++  - Arun Iyengar <aiyengar1990@gmail.com>
++
++description:
++  Memory to memory video deinterlacer of the Rockchip RK3568 and RK3588
++  SoCs. It has its own IOMMU, with which it shares its interrupt line.
++
++properties:
++  compatible:
++    oneOf:
++      - const: rockchip,rk3568-iep2
++      - items:
++          - const: rockchip,rk3588-iep2
++          - const: rockchip,rk3568-iep2
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: AXI bus clock
++      - description: AHB bus clock
++      - description: Core clock
++
++  clock-names:
++    items:
++      - const: aclk
++      - const: hclk
++      - const: sclk
++
++  resets:
++    items:
++      - description: AXI reset
++      - description: AHB reset
++      - description: Core reset
++
++  reset-names:
++    items:
++      - const: axi
++      - const: ahb
++      - const: core
++
++  power-domains:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - power-domains
++  - iommus
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/rk3588-power.h>
++    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
++
++    bus {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      deinterlace@fdbb0000 {
++        compatible = "rockchip,rk3588-iep2", "rockchip,rk3568-iep2";
++        reg = <0x0 0xfdbb0000 0x0 0x500>;
++        interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&cru ACLK_IEP2P0>, <&cru HCLK_IEP2P0>,
++                 <&cru CLK_IEP2P0_CORE>;
++        clock-names = "aclk", "hclk", "sclk";
++        resets = <&cru SRST_A_IEP2P0>, <&cru SRST_H_IEP2P0>,
++                 <&cru SRST_IEP2P0_CORE>;
++        reset-names = "axi", "ahb", "core";
++        power-domains = <&power RK3588_PD_VDPU>;
++        iommus = <&iep_mmu>;
++      };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f4456f4589a1..b32b7eeb0a9e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -24285,6 +24285,13 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+ F:	sound/soc/rockchip/rockchip_i2s_tdm.*
+ 
++ROCKCHIP IEP2 DEINTERLACER DRIVER
++M:	Arun Iyengar <aiyengar1990@gmail.com>
++L:	linux-media@vger.kernel.org
++L:	linux-rockchip@lists.infradead.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/media/rockchip,rk3568-iep2.yaml
++
+ ROCKCHIP ISP V1 DRIVER
+ M:	Dafna Hirschfeld <dafna@fastmail.com>
+ M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
 -- 
-Chen-Yu Tsai <wens@kernel.org>
+2.55.0
+
 
 
