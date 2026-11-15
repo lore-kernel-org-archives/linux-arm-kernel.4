@@ -2,59 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4971D606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78DF606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 11:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vyc8/xeU;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Iqsthhbg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E3P2koHf;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h7WEGIfH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FR9H2PaILFPq2g6fs1uHRogd9laRoMATzk7z1WgUqEM=; b=vyc8/xeUrq2ZPs
-	Z8S1jYHoh6hEP6jbKo3r+dp7MkLLQ/gX55hY3yEkCVCYU6V0p8LBbCUh/woilknFDm1qgqOmT84rq
-	C+QgLgPtcy7ZkCPE7gNhcJO/NJxVXHy+bO3NyMoh+TMwFptqBLXUmArFGniwX500NXGYa91IigMHZ
-	amPGdDLVoDM+qMaQuRDOTgXmkehaLLcggLB7nUle/FbFiqUqq8yBI1oHExqkqPsMdIAY1DAcrva7V
-	mXNji2QMaVsYvhR4giOqRRHvwCQGZAS2MjPVEsTLFdycqDP0rfhJ/P3Xi2BqBV9ioGyeYLHvoSOgh
-	sd84HlIzBLK8SJf8st1Q==;
+	List-Owner; bh=UkLWAV1hSmkKAmuwwqothfPZt11tAhXLerlu5PLiFXI=; b=E3P2koHfeYnwYX
+	w+FsSMAL8CcZXsbNIH1LRy/oVQxseICeqn6lO3MiV7cNZqWwUpbSXfZ+yfwb24DmSeTu4UHOaglCa
+	S4Mp4XFCa2ueLIR+h076Fv3o4MAzH20hPEE/upsAp+UwY8WOfQxKpC9z92YNXKjrJBbd6I/0K/qCV
+	3wnNDxNRA61kfQ2JZQyw9xHh1y149q3gDFWOXLn3zV5HSGnr5h/IqnYftH+gAUbQov8vsnhmygjCx
+	0RyjVP/ZgXZ5XRikFii30WfzMO3BRq/xMprf1vVArIYAJQQPGwvtpxtjt2rXAHm/FPAtDrVnAo6k8
+	/8R+d6uumu7+95j3D18w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSYVy-0000000HSGj-2xDX;
-	Sun, 15 Nov 2026 11:35:18 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSYW3-0000000HSHt-3RMm;
+	Sun, 15 Nov 2026 11:35:23 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSYVx-0000000HSGd-224x
+	id 1xSYVz-0000000HSGk-1EGb
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 11:35:17 +0000
+	Sun, 15 Nov 2026 11:35:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9F2FC60A62;
+	by tor.source.kernel.org (Postfix) with ESMTP id 7958C60E03;
+	Sun, 15 Nov 2026 11:35:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B89651F000C5;
 	Sun, 15 Nov 2026 11:35:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DA5D1F000C4;
-	Sun, 15 Nov 2026 11:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794742516;
-	bh=FR9H2PaILFPq2g6fs1uHRogd9laRoMATzk7z1WgUqEM=;
+	s=k20260515; t=1794742518;
+	bh=UkLWAV1hSmkKAmuwwqothfPZt11tAhXLerlu5PLiFXI=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=IqsthhbgPHxQxH/aiTktpmW3D6Sx7XnQEXI+ao28uV0TDfWAOtkR0xm8UDJWLaliW
-	 g9CdXJS78kdgweHhR/XPWsE6AZ1njXBbKmcbpPPzYeoi6tCuhAad4MgKWEtepGl/xb
-	 plo2TLTxhDkm2KMl9InzDiX3fbrYJJh+3HHB+Duw5s7QVWSZUX0mVg//VQduUKrDJ4
-	 L0wW8FP7Fce5/nNLSkkofnwJ0ado08fq7zxIIE3eN84SNzlz0HLHorI7jw6zJmDgxg
-	 6ccWhgZhbBBz1Hy0rFZIahAr2yTj7N6d5JBvvlEGBOk5TJ1bqokO24v1v5FgrDLuHj
-	 6VHCksydU3O6A==
+	b=h7WEGIfH8FvaqWXLN0d7OMtr/gQbGsGk9acfLe13ANtU20xLLJK1gxR+UiCXMsdyr
+	 ErPTlvjSFCTKpyfVT5Fp+afuCFOMJQzhED8RQQf6V/HOlcTDpihhz03CZYc4n8zLL+
+	 7i4UyA7jqiDtbVybiKkXjgdWsUmfM0w/fPFRzxCAJpCgEHB4NBjLOFaH+FoClGyoK6
+	 x87ZvIsEd1c7LQCraA1DFLAV/OWgIZhfMcVM6/7O2F2mFKfhTFYKYXAJHfrTFISUAW
+	 ku9q4aIK2ufEJr3zJGj5kS4rIpYA4LCAgYc3vajsCWUX300tkx5Nw+tgdy0D9hT+4/
+	 qRUTvOGSO8IgQ==
 From: Chen-Yu Tsai <wens@kernel.org>
-To: andrew@lunn.ch, jernej.skrabec@gmail.com, samuel@sholland.org, 
- Roman Riabenko <roman@riabenko.com>
-Cc: andre.przywara@arm.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20260822052353.22881-1-roman@riabenko.com>
-References: <20260822052353.22881-1-roman@riabenko.com>
-Subject: Re: [PATCH v2] arm64: dts: allwinner: a64: olinuxino: Fix phy-mode
-Message-Id: <179474251421.3095306.4655080143943626806.b4-ty@kernel.org>
-Date: Sun, 15 Nov 2026 19:35:14 +0800
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+In-Reply-To: <20261104185148.883318-1-jernej.skrabec@gmail.com>
+References: <20261104185148.883318-1-jernej.skrabec@gmail.com>
+Subject: Re: [PATCH] ARM: dts: sun8i: r40: bananapi-m2-ultra: Limit eMMC
+ clock to 37.5 MHz
+Message-Id: <179474251652.3095306.12076464290738502589.b4-ty@kernel.org>
+Date: Sun, 15 Nov 2026 19:35:16 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -78,23 +78,21 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, 22 Aug 2026 08:23:53 +0300, Roman Riabenko wrote:
-> The 'rgmii' mode does not appear to describe the RGMII timing in Olimex
-> A64-OlinuXino boards. The PCB layout shows that the clock and data
-> traces have roughly the same lengths for both RX and TX and, thus, do
-> not appear to implement the 2 ns RGMII delay or introduce any
-> significant delay.
+On Wed, 04 Nov 2026 19:51:48 +0100, Jernej Skrabec wrote:
+> The Samsung eMMC on Banana Pi M2 Ultra fails with "data error, sending
+> stop command" within a second of sustained reads in DDR52 mode at
+> 50 MHz. At 37.5 MHz the same board survives a long read/write soak.
 > 
-> According to the KSZ9031RNX datasheet, the PHY adds a typical 1.2 ns RX
-> delay and no TX delay by default. The 'rgmii-id' mode causes the PHY
-> driver to enable appropriate internal RGMII delays.
+> Limit the eMMC clock to 37.5 MHz. Also enable the hardware reset line,
+> which is routed to the controller (PC24), so the card can be recovered
+> after such errors.
 > 
 > [...]
 
 Applied to sunxi/dt-for-7.5 in sunxi, thanks!
 
-[1/1] arm64: dts: allwinner: a64: olinuxino: Fix phy-mode
-      https://git.kernel.org/sunxi/linux/c/5f30c467fb36
+[1/1] ARM: dts: sun8i: r40: bananapi-m2-ultra: Limit eMMC clock to 37.5 MHz
+      https://git.kernel.org/sunxi/linux/c/160738a3721c
 
 Best regards,
 -- 
