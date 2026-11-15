@@ -2,114 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED5B606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CAD606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 09:06:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eWo78BAr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H7qQBefS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AU+WefDg;
+	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=lCCe/zC0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SWwLvN5yU83ZBCHPhXtyXSkK0RHhvvZ/0hRhOydSxnQ=; b=eWo78BArOvtU6aHQ+GAxJpmGMZ
-	D22AOEKBavRWRmEfP/ZuSpWsyosAOBkWqZ3H3CsTFK1zL/zYC8ail6tcWCzc2wM9Wa6hhL1oBqusV
-	GLAlMELPscEK3ZAhDkQlKjDkzfa8lFQg6m7HX3ka4L692+Ru0njCTzE/hIXEKpAiJB7mkEh3TTPGZ
-	w7ciSKNr3pOe55dI4JzW36G7+K0gfLR0+sLAz31y4U5Gx6KNibsofQX4mfYqeSSFKAOzaAonaoC7a
-	VjxChgOQu1QOs29rqqqVvF7djqV/jcTQn+RFNv/Z2QXYQEaKehDuO7r2Q3eVEQl6HB3WzDmK3YXda
-	SXGWJhjA==;
+	bh=07WOKYUWzc5l6SRYMycvBjujniheSXKsXpF0DlJErRc=; b=AU+WefDgQtkcfouskd4sYu15g2
+	UmTFKt3/n/3yYQ2ash+FfOMzNSGTfNlxN7hfSJHkuwYVhsaSbu9UxGLn0Mpa8IveSq1agyCCn0hNq
+	onYkmyd3Pi7bipExG1xj2+fhNeAOvQR3/nl0XTrYkb87jrU8rq3gd51RKd1QVSm+L7WeTP85pt2Oh
+	Lp8BwS7H+FjXdNEMVOYOchhNvH76qPC0kubmLuX683CJwiosJf462w6y+xM4OR+aINzAyd3VRML7M
+	gBjVFSQC/srUigRfXc4PCG2MsDODIolQXIWqXExXQcdMYqcLeOuZaOwnm+arPPQsRIDMMFZUCLhhZ
+	CM3RBLbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWAg-0000000HI4c-1j1F;
-	Sun, 15 Nov 2026 09:05:10 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSWBH-0000000HIBN-2guW;
+	Sun, 15 Nov 2026 09:05:47 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSWAf-0000000HI4V-0ZcU
+	id 1xSWBE-0000000HIAL-3yGL
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 09:05:09 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7701241886;
-	Sun, 15 Nov 2026 09:05:08 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794733508;
-	b=fmn9mMLINAdI3b31dx7fl4/htTvC8ovdMwnsGo2D2qv7wYh61GN0BTP9yyunEFLUV6JX
-	 YfqQUM2YKCwntnmRmPad819+BtHyFFvymQYDZ58Pv5HhdHj722CPc+Ak0sAiybpGjQd8p
-	 SKAH1Dp8QooPMCzs3MmPTTbXKps9T4Qd1vTmtfnOExnRcSMJOVa8nCBQ6LQEkeZvCaJlJ
-	 A0hKb0WzkN/yIWA4i/ilN5ClvMVlol5P2T293rnFjw3CQPS+WJ8hZIFTBXFKXe+lhjOFe
-	 DvYWDnjsrZbAufGBSYRU83Q7f0MPYzEXeaTG0nbiMY334qCQCaQEYVX123exbNiVIeA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794733508;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=SWwLvN5yU83ZBCHPhXtyXSkK0RHhvvZ/0hRhOydSxnQ=;
-	b=SRV+lHk/qJNEgLwUf6p0peY74acWbnMmLBsv0Jq1MDPfSC/AVgUdW7sWUoY53QCOFbxD
-	 X5IKHOkA1meRX/1TupSynlWPJUr0PYAuabwUEvKdZUuopvTCYQsRFGAL8MQCjAEYMFtXB
-	 y2Ae+b/1bsY7/KwY0LtEWbhtdbTaB60M1IaY41AdOzhZG9mx6bYDNY6gN4tLy9bw+M7va
-	 EzogctxgiX9PCGXTJRbmGStXIT4p9S7BuMx+2DAYHyU5tlkwoN2SHFLsq4tO0wgSddGRX
-	 qbN2ZvwO5ic4iVQMSB9rcfRr5aVsN5r8NHus12HbJJQuGh/iCdOONwqR0C7gnH9wHCg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D830E1F000C4;
-	Sun, 15 Nov 2026 09:05:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794733508;
-	bh=SWwLvN5yU83ZBCHPhXtyXSkK0RHhvvZ/0hRhOydSxnQ=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=H7qQBefSjjR2IwpJigL66Q2xaCI88wcALhDKH2LL147sCbE2I3/p89S9IU4R+Agro
-	 jwKbSp9q0ZVxkdSbtK4bJLtIL4Qa1BfK/n6g34vMnD3k+I26eI6NqBf+WaDhGWjXsG
-	 1v16zPzhy9EMx2e8V7KG+W2GAozwc7Ubr7+Ucg5Mh0ZkW0DzMIUaWPwuhu95WRYLZQ
-	 ar/2dsn+waVeh/rLXQXGpjmr6iBqn/TRErPKVdIyMVeD3dqiBrgKkypTMVOE6AWuOY
-	 JSttsKOP81SA8edIgnX/Td/1zzzexeXiSeQqw+fafqh2S/xTVVFLXZtKyA5de6bue0
-	 aS5d9aTCc9fwQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 544294A021;
-	Sun, 15 Nov 2026 09:05:07 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Sun, 15 Nov 2026 09:05:07 +0000
-Subject: [PATCH net-next v3] net: stmmac: dwmac-sun8i: Fix use-after-free
- in the MDIO mux error path
+	Sun, 15 Nov 2026 09:05:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BI2ML/2GV+lsbfV8Il5uJCijrPpZn1O1Xxg+i30MqcAQLIwltSuDjskSeMGEfBaDDZLkAlBgkNSXIDr3qRlTa7hFfc1qTbZTDAGw/EJFNwvgnhW/zGq1fv1+xOaJhlScxSxhAbgzAs14jPJfw2ZchJoHg9Wfom9TOgM0lERWF23Yb/Fx9tI1PR5EPIwKYtRTtgbJEul1j32j5OEAzU6elrPY4VRPMnMsypbe4n42JtgG9bZff9ZP/oKXZDjKjm73NUEwav3xqZRsTETxwe3rVsgBv7jYCMtPP74EiKtM7jFEfWLIHr8X9iI5r15NuSXMFzsidkF9TrpaGqZLYP07jQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=07WOKYUWzc5l6SRYMycvBjujniheSXKsXpF0DlJErRc=;
+ b=tbKVMtGv/v7ch2cOBriH3FIjtEcwi3ghPqDTfY874ikt7TU8QCCaKux+Ceos9bcI7lvUEY25Kyea87UBHi1EmPmLtf8jhY6jZ+XKJxSeffsWfe5E0xa5/QFEqwm9vNcV6e8xF/cBblPI+M131JMsuC1XZ2fQFAJOllJt9ZWl5XeWav111rjz9ftAEqYj61HbiVfTxMXvOxWFS3yRrKEzwT9B9PwX0ib9w9uNu8IBWkvqyqg9OM1Ox6tY0QR2YAHVO+65pMK0HSelztqU/R4KndzB9C2pbi4ssEr/DXr5c5NPsk/UfOKVD4gDSklEhhSRfxoZvtDYgLRyNQSzPG3VLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=07WOKYUWzc5l6SRYMycvBjujniheSXKsXpF0DlJErRc=;
+ b=lCCe/zC0q8M1BMfQ8wOoowEINuz+BkMGFVYGzzM0YuK5+fPGSQnSk0RV0CdYT2MQSDziVWvZP0SYBESuakn9dsJDCSQ54M447yM9wfQUdRMl/5aq3H1yquek1Y5ju82RMkwYAO8z+0jnQWE4qO2QagRbA6deJD1yyAMtiuwr16sfPglrEDhMxhgAsvGFhixKmWEZiRzAD69hQwdAYYAsTCiDeEawl/uFEw6lU2PgdxhhfTVMTkxvw2envlIdMsrMoR/CHGNe9rMzdcS6zZ/nm+f0KzJ8mig4AbOwFRPfrgVLw1ju3E0o7W3dxJH9JH17RKyIenvDZzplUA2u1r2ONQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
+ by DB9PR04MB8446.eurprd04.prod.outlook.com (2603:10a6:10:2ce::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Sun, 15 Nov
+ 2026 09:05:40 +0000
+Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
+ ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
+ ([fe80::7fda:8431:ca1b:b023%4]) with mapi id 15.21.0615.012; Sun, 15 Nov 2026
+ 09:05:39 +0000
+Date: Sun, 15 Nov 2026 11:05:35 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: vjardin@free.fr
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, 
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>, 
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: Re: [PATCH v4 4/5] pinctrl: freescale: add the LX2160A RCW pad-mux
+ driver
+Message-ID: <avjaK3cOj3iQ6G6w@skbuf>
+References: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
+ <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-0-eefcea066a55@free.fr>
+ <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-4-eefcea066a55@free.fr>
+ <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-4-eefcea066a55@free.fr>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-4-eefcea066a55@free.fr>
+ <20261114-for-upstream-lx2160a-rcw-pinmux-v1-v4-4-eefcea066a55@free.fr>
+X-ClientProxiedBy: WA0P291CA0016.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1::28) To AM0PR04MB6900.eurprd04.prod.outlook.com
+ (2603:10a6:208:17d::10)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261115-sun8i-emac-mux-uaf-v3-1-c69d4189539d@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NQQ6CMBAF0KuYrh1Dp7FUV97DuCh1CjVSDKUNh
- nB3C25YGJc/M//9iQXqHQV23k2sp+SC63wOYr9jptG+JnD3nBkWKDnnCCF65YBabaCNI0RtgVd
- aqSPykyViufjqybpxRa/M0wCexoHdvpcQqweZYTGX38aFoevf637ia+PfVOLAQRRKU0nSGouXu
- tXueTBduw4k3BLiJ4GZkFgIKWWFUpVbYp7nD9R3qGETAQAA
-X-Change-ID: 20261112-sun8i-emac-mux-uaf-1ba885219fee
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
- linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794733507; l=1719;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=+y0GcY4/PVmv5CEIOUChNpzRjsd6qAFwqN8yUicaQ8g=;
- b=WGxB9GPqMj1G3uOyPfh5GdwBrWsH+43WV1Oy91ghXj3UHSYqtPOjYOO9ZUbcawnPfHKKSQZIV
- wqJkLbTlGtqAaq9v9D/6boTgG+ufsgKqVVr5mtNEHt4mj2Rq7hd9I9S
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|DB9PR04MB8446:EE_
+X-MS-Office365-Filtering-Correlation-Id: d9758e83-962e-4103-7fb1-08df42f79eaa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|10070799003|23010399003|19092799006|10067099003|11063799006|4143699003|56012099006|261022105027099003|261021121427099003|261026121527099003|261026140227099003|261028144727099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003|3023799007|41080700001|15866825006;
+X-Microsoft-Antispam-Message-Info: XDIrN0D2pHLSQxl0uOMAvnEcSTebakSzkQw6nU5frKdmdB31sjmaoDN+EeTEAqwlVIa+/J3vkBvm+ER8IUTMZNoyi2Fi4wUTH6gbv/m2ttTr7FRFB6HcIkV3FpykYC14gzfKHu/X9MY+f824hQqoxauVxSRVp8TBDVw2RI+m1G2PkwUXNgLPox0JLe86+PmXJfJLKo6TkKEYYJ0ohkthwRAYYYYgf9y+0tjI7K14mmQzLcoz9o4j2Mg5M0kbXHMvzvorsBqngVq9qBKqMm6EHVMbIrUhYmwwlz3uiVOs+tDxrvUUhcWE214XyAq9fW+SNozhupGUNRnj3mPG9h32792SB1IOwRPv3mNu5EN1Mm9Uu8V+bwFZKqBkzpdAQWwJzGCXVyRgTaQKcUH3Bt6JmISHtPCMBS7Q6QniowJdkVyIMy945czP+P6ePzI9Qa3X/xiNFQTVZD1qkEy2m+wuJIaZvjETw+XMFFzU0uIAWCQ5fFIfGhgZ8rRi9/1YRO244IiVthCpGxy2bHpAdxtoMs+15HENROQRKWuvUtmPlz6owiEEmL2Gruv7JTDDdG37huS4uuJInjQjQh8Gz2uAsHMgzIbG1guDm+PsZph9x7RiTD5y15oQ57V7A5gpafJ9DIjXaDWYwD7keUiLR6SFEO2bo2sxmcswgUDkrzUyQiZ/fCmPEvEKAdiLR4AtPvoXalqqnjuZxqRGzJGGgDE0btlOCpN63b/+dygoj75HN3VIYuPH0IKfZSzsyYgF/Ihd
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(10070799003)(23010399003)(19092799006)(10067099003)(11063799006)(4143699003)(56012099006)(261022105027099003)(261021121427099003)(261026121527099003)(261026140227099003)(261028144727099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003)(3023799007)(41080700001)(15866825006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?so3WQjPWcmwII292CZo/EAYB4KR6dIV+MfPdNQfY/WnvR/cVKRpQrRwhPLiM?=
+ =?us-ascii?Q?SpTvmt6IBHCdsoY3IXZ3EUWsyrPcaGHZMzEars3hzMBVFt3JurM2uqqjBo0s?=
+ =?us-ascii?Q?1CwPUsaWPTVjoBSnqvABoQVroT5DHwXwvlTtQMXNJXjcSY3ftI3RKFIV/8nC?=
+ =?us-ascii?Q?BLOhJ7Sbq4Qm5eCdGWQ5Ui6GzJyIYl04sqmZrJLxzCYXYZWqXRTCNq+6evUX?=
+ =?us-ascii?Q?SrkDZrv5WmLgX32Fnh4iHfCmgy4OcgYXqoDtoOJrvqZdZSCgnp4oswNFAjos?=
+ =?us-ascii?Q?at0DAzz5ow2gyvAaXem0SeqvfBKRJC/FoBpXeKYfhbcDmKmsNfpTAKvbjmA8?=
+ =?us-ascii?Q?oYfp922qLZeWBNOjFUUlL2p5jrTMkpDdEJfk90iYsL7bvwigudsUzPwFXNPG?=
+ =?us-ascii?Q?9DQLlmcrb/OMmTY5BDUyrSudiBTq1dNhaCygXtBcizKNMTfkpzB/MrCowmle?=
+ =?us-ascii?Q?HDGweRqr7/gWr/pzvHnzn2cwAOcToFoOq3L/hy7OvSskAnJhj2HEweIvXXey?=
+ =?us-ascii?Q?vEcg8buzF3LSrxqWxdxnsSiSmjVbjkmF3rr5TrOaQXgB7SE934arl2ZklQXu?=
+ =?us-ascii?Q?fyjhZcXWmTuZzCm7h9fXkjKY1SnnZWreBk6RVYQu0N+alx/fZnwYNsVrFqiQ?=
+ =?us-ascii?Q?EXSP2mDMU8C0mjagT80BHNAPuPSp1FUGUyvLoht5EDMhrZ+c6YBLONQv8wbl?=
+ =?us-ascii?Q?uosrXYHfKTsOKxNlV24ghQJBSaCOd0pox9/x4w2ZRO2u5rtINKGgPHLW8tOC?=
+ =?us-ascii?Q?GzCx6DE5PfGRdpy77yJa4ilDPsfcLuwM4JY3yfdW8ooHKjownFUPN5x0WsJH?=
+ =?us-ascii?Q?6auuoUnAQ959MJVsLJsqMXTLprF82ADTr1/ugETrMBz3JgPIt/gZCnCbLbA0?=
+ =?us-ascii?Q?ZEIiYz/os4H7mgLyWDVE0CG+bZHp11M+CxJz6qe5LpgsklaQsHgxX4Hku05q?=
+ =?us-ascii?Q?GYQzjtzT2GUWHF/QJgworp9TbxiXQXvxLP7OfTdHlcgcuaRjickrp254+P+h?=
+ =?us-ascii?Q?/R8iK3UUD08Wr46gwAMp1d6+GZX9THJMG8vGqEKadEOR0sRNF91tqvxYa3wz?=
+ =?us-ascii?Q?u7Yn1058HyCAwSYKHXREqHcNCBkuZUg2UPIurizgjKJ1BcpIJtRMExWOxxcI?=
+ =?us-ascii?Q?AEB5caV1AY1QZvkxIa6I1upXmKhybcqyv7EXGpaLQhlsJK2kuHhkq9Rwcrr7?=
+ =?us-ascii?Q?QA1tp7O1ZMPg1JvXFcDvynZCf2OYmSJmJFyOsH49h56b0VNjGaQ0SAyc6Fqn?=
+ =?us-ascii?Q?mwNuDFYAGpO+DWVDQOOf0iTCynNOYt3wkvwM0e2d2x8pCBc60K7epEkPELYh?=
+ =?us-ascii?Q?ogv6sjk6UzifN+yYPbtHjtKIhBYLFpzpjFiw5+AQwr7sLI0nWhkBGJFbtw71?=
+ =?us-ascii?Q?hRJ54y1tS+38RVT2l6laA5/T59co/e0fOQQVDLoOo/XKK8enmTksGlsSlh8U?=
+ =?us-ascii?Q?tj/K/y9N2UyGB/0AU3w45xQ6sTFjHgyCZoTDhygj/FyoWl5aHGvKi0hjfvM7?=
+ =?us-ascii?Q?95LxlbAVREtZFK6QIePaZ2C4QpMJzgC0mGoxmnRUm6Gr3nrxyBiMEbNfQHFG?=
+ =?us-ascii?Q?/wL/3mAoTS0XdM9kZB0gzV/M5XpBs+tvBWIeiRNPBShmrETaiotvPSlJeB72?=
+ =?us-ascii?Q?bFDWClbuUvojJUsKhW5yJnUUBrf9WDEIUlcvy7oSlaFKyCxVeRbSo1ykwpEj?=
+ =?us-ascii?Q?Bvllys0v69dsfdP5ermvYhfEx9Dyg8Cm+/YaM4fg4xvf0yJiZk7lV4grJL2j?=
+ =?us-ascii?Q?bHZ0aad4vti1kJvOlR60zTJnyisgWjj62tAbFP+rIWwBrBr9HZZBlB+GxHHE?=
+X-MS-Exchange-AntiSpam-MessageData-1: 4nNRGeLfM8jOEei3DzE8y14+Sl6VcY+C06E=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9758e83-962e-4103-7fb1-08df42f79eaa
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2026 09:05:39.7843
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yGlyP9vtN1+NGbtW82T+SKSCNl6ea5y7iFcnlAP5DMPNZyfeQHkUNJ5crYFnNnmx2ALU19lqYuDq7MqLUIIRVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8446
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261115_010545_000670_4B1E5FCC 
+X-CRM114-Status: GOOD (  26.95  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,64 +146,103 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+On Sat, Nov 14, 2026 at 10:12:31AM +0100, Vincent Jardin via B4 Relay wrote:
+> From: Vincent Jardin <vjardin@free.fr>
+> 
+> The LX2160A muxes its IIC, XSPI, SDHC, UART, IRQ and EVT pads from
+> fields of the RCW, read-only in RCWSR12..14 of DCFG and changed at
+> runtime through the same fields of the override registers in its DCSR
+> view, which read 0 until written.
+> 
+> Since commit 8a1365c7bbc1 ("arm64: dts: lx2160a: add pinmux and i2c
+> gpio to support bus recovery") Linux drives them with pinctrl-single on
+> the override registers, so its first pin state clears every other field
+> of the word: a board whose RCW programs a non-zero pad mux loses those
+> pads at the first I2C probe.
+> 
+> Add a driver for the pad mux as a child of the DCFG node: the fields
+> of RCWSR12..14 and their encoding.
+> Then pin states select them with the generic function and groups
+> properties, and every change goes through the RCW override
+> of fsl-guts, which reads the status register, writes the override and
+> waits for the status register to follow.
+> 
+> Signed-off-by: Vincent Jardin <vjardin@free.fr>
+> ---
+>  MAINTAINERS                                 |   8 +
+>  drivers/pinctrl/freescale/Kconfig           |  15 ++
+>  drivers/pinctrl/freescale/Makefile          |   1 +
+>  drivers/pinctrl/freescale/pinctrl-lx2160a.c | 368 ++++++++++++++++++++++++++++
+>  4 files changed, 392 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 93abbb315065..106a0cc7f25c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20207,6 +20207,14 @@ F:	Documentation/devicetree/bindings/clock/*imx*
+>  F:	drivers/clk/imx/
+>  F:	include/dt-bindings/clock/*imx*
+>  
+> +NXP LX2160A RCW PAD-MUX DRIVER
+> +M:	Vincent Jardin <vjardin@free.fr>
+> +L:	linux-gpio@vger.kernel.org
+> +L:	imx@lists.linux.dev
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/pinctrl/fsl,lx2160a-rcw-pinmux.yaml
+> +F:	drivers/pinctrl/freescale/pinctrl-lx2160a.c
+> +
+>  NXP NETC ETHERNET SWITCH DRIVER
+>  M:	Wei Fang <wei.fang@nxp.com>
+>  R:	Clark Wang <xiaoning.wang@nxp.com>
+> diff --git a/drivers/pinctrl/freescale/Kconfig b/drivers/pinctrl/freescale/Kconfig
+> index fd53cf5bb843..a3222714c970 100644
+> --- a/drivers/pinctrl/freescale/Kconfig
+> +++ b/drivers/pinctrl/freescale/Kconfig
+> @@ -283,3 +283,18 @@ config PINCTRL_IMXRT1170
+>  	select PINCTRL_IMX
+>  	help
+>  	  Say Y here to enable the imxrt1170 pinctrl driver
+> +
+> +config PINCTRL_LX2160A
+> +	bool "NXP LX2160A RCW pad-mux driver"
+> +	depends on OF
+> +	depends on ARCH_LAYERSCAPE || COMPILE_TEST
+> +	default ARCH_LAYERSCAPE
+> +	select FSL_GUTS
+> +	select GENERIC_PINCTRL_GROUPS
+> +	select GENERIC_PINMUX_FUNCTIONS
+> +	select GENERIC_PINCONF
+> +	help
+> +	  Say Y here to mux the IIC, XSPI, SDHC, UART, IRQ and EVT pads of the
+> +	  LX2160A at runtime. The pads are muxed by fields of the RCW:
+> +	  the driver changes it in the DCSR view of the DCFG that fsl-guts
+> +	  drives, and is what the I2C bus recovery of the LX2160A needs.
 
-If mdio_mux_init() fails after the internal PHY was powered, the error
-path releases rst_ephy and ephy_clk before sun8i_dwmac_exit() uses them
-to unpower it. Unpower the PHY first, as sun8i_dwmac_remove() does.
+I'm sorry if this was discussed before, but did you consider targeting a
+wider range of Layerscape SoCs with this driver? It's pretty generic
+apart from the pinmux functions and groups, which are all data, not code.
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
-Found by Sashiko's review of another dwmac-sun8i series of mine.
-Build-tested only (arm64 and arm, W=1): I have no board with the
-internal PHY (H3, H5 or V3s), so the error path was not exercised.
+For example LS1028A, which is part of the same chassis 3.2 as LX2160A,
+has a pretty similar pinmux group layout (subset of LX2160A except for
+SoC-specific pinmuxing in RCWSR27). The functions are a superset of
+LX2160A though (for example IIC3_PMUX and IIC4_PMUX can also take the
+values of 3 and 4).
 
-Developed with Claude (Anthropic); I reviewed it.
----
-Changes in v3:
-- Drop the Fixes tag (Andrew Lunn)
-- Shorter commit message
-- Link to v2: https://patch.msgid.link/20261113-sun8i-emac-mux-uaf-v2-1-6203666b2687@gmail.com
+The older chassis have a dissimilar layout to LX2160A/LS1028A, but
+similar among themselves (they have a two-level I2C_EXT + I2C_BASE
+system), and their core mechanism remains through the same RCW override
+API.
 
-Changes in v2:
-- Target net-next instead of net, drop Cc: stable (Andrew Lunn)
-- Shorter commit message
-- Rebased onto net-next
-- Link to v1: https://patch.msgid.link/20261112-sun8i-emac-mux-uaf-v1-1-308ae7e6fcf2@gmail.com
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-index 2ece7ba9dd73..898560e8e95c 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-@@ -1245,6 +1245,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
- 	return 0;
- 
- dwmac_mux:
-+	sun8i_dwmac_unpower_internal_phy(gmac);
- 	reset_control_put(gmac->rst_ephy);
- 	clk_put(gmac->ephy_clk);
- dwmac_remove:
-
----
-base-commit: 6964ff21c5d8b75649211a52dbfd92753e605649
-change-id: 20261112-sun8i-emac-mux-uaf-1ba885219fee
-
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
-
-
+I'm not saying to add driver support for those other platforms, but to
+have them in mind and to leave some space so that they could be added to
+the same driver without having to rename it and most of the code.
 
