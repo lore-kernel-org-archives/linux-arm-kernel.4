@@ -2,102 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CD1606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 22:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92DA6606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 22:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sj6EYNY9;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=EyZP0FMu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n4POm1Zv;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NWVzejUX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=g+uoEVaY7o8GGV6KPfzfE+Dp0fwtZ6vxaUTvxsle11g=; b=sj6EYNY9jdQJ/7Ie9qR0NEmSuo
-	jxNNNWntFodhfa7yUpKUsq4ThLGayVZ1tOLWRqlJ2PijgqLL60DqWRRChm0w8ayRFMoYAM9a5M6JY
-	n650XgPIk35h6oii8utcVtwnM8NCmESTYrOgx8MxKvGsKY/wX3RVZsfhwTP2sb2vyRvt2CvElz4nB
-	tWQH+aLrGgpjz2mzhiZh2T4cg/rX+LF318xXbZCbjlfqIHiM2FWpZSXz/hrHTpjmrQHrrKNwhIdoL
-	4TTKBK4rwFaW6B/de88cT9Qlbie5v9D+VlucVsiJgvdgBUtV+VF/P+k1r3+VwQELfP8xDQ7W8c7XQ
-	Y/1lfE2w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=TEYwC0yd2Q6rJp4otTipe3rkKTLSLdWxD7WurCB1Zgo=; b=n4POm1ZvyOi05W
+	kI5PZREWiBot1zUwuT5fGWYiPqi2YEFvi4eufs2wQFMlubjF/tA2OGmdQVZ3oGonqmhzmKNCDoJVU
+	6caa4/HdEQPzCT85Fvqc5VI983GnywcLIHyOzQPz2OefzyIvdEvrVmrm7w0R8fCsMq1fF/sVs8Mtl
+	iQt5b1mKLNN+l1LAyOZ74xz2pUuf+ONLSny4gXQ13isdoOAhqGzcJIsZAp4S5jZ4p9TwZjXG6Wl5a
+	vfKq+cmOnY60ZYEdvKW1zD0HKXD4RAD5xdyPoEmOgknM+Z3p/Jqz0eSRlwTrC0d87KxevwnUdCvkR
+	ge/YB8XsiBLiDfg3Bi/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSihe-00000000dfA-1cqO;
-	Sun, 15 Nov 2026 22:28:02 +0000
-Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
+	id 1xSihp-00000000dhB-22JT;
+	Sun, 15 Nov 2026 22:28:13 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSihb-00000000dee-1Ynl
+	id 1xSiho-00000000dh1-2GMo
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 22:28:00 +0000
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-2ed1414df17so13964075ad.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 14:27:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794781678; x=1795386478; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=g+uoEVaY7o8GGV6KPfzfE+Dp0fwtZ6vxaUTvxsle11g=;
-        b=EyZP0FMuksaFTa0YS83I9Sh1a7sIzloTHVlCgT3drzzaUuT6lPbanD+VqA5OpTLZxX
-         IhroS1oZHDcjACsewR02cbkmgIg3kknh0Xz+fKcrh4GofodFxp34rXEMvY6qKcO4i8pG
-         l9mnmzFxAaVzx+HEmQYj2/qmSyM8S/sWXXexFqnxdVW4kOD/o6h12e2kJe018+IQCpV9
-         QTZPBSYP+JvKFg8qbTNbGsZWK24PDu2AhzQDkkeWkgddxeQ301tbEBNqW8jGzp7+TlOe
-         N3XFGYr2FfOQy3EFvbm/N+UNVUL71u0zjXrKTRB51n0Ya4PEGuMuKQCE9PVc0AmT/muk
-         eFWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794781678; x=1795386478;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=g+uoEVaY7o8GGV6KPfzfE+Dp0fwtZ6vxaUTvxsle11g=;
-        b=lXfcAhqk7DoAjRfJ2kaY6hfoGC8rkcCmk8i9gAWNIz5pBUFlFD1zBdGAvfdMR9/CbA
-         xcHGK+qWyvD0s6TwUr0+X6svCPvbBL5JP4HSdP7ElN/LZF0olQZNfFlLek5qqVB/jWa9
-         UbjRGQAfA/NqH1SXA/lnZxoShML5ELh7DMGRZCNER53CnpodXY/vYw1CGyUzED4dSyIQ
-         6ZTijDMPu/kS2p2NBy0Y4Hx66dTEcpnNBhRLO5dJYl9R3gxRVFIB5wMjfO3BGIVLAJH9
-         66DR3siKDcUN3R50+BPYWrK57f2s6fxw7p9QQ7r7neqf8DqRAf0KkJnTXF65OcC5nFwd
-         pwxw==
-X-Forwarded-Encrypted: i=1; AL+hErH1xHw1/mbrZxn9LEajarv1M79ZVn0sf+qhOGPSH+8X5iMrHAQQVvfzqa9vG9tkr0SnKJsWFujGGqDCE4WG7Nv9@lists.infradead.org
-X-Gm-Message-State: APuU4Z83XrWv3PIP5l/Z/ncrRss8ngTTJiqTJcHQ/UcK2q8kFd3jZorq
-	5K2KmpJCcQTlRzZP+TyWuBDpASIrbPrcw4DxsxkVeyb359oOOiODcI6R
-X-Gm-Gg: AYBFou1gOjEZ/7ysY/DHXLcQ0eoPEctiIBkXcktaC+tOjF4JlazaYbOiwPVAIjnxAfR
-	9S4/7T7WMkTWK4CtXrrhKr1SQOWHQqH09bULJoVhGbB9ULMRYP6Wlaqx430aembf03jPPEQ3J3J
-	vbrUqkIOb/1PmbzLkCvnelPbH41//mhdFakJSQu/+zu4KIVsGK/Dw5jot7lq7jdQR94204m3sTD
-	PziYVAEWNS2T3TQv8aAGMgc2eIby4lw+QbqjoOj1fLkfZxdbi7aqJ2Tw4G/E2rtUl2kquwYh+SZ
-	OwRE6L4O5UVev9i6GcDVKA9mCCXH+jqy4NBM+atcf9ZAlkMPpL8qHzzqPMVgCZUQn4kza6xIEMW
-	K3EiMjtJ5RhKbSk1PwCDfdGCV95xEfJ6pQtNXu/KuKrTOc/V+nzmWhEz2WvXtrBlOrkIH4dJNO4
-	nBiMIqwgU9daq/VweQEaTyM43JPHSeT2XUP/8ZCU8lVuNgKONa1siO6IJkeVwPqhWpa0vro3QUW
-	YK05TJuWESTaj2LmsQ2v3VSn3Kn0VE3tPDHQfGJ5zL/Ngia7tnlCYaOIskdUWzvgFducGOLx/n+
-	zHK3+FhPqrSbPAjk2I6CRc4Wf/NWd3UywvUhwK9eFQbs17ftCG+xpnQk6+q7dtJ+G2kmbdgvcld
-	dPdAkiM1CoCyEmw==
-X-Received: by 2002:a17:903:f88:b0:2ee:2557:4069 with SMTP id d9443c01a7336-2ee255742c7mr54507105ad.23.1794781678304;
-        Sun, 15 Nov 2026 14:27:58 -0800 (PST)
-Received: from [192.168.35.214] ([218.50.238.131])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ee0fa27c23sm28191145ad.71.2026.11.15.14.27.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Nov 2026 14:27:57 -0800 (PST)
-Message-ID: <e1298d8c-7b10-4552-9c6a-9418e8e26329@gmail.com>
-Date: Mon, 16 Nov 2026 07:27:53 +0900
+	Sun, 15 Nov 2026 22:28:12 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E64094595D
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 22:28:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE13F1F000C7
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 22:28:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794781691;
+	bh=TEYwC0yd2Q6rJp4otTipe3rkKTLSLdWxD7WurCB1Zgo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=NWVzejUX9qF0XoM4VmEyXPZSxIG5Fs6unNadjPRXKBSH+vjBwWuW9IwsP2UD1Jyxh
+	 N4DWmQdek5RNSEdOLJueNW9tvqDthvnNazJBw0TiF7oKW+Ke/20zMucQiLpYLKA5nO
+	 3jDVSQIj1Uzg7SYszycMfFEzP6fakMh9E/SFLUMyyl3Pw1POrN19p3pgZdlMG1hBfl
+	 uDu2Fs2NFFfeBArnwiJLuecqZC8ijTgMvmd4rCgRDyv0DuRa4QKIeDtU1FGrbDm1fT
+	 9x3ewZn0T3RJPSLbtwwWddaebGc7zSZ3YdLKxYfaWHR5eABuub1dS5nx5aZcMg9Q0s
+	 IUuDfWmSm/WOw==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5c1479a959aso2272151e87.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 14:28:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErEstgFCP9kytlGR3CLcPAhsAS9Nx8PwmXf/3FmmZ3XKTuyx3seuMQShd6J9Vg9qEyiYV8Bgp2uuE45xL3EcPxjD@lists.infradead.org
+X-Gm-Message-State: APuU4Z+3boPlfxtfmzixmaGUqV3va8OLSzRd+zMEHzLsPmw8UrW9Zkp5
+	GbaI3QO+E3NxVkxuzOXUR5e5n+JEdEE5cGSuA0kdUP+atyyMaD7l1wakkVbIGxU6HhrSTfu/71+
+	WB+2C2rRRDuK1krsZqhlnWV3L6VXkoP0=
+X-Received: by 2002:a05:6512:3f04:b0:5c1:4cab:2d03 with SMTP id
+ 2adb3069b0e04-5c170b2ecf5mr3075860e87.63.1794781690375; Sun, 15 Nov 2026
+ 14:28:10 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] devfreq: Use mutex guard in governor_store()
-Content-Language: ko
-To: Jie Zhan <zhanjie9@hisilicon.com>, cw00.choi@samsung.com,
- myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: linuxarm@huawei.com, tianyaxiong@kylinos.cn, zhenglifeng1@huawei.com,
- zhangpengjie2@huawei.com, lihuisong@huawei.com, prime.zeng@hisilicon.com
-References: <20260729102348.3857779-1-zhanjie9@hisilicon.com>
- <20260729102348.3857779-2-zhanjie9@hisilicon.com>
-From: Chanwoo Choi <cwchoi00@gmail.com>
-In-Reply-To: <20260729102348.3857779-2-zhanjie9@hisilicon.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_142759_418540_6B4676C1 
-X-CRM114-Status: GOOD (  19.47  )
-X-Spam-Score: -1.9 (-)
+References: <20261114-b4-cs75xx-v7-0-8f17f38821b4@gmail.com> <20261114-b4-cs75xx-v7-4-8f17f38821b4@gmail.com>
+In-Reply-To: <20261114-b4-cs75xx-v7-4-8f17f38821b4@gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Sun, 15 Nov 2026 23:27:57 +0100
+X-Gmail-Original-Message-ID: <CAD++jLnu=ycR+_ZXW2K54oeDJMCfybdSUDVOTJ5B=rFTiOnjLQ@mail.gmail.com>
+X-Gm-Features: Aa3M54oN7V3Y8V-EQUC0vRGZ-PhoQTaP6aUjOIuJowZCATlHdfiiGxoj1XFGWNs
+Message-ID: <CAD++jLnu=ycR+_ZXW2K54oeDJMCfybdSUDVOTJ5B=rFTiOnjLQ@mail.gmail.com>
+Subject: Re: [PATCH v7 04/10] ARM: goldengate: Add support for the CS75xx SoC family
+To: filipp.dunsky@gmail.com
+Cc: Arnd Bergmann <arnd@arndb.de>, Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Drew Fustini <fustini@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	Jason Li <jason.li@cortina-access.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,126 +82,52 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: chanwoo@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 7/29/2026 7:23 PM, Jie Zhan wrote:
-> Use mutex guard in governor_store() so as to simplify the locking logic.
-> 
-> No functional impact intended.
-> 
-> Reviewed-by: Yaxiong Tian <tianyaxiong@kylinos.cn>
-> Signed-off-by: Jie Zhan <zhanjie9@hisilicon.com>
-> ---
->  drivers/devfreq/devfreq.c | 38 ++++++++++++++++----------------------
->  1 file changed, 16 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/devfreq/devfreq.c b/drivers/devfreq/devfreq.c
-> index f08fc6966eae..7a70dd051644 100644
-> --- a/drivers/devfreq/devfreq.c
-> +++ b/drivers/devfreq/devfreq.c
-> @@ -1394,23 +1394,20 @@ static ssize_t governor_store(struct device *dev, struct device_attribute *attr,
->  	if (ret != 1)
->  		return -EINVAL;
->  
-> -	mutex_lock(&devfreq_list_lock);
-> +	guard(mutex)(&devfreq_list_lock);
->  	governor = try_then_request_governor(str_governor);
-> -	if (IS_ERR(governor)) {
-> -		ret = PTR_ERR(governor);
-> -		goto out;
-> -	}
-> +	if (IS_ERR(governor))
-> +		return PTR_ERR(governor);
-> +
->  	if (!df->governor)
->  		goto start_new_governor;
->  
-> -	if (df->governor == governor) {
-> -		ret = 0;
-> -		goto out;
-> -	} else if (IS_SUPPORTED_FLAG(df->governor->flags, IMMUTABLE)
-> -		|| IS_SUPPORTED_FLAG(governor->flags, IMMUTABLE)) {
-> -		ret = -EINVAL;
-> -		goto out;
-> -	}
-> +	if (df->governor == governor)
-> +		return count;
-> +
-> +	if (IS_SUPPORTED_FLAG(df->governor->flags, IMMUTABLE) ||
-> +	    IS_SUPPORTED_FLAG(governor->flags, IMMUTABLE))
-> +		return -EINVAL;
->  
->  	/*
->  	 * Stop the current governor and remove the specific sysfs files
-> @@ -1420,7 +1417,7 @@ static ssize_t governor_store(struct device *dev, struct device_attribute *attr,
->  	if (ret) {
->  		dev_warn(dev, "%s: Governor %s not stopped(%d)\n",
->  			 __func__, df->governor->name, ret);
-> -		goto out;
-> +		return ret;
->  	}
->  
->  start_new_governor:
-> @@ -1438,7 +1435,7 @@ static ssize_t governor_store(struct device *dev, struct device_attribute *attr,
->  		/* Restore previous governor */
->  		df->governor = prev_governor;
->  		if (!df->governor)
-> -			goto out;
-> +			return ret;
->  
->  		ret = df->governor->event_handler(df, DEVFREQ_GOV_START, NULL);
->  		if (ret) {
-> @@ -1446,7 +1443,7 @@ static ssize_t governor_store(struct device *dev, struct device_attribute *attr,
->  				"%s: reverting to Governor %s failed (%d)\n",
->  				__func__, prev_governor->name, ret);
->  			df->governor = NULL;
-> -			goto out;
-> +			return ret;
->  		}
->  	}
->  
-> @@ -1455,13 +1452,10 @@ static ssize_t governor_store(struct device *dev, struct device_attribute *attr,
->  	 * the new governor, restore the sysfs files of previous governor.
->  	 */
->  	ret = sysfs_update_group(&df->dev.kobj, &gov_attr_group);
-> +	if (ret)
-> +		return ret;
->  
-> -out:
-> -	mutex_unlock(&devfreq_list_lock);
-> -
-> -	if (!ret)
-> -		ret = count;
-> -	return ret;
-> +	return count;
->  }
->  static DEVICE_ATTR_RW(governor);
->  
+On Sat, Nov 14, 2026 at 2:41=E2=80=AFPM Fil Dunsky via B4 Relay
+<devnull+filipp.dunsky.gmail.com@kernel.org> wrote:
 
-Hi,
+> From: Fil Dunsky <filipp.dunsky@gmail.com>
+>
+> The Cortina Systems CS75xx ("Goldengate G2") are network processors
+> with two Cortex-A9 cores, an SCU, GIC, the Cortex-A9 global and private
+> timers and a PL310 L2 cache controller. The family includes at least
+> the CS7522 and the CS7542; the CS7542 is used, among others, in the
+> Securifi Almond+ router.
+>
+> Apart from the vendor this has little in common with the Cortina
+> Systems Gemini (SL3516/CS3516) supported by mach-gemini: Gemini is a
+> single ARMv4 FA526 with Faraday peripherals (FTINTC010, FTTMR010,
+> FTGPIO010, a 16550 UART) built for ARCH_MULTI_V4, while the CS75xx is
+> an ARMv7 MPCore whose UART, GPIO, interrupt controller and NAND
+> controller are different blocks. It therefore gets its own directory,
+> named after the Goldengate codename like in the vendor kernel. The
+> Kconfig symbol, ARCH_CORTINA_ACCESS, covers the whole family and is
+> named after Cortina Access, which last sold these chips and also makes
+> the newer 64-bit parts.
+>
+> The generic DT machine is sufficient for the platform, so only the SMP
+> bring-up needs code: the bootloader parks the secondary core in a WFI
+> loop that polls a global software register, so boot it by writing the
+> physical address of secondary_startup to the register named by the
+> cpu-release-addr property and sending it a wakeup IPI.
+>
+> The CPU is a Cortex-A9 r2p1, so select the errata workarounds that apply
+> to that revision and can be enabled on a multiplatform kernel. The PL310
+> is r3p1-50rel0 (CACHE_ID 0x410000c7), select the workaround for its
+> erratum 769419 as well.
+>
+> Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 
-include/linux/cleanup.h includes the following comment
-"148  * Lastly, given that the benefit of cleanup helpers is removal of
-149  * "goto", and that the "goto" statement can jump between scopes, the
-150  * expectation is that usage of "goto" and cleanup helpers is never
-151  * mixed in the same function. I.e. for a given routine, convert all
-152  * resources that need a "goto" cleanup to scope-based cleanup, or
-153  * convert none of them.
-"
+Looks good to me.
+Reviewed-by: Linus Walleij <linusw@kernel.org>
 
-A Patch should be atomic. This patch still uses both guard and goto.
-even if you removed goto on patch3.
-
--- 
-Best Regards,
-Chanwoo Choi
-Principal Engineer, Samsung Electronics
+Yours,
+Linus Walleij
 
