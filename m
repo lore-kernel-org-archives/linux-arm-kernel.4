@@ -2,102 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97EA606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 17:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3289F606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 17:58:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CEszrVtv;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=Tnk8S8Ma
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=idhW8n55;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=hqyAjYs2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=MsnquGLE3pqzvl2AB6wbuvaSxBLJ6UrFg4ezX2gSrs0=; b=CEszrVtvt0xJL4
-	ore+86UZyN1XMkf9gklTGTVF18J58lipQ1RQPM3xbYYTC1WaVqOgnfJsTJRg39fvMYfevy2Yq2zkZ
-	GkMgwUnqUZ+swHAQGRDX6dW7pg9U15CWSZycyh8/fFFXSz1dYq5JgMeVmhdxqruyyNSJRjESO5NFM
-	rLrjyb/yBwZJaVez+5+69u73buPUP9V04pyC1zfmx13gYrzjU2xaWtp2x8yzpW8GpdgkLlZHJP3bm
-	jSZsiZLjjuHvV1v1qz5+pVrfACsJArCa+w9mCUD7yw7WaiOSjnuev63gHyhAujzfGR1kNIt2wzCkh
-	ivJ7gXIVznoF8gT/41KQ==;
+	List-Owner; bh=z6EkiZTsrK4weHp4bp257FUTfMCYoyNr2SVzcxt+tW8=; b=idhW8n55fBMibM
+	0hXN9ML6I8TYKaruuAeDanu+IGofO+lMP2NpGPsSRcNpkqQbRI0IjXswUyoq7RBfDV2cuJVSXKL7/
+	m8PRbusPlmWjX/GfLjGyboKppdAicEQBzumkPo3zK7aWTxlxM0XvYpPX9iXV+Q905jNqiC3FJR0jU
+	JicJRb8KrY78DbIaRWWgQAoNEkFthoz4XrA8npKOz7Wj71GunpNVRONyGGCDoJRH6vQl4Zvk+Jbed
+	KLwA2BSICjJ3iiwEBLl9PTUn4kPSNm6Fin6I5v3idcANli60YG37Sx40NT9poWWxd/P2Ua+HwgXn2
+	55QtRSQ4gE62gvufC35g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSeSh-00000000HrC-2mOK;
-	Sun, 15 Nov 2026 17:56:19 +0000
-Received: from mail-yx1-xb134.google.com ([2607:f8b0:4864:20::b134])
+	id 1xSeUS-00000000I1e-3tLN;
+	Sun, 15 Nov 2026 17:58:08 +0000
+Received: from mail-yx1-xb12a.google.com ([2607:f8b0:4864:20::b12a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSeSf-00000000HqH-1BIY
+	id 1xSeUQ-00000000I0u-31hv
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 17:56:18 +0000
-Received: by mail-yx1-xb134.google.com with SMTP id 956f58d0204a3-6798eb0d190so1875652d50.3
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 09:56:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794765376; cv=none;
+	Sun, 15 Nov 2026 17:58:07 +0000
+Received: by mail-yx1-xb12a.google.com with SMTP id 956f58d0204a3-67db35e7953so344083d50.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 09:58:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794765485; cv=none;
         d=google.com; s=arc-20260327;
-        b=RB9SCqLFqDAAD90a3fw//3tsV5IUP8RN1WTy7lj1uTMza4CCAEPUDuE4R8z7mGG1KB
-         FDQi90pKkCi/6/DE4XR0We4ikPN3hIUgRUe9wzBY7hmdCjnL3MIG1cn9vWGdD/m0eeBA
-         LXsVDbD57RIVHHtB97PAkjnCrUlajwNiXNvqrhI9yhvVtyOkyJcRup15Yj0wt22zVSGi
-         j2SBGvjGW8ns5DwKVb4PUSI+Voy7Fo9mLI8QS+FsaEFJVhVXQozcQljMQgi/r5+WzDD3
-         beizAmKyHu0HwLJlKcStktQswqrqBEiXUPFiQmcfXMVUu6AT3SgfhA5LykJQyoTOZWJ9
-         8xmQ==
+        b=c00W78GrjFGyDn+ppd4BVvGctFESEzPu6ZD7ATiNJqKPfggdH4UBZAsjeW/TsHxlPx
+         ESj4pJuLb6Uvj8Nc3eUF8CIgx/3UkEgMS1RQ0fkRzMv8n6kFBgtLCFNE19NlYvR66erj
+         9ww+eYZ2R3xWj+3mBpg01nt3xb3OzTiy4afyRlPIpsQNhi4ggtrEoMVbtb6EbRlQrK9N
+         3S/MfMXUY+V5gzd/y33ySQhwwJxPyEdf6TudZX6aJnTmhLIT/KYKhszAQIWMxmIwh867
+         dD6r9ni516Lw/EzSEonJf9NfJRp0Eo2m9JJHFBWB3AeM5JGOahJIYzwjnXAcj0Lf9mbJ
+         iAxQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=MsnquGLE3pqzvl2AB6wbuvaSxBLJ6UrFg4ezX2gSrs0=;
-        fh=LrSgRKAi6MlvcrZfGC94RUSd6/IgOE1tUz6RDPSsb2Y=;
-        b=kpsiWOYwnvVNRdMz3PZMUeV9fgQgBVjxU39V8i9fuoxsKwLTnzLebk2Z3ksK8U7Irz
-         ZboaOZX8mhtFOi+pRTQNqUd2s4IiIkctUgb4m2Nj6FqLhBWeozjyIA+4USOGsVg0G6wu
-         sBgiZdK8cnugrAtKdBq7ALuzbq7mAZrGD4ft58E9jpVrBBjwSLTSVFItoSnQDkzLolcW
-         lurg3Ek6789+izHjwCc2Blzbb9+hRugI2fUz2K69kXM6JIeHXTKL8VDBmA7MFDdCX8f4
-         4qB5zzplhKOp+acQefgzW7mkdHzbSr2JSsci7IjdzPGTBhn0PUtM6PwST4ZxfArQNiFE
-         bAmA==;
+        bh=z6EkiZTsrK4weHp4bp257FUTfMCYoyNr2SVzcxt+tW8=;
+        fh=U/faAblipGwXyJ9fiRwGydXxyfzFAdvjickpgwf/QwA=;
+        b=WExYuDJdOp+IMsRMXD+8xvoqd1JRFgWFYE94v0MiwrP0Ilh7DtohuVPsYAph5Qxojq
+         gFCz7Xur3vvpjnArM6+cx3nNScsS5U9F6NqQ4Nyp0k+opPknIDLjIkmtEe207J6Vnm17
+         qsiAoZ4h/00G4su/LIjsY+1Zce0rCBRzADk874Jh7AcN+BJVD3Wr5ljCtJ14aDuihjqY
+         +zGFo9Z8Dfcs7MKknDfDR+gQVM2RmQqlhLBUSh63o8ddDFXhqwrDucaN9MiKicdMTWhL
+         t1TD8MPRbOKy3eYLFMzco8TIEda9L9RIukFntr+Fi0glM35Oi+1oyvEtTdMitsO7dNSq
+         f10Q==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1794765376; x=1795370176; darn=lists.infradead.org;
+        d=googlemail.com; s=20260707; t=1794765485; x=1795370285; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=MsnquGLE3pqzvl2AB6wbuvaSxBLJ6UrFg4ezX2gSrs0=;
-        b=Tnk8S8Ma4y+2LYOpQz5pELW3vVKcrd4XWZHYyct76whRhZYRIp/EUYQFFGWtParv9W
-         Leskk8PWS/HGpaqz/8qPcDB8ezEyBmv1++TuOcUN6xbnVxf18ez2bIxe1w5MMS7V1KXv
-         L/U09JehI0vniLzZqQixMIqeQOhcOrT4g2kWT9/PbIc4WSU/nArTzFv41bt1FlOiCYGP
-         LwsiRkIBrmVJeRAUeNVso/o4l7UTKG58eAoy9864bC1UWBcndODf8KWpCBTxwAKwYZB9
-         7SPn+YRup0ye5QTH1yAQBx1YYoE0Y2qbJAXBosEah7HSyWiW5H0cTU4zOanpXA/KTbl1
-         EKrw==
+        bh=z6EkiZTsrK4weHp4bp257FUTfMCYoyNr2SVzcxt+tW8=;
+        b=hqyAjYs2ikFgHxLvIo1XpaV/oumK0VRwoFYy2ZraLwngAsrsr5fVwfcJ+5koGB110L
+         IzLNX16m6+rX8TJMIykOi6EefpzZe9do7f9hx/63A5ei4ayMnPiIgBegsi/p8V1h1Kx9
+         XY7ZkCokOOXV/SOdLPzwUPB4BbM4P2x4MYgpQUK4DscewrYIRjr0zTBP0uZ9290+PQ/a
+         GVe7wFDz9XvuwNN2Tq/FhiuvxRXwSu9ALrLHB7yDgoNS9wFlQP4lJnDAzd1nngO55bt+
+         byKjnoztCYoQZEkfWGP4wM0OMshXLawiAvXRas5i0mv23wIpInJeZv59XCsmunrxyIKu
+         ML1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794765376; x=1795370176;
+        d=1e100.net; s=20260707; t=1794765485; x=1795370285;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=MsnquGLE3pqzvl2AB6wbuvaSxBLJ6UrFg4ezX2gSrs0=;
-        b=bYpCBPFwOAsoKbyvn1hwMAD1rp/ScULWUO3vBO50gBhP0AFksdRofJJKk4f4kfvGoX
-         1ZLviRwH7ejYHu3EAO8TlFrE8x32nqNZk7RikdiHHMvlQ2rbM2SRPbHUbHNaupCJiEmf
-         ZpzZNZu/3rYsIcboIOgszuwNsFtdRlU4qtjsDMpyDHL0/8C88vEVkRiQ0C5htBzAQtpa
-         5styTG3zexjm4syjK2wS1DUMyU5LUex4R2cFF+DJii6eJ2ufT1szWD8dDeB8xek2tYJY
-         jcyQW6dCx6dS0nCIQJSV11eElCY8s9qjDigoNAV+4TX1K5RGw1O+WBhVQKjO+HPc/gAL
-         J/eA==
-X-Forwarded-Encrypted: i=1; AL+hErHqPFsy1HjMDZ9B9/FFAjKHB3y/+VFsUWvfU3kR+kmJTQpMmfqTK420dexcScL6bQG5+D8rLLu61TNfckSu+cOx@lists.infradead.org
-X-Gm-Message-State: APuU4Z+GKadwHnZDg4/JGXlTsgg/5MlYnQbD/qVbT9xt1nfPzXeEWDwX
-	9AfaIOqlBGoDn1gLVTxr1yzWj8P91p4kURfPVe02xyAXGK3/rhNgTDrFLgE4G+J2Ky7CmGD/8PJ
-	H5T+mKZ6TKHrELlPbR6qvq8KsFK2jrD0hYWz3
-X-Gm-Gg: AYBFou00/daMkFxokXemdRg0OfQylnNa5FUi9bVNBQ7hR/6ToEfMkK2OE/2MmPoDBkk
-	ySTmLNTfPyppgHeZOm4tn999xVtkaT7gI31hhK5glFoy4jXm836uvLXNdeB2Z24z/24mMOQSrfJ
-	QRUmNfUE10/szEFgA1kfhL73bdW++43dtyt/CyH8euBB4J3CJeRUS01kPuWelYUZ+03pzuCODF4
-	IUdLn8bXJU5EAlwcIcBde44jUK6AGMr6rpbWKNFFqALTq0v6+2VFE4RUGGKgbQ54MSaGK+FCXZh
-	3s2Z8Ayn5nyCvp0b7xop2TbKb+9+//5JI4NABv2EeMpRJTB8t8l7+Oz4cM4Mkjnayg2uClqvuX2
-	jgciY7pgjpi1tIogqvThD341DiNvx0KK1/TusAJgJDTtkjiUTjnPyk9f9lgYaFQQKMd/ebg==
-X-Received: by 2002:a05:690e:4852:10b0:67b:abb9:3d15 with SMTP id
- 956f58d0204a3-67d895d195dmr3505161d50.24.1794765375839; Sun, 15 Nov 2026
- 09:56:15 -0800 (PST)
+        bh=z6EkiZTsrK4weHp4bp257FUTfMCYoyNr2SVzcxt+tW8=;
+        b=i+dB8DqkDLepz9uDXwYlRsmt7grAmrmblVTzgTcw3LQBWptWSB1O+ICzccRIz4RoAH
+         ec/ezFALlYILosZ21qrZrBwFYcvvCKaksdHzbYlXXK9iXglNNWEz+a6+b+3IhybsXF2c
+         wjOqapL+WoA2myYVGTwLizJ8Dkb79ui1umRd2dAhp23bLYXUQXR6t6QEorYX7TdkOKLP
+         Amhp516uF82vTpKXGeGoxBnnPkm3aMB+EQGkrTwOE49mev6s0sqoI4f3XLSdrcm5L80W
+         f6inswFgGVx36BtbhZs2RBHOLFht/yDT9PAUpH4eHZec7PIxFIL7jJ+dWV8BNgmz7uqQ
+         3e3Q==
+X-Forwarded-Encrypted: i=1; AL+hErGsw0F3y25+8EkocwosYoo188PdM46szix9IIKamvsc1+f1ImX2ztddk+aQjnG4h4EJp3nctA1ddSWaXkSxlYZL@lists.infradead.org
+X-Gm-Message-State: APuU4Z/s3kOLVXTGWsIg13kpbOV2yRVTVk8y7wQNZTGXouz8EeMOKs9k
+	jNmHhT3ZdIxRgeipOj3fa1eWMhk0XJMgm9PTBZiJgPQK/J+NhDSStmal7rC3AEQcYOWWFweEJxE
+	S1g21za+dvANQkmsxcfDVsScENfa4Ba0=
+X-Gm-Gg: AYBFou2P+BV57sIQea+t1rTz2Lt+VV9DgxfZN0UtxjlHLw1AvAU7qiZJVzgMdvZRAYM
+	Y1+FbNqeZFYaXh1o/GRdmWfDWTUxmKEJI0RaKHFt3QDN5DiYguEtJowzx/mNJbmXS7NsoLZlJn4
+	2BTxQPBCsm2/1wnMwrwZ4srlX99WygvzcLKEmhFENS7NAjTo3s9x+tN+hsMKbqAKlCYHgazAgVU
+	6XPBZ2lD+jG3whZgYmZYHc78bPJlVD+UhFl18bY/f2cl4Lt7S44iUNzou1X3uOImfvsryKiNk8m
+	oDuinyXxC5n1qR7FSt+VxnoTj1IRe0GHlYNxCCtmLuMqu30p1riPUVaPavh6PJHpta7jwqeX1Xv
+	lSmHbLv5y8t1wMsBTvzz9de0C8s5SWGg+Y0ojenK2CJe2vppH4lqrvkCJkSZlqhN/Um9pog==
+X-Received: by 2002:a05:690e:803:10b0:679:af57:d19e with SMTP id
+ 956f58d0204a3-67d89661b52mr2605986d50.45.1794765485479; Sun, 15 Nov 2026
+ 09:58:05 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261113121852.334604-1-tanure@linux.com> <20261113121852.334604-3-tanure@linux.com>
-In-Reply-To: <20261113121852.334604-3-tanure@linux.com>
+References: <20261113121852.334604-1-tanure@linux.com> <20261113121852.334604-5-tanure@linux.com>
+In-Reply-To: <20261113121852.334604-5-tanure@linux.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Nov 2026 18:56:05 +0100
-X-Gm-Features: AclHuK_UkljuS9ciZHxa_G9-g5ueKP83ug6GjLSD0viVWSMIsEbzxQPrFL8LXzo
-Message-ID: <CAFBinCB+DkFDwXm9L+NYgtsUNR2F01xhJJnHN_8ydcRjcpNU3g@mail.gmail.com>
-Subject: Re: [PATCH v7 2/7] dt-bindings: net: add amlogic,t7-dwmac
+Date: Sun, 15 Nov 2026 18:57:54 +0100
+X-Gm-Features: AclHuK9m7YW9F8wMPiMsA7yThjtGjePZoU8lN6bMh8Ee4d6dZkum7e9qCRT0s2I
+Message-ID: <CAFBinCA7XhksQaTHoGP3jCCeSCBdwAYgamW2AfPTdK0ncSCzCw@mail.gmail.com>
+Subject: Re: [PATCH v7 4/7] net: stmmac: dwmac-meson8b: follow the generic
+ RGMII delay rules on the T7
 To: Lucas Tanure <tanure@linux.com>
 Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
 	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
@@ -107,12 +108,12 @@ Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemlo
 	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
 	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+	linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_095617_356930_8DA73DC4 
-X-CRM114-Status: GOOD (  14.64  )
+X-CRM114-CacheID: sfid-20261115_095806_761237_7E3A0F8A 
+X-CRM114-Status: GOOD (  12.79  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -135,31 +136,19 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 On Fri, Nov 13, 2026 at 1:18=E2=80=AFPM Lucas Tanure <tanure@linux.com> wro=
 te:
 >
-> The T7 has the same ethernet glue as the G12A but needs two clocks of
-> its own. The controller reaches memory through a pipeline stage with
-> its own gate; nothing else claims it, so it is switched off as unused
-> and transfers never finish. The glue registers share a gate with the
-> MDIO multiplexer, which probes after the controller has programmed
-> them: the writes are lost and the port keeps the bootloader's delays.
+> The delay code reads phy-mode as the list of delays this glue has to
+> add, falls back to a 2ns transmit delay when no property asks for one,
+> and takes the vendor delay properties. ethernet-controller.yaml says
+> the opposite: the PHY adds the 2ns delays, and the MAC properties only
+> hold small fine tuning added on top. Every board in the tree depends on
+> the old reading, so it stays as it is.
 >
-> With a newer core, a clock list of its own and delays that follow
-> ethernet-controller.yaml, the T7 gets a binding of its own: the PHY
-> adds the 2ns, and only the receive delay line offers fine tuning, so
-> only rx-internal-delay-ps is valid here.
+> No T7 board uses this glue yet, so the T7 gets a path of its own that
+> follows the generic rules: the receive delay line is fine tuning in
+> 200ps steps, and the transmit side, a quarter-period phase step, offers
+> none, so the transmit property is refused.
 >
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 > Signed-off-by: Lucas Tanure <tanure@linux.com>
-Looks good to me in general
-
-[...]
-> +      - description:
-> +          APB clock of the glue registers PRG_ETH0 and PRG_ETH1.
-> +          Without it, they read as zero and ignore writes.
-Please give Chuan Liu a few days to clarify this clock input: [0]
-It would be great if he could provide more details on it. If there's
-no reply then I suggest going with Lucas' testing finding though
-(which means that clock input is correct)
-
-
-[0] https://lore.kernel.org/linux-amlogic/CAJX_Q+0seFwDvd6zksLnJjWYJJY1QcLc=
-1gAjr=3DFN1p+aTdumpw@mail.gmail.com/
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
