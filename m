@@ -2,53 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBC0606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1AC606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 15 Nov 2026 14:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jwsr2W9G;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SA9ROFUh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NMOJEp3p;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Vqpq04bn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qd7T0XQeMuB4TEUS/4gTtVnEGv53KlVhW/3K24NUHPs=; b=jwsr2W9GI7qhnY
-	VJBA3DsKNCitqsKndyzrx4JMUWRHfAyMvjCckNz55N+hwgWH2vc3ZtvUtKss3GCZ7nXWX+Rp44wNT
-	eZ+0ltxW29Rf437YK+qP2y6XumdxQC1NYQLUfD9bsV0Z51xNcu7Qoav5B9Lxq035NXsC5bheBY8ig
-	hnrLvrZx/C4/Ev/3OaCDg1OnCZ+ysqwehiIxwGZ9M4jM4IVP+qpYu5ocIzMQTh9HdKexLRNnKovIX
-	6AwLalsa7sOcQowuFihO7kVNE60ATIqr15D9hJ1+JSwuHV6FJgXXPLQzt6TlsRE/lHOlYRexGiguu
-	iz7bbguMqeh7eRaoh/zQ==;
+	List-Owner; bh=bgmHtN/2PdMynT9bP6VE3sLHcXorlitWbwyp8VUnuZ8=; b=NMOJEp3pASQVOB
+	85g52INYRyf2SK8azNmx2zptGsjtnpaQXLTX2Pztv06ZQuZyXfiVW3TyfPUMYZWBXx4KFH/ORgpFg
+	6/IaoLv+QCLchRIYMdktkrgHzot5sPOWuhwU72/IflK6r/DOOs/xIEFP/yoOtm0cgi3OLUZiJ56W4
+	IiuGdmVnBbtfZZvXw5lD162KGNVVl/XRFNaXXeAJceSdkRsLpvcfcj3bfufeWnrINLJ9WWHSd6H+T
+	KF6rmO59BBqo7SDvmgEPYymZTHnGcTGnjzaEleroljfz7lv9JC7faytkHwHBvRvi2vkAXfOmuQOPH
+	Xt/z+9QUpg22XjzC6wIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbE1-000000003hQ-2sk5;
-	Sun, 15 Nov 2026 14:28:57 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSbEQ-000000003pm-3jNj;
+	Sun, 15 Nov 2026 14:29:22 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSbDy-000000003g3-1ekV
+	id 1xSbEC-000000003lg-118T
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 15 Nov 2026 14:28:56 +0000
+	Sun, 15 Nov 2026 14:29:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 95C8D60D16;
-	Sun, 15 Nov 2026 14:28:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C3681F000C4;
-	Sun, 15 Nov 2026 14:28:50 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 0522741820;
+	Sun, 15 Nov 2026 14:29:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E70A1F000C5;
+	Sun, 15 Nov 2026 14:29:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794752933;
-	bh=qd7T0XQeMuB4TEUS/4gTtVnEGv53KlVhW/3K24NUHPs=;
+	s=k20260515; t=1794752947;
+	bh=bgmHtN/2PdMynT9bP6VE3sLHcXorlitWbwyp8VUnuZ8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=SA9ROFUhfxPEAFREHKzDoyWDaBYsQ4kUcYlJx2NGd/sMgXCMtfpojGTHsNC4i999z
-	 d4I3L4lryfiZXUzgec6OxBQRTBrBlHbt93uC6i1TCNWKE1SMUMP3Fwg41U+pOp5F3k
-	 a32CduoNmbTSFmOj/4j7NJwLGemJHpQ6YtXDz2z6ACh3qMuMFVKpj2Ex9IHRZNxzMO
-	 Er3r7f0kqD96nXQHn5jTUBCLbsoaLNl5quiB4uRtMMsTEvqMRziX4fpc5hcOxlInj1
-	 vM6zAPWz5G36jNtUz9TS6pvggryMDlpwy9XQndt7Hm/U2BB2xsUQu0Mq/fYzTkemhJ
-	 hz4jb7Z2cVbUQ==
-Message-ID: <b485a0cc-91ed-44bc-80bb-fb61d10feccb@kernel.org>
-Date: Sun, 15 Nov 2026 16:28:48 +0200
+	b=Vqpq04bnF9Yte5CZmjLtY8Ag47WsXok909DICTc3Q+9ZEaWfe/milJi/fsBg1MjbX
+	 l4o8ENyNkRxMorAinGma/UWFwtk0Hl/PfRJ8H9PfJwWjJ3dNUJ+X4tOxmLqg6MzHe0
+	 9mm++t1sGQYzkxwvlEAEB/ueWNAHLWPzoBt8et+xBeXgWY46iwEU77bXmB6nPjqaLR
+	 Z1ROVHkkK4fJ4yUsilAYlLZRvYeRBs0SDGTjkvzL6BUitqBR+s/UPgk6bTFArUFSLi
+	 sf/Opau+cPE16xoqXSQ5tHiuyqdWnx6PCK01Ra63KdjdKOcGCBmFmYLW861Yy9hcWx
+	 zGDuc8yGq0gUw==
+Message-ID: <c05aefdc-7b60-472b-ae08-2c3af3cd533f@kernel.org>
+Date: Sun, 15 Nov 2026 16:29:03 +0200
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/16] clk: at91: Add peripheral clock id for OTPC
+Subject: Re: [PATCH v4 04/16] clk: at91: Use new per SoC PMC clock index
+ definitions
 To: Alexander Dahl <ada@thorsis.com>
 Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
@@ -58,13 +59,13 @@ Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
  Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
  Jerome Brunet <jbrunet+clk@baylibre.com>,
  Mihai Sain <mihai.sain@microchip.com>,
- Durai Manickam KR <durai.manickamkr@microchip.com>,
- Manikandan Muralidharan <manikandan.m@microchip.com>
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Durai Manickam KR <durai.manickamkr@microchip.com>
 References: <20261105110715.2486432-1-ada@thorsis.com>
- <20261105110715.2486432-7-ada@thorsis.com>
+ <20261105110715.2486432-5-ada@thorsis.com>
 Content-Language: en-US
 From: Claudiu Beznea <claudiu.beznea@kernel.org>
-In-Reply-To: <20261105110715.2486432-7-ada@thorsis.com>
+In-Reply-To: <20261105110715.2486432-5-ada@thorsis.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -88,14 +89,15 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 
 On 11/5/26 13:06, Alexander Dahl wrote:
-> Add the peripheral clock IDs for OTPC.
-> This clock is required for proper OTPC operation.
-
-Next time, please wrap it at 75 chars according to the submitting patches 
-requirements [1].
-
-[1] https://docs.kernel.org/process/submitting-patches.html
-
+> Adding missing clocks for only some (more recent) SoCs got more and more
+> complex and confusing with the old common definitions, while there was
+> no actual need to have them common.
+> 
+> A splitup of the definitions in the bindings was prosoded and done per
+> SoC, before adding new array members for missing clocks.
+> 
+> Switch from the old common indexes to the new per SoC indexes.
+> No functional change.  Old defines can be removed later.
 > 
 > Signed-off-by: Alexander Dahl<ada@thorsis.com>
 
