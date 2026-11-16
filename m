@@ -2,73 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3EE8606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38DE760A2601
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4d1SHpkg;
-	dkim=pass (2048-bit key) header.d=kernelriot.com header.i=@kernelriot.com header.a=rsa-sha256 header.s=kr2026 header.b=niEZmZ8C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bkxUCOUk;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=ejDtPRXR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vfyJOsUskHlLJmN+D44oLPMzWH54O2TfU7FlES5/KAc=; b=4d1SHpkgjjnR1a
-	ZzcFXb78OxqceKOkUTwGuu5Gv2xCoe/DDzkQLNxBl78pTxrUSsxJFZEeGihGWGEYmDwnF0wcjUyC3
-	qs+lq6hmp4DjtzcxUTh8iZ03A9Mo55ZcGAqm5ESXIHCC4giJhcYFE0ETzoiTpuznsYqvw41ueR/2D
-	QCRVOkE3BJ64+IpyDnYv/3uSIlRZ/dT5zvMp7CrSQqTcQcRu0AtxSY+tcVW6wTfQHJsRAJDHIiS5N
-	sLTa1fKzlQOL5gdSlRnqftOSMyFCcqJI8FlyUp8T5lXu4+o4TN+OpVNi2yqOuS9RLtPAT06tDzpaW
-	FlH2NxFsC6UZUH6xMHdg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xSrVfB9D5irp0CfUCRWxc9PFSLvScyMJMovECZufq0U=; b=bkxUCOUkYZiWJs5F9bWeN3i69i
+	9llP6NvKiU1QxFBMnEv1Kw+HqqP17hlawvwAyzBvurtg6bX8R9p1DDb87lcWa2BcUzcTDXwA7mu67
+	1jAQ0WnuyFaRb9e0MFD/QUWUdrWD3Y02+pHoBo4PjCt4Dki2AyU44v3yjMY0mQR+51GY3aeZDRP3h
+	r2Tc8SVzDGa9M1rrGFIezUNZUsZ+mWlcMbhnUVgdlTQe4KwaJjFiIQ4SRmfUGKcQA8xVXcc7Xj2qD
+	/K0RZY0rBnkgzBdsCChXeGBNEWLFteJIGcmixbrLmaedRt5xBGsPBNXvYuveGBIqiLqYy2Bc8PcOY
+	xdk1GhmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSztU-00000003KPX-32uG;
-	Mon, 16 Nov 2026 16:49:24 +0000
-Received: from mail.kernelriot.com ([74.208.142.49])
+	id 1xSzyF-00000003KsU-17b5;
+	Mon, 16 Nov 2026 16:54:19 +0000
+Received: from mail-francesouthazon11011031.outbound.protection.outlook.com ([40.107.130.31] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSztR-00000003KOq-4Blh
+	id 1xSzyC-00000003Krs-0rGm
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 16:49:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernelriot.com;
-	s=kr2026; t=1794847760;
-	bh=Mg+KnOr2PFN0W5qEG2JQtutKLFPy/XXNDzadik7RWfE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:From;
-	b=niEZmZ8Ca5/vAfQ5KRtxF/P+bkvPeRTeQn5UTp3DSmBcefuKctoSECS1Ut9jo5HU5
-	 2OYtEUInAqTff99qAA4wiWLO4SGL5g1y5Hhc9vZDXU6ARDDnrn19WzRpPopHgCfuEF
-	 TQoa50oYjzc7sCvBe1coRxpd7xHg5mvA/xvU/RacKj598V/8WU+hqDJqekIGIsBEak
-	 7WTLcj9zcmKeKkn/yGf+V11Q6cwIfQbsTP3PfE1zQyqYxAc+hAfmdmmELj1QFOOuOn
-	 kRIP5HRmi1/9YTQ5b/k8RI5Y0apg2WGFVYqx+78pRqbgjnatfbwLOUaFyXLf7IZzr2
-	 KlOooQGbuNJeQ==
-Received: by mail.kernelriot.com (Postfix, from userid 995)
-	id DE1DE819D7; Mon, 16 Nov 2026 16:49:20 +0000 (UTC)
-From: Magnus Leatti <magnusleatti@kernelriot.com>
-To: me@ziyao.cc,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Nespolino <g.nespolino@gmail.com>,
-	netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: stmmac: dwmac-motorcomm: support Wake-on-LAN from S5
-Date: Mon, 16 Nov 2026 13:48:47 -0300
-Message-ID: <20261116164847.3432765-1-magnusleatti@kernelriot.com>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <avsebFtnIASV-KpV@pie>
-References: <20261116091757.1656602-1-magnusleatti@kernelriot.com> <20261116091757.1656602-3-magnusleatti@kernelriot.com> <avscVrGbi7mFicuz@pie> <avsebFtnIASV-KpV@pie>
+	Mon, 16 Nov 2026 16:54:17 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ccEHPgmX9K1sijWRySKB6W1F8utc/5pd2JG+CdEbiL+UIS/MhNwhv9/H4rvz/WGDNZxRAYiSlGNcSxvLbFgkGzESot8vSRXVYzy6nSpgwrFXpitx1oHJxS7x2M+iGnNH4Fu6d8KQIQMQZ7ADf59Yep1BT5uYcl5NobOc3aYLOYeVPD+1i1BO2Xzk8sO5h77GTbYvNgozelKTfSv6hKz9LMU50iR7TxImFvJ82ZBQoGztH5wWew779PKk9adUsHtNpCFWaHMqD6NwedYbYX3+2YpAVGyjSTQ4ubNQFF2n3TYihF9HeAOGzt9cppO7uHbiH4wDxVPfrUvdlAxzfbx2fQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xSrVfB9D5irp0CfUCRWxc9PFSLvScyMJMovECZufq0U=;
+ b=S0etp19UQmStXpvLoFGugkIMWZ2CK/Ds8IuZA9MzJkscz3XBkLh0PkwdM7kW99s5OvKO3VZX2GXxeucjwBnsPRF9Lmqt0USVGy4gozGkp5PXLdWmKixBMuqfwxcACv7jeC/sboB2u4SZ2Zt1SSEeiHqLabwoY8LFDHCfiJ1iSk5Wn06PKQBLtXW0RlvCwzcMCxN4Y48SEE3jtg7kqeYPkbA+5qLdhtIzIMT7+zL+km4pFsphxLp3f37OpQfArOnXNnLcQLF39SnThh1M9pw63hIT1RlUuy5sY3A/UGszcqfjOZivYA9paTghZTANmxpAwLpYqY1kj69JwXfvP4wwww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xSrVfB9D5irp0CfUCRWxc9PFSLvScyMJMovECZufq0U=;
+ b=ejDtPRXR7h3/fXUZPATJsNWlaShjhAsHss/mSbzm1QU9UwCriQ1XQ02+nYbC1/FLLYP7In8eCzEF9CTPTsuFI5kLgLgEhvUw0P1hVh8lIW+9Iso0t34J6kR+Vm2F9u2JW5GDms0cHwzKW0lr4fnorTcKiILzf1cyU382A3LXuy5wahf+QMdrfkgcXfxa3s1lw6BJqjBzVvj3JSjDeSeEU1zpgZqoapLkYMeujEn3pf/SL6cmG4Sj1yT2abnoNB0mzT4h/o5yq9MMjKEzN+lSFSozpCKmESOUr8iYMS9ZDYroprW5CWUNgI0WsiPxOPY3BtwSeTZwXZGfoocLc//9jQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by PAXPR04MB8557.eurprd04.prod.outlook.com (2603:10a6:102:214::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Mon, 16 Nov
+ 2026 16:54:09 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
+ 16:54:09 +0000
+Date: Mon, 16 Nov 2026 10:53:57 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Loic Poulain <loic.poulain@oss.qualcomm.com>,
+	linux-media@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 08/11] media: imx8-isi: Exclude RAW10/12/14 output
+ formats on i.MX95
+Message-ID: <avs1JcPW9mtX1k0A@SMW015318>
+References: <20261116-isi_imx952-v5-0-46de1d24efd4@oss.nxp.com>
+ <20261116-isi_imx952-v5-8-46de1d24efd4@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261116-isi_imx952-v5-8-46de1d24efd4@oss.nxp.com>
+X-ClientProxiedBy: PH8PR05CA0022.namprd05.prod.outlook.com
+ (2603:10b6:510:2cc::10) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|PAXPR04MB8557:EE_
+X-MS-Office365-Filtering-Correlation-Id: 828be0f7-8ffa-4f89-3cdf-08df44023b8e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|7416014|376014|23010399003|366016|1800799024|18002099003|22082099003|3023799007|4143699003|11063799006|56012099006|10067099003|261026140227099003|261022105027099003|261028144727099003|261022075727099003|261021123027099003|261021121427099003|261009223027099003|261102123227099003;
+X-Microsoft-Antispam-Message-Info: v8N27usmRqNorMRbgVtihTbKfgO4KTUO6YFC0UdSgabcF45yqrAdK5UNDDn77UK+DnMQEmvCMX6LVD85Jb9m4l1Z3rjdE7y/oEzlyLEmdH2m3BAqqwuiSLkX+81bFOX//8MDj5/Nh75DWYoS32ro/HWzdigr6ynAyWWveIsiIro3MVkx4dSnZhUfwwLgl7tbz03iCG/6ZUiGqW86bsqsL6CXVHRjWkxZgOwlrhCENlXmaBIprqqI5P/xMpTrnDlQD3cXsoYqNG+1fA/h2K/9B4Q1sTa5YWDszejheD+Em0K8zCIv4XWb9Bb4xrjcaqevf3pCd1EBXRNVD2SgoFwGSZ1ULvVyEEBaRRULK+det2ZH7iwHXEx3bGkDgDXYgi5JtpQON7nuCK4TK0ou+kIut3bGoy6tye2qglKSpXHSvxiYY8vDwj5UKuzozX4+dHZSIXUh4InoIIlcL5kUCxAQ9ZuAt8Wg9j8Q4C5/hVkxnH4Buptj+BwxUhLQzZVcf67e16mYZdqNJjAtRQ+FviYXrjT6IUL+Li8tLGB6twmbNRUX7HDhRa5asumsZWkdhQB4ncYgDDBL6sVWAYIVpQH/VHRvYFTjq6MP+5ODJqKjL7979VyC5caWSDBcXekQBxFa2eU6iqGMRdbhyvJ+07OqzSwQnnobuqCUFs83MpE7Jc4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(23010399003)(366016)(1800799024)(18002099003)(22082099003)(3023799007)(4143699003)(11063799006)(56012099006)(10067099003)(261026140227099003)(261022105027099003)(261028144727099003)(261022075727099003)(261021123027099003)(261021121427099003)(261009223027099003)(261102123227099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5u2E5xs4+BQd+FkwzVFB/XvJQCxnKRS7r50afidNxi5Vm8tUtVn1GzluiTL+?=
+ =?us-ascii?Q?qerYTOlnPVN3uRoN4IEqB6gQu7nqNUFBdsYeGm1+J7wzgn6MZXea7x+Ody2i?=
+ =?us-ascii?Q?AQM+TlgVJrucsxGBTX3pmcT7ai6lbyLsvWiWBiiTVM0cEUCoh736yA3w5AKE?=
+ =?us-ascii?Q?xjFfLvHLxAvxYr9v3YREHwSYI79Ji5m2XTNVflrwei/z5BKrqCY/4Ar6UTYd?=
+ =?us-ascii?Q?CGbSR8dY7Mg4q3vjKcUxTN1VjPB5Go9yqxzd7tUkq99StutOFdXOujVs0YLt?=
+ =?us-ascii?Q?9Y1s/6n+f30kA0k0CVYhk859ELdquA6V5bLpMWbnLqrHQJcsXj845IvbLVQQ?=
+ =?us-ascii?Q?Zs5axZcmxvUHcQQmDmBg7oFX9t+lXJL5AHPfSgcGa3tmDRvxUCnjA5i4nAvg?=
+ =?us-ascii?Q?QQfMCJTP30awCdqn+8GkkPcEHO22+RRP9g3Fxl27kGfm83mgoyqy6rEx924c?=
+ =?us-ascii?Q?PQ6AXPGI8Es7RWRFYHudJMCuVLLihIx1Ob05onJInAFpXF7mu1VF8qDkyTn0?=
+ =?us-ascii?Q?m2bLAx47ZrCtHB3cAOLByKa4v1eokIh446llwiNbSz78vdKvF79N/Q8d20fC?=
+ =?us-ascii?Q?HCkJCMdmfAb7mV0ch8KTQPoPjxhH9eTJUunLbLnn0ImTUkIge0HM1BalCAVU?=
+ =?us-ascii?Q?65RpXS478YgCDnMvJhGtlE1pOxHgNoTVhWcl5m7A/zYx9Go28l82FkOZMPUq?=
+ =?us-ascii?Q?6wEqcpSRtOqU9iOkDpkhFAKe9ubsI1wBWhmXnPkEy02FX9156bJZBNl31hkc?=
+ =?us-ascii?Q?0jcFHemqxDHu8EtmMlAsnO+I4BnJqjSWm1xouTBY/aVTBQDUKgNPxTlQYG8t?=
+ =?us-ascii?Q?j2s0wkS5J3BB7yPelPQ/VF+3yEMkWouSmLgN3z0TGwSJzi9aUxyA90GjjWux?=
+ =?us-ascii?Q?WdSUHGSrd690c8bHh8M5RzGSaE34xSpvkD9AwLh4UHA3+PfRDgRY/6zUYKAn?=
+ =?us-ascii?Q?yf5K4zh81Z/HS+KGycHgmxSRVKzCpgkNv+HJz+1CtClCKFSRofQGIUOqS0Vx?=
+ =?us-ascii?Q?GXCarhRTzLVPRrzo0rud/oxKjAIZIgR03spAvwdBDLTqEataLGY11+P70Lqg?=
+ =?us-ascii?Q?v/A6Q2kMFQ/9yd25bTD/jnq6qzHLMhV8ELysqluClEw3No1J9NKIdg8GKkNM?=
+ =?us-ascii?Q?4eG3SXu/5jppKruXUD1/z24fDZNANQhRAzL8/sOURgNodGLrmXtppLZmh90j?=
+ =?us-ascii?Q?Uwu1TjZFqGdBJt43gfZCLV/1TGSzb+DshmNQdfASt1/4l4odvyw5TrdKtLy8?=
+ =?us-ascii?Q?fG3ZHo54da6mnHc4fdtJGacxrOcTCZkl84reuyHLaUaAq8b4eWCmr0x6+OYp?=
+ =?us-ascii?Q?SjIxHYVg1YZ+zw6e3H7jYZ91CqDbwoKYyQSuPo4dRYnpcj6AECK984MrIT/t?=
+ =?us-ascii?Q?xFDZxG1vKQCbMalwlFs4sCs//Z7OScxJA2eDpaTlJWrykJMLypNhHPzbYxSc?=
+ =?us-ascii?Q?DLwJCxJd51PjfNWpfLlJd4lw+1fUIjEBfuU1AItjZzxK3rgYj+ghtqC/pFQ1?=
+ =?us-ascii?Q?0mOmoBo9N8ao48NnxwxHgy+bIgWGQIp3TYvUxf8lN6uHmihAALHDJVJHvStm?=
+ =?us-ascii?Q?2QWq3xf+4nCDdXdJaDPrvXdcpSbu+KqNkUhZBxJqnQw8vrM3H7VScDVfylBz?=
+ =?us-ascii?Q?yq1PMRAz5mZnvcpeO7fL/RUJfIyUZgH72Iup38iLfGG+a+EWnPOCytIyjJ8q?=
+ =?us-ascii?Q?wArvU2yAutG/jgCBCZeHATJvIhNGc3h0T/zKKT0vcSZj2jz8wXi4IjQUXvN3?=
+ =?us-ascii?Q?W1iPFocJUrnpeinA3i+iT6vYgStTHRNGTEnQwI7qSLxkC0m8txIO?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 828be0f7-8ffa-4f89-3cdf-08df44023b8e
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 16:54:09.1861
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b048nJ34JfGTfbTBGLmBsueYiBVKwvOqkYx0u/9X1RI2fLyXes30yzJ8BxPirYuWBxSMEHDRrToq4iipeqsJTdPyAZ+8+ISbb91uriob3WjV0Ub48Kn84d5yyKG23RDB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8557
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_084922_107818_C1B2B217 
-X-CRM114-Status: GOOD (  15.46  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261116_085416_400676_B6FD9823 
+X-CRM114-Status: GOOD (  26.38  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,71 +147,189 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Yao,
+On Mon, Nov 16, 2026 at 11:28:26AM +0800, Guoniu Zhou wrote:
+> On i.MX95, the CSI formatter provides MSB-aligned RAW data to the ISI
+> via the Pixel Link. The RAW16 passthrough that older platforms use to
+> produce LSB-aligned output now passes through MSB-aligned data instead,
+> so it no longer produces correct V4L2-compatible output. Exclude
+> RAW10/12/14 from format enumeration on i.MX95.
+>
+> Signed-off-by: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
+> ---
 
-On Mon, Nov 16, 2026 at 03:17:00PM +0000, Yao Zi wrote:
-> > Does the chip automatically enables WoL and loads MAC from eFuse on
-> > power-on?
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Yes. I pulled the power cable, kept the driver from loading and dumped
-the registers before anything touched the chip: OOB WoL enabled, eFuse
-address in filter 0, PMT armed for magic packet, receiver on. The
-packet wake bit in WOL_CTRL is clear.
-
-> Aside from a clean power-on, its behavior on reset also matters.
-
-Same state, about 2 s after SYS_RESET. Probe disables OOB WoL before
-that, so a cold and a warm boot look the same to the driver. But the
-chip arms with the eFuse address, not the one in use. The vendor
-driver writes the address again after enabling OOB WoL, for the same
-reason.
-
-> we might probably call stmmac_dvr_remove() in .shutdown() to detach
-> the NIC from kernel's infrastructure, then reset it with SYS_RESET to
-> get a functional WoL state in S5.
-
-YES! Bingo, and I built AND tested now :) .shutdown calls
-stmmac_dvr_remove(), then with "wol g":
-
-  reset only                          no wake, 1 of 1
-  reset, wait, address                no wake, 1 of 1
-  reset, wait, packet wake            wake on the eFuse address, 1 of 1
-  reset, wait, address, packet wake   wake on the address in use, 3 of 3
-  "wol d", remove only                no wake, 1 of 1
-  reboot, remove only                 link back, 1 of 1
-
-"wait" polls PMT until the chip has armed itself, 2.6 to 2.7 s, 7 of 7.
-"packet wake" is the bit in WOL_CTRL, the reset clears it. PME was
-enabled in every row but the first. It also wakes without PME and in
-D3hot, 1 of 1 each. No warning in any shutdown log.
-
-So v2 would be, glue only:
-
- - every shutdown: stmmac_dvr_remove()
- - power-off with WoL set: motorcomm_reset(), poll PMT, write the
-   address in use, set the packet wake bit, pci_wake_from_d3(), D3hot
-
-Two questions:
-
- 1) The glue writes MAC_ADDR0 directly after the remove, two writel().
-    Is it reasonable?
- 2) Power-off takes about 2.7 s longer with WoL set. I can't write the
-    address earlier: in a test that left the registers returning
-    garbage until the driver was bound again.
-
-Maxime, this needs no helper in the core, please ignore my question.
-
-So my plan for this week: I'll write a v2 that addresses everything
-you've mentioned (once again, thanks) and send it your way. If
-something else comes up there will be a v3, and a v4, until WoL works
-on every YT6801, NUC, laptop or add-in card. Deal?
-
-Magnus
+> Changes in v4:
+> - New patch
+> ---
+>  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |  6 ++--
+>  drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c |  2 +-
+>  .../media/platform/nxp/imx8-isi/imx8-isi-regs.h    | 10 +++---
+>  .../media/platform/nxp/imx8-isi/imx8-isi-video.c   | 38 ++++++++++++++++++----
+>  4 files changed, 42 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> index a30633a7e2e9..ba0d6df98fd4 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> @@ -320,9 +320,11 @@ mxc_isi_bus_format_by_code(u32 code, unsigned int pad);
+>  const struct mxc_isi_bus_format_info *
+>  mxc_isi_bus_format_by_index(unsigned int index, unsigned int pad);
+>  const struct mxc_isi_format_info *
+> -mxc_isi_format_by_fourcc(u32 fourcc, enum mxc_isi_video_type type);
+> +mxc_isi_format_by_fourcc(const struct mxc_isi_plat_data *pdata, u32 fourcc,
+> +			 enum mxc_isi_video_type type);
+>  const struct mxc_isi_format_info *
+> -mxc_isi_format_enum(const struct v4l2_fmtdesc *f, enum mxc_isi_video_type type);
+> +mxc_isi_format_enum(const struct mxc_isi_plat_data *pdata,
+> +		    const struct v4l2_fmtdesc *f, enum mxc_isi_video_type type);
+>  const struct mxc_isi_format_info *
+>  mxc_isi_format_try(struct mxc_isi_pipe *pipe, struct v4l2_pix_format_mplane *pix,
+>  		   enum mxc_isi_video_type type);
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
+> index 1178947bb548..1ad0fd1af3b1 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
+> @@ -492,7 +492,7 @@ static int mxc_isi_m2m_enum_fmt_vid(struct file *file, void *fh,
+>  		MXC_ISI_VIDEO_M2M_OUT : MXC_ISI_VIDEO_M2M_CAP;
+>  	const struct mxc_isi_format_info *info;
+>
+> -	info = mxc_isi_format_enum(f, type);
+> +	info = mxc_isi_format_enum(NULL, f, type);
+>  	if (!info)
+>  		return -EINVAL;
+>
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-regs.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-regs.h
+> index 35438abf3172..b83a25a58ebe 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-regs.h
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-regs.h
+> @@ -425,11 +425,11 @@
+>  #define CHNL_IN_BUF_XTND_ADDR					0x00b8
+>
+>  /*
+> - * The ISI shifts the 10-bit and 12-bit RAW formats left by 6 and 4 bits when
+> - * using CHNL_IMG_CTRL_FORMAT_RAW10 or CHNL_IMG_CTRL_FORMAT_RAW12 respectively,
+> - * to align the bits to the left and pad with zeros in the LSBs. The
+> - * corresponding V4L2 formats are however right-aligned, so
+> - * CHNL_IMG_CTRL_FORMAT_RAW16 must be used to avoid the left shift.
+> + * The ISI shifts the 10/12/14-bit RAW formats left to MSB-align the output.
+> + * On platforms where the Pixel Link provides LSB-aligned data, the RAW16
+> + * passthrough must be used instead to preserve LSB alignment. On platforms
+> + * where the Pixel Link provides MSB-aligned data (i.MX95), these formats
+> + * cannot produce correct V4L2-compatible output and must be excluded.
+>   */
+>  static inline bool isi_out_raw_shifted(u32 format)
+>  {
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c
+> index ca8fe8782af8..708aa4c775c7 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c
+> @@ -458,14 +458,32 @@ static const struct mxc_isi_format_info mxc_isi_formats[] = {
+>  	}
+>  };
+>
+> +/*
+> + * On i.MX95, the Pixel Link provides MSB-aligned RAW data, so neither the
+> + * RAW16 passthrough nor the native RAW10/12/14 output formats can produce
+> + * correct V4L2-compatible LSB-aligned output. Exclude these formats.
+> + */
+> +static bool
+> +mxc_isi_format_is_raw_unsupported(const struct mxc_isi_plat_data *pdata,
+> +				  const struct mxc_isi_format_info *fmt)
+> +{
+> +	return pdata && pdata->model == MXC_ISI_IMX95 &&
+> +	       isi_out_raw_shifted(fmt->isi_out_format);
+> +}
+> +
+>  const struct mxc_isi_format_info *
+> -mxc_isi_format_by_fourcc(u32 fourcc, enum mxc_isi_video_type type)
+> +mxc_isi_format_by_fourcc(const struct mxc_isi_plat_data *pdata, u32 fourcc,
+> +			 enum mxc_isi_video_type type)
+>  {
+>  	unsigned int i;
+>
+>  	for (i = 0; i < ARRAY_SIZE(mxc_isi_formats); i++) {
+>  		const struct mxc_isi_format_info *fmt = &mxc_isi_formats[i];
+>
+> +		/* Skip formats unsupported by the platform. */
+> +		if (mxc_isi_format_is_raw_unsupported(pdata, fmt))
+> +			continue;
+> +
+>  		if (fmt->fourcc == fourcc && fmt->type & type)
+>  			return fmt;
+>  	}
+> @@ -474,7 +492,8 @@ mxc_isi_format_by_fourcc(u32 fourcc, enum mxc_isi_video_type type)
+>  }
+>
+>  const struct mxc_isi_format_info *
+> -mxc_isi_format_enum(const struct v4l2_fmtdesc *f, enum mxc_isi_video_type type)
+> +mxc_isi_format_enum(const struct mxc_isi_plat_data *pdata,
+> +		    const struct v4l2_fmtdesc *f, enum mxc_isi_video_type type)
+>  {
+>  	unsigned int index = f->index;
+>  	unsigned int i;
+> @@ -482,6 +501,10 @@ mxc_isi_format_enum(const struct v4l2_fmtdesc *f, enum mxc_isi_video_type type)
+>  	for (i = 0; i < ARRAY_SIZE(mxc_isi_formats); i++) {
+>  		const struct mxc_isi_format_info *fmt = &mxc_isi_formats[i];
+>
+> +		/* Skip formats unsupported by the platform. */
+> +		if (mxc_isi_format_is_raw_unsupported(pdata, fmt))
+> +			continue;
+> +
+>  		if (f->mbus_code && fmt->mbus_code != f->mbus_code)
+>  			continue;
+>
+> @@ -509,7 +532,7 @@ mxc_isi_format_try(struct mxc_isi_pipe *pipe, struct v4l2_pix_format_mplane *pix
+>  		  ? MXC_ISI_MAX_WIDTH_UNCHAINED
+>  		  : MXC_ISI_MAX_WIDTH_CHAINED;
+>
+> -	fmt = mxc_isi_format_by_fourcc(pix->pixelformat, type);
+> +	fmt = mxc_isi_format_by_fourcc(pipe->isi->pdata, pix->pixelformat, type);
+>  	if (!fmt)
+>  		fmt = &mxc_isi_formats[0];
+>
+> @@ -803,7 +826,8 @@ static int mxc_isi_video_validate_format(struct mxc_isi_video *video)
+>
+>  	state = v4l2_subdev_lock_and_get_active_state(sd);
+>
+> -	info = mxc_isi_format_by_fourcc(video->pix.pixelformat,
+> +	info = mxc_isi_format_by_fourcc(video->pipe->isi->pdata,
+> +					video->pix.pixelformat,
+>  					MXC_ISI_VIDEO_CAP);
+>  	format = v4l2_subdev_state_get_format(state, MXC_ISI_PIPE_PAD_SOURCE);
+>
+> @@ -1222,9 +1246,10 @@ static int mxc_isi_video_querycap(struct file *file, void *priv,
+>  static int mxc_isi_video_enum_fmt(struct file *file, void *priv,
+>  				  struct v4l2_fmtdesc *f)
+>  {
+> +	struct mxc_isi_video *video = video_drvdata(file);
+>  	const struct mxc_isi_format_info *fmt;
+>
+> -	fmt = mxc_isi_format_enum(f, MXC_ISI_VIDEO_CAP);
+> +	fmt = mxc_isi_format_enum(video->pipe->isi->pdata, f, MXC_ISI_VIDEO_CAP);
+>  	if (!fmt)
+>  		return -EINVAL;
+>
+> @@ -1281,7 +1306,8 @@ static int mxc_isi_video_enum_framesizes(struct file *file, void *priv,
+>  	if (fsize->index)
+>  		return -EINVAL;
+>
+> -	info = mxc_isi_format_by_fourcc(fsize->pixel_format, MXC_ISI_VIDEO_CAP);
+> +	info = mxc_isi_format_by_fourcc(video->pipe->isi->pdata,
+> +					fsize->pixel_format, MXC_ISI_VIDEO_CAP);
+>  	if (!info)
+>  		return -EINVAL;
+>
+>
+> --
+> 2.34.1
+>
+>
 
