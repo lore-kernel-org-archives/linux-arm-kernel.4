@@ -2,97 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94B5606A896
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D0D606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a0WYcnnD;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ASKSXPfA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mP59eBwf;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=vbYuXuIp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qVAF2xmuC4wpTgZKSGLEQB7UFn6KXmZNBJ+RrXahVHw=; b=a0WYcnnDCHM72Z
-	EcvrOAjNcXQjPFQLrUSIMe6ETL5iU/97LPRA/kWW1Fxq0pJRvxotfiHNsmxtrUnqt/Ey7n3wgu0oM
-	10IWclj4VhcdQ5WMz8n3UIz0mw6Q15X19rzijRf8SkMWysuLlR/HgNZHQHZ8C5vTJjXtr2o7k8btm
-	S0qUJyVIYvIxCBaje20AzCUbyKsLBl7HkJk2QtDT1/guec16B3kTCBS27Q2kEa5p0OV9hSA5dr8Xx
-	yCfJGcRRR670EIS0wVytqYJrWoBZwWCR/vYc1Bi8ahnzIBX5zu1NQ3g/GXAdXxRnPiY5fgcnts6xf
-	0xU2iDN2DnTGE4X60Psg==;
+	List-Owner; bh=Y3aLM1H7iEvnRApaJAI01zW5jN8Rckd1vOMeNTAd9H0=; b=mP59eBwfg+R3Gs
+	UZYiNT2kRFjj3PXlRzkzpDKe2ozxJXPn9NqnX9ZsIZN5R3PabYLAJ4crk9zVEyTyKp664pc77hDuB
+	FgUcm9Ui86Oxm5GZr/e3Hwgt00aXBzkTpooT1GYjTUMeqFm3QBWOjMpZSkucnOcVpOBusCYUzeZkt
+	kj66GeikMwHdSTSh3t4BNb8BsPiOtMl/jkMOYMl8RKx3hHFLsYunC7SiyFOlPZumq3PV783bUe30s
+	2GqpH/BH6MK9lTBaQRrJvT+e9t695THJXMob2akFztAwZRufD/6m3PLbYzImXCtsZWShLOi5LQlRD
+	HQRYidqfbmMMoAXXlxRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1KI-00000003WBP-3YKv;
-	Mon, 16 Nov 2026 18:21:10 +0000
-Received: from mail-pg1-x535.google.com ([2607:f8b0:4864:20::535])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1K4-00000003W4G-1Lmt
+	id 1xT1LY-00000003Wa0-2omw;
+	Mon, 16 Nov 2026 18:22:28 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xT1LW-00000003WYO-0WoP
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 18:20:57 +0000
-Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-cdb684859cbso2697477a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 10:20:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794853255; x=1795458055; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=qVAF2xmuC4wpTgZKSGLEQB7UFn6KXmZNBJ+RrXahVHw=;
-        b=ASKSXPfAMssHirRukp/+bSK3yqgkFjS/bkhHGWRdiNhCvcxHM1yr6BPWQHyo/YTjvG
-         gpA4CTcKT11TVwoTfgMTSgCV2BLJxTtizLtY1nD1jVC0CPcWofUO5HWmpoTg7AD06cFs
-         a6uH5nuLFbcPCZfjpm9bL7t+T/2thlUr9GprsPVEwUf8ROPZ53Wkd0d32M2oyGidscTq
-         Zfo+XG6XwStkp+4ax2RPYn6EpA6RyXAd09ZWL6j1Q3iQiE5RwS0c4DnSHQujdXLcgG2S
-         ocrzZDdShJw04IV91Y7z5C/oPZB/8rwp9UP2dnawjbfAkbHnd3vjidJ61wcZkj7QNoE1
-         mnMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794853255; x=1795458055;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=qVAF2xmuC4wpTgZKSGLEQB7UFn6KXmZNBJ+RrXahVHw=;
-        b=jo2Ab+2tJ7c1aYRbqxbfFqlyENz8NqwW8uvWK5n03MQmMzqpZUMM28O7o8O3nHSB/3
-         6sqDn2PVje/sFFclpThryeH5EpdRy1jLTVw/d1A2UkXYaExrIdzWkj9n1RFSaKWfqvDw
-         omistme/yF+j3makhn00ML82mi9N4VXAhytpllkMxdNLvWPICe0r4Xzi4KQMMioeCe1Z
-         qh3Qr+oLpOG/m7abGGRnlP5d4oE75qCmgmNgft7OypYQtJbSNwZLlW9Ml+9nZM4Floo0
-         Q98FVkFA2eIaMjaMettYs0FJitHn+Dagn9uV9nw71xkixraZLIHEwiv8aQZm20biRmRn
-         wUiw==
-X-Gm-Message-State: APuU4Z+17XM6ifAqhdt9cpD9u4iHb0l9PPJRrWCabRBxbmUS3/FtQ5Hb
-	dwa4HUKGI2FOCw62b3V9Xa99GKkVK8fGYErfPofLe6P9k1LWJQWB4Yhp
-X-Gm-Gg: AZFdTZfZWOQ4hYUd20rGh2VwcHxUEFIhgCmlPKaG+WhdU25eoAnXKRCtI3GQ/phw/gO
-	+WoER6KgbSHvaGKg62MJwuN3g/Q7RhJHAV7I/kGSIA/oOk+JE/JaE0Z97qrz9TQ7SewBN8jEJlF
-	hkoZp7ZCTw5tnhj0UeMSbRkji0guZneP95WL6OI4X0NuKJ9CUsw1vTkQ6EpnmVVRQ5bl0bAOk/X
-	UPKyTPD0b+6Sjz5ulPGznW69kcrx92TVSS9u0BP3RqbIwbflfhiROz20bbPdfehaP5J287gfZx6
-	ikcxcKijkNTuDGeBgCnUFkI4/N7bxMKQczHoTouSGvClB1u8m7mnrlnPW1ktPe1Nc2FobNAUFHd
-	/KRuGuF1Z/oerhv7o/8pUCF5beWWdgOm87ISfonp6ASLRl8HXiAg6jTdGiKHruJJAVM0PhL+JFs
-	3pHdJ3f2O1uCPdb2uJNwYjngKa+fvcgtvKVVyLIq94fb1OZBHRg+L/loTN6ysgfDzR+eGjoS3Fa
-	+SCUcrdEEh19Vim7herq/0eNJ0+sZSqFj4zRS7ewvetH4bp1UGoY/rt6a/ZEuxH+Lj+b4e7BbFM
-	sXckZi6VZrGz9/i4vlLcTJLrCXNrVFsO3TJg3FSqlQey3VxhIXbi7QhoyruadnCKyxWzjD55xrv
-	K9umScyE3NZRP8XBRVMWfJ+wn9AFGH8udwMpdkgpO06yZ46Dypj6yu3X2jg==
-X-Received: by 2002:a17:90b:2f08:b0:3b0:9a0d:b825 with SMTP id 98e67ed59e1d1-3b1b0a3c10cmr10695106a91.45.1794853255277;
-        Mon, 16 Nov 2026 10:20:55 -0800 (PST)
-Received: from localhost.localdomain ([12.162.234.74])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b3ac29a846sm304780a91.9.2026.11.16.10.20.52
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Mon, 16 Nov 2026 10:20:54 -0800 (PST)
-From: Ahmad Byagowi <ahmadexp@gmail.com>
-To: netdev@vger.kernel.org,
-	vadim.fedorenko@linux.dev,
-	andi.shyti@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	michal.simek@amd.com
-Subject: [PATCH net-next v3 2/3] i2c: xiic: add KUnit coverage for register access modes
-Date: Mon, 16 Nov 2026 10:20:51 -0800
-Message-ID: <20261116-wiwi-v3-87afa10a8-2-ahmadexp@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20261116-wiwi-v3-87afa10a8-0-ahmadexp@gmail.com>
-References: <20261116-wiwi-v3-87afa10a8-0-ahmadexp@gmail.com>
+	Mon, 16 Nov 2026 18:22:27 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 883321684;
+	Mon, 16 Nov 2026 10:22:21 -0800 (PST)
+Received: from e132581.arm.com (unknown [10.2.196.114])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7A7CD3F632;
+	Mon, 16 Nov 2026 10:22:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794853344; bh=xi1MhXmlAloJUYWXyD9PbM2BTAQZZcpVmn8NG9atlD8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=vbYuXuIpnYEcXG7zbNgG7YLXdzAELVIWYn62/r7cQ+m7UIlbYjCxKGF6UynnxZHYI
+	 dYW02xOr/1Z6HKsnPo7S4g/9itWHYdeHtCvwV8EnjgUEc4Um8WFqsIHQZLclkqT81F
+	 cem/XjXHzgDLGFKfu3fNggXXWYiNihiYgogN4CaA=
+From: Leo Yan <leo.yan@arm.com>
+Date: Mon, 16 Nov 2026 18:21:30 +0000
+Subject: [PATCH 3/8] perf/arm_pmu: Register ACPI SPE and TRBE devices with
+ software nodes
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261116-acpi_arm_pmu_registration_hmp-v1-3-0371d4eca626@arm.com>
+References: <20261116-acpi_arm_pmu_registration_hmp-v1-0-0371d4eca626@arm.com>
+In-Reply-To: <20261116-acpi_arm_pmu_registration_hmp-v1-0-0371d4eca626@arm.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Danilo Krummrich <dakr@kernel.org>, Johan Hovold <johan@kernel.org>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Daniel Scally <djrscally@gmail.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Bartosz Golaszewski <brgl@kernel.org>, 
+ Saravana Kannan <saravanak@kernel.org>, Will Deacon <will@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Hanjun Guo <guohanjun@huawei.com>, Jeremy Linton <jeremy.linton@arm.com>, 
+ Marc Zyngier <maz@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Sudeep Holla <sudeep.holla@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>, 
+ Anshuman Khandual <anshuman.khandual@arm.com>, Al Grant <al.grant@arm.com>, 
+ "Johnny.Fan" <johnny.fan@cixtech.com>, linux-acpi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, driver-core@lists.linux.dev, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-perf-users@vger.kernel.org, Leo Yan <leo.yan@arm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794853327; l=12374;
+ i=leo.yan@arm.com; s=20250604; h=from:subject:message-id;
+ bh=RhPdV6oYh3rD01IAOheylAh2b5QHOZHX8TkzYtK9v1M=;
+ b=8jj84FuQbFyT19dBbuoO2CngSuyagqrl/6PhWutvc2zYjkE7+YlslbQNfd/Nmn1wnyA0UfWFa
+ IdwJlsJzieTDBTOmoFutwIrIcAymBITR5Olr+ahcUz0ibgscN2SEZV8
+X-Developer-Key: i=leo.yan@arm.com; a=ed25519;
+ pk=k4BaDbvkCXzBFA7Nw184KHGP5thju8lKqJYIrOWxDhI=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_102056_739235_D25088C6 
-X-CRM114-Status: GOOD (  23.91  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261116_102226_272150_75322D4E 
+X-CRM114-Status: GOOD (  27.92  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,193 +95,466 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Exercise the driver's private register accessors with memory-backed
-registers instead of physical hardware. Cover native byte/halfword and
-forced 32-bit accesses in both register byte orders, across 22 register
-offsets. Check payload truncation, high-bit values and neighboring
-sentinels. These tests do not validate physical bus transaction widths
-or hardware interrupt behavior.
+From: "Johnny.Fan" <johnny.fan@cixtech.com>
 
-An allocated RAM address is not a portable I/O cookie. Limit the test
-to the direct x86-64 MMIO implementation, which uses ordinary memory
-loads and stores at these addresses. Exclude UML (which can also set
-X86_64) and indirect I/O. KUNIT_ALL_TESTS cannot enable the suite on
-other architectures. This restriction does not apply to the driver.
+The MADT describes SPE and TRBE interrupts per CPU, without providing an
+ACPI namespace device for each group of compatible CPUs. The existing
+registration only supports a homogeneous system.
 
-Include the tests in the driver translation unit so no accessors need
-to become exported interfaces. Require built-in KUnit to avoid a
-built-in driver depending on a modular test framework. The tests follow
-the driver into either its built-in image or module.
+Group initialized CPUs by MIDR and register one platform device per
+group through a common descriptor-based entry point. Keep each CPU's GSI
+and CPU number in a mapping record until IRQ resource setup. Deduplicate
+shared GSIs and use arm_acpi_pmu_irq_matches() to require the same
+mapped IRQ within each group. Warn and exclude CPUs with inconsistent
+PPIs.
 
-The four parameterized cases passed in an isolated x86-64 QEMU boot
-with networking disabled and no physical-device passthrough.
+Associate a software node containing the group's IRQ affinity so drivers
+can obtain the CPU mask through platform_get_irq_affinity() without
+ACPI-specific handling or a processor-container companion. Create IRQ
+resources first, then use arm_acpi_register_sw_node_irq_affinity() to
+store the filtered group's PPI affinity at index zero.
 
-Tool-origin disclosure, as required by generated-content.rst: Codex was
-used to implement this test suite, run the KUnit build/boot and draft
-this changelog, in response to a request for upstream-quality testing.
+Although SPE and TRBE need only one shared PPI per group, introduce
+nr_irqs and the irq_maps[] array now to simplify adding CPU PMU support
+with per-CPU SPIs in a later patch.
 
-Signed-off-by: Ahmad Byagowi <ahmadexp@gmail.com>
+Signed-off-by: Johnny.Fan <johnny.fan@cixtech.com>
+Co-developed-by: Leo Yan <leo.yan@arm.com>
+Signed-off-by: Leo Yan <leo.yan@arm.com>
 ---
- MAINTAINERS                               |  1 +
- drivers/i2c/busses/Kconfig                | 15 ++++
- drivers/i2c/busses/i2c-xiic.c             |  4 +
- drivers/i2c/busses/tests/i2c_xiic_kunit.c | 91 +++++++++++++++++++++++
- 4 files changed, 111 insertions(+)
- create mode 100644 drivers/i2c/busses/tests/i2c_xiic_kunit.c
+ drivers/perf/arm_pmu_acpi.c | 350 ++++++++++++++++++++++++++++++++++----------
+ 1 file changed, 274 insertions(+), 76 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0cf311e6c..4588569e7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4018,6 +4018,7 @@ F:	drivers/cpuidle/cpuidle-zynq.c
- F:	drivers/edac/synopsys_edac.c
- F:	drivers/i2c/busses/i2c-cadence.c
- F:	drivers/i2c/busses/i2c-xiic.c
-+F:	drivers/i2c/busses/tests/i2c_xiic_kunit.c
- F:	drivers/mmc/host/sdhci-of-arasan.c
- N:	zynq
- N:	xilinx
-diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-index 275aaa7f3..0a7a2aeb7 100644
---- a/drivers/i2c/busses/Kconfig
-+++ b/drivers/i2c/busses/Kconfig
-@@ -1322,6 +1322,21 @@ config I2C_XILINX
- 	  This driver can also be built as a module.  If so, the module
- 	  will be called xilinx_i2c.
+diff --git a/drivers/perf/arm_pmu_acpi.c b/drivers/perf/arm_pmu_acpi.c
+index ca6bf8f86cfe9be0dc351e41bd620d1d37028dfa..7ae291acb04526d820bdfb9640aaa8352449be54 100644
+--- a/drivers/perf/arm_pmu_acpi.c
++++ b/drivers/perf/arm_pmu_acpi.c
+@@ -7,11 +7,15 @@
  
-+config I2C_XILINX_KUNIT_TEST
-+	bool "KUnit tests for Xilinx I2C register accesses" if !KUNIT_ALL_TESTS
-+	depends on I2C_XILINX && KUNIT=y
-+	depends on X86_64 && !UML && !INDIRECT_IOMEM
-+	default KUNIT_ALL_TESTS
-+	help
-+	  Test the Xilinx I2C driver's register accessors with both byte orders
-+	  and with native-width or forced 32-bit accesses. The tests use
-+	  allocated RAM in place of registers. This relies on the direct
-+	  x86-64 MMIO accessor implementation; no controller is required.
-+
-+	  The tests are compiled into the driver to exercise its private
-+	  accessors, and follow the driver's built-in or module configuration.
-+	  If unsure, say N.
-+
- config I2C_XLP9XX
- 	tristate "Cavium ThunderX2 I2C support"
- 	depends on ARCH_THUNDER2 || COMPILE_TEST
-diff --git a/drivers/i2c/busses/i2c-xiic.c b/drivers/i2c/busses/i2c-xiic.c
-index edb5e271c..7e2ed61c6 100644
---- a/drivers/i2c/busses/i2c-xiic.c
-+++ b/drivers/i2c/busses/i2c-xiic.c
-@@ -1650,3 +1650,7 @@ MODULE_ALIAS("platform:" DRIVER_NAME);
- MODULE_AUTHOR("info@mocean-labs.com");
- MODULE_DESCRIPTION("Xilinx I2C bus driver");
- MODULE_LICENSE("GPL v2");
-+
-+#if IS_ENABLED(CONFIG_I2C_XILINX_KUNIT_TEST)
-+#include "tests/i2c_xiic_kunit.c"
-+#endif
-diff --git a/drivers/i2c/busses/tests/i2c_xiic_kunit.c b/drivers/i2c/busses/tests/i2c_xiic_kunit.c
-new file mode 100644
-index 000000000..1b691de7e
---- /dev/null
-+++ b/drivers/i2c/busses/tests/i2c_xiic_kunit.c
-@@ -0,0 +1,91 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/* Included by i2c-xiic.c to exercise the driver's private accessors. */
-+#include <kunit/test.h>
-+
-+struct xiic_access_param {
+ #include <linux/acpi.h>
+ #include <linux/cpumask.h>
++#include <linux/err.h>
+ #include <linux/init.h>
+ #include <linux/irq.h>
+ #include <linux/irqdesc.h>
+ #include <linux/percpu.h>
+ #include <linux/perf/arm_pmu.h>
++#include <linux/platform_device.h>
++#include <linux/property.h>
++#include <linux/slab.h>
+ 
+ #include <asm/cpu.h>
+ #include <asm/cputype.h>
+@@ -68,92 +72,297 @@ static void arm_pmu_acpi_unregister_irq(int cpu)
+ 		acpi_unregister_gsi(gsi);
+ }
+ 
+-static int __maybe_unused
+-arm_acpi_register_pmu_device(struct platform_device *pdev, u8 len,
+-			     u16 (*parse_gsi)(struct acpi_madt_generic_interrupt *))
++struct arm_pmu_acpi_device_info {
 +	const char *name;
-+	enum xiic_endian endianness;
-+	bool force_32bit_access;
++	u8 len;
++	u32 (*parse_gsi)(struct acpi_madt_generic_interrupt *gicc);
 +};
 +
-+static const struct xiic_access_param xiic_access_params[] = {
-+	{ "native_little_endian", LITTLE, false },
-+	{ "native_big_endian", BIG, false },
-+	{ "word_little_endian", LITTLE, true },
-+	{ "word_big_endian", BIG, true },
++struct arm_pmu_acpi_irq_map {
++	u32 gsi;
++	int cpu;
++	int irq;	/* Nonzero only for mappings created by this group */
 +};
 +
-+KUNIT_ARRAY_PARAM_DESC(xiic_access, xiic_access_params, name);
++struct arm_pmu_acpi_group {
++	struct cpumask cpus;
++	int nr_irqs;
++	struct arm_pmu_acpi_irq_map irq_maps[];
++};
 +
-+static void xiic_register_access(struct kunit *test)
++static struct arm_pmu_acpi_group *
++arm_acpi_alloc_pmu_group(struct arm_pmu_acpi_group **groups, int *nr_groups,
++			 int cpu)
+ {
+-	int cpu, this_hetid, hetid, irq, ret;
+-	u16 this_gsi = 0, gsi = 0;
++	struct arm_pmu_acpi_group *group;
++	unsigned long midr;
++	int i;
+ 
+-	/*
+-	 * Ensure that platform device must have IORESOURCE_IRQ
+-	 * resource to hold gsi interrupt.
+-	 */
+-	if (pdev->num_resources != 1)
+-		return -ENXIO;
++	midr = per_cpu(cpu_data, cpu).reg_midr;
+ 
+-	if (pdev->resource[0].flags != IORESOURCE_IRQ)
+-		return -ENXIO;
++	for (i = 0; i < *nr_groups; i++) {
++		int other;
++
++		group = groups[i];
++		other = cpumask_first(&group->cpus);
++		if (midr != per_cpu(cpu_data, other).reg_midr)
++			continue;
++
++		return group;
++	}
++
++	group = kzalloc_flex(*group, irq_maps, nr_cpu_ids, GFP_KERNEL);
++	if (!group)
++		return ERR_PTR(-ENOMEM);
++	groups[(*nr_groups)++] = group;
++
++	return group;
++}
++
++static void arm_acpi_free_pmu_groups(struct arm_pmu_acpi_group **groups,
++				     int nr_groups)
 +{
-+	static const int offsets[] = {
-+		XIIC_DGIER_OFFSET, XIIC_IISR_OFFSET, XIIC_IIER_OFFSET,
-+		XIIC_RESETR_OFFSET, XIIC_CR_REG_OFFSET, XIIC_SR_REG_OFFSET,
-+		XIIC_DTR_REG_OFFSET, XIIC_DRR_REG_OFFSET, XIIC_ADR_REG_OFFSET,
-+		XIIC_TFO_REG_OFFSET, XIIC_RFO_REG_OFFSET, XIIC_TBA_REG_OFFSET,
-+		XIIC_RFD_REG_OFFSET, XIIC_GPO_REG_OFFSET,
-+		XIIC_TSUSTA_REG_OFFSET, XIIC_TSUSTO_REG_OFFSET,
-+		XIIC_THDSTA_REG_OFFSET,
-+		XIIC_TSUDAT_REG_OFFSET, XIIC_TBUF_REG_OFFSET,
-+		XIIC_THIGH_REG_OFFSET, XIIC_TLOW_REG_OFFSET,
-+		XIIC_THDDAT_REG_OFFSET,
-+	};
-+	const struct xiic_access_param *param = test->param_value;
-+	struct xiic_i2c *i2c;
-+	u32 expected;
-+	u8 *mem;
-+	size_t i;
-+	int reg;
++	int i;
 +
-+	i2c = kunit_kzalloc(test, sizeof(*i2c), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, i2c);
-+	mem = kunit_kmalloc(test, 0x200, GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, mem);
-+	/* Only built for direct x86-64 MMIO, which accepts this RAM address. */
-+	i2c->base = (void __force __iomem *)(mem + sizeof(u32));
-+	i2c->endianness = param->endianness;
-+	i2c->force_32bit_access = param->force_32bit_access;
++	for (i = 0; i < nr_groups; i++)
++		kfree(groups[i]);
 +
-+	for (i = 0; i < ARRAY_SIZE(offsets); i++) {
-+		reg = offsets[i];
-+		memset(mem, 0xa5, 0x200);
++	kfree(groups);
++}
 +
-+		xiic_setreg8(i2c, reg, 0xc0);
-+		expected = param->force_32bit_access ? 0xc0 : 0xa5a5a5c0;
-+		KUNIT_EXPECT_EQ(test, (u32)xiic_getreg32(i2c, reg), expected);
-+		KUNIT_EXPECT_EQ(test, xiic_getreg8(i2c, reg), (u8)0xc0);
++static struct arm_pmu_acpi_group **
++arm_acpi_alloc_pmu_groups(const struct arm_pmu_acpi_device_info *info,
++			 int *nr_groups_out)
++{
++	struct arm_pmu_acpi_group **groups;
++	int cpu, nr_groups = 0;
 +
-+		xiic_setreg16(i2c, reg, 0x03ff);
-+		expected = param->force_32bit_access ? 0x03ff : 0xa5a503ff;
-+		KUNIT_EXPECT_EQ(test, (u32)xiic_getreg32(i2c, reg), expected);
-+		KUNIT_EXPECT_EQ(test, xiic_getreg8(i2c, reg), (u8)0xff);
++	*nr_groups_out = 0;
 +
-+		xiic_setreg32(i2c, reg, 0x12345678);
-+		KUNIT_EXPECT_EQ(test, (u32)xiic_getreg32(i2c, reg),
-+				0x12345678U);
-+		KUNIT_EXPECT_EQ(test, xiic_getreg8(i2c, reg), (u8)0x78);
-+		KUNIT_EXPECT_EQ(test, mem[reg + sizeof(u32)],
-+				(u8)(param->endianness == BIG ? 0x12 : 0x78));
-+		KUNIT_EXPECT_EQ(test, mem[reg + sizeof(u32) + 3],
-+				(u8)(param->endianness == BIG ? 0x78 : 0x12));
-+		xiic_setreg32(i2c, reg, 0x89abcdefU);
-+		KUNIT_EXPECT_EQ(test, (u32)xiic_getreg32(i2c, reg),
-+				0x89abcdefU);
-+		KUNIT_EXPECT_EQ(test, xiic_getreg8(i2c, reg), (u8)0xef);
-+		KUNIT_EXPECT_EQ(test, mem[reg + sizeof(u32) - 1], (u8)0xa5);
-+		KUNIT_EXPECT_EQ(test, mem[reg + 2 * sizeof(u32)], (u8)0xa5);
++	groups = kcalloc(num_possible_cpus(), sizeof(*groups), GFP_KERNEL);
++	if (!groups)
++		return NULL;
+ 
+-	/*
+-	 * Sanity check all the GICC tables for the same interrupt
+-	 * number. For now, only support homogeneous ACPI machines.
+-	 */
+ 	for_each_possible_cpu(cpu) {
+ 		struct acpi_madt_generic_interrupt *gicc;
++		struct arm_pmu_acpi_group *group;
++		u32 gsi;
++
++		/* CPUs that have never booted have no saved MIDR */
++		if (!per_cpu(cpu_data, cpu).reg_midr)
++			continue;
+ 
+ 		gicc = acpi_cpu_get_madt_gicc(cpu);
+-		if (gicc->header.length < len)
+-			return gsi ? -ENXIO : 0;
+-
+-		this_gsi = parse_gsi(gicc);
+-		this_hetid = find_acpi_cpu_topology_hetero_id(cpu);
+-		if (!gsi) {
+-			hetid = this_hetid;
+-			gsi = this_gsi;
+-		} else if (hetid != this_hetid || gsi != this_gsi) {
+-			pr_warn("ACPI: %s: must be homogeneous\n", pdev->name);
+-			return -ENXIO;
++		if (gicc->header.length < info->len) {
++			pr_warn("ACPI: %s: miss GICC entries\n", info->name);
++			goto out_free;
+ 		}
++		gsi = info->parse_gsi(gicc);
++		if (!gsi)
++			continue;
++
++		group = arm_acpi_alloc_pmu_group(groups, &nr_groups, cpu);
++		if (IS_ERR(group))
++			goto out_free;
++
++		if (gsi) {
++			struct arm_pmu_acpi_irq_map *map =
++				&group->irq_maps[group->nr_irqs++];
++
++			map->gsi = gsi;
++			map->cpu = cpu;
++		}
++		cpumask_set_cpu(cpu, &group->cpus);
+ 	}
+ 
+-	if (!this_gsi)
++	*nr_groups_out = nr_groups;
++	return groups;
++
++out_free:
++	arm_acpi_free_pmu_groups(groups, nr_groups);
++	return NULL;
++}
++
++static void arm_acpi_unregister_irq_resource(struct arm_pmu_acpi_group *group)
++{
++	int i;
++
++	/* Leave mappings reused from another group or device intact */
++	for (i = 0; i < group->nr_irqs; i++) {
++		struct arm_pmu_acpi_irq_map *map = &group->irq_maps[i];
++
++		if (!map->irq)
++			continue;
++
++		acpi_unregister_gsi(map->gsi);
++		map->irq = 0;
 +	}
 +}
 +
-+static struct kunit_case xiic_access_test_cases[] = {
-+	KUNIT_CASE_PARAM(xiic_register_access, xiic_access_gen_params),
-+	{}
-+};
++static bool arm_acpi_pmu_irq_matches(unsigned int irq, unsigned int other_irq)
++{
++	return irq == other_irq;
++}
 +
-+static struct kunit_suite xiic_access_test_suite = {
-+	.name = "i2c_xiic",
-+	.test_cases = xiic_access_test_cases,
-+};
++static int arm_acpi_map_gsi_irq(u32 gsi, int *irq)
++{
++	unsigned int existing_irq;
 +
-+kunit_test_suite(xiic_access_test_suite);
++	if (!acpi_gsi_to_irq(gsi, &existing_irq)) {
++		*irq = existing_irq;
++		return 0;
++	}
++
++	/* PMU overflow is level-sensitive; ignore the MADT edge flag */
++	*irq = acpi_register_gsi(NULL, gsi, ACPI_LEVEL_SENSITIVE, ACPI_ACTIVE_HIGH);
++	return *irq;
++}
++
++static int arm_acpi_register_irq_resource(struct platform_device *pdev,
++					  struct arm_pmu_acpi_group *group)
++{
++	struct resource *res;
++	int i, j, nr_irqs = group->nr_irqs, ret;
++
++	if (!nr_irqs)
+ 		return 0;
+ 
+-	irq = acpi_register_gsi(NULL, gsi, ACPI_LEVEL_SENSITIVE, ACPI_ACTIVE_HIGH);
+-	if (irq < 0) {
+-		pr_warn("ACPI: %s Unable to register interrupt: %d\n", pdev->name, gsi);
+-		return -ENXIO;
++	res = kcalloc(nr_irqs, sizeof(*res), GFP_KERNEL);
++	if (!res)
++		return -ENOMEM;
++
++	group->nr_irqs = 0;
++	for (i = 0; i < nr_irqs; i++) {
++		struct arm_pmu_acpi_irq_map map = group->irq_maps[i];
++		int irq;
++
++		/* Shared GSIs need one resource */
++		for (j = 0; j < group->nr_irqs; j++) {
++			if (group->irq_maps[j].gsi == map.gsi)
++				break;
++		}
++		if (j < group->nr_irqs)
++			continue;
++
++		/*
++		 * On success, irq contains the mapped IRQ, whether new or
++		 * existing. The return value is positive for a new mapping
++		 * and zero for reuse.
++		 */
++		ret = arm_acpi_map_gsi_irq(map.gsi, &irq);
++		if (ret < 0)
++			goto out_free;
++
++		/* A group must use the same PPI */
++		if (group->nr_irqs && !arm_acpi_pmu_irq_matches(irq, res[0].start)) {
++			pr_warn("ACPI: %s: CPU%d has inconsistent PPI in group, ignoring CPU\n",
++				pdev->name, map.cpu);
++			cpumask_clear_cpu(map.cpu, &group->cpus);
++			/* Leave reused mappings intact */
++			if (ret > 0)
++				acpi_unregister_gsi(map.gsi);
++			continue;
++		}
++
++		map.irq = ret;
++		group->irq_maps[group->nr_irqs] = map;
++		res[group->nr_irqs++] = DEFINE_RES_IRQ(irq);
+ 	}
+ 
+-	pdev->resource[0].start = irq;
+-	ret = platform_device_register(pdev);
++	ret = platform_device_add_resources(pdev, res, group->nr_irqs);
++
++out_free:
++	kfree(res);
++	return ret;
++}
++
++static int arm_acpi_register_sw_node_irq_affinity(struct platform_device *pdev,
++						 struct arm_pmu_acpi_group *group)
++{
++	int ret;
++
++	/* A MIDR group may span several processor containers */
++	ret = device_create_managed_software_node(&pdev->dev, NULL, NULL);
+ 	if (ret)
+-		acpi_unregister_gsi(gsi);
++		return ret;
++
++	return software_node_add_irq_affinity(dev_fwnode(&pdev->dev), 0,
++					      &group->cpus);
++}
++
++static int arm_acpi_register_pmu_device(struct arm_pmu_acpi_group *group,
++					const char *name, int id)
++{
++	struct platform_device *pdev;
++	int ret;
++
++	pdev = platform_device_alloc(name, id);
++	if (!pdev)
++		return -ENOMEM;
++
++	ret = arm_acpi_register_irq_resource(pdev, group);
++	if (ret)
++		goto out_put;
++
++	ret = arm_acpi_register_sw_node_irq_affinity(pdev, group);
++	if (ret)
++		goto out_put;
+ 
++	ret = platform_device_add(pdev);
++	if (ret)
++		goto out_put;
++
++	return 0;
++
++out_put:
++	platform_device_put(pdev);
++	arm_acpi_unregister_irq_resource(group);
+ 	return ret;
+ }
+ 
+-#if IS_ENABLED(CONFIG_ARM_SPE_PMU)
+-static struct resource spe_resources[] = {
+-	{
+-		/* irq */
+-		.flags          = IORESOURCE_IRQ,
++static int __maybe_unused
++arm_acpi_register_pmu_devices(const struct arm_pmu_acpi_device_info *info)
++{
++	struct arm_pmu_acpi_group **groups;
++	int i, nr_groups, nr_devices = 0, last_err = 0, ret;
++
++	groups = arm_acpi_alloc_pmu_groups(info, &nr_groups);
++	if (!groups)
++		return -ENOMEM;
++
++	for (i = 0; i < nr_groups; i++) {
++		if (!groups[i])
++			continue;
++
++		ret = arm_acpi_register_pmu_device(groups[i], info->name, i);
++		if (ret) {
++			pr_warn("ACPI: %s: %*pbl: add device failed (%d)\n",
++				info->name, cpumask_pr_args(&groups[i]->cpus), ret);
++			last_err = ret;
++		} else {
++			nr_devices++;
++		}
+ 	}
+-};
+ 
+-static struct platform_device spe_dev = {
+-	.name = ARMV8_SPE_PDEV_NAME,
+-	.id = -1,
+-	.resource = spe_resources,
+-	.num_resources = ARRAY_SIZE(spe_resources)
+-};
++	arm_acpi_free_pmu_groups(groups, nr_groups);
++	return nr_devices ? 0 : last_err;
++}
+ 
+-static u16 arm_spe_parse_gsi(struct acpi_madt_generic_interrupt *gicc)
++#if IS_ENABLED(CONFIG_ARM_SPE_PMU)
++static u32 arm_spe_parse_gsi(struct acpi_madt_generic_interrupt *gicc)
+ {
+ 	return gicc->spe_interrupt;
+ }
+ 
+-/*
+- * For lack of a better place, hook the normal PMU MADT walk
+- * and create a SPE device if we detect a recent MADT with
+- * a homogeneous PPI mapping.
+- */
+ static void arm_spe_acpi_register_device(void)
+ {
+-	int ret = arm_acpi_register_pmu_device(&spe_dev, ACPI_MADT_GICC_SPE,
+-					       arm_spe_parse_gsi);
+-	if (ret)
++	static const struct arm_pmu_acpi_device_info info = {
++		.name = ARMV8_SPE_PDEV_NAME,
++		.len = ACPI_MADT_GICC_SPE,
++		.parse_gsi = arm_spe_parse_gsi,
++	};
++
++	if (arm_acpi_register_pmu_devices(&info))
+ 		pr_warn("ACPI: SPE: Unable to register device\n");
+ }
+ #else
+@@ -163,36 +372,25 @@ static inline void arm_spe_acpi_register_device(void)
+ #endif /* CONFIG_ARM_SPE_PMU */
+ 
+ #if IS_ENABLED(CONFIG_CORESIGHT_TRBE)
+-static struct resource trbe_resources[] = {
+-	{
+-		/* irq */
+-		.flags          = IORESOURCE_IRQ,
+-	}
+-};
+-
+-static struct platform_device trbe_dev = {
+-	.name = ARMV8_TRBE_PDEV_NAME,
+-	.id = -1,
+-	.resource = trbe_resources,
+-	.num_resources = ARRAY_SIZE(trbe_resources)
+-};
+-
+-static u16 arm_trbe_parse_gsi(struct acpi_madt_generic_interrupt *gicc)
++static u32 arm_trbe_parse_gsi(struct acpi_madt_generic_interrupt *gicc)
+ {
+ 	return gicc->trbe_interrupt;
+ }
+ 
+ static void arm_trbe_acpi_register_device(void)
+ {
+-	int ret = arm_acpi_register_pmu_device(&trbe_dev, ACPI_MADT_GICC_TRBE,
+-					       arm_trbe_parse_gsi);
+-	if (ret)
++	static const struct arm_pmu_acpi_device_info info = {
++		.name = ARMV8_TRBE_PDEV_NAME,
++		.len = ACPI_MADT_GICC_TRBE,
++		.parse_gsi = arm_trbe_parse_gsi,
++	};
++
++	if (arm_acpi_register_pmu_devices(&info))
+ 		pr_warn("ACPI: TRBE: Unable to register device\n");
+ }
+ #else
+ static inline void arm_trbe_acpi_register_device(void)
+ {
+-
+ }
+ #endif /* CONFIG_CORESIGHT_TRBE */
+ 
+
+-- 
+2.34.1
+
 
