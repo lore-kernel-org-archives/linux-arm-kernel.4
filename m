@@ -2,166 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C98606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF3EF606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JMbDcjfj;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=MnCv8Fdj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qipsmIvo;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=jIIztKjp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:References:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=s6+we+zNEogUULxek8r/se8xwtl5vHAyZIOGOEG2TtU=; b=JMbDcjfjQovlQt
-	mroZw4Kmq0nT7Q0/4AmWvJfHM4VSBgfxXBMu8BZEccfnMWXfIfm/kXhtxDzvQ8Sx+oxvNe87vAiRd
-	TqgzCggfs9aykFoe60kZ1FdkRsxxdnWLZZh/PZz0Roqluup/VS0U5iT3pnAPKBZXCmnTwR9uxW4PS
-	9fKW7LtYxaDnx6epRgQAh92hvmSG6rYdLnRCjUj6uP62OadOciD7lWYBf8eEE5RhVrfzOKu0V/txO
-	Fr4BOyxqKTwnb+DxRk/h4NU06iQBGwvYkgKymXfj8or7po/43PPzWNMspnRy3yfY/IxudaXBRFKwK
-	UIQcNtF02rgVMhcXEAyQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:To:From:Subject:Message-ID:Reply-To:Cc:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=y2ufclYMSczQ8+k1rs6xWHBnqZazoATcDX8gGJ1J/W8=; b=qipsmIvoLsTiIOXCW/E7EwdP/y
+	RFMTe54c3y6WfJsoKP5sc/JIQrfVIH0OChXw6uBdrr9BhjzSjZxmsG2111OauzA6w+DMX5vkIJOHn
+	XEfDvDyfqaFTxEtnZUtMBz4OOFl0A8VYNGjTPRE3BhRuJg2pnpIL3JiNrZDYB5fa1AsINMljWN2HS
+	8fsU29fUaZLUwnlOOtgkDdrD8qEonqtlWVljPbA0ns5H93V3OfOKMZEXiwzflC03V2VcnllEENugT
+	zCkprVYLw+VuBXbNjbNcijgkSAdRB/4+5oyNTEMbyj2eB72REspltn63hUzxdgzkAwLf5nf3XbiC1
+	FJcyZmFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSx3A-00000002gsk-40tz;
-	Mon, 16 Nov 2026 13:47:12 +0000
-Received: from mail-norwayeastazon11013028.outbound.protection.outlook.com ([40.107.159.28] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	id 1xSx5m-00000002hLm-2Es0;
+	Mon, 16 Nov 2026 13:49:54 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSx38-00000002gry-38QI
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:47:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VTT/QqNSgHGjx2ttCvzygsHXut3Q8X89Rb8bFWG+Yu0cvQK052LM7yeNwX/AxBAXrIMvmwfEZcEgzq942hiAOF0nzB+u/HGXFPUwbi/T8cgSkOuUt4pxBhO/JT+gjJ7tgSMLQQr4D9Zwhh1jiG0nAf7R/R5omME3EiC26SSmnMRC5fG5Us2gvlc7Jhljvmnl75swQQK0abVekbtwin4yiq/jDLQQyYelrkdz1ZzRNpefGYmEMTry0WTFDGpAG5afnyflJ0/gZwhOINtES+rwO96Y3Kgd9GgT0TxdAgu+SxvTgfVFVg8WllvoafE42AcyXB83CdgoPyXbcsiyy7E6fw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s6+we+zNEogUULxek8r/se8xwtl5vHAyZIOGOEG2TtU=;
- b=ewwsrdv58MwJRmzDyRVrysPiVfh+UsGjqPR6OGlidHAV7/9jxFaV57eFwvDeD6HK4neQufPybEayIG1ydG3A9r1oARescdcwv2IGz9LhN0A3hYvUHXbygoAMpY1eJG4A6fTly5rj1C0c0vM1Wa0R9xJKSLOrX8yQVsJMfqSza9CWNZpJOYvWGdUzTAm7Zb3lB2J0vQF9kST1OP5U3CGz00KKwHS10hbs7aovE9QT5RvghexVSEWtr6Y74Da5lIoc55gNDJUiZTl7G3Vj1URJbbRzxT1tDbvR2OxoRSqMM0GTmg2yCqACSrDNykMrP5NQSMg6WUwQO6Y475VYT/5zLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s6+we+zNEogUULxek8r/se8xwtl5vHAyZIOGOEG2TtU=;
- b=MnCv8FdjIyxwwMpHhAB0ZJsbYV2Pw54iJRL3zINQDbQWGRthffO81OEnMVKcQ+sSm92yYvL5DoYTG4KTCVKe3ltB0cZgFYRgGjsCI/7o3pfDh00jNPsU+JoSr2s/O4jOBe65RVkt6xYycihEmv3Y15+aT5beYiQzCrV+SU+waDT0wQCCrSH2rIqa835DyJphcXQ+MiMyw2j8qxx2qkxTNPp3XwmgGGhH83+fV7anb3bTgkO6xy9GemkbIw/L8OER3Gne7UrX91dRNEGCFe6V3LJijHMmNZSFl6Y/mglfOVlHJ/+utlITvXI/enn90sMTeMVUsESJuiObKYuIbLPLbQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV1PR04MB10126.eurprd04.prod.outlook.com (2603:10a6:150:1a5::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Mon, 16 Nov
- 2026 13:47:02 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 13:47:02 +0000
-Date: Mon, 16 Nov 2026 08:46:49 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>,
-	Karol Wachowski <karol.wachowski@linux.intel.com>,
-	Oded Gabbay <ogabbay@kernel.org>,
-	Jani Nikula <jani.nikula@linux.intel.com>,
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Tvrtko Ursulin <tursulin@ursulin.net>,
-	Matthew Brost <matthew.brost@intel.com>,
-	Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Alex Elder <elder@kernel.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Guan-Yu Lin <guanyulin@google.com>,
-	Mathias Nyman <mathias.nyman@linux.intel.com>,
-	linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-staging@lists.linux.dev, netdev@vger.kernel.org,
-	imx@lists.linux.dev, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 1/1] PM: runtime: change stub pm_runtime_get_if_active()
- return 1 when !CONFIG_PM
-Message-ID: <avsJSUvOTl1Pp6Qe@lizhi-Precision-Tower-5810>
-References: <20261029163044.3062958-1-Frank.Li@oss.nxp.com>
- <CAJZ5v0jyuMjh4En_r2TYui+sNbGveJ0Rz1Da39LEK9e-HxHgGA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0jyuMjh4En_r2TYui+sNbGveJ0Rz1Da39LEK9e-HxHgGA@mail.gmail.com>
-X-ClientProxiedBy: PH8P221CA0040.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:346::17) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xSx5k-00000002hKd-0Izx;
+	Mon, 16 Nov 2026 13:49:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794836988;
+	bh=T/KA0zquQYjz4iSbAGPA8HM3AK6G68SZSye9Jt9rIi8=;
+	h=Subject:From:To:Date:In-Reply-To:References:From;
+	b=jIIztKjp7qsh0k4sycHWurMlzw0zllvgCsiJR10ci6TCn5+fivlamDIoNKA7n5pL6
+	 qHFqKX/ZuEi9hEZ/aTeVZO/andt0kawDI5OEgtw0qsOmGLVDHdX87iLiI5iUoF9O90
+	 YT8065WvGwhfB7d5rLqiIFC/aghkbSEXN8cdMcydmUoVok2oAK9SQ/BftIIaYAH6SM
+	 XdFNf+hJ5K683V33h5Mro0V455GQ8GLuXJEsg3d6b9ZZtN1+1d3nwChObCTunIT5xE
+	 8u1tj9lg7X7nccxF283nZP6Hs4pZ1Ymqu/0XuHmZYySFshCXaHdFQ/h8Sz9+aZoFAj
+	 63QILeEcu05zA==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D95E817E0060;
+	Mon, 16 Nov 2026 14:49:46 +0100 (CET)
+Message-ID: <6ae6d1101d3f7095d11462579a5a3313153533e6.camel@collabora.com>
+Subject: Re: [PATCH 3/7] media: rkvdec: hevc: bound the RPS reads by the
+ control size
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Daniel Golle <daniel@makrotopia.org>, Detlev Casanova	
+ <detlev.casanova@collabora.com>, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>,  Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Alex Bee	
+ <knaerzche@gmail.com>, Hans Verkuil <hverkuil+cisco@kernel.org>, Jonas
+ Karlman	 <jonas@kwiboo.se>, Sebastian Fricke
+ <sebastian.fricke@collabora.com>, 	linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Mon, 16 Nov 2026 08:49:44 -0500
+In-Reply-To: <bb9c44d0f56221874b105394169e5c377ef21b42.1794645268.git.daniel@makrotopia.org>
+References: <cover.1794645268.git.daniel@makrotopia.org>
+	 <bb9c44d0f56221874b105394169e5c377ef21b42.1794645268.git.daniel@makrotopia.org>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-Ioy9snckrmchYqHS9sCx"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV1PR04MB10126:EE_
-X-MS-Office365-Filtering-Correlation-Id: c5eb739a-d46b-40eb-7b63-08df43e8182e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|23010399003|19092799006|10067099003|11063799006|4143699003|56012099006|261021121427099003|261026121527099003|261102123227099003|261009223327099003|261009223027099003|261009221727099003|261009221227099003|261009220027099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: arWDUWabQbUJW+iJBHLLTlm4QNkiF1ZoS9iwwa+uuoHQ2r9xjWchQVEzlJMdLcU/gO5sG10EtSwCSOPzu3EAKz7n4X47gR4Rvk5ccOvW7J3yYScGQUFlepv8ZWgzVePs+SbZwOHY3aUYr6xj9aogd2ejo8QoDk0VEgs+ZVpAAp1rqPEEhS0EX3uPiZY3KsRRHRsVkXYeaEPK6ddnHDi3ZovPGztOFNo6UV+pY7i3aU8SPD65nYD6mTvBC+dl3mHu8qy0GZ0gVv5dNqVC7lxdQCBlGW1m+lg7JC5xqz4PLOI2dxHH5IJPZoj/mtY7jZ/2ueeGImwrL1ilFQBRN0MOx2+SxArzOKOigaQzwGZ+pV6AlhC0e9xgRJFpnK2tCOyXldWYQPPD16BXNffXp42Qf7+lMb5I294KbW65u6JLVshT7JjSv0JImjCP3kOMvByKEyK+FPnjZZf1LKtoq7RR5ByrHJVrSm9qZHJx1orBuQ8SpUlMxJjcEPRg6YhzpXpcgFN6qSdr1yB6RWtz3yR/Fx8foSLHBiNI7MUETfTc8BbJOGVBTru70xP9AWDDWjcIM/TUkIZGSeN4/85uCKw/WjlsEyFLxjudKt0fpgjcWh7WLZHxYbC4Gsckch5U14Ka15zDoNKBiFkh19GxTWFCLA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(23010399003)(19092799006)(10067099003)(11063799006)(4143699003)(56012099006)(261021121427099003)(261026121527099003)(261102123227099003)(261009223327099003)(261009223027099003)(261009221727099003)(261009221227099003)(261009220027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RHp4dnV3T01RODltYW0xWTlGdkRHME9VWkJ1MDZXY3gvTlBlU0IzZ0ZpcU1a?=
- =?utf-8?B?ZG5KZ2xqb0VDOGhKVnovRDMzZWFSRWl2MkozNHNWTzJ2WlBkN2wyMFB3RmZQ?=
- =?utf-8?B?bkFsRVhYcWFlaFpoS1J0K1Y4cmVXWGlNak85c1B0TFZ2MU9Mek1HQzB6b2U0?=
- =?utf-8?B?alROVjhySUFPbFZMRVBzSDVjMFNWc2diOUpnYWltOUJPVlBRZ3ozYWJqWWxH?=
- =?utf-8?B?cDh3WDJ5SDJLSEJOYUxhU2RpNXRiN3NiendOaVVvL3hxMlQ5ZDl6ZkwyZTlU?=
- =?utf-8?B?ekZrSEE1Y0JEMk5VM3pONTZMSkVoYnZsQlJkaEpodFRyaEYwdnc2dm8vd0RE?=
- =?utf-8?B?bHZ6Y2MxbWp5R0hNeEVIa3ZOUUpPTWV4ZVVCWk5jK1czUHJ1bDJDOGhaQi9W?=
- =?utf-8?B?K29VTko4N2wvaU5Tc3ZIM3JEOGRhT0pqS012VWRZQzg0V3IreE9mTmNweGtx?=
- =?utf-8?B?ME9ZUFFaQWR4bmNtYkR6eGtrUTBGUE55QWJ6WEtuTW1VY1hhR2VvakxOd1Uy?=
- =?utf-8?B?Unh0U2U4RDZqdWFiRW55ZFpaKzBzMFNSZ1pZMUxiNmtoa3p3YWFvOTI3WDlV?=
- =?utf-8?B?SW4zYkNhVzNMUng1Y3hpSzYyUzR0Qm11QktVZWdFVEdtVGlqc3BienVzUWhv?=
- =?utf-8?B?Qyt2aE9QNUx1VG9lZTk2bUpyY2lpZjVpOXB3ZXVtYjVMYUNJWlVQdDNUdG1F?=
- =?utf-8?B?R3YveHZUMFJ2NmZVRU5SVEtaOXVOTW8vMjFaL01kdVhaSGRFeEZUMGdNV1Z1?=
- =?utf-8?B?cS9YamFNTk9LelRUcWpEa1kzQlZNSjhRVGZHU2pTUXA1UjB2V1dwanVSdzcr?=
- =?utf-8?B?NTlTVXovS0RkTkFsRzdEeE4vRmNWdEZ4ZUdYMjFab1E1SHd0Zk5FajNOc1Zn?=
- =?utf-8?B?VzE1REtzMkZFek5tdWd2STRDVXRtVmJaT3JRLy9GMFdNZUkwVVo5eE80a1dB?=
- =?utf-8?B?bFZ4eTUzbmhJVW5vMnkvTVZDSmlkQUlDaWU5cnZaZWhGOTVDT3lVclRCTlMw?=
- =?utf-8?B?dlA2Z3NTUTV0WnYwVUszNDcrbnUwaDZIR1MvbTBwd2ZwRGswNGJFRW04N21Y?=
- =?utf-8?B?VFFzZ1dDWG52R1lYeGZjd1JUSzhjL1JEc0ZBYlFaSHJkQjNzMklZNTlub0gw?=
- =?utf-8?B?eHRtYTFoU2NXSWg0RFVtbU0xK24zM3YvdDQ1bmNpYWljcFJVYkFoWXp2cWpu?=
- =?utf-8?B?MnRKSk12Skx3dXJ4N0ptc1ZjZC82bWswU1ZJQUVGSWZJQ1VHYkFFOXZCYVEz?=
- =?utf-8?B?UGk2T1NxaVFLWHcyaWxCSkFCdVFPNkxTaTV5UHRRd0NxdE9reHByRlF2YWxW?=
- =?utf-8?B?S3JuVzdESXduWGt6d3VQOVVRN0VVbXluS21jSTkrNTZzazVCWEFBVHZpek5T?=
- =?utf-8?B?Tll4V1RYN3hWUmlhVHBjdnVIOUNLblpvbGs1NEdxZm5VZ3dRODQ1K1hBMjdL?=
- =?utf-8?B?ckExUTl5TjBjandzYmduNXpWTjVoVHdEWVAxMVkvZ0JJSTRUbEdWWUhzSmR1?=
- =?utf-8?B?a1FiQnBYL3JQS2lPQjJDTlFudThpTTNTd240TmNhM255eGEvUFdlNStHaFpn?=
- =?utf-8?B?blgvOFg2OXEwVUpIeEZWTkpzVjBGdGwvbkdqWUdHejdJSk9KTUVUdzlYSjNk?=
- =?utf-8?B?ekg0S2ZQZTVYU3dFaEpyTlRmV3JORmJRM2w5MzhCV0xva3l6Q1FJcGpleDVK?=
- =?utf-8?B?LzJaZXFjY3lURytMeE1aQ0s1UEdEWGU0NWZRSE03L0MxRlB5M0k1WDYxZmp6?=
- =?utf-8?B?QjJPZ3lZVE1OZUg3dkpHa1RpZkI4ejZEU253UU5NbzQ0TzhzcVlpUjd4NzJR?=
- =?utf-8?B?WGhNVWNkWllVWGlDeTdLR3AxT3V5TlRJdmpOQmVpQ3BIUEZJZUN2ajRia0dK?=
- =?utf-8?B?K28vU2dUc1FHNG9Zc2MxSTI5OGIvSCtrRkhwekY3ajlrelB6VDBnUGtSc25F?=
- =?utf-8?B?TFh3WTVZRHF5bDFUNHMrUTBwMlIrVVhrcVYzMmoxSlBWVWJlVHQzOHdDdHFa?=
- =?utf-8?B?K3VwUHpWM2grNnc5eGVaQ1JqNU1FUU52cldYOXErVnNhL2V2dkNmNzVibWpy?=
- =?utf-8?B?S1lSWEk1U3l5U0dCdmJPM212NVFVZVNwMU1DMWZWb0NRcVVNd1REengxbzVo?=
- =?utf-8?B?TEdPcGZhRmE3a0tFdDNtYlFyemhpZDAwZXBrOEF2UEQyYjZtb2RPY1h3MklG?=
- =?utf-8?B?N2VZUE5VclFKUDBGUDgreDVwaCtiQUJyRlpzd29mNGJvb2I5bXJCazEzSVZW?=
- =?utf-8?B?SlVxWHhSYlpSeHFxVVF2UUM5T20xZ2podFJTbDU4VWxzdlRNdTdsV1N0WExw?=
- =?utf-8?B?Z1R1UUV1cWlEZHdlK1BwbFROV3BjMk1kcjBvekM0N0IrSVpYZkdhbitrMXRB?=
- =?utf-8?Q?lg/KbMN6cDJNuuk9DdarxLt9LxDJFBekHGGff?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5eb739a-d46b-40eb-7b63-08df43e8182e
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 13:47:02.8120
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Mdqg3vBx9hCegs+4Ra+oGFNChPKkebTPci0RDlWfSahWAH72anKnjKucUH5I32fNbky99Zkq9wFEGh3xTQuOsi3Vee9ykMTZE7mksrDtekO/x23SaNtnjo2olyRkHE8L
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10126
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_054710_795253_B1E3612B 
-X-CRM114-Status: GOOD (  18.64  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261116_054952_287168_20CCE469 
+X-CRM114-Status: GOOD (  24.47  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -172,78 +95,149 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 13, 2026 at 07:18:55PM +0100, Rafael J. Wysocki (Intel) wrote:
-> On Thu, Oct 29, 2026 at 5:31 PM <Frank.Li@oss.nxp.com> wrote:
-> >
-> > From: Frank Li <Frank.Li@nxp.com>
-> >
-> > When CONFIG_PM is not enabled, all devices runtime PM state should be
-> > treated as active.
-> >
-> > __pm_runtime_resume() returns 1 (called by pm_runtime_get()).
-> > pm_runtime_get_if_active() is the try-and-get version of pm_runtime_get().
-> > stub pm_runtime_active() also returns true. So pm_runtime_get_if_active()
-> > should return the same value as the stub pm_runtime_get(), which is 1.
-> >
-> > Analysis of all callers and their behavior with old (-EINVAL) vs new (1):
-> >
-> > Pattern A: if (!pm_runtime_get_if_active(dev)) -- no impact
-> >   Both -EINVAL and 1 are non-zero, so !ret is false in both cases.
-> >   Callers: drivers/accel/ethosu/ethosu_perfmon.c,
-> >            drivers/gpu/drm/msm/adreno/a6xx_gmu.c,
-> >            drivers/gpu/drm/msm/msm_perfcntr.c,
-> >            drivers/gpu/drm/v3d/v3d_mmu.c,
-> >            drivers/gpu/drm/v3d/v3d_perfmon.c (x4),
-> >            drivers/media/i2c/gc08a3.c gc05a2.c og0ve1b.c ov6211.c,
-> >            drivers/media/i2c/ccs/ccs-core.c s5kjn1.c lm3560.c (x2),
-> >            drivers/media/i2c/s5k3m5.c thp7312.c imx283.c ov64a40.c,
-> >            drivers/media/pci/intel/ipu6/ipu6-buttress.c,
-> >            sound/hda/core/device.c
-> >
-> > Pattern B: if (!ret) after get -- no impact
-> >   Both -EINVAL and 1 are non-zero, !ret is false in both cases.
-> >   drivers/gpu/drm/amd/pm/amdgpu_pm.c (comment says "allow access"
-> >     in kernels without CONFIG_PM), drivers/pci/pci.c
-> >
-> > Pattern C: ret > 0 / ret <= 0 / ret != 1 checks -- FIXED
-> >   drivers/usb/core/offload.c: checks (!= 1), old -EINVAL caused
-> >     -EBUSY even with !CONFIG_PM. Fixed: now returns 1, proceeds.
-> >   drivers/accel/ivpu/ivpu_job.c: drm_WARN_ON(<= 0), old -EINVAL
-> >     spuriously triggered WARN. Fixed: 1 > 0, no warn.
-> >   drivers/gpu/drm/i915/intel_runtime_pm.c: checks (<= 0), old
-> >     -EINVAL triggered error path. Fixed: 1 > 0, correct path.
-> >   drivers/accel/ivpu/ivpu_sysfs.c: (> 0), old skipped freq read.
-> >     Fixed: proceeds correctly without CONFIG_PM.
-> >   drivers/gpu/drm/xe/xe_pm.c: wraps (> 0), all xe callers
-> >     (xe_bo.c, xe_shrinker.c, xe_vsec.c, xe_ggtt.c, xe_guc_ct.c,
-> >     xe_pxp.c) now correctly treat !CONFIG_PM as active.
-> >   drivers/net/ipa/ipa_smp2p.c: power_on = (> 0), now correctly true.
-> >   drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c: (> 0), now correctly
-> >     executes stall register update.
-> >   drivers/staging/media/ipu7/ipu7-buttress.c: active (<= 0) early
-> >     return now skipped, correctly proceeds.
-> >
-> > Pattern D: explicit -EINVAL check
-> >   drivers/hwmon/prom21-xhci.c: checks (> 0) then (== -EINVAL).
-> >     Old: took -EINVAL fallback. New: takes (> 0) fast path.
-> >     Both succeed when CONFIG_PM is disabled; functionally equivalent.
-> >   drivers/hwmon/eic7700-pvt.c: call is guarded by IS_ENABLED(CONFIG_PM),
-> >     stub is never reached. No impact.
-> >
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
->
-> People sent feedback, so I'm wondering if there's going to be a v2 or
-> does someone else need to take care of this going forward?
+--=-Ioy9snckrmchYqHS9sCx
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Sorry, I forget this thread. I will post v2 soon.
+Le samedi 14 novembre 2026 =C3=A0 10:22 +0000, Daniel Golle a =C3=A9crit=C2=
+=A0:
+> The RPS helpers read num_short_term_ref_pic_sets elements of the
+> EXT_SPS_ST_RPS control and num_long_term_ref_pics_sps elements of the
+> EXT_SPS_LT_RPS control, however many elements userspace passed.
+>=20
 
-Frank
+What did you want to say?
 
+> Beyond
+> the passed elements they read stale entries of the control's array,
+> and past its allocation once the SPS counts more sets than the control
+
+More broken text, can you work a bit on your messages, be concise, precise,
+don't get into details but into the understanding of what you are achieving=
+. The
+code is precise enough.
+
+> has ever held, as the control framework sizes a dynamic array for the
+> largest element count it has seen. The short-term sets read from there
+> are unchecked, and a num_negative_pics or num_positive_pics above 16
+> overflows the calculated sets, the stack arrays of
+> st_ref_pic_set_prediction() and the hardware RPS table.
+>=20
+> A userspace V4L2 client that can open the RKVDEC m2m decoder can set an
+> SPS whose counts exceed the number of elements it passed in these
+> controls, so the reads run past the allocation.
+>=20
+> Use the controls only when they hold at least as many elements as the
+> SPS counts, and treat them as not set otherwise in both back ends.
+>=20
+> Fixes: c9a59dc2acc7 ("media: rkvdec: Add HEVC support for the VDPU381 var=
+iant")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../platform/rockchip/rkvdec/rkvdec-hevc-common.c    | 12 ++++++------
+>  .../platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c   |  4 ++--
+>  .../platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c   |  4 ++--
+>  3 files changed, 10 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c =
+b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
+> index c249e3f16f42c..797a16517ed59 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
+> @@ -448,18 +448,18 @@ void rkvdec_hevc_run_preamble(struct rkvdec_ctx *ct=
+x,
+>  =09=09=09      V4L2_CID_STATELESS_HEVC_SCALING_MATRIX);
+>  =09run->scaling_matrix =3D ctrl ? ctrl->p_cur.p : NULL;
+> =20
+> +=09run->ext_sps_st_rps =3D NULL;
+>  =09if (ctx->has_sps_st_rps) {
+>  =09=09ctrl =3D v4l2_ctrl_find(&ctx->ctrl_hdl,
+>  =09=09=09=09      V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS);
+> -=09=09run->ext_sps_st_rps =3D ctrl ? ctrl->p_cur.p : NULL;
+> -=09} else {
+> -=09=09run->ext_sps_st_rps =3D NULL;
+> +=09=09if (ctrl && ctrl->elems >=3D run->sps->num_short_term_ref_pic_sets=
+)
+> +=09=09=09run->ext_sps_st_rps =3D ctrl->p_cur.p;
+>  =09}
+> +=09run->ext_sps_lt_rps =3D NULL;
+>  =09if (ctx->has_sps_lt_rps) {
+>  =09=09ctrl =3D v4l2_ctrl_find(&ctx->ctrl_hdl,
+>  =09=09=09=09      V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS);
+> -=09=09run->ext_sps_lt_rps =3D ctrl ? ctrl->p_cur.p : NULL;
+> -=09} else {
+> -=09=09run->ext_sps_lt_rps =3D NULL;
+> +=09=09if (ctrl && ctrl->elems >=3D run->sps->num_long_term_ref_pics_sps)
+> +=09=09=09run->ext_sps_lt_rps =3D ctrl->p_cur.p;
+
+So you are saying that if the passed array is too short, we should use an o=
+lder
+entry to none? That seems a little strange, what about up-front rejecting b=
+ad
+entries?
+
+Nicolas
+
+>  =09}
+>  }
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c=
+ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
+> index e1936e87f45be..fea7ff48c0dce 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
+> @@ -604,8 +604,8 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+>  =09 * On vdpu381, not setting the long and short term ref sets will just=
+ output wrong frames.
+>  =09 * Let's just warn about it and let the decoder run anyway.
+>  =09 */
+> -=09if ((!ctx->has_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
+> -=09    (!ctx->has_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
+> +=09if ((!run.ext_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
+> +=09    (!run.ext_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
+>  =09=09dev_warn_ratelimited(rkvdec->dev, "Long and short term RPS not set=
+\n");
+>  =09} else {
+>  =09=09rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c=
+ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
+> index e9d8b590f0d58..c409d21c08598 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
+> @@ -550,8 +550,8 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+>  =09 * To be on the safe side for this new v4l2 control, write an error i=
+n the log and mark
+>  =09 * the buffer as failed by returning an error here.
+>  =09 */
+> -=09if ((!ctx->has_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
+> -=09    (!ctx->has_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
+> +=09if ((!run.ext_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
+> +=09    (!run.ext_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
+>  =09=09dev_err_ratelimited(rkvdec->dev, "Long and short term RPS not set\=
+n");
+>  =09=09rkvdec_run_postamble(ctx, &run.base);
+>  =09=09return -EINVAL;
+
+--=-Ioy9snckrmchYqHS9sCx
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavsJ+AAKCRDZQZRRKWBy
+9Lp5AQDabVmgQhKQqiJ2SuAz1GAtdY4z9yHKyf0Jw5tn3moOcAD+JM9RgI+HN8Ly
+b8n046UalkdSLleSXjXadP47iIIlKgk=
+=ms2T
+-----END PGP SIGNATURE-----
+
+--=-Ioy9snckrmchYqHS9sCx--
 
