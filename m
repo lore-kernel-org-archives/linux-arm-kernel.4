@@ -2,87 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF6D606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BAF1606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XqecvqqR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WaluPPtm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uvMcrdg9;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eXcaqMpY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=W4DMrdgsLAUvBBrAedtVh2X2nrPi8BxrDXtCs7P+IMI=; b=XqecvqqR/VNx2i+LTj1rvQyZ1q
-	djbQOOqKqUK2al7a964IbZt+e6K8ArXQqrnU9RCrkV/kdQl50XaulGbTmwGcJ5OHZZEukx56i78n3
-	8bvtSahCJhS/vEfn00I3fvhWAXgvjUTpkWGdUyOsovtf0GgHZXLnqXOBvdCE8BuE8CSGBvLb+HmdY
-	Bozo9lglgBnb3UdUUpu+XnMbEcSP9ZX3OsO3byzgk4zq4v6M1CU0bYZ/3WGsXCetqgBD+Z6KQsTZd
-	mzRmrq7cJ6B204eI/eMmTpdDl9P/VeN5BSeUkB74W8fUjm9DXoG2RNjy5j+oeIr/kN+a8z/Kg2hIM
-	tRPY/iNA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=YZcU27ZzMJxPP66ysvGz/nGUX+rLfdI/MnJjlY2W8WA=; b=uvMcrdg9D1svaV
+	PLMQwH76oTsx5QjQFCB4ifmLS286jPHSi1B5dJ9YcqcCSf06xqxXr0nxkbd+Rn45rqwA3a6fp9sY9
+	akXkB+e/vwXshqXnlYC+/VgSlnK+UX4XDOuHHULlbBNaHzzUW7vmXQZB23tP7yx0Uf4NKYfYVOeCI
+	I39BqNnYVzVk3Hi1QrSwYOPjOOxHwag07EzwH0XoCnW02bDtfnCurO/oKKnYevkHmTZDPPVXg4WUr
+	FKuFwRDkd1Oq8UDfgqJmUeBECx3myIxHAsx+XHtINRaRkWYAMH2Lws6/XyZu+x2BLiLPcOPrDCxUN
+	BfdQGGpLD6XmyQd9KVLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1Vs-00000003aSP-0ZMI;
-	Mon, 16 Nov 2026 18:33:08 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xT1WW-00000003asV-1wi3;
+	Mon, 16 Nov 2026 18:33:48 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1Vq-00000003aRM-3jgc;
-	Mon, 16 Nov 2026 18:33:06 +0000
+	id 1xT1WR-00000003arA-46lq
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 18:33:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8CEEA463FB;
-	Mon, 16 Nov 2026 18:33:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E16001F000CC;
-	Mon, 16 Nov 2026 18:32:59 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A878E42DEA
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 18:33:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3B591F000C4;
+	Mon, 16 Nov 2026 18:33:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794853986;
-	bh=W4DMrdgsLAUvBBrAedtVh2X2nrPi8BxrDXtCs7P+IMI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=WaluPPtmVQajcvp3iSn8n4nUrBdnmzjvcL8SQtCk/wc4+cJVkEcnzLmkx0S1GIB8n
-	 lTRfAEGpyhFjU4JMR6szToKlZxCFEdwOGLEDX2rxrQTq1rDBEt1SVAH5t+KuWrgO4P
-	 SqWI39DsGszLHHoHQRQGo9qVoX9DM1YyYJEGs+rO4aPdze0yoHYmIhv+84jh4DimRg
-	 oP48j2zl9gB3+kCyygIxdyd2P/ytRyTCUJOiLAeHn6cjZDwW/LsahzNz7CALmz+5Tl
-	 Y2Bo3LxPi1sPEjllqdCBWIfviaqNkSjKpXc8pMXzZUemcpTEn1L93wEom2dMTp/7y5
-	 m5zlvuwouxfRA==
-Date: Mon, 16 Nov 2026 18:32:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: gaohan@iscas.ac.cn
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
-	linux-csky@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 17/19] dt-bindings: riscv: sunxi: add the YuzukiHD Avaota
- F2
-Message-ID: <20261116-coerce-abroad-f6a0d972e7d6@spud>
-References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
- <20261114-v861-v1-17-eb71ec3ee523@iscas.ac.cn>
+	s=k20260515; t=1794854023;
+	bh=YZcU27ZzMJxPP66ysvGz/nGUX+rLfdI/MnJjlY2W8WA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=eXcaqMpYb50S4ciV3Ir2iFjWozj9SeWmarGSiPIBXaVU2PPy5vVd/wYfQ9hvJRdhV
+	 l/sUhHPjsnxJGqCd0jYdJw3jvGU5C+kCLQIXbeWJnsrYrRJaD7mekBNEOkbM9vQEzY
+	 hL+pNeNuyoJuqWFJPu282CG8F+X6/ursKuwFqhvKCt/7cY21SxN2y4TuhnzDIFNK5E
+	 4iTm0c6jYybaqjr4yLIfA6jnR2NoRlvRsXlkC5ZsK0nOcjnR8+5F8s978w59shD8G2
+	 cwJ4EYZp3qOr5T8EQsxQoJho07lDR+GcocJsy0m5JSXFhnJm0hES8HPcaVe7y0BTno
+	 FK44JAP74NNnw==
+From: Sudeep Holla <sudeep.holla@kernel.org>
+To: linux-arm-kernel@lists.infradead.org,
+	Sudeep Holla <sudeep.holla@kernel.org>
+Cc: Linus Walleij <linusw@kernel.org>,
+	Sashiko <sashiko-bot@kernel.org>
+Subject: Re: [PATCH] ARM: vexpress: fix iounmap missing after of_iomap in SMP prepare
+Date: Mon, 16 Nov 2026 18:33:39 +0000
+Message-ID: <179485398940.1194493.10651516887031768403.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261104145446.2767924-1-sudeep.holla@kernel.org>
+References: <20261104145446.2767924-1-sudeep.holla@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eAu7+tg1zQRG6YLP"
-Content-Disposition: inline
-In-Reply-To: <20261114-v861-v1-17-eb71ec3ee523@iscas.ac.cn>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,30 +68,31 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---eAu7+tg1zQRG6YLP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 04 Nov 2026 14:54:45 +0000, Sudeep Holla wrote:
+> of_iomap() maps a region of device memory and returns a pointer that
+> must later be released with iounmap(). Currently return value from
+> of_iomap() is passed directly to scu_enable() without saving it, making
+> it impossible to unmap afterwards, causing an I/O memory leak.
+> 
+> Store the mapped base address in a local variable, check it for NULL,
+> call scu_enable(), then release the mapping with iounmap().
+> 
+> [...]
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+Applied to sudeep.holla/linux (for-next/vexpress/updates), thanks!
 
---eAu7+tg1zQRG6YLP
-Content-Type: application/pgp-signature; name=signature.asc
+[1/1] ARM: vexpress: fix iounmap missing after of_iomap in SMP prepare
+      https://git.kernel.org/sudeep.holla/c/3ce981979606
+-- 
+Regards,
+Sudeep
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavtMWQAKCRB4tDGHoIJi
-0kqjAP46j2mw4L3q+jkKbSPU8KSsnHg0/9HtMnl3SxjhCkKDjQD/Zz+2au8n8mQC
-VWw54ziAbcJSElKAfoNDn+1Tq0vebgc=
-=7x1B
------END PGP SIGNATURE-----
-
---eAu7+tg1zQRG6YLP--
 
