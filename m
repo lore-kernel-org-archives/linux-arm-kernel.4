@@ -2,88 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF3EF606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F16A606A8A8
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qipsmIvo;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=jIIztKjp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IAw9nege;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=u3A/U4mK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:To:From:Subject:Message-ID:Reply-To:Cc:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=y2ufclYMSczQ8+k1rs6xWHBnqZazoATcDX8gGJ1J/W8=; b=qipsmIvoLsTiIOXCW/E7EwdP/y
-	RFMTe54c3y6WfJsoKP5sc/JIQrfVIH0OChXw6uBdrr9BhjzSjZxmsG2111OauzA6w+DMX5vkIJOHn
-	XEfDvDyfqaFTxEtnZUtMBz4OOFl0A8VYNGjTPRE3BhRuJg2pnpIL3JiNrZDYB5fa1AsINMljWN2HS
-	8fsU29fUaZLUwnlOOtgkDdrD8qEonqtlWVljPbA0ns5H93V3OfOKMZEXiwzflC03V2VcnllEENugT
-	zCkprVYLw+VuBXbNjbNcijgkSAdRB/4+5oyNTEMbyj2eB72REspltn63hUzxdgzkAwLf5nf3XbiC1
-	FJcyZmFw==;
+	bh=hwv6T4XvFybqkKrRBEo5N2TRb98sAmwv6eB4h9MLvjA=; b=IAw9negescYiBz1PhikKImajPv
+	/flyomxhu1Rw1rgOVE+F0CL2AZUpHY8z9fQkijtzJUFjRmGdRnG9s1f+xNxDIr7JpJ2bIrjKkFPz3
+	kclEiBnrtU2jTPxapwZzEYg9ppcueZM2vpqAa9lp7KyweZKzYe8BxMJh/Lf6QH0zvCUD56TiWNbds
+	7GMToA8AILrCSk+xJyX2oyW6d4eg9dn7huoqU8s0wqPhYK+ZXGE1/OD6xu0xNYlA3TqERMKT9wHY2
+	vuKQbP9iWQqv6rrCvK1MoCTQUMWgsuRP3u41lwXm2aG58wLxxpgIRI9Sl3tpBHile7fPmbJluhON9
+	56X4ruBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSx5m-00000002hLm-2Es0;
-	Mon, 16 Nov 2026 13:49:54 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xSx6W-00000002hXF-35CA;
+	Mon, 16 Nov 2026 13:50:40 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSx5k-00000002hKd-0Izx;
-	Mon, 16 Nov 2026 13:49:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794836988;
-	bh=T/KA0zquQYjz4iSbAGPA8HM3AK6G68SZSye9Jt9rIi8=;
-	h=Subject:From:To:Date:In-Reply-To:References:From;
-	b=jIIztKjp7qsh0k4sycHWurMlzw0zllvgCsiJR10ci6TCn5+fivlamDIoNKA7n5pL6
-	 qHFqKX/ZuEi9hEZ/aTeVZO/andt0kawDI5OEgtw0qsOmGLVDHdX87iLiI5iUoF9O90
-	 YT8065WvGwhfB7d5rLqiIFC/aghkbSEXN8cdMcydmUoVok2oAK9SQ/BftIIaYAH6SM
-	 XdFNf+hJ5K683V33h5Mro0V455GQ8GLuXJEsg3d6b9ZZtN1+1d3nwChObCTunIT5xE
-	 8u1tj9lg7X7nccxF283nZP6Hs4pZ1Ymqu/0XuHmZYySFshCXaHdFQ/h8Sz9+aZoFAj
-	 63QILeEcu05zA==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D95E817E0060;
-	Mon, 16 Nov 2026 14:49:46 +0100 (CET)
-Message-ID: <6ae6d1101d3f7095d11462579a5a3313153533e6.camel@collabora.com>
-Subject: Re: [PATCH 3/7] media: rkvdec: hevc: bound the RPS reads by the
- control size
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Daniel Golle <daniel@makrotopia.org>, Detlev Casanova	
- <detlev.casanova@collabora.com>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>,  Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Alex Bee	
- <knaerzche@gmail.com>, Hans Verkuil <hverkuil+cisco@kernel.org>, Jonas
- Karlman	 <jonas@kwiboo.se>, Sebastian Fricke
- <sebastian.fricke@collabora.com>, 	linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org, 	linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Mon, 16 Nov 2026 08:49:44 -0500
-In-Reply-To: <bb9c44d0f56221874b105394169e5c377ef21b42.1794645268.git.daniel@makrotopia.org>
-References: <cover.1794645268.git.daniel@makrotopia.org>
-	 <bb9c44d0f56221874b105394169e5c377ef21b42.1794645268.git.daniel@makrotopia.org>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-Ioy9snckrmchYqHS9sCx"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xSx6T-00000002hWF-3Gy8;
+	Mon, 16 Nov 2026 13:50:39 +0000
+Received: from killaraus.ideasonboard.com (2001-14ba-7086-3000--a06.rev.dnainternet.fi [IPv6:2001:14ba:7086:3000::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3EDB14BB;
+	Mon, 16 Nov 2026 14:48:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1794836887;
+	bh=TI+MFYg5CCUtjz8iqgnansCezaulsq0+gMmmzeIyST4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u3A/U4mKZG408f12XrzebgY+NisFf1ZePFkgYDsEf2wJuDwec1cWvYyC0DRHmsB7u
+	 Ig7dlLZXjGC4l2BFfd3qtlC8Ly2rIOqpLhpKtPFF96qP1wTqCaqF2FRQL1cgFvcY8P
+	 XLTYvhV1i2b63zF1NsP/fG3+ZpvW+ejKidcTUQFY=
+Date: Mon, 16 Nov 2026 15:50:32 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Jussi =?utf-8?B?QWxhbsOkcsOk?= <jussi@firstview.fi>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Jai Luthra <jai.luthra@ideasonboard.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] platform/raspberrypi: vchiq: Store a msg_queue entry
+ before publishing it
+Message-ID: <20261116135032.GA1747591@killaraus.ideasonboard.com>
+References: <20261116072339.2821648-1-jussi@firstview.fi>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261116072339.2821648-1-jussi@firstview.fi>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_054952_287168_20CCE469 
-X-CRM114-Status: GOOD (  24.47  )
+X-CRM114-CacheID: sfid-20261116_055037_975969_1F3FC3E7 
+X-CRM114-Status: GOOD (  54.85  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,141 +84,190 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-Ioy9snckrmchYqHS9sCx
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le samedi 14 novembre 2026 =C3=A0 10:22 +0000, Daniel Golle a =C3=A9crit=C2=
-=A0:
-> The RPS helpers read num_short_term_ref_pic_sets elements of the
-> EXT_SPS_ST_RPS control and num_long_term_ref_pics_sps elements of the
-> EXT_SPS_LT_RPS control, however many elements userspace passed.
->=20
-
-What did you want to say?
-
-> Beyond
-> the passed elements they read stale entries of the control's array,
-> and past its allocation once the SPS counts more sets than the control
-
-More broken text, can you work a bit on your messages, be concise, precise,
-don't get into details but into the understanding of what you are achieving=
-. The
-code is precise enough.
-
-> has ever held, as the control framework sizes a dynamic array for the
-> largest element count it has seen. The short-term sets read from there
-> are unchecked, and a num_negative_pics or num_positive_pics above 16
-> overflows the calculated sets, the stack arrays of
-> st_ref_pic_set_prediction() and the hardware RPS table.
->=20
-> A userspace V4L2 client that can open the RKVDEC m2m decoder can set an
-> SPS whose counts exceed the number of elements it passed in these
-> controls, so the reads run past the allocation.
->=20
-> Use the controls only when they hold at least as many elements as the
-> SPS counts, and treat them as not set otherwise in both back ends.
->=20
-> Fixes: c9a59dc2acc7 ("media: rkvdec: Add HEVC support for the VDPU381 var=
-iant")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+On Mon, Nov 16, 2026 at 09:23:39AM +0200, Jussi Alanärä wrote:
+> vchiq_msg_queue_push() advances msg_queue_write before it stores the
+> header in the entry that the new index makes visible, and
+> vchiq_msg_hold() advances msg_queue_read before it loads the header
+> from the entry that the new index frees. Neither side orders its index
+> update against its access to the entry, so on SMP the thread on the
+> other side can see them in either order.
+> 
+> The consumer can see the new write index and load the entry before the
+> producer has stored it. It then gets the header left in that entry one
+> lap (VCHIQ_MAX_SLOTS messages) earlier. That message was released long
+> ago and its slot recycled, so the consumer parses whatever the VPU has
+> written at that address since, and then releases it. The message that
+> was actually pushed is never seen and never released, so the slot that
+> holds it is never recycled. In the first lap the stale entry is NULL.
+> With a full queue the producer can likewise see the advanced read index
+> and overwrite an entry before the consumer has loaded it: one message
+> is lost and the next one is delivered twice.
+> 
+> vc-sm-cma, the queue's only user, logs the stale read as
+> "vc_sm_cma_vchi_rx_ack: received response 1818324333, throw away..."
+> (0x6c616d6d, the MMAL header magic of another service's message now at
+> the stale address) or as a response of 0. On a Raspberry Pi 4 decoding
+> short H.264 clips in a loop through bcm2835-codec, 14 messages were
+> lost in 23.5 hours, about 35,500 decoder teardowns. Each lost message
+> pins one of the VPU's transmit slots for the rest of the boot, and a
+> pinned slot stays charged to the slot quota of every VPU service that
+> has a message in it. At 14 pinned slots the VPU stopped sending on its
+> MMAL and SMEM services at its next slot boundary. That matches vchiq's
+> default per-service quota for 31 slots, 15: 14 pinned plus the one
+> being written. From then on every attempt to create ril.video_decode
+> failed with -ETIME until the next reboot. Every lost message that was a
+> VC_SM_MSG_TYPE_RELEASED also left an imported dma-buf referenced for
+> the rest of the boot.
+> 
+> Store the entry before publishing the index, and load it before freeing
+> the entry, with smp_store_release() for each index and
+> smp_load_acquire() where the other side reads it. The queue has one
+> producer (the slot handler thread, through the service callback) and
+> one consumer (the service's own thread), so a release/acquire pair per
+> index is all the ordering it needs, as in
+> Documentation/core-api/circular-buffers.rst. No lock is required.
+> 
+> The comparison kernels carried a test-only delay between the two
+> statements of vchiq_msg_queue_push(). Even at 0 that hook adds a load
+> and a branch between them, which widens the race. With this patch, a
+> kernel ran 3,001 decoder teardowns, half with the delay at 0 and half
+> at 500 us, without losing a message. Built the same way without the
+> patch, it lost hardware decode after about 600 teardowns, twice, with
+> the delay at 0.
+> 
+> The cause was found, and this patch written, with an LLM coding
+> assistant (Claude Code), working from the log line above and the
+> vchiq and vc-sm-cma sources.
+> 
+> Fixes: 77b3f6c49105 ("staging: vchiq: Move message queue into struct vchiq_service")
+> Signed-off-by: Jussi Alanärä <jussi@firstview.fi>
 > ---
->  .../platform/rockchip/rkvdec/rkvdec-hevc-common.c    | 12 ++++++------
->  .../platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c   |  4 ++--
->  .../platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c   |  4 ++--
->  3 files changed, 10 insertions(+), 10 deletions(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c =
-b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-> index c249e3f16f42c..797a16517ed59 100644
-> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-> @@ -448,18 +448,18 @@ void rkvdec_hevc_run_preamble(struct rkvdec_ctx *ct=
-x,
->  =09=09=09      V4L2_CID_STATELESS_HEVC_SCALING_MATRIX);
->  =09run->scaling_matrix =3D ctrl ? ctrl->p_cur.p : NULL;
-> =20
-> +=09run->ext_sps_st_rps =3D NULL;
->  =09if (ctx->has_sps_st_rps) {
->  =09=09ctrl =3D v4l2_ctrl_find(&ctx->ctrl_hdl,
->  =09=09=09=09      V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS);
-> -=09=09run->ext_sps_st_rps =3D ctrl ? ctrl->p_cur.p : NULL;
-> -=09} else {
-> -=09=09run->ext_sps_st_rps =3D NULL;
-> +=09=09if (ctrl && ctrl->elems >=3D run->sps->num_short_term_ref_pic_sets=
-)
-> +=09=09=09run->ext_sps_st_rps =3D ctrl->p_cur.p;
->  =09}
-> +=09run->ext_sps_lt_rps =3D NULL;
->  =09if (ctx->has_sps_lt_rps) {
->  =09=09ctrl =3D v4l2_ctrl_find(&ctx->ctrl_hdl,
->  =09=09=09=09      V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS);
-> -=09=09run->ext_sps_lt_rps =3D ctrl ? ctrl->p_cur.p : NULL;
-> -=09} else {
-> -=09=09run->ext_sps_lt_rps =3D NULL;
-> +=09=09if (ctrl && ctrl->elems >=3D run->sps->num_long_term_ref_pics_sps)
-> +=09=09=09run->ext_sps_lt_rps =3D ctrl->p_cur.p;
+> 
+> Notes:
+>     This is on top of drivers/next, where 0d6409fd70af ("platform/raspberrypi:
+>     Add VideoCore shared memory support") adds vc-sm-cma, the first in-tree
+>     user of this queue. Its vc_sm_cma_vchi.c pushes from the service callback
+>     and holds from its io thread, as the Raspberry Pi tree does. There is no
+>     stable tag, because no released kernel has an in-tree caller. The Fixes
+>     tag is there for trees that carry vc-sm-cma, the Raspberry Pi tree among
+>     them. The vchiu queue that 77b3f6c49105 replaced stored the entry before
+>     advancing the index (with no barriers either). That commit moved the
+>     increment first.
+>     
+>     Testing was on a Raspberry Pi 4B, on the Raspberry Pi 6.18 tree
+>     (6.18.50), where this file still lives in drivers/staging and the same
+>     change applies unchanged. vchiq and vc-sm-cma there were stock. The
+>     kernels used the shipped config with no debug options, and every run
+>     started from a fresh boot. Each lost message was counted three ways: the
+>     "throw away" line, a slot that stayed claimed across two reads of
+>     /sys/kernel/debug/vchiq/state, and an orphaned dma-buf. On the long run
+>     below the three stayed equal, at 13 each, until the 14th loss.
+>     
+>       kernel                    teardowns  lost  pinned  hardware decode
+>       unpatched + hook at 0           605    12      14  lost at 24 min
+>       unpatched + hook at 0           608    14      14  lost at 26 min
+>       patched + hook, 0/500 us      3,001     0       0  kept
+>     
+>     The 23.5-hour soak run used a kernel that also carried unrelated
+>     bcm2835-codec fixes. vchiq and vc-sm-cma were byte-identical to stock.
+>     It logged the first lost message after about 3.5 hours and the 14th at
+>     23.5 hours.
+>     
+>     Not done:
+>      - this change has not been run on mainline or on drivers/next. There
+>        it was only built: arm64 defconfig plus BCM2835_VCHIQ,
+>        BCM2835_VCHIQ_MMAL and BCM_VC_SM_CMA as modules, CONFIG_WERROR=y,
+>        gcc 15.2.0, and vchiq_core.o again with W=1, without warnings. The
+>        diff is the tested one with only the path changed.
+>      - no long natural-rate run of the patched kernel without the hook.
+>        Stock loses roughly 2 to 4 messages per 10,000 teardowns, so showing
+>        the patched rate at least ten times lower that way would take about
+>        160,000 teardowns.
+>     
+>     Not addressed here, and happy to send separately: both functions take a
+>     service reference through find_service_by_handle() and never drop it,
+>     so every message leaks at least two references. Also, the vc-sm-cma
+>     "throw away..." print has no trailing newline, so the line only reaches
+>     the log with the next kernel message, sometimes minutes later.
+>     
+>     On tool use (Documentation/process/generated-content.rst): the analysis,
+>     this patch, its changelog and the test tooling (the delay hook and the
+>     counters above) were produced by Claude Code, an LLM coding assistant,
+>     in several sessions under my direction. In short, the prompts were:
+>     explain this log line from a soak test, fix it, and prove the fix on the
+>     bench. The same assistant ran the hardware tests on a Raspberry Pi 4
+>     through our lab tooling, and did the build above. I have reviewed the
+>     analysis and the patch and can answer for them.
 
-So you are saying that if the passed array is too short, we should use an o=
-lder
-entry to none? That seems a little strange, what about up-front rejecting b=
-ad
-entries?
+I don't believe that.
 
-Nicolas
-
->  =09}
+>  .../raspberrypi/vchiq-interface/vchiq_core.c  | 27 ++++++++++++++-----
+>  1 file changed, 21 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/platform/raspberrypi/vchiq-interface/vchiq_core.c b/drivers/platform/raspberrypi/vchiq-interface/vchiq_core.c
+> index 48d6b1d74329..a5cd7e2a9dd8 100644
+> --- a/drivers/platform/raspberrypi/vchiq-interface/vchiq_core.c
+> +++ b/drivers/platform/raspberrypi/vchiq-interface/vchiq_core.c
+> @@ -2654,15 +2654,26 @@ void vchiq_msg_queue_push(struct vchiq_instance *instance, unsigned int handle,
+>  	if (!service)
+>  		return;
+>  
+> -	while (service->msg_queue_write == service->msg_queue_read +
+> -		VCHIQ_MAX_SLOTS) {
+> +	/*
+> +	 * msg_queue is a single-producer, single-consumer ring: this function
+> +	 * runs in the slot handler thread (the service callback), and
+> +	 * vchiq_msg_hold() in the service's own thread. Each index has one
+> +	 * writer, which publishes it with a release; the other side reads it
+> +	 * with an acquire. This acquire pairs with the release of
+> +	 * msg_queue_read in vchiq_msg_hold(): an entry the consumer has
+> +	 * freed has also been read, so it can be overwritten.
+> +	 */
+> +	while (smp_load_acquire(&service->msg_queue_read) + VCHIQ_MAX_SLOTS ==
+> +	       service->msg_queue_write) {
+>  		if (wait_for_completion_interruptible(&service->msg_queue_pop))
+>  			flush_signals(current);
+>  	}
+>  
+>  	pos = service->msg_queue_write & (VCHIQ_MAX_SLOTS - 1);
+> -	service->msg_queue_write++;
+>  	service->msg_queue[pos] = header;
+> +	/* Publish the entry only once it is stored. */
+> +	smp_store_release(&service->msg_queue_write,
+> +			  service->msg_queue_write + 1);
+>  
+>  	complete(&service->msg_queue_push);
 >  }
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c=
- b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-> index e1936e87f45be..fea7ff48c0dce 100644
-> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-> @@ -604,8 +604,8 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
->  =09 * On vdpu381, not setting the long and short term ref sets will just=
- output wrong frames.
->  =09 * Let's just warn about it and let the decoder run anyway.
->  =09 */
-> -=09if ((!ctx->has_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
-> -=09    (!ctx->has_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
-> +=09if ((!run.ext_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
-> +=09    (!run.ext_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
->  =09=09dev_warn_ratelimited(rkvdec->dev, "Long and short term RPS not set=
-\n");
->  =09} else {
->  =09=09rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c=
- b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-> index e9d8b590f0d58..c409d21c08598 100644
-> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-> @@ -550,8 +550,8 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
->  =09 * To be on the safe side for this new v4l2 control, write an error i=
-n the log and mark
->  =09 * the buffer as failed by returning an error here.
->  =09 */
-> -=09if ((!ctx->has_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
-> -=09    (!ctx->has_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
-> +=09if ((!run.ext_sps_lt_rps && run.sps->num_long_term_ref_pics_sps) ||
-> +=09    (!run.ext_sps_st_rps && run.sps->num_short_term_ref_pic_sets)) {
->  =09=09dev_err_ratelimited(rkvdec->dev, "Long and short term RPS not set\=
-n");
->  =09=09rkvdec_run_postamble(ctx, &run.base);
->  =09=09return -EINVAL;
+> @@ -2677,17 +2688,21 @@ struct vchiq_header *vchiq_msg_hold(struct vchiq_instance *instance, unsigned in
+>  	if (!service)
+>  		return NULL;
+>  
+> -	if (service->msg_queue_write == service->msg_queue_read)
+> +	/* Pairs with the release of msg_queue_write in vchiq_msg_queue_push(). */
+> +	if (smp_load_acquire(&service->msg_queue_write) == service->msg_queue_read)
+>  		return NULL;
+>  
+> -	while (service->msg_queue_write == service->msg_queue_read) {
+> +	/* The same pairing, while waiting for an entry. */
+> +	while (smp_load_acquire(&service->msg_queue_write) == service->msg_queue_read) {
+>  		if (wait_for_completion_interruptible(&service->msg_queue_push))
+>  			flush_signals(current);
+>  	}
+>  
+>  	pos = service->msg_queue_read & (VCHIQ_MAX_SLOTS - 1);
+> -	service->msg_queue_read++;
+>  	header = service->msg_queue[pos];
+> +	/* Free the entry only once it is read. */
+> +	smp_store_release(&service->msg_queue_read,
+> +			  service->msg_queue_read + 1);
+>  
+>  	complete(&service->msg_queue_pop);
+>  
+> 
+> base-commit: 0cab822bca7a59667774725b83e948b71462290f
 
---=-Ioy9snckrmchYqHS9sCx
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+-- 
+Regards,
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavsJ+AAKCRDZQZRRKWBy
-9Lp5AQDabVmgQhKQqiJ2SuAz1GAtdY4z9yHKyf0Jw5tn3moOcAD+JM9RgI+HN8Ly
-b8n046UalkdSLleSXjXadP47iIIlKgk=
-=ms2T
------END PGP SIGNATURE-----
-
---=-Ioy9snckrmchYqHS9sCx--
+Laurent Pinchart
 
