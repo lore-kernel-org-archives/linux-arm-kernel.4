@@ -2,53 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1A5606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA887606A8BC
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yx7zk0ow;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=HZQxEtRh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jIcrVIuH;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=KNwyI6DU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qgJtD7k0pYtF6kLtArBNu5iinKiZ8C5Hb7dGhNEKYS0=; b=Yx7zk0owLvySzQ
-	cayLEQCmBh0IJE92S3L0k6L4nu3Ugc8hVEqHwy5tep1uzN9gHMBP7IISRdP1NSYzjsGj1QQkvyM+x
-	fODGf9c6fNm99J5Pps8YyN1lFVjzUX+P8X25sqCw1JuUGmO9U8GYAgAWtBGS+nCeVmPua9LNyk+Db
-	5zyzXGPwpW+K35omI9J3zx/753E4E19PeG3BdLuySIe/M7U+8xARYi6h534PJzQmSRpd+GRsJVYS8
-	gg2cvSh4fMmpEOJKvexFfzgN5qR7zxh8Rpk8cZ+PAhYigZmWSTzaV8cfak2bSjmOcRZow8ryEZtVL
-	D9HdPQp1UV7c/7vPeoww==;
+	List-Owner; bh=Ld9U2kJWawO8+BzXlSAnk1VRkVDg0Y8wMjAhcptRpHU=; b=jIcrVIuHExJ7Os
+	p0tx7P5L/xyW/F2z8z/Z1kAY9CuiRpXRI2g44QCJaP15tKQ2E1EKppxC66Xf1yZ3HJ4lGpnAwxUYT
+	+n8xW52jYD7AePOVSqCnnaKUG2w9g5GXdaGBitPyZyULQOhmQJLswOCuwyUPIIVzD+HCER83Oyq7R
+	jgGevc+uQVt0Ebx50S7gapob34UfX1ns2EGvs4MAyH1WWLfCSuaDQKL/NGHeVNwIzL0Csk4kVZvBf
+	EC1YGJDXJrzxQ782WYxz0dUKX9P7hR861qJCW3vr7PFZNGHkrMynfT3niDIqaxsFEr0StIxhp9ydI
+	OEAph+hMidbN4FLRhQOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1LS-00000003WWE-1wH9;
-	Mon, 16 Nov 2026 18:22:22 +0000
+	id 1xT1LY-00000003WZe-2RAJ;
+	Mon, 16 Nov 2026 18:22:28 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1LM-00000003WTl-1u3Y
+	id 1xT1LR-00000003WVg-2jMb
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 18:22:17 +0000
+	Mon, 16 Nov 2026 18:22:25 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E87D51A25;
-	Mon, 16 Nov 2026 10:22:12 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3FA1B1BB2;
+	Mon, 16 Nov 2026 10:22:17 -0800 (PST)
 Received: from e132581.arm.com (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DBE803F632;
-	Mon, 16 Nov 2026 10:22:11 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 30F7A3F632;
+	Mon, 16 Nov 2026 10:22:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794853335; bh=LE3lHzxkAxNsqvYPhRB4V4ZgUQLoc0JigYQ9w7GJjIY=;
+	t=1794853340; bh=V/LDSJSGzghXJO1VTD09y2Y9+Ds1iqTLPb+1X1g1u1Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=HZQxEtRhIVKsZTGe9dxcJMHfUG9J5xXunM5HnAip9s9e1mocJq9un0lyxkxoUdGxw
-	 V80/JBBvD62zB2+26kWFbr+vVGYMtS2A0NaDHVtwcrtuAacbZGf3smh3wO3qYezxJy
-	 XaIS5ouqcsPTtMe1miU3HPe/0Du7PdeD5ee54Plg=
+	b=KNwyI6DUSH9ZqFOXOwAHmI+nIZHHCX1CgxRyTP2JJx0z1dsnojgvsRLT49GQK8DWV
+	 kYbOY/lT+HBDF4odlR1FGfphz1tyJEUOtieP9711eySdkTW4f6bcW7/dXAQ0NfK46K
+	 I0oCl4+oGhd5OszpFlMuFERpdDjgj1/VoEFdIWO0=
 From: Leo Yan <leo.yan@arm.com>
-Date: Mon, 16 Nov 2026 18:21:28 +0000
-Subject: [PATCH 1/8] device property: Add firmware node IRQ affinity
- callbacks
+Date: Mon, 16 Nov 2026 18:21:29 +0000
+Subject: [PATCH 2/8] device property: Add software-node IRQ affinity masks
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261116-acpi_arm_pmu_registration_hmp-v1-1-0371d4eca626@arm.com>
+Message-Id: <20261116-acpi_arm_pmu_registration_hmp-v1-2-0371d4eca626@arm.com>
 References: <20261116-acpi_arm_pmu_registration_hmp-v1-0-0371d4eca626@arm.com>
 In-Reply-To: <20261116-acpi_arm_pmu_registration_hmp-v1-0-0371d4eca626@arm.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
@@ -74,16 +73,16 @@ Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-perf-users@vger.kernel.org, Leo Yan <leo.yan@arm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794853327; l=6475;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794853327; l=5316;
  i=leo.yan@arm.com; s=20250604; h=from:subject:message-id;
- bh=LE3lHzxkAxNsqvYPhRB4V4ZgUQLoc0JigYQ9w7GJjIY=;
- b=HlcHbMLjXrzwmD8GtjKwIedLgekz+Q6fr4lHVcPl1qBjwFqVFTYVmUVMWV2n9PSBzTzz1eTsZ
- HY3o1VLbDL2A0vpKccjSxjolrv81ha47g0v2reTJHzdTJZICgEhGJEF
+ bh=V/LDSJSGzghXJO1VTD09y2Y9+Ds1iqTLPb+1X1g1u1Q=;
+ b=egNZpetXUSVXrmJCpvph6uk84Dan/On7mY86Wz9Uw1MSm0IsNoesTEy5sLwbcD4SmxD77fSwI
+ 0Pfu4aEgwy9Bpvnzk879/chQp9fdx4UWd3Uvw9/MWRvRiSFXzpnmSDE
 X-Developer-Key: i=leo.yan@arm.com; a=ed25519;
  pk=k4BaDbvkCXzBFA7Nw184KHGP5thju8lKqJYIrOWxDhI=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_102216_582921_D118E298 
-X-CRM114-Status: GOOD (  17.61  )
+X-CRM114-CacheID: sfid-20261116_102221_785478_68E5311C 
+X-CRM114-Status: GOOD (  16.15  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,160 +102,155 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Platform IRQ affinity lookup currently selects the OF or ACPI helper
-directly. Add fwnode_irq_get_affinity() and an irq_get_affinity operation
-implemented by both firmware types.
+Devices created from firmware tables may need CPU affinity information
+without a corresponding firmware node. Allow software nodes to supply
+this information through the common firmware node IRQ affinity API.
 
-Use the new helper for platform devices, preserving the existing fallback
-to cpu_possible_mask when affinity information is unavailable.
+Add software_node_add_irq_affinity() to copy a CPU mask for an IRQ index,
+and implement the software node irq_get_affinity callback. Keep each mask
+until the node is released and reject replacement so borrowed masks remain
+valid for the node's lifetime.
 
 Signed-off-by: Leo Yan <leo.yan@arm.com>
 ---
- drivers/acpi/property.c  |  8 ++++++++
- drivers/base/platform.c  |  7 +------
- drivers/base/property.c  | 15 +++++++++++++++
- drivers/of/property.c    |  7 +++++++
- include/linux/fwnode.h   |  5 +++++
- include/linux/property.h |  2 ++
- 6 files changed, 38 insertions(+), 6 deletions(-)
+ drivers/base/swnode.c    | 53 ++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/property.h |  4 ++++
+ 2 files changed, 57 insertions(+)
 
-diff --git a/drivers/acpi/property.c b/drivers/acpi/property.c
-index 8ee5a1f0eb4869114c5d282f5808974687d46f5c..558de77bd4442fd7c85797f41b84c13f8fc27c67 100644
---- a/drivers/acpi/property.c
-+++ b/drivers/acpi/property.c
-@@ -1735,6 +1735,13 @@ static int acpi_fwnode_irq_get(const struct fwnode_handle *fwnode,
- 	return res.start;
+diff --git a/drivers/base/swnode.c b/drivers/base/swnode.c
+index cf495e67f0763ad83a849474152e71d0640c76dd..64d5e12e4871771c20a64162260d92d3e24b4191 100644
+--- a/drivers/base/swnode.c
++++ b/drivers/base/swnode.c
+@@ -7,6 +7,7 @@
+  */
+ 
+ #include <linux/container_of.h>
++#include <linux/cpumask.h>
+ #include <linux/device.h>
+ #include <linux/err.h>
+ #include <linux/export.h>
+@@ -21,6 +22,7 @@
+ #include <linux/string.h>
+ #include <linux/sysfs.h>
+ #include <linux/types.h>
++#include <linux/xarray.h>
+ 
+ #include "base.h"
+ 
+@@ -31,6 +33,7 @@ struct swnode {
+ 	int id;
+ 	/* Device the managed node's lifetime is tied to. */
+ 	struct device *owner;
++	struct xarray irq_affinity;
+ 
+ 	/* hierarchy */
+ 	struct ida child_ids;
+@@ -756,6 +759,13 @@ static int software_node_add_links(struct fwnode_handle *fwnode)
+ 	return 0;
  }
  
 +static const struct cpumask *
-+acpi_fwnode_irq_get_affinity(const struct fwnode_handle *fwnode,
-+			     unsigned int index)
++software_node_irq_get_affinity(const struct fwnode_handle *fwnode,
++			       unsigned int index)
 +{
-+	return acpi_irq_get_affinity(ACPI_HANDLE_FWNODE(fwnode), index);
++	return xa_load(&to_swnode(fwnode)->irq_affinity, index);
 +}
 +
- #define DECLARE_ACPI_FWNODE_OPS(ops) \
- 	const struct fwnode_operations ops = {				\
- 		.device_is_available = acpi_fwnode_device_is_available, \
-@@ -1761,6 +1768,7 @@ static int acpi_fwnode_irq_get(const struct fwnode_handle *fwnode,
- 		.graph_get_port_parent = acpi_fwnode_get_parent,	\
- 		.graph_parse_endpoint = acpi_fwnode_graph_parse_endpoint, \
- 		.irq_get = acpi_fwnode_irq_get,				\
-+		.irq_get_affinity = acpi_fwnode_irq_get_affinity,		\
- 	};								\
- 	EXPORT_SYMBOL_GPL(ops)
+ static const struct fwnode_operations software_node_ops = {
+ 	.get = software_node_get,
+ 	.put = software_node_put,
+@@ -774,6 +784,7 @@ static const struct fwnode_operations software_node_ops = {
+ 	.graph_get_port_parent = software_node_graph_get_port_parent,
+ 	.graph_parse_endpoint = software_node_graph_parse_endpoint,
+ 	.add_links = software_node_add_links,
++	.irq_get_affinity = software_node_irq_get_affinity,
+ };
  
-diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-index 3593d45f4a7ae8207286a7ce0671419c6de556d1..e6352ef63a20cb818d958e7e2a0a9c37170c1769 100644
---- a/drivers/base/platform.c
-+++ b/drivers/base/platform.c
-@@ -155,12 +155,7 @@ static const struct cpumask *get_irq_affinity(struct platform_device *dev,
+ /* -------------------------------------------------------------------------- */
+@@ -844,6 +855,8 @@ static void software_node_free(const struct software_node *node)
+ static void software_node_release(struct kobject *kobj)
  {
- 	const struct cpumask *mask = NULL;
- #ifndef CONFIG_SPARC
--	struct fwnode_handle *fwnode = dev_fwnode(&dev->dev);
--
--	if (is_of_node(fwnode))
--		mask = of_irq_get_affinity(to_of_node(fwnode), num);
--	else if (is_acpi_device_node(fwnode))
--		mask = acpi_irq_get_affinity(ACPI_HANDLE_FWNODE(fwnode), num);
-+	mask = fwnode_irq_get_affinity(dev_fwnode(&dev->dev), num);
- #endif
+ 	struct swnode *swnode = kobj_to_swnode(kobj);
++	struct cpumask *affinity;
++	unsigned long index;
  
- 	return mask ?: cpu_possible_mask;
-diff --git a/drivers/base/property.c b/drivers/base/property.c
-index 51109794d7275ddaf4571584d0e77d8573ebb475..b6d9fd3c5bdeec9636e49d2319d2b43a55758a85 100644
---- a/drivers/base/property.c
-+++ b/drivers/base/property.c
-@@ -1109,6 +1109,21 @@ int fwnode_irq_get_byname(const struct fwnode_handle *fwnode, const char *name)
+ 	fwnode_links_purge(&swnode->fwnode);
+ 
+@@ -857,6 +870,9 @@ static void software_node_release(struct kobject *kobj)
+ 	if (swnode->allocated)
+ 		software_node_free(swnode->node);
+ 
++	xa_for_each(&swnode->irq_affinity, index, affinity)
++		kfree(affinity);
++	xa_destroy(&swnode->irq_affinity);
+ 	ida_destroy(&swnode->child_ids);
+ 	kfree(swnode);
  }
- EXPORT_SYMBOL(fwnode_irq_get_byname);
+@@ -891,6 +907,7 @@ swnode_register(const struct software_node *node, struct swnode *parent,
+ 	fwnode_init(&swnode->fwnode, &software_node_ops);
+ 
+ 	ida_init(&swnode->child_ids);
++	xa_init(&swnode->irq_affinity);
+ 	INIT_LIST_HEAD(&swnode->entry);
+ 	INIT_LIST_HEAD(&swnode->children);
+ 
+@@ -1050,6 +1067,42 @@ void fwnode_remove_software_node(struct fwnode_handle *fwnode)
+ }
+ EXPORT_SYMBOL_GPL(fwnode_remove_software_node);
  
 +/**
-+ * fwnode_irq_get_affinity - Get the CPU affinity of an IRQ from a fwnode
-+ * @fwnode:	Pointer to the firmware node
-+ * @index:	Zero-based index of the IRQ
++ * software_node_add_irq_affinity - Add an IRQ affinity mask to a software node
++ * @fwnode: Software node to associate with the mask
++ * @index: Zero-based IRQ index
++ * @affinity: CPU affinity mask to copy
 + *
-+ * Return: A borrowed CPU mask, valid while @fwnode lives, or NULL if no affinity
-+ * information is available.
++ * The copy remains valid until the software node is released. Call this before
++ * publishing the node to interrupt consumers. An existing mask cannot be
++ * replaced, so masks returned by fwnode_irq_get_affinity() remain valid.
++ *
++ * Return: 0 on success, -EINVAL for an invalid node or mask, -EBUSY if the index
++ * already has a mask, or -ENOMEM if allocation fails.
 + */
-+const struct cpumask *fwnode_irq_get_affinity(const struct fwnode_handle *fwnode,
-+					      unsigned int index)
++int software_node_add_irq_affinity(struct fwnode_handle *fwnode,
++				   unsigned int index,
++				   const struct cpumask *affinity)
 +{
-+	return fwnode_call_ptr_op(fwnode, irq_get_affinity, index);
++	struct swnode *swnode = to_swnode(fwnode);
++	struct cpumask *mask;
++	int ret;
++
++	if (!swnode || !affinity)
++		return -EINVAL;
++
++	mask = kmemdup(affinity, cpumask_size(), GFP_KERNEL);
++	if (!mask)
++		return -ENOMEM;
++
++	ret = xa_insert(&swnode->irq_affinity, index, mask, GFP_KERNEL);
++	if (ret)
++		kfree(mask);
++
++	return ret;
 +}
-+EXPORT_SYMBOL_GPL(fwnode_irq_get_affinity);
++EXPORT_SYMBOL_GPL(software_node_add_irq_affinity);
 +
  /**
-  * fwnode_graph_get_next_endpoint - Get next endpoint firmware node
-  * @fwnode: Pointer to the parent firmware node
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 45e55f61848801ed497702c6cfe501009904c49d..f1426533e7ec0dfdfaef5d1cbb2b6e6acc87a1d2 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1660,6 +1660,12 @@ static int of_fwnode_irq_get(const struct fwnode_handle *fwnode,
- 	return of_irq_get(to_of_node(fwnode), index);
- }
- 
-+static const struct cpumask *
-+of_fwnode_irq_get_affinity(const struct fwnode_handle *fwnode, unsigned int index)
-+{
-+	return of_irq_get_affinity(to_of_node(fwnode), index);
-+}
-+
- static int match_property_by_path(const char *node_path, const char *prop_name,
- 				  const char *value)
- {
-@@ -1724,6 +1730,7 @@ const struct fwnode_operations of_fwnode_ops = {
- 	.graph_parse_endpoint = of_fwnode_graph_parse_endpoint,
- 	.iomap = of_fwnode_iomap,
- 	.irq_get = of_fwnode_irq_get,
-+	.irq_get_affinity = of_fwnode_irq_get_affinity,
- 	.add_links = of_fwnode_add_links,
- };
- EXPORT_SYMBOL_GPL(of_fwnode_ops);
-diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-index a9dcaf7e70765637a0c33af2ae0ac541e15752ad..9f45a58fda6802b924cd67585e51e8f537e6d625 100644
---- a/include/linux/fwnode.h
-+++ b/include/linux/fwnode.h
-@@ -28,6 +28,7 @@ enum dev_dma_attr {
- 
- struct fwnode_operations;
- struct device;
-+struct cpumask;
- 
- /*
-  * fwnode flags
-@@ -138,6 +139,8 @@ struct fwnode_reference_args {
-  * @graph_parse_endpoint: Parse endpoint for port and endpoint id.
-  * @iomap: Map the I/O memory of a given index for a fwnode.
-  * @irq_get: Get the IRQ of a given index for a fwnode.
-+ * @irq_get_affinity: Get the CPU affinity of a given IRQ index, or NULL if
-+ *		   unavailable. The returned mask is valid while the fwnode lives.
-  * @add_links:	Create fwnode links to all the suppliers of the fwnode. Return
-  *		zero on success, a negative error code otherwise.
-  */
-@@ -186,6 +189,8 @@ struct fwnode_operations {
- 				    struct fwnode_endpoint *endpoint);
- 	void __iomem *(*iomap)(struct fwnode_handle *fwnode, int index);
- 	int (*irq_get)(const struct fwnode_handle *fwnode, unsigned int index);
-+	const struct cpumask *(*irq_get_affinity)(const struct fwnode_handle *fwnode,
-+						  unsigned int index);
- 	int (*add_links)(struct fwnode_handle *fwnode);
- };
- 
+  * device_add_software_node - Assign software node to a device
+  * @dev: The device the software node is meant for.
 diff --git a/include/linux/property.h b/include/linux/property.h
-index 9143fe4f5c05179e595ba875aafbcb006a740824..08c901015a9ea4b9223a29d07749f88a5d672ea7 100644
+index 08c901015a9ea4b9223a29d07749f88a5d672ea7..186a77d1468505a10960efe6cdf7d53750acbf95 100644
 --- a/include/linux/property.h
 +++ b/include/linux/property.h
-@@ -230,6 +230,8 @@ DEFINE_FREE(fwnode_handle, struct fwnode_handle *, fwnode_handle_put(_T))
+@@ -618,6 +618,10 @@ fwnode_create_software_node(const struct property_entry *properties,
+ 			    const struct fwnode_handle *parent);
+ void fwnode_remove_software_node(struct fwnode_handle *fwnode);
  
- int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index);
- int fwnode_irq_get_byname(const struct fwnode_handle *fwnode, const char *name);
-+const struct cpumask *fwnode_irq_get_affinity(const struct fwnode_handle *fwnode,
-+					      unsigned int index);
- 
- unsigned int fwnode_get_child_node_count(const struct fwnode_handle *fwnode);
++int software_node_add_irq_affinity(struct fwnode_handle *fwnode,
++				   unsigned int index,
++				   const struct cpumask *affinity);
++
+ int device_add_software_node(struct device *dev, const struct software_node *node);
+ void device_remove_software_node(struct device *dev);
  
 
 -- 
