@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A956D606A8A8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C424F606A8AD
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eLed+/yD;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=Gj0ZlUgo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gdyf2oNe;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=PtJcs3XU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=WPDdE9THXSdVSoGn5keGs8HQvXxyFIZ7Ih0+gOhqCJM=; b=eLed+/yDoLBDt9nvNJrAozSZhp
-	GiSEHap1+a0XPG5uTTSjcR2sMeDiV4MC8QU4bJcduDFuJBw1kVLsobneCTzpkgoaGSlYbeWwh4/5q
-	N2xG2kfznQLeKiv3GlkwmKIRk9BedUtVuzyrPgoFqEoSKk5C0ddk0t9W/h5V5opM8yyWgkh7kkb+P
-	8/KQ2LftRhUiklJfYQ83DoJVSKu01oDYdEvW3AP00QxHMMRA5SVx/0leK8NSYzM4eAJaq7rQrFZdn
-	vxy+HKFZqZSE2fb64IJgn+5m7BMPxmnNgnn6+90UVzbi7nIw8Q9ggCQKZ9prD4k1I+WUtTpT4pj08
-	d7ZzNEzA==;
+	bh=FXYvYFGwkT4xuB/zHam/APbk+L8Dwz8yaSTuS9gvviM=; b=gdyf2oNeC7FkW+YuogZF1EuN8L
+	/lhL6zv/SO0UKg2pyuv5fk4CYL7nk09Lgv5qtX6DJIYNyn3btSXM8G/YD+O90aAxmbuwtYNZ2O3iN
+	7j649FBwum+1AVZnHai6F4SxGhrdIvJSPSiaPwKlD5j0NrH1mCOf9yc1OyIBdaaeqlMlwyayMGZqz
+	BRSBniVD13uV0wDVb9q+cTgARN717cMadGxDr43TqkZ0ppmZ0XHfgl7xtXQxSeK96UNEsyfHrClhw
+	Z9POF+YkSwT10MvDMxDdxEwrs8WL9XXlqIbcfLsxuj3+t9XWqB8KbXH0oZSkJBwgLZeTlwjUIcPvF
+	hUvGsi7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwJI-00000002VQd-2VUx;
-	Mon, 16 Nov 2026 12:59:48 +0000
-Received: from canpmsgout10.his.huawei.com ([113.46.200.225])
+	id 1xSwJL-00000002VYM-0R24;
+	Mon, 16 Nov 2026 12:59:51 +0000
+Received: from canpmsgout04.his.huawei.com ([113.46.200.219])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwJ9-00000002VEx-0vSa
+	id 1xSwJE-00000002VJO-0zg8
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:59:41 +0000
+	Mon, 16 Nov 2026 12:59:45 +0000
 dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
 	c=relaxed/relaxed; q=dns/txt;
 	h=From;
-	bh=WPDdE9THXSdVSoGn5keGs8HQvXxyFIZ7Ih0+gOhqCJM=;
-	b=Gj0ZlUgowM/Et22B+0WTSvDB07x3gyMDF+izJnvRpN0d0oFlEkDUyPqoYbhXfsx/drIDowHHJ
-	iu6wS4S9ACnoZhbxAMSfo9vDaeyBpYkJckJa8IROzIjBW5giGGX4CuiSITpPxT9Vtx4gtHz/PHC
-	ULt00qS4f2MflrMe6bbsLdU=
-Received: from mail.maildlp.com (unknown [172.19.163.163])
-	by canpmsgout10.his.huawei.com (SkyGuard) with ESMTPS id 4jSnxl0ByPz1K96X;
-	Mon, 16 Nov 2026 20:59:23 +0800 (CST)
+	bh=FXYvYFGwkT4xuB/zHam/APbk+L8Dwz8yaSTuS9gvviM=;
+	b=PtJcs3XUF3XPgi+q08V44Kdq4mTO4vqHNpOws8Jobztd6GhWqwnj1HWteHldGP2l1el1jsdef
+	AcML95xVXnpi9nR5q+4XOTDPMW2kmuL/NHoEpR3CpJqFSew4EZzzZbu74/Q9uPtXjPY4K79ET4D
+	n8DDN1sarlABs1lJpeWCdJM=
+Received: from mail.maildlp.com (unknown [172.19.162.223])
+	by canpmsgout04.his.huawei.com (SkyGuard) with ESMTPS id 4jSnxt0JwGz1prlC;
+	Mon, 16 Nov 2026 20:59:30 +0800 (CST)
 Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 808AF4048B;
-	Mon, 16 Nov 2026 20:59:35 +0800 (CST)
+	by mail.maildlp.com (Postfix) with ESMTPS id CE32740561;
+	Mon, 16 Nov 2026 20:59:41 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
  (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 16 Nov
- 2026 20:59:34 +0800
+ 2026 20:59:41 +0800
 From: Jinjie Ruan <ruanjinjie@huawei.com>
 To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
 	<fenghuay@nvidia.com>, <catalin.marinas@arm.com>, <will@kernel.org>,
@@ -56,9 +56,9 @@ To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
 	<hpa@zytor.com>, <x86@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 CC: <ruanjinjie@huawei.com>
-Subject: [RFC PATCH v3 06/19] x86,fs/resctrl: Record the resource that enables a monitor event
-Date: Mon, 16 Nov 2026 20:59:01 +0800
-Message-ID: <20261116125914.498841-7-ruanjinjie@huawei.com>
+Subject: [RFC PATCH v3 17/19] arm_mpam: resctrl: Allow monitoring on resources other than the L3
+Date: Mon, 16 Nov 2026 20:59:12 +0800
+Message-ID: <20261116125914.498841-18-ruanjinjie@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261116125914.498841-1-ruanjinjie@huawei.com>
 References: <20261116125914.498841-1-ruanjinjie@huawei.com>
@@ -69,8 +69,8 @@ Content-Type: text/plain
 X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
  kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_045939_568575_AD2E0780 
-X-CRM114-Status: GOOD (  15.86  )
+X-CRM114-CacheID: sfid-20261116_045944_711062_52663351 
+X-CRM114-Status: GOOD (  22.88  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,191 +90,161 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mon_evt::rid is initialised from a static table that guesses which
-resource each event belongs to. The architecture enabling the event
-knows the answer, so pass the resource to resctrl_enable_mon_event()
-and record it in mon_evt::rid.
+The MPAM driver assumes only the L3 monitors. resctrl_arch_mon_capable()
+looks at the L3 only, a CPU's monitor-only domain is found with the L3
+cache-id, and mpam_resctrl_monitor_init() always names the resource L3.
 
-Every architecture records the value the table guessed, so this does
-not change which events are shown where.
+Check every resource for monitoring, find a monitor domain by the id its
+component reports, and set the name and scope from the resource.
 
-No functional change intended.
+No functional change as only the L3 has monitors so far.
 
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- arch/x86/kernel/cpu/resctrl/core.c      |  6 +--
- arch/x86/kernel/cpu/resctrl/intel_aet.c |  2 +-
- drivers/resctrl/mpam_resctrl.c          |  2 +-
- fs/resctrl/internal.h                   |  3 +-
- fs/resctrl/monitor.c                    | 54 ++++++++++++++-----------
- include/linux/resctrl.h                 |  3 +-
- 6 files changed, 39 insertions(+), 31 deletions(-)
+ drivers/resctrl/mpam_resctrl.c | 77 +++++++++++++++++-----------------
+ 1 file changed, 38 insertions(+), 39 deletions(-)
 
-diff --git a/arch/x86/kernel/cpu/resctrl/core.c b/arch/x86/kernel/cpu/resctrl/core.c
-index fab126ae2eba..707fa4e7ed24 100644
---- a/arch/x86/kernel/cpu/resctrl/core.c
-+++ b/arch/x86/kernel/cpu/resctrl/core.c
-@@ -968,15 +968,15 @@ static __init bool get_rdt_mon_resources(void)
- 	bool ret = false;
- 
- 	if (rdt_cpu_has(X86_FEATURE_CQM_OCCUP_LLC)) {
--		resctrl_enable_mon_event(QOS_OCCUP_EVENT_ID, false, 0, NULL);
-+		resctrl_enable_mon_event(r, QOS_OCCUP_EVENT_ID, false, 0, NULL);
- 		ret = true;
- 	}
- 	if (rdt_cpu_has(X86_FEATURE_CQM_MBM_TOTAL)) {
--		resctrl_enable_mon_event(QOS_MBM_TOTAL_EVENT_ID, false, 0, NULL);
-+		resctrl_enable_mon_event(r, QOS_MBM_TOTAL_EVENT_ID, false, 0, NULL);
- 		ret = true;
- 	}
- 	if (rdt_cpu_has(X86_FEATURE_CQM_MBM_LOCAL)) {
--		resctrl_enable_mon_event(QOS_MBM_LOCAL_EVENT_ID, false, 0, NULL);
-+		resctrl_enable_mon_event(r, QOS_MBM_LOCAL_EVENT_ID, false, 0, NULL);
- 		ret = true;
- 	}
- 	if (rdt_cpu_has(X86_FEATURE_ABMC))
-diff --git a/arch/x86/kernel/cpu/resctrl/intel_aet.c b/arch/x86/kernel/cpu/resctrl/intel_aet.c
-index 66cd8c2c7a51..a5978019a48c 100644
---- a/arch/x86/kernel/cpu/resctrl/intel_aet.c
-+++ b/arch/x86/kernel/cpu/resctrl/intel_aet.c
-@@ -290,7 +290,7 @@ static bool enable_events(struct event_group *e, struct pmt_feature_group *p)
- 	}
- 
- 	for (int j = 0; j < e->num_events; j++) {
--		if (!resctrl_enable_mon_event(e->evts[j].id, true,
-+		if (!resctrl_enable_mon_event(r, e->evts[j].id, true,
- 					      e->evts[j].bin_bits, &e->evts[j]))
- 			skipped_events++;
- 	}
 diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
-index 385c54604872..961210af3159 100644
+index 470b37587890..704383304f6b 100644
 --- a/drivers/resctrl/mpam_resctrl.c
 +++ b/drivers/resctrl/mpam_resctrl.c
-@@ -1377,7 +1377,7 @@ static int mpam_resctrl_monitor_init(struct rdt_resource *r,
- 		r->mon.mbm_cfg_mask = MAX_EVT_CONFIG_BITS;
- 	}
+@@ -99,11 +99,12 @@ bool resctrl_arch_alloc_capable(void)
  
--	if (!resctrl_enable_mon_event(type, false, 0, NULL))
-+	if (!resctrl_enable_mon_event(r, type, false, 0, NULL))
- 		return -EINVAL;
- 
- 	r->mon_capable = true;
-diff --git a/fs/resctrl/internal.h b/fs/resctrl/internal.h
-index e62a277dee85..f7815e4fb53e 100644
---- a/fs/resctrl/internal.h
-+++ b/fs/resctrl/internal.h
-@@ -54,7 +54,8 @@ static inline struct rdt_fs_context *rdt_fc2context(struct fs_context *fc)
- /**
-  * struct mon_evt - Properties of a monitor event
-  * @evtid:		event id
-- * @rid:		resource id for this event
-+ * @rid:		resource that implements this event, recorded by the
-+ *			architecture when it enables the event
-  * @name:		name of the event
-  * @evt_cfg:		Event configuration value that represents the
-  *			memory transactions (e.g., READS_TO_LOCAL_MEM,
-diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
-index 1b0fb3c2aaee..23c1838a7661 100644
---- a/fs/resctrl/monitor.c
-+++ b/fs/resctrl/monitor.c
-@@ -1015,11 +1015,10 @@ void free_rmid_lru_list(void)
- 	mutex_unlock(&rdtgroup_mutex);
- }
- 
--#define MON_EVENT(_eventid, _name, _res, _fp)	\
-+#define MON_EVENT(_eventid, _name, _fp)		\
- 	[_eventid] = {				\
- 	.name			= _name,	\
- 	.evtid			= _eventid,	\
--	.rid			= _res,		\
- 	.is_floating_point	= _fp,		\
- }
- 
-@@ -1029,41 +1028,48 @@ void free_rmid_lru_list(void)
-  * to set .enabled.
-  */
- struct mon_evt mon_event_all[QOS_NUM_EVENTS] = {
--	MON_EVENT(QOS_OCCUP_EVENT_ID,			"llc_occupancy",	RDT_RESOURCE_L3,	false),
--	MON_EVENT(QOS_MBM_TOTAL_EVENT_ID,		"mbm_total_bytes",	RDT_RESOURCE_L3,	false),
--	MON_EVENT(QOS_MBM_LOCAL_EVENT_ID,		"mbm_local_bytes",	RDT_RESOURCE_L3,	false),
--	MON_EVENT(PMT_EVENT_ENERGY,			"core_energy",		RDT_RESOURCE_PERF_PKG,	true),
--	MON_EVENT(PMT_EVENT_ACTIVITY,			"activity",		RDT_RESOURCE_PERF_PKG,	true),
--	MON_EVENT(PMT_EVENT_STALLS_LLC_HIT,		"stalls_llc_hit",	RDT_RESOURCE_PERF_PKG,	false),
--	MON_EVENT(PMT_EVENT_C1_RES,			"c1_res",		RDT_RESOURCE_PERF_PKG,	false),
--	MON_EVENT(PMT_EVENT_UNHALTED_CORE_CYCLES,	"unhalted_core_cycles",	RDT_RESOURCE_PERF_PKG,	false),
--	MON_EVENT(PMT_EVENT_STALLS_LLC_MISS,		"stalls_llc_miss",	RDT_RESOURCE_PERF_PKG,	false),
--	MON_EVENT(PMT_EVENT_AUTO_C6_RES,		"c6_res",		RDT_RESOURCE_PERF_PKG,	false),
--	MON_EVENT(PMT_EVENT_UNHALTED_REF_CYCLES,	"unhalted_ref_cycles",	RDT_RESOURCE_PERF_PKG,	false),
--	MON_EVENT(PMT_EVENT_UOPS_RETIRED,		"uops_retired",		RDT_RESOURCE_PERF_PKG,	false),
--	MON_EVENT(PMT_EVENT_INST_RETIRED,		"inst_retired",		RDT_RESOURCE_PERF_PKG,	false),
--	MON_EVENT(PMT_EVENT_PCNT,			"pcnt",			RDT_RESOURCE_PERF_PKG,	false),
-+	MON_EVENT(QOS_OCCUP_EVENT_ID,			"llc_occupancy",	false),
-+	MON_EVENT(QOS_MBM_TOTAL_EVENT_ID,		"mbm_total_bytes",	false),
-+	MON_EVENT(QOS_MBM_LOCAL_EVENT_ID,		"mbm_local_bytes",	false),
-+	MON_EVENT(PMT_EVENT_ENERGY,			"core_energy",		true),
-+	MON_EVENT(PMT_EVENT_ACTIVITY,			"activity",		true),
-+	MON_EVENT(PMT_EVENT_STALLS_LLC_HIT,		"stalls_llc_hit",	false),
-+	MON_EVENT(PMT_EVENT_C1_RES,			"c1_res",		false),
-+	MON_EVENT(PMT_EVENT_UNHALTED_CORE_CYCLES,	"unhalted_core_cycles",	false),
-+	MON_EVENT(PMT_EVENT_STALLS_LLC_MISS,		"stalls_llc_miss",	false),
-+	MON_EVENT(PMT_EVENT_AUTO_C6_RES,		"c6_res",		false),
-+	MON_EVENT(PMT_EVENT_UNHALTED_REF_CYCLES,	"unhalted_ref_cycles",	false),
-+	MON_EVENT(PMT_EVENT_UOPS_RETIRED,		"uops_retired",		false),
-+	MON_EVENT(PMT_EVENT_INST_RETIRED,		"inst_retired",		false),
-+	MON_EVENT(PMT_EVENT_PCNT,			"pcnt",			false),
- };
- 
--bool resctrl_enable_mon_event(enum resctrl_event_id eventid, bool any_cpu,
-+bool resctrl_enable_mon_event(struct rdt_resource *r,
-+			      enum resctrl_event_id eventid, bool any_cpu,
- 			      unsigned int binary_bits, void *arch_priv)
+ bool resctrl_arch_mon_capable(void)
  {
-+	struct mon_evt *mevt;
+-	struct mpam_resctrl_res *res = &mpam_resctrl_controls[RDT_RESOURCE_L3];
+-	struct rdt_resource *l3 = &res->resctrl_res;
++	struct rdt_resource *r;
 +
- 	if (WARN_ON_ONCE(eventid < QOS_FIRST_EVENT || eventid >= QOS_NUM_EVENTS ||
- 			 binary_bits > MAX_BINARY_BITS))
- 		return false;
--	if (mon_event_all[eventid].enabled) {
--		pr_warn("Duplicate enable for event %d\n", eventid);
-+
-+	mevt = &mon_event_all[eventid];
-+	if (mevt->enabled) {
-+		pr_warn("Duplicate enable for event %d on resource %d\n",
-+			eventid, r->rid);
- 		return false;
- 	}
--	if (binary_bits && !mon_event_all[eventid].is_floating_point) {
-+	if (binary_bits && !mevt->is_floating_point) {
- 		pr_warn("Event %d may not be floating point\n", eventid);
- 		return false;
- 	}
++	for_each_mon_capable_rdt_resource(r)
++		return true;
  
--	mon_event_all[eventid].any_cpu = any_cpu;
--	mon_event_all[eventid].binary_bits = binary_bits;
--	mon_event_all[eventid].arch_priv = arch_priv;
--	mon_event_all[eventid].enabled = true;
-+	mevt->rid = r->rid;
-+	mevt->any_cpu = any_cpu;
-+	mevt->binary_bits = binary_bits;
-+	mevt->arch_priv = arch_priv;
-+	mevt->enabled = true;
- 
- 	return true;
+-	/* All monitors are presented as being on the L3 cache */
+-	return l3->mon_capable;
++	return false;
  }
-diff --git a/include/linux/resctrl.h b/include/linux/resctrl.h
-index c844f99fb824..f09169c964e6 100644
---- a/include/linux/resctrl.h
-+++ b/include/linux/resctrl.h
-@@ -419,7 +419,8 @@ u32 resctrl_arch_get_num_closid(struct rdt_resource *r);
- u32 resctrl_arch_system_num_rmid_idx(void);
- int resctrl_arch_update_domains(struct rdt_resource *r, u32 closid);
  
--bool resctrl_enable_mon_event(enum resctrl_event_id eventid, bool any_cpu,
-+bool resctrl_enable_mon_event(struct rdt_resource *r,
-+			      enum resctrl_event_id eventid, bool any_cpu,
- 			      unsigned int binary_bits, void *arch_priv);
+ bool resctrl_arch_is_evt_configurable(enum resctrl_event_id evt)
+@@ -1337,35 +1338,39 @@ static int mpam_resctrl_monitor_init(struct rdt_resource *r,
+ 	struct mpam_resctrl_res *res = container_of(r, struct mpam_resctrl_res,
+ 						    resctrl_res);
+ 	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, type);
++	unsigned int level;
  
- bool resctrl_is_mon_event_enabled(enum resctrl_event_id eventid);
+ 	lockdep_assert_cpus_held();
+ 
++	/* Called once per event. The name is needed on monitor only platforms. */
++	if (r->rid == RDT_RESOURCE_L2) {
++		level = 2;
++		r->name = "L2";
++		r->mon_scope = RESCTRL_L2_CACHE;
++	} else {
++		level = 3;
++		r->name = "L3";
++		r->mon_scope = RESCTRL_L3_CACHE;
++	}
++
+ 	/*
+-	 * There also needs to be an L3 cache present.
++	 * There also needs to be a cache at this level present.
+ 	 * The check just requires any online CPU and it can't go offline as we
+ 	 * hold the cpu lock.
+ 	 */
+-	if (get_cpu_cacheinfo_id(raw_smp_processor_id(), 3) == -1)
++	if (get_cpu_cacheinfo_id(raw_smp_processor_id(), level) == -1)
+ 		return 0;
+ 
+ 	/*
+-	 * If there are no MPAM resources on L3, force it into existence.
+-	 * topology_matches_l3() already ensures this looks like the L3.
+-	 * The domain-ids will be fixed up by mpam_resctrl_domain_hdr_init().
++	 * If there are no MPAM resources on this cache level, force it into
++	 * existence. The domain-ids will be fixed up by
++	 * mpam_resctrl_domain_hdr_init().
+ 	 */
+ 	if (!res->class) {
+-		pr_warn_once("Faking L3 MSC to enable counters.\n");
++		pr_warn_once("Faking L%u MSC to enable counters.\n", level);
+ 		res->class = mon->class;
+ 	}
+ 
+-	/*
+-	 * Called multiple times!, once per event type that has a
+-	 * monitoring class.
+-	 * Setting name is necessary on monitor only platforms.
+-	 */
+-	r->name = "L3";
+-	r->mon_scope = RESCTRL_L3_CACHE;
+-
+ 	/*
+ 	 * num-rmid is the upper bound for the number of monitoring groups that
+ 	 * can exist simultaneously, including the default monitoring group for
+@@ -1730,9 +1735,8 @@ mpam_resctrl_alloc_domain(unsigned int cpu, struct mpam_resctrl_res *res)
+ 		int id;
+ 
+ 		/*
+-		 * Even if the monitor domain is backed by a different
+-		 * component, the L3 component IDs need to be used... only
+-		 * there may be no ctrl_comp for the L3.
++		 * The monitor domain ID comes from the monitor components, as
++		 * there may be no ctrl_comp for this resource.
+ 		 * Search each event's class list for a component with
+ 		 * overlapping CPUs and set up the dom->mon_comp array.
+ 		 */
+@@ -1769,28 +1773,26 @@ mpam_resctrl_alloc_domain(unsigned int cpu, struct mpam_resctrl_res *res)
+ }
+ 
+ /*
+- * We know all the monitors are associated with the L3, even if there are no
+- * controls and therefore no control component. Find the cache-id for the CPU
+- * and use that to search for existing resctrl domains.
+- * This relies on mpam_resctrl_pick_domain_id() using the L3 cache-id
+- * for anything that is not a cache.
++ * There may be no control component to search, for example on monitor only
++ * platforms. Find the domain-id the monitors' component would report for
++ * this CPU and use that to search the resource's monitor domains.
++ * This relies on mpam_resctrl_pick_domain_id() giving the same id for every
++ * CPU that shares the component.
+  */
+-static struct mpam_resctrl_dom *mpam_resctrl_get_mon_domain_from_cpu(int cpu)
++static struct mpam_resctrl_dom *
++mpam_resctrl_get_mon_domain_from_cpu(int cpu, struct rdt_resource *r)
+ {
+-	int cache_id;
+ 	struct mpam_resctrl_dom *dom;
+-	struct mpam_resctrl_res *l3 = &mpam_resctrl_controls[RDT_RESOURCE_L3];
++	int id;
+ 
+ 	lockdep_assert_cpus_held();
+ 
+-	if (!l3->class)
+-		return NULL;
+-	cache_id = get_cpu_cacheinfo_id(cpu, 3);
+-	if (cache_id < 0)
++	id = mpam_resctrl_domain_id(cpu, r, NULL);
++	if (id < 0)
+ 		return NULL;
+ 
+-	list_for_each_entry_rcu(dom, &l3->resctrl_res.mon_domains, resctrl_mon_dom.hdr.list) {
+-		if (dom->resctrl_mon_dom.hdr.id == cache_id)
++	list_for_each_entry_rcu(dom, &r->mon_domains, resctrl_mon_dom.hdr.list) {
++		if (dom->resctrl_mon_dom.hdr.id == id)
+ 			return dom;
+ 	}
+ 
+@@ -1810,11 +1812,8 @@ mpam_resctrl_get_domain_from_cpu(int cpu, struct mpam_resctrl_res *res)
+ 			return dom;
+ 	}
+ 
+-	if (r->rid != RDT_RESOURCE_L3)
+-		return NULL;
+-
+ 	/* Search the mon domain list too - needed on monitor only platforms. */
+-	return mpam_resctrl_get_mon_domain_from_cpu(cpu);
++	return mpam_resctrl_get_mon_domain_from_cpu(cpu, r);
+ }
+ 
+ int mpam_resctrl_online_cpu(unsigned int cpu)
 -- 
 2.34.1
 
