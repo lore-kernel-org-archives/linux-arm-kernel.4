@@ -2,55 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E7D606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 23:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C49606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 23:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bfm+TT/j;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ll9JiW4H
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aRmCQWx2;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AuVYUbEG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=IT3uhrPADx9D4Srqz/Zu9EO3T+JRAK83LQQrhjQqwfA=; b=bfm+TT/jCGJ3dc
-	cMY193gCGPg75bgb32DuR3mk5jyHeTTziX5bOFk3ESGE2iF7ZwJsiRn86m4itiUISJNtlJ7G0ESus
-	wPPrXbgKKy0YedIu8qfFAgEgEkdY0uvYDnqhmY+eiJhELV1YMQrWRTz1k0AyHCyRAqdvxUqbsS0BO
-	fMOJ3yi0JwwBEVx9YaA8yRAvVqe68neKNxq6eOHFKHTRbJMOER+BlouclaFZ0jynHa64ti8mHHPOg
-	QvSsFOGyQKaUh1LBUN1NklmLScG+rajbHZxtR5hRDen+6u6atxcUFycxRg69xT1T15Sshno9C8UcG
-	wxol1s9o4R0AiHvCU5Rw==;
+	List-Owner; bh=+PyjUDnqVinhMQ5ZtkPYrYJGFlZhr6M09Vwf4sqhRwI=; b=aRmCQWx2INP+R1
+	hbTlvy1tyDN2ELWJlZOEBXSAfWkWvyL6V8b1xMkgLy2ROYI9FFreK3e/cuTfGe0si+whakfbplDRz
+	yW4sT9eQkaU6puIgkYadKlG2DE7YxAxadDkyoqtM2DLF6Tx+OKgmh19gv0oYDqUVwTDNqDrqp7qng
+	MoGwIdVIAN+3VaTSlsdu0JixNb+72O5Fh1nbAlFYhkhIWd6awk6O5zsD/itIsXNbQ7GFMGXtQmXzW
+	LxVx+GND/ALjDGsEfG2TfXmLzBW/10AFF4mifZ76mERNYq11g2iITctIs2PrWNFVQ4wpY6dAWaOZn
+	1bdlOFGy9yOjW4xWGCaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT6RA-00000004CoN-39Br;
-	Mon, 16 Nov 2026 23:48:37 +0000
+	id 1xT6RJ-00000004CvD-0897;
+	Mon, 16 Nov 2026 23:48:45 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT6R1-00000004CjT-22py
+	id 1xT6RD-00000004Cqb-3BEY
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 23:48:27 +0000
+	Mon, 16 Nov 2026 23:48:39 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E8DAC6142B;
-	Mon, 16 Nov 2026 23:48:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A02681F000C4;
-	Mon, 16 Nov 2026 23:48:20 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 233D0612FC;
+	Mon, 16 Nov 2026 23:48:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5659F1F000C4;
+	Mon, 16 Nov 2026 23:48:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794872906;
-	bh=IT3uhrPADx9D4Srqz/Zu9EO3T+JRAK83LQQrhjQqwfA=;
+	s=k20260515; t=1794872918;
+	bh=+PyjUDnqVinhMQ5ZtkPYrYJGFlZhr6M09Vwf4sqhRwI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Ll9JiW4HntFTemRIFO1x/uIlIm9kzi+Zcftvc1dOjflQp+AbniHnaEZmefgS3VnD2
-	 LD+gDNUPdO1Jy+qZRLPpOxlU7fX9ZzbKQuywAFZkShGRhUEWgwVu3RYg4a7S0k5bYZ
-	 j33Sx8qhgkSrY3HbBKbi+JmVuH/es4Uimx1Be+bTmBH+sAvX7LHHi0cTsi+Fa2MQME
-	 vA3Zug8YKwkHkuFcJSPeN172wiOPybSV5fub7JBWOWwPn91PkWl/JuZ1ONxIYav+uL
-	 qdzoUaZ7taXnMMwPeJqeQ0qQAAArq4GrPz0L4YpSCnYgqPp4cjG7FR3Tcafk7tAr9Z
-	 5pNL22xcHmn9w==
+	b=AuVYUbEGn7myepzdlhCzTsK/IAvatcBhWOSfeArALXCzTmEUyMqlYfwClj5N3VCxI
+	 jsmn3nesxCFTvXaZSptroCJpyi75QRfEzigp/ElApFwQy+XgmBwC+igbSALqMoATTl
+	 bX4XzVoJ/V1bC4AGGyXt/h3ASL9paEmv2hKZPJ8hCdBaFqyG+3HlRZ1SpJha9lhvjV
+	 67c6iOGyFZ6Ayq6RLfoDdWh2DyBTIs8tTwbn0nhvh82SNgdl4TbJ8pgx7F6X0Zurf4
+	 XNsmSIN81wDVaFCEvDLE92NqZ/uOtbkDgsB6x90glJj9sSR8IwPO2L6DLiaFZnZhn+
+	 277gFU4J9T/9g==
 From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 17 Nov 2026 00:47:56 +0100
-Subject: [PATCH v5 4/6] reset: Add BCMBCA block resets through the PMB
+Date: Tue, 17 Nov 2026 00:47:58 +0100
+Subject: [PATCH v5 6/6] hwmon: Add Broadcom PMB PVTMON monitoring
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20261117-xg6846b-bcmbca-xrdp-reset-v5-4-f584e8b8e696@kernel.org>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261117-xg6846b-bcmbca-xrdp-reset-v5-6-f584e8b8e696@kernel.org>
 References: <20261117-xg6846b-bcmbca-xrdp-reset-v5-0-f584e8b8e696@kernel.org>
 In-Reply-To: <20261117-xg6846b-bcmbca-xrdp-reset-v5-0-f584e8b8e696@kernel.org>
 To: Linus Walleij <linusw@kernel.org>, Lee Jones <lee@kernel.org>, 
@@ -90,310 +90,389 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Implement the BCM6846 XRDP reset group through the shared PMB regmap.
-Assert all blocks before releasing any of them, preserving the vendor
-reset masks and ordering. Provide the independent PVTMON acquisition
-reset as well. Serialize complete sequences and hold blocks in reset
-on failure.
+Expose the BCM6846 die temperature and seven voltage inputs through
+hwmon using the shared Power Management Bus (PMB) regmap.
 
-Consumers must enable their power domains before triggering a reset
-pulse (i.e. the cycle of asserting/deasserting reset).
+Register the temperature channel with the thermal framework so
+existing zero-cell device-tree thermal sensor references work.
 
-Suppress bind attributes: it's not good to be able to unbind the
-reset driver for the SoC manually.
+Poll for valid samples with a bounded timeout, releasing the PMB lock
+between reads. Report temperature in millidegrees Celsius, including
+negative values, and voltages in millivolts.
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 Signed-off-by: Linus Walleij <linusw@kernel.org>
 ---
-I kept the suppress_bind_attributes around: it looks dangerous to
-be able to unbind the reset driver.
----
- MAINTAINERS                      |   1 +
- drivers/reset/Kconfig            |  13 +++
- drivers/reset/Makefile           |   1 +
- drivers/reset/reset-bcmbca-pmb.c | 227 +++++++++++++++++++++++++++++++++++++++
- 4 files changed, 242 insertions(+)
+ Documentation/hwmon/bcm_pmb_pvtmon.rst |  53 ++++++++
+ Documentation/hwmon/index.rst          |   1 +
+ MAINTAINERS                            |   2 +
+ drivers/hwmon/Kconfig                  |  18 +++
+ drivers/hwmon/Makefile                 |   1 +
+ drivers/hwmon/bcm_pmb_pvtmon.c         | 231 +++++++++++++++++++++++++++++++++
+ 6 files changed, 306 insertions(+)
 
+diff --git a/Documentation/hwmon/bcm_pmb_pvtmon.rst b/Documentation/hwmon/bcm_pmb_pvtmon.rst
+new file mode 100644
+index 000000000000..8d2412daeed1
+--- /dev/null
++++ b/Documentation/hwmon/bcm_pmb_pvtmon.rst
+@@ -0,0 +1,53 @@
++.. SPDX-License-Identifier: GPL-2.0-only
++
++Kernel driver bcm_pmb_pvtmon
++============================
++
++Supported chips:
++
++  * Broadcom BCM6846 PVTMON
++
++    Access: Power Management Bus (PMB), bus 1, device 6
++
++Author: Linus Walleij <linusw@kernel.org>
++
++Description
++-----------
++
++The process, voltage and temperature monitor (PVTMON) measures die
++temperature and seven voltage inputs. The driver uses the shared PMB MFD
++transport and obtains its clock and reset from the sibling providers.
++
++With CONFIG_THERMAL_OF enabled, the temperature channel also supplies
++device-tree thermal zones. The PVTMON node uses #thermal-sensor-cells = <0>;
++voltage inputs do not have thermal sensor indices.
++
++Sysfs attributes
++----------------
++
++All attributes are read-only. Temperature is reported in millidegrees
++Celsius and voltages in millivolts, using the BCM6846 vendor conversion
++formulas and input-divider ratios.
++
++================ ================================
++Attribute        Description
++================ ================================
++temp1_input      Die temperature
++in0_input        First 0.85 V input
++in1_input        Second 0.85 V input
++in2_input        VIN input
++in3_input        1.0 V input
++in4_input        1.8 V input
++in5_input        3.3 V input
++in6_input        Diagnostic test input
++in0_label        V0.85_1
++in1_label        V0.85_2
++in2_label        VIN
++in3_label        V1.0
++in4_label        V1.8
++in5_label        V3.3
++in6_label        Vtest
++================ ================================
++
++Labels follow the vendor channel names. Vtest is a diagnostic ADC input,
++not a supply rail. The driver does not change the analog test routing.
+diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+index 199ca79621e9..5a579391cf9e 100644
+--- a/Documentation/hwmon/index.rst
++++ b/Documentation/hwmon/index.rst
+@@ -54,6 +54,7 @@ Hardware Monitoring Kernel Drivers
+    axiado-pwm-fan
+    axiado-tsadc
+    bcm54140
++   bcm_pmb_pvtmon
+    bel-pfe
+    bpa-rs600
+    cgbc-hwmon
 diff --git a/MAINTAINERS b/MAINTAINERS
-index cfe64722a708..1d92b70c4465 100644
+index 770b0649cc52..d53a49c6b511 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -5450,6 +5450,7 @@ S:	Maintained
+@@ -5448,7 +5448,9 @@ BROADCOM BCMBCA PMC3 PMB DRIVER
+ M:	Linus Walleij <linusw@kernel.org>
+ S:	Maintained
  F:	Documentation/devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml
++F:	Documentation/hwmon/bcm_pmb_pvtmon.rst
+ F:	drivers/clk/bcm/clk-bcmbca-pmb.c
++F:	drivers/hwmon/bcm_pmb_pvtmon.c
  F:	drivers/mfd/bcmbca_pmc3_pmb.c
  F:	drivers/pmdomain/bcm/bcmbca-pmb.c
-+F:	drivers/reset/reset-bcmbca-pmb.c
- F:	include/dt-bindings/clock/brcm,bcm6846-pmb.h
- F:	include/dt-bindings/power/brcm,bcm6846-pmb.h
- F:	include/dt-bindings/reset/brcm,bcm6846-pmb.h
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index eda9c698a95f..7371aead0b17 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -49,6 +49,19 @@ config RESET_BCM6345
- 	help
- 	  This enables the reset controller driver for BCM6345 SoCs.
+ F:	drivers/reset/reset-bcmbca-pmb.c
+diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+index 18c682e1a475..5e42c3dc70f1 100644
+--- a/drivers/hwmon/Kconfig
++++ b/drivers/hwmon/Kconfig
+@@ -334,6 +334,24 @@ config SENSORS_AXIADO_TSADC
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called axiado-tsadc.
  
-+config RESET_BCMBCA_PMB
-+	tristate "Broadcom BCMBCA PMB reset controller"
++config SENSORS_BCM_PMB_PVTMON
++	tristate "Broadcom PMB PVTMON hardware monitoring"
 +	depends on ARCH_BCMBCA || COMPILE_TEST
-+	depends on OF && HAS_IOMEM
 +	depends on MFD_BCMBCA_PMB
++	depends on COMMON_CLK
++	depends on RESET_CONTROLLER
++	select CLK_BCMBCA_PMB
++	select RESET_BCMBCA_PMB
 +	select REGMAP
 +	default MFD_BCMBCA_PMB
 +	help
-+	  Reset BCMBCA blocks through the Power Management Bus (PMB) of
-+	  the third generation Power Management Controller (PMC3).
++	  Enable temperature and voltage monitoring through the
++	  Power Management Bus on Broadcom BCM6846. With THERMAL_OF enabled, the
++	  temperature channel also supplies the thermal zones described in
++	  the device tree.
 +
-+	  The module will be called reset-bcmbca-pmb.
++	  This driver can also be built as a module called bcm_pmb_pvtmon.
 +
- config RESET_BERLIN
- 	tristate "Berlin Reset Driver"
- 	depends on ARCH_BERLIN || COMPILE_TEST
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 489fafd6bbe3..26c8a73f774f 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -11,6 +11,7 @@ obj-$(CONFIG_RESET_ASPEED) += reset-aspeed.o
- obj-$(CONFIG_RESET_ATH79) += reset-ath79.o
- obj-$(CONFIG_RESET_AXS10X) += reset-axs10x.o
- obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
-+obj-$(CONFIG_RESET_BCMBCA_PMB) += reset-bcmbca-pmb.o
- obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
- obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
- obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-diff --git a/drivers/reset/reset-bcmbca-pmb.c b/drivers/reset/reset-bcmbca-pmb.c
+ config SENSORS_K8TEMP
+ 	tristate "AMD Athlon64/FX or Opteron temperature sensor"
+ 	depends on X86 && PCI
+diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+index d4c345ed7261..edf8e8d2f345 100644
+--- a/drivers/hwmon/Makefile
++++ b/drivers/hwmon/Makefile
+@@ -62,6 +62,7 @@ obj-$(CONFIG_SENSORS_ATXP1)	+= atxp1.o
+ obj-$(CONFIG_SENSORS_AXI_FAN_CONTROL) += axi-fan-control.o
+ obj-$(CONFIG_SENSORS_AXIADO_PWM_FAN) += axiado-pwm-fan.o
+ obj-$(CONFIG_SENSORS_AXIADO_TSADC)	+= axiado-tsadc.o
++obj-$(CONFIG_SENSORS_BCM_PMB_PVTMON) += bcm_pmb_pvtmon.o
+ obj-$(CONFIG_SENSORS_CGBC)	+= cgbc-hwmon.o
+ obj-$(CONFIG_SENSORS_CHIPCAP2) += chipcap2.o
+ obj-$(CONFIG_SENSORS_CORETEMP)	+= coretemp.o
+diff --git a/drivers/hwmon/bcm_pmb_pvtmon.c b/drivers/hwmon/bcm_pmb_pvtmon.c
 new file mode 100644
-index 000000000000..80159b92de88
+index 000000000000..3c58e0be3251
 --- /dev/null
-+++ b/drivers/reset/reset-bcmbca-pmb.c
-@@ -0,0 +1,227 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
++++ b/drivers/hwmon/bcm_pmb_pvtmon.c
+@@ -0,0 +1,231 @@
++// SPDX-License-Identifier: GPL-2.0-only
 +/*
-+ * BCMBCA block resets through the Power Management Bus (PMB) of the
-+ * third generation Power Management Controller (PMC3).
++ * Broadcom BCM6846 process, voltage and temperature monitor (PVTMON).
 + */
 +
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/delay.h>
++#include <linux/bitfield.h>
++#include <linux/clk.h>
++#include <linux/hwmon.h>
 +#include <linux/mfd/bcmbca-pmb.h>
 +#include <linux/module.h>
-+#include <linux/mutex.h>
 +#include <linux/platform_device.h>
-+#include <linux/property.h>
 +#include <linux/regmap.h>
-+#include <linux/reset-controller.h>
-+#include <linux/string_choices.h>
++#include <linux/reset.h>
 +
-+#include <dt-bindings/reset/brcm,bcm6846-pmb.h>
++#define PVTMON_BUS		1
++#define PVTMON_DEVICE		6
 +
-+struct bcmbca_pmb_reset_block {
-+	u8 bus;
-+	u8 device;
-+	u16 offset; /* PMB word offset of the reset register. */
-+	u32 mask;
-+	u32 assert_value;
-+	u32 deassert_value;
++/* PMB register offsets are in 32-bit words. */
++#define PVTMON_CONFIG		17
++#define PVTMON_RESET_N		BIT(0)
++#define PVTMON_POWER_DOWN		BIT(1)
++
++#define PVTMON_ACQ_CONFIG		20
++#define PVTMON_ACCUM_ENABLE	BIT(0)
++#define PVTMON_SKIP_LENGTH	GENMASK(11, 8)
++
++#define PVTMON_CHANNEL_BASE	24
++#define PVTMON_NUM_CHANNELS	8
++#define PVTMON_VALUE		GENMASK(9, 0)
++#define PVTMON_VALID		BIT(18)
++#define PVTMON_SAMPLES		GENMASK(26, 24)
++#define PVTMON_CHANNEL_ENABLE	BIT(31)
++
++/* BCM6846 voltage channel labels and input-divider ratios. */
++static const struct {
++	const char *label;
++	unsigned int divisor;
++} bcm6846_pvtmon_voltages[] = {
++	{ "V0.85_1", 10 },
++	{ "V0.85_2", 10 },
++	{ "VIN", 7 },
++	{ "V1.0", 7 },
++	{ "V1.8", 4 },
++	{ "V3.3", 2 },
++	{ "Vtest", 10 },
 +};
 +
-+struct bcmbca_pmb_reset_group {
-+	const char *name;
-+	const struct bcmbca_pmb_reset_block *blocks;
-+	unsigned int num_blocks;
-+	/* Minimum reset assertion hold time in microseconds. */
-+	unsigned int assert_hold_us;
-+};
-+
-+struct bcmbca_pmb_reset_variant {
-+	const struct bcmbca_pmb_reset_group *groups;
-+	unsigned int num_groups;
-+};
-+
-+struct bcmbca_pmb_reset {
-+	struct reset_controller_dev rcdev;
-+	const struct bcmbca_pmb_reset_variant *variant;
-+	struct regmap *regmap;
-+	/* Serialize complete reset pulses and failure cleanup. */
-+	struct mutex lock;
-+};
-+
-+static const struct bcmbca_pmb_reset_block bcm6846_xrdp_resets[] = {
-+	{
-+		.bus = 1,
-+		.device = 12,
-+		.offset = 5,
-+		.mask = GENMASK(27, 0),
-+		/* Keep bits 0–2 deasserted. */
-+		.assert_value = GENMASK(2, 0),
-+		.deassert_value = GENMASK(27, 0),
-+	},
-+	{
-+		.bus = 1,
-+		.device = 14,
-+		.offset = 5,
-+		.mask = GENMASK(27, 0),
-+		.deassert_value = GENMASK(27, 0),
-+	},
-+	{
-+		.bus = 1,
-+		.device = 15,
-+		.offset = 5,
-+		.mask = GENMASK(27, 0),
-+		.deassert_value = GENMASK(27, 0),
-+	},
-+	{
-+		.bus = 1,
-+		.device = 16,
-+		.offset = 5,
-+		.mask = GENMASK(27, 0),
-+		.deassert_value = GENMASK(27, 0),
-+	},
-+};
-+
-+/* Analog acquisition reset, independent of clock and power configuration. */
-+static const struct bcmbca_pmb_reset_block bcm6846_pvtmon_reset = {
-+	.bus = 1,
-+	.device = 6,
-+	.offset = 17,
-+	.mask = BIT(0),
-+	.deassert_value = BIT(0),
-+};
-+
-+static const struct bcmbca_pmb_reset_group bcm6846_pmb_reset_groups[] = {
-+	[BCM6846_RESET_XRDP] = {
-+		.name = "XRDP",
-+		.blocks = bcm6846_xrdp_resets,
-+		.num_blocks = ARRAY_SIZE(bcm6846_xrdp_resets),
-+		.assert_hold_us = 10,
-+	},
-+	[BCM6846_RESET_PVTMON] = {
-+		.name = "PVTMON",
-+		.blocks = &bcm6846_pvtmon_reset,
-+		.num_blocks = 1,
-+		.assert_hold_us = 1000,
-+	},
-+};
-+
-+static const struct bcmbca_pmb_reset_variant bcm6846_pmb_variant = {
-+	.groups = bcm6846_pmb_reset_groups,
-+	.num_groups = ARRAY_SIZE(bcm6846_pmb_reset_groups),
-+};
-+
-+/* Best effort: never restart a partially reset group. */
-+static void bcmbca_pmb_reset_cleanup(struct bcmbca_pmb_reset *rst,
-+				     const struct bcmbca_pmb_reset_group *group)
++static int bcm_pmb_pvtmon_init(struct regmap *regmap,
++			       struct reset_control *reset)
 +{
-+	const struct bcmbca_pmb_reset_block *block;
++	unsigned int reg = BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE, PVTMON_CONFIG);
++	u32 config, acq, channel;
 +	unsigned int i;
 +	int ret;
 +
-+	for (i = 0; i < group->num_blocks; i++) {
-+		block = &group->blocks[i];
-+		ret = regmap_update_bits(rst->regmap,
-+					 BCMBCA_PMB_REG(block->bus, block->device, block->offset),
-+					 block->mask, block->assert_value);
++	ret = regmap_read(regmap, reg, &config);
++	if (ret)
++		return ret;
++
++	/* Do not reset acquisition already running for the PMC firmware. */
++	if ((config & (PVTMON_RESET_N | PVTMON_POWER_DOWN)) != PVTMON_RESET_N) {
++		ret = regmap_update_bits(regmap, reg, PVTMON_POWER_DOWN, 0);
 +		if (ret)
-+			dev_err(rst->rcdev.dev,
-+				"failed to hold PMB bus %u device %u in reset: %d\n",
-+				block->bus, block->device, ret);
++			return ret;
++		ret = reset_control_reset(reset);
++		if (ret)
++			return ret;
 +	}
++
++	ret = regmap_read(regmap, BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE,
++						 PVTMON_ACQ_CONFIG), &acq);
++	if (ret)
++		return ret;
++
++	for (i = 0; i < PVTMON_NUM_CHANNELS; i++) {
++		reg = BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE, PVTMON_CHANNEL_BASE + i);
++		ret = regmap_read(regmap, reg, &channel);
++		if (ret)
++			return ret;
++
++		if (channel & PVTMON_CHANNEL_ENABLE)
++			continue;
++
++		/* Average 32 samples. */
++		ret = regmap_update_bits(regmap, reg, PVTMON_CHANNEL_ENABLE | PVTMON_SAMPLES,
++					 PVTMON_CHANNEL_ENABLE | FIELD_PREP(PVTMON_SAMPLES, 5));
++		if (ret)
++			return ret;
++	}
++
++	if (!(acq & PVTMON_ACCUM_ENABLE))
++		return regmap_update_bits(regmap,
++					  BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE,
++							 PVTMON_ACQ_CONFIG),
++					  PVTMON_SKIP_LENGTH | PVTMON_ACCUM_ENABLE,
++					  PVTMON_ACCUM_ENABLE | FIELD_PREP(PVTMON_SKIP_LENGTH, 8));
++
++	return 0;
 +}
 +
-+static int bcmbca_pmb_reset_sequence(struct bcmbca_pmb_reset *rst,
-+				     const struct bcmbca_pmb_reset_group *group)
++static int bcm_pmb_pvtmon_read(struct device *dev, enum hwmon_sensor_types type,
++			       u32 attr, int channel, long *val)
 +{
-+	const struct bcmbca_pmb_reset_block *block;
-+	enum {
-+		PASS_ASSERT,
-+		PASS_DEASSERT,
-+	} pass;
-+	unsigned int i;
++	struct regmap *map = dev_get_drvdata(dev);
++	unsigned int index;
++	u32 value;
 +	int ret;
 +
-+	if (!group->num_blocks)
-+		return -EINVAL;
++	switch (type) {
++	case hwmon_temp:
++		if (attr != hwmon_temp_input)
++			return -EOPNOTSUPP;
++		index = 0;
++		break;
++	case hwmon_in:
++		if (attr != hwmon_in_input)
++			return -EOPNOTSUPP;
++		index = channel + 1;
++		break;
++	default:
++		return -EOPNOTSUPP;
++	}
 +
-+	/* Assert every block before releasing any of them. */
-+	for (pass = PASS_ASSERT; pass <= PASS_DEASSERT; pass++) {
-+		for (i = 0; i < group->num_blocks; i++) {
-+			block = &group->blocks[i];
-+			ret = regmap_update_bits(rst->regmap,
-+						 BCMBCA_PMB_REG(block->bus, block->device,
-+								block->offset), block->mask,
-+						 pass == PASS_DEASSERT ? block->deassert_value :
-+						 block->assert_value);
-+			if (ret)
-+				goto cleanup;
-+		}
-+		if (pass == PASS_ASSERT && group->assert_hold_us)
-+			usleep_range(group->assert_hold_us, group->assert_hold_us * 2);
++	/* Release the PMB between samples so other clients can make progress. */
++	ret = regmap_read_poll_timeout(map,
++				       BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE,
++						      PVTMON_CHANNEL_BASE + index),
++				       value, value & PVTMON_VALID, 1000, 100000);
++	if (ret)
++		return ret;
++
++	value = FIELD_GET(PVTMON_VALUE, value);
++	if (type == hwmon_temp) {
++		/* Signed arithmetic allows temperatures below zero Celsius. */
++		*val = (41335000 - 49055 * (int)value) / 100;
++	} else {
++		/* 880 mV ADC reference, accounting for each input divider. */
++		*val = 880 * value * 10 /
++			(bcm6846_pvtmon_voltages[channel].divisor * 1024);
 +	}
-+cleanup:
-+	if (ret) {
-+		dev_err(rst->rcdev.dev, "%s %s failed at PMB bus %u device %u: %d\n",
-+			group->name, str_assert_deassert(pass == PASS_ASSERT),
-+			block->bus, block->device, ret);
-+		bcmbca_pmb_reset_cleanup(rst, group);
-+	}
-+	return ret;
++
++	return 0;
 +}
 +
-+static int bcmbca_pmb_reset(struct reset_controller_dev *rcdev, unsigned long id)
++static int bcm_pmb_pvtmon_read_string(struct device *dev,
++				      enum hwmon_sensor_types type, u32 attr,
++				      int channel, const char **str)
 +{
-+	struct bcmbca_pmb_reset *rst = container_of(rcdev, struct bcmbca_pmb_reset, rcdev);
-+	const struct bcmbca_pmb_reset_group *group = &rst->variant->groups[id];
++	if (type != hwmon_in || attr != hwmon_in_label)
++		return -EOPNOTSUPP;
 +
-+	guard(mutex)(&rst->lock);
-+	return bcmbca_pmb_reset_sequence(rst, group);
++	*str = bcm6846_pvtmon_voltages[channel].label;
++	return 0;
 +}
 +
-+static const struct reset_control_ops bcmbca_pmb_reset_ops = {
-+	.reset = bcmbca_pmb_reset,
++static const struct hwmon_ops bcm_pmb_pvtmon_ops = {
++	.visible = 0444,
++	.read = bcm_pmb_pvtmon_read,
++	.read_string = bcm_pmb_pvtmon_read_string,
 +};
 +
-+static int bcmbca_pmb_reset_probe(struct platform_device *pdev)
++static const struct hwmon_channel_info * const bcm_pmb_pvtmon_info[] = {
++	HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ),
++	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
++	HWMON_CHANNEL_INFO(in,
++			   HWMON_I_INPUT | HWMON_I_LABEL,
++			   HWMON_I_INPUT | HWMON_I_LABEL,
++			   HWMON_I_INPUT | HWMON_I_LABEL,
++			   HWMON_I_INPUT | HWMON_I_LABEL,
++			   HWMON_I_INPUT | HWMON_I_LABEL,
++			   HWMON_I_INPUT | HWMON_I_LABEL,
++			   HWMON_I_INPUT | HWMON_I_LABEL),
++	NULL
++};
++
++static const struct hwmon_chip_info bcm_pmb_pvtmon_chip_info = {
++	.ops = &bcm_pmb_pvtmon_ops,
++	.info = bcm_pmb_pvtmon_info,
++};
++
++static int bcm_pmb_pvtmon_probe(struct platform_device *pdev)
 +{
 +	struct device *dev = &pdev->dev;
 +	struct regmap *regmap = dev_get_regmap(dev->parent, NULL);
-+	struct bcmbca_pmb_reset *rst;
++	struct device *hwmon;
++	struct reset_control *reset;
++	struct clk *clk;
++	int ret;
 +
 +	if (!regmap)
 +		return -ENODEV;
 +
-+	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
-+	if (!rst)
-+		return -ENOMEM;
-+	rst->variant = device_get_match_data(dev);
-+	if (!rst->variant)
-+		return -ENODEV;
-+	rst->regmap = regmap;
-+	mutex_init(&rst->lock);
-+	rst->rcdev.owner = THIS_MODULE;
-+	rst->rcdev.dev = dev;
-+	rst->rcdev.ops = &bcmbca_pmb_reset_ops;
-+	rst->rcdev.of_node = dev->of_node;
-+	rst->rcdev.nr_resets = rst->variant->num_groups;
-+	return devm_reset_controller_register(dev, &rst->rcdev);
++	reset = devm_reset_control_get_exclusive(dev, NULL);
++	if (IS_ERR(reset))
++		return dev_err_probe(dev, PTR_ERR(reset), "failed to get PVTMON reset\n");
++
++	clk = devm_clk_get_enabled(dev, NULL);
++	if (IS_ERR(clk))
++		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable PVTMON clock\n");
++
++	ret = bcm_pmb_pvtmon_init(regmap, reset);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to initialize PVTMON\n");
++
++	hwmon = devm_hwmon_device_register_with_info(dev, "bcm6846_pvtmon", regmap,
++						     &bcm_pmb_pvtmon_chip_info, NULL);
++	if (IS_ERR(hwmon))
++		return dev_err_probe(dev, PTR_ERR(hwmon), "failed to register hwmon device\n");
++
++	/* Acquisition remains enabled for the PMC firmware after unbinding. */
++	return 0;
 +}
 +
-+static const struct of_device_id bcmbca_pmb_reset_of_match[] = {
-+	{ .compatible = "brcm,bcm6846-pmb-reset", .data = &bcm6846_pmb_variant },
++static const struct of_device_id bcm_pmb_pvtmon_of_match[] = {
++	{ .compatible = "brcm,bcm6846-pmb-pvtmon" },
 +	{ }
 +};
-+MODULE_DEVICE_TABLE(of, bcmbca_pmb_reset_of_match);
++MODULE_DEVICE_TABLE(of, bcm_pmb_pvtmon_of_match);
 +
-+static struct platform_driver bcmbca_pmb_reset_driver = {
-+	.probe = bcmbca_pmb_reset_probe,
++static struct platform_driver bcm_pmb_pvtmon_driver = {
++	.probe = bcm_pmb_pvtmon_probe,
 +	.driver = {
-+		.name = "brcm-pmb-reset",
-+		.of_match_table = bcmbca_pmb_reset_of_match,
-+		.suppress_bind_attrs = true,
++		.name = "bcm6846-pmb-pvtmon",
++		.of_match_table = bcm_pmb_pvtmon_of_match,
 +	},
 +};
-+module_platform_driver(bcmbca_pmb_reset_driver);
++module_platform_driver(bcm_pmb_pvtmon_driver);
 +
-+MODULE_DESCRIPTION("Broadcom BCMBCA PMB reset controller");
++MODULE_AUTHOR("Linus Walleij <linusw@kernel.org>");
++MODULE_DESCRIPTION("Broadcom PMB PVTMON hardware monitoring driver");
 +MODULE_LICENSE("GPL");
 
 -- 
