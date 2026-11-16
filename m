@@ -2,102 +2,147 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936BA606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 08:01:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01453606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 08:15:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=doBsOmHc;
-	dkim=pass (2048-bit key) header.d=amutable-com.20260707.gappssmtp.com header.i=@amutable-com.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=ZL9lQ+Ij
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VytYl+41;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=YxMx4sIR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=YsacxGE14wOKz6Pg8TZXlOHyLRTqOTqtvBl+xKa/O2U=; b=doBsOmHcDa5lgUv+XRwAxzHI35
-	HNJpwjy1AoimFYuOhMn/rC1u6ZsayEEHm7wOJPy0I12HqB5IiKCUnsfcy4RzQ7xvJv2EP3TCi5H54
-	siqN0S9JZzi1q4NOSPxOj+oLbf+mhotQab0l5m7xGvkXj4ZqQS+vc/qLTXOokpaXf13K5a5pbyCia
-	LuUyetrwtp86GPFcOTidY/efNMor/o1RKlUosR9tGNJ5hgzLZDuGK38etZvSVqQTEJ2sg94MPbFDV
-	4bUoDTPtq6Y0t7YGV6qGhvpEtdFqeDe3ekkrX2ztVSIYxf731WjFsdpGRUCJCrsYre80oYOC55gkR
-	mwhg0GFw==;
+	bh=P5RnJEzxjgbVSjCZbVjyRQi+ntikfVmu6Qex9xqi/RE=; b=VytYl+41Y2bD4KQlhjsZcNtIwj
+	jKJEj9U9NdkQIgzaM+kDy58J04wKgNlqzNLAmzfL/aXpEGplxyLTF2HykY57jcdiV7ylVDY+nJsZh
+	WnMiUEo2aNGDTO1KWY5Ks0eYCD3BTqf4Y3Mi5j5Av1id49xraUdgNvTpQ3iYJGh9x8dUuTpV+9HQz
+	jZEdeBSTkJMOpnKbXDWUupz1w91uPqAb/xnqjcc8TanAl/yW40CxjPXdmdXE8AJvLIwOsl78CX5Ml
+	QvD5Y5cA55ZXnzqmiB536UMkdYtGsBxFpwfRFKEAZnPcDMqEh+X8MJS6Ft2tFgOOHEIyWu+AG21oS
+	wi5OEbFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrer-00000001VpU-2D4O;
-	Mon, 16 Nov 2026 08:01:45 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1xSrrX-00000001XEs-1oyD;
+	Mon, 16 Nov 2026 08:14:51 +0000
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSreo-00000001VnN-3nq2
+	id 1xSrrT-00000001XDT-3VS6
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 08:01:44 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-c50e26763a4so55821866b.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 00:01:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amutable-com.20260707.gappssmtp.com; s=20260707; t=1794816100; x=1795420900; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=YsacxGE14wOKz6Pg8TZXlOHyLRTqOTqtvBl+xKa/O2U=;
-        b=ZL9lQ+Ij/OHBOtOQ/43LNApMmnlCsRCqo1I9FM9QB7yoe9Y0Jc2twTqTJlSTAhGuVl
-         S2uSvCnydGkcqC1T64WuEI8t1zrzHEO8T7pa76UM1ezXZszIUU5yqsOj6AV9mLvZOEMV
-         lThdg+xxom4pfNA5pyONynvNSyW/4WTBi0vTV/X4W+J3LheAoQk6+Gt1eYB0VXB+mzsT
-         pFkCDXsh+DqSluCX3Sd7c+b/pCRIyc4DTdu4B3H3Hfy7iEkAnbJm30SyYuuKtUweXsLr
-         hKBsTcChRaAidYZ8gLc8Y186xazoi6UwZMo8+SWe7CVFOOHu4FPmQJTPydT9Ce4N9P0R
-         qBqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794816100; x=1795420900;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=YsacxGE14wOKz6Pg8TZXlOHyLRTqOTqtvBl+xKa/O2U=;
-        b=ezG/s4sLfLz/ItILdHJF5r9EAvUtM5ZlK7ZKR80q+G62hzK5hKlpRtj05v7MxbShti
-         DvpLb2od4JHVEl2s7iqRAFGH4caZJV1lCz5Lej2zuuw0NZ6JLcqf2daRgQJAPwINW3Fp
-         yBSiuQpN4nWiaHpcTFX0H1qIt8ZGdhMTUlDgDgEkd/qAHfqtEcYJeBTqZIi2RYXC0dO8
-         dLd7fJF4oOhD+4g7fkYTk62OXyBNCo8r1BWfcUBZkY5EES/wXJnvWMVOQSLVghCDrdVV
-         aGhD9eMOIFBbtxwhRGYPBvqnabgKAL0YcuvoDHqPBBpRR3FpCz/a5csQnOut69YNB6IX
-         uLMw==
-X-Forwarded-Encrypted: i=1; AL+hErGaWepTVY0BjoD/0dBDzfxyhpAsdL5a+oR2lbbOxhLcr8q5txfOXNAfZLlK1BwMCXrB/s51TYRr4VIZN36KOhXy@lists.infradead.org
-X-Gm-Message-State: APuU4Z//vlHK6cIYreGXt+R/HjfFNnkdoE2WwBEsbf/Q6G2+arwMVYqt
-	9If5idr1BoA5mGYNZ9+V9g7CkeopdDfbwqm7dXsGAkcjuXINmiSUgi6sHDMghvZmfFQc
-X-Gm-Gg: AYBFou1Y0/SdHFHh8uRQguljRTeqBGKzy+YL415LCwhzFxl8PJzdcYxygMrlDmx0b3z
-	RzjKPmQg8u0YobCyT886pJzD0miExv9EW4I7ngl0+JDuJcCZXqss5n6jTYc2xBiYJy46oxXh2tp
-	HOS+RaWM13DOyGHPXijKpocmqah0Qb4Ubat8Qk4BUYyjLbEPDE9XZZZ6jLnwOaft0b4z3n3JSWk
-	3T9hPKLI7JG+k/DPQpmbcUzDyTF1S5hIA6Ga3HVQN3h1JbgD/AHKnFfFKMrLMsttArFCn7odxU+
-	hJ1niJeALMQX7ssb3zhGNh/+Svhifp/MvB+kx7ueuRjoAMcq9iikoAfYU5EhiOzX1c4G+Q9USK1
-	4HGrRX+DrLhGl+HpjuehfR5MrJ8Q7QlQmVLbSlUPybLnVxCppD5n6A915C7PwMlEhXuz660KCBo
-	uIRczDJpVVop1hbK7KVcgjPHEX0KoRWghEzZQga088JgAvSJmq1y4UKbJAtnGHU4k75KLXBJAWw
-	kpaX2wnjJe2umwZ6trpHfO+m1F0T2mSdXXGSylqXZ0Ue1kPefA2bXceWndE4hwp9Rym1PdzMjhA
-	REHsPW0qs+FlBKfnWac0e/Wz9Z4RCvyu2N6SaCgBOBd6xlPNmS297sR8UnNlues=
-X-Received: by 2002:a17:907:1c90:b0:c2e:63ba:1f90 with SMTP id a640c23a62f3a-c50963bc4f0mr777600066b.48.1794816099924;
-        Mon, 16 Nov 2026 00:01:39 -0800 (PST)
-Received: from [10.0.0.233] (tmo-086-54.customers.d1-online.com. [80.187.86.54])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b7b2c9sm385795866b.73.2026.11.16.00.01.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 00:01:39 -0800 (PST)
-Message-ID: <dfdd6f4437cbf8f55458b908ec5347f3189bce80.camel@amutable.com>
-Subject: Re: [PATCH RFC 4/4] crash_dump: use copy_oldmem_to_iter() everywhere
-From: Alexander Mikhalitsyn <alex@amutable.com>
-To: Christian Brauner <brauner@kernel.org>, linux-fsdevel@vger.kernel.org
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Breno Leitao
-	 <leitao@debian.org>, Chris Mason <mason@kernel.org>, Thomas Gleixner
-	 <tglx@kernel.org>, x86@kernel.org, kexec@lists.infradead.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
-	linux-riscv@lists.infradead.org, loongarch@lists.linux.dev, 
-	linux-mips@vger.kernel.org, linux-sh@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, David Hildenbrand <david@kernel.org>
-Date: Mon, 16 Nov 2026 09:01:37 +0100
-In-Reply-To: <20261112-work-procfs-oldmem-v1-4-ecdcafd99265@kernel.org>
-References: <20261112-work-procfs-oldmem-v1-0-ecdcafd99265@kernel.org>
-	 <20261112-work-procfs-oldmem-v1-4-ecdcafd99265@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	Mon, 16 Nov 2026 08:14:49 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wqtqlC8un6Qc5cheeImUrTs0TfQYfhAymcOE3uAuCOcOsklCJl/CSvwnRfiQJMH/f3oz1MCPIc1E3KUwXF7sLzZyEOlk20QTxPL298cxPdDixg3Hf4H7/P4nAmjMwB3Mn+3/qg6qwrvugqjE+rQEf3Bg/av0Fm24iNvqr2GYKkZi2aj9nErq+jZ+UJMRPlWiBAqTuHSEOO0nRWSQ5Ec5j3yF7Rb87GgZQb88pY3l6h5SKW29Gvx1oS6nw7DAVH6y47b+LSqs9KWgebWPW6+gH8Gi54vHKLnJkfmcEM3wWeZAAQhR/0s7FyH4PZ+VhgSo14c518d21G5N7P5T+8H42w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P5RnJEzxjgbVSjCZbVjyRQi+ntikfVmu6Qex9xqi/RE=;
+ b=coghYJ4OCPRnXhtFLW7kuUgGqtEiydsI4f+bx/IY4ZJl8VLVrWwuMB1m8ctNfafkDrOhZ/Bxy7kFYIWsQ73qI11TCeMtYcQSasVhJUmREHuv3xe5ih9iyKUK4RwxMKSd3Mwf17aAgRUecwzyK+Baki6is7vqPm9Y28pf3JBy9XYFpXvYFDycaEHKgYYbtBcxP+wrXiYhwY6nECHjLMebCCcNXQy2ZpDA3P/y6coo3/DFkUmxOm7UUfIAeiriCjNITA72fMTUxctxRn4/XD9CriHsDShM/NNS1vdEJjxBlyn5zPvH17KUw/6IixUK41HLiB4pb3xSPr9BfwC/dxVTdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=P5RnJEzxjgbVSjCZbVjyRQi+ntikfVmu6Qex9xqi/RE=;
+ b=YxMx4sIR1iFnjT5kvzFO++euifoqadH4UHpnb4vAOamVtiQDRwHA2vQLlzjzHXoZHXWk+JAmJYOclaAwWBua7/T5pTzg6OXFV9uQYN7ZtaPz/yVCHSV0G3REDL5WSV2EdRFBIqMfqlW1k0c50fl4OfXxGmBPszSZHSyjFN/tbqOavKswXtEiPp//KdWzwJH9wkkSo+zeZPhPbGAwxJXUxuKR/KLFjhiXaZtvJ1rpzGtS6eVrb7hSCWSxGFGqzdD2VNf6I0UgzoR2QRABs7yH0ZIRPaBN/uYY+frDEx+KE6zRCTVT9hLNXH9fAlcrD6IzMBHx6LcWwkvmxFDHwPMgNQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM9PR04MB8353.eurprd04.prod.outlook.com (2603:10a6:20b:3ef::22)
+ by AM0PR04MB11878.eurprd04.prod.outlook.com (2603:10a6:20b:6fb::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
+ 2026 08:14:37 +0000
+Received: from AM9PR04MB8353.eurprd04.prod.outlook.com
+ ([fe80::46ae:f774:f04c:a1bc]) by AM9PR04MB8353.eurprd04.prod.outlook.com
+ ([fe80::46ae:f774:f04c:a1bc%3]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
+ 08:14:37 +0000
+Message-ID: <dd68ae61-9dfd-4138-acf5-b77c63ba0fa3@oss.nxp.com>
+Date: Mon, 16 Nov 2026 16:14:26 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: connector: Add fsl,aud-io-slot
+ binding
+To: Rob Herring <robh@kernel.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20261105064117.277495-1-chancel.liu@oss.nxp.com>
+ <20261105064117.277495-2-chancel.liu@oss.nxp.com>
+ <20261112225328.GA1784283-robh@kernel.org>
+Content-Language: en-US
+From: Chancel Liu <chancel.liu@oss.nxp.com>
+In-Reply-To: <20261112225328.GA1784283-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR04CA0004.apcprd04.prod.outlook.com
+ (2603:1096:4:197::22) To AM9PR04MB8353.eurprd04.prod.outlook.com
+ (2603:10a6:20b:3ef::22)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8353:EE_|AM0PR04MB11878:EE_
+X-MS-Office365-Filtering-Correlation-Id: 701f4089-acdb-4321-01bf-08df43b9a7a1
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|1800799024|7416014|376014|23010399003|366016|18002099003|22082099003|6133799003|261009223027099003|5023799004|11063799006|56012099006|10067099003|4143699003|261102123227099003|261028144727099003|261026121527099003|261026140227099003|261021123027099003|261022105027099003|261021121427099003;
+X-Microsoft-Antispam-Message-Info: I2+SbuqrsHMtbHYqaxrD2dCSD+46789loXvzabUKXcmVBRc5xaVHvc0Zq7fYi06Syfl43kcCbgcNUi6BjJVlur2b0vJ4qSW9rHr6WUBmfm3qZFlPYuFIjmCEo3yyAWFPhejIMTbSIDJkxR1+09YsEnlTPyo31eU8OeRNcWfGLeWIbAQDKBAWxeDUQpeWQ9PcigjXJkZ1Gu6ZIT9hHV33n27dF1RJc/gRxwPYlk6eoSmMu6XAiFGWo1z7dpdDSTMYK7G04JuAII2umurgPyiLlrjFePheNZOM5arFKlGfLEMfYs3U/SFrNAbO07q5ELRSGbM1ah98MIZz5VywtndE7H/Cjx7EuI+1xDc1FhIh5zKguRKMWzH60vRi2itJos5Jb8aKH61i7Tc9TPwLC4y2MQkq9dhvhpIqHn4QXNyFMghWAnU9JhHELnaFLqoBWgfZG+Azjr3xawKCbivwGFVOwIPhapewXn0pY0BzMxeRTRRdwshOEtktE66S9l5txVslULf2cvJK9l7f8dRfS7eV8yPRKaEnggtYsJeJ6vidkEFECVpEwtw9GqExIEwK8OwBHDzux9czzqu/f50uWVx0v3zYrjBbbfXJUfIS9vNcKzJReiFR+b3ZR1hN7Rzcn2GRAl2xnox85yFe7GD5FTqtB7GNIK778cQgwPlZKxsR1MU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8353.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(7416014)(376014)(23010399003)(366016)(18002099003)(22082099003)(6133799003)(261009223027099003)(5023799004)(11063799006)(56012099006)(10067099003)(4143699003)(261102123227099003)(261028144727099003)(261026121527099003)(261026140227099003)(261021123027099003)(261022105027099003)(261021121427099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZHZCeGpVQjJqRFBrdnZER3ZWSUh4STR6blZJRTNZNndoWXlmZDBFVnhVUGIx?=
+ =?utf-8?B?L3BRS0YwTUR0SUE4aWMrQmVUeGVwVFpiSUtwbmx3OXc5VVMwUmU5WGxXemJB?=
+ =?utf-8?B?UnczRHpvNFNyRS9kcWJMVFVoaytESW1SNXhzMTRkMU1CaU9OMUFjSkZrbk0y?=
+ =?utf-8?B?N3A1OHV1MHpzM2tlallXMXlDbEpETzlSWDBMSjl3OEg5Z01yenNGcmlwQWhs?=
+ =?utf-8?B?czRqdmxINitqNTQrQk5TV000MGw3bFdpdllPRVlqU0hkbWxibU9oRW9EQnRj?=
+ =?utf-8?B?UHQyTFBQMEttVVliQmJlSm1UOTNMbEIzZm9hWmw4cUM2MnhMdURQNGZTOFRV?=
+ =?utf-8?B?amMwQms1dUlXbnNwL3BaSHRSelFSdWgzK1BzNlIrNEJoeXlLUGthWE90Z1Jt?=
+ =?utf-8?B?T2RRTFZ3eTlNeE1Da3BZeENUZDFLZ1JaNldudXM0ZjJIejlvQUwyOFpKYjRG?=
+ =?utf-8?B?d3NrbkY3MlltQ3NhR3lkSURXVEUrazhmVXpIRmN4MlZncFJvRU0yUkQ2T1BR?=
+ =?utf-8?B?OERVUDQ2Z2Q3ZlBXVndERTU4T0RaeUhmMHQ4UjA4ajhSMjBQcGNsMDJUVUto?=
+ =?utf-8?B?RE1qY1RLN0NDdnQzcVBrcEd3eWxTTjNOamxXZC92MnpPS2hDWm9jMWFiUE83?=
+ =?utf-8?B?S3lMYTc2S2RkcnIvU0g3bjFKS2xzUlhVVHE3UmxUa21qcU1qRmJXQXI4emdY?=
+ =?utf-8?B?eGpIazhYVXFZc2VSUk5RbG1VUlMvWjV4L1hwdGVYSXg0Y2NsSm1qKzVUTXli?=
+ =?utf-8?B?SHJBdUJ3S1cvQkV3UkhIYlpHemd3d1lhaWREQnd2U1I0cmJqQ1dVU016SG9j?=
+ =?utf-8?B?cVEzWExwMHMxMkdBMW5pbE0yWWdmU2UwOHdvcFhCS1dDOS8zamQ1cHA3Uzln?=
+ =?utf-8?B?YTNpbUtuTVJXMXVJQ1h4Z3Rxd2ROZnVMQldtNFR5K2RmdVlmb3l0SDdmbitY?=
+ =?utf-8?B?WUpqTkMxdElEeng3dFdpRDk3WWVNSFBzaVM0dHJUSE5Ta1FGSEhhbEF6K1Np?=
+ =?utf-8?B?Nkl6ZGZjbGdHUS83RDlWYkZjNmphYWkwcEpLa2VlV0dIN0VPRE1LYjN0ZW1u?=
+ =?utf-8?B?MkJBNVFFalNDTzlmWUY0MCswWWV3dThUVHgxSjNzWXFZMG4wU0NNdzJ6YXgv?=
+ =?utf-8?B?TUVsOE1XRVBvbkIwckM2aUQ3d2gvWmRKSkRyQzlNVnBBZk1BWmpXUmpWdmRm?=
+ =?utf-8?B?bTNrS1NwYjhzUXprK2tLU0tMSkVTODJndHdNWkdzcVBpd2Q5SUZzUDEyd0Zr?=
+ =?utf-8?B?Ry9GZVVaZHVNNzZVcW51K3ZuSkg2UjRyTVdOMmx5eFovSjFBclREUlFxa2ZG?=
+ =?utf-8?B?cm43Q0ZwUzZuRFRYZmNqYW9Kb1AwanZzaE43V2xJZEg3L0ZVazE3ZEtuR1Bw?=
+ =?utf-8?B?RzBpRnRUR1RmVEJqVzFEK1pKamV1NFg1cGdSWkNXanZQSHBvRTdwMnMxMVlY?=
+ =?utf-8?B?Q3BicmduVVdzY1djOVowaTZGMWNDcHQ2cnRoR2cvV2RZTU4yT296OFVzVW9U?=
+ =?utf-8?B?NkdNVDFhS0VlM1JtQWU1UTVyWUNmNTcrNHRDTXl1NEhUZnRTclNJOExwNHNl?=
+ =?utf-8?B?WFZpU0c0VFNhZ3hSTlhTd0hERFEreDdGZXpPYnRzb2tZaUZnNWpzK0xvSlhx?=
+ =?utf-8?B?eVNaV0M1eDFqVkt6YitYS3JyOWJCNWs0QWFsemdxL0w1Nm95NWswOXQ5M1NS?=
+ =?utf-8?B?K0JLbFV5MWVFeWpKbEcwVGhJSUMvNUtQQlRQZm55Q1d4TTkzWVM1emtvY1FU?=
+ =?utf-8?B?RDBHSmN3MENiNEprUTlOc1p3UXVyeitoZHlhM0FvcWlUbCtHQ2k3Szdmd0Nm?=
+ =?utf-8?B?RzFtOVV2YnlMeTNXeUNDdkxEQWsralJvaFE5Uk1kSS9TTVl0OTlyUzZ0TTFO?=
+ =?utf-8?B?MUFCdEx1aHl4cndtaHBLcmwzc3VvbUtCRzh0UENGTEd6WVoraUR3TVVqSlBI?=
+ =?utf-8?B?VkQwVzZnbTg3aWFwS3k5ZE5XWGZodDIrb1hiV3MzWEx4R3haNk0xVXM0bnlh?=
+ =?utf-8?B?ZnNKQlp5b2QvaTErVkNzLys0WE8vcVNSZ25KdzJkKzg3MmhtcG5xR2RvdkVT?=
+ =?utf-8?B?TGVuaWM1b1NwL1g0cDZZWlVuYWk1N015T2dFVkpkQzdiLys1S2ZJUzQ0NXlG?=
+ =?utf-8?B?R2pZQ0pCbHdBWE4yRXhoYWRZdk9VUCtXZ1l4VFMwYUxEdEh4TGY3N2wwV28v?=
+ =?utf-8?B?ZWZqRnpVaVIrQWVGRm5ocEtPYlRyNzJFaVpMN1IzbEdTMzRKUjYwUWpuVW5G?=
+ =?utf-8?B?MWNRMFZmTG8zcmtPeXp2OEt0M1pVd0JEcUVVUGtYVExQdkFEUGU0T3MzbjRC?=
+ =?utf-8?B?bDJoQ0cwdkhXaUxLbnFuNVI2ODFjRmdYaEpGUHZ2OVovSTY4eWlIUT09?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 701f4089-acdb-4321-01bf-08df43b9a7a1
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8353.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 08:14:37.6998
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7f8s3v9kLjpPGAvaC4i+0txRP+LVnqk1VfCHNkC/f1/Nl9jzSrTHOcEtO7//fDvWMyhSUBkxijwVL73OpEW6pw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB11878
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_000142_983051_C7737F38 
-X-CRM114-Status: GOOD (  18.74  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261116_001447_882150_6D94714D 
+X-CRM114-Status: GOOD (  19.33  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,150 +153,109 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 2026-11-12 at 17:37 +0100, Christian Brauner wrote:
-> Make the remaining copy_oldmem_page() implementations copy the page
-> of
-> the crashed kernel with copy_oldmem_to_iter() like x86_64 and powerpc
-> do. None of these architectures has a machine check safe copy today,
-> so
-> for them this is copy_to_iter() under another name. But the copy of a
-> page of the old kernel is in one place now, and an architecture that
-> gains ARCH_HAS_COPY_MC later gets the recovery without touching its
-> crash dump code.
->=20
-> s390 stays as it is. It copies the old kernel's memory through its
-> real
-> address mode window in memcpy_real_iter(), and an uncorrected storage
-> error is fatal on s390 anyway (cf. s390_handle_damage()).
->=20
-> No functional changes.
->=20
-> Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
+On 11/13/2026 6:53 AM, Rob Herring wrote:
+> On Thu, Nov 05, 2026 at 03:41:14PM +0900, Chancel Liu wrote:
+>> From: Chancel Liu <chancel.liu@nxp.com>
+>>
+>> The NXP AUD-IO slot represents a physically present I/O connector on
+>> the base board. It acts as a nexus that exposes a constrained set of
+>> I/O resources, such as GPIOs, clocks and interrupts, through fixed
+>> electrical wiring. All actual hardware providers reside on the base
+>> board. The connector node only defines index-based mappings to those
+>> providers.
+>>
+>> This connector type is present on i.MX95 19x19 EVK and i.MX952 EVK,
+>> where it is used to attach the IMX-AUD-IO audio expansion card[1]. The
+>> same add-on board can be reused across different base boards that carry
+>> this connector.
+>>
+>> [1]https://www.nxp.com/part/IMX-AUD-IO
+> 
+> That link is pretty much useless. Is there a pinout definition 
+> somewhere?
+> 
 
-Reviewed-by: Alexander Mikhalitsyn <alex@amutable.com>
+The detailed user manual (UM12022) is listed as official documentation:
+https://docs.nxp.com/bundle/UM12022/page/topics/pcie_interface1.html
+But it is behind an NXP login.
 
-> ---
-> =C2=A0arch/arm/kernel/crash_dump.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
-2 +-
-> =C2=A0arch/arm64/kernel/crash_dump.c=C2=A0=C2=A0=C2=A0=C2=A0 | 2 +-
-> =C2=A0arch/loongarch/kernel/crash_dump.c | 2 +-
-> =C2=A0arch/mips/kernel/crash_dump.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 2 +-
-> =C2=A0arch/riscv/kernel/crash_dump.c=C2=A0=C2=A0=C2=A0=C2=A0 | 2 +-
-> =C2=A0arch/sh/kernel/crash_dump.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 2 +-
-> =C2=A0arch/x86/kernel/crash_dump_32.c=C2=A0=C2=A0=C2=A0 | 2 +-
-> =C2=A07 files changed, 7 insertions(+), 7 deletions(-)
->=20
-> diff --git a/arch/arm/kernel/crash_dump.c
-> b/arch/arm/kernel/crash_dump.c
-> index 938bd932df9a0..0f2628872b00c 100644
-> --- a/arch/arm/kernel/crash_dump.c
-> +++ b/arch/arm/kernel/crash_dump.c
-> @@ -28,7 +28,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter,
-> unsigned long pfn,
-> =C2=A0	if (!vaddr)
-> =C2=A0		return -ENOMEM;
-> =C2=A0
-> -	csize =3D copy_to_iter(vaddr + offset, csize, iter);
-> +	csize =3D copy_oldmem_to_iter(vaddr + offset, csize, iter);
-> =C2=A0
-> =C2=A0	iounmap(vaddr);
-> =C2=A0	return csize;
-> diff --git a/arch/arm64/kernel/crash_dump.c
-> b/arch/arm64/kernel/crash_dump.c
-> index 670e4ce818223..c774b3aba107d 100644
-> --- a/arch/arm64/kernel/crash_dump.c
-> +++ b/arch/arm64/kernel/crash_dump.c
-> @@ -24,7 +24,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter,
-> unsigned long pfn,
-> =C2=A0	if (!vaddr)
-> =C2=A0		return -ENOMEM;
-> =C2=A0
-> -	csize =3D copy_to_iter(vaddr + offset, csize, iter);
-> +	csize =3D copy_oldmem_to_iter(vaddr + offset, csize, iter);
-> =C2=A0
-> =C2=A0	memunmap(vaddr);
-> =C2=A0
-> diff --git a/arch/loongarch/kernel/crash_dump.c
-> b/arch/loongarch/kernel/crash_dump.c
-> index e559307c10929..03a136b8be8da 100644
-> --- a/arch/loongarch/kernel/crash_dump.c
-> +++ b/arch/loongarch/kernel/crash_dump.c
-> @@ -15,7 +15,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter,
-> unsigned long pfn,
-> =C2=A0	if (!vaddr)
-> =C2=A0		return -ENOMEM;
-> =C2=A0
-> -	csize =3D copy_to_iter(vaddr + offset, csize, iter);
-> +	csize =3D copy_oldmem_to_iter(vaddr + offset, csize, iter);
-> =C2=A0
-> =C2=A0	memunmap(vaddr);
-> =C2=A0
-> diff --git a/arch/mips/kernel/crash_dump.c
-> b/arch/mips/kernel/crash_dump.c
-> index 6e50f49024094..078c0d1e8df46 100644
-> --- a/arch/mips/kernel/crash_dump.c
-> +++ b/arch/mips/kernel/crash_dump.c
-> @@ -12,7 +12,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter,
-> unsigned long pfn,
-> =C2=A0		return 0;
-> =C2=A0
-> =C2=A0	vaddr =3D kmap_local_pfn(pfn);
-> -	csize =3D copy_to_iter(vaddr + offset, csize, iter);
-> +	csize =3D copy_oldmem_to_iter(vaddr + offset, csize, iter);
-> =C2=A0	kunmap_local(vaddr);
-> =C2=A0
-> =C2=A0	return csize;
-> diff --git a/arch/riscv/kernel/crash_dump.c
-> b/arch/riscv/kernel/crash_dump.c
-> index ea2158cee97b3..0820e3db12603 100644
-> --- a/arch/riscv/kernel/crash_dump.c
-> +++ b/arch/riscv/kernel/crash_dump.c
-> @@ -21,7 +21,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter,
-> unsigned long pfn,
-> =C2=A0	if (!vaddr)
-> =C2=A0		return -ENOMEM;
-> =C2=A0
-> -	csize =3D copy_to_iter(vaddr + offset, csize, iter);
-> +	csize =3D copy_oldmem_to_iter(vaddr + offset, csize, iter);
-> =C2=A0
-> =C2=A0	memunmap(vaddr);
-> =C2=A0	return csize;
-> diff --git a/arch/sh/kernel/crash_dump.c
-> b/arch/sh/kernel/crash_dump.c
-> index 85c0e58f1a59f..2a5988b6e9d7a 100644
-> --- a/arch/sh/kernel/crash_dump.c
-> +++ b/arch/sh/kernel/crash_dump.c
-> @@ -23,7 +23,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter,
-> unsigned long pfn,
-> =C2=A0	if (!vaddr)
-> =C2=A0		return -ENOMEM;
-> =C2=A0
-> -	csize =3D copy_to_iter(vaddr + offset, csize, iter);
-> +	csize =3D copy_oldmem_to_iter(vaddr + offset, csize, iter);
-> =C2=A0	iounmap(vaddr);
-> =C2=A0
-> =C2=A0	return csize;
-> diff --git a/arch/x86/kernel/crash_dump_32.c
-> b/arch/x86/kernel/crash_dump_32.c
-> index 5f4ae5476e193..cb202d4e1f703 100644
-> --- a/arch/x86/kernel/crash_dump_32.c
-> +++ b/arch/x86/kernel/crash_dump_32.c
-> @@ -40,7 +40,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter,
-> unsigned long pfn, size_t csize,
-> =C2=A0		return -EFAULT;
-> =C2=A0
-> =C2=A0	vaddr =3D kmap_local_pfn(pfn);
-> -	csize =3D copy_to_iter(vaddr + offset, csize, iter);
-> +	csize =3D copy_oldmem_to_iter(vaddr + offset, csize, iter);
-> =C2=A0	kunmap_local(vaddr);
-> =C2=A0
-> =C2=A0	return csize;
+The brief pinout table looks like this:
+
+Pin    Signal               Dir
+----   ------------------   ---
+A11    PCI_AUD_RST_B        In   (GPIO)
+A12    AUD_CARD_DET         Out  (INT)
+A21    AUD_SPI7_SCLK        In
+A22    AUD_SPI7_SS0         In
+A25    AUD_SPI7_MOSI        In
+A26    AUD_SPI7_MISO        Out
+A29    AUD_SPI7_SCLK        In
+A30    AUD_SPI7_SS0         In
+A32    AUD_SPI7_MISO        Out
+A33    AUD_SPI7_MOSI        In
+B5     I2C6_SCL_1V8         In
+B6     I2C6_SDA_1V8         I/O
+B10    AUD_SLOT_PWR_SYNC    In   (GPIO)
+B11    AUD_SLOT_PWRDN       In   (GPIO)
+B12    AUD_SLOT_MCLK        In   (CLK)
+B14    AUD_SLOT_INT_B       Out  (INT)
+B15    AUD_SLOT_INT_B       Out
+B17    AUD_SLOT_INT_B       Out
+B23    SAI2_RXFS            Out
+B24    SAI2_RXC             Out
+B27    SAI2_TXD1            In
+B28    SAI2_TXD2            In
+B30    SAI2_TXD3            In
+B31    SAI2_RXD1            Out
+A2, A3, B1, B2, B3      VCC_EXT_12V0
+B8, A9, A10             VCC_EXT_3V3
+
+> Looking at the overlay, this looks incomplete. It looks like there's I2C 
+> thru the connector for example. There's also power rails.
+>
+> The idea with connectors is that overlays apply to the connector node 
+> and nothing else.
+
+For this patch set, I2C, I2S and regulators are
+provided by the base boards using a common set of labels:
+
+  aud_io_i2c
+  aud_io_cpu
+  aud_io_reg_1v8
+  aud_io_reg_3v3
+  aud_io_reg_5v
+
+The common add-on board overlay references these labels directly. This
+allows the same overlay to be used with both base boards. But the
+overlay still depends on nodes outside the connector.
+
+> I2C we've kind of figured out with something like this:
+> 
+> connector {
+>   i2c-parent = <&i2c>;
+>   i2c {
+>     ...
+>   };
+> };
+>
+
+I will rework the I2C part using this model.
+
+> Regulators is still open issue though.
+> 
+> Rob
+
+Good to know this is being discussed. Is there a mailing-list thread or
+patch series I can follow?
+
+Regards,
+Chancel Liu
+
 
