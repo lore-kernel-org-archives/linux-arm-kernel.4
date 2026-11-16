@@ -2,151 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6D1606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4601A606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:42:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Uw0x/Ivy;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=cljvtMEF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zruP5NxD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LG7D9VlL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xwpWcgRm7qer0bIxGSmM3z4aZzr8WzaU7mJaPYvWRno=; b=Uw0x/Ivy+4pjhaKYzg5426VeG3
-	+yuuFqUN3fanLDivC2gSWof9Ykr1FBory/6imINZ8UOYw9DhVJh+FFFa2BUpFjX/XjzNnh8wmfmlB
-	otXdrU9va5MvXlJ6p6fh0VkJ0ue5RgshjYAxYZRvq4XOnQtlJ2jS7vwW68HWDeRdPkjOGbBFsXqRD
-	GjIcYq7dSkyrvC+/t1NqU8hv7G2KHz2lacfh14zA131ebsZ2Bir9zoPzDRqu/k2q7DR4U29k0HaV5
-	6SE0Veo9S+DmoicRkR3U25mKZMPvXVZFqzJhejGHeswB905MBcjtS4Vna+6o7RgttQnC6xYjv9VvK
-	FdFs3B6Q==;
+	bh=q5fTVKGrskJG4rdSydPr4XMv95Db9+O3BQWMmUFXULI=; b=zruP5NxDpaXPuKeXE7lcY2is2S
+	r09qJhDRYJCC9L/A5AJVc/sIxnmX2wMZnQKlg0uFL0FiIiX3tDxWbgmREaQEFRGJpvW+4uD8ok5m8
+	P33B/ezqpvucatKdT1nfOzMn2zrf6q6rt/Lh9POLNZVfYJyegZVkovTiNLd9EDFD+pnbDWTokDzqZ
+	s0wg2qMpSIY2+rbA09hrpjyjN5AFPudmv4HMpBG1jeqMkUjTT/+rK6YzcSAVC7lXcGdSPsV7p7g/H
+	enzizOEts9K/CdztEjiQ1fKO2VOJ39HGFK/DiHl30VB4CkW61+J/Mg+eQDVtQFZp+A09+np/Biqtl
+	rkxs5BDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxr1-00000002uTI-1ahl;
-	Mon, 16 Nov 2026 14:38:43 +0000
-Received: from mail-francecentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20a::7] helo=PA4PR04CU001.outbound.protection.outlook.com)
+	id 1xSxum-00000002vJa-3o56;
+	Mon, 16 Nov 2026 14:42:36 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxqy-00000002uRR-3kPD
+	id 1xSxuk-00000002vJE-0sjI
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:38:42 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eyr1T76X2qfdAn9S99vvnE9eHaJNY53vuvL58xizxwjK4tQkYfGOFdoRKaO+zBIH1svLyZtN/e1mqxGZB0HdxMTfUdA4iPGxKgp2Xc79Ckzng8c2LBjNH2OkEl/sA/eULtjv8KSP6unQZ0vIy7ojnZFnnt8WV8k8Lubwd0cpJJy53AaCp+Th1iTYn5vWTuD1L1jQOItsF93OfOZhAokByKsaOvyIlGNpK1LigMe3FTNlRgxUPPNxt5elUz4JTR0jaYY0GYlHkSZxGG+9KMUtGurr6vEL2i5humXRj7WRuReyTU8BFnRySms0bhr6UU7P+NUoJeENntnyzplQajuQWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xwpWcgRm7qer0bIxGSmM3z4aZzr8WzaU7mJaPYvWRno=;
- b=vVqS/5WQC/QxVWdUk3VaPmjIqoJLMc2Hi9TdRAPurXYqo4HOWROdSOPs99Hki0nPX1MUU1+aFozTU+Ns0BxljX7c0+S+zBEGHVfhekkopCL1MOvelenb6jc/PWHpL5/q1Zt12COfU5G89mSLp43MDS4oae+betaUtmFePlpjwanZL3MhyOIjYxbh/qNcU0q5NNmTBHhWyfHWiuAiNG8o4C8l7s6SQ0rsMbP2fva0PMXl4H1FUkV5aSJ5qPWdsIR+iJqv8xFMmDW8NnRgCU2PPHfdBo2HLDVTDpF6oW7oOoBHeAKaaRuhvM+BZrNKR/eau04Um6Oou1g0reBo58j/vg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xwpWcgRm7qer0bIxGSmM3z4aZzr8WzaU7mJaPYvWRno=;
- b=cljvtMEFPmTjSwvOjvOKG/s8U/3ueY6kCJHTPVdm1KG7A5O90ITG3Q4jkYyLyln4/HidNqwa1ijQBdBw0bhQBeTG7Le+rOOOZ+waG1hB3DnM2TlanNjM5VxsN5q7IMCDxuK2Zxn0omP2WR1+w5MW7Ew0Qy7REHlcIQy4c5wvAFt2oZ1iuRbWDpje53f+EnG9huLfIScM9ySxO77Kr2i+jX5LoG1B1WJq80KvzMVKYhLv2iOHRPMOvfcCIuuARfeJp1bZ9qAMxBwXStbQGnTPL3YyopRx47QYwZuxUQKBoTWEo13FH5/4B5+ABKELvIMw/K2OBTTQDqr2wR3Wf1b+/Q==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GV2PR04MB12558.eurprd04.prod.outlook.com
- (2603:10a6:150:368::10) by GV1PR04MB10967.eurprd04.prod.outlook.com
- (2603:10a6:150:203::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Mon, 16 Nov
- 2026 14:38:33 +0000
-Received: from GV2PR04MB12558.eurprd04.prod.outlook.com
- ([fe80::cd9f:102:ea58:4c49]) by GV2PR04MB12558.eurprd04.prod.outlook.com
- ([fe80::cd9f:102:ea58:4c49%5]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 14:38:33 +0000
-Message-ID: <1fb7c21d-6852-4930-828f-c790ee49747c@oss.nxp.com>
-Date: Mon, 16 Nov 2026 16:38:29 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] scsi: ufs: core: Use ufshcd_query_attr_retry() for RTC
- update
-To: Enric Balletbo i Serra <eballetb@redhat.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>,
- Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <mkp@kernel.org>, Mike Bi <mikebi@micron.com>,
- Avri Altman <avri.altman@sandisk.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: Luca Porzio <lporzio@micron.com>, linux-scsi@vger.kernel.org,
- linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>,
- linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
-References: <20261116-ufs-rtc-query-retry-v1-1-4de69b175e8d@redhat.com>
-Content-Language: en-US
-From: Larisa Ileana Grigore <larisa.grigore@oss.nxp.com>
-In-Reply-To: <20261116-ufs-rtc-query-retry-v1-1-4de69b175e8d@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P190CA0044.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d1::8) To GV2PR04MB12558.eurprd04.prod.outlook.com
- (2603:10a6:150:368::10)
+	Mon, 16 Nov 2026 14:42:35 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id D98EA41155;
+	Mon, 16 Nov 2026 14:42:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DD611F000C4;
+	Mon, 16 Nov 2026 14:42:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794840153;
+	bh=q5fTVKGrskJG4rdSydPr4XMv95Db9+O3BQWMmUFXULI=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=LG7D9VlL4ycHov4A3MFP0swl7FuLeK3/NWZCcN0scM6Z9FrBhWr5UHnFsuWQfeAHf
+	 +Rduaj5TAKFSzumhW2L1L+eA07I65IohhX7Eod1PstibMo8Ugm50XhzTKiAO24ppkj
+	 nQFLZUFEpj2eOuGCO8BeMqT+xcdLDDAsQEnrdqdTfqiWSS2bT4Kv7WxtKeDQlI+b2V
+	 N4s00Zd1bHU4BpvX+ttPjaZSsFm3lQ0dmFGKH5Rnl3OIM4XW/+Kc2swF1hEcyAJSwg
+	 p5q57ANVmtAlmHYzxDwO7GVNV+Y4EcB6pJluPnpYdyKp9YinMOEIBb5olYxIk7s0XQ
+	 mfGMQ4syM2fKQ==
+Subject: Re: [PATCH net-next] net: sparx5: check DT port reg against array size
+From: netdev-bot+sashiko@kernel.org
+To: haoranwangsec@gmail.com
+Cc: Steen.Hegelund@microchip.com, daniel.machon@microchip.com,
+ UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ kuba@kernel.org
+Date: Mon, 16 Nov 2026 14:42:32 +0000
+Message-ID: <179484015280.3136.6207275462106785238@kernel.org>
+In-Reply-To: <179457014579.23820.10657909253312598784@gmail.com>
+References: <179457014579.23820.10657909253312598784@gmail.com>
+X-sashiko-severity: High
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB12558:EE_|GV1PR04MB10967:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8dd56249-10ec-4363-1bc5-08df43ef49f9
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|19092799006|366016|23010399003|921020|11063799006|10067099003|56012099006|261026121527099003|261026140227099003|261028144727099003|261022075727099003|261022105027099003|261021121427099003|261102123227099003|261021123027099003|261009223027099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: aGusbcFg/r05Ir/4B2JvUtpZ3csbKrA35m67FeZY6kXom4GT1AHyFBTvh0dQOOsC99ndjanTaztu6Eo1qrzQSS7+Z9FBgX/8suiWRFilFrGMcuYkQLuacXrkandtJZXb7QBmxcqKVNwMrMD3MSb9WmX7JrQIiPf7r2F/OgHgjjQqenCv8m9e1yYWITsnrKpIBglLAffOlQV9wiotSVqgQhbDS48viG0wSdekqvo8TS27HL+1oJTxebuvVhV3/clzQOlU9ir5kxtjiLvsn+5t8o5k3PrMWjqtmpLQBxoULDiXWLF/x2sRPsUIdl+MNyKx36ZC7Hh//TgP2Lz8poh2ZzCvS+O88zkg7KzbKqX3j6B+7YPlMhvYGIo6fMlNam/OP9vQpILcarDApoCABuvwgJq41lESO3512Ub/o4ZGfHnkGqQwZM+JpxNuivMvzfPb496vhqbRu5aZ1jkQDEuwcHPNkWv44sYoC/wyMt6vo8BVCnm5iQAiXLNRjX6bU+fjYBGX9IdGvzdoZ1AnW8BxlQAfrmkw6FxN0Hokj/Vy/bT7ayyuL9lNqH94Geimrl5789M9Lhc2eL3poCdYWKn5OU9YTjINYzGQXMvQhUYjk+Ko4XbOCilys5RbpD/Du8AZ3Xu5Em86ukG65pncFFNVqFiBQDMz3Cbd4bCm/Qv4fHLsn1W2xAWbcyXKhSpOM9Jdp9WOmz0UJ3OyTR1aMwWB2A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12558.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(19092799006)(366016)(23010399003)(921020)(11063799006)(10067099003)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261022075727099003)(261022105027099003)(261021121427099003)(261102123227099003)(261021123027099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L2hYemF2TzkzbnR6dFNCSm9XV1pyRUx5enNLNHl3K0JsSDZ4TWR4K3ZjRUhS?=
- =?utf-8?B?VWx6bEh1QmVVUTNhcFVwMTdBUGJMNFVQVWNKMm8zb3pzcjRQd3Q4OTRCV0g0?=
- =?utf-8?B?WnJBN0o3Ni9tRHFjY1p4ZXcyYzV6QURhK2VCME5tSVNNWlZpcFJFTGt6Y3Vm?=
- =?utf-8?B?MU1CVEEzWk94VVBYM0NkMllBMUtVbUxsalRNSnZSdTBLaGwxSVBQT2xMUTc0?=
- =?utf-8?B?QnFxaExvVHl2bFA4ZUg3N2tNS0FzSjhGbzEyUUVMaGlVazJPU1lwN1dieEY5?=
- =?utf-8?B?RlNrKzB0d242UTYxaXVlcDFIY3dyR2htSFV0TEt5bVpuS1ZXTExwWWlBMllZ?=
- =?utf-8?B?RFdRS1RGSVFMbnRRcTJleE01S0dRTmlITmdBYnpWMXlrWGhub0xzWS9melJO?=
- =?utf-8?B?M1Q1Q2hiVVhWa0NXWGhuWStKU0pya0RQZE5nNlJKaHFvVWd4VzFOM3FXRWtv?=
- =?utf-8?B?eDRFNVA0WGNoakdkZlFxT1h4TFdDQTJESmVQbHpkTVg4RWswRjZNYWtLaEk0?=
- =?utf-8?B?MUlVMGtMNU1ySTlDN1BMN1RaMjZ6N2pJQlhHbVl3NnFMblBwRDZGaEd4Uk9F?=
- =?utf-8?B?UkN4bU9xWDNzNHJ4R2xsNDg3d0txMnNJRGFtR1dLSzZvT3F6Y25qWCtZYUZD?=
- =?utf-8?B?S2ZmSHJLZDhZYUpQbXV0Y3Bpbzd0RGVHeVhiTjRvK2FUUDBiZmRodEFEV0hN?=
- =?utf-8?B?TktUUHhXWTZLdjRrWFhrY2N3U2dPZVdvWVd6d2pVdWMxYnpjZlZNd2FyaEdQ?=
- =?utf-8?B?YlhhaTBDamJzdzZYUFVtVVhVZ2JkYk10UFUxdGN3djUwZE10N2FDL2lHeXBN?=
- =?utf-8?B?SEF5ZFlyRzJiT294dHhPZXB6Ni80UnpVNkJtY0dxbXBtYXAxM0J0Ym4yaktY?=
- =?utf-8?B?ZDIrNkxySVpZMGxqcGdqU1hnZ3JnOVI2TVhNUVlDSTdNbnRORzBGRkRDWTBp?=
- =?utf-8?B?TFdzNDJBeFV3N3k4QU1IbHJKL1JLck5lOVJ1a1FHQmtSWk9jYzIvKzYzaSto?=
- =?utf-8?B?UmU3cW02MVBrS3NjL3ZuUkE2bnoxTHkyM0FjVVk3T2tNM3FXa0hwRFNlVTRr?=
- =?utf-8?B?b0RsczJGUjlsQkllRXpSK2NnLytPOGRLa2FWMGtUQ1FFQ1Z1NTNEMHJNa1dM?=
- =?utf-8?B?U3RjSXhXeE1LclFVSDJjTURrUjZzZUtmaTR4dFVzVlA3MzZKZlltY05za2ZC?=
- =?utf-8?B?dzZiMm95RmJVMFRyVU9yR01valVzWVVKNEtXWGwraHh5eGNETzNiSDlWb3cy?=
- =?utf-8?B?a2FucFRTanZ1aVVlZHhOeExMeXNDZWVINVVleUFXZzhaYlphbitMakdxb25r?=
- =?utf-8?B?OSsyWkxLb0ljK014YlBaVSt2NXBlZWNhaVhBOHFNWXh6YmFxWlpoVzZaMkRs?=
- =?utf-8?B?elY3bFc4a09td1F3OUJlN1V4b0lHNFBZQTk1dDZXRkM1UVZ2d0xYdUE4eXRo?=
- =?utf-8?B?ZlNySzFqNTh4OUFTQzJIREFFNmoxWGhFUVNXMU5YaDdVVEpPSXIxQkVyUE4r?=
- =?utf-8?B?SzJteGNteG5wK3FDS2dOVkdwbzhGQ2l2TUowTnBGY2FXQzVHYW4rM0J1T0lj?=
- =?utf-8?B?YmNpajB4QjA4RW5UdnY1UGpGVE1EU1VVVlJTRHp2dzJKVjBOOXhSVzFVZGg4?=
- =?utf-8?B?UktERkxFRDhPY3YrWFNHT0VsaWJVNVB5amRDbGJjRWc1dlBYUTFXeitqemZP?=
- =?utf-8?B?azcwZW9Wd3NCRksyRE4zanI4ZlZGODJ4ZjhvT2pvSWFHekhIUjA2WXhSYU5x?=
- =?utf-8?B?YWlpTGlBL2NJRk5xemJIT2t4VldlM0Z1dm1RVUtWM3paSHovcXJHdjVBNEhh?=
- =?utf-8?B?d0FabU5NbVlMMjZ5NXFpMnlZVXF2N0FwcVltMWx6OVVCcHVMS1hmbHE0enhE?=
- =?utf-8?B?eTNDZFh3OUtKRjFlOTNZd2VML1YvYTlTWDBwNWtDZXZJb0MxOFAwNzlEWHFE?=
- =?utf-8?B?c1piNzB1eEZVR0F3WHJwWlZDbzFHOGFyeUxWU2VXRkxkb1NMWVhuY1hGRmM2?=
- =?utf-8?B?TSs3ZUprMFZqcmVOWWlXblRPOWRBRnBjQTVERVUrME9NMEYzalBPQ3htelhv?=
- =?utf-8?B?SGd0OE5jRUc0SVdlRTMya1RkL2VwY0R4V3NXYzJ0N0VJODhjbml3L20rSU1i?=
- =?utf-8?B?eVFoOUxVaElVck4ySC9wTHZMUnhxVzcxTjc0Z251SThYSWU0SHM1THl2ZjhB?=
- =?utf-8?B?VHRXeVdyMmVXdUF2cm80bTQycFBVQWo5N0EzSFFNQnl1ZElOaGRpUG9RRFVP?=
- =?utf-8?B?MWErTHd1dCtKdjh6L2hPWTNtU2JvNVhPdC9pYUV2UjYrU05URHd2WUZLeDd6?=
- =?utf-8?B?UkhhUzA1RkIwRUdON3Vsd3MyeVkwQnMxOFFFYU9HRmtkTFVQNUV2ck1IR2VD?=
- =?utf-8?Q?5G5nnQ5FGdn+r4QM=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8dd56249-10ec-4363-1bc5-08df43ef49f9
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12558.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 14:38:33.0115
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AT7dF1C32Zy80Mi8f2d0RIA1zRPYPbH2EElT5sDN2891yS5rATSmZdzAUmtuYB2pqDiis7Mec918UBigmOle5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10967
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_063840_951805_27EA245A 
-X-CRM114-Status: GOOD (  19.60  )
-X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,67 +70,115 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/2026 3:39 PM, Enric Balletbo i Serra wrote:
-> ufshcd_update_rtc() uses ufshcd_query_attr() directly to write the
-> bSecondsPassed attribute, making it the only query attribute caller in
-> the UFS core that does not use the retry variant. All other callers use
-> ufshcd_query_attr_retry(), which retries up to three times on transient
-> failures before escalating to dev_err.
-> 
-> This causes spurious error messages during boot on some platforms when
-> the write-attribute command hits a transient OCS_INVALID_COMMAND_STATUS
-> error:
-> 
->    ufs-s32n7 4ac80000.ufs: ufshcd_query_attr: opcode 0x04 for idn 15 failed, index 0, err = 15
->    ufs-s32n7 4ac80000.ufs: ufshcd_update_rtc: Failed to update rtc 15
-> 
-> Switch to ufshcd_query_attr_retry() to handle transient failures
-> gracefully, consistent with every other attribute query in the driver.
-> 
-> Fixes: 6bf999e0eb41 ("scsi: ufs: core: Add UFS RTC support")
-> Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
-> ---
->   drivers/ufs/core/ufshcd.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
-> index 3c28bc67c65f..1cd32b7cc967 100644
-> --- a/drivers/ufs/core/ufshcd.c
-> +++ b/drivers/ufs/core/ufshcd.c
-> @@ -8821,8 +8821,8 @@ static void ufshcd_update_rtc(struct ufs_hba *hba)
->   	if (ufshcd_rpm_get_if_active(hba) <= 0)
->   		return;
->   
-> -	err = ufshcd_query_attr(hba, UPIU_QUERY_OPCODE_WRITE_ATTR, QUERY_ATTR_IDN_SECONDS_PASSED,
-> -				0, 0, &val);
-> +	err = ufshcd_query_attr_retry(hba, UPIU_QUERY_OPCODE_WRITE_ATTR,
-> +				     QUERY_ATTR_IDN_SECONDS_PASSED, 0, 0, &val);
->   	ufshcd_rpm_put(hba);
->   
->   	if (err)
-> 
-> ---
-> base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
-> change-id: 20261116-ufs-rtc-query-retry-3f27084f878f
-> 
-> Best regards,
-Hello Enric,
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue(s) to consider.
 
-Regarding the OCS_INVALID_COMMAND_STATUS seen on S32N79RDB, this 
-behavior is related to known errata that will be documented in the 
-future. I plan to submit a separate patch series to address these errata.
+Critical: 0 · High: 1 · Medium: 0 · Low: 0
 
-For this issue, OCS values 0xf and 0x3 are expected.
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-Best regards,
-Larisa
+- [High] The new range check in mchp_sparx5_probe()
+  (drivers/net/ethernet/microchip/sparx5/sparx5_main.c:848) compares the…
 
+--
+
+net: sparx5: check DT port reg against array size
+
+This patch adds a range check on the DT 'reg' value of each ethernet-port
+node in mchp_sparx5_probe(). Nodes with portno >= SPX5_PORTS are now
+skipped, so sparx5_create_port() can no longer index past the end of
+sparx5->ports[].
+
+> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> index 9b67a0520907b..d975474792f9f 100644
+> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> @@ -845,6 +845,11 @@ static int mchp_sparx5_probe(struct platform_device *pdev)
+>  			dev_err(sparx5->dev, "port reg property error\n");
+>  			continue;
+>  		}
+> +		if (portno >= SPX5_PORTS) {
+
+[Severity: High]
+Should this bound be sparx5->data->consts->n_ports rather than SPX5_PORTS?
+
+SPX5_PORTS (65) is the compile-time size of sparx5->ports[]. It matches the
+front-port count on Sparx5 only. mchp_sparx5_probe() is also used for
+lan969x, and its consts are smaller:
+
+drivers/net/ethernet/microchip/sparx5/lan969x/lan969x.c:
+	.n_ports             = 30,
+	.n_ports_all         = 35,
+
+drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_regs.c:
+	[TC_DEV2G5] = 28,
+	...
+	[RC_QSYS_ATOP] = 35,
+
+On lan969x, a reg value from 30 to 64 passes this check.
+lan969x_port_is_rgmii() is only true for ports 28 and 29, so such a port
+just needs a phys phandle for devm_of_phy_get() to succeed. After that it
+is accepted and goes through this path:
+
+mchp_sparx5_probe()
+  sparx5_create_port()
+    sparx5->ports[config->portno] = spx5_port;
+    sparx5_port_init()
+      sparx5_port_max_tags_set()
+        spx5_wr(..., DEV2G5_MAC_TAGS_CFG(port->portno));
+
+The DEV2G5 registers resolve to regs[TARGET_DEV2G5 + portno]. The lan969x
+iomap only fills TARGET_DEV2G5 + 0..27, and the sparx5 struct is
+zero-allocated, so those slots are NULL. spx5_addr() warns but still
+returns the address:
+
+drivers/net/ethernet/microchip/sparx5/sparx5_main.h:spx5_addr() {
+	WARN_ON((tinst) >= tcnt);
+	WARN_ON((ginst) >= gcnt);
+	WARN_ON((rinst) >= rcnt);
+	return base[id + (tinst)] +
+		gbase + ((ginst) * gwidth) +
+		raddr + ((rinst) * rwidth);
+}
+
+Can this end up as an MMIO write to a near-NULL address during probe?
+
+sparx5_port_init() also uses portno directly as the replication index for
+QSYS_PAUSE_CFG(), QSYS_ATOP(), ANA_CL_CAPTURE_BPDU_CFG() and
+ANA_CL_FILTER_CTRL(). With RC_QSYS_ATOP = 35 on lan969x, ports 30..34 would
+reconfigure the internal CPU/VD ports, the ones sparx5_get_internal_port()
+returns as n_ports + N. Ports 35..64 would go past the replication range.
+
+If such a port survives init, sparx5_register_netdevs(),
+sparx5_destroy_netdevs() and sparx5_unregister_netdevs() only walk
+portno < consts->n_ports. Would its netdev then never be registered, and
+its phylink never be destroyed?
+
+The commit message describes the DT as possibly untrusted (overlay, kexec,
+bootloader fixup). The binding in microchip,sparx5-switch.yaml sets no
+maximum on the port reg, so this driver check is the only guard. Would
+checking against the per-chip limit close the out-of-bounds case on
+lan969x as well?
+
+> +			dev_err(sparx5->dev, "port %u: reg out of range\n",
+> +				portno);
+> +			continue;
+> +		}
+>  		config = &configs[idx];
+>  		conf = &config->conf;
+>  		conf->speed = SPEED_UNKNOWN;
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/179457014579.23820.10657909253312598784%40gmail.com
 
