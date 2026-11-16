@@ -2,75 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 261F8606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4714606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xQgWbtGQ;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=D17F8R+0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f2Vb/G2g;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dalqdtyP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=b+WRm1pLfUXQV9ESYSvE5bx1cY6BNCF73uIKV2V7MMs=; b=xQgWbtGQujnKLHkYM5jzjSOa3R
-	tiYfnjRzvdDgt75TeWM/nhLbRc6k9RKU/IyzjqfQGD36G8cuDFXW9XBj9QzNaOuA9mIGvIhqU4YMr
-	c/Az8C6B/posOTimes9BqoHZU6DYCx7VEwky3EmpxuXsQ0dV8pCQA1/v7pHwakTzcFSF6yv3KkBEU
-	eqd2FFGnmGTtQ2931eZ4zgYydwsvEjpI5F8UwLOinTtWehKDkRJ6G6Q2+XV94h2SHolBnIr6emD3w
-	H5/cQcHp6LKOGd68sf/lZoIhmqc2wkxgs4DvHPEKSgb9ldXfHv8B/P4WrXHE4pEOjSOuc45KSnpDb
-	rUaGFpGA==;
+	bh=xcfNxQDKaTxKC3WY7d0/shn84qbuxfAl2J/mE8lsllI=; b=f2Vb/G2gMecYVkUnkjCMYwcXm/
+	51x17saZDJ/hjXkJAvmuP3gyYE93+4BJrOiIwQYLSMaxRoHtFal7iFqClLwDuWomZvU39mfASodY+
+	CTUs/pA0qM25GhKIf75qRQ3Kc43I8UMopJ8KmSLs8hYboqBc4BDbIE5h4zi5MSVfcQL351o41uX33
+	yLvjLE5ce2c+qmkCj9jb0AAQZIk2nbPNXNmNtsaDntTgspN7L+BSpQrnpvwQt2wpfuGZk6Ogj6+Ly
+	wwlsWaP1zqkeL2znVif1AkUva59HILRleJX7cW7trTZvJPrZf4Myw7lS6P09kynhyIx4zvAsjspup
+	ZAwl3UFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwJP-00000002VjQ-3hLQ;
-	Mon, 16 Nov 2026 12:59:55 +0000
-Received: from canpmsgout02.his.huawei.com ([113.46.200.217])
+	id 1xSwJL-00000002VZI-1YlN;
+	Mon, 16 Nov 2026 12:59:51 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwJH-00000002VKv-15iA
+	id 1xSwJF-00000002VKX-096R
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:59:49 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=b+WRm1pLfUXQV9ESYSvE5bx1cY6BNCF73uIKV2V7MMs=;
-	b=D17F8R+0bWPLe+7mYnMb4V3J7iw/lJ+0oC+fjzZO/i7WXSJxs7GZze1wS2dqz0dnFQFxaijyK
-	fqIDGmNdCkemdPlpn+BTPI19U+0AIo5zXLbTiheO2lTyRMVAsiU8ct33QU3UTKDfHYad/3ovY4D
-	pNSNbDv2XDiLr7lENpLTLpo=
-Received: from mail.maildlp.com (unknown [172.19.162.144])
-	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4jSnx95bQ3zcZyT;
-	Mon, 16 Nov 2026 20:58:53 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id E973940679;
-	Mon, 16 Nov 2026 20:59:42 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 16 Nov
- 2026 20:59:42 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
-	<fenghuay@nvidia.com>, <catalin.marinas@arm.com>, <will@kernel.org>,
-	<mark.rutland@arm.com>, <corbet@lwn.net>, <skhan@linuxfoundation.org>,
-	<rdunlap@infradead.org>, <tony.luck@intel.com>, <Dave.Martin@arm.com>,
-	<babu.moger@amd.com>, <fustini@kernel.org>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <x86@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [RFC PATCH v3 19/19] Documentation: arm64: mpam: Describe the L2 monitor events
-Date: Mon, 16 Nov 2026 20:59:14 +0800
-Message-ID: <20261116125914.498841-20-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261116125914.498841-1-ruanjinjie@huawei.com>
-References: <20261116125914.498841-1-ruanjinjie@huawei.com>
+	Mon, 16 Nov 2026 12:59:46 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4a2000d5fb1so16787925e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:59:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794833983; x=1795438783; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=xcfNxQDKaTxKC3WY7d0/shn84qbuxfAl2J/mE8lsllI=;
+        b=dalqdtyPYkxB9lDn5hXA8Mm43MawLUxLF4xjCrZqDRtz/E8B168IYsA1dkrCVcQxRA
+         9toLRMawt56Uz1ZIC9dvgdLfqiF/GrYut4/hhnKLU2XiDnxRiivqvSn7loeOEnCONHSP
+         qvOdXeNFIzujkAnxVQQmS/klKIWeTRdjZbnoKN3ETkA8k3beV1jh4AQP5b7ZoJVwIKXR
+         z3C0o3SceUYoeYfifXaCjtj44rKaUH5zscH5c56uhenvShhaK/xlUKeLhPU0GGkr1/Qi
+         FJNs5Uh2cgiNjjsZHlPLRzoKz+Z8KmUWKrJR2qiRuLzqu2tktZFIUkjyfVoQ2TTgaVse
+         nOhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794833983; x=1795438783;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=xcfNxQDKaTxKC3WY7d0/shn84qbuxfAl2J/mE8lsllI=;
+        b=AZJ4Uxeo5t/dsUOfCRcBRtRk+Y0ewTOysILt7pv1cuB0aJqs6+0t7UzXXjebKlttBw
+         57A7IsjFG5PvoTDTtqfTvS2EvwxIr3B/vw7BEpZiNyUZ6SQWUp85NVSJ2Sw0tunEjIJ5
+         qfQWjj7atNwcGh0nnBFUL+0qclJVe1eKYh3A3XZcFXdmtmkwCBgn7sfbe8ccErCiilk3
+         HJlWwGgTXzppeUxkTXlOKHCopJIHR/TMlV8sSNXdpRZHVFHxWr1U3CjJrIsiDwfiSVDC
+         RIz8uw0EUYa3Syd6ntZGVrS7FBvvPgOXRWa8xlvIJZKqk2rzDKtGEf+AlVokUsv7o//V
+         nCGw==
+X-Forwarded-Encrypted: i=1; AL+hErFVwg7oA4vCvfFNEZdZGdXUzFiAF2u/dGiv9+8WehN47KJe2w8c0tWQuRDE6qpNuXSLzgrYA/jGqr8weAD1UsDZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z/hUxOwNyRP05jZuC/+3z2R+gPTRtbmBkzZZ4BQdwKNEA4zD1yP
+	IRgkPc5HM5jGW0WV9H8weXoamfC+QG8rQU/Yub7GEvYg90pBsh9GBTCF
+X-Gm-Gg: AYBFou321wOWN4edGlvA7jMN4rt6jELfp18DMorkY7BB7M+IdlfBY9LnDwuz9aL12b+
+	6DbT6H5QOkn1gG3M6WiKNBHfBCrwlG90sujH7N6aDp/2pMCD1+3hepRb0V0HuIJk39HxDgjtJqj
+	/WANchV/PLE899Ix6AEJJJKrgvpXZJkvuS/JoL9x8UvhWpzREwpH1jV5NdJ/Um064nzCwAGuLiu
+	ZavdAc4n6v5lOqSVGaecm9ROcoouLS7dhx7OvBDLrKz8BTG5cFCurs+ZDXOaKL2WBT77ZQ3rbqz
+	INcWiGJTY88AKWgjXnNHn/8TnjLpuGBaF3gjuzLSF6HtSOPaCDlrxBvghtx9iqSD+t8fqeA1nxo
+	ycj6njZje6a73iHAVFR4IDLyWIEGgjcjbNdFhHAW1QTe6j+Aw06hJ4ta2m/NPpZljaflzkXGgJw
+	rNMhEJd1TKtYiUvYQSIbGYqLrIF/a87EbFRTPbgVS5zupB+1Q4Q+stv9L+0N6EZFFBbgz5wfrD0
+	4Dian6PVK4RQHXJ93AWvlCm/s1sOPB1U39MW5kCLRQ5x+0XMk8rbs4L3p0T6VRWoqTsg8mfSOvQ
+	ZuYfmJ+8pm2KCA2+QDc2zkNB7vk07bWPJ4s=
+X-Received: by 2002:a05:600c:8708:b0:4a6:30c3:1114 with SMTP id 5b1f17b1804b1-4bb55a7ece6mr231511055e9.12.1794833982968;
+        Mon, 16 Nov 2026 04:59:42 -0800 (PST)
+Received: from deb05.proceq.com ([213.160.61.66])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb65ce005bsm205471805e9.14.2026.11.16.04.59.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 04:59:42 -0800 (PST)
+From: Mehmet Fide <mehmet.fide@gmail.com>
+To: Andi Shyti <andi.shyti@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	Stefan Eichenberger <eichest@gmail.com>,
+	linux-i2c@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	mehmet.fide@screeningeagle.com
+Subject: [PATCH] i2c: imx: keep the error of a failed read
+Date: Mon, 16 Nov 2026 13:59:40 +0100
+Message-ID: <20261116125940.1368194-1-mehmet.fide@gmail.com>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
- kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_045947_809152_124999ED 
-X-CRM114-Status: GOOD (  17.24  )
+X-CRM114-CacheID: sfid-20261116_045945_088120_0E270CE2 
+X-CRM114-Status: GOOD (  12.37  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,98 +107,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Resctrl can now monitor at the L2 scope, so MPAM exposes the CSU and
-MBWU counters of an L2 group as l2c_occupancy and mbm_core_bytes.
+From: Mehmet Fide <mehmet.fide@screeningeagle.com>
 
-Also update the resctrl documentation.
+When the count byte of an SMBus block read is larger than
+I2C_SMBUS_BLOCK_MAX, i2c_imx_isr_read_block_data_len() sets -EPROTO and
+fails the read. The read of I2DR that took the count byte has started
+the reception of one more byte, and its interrupt comes in while the
+state is IMX_I2C_STATE_FAILED. i2c_imx_master_isr() has no case for
+that state, so the default case replaces -EPROTO with -EINVAL.
 
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Ignore interrupts in IMX_I2C_STATE_FAILED so that the first error is
+returned.
+
+Fixes: 5f5c2d4579ca ("i2c: imx: prevent rescheduling in non dma mode")
+Signed-off-by: Mehmet Fide <mehmet.fide@screeningeagle.com>
 ---
- Documentation/arch/arm64/mpam.rst     | 25 ++++++++++++++++---------
- Documentation/filesystems/resctrl.rst | 11 +++++++++++
- 2 files changed, 27 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/arch/arm64/mpam.rst b/Documentation/arch/arm64/mpam.rst
-index e445f4078ee1..f0d24fdc7677 100644
---- a/Documentation/arch/arm64/mpam.rst
-+++ b/Documentation/arch/arm64/mpam.rst
-@@ -32,8 +32,9 @@ Because the user interface to MPAM is via resctrl, only MPAM features that are
- compatible with resctrl can be exposed to user-space.
+Notes:
+    Tested on a Colibri VF50 on the Iris carrier, kernel at this base plus
+    "i2c: imx: acknowledge the count byte of an atomic block read" and
+    "i2c: imx: do not acknowledge the last byte of a block read of one
+    byte", with the M41T0 RTC at 0x68. A test-only hook passed the messages
+    that i2c_smbus_xfer_emulated() builds for a block read to the adapter,
+    alone and followed by a one byte read. Register 0x03 (0xae) as count
+    byte: without the patch -EINVAL 40 of 40, and a print in the default
+    case showed state IMX_I2C_STATE_FAILED with -EPROTO each time; with it
+    -EPROTO 100 of 100, as the atomic read returns. Count bytes of 0, 1 and
+    0x13 read the same bytes as before, and the bus works after each
+    failed read.
+
+ drivers/i2c/busses/i2c-imx.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/i2c/busses/i2c-imx.c b/drivers/i2c/busses/i2c-imx.c
+index ccf08cd63151..c7fef98934d4 100644
+--- a/drivers/i2c/busses/i2c-imx.c
++++ b/drivers/i2c/busses/i2c-imx.c
+@@ -1142,6 +1142,9 @@ static irqreturn_t i2c_imx_master_isr(struct imx_i2c_struct *i2c_imx, unsigned i
+ 		wake_up(&i2c_imx->queue);
+ 		break;
  
- MSC are considered as a group based on the topology. MSC that correspond with
--the L3 cache are considered together, it is not possible to mix MSC between L2
--and L3 to 'cover' a resctrl schema.
-+the L3 cache are considered together, as are MSC that correspond with the L2
-+cache; it is not possible to mix MSC between L2 and L3 to 'cover' a resctrl
-+schema.
- 
- The supported features are:
- 
-@@ -61,9 +62,11 @@ The supported features are:
-   When the MPAM driver finds multiple groups of MSC it can use for the 'MB'
-   schema, it prefers the group closest to the L3 cache.
- 
--* Cache Storage Usage (CSU) counters can expose the 'llc_occupancy' provided
--  there is at least one CSU monitor on each MSC that makes up the L3 group.
--  Exposing CSU counters from other caches or devices is not supported.
-+* Cache Storage Usage (CSU) counters expose the occupancy of the cache they
-+  monitor: 'llc_occupancy' for the L3 group and 'l2c_occupancy' for the L2
-+  group, provided there is at least one CSU monitor on each MSC that makes up
-+  the group. Exposing CSU counters from other caches or devices is not
-+  supported.
- 
- * Memory Bandwidth Usage (MBWU) on or after the L3 cache.  resctrl uses the
-   L3 cache-id to identify where the memory bandwidth is measured. For this
-@@ -82,10 +85,14 @@ The supported features are:
-   have a corresponding L3 cache. 'mbm_local_bytes' is not exposed as MPAM
-   cannot distinguish local traffic from global traffic.
- 
--  All these restrictions based on L3 cache are due to resctrl, currently, only
--  supporting monitoring at the L3 scope. It is expected that going forward more
--  MBWU monitors can be exposed to the user after support for more monitoring
--  scopes is added to resctrl.
-+* Memory Bandwidth Usage (MBWU) on the L2 cache. An MBWU monitor in an L2 MSC
-+  counts the bytes the cache sees, which resctrl exposes as the
-+  'mbm_core_bytes' event on the L2 resource. The MSC is used for the L2 group
-+  in the same way as for the L3 group above.
++	case IMX_I2C_STATE_FAILED:
++		break;
 +
-+These restrictions are due to resctrl only supporting monitoring at the L2
-+and L3 cache scopes. MBWU monitors on caches at other levels, or on devices,
-+are not exposed.
- 
- Command line parameters
- =======================
-diff --git a/Documentation/filesystems/resctrl.rst b/Documentation/filesystems/resctrl.rst
-index 2750f2eabf70..506ba55793b4 100644
---- a/Documentation/filesystems/resctrl.rst
-+++ b/Documentation/filesystems/resctrl.rst
-@@ -510,6 +510,17 @@ with the following files:
- 		bytes) at which a previously used LLC_occupancy
- 		counter can be considered for reuse.
- 
-+If monitoring is available at other cache levels there will be a
-+"<LEVEL>_MON" directory for each of them. For example an L2 cache exposes
-+"l2c_occupancy" and "mbm_core_bytes" in "L2_MON". These directories have the
-+same "num_rmids", "mon_features", "mbm_assign_mode" and
-+"max_threshold_occupancy" files as "L3_MON", and when the resource supports
-+assignable counters, also "num_mbm_cntrs", "available_mbm_cntrs",
-+"mbm_assign_on_mkdir" and "event_configs".
-+
-+The "mbm_L3_assignments" file in the resource group directories is specific
-+to the L3 scope.
-+
- If telemetry monitoring is available there will be a "PERF_PKG_MON" directory
- with the following files:
- 
+ 	default:
+ 		i2c_imx->i2csr = status;
+ 		i2c_imx->state = IMX_I2C_STATE_FAILED;
+
+base-commit: 25e7ab89f4774b0f842cee0e8a20c11f755924d5
 -- 
-2.34.1
+2.56.0
 
 
