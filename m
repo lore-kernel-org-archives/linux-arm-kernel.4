@@ -2,101 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72FF0606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B8A606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4m+v7i9j;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=R2Gr0zPZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FR8IfAeO;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=0sk6mFXH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=8droy8SkDbf75L1AVTA69UoLCcieNW/rhnOo3JtrCC0=; b=4m+v7i9jUVKaxJ
-	PA1WPxOhomnN008PWj9DhIVFSqu3HWaSNFQN5RQVwITZjjXx5XVQc6iZqWYxXVDvTOtwr4Z2UpExN
-	agB6pJxfAmy5WxH2QB4pYmm2phzLnUqSCp8rrr6kaFn07nipgHL5YfTc09ekvS2hPzLYryTZrmjiI
-	deLgKkk891NI/rJ5dy31BuLyfE49WI9x1HFpJTZfO0nDoyzXK4QyaqhqcSW2YpDY7iBWB2wl7n/vb
-	mH6QWK1bV0C8r/DkqAr0wEb5Its3IrFEBy19CjakPm284WAEr8qUaKCfGb5c7WaEOmpqHwOuVlcKS
-	YrLEkQHwWEaMMaN9CW0A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=bnKc3IJSrt3IePIy9TsoCqbRk4dzHod7cZj0q0eSHH8=; b=FR8IfAeOGQbe/G8nf50AYZXcCT
+	mhSJr2+pCA4IlsKHm8uNgDfblVXKNScSwFlMAnvZJ/b9mOUYfzEcNBDHWGbpSUb7nzyPEgA+qPL71
+	du5NHeWdxFPbZpdB0RUbgD2q+N4fzwAGdUaJ106iSmdMFtIskJjTi+GipawkzOV5UvfCcHsksQxvZ
+	2HRxJHiHuuOZQhQ+esSiDgdT+cW4t8TvaFpidEECzbGSb0AROjieC9Em9sQu/SjNLyP1ZYiANOzdl
+	sQduiYBuFDKCFSbyxOZqP7+YA8wwazggl8vuxh/DemX6DK99rv0GtOYBvCzz4LRFKKsTaBryr0GVA
+	HfviyI8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxdy-00000002oZL-3j7M;
-	Mon, 16 Nov 2026 14:25:15 +0000
-Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
+	id 1xSxeF-00000002oeB-0rpm;
+	Mon, 16 Nov 2026 14:25:31 +0000
+Received: from omta036.useast.a.cloudfilter.net ([44.202.169.35])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxdw-00000002oYD-0sKF
+	id 1xSxeD-00000002ocz-231b
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:25:13 +0000
-Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-8b5e5e64494so2124018b3a.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:25:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794839111; x=1795443911; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=8droy8SkDbf75L1AVTA69UoLCcieNW/rhnOo3JtrCC0=;
-        b=R2Gr0zPZyG55TG+kOlCR/+7GeRXd8ajuEqot1q8EXB3QJ2oCAxNYZTL0qmL9aG7xKo
-         2ZF2XTrLlm5OgDCnJhvbpTVigsgTc6uwwwjo8+NyKDnsEv7E8gyK2r4/AD7mvkBja8lv
-         XWSCJq7DLk6o50a9YzwLu15b7vNwlQdKm5+9R3DJWZJMKSjGUinl7zZtzZ0/e00QZHak
-         I1N1hU71NMB6CUlTxVmOl8EvqRaJ1RY6f3MPKIzvpdxIlfzd7fVuZWDCKOLGSO0xLzla
-         kbbU8aB2Y5TzHuZ0CTLaYmQ4Bd1c6T5dyZWcVApaPAVjz0icEXKODtzn/58jjWeUZeNy
-         I3Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794839111; x=1795443911;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=8droy8SkDbf75L1AVTA69UoLCcieNW/rhnOo3JtrCC0=;
-        b=LOVtSqZID5fn5kk7/DHlMCzdmnbW+jE3hfsWut3rZmOHfa+UVDM+/HuCxKS+5tqXdx
-         /852alyvuyw336xFppxbuMGNtRrfE69Q7xkJ8C8gS31UFE7Rgc2wNZFo/lXtC9c8WJMf
-         H3k3UZ6YfDUp980fedmT5S88K2AGtUcs1a8NIDcP5/S7sLf5rlOuIHtAmslwnbdjgSx7
-         pn2gj1HY1Qt5vfDO+pykA91IF6dxf+GzZ8ePYUeuvp1rtpkwcwo8/uqga8JeM1QO6k/J
-         F2vbZiDVZkgxv2z6hn8rZs5NWFl76ikkLDLdsPZ0wqsoU+pS4ArU1ZEYIhUnkupIfsCC
-         lytQ==
-X-Forwarded-Encrypted: i=1; AL+hErGU1hHIjQPhUbA9ZZnR4WDih61cIx4IpLRZIeOODkozv5jIle5ZBiKmgOm4BdvhDMwFCvBqkbqEjz9mhnVGysIz@lists.infradead.org
-X-Gm-Message-State: APuU4Z9v/eqFKN3KKI1Sj8+4Da0GiiRGFsSfJRQVkVzEj8sK4qF6BKbw
-	dhmfgcKWtMxBq1uu516ZlzKZZT996/skBJi3VYfliB74IKHW/22aEO9h
-X-Gm-Gg: AYBFou2YK/dKvxZvpEamHQSVqUFtTjONFzOEGsFYPckNqnR7EPOqotH1SA6sjy7gaOy
-	8P68zpFon218G//jTYWASsGTb5RT1rh3Om0sZu/wxjsTnWNeBvbLDA1g+RspAdf8S59tl9SaZCP
-	tPyD2u+0mBvaf84zEYfrx+Drau4/fTdmTaN3cBGdFrnSdVrwFA0W/hnK51YB7CUbIFL0dQRwlvi
-	UYBKv6rjOFxsq/FsIEdqTWpGwh9WMCCr7TqjGhqpX7CuxptKa3eOaOrKvFqL9bURNiNg/1/hGHh
-	b+XMrF+vopm5qpssgpTEwgkUpjJCQshnYSGFn5t9ddeWVUxV8nzSR1eNjPptltg19cIXgAFyvQr
-	w0ZBLxtP+lOS94vWbGM+Yp/6+CjzepSEGDewse8FAt9z0bw0PSfKC4J1syfC0EqboP/y7L7bMrs
-	YeVVSKYBbUQL+Cy1yTZ4kTKgSDZc3m//Q4NmzAenoO10TavUEePZc4gTAhYyJ9U1ZCUftWu76zz
-	iCoH+52BjfDQasFzB2z4OHvQk4DW2zfu44yiYKA/CMvlo5PbMnC0bvBv3m6Q9exj1b7GnHuogk6
-	r1OLnOe47VxL+joU5dTYqBSr5SNteldKEz0x/5mxYE8QKfSywctYKGDtIHNm
-X-Received: by 2002:a05:6a21:8883:b0:3e2:2234:62a with SMTP id adf61e73a8af0-3f7a84cef9bmr7584081637.55.1794839111006;
-        Mon, 16 Nov 2026 06:25:11 -0800 (PST)
-Received: from arch.localdomain ([152.175.35.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8bed2053d26sm3834158b3a.36.2026.11.16.06.25.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 06:25:10 -0800 (PST)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: jernej.skrabec@gmail.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	james.hilliard1@gmail.com,
-	krzk+dt@kernel.org,
+	Mon, 16 Nov 2026 14:25:30 +0000
+Received: from eig-obgw-5004b.ext.cloudfilter.net ([10.0.29.208])
+	by cmsmtp with ESMTPS
+	id SxVgxOEzK4vCDSxeCxBhDZ; Mon, 16 Nov 2026 14:25:28 +0000
+Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
+	by cmsmtp with ESMTPS
+	id SxeBxDcSvuJrPSxeBxqvuy; Mon, 16 Nov 2026 14:25:27 +0000
+X-Authority-Analysis: v=2.4 cv=WLZ/XmsR c=1 sm=1 tr=0 ts=6afb1258
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=pGLkceISAAAA:8
+ a=EUspDBNiAAAA:8 a=gUJwKisUJcuna-pPN7wA:9 a=CjuIK1q_8ugA:10
+ a=KPbNTLLc3YvdawN95zVk:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+	:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+	:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=bnKc3IJSrt3IePIy9TsoCqbRk4dzHod7cZj0q0eSHH8=; b=0sk6mFXHdazpnAR1pwYEQWKC6I
+	X1E8ekQhO0z3VayxRm1NfHDKZPYKtSjVyBbOQ6BXgsKnbsaQijZg9Njwvi72ApNtUv8cSMNdGc4Vd
+	QyBkQyIPDzLAZFyuqMD232Y8huOEnhHlwlN1r/1BLq79zhy1fepUalqTHRZt7AQpgRJ/hNNVCJ4/W
+	+wjozLlctGicx/oK/1NIvMu3BrlohLbRxPWhx6Kl99HdJQN9Ph/a5KSW52HJ5bvDy+eWL6YxSlBW3
+	Pv6/DkmHUpcXaGr7B2cKNOjA017mfcKr12cerSqK+iWNmuAk3le8gG/O8AgxGgOr0CZNuR51nIbhz
+	RUC4xEhA==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54554 helo=server.roeck-us.net)
+	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <linux@roeck-us.net>)
+	id 1xSxe8-00000003nQw-0sPf;
+	Mon, 16 Nov 2026 19:55:24 +0530
+Date: Mon, 16 Nov 2026 06:25:23 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Alexander Letuchiy <asalde.le1@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Mattijs Korpershoek <mkorpershoek@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	robh@kernel.org,
-	samuel@sholland.org,
-	wens@kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: allwinner: h6: Enable Ethernet on Tanix TX6
-Date: Mon, 16 Nov 2026 22:25:03 +0800
-Message-ID: <20261116142503.671907-1-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261115171148.37784-1-jernej.skrabec@gmail.com>
-References: <20261115171148.37784-1-jernej.skrabec@gmail.com>
+	linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-input@vger.kernel.org,
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] dt-bindings: watchdog: mediatek,mtk-wdt: Add
+ compatible for MT6895
+Message-ID: <20ace44c-2385-4561-9e69-c6c7bd3a3fb6@roeck-us.net>
+References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
+ <20261113-initial-mt6895-v2-3-4ab0aa9fa391@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261113-initial-mt6895-v2-3-4ab0aa9fa391@gmail.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1xSxe8-00000003nQw-0sPf
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (server.roeck-us.net) [108.223.40.66]:54554
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 30
+X-Org: HG=direseller_whb_net_legacy;ORG=directi;
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfPwiPubUrXy87MrbtXx/1gG2B7UIJYjVObC1MUXm9FXW8jkKVMI3gOzEqb5Amy/uYfRn2b+908WyIDR66Yq6ms8NvAttnGtTrYucemH/C82ZVt7rH3LX
+ 1EgeBHlhFT7t6CVVL1OLe2kyua20pNoqSG6YA5QosiZnVZyG3I1ddgfUUp8XJ0G6m7/sL4DWCC3hHy2n+EzE/+5QxD1Wwe116xDk16TCWcrYFqkwnjv62fg6
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_062512_251808_7C17FC4A 
-X-CRM114-Status: GOOD (  16.16  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261116_062529_589645_898EBC0A 
+X-CRM114-Status: UNSURE (   6.99  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,54 +125,24 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jernej,
+On Fri, Nov 13, 2026 at 10:04:59PM +0300, Alexander Letuchiy wrote:
+> Add a compatible string for the watchdog of the MediaTek MT6895
+> (Dimensity 8000/8100) SoC. It does not fall back to mediatek,mt6589-wdt,
+> which implies the MT6589 TOPRGU reset layout, as the MT6895 one is not
+> known yet.
+> 
+> Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-> The AC200 MFD and Ethernet PHY drivers and their bindings were merged
-> in v7.4-rc1. This series adds the device tree parts needed to use them
-> on H6, starting with the Tanix TX6 and TX6 mini TV boxes, whose only
-> Ethernet port goes through the PHY in the AC200 co-packaged with the
-> H6.
-> 
-> Patch 1 describes the AC200 in the H6 dtsi: the I2C3 controller with
-> the AC200 on it, a pwm-clock that provides its 24 MHz reference clock
-> from PWM1, the RMII pins and the EPHY calibration value in the SID.
-> Everything stays disabled.
-> 
-> Patch 2 enables Ethernet on the Tanix boards.
-> 
-> Tested on a Tanix TX6: 100 Mbit/s full duplex, about 11 MB/s in each
-> direction, and the link comes up both after cold boots with no
-> Ethernet initialisation in U-Boot and after U-Boot has used it. The
-> TX6 mini shares the same dtsi and was not tested separately.
-> 
-> The arm64 defconfig does not enable CONFIG_MFD_AC200 and
-> CONFIG_XPOWERS_ACX00_PHY yet; I can send a separate patch for that.
-> 
-> Best regards,
-> Jernej
-> 
-> Jernej Skrabec (2):
->   arm64: dts: allwinner: sun50i-h6: Add AC200 companion chip
->   arm64: dts: allwinner: tanix: Enable Ethernet
-> 
->  .../boot/dts/allwinner/sun50i-h6-tanix.dtsi   | 40 ++++++++++++++
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 53 +++++++++++++++++++
->  2 files changed, 93 insertions(+)
-> 
-> -- 
-> 2.43.0
-
-Same AC200 setup on TaiqiCat (TQC) A01; I'll send the board enablement
-separately once the H6 dtsi changes are merged.
+Applied.
 
 Thanks,
-Jun
+Guenter
 
