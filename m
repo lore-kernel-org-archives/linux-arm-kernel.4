@@ -2,77 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804F4606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D41606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pkP2RCqP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lPgY3ZKm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oEElTAIf;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=MgJTf4Vf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=v+u8WOi6enSXf9p1uj17AxTmnZ64Z9UB12nhM5b0wBk=; b=pkP2RCqPbM9+JX
-	Js6SndiitBP0lJF/jG/dXRjiUZ5mETMUUbjmTe1IdIQPpYlEJ48zJJKgY6B5e76PuS1wc8C+vMnra
-	Bmj7fzyV7RsU7TVy0lVamxlD0h6SOyCUVCG7Fpyy2+txu2x4tcv6AoireOb7p6heaNmch+gxqwHsy
-	ZsnPwF/QuQOMizAP+AXfx/fxWeVSRYgU3ZUbau3luHvbInqTaggFgZfOTF1QjoavcpsOgcuPCq+yL
-	VF5GeTGs6lxV85rLO796Zf3p0BPMFe8WTJlgv3vG122qD9mBvAtaE0AaSxvhxLvNOjYbI7GLqb8Z0
-	azlUV7KxJheLbSVVk8cg==;
+	Content-Type:Cc:To:Message-Id:MIME-Version:Subject:Date:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=OmxDzzpyB6E7CRRo9uqBsBEYLzdun/syuP5owNmqoic=; b=oEElTAIfpzKThHM43cqOObpoab
+	GKza+WD1Np/Z6sMrIDWqxBTyPneP2xXgGxyQ+/IfX4hGrb/7HK1ehCyiK9TSZshcmcpHFKUFgem9G
+	OTC/amnfGTB8DJWeomO0cArKtkoMVM65hfJjDjLbdz35gzlvRQcXm6rX/eIXgtDHS4R3+m++q83PC
+	OmA2oa9gx0dkXrd40o7ijqJHj5rJyJzBt502aPhT94xsLIOStyic1iYaT12oOsrjPagDcyo1DQ23S
+	scb6axLTsAeWNOhp8hWEq/6q9Je5BQ9s4tV80ypzHuhSajIynoFie3pmodBavZkZ0KOrX1rxF+y9i
+	GqM0j0qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwvP-00000002f0b-0K1p;
-	Mon, 16 Nov 2026 13:39:11 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSwvo-00000002f9E-16No;
+	Mon, 16 Nov 2026 13:39:38 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwvN-00000002f0S-3KgZ
+	id 1xSwvl-00000002f8Q-3JBy
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:39:10 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AE8A961D1F;
-	Mon, 16 Nov 2026 13:39:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 809881F000C9;
-	Mon, 16 Nov 2026 13:39:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794836348;
-	bh=v+u8WOi6enSXf9p1uj17AxTmnZ64Z9UB12nhM5b0wBk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=lPgY3ZKmD+AWK6OsqmvR2cCzK6j6u/WxfP3iaSyX9l+sr/3pxKSwrPdAxFUmB9xHS
-	 Te4LG33kqlHxat/w0CkHdvZDbte0OMXN6muIL0x7x/arXg19Oq+TkrYgugukT86AIP
-	 fBQDoHj+srBScbYERGJVtYGkySVWbQmNxiPyppwSnff8r1Gg1X48YTJ0M5spgri9sZ
-	 cgtJFF25gMSdEn28dVFmDAaN0XSm5PAYY5CqRCitHfF55dnu7PV8zepEY0Q/zX8K79
-	 MrjkPdaIuSw/y1vNQhJjd47gBkODFnoQwepsvQQyFNRel7sOC5ngZ+n7SoMLX7mQHl
-	 QgBPPOdHcj0UQ==
-Message-ID: <afebfaf5-f3ee-4234-875d-e5ebf1ee64fd@kernel.org>
-Date: Mon, 16 Nov 2026 14:38:58 +0100
+	Mon, 16 Nov 2026 13:39:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1794836372;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=OmxDzzpyB6E7CRRo9uqBsBEYLzdun/syuP5owNmqoic=;
+	b=MgJTf4VfoZ1d/bbTtFNp0qtJPyeqet4rGqp6XIb8pjR+EXwsAagf9k+fARy6HhNC9ve1NT
+	hCbxN4d8ZDKW9XnbY5oIHNm1eV+OiQqTBbMbK5GIuDOUcWOLcjtuI6mC9wlweCDepT+m08
+	ndRdy/R7HUDLMbm8C5QMfTA/b6kjYaA=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-121-0x504bqBOJOe18DJLfL8qQ-1; Mon, 16 Nov 2026 08:39:29 -0500
+X-MC-Unique: 0x504bqBOJOe18DJLfL8qQ-1
+X-Mimecast-MFC-AGG-ID: 0x504bqBOJOe18DJLfL8qQ_1794836368
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-490c1867490so126950f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 05:39:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794836368; x=1795441168;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=OmxDzzpyB6E7CRRo9uqBsBEYLzdun/syuP5owNmqoic=;
+        b=KWZ3cIMyOZ3Lm82tDAfsmSefLblAdG0kQzSrOYMZLIZoeXt3M/yXVHiHlwYrbZjiFR
+         xEKkRS4tqi2wEhOBHE0I4zd3KZj2Uwp+roj50laDXvQitbjELIaYlhOqMPlHKybRBRwo
+         jilCa7+ET1T0vbE8N1cwKADCskeRHEl+2PJPYi29eGcjiJ016dWy8CzAFbQh/49S9+WW
+         iDveXUcFXb8XB6pU/YRq2yXvQ5HD1D4EhyFJ2eJnD4jkG/Yqz/CUjxNdOoqQQdcJvfmh
+         ettAeNxtpDcwGyWtWKOXZ2vPG2um0+lzsnoS++MWksBSXdjyCFoTFOOjK4KGpmZks5KU
+         No3g==
+X-Forwarded-Encrypted: i=1; AL+hErFutMgfIWG6W1PdHyELZsx/I0qT5BSLcavhFY7U/c61+ug4vYC/JjFj22j0+nQojKUdzACX0Abrv6TD0Hbpf39B@lists.infradead.org
+X-Gm-Message-State: APuU4Z/F25F5hHgPdkAdhzvSVLzXV8UVLl5AogMNMIUvBvCLZkGntHKR
+	wpLeZMY8d5V8HT1W0xbgVuLxvrrkd8/cOMGfRBkdSfegWRwN/XPrOtrIdRsZQ2svJXLjCsqwkbe
+	qv3fQSAejL1f3hC3P1I6w92uF+QE1BYCx3m4IdZISnKD2cysIJ0eRqERvBuqgmReHgBqaTC5yje
+	JB
+X-Gm-Gg: AYBFou1aD74atDOREZzNRBecNmHph2YX1hmdXjkNqWz+awDF2kXySm+NHcaRtfhbY+u
+	8y9bxjvQDc991xZ6llHIuEz7JBBTR0QT7ubhozOj/FppUf32jN8NVGCZozP6BvLZqcQrlo4nmAg
+	va4+uxZcyaup4ilffkBNqpIKg+ZzA2vI6DdVr0a4o1EL8xiGnsghLYqEUtRqEcqCaxkOntq78R0
+	SGQeWyIRGOApZvjnYhZcYNNwGE2aYGpXaNFUzS98vC/P6uwvROSvS0vluvIruhdxwB2/AUFAmiv
+	p0XGpLa6/G/3ooh68ZxvU7CCxNhgaQP4vxjJMAHWwg0IDl30qCxKM+oXlfLtrr5HTvPeoHVUaro
+	dOyTHdnKZ+B5O0c/5mWEhiKEn4A2w73bhFA2C2WX/FT4/0mFIWK7PUHd0bQmvMi1QXnAgx+vDpk
+	u3OtJDVzGh2Geayw==
+X-Received: by 2002:a05:600c:16d5:b0:4bb:732a:2837 with SMTP id 5b1f17b1804b1-4bb732a2af5mr33746695e9.1.1794836367917;
+        Mon, 16 Nov 2026 05:39:27 -0800 (PST)
+X-Received: by 2002:a05:600c:16d5:b0:4bb:732a:2837 with SMTP id 5b1f17b1804b1-4bb732a2af5mr33746245e9.1.1794836367447;
+        Mon, 16 Nov 2026 05:39:27 -0800 (PST)
+Received: from localhost (119.red-83-42-172.dynamicip.rima-tde.net. [83.42.172.119])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb65ce005bsm207627955e9.14.2026.11.16.05.39.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 05:39:26 -0800 (PST)
+From: Enric Balletbo i Serra <eballetb@redhat.com>
+Date: Mon, 16 Nov 2026 14:39:24 +0100
+Subject: [PATCH] scsi: ufs: core: Use ufshcd_query_attr_retry() for RTC
+ update
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/10] powerpc: kvm: allow flexible PAGE_OFFSET
-To: Arnd Bergmann <arnd@kernel.org>, linux-mm@kvack.org
-Cc: Arnd Bergmann <arnd@arndb.de>, Andreas Larsson <andreas@gaisler.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- "David Hildenbrand (Arm)" <david@kernel.org>, "H. Peter Anvin"
- <hpa@zytor.com>, Ingo Molnar <mingo@redhat.com>,
- Jason Gunthorpe <jgg@nvidia.com>, Linus Walleij <linusw@kernel.org>,
- "Lorenzo Stoakes (ARM)" <ljs@kernel.org>,
- Lucas Stach <l.stach@pengutronix.de>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Malin Jonsson <malin.jonsson@est.tech>, Matthew Wilcox
- <willy@infradead.org>, Michael Ellerman <mpe@ellerman.id.au>,
- Michal Simek <monstr@monstr.eu>, Mike Rapoport <rppt@kernel.org>,
- Nicholas Piggin <npiggin@gmail.com>, Nishanth Menon <nm@ti.com>,
- Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
- linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, x86@kernel.org
-References: <20261116124832.662455-1-arnd@kernel.org>
- <20261116124832.662455-5-arnd@kernel.org>
-Content-Language: fr-FR
-From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-In-Reply-To: <20261116124832.662455-5-arnd@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Message-Id: <20261116-ufs-rtc-query-retry-v1-1-4de69b175e8d@redhat.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MuwqAMAwAf0UyG7BV2uKviINooll8pCqK+O8Wl
+ 4Mb7h6IpEIR6uwBpVOiLHMSk2fQT908EsqQHGxhnTHG4cERde9xO0hvVNoTS7a+CBUHHxhSuSq
+ xXP+1ad/3A8mVq9NlAAAA
+X-Change-ID: 20261116-ufs-rtc-query-retry-3f27084f878f
+To: Alim Akhtar <alim.akhtar@samsung.com>, 
+ Bart Van Assche <bvanassche@acm.org>, Bean Huo <beanhuo@micron.com>, 
+ Stanley Jhu <stanleyjhu@google.com>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
+ "Martin K. Petersen" <mkp@kernel.org>, Mike Bi <mikebi@micron.com>, 
+ Avri Altman <avri.altman@sandisk.com>, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Cc: Luca Porzio <lporzio@micron.com>, linux-scsi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>, 
+ linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>, 
+ Larisa Grigore <larisa.grigore@oss.nxp.com>, 
+ Enric Balletbo i Serra <eballetb@redhat.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794836365; l=1772;
+ i=eballetb@redhat.com; s=20261026; h=from:subject:message-id;
+ bh=e4EQGaaTBbd9wtA70t1Vx8NEbGVqrdd2zRrcBNi9mFQ=;
+ b=3o+DwdK7dIKBz6QiRt3MIR24WrlJ7wPWsVy0sCk7n5BUey0tWzgVYp0XfhwhC4Xu/UUj5MgWO
+ gtYumqrnV9qALJkaY/8FbG0RNWLrN8fNYqVjOI3l2N916/2CHcnF0ud
+X-Developer-Key: i=eballetb@redhat.com; a=ed25519;
+ pk=5zh6xuAxTiQwglL2NXQFqWuyRPmCE8T5KPXLbNXhnKI=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: qqFtoNmTBcfuDA-QRKITAQzJ58dnZJXtGECHtf4ckvo_1794836368
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261116_053933_980782_E37F0E79 
+X-CRM114-Status: GOOD (  12.05  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,101 +128,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Arnd,
+ufshcd_update_rtc() uses ufshcd_query_attr() directly to write the
+bSecondsPassed attribute, making it the only query attribute caller in
+the UFS core that does not use the retry variant. All other callers use
+ufshcd_query_attr_retry(), which retries up to three times on transient
+failures before escalating to dev_err.
 
-Le 16/11/2026 à 13:48, Arnd Bergmann a écrit :
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> As described by the Sashiko bot, the KVM code on powerpc has multiple
-> hardcoded PAGE_OFFSET values. In order to change the default, make these
-> compute the correct register values from configuration symbols.
-> 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->   arch/powerpc/kvm/book3s_32_sr.S     | 4 ++--
->   arch/powerpc/kvm/booke_interrupts.S | 4 ++--
->   arch/powerpc/kvm/e500_mmu_host.c    | 3 ++-
->   3 files changed, 6 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/powerpc/kvm/book3s_32_sr.S b/arch/powerpc/kvm/book3s_32_sr.S
-> index 6cfcd20d4668..0d8a7857f2bd 100644
-> --- a/arch/powerpc/kvm/book3s_32_sr.S
-> +++ b/arch/powerpc/kvm/book3s_32_sr.S
-> @@ -113,8 +113,8 @@
->   
->           li      r0, 4
->           mtctr   r0
-> -	LOAD_REG_IMMEDIATE(r3, 0x20000000 | (0x111 * 0xc))
-> -        lis     r4, 0xc000
-> +	LOAD_REG_IMMEDIATE(r3, 0x20000000 | (0x111 * (PAGE_OFFSET >> 28)))
-> +        lis     r4, (PAGE_OFFSET >> 16)
+This causes spurious error messages during boot on some platforms when
+the write-attribute command hits a transient OCS_INVALID_COMMAND_STATUS
+error:
 
-This is not enough I think. You need to load ctr with the number of 
-segments you want to populate. Here above it is hardcoded to 4.
+  ufs-s32n7 4ac80000.ufs: ufshcd_query_attr: opcode 0x04 for idn 15 failed, index 0, err = 15
+  ufs-s32n7 4ac80000.ufs: ufshcd_update_rtc: Failed to update rtc 15
 
->   3:      mtsrin  r3, r4
->           addi    r3, r3, 0x111     /* increment VSID */
->           addis   r4, r4, 0x1000    /* address of next segment */
-> diff --git a/arch/powerpc/kvm/booke_interrupts.S b/arch/powerpc/kvm/booke_interrupts.S
-> index 205545d820a1..ede394f3f63f 100644
-> --- a/arch/powerpc/kvm/booke_interrupts.S
-> +++ b/arch/powerpc/kvm/booke_interrupts.S
-> @@ -230,8 +230,8 @@ _GLOBAL(kvmppc_resume_host)
->   #endif
->   
->   	/* Restore host IVPR before re-enabling interrupts. We cheat and know
-> -	 * that Linux IVPR is always 0xc0000000. */
-> -	lis	r3, 0xc000
-> +	 * that Linux IVPR is always PAGE_OFFSET. */
-> +	lis	r3, PAGE_OFFSET >> 16
+Switch to ufshcd_query_attr_retry() to handle transient failures
+gracefully, consistent with every other attribute query in the driver.
 
-Maybe use PAGE_OFFSET@h instead of PAGE_OFFSET >> 16.
+Fixes: 6bf999e0eb41 ("scsi: ufs: core: Add UFS RTC support")
+Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
+---
+ drivers/ufs/core/ufshcd.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
->   	mtspr	SPRN_IVPR, r3
+diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
+index 3c28bc67c65f..1cd32b7cc967 100644
+--- a/drivers/ufs/core/ufshcd.c
++++ b/drivers/ufs/core/ufshcd.c
+@@ -8821,8 +8821,8 @@ static void ufshcd_update_rtc(struct ufs_hba *hba)
+ 	if (ufshcd_rpm_get_if_active(hba) <= 0)
+ 		return;
+ 
+-	err = ufshcd_query_attr(hba, UPIU_QUERY_OPCODE_WRITE_ATTR, QUERY_ATTR_IDN_SECONDS_PASSED,
+-				0, 0, &val);
++	err = ufshcd_query_attr_retry(hba, UPIU_QUERY_OPCODE_WRITE_ATTR,
++				     QUERY_ATTR_IDN_SECONDS_PASSED, 0, 0, &val);
+ 	ufshcd_rpm_put(hba);
+ 
+ 	if (err)
 
-That's probably valid but wouldn't it be more correct to use 
-interrupt_base@h as in head_44x.S and head_85xx.S :
+---
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
+change-id: 20261116-ufs-rtc-query-retry-3f27084f878f
 
-	lis	r4,interrupt_base@h	/* IVPR only uses the high 16-bits */
-	mtspr	SPRN_IVPR,r4
+Best regards,
+-- 
+Enric Balletbo i Serra <eballetb@redhat.com>
 
->   
->   	/* Switch to kernel stack and jump to handler. */
-> diff --git a/arch/powerpc/kvm/e500_mmu_host.c b/arch/powerpc/kvm/e500_mmu_host.c
-> index fa6128119874..9edad9bed589 100644
-> --- a/arch/powerpc/kvm/e500_mmu_host.c
-> +++ b/arch/powerpc/kvm/e500_mmu_host.c
-> @@ -115,7 +115,8 @@ static u32 get_host_mas0(unsigned long eaddr)
->   	mtspr(SPRN_MAS6, 0);
->   	mas4 = mfspr(SPRN_MAS4);
->   	mtspr(SPRN_MAS4, mas4 & ~MAS4_TLBSEL_MASK);
-> -	asm volatile("tlbsx 0, %0" : : "b" (eaddr & ~CONFIG_PAGE_OFFSET));
-> +	asm volatile("tlbsx 0, %0" :
-> +		: "b" (eaddr & (rounddown_pow_of_two(PAGE_OFFSET)-1)));
-
-I think this is not valid.
-
-With PAGE_OFFSET equal to 0xc0000000,
-
-Before:
-
-eaddr & 0x3fffffff
-
-Now:
-
-eaddr & (0x80000000 - 1) = eaddr & 0x7fffffff
-
->   	mas0 = mfspr(SPRN_MAS0);
->   	mtspr(SPRN_MAS4, mas4);
->   	local_irq_restore(flags);
-
-Christophe
 
