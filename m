@@ -2,158 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEFED606A881
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422E7606A886
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SHm2Ri7y;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=ckt3u3FU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LJAEmtqL;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=U9fa/LBa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Ltq0pQI/ZMNBgnaD/q0Y2ypyV3mBPASt3xgWnkZCEc8=; b=SHm2Ri7yasP22q
-	wJFpLcykPs5UfCzJu/DPcgBKXV44O/LOSsCVrBrn6l421S+CgFDlQnEyGx7LEh1f2tfW1B6oi1Cbx
-	1R/mBklNh9LNEbOEDpo0d6biCapw+ihSMeTXwadYzT+2LGisrWNJq7N+XzmyQlb+cSnrN7gcm4WN+
-	CaKZDmdnLfO9/MkvDaLQEqQiC1fiLz+CQYXX8+ywvk3NohTX8AhCpymHaXJ8dIzdg8kZIIflhTURB
-	N6OeQR29JoiL+NM90f6HwMppH44WCSPXW84auAk7LYeU7aW9alF2THMwf9mubVvti5veTm1vE3/E+
-	KYIQBPsHHpVaCYCuuT2g==;
+	List-Owner; bh=fSJQ3TO/0mJb/kzZHlIBvtfMwySuWem/xgRkXkS+p24=; b=LJAEmtqL/Ay7+M
+	5b1SQ2CqJ5GmiFJaFItqYH7NmN/JDVT4IaIrmrTkcOPXHZPISQ20CIdsYWFGM/c/S+6EQ6BheVU5R
+	JVp2v6DjNxokA7YB/fF0U1tiOGopU9vhF6W7iAEclBg2TM0mgs6sRCL9woDXofD5c45FnDqrstQR9
+	2XHiq2cc2N4Z4Re1N4usCFXpuauWsG2J6Vw0lAhVj9cLO9nVO1Zcl0e6LEQ+1wT2nVoDYWSKHJiMl
+	2a63wHP1KR/v9Ce08IjSsM/t3Phl00zNQjbS4UYF6bN6ZVb1K6Kbpn82XHsIlJvaeZG3QqDqdX8B4
+	goo72J3JEIYjez378HZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT10x-00000003TqT-06UI;
-	Mon, 16 Nov 2026 18:01:11 +0000
-Received: from omta036.useast.a.cloudfilter.net ([44.202.169.35])
+	id 1xT11V-00000003U4j-1W7s;
+	Mon, 16 Nov 2026 18:01:45 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT10r-00000003To6-42vw
+	id 1xT11T-00000003U4O-42A4
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 18:01:07 +0000
-Received: from eig-obgw-6007b.ext.cloudfilter.net ([10.0.30.166])
-	by cmsmtp with ESMTPS
-	id Sqh9xMlZm4vCDT10qxDphO; Mon, 16 Nov 2026 18:01:04 +0000
-Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
-	by cmsmtp with ESMTPS
-	id T10nxdk9b3nNNT10oxzYoq; Mon, 16 Nov 2026 18:01:02 +0000
-X-Authority-Analysis: v=2.4 cv=TuLmhCXh c=1 sm=1 tr=0 ts=6afb44df
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10
- a=FXjISBkA9uUpg2xqjyUA:9 a=QEXdDO2ut3YA:10 a=KPbNTLLc3YvdawN95zVk:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:
-	List-Archive; bh=Ltq0pQI/ZMNBgnaD/q0Y2ypyV3mBPASt3xgWnkZCEc8=; b=ckt3u3FU8wfb
-	UNReXeL/yWpvxp7Gv6a4+GlHAJ9RgpyZIpwyNK9ihajCUsUQLoO2m0quk7/C13G8VFQQ6XGVwP+9v
-	GIjU7fKqx9AUxKMmKJ1cCO+oX0RQVh2qRWXMie0yJmWYsMxTGfB5mYGgvLj9UI0Xilufq0CHPZoXW
-	YHusOg/Ax/r2ast6ujL+5I7DoMQwHX0Ssx8VaD6mWqSx7uENfgBlb/mJlptUN7j3r0s581rRLxgNx
-	8TZuFBuqVPjzOGL1BXsDLeBJp5JIP89BLlBj5rTYki+S6sqKp5hCv4zK+JwHK5XvltARfThKmpvnn
-	syQmznHJBO+/yNwkdDUEoA==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:58046)
-	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <linux@roeck-us.net>)
-	id 1xT10i-00000001Aes-1XM0;
-	Mon, 16 Nov 2026 23:30:56 +0530
-Message-ID: <53492f71-9a31-4093-8c61-fb410cf44d5a@roeck-us.net>
-Date: Mon, 16 Nov 2026 10:00:54 -0800
+	Mon, 16 Nov 2026 18:01:43 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7B96C40320;
+	Mon, 16 Nov 2026 18:01:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 742181F000C4;
+	Mon, 16 Nov 2026 18:01:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794852103;
+	bh=fSJQ3TO/0mJb/kzZHlIBvtfMwySuWem/xgRkXkS+p24=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=U9fa/LBax4AtOV+YjYJYeYtt7gRlPvR1Y94LwiaByGlhj1mcwDS1/5n9EcuXHsLQ6
+	 5LvUs9nO2HkW1fOF83D8mnbUWG2kXNyz6BbhrTjqvf5ywyHJaQxQOaiNU0N5Ow5xHV
+	 Sl8MEglV75B0qx6DyOFXdSv4sCbOzi9TCW6tR5KtE6D+oDqlITPBJTKOXFS+7wLMSW
+	 FfmFNUTwJZ006ahZavzHDs8h/uQmMfPGoLte1issOElvrxw2ivgWh1UeQKyf36JS7I
+	 /lyc85goFIiOHPg9eCpnyrLqDIiZ56ONxif60sB8To1H1hdOiGLI3HTcw6XKU7/dAP
+	 YCZJJ8IbofJBQ==
+From: Chen-Yu Tsai <wens@kernel.org>
+To: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Cristian Filipescu <filipescu.cristian@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Andre Przywara <andre.przywara@arm.com>, linux-kernel@vger.kernel.org
+In-Reply-To: <20261116-sunxi-orangepi-3-lts-v5-0-979cf5474913@gmail.com>
+References: <20261116-sunxi-orangepi-3-lts-v5-0-979cf5474913@gmail.com>
+Subject: Re: [PATCH v5 0/2] arm64: dts: allwinner: Support Orange Pi 3 LTS
+Message-Id: <179485210124.3689664.6903721866612808429.b4-ty@kernel.org>
+Date: Tue, 17 Nov 2026 02:01:41 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/15] ARM: stm32: enable arm smc watchdog on
- stm32mp1xx
-To: Antonio Borneo <antonio.borneo@foss.st.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Russell King <linux@armlinux.org.uk>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Yannick Fertre <yannick.fertre@foss.st.com>,
- Christophe Roullier <christophe.roullier@foss.st.com>,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: linux-watchdog@vger.kernel.org,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>,
- Amelie Delaunay <amelie.delaunay@foss.st.com>,
- Sashiko <sashiko-bot@kernel.org>
-References: <20261116132416.1184447-1-antonio.borneo@foss.st.com>
- <20261116132416.1184447-7-antonio.borneo@foss.st.com>
- <32157be8-28c1-403d-8485-96c1fe4543ef@roeck-us.net>
- <2628f6e623996cda73a8cad46d451a629e749462.camel@foss.st.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <2628f6e623996cda73a8cad46d451a629e749462.camel@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1xT10i-00000001Aes-1XM0
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:58046
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 6
-X-Org: HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfFSgIvpJbiZGCW2+waUuxRBnyH/T04N7We4RqK1bRGwsm/Zy7J5ncdxlOobkxdURqRCtC6R8Cf3TPuKeLbrgqhvhSMTPQZAzoe768gDOBAJ82uvhTZaQ
- TTezeic8CVq569Q5YlRCPrRBq25reMsHVnBebBzbyUSoYxx83mGeVVGRt6LsxaVdOOJKA1OET7UqGpJYWA1WBbbmc6BiuiLM326NrLvy29RhOnp5WwpsceaX
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_100106_234415_93F2CCE3 
-X-CRM114-Status: GOOD (  21.20  )
-X-Spam-Score: -0.1 (/)
+X-Mailer: b4 0.14.2
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -164,70 +72,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/26 08:45, Antonio Borneo wrote:
-> On Mon, 2026-11-16 at 06:33 -0800, Guenter Roeck wrote:
->> On 11/16/26 05:24, Antonio Borneo wrote:
->>> The watchdog IWDG1 is secure by default on STM32MP1xx SoCs.
->>> On boards that keep it secure, Linux must use the arm,smc-wdt
->>> driver to ping it.
->>>
->>> Enable the driver for mach-stm32 when ARCH_MULTI_V7 is enabled.
->>>
->>
->> As mentioned before, that doesn't just enable it for STM32MP1xx SoCs,
->> it force-enables it for all boards running ARCH_MULTI_V7. It also
->> goes well beyond the current scope of "if ARCH_MULTI_V7" configurations.
->> I would suggest NACK for that reason, but that isn't my call to make.
->>
->> Guenter
+On Mon, 16 Nov 2026 16:44:29 +0000, Cristian Filipescu wrote:
+> Continue Jernej Skrabec's April 2025 series, adding the board compatible
+> and device tree for the Allwinner H6-based Orange Pi 3 LTS.
 > 
-> Hi Guenter,
+> Use the common Orange Pi H6 include and describe the LTS differences.
+> Follow the schematic's LED roles, remove unused USB ID detection, and
+> use generic PHY discovery with bus-level reset. The binding patch is
+> unchanged apart from rebasing.
 > 
-> sorry if I take more of your time on this, but I haven't got your comments on
-> my reply to this patch as v3 04/13.
-> 
-> On platforms STM32MP1xx the trusted firmware starts the watchdog.
-> Since on such platforms the defconfig is multi_v7_defconfig, the upstream kernel
-> configured with multi_v7_defconfig would need ARM_SMC_WATCHDOG to prevent a reset
-> during kernel boot.
-> 
-> Clearly, my wish is to have an upstream kernel booting properly with defconfig.
-> 
-> arch/arm/mach-stm32/Kconfig handles two series of ARCH_STM32:
-> - the deprecated ARMv7M platforms that use stm32_defconfig;
-> - the ARMv7A platforms that use multi_v7_defconfig.
-> 
-> In this patch the condition 'if ARCH_MULTI_V7' is to enable the watchdog only
-> on ARMv7A, not on ARMv7M.
-> 
-> Clearly any driver enabled for ARCH_STM32 will automatically be enabled for
-> the other SoC that rely on the same defconfig.
-> 
-> Also reworking this patch by moving the change in drivers/watchdog/Kconfig as
-> 
->   config ARM_SMC_WATCHDOG
-> +	default y if (ARCH_STM32 && ARCH_MULTI_V7)
-> 
-> would still result in the arm SMC watchdog enabled for all the SoC that use
-> multi_v7_defconfig.
-> 
-> What would be your suggestion to progress on this topic?
-> 
+> [...]
 
-No. As you say yourself above, "the upstream kernel configured with
-multi_v7_defconfig would need ARM_SMC_WATCHDOG to prevent a reset during
-kernel boot". I fail to understand why you don't just add
-"CONFIG_ARM_SMC_WATCHDOG=m" to multi_v7_defconfig and instead want to
-force every single platform using multi_v7_defconfig to build this driver
-into the kernel even though almost all of them won't need (or want) it.
+Applied to sunxi/dt-for-7.5 in sunxi, thanks!
 
-Guenter
+[1/2] dt-bindings: arm: sunxi: Add Orange Pi 3 LTS board
+      https://git.kernel.org/sunxi/linux/c/903a676a19ab
+[2/2] arm64: dts: allwinner: h6: Add Orange Pi 3 LTS
+      https://git.kernel.org/sunxi/linux/c/a203a4bac331
+
+Best regards,
+-- 
+Chen-Yu Tsai <wens@kernel.org>
 
 
