@@ -2,153 +2,124 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0337606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 10:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C381C606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 10:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FvwmR86B;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=kMaE9ML8;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=kMaE9ML8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oaGQWzjb;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=mdSuIhYK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fLE8+3OQOfF6IUhuX3KQW6DM/Na8lB7h3OcXiQ54uDc=; b=FvwmR86BGULGihSvifA59Ke1wb
-	PdU2QestUp58JSYt0hvV/Fwxmyh+JlddlQ2sKv1nMuQv6/+63CU6590q+g/7qxfJ+Coj062iNkwyT
-	o+OFRe9ma0EnAKqdZ6zW+8Ia5bO19yRQTlgYRCx1V/4wKgSmXIeYUlNyIgHTADQgCKeAqS1Zc+Zzw
-	A2xj/UbyrQUi8fxBK5ZfKa/OyzcZkZGwsXg1Fz7yf4kwX45bcmYiDn8/ULNLHfIvE7ve6nApeHtmg
-	TWm/zwshzLC6mbI73GmMBq/NBu4cMGLIp9NfLl9mpSO31ktSEU6dvalTrKI2z5Dm2AuxUyCNtKEct
-	DV++aoMw==;
+	bh=QyIT9ea2crCZq4nvMjISfIJ7Ba8t6KJP8PuTr7jMDuA=; b=oaGQWzjbcfRwbtczizFXqiudXC
+	oVYQqtw6j0cmc7VcHog7+7XaAE142ilxmZaCfsRWiV7528tzmSum6xmKxhjy9JoK6KkvffA52o9no
+	xiWncYDF7gw7EfqlykEp3HUQfInm1DCfkF+ll/1aBluh2DHuBHu9GcVhNsVq3PWxxnKMqCxUzXJ7q
+	ZkAyMWpH1wv+DPlOJUqgMB0y0kkLUpZYLwvcXLkIrcuMzU6hXeKy4TZhudIhL5s0/ysobDOuG0nND
+	FsaUM3xpuOPZlYV/T5ZW/Ri9tp7e2lMLSbIy7hCXwXiDC6LpCjiwxNdqnu8qBS6u8I37zEMItyPvi
+	DQUM8BAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xStyz-00000001xs4-1Toz;
-	Mon, 16 Nov 2026 10:30:41 +0000
+	id 1xStzz-00000001y81-2Zz2;
+	Mon, 16 Nov 2026 10:31:43 +0000
 Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xStyw-00000001xrd-1XjH
+	id 1xStzw-00000001y4S-2MqO
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 10:30:39 +0000
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=KEOepP2n5YWWGwB5Mx8B7dKx3KUxIzP//xoOPqrMXQaq6eHOvZhqfh2trQlERf5WxbLan96yrd97quxEElxnM8hSZxbq6b2Htcp0ds+1pEcoyS8tDBG+0Hs20uFEXGrHH56JFKZMkj+bGDBYjnXD7+/EMGSSkfvjiW4eLrNjWR8ikhO+Dv4fXrngADkWhBvVQWZF7Yl1q+3nXY4rDYX9enuzUtkb6pt2cXHhr4Z2BZqrBHQOVwRGtSYZloCLnHlIXSiEMez2Gq1JPcGp4My/cb1491gz5O7HzK6Ys3yagJmt8/ICuiP3iJU8DzrGUzu4xzxyAWpMgOcF5yF9fxlJKw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fLE8+3OQOfF6IUhuX3KQW6DM/Na8lB7h3OcXiQ54uDc=;
- b=XWir4w9KIBRFhhfqrV//XLMgVpctQFRJZMwbRGx5KQCDoG/RukGKxirO/knDZApjVKXnCo2TkkMopGSYQTatNdaOHTllhG+tUxYetdtGHTESnr4EXXLC89Trco22jh4d7jCXX59EoH2od62RmQvcwWr97JAam4Dd9S5189KqAkN1PsLaf2q8LknHftoloooYGcl9sKAmTg5bN12rvFP9BUkEtm8YCv9mgDijjcPB8D+ryZT60LHZgjxtPWOG7wwFMA/GJ9sB7t8kDUak7rQtC9V2rC8UbhKCgCHBsml5CTQbg7HvR4vs/SRbSZhnH7HUEMaEU1VI//hLytkhK5qp6w==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=nvidia.com smtp.mailfrom=arm.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
- (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fLE8+3OQOfF6IUhuX3KQW6DM/Na8lB7h3OcXiQ54uDc=;
- b=kMaE9ML8lmv4LlBvR3+QPtvy0vMekuvtTa8JYwqGv/0JO6+fnoHqOK2LXnMMZnVodxGMDCINpTDiFBqR1qpzvTp4DbgD0SCBo2RJcTnpWnj4jneNfipYhbJlD0WLnmEIPyvVMoFKwNKngfIsM/vU1QRHygdww1SEVTaWl2vEwug=
-Received: from DU7P190CA0029.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:550::23)
- by DB9PR08MB7796.eurprd08.prod.outlook.com (2603:10a6:10:39b::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 10:30:26 +0000
-Received: from MAD0EPF000008B9.eurprd04.prod.outlook.com
- (2603:10a6:10:550:cafe::6d) by DU7P190CA0029.outlook.office365.com
- (2603:10a6:10:550::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Mon,
- 16 Nov 2026 10:30:25 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- MAD0EPF000008B9.mail.protection.outlook.com (10.167.241.167) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.4
- via Frontend Transport; Mon, 16 Nov 2026 10:30:25 +0000
+	Mon, 16 Nov 2026 10:31:42 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NRvyCYpTsBMR5vVFszTbLEXm9ql3SA5mIXDlqtW3beX71/tEgRsOZWmmY20Mqi/hOz2IOODXzSyVg/bDRt5iMGJnfjO+0aa56AoIDNBngmo+pleBrvzyWRdY/gxrd33g9dep2nsdgCnynfE8NkYFJFX9oGI1Xul40pUVUsBjiDMuMZ5wphmoZG+RQBYqJuMOZg9Vdn1WkrcCdA/5J2ElFfoSkksWczrQda0cM2h9wdiYhHrvt3Nf9v2q8C+BlnPhwZa5PMFoXo4QBu/e4cx20VseZ6zSrV39eNhUIj+p+Fc8vmyn+4lsI9rKCll5F5OmL/x7m3yXlZ8IcGkQyTQtCQ==
+ b=KNswZrqbkBDNDcA0YKF6Y553Nta/NC790U8FzJYbcp5vfS92T30SyOxs+rV5+dwiASorvh5ajFl8aqKX1HVuRpcqMxiAZfUoKytETGaCR8E3X93JZVBGJHKWoNFCA/AeAZNwLT+ix3FVxmjfqcdrkdbSo9GHBh2Xv0DFNiYFKArqbMbA9AeiwE4EYARdQu9FMgom32dEHrxNr2QRgcVFi0xekrKCF4RAeepMSAcJ1d4MLHTSHCpfoW6GCvvl8Lr58wMVXKzNSnvWT01WxgJKRcqETCWHga9Q/TwZDjmFctU1yLs/JYV5kWXC8NTErwhWRNSuZfFyJFrS4BdJagzHcA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fLE8+3OQOfF6IUhuX3KQW6DM/Na8lB7h3OcXiQ54uDc=;
- b=AINQlL3lER3xJYxr48AXgrbbRlXbgxst2+hZPM17nqGn8DWNKKEgVCiforgLUdBzEA/a2wP2u228v3dp0pGUMfFLutjCNGx0fop7oBaFktyeZ7/I1sl6XFdGNWEXj7Wk7fZCqutqJVd1bQcaXrMyJ690/y5M4rleA8+h4VudGDoF8UrpUA196UgPd9/x3QsEfWaFW0AzDPbtiL+BqTlq/9p4srMXVaUlSF4AaPWOq8hOEeuGWtzgPq+Zb7R4E6geDt08lGYV2W9ix41SYb3IY4nxnldojvbwiU+Pt/gubGb9uwpzRM+FoCwg7omxLhox8m1ClAOeEwC/6G7iOsHohw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ bh=QyIT9ea2crCZq4nvMjISfIJ7Ba8t6KJP8PuTr7jMDuA=;
+ b=v6/clJw+QkMxjgKM2dngLc+CWiA2cOK8Plcv6/vWxy2WX9a2FPiZeeV5fV8yatgn1Crx5LmiJT2/VnsBO2Tdzr5hkE1QY5G4W8BDECMwjkUYe1d1uPms1Z7uyd8K/i433ighWDxoJ1jAY2jjypTyV25QzCG1Y7VXBCsiNOyKx1XVEhD4yyqPNV8zUcUZUIb3vDQQJb2j4VQwsE4mLN2EwatGBHo8T7WDYmsOSYT7tpIoxljLFaS0ADr8WJFOTyo0nih+F3RAmzkQvVQt+PmAkJp440wlZpspArAS2CPI8mUUgH6t1Lu2k1TwR6eGA8Eoz/0w02i4qUBZ5WnhYKn0XA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=foss.st.com; dmarc=fail (p=none sp=none pct=100) action=none
+ header.from=foss.st.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fLE8+3OQOfF6IUhuX3KQW6DM/Na8lB7h3OcXiQ54uDc=;
- b=kMaE9ML8lmv4LlBvR3+QPtvy0vMekuvtTa8JYwqGv/0JO6+fnoHqOK2LXnMMZnVodxGMDCINpTDiFBqR1qpzvTp4DbgD0SCBo2RJcTnpWnj4jneNfipYhbJlD0WLnmEIPyvVMoFKwNKngfIsM/vU1QRHygdww1SEVTaWl2vEwug=
-Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
- signed) header.d=none;dmarc=none action=none header.from=arm.com;
-Received: from PAWPR08MB8959.eurprd08.prod.outlook.com (2603:10a6:102:33f::15)
- by DU0PR08MB8836.eurprd08.prod.outlook.com (2603:10a6:10:47d::22) with
+ bh=QyIT9ea2crCZq4nvMjISfIJ7Ba8t6KJP8PuTr7jMDuA=;
+ b=mdSuIhYKvYX7wYr5BihVCGBEK/tKBNRU08uI8u6N5OB3S0yjXJxHATXmOKtKI2cLpVrMPW+lk6hovMNf7xNQc7SGMcSW6cL9doA53Yc0tZ9GlFFq8ArpjwX+toa1NXEnSK/FuHoMkmS+zZ+zzPtno6dS5yQpMZUYrgKbyq1T50Mcuj5edOQYAxhSGjzbjZRSScOl6Cv+19gCZBPioqmMs0Cz51sqMlO5zCwuDqX7Fs37n4/tIVGDmb82BSy5QnRO1gZHJtZxlWmdnvpJ/KeOWg462Y0kzdX4sNv2U5Vso4CeyNMd8jRk959UH2ll74/n2PePdguZvn7w98m/IyApzw==
+Received: from AS9PR04CA0092.eurprd04.prod.outlook.com (2603:10a6:20b:50e::6)
+ by DB8PR10MB3148.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:116::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Mon, 16 Nov
- 2026 10:29:48 +0000
-Received: from PAWPR08MB8959.eurprd08.prod.outlook.com
- ([fe80::71d3:7b21:3594:e33f]) by PAWPR08MB8959.eurprd08.prod.outlook.com
- ([fe80::71d3:7b21:3594:e33f%7]) with mapi id 15.21.0615.012; Mon, 16 Nov 2026
- 10:29:48 +0000
-Message-ID: <db4f83f3-d35b-49b7-8570-04e158125b53@arm.com>
-Date: Mon, 16 Nov 2026 10:29:46 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 04/12] iommu/arm-smmu-v3: Pack the MSI vectors of the
- used sources
-To: Nicolin Chen <nicolinc@nvidia.com>, will@kernel.org, jgg@nvidia.com
-Cc: robin.murphy@arm.com, joro@8bytes.org, praan@google.com,
- kevin.tian@intel.com, smostafa@google.com,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- linux-kernel@vger.kernel.org, jamien@nvidia.com, kas@kernel.org,
- Cristian Prundeanu <cpru@amazon.com>, Breno Leitao <leitao@kernel.org>,
- xueshuai@linux.alibaba.com
-References: <cover.1793593923.git.nicolinc@nvidia.com>
- <0d28afd67694fc6882e0ff5f054027488b1cf816.1793593923.git.nicolinc@nvidia.com>
-Content-Language: en-US
-From: John Garry <john.garry@arm.com>
-In-Reply-To: <0d28afd67694fc6882e0ff5f054027488b1cf816.1793593923.git.nicolinc@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO3P123CA0016.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:ba::21) To PAWPR08MB8959.eurprd08.prod.outlook.com
- (2603:10a6:102:33f::15)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Mon, 16 Nov
+ 2026 10:31:34 +0000
+Received: from CPH1EPF0000051C.eurprd04.prod.outlook.com
+ (2603:10a6:20b:50e:cafe::59) by AS9PR04CA0092.outlook.office365.com
+ (2603:10a6:20b:50e::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Mon,
+ 16 Nov 2026 10:31:33 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ CPH1EPF0000051C.mail.protection.outlook.com (10.167.241.231) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 10:31:33 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 16 Nov
+ 2026 11:32:33 +0100
+Received: from localhost (10.130.77.105) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Mon, 16 Nov
+ 2026 11:31:32 +0100
+From: Alain Volmat <alain.volmat@foss.st.com>
+Subject: [PATCH 0/3] arm64: dts: st: add gpio-delay for imx335 sensor
+ control on stm32mp2x
+Date: Mon, 16 Nov 2026 11:31:11 +0100
+Message-ID: <20261116-stm32mp-imx335-fix-v1-0-01f538260f00@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: PAWPR08MB8959:EE_|DU0PR08MB8836:EE_|MAD0EPF000008B9:EE_|DB9PR08MB7796:EE_
-X-MS-Office365-Filtering-Correlation-Id: 64d83546-e4fb-4880-ee6b-08df43cca073
-x-checkrecipientrouted: true
-NoDisclaimer: true
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG/b+moC/yXMQQqDMBCF4avIrB1wEg3iVcRFjaOOECsZK4J49
+ 6Z1+T14/wXKUVihyS6IfIjKe02gPAM/v9aJUYZkMIVxRGRQ92BN2FDCaW2Fo5zIlr3zJZW1GyA
+ dt8hp/kfb7rF++oX9/ivBfX8BIz5+XnYAAAA=
+X-Change-ID: 20261112-stm32mp-imx335-fix-e3ec6c41486d
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	"Alain Volmat" <alain.volmat@foss.st.com>
+X-Mailer: b4 0.16.0
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CPH1EPF0000051C:EE_|DB8PR10MB3148:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d0a3ecf-a979-4d11-a4ad-08df43ccc908
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|23010399003|7416014|366016|376014|1800799024|11063799006|4143699003|261026140227099003|261021123027099003|261022105027099003|261009223027099003|261102123227099003|56012099006|261021135927099003|261021121427099003|261028144727099003|261026121527099003|261022075727099003|22082099003|18002099003|6133799003|10067099003;
-X-Microsoft-Antispam-Message-Info-Original: 2J9ircnhFagvL7iEQ5DkLmfurG8G4z08aH893KQ4WjR5ulP91a/0Eet5r8+C1H6jXO3CwYgjQxTuEdgsgHe3ujj8HHeugY2q7+iVMM2mNFXHkMyDyfwqZ0DIYRM7UAxht1Q5D5P8E1TAj/TKTsHxyZ2dsiaOkPOhCrDp9kM5JEWk0zHu9wkNhvxkBaHZ1UT2gCH0WK/msCvogX0rZddmRbcEbZXw3SLl/tt3csGKlhfBCp3ha3KEldm/VJ6K48W77+sJ0R7axU4eNdrYvlWLPAeZVAnV72qbdjDVahwQpi7RUWejIne5caOn/ksh95li/jU1RtkwDwIQS/qPdldyjN7SWRs3SV42bINzk5FKCaB74FciOMUoSqzmYKDS/Bzh+H+NcGmuhq63Loe0Tu9JXs+Oy/Nf0gmn7Hc/pe/fAPil/A08ZaR5vtHsYlMXz+LJ2Isqjaml/W0Y9aa3O3S8SGdLm7pGtAspz9TU17T/ZnVievugGRdMQJq2DQjuiYm4xhOgYEjCBpDG4R/ZpSAxDLuPa++1L5NNlIitojPLF3iHzc4SskT2pHpxh/jCIHteCqMoPdwHJViqgJrYayvk7QyGx2EHnaxcG12ai57EJLTRv407nl++1V4XzR45SE/DmDhNAJBCPAokxZ6zFwJe79eWH2mu9/jn7FTdPPO5tbw=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAWPR08MB8959.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(366016)(376014)(1800799024)(11063799006)(4143699003)(261026140227099003)(261021123027099003)(261022105027099003)(261009223027099003)(261102123227099003)(56012099006)(261021135927099003)(261021121427099003)(261028144727099003)(261026121527099003)(261022075727099003)(22082099003)(18002099003)(6133799003)(10067099003);DIR:OUT;SFP:1101;
-X-Exchange-RoutingPolicyChecked: JPYSZIkv8KZ+ozRukxatjOYc3xmvDHbtPTHpuQii2lNygRoviLfmIeiQXEAYivr+eUqcykJuLpk1/xWq3nwc3/3Yr5D3YoTJSdfNd5DEobRysJTtjAn9xzMsRCcS/CZ2tUY3CmIMubaLXn8WpaiN6IkzkZGEgWATPf94Lv9RzNdqaNQnwXiHNWXBOMqkzyVRe/PtSLSg3EQgQPECClsRVTSSL3LLcV3XclrLn1dolJ2Ss7q8mjEMjzqkpoVDHunkOs2CYCGlbU1xy5DudJ/7C/dLi+5YOAVHV6ErA8p9V9l5WYTOnB7BshT4ea0R7wVHwGCJuhyp6IhbibW/+GnDiA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB8836
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: MAD0EPF000008B9.eurprd04.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 823efe75-9bb9-4e3d-5051-08df43cc8a22
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|35042699022|14060799003|376014|1800799024|82310400026|36860700016|10067099003|4143699003|11063799006|56012099006|261026140227099003|261026121527099003|261028144727099003|261021135927099003|261021123027099003|261021121427099003|261022075727099003|261102123227099003|261022105027099003|261009223027099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: FmdhcIG5CP9hRvwXGRJL8h4sgqW2b4P9LybX94tMFa94jE/q+W5QnAC2uja0yoO6YdtMOvlRNMKhQ8YlYrz9zt3EZXomXoiTLaKU4/v4lBmCEY7/RBmN1akDffwhB8Yhl/cVETjkx7zNl1l1S2V9OhmzVV5VMS97s4kf4JxO5Lh/uERtZIrXnMTAwn6yv382oUSXFPcUigA0u3oCfm0Ho279lzfVhnoA11y2EF26X6mUK59Pql7rT7A0bzjhDSWENSf08UYXzf/QA7eqXB5LCBrdNnCe37k0JochxwZ1uDSgK3+kQfkz/jj9TDUoUr/1ZuZ+IgL+U1UvXDgwsvzjyqX0vu4vin2eGxY40OaJRi3Vw+boK3DFkxlasjOWqpbAjD/+8ZrRyDM1NnrFpRTIqP7fKmIO4b4bDDB82q54nEak8LR8n27c7bxBz8B6xyxnjErc3PfysIJgoKZ1HO9MKT1d3fRW1oFe5aTfBQReyZMtqQq9jb+BdubRdDQiJ/C91OK8XTFrhEmXiF1sbZyYxQWYEkY0QSnFOXKkQ+D8uRQC325+r2+fI16+snJQpd1UO05FKXXh0MF0Ihd6OOQCJgZA6cBoMpO11Ky4u8/75gaLGtq6gSsm6EvctR9he2a2AV6aPmU6LYDwJUG3ojjdvBSKhnCcXkERZs8bWTyVvlXqtmqI85actMoQoZKhkGUML7eg4Mo3WBC2eEKtcVMWiw==
-X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(35042699022)(14060799003)(376014)(1800799024)(82310400026)(36860700016)(10067099003)(4143699003)(11063799006)(56012099006)(261026140227099003)(261026121527099003)(261028144727099003)(261021135927099003)(261021123027099003)(261021121427099003)(261022075727099003)(261102123227099003)(261022105027099003)(261009223027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|23010399003|82310400026|36860700016|10067099003|11063799006|56012099006|261026140227099003|261028144727099003|261021123027099003|261022105027099003|261021121427099003|261102123227099003|261009223027099003|18002099003;
+X-Microsoft-Antispam-Message-Info: yR+Xq2k2KjkaclyJtBx9LUhisq9TxtIWF0OMZtZvRSwIsduR0+R0LraVq63uCEmJdZPvrGEfmCmbDz33jixprZuUTLHaoywILZIj68eg8/gynvs+VrWAgCIJHIgAlytd9lep2nL5lzTcde1ear0zcyZMn+g76lacbrP4fn1dMA2b/AiLhxPc911LM5MF6zZNfmorzGg+NZdP48eBKoaB+v/xgWVmOEfzhr6mVEQn1YIJi3jn8V0e8C9ftj7+1Q6Zn2zx/kWCleZcr9WwA1673FaM9YoZHA4ncm4dBGaAMQxV3JD8gHnjyy+HCkYchSvwbk6dP1z9U/VLYkM8cQvloRQhGaYmTeoNozBV942Tr4Fd0A9w3nfgI5p9VVBp8J3F7EEtxFaT26nzQnH69RxXcCp0sjcQPf9WbuliteTP2T4lvWdDIUjkR8tMdCJwQoboGYWqqWIYCSmnfC2cRrAH+BH4BrrMywZsjtcNQCYq7x02z7Ok73c+r5RX071+jsATlpP6Y+WppgMfAnu5N1qbvYG5Fq9wyaAkiaJFRsBXtJqEkgX9ug3Pp3ZtcqsIbTsfZ+CbzMIKUxBO59Bj7HkH8rWm/IA3Ebsn1wDKDqb2EBlMmwntsfRXLay9siBv8Ep+VXCRs+N9nMWFy+P03Z21SbqOjq/8S3JUoxEwG3TqPr0iKP9fmleDiapGVv+UISJwTrhyYon7U22G6FbcnHo0Cg==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(23010399003)(82310400026)(36860700016)(10067099003)(11063799006)(56012099006)(261026140227099003)(261028144727099003)(261021123027099003)(261022105027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: FhbB7MUTfOaz6nQMLlgZKLt2XSwU3sk10ugeC2Bk3CsyTjr2o8No07YxoSfyCd5qt4AnGahfCOUKF+mycCI5bJhEWe6PuUAsnJ5pEvwpTEd/fQAi4Am5NAb+SgnoFFNRBLg0B+Bdtmpn24CsR4+iC4uWxdMJxMGTaw0z7e5P2qsgNfu7fPW9NkhoMLcjhGLhz9Ek/LI3MzPGcUlGQMdJLvfnN7IDlDTAUYqJ/tNL/tnTKaXaOj0TQGOBUaDVG0JlEaMrwk3reiNnHFvc/eIDh5znclNjlqBDP9dcKH5J/CilQY8bpZJPV+/pl6mY6lNrvqMGlFps5hT1Aj1qbY57ULTS+5gSF4o3/7GdY68h30/cv+iNo0Db07lc/17lCn4CEuMmcevihU+EJA4K22iN1orj1UiRj3OYcvVzzLzl19p5rek4lMfLSA/X54hfM8+A
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 10:30:25.2295
+X-MS-Exchange-AntiSpam-MessageData-0: a2fmcoFAAEo2yh2wy/BfBmU3glTEfj2BNHA37aoh1tNb3/5NaIJNVy2F0Ayk/PksA1+5LGNdxHIU8M9qNUtbbH01+A+E8xSJapkUNuFYC0XufOofbczabRKlYRbsv2C8KFg27yM8jyAMMlKUylJfUNUThIJmO3R7YuB8NIoViaEFsAjaWwnzeXiQs+/bconpGPnvB45nRS12S1GeADUj586IHg04g0tuSKCHtZPdKbW2rSlcyj6IoEnFoifER6bLSrksAMg1Yfwsl+9qTbyPZvAVnEvy8sydKKJq421uza/VaSsNpS6Tj0rHm4xT08ut/a3ejaUvY9zPze4tIcrbiFjMApU5J6LQtVKetSbY+H3yUdMl1qgx+h34/9/kyMIH3wTuF+rgG84Pv+cOv6kNeiTbdnKZaAR63wVkKIc7IlmktrZQ8PNCuFK0aSxAtSnm
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 10:31:33.4191
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64d83546-e4fb-4880-ee6b-08df43cca073
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource: MAD0EPF000008B9.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d0a3ecf-a979-4d11-a4ad-08df43ccc908
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: CPH1EPF0000051C.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB7796
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3148
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_023038_557019_A9788BEF 
-X-CRM114-Status: GOOD (  19.78  )
+X-CRM114-CacheID: sfid-20261116_023140_946856_C7B8D1DB 
+X-CRM114-Status: UNSURE (   6.94  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -160,175 +131,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/2/26 05:19, Nicolin Chen wrote:
-> arm_smmu_setup_msis() skips the PRIQ vector by decreasing nvec, which only
-> works since PRIQ_MSI_INDEX is the last index. A subsequent change will make
-> the EVTQ optional for kdump, whose index is 0, so that trick won't work.
-> 
-> Pack the vectors of the used sources instead, and record the source of each
-> vector in a new msi_map, for arm_smmu_write_msi_msg() to find the register
-> set, regardless of the sources in use.
-> 
-> No functional change intended.
+The IMX335 sensor used on stm32mp2x boards has its reset line connected
+to an RC, leading to the need for an additional delay when controlling
+the sensor.
+Add a gpio-delay node for this reset line in order to cop with that.
 
-I just have a few comments/questions on this patch, below.
+Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+---
+Alain Volmat (3):
+      arm64: dts: st: add delay on imx335 reset gpio on stm32mp257f-dk
+      arm64: dts: st: add delay on imx335 reset gpio on stm32mp257f-ev1
+      arm64: dts: st: add delay on imx335 reset gpio on stm32mp235f-dk
 
-Thanks,
-John
+ arch/arm64/boot/dts/st/stm32mp235f-dk.dts  | 9 ++++++++-
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts  | 9 ++++++++-
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 9 ++++++++-
+ 3 files changed, 24 insertions(+), 3 deletions(-)
+---
+base-commit: 3cebbcae3ae383e63f62cd033a2b14a9140e0eb9
+change-id: 20261112-stm32mp-imx335-fix-e3ec6c41486d
 
-> 
-> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-> Signed-off-by: Nicolin Chen <nicolinc@nvidia.com>
-> ---
->   drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h |  9 +++++
->   drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 42 +++++++++++----------
->   2 files changed, 32 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-> index 8f2c0b1cc4a8d..bce592fff0b12 100644
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-> @@ -936,6 +936,13 @@ struct arm_smmu_impl_ops {
->   			  const struct iommu_user_data *user_data);
->   };
->   
-> +enum arm_smmu_msi_index {
-> +	EVTQ_MSI_INDEX,
-> +	GERROR_MSI_INDEX,
-> +	PRIQ_MSI_INDEX,
-> +	ARM_SMMU_MAX_MSIS,
-
-nit: I don't really think that the trailing ',' is required after 
-ARM_SMMU_MAX_MSIS, as I asusme that we will never see any entry added 
-after 'max'. I appreciate that this enum is just being relocated in this 
-patch.
-
-> +};
-> +
->   /* An SMMUv3 instance */
->   struct arm_smmu_device {
->   	struct device			*dev;
-> @@ -993,6 +1000,8 @@ struct arm_smmu_device {
->   
->   	int				gerr_irq;
->   	int				combined_irq;
-> +	/* MSI vector index to enum arm_smmu_msi_index */
-> +	u8				msi_map[ARM_SMMU_MAX_MSIS];
-
-should this be an array of enum arm_smmu_msi_index, as in 
-arm_smmu_setup_msi_vector() we write a enum arm_smmu_msi_index? I am 
-assuming that is why enum arm_smmu_msi_index was relocated.
-
->   
->   	unsigned long			oas; /* PA */
->   	unsigned long			pgsize_bitmap;
-> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> index cb45bd154c9e5..a312984bc6a0e 100644
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> @@ -56,13 +56,6 @@ static struct iommu_dirty_ops arm_smmu_dirty_ops;
->    */
->   static DEFINE_STATIC_KEY_FALSE(arm_smmu_erratum_repeat_tlbi_cfgi_key);
->   
-> -enum arm_smmu_msi_index {
-> -	EVTQ_MSI_INDEX,
-> -	GERROR_MSI_INDEX,
-> -	PRIQ_MSI_INDEX,
-> -	ARM_SMMU_MAX_MSIS,
-> -};
-> -
->   #define NUM_ENTRY_QWORDS 8
->   static_assert(sizeof(struct arm_smmu_ste) == NUM_ENTRY_QWORDS * sizeof(u64));
->   static_assert(sizeof(struct arm_smmu_cd) == NUM_ENTRY_QWORDS * sizeof(u64));
-> @@ -4933,7 +4926,7 @@ static void arm_smmu_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
->   	phys_addr_t doorbell;
->   	struct device *dev = msi_desc_to_dev(desc);
->   	struct arm_smmu_device *smmu = dev_get_drvdata(dev);
-> -	phys_addr_t *cfg = arm_smmu_msi_cfg[desc->msi_index];
-> +	phys_addr_t *cfg = arm_smmu_msi_cfg[smmu->msi_map[desc->msi_index]];
->   
->   	doorbell = (((u64)msg->address_hi) << 32) | msg->address_lo;
->   	doorbell &= MSI_CFG0_ADDR_MASK;
-> @@ -4943,19 +4936,29 @@ static void arm_smmu_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
->   	writel_relaxed(ARM_SMMU_MEMATTR_DEVICE_nGnRE, smmu->base + cfg[2]);
->   }
->   
-> +static void arm_smmu_setup_msi_vector(struct arm_smmu_device *smmu,
-> +				      unsigned int *vec, unsigned int *nvec,
-> +				      enum arm_smmu_msi_index index)
-
-mega nit: "index" as a name is quite vague as we are indexing vec[] and 
-smmu->msi_map[] in this function. Maybe "msi_index" would be better.
-
-> +{
-> +	writeq_relaxed(0, smmu->base + arm_smmu_msi_cfg[index][0]);
-> +	vec[index] = *nvec;
-> +	smmu->msi_map[(*nvec)++] = index;
-> +}
-> +
->   static void arm_smmu_setup_msis(struct arm_smmu_device *smmu)
->   {
-> -	int ret, nvec = ARM_SMMU_MAX_MSIS;
-> +	unsigned int vec[ARM_SMMU_MAX_MSIS] = {
-> +		/* An unused source maps to a vector past nvec */
-> +		[0 ... ARM_SMMU_MAX_MSIS - 1] = ARM_SMMU_MAX_MSIS,
-> +	};
->   	struct device *dev = smmu->dev;
-> +	unsigned int nvec = 0;
-> +	int ret;
->   
-> -	/* Clear the MSI address regs */
-> -	writeq_relaxed(0, smmu->base + ARM_SMMU_GERROR_IRQ_CFG0);
-> -	writeq_relaxed(0, smmu->base + ARM_SMMU_EVTQ_IRQ_CFG0);
-> -
-> +	arm_smmu_setup_msi_vector(smmu, vec, &nvec, EVTQ_MSI_INDEX);
-> +	arm_smmu_setup_msi_vector(smmu, vec, &nvec, GERROR_MSI_INDEX);
->   	if (smmu->features & ARM_SMMU_FEAT_PRI)
-> -		writeq_relaxed(0, smmu->base + ARM_SMMU_PRIQ_IRQ_CFG0);
-> -	else
-> -		nvec--;
-> +		arm_smmu_setup_msi_vector(smmu, vec, &nvec, PRIQ_MSI_INDEX);
->   
->   	if (!(smmu->features & ARM_SMMU_FEAT_MSI))
-
-In this case (or any other time in which we return early in this 
-function), it seems less than ideal - as a coding practice - that we 
-have written values in smmu->msi_map and they won't be used.
-
->   		return;
-> @@ -4972,9 +4975,10 @@ static void arm_smmu_setup_msis(struct arm_smmu_device *smmu)
->   		return;
->   	}
->   
-> -	smmu->evtq.q.irq = msi_get_virq(dev, EVTQ_MSI_INDEX);
-> -	smmu->gerr_irq = msi_get_virq(dev, GERROR_MSI_INDEX);
-> -	smmu->priq.q.irq = msi_get_virq(dev, PRIQ_MSI_INDEX);
-> +	/* msi_get_virq() returns 0 for an unused source that has no vector */
-
-So are you saying that msi_get_virq(dev, ARM_SMMU_MAX_MSIS) returns 0?
-
-If so, do we really require checks like the following:
-
-if (smmu->features & ARM_SMMU_FEAT_PRI) {
-		irq = smmu->priq.q.irq;
-		if (irq) {
-
-I am talking about the ARM_SMMU_FEAT_PRI flag check, as smmu->priq.q.irq 
-== 0 and ARM_SMMU_FEAT_PRI unset seem equivalent.
-
-> +	smmu->evtq.q.irq = msi_get_virq(dev, vec[EVTQ_MSI_INDEX]);
-> +	smmu->gerr_irq = msi_get_virq(dev, vec[GERROR_MSI_INDEX]);
-> +	smmu->priq.q.irq = msi_get_virq(dev, vec[PRIQ_MSI_INDEX]);
->   
->   	/* Add callback to free MSIs on teardown */
->   	devm_add_action_or_reset(dev, arm_smmu_free_msis, dev);
+Best regards,
+--  
+Alain Volmat <alain.volmat@foss.st.com>
 
 
