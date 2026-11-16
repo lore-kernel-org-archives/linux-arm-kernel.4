@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E31A606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABCC8606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=em2jAuA0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iSdNGUDn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gzlMk5r3;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J1iRwSzP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4F6U5hwvw8gwNmHBNKQhCDls4ausjqIT8kXPov+zDoA=; b=em2jAuA0HZV0iV
-	6m2t6ebgKuhEEFQJsXSbRwj0I1ACbAbaARorZ7eeaFxDq1aYd2y8yQJ4yAKVS1LVIst+83RrftJ0W
-	4DNjXuGnAu45UHIfBVTWUVJHAt+zWD7JY6o7z9w++JfNt+TTTsEqNpyggDPnDnrYKm5ebypurBe4i
-	ecfgfbL9MjlF2MmBjgV/Dv6lsFlv9Y8QCpeZtNlTkANjSVnWW4bhA1cR29wSmyp4mSIE5G6h0/oBS
-	SRTZ7wixly6dLmZy6WW8PSuk6D+xoURP3FkJbOY09W6srv1+HExH785FHIjDGdr4TtpCtuybfkjuD
-	Od+MqyFBsw9S9OyRWqMw==;
+	List-Owner; bh=T+kkEjnaw2ySVd4lLiujiWW53ZRBsmmAWW3cy3wlJjw=; b=gzlMk5r3O/9uVx
+	54Jf3ARFeAmj2HR4ASSWWdlhPrFA/wahrMrKquobbEx+sUJBISRel8jNIhm9cc3BCpYGwIoU8FtUQ
+	DAIvBDZ0kGhfOf2Vww0MjDOymHqQD7V/ek66RgnstENYOFhjs+HD0TwBph8LFFKPncpG5EvvbypVL
+	BMJc6bOA1CR9yAhNHEAN7TGpX2QPEfEJV38P2hGont9L3MCFlF6XyTlRE1YOYnX9lsvZImdQFvxuB
+	4K5Gruq+KhVbAq6UcbLDeXXQt1HxHaTPbdFgTTxwE27k9BpXplEvyx3hZrQfJBwdf3pWA7YaKmsvi
+	LWWu7OO4daSeoHAt7d4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSw8r-00000002T5r-2noe;
-	Mon, 16 Nov 2026 12:49:01 +0000
+	id 1xSw8z-00000002TAV-3Ey2;
+	Mon, 16 Nov 2026 12:49:09 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSw8q-00000002T4t-0Eyr
+	id 1xSw8w-00000002T84-0F9r
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:49:00 +0000
+	Mon, 16 Nov 2026 12:49:06 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C85C8437C5;
+	by sea.source.kernel.org (Postfix) with ESMTP id C9E7F43421;
+	Mon, 16 Nov 2026 12:49:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29FCF1F000C4;
 	Mon, 16 Nov 2026 12:48:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9A251F000C4;
-	Mon, 16 Nov 2026 12:48:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794833339;
-	bh=4F6U5hwvw8gwNmHBNKQhCDls4ausjqIT8kXPov+zDoA=;
+	s=k20260515; t=1794833345;
+	bh=T+kkEjnaw2ySVd4lLiujiWW53ZRBsmmAWW3cy3wlJjw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=iSdNGUDnUPPi4pJnAYBKNnCGTaI+y4qb3uN/K5lIkcESpOPrpKPgqoRvuRlqXEFp/
-	 D22TIAOQoLnM4fj+lgCWae9ef+MQKYOaeqrQgq0dhWWtnjfAThJNwLHjtsfOcC5RbD
-	 Np0pFfdb5cSXXXZAUynvQxQrYr1pxZBp6UXANT9o7ZTogMmpoIoohw9lcwxG03mhpX
-	 Oy2/oEtzbGj0awkxpXQl7L8affCM3OatgSUKikQvjQ8lVdfzBbeLPTvGwJaiSqc/fS
-	 78SKOIgyWd1tcz2HtBmGbx4T2VjGTdAtXLoFfYLGAeU5FNyhXMeNcrhwM2xy6db58r
-	 GhZKMPeccyxAg==
+	b=J1iRwSzPkXkJExltWHVg0O8oGOL+tawW+ZmYEGgM1jmGAKgXx8sy7HnmkDQVv80Ss
+	 yg4kn+EGjPt1JGKZYyWmr96BKjuswmbOXfgaSRJVySsDYEtOeJ/ovVXA3/PGYaEEQg
+	 e3V7fokGmh+Jawesd3SW+NFvr+/7WMp05FEXbQ8wK0id5O9GLzTl/BNPOe8HMP9wyx
+	 SXMkzQFD+Nl7UMGApCdcv5Ze+xW2cYq4ISMrZw9YTpwVIzOyl4tI/WGNsQAg4Yn1Op
+	 xm4CxP/9WVSS9d5AIaFwkOz7gzndFMorMFu1XaBI6AixyyII7UmWDW9Dxmurqq67j6
+	 wYW15Z/uOQhDA==
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-mm@kvack.org
 Cc: Arnd Bergmann <arnd@arndb.de>,
@@ -71,12 +71,10 @@ Cc: Arnd Bergmann <arnd@arndb.de>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-fsdevel@vger.kernel.org,
 	linuxppc-dev@lists.ozlabs.org,
-	x86@kernel.org,
-	sashiko-bot@kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH v3 03/10] ARM: pxa: support arbitrary PAGE_OFFSET
-Date: Mon, 16 Nov 2026 13:48:25 +0100
-Message-ID: <20261116124832.662455-4-arnd@kernel.org>
+	x86@kernel.org
+Subject: [PATCH v3 04/10] powerpc: kvm: allow flexible PAGE_OFFSET
+Date: Mon, 16 Nov 2026 13:48:26 +0100
+Message-ID: <20261116124832.662455-5-arnd@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261116124832.662455-1-arnd@kernel.org>
 References: <20261116124832.662455-1-arnd@kernel.org>
@@ -103,35 +101,61 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-The pxa3xx_cpu_pm_suspend() implementation hardcodes the default
-PAGE_OFFSET value for CONFIG_VMSPLIT_3G. This has always been broken
-for other configurations but becomes much worse now that the default
-is changing.
+As described by the Sashiko bot, the KVM code on powerpc has multiple
+hardcoded PAGE_OFFSET values. In order to change the default, make these
+compute the correct register values from configuration symbols.
 
-Fix this to use the correct compile-time constant instead.
-
-Reported-by: sashiko-bot@kernel.org
-Fixes: c4d1fb627ff3 ("[ARM] pxa: add preliminary suspend/resume code for pxa3xx")
-Cc: stable@vger.kernel.org
-Link: https://lore.kernel.org/all/sashiko-outbox-212719@kernel.org/
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- arch/arm/mach-pxa/pxa3xx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/powerpc/kvm/book3s_32_sr.S     | 4 ++--
+ arch/powerpc/kvm/booke_interrupts.S | 4 ++--
+ arch/powerpc/kvm/e500_mmu_host.c    | 3 ++-
+ 3 files changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/mach-pxa/pxa3xx.c b/arch/arm/mach-pxa/pxa3xx.c
-index 06c578ea658e..253770075a8b 100644
---- a/arch/arm/mach-pxa/pxa3xx.c
-+++ b/arch/arm/mach-pxa/pxa3xx.c
-@@ -103,7 +103,7 @@ static void pxa3xx_cpu_standby(unsigned int pwrmode)
-  */
- static void pxa3xx_cpu_pm_suspend(void)
- {
--	volatile unsigned long *p = (volatile void *)0xc0000000;
-+	volatile unsigned long *p = (volatile void *)PAGE_OFFSET;
- 	unsigned long saved_data = *p;
- #ifndef CONFIG_IWMMXT
- 	u64 acc0;
+diff --git a/arch/powerpc/kvm/book3s_32_sr.S b/arch/powerpc/kvm/book3s_32_sr.S
+index 6cfcd20d4668..0d8a7857f2bd 100644
+--- a/arch/powerpc/kvm/book3s_32_sr.S
++++ b/arch/powerpc/kvm/book3s_32_sr.S
+@@ -113,8 +113,8 @@
+ 
+         li      r0, 4
+         mtctr   r0
+-	LOAD_REG_IMMEDIATE(r3, 0x20000000 | (0x111 * 0xc))
+-        lis     r4, 0xc000
++	LOAD_REG_IMMEDIATE(r3, 0x20000000 | (0x111 * (PAGE_OFFSET >> 28)))
++        lis     r4, (PAGE_OFFSET >> 16)
+ 3:      mtsrin  r3, r4
+         addi    r3, r3, 0x111     /* increment VSID */
+         addis   r4, r4, 0x1000    /* address of next segment */
+diff --git a/arch/powerpc/kvm/booke_interrupts.S b/arch/powerpc/kvm/booke_interrupts.S
+index 205545d820a1..ede394f3f63f 100644
+--- a/arch/powerpc/kvm/booke_interrupts.S
++++ b/arch/powerpc/kvm/booke_interrupts.S
+@@ -230,8 +230,8 @@ _GLOBAL(kvmppc_resume_host)
+ #endif
+ 
+ 	/* Restore host IVPR before re-enabling interrupts. We cheat and know
+-	 * that Linux IVPR is always 0xc0000000. */
+-	lis	r3, 0xc000
++	 * that Linux IVPR is always PAGE_OFFSET. */
++	lis	r3, PAGE_OFFSET >> 16
+ 	mtspr	SPRN_IVPR, r3
+ 
+ 	/* Switch to kernel stack and jump to handler. */
+diff --git a/arch/powerpc/kvm/e500_mmu_host.c b/arch/powerpc/kvm/e500_mmu_host.c
+index fa6128119874..9edad9bed589 100644
+--- a/arch/powerpc/kvm/e500_mmu_host.c
++++ b/arch/powerpc/kvm/e500_mmu_host.c
+@@ -115,7 +115,8 @@ static u32 get_host_mas0(unsigned long eaddr)
+ 	mtspr(SPRN_MAS6, 0);
+ 	mas4 = mfspr(SPRN_MAS4);
+ 	mtspr(SPRN_MAS4, mas4 & ~MAS4_TLBSEL_MASK);
+-	asm volatile("tlbsx 0, %0" : : "b" (eaddr & ~CONFIG_PAGE_OFFSET));
++	asm volatile("tlbsx 0, %0" :
++		: "b" (eaddr & (rounddown_pow_of_two(PAGE_OFFSET)-1)));
+ 	mas0 = mfspr(SPRN_MAS0);
+ 	mtspr(SPRN_MAS4, mas4);
+ 	local_irq_restore(flags);
 -- 
 2.53.0
 
