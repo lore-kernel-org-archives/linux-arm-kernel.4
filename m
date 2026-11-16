@@ -2,145 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E04606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:05:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25AE606A890
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:06:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kCuLwirr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=CHAXTD1P
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tz/32Hot;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iNhC6SCb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BjAPa5gEwdibBM1bcFjKRY785JMqAknFIMes8RLqbFA=; b=kCuLwirr4WLJJ5
-	R8Vc5stciJOOChPihpit3TMXGMUBq7N5JdLmEZEKFOG4PhSyhiDUsog92+t2ktinWY4UTlSWUofS7
-	9dV4XycfgCdlGfOCR7V3V9zUJfVbaDMw1kV3pvRe6/ghRzBXjKVrEU7WuN/knfjFwVRP59m0KiRIT
-	adz46E4B3aA4riZ6c5jy7bYkUmAi95QDxiTUalCERKZbccIQ7gkcfDff7wJxODAmjSGy+KLIqkcgi
-	1h87A+6Sh4P3FZYqtA2P7xTrJLpLC9CyBZ+TXWQtanlDtzGkaR8i1uUC/kDv7lqVuIc7ZlvDpyGel
-	5r5jCzrF53GPplyJUkvA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=KwLcRkPnstUk3ARTGuc1rQhwhKTM1szKdxcAeiFBkdE=; b=tz/32Hot/X+h9Up6IDL8lPXpWj
+	qqpfThoEwwF7hE9Hrdfk4ui3x6azubzKiPzYolAg7uZGPiqrJ8E1SMsDa05uZnVPSKPjf9iQ1J7x7
+	PG4QsPON6ynnECeJ0qh58ALDv2K6L78naoFnAmyZxQxj8ufcohJ8wU0UPcnM01fk9O/kD9ev3xvY2
+	cnbwLZ0IuO5YsEMTVcvhh9fQfSHSC8ck8E6xSxL056/Hr/WMvQylP19C3MonQu3ab2h7hCZl7KgxX
+	twXSu9kBJcSMWEjbg+OUdPA3Jgi0JrremybyWQVVPw1Ohzgl7/C8qxYV6LdlUoxBiQzi4ZiR3iyWH
+	0P3KxOag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxKm-00000002kkN-2eOi;
-	Mon, 16 Nov 2026 14:05:24 +0000
-Received: from omta036.useast.a.cloudfilter.net ([44.202.169.35])
+	id 1xSxLc-00000002kw2-3gFh;
+	Mon, 16 Nov 2026 14:06:16 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxKk-00000002ki6-23z3
+	id 1xSxLb-00000002kvR-1rjP
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:05:23 +0000
-Received: from eig-obgw-6003b.ext.cloudfilter.net ([10.0.30.175])
-	by cmsmtp with ESMTPS
-	id Sm0qxM15f4vCDSxKYxBToN; Mon, 16 Nov 2026 14:05:10 +0000
-Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
-	by cmsmtp with ESMTPS
-	id SxKXxuouoGh2BSxKXxt1S5; Mon, 16 Nov 2026 14:05:09 +0000
-X-Authority-Analysis: v=2.4 cv=Aszu3P9P c=1 sm=1 tr=0 ts=6afb0d96
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10
- a=cIE4-SQmKicfhqlZljcA:9 a=QEXdDO2ut3YA:10 a=KPbNTLLc3YvdawN95zVk:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:
-	List-Archive; bh=BjAPa5gEwdibBM1bcFjKRY785JMqAknFIMes8RLqbFA=; b=CHAXTD1PvGKU
-	u8dO2qADvt1nJl5IP9nP7+yNiwe6c5+pTYRUEo8AHQrJtbp64s8BBzVqRkBNdJnPAampKsV2DPFjn
-	4XJePtGOgSshbKhohhnMshckFFJCV28MqqqjbiRgezJqT8kYInF+NOQLZ6KgTvFQr8WKDFdzkY8uz
-	T/TnqxB4w1RZNDARLGUn+JJm2UKcNRVIl9TneFqOX2UP1D1Vqcjvp9OoPkyX9KuCAfEtr9yjl5wL1
-	WCMrjq4M7RjXy6zKcH+Ofe7C63keHTZ/bLIcpa3Lp5JFO3PWlkyTYPh2ndObJNDALILba8jvMWrN+
-	i6vl/CISuUmPwD1ZHBQf7A==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:36536)
-	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <linux@roeck-us.net>)
-	id 1xSxKX-00000003ZrM-0e71;
-	Mon, 16 Nov 2026 19:35:09 +0530
-Message-ID: <fbf13b7f-e49d-4458-8a41-be965beab97d@roeck-us.net>
-Date: Mon, 16 Nov 2026 06:05:08 -0800
+	Mon, 16 Nov 2026 14:06:15 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 981E36119D;
+	Mon, 16 Nov 2026 14:06:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58C401F000C4;
+	Mon, 16 Nov 2026 14:06:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794837974;
+	bh=KwLcRkPnstUk3ARTGuc1rQhwhKTM1szKdxcAeiFBkdE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=iNhC6SCbyr0bjFPBo14UC/W7m2erFrHGvPCaV/tq/GtUg9VgQ1X55EbHnWLAN34RF
+	 Hxhdx/seKwL9IL/yEjutCzYGl7TjUSuOAIJR7MPQUhyuwXWaMKTgygymIY2/TCYsYk
+	 zpmy5KRgNScVZYzoyv14PJuZ/oKFuBQJcx9oR1I2022PhSeuE/BfjZOX7O7amGmSWc
+	 Iyr+52DO80d654LdzhMqw7A7OFODbn5e32tBVAn06TClFDuulRpi/HdNNXkjZnZAe0
+	 qZ6IwI/WQKLC1bPnM/MX30nMMznlMqrwdV+ooI2Tqx0eup85FP0k9kWzc56XMBgUqd
+	 dBK9wxEjcHBVA==
+Date: Mon, 16 Nov 2026 15:06:08 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Sascha Bischoff <sascha.bischoff@arm.com>,
+	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+	Radu Rendec <radu@rendec.net>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v2 00/10] irqchip/gic-v5: Fix misc IRS and ITS host
+ driver issues
+Message-ID: <avsN0E-6_7kU3pTk@red-moon>
+References: <20261104-host_gicv5_fixes-v2-0-e47ad20ea3c8@arm.com>
+ <20261112145814.853424-1-fuad.tabba@linux.dev>
+ <avrzusx1g1ZICo0Q@red-moon>
+ <CA+EHjTyGQbS7zcHSRg50c5xVN2AY4AmMc7JqNAvrc=_UhPQ+kg@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] watchdog: Add ARM TWD (MPCore private) watchdog driver
-To: Fil Dunsky <filipp.dunsky@gmail.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
- Russell King <linux@armlinux.org.uk>, linux-watchdog@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261114-arm-twd-wdt-v4-1-5a3104b36331@gmail.com>
- <db3a09f6-a560-4522-9954-8aa63eb2d5fb@roeck-us.net>
- <179468235262.1897695.7261271002700550095@gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <179468235262.1897695.7261271002700550095@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1xSxKX-00000003ZrM-0e71
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:36536
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 2
-X-Org: HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfER6tiARoZJCFL2u0SgbsOewF6tbfISXuSyGx1c4fCcDe0ZCIXZ5iVb1akwcW8ZhX463MGNSyiuFztBUj1VYqOlqlyCJjHJFcBve6JIKOoWf8eOuz6YG
- WK5A990tZfV2u7vAY2zZsmptJ5nEJNHJDGaXOeDH0isGuKxIpjn+1IGNYf+CnSz/R1gTpp2/rtRow3bqVud+FWFAO2LHZZkGUTBmm8r4QodCil1J6EyUBat2
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_060522_640576_A03F556C 
-X-CRM114-Status: GOOD (  17.14  )
-X-Spam-Score: -0.1 (/)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+EHjTyGQbS7zcHSRg50c5xVN2AY4AmMc7JqNAvrc=_UhPQ+kg@mail.gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,57 +78,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/14/26 10:52, Fil Dunsky wrote:
-> Hi Guenter,
+On Mon, Nov 16, 2026 at 01:28:56PM +0000, Fuad Tabba wrote:
+> Hi Lorenzo,
 > 
-> On Sat, Nov 14, 2026 at 07:56:12AM -0800, Guenter Roeck wrote:
->> Watchdog drivers are supposed to watch the system as a whole, not on a
->> per-CPU level. This patch goes way beyond the scope of a system watchdog
->> driver. Per-CPU watchdogs are handled in kernel/watchdog.c. I do not think
->> it is a good idea to overlay that with a second per-CPU watchdog mechanism.
+> On Mon, 16 Nov 2026 12:14:50 +0000, Lorenzo Pieralisi
+> <lpieralisi@kernel.org> wrote:
+> [...]
+> > > invalidate have the same shape. The question is, can an IRS miss the
+> > > poll, or is a timeout here only ever a dead IRS?
+> >
+> > Thank you for your patches Fuad.
+> >
+> > The latter, though freeing memory on timeout wasn't a good idea given
+> > that there is no way to cancel the respective, pending, mapping.
 > 
-> Thanks, understood. Watching individual CPUs was not the intent: all the
-> watchdogs get the same timeout and are pinged together from the ioctl,
-> so the driver acts as one system watchdog. Going through every CPU only
+> Thanks, that answers it. If you'd like a patch that doesn't free the
+> memory on a timeout, let me know and I'll send one.
 
-... but a single stalled CPU would trigger it. That overlaps with the per-CPU
-watchdog timer. Maybe such stall detection is warranted; however, as I
-mentioned above, it should be implemented as extension of kernel/watchdog.c.
+Thanks. Again, if that timeout expires I think we have more serious
+problems than the IST mapping but I do agree that freeing memory
+is not the answer; not urgent - please send a patch given that
+you spotted it, can obviously do it too.
 
-> follows from the registers being banked, and it is what made the driver
-> grow (hotplug state, CPU PM, the races Sashiko found).
 > 
-> The board needs one system watchdog and nothing per CPU: its boot loader
-> starts the watchdog of CPU0 only, and the SoC has no other watchdog.
-> Would a driver along these lines be acceptable?
+> [...]
+> > > Notes:
+> > >     Setting L1 on every invalidation turns each registration and
+> > >     teardown into a range invalidate, both rare paths, and keeps the
+> > >     function simple. Setting it only when registration allocates the
+> > >     level 2 table would miss a registration that fails after the
+> > >     allocation, which leaves the level 1 DTE valid.
+> >
+> > I can't follow. I agree that we have to invalidate the L1 DTE on
+> > L2 allocation but that's a one-off, I don't understand what issues
+> > you are pointing out in the Notes above, if you can point out please
+> > the code paths it refers to that'd help.
 > 
-> - use the watchdog of CPU0 only: start, stop, ping and get_timeleft run
->    there through smp_call_function_single();
-> - no CPU hotplug state: on 32-bit ARM CPU0 cannot be taken offline
->    unless the platform allows it with cpu_can_disable(), and the driver
->    would not probe if CPU0 is hotpluggable;
-> - the watchdogs of the other CPUs are not used, one found running at
->    probe time is stopped;
-
-I'd suggest to simply not check for it in the first place to keep the
-code simple. It isn't supposed to happen, it does not currently happen
-as you point out above, and anyone starting it anyway will immediately
-stop doing so.
-
-> - keep following clock rate changes and set the watchdog up again on
->    resume;
-> - keep the restart handler.
+> gicv5_its_device_register() can fail after
+> gicv5_its_devtab_get_dte_ref() has made the L1 DTE valid, and before
+> the gicv5_its_device_cache_inv() at the end. That happens if the
+> EventID bits check fails, or the ITT allocation does. The L1 DTE is
+> then already valid for the next device registered under it, so that
+> registration doesn't allocate a level 2 table.
 > 
-Yes.
+> The patch Notes were about setting ITS_INV_DEVICER.L1 in that
+> gicv5_its_device_cache_inv() call only when the registration allocated
+> the table. In that case the failed registration never reaches that
+> call and the next one reaches it with L1 clear, so this L1 DTE is
+> never invalidated. Invalidating in gicv5_its_alloc_l2_devtab(), right
+> after the L1 DTE write, is the one-off you describe. I'll rework the
+> patch to do that instead.
 
-Thanks,
-Guenter
+Yes, I think that's what we should do - invalidating in
+gicv5_its_alloc_l2_devtab() once for all and leave everything else as-is
+matches architecture guidelines.
 
+Thanks again.
+
+Lorenzo
 
