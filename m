@@ -2,86 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F02A606A329
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31233606A31C
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zh3RYaaE;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=kJ8nD1EG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pLHRiGRD;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pHXSRHZR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Mh+ToPltBb8mnDHqsdQlNCdlhh90EXZrqETmJQ+oo/w=; b=zh3RYaaEma7jDv
-	DWkaeZKBxyai5EZeQLdNiTznntBFN6FDlI0NWZLykdCdRIR/c0zUmjAf3gA6TDhoLsixysid6h8wI
-	Ae5FkyDg/8/YPWa8xBAslJTnUyQQ01DgCqIPvHL151l0iTtqCfUxo/7pQ2+QbcySmSy5LlIOHhwBf
-	r+/1e5v0bD7FEIgE0h0CO9eHtgeknOFYb808l9JxUgtM2W6pn3Vxn7KmJyhPCAfzcWqfcvrsnuCqc
-	EuHQXiak2zUWhloYMzkSjrWgNFowwlf5b4yi97D9B2U86NQx+8pp3vsPTt33nn/ihSIFgBO6ePhBh
-	zYuaZm7w+2cxwdzkeMzQ==;
+	List-Owner; bh=pEbQYi4NjQVP0dtbEgl40Tg4qtmWWlkw/cjXJIhkZZg=; b=pLHRiGRD2JV7OZ
+	vZHlsurxmGZLyd/YFTFdQ8u2UpdfyX4QxeUnPuQtLMLWVJjSMOPuostliIKvNYuV0+RbXEYRuy0zk
+	VORJIOMcLX9aEm0+lg6mHvbCBItaDSjNEW7s8Fxl3vykIJ/gjhtY73jxa55JXWQABJfo1yy7JG9YG
+	51QB2YDOB2uIFjMT7I9De3/nbNQTPM6CJEsO6JIFVjvKEKAo9+w/Ur1f0M/lWg3LpB2wI00IjhALM
+	CSRtyB7b/rhNG9Hk4Qbhy0ulLfbpdf5ACtz5uhLRaiBNYBPhGltrJLqVH6qfbngGoT+KSR1VOLM/q
+	mizCszJj87jfxYLTd7jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvZ3-00000002JOn-3xxF;
-	Mon, 16 Nov 2026 12:12:01 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1xSvZ4-00000002JP0-09af;
+	Mon, 16 Nov 2026 12:12:02 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvYx-00000002JLy-0Bk9
+	id 1xSvYy-00000002JMQ-3oJt
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:11:56 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4a1b07c3c5fso38018715e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:11:54 -0800 (PST)
+	Mon, 16 Nov 2026 12:11:58 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a3517554f7so37590965e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:11:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794831113; x=1795435913; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794831115; x=1795435915; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Mh+ToPltBb8mnDHqsdQlNCdlhh90EXZrqETmJQ+oo/w=;
-        b=kJ8nD1EGNUh8AJCeNyvcADH4M2iIYTG/EFPynbRBeLIwT9GmrpYjmOPL0NOcoZVU6J
-         6CWoDJ2SGE2OmJbH3IbBlwfBiMQhD8OyU5uwjE8VDWlE/UldR/pveERPhDde+uxzdMPF
-         2aD/rNvbgdCuKdkZcCb+8P4Au6miDZh04CY+ICOJvJKeO3GvppMQP+kqX1r27UST/9CW
-         I0a3tWIPpHGvvb+Gzpi7LwOdX2lZuU6xxCcW3Gd+ElRIxrssnzpPH3tKtiXJs2a52AFD
-         Z53O2P/+FTj/SrQWXVS2JNFxvh1HwTKGcvq1e9Ori47j1+5P7v7ioW9Dz+Cp1Z1nIY3h
-         f6/Q==
+        bh=pEbQYi4NjQVP0dtbEgl40Tg4qtmWWlkw/cjXJIhkZZg=;
+        b=pHXSRHZRe0uqtOCzJwmFRq9ZqMxrcGFR2t2B/lOW0GS/rXdB8RFKJBRpHOjsAeN+Oo
+         7Mp6iPv18/oe6nQIcaof+DOt2WFVfxFiv9mDCf5yggnlpDsXQ+EfTznvc6sihpzMGH+j
+         Fug1ijoAlfVStBd0C83dQ4z2h0ThiHIZc023VaXzSLC4bZSR3CP93hUy5SMKYFS9zbNK
+         SQItXfcmQFpToLc6CnPLPHouxahhadK6uZo2kE5mt5x8RxYus+8OI/aVbXFvSLGnB9SM
+         s8kgPMWV2JRKci+zYDhy+9MZHFEBMr4LjpY/c+LPdSh0BIUfeEWig3CboWkWPmWcr8Sb
+         dO8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794831113; x=1795435913;
+        d=1e100.net; s=20260707; t=1794831115; x=1795435915;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Mh+ToPltBb8mnDHqsdQlNCdlhh90EXZrqETmJQ+oo/w=;
-        b=dFuVMwyhRvemroHEG4wIEYRGNRTu4MIzvOkahZL+7DajWC5oYjLUWxpBi5jpUlFtAJ
-         JlJL6UHX1AFLKbndvkVK0waWqEKj8ea1jMl5QpjpBZR6qS1vxwgdEBXQcuzhq3rITd3F
-         sgvp/jKwXfT+8cAt8iNAJxvRKnFh7IO/Bpo4aIXSmIlCh3M2tJvLdzuXbPSlS0YhRLxG
-         rPkqQkwTWYPWAm4yIGNB0Rn89qic4hCk9EfQoaErAGhroi6qOqGAJfFH3F84l9HXaHHk
-         E0IZnV1Zr/BtjMQhYAJPzneptPYs7TN6pt/bR6YriUCGkbg2X4uvMOwtADX6STqV5187
-         I68g==
-X-Forwarded-Encrypted: i=1; AL+hErHqJNIqkonWhXbJJWYJEX0LpGWELln9R2R7fe+pQ3k9zyhxleZBvtL0x/spEKVum2DujuJzsIBpb1ZOJkoKqBPN@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Bk7QZe15+QnfSLLPqd51RynRPjN79Om+HiCJ8zgRZ2JIfR/Qc
-	bBYFQ2QEYasY3hQ9IZFocgnep33YwJa+1kbZhh9FsgzBgMYIZQ3Bx0rU
-X-Gm-Gg: AYBFou1YrgdWh9FKbYqemQkjSuANIylDLRaiJKUIjV/vdWvRBsgnFrai67f4O7epyM1
-	m2fs5kcPWtiwGrrHTTd3WVsrzGbZp+p8B/2yuMZlPtPkXYDQ9BqldFNPE/2c47HOfGz4JKpxsbC
-	wPPF35p3VDdkLiHkuPzxwNsSFRyQ2BlzTCqIC4DDBSTUOunSnJ2k64Ue77s4KFUa9U2ZjxFBgwJ
-	ludXywaqfmGQGCQGeQaai5ZvqgOujwjt4/LyAbFDa688J8/xFcap0CBR9Fxi5ToQEQ0oOnSRSA5
-	LbSswPfUaWJxIWBRpUj3s4w+UVInPLb4xwzdymUiuIVayeJ2qLBm0PtcmnTvY63w8buR6fNDyDC
-	Pt0WsrGU6pP856HfLobckjMvQxqtF0C52APP6QwdE9ZWmeqlZ8DSpsXNiwfvb4n36IVIT9YYzxb
-	uYTxCtLEx5zfOJ2DknsV5wRkDaMLjuanhFgZd6rW1eXlcxVS44uWplUWZC6jLB6rEU62++Yi44X
-	56xniqTS66MywQ3xrbr+l2m1H1NDMUEQLk1klFY86u69nxJiq2XdoCgIuqH7BxYxpndy5cQKCQV
-	05ikoG1XWQJNknmcQs38hy5aPd+JomklYRbfXXwWOP5SU1LzYH6qupaiY0k2Pdy8TuTpCrGzyr3
-	F0J091neO1h+uXTPXZBPtZMnLif8ha/Rsy12/kiC5L1ZXIIz633lhhXm8L2Z7XqCGsZAuXT2S
-X-Received: by 2002:a05:600c:4e0d:b0:4bb:69b2:d3df with SMTP id 5b1f17b1804b1-4bb69b2d82fmr91695095e9.25.1794831112818;
-        Mon, 16 Nov 2026 04:11:52 -0800 (PST)
+        bh=pEbQYi4NjQVP0dtbEgl40Tg4qtmWWlkw/cjXJIhkZZg=;
+        b=QaJLdDO+LVV4wYMJSrOm5yZpjR/Vm6NFu5ho6w95i4Dt0h3yF5msPWzhzn6AY5146j
+         Ly5bwWncqEJKbhXwGR68XEedbfWxjOO1hOJKrnbFZVqYMSQMCWOh/knL0qAZ8Qdbtcci
+         +H6u6ufMpH0h8JltDGoG2LwPoCRQlBNU26lvMUhIAON0eFxBzXRvMM2GZtvPSGXC0nxS
+         4MDVRj7MPIpr8tIFvc5ASrvO7BozTxiWiVoQ6X6tSTV5QDmzg8PBs+EuwesTbUPPL6+m
+         8dqOzuJdJwSKvDiq8s1//oQqOgBEp6jYykaqr/OMbIU275xRtXEWTfoDiPKGdcDeXKTg
+         OEgw==
+X-Forwarded-Encrypted: i=1; AL+hErGGzB1TkLP2UQ8YGSji0SuAdrdf98w7/gr5vV7LAi1haMw133Tkgubhs2Q1K4tgwVp4dVIxfZcAXDhE492qogXA@lists.infradead.org
+X-Gm-Message-State: APuU4Z8awepJWdolDYeupzGYiqmiFLjzhRIGubDWl4fYCGySrBqs587x
+	F271vkMMJjGe7PMsbJIJSBjaYAoqCF7mHCx/Fns3gP7XTcb3n/SvUHto
+X-Gm-Gg: AYBFou0Gn/4BhPadoCFNzx9ucPkQQdiU040TJjR2Q8L7pdycbmpE9f3enYRfIYJ5y6Z
+	lDL1mZTXC2+OC7wneSvzII9VEwQKzIk2U8eDZlEj8IuNIPu4hYIu00TaaTTw75wqkV1JuscNs8z
+	MliONOFnMKN9vi2Ojy0JJa4DkQehfYFi4FHsHmQeVD/CNLUeqcRUp7wL/SL3VlLEeYeEhqpAaAW
+	Xj2N13RxZ371SQ4lp2mo6tmfP+GMumd/7ZIoFVw8q2HvuqrtMiSjQuk6yLQomRz+VfTziw2fv1u
+	b1k71ZBD+AVX4t3ML8NXL+N/ko14zAaqXdzHDOQifkxYaoH7fMRVXUJM5P/uuzh7X6BT9yrNimr
+	Sqag3Bw3vB7Nv3LCn7tIQXLwGSIPPEiEqtR1noAWo63KcdgQWq5e6ba2fGtd/7QHc9vQZIRh8XN
+	t7BkVSkDxSFgCVKpwtrJR0DtMza3LlZLmrN0ToJmSzGOUY/0JMV5p4HnLDMkSIw7cnfFCtbfe+t
+	eH8jQx+0vW8n/QTiqrnJQdMVwFyvgkH0rXWBM6FxWFdG3IhmFwOtotaNQeZ3cPMpwWLZsoSI1Ap
+	Qf7gTb8UE6E4h+6cNkRYJA3gVnnAJa1aVGEG0eoCVC++QB1vSnYp9WMjT2DNq2InBxa6pOQMRm7
+	DNFXRSx+DJY9q5aYOLoFkclZzqvUjvN9bdCZSZsQtONVaBWanVjY=
+X-Received: by 2002:a05:600d:41c9:b0:4bb:60bd:5398 with SMTP id 5b1f17b1804b1-4bb60bd5507mr142579815e9.10.1794831114708;
+        Mon, 16 Nov 2026 04:11:54 -0800 (PST)
 Received: from localhost.localdomain (80-108-121-211.cable.dynamic.surfer.at. [80.108.121.211])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb70105a98sm61442005e9.5.2026.11.16.04.11.51
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb70105a98sm61442005e9.5.2026.11.16.04.11.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 04:11:52 -0800 (PST)
+        Mon, 16 Nov 2026 04:11:53 -0800 (PST)
 From: Christian Gmeiner <christian.gmeiner@gmail.com>
-Date: Mon, 16 Nov 2026 13:11:48 +0100
-Subject: [PATCH 1/2] drm/panel-edp: Fix Innolux N125HCE-GN1 mode
+Date: Mon, 16 Nov 2026 13:11:49 +0100
+Subject: [PATCH 2/2] arm64: dts: imx8mq-mnt-reform2: Drive the internal
+ panel from DCSS
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261116-reform2-internal-panel-v1-1-765cf8d5ff4f@igalia.com>
+Message-Id: <20261116-reform2-internal-panel-v1-2-765cf8d5ff4f@igalia.com>
 References: <20261116-reform2-internal-panel-v1-0-765cf8d5ff4f@igalia.com>
 In-Reply-To: <20261116-reform2-internal-panel-v1-0-765cf8d5ff4f@igalia.com>
 To: Douglas Anderson <dianders@chromium.org>, 
@@ -102,8 +103,8 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  Christian Gmeiner <cgmeiner@igalia.com>
 X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_041155_105501_EA1AA907 
-X-CRM114-Status: GOOD (  12.04  )
+X-CRM114-CacheID: sfid-20261116_041156_981838_BFA708F9 
+X-CRM114-Status: GOOD (  14.23  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,53 +126,93 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Christian Gmeiner <cgmeiner@igalia.com>
 
-The mode has a pixel clock of 162 MHz, which is 70 Hz. The EDID of the
-panel only has 60 Hz and 40 Hz. Output of edid-decode:
+The panel is driven by LCDIF through the NWL MIPI-DSI host and a
+SN65DSI86 eDP bridge. LCDIF underflows at 1920x1080. The picture shows
+horizontal streaks and the underflow flag in LCDIF_CTRL1 is set several
+times per second, even when idle.
 
-  DTD 1:  1920x1080   60.001038 Hz  16:9     66.721 kHz    138.780000 MHz
-               Hfront   46 Hsync  30 Hback   84 Hpol P
-               Vfront    2 Vsync   4 Vback   26 Vpol N
-  DTD 2:  1920x1080   40.000692 Hz  16:9     44.481 kHz     92.520000 MHz
-               Hfront   46 Hsync  30 Hback   84 Hpol P
-               Vfront    2 Vsync   4 Vback   26 Vpol N
+DCSS does not have this problem. Connect it to the MIPI-DSI host and
+leave LCDIF disabled.
 
-On the MNT Reform 2 with i.MX8MQ the picture flickers at 70 Hz. Use the
-60 Hz timing from the EDID.
+Use IMX8MQ_CLK_DC_PIXEL as pixel clock, with the video PLL at four
+times the panel pixel clock. The DCSS binding only allows three
+assigned-clocks, so the PLL setup is in the MIPI-DSI node.
 
-Fixes: a14c6b0eef77 ("panel-simple: add Innolux N125HCE-GN1")
 Signed-off-by: Christian Gmeiner <cgmeiner@igalia.com>
 ---
- drivers/gpu/drm/panel/panel-edp.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+ .../boot/dts/freescale/imx8mq-mnt-reform2.dts      | 52 ++++++++++++++++++++--
+ 1 file changed, 48 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-index f7add22ccf69..0ebd756d14d0 100644
---- a/drivers/gpu/drm/panel/panel-edp.c
-+++ b/drivers/gpu/drm/panel/panel-edp.c
-@@ -1364,15 +1364,16 @@ static const struct panel_desc innolux_n116bge = {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
+index 3ae3824be027..31c7428f0386 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
+@@ -171,17 +171,61 @@ edp_bridge_out: endpoint {
+ 	};
  };
  
- static const struct drm_display_mode innolux_n125hce_gn1_mode = {
--	.clock = 162000,
-+	.clock = 138780,
- 	.hdisplay = 1920,
--	.hsync_start = 1920 + 40,
--	.hsync_end = 1920 + 40 + 40,
--	.htotal = 1920 + 40 + 40 + 80,
-+	.hsync_start = 1920 + 46,
-+	.hsync_end = 1920 + 46 + 30,
-+	.htotal = 1920 + 46 + 30 + 84,
- 	.vdisplay = 1080,
--	.vsync_start = 1080 + 4,
--	.vsync_end = 1080 + 4 + 4,
--	.vtotal = 1080 + 4 + 4 + 24,
-+	.vsync_start = 1080 + 2,
-+	.vsync_end = 1080 + 2 + 4,
-+	.vtotal = 1080 + 2 + 4 + 26,
-+	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NVSYNC,
+-&lcdif {
+-	assigned-clocks = <&clk IMX8MQ_CLK_LCDIF_PIXEL>;
+-	assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_800M>;
+-	/delete-property/assigned-clock-rates;
++&dcss {
++	clocks = <&clk IMX8MQ_CLK_DISP_APB_ROOT>,
++		 <&clk IMX8MQ_CLK_DISP_AXI_ROOT>,
++		 <&clk IMX8MQ_CLK_DISP_RTRM_ROOT>,
++		 <&clk IMX8MQ_CLK_DC_PIXEL>,
++		 <&clk IMX8MQ_CLK_DISP_DTRC>;
++	assigned-clocks = <&clk IMX8MQ_CLK_DISP_AXI>,
++			  <&clk IMX8MQ_CLK_DISP_RTRM>,
++			  <&clk IMX8MQ_VIDEO_PLL1_REF_SEL>;
++	assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_800M>,
++				 <&clk IMX8MQ_SYS1_PLL_800M>,
++				 <&clk IMX8MQ_CLK_25M>;
+ 	status = "okay";
++
++	port {
++		dcss_dsi_out: endpoint {
++			remote-endpoint = <&mipi_dsi_dcss_in>;
++		};
++	};
++};
++
++&lcdif {
++	/delete-node/ port;
  };
  
- static const struct panel_desc innolux_n125hce_gn1 = {
+ &mipi_dsi {
++	/*
++	 * DCSS takes the pixel clock from the video PLL. The PLL runs at four
++	 * times the 138.78 MHz panel pixel clock.
++	 */
++	assigned-clocks = <&clk IMX8MQ_CLK_DSI_AHB>,
++			  <&clk IMX8MQ_CLK_DSI_CORE>,
++			  <&clk IMX8MQ_CLK_DSI_IPG_DIV>,
++			  <&clk IMX8MQ_VIDEO_PLL1_BYPASS>,
++			  <&clk IMX8MQ_CLK_DC_PIXEL>,
++			  <&clk IMX8MQ_VIDEO_PLL1>;
++	assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>,
++				 <&clk IMX8MQ_SYS1_PLL_266M>,
++				 <0>,
++				 <&clk IMX8MQ_VIDEO_PLL1>,
++				 <&clk IMX8MQ_VIDEO_PLL1_OUT>;
++	assigned-clock-rates = <80000000>, <266000000>, <20000000>, <0>, <0>,
++			       <555120000>;
+ 	status = "okay";
+ 
+ 	ports {
++		port@0 {
++			/delete-node/ endpoint@0;
++
++			mipi_dsi_dcss_in: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&dcss_dsi_out>;
++			};
++		};
++
+ 		port@1 {
+ 			reg = <1>;
+ 
 
 -- 
 2.56.0
