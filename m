@@ -2,72 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106AB606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B112D606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mj4jLgxb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lcjovWjW;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZPmjOCmj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=52QgrSKsfSH7NwDCbCOwCK+9x4DB/HxzeFNx2X6f/cc=; b=mj4jLgxbNzaF9b
-	hio0LPTFPxLM5hrl2Z9I7EFbRKalMwN0M7ZLAwE3Tx/hYkrLgAjU480OdkkHuI0xpiy0d9H4QiosY
-	tC1ROUR39/STKlS3j6nEi79YDdq4DCF66ssy8F5+wZYof1Tm1/MgH1W7GEnOqIdLkKUMEjAAPiI7f
-	86SDIwAQfUU+kA+IGJEgjezqj4JpMaL3ocowme9MXqJmVXr3SVMpGyVmbNaTfsE/YgLVKibzMg/Wk
-	EJk64ZLZxHvVcJLOS+Zh5GVVrfCrlnY7HRsKKKUKgJ02DD4eyomPXHZoCVnip6bv3ow6f8u2r+m8E
-	tESNNk+JrJDU9T1xzIlw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=fwWQDlnnSTNyph3hgjd/jHBsSgprm3l/XThcAnorVzc=; b=lcjovWjWJFWWxECcbyTP0fSzGG
+	Fz6hg6KAd0GUlgVvWbs0u4S6axjLl7FMFtP7I4ty8pJFv2sJ93HxDJoxoeeKVN6EFdfqUyvTqMsNe
+	4D+sdYtDJ47uF4O3jiAj9l2stWTE5iwMQzC61R5xfphkHpTNgpjTPVH0caZK6aIRZqcXCDYU+RCVB
+	SXiMpYOmW8zjHgcF5wn2cvuGKdRsMIgI3OXTfQCBPXsS9pTbVL9tNyH4LtUJUBZ30mGBGQJThovWq
+	jFHSDrcIVSFVS1igs1rOrbkIPXRxpXRjzEnVl6k6Ypz0Ki1AS7BKn4ZQFC8aXvHG/ReHbDMgOAacp
+	eWE+hmIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0uG-00000003SdK-0jQ8;
-	Mon, 16 Nov 2026 17:54:16 +0000
-Received: from nbd.name ([46.4.11.11])
+	id 1xT0wV-00000003T7z-2rsq;
+	Mon, 16 Nov 2026 17:56:35 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0u2-00000003SVM-0YYb;
-	Mon, 16 Nov 2026 17:54:04 +0000
-Received: from [2a04:4540:1403:e6fc:5f71:2c1e:7d62:945f] (helo=bertha10..)
-	by ds12 with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <john@phrozen.org>)
-	id 1xT0tq-004GoI-1I;
-	Mon, 16 Nov 2026 18:53:50 +0100
-From: John Crispin <john@phrozen.org>
-To: Stefan Roese <sr@denx.de>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	devicetree@vger.kernel.org,
-	lei.dong@airoha.com,
-	Linqi.zhang@airoha.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Rajeev.kumar@airoha.com,
-	upstream@airoha.com,
-	Weifeng.xu@airoha.com,
-	zhengping.zhang@airoha.com,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 2/3] dt-bindings: i2c: mt7621: add Airoha AN7589
-Date: Mon, 16 Nov 2026 18:53:42 +0100
-Message-Id: <20261116175343.344425-3-john@phrozen.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261116175343.344425-1-john@phrozen.org>
-References: <20261116175343.344425-1-john@phrozen.org>
+	id 1xT0wU-00000003T7h-3xeB
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 17:56:34 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B14AF44F19;
+	Mon, 16 Nov 2026 17:56:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 090D91F000C4;
+	Mon, 16 Nov 2026 17:56:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794851794;
+	bh=fwWQDlnnSTNyph3hgjd/jHBsSgprm3l/XThcAnorVzc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=ZPmjOCmjno9nExForLkbzUF13rzZndhUhxLFyhcs6ndrKiOfrHZB3452l8ISZGQ7a
+	 iYsimyIzyefhY/oc0K0Vfemi/N6TEn8rXGyOpQ0gU73R0/NFoYDoxdzp0d4aDmcgYx
+	 PbYsURnlZMIsvqEfHzK8OzalcWBjck31xbND7wq53aERpH9jocyLE9toVILdqk7A8S
+	 PhulloZRXZGRVjWl41g3MI9mo4O1mXL6sKIAi3Tnw6BpI+V+iQmyzXVQ3AObWBs6Gj
+	 t5ib62RErvLafzsMEoDgEXi6TaWuiDqATzZpnK6iI8setbIO4LkG3gE84ueLqrLBDP
+	 sY89CO5r1y05g==
+Date: Mon, 16 Nov 2026 17:56:28 +0000
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: Alexandru Elisei <alexandru.elisei@arm.com>
+Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev, 
+	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
+	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
+	will@kernel.org, mark.rutland@arm.com, linux-perf-users@vger.kernel.org, 
+	catalin.marinas@arm.com, james.clark@linaro.org
+Subject: Re: [RFC PATCH v7 05/28] perf: arm_spe_pmu: Add PMBIDR_EL1 and
+ PMSIDR_EL1 to struct arm_spe_pmu
+Message-ID: <avtDK5rtD38jnhqR@gremlin>
+References: <20260903160623.315525-1-alexandru.elisei@arm.com>
+ <20260903160623.315525-6-alexandru.elisei@arm.com>
+ <atDmDRSNDllpJtmL@gremlin>
+ <avSjyLhFsYjI7tG_@raptor>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_095402_168163_0D2D0E45 
-X-CRM114-Status: UNSURE (   9.55  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avSjyLhFsYjI7tG_@raptor>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,59 +74,155 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Airoha AN7589 carries the MT7621 I2C controller with a second
-control register holding a wider clock divider. Out of reset the
-controller uses the MT7621 divider, so the MT7621 programming works
-and mediatek,mt7621-i2c serves as the fallback. Give the AN7589 a
-compatible of its own so the driver can use the wider divider.
+On Wed, Nov 11, 2026 at 05:20:08PM +0000, Alexandru Elisei wrote:
+> Hi,
+>
+> On Thu, Oct 15, 2026 at 04:12:27PM +0100, Lorenzo Stoakes (ARM) wrote:
+> > I think probably some kind of commit message would be good even for a
+> > trivial change :)
+>
+> Of course, I'll add something here.
+>
+> >
+> > On Thu, Sep 03, 2026 at 05:06:00PM +0100, Alexandru Elisei wrote:
+> > > Signed-off-by: Alexandru Elisei <alexandru.elisei@arm.com>
+> > > ---
+> > >  drivers/perf/arm_spe_pmu.c       | 3 +++
+> > >  include/linux/perf/arm_spe_pmu.h | 2 ++
+> > >  2 files changed, 5 insertions(+)
+> > >
+> > > diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
+> > > index 79c571a649d5..42ba0924bd02 100644
+> > > --- a/drivers/perf/arm_spe_pmu.c
+> > > +++ b/drivers/perf/arm_spe_pmu.c
+> > > @@ -1095,6 +1095,7 @@ static void __arm_spe_pmu_dev_probe(void *info)
+> > >  			"profiling buffer owned by higher exception level\n");
+> > >  		return;
+> > >  	}
+> > > +	spe_pmu->pmbidr_el1 = reg;
+> >
+> > This doesn't seem to be used anywhere in the series?
+>
+> Indeed, that's a leftover from the previous iterations, will remove.
+>
+> >
+> > >
+> > >  	/* Minimum alignment. If it's out-of-range, then fail the probe */
+> > >  	fld = FIELD_GET(PMBIDR_EL1_ALIGN, reg);
+> > > @@ -1107,6 +1108,8 @@ static void __arm_spe_pmu_dev_probe(void *info)
+> > >
+> > >  	/* It's now safe to read PMSIDR and figure out what we've got */
+> > >  	reg = read_sysreg_s(SYS_PMSIDR_EL1);
+> > > +	spe_pmu->pmsidr_el1 = reg;
+> > > +
+> > >  	if (FIELD_GET(PMSIDR_EL1_FE, reg))
+> > >  		spe_pmu->features |= SPE_PMU_FEAT_FILT_EVT;
+> > >
+> > > diff --git a/include/linux/perf/arm_spe_pmu.h b/include/linux/perf/arm_spe_pmu.h
+> > > index af86fd184050..97b14e236fcd 100644
+> > > --- a/include/linux/perf/arm_spe_pmu.h
+> > > +++ b/include/linux/perf/arm_spe_pmu.h
+> > > @@ -21,6 +21,8 @@ struct arm_spe_pmu {
+> > >  	cpumask_t				supported_cpus;
+> > >  	struct hlist_node			hotplug_node;
+> > >
+> > > +	u64					pmbidr_el1;
+> >
+> > Equally, this doesn't seem to be used anywhere in the series, maybe drop?
+>
+> Fixed.
+>
+> >
+> > > +	u64					pmsidr_el1;
+> >
+> > This field is used in kvm_spe_has_feat_spe_fds() and
+> > kvm_spe_has_feat_spe_fne():
+> >
+> > bool kvm_spe_has_feat_spe_fds(struct kvm *kvm)
+> > {
+> > 	...
+> > 	return kvm_has_feat(kvm, ID_AA64DFR0_EL1, PMSVer, V1P4) &&
+> > 	       FIELD_GET(PMSIDR_EL1_FDS, spe_pmu->pmsidr_el1);
+> > }
+> >
+> > bool kvm_spe_has_feat_spe_fne(struct kvm *kvm)
+> > {
+> > 	...
+> > 	return kvm_has_feat(kvm, ID_AA64DFR0_EL1, PMSVer, V1P2) &&
+> > 	       FIELD_GET(PMSIDR_EL1_FnE, spe_pmu->pmsidr_el1);
+> > }
+> >
+> > So checking for FDS and FnE, but these are available as feature flags as
+> > __arm_spe_pmu_dev_probe() gets these:
+> >
+> > static void __arm_spe_pmu_dev_probe(void *info)
+> > {
+> > 	...
+> > 	if (FIELD_GET(PMSIDR_EL1_FnE, reg))
+> > 		spe_pmu->features |= SPE_PMU_FEAT_INV_FILT_EVT;
+> > 	...
+> > 	if (FIELD_GET(PMSIDR_EL1_FDS, reg))
+> > 		spe_pmu->features |= SPE_PMU_FEAT_FDS;
+> > 	...
+> > }
+> >
+> > And then kvm_spe_has_feat_spe_fds() and kvm_spe_has_feat_spe_fne() can be:
+> >
+> > bool kvm_spe_has_feat_spe_fds(struct kvm *kvm)
+> > {
+> > 	...
+> > 	return kvm_has_feat(kvm, ID_AA64DFR0_EL1, PMSVer, V1P4) &&
+> > 	       (spe_pmu->features & SPE_PMU_FEAT_FDS);
+> > }
+> >
+> > bool kvm_spe_has_feat_spe_fne(struct kvm *kvm)
+> > {
+> > 	...
+> > 	return kvm_has_feat(kvm, ID_AA64DFR0_EL1, PMSVer, V1P2) &&
+> > 	       (spe_pmu->features & SPE_PMU_FEAT_INV_FILT_EVT);
+> > }
+> >
+> > Right?
+>
+> In this use case they are functionally the same, yes, but conceptually, they are
+> not the same thing. spe_pmu->features advertises the features that the SPE
+> *driver* supports, PMSIDR_EL1 advertises the features that the *hardware*
+> implements. The two are not always equal.  For example, KVM added handling for
+> the PMSNEVFR_EL1 register (added by FEAT_SPE_FnE), a few years before the SPE
+> driver supported FEAT_SPE_FnE.
+>
+> I can see KVM, in the future, having to virtualize hardware features not
+> supported by the host driver yet, so unless you have a strong objection, I would
+> rather keep the use of the architectural register instead of relying on the
+> driver.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: John Crispin <john@phrozen.org>
----
-Changes in v3:
-- Add the Acked-by of Conor.
+Ack OK, sounds sensible, no strong objection but could you add a sentence to the
+commit msg about that? Thanks! :)
 
-Changes in v2:
-- Add mediatek,mt7621-i2c as the fallback compatible (Conor).
+>
+> >
+> > So it seems you could drop this patch from the series in general? Is there
+> > another reason to get these fields?
+> >
+> > Also - there seems to be a divergence in the naming there between FnE and
+> > INV_FILT_EVT, is that intentional?
+>
+> I think that's a question for the person who added FEAT_PMU_FEAT_INV_FILT_EVT?
 
- .../devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml   | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Haha true I suppose so.
 
-diff --git a/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
-index 118ec00fc190..ec42e72e267f 100644
---- a/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
-@@ -9,12 +9,20 @@ maintainers:
- 
- title: Mediatek MT7621/MT7628 I2C master controller
- 
-+description:
-+  The same controller is used on Airoha SoCs. The AN7589 variant adds a
-+  second control register with a wider clock divider.
-+
- allOf:
-   - $ref: /schemas/i2c/i2c-controller.yaml#
- 
- properties:
-   compatible:
--    const: mediatek,mt7621-i2c
-+    oneOf:
-+      - const: mediatek,mt7621-i2c
-+      - items:
-+          - const: airoha,an7589-i2c
-+          - const: mediatek,mt7621-i2c
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
+>
+> Thanks,
+> Alex
 
+--
+Cheers, Lorenzo
 
