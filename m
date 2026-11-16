@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC09E606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5BB606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ivWRp+gk;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=4oYOhIR5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bE6eaevT;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=vIAYTJhB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,33 +14,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=F5/09tsAiLJiH3yE/JR0I601g/y4qQXPTHzsm0/14NA=; b=ivWRp+gkGPjrqYx4PacM4HiRQI
-	D7PS8Y+SbJvauhQm+7uRuLexQwa4ew9sxQUtNKK7tBqrhXGNlb8xz8QVpRqZLoXsKTv7YnWCxqhiV
-	yCL6A0TePXY/J2+yg439KAa34TqiQgiAEBouxSBFdyM3Z+H6yY0ydn2xrZGgAE+NVbyx0dv5DSNru
-	qdAMqrUVqG0EXb49PqaKYy3s02M0S8UrOBK8cFHGH0qmZnXD1SrBwmXQQTd3Ngfc5hQfeuPHXqNdc
-	8NORYoJzM6l22HEmMZ8+tUpJA/QbnRhZX0fPLAtWCCFZ5DGjVWJgpjsoJgObSqAAtRVXetW+KveHu
-	WaABpioQ==;
+	bh=LWCb4AWo4UNWW8tYFiY9wFGDrUTAdjfM7WUP0es79AE=; b=bE6eaevTneS2DJqD3eCRjGdpNM
+	eneE0pnf0J8LNHr6TjWI/xqLYBINKsz/tJXrJpMysvfMrJ/a9UW+NiYOMBVqwSn2zqzOBVetQkqkK
+	1Ndg+Ao/Ymj0b+55e8lTxe6dv+OUN2oiaCDvN8vIRSVr/zjL17Uzbltaib/mCjJ9JbETePCfwVtyc
+	OKDntE8cFV0bqhqiv0edfVstDqyFxzNSwN4qTJhpBGieEv7m+BmcyXUWykKuezsiL03snRSVBX1P2
+	Qvsgnct9ECQDypypyrMf3wAk16+Fw5yD83Ks1VehjoWKbUQypuxZXU2aK0qOD73y21+YdEx5R7kYq
+	pG5ty76Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwJJ-00000002VU3-2s08;
-	Mon, 16 Nov 2026 12:59:49 +0000
-Received: from canpmsgout11.his.huawei.com ([113.46.200.226])
+	id 1xSwJQ-00000002VkI-0ZMc;
+	Mon, 16 Nov 2026 12:59:58 +0000
+Received: from canpmsgout05.his.huawei.com ([113.46.200.220])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwJB-00000002VEz-14yv
+	id 1xSwJF-00000002VKZ-3Cu7
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:59:43 +0000
+	Mon, 16 Nov 2026 12:59:49 +0000
 dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
 	c=relaxed/relaxed; q=dns/txt;
 	h=From;
-	bh=F5/09tsAiLJiH3yE/JR0I601g/y4qQXPTHzsm0/14NA=;
-	b=4oYOhIR58XT0S8w/lRb1j1PxYmyMrJDo7rECYdhHu9aCBDHuIzwqFKSqa/zmTmEaT6OllAOLz
-	KVAQ4xqgB/kVPA7yX6PUq/PSHjlr913TQXkwmv7hUUHMqDijkCoBHf/RIW42CkYmU85madgu1dt
-	8rrtbQ2g5/mnaBXNiZo2k7Q=
-Received: from mail.maildlp.com (unknown [172.19.163.200])
-	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4jSnxl741NzKm5R;
-	Mon, 16 Nov 2026 20:59:23 +0800 (CST)
+	bh=LWCb4AWo4UNWW8tYFiY9wFGDrUTAdjfM7WUP0es79AE=;
+	b=vIAYTJhB6eHaA2uYPFuFBrOsteftDjYBSaCovSbgWW0hiA3KLd81qonwMjQ/r+dw9xIcvKFqN
+	HV8PeqgltPakksgnSSrXv9Kkj8Au6+LDgNJwCzbS+V4N3+5RifDqaT9TvFgmxrNkTUddYOsNXq4
+	gRKGwVb8ZerLHb7R7F0kfAU=
+Received: from mail.maildlp.com (unknown [172.19.163.104])
+	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4jSny94Fykz12LDl;
+	Mon, 16 Nov 2026 20:59:45 +0800 (CST)
 Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 3161840563;
+	by mail.maildlp.com (Postfix) with ESMTPS id B13554056E;
 	Mon, 16 Nov 2026 20:59:37 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
  (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
@@ -56,9 +56,9 @@ To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
 	<hpa@zytor.com>, <x86@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 CC: <ruanjinjie@huawei.com>
-Subject: [RFC PATCH v3 09/19] fs/resctrl: Add the L2 monitor events
-Date: Mon, 16 Nov 2026 20:59:04 +0800
-Message-ID: <20261116125914.498841-10-ruanjinjie@huawei.com>
+Subject: [RFC PATCH v3 10/19] fs/resctrl: Set up MBM state and workers for every monitor resource
+Date: Mon, 16 Nov 2026 20:59:05 +0800
+Message-ID: <20261116125914.498841-11-ruanjinjie@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261116125914.498841-1-ruanjinjie@huawei.com>
 References: <20261116125914.498841-1-ruanjinjie@huawei.com>
@@ -69,8 +69,8 @@ Content-Type: text/plain
 X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
  kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_045942_204748_4A34A1A9 
-X-CRM114-Status: GOOD (  15.85  )
+X-CRM114-CacheID: sfid-20261116_045946_154737_B2894E3B 
+X-CRM114-Status: GOOD (  18.70  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,69 +90,214 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-MPAM monitors belong to a cache, and firmware says which level that
-cache is. Add the L2 entries to the event table: l2c_occupancy for
-occupancy and mbm_core_bytes for bandwidth. They have their own names
-because an L2 counts the traffic the cache sees, not memory bandwidth.
+Monitor domain state and the MBM overflow worker are only set up for L3
+domains. Set them up for any resource that has the matching events
+enabled, and let the overflow worker find the resource from its domain.
 
-Read the L2 events through the same per-domain path as the L3. The L2
-has no domains to sum, so a read without a domain fails. The events only
-show up once an architecture enables them; x86 never does.
+The MBA software controller still uses the L3, so only the L3 worker
+updates its bandwidth numbers.
+
+No functional change as only the L3 has monitoring enabled.
 
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- fs/resctrl/monitor.c    | 12 +++++++++++-
- include/linux/resctrl.h |  2 +-
- 2 files changed, 12 insertions(+), 2 deletions(-)
+ fs/resctrl/monitor.c  |  8 +++---
+ fs/resctrl/rdtgroup.c | 57 +++++++++++++++++++++++--------------------
+ 2 files changed, 35 insertions(+), 30 deletions(-)
 
 diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
-index 7c392bd57eff..d72d53ba25c7 100644
+index d72d53ba25c7..5924cc7d64f8 100644
 --- a/fs/resctrl/monitor.c
 +++ b/fs/resctrl/monitor.c
-@@ -537,12 +537,18 @@ static int __l3_mon_event_count_sum(struct rdtgroup *rdtgrp, struct rmid_read *r
- static int __mon_event_count(struct rdtgroup *rdtgrp, struct rmid_read *rr)
- {
- 	switch (rr->r->rid) {
-+	case RDT_RESOURCE_L2:
- 	case RDT_RESOURCE_L3:
- 		WARN_ON_ONCE(rr->evt->any_cpu);
- 		if (rr->hdr)
- 			return __mon_event_count_one_domain(rdtgrp, rr);
--		else
-+
-+		/* Only the L3 has SNC domains to sum. */
-+		if (rr->r->rid == RDT_RESOURCE_L3)
- 			return __l3_mon_event_count_sum(rdtgrp, rr);
-+
-+		rr->err = -EINVAL;
-+		return -EINVAL;
- 	case RDT_RESOURCE_PERF_PKG: {
- 		u64 tval = 0;
+@@ -589,7 +589,7 @@ static void mbm_bw_count(struct rdtgroup *rdtgrp, struct rmid_read *rr)
+ 	struct rdt_l3_mon_domain *d;
+ 	struct mbm_state *m;
  
-@@ -1030,6 +1036,10 @@ void free_rmid_lru_list(void)
-  * when the entry has a name.
-  */
- struct mon_evt mon_event_all[RESCTRL_MON_SCOPE_NUM][QOS_NUM_EVENTS] = {
-+	[RESCTRL_MON_SCOPE_L2] = {
-+		MON_EVENT(QOS_OCCUP_EVENT_ID,			"l2c_occupancy",	false),
-+		MON_EVENT(QOS_MBM_TOTAL_EVENT_ID,		"mbm_core_bytes",	false),
-+	},
- 	[RESCTRL_MON_SCOPE_L3] = {
- 		MON_EVENT(QOS_OCCUP_EVENT_ID,			"llc_occupancy",	false),
- 		MON_EVENT(QOS_MBM_TOTAL_EVENT_ID,		"mbm_total_bytes",	false),
-diff --git a/include/linux/resctrl.h b/include/linux/resctrl.h
-index 0a60372299c5..95ffff4c7925 100644
---- a/include/linux/resctrl.h
-+++ b/include/linux/resctrl.h
-@@ -180,7 +180,7 @@ struct mbm_cntr_cfg {
- };
+-	if (!domain_header_is_valid(rr->hdr, RESCTRL_MON_DOMAIN, RDT_RESOURCE_L3))
++	if (!domain_header_is_valid(rr->hdr, RESCTRL_MON_DOMAIN, rr->r->rid))
+ 		return;
+ 	d = container_of(rr->hdr, struct rdt_l3_mon_domain, hdr);
+ 	m = get_mbm_state(d, closid, rmid, rr->evt->evtid);
+@@ -793,7 +793,7 @@ static void mbm_update_one_event(struct rdt_resource *r, struct rdt_l3_mon_domai
+ 	 * If the software controller is enabled, compute the
+ 	 * bandwidth for this event id.
+ 	 */
+-	if (is_mba_sc(NULL))
++	if (is_mba_sc(NULL) && r->rid == RDT_RESOURCE_L3)
+ 		mbm_bw_count(rdtgrp, &rr);
+ 
+ 	if (rr.arch_mon_ctx)
+@@ -909,8 +909,8 @@ void mbm_handle_overflow(struct work_struct *work)
+ 	if (!is_percpu_thread())
+ 		goto out_unlock;
+ 
+-	r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
+ 	d = container_of(work, struct rdt_l3_mon_domain, mbm_over.work);
++	r = resctrl_arch_get_resource(d->hdr.rid);
+ 
+ 	/* Domain is going offline */
+ 	if (cpumask_empty(&d->hdr.cpu_mask))
+@@ -923,7 +923,7 @@ void mbm_handle_overflow(struct work_struct *work)
+ 		list_for_each_entry(crgrp, head, mon.crdtgrp_list)
+ 			mbm_update(r, d, crgrp);
+ 
+-		if (is_mba_sc(NULL))
++		if (is_mba_sc(NULL) && r->rid == RDT_RESOURCE_L3)
+ 			update_mba_bw(prgrp, d);
+ 	}
+ 
+diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
+index 8154e02b3d1c..afd6ffa9e324 100644
+--- a/fs/resctrl/rdtgroup.c
++++ b/fs/resctrl/rdtgroup.c
+@@ -3254,9 +3254,11 @@ static int rdt_get_tree(struct fs_context *fc)
+ 	if (resctrl_arch_alloc_capable() || resctrl_arch_mon_capable())
+ 		resctrl_mounted = true;
+ 
+-	r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
+-	if (resctrl_is_mbm_enabled(r)) {
+-		list_for_each_entry_rcu(dom, &r->mon_domains, hdr.list, lockdep_is_cpus_held())
++	for_each_mon_capable_rdt_resource(r) {
++		if (!resctrl_is_mbm_enabled(r))
++			continue;
++		list_for_each_entry_rcu(dom, &r->mon_domains, hdr.list,
++					lockdep_is_cpus_held())
+ 			mbm_setup_overflow_handler(dom, MBM_OVERFLOW_INTERVAL,
+ 						   RESCTRL_PICK_ANY_CPU);
+ 	}
+@@ -4498,7 +4500,13 @@ static void rdtgroup_setup_default(void)
+ 	mutex_unlock(&rdtgroup_mutex);
+ }
+ 
+-static void domain_destroy_l3_mon_state(struct rdt_l3_mon_domain *d)
++/* Only cache resources use the struct rdt_l3_mon_domain layout. */
++static bool rdt_mon_domain_is_cache(const struct rdt_domain_hdr *hdr)
++{
++	return hdr->rid == RDT_RESOURCE_L2 || hdr->rid == RDT_RESOURCE_L3;
++}
++
++static void domain_destroy_mon_state(struct rdt_l3_mon_domain *d)
+ {
+ 	int idx;
+ 
+@@ -4556,8 +4564,8 @@ void resctrl_offline_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *h
+ 	 * the domain that has the workers' struct delayed_work embedded.
+ 	 * Do so before taking rdtgroup_mutex since the workers also acquire it.
+ 	 */
+-	if (r->rid == RDT_RESOURCE_L3 &&
+-	    domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, RDT_RESOURCE_L3)) {
++	if (rdt_mon_domain_is_cache(hdr) &&
++	    domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, r->rid)) {
+ 		d = container_of(hdr, struct rdt_l3_mon_domain, hdr);
+ 		if (resctrl_is_mbm_enabled(r))
+ 			cancel_delayed_work_sync(&d->mbm_over);
+@@ -4574,10 +4582,8 @@ void resctrl_offline_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *h
+ 	if (resctrl_mounted && resctrl_arch_mon_capable())
+ 		rmdir_mondata_subdir_allrdtgrp(r, hdr);
+ 
+-	if (r->rid != RDT_RESOURCE_L3)
+-		goto out_unlock;
+-
+-	if (!domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, RDT_RESOURCE_L3))
++	if (!rdt_mon_domain_is_cache(hdr) ||
++	    !domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, r->rid))
+ 		goto out_unlock;
+ 
+ 	d = container_of(hdr, struct rdt_l3_mon_domain, hdr);
+@@ -4593,13 +4599,13 @@ void resctrl_offline_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *h
+ 		__check_limbo(d, true);
+ 	}
+ 
+-	domain_destroy_l3_mon_state(d);
++	domain_destroy_mon_state(d);
+ out_unlock:
+ 	mutex_unlock(&rdtgroup_mutex);
+ }
  
  /**
-- * struct rdt_l3_mon_domain - group of CPUs sharing RDT_RESOURCE_L3 monitoring
-+ * struct rdt_l3_mon_domain - group of CPUs sharing L2 or L3 cache monitoring
-  * @hdr:		common header for different domain types
-  * @ci_id:		cache info id for this domain
-  * @rmid_busy_llc:	bitmap of which limbo RMIDs are above threshold
+- * domain_setup_l3_mon_state() -  Initialise domain monitoring structures.
++ * domain_setup_mon_state() -  Initialise domain monitoring structures.
+  * @r:	The resource for the newly online domain.
+  * @d:	The newly online domain.
+  *
+@@ -4617,7 +4623,7 @@ void resctrl_offline_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *h
+  *
+  * Return: 0 for success, or -ENOMEM.
+  */
+-static int domain_setup_l3_mon_state(struct rdt_resource *r, struct rdt_l3_mon_domain *d)
++static int domain_setup_mon_state(struct rdt_resource *r, struct rdt_l3_mon_domain *d)
+ {
+ 	u32 idx_limit = resctrl_arch_system_num_rmid_idx();
+ 	size_t tsize = sizeof(*d->mbm_states[0]);
+@@ -4680,21 +4686,21 @@ int resctrl_online_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *hdr
+ 
+ 	mutex_lock(&rdtgroup_mutex);
+ 
+-	if (r->rid != RDT_RESOURCE_L3)
++	if (!rdt_mon_domain_is_cache(hdr))
+ 		goto mkdir;
+ 
+-	if (!domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, RDT_RESOURCE_L3))
++	if (!domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, r->rid))
+ 		goto out_unlock;
+ 
+ 	d = container_of(hdr, struct rdt_l3_mon_domain, hdr);
+-	err = domain_setup_l3_mon_state(r, d);
++	err = domain_setup_mon_state(r, d);
+ 	if (err)
+ 		goto out_unlock;
+ 
+ 	if (resctrl_is_mbm_enabled(r)) {
+ 		INIT_DELAYED_WORK(&d->mbm_over, mbm_handle_overflow);
+ 		mbm_setup_overflow_handler(d, MBM_OVERFLOW_INTERVAL,
+-					   RESCTRL_PICK_ANY_CPU);
++					  RESCTRL_PICK_ANY_CPU);
+ 	}
+ 
+ 	if (resctrl_is_mon_event_enabled(r, QOS_OCCUP_EVENT_ID))
+@@ -4753,7 +4759,7 @@ static struct rdt_l3_mon_domain *get_mon_domain_from_cpu(int cpu,
+ 
+ void resctrl_offline_cpu(unsigned int cpu)
+ {
+-	struct rdt_resource *l3 = resctrl_arch_get_resource(RDT_RESOURCE_L3);
++	struct rdt_resource *r;
+ 	struct rdt_l3_mon_domain *d;
+ 	struct rdtgroup *rdtgrp;
+ 
+@@ -4765,18 +4771,18 @@ void resctrl_offline_cpu(unsigned int cpu)
+ 		}
+ 	}
+ 
+-	if (!l3->mon_capable)
+-		goto out_unlock;
+-
+-	d = get_mon_domain_from_cpu(cpu, l3);
+-	if (d) {
+-		if (resctrl_is_mbm_enabled(l3) && cpu == d->mbm_work_cpu) {
++	for_each_mon_capable_rdt_resource(r) {
++		d = get_mon_domain_from_cpu(cpu, r);
++		/* Only cache domains carry the MBM and limbo work fields. */
++		if (!d || !rdt_mon_domain_is_cache(&d->hdr))
++			continue;
++		if (resctrl_is_mbm_enabled(r) && cpu == d->mbm_work_cpu) {
+ 			mutex_unlock(&rdtgroup_mutex);
+ 			cancel_delayed_work_sync(&d->mbm_over);
+ 			mutex_lock(&rdtgroup_mutex);
+ 			mbm_setup_overflow_handler(d, 0, cpu);
+ 		}
+-		if (resctrl_is_mon_event_enabled(l3, QOS_OCCUP_EVENT_ID) &&
++		if (resctrl_is_mon_event_enabled(r, QOS_OCCUP_EVENT_ID) &&
+ 		    cpu == d->cqm_work_cpu && has_busy_rmid(d)) {
+ 			mutex_unlock(&rdtgroup_mutex);
+ 			cancel_delayed_work_sync(&d->cqm_limbo);
+@@ -4785,7 +4791,6 @@ void resctrl_offline_cpu(unsigned int cpu)
+ 		}
+ 	}
+ 
+-out_unlock:
+ 	mutex_unlock(&rdtgroup_mutex);
+ }
+ 
 -- 
 2.34.1
 
