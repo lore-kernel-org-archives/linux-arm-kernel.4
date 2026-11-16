@@ -2,75 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0EE606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 03:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BD8606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 03:14:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=klYeFwAz;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=buq+J3hA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OP7ZeuPl;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=OVC6wBqd;
+	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=ShVug8x7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/hrvyEM6Ru8j2MY7/K4Y0eZLUVmPIavguQMTvmC9co0=; b=klYeFwAzAR93y1
-	ileGM+V8hy3ABLd4WmD382u0M5yxnruZmocJT41jnI0HOq6ZGeSpiyLL/G04rjbeGsoCG8tnRogdA
-	wZrPhibOa8gvd6+PoAOjFcEOPWeR7204skLiFzJ7lk3PwBj/O8M4WIfCLIGVBswfJ5tK8vPg4mMy8
-	I5n4VDp36flj85rR1NxEquS4QYiGb6mzLEXsjS93pzJxemx7z4L6ylS+VezvPNlj+bbnaechERmX0
-	WpqrDqo3aSQLmMygn9gh2rFj0eLlphivJedRsoBZsFDqNzJocdtelNYAF0lvKMbwEX1XEAOX0ji0S
-	d6GXGu58Q46TToYsfCYw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=1boI632c9C/fcKg+l9a78rn9vI8twjKYya6RFg60Pek=; b=OP7ZeuPlpiZ7P3hUFHy03JKR5k
+	hAk6vJDFSrFE0aUUf+cy5KZYVMK1aucXnfpLbh8rJQ6J+ZLOC8JjXaGmoc2f1ErArQjxW4R/K3ORy
+	tjkiQq/HwPakGUKLC0scwJbxWNdRWjVJ0tNT9/GFUAisjpHIpcOXZ+4iggGjdwtKaEhYd/MWV6sHe
+	5O4U052D9sE8pBszY4anuZsK65Udsqk6vtF0MZeOEACDvy6A9vicuQw4gNutqIRfF3cPrLZhbIoYv
+	VXxuxc8pxz73A47zniqqqZf0h6Z0uajDyZ5uoBhQOCkHx3E/AvChoI+ozyJEUIsdaGyiZhjT6+kw7
+	JGFOZhvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSn7W-000000010T7-4BEy;
-	Mon, 16 Nov 2026 03:11:03 +0000
+	id 1xSnA6-000000010cq-13qP;
+	Mon, 16 Nov 2026 03:13:42 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSnA4-000000010ch-2bXZ
+	for linux-arm-kernel@bombadil.infradead.org;
+	Mon, 16 Nov 2026 03:13:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=1boI632c9C/fcKg+l9a78rn9vI8twjKYya6RFg60Pek=; b=OVC6wBqdvj4K1Xo3Je4wsngYP8
+	ied2E3dGK5X0wZycnlbDeJpm3OxpHV4iAmZ9TiqNLsA+oZz3Wjn/Gkzs0KMZwsAczaFbye9qAcehd
+	6djrzLpLdZsJf2qRR4deMhQypBYwFx/6lxlzQ2IUpoD0e/ZOPxwJ2Fcn2ymj+wjxy70NxN/jqkB9t
+	Y00FTTvnI9AfgF8TjkHLHbzulbZtwqIIoA9rwWUtUN5qblnN3UNrM9LnNECKHj6WsppZEeI80fqAx
+	VEMemKNxyp1EWYih9XhtNfpjrJAyCd470A8sz9jKvl0ztnLnFke2YX5XC1vgbpGoqLQxuCIG8sRtw
+	nS1xjuIA==;
 Received: from cmccmta2.chinamobile.com ([111.22.67.135])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSn7T-000000010SU-05M1
+	by casper.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSn86-00000009QZl-1rC1
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 03:11:01 +0000
+	Mon, 16 Nov 2026 03:12:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cmss.chinamobile.com; s=default; l=0;
 	h=from:subject:message-id:to:cc:mime-version;
 	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=buq+J3hAwQnfDFduZU2G+tJsRWL/xW1+4sTFrayeIq3ylj1e76vdCGcSFUqYKJWFW+t07pva6Tg7b
-	 bFtwX++Yd+V3pFN2ACKsY08namg/HHNVG/kPqtHGC9dBPZKMx+NTkpnVxFPsyxR78pQ79IBaQ5Jq6m
-	 o8ukkNCRqGqzs6sw=
+	b=ShVug8x7q6BZlBDCf2P8pHRb1N/x53L5AouUW7UO7Yie6PRBFxvE3qcN21wEFulUjhn1U/mGLbPnJ
+	 IWTbJhesJdNfXIc601dNeb1HWO1QUfwLkRuLHAXIs9l9kOkbQb/45xm5KmkK+iWvP/mFQDCLak5gZL
+	 3WuMFcPxRrQDSNCY=
 X-RM-TagInfo: emlType=0                                       
 X-RM-SPAM-FLAG: 00000000
 Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app07-12007 (RichMail) with SMTP id 2ee76afa7435154-fbe2a;
+	by rmmx-syy-dmz-app07-12007 (RichMail) with SMTP id 2ee76afa7435158-fbe2e;
 	Mon, 16 Nov 2026 11:10:45 +0800 (CST)
-X-RM-TRANSID: 2ee76afa7435154-fbe2a
+X-RM-TRANSID: 2ee76afa7435158-fbe2e
 X-RM-TagInfo: emlType=0                                       
 X-RM-SPAM-FLAG: 00000000
 Received: from DESKTOP-3K8GUTQ (unknown[223.108.79.97])
-	by rmsmtp-syy-appsvr01-12001 (RichMail) with SMTP id 2ee16afa74334a2-7a403;
-	Mon, 16 Nov 2026 11:10:44 +0800 (CST)
-X-RM-TRANSID: 2ee16afa74334a2-7a403
+	by rmsmtp-syy-appsvr10-12010 (RichMail) with SMTP id 2eea6afa7433bf7-79dd3;
+	Mon, 16 Nov 2026 11:10:45 +0800 (CST)
+X-RM-TRANSID: 2eea6afa7433bf7-79dd3
 From: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-To: ukleinek@kernel.org,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de
-Cc: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-pwm@vger.kernel.org,
-	imx@lists.linux.dev,
+To: antonio.borneo@foss.st.com,
+	linusw@kernel.org
+Cc: mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] pwm: mxs: Disable clock on invalid period error path
-Date: Mon, 16 Nov 2026 11:10:43 +0800
-Message-ID: <20261116031043.508-1-laixiangwu@cmss.chinamobile.com>
+	linux-kernel@vger.kernel.org,
+	Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
+Subject: [PATCH v3] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
+Date: Mon, 16 Nov 2026 11:10:42 +0800
+Message-ID: <20261116031043.502-1-laixiangwu@cmss.chinamobile.com>
 X-Mailer: git-send-email 2.50.1.windows.1
-In-Reply-To: <20261102105005.1007-1-laixiangwu@cmss.chinamobile.com>
-References: <20261102105005.1007-1-laixiangwu@cmss.chinamobile.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_191059_621145_47305A22 
-X-CRM114-Status: UNSURE (   6.16  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261116_031143_703078_2D0DAD46 
+X-CRM114-Status: GOOD (  13.04  )
 X-Spam-Score: -2.4 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,37 +95,106 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+stm32_pctl_probe() acquires an exclusive reset control for every GPIO
+bank with of_reset_control_get_exclusive(), but none of the error
+paths release them again: the bank loop returns directly on
+-EPROBE_DEFER and on a failed clock lookup, and the
+clk_bulk_prepare_enable() failure and the err_register path also
+leave the already acquired reset controls behind.
 
-I've noticed that Lee Jones' series "pwm: Fix various bugs
-reported by Sashiko" also fixes the clock leak addressed by my
-patch below, with a broader scope:
+On success the reset controls are kept for the lifetime of the device
+and are never released either (the driver has no .remove), but that
+is harmless.  On a failed probe, and in particular when the probe is
+retried after -EPROBE_DEFER, every attempt leaks another set of
+reset control references.
 
-  [PATCH 2/8] pwm: mxs: Return early when disabling and fix error-path clock leak
-  https://lore.kernel.org/all/20261105143847.2559586-3-lee@kernel.org/
+Release the acquired reset controls on all error paths.
 
-Besides balancing clk_prepare_enable() on the same -EINVAL error
-path, that patch also handles the !state->enabled case upfront,
-avoiding a division by zero when state->period is zero, and it
-already carries a Reviewed-by from Frank Li.
+Also release the clocks of the already processed banks on the
+-EPROBE_DEFER path, which was missed by the earlier clock leak fix
+dfd8259507c5 ("pinctrl: stm32: Fix clock reference leak in
+stm32_pctl_probe()").
 
-My patch for reference:
+Fixes: 2254e77665d5 ("pinctrl: stm32: defer probe if reset resource is not yet ready")
+Signed-off-by: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
+---
+Changes in v3:
 
-  pwm: mxs: Disable clock on invalid period error path
-  https://lore.kernel.org/all/20261102105005.1007-1-laixiangwu@cmss.chinamobile.com/
+- Use the real name "Xiangwu Lai" for the author and in the
+  Signed-off-by trailer instead of the account handle (Developer's
+  Certificate of Origin), consistent with the same fix in the
+  analogix_dp series.
 
-Please feel free to drop my patch in favour of Lee's more complete
-fix; there is no need to keep both.
+Changes in v2:
 
-Best regards,
-Xiangwu Lai
+- Point the Fixes tag at 2254e77665d5, which introduced the reset
+  control acquisition in the stm32_pctl_probe() bank loop and the
+  -EPROBE_DEFER return path; bb949ed9b16b only replaced the child
+  node iteration helper (suggested by Sashiko AI review).
+- Also release the clocks of the already processed banks on the
+  -EPROBE_DEFER path, which was missed by dfd8259507c5.
+
+Link: https://lore.kernel.org/all/20261110083253.1525-1-laixiangwu@cmss.chinamobile.com
+Link: https://lore.kernel.org/all/20261110065722.1340-1-laixiangwu@cmss.chinamobile.com
+ drivers/pinctrl/stm32/pinctrl-stm32.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/pinctrl/stm32/pinctrl-stm32.c b/drivers/pinctrl/stm32/pinctrl-stm32.c
+index 98cf9c6f4..2a54a0176 100644
+--- a/drivers/pinctrl/stm32/pinctrl-stm32.c
++++ b/drivers/pinctrl/stm32/pinctrl-stm32.c
+@@ -1966,15 +1966,18 @@ int stm32_pctl_probe(struct platform_device *pdev)
+ 		bank->rstc = of_reset_control_get_exclusive(np, NULL);
+ 		if (PTR_ERR(bank->rstc) == -EPROBE_DEFER) {
+ 			fwnode_handle_put(child);
+-			return -EPROBE_DEFER;
++			clk_bulk_put(i, pctl->clks);
++			ret = -EPROBE_DEFER;
++			goto err_put_rstcs;
+ 		}
+ 
+ 		pctl->clks[i].clk = of_clk_get_by_name(np, NULL);
+ 		if (IS_ERR(pctl->clks[i].clk)) {
+ 			fwnode_handle_put(child);
+ 			clk_bulk_put(i, pctl->clks);
+-			return dev_err_probe(dev, PTR_ERR(pctl->clks[i].clk),
+-					     "failed to get clk\n");
++			ret = dev_err_probe(dev, PTR_ERR(pctl->clks[i].clk),
++					    "failed to get clk\n");
++			goto err_put_rstcs;
+ 		}
+ 		pctl->clks[i].id = "pctl";
+ 		i++;
+@@ -1984,7 +1987,7 @@ int stm32_pctl_probe(struct platform_device *pdev)
+ 	if (ret) {
+ 		dev_err(dev, "failed to prepare_enable clk (%d)\n", ret);
+ 		clk_bulk_put(banks, pctl->clks);
+-		return ret;
++		goto err_put_rstcs;
+ 	}
+ 
+ 	for_each_gpiochip_node(dev, child) {
+@@ -2009,6 +2012,10 @@ int stm32_pctl_probe(struct platform_device *pdev)
+ 
+ 	clk_bulk_disable_unprepare(banks, pctl->clks);
+ 	clk_bulk_put(banks, pctl->clks);
++err_put_rstcs:
++	for (i = 0; i < banks; i++)
++		if (!IS_ERR_OR_NULL(pctl->banks[i].rstc))
++			reset_control_put(pctl->banks[i].rstc);
+ 	return ret;
+ }
+ EXPORT_SYMBOL(stm32_pctl_probe);
+-- 
+2.50.1.windows.1
+
 
 
 
