@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0310A606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 08:20:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99747606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 08:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NBTp4OsR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=K7+GSU6e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j8aIyOha;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Rb/gK10A
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=G6nve8OImXbOUhJAB05sVM7sigeMpkP3mimf0pLHbPE=; b=NBTp4OsRkYHju+
-	eVe5WGLugD+JmPiCZVcIjXD9zxTZ9m6w6ghJC15QfKBvFUhnbE3BYaptV7wE78RqN+VVCWZwFYc7W
-	mitbLcIxn5DRj/n8kQyhA8w3dqb2U5oQ6uYuA3eCm9VA9eW4pnEU5vCoAXStg6xJJUdzek10G/z6P
-	MJncvob7N/Fgg+XSdePg8n1Zg/0FxH33bmyky+8H7t8Yb2jP1aIVykovQWAOEWbJqxYCoyqev5hUR
-	ac1PQtGxYm2v15iIpusTf2BWYLjXcrRsucFQUhueZojbMsf/nBw6cfAudwWbg0EKOnheiORWZp/tK
-	PpIkALDktWjWCUjSjKQA==;
+	List-Owner; bh=D2hWxMmxiFVTiKjC+qIVH/QKRKvHkoyqwwHnjaEYXpU=; b=j8aIyOhaDjdNrG
+	rAF5xb2ofIyp+OaEfa0hBPZ/S8TPBeHa6zt5MdTxWTitPtsOWTSanN6z+GI+jFl4Uk2+t2zQqsdV1
+	8CSokxKVntKXhzy0he1MPoM0FCOvdmN8VreQ1T3wizcOev07UaDDutqiNCAzAPUrBriHhEiw+xk5M
+	FnDlR4Zq6uBC4pqIx0abHhugR+0o/uKjGvUFlB1lnyKSMe+WK70N/w0pIPBdLnxtRSjl2yKIWmeMd
+	gNKgIJ3ZcnDOJQibEUan0T1OdVA75SP5HK78pMgfquZcsNX89zZk/+Z/BQWp0TbMRmwKttTFJF+IK
+	nbUFDUd6An19tiKOrwOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrx2-00000001Xpn-2IUn;
-	Mon, 16 Nov 2026 08:20:32 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSrxD-00000001Xuj-2n0S;
+	Mon, 16 Nov 2026 08:20:43 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrx1-00000001XpL-1p5L
+	id 1xSrxC-00000001Xty-0kiO
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 08:20:31 +0000
+	Mon, 16 Nov 2026 08:20:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 335574406A;
+	by sea.source.kernel.org (Postfix) with ESMTP id E941143A9F;
+	Mon, 16 Nov 2026 08:20:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B680C1F000C8;
 	Mon, 16 Nov 2026 08:20:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00CE41F000C8;
-	Mon, 16 Nov 2026 08:20:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794817231;
-	bh=G6nve8OImXbOUhJAB05sVM7sigeMpkP3mimf0pLHbPE=;
+	s=k20260515; t=1794817241;
+	bh=D2hWxMmxiFVTiKjC+qIVH/QKRKvHkoyqwwHnjaEYXpU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=K7+GSU6eLfm3kI3Q+jb1ewsduz8ZjfbcxhuXCD5u1/6Us7u/fOWjGVgYUGKC6jgyG
-	 5QGgRXQe97+2n4ovajHJVCymY/p1KHCBUHuvTObHs49QyQ/nqJZQ5Sa7t/7SRh2iCH
-	 lhLJkdwQv7cJVjymGIuP/CYWPrUJEYyGooRCkImdZqSn7YJ6Mgpf630OZTDX6vTEX+
-	 yTWPptwGjypwaIuWRZpIgb+HjjtZTJtnNZpuUYMv1UVr1CwqrDiD3bTzxzALC7yw7/
-	 ExyspRqhlW4q7QqoDxnv6icdNufhkMZYB1MYb7luCWuYOB6ZOh/sOEafVbLs6Rxtpa
-	 0vHIp8BOOLjuw==
+	b=Rb/gK10AFfK6OqdV7dWElfG4+xVFur4//H5stBj+X5co8I4aB9GIP9qXljoviz5kq
+	 0sFHoVnpAuy7JnD76RO5vd8tVfD5ASJrU8UCIeMks8TWGraRN94W7o5lWxhw8/44Fz
+	 8+htcqGUt4odHGP6kil1Gp2PQxBwccAjEvdAOKwfQ9gk6ZXSPWauM0omoSFZCAr62N
+	 KSeI1VMx7fxl8hq5oLIocaoRdOoJP/MF29oYF+9QGecQMMbgypHhWY9NBTgfBz+XtX
+	 60q/ryfsXTlGMnLXZsdTPR/Lt/4NzUzwDXvuAIJXuAP9ose6HWCsO9iolJgxIGYWad
+	 W3Bhm+V24vkWA==
 From: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>
 To: linux-coco@lists.linux.dev
 Cc: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
@@ -80,9 +80,9 @@ Cc: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
 	linux-tegra@vger.kernel.org,
 	patches@lists.linux.dev,
 	Jason Gunthorpe <jgg@nvidia.com>
-Subject: [PATCH v9 04/13] iommufd/device: Associate KVM file pointer with iommufd_device
-Date: Mon, 16 Nov 2026 13:49:26 +0530
-Message-ID: <20261116081935.85372-5-aneesh.kumar@kernel.org>
+Subject: [PATCH v9 05/13] iommufd/viommu: Keep a reference to the KVM file
+Date: Mon, 16 Nov 2026 13:49:27 +0530
+Message-ID: <20261116081935.85372-6-aneesh.kumar@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261116081935.85372-1-aneesh.kumar@kernel.org>
 References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
@@ -107,19 +107,25 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
+From: Nicolin Chen <nicolinc@nvidia.com>
 
-TSM vDevice support needs access to the KVM associated with a VFIO device
-after the device has been bound to iommufd.
+The TSM vDevice operations need access to the KVM associated with the
+device's vIOMMU. Save the device's KVM file in the iommufd_viommu when the
+vIOMMU is allocated, and take a file reference so it remains valid for the
+lifetime of the vIOMMU.
 
-Extend iommufd_device_bind() to accept the device's KVM file and store it
-in the iommufd_device. The KVM file reference is owned by VFIO and is
-already held for the duration of the device open path.
+Release the reference when the vIOMMU is destroyed.
+
+Reject vdevice allocation when the device's KVM association differs from
+the vIOMMU's, including when only one has a KVM association. Allow
+allocation when both associations are NULL.
+
+Based on an original patch by
+Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
 
 Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-Signed-off-by: Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
-[nicolinc: fix build error in iommufd_test_mock_domain()]
+Reviewed-by: Jacob Pan <jacob.pan@linux.microsoft.com>
+[nicolinc: hold kvm's users_count]
 Signed-off-by: Nicolin Chen <nicolinc@nvidia.com>
 [aneesh.kumar: Switch to use kvm_file]
 Cc: Jason Gunthorpe <jgg@ziepe.ca>
@@ -127,104 +133,68 @@ Cc: Kevin Tian <kevin.tian@intel.com>
 Cc: Joerg Roedel <joro@8bytes.org>
 Cc: Will Deacon <will@kernel.org>
 Cc: Robin Murphy <robin.murphy@arm.com>
-Cc: Alex Williamson <alex@shazbot.org>
 Cc: iommu@lists.linux.dev
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
 ---
- drivers/iommu/iommufd/device.c          | 7 ++++++-
- drivers/iommu/iommufd/iommufd_private.h | 2 ++
- drivers/iommu/iommufd/selftest.c        | 2 +-
- drivers/vfio/iommufd.c                  | 3 ++-
- include/linux/iommufd.h                 | 4 +++-
- 5 files changed, 14 insertions(+), 4 deletions(-)
+ drivers/iommu/iommufd/viommu.c | 10 ++++++++++
+ include/linux/iommufd.h        |  1 +
+ 2 files changed, 11 insertions(+)
 
-diff --git a/drivers/iommu/iommufd/device.c b/drivers/iommu/iommufd/device.c
-index 1b0bdf57ac8a..935f42616a65 100644
---- a/drivers/iommu/iommufd/device.c
-+++ b/drivers/iommu/iommufd/device.c
-@@ -295,6 +295,7 @@ static int iommufd_bind_noiommu(struct iommufd_device *idev)
-  * iommufd_device_bind - Bind a physical device to an iommu fd
-  * @ictx: iommufd file descriptor
-  * @dev: Pointer to a physical device struct
-+ * @kvm_file: VM file if device belongs to a KVM VM
-  * @id: Output ID number to return to userspace for this device
-  *
-  * A successful bind establishes an ownership over the device and returns
-@@ -308,7 +309,9 @@ static int iommufd_bind_noiommu(struct iommufd_device *idev)
-  * The caller must undo this with iommufd_device_unbind()
+diff --git a/drivers/iommu/iommufd/viommu.c b/drivers/iommu/iommufd/viommu.c
+index f7951057a1e5..0dbd382eeb98 100644
+--- a/drivers/iommu/iommufd/viommu.c
++++ b/drivers/iommu/iommufd/viommu.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+ /* Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES
   */
- struct iommufd_device *iommufd_device_bind(struct iommufd_ctx *ictx,
--					   struct device *dev, u32 *id)
-+					   struct device *dev,
-+					   struct file *kvm_file,
-+					   u32 *id)
- {
- 	struct iommufd_device *idev;
- 	int rc;
-@@ -319,6 +322,8 @@ struct iommufd_device *iommufd_device_bind(struct iommufd_ctx *ictx,
++#include <linux/file.h>
+ #include "iommufd_private.h"
  
- 	idev->ictx = ictx;
- 	idev->dev = dev;
-+	/* VFIO holds the file reference while the device is open. */
-+	idev->kvm_file = kvm_file;
+ void iommufd_viommu_destroy(struct iommufd_object *obj)
+@@ -11,6 +12,8 @@ void iommufd_viommu_destroy(struct iommufd_object *obj)
+ 	if (viommu->ops && viommu->ops->destroy)
+ 		viommu->ops->destroy(viommu);
+ 	refcount_dec(&viommu->hwpt->common.obj.users);
++	if (viommu->kvm_file)
++		fput(viommu->kvm_file);
+ 	xa_destroy(&viommu->vdevs);
+ }
  
- 	if (!iommufd_device_is_noiommu(idev))
- 		rc = iommufd_bind_iommu(idev);
-diff --git a/drivers/iommu/iommufd/iommufd_private.h b/drivers/iommu/iommufd/iommufd_private.h
-index eb2e85b27e42..25236caf554a 100644
---- a/drivers/iommu/iommufd/iommufd_private.h
-+++ b/drivers/iommu/iommufd/iommufd_private.h
-@@ -509,6 +509,8 @@ struct iommufd_device {
- 	struct list_head group_item;
- 	/* always the physical device */
- 	struct device *dev;
-+	/* VM file if available */
-+	struct file *kvm_file;
- 	bool enforce_cache_coherency;
- 	struct iommufd_vdevice *vdev;
- 	bool destroying;
-diff --git a/drivers/iommu/iommufd/selftest.c b/drivers/iommu/iommufd/selftest.c
-index 25387969ab75..b17cca7096b6 100644
---- a/drivers/iommu/iommufd/selftest.c
-+++ b/drivers/iommu/iommufd/selftest.c
-@@ -1071,7 +1071,7 @@ static int iommufd_test_mock_domain(struct iommufd_ucmd *ucmd,
- 		goto out_sobj;
+@@ -82,6 +85,8 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
  	}
  
--	idev = iommufd_device_bind(ucmd->ictx, &sobj->idev.mock_dev->dev,
-+	idev = iommufd_device_bind(ucmd->ictx, &sobj->idev.mock_dev->dev, NULL,
- 				   &idev_id);
- 	if (IS_ERR(idev)) {
- 		rc = PTR_ERR(idev);
-diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
-index e9893d34d07b..3beb1b1bae36 100644
---- a/drivers/vfio/iommufd.c
-+++ b/drivers/vfio/iommufd.c
-@@ -123,7 +123,8 @@ int vfio_iommufd_physical_bind(struct vfio_device *vdev,
- {
- 	struct iommufd_device *idev;
+ 	xa_init(&viommu->vdevs);
++	if (idev->kvm_file)
++		viommu->kvm_file = get_file(idev->kvm_file);
+ 	viommu->type = cmd->type;
+ 	viommu->ictx = ucmd->ictx;
+ 	viommu->hwpt = hwpt_paging;
+@@ -171,6 +176,11 @@ int iommufd_vdevice_alloc_ioctl(struct iommufd_ucmd *ucmd)
+ 		goto out_put_viommu;
+ 	}
  
--	idev = iommufd_device_bind(ictx, vdev->dev, out_device_id);
-+	idev = iommufd_device_bind(ictx, vdev->dev, vdev->kvm,
-+				   out_device_id);
- 	if (IS_ERR(idev))
- 		return PTR_ERR(idev);
- 	vdev->iommufd_device = idev;
++	if (idev->kvm_file != viommu->kvm_file) {
++		rc = -EINVAL;
++		goto out_put_idev;
++	}
++
+ 	iommu_dev = iommufd_device_get_iommu_dev(idev);
+ 	if (!iommu_dev || viommu->iommu_dev != iommu_dev) {
+ 		rc = -EINVAL;
 diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
-index 3087f5b2def8..b03ce0187454 100644
+index b03ce0187454..c15d80f611b9 100644
 --- a/include/linux/iommufd.h
 +++ b/include/linux/iommufd.h
-@@ -59,7 +59,9 @@ struct iommufd_object {
- };
+@@ -103,6 +103,7 @@ struct iommufd_viommu {
+ 	struct iommufd_ctx *ictx;
+ 	struct iommu_device *iommu_dev;
+ 	struct iommufd_hwpt_paging *hwpt;
++	struct file *kvm_file;
  
- struct iommufd_device *iommufd_device_bind(struct iommufd_ctx *ictx,
--					   struct device *dev, u32 *id);
-+					   struct device *dev,
-+					   struct file *kvm_file,
-+					   u32 *id);
- void iommufd_device_unbind(struct iommufd_device *idev);
+ 	const struct iommufd_viommu_ops *ops;
  
- int iommufd_device_attach(struct iommufd_device *idev, ioasid_t pasid,
 -- 
 2.43.0
 
