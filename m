@@ -2,109 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3FF606A8AF
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 22:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74863606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 22:48:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UDy8mfO6;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=iokpp.de header.i=@iokpp.de header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=Fa9C4Qm1;
-	dkim=fail reason="signature verification failed" header.d=iokpp.de header.i=@iokpp.de header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=HISLbBoE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PNlhMK2v;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WMvK4Oft
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nMEldotVBDeIW1Nog+eq8zv6ICQMv55+W3dI9uF/fAs=; b=UDy8mfO6Brq16X6H+A2YR9KlFm
-	2D0CwAQtix7utsIzj3+o2LOXcFUFtvQv94zk5QfAe8j1DFRcEoxJpnIc89sb1r6RUt6EjNU3sF2pJ
-	5GWQNjT8NjFJH0v8HYhS4l8ziM6zuxRi+YfyM33C/V+448eSChjrbFrSGa4yO7aChh0fAbpP/uFwW
-	bgdgK48du+m/v077e8fpYd7mgiXg6BS69h/KBcSBp9rnbbAOJKiZYF6K0SMOyNFwOlJEEszK418xS
-	XDR//IE5CdxXK1Jh4zzEfMMThYkz+tYOlnY5G4kUDC2QRTY/kYDAQlnQlyI7VhSb/jBq4bmor1CFG
-	3S6/LUYw==;
+	bh=lpsTlWGvjAU0Wn3LPw9wu5piyyFg2szed2uGQ7R9Gvc=; b=PNlhMK2vz18ZK/GfUK93VfUjAX
+	5Uwc0vdHayaMYBjZgoTilGQBDLG+O7ygVpj4wdpcwO2mJi4G32xxO14Ey2fx7EBQpsgr8X0dD69ch
+	Ut+4zNntMse2P3og/AS3ujjOTIU9GFY9acJEmtnOdZUIa5PXa4hFwpDuM3+dX4c01PEdvU7Xc8m3w
+	Q1pE6JbWpangRAQSxz7kU/0p7GC8btT3WIOIZniob+8eGPZ+xAY/BcpFp1VgA3Fb59rK1rE0I9vnA
+	iSrtHzlJqT+t7rjQYFS4de1+Orv5nI5PaFL75dBq4LWWqGPeKISBVI6UbCBm3MSCFFmx7SugLeKCH
+	8zXk0TLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT5BD-000000043HP-0sW8;
-	Mon, 16 Nov 2026 22:28:03 +0000
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53])
+	id 1xT5V3-0000000453U-0EsN;
+	Mon, 16 Nov 2026 22:48:33 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT5BA-000000043Gm-0PS7
+	id 1xT5V1-0000000453M-2FyZ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 22:28:01 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794868072; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=hS0VlyNiwyy+2S/QXUX+nKra+p8jOHNbQQqKHJuvE6Hmh/B/jWW7f1U8P0ypkzEzAb
-    YIrcU6WTfOnYDNanrmev4sju/cY0cm9E9Hmrvid6KUEAfo4+9/FNUPN4DnQmNAL0bICA
-    oZ2dTTjxG0RYM7BTue54UmwniuzMTDL8UTOl3cBl72DO34yGjQLU3bGvHVhWBd1VlHu1
-    bEXUvv1UAO+u48D6CNB1dCJh+na3zQnxe1xu3Jk7JGxEw72Hh2UvoNJsbQagnYE0SW70
-    4g9nRI2UENZ9inYTwT/tEeQSkktFoKs2u6GkMAwymq6E46QVmKgYS3drWfwJPnD+x6Rf
-    Q6Uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1794868072;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=nMEldotVBDeIW1Nog+eq8zv6ICQMv55+W3dI9uF/fAs=;
-    b=Mx6g2aSDpkLNb1J4Z8g2CYwI+nUlkZ4kX99Pga+wwIVw6jlTZgd3SGVVjZDIzgZFjP
-    oWQsJEtqjpJHCVvBVxZ8VDh530QoHIUcmkrNRXUqd0R4KRw1ZEscItgF/vKAIQiheoNU
-    nvf/QYLvh+W1yIOjBj9rR32js0QeR+O4P/HhYVDdznTToAijlUjrazRi7jutj1iPVSza
-    w7XDT5KRvOwCnTFiJrngjy0J3Il5OBBs/l3T0UEY0I8Ws8BFZ3wzfHx0dyKSl7cq2aAk
-    7fOcvm1e0ahdGvXbbyVRNHc3e2jC3YjkffqYPBUwkGnMwbLcQ0X8wF6PFDcEjCxN5a+F
-    jWuQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1794868072;
-    s=strato-dkim-0002; d=iokpp.de;
-    h=References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=nMEldotVBDeIW1Nog+eq8zv6ICQMv55+W3dI9uF/fAs=;
-    b=Fa9C4Qm1OSA4F7pR2dnwAb3jDBfctq0fCu0F9IiL+tfjSMybH72MDPTJZ7Cmxw5gHx
-    F2zcsDC0DwO9wwVL29LrA1+qfBNG3rSgK95FqvU+3RTeLcFI1SJEuTx9dc/zMzmT+UbI
-    /SArBZThNXGG+WJm8VDJiQsfSO+lOKGVKQoHrpw4ysZuYGfinTskL6amvSFs9U8YAb4y
-    Iq0cyPAC6mkcJeA7+r8RXEgsA4H1bpe1dDpelDU7DLVVqwTytzZXEzSRePs3FqxKoZiZ
-    xWC654uhtMhKR4j67kffThJQKvIk6I7TljnLAe2pNTYhUHxgUKXnyliceRs8gqBngASq
-    PCfA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1794868072;
-    s=strato-dkim-0003; d=iokpp.de;
-    h=References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=nMEldotVBDeIW1Nog+eq8zv6ICQMv55+W3dI9uF/fAs=;
-    b=HISLbBoEvdOteLHTe+Jpv7eemsdK2ZoPREubl/zP0noMLuxeIX5SjBMbnaC66Jv41v
-    SvPHo5RBHprCtA6sPMAA==
-X-RZG-AUTH: ":LmkFe0i9dN8c2t4QQyGBB/NDXvjDB6pBSe9tgBDSDt0V0zNriHg+YfT0rGaTpIu+qLCHnC0WuM9jddvNMU0JC1zy5+GPNw=="
-Received: from p200300c5872329eeb5e40ea9b27a9db1.dip0.t-ipconnect.de
-    by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id z831ad2AGMRp06w
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Mon, 16 Nov 2026 23:27:51 +0100 (CET)
-Message-ID: <780f3f4ceacd7cf078542c9a8a4c8c8dba9666b0.camel@iokpp.de>
-Subject: Re: [PATCH] scsi: ufs: core: Use ufshcd_query_attr_retry() for RTC
- update
-From: Bean Huo <beanhuo@iokpp.de>
-To: Enric Balletbo i Serra <eballetb@redhat.com>, Alim Akhtar
- <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>, Bean Huo
- <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>, "James E.J.
- Bottomley" <James.Bottomley@HansenPartnership.com>, "Martin K. Petersen"
- <mkp@kernel.org>, Mike Bi <mikebi@micron.com>, Avri Altman
- <avri.altman@sandisk.com>, Thomas =?ISO-8859-1?Q?Wei=DFschuh?=
- <linux@weissschuh.net>
-Cc: Luca Porzio <lporzio@micron.com>, linux-scsi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>, 
-	linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>, Larisa
-	Grigore <larisa.grigore@oss.nxp.com>
-Date: Mon, 16 Nov 2026 23:27:49 +0100
-In-Reply-To: <20261116-ufs-rtc-query-retry-v1-1-4de69b175e8d@redhat.com>
-References: <20261116-ufs-rtc-query-retry-v1-1-4de69b175e8d@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	Mon, 16 Nov 2026 22:48:31 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id C6A72435AB;
+	Mon, 16 Nov 2026 22:48:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 350EA1F000C7;
+	Mon, 16 Nov 2026 22:48:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794869310;
+	bh=lpsTlWGvjAU0Wn3LPw9wu5piyyFg2szed2uGQ7R9Gvc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=WMvK4OftB4Pp355kxu9KCyZ6n0cmwySsSSHPNkJBnXQD4/LroQ6adf5Z/FGzvAV6A
+	 C32xYL2FxwPXkyO+fJ8OLnYV0mjSI8lWLxcEpLmXNX893V+Hw++ibUcyK7ezEO/GdB
+	 5s4S48pi3SS6cyBOPhLDBh1kK48fAnDOaukCVGs9x2qefopxNPhA13o+8XO1FhvI4Y
+	 N0X/jZQ4dXdnHY0I27WHX7HRWg2UWtu5ak0Pw3bhmcJ4IKHdlwkU12gc7DssK8pJyn
+	 0BWhSthSGjTayy4FMGYBWtu7BhLRFYaLu1sPwQnM5QfkUsNe/jU7QtnVFs1JIEAj2b
+	 oA0Fd8AYVzTEQ==
+Date: Mon, 16 Nov 2026 22:48:26 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Bradley Morgan <bradley.morgan@linux.dev>
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64/fpsimd: signal: Require ZA context when
+ restoring ZT context
+Message-ID: <ee1998f2-69dc-419a-b388-dd4e08cc68d6@sirena.org.uk>
+References: <20261110221836.3265929-1-bradley.morgan@linux.dev>
+ <20261110221836.3265929-2-bradley.morgan@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_142800_405704_7702B0EB 
-X-CRM114-Status: GOOD (  14.02  )
-X-Spam-Score: -2.1 (--)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ge2qtcKRBItIUjfj"
+Content-Disposition: inline
+In-Reply-To: <20261110221836.3265929-2-bradley.morgan@linux.dev>
+X-Cookie: Madness takes its toll.
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,65 +73,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thanks for the patch. A few comments:
 
-On Mon, 2026-11-16 at 14:39 +0100, Enric Balletbo i Serra wrote:
-> ufshcd_update_rtc() uses ufshcd_query_attr() directly to write the
-> bSecondsPassed attribute, making it the only query attribute caller in
-> the UFS core that does not use the retry variant. All other callers use
-> ufshcd_query_attr_retry(), which retries up to three times on transient
-> failures before escalating to dev_err.
+--ge2qtcKRBItIUjfj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Nov 10, 2026 at 10:18:35PM +0000, Bradley Morgan wrote:
+> When restoring the signal frame, restore_zt_context() checks whether ZA
+> is enabled via thread_za_enabled(&current->thread). However, if user.za
+> is omitted from the signal frame, restore_za_context() is skipped entirel=
+y.
+> If the signal handler touched SME prior to rt_sigreturn(), ZA remains
+> enabled in current->thread.svcr from the handler context, causing
+> thread_za_enabled() to succeed and restore_zt_context() to write userspace
+> ZT data without restoring ZA state.
 >=20
-> This causes spurious error messages during boot on some platforms when
-> the write-attribute command hits a transient OCS_INVALID_COMMAND_STATUS
-> error:
->=20
-> =C2=A0 ufs-s32n7 4ac80000.ufs: ufshcd_query_attr: opcode 0x04 for idn 15 =
-failed,
-> index 0, err =3D 15
+> Require user->za to be present in the signal frame before restoring ZT.
 
-this is printed by ufshcd_query_attr() itself at dev_err level, so it will =
-still
-show up with this patch. Could you share the log with the patch applied?
+I supposed there's an argument that the signal handler might've intended
+this but still, this does feel more sensible:
 
-and err =3D 15 is OCS_INVALID_COMMAND_STATUS, the value the driver puts in =
-the
-UTRD before sending. So the request was completed but the host controller d=
-id
-not update OCS. This looks like a host side problem? not a transient device
-failure, and a retry here would only hide it. Is this SDB or MCQ? Does it o=
-nly
-happen on the first RTC update after probe?
+Reviewed-by: Mark Brown <broonie@kernel.org>
 
+though as the Sashiko report identifies we still leave ZA untouched if
+both ZA and ZT are omitted from the signal frame.  I'm not sure if it's
+safer to reject any attempt to return from a signal with PSTATE.ZA set
+but no ZA signal frame or if we should restore PSTATE.ZA to 0, the
+former is safer but the latter is more in line with the handling here.
 
-> =C2=A0 ufs-s32n7 4ac80000.ufs: ufshcd_update_rtc: Failed to update rtc 15
-> Switch to ufshcd_query_attr_retry() to handle transient failures
-> gracefully, consistent with every other attribute query in the driver.
->=20
+--ge2qtcKRBItIUjfj
+Content-Type: application/pgp-signature; name="signature.asc"
 
-ufshcd_update_rtc() is not the only caller without retry. ufs-sysfs.c, ufs-
-hwmon.c and ufs-txeq.c also call ufshcd_query_attr() directly, so the commi=
-t
-message is wrong.
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmr7iDkACgkQJNaLcl1U
+h9DI/wf9FY3gP1nupEAwgiVs9j711/cjUuKrWk0qj5b+Tr0FYZifkrmIfxhEegJa
+/R+MawmDLzP/rTrPfvfQCIajgMVWrhC8c9Uph1I8rnFTVP34R2Iz4s81DtQ0qAXG
++Hf31NdKBOwv3UhzLAz4b+3d+JAz+dmvCesULHxFT8quy7irVBryHKXA81CGkxSA
+9NzI4g83BYkefDfuwJYCW8YXHod5LzuaKE2eZJHCzfDOtbv0sc/FheffRhH5Ui8E
+I6ckE7I1NnqdP4w/w3vZ0xSAjy7m0CIbsJ6KX2OnyI0lIqr60mIQvh4hyVQt0arC
++7+yBOsaREo5wRKDogroQjRhpyzgow==
+=C32C
+-----END PGP SIGNATURE-----
 
-> Fixes: 6bf999e0eb41 ("scsi: ufs: core: Add UFS RTC support")
-
-> Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
-
-
-I would like to understand the root cause first.
-
-Kind regards,
-Bean
-
-
-
+--ge2qtcKRBItIUjfj--
 
