@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60F44606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61945606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Spzv2XMx;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=f202cbex
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kCKO4SKB;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=HFOQiTOB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,68 +14,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1+y6MXetiY5pCIsFiRqfrAZwgakffoWvR1I9Ffs4CVI=; b=Spzv2XMx7+aqwzll8N7HeItwhF
-	12rKEL+VUgnXJYKx1jfG3Ix270mM+cCMGIOgtxfg7XNNTnKxKEfHIQ8eSeBq362+czkmWl8yWfuqJ
-	ZgP+GqYUbjzsHUQWjL7U0A/LF//LTsr2KUoJnsE1EETlEDE9KVJKWqtpIKUYlHvkeOV8QoB6CYCy2
-	5fuor4uFxASUAdTon37Ok1AceSMVC3KaMbDV8AoeLyu8YH5yP0prfD5im71RWChdoNtp5adhp+ncH
-	QcIkqZa3EtiGkgPoXQGAK8e2wcz8IAw10xSl/WcWiqXK21vk/3v/H3sHy/7riaBTQO8UkoR6watoC
-	qQZLy0JQ==;
+	bh=2RVj/mwGKYiU3kSMSXzOsaOfBC4aFrCWCPIyQ/H9Zds=; b=kCKO4SKB0ZQ0+xeoPT39CtWX5c
+	nq1dfa1r1BUjufVGFCDd2xbUlV2VW4JHrhHs1wbnEAcizRUaareoTCr/Q1XSAyOC2zm/Ein2AewPp
+	MMA4uqzH871D/RvRLpB32D76NLjUi+48+ucXSS6xQpgf1QIDalWnekfXFBwiJ/4cuAzayaeI1TW7w
+	3646dn7JUd65JRpWCVaBqFl+aHsCSmnSU0xRG7hxP06PUQW+UZ5D+8Z53EEMUnhLyFxFcHEZioRa+
+	xiREAPjpkttGaCalQnrTAbRRD/g2ex06sWOuonrlfB9K1rv3jfIUki3j1wVTS7lqTeViDzKXOpATK
+	DCxkdWcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxgO-00000002pv3-457Z;
-	Mon, 16 Nov 2026 14:27:44 +0000
-Received: from mail-ej1-x645.google.com ([2a00:1450:4864:20::645])
+	id 1xSxgZ-00000002qBo-3uNF;
+	Mon, 16 Nov 2026 14:27:55 +0000
+Received: from mail-wm1-x348.google.com ([2a00:1450:4864:20::348])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxg4-00000002pK1-029K
+	id 1xSxg5-00000002pLd-172z
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:27:27 +0000
-Received: by mail-ej1-x645.google.com with SMTP id a640c23a62f3a-c40aa03ded8so347007066b.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:22 -0800 (PST)
+	Mon, 16 Nov 2026 14:27:28 +0000
+Received: by mail-wm1-x348.google.com with SMTP id 5b1f17b1804b1-4a20e41008cso21827325e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794839241; x=1795444041; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794839243; x=1795444043; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=1+y6MXetiY5pCIsFiRqfrAZwgakffoWvR1I9Ffs4CVI=;
-        b=f202cbexy5RCyG8egT5ZgggUVIQ8md7izioeFqaSUfms/C9lBR6mGpC+fXUQB1Uuy2
-         mgJBT8LE4W74VLFdEEYuuv4VT6cewm4cGBXOnsR17/kygQm2O+X3mHfN7Zr/1RDFXHl0
-         Pg2mOFVHd95BV53kv5NwIUfUmH5bMjt5zJK3iVex0rSwA+awpheNZqDrrMA8608aKct2
-         yVBdeiktBSr1GH1noyrSA/knfLKVsMg9zXw8seW4CDL/rR79tMVGVU8WbyQeMrbWl130
-         APcTqxq3oTmViO+RmyITG74BxpKdVwjUkWclO8qWje8lgEviYuOwFRzNwfRV0od78HZv
-         JpnQ==
+        bh=2RVj/mwGKYiU3kSMSXzOsaOfBC4aFrCWCPIyQ/H9Zds=;
+        b=HFOQiTOBCptAtysi/gcb5oO+3C7v7F/fJ+dTzkBdy1U6oOJQje4SeQrYz+SZ0wSkyx
+         tFK9p8ydi2CydfvUwKTP4QKrBNFd3E+wWt73tTVy9Vy1WkL0VQzyyZTBkzVbYva1Y8Xs
+         VNPspQihvwTsovSVHOGtzOi4jd0SFXlrZlbCazz1q1VcSG7SxgJqNMZXOlaLWp7ZHDwO
+         04K/lFy63Omks0Bvm3Vvwj+tUO3iLM+TMeM89SCL4y+jDItSCY+PMMMXWuv6BgKHPGpc
+         k6U3GF+kFi5NaIpNNuAD+SvS7qZ0AXEEQXzrW4l/9tjedYZu2keIwlMrjCH/UDLqEWnH
+         izWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794839241; x=1795444041;
+        d=1e100.net; s=20260707; t=1794839243; x=1795444043;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=1+y6MXetiY5pCIsFiRqfrAZwgakffoWvR1I9Ffs4CVI=;
-        b=IROTYix9MEtP2R1UbshZkk/argi7DckDHszsuQtUZlL7DL8fPGdSE+/iqjV157i/YM
-         Wb60CFF8IBt0iceYvnzD2bFEM+/NebbEQnq9iAIacJBpDxzVSbLG5eTuKFQB4LHoddtB
-         GGwQup6IOeKBUbHEsPfaFyYT+uHGzMQQEB60rRAT9MYHKYUri/q9RgW5SE8JdMLKgm/a
-         IYZLivaO1BBsTm26u+l7eK+VfUISAYGZtuJbEFEhGEiQ4jB9230f4LxD8VuBtVnhv9qK
-         xk4U4lAADFgRxZ706uK7ZlOC1BeWQVSOgMPVO5R38zDl84b7NYcdRmuCmFwOmuZMk+7z
-         JN5w==
-X-Gm-Message-State: APuU4Z9rRW1QMdzuL9nZ6+R2mGfrK19nLwplXEtoh1lKKf6M3HQOorWe
-	x3wqM2vR9HiXx9NRDS6gkKmVlm1h32mlwbZ7pH39XN7M3acUjeKmB+fHW+M7xtJlQuFckJMJYg=
+        bh=2RVj/mwGKYiU3kSMSXzOsaOfBC4aFrCWCPIyQ/H9Zds=;
+        b=hngn/ejsmo/c6n++6vqhTOhPbf8BNH7So0cLCPfa49qi+Wpz2j2S36AyLffdasL12C
+         xOsA8JbOrmEY2/lCXqggiWVB2OZA/SDGoYP+ugTKvoA2iMg8WhwA+uyFza1jUPaMoyJ3
+         q8KypvujRmnIpNp/CG+L5KACvnGeHAK2U2ykKKGBrACAjnE+dMS2D666QQi2a++k1oMq
+         cCZB4UJuwMbGqe3QIh0Tez7IZqy/8CUsZuaqLky6m6h2Oy3APFxjRY+toZHzFwPYz9U7
+         5xIuZmdfxYn9AsKVRympu05f5q8sKyuDb2iXEeip7btUsohXR9pNCcj+ARz+L2VN2+pW
+         fL9g==
+X-Gm-Message-State: APuU4Z+Tr5+LG8iAop+dXrEbiqWE8YffX17VzROZkwoRVTI/xukOz92R
+	/Q2ea2PNT4B0mYSLiFthA4EipbYdQGh/chhINgvonF7lstRi/HWqLgGaEGynUnTlt5HmFt/EiQ=
 	=
-X-Received: from edbbe27.prod.google.com ([2002:a05:6402:1a3b:b0:6b5:70b7:1fdf])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6402:540e:b0:6b5:6c41:2508
- with SMTP id 4fb4d7f45d1cf-6b7c0c725a1mr8915159a12.36.1794839241097; Mon, 16
- Nov 2026 06:27:21 -0800 (PST)
-Date: Mon, 16 Nov 2026 15:26:26 +0100
+X-Received: from wmcq6.prod.google.com ([2002:a05:600c:c106:b0:4a2:853:1e95])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:8905:b0:4ba:4395:5755
+ with SMTP id 5b1f17b1804b1-4bb55a6a5fbmr150647045e9.5.1794839242110; Mon, 16
+ Nov 2026 06:27:22 -0800 (PST)
+Date: Mon, 16 Nov 2026 15:26:27 +0100
 In-Reply-To: <20261116142618.1687025-17-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261116142618.1687025-17-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8384; i=ardb@kernel.org;
- h=from:subject; bh=aH5bYyxM3Yx0BvZZdg7Qz3nUcRZACek2m3cbvmQkHNs=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu30NSyyFjH6jyGlp9T1zK1/wmzFmOS+5zQF29cruQUv
- js3saWjlIVBjItBVkyRRWD233c7T0+UqnWeJQszh5UJZAgDF6cATMT8JiNDg+KdsFju5Kao2ad8
- i7ryWnT382zpjSxek+81MTJYK/Ahwz+ji3LOCx9rbBLecCB+KeuXxXOrHwRvuc32tmDLbu4MXWY WAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4305; i=ardb@kernel.org;
+ h=from:subject; bh=peJRMhRWVHJG8sZnjgL/vZGGMw1q+y4rvprHAO6G7n0=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu30LSAazPnfFGeua/tpXiBqa7GNo/P075mL5pygqdn6
+ /sH+yb6dJSyMIhxMciKKbIIzP77bufpiVK1zrNkYeawMoEMYeDiFICJXGlgZJhnynlSWGBaX1iU
+ 9cqi2qUMb5pWvPm9OV2Ad+a84JIpsfaMDOcrj/9WTLmm+nezcMEfzjnxbixp9oesrniaLZ9oFSy qywMA
 X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
-Message-ID: <20261116142618.1687025-24-ardb+git@google.com>
-Subject: [PATCH v3 07/15] efi/libstub: Pass kernel entrypoint down to efi_enter_kernel()
+Message-ID: <20261116142618.1687025-25-ardb+git@google.com>
+Subject: [PATCH v3 08/15] efi/libstub: arm64: Use struct efi_image_info to
+ access image properties
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-efi@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
@@ -84,8 +85,8 @@ Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
 	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_062724_116794_420C7A5D 
-X-CRM114-Status: GOOD (  20.65  )
+X-CRM114-CacheID: sfid-20261116_062725_335714_65A1BE85 
+X-CRM114-Status: GOOD (  15.51  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,205 +108,117 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-Update the EFI stub code shared by arm64 and RISC-V so that the kernel
-entry point is taken from struct efi_image_info rather than from opaque
-arithmetic performed on linker symbols.
+Instead of exposing individual symbols to the EFI stub explicitly via
+the linker script, use the generic struct efi_image_info, which accesses
+the original symbols via PC-relative references from the stub itself.
 
-Notably, this results in EFI zboot to enter via the actual kernel
-entrypoint rather than byte 0x0 of the loaded image on these
-architectures. Beyond that, it is mostly a cleanup that will allow
-special linker exports for global symbols to be dropped in subsequent
-patches.
-
-ARM is a special case here, as it combines the EFI stub with its legacy
-decompressor, and so the generic image_info carrying direct references
-to vmlinux symbols cannot be used there. Instead, it provides an empty
-struct efi_image_info, which is passed directly to its implementation of
-efi_enter_kernel(). So on ARM, populate this efi_image_info with the
-base address that the callee expects.
+This improves code reuse across architectures, and makes it easier to
+add new references in a generic manner.
 
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- arch/arm/boot/compressed/head.S           |  2 +-
- drivers/firmware/efi/libstub/arm32-stub.c |  2 +-
- drivers/firmware/efi/libstub/arm64.c      | 16 ++--------------
- drivers/firmware/efi/libstub/efi-stub.c   |  2 +-
- drivers/firmware/efi/libstub/efistub.h    |  9 +++++----
- drivers/firmware/efi/libstub/fdt.c        |  5 +++--
- drivers/firmware/efi/libstub/loongarch.c  |  3 ++-
- drivers/firmware/efi/libstub/riscv.c      | 16 +++-------------
- 8 files changed, 18 insertions(+), 37 deletions(-)
+ arch/arm64/kernel/image-vars.h            | 10 ------
+ drivers/firmware/efi/libstub/arm64-stub.c | 33 ++++++--------------
+ 2 files changed, 9 insertions(+), 34 deletions(-)
 
-diff --git a/arch/arm/boot/compressed/head.S b/arch/arm/boot/compressed/head.S
-index 9f406e9c0ea6..a7f58dfe41bc 100644
---- a/arch/arm/boot/compressed/head.S
-+++ b/arch/arm/boot/compressed/head.S
-@@ -1450,7 +1450,7 @@ __enter_kernel_from_hyp:
- 		b	__enter_kernel
+diff --git a/arch/arm64/kernel/image-vars.h b/arch/arm64/kernel/image-vars.h
+index 19d602e45523..329d5e214b36 100644
+--- a/arch/arm64/kernel/image-vars.h
++++ b/arch/arm64/kernel/image-vars.h
+@@ -20,8 +20,6 @@
+ 	PROVIDE(pisym = sym);		\
+ 	ASSERT((sym - KIMAGE_VADDR) < (__bss_start - KIMAGE_VADDR), #msg)
  
- ENTRY(efi_enter_kernel)
--		mov	r4, r0			@ preserve image base
-+		ldr	r4, [r0]		@ preserve image base
- 		mov	r8, r1			@ preserve DT pointer
- 
- 		adr_l	r0, call_cache_fn
-diff --git a/drivers/firmware/efi/libstub/arm32-stub.c b/drivers/firmware/efi/libstub/arm32-stub.c
-index f7151a4915ba..b73a0b4fcd10 100644
---- a/drivers/firmware/efi/libstub/arm32-stub.c
-+++ b/drivers/firmware/efi/libstub/arm32-stub.c
-@@ -127,7 +127,7 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
- 	efi_bs_call(free_pages, *reserve_addr + MAX_UNCOMP_KERNEL_SIZE,
- 		    (alloc_size - MAX_UNCOMP_KERNEL_SIZE) / EFI_PAGE_SIZE);
- 
--	*image_addr = kernel_base + TEXT_OFFSET;
-+	*image_addr = efistub_image_info._text_offset = kernel_base + TEXT_OFFSET;
- 	*image_size = 0;
- 
- 	efi_debug("image addr == 0x%lx, reserve_addr == 0x%lx\n",
-diff --git a/drivers/firmware/efi/libstub/arm64.c b/drivers/firmware/efi/libstub/arm64.c
-index d35c6dd76601..e892302f4189 100644
---- a/drivers/firmware/efi/libstub/arm64.c
-+++ b/drivers/firmware/efi/libstub/arm64.c
-@@ -117,24 +117,12 @@ void efi_cache_sync_image(unsigned long image_base,
- 	efi_remap_image(image_base, alloc_size, code_size);
- }
- 
--unsigned long __weak primary_entry_offset(void)
--{
--	/*
--	 * By default, we can invoke the kernel via the branch instruction in
--	 * the image header, so offset #0. This will be overridden by the EFI
--	 * stub build that is linked into the core kernel, as in that case, the
--	 * image header may not have been loaded into memory, or may be mapped
--	 * with non-executable permissions.
--	 */
--       return 0;
--}
+-PROVIDE(__efistub_primary_entry		= primary_entry);
 -
--void __noreturn efi_enter_kernel(unsigned long entrypoint,
-+void __noreturn efi_enter_kernel(const struct efi_image_info *image_info,
- 				 unsigned long fdt_addr,
- 				 unsigned long fdt_size)
- {
- 	void (* __noreturn enter_kernel)(u64, u64, u64, u64);
- 
--	enter_kernel = (void *)entrypoint + primary_entry_offset();
-+	enter_kernel = efistub_kernel_entry(image_info);
- 	enter_kernel(fdt_addr, 0, 0, 0);
- }
-diff --git a/drivers/firmware/efi/libstub/efi-stub.c b/drivers/firmware/efi/libstub/efi-stub.c
-index bf9a9f53a95c..55bf7ed50c81 100644
---- a/drivers/firmware/efi/libstub/efi-stub.c
-+++ b/drivers/firmware/efi/libstub/efi-stub.c
-@@ -191,7 +191,7 @@ efi_status_t efi_stub_common(efi_handle_t handle,
- 
- 	install_memreserve_table();
- 
--	status = efi_boot_kernel(handle, image, image_addr, cmdline_ptr);
-+	status = efi_boot_kernel(handle, image, image_info, cmdline_ptr);
- 
- 	free_primary_display(dpy);
- 
-diff --git a/drivers/firmware/efi/libstub/efistub.h b/drivers/firmware/efi/libstub/efistub.h
-index bb8e360fee7b..b985ababbe66 100644
---- a/drivers/firmware/efi/libstub/efistub.h
-+++ b/drivers/firmware/efi/libstub/efistub.h
-@@ -1054,9 +1054,6 @@ typedef efi_status_t (*efi_exit_boot_map_processing)(
- efi_status_t efi_exit_boot_services(void *handle, void *priv,
- 				    efi_exit_boot_map_processing priv_func);
- 
--efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
--			     unsigned long kernel_addr, char *cmdline_ptr);
+ /*
+  * The EFI stub has its own symbol namespace prefixed by __efistub_, to
+  * isolate it from the kernel proper. The following symbols are legally
+@@ -32,14 +30,6 @@ PROVIDE(__efistub_primary_entry		= primary_entry);
+  * position independent manner
+  */
+ PROVIDE(__efistub_caches_clean_inval_pou = __pi_caches_clean_inval_pou);
 -
- void *get_fdt(unsigned long *fdt_size);
+-PROVIDE(__efistub__text			= _text);
+-PROVIDE(__efistub__end			= _end);
+-PROVIDE(__efistub___inittext_end       	= __inittext_end);
+-PROVIDE(__efistub__edata		= _edata);
+-#if defined(CONFIG_EFI_EARLYCON) || defined(CONFIG_SYSFB)
+-PROVIDE(__efistub_sysfb_primary_display	= sysfb_primary_display);
+-#endif
+ PROVIDE(__efistub__ctype		= _ctype);
  
- efi_status_t efi_alloc_virtmap(efi_memory_desc_t **virtmap,
-@@ -1189,6 +1186,10 @@ void *efistub_kernel_entry(const struct efi_image_info *image_info)
- 	return offset_to_ptr(&image_info->entry_offset);
- }
+ PROVIDE(__pi___memcpy			= __pi_memcpy);
+diff --git a/drivers/firmware/efi/libstub/arm64-stub.c b/drivers/firmware/efi/libstub/arm64-stub.c
+index c93ab8b6e9d3..8ff8f8651504 100644
+--- a/drivers/firmware/efi/libstub/arm64-stub.c
++++ b/drivers/firmware/efi/libstub/arm64-stub.c
+@@ -10,7 +10,6 @@
+ #include <linux/efi.h>
+ #include <asm/efi.h>
+ #include <asm/memory.h>
+-#include <asm/sections.h>
  
-+efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
-+			     const struct efi_image_info *image_info,
-+			     char *cmdline_ptr);
-+
- static inline
- void *efistub_sysfb_display_info(const struct efi_image_info *image_info)
+ #include "efistub.h"
+ 
+@@ -22,23 +21,23 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
+ 				 efi_handle_t image_handle,
+ 				 const struct efi_image_info **image_info)
  {
-@@ -1205,7 +1206,7 @@ efi_status_t efi_stub_common(efi_handle_t handle,
- 
- efi_status_t efi_handle_cmdline(efi_loaded_image_t *image, char **cmdline_ptr);
- 
--asmlinkage void __noreturn efi_enter_kernel(unsigned long entrypoint,
-+asmlinkage void __noreturn efi_enter_kernel(const struct efi_image_info *image_info,
- 					    unsigned long fdt_addr,
- 					    unsigned long fdt_size);
- 
-diff --git a/drivers/firmware/efi/libstub/fdt.c b/drivers/firmware/efi/libstub/fdt.c
-index f01450b49975..09e9e5bc831e 100644
---- a/drivers/firmware/efi/libstub/fdt.c
-+++ b/drivers/firmware/efi/libstub/fdt.c
-@@ -344,7 +344,8 @@ efi_status_t allocate_new_fdt_and_exit_boot(void *handle,
- }
- 
- efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
--			     unsigned long kernel_addr, char *cmdline_ptr)
-+			     const struct efi_image_info *image_info,
-+			     char *cmdline_ptr)
- {
- 	unsigned long fdt_addr;
+-	unsigned long kernel_size, kernel_codesize, kernel_memsize;
++	unsigned long kernel_base	= efistub_kernel_base(*image_info);
++	unsigned long kernel_size	= efistub_kernel_size(*image_info);
++	unsigned long kernel_codesize	= efistub_kernel_codesize(*image_info);
++	unsigned long kernel_memsize	= efistub_kernel_memsize(*image_info);
  	efi_status_t status;
-@@ -359,7 +360,7 @@ efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
- 	if (IS_ENABLED(CONFIG_ARM))
- 		efi_handle_post_ebs_state();
  
--	efi_enter_kernel(kernel_addr, fdt_addr, fdt_totalsize((void *)fdt_addr));
-+	efi_enter_kernel(image_info, fdt_addr, fdt_totalsize((void *)fdt_addr));
- 	/* not reached */
- }
+-	if (image->image_base != _text) {
++	if (image->image_base != (void *)kernel_base) {
+ 		efi_err("FIRMWARE BUG: efi_loaded_image_t::image_base has bogus value\n");
+-		image->image_base = _text;
++		image->image_base = (void *)kernel_base;
+ 	}
  
-diff --git a/drivers/firmware/efi/libstub/loongarch.c b/drivers/firmware/efi/libstub/loongarch.c
-index 2b0c87dc9908..7f21e79384d3 100644
---- a/drivers/firmware/efi/libstub/loongarch.c
-+++ b/drivers/firmware/efi/libstub/loongarch.c
-@@ -66,8 +66,9 @@ unsigned long __weak kernel_entry_address(unsigned long kernel_addr,
- }
+-	if (!IS_ALIGNED((u64)_text, SEGMENT_ALIGN))
++	if (!IS_ALIGNED(kernel_base, SEGMENT_ALIGN))
+ 		efi_err("FIRMWARE BUG: kernel image not aligned on %dk boundary\n",
+ 			SEGMENT_ALIGN >> 10);
  
- efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
--			     unsigned long kernel_addr, char *cmdline_ptr)
-+			     const struct efi_image_info *image_info, char *cmdline_ptr)
- {
-+	unsigned long kernel_addr = efistub_kernel_base(image_info);
- 	kernel_entry_t real_kernel_entry;
- 	struct exit_boot_struct priv;
- 	unsigned long desc_size;
-diff --git a/drivers/firmware/efi/libstub/riscv.c b/drivers/firmware/efi/libstub/riscv.c
-index 49db47c05bfe..7be2774dea90 100644
---- a/drivers/firmware/efi/libstub/riscv.c
-+++ b/drivers/firmware/efi/libstub/riscv.c
-@@ -72,20 +72,10 @@ efi_status_t check_platform_features(void)
+-	kernel_size = _edata - _text;
+-	kernel_codesize = __inittext_end - _text;
+-	kernel_memsize = kernel_size + (_end - _edata);
+ 	*reserve_size = kernel_memsize;
+-	*image_addr = (unsigned long)_text;
++	*image_addr = kernel_base;
+ 
+ 	status = efi_kaslr_relocate_kernel(image_addr, reserve_addr,
+ 					   reserve_size, kernel_size,
+@@ -48,24 +47,10 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
+ 	if (status != EFI_SUCCESS)
+ 		return status;
+ 
+-	*(unsigned long *)image_info += *image_addr - (unsigned long)_text;
++	*(unsigned long *)image_info += *image_addr - kernel_base;
  	return EFI_SUCCESS;
  }
  
--unsigned long __weak stext_offset(void)
-+void __noreturn efi_enter_kernel(const struct efi_image_info *image_info,
-+				 unsigned long fdt, unsigned long fdt_size)
- {
+-asmlinkage void primary_entry(void);
+-
+-unsigned long primary_entry_offset(void)
+-{
 -	/*
--	 * This fallback definition is used by the EFI zboot stub, which loads
--	 * the entire image so it can branch via the image header at offset #0.
+-	 * When built as part of the kernel, the EFI stub cannot branch to the
+-	 * kernel proper via the image header, as the PE/COFF header is
+-	 * strictly not part of the in-memory presentation of the image, only
+-	 * of the file representation. So instead, we need to jump to the
+-	 * actual entrypoint in the .text region of the image.
 -	 */
--	return 0;
+-	return (char *)primary_entry - _text;
 -}
 -
--void __noreturn efi_enter_kernel(unsigned long entrypoint, unsigned long fdt,
--				 unsigned long fdt_size)
--{
--	unsigned long kernel_entry = entrypoint + stext_offset();
--	jump_kernel_func jump_kernel = (jump_kernel_func)kernel_entry;
-+	jump_kernel_func jump_kernel = efistub_kernel_entry(image_info);
- 
- 	/*
- 	 * Jump to real kernel here with following constraints.
+ void efi_icache_sync(unsigned long start, unsigned long end)
+ {
+ 	caches_clean_inval_pou(start, end);
 -- 
 2.56.0.611.g1030f0b940-goog
 
