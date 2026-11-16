@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5D3606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 670C3606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y+4zmWAY;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HwjzLPrS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jsZYWupu;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZR+QMJir
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3u1YbP0glgrlPVSZVLO7Md+O8bEthJ8oEllh+tqqYIs=; b=y+4zmWAYHDS+41
-	65BPnIFMZfzoDdg2qZ6CruGsMekQTY5kmodqFtCExnwOsabvjzefSJrmvklmelFnCuICT335No908
-	M08B6DaFBjdIRPKVBM5QcPCMjgHcRYdAQUZumZQt+dHeYkmPdS9r9rZeS361zI75R+lPoTEDH2haf
-	XC5I3iyExply2P8AN9TKoh6ZVJZ/7XOkTJVkcxmoaN23gyUcRS1eiVPQCTPpCuveXlBrtoIEJxNRJ
-	VV21RJSMFuH7+v0s99r7foxNEyUJLc8EXCTb2TqH58z9sBhb/3CzNRMu+ZUhl3xJc1B91ZJSnpFzC
-	fo1Oa2oXhiq6KNdktfGQ==;
+	List-Owner; bh=pCmockRw/wwrY3GaIDLa2rah9UYe9pgctw5IGTJqrjg=; b=jsZYWupuxj/c2d
+	a9Tw+dwI9cxLRbuwdV5VHGZioT9me3EghBb8+YVM9yqXUvyxRD+AIdUQnNNt+AaLgW/aEhn+AL6jr
+	RzQ43cjwTZkPS2HNPlr9ltKOMn0+tWd2okejCC5D8+qiSChfeKeHf14kogIalgdS+S0CwrbTU5omi
+	VEC50FNKnE5w5myFWS8FNXwPSOVeo/NtudLrOBfH77Czpknv8TEtMx0bvG5qNVL8rKEYjOWduA9vK
+	A5zW2Y8LUKy34jCQj7PmabVsWnbT0oKrqaZ/lMGwLyXcOMGKHD1WmLGBF47VF/jipm1SFnhzmC573
+	FLvU4cWWXvgeqy9hweQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSw9I-00000002TOI-0iJE;
-	Mon, 16 Nov 2026 12:49:28 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSw9O-00000002TUs-1JFu;
+	Mon, 16 Nov 2026 12:49:34 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSw9F-00000002TLq-1r6s
+	id 1xSw9L-00000002TRh-0RWN
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:49:25 +0000
+	Mon, 16 Nov 2026 12:49:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CE3D5612ED;
+	by sea.source.kernel.org (Postfix) with ESMTP id D529643D76;
+	Mon, 16 Nov 2026 12:49:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 033A01F000C4;
 	Mon, 16 Nov 2026 12:49:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CA631F000C4;
-	Mon, 16 Nov 2026 12:49:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794833364;
-	bh=3u1YbP0glgrlPVSZVLO7Md+O8bEthJ8oEllh+tqqYIs=;
+	s=k20260515; t=1794833370;
+	bh=pCmockRw/wwrY3GaIDLa2rah9UYe9pgctw5IGTJqrjg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=HwjzLPrSZpfGTVk4lN0Ho9oJpr0gZLkBoAC029OaRpb2ldn3xDllvh2HnLoT94Fb/
-	 TDYQNRfyLKplvKQWdKlBl5GUJFKxnE1srWWg1c5WgPjV0cA3xM96ik5Y34iJ6OfNWM
-	 tbRUmyufSXh88UFfS0u89a2YfwULjV+IbEEPsLcfzSubqsmHTOJaFp8XR9Tk53cMv8
-	 y3jkV6Qv3iRMqD1R5bOMquB7vTnY7u7ucMjlf7xKmSttLEz4PA7bTmoUBx4o45yMCr
-	 9JeOqh6bWP2quBFFxZQDDDTkeDpCk6/CFlsdoY4DOMT0fwCQe0ZnOIVph7buF6qLKK
-	 E1ytUvDgbIMqQ==
+	b=ZR+QMJirApvglfDQeE1AHBlrmnK7I43VX0u47WLqAKgisWV+yDlquNV8ha1dAV3np
+	 n9gomt89RYxCuiYmQJztRy11wmJKE5YyHPNYpnz7TpeelxUMHCWZYV34c7MQPOvYRO
+	 /j2Soan9sWqkI7e2X6x3d5SWEZCIA2L5V/XxplbCjFeCtHc19dqTUU2NZjcVzqblA7
+	 N39WbS+KZl6cs8M30wchBdK4NLdJW/r4y2V5M70by+4qvsWUb2fAGV+pGqqP0G3i7H
+	 obE1ag0AHuOZVX/jKshMHQnqCafgsNeCkqOJRfLjlHoDACNg/ziwfyN/kvEP9sXjRY
+	 xHsFm7UOYz3aQ==
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-mm@kvack.org
 Cc: Arnd Bergmann <arnd@arndb.de>,
@@ -72,9 +72,9 @@ Cc: Arnd Bergmann <arnd@arndb.de>,
 	linux-fsdevel@vger.kernel.org,
 	linuxppc-dev@lists.ozlabs.org,
 	x86@kernel.org
-Subject: [PATCH v3 07/10] ARM: defconfig: turn off highmem in favor of CONFIG_VMSPLIT_2G_OPT
-Date: Mon, 16 Nov 2026 13:48:29 +0100
-Message-ID: <20261116124832.662455-8-arnd@kernel.org>
+Subject: [PATCH v3 08/10] mm: remove ARCH_NEEDS_KMAP_HIGH_GET
+Date: Mon, 16 Nov 2026 13:48:30 +0100
+Message-ID: <20261116124832.662455-9-arnd@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261116124832.662455-1-arnd@kernel.org>
 References: <20261116124832.662455-1-arnd@kernel.org>
@@ -101,103 +101,218 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-The multi_v7_defconfig and omap2plus_defconfig attempt to support a
-broad range of hardware. This is at odds with the setting for highmem
-being slowly phased out on the one hand but still enabled by means of
-CONFIG_ARCH_OMAP2PLUS_TYPICAL, leading to a default CONFIG_VMSPLIT_2G_OPT
-split.
+Arm has stopped setting ARCH_NEEDS_KMAP_HIGH_GET, so this
+is handled using the same wrappers across all architectures
+now, which leaves room for simplification.
 
-None of the upstream OMAP2+ DTS files actually list more than 2GiB
-of RAM, so it seems fine to just turn off highmem by default and use
-CONFIG_VMSPLIT_2G_OPT from the defconfig to still support the same
-hardware but not require highmem.
+Replace lock_kmap()/unlock_kmap() with open-coded spinlocks
+and drop the now empty arch_kmap_local_high_get() and
+kmap_high_unmap_local() helpers.
 
-This also changes multi_v7_defconfig, which currently supports all sorts
-of ARMv7 systems except those that require LPAE.
-
-The best comprimise I can think of again is to use VMSPLIT_2G_OPT in
-place of highmem. Compared to highmem configurations, this should be
-an improvement on most machines with 2GiB of installed memory for the
-lower overhead and complexity, but it does degrade machines that rely
-on highmem to access all memory, as well as reduce the available user
-address space (1.75GiB instead of the traditional 3GiB).
-
-For aspeed_g5_defconfig, the decision is trivial, as there are no
-4GiB configurations we need to support, but g6 is known to use
-up to 2GiB.
-
-If you run into problems on production machines with the new default,
-with the absence of highmem, or the smaller user area, please complain.
-
+Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+Acked-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- arch/arm/configs/aspeed_g5_defconfig | 3 +--
- arch/arm/configs/lpae.config         | 1 +
- arch/arm/configs/multi_v7_defconfig  | 1 +
- arch/arm/configs/omap2plus_defconfig | 1 +
- arch/arm/mach-omap2/Kconfig          | 1 -
- 5 files changed, 4 insertions(+), 3 deletions(-)
+ mm/highmem.c | 100 ++++++---------------------------------------------
+ 1 file changed, 10 insertions(+), 90 deletions(-)
 
-diff --git a/arch/arm/configs/aspeed_g5_defconfig b/arch/arm/configs/aspeed_g5_defconfig
-index 1327a09e163a..060797cc6726 100644
---- a/arch/arm/configs/aspeed_g5_defconfig
-+++ b/arch/arm/configs/aspeed_g5_defconfig
-@@ -25,9 +25,8 @@ CONFIG_MACH_ASPEED_G6=y
- # CONFIG_CACHE_L2X0 is not set
- CONFIG_SMP=y
- # CONFIG_ARM_CPU_TOPOLOGY is not set
--CONFIG_VMSPLIT_2G=y
-+CONFIG_VMSPLIT_2G_OPT=y
- CONFIG_NR_CPUS=2
--CONFIG_HIGHMEM=y
- CONFIG_UACCESS_WITH_MEMCPY=y
- CONFIG_VFP=y
- CONFIG_NEON=y
-diff --git a/arch/arm/configs/lpae.config b/arch/arm/configs/lpae.config
-index 1ab94da8345d..535696d6de96 100644
---- a/arch/arm/configs/lpae.config
-+++ b/arch/arm/configs/lpae.config
-@@ -1,3 +1,4 @@
- # Help: Enable Large Physical Address Extension mode
- CONFIG_ARM_LPAE=y
- CONFIG_VMSPLIT_2G=y
-+CONFIG_HIGHMEM=y
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 069d5a49f01c..c3e427ce8d88 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -103,6 +103,7 @@ CONFIG_ARCH_VEXPRESS_TC2_PM=y
- CONFIG_ARCH_WM8850=y
- CONFIG_ARCH_ZYNQ=y
- CONFIG_SMP=y
-+CONFIG_VMSPLIT_2G_OPT=y
- CONFIG_NR_CPUS=16
- CONFIG_ARM_APPENDED_DTB=y
- CONFIG_ARM_ATAG_DTB_COMPAT=y
-diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
-index 5791953b75ff..b00789279f25 100644
---- a/arch/arm/configs/omap2plus_defconfig
-+++ b/arch/arm/configs/omap2plus_defconfig
-@@ -36,6 +36,7 @@ CONFIG_POWER_AVS_OMAP_CLASS3=y
- CONFIG_ARM_THUMBEE=y
- CONFIG_ARM_ERRATA_411920=y
- CONFIG_SMP=y
-+CONFIG_VMSPLIT_2G_OPT=y
- CONFIG_NR_CPUS=2
- CONFIG_ARM_APPENDED_DTB=y
- CONFIG_ARM_ATAG_DTB_COMPAT=y
-diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
-index 79f8afe3a6bf..d145e448a6b8 100644
---- a/arch/arm/mach-omap2/Kconfig
-+++ b/arch/arm/mach-omap2/Kconfig
-@@ -135,7 +135,6 @@ config ARCH_OMAP2PLUS_TYPICAL
- 	bool "Typical OMAP configuration"
- 	default y
- 	select AEABI
--	select HIGHMEM
- 	select I2C
- 	select I2C_OMAP
- 	select MENELAUS if ARCH_OMAP2
+diff --git a/mm/highmem.c b/mm/highmem.c
+index a33e41183951..214164f9172b 100644
+--- a/mm/highmem.c
++++ b/mm/highmem.c
+@@ -143,25 +143,6 @@ static  __cacheline_aligned_in_smp DEFINE_SPINLOCK(kmap_lock);
+ 
+ pte_t *pkmap_page_table;
+ 
+-/*
+- * Most architectures have no use for kmap_high_get(), so let's abstract
+- * the disabling of IRQ out of the locking in that case to save on a
+- * potential useless overhead.
+- */
+-#ifdef ARCH_NEEDS_KMAP_HIGH_GET
+-#define lock_kmap()             spin_lock_irq(&kmap_lock)
+-#define unlock_kmap()           spin_unlock_irq(&kmap_lock)
+-#define lock_kmap_any(flags)    spin_lock_irqsave(&kmap_lock, flags)
+-#define unlock_kmap_any(flags)  spin_unlock_irqrestore(&kmap_lock, flags)
+-#else
+-#define lock_kmap()             spin_lock(&kmap_lock)
+-#define unlock_kmap()           spin_unlock(&kmap_lock)
+-#define lock_kmap_any(flags)    \
+-		do { spin_lock(&kmap_lock); (void)(flags); } while (0)
+-#define unlock_kmap_any(flags)  \
+-		do { spin_unlock(&kmap_lock); (void)(flags); } while (0)
+-#endif
+-
+ struct page *__kmap_to_page(void *vaddr)
+ {
+ 	unsigned long base = (unsigned long) vaddr & PAGE_MASK;
+@@ -238,9 +219,9 @@ static void flush_all_zero_pkmaps(void)
+ 
+ void __kmap_flush_unused(void)
+ {
+-	lock_kmap();
++	spin_lock(&kmap_lock);
+ 	flush_all_zero_pkmaps();
+-	unlock_kmap();
++	spin_unlock(&kmap_lock);
+ }
+ 
+ static inline unsigned long map_new_virtual(struct page *page)
+@@ -274,10 +255,10 @@ static inline unsigned long map_new_virtual(struct page *page)
+ 
+ 			__set_current_state(TASK_UNINTERRUPTIBLE);
+ 			add_wait_queue(pkmap_map_wait, &wait);
+-			unlock_kmap();
++			spin_unlock(&kmap_lock);
+ 			schedule();
+ 			remove_wait_queue(pkmap_map_wait, &wait);
+-			lock_kmap();
++			spin_lock(&kmap_lock);
+ 
+ 			/* Somebody else might have mapped it while we slept */
+ 			if (page_address(page))
+@@ -313,60 +294,32 @@ void *kmap_high(struct page *page)
+ 	 * For highmem pages, we can't trust "virtual" until
+ 	 * after we have the lock.
+ 	 */
+-	lock_kmap();
++	spin_lock(&kmap_lock);
+ 	vaddr = (unsigned long)page_address(page);
+ 	if (!vaddr)
+ 		vaddr = map_new_virtual(page);
+ 	pkmap_count[PKMAP_NR(vaddr)]++;
+ 	BUG_ON(pkmap_count[PKMAP_NR(vaddr)] < 2);
+-	unlock_kmap();
++	spin_unlock(&kmap_lock);
+ 	return (void *) vaddr;
+ }
+ EXPORT_SYMBOL(kmap_high);
+ 
+-#ifdef ARCH_NEEDS_KMAP_HIGH_GET
+-/**
+- * kmap_high_get - pin a highmem page into memory
+- * @page: &struct page to pin
+- *
+- * Returns the page's current virtual memory address, or NULL if no mapping
+- * exists.  If and only if a non null address is returned then a
+- * matching call to kunmap_high() is necessary.
+- *
+- * This can be called from any context.
+- */
+-void *kmap_high_get(const struct page *page)
+-{
+-	unsigned long vaddr, flags;
+-
+-	lock_kmap_any(flags);
+-	vaddr = (unsigned long)page_address(page);
+-	if (vaddr) {
+-		BUG_ON(pkmap_count[PKMAP_NR(vaddr)] < 1);
+-		pkmap_count[PKMAP_NR(vaddr)]++;
+-	}
+-	unlock_kmap_any(flags);
+-	return (void *) vaddr;
+-}
+-#endif
+-
+ /**
+  * kunmap_high - unmap a highmem page into memory
+  * @page: &struct page to unmap
+  *
+- * If ARCH_NEEDS_KMAP_HIGH_GET is not defined then this may be called
+- * only from user context.
++ * This may be called only from user context.
+  */
+ void kunmap_high(const struct page *page)
+ {
+ 	unsigned long vaddr;
+ 	unsigned long nr;
+-	unsigned long flags;
+ 	int need_wakeup;
+ 	unsigned int color = get_pkmap_color(page);
+ 	wait_queue_head_t *pkmap_map_wait;
+ 
+-	lock_kmap_any(flags);
++	spin_lock(&kmap_lock);
+ 	vaddr = (unsigned long)page_address(page);
+ 	BUG_ON(!vaddr);
+ 	nr = PKMAP_NR(vaddr);
+@@ -393,7 +346,7 @@ void kunmap_high(const struct page *page)
+ 		pkmap_map_wait = get_pkmap_wait_queue_head(color);
+ 		need_wakeup = waitqueue_active(pkmap_map_wait);
+ 	}
+-	unlock_kmap_any(flags);
++	spin_unlock(&kmap_lock);
+ 
+ 	/* do wake-up, if needed, race-free outside of the spin lock */
+ 	if (need_wakeup)
+@@ -508,30 +461,11 @@ static inline void kmap_local_idx_pop(void)
+ #define arch_kmap_local_unmap_idx(idx, vaddr)	kmap_local_calc_idx(idx)
+ #endif
+ 
+-#ifndef arch_kmap_local_high_get
+-static inline void *arch_kmap_local_high_get(const struct page *page)
+-{
+-	return NULL;
+-}
+-#endif
+-
+ #ifndef arch_kmap_local_set_pte
+ #define arch_kmap_local_set_pte(mm, vaddr, ptep, ptev)	\
+ 	set_pte_at(mm, vaddr, ptep, ptev)
+ #endif
+ 
+-/* Unmap a local mapping which was obtained by kmap_high_get() */
+-static inline bool kmap_high_unmap_local(unsigned long vaddr)
+-{
+-#ifdef ARCH_NEEDS_KMAP_HIGH_GET
+-	if (vaddr >= PKMAP_ADDR(0) && vaddr < PKMAP_ADDR(LAST_PKMAP)) {
+-		kunmap_high(pte_page(ptep_get(&pkmap_page_table[PKMAP_NR(vaddr)])));
+-		return true;
+-	}
+-#endif
+-	return false;
+-}
+-
+ static pte_t *__kmap_pte;
+ 
+ static pte_t *kmap_get_pte(unsigned long vaddr, int idx)
+@@ -575,8 +509,6 @@ EXPORT_SYMBOL_GPL(__kmap_local_pfn_prot);
+ 
+ void *__kmap_local_page_prot(const struct page *page, pgprot_t prot)
+ {
+-	void *kmap;
+-
+ 	/*
+ 	 * To broaden the usage of the actual kmap_local() machinery always map
+ 	 * pages when debugging is enabled and the architecture has no problems
+@@ -585,11 +517,6 @@ void *__kmap_local_page_prot(const struct page *page, pgprot_t prot)
+ 	if (!IS_ENABLED(CONFIG_DEBUG_KMAP_LOCAL_FORCE_MAP) && !PageHighMem(page))
+ 		return page_address(page);
+ 
+-	/* Try kmap_high_get() if architecture has it enabled */
+-	kmap = arch_kmap_local_high_get(page);
+-	if (kmap)
+-		return kmap;
+-
+ 	return __kmap_local_pfn_prot(page_to_pfn(page), prot);
+ }
+ EXPORT_SYMBOL(__kmap_local_page_prot);
+@@ -607,14 +534,7 @@ void kunmap_local_indexed(const void *vaddr)
+ 			WARN_ON_ONCE(1);
+ 			return;
+ 		}
+-		/*
+-		 * Handle mappings which were obtained by kmap_high_get()
+-		 * first as the virtual address of such mappings is below
+-		 * PAGE_OFFSET. Warn for all other addresses which are in
+-		 * the user space part of the virtual address space.
+-		 */
+-		if (!kmap_high_unmap_local(addr))
+-			WARN_ON_ONCE(addr < PAGE_OFFSET);
++		WARN_ON_ONCE(addr < PAGE_OFFSET);
+ 		return;
+ 	}
+ 
 -- 
 2.53.0
 
