@@ -2,42 +2,41 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54775606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 07:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116CA606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 07:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TMoTq4XN;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=h5+Yz6Gc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=maBTtR1S;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=m99FfT49
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=mmct4hLjqfM6P4J4rNlaQewbZx02Ku0ihgJPS4dJhPg=; b=TMoTq4XN3s/EDPjGSKp/DgQFnY
-	9lDl4gDPKYsP5IhQ28Hun4WX5alU/2WInz6qs4UTdPEZ+sngNa86sSgkYlx7XyjhgnFbZ9xiMTmWF
-	YJZAyB7kNOhHvhIwCGX5xL9Z0Gnfj/0Mn8WkWUPm8PwS1PPh1ywAYkVxv4YoNKtMjtk+IvzD4IjRG
-	kgbD+uYN0zQFAR32FOYXGVd7jh81CqTgcXa0Yrb7G1pZF3HyY4OxCp4cAVhS/V+xr8giaPHrypsE8
-	sklwGRs4+157GMiwOQ4wrLd/PJKULnEFI7mcQsLGHC3gNOebQ1rLTjMlbmAkJBXHKaGrI34roJSpf
-	sLUaX3tQ==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Xu2+ZqWLiH8ac/CHEFRlUaMcIRQgTHmvl2/TbWN1jDE=; b=maBTtR1SYY2pMu
+	JIMFEtKLXIt607gg5J+0ONCFoMSHOq8XaUAiaJiL+THIG9UEX8IJf8epvjE96eHIDGqdqbh19jNoQ
+	esyFeB3nP5oBwT3+Us3Po3dgrZQogmPA1DkoX0o60tacOqlEfJztShomquWP/ZZeGeSYcGDDBebUn
+	MvlXnPR2g6Xr0jYaysom+EWpJL4cMKDgTTGDZ/jSXMW8fIDWgBoO10WawxiAFWYOUHSEPW1s8bXKW
+	dEpZLHMPzZuNPN2Xpnrz2AL6zXWz09z1BpxAtlTr9Ah7eUudLrkoaf19n66Vwm5fcDnLw3fbvnN8K
+	bv3dmEHQY/qTp1A8I1tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrBo-00000001PY2-0k1s;
-	Mon, 16 Nov 2026 07:31:44 +0000
-Received: from m16.mail.163.com ([220.197.31.2])
+	id 1xSrBu-00000001Pa4-18lF;
+	Mon, 16 Nov 2026 07:31:50 +0000
+Received: from m16.mail.163.com ([117.135.210.2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrBk-00000001PWA-18Vu
+	id 1xSrBl-00000001PWB-2rpG
 	for linux-arm-kernel@lists.infradead.org;
 	Mon, 16 Nov 2026 07:31:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=mm
-	ct4hLjqfM6P4J4rNlaQewbZx02Ku0ihgJPS4dJhPg=; b=h5+Yz6GcEpigF0B5Vd
-	6x3tXEpypfpKY3dRM9/+exVLNXNMWj00su59AjJWnILUAtqzfpNiOyR69WLHSG5Q
-	TTeyrbsa1peSOvC8I4A5tQVctwNy8vzhmPGxKQD+mJaAGrC3R63THx9isd05pCqD
-	wVziw8zjNvKz6I2Eh69QukQkE=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Xu
+	2+ZqWLiH8ac/CHEFRlUaMcIRQgTHmvl2/TbWN1jDE=; b=m99FfT49cAacTyHuKC
+	ZVlrc/ddyosRz6FdT5OMNPUKS80vN/Zx7yTwkCJebC8IoVumS/Rse8b+ZTC14Bzn
+	mGcQFH5F9R5QQ0ae2l3+QsANZwRqgXtidwYsX3CSCTtcMzpHNdNDDAp1hh7b2sD3
+	XneAEZi1KkV2IYvdhw8VekmBg=
 Received: from mm (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id PCgvCgDnB4dFsfpqIKNJFg--.7882S2;
-	Mon, 16 Nov 2026 15:31:19 +0800 (CST)
+	by gzsmtp1 (Coremail) with SMTP id PCgvCgDnB4dFsfpqIKNJFg--.7882S3;
+	Mon, 16 Nov 2026 15:31:21 +0800 (CST)
 From: Qi Xi <xiqi5703@163.com>
 To: Catalin Marinas <catalin.marinas@arm.com>,
 	Will Deacon <will@kernel.org>
@@ -49,22 +48,25 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	wangkefeng.wang@huawei.com,
 	sunnanyong@huawei.com,
 	xiqi2@huawei.com
-Subject: [PATCH v4 0/2] arm64: speed up __arch_copy_from_user() for large copies
-Date: Mon, 16 Nov 2026 15:25:10 +0800
-Message-ID: <20261116072512.1323883-1-xiqi5703@163.com>
+Subject: [PATCH v4 1/2] arm64: copy_template: add an offset-addressed 64-byte loop
+Date: Mon, 16 Nov 2026 15:25:11 +0800
+Message-ID: <20261116072512.1323883-2-xiqi5703@163.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261116072512.1323883-1-xiqi5703@163.com>
+References: <20261116072512.1323883-1-xiqi5703@163.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: PCgvCgDnB4dFsfpqIKNJFg--.7882S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxAFW3ZFW5KF13WF1UAw4fKrg_yoW5Ar18p3
-	yjywsxKrs5Wr1xAa93Z3W8X3yFvan7GryUWFn7Gr4YvFWagryjyryfGwnY9a17Cr1xG34S
-	ya1DtF9rCwnYva7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j5eOJUUUUU=
-X-CM-SenderInfo: 50ltxkqxqtqiywtou0bp/xtbC7QnXDmr6sUm9bQAA3F
+X-CM-TRANSID: PCgvCgDnB4dFsfpqIKNJFg--.7882S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uF17JF4fuF47trW3uF43Awb_yoW8KFWDpw
+	1xWrW3Kas8GwnrA3yfX3Z7CrWakan3JFyfWFZ7KFn7tw1jqa4Yqw43Gw1F9FWUJ39ay348
+	CF9YyF1DGas0gFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jsuc_UUUUU=
+X-CM-SenderInfo: 50ltxkqxqtqiywtou0bp/xtbC7QnXDmr6sUm9jQAA3l
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_233140_783968_157F1652 
-X-CRM114-Status: GOOD (  11.31  )
+X-CRM114-CacheID: sfid-20261115_233142_166537_60766B84 
+X-CRM114-Status: UNSURE (   9.69  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,8 +80,8 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
@@ -87,68 +89,79 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Qi Xi <xiqi2@huawei.com>
 
-Based on Ben Niu's "Faster Arm64 __arch_copy_from_user and
-__arch_copy_to_user" work [1], this series continues the optimization
-for __arch_copy_from_user() only, following Catalin's review of v3 [2].
+copy_template.S is shared by copy_from_user.S and copy_to_user.S.  In
+its 64-byte loop every load and store is post-indexed, which on the
+user side means two LDTR/STTR accesses followed by an address update.
 
-For copies of 4096 bytes or more, __arch_copy_from_user() uses
-privileged LDP instead of LDTR and toggles PSTATE.PAN for the duration
-of the copy, together with an offset-addressed 64-byte loop added to
-copy_template.S.  Smaller copies keep the original code.
+Add a COPY_TEMPLATE_PAIRS variant of the loop that uses offset
+addressing and advances src and dst once per iteration.  Without
+per-access writeback, the loads and stores of an iteration can overlap
+rather than serialise on the base register.
 
-copy_to_user() is deliberately left alone.  Clearing PAN and using
-privileged STP there puts the PAN update in the middle of the user
-store stream, which breaks hardware write streaming; on Kunpeng 920
-the resulting regression outweighs the gain from paired stores.
+Defining COPY_TEMPLATE_PAIRS before including copy_template.S selects
+the variant.
 
-Performance improvements measured on Kunpeng 920:
+Co-developed-by: Ben Niu <benniu@meta.com>
+Signed-off-by: Ben Niu <benniu@meta.com>
+Signed-off-by: Jinjiang Tu <tujinjiang@huawei.com>
+Signed-off-by: Qi Xi <xiqi2@huawei.com>
+---
+ arch/arm64/lib/copy_template.S | 35 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-The ku_copy microbenchmark [3] (a kernel module that measures
-copy_from_user throughput across various sizes by copying 1GB of
-data in each test):
-copy_from_user throughput change (positive = improvement):
-8B-2048B: ~0% (not covered by this optimization, no regression)
-4KB: +2.0%   8KB: +19.1%  16KB: +29.8%  32KB: +36.5%
-64KB: +38.0%  128KB: +57.9%  256KB: +71.2%
-
-Real-world workloads:
-- iperf3 over virtio-net/tap in a two-level PVM stack
-(L1 send to KVM L2 guest):
-Throughput improved from 38.5 to 50.1 Gbps (+30%).
-copy_from_user hotspot in the QEMU main-loop thread reduced
-from 68% to 55%.
-- meshproxy:
-256KB request latency reduced from 0.91 ms to 0.78 ms (-14%)
-at 16 connections / 16k QPS.
-
-Changes since v3:
- - No global PAN disabling.  PAN is toggled only around the
-   new fast path, so LDTR/STTR remain the default for every
-   other copy and keep protecting against user-controlled kernel
-   accesses, as Catalin pointed out.
- - Fault semantics fixed: every load in the 64-byte loop has its own
-   exception table entry, and the fixup advances dst by the number of
-   16-byte blocks that were actually stored.  A fault in the middle of
-   the loop now returns the number of bytes really not copied instead.
- - A 4096-byte threshold is added; from there on the new path is
-   used, since toggling PAN also has a cost.
- - copy_to_user() is deliberately left alone.
-
-[1] https://lore.kernel.org/all/20251018052237.1368504-2-benniu@meta.com/
-[2] https://lore.kernel.org/all/20260316123100.82932-1-xiqi2@huawei.com/
-[3] https://github.com/mcfi/benchmark/tree/main/ku_copy
-
-Qi Xi (2):
-  arm64: copy_template: add an offset-addressed 64-byte loop
-  arm64: copy_from_user: use privileged LDP/STP for large copies
-
- arch/arm64/lib/Makefile             |   2 +-
- arch/arm64/lib/copy_from_user.S     |   8 ++
- arch/arm64/lib/copy_from_user_opt.S | 114 ++++++++++++++++++++++++++++
- arch/arm64/lib/copy_template.S      |  35 +++++++++
- 4 files changed, 158 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/lib/copy_from_user_opt.S
-
+diff --git a/arch/arm64/lib/copy_template.S b/arch/arm64/lib/copy_template.S
+index 7f2f5a0e2fb9..12ab3bc8afa3 100644
+--- a/arch/arm64/lib/copy_template.S
++++ b/arch/arm64/lib/copy_template.S
+@@ -161,6 +161,40 @@ alternative_else_nop_endif
+ 	*/
+ 	.p2align	L1_CACHE_SHIFT
+ .Lcpy_body_large:
++#ifdef COPY_TEMPLATE_PAIRS
++	/* pre-get 64 bytes data. */
++	ldp2	A_l, A_h, src, #0, 9997f
++	ldp2	B_l, B_h, src, #16, 9997f
++	ldp2	C_l, C_h, src, #32, 9997f
++	ldp2	D_l, D_h, src, #48, 9997f
++	add	src, src, #64
++1:
++	/*
++	* interlace the load of next 64 bytes data block with store of the last
++	* loaded 64 bytes data.
++	*
++	* The loads can fault on user memory.  Since dst is not advanced
++	* per access, each fault is fixed up to account for the 16-byte
++	* blocks already stored.
++	*/
++	stp2	A_l, A_h, dst, #0
++	ldp2	A_l, A_h, src, #0, .Lcopy_opt_fixup16
++	stp2	B_l, B_h, dst, #16
++	ldp2	B_l, B_h, src, #16, .Lcopy_opt_fixup32
++	stp2	C_l, C_h, dst, #32
++	ldp2	C_l, C_h, src, #32, .Lcopy_opt_fixup48
++	stp2	D_l, D_h, dst, #48
++	ldp2	D_l, D_h, src, #48, .Lcopy_opt_fixup64
++	add	dst, dst, #64
++	add	src, src, #64
++	subs	count, count, #64
++	b.ge	1b
++	stp2	A_l, A_h, dst, #0
++	stp2	B_l, B_h, dst, #16
++	stp2	C_l, C_h, dst, #32
++	stp2	D_l, D_h, dst, #48
++	add	dst, dst, #64
++#else
+ 	/* pre-get 64 bytes data. */
+ 	ldp1	A_l, A_h, src, #16
+ 	ldp1	B_l, B_h, src, #16
+@@ -185,6 +219,7 @@ alternative_else_nop_endif
+ 	stp1	B_l, B_h, dst, #16
+ 	stp1	C_l, C_h, dst, #16
+ 	stp1	D_l, D_h, dst, #16
++#endif
+ 
+ 	tst	count, #0x3f
+ 	b.ne	.Ltail63
 -- 
 2.53.0
 
