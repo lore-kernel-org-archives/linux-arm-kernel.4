@@ -2,97 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FB5606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3325606A889
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ew0h5rE7;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Db7RY90V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k1K3pYXN;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=l+Gnyxh8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=h/EcMMy6lB0dwByblQ+wtEW6CQqWJ+089YlzEizOkgE=; b=Ew0h5rE7sveY9f
-	I8bVsV+rd4IT+HfbGRhhinkNApAxnaHLWnRNicBAI9736EN0IxliNcrGYvPQ8MFuUaOS+irmkI6ox
-	xFnNZHnauxQ3mwjK/6gObVQONyGh7BtiKPWjwI+VeJ1POAXOJINzwmbDD93ugi3dJ1uBGFofP68Qb
-	0AsTP835d7LrpH+UcfBAaMszFvGBr51DdLtHCL0S7H8m4CWRsLsRrr5GZXCYGXfdKzoBcyN6tsd2O
-	TrZkxppKVBr+BRp4RsaoV2ZqwSHA4M9Xpkn6wpkcqmUOQAaiTRs0Gw7hSTuroL7EroYq1/bseqy3d
-	WRTUizLDvRYAS2rMpBGQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=3NziRagd3Kp64mhlLwSQv7c8QW0heczxcZxtep8cF2s=; b=k1K3pYXN9BcifNKXLHQxwwp4/Z
+	4e/h6aPxSGwn1K3vwJPCuzYMm8DmR/QJc11e1REwvZccHcntQQtIJM/8y81quLfTeptF0BdLfXzI6
+	wISu73AkgMpNX5hU2HTyRgeel3DrK3eLYBLp0TyHTtPfmGf6qfnG4LB9bt8t5xiaV++TMgU1rw/iM
+	IsRFznVfqlEGI2ooxZIG9T8ytVQwM5Usq6KblsL2sNWMFeujrsFk3teJOBpOK84jJDDsniBJHrpw8
+	FSHj7pC0maEUWTTk/A6kqJJUVIQxzh080b9+/+i8QHyyAw3RFj0xgnWAt5qjY9ePBzqwpXC13oZDk
+	wJpUQ/hQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwTv-00000002YKa-1SxJ;
-	Mon, 16 Nov 2026 13:10:47 +0000
-Received: from mgamail.intel.com ([198.175.65.11])
+	id 1xSwWb-00000002YnD-44W1;
+	Mon, 16 Nov 2026 13:13:34 +0000
+Received: from mgamail.intel.com ([198.175.65.19])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwTs-00000002YK6-37O9;
-	Mon, 16 Nov 2026 13:10:46 +0000
+	id 1xSwWT-00000002Ykc-0Gq2;
+	Mon, 16 Nov 2026 13:13:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794834644; x=1826370644;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version:content-transfer-encoding;
-  bh=FE8Eb/o2jNhMmUkY0cmLF5+hbV0dzwgrgopBYqNs/2g=;
-  b=Db7RY90VJBMp0IobypR/45LHYchBIG55PtBnIF62pvPKlws3a0zSfHpJ
-   FqdpSYbOXsu5Vko1Qlqk4SYO9cPLQrM3C6XhGOd6GmvrKtW7zc19lIDhG
-   Bw/McS3IAwLu1cWrpaG8snjCyFORJTj+JKn42P/U1bhQdsUscvnIPEi3I
-   mxkde87AKXLpvIROSwA+2vC8VoM80yZI32Gqll8OovpH0J6GoYSk4cd8G
-   /m/RsaudiU7b1+1rjyvtZb4jKuvE179SVNZqyUSaZhq9ZWu3qLRClpdi4
-   gWRZY5SJ9/20MP4Kk1hdTCqYGhHL8ickdcN+lxYMciEvKrdJu/weypXoq
-   A==;
-X-CSE-ConnectionGUID: YDGImwP6Tc6WsvPdxVDaJQ==
-X-CSE-MsgGUID: NSiKcmqpTgWubo7Y3XPmig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3464637"
+  t=1794834805; x=1826370805;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=pWEth8krOh4n8bcr9ApMvKZWcSt1+DRZOugxxERJq9g=;
+  b=l+Gnyxh8ete85Yn9vxTQmXMzx1xtfjs3h4i/tSvTYDTJfZMZDwbDhoYX
+   hJNzJhvlitMttawt8q7LgoJMQ4ZYHFsx/XzGchtFb0yhXDlZKh3jVmx39
+   hb2lfywP7OmOFfQJ7sRUesgW0WyyesIwRZ/Y8ebryZwov2rXiUspQE/BD
+   Df/YUMLClhtJsGxLmggPxbpmXen+IB7qhbr9cbyIDuxhnYPqwgdI9S8a+
+   aowQy1YX/bGJ5MLK9tDfqdTnUQtmFm/JxsCpC3RlmZdPCtBfykgdD2LT8
+   ndWLMLH1abVx0HrHThOLAvtGO8rPFsppmGlrkNyi+og+rq4Ehegp8btgz
+   g==;
+X-CSE-ConnectionGUID: 7ezBreZLSJK6GL/nu+Kmdg==
+X-CSE-MsgGUID: mP73S9doQ9auOTCi6gKOFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3610902"
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="3464637"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2026 05:10:43 -0800
-X-CSE-ConnectionGUID: neqRBvN9TSuOXPoowwyZdg==
-X-CSE-MsgGUID: HJr8YL80TZmLcafdJ7R4kA==
+   d="scan'208";a="3610902"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2026 05:13:21 -0800
+X-CSE-ConnectionGUID: VPEmmfBLSma1gXFsyAJBiQ==
+X-CSE-MsgGUID: zYvmf/SsSoCxFPDyxQbmFQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="9388760"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.117])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2026 05:10:34 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kory Maincent <kory.maincent@bootlin.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Daniel Stone <daniels@collabora.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Mark Yacoub
- <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, Manasi Navare
- <navaremanasi@google.com>, Drew Davenport <ddavenport@google.com>, Louis
- Chauvet <louis.chauvet@bootlin.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Kory Maincent
- <kory.maincent@bootlin.com>
-Subject: Re: [PATCH RFC v3 0/8] Add support for DisplayPort link training
- information report
-In-Reply-To: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
-Date: Mon, 16 Nov 2026 15:10:30 +0200
-Message-ID: <51ec15feef9a88e460ab6fefc48b5b982f4857c0@intel.com>
+   d="scan'208";a="11338445"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.245.181])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2026 05:13:18 -0800
+Date: Mon, 16 Nov 2026 14:13:11 +0100
+From: Mehdi Djait <mehdi.djait@linux.intel.com>
+To: Michael Riesch <michael.riesch@collabora.com>
+Cc: Faizel K B <faizel.kb@gmail.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, libcamera-devel@lists.libcamera.org, 
+	Robert Mader <robert.mader@collabora.com>
+Subject: Re: [PATCH 2/2] media: rockchip: rkcif: Honour the requested
+ bytesperline on MIPI
+Message-ID: <avsA41bM33cwYfW9@mdjait-mobl>
+References: <20261105232310.385463-1-faizel.kb@gmail.com>
+ <20261105232310.385463-3-faizel.kb@gmail.com>
+ <51b09428-9d10-4f36-a811-a681e479e45e@collabora.com>
+ <fxrwhxkzgihpiz52rbeuomtqkzz7izgdfcbux7osamqruc7w7u@qhvh3nkqypro>
+ <8c3805ca-0be7-4634-8904-30a9c36d8962@collabora.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8c3805ca-0be7-4634-8904-30a9c36d8962@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_051044_859688_D7D10C7A 
-X-CRM114-Status: GOOD (  33.17  )
-X-Spam-Score: -4.3 (----)
+X-CRM114-CacheID: sfid-20261116_051325_166471_4291A486 
+X-CRM114-Status: GOOD (  31.95  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,176 +91,92 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 12 Oct 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
-> DisplayPort link training negotiates the physical-layer parameters needed
-> for a reliable connection: lane count, link rate, and optionally Display
-> Stream Compression (DSC). Currently, each driver exposes this state in
-> its own way, often through driver-specific debugfs entries, with no
-> standard interface for userspace diagnostic and monitoring tools.
->
-> This series introduces generic helpers, for exposing DP link capabilities
-> and state as standard sysfs entries.
+Hello,
 
-So how did we end up with sysfs here?
+On Mon, Nov 16, 2026 at 12:51:45PM +0100, Michael Riesch wrote:
+> Hi Faizel,
+> 
+> On 11/12/26 07:20, Faizel K B wrote:
+> > Hi Michael,
+> > 
+> > On Wed, Nov 11, 2026 at 10:46:43AM +0100, Michael Riesch wrote:
+> >>
+> >> Come to think of it, TRM p. 2111 says for e.g. VICAP_MIPI0_VLW_ID0:
+> >> "Virtual line width of even frame for ID0 path(must be aligned to double
+> >> word)." which I would interpret as "it must be a multiple of four
+> >> bytes". What do you think?
+> >>
+> > 
+> > The VICAP register summary defines it.TRM part 1 (V1.0, page 2081)
+> > "DW - Double WORD (64 bits) access". So 8 bytes.
+> 
+> Ack.
+> 
+> >>> +static void rkcif_stream_set_bytesperline(struct
+> >>> v4l2_pix_format_mplane *pix,
+> >>> +                      u32 req_bpl)
+> >>> +{
+> >>> +    u32 min_bpl = ALIGN(pix->plane_fmt[0].bytesperline, 8);
+> >>
+> >> Please add support for the bytesperline field in all the plane_fmt
+> >> entries here...
+> >>
+> >>>      width = clamp_t(u32, pix->width, CIF_MIN_WIDTH, CIF_MAX_WIDTH);
+> >>> +    req_bpl = pix->plane_fmt[0].bytesperline;
+> >>
+> >> ... and here.
+> >>
+> >>>      ret = v4l2_fill_pixfmt_mp(pix, fmt->fourcc, width, height);
+> >>>      if (ret)
+> >>>          return ret;
+> >>>
+> >>> +    if (stream->interface->type == RKCIF_IF_MIPI)
+> >>> +        rkcif_stream_set_bytesperline(pix, req_bpl);
+> >>
+> >> Why is this restricted to the MIPI interfaces?
+> >>
+> > 
+> > The MIPI formats all have a single plane, and the MIPI path already
+> > programs the line width from bytesperline. The DVP path uses the width,
+> > and I can't test it. But I agree it should not depend on the interface.
+> > 
+> > For v2 I would:
+> > 
+> > - take the requested bytesperline of all planes into account, and use
+> >   the largest for all planes, as the DVP has one line width register
+> >   for Y and UV
+> > - compute the sizeimage of each plane from it
+> > - limit it to the line width field (20 bits MIPI, 15 bits DVP)
+> > - program RKCIF_DVP_VIR_LINE_WIDTH from bytesperline, with the current
+> >   value as the minimum
+> > 
+> > Does that sound ok?
+> 
+> That does sound reasonable, yes.
+> 
+> > A question on the DVP: the PX30 TRM (Part 2, 5.3) says raw data is
+> > stored as 16 bits per pixel, even from an 8-bit source. This matches
+> > the width * 2 in the driver. But for V4L2_PIX_FMT_S*8 (e.g.
+> > V4L2_PIX_FMT_SRGGB8) bytesperline is the width, so the buffer is half
+> > the size the hardware writes. Am I missing something?
+> 
+> I don't have any PX30 board, and actually it is the first time I hear
+> about that. Maybe Mehdi can chime in?
 
-> The aim of such development is to guide users to select the most suitable
-> DisplayPort connector for their needs. For example, if you have a USB-C
-> hub with lesser capabilities than your computer=E2=80=99s native DisplayP=
-ort
-> connector (such as HBR2 versus HBR3 support), the system could recommend
-> connecting high-resolution displays directly to the computer=E2=80=99s po=
-rt
-> instead of through the hub to ensure optimal performance.
+Unfortunately I also don't have hw with DVP and the one time I did look
+online, it is really not that easy to find.
 
-I do wonder how all this is supposed to work in more complex real world
-scenarios, though.
+The PX30 board I used to delevop the rkcif is a custom hw that I don't
+have access to anymore.
 
-I believe the user primarily cares about *modes*. Which display modes
-can be used with each display/connector pair.
-
-With the low level link information, are you proposing to compute the
-required bandwidth for modes in userspace? I think it's going to be a
-lot of work to compute the bandwidth requirements, taking into account
-DP SST vs. MST vs. UHBR and DSC and bit depth and everything, and you'll
-still miss any driver/GPU specific contraints. Or are you just proposing
-to match the physical characteristics only?
-
-Given all the connectors and displays and their modes on a system, you
-could estimate a) for each display, what modes could be used on each
-connector, and b) for each connector, what modes could be used on a
-display, if connected. From the user POV, they could be shown why some
-display mode is not available on the current connector, and crucially,
-on which connector it could be available.
-
-In general, I'm wondering if you're really after higher level
-information, something like "connector max available bandwidth
-with/without DSC", that would more directly map to the user needs as I
-see them than low level link details.
-
-Do you have the userspace somewhere? That's needed for merging UABI
-anyway [1].
-
-[1] https://docs.kernel.org/gpu/drm-uapi.html#open-source-userspace-require=
-ments
-
->
-> The new drm_dp_source_set_caps and drm_dp_sink_set_caps helper expose
-> source and sink training capabilities to userspace via sysfs attributes
-> under dp_link. Finally drm_dp_set_cur_link_params helper is provided to
-> report current link information at runtime.
->
-> Three drivers are updated as reference implementations: i915 (direct
-> connector path), ANX7625 and MediaTek (via the bridge connector framework
-> using a new DRM_BRIDGE_OP_DP flag).
->
-> Here is a sysfs example:
->
-> cur_link_info_dsc            sink_link_caps_nlanes
-> cur_link_info_link_rate      source_link_caps_dsc
-> cur_link_info_nlanes         source_link_caps_link_rates
-> sink_link_caps_dsc           source_link_caps_nlanes
-> sink_link_caps_link_rates
->
-> 1620000 2160000 2700000 3240000 4320000 5400000
->
-> 1620000 2700000 5400000 10000000 20000000
->
-> 5400000
->
-> This series is rebased on top of drm-misc and may conflict with the
-> current state of the drm i915 tree. Which tree should pick this up,
-> given that it mixes core development with driver changes?
-
-For development, please just base your work on top of drm-tip, and the
-tree(s) will be sorted out later.
-
-BR,
-Jani.
-
-
-> Patch 1,2: Move helpers out of i915
-> Patch 3: Introduce DisplayPort link training capabilities and state helpe=
-rs
-> Patch 4: Read i915 DSC capabilities in any case
-> Patch 5  Use dp_connector helpers in i915 to expose link training state
-> Patch 6: Introduce DRM_BRIDGE_OP_DP and wire bridge connectors
-> Patch 7: Use dp_connector helpers in anx7625 to expose link training state
-> Patch 8: Use dp_connector helpers in mediatek to expose link training sta=
-te
->
-> Changes in v3:
-> - Rework the core to use new helpers instead of an extension of
->   drmm_connector_init().
-> - Add a new mutex to protect sysfs read write access instead of using
->   the global connection_mutex.
-> - Move helpers out of i915.
-> - Add the support in the anx7625 driver.
-> - Link to v2: https://patch.msgid.link/20260619-feat_link_cap-v2-0-a3dec4=
-c02ad9@bootlin.com
->
-> Changes in v2:
-> - Removed work converting i915 to DRM managed resource
-> - Remove voltage swing and pre-emphasis properties
-> - Expose link training state via sysfs dp_link/ group instead of
->   connector properties
-> - Add comprehensive sysfs attributes for both source and sink capabilities
-> - Add new helpers for managing sink capabilities and for current link
->   parameters
-> - Link to v1: https://lore.kernel.org/r/20260409-feat_link_cap-v1-0-7069e=
-8199ce2@bootlin.com
->
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> Kory Maincent (8):
->       drm: Move sink link rates reading helpers out of i915
->       drm: Move DSC capability reading helper out of i915
->       drm: Introduce DisplayPort link training capabilities and state hel=
-pers
->       drm/i915/display/dp: Read DPCD DSC capabilities in any case
->       drm/i915/display/dp: Use dp_connector helpers to expose link traini=
-ng state
->       drm/bridge: Expose link training state via new DRM_BRIDGE_OP_DP flag
->       drm/analogix/anx7625: Use dp_connector helpers to expose link train=
-ing state
->       drm/mediatek: Use dp_connector helpers to expose link training state
->
->  Documentation/ABI/testing/sysfs-class-drm-dp       |  85 +++
->  drivers/gpu/drm/bridge/analogix/anx7625.c          |  68 +++
->  drivers/gpu/drm/bridge/analogix/anx7625.h          |   1 +
->  drivers/gpu/drm/display/Kconfig                    |   1 +
->  drivers/gpu/drm/display/drm_bridge_connector.c     |  29 ++
->  drivers/gpu/drm/display/drm_dp_helper.c            | 571 +++++++++++++++=
-++++++
->  drivers/gpu/drm/drm_connector.c                    |  11 +
->  drivers/gpu/drm/drm_sysfs.c                        | 155 ++++++
->  drivers/gpu/drm/i915/display/intel_display_types.h |   2 +
->  drivers/gpu/drm/i915/display/intel_dp.c            | 249 ++++-----
->  .../gpu/drm/i915/display/intel_dp_link_training.c  |  14 +
->  drivers/gpu/drm/mediatek/mtk_dp.c                  |  79 ++-
->  include/drm/display/drm_dp.h                       |   1 +
->  include/drm/display/drm_dp_helper.h                |  25 +
->  include/drm/drm_bridge.h                           |  13 +
->  include/drm/drm_connector.h                        |  53 ++
->  include/drm/drm_sysfs.h                            |   1 +
->  17 files changed, 1202 insertions(+), 156 deletions(-)
-> ---
-> base-commit: 34e9ab0182494d7599dc9759bc216550d814b396
-> change-id: 20260226-feat_link_cap-20cbb6f31d40
->
-> Best regards,
-> --=20=20
-> K=C3=B6ry Maincent, Bootlin
-> Embedded Linux and kernel engineering
-> https://bootlin.com
->
-
---=20
-Jani Nikula, Intel
+--
+Kind Regards
+Mehdi Djait
 
