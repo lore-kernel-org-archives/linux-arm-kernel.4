@@ -2,85 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127EB606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9581960A380C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qZZuD9NP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YN6vXP2/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XIeFqm8O;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=RlcbrB1g
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SkKlFLJh0bHRqw2u6qo7FKqMD2VqM3GiEa/4Vt9PFN8=; b=qZZuD9NPnF1Mg/
-	Kt5fO0SgKw4SEr6pqHCLiX2QroXkMnFVtsohSrTublUK7JHmz2kZ4Pn/+wVxl5aGfy6o1ol+MNy9g
-	UUa31i49PHPG/lDGySBzsfsoxPelutvI71yyy7t7ODf5BdrB9I+QY8lF7jLZmbGpfk2JwoPTCxNOc
-	Uc1UX+cJlp5Pytb2Umr1TDmNLYCFvDALtZI0Smy1uFcnct5CSZydvTkkuAbZGQQ/nenExxYGe3WJ4
-	l9XHcz0dU5blMUk6VS4+Tq4T/k9oXHxfgSGjI8ud/MSs+585rnGjbB4oJ3UR6PjaD2e0ShjHmsLFZ
-	48jbEn6NadChrYK2C2PA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=udpG/k2WOOYI2Tmg0wK/1DslqW3ZFGmHnucKA6feJV0=; b=XIeFqm8OllI3Y5JN72P6+njJta
+	cQfP8lntYTn0GwctaCtnd6gys3XHDyCr7SKQo6yOvLpj6FNkMEN0HqsJasR2ZVpm4oqnrbNBRuIVG
+	S/otvv/gF9yN7y5N9uwzo/qmcE19pgWRUxAnrvmd5CjPxYPJKTLB7xouZxARKp2wRjeksnpkMr9eo
+	A6WvkUmh3V1dGIfGN3+xQKecPqK2z9/2gUDcihuYbq1eMCcfjIQLrC/e6Kyu+FX+UxUqRIoJOhsSJ
+	f3B+tMayqCzUu5JIULV+DfFXl9+aPlpdxodwMTmS94Y/JViK7/RyBjZ3Dcl5NeV5s3FIT7cyjtBzq
+	jJjLOKGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSw9a-00000002TgT-0xZF;
-	Mon, 16 Nov 2026 12:49:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSwJA-00000002VGv-0dFW;
+	Mon, 16 Nov 2026 12:59:40 +0000
+Received: from canpmsgout04.his.huawei.com ([113.46.200.219])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSw9X-00000002Tdp-0Wcc
+	id 1xSwJ7-00000002VEg-3x8r
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:49:43 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D84A84472D;
-	Mon, 16 Nov 2026 12:49:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C7A81F000C4;
-	Mon, 16 Nov 2026 12:49:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794833382;
-	bh=SkKlFLJh0bHRqw2u6qo7FKqMD2VqM3GiEa/4Vt9PFN8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=YN6vXP2/30cO412t3zjUajzb81yQ99gS8AJH9uEGiLmyUcS+qgSf/HMMiYqZRaboR
-	 ZUFcOr5HG9bo2sXqK49utjfTBexB9GVMo4s30Q88My/RcnmlqYraEayTKRWAaUPYBv
-	 gJD87jCCGbOS1fLcEpdk6WBb9etOKPgjDOEYZ83r/ZxRTQUrtiQYy4ZjKVlbAQ0+AG
-	 gOt7Oq3YkH4zTVirFjUmewxyf0ab6ZbbxAwI2IJ2lwpk9XMrXjGusor5THb7GEcBg7
-	 cbyEw+CgHbue8NDj72vH/de54rhuF8daoE/kSNW/EKSHRf3CGYKQi/RoPfiBxBVMN6
-	 r2cGCwk/VJD7A==
-From: Arnd Bergmann <arnd@kernel.org>
-To: linux-mm@kvack.org
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"David Hildenbrand (Arm)" <david@kernel.org>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Ingo Molnar <mingo@redhat.com>,
-	Jason Gunthorpe <jgg@nvidia.com>,
-	Linus Walleij <linusw@kernel.org>,
-	"Lorenzo Stoakes (ARM)" <ljs@kernel.org>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Malin Jonsson <malin.jonsson@est.tech>,
-	Matthew Wilcox <willy@infradead.org>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Michal Simek <monstr@monstr.eu>,
-	Mike Rapoport <rppt@kernel.org>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Nishanth Menon <nm@ti.com>,
-	Richard Weinberger <richard@nod.at>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-fsdevel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	x86@kernel.org
-Subject: [PATCH v3 10/10] mm: print pte in __print_bad_page_map_pgtable()
-Date: Mon, 16 Nov 2026 13:48:32 +0100
-Message-ID: <20261116124832.662455-11-arnd@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261116124832.662455-1-arnd@kernel.org>
-References: <20261116124832.662455-1-arnd@kernel.org>
+	Mon, 16 Nov 2026 12:59:39 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=udpG/k2WOOYI2Tmg0wK/1DslqW3ZFGmHnucKA6feJV0=;
+	b=RlcbrB1gyp2VqVMiWu20xdcQ2hskwnibo9+98GSCbZ75sYahk19zvEuHcEd56AoYefLFggkr7
+	WXR1cDWo67N42jNqyPRG4f2dejO5wshRhU8wuBqM+X97JS319ONGKtUzL7N5jvOaaURxZVYPYOe
+	1+/OUdj6ey3g/APbC+paqrQ=
+Received: from mail.maildlp.com (unknown [172.19.162.223])
+	by canpmsgout04.his.huawei.com (SkyGuard) with ESMTPS id 4jSnxj3h03z1prKT;
+	Mon, 16 Nov 2026 20:59:21 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 50FA940577;
+	Mon, 16 Nov 2026 20:59:33 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 16 Nov
+ 2026 20:59:32 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
+	<fenghuay@nvidia.com>, <catalin.marinas@arm.com>, <will@kernel.org>,
+	<mark.rutland@arm.com>, <corbet@lwn.net>, <skhan@linuxfoundation.org>,
+	<rdunlap@infradead.org>, <tony.luck@intel.com>, <Dave.Martin@arm.com>,
+	<babu.moger@amd.com>, <fustini@kernel.org>, <tglx@kernel.org>,
+	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
+	<hpa@zytor.com>, <x86@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [RFC PATCH v3 02/19] x86/resctrl: Use the resource-agnostic monitor event names
+Date: Mon, 16 Nov 2026 20:58:57 +0800
+Message-ID: <20261116125914.498841-3-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261116125914.498841-1-ruanjinjie@huawei.com>
+References: <20261116125914.498841-1-ruanjinjie@huawei.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261116_045938_413610_A80F4701 
+X-CRM114-Status: GOOD (  12.29  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,65 +85,96 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arnd Bergmann <arnd@arndb.de>
+The monitor event IDs no longer carry L3 in their names. Switch x86 over
+to the new names. The values are unchanged, so this does not change what
+is written to IA32_QM_EVTSEL.
 
-HIGHPTE support is gone now, so it's easy enough to print the
-PTE here along with the upper level entries.
-
-Acked-by: "David Hildenbrand (Arm)" <david@kernel.org>
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- mm/memory.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ arch/x86/kernel/cpu/resctrl/core.c     | 10 +++++-----
+ arch/x86/kernel/cpu/resctrl/internal.h |  2 +-
+ arch/x86/kernel/cpu/resctrl/rdtgroup.c |  8 ++++----
+ 3 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/mm/memory.c b/mm/memory.c
-index ec3d9d99ccee..6404bb447d9c 100644
---- a/mm/memory.c
-+++ b/mm/memory.c
-@@ -528,9 +528,11 @@ static void __print_bad_page_map_pgtable(struct mm_struct *mm, unsigned long add
- 	char p4d_str[PTVAL_STR_MAX];
- 	char pud_str[PTVAL_STR_MAX];
- 	char pmd_str[PTVAL_STR_MAX];
-+	char pte_str[PTVAL_STR_MAX];
- 	p4d_t p4d, *p4dp;
- 	pud_t pud, *pudp;
- 	pmd_t pmd, *pmdp;
-+	pte_t pte, *ptep;
- 	pgd_t *pgdp;
+diff --git a/arch/x86/kernel/cpu/resctrl/core.c b/arch/x86/kernel/cpu/resctrl/core.c
+index bd9e4cf9f7cb..fab126ae2eba 100644
+--- a/arch/x86/kernel/cpu/resctrl/core.c
++++ b/arch/x86/kernel/cpu/resctrl/core.c
+@@ -886,9 +886,9 @@ bool resctrl_arch_is_evt_configurable(enum resctrl_event_id evt)
+ 		return false;
  
- 	/*
-@@ -567,13 +569,18 @@ static void __print_bad_page_map_pgtable(struct mm_struct *mm, unsigned long add
- 	pmd = pmdp_get(pmdp);
- 	ptval_to_str(pmd_str, pmd_val(pmd));
+ 	switch (evt) {
+-	case QOS_L3_MBM_TOTAL_EVENT_ID:
++	case QOS_MBM_TOTAL_EVENT_ID:
+ 		return rdt_cpu_has(X86_FEATURE_CQM_MBM_TOTAL);
+-	case QOS_L3_MBM_LOCAL_EVENT_ID:
++	case QOS_MBM_LOCAL_EVENT_ID:
+ 		return rdt_cpu_has(X86_FEATURE_CQM_MBM_LOCAL);
+ 	default:
+ 		return false;
+@@ -968,15 +968,15 @@ static __init bool get_rdt_mon_resources(void)
+ 	bool ret = false;
  
--	/*
--	 * Dumping the PTE would be nice, but it's tricky with CONFIG_HIGHPTE,
--	 * because the table should already be mapped by the caller and
--	 * doing another map would be bad. print_bad_page_map() should
--	 * already take care of printing the PTE.
--	 */
--	pr_alert("pgd:%s p4d:%s pud:%s pmd:%s\n", pgd_str, p4d_str, pud_str, pmd_str);
-+	if (!pmd_present(pmd) || pmd_leaf(pmd)) {
-+		pr_alert("pgd:%s p4d:%s pud:%s pmd: %s\n",
-+			 pgd_str, p4d_str, pud_str, pmd_str);
-+		return;
-+	}
-+
-+	ptep = pte_offset_kernel(pmdp, addr);
-+	pte = ptep_get(ptep);
-+	ptval_to_str(pte_str, pte_val(pte));
-+
-+	pr_alert("pgd:%s p4d:%s pud:%s pmd:%s pte:%s\n",
-+		 pgd_str, p4d_str, pud_str, pmd_str, pte_str);
- }
+ 	if (rdt_cpu_has(X86_FEATURE_CQM_OCCUP_LLC)) {
+-		resctrl_enable_mon_event(QOS_L3_OCCUP_EVENT_ID, false, 0, NULL);
++		resctrl_enable_mon_event(QOS_OCCUP_EVENT_ID, false, 0, NULL);
+ 		ret = true;
+ 	}
+ 	if (rdt_cpu_has(X86_FEATURE_CQM_MBM_TOTAL)) {
+-		resctrl_enable_mon_event(QOS_L3_MBM_TOTAL_EVENT_ID, false, 0, NULL);
++		resctrl_enable_mon_event(QOS_MBM_TOTAL_EVENT_ID, false, 0, NULL);
+ 		ret = true;
+ 	}
+ 	if (rdt_cpu_has(X86_FEATURE_CQM_MBM_LOCAL)) {
+-		resctrl_enable_mon_event(QOS_L3_MBM_LOCAL_EVENT_ID, false, 0, NULL);
++		resctrl_enable_mon_event(QOS_MBM_LOCAL_EVENT_ID, false, 0, NULL);
+ 		ret = true;
+ 	}
+ 	if (rdt_cpu_has(X86_FEATURE_ABMC))
+diff --git a/arch/x86/kernel/cpu/resctrl/internal.h b/arch/x86/kernel/cpu/resctrl/internal.h
+index ffd74a68671b..57563c35d158 100644
+--- a/arch/x86/kernel/cpu/resctrl/internal.h
++++ b/arch/x86/kernel/cpu/resctrl/internal.h
+@@ -77,7 +77,7 @@ struct rdt_hw_ctrl_domain {
+  */
+ struct rdt_hw_l3_mon_domain {
+ 	struct rdt_l3_mon_domain	d_resctrl;
+-	struct arch_mbm_state		*arch_mbm_states[QOS_NUM_L3_MBM_EVENTS];
++	struct arch_mbm_state		*arch_mbm_states[QOS_NUM_MBM_EVENTS];
+ };
  
- /*
+ static inline struct rdt_hw_ctrl_domain *resctrl_to_arch_ctrl_dom(struct rdt_ctrl_domain *r)
+diff --git a/arch/x86/kernel/cpu/resctrl/rdtgroup.c b/arch/x86/kernel/cpu/resctrl/rdtgroup.c
+index 5ffa39fa86fa..825d71b14b4f 100644
+--- a/arch/x86/kernel/cpu/resctrl/rdtgroup.c
++++ b/arch/x86/kernel/cpu/resctrl/rdtgroup.c
+@@ -68,16 +68,16 @@ void resctrl_arch_sync_cpu_closid_rmid(void *info)
+  *                              configurable event
+  * @evtid: event id.
+  *
+- * Return: 0 for evtid == QOS_L3_MBM_TOTAL_EVENT_ID
+- *         1 for evtid == QOS_L3_MBM_LOCAL_EVENT_ID
++ * Return: 0 for evtid == QOS_MBM_TOTAL_EVENT_ID
++ *         1 for evtid == QOS_MBM_LOCAL_EVENT_ID
+  *         INVALID_CONFIG_INDEX for invalid evtid
+  */
+ static inline unsigned int mon_event_config_index_get(u32 evtid)
+ {
+ 	switch (evtid) {
+-	case QOS_L3_MBM_TOTAL_EVENT_ID:
++	case QOS_MBM_TOTAL_EVENT_ID:
+ 		return 0;
+-	case QOS_L3_MBM_LOCAL_EVENT_ID:
++	case QOS_MBM_LOCAL_EVENT_ID:
+ 		return 1;
+ 	default:
+ 		/* Should never reach here */
 -- 
-2.53.0
+2.34.1
 
 
