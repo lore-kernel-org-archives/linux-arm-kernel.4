@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9884606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3049606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=raf7+Ytv;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=ziyao.cc header.i=@ziyao.cc header.a=rsa-sha256 header.s=zmail header.b=YiQZc7jP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UgFhoT/Q;
+	dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.a=rsa-sha256 header.s=smtp-20201208 header.b=gbLeb4W2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,67 +14,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=o/s4ptVKvvewZCdNnEs/tgBGB2jIJlIfwFpn+zlkZ08=; b=raf7+YtvCx9M4CapJQ5ud4Eopm
-	1AGS3CGt2Wny9StW35oYmKDtbJTl8+wng/4LbvPBll+VUukppsdfy99rUwLogKgqym2QefIgcirTO
-	aiimgWhmiVIA/TlbYxfSj+PooXVuBffcBDS+uQtVw51bwtJnhAwmU25QH6V6psJybvT81UO3fIDax
-	/fyRAaC7EUu6X843cuqQ7fDkV6ijClk8ydMFKeIZfOJh3eC71V92wpDsL17hf/HtfwgtcHf39Xfzi
-	oFKoflcELB7wmXUrHcRmg/Aq6eougiWNqCiwZotw44mqLW97Boqziy7plXHlsDFVFg13t4LU/7BIq
-	NbdlFB3A==;
+	bh=+TAV8zxCLaQRFWFko9N1+gmI6Hkj/Ua5ZfgjdQ0uN+c=; b=UgFhoT/QrgTDj7E/dFIYPf7hFk
+	4eQbJ+LuWzdBbWURGfN2IjBOfNFHLE2dtvPJxiC4JkBTKqaoe1dFULiVyr5Z34qnflr3wHOXzrGLi
+	0Vq1z/2vm6Wkzpm19MAEXTXwAVTD2/YXTWj7eCG4cwteTvllmje8P2AeCt6Jxqk9CZkFmMtBXBYcq
+	xSm4ToOKW+tHSXHVSxJtC18LkAylSMN1oelUxcTAjG+vhrB1MSxiFMHMOOy7trl6yPZJjUB/uyVeA
+	xE+fMsQI6MlmLhC6J1Mjnya+AwQoPKNffaGWXSsiOd3cin+MweacCZ1+AnmT2UpA0dSDe2KXV5YYw
+	oc7CDkCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0UX-00000003PH0-39Ci;
-	Mon, 16 Nov 2026 17:27:41 +0000
-Received: from sender5-op-o12.zoho.com ([165.173.182.12])
+	id 1xT0Wu-00000003PWx-0Kc9;
+	Mon, 16 Nov 2026 17:30:08 +0000
+Received: from smtp2-g21.free.fr ([2a01:e0c:1:1599::11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0UU-00000003PGG-2hgX
+	id 1xT0Wq-00000003PVL-1cpc
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 17:27:39 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794850027; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ZlxepA0Rs4VAkFBZ7P3O7VFcnZ1cwacWFqY1I4LkidrEBisoW4+5ABJLq7dw6JltJpKA9gSY+FXZ4KQs/yMsJ2SmqTv8rufVDE2AApMPEauOntzDt2nNrdPZ97Pl1kbl+eERYGqXu5IPBR0Dw5wlPC710tCxqNNcarJlwj3TzME=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794850027; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=o/s4ptVKvvewZCdNnEs/tgBGB2jIJlIfwFpn+zlkZ08=; 
-	b=Rcu7z/CUPxPY8VvY3QBAhmYMdqK9T6Vfiz9ubEvweZ92yeQoMohd5i7meEodf2ajRSQRatR6znp1teljM1DtuVnsl/QMEvq52DJPWDUrOwbBfmbKLdJMpuaDjdiUwi2vRdjfxKRb2x9gzXuix337EDomkQ8yT4RAHrDzSHNRI90=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: a=rsa-sha256; b=YiQZc7jPC1Rc8+ssgUZBSUeq0HpSunYZ7zmsNj8h8G4VuqfXN7ikDQDF33KooiM2ciBOAhlXwRcg3CHP5Je/kevzDjkqQTj2KiLm3pxHfIxavZCimJEvcLpt5SP8RneQgitdGUkegragVPAzX1RtTIZv1MchpHJWAdSq0ij5O3c=; c=relaxed/relaxed; s=zmail; d=ziyao.cc; v=1; bh=o/s4ptVKvvewZCdNnEs/tgBGB2jIJlIfwFpn+zlkZ08=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794850025599407.37875575874534;
-	Mon, 16 Nov 2026 09:27:05 -0800 (PST)
-Date: Mon, 16 Nov 2026 17:26:53 +0000
-From: Yao Zi <me@ziyao.cc>
-To: Magnus Leatti <magnusleatti@kernelriot.com>, me@ziyao.cc,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Nespolino <g.nespolino@gmail.com>, netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: stmmac: dwmac-motorcomm: support
- Wake-on-LAN from S5
-Message-ID: <avs83CgSuGULMzmq@pie>
-References: <20261116091757.1656602-1-magnusleatti@kernelriot.com>
- <20261116091757.1656602-3-magnusleatti@kernelriot.com>
- <avscVrGbi7mFicuz@pie>
- <avsebFtnIASV-KpV@pie>
- <20261116164847.3432765-1-magnusleatti@kernelriot.com>
+	Mon, 16 Nov 2026 17:30:06 +0000
+Received: from l3017729.home (unknown [IPv6:2a01:e0a:ac2:22b0:3d85:8d5d:9362:361])
+	(Authenticated sender: vjardin@free.fr)
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 86EA52003B4;
+	Mon, 16 Nov 2026 18:29:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1794850198;
+	bh=gf1KXaGSHMTIuSeGKV+TB854dq3D1ziSlvG87KmVRac=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gbLeb4W2rC8PAAvj8pCV3t044hT8rRb/fjjcJF0QXEsHHx5Wvl6EJRID9+XFgvan0
+	 k/h/Zg2xuybp/Cr06X62gOXJkliBIwvDvO8DmPch0Y/x3jVshlJPaTlVT0ehLChUlh
+	 Wrg4ArJ0gToAJCMhHGbY0n6sTSAzsDCgCc0Bq+QnQsYQ9T38S6LTr4Ev9EmBCdWtad
+	 bWVAMmm25HKALgIbEKmkDUULK1ykDTAnRXj20z1oibWJ15IVVtLoa4tvBKhQK6PsmZ
+	 AwTQkNuUAIPpXBVhxUE6dxwkTPf10NcpeIu0RI7k4q+m0zWOdSVe5c42c3WPqdCjVt
+	 n1V2pqTzTqoQQ==
+Date: Mon, 16 Nov 2026 18:29:34 +0100
+From: Vincent Jardin <vjardin@free.fr>
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: Re: [PATCH v6 3/5] soc: fsl: guts: add the RCW override of the pad
+ muxes
+Message-ID: <avs9fmJqYShOIPMK@l3017729.home>
+References: <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-0-fbdce4565a5c@free.fr>
+ <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-3-fbdce4565a5c@free.fr>
+ <avs4l1otw6ACW5P4@SMW015318>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261116164847.3432765-1-magnusleatti@kernelriot.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.637.76
-X-ZohoMailClient: External
+In-Reply-To: <avs4l1otw6ACW5P4@SMW015318>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_092738_726127_0E11C47F 
-X-CRM114-Status: GOOD (  29.71  )
+X-CRM114-CacheID: sfid-20261116_093004_867566_71E15D60 
+X-CRM114-Status: GOOD (  10.28  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,98 +85,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 01:48:47PM -0300, Magnus Leatti wrote:
-> Hi Yao,
+Hi Frank, Vladimir, Christophe,
+
+> > Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> > Signed-off-by: Vincent Jardin <vjardin@free.fr>
+> > ---
 > 
-> On Mon, Nov 16, 2026 at 03:17:00PM +0000, Yao Zi wrote:
-> > > Does the chip automatically enables WoL and loads MAC from eFuse on
-> > > power-on?
-> 
-> Yes. I pulled the power cable, kept the driver from loading and dumped
-> the registers before anything touched the chip: OOB WoL enabled, eFuse
-> address in filter 0, PMT armed for magic packet, receiver on. The
-> packet wake bit in WOL_CTRL is clear.
+> You missed my tag?
 
-Nice. But with packet wake disabled by default, wouldn't the card fail
-to wake the machine if it just recovers from a power failure?
+Frank,
 
-This behavior is confusing to me, but yes, useful.
+No, it was on purpose since I did many changes after Vladimir's comments.
+The goal is still idempontent for lx2160, but the design is now more NXP
+CPU generic.
 
-> > Aside from a clean power-on, its behavior on reset also matters.
-> 
-> Same state, about 2 s after SYS_RESET. Probe disables OOB WoL before
-> that, so a cold and a warm boot look the same to the driver. But the
-> chip arms with the eFuse address, not the one in use. The vendor
-> driver writes the address again after enabling OOB WoL, for the same
-> reason.
+Thanks for re-ack-ing.
 
-Makes sense.
+Next, let's make sure that Vlaidmir is ok with 4/5 (if the driver is
+generic enough).
 
-> > we might probably call stmmac_dvr_remove() in .shutdown() to detach
-> > the NIC from kernel's infrastructure, then reset it with SYS_RESET to
-> > get a functional WoL state in S5.
-> 
-> YES! Bingo, and I built AND tested now :) .shutdown calls
-> stmmac_dvr_remove(), then with "wol g":
-> 
->   reset only                          no wake, 1 of 1
->   reset, wait, address                no wake, 1 of 1
->   reset, wait, packet wake            wake on the eFuse address, 1 of 1
->   reset, wait, address, packet wake   wake on the address in use, 3 of 3
->   "wol d", remove only                no wake, 1 of 1
->   reboot, remove only                 link back, 1 of 1
-> 
-> "wait" polls PMT until the chip has armed itself, 2.6 to 2.7 s, 7 of 7.
-> "packet wake" is the bit in WOL_CTRL, the reset clears it. PME was
-> enabled in every row but the first. It also wakes without PME and in
-> D3hot, 1 of 1 each. No warning in any shutdown log.
-> 
-> So v2 would be, glue only:
-> 
->  - every shutdown: stmmac_dvr_remove()
->  - power-off with WoL set: motorcomm_reset(), poll PMT, write the
->    address in use, set the packet wake bit, pci_wake_from_d3(), D3hot
+And, let's Christophe review/ack the 3/5 regarding pinctrl.
 
-IMHO, this would be the right way to go, but I'd like to drop the part
-of writing the MAC address, since AFAIK WoL from S5 is usually achieved
-through the real hardware address by convention, and
+I guess that 1/5 needs Rob on the devicetree, not sure ?
 
-> Two questions:
-> 
->  1) The glue writes MAC_ADDR0 directly after the remove, two writel().
->     Is it reasonable?
->  2) Power-off takes about 2.7 s longer with WoL set. I can't write the
->     address earlier: in a test that left the registers returning
->     garbage until the driver was bound again.
+Then, since it was unclear for me if the patch 1..4 are through
+pinctrl and 5 thru imx (please, Linus Walleij) ?
 
-if we keep using the real hardware address, at least problem 1
-disappears, and I do think it's a little cursed (but not much) to write
-the core MAC in a glue driver. And at least now we don't need to write
-the address on our own, so if packet WOL bit could be set before PMT
-polling succeeds, the second problem goes away, too.
-
-> Maxime, this needs no helper in the core, please ignore my question.
-> 
-> So my plan for this week: I'll write a v2 that addresses everything
-> you've mentioned (once again, thanks) and send it your way. If
-
-Then feel free to add a Suggested-by tag :)
-
-> something else comes up there will be a v3, and a v4, until WoL works
-> on every YT6801, NUC, laptop or add-in card. Deal?
-> 
-> Magnus
-
--- 
-Thanks,
-Yao Zi
-
-Meow-mrrp-mrow, I'm a cat.
+I hope it'll go thru the proper reviewers,
+  Vincent
 
