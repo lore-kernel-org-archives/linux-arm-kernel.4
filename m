@@ -2,112 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F5B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08753606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:56:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LezSZ7A1;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=a3VbYEqh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fhpL5mxj;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ehO0nWie
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=choMbSoYoRkI4EZKogv+on35PXN8ET4WeIfVWxIT3BE=; b=LezSZ7A1KOFq1n9Ah8Lpx3QWoe
-	x01MG9rf211Q9IpXURFgZQt83gTvHXVLc0N18g5oXs0vyNBgaCGQErpe7itUNgJ7GUFATaQchKIg5
-	2RxpwT1PDtmmc+HU8JEnAhtvTD8Uo7vD0JRp2O7Y9nVMqiJ5iKvrvg1JlaIVLWYA4Rllk/BdEe6Fb
-	j2hA0TcIOBLhivMaHjOU2Kz0CR95T90ok2WpB5WaUBU7d8RwCEWWGusq0wrVJHZCdzN8JKqXhmELq
-	OVQ2TBMarEWiGLwiDySRlHex/TTScWo66YexwbDOYJRPBEjUxs45B7X7t3jS0UyRtt1wOjJGISMtQ
-	jjjgk2pg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=QPBj2OiHEsD8oSSw9ct6pezY21YN5Ixn4FQ3VxqCYUE=; b=fhpL5mxj6R/x8E
+	CWSk9TIaz79Op603QaScB4jiV19llFVs2QhcPcjKP3PgqCF731l4k/kIpxpoAlLWE+dDKJul6Q+ze
+	UY5ZsFq4Agoichjd6cwtgbVPOw4eX/B2Qd1YrAgW+zMgZWXNZOhsSIftAEcmh6r82byHQdHPN4Ohn
+	2SHeVJkJXkI3FvlHCwXsrObOoaFrb/fo49E9BB+zuPqhSeJNKe2b7kYUgmXNkdg1BeIHKz8F4Hq6z
+	7u0gIY01bzLQpmUac1cOj08/8uSZ5/6jPi/FsrLnNlFR8iHgGstCeB+2zAP6SzjsKRPM6K0g4mSNs
+	Lq7lxyOFpgdN+iARgqhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1qO-00000003g92-1b3L;
-	Mon, 16 Nov 2026 18:54:20 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1xT1si-00000003gZO-0sFL;
+	Mon, 16 Nov 2026 18:56:46 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1qG-00000003g3n-1L3T
+	id 1xT1sh-00000003gZF-0AMq
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 18:54:17 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-6b79f5115c0so6068524a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 10:54:11 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794855250; cv=none;
-        d=google.com; s=arc-20260327;
-        b=qCU+dvkaIFRL2MMmfcTtGjJjbrshX3O9nsL3Wd2Q0S/R9+423RNBClA9H4DRnbFu1O
-         FBZevo5n8uq7D06fNaTzw4sRwOxHhFjt6psDIJW9XpsGtTWo2nB9SezztWBx3VlG0QEh
-         SLkHUfGtdoUvc1KDmFBPwY/Ex6NnIV+MkjhZpplANU04KAhrZ4nxe43/3pGz9Z73+VWv
-         YNjAq4v/d5ahMO3p527KOC216kK7pH49HtWhiF+MgW5Wa/EObjXkmAUOWTm2dpsHYtAE
-         vnGUrC4l78Cm0j3Q2orHzWATPSJLGQ7FQefWrUycGZtKt3DDFx7gllKi4KI4Z/nGZolV
-         5+hA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=choMbSoYoRkI4EZKogv+on35PXN8ET4WeIfVWxIT3BE=;
-        fh=cWFoC2boKGPAyAT+epJXZC35KCXfgZoeDfXEBBIFPg8=;
-        b=E8lgClrJT4qbs53fbWXW3vi4xJAkzOcnej40668GK3s3sSGT9no1psDVY0OcTPcOuC
-         FZt+ZtRsgSXgxf33D18BOiPsUcT9KMROApn1bqNP0wjh+e2mVO+GQlAjWGEbOVKHuQwe
-         5ZOzv9C77QFslOACm6Ho2xJJSAA9sQpB1L4u0PfgLRi3cdxpPtMxnnDVXmfa45jjrWv7
-         iv9LBHruyyxh30dQ8prkSRUpyneMAn/D6vJER0BP5MwaLoMXCdjhyGsGgv9jacyRXqlU
-         RDpJB3+o+olpDCRMyYRJwSzllVxv0xkXID9osQ4WayKMOqVbxPetmqRdwGxYHxdFXUzu
-         7/wg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794855250; x=1795460050; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=choMbSoYoRkI4EZKogv+on35PXN8ET4WeIfVWxIT3BE=;
-        b=a3VbYEqhMXzxD9GMdg9093pSp2UDY3LMbKLM02q19wGVosgZ3CdokNZlQuKrkCRXxV
-         km3qnttovBRv0ML/dxIZHVgY7Nmgh+tSlstmY8oqNQNQs6Mjl+Nz6C3GuzfMop7YrUXu
-         x4LRZHhTcuzkOpa8Qj8E+LsYC7SMuIaGL2z1MYKPUgFsRpYfYvC42mJEdl9Pjjcm1E4V
-         i8lAZYMfPzg2wn82nSpY2paMRTsb9rrK2ZI+M6Gl41SNuKyamgREiK0O/3GWUJJfLUy9
-         fmMNpEnxt7KUDffVLlEk4Reqzs8eJH8h3rHRiD9p/qLzaiXLGsRCAUlbfp/IbqyGQ3xh
-         ijPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794855250; x=1795460050;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=choMbSoYoRkI4EZKogv+on35PXN8ET4WeIfVWxIT3BE=;
-        b=NhgEsATwjUAPcr5c0Rh/xdT5z3oFZS6mZknKuNtV8c6ctHwujAvqD4e5IQVHyj5zeH
-         XpqqrXYeBLq4x3RIPE2aiycg7aebIn1DFHP1wLOF09TuaibzftHb6U5YKb41fv5Q1VAg
-         J0ibw43TInjxgOmyPyBcqgjfOGhPFIo37j6dhbpy275f6kvQoKR8R2sftjgea4nxz0nM
-         2VL5j1xRptOtu3uFJHy40kVvsqhRINNI0pr7suZjF8hLOke2EzmZqYAMlYJrwVDjffd0
-         EZaBx6JS0aNIDgsvqdF4RcPGLwkgvoyI0vMw0EZPH1Gfd4YHpYMlAoIfQaEFiBATxZ5C
-         jCAg==
-X-Forwarded-Encrypted: i=1; AL+hErF1mgw/2sVqXjw0zP9xR8N4O8XTCA5aR/m2pfXEXxeSQjRunMji+yWGsF/oVKrhENwTnfDfAtJg8HBYAGH/a1H1@lists.infradead.org
-X-Gm-Message-State: APuU4Z8IvgyjvUk6bq5gKIe2HNlYv18HaJBzqMDlJJ3AwrCRsAx22MvQ
-	rl6Yt2mwL0+vNuBthjnvr0DgjX3Bu+4VgI+QHw5w9bSoS7eDi8/tJesFOlRXa2KvygLa8iRY1JI
-	UajrDHqOY+wqGqq8O+MyadUxJTj97ekc=
-X-Gm-Gg: AYBFou1M5wwsRKBISgM+wSbRV68EEBxzwTNol0huCASlzHi87bSLDdzLuy5sgKOL8tz
-	uK5XTFh5UtBS9d9emBmnYew4Dh7Cs/uAxrVjjv1jE0AQIEizB2Hn+nr0p7iPUcf0lEXuQwgEvuc
-	PlzCZf87fL9GpO9mIv10uyuQY97u+rDvmhrNwTjeTvJD8zxbe915QGuupaqKIdYECLHI4Fd/qaY
-	iGs6dviasWC0T4Bu9uEH0FziNtXM8iuh0Dv8se386Ux11KQynpfLlrfGfj2sfxv1cEdv6fgwRDG
-	ZhJQznHus9nSyJs8nSjab6Ya/FWA+6Zwyg6S6TwH55r6F6MHQN48vAV8VVPudEwYsZCSn6m2aoU
-	bp8c6tXXxzk5+2F/7hrwnaMd8VI9Dm6uszvM=
-X-Received: by 2002:a05:6402:3210:b0:6b5:9714:dea8 with SMTP id
- 4fb4d7f45d1cf-6b7c0d24511mr9592011a12.45.1794855249794; Mon, 16 Nov 2026
- 10:54:09 -0800 (PST)
+	Mon, 16 Nov 2026 18:56:43 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1861061E0B;
+	Mon, 16 Nov 2026 18:56:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D1041F000C4;
+	Mon, 16 Nov 2026 18:56:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794855401;
+	bh=QPBj2OiHEsD8oSSw9ct6pezY21YN5Ixn4FQ3VxqCYUE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=ehO0nWie3OgQn1m4ccsYGi9+2nJiGb+rA5FI+/MBk/fy+WAfsvXOSt4u5Ka1VxN6J
+	 4L/OIo6XoAYx+2NzjpM7lKhHX4GXxaWpW9OXysumThPNdIGJulqh7mqX96IgbUUw+r
+	 6HtDr83dLU9V+oFMFyRHxCqm9jxBLNYGQpWQyeKR7abWEZjxmcAWqdv6PB27UAUqvx
+	 raIDiceFGm6kbbc9FY+n7oS6fgUS1txDFV8LnEh7XGbh8ktVdh7T4Azy9dUgNW1WmY
+	 mJ/sxkXj3TfaXak9acb3qvrRMdpY+QU/0H6Vr1omES+5MOZRPV3j9cFpG+7qhYgdv1
+	 a51cZQCev8NaQ==
+From: Brian Masney <masneyb@kernel.org>
+To: Tero Kristo <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Tony Lindgren <tony@atomide.com>, 
+ Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+ Roger Quadros <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Andrew Goodbody <andrew.goodbody@linaro.org>, 
+ Rouven Czerwinski <rouven.czerwinski@linaro.org>, 
+ Ettore Chimenti <ettore.chimenti@linaro.org>
+Cc: linux-omap@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Brian Masney <masneyb@kernel.org>
+In-Reply-To: <20261113-patch-ektor5-dm8168-clk-v3-0-a42cd1edc5f3@linaro.org>
+References: <20261113-patch-ektor5-dm8168-clk-v3-0-a42cd1edc5f3@linaro.org>
+Subject: Re: (subset) [PATCH v3 0/4] clk: ti: fapll/dm816x: clock tree and
+ calculation fixes
+Message-Id: <179485539142.153342.17977965808888261924.b4-ty@b4>
+Date: Mon, 16 Nov 2026 13:56:31 -0500
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261020122712.526797-1-l.scorcia@gmail.com> <avZiZoGO4jXjIP7D@google.com>
-In-Reply-To: <avZiZoGO4jXjIP7D@google.com>
-From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Date: Mon, 16 Nov 2026 19:53:58 +0100
-X-Gm-Features: AclHuK-ct3_bPqNEIOSB1NJrGGSJAI5u9bKqHSATB78hAxnxBRSskimQcv_9q0Q
-Message-ID: <CAORyz2LNRfnvbCLe+49A5kAF4NSi0zuYdpd95+7=Hx=KQh0B1g@mail.gmail.com>
-Subject: Re: [PATCH] Input: goodix - sync the irq controller while starting firmware
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: linux-input@vger.kernel.org, Hans de Goede <hansg@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_105412_392808_CD4A945A 
-X-CRM114-Status: GOOD (  13.35  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.17-dev-ca76d
+X-Developer-Signature: v=1; a=openpgp-sha256; l=901; i=masneyb@kernel.org;
+ s=20250903; h=from:subject:message-id;
+ bh=s8Tw7ZNGmtvgURa5ttmZPdTGfAUInI9PvqI1Tfk0Qig=;
+ b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLJ+Bz6sPyjw6kPqxe2vGb5XS7+ptDe8wOtdqrf//X+Nk
+ uJEx4kmHaUsDGJcDLJiiixLco0KIlJX2d67o8kCM4eVCWQIAxenAEwkVYmRYUtnhMyV1OIHjudM
+ 6u+ZNayNeSk5q2Yiu0D51wuLj+XYpzH8T12XpyYSa/Ki8jmv7yTd+DKnL57n6prPrrljvGTGWVF
+ fZgA=
+X-Developer-Key: i=masneyb@kernel.org; a=openpgp;
+ fpr=A46D32705865AA3DDEDC2904B7D2DD275D7EC087
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,37 +86,45 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> There is call to goodix_int_sync() right after call to
-> goodix_start_firmware(). Is it still needed if we call it here? I think
-> the vendor drivers does not do it.
 
-Hi,
-unfortunately yes, it's needed right there on the Lenovo Tab E7.
-Without it, the REG_SW_WDT right after it fails with the error "Error
-reading 1 bytes from 0x8041: -6".
-The vendor sources for this device [1] show the call to
-goodix_int_sync exactly between the two interactions with the WDT
-register.
+On Fri, 13 Nov 2026 22:30:46 +0100, Ettore Chimenti wrote:
+> clk: ti: fapll/dm816x: clock tree and calculation fixes
+> 
+> During TI DM8168-EVM board testing we found that the clock hierarchy and
+> clock calculation was broken already on 6.12:
+> 
+>     main_pll_clk1       <--- main PLL should be parent of other PLLs.
+>        sysclk1_ck
+>        main_pll_clk7
+> 		...
+>        main_pll_clk6
+> 		...
+>        main_pll_clk5
+> 		...
+>        main_pll_clk4
+> 		...
+> 
+> [...]
 
-Actually, in the same sources I see no trace of a second
-goodix_int_sync after firmware has loaded, so the existing call could
-be moved a little earlier instead of introducing a duplicated new one.
-I tested moving the existing call on my device and it works just as
-fine (basically, my patch + commenting out the existing call at the
-end of goodix_firmware_upload.
+Applied, thanks!
 
-Which vendor sources are you using for your reference?
+[1/4] clk: ti: fapll: remove ti_dt_clk_name helper
+      https://git.kernel.org/clk/linux/c/b8cec302edf5
+[2/4] clk: ti: fapll: Fix clock speed calculation
+      https://git.kernel.org/clk/linux/c/7f64adfdf118
+[3/4] clk: ti: fapll: print clock name that fails to register
+      https://git.kernel.org/clk/linux/c/9d081472626d
 
-Thank you,
-Luca
+Best regards,
+-- 
+Brian Masney <masneyb@kernel.org>
 
-[1] https://github.com/lscorcia/linux-lenovo-tb7104f/blob/2dad69c9f28611ac6d3db2f1ee11b480a60d83ee/kernel-4.4/drivers/input/touchscreen/mediatek/gt912_p98996/gt9xx_driver.c#L1529
 
