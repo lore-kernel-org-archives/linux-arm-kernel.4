@@ -2,105 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83457606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0718606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:23:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rkP3atEB;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=XlmrVF8r
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eiDgkEDf;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QlZTyq5c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:
-	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=x0v9e+wZHiAwxkDeqQfkfA5SYCnl901hHKw7lpsX06g=; b=rkP3atEBVGRKVV
-	vJZcp/p8mkSJ/TjFLTDXjz0QUPH5tabaLq0J6qXbd4/JOsSdjgRMxMI3NvHqCKWP3gOn8cNeMHYwH
-	CmzmRhhm7ejq/UYBSi/HfnwJi3RRWmeOajVDaDO4DW5Z3FPuXwofQ0zDtxjdCjR2oChL+widn55Wi
-	0viQ6gI4bVm1Ae2hBdM3+n7Jr6Wua19vHLYwFqwUA8dfQAZ1tuZJZRMC9jnYYJgmLHKbTcjUCCY5o
-	xQeWzR16/7iolbx/iD+8De1w3H0cpPdl3JzwSCaBWdpLbx0h1huEa6LjM07bu2atzVG4uhahQuVkJ
-	2w0l7xI9FDyXBOau32jQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:
+	References:In-Reply-To:To:Cc:From:MIME-Version:Content-Transfer-Encoding:
+	Content-Type:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=hV5HxN4iZUg/iKmw0/HzwNF9cux4HXGPAW6rNXzLRBY=; b=eiDgkEDfHZxCUAs3riCK06Y3vT
+	XDm05zh2seBMWx+zRnRYhqAqbhMyTXKxYXOwmX2usOo5QIKKFsGafRMZprUFHaVhVKz3DKxvcwtXT
+	q+BJCVCzKEwz4J/3ZHqEEihQaHin8H8SivceKpqaIZqs6De3w28JVNj6A6gKSIIbbDqriUr8C/odd
+	Lm5OqKK/y6lSjAX5/LjARH/ei5g2Zx2U+i0XQVlpHrBlxbE4h9qGC34a1+6JBSlxppLZQM3u9tLw/
+	z+JnkFnIPPVZGOmhNVekMawuCh6EITHPqC8IsLN6w/MXI4EpK0x/3tdigP+i3w59YIC/hXJv3RW5S
+	X1id+t2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzNq-00000003Azp-2CBq;
-	Mon, 16 Nov 2026 16:16:42 +0000
-Received: from mail-pg1-x52c.google.com ([2607:f8b0:4864:20::52c])
+	id 1xSzUP-00000003Cgb-2nSr;
+	Mon, 16 Nov 2026 16:23:29 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzNn-00000003AzB-2iyT
+	id 1xSzUN-00000003CfV-3Xf2
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 16:16:41 +0000
-Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-cd62c570b5dso3023092a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 08:16:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794845798; x=1795450598; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=x0v9e+wZHiAwxkDeqQfkfA5SYCnl901hHKw7lpsX06g=;
-        b=XlmrVF8rMymEfr3x1I9HyDx6JkMQVuGEAaNeRQBqh9dMwpLfKBVliWflpTz0KK1BXf
-         1jItha71/qFZRKDSCIi+b2eakmzJiIWYx5Ef7ZR6hdffU7lo1BVu1p4jpNluq7qWfLvf
-         89OnCf6le35YCkpUbvfjJ3CIYgSe2cS29VJULzzrxeAbmtrtkmmm2NavC8VTGZzNKSgP
-         lJJyR+OZciPNHjalZN//n1UQ2h5TFT0ymn08MEUfqBpMR5PF+wDdy+MLd3CfchCoWvcu
-         ry1XktviRdImzSo5IJO9iQCYmwuiYqyqtnqlzdMweBZAHzypqu4dFpigkrR0lpTeXs5t
-         A+nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794845798; x=1795450598;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=x0v9e+wZHiAwxkDeqQfkfA5SYCnl901hHKw7lpsX06g=;
-        b=gfrahDBUeX5hQFqC4mVnUVGdETLOQe2a4paDiuOGVAMnvPsOwfYezjgjWWf+kbYExw
-         6riKvbPqPcWjOWwmeRUqxniYi/3tGb/ZKbEQpLQCIq2NwX8eqntG/CVAHZFlJXshCj/K
-         OFGT6lC0PydtkkXtVv961EzzbhHNkk29TjZCfuw9urx/HJYzp6nsm8cT4uSn/jsh7sR8
-         p2gsenGp+CLYmiLEcuXUtRg0jFq4h421BlAHcXwv9yBQXZtgxu6X6FE0TLrx6xpTKIB2
-         dtpq1lYo4amn9b/8v5UOFvb39gA1OGg3FVfPpKj3YelPLTo/h0udPwLQ3aECjkFNB0V+
-         nOTw==
-X-Forwarded-Encrypted: i=1; AL+hErETxarl0DuvVPnB4Mhb2upIyZrmld7JsjNNwHfV+0RkfLWkIm8ElEZQ4LnbaZ5VUX950yHcBqNSHa7QYdq/6Zml@lists.infradead.org
-X-Gm-Message-State: APuU4Z9W9S0fbIgo+N//3CKjwMdGpEswpJtOD+zKf1hgSjSwlgL4vDiy
-	alaVE6FxB004C+ALUsIPYXKnYm99F8xBRLvLox0VlWWTvATggAX5zaXx9DXY+e9yw3Vj0UjA7J2
-	lPbrP
-X-Gm-Gg: AZFdTZd+EfOJkTkQ5K5LyMBVvR5p9UNeDgvUHHW2mjSLhfRIjjoeI+0YO2Mx6g1mJTG
-	hAVX7JDOofJDDbhj3LC8aT4T3bo9g3Y2gtO0tbu4aqTAKtoYfAL3iPYnhrwDxi8sJNmZQ1/XzFS
-	1+qBoGpV83RS2hSkkGIbMVa45Qx9e3jA3XmDteM0PpLO4+aLDPrY27UNyRZfHI7XJjRbbvh7DAh
-	j+p4nt5w78EtITXVE4SEQoDyDyKWvo6lWOD7jWgqXsBo7Y7GwjN9zmD5yV+g+BOvZoWyE2gDz7O
-	bSAdSknoQkYHQ1q5HNCo1Rr5NEN3o0fmgicKsbAWf3bOVuZOl+VcAeaL/WbWHtw5VUzt6WOLS/i
-	IKs1VnCgaeRihtXVtOGEIIHTSjnCFIJdLwR1dD0bgIPs+gl5Z/DZaHAWsxKHNL2lLKOz/mrtnFh
-	vKRLAGelGkDesHrqUGqnoltSEnKzLHRGQN0ImLbm6QnRkVEbjgNO3oalxQcsySIEfuhKFMFseKD
-	iIVfsgnJuTC1zwy/AMETVovn2/uhCFzEoTcZdzS9cZ35vvYAOXqz2G323wAp+SvpfStxLysJwBP
-	YOjcIIvK2AyWGqRcbBGWC8RVxKS3DclPk0Ud/hqkwddDUag=
-X-Received: by 2002:a17:90b:2ec3:b0:3b0:9781:ee8b with SMTP id 98e67ed59e1d1-3b1b09fcbc5mr10847659a91.26.1794845798086;
-        Mon, 16 Nov 2026 08:16:38 -0800 (PST)
-Received: from localhost ([97.126.173.69])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-3b1aec3af2dsm17201419a91.9.2026.11.16.08.16.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 08:16:37 -0800 (PST)
-From: "Kevin Hilman (TI)" <khilman@baylibre.com>
-To: aaro.koskinen@iki.fi,
-	rogerq@kernel.org,
-	tony@atomide.com,
-	linux@armlinux.org.uk,
-	andi.shyti@kernel.org,
-	thomas.richard@bootlin.com,
-	wsa+renesas@sang-engineering.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-omap@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Andreas Kemnade <andreas@kemnade.info>
-Subject: Re: [RFC PATCH] ARM: OMAP2+: fix omap_device with noirq_suspend
-Date: Mon, 16 Nov 2026 08:16:30 -0800
-Message-ID: <179484576805.84649.11200810551954641620.b4-ty@b4>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261110211531.679943-1-andreas@kemnade.info>
-References: <20261110211531.679943-1-andreas@kemnade.info>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+	Mon, 16 Nov 2026 16:23:27 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 501F94664C;
+	Mon, 16 Nov 2026 16:23:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF5CE1F0092A;
+	Mon, 16 Nov 2026 16:23:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794846207;
+	bh=hV5HxN4iZUg/iKmw0/HzwNF9cux4HXGPAW6rNXzLRBY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject;
+	b=QlZTyq5cHKxeaEi+fzkvC/Lbqk4D0G3AeGRHdYzwyTMeevQL6y/lFn1ohvEuxIjD5
+	 ZnsC/a9Lk8PhaT23sSFm3Nzin+NBnYyaU3VwfKNJm2QtJqj7PsHs1mdANQgQGRmBBh
+	 D+uZaw82PA67VQzCOHf4IXqBi4GNtS+BiLF/GZhlShQ6YKlb/XriqZvQIPblyrs6FO
+	 YXIc3DDbjbmGaEJMuKE1wwglvvQAiESh1ZdtNPZXpvQWPqnGx3Xk+1URl8YGVrgL9Z
+	 syQF+J+gBXfuRFm93Z5NWObV7XxuePV98Ig4McfuNxOGCZmELlQx2oR+AbpKTRs7XW
+	 UxdDIXN5KPAxg==
+Date: Mon, 16 Nov 2026 10:23:25 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_081639_710094_150C1E0A 
-X-CRM114-Status: UNSURE (   9.71  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Fabio Estevam <festevam@gmail.com>, Jan Remmet <j.remmet@phytec.de>, 
+ upstream@lists.phytec.de, linux-kernel@vger.kernel.org, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Frank Li <Frank.Li@nxp.com>, imx@lists.linux.dev, 
+ Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Benjamin Hahn <b.hahn@phytec.de>, 
+ linux-arm-kernel@lists.infradead.org, Christian Hemp <C.Hemp@phytec.de>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Yannic Moog <y.moog@phytec.de>
+In-Reply-To: <20261116-imx8mp-phyflex-v1-1-4adcf8b4d373@phytec.de>
+References: <20261116-imx8mp-phyflex-v1-0-4adcf8b4d373@phytec.de>
+ <20261116-imx8mp-phyflex-v1-1-4adcf8b4d373@phytec.de>
+Message-Id: <179484619251.2165678.3116272117041652680.robh@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: fsl: add phyFLEX-Libra i.MX 8M Plus
+ FPSC
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,30 +76,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Tue, 10 Nov 2026 22:15:31 +0100, Andreas Kemnade wrote:
-> Fixes cases where device runtime gets resumed in _suspend but then
-> pm_runtime_force_suspend is used.  So the device is disabled, but runtime
-> active in _noirq_suspend leading to duplicate runtime_suspend calls. So
-> rather check for the device state directly to indicate if changes are
-> needed.
-> This relies on pm_runtime_force_resume being used in a balanced way.
+On Mon, 16 Nov 2026 11:54:40 +0100, Yannic Moog wrote:
+> Add bindings for phyFLEX-i.MX 8M Plus System-on-Module [1] along with a
+> carrier board (Libra) that join to an SBC.
 > 
-> [...]
+> [1] https://www.phytec.eu/en/produkte/system-on-modules/phyflex-imx-8m-plus-fpsc/
+> 
+> Signed-off-by: Yannic Moog <y.moog@phytec.de>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 18 ++++++++++++------
+>  1 file changed, 12 insertions(+), 6 deletions(-)
+> 
 
-Applied, thanks!
+My bot found errors running 'make dt_binding_check' on your patch:
 
-[1/1] ARM: OMAP2+: fix omap_device with noirq_suspend
-      commit: 20ae98b360710da7db17b0d8edbf84c88ff4658d
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/fsl.yaml:1231:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/arm/fsl.yaml:1236:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
 
-Best regards,
--- 
-Kevin Hilman (TI) <khilman@baylibre.com>
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20261116-imx8mp-phyflex-v1-1-4adcf8b4d373@phytec.de
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
