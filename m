@@ -2,78 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303F5606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89358606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O7cofm8a;
-	dkim=pass (2048-bit key) header.d=ubuntu.com header.i=@ubuntu.com header.a=rsa-sha256 header.s=fe-953a8a3ca9 header.b=HNxv2Zr3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=em/+Gobz;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=Narfx8JC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Qopof/KzEChronzbaNdRS8yRUwb7T04Bp6EAIGWAg3s=; b=O7cofm8ad8dza3
-	keMEzHIPLRlpNLwiepuH+BPvGa1J0QTLVJFHyRKAZjO1vWepAsnsN3mm78Wq8nChoGlRScram+I0N
-	3VTtNyEjit1YICAm6TVtDn77fn//pGf0aktWD8LN0YjrVrCLvTJAtPtw5ut6G+oIgYTd2ZwYQxt4w
-	x9h6Rzj9nS/4mGsH9fMPorDYKzOKkgpglylYwTUcMgNmcovu0g5nmE5aydRTN7Yu8ifqA8ign8Srv
-	78i8s9r7UBD3Abmgq1sWXlzh0L0hk+f7+hlauns/07VrkLEJUns2uzzAXBuaI2/1ARbx0LzOQON5S
-	aGoCiWT4Qi3skc5Jo2Rg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=amPjiGpOtCIdke4l/yrc8l6JZjZ/UtQMeu9AnP48ylI=; b=em/+Gobzf7TNqUUFsDeOV5uEZZ
+	cPQ+LrY5IHQiZm4QbhSv1MDjoUZkBXht8o4pzaXgdUKRFSaPAPYa7NfMFNcunQZSi2s+5wENQus5H
+	pfxGPXdaSQQNC/hMc2VLlmMzG1bc4a+EoD12imghtrgyWit4tf4jRMApN7mEclF3/ndkvXz5X+AeL
+	1/Ml24n+/1jf4KWBudt8okiudFOJs47FvrTS3qWf1xbAfV9zMbsW7iTtJkUQh90reOrQrHi0OynAn
+	EvO02XcUTZ+3MTOdWIeP2kn9blrQA3g5fS9FGSYfV8GUj8nAmGNcqRxKP8URHOzaZgYchHAmJ/nUu
+	Qf8KIeJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwjO-00000002cvf-3EML;
-	Mon, 16 Nov 2026 13:26:47 +0000
-Received: from smtp.forwardemail.net ([121.127.44.66])
+	id 1xSwmG-00000002dTF-0qjf;
+	Mon, 16 Nov 2026 13:29:44 +0000
+Received: from out-130.mta0.migadu.com ([2001:41d0:1004:224b::82] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwjM-00000002cuP-1HRm
+	id 1xSwmC-00000002dRu-2Bkq
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:26:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ubuntu.com;
- h=In-Reply-To: References: To: From: Subject: Cc: Message-Id: Date:
- Content-Type: Content-Transfer-Encoding: Mime-Version; q=dns/txt;
- s=fe-953a8a3ca9; t=1794835602;
- bh=Qopof/KzEChronzbaNdRS8yRUwb7T04Bp6EAIGWAg3s=;
- b=HNxv2Zr3rBSQkaClIdIS1t510Vky5f7C0ZxVBeXQ499aVpv5isUVtraFMArElQOWgs9Di0AVa
- Fy8OuQ+N83w1K70F2NlWPHIvQUeDh/+Ag2pdFIFCihVyufWsa772NYE6w24ovAyW0A/tvrYPDrA
- LMyBqPC4jweDI84VioeDK8nt2lkHa5SFxucqJQ/CRYaP5O+cjCqf53gQiX69LKadriCoz9gQbDf
- KBBiv3KhXNRCj6GU9x0uz4uFCOltPeqwqpQ0h8Gp1fONJIcxQ31xufH61117b1JKuu8OmYqnRs4
- zCjS9iC+pj8OqI7qdQcfl5GZ9BYNLeKsAQPYxYUl1OnQ==
-X-Forward-Email-ID: 6afb048fb9d3ade89ee12d0f
-X-Forward-Email-Sender: rfc822; jpeisach@ubuntu.com, smtp.forwardemail.net,
- 121.127.44.66
-X-Forward-Email-Version: 2.19.26
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
+	Mon, 16 Nov 2026 13:29:42 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=g502higwqKmkBG0dlHtsxFQv+cbldCJE/40G3RLaxkI=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1794835778; v=1; x=1795440578;
+ b=Narfx8JCqLfNINSV2qlr1aRmeBvBmS0mZwKeKFCzamE2qzpw7Nm34jJTyCus6o+Ysjypelo7
+ trwX0cnmw7bDHeEYGmxQ947iIbvHtVPtop1sTAPyQFIvCR2zipcKK3QwQ+8uEVUegjM/ZO0oe05
+ JD3hJZqcnaBzSEQ+owEC/YLc=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 8a5db24154ab639b;
+	Mon, 16 Nov 2026 13:29:37 +0000
+X-Mizu-Trace-ID: 8a5db24154ab639b
+X-Migadu-Flow: FLOW_OUT
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so9999e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 05:29:33 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErFJR0P6VpcbVieeW/9v2PyiwiGTtDOKpXf5eFgnvL/7dowr4MQPfHnzEcH3nK6lJmRrVsNBJv3DLcTCS2ZnH/Q1@lists.infradead.org
+X-Gm-Message-State: APuU4Z8bRi9mjvqyBTEhRz1VobMT/Mc74dKtRMiY82J6/1CEn0KmvjES
+	KRgx/XJOUiFWUilEW/j2oBOAJA2CfTswDvEVQRKwasfhadl6aR+NcFoEIY6Gk1QoBbTKp/LsarT
+	JwDJI3YBnt/PRyRmNCIVVZM6J0MZj+0+S9rH/Pfmy
+X-Received: by 2002:ac2:4e05:0:b0:5bf:a911:7ee3 with SMTP id
+ 2adb3069b0e04-5c17d90d3b4mr200956e87.3.1794835772489; Mon, 16 Nov 2026
+ 05:29:32 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8; format=Flowed
-Date: Mon, 16 Nov 2026 08:26:37 -0500
-Message-Id: <DMWO4APJSZPS.16AA1EABR1AEJ@ubuntu.com>
-Cc: "Will Deacon" <will@kernel.org>, "Mark Rutland" <mark.rutland@arm.com>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Sven Peter"
- <sven@kernel.org>, "Janne Grunau" <j@jannau.net>, "Neal Gompa"
- <neal@gompa.dev>, "Marc Zyngier" <maz@kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <asahi@lists.linux.dev>, "Yuvan Shen" <yuvanshen09@gmail.com>, "Nick Chan"
- <towinchenmi@gmail.com>
-Subject: Re: [PATCH 00/13] drivers/perf: apple_m1: Add M3/M4/A18 Pro Support
-From: "Joshua Peisach" <jpeisach@ubuntu.com>
-To: "Myria Sarvay" <myrialsarvay@gmail.com>, "Joshua Peisach"
- <jpeisach@ubuntu.com>
-X-Mailer: aerc 0.21.0
-References: <20261103-m3-plus-pmu-events-v1-0-a8eb6c1139fe@gmail.com>
- <DMQ0CENBZQGW.L35BD1BXYE9Z@ubuntu.com>
- <CAFTKyQziVo3COsPZSSZOaFs7R6HhXEWNHYfgTkjyACc7bkoBDw@mail.gmail.com>
-In-Reply-To: <CAFTKyQziVo3COsPZSSZOaFs7R6HhXEWNHYfgTkjyACc7bkoBDw@mail.gmail.com>
+MIME-Version: 1.0
+References: <20261104-host_gicv5_fixes-v2-0-e47ad20ea3c8@arm.com>
+ <20261112145814.853424-1-fuad.tabba@linux.dev> <avrzusx1g1ZICo0Q@red-moon>
+In-Reply-To: <avrzusx1g1ZICo0Q@red-moon>
+From: Fuad Tabba <fuad.tabba@linux.dev>
+Date: Mon, 16 Nov 2026 13:28:56 +0000
+X-Gmail-Original-Message-ID: <CA+EHjTyGQbS7zcHSRg50c5xVN2AY4AmMc7JqNAvrc=_UhPQ+kg@mail.gmail.com>
+X-Gm-Features: AclHuK8CwBlEBiyR4cPCR9dmkgnQ4XF5VSuwS8WKs9gu-GxXMupedl-FY3peK6Q
+Message-ID: <CA+EHjTyGQbS7zcHSRg50c5xVN2AY4AmMc7JqNAvrc=_UhPQ+kg@mail.gmail.com>
+Subject: Re: [PATCH v2 00/10] irqchip/gic-v5: Fix misc IRS and ITS host driver issues
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Sascha Bischoff <sascha.bischoff@arm.com>, Marc Zyngier <maz@kernel.org>, 
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, Timothy Hayes <timothy.hayes@arm.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Jonathan Cameron <jic23@kernel.org>, 
+	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_052644_659889_3AF19C90 
-X-CRM114-Status: GOOD (  20.87  )
-X-Spam-Score: -2.0 (--)
+X-CRM114-CacheID: sfid-20261116_052941_255103_747391AE 
+X-CRM114-Status: GOOD (  20.65  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,66 +83,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri Nov 13, 2026 at 2:25 AM EST, Myria Sarvay wrote:
-> On Sun, Nov 08, 2026 at 12:32:46PM -0500, Joshua Peisach wrote:
->> On Tue Nov 3, 2026 at 5:14 AM EST, Myria Sarvay via B4 Relay wrote:
->> > This series adds support for the CPU PMU in the new M3, M4 and A18 SoC=
-s
->> > presed in apple devices. These PMUs have new encodings for events, alo=
-ng
->> > with larger codes for these events. All of these events are as Apple
->> > describes them in the various kpep files found under /usr/share/kpep o=
-n
->> > macOS 27. More events may exist, but we have no idea of their affinity=
-,
->> > or what they actually count, so we don't include them here.
->> >
->> > These patches have been tested on my own M2 (t8133-j413) and M3
->> > (t6031-j514c) devices, as well as by Yuvan on their M4 (t8132-j713)
->> > device.
->> >
->> > If possible, the device tree changes should probably go through
->> > apple-soc, as this is where the recently picked up M4 Pro/Max dts are.
->> >
->> > Tested-by: Yuvan Shen <yuvanshen09@gmail.com> # on t8132-j713
->> > Signed-off-by: Myria Sarvay <myrialsarvay@gmail.com>
->> > ---
->> > Myria Sarvay (12):
->> >       dt-bindings: arm: pmu: Add Apple M3/M4/A18 Pro SoC CPU PMU
-> compatibles
->> >       drivers/perf: apple_m1: Remove unused variables
->> >       drivers/perf: apple_m1: Support per-implementation event size
->> >       drivers/perf: apple_m1: Use macros for per-implementation init
-> functions
->> >       drivers/perf: apple_m1: Add Apple M3 Series Support
->> >       drivers/perf: apple_m1: Add Apple M4 Series Support
->> >       drivers/perf: apple_m1: Add Apple A18 Support
->> >       arm64: dts: apple: t603x: Add PMU Device Nodes
->> >       arm64: dts: apple: t8122: Add PMU Device Nodes
->> >       arm64: dts: apple: t604x: Add PMU Device Nodes
->> >       arm64: dts: apple: t8132: Add PMU Device Nodes
->> >       arm64: dts: apple: t8140: Add PMU Device Nodes
->> >
->> Maybe the folder should be renamed to 'apple_arm' or something like
->> that?
->>
-> What do you mean by this? What folder are you referring too? If you mean
-> the device tree's, they're already under the arm64 folder, so apple_arm
-> seems redundant. If you mean the CPU PMU name, I get that, but I'm not
-> sure how to change that, given it's already hard coded with the config
-> option `APPLE_M1_CPU_PMU`. I feel like changing its name at this point
-> would cause backwards compatibility issues around kernel
-> configs/blacklists if people use them.
+Hi Lorenzo,
 
-Sorry, brain fart. I meant the file apple_m1, to consider splitting
-it up into multiple files. It's no big deal though :)
+On Mon, 16 Nov 2026 12:14:50 +0000, Lorenzo Pieralisi
+<lpieralisi@kernel.org> wrote:
+[...]
+> > invalidate have the same shape. The question is, can an IRS miss the
+> > poll, or is a timeout here only ever a dead IRS?
+>
+> Thank you for your patches Fuad.
+>
+> The latter, though freeing memory on timeout wasn't a good idea given
+> that there is no way to cancel the respective, pending, mapping.
 
--Josh
+Thanks, that answers it. If you'd like a patch that doesn't free the
+memory on a timeout, let me know and I'll send one.
+
+[...]
+> > Notes:
+> >     Setting L1 on every invalidation turns each registration and
+> >     teardown into a range invalidate, both rare paths, and keeps the
+> >     function simple. Setting it only when registration allocates the
+> >     level 2 table would miss a registration that fails after the
+> >     allocation, which leaves the level 1 DTE valid.
+>
+> I can't follow. I agree that we have to invalidate the L1 DTE on
+> L2 allocation but that's a one-off, I don't understand what issues
+> you are pointing out in the Notes above, if you can point out please
+> the code paths it refers to that'd help.
+
+gicv5_its_device_register() can fail after
+gicv5_its_devtab_get_dte_ref() has made the L1 DTE valid, and before
+the gicv5_its_device_cache_inv() at the end. That happens if the
+EventID bits check fails, or the ITT allocation does. The L1 DTE is
+then already valid for the next device registered under it, so that
+registration doesn't allocate a level 2 table.
+
+The patch Notes were about setting ITS_INV_DEVICER.L1 in that
+gicv5_its_device_cache_inv() call only when the registration allocated
+the table. In that case the failed registration never reaches that
+call and the next one reaches it with L1 clear, so this L1 DTE is
+never invalidated. Invalidating in gicv5_its_alloc_l2_devtab(), right
+after the L1 DTE write, is the one-off you describe. I'll rework the
+patch to do that instead.
+
+Cheers,
+/fuad
 
