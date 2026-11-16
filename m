@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65267606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 07:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA6B606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 07:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TV1xoC2S;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PBHaF9A9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LZD1oBiO;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jz85i1Za
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uFMjLNndPE2hSZg1IrxVDy7d2EmfKGeBiqo/gCRC8g8=; b=TV1xoC2SYAZci3DbnbfPeAR7jB
-	fqRR8TGoED4UGNflK7EDh6NFArGB2AauyVl/XJZYsThAL7M/qB3YRskeLT98h9HHr00gGomAxrMu5
-	5lPY674Ity4hvaMrpOolEPE/R/WzVBp3NLRPBp+MeSNa68BzlT2wqVonHVVBwSMmCfROM+SdJn5u0
-	LqilL7cECIfEivupIX6mwNY2RalbdxD6Rusede3+Ko1HpS6/fBoa5kpMkh27ASlAW/gaYZlvaW7Rz
-	DEyMe1EcSIPQU3zemeiFfo+jH5TNNCpoptytibAh2l7cFe4bRk1uzgkxHxEhR7j7wcaPPerCbUZqa
-	2G/W2lOA==;
+	bh=0inTc72tNtgjCZaCWeW8u0+OSffO1GI14ZtqPEL3d8g=; b=LZD1oBiO1WJWjjJ9CGrrPfJsYP
+	tnO/dJFDXrvoQuHGTpczENLoaUrxYDjFok3wMUF/PBkaX3EK00eW7k5zD8TtnHCQr3MK8U8B4Porf
+	H/fOMkcEj9eF+aMjceCUyug9Rk3N36jSqFT0lqr5TUkDPy35LorIuDfJts/QFV132Pvjp4QQPJBnu
+	ohwHQjYDxpyV22Zg8EYzEM1ddBh+diRcVffEojRfgnD50kku1HCSJaiods5yN0zK6qlTTiTERRm52
+	cF8lus9sj4moJpdrBjs1OnU3itWDczp5VbeZC7UDBfAoddlFN1Y++0e0w4WvbKjYHkPVTpTbsiWa9
+	O0XqyIWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrJE-00000001Qqv-0eQi;
+	id 1xSrJE-00000001Qqb-0GYm;
 	Mon, 16 Nov 2026 07:39:24 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrJD-00000001QpS-00i5;
+	id 1xSrJD-00000001QpR-00b7;
 	Mon, 16 Nov 2026 07:39:23 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8E33B439F8;
+	by sea.source.kernel.org (Postfix) with ESMTP id 7BD3943C64;
 	Mon, 16 Nov 2026 07:39:22 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794814762;
-	b=IEr4PcEydCMew3Z7aXmUG2qFl/0HZJRnFmQix/M4Dclxzlp2EfkcFgUOZQ9CZPzaMvEI
-	 3kApeA1lyAJAkwHBkyTTGGfzRE06+oEFfJQQy23CI4t6drUFx2dPmRB7hBAZYRHEhMhmZ
-	 bRKrftprclpum5ROm64uDu4XEZ7BfssTR2qczbSEQVBjmUxUrunvP8nfi6qhIenxWoaEX
-	 zicDaON91BpYq/wFUOgJBkUOM8kRy3LohVddDS2e8RlqvxKeXEcNChcsqWoSNSI3LI3WR
-	 gHM/vRf/YQbhQbiq6XX98q4lCuQJ3NHDXbs6QB8V+Hyd5GfdaSBxdnrDR6+aq80yW5g==
+	b=zwJNo/crojmmMPXSrZtxnZvdEeZXczLuz2bPpEKWO7W+SemucnZiCkdwqHVjv2bMWVSp
+	 w8PHHSJY3VYmtKqNpfPAMPVpV89COuQuslBA5xELu8VueNRJ3SjA7qIoEE0jNRPWs5VYo
+	 HZ/x2T0IS9QMXIUL7K0OO7Ft/TH+TBtjq1Nsx4/n1vKnAD/2wVN2yKY47fzr72fBNqeLN
+	 ejsRL3Gu5oKKwtzsrSbFyBpievNuQ+GBLlGjuH8fbLfHHDp6LUXT/TDl515eu8OEIPPJk
+	 TMdxdu1tztoOlha75Vfc/+6ySJ8dxagiJOzJHL30EKX7U1kLngpW5tCnSlCPkuJpXgg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794814762;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=uFMjLNndPE2hSZg1IrxVDy7d2EmfKGeBiqo/gCRC8g8=;
-	b=woyXANDGhV+KfCxs37cmreR34ItkwdHifwMAzCfVarKhARy4+s7uPwYgd+mrWTiNNUc1
-	 4L9QWkfPw5yArgOsRp+VLrrHexcSmQVkppN+PflHc8nE+9boHKuOJ9NdBkaRfMgsxide2
-	 foNARF/eCCX+9TBk+Y6JDewWhqVleHxy751ivTwG/5KKroU8YcrCAjTIcgzcdsj1gqzuk
-	 YTxW2uoEEDI2Q+P44WlGoKyskE3N9coE0effLZFNzVZaaIZyMyYI4jOogZxwQiTeaPdmS
-	 KYaHP9dhFlCyhA4l8HRig5Jd4pC3KSfQOTqKrwEcbB5gm73jwRvfxnDUHIDO6upoXlg==
+	bh=0inTc72tNtgjCZaCWeW8u0+OSffO1GI14ZtqPEL3d8g=;
+	b=BuAL3PLuol8g8ZcJ4jA319HbruWFqF8nL+HRZYsM7qvA2Jqi/FOAnNqNTrLSExG3VN1V
+	 Os+LowEOh3uSshtwR17+7ToPtgQIm2t5PQH7tsG/pjPQCp89Ubc2eyJPY9pfc9qtA/e/L
+	 L7iYLVGzJiAdJPmO2iqXxdfHvceFdcBlnW+mug64HmgjIZPXglpuPfkdQgQ+WiiengdSf
+	 wUJncJHLlgvbkLMdFdV2UhnMjYt66vROZPvXqjSduiBUlzVSX9wNvCyk/hRTM1fDVmY8x
+	 djgMPaqQjzVY9boAKYD+ksNma0NoFbn1Dfc806x9lgnGsukr6N6SXoP8yMJUlEe2oKQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 4ADD41F000C4;
+	by smtp.kernel.org (Postfix) with ESMTPS id 636D81F000C6;
 	Mon, 16 Nov 2026 07:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794814762;
-	bh=uFMjLNndPE2hSZg1IrxVDy7d2EmfKGeBiqo/gCRC8g8=;
+	bh=0inTc72tNtgjCZaCWeW8u0+OSffO1GI14ZtqPEL3d8g=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=PBHaF9A9H85RU9qqhVTMNUsYnrhkMoaO1zU8bc33o8yIhNKWfJjENP2eVhLmWUDWH
-	 /JgIxq8Xb4Ilh26T5Lrv900XC37SA1NZ2GH46Dt4+kSJEq5lIjkqA/MV4PixqznznN
-	 ZxqdZsGvvdfuUuZr3kQTynMnCuaIJOWs0sxXqWXsjxJgSTi1QF6NWq9yIjQKQuvgeo
-	 TyfhAdP2bwLjQl7gM9zAxcmz6rRIFS1oeWc16aO1fcdU8F7JXN5vQ4zqjwU6EHOV07
-	 GPbqWbf2zB550plpyzt1C39oiQsno4Ze6G/oO2/7WilKbgkLY51SLxjSacJfq2eMeR
-	 wNoSBgEBq173w==
+	b=jz85i1ZaLPl0AvbORyPD++PuuQ3meDo/WLKNS8znESi0oqL4Gl8a71K3FpSr7wRC1
+	 /OV4e0PHqYUBtMKPSeaxXV7Qe4gpZ4ecZzrJMs6JtTIecbo7yrldTPyPbaKULvgaM6
+	 1cUhI6d7zZ4u/RXOt4dl2XfJbXJ5vWECREakmGkOxJqQ60vdYKQjMOoT1gS+TaDe9J
+	 iaEgLOBp/cPVGVGln0Pl/Uw2+nL/m+oBM8iH+eQQEUtq8Lr4ESTme4TUCmc0vD1Btt
+	 Cg2FbAV3sT8fvyNmQS+LqTY5F7cGc65rzHXLptVS7r4f1yIkj96kPaw5K+uV0soFbR
+	 +TygldjIOJ24Q==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id BD8064A371;
+	by lkml.kernel.org (Postfix) with ESMTP id DCD654A383;
 	Mon, 16 Nov 2026 07:39:20 +0000 (UTC)
 From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
-Date: Mon, 16 Nov 2026 15:39:14 +0800
-Subject: [PATCH net-next v3 1/2] dt-bindings: net: rockchip-dwmac: Add
- RK3572
+Date: Mon, 16 Nov 2026 15:39:15 +0800
+Subject: [PATCH net-next v3 2/2] net: stmmac: dwmac-rk: Add RK3572 support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261116-add-board-ok3572-c-net-v3-1-a957fdcd9c7a@qq.com>
+Message-Id: <20261116-add-board-ok3572-c-net-v3-2-a957fdcd9c7a@qq.com>
 References: <20261116-add-board-ok3572-c-net-v3-0-a957fdcd9c7a@qq.com>
 In-Reply-To: <20261116-add-board-ok3572-c-net-v3-0-a957fdcd9c7a@qq.com>
 To: Andrew Lunn <andrew+netdev@lunn.ch>, 
@@ -98,11 +97,11 @@ Cc: Cunhao Lu <1579567540@qq.com>, netdev@vger.kernel.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-stm32@st-md-mailman.stormreply.com
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794814757; l=2920;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794814757; l=3142;
  i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
- bh=9X/mZiSA5jyMtUsqAtAfx0rl2X8abEMLp5i4XTgwPa0=;
- b=wH5xOzdBZxT/5VRr5XLL3M3qt9J56QsDvaqyh9NkKpCorcn2oXeNTo7FY69mSA6mGJ6W1Plou
- X3ZO2gwTakMDnpSNTYe6B2nubHZYEy2F6SF+vcls2FpeUZ2KR7fbkBv
+ bh=bJZr2jTjg4023AjgAd/Zj2CWJraJeUFEaOgI88A3Cbk=;
+ b=VvzUkw46av484OhGEDZykqHAl2X4+zVTPUXUav8AP9Bgwx90r5ZL0plEwVBEG6fPaiZ/7k5NO
+ 5QWb+CV7w6qCX7NWqgQxafOpkbPrhcyhs1Uw++0b4ew3Q0/qGwPUf3e
 X-Developer-Key: i=1579567540@qq.com; a=ed25519;
  pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
 X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
@@ -130,95 +129,90 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Cunhao Lu <1579567540@qq.com>
 
-Add the rockchip,rk3572-gmac compatible with the snps,dwmac-4.20a
-fallback and require rockchip,php-grf.
+The RK3572 has two GMAC controllers with separate mode and clock control
+registers in the PHP and NVM0 GRFs. RGMII delay lines are configured
+through the IOC.
 
-Mark tx_delay and rx_delay as deprecated and disallow them for RK3572
-so new designs do not use the legacy delay properties.
+Add the register layout and delay callback for both controllers so the
+Rockchip glue driver can configure their RGMII and RMII interfaces and
+select the appropriate clocks for each link speed.
 
 Signed-off-by: Cunhao Lu <1579567540@qq.com>
 ---
-Changes in v3:
-- Deprecate tx_delay and rx_delay and disallow them for RK3572.
+ drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c | 53 ++++++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-Changes in v2:
-- Add RK3572 to the shared Synopsys compatible list for consistency.
----
- Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 15 +++++++++++++++
- Documentation/devicetree/bindings/net/snps,dwmac.yaml     |  1 +
- 2 files changed, 16 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-index e8dda1961ab3..d7b7bb008235 100644
---- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-@@ -27,6 +27,7 @@ select:
-           - rockchip,rk3506-gmac
-           - rockchip,rk3528-gmac
-           - rockchip,rk3568-gmac
-+          - rockchip,rk3572-gmac
-           - rockchip,rk3576-gmac
-           - rockchip,rk3588-gmac
-           - rockchip,rv1108-gmac
-@@ -54,6 +55,7 @@ properties:
-               - rockchip,rk3506-gmac
-               - rockchip,rk3528-gmac
-               - rockchip,rk3568-gmac
-+              - rockchip,rk3572-gmac
-               - rockchip,rk3576-gmac
-               - rockchip,rk3588-gmac
-               - rockchip,rv1126-gmac
-@@ -112,6 +114,7 @@ properties:
-     minimum: 0
-     maximum: 0x7F
-     default: 0x30
-+    deprecated: true
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
+index a37df5767d84..c9d8d8bf51f7 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
+@@ -900,6 +900,58 @@ static const struct rk_gmac_ops rk3568_ops = {
+ 	},
+ };
  
-   rx_delay:
-     description: Delay value for RXD timing.
-@@ -119,6 +122,7 @@ properties:
-     minimum: 0
-     maximum: 0x7F
-     default: 0x10
-+    deprecated: true
- 
-   pcs-handle:
-     description:
-@@ -141,11 +145,22 @@ required:
- allOf:
-   - $ref: snps,dwmac.yaml#
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3572-gmac
-+    then:
-+      properties:
-+        rx_delay: false
-+        tx_delay: false
++#define RK3572_VCCIO0_3_VO_IOC_CON1		0x10608
++#define RK3572_VCCIO1_2_4_VI_IOC_CON1		0x12604
++#define RK3572_VCCIO5_6_IOC_MISC0		0x14630
++#define RK3572_PHP_GRF_GMAC0_CON		0x0070
++#define RK3572_NVM0_GRF_GMAC1_CON		0x0020
 +
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-+              - rockchip,rk3572-gmac
-               - rockchip,rk3576-gmac
-               - rockchip,rk3588-gmac
-     then:
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 2c4842404bf6..80d3b43e2889 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -94,6 +94,7 @@ properties:
-         - rockchip,rk3506-gmac
-         - rockchip,rk3528-gmac
-         - rockchip,rk3568-gmac
-+        - rockchip,rk3572-gmac
-         - rockchip,rk3576-gmac
-         - rockchip,rk3588-gmac
-         - rockchip,rv1108-gmac
++static int rk3572_init(struct rk_priv_data *bsp_priv)
++{
++	switch (bsp_priv->id) {
++	case 0:
++		bsp_priv->gmac_grf_reg = RK3572_PHP_GRF_GMAC0_CON;
++		break;
++	case 1:
++		bsp_priv->gmac_grf_reg = RK3572_NVM0_GRF_GMAC1_CON;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	bsp_priv->clock_grf_reg = bsp_priv->gmac_grf_reg;
++	return 0;
++}
++
++static void rk3572_set_to_rgmii(struct rk_priv_data *bsp_priv,
++				int tx_delay, int rx_delay)
++{
++	u32 val = GRF_FIELD(14, 8, rx_delay) | GRF_FIELD(6, 0, tx_delay) |
++		  GRF_FIELD(15, 15, !!rx_delay) | GRF_FIELD(7, 7, !!tx_delay);
++
++	if (bsp_priv->id == 1) {
++		regmap_write(bsp_priv->php_grf, RK3572_VCCIO0_3_VO_IOC_CON1, val);
++		regmap_write(bsp_priv->php_grf, RK3572_VCCIO5_6_IOC_MISC0, val);
++	} else {
++		regmap_write(bsp_priv->php_grf, RK3572_VCCIO1_2_4_VI_IOC_CON1, val);
++	}
++}
++
++static const struct rk_gmac_ops rk3572_ops = {
++	.init = rk3572_init,
++	.set_to_rgmii = rk3572_set_to_rgmii,
++	.gmac_phy_intf_sel_mask = GENMASK_U16(11, 9),
++	.gmac_rmii_mode_mask = BIT_U16(3),
++	.clock.io_clksel_io_mask = BIT_U16(7),
++	.clock.gmii_clk_sel_mask = GENMASK_U16(6, 5),
++	.clock.rmii_clk_sel_mask = BIT_U16(5),
++	.clock.rmii_gate_en_mask = BIT_U16(4),
++	.supports_rmii = true,
++	.php_grf_required = true,
++	.regs_valid = true,
++	.regs = { 0x29d20000, 0x2a040000, 0 },
++};
++
+ /* VCCIO0_1_3_IOC */
+ #define RK3576_VCCIO0_1_3_IOC_CON2		0X6408
+ #define RK3576_VCCIO0_1_3_IOC_CON3		0X640c
+@@ -1720,6 +1772,7 @@ static const struct of_device_id rk_gmac_dwmac_match[] = {
+ 	{ .compatible = "rockchip,rk3506-gmac", .data = &rk3506_ops },
+ 	{ .compatible = "rockchip,rk3528-gmac", .data = &rk3528_ops },
+ 	{ .compatible = "rockchip,rk3568-gmac", .data = &rk3568_ops },
++	{ .compatible = "rockchip,rk3572-gmac", .data = &rk3572_ops },
+ 	{ .compatible = "rockchip,rk3576-gmac", .data = &rk3576_ops },
+ 	{ .compatible = "rockchip,rk3588-gmac", .data = &rk3588_ops },
+ 	{ .compatible = "rockchip,rv1108-gmac", .data = &rv1108_ops },
 
 -- 
 2.34.1
