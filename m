@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B1B60A260A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9D0606A8B7
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dPxWKY/g;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jsG1lsIw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NrJHQSIW;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=StcbKjgQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,52 +14,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=r132SAdA06PRgqTYVS2JcCR63njeCiFKuORU3KC+nDs=; b=dPxWKY/g8hDLHJtQ7PKGHrzb97
-	jVR1vl5I2vRpFUEPX1DQcOHzdlWwh/vR5bRmMM6Rt1hyLfIzJTur2gFt8H2/z/zGpmw1NMmiU9q0N
-	+PJg6K2H3dKcH5GTWG4zZG1oOQWIAz/LQnr5/Mxj9KbMkBs/+XzcJTy/2eLMk0Uhx5LnsnEzOQkIe
-	Hvm5cwIKmIUCdcKoRro4+TNYAyoDsfAnFEaOuJYL4vk6yu8CthN17IeJz2aHNlvCsRqSOCPcbjIop
-	Z6kF0MM4pJNEY6WF/qUGjQRKfLcVKOSCz2tBAwR41taLNlrISToPFAus0ab5P0jj5De+w2GFxpC6p
-	7kT7TKvg==;
+	bh=unxNUnNvHo9UiEFNkytw5QgCqdwu/8SsVq4RLekX030=; b=NrJHQSIWREHTvdRjFrhBQZ+NFo
+	rVxtoG676I0lMb3SdhHN/TLoyBNO4CUaYDcg6YctDZrHdXldsvr62aVoj3HUPwfXo98YLyVZTk/jt
+	8MwF8XzfsH4WgsjI1DJvYsUFMswkVkMD+zV8QIe+iAUdrgoEfWpS9CZPRGJWc7j1dEZdWi8DdJITE
+	hA2mrdSoX+S/KFH7BAvNFN+joE+K2z2yVle2ptkhl3jCWWQ8zwfxtoPLe+enxeWudkA0OG74iw1Mr
+	IQLDdKpVX9k3NiZjZs0bztfC+T7SXX3zn4SsUhgzXLHpHzSncghVifHdES665MjkZOgiRPv684dMn
+	Z/5H4mPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxAD-00000002iZY-2mPj;
-	Mon, 16 Nov 2026 13:54:29 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSxAb-00000002icy-49mm;
+	Mon, 16 Nov 2026 13:54:53 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxAC-00000002iZG-1KwK
+	id 1xSxAb-00000002icm-1pwM
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:54:28 +0000
+	Mon, 16 Nov 2026 13:54:53 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 64E6B601FF;
-	Mon, 16 Nov 2026 13:54:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C8A31F00939;
-	Mon, 16 Nov 2026 13:54:25 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id E7A7A4585F;
+	Mon, 16 Nov 2026 13:54:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C96D71F000CD;
+	Mon, 16 Nov 2026 13:54:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794837267;
-	bh=r132SAdA06PRgqTYVS2JcCR63njeCiFKuORU3KC+nDs=;
+	s=k20260515; t=1794837292;
+	bh=unxNUnNvHo9UiEFNkytw5QgCqdwu/8SsVq4RLekX030=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=jsG1lsIwomGEJPRulw+J9IOMIPhSEI/1L3q7SbqlvCsL+Jh/xsOVnDRT60s8cJdnU
-	 ET+U8E1zh5FKiqrW/6V80mUSz0od/cb3Ah7dG1xmNxrF288O9fWj4YnRgkUeRd/OVk
-	 RGI+g0ho4SEDBzVI0SUoUDHkiSsRvqz45K5wBNbJOV0tqYo52QSU9mCwZjQ2viv+3y
-	 fXws0v9H6L4+kaMBX/gzGEiJVIrp2uWQrQAKJ7UwTB5ieTpQk2SVmThCOz5qqKuV/i
-	 nEfTNJnbUEawV1krTs/YV+veN7EKw+ED/k1eKzAygGv+RgYxMKqY5drqKe42kD7cn2
-	 98nipByPKcaoQ==
-Subject: Re: [PATCH net-next v2 2/2] net: stmmac: dwmac-sun8i: Enable jumbo
- frames up to MTU 2018
+	b=StcbKjgQOuezUN2KYHQTEH1d4Bkt4C2KFvx2LMLVRBkBkx6OPpQHdbvTov+zqXlOP
+	 6l1boZYSARnfVYO2All2qv6gm9ushbJjiOyn54jBTUMerK1JK2lD/7bfn3UAm97Oxy
+	 FeOO/Vk7DBr+/E9cHP3I04LcJBAyhp5YNYtF8nBR8xQ+wKIWIKHKbsGmeqsOuG0fZW
+	 cXpi9wuQeQ5MJg3Dxu8I8Llc6BeEGH4DY2KzmtOR9v8jvf89O/YSJ86EkwabHte7Pj
+	 n3vwJkuhdnyVzL82z6ZgeyTXrcRGvyZqqZdyDyJlb4KOwQtsbvTHMFUNyfsFx2Cthe
+	 X0gsi4XBEmzTg==
+Subject: Re: [PATCH net v3 RESEND 1/3] net: ti: icssg-prueth: Fix TX timestamp
+ cleanup crash
 From: netdev-bot+sashiko@kernel.org
-To: aiyengar1990@gmail.com
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, wens@kernel.org,
- jernej.skrabec@gmail.com, samuel@sholland.org, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org,
- clabbe.montjoie@gmail.com
-Date: Mon, 16 Nov 2026 13:54:25 +0000
-Message-ID: <179483726554.3136.14444857396156719322@kernel.org>
-In-Reply-To: <20261112-sun8i-emac-jumbo-v2-2-aca0cf23cf17@gmail.com>
-References: <20261112-sun8i-emac-jumbo-v2-2-aca0cf23cf17@gmail.com>
-X-sashiko-severity: Medium
+To: m-malladi@ti.com
+Cc: diogo.ivo@siemens.com, haokexin@gmail.com, philippe.schenker@impulsing.ch,
+ devnexen@gmail.com, horms@kernel.org, jacob.e.keller@intel.com,
+ pabeni@redhat.com, kuba@kernel.org, edumazet@kernel.org, davem@davemloft.net,
+ andrew+netdev@lunn.ch, linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, danishanwar@ti.com
+Date: Mon, 16 Nov 2026 13:54:51 +0000
+Message-ID: <179483729133.3136.8884772760823152816@kernel.org>
+In-Reply-To: <20261112102140.2744508-2-m-malladi@ti.com>
+References: <20261112102140.2744508-2-m-malladi@ti.com>
+X-sashiko-severity: High
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -81,10 +79,10 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 2 potential
+Thank you for your contribution! Sashiko AI review found 5 potential
 issue(s) to consider.
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 1
+Critical: 0 · High: 2 (2) · Medium: 3 · Low: 0
 
 If you believe none of the issues are legitimate, please reply to each
 issue of Medium severity or higher and explain why the AI is wrong.
@@ -92,130 +90,283 @@ If any of them are legitimate and you plan to respin, please let patchwork
 know by including "pw-bot: cr" as a separate line at the end of your reply
 (one such reply per series is enough).
 
-- [Medium] The commit message says "A device tree max-frame-size can
-  still lower it", but for this driver that is false.
-- [Low] The max_mtu clamp fixes a real, user-visible bug, but the commit
-  is framed as a feature ("Enable jumbo frames") and has no Fixes: tag.
+- [High] The patch only makes prueth_cleanup_tx_ts() aware of the
+  ERR_PTR(-EBUSY) sentinel.
+- [High] The ERR_PTR(-EBUSY) state exists only between
+  prueth_tx_ts_cookie_get() (icssg_common.c:1184) and the store…
+- [Medium] The Fixes: tag names the wrong commit.
+- [Medium] The commit message and the new comment misdescribe both the
+  trigger and the effect.
+- [Medium] The new check in prueth_cleanup_tx_ts() loads
+  emac->tx_ts_skb[i] twice with plain, non-READ_ONCE loads: once in…
+
+Pre-existing issues:
+- [High] This problem wasn't introduced by this patch, but
+  prueth_cleanup_tx_ts() (phylib work context) and the TX timestamp…
+- [High] This problem wasn't introduced by this patch, but
+  prueth_tx_ts_cookie_get() (icssg_common.c:1177-1190) reserves a slot…
 
 --
 
-net: stmmac: dwmac-sun8i: Enable jumbo frames up to MTU 2018
+net: ti: icssg-prueth: Fix TX timestamp cleanup crash
 
-This patch sets the JUMBO_FRM_EN bit in EMAC_RX_CTL0 from
-sun8i_dwmac_core_init(), so the sun8i EMAC accepts frames longer than 1518
-bytes. It also clamps plat_dat->maxmtu to 2018 in sun8i_dwmac_probe(). With
-that limit, a frame with two VLAN tags and the FCS fits in a single 2044
-byte descriptor buffer.
+This patch changes prueth_cleanup_tx_ts() to skip slots that hold NULL or
+the ERR_PTR(-EBUSY) reservation sentinel. It still clears every slot to
+NULL. The goal is to stop dev_kfree_skb_any() from being called on a slot
+that the TX path has reserved but not yet filled.
 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> index 0c82662fbe6ea..a18d3daf6a3ff 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-
-[ ... ]
-
-> @@ -645,6 +659,15 @@ static void sun8i_dwmac_core_init(struct mac_device_info *hw,
->  
->  	v = (8 << EMAC_BURSTLEN_SHIFT); /* burst len */
->  	writel(v, ioaddr + EMAC_BASIC_CTL1);
-> +
-> +	/* Without JUMBO_FRM_EN the receiver flags every frame longer than
-> +	 * 1518 bytes (1522 with a VLAN tag) as a length error, so any MTU
-> +	 * above 1500 is unusable. Frames are still bounded by the RX
-> +	 * descriptor buffer size, see EMAC_MAX_MTU.
-> +	 */
-> +	v = readl(ioaddr + EMAC_RX_CTL0);
-> +	v |= EMAC_RX_JUMBO_FRM_EN;
-> +	writel(v, ioaddr + EMAC_RX_CTL0);
->  }
-
-[Severity: Low]
-
-JUMBO_FRM_EN is now set unconditionally. A peer can therefore send oversized
-frames that reach the RX DMA even at the default MTU of 1500, and those
-frames span several descriptors.
-
-Dropping them correctly depends on commit 834ec9530832 ("net: stmmac: drop
-split frames on AF_XDP zero-copy RX"). That commit made
-ndesc_get_rx_status() return discard_frame | rx_not_ls for non-last
-descriptors, and made stmmac_rx() test status & discard_frame and drain the
-split frame.
-
-On a tree without that commit, wouldn't stmmac_rx() treat the last fragment
-of such a frame as a new packet? The commit message cites 834ec9530832 only
-as background. Could it be listed as a prerequisite for backporters?
-
-Related to this, the max_mtu clamp in sun8i_dwmac_probe() also fixes an
-existing problem, but the patch has no Fixes: tag. Before this patch, the
-driver advertised a max_mtu of 3712 and was in this state:
-
-- stmmac_hw_init() forces chain mode for STMMAC_FLAG_HAS_SUN8I.
-- stmmac_xmit() calls stmmac_is_jumbo_frm() only for enh_desc.
-- norm_set_tx_desc_len_on_chain() masks the length to 11 bits:
-
-    p->des1 |= cpu_to_le32(len & TDES1_BUFFER1_SIZE_MASK);
-
-So with an MTU between 2048 and 3712, a linear TX frame longer than 2047
-bytes was silently truncated. Would a Fixes: tag make sense for that part?
-
-[ ... ]
-
-> @@ -1209,6 +1232,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
->  	plat_dat->mac_setup = sun8i_dwmac_setup;
->  	plat_dat->tx_fifo_size = 4096;
->  	plat_dat->rx_fifo_size = 16384;
-> +	plat_dat->maxmtu = min(plat_dat->maxmtu, EMAC_MAX_MTU);
+> Fixes: e2dc7bfd677fc ("net: ti: icssg-prueth: Move common functions into a separate file")
 
 [Severity: Medium]
+Is this the right commit for the Fixes: tag?
 
-The commit message says:
+e2dc7bfd677fc is a code move, and its message says it introduces no
+functional changes. Before that commit, icssg_prueth.c already had
+prueth_tx_ts_cookie_get() storing ERR_PTR(-EBUSY), and a static
+prueth_cleanup_tx_ts() with the same check:
 
-    A device tree max-frame-size can still lower it.
+    if (emac->tx_ts_skb[i]) {
+        dev_kfree_skb_any(emac->tx_ts_skb[i]);
 
-Is that true for this driver? stmmac_probe_config_dt() reads the property
-only for a few compatibles:
+Both came from 186734c15886 ("net: ti: icssg-prueth: add packet
+timestamping and ptp support"), which landed in v6.6. e2dc7bfd677fc
+landed in v6.10. Stable tooling that follows the current tag would skip
+6.6.y, which has the same cleanup code.
 
-stmmac_platform.c:stmmac_probe_config_dt() {
+Should this be:
+
+Fixes: 186734c15886 ("net: ti: icssg-prueth: add packet timestamping and ptp support")
+
+> diff --git a/drivers/net/ethernet/ti/icssg/icssg_common.c b/drivers/net/ethernet/ti/icssg/icssg_common.c
+> index 4a7d1a6f470b1..8cb2ad2ebece5 100644
+> --- a/drivers/net/ethernet/ti/icssg/icssg_common.c
+> +++ b/drivers/net/ethernet/ti/icssg/icssg_common.c
+> @@ -1426,10 +1426,13 @@ void prueth_cleanup_tx_ts(struct prueth_emac *emac)
+>  	int i;
+>  
+>  	for (i = 0; i < PRUETH_MAX_TX_TS_REQUESTS; i++) {
+> -		if (emac->tx_ts_skb[i]) {
+> +		/* Slot may hold ERR_PTR(-EBUSY) if the TX path reserved it
+> +		 * but has not yet stored the real skb pointer.  Skip the free
+> +		 * but still clear the slot so it can be reused.
+> +		 */
+
+[Severity: Medium]
+Do this comment and the commit message accurately describe when the slot
+holds ERR_PTR(-EBUSY)?
+
+Only prueth_tx_ts_cookie_get() writes the sentinel. A few instructions
+later, icssg_ndo_start_xmit() overwrites it, with no return or goto in
+between:
+
+    tx_ts_cookie = prueth_tx_ts_cookie_get(emac);
+    if (tx_ts_cookie >= 0) {
+        skb_shinfo(skb)->tx_flags |= SKBTX_IN_PROGRESS;
+        ...
+        emac->tx_ts_skb[tx_ts_cookie] = skb_get(skb);
+
+So prueth_cleanup_tx_ts() can only see the sentinel while an xmit is
+running at the same time. The commit message doesn't describe this as a
+race.
+
+The commit message also says "preventing NULL pointer dereference".
+Wouldn't the original failure be a dereference of the ERR_PTR value inside
+kfree_skb(), not a NULL dereference?
+
+The comment says the slot is cleared "so it can be reused". The xmit that
+reserved the slot is still running, though, and will store skb_get(skb)
+into it anyway.
+
+Could the commit message and the comment describe the actual race?
+
+> +		if (!IS_ERR_OR_NULL(emac->tx_ts_skb[i]))
+>  			dev_kfree_skb_any(emac->tx_ts_skb[i]);
+
+[Severity: Medium]
+Can these two plain loads of emac->tx_ts_skb[i] return different values?
+
+Three things change the slot with no common lock: icssg_ndo_start_xmit()
+on any TX queue, tx_ts_work(), and the xmit error paths. Consider this
+sequence:
+
+- The load in IS_ERR_OR_NULL() sees a valid skb.
+- tx_ts_work() takes that skb and writes NULL.
+- Another xmit reserves the slot before the second load.
+
+The result is dev_kfree_skb_any(ERR_PTR(-EBUSY)), which is the crash this
+patch is meant to prevent.
+
+This only happens if the compiler emits two separate loads, which C allows
+for plain accesses.
+
+Would it be safer to read the slot once into a local with READ_ONCE() or
+xchg()? The underlying fix still needs a lock.
+
+[Severity: High]
+This isn't a bug introduced by this patch, but what stops this free from
+racing with the TX timestamp consumers?
+
+prueth_cleanup_tx_ts() runs from the phylib link change path. Meanwhile,
+tx_ts_work() (threaded tx_ts_irq) and prueth_tx_ts_sr1() (threaded mgm
+IRQ) read and then clear the same slot without a lock:
+
+    skb = emac->tx_ts_skb[tsr.cookie];
+    emac->tx_ts_skb[tsr.cookie] = NULL;	/* free slot */
     ...
-	if (of_device_is_compatible(np, "st,spear600-gmac") ||
-		of_device_is_compatible(np, "snps,dwmac-3.50a") ||
-		of_device_is_compatible(np, "snps,dwmac-3.70a") ||
-		of_device_is_compatible(np, "snps,dwmac-3.72a") ||
-		of_device_is_compatible(np, "snps,dwmac")) {
-		...
-		of_property_read_u32(np, "max-frame-size", &plat->maxmtu);
+    skb_tstamp_tx(skb, &ssh);
+    dev_consume_skb_any(skb);
+
+Suppose tx_ts_work() reads skb S, and prueth_cleanup_tx_ts() also reads S
+and calls dev_kfree_skb_any(S) before tx_ts_work() writes NULL.
+tx_ts_work() then calls skb_tstamp_tx() and dev_consume_skb_any() on a
+reference that has already been dropped.
+
+If TX completion has already released the base reference, isn't that a
+use-after-free followed by a double free?
+
+The error paths in icssg_ndo_start_xmit() race with cleanup the same way:
+
+    cleanup_tx_ts:
+        if (in_tx_ts) {
+            dev_kfree_skb_any(emac->tx_ts_skb[tx_ts_cookie]);
+            emac->tx_ts_skb[tx_ts_cookie] = NULL;
+        }
+
+Both sides can drop the skb_get() reference, and then drop_free_skb frees
+the base reference.
+
+prueth_cleanup_tx_ts() also still doesn't adjust tx_ts_pending.
+
+> -			emac->tx_ts_skb[i] = NULL;
+> -		}
+> +		emac->tx_ts_skb[i] = NULL;
+
+[Severity: High]
+The ERR_PTR(-EBUSY) case only happens while icssg_ndo_start_xmit() is
+running. Can this unlocked NULL write then overwrite the skb that the
+xmit is about to store?
+
+emac_adjust_link() does:
+
+    netif_tx_stop_all_queues(ndev);
+    prueth_cleanup_tx_ts(emac);
+
+emac_adjust_link_sr1() does the same. netif_tx_stop_all_queues() only sets
+the XOFF bits and doesn't wait for an xmit that is already running:
+
+CPU0 (emac_adjust_link)            CPU1 (icssg_ndo_start_xmit)
+                                   prueth_tx_ts_cookie_get()
+                                     tx_ts_skb[k] = ERR_PTR(-EBUSY)
+prueth_cleanup_tx_ts()
+  IS_ERR_OR_NULL(tx_ts_skb[k])
+    -> true, skip free
+                                   tx_ts_skb[k] = skb_get(skb)
+  tx_ts_skb[k] = NULL
+
+Does this leak the skb_get() reference on the skb, along with its socket's
+sk_wmem_alloc charge?
+
+When the timestamp response for k arrives, tx_ts_work() sees NULL, logs
+"Invalid TX TS cookie" and breaks without decrementing tx_ts_pending.
+
+Once the slot is NULL, an xmit on another TX queue can also reserve the
+same index through prueth_tx_ts_cookie_get(), while the original xmit
+still owns it. Two in-flight packets then share one cookie. The original
+xmit's error paths (cleanup_tx_ts and free_desc_stop_q_busy_cleanup_tx_ts)
+would call:
+
+    dev_kfree_skb_any(emac->tx_ts_skb[tx_ts_cookie]);
+
+on whatever the slot holds at that point. That may be the other packet's
+skb or ERR_PTR(-EBUSY).
+
+Cleanup and the xmit error path can also still both free the same valid
+skb pointer.
+
+Instead of another value check, would this need netif_tx_disable() before
+the cleanup? It would also need a lock shared by prueth_tx_ts_cookie_get(),
+the xmit error paths, tx_ts_work() and prueth_cleanup_tx_ts().
+
+[Severity: High]
+This makes prueth_cleanup_tx_ts() aware of the sentinel. Don't the
+timestamp completion handlers still treat any non-NULL slot as a valid
+skb?
+
+tx_ts_work() in icssg_prueth.c only rejects NULL:
+
+    if (tsr.cookie >= PRUETH_MAX_TX_TS_REQUESTS ||
+        !emac->tx_ts_skb[tsr.cookie]) {
+
+An ERR_PTR(-EBUSY) slot passes this check, and the later if (!skb) check
+can't catch it. The value then goes to skb_tstamp_tx() and
+dev_consume_skb_any().
+
+prueth_tx_ts_sr1() in icssg_prueth_sr1.c only checks the cookie range:
+
+    skb = emac->tx_ts_skb[cookie];
+    emac->tx_ts_skb[cookie] = NULL;	/* free slot */
     ...
-}
+    skb_tstamp_tx(skb, &ssh);
 
-None of the compatibles in sun8i_dwmac_match[] can carry an snps,dwmac
-fallback under allwinner,sun8i-a83t-emac.yaml. So plat_dat->maxmtu always
-holds the JUMBO_LEN default (9000) when this min() runs, and the line always
-sets it to 2018.
+skb_tstamp_tx() dereferences orig_skb->sk, so an empty slot causes a NULL
+dereference.
 
-The binding does accept max-frame-size on these nodes, because it includes
-snps,dwmac.yaml through allOf, and that pulls in ethernet-controller.yaml.
-If a board sets max-frame-size to cap the MTU for a PHY or switch limit, the
-driver ignores it without a warning.
+prueth_cleanup_tx_ts() sets every slot to NULL on link-down. It doesn't
+reset tx_ts_pending, and it doesn't synchronize with firmware timestamp
+responses already queued for those cookies.
 
-Should the commit message be corrected, or should the driver parse
-max-frame-size itself?
+On SR1, consider this sequence:
 
-If the property is ever parsed for these nodes, the min() has a second
-problem. plat->maxmtu is an int filled by of_property_read_u32(). A value
-below min_mtu, or one that is negative as an int, passes straight through
-min(). stmmac_dvr_probe() then only warns:
+- A timestamped frame is sent.
+- The firmware posts the response.
+- The link goes down.
 
-	if (priv->plat->maxmtu < ndev->min_mtu)
-		dev_warn(priv->device,
-			 "%s: warning: maxmtu having invalid value (%d)\n",
-			 __func__, priv->plat->maxmtu);
-	else if (priv->plat->maxmtu < ndev->max_mtu)
-		ndev->max_mtu = priv->plat->maxmtu;
+emac_adjust_link_sr1()->prueth_cleanup_tx_ts() can then NULL the slot
+before prueth_rx_mgm_ts_thread_sr1()->prueth_tx_ts_sr1() runs, which
+leads to skb_tstamp_tx(NULL, ...).
 
-In that case ndev->max_mtu stays at SKB_MAX_HEAD(NET_SKB_PAD + NET_IP_ALIGN).
-Wouldn't that bring back the TX truncation and the RX split-frame drops that
-this patch is meant to prevent?
+On SR2, a stale response for cookie k could be handled while a new xmit
+holds k reserved. That would pass ERR_PTR(-EBUSY) to skb_tstamp_tx(). If
+the stale response is handled after the new skb_get() store, the old
+timestamp is attached to an unrelated packet.
+
+The missing NULL check in prueth_tx_ts_sr1() predates this patch. This
+commit is fixing the case where a reserved or cleared slot is used as an
+skb, so should tx_ts_work() and prueth_tx_ts_sr1() be covered as well?
+
+[Severity: High]
+This is a pre-existing issue, but is the slot reservation in
+prueth_tx_ts_cookie_get() safe across TX queues?
+
+    for (i = 0; i < PRUETH_MAX_TX_TS_REQUESTS; i++) {
+        if (!emac->tx_ts_skb[i]) {
+            emac->tx_ts_skb[i] = ERR_PTR(-EBUSY); /* reserve slot */
+            return i;
+        }
+    }
+
+All TX queues of the netdev share emac->tx_ts_skb[] (up to
+PRUETH_MAX_TX_QUEUES on SR2). icssg_ndo_start_xmit(), however, is only
+serialized by each queue's own lock. Two CPUs sending HW-timestamped skbs
+on different queues could both see slot i as NULL and both reserve it.
+
+Both packets would then carry cookie i in epib[0]:
+
+- The second skb_get(skb) store overwrites the first, which leaks the
+  first skb and its socket's wmem charge.
+- tx_ts_pending is incremented twice for one slot.
+- The first response could attach one packet's timestamp to the other.
+- The second response would hit "Invalid TX TS cookie".
+
+Suppose xmit B's ERR_PTR(-EBUSY) write lands after xmit A has stored its
+skb. A's error path would then call dev_kfree_skb_any(ERR_PTR(-EBUSY)).
+
+SR1 uses a single TX queue and doesn't appear to be affected.
+
+Would a spinlock around tx_ts_skb[], or cmpxchg() for the reservation, be
+needed here? This also looks like the root cause of the reservation
+window races above.
 
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261112-sun8i-emac-jumbo-v2-0-aca0cf23cf17%40gmail.com
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261112102140.2744508-1-m-malladi%40ti.com
 
