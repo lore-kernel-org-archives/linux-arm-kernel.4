@@ -2,67 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621E3606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:01:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE865606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4Kg4bB//;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QzElkGHn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tRNZAUtF;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OTWL/4HP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1yzaqsKWntD6D7WhPRLpd4zR5p+pFWl1Lj+jCyzgHHQ=; b=4Kg4bB//9HmGtCH6VH1B+i+9US
-	D73BVgW9vYZoQlRW0QkyIp7ts9cUtGjDFTNu0OR5tm9QVXt3lKtBc1X7R4ENrk7q1ppp9BZKCWAoh
-	ZxGfVDSHfAHdhIaTGm3QxT9IYk1kUCiHen0f4dv6RtIuyAVs/dV/260rOZ/oMzz5TwhD/B9tax2cg
-	bdDkL7zXn8oCwknLv0042qhqzjI4TljwPX4f2Fx3IRUtmJ595S/shIN2oX8zulkNE7WuNP4i8QF4W
-	5kKv+7ugntZdHN7MvqRudHp9MTE1PdIIno7+3FRc636uhxpDa5GsB08rxbPU7niOdKzzOLg0WrI6N
-	AKhCIjzQ==;
+	bh=vWxnD3JhZUol/MGQugCerD+bGnYWHzc8eSVqln/Wqi4=; b=tRNZAUtF3f2kTkCzS1Z8RFuNo3
+	N32EdvRcL7IMhPg7luhajuNCGDx0bEuP4wSiQz9qP5AZDvNS6aboIoQCmoc32H3irYNjUGXa/47Tu
+	6GPTFQ4pv+6L9MFdJm/JOte7qQdtVRm5fC4gnZJtjiiHgAmpe4S+ARp/+1s0jY7UnIf7hPFMDX6vi
+	bKKxkpW/E+/vWyK55pptWO58tNTOvFhUboPAPo3l3v9mRsriNkFrfIfR+mI1TUTUbK52bt1jYOjn2
+	8bQjgf6kS2VZd2O18InEn8d5YEWPBuDsWkeOuufbJrS7b5SmwHmAL2AqYxFeZ0v1Rbw64MF8mdcPv
+	ANa5m85g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSz8n-000000039Di-2D0d;
-	Mon, 16 Nov 2026 16:01:09 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSz9L-000000039IS-3YuB;
+	Mon, 16 Nov 2026 16:01:43 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSz8l-000000039DZ-47Y9
+	id 1xSz9I-000000039Hc-0NZE
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 16:01:08 +0000
+	Mon, 16 Nov 2026 16:01:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 79A4443683;
-	Mon, 16 Nov 2026 16:01:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21EAC1F000C4;
-	Mon, 16 Nov 2026 16:01:07 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7A10E4344A;
+	Mon, 16 Nov 2026 16:01:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CD341F000C4;
+	Mon, 16 Nov 2026 16:01:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794844867;
-	bh=1yzaqsKWntD6D7WhPRLpd4zR5p+pFWl1Lj+jCyzgHHQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=QzElkGHnsj+Vy2yUPNEIflYwrdtpxPlJZdYMfB6W0neh9fP8PhO0YQ85l75ANNcyz
-	 6fbjRzIAG3CeerrV5J0mW26Ib8Xx6REjz8+nBVWZISoLzbLwsjQrhEbpqGqtKuYnsb
-	 DfJp+L9Q4U4AyqGd+SGabb1agjQVOW+RSxeC2c8tKeP1YknqeooZTk0CbnJDzNhNYx
-	 o1Xc999YlX4Q050yskQYZizLPK1lCgMc3ThNDInLypAB4/cQdIVUvGM/us2tkz8kk9
-	 RS6mhH0a72CL9ugnhz4A18PwXGbncu2epigbeTB7futH1m8Pfe5H/hYDST+SMnerJd
-	 Mf8VSNL0DgGYA==
-Date: Mon, 16 Nov 2026 10:01:01 -0600
-From: Rob Herring <robh@kernel.org>
-To: Chancel Liu <chancel.liu@oss.nxp.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: connector: Add fsl,aud-io-slot
- binding
-Message-ID: <20261116160101.GA2015740-robh@kernel.org>
-References: <20261105064117.277495-1-chancel.liu@oss.nxp.com>
- <20261105064117.277495-2-chancel.liu@oss.nxp.com>
- <20261112225328.GA1784283-robh@kernel.org>
- <dd68ae61-9dfd-4138-acf5-b77c63ba0fa3@oss.nxp.com>
+	s=k20260515; t=1794844899;
+	bh=vWxnD3JhZUol/MGQugCerD+bGnYWHzc8eSVqln/Wqi4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=OTWL/4HPInwhhKALFy+nccOqOFnlRl3KeNdl7Pai4xabJ8kYIIarWfWF68LZTWb9K
+	 IZ/dGvrw4tZqOWP/fn7QrMrFiRn8OeWviR6G3QTSSbmVXZgYyZ6wqWbTRGMZ6bNPVA
+	 RfGoiBGHjvYYQHsQsjDRzreATKK3z3zVXc2QLiSTM2lL6gncdxuSyBUE2rb3O4th6b
+	 rIsjdI7ZgbwgLA3VUeGBOaRMv1aZpwgBKYsyUVlC7yB7B0rLeRFlpnz17rhpDuYznq
+	 8RbUe1epeyWxBKruqRc3tSvefrfrtu0WhfO3ynPk4OOnVEJ+9Uy/ujiZPre2CS+MKD
+	 CYW9OnSVUN0GA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xSz9E-0000000GXqJ-3Vfj;
+	Mon, 16 Nov 2026 16:01:36 +0000
+Date: Mon, 16 Nov 2026 16:01:36 +0000
+Message-ID: <86ik1w22an.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Dan Carpenter <dan@pereq.eu>
+Cc: Oliver Upton <oupton@kernel.org>,	Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,	Zenghui Yu
+ <yuzenghui@huawei.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Will
+ Deacon <will@kernel.org>,	Mark Rutland <mark.rutland@arm.com>,	Jintack Lim
+ <jintack.lim@linaro.org>,	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,	linux-kernel@vger.kernel.org,	Karthik Bhargavan
+ <karthik@pereq.eu>,	=?UTF-8?B?Q2zDqW1lbnQ=?= Blaudeau <clement@cryspen.com>
+Subject: Re: [PATCH 1/2] KVM: arm64: nv: Fix AT emulation for TCR2_EL1
+In-Reply-To: <eec50693a12e1ba34d60458ae8fe605ac198a79c.1794808373.git.dan@pereq.eu>
+References: <cover.1794808373.git.dan@pereq.eu>
+	<eec50693a12e1ba34d60458ae8fe605ac198a79c.1794808373.git.dan@pereq.eu>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dd68ae61-9dfd-4138-acf5-b77c63ba0fa3@oss.nxp.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: dan@pereq.eu, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, jintack.lim@linaro.org, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, karthik@pereq.eu, clement@cryspen.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,115 +86,172 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 04:14:26PM +0800, Chancel Liu wrote:
-> On 11/13/2026 6:53 AM, Rob Herring wrote:
-> > On Thu, Nov 05, 2026 at 03:41:14PM +0900, Chancel Liu wrote:
-> >> From: Chancel Liu <chancel.liu@nxp.com>
-> >>
-> >> The NXP AUD-IO slot represents a physically present I/O connector on
-> >> the base board. It acts as a nexus that exposes a constrained set of
-> >> I/O resources, such as GPIOs, clocks and interrupts, through fixed
-> >> electrical wiring. All actual hardware providers reside on the base
-> >> board. The connector node only defines index-based mappings to those
-> >> providers.
-> >>
-> >> This connector type is present on i.MX95 19x19 EVK and i.MX952 EVK,
-> >> where it is used to attach the IMX-AUD-IO audio expansion card[1]. The
-> >> same add-on board can be reused across different base boards that carry
-> >> this connector.
-> >>
-> >> [1]https://www.nxp.com/part/IMX-AUD-IO
-> > 
-> > That link is pretty much useless. Is there a pinout definition 
-> > somewhere?
-> > 
+On Mon, 16 Nov 2026 06:00:52 +0000,
+Dan Carpenter <dan@pereq.eu> wrote:
 > 
-> The detailed user manual (UM12022) is listed as official documentation:
-> https://docs.nxp.com/bundle/UM12022/page/topics/pcie_interface1.html
-> But it is behind an NXP login.
+> Arm provides an AT instruction that translates a virtual address the way
+> the MMU would and returns the result.  There is a bug in the way this
+> instruction is emulated for nested virtualization because of how TCR2_EL1
+> is handled.  The bug is fairly minor.
 > 
-> The brief pinout table looks like this:
+> The TCR2_EL1 register has bits which turn on permission indirection
+> (PIE) and permission overlays (POE).  When these bits are set, the AT
+> instruction reads the permissions stored in PIR_EL1 and POR_EL1.  If
+> you have the right features and permissions then in the return value from
+> the AT instruction we set one bit to either 1 or 0 depending on whether
+> the access would be allowed or whether it would fault.
 > 
-> Pin    Signal               Dir
-> ----   ------------------   ---
-> A11    PCI_AUD_RST_B        In   (GPIO)
-> A12    AUD_CARD_DET         Out  (INT)
-> A21    AUD_SPI7_SCLK        In
-> A22    AUD_SPI7_SS0         In
-> A25    AUD_SPI7_MOSI        In
-> A26    AUD_SPI7_MISO        Out
-> A29    AUD_SPI7_SCLK        In
-> A30    AUD_SPI7_SS0         In
-> A32    AUD_SPI7_MISO        Out
-> A33    AUD_SPI7_MOSI        In
-> B5     I2C6_SCL_1V8         In
-> B6     I2C6_SDA_1V8         I/O
-> B10    AUD_SLOT_PWR_SYNC    In   (GPIO)
-> B11    AUD_SLOT_PWRDN       In   (GPIO)
-> B12    AUD_SLOT_MCLK        In   (CLK)
-> B14    AUD_SLOT_INT_B       Out  (INT)
-> B15    AUD_SLOT_INT_B       Out
-> B17    AUD_SLOT_INT_B       Out
-> B23    SAI2_RXFS            Out
-> B24    SAI2_RXC             Out
-> B27    SAI2_TXD1            In
-> B28    SAI2_TXD2            In
-> B30    SAI2_TXD3            In
-> B31    SAI2_RXD1            Out
-> A2, A3, B1, B2, B3      VCC_EXT_12V0
-> B8, A9, A10             VCC_EXT_3V3
+> However, the bug is that just because the host has TCR2 enabled, it
+> doesn't mean the VM has it.  KVM doesn't load these registers for a VM
+> which doesn't have the features, instead the AT runs with the host's
+> HCRX_EL2, which has TCR2En set.  So the AT uses the TCR2_EL1, PIR_EL1 and
+> POR_EL1 values another VM left on the CPU, or possibly the VMM's POR_EL0.
+> Likewise, for a VM which has TCR2 but not PIE or POE, the L2's TCR2_EL1
+> is loaded unmasked.
 > 
-> > Looking at the overlay, this looks incomplete. It looks like there's I2C 
-> > thru the connector for example. There's also power rails.
-> >
-> > The idea with connectors is that overlays apply to the connector node 
-> > and nothing else.
+> The impact of this bug is that we leak a single bit of data to the L1,
+> but in real life it's hard to imagine how it is useful to an attacker.
 > 
-> For this patch set, I2C, I2S and regulators are
-> provided by the base boards using a common set of labels:
+> Fix this by writing zero to TCR2_EL1 when the VM doesn't have TCR2, and
+> by clearing the PIE and POE bits when the VM doesn't have those
+> features.  Also it should be effective_tcr2(vcpu, TR_EL10) to read the
+> TCR2 for the L1 instead of vcpu_read_sys_reg(vcpu, TCR2_EL1).
 > 
->   aud_io_i2c
->   aud_io_cpu
->   aud_io_reg_1v8
->   aud_io_reg_3v3
->   aud_io_reg_5v
+> Fixes: 477e89cabb14 ("KVM: arm64: nv: Add basic emulation of AT S1E{0,1}{R,W}")
+> Fixes: 23e7a34c8397 ("KVM: arm64: Add AT fast-path support for S1PIE")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Dan Carpenter <dan@pereq.eu>
+> ---
+>  arch/arm64/kvm/at.c | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
 > 
-> The common add-on board overlay references these labels directly. This
-> allows the same overlay to be used with both base boards. But the
-> overlay still depends on nodes outside the connector.
+> diff --git a/arch/arm64/kvm/at.c b/arch/arm64/kvm/at.c
+> index 30d8f062b2c2..06765881a4c8 100644
+> --- a/arch/arm64/kvm/at.c
+> +++ b/arch/arm64/kvm/at.c
+> @@ -1438,7 +1438,13 @@ static u64 __kvm_at_s1e01_fast(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
+>  	write_sysreg_el1(vcpu_read_sys_reg(vcpu, TCR_EL1),	SYS_TCR);
+>  	write_sysreg_el1(vcpu_read_sys_reg(vcpu, MAIR_EL1),	SYS_MAIR);
+>  	if (kvm_has_tcr2(vcpu->kvm)) {
+> -		write_sysreg_el1(vcpu_read_sys_reg(vcpu, TCR2_EL1), SYS_TCR2);
+> +		u64 tcr2 = effective_tcr2(vcpu, TR_EL10);
+> +
+> +		if (!kvm_has_s1pie(vcpu->kvm))
+> +			tcr2 &= ~TCR2_EL1_PIE;
+> +		if (!kvm_has_s1poe(vcpu->kvm))
+> +			tcr2 &= ~(TCR2_EL1_POE | TCR2_EL1_E0POE);
+> +		write_sysreg_el1(tcr2, SYS_TCR2);
 
-Using labels is a solution, but not one I particularly like because that 
-makes labels an ABI yet we don't document them.
+The sanitising should really be moved into the effective_tcr2()
+helper, as this is its purpose. Something like the below, which is
+obviously untested... Ultimately, TCR2_EL1 should be moved to the
+automatic sanitisation scheme to inherit the expected RES0 behaviours.
 
+>  		if (kvm_has_s1pie(vcpu->kvm)) {
+>  			write_sysreg_el1(vcpu_read_sys_reg(vcpu, PIR_EL1), SYS_PIR);
+>  			write_sysreg_el1(vcpu_read_sys_reg(vcpu, PIRE0_EL1), SYS_PIRE0);
+> @@ -1452,6 +1458,9 @@ static u64 __kvm_at_s1e01_fast(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
+>  	__load_stage2(mmu);
+>  
+>  skip_mmu_switch:
+> +	if (cpus_have_final_cap(ARM64_HAS_TCR2) && !kvm_has_tcr2(vcpu->kvm))
+> +		write_sysreg_el1(0, SYS_TCR2);
+> +
+>  	/* Temporarily switch back to guest context */
+>  	write_sysreg_hcr(vcpu->arch.hcr_el2);
+>  	isb();
+> @@ -1554,6 +1563,9 @@ int __kvm_at_s1e2(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
+>  		if (!vcpu_el2_e2h_is_set(vcpu))
+>  			val |= HCR_EL2_NV | HCR_EL2_NV1;
+>  
+> +		if (cpus_have_final_cap(ARM64_HAS_TCR2) && !kvm_has_tcr2(vcpu->kvm))
+> +			write_sysreg_el1(0, SYS_TCR2);
+> +
+>  		write_sysreg_hcr(val);
+>  		isb();
+>  
 
-> > I2C we've kind of figured out with something like this:
-> > 
-> > connector {
-> >   i2c-parent = <&i2c>;
-> >   i2c {
-> >     ...
-> >   };
-> > };
-> >
-> 
-> I will rework the I2C part using this model.
-> 
-> > Regulators is still open issue though.
-> > 
-> > Rob
-> 
-> Good to know this is being discussed. Is there a mailing-list thread or
-> patch series I can follow?
+This one needs fixing, as sashiko reported, but the reason why the
+proposed fix works at all is pretty fragile:
 
-Search lore. There's been a number of connector series over the years. 
-gpio-map, clock-map, pwm-map have all come out of those discussions.
+- the reset value is 0
+- we enforce RES0 behaviours on all interesting fields
+- TCR2_ELx are trapped and result in an UNDEF
 
-Rob
+So this deserves a comment, along the lines of what I have written in
+the hack below.
+
+Thanks,
+
+	M.
+
+diff --git a/arch/arm64/kvm/at.c b/arch/arm64/kvm/at.c
+index 30d8f062b2c29..1ff452277f27e 100644
+--- a/arch/arm64/kvm/at.c
++++ b/arch/arm64/kvm/at.c
+@@ -91,11 +91,16 @@ static enum trans_regime compute_translation_regime(struct kvm_vcpu *vcpu, u32 o
+ static u64 effective_tcr2(struct kvm_vcpu *vcpu, enum trans_regime regime)
+ {
+ 	if (regime == TR_EL10) {
++		u64 val;
++
+ 		if (vcpu_has_nv(vcpu) &&
+ 		    !(__vcpu_sys_reg(vcpu, HCRX_EL2) & HCRX_EL2_TCR2En))
+ 			return 0;
+ 
+-		return vcpu_read_sys_reg(vcpu, TCR2_EL1);
++		val = vcpu_read_sys_reg(vcpu, TCR2_EL1);
++		val &= ~(kvm_has_s1poe(vcpu->kvm) ? (TCR2_EL1_POE | TCR2_EL1_E0POE) : 0);
++		val &= ~(kvm_has_s1pie(vcpu->kvm) ? TCR2_EL1_PIE : 0);
++		return val;
+ 	}
+ 
+ 	return vcpu_read_sys_reg(vcpu, TCR2_EL2);
+@@ -1544,7 +1549,7 @@ int __kvm_at_s1e2(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
+ 	 * switching context behind everybody's back, disable interrupts...
+ 	 */
+ 	scoped_guard(write_lock_irqsave, &vcpu->kvm->mmu_lock) {
+-		u64 val, hcr;
++		u64 val, hcr, tcr2;
+ 		bool fail;
+ 
+ 		val = hcr = read_sysreg(hcr_el2);
+@@ -1554,6 +1559,16 @@ int __kvm_at_s1e2(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
+ 		if (!vcpu_el2_e2h_is_set(vcpu))
+ 			val |= HCR_EL2_NV | HCR_EL2_NV1;
+ 
++		if (cpus_have_final_cap(ARM64_HAS_TCR2)) {
++			tcr2 = read_sysreg_el1(SYS_TCR2);
++			/*
++			 * This relies on the reset value of TCR2_EL2
++			 * being 0, and not being modified when
++			 * FEAT_TCR2 is not exposed to the guest
++			 */
++			write_sysreg_el1(vcpu_read_sys_reg(vcpu, TCR2_EL2), SYS_TCR2);
++		}
++
+ 		write_sysreg_hcr(val);
+ 		isb();
+ 
+@@ -1577,6 +1592,9 @@ int __kvm_at_s1e2(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
+ 		if (!fail)
+ 			par = read_sysreg_par();
+ 
++		if (cpus_have_final_cap(ARM64_HAS_TCR2))
++			write_sysreg_el1(tcr2, SYS_TCR2);
++
+ 		write_sysreg_hcr(hcr);
+ 		isb();
+ 	}
+
+-- 
+Without deviation from the norm, progress is not possible.
 
