@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C94606A8BE
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FCA606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Owrwtndf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iTP6ZJtL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A9ZnwtGJ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Kt9prDvC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PRwvJorxkByLGTSFno1Iu5DhwXlwxTrPSjgbw9+lMxI=; b=Owrwtndfuc//as
-	g8b+wIfpa8+0paHdZCx/EpimFcQYBg4hh6D1SSAOGGY625+HRChF6piNq/wSUZCOP+WKKKMp4c/zt
-	yKrX+yqZ2Ad+RYkJgHd/IoB5QmaTwoFxZ2gcWkc/K5DX7t++bmFeM1GxLEPqvqZhE7Solo1f+JfbY
-	I7KCGpXiMrW4s0AUdDa62fK4zsPjrWQOrXlTCCeWaO7t1OxIMNo7Lbw1n1uMSPqmF6Cq56V1SriOf
-	/yELGtF3a44l0ibhuOV9AJt+Ro/kZUQUWcq12088Oh2nM13vn2+kKu3RVaMaLa6g5EGmPuD+uYTX0
-	J4PhZBsWdp+IFBRmpPkw==;
+	List-Owner; bh=ZmeARabfdEOi3PPZ96dBxEZL3vDEXEkKVWiX+j0djeU=; b=A9ZnwtGJQSwWva
+	iDDTsbCJTc0W6FlAIniY9Chkq7YbW97q/neUBLUnWwv02YtvCp1YAAAf8KZYwSSV8Z4EBYAMP62iY
+	xh8m0X4d7Q9EPZMFXZRiGokskK8y52ElHaXCw5o7nb9TQVntbYSKYipsotBbFtkcHb6qtcTjTKJFG
+	182QTW+3tUIFobf0HckeyKR3lqtbGaj46C52ku7OQWNkDtj8kO0byw+2gFtMyc+CdFYUUQ7vSPfrJ
+	kKdgtOBNOfPVQRjnpKNQCf0tKV3U1iGgu7j5yBIUwFKzH3la1VCJ1BOw89qtgcRkSWk52uUCMlijD
+	jDcziT0DNPeXjCGjAHcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxUi-00000002mZw-334Q;
-	Mon, 16 Nov 2026 14:15:41 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSxUw-00000002miX-1VLo;
+	Mon, 16 Nov 2026 14:15:54 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxUe-00000002mXg-2NSj
+	id 1xSxUl-00000002mbj-0lwo
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:15:36 +0000
+	Mon, 16 Nov 2026 14:15:43 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5345A43510;
+	by tor.source.kernel.org (Postfix) with ESMTP id 9798362C66;
+	Mon, 16 Nov 2026 14:15:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A975D1F000C4;
 	Mon, 16 Nov 2026 14:15:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 887571F000CA;
-	Mon, 16 Nov 2026 14:15:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794838536;
-	bh=PRwvJorxkByLGTSFno1Iu5DhwXlwxTrPSjgbw9+lMxI=;
+	s=k20260515; t=1794838542;
+	bh=ZmeARabfdEOi3PPZ96dBxEZL3vDEXEkKVWiX+j0djeU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=iTP6ZJtLdVdpd/VbF72VakFFel44De5q9eZV8MHs5WSmwU6X6M18VK+RDB/lBwbzU
-	 8886RbprK5AIpxpbR9LKMqh5V3NkpFExHNBlmwwjuR1JDeDfQgulYVUpycuCVKK3tq
-	 lCjFqhYzNQLGTegetqNFZEifPnRG36p1zMP7O7PehM1OsYyuurb9KmZZtBNHtZeHVB
-	 GsoHwNzQebSawKrXdjEzTjDMrfq8gmtGHnwcTgceC8scsQ8Ff7DjDjSCBGI5AAe+BE
-	 wiBSxjg8BRdQLxFeiv7lS4N0mnHN5bByILcV7PYNRg/UEDo2DuilHw/vpM7OOspHUQ
-	 ic8XAtYc37vCQ==
+	b=Kt9prDvC44VP1oUFIDE4JpL9BgjoE8yIWeNGcFt/B/vW7tWe/BCnGBmam4G3Un0uF
+	 GNWmMsWIb/+jFfNZsIW1TA90zRXybFjNXQv8zUBPF+Z3mC9JlDXKhEw9Arf08lMEqz
+	 nY128Vl16TLOaGIxK67a9fiV44DrUDCsnXYR9viVPXqXDTXSinZJqhPO0LzRdkWkMr
+	 Z8nTSLxopkA76nrw8aXH3OIKHSNTV5bbi6wYSJnEnCFE6R/MeAjUms8Y3jfSvkeIr7
+	 b6rOZyOL0LZ5NVK9BrcLsEE9RX72Kj/q9S3KvGFRZE++3t8XPiWaNmIwJbFcuJf9X5
+	 bzcUiJJGCBQMQ==
 From: Jisheng Zhang <jszhang@kernel.org>
 To: Andrew Lunn <andrew@lunn.ch>,
 	Heiner Kallweit <hkallweit1@gmail.com>,
@@ -62,9 +62,9 @@ Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 6/8] soc: synaptics: Populate SL2610 system controller DT children
-Date: Mon, 16 Nov 2026 21:54:40 +0800
-Message-ID: <20261116135442.4827-7-jszhang@kernel.org>
+Subject: [PATCH 7/8] arm64: dts: synaptics: Add SL2610 Ethernet nodes
+Date: Mon, 16 Nov 2026 21:54:41 +0800
+Message-ID: <20261116135442.4827-8-jszhang@kernel.org>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261116135442.4827-1-jszhang@kernel.org>
 References: <20261116135442.4827-1-jszhang@kernel.org>
@@ -89,50 +89,123 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The SL2610 system controller currently creates only its fixed clock,
-reset and pinctrl MFD devices. DT children such as the MDIO mmio-mux
-therefore never become platform devices, leaving their consumers in
-deferred probe indefinitely.
+Add the first DWMAC controller in the common SL2611 dtsi, then add
+the second controller for SL2619, including interrupts, clocks, PHY
+interface control offsets, queues and AXI burst configuration.
 
-Populate enabled DT children after adding the MFD devices. Use the
-managed helper to remove these children before the MFD devices during
-teardown and probe-error cleanup.
+Add the shared MDIO master selector as an mmio-mux child of the global
+system controller. Leave the MACs and selector disabled for boards to
+enable according to their wiring.
 
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-Assisted-by: LLM
 ---
- drivers/soc/synaptics/sl2610-syscon.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/synaptics/sl2611.dtsi | 41 +++++++++++++++++++++++
+ arch/arm64/boot/dts/synaptics/sl2619.dtsi | 36 ++++++++++++++++++++
+ 2 files changed, 77 insertions(+)
 
-diff --git a/drivers/soc/synaptics/sl2610-syscon.c b/drivers/soc/synaptics/sl2610-syscon.c
-index c6fc2955ac0d..b7965f4bb963 100644
---- a/drivers/soc/synaptics/sl2610-syscon.c
-+++ b/drivers/soc/synaptics/sl2610-syscon.c
-@@ -6,6 +6,7 @@
- #include <linux/mfd/core.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_platform.h>
- #include <linux/platform_device.h>
+diff --git a/arch/arm64/boot/dts/synaptics/sl2611.dtsi b/arch/arm64/boot/dts/synaptics/sl2611.dtsi
+index 663fe6034ba0..f6e2ce21ed19 100644
+--- a/arch/arm64/boot/dts/synaptics/sl2611.dtsi
++++ b/arch/arm64/boot/dts/synaptics/sl2611.dtsi
+@@ -281,12 +281,53 @@ aioclk: aviogbl: syscon@f7490000 {
+ 			clocks = <&osc>;
+ 		};
  
- struct sl2610_syscon_data {
-@@ -56,9 +57,14 @@ static const struct sl2610_syscon_data sl2610_cpu_data = {
- static int sl2610_syscon_probe(struct platform_device *pdev)
- {
- 	const struct sl2610_syscon_data *data = device_get_match_data(&pdev->dev);
-+	int ret;
- 
--	return devm_mfd_add_devices(&pdev->dev, PLATFORM_DEVID_AUTO,
--				    data->cells, data->num_cells, NULL, 0, NULL);
-+	ret = devm_mfd_add_devices(&pdev->dev, PLATFORM_DEVID_AUTO,
-+				   data->cells, data->num_cells, NULL, 0, NULL);
-+	if (ret)
-+		return ret;
++		ethernet0: ethernet@f7a04000 {
++			compatible = "syna,sl2610-dwmac", "snps,dwmac-5.20";
++			reg = <0xf7a04000 0x2000>;
++			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			clocks = <&clk CLK_GETHRGMII>,
++				 <&clk CLK_GETHRGMIISYS>, <&clk CLK_GE0_PTP_REF>;
++			clock-names = "stmmaceth", "pclk", "ptp_ref";
++			snps,axi-config = <&stmmac_axi_config_0>;
++			snps,mixed-burst;
++			snps,mtl-rx-config = <&mtl_rx_setup_0>;
++			snps,mtl-tx-config = <&mtl_tx_setup_0>;
++			snps,pbl = <32>;
++			syna,syscon = <&chip 0xa18>;
++			status = "disabled";
 +
-+	return devm_of_platform_populate(&pdev->dev);
- }
++			mtl_rx_setup_0: rx-queues-config {
++				snps,rx-queues-to-use = <1>;
++				queue0 {};
++			};
++
++			mtl_tx_setup_0: tx-queues-config {
++				snps,tx-queues-to-use = <2>;
++				queue0 {};
++				queue1 {};
++			};
++
++			stmmac_axi_config_0: stmmac-axi-config {
++				snps,blen = <256 128 64 32 0 0 0>;
++				snps,rd_osr_lmt = <0x7>;
++				snps,wr_osr_lmt = <0x7>;
++			};
++		};
++
+ 		clk: pinctrl: rst: chip: syscon@f7e10000 {
+ 			compatible = "syna,sl2610-soc-syscon", "syscon";
+ 			reg = <0xf7e10000 0x10000>;
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+ 			clocks = <&osc>;
++
++			mux1: mux-controller {
++				compatible = "mmio-mux";
++				#mux-control-cells = <1>;
++				mux-reg-masks = <0xa04 0x10>;
++				status = "disabled";
++			};
+ 		};
  
- static const struct of_device_id sl2610_syscon_of_match[] = {
+ 		cpuclk: cpu_wrap: syscon@f7e30000 {
+diff --git a/arch/arm64/boot/dts/synaptics/sl2619.dtsi b/arch/arm64/boot/dts/synaptics/sl2619.dtsi
+index 96bd58bbed3e..57933a9aba28 100644
+--- a/arch/arm64/boot/dts/synaptics/sl2619.dtsi
++++ b/arch/arm64/boot/dts/synaptics/sl2619.dtsi
+@@ -41,4 +41,40 @@ pmu {
+ 		interrupt-affinity = <&cpu0>,
+ 				     <&cpu1>;
+ 	};
++
++	soc {
++		ethernet1: ethernet@f7a06000 {
++			compatible = "syna,sl2610-dwmac", "snps,dwmac-5.20";
++			reg = <0xf7a06000 0x2000>;
++			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			clocks = <&clk CLK_GETHRGMII1>,
++				 <&clk CLK_GETHRGMII1SYS>, <&clk CLK_GE1_PTP_REF>;
++			clock-names = "stmmaceth", "pclk", "ptp_ref";
++			snps,axi-config = <&stmmac_axi_config_1>;
++			snps,mixed-burst;
++			snps,mtl-rx-config = <&mtl_rx_setup_1>;
++			snps,mtl-tx-config = <&mtl_tx_setup_1>;
++			snps,pbl = <32>;
++			syna,syscon = <&chip 0xa3c>;
++			status = "disabled";
++
++			mtl_rx_setup_1: rx-queues-config {
++				snps,rx-queues-to-use = <1>;
++				queue0 {};
++			};
++
++			mtl_tx_setup_1: tx-queues-config {
++				snps,tx-queues-to-use = <2>;
++				queue0 {};
++				queue1 {};
++			};
++
++			stmmac_axi_config_1: stmmac-axi-config {
++				snps,blen = <256 128 64 32 0 0 0>;
++				snps,rd_osr_lmt = <0x7>;
++				snps,wr_osr_lmt = <0x7>;
++			};
++		};
++	};
+ };
 -- 
 2.55.0
 
