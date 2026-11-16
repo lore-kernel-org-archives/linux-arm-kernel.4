@@ -2,192 +2,158 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FC3606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 08:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8609606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 08:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j8YTLnw/;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.a=rsa-sha256 header.s=corp-2025-04-25 header.b=CK5xLVxu;
-	dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-oracle-onmicrosoft-com header.b=oYrwVZG5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M2z5+52p;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=imcV5ba4;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=L/A/CYK7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-Id:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Cd7Yh5NqiOJls/+HpDV7Xg745DPFap/JZe1pNZ35MLo=; b=j8YTLnw/jEaMQL
-	6NYQz78wmZI3yj6PLmGz2geaBr87lRIXI96YO1wcVfYobBd2czXoESliWiRW7WcW3P3lBCvOJEmdU
-	Vq310k10bvJeHLtH6n+dPXS70EiMNs7rvIb59T3VE9uuTLs0oy7ZZ8dwH6HO1OSRYyiwwj0E1HSaa
-	WqqUDNvjvOJO9/Hiykr6ZFiV6HZyM08JFaal4krHKXyvqGvcMJNzt00lH3iJmIxLjYiAmsNKQd8W2
-	FzzLdtoYVcieAgAYXeLRLS8ua9dfOKFgi+9dACiWZpvGGuL5SAS3F4WDP0PdUmeGj+TT8D7jeAlwL
-	NC3qS6dq5MV8YS3KdS0Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=M6YIGKBp2Uwn6NWKr3hKh++AtRtVXDvB3/mXc2CHH4w=; b=M2z5+52ph82+/rAZL8Z0MxhAj4
+	spzOpkG2WTtz/ytX/ntE146TnAH5bQ/bSLH43pcwe/7tQOsknsqlNQtjcf/CxaBlEd7nyB9lPVhNt
+	D/kspdiNU+jNuKy81vLKXcg1+pLxNu7gqTTIftgbdO0xSIX9Td0Z5y17pOt9S7lvw/BeYL12zdN71
+	lOUFOt9dD4ZEv4BPoTz6QSnwyFGQfQDLWNcRBsZcP4QIuFR27uGsCg/Q9f2klonDZqMeksEdZXTaJ
+	h1vVw5JA3FHwwiMk+BLg6mZ0/8M+YGB5Haf7IB7T/4TOl5ekMJZFyLIxmOmQ/P7u389SpWolxChkk
+	NcDCn9vA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSs40-00000001cIJ-1igy;
-	Mon, 16 Nov 2026 08:27:44 +0000
-Received: from mx0b-00069f02.pphosted.com ([205.220.177.32])
+	id 1xSsFU-00000001dYz-4AN4;
+	Mon, 16 Nov 2026 08:39:37 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSs3x-00000001cHD-0ffW
+	id 1xSsFR-00000001dYS-3dtv
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 08:27:42 +0000
-Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AFMe1g3115139;
-	Mon, 16 Nov 2026 08:27:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	corp-2025-04-25; bh=Cd7Yh5NqiOJls/+HpDV7Xg745DPFap/JZe1pNZ35MLo=; b=
-	CK5xLVxuCCuFGEHH3N996L0b+QCJSwNqOZzNF4iR8IAQwS39SOY+8XyUYaJBRe3f
-	plSmWfu8PzcaYyDf/dT0d1WZhXKLz6afkhHhcT42mIR7tY6zEdE0I0SwpDdnw7wl
-	omzrF1ApHXzl3iet+uhFbMneQqTKmRTiK63qTOjcTFYVoDh6tpLC8x9fmLrs0Efh
-	lC/EubWY2DkmR/IOko2weUxWIj8DNTn4FGQmALHTiW0dwt6oTbkqMP4qW43C0mwE
-	d6Oo7bAOBkacxpKxKZaJ/N4lJJz7Em9wpR5JwZ+5G3HFZrX8X6hE42+NCAIdQXwf
-	aqN5+6+7PEQckhIhK1mccw==
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4hxfpe1kxd-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Mon, 16 Nov 2026 08:27:12 +0000 (GMT)
-Received: from pps.filterd (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.11/8.18.1.11) with ESMTP id 6AG7ceGX1550659;
-	Mon, 16 Nov 2026 08:27:11 GMT
-Received: from byapr05cu005.outbound.protection.outlook.com (mail-westusazon11010069.outbound.protection.outlook.com [52.101.85.69])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 4hyv5svngg-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=FAIL);
-	Mon, 16 Nov 2026 08:27:11 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l4uL7LdxxHiW8JZ4GFZOzRiCBL0N28+YzMajCaU6VZRiaHMWHgMAQipDgSNtQE2Xg6eIsVUIcv+hXSgik8WH4Coh2Zo8rrLIMpKas/VaDimWN5+uKM/AWmZltswR6LG07OtWbzrr45Kn9aYKWxl1rcKdzgiQlZImI8Nf7DRnLPyP0rethLua+lkbZQeyvkucb/nWBLyMkZei9jWqYIX+vyrDwYBI6K8AezXr1PmGybntxvhZuH89hnDCZIvEfGV3xqTyl9tDqmxGvL6HGUTxmBgtFhE5J2Kt64qdn/ptcxEv176zmcFsKpROaesrukxhKgsixIywOzWNfz8s9Jspgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Cd7Yh5NqiOJls/+HpDV7Xg745DPFap/JZe1pNZ35MLo=;
- b=C/C+f568nS30UfBb6i26ASRl62PV2ajS9LMNQhKlar61dhnULAv9G8XvbZ1LvhxA3/cNMfpLA/CBcv3m0979QTXJMRpj3ITeBzLVk056pge5SYL0zzXbb3aqQxtj+oMgGSgYkW0uGUxCJv4GChYe9fKQkdmFGub9qkxEal0fmyzO34ho+g+STVPOXloRSS5mc+BSww+WuqfCHCQsjjAdT5sYDfGgV0Bl31wns6XDhodO03HsGOL1dkotCErDVaDi5MCJzXttWSS23a8DiAbM/ouqnHV/6gQE3OmqVukvQaMMMckZxkfrfYw9qE2cdR97KiqsB7UJfXFSNPQqldCZiQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
+	Mon, 16 Nov 2026 08:39:35 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AG7enNa1109755
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 08:39:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=M6YIGKBp2Uwn6NWKr3hKh+
+	+AtRtVXDvB3/mXc2CHH4w=; b=imcV5ba4ohVDeUBr3xoYxAY52dOnSq80oxMNlf
+	Dqrko283stk4+hefixEeKjSnY1OFopWzCSuC2AoCNw4VF5+K0dybAOv5CqqS2ocV
+	WRmQOkgYbjUSEr+SUDzkCFub0oFdLUdmFIsGwxD606j3JTJqoXVtxvmQ5kSQ0Hj4
+	W9Ie9cZOFs8SAZEcgiJL1TpVRUWRCqWOTFXsHu9MNpbklOiJPvaZ5ycoJQkPdo5A
+	kkMzg27q/KU52+1Qmoj0bnkrwIgTi7Zig/2KEFVywz/C3MCKndfUFeMdIN/b8Rok
+	jbO3LnLPhraOC/vjipbzMozzpdouFnq9EttJ22xz0HOE2WIQ==
+Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hyrmc19m0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 08:39:33 +0000 (GMT)
+Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-341eff9e381so5108487eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 00:39:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Cd7Yh5NqiOJls/+HpDV7Xg745DPFap/JZe1pNZ35MLo=;
- b=oYrwVZG57Y5AYm919HTG8lDBhJ6vMEQPfW5tcp9Rv4NCq+hf2ZUwrXnb0TP76LVHzSJW/R+1JHTv+rEtlbtVXUWb48lOYP/pLNOpqq6BeY57E2lVuSwMDcKH/z4p2ggZd9HdonMKYj3XoTBjIfKaIj2qDBVQn6KPRPoIBnTUB74=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oracle.com;
-Received: from CO6PR10MB5409.namprd10.prod.outlook.com (2603:10b6:5:357::14)
- by CH3PR10MB8216.namprd10.prod.outlook.com (2603:10b6:610:1f5::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 08:25:08 +0000
-Received: from CO6PR10MB5409.namprd10.prod.outlook.com
- ([fe80::3c92:21f3:96a:b574]) by CO6PR10MB5409.namprd10.prod.outlook.com
- ([fe80::3c92:21f3:96a:b574%5]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 08:25:08 +0000
-From: Ankur Arora <ankur.a.arora@oracle.com>
-To: linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        bpf@vger.kernel.org
-Cc: arnd@arndb.de, catalin.marinas@arm.com, will@kernel.org,
-        peterz@infradead.org, akpm@linux-foundation.org, mark.rutland@arm.com,
-        harisokn@amazon.com, sahilchandna@linux.microsoft.com, cl@gentwo.org,
-        ast@kernel.org, rafael@kernel.org, daniel.lezcano@kernel.org,
-        memxor@gmail.com, zhenglifeng1@huawei.com, xueshuai@linux.alibaba.com,
-        rdunlap@infradead.org, david.laight.linux@gmail.com,
-        broonie@kernel.org, boris.ostrovsky@oracle.com, ashok.bhat@arm.com,
-        Ankur Arora <ankur.a.arora@oracle.com>
-Subject: [PATCH v17 12/16] cpuidle/poll_state: Wait for need-resched via tif_need_resched_relaxed_wait()
-Date: Mon, 16 Nov 2026 02:24:33 -0600
-Message-Id: <20261116082437.66739-13-ankur.a.arora@oracle.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20261116082437.66739-1-ankur.a.arora@oracle.com>
-References: <20261116082437.66739-1-ankur.a.arora@oracle.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MW4PR03CA0233.namprd03.prod.outlook.com
- (2603:10b6:303:b9::28) To CO6PR10MB5409.namprd10.prod.outlook.com
- (2603:10b6:5:357::14)
+        d=oss.qualcomm.com; s=google; t=1794818372; x=1795423172; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=M6YIGKBp2Uwn6NWKr3hKh++AtRtVXDvB3/mXc2CHH4w=;
+        b=L/A/CYK7Um2eOVgGSgRz61p3BlnKYX7KT/zmBJaYU08pGnNK5B3UeNpNjf7Guq6OaQ
+         XeF4KR2q6PIBhAcc1uoz07TC5XF113BLbNk1eLZroFmVVTxXze5Ehu1JNsKeQ3t/E7dP
+         P6EEHYgCBTWx64DNPPU47TQpHgFVmuT6iM1vesBUPGqJ1qT124EfjdbKArKnDHzLtqlw
+         9J6KFSEqPGWTRHzJPtesEMmVIhZhxstVq+mQUpOSUPlohWmWRPaK0ZRQ+bdcMHtxO3kR
+         SPPr4a2dMn3ZJniJAAmYh8ZLEovSTYM5EToCqCP6RiHKaPWlVHI2veDvdsnvw/6XmE96
+         bRdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794818372; x=1795423172;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=M6YIGKBp2Uwn6NWKr3hKh++AtRtVXDvB3/mXc2CHH4w=;
+        b=yew0+UX63wN+PMraATX3WBJMlPernbaKnUWkNRzIGut4vnV3BKilv0tpkjCNItvFGr
+         aPHta3jQtYz0wV5dQ4IyEIbw9hRm3QuaW+gfhgUX/ZyBJbG8qKedzusnkVyMiTS4f/03
+         kt5NvYkqWwS18FEM45dXzstvqPE07orhQxRZGunAhjZ+JGxB0z7bw56HrITzH/wjSpg4
+         dBAiMUwjNWo8Ad+sOfAymcrGpsqjW25KGQZahriq9645LKZD/bzw6bsGti0t9EnNa/ja
+         +fznTucPRQajcIm78P5/UY+dte8lHc1UbWBNkKvVlhyl9mKGkWqIW49RErdUT6PyJje/
+         ilsg==
+X-Forwarded-Encrypted: i=1; AL+hErFpORAAxQUOIeSklq/dmp2EiTelMrVP4AA+8N1/CKDxTflbVDlkffzbeJUKmDo9du1/1Dwkx/dDQQiRCgpG4I2s@lists.infradead.org
+X-Gm-Message-State: APuU4Z9tSzqddquItayxrt9ovqSuHMIN+32lDPv+FxOPPBKWcPb2DDx2
+	HNppyVCATcWR3M1910P+7ol581vcjaZ9GyyahTs0ZvYfVDwWv3iQbkNjD+JAnK+HIdCFWOBGQQu
+	pmvuEcQokT5Ye5hUdO/+ZwKw7eYnSHOe0UiS81u3Ks4QDcO2Ciz5qZWqIcw25Ah0aMz6Ii5U73o
+	sRnw==
+X-Gm-Gg: AZFdTZeqtHd1FvVmUW5iBTKVw8CR1yU5jxvcl+9ERVlH1YypV8sKVPEiK+sxOqmhXJb
+	ld1gHt/z/W4Xobv7EMRK6eLygq5DYQ9eLrBVCNRxg1fEqVe3Z23Dq/1nh80W6OkykXCLAwn+JIP
+	TNuMGkQn/x6W43Afr9vMvRq040Gc46KUfyERl1Mqvi+jtICUT9GmOhzLHwarmD7XZyqT0x5VnDI
+	oq0bzxEzXiJQpnTltwEeFcOnyys9iAaSVL3F/6BsgqrsVJ7dKBhNM/lBgGsg0GDjK8qAYul3VSG
+	GfjQgD+97NQLoxdfkki+fcj9NAIYaIOvmovWHWwJh67PEvKLUkEftm7eg3rgkXoLY3wGlV6lZok
+	WwmuytYmjah2Egspd+kfag1g7UrFH1O00GO453uGxBaBi7ZelBrC+ew5vFulz0IsoqcpJwdEmrP
+	rlLiXzkaDGQCRqJ4+Ol45uPNqBnBih3r0=
+X-Received: by 2002:a05:693c:8359:b0:36e:c07a:426f with SMTP id 5a478bee46e88-37967ae5b3dmr9545515eec.39.1794818372205;
+        Mon, 16 Nov 2026 00:39:32 -0800 (PST)
+X-Received: by 2002:a05:693c:8359:b0:36e:c07a:426f with SMTP id 5a478bee46e88-37967ae5b3dmr9545495eec.39.1794818371609;
+        Mon, 16 Nov 2026 00:39:31 -0800 (PST)
+Received: from hu-yuanfang-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-379553316fdsm32874021eec.5.2026.11.16.00.39.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 00:39:31 -0800 (PST)
+From: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+Date: Mon, 16 Nov 2026 00:39:18 -0800
+Subject: [PATCH v2] coresight: handle runtime PM resume failures
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR10MB5409:EE_|CH3PR10MB8216:EE_
-X-MS-Office365-Filtering-Correlation-Id: b94e9268-d384-4e86-721a-08df43bb1ff1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|366016|22082099003|18002099003|6133799003|261009223027099003|3023799007|56012099006|261102123227099003|261102130727099003|261028144727099003|261026121527099003|261026140227099003|261021123027099003|261022105027099003|261022113327099003|261021121427099003|261022075727099003|10067099003;
-X-Microsoft-Antispam-Message-Info: 2nja2RvqHoLFEvFqPY7Gl3kjkIsL+Z2YccPVW99fcFXGZ36XamnuSNV19DrgV0rwV+NUIL8OmB4Xwvt/BW6vgxq2GjNDVWDs2wKrGe9wH45mc3cBSWoiwKJgXMkkPK6Tk4ouLAowIrHgKuzHNLKT45MaUIZHqIg1ftpXfvjt+Uso+uKBUyAa34iCNYdze/GdIt7SPZjamD4SoJfEcdr3GyfDkq/yHF7jY67CNKHRrjxu3gYTTH5Mm7dbLOgyIgRRnv2SarblOTbCLxX9xpfZkJp5v9+0KhrI2zw6XZrIOxi/nFbkHj+x/WnLrSB0gtARWt3Bhh1pd9pq7WRTcN4sAQ68tWrF9yctjS2gtMmrqbXHGHJgv+8ct/Roy+ngTC6VlLhbrbXFQaYIm1e8nJIzrPevhMgpJLWSQ5SO6SmcSos8u76lJiYPu7lC+fAjXjlCvq/42+KjUXxy8vKMvkihYHnI7kHSfZVcZOpkS2nxhOmkm5t81ZUiiTxXFtCBzOVMBDQAqpY/8bUMJSaQjJGQB3OiFPB7Vm3Sn2NaHzaICQ5tOIPfMvna4JTv4H8+5IWE8B4auD1SVKSjv5gQ1ex6IwQ7qVGleyC/pKYwSztGMmN/iBIrZZtSJ1AdkNSJrqk8XMUGHdAhZeSdw6CzcOA6FV04PvMgjC3GzygpaIxoLuQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR10MB5409.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(366016)(22082099003)(18002099003)(6133799003)(261009223027099003)(3023799007)(56012099006)(261102123227099003)(261102130727099003)(261028144727099003)(261026121527099003)(261026140227099003)(261021123027099003)(261022105027099003)(261022113327099003)(261021121427099003)(261022075727099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?eZ89aJomZ2XglBNvGyRm+a2w9PuhRuciV9WxfYpOKnhwBOXUmPrI2LDxaGHA?=
- =?us-ascii?Q?e4Ss5+at1XirwErQZ807mmh4yqT/kpW09u1rVev87m/Zyb7MvFA6wTikKlkU?=
- =?us-ascii?Q?LzH7hXc5aOYE7altQk4LL5Kv4UTA01Ov3EDAZHn2qwMEBLUAHUCtlcOiE/g2?=
- =?us-ascii?Q?sq8Vx0v6+RQDeorFP3Z0G103r+7cG14uwHVi0Bb/VodTEZV+Ra93Xueo9fK2?=
- =?us-ascii?Q?wogdsj0R0H2RRl6KZvCZ+kgAM4mQTgt0psl+ESHNgMBvFEeLd9VZkaGP3WFc?=
- =?us-ascii?Q?t51wtE/PSo2f2ApuYiYZheyLb1b9JwgPebQI3IpVb5lvCfSMZUEFGku/Ytmh?=
- =?us-ascii?Q?DYkOgPXZLOzK/RgQq5evdGwPcxmXVDdWlpFPH7Tl4Gd/3W1T39wdoEfqtDv3?=
- =?us-ascii?Q?kCUSch/JT53j2q9INN3QjvGEAdrZmOxNwcKInxB/sZ3kAjo1hKBixw5ca/qP?=
- =?us-ascii?Q?N2TS9tGZnkscEfDM7Jh6NWBnen1yeUk8Vamf+dvBvIAZw5k80UXwBxz7hKjT?=
- =?us-ascii?Q?MzkBEFCMLeG5wsjVkOF8yYXupQT2/rl0FC3e+mE1tsUTmva/B6+8kQ67urgg?=
- =?us-ascii?Q?PaRsT0STP0FIxaAr5Pzf0fypqgp0lEZT0kQ43Wf0YYZfT6U+gl0Mu2UOt5rg?=
- =?us-ascii?Q?luv7nAFjc/gFdkbqyoeINwuBk7c1Ldiyqc1X2NFBGre5ip9rCht7XWPjmwx7?=
- =?us-ascii?Q?zuSuJ6CjeAvRl3u2xEmfaSJmkEl6lxVkh47w6O0+DGFDD4sUrbD94r2png8y?=
- =?us-ascii?Q?dT/ed9z3G+PP9VQT6+HRMUvmF6E7t65S0NhhM2jZ7shYterTNlW+cuNOkxTW?=
- =?us-ascii?Q?x9MAFOf5upTu0B9ld+y3XDK63+3enNHTaqWS6MLjBUsQ0dj5y29YcgVtgFzg?=
- =?us-ascii?Q?7p1jCT0HBqOT2ZGezpj5KxgNkzjrrThkSTseboJztjUkohsXUauGcdFVAwSw?=
- =?us-ascii?Q?y14EC4yJaUdzHux74sbr7930vqEEvIu6VSpg/natBj5boA/TAxBStaYDUvGf?=
- =?us-ascii?Q?XelOwGJOyKBVh68rwGDydTVqWbC1/xo4A638JcdUOaWi2FxOZ9zslyhYctfw?=
- =?us-ascii?Q?pjMJ2wTHfNnZBkDJW5yoerXfshy0yue7wUa2BGSwLGeIH7u1lZkGD7jJQyTH?=
- =?us-ascii?Q?p/Ogx0DWYraed5ss8INh9cTtoOrgtfErHss1e40RtpcQKI1skZZ+iU0TAuI1?=
- =?us-ascii?Q?swdudBebxCmY4sWj6/uZujAS8yeh9fZ2LqmwmD2Fa5BxEubGzvZZbUGzuF16?=
- =?us-ascii?Q?uMEdvLsvT43VEJ3mTiOKRRkYkUZ0yEvsLkpimpMNaRLfhYJSKutSCe1NbTpK?=
- =?us-ascii?Q?F9PzewjusVbpPKjsD2jLqmHDdvnIUK3qvPFQgiHyAsH4DmpHEOzzsjR/IwL3?=
- =?us-ascii?Q?+1O4xVySbWEpCBgEq0a7FWzmC3K1wv+hvfF/+OAzZiW7WHv924Yfn5mC1lDM?=
- =?us-ascii?Q?yXz7rMxBR2PLAC8Skf7J0bBECzaDKmGwcVAtNBnkGdmw9kxDSYD4NShvHl70?=
- =?us-ascii?Q?JrcOIQ74TdLNF9WhB9COO1r3rpMMRnX+2VVjn7KlrcsbmTwXyhECFxkWojvi?=
- =?us-ascii?Q?6A+Pcwawj0HYscMDLBXK+GnWuaoozHpXr+jQEcv+giRV9Y4rbT6XLBHuqXJI?=
- =?us-ascii?Q?Dh1uYJCTemCOAk2GXV4iLigLt2+5RZtTUfGvCAfINvnj1SxanF+uUfDtegOt?=
- =?us-ascii?Q?qxy8mD7zUaS9yaIFLqnuy2dTCx12xFjPd+ueFs/gYrb2TAy7sntJ+rjsfijo?=
- =?us-ascii?Q?4WIm9kTQA+G86D8ijhG8RNM3S1Fa18Y=3D?=
-X-Exchange-RoutingPolicyChecked: C1ytIMgUjXDLEhGnX+c0FG2HQBKqsG9dpge0sxwnALHsTEZnXPW3GcEFqG/OIB8hqk9xpZu4uVxOnX5HUSgTpziPJaOcI1DrtO/gZKnXlgvF+uNFIr/7p+9pIdnIIHiSSRafLtQJSCAF0IYTMsQJRingzscKrzNU9m6eCRswNtJjnTV9rt/6uX3tvguWCyZLlq2yv7OJ3xfNod7FjXhgBFd7ig+4bMyURvcrvIVt8nZdpRWRRWIMrZTmx+z/JFO++fdTIQF2Qk0GvZWvtjR+iPvSFFnLZx7QPw6uxq1yM6eaBFya3VOkbvm2vBZS3sfGWcEzGjYoTEeb+wAM0sfFQw==
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: hEKD0qtPH1SzegmegGa3mfZAcAQQ+DZ4uWlcG3pE1/kaDIKTkBufCszSSJZPfBh4yB1y2NxnI5I/jSuenKhXPP9pV8DpJh2LEZmOstrFsDWEF695v0Qh30jRP7EqOV2aYfKbV7aUHKgzeUvCFTVY6dKBpRc5uc3KfphX0LF0XIx5Ka40HGPkViCHVk68ufvKmvXWG2X4S1JZY/v5l3wlVc50o4X9QW0PsT9/LE3VYlYJBN1ks2Y8egWIHKHB+PKstB/gib+75kDflcfOOAQy1pIWi5i4kFTuzoIpGZH9TH8+9K/+upgLEMAdmo2e9Y/9qKy1PeNDoP8HTaFce21+Huc/zcxD392jmKy3vNg2jZwSYn4TH0fMFQe06Qv80Evl2hhe7Xsh8AkGEh/dZXKfgLqYPpXkbIk43hau0Ui1SONlOMudvut7AGl8OZMl6Fa4Vb7Bzs7e79lVn2CFvZIl0ecliz4z5vyx8K8ksP4RqA4YqfQgpj9ozR7zK9Tk2Pjeb15JJN1QE6qP4VqjLY+0puhHBiWFIPd2Oy1ttyBfwwkNvMIWi0gCX4YOXWALohaNsEzQKfo4yLpFRoerb7U7bfUGWNvIZDXU9eSxIV0Nhz0=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b94e9268-d384-4e86-721a-08df43bb1ff1
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR10MB5409.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 08:25:08.4960
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ssMuMTg1IJWCbZFC9xri3TXizA3xNuW508b36ViQu1977KIyp683wk3CVCc9pmmiz/i0rt4yeSl3UF7zpAB94PIvLusEkgfCDvKTtsYqCSk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR10MB8216
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261116-b4-coresight-runtime-pm-failures-v2-1-cc437170e24e@qti.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIADbB+moC/5WNSw6DIBRFt2IY9xkgfmJH3YdxgPjQl4gooGlj3
+ HupO+jkJucOzjlZQE8Y2DM7mceDArklgXxkTE9qGRFoSMwklxVvhIC+AO08BhqnCH5fIlmE1YJ
+ RNO/ph5obWfJG1gp7ljSrR0PvO9F2iScK0fnPXTzE7/1DfggQoPRgiqYuKxTitUXKt13N2lmbp
+ 2HddV1fSaBGFNcAAAA=
+X-Change-ID: 20260911-b4-coresight-runtime-pm-failures-70f250927aeb
+To: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@arm.com>,
+        James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
+        Ulf Hansson <ulfh@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794818370; l=10771;
+ i=yuanfang@qti.qualcomm.com; s=20250814; h=from:subject:message-id;
+ bh=YxgjJh7s4rVCCzUEUDoSws4VzvCFsq5v6NB/A8Ce7qo=;
+ b=QIIgSboQILLNjdaXyhXvqrUHrbCSklk/3YDPj/4V0t6yyNQ0ZZwPpISPBQ1t0KkczlbAbGaOr
+ suayumABxZbDepHYi3DPpuGLkHGNjaIz/8WJeRT29wxXWt4KkDMnL/M
+X-Developer-Key: i=yuanfang@qti.qualcomm.com; a=ed25519;
+ pk=9oS/FoPW5k0CsqSDDrPlnV+kVIOUaAe0O5pr4M1wHgY=
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE2MDAzNCBTYWx0ZWRfXz8vm4yNlKmS2
+ yHH/yDT5Mlq3hsGBl7Bi0r2MIma6RCE2l95dWAT3+0wwKiwM3X3aOGusXk0wrMQhb3YM7WyihaV
+ UlHcFPT7ndfFu7BOBrRYTJ4BT+Yw0M8=
+X-Authority-Analysis: v=2.4 cv=C9N8WgP+ c=1 sm=1 tr=0 ts=6afac145 cx=c_pps
+ a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=7CQSdrXTAAAA:8 a=AmsXAa7n7-pT3CpYTX8A:9
+ a=QEXdDO2ut3YA:10 a=bBxd6f-gb0O0v-kibOvt:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-ORIG-GUID: Lmh8dUoIJigai_yCjJxa_98slImDapE4
+X-Proofpoint-GUID: Lmh8dUoIJigai_yCjJxa_98slImDapE4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE2MDAzNCBTYWx0ZWRfX6qlDVh5IJizz
+ x+moBAoDuTNFrl00QyX4mASwBsqjD5PgGPSH4PKzsMFTRaQPoWlbbqJemLFb05lsjLJ4B52W9+E
+ ToMth+Nqw2y82r8qEvVlscvUXIkhJQZqsdYgKAbjCwrKXsatd/CBKnkmlGEjQaFdbFhvmcEJ231
+ Q8iY73X2JnyE5vAiJsygTb5ygd0xMXrUPMnfAAKIa2axZKuICSD2r/nftxc7Up6jrSBhiU/z1Oh
+ bZv0d/gga2bNlVEF2p71r9MRNFByDiWszpjHeYOfpi91PCcWVIlvM/PA2bU0PBpUZtDNcJ1BIgK
+ 8HE5ZUlTTtU5jutxHvNnrSKOcrE/nLVcRbbeI5cu7B0OPqK9bawC+76r9QXz3WXprpy8mVDyaCZ
+ kO0xbib5dbwYSQgMKrEXg+aTKinVPJfb1b53NqaRGGS+GzeIWSTuzr6h+MbLFv7HOTc4mKxmwbf
+ pbFeJbRQN9kcLzsxYkQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-16_03,2026-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
- malwarescore=0 spamscore=0 mlxlogscore=999 lowpriorityscore=0 mlxscore=0
- adultscore=0 suspectscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.22.0-2611040001 definitions=main-2611160033
-X-Proofpoint-ORIG-GUID: 0-Zd9Smp5Dxz32OAdh7T8Avc17C0vljP
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE2MDAzMyBTYWx0ZWRfX221uAeEVdQJ3
- 3WfgLw2yIMlLen/Q1dFenJcyfI7TBCnPv/rs8EkKS8wJrZNl/SvDetO9E03a6X1h6ADPZ2yBaoh
- X6LqMKWNYpX0aOG9/2qZnshYVm7AbXgKxgoWNipf9lQQLlL9qBx8
-X-Authority-Analysis: v=2.4 cv=PeNqFShd c=1 sm=1 tr=0 ts=6afabe60 b=1 cx=c_pps
- a=e1sVV491RgrpLwSTMOnk8w==:117 a=e1sVV491RgrpLwSTMOnk8w==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=zJRp6_cAMcgA:10
- a=GoEa3M9JfhUA:10 a=VkNPw1HP01LnGYTKEx00:22 a=jiCTI4zE5U7BLdzWsZGv:22
- a=BqU2WV_vvsyTyxaotp0D:22 a=VwQbUJbxAAAA:8 a=vggBfdFIAAAA:8 a=yMhMjlubAAAA:8
- a=yPCof4ZbAAAA:8 a=7gr8-LgUhGOHEYCj_R8A:9 a=5yU3S35YU4bGjq-dph-N:22
- a=Bho9c0fBagfJEIQBS7DQ:22 cc=ntf awl=host:13532
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE2MDAzMyBTYWx0ZWRfX93aznMd3sQZT
- h2PMj6BlLd3aCeFNSqDKdMe6HRNpovP7JZLY/3wmit4umuuTCDaWXuwDqkSaCzj4K7CO8KXPT8C
- jLZMQGE3v4T6+Hlj8zz1ax4iyFFypsCp06UYEClnF/HTlZcW8Gh1joYoDeibaRa6bjyQoOucnAb
- miCnND8O9i1ulxZdxeCeEyzEQcTu9zEJWRnxQVrDcG/2okvgk/d6bYa7y0iCqUmKnVqCjB5gcMw
- ZJ9mMju6AscS7jNQEwRwK0uVxLTI/89Vd3QuExzNR08NIs/UB4gRwW0R99SiQtLHseMVQuj7nTv
- ZG+a8DWACBm74UL3N3uxlzbc76srahpMBsU88HWaN/8kK7L3e95QjU3ZjP2pqSbMpBXKWJrNZ8l
- iPoOOoL4kb95+Y/i8BH+cEOXEBlwpclIg+6tiuNf6gggumKe6BvCN+HtSERXbXzXmPSTkEgjQot
- S0Dc3y0UGqz47G4Vl6HTIBynKOdZxoEHRtcv7YNE=
-X-Proofpoint-GUID: 0-Zd9Smp5Dxz32OAdh7T8Avc17C0vljP
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ clxscore=1011 spamscore=0 adultscore=0 bulkscore=0 phishscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611160034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_002741_319397_40F5AB2C 
-X-CRM114-Status: GOOD (  14.72  )
+X-CRM114-CacheID: sfid-20261116_003933_919856_697EC10C 
+X-CRM114-Status: GOOD (  24.19  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -199,93 +165,278 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The inner loop in poll_idle() polls over the thread_info flags,
-waiting to see if the thread has TIF_NEED_RESCHED set. The loop
-exits once the condition is met, or if the poll time limit has
-been exceeded.
+When a CoreSight component's parent power domain, such as a CPU cluster
+genpd, fails to power on, runtime resume returns a negative error. Several
+call sites ignored that error and continued to access registers on an
+unpowered device, risking an external abort.
 
-To minimize the number of instructions executed in each iteration,
-the time check is rate-limited. In addition, each loop iteration
-executes cpu_relax() which on certain platforms provides a hint to
-the pipeline that the loop busy-waits, allowing the processor to
-reduce power consumption.
+Replace the remaining pm_runtime_get_sync() calls with
+pm_runtime_resume_and_get(), which restores the runtime PM usage count
+when resume fails. Abort before accessing hardware and propagate the
+error to the caller.
 
-Switch over to tif_need_resched_relaxed_wait() instead, since that
-provides exactly that.
+In coresight_get_ref(), unwind the module and device references. In
+debug_enable_func(), roll back the CPUs that resumed successfully before
+the failure. Finally, release the mode acquired by stm_enable() if its
+runtime resume fails.
 
-However, since we want to minimize power consumption in idle, building
-of cpuidle/poll_state.c continues to depend on CONFIG_ARCH_HAS_CPU_RELAX
-as that serves as an indicator that the platform supports an optimized
-version of tif_need_resched_relaxed_wait() (via
-smp_cond_load_relaxed_timeout()).
-
-Cc: Rafael J. Wysocki <rafael@kernel.org>
-Cc: Daniel Lezcano <daniel.lezcano@kernel.org>
-Cc: linux-pm@vger.kernel.org
-Suggested-by: Rafael J. Wysocki <rafael@kernel.org>
-Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
-Tested-by: Haris Okanovic <harisokn@amazon.com>
-Tested-by: Sahil Chandna <sahilchandna@linux.microsoft.com>
-Signed-off-by: Ankur Arora <ankur.a.arora@oracle.com>
+Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+Reviewed-by: Ulf Hansson <ulfh@kernel.org>
+Reviewed-by: Leo Yan <leo.yan@arm.com>
 ---
- drivers/cpuidle/poll_state.c | 21 +--------------------
- 1 file changed, 1 insertion(+), 20 deletions(-)
+This patch converts the remaining CoreSight pm_runtime_get_sync() users
+to pm_runtime_resume_and_get(), propagates resume failures before
+hardware access, and completes the related module, device, CPU and mode
+unwind paths.
+---
+Changes in v2:
+- Rebase onto coresight/next and adapt ETM3x to etm_readl_cslocked().
+- Add Reviewed-by tags from Leo Yan and Ulf Hansson.
+- Link to v1: https://lore.kernel.org/r/20260911-b4-coresight-runtime-pm-failures-v1-1-acdf49756e11@qti.qualcomm.com
+---
+ drivers/hwtracing/coresight/coresight-core.c        | 13 ++++++++++---
+ drivers/hwtracing/coresight/coresight-cpu-debug.c   | 10 +++++-----
+ drivers/hwtracing/coresight/coresight-cti-sysfs.c   | 10 ++++++++--
+ drivers/hwtracing/coresight/coresight-etm3x-sysfs.c |  5 ++---
+ drivers/hwtracing/coresight/coresight-etm4x-sysfs.c |  5 ++++-
+ drivers/hwtracing/coresight/coresight-funnel.c      |  5 ++++-
+ drivers/hwtracing/coresight/coresight-stm.c         |  7 ++++++-
+ drivers/hwtracing/coresight/coresight-sysfs.c       | 11 +++++++++--
+ 8 files changed, 48 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/cpuidle/poll_state.c b/drivers/cpuidle/poll_state.c
-index c7524e4c522a..7443b3e971ba 100644
---- a/drivers/cpuidle/poll_state.c
-+++ b/drivers/cpuidle/poll_state.c
-@@ -6,41 +6,22 @@
- #include <linux/cpuidle.h>
- #include <linux/export.h>
- #include <linux/irqflags.h>
--#include <linux/sched.h>
--#include <linux/sched/clock.h>
- #include <linux/sched/idle.h>
- #include <linux/sprintf.h>
- #include <linux/types.h>
- 
--#define POLL_IDLE_RELAX_COUNT	200
--
- static int __cpuidle poll_idle(struct cpuidle_device *dev,
- 			       struct cpuidle_driver *drv, int index)
+diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
+index bcfeb1c97127ece0960241fe56a3e599a9329cc9..fc06756f2783fb0b499f4d9ad0c635725ed20f4d 100644
+--- a/drivers/hwtracing/coresight/coresight-core.c
++++ b/drivers/hwtracing/coresight/coresight-core.c
+@@ -822,14 +822,16 @@ struct coresight_device *coresight_get_sink_by_id(u32 id)
+  *
+  * @csdev: The coresight device to get a reference on.
+  *
+- * Return true in successful case and power up the device.
+- * Return false when failed to get reference of module.
++ * Return true on success and power up the device.
++ * Return false if a reference cannot be obtained or the device cannot be
++ * powered up.
+  */
+ static bool coresight_get_ref(struct coresight_device *csdev)
  {
--	u64 time_start;
--
--	time_start = local_clock_noinstr();
--
- 	dev->poll_time_limit = false;
+ 	struct device *dev = &csdev->dev;
+ 	struct device *parent = csdev->dev.parent;
+ 	struct device_driver *drv;
++	int ret;
  
- 	raw_local_irq_enable();
- 	if (!current_set_polling_and_test()) {
--		unsigned int loop_count = 0;
- 		u64 limit;
+ 	/* Make sure csdev can't go away */
+ 	get_device(dev);
+@@ -843,9 +845,14 @@ static bool coresight_get_ref(struct coresight_device *csdev)
+ 		goto err_module;
  
- 		limit = cpuidle_poll_time(drv, dev);
+ 	/* Make sure the device is powered on */
+-	pm_runtime_get_sync(parent);
++	ret = pm_runtime_resume_and_get(parent);
++	if (ret < 0)
++		goto err_pm;
++
+ 	return true;
  
--		while (!need_resched()) {
--			cpu_relax();
--			if (loop_count++ < POLL_IDLE_RELAX_COUNT)
--				continue;
--
--			loop_count = 0;
--			if (local_clock_noinstr() - time_start > limit) {
--				dev->poll_time_limit = true;
--				break;
--			}
--		}
-+		dev->poll_time_limit = !tif_need_resched_relaxed_wait(limit);
++err_pm:
++	module_put(drv->owner);
+ err_module:
+ 	put_device(parent);
+ 	put_device(dev);
+diff --git a/drivers/hwtracing/coresight/coresight-cpu-debug.c b/drivers/hwtracing/coresight/coresight-cpu-debug.c
+index 87b39874461e205e1dbb9d5f15e019888ff51d28..edccbd2fa5e2c65f44d627b25bebff7bc0cc316a 100644
+--- a/drivers/hwtracing/coresight/coresight-cpu-debug.c
++++ b/drivers/hwtracing/coresight/coresight-cpu-debug.c
+@@ -429,19 +429,19 @@ static int debug_enable_func(void)
+ 		if (!drvdata)
+ 			continue;
+ 
+-		ret = pm_runtime_get_sync(drvdata->dev);
++		ret = pm_runtime_resume_and_get(drvdata->dev);
+ 		if (ret < 0)
+ 			goto err;
+-		else
+-			cpumask_set_cpu(cpu, &mask);
++
++		cpumask_set_cpu(cpu, &mask);
  	}
- 	raw_local_irq_disable();
  
+ 	return 0;
+ 
+ err:
+ 	/*
+-	 * If pm_runtime_get_sync() has failed, need rollback on
+-	 * all the other CPUs that have been enabled before that.
++	 * If runtime resume has failed, roll back all the other CPUs
++	 * that have been enabled before that.
+ 	 */
+ 	for_each_cpu(cpu, &mask) {
+ 		drvdata = per_cpu(debug_drvdata, cpu);
+diff --git a/drivers/hwtracing/coresight/coresight-cti-sysfs.c b/drivers/hwtracing/coresight/coresight-cti-sysfs.c
+index 2ed5d8eb1ddab907bff92057c54b7e90f6192a64..75018fe6527cdc019738eb7f66201597b972558b 100644
+--- a/drivers/hwtracing/coresight/coresight-cti-sysfs.c
++++ b/drivers/hwtracing/coresight/coresight-cti-sysfs.c
+@@ -167,8 +167,11 @@ static ssize_t coresight_cti_reg_show(struct device *dev,
+ 	struct cti_drvdata *drvdata = dev_get_drvdata(dev->parent);
+ 	struct cs_off_attribute *cti_attr = container_of(attr, struct cs_off_attribute, attr);
+ 	u32 val = 0;
++	int ret;
+ 
+-	pm_runtime_get_sync(dev->parent);
++	ret = pm_runtime_resume_and_get(dev->parent);
++	if (ret < 0)
++		return ret;
+ 
+ 	scoped_guard(raw_spinlock_irqsave, &drvdata->spinlock)
+ 		val = cti_read_single_reg(drvdata, cti_attr->off);
+@@ -185,11 +188,14 @@ static __maybe_unused ssize_t coresight_cti_reg_store(struct device *dev,
+ 	struct cti_drvdata *drvdata = dev_get_drvdata(dev->parent);
+ 	struct cs_off_attribute *cti_attr = container_of(attr, struct cs_off_attribute, attr);
+ 	unsigned long val = 0;
++	int ret;
+ 
+ 	if (kstrtoul(buf, 0, &val))
+ 		return -EINVAL;
+ 
+-	pm_runtime_get_sync(dev->parent);
++	ret = pm_runtime_resume_and_get(dev->parent);
++	if (ret < 0)
++		return ret;
+ 
+ 	scoped_guard(raw_spinlock_irqsave, &drvdata->spinlock)
+ 		cti_write_single_reg(drvdata, cti_attr->off, val);
+diff --git a/drivers/hwtracing/coresight/coresight-etm3x-sysfs.c b/drivers/hwtracing/coresight/coresight-etm3x-sysfs.c
+index 08c10fd146d5fc2bd0cfac829fc50109dd4a3e29..52118d6a2037a09af41641967d4014fcccab5b05 100644
+--- a/drivers/hwtracing/coresight/coresight-etm3x-sysfs.c
++++ b/drivers/hwtracing/coresight/coresight-etm3x-sysfs.c
+@@ -32,9 +32,9 @@ static int etm_readl_cslocked(struct etm_drvdata *drvdata, u32 off,
+ 	int ret;
+ 	struct etm_readl_cslocked_arg arg;
+ 
+-	ret = pm_runtime_get_sync(drvdata->csdev->dev.parent);
++	ret = pm_runtime_resume_and_get(drvdata->csdev->dev.parent);
+ 	if (ret < 0)
+-		goto out;
++		return ret;
+ 
+ 	arg.drvdata = drvdata;
+ 	arg.off = off;
+@@ -43,7 +43,6 @@ static int etm_readl_cslocked(struct etm_drvdata *drvdata, u32 off,
+ 	ret = smp_call_function_single(drvdata->cpu,
+ 				       etm_readl_cslocked_smp_call,
+ 				       (void *)&arg, 1);
+-out:
+ 	pm_runtime_put(drvdata->csdev->dev.parent);
+ 	return ret;
+ }
+diff --git a/drivers/hwtracing/coresight/coresight-etm4x-sysfs.c b/drivers/hwtracing/coresight/coresight-etm4x-sysfs.c
+index db9e603f97ba82cd608d3d61881fe8153db020ff..f29e753245d3d0d367499b4a38ccf2f3bb3d66b0 100644
+--- a/drivers/hwtracing/coresight/coresight-etm4x-sysfs.c
++++ b/drivers/hwtracing/coresight/coresight-etm4x-sysfs.c
+@@ -2498,10 +2498,13 @@ static ssize_t coresight_etm4x_reg_show(struct device *dev,
+ {
+ 	u32 val, offset;
+ 	struct etmv4_drvdata *drvdata = dev_get_drvdata(dev->parent);
++	int ret;
+ 
+ 	offset = coresight_etm4x_attr_to_offset(d_attr);
+ 
+-	pm_runtime_get_sync(dev->parent);
++	ret = pm_runtime_resume_and_get(dev->parent);
++	if (ret < 0)
++		return ret;
+ 	val = etmv4_cross_read(drvdata, offset);
+ 	pm_runtime_put_sync(dev->parent);
+ 
+diff --git a/drivers/hwtracing/coresight/coresight-funnel.c b/drivers/hwtracing/coresight/coresight-funnel.c
+index c981215ad64970245e44bf0f34e40fa6c6bcec9a..220c69cb4ee3e08cea32b17f85853fbe210ad670 100644
+--- a/drivers/hwtracing/coresight/coresight-funnel.c
++++ b/drivers/hwtracing/coresight/coresight-funnel.c
+@@ -192,9 +192,12 @@ static ssize_t funnel_ctrl_show(struct device *dev,
+ 			     struct device_attribute *attr, char *buf)
+ {
+ 	u32 val;
++	int ret;
+ 	struct funnel_drvdata *drvdata = dev_get_drvdata(dev->parent);
+ 
+-	pm_runtime_get_sync(dev->parent);
++	ret = pm_runtime_resume_and_get(dev->parent);
++	if (ret < 0)
++		return ret;
+ 
+ 	val = get_funnel_ctrl_hw(drvdata);
+ 
+diff --git a/drivers/hwtracing/coresight/coresight-stm.c b/drivers/hwtracing/coresight/coresight-stm.c
+index a75b1c56a86710ebe5ad85758f85007d4c158d2e..b358b5576d975f5d440d80c28a401d10aad00b50 100644
+--- a/drivers/hwtracing/coresight/coresight-stm.c
++++ b/drivers/hwtracing/coresight/coresight-stm.c
+@@ -196,6 +196,7 @@ static int stm_enable(struct coresight_device *csdev, struct perf_event *event,
+ 		      __maybe_unused struct coresight_path *path)
+ {
+ 	struct stm_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
++	int ret;
+ 
+ 	if (mode != CS_MODE_SYSFS)
+ 		return -EINVAL;
+@@ -205,7 +206,11 @@ static int stm_enable(struct coresight_device *csdev, struct perf_event *event,
+ 		return -EBUSY;
+ 	}
+ 
+-	pm_runtime_get_sync(csdev->dev.parent);
++	ret = pm_runtime_resume_and_get(csdev->dev.parent);
++	if (ret < 0) {
++		coresight_set_mode(csdev, CS_MODE_DISABLED);
++		return ret;
++	}
+ 
+ 	spin_lock(&drvdata->spinlock);
+ 	stm_enable_hw(drvdata);
+diff --git a/drivers/hwtracing/coresight/coresight-sysfs.c b/drivers/hwtracing/coresight/coresight-sysfs.c
+index 5dd4e9b0426e4eb260655fc67d079dfb99949812..5edef1f395b9835a44b6c3cbb5b31eac62dabfd9 100644
+--- a/drivers/hwtracing/coresight/coresight-sysfs.c
++++ b/drivers/hwtracing/coresight/coresight-sysfs.c
+@@ -17,8 +17,12 @@ ssize_t coresight_simple_show_pair(struct device *_dev,
+ 	struct coresight_device *csdev = container_of(_dev, struct coresight_device, dev);
+ 	struct cs_pair_attribute *cs_attr = container_of(attr, struct cs_pair_attribute, attr);
+ 	u64 val;
++	int ret;
++
++	ret = pm_runtime_resume_and_get(_dev->parent);
++	if (ret < 0)
++		return ret;
+ 
+-	pm_runtime_get_sync(_dev->parent);
+ 	val = csdev_access_relaxed_read_pair(&csdev->access, cs_attr->lo_off, cs_attr->hi_off);
+ 	pm_runtime_put_sync(_dev->parent);
+ 	return sysfs_emit(buf, "0x%llx\n", val);
+@@ -31,8 +35,11 @@ ssize_t coresight_simple_show32(struct device *_dev,
+ 	struct coresight_device *csdev = container_of(_dev, struct coresight_device, dev);
+ 	struct cs_off_attribute *cs_attr = container_of(attr, struct cs_off_attribute, attr);
+ 	u64 val;
++	int ret;
+ 
+-	pm_runtime_get_sync(_dev->parent);
++	ret = pm_runtime_resume_and_get(_dev->parent);
++	if (ret < 0)
++		return ret;
+ 	val = csdev_access_relaxed_read32(&csdev->access, cs_attr->off);
+ 	pm_runtime_put_sync(_dev->parent);
+ 	return sysfs_emit(buf, "0x%llx\n", val);
+
+---
+base-commit: 1352ce9c99bdb9fb2905f59db5b74830ff2ce556
+change-id: 20260911-b4-coresight-runtime-pm-failures-70f250927aeb
+
+Best regards,
 -- 
-2.43.7
+Yuanfang Zhang <yuanfang@qti.qualcomm.com>
 
 
