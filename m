@@ -2,61 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C311606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 05:16:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709C5606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 05:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mfRL1g+k
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RZy/ZpLh;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JApRfL4Q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=zIG1Zp6FGJRrEDh0pN+mqn8C1jWGbL1fAfu3HFYFjzY=; b=mfRL1g+ke2/DEMYLTADxRxocja
-	I2mOGBjw0YLVHvkDO52j89z5aKZEbT+/Zax/ZmZhj72g/54k4qjupyeCWXRDzbSV8m/JljSm2PM9f
-	+7XY+VTyQSZa6569ieEQX3g1J9UWFZjex94knYCmU/f2cvbp6hPpZROjmbWflmVBXIEKlcIoq/W1W
-	qXnyGekFgrB38a1G8X/H7iu9i2kCjLlGO2POHIcLrJ3OC2sScj/TuhPr8aYBzRlrJN+OYfPlWpcTV
-	YNk2ZkKdVZ6TEkEefg+D9zSrmo5TOmbEbwkNp5QogXUosoDen2v605v642SpYWJqm9I844nBN9dDy
-	Xu0jVvYQ==;
+	bh=iPNxmcTFhK9j4aZx7hyhd59o51LBMiI0vffqSiyZdR4=; b=RZy/ZpLhzKpHRZU/gpoYFUavfh
+	e33zePUihZKjER4R6YGAGoM5WDESf0VlUOeb066mglM77JnrM8S2EacE/CU8p50jBZ9s2cdZLc6/r
+	UT3ua4k2gnjW7kf5Ldxm6PUY4IEQudPYvXsDXktRuJGyg8pgdAN/POKTuEj2bc83CbJnkzayyBWnG
+	yRFJDJQ7QN9OKD6vhhPNrbz8xKDeA83lEmYY4DAD0Ql70G0dVEajwY6qaoqmuelWsVc0IxCuhsmz4
+	7gRhkQ10WvQmBxTCGDyO6VR/b7lIhMd0xF9RUnqTb2W6AlW19/lUgeW1LmVmLaV3ckhr4Al0/QMa1
+	YwlRAgWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSp4O-000000019uF-0Sa9;
-	Mon, 16 Nov 2026 05:15:56 +0000
-Received: from mail.aspeedtech.com ([211.20.114.72] helo=twmbx01.aspeedtech.com)
+	id 1xSpNr-00000001B7b-0u96;
+	Mon, 16 Nov 2026 05:36:03 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSp4J-000000019tq-0O49
+	id 1xSpNp-00000001B7N-1cCJ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 05:15:54 +0000
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Mon, 16 Nov
- 2026 13:15:41 +0800
-Received: from aspeed-fw03.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.39 via Frontend
- Transport; Mon, 16 Nov 2026 13:15:41 +0800
-From: Cooper Huang <cooper_huang@aspeedtech.com>
-To: <andrew@codeconstruct.com.au>
-CC: <billy_tsai@aspeedtech.com>, <chin-ting_kuo@aspeedtech.com>,
-	<conor+dt@kernel.org>, <cooper_huang@aspeedtech.com>,
-	<devicetree@vger.kernel.org>, <joel@jms.id.au>, <krzk+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, <robh@kernel.org>,
-	<ryan_chen@aspeedtech.com>, <vince_chang@aspeedtech.com>
-Subject: Re: [PATCH] arm64: dts: aspeed: Enlarge AST2700 EVB kernel partition to 12 MiB
-Date: Mon, 16 Nov 2026 13:15:41 +0800
-Message-ID: <20261116051541.3503805-1-cooper_huang@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <bc6e605a8c5bee59ad9bcbce5f4fe775c9c3324e.camel@codeconstruct.com.au>
-References: <bc6e605a8c5bee59ad9bcbce5f4fe775c9c3324e.camel@codeconstruct.com.au>
+	Mon, 16 Nov 2026 05:36:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 6BD346182D;
+	Mon, 16 Nov 2026 05:36:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 488CC1F000C4;
+	Mon, 16 Nov 2026 05:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794807360;
+	bh=iPNxmcTFhK9j4aZx7hyhd59o51LBMiI0vffqSiyZdR4=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=JApRfL4QW2IjvdLHIo0bHet6ApVYK2RiwucsfPwFG4QkxjZ2gQ51iffFlktJlA5pv
+	 /7FD13lul5yGd6ATdlDwLDbVCrvbVAnN81O+W6xaWuiDNghLfreGs377Iq/dI7QCkA
+	 AyCFWEXwjRLl+GCsWBRx6bFS7P1LeXGsG6aw47wdyD5LjH8je+vTXAXFQw7NGt4TEa
+	 wojcoxYC6EtjaU7PTCFU27rf8qMbiGcpcxsUFoPmD7x+4HCgNoVx1K2yG4YW8HuiXW
+	 F6Ack7Dy9h5LFrY7A1b1bwyr9+4h0IbxE3wsNkcHFvmrsBCoKDCfPlnm5fIx0P4iNH
+	 DnPjScQXvsjpw==
+Subject: Re: [PATCH net-next v2] net: stmmac: program the FSM timeout timer
+From: netdev-bot+sashiko@kernel.org
+To: zxyan0222@gmail.com
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ netdev@vger.kernel.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ rmk+kernel@armlinux.org.uk
+Date: Mon, 16 Nov 2026 05:35:58 +0000
+Message-ID: <179480735876.3136.11399412047883475554@kernel.org>
+In-Reply-To: <20261112053321.1103678-1-zxyan0222@gmail.com>
+References: <20261112053321.1103678-1-zxyan0222@gmail.com>
+X-sashiko-severity: High
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_211551_168122_C0D2824A 
-X-CRM114-Status: GOOD (  33.05  )
-X-Spam-Score: 0.6 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,157 +72,322 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Andrew,
+Thank you for your contribution! Sashiko AI review found 7 potential
+issue(s) to consider.
 
-Thanks for the review. I've gone back and measured things more
-carefully; details inline.
+Critical: 0 · High: 1 · Medium: 3 · Low: 3
 
-On Tue, 2026-11-03 at 14:48 +1030, Andrew Jeffery wrote:
-> On Thu, 2026-10-29 at 15:25 +0800, Cooper Huang wrote:
-> > The 128 MiB flash layout of the AST2700 EVB reserves 9 MiB for the
-> > kernel FIT image. A FIT image containing an LZMA-compressed kernel,
-> > the DTB and an initramfs is already close to that size, leaving little
-> > room for the kernel to grow.
-> >
-> > Grow the kernel partition to 12 MiB and take the 3 MiB from rofs,
->
-> Why 12MiB? Why only take 3MiB?
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-We chose 12MiB to give roughly 3MiB of headroom over the current FIT
-while keeping u-boot, u-boot-env and rwfs (and so the persistent data
-in rwfs) where they are. It's an engineering margin rather than a
-derived figure, and there's no single correct size here, but the
-measurements below suggest it's a reasonable choice.
+- [High] The XGMAC half of the fix never runs on any in-tree platform.
+- [Medium] csr_clk_mhz, which feeds the TMR field ('CSR clocks per 1us
+  tic'), comes only from clk_get_rate(priv->plat->stmmac_clk) in…
+- [Medium] MAC_FSM_ACT_Timer and XGMAC_MAC_FSM_ACT_TIMER are written with
+  a plain writel() that contains only FIELD_PREP(NTMRMD) |…
+- [Medium] The new STMMAC_NTMRMD_* encodings (0x1=1us, 0x2=4ms, 0x3=16ms,
+  0x4=64ms, 0x5=256ms, 0x6=1s, 0x7=4s, 0x8=16s, 0x9=32s, 0xa=64s) and…
+- [Low] The patch turns on a live FSM timeout with a 1s default on every
+  dwmac4/5 platform with ASP >= 2 that passes no safety config.
+- [Low] The patch adds a platform-facing knob, struct
+  stmmac_safety_feature_cfg.ntmrmd, plus ten STMMAC_NTMRMD_* constants…
+- [Low] The commit message describes a functional defect: TMOUTEN is
+  enabled but the timer is never programmed, so 'the advertised timeout…
 
-The space comes from rofs because that's where the slack is: the EVB
-rofs image is about 38.4MiB, well within the 79.875MiB that remains.
+--
 
-The LZMA-compressed kernel built with aspeed_g7_defconfig grew by
-65-72KiB from v7.2 to v7.3, and by 78-89KiB from v7.3 to c339f4010dea,
-depending on the compiler. With a 12MiB partition the FIT still has
-2.93MiB free in the worst case measured (05441d697f7f with GCC 14.2),
-providing headroom for future kernel growth and additional AST2700
-drivers.
+net: stmmac: program the FSM timeout timer
 
-We're open to a different size if you'd prefer one.
+This patch programs MAC_FSM_ACT_Timer right after TMOUTEN is enabled in
+dwmac5_safety_feat_config() and dwxgmac3_safety_feat_config(). The TMR
+field comes from the stmmac_clk rate, and NTMRMD defaults to a 1s
+timeout. It also adds a csr_clk_mhz argument to the safety_feat_config
+callback, a new ntmrmd field and STMMAC_NTMRMD_* constants in
+include/linux/stmmac.h.
 
-> > which now starts at 0x1020000 and shrinks from 82.875 MiB to
-> > 79.875 MiB. rofs still ends at 0x6000000, so the u-boot, u-boot-env
-> > and rwfs partitions are unchanged.
-> >
-> > This is the same layout used by the OpenBMC images ASPEED provides
-> > for the EVB [1],
-> >
->
-> Why was what was sent upstream different to what you were doing
-> elsewhere in the software stack? It seems oddly incoherent.
+> v2:
+> - Rebased onto net-next.
+> - Dropped the Fixes: tags (this never worked, so it's feature completion,
+>   not a regression fix).
 
-It wasn't different at the time. The 9MiB layout from commit
-e77bb5dc5759 ("arm64: dts: aspeed: Add initial AST27xx SoC device
-tree"), which was posted and applied on 2026-06-09 for v7.2, matched
-what the SDK was using then. The SDK only moved to 12MiB later, on
-2026-08-24 [3], and this patch is meant to bring upstream back in line
-with it. I should have explained that in the commit message rather
-than making it look as though upstream had diverged.
+[Severity: Low]
+The commit message describes a functional defect. TMOUTEN is enabled but
+the timer is never programmed, so "the advertised timeout protection is
+ineffective".
 
-> > Notes:
-> > - "Already close to that size": with mainline at c339f4010dea
-> >   (v7.3-17997), ASPEED's aspeed_g7_defconfig [2] and GCC 13.2, a FIT
->
-> A bit of a tangent, but GCC 13.2 is over 3 years old at this point.
-> Debian stable ships 14.2. Why such an old compiler?
+Documentation/process/submitting-patches.rst says "A Fixes: tag indicates
+that the patch fixes a bug in a previous commit."
 
-No particular reason; it's just the cross toolchain in my local build
-environment. I've now also measured with the kernel.org crosstool
-builds of GCC 14.2, 15.3 and 16.2. The older compiler doesn't change
-the conclusion. If anything GCC 14.2 makes it worse: its compressed
-kernel is about 1% larger than GCC 13.2's, and with it the FIT no
-longer fits in 9MiB at c339f4010dea.
+Would it be worth keeping the Fixes: tags, so that stable and downstream
+safety users can tell which kernels lack working FSM timeout detection?
+Given the net-next target, this may be the maintainers' call.
 
-  Free space left in a 9MiB partition, in KiB (negative: doesn't fit)
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
+> index f1bb981cab7cd..4ab7a3df98c6d 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
 
-                  GCC 13.2  GCC 14.2  GCC 15.3  GCC 16.2
-  v7.2               165.4      98.0     167.1     153.9
-  v7.3               100.7      29.2      96.1      81.9
-  c339f4010dea        16.8     -59.8      16.5       4.1
-  05441d697f7f         8.5     -69.1      10.8      -3.0
+[ ... ]
 
-05441d697f7f is mainline master as of 2026-11-03.
+> @@ -245,6 +247,22 @@ int dwmac5_safety_feat_config(void __iomem *ioaddr, unsigned int asp,
+>  		value |= TMOUTEN; /* FSM Timeout Feature */
+>  	writel(value, ioaddr + MAC_FSM_CONTROL);
+>  
+> +	/* Program the FSM active timer so the timeout checker actually fires.
+> +	 * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in MHz.
+> +	 * Default to a 1s timeout when the platform did not select one.
+> +	 */
+> +	if (safety_feat_cfg->tmouten && csr_clk_mhz) {
 
-> >   image with the LZMA-compressed kernel, ast2700-evb.dtb and the
-> >   OpenBMC phosphor initramfs is about 8.99 MiB, less than 20 KiB
->
-> What are your measured sizes for the kernel vs the initramfs?
+[Severity: Low]
+This turns on a live 1s FSM timeout on every dwmac4/5 platform with
+ASP >= 2 that passes no safety config. A NULL safety_feat_cfg selects
+all_safety_feats with tmouten = 1. That covers all the OF glue drivers,
+plus mediatek and stmmac_pci.
 
-At c339f4010dea, in bytes:
+When the timer fires, the timeout is reported as MCSIS and handled as
+uncorrectable:
 
-  GCC    Image.lzma     DTB  initramfs        FIT
-  13.2    7,930,161  36,758  1,451,420  9,420,020
-  14.2    8,008,518  36,758  1,451,420  9,498,376
-  15.3    7,930,429  36,758  1,451,420  9,420,288
-  16.2    7,943,155  36,758  1,451,420  9,433,012
+dwmac5_safety_feat_irq_status() {
+    ...
+	err = (mtl & MCSIS) || (dma & MCSIS);
+	corr = false;
+	if (err) {
+		dwmac5_handle_mac_err(ndev, ioaddr, corr, stats);
+		ret |= !corr;
+	}
+    ...
+}
 
-The kernel is about 84% of the FIT, the initramfs about 15% and the
-DTB 0.4%. Every commit/compiler combination in the table above has
-the same split (83.9-84.3% kernel).
+stmmac_safety_feat_interrupt() {
+    ...
+	if (ret && (ret != -EINVAL)) {
+		stmmac_global_err(priv);
+    ...
+}
 
-All builds used aspeed_g7_defconfig from [2] plus olddefconfig, then
-"make Image.lzma aspeed/ast2700-evb.dtb". Each FIT was packed with
-mkimage using the same initramfs from our OpenBMC SDK build. With
-KBUILD_BUILD_TIMESTAMP/USER/HOST fixed, two builds of the same commit
-in different directories differ by only ~400 bytes compressed (the
-only differences are the kernel and vDSO build IDs, which change with
-the build directory), so the "few KiB between builds" in my notes was
-overstated.
+The result is carrier off and a full adapter reset, which these boards
+never got before this patch.
 
-A caveat on the config: aspeed_g7_defconfig targets our SDK kernel.
-On these mainline commits 344 of its 394 config entries apply. The
-rest are mostly drivers that aren't upstream yet (eSPI, MCTP, LTPI,
-JTAG and so on), plus FTGMAC100, which doesn't support arm64 upstream
-yet. With the same config and compiler, the compressed kernel built
-from our SDK tree (based on v6.18) is 357KiB larger than mainline
-v6.18, and that gap includes the SDK's other changes as well as those
-drivers. The mainline measurements therefore do not yet include all
-the functionality enabled in our SDK, and additional upstream driver
-support may increase the image size.
+The commit message only says a stuck FSM will now be "reported". Could
+it mention the reset, and explain why 1s is safe on platforms other than
+the two IPs that were tested?
 
-> Is the initramfs content reasonable?
+> +		u32 ntmrmd = safety_feat_cfg->ntmrmd;
+> +
+> +		ntmrmd = (ntmrmd >= STMMAC_NTMRMD_1US &&
+> +			  ntmrmd <= STMMAC_NTMRMD_64SEC) ?
+> +			 ntmrmd : STMMAC_NTMRMD_1SEC;
+> +
+> +		writel(FIELD_PREP(MAC_FSM_ACT_TIMER_NTMRMD, ntmrmd) |
+> +		       FIELD_PREP(MAC_FSM_ACT_TIMER_TMR, csr_clk_mhz),
+> +		       ioaddr + MAC_FSM_ACT_TIMER);
 
-Mostly, though there is some room to trim. It's the
-obmc-phosphor-initramfs from our OpenBMC SDK build: 254 entries,
-4.4MiB uncompressed and 1.38MiB xz-compressed. It contains busybox,
-util-linux flock, the init/update/shutdown scripts and glibc 2.43,
-which is the bulk of it at about 3.5MiB uncompressed.
+[Severity: Medium]
+This is a plain writel() of only NTMRMD and TMR, so every other bit in
+MAC_FSM_ACT_Timer is set to 0. dwxgmac3_safety_feat_config() does the
+same for XGMAC_MAC_FSM_ACT_TIMER. The MAC_FSM_CONTROL update just above
+uses read/modify/write instead.
 
-busybox and flock only link directly against libc, libm and ld-linux,
-but the whole glibc package is installed, including libmvec, libnsl,
-libnss_compat, libresolv, libBrokenLocale and the compatibility stubs
-(libdl, libpthread, librt, libutil, libanl, libnss_files, libnss_dns).
-Based on that dependency check alone, dropping them would save about
-160KiB compressed. I haven't yet verified that the boot and update
-paths still work without them.
+The patch defines only TMR as GENMASK(9, 0) and NTMRMD as
+GENMASK(19, 16). Doesn't the Synopsys EQoS/XGMAC safety register layout
+also have a large-mode timeout field (LTMRMD, bits [23:20])?
 
-Even if all of it can go, that's a one-off saving of about 160KiB. In
-the worst case above (05441d697f7f with GCC 14.2), the FIT would then
-have only about 90KiB left in 9MiB. The FIT is dominated by the
-kernel, whose compressed size grew by 65-72KiB from v7.2 to v7.3 and
-by 78-89KiB from v7.3 to c339f4010dea.
+If LTMRMD exists and 0 also means disabled there, would FSMs checked
+against the large-mode timer stay unprotected after this patch? Any
+non-zero reset value in those bits would also be cleared.
 
-If this sounds reasonable, I'll send a v2 with the rationale and
-representative numbers in the commit message, and with the SDK
-history described correctly.
+I couldn't confirm the register layout from in-tree code, so this may
+need checking against the databook.
 
-[1] https://github.com/AspeedTech-BMC/openbmc/blob/438e761ed38644b77ba704c984cb607649bf2724/meta-aspeed-sdk/meta-ast2700-sdk/conf/machine/ast2700-default.conf
-[2] https://github.com/AspeedTech-BMC/linux/blob/76457d3afe2bd4022ca82dd9eb8fc48b84f0e9ab/arch/arm64/configs/aspeed_g7_defconfig
-[3] https://github.com/AspeedTech-BMC/openbmc/commit/f6671e0eb6a2c542bf3162df7c69906df7b301b7
+> +	}
+> +
 
-Thanks,
-Cooper
+[ ... ]
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> index 7ad08651675e8..dac85431e7401 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+
+[ ... ]
+
+> @@ -873,6 +875,22 @@ dwxgmac3_safety_feat_config(void __iomem *ioaddr, unsigned int asp,
+>  	value |= XGMAC_TMOUTEN; /* FSM Timeout Feature */
+>  	writel(value, ioaddr + XGMAC_MAC_FSM_CONTROL);
+>  
+> +	/* Program the FSM active timer so the timeout checker actually fires.
+> +	 * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in MHz.
+> +	 * Default to a 1s timeout when the platform did not select one.
+> +	 */
+> +	if (safety_cfg && safety_cfg->tmouten && csr_clk_mhz) {
+
+[Severity: High]
+Can this block ever run on an in-tree XGMAC platform?
+
+XGMAC_TMOUTEN is set unconditionally just above, but the timer is only
+written when safety_cfg is non-NULL. dwmac5_safety_feat_config() falls
+back to all features when the cfg is NULL, and this function doesn't:
+
+dwmac5_safety_feat_config() {
+    ...
+	if (!safety_feat_cfg)
+		safety_feat_cfg = &all_safety_feats;
+    ...
+}
+
+Only three drivers set plat->safety_feat_cfg: dwmac-intel,
+dwmac-mediatek and stmmac_pci. None of them is XGMAC. dwmac-socfpga,
+dwmac-tegra (MGBE) and generic "snps,dwxgmac" via
+stmmac_probe_config_dt() all leave it NULL:
+
+stmmac_hw_setup()
+  stmmac_safety_feat_configuration()
+    stmmac_safety_feat_config()       /* safety_cfg == NULL */
+      dwxgmac3_safety_feat_config()
+
+Doesn't that leave every in-tree dwxgmac with TMOUTEN = 1 and NTMRMD at
+its reset value of 0? That is the state the commit message calls broken,
+and the message says the fix was tested on dwxgmac.
+
+There is also a second mismatch. A platform that supplies a cfg with
+tmouten = 0 still gets XGMAC_TMOUTEN armed, but the timer is left
+unprogrammed. Should the timer write follow the same condition as the
+XGMAC_MAC_FSM_CONTROL write?
+
+[ ... ]
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 552840d29668e..1b3dd30db6dce 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -3691,10 +3691,16 @@ static void stmmac_mtl_configuration(struct stmmac_priv *priv)
+>  
+>  static void stmmac_safety_feat_configuration(struct stmmac_priv *priv)
+>  {
+> +	unsigned int csr_clk_mhz = 0;
+> +
+>  	if (priv->dma_cap.asp) {
+>  		netdev_info(priv->dev, "Enabling Safety Features\n");
+> +		if (priv->plat->stmmac_clk)
+> +			csr_clk_mhz = clk_get_rate(priv->plat->stmmac_clk) /
+> +				      1000000;
+
+[Severity: Medium]
+What happens when stmmac_clk is NULL or reports a rate of 0?
+
+csr_clk_mhz then stays 0. Both dwmac5_safety_feat_config() and
+dwxgmac3_safety_feat_config() skip the MAC_FSM_ACT_TIMER write without
+any message, even though TMOUTEN has already been written to
+MAC_FSM_CONTROL.
+
+stmmac_clk can be NULL in a few cases:
+
+- An OF platform has no "stmmaceth" clock. stmmac_probe_config_dt() only
+  warns "Cannot get CSR clock" and sets the clock to NULL.
+- clk_register_fixed_rate() fails in dwmac-intel.
+
+The rate is also 0 with the !CONFIG_COMMON_CLK clk_get_rate() stub.
+
+One in-tree case is the Synopsys GMAC5 PCI board. It never sets
+stmmac_clk, only clk_csr, yet it explicitly asks for the timeout:
+
+snps_gmac5_default_data() {
+    ...
+	plat->clk_csr = STMMAC_CSR_250_300M;
+    ...
+}
+
+stmmac_pci_probe() {
+    ...
+	plat->safety_feat_cfg->tmouten = 1;
+    ...
+}
+
+On that board the timer is still not programmed after this patch. Could
+this fall back to plat->clk_csr or clk_ref_rate? Failing that, could it
+at least warn or clear TMOUTEN when the rate is unknown?
+
+This also ignores plat->clk_csr, which stmmac_mdio.c prefers over the
+stmmac_clk rate when the platform supplies it. Is stmmac_clk always
+clk_csr_i? If it runs slower, the computed tic would be short and the
+timeout would fire early.
+
+>  		stmmac_safety_feat_config(priv, priv->ioaddr, priv->dma_cap.asp,
+> -					  priv->plat->safety_feat_cfg);
+> +					  priv->plat->safety_feat_cfg,
+> +					  csr_clk_mhz);
+>  	} else {
+>  		netdev_info(priv->dev, "No Safety Features support found\n");
+>  	}
+> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> index 00be2df63d220..cb470a153bf81 100644
+> --- a/include/linux/stmmac.h
+> +++ b/include/linux/stmmac.h
+> @@ -168,8 +168,25 @@ struct stmmac_safety_feature_cfg {
+>  	u32 edpp;
+>  	u32 prtyen;
+>  	u32 tmouten;
+> +	/* FSM normal-mode timeout value (MAC_FSM_ACT_Timer.NTMRMD). The TMR
+> +	 * field (CSR clocks per 1us) is derived from the CSR clock by stmmac.
+> +	 * 0 selects the default 1s timeout.
+> +	 */
+> +	u32 ntmrmd;
+
+[Severity: Low]
+Is an in-tree user planned for ntmrmd and the STMMAC_NTMRMD_* constants?
+Nothing in drivers/net/ethernet/stmicro/stmmac/ sets the field.
+dwmac-intel, dwmac-mediatek and stmmac_pci all leave it at 0, and only
+the two new consumer blocks read it.
+
+Also, dwmac5_safety_feat_config() and dwxgmac3_safety_feat_config() both
+replace an out-of-range value (0xb-0xf) with STMMAC_NTMRMD_1SEC without a
+warning. Should that be reported?
+
+>  };
+>  
+> +/* MAC_FSM_ACT_Timer.NTMRMD timeout durations */
+> +#define STMMAC_NTMRMD_1US		0x1
+> +#define STMMAC_NTMRMD_4MS		0x2
+> +#define STMMAC_NTMRMD_16MS		0x3
+> +#define STMMAC_NTMRMD_64MS		0x4
+> +#define STMMAC_NTMRMD_256MS		0x5
+> +#define STMMAC_NTMRMD_1SEC		0x6
+> +#define STMMAC_NTMRMD_4SEC		0x7
+> +#define STMMAC_NTMRMD_16SEC		0x8
+> +#define STMMAC_NTMRMD_32SEC		0x9
+> +#define STMMAC_NTMRMD_64SEC		0xa
+
+[Severity: Medium]
+Where do these encodings come from? There is no in-tree reference for
+them. There is also none for TMR being the CSR clock in MHz rather than
+MHz - 1. The same table is used for both EQoS 5.x and XGMAC 3.x.
+
+The steps are also irregular: 1us jumps straight to 4ms, then the values
+go up in x4 steps, then x2 steps.
+
+Suppose the hardware encodes NTMRMD differently, for example with a
+microsecond-scale normal-mode range. The default of 0x6 would then select
+a much shorter timeout.
+
+dwmac5_mac_errors treats every FSM timeout (TTES, RTES, CTES, ATES,
+PTES, ...) as uncorrectable, and stmmac_safety_feat_interrupt() handles
+that with stmmac_global_err().
+
+Could a wrong encoding cause repeated full MAC resets by default on OF
+dwmac4/5 boards with ASP >= 2 and a stmmaceth clock? A pointer to the
+databook table these values come from would help.
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261112053321.1103678-1-zxyan0222%40gmail.com
 
