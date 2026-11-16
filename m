@@ -2,41 +2,41 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116CA606A336
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0ABB606A891
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 07:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=maBTtR1S;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=m99FfT49
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uMscVFod;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=e61tIZOM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Xu2+ZqWLiH8ac/CHEFRlUaMcIRQgTHmvl2/TbWN1jDE=; b=maBTtR1SYY2pMu
-	JIMFEtKLXIt607gg5J+0ONCFoMSHOq8XaUAiaJiL+THIG9UEX8IJf8epvjE96eHIDGqdqbh19jNoQ
-	esyFeB3nP5oBwT3+Us3Po3dgrZQogmPA1DkoX0o60tacOqlEfJztShomquWP/ZZeGeSYcGDDBebUn
-	MvlXnPR2g6Xr0jYaysom+EWpJL4cMKDgTTGDZ/jSXMW8fIDWgBoO10WawxiAFWYOUHSEPW1s8bXKW
-	dEpZLHMPzZuNPN2Xpnrz2AL6zXWz09z1BpxAtlTr9Ah7eUudLrkoaf19n66Vwm5fcDnLw3fbvnN8K
-	bv3dmEHQY/qTp1A8I1tw==;
+	List-Owner; bh=pCsucusy5Q8jpwQ3lEi+hBjDs122mEucCSPBC/CnbEo=; b=uMscVFodZwsgRk
+	2n/zDyHNdkyMb526efdkqHKOLP51zB5QWIbGRghSgB7WKCRpn1tjrrl75rj5A961FQV7I8+zd5aw6
+	8/fwywG9Y8UPwQoVNlIfTf2QUR7gamR+NtGDji/7E8v9yqoiwZMUv75a0BTPIFo+ODq6NCoDvZQsg
+	6rm+hlU+k20IyzrThy3a/9TZ23gh+fxEVryZCD6RkJ+EB2iZrCZ9bGpAn3VySWv72KTefLmOUxEiI
+	oeVjjvxuhN2fUlzitMe9hE3oV+f0kni+Ny8VMPB6/mn9jha6JJ6CG4TThbk0z50GZed/qDBsihNQ1
+	6qiI+2HcBYi9JB8dXAuA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrBu-00000001Pa4-18lF;
+	id 1xSrBu-00000001PaK-1hlO;
 	Mon, 16 Nov 2026 07:31:50 +0000
-Received: from m16.mail.163.com ([117.135.210.2])
+Received: from m16.mail.163.com ([220.197.31.3])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrBl-00000001PWB-2rpG
+	id 1xSrBn-00000001PX3-1R0i
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 07:31:43 +0000
+	Mon, 16 Nov 2026 07:31:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Xu
-	2+ZqWLiH8ac/CHEFRlUaMcIRQgTHmvl2/TbWN1jDE=; b=m99FfT49cAacTyHuKC
-	ZVlrc/ddyosRz6FdT5OMNPUKS80vN/Zx7yTwkCJebC8IoVumS/Rse8b+ZTC14Bzn
-	mGcQFH5F9R5QQ0ae2l3+QsANZwRqgXtidwYsX3CSCTtcMzpHNdNDDAp1hh7b2sD3
-	XneAEZi1KkV2IYvdhw8VekmBg=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=pC
+	sucusy5Q8jpwQ3lEi+hBjDs122mEucCSPBC/CnbEo=; b=e61tIZOMm+t0xhQop3
+	ZKE8TRUbyQ69bXovJ6XuRJz/MTRBWVE59I0A21MqsLnqoFpkx6REGPDEzufFveWa
+	c/K3jQQA8L57hFHe1YE1hX/kv9JWDKvhKwR4Ux3XMWNVMWqbqCFso6QMF8+w73nQ
+	7yxKyW9wVLrcZ39F6FIX37zl0=
 Received: from mm (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id PCgvCgDnB4dFsfpqIKNJFg--.7882S3;
-	Mon, 16 Nov 2026 15:31:21 +0800 (CST)
+	by gzsmtp1 (Coremail) with SMTP id PCgvCgDnB4dFsfpqIKNJFg--.7882S4;
+	Mon, 16 Nov 2026 15:31:22 +0800 (CST)
 From: Qi Xi <xiqi5703@163.com>
 To: Catalin Marinas <catalin.marinas@arm.com>,
 	Will Deacon <will@kernel.org>
@@ -48,25 +48,24 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	wangkefeng.wang@huawei.com,
 	sunnanyong@huawei.com,
 	xiqi2@huawei.com
-Subject: [PATCH v4 1/2] arm64: copy_template: add an offset-addressed 64-byte loop
-Date: Mon, 16 Nov 2026 15:25:11 +0800
-Message-ID: <20261116072512.1323883-2-xiqi5703@163.com>
+Subject: [PATCH v4 2/2] arm64: copy_from_user: use privileged LDP/STP for large copies
+Date: Mon, 16 Nov 2026 15:25:12 +0800
+Message-ID: <20261116072512.1323883-3-xiqi5703@163.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261116072512.1323883-1-xiqi5703@163.com>
 References: <20261116072512.1323883-1-xiqi5703@163.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: PCgvCgDnB4dFsfpqIKNJFg--.7882S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7uF17JF4fuF47trW3uF43Awb_yoW8KFWDpw
-	1xWrW3Kas8GwnrA3yfX3Z7CrWakan3JFyfWFZ7KFn7tw1jqa4Yqw43Gw1F9FWUJ39ay348
-	CF9YyF1DGas0gFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jsuc_UUUUU=
-X-CM-SenderInfo: 50ltxkqxqtqiywtou0bp/xtbC7QnXDmr6sUm9jQAA3l
+X-CM-TRANSID: PCgvCgDnB4dFsfpqIKNJFg--.7882S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW3WFW5tr47JFyfJrWxZFyxKrg_yoW7XF45pw
+	4rCwsxKrsrWF18C3sxX3W7XrZYya1fWF15uFn7Wr4Y9ry2gryUKF1fG39I9rZ7GF42gw4f
+	ua1FgFy5XFn0q3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jVGQhUUUUU=
+X-CM-SenderInfo: 50ltxkqxqtqiywtou0bp/xtbC7grXDmr6sUq+dwAA3f
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_233142_166537_60766B84 
-X-CRM114-Status: UNSURE (   9.69  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261115_233143_828663_5080D1B8 
+X-CRM114-Status: GOOD (  16.32  )
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,79 +88,182 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Qi Xi <xiqi2@huawei.com>
 
-copy_template.S is shared by copy_from_user.S and copy_to_user.S.  In
-its 64-byte loop every load and store is post-indexed, which on the
-user side means two LDTR/STTR accesses followed by an address update.
+For copies of 4096 bytes or more, __arch_copy_from_user_opt() toggles
+PSTATE.PAN, allowing it to use privileged LDP instead of LDTR,
+together with the offset-addressed loop from copy_template.S.  Smaller
+copies keep using the original code.
 
-Add a COPY_TEMPLATE_PAIRS variant of the loop that uses offset
-addressing and advances src and dst once per iteration.  Without
-per-access writeback, the loads and stores of an iteration can overlap
-rather than serialise on the base register.
+copy_to_user is left unchanged.  Using privileged stores there would
+need the same PAN toggle, but a PAN update in the middle of the
+user-side store stream breaks hardware write streaming, which costs
+more than the paired stores save.
 
-Defining COPY_TEMPLATE_PAIRS before including copy_template.S selects
-the variant.
-
-Co-developed-by: Ben Niu <benniu@meta.com>
-Signed-off-by: Ben Niu <benniu@meta.com>
-Signed-off-by: Jinjiang Tu <tujinjiang@huawei.com>
 Signed-off-by: Qi Xi <xiqi2@huawei.com>
 ---
- arch/arm64/lib/copy_template.S | 35 ++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ arch/arm64/lib/Makefile             |   2 +-
+ arch/arm64/lib/copy_from_user.S     |   8 ++
+ arch/arm64/lib/copy_from_user_opt.S | 114 ++++++++++++++++++++++++++++
+ 3 files changed, 123 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/lib/copy_from_user_opt.S
 
-diff --git a/arch/arm64/lib/copy_template.S b/arch/arm64/lib/copy_template.S
-index 7f2f5a0e2fb9..12ab3bc8afa3 100644
---- a/arch/arm64/lib/copy_template.S
-+++ b/arch/arm64/lib/copy_template.S
-@@ -161,6 +161,40 @@ alternative_else_nop_endif
- 	*/
- 	.p2align	L1_CACHE_SHIFT
- .Lcpy_body_large:
-+#ifdef COPY_TEMPLATE_PAIRS
-+	/* pre-get 64 bytes data. */
-+	ldp2	A_l, A_h, src, #0, 9997f
-+	ldp2	B_l, B_h, src, #16, 9997f
-+	ldp2	C_l, C_h, src, #32, 9997f
-+	ldp2	D_l, D_h, src, #48, 9997f
-+	add	src, src, #64
-+1:
-+	/*
-+	* interlace the load of next 64 bytes data block with store of the last
-+	* loaded 64 bytes data.
-+	*
-+	* The loads can fault on user memory.  Since dst is not advanced
-+	* per access, each fault is fixed up to account for the 16-byte
-+	* blocks already stored.
-+	*/
-+	stp2	A_l, A_h, dst, #0
-+	ldp2	A_l, A_h, src, #0, .Lcopy_opt_fixup16
-+	stp2	B_l, B_h, dst, #16
-+	ldp2	B_l, B_h, src, #16, .Lcopy_opt_fixup32
-+	stp2	C_l, C_h, dst, #32
-+	ldp2	C_l, C_h, src, #32, .Lcopy_opt_fixup48
-+	stp2	D_l, D_h, dst, #48
-+	ldp2	D_l, D_h, src, #48, .Lcopy_opt_fixup64
-+	add	dst, dst, #64
-+	add	src, src, #64
-+	subs	count, count, #64
-+	b.ge	1b
-+	stp2	A_l, A_h, dst, #0
-+	stp2	B_l, B_h, dst, #16
-+	stp2	C_l, C_h, dst, #32
-+	stp2	D_l, D_h, dst, #48
-+	add	dst, dst, #64
-+#else
- 	/* pre-get 64 bytes data. */
- 	ldp1	A_l, A_h, src, #16
- 	ldp1	B_l, B_h, src, #16
-@@ -185,6 +219,7 @@ alternative_else_nop_endif
- 	stp1	B_l, B_h, dst, #16
- 	stp1	C_l, C_h, dst, #16
- 	stp1	D_l, D_h, dst, #16
-+#endif
+diff --git a/arch/arm64/lib/Makefile b/arch/arm64/lib/Makefile
+index 38ffd359123c..b7c1c579aec0 100644
+--- a/arch/arm64/lib/Makefile
++++ b/arch/arm64/lib/Makefile
+@@ -4,7 +4,7 @@
+ KCSAN_SANITIZE_delay.o := n
  
- 	tst	count, #0x3f
- 	b.ne	.Ltail63
+ lib-y		:= clear_user.o delay.o copy_from_user.o		\
+-		   copy_to_user.o copy_page.o				\
++		   copy_from_user_opt.o copy_to_user.o copy_page.o	\
+ 		   csum.o insn.o memchr.o memcpy.o			\
+ 		   memset.o memcmp.o strcmp.o strncmp.o strlen.o	\
+ 		   strnlen.o strchr.o strrchr.o tishift.o
+diff --git a/arch/arm64/lib/copy_from_user.S b/arch/arm64/lib/copy_from_user.S
+index 400057d607ec..ec23066c2a37 100644
+--- a/arch/arm64/lib/copy_from_user.S
++++ b/arch/arm64/lib/copy_from_user.S
+@@ -64,6 +64,12 @@ srcin	.req	x15
+ SYM_FUNC_START(__arch_copy_from_user)
+ 	add	end, x0, x2
+ 	mov	srcin, x1
++	/*
++	 * Use the privileged LDP/STP path for large copies.  Below 4096
++	 * bytes the PAN toggle costs more than it saves.
++	 */
++	cmp	x2, #4096
++	b.hs	9002f
+ #include "copy_template.S"
+ 	mov	x0, #0				// Nothing to copy
+ 	ret
+@@ -79,5 +85,7 @@ USER(9998f, ldtrb tmp1w, [srcin])
+ 	strb	tmp1w, [dst], #1
+ 9998:	sub	x0, end, dst			// bytes not copied
+ 	ret
++
++9002:	b	__arch_copy_from_user_opt
+ SYM_FUNC_END(__arch_copy_from_user)
+ EXPORT_SYMBOL(__arch_copy_from_user)
+diff --git a/arch/arm64/lib/copy_from_user_opt.S b/arch/arm64/lib/copy_from_user_opt.S
+new file mode 100644
+index 000000000000..2c0e3cb4798a
+--- /dev/null
++++ b/arch/arm64/lib/copy_from_user_opt.S
+@@ -0,0 +1,114 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (C) 2026 Huawei Ltd.
++ */
++
++#include <linux/linkage.h>
++
++#include <asm/asm-uaccess.h>
++#include <asm/assembler.h>
++#include <asm/cache.h>
++
++#define COPY_TEMPLATE_PAIRS
++
++	.macro ldrb1 reg, ptr, val
++	user_ldst 9998f, ldtrb, \reg, \ptr, \val
++	.endm
++
++	.macro strb1 reg, ptr, val
++	strb \reg, [\ptr], \val
++	.endm
++
++	.macro ldrh1 reg, ptr, val
++	user_ldst 9997f, ldtrh, \reg, \ptr, \val
++	.endm
++
++	.macro strh1 reg, ptr, val
++	strh \reg, [\ptr], \val
++	.endm
++
++	.macro ldr1 reg, ptr, val
++	user_ldst 9997f, ldtr, \reg, \ptr, \val
++	.endm
++
++	.macro str1 reg, ptr, val
++	str \reg, [\ptr], \val
++	.endm
++
++	.macro ldp1 reg1, reg2, ptr, val
++	user_ldp 9997f, \reg1, \reg2, \ptr, \val
++	.endm
++
++	.macro stp1 reg1, reg2, ptr, val
++	stp \reg1, \reg2, [\ptr], \val
++	.endm
++
++	.macro ldp2 reg1, reg2, ptr, val, fixup
++8888:	ldp \reg1, \reg2, [\ptr, \val]
++	_asm_extable_uaccess 8888b, \fixup
++	.endm
++
++	.macro stp2 reg1, reg2, ptr, val
++	stp \reg1, \reg2, [\ptr, \val]
++	.endm
++
++	.macro cpy1 dst, src, count
++	.arch_extension mops
++	USER_CPY(9997f, 0, cpyfprt [\dst]!, [\src]!, \count!)
++	USER_CPY(9996f, 0, cpyfmrt [\dst]!, [\src]!, \count!)
++	USER_CPY(9996f, 0, cpyfert [\dst]!, [\src]!, \count!)
++	.endm
++
++end	.req	x5
++srcin	.req	x15
++SYM_FUNC_START(__arch_copy_from_user_opt)
++	add	end, x0, x2
++	mov	srcin, x1
++
++#ifdef CONFIG_KASAN_HW_TAGS
++	/*
++	 * KASAN enables tag checking for EL1 accesses (SCTLR_EL1.TCF)
++	 * while the user's TCF0 mode may have checking disabled.
++	 * Suppress it for the copy, as uaccess_enable_privileged() does.
++	 */
++	ALTERNATIVE("nop", __stringify(SET_PSTATE_TCO(1)), ARM64_MTE)
++#endif
++	/*
++	 * PSTATE.PAN blocks EL1 access to user memory, so clear it for
++	 * the privileged LDP/STP below and restore it on exit.
++	 */
++	ALTERNATIVE("nop", __stringify(SET_PSTATE_PAN(0)), ARM64_HAS_PAN)
++
++#include "copy_template.S"
++
++	mov	x0, #0				// Nothing to copy
++
++.L__arch_copy_from_user_opt_exit:
++#ifdef CONFIG_KASAN_HW_TAGS
++	ALTERNATIVE("nop", __stringify(SET_PSTATE_TCO(0)), ARM64_MTE)
++#endif
++	ALTERNATIVE("nop", __stringify(SET_PSTATE_PAN(1)), ARM64_HAS_PAN)
++	ret
++
++	// Exception fixups
++.Lcopy_opt_fixup64:
++	add	dst, dst, #16
++.Lcopy_opt_fixup48:
++	add	dst, dst, #16
++.Lcopy_opt_fixup32:
++	add	dst, dst, #16
++.Lcopy_opt_fixup16:
++	add	dst, dst, #16
++	b	9998f
++
++9996:	b.cs	9997f
++	// Registers are in Option A format
++	add	dst, dst, count
++9997:	cmp	dst, dstin
++	b.ne	9998f
++	// Before being absolutely sure we couldn't copy anything, try harder
++USER(9998f, ldtrb tmp1w, [srcin])
++	strb	tmp1w, [dst], #1
++9998:	sub	x0, end, dst			// bytes not copied
++	b	.L__arch_copy_from_user_opt_exit
++SYM_FUNC_END(__arch_copy_from_user_opt)
 -- 
 2.53.0
 
