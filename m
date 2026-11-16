@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB04606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 05:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1F6606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 05:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WcwliE0O;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PM9m+4C0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fFuYJoWr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MXmWvjsc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wPBLUs7n7EA3PCBReUyBuI9nf/OddWHzE5Ejpf9ULYU=; b=WcwliE0Ot/6eJP5B7BKhF3bKIl
-	EFTQfX+0Qa/AlDeloMNKHDpaN0sub6naZmKdeW0bzZsP1Q9FWjK+6qhJj+MsmQWygdq8Sv50iCoaq
-	PkUj1giSF1QHS7Ma7HSpyoir05JXJXkgWSu9W7cbxAgRcppPv/p7sRtlBnyYMfO+QgIaOkA2UGsc/
-	Xa2yrehQ/i3pTtrZdsfEhIggUwCaG8JZvWVlZUoP0euH42YSl7MGURy1Yws+1z+ApqANK6IoRIoqq
-	bZKMxVOZRvBkCMPBt32Fer0IpR26lW+NqYwvTf7xsyBymU/VjKJRrUHakDtjntAQWzfBNm0LUCw9V
-	uzMd1SGg==;
+	bh=DHaice+Ti0PzU+k5QwVlqcyysO8IwelYCih66aFmNyQ=; b=fFuYJoWrVqu3Nm0G7U44FzNATr
+	7XdA47I1mxU8/FsC0ahciEsM+BRjR20CaJwEKS/z5BhwmOnihxgFMaDoiEIKuhiOU1Hg7RMaJz7oU
+	pSxtTK8CAYAmhB1GFzSs5iIuu4JGqSmqe2NJE/T5KT3i8q6Io5sWnzOY48dfOADo1o+Uq0MwdxYHO
+	u6tZfj5mL2VpF9Z3UEWj2G/Gij4DcGFVXnRZFq083swqL39R7uO7eos6VYBYUdEKssR/8qeGd9qgj
+	pDu1b0Oa3DTcTzRddG8O+1MIk2FecK2I4RmPno+JZHwzhwDhWSQlEBn3+sotICEHxGVgXfRl2pefk
+	/gGD0cdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSpgf-00000001Bcz-0VjQ;
+	id 1xSpgf-00000001Bd3-0s6P;
 	Mon, 16 Nov 2026 05:55:29 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSpgd-00000001Bch-334o
+	id 1xSpgd-00000001Bcg-3EwD
 	for linux-arm-kernel@lists.infradead.org;
 	Mon, 16 Nov 2026 05:55:27 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 04292456EC;
-	Mon, 16 Nov 2026 05:55:27 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C432360F2F;
+	Mon, 16 Nov 2026 05:55:26 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794808526;
-	b=hFxKzhYcOkeRRpvfB7xbOgZ27KMuLCrTQpR6Xi9OEXkGl+wQfuNTzARtV/KIQFijLQrz
-	 5iWOMJvp3hbMSUTUlNQ8mUU75DxFY/bQgjYIY1+tLiBR6fBfb/OHHL076uxL9zkjZ8nsP
-	 Zec5zeaYw29AP3YUrGEp2ecfMopRj51MEDTToCgS5PTP3OM8XOfyz1nVEV2pTU1vVeg8A
-	 ZdfSXdl9yePD2PnoIwqFvD2TO/a+JA5BQw72+UzQDl5+MFYNUQsFo6V+qPIuI3LA0Inn6
-	 /lvoPX5NYphOlkA4EVP0vJkIeSfTDTXLr2QR1MPS6xnbWodMtzbvu2hJv6ASm6LEOCA==
+	b=qcKHtJn/1EX9mHC16gV2qxiTnH/MXxYdZA4JiekQYMXhpjmAf0JbmP4nUd20rlOrP5o6
+	 qrOpeKPr17AFa2QOLN5fQOa9yXkuzlwB6qld7NGOm+Yz9YoYSTb0bbrBu0sMFeAcuJxLz
+	 qJaE6fsSMJuuTcNCUVpByqJ1nc5hxfml2ucCYnATHzb/6l5D3rrorlNl/5FZSXDIMMQxE
+	 kF2KzfKAQvW7TlrUn2wSXomGikwQRCQR9Z4MpNWUvl+vVBsxIoAKWhX3doZySKwk9OUG9
+	 uXUdrbQK3SBlufMzyaUPGhKEfL4lkXcVCxwD07RwCwY3ws8hDVO8OXHn9W0YQB+UT3Q==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794808526;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=wPBLUs7n7EA3PCBReUyBuI9nf/OddWHzE5Ejpf9ULYU=;
-	b=28b8a1KOTlD3ZftvqAGN6Kqb3ViyA9NpeeEPgK2znLdZk3lslB6vsSPsMveKxS/aKqsi
-	 S4nV2Mgh38fjAtxGhEHSYbSc1HhEKQ6rbAqggAw5JiykUW+eR/DlT4z6FTUpO4AhooiDs
-	 KdEB1d1vv/dioCnMQ+MIrjAC0QQtzkuMf6znv5e+1ysCaZwffki5K3zIsNgaHxzvMevEC
-	 rT5Y3znZCpOAjeXBH0IXzXlH/b6wINDDjCep+l/8BHlcGEb9nW6LUyYnxvD0XmtIWoQ/J
-	 ZeL1pCpo1Ba+XIjN4wMktO+qs/jL26Dr9cZS1EDaieHdovxcvo14VxkYfpT20Dhc4yw==
+	bh=DHaice+Ti0PzU+k5QwVlqcyysO8IwelYCih66aFmNyQ=;
+	b=m3BSxy5gxNk1ax5I5HiRJ3efae11czCLU7FHGVHLMP5077aSmQUjM6U9YB3r2tS8OTVJ
+	 /wBaMmi/kethX9URAUjzbdYE1PUUUiUr4hrVR+1QMVgP6e8toESpEldjl4KleVeygP/kl
+	 OjU/vRP1+w8NSL0cVtz8HicjlnOZhSsE7Sj89cZzUBqjTkUE7VeHIANgb5X6uGBRGkX3H
+	 Xn0LpTEyrgoc8ypswCaONtAGoTLR5GI9XGu0eRdlmQcbeLGaU5zbiW5Wdfnwefk/khHQm
+	 6QfXFeqb9dH3kdA77yApJ12Iz/ibTXrB/ojsoawrW2Ld02qFBfNwfy7h1fDNqyRtn3A==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id EFA001F000C6;
+	by smtp.kernel.org (Postfix) with ESMTPS id EDA7C1F000C5;
 	Mon, 16 Nov 2026 05:55:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794808526;
-	bh=wPBLUs7n7EA3PCBReUyBuI9nf/OddWHzE5Ejpf9ULYU=;
+	bh=DHaice+Ti0PzU+k5QwVlqcyysO8IwelYCih66aFmNyQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=PM9m+4C0eY9sjlNiT9rhqbWXMFCp3QYk+zaKB9Iynd7ADdAvnc6MzqgilrC5QTXdX
-	 jW1oDzLAJbmVTQ8zQr6Kx0UvS2TDb3mmLakvnvtM9HZT7X6EybMcQOyaT+PZgwRc82
-	 //scF1N+WSCupzyeXcz33MUuL08kqbyQ07w9L0OOZukGOm4i7Y8fTjAcTdLg/kelk6
-	 mFw7vIXG1nSSDZJiglgsMvA2GtH6iqVd3jOzeS78nWJvGEyPvvAXnKlZWtBQb4vRMn
-	 ex85SfEjHbApQFih/J6qwIGWJuAbyG27Og7VuSdeOgQIg5zlCwXgGuUgKUq4OvOr2n
-	 3zHrkcE3hpTXw==
+	b=MXmWvjsch/N61Bche8WqkZvQqF8C4SXdCcEb0kpbQrYlp8HO4ZL7wOrcWLUmPQIbx
+	 WL/G0bJzUp5sW56VUObbZxdHIakkSaOXVy53vBvmYfoPw5QIgYGg7H37Zu8NXgDQzB
+	 Yn4lDn26vAIABjxTfipukXFmlUxIGtSBbJBp6yrMrlqgdJjcjJJxdq1YMURSeIktn7
+	 EcVnIsQDXS6ZDZjed9++AaeBCKM51Mpx09N1mDr3/OVpE8yw+W+zcpIqG1UoC7FnLT
+	 llsU1nuHQnA952fr76mZrKc0OM2FrtP8BLowye0ASqrIIvNNhMNlVh/lTKSJXLfj+s
+	 T3NI5lYT4qmww==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 7FF174A33F;
+	by lkml.kernel.org (Postfix) with ESMTP id 69AE24A318;
 	Mon, 16 Nov 2026 05:55:25 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Mon, 16 Nov 2026 05:55:26 +0000
-Subject: [PATCH v2 2/2] spi: sun6i: Add dual read support for the H616
+Date: Mon, 16 Nov 2026 05:55:25 +0000
+Subject: [PATCH v2 1/2] spi: dt-bindings: sun6i: Allow Dual SPI and Quad
+ SPI for the H616
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261116-spi-sun6i-h616-dual-read-v2-2-e0c66eb71e20@gmail.com>
+Message-Id: <20261116-spi-sun6i-h616-dual-read-v2-1-e0c66eb71e20@gmail.com>
 References: <20261116-spi-sun6i-h616-dual-read-v2-0-e0c66eb71e20@gmail.com>
 In-Reply-To: <20261116-spi-sun6i-h616-dual-read-v2-0-e0c66eb71e20@gmail.com>
 To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -91,11 +92,11 @@ Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
  linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794808525; l=1884;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794808525; l=1092;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=/aYd9VQyOFWGonPeySJDcD8WiJeGpg8qKpxGGrt1DFM=;
- b=VnJoB2BxeoaDrHHyJpU9gow+SGuG52MelLJnvbcmmd25ti+CsGbKWlTGYpu6cp6l2+nOOGvqc
- bd8DYfK6z6RAiTrzstYMoO1rzEKA/P65tCY1CIYDy4BfP7ceYhHH1qZ
+ bh=J5fWkwwhvbIRdi/tKkf4w+0nyQr1DVDQbXeDAzQuqPQ=;
+ b=svyeGoIzmzcktMV1ZQt0EBtPZ6VDtsuLr/LDWTdESX9RzfCqsv0ugB5a52NxpTCv0RN59pdrH
+ kdVg5xaYFd5DVGcPPYnBEvgqoHqeay4U895LmnUpQLlsnD5UdBf0pjG
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -123,48 +124,29 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The H616 SPI controllers bind through the "allwinner,sun8i-h3-spi"
-fallback, which advertises no dual or quad modes, although the H616
-manual documents the dual read (DRM, SPI_BCC bit 28) and quad (Quad_EN,
-bit 29) controls that the driver already programs for the R329.
-
-Match "allwinner,sun50i-h616-spi" with the H3 clock control and dual
-reads. Dual writes and quad mode are left out: untested on the H616.
-
-Tested on an Orange Pi Zero2 (2 MiB Macronix SPI NOR, flash node with
-spi-rx-bus-width = <2>): 1-1-2 reads (opcode 0x3b), the whole flash in
-0.30 s instead of 0.52 s, repeated reads identical.
+The H616 SPI controllers support dual and quad transfers (H616 user
+manual, SPI_BCC DRM and Quad_EN bits; only SPI0 has the WP/HOLD pins
+for quad). Allow them, as commit 743956bb9990 ("spi: dt-bindings:
+sun6i: Allow Dual SPI and Quad SPI for newer SoCs") did for the R329
+and A523. The H616 keeps the H3 fallback.
 
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/spi/spi-sun6i.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/spi/spi-sun6i.c b/drivers/spi/spi-sun6i.c
-index 6b7a05dd0de8..3a77ade87fbe 100644
---- a/drivers/spi/spi-sun6i.c
-+++ b/drivers/spi/spi-sun6i.c
-@@ -778,6 +778,12 @@ static const struct sun6i_spi_cfg sun8i_h3_spi_cfg = {
- 	.has_clk_ctl	= true,
- };
- 
-+static const struct sun6i_spi_cfg sun50i_h616_spi_cfg = {
-+	.fifo_depth	= SUN8I_FIFO_DEPTH,
-+	.has_clk_ctl	= true,
-+	.mode_bits	= SPI_RX_DUAL,
-+};
-+
- static const struct sun6i_spi_cfg sun50i_r329_spi_cfg = {
- 	.fifo_depth	= SUN8I_FIFO_DEPTH,
- 	.mode_bits	= SPI_RX_DUAL | SPI_TX_DUAL | SPI_RX_QUAD | SPI_TX_QUAD,
-@@ -786,6 +792,7 @@ static const struct sun6i_spi_cfg sun50i_r329_spi_cfg = {
- static const struct of_device_id sun6i_spi_match[] = {
- 	{ .compatible = "allwinner,sun6i-a31-spi", .data = &sun6i_a31_spi_cfg },
- 	{ .compatible = "allwinner,sun8i-h3-spi",  .data = &sun8i_h3_spi_cfg },
-+	{ .compatible = "allwinner,sun50i-h616-spi", .data = &sun50i_h616_spi_cfg },
- 	{ .compatible = "allwinner,sun50i-r329-spi", .data = &sun50i_r329_spi_cfg },
- 	/*
- 	 * A523's SPI controller has a combined RX buffer + FIFO counter
+diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+index 14c2f318dd04..116c5868415a 100644
+--- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
++++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+@@ -106,6 +106,7 @@ allOf:
+           compatible:
+             contains:
+               enum:
++                - allwinner,sun50i-h616-spi
+                 - allwinner,sun50i-r329-spi
+                 - allwinner,sun55i-a523-spi
+     then:
 
 -- 
 2.55.0
