@@ -2,78 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC7A606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834F5606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:37:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1HzMtson;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=U2ROnBJs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YtrTRy/o;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ndEjBJh4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Uwgw3xeaN1+bs7yTHvvgQKxysMFy3zqKwC+rYyV34Is=; b=1HzMtsoneJlrQL
-	H32312DIcH6YcA9z2EBdn7vToyVB7KHNYD249IUI0sXC02XgYB3PTT1uBf5PYZF7UJqSfFZB5NmQz
-	Zx2KrVSLaI2B8gyAGF/8GjANUoZEE872Jat/8fRhFxq27xAjXppeRoyPhqvi15D1ORDFSj+Vt1ynW
-	stNmH7ug4/vhgm7j/zlVtq8XCjVerDc8+sJ0qp1SXPKboHjBKf5/sznZ0ygtw1eEID3jQCC70O4jU
-	VUYoCYRGDXpJDbN6BwJn+nes0qhozm3wEK8XK7oQIznc5920S4FQHc3zo4Iua1YJzBIztYrjzgJEk
-	E1unxlV5az1NaTuDj1ug==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=JG6CA7hF3cK3MbnlBMlTCcJ/avGWqkbsETlXUPBQl38=; b=YtrTRy/okQSiMKcYFNiqtBgCIX
+	BXbEvtb8neSrSVIQy9iiw+pkJi2anaRmOZpm4LT/8xy1qJkKDRPFh/+jgCyPjpJVyrvZJ5agxzNkJ
+	E4hwhpdB4rzEiKA2bgZ2Cwf4X/RmFu4b3+GI4yhfPShvtg7TYpQopol962xxZ1kmkndpPu1HKLpve
+	UXd3s5QAlWiBGc3yrWozbGNK8q9YgV4m3rXElAzKTSH79OQX6UU3Jq1UdIYPMrDUxi7K7bzUBiIEA
+	7hOhfQ/IWTOTXCZ1DX5231WpmMo3YSQtbhSxkBWGnTSWVt9ENOGOnOothvRZQo7ofp9F4L59QaZXA
+	6xtLKVZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1ZG-00000003bt8-2fss;
-	Mon, 16 Nov 2026 18:36:38 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1ZD-00000003bs9-2v6o
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 18:36:38 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6A7FE1684;
-	Mon, 16 Nov 2026 10:36:31 -0800 (PST)
-Received: from [10.57.69.37] (unknown [10.57.69.37])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AAFC73F632;
-	Mon, 16 Nov 2026 10:36:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794854194; bh=OJeh66fJWlWjY8ji+/BZ51ingbGHu9NVRMhfP1OvA5k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U2ROnBJsUPiquoMt970PUFxwZoFc/ek2a9xFZQMPY8IN6LanG5u0d3K3Uyc6A2ZDa
-	 c8edbuJnXcwcKb/BClgKF91Myamo2qi66OKazTilTL0To9pOtIWi3s6KlKyt2E2bwq
-	 ujbuaxZgMipqUvQnsSdhhTRgrswfwJA7s8gCgatw=
-Message-ID: <c5ebf936-fbc6-4910-be59-9e89ff3a625e@arm.com>
-Date: Mon, 16 Nov 2026 18:36:29 +0000
+	id 1xT1Zf-00000003bxI-3ne1;
+	Mon, 16 Nov 2026 18:37:03 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xT1Ze-00000003bx3-2e3C;
+	Mon, 16 Nov 2026 18:37:02 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id D901B63143;
+	Mon, 16 Nov 2026 18:37:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC9B1F000C9;
+	Mon, 16 Nov 2026 18:36:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794854221;
+	bh=JG6CA7hF3cK3MbnlBMlTCcJ/avGWqkbsETlXUPBQl38=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=ndEjBJh4ItJInOcvAxXux03Rf6tpEY0aWYJTVaMRE/qyOsLT128+uXQ8uOG3HDHp9
+	 ChBqi477ZssuhxtEiLH75iEoGzJY6P83E4z7dKmRH+p8AjK1UugOd4VaCRidUiQy8+
+	 ivCV0SQkBr5DT+toW//ktRk/zd1Ku9RJJeGftspFZ4TqWUpsCi8E53JVEpDbg19Ay0
+	 7HxLxa+dO4hD3sJmTkhEk5DE35FLaw0ic7fnOkJN7LiuHiL9eCekpMed+XOQwsHlA7
+	 JwQ0tdq7fJZ/LczVaXMxWKfzMmdt0PnEA0rfqKNeM5VSl6xv2i0bal3tg3hb5gZh5W
+	 QQmK3hHskdGtg==
+Date: Mon, 16 Nov 2026 18:36:53 +0000
+From: Conor Dooley <conor@kernel.org>
+To: gaohan@iscas.ac.cn
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
+	linux-csky@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 05/19] dt-bindings: clock: sunxi-ng: document the
+ Allwinner V861 CCUs
+Message-ID: <20261116-untapped-venomous-10a258880fe4@spud>
+References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
+ <20261114-v861-v1-5-eb71ec3ee523@iscas.ac.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/12] KVM: arm64: CCA: Support runtime faulting of
- memory
-Content-Language: en-GB
-To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261111145758.217946-1-steven.price@arm.com>
- <20261111145758.217946-12-steven.price@arm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261111145758.217946-12-steven.price@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_103637_057991_6F122A2B 
-X-CRM114-Status: GOOD (  48.89  )
-X-Spam-Score: -4.4 (----)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jqXi36KkUpYdOM0M"
+Content-Disposition: inline
+In-Reply-To: <20261114-v861-v1-5-eb71ec3ee523@iscas.ac.cn>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,630 +93,408 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY
 	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/2026 14:57, Steven Price wrote:
-> At runtime, if the realm guest accesses an IPA without a stage-2
-> mapping, then KVM fixes up the stage-2 mapping for the backing memory.
-> 
-> For memory in the lower (protected) region of IPA, verify that the
-> corresponding guest_memfd page is private before delegating to the RMM.
-> The RMM then maps the page into the realm and initializes its contents
-> to zero.
-> 
-> For memory in the upper (shared) IPA region, map the backing page as
-> non-secure memory. Check that a guest_memfd page is shared when the
-> fault uses guest_memfd; ordinary userspace-backed memslots can only be
-> mapped at unprotected IPAs and follow the normal user memory fault path.
-> 
-> If the fault IPA and guest_memfd attributes disagree then exit to
-> userspace with KVM_EXIT_MEMORY_FAULT so the VMM can perform the required
-> conversion. If a shared IPA has no memslot, KVM follows the existing
-> MMIO or abort-injection path. The latter can result in injecting a SEA
-> to the guest.
-> 
-> Realm faults may need to create RTTs, including when updating a
-> mapping after a permission fault. Take the write side of mmu_lock
-> and top up the MMU cache for these faults. Do not pre-fault Realm
-> memory.
-> 
-> Co-developed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Steven Price <steven.price@arm.com>
-> 
+--jqXi36KkUpYdOM0M
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Nov 14, 2026 at 06:33:31AM +0800, Han Gao via B4 Relay wrote:
+> From: Han Gao <gaohan@iscas.ac.cn>
+>=20
+> The V861 has a main CCU and a PRCM CCU. Add the binding and the clock
+> and reset indices for both.
+>=20
+> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 > ---
-> Changes since v1:
-> - Use the write side of mmu_lock and top up the MMU cache for Realm
->    faults that may create RTTs. Skip unnecessary cache flushing,
->    disable Realm pre-faulting, and tighten memory-fault and mapping
->    retry handling.
-> ---
->   arch/arm64/include/asm/kvm_emulate.h |  13 ++
->   arch/arm64/include/asm/kvm_mmu.h     |   4 +-
->   arch/arm64/include/asm/kvm_rmi.h     |   6 +
->   arch/arm64/kvm/mmu.c                 | 115 +++++++++++--
->   arch/arm64/kvm/rmi.c                 | 235 +++++++++++++++++++++++++++
->   5 files changed, 353 insertions(+), 20 deletions(-)
-> 
-> diff --git a/arch/arm64/include/asm/kvm_emulate.h b/arch/arm64/include/asm/kvm_emulate.h
-> index 32021bdf2610..8a71fddfdb85 100644
-> --- a/arch/arm64/include/asm/kvm_emulate.h
-> +++ b/arch/arm64/include/asm/kvm_emulate.h
-> @@ -847,4 +847,17 @@ static inline bool kvm_realm_is_created(struct kvm *kvm)
->   	return kvm_vm_is_realm(kvm) && kvm_realm_state(kvm) != REALM_STATE_NONE;
->   }
->   
-> +static inline gpa_t kvm_gpa_from_fault(struct kvm *kvm, phys_addr_t ipa)
-> +{
-> +	if (!kvm_vm_is_realm(kvm))
-> +		return ipa;
+>  .../bindings/clock/allwinner,sun252i-v861-ccu.yaml |  99 ++++++++++++++++
+>  include/dt-bindings/clock/sun252i-v861-ccu.h       | 127 +++++++++++++++=
+++++++
+>  include/dt-bindings/clock/sun252i-v861-r-ccu.h     |  14 +++
+>  include/dt-bindings/reset/sun252i-v861-ccu.h       |  55 +++++++++
+>  include/dt-bindings/reset/sun252i-v861-r-ccu.h     |  12 ++
+>  5 files changed, 307 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun252i-v8=
+61-ccu.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun252i-v86=
+1-ccu.yaml
+> new file mode 100644
+> index 000000000000..29fc23ab2401
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/allwinner,sun252i-v861-ccu.=
+yaml
+> @@ -0,0 +1,99 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/allwinner,sun252i-v861-ccu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	return ipa & ~BIT(kvm->arch.realm.ia_bits - 1);
-> +}
+> +title: Allwinner V861 Clock Control Unit
 > +
-> +static inline gfn_t kvm_gfn_from_fault(struct kvm *kvm, phys_addr_t ipa)
-> +{
-> +	return gpa_to_gfn(kvm_gpa_from_fault(kvm, ipa));
-> +}
+> +maintainers:
+> +  - Han Gao <gaohan@iscas.ac.cn>
 > +
->   #endif /* __ARM64_KVM_EMULATE_H__ */
-> diff --git a/arch/arm64/include/asm/kvm_mmu.h b/arch/arm64/include/asm/kvm_mmu.h
-> index 32392abf2e21..a70f8bd4b2b9 100644
-> --- a/arch/arm64/include/asm/kvm_mmu.h
-> +++ b/arch/arm64/include/asm/kvm_mmu.h
-> @@ -371,7 +371,7 @@ static inline bool kvm_is_nested_s2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu)
->   
->   static inline void kvm_fault_lock(struct kvm *kvm)
->   {
-> -	if (is_protected_kvm_enabled())
-> +	if (kvm_vm_hyp_is_distrusting(kvm))
->   		write_lock(&kvm->mmu_lock);
->   	else
->   		read_lock(&kvm->mmu_lock);
-> @@ -379,7 +379,7 @@ static inline void kvm_fault_lock(struct kvm *kvm)
->   
->   static inline void kvm_fault_unlock(struct kvm *kvm)
->   {
-> -	if (is_protected_kvm_enabled())
-> +	if (kvm_vm_hyp_is_distrusting(kvm))
->   		write_unlock(&kvm->mmu_lock);
->   	else
->   		read_unlock(&kvm->mmu_lock);
-> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/asm/kvm_rmi.h
-> index e64c3bcce160..d1ba0c325bb0 100644
-> --- a/arch/arm64/include/asm/kvm_rmi.h
-> +++ b/arch/arm64/include/asm/kvm_rmi.h
-> @@ -6,6 +6,7 @@
->   #ifndef __ASM_KVM_RMI_H
->   #define __ASM_KVM_RMI_H
->   
-> +#include <asm/kvm_pgtable.h>
->   #include <linux/arm-smccc-rmi.h>
->   #include <linux/kvm.h>
->   
-> @@ -89,6 +90,11 @@ void kvm_realm_unmap_range_filter(struct kvm *kvm,
->   				  bool may_block,
->   				  enum kvm_gfn_range_filter attr_filter);
->   
-> +int realm_map_ipa(struct kvm *kvm, phys_addr_t ipa,
-> +		  kvm_pfn_t pfn, unsigned long map_size,
-> +		  enum kvm_pgtable_prot prot,
-> +		  struct kvm_mmu_memory_cache *memcache);
+> +properties:
+> +  "#clock-cells":
+> +    const: 1
 > +
->   static inline bool kvm_realm_is_private_address(struct realm *realm,
->   						unsigned long addr)
->   {
-> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-> index e550360fc94d..b6c61d7890c8 100644
-> --- a/arch/arm64/kvm/mmu.c
-> +++ b/arch/arm64/kvm/mmu.c
-> @@ -450,6 +450,10 @@ static void stage2_flush_vm(struct kvm *kvm)
->   	struct kvm_memory_slot *memslot;
->   	int idx, bkt;
->   
-> +	/* The RMM requires FWB, so Realm stage-2 mappings need no cache flush. */
-> +	if (kvm_vm_is_realm(kvm))
-> +		return;
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  compatible:
+> +    enum:
+> +      - allwinner,sun252i-v861-ccu
+> +      - allwinner,sun252i-v861-r-ccu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    minItems: 3
+> +    maxItems: 4
+> +
+> +required:
+> +  - "#clock-cells"
+> +  - "#reset-cells"
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
 
-While this is true, it would be also worth mentioning KVM can't handle
-this for a Realm as the traps are handled within RMM. So this could be
-something like:
-	
-	/*
-	 * The RMM mandates FEAT_FWB and additionally KVM can't handle
-	 * such traps anyway.
-	 */
-
+reg and compatible should come before other properties, here and above.
 
 > +
->   	idx = srcu_read_lock(&kvm->srcu);
->   	write_lock(&kvm->mmu_lock);
->   
-> @@ -1222,6 +1226,10 @@ void stage2_unmap_vm(struct kvm *kvm)
->   	struct kvm_memory_slot *memslot;
->   	int idx, bkt;
->   
-> +	/* For realms this is handled by the RMM so nothing to do here */
-
-minor nit: Might be better to add a similar comment as above.
-	
-	/*
-	 * The RMM mandates FEAT_FWB and additionally KVM can't handle
-	 * such traps anyway.
-	 */
-
-as we skip calling stage2_unmap_vm() if we have FWB anyways.
-
-> +	if (kvm_vm_is_realm(kvm))
-> +		return;
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - allwinner,sun252i-v861-ccu
 > +
->   	idx = srcu_read_lock(&kvm->srcu);
->   	mmap_read_lock(current->mm);
->   	write_lock(&kvm->mmu_lock);
-> @@ -1791,12 +1799,18 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
->   	void *memcache = NULL;
->   	gfn_t canonical_gfn;
->   	int ret;
-> +	bool is_private = false;
->   
-> -	if (!perm_fault) {
-> +	if (KVM_BUG_ON(!kvm_slot_has_gmem(s2fd->memslot), kvm))
-> +		return -EINVAL;
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: High Frequency Oscillator (usually at 24MHz)
+> +            - description: Low Frequency Oscillator (usually at 32kHz)
+> +            - description: Internal Oscillator
 > +
-> +	if (!perm_fault || kvm_arch_has_private_mem(kvm)) {
+> +        clock-names:
+> +          items:
+> +            - const: hosc
+> +            - const: losc
+> +            - const: iosc
 
-should this be s/kvm_arch_has_private_mem/kvm_vm_is_realm ? I dont think
-this would be required for pKVM yet ?
+both devices duplicate this, so it can move to the top level.
+then all you need to do is set maxItems to 3 here and minitems to 4
+below.
 
-Also, I wonder why pKVM doesnt need mmu cache pages with permission 
-faults with gmem. They do for user_mem_abort().
-(may be because they assume Gmem is always single page ? in which case
-we could also have the same behavior)
+pw-bot: changes-requested
 
-
->   		memcache = get_mmu_memcache(s2fd->vcpu);
->   		ret = topup_mmu_memcache(s2fd->mmu, memcache);
->   		if (ret)
->   			return ret;
-> +	}
-> +	if (!perm_fault) {
->   		if (kvm_is_nested_s2_mmu(kvm, pgt->mmu)) {
->   			mapping = kmalloc_obj(struct kvm_guest_s2_mapping, GFP_KERNEL_ACCOUNT);
->   			if (!mapping)
-> @@ -1805,7 +1819,7 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
->   	}
->   
->   	s2vi.vma_pagesize = PAGE_SIZE;
-> -	s2vi.gfn = ALIGN_DOWN(s2fd->fault_ipa, s2vi.vma_pagesize) >> PAGE_SHIFT;
-> +	s2vi.gfn = gpa_to_gfn(kvm_gpa_from_fault(kvm, s2fd->fault_ipa));
->   	canonical_gfn = get_canonical_gfn(s2fd, &s2vi);
->   
->   	write_fault = kvm_s2_fault_is_write(s2fd);
-> @@ -1817,13 +1831,35 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
->   	/* Pairs with the smp_wmb() in kvm_mmu_invalidate_end(). */
->   	smp_rmb();
->   
-> +	if (kvm_arch_has_private_mem(kvm)) {
-
---8>--
-
-> +		switch (kvm->arch.vm_flavor) {
-> +		case VM_REALM:
-> +			is_private = kvm_realm_is_private_address(&kvm->arch.realm,
-> +								  s2fd->fault_ipa);
-
-Could we for now use
-		is_private = private_ipa_fault(kvm, s2fd->fault_ipa);
-
-In other words use a wrapper for detecting if a given ipa is private or 
-not ? May be something like:	kvm_ipa_is_private(kvm, ipa)? (choose ipa 
-to make it explicit, it is arm64 thing).
-
-Where, pKVM could hook in its own check.
-
-
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +
-> +		if (is_private != kvm_gmem_is_private_gfn(kvm, canonical_gfn)) {
-> +			if (!result)
-> +				kvm_prepare_memory_fault_exit(s2fd->vcpu,
-> +							      gfn_to_gpa(canonical_gfn),
-> +							      PAGE_SIZE,
-> +							      write_fault, exec_fault,
-> +							      is_private);
-> +			kfree(mapping);
-> +			return -EFAULT;
-> +		}
-> +	}
-> +
->   	ret = kvm_gmem_get_pfn(kvm, s2fd->memslot, canonical_gfn, &s2vi.pfn, NULL);
->   	if (ret) {
->   		/* If result is non-NULL this is a synthetic fault. */
->   		if (!result)
->   			kvm_prepare_memory_fault_exit(s2fd->vcpu, gfn_to_gpa(canonical_gfn),
->   						      s2vi.vma_pagesize, write_fault, exec_fault,
-> -						      false);
-> +						      is_private);
->   		kfree(mapping);
->   		return ret;
->   	}
-> @@ -1846,6 +1882,16 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
->   		goto out_unlock;
->   	}
->   
-> +	switch (kvm->arch.vm_flavor) {
-> +	case VM_REALM:
-> +		prot &= ~KVM_PGTABLE_PROT_X;
-> +		ret = realm_map_ipa(kvm, s2fd->fault_ipa, s2vi.pfn,
-> +				    PAGE_SIZE, prot, memcache);
-> +		goto out_unlock;
-> +	default:
-> +		break;
-> +	}
-> +
->   	if (perm_fault) {
->   		/*
->   		 * Drop the SW bits in favour of those stored in the
-> @@ -2047,7 +2093,8 @@ static int kvm_s2_fault_get_vma_info(const struct kvm_s2_fault_desc *s2fd,
->   	 * mapping size to ensure we find the right PFN and lay down the
->   	 * mapping in the right place.
->   	 */
-> -	s2vi->gfn = ALIGN_DOWN(s2fd->fault_ipa, s2vi->vma_pagesize) >> PAGE_SHIFT;
-> +	s2vi->gfn = kvm_gfn_from_fault(kvm, ALIGN_DOWN(s2fd->fault_ipa,
-> +						       s2vi->vma_pagesize));
->   
->   	s2vi->mte_allowed = kvm_vma_mte_allowed(vma);
->   
-> @@ -2227,7 +2274,7 @@ static int kvm_s2_fault_map(const struct kvm_s2_fault_desc *s2fd,
->   	 * possible.
->   	 */
->   	if (mapping_size == PAGE_SIZE && s2vi->max_map_size != PAGE_SIZE) {
-> -		if (perm_fault_granule > PAGE_SIZE) {
-> +		if (perm_fault_granule > PAGE_SIZE && !kvm_vm_is_realm(kvm)) {
-
-Please could we add a comment here, why we do this ? It is a subtle case.
-
->   			mapping_size = perm_fault_granule;
->   		} else {
->   			mapping_size = transparent_hugepage_adjust(s2fd, &pfn, &gfn);
-> @@ -2242,12 +2289,15 @@ static int kvm_s2_fault_map(const struct kvm_s2_fault_desc *s2fd,
->   	if (!perm_fault_granule && !s2vi->map_non_cacheable && kvm_has_mte(kvm))
->   		sanitise_mte_tags(kvm, pfn, mapping_size);
->   
-> -	/*
-> -	 * Under the premise of getting a FSC_PERM fault, we just need to relax
-> -	 * permissions only if mapping_size equals perm_fault_granule. Otherwise,
-> -	 * kvm_pgtable_stage2_map() should be called to change block size.
-> -	 */
-> -	if (mapping_size == perm_fault_granule) {
-> +	if (kvm_vm_is_realm(kvm)) {
-> +		ret = realm_map_ipa(kvm, s2fd->fault_ipa, pfn, mapping_size,
-> +				    prot, memcache);
-> +	} else if (mapping_size == perm_fault_granule) {
-> +		/*
-> +		 * Under the premise of getting a FSC_PERM fault, we just need to relax
-> +		 * permissions only if mapping_size equals perm_fault_granule. Otherwise,
-> +		 * kvm_pgtable_stage2_map() should be called to change block size.
-> +		 */
->   		/*
->   		 * Drop the SW bits in favour of those stored in the
->   		 * PTE, which will be preserved.
-> @@ -2306,15 +2356,16 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
->   	/*
->   	 * Permission faults just need to update the existing leaf entry,
->   	 * and so normally don't require allocations from the memcache. The
-> -	 * only exception to this is when dirty logging is enabled at runtime
-> +	 * exceptions are when dirty logging is enabled at runtime
->   	 * and a fault needs to collapse a block entry into a table.
-> +	 * Realms can also require new RTT levels when replacing a mapping.
->   	 * Under pKVM a permission fault can also collapse pages into a block,
->   	 * which needs a fresh mapping object, and the hypervisor requires the
->   	 * min-pages memcache even when the install allocates nothing.
->   	 */
->   	memcache = get_mmu_memcache(s2fd->vcpu);
->   	if (!perm_fault || memslot_is_logging(s2fd->memslot) ||
-> -	    is_protected_kvm_enabled()) {
-> +	    is_protected_kvm_enabled() || kvm_vm_is_realm(s2fd->vcpu->kvm)) {
-
-kvm_vm_hyp_is_distrusting() ? More importantly, as commented in 
-gmem_abort, I don't see why pKVM is inconsistent here.
-
->   		ret = topup_mmu_memcache(s2fd->mmu, memcache);
->   		if (ret)
->   			return ret;
-> @@ -2340,13 +2391,40 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
->   	return kvm_s2_fault_map(s2fd, &s2vi, prot, memcache, result);
->   }
->   
-> +static bool private_ipa_fault(struct kvm *kvm, phys_addr_t fault_ipa)
-
-See more on the naming above.
-
-> +{
-> +	return kvm_vm_is_realm(kvm) &&
-> +		kvm_realm_is_private_address(&kvm->arch.realm, fault_ipa);
-> +}
-> +
-> +/* Decide if an abort should be handled by the gmem */
-> +static bool kvm_fault_is_gmem_abort(struct kvm *kvm,
-> +				    const struct kvm_s2_fault_desc *s2fd)
-> +{
-> +	if (!kvm_slot_has_gmem(s2fd->memslot))
-> +		return false;
-> +	if (kvm_memslot_is_gmem_only(s2fd->memslot))
-> +		return true;
-> +	/*
-> +	 * For Realms, all private faults must be backed by GMEM.
-> +	 * TODO: Handle Trusted device private memory mappings.
-> +	 */
-> +	if (private_ipa_fault(kvm, s2fd->fault_ipa))
-> +		return true;
-> +	return false;
-> +}
-> +
->   static int kvm_vm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
->   {
->   	VM_WARN_ON_ONCE(kvm_s2_fault_is_perm(s2fd) &&
->   			!esr_abt_is_write_fault(s2fd->esr) &&
->   			!kvm_s2_fault_is_exec(s2fd));
->   
-> -	if (kvm_slot_has_gmem(s2fd->memslot))
-> +	if (private_ipa_fault(s2fd->vcpu->kvm, s2fd->fault_ipa) &&
-> +	    !kvm_slot_has_gmem(s2fd->memslot))
-> +		return -EINVAL;
-
-This looks like duplicated with kvm_fault_is_gmem_abort(). We could 
-remove it may be ?
+Thanks,
+Conor.
 
 > +
-> +	if (kvm_fault_is_gmem_abort(s2fd->vcpu->kvm, s2fd))
->   		return gmem_abort(s2fd, NULL);
->   	else
->   		return user_mem_abort(s2fd, NULL);
-> @@ -2458,10 +2536,10 @@ int kvm_handle_guest_sea(struct kvm_vcpu *vcpu)
->    */
->   int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
->   {
-> +	struct kvm *kvm = vcpu->kvm;
->   	struct kvm_s2_trans nested_trans, *nested = NULL;
->   	unsigned long esr = kvm_vcpu_get_esr(vcpu);
->   	struct kvm_s2_mmu *mmu = vcpu->arch.hw_mmu;
-> -	struct kvm *kvm = vcpu->kvm;
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - allwinner,sun252i-v861-r-ccu
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: High Frequency Oscillator (usually at 24MHz)
+> +            - description: Low Frequency Oscillator (usually at 32kHz)
+> +            - description: Internal Oscillator
+> +            - description: Peripherals PLL (200 MHz output)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: hosc
+> +            - const: losc
+> +            - const: iosc
+> +            - const: pll-periph
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clock-controller@2001000 {
+> +        compatible =3D "allwinner,sun252i-v861-ccu";
+> +        reg =3D <0x02001000 0x1000>;
+> +        clocks =3D <&osc24M>, <&rtc 0>, <&rtc 2>;
+> +        clock-names =3D "hosc", "losc", "iosc";
+> +        #clock-cells =3D <1>;
+> +        #reset-cells =3D <1>;
+> +    };
+> +
+> +...
+> diff --git a/include/dt-bindings/clock/sun252i-v861-ccu.h b/include/dt-bi=
+ndings/clock/sun252i-v861-ccu.h
+> new file mode 100644
+> index 000000000000..1123b894a493
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/sun252i-v861-ccu.h
+> @@ -0,0 +1,127 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2026 Han Gao <gaohan@iscas.ac.cn>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_SUN252I_V861_CCU_H_
+> +#define _DT_BINDINGS_CLK_SUN252I_V861_CCU_H_
+> +
+> +#define CLK_PLL_DDR		0
+> +#define CLK_PLL_PERIPH0_4X	1
+> +#define CLK_PLL_PERIPH0_2X	2
+> +#define CLK_PLL_PERIPH0_800M	3
+> +#define CLK_PLL_PERIPH0_480M	4
+> +#define CLK_PLL_PERIPH0_600M	5
+> +#define CLK_PLL_PERIPH0_400M	6
+> +#define CLK_PLL_PERIPH0_300M	7
+> +#define CLK_PLL_PERIPH0_200M	8
+> +#define CLK_PLL_PERIPH0_160M	9
+> +#define CLK_PLL_PERIPH0_150M	10
+> +#define CLK_PLL_VIDEO_8X	11
+> +#define CLK_PLL_VIDEO_4X	12
+> +#define CLK_PLL_VIDEO_2X	13
+> +#define CLK_PLL_VIDEO_1X	14
+> +#define CLK_PLL_CSI_8X		15
+> +#define CLK_PLL_CSI_4X		16
+> +#define CLK_PLL_CSI_2X		17
+> +#define CLK_PLL_CSI_1X		18
+> +#define CLK_PLL_AUDIO		19
+> +#define CLK_PLL_AUDIO_DIV2	20
+> +#define CLK_PLL_AUDIO_DIV3	21
+> +#define CLK_PLL_AUDIO_DIV5	22
+> +#define CLK_PLL_AUDIO_4X	23
+> +#define CLK_PLL_AUDIO_1X	24
+> +#define CLK_PLL_NPU_8X		25
+> +#define CLK_PLL_NPU_4X		26
+> +#define CLK_PLL_NPU_2X		27
+> +#define CLK_PLL_NPU_1X		28
+> +#define CLK_AHB			29
+> +#define CLK_APB0		30
+> +#define CLK_APB1		31
+> +#define CLK_APB_UART		32
+> +#define CLK_DE			33
+> +#define CLK_BUS_DE		34
+> +#define CLK_G2D			35
+> +#define CLK_BUS_G2D		36
+> +#define CLK_CE			37
+> +#define CLK_BUS_CE		38
+> +#define CLK_BUS_CE_SYS		39
+> +#define CLK_VE			40
+> +#define CLK_BUS_VE		41
+> +#define CLK_NPU			42
+> +#define CLK_BUS_NPU		43
+> +#define CLK_BUS_SGDMA		44
+> +#define CLK_BUS_NDMA		45
+> +#define CLK_BUS_MSGBOX0		46
+> +#define CLK_BUS_MSGBOX1		47
+> +#define CLK_BUS_SPINLOCK	48
+> +#define CLK_BUS_HSTIMER		49
+> +#define CLK_AVS			50
+> +#define CLK_BUS_TIMER		51
+> +#define CLK_BUS_DBG		52
+> +#define CLK_BUS_PWM		53
+> +#define CLK_DRAM		54
+> +#define CLK_MBUS		55
+> +#define CLK_MBUS_DMA		56
+> +#define CLK_MBUS_VE		57
+> +#define CLK_MBUS_CE		58
+> +#define CLK_MBUS_CSI		59
+> +#define CLK_MBUS_ISP		60
+> +#define CLK_MBUS_G2D		61
+> +#define CLK_BUS_DRAM		62
+> +#define CLK_MMC0		63
+> +#define CLK_MMC1		64
+> +#define CLK_MMC2		65
+> +#define CLK_BUS_MMC0		66
+> +#define CLK_BUS_MMC1		67
+> +#define CLK_BUS_MMC2		68
+> +#define CLK_PSRAM		69
+> +#define CLK_BUS_PSRAM		70
+> +#define CLK_BUS_UART0		71
+> +#define CLK_BUS_UART1		72
+> +#define CLK_BUS_UART2		73
+> +#define CLK_BUS_UART3		74
+> +#define CLK_BUS_I2C0		75
+> +#define CLK_BUS_I2C1		76
+> +#define CLK_BUS_I2C2		77
+> +#define CLK_BUS_I2C3		78
+> +#define CLK_SPI0		79
+> +#define CLK_SPI1		80
+> +#define CLK_SPI2		81
+> +#define CLK_SPIF		82
+> +#define CLK_BUS_SPI0		83
+> +#define CLK_BUS_SPI1		84
+> +#define CLK_BUS_SPI2		85
+> +#define CLK_BUS_SPIF		86
+> +#define CLK_GMAC_25M		87
+> +#define CLK_BUS_GMAC		88
+> +#define CLK_BUS_GPADC		89
+> +#define CLK_BUS_THS		90
+> +#define CLK_I2S0		91
+> +#define CLK_BUS_I2S0		92
+> +#define CLK_AUDIO_CODEC_DAC	93
+> +#define CLK_AUDIO_CODEC_ADC	94
+> +#define CLK_BUS_AUDIO_CODEC	95
+> +#define CLK_USB_OHCI0		96
+> +#define CLK_BUS_OHCI0		97
+> +#define CLK_BUS_EHCI0		98
+> +#define CLK_BUS_OTG		99
+> +#define CLK_BUS_DPSS_TOP	100
+> +#define CLK_TCON_LCD		101
+> +#define CLK_BUS_TCON_LCD	102
+> +#define CLK_CSI			103
+> +#define CLK_CSI_MCLK0		104
+> +#define CLK_CSI_MCLK1		105
+> +#define CLK_CSI_MCLK2		106
+> +#define CLK_BUS_CSI		107
+> +#define CLK_FANOUT_24M		108
+> +#define CLK_FANOUT_12M		109
+> +#define CLK_FANOUT_16M		110
+> +#define CLK_FANOUT_25M		111
+> +#define CLK_FANOUT_27M		112
+> +#define CLK_FANOUT_PCLK		113
+> +#define CLK_FANOUT0		114
+> +#define CLK_FANOUT1		115
+> +#define CLK_FANOUT2		116
+> +
+> +#endif /* _DT_BINDINGS_CLK_SUN252I_V861_CCU_H_ */
+> diff --git a/include/dt-bindings/clock/sun252i-v861-r-ccu.h b/include/dt-=
+bindings/clock/sun252i-v861-r-ccu.h
+> new file mode 100644
+> index 000000000000..41eaf8aab2c0
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/sun252i-v861-r-ccu.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2026 Han Gao <gaohan@iscas.ac.cn>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_SUN252I_V861_R_CCU_H_
+> +#define _DT_BINDINGS_CLK_SUN252I_V861_R_CCU_H_
+> +
+> +#define CLK_R_AHB		0
+> +#define CLK_R_APB0		1
+> +#define CLK_BUS_R_PPU		2
+> +#define CLK_BUS_R_RTC		3
+> +
+> +#endif /* _DT_BINDINGS_CLK_SUN252I_V861_R_CCU_H_ */
+> diff --git a/include/dt-bindings/reset/sun252i-v861-ccu.h b/include/dt-bi=
+ndings/reset/sun252i-v861-ccu.h
+> new file mode 100644
+> index 000000000000..4e0245c6c99a
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/sun252i-v861-ccu.h
+> @@ -0,0 +1,55 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2026 Han Gao <gaohan@iscas.ac.cn>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_RST_SUN252I_V861_CCU_H_
+> +#define _DT_BINDINGS_RST_SUN252I_V861_CCU_H_
+> +
+> +#define RST_MBUS		0
+> +#define RST_BUS_DE		1
+> +#define RST_BUS_G2D		2
+> +#define RST_BUS_CE		3
+> +#define RST_BUS_CE_SYS		4
+> +#define RST_BUS_VE		5
+> +#define RST_BUS_NPU		6
+> +#define RST_BUS_SGDMA		7
+> +#define RST_BUS_NDMA		8
+> +#define RST_BUS_MSGBOX0		9
+> +#define RST_BUS_MSGBOX1		10
+> +#define RST_BUS_SPINLOCK	11
+> +#define RST_BUS_HSTIMER		12
+> +#define RST_BUS_TIMER		13
+> +#define RST_BUS_DBG		14
+> +#define RST_BUS_PWM		15
+> +#define RST_BUS_DRAM		16
+> +#define RST_BUS_MMC0		17
+> +#define RST_BUS_MMC1		18
+> +#define RST_BUS_MMC2		19
+> +#define RST_BUS_PSRAM		20
+> +#define RST_BUS_UART0		21
+> +#define RST_BUS_UART1		22
+> +#define RST_BUS_UART2		23
+> +#define RST_BUS_UART3		24
+> +#define RST_BUS_I2C0		25
+> +#define RST_BUS_I2C1		26
+> +#define RST_BUS_I2C2		27
+> +#define RST_BUS_I2C3		28
+> +#define RST_BUS_SPI0		29
+> +#define RST_BUS_SPI1		30
+> +#define RST_BUS_SPI2		31
+> +#define RST_BUS_SPIF		32
+> +#define RST_BUS_GMAC		33
+> +#define RST_BUS_GPADC		34
+> +#define RST_BUS_THS		35
+> +#define RST_BUS_I2S0		36
+> +#define RST_BUS_AUDIO_CODEC	37
+> +#define RST_USB_PHY0		38
+> +#define RST_BUS_OHCI0		39
+> +#define RST_BUS_EHCI0		40
+> +#define RST_BUS_OTG		41
+> +#define RST_BUS_DPSS_TOP	42
+> +#define RST_BUS_TCON_LCD	43
+> +#define RST_BUS_CSI		44
+> +
+> +#endif /* _DT_BINDINGS_RST_SUN252I_V861_CCU_H_ */
+> diff --git a/include/dt-bindings/reset/sun252i-v861-r-ccu.h b/include/dt-=
+bindings/reset/sun252i-v861-r-ccu.h
+> new file mode 100644
+> index 000000000000..ed0f3063df49
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/sun252i-v861-r-ccu.h
+> @@ -0,0 +1,12 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2026 Han Gao <gaohan@iscas.ac.cn>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_RST_SUN252I_V861_R_CCU_H_
+> +#define _DT_BINDINGS_RST_SUN252I_V861_R_CCU_H_
+> +
+> +#define RST_BUS_R_PPU		0
+> +#define RST_BUS_R_RTC		1
+> +
+> +#endif /* _DT_BINDINGS_RST_SUN252I_V861_R_CCU_H_ */
+>=20
+> --=20
+> 2.55.0
+>=20
+>=20
 
-Spurious change ?
+--jqXi36KkUpYdOM0M
+Content-Type: application/pgp-signature; name=signature.asc
 
->   	phys_addr_t fault_ipa; /* The address we faulted on */
->   	phys_addr_t ipa; /* Always the IPA in the L1 guest phys space */
->   	struct kvm_memory_slot *memslot;
-> @@ -2554,8 +2632,9 @@ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
->   		nested = &nested_trans;
->   	}
->   
-> -	gfn = ipa >> PAGE_SHIFT;
-> +	gfn = kvm_gfn_from_fault(kvm, ipa);
->   	memslot = gfn_to_memslot(kvm, gfn);
-> +
->   	hva = gfn_to_hva_memslot_prot(memslot, gfn, &writable);
->   	write_fault = esr_abt_is_write_fault(esr);
->   	if (kvm_is_error_hva(hva) || (write_fault && !writable)) {
-> @@ -2598,7 +2677,7 @@ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
->   		 * of the page size.
->   		 */
->   		ipa |= FAR_TO_FIPA_OFFSET(kvm_vcpu_get_hfar(vcpu));
-> -		ret = io_mem_abort(vcpu, ipa);
-> +		ret = io_mem_abort(vcpu, kvm_gpa_from_fault(kvm, ipa));
->   		goto out_unlock;
->   	}
->   
-> @@ -3156,7 +3235,7 @@ pre_fault_bytes_consumed(gpa_t gpa, unsigned long granule_size,
->   
->   int kvm_arch_pre_fault_allowed(struct kvm_vcpu *vcpu)
->   {
-> -	if (is_protected_kvm_enabled())
-> +	if (is_protected_kvm_enabled() || kvm_vm_is_realm(vcpu->kvm))
->   		return -EOPNOTSUPP;
+-----BEGIN PGP SIGNATURE-----
 
-kvm_vm_hyp_is_distrusting() ?
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavtNRAAKCRB4tDGHoIJi
+0s9KAQCX4Bs6wwg+pTycon8WFV2ntH+sKnw+Q81hcKt96NcBzAEA7J6TxHPWsnUN
+XyUZNGs0O+rQmq5NSbKFCG3P8mHbsQE=
+=LJxo
+-----END PGP SIGNATURE-----
 
->   	if (!kvm_vcpu_initialized(vcpu))
->   		return -ENOEXEC;
-> diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
-> index 5aa34d68de59..682ed7005d57 100644
-> --- a/arch/arm64/kvm/rmi.c
-> +++ b/arch/arm64/kvm/rmi.c
-> @@ -551,6 +551,241 @@ void kvm_realm_unmap_range_filter(struct kvm *kvm, unsigned long start,
->   		realm_unmap_private_range(kvm, start, end, may_block);
->   }
->   
-> +static unsigned long addr_range_desc(unsigned long ipa, unsigned long phys,
-> +				     unsigned long size, unsigned long state)
-> +{
-> +	unsigned long count = 1;
-> +	unsigned long out;
-> +	int rmi_size;
-> +
-> +	for (rmi_size = KVM_PGTABLE_LAST_LEVEL; rmi_size >= 0; rmi_size--) {
-> +		unsigned long entry_size = rmi_addr_block_size_to_bytes(rmi_size);
-> +
-> +		if (size >= entry_size && IS_ALIGNED(ipa, entry_size) &&
-> +		    IS_ALIGNED(phys, entry_size))
-> +			break;
-> +	}
-> +
-> +	if (rmi_size == 0) {
-> +		/*
-> +		 * Stop at the next block boundary so that a later iteration can
-> +		 * use a larger mapping when both addresses are aligned.
-> +		 */
-> +		count = MIN(size >> PAGE_SHIFT, PTRS_PER_PTE - 1);
-> +		count = min(count, (PMD_SIZE - (ipa & (PMD_SIZE - 1))) >> PAGE_SHIFT);
-> +		count = min(count, (PMD_SIZE - (phys & (PMD_SIZE - 1))) >> PAGE_SHIFT);
-> +	}
-> +
-> +	WARN_ON(phys & ~PAGE_MASK);
-> +
-> +	out = FIELD_PREP(RMI_ADDR_RANGE_BLOCK_SIZE_MASK, rmi_size) |
-> +	      FIELD_PREP(RMI_ADDR_RANGE_COUNT_MASK, count) |
-> +	      FIELD_PREP(RMI_ADDR_RANGE_STATE_MASK, state);
-> +	out |= phys & PAGE_MASK;
-> +
-> +	return out;
-> +}
-> +
-> +static int realm_map_protected(struct kvm *kvm,
-> +			       unsigned long ipa,
-> +			       kvm_pfn_t pfn,
-> +			       unsigned long map_size,
-> +			       struct kvm_mmu_memory_cache *memcache)
-> +{
-> +	struct realm *realm = &kvm->arch.realm;
-> +	phys_addr_t phys = __pfn_to_phys(pfn);
-> +	phys_addr_t base_phys = phys;
-> +	phys_addr_t rd = virt_to_phys(realm->rd);
-> +	phys_addr_t delegated_phys;
-> +	unsigned long base_ipa = ipa;
-> +	unsigned long ipa_top;
-> +	long ret = 0;
-> +
-> +	if (WARN_ON(!IS_ALIGNED(map_size, PAGE_SIZE) ||
-> +		    !IS_ALIGNED(ipa, map_size)))
-> +		return -EINVAL;
-> +
-> +	if (rmi_delegate_range(phys, map_size, &delegated_phys)) {
-> +		if (delegated_phys == phys) {
-> +			/*
-> +			 * It's likely we raced with another VCPU on the same
-> +			 * fault. Assume the other VCPU has handled the fault
-> +			 * and return to the guest.
-> +			 */
-> +			return 0;
-> +		}
-> +		/* Partial delegation - map as much as we can */
-> +		map_size = delegated_phys - phys;
-> +	}
-> +
-> +	ipa_top = ipa + map_size;
-> +
-> +	while (ipa < ipa_top) {
-> +		unsigned long flags = RMI_ADDR_TYPE_SINGLE;
-
-
-
-> +		unsigned long range_desc = addr_range_desc(ipa, phys, ipa_top - ipa,
-> +							   RMI_OP_MEM_DELEGATED);
-
-May be pass the range covered back here as an out parameter ( &top ) ?
-
-> +		unsigned long out_top;
-> +
-> +		ret = rmi_rtt_data_map(rd, ipa, ipa_top, flags, range_desc,
-> +				       &out_top);
-
-Should we limit this to what the addr_range_desc covers with out back 
-from addr_range_desc() ? (or do at least what we do for map_unprotected
-below ?)
-			
-> +		if (ret < 0)
-> +			goto err_undelegate;
-> +
-> +		if (RMI_RESULT_STATUS(ret) == RMI_ERROR_RTT) {
-> +			/* Create missing RTTs and retry */
-> +			int level = RMI_RESULT_DATA_LEVEL(ret);
-> +
-> +			if (WARN_ON(level >= KVM_PGTABLE_LAST_LEVEL))
-> +				goto err_undelegate;
-> +			ret = realm_create_rtt_levels(realm, ipa, level,
-> +						      level + 1,
-> +						      memcache);
-> +			if (ret)
-> +				goto err_undelegate;
-> +
-> +			continue;
-> +		}
-> +
-> +		if (WARN_ON(ret))
-> +			goto err_undelegate;
-> +
-> +		/* An IRQ can stop the RMM before it maps the first entry. */
-> +		if (out_top == ipa) {
-> +			ret = -EAGAIN;
-> +			goto err_undelegate;
-> +		}
-> +		if (WARN_ON_ONCE(out_top < ipa || out_top > ipa_top)) {
-> +			ret = -ENXIO;
-> +			goto err_undelegate;
-> +		}
-> +
-> +		phys += out_top - ipa;
-> +		ipa = out_top;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_undelegate:
-> +	realm_unmap_private_range(kvm, base_ipa, ipa, false);
-> +	/* A range which cannot be undelegated remains owned by the RMM. */
-> +	WARN_ON(rmi_undelegate_range(base_phys, map_size));
-> +	return ret < 0 ? ret : -ENXIO;
-> +}
-> +
-> +static int realm_map_unprotected(struct kvm *kvm,
-> +				 unsigned long ipa,
-> +				 kvm_pfn_t pfn,
-> +				 unsigned long size,
-> +				 enum kvm_pgtable_prot prot,
-> +				 struct kvm_mmu_memory_cache *memcache)
-> +{
-> +	struct realm *realm = &kvm->arch.realm;
-> +	unsigned long attr, flags = 0;
-> +	phys_addr_t rd = virt_to_phys(realm->rd);
-> +	phys_addr_t phys = __pfn_to_phys(pfn);
-> +	unsigned long ipa_top = ipa + size;
-> +	unsigned int retries = 0;
-> +	long ret;
-> +
-> +	if (WARN_ON(!IS_ALIGNED(size, PAGE_SIZE)))
-> +		return -EINVAL;
-> +
-> +	switch (prot & (KVM_PGTABLE_PROT_DEVICE | KVM_PGTABLE_PROT_NORMAL_NC)) {
-> +	case KVM_PGTABLE_PROT_DEVICE | KVM_PGTABLE_PROT_NORMAL_NC:
-> +		return -EINVAL;
-> +	case KVM_PGTABLE_PROT_DEVICE:
-> +		attr = MT_S2_FWB_DEVICE_nGnRE;
-> +		break;
-> +	case KVM_PGTABLE_PROT_NORMAL_NC:
-> +		attr = MT_S2_FWB_NORMAL_NC;
-> +		break;
-> +	default:
-> +		attr = MT_S2_FWB_NORMAL;
-> +	}
-> +
-> +	flags |= FIELD_PREP(RMI_RTT_UNPROT_MAP_FLAGS_MEMATTR_MASK, attr);
-> +
-> +	if (prot & KVM_PGTABLE_PROT_R)
-> +		flags |= FIELD_PREP(RMI_RTT_UNPROT_MAP_FLAGS_S2AP_MASK, RMI_S2AP_DIRECT_READ);
-> +	if (prot & KVM_PGTABLE_PROT_W)
-> +		flags |= FIELD_PREP(RMI_RTT_UNPROT_MAP_FLAGS_S2AP_MASK, RMI_S2AP_DIRECT_WRITE);
-> +
-> +	/* TODO: Batch mappings with RMI_ADDR_TYPE_LIST. */
-> +	flags |= RMI_ADDR_TYPE_SINGLE;
-> +
-> +	while (ipa < ipa_top) {
-> +		unsigned long range_desc = addr_range_desc(ipa, phys, ipa_top - ipa,
-> +							   RMI_OP_MEM_UNDELEGATED);
-> +		unsigned long call_top = ipa + RMI_ADDR_RANGE_COUNT(range_desc) *
-> +			rmi_addr_block_size_to_bytes(RMI_ADDR_RANGE_BLOCK_SIZE(range_desc));
-
-We could return this from addr_range_desc(), as mentioned above.
-
-Suzuki
+--jqXi36KkUpYdOM0M--
 
