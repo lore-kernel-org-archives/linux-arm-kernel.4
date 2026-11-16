@@ -2,65 +2,126 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC56B606A33D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A3F9606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5DGF/0Cr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dZMbftzU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Dhy9N2XC;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=D9w+bc86
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=T3vO9MM9IQCSzuuQu9k4nuX7YpWm4Bwax9piavsKZNI=; b=5DGF/0CrPxdHxH7xtHF3975bTg
-	n/Sgvv7WktGFBtEW7rfbdQyQHKZB31/k7RgVciRIVd3JABoRxUrMb8j/R0c63SrofptdCGdAh+HEp
-	L/NSjPoMIA7fMgn9MzbdIS1ZZIftH2rw3iFRYjBpgmppVKlDzuOmV5nWS12V2QQnOp7cf4M4JNSN+
-	zaTwcmh+mK5cNkRgAWVTo7SaNwwiv6AdRqaBk+CVScHvG/j8Xnsyt2GNpw/LYue/Z87+KNb/ktDhZ
-	gXeY+kGfiQ+0yKlF5MbgyWxnxdHtR4ARcEFiUvticoYmD5u3PGxaP/kCum4jjYNGIKse169z4MPIu
-	MP15llFA==;
+	bh=BscThfivprwWjTOTQ0cyiAdJWanwkXp9CVEAyEXsDZc=; b=Dhy9N2XC8Hq1CM910lyBZ2LhSU
+	GpbQPPTxH5TLV89YkBqLOwM1iUa66CC6+W6erZW3DQUOqk2wpm411+pNonshUkyf+5ku3KMdQmung
+	4+itvEF5PbFslgMw748x59CQHtbSoqmQ3TiRLN/WS2wcDmnDfA2S5H3KxOzr4DbhNyxBNyWrZJRFI
+	Q6O8YtfO4/AJyp3qudMv1lY0iE+QHMT6tlPuDLCH/I8aovawr/SsyMzVbEmhZDTvXdRDuqSFDhrmK
+	jkClWAecZ7iEu9mJgyHnq+36CiFMxYi8EfZyn8Oyfrl78G6FF3Cyubr1Y7Qgz6PPhNrVNbYLuEVlG
+	MSaiU/8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwfM-00000002aiK-46ZY;
-	Mon, 16 Nov 2026 13:22:36 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSwhJ-00000002bNX-1YQl;
+	Mon, 16 Nov 2026 13:24:37 +0000
+Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwfL-00000002aiE-15Vm
+	id 1xSwhG-00000002bM9-1tAh
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:22:35 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 95D9041F26;
-	Mon, 16 Nov 2026 13:22:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0A8E1F000C4;
-	Mon, 16 Nov 2026 13:22:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794835354;
-	bh=T3vO9MM9IQCSzuuQu9k4nuX7YpWm4Bwax9piavsKZNI=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=dZMbftzUXqNOnHiYWuzVsvTKnvcIKTQwKy6c3uaIp9XIbmy7QpvZATpbVtp2p7lZm
-	 KykIs03jA58CPmynZ6v+gxJZDpf7nL1ifvEu+vNcXWust/Mn1X0uNo5CiaYbKPqUtX
-	 Tei1HTdlwUggDjEIET43bp/TZ4lllFhvf4fL5OTGE1SdcnynUGPnlgBmJH+X8OxV5u
-	 BmVIBX/Dfxr1qKPesufuMC/wXPDwqcf34vrPH7ErlKaiPU5Ku/GCNlOeEolvFPl+xx
-	 LpEDWWn2r6gZR6RoEb/SHBOH1AI5bNgtJzs19eTawNnjBkdlwVItlph0LYXA10PoQT
-	 vd6piTToCl2Yg==
-Subject: Re: [PATCH net-next 3/4] net: lan969x: configure the core PLL
-From: netdev-bot+sashiko@kernel.org
-To: daniel.machon@microchip.com
-Cc: UNGLinuxDriver@microchip.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- Steen.Hegelund@microchip.com, p.zabel@pengutronix.de,
- richardcochran@gmail.com, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Mon, 16 Nov 2026 13:22:33 +0000
-Message-ID: <179483535329.3136.8847960801289420948@kernel.org>
-In-Reply-To: <20261113-lan969x-core-skew-v1-3-b9b02b863d38@microchip.com>
-References: <20261113-lan969x-core-skew-v1-3-b9b02b863d38@microchip.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Mon, 16 Nov 2026 13:24:36 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=x2oom+wu7/6z0X4w0YrHTmx+gANNg125d5yMCzPiUxB5lnyi2Smdm8XK7ZKiCe33tif4YjPJRBH4mIR6nSra1770UxQgLSAg+zm9qhLFji12PJ3D+r36uP82UcT8n4zqQxBm6GqOkXK1KhoNS1qvLxwyXP4+Z/xgvE3bYoQmuvLRdSv61p43eaQaBozsMXYZjGXWmrrBD7d/48cL15vqR7kuwFIfNv4VDEe5SRnhnMhyMHF8DvJp5WnMmm8BJaaESD0LotSWTUlKkhvQ159LmzI2TSaQSNLks457Lix7dpXC9YP/xa7MgScDUQsbvqmyN2CI78q8HNWd54cx5o9qQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BscThfivprwWjTOTQ0cyiAdJWanwkXp9CVEAyEXsDZc=;
+ b=ylCuT5m2XN4tCR+s30Bsq0OI2NLQb1w3+7r83WDyxWgluub+uXh/7PJhXh/QUZ6ro4kf7+2JwOaw5fCDYREl2agFzwyu6NpkSYxCztJLTBOpgSFGU+PvVa2n6i/2jZb6CNKUeJ5acQHxA52rWFS+kuH3ddkEO9KMXCWVBBePKV2gqrdJ3+Xfx2VpVa+Pah4UObDsM1hY2E1gyCSdRwlTfURkULbK22o7YbUMkvQcba3jD58GozC15KmdTuE1TEQr27q//CiwvlWTnae9LoRWq8FtJI2jPWCnjh7bUfVqYGX90GAVjZTIH5bF6vl9cwJCN6xB37ceMUc6r5K21zxhOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BscThfivprwWjTOTQ0cyiAdJWanwkXp9CVEAyEXsDZc=;
+ b=D9w+bc86I1/AZEpvpoGO7iQLGetT6lhtVF5jygJDiAddzhsW9xN5NXRLx5tH+pJVXiX3h/YP8tKpvSCd4bVRZLvCyhcI/956tt9iul3UyjsWDJG8W3qMYsJvxmksKuLV3rwlqAJBLtdwOO1+CrNzjV823OqdX3YOhXwVSO+4Fr77dkJHgEr9iA1bfUGI7cnD7quC8ydfZv+l3WnviUwKWs6BXYSjfkcXk9ILAGqkjmZn8vyu6+7r3L2hSd+j8Re6lHnl2XX/nw2fmd8S39JySkGG3EePyS2u+BxvjKJYjNtQVAwY+XuYZYj+8D3DguZnuj/lmnITqJ3G0YCd5rnCHw==
+Received: from AS9PR06CA0218.eurprd06.prod.outlook.com (2603:10a6:20b:45e::7)
+ by AMDPR10MB992223.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:70d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Mon, 16 Nov
+ 2026 13:24:26 +0000
+Received: from CPH1EPF0000052D.eurprd05.prod.outlook.com
+ (2603:10a6:20b:45e:cafe::a7) by AS9PR06CA0218.outlook.office365.com
+ (2603:10a6:20b:45e::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Mon,
+ 16 Nov 2026 13:24:26 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ CPH1EPF0000052D.mail.protection.outlook.com (10.167.241.168) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 13:24:25 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 16 Nov
+ 2026 14:25:03 +0100
+Received: from localhost (10.48.87.124) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Mon, 16 Nov
+ 2026 14:24:19 +0100
+From: Antonio Borneo <antonio.borneo@foss.st.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Russell King <linux@armlinux.org.uk>, Wim Van Sebroeck
+	<wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Yannick Fertre
+	<yannick.fertre@foss.st.com>, Christophe Roullier
+	<christophe.roullier@foss.st.com>, <devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: Antonio Borneo <antonio.borneo@foss.st.com>,
+	<linux-watchdog@vger.kernel.org>, =?UTF-8?q?Cl=C3=A9ment=20Le=20Goffic?=
+	<clement.legoffic@foss.st.com>, Amelie Delaunay
+	<amelie.delaunay@foss.st.com>, Sashiko <sashiko-bot@kernel.org>
+Subject: [PATCH v4 00/15] Update watchdogs support on STM32MP platforms
+Date: Mon, 16 Nov 2026 14:24:01 +0100
+Message-ID: <20261116132416.1184447-1-antonio.borneo@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CPH1EPF0000052D:EE_|AMDPR10MB992223:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9cc9e1f-821f-4ee9-a729-08df43e4ef2b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|82310400026|36860700016|921020|10067099003|56012099006|11063799006|261026121527099003|261026140227099003|261028144727099003|261021123027099003|261021121427099003|261022075727099003|261022105027099003|261102123227099003|261009223027099003|18002099003|6133799003|13003099007;
+X-Microsoft-Antispam-Message-Info: dinOUvyKT2vxRZJtjUre4mi0CoFlgCAA9vzru++Lix+Gc8W1jxPu8/4+5wUd+G+m6bZ+/tXCMllB2Ik8kDXTZBWoYEJrzJUBLOhBMvms5tflzNzcfKqLii12sBDz76Ka2BNHyBCwSkzb+Ou4+c1dxILAIPG1lcBNh0K/36+aewi788u1wp/dKBJd8215KbLdnoeUylmBllOffmSD2GFKtYHwyvYhifIidRiDKtaFN+4Dz4tHdT7KIp0ns5MuBzIeu2UlYI2X7sog7v7FWPl1yuLCaTBUzK37zbgVFjmE6IZDGmF0S9PB8yM9d9aaQ/WmNXGvZV9HhH7ppfmWtA3Fkm1bkEN2yxcq6Ko0PL5bYVdh4bMcgBrS9KRm1yltEmEVnNXI5Aw/E6HMqUn7Wky+cn5owEdcUu0cpVVrIEmmJwEhzUyh+TpHonsT7Zh0RSFbMQ1oD7xmQOM6++03JXgIPpRYmEAokBkOeYUh2Uwh6Ydp8pK60n7ddcfv000z3Y5RBduVHwD0FTYAsfujCHXp/wlVcCxjYq/UNp71+G44b2aiFcaSPlrcSxgdCPGQxIk3VU86aOmXyEn2eIGU0e8H61wfuuGD0SB2mC3+ZwYRle1Lv077OkxICciV0CHKfdx9iCnNnLf6821d24iD6Wn0eQYndfLqjUZ8+ReiDh5p9rJXdKNzAP57Ri8OxaIg8W8x+5XmSxPPcWuyKK31rJRZPg==
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(82310400026)(36860700016)(921020)(10067099003)(56012099006)(11063799006)(261026121527099003)(261026140227099003)(261028144727099003)(261021123027099003)(261021121427099003)(261022075727099003)(261022105027099003)(261102123227099003)(261009223027099003)(18002099003)(6133799003)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: i/Gc4nDFX6vbq8f7Xo1vZvQoBdCuKiTrs7ujZsFAG82oAiL5Z0sTwrYnwCcGOaZtmH+Opz8aVWQ7Kc2UVmmU+Bk3PnX4Prhu06IDEgnvD3Yvakuvn5PGxk4t1alHaSEgvtS3r8giPEy/F33dvS8Bsheu8U5/2XJIgiXbmHcuGZg8nxUQOQYXqeNmmTwlIju0DCXpMqdDf91P0Vmgks4tVHIC8DPIgGIhA0baTuLudyIWcDvYIo0QxXtvGXlQFtqCH6bY6WHyfjdJ7ADv3dVQB7DwllTmKK5kZKqWcn6uyc+iGG3H/csanuve4cQ3teE4IVYspLZv1CyClXJ/1rwkPgyi3ua2l5tMklw4dEk/1J4w/Zi5rmchJmBGQG7/qY1QNX55rB3jAtE3f0La7ff36iX3TEIFJkD30KUrAiwbugf+AsDtUzDZY90I+SRybQD1
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 13:24:25.3142
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9cc9e1f-821f-4ee9-a729-08df43e4ef2b
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: CPH1EPF0000052D.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMDPR10MB992223
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261116_052434_746658_36205A17 
+X-CRM114-Status: GOOD (  14.56  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,303 +132,98 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 6 potential
-issue(s) to consider.
+This series allows the stm32_iwdg watchdog driver to determine
+whether the watchdog is already running and adds support for
+STM32MP2xx devices.
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 5
+It also completes and rationalizes the configuration of secure and
+non-secure watchdogs across STM32MP devices and ST boards.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+For STM32MP1xx devices, it enables the ARM SMC watchdog driver in
+the machine Kconfig.
 
-- [Medium] In lan969x_init_core_pll() the new DIVFI/DIVFF (FREQ_CFG, line
-  514) and DIVQ/DIVR/REF_CLK_SEL/FILTER_RANGE (line 523) values are…
-- [Low] The commit fixes a bug that users can see on every lan969x board,
-  but it has no Fixes: tag.
-- [Low] In lan969x_init_core_pll()
-  (drivers/net/ethernet/microchip/sparx5/sparx5_main.c, lines 506-512),…
-- [Low] The patch makes a core PLL failure abort the whole switch probe
-  on lan969x, and the commit message does not say so.
-- [Low] In lan969x_init_core_pll() (lines 520-531), the comment says the
-  CORE_PLL_CFG write will "select the reference clock from the strapping…
-- [Low] The LOCK_STAT check in lan969x_init_core_pll() (lines 561-569)
-  may pass without proving anything.
+Regards,
+Antonio
 
---
 
-net: lan969x: configure the core PLL
+Changes in v4:
+- Add two fixes, one detected by Sashiko
+- Add access-contollers property to bindingds
+- Drop update on stm32mp21x DT since clock framework is still missing
+- Add two fixes, one detected by Sashiko
+- Integrate Sashiko comments
+- Patch v4 06/15 (former v3 04/13) reposted unchanged, waiting for reply from Guenter Roeck
+- Link to v3: https://lore.kernel.org/all/20261106163429.618392-1-antonio.borneo@foss.st.com/
 
-This commit programs the lan969x core PLL to a rate about 200 ppm above
-328.125 MHz. That is the rate the PTP TOD increment in
-sparx5_ptp_get_nominal_value() already assumes. The dividers and the TOD
-increment are chosen from the reference clock strapping (25 MHz or 39 MHz),
-and the divider change uses the NEWDIV/DIVACK handshake in CORE_PLL_CFG.
+Changes in v3:
+- Add support for detecting watchdog running status
+- Add pretimeout irq support on STM32MP2xx
+- Build ARM SMC watchdog driver on STM32MP1xx
+- Use ARM SMC watchdog on platforms that have secure IWDG1 and use the
+  native stm32_iwdg driver when the IWDG1 is non-secure
+- Add iwdg1 and iwdg2 nodes on STM32MP2xx platforms
+- Add the alias in device trees to have the system watchdog allocated
+  as watchdog0, independently from the probe order
+- Link to v2: https://lore.kernel.org/lkml/20261015154826.1947492-1-antonio.borneo@foss.st.com/
 
-> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> index 93a7cb89493c4..244974ffe496b 100644
-> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> @@ -474,10 +474,120 @@ static int sparx5_init_switchcore(struct sparx5 *sparx5)
+Changes in v2:
+- Drop addition of iwdg1 DT node, not needed as OP-TEE keep the watchdog
+  secure on all boards;
+- Link to v1: https://lore.kernel.org/lkml/20261007151358.1166329-1-antonio.borneo@foss.st.com/
 
-[ ... ]
+Amelie Delaunay (3):
+  ARM: dts: stm32: add iwdg1 node on stm32mp151 SoC
+  ARM: dts: stm32: enable iwdg1 on stm32mp15x ST boards
+  ARM: dts: stm32: enable arm smc watchdog on stm32mp15x scmi boards
 
-> +static int lan969x_init_core_pll(struct sparx5 *sparx5)
-> +{
-> +	const struct lan969x_core_pll_dividers *div;
-> +	u32 hw_stat, pll_cfg, freq_cfg;
-> +	enum sparx5_core_clockref ref;
-> +	int err;
-> +
-> +	hw_stat = spx5_rd(sparx5, CHIP_TOP_HW_STAT);
-> +	ref = CHIP_TOP_HW_STAT_REFCLK_SEL_GET(hw_stat) ?
-> +		SPX5_CORE_CLOCK_REF_39MHZ : SPX5_CORE_CLOCK_REF_25MHZ;
-> +	div = &lan969x_core_pll_328mhz[ref];
-> +	sparx5->coreclockref = ref;
-> +
-> +	/* Already configured by an earlier probe? */
-> +	pll_cfg = spx5_rd(sparx5, CHIP_TOP_CORE_PLL_CFG);
-> +	freq_cfg = spx5_rd(sparx5, CHIP_TOP_CORE_PLL_FREQ_CFG);
-> +	if (CHIP_TOP_CORE_PLL_CFG_ENA_CFG_GET(pll_cfg) &&
-> +	    CHIP_TOP_CORE_PLL_FREQ_CFG_DIVFI_GET(freq_cfg) == div->divfi &&
-> +	    CHIP_TOP_CORE_PLL_FREQ_CFG_DIVFF_GET(freq_cfg) == div->divff)
-> +		return 0;
+Antonio Borneo (9):
+  watchdog: stm32_iwdg: set driver data before requesting interrupt
+  watchdog: stm32_iwdg: serialize accesses to EWCR register
+  watchdog: stm32_iwdg: add pretimeout support for iwdg v4.0
+  ARM: stm32: enable arm smc watchdog on stm32mp1xx
+  dt-bindings: watchdog: st,stm32-iwdg: add access-controllers property
+  ARM: dts: stm32: move arm smc watchdog to stm32mp151 SoC
+  ARM: dts: stm32: add watchdog0 alias on ST stm32mp1xx boards
+  arm64: dts: st: add iwdg1 and iwdg2 support to stm32mp231
+  arm64: dts: st: enable iwdg2 on stm32mp2xx ST boards
 
-[Severity: Low]
-Is this check strict enough to conclude that the PLL already runs at the
-skewed rate?
+Clément Le Goffic (3):
+  watchdog: stm32_iwdg: get hardware version during probe
+  watchdog: stm32_iwdg: detect whether the watchdog is running
+  arm64: dts: st: add iwdg1 and iwdg2 support to stm32mp251
 
-It checks only ENA_CFG, DIVFI and DIVFF. The function also programs DIVR,
-DIVQ, REF_CLK_SEL and FILTER_RANGE, and it depends on the NEWDIV/DIVACK
-handshake and on LOCK_STAT. None of those are checked before the early
-return.
+ .../bindings/watchdog/st,stm32-iwdg.yaml      |  3 +
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts       |  1 +
+ arch/arm/boot/dts/st/stm32mp15-scmi.dtsi      |  4 +
+ arch/arm/boot/dts/st/stm32mp151.dtsi          | 16 ++++
+ arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts |  9 ++
+ arch/arm/boot/dts/st/stm32mp157c-dk2-scmi.dts |  9 ++
+ arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts |  9 ++
+ arch/arm/boot/dts/st/stm32mp157c-ed1.dts      |  6 ++
+ arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts |  9 ++
+ .../arm/boot/dts/st/stm32mp157f-dk2-scmi.dtsi |  7 --
+ arch/arm/boot/dts/st/stm32mp157f-dk2.dts      |  1 +
+ arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi     |  6 ++
+ arch/arm/mach-stm32/Kconfig                   |  2 +
+ arch/arm64/boot/dts/st/stm32mp231.dtsi        | 20 +++++
+ arch/arm64/boot/dts/st/stm32mp235f-dk.dts     |  6 ++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 20 +++++
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts     |  8 +-
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  6 ++
+ drivers/watchdog/stm32_iwdg.c                 | 86 +++++++++++++++----
+ 19 files changed, 201 insertions(+), 27 deletions(-)
 
-sparx5->coreclockref is set just above. That means
-sparx5_ptp_get_nominal_value() always picks the skewed TOD increment for
-the detected reference, whether or not the PLL produces that rate.
 
-The err_disable path clears ENA_CFG, so a completed run of this driver
-should not leave such a state behind. There are two other ways it could
-happen. A bootloader or firmware could set ENA_CFG with these DIVFI/DIVFF
-values but different DIVR/DIVQ/REF_CLK_SEL. Or a probe could be interrupted
-between the ENA_CFG=1 write and the end of the lock poll, since CHIP_TOP
-state persists across unbind/bind.
-
-In either case the reprogramming and the checks are skipped without a
-message. Would it make sense to also compare DIVR, DIVQ and REF_CLK_SEL,
-and to check LOCK_STAT and that NEWDIV is clear?
-
-> +
-> +	spx5_rmw(CHIP_TOP_CORE_PLL_FREQ_CFG_DIVFI_SET(div->divfi) |
-> +		 CHIP_TOP_CORE_PLL_FREQ_CFG_DIVFF_SET(div->divff),
-> +		 CHIP_TOP_CORE_PLL_FREQ_CFG_DIVFI |
-> +		 CHIP_TOP_CORE_PLL_FREQ_CFG_DIVFF,
-> +		 sparx5, CHIP_TOP_CORE_PLL_FREQ_CFG);
-> +
-> +	/* Set the reference and output dividers, select the reference clock
-> +	 * from the strapping pin and use fractional mode.
-> +	 */
-> +	spx5_rmw(CHIP_TOP_CORE_PLL_CFG_DIVQ_SET(div->divq) |
-> +		 CHIP_TOP_CORE_PLL_CFG_DIVR_SET(div->divr) |
-> +		 CHIP_TOP_CORE_PLL_CFG_REF_CLK_SEL_SET(0) |
-> +		 CHIP_TOP_CORE_PLL_CFG_FILTER_RANGE_SET(0),
-> +		 CHIP_TOP_CORE_PLL_CFG_DIVQ |
-> +		 CHIP_TOP_CORE_PLL_CFG_DIVR |
-> +		 CHIP_TOP_CORE_PLL_CFG_REF_CLK_SEL |
-> +		 CHIP_TOP_CORE_PLL_CFG_FILTER_RANGE,
-> +		 sparx5, CHIP_TOP_CORE_PLL_CFG);
-
-[Severity: Low]
-Which write here selects fractional mode?
-
-This rmw touches only DIVQ, DIVR, REF_CLK_SEL (written as 0) and
-FILTER_RANGE (written as 0). In sparx5_main_regs.h, neither
-CHIP_TOP_CORE_PLL_CFG nor CHIP_TOP_CORE_PLL_FREQ_CFG defines a fractional
-mode or DSM enable field. The only extra setting is FILTER_RANGE, and the
-comment does not mention it.
-
-Is the comment just inaccurate, or is a fractional enable missing? Both TOD
-increments in sparx5_ptp_get_nominal_value() depend on DIVFF taking
-effect. With only the integer part, the core clock would be about 325 MHz
-instead of about 328.19 MHz.
-
-> +
-> +	/* Switch the PLL from its reset defaults to the register settings */
-> +	spx5_rmw(CHIP_TOP_CORE_PLL_CFG_ENA_CFG_SET(1),
-> +		 CHIP_TOP_CORE_PLL_CFG_ENA_CFG,
-> +		 sparx5, CHIP_TOP_CORE_PLL_CFG);
-> +
-> +	spx5_rmw(CHIP_TOP_CORE_PLL_CFG_NEWDIV_SET(1),
-> +		 CHIP_TOP_CORE_PLL_CFG_NEWDIV,
-> +		 sparx5, CHIP_TOP_CORE_PLL_CFG);
-
-[Severity: Medium]
-Does the switch from reset defaults to the register settings happen at the
-ENA_CFG write, before the NEWDIV/DIVACK handshake starts?
-
-If the comment above is accurate, the PLL takes the new DIVFI/DIVFF, DIVR,
-DIVQ and REF_CLK_SEL values at the ENA_CFG=1 write. The commit message
-describes the handshake as "the glitch free divider change documented for
-CORE_PLL_CFG", but this switch happens outside it. The handshake would then
-cover only what NEWDIV latches afterwards.
-
-The core clock also changes after sparx5_init_switchcore() has already done
-the EACL force init, RAM init and counter reset:
-
-mchp_sparx5_probe()
-    sparx5_init_switchcore()
-    sparx5_init_coreclock()
-        lan969x_init_core_pll()
-
-The reset controller is optional. A core left enabled by a bootloader could
-still be running while its clock source changes.
-
-The err_disable path raises the same question in reverse. Clearing ENA_CFG
-there goes back to the reset defaults without a handshake, and the function
-returns without waiting for relock.
-
-Could the ENA_CFG versus NEWDIV ordering be checked against the CORE_PLL_CFG
-datasheet?
-
-> +
-> +	err = read_poll_timeout(spx5_rd,
-
-[ ... ]
-
-> +	/* LOCK_STAT resets to 1, so sleep before the first read */
-> +	err = read_poll_timeout(spx5_rd,
-> +				pll_cfg,
-> +				CHIP_TOP_CORE_PLL_CFG_LOCK_STAT_GET(pll_cfg),
-> +				100,
-> +				10000,
-> +				true,
-> +				sparx5,
-> +				CHIP_TOP_CORE_PLL_CFG);
-
-[Severity: Low]
-Can this poll confirm that the PLL relocked?
-
-According to the comment, LOCK_STAT already reads 1 before the change. With
-sleep_us = 100 and sleep_before_read = true, poll_timeout_us() in
-include/linux/iopoll.h does:
-
-	if ((sleep_before_op) && __sleep_us) \
-		usleep_range((__sleep_us >> 2) + 1, __sleep_us); \
-
-So the first read can happen only about 26 us after NEWDIV is cleared. If
-the DIVACK poll succeeded on its first read, which has no sleep, that is
-also very soon after the ENA_CFG/NEWDIV writes.
-
-If the lock detector has not deasserted by then, the first read returns 1.
-The function then reports success whether or not the PLL has settled.
-
-Is this delay based on a documented minimum lock detector response time?
-Could the poll instead wait for LOCK_STAT to drop and then come back?
-
-> +	if (err) {
-> +		dev_err(sparx5->dev, "Failed to lock the core PLL\n");
-> +		goto err_disable;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_disable:
-> +	/* Make the next probe redo the change */
-> +	spx5_rmw(CHIP_TOP_CORE_PLL_CFG_ENA_CFG_SET(0),
-> +		 CHIP_TOP_CORE_PLL_CFG_ENA_CFG,
-> +		 sparx5, CHIP_TOP_CORE_PLL_CFG);
-> +
-> +	return err;
-> +}
-
-[ ... ]
-
-> @@ -573,6 +683,15 @@ static int sparx5_init_coreclock(struct sparx5 *sparx5)
->  			 CLKGEN_LCPLL1_CORE_CLK_CFG_CORE_CLK_ENA,
->  			 sparx5, CLKGEN_LCPLL1_CORE_CLK_CFG);
->  	} else {
-> +		if (freq != SPX5_CORE_CLOCK_328MHZ) {
-> +			dev_err(sparx5->dev,
-> +				"%d coreclock not supported\n",
-> +				freq);
-> +			return -EINVAL;
-> +		}
-> +		err = lan969x_init_core_pll(sparx5);
-> +		if (err)
-> +			return err;
-
-[Severity: Low]
-Before this patch, the lan969x branch of sparx5_init_coreclock() could not
-fail for a supported target. Now a DIVACK or LOCK_STAT timeout makes the
-whole switch probe fail:
-
-mchp_sparx5_probe()
-    sparx5_init_coreclock()
-        lan969x_init_core_pll()
-            read_poll_timeout() returns -ETIMEDOUT
-            goto err_disable
-    dev_err(sparx5->dev, "LC-PLL initialization error\n");
-    goto cleanup_config;
-
-The commit message says:
-
-    Leave the PLL alone if it is already
-    configured, and disable the register configuration again if the change
-    fails.
-
-That reads like a fallback to the default clock. In fact the PLL is
-reverted and the device no longer probes. A board that used to probe and
-forward traffic, with the 200 ppm skew, would end up with no networking.
-
-Is the probe failure intended? If so, could the commit message say so?
-
->  		pol_upd_int = 820; // SPX5_CORE_CLOCK_328MHZ
->  	}
-
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_ptp.c b/drivers/net/ethernet/microchip/sparx5/sparx5_ptp.c
-> index 9f61692b243b7..544e9513a9a53 100644
-> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_ptp.c
-> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_ptp.c
-> @@ -62,7 +62,10 @@ static u64 sparx5_ptp_get_nominal_value(struct sparx5 *sparx5)
->  		res = 0x1FF0000000000000;
->  		break;
->  	case SPX5_CORE_CLOCK_328MHZ:
-> -		res = 0x18604697DD0F9B5B;
-> +		if (sparx5->coreclockref == SPX5_CORE_CLOCK_REF_25MHZ)
-> +			res = 0x186044FEF1EA9C10;
-> +		else
-> +			res = 0x18604697DD0F9B5B;
->  		break;
-
-[Severity: Low]
-Should this commit have a Fixes: tag?
-
-Commit 1ebaa5e18915 ("net: sparx5: add support for lan969x targets and
-core clock") added the 0x18604697DD0F9B5B increment, a period of about
-3.04701 ns against the nominal 3.047619 ns. It did not program the PLL to
-the matching rate. As the commit message describes, TOD and the scheduler
-clock have run 200 ppm apart on lan969x since then.
-
-Something like:
-
-Fixes: 1ebaa5e18915 ("net: sparx5: add support for lan969x targets and core clock")
-
-would give stable and backport tooling a pointer. This fix also depends on
-two earlier patches in the series: "net: lan969x: add the core PLL
-registers" and "net: sparx5/lan969x: enable the switch core after clock
-setup". Could the commit message note that dependency, or say whether the
-series is meant for net-next only?
-
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261113-lan969x-core-skew-v1-0-b9b02b863d38%40microchip.com
+2.34.1
+
 
