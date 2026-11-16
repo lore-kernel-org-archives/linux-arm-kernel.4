@@ -2,70 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84994606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1B8606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CLYg/guY;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XXeoLJ9p
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QsoOQ2TB;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=chrI8hpd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ld9+YyGfs/W/wYUchYl+G0tuTdeNOsMW/DqiAiz5bT8=; b=CLYg/guY39MHeEPe0sii8Gx++/
-	eKGX3K+8gblirzt60R3X6i1imfA1mAAPbiRM740Fx+aI6yzQiLZxf8bTUPfyaLSABhL/EYJe2bGok
-	gBjmVvacwxUqM8gsPblyusAXlnC61HxSHXfBLIpwCWd5Rp/ew7Qwz0V4xaKj9Er56Xaqq0UPm0jWy
-	n/Cn7VQRvQ9gnf/3UuRfB93/mFpaym0W9aHAkvx5enz+HRVn7i/UpRM6QiLnJtECY5bzidEu4t1+n
-	jHf/06NbNQMhNIEEDPC1Bu+x/NUela+0tQMf43nxe9lp8luQjSF+lctaI8k3EOQH0KR0+uQ4g6Twp
-	fnHEJagA==;
+	bh=de0OenvYtC9EcJ6k97P7EWscdeX36hwem4HnssW40LQ=; b=QsoOQ2TB+eX5pJD8UR2j1ZwhPy
+	hdez/Mn1A4RSq2RC90cSf7wMQ+O8V9SVhTXu4UVlwN2KKJgo7HqVVSiccGD1lDN7ulsEiKwkeJDfh
+	rs8QR8DoY8s3mxJWwBIG7RDj+jEa4TjJn4SfPatycUpkm5lLA7HJWpfeCY3IBJ56UARpYOhHwv/MQ
+	9oBIemVT82ZHKLTtNo0mWwljEPJzFXphJPv1eNCGAawJVzA87+KaNMNR/6o/XLrrBDuhCysMgnigz
+	JwASMOZ6z1CutV9zvcsBl7j3tCLWucdqeYYV1jI7TdwUjMNTfkQNcPbYAGEVZNEvzMRmUsCHb0HYu
+	UTjYDJig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxRI-00000002lvt-3VPL;
-	Mon, 16 Nov 2026 14:12:08 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xSxU8-00000002mIH-0CYA;
+	Mon, 16 Nov 2026 14:15:05 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxRI-00000002lvS-04P5
+	id 1xSxU5-00000002mHw-2dmf
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:12:08 +0000
+	Mon, 16 Nov 2026 14:15:01 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BF76D46255;
-	Mon, 16 Nov 2026 14:12:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D7951F000C5;
-	Mon, 16 Nov 2026 14:12:06 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 29AEA43A07;
+	Mon, 16 Nov 2026 14:15:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C17031F000C4;
+	Mon, 16 Nov 2026 14:14:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794838327;
-	bh=Ld9+YyGfs/W/wYUchYl+G0tuTdeNOsMW/DqiAiz5bT8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=XXeoLJ9pMmP5InmZPg7ILmufllZYde193dt8DdHd5b+tYaq9jS7NBjVekzyDgL0+d
-	 AhTMQwMNHuR694k+pijvgMQsgkCXY9VEWq8Avkbi0wouFYoBUncLM3O+6mQPXBixIJ
-	 qh+4eAjnD4D+90K+CUcTf1ekFqu786fHl6Zcg0r26QNSzgnP484E3/g7Po6YT6QKZM
-	 4NuuHwedEwqrOViJAMw9uFLB5c3F/iQ72P9Zg+gv4tw7HmDAdBce6OPsbP7E+ifDzM
-	 1pCQhUlYYTOyuNQVZpd7ajdGA6G6JlbjASxjBAygZ9kcgIWeiZQb0SxHjXn+7UJS6S
-	 EwBXI0255THdw==
-From: netdev-bot+sinfo@kernel.org
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Jesper Dangaard Brouer <hawk@kernel.org>,
- John Fastabend <john.fastabend@gmail.com>,
- Stanislav Fomichev <sdf@fomichev.me>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, bpf@vger.kernel.org
-Subject: Re: [PATCH v2] net: stmmac: Disable checksum insertion for XDP frame TX
-Date: Mon, 16 Nov 2026 14:12:06 +0000
-Message-ID: <179483832607.3291.9756192515421548834@kernel.org>
-In-Reply-To: <20261116134848.4793-1-jszhang@kernel.org>
-References: <20261116134848.4793-1-jszhang@kernel.org>
-Auto-Submitted: auto-generated
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+	s=k20260515; t=1794838501;
+	bh=de0OenvYtC9EcJ6k97P7EWscdeX36hwem4HnssW40LQ=;
+	h=From:To:Cc:Subject:Date;
+	b=chrI8hpdPn4zacL284Mok86ddOiXlRj+ZeHafq0jBQxh7o4Ge8ML0ezRTdSYbZiI2
+	 93N8LqkbT+QJDLfGiyLTKc8OTqYPYh6JSFDQC/tzoyDx6Ql7SYPla8cvqRXre1xtAZ
+	 4JRCDb3Lre+6jaFArguhmWWr+Q1/3alrlKZm9X/ND3FFKsQDnLY1tTuCZVp1enfWpa
+	 Y8gXE+Yr8nqYr+RQOlAhV/deipLXorAf7cAkChPiXd3mF+lj8Js77XOC7tfiwqspeb
+	 vqkrCa+MhTjnX/+xY+wBZ4b5kGVpoqEmdATsZmmPGlzuZE2EKgkBMAqBSfmnrcMBVT
+	 9RbijJuWsEU4Q==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/8] net: stmmac: add SL2610 ethernet support
+Date: Mon, 16 Nov 2026 21:54:34 +0800
+Message-ID: <20261116135442.4827-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.55.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,37 +80,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi!
+This series add SL2610 ethernet support. First of all, introduce
+the mdio demultiplexer, then add the stmmac glue layer, finally
+touch dts.
 
-This is an automated message. This series looks like a fix, but its
-commit messages seem to be missing some information:
+NOTE: this series depends on the sl2610 SoC support series which
+is still under review:
+https://lore.kernel.org/linux-arm-kernel/20261115102401.3520-1-jszhang@kernel.org/
 
- - How the issue was discovered, e.g. hit in production, hit during
-   development, syzbot report, manual code inspection, LLM or static
-   analysis tool scan.
+Jisheng Zhang (8):
+  dt-bindings: net: Add MDIO demultiplexer
+  net: mdio: Add MDIO demultiplexer driver
+  dt-bindings: net: Add Synaptics SL2610 DWMAC
+  net: stmmac: Add glue layer for Synaptics SL2610 SoC
+  dt-bindings: soc: synaptics: Allow SL2610 mux controller children
+  soc: synaptics: Populate SL2610 system controller DT children
+  arm64: dts: synaptics: Add SL2610 Ethernet nodes
+  arm64: dts: synaptics: Enable Ethernet on SL2619 RDK
 
- - Whether the issue was actually triggered, or is only theoretical
-   (e.g. found by LLM and not proven at runtime). If it was triggered
-   please include the symptoms, like the stack trace or kernel messages.
+ .../devicetree/bindings/net/mdio-demux.yaml   | 102 ++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+ .../bindings/net/syna,sl2610-dwmac.yaml       |  75 +++++
+ .../soc/synaptics/syna,sl2610-soc-syscon.yaml |  10 +
+ MAINTAINERS                                   |   2 +
+ arch/arm64/boot/dts/synaptics/sl2611.dtsi     |  41 +++
+ arch/arm64/boot/dts/synaptics/sl2619-rdk.dts  |  77 +++++
+ arch/arm64/boot/dts/synaptics/sl2619.dtsi     |  36 +++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-syna.c  | 116 +++++++
+ drivers/net/mdio/Kconfig                      |  12 +
+ drivers/net/mdio/Makefile                     |   1 +
+ drivers/net/mdio/mdio-demux.c                 | 298 ++++++++++++++++++
+ drivers/soc/synaptics/sl2610-syscon.c         |  10 +-
+ 15 files changed, 791 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/mdio-demux.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/syna,sl2610-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
+ create mode 100644 drivers/net/mdio/mdio-demux.c
 
- - What hardware the change was tested on. For driver fixes please
-   mention the device (and if relevant firmware version) used for
-   testing, or say that the change was not tested on real hardware.
-
-Please do not repost the series just to address the above. Instead,
-reply to this email with the missing information, so that reviewers
-can take it into account.
-
-*IMPORTANT*: If you do repost (for other reasons) - please include
-the relevant info in the cover letter or commit messages.
 -- 
-The evaluation is done by an LLM so it may be wrong, if you think
-that is the case please reply and explain.
+2.55.0
+
 
