@@ -2,79 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD42606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 11:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8EE5606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 11:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EIpJPeZA;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Ju8FC3nu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MmSEJ1ie;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Rsw5+En3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7FCAHSMlIJagIxDM1Al7KCUaNaZ/IrEvhQVcqS28GKE=; b=EIpJPeZAGGmHtK
-	h7Svv2mMSdSTn5wBbaJR8qBSkK5HNlSIXvMEBYa+s7LRDYEZXyLLS3I1fCDiRoqlHJ1BmsaUbXQP/
-	xQnyCGQFCs7r3Lt5CZwnXUl2AfOkhbE2Wc1D87a2nhJT6ntreIYU858eXtbo0MVY5cCuHJsWy6/IG
-	o+ANzAybZY7kGplNU4Sx2qjif8bhVmfK4ccZJZVBBMjQyKgPKkb71oy1whYhZCRcMLQCSjkpZcT6T
-	7ZRdwrXHRa/D5WiHc5KIuhXJrQmzUI8dAeHICTwC6LhqCEMvaV0iI3GdBSunxAArkBfxTTrl6Rglq
-	so0kTgnpoeFNV5AoVPZA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=fawrS/3ssONFT5J61BoyKpRzvTv/DunyIOYxlv8HJm0=; b=MmSEJ1ie+D7vWZC7eF2Q50pdkC
+	L3yR5RcSG89+vBNqPS1EwIMSmwPpBxQtdCqoYZdNEzLSiEYDyhDFJHs3dt8Ut3EhSTFq6cTTUy9ml
+	GtKvx4u7ebuupUVMQEExznUAQVMH1XRpQgTuPTdjiKVnx9VDri8b8UAIdy2InwJcCwXEKHELT5PNl
+	vcNgX+3zjEFDm9kBpV3RXxpnD2A7WMm+DQrrdmfYzP02XC02RnepigyDzeAWhqV7bO92vIhoAO9+c
+	8BqbqOL6L3GR0+ICxIjZqdavmOyj6gYnWPOnMqOnDhOqvdS1VsofxbRL/5siClZJyJbwuN21eMy7Y
+	EeWwSvuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvAW-00000002EJD-1trp;
-	Mon, 16 Nov 2026 11:46:40 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvAU-00000002EIs-1fMe
+	id 1xSvBW-00000002EQc-3afA;
+	Mon, 16 Nov 2026 11:47:42 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSvBV-00000002EQN-3ewA
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 11:46:39 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 88C041713;
-	Mon, 16 Nov 2026 03:46:34 -0800 (PST)
-Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E36413F632;
-	Mon, 16 Nov 2026 03:46:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794829597; bh=wXM3hUJrXDy5hrAEupSn/9LmBSDLTT18BTQMQ+4PEks=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ju8FC3nuLWXhWC7WxZGAzcQ4/3trBymnrVn3+i6W5Kz1adJ1BhYg3C+gzVotAyQ0k
-	 xkDPaOs5WRM1VAkpmoyDoJqLHgGqzbu0CkJKl/sju45wadsDFjq/vsDTpMCETn3dgt
-	 1S4s233KeJBhyneVq0OG+uhwPaqC3jMRxLsY0Wvo=
-Message-ID: <37a57d36-a516-4312-9e4e-fc151ab77c8b@arm.com>
-Date: Mon, 16 Nov 2026 11:46:32 +0000
+	Mon, 16 Nov 2026 11:47:41 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4FC8441376;
+	Mon, 16 Nov 2026 11:47:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 481051F000C4;
+	Mon, 16 Nov 2026 11:47:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794829661;
+	bh=fawrS/3ssONFT5J61BoyKpRzvTv/DunyIOYxlv8HJm0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Rsw5+En3+9wrQKzmbmtFGi8MVW112ImjuZZC4tc3VB0P6R4WR2aAo9XonN9s3vSG1
+	 z+Mv61pulx2NsWwq879gwfSqoZjziMhEbwuoBO2py/jmxqCKJeY3JZ8Audt/3rP2ik
+	 rK0R1RCSx/qUTBqZKJe2joy7y4L1rhXCcBE2g7o8Ql3SHNnb18NnIKL3hKcY96xexB
+	 ne7KMyzfCTP9YWC4mOhtgvymbapz9NWR/Ea0/NP1FSgkGp8f+0+yCnNUfVYgWaGh3+
+	 IBndu8EV0BA+sxc+KLKzA0xiIlzQdQZnO/bEKmEm9AGnBpAgvtVvRfECgM3P87xeZq
+	 ukv0T+kV6tXHw==
+Date: Mon, 16 Nov 2026 12:47:32 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Clark Williams <clrkwllms@kernel.org>, 
+	Steven Rostedt <rostedt@goodmis.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jiaxun Yang <jiaxun.yang@flygoat.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, =?utf-8?Q?Beno=C3=AEt?= Monin <benoit.monin@bootlin.com>, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
+	Fu Chao-Ying <chao-ying.fu@globalfoundries.com>, linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rt-devel@lists.linux.dev, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] dt-bindings: mips: mti,mips-cm: add performance
+ counter interrupt
+Message-ID: <20261116-inescapable-dangerous-hummingbird-0faed6@quoll>
+References: <20261112-i6500-cm3-pmu-v2-0-cd2569571819@mobileye.com>
+ <20261112-i6500-cm3-pmu-v2-4-cd2569571819@mobileye.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/12] KVM: arm64: CCA: Add Realm stage-2 MMU
- operations
-To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261111145758.217946-1-steven.price@arm.com>
- <20261111145758.217946-13-steven.price@arm.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261111145758.217946-13-steven.price@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_034638_479950_85B5716C 
-X-CRM114-Status: UNSURE (   9.44  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261112-i6500-cm3-pmu-v2-4-cd2569571819@mobileye.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,35 +80,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/2026 14:57, Steven Price wrote:
-> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+On Thu, Nov 12, 2026 at 02:29:01PM +0200, Vladimir Kondratiev wrote:
+> The CM3 asserts so_cm_perf_cnt_int when one of its performance counters
+> overflows. Whether that output is connected to an interrupt controller
+> input is up to the SoC integrator, so describe it as an optional
+> 'interrupts' property of the coherency-manager node. When absent, the
+> counters have to be polled by software.
 > 
-> Register the Realm stage-2 MMU operations now that the RMM mapping
-> and unmapping helpers are available. Route unmapping through the
-> RMM, and use the existing fault handler for Realm memory faults.
-> 
-> The RMM handles TLB invalidation when stage-2 mappings change, so
-> the host has no separate TLB flush to perform. Realm stage-2 does
-> not support access flags, including for shared IPAs.
-> 
-> Dispatch stage-2 destruction according to the VM flavor. Realm
-> teardown destroys non-root RTTs through RMI, so the host frees
-> only the root RTT pages.
+> Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+> ---
+>  Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-Minor nit: It may be worth splitting the destroy abstraction as a
-separate patch. Otherwise looks good to me.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
+Best regards,
+Krzysztof
 
-> 
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Steven Price <steven.price@arm.com>
-> 
 
