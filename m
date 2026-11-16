@@ -2,70 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1BA4606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 02:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB24606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 02:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WdlyBkxa;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=Ln/1P3Nm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X8qxJgW2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=VnScLMcYbIevCbUp04UB8Pkf1UTVjmVy//XxyaUsFK8=; b=WdlyBkxa/MVXfckQWW5kcthDqM
-	WkP6EX55SQC/7Yzv6bzAVEr3/+dnSMB0AAMw5Xa3ZljSjo2VHMxgP0rasy12ncBUivPPgUwEE6bXP
-	18UNP+qCtSwSXkZCrhrHi9kyGND67aBBHJEizwktiFniiRvfvz6BX9cVHTZ/mYDYUiTI2EDvBHRWK
-	31IDT0EfmWUzWHfIw5wFuBDwRklikjGH1CUve3uIZS82CnJHEXHVWYPAWxIvjiVrFkyaEveJ/997U
-	SiF6Wp7ImwQ0/Pl0+GfMfVWsMDEQbaHtzcrnHzVYYML0CG+48AKiiwG9P5dQgQKMgR3fQmfVLa6o+
-	Q01v1BiQ==;
+	bh=d2em7nzPLtQPJSojdd+nKqhTn3deaCQuJEyo4+tZSms=; b=X8qxJgW26W0jQVkMQZtD6z+GxB
+	FjKvfe+C693yFmhNU8qgl22RdrQnHwD0RQ0K1yLJCozVG5nxTpjru9na5nfxZGgVhdnVuxrzEakCp
+	WlSFnJ2r0KNLd08yugtS2NpiPOtDoZ/Roa3y2gNzeUG4U2hPYd3C4ydBit+Ldk+cQbjTmU3uaWurF
+	qFSUx14su6kq/kTymLiCEK/F9DqFBg3dQKyY/j+Ld7qT+3cDpI5hB2GhCuTTVtBjDnbPGrp6ljrzg
+	V4TUicKWIjFy0Q5+JdPtTk1jd6GZmke5BGZuHKrjkP+a7McIYmgXePENJgX/c8ZGx1dayAKN0Q5Y1
+	AIa8IWLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSmm3-00000000yFS-43Io;
-	Mon, 16 Nov 2026 02:48:51 +0000
-Received: from canpmsgout01.his.huawei.com ([113.46.200.216])
+	id 1xSmvM-00000000ykf-3jBD;
+	Mon, 16 Nov 2026 02:58:28 +0000
+Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSmm0-00000000yF5-12fj
+	id 1xSmvK-00000000yjv-0hAO
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 02:48:51 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=VnScLMcYbIevCbUp04UB8Pkf1UTVjmVy//XxyaUsFK8=;
-	b=Ln/1P3NmSrz2gtWrXFdeBbQFrAEcAgHu0epsuwX82dmlPaKQ13f6Ydt4TO9XXp4WRrjZ7kinb
-	bhtTLZTpt1lseyd22JNy6OvzOClJVPnctKsb8eWuoENOtq+k5m8fkq5RjcCkF8+uifVKD8J7L5b
-	x6epMFcQf89UXDLnWXgP2qU=
-Received: from mail.maildlp.com (unknown [172.19.163.104])
-	by canpmsgout01.his.huawei.com (SkyGuard) with ESMTPS id 4jSXNR2XCNz1T4hn;
-	Mon, 16 Nov 2026 10:48:07 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id CC9BB4057F;
-	Mon, 16 Nov 2026 10:48:43 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 16 Nov
- 2026 10:48:43 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
-	<fenghuay@nvidia.com>, <jic23@kernel.org>, <tan.shaopeng@jp.fujitsu.com>,
-	<zengheng4@huawei.com>, <gshan@redhat.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [PATCH] arm_mpam: resctrl: Annotate domain list walks as RCU under cpus lock
-Date: Mon, 16 Nov 2026 10:48:34 +0800
-Message-ID: <20261116024834.275512-1-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
+	Mon, 16 Nov 2026 02:58:27 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g/O7Zb4sWc8hPYjV3sSC0IkQzb3RXprJhT4VqM0fUrU4U70mgZCsORddwbFirwq4x9WcHPcQhjjBOssWMpbcb1meDX/G/yZfBJyIPrQmGpu4vcHAYHR4958H2aGLutApUP995SI+/saUdQDKDisI2iw7R8WTrCVu9MDMZErc+f2/LGFpU1Ol/YxH+T2Bed5eU0+HBIgB46+nXTojZp5zmaXg4HW/suzkkqoMbFDM+1vw9vq0CWZDpXkj6ZQZvK5/8KtYiPGg7HIMM+Wpum+nAgFLXAr5V2Jo+pA4QJ7Mw1/3Vi0p9oRwHFXZbvnigVNtbNwDIunVQbR0SKWNXtOOuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d2em7nzPLtQPJSojdd+nKqhTn3deaCQuJEyo4+tZSms=;
+ b=fjrtNq8W99hgWWRdFMrHsxI/S0J24hhmdAY+Zvf3ZvG/0gcnb0ddSJ1o4RUGzcWx9vdE/iA5ahHx8aOLY16cU5VSxjPfWriR1WVAcloZWndHOmQ8jAAFWxYuEu/PCnJqS/LfU1NeWTFl/I3U4a+UeGuq7GCagLARKxWLIXZ6BJ9pQTVMiW/C2z/sHNdyM3wNCe8Fau5ADC22+JlVjtFBQXzIeI2d+GYykrKshNlxtztPd+6AmiOi2emLT/3weeUcbOziCAVM9dtjBhLHCYQW+JRAfVUvJ/r2QZoVnwNZF2ciZ7m7ZbcelkvW1wpdqlas7gQH+UO0XLI2yOBxnrEc0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PUVP216CA0044.KORP216.PROD.OUTLOOK.COM (2603:1096:301:210::17)
+ by TYNPR06MB9200.apcprd06.prod.outlook.com (2603:1096:405:3d5::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Mon, 16 Nov
+ 2026 02:58:16 +0000
+Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
+ (2603:1096:301:210:cafe::a8) by PUVP216CA0044.outlook.office365.com
+ (2603:1096:301:210::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Mon,
+ 16 Nov 2026 02:58:16 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB83.mail.protection.outlook.com (10.167.253.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 02:58:15 +0000
+Received: from JohnnyFan (unknown [172.21.64.24])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 886CE427EFC7;
+	Mon, 16 Nov 2026 10:58:14 +0800 (CST)
+Date: Mon, 16 Nov 2026 10:58:13 +0800
+From: Johnny Fan <johnny.fan@cixtech.com>
+To: Leo Yan <leo.yan@arm.com>
+Cc: will@kernel.org, mark.rutland@arm.com, suzuki.poulose@arm.com,
+	jeremy.linton@arm.com, maz@kernel.org, mike.leach@arm.com,
+	james.clark@linaro.org, alexander.shishkin@linux.intel.com,
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com, jie.fu@cixtech.com,
+	bob.zhang@cixtech.com, Fugang Duan <fugang.duan@cixtech.com>
+Subject: Re: [PATCH v3 2/2] perf: arm_pmu_acpi: Support heterogeneous ACPI
+ systems
+Message-ID: <avpxRZFX4Iebu0l3@JohnnyFan>
+References: <20261102084153.3975282-1-johnny.fan@cixtech.com>
+ <20261102084153.3975282-3-johnny.fan@cixtech.com>
+ <20261113160041.GS9176@e132581.arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
- kwepemk200008.china.huawei.com (7.202.194.74)
+In-Reply-To: <20261113160041.GS9176@e132581.arm.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB83:EE_|TYNPR06MB9200:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1542decd-c243-423b-0dcf-08df438d75e5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|376014|7416014|1800799024|23010399003|82310400026|10067099003|4143699003|56012099006|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261022075727099003|261102124527099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 2AMB6foqyk23u3HR/0PBQZzhp4lZyWKjvEzBkLbPg+m64tkuvRX4SNUmxEPd8Fa07spj8YkPd6ikrkQrZTdbht6IXJMys4r0oNJCBBHjPJwrMTc07XGuwHzzWq63ZoJ57nhZ64POznIedCMj5d51TxX6d/hwo4znPdU04EgeXK8BGOY3cwd+YNskypcOaVZVQZGuUFUU7iXD/8F3Op3e8YtqIyKcNTHyS/wnmZd2GcweSjOxYa0zxcLsUCcBjMZasCkR7vjyfOv2PcU8AqW5yINChf2WIN0y199LcT6/k/bWBo0j4Rgbm1HCQnVrmSXlOsoBor8ZcaDAb/l3wmcTJOdJV14F+1s6Pon8WHoM8oJ5lAyxdt0Hu3yWC/W+L1H0mNVp+bpm9My0oZbDb6aK2YmUwy0LRTUErBNdyO86J2cNnm/twx5aFEgfbIrtSXrTipg5VddTSDdPNSc1InQ3OjEvYF+M5zMDeW00ORGnZQWK93B6niGcU5xFsCmk2dPrZtlEFxPoieUhgd1b1NwoScsuWUtViZVGrkRqYdeks05MgN1w1WNz4SqBDC5IbuhTv3fzcXixUAT8eiv8QVArPXSDEk6dDZ11YnI2UuxLamwKcB0vZsJcKNirLZvIXxEnwR6nu4kKh4e/aCou+NUfrxNk3yBL56f3SUm3AAD0+jQach7USK3fV4ytjBZwswgW6rER6KEH6nfW/Hm4eOhXdg==
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(376014)(7416014)(1800799024)(23010399003)(82310400026)(10067099003)(4143699003)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261102124527099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: B6Cdz4ifVZA78aIIJXaKFBwG9CNNJablUxJ/iDFw0B+pf7gF73cpKcrr6v1RWrTqEkKdGy+6uQPjB3MycZk/4L6RYi/xBi/I0j2bd1Fv1UVUd2+wd0NXQd6vTZ67nQC013vx2iFAXjjeRln4YhPbnRHw6B0k7XXULn5hg9nyPVO0HAEPNQx4uJHJKjwPu5UisnzWHKK5Gf5OwD+raLcFXQKv4kMTO9E3iygkfjwTrYr6p2svw85ysZsT4B432tZhOooIBThw7M6GVHVfU5yDUvsRR2TrXyCX/GpoM2oopC88ZkxvgsAVu8baUd8T1tFwwgDsYXiSKc3f1zcZEdXT7xT3fEU5ubBbH9zEpLHwDTvEML0NRBAnO48y6KDWHiXJFrQkYFSJMT4rZD74Rc6LS/Z2CdsCt7EmZTWhGYUmiT6p7hSv5NaseFldMNJvJQrP
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 02:58:15.5275
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1542decd-c243-423b-0dcf-08df438d75e5
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB83.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYNPR06MB9200
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_184848_911205_C005352E 
-X-CRM114-Status: GOOD (  11.33  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261115_185826_203638_6D160072 
+X-CRM114-Status: GOOD (  10.92  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,81 +119,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The resctrl domain lists are RCU lists which are only modified while the
-CPU hotplug write lock is held, so traversing them is protected by
-cpus_read_lock().  That is the convention the generic resctrl code
-follows.
+On Fri, Nov 13, 2026 at 04:00:41PM +0000, Leo Yan wrote:
 
-The MPAM implementation omits the condition at three places, so lockdep
-reports a spurious violation with CONFIG_PROVE_RCU_LIST on whenever
-they run:
+[...]
 
-  WARNING: suspicious RCU usage
-  drivers/resctrl/mpam_resctrl.c:1762 RCU-list traversed in non-reader section!!
-   mpam_resctrl_get_domain_from_cpu+0x200/0x298
-   mpam_resctrl_online_cpu+0xa4/0x160
-   mpam_cpu_online+0x2b4/0x300
-   cpuhp_invoke_callback+0x304/0x700
+> Based on above idea, I would fold your patch into my series (but I will
+> drop the first patch for changing TRBE/SPE drivers). I will keep you as
+> the author but please bear me a bit that I may refactor it to fit into
+> the extensions. Hope this is fine for you.
 
-Likewise for mpam_resctrl_get_mon_domain_from_cpu() and
-resctrl_arch_update_domains().
 
-The lock really is held: lockdep_assert_cpus_held() is the first thing
-each of these functions does, and the warning's own lock list shows
-cpu_hotplug_lock and cpuhp_state-up taken.  Only the annotation is
-missing, so add lockdep_is_cpus_held() to all three walks.
+Hi Leo,
 
-Fixes: 9cd2b522be2c ("arm_mpam: resctrl: Implement helpers to update configuration")
-Fixes: 264c285999fc ("arm_mpam: resctrl: Add monitor initialisation and domain boilerplate")
-Fixes: 09e61daf8e96 ("arm_mpam: resctrl: Add boilerplate cpuhp and domain allocation")
-Cc: stable@vger.kernel.org
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
----
- drivers/resctrl/mpam_resctrl.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+Thanks for the detailed review, and yes — please go ahead and fold it
+into your series. I'm happy for you to keep me as the author and to
+refactor it as you see fit.
 
-diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
-index 5468367776e2..d25c2bac9678 100644
---- a/drivers/resctrl/mpam_resctrl.c
-+++ b/drivers/resctrl/mpam_resctrl.c
-@@ -1516,7 +1516,7 @@ int resctrl_arch_update_domains(struct rdt_resource *r, u32 closid)
- 	if (!mpam_is_enabled())
- 		return -EINVAL;
- 
--	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list) {
-+	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list, lockdep_is_cpus_held()) {
- 		for (enum resctrl_conf_type t = 0; t < CDP_NUM_TYPES; t++) {
- 			struct resctrl_staged_config *cfg = &d->staged_config[t];
- 
-@@ -1743,7 +1743,8 @@ static struct mpam_resctrl_dom *mpam_resctrl_get_mon_domain_from_cpu(int cpu)
- 	if (cache_id < 0)
- 		return NULL;
- 
--	list_for_each_entry_rcu(dom, &l3->resctrl_res.mon_domains, resctrl_mon_dom.hdr.list) {
-+	list_for_each_entry_rcu(dom, &l3->resctrl_res.mon_domains, resctrl_mon_dom.hdr.list,
-+				lockdep_is_cpus_held()) {
- 		if (dom->resctrl_mon_dom.hdr.id == cache_id)
- 			return dom;
- 	}
-@@ -1759,7 +1760,8 @@ mpam_resctrl_get_domain_from_cpu(int cpu, struct mpam_resctrl_res *res)
- 
- 	lockdep_assert_cpus_held();
- 
--	list_for_each_entry_rcu(dom, &r->ctrl_domains, resctrl_ctrl_dom.hdr.list) {
-+	list_for_each_entry_rcu(dom, &r->ctrl_domains, resctrl_ctrl_dom.hdr.list,
-+				lockdep_is_cpus_held()) {
- 		if (cpumask_test_cpu(cpu, &dom->ctrl_comp->affinity))
- 			return dom;
- 	}
--- 
-2.34.1
+I'll hold off posting a v4 so we don't end up with two versions under
+review. Ping me when there's something you'd like tested on the CIX
+board.
 
+Thanks,
+Johnny
 
