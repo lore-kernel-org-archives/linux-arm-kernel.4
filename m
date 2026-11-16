@@ -2,89 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BD8606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 03:14:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49F7C606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 03:17:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OP7ZeuPl;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=OVC6wBqd;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=ShVug8x7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IUfPkrqS;
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=uyjm94tI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=1boI632c9C/fcKg+l9a78rn9vI8twjKYya6RFg60Pek=; b=OP7ZeuPlpiZ7P3hUFHy03JKR5k
-	hAk6vJDFSrFE0aUUf+cy5KZYVMK1aucXnfpLbh8rJQ6J+ZLOC8JjXaGmoc2f1ErArQjxW4R/K3ORy
-	tjkiQq/HwPakGUKLC0scwJbxWNdRWjVJ0tNT9/GFUAisjpHIpcOXZ+4iggGjdwtKaEhYd/MWV6sHe
-	5O4U052D9sE8pBszY4anuZsK65Udsqk6vtF0MZeOEACDvy6A9vicuQw4gNutqIRfF3cPrLZhbIoYv
-	VXxuxc8pxz73A47zniqqqZf0h6Z0uajDyZ5uoBhQOCkHx3E/AvChoI+ozyJEUIsdaGyiZhjT6+kw7
-	JGFOZhvw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
+	Message-ID:Date:Content-Transfer-Encoding:Content-Type:Mime-Version:Subject:
+	Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=1Ydo/JFA5qxzni2gYLker+DXlrCuegpZ91spzV6zZE8=; b=IUfPkrqSVQEYWj
+	asf6bRjARbkGgZd3xBp4DmN+OXri5LXdmgTOdTS0Z0DI36407KjWQkcapdsbbYEBzy1I21LTAENhC
+	7T0m/l5QugkL7/3Cdrvpfrp9IIQo+PZi8HD5srLeXV+oAwo2HUaY9skeS4yK97Czui/Vm2gQZVGtz
+	way9ZJ8xPevE6QhmF2sjWqMCxvp99MCfKnw56JEtTkfT2v87wMvvJZubdJj+1Ux1chM2CBzzWJVkb
+	PMaHNRbVFg2FbcP229AecZaD5s6D/LAcZdleAua+j7OTkVMtP+fwCWqVrpFpYYPyiwUFTGf3we2Q2
+	VeFByEWhYpw5a0romYSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSnA6-000000010cq-13qP;
-	Mon, 16 Nov 2026 03:13:42 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1xSnE3-000000010ov-3BDw;
+	Mon, 16 Nov 2026 03:17:47 +0000
+Received: from out203-205-221-190.mail.qq.com ([203.205.221.190])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSnA4-000000010ch-2bXZ
-	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 16 Nov 2026 03:13:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
-	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=1boI632c9C/fcKg+l9a78rn9vI8twjKYya6RFg60Pek=; b=OVC6wBqdvj4K1Xo3Je4wsngYP8
-	ied2E3dGK5X0wZycnlbDeJpm3OxpHV4iAmZ9TiqNLsA+oZz3Wjn/Gkzs0KMZwsAczaFbye9qAcehd
-	6djrzLpLdZsJf2qRR4deMhQypBYwFx/6lxlzQ2IUpoD0e/ZOPxwJ2Fcn2ymj+wjxy70NxN/jqkB9t
-	Y00FTTvnI9AfgF8TjkHLHbzulbZtwqIIoA9rwWUtUN5qblnN3UNrM9LnNECKHj6WsppZEeI80fqAx
-	VEMemKNxyp1EWYih9XhtNfpjrJAyCd470A8sz9jKvl0ztnLnFke2YX5XC1vgbpGoqLQxuCIG8sRtw
-	nS1xjuIA==;
-Received: from cmccmta2.chinamobile.com ([111.22.67.135])
-	by casper.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSn86-00000009QZl-1rC1
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 03:12:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cmss.chinamobile.com; s=default; l=0;
-	h=from:subject:message-id:to:cc:mime-version;
-	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=ShVug8x7q6BZlBDCf2P8pHRb1N/x53L5AouUW7UO7Yie6PRBFxvE3qcN21wEFulUjhn1U/mGLbPnJ
-	 IWTbJhesJdNfXIc601dNeb1HWO1QUfwLkRuLHAXIs9l9kOkbQb/45xm5KmkK+iWvP/mFQDCLak5gZL
-	 3WuMFcPxRrQDSNCY=
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app07-12007 (RichMail) with SMTP id 2ee76afa7435158-fbe2e;
-	Mon, 16 Nov 2026 11:10:45 +0800 (CST)
-X-RM-TRANSID: 2ee76afa7435158-fbe2e
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from DESKTOP-3K8GUTQ (unknown[223.108.79.97])
-	by rmsmtp-syy-appsvr10-12010 (RichMail) with SMTP id 2eea6afa7433bf7-79dd3;
-	Mon, 16 Nov 2026 11:10:45 +0800 (CST)
-X-RM-TRANSID: 2eea6afa7433bf7-79dd3
-From: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-To: antonio.borneo@foss.st.com,
-	linusw@kernel.org
-Cc: mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	linux-gpio@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-Subject: [PATCH v3] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
-Date: Mon, 16 Nov 2026 11:10:42 +0800
-Message-ID: <20261116031043.502-1-laixiangwu@cmss.chinamobile.com>
-X-Mailer: git-send-email 2.50.1.windows.1
+	id 1xSnE0-000000010oH-0tkb;
+	Mon, 16 Nov 2026 03:17:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1794799055; bh=1Ydo/JFA5qxzni2gYLker+DXlrCuegpZ91spzV6zZE8=;
+	h=From:To:Cc:Subject:Date:References:In-Reply-To;
+	b=uyjm94tIVJhun8tf0cxQrwn3SAmdL9BJOgxG0SJruOCtLwTUvp0K6j/diLZyBSYif
+	 14iFGOGdAOifYpm9yOb38h0c+n8OrC/TacPrib6ccHq+JOlniVfHtBRfSikerK+YXy
+	 SJVXPJQ8pgXuNhr6SrizNxEnb7Pjgrug4c1S2BNE=
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+X-QQ-XMAILINFO: OTkXlZHit/HD2ECOkNMUpes8JgqTDIrnl70ocTF10oUnzcXJddXHB8IPNghF2M
+	 JHs400WfCpZeUssfdsYQd/c7h3L3LYYfnCRPV+X3YuVS/8S8eFX4wH/7S6tN2GZnKkaGo1tMKcA3e
+	 NyGFphqRO+5RnMyHR29RtGVG8ST4RQgBvG4i8puzNz3i8tYEapvB24rIQhDyDUTMCs3GV4R4LD7cw
+	 yTuq9t9T2CuV/VlV8vW/Vme/E4o7hDt6J+6HnmAPthlrC40NMLgV3Epr/IGGtiegRziuQmsNEsspl
+	 Ze1CVKptd66VdpVLqDsMG6qotZNllafFC0EHsqaOKrlJl9cRbWUNgShd0oMSqu5p0SpBkuQyA1+P1
+	 vuVY/OFE+p66Yv0px9wRlTy35WuuF/zAovV5TqyBlieIO63c36U/Q35TLmajQfcX/SkfT+8m9zfaC
+	 vMOyC8DZnMvHNwAoOCWpwCUL5V5VKq2+KYLdZsSZCKkOhgrNVqQCbSEDE4WeNPGcCnp1RsAQkJb8J
+	 vHHEGcNyAoVUc3w3y/i8iqFCwdhaeaPCQ9P9jyZztKpyR5MJTmKhagE60xs9Y+VlpwMMLicVefZmH
+	 L/nXwsWP1JLFpblgK+HXuY9C/b4AsSuitvZXzNd5COYv6XCmEpNrdDPUYq8iAxLC2KA+is7TUJ5ck
+	 cjLKdbl6YAjwGbYUBt1yAkGoH6owstvDJZm5I4dKDSBy9sAMenvlnSoXN0ukIl4cUTnK85iBV1O5z
+	 bOxAkjBJvBoW2xVRsheWR9CbcyEjBJreUQOiRSn23BeypNvKC1cdJskR4IP5fcqFuDT6A0ZGS3o8s
+	 EZaG+Clu38feonPN0W+0RQvFD+DkJ9drTX40ba0Bg+GWlO67W+1M61OlL/ej/Q1cnvRK2MAv9ejQB
+	 vFrtr0K+wOyf2EnqPZ6EqAVz6OO+isn2wcEiL8Advqkq87CfkAIYYF8IqrQegaLsVMAOcos0CwsNY
+	 60UC+MDUER7PAV1HHHxhJia4HxOHywop8LuEGyvEvhqm/M4xtQLvmq9pkopQsZe5wK8bPcXvWYtBo
+	 MYgHtPwsT9u3NKQNFX8sqzsj9RFsanT56AQAzQBbXCJinzWE=
+From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
+To: "=?utf-8?B?SGVpa28gU3R1ZWJuZXI=?=" <heiko@sntech.de>
+Cc: "=?utf-8?B?bGludXgtY2xr?=" <linux-clk@vger.kernel.org>, "=?utf-8?B?ZGV2aWNldHJlZQ==?=" <devicetree@vger.kernel.org>, "=?utf-8?B?UmljaGFyZCBDb2NocmFu?=" <richardcochran@gmail.com>, "=?utf-8?B?RWxhaW5lIFpoYW5n?=" <zhangqing@rock-chips.com>, "=?utf-8?B?UGhpbGlwcCBaYWJlbA==?=" <p.zabel@pengutronix.de>, "=?utf-8?B?Q29ub3IgRG9vbGV5?=" <conor+dt@kernel.org>, "=?utf-8?B?S3J6eXN6dG9mIEtvemxvd3NraQ==?=" <krzk+dt@kernel.org>, "=?utf-8?B?Um9iIEhlcnJpbmc=?=" <robh@kernel.org>, "=?utf-8?B?SmVyb21lIEJydW5ldA==?=" <jbrunet+clk@baylibre.com>, "=?utf-8?B?QnJpYW4gTWFzbmV5?=" <bmasney+clk@redhat.com>, "=?utf-8?B?U3RlcGhlbiBCb3lk?=" <sboyd@kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, "=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, 
+	"=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bmV0ZGV2?=" <netdev@vger.kernel.org>
+Subject: Re: [PATCH v5 2/4] clk: rockchip: Add internal support for 24-bit fractional dividers
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: base64
+Date: Mon, 16 Nov 2026 11:17:32 +0800
+X-Priority: 3
+Message-ID: <tencent_A76502128C463402C8115BFD549A4E69CE09@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+References: <20261030-add-board-ok3572-c-clk-v5-0-9a43403cb149@qq.com>
+ <20261030-add-board-ok3572-c-clk-v5-2-9a43403cb149@qq.com>
+	<Yf6NfRPFTxKjDagKAm6hpw@sntech.de>
+In-Reply-To: <Yf6NfRPFTxKjDagKAm6hpw@sntech.de>
+X-QQ-mid: xmsezb41-0t1794799052treparxye
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_031143_703078_2D0DAD46 
-X-CRM114-Status: GOOD (  13.04  )
-X-Spam-Score: -2.4 (--)
+X-CRM114-CacheID: sfid-20261115_191744_597376_1CE397A7 
+X-CRM114-Status: GOOD (  20.81  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,106 +84,45 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-stm32_pctl_probe() acquires an exclusive reset control for every GPIO
-bank with of_reset_control_get_exclusive(), but none of the error
-paths release them again: the bank loop returns directly on
--EPROBE_DEFER and on a failed clock lookup, and the
-clk_bulk_prepare_enable() failure and the err_register path also
-leave the already acquired reset controls behind.
-
-On success the reset controls are kept for the lifetime of the device
-and are never released either (the driver has no .remove), but that
-is harmless.  On a failed probe, and in particular when the probe is
-retried after -EPROBE_DEFER, every attempt leaks another set of
-reset control references.
-
-Release the acquired reset controls on all error paths.
-
-Also release the clocks of the already processed banks on the
--EPROBE_DEFER path, which was missed by the earlier clock leak fix
-dfd8259507c5 ("pinctrl: stm32: Fix clock reference leak in
-stm32_pctl_probe()").
-
-Fixes: 2254e77665d5 ("pinctrl: stm32: defer probe if reset resource is not yet ready")
-Signed-off-by: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
----
-Changes in v3:
-
-- Use the real name "Xiangwu Lai" for the author and in the
-  Signed-off-by trailer instead of the account handle (Developer's
-  Certificate of Origin), consistent with the same fix in the
-  analogix_dp series.
-
-Changes in v2:
-
-- Point the Fixes tag at 2254e77665d5, which introduced the reset
-  control acquisition in the stm32_pctl_probe() bank loop and the
-  -EPROBE_DEFER return path; bb949ed9b16b only replaced the child
-  node iteration helper (suggested by Sashiko AI review).
-- Also release the clocks of the already processed banks on the
-  -EPROBE_DEFER path, which was missed by dfd8259507c5.
-
-Link: https://lore.kernel.org/all/20261110083253.1525-1-laixiangwu@cmss.chinamobile.com
-Link: https://lore.kernel.org/all/20261110065722.1340-1-laixiangwu@cmss.chinamobile.com
- drivers/pinctrl/stm32/pinctrl-stm32.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/pinctrl/stm32/pinctrl-stm32.c b/drivers/pinctrl/stm32/pinctrl-stm32.c
-index 98cf9c6f4..2a54a0176 100644
---- a/drivers/pinctrl/stm32/pinctrl-stm32.c
-+++ b/drivers/pinctrl/stm32/pinctrl-stm32.c
-@@ -1966,15 +1966,18 @@ int stm32_pctl_probe(struct platform_device *pdev)
- 		bank->rstc = of_reset_control_get_exclusive(np, NULL);
- 		if (PTR_ERR(bank->rstc) == -EPROBE_DEFER) {
- 			fwnode_handle_put(child);
--			return -EPROBE_DEFER;
-+			clk_bulk_put(i, pctl->clks);
-+			ret = -EPROBE_DEFER;
-+			goto err_put_rstcs;
- 		}
- 
- 		pctl->clks[i].clk = of_clk_get_by_name(np, NULL);
- 		if (IS_ERR(pctl->clks[i].clk)) {
- 			fwnode_handle_put(child);
- 			clk_bulk_put(i, pctl->clks);
--			return dev_err_probe(dev, PTR_ERR(pctl->clks[i].clk),
--					     "failed to get clk\n");
-+			ret = dev_err_probe(dev, PTR_ERR(pctl->clks[i].clk),
-+					    "failed to get clk\n");
-+			goto err_put_rstcs;
- 		}
- 		pctl->clks[i].id = "pctl";
- 		i++;
-@@ -1984,7 +1987,7 @@ int stm32_pctl_probe(struct platform_device *pdev)
- 	if (ret) {
- 		dev_err(dev, "failed to prepare_enable clk (%d)\n", ret);
- 		clk_bulk_put(banks, pctl->clks);
--		return ret;
-+		goto err_put_rstcs;
- 	}
- 
- 	for_each_gpiochip_node(dev, child) {
-@@ -2009,6 +2012,10 @@ int stm32_pctl_probe(struct platform_device *pdev)
- 
- 	clk_bulk_disable_unprepare(banks, pctl->clks);
- 	clk_bulk_put(banks, pctl->clks);
-+err_put_rstcs:
-+	for (i = 0; i < banks; i++)
-+		if (!IS_ERR_OR_NULL(pctl->banks[i].rstc))
-+			reset_control_put(pctl->banks[i].rstc);
- 	return ret;
- }
- EXPORT_SYMBOL(stm32_pctl_probe);
--- 
-2.50.1.windows.1
-
-
+SGksCgpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3VyIHJldmlldy4KCj4gPiBBZGQgYW4g
+aW50ZXJuYWwgUm9ja2NoaXAgZnJhY3Rpb25hbC1kaXZpZGVyIGhlbHBlciBhbmQgY2xvY2sg
+YnJhbmNoIHR5cGUKPiA+IGZvciB0aGlzIHJlZ2lzdGVyIGxheW91dC4gVGhpcyBwcm92aWRl
+cyB0aGUgc3VwcG9ydCBuZWVkZWQgYnkgdGhlIFJLMzU3Mgo+ID4gYXVkaW8gZnJhY3Rpb25h
+bCBjbG9ja3MuCj4KPiBQbGVhc2UgYWRkIGEgcGFyYWdyYXBoIGFib3V0IHRoZSAidjIiIG5h
+bWluZy4KPiBJIGFzc3VtZSB0aGUgdjIgaXMgYSBSb2NrY2hpcCBuYW1pbmcsIGJlY2F1c2Ug
+djEgd2FzIHRoZSBvdGhlciBvbmUgdGhhdAo+IGNvdWxkIHN0aWxsIGZpdCB0aGUgcmVndWxh
+ciBmcmFuY3Rpb25hbCBkaXZpZGVyLgo+Cj4gPiArc3RhdGljIGlubGluZSB1MzIgY2xrX2Zk
+X3YyX3JlYWRsKHN0cnVjdCBjbGtfZnJhY3Rpb25hbF9kaXZpZGVyX3YyICpmZCwKPiA+ICsg
+ICB2b2lkIF9faW9tZW0gKnJlZykKPiA+ICt7Cj4gPiArIHJldHVybiByZWFkbChyZWcpOwo+
+ID4gK30KPiA+ICsKPiA+ICtzdGF0aWMgaW5saW5lIHZvaWQgY2xrX2ZkX3YyX3dyaXRlbChz
+dHJ1Y3QgY2xrX2ZyYWN0aW9uYWxfZGl2aWRlcl92MiAqZmQsCj4gPiArICAgICB2b2lkIF9f
+aW9tZW0gKnJlZywgdTMyIHZhbCkKPiA+ICt7Cj4gPiArIHdyaXRlbCh2YWwsIHJlZyk7Cj4g
+PiArfQo+Cj4gd2h5IGRvIHdlIGhhdmUgdGhvc2U/IFRoZXkgZG8gbm90IHNlcnZlIGFueSBw
+dXJwb3NlIEkgY2FuIHNlZS4KPiBTbyBwbGVhc2UganVzdCB1c2UgcmVhZGwgYW5kIHdyaXRl
+bCBkaXJlY3RseSBhdCB0aGUgYXBwcm9wcmlhdGUgcGxhY2VzLgo+Cj4gWy4uLl0KPgo+ID4g
+KyBpZiAoZmQtPmZsYWdzICYgQ0xLX0ZSQUNfRElWSURFUl9aRVJPX0JBU0VEKSB7Cj4gPiAr
+ICgqbSktLTsKPiA+ICsgKCpuKS0tOwo+ID4gKyB9Cj4KPiAuLi4gYmxhbmsgbGluZSBwbGVh
+c2UgLi4uCj4KPiA+ICsgaWYgKCEqbSAmJiAhKGZkLT5mbGFncyAmIENMS19GUkFDX0RJVklE
+RVJfWkVST19CQVNFRCkpCj4gPiArIHJldHVybiBjbGtfZmRfdjJfZ2V0X2xvd19yYXRlX2Rp
+dmlkZXIoZmQsIHJhdGUsIHBhcmVudF9yYXRlLCBtLCBuKTsKPgo+IC4uLiBibGFuayBsaW5l
+IHBsZWFzZSAuLi4KPgo+IFsuLi5dCj4KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGNsa19v
+cHMgY2xrX2ZyYWN0aW9uYWxfZGl2aWRlcl9vcHNfdjIgPSB7Cj4gPiArIC5yZWNhbGNfcmF0
+ZSA9IGNsa19mZF92Ml9yZWNhbGNfcmF0ZSwKPiA+ICsgLmRldGVybWluZV9yYXRlID0gY2xr
+X2ZkX3YyX2RldGVybWluZV9yYXRlLAo+ID4gKyAuc2V0X3JhdGUgPSBjbGtfZmRfdjJfc2V0
+X3JhdGUsCj4gPiArfTsKPiA+ICsKPiA+ICtzdGF0aWMgc3RydWN0IGNsa19odyAqY2xrX2h3
+X3JlZ2lzdGVyX2ZyYWN0aW9uYWxfZGl2aWRlcl92MihzdHJ1Y3QgZGV2aWNlICpkZXYsCj4K
+PiBtYXliZSBhZGFwdCB0aGUgZnVuY3Rpb24gbmFtZS4KPiBGdW5jdGlvbiBhYm92ZSBhYmJy
+ZXZpYXRlZCB0aGluZ3MgdG8KPgo+IGNsa19mZF92Ml9zb21ldGhpbmcsIHNvIG5hbWluZyB0
+aGlzIGNsa19od19yZWdpc3Rlcl9mZF92MigpCj4gbWlnaHQgbWFrZSB0aGF0IGxpbmUgbGVz
+cyB1bndpZWxkeT8KCkkgd2lsbCBmaXggdGhlc2UgaXNzdWVzIGluIHY2LgoKQmVzdCByZWdh
+cmRzLApDdW5oYW8gTHUKCnB3LWJvdDogY3IK
 
 
