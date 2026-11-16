@@ -2,62 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC7F606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 10:11:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DBE3606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 10:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A1skP2W/;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=BCe4guTV;
-	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=ICBd+Vxd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GDqIV36N;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=tW0mwRBZ;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=U1jl2t6R
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Lr/x5IlnZq4eIBfp/lJaUR2Ue53H914EWTxEd+hd3Uw=; b=A1skP2W/nDL4XT
-	cnuzcX/s2t5p2zUHfIlYSX5otxum2fk/WvE3ZRinhqkK8fd57ywx0tXJYWt7hWhG0psfLwHSqIaT0
-	G64D+nBJr7je1cWGyY7atK6rG9wz2pKYtBkPxGa5ZZiUwKfJx6odVSC9jgUsqeCpBFTjXLGWrVJq5
-	GPvORNhGLWBQhBQtmq439V87QlI+YIcwNAbLQlt+T7ddwa2NeXmq9GrCH10rdF4fhJvPkqw2Mowry
-	r2kBzE3LQ96oURvuPjV7ZRdeK348sbhtNk4YC5Uv3nTtQWxC+unoAaoG1rIFzA14rtBpvCQR3+jlR
-	mZvQ3Pmccxrk3gDTd3fA==;
+	List-Owner; bh=HVMSgz3CY/8/3JYVAcyQp/zth9ub02Ou+XtUUypEUVI=; b=GDqIV36NynhEMt
+	yPFNvzgWITEncv2F0QICthTCiE1iA3JsqmI7jKwx1SCl5A++MK0irwbaEmi20ejdGNrPp8Roqnb/C
+	4PG+qnWq9FErszvKNwco86iJd+lj7gtC9F1tbevHT8UQNWmWhVKeRb/IOb34vwCFrZlAv14GqHnnN
+	Kl6FE/7NAo1H8fXOmtGlOicjjfsIY+SZAKH5jyMWBxTKyw/fABqnTCJLNLufUtIPYZ3KKSQMTDyZF
+	79keA3WBPyTXHw2vsA3/Pa/kehgQJi/WyhlBnXX3+DPn3ktWZiqTTQ9grYm0vgbi5TPGR6SvT5fuv
+	5o/9Xe6tTQ/RTVH9/6SQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xStg2-00000001uFY-1E6a;
-	Mon, 16 Nov 2026 10:11:06 +0000
+	id 1xStgB-00000001uKk-3Jrf;
+	Mon, 16 Nov 2026 10:11:15 +0000
 Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xStfs-00000001u6S-0gA5;
-	Mon, 16 Nov 2026 10:10:57 +0000
+	id 1xStfr-00000001u63-2Frn;
+	Mon, 16 Nov 2026 10:11:01 +0000
 From: Gregor Herburger <gregor.herburger@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1794823852;
+	s=2020; t=1794823851;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Lr/x5IlnZq4eIBfp/lJaUR2Ue53H914EWTxEd+hd3Uw=;
-	b=BCe4guTVSt3O6qevUnIQA4ygvroAY0UOEiHEX4+XQRc6Dys2eoZpRAwxvbOO+YXHbGtT9R
-	fncPG0A9eMGIufV5mrw8fzLDlW1ZyovNcdgpjONAqiH4dQsAVO3wCTJcIdFYWPVWtWSm3b
-	cK6j78USiFDvOi8y0ZbWWInXXpL354ZY4WPREF5y4zCDeDtbVuPHmYwwDZWrzDFRc5r8Sm
-	DR2t8srPYSnuhEVK3iY9fAe3zOwEM3DRU825M01BbFrL77lzFFIy7olLh7KfxFle9SmGst
-	Fj8MRLUA9WM7PLO6Xntl9Dg2tbbPaE+PZJ+7fjDLHQA0Wfv7bS2zXJtBVbg0Pg==
+	bh=HVMSgz3CY/8/3JYVAcyQp/zth9ub02Ou+XtUUypEUVI=;
+	b=tW0mwRBZEdVsZnn/t2HzpLJ7R47yBnMfbvCpv9e61TmkHCw4jvnaE83UPCqVHnplWLr9if
+	f8yZNBq+W5FBJBkV1Eq9hMT5Fka18X0X2fryDqX8zK03sZvH36B2cZujySByj1Jj2lzJZ5
+	ZTLtwCUQFYMTFhSpgcBaZlr0RFOVIi1dkIARFdEgNnKzHJ6oytHh7NO/0BV9sPR8gLn/7z
+	4o4k59FGspA9HZx79aq/BAIB8Vgl56Hn9ZI6fyFkYsUoW3Y86z5oE6VgPtflXvOXgqmRDt
+	mXgT0fJrobb+vEYZNqHnbPDJpKpbdi93/BDUqoXYvysPq0lrmDWJFEgFIh2miw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1794823852;
+	s=2020e; t=1794823851;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Lr/x5IlnZq4eIBfp/lJaUR2Ue53H914EWTxEd+hd3Uw=;
-	b=ICBd+VxdGaXjMEUAotxM73h93Q86Sw1zU8ao7E2nsm7DlCAJld7y7wCvJEAB6Fz5SI5/1L
-	wQ3xlQAZkLkiWYDg==
-Date: Mon, 16 Nov 2026 11:10:27 +0100
-Subject: [PATCH v10 03/12] nvmem: core: Enforce stride and alignment checks
- for nvmem_device functions
+	bh=HVMSgz3CY/8/3JYVAcyQp/zth9ub02Ou+XtUUypEUVI=;
+	b=U1jl2t6RyRlxBnoqeoLgapMZBAvIoOakjZVnRUvqAwL3y1dVWG8kw57KR1em9M1mjCJvDO
+	yheA01RR3dtK3tCQ==
+Date: Mon, 16 Nov 2026 11:10:26 +0100
+Subject: [PATCH v10 02/12] soc: bcm2835: Use IS_REACHABLE for function
+ declaration
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20261116-rpi-otp-driver-v10-3-15302dcfd5e1@linutronix.de>
+Message-Id: <20261116-rpi-otp-driver-v10-2-15302dcfd5e1@linutronix.de>
 References: <20261116-rpi-otp-driver-v10-0-15302dcfd5e1@linutronix.de>
 In-Reply-To: <20261116-rpi-otp-driver-v10-0-15302dcfd5e1@linutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -75,17 +75,16 @@ Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-hardening@vger.kernel.org, 
  Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794823848; l=1407;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794823848; l=1460;
  i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=sGhuitAXl4CJ9+ca/zc+cLRMyNRzuEDqHymnYStad9o=;
- b=LM7RYQYPTLhVq5GNOWLtM91F4ZWSVqsbkV/IQXHxWEa2Sgz8YLpbLjrtyoOvk5IZGcuh+F5GC
- Sb2Mqbzn7+vATuVuUjkXoZWnWHL1qEvXOAqCZalPVbttcep/tVdOeQ5
+ bh=uxXK8avB9nb6Zmd3jDyY1bgqVIcNgF3TcaoqB76MexM=;
+ b=YeFtWIfvUimynPm3WpeQxKJC6iXX2TWfS1Oo+5M3p+R0Y/VYNuiFtvTtvUUHK9gmV7ue5mTuC
+ UqL5SX72ikmBEpR7tLxBx6xoCNXuyP2BvYnlLUGnFMrg/DHkUz1xYXS
 X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
  pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_021056_345923_FD553F82 
-X-CRM114-Status: UNSURE (   8.48  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261116_021055_729039_A0E88360 
+X-CRM114-Status: GOOD (  11.98  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,51 +104,42 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The stride and word_size attributes in the nvmem_config struct are
-currently only used when reading/writing through sysfs functions
-bin_attr_nvmem_read/bin_attr_nvmem_write and in the nvmem_cell api.
-Reads and writes with nvmem_device_write/nvmem_device_read still allow
-unaligned access.
+The drivers that depend on the RASPBERRYPI_FIRMWARE use
 
-Add a check to these functions to enforce word_size and stride_length
-aligned reads and writes.
+	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_FIRMWARE)
 
+This should ensure that the driver is not compiled in when
+RASPBERRYPI_FIRMWARE is 'm' on COMPILE_TEST which leads to linker
+errors.
+
+The same can be achieved by using IS_REACHABLE in the
+raspberrypi-firmware header. This evaluates to false when invoked from
+built-in code. This way the Kconfig can be written as
+
+	depends on RASPBERRYPI_FIRMWARE || COMPILE_TEST
+
+Which is a more readable variant.
+
+Suggested-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
 Reviewed-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
 Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
 ---
- drivers/nvmem/core.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ include/soc/bcm2835/raspberrypi-firmware.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index d976c0d6603ba..f16c7b7cd2b0f 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -2072,6 +2072,12 @@ int nvmem_device_read(struct nvmem_device *nvmem,
- 	if (!nvmem)
- 		return -EINVAL;
+diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm2835/raspberrypi-firmware.h
+index 5a0cbb18d0b6c..33ac26f2f135a 100644
+--- a/include/soc/bcm2835/raspberrypi-firmware.h
++++ b/include/soc/bcm2835/raspberrypi-firmware.h
+@@ -201,7 +201,7 @@ struct rpi_firmware_clk_rate_request {
+ 		.id = cpu_to_le32(_id),		\
+ 	}
  
-+	if (!IS_ALIGNED(offset, nvmem->stride))
-+		return -EINVAL;
-+
-+	if (!IS_ALIGNED(bytes, nvmem->word_size))
-+		return -EINVAL;
-+
- 	rc = nvmem_reg_read(nvmem, offset, buf, bytes);
- 
- 	if (rc)
-@@ -2100,6 +2106,12 @@ int nvmem_device_write(struct nvmem_device *nvmem,
- 	if (!nvmem)
- 		return -EINVAL;
- 
-+	if (!IS_ALIGNED(offset, nvmem->stride))
-+		return -EINVAL;
-+
-+	if (!IS_ALIGNED(bytes, nvmem->word_size))
-+		return -EINVAL;
-+
- 	rc = nvmem_reg_write(nvmem, offset, buf, bytes);
- 
- 	if (rc)
+-#if IS_ENABLED(CONFIG_RASPBERRYPI_FIRMWARE)
++#if IS_REACHABLE(CONFIG_RASPBERRYPI_FIRMWARE)
+ int rpi_firmware_property(struct rpi_firmware *fw,
+ 			  u32 tag, void *data, size_t len);
+ int rpi_firmware_property_list(struct rpi_firmware *fw,
 
 -- 
 2.47.3
