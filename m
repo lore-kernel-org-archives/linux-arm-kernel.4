@@ -2,98 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F96A606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B1C606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WPXQ2QjU;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=Ce6XbNuH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iEB9WStw;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=g5KdVzMH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=myLB4OwHBzyw4fpYYsjbE0atdhucZNjAIWIIh+XxrN4=; b=WPXQ2QjUAi6N6Jh+PVQ+CL6wZN
-	UZOpQS/JAHtAQEMLtoBC0JlSpFpKDrwokBS3jJ5NwQmoUS9Rk9sxdc75havCnxmAh5clDjwEIAZh8
-	VYnvzalboI9TFFh0aC76/IE0qS2S9Z8PfNmu6NE5JXKfOGY+ibfXQgxtyGQtKF857QCdxD3893Lf/
-	Jh7l47A/tFZwM6LupZ5VzDmzmP97gNwlNBtrfJ1vuVlv30czdKQ6yWtsHu0Zw1G0P+JQi7lAUA0rB
-	kQ4fEDupoofKY9T8w4DuWW9Jo76QF3Jt9FEl6KIB0BTFOCr56rMBvughlKjXwiQCgVfjn/sjeRnFf
-	QsN/Sgvg==;
+	bh=crdLSmlfnO7VKMZXhE1g/GIeZeZ2qlXrtngZdD7/DKk=; b=iEB9WStw/+qEXetk53nl+aKzZ6
+	qFfw2K3DNkQgoBWGXJYZlgZj8aiBT+dhvt2YJarV25xABB3GFt+M088Bmoe3IKtRnIVgTG7gcV4S8
+	1P1IKeSNG7GP3R8svYMUW24H70kLu5K+uvYx9ZI0EwZ8gW+h7Tw7eoN+aE56Wp0cDFmDlbBIWTxPc
+	vgSVbSQbb15zC1LQZCXUTB60uFRXXuxntzaSTIwY/TOw4zSbiyQdZkGY8VNP6NIVujYIKUE8bw9tk
+	Sgr0JaTueh/XiXZeDjYYrKLpdaO1UbJi6A3lGdydnwNoEbIgMYsZi1LPI/tLJx5Rrx1xA6Y+gEYKR
+	Xcjy7yng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvSe-00000002Ifw-3rGt;
-	Mon, 16 Nov 2026 12:05:24 +0000
-Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
+	id 1xSvYx-00000002JMR-3YpZ;
+	Mon, 16 Nov 2026 12:11:55 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvSc-00000002IeT-0uej
+	id 1xSvYv-00000002JLf-1jxH
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:05:23 +0000
-Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
-	(Authenticated sender: pza@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 53F71200563;
-	Mon, 16 Nov 2026 13:05:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794830720;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=myLB4OwHBzyw4fpYYsjbE0atdhucZNjAIWIIh+XxrN4=;
-	b=Ce6XbNuH5brNZhdbUzFVfiOQWZuIors5ZDiGHZbq0H7heC+CJAV03821lq6MmKMKV9XoZD
-	BTyf9IhZYlJxqCbCfj9XlRAWZ25crA3wkkrruTuzS45AeOipgjY5dQtNIRhtYHeVgoV/7n
-	XnI5zPCkBK/VI/AbcJkZm2uNVq7BbbJWYKiLFyKWmuh4wkYKksrl86rP+pQTceQgZiykWj
-	7DpmecXjt1ilPM8a816IguIp1drfqcEEUmQgGsBR2OZTXDZsCJvBotLDRGz//ie1/p8ktC
-	Fqu2BM+hQ/dp7KTph2vh5zncXCsFO7V9mfK9M9j3N2ObQh+xQLR/SsqZzXnq3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794830720;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=myLB4OwHBzyw4fpYYsjbE0atdhucZNjAIWIIh+XxrN4=;
-	b=SMy3PkaQYVUKR3rltjraWfns01w0zxrh9UgoUXYbVER4fulioewJUvI9H7vYBvbQXRz133
-	h8OLDsjkvu8BUAsQq5pQ526HlxcQ3eH+Ii4QcIq8wUwH8PlHSHnr6NTzaL9UBqpaecEGwg
-	cYFaelKZmN1RSfbtxG0axVPYwDTz3Vgl9Whds07omSbRVx8uojIljS2lfukkqrd+6TtTb1
-	IgtoLxJP9UNJIey3UyZmjSC2IQh/RcqkNcVcBfU+8EjNTQAHQAOrNbjCxyQazF0A66JvrE
-	7YtIVB7xsnF0TsMZpxdrzNEjix/6/X49PdJcA+Vbj4Q1wMosFZ0vxEz7EjtkxA==
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794830720; a=rsa-sha256;
-	cv=none;
-	b=d631/ZkM9Ikmiwd4yVTINxrLF6GTwIFVHvDISAG5stxcDBhx3DcAIr4AojkGqcqbZcKHmd
-	ICnxsKWCkTPL1FbddoK8od4Gd+MTDwER6NEHyPxDpxIlS7egWdkCQxSoo+VvSsXAavRymC
-	lJSxacXKlycJhl0KgiRrP5VmA/2yjMYTHmOKcbANRhCB5asKesMZiiwjt/E7JvBw7rz1yy
-	/Js0i3NVVdlqGwqDOIKMBiMLBDaU2m2yx5hNobeKGGJs9MzxqTa+Egj8bMwle+yWUzZNJW
-	4Q2GyXcj6h69uwhjChMx14tONM5vda/T21KFVM79pE7cHpDRLBlIjYGRRuomvw==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
-Message-ID: <782e5c69196cd5618841abeadb1563d67f6e93a7.camel@pengutronix.de>
-Subject: Re: [PATCH v2 07/13] reset: add Synaptics SL2610 reset controller
- support
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Catalin Marinas	 <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland	 <mark.rutland@arm.com>, Sebastian Hesselbarth
- <sebastian.hesselbarth@gmail.com>,  Stephen Boyd <sboyd@kernel.org>, Brian
- Masney <bmasney+clk@redhat.com>, Jerome Brunet	 <jbrunet+clk@baylibre.com>,
- Linus Walleij <linusw@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Date: Mon, 16 Nov 2026 13:05:20 +0100
-In-Reply-To: <20261115102401.3520-8-jszhang@kernel.org>
-References: <20261115102401.3520-1-jszhang@kernel.org>
-	 <20261115102401.3520-8-jszhang@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	Mon, 16 Nov 2026 12:11:54 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-48fd2e38825so2116454f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:11:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794831111; x=1795435911; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=crdLSmlfnO7VKMZXhE1g/GIeZeZ2qlXrtngZdD7/DKk=;
+        b=g5KdVzMHXKzvkYz7hol11XVOjIGh1KTnTXBTN08GTdOUCSTsoy3ziYULtm9WNxAUky
+         TBskXm3cTuXyYNpnu59yZuf3ikqlFkzYmT4fkeC1YY35vIwIJERJ6rON+mVN9wrFySyg
+         Rsz3SIS+X+W/5BrG3vmDutNS8gVbgaTJfluLhvS5DIqgDfHuxESep4ZieyDt10vb/q0/
+         qpFbTCmJGkBBA+pYtmJCbDIT4J2ZNujhZHLk/LFZyIoE6ZzBpTI+R+du/hGVCgStVVGy
+         u1RrqSB/wkyXgXmhlxK7nRl0/CB2o44usFzNCoj4Fk336Dv1DWo5ZAsh8Axf7jeE8MT7
+         rBEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794831111; x=1795435911;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=crdLSmlfnO7VKMZXhE1g/GIeZeZ2qlXrtngZdD7/DKk=;
+        b=zlEIfpvWLnaQaHhRGh5W1RdUqEAF1UEqfAqovkLpnzIne73HtWG+PRcS9Tjwxn21Sv
+         TXaj9UJpN7tiYbkb/P8lOc7qypL9d3G4hwZ/LxHtW5635dbwObOHCc2CaJifjH+ClyL3
+         NTyaPF86LA5ssrF1tRSIB+5sBvJ+UiEI08S6ASQ9fiENm3x7Dc1ekYnqNlzFDF+bs+8/
+         8IGFkrPscs6oWfIz/4GS/KE/N6suTCodD6Tk845/PpPuu5PDew3NmBz2ps/DE6mlWyXT
+         jftkAvL4JCfOv7HURzkRGMBiyj3dYSHWRsOkt7pr6Y7v8P0eljk3qFnmns78z6RbYygQ
+         vPOQ==
+X-Forwarded-Encrypted: i=1; AL+hErFB/jX3rtuOoN0Rr33Lp3DGuu9G3JaaEmCu3Xr12DGB24pAeC/vPr4x8N2I98SC1edJ9AYRg9JdCOSgzpFKrHzk@lists.infradead.org
+X-Gm-Message-State: APuU4Z+bYKCSYsRJXM5IWtl3aMd//G4nqufiEoDqYtsEwkBsNnKBRZAl
+	DqkxMlUYSAv5yfeTd8u4uzuI8sgVLGph2P+sZ7k6dAuA8a3B6bw+cWr4
+X-Gm-Gg: AYBFou2HO3xeK1qQ24Lo+GbAQpoB/8IdTZQ4sMjvZyfNaiXhDeQOy+oRCdW1TruKkuT
+	69JjVuFUaHZ/BXX4okut9Gnr1103P+wqMzBLfuhLcCGVvKS50zAJZc8NRX+OfTJGcMPfOf1MPwQ
+	VSQ204D6DfaFLfdimFa7E4pKNOEsbwdqtUWIAd9AEnY5M30zjLFS7VRRw/xF2KWegW4bRyS6atM
+	q6uN8yds8w+fzJYaq1BpKswP+ZHR6lwFwoTGCmAPrbleBwX9bx6Anf86PfceGte8PNUUb+rKHL4
+	7sKBDTY/QYVOTlsBzZ/OwgGVa+gfasXJFaG+vqnAgySfDLLqR3oaYCtK5mpLMCLB5Q5KYv1JWiw
+	9Hx5lXE9CzgUE9iUWBMH2X7hEywDS0fzkby4LdCx/6e7y0MEeCjf/6cSKylG2ccPcoPQ1Z+kT2H
+	1lqjlD5YX0ehZMCV3TefQMhodRTTyE8R+c6zTdLwBKUmo+3H4O8n6rA7x30sh6vDhIQ7iHi7vYx
+	Hnc7dRwn7zlzFFyh7tfW027DuW0DjH6BHfyIcbY/+AwDhSF9wOn8JkAtFxABqIRP8oaai3riepE
+	Yzl0HZ/5c8v1CAYqt7NlCAMRVOitMqQLs+i53w8y261GQ8S2325R+5ikiTC+DHK7BZNI1nHqDu3
+	jevyjHaUbtnefMuCZLG7F/qUi7ddaxGeUJw5HD5gnoeJmuQQwiwHaGF6b8LeY9X70bzh58x+m
+X-Received: by 2002:a7b:c009:0:b0:4a1:e672:5721 with SMTP id 5b1f17b1804b1-4bb55a832famr162798335e9.13.1794831111064;
+        Mon, 16 Nov 2026 04:11:51 -0800 (PST)
+Received: from localhost.localdomain (80-108-121-211.cable.dynamic.surfer.at. [80.108.121.211])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb70105a98sm61442005e9.5.2026.11.16.04.11.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 04:11:50 -0800 (PST)
+From: Christian Gmeiner <christian.gmeiner@gmail.com>
+Subject: [PATCH 0/2] MNT Reform 2: Fix the internal panel on i.MX8MQ
+Date: Mon, 16 Nov 2026 13:11:47 +0100
+Message-Id: <20261116-reform2-internal-panel-v1-0-765cf8d5ff4f@igalia.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MQQqDQAwAvyI5N+BGuhW/Ij1Em7YBjZIVEWT/7
+ uJxYGZOSOIqCbrqBJddky5WIDwqGP9sP0H9FAaqKYYQIrp8F58J1TZx4wlXNpmweY7ti5iHgVo
+ o8Vo8Pe5x/875ArE+tEpoAAAA
+X-Change-ID: 20261116-reform2-internal-panel-35c872aabb28
+To: Douglas Anderson <dianders@chromium.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sam Ravnborg <sam@ravnborg.org>, "Lukas F. Hartmann" <lukas@mntre.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, 
+ Christian Gmeiner <cgmeiner@igalia.com>
+X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_040522_573505_C16B092D 
-X-CRM114-Status: GOOD (  25.98  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261116_041153_475244_AC6823F7 
+X-CRM114-Status: GOOD (  11.01  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,306 +117,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On So, 2026-11-15 at 18:23 +0800, Jisheng Zhang wrote:
-> Support the SoC and MCU reset controls exposed by the SL2610 system
-> controllers. Match the MFD-created platform devices, use the parent
-> syscon regmap and register each reset provider against the parent DT node=
-.
->=20
-> Handle both pulse resets and sticky resets with assert/deassert controls.
->=20
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  MAINTAINERS                  |   1 +
->  drivers/reset/Kconfig        |  13 ++
->  drivers/reset/Makefile       |   1 +
->  drivers/reset/reset-sl2610.c | 224 +++++++++++++++++++++++++++++++++++
->  4 files changed, 239 insertions(+)
->  create mode 100644 drivers/reset/reset-sl2610.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index eae1493485ee..1bd3b2f39865 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3812,6 +3812,7 @@ F:	Documentation/devicetree/bindings/soc/synaptics/
->  F:	arch/arm/boot/dts/synaptics/
->  F:	arch/arm/mach-berlin/
->  F:	arch/arm64/boot/dts/synaptics/
-> +F:	drivers/reset/reset-sl2610.c
->  F:	drivers/soc/synaptics/
->  F:	include/dt-bindings/clock/syna,sl2610.h
->  F:	include/dt-bindings/reset/syna,sl2610-reset.h
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index eda9c698a95f..98e973a8798c 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -358,6 +358,19 @@ config RESET_SUNXI
->  	help
->  	  This enables the reset driver for Allwinner SoCs.
-> =20
-> +config RESET_SL2610
-> +	tristate "Synaptics SL2610 Reset Driver"
-> +	depends on ARCH_BERLIN || COMPILE_TEST
-> +	depends on OF && HAS_IOMEM
-> +	select SOC_SL2610_SYSCON
+The internal eDP panel of the MNT Reform 2 with the i.MX8MQ module does
+not show a stable picture. There are two problems.
 
-Why is this select needed?
+The panel-edp mode for the Innolux N125HCE-GN1 is a 70 Hz mode that is
+not in the EDID of the panel. Patch 1 replaces it with the 60 Hz timing
+from the EDID.
 
-> +	help
-> +	  Support the reset controllers in the SoC and MCU system control
-> +	  blocks of Synaptics SL2610 SoCs. Both pulse and sticky reset lines
-> +	  are supported.
-> +
-> +	  To compile this driver as a module, choose M here. The module will
-> +	  be called reset-sl2610.
-> +
->  config RESET_TENSTORRENT_ATLANTIS
->  	tristate "Tenstorrent atlantis reset driver"
->  	depends on ARCH_TENSTORRENT || COMPILE_TEST
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 489fafd6bbe3..d28276a4f2ea 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -42,6 +42,7 @@ obj-$(CONFIG_RESET_SCMI) +=3D reset-scmi.o
->  obj-$(CONFIG_RESET_SIMPLE) +=3D reset-simple.o
->  obj-$(CONFIG_RESET_SKY1) +=3D reset-sky1.o
->  obj-$(CONFIG_RESET_SKY1_AUDSS) +=3D reset-sky1-audss.o
-> +obj-$(CONFIG_RESET_SL2610) +=3D reset-sl2610.o
->  obj-$(CONFIG_RESET_SOCFPGA) +=3D reset-socfpga.o
->  obj-$(CONFIG_RESET_SUNPLUS) +=3D reset-sunplus.o
->  obj-$(CONFIG_RESET_SUNXI) +=3D reset-sunxi.o
-> diff --git a/drivers/reset/reset-sl2610.c b/drivers/reset/reset-sl2610.c
-> new file mode 100644
-> index 000000000000..1ca58d5a3e71
-> --- /dev/null
-> +++ b/drivers/reset/reset-sl2610.c
-> @@ -0,0 +1,224 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2026 Synaptics Incorporated
-> + *
-> + * Synaptics SL2610 reset driver
-> + *
-> + * Author: Jisheng Zhang <jszhang@kernel.org>
-> + */
-> +
-> +#include <dt-bindings/reset/syna,sl2610-reset.h>
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset-controller.h>
-> +#include <linux/slab.h>
-> +#include <linux/types.h>
-> +
-> +/* SL2610 ACPU subsystem */
-> +#define SL2610_GBL_PERIFRESET			0x350
-> +#define SL2610_GBL_PERIFSTICKYRESET		0x360
-> +#define SL2610_GBL_APBPERIFRESET		0x370
-> +#define SL2610_GBL_TOPSTICKYRESET		0x378
-> +#define SL2610_GBL_AVIOSTICKYRESET		0x37c
-> +
-> +/* SL2610 system subsystem */
-> +#define SL2610_SMGBL_STICKYRST0			0x400
-> +
-> +#define to_sl2610_reset_priv(p)	container_of((p), struct sl2610_reset_pr=
-iv, rcdev)
+LCDIF underflows at 1920x1080. Patch 2 connects DCSS to the MIPI-DSI
+host instead and leaves LCDIF disabled.
 
-Turn this into an inline function, please.
+Patch 2 depends on patch 1. The video PLL rate in the device tree is
+four times the 138.78 MHz pixel clock of the new mode.
 
-> +
-> +#define SL2610_RESET(id, reg, bit, sticky)[id] =3D { reg, BIT(bit), stic=
-ky }
-> +
-> +struct sl2610_reset_cfg {
-> +	u32 reg;
-> +	u32 bit;
-> +	bool sticky;
-> +};
-> +
-> +struct sl2610_reset_data {
-> +	const struct sl2610_reset_cfg *cfgs;
-> +	size_t num;
-> +};
-> +
-> +struct sl2610_reset_priv {
-> +	struct regmap *regmap;
-> +	const struct sl2610_reset_cfg *cfgs;
-> +	struct reset_controller_dev rcdev;
-> +};
-> +
-> +static const struct sl2610_reset_cfg sl2610_reset_cfgs[] =3D {
-> +	SL2610_RESET(RST_SOC_SDIO0, SL2610_GBL_PERIFRESET, 2, false),
-> +	SL2610_RESET(RST_SOC_USB0, SL2610_GBL_PERIFRESET, 4, false),
-> +	SL2610_RESET(RST_SOC_EMMC, SL2610_GBL_PERIFRESET, 5, false),
-> +	SL2610_RESET(RST_SOC_GETH0, SL2610_GBL_PERIFRESET, 6, false),
-> +	SL2610_RESET(RST_SOC_SDIO1, SL2610_GBL_PERIFRESET, 7, false),
-> +	SL2610_RESET(RST_SOC_USB1, SL2610_GBL_PERIFRESET, 8, false),
-> +	SL2610_RESET(RST_SOC_GETH1, SL2610_GBL_PERIFRESET, 9, false),
-> +	SL2610_RESET(RST_SOC_USB0PHY, SL2610_GBL_PERIFSTICKYRESET, 0, true),
-> +	SL2610_RESET(RST_SOC_USB0CORE, SL2610_GBL_PERIFSTICKYRESET, 1, true),
-> +	SL2610_RESET(RST_SOC_USB0MAHB, SL2610_GBL_PERIFSTICKYRESET, 2, true),
-> +	SL2610_RESET(RST_SOC_USB1PHY, SL2610_GBL_PERIFSTICKYRESET, 3, true),
-> +	SL2610_RESET(RST_SOC_USB1CORE, SL2610_GBL_PERIFSTICKYRESET, 4, true),
-> +	SL2610_RESET(RST_SOC_USB1MAHB, SL2610_GBL_PERIFSTICKYRESET, 5, true),
-> +	SL2610_RESET(RST_SOC_UART0, SL2610_GBL_APBPERIFRESET, 0, false),
-> +	SL2610_RESET(RST_SOC_UART1, SL2610_GBL_APBPERIFRESET, 1, false),
-> +	SL2610_RESET(RST_SOC_UART2, SL2610_GBL_APBPERIFRESET, 2, false),
-> +	SL2610_RESET(RST_SOC_UART3, SL2610_GBL_APBPERIFRESET, 3, false),
-> +	SL2610_RESET(RST_SOC_I2C0, SL2610_GBL_APBPERIFRESET, 4, false),
-> +	SL2610_RESET(RST_SOC_I2C1, SL2610_GBL_APBPERIFRESET, 5, false),
-> +	SL2610_RESET(RST_SOC_SPI0, SL2610_GBL_APBPERIFRESET, 6, false),
-> +	SL2610_RESET(RST_SOC_SPI1, SL2610_GBL_APBPERIFRESET, 7, false),
-> +	SL2610_RESET(RST_SOC_SPI2, SL2610_GBL_APBPERIFRESET, 8, false),
-> +	SL2610_RESET(RST_SOC_SPI3, SL2610_GBL_APBPERIFRESET, 9, false),
-> +	SL2610_RESET(RST_SOC_APBTIMERS, SL2610_GBL_APBPERIFRESET, 10, false),
-> +	SL2610_RESET(RST_SOC_APBSYSCNT, SL2610_GBL_APBPERIFRESET, 11, false),
-> +	SL2610_RESET(RST_SOC_APBWDT, SL2610_GBL_APBPERIFRESET, 12, false),
-> +	SL2610_RESET(RST_SOC_APBGPIO, SL2610_GBL_APBPERIFRESET, 13, false),
-> +	SL2610_RESET(RST_SOC_APBDMA, SL2610_GBL_APBPERIFRESET, 14, false),
-> +	SL2610_RESET(RST_SOC_GPUCORE, SL2610_GBL_TOPSTICKYRESET, 0, true),
-> +	SL2610_RESET(RST_SOC_NPUCORE, SL2610_GBL_TOPSTICKYRESET, 1, true),
-> +	SL2610_RESET(RST_SOC_AVIOAIOG, SL2610_GBL_AVIOSTICKYRESET, 0, true),
-> +	SL2610_RESET(RST_SOC_AVIOVPPG, SL2610_GBL_AVIOSTICKYRESET, 1, true),
-> +	SL2610_RESET(RST_SOC_AVIOVIPG, SL2610_GBL_AVIOSTICKYRESET, 2, true),
-> +};
-> +
-> +static const struct sl2610_reset_cfg sl2610_system_reset_cfgs[] =3D {
-> +	SL2610_RESET(RST_SM_ADCCORE, SL2610_SMGBL_STICKYRST0, 0, true),
-> +	SL2610_RESET(RST_SM_ADCPRST, SL2610_SMGBL_STICKYRST0, 1, true),
-> +	SL2610_RESET(RST_SM_CAN0PRST, SL2610_SMGBL_STICKYRST0, 2, true),
-> +	SL2610_RESET(RST_SM_CAN0SRST, SL2610_SMGBL_STICKYRST0, 3, true),
-> +	SL2610_RESET(RST_SM_CAN1PRST, SL2610_SMGBL_STICKYRST0, 4, true),
-> +	SL2610_RESET(RST_SM_CAN1SRST, SL2610_SMGBL_STICKYRST0, 5, true),
-> +	SL2610_RESET(RST_SM_GPIOPRST, SL2610_SMGBL_STICKYRST0, 6, true),
-> +	SL2610_RESET(RST_SM_GPIOSRST, SL2610_SMGBL_STICKYRST0, 7, true),
-> +	SL2610_RESET(RST_SM_I2CM0PRST, SL2610_SMGBL_STICKYRST0, 8, true),
-> +	SL2610_RESET(RST_SM_I2CM0SRST, SL2610_SMGBL_STICKYRST0, 9, true),
-> +	SL2610_RESET(RST_SM_I2CM1PRST, SL2610_SMGBL_STICKYRST0, 10, true),
-> +	SL2610_RESET(RST_SM_I2CM1SRST, SL2610_SMGBL_STICKYRST0, 11, true),
-> +	SL2610_RESET(RST_SM_I3CPRST, SL2610_SMGBL_STICKYRST0, 12, true),
-> +	SL2610_RESET(RST_SM_I3CSRST, SL2610_SMGBL_STICKYRST0, 13, true),
-> +	SL2610_RESET(RST_SM_PDMPRST, SL2610_SMGBL_STICKYRST0, 14, true),
-> +	SL2610_RESET(RST_SM_PDMSRST, SL2610_SMGBL_STICKYRST0, 15, true),
-> +	SL2610_RESET(RST_SM_PVTHSRST, SL2610_SMGBL_STICKYRST0, 16, true),
-> +	SL2610_RESET(RST_SM_PVTPRST, SL2610_SMGBL_STICKYRST0, 17, true),
-> +	SL2610_RESET(RST_SM_PWMPERIRST, SL2610_SMGBL_STICKYRST0, 18, true),
-> +	SL2610_RESET(RST_SM_PWMPRST, SL2610_SMGBL_STICKYRST0, 19, true),
-> +	SL2610_RESET(RST_SM_SPIMPRST, SL2610_SMGBL_STICKYRST0, 20, true),
-> +	SL2610_RESET(RST_SM_SPIMSRST, SL2610_SMGBL_STICKYRST0, 21, true),
-> +	SL2610_RESET(RST_SM_SPISPRST, SL2610_SMGBL_STICKYRST0, 22, true),
-> +	SL2610_RESET(RST_SM_SPISSRST, SL2610_SMGBL_STICKYRST0, 23, true),
-> +	SL2610_RESET(RST_SM_UART0PRST, SL2610_SMGBL_STICKYRST0, 24, true),
-> +	SL2610_RESET(RST_SM_UART0SRST, SL2610_SMGBL_STICKYRST0, 25, true),
-> +	SL2610_RESET(RST_SM_UART1PRST, SL2610_SMGBL_STICKYRST0, 26, true),
-> +	SL2610_RESET(RST_SM_UART1SRST, SL2610_SMGBL_STICKYRST0, 27, true),
-> +	SL2610_RESET(RST_SM_UART2PRST, SL2610_SMGBL_STICKYRST0, 28, true),
-> +	SL2610_RESET(RST_SM_UART2SRST, SL2610_SMGBL_STICKYRST0, 29, true),
-> +	SL2610_RESET(RST_SM_UART3PRST, SL2610_SMGBL_STICKYRST0, 30, true),
-> +	SL2610_RESET(RST_SM_UART3SRST, SL2610_SMGBL_STICKYRST0, 31, true),
-> +};
-> +
-> +static const struct sl2610_reset_data sl2610_reset_data =3D {
-> +	.cfgs =3D sl2610_reset_cfgs,
-> +	.num =3D ARRAY_SIZE(sl2610_reset_cfgs),
-> +};
-> +
-> +static const struct sl2610_reset_data sl2610_system_reset_data =3D {
-> +	.cfgs =3D sl2610_system_reset_cfgs,
-> +	.num =3D ARRAY_SIZE(sl2610_system_reset_cfgs),
-> +};
-> +
-> +static int sl2610_reset_assert(struct reset_controller_dev *rcdev,
-> +			       unsigned long id)
-> +{
-> +	struct sl2610_reset_priv *priv =3D to_sl2610_reset_priv(rcdev);
-> +	const struct sl2610_reset_cfg *cfg =3D &priv->cfgs[id];
-> +
-> +	if (!cfg->sticky)
-> +		return -EINVAL;
+Signed-off-by: Christian Gmeiner <cgmeiner@igalia.com>
+---
+Christian Gmeiner (2):
+      drm/panel-edp: Fix Innolux N125HCE-GN1 mode
+      arm64: dts: imx8mq-mnt-reform2: Drive the internal panel from DCSS
 
-The core uses -ENOTSUPP for this.
+ .../boot/dts/freescale/imx8mq-mnt-reform2.dts      | 52 ++++++++++++++++++++--
+ drivers/gpu/drm/panel/panel-edp.c                  | 15 ++++---
+ 2 files changed, 56 insertions(+), 11 deletions(-)
+---
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
+change-id: 20261116-reform2-internal-panel-35c872aabb28
 
-> +
-> +	return regmap_clear_bits(priv->regmap, cfg->reg, cfg->bit);
-> +}
-> +
-> +static int sl2610_reset_deassert(struct reset_controller_dev *rcdev,
-> +				 unsigned long id)
-> +{
-> +	struct sl2610_reset_priv *priv =3D to_sl2610_reset_priv(rcdev);
-> +	const struct sl2610_reset_cfg *cfg =3D &priv->cfgs[id];
-> +
-> +	if (!cfg->sticky)
-> +		return -EINVAL;
+Best regards,
+-- 
+Christian Gmeiner <cgmeiner@igalia.com>
 
-This could just return 0.
-
-> +
-> +	return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
-> +}
-> +
-> +static int sl2610_reset_reset(struct reset_controller_dev *rcdev,
-> +			      unsigned long id)
-> +{
-> +	struct sl2610_reset_priv *priv =3D to_sl2610_reset_priv(rcdev);
-> +	const struct sl2610_reset_cfg *cfg =3D &priv->cfgs[id];
-> +
-> +	if (cfg->sticky) {
-> +		regmap_clear_bits(priv->regmap, cfg->reg, cfg->bit);
-> +		usleep_range(10, 15);
-> +		return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
-> +	}
-
-Why is this needed? Could you just return -ENOTSUPP?
-
-> +
-> +	return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
-> +}
-> +
-> +static const struct reset_control_ops sl2610_reset_ops =3D {
-> +	.reset	=3D sl2610_reset_reset,
-> +	.assert =3D sl2610_reset_assert,
-> +	.deassert =3D sl2610_reset_deassert,
-> +};
-> +
-> +static int sl2610_reset_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *parent_np =3D pdev->dev.parent->of_node;
-> +	struct sl2610_reset_priv *priv;
-> +	const struct sl2610_reset_data *data =3D
-> +		(void *)platform_get_device_id(pdev)->driver_data;
-> +
-> +	priv =3D devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->regmap =3D syscon_node_to_regmap(parent_np);
-> +	if (IS_ERR(priv->regmap))
-> +		return PTR_ERR(priv->regmap);
-> +
-> +	priv->rcdev.owner =3D THIS_MODULE;
-> +	priv->rcdev.ops =3D &sl2610_reset_ops;
-> +	priv->rcdev.dev =3D &pdev->dev;
-> +	priv->rcdev.of_node =3D parent_np;
-> +	priv->rcdev.of_reset_n_cells =3D 1;
-
-Please don't set of_reset_n_cells. This is ignored since of_xlate is
-not set. reset_controller_register() already sets fwnode_reset_n_cells
-to 1 by default.
-
-regards
-Philipp
 
