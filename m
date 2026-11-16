@@ -2,151 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147AB606A88F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DAF1606A880
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zwYvPjTF;
-	dkim=pass (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=hL2WGzF+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JsMXbhB6;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Ira3p/M0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=+I2KrwARNAIHmxonHJimQwIvKJHCFXgrvJPOS+54VLI=; b=zwYvPjTFKRZLhCrW7BXKrtWHA+
-	rmrWaY1SiGfVcvX+G4+p09yQMcY2XnIFq3Kr+SPsBa/+Yc1o9tblR4yn7xVaPqauT6cW+LQXjr21P
-	k3XkVNUTksaAgSgU1OqVHrEYYAKcQEELBlP4vBGhtS1zCgwrpFW8amj3iKnqpR2/QwbT8wUGSBN01
-	ksllJdTj7qncqm4n7Xu3X/TelNIVCgomv3BLGdQN2wlEAHwKmXF/lUoXDXD3FfBfbowBl0nH9z79Q
-	sF2aRpKTCOAXvTmhdEw7q3tpd1f/YvR+DsyxmGXSQ69ukclmKr0KmTXn57U2GkilMHThZ2GGRfOlK
-	unREAfUw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=3+LDIf7xcOUg0Ytv5NF1ZKANWMIYF3HNRlqe1V/Gd84=; b=JsMXbhB6xk70YM
+	NMQTS3tVXF6lVZLpOq2+V440pqB91pyGAmuH2GS9fxUbBgtMRnVdweb/8MqvbkmqjobqAP4531v/c
+	P/iVAQCKxjKO4IMuAluPrdG+ENoPGNxz1wkoleNBtY5Ifu8E4sDFxUUiqCbcsz3Q4nEDt4PrXHHrS
+	XWiweH1I7TnZnq2gEVOFVSBGzliI+6oeCbGtm6GtMamrJql+5sfr+X+5738OVZ7LafM2O9mddBIB/
+	SgHQsBWimJRPHdNC5/bmqMQc7lF9ar7vAq4IxVOLNpKDvxGMDyPC7Q00AcXVj09QagNzwJEh5Ggpg
+	cc06Nif0hdIfMqM+C7aw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxYf-00000002nhP-0Fpj;
-	Mon, 16 Nov 2026 14:19:45 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1xSxc6-00000002o7r-29Ix;
+	Mon, 16 Nov 2026 14:23:18 +0000
+Received: from mail-dl1-x122b.google.com ([2607:f8b0:4864:20::122b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxYc-00000002ngU-0VUI;
-	Mon, 16 Nov 2026 14:19:43 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LmhoaGtwwzdLJhjMn8kUrDHvAz2zD6kDGbmEaD1I0R9CPMTgERcxiFXxFDz8wYO29ZDz+tbaDkaUcEYMEXvMK+NKbj5+kA67lwYDU06uZgoNh1E4DKiGoEMg1q/ReHDc61sd72O4iWC7i9y4owt9Shy46v1pKsBgei037MlvFKApdCLVOK7XqT0IMGKe7Be8h2O1DafEdvx2KrLm2hkhojVJNcjLBXoWyOJvV2jvUHg3+ZTkklvBI78moTc1KR9ToJe6jPYxpZQ+qYCkiiKDbTJckAyPtajyXVkO82C72I10FBGZPeD7HZ7iGUdMYDpW8Xmpjai6+3p+NlAd4p+rbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+I2KrwARNAIHmxonHJimQwIvKJHCFXgrvJPOS+54VLI=;
- b=sLTorfOmXqQQ9vbpP0fgoibYH6mjjz+F1+XviUKCVif9B8Jfmo5CMRm5vi65uDFqWvZE+/Po/B2YCYJIST21GmP7sOy9OMmY6/GQrYmXrxWIH19IfJA+InbupBSPlYhaE+sB4y8WzNDvAaYpfpT6qTa5yu0QdKHa29m2vV652qA5Y2H7zoRXskYgDWt5oQTSeNvXbf6mNCFYuCIcXpOWuHMaND2WxcVLlRi2Lzw/GKwZwic+i7dlKwh/XhExiOXGnomcAcpIuACIU44SUC59hNa94hQVcnBd6kJBH+nLsd/B+wrpRUUMk9rDK88Fi8e0nz4j/Gs5TcfAtxCoAVELEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+I2KrwARNAIHmxonHJimQwIvKJHCFXgrvJPOS+54VLI=;
- b=hL2WGzF+aG1ycQo/aC6JfE1mFnFRwXARxqd0TGOb4GBeD73VPSIACvxQD6c+zTWK6CgbCmpxy4P+iqMOkn+TM/xxR6U8RrjyZF3csBSci+hFGGAl4rtvQYI0hfnEwtAevnryR0xnwbO9S2fiF+M4G506ckNFwp4BJxYGZdLkm2I4dKNzpeiMjz7nl2rCzfCv9DjnH9ApdpagS4ve6E2NhMhFYksAPpjhsyWSlXEHCIjQwMzTSaHmLbIINGxZCnYCXn0q12PmNiqgE0n2XYyhBoqQtRpRmdWc2CuC/lgkM+yieOOmM0mACAwrayFplzPHC57M4HFuqbDLzUeiMA1xiQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
- by KUYPR03MB10483.apcprd03.prod.outlook.com (2603:1096:d10:71::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 14:19:32 +0000
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e%4]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 14:19:31 +0000
-Message-ID: <469f431e-de89-4d42-bc66-488ac5610162@amlogic.com>
-Date: Mon, 16 Nov 2026 22:19:27 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] dt-bindings: net: add amlogic,t7-dwmac
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
- davem@davemloft.net, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261113121852.334604-1-tanure@linux.com>
- <20261113121852.334604-3-tanure@linux.com>
- <CAFBinCB+DkFDwXm9L+NYgtsUNR2F01xhJJnHN_8ydcRjcpNU3g@mail.gmail.com>
-From: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <CAFBinCB+DkFDwXm9L+NYgtsUNR2F01xhJJnHN_8ydcRjcpNU3g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI1PR02CA0029.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::20) To KL1PR03MB5778.apcprd03.prod.outlook.com
- (2603:1096:820:6d::13)
+	id 1xSxc4-00000002o7J-1V2k
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 14:23:17 +0000
+Received: by mail-dl1-x122b.google.com with SMTP id a92af1059eb24-1b3b4944a0eso1517975c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:23:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794838995; x=1795443795; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=3+LDIf7xcOUg0Ytv5NF1ZKANWMIYF3HNRlqe1V/Gd84=;
+        b=Ira3p/M0HHspyzDyBufOASda2GPOOHSlMnA8RGqjdchqCZFV4t7sCpuXinyrjvZ0HK
+         3z4nB3D1DXXB5RI3lftZTYrtRflAZjRNW9aZ2ub+C0jm9w0ifQtxPQ6v0lxONKkFOBkY
+         JqJf2mBygLYQtrNwoW/BleXRxbjICn3Gpne7Ff+3bnOtd5VaAP5NcSZqaWMUSdFkIJKB
+         ucusAQBk6/A7S/kschR9eMuzHGRYWe7M/o9IBfNY4K0kzcmKw03OVFkpOQXLqUZcEOC2
+         P0xM+TSmQmpY0mb9Gz4s1WNzmSLU+hNepcvSDY6jcx2fhEjXBK6Erm59NBu32Yvz2gEp
+         6HXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794838995; x=1795443795;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=3+LDIf7xcOUg0Ytv5NF1ZKANWMIYF3HNRlqe1V/Gd84=;
+        b=I6mwxlePK8Ma4Nk8SfkJJesaMHC8Az3onlPIQHFgwRrvgev6zaTCBWVcxW0naBGXSe
+         7l+mKzJY0NHS8hYwFbOMCq9bj+GH33Uh+toApxc3Gm7bU/qeDeeEqbGhc29PidYSke2w
+         f7PBxwWmru2dgTp9z19do/C3fSnRl0wKZN+XRfbH/KQ7GHK3KGIlIetCcY88BpC9ZKuf
+         mnT/B6ffS5wHzNgitg4eufEAGwZxmOT4D6lg9mtyDgOs99oMqou2o5Bsz32GJCTzEbmF
+         zmZudiS+L1/rkugURmeWhrOvo2VPdXbasFIRtzeMkM5xyjq6SZBWU+iCDNq3NawtlD42
+         lj/Q==
+X-Forwarded-Encrypted: i=1; AL+hErFZOLSdSXpqjih/MVMhBT1MHty1fi7X5zBXJf+Hyf3yRW+/HdzXCT8vZ+6xNdbFAiFnKp8b5WYxBt6HaGk7IgHn@lists.infradead.org
+X-Gm-Message-State: APuU4Z++RnPenccNPzgOq+i2szuVNm400HYxdzepy7YMvKloJnBGoWbL
+	a3qjYMEhnx2u90n9CQTruIgMg4Trv+3/GwA4c/BSm15fOoRiWX/JQPVC
+X-Gm-Gg: AYBFou1kaU5m7dIBivnPrAfyq/BD3qoNukOMLGJyL0yADjKSAYYglQw1z5HHGW0uhYw
+	6UCYbXkcSQzqaIdmky6EnMT/0zWe1TVuW5Xtx7W5rvRETCKa2L5xsyqlWdseXFkDXnZ1O57q9A0
+	2Y/S6mQvsjHuc5nQBu9vNaLQEAPymROcXhuykw5FBTxEkoS7IvehNg0z5Jp8caBURCvUeFmVxIN
+	2RFaMY44TQmlARemehHdG7ATgW15HflRPPJvEsZ1gV6KDCPCpUb3OQ0ZFmjk4iq9Di7lL26joG/
+	SEwfkO/4r9n8F+ZfbOb+o6othpDPzyoF8Ymwv2ENHRWIJdncvf6K7K9kfPfhApfcQFHuzi07qz2
+	yGXto1vSybp4sLAS7IFP8PMkBj6iYkEeC76UbSkrjza1MWZYQh+x8o4uFEMtPfifz6ltrK6xW57
+	0nmXcm38n16+ClWkHtNQtMrPZU5yI2d8tP9a/rdizmFC3vZE8casYATLVxxB3RiuQCRle7mvYRK
+	BQevWy1yzlVl8b5fKR1T5GbTtxl6dC8Ohy3dWTAb2Hx7f2RKQF2k+tMoBA7iAiFXdIthL1ccqdg
+	PWY2SZ0g6F1JrRgojkQ7nbf+2OdmQ06wxa5gyCw=
+X-Received: by 2002:a05:7023:904:b0:1ac:2f6d:e1c6 with SMTP id a92af1059eb24-1b503068271mr10508055c88.6.1794838995363;
+        Mon, 16 Nov 2026 06:23:15 -0800 (PST)
+Received: from arch.localdomain ([152.175.35.61])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b50319e381sm32526875c88.12.2026.11.16.06.23.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 06:23:14 -0800 (PST)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: jernej.skrabec@gmail.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	james.hilliard1@gmail.com,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	robh@kernel.org,
+	samuel@sholland.org,
+	wens@kernel.org,
+	Jun Yan <jerrysteve1101@gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: allwinner: sun50i-h6: Add AC200 companion chip
+Date: Mon, 16 Nov 2026 22:23:07 +0800
+Message-ID: <20261116142307.671340-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261115171148.37784-2-jernej.skrabec@gmail.com>
+References: <20261115171148.37784-2-jernej.skrabec@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|KUYPR03MB10483:EE_
-X-MS-Office365-Filtering-Correlation-Id: eeda1cff-f781-4785-2c04-08df43eca1bd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016|23010399003|4143699003|5023799004|11063799006|10067099003|56012099006|261026140227099003|261028144727099003|261022075727099003|261022105027099003|261021121427099003|261021123027099003|261102123227099003|261009223027099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: iWAARYwkm5O9kW8Ps8IRpZ9wXIJBXw1+IX+yTPKwANam6LTAQnu9awTJN8ML3W7RZIsVscQ291zEzF6CAxvsIOOPMMme72qgXBY5ngHCLbOu3PIPXBzDaBxiTHydgbvAW74oyW6YNEqmoPsyzQcqA82EeWbbW9HO5oseoSnD/eULzL5694rIBkzkCW7Q7TWm0+X6WPgB1GPp5Ly6W1B6RIsv2iBBmUrMjDhofz2gtXjz8Us6zSx4hDlujtj7W8brbO2VeGwGuYfLu1bK/YzicXP0dmgd75U6aDUj/Ef7lCX0RpqjUKAJJg6FySvlYduFdM2uVCgKMhXwkl6vtbK1ztjChq5a85KHiMzdrR4wg9uI/E1fKGuFZ/w8NudYBD6LAaIv4nna+tAWW0LMgE1DEFIdzHycp9pXF+9W8EYBJE0gf2VxsaisYPCKLTG1aVdkEHDORJidolSlsPsXp8fmBVwMxNpajVBIBrjOWWT8M8pbZ+EugkqNhmplTq5nkvgWuvdqjK+YwszWpul4R92Qj+wa+mOnFtTVDsukQXAqz/blauW2rgzGX8FT1zZOGsLqPm+cyD+jtvqqnnbwzEPB1U8+pHEGdmbmvaZqQWl5mMmSxoWGd3PRIx2kZYWF/YP+
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(23010399003)(4143699003)(5023799004)(11063799006)(10067099003)(56012099006)(261026140227099003)(261028144727099003)(261022075727099003)(261022105027099003)(261021121427099003)(261021123027099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?czlPakVXZk5GdkY1Ny9tZ0o5QlZSc0Q1dGlaVWRDV1J6ZjhEL1UrSWdac2lL?=
- =?utf-8?B?RkhUb0pkeWdWaTZjT1RDdTMzSE5rVHBPaWZYNHJSVno1eUVlcG9pUHZ6ME9H?=
- =?utf-8?B?TFRPeFl3YUVYaEtYWXJiNDJoU3NNbkE0NkdsRzlmTk5kOUZUZmhOc2E3MzJO?=
- =?utf-8?B?Mzl0c0lkWjRHR2svYWtLZVRCU0ZWZkJXd3crT1ZQZTc2czZPZmdtVXY1QlFJ?=
- =?utf-8?B?Sk55Y2RvL0JnbGVpZlFISzBYNlBEZ2h6ZnhndjZTU0k5NkV2bnhEd2xyUWJU?=
- =?utf-8?B?TSs1TWl1T2xKSnA2SmJ2VUlvcUs3am1EZG5ObmZ3QjA0TFBUVFBNTjZjcURP?=
- =?utf-8?B?SE1FN3N3Q3ViRktHZTJOcjcraURJZEJBK1pHZVZXZ0pnV01GODJwSXpUeHp5?=
- =?utf-8?B?VDdKTDRBbW4wUHNEZ2MzRm9ZdzBFUHkzdHh3MGpFb0VubGpoWTBVczgvYVFv?=
- =?utf-8?B?RUFYTjBrYzhYb3NLZ1dlWlpvb2dlaStwQVlkdjRQQ0xON1VBUlBYS213RHRp?=
- =?utf-8?B?a0krM01GaVhRaGVCRmhib3N4SVEvYTBFZEVqRVR0MXgrWVZSUmN4b3RDK1ZF?=
- =?utf-8?B?MnhYVnBQZ1A5SGUvSmdRVjVmNVQvRTJvUy9ZWG82d0xZWCt5cEJmbmJhYlR1?=
- =?utf-8?B?REZ5d2hBQVZUYm1RUGhpenlWSjU4dXNva21SaytKTHVILzE5NUZXQXJWL0t6?=
- =?utf-8?B?VGc1OEYxZnM0RkMxVGpVOThQeXhsbkRidm8wU1JPSFAvaEJpMGptdEE4c0VR?=
- =?utf-8?B?R0tUWitQeGs0bkMxQkdaWWFKdnliazZ5ZGwyellrNXpVUzAvbU5xMlcwMlFm?=
- =?utf-8?B?UVBkZGo1U0haZ3ViNm9DMDA0cXllaHJXT3gxdHBlbHhvYVFBVm93RCtaNVE4?=
- =?utf-8?B?OVlmempuNFRyMldHUkhKSzl0NWlveWxVSlZXYWREdEdpVzBYcVVXc3A2dzc4?=
- =?utf-8?B?ZGJWT25qZEJRUzV3WmhzeEs5QXIwcUFzeXNGcHplbzZFZ2diNkNya2xkL0JO?=
- =?utf-8?B?Uk8zN010NGtORG12cHdFZnlxUTlPV1haUWpLT3dxVUhFeU83WGVQVk1WSFpk?=
- =?utf-8?B?Zmx5bWIxQ09qdHhrZEFQanVFWCtOaFNWekJ6YWkvK2o3TUVJRnNQSHhya2kr?=
- =?utf-8?B?UEovSjNOOTF6YTVBS0tDeExhclJpOTBkUnJvR0pZRituZHBIVm9wR24rMHNS?=
- =?utf-8?B?VWczSkd2OTduTGlKUzNRUzN3MWo4a0xtaWlvazJ1MVA0YlRlNkJKZHRLYlA3?=
- =?utf-8?B?RmswRjNZdmlXdlUvSEFoYmErM0FxTDdiZEViZTVBclRiVkx2S1AvRDVsQUNo?=
- =?utf-8?B?S3VGbjU4dXVzREtiWG4vSWY0NWtwTFE5Yk9EdGV4ZGRIM3Y4QWtGRkNZeVZi?=
- =?utf-8?B?aVViejJMbkFYdW1OUlhSWm9uUkEyN0dJY3N0bncvSHUzQ1NEb0V5bjVrSS9u?=
- =?utf-8?B?aXBlVGsrSWhQMlBmYUtjVmRmeFU2V01SYzNqNUNMTDdqOVlLcU90aGxVdlkz?=
- =?utf-8?B?TmF3RDRpQ0xTMjJERnhDSVhhbk9FWDdSYmM5YzJvVUZzSEtXYU8xTGw1TTJD?=
- =?utf-8?B?YlpaOGp4d0gwYlg1TTU3ZW5ydXEyVlJ4MmFZQjM4QnBoT1BSRXBmcUVqUHdk?=
- =?utf-8?B?VjlNbmxsM1p3K0JTb2ZUWW1YMVBDT1AzS3VLUjRGamNEb1Q4VzRkd3NETkN2?=
- =?utf-8?B?SUxDZjJCSjVwYjVlOUwrU0lSa2U5ZkRNYkJKWjA3VVFhZW16aDR6S0ZVUkkv?=
- =?utf-8?B?V01jako1MzdRa0FrR2NLKzR0UDlaMkhldVM5WnFmT1dkMDZFZFoxdDY0Q3Qw?=
- =?utf-8?B?b2JLZUgwWUVFSEJlWFlaaXRJd3NOczdGZ2kvUW5BSU9QdFVCd3MvSUJRbmtV?=
- =?utf-8?B?TjUzZlFzc1ZlaWNjaGEvQmdXOHFXWmRabUVPZHJlaGpHN3pVVjVKWTZYSFJR?=
- =?utf-8?B?NTdscVM3ZjhkZE1zMXFLYlhMZEExQ24xYnczekJ1dDBHS3JWRE1mZy9UNXNt?=
- =?utf-8?B?TXNvRVhKckVpUGZqam5OYUhHQVErQWVCc1ltUTB5ZDJ0VENZdFJ0TnZhWWps?=
- =?utf-8?B?aVlWS25lZE1TM2p0RkNIMjEwOWE1Z2w3c0ppS0hCSkx3a3pKOEJjYmpNSWpo?=
- =?utf-8?B?TUM2SVNVeEFKZnlVVkVoZHRGRDZIWnY2QXFOM1R5QmJzeDhTQ1RZK2MxU0Jx?=
- =?utf-8?B?cWx6ZjJQeHpYN0czdVZYUVhpalhjcGdkNDFYdm9JTlo2RHlaVHo5OEpqaEw2?=
- =?utf-8?B?dkRLUjlXRkxwMUZHV3BLeFNteEh3enJKSS9ZSGlVRnVXZjVsazVSRVpEdERK?=
- =?utf-8?B?WUE3dWZCcThjTmtMKzB3Tm9JQUpZZE1OWUZxQ2FQcWQ0enhPREJFdz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eeda1cff-f781-4785-2c04-08df43eca1bd
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 14:19:31.6194
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fxAIeAVt2YY/AJaPpJXQKz7Y2IEIwzhD4/CV4UVX2O45JpiPnEYPvs1CwucItYhufeG8G/yxF6SJPuDYNXYdkQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUYPR03MB10483
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_061942_160966_4460FB77 
-X-CRM114-Status: GOOD (  14.92  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261116_062316_398231_4E66A8EF 
+X-CRM114-Status: GOOD (  20.14  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,56 +108,139 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Martin, Cc Lucas, Conor,
+Hi Jernej,
 
-On 11/16/2026 1:56 AM, Martin Blumenstingl wrote:
-> On Fri, Nov 13, 2026 at 1:18 PM Lucas Tanure <tanure@linux.com> wrote:
->>
->> The T7 has the same ethernet glue as the G12A but needs two clocks of
->> its own. The controller reaches memory through a pipeline stage with
->> its own gate; nothing else claims it, so it is switched off as unused
->> and transfers never finish. The glue registers share a gate with the
->> MDIO multiplexer, which probes after the controller has programmed
->> them: the writes are lost and the port keeps the bootloader's delays.
->>
->> With a newer core, a clock list of its own and delays that follow
->> ethernet-controller.yaml, the T7 gets a binding of its own: the PHY
->> adds the 2ns, and only the receive delay line offers fine tuning, so
->> only rx-internal-delay-ps is valid here.
->>
->> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> Looks good to me in general
+> Every H6 package contains an X-Powers AC200 die next to the SoC. It is
+> controlled over I2C3 (PB17/PB18), takes its 24 MHz reference clock from
+> PWM1 (PB19), and its Fast Ethernet PHY connects to the EMAC through the
+> RMII pins on port A.
 > 
-> [...]
->> +      - description:
->> +          APB clock of the glue registers PRG_ETH0 and PRG_ETH1.
->> +          Without it, they read as zero and ignore writes.
-> Please give Chuan Liu a few days to clarify this clock input: [0]
-
-Thanks for the reminder, I have confirmed that Lucas' understanding is 
-right. It is indeed necessary to rely on this clock to access PRG_ETH0 
-and PRG_ETH1 normally. I have replied in the patch of v5 [0].
-
-[0] 
-https://lore.kernel.org/linux-amlogic/bd4c8a15-ab13-459f-8fb5-fe3f3b04af43@amlogic.com/
-
-> It would be great if he could provide more details on it. If there's
-> no reply then I suggest going with Lucas' testing finding though
-> (which means that clock input is correct)
+> Describe these parts in the SoC dtsi:
+> - the I2C3 controller with the AC200 at address 0x10 as its child,
+> - a pwm-clock that runs PWM1 in bypass mode at 24 MHz as the AC200
+>   input clock,
+> - the I2C3, PWM1 and RMII pin groups,
+> - the EPHY calibration value in the SID.
 > 
+> Everything stays disabled. Boards that use the AC200 enable the
+> pwm-clock, the PWM and I2C3 controllers and describe the PHY package on
+> their MDIO bus.
 > 
-> [0] https://lore.kernel.org/linux-amlogic/CAJX_Q+0seFwDvd6zksLnJjWYJJY1QcLc1gAjr=FN1p+aTdumpw@mail.gmail.com/
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 53 ++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> index 48c771223af4..5e48b35d13de 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> @@ -17,6 +17,16 @@ / {
+>  	#address-cells = <1>;
+>  	#size-cells = <1>;
+>  
+> +	ac200_clk: ac200-clk {
+> +		compatible = "pwm-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pwm1_pin>;
+> +		pwms = <&pwm 1 42 0>;
+> +		status = "disabled";
+> +	};
+> +
+>  	cpus {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> @@ -314,6 +324,10 @@ ths_calibration: thermal-sensor-calibration@14 {
+>  			cpu_speed_grade: cpu-speed-grade@1c {
+>  				reg = <0x1c 0x4>;
+>  			};
+> +
+> +			ephy_calibration: ephy-calibration@2c {
+> +				reg = <0x2c 0x1>;
+> +			};
+>  		};
+>  
+>  		timer@3009000 {
+> @@ -388,6 +402,11 @@ i2c2_pins: i2c2-pins {
+>  				function = "i2c2";
+>  			};
+>  
+> +			i2c3_pins: i2c3-pins {
+> +				pins = "PB17", "PB18";
+> +				function = "i2c3";
+> +			};
+> +
+>  			mmc0_pins: mmc0-pins {
+>  				pins = "PF0", "PF1", "PF2", "PF3",
+>  				       "PF4", "PF5";
+> @@ -414,6 +433,19 @@ mmc2_pins: mmc2-pins {
+>  				bias-pull-up;
+>  			};
+>  
+> +			pwm1_pin: pwm1-pin {
+> +				pins = "PB19";
+> +				function = "pwm1";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			rmii_pins: rmii-pins {
+> +				pins = "PA0", "PA1", "PA2", "PA3", "PA4",
+> +				       "PA5", "PA6", "PA7", "PA8", "PA9";
+> +				function = "emac";
+> +				drive-strength = <40>;
+> +			};
+> +
+>  			/omit-if-no-ref/
+>  			spi0_pins: spi0-pins {
+>  				pins = "PC0", "PC2", "PC3";
+> @@ -626,6 +658,27 @@ i2c2: i2c@5002800 {
+>  			#size-cells = <0>;
+>  		};
+>  
+> +		i2c3: i2c@5002c00 {
+> +			compatible = "allwinner,sun50i-h6-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x05002c00 0x400>;
+> +			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_I2C3>;
+> +			resets = <&ccu RST_BUS_I2C3>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&i2c3_pins>;
+> +			status = "disabled";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			/* AC200 is co-packaged with the H6 die. */
+> +			ac200: mixed-signal@10 {
+> +				compatible = "x-powers,ac200";
+> +				reg = <0x10>;
+> +				clocks = <&ac200_clk>;
+> +			};
+> +		};
+> +
+>  		spi0: spi@5010000 {
+>  			compatible = "allwinner,sun50i-h6-spi",
+>  				     "allwinner,sun8i-h3-spi";
+> -- 
+> 2.43.0
+> 
 
--- 
-Best regards,
-Chuan
+Tested-by: Jun Yan <jerrysteve1101@gmail.com>
 
+Tested on a TaiqiCat (TQC) A01 with similar board changes on top: the new
+I2C3, PWM1 clock, RMII pins and SID calibration cell all work there as
+well.
+
+Thanks,
+Jun
 
