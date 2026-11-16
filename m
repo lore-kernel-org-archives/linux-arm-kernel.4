@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D18606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D055A606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=omvEgWtT;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=n9N/kw1w
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PEGYWw6F;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=evWE/L6E
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,68 +14,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Pus6Zon9bBsFufoopNpQt/nFtp2HWtzZyOc0mElYIXI=; b=omvEgWtTgxiVdq8NvhRwTIfDzV
-	WuQZD1l+iIbkiTOnoh8hOipXvAUy0Zgz9/ymnopyakceYxvzDQJ8sCXR7DQ8gz2dzRpwO7ONFObky
-	LmqmQBuXsr/+ovXx0c2u2r8MSHCJRW+uwMqJArksCFXJDNLrASC14+UM8fHUfRTfX6IUPeGW9pn+F
-	QK4bqQcicOO/P9Rk/I8vYiaN/vhMQLjUuY9Zlc4l6HLP47axUlf6maBwK0f1uLYBkHYilY/IcGWbS
-	gHwP2ew0ZkgaFA5LlT5wcJ8DY2PN16+euhn0rS9wwyMLGjqKba9cGliEBOYQEgPP8QQwAbGTlFYg9
-	Krd0NX+A==;
+	bh=Ys9OiBJUlo0yeYgXBzy5BjlTE2/m4y7kU18rGSki1UU=; b=PEGYWw6FMjB6Ooy3MvL47HcWEK
+	P+KtdggAlhLsC6dbBi1lj4BIQMxCdEfqppvt9RxtWl6jnbptTc8Avd80aGUf/lgYM5YzQ6eCGVY3q
+	RYQ1VfQKruzYRRlqcyDRfGptU2b27avyyE7EiFUixZf95fi5xskb2ijeAQvz1OE82Q2VDJMXncso3
+	jAYtFsKHb4FDp5R1+8CZQVBZD721vHFJ5YEKxEpxIEpmGSSiKcujmKJ8hjOz2PFd1pOuAiJgSfDNc
+	Mrb1zRK0ueFPB4W6Q4uLtXuO5bx3s1eFFC+SSDJQu8Hw4M/GKoAUxfAOyu5cdcyEtjQnzxMBqDUZN
+	bAHA+ZUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxg5-00000002pOZ-4AjK;
-	Mon, 16 Nov 2026 14:27:26 +0000
-Received: from mail-wr1-x445.google.com ([2a00:1450:4864:20::445])
+	id 1xSxg5-00000002pNk-2Uoj;
+	Mon, 16 Nov 2026 14:27:25 +0000
+Received: from mail-wm1-x347.google.com ([2a00:1450:4864:20::347])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxfy-00000002pF9-0CWw
+	id 1xSxfx-00000002pF5-21zG
 	for linux-arm-kernel@lists.infradead.org;
 	Mon, 16 Nov 2026 14:27:21 +0000
-Received: by mail-wr1-x445.google.com with SMTP id ffacd0b85a97d-49034831bb3so2348865f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:17 -0800 (PST)
+Received: by mail-wm1-x347.google.com with SMTP id 5b1f17b1804b1-4a70b42bab0so16582595e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794839236; x=1795444036; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794839235; x=1795444035; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Pus6Zon9bBsFufoopNpQt/nFtp2HWtzZyOc0mElYIXI=;
-        b=n9N/kw1wASmK8eFo3HwDKbLkV6owW9hGiko9VoTgp352T4eNHhBAvWFcamam4LUVfk
-         U6MxB81bqOHhm+OVf85ATluN2EsmkAPQDLi9agISVgzf4dWFHDLzjEufv9Tv+DrbhV1R
-         walaw7XW5LKi1gHc7yRDp2nGqzgIekQIkJNHB4hJv7ZHSXtnDVBlpm+DAYkqNgGTVDDC
-         efKGu8D5TMkBnXqq+gOAEItK7rNQIkFrcvtDVMTe1ZvTbP+3fYT9NLYyNFVODbC9u/av
-         bEDx8sdXE678Ewl4R+/xnl9uQBOq8wXwULuNzqtnBYiFTxRip+TADZV7wTAFbzyGdvAY
-         eVKg==
+        bh=Ys9OiBJUlo0yeYgXBzy5BjlTE2/m4y7kU18rGSki1UU=;
+        b=evWE/L6E7Ag3jVApOJchdaaisL19dxsDMIu4PwCQv/3q4xFKb/xzw7uidRxZpstVjF
+         y2YQ2hZdn96Cx8zW3B3iEo8MdhJ7Ky7P6E1GGCVSDHK+IWlxUKwzxvTnmIE9LgUvuM5I
+         DJyqHNyfHYA2dXg7vW7YEPRZ/jvSoDcfSLJVX6cMf8BIDa9nrmGq/ppUyZroYwusTNvY
+         vlaoN4uIyP27Gv/N98w1dky4w4YhkJamAcBp7qVCUEMtEk9nKMY2++tJ+iDWuBd1oKoP
+         8ci6mGVLQzQNFKMW2yOvOkCvRIK63mHP8k8RgMCBwB2ebA9yE3CmLWiUqY8sgPSgNbYJ
+         Oprg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794839236; x=1795444036;
+        d=1e100.net; s=20260707; t=1794839235; x=1795444035;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Pus6Zon9bBsFufoopNpQt/nFtp2HWtzZyOc0mElYIXI=;
-        b=EPUHiYQ/H4zEUoaFlbnYm80+bV5dYtxtQKafuIuwNO/pHY09GNbrvpidCfbLP4rl0A
-         HVUq9m9FwfmoPqmJO7AqFdcWO2LTqsPt4lBfJXR1cUmRWxjHUIxF8XL+0vizE/uksr03
-         GY88g/gtrPSTIYgghR4QIgAtIn/WqLttzoW8UIopYQvF5JrVGRLCOF/Lk906gSrq2R+W
-         0kiMgDjz/ZB/nz7F9V6DNqOo6uqJZ9e6cNWbNzkzDogpQLawS5nwU7iOrtwDtMS/Cxp4
-         qjlqxiqPZGf8BsEo+omcJKq6+HqZrIIZk2sbnvsrXyOl7EPNrxzExuxq342+EuQUmtGJ
-         5EOg==
-X-Gm-Message-State: APuU4Z+wF6r3cj9jxHDGzFzRF+zyGcgZoa+aNnk/SY6X8eFBeU69bqhR
-	V9WSn6BrD35OG92ggYTJEzaeSqwdyrR+tgZj8N3QseRjHp6r6SAFQ/FnN8+a3DZoIE/bjgSY3w=
+        bh=Ys9OiBJUlo0yeYgXBzy5BjlTE2/m4y7kU18rGSki1UU=;
+        b=D+kbeSgG6twbwQUCXGClSreMvYFGPYfzxowtS1NPvH09uJgrkj6gDQjvp0HBLuoN7I
+         cgr4/jfBYOAqkUAhzsIui0kzgFxEwXGUi1YDkrR107BjEyhvseZbado0AaB97U4e216K
+         uEYC23+sMWugX42oYpFz9DrF1pAG7AcqPg8dBtaAR57NeMp7IHEa8XctKe2i4oA4NfLs
+         fRjubcmGGJovH9DAUYvy1aLZRGBJ1ioNfEcD8/lOZBvkAovAm2aloYxxZAHC7GcltEUC
+         PhZPXPsEFDaDTRtkOpgP8zA6CHvbFxMwN/NZvloKibJy4+QHnVJQRXkWNaeIZYSiwb7M
+         LQiw==
+X-Gm-Message-State: APuU4Z/cmg196qdNS100WiUTkFXIF76UOVkL6cCzLlX8rCZtWb1XVPPd
+	bTIcL53W2Yk/FZtoXuw3E9Q7lo4/chtd0w2mWHtnzeTVB2qjkAyizbIxFOHmckO3OxYvfb8ekw=
 	=
-X-Received: from wmbjj17.prod.google.com ([2002:a05:600c:6a11:b0:4a3:5d5b:9ad9])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:4f81:b0:4a7:a5db:a93e
- with SMTP id 5b1f17b1804b1-4bb5f3f7efdmr165201905e9.4.1794839235418; Mon, 16
- Nov 2026 06:27:15 -0800 (PST)
-Date: Mon, 16 Nov 2026 15:26:22 +0100
+X-Received: from wrbdt8.prod.google.com ([2002:a05:6000:d08:b0:48c:4566:c9eb])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:6a0d:b0:4b9:f90b:1c4d
+ with SMTP id 5b1f17b1804b1-4bb4e2d5f2bmr239377595e9.5.1794839234339; Mon, 16
+ Nov 2026 06:27:14 -0800 (PST)
+Date: Mon, 16 Nov 2026 15:26:21 +0100
 In-Reply-To: <20261116142618.1687025-17-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261116142618.1687025-17-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1529; i=ardb@kernel.org;
- h=from:subject; bh=A8MzxjCVv4eM6mkH8sNsgPFkx7gf3UVeNfnQwzNCuhw=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu3UH+bU9CjRLa86aIH37lv1jSRj5ac/GX6sgW335eei
- XnJtiS4o5SFQYyLQVZMkUVg9t93O09PlKp1niULM4eVCWQIAxenAExkww9GhpVnbigaHjHPy5/x
- T+3HCq6Lcfahm4w+9y/uK7/85oP80ccMf0Uu3/pS4j2j8IbsHeN/EQ3LQp32pvoesD+jcquOmev MfjYA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1472; i=ardb@kernel.org;
+ h=from:subject; bh=mmsq8s70dc7bNFJDZXgqjzymvtzE/nNvMalQITqcOTw=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu3UJ9vcdyFG2nWGW/zz3w2eSlTsfeBxTOhJUZZb6ctf
+ Vhnf+hjRykLgxgXg6yYIovA7L/vdp6eKFXrPEsWZg4rE8gQBi5OAZiI4SSG/z7r9Rf6bZwfUfP4
+ kLHJCjYONxfmqZofN0xSXf/nxdmg0BqGv/IeFg0uLJvZl19WUD+yJqV1hbSMkWSL2P5b2xdw7/x oygwA
 X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
-Message-ID: <20261116142618.1687025-20-ardb+git@google.com>
-Subject: [PATCH v3 03/15] riscv: Make _text point to the start of the kernel image
+Message-ID: <20261116142618.1687025-19-ardb+git@google.com>
+Subject: [PATCH v3 02/15] riscv: Use _stext not _text to denote the start of
+ kernel code
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-efi@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
@@ -84,8 +85,8 @@ Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
 	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_062718_199351_985E5954 
-X-CRM114-Status: GOOD (  16.74  )
+X-CRM114-CacheID: sfid-20261116_062717_552076_1254B0F7 
+X-CRM114-Status: GOOD (  16.08  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,45 +108,40 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-On RISC-V, _text currently refers to the start of the .text output
-section, which is placed after the image header (.head.text), and is
-therefore equal to _stext. On other architectures such as arm64, _text
-refers to the start of the image, and is used as such by generic code,
-e.g., to describe the kernel mapping in /proc/kcore and in the ELF
-headers of the vmcore, and by the EFI stub.
+On RISC-V, _text and _stext currently refer to the same location, i.e.,
+the start of the .text output section, which follows the image header
+(.head.text) emitted by HEAD_TEXT_SECTION. _start is the symbol that
+refers to the actual start of the image.
 
-Now that arch/riscv no longer uses _text to refer to the start of the
-kernel code, move it to the start of the image so that it is equal to
-_start, and the distinction between _text and _stext is the same as on
-other architectures.
+On other architectures such as arm64, _text refers to the start of the
+image, and _stext to the start of the kernel code, and generic code
+(such as the EFI stub) may start relying on this distinction.
 
-This also means that the image header is no longer omitted from the
-/proc/kcore and vmcore kernel text mappings. Other users of _text, such
-as kallsyms and ftrace, only use it as a reference point to calculate
-relative offsets, and are not affected by this change.
+So switch the only user of _text in arch/riscv, i.e., the "Kernel code"
+resource that is exposed via /proc/iomem (and from which the "Kernel
+image" resource inherits its start address), over to _stext. This is a
+no-op given that both symbols currently resolve to the same address, but
+it permits _text to be moved to the start of the image, making it an
+alias of _start.
 
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- arch/riscv/kernel/vmlinux.lds.S | 2 +-
+ arch/riscv/kernel/setup.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/riscv/kernel/vmlinux.lds.S b/arch/riscv/kernel/vmlinux.lds.S
-index 1f4f8496941a..9849a3e4d102 100644
---- a/arch/riscv/kernel/vmlinux.lds.S
-+++ b/arch/riscv/kernel/vmlinux.lds.S
-@@ -28,11 +28,11 @@ SECTIONS
- 	/* Beginning of code and text segment */
- 	. = LOAD_OFFSET;
- 	_start = .;
-+	_text = .;
- 	HEAD_TEXT_SECTION
- 	. = ALIGN(PAGE_SIZE);
+diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+index d79f99b86033..e6112d424fde 100644
+--- a/arch/riscv/kernel/setup.c
++++ b/arch/riscv/kernel/setup.c
+@@ -91,7 +91,7 @@ static int __init add_kernel_resources(void)
+ 	 * child nodes.
+ 	 */
  
- 	.text : {
--		_text = .;
- 		_stext = .;
- 		TEXT_TEXT
- 		SCHED_TEXT
+-	code_res.start = __pa_symbol(_text);
++	code_res.start = __pa_symbol(_stext);
+ 	code_res.end = __pa_symbol(_etext) - 1;
+ 	code_res.flags = IORESOURCE_SYSTEM_RAM | IORESOURCE_BUSY;
+ 
 -- 
 2.56.0.611.g1030f0b940-goog
 
