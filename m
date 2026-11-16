@@ -2,130 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68539606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0377606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:47:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H0B/Sw15;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=f/CBtJmo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XNafZeYe;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=NWbACTL5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:CC:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=+X8BHr2ykvAEil+/DghWIKA0reftGlNGH6wzHyOsdOI=; b=H0B/Sw157mc4/UoQ55W70zx+jy
-	Tn3Pdz1wPUaxAmlSyXxTG2sjRwlsvAt9vBghZYMXX01SYULjCBd0QEgGcTDYoBr8WKlt1/FddfMMd
-	c8TBYyTk33iFNVWYSAxPMRZyWQ84fi3q0pONHsBYO3Dg0SgcnqdCogpqZx8G4zjKq/i9uiI8ebRHH
-	tf+thATngs9dwn43M9tRcJJ/StJTsiWNhQA18OGYz0NTAyhMJdsdqo37LnZ4lPmsXYIw1+kUJZiQk
-	KXqyr6ETNvzQ5HYZDtKTSEkKy6UaPcU80eFKzjW+TpxSYDka9ApfcNI+Kytputvdf1bt7o5eeFlSg
-	e3RWNajA==;
+	bh=qNp1q27pSiTWfYgGJSTKqOtkXv+RytUsmXHc6vFuLzY=; b=XNafZeYeMMcX3caHFxCugvMhps
+	LvHomM5HtWu8oL8LmeXOKoitn0nViYuvTCL3rElKzD/FkVrhrDF9VK0KTfm6PZLd7lAP7PppWtxCZ
+	dSqIFpkSq410zYQ1rQmFf5nmPuknB1/6uw0hdyIduVkPXU1izPREHYQ2BblcFprsGEJLXM3IxwAq1
+	N3T0A4zZLjZJoNtmMnUowwdesl4HJv0IKH+AYK01qNg+NV6QK4AaZzZnshceKQT8VJnWObGnnH1Dm
+	gUOyW59agLZJZcQE1idVrxyQ15Ea70ugrJaVrE9bJp+IlDFouifz5JCUE62Shc9rfswAXhAJBiY6C
+	ZdYIZvLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzqI-00000003JXS-0viE;
-	Mon, 16 Nov 2026 16:46:06 +0000
-Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
+	id 1xSzrL-00000003Jya-1NKT;
+	Mon, 16 Nov 2026 16:47:11 +0000
+Received: from out-188.mta1.migadu.com ([95.215.58.188] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzq1-00000003JP3-0faZ
+	id 1xSzrG-00000003Jwc-0xBg
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 16:46:04 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VQq5Mdr4ngTj+6rIMmnK8y7K1603Bn4a82t5I9APTlU9fFWj57jOuzm/OeCUMp46KP3TTZYiKpLmX5WkEjSsKVFiOnNqDnA5kZUsUKB1oaY5BYeeIG6QD0o+YOnDR2SeP+4XN2QT0VKSXgHiq/gpFOvqePRTpgOtecG2SfqwQxEY/NUj7I5vjBoNAxS9NGrw6nYT9LpkuLbACgS5Subz0049yzborjLR/F2F+tWDypcS+mA3nudKNn5Fbmu+DqxDA3cVZFLf68anuSFfWYXr36J4Z5cAq8FM8RXm7TbhRb4/cSntctZPOByuPViwP54YiWgVO7z8q4pSIJhtrVssmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+X8BHr2ykvAEil+/DghWIKA0reftGlNGH6wzHyOsdOI=;
- b=ZCrbMqonMbsKGoQGl+JcqMF/J7CU5uUH0NpE2q5lTx+NURmuWbeFKMqdPiBkNWBDzzlF1qZOT0810ZyUjmIvLSjzk1J+Z3hq0PpSi7o9AL3ZyYvjqL6bkqRqr0/cPVvckOaKYpVJ96UPHlBX4oF/OZvZUzq7bjRUVjEsN79qeHeX80p3sYc3gOHGg5euzBJpQzLdXm9whY6IIb7KvFcuUqOwB4J8//0uK+KeVRMxg92AVal4aeZSCsjtX7w5A7Ua0dRUT/q1gwhoIv3OppaOLo2xCtjcyhcjlzw7Ssx+x7iPPYRDJv1je5CP0qWDAI31rxiCqo1EESkGmMqlWt76FQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=roeck-us.net smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+X8BHr2ykvAEil+/DghWIKA0reftGlNGH6wzHyOsdOI=;
- b=f/CBtJmoN0+tCA22I3eCRIZppfw1OVg8UI3qe/3ljY69RWLXNLGtqb9IkXLlnofMNqS32TdjQ4R5PBYuY45GK264ONhwM1nu22/8wN5iwKrftKubqUNopechv9jgLtcpF4uUg+7Dm+7ftbDwlDAd+hFuyBmDMfY4SyjZSzd4qrv3N43JtkrLYCnDuXqFHwOcYuMBO+6H6qZ7FzigyXMrpbrVElawaV4i2IXHNOM+oriLmMNDDXAUpb5HAN/tguP6Ab1NqPQErLv3dOQkhY7Hcy2TgoOFuxwpoCKGEoKvwlpi3RGtkPTxRQJzt3yopx5cyMOgRpQmklYv8Z92RHKZXQ==
-Received: from PR1P264CA0173.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:344::19)
- by VI0PR10MB8668.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:232::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Mon, 16 Nov
- 2026 16:45:41 +0000
-Received: from MI3PEPF00008491.eurprd03.prod.outlook.com
- (2603:10a6:102:344:cafe::8d) by PR1P264CA0173.outlook.office365.com
- (2603:10a6:102:344::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Mon,
- 16 Nov 2026 16:45:41 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- MI3PEPF00008491.mail.protection.outlook.com (10.167.240.152) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 16:45:41 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 16 Nov
- 2026 17:46:24 +0100
-Received: from [192.168.8.15] (10.48.87.124) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Mon, 16 Nov
- 2026 17:45:39 +0100
-Message-ID: <2628f6e623996cda73a8cad46d451a629e749462.camel@foss.st.com>
-Subject: Re: [PATCH v4 06/15] ARM: stm32: enable arm smc watchdog on
- stm32mp1xx
-From: Antonio Borneo <antonio.borneo@foss.st.com>
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Russell King <linux@armlinux.org.uk>, "Wim
- Van Sebroeck" <wim@linux-watchdog.org>, Yannick Fertre
-	<yannick.fertre@foss.st.com>, Christophe Roullier
-	<christophe.roullier@foss.st.com>, <devicetree@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <linux-watchdog@vger.kernel.org>, =?ISO-8859-1?Q?Cl=E9ment?= Le Goffic
-	<clement.legoffic@foss.st.com>, Amelie Delaunay
-	<amelie.delaunay@foss.st.com>, Sashiko <sashiko-bot@kernel.org>
-Date: Mon, 16 Nov 2026 17:45:38 +0100
-In-Reply-To: <32157be8-28c1-403d-8485-96c1fe4543ef@roeck-us.net>
-References: <20261116132416.1184447-1-antonio.borneo@foss.st.com>
-	 <20261116132416.1184447-7-antonio.borneo@foss.st.com>
-	 <32157be8-28c1-403d-8485-96c1fe4543ef@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
+	Mon, 16 Nov 2026 16:47:09 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=qNp1q27pSiTWfYgGJSTKqOtkXv+RytUsmXHc6vFuLzY=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1794847624; v=1; x=1795452424;
+ b=NWbACTL5TjFUpQcCV5hNKmYqRw/SogWUQ2GAgjyCHOV+ll6+j74Nyt2GwVPLZxTIJv96X/Dn
+ htA90sl98AnFMvKNM2dvz55WFxZweYpkgRb+vK7jmxpP4lgsrh7ZvKf9T59o5zxjVoJa9Vsxm95
+ zNuF9czddpAQ2IxCWDdeTkO4=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 7cbd6731a368eb31;
+	Mon, 16 Nov 2026 16:47:04 +0000
+X-Mizu-Trace-ID: 7cbd6731a368eb31
+X-Migadu-Flow: FLOW_OUT
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5c00d7ac49dso9973e87.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 08:47:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGhuDDbghFYjG1fQCq2MX37kLz0VRAynnVEDGu8P7ReBUtp3t638KOB6+HR3DrupAXL79Gjit+jY3SJ3ZKOZ93W@lists.infradead.org
+X-Gm-Message-State: APuU4Z/dYTgisMEeDMMYSFMzILPr30rMpMHH0ktXcci86KCVFLiEQnCx
+	v1QM3T/Hc7UphoILxzlwOJ9eYQNWzGAGT+mLa6Nkdg/fhjKMf130VUyNyS980+L9zRTKtt1t1TE
+	Fj4iIv8MNHYhsCZHjPEk6QIGo1H2K2yA0f2E5hLOZ
+X-Received: by 2002:a05:6512:2312:b0:5bf:ec8f:c361 with SMTP id
+ 2adb3069b0e04-5c17e46b73fmr254876e87.14.1794847622967; Mon, 16 Nov 2026
+ 08:47:02 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PEPF00008491:EE_|VI0PR10MB8668:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3142328a-d5ad-4a35-ab7b-08df44010ce4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|23010399003|1800799024|36860700016|82310400026|921020|261102123227099003|10067099003|4143699003|11063799006|56012099006|261026121527099003|261022075727099003|261021121427099003|261021135927099003|261009223027099003|22082099003|6133799003|18002099003;
-X-Microsoft-Antispam-Message-Info: 2O3l/zuXZNNrh5bnrG4aQzzz7gVNayELVi2xj0Pk68m5GfvuAwbHV4o1q2Mar2pQaErDgaDVR3u8GnK9Yx0MrmnwGVf0LrIuW1DedaWcU9LkGCtgnQvWwmxftReXEy66/JHyLoVYuxsqvWg4k/ct3v/SOfhpk2jEDmTcFZkIK8HxPqxuCeR2OtK3A3Y2ijVEVxwilu5ldljdzuylFjaHgDfyXNXWH7ojTW9YUjEOdUJzFy4O9ZkIjfWv/7wuCqWAPKS/clUEJwapyXBkhz/yhRrkM0YBp97eqi/B22mOuju3942DX6qq6+pMP+aM+hLAxlVO1js0RbcFFKKcrTkBXq9/1D3ISKUmJCRoe3XYXrAcXUbbk/ys6ONGBnZbPPnlzvGM3ZmFTGjj3lWCFGxy9sJcACEquJyVFlEeOChN98nKagpNWLii4oMw+VhhfcKxA0WBJTw2dXW5hX7T/ajGMEbRspDCtH13uuIJVnVmto3y0RhRDj7BTM0vUmtFwEg+WXe/iP1Rt/wQmrXGyxSX/chhrMLfVmzKMCmbZdM4bu9oNqT1tLUrMLq3q7kOMuLdNfUKfWWsrzH+OU1wimWeby/tjhiitu5h1uqwwc6+4grKCHwPjrTPiv7kmrcMIP8UddoJS5c6YYssLrmTX4ca2VZcQ+9MFYLytbZRCdnzBV/N0AJeJIO9GsQdW7ZJI0sVuO2eeFMp3HEyUuwBS+YC2ZmTzI/IfbLOYoNELLHcM7VbDTWyHauPmlkwJteGunNH
-X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(1800799024)(36860700016)(82310400026)(921020)(261102123227099003)(10067099003)(4143699003)(11063799006)(56012099006)(261026121527099003)(261022075727099003)(261021121427099003)(261021135927099003)(261009223027099003)(22082099003)(6133799003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: e4cGP726OU8CM09bL9O9NvpUd5HWytAKCqM9dVC8lu5txmgyh7aARQSJN1mONTmx5vZIIZ2xy8s2tMdxpYBU8DAqTCzm5HRkbctacL7bwMyma+pMB2CtwdOuQnX5Ba2GOluPG0qfKN9+jozMcJ2qPz9Fu2so3xXDOEFuRQeHFq2nfdEu/vkzFy+JT4JRZ4Gs7fgSD5yZtmq4hSl2fEgBZ+eQAiZcEkSb5RtN8GCIJ6ggOCSZtMgqmIck1wzBRfW+/aEqM8x5wblBlrCebAsYcpUmsEQqsv7e5211wo3VroW4ctInJcbmQ/mLRc+daEkv7FkpZW9usYLhBbHKPxjOCJtJnoSzJhKO0SLZ4fLcOhm+LbR9BbO8mx0Qqf9fTsD+dLiUdXt8HkniwhCN4+K+2PPnbIM+eJYv5V8pQ3VCojt1dq9vTi13gzjJ3d2lacIO
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 16:45:41.1070
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3142328a-d5ad-4a35-ab7b-08df44010ce4
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: MI3PEPF00008491.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR10MB8668
+References: <20261116110549.1863653-1-fuad.tabba@linux.dev>
+ <avro44jUWOARFzul@google.com> <CA+EHjTxWuiyjmUc3vH_KxRtS_3oX5w=CE76LdsLcrqC+RzLGfg@mail.gmail.com>
+ <avsNdPissIDAb1hA@google.com> <CA+EHjTwuvhAPWje63TJRR_d+VHT0xwORktQ4zxrcV7KMaHxupQ@mail.gmail.com>
+ <avsygB0HdGxR6psB@google.com>
+In-Reply-To: <avsygB0HdGxR6psB@google.com>
+From: Fuad Tabba <fuad.tabba@linux.dev>
+Date: Mon, 16 Nov 2026 16:46:26 +0000
+X-Gmail-Original-Message-ID: <CA+EHjTzZAWPv99UF_2jKUteF=ZvhfWqBJx=dHi+-tFxBMoUfLQ@mail.gmail.com>
+X-Gm-Features: AclHuK_WgZd3Hq9hZ3t4qbB4b45pul1ULpwp4wH19UYyqHf6wDD32zLK2i7M2yE
+Message-ID: <CA+EHjTzZAWPv99UF_2jKUteF=ZvhfWqBJx=dHi+-tFxBMoUfLQ@mail.gmail.com>
+Subject: Re: [PATCH] drivers/virt: pkvm: Zero and clean memory before sharing
+ it with the host
+To: Vincent Donnefort <vdonnefort@google.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	"Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Marc Zyngier <maz@kernel.org>, Mostafa Saleh <smostafa@google.com>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, linux-arm-kernel@lists.infradead.org, 
+	kvmarm@lists.linux.dev, linux-coco@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_084549_453120_1BA48F49 
-X-CRM114-Status: GOOD (  22.19  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261116_084707_206636_B3D9FD36 
+X-CRM114-Status: GOOD (  10.64  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,96 +87,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 2026-11-16 at 06:33 -0800, Guenter Roeck wrote:
-> On 11/16/26 05:24, Antonio Borneo wrote:
-> > The watchdog IWDG1 is secure by default on STM32MP1xx SoCs.
-> > On boards that keep it secure, Linux must use the arm,smc-wdt
-> > driver to ping it.
-> >=20
-> > Enable the driver for mach-stm32 when ARCH_MULTI_V7 is enabled.
-> >=20
->=20
-> As mentioned before, that doesn't just enable it for STM32MP1xx SoCs,
-> it force-enables it for all boards running ARCH_MULTI_V7. It also
-> goes well beyond the current scope of "if ARCH_MULTI_V7" configurations.
-> I would suggest NACK for that reason, but that isn't my call to make.
->=20
-> Guenter
+On Mon, 16 Nov 2026 at 16:42, Vincent Donnefort <vdonnefort@google.com> wrote:
+[...]
+> While I don't disagree with having the memset in CMOs in the guest, I still
+> believe the hypervisor should do it as well.
+>
+> Linux is not the only virtualised guest and they all should be able to trust the
+> hypervisor to do the right thing for them, which it doesn't.
 
-Hi Guenter,
+I agree, and I think that that's the consensus [1].
 
-sorry if I take more of your time on this, but I haven't got your comments =
-on
-my reply to this patch as v3 04/13.
+This fix is for the guest part.
 
-On platforms STM32MP1xx the trusted firmware starts the watchdog.
-Since on such platforms the defconfig is multi_v7_defconfig, the upstream k=
-ernel
-configured with multi_v7_defconfig would need ARM_SMC_WATCHDOG to prevent a=
- reset
-during kernel boot.
+Cheers,
+/fuad
 
-Clearly, my wish is to have an upstream kernel booting properly with defcon=
-fig.
-
-arch/arm/mach-stm32/Kconfig handles two series of ARCH_STM32:
-- the deprecated ARMv7M platforms that use stm32_defconfig;
-- the ARMv7A platforms that use multi_v7_defconfig.
-
-In this patch the condition 'if ARCH_MULTI_V7' is to enable the watchdog on=
-ly
-on ARMv7A, not on ARMv7M.
-
-Clearly any driver enabled for ARCH_STM32 will automatically be enabled for
-the other SoC that rely on the same defconfig.
-
-Also reworking this patch by moving the change in drivers/watchdog/Kconfig =
-as
-
- config ARM_SMC_WATCHDOG
-+	default y if (ARCH_STM32 && ARCH_MULTI_V7)
-
-would still result in the arm SMC watchdog enabled for all the SoC that use
-multi_v7_defconfig.
-
-What would be your suggestion to progress on this topic?
-
-Thanks,
-Antonio
-
-
->=20
-> > Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
-> > ---
-> > =C2=A0 arch/arm/mach-stm32/Kconfig | 2 ++
-> > =C2=A0 1 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/arch/arm/mach-stm32/Kconfig b/arch/arm/mach-stm32/Kconfig
-> > index 4ac3384e397aa..de09b2afa0f2e 100644
-> > --- a/arch/arm/mach-stm32/Kconfig
-> > +++ b/arch/arm/mach-stm32/Kconfig
-> > @@ -13,6 +13,8 @@ menuconfig ARCH_STM32
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0select RESET_CONTROLLER
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0select STM32_EXTI if AR=
-M_SINGLE_ARMV7M
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0select STM32_FIREWALL
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0select WATCHDOG if ARCH_MULT=
-I_V7
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0select ARM_SMC_WATCHDOG if A=
-RCH_MULTI_V7
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0help
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Support for STMi=
-croelectronics STM32MP1 processors using Cortex-A7
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cores. Note that=
- support for the earlier Cortex-M based variants
->=20
-
+[1] https://lore.kernel.org/all/20260923130031.GE1540250@ziepe.ca/
 
