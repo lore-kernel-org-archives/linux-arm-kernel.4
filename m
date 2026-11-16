@@ -2,86 +2,151 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6F4606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 20:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 682BA606A88A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 20:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bjISQ+bD;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=efmFLo9W
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kUUUEXE1;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=PCE+8l6D
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:Subject:
+	From:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fLiUogQDb6C/5hkqgN4Zccv3qSnCF6DVX/+qKwo4uaw=; b=bjISQ+bDcOZ06wRc9luWF0p5sx
-	t+hNIMMpAeAFAkUlao+pi8dn6Oppgg/WJlSzKCk0bmtXLecDUU6B5gW+cs8o6vEOjhh9MP1uN9Fbs
-	fMLMe1nAXoZr1uShHGU6H5rDS15ZgiT3iBzyuJQsfS70hdagw10oTIMuGkJLrZT5D00eJIOuMlCN3
-	+43aRdzG6dFO6O7V2I9sFu2wJtblCRPJySr7kQbIRi89KXniDBmGUQlcUlpHutQLeqzaXn2DOkTlp
-	M4QOM7SDDrBy/pJwcs53yJRQ3RfvwQEukzvxJkuL5LJ3F7csCzW2FiDpCweIl++S8U0SXuTalv58b
-	03Tyxnbg==;
+	bh=4TBapUEVdgqFMc02G0Lu7NAPtw9O2+vayYgGX+avrjc=; b=kUUUEXE1wmPE1muvYkkyNiNzYB
+	f73d86O6trULAQZLDlYbnDTF7bj+qKkV4z/brsfgTma+I0pl+I7JO/zf/KLCX4+28gODNPTKfGXeN
+	geXBqgCNrXM0m3ZhEjSWhKKi6YHR01ivti8G9bUu1qBPEVWDp49gDitNnK5Av/r/a0jd70tqZi8KS
+	KstzwVJqStnp1KW0DSacPG9ie3vZ1LVqUqIelnKI/rZ9BuTbBIETMVDGOU+h6saLumQwdwT8Qekmz
+	xUi0vxbFiUOFE0SuyKMrHokcwdi7FdW10PdT32F2jQEfIWiwYOpkearTMs83Fgz4jpK/mukn9EpgD
+	c0U7GbLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT2wJ-00000003p0E-0P7T;
-	Mon, 16 Nov 2026 20:04:31 +0000
-Received: from mail-oi1-x246.google.com ([2607:f8b0:4864:20::246])
+	id 1xT2z1-00000003phV-2SfL;
+	Mon, 16 Nov 2026 20:07:19 +0000
+Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT2wA-00000003owK-3Ml0
+	id 1xT2yy-00000003ph3-3uv9
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 20:04:24 +0000
-Received: by mail-oi1-x246.google.com with SMTP id 5614622812f47-571bc0b66d7so2543222b6e.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 12:04:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794859461; x=1795464261; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=fLiUogQDb6C/5hkqgN4Zccv3qSnCF6DVX/+qKwo4uaw=;
-        b=efmFLo9W5a0av/r3fnF6tYq4Z8U67TQeufFIFta58/K730O0F+EtbYz1I1Cw8ByH02
-         /5g8ynVKFwsaD8uDVkAklCIiXTNRUK6M+1lY0h9n5pCwkK2JdTV1oQMgelyZtRHRWr48
-         D7Fk6PJM9qCFq6jbLMFkJmZw6gyrk541IG9oghibVq6YmJ8UEn/pz6NeNnHYC19yA/Q9
-         ls9USCzDKnPzOXRZ6jwr0XXyFMkEx8u93/OV7jtTOHqapasvYuAbY7nQC4ZHc8tXFbgu
-         0bOnm4/j4bD9gPSHU5T5KStvGpkCKsR56ISBYcR2hT/W1ipzok6pFMVA+isINnsew6uK
-         fPKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794859461; x=1795464261;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=fLiUogQDb6C/5hkqgN4Zccv3qSnCF6DVX/+qKwo4uaw=;
-        b=mxNhXJtd5uOx+x+/CGlnKYPPQNVf4LcTuRqRxAq26BHuoKeP7HkdDwHp9yRXvIhAs6
-         qQw2qRKZ5zhlzJ4AXP2v1o5fwUTXoGao613X1dmrOInkf+twKr7970WU6TnQPybRHBDN
-         hHkR+eTGLJdeRkcKxT/syiOt8ulSLqZpdcpGN085K8zqAH0s0BEa2DYLBDyECfJqDMqU
-         u96088npeOqpsm2569IPU3Gai2JtyOk28XDBcIwO++DlzUN+lwzaTYBY96oSSHbfiuF2
-         +NQ1ggef212uYFk/9rTiA18fvjltILv+akE5QWdnxhqrhlyYrGmbIzZCJbpysqpUOyJI
-         6XUQ==
-X-Forwarded-Encrypted: i=1; AL+hErEt6o2JksSvp6W669FDZ13ozO3j+ibhCZWmskOoLu+vvNf1V1xLKCuYf5DAi8wPfLa9MdydEIJWHi6Ct3mrei7E@lists.infradead.org
-X-Gm-Message-State: APuU4Z+hCZOvNxcbDyQLdtwFEuVPOh0yxm5bAVHdG1plH94zmp19er/y
-	wTdcIO5NUMMTy/bobBs1T/DvwL0jadMIRoouSMyy1HQ9LoE58GkJsTKUUaiP5Ho83S5Snxd0uz4
-	E9GMhmi4bNelgAkmpnOo2sHo80g==
-X-Received: from jacnj25-n1.prod.google.com ([2002:a05:6639:299:10b0:60b:77aa:12a3])
- (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:4d06:b0:572:86c8:6b4c with SMTP id 5614622812f47-57286c86d22mr6304607b6e.6.1794859460579;
- Mon, 16 Nov 2026 12:04:20 -0800 (PST)
-Date: Mon, 16 Nov 2026 20:04:17 +0000
-In-Reply-To: <20261116200418.3535619-1-coltonlewis@google.com>
+	Mon, 16 Nov 2026 20:07:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dJeMf2CBji7OgfG86r1lKIEToGjCfrAGpg0kkF3G9gBvGsg92wIHv1lM2ErQ8/GLVDWMsBzo9Q8y8p4uRuPYy6pYlcPnJ3m9NyD+tVAWMjQO+s7hazd8swJSoiB7sMiRUS0UrGm309PV/KgprZjFIRoJqo+Yipt8n0t7M8iBapANYN4iPiIuOnZmGG/diNXqZTtX6sMJuHySBbySYXYHxP9qIZ0JyNt5LINFMl5/Ldi5C46XnThNY2ggGenhvxAjLbs4zm4FfWhmus6cZFlWj8a8cHDyOMawfQVmTG92n6muJwGXvcqzaLnBGzOypnxGUE4gfJ7oFbWiyeoXgakSuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4TBapUEVdgqFMc02G0Lu7NAPtw9O2+vayYgGX+avrjc=;
+ b=HjsbB6nwW/hYPmtSPcPet8Kc7INcxjl/HzRo7ZaGEsjKfaJhreP2kkMVe1id1aSxeJTUObhCX4eADu22MGvZ+LxBUHcY140c5CCK5JTWR9a6Pweu7ZdH2mAnSBAWO1VSiAOKODEjnJjmRl8YlEQeNwOTaUNMAdznumjO+UrsR+RhTW2nT5XySNKmGGzU23MFO9fY7AnfFTNZ4gtln88EshyrghshfeNqYUKk8yhM6z1DHTN5o37EFBj01DRpZUBHdZoPg66N6wWrBRNmWxt/JedyM7ZznjkJ0WwMP8LhAJHHKcY5Y4xQpqZgDW6sMsC8Lya3G5v3lOdGyPAkd0niwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4TBapUEVdgqFMc02G0Lu7NAPtw9O2+vayYgGX+avrjc=;
+ b=PCE+8l6DeyGEpw9gaUjX29O6rULhF3rYMQg+S1g63E599u1TGW1OHLxOy0cgdftAGR41VI72RJvBlgLCJDO+eau/kgsY9sh4BvXu0nFHr4lfOBEWOjPGDzPxyTKJXBJN17pHXsWNsPVuudx/aRueOJwfdjsKC6526MWp9wX3xSM=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5320.namprd12.prod.outlook.com (2603:10b6:208:314::17)
+ by SAEPR12MB328447.namprd12.prod.outlook.com (2603:10b6:802:209::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
+ 2026 20:07:08 +0000
+Received: from BL1PR12MB5320.namprd12.prod.outlook.com
+ ([fe80::1876:4a6d:2cf5:b8d1]) by BL1PR12MB5320.namprd12.prod.outlook.com
+ ([fe80::1876:4a6d:2cf5:b8d1%5]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
+ 20:07:08 +0000
+Message-ID: <125f8f2e-0ab8-4833-96a5-136c4ebd8666@amd.com>
+Date: Mon, 16 Nov 2026 14:07:04 -0600
+User-Agent: Mozilla Thunderbird
+From: Babu Moger <babu.moger@amd.com>
+Subject: Re: [PATCH v7 04/19] fs/resctrl: Introduce kernel mode enum
+To: tony.luck@intel.com, reinette.chatre@intel.com, ben.horgan@arm.com,
+ Dave.Martin@arm.com, james.morse@arm.com, bp@alien8.de
+Cc: corbet@lwn.net, skhan@linuxfoundation.org, rdunlap@infradead.org,
+ x86@kernel.org, fustini@kernel.org, tglx@kernel.org, mingo@redhat.com,
+ dave.hansen@linux.intel.com, hpa@zytor.com, fenghuay@nvidia.com,
+ rppt@kernel.org, arnd@arndb.de, kmehltretter@gmail.com,
+ dapeng1.mi@linux.intel.com, elver@google.com, enelsonmoore@gmail.com,
+ jlayton@kernel.org, seanjc@google.com, ewanhai-oc@zhaoxin.com,
+ binbin.wu@linux.intel.com, nikunj@amd.com, ashish.kalra@amd.com,
+ peterz@infradead.org, superm1@kernel.org, thomas.lendacky@amd.com,
+ prathyushi.nangia@amd.com, kim.phillips@amd.com,
+ ricardo.neri-calderon@linux.intel.com, darwi@linutronix.de,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <cover.1794437052.git.babu.moger@amd.com>
+ <a0251dbaf1c493f84ef1c1dfd7afe9d1cbafcf5a.1794437052.git.babu.moger@amd.com>
+Content-Language: en-US
+In-Reply-To: <a0251dbaf1c493f84ef1c1dfd7afe9d1cbafcf5a.1794437052.git.babu.moger@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CH0P221CA0033.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:610:11d::16) To BL1PR12MB5320.namprd12.prod.outlook.com
+ (2603:10b6:208:314::17)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261116200418.3535619-1-coltonlewis@google.com>
-X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
-Message-ID: <20261116200418.3535619-2-coltonlewis@google.com>
-Subject: [PATCH v1 1/2] KVM: arm64: Fix inverted E2H0 check for HCR_EL2.NV1
-From: Colton Lewis <coltonlewis@google.com>
-To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
-Cc: Joey Gouly <joey.gouly@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Fuad Tabba <fuad.tabba@linux.dev>, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Colton Lewis <coltonlewis@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5320:EE_|SAEPR12MB328447:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5bf109f8-d916-49a9-3f23-08df441d3155
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|7416014|376014|1800799024|10067099003|260925021311599003|56012099006|260925022911599003|4143699003|11063799006|260925021911599003|261026121527099003|261026140227099003|261028144727099003|261022075727099003|261022105027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: uEQYg+rFBsM4AQC9srPIMS4S9jU89V21QCt5DQ64oCA+BdBMAlPB8Kd6/eFjwMwFfn+AmQjoxQt57q2r6dOfDN4RVk0Flbg2XTfg3ZYjqmJpyZ8FgBUs8MRNskGjG7hDo1nBbEJ9lN595KUJzDRAWaOv0tZWHgq7W0pDX5BfraOFLnWAtWp7vkF0/NGu0qCzteI4/Udqm94UWmFo4SUAVSokVHaVJTrDTP6eaZeeX/8ZzqYHHFu+2JRmk1bbQIfe4Cs8apcPvH8clIsL0k5CQaPEAOenx4OB587hXqb7DLEdewneXZT/MjOaX92uySLLjjCWIRd58QpFfKz/QFs2UNQZQvlikRX0KkoS6VEXmcBcaKXgoL7nDm0MZo8RYpnmCGgaiM81GRObBJJ+pMjECcFla1GXuf6CsPLM+E/+RTApT0h7xsOj9cJSCmt3sBW29pjIBEu6SpT+zD4JdIqbz5z7HPbVijn6c1WHaowjv0KUmU+0WShKdk/mEI6k3B0J322ckMpU6j8ZhFEqJaQgeOkPaGzziea0Sr6ZC/E5s/C/nj8v4b3FKkZBi+ydNtvAyTstkKW76X/SF/jy17QPo+rI1fzaBIPQnO+IlBp7z5g=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5320.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(7416014)(376014)(1800799024)(10067099003)(260925021311599003)(56012099006)(260925022911599003)(4143699003)(11063799006)(260925021911599003)(261026121527099003)(261026140227099003)(261028144727099003)(261022075727099003)(261022105027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnkwWERUZ2VmaVd2UEkrQVFQcElaNWdrZ2F3VVZHY1lzN0svSnJkcG54MHk0?=
+ =?utf-8?B?QWs5S1NSUTRCR0UzNCtBdkNkaW5ZRzJoM2tWQ0dYQzAvTHVnR2ZJcTY4OG9W?=
+ =?utf-8?B?RHB6Nk1LcWRvVHNKamo4RjlwTEdVR2c3WjRHNUh1N2p2a3AzbHhxekFWTWVn?=
+ =?utf-8?B?WW9lVTBJMTVCSEphK2FTV0l0disveUtLM0dKTEZWMENMYi9pbHQ2TDFyZ1F2?=
+ =?utf-8?B?bHFsbWtUcS8rZmgrcmp4eGJCTm5UeUY0VlpuS1dpdTBYcWp1R3doUlZRZjlB?=
+ =?utf-8?B?ZjExdDZ1RkZqbXYxbXhETk0wblBkZXpORlFLR2FsUFpQMlVRU1dWVk8yNGVy?=
+ =?utf-8?B?UTE5Q0s4bGp4YXF6SllweXY1aXhobG5uWWs3bnZoTml3ai9PeUlzdmFma1k5?=
+ =?utf-8?B?R05ZS0FxNWM2RTVxQVVha2lveVlraWQySXNROGNjOWZ6VkdWcWpBVlIwaE1B?=
+ =?utf-8?B?cWZ0Y2wzQVJhR2FGTC81eEI3QU93dklZM2twZnl6Ly85TTQzUWpadERoemhP?=
+ =?utf-8?B?YjgxK2VSbUgwR2JLVEw4N2UwdWxyRmtjSmlWcjZjU1FSUm8rOFY5dmtNbkFa?=
+ =?utf-8?B?bHpMalIvZXgrVVp5ZG8yMERLRlBUbEZ2cG5zSmFxQzdZTWhxbkFBYWE3Qk93?=
+ =?utf-8?B?V3Rpc1M2S3hMdWo2Y241SktWK0VYU016Q3A2S2lIUzZrMlZjZCtlaS9XNllw?=
+ =?utf-8?B?eVpaVEFUNlFVd3A2OXdDdGlrZm1mb0tPcmpWdEVKNEJvaHdGTkc5VzJsZCtB?=
+ =?utf-8?B?Nko4TWtraUo5RXBYQjYrQTZBK0cwNko5TFljSDBOSHJQbFQxNXBVVDVETUt6?=
+ =?utf-8?B?VmFxQ1dWcFZzZllHN3AyRGhDZUhMTEZHNmY4QWFGbHduOHF1WGdUVy84TTBW?=
+ =?utf-8?B?WERoUGwrV29KSWJmZ3VsZnFGblZ0L2hNVDZ5UDBNcmhkb3ViK1ovbjk3Q0xw?=
+ =?utf-8?B?U21GNFhsUFZ1U1ZZNWFENHdyVmY4aVA5KzNkM2xtbnY4NUViYm1USHo2WnJI?=
+ =?utf-8?B?Z01Zd2p2amVqU1hiM3hjSzBRSm1SSXBpWk5Hb1kzdGxYY3lXVWRJUFdDL25D?=
+ =?utf-8?B?WkVpTW9RSmMwMTZjQlVIVjBiSnJkWnMrMzBHWTlYSTRhQ2N1UjJ5TWlYeE54?=
+ =?utf-8?B?REh1SXJHVHN6eHU3dHhQUisxVDh0cG5rN0ZmTE1XZHM3Z3Q1Sk04V1pmclpQ?=
+ =?utf-8?B?NmpMeW5OT2x5RlFLM3djWWc5OWU0L0tHT3ZFMTV1WDJXOGU4SytnQkNzVkZ4?=
+ =?utf-8?B?SWVmQWoyNGVEdDRTMXpTRHhFRVJyNWZyQ2V4bjhMQkFrb2JIVW8rNTBOWGNi?=
+ =?utf-8?B?VVYzM0IzNllHQ3dmWGU5OWlwMDlTVE9mTzJTbTVZUm1SY24ySy9OTHVCU0pH?=
+ =?utf-8?B?WUlGenJsQVRZeHlSYjErVmFIbWZneTFGRXNGN2lOcU4yOGV1eWp3ZkRxRjIv?=
+ =?utf-8?B?dVJhbjVQRkRBaXhZSjg1Z0lQaDBYTWU0UmhQK1hNSzgvYXVPWktPZklDaUh5?=
+ =?utf-8?B?TGhnMjhzRGRQMUc2bHJGaldMakdnM0trVElKbi9LRXRxYXJwd052N3lSdEJK?=
+ =?utf-8?B?ZE9Rb0toODVYUnVycHZnUHlvU01MSy9XNGc1UDVLTGdRZk50cVJqa0NrYWV6?=
+ =?utf-8?B?ams5bmJWOVhzWDhuanhhZU5BWlNDejZFd1E4RVBCZlpPb2l4RnFTRXZyQ21h?=
+ =?utf-8?B?TmtiYmlueDQxeXl2TEtPbUcwaGFONjFLOUJkZDAzK1pHZzJqQ3d3UHc2akRD?=
+ =?utf-8?B?ck5sS0NyODBrOWJCVlhFMW5mcTFnZHlKTElTVlJjU3JsN2FqaUpQUU13bC9K?=
+ =?utf-8?B?SXRRcWYwTXp3NjU5ZmM4TzMvZHpNNk51WjBreGdGMHpNVUNrVG5wdEM0MjVG?=
+ =?utf-8?B?VUptclA1QW8zdHU3QWZQQnhiT0JMTEVNQU54ajRwV2E4MWVQVTk2ajBZOGNq?=
+ =?utf-8?B?VDNRcDdHTTNQd29NeHJwc091TGxTemhnRCs3M21RYjJFRWJhTzZXa1hCUUpo?=
+ =?utf-8?B?UDRHS1VISnVna043VHBabExURWNXeStoWkJ3YUsrWklZaEhDS2xScWdSSS9L?=
+ =?utf-8?B?cHcrUGRuRW5aMUwrRjlrbWN5SWd3RUtjUGZBQWwwMmxoaGRJalFISHNhaEFP?=
+ =?utf-8?B?dTNxcDZmdFJtSGxQN1BvZzFxc2k5bFBPcHF6RU9PZW5qazJIRlR6TWhhQzUr?=
+ =?utf-8?B?ZDRSbmpVbDhIeXk5N0RjMEJMMUMzeDk2VGZoMXZJN1ZBTThUbnpqUHlSYklY?=
+ =?utf-8?B?bnhKeHpBN3FyWXNNVEI1V0EwVHoxNU03clFqd3pOZDFrOUxTcUNRTlNIWWtp?=
+ =?utf-8?Q?VDOZ/l1M8WT0XAP3yO?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5bf109f8-d916-49a9-3f23-08df441d3155
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5320.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 20:07:08.4402
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 54bWlGKDIE4BgxUBSPaZlhulagaZ5G1YnxyJWOuR9u91qYJBfaEt2kpDc6xXEot9
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAEPR12MB328447
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_120422_840738_C16945FE 
-X-CRM114-Status: GOOD (  11.42  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261116_120717_013278_51851158 
+X-CRM114-Status: GOOD (  27.74  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,58 +157,117 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ID_AA64MMFR4_EL1.E2H0 is a signed 4-bit field where:
-  - 0b0000 (IMP, 0): FEAT_E2H0 is implemented.
-  - 0b1111 (NI, -1): FEAT_E2H0 is not implemented, except HCR_EL2.NV1
-    is implemented.
-  - 0b1110 (NI_NV1, -2): Neither HCR_EL2.E2H == 0 nor HCR_EL2.NV1 is
-    implemented, and HCR_EL2.NV1 is RES0.
 
-Prior to commit b2a324ff01fe ("KVM: arm64: Use HCR_EL2 feature map to
-drive fixed-value bits"), kvm_init_nv_sysregs() marked HCR_EL2.NV1 as
-RES0 when !kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI), i.e., when the
-signed E2H0 field is less than NI (-1), which matches NI_NV1 (-2).
+On 11/11/26 16:43, Babu Moger wrote:
+> Kernel work need not use the CLOSID and RMID of the user task on whose
+> behalf it runs. On x86, Privilege Level Zero Association (PLZA) enables a
+> CPU to use a different CLOSID and/or RMID association while executing at
+> privilege level zero.
+> 
+> Resctrl needs common definitions of how kernel work is managed so that
+> architectures can advertise the kernel modes they support and user space
+> can query them and select the one to use.
+> 
+> Introduce enum resctrl_kernel_mode:
+> 
+> - RESCTRL_INHERIT_USER: Kernel work uses the CLOSID and RMID of the user
+>    task.
+> 
+> - RESCTRL_GLOBAL_ENABLE_PER_CPU: All the kernel work uses the CLOSID
+>    and/or RMID of a single resource group, which may also have user tasks
+>    assigned to it. The mode can be enabled or disabled per-CPU; on a CPU
+>    where it is disabled, kernel work inherits the user task's CLOSID and
+>    RMID.
+> 
+> Signed-off-by: Babu Moger <babu.moger@amd.com>
+> ---
+> v7: Changelog update (Reinette) with minor changes.
+>      Code comment update.
+> 
+> v6: changelog update and code comment update.
+>      Renamed RESCTRL_ASSIGN_GLOBAL_ENABLE_PER_CPU to RESCTRL_GLOBAL_ENABLE_PER_CPU.
+> 
+> v5: Collapse the two global-assign modes into a single
+>      RESCTRL_ASSIGN_GLOBAL_ENABLE_PER_CPU value. Update the changelog to
+>      match the enum names and descriptions in the code.
+> 
+> v4: Updated the changelog to be generic as possible.
+>      Moved the enum resctrl_kernel_mode to include/linux/resctrl.h.
+>      Updated the code comments to be generic.
+>      Removed resctrl_kmode_cfg from the code. This definition can be fs
+>      specific only and architectures dont need to know.
+>      Changed enum name to resctrl_kernel_mode from resctrl_kernel_modes.
+> 
+> v3: Removed resctrl_kmode definition.
+>      Changed the kernel mode definitions to enum resctrl_kernel_modes.
+>      Used BIT() to set/test the features.
+>      Added details to changelog.
+> 
+> v2: New patch to handle PLZA interfaces with /sys/fs/resctrl/info/ directory.
+>      https://lore.kernel.org/lkml/2ab556af-095b-422b-9396-f845c6fd0342@intel.com/
+> ---
+>   include/linux/resctrl.h | 25 +++++++++++++++++++++++++
+>   1 file changed, 25 insertions(+)
+> 
+> diff --git a/include/linux/resctrl.h b/include/linux/resctrl.h
+> index b6b4519a5190..6f3e57ec4aa3 100644
+> --- a/include/linux/resctrl.h
+> +++ b/include/linux/resctrl.h
+> @@ -716,6 +716,31 @@ int resctrl_arch_io_alloc_enable(struct rdt_resource *r, bool enable);
+>    */
+>   bool resctrl_arch_get_io_alloc_enabled(struct rdt_resource *r);
+>   
+> +/**
+> + * enum resctrl_kernel_mode - Kernel modes
+> + *
+> + * @RESCTRL_INHERIT_USER:
+> + *     Kernel work inherits the CLOSID and RMID of the user task.
+> + *
+> + * @RESCTRL_GLOBAL_ENABLE_PER_CPU:
+> + *     All kernel work uses the CLOSID and/or RMID of a single resource
+> + *     group, which may also have user tasks assigned to it. The mode can
+> + *     be enabled/disabled per-CPU, all online CPUs are enabled by default.
+> + *     When the mode is disabled on a CPU then the kernel work on that CPU
+> + *     inherits the CLOSID and RMID from the user task, effectively the
+> + *     kernel mode becomes RESCTRL_INHERIT_USER on that CPU.
+> + *
+> + *     On x86, CLOSID and RMID are configured independently; either or both
+> + *     may differ from the user task.
+> + */
+> +enum resctrl_kernel_mode {
+> +	RESCTRL_INHERIT_USER,
+> +	RESCTRL_GLOBAL_ENABLE_PER_CPU,
+> +	RESCTRL_KMODE_LAST = RESCTRL_GLOBAL_ENABLE_PER_CPU
+> +};
 
-When converting HCR_EL2 to the feature map, feat_nv2_e2h0_ni() was
-written as !kvm_has_feat(kvm, FEAT_E2H0), where FEAT_E2H0 checks
-E2H0 >= IMP (0). This inverted the condition: feat_nv2_e2h0_ni()
-evaluates to true when E2H0 < 0 (including NI_NV1), leaving HCR_EL2.NV1
-writable instead of RES0 for VHE-only nested guests where KVM advertises
-ID_AA64MMFR4_EL1.E2H0 = NI_NV1.
+Sashiko reported:
 
-Check kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI) in
-feat_nv2_e2h0_ni() so that HCR_EL2.NV1 is treated as implemented only
-when E2H0 is IMP or NI, and forced to RES0 when E2H0 is NI_NV1.
+https://sashiko.dev/#/patchset/cover.1794437052.git.babu.moger%40amd.com?part=4
+=========================================================================
 
-Fixes: b2a324ff01fe ("KVM: arm64: Use HCR_EL2 feature map to drive fixed-value bits")
-Signed-off-by: Colton Lewis <coltonlewis@google.com>
----
- arch/arm64/kvm/config.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Should RESCTRL_KMODE_LAST be documented in the kernel-doc comment or 
+placed after a /* private: */ comment?  Without either, 
+scripts/kernel-doc warns that RESCTRL_KMODE_LAST is not described in 
+enum resctrl_kernel_mode.
 
-diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
-index adaf26ab93b85..b4f555d39f54a 100644
---- a/arch/arm64/kvm/config.c
-+++ b/arch/arm64/kvm/config.c
-@@ -258,7 +258,8 @@ static bool feat_nv2(struct kvm *kvm)
- 
- static bool feat_nv2_e2h0_ni(struct kvm *kvm)
- {
--	return feat_nv2(kvm) && !kvm_has_feat(kvm, FEAT_E2H0);
-+	return feat_nv2(kvm) &&
-+	       kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI);
- }
- 
- static bool feat_rasv1p1(struct kvm *kvm)
--- 
-2.56.1.750.gf70dc682cf-goog
+Also, the blank comment line before "On x86, CLOSID and RMID..." ends 
+the @RESCTRL_GLOBAL_ENABLE_PER_CPU section in kernel-doc, placing that 
+paragraph into the general enum description instead.
+=======================================================================
+
+Will document RESCTRL_KMODE_LAST and also remove the blank line before 
+the line ""On x86, CLOSID and RMID...".
+
+Thanks
+Babu
+
 
 
