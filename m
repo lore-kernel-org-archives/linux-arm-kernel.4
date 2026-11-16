@@ -2,98 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D36F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01D8F606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:53:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EKzw7aG6;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=F5oOv747
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r8nG+wSj;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=iuBKuwy/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=EiBM1lw6jtHc4Msd9f0+IoWSCWSW1EA52TQ2PRTxuNc=; b=EKzw7aG6iy4laHzfCTgFlU7Hgy
-	57pvLJkwig5GMO423MLdtIOuWp0HksD+6gUfM4iNM1pJvsVUcpyGDlkJiXvvmwoeotpHkDdoGdEtR
-	DVcHTYHbEzHARSjzJuGP/IyTbPqUbVxh9AmFYPgIWCXgwLhPFLXETMpOK0Okwu4WNXoeO5vkSxk7C
-	Ssqp4x0CeqJGiknZ9q4xC+Qxqv3tFSm1dWPf4S3TBJ28/t4BzREePPeZYyOZCk2Hlwf3/OED2rOTN
-	/wr3w8ksin+oDMSfAD9ihPfP+5fyY8InrVamrmbQrvMWC2tvlvwb58aWUShD/xTeaIUKrafSa9inZ
-	8Q3IyMIQ==;
+	bh=You1mkFXga/vHh9B3JqFjojHJL5bf7S7RuEKx8WEhTk=; b=r8nG+wSjCYl4rx+aHOaPeED7Uz
+	hlrMji1/EF/VXQll+DzAqPyIaCL9sZhaSXC7xVDYLf+f3464JvUjuO69QfppjRXNBgRhrZPhBsyai
+	YDND8iBym1UXTzKm7uIhzP3Xw+Sri1DM9qlYAD/S5jwVCVHvMEaAU6vFragLK0ClJsUVdlU4ag3Re
+	MyYU1KWv8DuWv1NvhXmvk/jiCFiFr1ipCaMizOP4XY0AkpZWxvflg427zHrLJLs90rXqJ6MSyD7A+
+	pA8AbbfhXpbhAhp2CKpFig+sVN7W0A5+DqGvHANFppPZn+J1XkzXZ0JbHk6+9wjPFiIK1h8xr0Z3z
+	0b7lpGsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxwJ-00000002vWv-0lTx;
-	Mon, 16 Nov 2026 14:44:11 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1xSy4k-00000002wPo-350g;
+	Mon, 16 Nov 2026 14:52:54 +0000
+Received: from mail-dl1-x1229.google.com ([2607:f8b0:4864:20::1229])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxwG-00000002vVc-2PEc
+	id 1xSy4h-00000002wOi-2wFP
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:44:10 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-498f5fa4f70so3807682f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:44:07 -0800 (PST)
+	Mon, 16 Nov 2026 14:52:53 +0000
+Received: by mail-dl1-x1229.google.com with SMTP id a92af1059eb24-1b3b4944abeso965708c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:52:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794840246; x=1795445046; darn=lists.infradead.org;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=EiBM1lw6jtHc4Msd9f0+IoWSCWSW1EA52TQ2PRTxuNc=;
-        b=F5oOv747s6SsjAdnXXXx7QcKlnHMv/Jfcx4zwe05xP9gPXSDH05Z20Se2zP1TASWUH
-         tCeQcoDs2DM4oH3ThPU3JmJwVHM930eETAzczdM2vfDAIAC3nq/D84haJ+64WVcF+5fw
-         tc7doc+ziVD5LtbsO2oE8xz3KwxhPbCM41DK6IqfuLOqJNvNPL5Hx1p5aY6HM8uyd+RG
-         jPlb6rzHJowVUQoQv4yVjQgNLIAeZ1jQJE43SDlpNkXZNpV1CHJ1BXhcUhibMvAIrVwE
-         GzICyFRCSRRqGhv1pR/fadPKLD6ISq7Aet4/ipC2MKZRW27rHs584/kHpPYE+RdryjW+
-         fH8A==
+        d=gmail.com; s=20260707; t=1794840770; x=1795445570; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=You1mkFXga/vHh9B3JqFjojHJL5bf7S7RuEKx8WEhTk=;
+        b=iuBKuwy/KjOnNwW+KH9Wt2Vz3fHkFYmLqCYKm6caypIFiQjCtNMlL+XcBTilrDUnuD
+         NIPvUYb7xwq+rq1RSI/FuMjxXtRJVk8Nn33fFigaCDBO7SfAykzzXoygfKH/1HcbVpki
+         mDUjRQ/wsI1AOW4mfleNfbv7ixg2fohCckeyDSdBtsYXf04O/J4iK/MhmM2keCaN9SvP
+         KRdwEy3BrhmZWbpHe4E4a5Ml9rZ5cc4GSAW9R6Wf+4lT9VqwU51USlCWrcq2DP9+5mim
+         TOliZnyq9D5y8sqOnc0G7ctpGr8dUNoKJS4YLqRMMsNP/ZH9d0ln28XQ9EbA5/7YybHG
+         O1aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794840246; x=1795445046;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=EiBM1lw6jtHc4Msd9f0+IoWSCWSW1EA52TQ2PRTxuNc=;
-        b=vfiEJvXAR1Q0HrKKPxEcs/TrUcMTdPT3XQtLubBJ45U3513j7t1IAKHRTU3OmqkAfh
-         Vrx+pq7bKceglDEcLBxpYlNoJ9YevpWYfHtEGQjDWNeJZTuJN1Zq5eVy5ZBZMgby4TxE
-         yXubADPhyJnXSODqrLJHoehQ69i2p5w+1r4hTmON0KhCtH2O0w/xZvMnZXWDHrRMzHES
-         UwTkJZcFasaDlQD/dOEKjhVah3ZLOA2LE5iVgCmoqY+KpVHxX7rZrXnbkWXwc5pmqjz/
-         dtpWHspJHSufhOm/kh7y12HMEDaa9TwYLUY5P2qlaz/s44wEwNEqEhk9C4W1ON+626cw
-         Sm6A==
-X-Forwarded-Encrypted: i=1; AL+hErEhOiqxZVI4hmKJZpc9CRK8YfFLA4AfCJnM3NNEHp+dpT7c6HXRoraUuFP4Qmczub9FZlcOqOHnItDRnpniwwGs@lists.infradead.org
-X-Gm-Message-State: APuU4Z8qoSPh2JV5/5lOlcvvblt0agPuQhz9B7T98Vp1vJC6+L2S57bG
-	nEM4a7i44TJ6rnfa8OgAY4zKtuk8D/JpC1rf/+UqnDWg56SMpMr6cDQsROoYvwo1xWM=
-X-Gm-Gg: AZFdTZcYfWmzVmKjgz+hDNvGgRJBF9MSf/MPT0uOCd5LkbPvdSeg+iBv/2YFyAYeRWx
-	uh11vvqLqC4ADH2XIXmji9+F/LYHJ7uVD7keQ3sdPs6OkbB7ALTu5gYjV7QpkVRC1NKkdYzHN5/
-	XOf0MY4Jd16Rj6CqMCt0QTIG+M0anS/EXD92tVbiSs5ptOJBh+3AMGG4g8uiOCyooyuBHS16x9J
-	NgJgRo29vlBuaFxKeUUfT1z7W5i5X9UjYvSHuHyh8mMiHB0GzImDxQYGLH11MLGTxeKQFnVqLjf
-	EzMI2RHiWVnlzWpQt2GkLNkg1iXe6FCMTk8A4HjTYNZ/37v24ei0w909kyD9MfQKc6VzpmBiU7q
-	FY8Wddf6waaBTJ1+FDuC0xHOXStWK+lYbUUCbMcf0e2qRG5k5mjUrAnfdoGJicAy6Rah3wrg38k
-	XRB4rHvfafrRKa2U6BBMbWkPdo/jv7As1sQuQa5gYbXzYewt1B6tNJX8fl5hS+VjvP5xA+NBk4+
-	FfbCoBPOzrn9VruRsGsN2BNrZAi9UfIAWKt9vj4SNor5M6yOblssRTVIxWHE2HjyqSQQQvvJh09
-	+22MiZmvfPFvy+Vhax3dYt03Qyni+Fy0+lkToTt2Q1rvNhKmI9T70QUsj4bGxV5m
-X-Received: by 2002:a05:6000:46db:b0:492:7d9c:fcf8 with SMTP id ffacd0b85a97d-49c73350e60mr16833660f8f.49.1794840245956;
-        Mon, 16 Nov 2026 06:44:05 -0800 (PST)
-Received: from localhost ([2001:861:80:deb0:b65e:146c:107f:26ed])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c60d9fff8sm24003588f8f.52.2026.11.16.06.44.01
+        d=1e100.net; s=20260707; t=1794840770; x=1795445570;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=You1mkFXga/vHh9B3JqFjojHJL5bf7S7RuEKx8WEhTk=;
+        b=X5P4vRCv22i6Bt0KNi8MV/ahyaeZ5ka2JEc9tFhBFOUHGDeGC0NtSHrJs9R87IXWrI
+         kMvkluNwMUGQDavQj6g2L+eDqojhX5iZWfNtpIh/9WdWGyQapQ7kn+DiC0wcHq8ZMH3M
+         SlkOCCYYwjyFyN0BARcA+BnLymkREBr62ZfjxrNy1gmZuyB6smZel9dduJb7tPr5Uu84
+         qXjIcaMAvrC1aD6o4Z/2cjkWanHVM0JizvIQM52+STI5EzbE8Ofqqtj68yUmdth1ReCo
+         qsHYFKQkiaZB+FDK281AocDTkxhKpPJV4NzikUDOWVei2IcRW0bEDOzoGrDeNRXEbLIm
+         IEMg==
+X-Gm-Message-State: APuU4Z+ubYio+OM9dCS+4yueQIxdjiaeXlJpaw3T52h8CJ5enhUd1Ak9
+	aW6v2RzYStZ9IIMZTQc1PJ7szQzaSDu6NDGrgDDmRNkX9uAapxrXVsMU
+X-Gm-Gg: AYBFou31GZ4ioKL/LcNefYm4idtLl1Qc7/OUucF5Sn+gfoxMWnwSpIxTEjTeRoZVpuz
+	gNf0xwZtiIuNmMc3ay0QJSPSZG2GLCB0eTH9CiXyAvbVFQwBq8fjkSciw3x8jtupFOL3yoPNb+8
+	rMBQwybYo5GoicwSu7cUoDk2JoWsX/7m+HXyim/haKv/jfc/VQ9pQvgarRVT1lyESYXbxllv+n+
+	RYl7BYnIyFqcB488sGzZ87rHnkyqXxpUiUTIK2dzkzjIwXpj0E/gWGm3SMnh3r+T+iyR5cCXkkK
+	Dp7HHUe6uzTwNRcIqNzrd/0XnhrZ3xJJRyM5cFvXnb95ufXoTKNdA8MsSNTebg+txktpB+4n0Py
+	Sn49ZZyNeibVu59Hu2blJc/Avug4to9ergF/ROqYE1NX32f4zkfsyRX9amHxdWjWnnVd9NWybb1
+	v+LhAUVRU5gteMFhsRwa8zHlI7LiOMh4EpB/pjmd3cfPSSshZ3974+RealZ+J6by2/UgdHBpq7/
+	OKigyc4yXgW0rA36Hy/QE7uoQ1lqXnnD1vu6m0cTZ0mPb0kEznkHb+WJxcajbQfwYRHFR/dq21H
+	4yDDEL2c/bCSJJTXrrAR2gYddoc9epCRXMsg8PjJ8y0ZTL4=
+X-Received: by 2002:a05:7022:7f14:b0:1b5:1c22:6fea with SMTP id a92af1059eb24-1b53275f63dmr2698971c88.0.1794840770041;
+        Mon, 16 Nov 2026 06:52:50 -0800 (PST)
+Received: from [0.0.0.1] ([1.54.0.190])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-379563df84fsm69003540eec.20.2026.11.16.06.52.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 06:44:02 -0800 (PST)
-From: Julien Masson <jmasson@baylibre.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: <linux-mediatek@lists.infradead.org>, <lee@kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <kernel@collabora.com>,
- <wenst@chromium.org>, Alexandre Mergnat <amergnat@baylibre.com>
-Subject: Re: [PATCH PARTIAL-RESEND v12 0/5] Add support MT6316/6363/MT6373
- PMICs regulators and MFD
-In-Reply-To: <afc3ec2a-90b5-440d-9710-2b3892b01b6c@collabora.com>
-References: <20260511101355.122478-1-angelogioacchino.delregno@collabora.com>
- <179239867012.642420.15110854236483587234.b4-review@b4>
-Date: Mon, 16 Nov 2026 15:44:01 +0100
-Message-ID: <8733t0ygy6.fsf@baylibre.com>
+        Mon, 16 Nov 2026 06:52:48 -0800 (PST)
+From: nhansp <nhan.094.vn@gmail.com>
+Subject: [PATCH 0/2] Add support for Samsung Galaxy Note8 (SM-N950N)
+Date: Mon, 16 Nov 2026 21:50:32 +0700
+Message-Id: <20261116-upstream-greatlte-dts-v1-0-768d49fb7d85@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADgY+2oC/yXMMQ6DMAyF4asgz7VUZwikV0EdAjHgqgUUm6oS4
+ u6k7fKkb3j/DspZWOFW7ZD5LSrLXECXCvopziOjpGJwV+eJyOO2qmWOLxzL2tMYkykOLtTBJfJ
+ NiFC+a+ZBPr9ue/9bt+7BvX1jcBwnMK+8tXkAAAA=
+X-Change-ID: 20261116-upstream-greatlte-dts-f29792d1689a
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+ nhansp <nhan.094.vn@gmail.com>
+X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_064408_622407_37B841C1 
-X-CRM114-Status: GOOD (  14.99  )
+X-CRM114-CacheID: sfid-20261116_065251_747364_EBD446D8 
+X-CRM114-Status: GOOD (  12.95  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,49 +108,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Angelo,
+Hi,
 
-The SPMI sub-device series has been merged and is part of v7.4-rc1:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=10c833da4dde3d9bb19e2092a33abafdaa16a341
+This series adds initial support for the Samsung Galaxy Note8
+(SM-N950N), codenamed greatlte. It uses the same Exynos 8895 SoC as the
+Galaxy S8 (dreamlte), which is already supported.
 
-Would you be able to send it in the coming weeks ?
-We have customers waiting on MT6363 support for the Genio Pro 5100,
-and we'd be happy to test it on our boards or help with the remaining
-review comments if that's useful.
+The device tree enables:
+ * simple-framebuffer
+ * 6GB RAM
+ * pstore/ramoops
+ * gpio-keys
 
-On Tue 20 Oct 2026 at 11:07, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
+This is enough to boot to a shell in an initramfs. More support will
+follow.
 
-> On 10/19/26 10:31, Alexandre Mergnat wrote:
->> Hi Angelo,
->> 
->> I'm working on mainline support for the MT6363 MFD PMIC.
->> 
->> Are you planning to send a new revision addressing the review feedback
->> on v12? If you don't have time to pick it up again, I'd be happy to
->> help address the remaining comments and prepare a new revision,
->> if that works for you.
->> 
->> Thanks for your work on this!
->> 
->> Cheers,
->> Alexandre
->> 
-> 
-> Yes, I do have a new version locally which didn't get sent because of the SPMI
-> series (introducing the new helpers) that didn't get picked yet.
-> 
-> Cheers,
-> Angelo
-> 
+The keys, framebuffer and ramoops region match dreamlte, but the board
+gets its own file instead of a dtsi shared with it. I only have this
+device, so I can't fully check how the bootloader lays out memory on
+the other 8895 phones.
 
--- 
-Julien Masson
+Like dreamlte, it boots through uniLoader [1], which sets the DECON
+trigger control so that the framebuffer keeps refreshing.
+
+dt_binding_check, dtbs_check W=1 and dt-check-style in strict and
+stricter mode report nothing. On the device I booted next/dt64 with the
+arm64 defconfig, plus ramoops, simpledrm and fbcon built in. All eight
+CPUs come up and the kernel sees all 6GB. The console runs on the
+framebuffer and all four keys report events. A panic triggered through
+sysrq was still in pstore after the reboot.
+
+The test image was flashed to the RECOVERY partition and booted from
+there, with this kernel command line:
+
+  console=tty0 fbcon=font:TER16x32 clk_ignore_unused pd_ignore_unused panic=15 rdinit=/init
+
+[1] https://github.com/ivoszbg/uniLoader
+
+---
+nhansp (2):
+      dt-bindings: arm: samsung: Document greatlte board binding
+      arm64: dts: exynos: Add initial support for Samsung Galaxy Note8
+
+ .../bindings/arm/samsung/samsung-boards.yaml       |   1 +
+ arch/arm64/boot/dts/exynos/Makefile                |   1 +
+ arch/arm64/boot/dts/exynos/exynos8895-greatlte.dts | 124 +++++++++++++++++++++
+ 3 files changed, 126 insertions(+)
+---
+base-commit: 65ffdae53a6d522519fbd66d3cabbb4622e3e5bc
+change-id: 20261116-upstream-greatlte-dts-f29792d1689a
+
+Best regards,
+--  
+nhansp <nhan.094.vn@gmail.com>
+
 
