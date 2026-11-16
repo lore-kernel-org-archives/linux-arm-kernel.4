@@ -2,191 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9105A606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 03:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7CB606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 03:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qPc5AObx;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=hZcYSqNQ;
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-mediateko365-onmicrosoft-com header.b=PkO1teN3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YkLvLLEO;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=BPf+Fd89
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=e2pKOB6QxvBsNmEiwNG9WfHEgxnQxS6lUW3vIoDgcOs=; b=qPc5AObxIuf0s7iZ88hJVF8Y62
-	S8gVsHlBMkQXrRz9keggbVD1XoyBz691q5qnFqRLo5COxVCXKLL3vHwJYr1FqsIvVqLz65pEn7N0k
-	i9P3y6xZL6snxixEekrgWmFzEhFhd7RcS6I2P6Y8shTSexi5vXZSIcJUCe7+RjQn17dw+sgPjhTaX
-	mNQOVLgKKWngf+iUUsh2cXbTgNJCOdqUvpZvVHSG+q9dEktm5D/Xhm2/n+aI/VPiozE6edK+3v2i5
-	F7y39YDpr2YIX4hNm2Cw2tfp3UYZo1BqhtoXIYn09MJKKny7iF5fkS56IwPpGdE/IaBF4+61nGP7y
-	qVUjdO7A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=dOlZAyE9vs/lqE824HqTB6ln1BIOlH2oNMzzigLgNRA=; b=YkLvLLEO1rF2sN
+	IJ1MjM+OMxb22YJyn4IZrPimmX7CQzlm2pAJu2xKVI4nvSUexK8M/k0EqVJOaOdoFx9vC6AUUYVVS
+	kKaLxlQ0ybvUM7VyBps0EW2goizmCs2/VfjHJlkVtsHruw01lsIi4LZ3w9EyxeJDLVCsqja4TnwWr
+	h+PI+J6RRSrQVrH9Ny/Tpov45ivyJhgClyP/yh8MtV0BiWG15fi3QekjsraOKDSD9j/VLFxtSvoow
+	gfbERvmKEBXXOzvZjNk2+9y4+j8bRFEw8BdeHQMHVxa1AybdjQQSff79Y8cYfMdK+UsaPI6r7U28M
+	2ngO0pWc3Ix8jTeI9/bg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSnN2-000000012cM-0oIu;
-	Mon, 16 Nov 2026 03:27:04 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1xSncS-000000013gw-2vL4;
+	Mon, 16 Nov 2026 03:43:00 +0000
+Received: from mail-qv1-xf29.google.com ([2607:f8b0:4864:20::f29])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSnMz-000000012bg-3c6q;
-	Mon, 16 Nov 2026 03:27:03 +0000
-X-UUID: 942c4a30e16d11f1afed4741b24580c9-20261115
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=e2pKOB6QxvBsNmEiwNG9WfHEgxnQxS6lUW3vIoDgcOs=;
-	b=hZcYSqNQ7pRpBtyfr2/x2mu1LTLccGl9RWn3qIbfL+RDgQjmbRDY3fqsaQEEmcJSAJH6rCSB/qkQ+xCI200Td6BY1uEo8l10rUEg5d4dND5/mqBQigLxFlwOInFilNVS4N5+8zhabNwX86um6sHMspttlJrtsjT48jIg823kGVM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:73a9b904-4450-4dad-af84-c7ed9260e52a,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:b0318ac,CLOUDID:dd32e730-f289-4656-bb36-27baf4489f11,B
-	ulkID:nil,BulkQuantity:0,SF:80|81|82|83|102|110|111|836|865|888|898,TC:-5,
-	Content:0|15|50|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:n
-	il,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 942c4a30e16d11f1afed4741b24580c9-20261115
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 642453415; Sun, 15 Nov 2026 20:26:57 -0700
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 16 Nov 2026 11:26:55 +0800
-Received: from SG2PR04CU009.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Mon, 16 Nov 2026 11:26:55 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C/BuLb8RbWBa87fjoN/6k54l4GUQySu7DCjm6vv8WwaIj+XigsiQqZIUu8Nbs2sH5OCHj0fffUfj8MVxyE15yM/x3qyylCH40WdYyrylNllXydSDjJuPQJQPy46gXuWQPqKohZJnRKIXrAGSsh8pyCrdk+bnsgNxxj2mq90Xy2wNCH23qc2M2ST1/InFM5a2l5ahVlMuYplgGNUXOk6Lm5KBsmB2T6mM0YXhkzqKZuqzO8yFo5TfqH0hf5zXoNputaPN4Gj+0XBUaltEbWjqnP7YL+O53MynjoY0GBRSygRBKbg4N6vgPrryH7Ebs3/jl28lyV+9MTHEYiBFGSNl3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e2pKOB6QxvBsNmEiwNG9WfHEgxnQxS6lUW3vIoDgcOs=;
- b=ccFjtlKiiZyZ+myA6gtFE7x9xK5EvBiJQnKKLoovyIyTgOhjmsERhVT387v94eBjd8E/Plm9g8CPcky32p6r4M7+eBeagpOrp1eJxOov3DRBeNWL4bJHZ0iQ8Fnh/yFxqLgk4/kGxyXOdgmV419Nkbx/pqfemGCiemiJgOwttROcr4YgJTsfXnLJehF0lPv31cM0JjuM/W4Yw33Y7HqTpIseRG2tsUxZUot3rOejJMpDRtBx7Tm/0JzJMOrtPZGolv2MvpIaBQtwBprsw21X5+fXbWmcvoZIAMOg+uTf8BPW0bji9Uiihnjnd0ugwGpKtLcH9sc5QgGqkJJ08F+lcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	id 1xSncP-000000013gZ-2LnK
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 03:42:59 +0000
+Received: by mail-qv1-xf29.google.com with SMTP id 6a1803df08f44-91ea16d8072so31741326d6.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 19:42:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794800576; cv=none;
+        d=google.com; s=arc-20260327;
+        b=iVxcAqiV3VyxX5TrKzpNqQ2A8WEbdf7nWHe4r+UG9/jBWdFtWnqZvNXgoPOLs8YtMd
+         vqlguUWJV5zObrEJCJEGZsZgkGtzBLx4WeY4yWNOl7Xr5ktvIb1owDRAMYi6S9eEdTS8
+         8OxuAlGUbuA2Ze9//02MkukrrfVNzzVvjNn9/HHZqo/9zEwcNdcY8KjFi6u6dvXqJrHd
+         sVA+++0uvGLlsgGOxv4NQiNlRST5YUl1yoEAeFh28ac/6i7TtrZEinrqeSLjumHDpby9
+         JGGtN15Qdu3bkYKXzyiA0EEEPCME5bOxtMkwES2+qBZpw6D2Mg3LUQm2F6fXlMpTg89F
+         Sw4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=dOlZAyE9vs/lqE824HqTB6ln1BIOlH2oNMzzigLgNRA=;
+        fh=MGivAFpNLrRhE75V6AxXZ4wiHhL2OqGKzLIDWBmKX6k=;
+        b=bH7AoLux+i1hzjqz1cocizLHa1dIueFnG09U0PfHmE9aaOdzs5MQZsOLUqr6cgOdNk
+         tGQw25rsmjZFBY1UBXqxZAywYxVk6v6z1BhScC32lvFTeFGwMBuorRG6e6AZ92fKLd/7
+         82wunYOmC44YxB59hiLI+2wrUyzZ4mg4SHbdQRr2RRwOxekUZqZAGOzHT7XWJWQgnYHm
+         v3NIlG7XNzUbT/jytj7nCU0pnk+MivVE6SeaBa8nXWSJGIYGFuTavlM4T5E7zkrWJjnZ
+         Zy84dBlEyKGaUT1JKuQV4VDdpJXiWhPUohCnoN+NUrNzH0mnH86wYCIYokhc+qIXRH4S
+         sZ2Q==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e2pKOB6QxvBsNmEiwNG9WfHEgxnQxS6lUW3vIoDgcOs=;
- b=PkO1teN3nB3uGUelgcScqVHu8W07QwT9RMECijpiOU1iDaRl+JxkxT0mG1wsUcmEl+EC+/wZPTf+jdxlv/2k8T6KlMTL7en4zon+Wt8Eur8LTb3aHgCscBrmP3OHUI8AZva5X1aQgYz1ipZIP/fTR7oL/JTl+vuvSrpsGYnD3MI=
-Received: from TYNPR03MB9924.apcprd03.prod.outlook.com (2603:1096:405:3d6::13)
- by JH0PR03MB7805.apcprd03.prod.outlook.com (2603:1096:990:2d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 03:26:51 +0000
-Received: from TYNPR03MB9924.apcprd03.prod.outlook.com
- ([fe80::6274:7513:996f:7f8d]) by TYNPR03MB9924.apcprd03.prod.outlook.com
- ([fe80::6274:7513:996f:7f8d%5]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 03:26:49 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "tzimmermann@suse.de"
-	<tzimmermann@suse.de>, "simona@ffwll.ch" <simona@ffwll.ch>,
-	"mripard@kernel.org" <mripard@kernel.org>, "kernel@collabora.com"
-	<kernel@collabora.com>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "airlied@gmail.com" <airlied@gmail.com>,
-	=?utf-8?B?SnVzdGluIFllaCAo6JGJ6Iux6IyCKQ==?= <Justin.Yeh@mediatek.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-Subject: Re: [PATCH v2 25/46] drm/mediatek: mtk_dpi: Fully separate HW setup
- from common code
-Thread-Topic: [PATCH v2 25/46] drm/mediatek: mtk_dpi: Fully separate HW setup
- from common code
-Thread-Index: AQHdE4Zp6CJPVvWB90W+JFXrDea2V7cwzZMA
-Date: Mon, 16 Nov 2026 03:26:49 +0000
-Message-ID: <5f374025f65147e894d057416e818d4d79176241.camel@mediatek.com>
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
-	 <20260714114414.184512-26-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20260714114414.184512-26-angelogioacchino.delregno@collabora.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYNPR03MB9924:EE_|JH0PR03MB7805:EE_
-x-ms-office365-filtering-correlation-id: e2c4432b-408c-4610-6b7e-08df43917356
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|42112799006|23010399003|1800799024|366016|376014|7416014|261102123227099003|261022075727099003|261022113327099003|261021123027099003|261021121427099003|261026121527099003|38070700021|11063799006|4143699003|56012099006|10067099003|18002099003|22082099003|6133799003|261009223027099003|3023799007;
-x-microsoft-antispam-message-info: K5wxxHxq5YuhMp8yrPToIpcTGl0eoOHizEA9tTFXN/TGhg+bpokGBvZryHMmOazS1xtBytysL2LqAVluZwwHRQIYR41XOwMqnT2iTAE8Z05ijqaPfcCv7waYbMKEfNmfLR+8mcCkZ9IZU6ZXYHcuHYEdGHl54N/B9fx13FzDxZc0pzedd1zfyBYzJmZvGNfIcijWFOIOGxzNciLj3gZddKdH3BP1oxFSDoJz3X+5LaArntBAuIJ2rchl73AIfdawcpY7q8vBqslNe1BN8ZGv2LbkGiO6hRbQD2iL2LbIUygMM0X9fpE0UGGMiL7E6Bh6L/R/dtmg/+A2F/JCs0yirQeQ+NZOMizpsBpDnKgUd7P8gUO/r0KQH3Opfo0qCzQSKtyxRJx8nb1s81xM+RwN4rRmY1ZljlmSww3csnxFflhdhEk3LNqIRRlRCDMb5+dVyWwbyxK5Ab7gIoAwFGxalGVdtrQW+n2fH7K4RR7zZb7LCCnSliM+iP7b0AVMxS2FDNgLLABWtmZm42wJIiBp+uE1YMiXeRInZpxyoZe133lPweoyFMNQRDYvbRJIvOfL2l8Otz8Oim4Z/pdXsMaxPz41XUIkuI2PHL1E5SHB0hVGhEIp2zRkWntKXbXxBsmOxn5sUQ2ESJp8YDzDfTtyW3XbOZOFulvvHnE22b1Ve1PwrI4lCT6RFRSn00hOfmMkX5IvAm2CTp/Ov48rTMdXuY5qqLm5dMQ4CkgGaFe/u10=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYNPR03MB9924.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(42112799006)(23010399003)(1800799024)(366016)(376014)(7416014)(261102123227099003)(261022075727099003)(261022113327099003)(261021123027099003)(261021121427099003)(261026121527099003)(38070700021)(11063799006)(4143699003)(56012099006)(10067099003)(18002099003)(22082099003)(6133799003)(261009223027099003)(3023799007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Nk1DVUJRNTl2N2dCL3pOQzBnMlY5aDJ2RVovRTlRRGpMQ1hYNFk2dHQzNldh?=
- =?utf-8?B?Umk0aTBUcnFpcGdVNmd0L3VRSDFKb3lDS1ErMkprNnp2T0tVc0s1R3ArMnVX?=
- =?utf-8?B?aTZzY2JKQjRZcW9NcFRuaXAxWmlua0E5bTVrWjc3N1o3SGFSeVFHQkNjQ2dQ?=
- =?utf-8?B?WlU2bWFmZTcvRENnRDNJdVl2MXpXeEtLU2NVZklCY0FhYzhkcUpzd3Ftd0Q5?=
- =?utf-8?B?Qk1ZaGhobnJVTlpFWHlpbzgxQ1ZQbnhUNmNLSDNTU25rS0tJQmRVWTFDaTZx?=
- =?utf-8?B?UlRiS3Iva2tHR0JjVGdWMDFOdjFkZXV5cnpLVUROcnRRQ0k5cllYa2s4ZmJp?=
- =?utf-8?B?NkpwZi9PTFg5d3NudUNWcXgyRlkyU2llblQ5Uk1TYStlSGhyR1k3dmVrdUtZ?=
- =?utf-8?B?ZXlsWktCTXRmMXVISHFCMjlKTFlxb3gxWmpSOVd2MU5yZzNaQmdqanlRK2VG?=
- =?utf-8?B?ZVdQaHJjaHVoZ3hSZHpEeWNsKy8xY3Y1Z3krVlF1akt2ejYyMEllR2pFSlhE?=
- =?utf-8?B?UmUxNFQydDVsbnNJclVDSmY2Yi90NFA1dWxPYXdZMjViY1lUVjN3cHNuRnNM?=
- =?utf-8?B?TElHQUhLZU8xbWhsYVcwUmI1K3dnMWl0Q3lOd1NXY2k3YzF4M2l0U3gxcU16?=
- =?utf-8?B?bnRKRmFVellxWDNNODc3Z0FPT21LU2ZNRmZNVmNEVUZ2UWQ1NCtPdGVtRDVE?=
- =?utf-8?B?Y284MkVlUE1lVnk3VXlCcWJVamZwQXI4RExZY3J5MS84bGZvd0pLQnBZZ0tK?=
- =?utf-8?B?VlBnYVp6UlFURWEzcW8wcGsrTVlFU1licUpZV3pWTEJjZHVsQVl4c29Ocm5j?=
- =?utf-8?B?WXFjR0hNWGxvemtoRTNRdjFqdmkyZHhwamM5SnZMUS9NM1ROdXdFV3Y5NHJa?=
- =?utf-8?B?dXIyUGZvTUZkYjd5Mk9XNnpXa0tKbE1SNGlhR2w2b2VhTXlvME5Xb1hIMFMv?=
- =?utf-8?B?aGhPMUJVMmxhdWVVS09TQ1diYWtZeEgwY3hMam1mb0Q0a0NsM3FCUEdkby9P?=
- =?utf-8?B?YkZlNWRVRkdNc1huUkhpRkc2dXlmOVBJRFdRblF0NFNtZ0RMWFB5aDVCZkpu?=
- =?utf-8?B?dnJrZ05tYlRQN1RGVTNWSTdqamxVYlpNdjgwV0l3NjlBaEtBTytVODljV1BK?=
- =?utf-8?B?b1ZXVXBySTlrNkxGYnlSanVTamN4OWJwMTN1c2hEb3FyN0ZMWTV2M0I5V041?=
- =?utf-8?B?cldjSFppeTEwclFUK0F1ZWRQMlI5T0JxZU5lWXJkVUZFcTZuSU8yM3JMbnQz?=
- =?utf-8?B?clRGN1lmU29BMElzWXJzSURiZ2wzWkxIV3Q4Uis0dFZzWGwxL2VuNU1KdUNy?=
- =?utf-8?B?LzNteGdyTG83TjNCUVJiQWpSSzRTN3JYM0w2Zkw1OWQxTzBJbW1wYU9aQUtW?=
- =?utf-8?B?NnIyMFBoVW9ZemdEUFN6Y0pXRko4WTNaZ3hIR0F1Ly9qUk0xWkR0U1drNUxq?=
- =?utf-8?B?N3BRUXROVGptSWNJZ3dCc1g0c1ZyTFFiaGRVb2lFazJSOUxJZzVmOW9UM0d5?=
- =?utf-8?B?OGF2anQrRjh3cUZpTEFuSklhRG9CNTNxUE5FS2pNVzV2SlJSbVBYVGZ6L2VD?=
- =?utf-8?B?Qms1R3g3TlE0S0tzY0lqZkVyUDBQODJublFqbmVzbkNvbjdNQXdrNTRGKys5?=
- =?utf-8?B?bjFjV3EwNnpRVkRmYWFwbnhYOWJ3UXZTeHZ0WWVaTTZCbDA0MmxFV0ZrSVNO?=
- =?utf-8?B?YVFqWGJweUJ6MXVGWERyNEU2S2lhZUpGcHNtM3paZy9uNE91ZUZBSExVSFBq?=
- =?utf-8?B?Q1pXdGZEOFUvd05IOEpLenFma1prQWdQRUxPTXN5ajlySkw3QXd4UWR6UVlO?=
- =?utf-8?B?MWQyYU0raXB2dEdiT25TNG5zSDZDbkpvN2NtTzRGbzlteUljNTROczJDV1R1?=
- =?utf-8?B?L0VaZFlqeVcwRWFJeVNSYm41VVdVZ3dRK2htUUp1YkhYc0JqUEZYWFVvYVNk?=
- =?utf-8?B?cldhT0pRbTYzdEVEMW1FYXQ4dWFTcHpRNHBVbXlnTUtNS0Y2RlBOZlpSQ2xj?=
- =?utf-8?B?ZUpKZnZHbHBZWVAyczYrcTBYdWJGZDZLb2RNVmhsZkhSeXRYNDVpZ0VQZ2g3?=
- =?utf-8?B?M0YvWExmRzFsUk9CV3hHVkkzakdGMDI3ZjlLV2pGRFlVK2UxYXpBVmwwL2wz?=
- =?utf-8?B?LzZ1MjBaWDVQVXRocXZMS0ZENHczQktyL29WYWFCY2NtQjJiSHJaL0ZTZ3Rp?=
- =?utf-8?B?aXFNbU1CUGJ2TmJESjB3em5mN242eGg3U2ZJUjQ2RWVicFd0VlN5Wjd0Wis3?=
- =?utf-8?B?bTJDN0FLRTBGZkxuWXdKdnRzNkUxVGhtNG5kQ01aM2RxNWNNRW1UbkRob3RB?=
- =?utf-8?B?TDkrK0RQdmRRWXFQUFBVdldCa0lpc0VZSU8yMVl6VjlvNDZ2N2dkUT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E7899A224FFDD1499F59EFFE371E1CAD@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20260707; t=1794800576; x=1795405376; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=dOlZAyE9vs/lqE824HqTB6ln1BIOlH2oNMzzigLgNRA=;
+        b=BPf+Fd89+iiQu1oLGFufVFgFukZZ+d4lD0Q0XwyBKN+jHd7at8H6MOvjXuRdae4qj4
+         FFeckSd0mV2J4rxFBQgJhVR05poRqjQIphSgIoSYoYnbSoh6xdcC+8PMbLi7bgE4xOLk
+         2zsIXC95qy2MVYSSTAp2krCCRCs/I9oOYp0Y+mpBn9fq/4nG6VMBaiB2PUiZT3vsRBWy
+         FAwaIBVG+4PbOHvAPZKnlTJbclp+yJhKx3xPrpCO8wC2UjSJqE1ZVmLd5qI8B3T2fKk6
+         QG0Bx7C/8uHQNITonRNgXhy03fmUpjcFayCxOWqaFilQ7j47pRaLYUsJHZt8lIRurfhS
+         bZWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794800576; x=1795405376;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=dOlZAyE9vs/lqE824HqTB6ln1BIOlH2oNMzzigLgNRA=;
+        b=qgo47m0i8kjf2PbAiRzhJHsK96Y8eLjR20JXMl3P6B6WdyRIpxsVxliBlrFV3c/wp7
+         vo9UhGeCkCz0E2e1+wRZSEGTrWuzhIHIRMzGOWq0r2KsQC92xHjGbm+yIP0ypShGgBvQ
+         8n9QiWUUDpaBGbLpXSRq/cmSk4AfpDNlVUt/9vFa2o1y1hMtY97EnMVjYV7551pmY0CE
+         RUb1548z3GdBtkQaxhlQ1IVOzHAurKT58stOOkEAPHvZ0qSlGbBfkanP9rifDszLCyk/
+         L/aMB8oYJXwsjiiaK7lvxZX2toyzauD0PntGODyC9i5JiFU6OkM92KfX5yY8l22pUiXF
+         Gihw==
+X-Forwarded-Encrypted: i=1; AL+hErH6emoXz3W21RZyZHMkdgkJ6dl6zHPvVhdp9rPR9iuZKwur6WO6GMHdK16li0RI2/4QYTRQv4hkj/Kk86E2sTHq@lists.infradead.org
+X-Gm-Message-State: APuU4Z9p9Vk0DHVeiZblX7N1lSjQSwwmqg1SsUTyZ7Cd2ZOvJeAiFvRA
+	rC4opglQ8rOzmffCuplZPFNSQsVrPS2WSv8lnySDcKN0y4c0mUejM7FWip7+W1qmlv9roxjEhrm
+	lLY6R9MM3gu/nefaJQXgCgIlcgz8bnoY=
+X-Gm-Gg: AYBFou0f0t6pBTe4he08exnYXe5g7gNpzi6kVCUcbZYHKIkmCTkhVweV9AB5zszRvwO
+	dyB/To5zlG2avqeNCbZjGbi0yu/Vc/81kvJVpiOpyP80FRXdRKVedQ247NBBQXOTZ6Q4shQzxJE
+	BjbVxZifgk+E4PWY0jMs6hK0G32BegOcPJvYUjucEzchr3vJBaR89oq1ZP1RLaMCepUsXVDKj54
+	P2IelHaqylfETDEgeiK26FHYGY0zjNLjHuSUVvehsS7QIBYAa+xGEw3lHSWwyVFqYgMAn8oy0R8
+	bSRnMAzXucL8OCRy3anlTgb1ttxFZc8OUxHpRMsLDaBQO+NwgCNWDnpvwPDAuHJjdR5pVi/m3iC
+	NXq2yDRShO4cOTwYb1ojXZurJZP9CCCpxx4DRN5RSDHSC5mTHarEGKtc96g==
+X-Received: by 2002:a05:6214:19ef:b0:91e:8ed6:896d with SMTP id
+ 6a1803df08f44-91f241c378dmr151744126d6.41.1794800575849; Sun, 15 Nov 2026
+ 19:42:55 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: BrHicobq+W0w45Q46QP3AqiB3YiyIbtSgVpwyXAdq7XyNGuVba5RpDOJk9yOhx81mojV3jFLryd+xPxKEuEn+w6Oo5PWCZfEHc5JVGong2bsmkBFPl2W1zLs/GKLdVOWSgLk81Hecv8PZISCCSyqf8iuodGangdJGwtv5hKS+ISYSZauKe/PhH4w/BP7V/5IKGtm3Jiy3S3ZbUwCOojh+BZWbfd9OUlYWd7S3KVXlxplgIWyQB73TatxdKzl64q68fVsnhoUo1h/WbInhnW95Y1ZM9yYIK1w7jZ+gtiTzIgtWFKKlClfD3oiWtAaivS7LaAv8d2NxLQ4t1YomUyuGQ==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYNPR03MB9924.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2c4432b-408c-4610-6b7e-08df43917356
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Nov 2026 03:26:49.3877
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uKFjQ6fiIauE0Q087Cqtz1vXPXu/zu+Iml0yeV99TxGJXiumedogR1v2LxZdGH+o5hhlIDhgFtlvSQCn3dG+Bg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7805
-X-MTK: N
+References: <20261111143322.2234321-1-zxyan0222@gmail.com> <179475432482.2199510.1145189790252763539@kernel.org>
+In-Reply-To: <179475432482.2199510.1145189790252763539@kernel.org>
+From: zhu xin <zxyan0222@gmail.com>
+Date: Mon, 16 Nov 2026 11:42:44 +0800
+X-Gm-Features: AclHuK8RWI64vYnkTEZed0w7lAVf5eQomaFuYuPxLHChMWyGtIZq8zcHC45Yt3w
+Message-ID: <CAP7veT+DRYGQ79r+_1-i8bMjM1wuoNsVTDjQPLYJyAwHtxHPCw@mail.gmail.com>
+Subject: Re: [PATCH] net: stmmac: program the FSM timeout timer
+To: netdev-bot+sashiko@kernel.org
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, 
+	netdev@vger.kernel.org, mcoquelin.stm32@gmail.com, 
+	alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	rmk+kernel@armlinux.org.uk, Jose.Abreu@synopsys.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_192701_905295_34E04B47 
-X-CRM114-Status: GOOD (  16.53  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261115_194257_631312_D305D562 
+X-CRM114-Status: GOOD (  44.53  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -197,91 +121,258 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNPARSEABLE_RELAY autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gVHVlLCAyMDI2LTA3LTE0IGF0IDEzOjQzICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gQXMgYSBwcmVwYXJhdGlvbiBzdGVwIGZvciBhZGRpbmcgc3VwcG9ydCBm
-b3IgRFZPIGFuZCBjcmVhdGluZyBhDQo+IG10a19kcGlfY29tbW9uIGxpYnJhcnksIGZ1bGx5IHNl
-cGFyYXRlIGFsbCBvZiB0aGUgcmVnaXN0ZXIgd3JpdGluZw0KPiBtZWNoYW5pc21zIGZyb20gY29t
-bW9uaXphYmxlIGhhcmR3YXJlIHNldHVwIGZ1bmN0aW9ucy4NCj4gDQo+IFdoaWxlIGF0IGl0LCBh
-bHNvIHBlcmZvcm0gc29tZSBzcGFyZSBjb2RlIHN0eWxlIGNsZWFudXBzIGFuZCBhbHNvDQo+IHJl
-bW92ZSB0aGUgbXRrX2RwaV9jb25maWdfdnN5bmNfe2wscn17b2RkLGV2ZW59KCkgZnVuY3Rpb25z
-IGFuZA0KPiBvcGVuLWNvZGUgdGhlIHNpbmdsZSBsaW5lIGZvdW5kIGluIGVhY2ggb2YgdGhvc2Us
-IGFzIG5vdyBhbGwgb2YNCj4gdGhlIHBhcmFtZXRlcnMgYXJlIGNsZWFybHkgbGFiZWxlZCBhbmQg
-d29uJ3QgaGF2ZSBhbnkgbWVhbmluZ2Z1bA0KPiBpbXBhY3Qgb24gaHVtYW4gcmVhZGFiaWxpdHku
-DQo+IA0KPiBUaGlzIGNoYW5nZSBicmluZ3Mgbm8gZnVuY3Rpb25hbCBkaWZmZXJlbmNlcy4NCj4g
-DQo+IFNpZ25lZC1vZmYtYnk6IEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIDxhbmdlbG9naW9h
-Y2NoaW5vLmRlbHJlZ25vQGNvbGxhYm9yYS5jb20+DQo+IC0tLQ0KDQpbc25pcF0NCg0KPiBAQCAt
-NTE2LDcgKzQ3NCw2IEBAIHN0YXRpYyB2b2lkIG10a19kcGlfcG93ZXJfb2ZmKHN0cnVjdCBtdGtf
-ZHBpICpkcGkpDQo+ICAJaWYgKC0tZHBpLT5yZWZjb3VudCAhPSAwKQ0KPiAgCQlyZXR1cm47DQo+
-ICANCj4gLQltdGtfZHBpX2Rpc2FibGUoZHBpKTsNCg0KQ29tbWl0IG1lc3NhZ2Ugc2F5cyBubyBm
-dW5jdGlvbiBkaWZmZXJlbmNlLCBidXQgZnVuY3Rpb24gY2hhbmdlcyBoZXJlIGJlY2F1c2Ugb2Yg
-cmVmZXJlbmNlIGNvdW50Lg0KVGhpcyBpcyBub3QgcmVsYXRlZCB0byB0aGUgdGl0bGUgIkZ1bGx5
-IHNlcGFyYXRlIEhXIHNldHVwIGZyb20gY29tbW9uIGNvZGUiLA0Kc28gc2VwYXJhdGUgdGhpcyB0
-byBhbiBpbmRlcGVuZGVudCBwYXRjaC4NCg0KPiAgCWNsa19kaXNhYmxlX3VucHJlcGFyZShkcGkt
-PnBpeGVsX2Nsayk7DQo+ICAJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGRwaS0+dHZkX2Nsayk7DQo+
-ICAJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGRwaS0+ZW5naW5lX2Nsayk7DQo+IEBAIC02MDcsNDAg
-KzU2NCw0MCBAQCBzdGF0aWMgdm9pZCBtdGtfZHBpX3NldF9waXhlbF9jbGsoc3RydWN0IG10a19k
-cGkgKmRwaSwgc3RydWN0IHZpZGVvbW9kZSAqdm0sIGludA0KPiAgCQlwbGxfcmF0ZSwgdm0tPnBp
-eGVsY2xvY2spOw0KPiAgfQ0KPiAgDQo+IC1zdGF0aWMgaW50IG10a19kcGlfc2V0X2Rpc3BsYXlf
-bW9kZShzdHJ1Y3QgbXRrX2RwaSAqZHBpLA0KPiArc3RhdGljIGludCBtdGtfZHBpX3NldF9kaXNw
-bGF5X21vZGUoc3RydWN0IG10a19kcGkgKmRwaSwgc3RydWN0IHZpZGVvbW9kZSAqdm0sDQo+ICAJ
-CQkJICAgIHN0cnVjdCBtdGtfZHBpX3N5bmMgKnN5bmMsDQo+IC0JCQkJICAgIHN0cnVjdCBkcm1f
-ZGlzcGxheV9tb2RlICptb2RlKQ0KPiArCQkJCSAgICBzdHJ1Y3QgbXRrX2RwaV9wb2xhcml0aWVz
-ICpkcGlfcG9sLA0KPiArCQkJCSAgICBzdHJ1Y3QgbXRrX2RwaV95Y19saW1pdCAqbGltaXQpDQo+
-ICB7DQo+IC0Jc3RydWN0IG10a19kcGlfcG9sYXJpdGllcyBkcGlfcG9sOw0KPiAtCXN0cnVjdCB2
-aWRlb21vZGUgdm0gPSB7IDAgfTsNCj4gKwlzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqbW9kZSA9
-ICZkcGktPm1vZGU7DQo+ICANCj4gLQlkcm1fZGlzcGxheV9tb2RlX3RvX3ZpZGVvbW9kZShtb2Rl
-LCAmdm0pOw0KPiArCWRybV9kaXNwbGF5X21vZGVfdG9fdmlkZW9tb2RlKG1vZGUsIHZtKTsNCj4g
-IA0KPiAgCWlmICghZHBpLT5jb25mLT5jbG9ja2VkX2J5X2hkbWkpDQo+IC0JCW10a19kcGlfc2V0
-X3BpeGVsX2NsayhkcGksICZ2bSwgbW9kZS0+Y2xvY2spOw0KPiArCQltdGtfZHBpX3NldF9waXhl
-bF9jbGsoZHBpLCB2bSwgbW9kZS0+Y2xvY2spOw0KPiAgDQo+IC0JZHBpX3BvbC5ja19wb2wgPSBN
-VEtfRFBJX1BPTEFSSVRZX0ZBTExJTkc7DQo+IC0JZHBpX3BvbC5kZV9wb2wgPSBNVEtfRFBJX1BP
-TEFSSVRZX1JJU0lORzsNCj4gLQlkcGlfcG9sLmhzeW5jX3BvbCA9IHZtLmZsYWdzICYgRElTUExB
-WV9GTEFHU19IU1lOQ19ISUdIID8NCj4gKwlkcGlfcG9sLT5ja19wb2wgPSBNVEtfRFBJX1BPTEFS
-SVRZX0ZBTExJTkc7DQo+ICsJZHBpX3BvbC0+ZGVfcG9sID0gTVRLX0RQSV9QT0xBUklUWV9SSVNJ
-Tkc7DQo+ICsJZHBpX3BvbC0+aHN5bmNfcG9sID0gdm0tPmZsYWdzICYgRElTUExBWV9GTEFHU19I
-U1lOQ19ISUdIID8NCj4gIAkJCSAgICBNVEtfRFBJX1BPTEFSSVRZX0ZBTExJTkcgOiBNVEtfRFBJ
-X1BPTEFSSVRZX1JJU0lORzsNCj4gLQlkcGlfcG9sLnZzeW5jX3BvbCA9IHZtLmZsYWdzICYgRElT
-UExBWV9GTEFHU19WU1lOQ19ISUdIID8NCj4gKwlkcGlfcG9sLT52c3luY19wb2wgPSB2bS0+Zmxh
-Z3MgJiBESVNQTEFZX0ZMQUdTX1ZTWU5DX0hJR0ggPw0KPiAgCQkJICAgIE1US19EUElfUE9MQVJJ
-VFlfRkFMTElORyA6IE1US19EUElfUE9MQVJJVFlfUklTSU5HOw0KPiAgDQo+ICAJLyoNCj4gIAkg
-KiBEZXBlbmRpbmcgb24gdGhlIElQIHZlcnNpb24sIHdlIG1heSBvdXRwdXQgYSBkaWZmZXJlbnQg
-YW1vdW50IG9mDQo+ICAJICogcGl4ZWxzIGZvciBlYWNoIGl0ZXJhdGlvbjogYWRqdXN0IHRoZSBk
-aXNwbGF5IHBvcmNoZXMgYWNjb3JkaW5nbHkuDQo+ICAJICovDQo+IC0Jc3luYy0+aHN5bmMuc3lu
-Y193aWR0aCA9IHZtLmhzeW5jX2xlbiAvIGRwaS0+Y29uZi0+cGl4ZWxzX3Blcl9pdGVyOw0KPiAt
-CXN5bmMtPmhzeW5jLmJhY2tfcG9yY2ggPSB2bS5oYmFja19wb3JjaCAvIGRwaS0+Y29uZi0+cGl4
-ZWxzX3Blcl9pdGVyOw0KPiAtCXN5bmMtPmhzeW5jLmZyb250X3BvcmNoID0gdm0uaGZyb250X3Bv
-cmNoIC8gZHBpLT5jb25mLT5waXhlbHNfcGVyX2l0ZXI7DQo+ICsJc3luYy0+aHN5bmMuc3luY193
-aWR0aCA9IHZtLT5oc3luY19sZW4gLyBkcGktPmNvbmYtPnBpeGVsc19wZXJfaXRlcjsNCj4gKwlz
-eW5jLT5oc3luYy5iYWNrX3BvcmNoID0gdm0tPmhiYWNrX3BvcmNoIC8gZHBpLT5jb25mLT5waXhl
-bHNfcGVyX2l0ZXI7DQo+ICsJc3luYy0+aHN5bmMuZnJvbnRfcG9yY2ggPSB2bS0+aGZyb250X3Bv
-cmNoIC8gZHBpLT5jb25mLT5waXhlbHNfcGVyX2l0ZXI7DQo+ICAJc3luYy0+aHN5bmMuc2hpZnRf
-aGFsZl9saW5lID0gZmFsc2U7DQo+ICANCj4gLQlzeW5jLT52c3luY19sX29kZC5zeW5jX3dpZHRo
-ID0gdm0udnN5bmNfbGVuOw0KPiAtCXN5bmMtPnZzeW5jX2xfb2RkLmJhY2tfcG9yY2ggPSB2bS52
-YmFja19wb3JjaDsNCj4gLQlzeW5jLT52c3luY19sX29kZC5mcm9udF9wb3JjaCA9IHZtLnZmcm9u
-dF9wb3JjaDsNCj4gKwlzeW5jLT52c3luY19sX29kZC5zeW5jX3dpZHRoID0gdm0tPnZzeW5jX2xl
-bjsNCj4gKwlzeW5jLT52c3luY19sX29kZC5iYWNrX3BvcmNoID0gdm0tPnZiYWNrX3BvcmNoOw0K
-PiArCXN5bmMtPnZzeW5jX2xfb2RkLmZyb250X3BvcmNoID0gdm0tPnZmcm9udF9wb3JjaDsNCj4g
-IAlzeW5jLT52c3luY19sX29kZC5zaGlmdF9oYWxmX2xpbmUgPSBmYWxzZTsNCj4gIA0KPiAtCWlm
-ICh2bS5mbGFncyAmIERJU1BMQVlfRkxBR1NfSU5URVJMQUNFRCkgew0KPiArCWlmICh2bS0+Zmxh
-Z3MgJiBESVNQTEFZX0ZMQUdTX0lOVEVSTEFDRUQpIHsNCj4gIAkJc3luYy0+dnN5bmNfbF9ldmVu
-ID0gc3luYy0+dnN5bmNfbF9vZGQ7DQo+ICAJCXN5bmMtPnZzeW5jX2xfZXZlbi5zaGlmdF9oYWxm
-X2xpbmUgPSB0cnVlOw0KPiAgDQo+IEBAIC02NTMsMjcgKzYxMCw1NSBAQCBzdGF0aWMgaW50IG10
-a19kcGlfc2V0X2Rpc3BsYXlfbW9kZShzdHJ1Y3QgbXRrX2RwaSAqZHBpLA0KPiAgCQlzeW5jLT52
-c3luY19yX29kZCA9IHN5bmMtPnZzeW5jX2xfb2RkOw0KPiAgCX0NCj4gIA0KPiArCWlmIChkcm1f
-ZGVmYXVsdF9yZ2JfcXVhbnRfcmFuZ2UoJmRwaS0+bW9kZSkgPT0gSERNSV9RVUFOVElaQVRJT05f
-UkFOR0VfTElNSVRFRCkgew0KDQpkcm1fZGVmYXVsdF9yZ2JfcXVhbnRfcmFuZ2UobW9kZSkNCg0K
-UmVnYXJkcywNCkNLDQoNCj4gKwkJbGltaXQtPnlfYm90dG9tID0gMHgxMDsNCj4gKwkJbGltaXQt
-PnlfdG9wID0gMHhmZTA7DQo+ICsJCWxpbWl0LT5jX2JvdHRvbSA9IDB4MTA7DQo+ICsJCWxpbWl0
-LT5jX3RvcCA9IDB4ZmUwOw0KPiArCX0gZWxzZSB7DQo+ICsJCWxpbWl0LT55X2JvdHRvbSA9IDA7
-DQo+ICsJCWxpbWl0LT55X3RvcCA9IDB4ZmZmOw0KPiArCQlsaW1pdC0+Y19ib3R0b20gPSAwOw0K
-PiArCQlsaW1pdC0+Y190b3AgPSAweGZmZjsNCj4gKwl9DQo+ICsNCj4gKwlyZXR1cm4gMDsNCj4g
-K30NCj4gKw0KDQo=
+Hi,
+
+Thanks for the review. Responses below.
+
+On Sun, Nov 15, 2026 at 10:52=E2=80=AFPM <netdev-bot+sashiko@kernel.org> wr=
+ote:
+>
+> Thank you for your contribution! Sashiko AI review found 3 potential
+> issue(s) to consider.
+>
+> Critical: 0 =C2=B7 High: 2 =C2=B7 Medium: 1 =C2=B7 Low: 0
+>
+> If you believe none of the issues are legitimate, please reply to each
+> issue of Medium severity or higher and explain why the AI is wrong.
+> If any of them are legitimate and you plan to respin, please let patchwor=
+k
+> know by including "pw-bot: cr" as a separate line at the end of your repl=
+y
+> (one such reply per series is enough).
+>
+> - [High] On every in-tree XGMAC platform, the XGMAC half of this fix
+>   never runs.
+> - [High] The new code takes the CSR clock rate only from
+>   priv->plat->stmmac_clk (stmmac_safety_feat_configuration(),=E2=80=A6
+> - [Medium] dwmac5_safety_feat_config() (dwmac5.c:261-263) and
+>   dwxgmac3_safety_feat_config() (dwxgmac2_core.c, around lines 887-889)=
+=E2=80=A6
+>
+> --
+>
+> net: stmmac: program the FSM timeout timer
+>
+> This commit programs MAC_FSM_ACT_Timer right after TMOUTEN is enabled, in
+> both dwmac5_safety_feat_config() and dwxgmac3_safety_feat_config(). TMR i=
+s
+> derived from the CSR clock rate and NTMRMD defaults to a 1s timeout. A ne=
+w
+> ntmrmd field in stmmac_safety_feature_cfg lets a platform override that
+> default, and csr_clk_mhz is passed through the safety_feat_config callbac=
+k.
+>
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c b/drivers/net=
+/ethernet/stmicro/stmmac/dwmac5.c
+> > index f1bb981cab7cd..4ab7a3df98c6d 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
+>
+> [ ... ]
+>
+> > @@ -245,6 +247,22 @@ int dwmac5_safety_feat_config(void __iomem *ioaddr=
+, unsigned int asp,
+> >               value |=3D TMOUTEN; /* FSM Timeout Feature */
+> >       writel(value, ioaddr + MAC_FSM_CONTROL);
+> >
+> > +     /* Program the FSM active timer so the timeout checker actually f=
+ires.
+> > +      * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in M=
+Hz.
+> > +      * Default to a 1s timeout when the platform did not select one.
+> > +      */
+> > +     if (safety_feat_cfg->tmouten && csr_clk_mhz) {
+> > +             u32 ntmrmd =3D safety_feat_cfg->ntmrmd;
+> > +
+> > +             ntmrmd =3D (ntmrmd >=3D STMMAC_NTMRMD_1US &&
+> > +                       ntmrmd <=3D STMMAC_NTMRMD_64SEC) ?
+> > +                      ntmrmd : STMMAC_NTMRMD_1SEC;
+> > +
+> > +             writel(FIELD_PREP(MAC_FSM_ACT_TIMER_NTMRMD, ntmrmd) |
+> > +                    FIELD_PREP(MAC_FSM_ACT_TIMER_TMR, csr_clk_mhz),
+> > +                    ioaddr + MAC_FSM_ACT_TIMER);
+>
+> [Severity: Medium]
+> This writel() replaces the whole MAC_FSM_ACT_Timer register with only the
+> NTMRMD and TMR fields set. Every other bit becomes zero. Is that intended=
+?
+>
+> In the Synopsys EQoS/XGMAC layout, this register also has a large-mode
+> timeout field (LTMRMD, bits 23:20) for FSMs that need longer timeouts. Th=
+e
+> patch doesn't define or program it.
+>
+> The commit message says a zero mode field disables the timer. If that als=
+o
+> applies to LTMRMD, would the large-mode FSMs stay unmonitored after this
+> write? And if reset or boot firmware had set LTMRMD, would this write tur=
+n
+> that monitoring off?
+>
+> Should this be a read-modify-write, or should LTMRMD be programmed too? T=
+he
+> same whole-register write is in dwxgmac3_safety_feat_config().
+>
+> > +     }
+> > +
+>
+Agreed, I'll make the MAC_FSM_ACT_Timer write a read-modify-write.
+
+> [ ... ]
+>
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/driv=
+ers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> > index 1a88cbaed70ca..76c850ea13a5c 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+>
+> [ ... ]
+>
+> > @@ -871,6 +873,22 @@ dwxgmac3_safety_feat_config(void __iomem *ioaddr, =
+unsigned int asp,
+> >       value |=3D XGMAC_TMOUTEN; /* FSM Timeout Feature */
+> >       writel(value, ioaddr + XGMAC_MAC_FSM_CONTROL);
+> >
+> > +     /* Program the FSM active timer so the timeout checker actually f=
+ires.
+> > +      * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in M=
+Hz.
+> > +      * Default to a 1s timeout when the platform did not select one.
+> > +      */
+> > +     if (safety_cfg && safety_cfg->tmouten && csr_clk_mhz) {
+>
+> [Severity: High]
+> Can this block run on any in-tree XGMAC platform?
+>
+> When safety_cfg is NULL, dwmac5_safety_feat_config() substitutes a defaul=
+t
+> config, but dwxgmac3_safety_feat_config() does not:
+>
+> dwmac5_safety_feat_config() {
+>     ...
+>         if (!safety_feat_cfg)
+>                 safety_feat_cfg =3D &all_safety_feats;
+>     ...
+> }
+>
+> stmmac_safety_feat_configuration() passes priv->plat->safety_feat_cfg
+> through unchanged. The only in-tree platforms that allocate it appear to =
+be
+> dwmac-intel.c, dwmac-mediatek.c and stmmac_pci.c, and all of them are
+> GMAC/GMAC4 cores.
+>
+> The XGMAC users leave it NULL: dwmac-socfpga.c, dwmac-tegra.c and generic
+> "snps,dwxgmac" DT through stmmac_platform.c. Both dwxgmac210_ops and
+> dwxlgmac2_ops use this function.
+>
+> On those platforms, XGMAC_TMOUTEN is still set unconditionally above, but
+> the timer write is skipped. The hardware stays in the state the commit
+> message describes as the bug, even though the patch carries:
+>
+>     Fixes: 56e58d6c8a56 ("net: stmmac: Implement Safety Features in XGMAC=
+ core")
+>
+> This also contradicts the new comment "Default to a 1s timeout when the
+> platform did not select one".
+>
+> There is a related mismatch when a cfg is passed with tmouten =3D 0: TMOU=
+TEN
+> is still set, but the timer is not programmed.
+>
+> Should TMOUTEN and the timer write be gated on the same condition? And
+> should a NULL cfg be handled the same way dwmac5 handles it?
+>
+This is due to dwxgmac3_safety_feat_config() not having the
+all_safety_feats fallback that dwmac5_safety_feat_config() has -- a
+pre-existing difference, not introduced by this patch. Fixing it
+(adding the fallback and gating XGMAC_PRTYEN/XGMAC_TMOUTEN on the
+config, matching dwmac5) changes the existing unconditional behavior.
+Perhaps it would be more appropriate to address this part as a separate
+optimization later on.
+
+> [ ... ]
+>
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/driver=
+s/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > index f8dceafdda2d2..52f63f624d67c 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > @@ -3639,10 +3639,16 @@ static void stmmac_mtl_configuration(struct stm=
+mac_priv *priv)
+> >
+> >  static void stmmac_safety_feat_configuration(struct stmmac_priv *priv)
+> >  {
+> > +     unsigned int csr_clk_mhz =3D 0;
+> > +
+> >       if (priv->dma_cap.asp) {
+> >               netdev_info(priv->dev, "Enabling Safety Features\n");
+> > +             if (priv->plat->stmmac_clk)
+> > +                     csr_clk_mhz =3D clk_get_rate(priv->plat->stmmac_c=
+lk) /
+> > +                                   1000000;
+>
+> [Severity: High]
+> What happens when priv->plat->stmmac_clk is NULL here? csr_clk_mhz stays =
+0.
+> By the time dwmac5_safety_feat_config() reaches the timer block it has
+> already set TMOUTEN, and it then skips the MAC_FSM_ACT_Timer write withou=
+t
+> any message:
+>
+>         if (safety_feat_cfg->tmouten && csr_clk_mhz) {
+>
+> Both in-tree platforms that explicitly set safety_feat_cfg->tmouten =3D 1
+> appear to have no stmmac_clk.
+>
+> In stmmac_pci.c, stmmac_pci_probe() sets tmouten =3D 1 for snps_gmac5. Th=
+e
+> only CSR clock information is plat->clk_csr =3D STMMAC_CSR_250_300M in
+> snps_gmac5_default_data(), and nothing in stmmac_pci.c assigns stmmac_clk=
+.
+>
+> In dwmac-mediatek.c, mediatek_dwmac_common_data() sets tmouten =3D 1. The
+> mediatek binding and dtsi files have no "stmmaceth" clock-name. As a resu=
+lt,
+> devm_clk_get() fails in stmmac_probe_config_dt(), which prints "Cannot ge=
+t
+> CSR clock" and sets plat->stmmac_clk =3D NULL.
+>
+> On both platforms the timer is never programmed and nothing is logged. Th=
+at
+> doesn't match the new comment on stmmac_safety_feature_cfg.ntmrmd, which
+> says TMR "is derived from the CSR clock by stmmac" and that "0 selects th=
+e
+> default 1s timeout".
+>
+> Could this fall back to plat->clk_csr, use a different clock source, or a=
+t
+> least warn when the timer can't be programmed?
+>
+> >               stmmac_safety_feat_config(priv, priv->ioaddr, priv->dma_c=
+ap.asp,
+> > -                                       priv->plat->safety_feat_cfg);
+> > +                                       priv->plat->safety_feat_cfg,
+> > +                                       csr_clk_mhz);
+>
+Agreed, I'll add a netdev_warn() when the CSR clock is unavailable so
+the skipped timer programming is not silent. I deliberately did not
+fall back to plat->clk_csr: clk_csr selects the MDC divider (a
+frequency band, e.g. 250-300M), it does not hold the exact CSR clock
+rate, so it cannot derive TMR accurately.
+
+> [ ... ]
+>
+> --
+> Sashiko AI review =C2=B7 https://netdev-ai.bots.linux.dev/sashiko/#/patch=
+set/20261111143322.2234321-1-zxyan0222%40gmail.com
+
+pw-bot: cr
 
