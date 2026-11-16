@@ -2,89 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23060606A895
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 23:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A2B0606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 23:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wl/4vgdu;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=Nbjbj083
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X6HUe3B3;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=HMJ54CAv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Su+gEpoBtUwCtjKeItQXUwyCg0MCSfAULs5Bw2J3NhE=; b=Wl/4vgduNbws4H
-	gwoUoQUaoFo7JN/vO2jtGFe7RBBCLBPLU3AC5Kx6lalkL05uAShHK4MJM47hjVFrweRlPCpYdYC/+
-	zZ27Y6+wqvOg3CotsmnWLXqd//HiXrftOAACcjn1i3my6YqUKPNAT5PP5yOYEJwRipQYJ5Ts3g2kq
-	jwYoIppImgPxCPrD4ck1Klwu+6gXp7GiZsb46IinBGh1u4cu6UF5/d9ZcVWAUSewzVHjk1elYDkno
-	h/F70AywwtMSRoybvQ1FBG+khbBoeevCRiF4csz++ScvLpY4yG8Bao4JhcGMvEIJo2jcSFxpm6vtG
-	C7ivtyRXdnf3aeQuvFmw==;
+	List-Owner; bh=i/gP54SVVmklviolBdcVwwsQRp3di1qTxKaCeiKcwAg=; b=X6HUe3B3UO0Lu6
+	bqROXLVe7FzhH2nkm5tVew64Bi0NOUsioEgT02I6yqQQpVpfseA6JccyuCgLQ0SLIpmWO0ZMr1a79
+	/GTvg6aGOW4R02JEDiQyqcmghbUD8zcV/Rb4hDnkWL7A2luv6And2IoMdHiubS5V8V1caI6eVsewJ
+	yplMnYhlpVUf52zn10p+eIvuEZE54nM1p8ZCSvFU5qJluvi7PxawvLEO1WlNZU/nyiNTJqpk4uV6G
+	35WoQ2LVF7iQbd7kAzQrzllBU9/eWJkGSn4bocA6QeBs9q4btIKy6b6914P0VfT8u9SXG61G4oEH6
+	ejI75XgbMQFd96jFnWQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT5i0-000000045s1-0OHQ;
-	Mon, 16 Nov 2026 23:01:56 +0000
-Received: from mail-pg1-x561.google.com ([2607:f8b0:4864:20::561])
+	id 1xT5hy-000000045r1-47zu;
+	Mon, 16 Nov 2026 23:01:54 +0000
+Received: from mail-pg1-x564.google.com ([2607:f8b0:4864:20::564])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT5hq-000000045o6-1r2r
+	id 1xT5hh-000000045kZ-02uz
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 23:01:47 +0000
-Received: by mail-pg1-x561.google.com with SMTP id 41be03b00d2f7-cdba1b5ed8dso200135a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 15:01:46 -0800 (PST)
+	Mon, 16 Nov 2026 23:01:39 +0000
+Received: by mail-pg1-x564.google.com with SMTP id 41be03b00d2f7-cde0daf3a2aso365441a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 15:01:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794870106; x=1795474906;
+        d=1e100.net; s=20260707; t=1794870096; x=1795474896;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Su+gEpoBtUwCtjKeItQXUwyCg0MCSfAULs5Bw2J3NhE=;
-        b=m/vkfsq4Qb7IvZ+sBCZ9XoKwLlnUYtKpyqGC9VeY9VWCZ1cKE1XrWsoJWGS/1xnBkR
-         jkZ40j1OqWiRsu9RfqlMBw97TdBEBxBrNEIDqcw0aMD91iWfOHeFdj9PlVcq4a9c1y5K
-         4UgD/WWdtargd2FHCxWW0a0U2wFjzoBLBrTvNYkSLyonBmpz8Ewy3w/fHQlhA53h1TTl
-         efRSTbA68+BKj9Vf56bvOqQCXl+vF02xB1LvW+LaDUEolH11yqwfafpMugbN+i/D0wC/
-         GJGC8CS3sSRbMQm01cIUBL4IcenlIw264J7r3AGAiRoOdMKTPO145owIYWqzz6uHdpYN
-         TZYQ==
-X-Forwarded-Encrypted: i=1; AL+hErGEcdq5H8DkoMtIn25SqIxvQXj67d47oChASOr6en1HO1tgtvXnJMLrlCnnoGZVLeMm67+21aUOQJgtbEJlgl8V@lists.infradead.org
-X-Gm-Message-State: APuU4Z+cOGN0GFXFqnEHFkU9ZmfPhFX0SqXzUiUvtr3FWfQ/hA02BYJ8
-	9EoA8+ctfL2C55RHhbEfb6CfK/2wH81jwmdYxUdIdKmv+vQiLvWUZ49vGNXXeqLAZzhhS5qn4nz
-	lMRUM76XnBYt4liG4EPC6xcNjKayuGA6SDOOeaBSNiO6Z3oyLYZgbcUEeoI+M1zVIadi30YY4Xb
-	O/Vtb0tiunG5AreqeI2sIb3rHzB8FjGeLksUNxwVYC6j6obovB65UEw6Yz06FJZGcKLs3BFKGj3
-	oBOmoprmJD31UB8JBeJkly/ufzuk3/xCsQ=
-X-Gm-Gg: AZFdTZdRx1mF/yyzr7G34RGLFz3DtXv3wug7mhXrf8L784n+xRV7SyAn0mmZqUJsKAd
-	lx403byyYxWbZzamiE5oC6+fLo62hVOCRA+yM4j3qduAZVRoQw5xshyNttA2daa2LZxCQHVklBp
-	SrkMqM5syKwVAPhQ3MOLTSb561GOKj5LqIvZLfK+yajwOc89+qZWPqfhAPs94X3vSrwa6bersK5
-	+szkeEErM5VelsmRBrB1njL3uaRk3zVIMfka8Ss0YbPVl8IOoKVS+vsWDDKUf4LQcfB5ywz3yzo
-	c61NLse3G2TD4LnHjzIZexUFP3jPrBbH5R/QPo6rz7vqq2PGZvL1kpWi9RyOe1v/8dEhqPclKXD
-	j3Pir0/k7aMAn3YNS5QN3ASQOVPjYprSe65Jl2R8+vDtrjK5SG79O1HYs9ryfHgqmhTNzVrk29N
-	9fMYnOKkcnG7gSrbZwLO0wBS56gXNwIuvR83LRPBj3
-X-Received: by 2002:a17:90a:bc94:b0:3b1:d40:2c4e with SMTP id 98e67ed59e1d1-3b3ab970facmr377848a91.0.1794870105608;
-        Mon, 16 Nov 2026 15:01:45 -0800 (PST)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-26.dlp.protect.broadcom.com. [144.49.247.26])
-        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b1b3fbf607sm5343935a91.4.2026.11.16.15.01.45
+        bh=i/gP54SVVmklviolBdcVwwsQRp3di1qTxKaCeiKcwAg=;
+        b=l3v0q2M6edVqjR9ggFy1FLSggzACNSGGe+1WF2Wqr1wLDADXqCa2VVqOrX5oGCoIOP
+         mm6FiWPxcHgTrSQKDDvTqh/vThhZT5XarDJaA242CS10kwv24wOYlUgi+NW7LWWOrwXI
+         rugTb4lGbjsXMPiz+68CzGQzum2miKO/eC9rm51yVjmhV7S31pi2gljS85I81xFVoOfa
+         dak8FWQjsonEqq6vjAEiVVJ7HcBLN86K+MycPFgBnkyR8Q3bRkqwqAGe9woXxj+lyTuT
+         6n3mhuwElaI868k2SuNeQpe+PP8iRsJHOj51Z0Cp9IsIWbpm+bx9AAartxX/JLLUO8s/
+         1hWA==
+X-Forwarded-Encrypted: i=1; AL+hErGqTJfWd/ycMygX9sqJEKgu6BqiLazjwa4/6MMnxUnzVU5cyW6nyc7ARABvgwOoG47KU+++BUmQOvRRyD+Cb1Gr@lists.infradead.org
+X-Gm-Message-State: APuU4Z9ZdJ6JesIolFZpMO/n2FK68oX64UobG5Cn6aLpwCIes7WvZbEw
+	SqIHOBJs+5v5JJS+r6xMo1K7S5kGZ2TVuPmSY+5m5HbBF8GhXZhc0fFCsjk/05ckNlhOu0WKaj/
+	Tp9QJdCgAQWcLUBk7okFnFcfbbBsLVYL/T5M40baMeju74UXOkrBtQXQdS9z/PiB5ptfNovMr9T
+	aApYYWzoBjLmHxTPFPte1g0yEo9qXmVf7YwilshO/X0H5fQ9FVyYYQ8S4Umpp2h4o3WdzEIBnnv
+	K5X5X2Usi8DS36bR5xwBp9lVJJpTM/ZSCw=
+X-Gm-Gg: AZFdTZf0rmxXiKv/i3j1v9YR701wqZrWZw5O+bN+Taowi4l50Janh8PbWDUg0DyeQKe
+	dv/cLUCRiqsax1OOQmVf5F3RfiJDVhAEMMcyjlfhyb4VMXljLKUJbRCv7CQYhLeiCERfpmQgRYy
+	lTq5Hck5tDzwKYaamh4B68OkuNIJ1ZQFOXLihBS3FFoM5XpaJMiqwAgGF8ZAyDI3pQC/M122tK3
+	O3hxd7yqhwDmZULTwyrIdv4LoHXDxitXcw07cReR+irn/uh/HMyR//8eZmDT29vF31jpQPakk6q
+	J44dVW+tU23LHm58UogCMD9uqHPrq/QFHd5vwveR2WqjV/pm6OPLIlLz6KXGklxW7Jeg8QAg4ja
+	DQgeWei6RtAdymwxIS6NU7vzkoFWXbTv+yWwfFt5V0wP+TaqthgApympVwbaG9EDqarzZB1fx15
+	U7FGy3E5Z8FDvODF1dr5UF8pTf2U5fsKD3aRylljub
+X-Received: by 2002:a17:90b:3806:b0:3a8:f70f:2437 with SMTP id 98e67ed59e1d1-3b1b0b53ad8mr10650776a91.50.1794870095833;
+        Mon, 16 Nov 2026 15:01:35 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-28.dlp.protect.broadcom.com. [144.49.247.28])
+        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b1b1ed0b73sm6386967a91.0.2026.11.16.15.01.34
         for <linux-arm-kernel@lists.infradead.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 16 Nov 2026 15:01:45 -0800 (PST)
+        Mon, 16 Nov 2026 15:01:35 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 X-CFilter-Loop: Reflected
-Received: by mail-dl1-f69.google.com with SMTP id a92af1059eb24-1b3afcaadeeso65582c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 15:01:44 -0800 (PST)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-8a0619b1fe5so2696623b3a.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 15:01:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1794870104; x=1795474904; darn=lists.infradead.org;
+        d=broadcom.com; s=google; t=1794870093; x=1795474893; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Su+gEpoBtUwCtjKeItQXUwyCg0MCSfAULs5Bw2J3NhE=;
-        b=Nbjbj0839AUERpbGkrniMXvFSEuejudaVFB0O08PKc1xEjy5Aw+lpQcHxN2Dk+72w1
-         aMDkiMDnsqw/L9UVa73dVxrAUWl5gfVUISagdp/se0UxuhA+GzYjn5Fl1sOJ4E4t2aEi
-         fJh/qoT4HuWw34hw7bOQmOusMCDnDm8T5zkU0=
-X-Forwarded-Encrypted: i=1; AL+hErGxoqXUEtj4vcTEW5zCvEmtV+w0egrO0DgwnJypxs7B83FdUkWqfg2MjJ1gKiJ3VnWcV75Nd6OtB2Bbv5VMtxe0@lists.infradead.org
-X-Received: by 2002:a05:701b:4590:10b0:145:ac96:3917 with SMTP id a92af1059eb24-1b53a470bffmr663527c88.21.1794870103519;
-        Mon, 16 Nov 2026 15:01:43 -0800 (PST)
-X-Received: by 2002:a05:701b:4590:10b0:145:ac96:3917 with SMTP id a92af1059eb24-1b53a470bffmr663482c88.21.1794870102473;
-        Mon, 16 Nov 2026 15:01:42 -0800 (PST)
+        bh=i/gP54SVVmklviolBdcVwwsQRp3di1qTxKaCeiKcwAg=;
+        b=HMJ54CAvAGylicW62n+dqIJ8wLSNu79fbUpkkg+tsuGXhJkTy/sNocqydtwEJKsbQW
+         L0wmszR+d4MS9ogakkZd1SUWg/ju2VchS5fGxt+pvmuGrEPN4+LaOQAA7phT9wB9b2No
+         6IHnkx4jHRs0gtQizp6uldpDLbk/puHqb5ow0=
+X-Forwarded-Encrypted: i=1; AL+hErEBHvS9cxojELYI1QiuVQiDvaQgm/BaV2jtXzeeBDBeKYhaJkpKS6zKY9mEeCwUlp8D1/bEszZ6vKcJHuzp62J8@lists.infradead.org
+X-Received: by 2002:a05:6a00:909e:b0:874:705d:f640 with SMTP id d2e1a72fcca58-8beb677f05fmr8399725b3a.34.1794870092571;
+        Mon, 16 Nov 2026 15:01:32 -0800 (PST)
+X-Received: by 2002:a05:6a00:909e:b0:874:705d:f640 with SMTP id d2e1a72fcca58-8beb677f05fmr8399694b3a.34.1794870091919;
+        Mon, 16 Nov 2026 15:01:31 -0800 (PST)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b50316e008sm35174833c88.6.2026.11.16.15.01.40
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8bed2635285sm4446499b3a.44.2026.11.16.15.01.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 15:01:41 -0800 (PST)
+        Mon, 16 Nov 2026 15:01:31 -0800 (PST)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	Jai Luthra <jai.luthra@ideasonboard.com>,
@@ -101,21 +101,20 @@ Cc: Florian Fainelli <f.fainelli@gmail.com>,
 	linux-kernel@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	kernel test robot <lkp@intel.com>,
-	Dan Carpenter <error27@gmail.com>
-Subject: Re: [PATCH 2/2] platform/raspberrypi: vchiq-mmal: Fix warnings in the zero-copy path
-Date: Mon, 16 Nov 2026 15:01:39 -0800
-Message-ID: <20261116230139.1470752-1-florian.fainelli@broadcom.com>
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH 1/2] platform/raspberrypi: vc-sm-cma: Fix get_kernel_id check, pass NULL for pointer
+Date: Mon, 16 Nov 2026 15:01:29 -0800
+Message-ID: <20261116230129.1469941-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261116-vc-sm-cma-fix-v1-2-2b0f11aa96b9@ideasonboard.com>
-References: <20261116-vc-sm-cma-fix-v1-0-2b0f11aa96b9@ideasonboard.com> <20261116-vc-sm-cma-fix-v1-2-2b0f11aa96b9@ideasonboard.com>
+In-Reply-To: <20261116-vc-sm-cma-fix-v1-1-2b0f11aa96b9@ideasonboard.com>
+References: <20261116-vc-sm-cma-fix-v1-0-2b0f11aa96b9@ideasonboard.com> <20261116-vc-sm-cma-fix-v1-1-2b0f11aa96b9@ideasonboard.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_150146_510243_C4EF754E 
-X-CRM114-Status: GOOD (  14.03  )
+X-CRM114-CacheID: sfid-20261116_150137_064813_9169E326 
+X-CRM114-Status: GOOD (  14.13  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -137,27 +136,22 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Mon, 16 Nov 2026 19:02:54 +0530, Jai Luthra <jai.luthra@ideasonboard.com> wrote:
-> Fix minor issues reported by sparse and smatch around the zero-copy
-> support added in mmal-vchiq.
+On Mon, 16 Nov 2026 19:02:53 +0530, Jai Luthra <jai.luthra@ideasonboard.com> wrote:
+> Fix a couple of issues reported by sparse on the vc-sm-cma driver.
 > 
-> If there is no handle present vc_sm_cma_get_vc_handle() might fail,
-> which we check but end up printing and returing the value of the
-> undefined `ret` variable. Fix it by returning -EINVAL and dropping `ret`
-> from the print.
+> The first is around the retval of get_kernel_id(), which we check for
+> negative error codes after assigning it to a u32 value. Fix it by using
+> a temporary signed integer for the check. While at it, also ensure
+> during error handling that we call free_kernel_id() only if we got a
+> valid one earlier.
 > 
-> While at it, also fix the stale reference to the function name
-> "vc_sm_int_handle" in the error print, which was renamed to
-> "vc_sm_cma_get_vc_handle".
+> The second is a minor warning around passing 0 instead of NULL for a
+> pointer argument.
 > 
-> Secondly, during cleanup assign NULL instead of 0 to buf->vcsm_handle,
-> which is a pointer.
-> 
-> Fixes: 67d0fbe47f8a ("platform/raspberrypi: vchiq-mmal: Use vc-sm-cma to support zero copy")
+> Fixes: 0d6409fd70af ("platform/raspberrypi: Add VideoCore shared memory support")
 > Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <error27@gmail.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202611141210.9hmxzD2V-lkp@intel.com/
-> Closes: https://lore.kernel.org/r/202611141218.5FZTnFtc-lkp@intel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202611141042.Rxt6cuNo-lkp@intel.com/
+> Closes: https://lore.kernel.org/oe-kbuild-all/202611141002.jCrJ06DU-lkp@intel.com/
 > Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
 > ---
 
