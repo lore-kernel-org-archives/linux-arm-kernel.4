@@ -2,78 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54A8A606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:26:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABB7606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ebu0Hy4X;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=NdMBVvss
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OJS6wYC2;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JsH4mFLy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=n0Epwbp8Lzi+kI0RuXeSMG9mic2jpFCzQkf5ONSBZoI=; b=Ebu0Hy4XrHD/MqHZGQeqPyPx6n
-	I6YWDZ3l8c3rOP1xcTbs/rnZrycE2OhkKjkfhHBgQSrcevSqiY8yHm0pG6Mic+mVUq23fiw1Om+tT
-	MmNz4C+qEW+cEyzLP/ZXaiyBh1uxQAlTe1dMtj/BOzqEZhO4Msb546aII24N/CLtBmZ/P8DKmmX7K
-	AzHCiIW4hZi/bmbFqN+pNI68NGS/nSIjcF/mybWQpuFN+3jsAVz+ieafcd55D0m29EQEinxPytN4n
-	bQvp8LujekN91rwVOIcOzA6/PUBdarH/5T6ogUWtQWHiBvce2mxXAlb3QnHp8DLBAUuyxY3Q4yutE
-	87pzItlw==;
+	bh=dnDC8kwE7249tTFrvzPYMbaxuX3Yw02/TxaNtz8codw=; b=OJS6wYC27VdLHtJGUpT4p/zW9O
+	BwaPWVPtevZX6pB5eseBskn1xVPyu+ZVWvH4NZV7qINx2uEBOUaPpsfK/CynCP8LqBJWCBw5a0fsK
+	oEXB4ENKwJe4cssYO/W5Lucwc6vNDWTm5Xu178O6S3+dGGSLDI+3gnK4ZkyPCx0iJQ1TkJbo97W74
+	Bgk1hXYuokXvlDrwV0mL/1S3qjR3IKnfgy8zbTZuKWz5OVZEBQvK5GCvqLbb797V8K2jlxTl9NgZW
+	6Z5UeDZCBmtJ2HXCy6dkgdHMNgJ1oSnzubrXLC3tCR3oUJKAOp+5F9n+53h8VLW9n6TtwkxfUXl8y
+	UBK4eXaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvn2-00000002LC2-2WL8;
-	Mon, 16 Nov 2026 12:26:28 +0000
-Received: from out-196.mta0.migadu.com ([2001:41d0:1004:224b::c4] helo=mta0.migadu.com)
+	id 1xSvne-00000002LKH-3X3R;
+	Mon, 16 Nov 2026 12:27:06 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvmz-00000002LBQ-0hrm
+	id 1xSvnd-00000002LJj-1Rma
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:26:27 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=rMg7ePytN4P08Ni21SDstdH+iA+/lX/CBMDE9CVdeAk=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794831982; v=1; x=1795436782;
- b=NdMBVvssAs5ggLpLWga6x2lIyipstJX3pqsDRlqC6ERnMEax9zrRWz1U7Ws/d4YU2NiP8vlo
- AIz31mPeCZiRfySxpUGN0MsCv3xMXhA3/182oEfEZXyASwMdHhDqFZ0DK4DjU2LmauOqzPOzJ5X
- EILykCGtv4w2CGTzRR6pfjH4=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 0fcf8ab443dda212;
-	Mon, 16 Nov 2026 12:26:22 +0000
-X-Mizu-Trace-ID: 0fcf8ab443dda212
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so9078e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:26:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErG5mRMfaURWIZB9WgZyToUZVeLVfg3nYeH8BPepM5C0R3oNF77V05gpphf2WQqSDJ+uMF9u+tuycT7Aut8+UOir@lists.infradead.org
-X-Gm-Message-State: APuU4Z9TcchI3J0BnbWlRJMpfJGnpiwhNDQWfQCsSrIdfRe6Cofja9hE
-	7rztgMHIps00txIM+s/M+FCA0uTwPR6aFunpYXNQ+uG74HYOoSBFgUUw9yv0DmeEny+cQnj3zGU
-	+DW8ugxMMPsNRP4t59ziNXSyum3APPJISmaeW4aKP
-X-Received: by 2002:a05:6512:3e22:b0:5c1:56f6:2f50 with SMTP id
- 2adb3069b0e04-5c17d6151bemr251895e87.1.1794831979748; Mon, 16 Nov 2026
- 04:26:19 -0800 (PST)
+	Mon, 16 Nov 2026 12:27:05 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id B33D2629EF;
+	Mon, 16 Nov 2026 12:27:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD6041F000C5;
+	Mon, 16 Nov 2026 12:27:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794832024;
+	bh=dnDC8kwE7249tTFrvzPYMbaxuX3Yw02/TxaNtz8codw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=JsH4mFLyhjbwt935HUxFSnSGaThutUlYFl27mkdSbELFBjMksm+AGEioTf0gfmrIV
+	 YXmBIWgkpIB9TgVMDX3IAcAFB8vb2JJewrMXpQEiFybwtGnfCjmwgC9+NeUJpJQ12W
+	 haEGxO45ej2LQOaHaA5n2vbx0BgurCFs732yVjIaGw8BdHh/fdibB7nroBgDX4Zar5
+	 isek0VL+Uv1T1uSC1W/lqC3zarCjaLiTniIxwxkQ2JYLh5ESU57ipBmrlchdU5+xZy
+	 JDPFRpgcsBbD7VeOYGLhb9bak80v1Usu0xhkc4qCcfo9w/MkTAaIeGl2evIWYAgNrD
+	 2encfW80TtAzQ==
+Date: Mon, 16 Nov 2026 20:06:48 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 00/13] arm64: add Synaptics SL2610 SoCs and RDK boards
+Message-ID: <avrx2EhgZ10ED40P@xhacker>
+References: <20261115102401.3520-1-jszhang@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261116110549.1863653-1-fuad.tabba@linux.dev> <avro44jUWOARFzul@google.com>
-In-Reply-To: <avro44jUWOARFzul@google.com>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Mon, 16 Nov 2026 12:25:43 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTxWuiyjmUc3vH_KxRtS_3oX5w=CE76LdsLcrqC+RzLGfg@mail.gmail.com>
-X-Gm-Features: Aa3M54okcmr9MdJAy7XSmuEmAJr7gqz5micdc5fGZdFcC1JtmeOKxVLrP8oEceQ
-Message-ID: <CA+EHjTxWuiyjmUc3vH_KxRtS_3oX5w=CE76LdsLcrqC+RzLGfg@mail.gmail.com>
-Subject: Re: [PATCH] drivers/virt: pkvm: Zero and clean memory before sharing
- it with the host
-To: Vincent Donnefort <vdonnefort@google.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	"Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Marc Zyngier <maz@kernel.org>, Mostafa Saleh <smostafa@google.com>, 
-	Suzuki K Poulose <suzuki.poulose@arm.com>, linux-arm-kernel@lists.infradead.org, 
-	kvmarm@lists.linux.dev, linux-coco@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_042625_861389_510DAC89 
-X-CRM114-Status: GOOD (  16.19  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261115102401.3520-1-jszhang@kernel.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,42 +77,128 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Vincent,
+On Sun, Nov 15, 2026 at 06:23:39PM +0800, Jisheng Zhang wrote:
+> Add initial support for the Synaptics SL261X SoCs and corresponding
+> RDK boards.
+> 
+> The SL261X SoCs include five pin-to-pin compatible SoCs: SL2611, SL2613,
+> SL2615, SL2617, and SL2619.
+> 
+> Only reset, pinctrl, clk/pll, uart, gpio, i2c, spi, i3c are included in
+> this series. The support for Ethernet, USB, SDHCI, CAN, DMAC, XSPI will
+> be submitted after this series is merged.
+> 
+> since v1:
+>  - rebase on latest rcN
+>  - drop some patches which have been merged
+>  - let the "gbl" node export pinctrl/reset/clk devices with
+>    MFD_CELL_NAME()
+>  - use <linux/platform_device.h> instead of <linux/mod_devicetable.h>
+>  - adopt some coding suggestions from Uwe
+>  - Use 0 and 1 to select normal and strong pull-up on 10-bit pads 
 
-On Mon, 16 Nov 2026 at 11:28, Vincent Donnefort <vdonnefort@google.com> wrote:
-[...]
-> > +     /*
-> > +      * The host can read the pages as soon as they are shared, possibly
-> > +      * through a Non-cacheable mapping. No caller relies on their contents.
-> > +      */
-> > +     memset((void *)addr, 0, size);
->
-> Are we sure we want that? The guest may want to setup memory and then share it.
-> I am not sure about modifying this API.
+Other SoCs doesn't use this defintion for pull up or strong pull up.
+After consulting our HW people, the strong pull up isn't used at
+all, so I will remove strong pull up support in newer version. We can
+add back its support when it's really needed in the future, nothing
+breaks.
 
-Right! I wanted to fix the bug for the ITS property table, which is
-shared before it's initialized, and totally forgot that this is the
-path all sharing goes through... I'll drop this, and put that fix back
-in the ITS series.
-
-> > +     dcache_clean_poc(addr, addr + size);
->
-> I believe the hypervisor is already doing the cache maintainance when the page
-> is mapped back into the host. (see stage2_map_walker_try_leaf())
-
-I don't think it does on this path. host_mmu.mm_ops doesn't have a
-dcache_clean_inval_poc() callback, so stage2_map_walker_try_leaf()
-doesn't do the CMO for a host mapping. On the guest's side,
-__pkvm_guest_share_host() only changes the software bits of the
-existing mapping, and the walker returns before the CMO in that case.
-
-Cheers,
-/fuad
+>  - collect Acked-by tag
+> 
+> Jisheng Zhang (13):
+>   arm64: kconfig: let ARCH_BERLIN cover Synaptics arm64 SoCs
+>   pinctrl: berlin: use u16 instead of u8 for the offset
+>   pinctrl: berlin: enable module build support
+>   pinctrl: berlin: add optional pinconf support
+>   dt-bindings: soc: synaptics: add SL2610 system controllers
+>   soc: synaptics: add SL2610 system controller support
+>   reset: add Synaptics SL2610 reset controller support
+>   pinctrl: berlin: add Synaptics SL2610 pin controller support
+>   clk: berlin: add Synaptics clock controller helpers
+>   clk: berlin: add Synaptics SL2610 clocks and PLLs
+>   dt-bindings: arm: berlin: add Synaptics SL2610 SoCs and RDK boards
+>   arm64: dts: synaptics: add SL2610 family SoCs
+>   arm64: dts: synaptics: add SL2610 family RDK boards
+> 
+>  .../bindings/arm/marvell,berlin.yaml          |  20 +
+>  .../soc/synaptics/syna,sl2610-soc-syscon.yaml | 178 ++++
+>  MAINTAINERS                                   |   8 +
+>  arch/arm64/Kconfig.platforms                  |   4 +-
+>  arch/arm64/boot/dts/synaptics/Makefile        |   5 +
+>  arch/arm64/boot/dts/synaptics/sl2611-rdk.dts  |  16 +
+>  arch/arm64/boot/dts/synaptics/sl2611.dtsi     | 457 +++++++++++
+>  arch/arm64/boot/dts/synaptics/sl2613-rdk.dts  |  16 +
+>  arch/arm64/boot/dts/synaptics/sl2613.dtsi     |  12 +
+>  arch/arm64/boot/dts/synaptics/sl2615-rdk.dts  |  16 +
+>  arch/arm64/boot/dts/synaptics/sl2615.dtsi     |  46 ++
+>  arch/arm64/boot/dts/synaptics/sl2617-rdk.dts  |  16 +
+>  arch/arm64/boot/dts/synaptics/sl2617.dtsi     |  46 ++
+>  arch/arm64/boot/dts/synaptics/sl2619-rdk.dts  |  16 +
+>  arch/arm64/boot/dts/synaptics/sl2619.dtsi     |  44 +
+>  .../boot/dts/synaptics/sl261x-rdk-common.dtsi | 135 ++++
+>  drivers/clk/Kconfig                           |   1 +
+>  drivers/clk/berlin/Kconfig                    |  34 +
+>  drivers/clk/berlin/Makefile                   |   4 +
+>  drivers/clk/berlin/clk-sl2610.c               | 360 +++++++++
+>  drivers/clk/berlin/sl-clk.c                   | 279 +++++++
+>  drivers/clk/berlin/sl-clk.h                   |  31 +
+>  drivers/clk/berlin/sl-sysmgr-clk.c            | 241 ++++++
+>  drivers/clk/berlin/sl-sysmgr-clk.h            |  44 +
+>  drivers/clk/berlin/sl2610-pll.c               | 145 ++++
+>  drivers/clk/berlin/sl2610-pll.h               |  14 +
+>  drivers/pinctrl/berlin/Kconfig                |  16 +
+>  drivers/pinctrl/berlin/Makefile               |   1 +
+>  drivers/pinctrl/berlin/berlin.c               | 259 +++++-
+>  drivers/pinctrl/berlin/berlin.h               |  17 +-
+>  drivers/pinctrl/berlin/pinctrl-sl2610.c       | 759 ++++++++++++++++++
+>  drivers/reset/Kconfig                         |  13 +
+>  drivers/reset/Makefile                        |   1 +
+>  drivers/reset/reset-sl2610.c                  | 224 ++++++
+>  drivers/soc/Kconfig                           |   1 +
+>  drivers/soc/Makefile                          |   1 +
+>  drivers/soc/synaptics/Kconfig                 |  14 +
+>  drivers/soc/synaptics/Makefile                |   2 +
+>  drivers/soc/synaptics/sl2610-syscon.c         |  84 ++
+>  include/dt-bindings/clock/syna,sl2610.h       | 131 +++
+>  include/dt-bindings/reset/syna,sl2610-reset.h |  80 ++
+>  41 files changed, 3771 insertions(+), 20 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2611-rdk.dts
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2611.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2613-rdk.dts
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2613.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2615-rdk.dts
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2615.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2617-rdk.dts
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2617.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2619-rdk.dts
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2619.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl261x-rdk-common.dtsi
+>  create mode 100644 drivers/clk/berlin/Kconfig
+>  create mode 100644 drivers/clk/berlin/clk-sl2610.c
+>  create mode 100644 drivers/clk/berlin/sl-clk.c
+>  create mode 100644 drivers/clk/berlin/sl-clk.h
+>  create mode 100644 drivers/clk/berlin/sl-sysmgr-clk.c
+>  create mode 100644 drivers/clk/berlin/sl-sysmgr-clk.h
+>  create mode 100644 drivers/clk/berlin/sl2610-pll.c
+>  create mode 100644 drivers/clk/berlin/sl2610-pll.h
+>  create mode 100644 drivers/pinctrl/berlin/pinctrl-sl2610.c
+>  create mode 100644 drivers/reset/reset-sl2610.c
+>  create mode 100644 drivers/soc/synaptics/Kconfig
+>  create mode 100644 drivers/soc/synaptics/Makefile
+>  create mode 100644 drivers/soc/synaptics/sl2610-syscon.c
+>  create mode 100644 include/dt-bindings/clock/syna,sl2610.h
+>  create mode 100644 include/dt-bindings/reset/syna,sl2610-reset.h
+> 
+> -- 
+> 2.55.0
+> 
+> 
 
