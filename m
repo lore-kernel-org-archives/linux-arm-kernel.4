@@ -2,55 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3D6606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67AC2606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hUA1SrQ5;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=DSaOV/wk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VSYF9D0t;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=Km5POFvL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=+lgHrIUN8omQkjb2vy/fSimmUa6BrDWEpsc2sku8LeA=; b=hUA1SrQ56ApqyVJSyfXYBoSKQP
-	pFYAJJuxt3j1pSa91h8iXWmVa7tYsccLOmZScVKje3Zf8eOzGjLzRT9T49+7c628aSqNQ+8bzS+y9
-	hFoFA3Begmf3mCIzhlqAIjU/s8P9Qk8N9/7CzbCQ5Nwm02lM4Hp9WZqkLWue/7uBLtfoFybUMig7g
-	kcAm9f3euZ5lqhF1zuIi2BB2D1G9Mc+/DxB0Ao3Bsue4sXi2LgbqGNbrzYed5yyy+nkPfR2wYunn/
-	3mix8HUwIUZJMibhnYfkpIqbssD85ED5+zwAxJc9fCDrImsXInwYUy3jd+sgvo6fkPjgIVMb2LMh9
-	/CAq2QDg==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=6hYuKtrbtxvWkisqDSoyhY2yy9+C2j0v54EuJrT4loY=; b=VSYF9D0tqK971A
+	mqOXUzRknjpqdlAjbDveSUjFz0Nm26Lofy9sR7qHaUMmu92NuuHGc/x2rKHppZ0p5fcJY8Wczcivu
+	med0Ecfq9RcBQQjgg1BbFONdmsZ0J7T5aTlZLSDvL+cuwhaT+CmBnotq82f8nJaUZVjmsZFZmGDdo
+	3VuoT3f0RRIwN8Sv8P2LTeIO3Oyn+TljeBhPVfHYQLg2wZfEmfNY3IWnWltnW3DL6lCqJvj/3TQzi
+	t4MRHs+7IXGV34urUEVyj5GUt+ZFgXamybDoG5CcZqYRLO1ms2SwPxctZcb7JbkcxFl4mbNOLD5r2
+	G1SrT2q6kYMLp+Rm5EHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwpo-00000002e0t-3hOz;
-	Mon, 16 Nov 2026 13:33:24 +0000
+	id 1xSwpy-00000002e4o-2KsJ;
+	Mon, 16 Nov 2026 13:33:41 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwpl-00000002dzS-3TBb;
-	Mon, 16 Nov 2026 13:33:23 +0000
+	id 1xSwpo-00000002e0h-48Fx;
+	Mon, 16 Nov 2026 13:33:29 +0000
 Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c67:cdf:7464:6c04:36e4:ee87])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 013044BB;
-	Mon, 16 Nov 2026 14:30:48 +0100 (CET)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7933063C;
+	Mon, 16 Nov 2026 14:30:55 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1794835849;
-	bh=uVbIVduMXaQ//1Z+a/RTdpbY71FZgSk/ZCXtcsVSHUA=;
-	h=From:Subject:Date:To:Cc:From;
-	b=DSaOV/wk/o36Hzn3tj27NXKwLED87GdF6A7L/E1iDexY1myBnI82lf/XY9G2mwATn
-	 i549NDQlI8McMzJSIyR7vcyDttiu/eNH9iSCxWvDGJHqtwXnYT6V4Ur1sqn7UrtJ+I
-	 I75RVkd1raCmOCUSz9OqXDZjVKmg0HkW0gm3xEG4=
+	s=mail; t=1794835855;
+	bh=YOP6NiAUVG/ojIMjEDwSst5ZI7RjfYBIDhbDs6uAco8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=Km5POFvLp8mGWaQPLsuamnV2bq2M4Ei1ilyf4TNzeQfKJ6e4xnRWZaVnHbcHW5K9Z
+	 ioGdoPiRRMmA9GV9OiWrVqrKtw3CUkKDPNXqbXckjS0dTQVCLL7YocBlrZ8vhZWvDA
+	 ulT4EThCoK3fkdQCDnZQfFPWBkuZUZesw/G282X0=
 From: Jai Luthra <jai.luthra@ideasonboard.com>
-Subject: [PATCH 0/2] platform/raspberrypi: vc-sm-cma: Fix sparse and smatch
- warnings
-Date: Mon, 16 Nov 2026 19:02:52 +0530
-Message-Id: <20261116-vc-sm-cma-fix-v1-0-2b0f11aa96b9@ideasonboard.com>
+Date: Mon, 16 Nov 2026 19:02:53 +0530
+Subject: [PATCH 1/2] platform/raspberrypi: vc-sm-cma: Fix get_kernel_id
+ check, pass NULL for pointer
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWMQQrCMBAAvxL27EKz0Sj9ivSQbDe6h7Sa1CKU/
- t1gjzMws0GVolKhNxsUWbXqPDWwJwP8DNNDUMfGQB15a63HlbFm5Bww6RfP5C7JkUujt9CaV5G
- m/7/7cHCR96dtl0NCDFWQ55x16U3HId6IIodrgGHff/4LN6CPAAAA
-X-Change-ID: 20261116-vc-sm-cma-fix-4235f323fd61
+Message-Id: <20261116-vc-sm-cma-fix-v1-1-2b0f11aa96b9@ideasonboard.com>
+References: <20261116-vc-sm-cma-fix-v1-0-2b0f11aa96b9@ideasonboard.com>
+In-Reply-To: <20261116-vc-sm-cma-fix-v1-0-2b0f11aa96b9@ideasonboard.com>
 To: Florian Fainelli <florian.fainelli@broadcom.com>, 
  Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
  Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
@@ -62,30 +59,28 @@ Cc: Stefan Wahren <wahrenst@gmx.net>, Dom Cobley <popcornmix@gmail.com>,
  Juerg Haefliger <juerg.haefliger@canonical.com>, 
  linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, 
- Jai Luthra <jai.luthra@ideasonboard.com>, kernel test robot <lkp@intel.com>, 
- Dan Carpenter <error27@gmail.com>
+ Jai Luthra <jai.luthra@ideasonboard.com>, kernel test robot <lkp@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1053;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3078;
  i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
- bh=uVbIVduMXaQ//1Z+a/RTdpbY71FZgSk/ZCXtcsVSHUA=;
- b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBq+wYT8asi64UqGlqgDqKUsoJkmpWIFXnlZ9auT
- Yukmv4Z77CJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCavsGEwAKCRBD3pH5JJpx
- RYHnD/9nZVI8FbcOg3MW7VhttNwFrsM6ke7Txh18LvQgWU7GAM5m2dSmTVlRmcpG5E3cGwV5nh6
- 95KFdn3zbAVP8i2LjwxyHOwR5ZN2HusDq0rtKOsq+zW1D2Ip3ToAEjAGbxCzqYBlK4UYMtdgZmo
- 1v6c45ape1infIE0QJvIRSTVzXfLNwYmKmtCE6sshn3R9hNVM12YWDAB829ztz5i0ZRflh8P2y7
- tlivflfgB62WO7wCXHSdrsa9eC0GSoJSPUHPz540k6iVPxpdoImfn0cmPz8+fGGkRAKXRF1jl7p
- TvOkofWU2ZrkmW2I4+PDeQ3gF547b9HH71rFnE4dsSOFHZ65MK0Ok8nIWpb+rZvilvfFB2EqrIe
- WKCxN9XB3vKqH04PFEeJJbRErS6HIXT065OPdynLaR7Xh8XzCdDi5OD5lrK6pgmvrqePCadlO1C
- OuZQkljkvkAUmN7xZN58j6xGNUEJCw/ptPcGOIABOPR0RY1dSkWSkTYVbhoG/cxRCRcHXri8m7e
- QyKRvmU3k6QdFC9JguQFrl9mlSKC57KYD2aX5jlQpLQsuzkPrHTwxMo1MAVWBbFVRHL3LlFSfnV
- 51A7xQjCxRannLeG+JPj6n5CF2P4wCNHPtcWoiy5LS0yvA0lLfdht9UaaLMKX2T+VBvBBeknhCc
- QzHFvRaIyEdVmWg==
+ bh=YOP6NiAUVG/ojIMjEDwSst5ZI7RjfYBIDhbDs6uAco8=;
+ b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBq+wYUGrdGadCw1ssQA1heQELEXHC9GOdgHdlKx
+ XUIXPYVpqWJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCavsGFAAKCRBD3pH5JJpx
+ Rbk2D/4q6j7Acpm3IfLgBAnc71WYXwsXNDvS7O6D7GS8D6AzLbQ51tV5OcFGNUt7vV+LfzoqCO3
+ uNMm+F49AKoxDnquXLVeqaX3MbjMwVot/CVqDD1V0ORZkgTQc4U+eEl4/Lwh42lxNKpluTA9ljs
+ eOAlXx0HX47l0TvmfNaYBwGzfI23mxxAShvcjBevXauNdvAGEM3lTgEKPCxtLqTWn8zRe8lNqS3
+ hdPk/6SJ4LbzM395y32I06moZPyTdZqOulaVGW6gEQINEYBPN49JaT5sXOaGehMaavN/dbzA1Bb
+ vh4+s41ufoUDh2r7LBtS0gACU5i/n0awnwDIT2clS4+1d9ZK54TiE074ewD2WzdgV630KfDwzNn
+ Yt+x3z3hvRim1OQQB1eyUqQCt3+ymK0WRgHhDhj+UeFZd/AFPcEAllg32xr4KCfo8o3EfewJ4th
+ +W5KZiT+fw3ImJXpX/FUmdN6pyKc6yXfrfEup93d+yn6UBWN20dEfU1i2r+krV79+t6Lw2fXgAu
+ YhBIKqTwRkScZZ/d82KNh8iPjxhiHj7pw9BUJxMrgA0rLc6Ta3oK6FWk9pJzhg8a1XZFiKOA7H6
+ MUzb5qDL5NrLZU0WGwcXZWdegBxWiqaqjpuxAqYykXEHVDS5mK39SR1G82aB/dUmombJcD3s8z3
+ hgkb7+v46FNTUYA==
 X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
  fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_053322_022033_FFDF727D 
-X-CRM114-Status: UNSURE (   7.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261116_053328_199592_D2C85ADF 
+X-CRM114-Status: GOOD (  15.08  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,35 +100,80 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Florian,
+Fix a couple of issues reported by sparse on the vc-sm-cma driver.
 
-I've fixed the issues reported by sparse and smatch on my series that
-added shared memory support for VC4 based peripherals in Raspberry Pi 4.
+The first is around the retval of get_kernel_id(), which we check for
+negative error codes after assigning it to a u32 value. Fix it by using
+a temporary signed integer for the check. While at it, also ensure
+during error handling that we call free_kernel_id() only if we got a
+valid one earlier.
 
-My apologies for not running those checks on my machine before sending.
+The second is a minor warning around passing 0 instead of NULL for a
+pointer argument.
 
-As those patches are now applied in your tree, I have added Fixes tags
-using the SHAs for the applied commits.
-
-Thanks,
-    Jai
-
+Fixes: 0d6409fd70af ("platform/raspberrypi: Add VideoCore shared memory support")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202611141042.Rxt6cuNo-lkp@intel.com/
+Closes: https://lore.kernel.org/oe-kbuild-all/202611141002.jCrJ06DU-lkp@intel.com/
 Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
 ---
-Jai Luthra (2):
-      platform/raspberrypi: vc-sm-cma: Fix get_kernel_id check, pass NULL for pointer
-      platform/raspberrypi: vchiq-mmal: Fix warnings in the zero-copy path
-
  drivers/platform/raspberrypi/vc-sm-cma/vc_sm.c          | 11 +++++++----
  drivers/platform/raspberrypi/vc-sm-cma/vc_sm_cma_vchi.c |  2 +-
- drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c    |  8 ++++----
- 3 files changed, 12 insertions(+), 9 deletions(-)
----
-base-commit: 0cab822bca7a59667774725b83e948b71462290f
-change-id: 20261116-vc-sm-cma-fix-4235f323fd61
+ 2 files changed, 8 insertions(+), 5 deletions(-)
 
-Best regards,
+diff --git a/drivers/platform/raspberrypi/vc-sm-cma/vc_sm.c b/drivers/platform/raspberrypi/vc-sm-cma/vc_sm.c
+index 4dda06fee533..2d9bb5f957a3 100644
+--- a/drivers/platform/raspberrypi/vc-sm-cma/vc_sm.c
++++ b/drivers/platform/raspberrypi/vc-sm-cma/vc_sm.c
+@@ -415,6 +415,7 @@ vc_sm_cma_import_dmabuf_internal(struct dma_buf *dma_buf,
+ 	struct vc_sm_import import = { };
+ 	struct sg_table *sgt = NULL;
+ 	dma_addr_t dma_addr;
++	int kernel_id = -1;
+ 	u32 cache_alias;
+ 	int ret = 0;
+ 	int status;
+@@ -469,11 +470,12 @@ vc_sm_cma_import_dmabuf_internal(struct dma_buf *dma_buf,
+ 	}
+ 	import.size = sg_dma_len(sgt->sgl);
+ 	import.allocator = current->tgid;
+-	import.kernel_id = get_kernel_id(buffer);
+-	if (import.kernel_id < 0) {
+-		ret = import.kernel_id;
++	kernel_id = get_kernel_id(buffer);
++	if (kernel_id < 0) {
++		ret = kernel_id;
+ 		goto error;
+ 	}
++	import.kernel_id = kernel_id;
+ 
+ 	memcpy(import.name, VC_SM_RESOURCE_NAME_DEFAULT,
+ 	       sizeof(VC_SM_RESOURCE_NAME_DEFAULT));
+@@ -544,7 +546,8 @@ vc_sm_cma_import_dmabuf_internal(struct dma_buf *dma_buf,
+ 		vc_sm_cma_vchi_free(sm_state->sm_handle, &free,
+ 				    &sm_state->int_trans_id);
+ 	}
+-	free_kernel_id(import.kernel_id);
++	if (kernel_id >= 0)
++		free_kernel_id(import.kernel_id);
+ 	kfree(buffer);
+ 	if (sgt)
+ 		dma_buf_unmap_attachment_unlocked(attach, sgt,
+diff --git a/drivers/platform/raspberrypi/vc-sm-cma/vc_sm_cma_vchi.c b/drivers/platform/raspberrypi/vc-sm-cma/vc_sm_cma_vchi.c
+index 098342601895..54d318735575 100644
+--- a/drivers/platform/raspberrypi/vc-sm-cma/vc_sm_cma_vchi.c
++++ b/drivers/platform/raspberrypi/vc-sm-cma/vc_sm_cma_vchi.c
+@@ -481,7 +481,7 @@ int vc_sm_cma_vchi_free(struct sm_instance *handle, struct vc_sm_free_t *msg,
+ 			u32 *cur_trans_id)
+ {
+ 	return vc_sm_cma_vchi_send_msg(handle, VC_SM_MSG_TYPE_FREE,
+-				   msg, sizeof(*msg), 0, 0, cur_trans_id, 0);
++				   msg, sizeof(*msg), NULL, 0, cur_trans_id, 0);
+ }
+ 
+ int vc_sm_cma_vchi_import(struct sm_instance *handle, struct vc_sm_import *msg,
+
 -- 
-Jai Luthra <jai.luthra@ideasonboard.com>
+2.56.0
 
 
