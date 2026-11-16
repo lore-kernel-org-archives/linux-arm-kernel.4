@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF49E606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1082606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:30:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZwC2Jw14;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=b4T6egBj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ItdyP95L;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=krbP1A0j
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,96 +14,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=i0+NdK/YeASsZuhz7coPXNHnm1YViQRZlPGWrC7m3dY=; b=ZwC2Jw145mayWKbV+6prBdCgjY
-	ZYaM+7Ff/Fm2Kwehl4AmcLiPXIA2BiYu5Zd3e8kaMn4HwYrsVwBZlwrkAvFYPKQ5QJQiqBrWwxO8y
-	5ugykrEzslA9oBRw6h7p47Tr3T8AsxRz9MWK4l3hHpzQmUao97ygQVlQOR8SSia6xwiHDmxRp+ZIi
-	qL3WayYA5+qVizSEK9T59FjNkk34ejqVLKe9r8sky3RinbdBGKGAowk+qwY0xCVVJ88qnQote5nMC
-	Z3FhKGk/v5ylbhNgV98QU2MlaT4QSXB4Ra2cDuXV+qKzo2Vv98EZ3Q4xj6TuPyS3eatkxMRF4L1LD
-	QFD9h37w==;
+	bh=choiiLEPxi3avyVmqh0wpGnAzmg7WsZE/xDYUiHip8w=; b=ItdyP95LvbhN1P43wbRnwb3X57
+	d0h4YrriQtmCtFHqKQAeCh2Ozn9btUQQ9cnPKx9H6Rt00x7BLcirneRXPiO14EmvWKs748i3uBmB3
+	26cGom87CL0njamqM8JWrrcllp4SxwBbdgNL1eVPjOEhtzlVM5NlR9rr+daZDk9qKDHpgNTjlaFNe
+	i6xC9pdFTu5VKRXCF1DJzx6fQxhPquyB/WZ+u2GxiX0DMJAmaS7OwN3Pm95UDW+yMIjHmxvt+5Jvd
+	GcTJS3+g0svG19c6tzFdZAhtyRM7rqjouIaHNUHKiWm/1I8SUakFYQ83+r80bspOEQmU6+/nT6omo
+	ViOixbjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1QA-00000003YEn-2MZc;
-	Mon, 16 Nov 2026 18:27:14 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1xT1Sp-00000003Yo1-2V1s;
+	Mon, 16 Nov 2026 18:29:59 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1Q7-00000003YCe-2cri
+	id 1xT1So-00000003Ynb-2hyH
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 18:27:13 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4a018493d57so3885e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 10:27:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794853629; x=1795458429; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=i0+NdK/YeASsZuhz7coPXNHnm1YViQRZlPGWrC7m3dY=;
-        b=b4T6egBjWiDklaGAJwMTJ/E2dnKVoY9nt0U5ymb8RNR4VpbCK8otLWUJ0xOoFSPVZQ
-         A30rU0+arOqdDbCXLQO3C6ncW49QZyi7dnsybn+CjbgkytwJPpVLuHry7+cS5eXmXB/b
-         5X8U+HVulGJlqtlvKZ/1is39R1QU502lOtnGZ8tEMJvHf+qiG5ym20aoOAvkdYSH8JaJ
-         Vc1qdkfUAFOSm4V6uSrKGGnAJJ0uGDhnjjHsRu6Ht4WV+2C1Leji3dhRUaLtVVHsFc0j
-         l0umOViel1GncKCeTF5L/p2txsYV0xGptznlMzDtdQer0FNnzTZNG+1AoLBfV3oubHZx
-         dhVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794853629; x=1795458429;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=i0+NdK/YeASsZuhz7coPXNHnm1YViQRZlPGWrC7m3dY=;
-        b=vJBKqIGlAawIwmXmedxdcIJcgS8lzytCSiTItEEUU/AEwbqlmSITqtzq7WpNnjBxOb
-         17EUENjn2HanXdZi+78XxYWkBgc9uv266doNEZPDiffVpZq7mzcGGd14LIOjC1AIvGLL
-         uqxqWRKnoJ44XsFFW1orR/ac9k6Hob9snVs8xG1acBlRPohUpIpl2jKtBR+0Pz7XpOYW
-         0llSvQD2af1/7LGKQnJ0MO8OhIies4lekCoHtNK+fas9AG1MwZBfy7S2n1CVUutBu9nm
-         3Tfq5AIP0f4UUKhKv6WqtzHuvhWotXrsy6Oi+UNYIog6N1a85ms+0aXegiLy8WP8hkUH
-         bFig==
-X-Forwarded-Encrypted: i=1; AL+hErG4tPbQszJ8AdjEwahn2U5rhYAhbbrVmE1H+IuPUy4dIfP8gClB0bb9Ld/F3OyczypfXQFUcnAEb+8Dt6oFKQTx@lists.infradead.org
-X-Gm-Message-State: APuU4Z8N2/xeR0h7GmHiqxaHw9alO+n49MFRMyb/8Au0z8frFBLWwtU+
-	C9gCK3K/o6GWjQQQ2urr1GYIEZeGwppwNj5gouUuIaIOLLkRJxH329/bruWTzdK04A==
-X-Gm-Gg: AYBFou3fG7ciSdJ/5l6AFooOKpUZlpXqo9nTbDEIIKHaSO6nD8GMJ+OT22q+XY+zJGr
-	EsZrcwpUno3c7WDNMJ7r/Tk50Eb9VgyFna8s+aK6zs98UBG3b8/JnwQR5+i2XbtdDBzsgu9o8RU
-	Y5BJlgS95wEW8Uw1/xgOADqyAIyxUVtz4ad1In0kcb9lcChGVu1ybdLl7GgKPAR8a2xaYKURQeK
-	sd0oErSpXKWa3t0VhUGtIfgk/m+PWRNrMkMDce6n5FSonpv1ypoOwd3Qf7yVcsFWJ0fIfUEcdO2
-	obd4VvJqLJnNk4WL9yftmPfm33bhv4sYlBF1d5LGWT6VrASwHyVKpheoWukINt9y/RPF+SgYCar
-	Y/L7xrBY/icU4HJqFcROgvw3tNjXWCdWTlJApW8Sdc6rvRZ6wlHGYXkrYZQhVBa63gRx2wh289s
-	AdjEZz1CdgZQfyGtk3TO21B3CJdvva/5n5cIi2rq8vSlCTilRKRyicVYr2zUiMXU6aCo4u3nH5P
-	mi9L7cb9dXsF/cdRacO5gazwSbcR01lqoTMHp70aIlQe8A7/GRdXtT2xYN/tCjRpt/sfBvxiWiN
-	YuC3aump+PxXeNRpVNxIYAyIva5VSZLIK2+Lwrmya1taOuX3owtMvArXvnTf0pWQWqAgQRYg38B
-	viQSR2Tb0of1Rs2iZ
-X-Received: by 2002:a05:600c:491c:b0:4a1:d2f2:9fbd with SMTP id 5b1f17b1804b1-4bb7894d9bfmr42925e9.0.1794853627708;
-        Mon, 16 Nov 2026 10:27:07 -0800 (PST)
-Received: from google.com (250.192.189.35.bc.googleusercontent.com. [35.189.192.250])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c5f1c1968sm24006935f8f.10.2026.11.16.10.27.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 10:27:06 -0800 (PST)
-Date: Mon, 16 Nov 2026 18:27:02 +0000
-From: Mostafa Saleh <smostafa@google.com>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Daniel Mentz <danielmentz@google.com>,
-	Juan Yescas <jyescas@google.com>, kernel-team@android.com,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH] iommu: Add iommu.passthrough_devs early command line
- parameter
-Message-ID: <avtK9qMAjIIwD84k@google.com>
-References: <20261116-b4-iommu-passthrough-devs-v1-1-dc5b493f7551@linaro.org>
+	Mon, 16 Nov 2026 18:29:59 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 40A8C4060B;
+	Mon, 16 Nov 2026 18:29:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 756661F000CC;
+	Mon, 16 Nov 2026 18:29:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794853798;
+	bh=choiiLEPxi3avyVmqh0wpGnAzmg7WsZE/xDYUiHip8w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=krbP1A0jnV5NXXIuHqT9G19CzZwrr//YT0KySdYTEMrpFeXhjNavLsq+K9sg56TWe
+	 r4UHX1uYWAWh5b9LNCoUn9HviEkZt9vJofYrIrqTCqGTuxfwoWHDmiqTJSVE0XnIXC
+	 FqDFx1LAOKZnCho7ZSU+QsKD/xj/dGdJ7sBhXj+me5TfqNC09XYkMFWrflXzaQDNNQ
+	 OZ5pSaAh4kmIUOZAqaDqcc0IY8zbT/hin9tCUxlYYV2Jc3Prb9eV1AlTYXWQ52k/I9
+	 n970kjUglMTgv3BTOhwkSCeScNWJGFTuIy66YOjDqFiGa9h9tzIBvO32Ye+88yGSJF
+	 sAYahW5OCfXEw==
+Date: Mon, 16 Nov 2026 18:29:51 +0000
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: Alexandru Elisei <alexandru.elisei@arm.com>
+Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev, 
+	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
+	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
+	will@kernel.org, mark.rutland@arm.com, linux-perf-users@vger.kernel.org, 
+	catalin.marinas@arm.com, james.clark@linaro.org
+Subject: Re: [RFC PATCH v7 06/28] KVM: arm64: Add KVM_CAP_ARM_SPE capability
+Message-ID: <avtHrG0NFuUPqIot@gremlin>
+References: <20260903160623.315525-1-alexandru.elisei@arm.com>
+ <20260903160623.315525-7-alexandru.elisei@arm.com>
+ <atDtheEuNRs7v3Gx@gremlin>
+ <avXcdwY89YPFGIlk@raptor>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261116-b4-iommu-passthrough-devs-v1-1-dc5b493f7551@linaro.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_102711_743076_6A7B251B 
-X-CRM114-Status: GOOD (  53.06  )
-X-Spam-Score: -17.6 (-----------------)
+In-Reply-To: <avXcdwY89YPFGIlk@raptor>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,273 +73,507 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 05:37:45PM +0000, Peter Griffin wrote:
-> Currently, the generic IOMMU core only provides an all-or-nothing global
-> switch ('iommu.passthrough={0,1}' and CONFIG_IOMMU_DEFAULT_PASSTHROUGH)
-> to configure default DMA domains in passthrough (IOMMU_DOMAIN_IDENTITY)
-> mode at boot time.
-> 
-> Add an 'iommu.passthrough_devs=<dev_name>[,<dev_name>...]' early
-> command-line parameter. When allocating the default domain for a group in
-> iommu_group_alloc_default_domain(), if no mandatory domain type override
-> is present, check whether any device in the group (or any of its
-> parent/bridge devices via dev->parent) matches 'iommu.passthrough_devs'
-> and request IOMMU_DOMAIN_IDENTITY, warning and falling back to
-> IOMMU_DOMAIN_DMA if identity domains are unsupported (consistent with
-> 'iommu.passthrough=1').
-> 
-> Device names match dev_name(), such as PCI BDFs ('0000:01:00.0'),
+(Sorry for some reason my mail provider completely dropped this mail + a bunch
+from the 11th even though it's on-list, weird...!)
 
-I believe BDFs are not reliable as they can change based on how Linux
-enumerates the bus and hotplug.
-Probably we'd need something as pci_dev_str_match() which is used
-in other cmdline options.
+As a general note - thanks for the detailed explanations below, really
+appreciated! :)
 
-Thanks,
-Mostafa
+On Thu, Nov 12, 2026 at 03:34:15PM +0000, Alexandru Elisei wrote:
+> Hi Lorenzo,
+>
+> On Thu, Oct 15, 2026 at 05:51:03PM +0100, Lorenzo Stoakes (ARM) wrote:
+> > On Thu, Sep 03, 2026 at 05:06:01PM +0100, Alexandru Elisei wrote:
+> > > Add the SPE capability that will be used by userspace to test if KVM
+> > > supports SPE virtualization.
+> >
+> > You are also adding spe.c too right? Which is adding functionality for the
+> > perf driver to call into? Probably worth mentioning that you're adding the
+> > foundations of this stuff in the commit message also.
+>
+> Done.
+>
+> >
+> > >
+> > > The SPE driver supports heterogenous systems. Keep track of all the
+> > > available Statistical Profiling Units (SPUs) in the system, because KVM
+> > > will require the user to associate a VM with exactly one SPU.
+> >
+> > I guess questions more for my understanding here :)
+> >
+> > Is it one SPU per core, or is it some property of heterogenous systems,
+> > i.e. 1 per big/LITTLE etc.?
+>
+> Usually one per CPU cluster/group: in a homogeneous CPU, one instance; in a
+> CPU with big cores and little cores, there would be two SPE instances; in a
+> CPU with big, medium and little, three instances. I'm sure it's possible to
+> come up with more exotic configurations.
 
-> Device Tree platform devices ('3c400000.ufs'), or ACPI platform
-> devices ('AMDI0010:00'). Walking dev->parent also allows specifying a
-> parent PCIe host controller or root port (e.g. '3c500000.pcie' or
-> '0000:00:1c.0') to cover its downstream endpoints.
-> 
-> Note: Untrusted PCI devices ('pdev->untrusted') and explicit IOMMU
-> driver '.def_domain_type' requirements continue to take precedence.
-> 
-> Configuring per-device passthrough mode at boot is needed for several
-> use cases:
-> 
-> - Performance tuning and benchmarking: high-throughput storage
->   workloads (e.g. fio benchmarks on UFS) can incur measurable
->   IOPS/latency and CPU overhead from IOMMU page table management and
->   TLB invalidations. Selective device passthrough allows bypassing
->   translation for these devices while keeping IOMMU isolation enabled
->   for other devices in the system.
-> 
-> - SoC/board bringup and debugging: isolating whether a DMA fault or
->   regression is caused by a specific device's IOMMU translation without
->   disabling the IOMMU globally across the entire platform.
-> 
-> Implementing this in the generic IOMMU core allows it to work with
-> ACPI and Device Tree (DT) systems as well as across all IOMMU drivers.
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
-> Hi folks,
-> 
-> This patch follows up on a conversation with Jason Gunthorpe at
-> Linux Plumbers regarding how to upstream support for configuring
-> per-device IOMMU passthrough (IOMMU_DOMAIN_IDENTITY) at boot without
-> abusing Device Tree properties.
-> 
-> Downstream on Google Pixel G5 Laguna platforms, we have historically
-> carried a custom 'iommu-idmapped' DT property parsed by the arm-smmu-v3
-> driver to place specific client devices into bypass mode. As discussed
-> at Plumbers, Device Tree seems the wrong place for this because choosing
-> passthrough vs. translation for a given device can sometimes be an OS
-> policy trade-off where we choose device peak performance at the expense
-> of DMA isolation. This is the case for UFS and PCIe WLAN on Laguna,
-> which share a common SMMU instance with other peripherals (such as DMA
-> controllers, VPU, and ISP) where we want DMA isolation to remain
-> enabled.
-> 
-> A secondary benefit is it could be useful during device bringup and
-> debugging for fault isolation and to work around firmware/device issues
-> before a proper driver quirk is in place.
-> 
-> Instead, I propose handling this in the generic IOMMU core via a
-> kernel command-line parameter. This makes it available uniformly
-> across both Device Tree and ACPI systems and across all IOMMU drivers.
-> 
-> In terms of upstream Laguna support, initial DT support has already
-> landed in tree, along with USB and phy support. Other support for
-> mailbox, clocks, powerdomains, reset is under review in the following
-> series with more to follow.
-> 
-> https://lore.kernel.org/lkml/20261023235408.3063350-1-dianders@chromium.org/
-> https://lore.kernel.org/lkml/20261026214359.3122870-1-briannorris@chromium.org/
-> 
-> Feedback and suggestions are very welcome.
-> 
+Right, that was my understanding.
+
+>
+> The SPE driver supports this partitioning only with device tree, not with
+> ACPI (for now, there's a series on the mailing list to fix this) and it
+> looks at the ppi-partitions node to determine which CPUs are associated
+> with each SPE instance. The node is described in
+> Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml.
+
+OK, makes sense that device tree would be easier first at least.
+
+>
+> For example, look at arch/arm64/boot/dts/rockchip/rk3399-base.dtsi, at the
+> PMU (not SPE) nodes: there's pmu_a53, associated with ppi_cluster0, which
+> is interrupt-partition-0, and it includes CPUs cpu_l0 to cpu_l3 (I assume
+> 'l' here stands for 'little'). Then there's also pmu_a72, associated with
+> ppi_cluster1, which includes CPUs cpu_b0 and cpu_b1 (where 'b' is probably
+> 'big').
+
+Thanks, nice to have an example :)
+
+>
+> If SPE were supported by all the cores, there would have been two
+> instances: spe_a53, associated with ppi_cluster0, and spe_a72, associated
+> with ppi_cluster1. If SPE were supported only on the big cores, there would
+> have been one instance, spe_a72 associated with ppi_cluster1 (naming is
+> obviously not set in stone, that's just an example).
+>
+> I think I know what you're going to say and you are right: yes, there are
+> no device tree files for heterogeneous systems with SPE. Supporting this
+> type of systems was requested by Will Deacon, the SPE driver maintainer,
+> because the SPE driver supports them.
+
+I was going to ask for examples haha. I guess it's chicken-and-egg for anything
+referencing SPE anyway requiring the SPE implementation to go in first in ay
+case.
+
+>
+> >
+> > How can a user decide which? Do you actually expose the ability to select a
+> > named SPU, or is it automatically determined based upon which CPUs are used
+> > by the VM?
+>
+> All SPE instances are exposed in /sys/bus/event_source/devices. This is an
+> example for an Orion O6 board (with ACPI and the driver hacked to make it
+> probe successfully):
+
+Sad that the ACPI hack was needed :( but I guess in any case ACPI support is a
+follow up :)
+
+>
+> $ ls /sys/bus/event_source/devices/
+> total 0
+> lrwxrwxrwx 1 root root 0 Nov 12  2026 arm_spe_0 -> ../../../devices/platform/arm,spe-v1/arm_spe_0/
+> lrwxrwxrwx 1 root root 0 Nov 12  2026 armv8_pmuv3_0 -> ../../../devices/armv8_pmuv3_0/
+> lrwxrwxrwx 1 root root 0 Nov 12  2026 armv8_pmuv3_1 -> ../../../devices/armv8_pmuv3_1/
+> lrwxrwxrwx 1 root root 0 Nov 12  2026 breakpoint -> ../../../devices/breakpoint/
+> lrwxrwxrwx 1 root root 0 Nov 12  2026 kprobe -> ../../../devices/kprobe/
+> lrwxrwxrwx 1 root root 0 Nov 12  2026 software -> ../../../devices/software/
+> lrwxrwxrwx 1 root root 0 Nov 12  2026 tracepoint -> ../../../devices/tracepoint/
+> lrwxrwxrwx 1 root root 0 Nov 12  2026 uprobe -> ../../../devices/uprobe/
+>
+> Notice how there are two PMU instances, but only one SPE instances, that's
+> because not all CPUs have SPE.
+
+Ack.
+
+>
+> It's up to the user to configure which one the VM uses - see patch #13 in
+> the series, "KVM: arm64: Add SPE VCPU device attribute to set the SPE
+> device". As for an example implementation, the user specifies on which
+> physical CPUs the VM runs, and from there kvmtool finds the SPE instance
+> that includes those CPUs. See my kvmtool patches [0], namely
+> spe__init() -> find_pmu() [1] and what find_pmu() does [2].
+
+Ack, thanks!
+
+>
+> Having KVM trying to guess what userspace wants sounds frought with danger
+> to me.
+
+Right, there's a balance to be had.
+
+>
+> Two different SPE instances cannot be used interchangeably, because A. they
+> might be totally different implementations (different versions of SPE,
+> different implemented registers, different events, etc), and even if they
+> are in theory the same, the events they are recording might have different
+> semantics across different CPU clusters. For example, Cortex-A53 is in
+> in-order, Cortex-A72 is out-of-order. How is the guest going to make sense
+> of any record relating to speculation, and how is the guest going to know
+> which record was for an instruction sampled on which core?
+
+Yeah that's... interesting :) I hadn't even thought of them as entirely distinct
+pieces of hardware but, of course, they are (albeit as part of a larger SoC).
+
+>
+> [0] https://gitlab.arm.com/linux-arm/kvmtool-ae/-/commit/d93b287acad184be48118448fa8b2c7ae6cae249
+> [1] https://gitlab.arm.com/linux-arm/kvmtool-ae/-/blob/kvm-spe-v7/arm64/spe.c#L111
+> [2] https://gitlab.arm.com/linux-arm/kvmtool-ae/-/blob/kvm-spe-v7/arm64/pmu.c#L195
+>
+> >
+> > What if a VM spans both 'big' and 'LITTLE' cores?
+>
+> I think you might have answered that yourself, judging from your subsequent
+> comments :) Similar to the PMU, KVM will not allow that, and a VCPU will
+> exit with KVM_EXIT_FAIL_ENTRY if it's scheduled on a physical CPU that is
+> not part of the cluser that belongs to the SPE instance assigned to the VM.
+
+Yes :)
+
+>
+> In general, even if KVM might allow the user to create a VM with VCPUs with
+> mismatched features, this is not supported and it will almost definitely
+> blow up at some point. At least, that was the stance of the KVM maintainer
+> a few years ago, when KVM_ARM_VCPU_PMU_V3_SET_PMU was added.
+
+Right.
+
+>
+> >
+> > >
+> > > Signed-off-by: Alexandru Elisei <alexandru.elisei@arm.com>
+> > > ---
+> > >  Documentation/virt/kvm/api.rst   | 10 ++++++
+> > >  arch/arm64/include/asm/kvm_spe.h | 18 ++++++++++
+> > >  arch/arm64/kvm/Makefile          |  1 +
+> > >  arch/arm64/kvm/arm.c             |  4 +++
+> > >  arch/arm64/kvm/spe.c             | 56 ++++++++++++++++++++++++++++++++
+> > >  drivers/perf/arm_spe_pmu.c       |  4 +++
+> > >  include/linux/perf/arm_spe_pmu.h | 12 +++++++
+> >
+> > The KVM arm MAINTAINERS entry has:
+> >
+> > F:	arch/arm64/kvm/
+> > F:	include/kvm/arm_*
+> >
+> > So arch/arm64/kvm/spe.c and include/linux/perf/arm_spe_pmu.h don't need any
+> > updates there.
+> >
+> > >  include/uapi/linux/kvm.h         |  1 +
+> > >  8 files changed, 106 insertions(+)
+> > >  create mode 100644 arch/arm64/include/asm/kvm_spe.h
+> > >  create mode 100644 arch/arm64/kvm/spe.c
+> > >
+> > > diff --git a/Documentation/virt/kvm/api.rst b/Documentation/virt/kvm/api.rst
+> > > index e0430cc750c9..1ed5c389c7a4 100644
+> > > --- a/Documentation/virt/kvm/api.rst
+> > > +++ b/Documentation/virt/kvm/api.rst
+> > > @@ -9600,6 +9600,16 @@ take care to differentiate between these cases.
+> > >  The presence of this capability indicates that the nested KVM guest can
+> > >  start in ESA mode.
+> > >
+> > > +8.48 KVM_CAP_ARM_SPE
+> > > +--------------------
+> > > +
+> > > +:Capability: KVM_CAP_ARM_SPE
+> > > +:Architectures: arm64
+> > > +:Type: vm
+> > > +
+> > > +This capability indicates that Statistical Profiling Extension (SPE)
+> > > +virtualization is available in KVM.
+> >
+> > Is it worth adding something here about the perf driver? As this seems key
+> > to the thing. Or is that too much of an implementation detail?
+>
+> I'll add something, because I don't think the dependency is obvious.
+>
+> >
+> > > +
+> > >  9. Known KVM API problems
+> > >  =========================
+> > >
+> > > diff --git a/arch/arm64/include/asm/kvm_spe.h b/arch/arm64/include/asm/kvm_spe.h
+> > > new file mode 100644
+> > > index 000000000000..f05e6d3f5705
+> > > --- /dev/null
+> > > +++ b/arch/arm64/include/asm/kvm_spe.h
+> > > @@ -0,0 +1,18 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > +/*
+> > > + * Copyright (C) 2021 - ARM Ltd
+> > > + */
+> > > +
+> > > +#ifndef __ARM64_KVM_SPE_H__
+> > > +#define __ARM64_KVM_SPE_H__
+> > > +
+> > > +#ifdef CONFIG_KVM_ARM_SPE
+> > > +bool kvm_supports_spe(void);
+> > > +#else
+> > > +static __always_inline bool kvm_supports_spe(void)
+> >
+> > Very nitty, but not sure if __always_inline is strictly necessary, you'd hope
+> > that the compiler would naturally inline a false on optimisation :)
+>
+> I think that's an artifact from an earlier iteration, when it was called
+> from the hyp object, which is a different namespace than the rest of the
+> kernel and the __always_inline was required to make sure the function was
+> copied at the call sites.
+>
+> I'll remove.
+>
+> >
+> > > +{
+> > > +	return false;
+> > > +}
+> > > +#endif /* CONFIG_KVM_ARM_SPE */
+> > > +
+> > > +#endif /* __ARM64_KVM_SPE_H__ */
+> > > diff --git a/arch/arm64/kvm/Makefile b/arch/arm64/kvm/Makefile
+> > > index 59612d2f277c..9ee271f713cd 100644
+> > > --- a/arch/arm64/kvm/Makefile
+> > > +++ b/arch/arm64/kvm/Makefile
+> > > @@ -29,6 +29,7 @@ kvm-y += arm.o mmu.o mmio.o psci.o hypercalls.o pvtime.o \
+> > >  kvm-$(CONFIG_HW_PERF_EVENTS)  += pmu-emul.o pmu.o
+> > >  kvm-$(CONFIG_ARM64_PTR_AUTH)  += pauth.o
+> > >  kvm-$(CONFIG_PTDUMP_STAGE2_DEBUGFS) += ptdump.o
+> > > +kvm-$(CONFIG_KVM_ARM_SPE)     += spe.o
+> > >
+> > >  kvm-$(CONFIG_NVHE_EL2_TRACING) += hyp_trace.o
+> > >
+> > > diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+> > > index 8b080804bc90..eca1184ef9dd 100644
+> > > --- a/arch/arm64/kvm/arm.c
+> > > +++ b/arch/arm64/kvm/arm.c
+> > > @@ -42,6 +42,7 @@
+> > >  #include <asm/kvm_nested.h>
+> > >  #include <asm/kvm_pkvm.h>
+> > >  #include <asm/kvm_ptrauth.h>
+> > > +#include <asm/kvm_spe.h>
+> > >  #include <asm/sections.h>
+> > >  #include <asm/stacktrace/nvhe.h>
+> > >
+> > > @@ -468,6 +469,9 @@ int kvm_vm_ioctl_check_extension(struct kvm *kvm, long ext)
+> > >  	case KVM_CAP_ARM_PMU_V3_STRICT:
+> > >  		r = kvm_supports_guest_pmuv3();
+> > >  		break;
+> > > +	case KVM_CAP_ARM_SPE:
+> > > +		r = kvm_supports_spe();
+> > > +		break;
+> > >  	case KVM_CAP_ARM_INJECT_SERROR_ESR:
+> > >  		r = cpus_have_final_cap(ARM64_HAS_RAS_EXTN);
+> > >  		break;
+> > > diff --git a/arch/arm64/kvm/spe.c b/arch/arm64/kvm/spe.c
+> > > new file mode 100644
+> > > index 000000000000..646806a60d66
+> > > --- /dev/null
+> > > +++ b/arch/arm64/kvm/spe.c
+> > > @@ -0,0 +1,56 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * Copyright (C) 2021 - ARM Ltd
+> > > + */
+> > > +
+> > > +#include <linux/cpumask.h>
+> > > +#include <linux/kvm_host.h>
+> > > +#include <linux/perf/arm_spe_pmu.h>
+> > > +
+> > > +#include <asm/kvm_spe.h>
+> > > +#include <asm/sysreg.h>
+> >
+> > NIT: include <linux/cleanup.h> for guard(mutex)() etc.?
+>
+> Ok.
+>
+> >
+> > > +
+> > > +static LIST_HEAD(spe_pmus);
+> > > +static DEFINE_MUTEX(spe_pmus_lock);
+> > > +
+> > > +struct spe_pmu_entry {
+> > > +	struct list_head link;
+> > > +	struct arm_spe_pmu *spe_pmu;
+> > > +};
+> >
+> > This seems like an odd way of making this into a list, can't you just embed
+> > list_head in arm_spe_pmu?
+> >
+> > Then adding becomes:
+> >
+> > list_add_tail(&spe_pmu->link, &spu_pmus);
+> >
+> > And removing:
+> >
+> > list_del(&spe_pmu->link);
+> >
+> > And you can avoid the alloc below too.
+>
+> This is the same pattern used for the PMU. Seems like a small thing, so I
+> think consistency is better? I don't expect more than three SPE instances
+> in a system (little + medium + big), so the extra 3 * 8 bytes should not be
+> an issue?
+>
+> On the other hand, it is indeed more common to embed list_head in struct
+> arm_spe_pmu. Up to you what you prefer.
+
+I'd prefer the embedded, and I think we shouldn't be too intent on following
+PMU's patterns _entirely_, especially in a case like this which really
+significantly simplifies everything.
+
+>
+> >
+> >
+> > > +
+> > > +void kvm_spe_add_instance(struct arm_spe_pmu *spe_pmu)
+> >
+> > Hmm I'm guessing this is per-SPU but no mention of SPU in the function
+> > name? Is an 'SPE instance' equivalent?
+>
+> Yes, they are equivalent, my bad for not explaining it properly.
+>
+> >
+> > If so, maybe worth referencing SPE instances rather than SPUs in the commit
+> > message, or at least say something like 'otherwise known as SPE instances'.
+>
+> Indeed, done.
+>
+> >
+> > > +{
+> > > +	struct spe_pmu_entry *entry;
+> > > +
+> > > +	guard(mutex)(&spe_pmus_lock);
+> > > +
+> > > +	entry = kmalloc(sizeof(*entry), GFP_KERNEL);
+> >
+> > The convention is kmalloc_obj() now. Which also lets you elide GFP_KERNEL
+> > so this can be:
+>
+> Done.
+>
+> >
+> > 	entry = kmalloc_obj(*entry);
+> >
+> > > +	if (!entry)
+> > > +		return;
+> >
+> > Hmm, shouldn't failing to allocate here be an error, or at least a warning?
+>
+> I don't think it's something that should cause the probe to fail. I could
+> add a warning, I guess, to let the user know why KVM_CAP_ARM_SPE is missing
+> even though the SPE module was loaded successfully.
+
+Ack thanks!
+
+>
+> >
+> > > +
+> > > +	entry->spe_pmu = spe_pmu;
+> > > +	list_add_tail(&entry->link, &spe_pmus);
+> > > +}
+> > > +EXPORT_SYMBOL_FOR_MODULES(kvm_spe_add_instance, "arm_spe_pmu");
+> > > +
+> > > +void kvm_spe_remove_instance(struct arm_spe_pmu *spe_pmu)
+> > > +{
+> > > +	struct spe_pmu_entry *entry, *tmp;
+> > > +
+> > > +	guard(mutex)(&spe_pmus_lock);
+> > > +
+> > > +	list_for_each_entry_safe(entry, tmp, &spe_pmus, link) {
+> >
+> > You break once you find the entry, so doesn't have to be the _safe variant.
+>
+> Hmm... in my head, the _safe variant was always associated with deletion,
+> and not having the safe variant might cause a bug, if in the future, the
+> body of the loop is modified and the break removed.
+>
+> Do you strongly oppose to keeping the safe variant?
+
+Well with the embedded list_head it becomes moot and you can just drop it
+altogether, as below :)
+
+
+>
 > Thanks,
-> 
-> Peter
-> ---
->  Documentation/admin-guide/kernel-parameters.txt | 11 ++++
->  drivers/iommu/iommu.c                           | 76 +++++++++++++++++++++++--
->  2 files changed, 82 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> index c343bc9a0d28..926380cb1e99 100644
-> --- a/Documentation/admin-guide/kernel-parameters.txt
-> +++ b/Documentation/admin-guide/kernel-parameters.txt
-> @@ -2689,6 +2689,17 @@ Kernel parameters
->  			1 - Bypass the IOMMU for DMA.
->  			unset - Use value of CONFIG_IOMMU_DEFAULT_PASSTHROUGH.
->  
-> +	iommu.passthrough_devs=
-> +			[KNL,EARLY] Configure DMA to bypass the IOMMU by default
-> +			for specific devices.
-> +			Format: <dev_name>[,<dev_name>...]
-> +			Specify a comma-separated list of device names (matching
-> +			dev_name() of the client device or any of its parent/bridge
-> +			devices) whose IOMMU groups should default to passthrough
-> +			(identity) mode (e.g. "0000:01:00.0" for PCI,
-> +			"3c400000.ufs" for Device Tree, or
-> +			"AMDI0010:00" for ACPI).
-> +
->  	iommu.debug_pagealloc=
->  			[KNL,EARLY] When CONFIG_IOMMU_DEBUG_PAGEALLOC is set, this
->  			parameter enables the feature at boot time. By default, it
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index b486b8bbd1fc..0a7796e0311e 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -33,6 +33,7 @@
->  #include <trace/events/iommu.h>
->  #include <linux/sched/mm.h>
->  #include <linux/msi.h>
-> +#include <linux/string.h>
->  #include <uapi/linux/iommufd.h>
->  #include <linux/generic_pt/iommu.h>
->  
-> @@ -43,9 +44,12 @@ static struct kset *iommu_group_kset;
->  static DEFINE_IDA(iommu_group_ida);
->  static DEFINE_IDA(iommu_global_pasid_ida);
->  
-> +#define IOMMU_PASSTHROUGH_DEVS_MAX_LEN	256
-> +
->  static unsigned int iommu_def_domain_type __read_mostly;
->  static bool iommu_dma_strict __read_mostly = IS_ENABLED(CONFIG_IOMMU_DEFAULT_DMA_STRICT);
->  static u32 iommu_cmd_line __read_mostly;
-> +static char iommu_passthrough_devs[IOMMU_PASSTHROUGH_DEVS_MAX_LEN] __read_mostly;
->  
->  /* Tags used with xa_tag_pointer() in group->pasid_array */
->  enum { IOMMU_PASID_ARRAY_DOMAIN = 0, IOMMU_PASID_ARRAY_HANDLE = 1 };
-> @@ -805,6 +809,27 @@ static int __init iommu_set_def_domain_type(char *str)
->  }
->  early_param("iommu.passthrough", iommu_set_def_domain_type);
->  
-> +static int __init iommu_set_passthrough_devs(char *str)
-> +{
-> +	size_t len;
-> +
-> +	if (!str || !*str)
-> +		return -EINVAL;
-> +
-> +	len = strlen(iommu_passthrough_devs);
-> +	if (len + (len ? 1 : 0) + strlen(str) >= IOMMU_PASSTHROUGH_DEVS_MAX_LEN) {
-> +		pr_warn("Too long list of device names for 'iommu.passthrough_devs'!\n");
-> +		return -EINVAL;
-> +	}
-> +	if (len)
-> +		iommu_passthrough_devs[len++] = ',';
-> +
-> +	strscpy(iommu_passthrough_devs + len, str,
-> +		IOMMU_PASSTHROUGH_DEVS_MAX_LEN - len);
-> +	return 0;
-> +}
-> +early_param("iommu.passthrough_devs", iommu_set_passthrough_devs);
-> +
->  static int __init iommu_dma_setup(char *str)
->  {
->  	int ret = kstrtobool(str, &iommu_dma_strict);
-> @@ -1750,14 +1775,45 @@ __iommu_group_alloc_default_domain(struct iommu_group *group, int req_type)
->  	return ERR_PTR(-EINVAL);
->  }
->  
-> +static bool iommu_is_passthrough_dev(struct device *dev)
-> +{
-> +	for (; dev; dev = dev->parent) {
-> +		const char *name = dev_name(dev);
-> +
-> +		if (name && *name &&
-> +		    parse_option_str(iommu_passthrough_devs, name))
-> +			return true;
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static struct device *iommu_group_passthrough_dev(struct iommu_group *group)
-> +{
-> +	struct group_device *gdev;
-> +
-> +	if (!iommu_passthrough_devs[0])
-> +		return NULL;
-> +
-> +	for_each_group_device(group, gdev) {
-> +		if (iommu_is_passthrough_dev(gdev->dev))
-> +			return gdev->dev;
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
->  /*
->   * req_type of 0 means "auto" which means to select a domain based on
-> - * iommu_def_domain_type or what the driver actually supports.
-> + * iommu.passthrough_devs, iommu_def_domain_type, or what the driver
-> + * actually supports.
->   */
->  static struct iommu_domain *
->  iommu_group_alloc_default_domain(struct iommu_group *group, int req_type)
->  {
->  	const struct iommu_ops *ops = dev_iommu_ops(iommu_group_first_dev(group));
-> +	unsigned int def_type = iommu_def_domain_type;
-> +	struct device *pt_dev = NULL;
->  	struct iommu_domain *dom;
->  
->  	lockdep_assert_held(&group->mutex);
-> @@ -1777,19 +1833,29 @@ iommu_group_alloc_default_domain(struct iommu_group *group, int req_type)
->  		return __iommu_group_alloc_default_domain(group, req_type);
->  
->  	/* The driver gave no guidance on what type to use, try the default */
-> -	dom = __iommu_group_alloc_default_domain(group, iommu_def_domain_type);
-> -	if (!IS_ERR(dom))
-> +	if (def_type != IOMMU_DOMAIN_IDENTITY) {
-> +		pt_dev = iommu_group_passthrough_dev(group);
-> +		if (pt_dev)
-> +			def_type = IOMMU_DOMAIN_IDENTITY;
-> +	}
-> +
-> +	dom = __iommu_group_alloc_default_domain(group, def_type);
-> +	if (!IS_ERR(dom)) {
-> +		if (pt_dev && dom != group->default_domain)
-> +			dev_info(pt_dev,
-> +				 "Setting default IOMMU domain to passthrough via command line\n");
->  		return dom;
-> +	}
->  
->  	/* Otherwise IDENTITY and DMA_FQ defaults will try DMA */
-> -	if (iommu_def_domain_type == IOMMU_DOMAIN_DMA)
-> +	if (def_type == IOMMU_DOMAIN_DMA)
->  		return ERR_PTR(-EINVAL);
->  	dom = __iommu_group_alloc_default_domain(group, IOMMU_DOMAIN_DMA);
->  	if (IS_ERR(dom))
->  		return dom;
->  
->  	pr_warn("Failed to allocate default IOMMU domain of type %u for group %s - Falling back to IOMMU_DOMAIN_DMA",
-> -		iommu_def_domain_type, group->name);
-> +		def_type, group->name);
->  	return dom;
->  }
->  
-> 
-> ---
-> base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
-> change-id: 20261106-b4-iommu-passthrough-devs-03b7c957ac69
-> 
-> Best regards,
-> -- 
-> Peter Griffin <peter.griffin@linaro.org>
-> 
+> Alex
+>
+> >
+> > But can avoid all the complexity with an embedded list_head in the spe_pmu
+> > type if it's possible to put it there!
+> >
+> > > +		if (entry->spe_pmu == spe_pmu) {
+> > > +			list_del(&entry->link);
+> > > +			kfree(entry);
+> > > +			break;
+> > > +		}
+> > > +	}
+> > > +}
+> > > +EXPORT_SYMBOL_FOR_MODULES(kvm_spe_remove_instance, "arm_spe_pmu");
+> > > +
+> > > +bool kvm_supports_spe(void)
+> > > +{
+> > > +	guard(mutex)(&spe_pmus_lock);
+> > > +	return !list_empty(&spe_pmus);
+> > > +}
+> > > diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
+> > > index 42ba0924bd02..f24b122a087c 100644
+> > > --- a/drivers/perf/arm_spe_pmu.c
+> > > +++ b/drivers/perf/arm_spe_pmu.c
+> > > @@ -1370,6 +1370,8 @@ static int arm_spe_pmu_device_probe(struct platform_device *pdev)
+> > >  	if (ret)
+> > >  		goto out_teardown_dev;
+> > >
+> > > +	kvm_spe_add_instance(spe_pmu);
+> > > +
+> > >  	return 0;
+> > >
+> > >  out_teardown_dev:
+> > > @@ -1383,6 +1385,8 @@ static void arm_spe_pmu_device_remove(struct platform_device *pdev)
+> > >  {
+> > >  	struct arm_spe_pmu *spe_pmu = platform_get_drvdata(pdev);
+> > >
+> > > +	kvm_spe_remove_instance(spe_pmu);
+> > > +
+> > >  	arm_spe_pmu_perf_destroy(spe_pmu);
+> > >  	arm_spe_pmu_dev_teardown(spe_pmu);
+> > >  	free_percpu(spe_pmu->handle);
+> > > diff --git a/include/linux/perf/arm_spe_pmu.h b/include/linux/perf/arm_spe_pmu.h
+> > > index 97b14e236fcd..bdb703558a87 100644
+> > > --- a/include/linux/perf/arm_spe_pmu.h
+> > > +++ b/include/linux/perf/arm_spe_pmu.h
+> > > @@ -49,4 +49,16 @@ struct arm_spe_pmu {
+> > >
+> > >  #define to_spe_pmu(p) (container_of(p, struct arm_spe_pmu, pmu))
+> > >
+> > > +#ifdef CONFIG_KVM_ARM_SPE
+> > > +void kvm_spe_add_instance(struct arm_spe_pmu *spe_pmu);
+> > > +void kvm_spe_remove_instance(struct arm_spe_pmu *spe_pmu);
+> > > +#else
+> > > +static inline void kvm_spe_add_instance(struct arm_spe_pmu *spe_pmu)
+> > > +{
+> > > +}
+> > > +static inline void kvm_spe_remove_instance(struct arm_spe_pmu *spe_pmu)
+> > > +{
+> > > +}
+> > > +#endif /* CONFIG_KVM_ARM_SPE */
+> > > +
+> > >  #endif /* __PERF_ARM_SPE_PMU_H__ */
+> > > diff --git a/include/uapi/linux/kvm.h b/include/uapi/linux/kvm.h
+> > > index ac2d77d14963..1565a609890b 100644
+> > > --- a/include/uapi/linux/kvm.h
+> > > +++ b/include/uapi/linux/kvm.h
+> > > @@ -999,6 +999,7 @@ struct kvm_enable_cap {
+> > >  #define KVM_CAP_S390_HPAGE_2G 249
+> > >  #define KVM_CAP_PPC_COMPAT_CAPS 250
+> > >  #define KVM_CAP_ARM_PMU_V3_STRICT 251
+> > > +#define KVM_CAP_ARM_SPE 252
+> > >
+> > >  struct kvm_irq_routing_irqchip {
+> > >  	__u32 irqchip;
+> > > --
+> > > 2.43.0
+> > >
+> > >
+> >
+> > --
+> > Cheers, Lorenzo
+
+--
+Cheers, Lorenzo
 
