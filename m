@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F92C606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 08:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A76606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 08:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fkJT1wnW;
-	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=kY/1Xfsr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xlT6V4Ep;
+	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=VuhyJApc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,35 +14,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6zLq5fm3OmZRvOt3lyD6r9AW3NWjUqASxeSxrYrs2BI=; b=fkJT1wnWUfygYk6YRz7Q55rF6s
-	ZC1nFvq7SWfdP50o8fnQmyseUX8mYaCIy+VTmVxfHnclYJd9tYxb2S5Pxc1gq9WCGD3N/TAiYWLUD
-	9yolIWzeDFD53lNs8DTIs8NiupQOIXrKTeRmJoaSAOCFRNmltlo9a22b2lH8XcOBQ2q1y1FTOOO2q
-	JyWrwwdXeH9LUP06YUCeEcsTTpKTYZeqath+kRjIxLFp+nVxzTASw5jyErqw33CTCKz2DoP15XR1u
-	1bKGrk/Wr1B60aDFNyErov1Pt6CpWT2OdD/NZAg1DQcp4lrXpXJV0DTE5lLMR7eSp/mKZI+Bxkxy5
-	ztN0wiyA==;
+	bh=dKvcVIFhr+1EjKzd87mrkJtUpo8rJyi2I3oWszDEnAY=; b=xlT6V4EpVfyLJN5br5ocOka6gs
+	G7H7UPrdoN/laAED09FTiQstHOKKzfSCPqZb2D19Mc/IikEfQuhfc9z8K2bzk9JJ/vUJvEnYABEE7
+	/pJAEM0PncZyJFsivgXORNEBuBZ3kV7HvU2zldUU01azfpqUbXmFzH4bFVckfyWCt6A1aNLK8OvU2
+	zSEaXSIkzLnrGLIvyOhxOq9HGFEOkNpueSkPRT1wHdPVqqbT3ipSCQUImIfStxzKQP5Q0SN7mProE
+	4I/PvJsrHXzsK6oZwY4Fq2Z7RF1uoBqZ9C/8N3Vhcnebf9Siw4kUeB0X0OsjlrW1476GY0cktGbZM
+	ZsnW7xAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSryv-00000001Z7E-3blw;
-	Mon, 16 Nov 2026 08:22:29 +0000
+	id 1xSrz2-00000001ZDx-03Lc;
+	Mon, 16 Nov 2026 08:22:36 +0000
 Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSryt-00000001Z3q-0Mwx
+	id 1xSryx-00000001Z8y-42fl
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 08:22:28 +0000
+	Mon, 16 Nov 2026 08:22:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=6zLq
-	5fm3OmZRvOt3lyD6r9AW3NWjUqASxeSxrYrs2BI=; b=kY/1XfsrFQOr3WDOyqw+
-	BL+DpZczzezRMyxqyf9OH83LcdouDCP1xAlUsADWy3VQQ05SwrYUo1ADp/Go6AFA
-	VBgRXaVE+2xBIrpsXOwRn3GGMn86wHIhKSV1f8JpfsgoZX0tDqpUkQSjDaktOYPd
-	IfqOVQLe4VSglZ27RfzoTwI/fu8lnfxcRBEPDC3RXAm0ZhD1vG60GDjUdPy5sSxb
-	S1uDmBwnEUWdtvDPNUH+JpM5NLAc+3T9T/GDLGmDfcYJe2QntA1c++ddmIV49kbd
-	LqYdLHiHnoldnzqrQrLTFjBYRspF54oVVay4gUsDPExcbnXW+qh7uFHZmiIUBobE
-	uQ==
-Received: (qmail 1194710 invoked from network); 16 Nov 2026 09:22:24 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Nov 2026 09:22:24 +0100
-X-UD-Smtp-Session: l3s3148p1@jrU8emBg4qoujnv5
-Date: Mon, 16 Nov 2026 09:22:24 +0100
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=dKvc
+	VIFhr+1EjKzd87mrkJtUpo8rJyi2I3oWszDEnAY=; b=VuhyJApcECKBIkDK7t3v
+	ZJ0qCN5fco1JwcdA9llunh3yL4dCYZXDPsS7oi8xxB0fBUxJRX9Io3M7skT519SC
+	a3P+0Ibj3oJr4T4xlE9I7+sgxJK4HGfalxqtZErBJFUpZtRqR/e+cbT98XDsgS1n
+	K/vmBaM54Dv3yaqJy3yaRFcmiDyJZStrPr8gDd7xwR0X+BiFBkYPlItxy+XcnUk2
+	akcZ/TZOYyUfpH561NeKFkbE7b6wWvMCQYzau3OexUi/E1DZTmlP/hIAwnLiZS9t
+	/kHia6WmBXgKFOAoFL2tfPuZ+hvyRTMF86kf8v7i2c8YQyw/Y0upa1HtgTsCU6NS
+	9Q==
+Received: (qmail 1194830 invoked from network); 16 Nov 2026 09:22:29 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Nov 2026 09:22:29 +0100
+X-UD-Smtp-Session: l3s3148p1@06iIemBg7qoujnv5
+Date: Mon, 16 Nov 2026 09:22:29 +0100
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -64,19 +64,19 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
 	linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 3/8] reset: Extract __reset_control_get_from_provider()
-Message-ID: <avq9QEAGR-C0EZuR@shikoro>
+Subject: Re: [PATCH v4 4/8] reset: Add
+ reset_control_get_from_provider_exclusive()
+Message-ID: <avq9RULt4TRM7g0j@shikoro>
 References: <cover.1792163045.git.geert+renesas@glider.be>
- <7df36f036d72403260a51491cd6c3d387f0dfed7.1792163045.git.geert+renesas@glider.be>
+ <b9e68c8df1e545191e0359dba23fe53de31a4ce5.1792163045.git.geert+renesas@glider.be>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7df36f036d72403260a51491cd6c3d387f0dfed7.1792163045.git.geert+renesas@glider.be>
+In-Reply-To: <b9e68c8df1e545191e0359dba23fe53de31a4ce5.1792163045.git.geert+renesas@glider.be>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_002227_425567_D60B4AB6 
-X-CRM114-Status: UNSURE (   8.83  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261116_002232_295513_66279CD1 
+X-CRM114-Status: GOOD (  10.96  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,12 +95,19 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Oct 16, 2026 at 05:55:42PM +0200, Geert Uytterhoeven wrote:
-> Extract the code to create a reset_control structure from a given
-> provider into its own function, so it can be reused later.
+On Fri, Oct 16, 2026 at 05:55:43PM +0200, Geert Uytterhoeven wrote:
+> When stacking two reset controllers, the upper one should go through the
+> proper channels: request exclusive reset controls and use them via the
+> reset_control_*() APIs.  However, unlike the clock subsystem, which has
+> of_clk_get_from_provider(), the reset subsystem does not offer a way to
+> lookup and obtain a reset from a reset provider.
+> 
+> Hence add a public helper reset_control_get_from_provider_exclusive()
+> to lookup and obtain an exclusive reference to a reset controller, based
+> on the recently introduced __reset_control_get_from_provider() helper.
+> This will be used by the R-Car X5H Module Controller driver.
 > 
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
 Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
