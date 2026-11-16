@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C55606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 04:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95046606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 04:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LgzjjuYG;
-	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=i6lUbos2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OQ7XO53e;
+	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=r5p35Vat
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Content-Type:
@@ -14,69 +14,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0RTPkBSn8aHOwll0NIb+MH6Rxh2TXo2nlFC6RRntyeU=; b=LgzjjuYGEgU1jeI1Y8+R6Mq5Nb
-	2UH7ASNGAF4AoPfKwP0liFMQ1SYqOhWtmuJC1PqgGgSGM+GLA+NgYvTjMkKy4aEqFPCZCvMdHeNRZ
-	g17Cl0uy5oUX+A42yjeYWyeWXllSZprv+AGfgQ2EBPTWL/AZFQYUq72GCccYUDdn3HkWJOwh+Eq3y
-	yFde5wVDpS3Hw3staKPWnzak4UJ38KjpQOd+7Q0fArnL+kKGekJgJd2jR1aDmchB+xCYQket9hDJU
-	AFmJnTVuIp2tDaTxyo8m7ORZ77snlr9GyyIKcbSaf/4Kcxlt/GqwphTm/nqYY7FCTMrxxKzFwtHK5
-	2y7Thhhg==;
+	bh=yb0ouDgf9S/OdWev3vcVfqdIAaKZrYAoDUUyKNG3AEU=; b=OQ7XO53eyp5knRl8pkvp9QTSej
+	lij+rqDdwdQl4GErxCDA2xFM0gJp7GwpB80UWqkvoInvzKa8aTE0pjnDjIcWpzmyZwjZ7KPpLVoiQ
+	/S43d7sO3pg1YJBejPSiJig/1M1QXw/jbMj6x5OHFtIoOwMSGPLNuJGXR+4V6hdSOtlWKSoKfccX2
+	w2yracuOhP5H0zDZBwQN7CskcvB3/6rh58DU/7VnyTg1krFIgJJj0rs67V1XE5cYiaiEQXR0iClfB
+	H7a1jXO/w1jSi+7Pv73B7TiTQXWfMY2MCREuDc170qtxoNzrBluth93cE3wr31fTfDehTpf5S3VoN
+	rfC2vRig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSoQE-000000018Ig-3VI8;
-	Mon, 16 Nov 2026 04:34:26 +0000
-Received: from mail-dl1-x122c.google.com ([2607:f8b0:4864:20::122c])
+	id 1xSoQQ-000000018PG-07Wb;
+	Mon, 16 Nov 2026 04:34:38 +0000
+Received: from mail-dl1-x1236.google.com ([2607:f8b0:4864:20::1236])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSoQB-000000018Ht-28dv
+	id 1xSoQF-000000018In-3hyH
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 04:34:24 +0000
-Received: by mail-dl1-x122c.google.com with SMTP id a92af1059eb24-1b3b4bcbfc9so3268142c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 20:34:22 -0800 (PST)
+	Mon, 16 Nov 2026 04:34:28 +0000
+Received: by mail-dl1-x1236.google.com with SMTP id a92af1059eb24-1b24f4b15c4so926650c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 20:34:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chrisdown.name; s=google; t=1794803662; x=1795408462; darn=lists.infradead.org;
+        d=chrisdown.name; s=google; t=1794803667; x=1795408467; darn=lists.infradead.org;
         h=user-agent:message-id:content-disposition:content-type:mime-version
          :references:in-reply-to:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=0RTPkBSn8aHOwll0NIb+MH6Rxh2TXo2nlFC6RRntyeU=;
-        b=i6lUbos25DM9xiuGE78IVCufy7DkJupTHD1nOeXxULL8HqSJlbhudyXfUnbXWq9iME
-         o15yVf4V6jvKlzig4haE65+QLB2TLOTubuxoQ2ZcowecO684NY2NUanBToFDcRY7Btlc
-         O2NaE4RdGpRDYU/Fi5mgoTooABUZbwFrgjrL8=
+        bh=yb0ouDgf9S/OdWev3vcVfqdIAaKZrYAoDUUyKNG3AEU=;
+        b=r5p35Vat5n+//hZrG6aP3ksKFGfLA1oMipACe45Dqu/AVh9jChRLNZY9GdNPahXMmp
+         nEFdtd9sVElZ995pZJJehMr+Xugnw621dXZPsBuMMj2ukzOKEYUGjPlMaL7mDOwp2wR/
+         tapb03N9tfwR6j1xonIb4Hn1IpM0J8YzMMwG0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794803662; x=1795408462;
+        d=1e100.net; s=20260707; t=1794803667; x=1795408467;
         h=user-agent:message-id:content-disposition:content-type:mime-version
          :references:in-reply-to:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=0RTPkBSn8aHOwll0NIb+MH6Rxh2TXo2nlFC6RRntyeU=;
-        b=lHnr5XxDK4c5lVhjauDB/hrnhqTDJmlrkLQDIBfhFRyVfh0LV3VsYl39q52KvlN6Bt
-         WCN7WpTqYwuCkxvGiLSsUyFGnKObC+MYpY/ebJIu6fpIvAAMrh/SMsrLHjto/dZcukDw
-         ImLwI7A/CCSYYqJeW+Rz42G4cFdsJpS6hh7RKmHZBdxhD4DhvUCkxy0vq+OdEccw/7ru
-         s6kYidIp4FJptr0fs1n0xT6FRFNaz6ckJaHWIIjEkfoMoDDZPONQUIiUQG6NQTj1qTBP
-         Zy1kQFoqVAoZBzRB+nC257W7u2bgXyzUaP0j0r7tjmtNJhJyZ6N6QrHBDv8D1rqEFaBE
-         dYVg==
-X-Forwarded-Encrypted: i=1; AL+hErErUUQxf5hkaVQKo93pEcgHe73JF82OnTSbLPapPgGywRMWzsGB5nA61ultqyFGZEvC2a0BW5k4upGc7toYJ2Oj@lists.infradead.org
-X-Gm-Message-State: APuU4Z/1J4/E8OTpKmmX5FAIN9mMbGJrbIwH7JUVNwIYC7IeaYHcnR6L
-	T/0GHLFwI3NjsmzBC9wh1yTMaUUVcZfiDkuIgAH4jia7aqNRbIJMsPNsRDnwbmHpVP2R7//HpZn
-	T40tu/NJA4BRN
-X-Gm-Gg: AYBFou0CfI9PfCOpgrkqglwCBxitKaImG3OewbIY6zJINcVQ8BOY3Vol1DZZnV7ZOps
-	gjNWEOPB+0dmsnyyZpYhODu5++qPO7agb86cY+1rjSmqO318SNf1TTaP5pRoZV7HaE6Lfukumjk
-	2yox2ftltWF8LXXeEClr6ale5EjOsL0FiVcS4bzAfVTUtYh3CYEfSyg4jtLJXWHzDSqa1BUogaU
-	ByERO8L9LKdXtrX/tqldFypV4JFr0Kgzjncw2iFgkgHRpSk0C0qeBjbrnHU0nWDqn4MvB5t7ACA
-	q1szsJEmDRAFDUe537pEmdAZFyi9C7SjEkREA5G1VXS3xHNiL2F9NPMnJo87uYzCZr/lEAE1s1Y
-	+RQVWsPqTllTlwFTkLRyBC/M2sD8+OePKdZUhW/3C/k+9OwGbkS7z1AbtcfQShyJjLoNRlfO7qm
-	ygY0aPgnlMjPoRuieMGbdmmq7dzBicMAwMKBdnxySOUtz9sxw9Ol/WtORlaeBR1kbRoQHZfUNYj
-	Fw4yNhB9V9mwiULlh9IeFK/8MjkCOSub/wm0xzJ5keMdPhU78rS6avcSpYXxHig8XyvkG+tLZIM
-	hvjvCwEOj8zmj4UMV8TZDCYVczIr/ynnGa4V5EO9s+sOa2CnynpHi7+m7B1w2cYewoX2sKsDH5X
-	y32f+s0OXbgSfpxdA8dZu6JsFhdFabwKs0ODL6HdYLeOC+r9dVn21pNCRiGh30dxhYlK5X9DZ5H
-	EkksBrhos8epAh+Wc/pCtvga4SHxqYzkYvMzsgN7AwWiaF8tmZKiMs15q4WTDN60BU
-X-Received: by 2002:a05:701b:4508:20b0:194:9e7a:3ba2 with SMTP id a92af1059eb24-1b50306c4d3mr9813315c88.2.1794803662025;
-        Sun, 15 Nov 2026 20:34:22 -0800 (PST)
+        bh=yb0ouDgf9S/OdWev3vcVfqdIAaKZrYAoDUUyKNG3AEU=;
+        b=YqwaN3r6mqg7gVq0jUBGEwtbDJTcNQ1XajmEg1FLESvpD6RzkIFvKCbthf9gH41GFO
+         8UZOTKAUup3bO6Ilb+yyFLLE/qrMIRRAhDihKGsZYk7KIJ6JgMl4OreOQnRdUf2LKNnP
+         uRh8QOMu2lbUQoCq3A+FHBdUX1XmTyHDd0yqblV5pfrMZ8HXFtw9Imae/oJp9Iorpnrt
+         pB+i7zWkDII8r3WrbQpeMI6vpmwgn0rbzgBCyCwyy1MKKAR+admHAJ7knKMAE5aZLoSe
+         iPDDOMv7kjSn22w0ozJP+xJEXyrYubv3ypK73YCN+L2hhnoq/AQ3KCFKHCZzo0INU8OS
+         yoLg==
+X-Forwarded-Encrypted: i=1; AL+hErGmc8clij7FiX4Z4jgfGeatyW9k5pwsZSsngPul7yo8vBM8UpkSYYR3UsvZIK1oveZxCGRmAOY/ngECBEEpV9GO@lists.infradead.org
+X-Gm-Message-State: APuU4Z8jfk9FrF/OmBA1nQsGGv+vjFnYrOpDLFrHlflWXmrfR70eVpzx
+	9PWW1gcEw2vSA6Sgwe8pd3sDSlcVyvGcN9vlDzyn5wWCHnBcnOCN0QJk9rca8cCIScM=
+X-Gm-Gg: AYBFou25ZIwsueM+VuDgjwMpjyhbtCXPVhJBB7UqP6B95N9aflQPUxvyGUbRpL5v5A6
+	EcnVbhXE/7vfZzNS6Zb+Zz2Tf2biY5iJ1C9NlXKLwfSxjVyo+qtakuS1Z7OEeEWj+k22UlO1VxZ
+	1Yre3VsMgsoJTyDXUPBU8m+J0ZCQH9qRpq6CBet/dzkIi+es1FoMQ8F7BqKjQ8u0LO2kiQZFlYp
+	pG1kTviH6KmuJ90w2yKccvRy1eAYhxNfmEpdyc7f+IL5GL0IjXN7N9LNnwXgsR5nBK9yzvpQM8R
+	3ES6E2+a7l+8Xwv/JfnGOsMGCERT6sKUdIhA7cCpfQoZ9XsJolCuYPE9slTkiJMYhofZMnvUH7l
+	yYMHY3zEWtHfx3Eq5zDcMEgI8mRW1v289czRDvFLuvEPi7vwtSWIw1GVntEW1Xn5sqP1S7JsGOc
+	DpXVbJLghSEGxpph6KjU4YfRNjk1COEZwFu9wKrao+jFKudQWeXEvrSBUDvFvxUZWVymTZ6yh6R
+	mEW0L5I/KGZBARS0qli61NqgD4+GEsWbbBW7EAZFHnPDSYxxwv0dSZInzYL4xScfAwPmGxeE2AF
+	PGphhmjULhn9KYJZO93Bzk76G1A74rGpSCIx9O4xa4vE5mR9qfUAXf9PVzzaEZLcIpThXRAHlzC
+	Bm5WF9KyD9a9GVF/zurTVSD5k5RQEpPRBidDJue4UOgJMFeov4I+lvx+EHK6h7mV4domgxLLNnl
+	nv0evVglNpGf2DdIVJWLC2pIvX7d9Z0iCaD4e+epw5woO2j4sIljQkEy7SzO82BvNF
+X-Received: by 2002:a05:7022:b0c5:b0:181:6b8:31f1 with SMTP id a92af1059eb24-1b4f5f3475fmr11110443c88.10.1794803667022;
+        Sun, 15 Nov 2026 20:34:27 -0800 (PST)
 Received: from [172.18.0.2] ([172.56.232.151])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5329ec87bsm2576204c88.0.2026.11.15.20.34.19
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5031918c7sm38362148c88.9.2026.11.15.20.34.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2026 20:34:21 -0800 (PST)
-Date: Sun, 15 Nov 2026 20:34:13 -0800
+        Sun, 15 Nov 2026 20:34:26 -0800 (PST)
+Date: Sun, 15 Nov 2026 20:34:21 -0800
 From: Chris Down <chris@chrisdown.name>
-To: Tarun Sahu <tarunsahu@google.com>
+To: tarunsahu@google.com
 Cc: Pasha Tatashin <pasha.tatashin@soleen.com>,
 	Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, maz@kernel.org,
 	will@kernel.org, David Matlack <dmatlack@google.com>,
@@ -90,20 +89,23 @@ Cc: Pasha Tatashin <pasha.tatashin@soleen.com>,
 	kvm@vger.kernel.org, iommu@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, skhawaja@google.com, sagis@google.com,
 	linux-arch@vger.kernel.org, linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 14/19] liveupdate: Add feature header to struct
-	luo_flb_ser
-In-Reply-To: <20261110050202.529473-15-tarunsahu@google.com>
+Subject: Re: [PATCH v4 05/19] kho: Add feature header for fine-grained ABI
+	compatibility
+In-Reply-To: <9huz5wy4tufo.fsf@tarunix.c.googlers.com>
 References: <20261110050202.529473-1-tarunsahu@google.com>
-	<20261110050202.529473-15-tarunsahu@google.com>
+	<20261110050202.529473-6-tarunsahu@google.com>
+	<DMRMLZSZ0LAZ.D4P70QWX0IHB@soleen.com>
+	<9huz5wy4tufo.fsf@tarunix.c.googlers.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Disposition: inline
-Message-ID: <20261115203413.eaa54fcba43adc22@chrisdown.name>
+Message-ID: <20261115203421.38c206b35f5b12e6@chrisdown.name>
 User-Agent: Mutt/2.4.3 (cc9e3943) (2026-10-09)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_203423_568123_4C39D07A 
-X-CRM114-Status: GOOD (  11.30  )
+X-CRM114-CacheID: sfid-20261115_203427_923782_FB32014A 
+X-CRM114-Status: UNSURE (   8.18  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: 1.2 (+)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,34 +127,24 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 Hi Tarun,
 
-Tarun Sahu writes:
->+	for (u64 i = 0; i < fh->header_ser->count;
->+	     i++, fhdr = (void *)fhdr + fhdr->size) {
->+		struct luo_flb_ser *ser;
->+
->+		err = kho_ser_validate(fhdr, luo_flb_ser);
->+		if (err)
->+			return err;
+tarunsahu@google.com writes:
+>Techinically this is just for readability.
+>
+>WDYT?
 
-I think there's a problem with returning this error as it is. For an
-unknown required feature kho_ser_validate() returns -EOPNOTSUPP, but
-callers of liveupdate_flb_get_incoming() already take -EOPNOTSUPP to mean
-that live update is disabled. pci_liveupdate_flb_get_incoming() returns
-NULL for it, so instead of panicking, PCI carries on as if nothing was
-preserved, even though those devices may still be doing DMA.
+It doesn't help readability in the generated docs, though. kernel-doc
+splits the parameter list on the comma inside the macro, so
+kho_preserve_vmalloc() comes out as
 
- From a quick test with an outgoing kernel hacked to set an unknown
-required bit on its luo_flb_ser entries, that is what happens after the
-kexec, in that the PCI FLB is never retrieved and boot carries on.
+     int kho_preserve_vmalloc (void *ptr, DECLARE_KHO_SER_HDR(kho_vmalloc# *fhdr))
 
-Could you validate the entries once in luo_flb_setup_incoming() instead?
-They are all written with the same header by luo_flb_serialize(), so
-there's no need to check them on every lookup. Going by the code, a
-failure there would panic through luo_restore_fail(), like a bad
-luo_flb_header_ser already does. If the per-entry headers end up going
-away as David suggested, then this check goes away with them, of course.
+and the struct memfd_luo_ser and struct luo_session_ser definitions in the
+ABI docs end up with a member like
 
-Thanks!
+     DECLARE_KHO_SER_HDR(kho_vmalloc folios_fhdr;
+
+I'd go with Pasha's suggestion and use struct kho_ser_hdr directly. The
+pointer can then say which payload follows it with a comment.
 
 Chris
 
