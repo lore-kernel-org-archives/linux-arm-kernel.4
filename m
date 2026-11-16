@@ -2,88 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D74EB606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 11:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 682F3606A883
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 11:52:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n+VMnoIa;
-	dkim=temperror header.d=stu.xidian.edu.cn header.i=@stu.xidian.edu.cn header.a=rsa-sha256 header.s=dkim header.b=w1m941Lq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=deTvu9z/;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=N4qcmHqo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iDn5Jwu6eLfZdF3r4ltGaB9NYIzcoHuDEBvIkhPKqmo=; b=n+VMnoIa407upv
-	D2akGtQXg8eTVa/v4aKNAS6TJOnm8l28dS1cIKjyzaVPg2N1zqg4dUsQCclAYF8mBPrDpHLXoLUIS
-	yVHdmIIkNShNNmJrs4mT9p8Pz2kh2joKOiVOON1/TI0eiijKXD0DXJ3n0ltbhkIeGZ7yTz4u3Y0w+
-	z2DsUQc+otMHXocf1xQ6OYWPzayvdDaNdApB/YaZHbOwhYH9PjbPOQqSpAjEOX58ivys7bEOfPcj5
-	3CzQD3JhLMRR3X4FQW1md40TbKFo/gwnwzldxGXWh21vfg1FbhoGrnK6AOCCx2P1LNtMGmrocInDa
-	5MAul83x9HbTS3SGyxiw==;
+	List-Owner; bh=w26fEEm5ybG+G7gyNNOpBbzc8hwwqjZd0VP12Wt699s=; b=deTvu9z/QIHI2N
+	wtmsvHZoDLnwkHERYl4TJ5GSGWEMamAdG6zdd/lTTJSyxhy3UKHVML6qUEqHjbIDsYrhbZZomFtuK
+	+lAwpFLZ2HJxYJCqPnvkP2W2Y3znHUGhXXKFk8ahMdd4UzQDqpKUHZ6kNIgAKsWcWQ2LLvNV0PW1C
+	7A03ASLNTSDCGmkeayHHe0T4IkYfpJT/BEBswLQwmNQgtE3Vm+1OxP5Jcx2HS3MSa9aaWCIQWeNP9
+	f4K0ennmYDL51XHkL/JbBSEooVDI426vI9pc023ZCEKx7MuEpPc+2c72d2Zpv4zI42GNXmXyRNgyq
+	5pVaZO+WJ08YdWINxdng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvEj-00000002F0q-3m6T;
-	Mon, 16 Nov 2026 11:51:01 +0000
-Received: from zg8tmtyylji0my4xnjqumte4.icoremail.net ([162.243.164.118])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvEV-00000002Etu-2cqZ;
-	Mon, 16 Nov 2026 11:50:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=stu.xidian.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
-	Message-Id:In-Reply-To:References:MIME-Version:
-	Content-Transfer-Encoding; bh=iDn5Jwu6eLfZdF3r4ltGaB9NYIzcoHuDEB
-	vIkhPKqmo=; b=w1m941Lq9P5U3BxeLvEhVlBq3jFmBl7Mp2sx0VjMt2N7cfccMA
-	FqhVNIKOROfLp1i4BY3mcO78X1zJgpuIuZIfwjJP7RIzKi+hDmkUit5A5Ju3RD2v
-	QrBqPleM+ZFm237NwimvLNaTKlfNKaxLR05Vmj0RSHfamXEYO0hMxxtbs=
-Received: from user-virtual-machine.localdomain (unknown [113.200.174.41])
-	by hzbj-edu-front-2.icoremail.net (Coremail) with UTF8SMTPA id BLQMCkB2vwQF7vpqZ6S3AQ--.3956S4;
-	Mon, 16 Nov 2026 19:50:41 +0800 (CST)
-From: YuanZhe Liu <25031212351@stu.xidian.edu.cn>
-To: Felix Fietkau <nbd@nbd.name>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Shayne Chen <shayne.chen@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Bin Yu <byu@xidian.edu.cn>,
-	Cheng Wen <wencheng@xidian.edu.cn>,
-	linux-wireless@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	stable@vger.kernel.org
-Subject: [PATCH 2/2] wifi: mt76: mt7615: fix NULL pointer dereference in mt7615_get_status_freq_info
-Date: Mon, 16 Nov 2026 19:50:28 +0800
-Message-Id: <20261116115028.2766-3-25031212351@stu.xidian.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261116115028.2766-1-25031212351@stu.xidian.edu.cn>
-References: <20261116115028.2766-1-25031212351@stu.xidian.edu.cn>
+	id 1xSvG0-00000002FIQ-13G1;
+	Mon, 16 Nov 2026 11:52:20 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSvFx-00000002FHM-2Rmu;
+	Mon, 16 Nov 2026 11:52:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794829917; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=irrbfyXogddlylcQkZlr6cFYcsiEft7lACg+oXK/70XkypgFcOjhmlPA7bq12bE16XzEfAWJYo4r3oWZcjOf3EUX46INf7/iqVbcT/NRcuNT9mFS7dg9/l2KKYIYPTF8fJlCSwLunT45fEXl/zkUcBQNFCd+V4pflORA2ag13Lk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1794829917; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=w26fEEm5ybG+G7gyNNOpBbzc8hwwqjZd0VP12Wt699s=; 
+	b=D6oNnhh/8JLSRSl95JJcti5S9vsohH8/64oARoV8f0hCc7bQfImSA93NBfkpdwFosA9+xFE864riOu+NhuPED6i9DB1j6vHnT2txkXGIvpK+V9VAYv5NUNVf937QzPzylg+y6IoVhuWf4Nbs0gqve8aq48i8uH8WNoom1ikvaPI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=michael.riesch@collabora.com;
+	dmarc=pass header.from=<michael.riesch@collabora.com>
+DKIM-Signature: a=rsa-sha256; b=N4qcmHqo84guRQyqnmSu5MjnWgmGqqRgJx9a78v6H+YMDg0X2DOyl/HIZmAgFDsvibkEl5CTzA8eowA/zTt1HiGiSi0ht5rNR3SauwE+SxlW6i2xeongA00WAH966tOIosLWnLvvNIaFko5hsiXgrA4AvfVKhjx3Q9zdpAKkMP0=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=w26fEEm5ybG+G7gyNNOpBbzc8hwwqjZd0VP12Wt699s=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zohomail.com with SMTPS id 1794829915540706.1524411200606;
+	Mon, 16 Nov 2026 03:51:55 -0800 (PST)
+Message-ID: <8c3805ca-0be7-4634-8904-30a9c36d8962@collabora.com>
+Date: Mon, 16 Nov 2026 12:51:45 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] media: rockchip: rkcif: Honour the requested
+ bytesperline on MIPI
+To: Faizel K B <faizel.kb@gmail.com>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, libcamera-devel@lists.libcamera.org,
+ Robert Mader <robert.mader@collabora.com>
+References: <20261105232310.385463-1-faizel.kb@gmail.com>
+ <20261105232310.385463-3-faizel.kb@gmail.com>
+ <51b09428-9d10-4f36-a811-a681e479e45e@collabora.com>
+ <fxrwhxkzgihpiz52rbeuomtqkzz7izgdfcbux7osamqruc7w7u@qhvh3nkqypro>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <fxrwhxkzgihpiz52rbeuomtqkzz7izgdfcbux7osamqruc7w7u@qhvh3nkqypro>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: BLQMCkB2vwQF7vpqZ6S3AQ--.3956S4
-X-Coremail-Antispam: 1UD129KBjvJXoW7ZrW3Gw1xWFy5uFyxJr4xJFb_yoW8ZrW7pF
-	WDG3yjk3yDGF4DCa95Cw17C345uan8KrZxCr909w1rZ3WkZr1FyFsFvayjqrnYyrZ2kr1x
-	Ar9rtFyakFW5uaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUQjb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
-	8067AKxVWUXwA2048vs2IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF
-	64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcV
-	CY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280
-	aVCY1x0267AKxVWxJr0_GcWlnxkEFVAIw20F6cxK64vIFxWle2I262IYc4CY6c8Ij28IcV
-	AaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0E
-	x4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACI4
-	02YVCY1x02628vn2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCF
-	x2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14
-	v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY
-	67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2
-	IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_
-	Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jOkucUUUUU=
-X-CM-SenderInfo: ysvqjiysrsjkur6v33wo0lvxldqovvfxof0/1tbiAgUTD2r5zUjNkAAAsQ
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_035048_909571_6DD402B2 
-X-CRM114-Status: GOOD (  10.64  )
-X-Spam-Score: -2.4 (--)
+X-CRM114-CacheID: sfid-20261116_035217_881726_D39D97CC 
+X-CRM114-Status: GOOD (  25.66  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,57 +79,93 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,FROM_LOCAL_DIGITS,FROM_LOCAL_HEX,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mt7615_mac_fill_rx() starts processing received frames as soon as
-MT76_STATE_INITIALIZED is set, which happens while the device is being
-initialized, but mphy->chandef.chan is only assigned once mac80211
-configures a channel. A frame that arrives before that, while the phy
-is neither scanning nor doing a remain-on-channel operation, makes
-mt7615_get_status_freq_info() dereference a NULL channel:
+Hi Faizel,
 
-  general protection fault, probably for non-canonical address
-  0xdffffc0000000000
-  RIP: mt7615_get_status_freq_info
-  Call Trace:
-   mt7615_mac_fill_rx
-   mt7615_queue_rx_skb
+On 11/12/26 07:20, Faizel K B wrote:
+> Hi Michael,
+> 
+> On Wed, Nov 11, 2026 at 10:46:43AM +0100, Michael Riesch wrote:
+>>
+>> Come to think of it, TRM p. 2111 says for e.g. VICAP_MIPI0_VLW_ID0:
+>> "Virtual line width of even frame for ID0 path(must be aligned to double
+>> word)." which I would interpret as "it must be a multiple of four
+>> bytes". What do you think?
+>>
+> 
+> The VICAP register summary defines it.TRM part 1 (V1.0, page 2081)
+> "DW - Double WORD (64 bits) access". So 8 bytes.
 
-Only report the configured channel when one is available and derive the
-frequency from the RX descriptor otherwise.
+Ack.
 
-Fixes: fcdfc29e58ee3 ("mt76: mt7615: introduce hw scan support")
-Cc: stable@vger.kernel.org
-Co-developed-by: Bin Yu <byu@xidian.edu.cn>
-Signed-off-by: Bin Yu <byu@xidian.edu.cn>
-Co-developed-by: Cheng Wen <wencheng@xidian.edu.cn>
-Signed-off-by: Cheng Wen <wencheng@xidian.edu.cn>
-Signed-off-by: YuanZhe Liu <25031212351@stu.xidian.edu.cn>
----
- drivers/net/wireless/mediatek/mt76/mt7615/mac.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+>>> +static void rkcif_stream_set_bytesperline(struct
+>>> v4l2_pix_format_mplane *pix,
+>>> +                      u32 req_bpl)
+>>> +{
+>>> +    u32 min_bpl = ALIGN(pix->plane_fmt[0].bytesperline, 8);
+>>
+>> Please add support for the bytesperline field in all the plane_fmt
+>> entries here...
+>>
+>>>      width = clamp_t(u32, pix->width, CIF_MIN_WIDTH, CIF_MAX_WIDTH);
+>>> +    req_bpl = pix->plane_fmt[0].bytesperline;
+>>
+>> ... and here.
+>>
+>>>      ret = v4l2_fill_pixfmt_mp(pix, fmt->fourcc, width, height);
+>>>      if (ret)
+>>>          return ret;
+>>>
+>>> +    if (stream->interface->type == RKCIF_IF_MIPI)
+>>> +        rkcif_stream_set_bytesperline(pix, req_bpl);
+>>
+>> Why is this restricted to the MIPI interfaces?
+>>
+> 
+> The MIPI formats all have a single plane, and the MIPI path already
+> programs the line width from bytesperline. The DVP path uses the width,
+> and I can't test it. But I agree it should not depend on the interface.
+> 
+> For v2 I would:
+> 
+> - take the requested bytesperline of all planes into account, and use
+>   the largest for all planes, as the DVP has one line width register
+>   for Y and UV
+> - compute the sizeimage of each plane from it
+> - limit it to the line width field (20 bits MIPI, 15 bits DVP)
+> - program RKCIF_DVP_VIR_LINE_WIDTH from bytesperline, with the current
+>   value as the minimum
+> 
+> Does that sound ok?
 
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7615/mac.c b/drivers/net/wireless/mediatek/mt76/mt7615/mac.c
-index 86c6b443ef71..b6256226b605 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7615/mac.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7615/mac.c
-@@ -199,7 +199,8 @@ static void
- mt7615_get_status_freq_info(struct mt7615_dev *dev, struct mt76_phy *mphy,
- 			    struct mt76_rx_status *status, u8 chfreq)
- {
--	if (!test_bit(MT76_HW_SCANNING, &mphy->state) &&
-+	if (mphy->chandef.chan &&
-+	    !test_bit(MT76_HW_SCANNING, &mphy->state) &&
- 	    !test_bit(MT76_HW_SCHED_SCANNING, &mphy->state) &&
- 	    !test_bit(MT76_STATE_ROC, &mphy->state)) {
- 		status->freq = mphy->chandef.chan->center_freq;
--- 
-2.34.1
+That does sound reasonable, yes.
+
+> A question on the DVP: the PX30 TRM (Part 2, 5.3) says raw data is
+> stored as 16 bits per pixel, even from an 8-bit source. This matches
+> the width * 2 in the driver. But for V4L2_PIX_FMT_S*8 (e.g.
+> V4L2_PIX_FMT_SRGGB8) bytesperline is the width, so the buffer is half
+> the size the hardware writes. Am I missing something?
+
+I don't have any PX30 board, and actually it is the first time I hear
+about that. Maybe Mehdi can chime in?
+
+> I can only test the MIPI path, on RK3588 (Radxa ROCK 5B+). Could you
+> test the DVP part on PX30 or RK3568?
+
+Currently, I don't have any active DVP setup, but when you send the
+updated patches I'll ask around.
+
+Thanks and best regards,
+Michael
+
+> 
+> Regards,
+> Faizel
 
 
