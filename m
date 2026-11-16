@@ -2,37 +2,36 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0EB9606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF6F606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ST024UL3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XZTIAxr7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=d6JNnFfoaeyGY+wbe6iG5ANoRSPTTnQEghBDjZz1BM8=; b=ST024UL34WuXX7P0oFYZeoftGo
-	pEwn9ek3AoDIteitYVgkPZ6UnEeazLgZF8j5ursjla1MWdA8NGEJomWKHkmBGup8lOZo2R25fbH8z
-	K1DMxq6Sd/Gr7CvRBiD3qvLBYEqWLFKgv5WVOmZU6A1XQ4Ia6h6A7PHDSjus7sxUHpD/tq+dH13Gg
-	upm9pYNoG2nOR5mZtxqbqdnOc8Wg4YrOIv7cn07z7Yko5AVD/b9P2MLRnRhCj0ea22Of/vnppPeyK
-	gzGx/Fs+sFXKzXWoIYEPQKX140pZyphGJ6oxWVJw8K9U9X6WDcs6XKZbja5Olv44L5wM0bjg1r4PI
-	TlZRxJOQ==;
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=htPpsj1ZCqMRn1NtlL8aj52+oY3mSts/TrS2vw7Er68=; b=XZTIAxr7x122dn
+	2t3CagabNzTcZY/3oZP5Z33+fpFIuLqj9xKN+0LQiMFXgs5FCv8M3Oj0eEOVZvDUSUwiWD1uJ65VF
+	Bpinh0c1/QgOwqlkX/4lOVjjWhWJny3ustnv1GYjlALi3iI6C4yzkm5u/RvXVcNDfotWsN6j90ha9
+	Ve71dioItjjeylof+kEZ7MUWrhdDASIfD7z3rSK+nEpzp+t5Nf2S9BzR94dkbet7kM6NukTMc4HmN
+	usOTIXS9VDzue7WROmCpSFwtOkBg67omhLiRcM68MjYRFDtXjwimC8rb0EnUrdbOB8OM9J5JTG9k8
+	6eLfBzdfsyvb5bdm6CXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0uA-00000003SZw-03B7;
-	Mon, 16 Nov 2026 17:54:10 +0000
+	id 1xT0uG-00000003Sdl-19mL;
+	Mon, 16 Nov 2026 17:54:16 +0000
 Received: from nbd.name ([46.4.11.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0u2-00000003SVO-1Szp;
+	id 1xT0u2-00000003SVN-0z7d;
 	Mon, 16 Nov 2026 17:54:04 +0000
 Received: from [2a04:4540:1403:e6fc:5f71:2c1e:7d62:945f] (helo=bertha10..)
 	by ds12 with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <john@phrozen.org>)
-	id 1xT0tp-004GoI-1y;
-	Mon, 16 Nov 2026 18:53:49 +0100
+	id 1xT0tq-004GoI-03;
+	Mon, 16 Nov 2026 18:53:50 +0100
 From: John Crispin <john@phrozen.org>
 To: Stefan Roese <sr@denx.de>,
 	Andi Shyti <andi.shyti@kernel.org>,
@@ -54,17 +53,18 @@ Cc: Christian Marangi <ansuelsmth@gmail.com>,
 	upstream@airoha.com,
 	Weifeng.xu@airoha.com,
 	zhengping.zhang@airoha.com
-Subject: [PATCH v3 0/3] i2c: mt7621: add Airoha AN7589 support
-Date: Mon, 16 Nov 2026 18:53:40 +0100
-Message-Id: <20261116175343.344425-1-john@phrozen.org>
+Subject: [PATCH v3 1/3] i2c: mt7621: assert and deassert the reset line
+Date: Mon, 16 Nov 2026 18:53:41 +0100
+Message-Id: <20261116175343.344425-2-john@phrozen.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261116175343.344425-1-john@phrozen.org>
+References: <20261116175343.344425-1-john@phrozen.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_095402_383562_0278D521 
-X-CRM114-Status: UNSURE (   8.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261116_095402_269637_DA63215C 
+X-CRM114-Status: GOOD (  14.37  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,52 +76,76 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Airoha AN7589 carries the MT7621 I2C controller with a second
-control register that holds a 16 bit clock divider. It runs without
-SCL stretching.
+The driver resets the controller with device_reset(), which needs a
+.reset operation in the reset controller. The EN7581 reset controller
+implements assert and deassert only, so there every call fails, logs
+"I2C reset failed!" and leaves the controller as it is, also after a
+transfer timeout.
 
-Patch 1 resets the controller with reset_control_assert() and
-reset_control_deassert() instead of device_reset(), as the EN7581 and
-AN7589 reset controller has no .reset operation. Patch 2 adds the
-compatible, with mediatek,mt7621-i2c as the fallback. Patch 3
-describes the variants as match data and uses the wider divider for
-bus rates down to about 3 kHz.
+Get the optional reset line at probe and assert and deassert it. The
+MT7621 and MT7628 reset controller does the same in its .reset
+operation, with no delay in between, so nothing changes there. A board
+without a reset line no longer logs an error, and a reset controller
+that is not ready yet defers the probe.
 
-The series applies to next-20261105 and has no dependencies.
-
+Suggested-by: Philipp Zabel <p.zabel@pengutronix.de>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Signed-off-by: John Crispin <john@phrozen.org>
+---
 Changes in v3:
-- Patch 1: add the Reviewed-by of Philipp.
-- Patch 2: add the Acked-by of Conor.
-- Patch 3: compute the AN7589 divider with constant limits, so a clock
-  rate below 1 MHz cannot wrap it (kernel test robot, sashiko).
-- Link to v2: https://lore.kernel.org/r/20261112185820.1315718-1-john@phrozen.org
+- Add the Reviewed-by of Philipp.
 
 Changes in v2:
-- Add patch 1. It replaces "clk: en7523: add a reset operation" from
-  the clk series, as Philipp suggested.
-- Patch 2: add mediatek,mt7621-i2c as the fallback compatible (Conor).
-- Patch 3: the extended divider supports bus rates down to about 3 kHz.
-  Set it up before the controller is enabled.
-- Link to v1: https://lore.kernel.org/r/20261111093941.691801-1-john@phrozen.org
+- New patch. It replaces "clk: en7523: add a reset operation" from
+  the clk series (Philipp).
+- Link to the discussion: https://lore.kernel.org/r/0c96f978571c569de6552fc11131e45b55cada1b.camel@pengutronix.de
 
-John Crispin (3):
-  i2c: mt7621: assert and deassert the reset line
-  dt-bindings: i2c: mt7621: add Airoha AN7589
-  i2c: mt7621: add support for Airoha AN7589
+ drivers/i2c/busses/i2c-mt7621.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
- .../bindings/i2c/mediatek,mt7621-i2c.yaml     | 10 ++-
- drivers/i2c/busses/i2c-mt7621.c               | 70 ++++++++++++++++---
- 2 files changed, 70 insertions(+), 10 deletions(-)
-
-
-base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
+diff --git a/drivers/i2c/busses/i2c-mt7621.c b/drivers/i2c/busses/i2c-mt7621.c
+index 9ea5e3f9a763..7a31cc8b89ce 100644
+--- a/drivers/i2c/busses/i2c-mt7621.c
++++ b/drivers/i2c/busses/i2c-mt7621.c
+@@ -65,6 +65,7 @@ struct mtk_i2c {
+ 	u32 clk_div;
+ 	u32 flags;
+ 	struct clk *clk;
++	struct reset_control *rst;
+ };
+ 
+ static int mtk_i2c_wait_idle(struct mtk_i2c *i2c)
+@@ -85,7 +86,9 @@ static void mtk_i2c_reset(struct mtk_i2c *i2c)
+ {
+ 	int ret;
+ 
+-	ret = device_reset(i2c->adap.dev.parent);
++	ret = reset_control_assert(i2c->rst);
++	if (!ret)
++		ret = reset_control_deassert(i2c->rst);
+ 	if (ret)
+ 		dev_err(i2c->dev, "I2C reset failed!\n");
+ 
+@@ -288,6 +291,11 @@ static int mtk_i2c_probe(struct platform_device *pdev)
+ 		return PTR_ERR(i2c->clk);
+ 	}
+ 
++	i2c->rst = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
++	if (IS_ERR(i2c->rst))
++		return dev_err_probe(&pdev->dev, PTR_ERR(i2c->rst),
++				     "Failed to get reset\n");
++
+ 	i2c->dev = &pdev->dev;
+ 
+ 	if (of_property_read_u32(pdev->dev.of_node, "clock-frequency",
 -- 
 2.34.1
 
