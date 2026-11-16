@@ -2,66 +2,150 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0379606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 04:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20940606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 04:20:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MO9DS2y8;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Vw7NLOXA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wSh/zuYx;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Ee66kmlp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=OgoZIslZ8ASBJ7r2dv1Kt/IA3qoVmwzLgsguUAZyJYk=; b=MO9DS2y8FWY3ivue1gN266h17D
-	5ZFnjuliF3PQSWJZl1jIyCDFsvXYB/RsQrRaN9En1QxnqLCIbWOgAie4yKQvl3QH26ieoS1Idn/BC
-	ltJm6cPaOlJOBbO68hXc4IpcqALuyjZmp6vyNM9QKW/0rIgM3S/nowxmgeJwCUcoCv50cMqGD9Zj+
-	OnZQPFtgigrqxsDe87LGoO2kqcucEasGIoIlFKHfLNXBVWazdnfajP3BCWQoA/W/3Nqz+1LV35vx9
-	GDGffQpOzbFSN3DmD+RKtGi7f1km9T+Ts/Gkm5B88Fa7tmjusUJRG3Ywh6/aHIU9Yu8/tsXDvDQ/I
-	rJSbIO9Q==;
+	bh=j5ROke81fNTiqyIhGa3NeDrAJOClSD8rcXH1P9AmY0M=; b=wSh/zuYxaqCHkp/dcdaxKI93Nq
+	/x2HJ/pl0wwqbEGSbT1h+nOCQrWowHdq6LeSjeOOzDhBo9pxhcPbViaQXOQ4qtPpVGeeVhm0/WiYP
+	andkaJWDdSgruGeVzSj35ezRTaS1qCdz/P67N+HwbABsQ0BtuBlM8OkM2w6rKyEFb62PfxJmHGd5W
+	vSe6oFm7iIKiyuArmcJGSJuQj2cj/pfJSIbku78LogdappTeH8Q96tEtfbAnxnsdqX1+Q002YFpJW
+	qUbpk94Jigp6WP0z+Ku5IpfaIT77Ua2QQg4uzI5rtpLRMxHXbq1LRkZZm2hj1sSYKZ5jQInmpuxVO
+	u/9Q04FQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSo5O-000000016Wj-22PL;
-	Mon, 16 Nov 2026 04:12:54 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSoCF-00000001776-117w;
+	Mon, 16 Nov 2026 04:19:59 +0000
+Received: from mail-eastus2azlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c110::1] helo=BN1PR04CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSo54-000000016Oz-3MHD
+	id 1xSoCC-0000000176f-0bJA
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 04:12:34 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1D2A162674;
-	Mon, 16 Nov 2026 04:12:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA5041F000CF;
-	Mon, 16 Nov 2026 04:12:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794802353;
-	bh=OgoZIslZ8ASBJ7r2dv1Kt/IA3qoVmwzLgsguUAZyJYk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Vw7NLOXAtbzx8pDVFwY5rq+UBMkeNrcDELgejJQDzgoa1s0Bb6daVuR6UVKntmG7v
-	 QTx8sZ5AAMz0ZsnAcRYTK3ccAqXhHIsqG/dmTlLa+SXegljTffYEUQAb5Muqa4tPKZ
-	 LVIOv2JJWXJnzLWBQzUfM4StH5OjMH9jcpXbWAEMqWBk6EAqPAuMDHHDTDrzdEasIJ
-	 SrTHPbo7eNx9/e40JHMR/xu9OFSH5Cya4JGsq4uOOboGjHdHDJjni4+TImZYYaAcxe
-	 j92uGzce95p7h3HEneQH1CtEq07gUcQV+3AA60lmIjvw9qbHqoQM49Eh0cSTLlw7tK
-	 uK/tTl/R010hw==
-Subject: Re: [PATCH net-next v5 6/6] net: xilinx: axienet: Add statistics
- support for XXV ethernet
-From: netdev-bot+sashiko@kernel.org
-To: suraj.gupta2@amd.com
-Cc: radhey.shyam.pandey@amd.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, michal.simek@amd.com,
- linux@armlinux.org.uk, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Mon, 16 Nov 2026 04:12:32 +0000
-Message-ID: <179480235240.3136.10661182266349624826@kernel.org>
-In-Reply-To: <20261114182947.2908628-7-suraj.gupta2@amd.com>
-References: <20261114182947.2908628-7-suraj.gupta2@amd.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Mon, 16 Nov 2026 04:19:58 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UbzF7A+X6NmfvZWTwrWJt6q6mzgLfJSQt80fSNor5JNM3r2K4ACnqA3p1+QjHMrAxvRmtal6WTJkK1Pxx/l2ftpnecwoeN+G5pzvZzhJHHD1+qHn+evN59WRjIAkescxA35c2NS6iYNPJrqMykEUGq8+MB98ol4i2ceDKK5oaHSlFcUZZrA0roxWxKKblEocdldOUUkQPjZbdgo/WqxPLNOI0A1ZWHPLkVBlRyt9rcWwGgJRWdsZlhJ5nrfJKyvjfPOsmpBIHSKBIH08DhTp8muTlf4iCG5VPGilKZwfsPqOoqJXUpt8u1J05W6gcbV7cvjXOw49tKpq+yYeg4ZlXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j5ROke81fNTiqyIhGa3NeDrAJOClSD8rcXH1P9AmY0M=;
+ b=f6JiUnPuIMG/foeXxxZf4pqzh1aztEME57oSXDJ4M0ke/FHaDVUlhqnaM11cHIa7bcziivSnCHGAMM/0pI3/yFE0wNvsg7B93fuXkrCqC/jwreb8YLRLnKGjjqIE/DTU7BHNuL4v4/sYbY8Cy9whYfxU+JPR7uPfJbR6Qn2LnxPR9GkGlWnerTm/GkovE0QTllSU6/O+3ic+tCuiD4AW6lF9qnFKAuE3wbrhYePiPTxLdj9NxaGsYP2D/r53tqWODG3Jnh/E8yb0Xbon2Ig+PawXgPpqkwY+0mXYC2+KW+RIZUwuftjTC0mR6uPrtI7jnfE/qdh5uDMGGw/335vrAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j5ROke81fNTiqyIhGa3NeDrAJOClSD8rcXH1P9AmY0M=;
+ b=Ee66kmlpUgzXx8qHsMvmWEdhe7PKxV8KPtCYlyPGMHHom/RAwaGwhHIOlsgTCtSfK032Y5wig++h44PJ6xmPbrkVEt4BFAkN98pZIHhgjFg5hnrFTJJr8r6rSs4XTAGASdscEDWtKNS7hM9kUZ6QdH49phs2p3QPFgoXrpHzL3M=
+Received: from DS7PR12MB9503.namprd12.prod.outlook.com (2603:10b6:8:251::15)
+ by SJ0PR12MB6709.namprd12.prod.outlook.com (2603:10b6:a03:44a::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
+ 2026 04:19:47 +0000
+Received: from DS7PR12MB9503.namprd12.prod.outlook.com
+ ([fe80::62c0:6aa0:897c:44d9]) by DS7PR12MB9503.namprd12.prod.outlook.com
+ ([fe80::62c0:6aa0:897c:44d9%6]) with mapi id 15.21.0592.010; Mon, 16 Nov 2026
+ 04:19:47 +0000
+From: "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+CC: Jonathan Cameron <jic23@kernel.org>, "Simek, Michal"
+	<michal.simek@amd.com>, "Potthuri, Sai Krishna"
+	<sai.krishna.potthuri@amd.com>, David Lechner <dlechner@baylibre.com>,
+	=?iso-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>, Andy Shevchenko
+	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "amitrkcian2002@gmail.com"
+	<amitrkcian2002@gmail.com>
+Subject: RE: [PATCH 2/6] iio: adc: versal-sysmon: validate temperature
+ hysteresis
+Thread-Topic: [PATCH 2/6] iio: adc: versal-sysmon: validate temperature
+ hysteresis
+Thread-Index: AQHdasS1tSYdaUNTakOTVjECb6koGbccIRWAgATNUJCABUHRAIAFvADw
+Date: Mon, 16 Nov 2026 04:19:46 +0000
+Message-ID: <DS7PR12MB95039DF1B995E46FFB63D404DC7C2@DS7PR12MB9503.namprd12.prod.outlook.com>
+References: <20261102122112.1723130-1-amit.kumar-mahapatra@amd.com>
+ <20261102122112.1723130-3-amit.kumar-mahapatra@amd.com>
+ <aumyreagvU6zewKI@ashevche-desk.local>
+ <DS7PR12MB9503E787CBD5E9292B5637CEDC762@DS7PR12MB9503.namprd12.prod.outlook.com>
+ <avIi2pDCcaKDx3Ro@ashevche-desk.local>
+In-Reply-To: <avIi2pDCcaKDx3Ro@ashevche-desk.local>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-11-13T11:19:39.0000000Z;MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD
+ General
+ v26;MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR12MB9503:EE_|SJ0PR12MB6709:EE_
+x-ms-office365-filtering-correlation-id: 711aed1f-86da-449b-e8ee-08df4398d948
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|7416014|366016|376014|1800799024|23010399003|38070700021|10067099003|5023799004|11063799006|4143699003|56012099006|261022105027099003|261026121527099003|261028144727099003|261026140227099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003;
+x-microsoft-antispam-message-info: 5lZOSqF8d/G09DIR2zJFB98LfxG5fe2/L/NPPzOnj77t6+GCYbU7SuDqcS4Wh15VOJLxDZPoShUc3GXK+sWiv5jcITWUpjCf5HMcaR1HHUdfMsjRBWb31E5c4I2F3HzNVCUwcI6Xvtwtkg9JVy4GF4Luin71quY2+yRBcxHpLIKOV1c3K28bcliTNUOZ4nbFI4wuKCxBA8yM3SNH1xQPDXA811d4qpgL8owdKKA42FPYdtI3NaH5KmHahbomCKziyezTzCn/X7ecjWUXvCbSQoRfQ9eYe3k1AXT2xCdEWEEG5cUVMYbu6hh/LgQMom6VJGchgSl7Q60/iB9pd+eVSeRqHnXq1nULPqVmLQivCiYpOzjfZDloV9d4g3373DgtNuflKbQkWYyEphFLEOo4r+sd/6w1U0G/1kT8yLVkf91fT2O7TIr8EuRWzgs/0Bf+HtpN4VqwrhhmdOFLV3cSuOauPaJyACgTPB6O8mJUs1tKGySkEdYB7AKdVpznIbccn+uNgQ9siiIUne8LstpX38k1jde314CuIoixCDlrbRwuDwxrMJgls6tOwDqdH4C5yg54EssyRDpHTI2uH4l/77wDnD/ZjhGPw1wUEhuW8teExXTLAlVGwv52mQGVFzscBuq+BZG37GLrSbrO6qRCQZHLBfsrTTabRxkzawk/40A5OCKylmzdpOBU0PytyvXXRamUwX2S7wi5svKCZdc6fFPcddVPvxtMH2M2atkT1xY=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR12MB9503.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(23010399003)(38070700021)(10067099003)(5023799004)(11063799006)(4143699003)(56012099006)(261022105027099003)(261026121527099003)(261028144727099003)(261026140227099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?NvSATli6SG2tfe+1/90u4EUoASBQdSJJRpM9wJMMjd1vP0tZjdS4yJAYGc?=
+ =?iso-8859-1?Q?v10Moub3duui5qAHpXtO+4Ljvp8FVtbowB3o54+KrqMzy93Aza52jyej6Z?=
+ =?iso-8859-1?Q?LpEADypULXioLZTgQdUG8ChYlzCip87ZN9AfuYfu7w6UU+UGZOiI/xh/0Q?=
+ =?iso-8859-1?Q?7Jr4i/3J7xeFWbw3dqP20pLkqx7PYnONEgo909HVV5w2uet6S2mU28EKDY?=
+ =?iso-8859-1?Q?cAT6kJfs3yluGavW3Fqowma6FsXavBBftJ44n9qvPQFvth1EZtDbkAGJS1?=
+ =?iso-8859-1?Q?aflev8pK+6yB33JaDa0FYFnIN4hKVFQuqRkFCZkgv/JyenhWYkdCb4WHJ4?=
+ =?iso-8859-1?Q?U6lBD3qClRpN9RuDf9EWuqyS+KD3neAwxr3gDKAqFE/k6GYRA0bdVX8K+X?=
+ =?iso-8859-1?Q?GdoE3t5VPUNiq9I/RoXM736h1hHZXz0Iozd3bosdWXOcWwlp8kRnfuxf87?=
+ =?iso-8859-1?Q?YP3D+GkXnrPQWysZhY7D9rag9TxqkN35wB6qKv1hfPSAGN5hXp0mp4HJox?=
+ =?iso-8859-1?Q?PMlbGLITyFQ0ZchmdgB0AXNsPGKDwYKdaOZdhaOHKgU9qYV0onejRXvtPU?=
+ =?iso-8859-1?Q?3a+Qy21hOfEwpEzoA+rY/rmRloir7QXZHrG61sXGIBTq4QuwYg7v0QA9aA?=
+ =?iso-8859-1?Q?/Ty0lXkvcnA1tzhVYjnrPEz82I91iMnn0n/MRekxTY524H4Z2KXxWhxAT8?=
+ =?iso-8859-1?Q?QN/I7QJzJbTsaD/GN6mKR/r9a6CdOzr1Hekx7DTRC+kZTNjrEBDaRKrPW1?=
+ =?iso-8859-1?Q?KgfHGz/azHPivrDrmW7TjEsimkB5lZIsdewKHuLRyiwPfkoixQPYMYEkCK?=
+ =?iso-8859-1?Q?TweQQUHt5jPYdCZDP7Ls4zfBme4nD2Aa/C5HwrXP9KGXOtzKEg8P9MkjsS?=
+ =?iso-8859-1?Q?J9Pv5vB+o3jtzZMV1IGIH5BX0Sz8uL0QWHvCJnLNaRpq2veQwSK/KdP0Ez?=
+ =?iso-8859-1?Q?BKhPr2bxKAXpGcjhp/6QMmi/YRj8W/QMaVvbEAPHuyTxoP4naY8l004iU5?=
+ =?iso-8859-1?Q?yh7VoZ/h/sIIvJlHg2zSBiKxO6RRQBj+ni4C+/Qrzqpi7QbvDm78GUGs+Y?=
+ =?iso-8859-1?Q?n+4dhe06Th+3pOPQJxvuHkof6YKnjV6O4SGJk1UfujlEr3WQimG5f0amSZ?=
+ =?iso-8859-1?Q?PfFeMsamMe++gnxEIeGMQwaw5/W8VPtpiOD9Cz7lZguVA4Zn882ADcn2qM?=
+ =?iso-8859-1?Q?M34A6OpB9XnOj9fRs++R5ejTcv3IC7RktLQQscsS8jrlZGt5yROmN/TjiC?=
+ =?iso-8859-1?Q?GqBYc7H8IxY5BRmW0zxI15nmOm0I6jhQlVO22YjjpDgVpxjCpBJGFQdqCt?=
+ =?iso-8859-1?Q?wkqaBq9FT4hOqvgvfkJyawF6C1ok2yeTcSBDy3QEgbpbCiZaQ9gWiA8y6R?=
+ =?iso-8859-1?Q?ub6xdU7PNUDB6FfQGgdbg4quVuHGeu1o5iznV7GGv5sSmJyBNcqArBom/+?=
+ =?iso-8859-1?Q?aaAH/GuL5ZXb0JJsvM/ZMEcldWbxcl9uEYzclIiMLPSSfMqbUwPRpdTsrt?=
+ =?iso-8859-1?Q?4OeHa4Sv6KO2YVJC0jQz5W1vX+Qvzxcd3m3yQZbC5dU1d/IUUDs0xM5+SV?=
+ =?iso-8859-1?Q?ao88nJQhdtu65igH+FRjqNApS+kLXtNVoF8PNXhHHP9hfORW8M9oRCagSg?=
+ =?iso-8859-1?Q?gxxkKKQWcVvtjwRyCMLVMZknEKdM/GzaEICfLJQakEwgEcIOzNCQ9LcpXq?=
+ =?iso-8859-1?Q?AUSd04sxf/5ZKwHbAVuHMcu3Bi7AKyED9nMEjpun40r/t60UqhpXuVyQ7F?=
+ =?iso-8859-1?Q?TAAvIx6ZErp/P6rzHOXBt9pkIbT9hJ8Qv/RZSQb33p80Lw?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB9503.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 711aed1f-86da-449b-e8ee-08df4398d948
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Nov 2026 04:19:46.9047
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gudbI1oI5IZmD5zwt/Uj6bKWX3E60gQLOUgnLCNrhuSg+TVHOHb8OqTCcxQ+JZ0jRDANUjDZZ2FhnAGMM8SUdA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6709
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261115_201956_335651_B34A152A 
+X-CRM114-Status: GOOD (  18.45  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,318 +156,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 6 potential
-issue(s) to consider.
+AMD General
+
+Hello Andy,
+
+> -----Original Message-----
+> From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Sent: Tuesday, November 10, 2026 1:16 AM
+> To: Mahapatra, Amit Kumar <amit.kumar-mahapatra@amd.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>; Simek, Michal
+> <michal.simek@amd.com>; Potthuri, Sai Krishna <sai.krishna.potthuri@amd.c=
+om>;
+> David Lechner <dlechner@baylibre.com>; Nuno S=E1 <nuno.sa@analog.com>; An=
+dy
+> Shevchenko <andy@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof
+> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; linux=
+-
+> iio@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+> amitrkcian2002@gmail.com
+> Subject: Re: [PATCH 2/6] iio: adc: versal-sysmon: validate temperature hy=
+steresis
+>
+> On Fri, Nov 06, 2026 at 11:35:00AM +0000, Mahapatra, Amit Kumar wrote:
+> > > -----Original Message-----
+> > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > > Sent: Tuesday, November 3, 2026 3:39 PM On Mon, Nov 02, 2026 at
+> > > 05:51:08PM +0530, Amit Kumar Mahapatra wrote:
+>
+> ...
+>
+> > > >     sysmon_q8p7_to_millicelsius(upper_reg, &upper_mc);
+> > > >     sysmon_q8p7_to_millicelsius(lower_reg, &lower_mc);
+> > > > -   *hysteresis =3D upper_mc - lower_mc;
+> > > > +   *hysteresis =3D max(upper_mc - lower_mc, 0);
+> > >
+> > > But you can use abs_diff() and let it make the problem of the supplie=
+r.
+> >
+> > I went with max() because an inverted pair (lower above upper) doesn't
+> > really describe a hysteresis, so treating it as zero seemed the safest
+> > reading. With abs_diff(), an inverted 80/90 pair would be read as
+> > 10 degrees, and the next threshold write would then set the lower
+> > threshold to 70.
+>
+> Bu where did it come from? HW or DT? If the latter, we may just reject th=
+e wrong
+> values at probe time, no?
+
+It comes from the hardware, not DT. sysmon_init_hysteresis() reads the two
+threshold registers. There is no DT property for them, so there's nothing t=
+o reject
+when parsing DT.
+
+Regards,
+Amit
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
 
-Critical: 0 · High: 0 · Medium: 2 · Low: 4
-
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
-
-- [Medium] None of the XXV statistics readers in
-  drivers/net/ethernet/xilinx/xilinx_axienet_xxv.c latch the clear-on-…
-- [Medium] The new XXV ndo_get_stats64 reader, axienet_xxv_get_stats64(),
-  runs read_seqcount_begin()/read_seqcount_retry() on…
-- [Low] The kernel-doc of axienet_xxv_get_rmon_stats() (xxv.c:585-586)
-  says "XXV exposes aggregate RMON counters only, not per-bin histogram…
-- [Low] axienet_xxv_get_stats64() treats XXV_STAT_RX_OVERSIZE as an IEEE
-  802.3 frame-too-long error and folds it into rx_length_errors.
-- [Low] The patch updates the @hw_stats_seqcount kernel-doc in struct
-  axienet_local for XXV but leaves @stats_work saying "Work for reading…
-- [Low] axienet_stop() writes TICK_REG for the final XXV statistics
-  snapshot (via axienet_xxv_stats_update) right after…
-
---
-
-net: xilinx: axienet: Add statistics support for XXV ethernet
-
-This patch adds support for the clear-on-tick XXV (PG210) statistics
-block. The counters are accumulated in software by the periodic stats
-work and by a final snapshot in axienet_stop(). The result feeds
-ndo_get_stats64() and the ethtool -S, pause, MAC and RMON callbacks,
-gated on the "xlnx,has-statistics-counters" devicetree property.
-
-> diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet.h b/drivers/net/ethernet/xilinx/xilinx_axienet.h
-> index 7468fed1416ef..10cb73bc460d2 100644
-> --- a/drivers/net/ethernet/xilinx/xilinx_axienet.h
-> +++ b/drivers/net/ethernet/xilinx/xilinx_axienet.h
-> @@ -520,7 +520,7 @@ struct skbuf_dma_descriptor {
->   * @reset_in_progress: Set while we are performing a reset and statistics
->   *                     counters may be invalid
->   * @hw_stats_seqcount: Sequence counter for @hw_stat_base, @hw_last_counter,
-> - *                     and @reset_in_progress.
-> + *                     @reset_in_progress and, on XXV, @xxv_stat_base.
->   * @stats_lock: Lock for @hw_stats_seqcount
->   * @stats_work: Work for reading the hardware statistics counters often enough
->   *              to catch overflows.
-
-[Severity: Low]
-This isn't a bug, but should the @stats_work description be updated as
-well? On XXV this work is now the only latch for the clear-on-tick
-counters. The new comment in axienet_refresh_stats() says:
-
-    This work is
-    what latches them between queries.
-
-The @stats_update kernel-doc in struct axienet_config has not changed
-either:
-
- * @stats_update: Callback to latch/accumulate the periodic MAC counters, or
- *		  NULL if the MAC has no periodic statistics counters
-
-The new comments in axienet_refresh_stats() and axienet_stop() say
-something different: a config installs the hook unconditionally, and
-XAE_FEATURE_STATS decides whether the counters exist.
-
-Could these two descriptions be updated to match?
-
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-> index 260755fbe465c..a046290522f4d 100644
-> --- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-> +++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-
-[ ... ]
-
-> @@ -1884,6 +1903,17 @@ static int axienet_stop(struct net_device *ndev)
->  	axienet_setoptions(ndev, lp->options &
->  			   ~(XAE_OPTION_TXEN | XAE_OPTION_RXEN));
->  
-> +	/* Final snapshot after RX/TX is disabled, so no frames are missed.
-> +	 * Gate on XAE_FEATURE_STATS rather than the stats_update hook: a config
-> +	 * always installs the hook, but the counters are optional in both MACs,
-> +	 * so only probe_init() knows whether they are there.
-> +	 */
-> +	if (lp->features & XAE_FEATURE_STATS && lp->axienet_config->stats_update) {
-> +		mutex_lock(&lp->stats_lock);
-> +		lp->axienet_config->stats_update(lp);
-> +		mutex_unlock(&lp->stats_lock);
-> +	}
-
-[Severity: Low]
-Is "no frames are missed" guaranteed here? axienet_setoptions() only
-does a few posted read-modify-write MMIO accesses to clear ctl_tx_enable
-and ctl_rx_enable. Nothing waits for the MAC to go idle before
-axienet_xxv_stats_update() writes TICK_REG.
-
-Suppose the MAC finishes a frame that is already in flight after the
-enable is cleared. A jumbo frame takes about 7.7 us at 10G and about
-3 us at 25G. Could that frame be counted into the internal accumulator
-after this final tick?
-
-On the next open, axienet_xxv_mac_init() does:
-
-	if (lp->features & XAE_FEATURE_STATS)
-		axienet_iow(lp, XXV_TICKREG_OFFSET, XXV_TICKREG_STATEN_MASK);
-
-This latches the late count into the readable registers. The first
-stats_update tick then overwrites those registers without reading them.
-
-Would up to one frame per direction per stop then never reach
-xxv_stat_base?
-
-This depends on how PG210 behaves when the enable is deasserted, which
-could not be checked from the tree.
-
-> diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_xxv.c b/drivers/net/ethernet/xilinx/xilinx_axienet_xxv.c
-> index 3c204dbbf6aec..83782bfbce4ce 100644
-> --- a/drivers/net/ethernet/xilinx/xilinx_axienet_xxv.c
-> +++ b/drivers/net/ethernet/xilinx/xilinx_axienet_xxv.c
-
-[ ... ]
-
-> @@ -335,6 +411,204 @@ static int axienet_10g25g_clk_init(struct axienet_local *lp)
->  	return 0;
->  }
->  
-> +/**
-> + * axienet_xxv_stats_update - Latch and accumulate XXV hardware counters
-
-[ ... ]
-
-> + * Readers copy @xxv_stat_base and do not tick. ndo_get_stats64() may run in
-> + * atomic context, so it cannot take @stats_lock and tick itself. The periodic
-> + * statistics work, and the final snapshot in axienet_stop(), are the latches.
-> + */
-> +static void axienet_xxv_stats_update(struct axienet_local *lp)
-> +{
-
-[ ... ]
-
-> +	write_seqcount_begin(&lp->hw_stats_seqcount);
-> +	for (stat = 0; stat < XXV_STAT_COUNT; stat++)
-> +		lp->xxv_stat_base[stat] += counter[stat];
-> +	write_seqcount_end(&lp->hw_stats_seqcount);
-> +}
-> +
-> +/**
-> + * axienet_xxv_get_stats64 - Fill rtnl_link_stats64 from XXV counters
-> + * @lp: Pointer to the axienet_local structure
-> + * @stats: Output rtnl_link_stats64 structure to populate
-> + */
-> +static void axienet_xxv_get_stats64(struct axienet_local *lp,
-> +				    struct rtnl_link_stats64 *stats)
-> +{
-> +	unsigned int start;
-> +	u64 tx_hw_errors;
-> +
-> +	do {
-> +		start = read_seqcount_begin(&lp->hw_stats_seqcount);
-
-[Severity: Medium]
-Can this reader sleep on PREEMPT_RT? hw_stats_seqcount is a
-seqcount_mutex_t bound to stats_lock in axienet_probe():
-
-	seqcount_mutex_init(&lp->hw_stats_seqcount, &lp->stats_lock);
-
-With CONFIG_PREEMPT_RT, read_seqcount_begin() on a seqcount_mutex_t
-calls mutex_lock(s->lock) and then mutex_unlock() when it sees an odd
-sequence. On RT the writer also stays preemptible between
-write_seqcount_begin() and write_seqcount_end().
-
-The write section in axienet_xxv_stats_update() runs with stats_lock
-held, from the stats work or from axienet_stop(). A reader that
-overlaps it would block on stats_lock. ndo_get_stats64 can be called
-under rcu_read_lock(), for example from /proc/net/dev, where
-dev_seq_start() takes rcu_read_lock():
-
-dev_seq_show()
-  dev_seq_printf_stats()
-    dev_get_stats()
-      axienet_get_stats64()
-        axienet_xxv_get_stats64()
-          read_seqcount_begin()
-            mutex_lock(&lp->stats_lock)
-
-Bonding also calls it under its stats spinlock plus RCU.
-
-Would this trigger a "sleeping function called from invalid context"
-splat on RT kernels? The kernel-doc above says ndo_get_stats64() cannot
-take @stats_lock, but on RT the seqcount takes it anyway.
-
-The 1G reader axienet_1g_get_stats64() already uses the same pattern.
-This patch adds a new atomic-context reader whose design assumes that
-readers never take stats_lock.
-
-[ ... ]
-
-> +static void axienet_xxv_get_ethtool_stats(struct axienet_local *lp, u64 *data)
-> +{
-> +	unsigned int i, start;
-> +
-> +	do {
-> +		start = read_seqcount_begin(&lp->hw_stats_seqcount);
-> +		for (i = 0; i < ARRAY_SIZE(axienet_xxv_priv_stats); i++)
-> +			data[i] = lp->xxv_stat_base[axienet_xxv_priv_stats[i]];
-> +	} while (read_seqcount_retry(&lp->hw_stats_seqcount, start));
-> +}
-
-[Severity: Medium]
-Will ethtool -S on XXV return values that are at least one work
-interval old? This reader only copies lp->xxv_stat_base. So do
-axienet_xxv_get_pause_stats(), axienet_xxv_get_eth_mac_stats(),
-axienet_xxv_get_rmon_stats() and axienet_xxv_get_stats64().
-
-The base only changes in axienet_xxv_stats_update(), which is called
-from axienet_refresh_stats() and axienet_stop(). The work is set up
-with INIT_DEFERRABLE_WORK() and re-armed every 13 * HZ, so on an idle
-CPU the lag can go well past 13 seconds. After a traffic burst, the
-ethtool -S totals and the pause, eth-mac and RMON groups would not
-change until the work runs.
-
-The commit message explains why ndo_get_stats64() cannot tick. The
-ethtool callbacks, though, run in process context under RTNL.
-
-Could they take stats_lock and call stats_update so they return
-current values?
-
-For comparison, the 1G readers go through axienet_stat(), which adds
-the live register to the software base:
-
-	counter = axienet_ior(lp, XAE_STATS_OFFSET + stat * 8);
-	return lp->hw_stat_base[stat] + (counter - lp->hw_last_counter[stat]);
-
-so the 1G ethtool and stats64 values are current.
-
-In ndo_get_stats64 the software rx/tx packet and byte counters are live,
-while the XXV hardware error and multicast counters come from the
-cached base. A single snapshot therefore mixes values from different
-points in time.
-
-[ ... ]
-
-> +		mac_stats->InRangeLengthErrors =
-> +			lp->xxv_stat_base[XXV_STAT_RX_INRANGEERR];
-> +	} while (read_seqcount_retry(&lp->hw_stats_seqcount, start));
-> +}
-
-[Severity: Low]
-Should FrameTooLongErrors be filled in here too? axienet_xxv_get_stats64()
-treats XXV_STAT_RX_OVERSIZE as a frame-too-long error and folds it into
-rx_length_errors:
-
-		/* Both in-range length errors and frame-too-long (oversize)
-		 * frames are IEEE 802.3 length errors, so fold them together
-
-axienet_xxv_get_rmon_stats() also reports it as oversize_pkts.
-
-struct ethtool_eth_mac_stats has a FrameTooLongErrors field, but it is
-never set here. As a result, ethtool -S <dev> --groups eth-mac shows it
-as unsupported, even though the driver already accumulates the counter.
-
-> +
-> +/**
-> + * axienet_xxv_get_rmon_stats - Fill RMON statistics and histogram ranges
-> + * @lp: Pointer to the axienet_local structure
-> + * @rmon_stats: Output ethtool_rmon_stats structure to populate
-> + * @ranges: Set to NULL; XXV exposes aggregate RMON counters only, not
-> + *          per-bin histogram ranges.
-> + */
-
-[ ... ]
-
-> +	/* XXV currently exposes only aggregate RMON counters, not per-bin
-> +	 * histogram buckets. Keep ranges NULL until histogram bins are wired.
-> +	 */
-> +	*ranges = NULL;
-> +}
-
-[Severity: Low]
-Is the kernel-doc accurate about the hardware? The register map this
-patch adds in xilinx_axienet_xxv.h has a gap here:
-
-#define XXV_STAT_RX_TOTAL_GOOD_BYTES_OFFSET	0x00000820
-#define XXV_STAT_RX_UNDERSIZE_OFFSET		0x00000898
-
-That gap is 14 skipped 8-byte counter slots, 0x828 to 0x890. There is a
-similar gap here:
-
-#define XXV_STAT_TX_TOTAL_GOOD_BYTES_OFFSET	0x00000718
-#define XXV_STAT_TX_BAD_FCS_OFFSET		0x000007B8
-
-These look like the PG210 per-size-bin packet counters (64, 65-127, ...
-8192-9215 bytes, plus large and small). This could not be checked
-against the PG210 datasheet from the tree. The inline comment
-("currently ... until histogram bins are wired") reads like a driver
-limitation rather than missing hardware.
-
-The commit message says the RMON statistics come from this path. It
-does not mention that the RX and TX histograms are left out.
-
-Could the kernel-doc and the commit message say that the histogram
-counters exist but are not wired up yet?
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261114182947.2908628-1-suraj.gupta2%40amd.com
 
