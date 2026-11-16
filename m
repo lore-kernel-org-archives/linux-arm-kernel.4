@@ -2,85 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D449A606A882
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C7C606A33A
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NQ5um43/;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=vZbRNIiM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AJUR8ihU;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KR6iLRuO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
+	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=8WXlEICWriKO8hycyhrD09n2zXcSWx4xc1unIUHuerE=; b=NQ5um43/2JUK+V
-	RlmvU72gz0DN8zpgX6VohuZnEsfLekr00nCtgzBWszX3EjB++n6S+CY+J5QJy76kl3xwKU9IIABBp
-	rukgiDqoWvfVS4NKflZe5+wrmtjLwdtmM8abR3OuyTtxkvNgIGOhPm7nmA9EbfSkTdNT6AFIMouo0
-	QBOYWaFDdWte18TszwATgdLpKFirZ2AXlL1tuzemiF3cUB+SEz9Z/p48h8xAHJZUn3/PiSRYxtY6b
-	5/1JoeGnWUUwJDeRjt/oHb+SbU5ggZ2OhqpxEdZKYpNrVTiYvSWSw0updoSUlgushfWp/a/lDag3q
-	2c3JZUMh1++vLTydG1uA==;
+	List-Owner; bh=R6UJEDH5g29NKeQsGzbhKpCZfezzH4/X/Ykrb8VC1R4=; b=AJUR8ihU75Sbx5
+	hX355YISn38BWe+QVrP36OzSAolhgudLa/4EmJZCSntzQk2r7bdCs+Yokz3WpXJazrMhpRrmCpMoz
+	FSjbKTHO/oisdCFUH1fTJ+4Ocfh/WBQXZCdIbIfQJGeeoVRpX7JVrSBVOR8cGvYRMLt8H2Pz6KCEc
+	TCRqaZMf6BJhyJkuTalMq4PhhZ6WNACXYmEgDaQPVkJ+7QQuMj6ED4CQE2Wo8zrHM1t+b/OYhHVEQ
+	wvx2rkXWeaJjFny3uqOWgk25Knd6r7AiaRZPfqDwAtY0OfuxIzVq1sjNMfV7AeLPgbYfcGg5o74q5
+	B6KlRj5WoOrw1gxqRJxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzox-00000003IOP-2P2c;
+	id 1xSzox-00000003INR-0yR0;
 	Mon, 16 Nov 2026 16:44:43 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzot-00000003IKt-0uDc
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSzol-00000003IG6-3syq
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 16:44:40 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 55959143D;
-	Mon, 16 Nov 2026 08:44:35 -0800 (PST)
-Received: from e122027.arm.com (unknown [10.57.63.54])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 62AE43FB7F;
-	Mon, 16 Nov 2026 08:44:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794847478; bh=GadZ/zda/tWuvRc+0zC4U/Ce9iNHK0hYWGg2Fdrk0Sc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=vZbRNIiME0eVfKmzXCTnxEBXkTZyF4VbvYFVmg9fg/1Fb0DmNz7QPe+w8vQxTied8
-	 c2Eg4zzW2waz/qJ56vSFo2ShOSOFhajKTZBp+rNN4i8UylisValR2RIsx7HMI4ztsE
-	 KP2uEqaOAu21co8eVAbnnB4oGVSJ9rnOXy/dYluk=
-From: Steven Price <steven.price@arm.com>
-To: kvm@vger.kernel.org,
-	kvmarm@lists.linux.dev
-Cc: Steven Price <steven.price@arm.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	James Morse <james.morse@arm.com>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Joey Gouly <joey.gouly@arm.com>,
-	Alexandru Elisei <alexandru.elisei@arm.com>,
-	Christoffer Dall <christoffer.dall@arm.com>,
-	Fuad Tabba <tabba@google.com>,
-	linux-coco@lists.linux.dev,
-	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
-	Gavin Shan <gshan@redhat.com>,
-	Shanker Donthineni <sdonthineni@nvidia.com>,
-	Alper Gun <alpergun@google.com>,
-	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>,
-	Emi Kisanuki <fj0570is@fujitsu.com>,
-	Vishal Annapurve <vannapurve@google.com>,
-	WeiLin.Chang@arm.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kohei Enju <enju.kohei@fujitsu.com>
-Subject: [PATCH v3 04/11] KVM: arm64: CCA: Add basic infrastructure for creating a realm
-Date: Mon, 16 Nov 2026 16:43:50 +0000
-Message-ID: <20261116164358.142785-5-steven.price@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261116164358.142785-1-steven.price@arm.com>
-References: <20261116164358.142785-1-steven.price@arm.com>
+	Mon, 16 Nov 2026 16:44:31 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id AD5E144F6F;
+	Mon, 16 Nov 2026 16:44:31 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794847471;
+	b=JJYlCEr6NtbkfUtv9lPlyhpHmLSGIRLDvklrWQfhLiW7sxsmSwVt3qMx1jZzIVKLvn9m
+	 G6rjwJKkHXTWasTdEh9MjHR2448Vv2l7Qp7v6REnItHXfnTFuNY/UxNrJavZYPp0VyvLX
+	 WenmAS9ROI3mcuxTxKP0co1hjJxg+URWalWSmP4qy8Zj4hr9ulDQp+ajtOVc6f4sm4ZJg
+	 hF9bk/ODYVPhzIGo3/gD2uAXdUUPT/DYaItEErT82I6MliJregcQNY++e1vHkPlIw+tJZ
+	 SXR9Zr7CP+amZRV/iZ10OdRozTIKtpKaWBGZfMVdWJW2WapktAl4VrTR18h8EpTn42Q==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794847471;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
+	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=R6UJEDH5g29NKeQsGzbhKpCZfezzH4/X/Ykrb8VC1R4=;
+	b=Qijv1qZW+65VjpaBQarA7Pt8TZmwDV60g6bgSKCmgX7VqozQ0pk1I3Z/fag/rQkAf69f
+	 TrQVGLmbX2rthxvtINRZN3zSgJe+WBnjy9RD4w+nmE4dQh1fu1maUJ9fQIgCQC1OtWtjE
+	 bSDDs6+XME2u5lP8ZF1c9yavCoJUCM4/Ne1Tks3ObdsCe286F7PQMhqnOdxu0aJcMt2ih
+	 pnf6z3mIibrKyd9ZqPTbwL3NsMEWG+32wZtUUcW5wktCOc3VGTV5Xx0RmWYGA4enllEFu
+	 VdLJ1Xh43KoOVRLtU8LKtpAnQleG/RumvX94V07Xv4C5rHDzJnb3d4m0hIWVy3xLcSQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 8AF8C1F000CE;
+	Mon, 16 Nov 2026 16:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794847471;
+	bh=R6UJEDH5g29NKeQsGzbhKpCZfezzH4/X/Ykrb8VC1R4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=KR6iLRuO3LrvmuxYK6d69Yn/qOS6Tcn1JYD0qcritWNhT2E9Fg/mzGpx8Jfids++h
+	 1F5egkRg3dXNKrvmdijIq4BlAmyjGoASvglfymdXJmX7YHPu14TvnzAVlkOadJzjnb
+	 3B3Cd4Cqg7HeZ3BNKg/6oEBpRDMJsHAVuYs+e4Q3ujrNXE1lrK/ja3H7ktSGrVamc/
+	 DV0vy1cJR+LZab7adNGlOLkjEEpkJyYDrx5x1M2kV84v4OWkWLswCXTxD6pYbhhkZD
+	 EmhYoVJTNAuOOC8fzcCTfVVqlFilpxy4mWsHFkVUgXu2aio3lFvgQ6OZJ01EKr8ohf
+	 bu2HCFDyS3KJw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 15DF94A52A;
+	Mon, 16 Nov 2026 16:44:30 +0000 (UTC)
+From: Cristian Filipescu via B4 Relay <devnull+filipescu.cristian.gmail.com@kernel.org>
+Date: Mon, 16 Nov 2026 16:44:31 +0000
+Subject: [PATCH v5 2/2] arm64: dts: allwinner: h6: Add Orange Pi 3 LTS
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_084439_333132_534B0AB6 
-X-CRM114-Status: GOOD (  26.70  )
-X-Spam-Score: -4.4 (----)
+Message-Id: <20261116-sunxi-orangepi-3-lts-v5-2-979cf5474913@gmail.com>
+References: <20261116-sunxi-orangepi-3-lts-v5-0-979cf5474913@gmail.com>
+In-Reply-To: <20261116-sunxi-orangepi-3-lts-v5-0-979cf5474913@gmail.com>
+To: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Andre Przywara <andre.przywara@arm.com>, linux-kernel@vger.kernel.org, 
+ Cristian Filipescu <filipescu.cristian@gmail.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794847469; l=5799;
+ i=filipescu.cristian@gmail.com; s=uboot-20261021;
+ h=from:subject:message-id;
+ bh=LaxsdgCto8Iw/LV/2gy1jzXSKmMNoqirf/zKIZsGW50=;
+ b=P4FCZd+wqibX8QPxT/rLOssAM4qmYq6KTHAcNqxuqhxjCRk6BsVNlhEFR/4PLVbanLqO1blIy
+ yQDbSRJjovIBmVG8PZiNoalq5UONEDD4K0QVQtCArWCU9C+A36GSy1M
+X-Developer-Key: i=filipescu.cristian@gmail.com; a=ed25519;
+ pk=o7Ui0tU3x+X/6Pq6PZHmd2KFtOdPWttoPuNFOvdD8t0=
+X-Endpoint-Received: by B4 Relay for
+ filipescu.cristian@gmail.com/uboot-20261021 with auth_id=1255
+X-Original-From: Cristian Filipescu <filipescu.cristian@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,6 +111,7 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipescu.cristian@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -99,253 +121,217 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Introduce the skeleton functions for creating and destroying a realm.
-The requested IPA size is checked against both the KVM and RMM limits.
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-The actual work of constructing the realm will be added in future
-patches.
+Add the board description for the Allwinner H6-based Orange Pi 3 LTS,
+using the common Orange Pi H6 description for shared hardware.
+Describe the LTS regulators, storage, Motorcomm YT8531C Ethernet PHY,
+wireless module supplies, LEDs and USB ports.
 
-Signed-off-by: Steven Price <steven.price@arm.com>
+Reset the sole Ethernet PHY at MDIO bus registration and keep reset
+outside interface detach so its configured 125 MHz output is retained.
+Use generic Clause 22 discovery and PHY-internal RGMII delays.
 
+Inherit the schematic LED roles and defaults: red power on and green
+status off. Select the weakest GPIO drive level for both LEDs and enable
+1.8 V eMMC DDR52 and HS200 modes while retaining the H6 maximum frequency
+of 150 MHz. Inherit the CPU/GPU OPP tables, CPU supply and regulator ramp
+delays from the common include. Remove inherited USB ID detection for
+fixed host mode.
+
+Link: https://lore.kernel.org/linux-sunxi/20250413134318.66681-3-jernej.skrabec@gmail.com/
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Signed-off-by: Cristian Filipescu <filipescu.cristian@gmail.com>
 ---
-Changes since v2:
-- Move ARM_RMM_RMI selection and rmi.o build registration here.
-  Store the RD physical address from the outset and free SRO state
-  on Realm teardown errors.
+ arch/arm64/boot/dts/allwinner/Makefile             |   1 +
+ .../dts/allwinner/sun50i-h6-orangepi-3-lts.dts     | 164 +++++++++++++++++++++
+ 2 files changed, 165 insertions(+)
 
-Changes since v1:
-- Cap the Realm IPA size at the smaller KVM and RMM limit, and record
-  the selected IPA size when initializing Realm state.
----
- arch/arm64/include/asm/kvm_rmi.h | 21 +++++++++++
- arch/arm64/kvm/Kconfig           |  1 +
- arch/arm64/kvm/Makefile          |  2 +-
- arch/arm64/kvm/arm.c             |  9 +++++
- arch/arm64/kvm/mmu.c             | 18 ++++++++--
- arch/arm64/kvm/rmi.c             | 62 ++++++++++++++++++++++++++++++++
- 6 files changed, 110 insertions(+), 3 deletions(-)
- create mode 100644 arch/arm64/kvm/rmi.c
-
-diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/asm/kvm_rmi.h
-index 67f16793b4d0..6994756a14e6 100644
---- a/arch/arm64/include/asm/kvm_rmi.h
-+++ b/arch/arm64/include/asm/kvm_rmi.h
-@@ -6,6 +6,9 @@
- #ifndef __ASM_KVM_RMI_H
- #define __ASM_KVM_RMI_H
- 
-+#include <linux/arm-smccc-rmi.h>
-+#include <linux/kvm.h>
-+
- /**
-  * enum realm_state - State of a Realm
-  *
-@@ -50,10 +53,28 @@ enum realm_state {
- /**
-  * struct realm - Additional per VM data for a Realm
-  *
-+ * @rd_phys: Physical address of the RMM-managed Realm Descriptor (RD) granule
-+ * @sro: Preallocated SRO state context for Realm MMU operations
-  * @state: The lifetime state machine for the realm
-+ * @ia_bits: Number of valid Input Address bits in the IPA
-  */
- struct realm {
-+	phys_addr_t rd_phys;
-+	/*
-+	 * Reused by RTT map/unmap SRO commands. Those commands are only
-+	 * issued from Realm stage-2 map/unmap paths while kvm->mmu_lock is
-+	 * held for write, including Realm fault handling where
-+	 * kvm_fault_lock() takes the write side, so concurrent use is
-+	 * serialized.
-+	 */
-+	struct rmi_sro_state *sro;
- 	enum realm_state state;
-+	unsigned int ia_bits;
- };
- 
-+u32 kvm_rmm_ipa_limit(void);
-+
-+int kvm_init_realm(struct kvm *kvm);
-+void kvm_destroy_realm(struct kvm *kvm);
-+
- #endif /* __ASM_KVM_RMI_H */
-diff --git a/arch/arm64/kvm/Kconfig b/arch/arm64/kvm/Kconfig
-index cecea0820e52..d067063a3686 100644
---- a/arch/arm64/kvm/Kconfig
-+++ b/arch/arm64/kvm/Kconfig
-@@ -34,6 +34,7 @@ menuconfig KVM
- 	select GUEST_PERF_EVENTS if PERF_EVENTS
- 	select KVM_GUEST_MEMFD
- 	select KVM_GENERIC_PRE_FAULT_MEMORY
-+	select ARM_RMM_RMI
- 	help
- 	  Support hosting virtualized guest machines.
- 
-diff --git a/arch/arm64/kvm/Makefile b/arch/arm64/kvm/Makefile
-index 7aaeeb84e788..66a719ab5b6b 100644
---- a/arch/arm64/kvm/Makefile
-+++ b/arch/arm64/kvm/Makefile
-@@ -16,7 +16,7 @@ CFLAGS_handle_exit.o += -Wno-override-init
- kvm-y += arm.o mmu.o mmio.o psci.o hypercalls.o pvtime.o \
- 	 inject_fault.o va_layout.o handle_exit.o config.o \
- 	 guest.o debug.o reset.o sys_regs.o stacktrace.o \
--	 vgic-sys-reg-v3.o fpsimd.o pkvm.o \
-+	 vgic-sys-reg-v3.o fpsimd.o pkvm.o rmi.o \
- 	 arch_timer.o trng.o vmid.o emulate-nested.o nested.o at.o \
- 	 vgic/vgic.o vgic/vgic-init.o \
- 	 vgic/vgic-irqfd.o vgic/vgic-v2.o \
-diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-index e06cc390a3d6..821e27d07f6a 100644
---- a/arch/arm64/kvm/arm.c
-+++ b/arch/arm64/kvm/arm.c
-@@ -300,6 +300,13 @@ int kvm_arch_init_vm(struct kvm *kvm, unsigned long type)
- 
- 	bitmap_zero(kvm->arch.vcpu_features, KVM_VCPU_MAX_FEATURES);
- 
-+	/* Initialise the realm bits after the generic bits are enabled */
-+	if (kvm_vm_is_realm(kvm)) {
-+		ret = kvm_init_realm(kvm);
-+		if (ret)
-+			goto err_uninit_mmu;
-+	}
-+
- 	return 0;
- 
- err_uninit_mmu:
-@@ -364,6 +371,8 @@ void kvm_arch_destroy_vm(struct kvm *kvm)
- 
- 	kvm_destroy_nested(kvm);
- 	kvm_arm_teardown_hypercalls(kvm);
-+	if (kvm_vm_is_realm(kvm))
-+		kvm_destroy_realm(kvm);
- }
- 
- static bool kvm_has_full_ptr_auth(void)
-diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-index 8a9a80c7cfab..ac72db3d4505 100644
---- a/arch/arm64/kvm/mmu.c
-+++ b/arch/arm64/kvm/mmu.c
-@@ -981,10 +981,14 @@ static struct kvm_pgtable_mm_ops kvm_s2_mm_ops = {
- 
- static int kvm_init_ipa_range(struct kvm_s2_mmu *mmu, unsigned long type)
- {
-+	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
- 	u32 kvm_ipa_limit = get_kvm_ipa_limit();
- 	u64 mmfr0, mmfr1;
- 	u32 phys_shift;
- 
-+	if (kvm_vm_is_realm(kvm))
-+		kvm_ipa_limit = min(kvm_ipa_limit, kvm_rmm_ipa_limit());
-+
- 	phys_shift = KVM_VM_TYPE_ARM_IPA_SIZE(type);
- 	if (is_protected_kvm_enabled()) {
- 		phys_shift = kvm_ipa_limit;
-@@ -1034,9 +1038,18 @@ static void stage2_destroy_range(struct kvm_pgtable *pgt, phys_addr_t addr,
- 
- static void kvm_stage2_destroy(struct kvm_pgtable *pgt)
- {
-+	struct kvm *kvm = kvm_s2_mmu_to_kvm(pgt->mmu);
- 	unsigned int ia_bits = VTCR_EL2_IPA(pgt->mmu->vtcr);
- 
--	stage2_destroy_range(pgt, 0, BIT(ia_bits));
-+	/*
-+	 * Realm RTTs are inaccessible to the host and may contain stale data
-+	 * after the RMM has released them. The non-root RTTs are explicitly
-+	 * destroyed through RMI before the RD is destroyed; only the root PGD
-+	 * pages remain to be freed here.
-+	 */
-+	if (!kvm_vm_is_realm(kvm))
-+		stage2_destroy_range(pgt, 0, BIT(ia_bits));
-+
- 	KVM_PGT_FN(kvm_pgtable_stage2_destroy_pgd)(pgt);
- }
- 
-@@ -1084,6 +1097,8 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu, unsigned long t
- 		return -EINVAL;
- 	}
- 
-+	mmu->arch = &kvm->arch;
-+
- 	err = kvm_init_ipa_range(mmu, type);
- 	if (err)
- 		return err;
-@@ -1092,7 +1107,6 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu, unsigned long t
- 	if (!pgt)
- 		return -ENOMEM;
- 
--	mmu->arch = &kvm->arch;
- 	err = KVM_PGT_FN(kvm_pgtable_stage2_init)(pgt, mmu, &kvm_s2_mm_ops);
- 	if (err)
- 		goto out_free_pgtable;
-diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
+diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+index d1f768dd6..da39f0225 100644
+--- a/arch/arm64/boot/dts/allwinner/Makefile
++++ b/arch/arm64/boot/dts/allwinner/Makefile
+@@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-orangepi-zero-plus.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-orangepi-zero-plus2.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-beelink-gs1.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3.dtb
++dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3-lts.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3-lts.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3-lts.dts
 new file mode 100644
-index 000000000000..57f59b618a96
+index 000000000..6dbdba4a8
 --- /dev/null
-+++ b/arch/arm64/kvm/rmi.c
-@@ -0,0 +1,62 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2023-2026 ARM Ltd.
-+ */
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3-lts.dts
+@@ -0,0 +1,164 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (C) 2025 Jernej Skrabec <jernej.skrabec@gmail.com>
++// Based on sun50i-h6-orangepi-3.dts, which is:
++// Copyright (C) 2019 Ondřej Jirman <megous@megous.com>
 +
-+#include <linux/arm-rmi-cmds.h>
-+#include <linux/kvm_host.h>
++#include "sun50i-h6-orangepi.dtsi"
 +
-+#include <asm/kvm_emulate.h>
-+#include <asm/kvm_mmu.h>
-+#include <asm/kvm_pgtable.h>
-+#include <asm/virt.h>
++/ {
++	model = "OrangePi 3 LTS";
++	compatible = "xunlong,orangepi-3-lts", "allwinner,sun50i-h6";
 +
-+u32 kvm_rmm_ipa_limit(void)
-+{
-+	return u64_get_bits(rmi_feat_reg(0), RMI_FEATURE_REGISTER_0_S2SZ);
-+}
++	aliases {
++		ethernet0 = &emac;
++		ethernet1 = &aw859a;
++	};
 +
-+void kvm_destroy_realm(struct kvm *kvm)
-+{
-+	struct realm *realm = &kvm->arch.realm;
-+	size_t pgd_size = kvm_pgtable_stage2_pgd_size(kvm->arch.mmu.vtcr);
++	leds {
++		led-0 {
++			pinctrl-names = "default";
++			pinctrl-0 = <&led_red_pin>;
++		};
 +
-+	if (!kvm_realm_is_created(kvm))
-+		goto out_free_sro;
++		led-1 {
++			pinctrl-names = "default";
++			pinctrl-0 = <&led_green_pin>;
++		};
++	};
 +
-+	kvm_set_realm_state(kvm, REALM_STATE_DYING);
++	reg_gmac_3v3: gmac-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "gmac-3v3";
++		vin-supply = <&reg_vcc5v>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		startup-delay-us = <150000>;
++		enable-active-high;
++		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
++	};
 +
-+	if (realm->rd_phys) {
-+		phys_addr_t rd_phys = realm->rd_phys;
++	reg_wifi_3v3: wifi-3v3 {
++		/* 3.3V regulator for WiFi and BT */
++		compatible = "regulator-fixed";
++		regulator-name = "wifi-3v3";
++		vin-supply = <&reg_vcc5v>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		enable-active-high;
++		gpio = <&pio 7 7 GPIO_ACTIVE_HIGH>; /* PH7 */
++	};
 +
-+		if (WARN_ON(rmi_realm_terminate(rd_phys, realm->sro)))
-+			goto out_free_sro;
++	wifi_pwrseq: wifi-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		clocks = <&rtc CLK_OSC32K_FANOUT>;
++		clock-names = "ext_clock";
++		reset-gpios = <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
++		post-power-on-delay-ms = <200>;
++	};
++};
 +
-+		if (WARN_ON(rmi_realm_destroy(rd_phys, realm->sro)))
-+			goto out_free_sro;
-+		rmi_free_delegated_page(rd_phys);
-+		realm->rd_phys = 0;
-+	}
++&axp805 {
++	/* ALDO3 is shorted to CLDO1; both inherit regulator-always-on. */
++	regulators {
++		cldo2 {
++			/* unused */
++			/delete-property/ regulator-min-microvolt;
++			/delete-property/ regulator-max-microvolt;
++		};
 +
-+	if (WARN_ON(rmi_undelegate_range(kvm->arch.mmu.pgd_phys,
-+					 pgd_size)))
-+		goto out_free_sro;
++		cldo3 {
++			/* unused */
++			/delete-property/ regulator-min-microvolt;
++			/delete-property/ regulator-max-microvolt;
++		};
 +
-+	kvm_set_realm_state(kvm, REALM_STATE_DEAD);
++		/* DCDCB is polyphased with DCDCA. */
++		dcdca {
++			regulator-min-microvolt = <800000>;
++		};
++	};
++};
 +
-+out_free_sro:
-+	kfree(realm->sro);
-+	realm->sro = NULL;
-+}
++&dwc3 {
++	status = "okay";
++};
 +
-+int kvm_init_realm(struct kvm *kvm)
-+{
-+	struct realm *realm = &kvm->arch.realm;
++&emac {
++	pinctrl-names = "default";
++	pinctrl-0 = <&ext_rgmii_pins>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ext_rgmii_phy>;
++	phy-supply = <&reg_gmac_3v3>;
++	allwinner,rx-delay-ps = <0>;
++	allwinner,tx-delay-ps = <0>;
++	status = "okay";
++};
 +
-+	realm->ia_bits = VTCR_EL2_IPA(kvm->arch.mmu.vtcr);
-+	realm->sro = kmalloc_obj(*realm->sro);
-+	if (!realm->sro)
-+		return -ENOMEM;
++&hdmi {
++	hvcc-supply = <&reg_bldo2>;
++};
 +
-+	return 0;
-+}
++&mdio {
++	reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* PD14 */
++	reset-delay-us = <15000>;
++	reset-post-delay-us = <100000>;
++
++	ext_rgmii_phy: ethernet-phy@1 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <1>;
++
++		motorcomm,clk-out-frequency-hz = <125000000>;
++		rx-internal-delay-ps = <1950>;
++		tx-internal-delay-ps = <1950>;
++	};
++};
++
++&mmc1 {
++	vmmc-supply = <&reg_wifi_3v3>;
++	vqmmc-supply = <&reg_bldo3>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++
++	aw859a: wifi@1 {
++		reg = <1>;
++	};
++};
++
++&mmc2 {
++	vmmc-supply = <&reg_cldo1>;
++	vqmmc-supply = <&reg_bldo2>;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	cap-mmc-hw-reset;
++	non-removable;
++	bus-width = <8>;
++	status = "okay";
++};
++
++&pio {
++	vcc-pg-supply = <&reg_bldo3>;
++};
++
++&r_pio {
++	led_green_pin: led-green-pin {
++		pins = "PL7";
++		function = "gpio_out";
++		drive-strength = <10>;
++	};
++
++	led_red_pin: led-red-pin {
++		pins = "PL4";
++		function = "gpio_out";
++		drive-strength = <10>;
++	};
++};
++
++&usb2phy {
++	/delete-property/ usb0_id_det-gpios;
++};
++
++&usb3phy {
++	status = "okay";
++};
+
 -- 
-2.43.0
+2.47.3
+
 
 
