@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9D0606A8B7
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D9D606D544
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NrJHQSIW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=StcbKjgQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LWCFrEKe;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f9mQkNAL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=unxNUnNvHo9UiEFNkytw5QgCqdwu/8SsVq4RLekX030=; b=NrJHQSIWREHTvdRjFrhBQZ+NFo
-	rVxtoG676I0lMb3SdhHN/TLoyBNO4CUaYDcg6YctDZrHdXldsvr62aVoj3HUPwfXo98YLyVZTk/jt
-	8MwF8XzfsH4WgsjI1DJvYsUFMswkVkMD+zV8QIe+iAUdrgoEfWpS9CZPRGJWc7j1dEZdWi8DdJITE
-	hA2mrdSoX+S/KFH7BAvNFN+joE+K2z2yVle2ptkhl3jCWWQ8zwfxtoPLe+enxeWudkA0OG74iw1Mr
-	IQLDdKpVX9k3NiZjZs0bztfC+T7SXX3zn4SsUhgzXLHpHzSncghVifHdES665MjkZOgiRPv684dMn
-	Z/5H4mPQ==;
+	bh=dSdvzPnABLjwFVZiWfi1//2H/6q2Iw+ZHFe/StntKFs=; b=LWCFrEKeENYObFttkcKWJxMA0A
+	q95YTXa0kk+5f07QVg+jHOHqu2PRQyOXN7jWjUuABjSKWgo0DFxqZkY+QFMc04Ui3bsMKPEIKpRjC
+	gTxDX1WRxFPBsw+xQXQoR+rbJ7ML8w//96N936VOtrHDidcaHITpXQ5AG5wYtD5e5FpPwXAxkiZBT
+	Gs9T/V5/Q/B/0rNmwbri4r/2v2aeRE1LqDqzVrlaTsOkxMhkTBOKKPfAetSo/AF50FBkgP9+Xbu+g
+	KLDIQy26/HfYw8X76QIQPTyamOCpMdL5azVSndt+H1bPUW4odXlTggiX4iJ9W/hSPD3ycufEEb9Eg
+	iCdSUPQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxAb-00000002icy-49mm;
-	Mon, 16 Nov 2026 13:54:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSxAm-00000002ign-1uhZ;
+	Mon, 16 Nov 2026 13:55:04 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxAb-00000002icm-1pwM
+	id 1xSxAe-00000002ieG-3k4S
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:54:53 +0000
+	Mon, 16 Nov 2026 13:54:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E7A7A4585F;
-	Mon, 16 Nov 2026 13:54:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C96D71F000CD;
-	Mon, 16 Nov 2026 13:54:51 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 59A4262C54;
+	Mon, 16 Nov 2026 13:54:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 104131F000C4;
+	Mon, 16 Nov 2026 13:54:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794837292;
-	bh=unxNUnNvHo9UiEFNkytw5QgCqdwu/8SsVq4RLekX030=;
+	s=k20260515; t=1794837296;
+	bh=dSdvzPnABLjwFVZiWfi1//2H/6q2Iw+ZHFe/StntKFs=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=StcbKjgQOuezUN2KYHQTEH1d4Bkt4C2KFvx2LMLVRBkBkx6OPpQHdbvTov+zqXlOP
-	 6l1boZYSARnfVYO2All2qv6gm9ushbJjiOyn54jBTUMerK1JK2lD/7bfn3UAm97Oxy
-	 FeOO/Vk7DBr+/E9cHP3I04LcJBAyhp5YNYtF8nBR8xQ+wKIWIKHKbsGmeqsOuG0fZW
-	 cXpi9wuQeQ5MJg3Dxu8I8Llc6BeEGH4DY2KzmtOR9v8jvf89O/YSJ86EkwabHte7Pj
-	 n3vwJkuhdnyVzL82z6ZgeyTXrcRGvyZqqZdyDyJlb4KOwQtsbvTHMFUNyfsFx2Cthe
-	 X0gsi4XBEmzTg==
-Subject: Re: [PATCH net v3 RESEND 1/3] net: ti: icssg-prueth: Fix TX timestamp
- cleanup crash
+	b=f9mQkNAL+aphbZjEyCu9nHXVrTQAOOW4ZhFkmSvL36ZE/NSYAN9u0by1jSBOLUYdj
+	 kHE84gmTTMG/VeY5T/+CmSJCXcytgTM+BMZHAglsJ1N6sB6oiiJvuG6Sg9qDYsOmpQ
+	 wK16BCXrbWhTzcdQcVaGJZ5vOxMfKFjyYvFapND26xLqHgYAgK6HERLkqETjf2UIAf
+	 AhvR7L58DGI79orxq6gpStq1m+vTOHT31Q4XnhLHVzrLWdqhhjJYsPByd6sTSZtyTa
+	 l853W4INjlLZsGHc9wyBLJdEH19XuT+elR+r7p7USyHtAmLcKMbfQEzrAEWFk0mgU2
+	 fLFaYqIeH/7Fw==
+Subject: Re: [PATCH net v3 RESEND 3/3] net: ti: icssg-prueth: Fix bridge
+ port_vlan and flooding state
 From: netdev-bot+sashiko@kernel.org
 To: m-malladi@ti.com
 Cc: diogo.ivo@siemens.com, haokexin@gmail.com, philippe.schenker@impulsing.ch,
@@ -53,10 +53,10 @@ Cc: diogo.ivo@siemens.com, haokexin@gmail.com, philippe.schenker@impulsing.ch,
  pabeni@redhat.com, kuba@kernel.org, edumazet@kernel.org, davem@davemloft.net,
  andrew+netdev@lunn.ch, linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, danishanwar@ti.com
-Date: Mon, 16 Nov 2026 13:54:51 +0000
-Message-ID: <179483729133.3136.8884772760823152816@kernel.org>
-In-Reply-To: <20261112102140.2744508-2-m-malladi@ti.com>
-References: <20261112102140.2744508-2-m-malladi@ti.com>
+Date: Mon, 16 Nov 2026 13:54:54 +0000
+Message-ID: <179483729457.3136.9455084416390981722@kernel.org>
+In-Reply-To: <20261112102140.2744508-4-m-malladi@ti.com>
+References: <20261112102140.2744508-4-m-malladi@ti.com>
 X-sashiko-severity: High
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -79,10 +79,10 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 5 potential
+Thank you for your contribution! Sashiko AI review found 3 potential
 issue(s) to consider.
 
-Critical: 0 · High: 2 (2) · Medium: 3 · Low: 0
+Critical: 0 · High: 1 (1) · Medium: 1 · Low: 1
 
 If you believe none of the issues are legitimate, please reply to each
 issue of Medium severity or higher and explain why the AI is wrong.
@@ -90,282 +90,225 @@ If any of them are legitimate and you plan to respin, please let patchwork
 know by including "pw-bot: cr" as a separate line at the end of your reply
 (one such reply per series is enough).
 
-- [High] The patch only makes prueth_cleanup_tx_ts() aware of the
-  ERR_PTR(-EBUSY) sentinel.
-- [High] The ERR_PTR(-EBUSY) state exists only between
-  prueth_tx_ts_cookie_get() (icssg_common.c:1184) and the store…
-- [Medium] The Fixes: tag names the wrong commit.
-- [Medium] The commit message and the new comment misdescribe both the
-  trigger and the effect.
-- [Medium] The new check in prueth_cleanup_tx_ts() loads
-  emac->tx_ts_skb[i] twice with plain, non-READ_ONCE loads: once in…
+- [High] icssg_enable_fw_offload() (lines 247-256) skips the new flood-
+  restore block whenever prueth->is_switch_mode is set.
+- [Medium] The new uc/mc_flooding_enabled bitfields are written by
+  emac_ndo_set_rx_mode_work(), which runs from schedule_work() (line…
+- [Low] The Fixes: tag names the wrong commit.
 
 Pre-existing issues:
 - [High] This problem wasn't introduced by this patch, but
-  prueth_cleanup_tx_ts() (phylib work context) and the TX timestamp…
-- [High] This problem wasn't introduced by this patch, but
-  prueth_tx_ts_cookie_get() (icssg_common.c:1177-1190) reserves a slot…
+  emac_ndo_set_rx_mode_work() has a check-then-use race that can lead to…
 
 --
 
-net: ti: icssg-prueth: Fix TX timestamp cleanup crash
+net: ti: icssg-prueth: Fix bridge port_vlan and flooding state
 
-This patch changes prueth_cleanup_tx_ts() to skip slots that hold NULL or
-the ERR_PTR(-EBUSY) reservation sentinel. It still clears every slot to
-NULL. The goal is to stop dev_kfree_skb_any() from being called on a slot
-that the TX path has reserved but not yet filled.
+This patch sets port_vlan on both emacs when a bridge is formed. It also
+records the UC/MC flooding state set from IFF_PROMISC/IFF_ALLMULTI so that
+icssg_enable_fw_offload() can re-apply it after firmware restarts, and adds
+a NULL check for unused emac slots in icssg_enable_fw_offload().
 
-> Fixes: e2dc7bfd677fc ("net: ti: icssg-prueth: Move common functions into a separate file")
+> Fixes: 161087db66d6b ("net: ti: icssg-prueth: Add Support for Multicast filtering with VLAN in HSR mode")
 
-[Severity: Medium]
+[Severity: Low]
 Is this the right commit for the Fixes: tag?
 
-e2dc7bfd677fc is a code move, and its message says it introduces no
-functional changes. Before that commit, icssg_prueth.c already had
-prueth_tx_ts_cookie_get() storing ERR_PTR(-EBUSY), and a static
-prueth_cleanup_tx_ts() with the same check:
+In prueth_netdevice_port_link(), 161087db66d6b only replaced the hardcoded
+default_vlan of 1 with PRUETH_DFLT_VLAN_SW. It did not touch the port_vlan
+assignment, the restart paths or the flooding logic.
 
-    if (emac->tx_ts_skb[i]) {
-        dev_kfree_skb_any(emac->tx_ts_skb[i]);
+This patch fixes the single-emac assignment:
 
-Both came from 186734c15886 ("net: ti: icssg-prueth: add packet
-timestamping and ptp support"), which landed in v6.6. e2dc7bfd677fc
-landed in v6.10. Stable tooling that follows the current tag would skip
-6.6.y, which has the same cleanup code.
+    emac->port_vlan = prueth->default_vlan;
 
-Should this be:
+That assignment and the switch mode unlink logic appear to come from
+abd5576b9c57 ("net: ti: icssg-prueth: Add support for ICSSG switch
+firmware"). The restart in prueth_netdevice_port_unlink() with no re-apply
+step afterwards was reworked in 9facce84f406 ("net: ti: icssg-prueth: Fix
+firmware load sequence.").
 
-Fixes: 186734c15886 ("net: ti: icssg-prueth: add packet timestamping and ptp support")
+With the current tag, stable tooling would not pick up trees that have
+abd5576b9c57 (v6.11 and later) but not 161087db66d6b (v6.14).
 
-> diff --git a/drivers/net/ethernet/ti/icssg/icssg_common.c b/drivers/net/ethernet/ti/icssg/icssg_common.c
-> index 4a7d1a6f470b1..8cb2ad2ebece5 100644
-> --- a/drivers/net/ethernet/ti/icssg/icssg_common.c
-> +++ b/drivers/net/ethernet/ti/icssg/icssg_common.c
-> @@ -1426,10 +1426,13 @@ void prueth_cleanup_tx_ts(struct prueth_emac *emac)
->  	int i;
->  
->  	for (i = 0; i < PRUETH_MAX_TX_TS_REQUESTS; i++) {
-> -		if (emac->tx_ts_skb[i]) {
-> +		/* Slot may hold ERR_PTR(-EBUSY) if the TX path reserved it
-> +		 * but has not yet stored the real skb pointer.  Skip the free
-> +		 * but still clear the slot so it can be reused.
+The patch also combines three fixes with different origins: port_vlan on
+both emacs, the flood state restore, and the NULL check in
+icssg_enable_fw_offload(). Could they be split, each with its own Fixes:
+tag?
+
+> diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+> index ef5dce595f68a..48539460ee499 100644
+> --- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+> +++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
+
+[ ... ]
+
+> @@ -241,6 +243,17 @@ static void icssg_enable_fw_offload(struct prueth *prueth)
+>  					icssg_set_port_state(emac, ICSSG_EMAC_PORT_VLAN_AWARE_ENABLE);
+>  			}
+>  		}
+> +
+> +		/* Re-apply flooding state cleared by firmware restart.
+> +		 * In switch mode, flooding is managed by the bridge via
+> +		 * switchdev callbacks, not tracked by these flags.
 > +		 */
+> +		if (!prueth->is_switch_mode && netif_running(emac->ndev)) {
+
+[Severity: High]
+Is the comment above accurate? In icssg_switchdev.c, UC flooding is never
+handled through switchdev, because BR_FLOOD is rejected:
+
+prueth_switchdev_attr_br_flags_pre_set() {
+	if (brport_flags.mask & ~(BR_LEARNING | BR_MCAST_FLOOD))
+		return -EINVAL;
+}
+
+prueth_switchdev_attr_br_flags_set() handles only BR_MCAST_FLOOD, and only
+when a brport flag changes. Nothing replays it after the driver restarts
+the firmware.
+
+Also, emac_ndo_set_rx_mode_work() has no is_switch_mode check. It drives
+UC/MC flooding from IFF_PROMISC/IFF_ALLMULTI and updates these flags in
+switch mode too.
+
+Does the EMAC to switch restart then still lose the flooding state? Take
+this sequence:
+
+    ip link set ethA master br0
+    ip link set ethB master br0
+
+When ethA joins, br_add_if()->br_manage_promisc() puts it in promisc.
+rx_mode_work then sets uc/mc_flooding_enabled and enables flooding.
+
+When ethB joins:
+
+prueth_netdevice_port_link()
+    prueth->is_switch_mode = true;
+    icssg_change_mode()
+        prueth_emac_restart()        <- firmware flooding state lost
+        icssg_enable_fw_offload()    <- restore skipped, is_switch_mode
+
+br_port_set_promisc() returns early for ethA because it is already
+BR_PROMISC, so no new rx_mode_work runs for ethA.
+
+ethB is put into promisc only after the upper link, in
+nbp_update_port_count(). Its rx_mode_work runs after the restart and
+re-enables flooding on ethB only.
+
+ethA would then be in switch mode with UC/MC flooding off in firmware,
+while its flags still say true. The commit message says flooding is
+restored "after every firmware restart", but this restart path does not
+seem to be covered.
+
+> +			if (emac->uc_flooding_enabled)
+> +				icssg_set_port_state(emac, ICSSG_EMAC_PORT_UC_FLOODING_ENABLE);
+> +			if (emac->mc_flooding_enabled)
+> +				icssg_set_port_state(emac, ICSSG_EMAC_PORT_MC_FLOODING_ENABLE);
+> +		}
+>  	}
+>  }
+>  
+> @@ -1286,16 +1299,23 @@ static void emac_ndo_set_rx_mode_work(struct work_struct *work)
+>  	icssg_set_port_state(emac, ICSSG_EMAC_PORT_MC_FLOODING_DISABLE);
+>  
+>  	if (promisc) {
+> +		emac->uc_flooding_enabled = true;
+> +		emac->mc_flooding_enabled = true;
+>  		icssg_set_port_state(emac, ICSSG_EMAC_PORT_UC_FLOODING_ENABLE);
+>  		icssg_set_port_state(emac, ICSSG_EMAC_PORT_MC_FLOODING_ENABLE);
+>  		return;
+>  	}
+>  
+>  	if (allmulti) {
+> +		emac->mc_flooding_enabled = true;
+> +		emac->uc_flooding_enabled = false;
+>  		icssg_set_port_state(emac, ICSSG_EMAC_PORT_MC_FLOODING_ENABLE);
+>  		return;
+>  	}
+>  
+> +	emac->uc_flooding_enabled = false;
+> +	emac->mc_flooding_enabled = false;
+> +
 
 [Severity: Medium]
-Do this comment and the commit message accurately describe when the slot
-holds ERR_PTR(-EBUSY)?
+Setting the flags before the ENABLE commands handles the stale false case.
+Is the matching stale true case on the disable side still open?
 
-Only prueth_tx_ts_cookie_get() writes the sentinel. A few instructions
-later, icssg_ndo_start_xmit() overwrites it, with no return or goto in
-between:
+The work writes these flags without rtnl or any driver lock.
+icssg_enable_fw_offload() reads them without a lock, under rtnl, from the
+netdevice notifier. prueth_emac_restart() does not flush or cancel
+rx_mode_work.
 
-    tx_ts_cookie = prueth_tx_ts_cookie_get(emac);
-    if (tx_ts_cookie >= 0) {
-        skb_shinfo(skb)->tx_flags |= SKBTX_IN_PROGRESS;
-        ...
-        emac->tx_ts_skb[tx_ts_cookie] = skb_get(skb);
+The DISABLE commands go out at the top of emac_ndo_set_rx_mode_work(), but
+the flags are only cleared here. Suppose promisc was on and IFF_PROMISC has
+just been cleared:
 
-So prueth_cleanup_tx_ts() can only see the sentinel while an xmit is
-running at the same time. The commit message doesn't describe this as a
-race.
+rx_mode_work                          prueth_netdevice_port_unlink()
+                                          prueth_emac_restart()
+UC_FLOODING_DISABLE
+MC_FLOODING_DISABLE
+                                          icssg_enable_fw_offload()
+                                              reads uc/mc_flooding_enabled
+                                              == true (stale)
+                                              UC_FLOODING_ENABLE
+                                              MC_FLOODING_ENABLE
+uc_flooding_enabled = false
+mc_flooding_enabled = false
 
-The commit message also says "preventing NULL pointer dereference".
-Wouldn't the original failure be a dereference of the ERR_PTR value inside
-kfree_skb(), not a NULL dereference?
+Would the firmware then keep flooding, with IFF_PROMISC off and the flags
+false, until the next rx mode change? The allmulti branch above has the
+same ordering for uc_flooding_enabled.
 
-The comment says the slot is cleared "so it can be reused". The xmit that
-reserved the slot is still running, though, and will store skb_get(skb)
-into it anyway.
+This window opens on every bridge unlink.
+del_nbp()->nbp_delete_promisc() calls dev_set_promiscuity(-1), which queues
+rx_mode_work right before netdev_upper_dev_unlink() triggers the unlink
+restart.
 
-Could the commit message and the comment describe the actual race?
+prueth_hsr_port_unlink() and icssg_change_mode() can race in the same way.
+Each R30 command the work sends while the firmware is stopped can also wait
+for its 10 ms timeout, which widens the window.
 
-> +		if (!IS_ERR_OR_NULL(emac->tx_ts_skb[i]))
->  			dev_kfree_skb_any(emac->tx_ts_skb[i]);
-
-[Severity: Medium]
-Can these two plain loads of emac->tx_ts_skb[i] return different values?
-
-Three things change the slot with no common lock: icssg_ndo_start_xmit()
-on any TX queue, tx_ts_work(), and the xmit error paths. Consider this
-sequence:
-
-- The load in IS_ERR_OR_NULL() sees a valid skb.
-- tx_ts_work() takes that skb and writes NULL.
-- Another xmit reserves the slot before the second load.
-
-The result is dev_kfree_skb_any(ERR_PTR(-EBUSY)), which is the crash this
-patch is meant to prevent.
-
-This only happens if the compiler emits two separate loads, which C allows
-for plain accesses.
-
-Would it be safer to read the slot once into a local with READ_ONCE() or
-xchg()? The underlying fix still needs a lock.
+>  	if (emac->prueth->is_hsr_offload_mode) {
 
 [Severity: High]
-This isn't a bug introduced by this patch, but what stops this free from
-racing with the TX timestamp consumers?
+This isn't a bug introduced by this patch, but can this check-then-use
+cause a NULL pointer dereference of prueth->hsr_dev? It appears to date
+from 161087db66d6b.
 
-prueth_cleanup_tx_ts() runs from the phylib link change path. Meanwhile,
-tx_ts_work() (threaded tx_ts_irq) and prueth_tx_ts_sr1() (threaded mgm
-IRQ) read and then clear the same slot without a lock:
+The work reads is_hsr_offload_mode here without rtnl. It then issues
+sleeping FDB commands through __dev_mc_sync() and
+icssg_hsr_handle_multicast_sync(); icssg_send_fdb_msg() polls for up to 20
+seconds per command. Only after that does it run:
 
-    skb = emac->tx_ts_skb[tsr.cookie];
-    emac->tx_ts_skb[tsr.cookie] = NULL;	/* free slot */
-    ...
-    skb_tstamp_tx(skb, &ssh);
-    dev_consume_skb_any(skb);
+		if (rtnl_trylock()) {
+			vlan_for_each(emac->prueth->hsr_dev,
+				      icssg_update_vlan_mcast, emac);
+			rtnl_unlock();
+		}
 
-Suppose tx_ts_work() reads skb S, and prueth_cleanup_tx_ts() also reads S
-and calls dev_kfree_skb_any(S) before tx_ts_work() writes NULL.
-tx_ts_work() then calls skb_tstamp_tx() and dev_consume_skb_any() on a
-reference that has already been dropped.
+Meanwhile, prueth_hsr_port_unlink() can run under rtnl:
 
-If TX completion has already released the base reference, isn't that a
-use-after-free followed by a double free?
+	prueth->is_hsr_offload_mode = false;
+	...
+	prueth->hsr_dev = NULL;
+	ret = prueth_emac_restart(prueth);
 
-The error paths in icssg_ndo_start_xmit() race with cleanup the same way:
+The work's FDB commands can stall while the firmware is stopped, so it can
+stay between the check and the trylock for the whole unlink. The trylock
+then succeeds, and vlan_for_each(NULL, ...) dereferences dev->vlan_info on
+a NULL dev.
 
-    cleanup_tx_ts:
-        if (in_tx_ts) {
-            dev_kfree_skb_any(emac->tx_ts_skb[tx_ts_cookie]);
-            emac->tx_ts_skb[tx_ts_cookie] = NULL;
-        }
+Separately, if rtnl is held when rtnl_trylock() runs (for example by the
+notifier doing the restart), the VLAN multicast sync is silently skipped
+and never retried.
 
-Both sides can drop the skb_get() reference, and then drop_free_skb frees
-the base reference.
+Should is_hsr_offload_mode and hsr_dev be re-checked under rtnl, and the
+sync be deferred rather than skipped?
 
-prueth_cleanup_tx_ts() also still doesn't adjust tx_ts_pending.
+>  		/* Track basic add/delete via callbacks */
+>  		__dev_mc_sync(ndev, icssg_prueth_hsr_add_mcast,
 
-> -			emac->tx_ts_skb[i] = NULL;
-> -		}
-> +		emac->tx_ts_skb[i] = NULL;
-
-[Severity: High]
-The ERR_PTR(-EBUSY) case only happens while icssg_ndo_start_xmit() is
-running. Can this unlocked NULL write then overwrite the skb that the
-xmit is about to store?
-
-emac_adjust_link() does:
-
-    netif_tx_stop_all_queues(ndev);
-    prueth_cleanup_tx_ts(emac);
-
-emac_adjust_link_sr1() does the same. netif_tx_stop_all_queues() only sets
-the XOFF bits and doesn't wait for an xmit that is already running:
-
-CPU0 (emac_adjust_link)            CPU1 (icssg_ndo_start_xmit)
-                                   prueth_tx_ts_cookie_get()
-                                     tx_ts_skb[k] = ERR_PTR(-EBUSY)
-prueth_cleanup_tx_ts()
-  IS_ERR_OR_NULL(tx_ts_skb[k])
-    -> true, skip free
-                                   tx_ts_skb[k] = skb_get(skb)
-  tx_ts_skb[k] = NULL
-
-Does this leak the skb_get() reference on the skb, along with its socket's
-sk_wmem_alloc charge?
-
-When the timestamp response for k arrives, tx_ts_work() sees NULL, logs
-"Invalid TX TS cookie" and breaks without decrementing tx_ts_pending.
-
-Once the slot is NULL, an xmit on another TX queue can also reserve the
-same index through prueth_tx_ts_cookie_get(), while the original xmit
-still owns it. Two in-flight packets then share one cookie. The original
-xmit's error paths (cleanup_tx_ts and free_desc_stop_q_busy_cleanup_tx_ts)
-would call:
-
-    dev_kfree_skb_any(emac->tx_ts_skb[tx_ts_cookie]);
-
-on whatever the slot holds at that point. That may be the other packet's
-skb or ERR_PTR(-EBUSY).
-
-Cleanup and the xmit error path can also still both free the same valid
-skb pointer.
-
-Instead of another value check, would this need netif_tx_disable() before
-the cleanup? It would also need a lock shared by prueth_tx_ts_cookie_get(),
-the xmit error paths, tx_ts_work() and prueth_cleanup_tx_ts().
-
-[Severity: High]
-This makes prueth_cleanup_tx_ts() aware of the sentinel. Don't the
-timestamp completion handlers still treat any non-NULL slot as a valid
-skb?
-
-tx_ts_work() in icssg_prueth.c only rejects NULL:
-
-    if (tsr.cookie >= PRUETH_MAX_TX_TS_REQUESTS ||
-        !emac->tx_ts_skb[tsr.cookie]) {
-
-An ERR_PTR(-EBUSY) slot passes this check, and the later if (!skb) check
-can't catch it. The value then goes to skb_tstamp_tx() and
-dev_consume_skb_any().
-
-prueth_tx_ts_sr1() in icssg_prueth_sr1.c only checks the cookie range:
-
-    skb = emac->tx_ts_skb[cookie];
-    emac->tx_ts_skb[cookie] = NULL;	/* free slot */
-    ...
-    skb_tstamp_tx(skb, &ssh);
-
-skb_tstamp_tx() dereferences orig_skb->sk, so an empty slot causes a NULL
-dereference.
-
-prueth_cleanup_tx_ts() sets every slot to NULL on link-down. It doesn't
-reset tx_ts_pending, and it doesn't synchronize with firmware timestamp
-responses already queued for those cookies.
-
-On SR1, consider this sequence:
-
-- A timestamped frame is sent.
-- The firmware posts the response.
-- The link goes down.
-
-emac_adjust_link_sr1()->prueth_cleanup_tx_ts() can then NULL the slot
-before prueth_rx_mgm_ts_thread_sr1()->prueth_tx_ts_sr1() runs, which
-leads to skb_tstamp_tx(NULL, ...).
-
-On SR2, a stale response for cookie k could be handled while a new xmit
-holds k reserved. That would pass ERR_PTR(-EBUSY) to skb_tstamp_tx(). If
-the stale response is handled after the new skb_get() store, the old
-timestamp is attached to an unrelated packet.
-
-The missing NULL check in prueth_tx_ts_sr1() predates this patch. This
-commit is fixing the case where a reserved or cleared slot is used as an
-skb, so should tx_ts_work() and prueth_tx_ts_sr1() be covered as well?
-
-[Severity: High]
-This is a pre-existing issue, but is the slot reservation in
-prueth_tx_ts_cookie_get() safe across TX queues?
-
-    for (i = 0; i < PRUETH_MAX_TX_TS_REQUESTS; i++) {
-        if (!emac->tx_ts_skb[i]) {
-            emac->tx_ts_skb[i] = ERR_PTR(-EBUSY); /* reserve slot */
-            return i;
-        }
-    }
-
-All TX queues of the netdev share emac->tx_ts_skb[] (up to
-PRUETH_MAX_TX_QUEUES on SR2). icssg_ndo_start_xmit(), however, is only
-serialized by each queue's own lock. Two CPUs sending HW-timestamped skbs
-on different queues could both see slot i as NULL and both reserve it.
-
-Both packets would then carry cookie i in epib[0]:
-
-- The second skb_get(skb) store overwrites the first, which leaks the
-  first skb and its socket's wmem charge.
-- tx_ts_pending is incremented twice for one slot.
-- The first response could attach one packet's timestamp to the other.
-- The second response would hit "Invalid TX TS cookie".
-
-Suppose xmit B's ERR_PTR(-EBUSY) write lands after xmit A has stored its
-skb. A's error path would then call dev_kfree_skb_any(ERR_PTR(-EBUSY)).
-
-SR1 uses a single TX queue and doesn't appear to be affected.
-
-Would a spinlock around tx_ts_skb[], or cmpxchg() for the reservation, be
-needed here? This also looks like the root cause of the reservation
-window races above.
+[ ... ]
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261112102140.2744508-1-m-malladi%40ti.com
