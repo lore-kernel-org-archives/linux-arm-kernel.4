@@ -2,96 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F412606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83457606A322
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oZNl0WTn;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=MLVwrKUe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rkP3atEB;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=XlmrVF8r
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:
+	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=I6OtxI7WL+2TeS//8ueyKGWGZTxNUmrgjEOWm9wxKMc=; b=oZNl0WTngC+NX7
-	vaIYgLEnpArsAZeC2oRiHLcT5/Iex/LJlhFQvDOhiXL1zC/INxgLKe1hR7HRxLZT7WZ+qQp3DRbzo
-	Ch/ygvOFXycAiQ6feM/XCLAalPvpvlMoXlipjatH4zxjCuyN2zUyW9MbqZj7EMUhfQGP5J2clezMH
-	LXe4YGoCVVSVT58NzeE4WZTTGqmMuIUI1XWBNZcXTE/uvoghQpd9DJUNZl9msJCIU5dn7kgJV4hoN
-	4gNw71LKVoWwAGVBM0Nbmi3aELL3V2pcEGy2AowD2YJg8QxgMW49K3LCT+46Ck8cJNeHgo17ykP6K
-	O3EemXA2PWsSUoNhPHow==;
+	List-Owner; bh=x0v9e+wZHiAwxkDeqQfkfA5SYCnl901hHKw7lpsX06g=; b=rkP3atEBVGRKVV
+	vJZcp/p8mkSJ/TjFLTDXjz0QUPH5tabaLq0J6qXbd4/JOsSdjgRMxMI3NvHqCKWP3gOn8cNeMHYwH
+	CmzmRhhm7ejq/UYBSi/HfnwJi3RRWmeOajVDaDO4DW5Z3FPuXwofQ0zDtxjdCjR2oChL+widn55Wi
+	0viQ6gI4bVm1Ae2hBdM3+n7Jr6Wua19vHLYwFqwUA8dfQAZ1tuZJZRMC9jnYYJgmLHKbTcjUCCY5o
+	xQeWzR16/7iolbx/iD+8De1w3H0cpPdl3JzwSCaBWdpLbx0h1huEa6LjM07bu2atzVG4uhahQuVkJ
+	2w0l7xI9FDyXBOau32jQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzNq-00000003Azv-2ysZ;
+	id 1xSzNq-00000003Azp-2CBq;
 	Mon, 16 Nov 2026 16:16:42 +0000
-Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
+Received: from mail-pg1-x52c.google.com ([2607:f8b0:4864:20::52c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzNo-00000003AzO-1fvi
+	id 1xSzNn-00000003AzB-2iyT
 	for linux-arm-kernel@lists.infradead.org;
 	Mon, 16 Nov 2026 16:16:41 +0000
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-3b09a83d12aso3555155a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 08:16:39 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-cd62c570b5dso3023092a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 08:16:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794845799; x=1795450599; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1794845798; x=1795450598; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=I6OtxI7WL+2TeS//8ueyKGWGZTxNUmrgjEOWm9wxKMc=;
-        b=MLVwrKUevI1nqYtNHizEv2xJidcMJyq4uaKVBh5L4xmxGnsHxHMIkn5D1HEnKnZgd7
-         JI3Ke5XtObCRo60psipXRRXkE5MUAK+XY0O9un2jtOW7Ect0xtTD7uSLEwa9/SyD1yFr
-         TeHdmuH3NWLwfosjduShIl/Pc1Mi9fRy4fw9q9kHuX6e40+t3FlLVQYYq9x3sI9JOSjQ
-         Ypa8q1A4u0gs/5CWfD9rdbr9p/Dca0KuFjVgygpZYQmw3+WmABPCQwFh/K3dDkcPkcu9
-         IM9LUwNZDsCoSafzThtasZSrjNUNj/9ooViaeSnx7BR7Mz/l5Xd7zyt6cEhhgkKNv+lY
-         aLbw==
+         :in-reply-to:message-id:date:subject:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=x0v9e+wZHiAwxkDeqQfkfA5SYCnl901hHKw7lpsX06g=;
+        b=XlmrVF8rMymEfr3x1I9HyDx6JkMQVuGEAaNeRQBqh9dMwpLfKBVliWflpTz0KK1BXf
+         1jItha71/qFZRKDSCIi+b2eakmzJiIWYx5Ef7ZR6hdffU7lo1BVu1p4jpNluq7qWfLvf
+         89OnCf6le35YCkpUbvfjJ3CIYgSe2cS29VJULzzrxeAbmtrtkmmm2NavC8VTGZzNKSgP
+         lJJyR+OZciPNHjalZN//n1UQ2h5TFT0ymn08MEUfqBpMR5PF+wDdy+MLd3CfchCoWvcu
+         ry1XktviRdImzSo5IJO9iQCYmwuiYqyqtnqlzdMweBZAHzypqu4dFpigkrR0lpTeXs5t
+         A+nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794845799; x=1795450599;
+        d=1e100.net; s=20260707; t=1794845798; x=1795450598;
         h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :in-reply-to:message-id:date:subject:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=I6OtxI7WL+2TeS//8ueyKGWGZTxNUmrgjEOWm9wxKMc=;
-        b=S7iL3TGuNVOStS+ICsqM8dRvTsJc6h1bzdaMABQIztWz2D265+87MsEKrVCNBoXCpw
-         sAKx72HPNJ+b5aEmjz7IrdPy2LcsCc/EDe5ytrzyUCIrcqLjiqrgoHx3CGlEEpg6iuXf
-         uOFMUVptZPnLMcgQV0NFY7+uSAYTf8G1ck+y0BW2NjVuCuaWDnCf/xyO3Z5YzvFKuquQ
-         kYhaimjFzdHwL55a5nbJz18rsGSla2r15weEiJSww4IPtlf5ex7u9jUdiMGMD6PZSEkQ
-         WMus8bpQ6tQvah/6JcBXUOjW/ywTsJLwbkDnqXhKvs/iQktAtl1ZfUXF7zAsYg6r1iQu
-         YDIA==
-X-Forwarded-Encrypted: i=1; AL+hErF5oim45z3y6zuPYQ9Qx/DpWJTt5J2qElmM9pv+OL+QaPP9rHkd/DsaMaTAQ118e2NoWTtC5Kfa2G/iliIXee9d@lists.infradead.org
-X-Gm-Message-State: APuU4Z/Yb4qY3TJuw3OeJHgU+YHiumCutR+RIGg086pu75X1ypNLj4L9
-	Sg+ZPcm0LVKPzDej4MCPXd04oBjgfVkzGjt4hqrix4SsSo4iudChnd/HG3YX+dPZpqQ=
-X-Gm-Gg: AZFdTZdBZ/gj2elIy/rQTp8SKOhkqWMedDiO66UcedQJAlbictdTvBe13sYgFzM6IF7
-	+feSqnBzc1fJEFdc4hY1RT/FgyKWMK3Qm9m83MtKDJnM6Jxdk4GjtIhhmdymJBMccl8T/FEzl8q
-	CuAYiR0l5VbNI6rEYL1hsYgysUmkhrRPgVSVmuTKfn6a1imUqT/2ENzq5s9gtwbAmb+5e+XGLFF
-	GaW1LBLlTB8Wxqk+b8awubpdu5XifHsp6Dsx0l+QijX9o/4sWF3pO6k+NgWp9ROvUuJ9Dt1pep3
-	GNjWO724VOn2S2h5ibhmwbwdJ5qztXG8m3HrsbwTzjKIq3wed2ppFqCjW1Yf2c5JC0EMbUZLryP
-	hsEkkIr1QMgxi5rnPWretGra9RDjx/aS6G1NNpvUQX6Mc27rsDDms95rhZfESU7QOX3We2JHWA+
-	O20lXsmvtZTCozgqA3JfXi/TZJ47vRjGww0JR7yLlnVdeq79yuQONRmKZG4/ySCGAvP84Qvv04j
-	thH2b97DsriTK5GNloDhmHaYcoy8UnGetQ5bsc8jCu8Ar1DUSa05bJllbatCoCqabGdpTjRkzuW
-	UpPKKKqBbXhBVhFY/qPorf2M
-X-Received: by 2002:a17:90b:5112:b0:3a8:10e2:ad08 with SMTP id 98e67ed59e1d1-3b1b0cf4395mr11537025a91.48.1794845799382;
-        Mon, 16 Nov 2026 08:16:39 -0800 (PST)
-Received: from localhost ([97.126.173.69])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-3b1aeb17042sm17307491a91.6.2026.11.16.08.16.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=x0v9e+wZHiAwxkDeqQfkfA5SYCnl901hHKw7lpsX06g=;
+        b=gfrahDBUeX5hQFqC4mVnUVGdETLOQe2a4paDiuOGVAMnvPsOwfYezjgjWWf+kbYExw
+         6riKvbPqPcWjOWwmeRUqxniYi/3tGb/ZKbEQpLQCIq2NwX8eqntG/CVAHZFlJXshCj/K
+         OFGT6lC0PydtkkXtVv961EzzbhHNkk29TjZCfuw9urx/HJYzp6nsm8cT4uSn/jsh7sR8
+         p2gsenGp+CLYmiLEcuXUtRg0jFq4h421BlAHcXwv9yBQXZtgxu6X6FE0TLrx6xpTKIB2
+         dtpq1lYo4amn9b/8v5UOFvb39gA1OGg3FVfPpKj3YelPLTo/h0udPwLQ3aECjkFNB0V+
+         nOTw==
+X-Forwarded-Encrypted: i=1; AL+hErETxarl0DuvVPnB4Mhb2upIyZrmld7JsjNNwHfV+0RkfLWkIm8ElEZQ4LnbaZ5VUX950yHcBqNSHa7QYdq/6Zml@lists.infradead.org
+X-Gm-Message-State: APuU4Z9W9S0fbIgo+N//3CKjwMdGpEswpJtOD+zKf1hgSjSwlgL4vDiy
+	alaVE6FxB004C+ALUsIPYXKnYm99F8xBRLvLox0VlWWTvATggAX5zaXx9DXY+e9yw3Vj0UjA7J2
+	lPbrP
+X-Gm-Gg: AZFdTZd+EfOJkTkQ5K5LyMBVvR5p9UNeDgvUHHW2mjSLhfRIjjoeI+0YO2Mx6g1mJTG
+	hAVX7JDOofJDDbhj3LC8aT4T3bo9g3Y2gtO0tbu4aqTAKtoYfAL3iPYnhrwDxi8sJNmZQ1/XzFS
+	1+qBoGpV83RS2hSkkGIbMVa45Qx9e3jA3XmDteM0PpLO4+aLDPrY27UNyRZfHI7XJjRbbvh7DAh
+	j+p4nt5w78EtITXVE4SEQoDyDyKWvo6lWOD7jWgqXsBo7Y7GwjN9zmD5yV+g+BOvZoWyE2gDz7O
+	bSAdSknoQkYHQ1q5HNCo1Rr5NEN3o0fmgicKsbAWf3bOVuZOl+VcAeaL/WbWHtw5VUzt6WOLS/i
+	IKs1VnCgaeRihtXVtOGEIIHTSjnCFIJdLwR1dD0bgIPs+gl5Z/DZaHAWsxKHNL2lLKOz/mrtnFh
+	vKRLAGelGkDesHrqUGqnoltSEnKzLHRGQN0ImLbm6QnRkVEbjgNO3oalxQcsySIEfuhKFMFseKD
+	iIVfsgnJuTC1zwy/AMETVovn2/uhCFzEoTcZdzS9cZ35vvYAOXqz2G323wAp+SvpfStxLysJwBP
+	YOjcIIvK2AyWGqRcbBGWC8RVxKS3DclPk0Ud/hqkwddDUag=
+X-Received: by 2002:a17:90b:2ec3:b0:3b0:9781:ee8b with SMTP id 98e67ed59e1d1-3b1b09fcbc5mr10847659a91.26.1794845798086;
         Mon, 16 Nov 2026 08:16:38 -0800 (PST)
+Received: from localhost ([97.126.173.69])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-3b1aec3af2dsm17201419a91.9.2026.11.16.08.16.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 08:16:37 -0800 (PST)
 From: "Kevin Hilman (TI)" <khilman@baylibre.com>
-To: Andreas Kemnade <andreas@kemnade.info>,
-	linux-omap@vger.kernel.org
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Roger Quadros <rogerq@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: OMAP2+: pm34xx: add NEON wakeup dependency before clockdomain idle
-Date: Mon, 16 Nov 2026 08:16:31 -0800
-Message-ID: <179484576799.84649.9190527737165313514.b4-ty@b4>
+To: aaro.koskinen@iki.fi,
+	rogerq@kernel.org,
+	tony@atomide.com,
+	linux@armlinux.org.uk,
+	andi.shyti@kernel.org,
+	thomas.richard@bootlin.com,
+	wsa+renesas@sang-engineering.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-omap@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andreas Kemnade <andreas@kemnade.info>
+Subject: Re: [RFC PATCH] ARM: OMAP2+: fix omap_device with noirq_suspend
+Date: Mon, 16 Nov 2026 08:16:30 -0800
+Message-ID: <179484576805.84649.11200810551954641620.b4-ty@b4>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261113-wip-omap3-vfp-neon-mismatch-v1-1-3f6f67b25251@baylibre.com>
-References: <20261113-wip-omap3-vfp-neon-mismatch-v1-1-3f6f67b25251@baylibre.com>
+In-Reply-To: <20261110211531.679943-1-andreas@kemnade.info>
+References: <20261110211531.679943-1-andreas@kemnade.info>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_081640_435945_FA067F8B 
-X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-CacheID: sfid-20261116_081639_710094_150C1E0A 
+X-CRM114-Status: UNSURE (   9.71  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -112,23 +119,20 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Fri, 13 Nov 2026 10:11:05 -0800, Kevin Hilman (TI) wrote:
-> On OMAP3630 (BeagleBoard-xM), about one boot in three dies early when
-> a context switch touches the VFP, which traps as undefined.
-> 
-> The VFP is unreachable because NEON is powered off while the MPU runs.
-> omap3_pm_init() sets NEON's next state to OFF/RET and lets all
-> clockdomains idle before it adds the NEON -> MPU wakeup dependency, so
-> NEON can power down immediately and stay off until the MPU next idles.
-> This was visible in pm_debug, which showed neon_pwrdm OFF:1 while
-> mpu_pwrdm OFF:0.
+On Tue, 10 Nov 2026 22:15:31 +0100, Andreas Kemnade wrote:
+> Fixes cases where device runtime gets resumed in _suspend but then
+> pm_runtime_force_suspend is used.  So the device is disabled, but runtime
+> active in _noirq_suspend leading to duplicate runtime_suspend calls. So
+> rather check for the device state directly to indicate if changes are
+> needed.
+> This relies on pm_runtime_force_resume being used in a balanced way.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] ARM: OMAP2+: pm34xx: add NEON wakeup dependency before clockdomain idle
-      commit: 604ef0e4d9d1e3b9717cb83174817af58966d30f
+[1/1] ARM: OMAP2+: fix omap_device with noirq_suspend
+      commit: 20ae98b360710da7db17b0d8edbf84c88ff4658d
 
 Best regards,
 -- 
