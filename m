@@ -2,137 +2,126 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43298606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0242606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aW3Y7NWP;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=RrjKN+TV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OKnTf2TP;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=B5xAGCPn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cy5vRLB6Ac4/CWZXpQsEgSKzid72znqiijFZ2xT7i3o=; b=aW3Y7NWPbYc+T2FEyAfS0c21yF
-	1n4+i8YOFKI8nPUnDd8XE4ZsDh3iXZ5L/R1KzTFna8UHOXBQyFAg0xXLmnA5loAXuzwtbv9NXHFse
-	bgRwRs5EGEUMeZTb2GOiRoYWhrUo+3ilh8qfCH9lqmJGKwE2qs0l8HufzSB6CeGUOP4aJDK0pmkis
-	K8HH81bDqQRKx5ijU5mNcOppwZ7npJEkHT/cs8Gh/kj2CBCqb4wBWk0/z3VPzTxF9tU0MAMw8SnJR
-	N5iX9fwGNaf1C45QfoRiOqbY/NQJN+l3HAr20VwqgpLNP3j1GqKvIhAblVTl0VvoVBH4CffdiQbY+
-	6RDK3IqA==;
+	bh=Hx4wP6Qpw+W2JkzO57bSdEnCFN3xLXbhd0iZcTNwJZ4=; b=OKnTf2TPlCEmBg9Y+eB6KjEpZr
+	VaXh/BQqbO3NqCkXVqF2i0l0bWdYhWfSNFmXohdKZQzt5kWfGskidQcO8dcstnyy3jDi86g7YzDBo
+	cd4D8sT6wfNyUzWlAy1lOnEkUShtLBmVHmixHxK1KSYEYMcNtgfji8peRKE/kjU/KEO7tBKkVQabi
+	R/9pvVL1TzXBZk/W5C+75XSpQ9uC+dy3jjuGZNX6UMUJaXFmvCJlKH7Zpg/+GKsTy7Lu71DUfGVQx
+	xvq+j/dHUf13rLuAi/Dbnyfg/FsDQaB9WGKfAFBqhKQo3tr4uaRKd1+7zZ2jSAwvnnVSEeZhgHAv/
+	hIZIiUxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0d8-00000003QCr-1Piu;
-	Mon, 16 Nov 2026 17:36:34 +0000
-Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
+	id 1xT0eq-00000003QTd-2ykV;
+	Mon, 16 Nov 2026 17:38:20 +0000
+Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0d5-00000003QCB-3eFJ
+	id 1xT0en-00000003QSy-1Yir
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 17:36:32 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fyMRqidajX9uGHXCztUoJvxlIOfIPFCYIB7yeNGa9gEc0xYCh2L5ZjnnaysZ8Se+yD4by/hzSd0m9Y50zvHYXxSZPLZLI+2eJF/1z/+jqxAl6r2MzTOIGjd74qHXxaVYYzcalbfJZ4kqkej3VYLy9pNQvzxqrgJu2q5jVcCCnsSQeckGF8MT/fl0gIWD+WPCfNOQI5LdwlrFryX0ESeD9M4OLU9AyTDZVDfdI3raJUyR+PxoJ+LIgk62d75pNxpHLE3TBe6B73kz3Ud1hjvbW/Cqa92q6Z3QcfnGdaZgQeWjgUlE0ONnWYAwUJKll0WQUuA68YKadnx2w/raRTzVdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cy5vRLB6Ac4/CWZXpQsEgSKzid72znqiijFZ2xT7i3o=;
- b=BZiXNJk38v63GqEoDlODwF0CWUnCH6AAPIon/qqGCWYMC7T90AV8uZ5tpYv6h69RKVbvIFe8k26cy3DiEuURWDzOJVMzWPcmhg4V37v1AB5T6B4y2W6o8yjmQzujYjgV4gT/bKXewbVQf4nyPxKOSMXtwwxaa1noCTjQ/m8oC5Ide4RgaO0Za2ew2JyPdsy0FamT/viSP/1icke6lvWOil4RQ68B7vCNDV9PaKhYUF6QDBys27+CJlP5h39ANudRAZHc3f0OF4N4a4eQVZza1aINAm9SpdoJlzjA/cMeeLYKI0VKK+/36PBarq9Y4ecCHNFk7NULSGpGN2YPPepckQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cy5vRLB6Ac4/CWZXpQsEgSKzid72znqiijFZ2xT7i3o=;
- b=RrjKN+TVAQv3bT2+2PCMkUPXfh2E0XOmkUnDSVqKd91GsxTzHnWbsAt17M5JLbwcWe1PLfjwRt7fspf6bKqcadhLmSP7fAW8fHCtggFiB1FHcvcHvN2ZXO804gmsOpPEJNgVhcmrY6kiHDrnbDheSSygSlp+nKH9HvR1v2nGGRLlr4zBrpJHvCh8cNBiFfeLmNOjkHrQb37KoRONs3n9zgeEY4YTB4yLKUNCyKsJquO/ZV+f6rgxVAtclHW45ywrX+Fb5AIiJ3nyk+v1gqmSOKvC4hXSpAI5IdanmpIFPolUK+1BlX197q6BtAhaH5IkRSOHFB+BO5TCWmfhU4mYaw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
- by PAWPR04MB11570.eurprd04.prod.outlook.com (2603:10a6:102:50c::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 17:36:24 +0000
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023%4]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 17:36:24 +0000
-Date: Mon, 16 Nov 2026 19:36:19 +0200
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: vjardin@free.fr
-Cc: Dong Aisheng <aisheng.dong@nxp.com>, 
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>, 
-	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH v6 4/5] pinctrl: freescale: add the Layerscape RCW
- pad-mux driver
-Message-ID: <avs62BhLjlpouTwQ@lxl00025.wbi.nxp.com>
-References: <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-0-fbdce4565a5c@free.fr>
- <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-4-fbdce4565a5c@free.fr>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-4-fbdce4565a5c@free.fr>
-X-ClientProxiedBy: AM0PR10CA0045.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:150::25) To AM0PR04MB6900.eurprd04.prod.outlook.com
- (2603:10a6:208:17d::10)
+	Mon, 16 Nov 2026 17:38:19 +0000
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-c50933bdf4bso14129566b.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 09:38:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1794850695; x=1795455495; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=Hx4wP6Qpw+W2JkzO57bSdEnCFN3xLXbhd0iZcTNwJZ4=;
+        b=B5xAGCPntDVFXhiuxelRSQv+i1TLCBpIbcf+EzMsVllG9A/9mvO/aPSRwtSH/rwMDL
+         qQjpmyfgnigvXBwaakhLvha6/qzfMFcIkC/1OWr6oN769H40KfDshB/crZAgkK56z8Of
+         kswEIG1n+uJsaNtu73Amf6wFVBb+gYjTLzeso2qdlpIw88wR3BcJ5j3e0567OPSB4VMI
+         26xFMHz7Tlm/1CSaLaUjq5UZpi7eLGV6saB8QoQMsg1eFh0UDx/auBIyQGMLhq2LRDKf
+         d9grN+b3ht0GvSGIh3CMtg3pWKsPnabxzMtbUkcdTUOVggFF6GqnECCdNqXGKdMoTvmG
+         MVFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794850695; x=1795455495;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=Hx4wP6Qpw+W2JkzO57bSdEnCFN3xLXbhd0iZcTNwJZ4=;
+        b=1TpVQvoq9AptQYw5lf82UWuCCSAO2fopU3QM6tOC3bLZhbAP/NE0/9arzTJm1csFhh
+         UMN/ws5ks2xOgzwkDBbGHyDNucP4TuA1reUZ60vHGFXibfsXdky40jGOHMRwCHdtX78d
+         38y7ssLNuyYpLVJ7acIRq5x0Dt7vfHovNtoUCm3Nsg/fal0HdiU4laHEfJjrbzuLwJwr
+         JH9DzhXVlUO8aD/EBZD7h5D4skWePoKIO2vCuvs6tIMnfJIV18+kicupS05WONJ7y6Sl
+         5g/SJmw+HlDiM87rGdFKLv2g+Qg91Hh29h/mxwr/8Xl5POa984HREaNotWs4rF7C8w5M
+         j1xQ==
+X-Forwarded-Encrypted: i=1; AL+hErGuin/ZzFlNxO4j0mzAGGoA7kdDonr4iobxIj2dZOPY3NlgCx9otbKrt0VNPx8jxM+rQw5HZbD6h41fBb8cqTOm@lists.infradead.org
+X-Gm-Message-State: APuU4Z8E8lUG5vlOFvIuLEgnde16SGqqrozKPSFDhXLuK5jkPMr4AkYl
+	7IsxFdM6L2FbVI4Eo6LMr4zM6g4b/vANsbJh9CrhQhFDq3IWhGgzzr62jm9jyhLKJ+M=
+X-Gm-Gg: AYBFou0rNL3u/GMU6mQkH7uODqpnrzqGOJI5rblEPt5DVYjFwfp+BRxp9a+L8ac9ifw
+	/IOTejJBXMGbPZjBt3f/kIz3eV1WKrsqrxWgXZNXXXYZXKyzay3B+c61u0vPpQrn0kRVhDvJspO
+	d35yXdsId6FjaNai5sdnqdCpDYMgo3uxOvPB/N/1mRA1ENksvksVMy1FuNTde+Oq+P1tMSTEfJr
+	TL82VC2Cfe1T1szdnGfpxuT0sfR2YWE5Hpus8amztL0BTVxEteTqCxHajqkzUWtNDcIaUCrrRah
+	uDEY56lNITvGQf/84dptrAZC9ebpqrnThnKmYK5qtiKNZhrw5h9pGFc0Kdwafvg/niE/W+32eAR
+	fXQ06uq4e4UZM2Fve0j65lQwa43JKOIKBwSVArnpgZ2jfGEBCMLAudosQFqxceX/nKGyKCp2Y48
+	eu3j0URvTXsTGxrjD8/JfaNP0RWTbmsW2EZ3tvY0zLhrKmfh5h/5slzxze+RprgUf6GU1WDayr7
+	S6CRuUc04LvCwUNFkfbBIrRxvcGRs+WsMD4xMDtqhRrEwkHhdtITgyB9sLAz484u2Y/+cxXqEYI
+	mX3qMuock1GYEQvE02xm5jx4JKTKFcArhJO0Xep7cVQzdM6WYqjpcy9Df5m74/165T3w+ZiWG2v
+	Q3YxCmVtWtTku28z4/tY/
+X-Received: by 2002:a17:907:c05:b0:c4d:31ca:e316 with SMTP id a640c23a62f3a-c50f3750c5amr12270066b.20.1794850694766;
+        Mon, 16 Nov 2026 09:38:14 -0800 (PST)
+Received: from petegriffin.c.googlers.com (131.44.147.34.bc.googleusercontent.com. [34.147.44.131])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b236d4sm446139766b.18.2026.11.16.09.38.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 09:38:14 -0800 (PST)
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 16 Nov 2026 17:37:45 +0000
+Subject: [PATCH] iommu: Add iommu.passthrough_devs early command line
+ parameter
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|PAWPR04MB11570:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3b3d3db-7a70-46f9-d286-08df44082273
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|19092799006|23010399003|7416014|376014|366016|22082099003|18002099003|6133799003|261009223027099003|4143699003|11063799006|56012099006|261102123227099003|261026121527099003|261021121427099003|261022075727099003|10067099003|41080700001;
-X-Microsoft-Antispam-Message-Info: BNzTJ2mYn5GY/C4GANtNwOrrJ8C45N3klGY4J81iA1yad2+Mprsg+t/oKLzcuSnZG6S29AQBC9om8pey8DI1WfgSTmvNSnNtJ7YT0VCapFGLX8QMEmmyGl0rUyLNwmBq3F0y+zJwbwVf3ifWworMXMb9zRBVaJLYEkmFjIxSokpXh7FV6Ftd+WeTI5HsGJr8w1YCEMYUc6riFgt5012PeEY7a5ppBQIHTZzJRr0lMbaYl1sjMQ6ol7QaijZb6Ipp/aDPz8TspFHmcy8+QTbJbs49LjeVeWi4fqYLmhoZ6IksJ64ayuBSTvmqEDEoGbmnKDjDeNkBBfbi5lmODzrgQRME1YIcjnVatu5S7Ls+ZHZ8H6iuVRVplPEeAYlrM2FEq/j/XudE0KOJfxYDyZHJuWva9vKO7QWMRQSd8A+vRTg/gUKqSy9uRRnV8S1rxVIxIgKhNSwl0bMEQp/HdZ+LP8PWUvI2wyMxafpv7Xq0blITtSllZSi7s0G7JfUWIeYtWQPwEIjnyFtlqGFofXZqRKqEZ+Z9L29bCeKDbUzkr2tfSyVVc6jRVLtXyfSBVzAGt2ICtrAoehfdmBRN2hGgHLkRmlr5ZcmNdR6Md1RcA7tbDXixCtKtSY5KmQVleeup/YBraM0VY/ZyvpRQwU8jqZwi38NzY8d97rV0jnN4XVDcTbLD7UiTDjB1/aLRCEBop6/ngYZg88VKZFHz69Ajbg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(23010399003)(7416014)(376014)(366016)(22082099003)(18002099003)(6133799003)(261009223027099003)(4143699003)(11063799006)(56012099006)(261102123227099003)(261026121527099003)(261021121427099003)(261022075727099003)(10067099003)(41080700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?83j9TqllbE/500zRMt+C1LSbKlrl/roPhD45sFrPMiRymK5wGJ2GhF+Bz8po?=
- =?us-ascii?Q?WF7lxzK20VgshAoURE3VU8y+P6vHtkwJ3NaIjFH1kn/2S6ZQ2NS0O6L5mAqb?=
- =?us-ascii?Q?CkFIZMUZWX1OYZjLwHLe6h3YYqfA2L0Tm2NMT8zTDiT/F2dfzWdTMLrLQIYr?=
- =?us-ascii?Q?tcTxMLhlnTBevdcnTphrupxtZHh4LYjclq7XTRNR7/Rg/XnH4o8mK4qjDLjY?=
- =?us-ascii?Q?KG9iYiCss9MuOZf/eTtTpFooEsc7sPwibsJ/67/88v01JDkIXtHBNX2VmLgs?=
- =?us-ascii?Q?PFIN2bTys7BSANczRAydgpiADRsNyw6XjtAnPMvmxiPIgjCG833/82epOFZ2?=
- =?us-ascii?Q?G2Cz+PnXUEreDF+IiH2g7bZ+xdN1btmCGF0oIMfzzvG1BZ2naiFwjlIm7/Vs?=
- =?us-ascii?Q?Qb4PDVd4SRS7zQULICCnykvJsJdWbDl9i9S9dUTU3q8ch4AcK/ciKL2spwId?=
- =?us-ascii?Q?JYauMkEw1uIsd8T/K+4JT6JyDtA3KMeFyvSWV9UY97jKneOViRmFm1mEufbd?=
- =?us-ascii?Q?gBUvSZiaKHknQn5MOUXm5l+LYFQjCKLFlSqfh30wQwCYTEAlMAqP8W5hgRgF?=
- =?us-ascii?Q?9nqe2+ZRuc6dj41UuO9JTVB7fUDFBz/AFfy3R1uzJA/1OdquaqfqQh+iB++t?=
- =?us-ascii?Q?Flvjy89AP2TM0koWLJbvP0j6zQBXspWACkeuFhVY+r4R9DwybljAfWwzhgnS?=
- =?us-ascii?Q?zjC7N/1gQ4t+7LvxkleSE3K9W3ZhN/nft1mP0FfY6BBkwNAQckngc61IuxY/?=
- =?us-ascii?Q?Afb5ysNx9h7+0LUA3atCd6Ums4oLM1PG+dp8HcnTzfQgo6WsdaAqEX5Z6RJk?=
- =?us-ascii?Q?wGTwYoInIJFHaRwd53B97Y02ppS5PUekyCnZeqhDeQTXZbzT8iaYUj7C8PN9?=
- =?us-ascii?Q?GKCtlytKXyauolFGLJ7A9crp0acyYDZmXTj54DpJuuxP3DK80SWDJgqJc0Da?=
- =?us-ascii?Q?b/2KZ7b+gn+94l0oLmb2TqUoNZdGRISw2dX/CegYxbNPTJQ/E1xiiSZdWyKp?=
- =?us-ascii?Q?tqsrkAPY9OZD22ggg4hSOuqptRvmDc/1Hnc6Kth4Cd2A8yL1D2dVhsOCuO4A?=
- =?us-ascii?Q?vA6nTH/tlPIX1on+Xr1QoXZ08ndw1GKEyNEIpCEFJpmJfvw1uZUq6GxCPxAx?=
- =?us-ascii?Q?VcBDV9azXOvFXTofmDBSuMAG256hCMFb88+5mCpca4idRXSjdNu6dMltwva4?=
- =?us-ascii?Q?E0a7QpfmP/ugspfhZdl4u+OQzZLwmsz7HWDqV3X8ptIDtMiD5W3EwHbCYgiI?=
- =?us-ascii?Q?4CpzV5nBXATFMcBxTRBtv7dr4YV8msbKpqjnv6Vaeg2mLgLpECG9oy3cm4gd?=
- =?us-ascii?Q?JNOQz+3QIqrDDoO+bV+zeUF1Lwm409Upu4AcSGhMisu64fYFTx3ODKUghQPW?=
- =?us-ascii?Q?gzoij8r17xdZCsneEHbPmHR2WEo0eKUtuBch5D+cEjMkrMI/pPIrGQIYk2kH?=
- =?us-ascii?Q?hqgD1RBcMST+4bQyQW+uBZc9xGfZUpRTjUAyYrL9HUxD/fXtpka2Q4N5GFV3?=
- =?us-ascii?Q?5I3O2wwuNlcn957axJWKUhuZ8lP7G6Vu5vmOdwOUcAvF3LY6QQG3LBK6CNF8?=
- =?us-ascii?Q?WjHB2shuSoXYdz1pF6icSffwYnRjK9GYv4/n2XWeRPkY7K4uAHJy7bOAcwBN?=
- =?us-ascii?Q?qLbD6jBN1R1vlJPk82YMya4aVqxRHg0RLAkPXvc7LC5ysGNC4sGqe7vuFJqk?=
- =?us-ascii?Q?UgnuBWrBGXjAOakcUwJIE6VLABkLDNCckpSpKS0/c2FzKli8bZY070OCbSn8?=
- =?us-ascii?Q?HMDT4B0eIg=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3b3d3db-7a70-46f9-d286-08df44082273
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 17:36:24.0549
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nIeW9ot5AXmCik7xaxYj5nNV8RVrRL1tmQ5/swIyise8EST5cBankfmXwOO/Aoc9EqDa98jrLsjSWag0dke85A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB11570
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261116-b4-iommu-passthrough-devs-v1-1-dc5b493f7551@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAGk/+2oC/x3MTQ5AMBBA4avIrE3S+qlwFbGoGjoLKh1EIu6us
+ fwW7z0gFJkEuuyBSBcLhy1B5xk4b7eFkKdkKFRhtFYGxwo5rOuJuxU5fAzn4nGiS1CVY+PaurH
+ OtJD6PdLM9//uh/f9ADzTmQFrAAAA
+X-Change-ID: 20261106-b4-iommu-passthrough-devs-03b7c957ac69
+To: Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, 
+ "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Mostafa Saleh <smostafa@google.com>, 
+ Daniel Mentz <danielmentz@google.com>, Juan Yescas <jyescas@google.com>, 
+ kernel-team@android.com, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ Peter Griffin <peter.griffin@linaro.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9600;
+ i=peter.griffin@linaro.org; h=from:subject:message-id;
+ bh=Urii5UKIxhJqrjIOWrcWNvsYviHjsPHlhkwtRzKuN1c=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBq+z+FdmbITb7QSpfMSMqFlTLiiBCd9JSTCLH+A
+ y3xzXvXjFeJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCavs/hQAKCRDO6LjWAjRy
+ ugkwD/9qAsQpXBexhOE0F92j/h8ThC5MjImpB5XuU5sP+iZkubQpQME68KqcxlWtriHDtYmMck/
+ V/8gx+6ZM7BEan//0oKVbRk8WVE1ZS7tz6ux7YMNof5ppP4EcaOTbhQUPb0Ud0XBVn2KJRTayfB
+ 5IVJsjU4alquntf+SnaOvNtg5MoBWVaTzNVfpNLutOLMyW7cxFQrA+vBSpIysIxxi7zaK1Nvrbw
+ zcXQGNqk2tCRFEQaCNOC7RZzl/OUiVhauPLbCc2jEuCiBWBWR1gw1rPBNmtoZisclaTVG3dCTV1
+ PleJtd28phplPOzcxMuHNwC/kysdPiNSoNT7JJJZfqZfaCKhLUqXoFlPW/ZgfD7VdddINoUVBf8
+ BMy9E9OMkKNk38iL1XnWZZUSfNCAHKzoPpGewxknhrFwlIjl73zyW4fohdh3to5k3gO3rACMzZO
+ e7TFOBB1zId4C0TEuPm6pXfEswtf6T8UiZtp4XJlRkIA9o3FHeZB7zbgdAaRyZQIwt2s0KbTrDu
+ LDZKfmIqp16Q5hcCsUwb6hrIQgHw95UAyfTyB3ZSDKUfyfm3Svdz+0LtA+HG2bkOy03W5tEfnlL
+ s/5mTy0kfDmnW/5PKOCGtEGWVhkG5dsBx8vI0Wruaxx38gQqgees0Clr61s/bnWwg/4WqE38k6O
+ gcsj4cMgajuTGqA==
+X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
+ fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_093631_937369_329A7C9E 
-X-CRM114-Status: GOOD (  12.03  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261116_093817_486253_F82C290D 
+X-CRM114-Status: GOOD (  31.78  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,67 +132,263 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 15, 2026 at 02:27:34PM +0100, Vincent Jardin via B4 Relay wrote:
-> +static const struct rcw_pmux_func lx2160a_clk_out_funcs[] = {
-> +	RCW_PMUX_FUNC("gpio", 1), RCW_PMUX_FUNC("flextimer", 2),
-> +};
+Currently, the generic IOMMU core only provides an all-or-nothing global
+switch ('iommu.passthrough={0,1}' and CONFIG_IOMMU_DEFAULT_PASSTHROUGH)
+to configure default DMA domains in passthrough (IOMMU_DOMAIN_IDENTITY)
+mode at boot time.
 
-I was testing the /sys/kernel/debug/pinctrl/1e0012c.pinctrl/pins
-debugfs, and I just noticed the clk-out pin group gets printed as raw 0x0.
+Add an 'iommu.passthrough_devs=<dev_name>[,<dev_name>...]' early
+command-line parameter. When allocating the default domain for a group in
+iommu_group_alloc_default_domain(), if no mandatory domain type override
+is present, check whether any device in the group (or any of its
+parent/bridge devices via dev->parent) matches 'iommu.passthrough_devs'
+and request IOMMU_DOMAIN_IDENTITY, warning and falling back to
+IOMMU_DOMAIN_DMA if identity domains are unsupported (consistent with
+'iommu.passthrough=1').
 
-I think you've uncovered a documentation bug here. The primary function
-of CLK_OUT_PMUX should be 000, aka CLK_OUT (this is a debugging signal
-of the SoC, along with ASLEEP). I may be missing some context as to why
-the reference manual says this value is reserved, but it clearly does
-something - because table 19 with the hardcoded RCW bits lists 000 as
-the default value for this field. So the RM contradicts itself.
+Device names match dev_name(), such as PCI BDFs ('0000:01:00.0'),
+Device Tree platform devices ('3c400000.ufs'), or ACPI platform
+devices ('AMDI0010:00'). Walking dev->parent also allows specifying a
+parent PCIe host controller or root port (e.g. '3c500000.pcie' or
+'0000:00:1c.0') to cover its downstream endpoints.
 
-Also, I see the debugfs thinks our pin groups are individual pins:
+Note: Untrusted PCI devices ('pdev->untrusted') and explicit IOMMU
+driver '.def_domain_type' requirements continue to take precedence.
 
-cat /sys/kernel/debug/pinctrl/1e0012c.pinctrl/pins
-registered pins: 30
-pin 0 (iic2) 0:? sdhc
-pin 1 (iic3) 0:? can
-pin 2 (iic4) 0:? can
-pin 3 (iic5) 0:? i2c
-pin 4 (iic6) 0:? i2c
-pin 5 (xspi1-data74) 0:? flexspi
-pin 6 (xspi1-data30) 0:? flexspi
-pin 7 (xspi1-base) 0:? flexspi
-pin 8 (sdhc1-base) 0:? sdhc
-pin 9 (sdhc1-dir) 0:? sdhc
-pin 10 (sdhc2-data74) 0:? sdhc
-pin 11 (sdhc2-base) 0:? sdhc
-pin 12 (uart1-soutsin) 0:? uart
-pin 13 (uart1-rtscts) 0:? uart
-pin 14 (uart2-soutsin) 0:? uart
-pin 15 (uart2-rtscts) 0:? uart
-pin 16 (irq11-8) 0:? irq
-pin 17 (irq7-4) 0:? irq
-pin 18 (irq3-0) 0:? irq
-pin 19 (evt4-3) 0:? evt
-pin 20 (evt2-0) 0:? evt
-pin 21 (clk-out) 0:? 0x0
-pin 22 (asleep) 0:? asleep
-pin 23 (reset-req) 0:? reset-req
-pin 24 (iic1) 0:? i2c
-pin 25 (ec1) 0:? rgmii
-pin 26 (ec2) 0:? rgmii
-pin 27 (usb-ext) 0:? usb
-pin 28 (gtx-clk) 0:? gtx-clk
-pin 29 (sdhc1-ds) 0:? sdhc
+Configuring per-device passthrough mode at boot is needed for several
+use cases:
 
-(which they're not - iic2 is a group consisting of SCL and SDA, whose
-function cannot be selected independently, which is why you've grouped
-them together).
+- Performance tuning and benchmarking: high-throughput storage
+  workloads (e.g. fio benchmarks on UFS) can incur measurable
+  IOPS/latency and CPU overhead from IOMMU page table management and
+  TLB invalidations. Selective device passthrough allows bypassing
+  translation for these devices while keeping IOMMU isolation enabled
+  for other devices in the system.
 
-I suppose this is OK? Not really a pinctrl expert here (and it predates
-your work - pinctrl-simple worked the same way).
+- SoC/board bringup and debugging: isolating whether a DMA fault or
+  regression is caused by a specific device's IOMMU translation without
+  disabling the IOMMU globally across the entire platform.
+
+Implementing this in the generic IOMMU core allows it to work with
+ACPI and Device Tree (DT) systems as well as across all IOMMU drivers.
+
+Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+---
+Hi folks,
+
+This patch follows up on a conversation with Jason Gunthorpe at
+Linux Plumbers regarding how to upstream support for configuring
+per-device IOMMU passthrough (IOMMU_DOMAIN_IDENTITY) at boot without
+abusing Device Tree properties.
+
+Downstream on Google Pixel G5 Laguna platforms, we have historically
+carried a custom 'iommu-idmapped' DT property parsed by the arm-smmu-v3
+driver to place specific client devices into bypass mode. As discussed
+at Plumbers, Device Tree seems the wrong place for this because choosing
+passthrough vs. translation for a given device can sometimes be an OS
+policy trade-off where we choose device peak performance at the expense
+of DMA isolation. This is the case for UFS and PCIe WLAN on Laguna,
+which share a common SMMU instance with other peripherals (such as DMA
+controllers, VPU, and ISP) where we want DMA isolation to remain
+enabled.
+
+A secondary benefit is it could be useful during device bringup and
+debugging for fault isolation and to work around firmware/device issues
+before a proper driver quirk is in place.
+
+Instead, I propose handling this in the generic IOMMU core via a
+kernel command-line parameter. This makes it available uniformly
+across both Device Tree and ACPI systems and across all IOMMU drivers.
+
+In terms of upstream Laguna support, initial DT support has already
+landed in tree, along with USB and phy support. Other support for
+mailbox, clocks, powerdomains, reset is under review in the following
+series with more to follow.
+
+https://lore.kernel.org/lkml/20261023235408.3063350-1-dianders@chromium.org/
+https://lore.kernel.org/lkml/20261026214359.3122870-1-briannorris@chromium.org/
+
+Feedback and suggestions are very welcome.
+
+Thanks,
+
+Peter
+---
+ Documentation/admin-guide/kernel-parameters.txt | 11 ++++
+ drivers/iommu/iommu.c                           | 76 +++++++++++++++++++++++--
+ 2 files changed, 82 insertions(+), 5 deletions(-)
+
+diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+index c343bc9a0d28..926380cb1e99 100644
+--- a/Documentation/admin-guide/kernel-parameters.txt
++++ b/Documentation/admin-guide/kernel-parameters.txt
+@@ -2689,6 +2689,17 @@ Kernel parameters
+ 			1 - Bypass the IOMMU for DMA.
+ 			unset - Use value of CONFIG_IOMMU_DEFAULT_PASSTHROUGH.
+ 
++	iommu.passthrough_devs=
++			[KNL,EARLY] Configure DMA to bypass the IOMMU by default
++			for specific devices.
++			Format: <dev_name>[,<dev_name>...]
++			Specify a comma-separated list of device names (matching
++			dev_name() of the client device or any of its parent/bridge
++			devices) whose IOMMU groups should default to passthrough
++			(identity) mode (e.g. "0000:01:00.0" for PCI,
++			"3c400000.ufs" for Device Tree, or
++			"AMDI0010:00" for ACPI).
++
+ 	iommu.debug_pagealloc=
+ 			[KNL,EARLY] When CONFIG_IOMMU_DEBUG_PAGEALLOC is set, this
+ 			parameter enables the feature at boot time. By default, it
+diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
+index b486b8bbd1fc..0a7796e0311e 100644
+--- a/drivers/iommu/iommu.c
++++ b/drivers/iommu/iommu.c
+@@ -33,6 +33,7 @@
+ #include <trace/events/iommu.h>
+ #include <linux/sched/mm.h>
+ #include <linux/msi.h>
++#include <linux/string.h>
+ #include <uapi/linux/iommufd.h>
+ #include <linux/generic_pt/iommu.h>
+ 
+@@ -43,9 +44,12 @@ static struct kset *iommu_group_kset;
+ static DEFINE_IDA(iommu_group_ida);
+ static DEFINE_IDA(iommu_global_pasid_ida);
+ 
++#define IOMMU_PASSTHROUGH_DEVS_MAX_LEN	256
++
+ static unsigned int iommu_def_domain_type __read_mostly;
+ static bool iommu_dma_strict __read_mostly = IS_ENABLED(CONFIG_IOMMU_DEFAULT_DMA_STRICT);
+ static u32 iommu_cmd_line __read_mostly;
++static char iommu_passthrough_devs[IOMMU_PASSTHROUGH_DEVS_MAX_LEN] __read_mostly;
+ 
+ /* Tags used with xa_tag_pointer() in group->pasid_array */
+ enum { IOMMU_PASID_ARRAY_DOMAIN = 0, IOMMU_PASID_ARRAY_HANDLE = 1 };
+@@ -805,6 +809,27 @@ static int __init iommu_set_def_domain_type(char *str)
+ }
+ early_param("iommu.passthrough", iommu_set_def_domain_type);
+ 
++static int __init iommu_set_passthrough_devs(char *str)
++{
++	size_t len;
++
++	if (!str || !*str)
++		return -EINVAL;
++
++	len = strlen(iommu_passthrough_devs);
++	if (len + (len ? 1 : 0) + strlen(str) >= IOMMU_PASSTHROUGH_DEVS_MAX_LEN) {
++		pr_warn("Too long list of device names for 'iommu.passthrough_devs'!\n");
++		return -EINVAL;
++	}
++	if (len)
++		iommu_passthrough_devs[len++] = ',';
++
++	strscpy(iommu_passthrough_devs + len, str,
++		IOMMU_PASSTHROUGH_DEVS_MAX_LEN - len);
++	return 0;
++}
++early_param("iommu.passthrough_devs", iommu_set_passthrough_devs);
++
+ static int __init iommu_dma_setup(char *str)
+ {
+ 	int ret = kstrtobool(str, &iommu_dma_strict);
+@@ -1750,14 +1775,45 @@ __iommu_group_alloc_default_domain(struct iommu_group *group, int req_type)
+ 	return ERR_PTR(-EINVAL);
+ }
+ 
++static bool iommu_is_passthrough_dev(struct device *dev)
++{
++	for (; dev; dev = dev->parent) {
++		const char *name = dev_name(dev);
++
++		if (name && *name &&
++		    parse_option_str(iommu_passthrough_devs, name))
++			return true;
++	}
++
++	return false;
++}
++
++static struct device *iommu_group_passthrough_dev(struct iommu_group *group)
++{
++	struct group_device *gdev;
++
++	if (!iommu_passthrough_devs[0])
++		return NULL;
++
++	for_each_group_device(group, gdev) {
++		if (iommu_is_passthrough_dev(gdev->dev))
++			return gdev->dev;
++	}
++
++	return NULL;
++}
++
+ /*
+  * req_type of 0 means "auto" which means to select a domain based on
+- * iommu_def_domain_type or what the driver actually supports.
++ * iommu.passthrough_devs, iommu_def_domain_type, or what the driver
++ * actually supports.
+  */
+ static struct iommu_domain *
+ iommu_group_alloc_default_domain(struct iommu_group *group, int req_type)
+ {
+ 	const struct iommu_ops *ops = dev_iommu_ops(iommu_group_first_dev(group));
++	unsigned int def_type = iommu_def_domain_type;
++	struct device *pt_dev = NULL;
+ 	struct iommu_domain *dom;
+ 
+ 	lockdep_assert_held(&group->mutex);
+@@ -1777,19 +1833,29 @@ iommu_group_alloc_default_domain(struct iommu_group *group, int req_type)
+ 		return __iommu_group_alloc_default_domain(group, req_type);
+ 
+ 	/* The driver gave no guidance on what type to use, try the default */
+-	dom = __iommu_group_alloc_default_domain(group, iommu_def_domain_type);
+-	if (!IS_ERR(dom))
++	if (def_type != IOMMU_DOMAIN_IDENTITY) {
++		pt_dev = iommu_group_passthrough_dev(group);
++		if (pt_dev)
++			def_type = IOMMU_DOMAIN_IDENTITY;
++	}
++
++	dom = __iommu_group_alloc_default_domain(group, def_type);
++	if (!IS_ERR(dom)) {
++		if (pt_dev && dom != group->default_domain)
++			dev_info(pt_dev,
++				 "Setting default IOMMU domain to passthrough via command line\n");
+ 		return dom;
++	}
+ 
+ 	/* Otherwise IDENTITY and DMA_FQ defaults will try DMA */
+-	if (iommu_def_domain_type == IOMMU_DOMAIN_DMA)
++	if (def_type == IOMMU_DOMAIN_DMA)
+ 		return ERR_PTR(-EINVAL);
+ 	dom = __iommu_group_alloc_default_domain(group, IOMMU_DOMAIN_DMA);
+ 	if (IS_ERR(dom))
+ 		return dom;
+ 
+ 	pr_warn("Failed to allocate default IOMMU domain of type %u for group %s - Falling back to IOMMU_DOMAIN_DMA",
+-		iommu_def_domain_type, group->name);
++		def_type, group->name);
+ 	return dom;
+ }
+ 
+
+---
+base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
+change-id: 20261106-b4-iommu-passthrough-devs-03b7c957ac69
+
+Best regards,
+-- 
+Peter Griffin <peter.griffin@linaro.org>
+
 
