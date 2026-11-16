@@ -2,78 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4648C606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 09:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97126606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 09:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XxpRsgOa;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=MDYQ3pcg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a4smQKSI;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=gYGbfRuA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CZnwncXttnoeDTUcItONMH1HUxzaUc0HeWzS8YajeZo=; b=XxpRsgOa5xcLxf
-	80M/kxYa6a6YRD9pH+IjmctPljlDb9/sxMhyl15pHY/QmlkpYsIEWJ5eZzRwc6q9JI4V9RRHkTzht
-	dy8AAKrtTUwaBwfrHrVCHBw4Tsoz20b6Ul1AYsoE3/+XrlIEM296NiiRhs2bP5L0TiU6WCHfz6J33
-	2d34vImYQS/gclqZthU64WtqaRUMXiWSrp83q0d3BLYOzvzfRsOKEh4NugEJPMOlJ/82KCDvk0qsR
-	0VsgLlFplfMGxvTT4TzLFYymHLPlRb93BoxxbHlDpYSQpd9bGeiUw75qc/nzJFMNtMZxPf/EAxdNC
-	ImKTulxJAol1LN/UuILQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=qasYIWxkmoq5mRF2ENr+HXhZWEX0pISvU4gUa+W+zyw=; b=a4smQKSIg+xMUzbb4MTry5bWA4
+	YZ3usLKYhrLhPOqt8jSO1WB+kYWE14jFzUO3IfdsduIqDts+uCw3U5Ez2Lrjx8a34TPgmuvVQ7OIX
+	MADP3UaV0yKguCUDgvRRk5eiwrXTzSCT5oyXYHP7HzakD6LwGKaK67xuajbzWLyZVlf3PE/RLrAtr
+	8UYvvTKC8NzK9K6ACfPuxH9F5cwFWZMNr/1xWZQnbdhNZPsEG/il6HqcfxZ/6qrDAirXHW0ud3v7P
+	AVXPNLR52H3iCqKwCySVw7fmK+6tF0TiQKLC9zR9G5ZAe1iiZ7fj10OQ86QWVE0iTtq9aBBQO30aY
+	lFOrCWqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSssR-00000001kd7-3SOu;
-	Mon, 16 Nov 2026 09:19:51 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSssP-00000001kcY-1l2H
+	id 1xSssx-00000001klI-3xjA;
+	Mon, 16 Nov 2026 09:20:23 +0000
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSssu-00000001kjt-2jfY
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 09:19:50 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 437321476;
-	Mon, 16 Nov 2026 01:19:43 -0800 (PST)
-Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BCAB23F763;
-	Mon, 16 Nov 2026 01:19:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794820786; bh=x48MGglr2CAwjlYCBk5Uk7nESxpqLnVRRwqaJD9EKQQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MDYQ3pcgq/fyazZWav1V8GCbaXniG47/MsXdi+L8kJg/9MnJZQMg0rd30s8dNGend
-	 f74CGwzElmESwFiQFd/98nrfKDbHv7OvYnk8N0T7X/E7Epm8s30n6ECITioJzXdOOK
-	 UkxLipbRfhTxaer6gx/Mmr1orXbV/YSFH8ZAp4WY=
-Message-ID: <3bb22604-1850-44d7-9388-3bcb06813eff@arm.com>
-Date: Mon, 16 Nov 2026 09:19:41 +0000
+	Mon, 16 Nov 2026 09:20:22 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
+	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 9B604201578;
+	Mon, 16 Nov 2026 10:20:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794820818;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qasYIWxkmoq5mRF2ENr+HXhZWEX0pISvU4gUa+W+zyw=;
+	b=gYGbfRuAqF69PBMw7kwNBh5WSABiONyvAt9Ws/rCU/ITvprXFhoaetjGIJjcj/jCMMSS+q
+	3VF2DKro3L2d/A+UyvttnTR/YJGhNBU94Gqqlb4sih6DJrhu8REG4tBLmJ5AJG3/3l9+q+
+	O4W1qkbvMxjr3XCqYjSa2yJYvzq6XmoFKFmRDF5ZkKcwLeJKpMhZbA8eGIvVQz0dGBYmnt
+	Mfu9RYVSyQZIFjCXCnS2n08Kncc7z8GIKv+QT7sxbLnPB6m7a96xjh3UgUeyF4KYedFmTc
+	63CVJBRyMi1/NAJI9fzVEa4HUt5egBpHstBHiaFO7Vn0q4NLxy0Y3hvscWubnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794820818;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qasYIWxkmoq5mRF2ENr+HXhZWEX0pISvU4gUa+W+zyw=;
+	b=U/C98LT0LRbp/f6w3leKXIvfSv2rjagmhq5nywzUTlYVI5vQU/sm0c17Chl5hOz7zP75ty
+	heuJCZHGDURmt9cQsb5CDfKlrDhQyPAThlDm9yS38/DOjta+17JEUBdJbC41x1M4Jy3gs8
+	d/5NDA7tYZHibCOidKVykludHLYJzs24N11iI0wJb3fcLzsp9Vp3x2tK7SxIIjSdnfs2Ip
+	cU8/Ha/XqP1vhw1x/VOZ0VJSXRYZYk2BZNxE+PfFF1lOQVaegtOUVxttTqP02jYGNMYCJ8
+	VbzfYQccKYK5Qzeg4raGaWdVYCNtD+pI/bxSaJsEVZ72Estr5bdBhnAdKNDWyw==
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794820818; a=rsa-sha256;
+	cv=none;
+	b=c6rRiCNxc9OCconJd8jd48OoBjIDRycdSqFfLcJzdM1OfGx47kexJvdna2+7v7SaPs1alg
+	cWGWU4F2xbabaCR3QcfNG1J4EQqHvXuScWhAmXXRjHeZ3Ezbc5/UcLKxEmexRsH3VvlRiC
+	K+WdErBdLe+j1rjKc1OT4x/ySHUYF89hXDLV43BJgyets2Rc3+h2LT5iEirKGKD8PDJRBH
+	iplRl8XRFee8HUL6WD722uMaKC7LU7I+aqAEzSLWKAwJPHp2zEVx+2hLkYOb6x36zqsrrI
+	y/6Uj6xwcIOxvw5FOq1wINcgiBnvsr8jSg7Ir0m4XSDI4DgkrBsAHpIbeATfPg==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=mkl@pengutronix.de
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1xSsss-00013E-04;
+	Mon, 16 Nov 2026 10:20:18 +0100
+Received: from pengutronix.de (p4ffb23c7.dip0.t-ipconnect.de [79.251.35.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id D62095ED13C;
+	Mon, 16 Nov 2026 09:20:17 +0000 (UTC)
+Date: Mon, 16 Nov 2026 10:20:17 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Harini T <harini.t@amd.com>, Michal Simek <michal.simek@amd.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, "magnus.damm" <magnus.damm@gmail.com>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
+	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: RE: RE: [PATCH can 4/4] can: rcar_canfd: rcar_canfd_probe():
+ reject devices without match data
+Message-ID: <20261116-passionate-vulture-of-potency-331d64-mkl@pengutronix.de>
+References: <20261114-fix-device_get_match_data-v1-0-2d82025e9646@pengutronix.de>
+ <20261114-fix-device_get_match_data-v1-4-2d82025e9646@pengutronix.de>
+ <TYYPR01MB660340F5E219C29045BF61F9867C2@TYYPR01MB6603.jpnprd01.prod.outlook.com>
+ <20261116-cream-hornet-from-lemuria-703c6b-mkl@pengutronix.de>
+ <TYYPR01MB660333DE58031D8231CD1B3B867C2@TYYPR01MB6603.jpnprd01.prod.outlook.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/5] Fix traceNoC probe issue on multiple QCOM
- platforms
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Leo Yan <leo.yan@arm.com>,
- Rob Herring <robh@kernel.org>
-Cc: Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
- coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20261110-fix-trace-noc-probe-issue-v7-0-2f06905c77fe@oss.qualcomm.com>
- <20261110154643.GA4159803-robh@kernel.org>
- <20261111204322.GH9176@e132581.arm.com>
- <e0e07848-361d-4977-a585-a0810452e150@oss.qualcomm.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <e0e07848-361d-4977-a585-a0810452e150@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oayapvf2wmwdvepi"
+Content-Disposition: inline
+In-Reply-To: <TYYPR01MB660333DE58031D8231CD1B3B867C2@TYYPR01MB6603.jpnprd01.prod.outlook.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_011949_523990_0A381736 
-X-CRM114-Status: GOOD (  18.53  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261116_012020_876309_502A1E7A 
+X-CRM114-Status: GOOD (  16.98  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,58 +116,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 16/11/2026 02:03, Jie Gan wrote:
-> 
-> 
-> On 11/12/2026 4:43 AM, Leo Yan wrote:
->> On Tue, Nov 10, 2026 at 09:46:43AM -0600, Rob Herring wrote:
->>> On Tue, Nov 10, 2026 at 09:21:13AM +0800, Jie Gan wrote:
->>>> The CoreSight TNOC (Trace Network-On-Chip) binding so far only 
->>>> allowed the
->>>> two-string AMBA form "qcom,coresight-tnoc", "arm,primecell". That form
->>>> forces the device onto the AMBA bus, where the driver must read the
->>>> peripheral ID from the device registers during probe. On several QCOM
->>>> platforms this AMBA peripheral-ID probing fails, so the traceNoC device
->>>> never probes and its trace path is unavailable.
->>>
->>> But it works fine on some platforms? We have a property to override the
->>> peripheral-ID which would solve your issue. That would be much simpler
->>> and avoid the ABI break on any of the working platforms.
->>
->> Looking back at the earlier discussion [1], Jie in v2 already proposed
->> "arm,primecell-periphid". Questions about AMBA IDs and ATID handling got
->> mixed together. The series later moved towards platform-device probing,
->> then became current shape.
->>
->> Hope we make the right decision on arm,primecell-periphid this time.
->>
->> Anyway, I'd like to apologise to Jie for all the back and forth.
->>
-> 
-> Never mind.
-> 
-> Hi Suzuki, Rob,
-> 
-> The "arm,primecell-periphid" override is the simplest fix for the issue. 
-> Which fix are your preferring for the issue? If we want fix it with DT 
-> property, we can revert the patch series and I will post a new one to 
-> fix it.
-> 
-> As Leo mentioned, the AMBA probe is not affecting by the series.
 
-Alright, I will remove it from the coresight next, please send the DT
-fix.
+--oayapvf2wmwdvepi
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: RE: RE: [PATCH can 4/4] can: rcar_canfd: rcar_canfd_probe():
+ reject devices without match data
+MIME-Version: 1.0
 
-Cheers
-Suzuki
+On 16.11.2026 09:12:13, Biju Das wrote:
+> > Thanks, I wasn't aware of this series. I tested the driver_override on =
+the flexcan driver with latest
+> > net/main, fixed it, and applied the fix to all affected CAN drivers.
+> >
+> > Should I drop the driver_override related null pointer checks from this=
+ series?
+>
+> I think so, currently only few drivers are using driver_override feature =
+and
+> majority don't. There is a work in progress to disable this feature by
+> default. The driver needs driver_override will adjust the probe() to make=
+ it
+> functional, so it won't fail at all in probe().
+>
+> But here we are making probe to fail,
 
+Without my patch, using driver_override the info pointer is NULL and it
+will crash 5 lines later with a NULL pointer dereference.
 
+> in case someone wants to
+> test the driver using bus_override.
+                        ^^^^^^^^^^^^
+What's bus_override?
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--oayapvf2wmwdvepi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCavrKzwAKCRDMOmT6rpmt
+0rovAQCEIJAMETd7tNyk2R/k715jbympLZH7eJQMURDgqksApQD/a5uzKGahBuW5
+XA8bORFBLc4olbS/6V89C8PXQPoDjQM=
+=Bz3f
+-----END PGP SIGNATURE-----
+
+--oayapvf2wmwdvepi--
 
