@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF602606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974F6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bRdsyslE;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=NCBYO8xa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h0KqYXZy;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=OVKHZ6nq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,68 +14,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=GDmEcRmMyOcax5mKICmpAsSQPFvmFrhuIcwUrIgFdio=; b=bRdsyslEYcWzzzpXKIlRQl16o6
-	EiTyT9xDFcOIyWyDt3F6ClDJ1upnBfXgJdQ+MgKjcCql3smTvDC/9VMgRUWNOoQCjc142DxGdHCR/
-	0hngRziDgcPVq2u+dOrT7ICv/pa3+LR5QTWQvV/BL2U6jJ2ZAZYzrf69mDy9xzXYC9tfSd2mS4eSv
-	cO8HEf0ucO03DoMqkpy2TFx13Ab9RiRanC+bkPi9sxyjWKpc8HT4hxhlbEsJi6il2EQSlaQA3Pdx+
-	53MJ8yXCIurNSy6pfkI1NEcLvfDHnCI+mGgvxK1JCRE7h+c4lVDCf8Zll1Epv9AwA445e1AZq9CJQ
-	lSOMOnlA==;
+	bh=o11hgmvCCkoqVQmKB/Ee34WO8eez+JgS5dBD2M+SoXI=; b=h0KqYXZy8KcSo6wsCD5Ge4F7js
+	gy0tQT4R8kB7331u7ji5izTB4yLM/R5RZGNe2XUOUd6KfJ/F96iDmKWB6k8VWuoGNq1eY8XQ187ZH
+	w6TYtXixuNs14r8qQVtPqoYCQ4QqNe7I6ookkPnv2BO/gvU1iH65toeKQvPr31oJfzoE37yroVOWZ
+	8gHOI6jnVhQK/zynUMvZk6Xc5oEEEmVO7DCXZlPAWMT4OBAGBofIuRlkSnY0U3hDvV2TlfnL6prOE
+	cOzJV5k6LMtYQ8crzvMfuNNpI/DSFfqW16tZaWbh1grH5Xez73oNwNYsiNPjZ/CRn6ql9Lhsdvdyr
+	q/4CvErA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxhG-00000002rAy-1Htp;
-	Mon, 16 Nov 2026 14:28:38 +0000
-Received: from mail-wr1-x445.google.com ([2a00:1450:4864:20::445])
+	id 1xSxhf-00000002roF-1JTB;
+	Mon, 16 Nov 2026 14:29:03 +0000
+Received: from mail-wr1-x446.google.com ([2a00:1450:4864:20::446])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxgE-00000002paJ-29se
+	id 1xSxg7-00000002pO1-2gvC
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:27:35 +0000
-Received: by mail-wr1-x445.google.com with SMTP id ffacd0b85a97d-49d70f45b22so1222333f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:32 -0800 (PST)
+	Mon, 16 Nov 2026 14:27:29 +0000
+Received: by mail-wr1-x446.google.com with SMTP id ffacd0b85a97d-48fbcf023dcso1566318f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794839251; x=1795444051; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794839245; x=1795444045; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=GDmEcRmMyOcax5mKICmpAsSQPFvmFrhuIcwUrIgFdio=;
-        b=NCBYO8xajOTc6uL0b9DMrLpQwaBNRUAVYNcCYOF8Jtminy8B1t3XjxD3yTmdOnt/F6
-         1Qbd4aX2bHkU8Zls5QsskUWdF2AL+F7fxwh4Re+xPzrjPpHVNvJsOG/mZYAt/dVnjua9
-         hlxDSsZZ6YqUEx1IPveU9mRPbjGffVOoBSFDPtjbvYlBKwCRSgDV+/l9X3MCCXdvhQVR
-         /e8CnpE04Y0rSeQVDKk8WLe6nBLdIMLlXVcjKoR/VEASFM/uS2D3sMxy+te2XNd52lJX
-         W5/+WQm2l7WwMrINhOjD9kZEslj5LpIadH1nO/8np23+vY/fnipqNN9cQs2lWOwZGexx
-         jvNw==
+        bh=o11hgmvCCkoqVQmKB/Ee34WO8eez+JgS5dBD2M+SoXI=;
+        b=OVKHZ6nqw2i6bqjO9scah5IRfHDId3na+KV856esmTH3XI9VCu1tsB4kTXj44IWmlK
+         GCynIKZUkBZGlzLhQVmZ3WWtOl1hQxSxynbCiZ5DHTYEhTAY6GbaMlBNydpwsFlow6pf
+         5ZwbusZMLRFLZwx9lJ7x2yNZJnpyRgWNqff4qRFk3A3jACOa5SwRmBn7QWZUc3+Y68/2
+         L5XLpHYPX/KcuVVasZWlBg9Ge/Rqi3i7HZpML+xzFzta0qmzvCyim8iPd+K7BuRqSheS
+         7I6BtcfUs/JOBp4G2aA0qX+UiIGaJwi16R0mJU12EquWRGGxdgE5OseJLf6nSlVeOTN6
+         23ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794839251; x=1795444051;
+        d=1e100.net; s=20260707; t=1794839245; x=1795444045;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=GDmEcRmMyOcax5mKICmpAsSQPFvmFrhuIcwUrIgFdio=;
-        b=CUvGZe60krOQgFO0w0LpDhxthqFBhe5l7VmI8hTvgCj0CnN/2Brjrm0+WCc4fkDLvu
-         vF18AoUclwiilMhj8Qlh5KBeNdigpuSazH6H438SrHMdxjaV0rEDZQOhfM/Rcj5Em6UG
-         MopkUSqrzQiV7O/FoMQuUe17NJkS1YQCRzYcTgxPOsbZAEFPQtS6+EMgrLkoSiRTI9zm
-         x1GqVTzxkGm2j6uGxoL+6Zoo6X9bg2URysoAST0bh3NBVYARqCHQhmCGh9SlXuSZTJp8
-         cT6lPNtIz6N1o4VNjXVQRRoGQqgf9G2EiF6mCo4D736ECFaa9mxA/ADf3x1b7mUuZD4/
-         6r9Q==
-X-Gm-Message-State: APuU4Z/UlrZOu+W66bBf964h/PQbPCCDe5zCH/MC25Z9nBc9PpeCJf1S
-	qqW6JEjB9sNoGpNcLDQSVs8oBw513XM4BcW0nLwTICv9cKtZPfVD9reN80czPf3VOU5YVYjg8Q=
+        bh=o11hgmvCCkoqVQmKB/Ee34WO8eez+JgS5dBD2M+SoXI=;
+        b=S8bCFtDbY3xqALJQfAPdizXrvm67GKK2ji9gh7t8Pn7XwTh72QbBpb/6GpbZHig+O7
+         Ap5u+4iWxI8Eamzlxu1u4Pe4VUYMxPavv978pxsReI9wxjGD+6s1I04tkoGvLdIiTQK8
+         1Tto5+IvC+3Q/s9ucw7UEMMwEbxV355OIkXtDtRa+a2keLPqOFjCtYGkvt83QAaT8cUH
+         ilnwP3n6MXF7IadOtGTDqj62eMCnMWut4ryVH7uRd7z8M7eLEXcvrc7WKGdXv6HsJHnD
+         p4FPUltEGOcpbtp/tmpcSqicC0E0WC4ioBCiiq6j5J9NIGiPMfsV5rx7qEl7Cpn7tuGG
+         b0Iw==
+X-Gm-Message-State: APuU4Z8EyPvxRp+wxYFn/R6FhUDR/TkhTLt9R8vDI0QqLDxkuSXq29b2
+	JS8cDtSKvpNyI2Jn1qbZIKy9o33w2T3LSe9avXRwdb8NgiPUKil21GY05Ug5OdswCFsA7Y2sRw=
 	=
-X-Received: from wrbdj11.prod.google.com ([2002:a05:6000:b0b:b0:493:1d71:a33b])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6000:608:b0:488:7dc6:4e9
- with SMTP id ffacd0b85a97d-49c70ed8e94mr25114870f8f.10.1794839250838; Mon, 16
- Nov 2026 06:27:30 -0800 (PST)
-Date: Mon, 16 Nov 2026 15:26:34 +0100
+X-Received: from wron1.prod.google.com ([2002:adf:f081:0:b0:48a:f42f:f171])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a5d:64e4:0:b0:487:6f2:1a4c
+ with SMTP id ffacd0b85a97d-49c7381b46cmr25352969f8f.25.1794839244204; Mon, 16
+ Nov 2026 06:27:24 -0800 (PST)
+Date: Mon, 16 Nov 2026 15:26:29 +0100
 In-Reply-To: <20261116142618.1687025-17-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261116142618.1687025-17-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2284; i=ardb@kernel.org;
- h=from:subject; bh=pQuS5NqxIFj4wbVklTtBdnUPtGLjNWkfYhwihjrAl7M=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu30IKV0rIFvb3+jhJvjwtvPt+/VykrMM5e7MOqiDD5J
- z4biho6SlkYxLgYZMUUWQRm/3238/REqVrnWbIwc1iZQIYwcHEKwETuWzL8d11y4WaaBftmeZMD
- 53wZtqg9KLJ+1VZUrtITZ9u4o7zpACPD8ueZbzxnF72pm3I965OyuWpdZ0F03u3v0v87Z+lIPG7 lBQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3411; i=ardb@kernel.org;
+ h=from:subject; bh=0nt34/MyeHyViz+7a3rT70EnJHsQtwP3I7KaD72gSz8=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu30MwW9bOfZvZ9yNX/vfrllKK/Sb621ld3cr94vuZPV
+ XKIj2JiRykLgxgXg6yYIovA7L/vdp6eKFXrPEsWZg4rE8gQBi5OAZiIaRojw6VFJQo7Lx1UX/bw
+ Z4Lt9mypXpbEfDaVbsdzMx+zxa+ad4iR4fPSijBDhm9f1SV53q4o+TLnofCRLzvWVE9J4bisvO3 uXU4A
 X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
-Message-ID: <20261116142618.1687025-32-ardb+git@google.com>
-Subject: [PATCH v3 15/15] Revert "efi: earlycon: Reprobe after parsing config tables"
+Message-ID: <20261116142618.1687025-27-ardb+git@google.com>
+Subject: [PATCH v3 10/15] efi/libstub: riscv: Use struct efi_image_info to
+ access image properties
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-efi@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
@@ -84,8 +85,8 @@ Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
 	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_062734_609209_7ED8E893 
-X-CRM114-Status: GOOD (  14.14  )
+X-CRM114-CacheID: sfid-20261116_062727_743781_8DA11E66 
+X-CRM114-Status: GOOD (  14.93  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,76 +108,94 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-This reverts commit 8b3a149db461d3286d1e211112de3b44ccaeaf71.
+Instead of exposing individual symbols to the EFI stub explicitly via
+the linker script, use the generic struct efi_image_info, which accesses
+the original symbols via PC-relative references from the stub itself.
 
-That commit added logic to probe the EFI framebuffer earlycon again after
-the EFI configuration tables have been parsed, as the primary display
-information may not have been available yet when the earlycon= early
-parameter was processed.
-
-Now that only ARM uses a configuration table to pass the primary display
-information to the core kernel, and the EFI framebuffer earlycon is not
-supported on ARM, the reprobe logic no longer has any callers. So revert
-it.
+This improves code reuse across architectures, and makes it easier to
+add new references in a generic manner.
 
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- drivers/firmware/efi/earlycon.c | 16 +++-------------
- include/linux/efi.h             |  1 -
- 2 files changed, 3 insertions(+), 14 deletions(-)
+ arch/riscv/kernel/image-vars.h            |  8 -------
+ drivers/firmware/efi/libstub/riscv-stub.c | 25 +++++---------------
+ 2 files changed, 6 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/firmware/efi/earlycon.c b/drivers/firmware/efi/earlycon.c
-index 3d060d59968c..997f69ce46cb 100644
---- a/drivers/firmware/efi/earlycon.c
-+++ b/drivers/firmware/efi/earlycon.c
-@@ -216,14 +216,6 @@ efi_earlycon_write(struct console *con, const char *str, unsigned int num)
- 	}
- }
+diff --git a/arch/riscv/kernel/image-vars.h b/arch/riscv/kernel/image-vars.h
+index bf703eba3fa5..c18b24792a29 100644
+--- a/arch/riscv/kernel/image-vars.h
++++ b/arch/riscv/kernel/image-vars.h
+@@ -23,14 +23,6 @@
+  * linked at. The routines below are all implemented in assembler in a
+  * position independent manner
+  */
+-__efistub__start		= _start;
+-__efistub__start_kernel		= _start_kernel;
+-__efistub__end			= _end;
+-__efistub__edata		= _edata;
+-__efistub___inittext_end	= __inittext_end;
+-#if defined(CONFIG_EFI_EARLYCON) || defined(CONFIG_SYSFB)
+-__efistub_sysfb_primary_display	= sysfb_primary_display;
+-#endif
  
--static bool __initdata fb_probed;
--
--void __init efi_earlycon_reprobe(void)
+ /*
+  * These double-word integer shifts are used by the library code, and
+diff --git a/drivers/firmware/efi/libstub/riscv-stub.c b/drivers/firmware/efi/libstub/riscv-stub.c
+index 0ddbe7cc8628..58581ccb4cc0 100644
+--- a/drivers/firmware/efi/libstub/riscv-stub.c
++++ b/drivers/firmware/efi/libstub/riscv-stub.c
+@@ -6,23 +6,10 @@
+ #include <linux/efi.h>
+ 
+ #include <asm/efi.h>
+-#include <asm/sections.h>
+ #include <linux/unaligned.h>
+ 
+ #include "efistub.h"
+ 
+-unsigned long stext_offset(void)
 -{
--	if (fb_probed)
--		setup_earlycon("efifb");
+-	/*
+-	 * When built as part of the kernel, the EFI stub cannot branch to the
+-	 * kernel proper via the image header, as the PE/COFF header is
+-	 * strictly not part of the in-memory presentation of the image, only
+-	 * of the file representation. So instead, we need to jump to the
+-	 * actual entrypoint in the .text region of the image.
+-	 */
+-	return _start_kernel - _start;
 -}
 -
- static int __init efi_earlycon_setup(struct earlycon_device *device,
- 				     const char *opt)
+ efi_status_t handle_kernel_image(unsigned long *image_addr,
+ 				 unsigned long *image_size,
+ 				 unsigned long *reserve_addr,
+@@ -31,13 +18,13 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
+ 				 efi_handle_t image_handle,
+ 				 const struct efi_image_info **image_info)
  {
-@@ -231,17 +223,15 @@ static int __init efi_earlycon_setup(struct earlycon_device *device,
- 	u16 xres, yres;
- 	u32 i;
+-	unsigned long kernel_size, kernel_codesize, kernel_memsize;
++	unsigned long kernel_base	= efistub_kernel_base(*image_info);
++	unsigned long kernel_size	= efistub_kernel_size(*image_info);
++	unsigned long kernel_codesize	= efistub_kernel_codesize(*image_info);
++	unsigned long kernel_memsize	= efistub_kernel_memsize(*image_info);
+ 	efi_status_t status;
  
--	fb_wb = opt && !strcmp(opt, "ram");
--
--	if (si->orig_video_isVGA != VIDEO_TYPE_EFI) {
--		fb_probed = true;
-+	if (si->orig_video_isVGA != VIDEO_TYPE_EFI)
- 		return -ENODEV;
--	}
+-	kernel_size = _edata - _start;
+-	kernel_codesize = __inittext_end - _start;
+-	kernel_memsize = kernel_size + (_end - _edata);
+-	*image_addr = (unsigned long)_start;
++	*image_addr = kernel_base;
+ 	*reserve_size = kernel_memsize;
  
- 	fb_base = si->lfb_base;
- 	if (si->capabilities & VIDEO_CAPABILITY_64BIT_BASE)
- 		fb_base |= (u64)si->ext_lfb_base << 32;
+ 	status = efi_kaslr_relocate_kernel(image_addr,
+@@ -47,7 +34,7 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
+ 	if (status != EFI_SUCCESS)
+ 		efi_err("Failed to relocate kernel\n");
  
-+	fb_wb = opt && !strcmp(opt, "ram");
-+
- 	xres = si->lfb_width;
- 	yres = si->lfb_height;
- 
-diff --git a/include/linux/efi.h b/include/linux/efi.h
-index cc1df1577d5f..4a809c6ae724 100644
---- a/include/linux/efi.h
-+++ b/include/linux/efi.h
-@@ -719,7 +719,6 @@ efi_guid_to_str(const efi_guid_t *guid, char *out)
+-	*(unsigned long *)image_info += *image_addr - (unsigned long)_start;
++	*(unsigned long *)image_info += *image_addr - kernel_base;
+ 	return status;
  }
  
- extern void efi_init (void);
--extern void efi_earlycon_reprobe(void);
- #ifdef CONFIG_EFI
- extern void efi_enter_virtual_mode (void);	/* switch EFI to virtual mode, if possible */
- #else
 -- 
 2.56.0.611.g1030f0b940-goog
 
