@@ -2,71 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEDE5606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 10:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B6E606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 10:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IcKxURPf;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=aEv3CH/d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iY65xp82;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=N+HlchmX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=/ZtzIqGKVBjlBBIyqu9fROMer7QN/0/V51r6Lfy880U=; b=IcKxURPfzPfoPpSuiiUtsqpms5
-	t+dGwBz7lMDjVGwS/vZltcBvPVwtAE5tz9wNEBJgOft5ewOvmDS3yAtMC/IvFWKnvyjrIdboaFkdK
-	lg5Z29SLcTfEkRl11kJxI1gq95Q7q2kJOtLysOeKFOUSBDUphwE1QHBpi3OgV6zXEREFzPg9WMyCM
-	HlpFBsWpvNj9jZhXXMvNSXe+KQdQeXCFY+vqmYaPHjDCXLgvjEEa5hywWEv+F4S3r/nu3snCejQrL
-	zFYkfX+zapRSsx/klGBqceQ3GwndfGNuWFUM5Wg/14cJD2sK5fIh2Ntj9ng0xLD0pS+Dvz3JivEUS
-	4CkAaPXg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Y3cXUCELq15P2CTKae/QhO/9W7btvBg5d30bXL8PhNo=; b=iY65xp82y8ibty
+	JwTzitBwGISOfUBylK7VgaB1q9n3aKC5SFU51LHMg3aEU+4FUV1oeJKht6WWmb5z23++5MsOZ7lgU
+	DkryoBpnthQKAT3xzRW3w2EOGxY2BMAg1IB/OsluE/KmUbNhF63VfmAoZbth2mXX0ipcgjDOqNsZM
+	8J4atFfsuUmknQXc6rN9qc/yEdb6QadbpA1by1txauusMoVIiLRjkDt9ZLjvtyKT81QzHSaBLY4D/
+	ntG005Rz0HQXwpSOl7za+sDpU//9z2Xf18rglBxj9GTc0f4R2BEdhS289pIwat9+thrSNj8dxJLKI
+	kwIrk595rfsjzYyEqQfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSu5g-00000001zBA-1FhZ;
-	Mon, 16 Nov 2026 10:37:36 +0000
+	id 1xSu6C-00000001zGw-1ka2;
+	Mon, 16 Nov 2026 10:38:08 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSu5e-00000001zAe-2yGi
+	id 1xSu69-00000001zGL-3zJW
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 10:37:36 +0000
+	Mon, 16 Nov 2026 10:38:07 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EF3131476;
-	Mon, 16 Nov 2026 02:37:28 -0800 (PST)
-Received: from localhost (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8920B3F632;
-	Mon, 16 Nov 2026 02:37:31 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1AFD41476;
+	Mon, 16 Nov 2026 02:38:02 -0800 (PST)
+Received: from [10.0.154.42] (e121487-lin.cambridge.arm.com [10.0.154.42])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6A5483F632;
+	Mon, 16 Nov 2026 02:38:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794825451; bh=fHZnIIQvAnQEZYB1ohrXNN6xTkU9UWERfy/JRkWqdUc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aEv3CH/dircAIumFk9ZT6vTv8qcWLVhR94/xOQnKX/CpPjJCV0PznJfRdIjZAYN7L
-	 +YxzjcZvjTvjXurJzyQsvvit8GW23xjZIXxlxj5mWJpfqA0S46ey9vBdOifk2b4hNL
-	 Mwf4F9KJ/H8v0uw2yHTNFd0tiVyPjjlpOGpQuXQA=
-Date: Mon, 16 Nov 2026 10:37:29 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: Johnny Fan <johnny.fan@cixtech.com>
-Cc: will@kernel.org, mark.rutland@arm.com, suzuki.poulose@arm.com,
-	jeremy.linton@arm.com, maz@kernel.org, mike.leach@arm.com,
-	james.clark@linaro.org, alexander.shishkin@linux.intel.com,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com, jie.fu@cixtech.com,
-	bob.zhang@cixtech.com, Fugang Duan <fugang.duan@cixtech.com>
-Subject: Re: [PATCH v3 2/2] perf: arm_pmu_acpi: Support heterogeneous ACPI
- systems
-Message-ID: <20261116103729.GT9176@e132581.arm.com>
-References: <20261102084153.3975282-1-johnny.fan@cixtech.com>
- <20261102084153.3975282-3-johnny.fan@cixtech.com>
- <20261113160041.GS9176@e132581.arm.com>
- <avpxRZFX4Iebu0l3@JohnnyFan>
+	t=1794825485; bh=9Ge9cT4Atk9nVv3V3kgsxcn8Q1tixZ6sqlMWxn8Yeww=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=N+HlchmX/WMspbnBZX6i/dj9EA8VkiPFPsT5uAbBys0HKikGnZwXk7aZab6yKb5kM
+	 64gp6umbkKw5vb5mXHq/kro9HkF9OekpaSoGDPN/gZKjsmOEDmWtUMyVd8r5hTBZxw
+	 0+dmK4RruOgEFsB28HBPRvltQgwmJUCKUIjK5ecM=
+Message-ID: <452bf82e-52ea-47c1-9074-eeb614a33747@arm.com>
+Date: Mon, 16 Nov 2026 10:38:00 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <avpxRZFX4Iebu0l3@JohnnyFan>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v1 0/2] genirq: add migratable NMI registration and
+ show NMI counts
+To: Ashok Raj <ashok.raj@oss.qualcomm.com>,
+ Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Jinjie Ruan <ruanjinjie@huawei.com>, Liaochang <liaochang1@huawei.com>,
+ Marc Zyngier <maz@kernel.org>, Radu Rendec <radu@rendec.net>,
+ Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
+ Sathvika Vasireddy <sathvika.vasireddy@oss.qualcomm.com>
+References: <20261114234946.818072-1-ashok.raj@oss.qualcomm.com>
+Content-Language: en-GB
+From: Vladimir Murzin <vladimir.murzin@arm.com>
+In-Reply-To: <20261114234946.818072-1-ashok.raj@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_023734_798424_FAE5D375 
-X-CRM114-Status: GOOD (  17.25  )
+X-CRM114-CacheID: sfid-20261116_023806_075274_5EA48C63 
+X-CRM114-Status: GOOD (  21.42  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,42 +77,101 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 10:58:13AM +0800, Johnny Fan wrote:
-> On Fri, Nov 13, 2026 at 04:00:41PM +0000, Leo Yan wrote:
-> 
-> [...]
-> 
-> > Based on above idea, I would fold your patch into my series (but I will
-> > drop the first patch for changing TRBE/SPE drivers). I will keep you as
-> > the author but please bear me a bit that I may refactor it to fit into
-> > the extensions. Hope this is fine for you.
-> 
-> 
-> Hi Leo,
-> 
-> Thanks for the detailed review, and yes — please go ahead and fold it
-> into your series. I'm happy for you to keep me as the author and to
-> refactor it as you see fit.
+Hi Ashok,
 
-Cool!
+On 11/14/26 23:49, Ashok Raj wrote:
+> request_nmi() currently models NMIs as per-CPU sources. This does not
+> represent a globally routed NMI source with an affinity-capable irqchip,
+> which needs to be rerouted when its target CPU is offlined.
+> 
+> This RFC adds IRQF_NMI_MIGRATABLE as a request_nmi() registration mode
+> for such a source. It remains excluded from normal IRQ balancing, but the
+> generic startup and CPU-hotplug paths may select an online target. The
+> second patch fixes the related /proc/interrupts display: NMI-safe flow
+> handling updates the per-CPU counters rather than irq_desc::tot_count.
+> 
+> Patch 1: Add the migratable-NMI registration mode, validate that it is
+> used only through request_nmi() with an affinity-capable non-per-CPU
+> irqchip, and add IRQ KUnit coverage for registration and CPU-offline
+> migration.
+> 
+> Patch 2: Emit the per-CPU counters for all NMI descriptors, matching
+> kstat_irqs_desc().
+> 
+> Testing:
+>   - ARM64 changed-object builds with WERROR=1
+>   - ARM64 !SMP changed-object build
+>   - ARM64 IRQ KUnit run under QEMU with two CPUs, including registration
+>     validation and CPU-offline migration
+>   - local downstream GHES delivery and migration validation for the intended
+>     consumer topology (not part of this series)
+> 
+> Base and dependencies:
+> 
+> This RFC was developed and tested on v7.4-rc2 plus the FEAT_NMI v2 series
+> [1]. It depends on that series' GIC NMI support and is therefore not directly
+> applicable to mainline or linux-next as posted. This RFC is for design
+> feedback; it will need rebasing onto the upstream form of those prerequisites
+> before submission.
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20261112132042.129062-1-vladimir.murzin@arm.com/
+> 
 
-> I'll hold off posting a v4 so we don't end up with two versions under
-> review. Ping me when there's something you'd like tested on the CIX
-> board.
+I'm not an expert in this area, but based on what I've learned so far,
+NMI being per-CPU like makes life much easier ;)
 
-Thanks for offering to test! I'll test on my Orion6 board and send out
-the patches this week. You're welcome to test them and any comments.
+IIUC, one of the main problems with a shared NMI (as opposed to a
+per-CPU) is handling shared state. Consider:
 
-Even if we're testing on the same SoC, your results would still be
-valuable, maybe we're using different firmware versions.
+CPU0                       CPU1                       CPU2
 
-Thanks,
-Leo
+---------------------------------------------------------------------------
+
+<NMI>
+handling started
+                           set NMI affinity to CPU2
+                                                      <NMI>
+                                                      handling started
+mutate shared state
+                                                      mutate shared state
+handling finished
+                                                      handling finished
+
+IOW, the same NMI handler could execute concurrently on two CPUs,
+potentially corrupting shared state. Once again more than happy to
+be corrected if I missed something :)
+
+Cheers
+Vladimir
+
+> A separate GHES Type-4 series is the intended first consumer and is not
+> included here.
+> 
+> Feedback is particularly welcome on the IRQF_NMI_MIGRATABLE API and its
+> placement in the generic IRQ API, as well as the NMI accounting presentation
+> in /proc/interrupts.
+> 
+> Ashok Raj (2):
+>   genirq: Add migratable NMI registration mode
+>   genirq/proc: Show NMI interrupt counts in /proc/interrupts
+> 
+>  include/linux/interrupt.h |   2 +
+>  kernel/irq/irq_test.c     | 141 +++++++++++++++++++++++++++++++++++++-
+>  kernel/irq/manage.c       |  33 +++++++--
+>  kernel/irq/proc.c         |   7 +-
+>  4 files changed, 172 insertions(+), 11 deletions(-)
+> 
+> 
+> --
+> 2.43.0
+> 
+
 
