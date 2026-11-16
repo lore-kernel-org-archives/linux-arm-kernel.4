@@ -2,101 +2,153 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B27606A323
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B3E606A32A
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DT+Q23fg;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=GeM7FaOf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nXkoMLFy;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=E4ACtHp/;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=E4ACtHp/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lYiKs2zOREczoUXWCfabA4P+kj5kMFUufjVpxMQWxLc=; b=DT+Q23fgg892jVsJwxWmwVjDSt
-	pu6vDkc9eTvnkexvAQnhVDegJ1x6MnWcJyZO8G6yyld9iQMN9yKCnsTjjQBjZlu4E/5hcciVU+lPr
-	/h+9oDav7jkVF0wcMxj+W9b3HbC5UtTStwqn2IMOTyv/Ki4TwRwD2qjDvHHGsgBbT2mhiNECYT1WV
-	pxedCFRZK943kkcHw4Rw6Q8GBWABWYQgnpf9UCIYhyGI9o+sjpelpCVwNxMxs1bC+kDm33Rlgn7lF
-	WO32ZJ3ff3V2LzRYuIySBUEujAo3w1OXHi+ID5Ja/vF+4A8E6nEal449eIsLeoIrolV6EMSOadmYH
-	+4YIGS/w==;
+	bh=Gb6FHfUUTcGeGCBkdYD9HQQYS+FE19BLuIb7TB5ZLAM=; b=nXkoMLFyiazgNzT+AXItwrD+KU
+	LmjZpzvrFyw6aprKPIHruu6fn0J7kJ3WbSbhOfxSYKdkmaurpLemNhfoyLG8J8OedQXh5tXU75Iw4
+	MshEGPAteV29knnT565tciBn51iEeSZPEvs3vfjLxF24m8nnwuYZdPiNOm3EdJ5n8MnTymgRYhEez
+	uGd3IwBLFDu6AfZGUDy8X6A0KbrJyTBw4/VHlZvYRIXZfbG/yvQdmpsfW+Zogrg4T51ejH4yqI18A
+	kD2V/GFVI2qXjcOO65hMWrvQLvxCm+AXamd8vttRPFS9LvKfiK08hbkGIats0Gn5G/AVg7VM9bwFK
+	fbYV0slQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvnm-00000002LNU-0HZe;
-	Mon, 16 Nov 2026 12:27:14 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1xSvnl-00000002LN8-3wPH;
+	Mon, 16 Nov 2026 12:27:13 +0000
+Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvnj-00000002LLU-0r5Y
+	id 1xSvnh-00000002LJf-0toe
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:27:12 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4bb702a7548so8188595e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:27:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794832029; x=1795436829; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=lYiKs2zOREczoUXWCfabA4P+kj5kMFUufjVpxMQWxLc=;
-        b=GeM7FaOfNgOTixyXVlzsh92hP4lT9TyA0I7yWcdW9y4o3iB7DlheCRx3KpADf1MnOm
-         zd6QoP1innzGMxuOcx1RhbGi0GUBDH0vZ5qn7i0SGRZvNAmHpLq/y+rZdcCN2c3iTGa5
-         2Lglps/oqkkqycZakH74KR8Pv0CupVAUDQ0aEvidHgOzJpSr1aKAyp5Y9alX9nV/XkZN
-         Xd5hriGXbx48J6GUJknqoBDipNvuwh/bCJYCFbUXl5qK8s83uuEwxTiyR03DEqszms9u
-         KFOqqHLECORviAU8rc0AY8eDR8dLzdN0UXQd9l8kJR6evPtdoQuJ3Ysia7ZDNX4oqK/d
-         chGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794832029; x=1795436829;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=lYiKs2zOREczoUXWCfabA4P+kj5kMFUufjVpxMQWxLc=;
-        b=J7ifropBw7R9hmDS2ijNCNzzMJEDemu1eBpo+e3lEAQGKVJcR7Kb+IpVY0baSqkvjf
-         rQr7ZgKLJpJv74VJM3mqVb2CeSfg+aiOMbKvRuollvuNnfstiTSnlsLTSk2FKtyX011W
-         mqYfbeX8P8N+Sq7I6aJLHtTF71UmyFW5kQwfSaNZhLsSSuiR89ZaTwoVJcrof2wsYXmp
-         dEGQLHLj6fjh7NgOt8aDYrO8EWJvIMe+zmspbNVStwbbYhPEmkElyPItHXvY47Up3oTP
-         1n4DMW0+2Qi4B84HZgDj1Xrm3txEIT+7gt/CJD3qMe52X128vX/wPd+hmYLnrhlCtwEh
-         slOw==
-X-Forwarded-Encrypted: i=1; AL+hErGF+1kwmzE1tw3q41mntYloTtl7I5I00K/MXrbCtsEtFldj6WgbIc3qavCebyf9iWECDd3eE/0rS8DvLNA4Aj9f@lists.infradead.org
-X-Gm-Message-State: APuU4Z/iuX4wMlpKc9ZjqqUCAms9rdzXuZ/v640TEnv6FVyLdkwW7NWO
-	Qr3QfaNdx/8jPg8vHRBUs4m8Bgur2Dw5cQuPtr3wstU3dKr5AuuwTRZo
-X-Gm-Gg: AYBFou22m9KTeALZ48Bxg7TSciqIs7ZqqcF/NXQLV/ytKGPhH7G0liGllsJv8+4BXxu
-	b9j1+HFzhZUurnKU81jN5VbPP/aD2Tc1hYDF4SCyUpfuCx9jHEoitJAK+mt7TfcRM+IeOBx8RRw
-	XTyCYsRiC0mZgsv8zF4ztsIuglj8kF9ddCgplv3Svwax4CkViPNXYXzu/Xu3F3vr6hFLb2IBiHT
-	sR4ChKAViXfhGXC470AaDonE6wc8cnDcf+eeLjpemRwTK0aVHdNzBP0lh+FWWIvXLUZQJ9ELzsR
-	CkVmshvsuKKzMbHaVdOgbQQQAop2RJhrRYcz4xUpFxRZsWwImsyFqfIMFSWKIRlIrPdfZRfOVrv
-	ZNc8FdlbQlJqpIb+8Ck19YY8CKktZcFQOP2tfDt/8qC6Q1QTFcVLC3dE7k7JQl8vuaFp1jq98cw
-	Zx9+RjRyYulZu1CvjwhVACL9HODblibCGNaVK3Z4J7GIwFQW3OFXkpnHIMtlDC5Jltf6z2m1Yy7
-	iQzr9EcaLxQdaNvXE/tskrR7HXZ1aZpa04U6I4jhz9rFPjx5+9Ix36tYoCLAIvZjQCaBZhXIA4s
-	Q1BFbzFHc368tHgFJ06f+MCON9bkkkLFXEA=
-X-Received: by 2002:a05:600c:3f18:b0:4bb:6ac0:6dc0 with SMTP id 5b1f17b1804b1-4bb6ac06e5dmr82826765e9.29.1794832028780;
-        Mon, 16 Nov 2026 04:27:08 -0800 (PST)
-Received: from deb05.proceq.com ([213.160.61.66])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb56689bc2sm171999685e9.2.2026.11.16.04.27.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 04:27:08 -0800 (PST)
-From: Mehmet Fide <mehmet.fide@gmail.com>
-To: Andi Shyti <andi.shyti@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-	Stefan Eichenberger <eichest@gmail.com>,
-	linux-i2c@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org,
-	mehmet.fide@screeningeagle.com
-Subject: [PATCH] i2c: imx: acknowledge the count byte of an atomic block read
-Date: Mon, 16 Nov 2026 13:27:06 +0100
-Message-ID: <20261116122707.1349139-1-mehmet.fide@gmail.com>
-X-Mailer: git-send-email 2.56.0
+	Mon, 16 Nov 2026 12:27:10 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=mYyq1uWrs4yKB9r9F7tGMBOr/pau+gmWFeCj4K6qmcDXlbNVBeyZCeiwpEY/CAX6Gm08r3GQlqH8JW/ZDJpZ9yOsK8q0RFH0T258GtTS+kKrdHqLfZrCQ4URIdBM4cX3DimEjSzcsf5qTdMnCdvFow+cExBX/t+gVNyOeTdfuz+vyCd/ArWm/9+BLacmsDHdiaNOhkDGep5I/34mhqDrOPYwpchIAOqwfysaBpO/WiW0b0IO4HiFW2wCbhnb+HWMIubwDdkKBeMEkNb9xcyBSqW75odcXahQ+9XSEGeCmUnMhDe14J6FMgVGY6QB/ACHD2jNLHG3+HiiiGVgGRbf9w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Gb6FHfUUTcGeGCBkdYD9HQQYS+FE19BLuIb7TB5ZLAM=;
+ b=QfhIYxe8XFauEn0r58b7waKKIxYL0DsYCWzkj75BApGO8mq1XSDYy4n4mp5v+PTk4Mju0svcpfdHbBnboXVBKiHTSc72rNwWNnJ0hFkMohrITR8GJX2KFgw5Ap0djGam5OO4jXlM+lmBO/lzV9m/RtSOpX8RMyfrLD0qPt82cgdiio0khC0QGRYm9NGiwg/g15gob1+/wgX3rs8e0qoSROfz65sdCfemVI1WT15zkSdqzMshx2QGsSJaNxpPk2XTp0iQlucA0N1zOVnIdDc7ue652070hVlMOYl7yqgy4QhKcJbj+FzSL8WZl1fcIZNYQCvvz4xsrxL3nEQO9tAbyw==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 4.158.2.129) smtp.rcpttodomain=nvidia.com smtp.mailfrom=arm.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
+ (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gb6FHfUUTcGeGCBkdYD9HQQYS+FE19BLuIb7TB5ZLAM=;
+ b=E4ACtHp/U6m7O7B6kwjUS7+r6zmmo5Zn3eFxz3FkPUzIeIfemgoIqJAYsldYu+5HipbCL7Sj7039LB+tTa1BfRfzsRkGWF8FC8XxXDg1RYQAJamgv4bIa8oxgf1J3YlCKzi+kajjOMhCd+4RMii6aw1zt9FkiAuu0QR2X7smvhk=
+Received: from DU7P251CA0011.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:551::13)
+ by VI0PR08MB11223.eurprd08.prod.outlook.com (2603:10a6:800:24f::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Mon, 16 Nov
+ 2026 12:26:54 +0000
+Received: from DU2PEPF00028CFF.eurprd03.prod.outlook.com
+ (2603:10a6:10:551:cafe::9b) by DU7P251CA0011.outlook.office365.com
+ (2603:10a6:10:551::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Mon,
+ 16 Nov 2026 12:26:54 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=arm.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
+ client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
+Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
+ DU2PEPF00028CFF.mail.protection.outlook.com (10.167.242.183) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.4
+ via Frontend Transport; Mon, 16 Nov 2026 12:26:54 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fNsaP2008rMbTbP5/XsohMOsalWlSIKxwa/QxBUVWSbSiMhS4qHCNjBXpLYbE3hacKHMMLOgLNu7KDmuuwstMmjGzpU8Thl0IPd8+MTE/PtmgCn4TsEm83xdTkNEx5JKN/qCRoKts5X5k4i73OgiV0b/Mj26qdfCCki88BA7pa7mp9CSfFs+guaRm95SNeG10ItV+wGgz8aJGx4qih10SZYKcZ/zuhXYxkXE4oNzgq+PwHIryiuLA7w/I9kGqtxRqgRYEBCE0SVEa5qxKKarLaXjL1l7TMyL0Ms37oDaz0hVOHei/mDEA4liykLUZjIGHQoYsS69JoGZXT36MuLbMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Gb6FHfUUTcGeGCBkdYD9HQQYS+FE19BLuIb7TB5ZLAM=;
+ b=CA1IPiFsGMlQzwZAFZZCtAkF2L0SJMPo4lx43+L5/zGbsbuR6BuE1mJhiTXK6N/UUGZe/fotgMR64oXrWl7J5ML+8XaNwYBPH484rhDdFRB7+ZItr4JquJhDeCeiIxeLxcKL5FUIu3OIibStwyxOVhMg/SQ8m1Xin0egddH1UEx+XlEMDXR3hWCmNAZtI45LPYrtjq1x0Cce4+3OrxmoyuGv3av2LeSEYFWsfh8uGZwdURNh8kCxxLs3EDDEfqYrDhA6h0vWPFO6VmT/A0NBfffAjRDBbxIt5YqM7Z9R/qk4NaPBkYpxKOAdYAlkfIeCiR/xNjwbho/WtbDs4JxHUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gb6FHfUUTcGeGCBkdYD9HQQYS+FE19BLuIb7TB5ZLAM=;
+ b=E4ACtHp/U6m7O7B6kwjUS7+r6zmmo5Zn3eFxz3FkPUzIeIfemgoIqJAYsldYu+5HipbCL7Sj7039LB+tTa1BfRfzsRkGWF8FC8XxXDg1RYQAJamgv4bIa8oxgf1J3YlCKzi+kajjOMhCd+4RMii6aw1zt9FkiAuu0QR2X7smvhk=
+Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
+ signed) header.d=none;dmarc=none action=none header.from=arm.com;
+Received: from PAWPR08MB8959.eurprd08.prod.outlook.com (2603:10a6:102:33f::15)
+ by AM8PR08MB5826.eurprd08.prod.outlook.com (2603:10a6:20b:1c6::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
+ 2026 12:26:21 +0000
+Received: from PAWPR08MB8959.eurprd08.prod.outlook.com
+ ([fe80::71d3:7b21:3594:e33f]) by PAWPR08MB8959.eurprd08.prod.outlook.com
+ ([fe80::71d3:7b21:3594:e33f%7]) with mapi id 15.21.0615.012; Mon, 16 Nov 2026
+ 12:26:21 +0000
+Message-ID: <4cf391ff-804a-46a1-8d3e-d0ff8442841f@arm.com>
+Date: Mon, 16 Nov 2026 12:26:20 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 11/12] iommu/arm-smmu-v3: Skip RMR bypass for kdump
+ adoption
+To: Nicolin Chen <nicolinc@nvidia.com>, will@kernel.org, jgg@nvidia.com
+Cc: robin.murphy@arm.com, joro@8bytes.org, praan@google.com,
+ kevin.tian@intel.com, smostafa@google.com,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ linux-kernel@vger.kernel.org, jamien@nvidia.com, kas@kernel.org,
+ Cristian Prundeanu <cpru@amazon.com>, Breno Leitao <leitao@kernel.org>,
+ xueshuai@linux.alibaba.com
+References: <cover.1793593923.git.nicolinc@nvidia.com>
+ <22a06965287dd478ee92f8028ae8ac27e054555d.1793593923.git.nicolinc@nvidia.com>
+Content-Language: en-US
+From: John Garry <john.garry@arm.com>
+In-Reply-To: <22a06965287dd478ee92f8028ae8ac27e054555d.1793593923.git.nicolinc@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO3P265CA0005.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:bb::10) To PAWPR08MB8959.eurprd08.prod.outlook.com
+ (2603:10a6:102:33f::15)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-TrafficTypeDiagnostic: PAWPR08MB8959:EE_|AM8PR08MB5826:EE_|DU2PEPF00028CFF:EE_|VI0PR08MB11223:EE_
+X-MS-Office365-Filtering-Correlation-Id: 769f6b30-58ee-4efc-b512-08df43dce634
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|23010399003|366016|1800799024|376014|7416014|10067099003|56012099006|11063799006|4143699003|261026121527099003|261026140227099003|261028144727099003|261021135927099003|261021121427099003|261022075727099003|261021123027099003|261022105027099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info-Original: Obo45zSvFZ/2Uq+sZCvGony9CfaSBG0IwB8XGu6bi0/KbCInvDkdumWxsKUKQzOEC1Q0aH/PNuHGVToSnOuwTxTu/1/XypYho3h/8/hTYFf2A39Nx1Kgt/NUJVxFxuYY4kb26r3hSGUW91hUjE3sRRcIZEOT4mt/a/m7Ddv9Khp0OhAcOacEZmU+s2ZhVQwy2BEzs9aIAzb67rJcDI9+KGa0MY6vPQemcQSzL7u0l8cyR3SXoH06m8Wzay3DwyomJ2eig15hHkCG2H+h2ByxUy9tVnaM0OxtG9ZeY35JbDS1hwDwUe9hTLMm1V+rvYOLHZG7Nujfhsb62uhgRsG5+sGy0ODrSy5gQOmLCOyHW3fbIQ5zRL5xrcvIai3VR6cMW+LZg9+W5euXUM2Vvm3pGMW+BjaazBMwH20EnBuH3mGpiBAAiyryO7er0AuIkkqvAthI5k9tqNxxotiKFJQa81CAJbFhTEPh6X17CFqpOgco6YSL/WkT2/lHjcrjawb31Yz5o5+nTpi4cfEIUx/n0/BeYQxolqobY98RJ6oBktfjd6t+twu2yUfuTiGWOL0alMtzwVLMHtzUaXorkPzSwUaxPPeTcoGshsnjXOZ450Gd0jYPi9CszhT6DVtDpAJd1kfMoTxqQv2NLj8DB0fQ+S2N9c8TMpz/T7bY16iqbPY=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAWPR08MB8959.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(7416014)(10067099003)(56012099006)(11063799006)(4143699003)(261026121527099003)(261026140227099003)(261028144727099003)(261021135927099003)(261021121427099003)(261022075727099003)(261021123027099003)(261022105027099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-Exchange-RoutingPolicyChecked: Vxqs1SyjvG+k5/YMCBUVnR7nYryn0bhmhxpEDroaUsxcO6hN55ksWqNrL543IiTEGbh3jpn/FrvH+rrZtqwsKQucS1UX9w8Fy6Q75/m1Wwp5NRYMOpISxbrR/ccHYcBnxpRrpk8QDDHd6+8u/fJlwPmZzv5hHrbirhTRrgVontRqp/sZnm4saFm6FUp6Ok6Ry5UOE6Uc2KigDaTGzu0DjE676PrQAjaZW0faJMWND2PA81cLyoLpSKAVuBtp6XTrAfR+rLT4eiIkp7de9MjxoUhVMjcXOrIC2mjPWrF1aHBILVFX+SF0RbiyUo3StssLs5zZu7eee1JLjcdDhh31oA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR08MB5826
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: DU2PEPF00028CFF.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 72d000c7-aa8d-4c47-a9ae-08df43dcd2a0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|14060799003|7416014|376014|30052699003|35042699022|1800799024|82310400026|36860700016|10067099003|56012099006|4143699003|11063799006|261026121527099003|261026140227099003|261028144727099003|261021135927099003|261021121427099003|261022075727099003|261021123027099003|261022105027099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: vFbWKIwi+u4u4wPNB1DoynJvAA5xkVWuZ86ehL7/kMTj8HA33VGkb2ko1DnofYGefTdd/h4ufEfShokLiFcs/SNaSeNEpJKPcdHhxu3nbIVOYYzFBLzkFjLRJEW3WbwJH4GPiQh2Iz15TnBJXe/zDyDO2H0Yb1uuYqwdFZRU9wiImvTMAgcAT8VDc+7o4yZ9BQXg0XGTbXNxlYXwFM+pkYQoqy8ksKlfz9KpU2NU0dY5v5EQX+WJh5W3EHcq/Hw2hlbcgL+59J3R7TfmNlaCUFYfYBxs3IlrecMHro/goNz097mB4/tSmbr0g2h6rVhGz/OUgqDb5dPreAR0lve0mIAT3VcEHsNiSC7g35yPGMJLnCkPUWoMT2QIeQX/TO7QLKTFOrTPBdK1KyFCFBc0BhWj4gC0xBwLEH8970Qt96oChe4Gh9VBnBcQbW3iMYyG0ZBXzlDp9R2CM97oeJ076zbvKbP7EIU12T208X3rbGVdlXSstFM6lW1lN865j1bx0RoXAGi8j5tdIkcMMvJ90WBu85WQAuG9LX8jdS6P+aAom2vWN6xBYdpL5GHL52+R3RsiTYIZcfFEYty6MwY5n3/LuPUykwRVc+4E5PMGqschWqXxEVLeN1v6BobLFCMPkiYW0O40Of2LungTf82Oq4b5sLJOUcyt0Rz5dOxQtAi/B9GK7dfRORjyejuOmij7bJk6rxDkGFuoOvsKw3DXGw==
+X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(14060799003)(7416014)(376014)(30052699003)(35042699022)(1800799024)(82310400026)(36860700016)(10067099003)(56012099006)(4143699003)(11063799006)(261026121527099003)(261026140227099003)(261028144727099003)(261021135927099003)(261021121427099003)(261022075727099003)(261021123027099003)(261022105027099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 3OC3smq+OYNoMMw9bQOTQfglGJ68/7+r+gKK3abFa/loVNRztGTlL2xf+Mg3zfNmkyYD/OdVX93p94St8Gw0BLLf9n/oORpyGD8rLfvKOvAhRF3JKM9NaWR2jykk3/foCV8vEbVXhRHnctt0tq7EGmq1Zf2UER27gwOnLIxLJew7gsmwhicBAO5J0VEd1+t0ezwJkbvW8mVtZISQ05n2LN+QzosmOfNd4WsbodD9D+yeaysKJsqUTUCSi2FJQbBaQCEwsMxkWb38T/127hSsZ6oXaHvcAI5BiHftsJcjcgH+qf8HiRyXuWWnuhbAPQhKR+Qemz0qKlWaP+/oBZuBxH8xdNjeKsPTzIzAg6NkWclOji+Jndtq5JlEp1rWfwU/smff1J/v1Z9ImRY5WFKn1NgEvzmITmsSUO4eZMJi/fF3sZleck7Ro4kETiMkDNqQ
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 12:26:54.2910
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 769f6b30-58ee-4efc-b512-08df43dce634
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
+X-MS-Exchange-CrossTenant-AuthSource: DU2PEPF00028CFF.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR08MB11223
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_042711_265047_E117848B 
-X-CRM114-Status: GOOD (  15.84  )
+X-CRM114-CacheID: sfid-20261116_042709_408747_B0739151 
+X-CRM114-Status: GOOD (  22.85  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,65 +160,92 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Mehmet Fide <mehmet.fide@screeningeagle.com>
+On 11/2/26 05:19, Nicolin Chen wrote:
+> RMR bypass STEs are installed during SMMUv3 probe for StreamIDs listed by
+> IORT RMR nodes. A normal boot switches the driver to a fresh stream table
+> whose initial STEs abort, so those RMR SIDs need bypass entries before it
+> becomes live. This preserves firmware/guest-owned traffic, including vSMMU
+> guest MSI cases built around RMR-described SIDs.
+> 
+> ARM_SMMU_OPT_KDUMP_ADOPT is the opposite case: the driver keeps SMMUEN set
+> and adopts the crashed kernel's stream table, so RMR SIDs already have the
+> only translation state known to be safe for active in-flight DMA. Replacing
+> an adopted STE with bypass can turn translated DMA into physical DMA, then
+> point it at the wrong memory.
+> 
+> arm_smmu_make_bypass_ste() also rewrites the STE in place after clearing it
+> first. While the table is live, a concurrent hardware STE fetch can observe
+> V=0 or mixed old/new state.
+> 
+> Leaving the adopted STE unmodified keeps the kdump kernel using the crashed
+> kernel's translation. That gives the endpoint driver a chance to probe and
+> quiesce the device.
+> 
+> If the old STE was already abort or invalid, installing bypass would create
+> new DMA permission; leaving it alone is a safer failure mode. Later domain
+> setup still gets the RMR direct mappings through the reserved-region path.
+> 
+> Reviewed-by: Pranjal Shrivastava <praan@google.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Breno Leitao <leitao@kernel.org>
+> Tested-by: Cristian Prundeanu <cpru@amazon.com>
+> Tested-by: Shuai Xue <xueshuai@linux.alibaba.com>
+> Signed-off-by: Nicolin Chen <nicolinc@nvidia.com>
 
-i2c_smbus_xfer_emulated() sends the read message of an SMBus block read
-with a length of 1 and I2C_M_RECV_LEN. i2c_imx_prepare_read() clears
-I2CR_TXAK only for a message longer than one byte, so the atomic read
-does not acknowledge the count byte. The target stops sending, the rest
-of the block is read as 0xff and the transfer reports success.
+FWIW, regardless of comments below:
 
-The test for I2C_M_RECV_LEN was dropped when the read was split into
-i2c_imx_prepare_read() and its callers. Commit a5d0b9e32745 ("i2c: imx:
-fix emulated smbus block read") added it back to the interrupt driven
-read only. The DMA read never gets an I2C_M_RECV_LEN message.
+Reviewed-by: John Garry <john.garry@arm.com>
 
-Fixes: b460b15b3cc2 ("i2c: imx: separate atomic, dma and non-dma use case")
-Cc: stable@vger.kernel.org # v6.13+
-Signed-off-by: Mehmet Fide <mehmet.fide@screeningeagle.com>
----
+> ---
+>   drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 13 +++++++++----
+>   1 file changed, 9 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> index 1c53c690a2b02..3696d11c852a8 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> @@ -5810,6 +5810,14 @@ static void arm_smmu_rmr_install_bypass_ste(struct arm_smmu_device *smmu)
+>   	struct list_head rmr_list;
+>   	struct iommu_resv_region *e;
+>   
+> +	/*
+> +	 * Kdump
 
-Notes:
-    Reported by the Sashiko review of "i2c: imx: test the block read flag of
-    the message that is read":
-    https://sashiko.dev/#/bug/linux-09e3015b-fc03-4410-809b-82964cdfac9c
-    
-    Tested on a Colibri VF50 on the Iris carrier, kernel at this base, with
-    the M41T0 RTC at 0x68. The core takes the atomic path only after
-    SYSTEM_RUNNING, so a test-only hook called xfer_atomic() with interrupts
-    disabled, with the two messages that i2c_smbus_xfer_emulated() builds
-    for a block read. Register 0x04 (0x13) as count byte: without the patch
-    0x13 and then 0xff (50 of 50, return 2); with it the next registers,
-    the same bytes as the interrupt driven read (50 of 50). With a count
-    byte of 1 (register 0x05): 01 ff before, 01 01 after (50 of 50 each).
+mega nit: "kdump" could better better, as it is a keyword
 
- drivers/i2c/busses/i2c-imx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> adoption keeps the crashed kernel's table live. Rewriting the
+> +	 * adopted STE here could expose an in-flight fetch to a transient V=0
+> +	 * entry, or change Cfg=translate to Cfg=bypass. Must skip here.
+> +	 */
+> +	if (smmu->options & ARM_SMMU_OPT_KDUMP_ADOPT)
+> +		return;
+> +
+>   	INIT_LIST_HEAD(&rmr_list);
+>   	iort_get_rmr_sids(dev_fwnode(smmu->dev), &rmr_list);
 
-diff --git a/drivers/i2c/busses/i2c-imx.c b/drivers/i2c/busses/i2c-imx.c
-index ccf08cd63151..1a3fc245d6ba 100644
---- a/drivers/i2c/busses/i2c-imx.c
-+++ b/drivers/i2c/busses/i2c-imx.c
-@@ -1283,7 +1283,7 @@ static int i2c_imx_prepare_read(struct imx_i2c_struct *i2c_imx,
- 	 * Reset the I2CR_TXAK flag initially for SMBus block read since the
- 	 * length is unknown
- 	 */
--	if (msgs->len - 1)
-+	if ((msgs->len - 1) || (msgs->flags & I2C_M_RECV_LEN))
- 		temp &= ~I2CR_TXAK;
- 	if (use_dma)
- 		temp |= I2CR_DMAEN;
+Did you consider if we should sanitise the adopted ste against what 
+iort_get_rmr_sids() returns? I suppose that would add even more complexity.
 
-base-commit: 25e7ab89f4774b0f842cee0e8a20c11f755924d5
--- 
-2.56.0
+>   
+> @@ -5826,10 +5834,7 @@ static void arm_smmu_rmr_install_bypass_ste(struct arm_smmu_device *smmu)
+>   				continue;
+>   			}
+>   
+> -			/*
+> -			 * STE table is not programmed to HW, see
+> -			 * arm_smmu_initial_bypass_stes()
+> -			 */
+> +			/* The fresh stream table is not yet live. */
+>   			arm_smmu_make_bypass_ste(smmu,
+>   				arm_smmu_get_step_for_sid(smmu, rmr->sids[i]));
+>   		}
 
 
