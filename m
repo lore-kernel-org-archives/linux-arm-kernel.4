@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98ADB606A895
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 21:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069FE606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 21:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MAY1KmDk;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ISFO6OLb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vBLfetNA;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=O5lb+44a
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bHyunwqhqqpQQZSm8FsYLG0nPatLuBc3TvD/xVa6m3c=; b=MAY1KmDkWSZYMS
-	HmyKNQDtRc0LVCHN7Y4FA9KMuFOwDMMeX5deKyldLP0onc8MrKN75SmyNJycDClMcoVb4kvF4Hxfe
-	akRCESj/qbXGSP93DtdsZ/f05RiEgDohcmXO8NWVr5z70eKa8i1iT4jhXRiieB/Zdm968qParb2MM
-	ZbR2aeDS6oCV6QVbiknlbn3Te8B+LqYeHGXb/FBm7jacM9eOmbPmgjqHwJiP+xVixhVvtwNm/oHQU
-	OtIvzC54g8C2a7eTBDATG3WGkMFGrFpybGoldAq3pBbR1C18F7jxwthtgulBLuNlUbV6mgeRvgHCF
-	1efDf7brZura6r6zibPQ==;
+	List-Owner; bh=+ZKraDRr1i3pFiLzoYIEWaHhHBRYyhj/gKsvyx4GUpo=; b=vBLfetNA8z7m66
+	VxCZJi6M9X+tFbdMK1OvejIK+Pel+qCy8ynsL2kt+wZB5AE3Td2QtX0BOQQx5Lza+WB8c7i9NoImd
+	siu4YhKM7omYisT3b5V+0xEOTL4wX7y95aaqn00S6P8OxkTP/BK7oft0K+Lu1lyq0b2GKY2lvtIHo
+	+hRMqThl9tanxNDWcpDm+03KQRYjlRKFmCRhKwfGHaqtZUfwWcJX+ZVdkpgNEDO5GogoZ5TjUxku1
+	Tr0lQvtwvQwbJjsjzfv5DpMyznMCYGvu0FLBahCpcQsX29sb7etGc+av4mWLY33j66xo1oB3tp8yo
+	uEpkfpRSk8hxJIP3D3Eg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT4Eu-00000003y4P-1zzh;
-	Mon, 16 Nov 2026 21:27:48 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1xT4F1-00000003yDA-3P7q;
+	Mon, 16 Nov 2026 21:27:55 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT4Ej-00000003xqa-3Nf2
+	id 1xT4Eq-00000003xyQ-1w5s
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 21:27:39 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-48e46e449e8so2963210f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 13:27:37 -0800 (PST)
+	Mon, 16 Nov 2026 21:27:48 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-49412eb1474so2016072f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 13:27:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794864456; x=1795469256; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794864463; x=1795469263; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=bHyunwqhqqpQQZSm8FsYLG0nPatLuBc3TvD/xVa6m3c=;
-        b=ISFO6OLbhwF8mK6E/NJNCUmS4HxS6ZXXm+yKudVhLQGdmd8QBVPuAXIfxVgXtmIsHB
-         fQnYsAcTt5NNvgUxk4yfVNbGq/MeIDIrz/PfuY+x8vaOk7uazRflNrdzoBchJPwUv0Xw
-         GoY2jL9meGV1SUIrXUmumMfH/lVCSyv4vB4WEGS2w5RjFncHgtCXTs5KfN8yGlh0HBMM
-         U5CPrJLJsDT+NrgjGZDzMFExObPScAmMYvJUT7+hy4/oLYhLnXrLK5WiJ1OOujGLTp1P
-         xw0AesbzW3DPSSQAMYBu1O5jvbDUQRhz1xAcIQGYmpqdns9nN/MoyECLKn3VYvo/BqCl
-         FYug==
+        bh=+ZKraDRr1i3pFiLzoYIEWaHhHBRYyhj/gKsvyx4GUpo=;
+        b=O5lb+44aKWOleTmclpncML1Le0njgeGdkwuYIqIxBRiMoolpqr+PF5fLCIlXWWAsWt
+         3T5kG2OMuIkdUBxrgsJGPBb2zP2kBaA6ndFYb89rDCbSt+cXmtK1OrgddTpr2NH8vsTB
+         HXhF1/k/yc1i3hUuZGJQUGvfolziKXOEY96i2SjtnkruTUj4cHgYZ2o+IP0LrGbZMqWO
+         JkXVVH5AYB83OqRodiEzqH/qkgiHFsHNTKbmdC0LTGRHt2qccsjiC5lvl5zKsoeuF4JO
+         2BxoRWY76eqaKDX09Cb7U2a9vOxGIU6KD+qkO8KJoR8oR6wVJi4EE+cPHZ6SuRKEIyjr
+         TL0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794864456; x=1795469256;
+        d=1e100.net; s=20260707; t=1794864463; x=1795469263;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=bHyunwqhqqpQQZSm8FsYLG0nPatLuBc3TvD/xVa6m3c=;
-        b=LcB6fo5lCvTbwLhbSaaIW4LsQn/5g/oMXRXoCRXRa7K2e/4Lv8R6vNXT1ZJbzlmCcX
-         1j60L1ioUGOaBCY8zGpDs8TJSGnFnkaXsxQYuOFbHvX0AS+gu+l19EYlMz7T/L9sURob
-         yyvmWyXKEG7mV1F/m3BExIPrRQhdfVo/hRj+DOXHNV5RTaLXUxWykhZYAiUwmdnuigd5
-         Rz3SBh2RYkdga19f9hAJjrrfgwlHM09xEH7euXAcWipFFdofVInU5ObdnZtoo1E7NHQc
-         ITkuLStXPj9npt4pEho6dszYyHtbe2UrervJCxVqzjqJJOyOrafi1MO0yfx4abIdkDIa
-         GFqA==
-X-Forwarded-Encrypted: i=1; AL+hErGiAx+kDJ8BF8a1A1B1wC6+wTFl0Gp+ih5rI1qmPMuch/r017xaSQPUXLWN0mxZj8oRclP6I5VLrEEF6hPEz27z@lists.infradead.org
-X-Gm-Message-State: APuU4Z+1tivGNQxLpZj35KaKWcL4uyX3tGfY3SQHaf6KdfbqPg0G1RoV
-	rVEZX12cVdtABf1j2uByijHhSmmCopf8gEYznNpWBSsyeTCV6YoKElrr
-X-Gm-Gg: AZFdTZfN2MMIBecuNUNEP47AN6eRt1F/b9ynhqAocW+LgSxx5FG7hGyYegQMN0wL4xl
-	TqJ/4D+VOAcyHHhuc2EggVDjwP3PBxMP1KWy1Qk18E0V/HmY4S6tQWhfLLg/5L1iZc8fFCElDQC
-	CbXHZG1/XUmopdNpVqMywEzWkXNj1p2TbND1n8CsiJRcqoN6zN/7lxgaV7PMU0wyzsRx5dCEuy6
-	r9SiBN5JYMLiMz0SLG6dK6hu83FCLJQFFMG95TPgFZbiAZTihYeW8giwxImVS5Ea02nKRz32kkN
-	n7UvQwRwz+Vdof12FYNxqpmRdU/vmT9Xcvrpv1O245D0HAwwwHZe1XWT68RpTigzImBEV+6GOwY
-	Xm2glM/CPzr5C6aG6JOTae/10WwLbAxATvhNaJZxcrmLn3JPCAk+EsTJKDc/muiWmaekrfH0Xfx
-	q7Ix9f/g8kcub08M2u4C5iRDrac3fv0K9nP+f72a62Cxr1T4SK6jYZyacw4Acbe/Rrt6lN+wirx
-	IEMHOhhlTMVKcSy47mkLnDT96DpUPFSSlsUfBpvRoAbpfmKrPe6CFND/8sfx+9z6/uTMvtg1sca
-	JDqjabDfGTFWgyu5s+laR3c2WusgU4AWx5aWt10p
-X-Received: by 2002:a05:6000:25ee:b0:490:b23b:802d with SMTP id ffacd0b85a97d-49c71d475ddmr22315194f8f.37.1794864455894;
-        Mon, 16 Nov 2026 13:27:35 -0800 (PST)
+        bh=+ZKraDRr1i3pFiLzoYIEWaHhHBRYyhj/gKsvyx4GUpo=;
+        b=HqRKPmJFkFVAj4vnPTL144ToQGcv5e8US5aPqDA9EEDt3EJMBNxg94eEEviJ7DDPjQ
+         /qnv/19DtCb40aBweID6IaiZymjHgxHQFvlWJwqsPd3Ce9YsoVUEjb4pitxFtPDjSeYT
+         PNzETdkTIMHnqPaJx4fPR0wyHoDTr3G1WxP35kzHECVi1EJMakuQk0VQAEzErrY+eXcb
+         /5tobr/eCzshkcefenUN7obZkku2Djeyehh33/98op4RXn7QvIXIYVUrVQ7In+mD2JRe
+         wyi2DJ2zSYHpLhQPX66fYSwR9jiQe/54w5bdqJzsEOkgN3ppaKccTvoVN8wjWSTfdvNu
+         0pBQ==
+X-Forwarded-Encrypted: i=1; AL+hErGcJoF12xs4l/8YjCybFK3lF1/9N9gsuRV9oPKA1V5vY9TxaSZTHYwC4LBW6CZfevY4HBvGmTvhkZI5JZJIzobH@lists.infradead.org
+X-Gm-Message-State: APuU4Z8YjjIhidc+SuaMgAetXiqnvI+seM70p1903qoaoH96bsnEyfRD
+	vrbN2KYxRnD0/fW4JSqsZbUKmTLeGBwdRW0ViD+WWRWJmxEKBU8Dbt4y
+X-Gm-Gg: AZFdTZd9kK6E91QT+bkXGKz4w1901onT0LTpFJbbLTtMNWl5P06oUBxrgvDTc+91fR4
+	yTQZn115y01EUWZZ3eKOzs5n9fgRcGKJ7hogffg/Ke5aJ9ZiJlR3mTiRrSxTkugrsBJnXCMlyRM
+	NSN+cOi3VXlLmyZD8YS1jyxxeoWNaawY45FsCYTmGEMGo42d4uA2+2GmbxIolBD12UjGJFRmTe0
+	jw9BfFORpuJC5Tnet7j1Jw1oM/AWWtfkyR30FyFoSSILAE18o02ROznU/9D6t4a+G2vKtEbM3kt
+	kdWcYVKE9zGlAfkpyMZS/j90C4sKnMVeTj9tq92mSjxC7QCEyQvwfFbO/lBHNX6/BzGCXuIN7gD
+	J8GK8HjrYGZjKjIe04U5tV6a7pXTenLr1JK/Mg4wt/sbNQ9yWNBidOToD90khA1oKYPF2i8hX+C
+	6nm2NUrjZo51CtBABwM3Ge+Rn+M3Z/3Gx0wFkyf56v7gDtbg15PgywMzIGYnb98ZKe6vI8DKQF0
+	guNG89VAeQfj1VCUAcLBgDulOyVnJzzrwRIPJ8NB59jlh4Cd0w/Rhyh0a8yIkoLpvusf6WWTXNQ
+	Z9F8TfZrBpGnhJ1IOC0ghPTKshL3lnNiI3vR1TKK
+X-Received: by 2002:a05:6000:438a:b0:491:36b3:22c with SMTP id ffacd0b85a97d-49c6e68dc41mr30686056f8f.1.1794864462819;
+        Mon, 16 Nov 2026 13:27:42 -0800 (PST)
 Received: from [192.168.10.105] ([212.58.121.92])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a378138cfdsm1260150f8f.58.2026.11.16.13.27.30
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a378138cfdsm1260150f8f.58.2026.11.16.13.27.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 13:27:35 -0800 (PST)
+        Mon, 16 Nov 2026 13:27:41 -0800 (PST)
 From: Stanislav Aleksandrov <lightofmysoul@gmail.com>
-Date: Mon, 16 Nov 2026 21:26:26 +0000
-Subject: [PATCH v2 10/16] dt-bindings: thermal: qcom-tsens: Document the
- Halliday Temperature Sensor
+Date: Mon, 16 Nov 2026 21:26:27 +0000
+Subject: [PATCH v2 11/16] dt-bindings: firmware: qcom,scm: Document
+ Halliday SCM
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261116-halliday-dts-v2-10-2c92438c6c46@gmail.com>
+Message-Id: <20261116-halliday-dts-v2-11-2c92438c6c46@gmail.com>
 References: <20261116-halliday-dts-v2-0-2c92438c6c46@gmail.com>
 In-Reply-To: <20261116-halliday-dts-v2-0-2c92438c6c46@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -111,19 +111,19 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
  linux-usb@vger.kernel.org, linux-phy@lists.infradead.org, 
  linux-scsi@vger.kernel.org, linux-crypto@vger.kernel.org, 
- linux-pm@vger.kernel.org, Stanislav Aleksandrov <lightofmysoul@gmail.com>
+ linux-pm@vger.kernel.org, Stanislav Aleksandrov <lightofmysoul@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794864382; l=829;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794864382; l=1106;
  i=lightofmysoul@gmail.com; s=20261108; h=from:subject:message-id;
- bh=QaX1Uqhi9JFBTyniSmrOqgkrx65fb+cn/pSnBpltl3Q=;
- b=9cBm/5Mi8IeF1ejOwJZWQD4SfyJ7BWDjVcE5y5kBsTodKh6u91I9h5To2Rc8ArYF4KPYJAO96
- griT0U/fTv6BDQooM53jxYIwB3vuzMj024ajCLGGuHNM9Pf4WE6Noed
+ bh=OQO+LwEeY64jVYcmV4r5bBUUpcSQt6/n4JPVT4Z/sxw=;
+ b=lNijzEKQlyljkWzaxIS9zrys8uC5qiwJ2YpuyG3Kr+5tC+QMb+R4Db6kOwLBwj0GYnOv/QX+7
+ 5U/HlbRtrBQBhLGehnhSLzxDVWEhcpke2OLw7yIeYTlC6a6mrQFU5kI
 X-Developer-Key: i=lightofmysoul@gmail.com; a=ed25519;
  pk=jeRUlfmkhE53CJPoeIIXgu7rTE0ybDRH0HQrEwbydzg=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_132737_873079_6BDDA1D3 
-X-CRM114-Status: UNSURE (   9.83  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261116_132744_560427_91663137 
+X-CRM114-Status: GOOD (  10.09  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -143,25 +143,34 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Document the Temperature Sensor (TSENS) on the Qualcomm Halliday SoC.
+Document the SCM on the Qualcomm Halliday SoC.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Stanislav Aleksandrov <lightofmysoul@gmail.com>
 ---
- Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index c78074fbcecf..3b440f395fe8 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -57,6 +57,7 @@ properties:
-           - enum:
-               - qcom,eliza-tsens
-               - qcom,glymur-tsens
-+              - qcom,halliday-tsens
-               - qcom,hawi-tsens
-               - qcom,kaanapali-tsens
-               - qcom,maili-tsens
+diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+index 40a267c54b00..fb3da66443ed 100644
+--- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
++++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+@@ -25,6 +25,7 @@ properties:
+           - qcom,scm-apq8084
+           - qcom,scm-eliza
+           - qcom,scm-glymur
++          - qcom,scm-halliday
+           - qcom,scm-hawi
+           - qcom,scm-ipq4019
+           - qcom,scm-ipq5018
+@@ -225,6 +226,7 @@ allOf:
+             contains:
+               enum:
+                 - qcom,scm-eliza
++                - qcom,scm-halliday
+                 - qcom,scm-hawi
+                 - qcom,scm-kaanapali
+                 - qcom,scm-maili
 
 -- 
 2.55.0
