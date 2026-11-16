@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266C9606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D19606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P+1KT122;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=MZ1OLzlW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yA3qoCaD;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=cZ1PaMU4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,69 +14,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ejZnVuNimtCRP60C5uPXzWOHplpMKFHolsAVCAKw/GY=; b=P+1KT1224e2MDM8PTFtUtUHVHd
-	+m+4KCEQ5Ets+3wxgSF5jTggZkqFh6w8F0hAYX4gfZc323WTk+WrjkFf9DJhyfMHSwn2s2MYkKpjT
-	Mfe1wISBzuXFZT9gQWyPLmsTILdTj5320ajJ5YJQd/IXFr7ejg59JkhFH9N2ndRYbbbK81zzSyrds
-	MtVvIsQSlXrqHoww8VFRDOczTkQl4Y2qkIK9oI3+nedt23HJSYfuGXKXjtA7waOVRJSonvOgWvvvV
-	CxTQd/jwGOkCzp94UQpkA/X6Sd26bNpLYJyWPw5M19QAJjbh0A2iwuZAsZyf1w/rux92U5lzBAa3C
-	khgx0Xug==;
+	bh=/n6m3/52gay8f6Ej6cOhY6hNu8E9Pz3qti51eQ1NNTQ=; b=yA3qoCaDAEkzXM5FZ8BJhxaytH
+	K7bsA+MRJRqXIIKhmFWxJw8AWnenyTCbfp0Vy762j0AGSbMp41/a9dGWyaD3+7+FX3Kc0yedQdk0z
+	OAs3U3lBzeEaixzxebIpibdM9QFJg/5SMuixg/SLuetDdpVDkwQrb3ux+p0q24VvwQgzRZj00NGEm
+	Ks/lNN6Knp3ho1gsyv3XcUM8y0NZky+q7GbXJ/2TQL3fkVYa82U5wKo0kWtQwgDixygZsVQ28pKzv
+	FUzQ/y/YU1bJHS2wo/CCqLDelFuVr8+evW3a1TykfX5qctwlQsHOx+k7VaCtjjwWwu2UMBgT4NnpH
+	MB8qsX4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxhF-00000002r9J-39rd;
+	id 1xSxhF-00000002r8l-1u3E;
 	Mon, 16 Nov 2026 14:28:37 +0000
-Received: from mail-wm1-x348.google.com ([2a00:1450:4864:20::348])
+Received: from mail-wm1-f70.google.com ([209.85.128.70])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxgC-00000002pXl-2JlV
+	id 1xSxgA-00000002pTp-1gbp
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:27:35 +0000
-Received: by mail-wm1-x348.google.com with SMTP id 5b1f17b1804b1-4a20e41008cso21828205e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:31 -0800 (PST)
+	Mon, 16 Nov 2026 14:27:31 +0000
+Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-4a009f82bedso20423365e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794839250; x=1795444050; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794839247; x=1795444047; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ejZnVuNimtCRP60C5uPXzWOHplpMKFHolsAVCAKw/GY=;
-        b=MZ1OLzlWzmYkjw66NznGTHPs2ju90HcD5zH+RVmsMeMwX15L3AD8bHipClEJgqPWmk
-         hlvPmBmqs681weASSENk4OqzvatDvYoXC5ZkaYzr0E8OkY9/54+6jsfGijzuHrsIVJDx
-         3G5FcxnMSKoBJn0SkdEaimAuOxr5XFKsmgTpMXGXbTbHo+dAEaKxKSewqxb4LnALbaxg
-         CscPAWJUE0HZqXVElfZfco+fgxke8cyyhKhsh4u22wIroU4mCcvgoJiDwmjBGap7E9c+
-         iQldpJHBTVq9F2C+ZAiDmAaXbvZdP3S2c94uBI6ReChNZQkQE48Vvkth0G4yGqRFDqR7
-         B3xg==
+        bh=/n6m3/52gay8f6Ej6cOhY6hNu8E9Pz3qti51eQ1NNTQ=;
+        b=cZ1PaMU4KujZI1wm7j3hQE/TAmYu305lbpIZ4DjOlajjgLS2tlZDPADJ9435ITXwKc
+         dZRi+MkFS0AWD0J9xlWvHm/0++gLZelUUlDUruZeB7AwT2b+iqoJRDbCE9KEomMCK4YP
+         /kl367k2bZU9cXQWH0TAAK0vbvJaX2wOG4zwM7Ou+wDkBvV4rdfmDR6TBzzjaLzoAWtg
+         dQ4+n8OIbba4Kb1+dBhHbdK6Fnfr3XBMlZy8h5Ovgq2KzV6njeadamS/O5hDY0e+lLTy
+         sWUvOmp9keJOUJNKAH48gF9RVeNPLmdvdeeKBuXEjkxXwvhLP0XLAahK4Cl7HL20S1pU
+         B1Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794839250; x=1795444050;
+        d=1e100.net; s=20260707; t=1794839247; x=1795444047;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ejZnVuNimtCRP60C5uPXzWOHplpMKFHolsAVCAKw/GY=;
-        b=Gt6ZRQqY3Kp7Rul7/yUOS5sGhLo7UrGvIQIpwZNx+DCuc9gSsz+YGMIA6GBawCchi2
-         6v1VePnXZZLG16ZdlkSpZmR57SzSnkHUbBddL8kKlF78RV2w3gi98SmDTSxvD1Dwszu3
-         UoQJNr8p69F0FuzJi/CauGnkHuaZDL5rhHogBhD9gY69YsXOXRDG73ylv1L0Mi58GsTk
-         5EtFLJ0DrZD1Gh/zJ/JMsmyy4A6C6VnFOsH6vjUPsLYIJp0siodxzP6laAUX5I9ZxIQg
-         KoQroBwgV7OhSH/5zkzijcUnlRcwyskaRVDNOsuWWFK6s3P5ixvDOVt7Pditgi33hO3s
-         a/VQ==
-X-Gm-Message-State: APuU4Z///S2kRvoyP6nng0WSb4PZSZ+AWedqdpJSh5TFjGIgBuXCFk2w
-	28X5K5kyDWmZX2F9CcFFft25EkEkF49joYrpP6K00mu9RDwVYqxp8HUPgv6TGFZE3Wac9UFXCA=
+        bh=/n6m3/52gay8f6Ej6cOhY6hNu8E9Pz3qti51eQ1NNTQ=;
+        b=C6DuUd4cBDj8f4OpeF507v03VsyQF8hFjtiTn4JRzKh/8nUeGmAeDbrrIifQ0A3L1i
+         oWzsH82jo2Ei2ru6aE0a1pqjPn7US6GQ4RG+uz/CDWELpEuXvNAPHFvWrt/Uf7hfTE/Z
+         UDnJbzeay4jtSMv+xSrPDZcCnq/kmVWuyMhaRKPQjx8nMLzT0t5bcPwsTLLBF4jghq1x
+         1lGPTr499HDZvdx3gH5YN3Nn7SQ+9D+m3+NM3xs0uowLZZMy003YX7pt1+zhrEl536Z1
+         pfR+F00kWaEnrrk/vda29dCVffW+nsTxXAFaxDCL+/DT4WOfhlzFWuCZz4JvFOlazChS
+         Etgg==
+X-Gm-Message-State: APuU4Z81WjWcxxPOzeP4eJ8cRXM8lKVw7s7ltdaFj80J0N3bkdkFh9Uw
+	QaZ9s3GS0DFkcZR9ryeakgA13lXmw4UNjV1P/+SNWoeh5WaUfdPBlrD5afLHElx6z5E7dA0hdw=
 	=
-X-Received: from wrvi15.prod.google.com ([2002:a5d:558f:0:b0:49e:3982:e207])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:428c:b0:4a1:9661:14b5
- with SMTP id 5b1f17b1804b1-4bb55aabd53mr146589725e9.29.1794839249781; Mon, 16
- Nov 2026 06:27:29 -0800 (PST)
-Date: Mon, 16 Nov 2026 15:26:33 +0100
+X-Received: from wmbh17.prod.google.com ([2002:a05:600c:a111:b0:4a1:e44e:ffd0])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:1daa:b0:4a2:59:f568
+ with SMTP id 5b1f17b1804b1-4bb55a481ccmr219045695e9.14.1794839247128; Mon, 16
+ Nov 2026 06:27:27 -0800 (PST)
+Date: Mon, 16 Nov 2026 15:26:31 +0100
 In-Reply-To: <20261116142618.1687025-17-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261116142618.1687025-17-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=15020; i=ardb@kernel.org;
- h=from:subject; bh=VTBYBWRInBkK5quxaQIoA7yuidxjsODZKTnWVxzwDAg=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu30Ly+I48OpGvfr6l/8bBEztO7lzHB3rDn/B7N+w/jn
- TL+LXvTUcrCIMbFICumyCIw+++7nacnStU6z5KFmcPKBDKEgYtTACZyhZvhr+yTbyu+q6S3ZHRe
- sY5p4Z606N3nozv2vdloX9cpfGjBrPsMv9llns0TFn/wo+57vNjUqMrSt9qzfZZXuKSftL4Z/HL aZg4A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3432; i=ardb@kernel.org;
+ h=from:subject; bh=QYWgT8z+L2wxd3Su7/3zae0d2A2rWFJt5EArtqIjNsc=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu30Jye2Nizu51WtW9hsrE+dFh033rbbWcDfH+5ebw0m
+ /Rta9m9jlIWBjEuBlkxRRaB2X/f7Tw9UarWeZYszBxWJpAhDFycAjCRS/MY/jvO3iD6djGz4BvV
+ 2LrozT0fqyuDj7NyHJj14vqh8nlTF3YzMvyt2qy7QXBh+O6ensTDtfeDZ6z92X/cXt1489atzIt DS/kA
 X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
-Message-ID: <20261116142618.1687025-31-ardb+git@google.com>
-Subject: [PATCH v3 14/15] efi: Make config table based primary display
- handover ARM-only again
+Message-ID: <20261116142618.1687025-29-ardb+git@google.com>
+Subject: [PATCH v3 12/15] efi/zboot: Disentangle efi_remap_image() from efi_cache_sync_image()
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-efi@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
@@ -85,8 +84,8 @@ Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
 	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_062733_603028_B51F2FC0 
-X-CRM114-Status: GOOD (  28.01  )
+X-CRM114-CacheID: sfid-20261116_062730_538147_5D07588D 
+X-CRM114-Status: GOOD (  11.32  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,426 +107,91 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-This reverts the effect of commit 732ea9db9d8a ("efi: libstub: Move
-screen_info handling to common code"), taking into account the changes
-that were made to the code since.
+Refactor efi_cache_sync_image() so that it is not in charge of calling
+efi_remap_image(), which is really the wrong way around.
 
-That commit moved all architectures to the ARM approach of passing the
-primary display information (formerly struct screen_info) from the EFI
-stub to the core kernel via an EFI configuration table, so that the zboot
-decompressor, which is not linked into the core kernel image, could pass
-this information as well.
+Instead, call efi_remap_image() from the primary zboot procedure, where
+it is more straight-forward to obtain the code size from the loaded
+image.
 
-Now that the EFI stub and the zboot decompressor both have access to the
-location of sysfb_primary_display inside the loaded kernel image via
-struct efi_image_info, they can populate it directly, and the
-configuration table is only needed on ARM, whose decompressor has no
-such information.
-
-So make the configuration table based handover ARM-only again:
-- move the config table based alloc/free routines into the ARM stub,
-  and provide __weak defaults in the generic stub that return a pointer
-  to the kernel image's copy of sysfb_primary_display;
-- drop the primary display table from the common config table list,
-  and move the code that copies it into sysfb_primary_display into the
-  ARM arch code;
-- on the other architectures, revert to simply reserving the
-  framebuffer memory if the stub populated sysfb_primary_display.
-
-This makes the EFI framebuffer earlycon available right away when booting
-via zboot, rather than only after the EFI config tables have been parsed.
-
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- arch/arm/kernel/efi.c                          | 27 ++++++++++
- arch/loongarch/kernel/efi.c                    | 20 ++-----
- drivers/firmware/efi/efi-init.c                | 24 ++-------
- drivers/firmware/efi/efi.c                     |  5 --
- drivers/firmware/efi/libstub/Makefile          |  2 +-
- drivers/firmware/efi/libstub/arm32-stub.c      | 41 ++++++++++++++
- drivers/firmware/efi/libstub/efi-stub-entry.c  | 13 -----
- drivers/firmware/efi/libstub/efi-stub.c        | 14 +++++
- drivers/firmware/efi/libstub/efistub.h         |  1 -
- drivers/firmware/efi/libstub/primary_display.c | 56 --------------------
- drivers/firmware/efi/libstub/zboot.c           |  6 ---
- 11 files changed, 90 insertions(+), 119 deletions(-)
+ drivers/firmware/efi/libstub/arm64.c                 |  2 --
+ drivers/firmware/efi/libstub/zboot-decompress-gzip.c |  2 --
+ drivers/firmware/efi/libstub/zboot-decompress-zstd.c |  2 --
+ drivers/firmware/efi/libstub/zboot.c                 | 14 +++++++++++++-
+ 4 files changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm/kernel/efi.c b/arch/arm/kernel/efi.c
-index c14275257a8a..84d516b84848 100644
---- a/arch/arm/kernel/efi.c
-+++ b/arch/arm/kernel/efi.c
-@@ -7,6 +7,7 @@
- #include <linux/memblock.h>
- #include <linux/screen_info.h>
- #include <linux/sizes.h>
-+#include <linux/sysfb.h>
- 
- #include <asm/efi.h>
- #include <asm/mach/map.h>
-@@ -91,13 +92,36 @@ int __init efi_create_mapping(struct mm_struct *mm, efi_memory_desc_t *md)
- 	return 0;
+diff --git a/drivers/firmware/efi/libstub/arm64.c b/drivers/firmware/efi/libstub/arm64.c
+index e892302f4189..f8bb890b9631 100644
+--- a/drivers/firmware/efi/libstub/arm64.c
++++ b/drivers/firmware/efi/libstub/arm64.c
+@@ -113,8 +113,6 @@ void efi_cache_sync_image(unsigned long image_base,
+ 	asm("ic ialluis");
+ 	dsb(ish);
+ 	isb();
+-
+-	efi_remap_image(image_base, alloc_size, code_size);
  }
  
-+static unsigned long __initdata primary_display_table = EFI_INVALID_TABLE_ADDR;
- static unsigned long __initdata cpu_state_table = EFI_INVALID_TABLE_ADDR;
+ void __noreturn efi_enter_kernel(const struct efi_image_info *image_info,
+diff --git a/drivers/firmware/efi/libstub/zboot-decompress-gzip.c b/drivers/firmware/efi/libstub/zboot-decompress-gzip.c
+index e97a7e9d3c98..79cf8c48b033 100644
+--- a/drivers/firmware/efi/libstub/zboot-decompress-gzip.c
++++ b/drivers/firmware/efi/libstub/zboot-decompress-gzip.c
+@@ -62,7 +62,5 @@ efi_status_t efi_zboot_decompress(u8 *out, unsigned long outlen)
+ 		return EFI_LOAD_ERROR;
+ 	}
  
- const efi_config_table_type_t efi_arch_tables[] __initconst = {
-+	{LINUX_EFI_PRIMARY_DISPLAY_TABLE_GUID, &primary_display_table},
- 	{LINUX_EFI_ARM_CPU_STATE_TABLE_GUID, &cpu_state_table},
- 	{}
- };
- 
-+static void __init load_primary_display_table(void)
-+{
-+	struct sysfb_display_info *dpy;
-+
-+	if (primary_display_table == EFI_INVALID_TABLE_ADDR)
-+		return;
-+
-+	dpy = early_memremap(primary_display_table, sizeof(*dpy));
-+	if (!dpy) {
-+		pr_err("Could not map primary_display config table\n");
-+		return;
-+	}
-+	sysfb_primary_display = *dpy;
-+	memset(dpy, 0, sizeof(*dpy));
-+	early_memunmap(dpy, sizeof(*dpy));
-+
-+	if (memblock_is_map_memory(sysfb_primary_display.screen.lfb_base))
-+		memblock_mark_nomap(sysfb_primary_display.screen.lfb_base,
-+				    sysfb_primary_display.screen.lfb_size);
-+}
-+
- static void __init load_cpu_state_table(void)
- {
- 	if (cpu_state_table != EFI_INVALID_TABLE_ADDR) {
-@@ -136,6 +160,9 @@ void __init arm_efi_init(void)
- {
- 	efi_init();
- 
-+	if (IS_ENABLED(CONFIG_SYSFB) || IS_ENABLED(CONFIG_FIRMWARE_EDID))
-+		load_primary_display_table();
-+
- 	/* ARM does not permit early mappings to persist across paging_init() */
- 	efi_memmap_unmap();
- 
-diff --git a/arch/loongarch/kernel/efi.c b/arch/loongarch/kernel/efi.c
-index 69dd83f8082f..c914aabcd282 100644
---- a/arch/loongarch/kernel/efi.c
-+++ b/arch/loongarch/kernel/efi.c
-@@ -72,8 +72,6 @@ bool efi_poweroff_required(void)
- 		(acpi_gbl_reduced_hardware || acpi_no_s5);
+-	efi_cache_sync_image((unsigned long)out, outlen);
+-
+ 	return EFI_SUCCESS;
  }
+diff --git a/drivers/firmware/efi/libstub/zboot-decompress-zstd.c b/drivers/firmware/efi/libstub/zboot-decompress-zstd.c
+index bde9d94dd2e3..dd7f11238154 100644
+--- a/drivers/firmware/efi/libstub/zboot-decompress-zstd.c
++++ b/drivers/firmware/efi/libstub/zboot-decompress-zstd.c
+@@ -43,7 +43,5 @@ efi_status_t efi_zboot_decompress(u8 *out, unsigned long outlen)
+ 		return EFI_LOAD_ERROR;
+ 	}
  
--unsigned long __initdata primary_display_table = EFI_INVALID_TABLE_ADDR;
+-	efi_cache_sync_image((unsigned long)out, outlen);
 -
- #if defined(CONFIG_SYSFB) || defined(CONFIG_EFI_EARLYCON)
- struct sysfb_display_info sysfb_primary_display __section(".data");
- EXPORT_SYMBOL_GPL(sysfb_primary_display);
-@@ -81,22 +79,10 @@ EXPORT_SYMBOL_GPL(sysfb_primary_display);
- 
- static void __init init_primary_display(void)
- {
--	struct sysfb_display_info *dpy;
--
--	if (primary_display_table == EFI_INVALID_TABLE_ADDR)
--		return;
--
--	dpy = early_memremap(primary_display_table, sizeof(*dpy));
--	if (!dpy) {
--		pr_err("Could not map primary_display config table\n");
--		return;
--	}
--	sysfb_primary_display = *dpy;
--	memset(dpy, 0, sizeof(*dpy));
--	early_memunmap(dpy, sizeof(*dpy));
-+	struct screen_info *si = &sysfb_primary_display.screen;
- 
--	memblock_reserve(__screen_info_lfb_base(&sysfb_primary_display.screen),
--			 sysfb_primary_display.screen.lfb_size);
-+	if (si->orig_video_isVGA == VIDEO_TYPE_EFI)
-+		memblock_reserve(__screen_info_lfb_base(si), si->lfb_size);
+ 	return EFI_SUCCESS;
  }
- 
- void __init efi_init(void)
-diff --git a/drivers/firmware/efi/efi-init.c b/drivers/firmware/efi/efi-init.c
-index 9f09b0d2daa0..25a5497ebb2e 100644
---- a/drivers/firmware/efi/efi-init.c
-+++ b/drivers/firmware/efi/efi-init.c
-@@ -23,8 +23,6 @@
- 
- #include <asm/efi.h>
- 
--unsigned long __initdata primary_display_table = EFI_INVALID_TABLE_ADDR;
--
- static int __init is_memory(efi_memory_desc_t *md)
- {
- 	if (md->attribute & (EFI_MEMORY_WB|EFI_MEMORY_WT|EFI_MEMORY_WC))
-@@ -67,25 +65,11 @@ EXPORT_SYMBOL_GPL(sysfb_primary_display);
- 
- static void __init init_primary_display(void)
- {
--	struct sysfb_display_info *dpy;
--
--	if (primary_display_table != EFI_INVALID_TABLE_ADDR) {
--		dpy = early_memremap(primary_display_table, sizeof(*dpy));
--		if (!dpy) {
--			pr_err("Could not map primary_display config table\n");
--			return;
--		}
--		sysfb_primary_display = *dpy;
--		memset(dpy, 0, sizeof(*dpy));
--		early_memunmap(dpy, sizeof(*dpy));
-+	struct screen_info *si = &sysfb_primary_display.screen;
- 
--		if (memblock_is_map_memory(sysfb_primary_display.screen.lfb_base))
--			memblock_mark_nomap(sysfb_primary_display.screen.lfb_base,
--					    sysfb_primary_display.screen.lfb_size);
--
--		if (IS_ENABLED(CONFIG_EFI_EARLYCON))
--			efi_earlycon_reprobe();
--	}
-+	if (si->orig_video_isVGA == VIDEO_TYPE_EFI &&
-+	    memblock_is_map_memory(si->lfb_base))
-+		memblock_mark_nomap(si->lfb_base, si->lfb_size);
- }
- 
- static int __init uefi_init(u64 efi_system_table)
-diff --git a/drivers/firmware/efi/efi.c b/drivers/firmware/efi/efi.c
-index 9bc22de0d67e..90c421211ddc 100644
---- a/drivers/firmware/efi/efi.c
-+++ b/drivers/firmware/efi/efi.c
-@@ -57,8 +57,6 @@ unsigned long __ro_after_init efi_rng_seed = EFI_INVALID_TABLE_ADDR;
- static unsigned long __initdata rt_prop = EFI_INVALID_TABLE_ADDR;
- static unsigned long __initdata initrd = EFI_INVALID_TABLE_ADDR;
- 
--extern unsigned long primary_display_table;
--
- struct mm_struct efi_mm = {
- 	.mm_mt			= MTREE_INIT_EXT(mm_mt, MM_MT_FLAGS, efi_mm.mmap_lock),
- 	.mm_users		= ATOMIC_INIT(2),
-@@ -674,9 +672,6 @@ static const efi_config_table_type_t common_tables[] __initconst = {
- #endif
- #ifdef CONFIG_UNACCEPTED_MEMORY
- 	{LINUX_EFI_UNACCEPTED_MEM_TABLE_GUID,	&efi.unaccepted,	"Unaccepted"	},
--#endif
--#ifdef CONFIG_EFI_GENERIC_STUB
--	{LINUX_EFI_PRIMARY_DISPLAY_TABLE_GUID,	&primary_display_table			},
- #endif
- 	{},
- };
-diff --git a/drivers/firmware/efi/libstub/Makefile b/drivers/firmware/efi/libstub/Makefile
-index 9dc6a707fd79..0c5fbc21d2a2 100644
---- a/drivers/firmware/efi/libstub/Makefile
-+++ b/drivers/firmware/efi/libstub/Makefile
-@@ -81,7 +81,7 @@ $(obj)/lib-%.o: $(srctree)/lib/%.c FORCE
- 	$(call if_changed_rule,cc_o_c)
- 
- lib-$(CONFIG_EFI_GENERIC_STUB)	+= efi-stub.o string.o intrinsics.o systable.o \
--				   primary_display.o efi-stub-entry.o
-+				   efi-stub-entry.o
- 
- lib-$(CONFIG_ARM)		+= arm32-stub.o
- lib-$(CONFIG_ARM64)		+= kaslr.o arm64.o arm64-stub.o smbios.o
-diff --git a/drivers/firmware/efi/libstub/arm32-stub.c b/drivers/firmware/efi/libstub/arm32-stub.c
-index b73a0b4fcd10..5e6c0de168f4 100644
---- a/drivers/firmware/efi/libstub/arm32-stub.c
-+++ b/drivers/firmware/efi/libstub/arm32-stub.c
-@@ -3,6 +3,7 @@
-  * Copyright (C) 2013 Linaro Ltd;  <roy.franz@linaro.org>
-  */
- #include <linux/efi.h>
-+#include <linux/sysfb.h>
- #include <asm/efi.h>
- 
- #include "efistub.h"
-@@ -76,6 +77,46 @@ void efi_handle_post_ebs_state(void)
- 		      &efi_entry_state->sctlr_after_ebs);
- }
- 
-+static efi_guid_t primary_display_guid = LINUX_EFI_PRIMARY_DISPLAY_TABLE_GUID;
-+
-+struct sysfb_display_info *
-+alloc_primary_display(const struct efi_image_info *image_info)
-+{
-+	struct sysfb_display_info *dpy;
-+	efi_status_t status;
-+
-+	/*
-+	 * Unlike on other architectures, where we can directly fill out the
-+	 * sysfb_primary_display structure in the loaded kernel image, we need
-+	 * to allocate a buffer to hold its contents while we hand over to the
-+	 * kernel proper from the decompressor.
-+	 */
-+	status = efi_bs_call(allocate_pool, EFI_ACPI_RECLAIM_MEMORY,
-+			     sizeof(*dpy), (void **)&dpy);
-+
-+	if (status != EFI_SUCCESS)
-+		return NULL;
-+
-+	memset(dpy, 0, sizeof(*dpy));
-+
-+	status = efi_bs_call(install_configuration_table,
-+			     &primary_display_guid, dpy);
-+	if (status == EFI_SUCCESS)
-+		return dpy;
-+
-+	efi_bs_call(free_pool, dpy);
-+	return NULL;
-+}
-+
-+void free_primary_display(struct sysfb_display_info *dpy)
-+{
-+	if (!dpy)
-+		return;
-+
-+	efi_bs_call(install_configuration_table, &primary_display_guid, NULL);
-+	efi_bs_call(free_pool, dpy);
-+}
-+
- struct efi_image_info efistub_image_info = {};
- 
- efi_status_t handle_kernel_image(unsigned long *image_addr,
-diff --git a/drivers/firmware/efi/libstub/efi-stub-entry.c b/drivers/firmware/efi/libstub/efi-stub-entry.c
-index 36ea6aa2cfcc..fb1a4a175717 100644
---- a/drivers/firmware/efi/libstub/efi-stub-entry.c
-+++ b/drivers/firmware/efi/libstub/efi-stub-entry.c
-@@ -9,19 +9,6 @@
- 
- extern const struct efi_image_info efistub_image_info;
- 
--struct sysfb_display_info *
--alloc_primary_display(const struct efi_image_info *image_info)
--{
--	if (IS_ENABLED(CONFIG_ARM))
--		return __alloc_primary_display();
--
--	if (IS_ENABLED(CONFIG_EFI_EARLYCON) ||
--	    IS_ENABLED(CONFIG_SYSFB))
--		return efistub_sysfb_display_info(image_info);
--
--	return NULL;
--}
--
- /*
-  * EFI entry point for the generic EFI stub used by ARM, arm64, RISC-V and
-  * LoongArch. This is the entrypoint that is described in the PE/COFF header
-diff --git a/drivers/firmware/efi/libstub/efi-stub.c b/drivers/firmware/efi/libstub/efi-stub.c
-index 55bf7ed50c81..a824b2ba3026 100644
---- a/drivers/firmware/efi/libstub/efi-stub.c
-+++ b/drivers/firmware/efi/libstub/efi-stub.c
-@@ -48,6 +48,20 @@
- static u64 virtmap_base = EFI_RT_VIRTUAL_BASE;
- static bool flat_va_mapping = (EFI_RT_VIRTUAL_OFFSET != 0);
- 
-+/*
-+ * By default, populate the core kernel's copy of sysfb_primary_display
-+ * directly. This works for both the EFI stub that is incorporated into the
-+ * core kernel and for the zboot decompressor, as both have access to the
-+ * location of the variable inside the loaded kernel image via image_info.
-+ *
-+ * ARM overrides these, as it uses a configuration table instead.
-+ */
-+struct sysfb_display_info * __weak
-+alloc_primary_display(const struct efi_image_info *image_info)
-+{
-+	return efistub_sysfb_display_info(image_info);
-+}
-+
- void __weak free_primary_display(struct sysfb_display_info *dpy)
- { }
- 
-diff --git a/drivers/firmware/efi/libstub/efistub.h b/drivers/firmware/efi/libstub/efistub.h
-index 634e52aa6dcc..082ce2961dda 100644
---- a/drivers/firmware/efi/libstub/efistub.h
-+++ b/drivers/firmware/efi/libstub/efistub.h
-@@ -1226,7 +1226,6 @@ void efi_retrieve_eventlog(void);
- struct sysfb_display_info *
- alloc_primary_display(const struct efi_image_info *image_info);
- 
--struct sysfb_display_info *__alloc_primary_display(void);
- void free_primary_display(struct sysfb_display_info *dpy);
- 
- void efi_cache_sync_image(unsigned long image_base,
-diff --git a/drivers/firmware/efi/libstub/primary_display.c b/drivers/firmware/efi/libstub/primary_display.c
-deleted file mode 100644
-index cdaebab26514..000000000000
---- a/drivers/firmware/efi/libstub/primary_display.c
-+++ /dev/null
-@@ -1,56 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0
--
--#include <linux/efi.h>
--#include <linux/sysfb.h>
--
--#include <asm/efi.h>
--
--#include "efistub.h"
--
--/*
-- * There are two ways of populating the core kernel's sysfb_primary_display
-- * via the stub:
-- *
-- *   - using a configuration table, which relies on the EFI init code to
-- *     locate the table and copy the contents; or
-- *
-- *   - by linking directly to the core kernel's copy of the global symbol.
-- *
-- * The latter is preferred because it makes the EFIFB earlycon available very
-- * early, but it only works if the EFI stub is part of the core kernel image
-- * itself. The zboot decompressor can only use the configuration table
-- * approach.
-- */
--
--static efi_guid_t primary_display_guid = LINUX_EFI_PRIMARY_DISPLAY_TABLE_GUID;
--
--struct sysfb_display_info *__alloc_primary_display(void)
--{
--	struct sysfb_display_info *dpy;
--	efi_status_t status;
--
--	status = efi_bs_call(allocate_pool, EFI_ACPI_RECLAIM_MEMORY,
--			     sizeof(*dpy), (void **)&dpy);
--
--	if (status != EFI_SUCCESS)
--		return NULL;
--
--	memset(dpy, 0, sizeof(*dpy));
--
--	status = efi_bs_call(install_configuration_table,
--			     &primary_display_guid, dpy);
--	if (status == EFI_SUCCESS)
--		return dpy;
--
--	efi_bs_call(free_pool, dpy);
--	return NULL;
--}
--
--void free_primary_display(struct sysfb_display_info *dpy)
--{
--	if (!dpy)
--		return;
--
--	efi_bs_call(install_configuration_table, &primary_display_guid, NULL);
--	efi_bs_call(free_pool, dpy);
--}
 diff --git a/drivers/firmware/efi/libstub/zboot.c b/drivers/firmware/efi/libstub/zboot.c
-index 9c7de225b39e..4089a29068ca 100644
+index 4cff756902ad..9c7de225b39e 100644
 --- a/drivers/firmware/efi/libstub/zboot.c
 +++ b/drivers/firmware/efi/libstub/zboot.c
-@@ -26,12 +26,6 @@ void __weak efi_cache_sync_image(unsigned long image_base,
- 	// executable code loaded into memory to be safe for execution.
+@@ -40,6 +40,17 @@ const struct efi_image_info *zboot_get_image_info(unsigned long image_base)
+ 	return (void *)image_base + efistub_image_info_offset;
  }
  
--struct sysfb_display_info *
--alloc_primary_display(const struct efi_image_info *image_info)
--{
--	return efistub_sysfb_display_info(image_info);
--}
--
- static
- const struct efi_image_info *zboot_get_image_info(unsigned long image_base)
++static efi_status_t efi_zboot_remap_image(const struct efi_image_info *image_info,
++					  unsigned long image_base,
++					  unsigned long image_size)
++{
++	unsigned long code_size = efistub_kernel_codesize(image_info);
++
++	efi_cache_sync_image(image_base, code_size);
++
++	return efi_remap_image(image_base, image_size, code_size);
++}
++
+ asmlinkage efi_status_t __efiapi
+ efi_zboot_entry(efi_handle_t handle, efi_system_table_t *systab)
  {
+@@ -107,7 +118,8 @@ efi_zboot_entry(efi_handle_t handle, efi_system_table_t *systab)
+ 		goto error;
+ 
+ 	auto image_info = zboot_get_image_info(image_base);
+-	status = efi_stub_common(handle, image, image_info, cmdline_ptr);
++	status = efi_zboot_remap_image(image_info, image_base, alloc_size) ?:
++		 efi_stub_common(handle, image, image_info, cmdline_ptr);
+ 
+ error:
+ 	efi_free(alloc_size, image_base);
 -- 
 2.56.0.611.g1030f0b940-goog
 
