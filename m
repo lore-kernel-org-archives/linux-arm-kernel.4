@@ -2,112 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B58B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54A8A606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:26:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c9qLtWKP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m5w+Wflr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ebu0Hy4X;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=NdMBVvss
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=tJY1c31l5d6ee34HGatBDQMQ/oxNBle+BQO9LaXQVgU=; b=c9qLtWKPb2UDtx
-	gIJ15NuQmbJiWbmPiUPXAs8oK+sDXyDeMZCRjb/cDeJ5VkFiyAnvGc13NPKPTwYbztDa2rXzF3zp+
-	R+64pTKpvjfNZNYcan6VYTyvhR4lPtZOcIkXZeEmIQdC66Ib5XJKSrDdeuUzRhlmCTXO2yOEwOMq+
-	7aPM+Yz550eN3EyrBV0Ic6Weas7/Dt684RIfmynyxQQJb9DMF5DsinA/BbxhqrjQgpiqzbsbclVHh
-	dPU3hFlipo00+66a9KRoLrtE2ujIoSoYnKlTTrKXobuSxnYZsmFafDEMAH4R3PBaIrSaspFlJdVnb
-	tfQfkAgCxLmUr6pLUwQQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=n0Epwbp8Lzi+kI0RuXeSMG9mic2jpFCzQkf5ONSBZoI=; b=Ebu0Hy4XrHD/MqHZGQeqPyPx6n
+	I6YWDZ3l8c3rOP1xcTbs/rnZrycE2OhkKjkfhHBgQSrcevSqiY8yHm0pG6Mic+mVUq23fiw1Om+tT
+	MmNz4C+qEW+cEyzLP/ZXaiyBh1uxQAlTe1dMtj/BOzqEZhO4Msb546aII24N/CLtBmZ/P8DKmmX7K
+	AzHCiIW4hZi/bmbFqN+pNI68NGS/nSIjcF/mybWQpuFN+3jsAVz+ieafcd55D0m29EQEinxPytN4n
+	bQvp8LujekN91rwVOIcOzA6/PUBdarH/5T6ogUWtQWHiBvce2mxXAlb3QnHp8DLBAUuyxY3Q4yutE
+	87pzItlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvj8-00000002Kte-0Obp;
-	Mon, 16 Nov 2026 12:22:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSvn2-00000002LC2-2WL8;
+	Mon, 16 Nov 2026 12:26:28 +0000
+Received: from out-196.mta0.migadu.com ([2001:41d0:1004:224b::c4] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvj6-00000002KtY-23RO
+	id 1xSvmz-00000002LBQ-0hrm
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:22:24 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B48AE629C9;
-	Mon, 16 Nov 2026 12:22:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81D291F000C5;
-	Mon, 16 Nov 2026 12:22:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794831743;
-	bh=tJY1c31l5d6ee34HGatBDQMQ/oxNBle+BQO9LaXQVgU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=m5w+WflrvbyCz2OI0kEkVza1NdxBxDjPkd9aWwr8spi/tHNw/f9ytqiczDvj2Fk4q
-	 9JnsLZNDLwX3WVWDAj2BlffpbOrOg0COChi4XTH6WaEi/YBkd9/QBoU086BgTqD/c3
-	 VkgmMHSFv0zjnkhzFy/Y5LSHIjZCWLQjrgaC80JSP3vrJWcBlo/GzHhfh7rZ05cPV0
-	 Km1NyNVFjTMFrlQLksQW9qpX3DqvmYF8FKtbkTyiolQbxeJbDVl+1E+sDQVBLbQ/Xj
-	 rD9D3uvGcPehMXcgFXp/XjFYBq696nhn5K7JOwqv4Ak786cKya/0vhiEQBpz24aGf5
-	 UeBe/kM/E60Qg==
-Message-ID: <a96974a6-fc56-4e05-be9e-9eb3776cc4fb@kernel.org>
-Date: Mon, 16 Nov 2026 13:22:12 +0100
+	Mon, 16 Nov 2026 12:26:27 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=rMg7ePytN4P08Ni21SDstdH+iA+/lX/CBMDE9CVdeAk=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1794831982; v=1; x=1795436782;
+ b=NdMBVvssAs5ggLpLWga6x2lIyipstJX3pqsDRlqC6ERnMEax9zrRWz1U7Ws/d4YU2NiP8vlo
+ AIz31mPeCZiRfySxpUGN0MsCv3xMXhA3/182oEfEZXyASwMdHhDqFZ0DK4DjU2LmauOqzPOzJ5X
+ EILykCGtv4w2CGTzRR6pfjH4=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 0fcf8ab443dda212;
+	Mon, 16 Nov 2026 12:26:22 +0000
+X-Mizu-Trace-ID: 0fcf8ab443dda212
+X-Migadu-Flow: FLOW_OUT
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so9078e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:26:20 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErG5mRMfaURWIZB9WgZyToUZVeLVfg3nYeH8BPepM5C0R3oNF77V05gpphf2WQqSDJ+uMF9u+tuycT7Aut8+UOir@lists.infradead.org
+X-Gm-Message-State: APuU4Z9TcchI3J0BnbWlRJMpfJGnpiwhNDQWfQCsSrIdfRe6Cofja9hE
+	7rztgMHIps00txIM+s/M+FCA0uTwPR6aFunpYXNQ+uG74HYOoSBFgUUw9yv0DmeEny+cQnj3zGU
+	+DW8ugxMMPsNRP4t59ziNXSyum3APPJISmaeW4aKP
+X-Received: by 2002:a05:6512:3e22:b0:5c1:56f6:2f50 with SMTP id
+ 2adb3069b0e04-5c17d6151bemr251895e87.1.1794831979748; Mon, 16 Nov 2026
+ 04:26:19 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: soc: ti: Document the
- ti,tda54-mcu-scm-conf
-To: Moteen Shah <m-shah@ti.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, krzk+dt@kernel.org, nm@ti.com,
- ssantosh@kernel.org, u-kumar1@ti.com, gehariprasath@ti.com, vigneshr@ti.com,
- afd@ti.com, a-limaye@ti.com, y-abhilashchandra@ti.com, johan@kernel.org,
- kees@kernel.org, jm@ti.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20261112091027.1601122-1-m-shah@ti.com>
- <20261112091027.1601122-2-m-shah@ti.com>
- <20261113-fancy-trogon-of-saturation-16fc66@quoll>
- <699420d5-28b8-4238-8fc4-3a4e762265ba@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <699420d5-28b8-4238-8fc4-3a4e762265ba@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20261116110549.1863653-1-fuad.tabba@linux.dev> <avro44jUWOARFzul@google.com>
+In-Reply-To: <avro44jUWOARFzul@google.com>
+From: Fuad Tabba <fuad.tabba@linux.dev>
+Date: Mon, 16 Nov 2026 12:25:43 +0000
+X-Gmail-Original-Message-ID: <CA+EHjTxWuiyjmUc3vH_KxRtS_3oX5w=CE76LdsLcrqC+RzLGfg@mail.gmail.com>
+X-Gm-Features: Aa3M54okcmr9MdJAy7XSmuEmAJr7gqz5micdc5fGZdFcC1JtmeOKxVLrP8oEceQ
+Message-ID: <CA+EHjTxWuiyjmUc3vH_KxRtS_3oX5w=CE76LdsLcrqC+RzLGfg@mail.gmail.com>
+Subject: Re: [PATCH] drivers/virt: pkvm: Zero and clean memory before sharing
+ it with the host
+To: Vincent Donnefort <vdonnefort@google.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	"Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Marc Zyngier <maz@kernel.org>, Mostafa Saleh <smostafa@google.com>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, linux-arm-kernel@lists.infradead.org, 
+	kvmarm@lists.linux.dev, linux-coco@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261116_042625_861389_510DAC89 
+X-CRM114-Status: GOOD (  16.19  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,56 +84,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 16/11/2026 12:33, Moteen Shah wrote:
-> Hey Krzysztof,
-> 
-> On 13/11/26 13:26, Krzysztof Kozlowski wrote:
->> On Thu, Nov 12, 2026 at 02:40:24PM +0530, Moteen Shah wrote:
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  ti,proxy-id:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    minimum: 0
->>> +    maximum: 7
->>> +    description:
->>> +      Proxy region (0-7) through which this node's clients access
->>> +      claimable registers and their fault status registers.
->> Partially continuing discussion from v2, IOW, device cannot access
->> entire address space and you need to limit the address space to specific
->> window of it? At least this is how it looks in driver code.
->>
->> This looks like the MMIO space is wrong. Listen, if you claim that the
->> DTB represents the host (or VM) view on hardware and based on that you
->> add proxy-id property to restrict the MMIO, then why do you claim that
->> entire MMIO is correct for this host (or VM) in the first place?
-> 
-> 
-> Thanks for the review, I got your point.
-> One thing I wanted to clarify before sending a revision: a nonzero proxy 
-> sets a bit in its CLAIM register to claim a register but for proxy 0 it 
-> shouldn't be doing that as per the hardware. If we choose to use proxy 
-> 0's reg window we just have to check if any other proxy has claimed it 
-> previously or no. Are you fine with having a property in the binding 
-> something like "proxy-0" or alternatively "ti,claim-required", because 
-> the driver won't be able to makeout which proxy it has the view of.
+Hi Vincent,
 
-Dedicated property for proxy0 is fine. Maybe not calling it proxy-0 but
-express that this one is shared with others so first you need to check
-if it was not claimed.
+On Mon, 16 Nov 2026 at 11:28, Vincent Donnefort <vdonnefort@google.com> wrote:
+[...]
+> > +     /*
+> > +      * The host can read the pages as soon as they are shared, possibly
+> > +      * through a Non-cacheable mapping. No caller relies on their contents.
+> > +      */
+> > +     memset((void *)addr, 0, size);
+>
+> Are we sure we want that? The guest may want to setup memory and then share it.
+> I am not sure about modifying this API.
 
-But OTOH, can't the driver make the claim if if no one has claimed it in
-every case? IOW, why for proxy1 you take the claim unconditionally, but
-for proxy0 you check first?
+Right! I wanted to fix the bug for the ITS property table, which is
+shared before it's initialized, and totally forgot that this is the
+path all sharing goes through... I'll drop this, and put that fix back
+in the ITS series.
 
-Best regards,
-Krzysztof
+> > +     dcache_clean_poc(addr, addr + size);
+>
+> I believe the hypervisor is already doing the cache maintainance when the page
+> is mapped back into the host. (see stage2_map_walker_try_leaf())
+
+I don't think it does on this path. host_mmu.mm_ops doesn't have a
+dcache_clean_inval_poc() callback, so stage2_map_walker_try_leaf()
+doesn't do the CMO for a host mapping. On the guest's side,
+__pkvm_guest_share_host() only changes the software bits of the
+existing mapping, and the walker returns before the CMO in that case.
+
+Cheers,
+/fuad
 
