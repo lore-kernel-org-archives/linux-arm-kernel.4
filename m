@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E0A1606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3412A606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KpsDtHoB;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m9SXc34f
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=15VHfJG5;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=gKJ0tJQZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,75 +14,103 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Q8fWQBgofRqmDIckF8inUm41V68y3ygeKVYMQd0qF0E=; b=KpsDtHoBQk8ZdxxsETKy6amroz
-	fIyFCk/nevUgQJXZ/BftuzxTSisWPYrytnJihHn5Fq/HW4zwB+DO9U1a/lEaVxW8pnfWPhQGbC7Qq
-	hv/dN8V2d1ASwGomKa30h08uMgwnZ53r+WIimqWeDTJhnCm5MC6VtRPED7BrsV2h1cV/WyiAwmt1Y
-	Y508EAuzMaR4Kqd38Up/OlgXrUyUnvRocRTDSbrpzvrUUawJ1FCzJinHu3jYLVsVmprhcPz1Le0Kg
-	qYkqfxHQHkmxT4aIzWDOiHyU2FTxcHOk4hxYnUeig+YKpCUvZVnbbu3mJDfwCY37efm0nwcijcC4A
-	7uIAB/jw==;
+	bh=EPargW/ndTMk8W5T5ryrw8EEtwPYjCnMb9VWPm+Ydmo=; b=15VHfJG5xyYOr/xNdmPZii/ynf
+	Y0d283VeATqY667TsOUnnleBaTKLC/tETUA/jB8rgiD/ms2l4cCxsigf2HKdj9i/ctZ7D4hc0rW07
+	LU25sGZmgxuLH+A9hQB3VoeV8RM0K14icKplLVgo49i9RNTniVV2fSeByh5z7vToAIs5oTmjyQrVO
+	SSv2BUJpvFLvTpMTN9XwsRVsahQzVAJ50VTW2tisWgxlmbb2yCxCOc2irnYco831ntNXz0+kG2HN4
+	DkIbMEJYAvCRkcFaojvDQKm+khFMofa0PlspY6c6ZDvjgfrXaKVUHsfkYjScJJvQ5RJuFGJ5PvNB3
+	KQPwH4Ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1Y9-00000003bV0-49Zg;
-	Mon, 16 Nov 2026 18:35:30 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xT1YN-00000003bZv-1K5i;
+	Mon, 16 Nov 2026 18:35:43 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1Y8-00000003bUa-3uT7;
-	Mon, 16 Nov 2026 18:35:29 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4AD6663143;
-	Mon, 16 Nov 2026 18:35:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8970F1F000C4;
-	Mon, 16 Nov 2026 18:35:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794854128;
-	bh=Q8fWQBgofRqmDIckF8inUm41V68y3ygeKVYMQd0qF0E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=m9SXc34fYM5jcJuE1wTy6zk64bskstE3LtiDgfZxmmOaqHstxKBWeNqSoTlPNJ83z
-	 QT5lbfPhNY1vvAmdlzX65ielD8qN5RtpztH54/QmlfCrWFL2x0grSV7yt/TpR4g5/2
-	 Q7j4mNfhDrwj/w31plz/G21x+t9/KwKPaG6dOqCcT6pJvBXr8r6zYOVmkzOLUjBRdq
-	 B52g+XcrwyWqhU0KG0NpxTVKtNArw4E/DOy8C3vVOT6fJE8KiOeQ6oG7Ad+XAnFijL
-	 s5NP99cIJVFtIQG1Jona40lByHZtMTjMEooORNkB532sTG8PzJO8O+FfalgSU1FPDU
-	 Gn380UsXQlfzw==
-Date: Mon, 16 Nov 2026 18:35:19 +0000
-From: Conor Dooley <conor@kernel.org>
-To: gaohan@iscas.ac.cn
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
-	linux-csky@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 12/19] dt-bindings: pinctrl: add the Allwinner V861 pin
- controllers
-Message-ID: <20261116-friday-follow-4d042ae6a3b7@spud>
-References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
- <20261114-v861-v1-12-eb71ec3ee523@iscas.ac.cn>
+	id 1xT1YJ-00000003bYR-3LdA
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 18:35:41 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-48dee593f18so4035799f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 10:35:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1794854138; x=1795458938; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=EPargW/ndTMk8W5T5ryrw8EEtwPYjCnMb9VWPm+Ydmo=;
+        b=gKJ0tJQZH9JsGMp+CQDRuJB03/fARJoPB/HuRP9GIlg7gHrU65s7nPI7JM5MqPKvAy
+         10E7Bd9kkM0cPi3Xltwt8gJln1HPR0z3Gt3M60rNcI66yzME/VAJhoUjtaaqRARAzX0z
+         /xYQUTKB7YWRF4DRIT0bv4iD4pXVM5etDG+5PLSIrgd8zUiOVhELQlbj2RytpXiScXeE
+         pglX8CiYL98uwJAajDIYrCC8hxNTpykrSrh0WWf8jSzgFOnSOYu1GqTDU4iy0TuOBL1X
+         LOVqe/X/TK3chx7ByLKOMlNpGu2I50TFOWpP0HGEiDQgBkZ2IFXMzbGgVqK57E+BF/T3
+         h4JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794854138; x=1795458938;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=EPargW/ndTMk8W5T5ryrw8EEtwPYjCnMb9VWPm+Ydmo=;
+        b=LSZJlOJvXh+dNRhOdBN0KWod1q/M4kpMImxE5z7jdovkRzM71IXjSC8bRsarh6jS14
+         VD4i6rkFAR86O7riKEnmFlp5H9hYWOYJZhwoScFnM3PFzPlmVLd7vwyJeHodsMGXVowz
+         WOXAh49SwCTvQgZtCN3mx84n4OEbqpD2+VZWbJ8GDpaWIKvV+W1oTVGBeKnpw6hotZnU
+         KpJsey5iZ2zcqT6LVepoBERpWthymp5195PoxP5ra4aVetOEKj2Qg0HQAfar2N2dTsWi
+         ZAl7CUPaKfBAC91hq+kKjlh+TCZ3VBjt+DUXLK249Pi5JpM9PnQRVZya63Xmzd4UR+dO
+         egSA==
+X-Forwarded-Encrypted: i=1; AL+hErG4iAShYPzjDBSuyz6vwnARJNU8HhQIWuNi0L+iV7rd+Rbi8i99K440DFWRJ2cZ1uSfxoirYWnr/CbfFNLdUUp6@lists.infradead.org
+X-Gm-Message-State: APuU4Z/qPL4ekIAogGU+/MPw7SCzXVqHEbkWk4W2sDMAwpqQ5jOARkg+
+	Gn0UitCLxy9EMO7cSj+CeGYld8yzIKtkY9fxda6IKBiaCMaZDBjvLYltXVW9z4DiWgQ=
+X-Gm-Gg: AZFdTZd6nvZ6Ls+EZQSv13WL7NhZGnLBUxrY/YVRLSA68tEaBOjHMMw+OiWp2CByvKH
+	qy2XqLqC0VDKiGQJIZSw465oj/FuEihnA8AviWlD9PSVlybBxkfu7b1vQ803xtPHnp4+9EKmk1/
+	RdhE20GS8k9RT6mTPYOKC3t/YPlwJDzXD50gt1JxxPkeZ9vZe0Ek/t2SAJmMqkfJ7WLsn9m3DsO
+	0SWu1xp23pv5gZcKks7wgeU4b3PTzeWhQQ4hgxF+XGDFUmsRt4lZtcNIZSE4M8bNXWxFdJTsf8N
+	daLVozkVFq2qs0E0uAqLImfesYRBm3isnetNU9OU77J5G+l0+YbjW63R+OF8J6AoWLiaRU/FMcZ
+	pqi3RNT6GWcisisxYBLpm6vC962jVYNBKrpoOCsl/8dBvXTMotPVXql2OepDbrRFp5WmQFQeJBt
+	0hxp9fcDI4KQJCU9Osvq8tdAgfuFDaLehG3TNjSqkRkhxiZAfooaol2Ffgvp5T2hhDGynux/D1y
+	RfH9ZcAu8hVC85/NKyGQkc8ZhwnGp4OIzqmgIXblIUwY5tesdrITIDzcsk/F+GkuKlp4t4ajFvN
+	4vM0BYwIlokLZGj8JrQJSE/m6tLwdF16LPnmrSdw343hHhuyz3gleNMapXl2QXcgTaPLAtW6R17
+	nBtBo7PErpe6Bkf4pspujrc3mxo8mkmsqaopzWQ==
+X-Received: by 2002:a05:6000:491c:b0:48b:118e:7454 with SMTP id ffacd0b85a97d-49c70a0f0cbmr22973182f8f.31.1794854137742;
+        Mon, 16 Nov 2026 10:35:37 -0800 (PST)
+Received: from localhost (p200300f65f19a90439293c698a65b414.dip0.t-ipconnect.de. [2003:f6:5f19:a904:3929:3c69:8a65:b414])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-49c5fe373casm23015553f8f.30.2026.11.16.10.35.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 10:35:37 -0800 (PST)
+Date: Mon, 16 Nov 2026 19:35:35 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig_=28The_Capable_Hub=29?= <u.kleine-koenig@baylibre.com>
+To: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
+Cc: Len Brown <lenb@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Dan Williams <djbw@kernel.org>, 
+	Vishal Verma <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>, 
+	Alison Schofield <alison.schofield@intel.com>, Ira Weiny <iweiny@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Zhang Rui <rui.zhang@intel.com>, 
+	"Mario Limonciello (AMD)" <superm1@kernel.org>, Saranya Gopal <saranya.gopal@intel.com>, 
+	Gergo Koteles <soyer@irl.hu>, Jakob Riemenschneider <riemenschneiderjakob@gmail.com>, 
+	Yauhen Kharuzhy <jekhor@gmail.com>, Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>, 
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, nvdimm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	Kai-Heng Feng <kaihengf@nvidia.com>, Tony Luck <tony.luck@intel.com>, Borislav Petkov <bp@alien8.de>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Shuai Xue <xueshuai@linux.alibaba.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Dave Hansen <dave.hansen@linux.intel.com>, 
+	Chu Guangqing <chuguangqing@inspur.com>, Andy Shevchenko <andy@kernel.org>, 
+	Mika Westerberg <westeri@kernel.org>
+Subject: Re: [PATCH v1 0/4] ACPI: Use named initializers for acpi_device_id
+ arrays
+Message-ID: <avtL3i7n9cUARCd1@monoceros>
+References: <cover.1794567577.git.ukleinek@kernel.org>
+ <CAJZ5v0jC5YXsLgB6Qd55KNCU0oCsN86X5WpRfL+Ycz0MJ8vGqA@mail.gmail.com>
+ <avs5thXfoZA4TBnE@monoceros>
+ <CAJZ5v0iSJVszOCLCuK+ifCzTgx1RgDAExaYUbij=jaWmaTsb8Q@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="iob+U2BkGYeh1b1b"
+	protocol="application/pgp-signature"; boundary="nqnngouwa55krefe"
 Content-Disposition: inline
-In-Reply-To: <20261114-v861-v1-12-eb71ec3ee523@iscas.ac.cn>
+In-Reply-To: <CAJZ5v0iSJVszOCLCuK+ifCzTgx1RgDAExaYUbij=jaWmaTsb8Q@mail.gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261116_103539_862936_B278A053 
+X-CRM114-Status: GOOD (  17.16  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,129 +121,74 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---iob+U2BkGYeh1b1b
-Content-Type: text/plain; charset=us-ascii
+
+--nqnngouwa55krefe
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v1 0/4] ACPI: Use named initializers for acpi_device_id
+ arrays
+MIME-Version: 1.0
 
-On Sat, Nov 14, 2026 at 06:33:38AM +0800, Han Gao via B4 Relay wrote:
-> From: Han Gao <gaohan@iscas.ac.cn>
->=20
-> The V861 main and always-on pin controllers follow the A523 binding.
-> The always-on one has a single interrupt bank, so also allow a single
-> debounce value.
->=20
-> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
-> ---
->  .../pinctrl/allwinner,sun55i-a523-pinctrl.yaml     | 31 ++++++++++++++++=
-+++---
->  1 file changed, 28 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a=
-523-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun5=
-5i-a523-pinctrl.yaml
-> index d7d0ba32ced4..3c2924df17b9 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pin=
-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pin=
-ctrl.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/pinctrl/allwinner,sun55i-a523-pinctrl=
-=2Eyaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> =20
-> -title: Allwinner A523 & A733 Pin Controller
-> +title: Allwinner A523, A733 & V861 Pin Controller
-> =20
->  maintainers:
->    - Andre Przywara <andre.przywara@arm.com>
-> @@ -26,6 +26,8 @@ properties:
-> =20
->    compatible:
->      enum:
-> +      - allwinner,sun252i-v861-pinctrl
-> +      - allwinner,sun252i-v861-r-pinctrl
->        - allwinner,sun55i-a523-pinctrl
->        - allwinner,sun55i-a523-r-pinctrl
->        - allwinner,sun60i-a733-pinctrl
-> @@ -35,7 +37,7 @@ properties:
->      maxItems: 1
-> =20
->    interrupts:
-> -    minItems: 2
-> +    minItems: 1
->      maxItems: 11
->      description:
->        One interrupt per external interrupt bank supported on the
-> @@ -62,7 +64,7 @@ properties:
->        Debouncing periods in microseconds, one period per interrupt
->        bank found in the controller
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> -    minItems: 2
-> +    minItems: 1
+Hello Rafael,
 
-You've lowered the constraints here, and while this is harmless that is
-not apparent from the diff so please note it in your commit message.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: changes-requested
+On Mon, Nov 16, 2026 at 07:15:48PM +0100, Rafael J. Wysocki (Intel) wrote:
+> On Mon, Nov 16, 2026 at 6:16=E2=80=AFPM Uwe Kleine-K=C3=B6nig (The Capabl=
+e Hub)
+> <u.kleine-koenig@baylibre.com> wrote:
+> >
+> > Hey Rafael,
+> >
+> > On Fri, Nov 13, 2026 at 05:17:30PM +0100, Rafael J. Wysocki (Intel) wro=
+te:
+> > > > Uwe Kleine-K=C3=B6nig (The Capable Hub) (4):
+> > > >   ACPI: Unify acpi_device_id list terminators
+> > > >   ACPI: Drop unused .driver_data initializers in acpi_device_id arr=
+ays
+> > > >   ACPI: Use named initializers for acpi_device_id arrays
+> > > >   ACPI: Unify *_device_id list terminators
+> > >
+> > > All patches applied as 7.5 material, thanks!
+> >
+> > While rebasing these patches (as part of my wip tree that contains a lot
+> > more similar patches) to next-20261113 I hit some merge conflicts. If
+> > you tell me where you applied it, I can take a look and provide my merge
+> > conflict resolution to allow double checking.
+>=20
+> I've rebased a couple of patches on some material merged previously.
+>=20
+> Please see
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commi=
+t/?h=3Dlinux-next&id=3D58d4ba8979133c41cd491dff1dab40626daa924a
 
->      maxItems: 11
-> =20
->  patternProperties:
-> @@ -149,6 +151,29 @@ allOf:
->            minItems: 2
->            maxItems: 2
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: allwinner,sun252i-v861-pinctrl
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 7
-> +          maxItems: 7
-> +        input-debounce:
-> +          maxItems: 7
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: allwinner,sun252i-v861-r-pinctrl
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +        input-debounce:
-> +          maxItems: 1
-> +
->  additionalProperties: false
-> =20
->  examples:
->=20
-> --=20
-> 2.55.0
->=20
->=20
+OK, it seems you already rebased on top of the commits that made my
+rebase a bit bumpy and you did the same resolutions as me. :thumbsup:
 
---iob+U2BkGYeh1b1b
-Content-Type: application/pgp-signature; name=signature.asc
+Best regards
+Uwe
+
+--nqnngouwa55krefe
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavtM5wAKCRB4tDGHoIJi
-0oJfAP4ufaoW9ODoPhwL/60TwgcwPU7zYRBS09Lui2xZHPvT9wEA+DbyCtPMNtgu
-WpkHu4Qik6IU6UhTe8QqVvGh8jwnUgc=
-=GpLT
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmr7TPUACgkQj4D7WH0S
+/k6vZQgAjLzcTYkt9CbkThW0RlljMQXJxP5fmZNoFevLodwamfhpt+348ZmhBkWR
+pva0yzF64v2uFwtmOgge+e1azRuruDvxfilctoJgbCV+g8N8GlaVkT6OU7mHXpNB
+C/esmpj/xKsGPaZnrbRAXqxJ+/KWjGuW2Tc4/CLmjidnaqdHoi6we+/W/YDZe/zD
+hK5ahEuQfANr2sXtQMET7/79wAiZ0mquQalFQaDDF2whSgyu7dWdt3+ahdFOS9u3
+DTc/gz1Yiu4f/sTzP8Hh7Gr6y/CnHyaILNhtxA3YnnMqLmQnPEONbSnbua34q36a
+S4dDn9kuuyzsCa5pFr4vhDplKXzROA==
+=5qsj
 -----END PGP SIGNATURE-----
 
---iob+U2BkGYeh1b1b--
+--nqnngouwa55krefe--
 
