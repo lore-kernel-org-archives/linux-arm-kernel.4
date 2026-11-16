@@ -2,106 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587B1606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 09:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B48606A885
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 09:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rdzVHn+c;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=SaKXyigX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5Ci/9Uyt;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h6c3cS6d
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/A9iXEzh1KrlGjHq69ztxhpUohMJtnHndx2KFxZGzmk=; b=rdzVHn+cc2iMpH5joSYuZXW/qm
-	fx7Qluxi6Vvhoae9iSXI9GR6zQAlii4TRWTiByQQIzr9OspfNi7S1/5XB++n2YGRHog8CHmoB2bqg
-	1lbQjPwTAtVabrx4IlGuZpDgwVDgbMqoz6JG268IIS1Gzx748SCSZ2AeHAiTU98jSyS2sZHvMNcLc
-	rfuRL3pQRIZCyS2ig7OLkrOCE+3qiii/a4+pt/97qWmJB8cMaOvpsgulRmBB9bmKYsRQocoynYYcW
-	jQ5+5Re5hnO1el58M7BiKiZUNkEUKmIz54SQGt1MgWdi2Mi91ovMSHnIjYcdrDWseBi+jXikGrAyW
-	2VO0GSpw==;
+	bh=6Zh+XulnPd/nR+IMT1WxzCnxZlOn4xssX41WPzE9FKU=; b=5Ci/9Uyt51f2xV6ovgCUYMy/uZ
+	mwarPEEQAmab2f9wQz83BjB9QjOyQFrszk0mklDNV7NhwJ0aQ0hk8GL7aa8Lm4d2i8JDDHBr/v9RC
+	OtzJozr7kXWWS9YlsF5X7wUqFBWXfu6jYtczTIlk3pkmGRcjc0wXlkKc5fePl/F/SZcVTAD7IyXdu
+	kNDMyn47hllelt8K4Y/BJDLbfeHtk9FEIFvgdHdk/oTX5TDPkc9zp9m9QwyZmYWIZJaDr5uN5TqrA
+	CuIxvSnwLaPLECIJ+uTHQyGoju8MGkuJ2XYHyN9mSaWOMq+53THsj2+Jm4HANMfeNFFT7Rd2f2x1a
+	SxqMVWIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSt4b-00000001miF-1pdb;
-	Mon, 16 Nov 2026 09:32:25 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	id 1xSt7t-00000001nDs-2eoH;
+	Mon, 16 Nov 2026 09:35:49 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSt4X-00000001mgN-3uMX
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 09:32:24 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 6EEFA200AD7;
-	Mon, 16 Nov 2026 10:32:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794821539;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/A9iXEzh1KrlGjHq69ztxhpUohMJtnHndx2KFxZGzmk=;
-	b=SaKXyigX4Elz3APu1eMYJ69NX/Jh88BoBbRLNBK0d6D+Lm/38yBwxComQPZjPuFZJRiwM5
-	LV0bTuc4uTQVFrF+22PFV9rNmjxi4tOQuxi4a8RvG0nMAYJpKKrCzxNgJgIwCVrZPDyOPI
-	hooO8GCqS35hgFaNLxakrU8qT12rFpr61KM2rX4OTc+biyGULFqV73c2OnJjzFoKcjjr3W
-	fiGrkwFSwCMp0YQZ/WLR/5BTmPCDgxeO0lkSkxGcCC5XX7o3NcV2gl18MDzX9N+KtcZRsX
-	klWUEXEYqFCJ34f7OAmTlvc852dJ8y6YB5RtWCuJf0qYWPQoWPgLU13xWrS7Ww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794821539;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/A9iXEzh1KrlGjHq69ztxhpUohMJtnHndx2KFxZGzmk=;
-	b=GEtsMd+hgpZn51jpIuDF6/iW4sZOkPvKDit0q42ByG9hzZgl6oD3sh4lWuqDIAfqiXsgCj
-	hv25cRbyiNlCBwozkmZHQPVKz7bMpofIhZt8HsKNexrVJbHwRApPfrKf/mbS3gKcfmJqWs
-	O4mQatcm8081Z6wdE3EA9xPZ8m+WFXQe0hdG9pM1hQTYnF30gQ4usQyDls2WhoxHYMwsPg
-	9vnfe+x4xbJOEEU7RZlR2OJhWjpt1zhVT8vA/q5GMgQ5PNcto5xBFL2XYBOdxeuzTBpuQK
-	GVRedmHaaAwxGo4QAYrOV0Mc0K7iGZ4tzoZdbqHmVrUlz8iSkEfhqA+zVo1qTA==
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794821539; a=rsa-sha256;
-	cv=none;
-	b=RkG3OsqUV2Y4R2Fv2X0NhUyHHKWMG+auojCSYrqpGH9Q/tr36sx5AOTHDMWw4JG4NDZ8Fk
-	XWr+LFZ6ld8ljL9eT9JU2Il5evdIEL1JgwMb6UmM5neRQX/+IJEafTUBCALKGzG8rNQu8+
-	1zQYFjNJLoRutwF0NUOC0LVaOJuTJxDDEmaMWBEPKd2Ewb/bc+/mfPdapkPvIN37K/J5bC
-	zfGZgkaIwYnRsL89uiRcU9PNgujj0PuVzQvB+eR6ZTQygM++I71yJKBgxr5PpkV84DO0Tl
-	5P3Pjx8SJzSw7nLm/makmP5rbAUyqp9iIx8NmxETyJHbkTRUW8bqfH703mlfAw==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=mkl@pengutronix.de
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1xSt4U-0001A3-2f;
-	Mon, 16 Nov 2026 10:32:19 +0100
-Received: from pengutronix.de (p4ffb23c7.dip0.t-ipconnect.de [79.251.35.199])
+	id 1xSt7r-00000001nCY-2Zls;
+	Mon, 16 Nov 2026 09:35:47 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1E5D145D11;
+	Mon, 16 Nov 2026 09:35:47 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794821747;
+	b=BB9yxXXJwVc8Vk8MLP3nsX8IG2GvRWt6dIKlpilDzPODo+I+D8tiLGGiu5ROJtyr7cY+
+	 xnsZd41Gb57H7P/FAiJ6wDa/cozMm1h45GE3TngxyBMWPArKArV7t1srewiJD1nonscSz
+	 AQLjiMxi6j/C5/AyvgRE3tSeK595cOEoZJkwu656+zrea9u34E6TsaMlh0tW0VVUMOySn
+	 Hs50Nt+HTklGFN2hI/XuDb69MnZJiL4YmTMvYs3MjgC2IMzLvx2g+8mP9mE8Hq2t5b+ee
+	 uPkNjzwgOxj+8zgJ7BpJhdT3w8TnWlZd/U+R8mUYEVRA7q09vFkwmF67jMSB6YqJvSw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794821747;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=6Zh+XulnPd/nR+IMT1WxzCnxZlOn4xssX41WPzE9FKU=;
+	b=zbOjBRQvum4E25D7nrV2IIFmTMq6VjgKLysQ2DMbIeU8CygscQoaQVIWjdxBCGAXyFzl
+	 n0/gzWCcdVMhd1LSFRaZ+5bzMN20WqCMpSJanWkgSD3lg9PpHv5f9INxFaLXo4UV/0E4x
+	 dzs4OixV8EJhhNYcFFdUxadCB92Q+EO3XEgqLD5dn75vtZgC/kYOYxKku2+YQCQymEtm3
+	 YJoBIPgSKk54UkbwLaG5lTXT3siKhqerGKrCfsBVgRRowYXGPZB5hXtN7axyWlG7WdUAk
+	 uWrVCW7FH6Zj3osJHmq43ZvcNbkXmwKLjoRB7z2PO+w4xqqSjB9fU/k0YWCeGfzM74Q==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id C670B5ED186;
-	Mon, 16 Nov 2026 09:32:18 +0000 (UTC)
-Date: Mon, 16 Nov 2026 10:32:18 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Harini T <harini.t@amd.com>, Michal Simek <michal.simek@amd.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, kernel@pengutronix.de, 
-	linux-can@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH can 2/4] can: flexcan: flexcan_probe(): fix probing for
- m68k/coldfire and reject devices without match data
-Message-ID: <20261116-ambitious-exotic-wallaby-4a5d17-mkl@pengutronix.de>
-References: <20261114-fix-device_get_match_data-v1-0-2d82025e9646@pengutronix.de>
- <20261114-fix-device_get_match_data-v1-2-2d82025e9646@pengutronix.de>
- <avrHkaYw-De6nv8B@monoceros>
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id D3B601F000C6;
+	Mon, 16 Nov 2026 09:35:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794821747;
+	bh=6Zh+XulnPd/nR+IMT1WxzCnxZlOn4xssX41WPzE9FKU=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=h6c3cS6dEiVHuSu/acrM84Rt9838k3HHJXs//6NE4KChiWO2D239ZPdgIKD4FY6O7
+	 wFe6b9MFa9HfiXtpRkt+7gcBcA+g11Wf+ZgMuW7VwR87tFZOaK+zxkFPh9fPsH6WXV
+	 5fpnoXX9DFYqXU4oOys1HnORkByJeR9MTRpzQ1reXrdOt5JsGmS2rN1UUbsGhSgKmA
+	 knynY6MCfxNTSSd+i4tgBr6YnbyYrreCgP4LVJeyg/meelWkG63uNdqszPaIlt6xGw
+	 1kxqH+q8V+xtk1rX3sl+qTbqt4Z0RGLV0NEr/y3VXsI/8NStiQRCzcCtO4JrAxY10L
+	 i0frPRV10yX7w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 608494A402;
+	Mon, 16 Nov 2026 09:35:45 +0000 (UTC)
+From: Matt Thompson via B4 Relay <devnull+matt.boondocker.io@kernel.org>
+Date: Mon, 16 Nov 2026 02:35:44 -0700
+Subject: [PATCH RFC v3 2/6] arm64: Allow synchronous abort fixups for
+ guarded MMIO reads
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vrsrmjo33qfyvu5v"
-Content-Disposition: inline
-In-Reply-To: <avrHkaYw-De6nv8B@monoceros>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_013222_162456_AC94C3DE 
-X-CRM114-Status: GOOD (  18.85  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261116-rfc-b4-v3-2-0bf052b68f2a@boondocker.io>
+References: <20261116-rfc-b4-v3-0-0bf052b68f2a@boondocker.io>
+In-Reply-To: <20261116-rfc-b4-v3-0-0bf052b68f2a@boondocker.io>
+To: Shawn Lin <shawn.lin@rock-chips.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794821744; l=3957;
+ i=matt@boondocker.io; s=rk3399-rfc-20261113; h=from:subject:message-id;
+ bh=O2LbMV/iAQG9voycLpkvTk5xx5a7660O6hR4aIZ4gWk=;
+ b=oIwmQLQEfkvjG3fwx1Oix4dLW8HQso+6ytYvjcn5izVk500rqVfftQDITyY7UZ1vr92siqtBt
+ stlGgmnS3w2DzNTYnE2R9PN0Ym9LpCcfUuUgrTkLvFVoG5vJO88clfA
+X-Developer-Key: i=matt@boondocker.io; a=ed25519;
+ pk=WMnh3kwFFRkrqamL/FbDcdl1/9rBF2uT03VdvGGP40k=
+X-Endpoint-Received: by B4 Relay for matt@boondocker.io/rk3399-rfc-20261113
+ with auth_id=1517
+X-Original-From: Matt Thompson <matt@boondocker.io>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,67 +113,140 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: matt@boondocker.io
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Matt Thompson <matt@boondocker.io>
 
---vrsrmjo33qfyvu5v
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH can 2/4] can: flexcan: flexcan_probe(): fix probing for
- m68k/coldfire and reject devices without match data
-MIME-Version: 1.0
+An RK3399 PCI configuration read can raise a synchronous external data
+abort if it does not get a usable response. Allow an explicitly annotated
+MMIO load to return an error in this case.
 
-On 16.11.2026 10:14:17, Uwe Kleine-K=C3=B6nig wrote:
-> >  	devtype_data =3D device_get_match_data(&pdev->dev);
-> > +	if (!devtype_data && platform_get_device_id(pdev))
-> > +		devtype_data =3D (struct flexcan_devtype_data *)
-> > +			platform_get_device_id(pdev)->driver_data;
-> > +	if (!devtype_data)
-> > +		return -ENODEV;
->
-> My stance is that the ability to bind an "unexpected" device via
-> driver_override is something that should be handled in the core, see
-> https://lore.kernel.org/all/0f7446324f6a0c8f0153d6532d92a6eeecd6a308.1790=
-612298.git.u.kleine-koenig@baylibre.com/
-> for the latest patch to address this.
+Match only a current-EL synchronous external abort on a read instruction
+with the new exception table type. Keep existing handling for other
+faults, including asynchronous SError and translation table walk aborts.
 
-Thanks, Biju Das already pointed out that series.
+Signed-off-by: Matt Thompson <matt@boondocker.io>
+---
+ arch/arm64/include/asm/asm-extable.h | 15 +++++++++++++++
+ arch/arm64/mm/extable.c              | 20 ++++++++++++++++++++
+ arch/arm64/mm/fault.c                |  4 ++++
+ 3 files changed, 39 insertions(+)
 
-> I'll work on this patch to hopefully get it into v7.5-rc1.
+diff --git a/arch/arm64/include/asm/asm-extable.h b/arch/arm64/include/asm/asm-extable.h
+index d67e2fd..ac78167 100644
+--- a/arch/arm64/include/asm/asm-extable.h
++++ b/arch/arm64/include/asm/asm-extable.h
+@@ -11,6 +11,7 @@
+ #define EX_TYPE_KACCESS_ERR_ZERO	3
+ #define EX_TYPE_UACCESS_CPY		4
+ #define EX_TYPE_LOAD_UNALIGNED_ZEROPAD	5
++#define EX_TYPE_MMIO_READ_ERR_ZERO	6
+ 
+ /* Data fields for EX_TYPE_UACCESS_ERR_ZERO */
+ #define EX_DATA_REG_ERR_SHIFT	0
+@@ -80,6 +81,11 @@
+ #else /* __ASSEMBLER__ */
+ 
+ #include <linux/stringify.h>
++#include <linux/types.h>
++
++struct pt_regs;
++
++bool fixup_sea_exception(struct pt_regs *regs, unsigned long esr);
+ 
+ #define __ASM_EXTABLE_RAW(insn, fixup, type, data)	\
+ 	".pushsection	__ex_table, \"a\"\n"		\
+@@ -111,6 +117,15 @@
+ 			    EX_DATA_REG(ZERO, zero)			\
+ 			  ")")
+ 
++#define _ASM_EXTABLE_MMIO_READ_ERR_ZERO(insn, fixup, err, zero)		\
++	__DEFINE_ASM_GPR_NUMS						\
++	__ASM_EXTABLE_RAW(#insn, #fixup,				\
++			  __stringify(EX_TYPE_MMIO_READ_ERR_ZERO),	\
++			  "("						\
++			    EX_DATA_REG(ERR, err) " | "			\
++			    EX_DATA_REG(ZERO, zero)			\
++			  ")")
++
+ #define _ASM_EXTABLE_UACCESS_ERR(insn, fixup, err)			\
+ 	_ASM_EXTABLE_UACCESS_ERR_ZERO(insn, fixup, err, wzr)
+ 
+diff --git a/arch/arm64/mm/extable.c b/arch/arm64/mm/extable.c
+index 299a244..dcb84d8 100644
+--- a/arch/arm64/mm/extable.c
++++ b/arch/arm64/mm/extable.c
+@@ -28,6 +28,8 @@ bool insn_may_access_user(unsigned long addr, unsigned long esr)
+ 		return false;
+ 
+ 	switch (ex->type) {
++	case EX_TYPE_MMIO_READ_ERR_ZERO:
++		return false;
+ 	case EX_TYPE_UACCESS_CPY:
+ 		return cpy_faulted_on_uaccess(ex, esr);
+ 	default:
+@@ -101,6 +103,8 @@ bool fixup_exception(struct pt_regs *regs, unsigned long esr)
+ 	case EX_TYPE_UACCESS_ERR_ZERO:
+ 	case EX_TYPE_KACCESS_ERR_ZERO:
+ 		return ex_handler_uaccess_err_zero(ex, regs);
++	case EX_TYPE_MMIO_READ_ERR_ZERO:
++		return false;
+ 	case EX_TYPE_UACCESS_CPY:
+ 		return ex_handler_uaccess_cpy(ex, regs, esr);
+ 	case EX_TYPE_LOAD_UNALIGNED_ZEROPAD:
+@@ -109,3 +113,19 @@ bool fixup_exception(struct pt_regs *regs, unsigned long esr)
+ 
+ 	BUG();
+ }
++
++bool fixup_sea_exception(struct pt_regs *regs, unsigned long esr)
++{
++	const struct exception_table_entry *ex;
++
++	if (ESR_ELx_EC(esr) != ESR_ELx_EC_DABT_CUR ||
++	    (esr & ESR_ELx_FSC) != ESR_ELx_FSC_EXTABT ||
++	    (esr & ESR_ELx_WNR))
++		return false;
++
++	ex = search_exception_tables(instruction_pointer(regs));
++	if (!ex || ex->type != EX_TYPE_MMIO_READ_ERR_ZERO)
++		return false;
++
++	return ex_handler_uaccess_err_zero(ex, regs);
++}
+diff --git a/arch/arm64/mm/fault.c b/arch/arm64/mm/fault.c
+index b227368..ebe8054 100644
+--- a/arch/arm64/mm/fault.c
++++ b/arch/arm64/mm/fault.c
+@@ -30,6 +30,7 @@
+ #include <linux/hugetlb.h>
+ 
+ #include <asm/acpi.h>
++#include <asm/asm-extable.h>
+ #include <asm/bug.h>
+ #include <asm/cmpxchg.h>
+ #include <asm/cpufeature.h>
+@@ -879,6 +880,9 @@ static int do_sea(unsigned long far, unsigned long esr, struct pt_regs *regs)
+ 	const struct fault_info *inf;
+ 	unsigned long siaddr;
+ 
++	if (fixup_sea_exception(regs, esr))
++		return 0;
++
+ 	inf = esr_to_fault_info(esr);
+ 
+ 	if (user_mode(regs) && apei_claim_sea(regs) == 0) {
 
-Thanks!
+-- 
+Git-155)
 
-> IMHO it's ok to not fix this in a driver specific way now. (And then
-> my patch referenced above in the first Closes:-trailer is IMHO better
-> than this patch.)
 
-I'll drop the other patches, that only fix the driver_override case.
-
-regards,
-Marc
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---vrsrmjo33qfyvu5v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCavrNoAAKCRDMOmT6rpmt
-0oYyAP9oXz4iGiEC2hRmzlmzTiNYzUkuVBT1zX4VmOJb4kIyHwD/TZc5Qi2ArljJ
-TWip6DpC+Q4TajYntMhOuBoC0QkBqw0=
-=J8hC
------END PGP SIGNATURE-----
-
---vrsrmjo33qfyvu5v--
 
