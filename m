@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93424606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75FA9606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k3VCjYBq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=l80TddO1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2BjlO5o+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FHhyWqPo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=c6Vm071a/dEow9zT0/S+8fxSEB7JBU9lM9yuxvjQ8wU=; b=k3VCjYBqBc1j5E
-	fD1J+QHRndxIpFLG7vuMMZ0rPyMVSHq91G8mIvx4sZyI6ni0byK8/gbmlwQ5l704HBmC/+VqsZtSf
-	eWICYbNYd4SWmfqvDFNtfU1IslYS0gOozJL0xdUr+pJK29FkVPrZRVqiUujuDkIlbBn18xaJz98Xt
-	eNjWRWMzBkGUiyzADmfTvAgPnv0gop2HGYeRde80XxWNKyg7HO501ya2Dy2eI7/M7J085myujwmdz
-	oKhiIOwDLkf2OBkc79wPKxUXbDe0c4dh+0aT+JtR9y5nZbotPkhg4/MwHAwVsov5u6zV8L/QXqKHE
-	NwITENM/LObAGt4MnwDg==;
+	List-Owner; bh=zrNMcwKWc2ghyWtCVArBKi7uk7SjPzETXM2uwDrQ724=; b=2BjlO5o+ure4lk
+	v7wnJeYawHgSx0IxYVuqfAp0udttFWSWnQ8uc/QHF1emTpL0IJC5BTeu9mf4ljP3e7iP3uUHKTaSF
+	2Gyd6gF5+9+DS3cyTcRwIvk+HHP3SNjkKKIRY9l8Jx6XCvAxBLis9HVi72DN91KGiA80KtaeMspmb
+	cjXPL5Hldu77iAsszurrQ5A1lFyuDQyShJAsynZqhdtZJAEL1gF2GcbeRAqVlebNAiUWOw79ySnID
+	y2x2lXIC7bFCitt+63wMShSHEvm4AEcKWBrRg9aQRZBNwTGT03K6puasWcJU/ILJ+tfLny6apMMr/
+	+PBL8y/SO5HypWmevAzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxUE-00000002mK4-0vJZ;
-	Mon, 16 Nov 2026 14:15:10 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xSxUJ-00000002mLr-1Il0;
+	Mon, 16 Nov 2026 14:15:16 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxUA-00000002mJX-4900
+	id 1xSxUF-00000002mKm-2slT
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:15:07 +0000
+	Mon, 16 Nov 2026 14:15:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4874B625C7;
+	by sea.source.kernel.org (Postfix) with ESMTP id 704B04475D;
+	Mon, 16 Nov 2026 14:15:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 738371F000CD;
 	Mon, 16 Nov 2026 14:15:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 808D21F000C5;
-	Mon, 16 Nov 2026 14:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794838506;
-	bh=c6Vm071a/dEow9zT0/S+8fxSEB7JBU9lM9yuxvjQ8wU=;
+	s=k20260515; t=1794838511;
+	bh=zrNMcwKWc2ghyWtCVArBKi7uk7SjPzETXM2uwDrQ724=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=l80TddO1p8vGXVkYshQA/hjFCyQTxsuFEOL38ggGfle1Iu9oypXQQIMaGs4xHLlvc
-	 xmMh08EK3fW08igxmnfQuDBdBrl3CC/gn1x25vPIU7YR0NWL3nT3Oqitvux+jRhpHq
-	 xXs0VWU5daVMiPTSIG3wXfiDlV+F86sCh0A79n3VWtO9y8A1enW9RlxyZwf5nwihJv
-	 2lpf06/GsNQJ1Vt5PfjIBhsLpqnEzQl0bOq4pthbnrg/SaRQe0KZ0GNFl3jAjuwa8f
-	 q28pliaDPt6Vz8SU7xc0lYXt22GZLKu/niOpkJ3myrdpQ1gQPhgiBlDRE/ghbnWxOy
-	 CSbPw27IASDQA==
+	b=FHhyWqPoyoVyfN4+TR1sGcXzFwDSfEd/eV4fH9vj8nCXp+1PzK9pU4TZjW3OVbXVH
+	 zGZqmZQbjXadv0tdl7C5VOuz+mEz/P1C6ms7csArSURCkUnUZOe4F8x6bb4BrI4mra
+	 qNTbpwdU9IWyKTeTWlJBFhhH6YOlwpHQs6gmm49WjGu104XBzoLJ15OgM3Coyd2Flr
+	 zVrVhPN5mLMtE70SCUu5Gx+J9y0629qr3kBOegVFY9dAjMKo0kB2W0r5qZe/CUPICr
+	 jJvD/01/5drfbJgQjwGmIolUUfsbipuXEknBasBKFBGfj1a/xzddtJmkfoHBNhb1Lx
+	 HYSE6dliQDViA==
 From: Jisheng Zhang <jszhang@kernel.org>
 To: Andrew Lunn <andrew@lunn.ch>,
 	Heiner Kallweit <hkallweit1@gmail.com>,
@@ -62,9 +62,9 @@ Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/8] dt-bindings: net: Add MDIO demultiplexer
-Date: Mon, 16 Nov 2026 21:54:35 +0800
-Message-ID: <20261116135442.4827-2-jszhang@kernel.org>
+Subject: [PATCH 2/8] net: mdio: Add MDIO demultiplexer driver
+Date: Mon, 16 Nov 2026 21:54:36 +0800
+Message-ID: <20261116135442.4827-3-jszhang@kernel.org>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261116135442.4827-1-jszhang@kernel.org>
 References: <20261116135442.4827-1-jszhang@kernel.org>
@@ -113,122 +113,351 @@ on board; only MAC1 + PHY is used on board; MAC0 + MAC1 + PHYs are
 all used.
 
 To support this kind of usage, we need a kind of mdio demuxer. This
-patch add the dt-bindings doc.
+patch add the driver code.
 
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 ---
- .../devicetree/bindings/net/mdio-demux.yaml   | 102 ++++++++++++++++++
- 1 file changed, 102 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/mdio-demux.yaml
+ drivers/net/mdio/Kconfig      |  12 ++
+ drivers/net/mdio/Makefile     |   1 +
+ drivers/net/mdio/mdio-demux.c | 298 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 311 insertions(+)
+ create mode 100644 drivers/net/mdio/mdio-demux.c
 
-diff --git a/Documentation/devicetree/bindings/net/mdio-demux.yaml b/Documentation/devicetree/bindings/net/mdio-demux.yaml
+diff --git a/drivers/net/mdio/Kconfig b/drivers/net/mdio/Kconfig
+index d44278f26fab..e4a3ff594881 100644
+--- a/drivers/net/mdio/Kconfig
++++ b/drivers/net/mdio/Kconfig
+@@ -289,5 +289,17 @@ config MDIO_BUS_MUX_MMIOREG
+ 
+ 	  Currently, only 8/16/32 bits registers are supported.
+ 
++config MDIO_BUS_DEMUX
++	tristate "MDIO bus demultiplexer"
++	depends on OF_MDIO
++	select MULTIPLEXER
++	help
++	  This driver provides child MDIO buses backed by separate parent
++	  MDIO buses. A shared mux control selects which parent bus is
++	  connected to the physical MDIO lines for each transaction.
++
++	  To compile this driver as a module, choose M here. The module
++	  will be called mdio-demux.
++
+ endmenu
+ endmenu
+diff --git a/drivers/net/mdio/Makefile b/drivers/net/mdio/Makefile
+index 048586746026..1f9bb8672fc8 100644
+--- a/drivers/net/mdio/Makefile
++++ b/drivers/net/mdio/Makefile
+@@ -35,3 +35,4 @@ obj-$(CONFIG_MDIO_BUS_MUX_MESON_G12A)	+= mdio-mux-meson-g12a.o
+ obj-$(CONFIG_MDIO_BUS_MUX_MESON_GXL)	+= mdio-mux-meson-gxl.o
+ obj-$(CONFIG_MDIO_BUS_MUX_MMIOREG) 	+= mdio-mux-mmioreg.o
+ obj-$(CONFIG_MDIO_BUS_MUX_MULTIPLEXER) 	+= mdio-mux-multiplexer.o
++obj-$(CONFIG_MDIO_BUS_DEMUX)		+= mdio-demux.o
+diff --git a/drivers/net/mdio/mdio-demux.c b/drivers/net/mdio/mdio-demux.c
 new file mode 100644
-index 000000000000..792187d58426
+index 000000000000..a64c1e1bf4ff
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mdio-demux.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mdio-demux.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/net/mdio/mdio-demux.c
+@@ -0,0 +1,298 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2025 Synaptics Incorporated
++ *
++ * Author: Jisheng Zhang <jszhang@kernel.org>
++ */
 +
-+title: MDIO bus demultiplexer with multiple parent controllers
++#include <linux/atomic.h>
++#include <linux/device.h>
++#include <linux/module.h>
++#include <linux/mux/consumer.h>
++#include <linux/of_mdio.h>
++#include <linux/phy.h>
++#include <linux/platform_device.h>
 +
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
++#define MAX_MDIO_PORT	2
 +
-+description: |
-+  An MDIO demultiplexer connects multiple independent MDIO controllers to
-+  one physical set of MDIO signals. The mux control selects the parent
-+  controller used by each child bus. Child buses and their parent buses
-+  are listed in matching order: the first child uses the first parent,
-+  and so on. The child's reg value is passed to the mux controller as
-+  the state to select for that parent.
++struct mdio_demux_port {
++	struct mii_bus *pb;
++	struct mii_bus *bus;
++	struct mdio_demux_priv *priv;
++	int port;
++};
 +
-+properties:
-+  compatible:
-+    const: mdio-demux
++struct mdio_demux_priv {
++	/* Serialize selector changes and transfers across all parent buses. */
++	struct mutex mdio_demux_lock;
++	int current_port;
++	bool do_deselect;
++	struct mux_control *muxc;
++	struct mdio_demux_port dmxport[MAX_MDIO_PORT];
++	int id;
++};
 +
-+  mux-controls:
-+    maxItems: 1
++static atomic_t mdio_demux_id = ATOMIC_INIT(0);
 +
-+  mdio-parent-bus:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      maxItems: 1
-+    description:
-+      Phandles to parent MDIO controllers, in the same order as the child
-+      buses.
++static int mdio_demux_switch(struct mdio_demux_port *dmxport)
++{
++	struct mdio_demux_priv *priv = dmxport->priv;
++	int r;
 +
-+  '#address-cells':
-+    const: 1
++	if (priv->current_port == dmxport->port)
++		return 0;
 +
-+  '#size-cells':
-+    const: 0
++	if (priv->do_deselect) {
++		r = mux_control_deselect(priv->muxc);
++		priv->do_deselect = false;
++		priv->current_port = -1;
++		if (r)
++			return r;
++	}
 +
-+patternProperties:
-+  '^mdio@[0-9a-f]+$':
-+    $ref: /schemas/net/mdio.yaml#
-+    unevaluatedProperties: false
-+    properties:
-+      reg:
-+        maxItems: 1
++	r = mux_control_select(priv->muxc, dmxport->port);
++	if (r) {
++		priv->current_port = -1;
++		priv->do_deselect = false;
++		return r;
++	}
++	priv->do_deselect = true;
 +
-+required:
-+  - compatible
-+  - mux-controls
-+  - mdio-parent-bus
-+  - '#address-cells'
-+  - '#size-cells'
++	priv->current_port = dmxport->port;
 +
-+additionalProperties: false
++	return 0;
++}
 +
-+examples:
-+  - |
-+    /* MDIO buses registered by two Ethernet MACs. */
-+    mac0_mdio: mdio-0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
++static int mdio_demux_read(struct mii_bus *bus, int phy_id, int regnum)
++{
++	struct mdio_demux_port *dmxport = bus->priv;
++	struct mdio_demux_priv *priv = dmxport->priv;
++	int r;
 +
-+    mac1_mdio: mdio-1 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
++	guard(mutex)(&priv->mdio_demux_lock);
 +
-+    mux: mux-controller {
-+        compatible = "reg-mux";
-+        #mux-control-cells = <1>;
-+        mux-reg-masks = <0x4 0x10>;
-+    };
++	r = mdio_demux_switch(dmxport);
++	if (r)
++		return r;
 +
-+    mdio-demux {
-+        compatible = "mdio-demux";
-+        mux-controls = <&mux 0>;
-+        mdio-parent-bus = <&mac0_mdio>, <&mac1_mdio>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++	return dmxport->pb->read(dmxport->pb, phy_id, regnum);
++}
 +
-+        mdio@0 {
-+            reg = <0>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
++static int mdio_demux_read_c45(struct mii_bus *bus, int phy_id, int dev_addr,
++			       int regnum)
++{
++	struct mdio_demux_port *dmxport = bus->priv;
++	struct mdio_demux_priv *priv = dmxport->priv;
++	int r;
 +
-+            ethernet-phy@1 {
-+                reg = <1>;
-+            };
-+        };
++	guard(mutex)(&priv->mdio_demux_lock);
 +
-+        mdio@1 {
-+            reg = <1>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+        };
-+    };
-+...
++	r = mdio_demux_switch(dmxport);
++	if (r)
++		return r;
++
++	return dmxport->pb->read_c45(dmxport->pb, phy_id, dev_addr, regnum);
++}
++
++static int mdio_demux_write(struct mii_bus *bus, int phy_id,
++			    int regnum, u16 val)
++{
++	struct mdio_demux_port *dmxport = bus->priv;
++	struct mdio_demux_priv *priv = dmxport->priv;
++	int r;
++
++	guard(mutex)(&priv->mdio_demux_lock);
++
++	r = mdio_demux_switch(dmxport);
++	if (r)
++		return r;
++
++	return dmxport->pb->write(dmxport->pb, phy_id, regnum, val);
++}
++
++static int mdio_demux_write_c45(struct mii_bus *bus, int phy_id, int dev_addr,
++				int regnum, u16 val)
++{
++	struct mdio_demux_port *dmxport = bus->priv;
++	struct mdio_demux_priv *priv = dmxport->priv;
++	int r;
++
++	guard(mutex)(&priv->mdio_demux_lock);
++
++	r = mdio_demux_switch(dmxport);
++	if (r)
++		return r;
++
++	return dmxport->pb->write_c45(dmxport->pb, phy_id, dev_addr, regnum, val);
++}
++
++static int mdio_demux_probe(struct platform_device *pdev)
++{
++	struct device_node *np = pdev->dev.of_node;
++	struct device_node *child_bus_node, *parent_bus_node;
++	struct mii_bus *parent_bus;
++	struct mii_bus *bus;
++	struct mdio_demux_priv *priv;
++	int r, v, i = 0;
++
++	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->current_port = -1;
++	priv->id = atomic_inc_return(&mdio_demux_id);
++	mutex_init(&priv->mdio_demux_lock);
++
++	priv->muxc = devm_mux_control_get(&pdev->dev, NULL);
++	if (IS_ERR(priv->muxc))
++		return dev_err_probe(&pdev->dev, PTR_ERR(priv->muxc), "Failed to get mux\n");
++
++	for_each_available_child_of_node(np, child_bus_node) {
++		if (i >= MAX_MDIO_PORT) {
++			r = -EINVAL;
++			goto err_child;
++		}
++
++		parent_bus_node = of_parse_phandle(np, "mdio-parent-bus", i);
++		if (!parent_bus_node) {
++			r = -ENODEV;
++			goto err_child;
++		}
++
++		r = of_property_read_u32(child_bus_node, "reg", &v);
++		if (r) {
++			dev_err(&pdev->dev,
++				"Failed to find reg for child %pOF: %pe\n",
++				child_bus_node, ERR_PTR(r));
++			goto err_parent_node;
++		}
++
++		parent_bus = of_mdio_find_bus(parent_bus_node);
++		if (!parent_bus) {
++			r = -EPROBE_DEFER;
++			goto err_parent_node;
++		}
++		if (!device_link_add(&pdev->dev, parent_bus->parent,
++				     DL_FLAG_AUTOREMOVE_CONSUMER)) {
++			r = -ENOMEM;
++			put_device(&parent_bus->dev);
++			goto err_parent_node;
++		}
++		of_node_put(parent_bus_node);
++		parent_bus_node = NULL;
++		priv->dmxport[i].pb = parent_bus;
++		priv->dmxport[i].port = v;
++		priv->dmxport[i].priv = priv;
++
++		bus = devm_mdiobus_alloc(&pdev->dev);
++		if (!bus) {
++			r = -ENOMEM;
++			goto err_parent_bus;
++		}
++
++		bus->priv = &priv->dmxport[i];
++		bus->name = "mdio_demux";
++		snprintf(bus->id, MII_BUS_ID_SIZE, "%s-%x.%x", bus->name,
++			 priv->id, v);
++		bus->parent = &pdev->dev;
++		if (parent_bus->read)
++			bus->read = mdio_demux_read;
++		if (parent_bus->write)
++			bus->write = mdio_demux_write;
++		if (parent_bus->read_c45)
++			bus->read_c45 = mdio_demux_read_c45;
++		if (parent_bus->write_c45)
++			bus->write_c45 = mdio_demux_write_c45;
++		r = of_mdiobus_register(bus, child_bus_node);
++		if (r)
++			goto err_parent_bus;
++		priv->dmxport[i].bus = bus;
++		++i;
++	}
++
++	if (!i)
++		goto err_no_children;
++
++	platform_set_drvdata(pdev, priv);
++
++	return 0;
++
++err_parent_bus:
++	put_device(&parent_bus->dev);
++	of_node_put(child_bus_node);
++	goto err_registered_bus;
++
++err_no_children:
++	return -ENODEV;
++
++err_parent_node:
++	of_node_put(parent_bus_node);
++err_child:
++	of_node_put(child_bus_node);
++err_registered_bus:
++	while (i > 0) {
++		i--;
++		mdiobus_unregister(priv->dmxport[i].bus);
++		put_device(&priv->dmxport[i].pb->dev);
++	}
++	if (priv->do_deselect)
++		mux_control_deselect(priv->muxc);
++	return r;
++}
++
++static void mdio_demux_remove(struct platform_device *pdev)
++{
++	struct mdio_demux_priv *priv = platform_get_drvdata(pdev);
++	int i;
++
++	for (i = MAX_MDIO_PORT - 1; i >= 0; i--)
++		if (priv->dmxport[i].bus) {
++			mdiobus_unregister(priv->dmxport[i].bus);
++			put_device(&priv->dmxport[i].pb->dev);
++		}
++
++	guard(mutex)(&priv->mdio_demux_lock);
++	if (priv->do_deselect) {
++		mux_control_deselect(priv->muxc);
++		priv->do_deselect = false;
++	}
++}
++
++static int mdio_demux_suspend(struct device *dev)
++{
++	struct mdio_demux_priv *priv = dev_get_drvdata(dev);
++	int ret = 0;
++
++	guard(mutex)(&priv->mdio_demux_lock);
++
++	priv->current_port = -1;
++	if (priv->do_deselect) {
++		ret = mux_control_deselect(priv->muxc);
++		priv->do_deselect = false;
++	}
++
++	return ret;
++}
++
++static DEFINE_SIMPLE_DEV_PM_OPS(mdio_demux_pm_ops, mdio_demux_suspend, NULL);
++
++static const struct of_device_id mdio_demux_dt_ids[] = {
++	{ .compatible = "mdio-demux" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, mdio_demux_dt_ids);
++
++static struct platform_driver mdio_demux_driver = {
++	.probe = mdio_demux_probe,
++	.remove = mdio_demux_remove,
++	.driver = {
++		.name = "mdio-demux",
++		.of_match_table = mdio_demux_dt_ids,
++		.pm = pm_sleep_ptr(&mdio_demux_pm_ops),
++	},
++};
++module_platform_driver(mdio_demux_driver);
++
++MODULE_DESCRIPTION("MDIO bus demux driver");
++MODULE_AUTHOR("Jisheng Zhang <jszhang@kernel.org>");
++MODULE_LICENSE("GPL");
 -- 
 2.55.0
 
