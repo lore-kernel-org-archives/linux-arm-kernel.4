@@ -2,117 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2405E606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9E8606A887
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SGlhof8K;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=ti39duon
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=grwV1+3v;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ajWynsXv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:Mime-Version:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=REYPW0V0Hw8OeT1V1MVJj6gyXDEMPTMuQhc+KEFGz8g=; b=SGlhof8KALACyYYU4pzAwg0pW4
-	B/QlT/1JCTUg4rXrILZHpUyWSeIW/LQ9Abg1ezYwNpi78HoSD6VaPFVrbA5mWYhdJkRjN83Umou5x
-	vIoGtiby7rSoaNXjfFb2navtiP5BCusMDC+UNwo7d/diKglLWVZ89cq3rjDJOHFtUaFCtWLub/X/7
-	ALD0psIqsZp2YoWDsB6Sc3sxUIp++rREJSTPbp0l0YOXd/iG8Ep63tlnoUBufxnKlHgecbx0No8q2
-	PI0MQxj56ZZ5FYFrRkbrYlIE1bphgzlguXU6D8s5YF3YZuorbk+mzEaUkFdfFAu2vjbIx2JjwSuUD
-	Ncdmez7g==;
+	bh=NqHB2bqFPRhr2sa2L1nGYaDpYxg62blVD/y+oKNndDs=; b=grwV1+3v7iQ5j3uwt1s6cvWLsl
+	BDrVono9kJF+620safaAm0ic9eSjMGyQ4MBWKOzDz0wjt8WlqSq5nfjjeU9RfFBn7vwuB7lAnaVTj
+	OaIesA3Sa70k1MHcgwfQdY/wrVnPC6K6ksU4Lh6rG2DlOTqPog2sIeX0y5mTwtzUJev5aE7yyMovC
+	63Z59qM0lN4lQ1ihpyN3tFAo7erkviyGBY9Ot7w1YVR5idlBWBjL6iDFOLqlTe55KhXNwCvlcge2T
+	mm4eqjHWedimgHvJUfNhi8CgZ24JCN7zN1XO0hjni5UuD1YLWfzLYVmQfhpvrqtmjoJxeULxQ6quc
+	ERuZDxXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxfl-00000002p9U-1GWw;
-	Mon, 16 Nov 2026 14:27:06 +0000
-Received: from omta40.uswest2.a.cloudfilter.net ([35.89.44.39])
+	id 1xSxfz-00000002pHC-0x7h;
+	Mon, 16 Nov 2026 14:27:19 +0000
+Received: from mail-wr1-x447.google.com ([2a00:1450:4864:20::447])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxfi-00000002p8K-4Aaa
+	id 1xSxfu-00000002pDD-1KOR
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:27:04 +0000
-Received: from eig-obgw-5006b.ext.cloudfilter.net ([10.0.29.217])
-	by cmsmtp with ESMTPS
-	id Sbi7xib51yb4YSxfhxrYum; Mon, 16 Nov 2026 14:27:01 +0000
-Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
-	by cmsmtp with ESMTPS
-	id SxffxAzCZSeuLSxfgx3AbT; Mon, 16 Nov 2026 14:27:00 +0000
-X-Authority-Analysis: v=2.4 cv=NYvm13D4 c=1 sm=1 tr=0 ts=6afb12b5
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=pGLkceISAAAA:8
- a=QcAV74sXaHvaKY3IglgA:9 a=CjuIK1q_8ugA:10 a=KPbNTLLc3YvdawN95zVk:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-	:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-	:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=REYPW0V0Hw8OeT1V1MVJj6gyXDEMPTMuQhc+KEFGz8g=; b=ti39duonapH/OckZv4V65mFYnf
-	zWs7h8UMwiLZo2J345Xd1MIc1V2i/uT11BD6YIUFmVrEqZCXsO9fQ1jvtAMaO25lWzhppbx2yF+4u
-	ruqcZar0Loo0GHdG2gXsWh00FxIPx//KLYx+ZSiejT9Qi/DGXN7R6mXNzw9gYS4vTQNJ/10Ab/vel
-	6UzeNg8+YQpL9dna+rPlI4tCX/xCL97vCOg7jIrOKSBgj3i/jUU+LqBtA+4YXaBSiWjNtWS11PqA5
-	m+DBvkQP0aGuSlKhPgzQtbh2iK4SnicdvXrN7+1See3aaD7idxTocydr4+J8Q01Dmh/veAdatWoae
-	3zPs4Pug==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:49322 helo=server.roeck-us.net)
-	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <linux@roeck-us.net>)
-	id 1xSxfd-00000003oF6-04lF;
-	Mon, 16 Nov 2026 19:56:57 +0530
-Date: Mon, 16 Nov 2026 06:26:56 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Alexander Letuchiy <asalde.le1@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Mattijs Korpershoek <mkorpershoek@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-input@vger.kernel.org,
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 4/9] watchdog: mediatek: Add support for MT6895
-Message-ID: <eaaa1e62-ad8c-4cd7-9855-f8efca36cb70@roeck-us.net>
-References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
- <20261113-initial-mt6895-v2-4-4ab0aa9fa391@gmail.com>
+	Mon, 16 Nov 2026 14:27:17 +0000
+Received: by mail-wr1-x447.google.com with SMTP id ffacd0b85a97d-4931c89d228so1939941f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 06:27:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794839232; x=1795444032; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=NqHB2bqFPRhr2sa2L1nGYaDpYxg62blVD/y+oKNndDs=;
+        b=ajWynsXv8H0uSu+xI58s2N85D0T2UVauPTImOvkw6qOpNJLkz+MP9cIRt+1nGEH/Ow
+         SYIOmuUowBsOFHzI2ZpjvEGe+smc2QU36YbUvZOObppnzlp7Wq6YAQiTwns+CU3zXK7A
+         dN4b71td8nHz6FDx7o2UGcl1u/SpJHFQJCWmBfGdudZm3zW7ZTvLyiikQ3tyTE+uWdO6
+         +N7cw++mM+/xzw7/nK4LDYRW5rsKDm8dndOGLt4Q1zvK74cjhqDK+KhajqcwjtjolbVp
+         /Bt/n9GARZ5o8Q4rd/Ox1ldhTBEKeT94/k2OXHuBOaMt0z6g9v7op/txJQaBYSY7Kr8E
+         ngHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794839232; x=1795444032;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=NqHB2bqFPRhr2sa2L1nGYaDpYxg62blVD/y+oKNndDs=;
+        b=nRt/C2u7WmU3SGgGT7ot1qV/ZjElkGGZ6G/0qs0UVIIWxc/bJUNiFMum3tVbVsacEv
+         WOKTtDul8xrFOFUnLi7eSIjh+JUBj5rQnSn5Y9NxxL1wmmFO6F61A1KupEAhi4M5h4Nw
+         sjHIOnD9HiwWMtwYr36IkhCfsL8Jpq0fq91T6SPg4JBE1VGd2LjTlUE4RITHVxrqPfpk
+         2ixIos4Xfdo6FwfS58IFF8YFGm8EHZELF/Wht+giiRzoqeN7tLlMLwvADkTknyPosuRy
+         YmYx9QzjsF2cB8DCRQqJL1wP+eF4VCNcFUk984x1fQO8ZH5p6BR9soTHfsK7Dwehk6tc
+         9wQg==
+X-Gm-Message-State: APuU4Z8keblCl4rU7Tf7Yw4y7pkTtGsUZNvHwc8CxCMA3AB9Qza10Kq9
+	bW1OueZrvk6wX/k4vYr9Wm4s8mrr8HxA9r3e4wqDUOjpJOvMNxr5iY9m9XUwG3NM9iCzEGRhIg=
+	=
+X-Received: from wrrz7.prod.google.com ([2002:a5d:44c7:0:b0:499:de0a:f0c0])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6000:4697:b0:492:c53e:2ea8
+ with SMTP id ffacd0b85a97d-49c7458620emr17115499f8f.49.1794839231620; Mon, 16
+ Nov 2026 06:27:11 -0800 (PST)
+Date: Mon, 16 Nov 2026 15:26:19 +0100
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261113-initial-mt6895-v2-4-4ab0aa9fa391@gmail.com>
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1xSxfd-00000003oF6-04lF
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (server.roeck-us.net) [108.223.40.66]:49322
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 56
-X-Org: HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfKTTeLEPDUQin6aeVE6OovCK9/X8AN2YLz4/qQiZEtk9yE+t178xTW7wBXpY40qcipfuFM5rELc5tRrdxenLwRTBCF0g/dR2Mx6Hv60+x3i/B/SlwxT2
- 8uJ1dpu2a0xrZKe/HVL+bhERrA8GS8xcyzJiQBoy6HyZZTvxmq8MV217Nis0B6GVpdHsZu8adcb5HiVPpXiRUYygO5tvqsahRkNKLlyyAldtvgt+2fLG019o
+Mime-Version: 1.0
+X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5815; i=ardb@kernel.org;
+ h=from:subject; bh=4h21oJbzpY+BN/Rm4SjBto+DpUA56NZXutkaqN//M8I=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIeu3UHfE+Yl3K9tdjnM7qv3X3/Y3o8bm9OVjhrkhc8I7l
+ z+Wuva5o5SFQYyLQVZMkUVg9t93O09PlKp1niULM4eVCWQIAxenAEwk6wQjw8U9/tcXhZy979/0
+ Y5/C4daVgblvWiN1bOU0jmzvTFYKiWRkeP3llMaKY5OuXJFo/3ekoKP96aaJnfa3U+tz5Sz25P7 awwcA
+X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
+Message-ID: <20261116142618.1687025-17-ardb+git@google.com>
+Subject: [PATCH v3 00/15] efi: Expose loaded image properties via info struct
+From: Ard Biesheuvel <ardb+git@google.com>
+To: linux-efi@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
+	Jason Gunthorpe <jgg@nvidia.com>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Huacai Chen <chenhuacai@kernel.org>, loongarch@lists.linux.dev, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_062703_052574_9BB0C5D3 
-X-CRM114-Status: UNSURE (   8.78  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -0.1 (/)
+X-CRM114-CacheID: sfid-20261116_062714_383195_BCCD3283 
+X-CRM114-Status: GOOD (  21.09  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,25 +94,128 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-21.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 13, 2026 at 10:05:00PM +0300, Alexander Letuchiy wrote:
-> Add the compatible for the watchdog of the MediaTek MT6895 (Dimensity
-> 8000/8100) SoC. Its watchdog registers are the same as on the other
-> supported SoCs.
-> 
-> The TOPRGU reset layout of MT6895 is not known yet, so the entry has no
-> match data and no reset controller is registered.
-> 
-> Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
+From: Ard Biesheuvel <ardb@kernel.org>
 
-Applied.
+Clean up the arm64 build script and linker hacks that zboot uses to
+obtain properties of the loaded image (which it cannot access directly
+via a relative reference like the ordinary EFI stub).
 
-Thanks,
-Guenter
+Instead, define a generic struct efi_image_info, and expose its offset
+in the loaded image in a similar manner, but without relying on explicit
+linker script exports.
+
+Populate the struct with section markers that all architecture use for
+loading the kernel image at boot, so that all the linker exports can be
+dropped for them.
+
+Changes since v2:
+- Add some additional fixes for RISC-V, which deviates from other
+  architectures wrt its section markers. These patches have been sent
+  out separately as well [0] as they will likely be taken through the
+  RISC-V tree.
+- Pass an efi_image_pointer to efi_stub_common() that points to the
+  version inside the loaded image, so that its relative references
+  accurately describe vmlinux in memory before boot.
+- Avoid weak linkage hacks to derive the kernel entrypoint, and instead,
+  always use the entrypoint passed via efi_image_info
+- Use efi_image_info for sysfb_display_info so that efifb earlycon works
+  much earlier on zboot
+- Drop changes related to the previous bullet that are now no longer
+  needed
+- Add acks from Jason
+
+Changes since v1:
+- drop arm64 image header changes
+- move efi_image_info out of __efistub_ scope so it can access vmlinux
+  symbols directly
+- implement in a generic manner for all architectures that support zboot
+- address Sashiko comments
+
+[0] https://lore.kernel.org/all/20261111164345.4059964-5-ardb+git@google.com/
+
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Paul Walmsley <pjw@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>
+Cc: Albert Ou <aou@eecs.berkeley.edu>
+Cc: Huacai Chen <chenhuacai@kernel.org>
+Cc: loongarch@lists.linux.dev
+Cc: linux-riscv@lists.infradead.org
+Link: https://lore.kernel.org/all/0-v2-989a18390eb1+486-arm64_drtm_jgg@nvidia.com/
+
+
+Ard Biesheuvel (15):
+  efi/zboot: arm64: Add missing barrier after cache maintenance
+  riscv: Use _stext not _text to denote the start of kernel code
+  riscv: Make _text point to the start of the kernel image
+  efi/riscv: Rename __init_text_end to __inittext_end like other archs
+  efi/libstub: Avoid _end section marker in library code
+  efi/libstub: Capture loaded image information in struct efi_image_info
+  efi/libstub: Pass kernel entrypoint down to efi_enter_kernel()
+  efi/libstub: arm64: Use struct efi_image_info to access image
+    properties
+  efi/libstub: loongarch: Use struct efi_image_info to access image
+    properties
+  efi/libstub: riscv: Use struct efi_image_info to access image
+    properties
+  efi/libstub: Make efi_remap_image() return efi_status_t
+  efi/zboot: Disentangle efi_remap_image() from efi_cache_sync_image()
+  efi/libstub: arm64: Drop zboot code_size hack
+  efi: Make config table based primary display handover ARM-only again
+  Revert "efi: earlycon: Reprobe after parsing config tables"
+
+ arch/arm/boot/compressed/head.S                      |  2 +-
+ arch/arm/kernel/efi.c                                | 27 ++++++++
+ arch/arm64/boot/Makefile                             |  3 -
+ arch/arm64/kernel/efi-header.S                       |  2 +
+ arch/arm64/kernel/image-vars.h                       | 14 ----
+ arch/loongarch/kernel/efi.c                          | 20 +-----
+ arch/loongarch/kernel/head.S                         |  1 +
+ arch/loongarch/kernel/image-vars.h                   |  4 --
+ arch/riscv/include/asm/sections.h                    |  2 +-
+ arch/riscv/kernel/head.S                             |  1 +
+ arch/riscv/kernel/image-vars.h                       |  8 ---
+ arch/riscv/kernel/setup.c                            |  2 +-
+ arch/riscv/kernel/vmlinux.lds.S                      |  6 +-
+ drivers/firmware/efi/earlycon.c                      | 16 +----
+ drivers/firmware/efi/efi-init.c                      | 24 ++-----
+ drivers/firmware/efi/efi.c                           |  5 --
+ drivers/firmware/efi/libstub/Makefile                |  3 +-
+ drivers/firmware/efi/libstub/Makefile.zboot          | 11 ++-
+ drivers/firmware/efi/libstub/arm32-stub.c            | 48 ++++++++++++-
+ drivers/firmware/efi/libstub/arm64-stub.c            | 44 ++++++------
+ drivers/firmware/efi/libstub/arm64.c                 | 23 ++-----
+ drivers/firmware/efi/libstub/efi-stub-entry.c        | 27 ++------
+ drivers/firmware/efi/libstub/efi-stub-helper.c       | 15 +++--
+ drivers/firmware/efi/libstub/efi-stub.c              | 26 +++++--
+ drivers/firmware/efi/libstub/efistub.h               | 71 +++++++++++++++++---
+ drivers/firmware/efi/libstub/fdt.c                   |  5 +-
+ drivers/firmware/efi/libstub/image_info.S            | 19 ++++++
+ drivers/firmware/efi/libstub/kaslr.c                 |  2 +-
+ drivers/firmware/efi/libstub/loongarch-stub.c        | 12 +---
+ drivers/firmware/efi/libstub/loongarch.c             | 10 +--
+ drivers/firmware/efi/libstub/primary_display.c       | 56 ---------------
+ drivers/firmware/efi/libstub/riscv-stub.c            | 27 +++-----
+ drivers/firmware/efi/libstub/riscv.c                 | 16 +----
+ drivers/firmware/efi/libstub/zboot-decompress-gzip.c |  2 -
+ drivers/firmware/efi/libstub/zboot-decompress-zstd.c |  2 -
+ drivers/firmware/efi/libstub/zboot.c                 | 28 ++++++--
+ drivers/firmware/efi/libstub/zboot.lds               |  6 +-
+ include/linux/efi.h                                  |  1 -
+ 38 files changed, 289 insertions(+), 302 deletions(-)
+ create mode 100644 drivers/firmware/efi/libstub/image_info.S
+ delete mode 100644 drivers/firmware/efi/libstub/primary_display.c
+
+
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+-- 
+2.56.0.611.g1030f0b940-goog
+
 
