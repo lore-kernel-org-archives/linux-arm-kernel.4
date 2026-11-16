@@ -2,113 +2,155 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB24606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 02:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22E0606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 03:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X8qxJgW2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aMWLxxh7;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=L/EU/bo/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Cc:To:
+	Content-Transfer-Encoding:Content-Type:Message-Id:Date:Subject:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=d2em7nzPLtQPJSojdd+nKqhTn3deaCQuJEyo4+tZSms=; b=X8qxJgW26W0jQVkMQZtD6z+GxB
-	FjKvfe+C693yFmhNU8qgl22RdrQnHwD0RQ0K1yLJCozVG5nxTpjru9na5nfxZGgVhdnVuxrzEakCp
-	WlSFnJ2r0KNLd08yugtS2NpiPOtDoZ/Roa3y2gNzeUG4U2hPYd3C4ydBit+Ldk+cQbjTmU3uaWurF
-	qFSUx14su6kq/kTymLiCEK/F9DqFBg3dQKyY/j+Ld7qT+3cDpI5hB2GhCuTTVtBjDnbPGrp6ljrzg
-	V4TUicKWIjFy0Q5+JdPtTk1jd6GZmke5BGZuHKrjkP+a7McIYmgXePENJgX/c8ZGx1dayAKN0Q5Y1
-	AIa8IWLw==;
+	bh=qZxuOMJlS99jMJY8/NJ9eY2uVqvvmrpsOu0oaCbRvCc=; b=aMWLxxh7/kzw5hBt06a2PXbu+p
+	t7Waj5MWP/khHzA1UiNP2HFMnZKEYrNVh//AFhh+HViYBCMsqEAZYvQDrpjlC56pK8Fl1oJouwa24
+	a0PTvt5sVl/sJNYGsLTq+bZxA41qsLzrQJg9+gqUQbg0MDV/jkofC3MUTj+TpQlc+I4PRgIHtBV8e
+	LWh8ccW8SUDk/MxiujNuzwakpeRZ57WNz1ZasdF8y1+WpEbByJyVOPNF282suduYHH+xQiMlIsf1u
+	Yx/xJaZJtzyliA9frOR069OErVI87BduvPil0snGUtMg5HE0eNm5eqkORdykMHWbX4zisLhdnaFod
+	AqfHuh6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSmvM-00000000ykf-3jBD;
-	Mon, 16 Nov 2026 02:58:28 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1xSmxV-00000000yvs-1F8v;
+	Mon, 16 Nov 2026 03:00:41 +0000
+Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSmvK-00000000yjv-0hAO
+	id 1xSmxT-00000000yv5-0Ewp
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 02:58:27 +0000
+	Mon, 16 Nov 2026 03:00:40 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=g/O7Zb4sWc8hPYjV3sSC0IkQzb3RXprJhT4VqM0fUrU4U70mgZCsORddwbFirwq4x9WcHPcQhjjBOssWMpbcb1meDX/G/yZfBJyIPrQmGpu4vcHAYHR4958H2aGLutApUP995SI+/saUdQDKDisI2iw7R8WTrCVu9MDMZErc+f2/LGFpU1Ol/YxH+T2Bed5eU0+HBIgB46+nXTojZp5zmaXg4HW/suzkkqoMbFDM+1vw9vq0CWZDpXkj6ZQZvK5/8KtYiPGg7HIMM+Wpum+nAgFLXAr5V2Jo+pA4QJ7Mw1/3Vi0p9oRwHFXZbvnigVNtbNwDIunVQbR0SKWNXtOOuw==
+ b=ntI9f64CGX8jmOrGVFemmKQptEGurC/KLJRAg+58EP/SPMamtQk1i7HeqDmEqTJQq+gPCFdwusfH6QXJrNRiNyssXSJwfOxh8xidoqaC0go5qY2BVZ3O/9NuysH6s+YoShDtBkLpT+wQkF8e2W3lsDQwtOW1Wu7KN342ZVAdWzqEQ6IsQI42Uv+u18i4u3RjkKELtd07CShn/Xi+Wv/LOJQieUV4o/cAoG/ohLrCV6ixQ93avIlpvIF6GlqTHaxBLnfULcx11k59EZ3vMNjYGUYTJQgPMWs9hC7VZo6WLlhnQ+HZj7kL+Z8YaWbdj+2Ef9fNAvqbQ0ixkffKj5p8Ag==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d2em7nzPLtQPJSojdd+nKqhTn3deaCQuJEyo4+tZSms=;
- b=fjrtNq8W99hgWWRdFMrHsxI/S0J24hhmdAY+Zvf3ZvG/0gcnb0ddSJ1o4RUGzcWx9vdE/iA5ahHx8aOLY16cU5VSxjPfWriR1WVAcloZWndHOmQ8jAAFWxYuEu/PCnJqS/LfU1NeWTFl/I3U4a+UeGuq7GCagLARKxWLIXZ6BJ9pQTVMiW/C2z/sHNdyM3wNCe8Fau5ADC22+JlVjtFBQXzIeI2d+GYykrKshNlxtztPd+6AmiOi2emLT/3weeUcbOziCAVM9dtjBhLHCYQW+JRAfVUvJ/r2QZoVnwNZF2ciZ7m7ZbcelkvW1wpdqlas7gQH+UO0XLI2yOBxnrEc0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PUVP216CA0044.KORP216.PROD.OUTLOOK.COM (2603:1096:301:210::17)
- by TYNPR06MB9200.apcprd06.prod.outlook.com (2603:1096:405:3d5::12) with
+ bh=qZxuOMJlS99jMJY8/NJ9eY2uVqvvmrpsOu0oaCbRvCc=;
+ b=PXkQGopfG5PrQgxg9fhdEA1OJpmuDFRupU6BwlIICjASuibZChCGOkwoJOw3lbIC5PSuNcAAfFcc9Tz9Ft5/BSd1poC3XuYfJyVQP7YsUATVIDjdb3ijgM2KHuW+cWqLGCv+Sm5/tnU9C/pcua/2XMk/R4yDrRu0q60ESmFF8kUycHqrDCy5Mp3b0MaRcRRW0QX+OQVSv3FYb/YK05rlixLwLbWVHBakFlxAy3baO1dMiL3p0UbhTv74TbXgSwj1V90+N4TcP3swTdv3tBEZbgejYiTKSm17eIFaPlDRnpGehQQxF+Qy7dGudW9g07RuHiy8CUTpepsZCCzGNUM9VQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qZxuOMJlS99jMJY8/NJ9eY2uVqvvmrpsOu0oaCbRvCc=;
+ b=L/EU/bo/SWdXVXC1CHi1UWaL6DWe8YuRIEQZEmKnPJLMLBctFnhGMHoXD1PxNMG791s6e5ITmGY9GPYXANwQLy6CtWPpL/bOzy7YSLDJb/5Y1+ZFY+YiLn0t5c7QbHChgL1aXfdZDpLoqAfkGCQE76nj5DOXM+QIHHBlT+hMtEvfFCet6iZhD4ysVoY5r2PHRasy2ozZCqQWUq+GLRrO4Ssvhot+Z1a//mUY0jeHeoCr6k6CMoxlJWHx3NzuC0zfpmdXZ7qPKwgoHjoRBOftCG7WZSCrMnbwxUE7xBsyGXeW9atVna3ldrjufwu2JtvycfdRF7GW7EsxLTPHljvz+g==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by PA6PR04MB11778.eurprd04.prod.outlook.com (2603:10a6:102:525::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Mon, 16 Nov
- 2026 02:58:16 +0000
-Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
- (2603:1096:301:210:cafe::a8) by PUVP216CA0044.outlook.office365.com
- (2603:1096:301:210::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Mon,
- 16 Nov 2026 02:58:16 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB83.mail.protection.outlook.com (10.167.253.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 02:58:15 +0000
-Received: from JohnnyFan (unknown [172.21.64.24])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 886CE427EFC7;
-	Mon, 16 Nov 2026 10:58:14 +0800 (CST)
-Date: Mon, 16 Nov 2026 10:58:13 +0800
-From: Johnny Fan <johnny.fan@cixtech.com>
-To: Leo Yan <leo.yan@arm.com>
-Cc: will@kernel.org, mark.rutland@arm.com, suzuki.poulose@arm.com,
-	jeremy.linton@arm.com, maz@kernel.org, mike.leach@arm.com,
-	james.clark@linaro.org, alexander.shishkin@linux.intel.com,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com, jie.fu@cixtech.com,
-	bob.zhang@cixtech.com, Fugang Duan <fugang.duan@cixtech.com>
-Subject: Re: [PATCH v3 2/2] perf: arm_pmu_acpi: Support heterogeneous ACPI
- systems
-Message-ID: <avpxRZFX4Iebu0l3@JohnnyFan>
-References: <20261102084153.3975282-1-johnny.fan@cixtech.com>
- <20261102084153.3975282-3-johnny.fan@cixtech.com>
- <20261113160041.GS9176@e132581.arm.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
+ 2026 03:00:30 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%5]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
+ 03:00:30 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: [PATCH v7 0/9] dmaengine: add DMA channel bus and fsl-edma
+ per-channel IOMMU support
+Date: Mon, 16 Nov 2026 11:05:21 +0800
+Message-Id: <20261116-edma-iommu-v3-v7-0-32794ba8efbf@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPFy+moC/3WNUQuDIBRG/8rweUZaKu0pGPsVYw9qt+WYGVnSi
+ P77tL2MweC+HPjOuSvyMBrw6HRY0QjBeOP6COJ4QLqT/R2waSIjmlNOSE4xNFZi46ydcSgwpYq
+ LQhCh2xJFZxihNcveu94+7Gf1AD2lSFp0xk9ufO0PQ5F2/9rxclw1OXAqK1aCqi+LtMMTsrOzK
+ NUD+/IJ+fVZ9CkrhAYFXEta98uQ6eRu2/YGmgCfD/oAAAA=
+X-Change-ID: 20261102-edma-iommu-v3-22b673717cf4
+To: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>, 
+ "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Laxman Dewangan <ldewangan@nvidia.com>, 
+ Jon Hunter <jonathanh@nvidia.com>, 
+ Thierry Reding <thierry.reding@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Frank Li <Frank.Li@kernel.org>, 
+ Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev, 
+ dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ iommu@lists.linux.dev, linux-tegra@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Peng Fan <peng.fan@nxp.com>
+X-Mailer: b4 0.16-dev-7bc12
+X-ClientProxiedBy: SG2P153CA0016.APCP153.PROD.OUTLOOK.COM (2603:1096::26) To
+ AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261113160041.GS9176@e132581.arm.com>
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB83:EE_|TYNPR06MB9200:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1542decd-c243-423b-0dcf-08df438d75e5
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|PA6PR04MB11778:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c7b23ae-bf63-4b18-4fae-08df438dc621
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|376014|7416014|1800799024|23010399003|82310400026|10067099003|4143699003|56012099006|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261022075727099003|261102124527099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 2AMB6foqyk23u3HR/0PBQZzhp4lZyWKjvEzBkLbPg+m64tkuvRX4SNUmxEPd8Fa07spj8YkPd6ikrkQrZTdbht6IXJMys4r0oNJCBBHjPJwrMTc07XGuwHzzWq63ZoJ57nhZ64POznIedCMj5d51TxX6d/hwo4znPdU04EgeXK8BGOY3cwd+YNskypcOaVZVQZGuUFUU7iXD/8F3Op3e8YtqIyKcNTHyS/wnmZd2GcweSjOxYa0zxcLsUCcBjMZasCkR7vjyfOv2PcU8AqW5yINChf2WIN0y199LcT6/k/bWBo0j4Rgbm1HCQnVrmSXlOsoBor8ZcaDAb/l3wmcTJOdJV14F+1s6Pon8WHoM8oJ5lAyxdt0Hu3yWC/W+L1H0mNVp+bpm9My0oZbDb6aK2YmUwy0LRTUErBNdyO86J2cNnm/twx5aFEgfbIrtSXrTipg5VddTSDdPNSc1InQ3OjEvYF+M5zMDeW00ORGnZQWK93B6niGcU5xFsCmk2dPrZtlEFxPoieUhgd1b1NwoScsuWUtViZVGrkRqYdeks05MgN1w1WNz4SqBDC5IbuhTv3fzcXixUAT8eiv8QVArPXSDEk6dDZ11YnI2UuxLamwKcB0vZsJcKNirLZvIXxEnwR6nu4kKh4e/aCou+NUfrxNk3yBL56f3SUm3AAD0+jQach7USK3fV4ytjBZwswgW6rER6KEH6nfW/Hm4eOhXdg==
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(376014)(7416014)(1800799024)(23010399003)(82310400026)(10067099003)(4143699003)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261102124527099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|23010399003|19092799006|921020|10067099003|5023799004|11063799006|56012099006|260925022911599003|260925021911599003|260925021311599003|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261022075727099003|261021123027099003|261021121427099003|261102124527099003|261102123227099003|261009223027099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: wfL+PpEh4wA/Nxm/SRQulC3gKB5KZzC5bUISeeNfA/apHssf7gqEw1jxaBtjwGe+2z1QkJDqy/7HmZD117fsotf+5h95Js2y6pmL0Shh6H8J8BwFspof0Z2bKFeqIQA8Oebkvke6M6/Om0B7nB0AbkVTL9qEK08ukhz1FVXxe5ZXN/aL1mhUdsBb//YTQMtL8zeso8Ghflv69QjYN1tAkYjjdalNxIBR+iEN330BDd0pQ7YYqYXXLLf5I0jDT7BBBC3nIYw+JEcJgeZE6J3NHlF0YSw4AriDeBh28IkwhNLf/wVkfgqE9iL6fl6IPGqkRlB4wGJHDcH0Fzhw1a+LVkF6kdRiNnMCYN6ssd1MMaPszgJXpmA2eaz30SyoeBfvglXaFhPqBlrdwkMbWuF7kOynAPSpRHHKGtTGb7mrrFPVDzvBsPuvYz5uWU9Jd9p2/STePkBvYTocFSeg2TgYXRnZC/BjXSpXnfG6pm4LuwVbyBTkcy40nhi4xpHXcXhny6hteZnUxUmqJgWK7TbJRr+Iu0q50ibVoYm0N+7+iGE8fEl3YMKBEzDpCSc/0JZaUimzozLM5v045F0mdbq0PxHym6lJ1zqyQTltEtX9mkFgILphRzdUmRQFJjT/MbfGzbl2H4fWXCGj8zljTHpaZ4Egh2svcKq86uS70aeVOJQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(23010399003)(19092799006)(921020)(10067099003)(5023799004)(11063799006)(56012099006)(260925022911599003)(260925021911599003)(260925021311599003)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261021123027099003)(261021121427099003)(261102124527099003)(261102123227099003)(261009223027099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: B6Cdz4ifVZA78aIIJXaKFBwG9CNNJablUxJ/iDFw0B+pf7gF73cpKcrr6v1RWrTqEkKdGy+6uQPjB3MycZk/4L6RYi/xBi/I0j2bd1Fv1UVUd2+wd0NXQd6vTZ67nQC013vx2iFAXjjeRln4YhPbnRHw6B0k7XXULn5hg9nyPVO0HAEPNQx4uJHJKjwPu5UisnzWHKK5Gf5OwD+raLcFXQKv4kMTO9E3iygkfjwTrYr6p2svw85ysZsT4B432tZhOooIBThw7M6GVHVfU5yDUvsRR2TrXyCX/GpoM2oopC88ZkxvgsAVu8baUd8T1tFwwgDsYXiSKc3f1zcZEdXT7xT3fEU5ubBbH9zEpLHwDTvEML0NRBAnO48y6KDWHiXJFrQkYFSJMT4rZD74Rc6LS/Z2CdsCt7EmZTWhGYUmiT6p7hSv5NaseFldMNJvJQrP
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 02:58:15.5275
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bENRVHNlQXBMZ2lFMWZlQ0gvOHpCK250V2xsWmNFNHhQUGRGUXUyeUpyMW5r?=
+ =?utf-8?B?OENIM1NYbTdaL3F6c1RCMGt3Y2QzN21DTWUrcFpselJVK2ZhYmkzRndKOHdN?=
+ =?utf-8?B?ME1FTUoxWFBUV2JaWlhqWlRWcjUxK21VVFdVS0pjMHBUTEdYdWRpWDJXNlZ1?=
+ =?utf-8?B?eEx5V3pCVVRvSXUrQzYyZ2gyMXQ2Um43V2FhMFNHU1VqRTVtS2xEdFZuVHJC?=
+ =?utf-8?B?Q0lnVEVuaXRkaDBKZzlpdHRTQWQwMHZqRVl4cVJGRW96YmROTVNRU2dFVEYr?=
+ =?utf-8?B?OFFiaVQ4UzdRZE5vUUplWjZWS1o1VGFXK2JQMGpMZDFTMGFtNUptT2IveHRl?=
+ =?utf-8?B?ZFgyUVRoWlZkTDVXbnloUGZsUVV2M2pBN3Nycm96ZGt4VzJ4NUlvdkM3dFhE?=
+ =?utf-8?B?a1hOaVJLUmp4ZVBJdGFiTjdRZXZKREFLOVd6T3dXZ29pa2l4dW9YZzVrNnZ4?=
+ =?utf-8?B?elpFNEdiU1QraXZJVlRzQ3hqMmV3eEhvWnlmd2U4dTV0UEtBN2FFejlKeHpR?=
+ =?utf-8?B?M2pWejBBNkZLc3RJN0RvQzZHN2Q4NjBSaEZVSkVvQ1FvcjBjWmVEZzRsOE9w?=
+ =?utf-8?B?U20zNGt4MmdkK3M0RE5qUFBBVHUwUXhTUVcyMjdtZ1lacExnWnRIalRacmgw?=
+ =?utf-8?B?cjRHOFVvcUNWV3pWdlZ1dG0xTENWcTFiK240SXJDRXVzWDdnR1FCNEZ4NEQw?=
+ =?utf-8?B?dUlGMmhpSmwwTUR5TFVhRGNLRjNZa25adGcycDBSYWhCMEdvcmdxSS83OHRi?=
+ =?utf-8?B?NUxHZDhEbENEQlMzZlY2ZUdrcjU3WXkvMFlXeEU2RTE0OG1RaVdiOSs4d2tV?=
+ =?utf-8?B?UVFhRGxTb1E5a2cwVjYzZ2NHM1JEU2s4ME9mZFFrSXgzemRPNk1EUkxhQVEy?=
+ =?utf-8?B?eXJEY3BBYitVKy9qNmlvRVB0MmlYUVRWQlVnczFsQmxqcHBQTUVRbUtRNURW?=
+ =?utf-8?B?V0ZKSFlNa1d2b3FRZXZ3aVFlV3JEcml1UmllWGdHR0dZK2NXYjdxRjFsUm05?=
+ =?utf-8?B?OG9NaWNHQkFaMkNMZWF2cFNjS2hyQ09oYzZvMFJ2dGQvUXZjSWczOTAweWNr?=
+ =?utf-8?B?MWdXTW9FeU94aE5PdlZIMjF6dklYQ3FLUGdzOUFma29BaDV2TmlyTlhsU0FH?=
+ =?utf-8?B?QWhIaFlJN2ZHdkhtOGNWcGMzY29rUTBEOWdxVVNISWtVRW5zcE00eTFZNXY1?=
+ =?utf-8?B?S09NUUg2QWh1ZUVYOFkwYmcrZVJqVS9kOVNaZ2lKeFBzTU54Zjd4dFVhSGtS?=
+ =?utf-8?B?aDR1VmY2Y1FabXVGaGI1aTV0OExYNkRzNHFpdmVKczlRa2dDYkhXZUo4WktB?=
+ =?utf-8?B?ano2UStUUG90NGtmY3hUc1lzT0RXVFBMc0xjRnJQQ2MwT3FjWjE4U0gxYW02?=
+ =?utf-8?B?Z0JTV0dnZkR3UTVCTXRZT1Y1SVprNlQxeHJHd01xbk9MMXVqRytlMXhUNDli?=
+ =?utf-8?B?NEwxdzRMaEV5dEt6S1hBYlAreDJ3bDRsY0Q2Rnd0aitXZWwzVys1TVlTUC8y?=
+ =?utf-8?B?SzA3RzZvU1JPNERRWnU3UHRMN2NPV2FwMGpRN3ZzNXo3SmEvcGlTeUhQQVY2?=
+ =?utf-8?B?eWFRMklpNFYvK2pRVXZ2Zk80RUhrTHR3MkNIWkFiWEYrV0VpQnVRM2dicHMz?=
+ =?utf-8?B?dFFHeW0zekJFQnBZVFJaNkQzKzZrMklvdEViV2hZbmhzSUNYUTJwbHB5RStJ?=
+ =?utf-8?B?VDdzdDRCWm8zQW9tdXBvblVrZDMyUGlGYWN5UllLaVY4c2EyT0tBTWIzV3U3?=
+ =?utf-8?B?TmkyUWhUMk01SUpreE90QVNKOExCOXJCdWZvTm1jcG91aVV6RHdvcVo4S3hz?=
+ =?utf-8?B?d29xTE9hNkRnN2xVaXl5RmZWUFc2bXVzS1o0Qjl4NHozbEQ2R0RKb04yVjZI?=
+ =?utf-8?B?VGlpZk5kTS9oaUcrc2Y0VXZ2YjQ5U2R4TSt3aUpzU2NrM3d5NFpuSlFQWDd2?=
+ =?utf-8?B?bktwVUFEbC9jbmgzUVFVVnFkWVVQMUV0NkF0YlBEelhNbWU4eGgxTEtGZThy?=
+ =?utf-8?B?VGRYRTI4bmt2L0VaM1pRcTFjaC91VTJWa2JNWXZ5a2hMMXFKd3lpV21RNjJW?=
+ =?utf-8?B?UjdxMWZkT0dkVk9UczdkQ3o4c08zejBHRnIvNTRLSW42UHdWY1BGZ1oxZFor?=
+ =?utf-8?B?WWpUODg2M3FKVXdrSUU1alhtOXgxZ1NRUzhsTVVkSkNXZGh0TkYzbDAzcWl6?=
+ =?utf-8?B?eUxYNndYSUp2eGM4VkxOTnBZak1RMy84T1ZFbmFTcTZtK3V3RTdGYUU3VEVV?=
+ =?utf-8?B?VnB3bUJsTk13QW9oanF5ZHptU1dRaXFGZGlaK1FEQVRSUEpQSjIxOGQ0N1No?=
+ =?utf-8?B?K0FaU0hkMi9qWjFHZjJOWlFiQk45WkxDRnE5WldmZXhuQlpadU4wVUpSNElF?=
+ =?utf-8?Q?6BKIiZl2aW2tuaTb8LMpbGgw27G1dieA4IGhQ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c7b23ae-bf63-4b18-4fae-08df438dc621
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 03:00:30.5072
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1542decd-c243-423b-0dcf-08df438d75e5
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB83.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYNPR06MB9200
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cgJDaXnAodgKsRn5KP8uN9rLBI0gK6wCoPNaJfHqdcLFHwIGNnUfjUQQlj5OlYnZt9ul15cjMmVyvhd6bArax63Awo3RwAIW8mkISLeHSYytRWfKO2LMMzRiXQzyk0+n
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA6PR04MB11778
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_185826_203638_6D160072 
-X-CRM114-Status: GOOD (  10.92  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261115_190039_300879_041EE480 
+X-CRM114-Status: GOOD (  20.28  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,33 +161,193 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 13, 2026 at 04:00:41PM +0000, Leo Yan wrote:
+I used iommu-map for eDMA, but iommu experts rejected it:
+"Using iommu-map to describe synthetic dma_chan_dev devices that the
+kernel creates is the same kind of DT abuse from over here:"
+More info: https://lore.kernel.org/all/20260917144804.GI3196566@ziepe.ca/
 
-[...]
+So I followed here [2] as Krzysztof wrote for QCOM VPU:
+"Thanks Jason for context and detailed arguments. Robin did not chime in
+yet, but from what I understood the DT-child-node approach will be the
+way we should go here.
 
-> Based on above idea, I would fold your patch into my series (but I will
-> drop the first patch for changing TRBE/SPE drivers). I will keep you as
-> the author but please bear me a bit that I may refactor it to fit into
-> the extensions. Hope this is fine for you.
+I accept above point of view and I am fine with this, thus Vishnu and
+Vikash - please go ahead with DT-child-node solution we had some time ago."
+[2] https://lore.kernel.org/linux-iommu/c7b956a9-d3e8-4e18-b780-5d08f5cd2ca1@kernel.org/
 
+This series adds per-channel DT child node support to fsl-edma and, as a
+prerequisite, introduces a proper bus for DMA channel devices.
 
-Hi Leo,
+The fsl-edma change allows each channel to carry its own reg, interrupts
+and iommus properties.  Power domains remain attached at the parent level.
+Parsing the child nodes is straightforward, but per-channel IOMMU
+configuration is not: the DMA engine currently creates struct dma_chan_dev
+as a class device without any bus, so of_dma_configure() has no bus to probe
+the IOMMU with, and the IOMMU core does not have a bus notifier for DMA
+channel devices.
 
-Thanks for the detailed review, and yes — please go ahead and fold it
-into your series. I'm happy for you to keep me as the author and to
-refactor it as you see fit.
+Drivers that need per-channel IOMMU support currently work around this by
+assigning dev->bus after dmaenginem_async_device_register().  That is unsafe
+because bus_add_device() already ran with bus == NULL and did not take a bus
+subsystem reference.  When the channel device is later unregistered,
+bus_remove_device() drops a reference that was never acquired, leading to a
+reference count underflow and a potential use-after-free.  Using
+platform_bus_type is also wrong: platform_match() and platform_uevent()
+expect the device to be embedded in a struct platform_device.
 
-I'll hold off posting a v4 so we don't end up with two versions under
-review. Ping me when there's something you'd like tested on the CIX
-board.
+A dedicated bus for DMA channel devices solves this.  The channel devices are
+converted from class devices to bus devices:
 
-Thanks,
-Johnny
+  - the bus is registered early, before iommu_subsys_init() consumes
+    iommu_buses[];
+  - the match callback always reports no match, so no driver binds to a
+    channel device;
+  - channel devices are registered on the bus before device_register(), so
+    bus_add_device() and bus_remove_device() are balanced;
+  - the bus is added to iommu_buses[], so the existing IOMMU notifier
+    handles per-channel IOMMU probe and release.
+
+The existing /sys/class/dma interface is preserved with class_compat, the
+mechanism provided by the driver core for converting a class device family to
+bus devices. A compatibility class named "dma" keeps
+/sys/class/dma/dmaNchanM available, while the devices themselves live on the
+DMA bus. The bus is named "dmaengine-chan" to avoid colliding with the SuperH DMA
+bus, which is also named "dma". The uevent SUBSYSTEM and "subsystem" link
+therefore use "dmaengine-chan", while /sys/class/dma is unchanged. dma_dev_groups
+moves from the old class to the bus, and chan_dev_release is installed
+directly as the device release callback.
+
+While testing controller unbind, a pre-existing fsl-edma ordering bug was
+found: fsl_edma_remove() removed all channels from dma_dev.channels before the
+managed dma_async_device_unregister() action ran, so the channel devices and
+their IOMMU groups were never released. Patch 1 fixes that ordering, which is
+needed to make the bind/unbind lifecycle test meaningful.
+
+Runtime-tested on i.MX95: repeated controller bind/unbind cycles with a
+local DT based on the child-node conversion removed and recreated the
+channel devices as expected, with no refcount, BUG, WARNING or suspicious
+kobject diagnostics.  The per-channel IOMMU path was exercised with a local
+DT adding iommus; that DT update is not part of this series.
+
+The binding and driver support per-channel iommus, but patch 9 does not add
+them to the i.MX95 DTS yet. That DT update will be sent separately when the
+shared stream ID support are finalized.
+
+I put all the patches in one patchset to give people a full picture.
+If need to separate patches into multiple patchsets, I could do that
+in next version.
+
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+Changes in v7:
+- Collect R-b for patch 2,4,6,7 (Frank)
+- Patch 8:
+  Remove uneeded common sense sentence in commit log. (Frank)
+  Simplify IRQ error handling with dev_err_probe. (Frank)
+  Use a bitmask instead of a per-channel loop. (Frank)
+  Merge the duplicated IRQ and IOMMU child parsing. (Frank)
+
+Changes in v6:
+- Patch 2:
+    Update commit message include more info regarding bus introduction. (Frank)
+    name the DMA channel bus "dmaengine-chan" instead of "dma-chan" (Frank).
+- Patch 6: new prep patch converting chan_masked tests from BIT() to
+  BIT_ULL() for channels 32-63 (Frank).
+- Patch 7: new prep patch converting fsl-edma to dmaengine_get_dma_device() (Frank).
+- Patch 8: Use scoped api, avoid scan channel twice. (Frank)
+- Link to v5: https://patch.msgid.link/20261111-edma-iommu-v3-v5-0-2537cebe6ca2@nxp.com
+
+Changes in v5:
+- Patch 2: Rename bus name to dma-chan per report from Sashiko.
+- Patch 6: Address the issue reported by kernel bot:
+  symbol '__udivdi3' undefined, using div_u64_rem
+- Rebased to next-20261110
+- Link to v4: https://lore.kernel.org/all/20261103-edma-iommu-v3-v4-0-470415d418c5@Example.Com/
+
+Changes in v4:
+- Patch 1, patch 4 and patch 5 are unchanged.
+- Patch 2:
+  Register the DMA channel bus from core_initcall so it exists before any
+  IOMMU driver can call iommu_device_register(), which iterates
+  iommu_buses[].
+  Clean up the DMA unmap pools if dmaengine initialisation fails.
+  Clarify that the bus match callback always reports no match.
+- Patch 3:
+  Update the ordering rationale for IOMMU drivers that register before
+  arch_initcall. No functional change beyond patch 2's initcall move.
+- Patch 6:
+  - Validate child register resources: require them to be contained in the
+    controller resource and aligned to chreg_space_sz.
+  - Use div_u64() for the channel index calculation and reject values that
+    do not fit in an int, avoiding 32-bit __aeabi_uldivmod/__udivdi3 issues.
+  - Ignore child nodes beyond dma-channels, so imx95-navq.dts with
+    dma-channels = <30> still probes.
+  - Use BIT_ULL() for the 64-bit chan_masked bitmap, including channels
+    32-63 on 32-bit builds.
+  - Set chdev->dma_parms to the controller dma_parms so the per-channel
+    device keeps the 0x7fff segment size limit.
+  - Use dev_err_probe() for of_dma_configure() failures.
+  - Reject channels for which iommus did not result in an IOMMU mapping
+    instead of setting chan_dma_dev = true silently.
+  - If child nodes are used, require every unmasked channel to have an
+    available child node with a valid interrupt; otherwise fail probe with
+    an error asking for dma-channel-mask.
+  - Do not fall back to the parent flat interrupt array in child-node mode.
+  - Keep the shared error IRQ on the parent node.
+  - Clarify that child power-domains are not handled by this patch.
+- Patch 7:
+  - No functional change. The out-of-range child nodes used by
+    imx95-navq.dts are handled by patch 6.
+- The i.MX95 DTS still does not add per-channel iommus; that update will be
+  submitted separately.
+- Board test overlays are kept out of the upstream series.
+- Link to v3: https://patch.msgid.link/20261102-edma-iommu-v3-v3-0-9d0e62a954eb@Example.Com
+
+Changes in V3:
+- Patch [1-4] are new patches
+- Add R-b for patch 5
+- Patch 6: handle of_irq_get() -EPROBE_DEFER, drop the explicit bus
+  assignment to "chdev->bus" which is resolved by patch [2-4].
+- Rebased to linus/master v7.4-rc1
+Changes in V2:
+- Switch to add child node for dma channel.
+- Link to V1: https://lore.kernel.org/dmaengine/20260916-edma-iommu-v1-0-e1731968081e@nxp.com/
+
+---
+Peng Fan (9):
+      dmaengine: fsl-edma: unregister channels before vchan cleanup
+      dmaengine: add a bus for DMA channel devices
+      iommu: register the DMA channel bus for IOMMU notifications
+      dmaengine: move channel devices to the DMA channel bus
+      dt-bindings: dma: fsl,edma: add per-channel child node support
+      dmaengine: fsl-edma: use BIT_ULL for 64-bit channel mask
+      dmaengine: fsl-edma: use dmaengine_get_dma_device()
+      dmaengine: fsl-edma: support per-channel DT child nodes
+      arm64: dts: imx95: convert eDMA to per-channel child nodes
+
+ .../devicetree/bindings/dma/fsl,edma.yaml          |  70 +-
+ arch/arm64/boot/dts/freescale/imx95.dtsi           | 774 +++++++++++++++++----
+ drivers/dma/dmaengine.c                            |  49 +-
+ drivers/dma/fsl-edma-common.c                      |  10 +-
+ drivers/dma/fsl-edma-common.h                      |   1 +
+ drivers/dma/fsl-edma-main.c                        | 185 ++++-
+ drivers/dma/tegra186-gpc-dma.c                     |   1 -
+ drivers/iommu/iommu.c                              |   4 +
+ include/linux/dmaengine.h                          |   4 +
+ 9 files changed, 935 insertions(+), 163 deletions(-)
+---
+base-commit: aaa2f954c21b205a0bcd0961e5b2be4e82e58455
+change-id: 20261102-edma-iommu-v3-22b673717cf4
+
+Best regards,
+--  
+Peng Fan <peng.fan@nxp.com>
+
 
