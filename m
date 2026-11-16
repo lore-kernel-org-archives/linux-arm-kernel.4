@@ -2,76 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89358606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3D6606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=em/+Gobz;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=Narfx8JC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hUA1SrQ5;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=DSaOV/wk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=amPjiGpOtCIdke4l/yrc8l6JZjZ/UtQMeu9AnP48ylI=; b=em/+Gobzf7TNqUUFsDeOV5uEZZ
-	cPQ+LrY5IHQiZm4QbhSv1MDjoUZkBXht8o4pzaXgdUKRFSaPAPYa7NfMFNcunQZSi2s+5wENQus5H
-	pfxGPXdaSQQNC/hMc2VLlmMzG1bc4a+EoD12imghtrgyWit4tf4jRMApN7mEclF3/ndkvXz5X+AeL
-	1/Ml24n+/1jf4KWBudt8okiudFOJs47FvrTS3qWf1xbAfV9zMbsW7iTtJkUQh90reOrQrHi0OynAn
-	EvO02XcUTZ+3MTOdWIeP2kn9blrQA3g5fS9FGSYfV8GUj8nAmGNcqRxKP8URHOzaZgYchHAmJ/nUu
-	Qf8KIeJw==;
+	bh=+lgHrIUN8omQkjb2vy/fSimmUa6BrDWEpsc2sku8LeA=; b=hUA1SrQ56ApqyVJSyfXYBoSKQP
+	pFYAJJuxt3j1pSa91h8iXWmVa7tYsccLOmZScVKje3Zf8eOzGjLzRT9T49+7c628aSqNQ+8bzS+y9
+	hFoFA3Begmf3mCIzhlqAIjU/s8P9Qk8N9/7CzbCQ5Nwm02lM4Hp9WZqkLWue/7uBLtfoFybUMig7g
+	kcAm9f3euZ5lqhF1zuIi2BB2D1G9Mc+/DxB0Ao3Bsue4sXi2LgbqGNbrzYed5yyy+nkPfR2wYunn/
+	3mix8HUwIUZJMibhnYfkpIqbssD85ED5+zwAxJc9fCDrImsXInwYUy3jd+sgvo6fkPjgIVMb2LMh9
+	/CAq2QDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwmG-00000002dTF-0qjf;
-	Mon, 16 Nov 2026 13:29:44 +0000
-Received: from out-130.mta0.migadu.com ([2001:41d0:1004:224b::82] helo=mta0.migadu.com)
+	id 1xSwpo-00000002e0t-3hOz;
+	Mon, 16 Nov 2026 13:33:24 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwmC-00000002dRu-2Bkq
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:29:42 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=g502higwqKmkBG0dlHtsxFQv+cbldCJE/40G3RLaxkI=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794835778; v=1; x=1795440578;
- b=Narfx8JCqLfNINSV2qlr1aRmeBvBmS0mZwKeKFCzamE2qzpw7Nm34jJTyCus6o+Ysjypelo7
- trwX0cnmw7bDHeEYGmxQ947iIbvHtVPtop1sTAPyQFIvCR2zipcKK3QwQ+8uEVUegjM/ZO0oe05
- JD3hJZqcnaBzSEQ+owEC/YLc=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 8a5db24154ab639b;
-	Mon, 16 Nov 2026 13:29:37 +0000
-X-Mizu-Trace-ID: 8a5db24154ab639b
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so9999e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 05:29:33 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFJR0P6VpcbVieeW/9v2PyiwiGTtDOKpXf5eFgnvL/7dowr4MQPfHnzEcH3nK6lJmRrVsNBJv3DLcTCS2ZnH/Q1@lists.infradead.org
-X-Gm-Message-State: APuU4Z8bRi9mjvqyBTEhRz1VobMT/Mc74dKtRMiY82J6/1CEn0KmvjES
-	KRgx/XJOUiFWUilEW/j2oBOAJA2CfTswDvEVQRKwasfhadl6aR+NcFoEIY6Gk1QoBbTKp/LsarT
-	JwDJI3YBnt/PRyRmNCIVVZM6J0MZj+0+S9rH/Pfmy
-X-Received: by 2002:ac2:4e05:0:b0:5bf:a911:7ee3 with SMTP id
- 2adb3069b0e04-5c17d90d3b4mr200956e87.3.1794835772489; Mon, 16 Nov 2026
- 05:29:32 -0800 (PST)
+	id 1xSwpl-00000002dzS-3TBb;
+	Mon, 16 Nov 2026 13:33:23 +0000
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c67:cdf:7464:6c04:36e4:ee87])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 013044BB;
+	Mon, 16 Nov 2026 14:30:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1794835849;
+	bh=uVbIVduMXaQ//1Z+a/RTdpbY71FZgSk/ZCXtcsVSHUA=;
+	h=From:Subject:Date:To:Cc:From;
+	b=DSaOV/wk/o36Hzn3tj27NXKwLED87GdF6A7L/E1iDexY1myBnI82lf/XY9G2mwATn
+	 i549NDQlI8McMzJSIyR7vcyDttiu/eNH9iSCxWvDGJHqtwXnYT6V4Ur1sqn7UrtJ+I
+	 I75RVkd1raCmOCUSz9OqXDZjVKmg0HkW0gm3xEG4=
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Subject: [PATCH 0/2] platform/raspberrypi: vc-sm-cma: Fix sparse and smatch
+ warnings
+Date: Mon, 16 Nov 2026 19:02:52 +0530
+Message-Id: <20261116-vc-sm-cma-fix-v1-0-2b0f11aa96b9@ideasonboard.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261104-host_gicv5_fixes-v2-0-e47ad20ea3c8@arm.com>
- <20261112145814.853424-1-fuad.tabba@linux.dev> <avrzusx1g1ZICo0Q@red-moon>
-In-Reply-To: <avrzusx1g1ZICo0Q@red-moon>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Mon, 16 Nov 2026 13:28:56 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTyGQbS7zcHSRg50c5xVN2AY4AmMc7JqNAvrc=_UhPQ+kg@mail.gmail.com>
-X-Gm-Features: AclHuK8CwBlEBiyR4cPCR9dmkgnQ4XF5VSuwS8WKs9gu-GxXMupedl-FY3peK6Q
-Message-ID: <CA+EHjTyGQbS7zcHSRg50c5xVN2AY4AmMc7JqNAvrc=_UhPQ+kg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] irqchip/gic-v5: Fix misc IRS and ITS host driver issues
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Sascha Bischoff <sascha.bischoff@arm.com>, Marc Zyngier <maz@kernel.org>, 
-	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, Timothy Hayes <timothy.hayes@arm.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Jonathan Cameron <jic23@kernel.org>, 
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWMQQrCMBAAvxL27EKz0Sj9ivSQbDe6h7Sa1CKU/
+ t1gjzMws0GVolKhNxsUWbXqPDWwJwP8DNNDUMfGQB15a63HlbFm5Bww6RfP5C7JkUujt9CaV5G
+ m/7/7cHCR96dtl0NCDFWQ55x16U3HId6IIodrgGHff/4LN6CPAAAA
+X-Change-ID: 20261116-vc-sm-cma-fix-4235f323fd61
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Stefan Wahren <wahrenst@gmx.net>, Dom Cobley <popcornmix@gmail.com>, 
+ Phil Elwell <phil@raspberrypi.com>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Juerg Haefliger <juerg.haefliger@canonical.com>, 
+ linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Jai Luthra <jai.luthra@ideasonboard.com>, kernel test robot <lkp@intel.com>, 
+ Dan Carpenter <error27@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1053;
+ i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
+ bh=uVbIVduMXaQ//1Z+a/RTdpbY71FZgSk/ZCXtcsVSHUA=;
+ b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBq+wYT8asi64UqGlqgDqKUsoJkmpWIFXnlZ9auT
+ Yukmv4Z77CJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCavsGEwAKCRBD3pH5JJpx
+ RYHnD/9nZVI8FbcOg3MW7VhttNwFrsM6ke7Txh18LvQgWU7GAM5m2dSmTVlRmcpG5E3cGwV5nh6
+ 95KFdn3zbAVP8i2LjwxyHOwR5ZN2HusDq0rtKOsq+zW1D2Ip3ToAEjAGbxCzqYBlK4UYMtdgZmo
+ 1v6c45ape1infIE0QJvIRSTVzXfLNwYmKmtCE6sshn3R9hNVM12YWDAB829ztz5i0ZRflh8P2y7
+ tlivflfgB62WO7wCXHSdrsa9eC0GSoJSPUHPz540k6iVPxpdoImfn0cmPz8+fGGkRAKXRF1jl7p
+ TvOkofWU2ZrkmW2I4+PDeQ3gF547b9HH71rFnE4dsSOFHZ65MK0Ok8nIWpb+rZvilvfFB2EqrIe
+ WKCxN9XB3vKqH04PFEeJJbRErS6HIXT065OPdynLaR7Xh8XzCdDi5OD5lrK6pgmvrqePCadlO1C
+ OuZQkljkvkAUmN7xZN58j6xGNUEJCw/ptPcGOIABOPR0RY1dSkWSkTYVbhoG/cxRCRcHXri8m7e
+ QyKRvmU3k6QdFC9JguQFrl9mlSKC57KYD2aX5jlQpLQsuzkPrHTwxMo1MAVWBbFVRHL3LlFSfnV
+ 51A7xQjCxRannLeG+JPj6n5CF2P4wCNHPtcWoiy5LS0yvA0lLfdht9UaaLMKX2T+VBvBBeknhCc
+ QzHFvRaIyEdVmWg==
+X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_052941_255103_747391AE 
-X-CRM114-Status: GOOD (  20.65  )
+X-CRM114-CacheID: sfid-20261116_053322_022033_FFDF727D 
+X-CRM114-Status: UNSURE (   7.72  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,57 +97,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Lorenzo,
+Hi Florian,
 
-On Mon, 16 Nov 2026 12:14:50 +0000, Lorenzo Pieralisi
-<lpieralisi@kernel.org> wrote:
-[...]
-> > invalidate have the same shape. The question is, can an IRS miss the
-> > poll, or is a timeout here only ever a dead IRS?
->
-> Thank you for your patches Fuad.
->
-> The latter, though freeing memory on timeout wasn't a good idea given
-> that there is no way to cancel the respective, pending, mapping.
+I've fixed the issues reported by sparse and smatch on my series that
+added shared memory support for VC4 based peripherals in Raspberry Pi 4.
 
-Thanks, that answers it. If you'd like a patch that doesn't free the
-memory on a timeout, let me know and I'll send one.
+My apologies for not running those checks on my machine before sending.
 
-[...]
-> > Notes:
-> >     Setting L1 on every invalidation turns each registration and
-> >     teardown into a range invalidate, both rare paths, and keeps the
-> >     function simple. Setting it only when registration allocates the
-> >     level 2 table would miss a registration that fails after the
-> >     allocation, which leaves the level 1 DTE valid.
->
-> I can't follow. I agree that we have to invalidate the L1 DTE on
-> L2 allocation but that's a one-off, I don't understand what issues
-> you are pointing out in the Notes above, if you can point out please
-> the code paths it refers to that'd help.
+As those patches are now applied in your tree, I have added Fixes tags
+using the SHAs for the applied commits.
 
-gicv5_its_device_register() can fail after
-gicv5_its_devtab_get_dte_ref() has made the L1 DTE valid, and before
-the gicv5_its_device_cache_inv() at the end. That happens if the
-EventID bits check fails, or the ITT allocation does. The L1 DTE is
-then already valid for the next device registered under it, so that
-registration doesn't allocate a level 2 table.
+Thanks,
+    Jai
 
-The patch Notes were about setting ITS_INV_DEVICER.L1 in that
-gicv5_its_device_cache_inv() call only when the registration allocated
-the table. In that case the failed registration never reaches that
-call and the next one reaches it with L1 clear, so this L1 DTE is
-never invalidated. Invalidating in gicv5_its_alloc_l2_devtab(), right
-after the L1 DTE write, is the one-off you describe. I'll rework the
-patch to do that instead.
+Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+---
+Jai Luthra (2):
+      platform/raspberrypi: vc-sm-cma: Fix get_kernel_id check, pass NULL for pointer
+      platform/raspberrypi: vchiq-mmal: Fix warnings in the zero-copy path
 
-Cheers,
-/fuad
+ drivers/platform/raspberrypi/vc-sm-cma/vc_sm.c          | 11 +++++++----
+ drivers/platform/raspberrypi/vc-sm-cma/vc_sm_cma_vchi.c |  2 +-
+ drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c    |  8 ++++----
+ 3 files changed, 12 insertions(+), 9 deletions(-)
+---
+base-commit: 0cab822bca7a59667774725b83e948b71462290f
+change-id: 20261116-vc-sm-cma-fix-4235f323fd61
+
+Best regards,
+-- 
+Jai Luthra <jai.luthra@ideasonboard.com>
+
 
