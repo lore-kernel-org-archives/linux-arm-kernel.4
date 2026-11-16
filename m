@@ -2,71 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42D9606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 06:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7306606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 07:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x8jQ9b4k;
-	dkim=pass (1024-bit key, unprotected) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=yga4md8E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WdXJFFb6;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SJ5S0Ys/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sU7MBJBbFJKdJWR9ZcBRBxbWd58QdrhZOWslfvZZxmQ=; b=x8jQ9b4kolxXoR
-	uOV0tUpqB+E92QvcqguI9dWZ2BemkrqMjAltEOVQCFFNLSZaQan4g/ne3n1PUJSGMkzDcpPxBB6zE
-	v89GrnuQZbxT/wYHPAL+EV9+PIHezHJyGwryZTVLhXufbKanosDqCj7+H+NPPlZzE3UybLUdctz/J
-	6R8U8RNVcWA6O1KGsRd+gsvWBNw8tSt1YdPmYEeHlrVJRA+BkrGc8dFbW/jkJtaPvJ8BcIoE2Msi5
-	n0SWqsLLKRctblFMp0JpdYbI3FMJ1UYrB/l6O6aQ07imfuQJsyPXw3H9msnWQL6+wJOn70kmuF6KR
-	GK6N640x5eeArlZazQGA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=rBoc9Az+eYLYApOQ5Nq0UwLguS2L7Y5c89wC992tlqw=; b=WdXJFFb6Wcc8+oXVC0aVhrXOgZ
+	DhbF0SK3GkfoIpd7mDvhHJjB3TKde0qREVOKcYflvpJXOAo48fovdzhahYu6qgDgpMHR85cR7FUP3
+	T6OoA33o2SO7ZzKo+6YZqM0kIf0pgroPRWSUM5E0WDkvDnof7bYMd/UugGmg8WEOUd/QMof6nzwH0
+	I9ZwOd/tKvADgnSOcibL2WhWk8qkUZ5zdcDJmQKlidslL1TZRblZoE8vBshMmOA/xKvM1VsS/G6cM
+	TeOuGZxcZTfaGowtmLu04+yKk7HnM3fV83hLAXDhVI6RG47XbniDzZbfrE8YVOdBu63OignLrEobF
+	ribsIu5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSqfU-00000001LtY-0UNo;
-	Mon, 16 Nov 2026 06:58:20 +0000
-Received: from canpmsgout03.his.huawei.com ([113.46.200.218])
+	id 1xSqme-00000001MIg-3oLa;
+	Mon, 16 Nov 2026 07:05:44 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSqfP-00000001LsJ-3SDu
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 06:58:18 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=sU7MBJBbFJKdJWR9ZcBRBxbWd58QdrhZOWslfvZZxmQ=;
-	b=yga4md8ECxCC42nwuNVPujyp5g9iWnKg+MgYkST5dg7JObFFHtEVnOE4TYXjzrWjWAh3y4kPL
-	IbBvT/aOk9ZKfSJqwK1w0vgKCZrNqthYLanziDg011pCgH+ZZWwLeRxn42FVWJr6yczxD3ODcU6
-	JUpNjEMzp6boXrpEdf7cNM4=
-Received: from mail.maildlp.com (unknown [172.19.163.104])
-	by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4jSdw36KMczpSwZ;
-	Mon, 16 Nov 2026 14:57:23 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 1547E4057F;
-	Mon, 16 Nov 2026 14:58:10 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 16 Nov
- 2026 14:58:09 +0800
-Message-ID: <c5b915dd-8926-4c97-836c-2616bb314262@huawei.com>
-Date: Mon, 16 Nov 2026 14:58:08 +0800
+	id 1xSqmc-00000001MIR-3ty8;
+	Mon, 16 Nov 2026 07:05:43 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id B9F6560F36;
+	Mon, 16 Nov 2026 07:05:41 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794812741;
+	b=Tm08GaosT3F35/goGlMpFlAHYY8sLzjJNGvB2jqci8Egx3nCjpORUUuS9fVMDo6XwQoN
+	 DPssXd3At6lRwQ/hIvzabaRCIshsObTR+CyiAhvWOjVP1aue6BEBmK6zpBbJDTx4qILLE
+	 WlmEMvlY1xqQHtT9AHyHexNb4IPqdiP+y1NEqSb7uk6ThH7Htz7Z6snG8PBc7IBguMJx/
+	 4gJ0qtqff1jAupMkl/UUFJtNhhPrzlz1Xtnrlxb8nO99eZ73OJ0/rIdGyw/d8uCkniLG7
+	 OuOemv1LZGKvXpDYzjdbXQcIPXWN/XbroGWhw8SP8+slhV/GiG2rFo9E6J8eTNNrAaQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794812741;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
+	 Content-Transfer-Encoding;
+	bh=rBoc9Az+eYLYApOQ5Nq0UwLguS2L7Y5c89wC992tlqw=;
+	b=BHqtVSLUaiK8Zkq8jw1Nbze/XQz3JyfdkU1SWd8xpkVdZy0fSjd5c6v1MWKolC+k43Al
+	 BRsdpm8HiWnYyMTOEHMQIG7jDCXEA1aR+a4DlepRTRQwGlJqvL/HFcF1BFhnK+i9MEmED
+	 RSszyqxrmhl9uN+gwEhawRCE3kKNekfgyFtxXjpoW0rDUS9xjghvQGH8blXKi0hD9pBbQ
+	 x7bPXOIdIs/ThgoEpyIg6s6iLnuPRZYQFb7hvisQg+2BEtR9ntJi411fIP5Tvje8d/r+O
+	 /MSZdNwJCjPBuRK3iPlmLmj4EUUuBFKersQJV5SFs5MoY92TJZQDtFzs3XVVowPXMxQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id BEF1C1F000C5;
+	Mon, 16 Nov 2026 07:05:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794812741;
+	bh=rBoc9Az+eYLYApOQ5Nq0UwLguS2L7Y5c89wC992tlqw=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=SJ5S0Ys/PDkerFAQXDztg4mxwvUqQaWJAKat33wC7U99JQi3bEsDGm+TLR+0tGr2H
+	 zQvr9sBZZkRn588EZzdtU1LK+X0dauYc2+dcZ9wSVpGtzMOeVyB3/FDUBXeM7fKk7Y
+	 eDlRewvqT2LIM5XdLV4M6Mw8m1iavIspbHY17i4r/yX/ilbjRYZKl49Qyiat08/u2B
+	 XXR6llGwZU2LJ1MNnAb6HKQnCwo6CGzJ24ymTLlCkN9Tq8eGCpgNLN8Zia+FDH09Zc
+	 dKeMtZ/BSJUVkGll2RYyQ29QotRYOnGuZ36MkGq35y6Ue5NFRSCeG1uHdwXDSBr5WZ
+	 GwDOq25TgQeBA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 4F66B4A368;
+	Mon, 16 Nov 2026 07:05:40 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Mon, 16 Nov 2026 09:05:39 +0200
+Subject: [PATCH v2] PCI: rockchip-host: Retry link bring-up on repeated
+ Recovery
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/39] arm64: Add support for FEAT_NMI
-To: Vladimir Murzin <vladimir.murzin@arm.com>,
-	<linux-arm-kernel@lists.infradead.org>
-CC: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
-	<lpieralisi@kernel.org>, <liaochang1@huawei.com>,
-	<ashok.raj@oss.qualcomm.com>, <maz@kernel.org>
-References: <20261112132042.129062-1-vladimir.murzin@arm.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <20261112132042.129062-1-vladimir.murzin@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- kwepemk200008.china.huawei.com (7.202.194.74)
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_225816_502351_24A84CEF 
-X-CRM114-Status: GOOD (  33.69  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261116-rockchip-pcie-resume-v2-1-a633e279be97@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAEKr+moC/22NQQ7CIBBFr9LM2jFAwTSuvIfpgtBBJmppQImm4
+ e5i49Lle8l/f4VMiSnDsVshUeHMcW6gdh24YOcLIU+NQQl1kEIOmKK7usALLo4JE+XnnVA5PXl
+ Sfa8lQZsuiTy/tux5bBw4P2J6by9Ffu0vqPT/YJEo0AxktDXOGy9PbMv+VmCstX4AwyDy0bUAA
+ AA=
+To: Shawn Lin <shawn.lin@rock-chips.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>
+Cc: Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Matt Thompson <matt@boondocker.io>, linux-pci@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7808; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=Cps1/uQ5Lnu2PNKM6vu/z1g7FA1bXqg0a2gSZkGUYzE=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFm/VjufXCMedXRF1s3YKRz8VQrzCiaVx98o7BBOVCreF
+ sBle+ZaRykLgxgXg6yYIsuEQxq3MpZc/evvYf4AZg4rE8gQBi5OAZgITynDP43jLLzXq0//a/xd
+ JMa//0BQ2KdX6z4XPVA4u6FnqUXw9HyG/w6tAgwiIXGes+Xu68078sU99PeGRIlznw/WrcucYJC
+ 6hh0A
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,247 +115,227 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi, Vladimir,
+From: Igor Velkov <iav@iav.lv>
 
-While testing this patch set, I discovered IPI as NMI now defaults to
-using SDEI, and the FEAT_NMI cannot cover this path..
+On Kobol Helios64 (RK3399 with a JMB585 at x2) about 3% of link
+bring-ups go bad. The LTSSM reaches L0 and then re-enters Recovery about
+every 200 us; the RC sees DLLPs about 300 times as often as on a good
+link, with no DLLP or CRC errors. The first config read behind the port
+gets no completion and aborts the CPU, or link training times out. The
+state survives Recovery, and a new bring-up of the port clears it.
 
-In the case where FEAT_NMI is supported, should it default to using
-FEAT_NMI instead?
+After the link comes up, poll the LTSSM for 5 ms and treat more than two
+entries into Recovery as a bad bring-up. The RC runs at 2.5 GT/s only,
+so no speed change goes through Recovery, and good bring-ups on the
+boards we tested showed no Recovery entries after L0. Bring the port up
+again, up to five tries in all with 500 ms between them, for this and
+for a training timeout. An empty slot stays in Detect, so a timeout
+there fails on the first try. If no try gives a usable link, probe and
+resume fail as they do on a training timeout today.
 
-It seems that the motivation behind the cross-CPU NMI via SDEI patch was
-a transitional solution in the absence of FEAT_NMI.
+Every link bring-up takes 5 ms longer. A link that stays bad delays the
+failure by 3 to 5 s.
 
-Link: https://lore.kernel.org/all/cover.1782744912.git.kas@kernel.org/
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+Tested on Helios64 with unbind/bind cycles; every bad bring-up was fixed
+by the first retry:
+- earlier builds with the same poll and retry loop, 7.3: no abort in 600
+  cycles (5 in 150 without the patch), 10/10 cold boots, 60/60 s2idle;
+- 7.4-rc2 with Matt Thompson's RFC v2 [1]: 4 bad bring-ups in 150
+  cycles; with the RFC alone the JMB585 was lost in 5 of 150;
+- this patch, 7.4-rc2: 5 bad bring-ups in 150 cycles (one of them a
+  training timeout), no abort; 20/20 s2idle.
+An NVMe drive on a ROCK Pi 4A with the patch: 60 cycles, none rejected.
 
-Best Regards,
-Jinjie
+[1] https://lore.kernel.org/r/20261113-rfc-b4-v2-0-d6b14f95c1d6@boondocker.io
+---
+Changes in v2:
+- Drop the hot reset of patch 2: it did not stop the aborts.
+- Also retry when the link keeps entering Recovery in the first 5 ms
+  after link-up; up to five tries, 500 ms apart.
+- Do not retry a training timeout in Detect.
+- Rebase onto pci/next.
+- Link to v1: https://lore.kernel.org/r/20261024-rockchip-pcie-resume-v1-0-58e54a5cf5f1@iav.lv
+---
+ drivers/pci/controller/pcie-rockchip-host.c | 80 +++++++++++++++++++++++++++--
+ drivers/pci/controller/pcie-rockchip.h      |  3 ++
+ 2 files changed, 80 insertions(+), 3 deletions(-)
 
-在 2026/11/12 21:20, Vladimir Murzin 写道:
-> FEAT_NMI provides an architected mechanism for supporting non-maskable
-> interrupts (NMIs) and less-masked interrupts (LMIs).
-> 
-> Since we already support pseudo-NMIs via priority masking, introducing
-> another flavour of NMI on top of the existing infrastructure could
-> easily become messy, making the code harder to follow and reason
-> about.
-> 
-> To avoid that, this series first makes room for the new NMI "tenant"
-> by restructuring the existing exception masking logic.
-> 
-> The main idea is to separate the logical view of exception state from
-> its hardware representation. To achieve this, we introduce logical
-> exception contexts that can be mapped onto the corresponding hardware
-> state. This naturally consolidates the hardware-specific handling into
-> a small number of places, while allowing the rest of the code to
-> operate purely in terms of logical exception contexts.
-> 
-> Since this restructuring is non-trivial and carries a risk of subtle
-> behavioural changes, the series adds extensive debug checks to verify
-> that the hardware state always matches the expected logical state.
-> 
-> With this restructuring in place, wiring FEAT_NMI into the new
-> framework becomes much more manageable. GIC support for NMI is build
-> on top.
-> 
-> This work would not have been possible without the contributions of
-> Ada Couprie Diaz, Mark Brown, and Lorenzo Pieralisi - please credit
-> them for everything that works well. Any remaining bugs or issues are
-> entirely my own.
-> 
-> Most of the testing has been done on QEMU, Fast Model and pre-silicon
-> environment, so the series definitely benefit from extensive testing
-> on real hardware (without NMI, with pseudo-NMI, and with FEAT_NMI).
-> 
-> Patches are organized as follow
-> 
-> 1 - 15
->   Rework of existing pseudo-NMI logic to make room for FEAT_NMI
-> 
-> 16 - 33
->   FEAT_NMI support including some preparation patches which have
->   no dependencies:
->     - efi/runtime-wrappers: Permit architectures to override IRQ flags checks
->     - arm64: smp: Abstract SGI and LPI operations
-> 
-> 34 - 35
->   GICv3 support for NMI
-> 
-> 36 - 39
->   GICv5 support for NMI (including some preparation patches)
-> 
-> Changelog
-> 
->   v1 -> v2
-> 
->     - Rebased on v7.4-rc2
->     - Select HAVE_PERF_EVENTS_NMI when FEAT_NMI is enabled
->     - Reworked APEI SEA handling to mask exceptions sequentially   
->     - Updated GICv3 initialization to clear NMI configuration
->     - Added Tested-by and Reviewed-by tags where approriate
->     - Droped tags due to meaningful changes for:
->       + "arm64: replace local_daif helpers"
->       + "irqchip/gic-v3: Implement FEAT_GICv3_NMI support"
-> 
->   RFC v2 -> v1
-> 
->     - Rebased on v7.3-rc3.
->     - Dropped RFC tag, have not received objections, at the same time
->       got support from Jinjie
->     - Dropped prerequisite patches already present in the newer base
->     - Added logic to reject probing/stepping over ALLINT
->     - Moved addition of arm64_debug_exc_context() in separate patch
->     - Reworked debug logic for validating direction of exception
->       transition
->     - Split support for NMI in GICv5 in 3 separate patches
->     - Added review tags
-> 
->   RFC v1 -> RFC v2
-> 
->     - Rebased on v7.2-rc5.
->     - Improved commit descriptions.
->     - Split some patches into smaller ones.
->     - Added a graceful fallback for IPI requests when FEAT_NMI is
->       supported by the CPU but unsupported by the interrupt
->       controller.
->     - Split the GICv3 preparation from the FEAT_GICv3_NMI
->       implementation.
->     - Added NMI support to GICv5, primarily as an illustration of the
->       implementation, although it also happens to work on Fast Model.
->     - Added review tags only to unchanged patches. Review tags were
->       intentionally dropped from modified patches to reflect those
->       changes and encourage re-review.
-> 
-> RFC v1:
->   https://lore.kernel.org/linux-arm-kernel/20260709121333.23507-1-vladimir.murzin@arm.com/
-> 
-> RFC v2:
->   https://lore.kernel.org/linux-arm-kernel/20260727163453.7969-1-vladimir.murzin@arm.com/
-> 
-> v1:
->   https://lore.kernel.org/linux-arm-kernel/20260914102102.68597-1-vladimir.murzin@arm.com/
-> 
-> Thanks!
-> Vladimir
-> 
-> Ada Couprie Diaz (15):
->   arm64: irqflags: Introduce arm64-specific irqflags type
->   arm64: irqflags: save and use both DAIF and PMR
->   arm64: interrupts: Add common exception state helpers
->   arm64: entry: Introduce entry specific exception masking helpers
->   arm64: entry: replace DAIF helpers with entry helpers
->   arm64: interrupts: Introduce exception masking save/restore helpers
->   arm64: interrupts: introduce a helper for GIC priority initialization
->   arm64: replace local_daif helpers
->   arm64: cpuidle: use new helpers to bypass interrupt priority masking
->   arm64: remove daifflags.h
->   arm64: gicv3: remove GIC_PRIO_PSR_I_SET
->   arm64: ptrace: Add PSR_ALLINT_BIT
->   arm64: cpufeature: Detect PE support for FEAT_NMI
->   arm64: nmi: Manage masking for superpriority interrupts
->   arm64: irq: Report FEAT_NMI masking local IRQs
-> 
-> Lorenzo Pieralisi (2):
->   irqchip/gic-v3: Rename nmi to pseudo_nmi
->   irqchip/gic-v3: Implement FEAT_GICv3_NMI support
-> 
-> Mark Brown (5):
->   arm64: booting: Document boot requirements for FEAT_NMI
->   arm64: sysreg: Add definitions for immediate versions of MSR ALLINT
->   arm64: idreg: Add an override for FEAT_NMI
->   arm64: nmi: Add handling of superpriority interrupts as NMIs
->   arm64: nmi: Add Kconfig for NMI
-> 
-> Vladimir Murzin (17):
->   arm64: process: Lift check for exception state to generic
->     infrastructure
->   arm64: cpufeature: Remove system_has_prio_mask_debugging()
->   arm64: irqflags: Switch to CONFIG_DEBUG_IRQFLAGS
->   arm64: Kconfig: Remove CONFIG_ARM64_DEBUG_PRIORITY_MASKING
->   efi/runtime-wrappers: Permit architectures to override IRQ flags
->     checks
->   arm64/efi: Implement override for IRQ flags checks
->   arm64: probes: Reject stepping over ALLINT
->   arm64: suspend: Always initialise PSTATE.ALLINT
->   arm64/efi: Add ALLINT to IRQ flags checks
->   arm64: kprobes: Disable NMIs
->   arm64: smp: Abstract SGI and LPI operations
->   arm64: smp: Fall back to IRQ when IPI NMI request fails
->   arm64: nmi: Select HAVE_PERF_EVENTS_NMI for FEAT_NMI
->   arm64: smp: Add NMI support for LPI-backed IPIs
->   genirq: Trust local irqchip when considering IRQ for NMI
->   genirq: Do not call add_interrupt_randomness() in NMI context
->   irqchip/gic-v5: Add NMI support
-> 
->  Documentation/arch/arm64/booting.rst          |   6 +
->  arch/arm64/Kconfig                            |  31 +-
->  arch/arm64/include/asm/assembler.h            |  20 +-
->  arch/arm64/include/asm/cpucaps.h              |   2 +
->  arch/arm64/include/asm/cpufeature.h           |  14 +-
->  arch/arm64/include/asm/cpuidle.h              |  18 +-
->  arch/arm64/include/asm/daifflags.h            | 144 --------
->  arch/arm64/include/asm/efi.h                  |  42 ++-
->  arch/arm64/include/asm/entry-common.h         |   8 +-
->  arch/arm64/include/asm/insn.h                 |   1 +
->  .../include/asm/interrupts/common_flags.h     | 255 +++++++++++++
->  arch/arm64/include/asm/interrupts/entry.h     | 102 ++++++
->  arch/arm64/include/asm/interrupts/masking.h   | 166 +++++++++
->  arch/arm64/include/asm/irqflags.h             | 150 ++++----
->  arch/arm64/include/asm/kvm_host.h             |   1 -
->  arch/arm64/include/asm/mmu_context.h          |   1 -
->  arch/arm64/include/asm/ptrace.h               |  25 +-
->  arch/arm64/include/asm/sysreg.h               |   2 +
->  arch/arm64/include/uapi/asm/ptrace.h          |   1 +
->  arch/arm64/kernel/acpi.c                      |  43 +--
->  arch/arm64/kernel/cpufeature.c                |  68 +++-
->  arch/arm64/kernel/debug-monitors.c            |   1 -
->  arch/arm64/kernel/entry-common.c              | 335 +++++++++++++-----
->  arch/arm64/kernel/entry.S                     |  14 +-
->  arch/arm64/kernel/hibernate.c                 |  14 +-
->  arch/arm64/kernel/hw_breakpoint.c             |  16 +-
->  arch/arm64/kernel/irq.c                       |  45 ++-
->  arch/arm64/kernel/machine_kexec.c             |   4 +-
->  arch/arm64/kernel/pi/idreg-override.c         |   1 +
->  arch/arm64/kernel/probes/decode-insn.c        |  11 +-
->  arch/arm64/kernel/probes/kprobes.c            |  24 +-
->  arch/arm64/kernel/process.c                   |  24 +-
->  arch/arm64/kernel/setup.c                     |   4 +-
->  arch/arm64/kernel/signal.c                    |   1 -
->  arch/arm64/kernel/smp.c                       | 217 ++++++++----
->  arch/arm64/kernel/suspend.c                   |  14 +-
->  arch/arm64/kernel/traps.c                     |   1 -
->  arch/arm64/kvm/hyp/nvhe/switch.c              |   2 +-
->  arch/arm64/kvm/hyp/vgic-v3-sr.c               |   7 +-
->  arch/arm64/kvm/hyp/vhe/switch.c               |  14 +-
->  arch/arm64/mm/fault.c                         |   1 -
->  arch/arm64/mm/mmu.c                           |   7 +-
->  arch/arm64/tools/cpucaps                      |   2 +
->  drivers/firmware/efi/runtime-wrappers.c       |  32 +-
->  drivers/irqchip/irq-gic-v3.c                  | 145 +++++++-
->  drivers/irqchip/irq-gic-v5.c                  | 244 ++++++++++++-
->  include/linux/irq.h                           |   2 +-
->  include/linux/irqchip/arm-gic-v3-prio.h       |   8 -
->  include/linux/irqchip/arm-gic-v3.h            |   4 +
->  kernel/irq/handle.c                           |   3 +-
->  kernel/irq/manage.c                           |   5 -
->  51 files changed, 1696 insertions(+), 606 deletions(-)
->  delete mode 100644 arch/arm64/include/asm/daifflags.h
->  create mode 100644 arch/arm64/include/asm/interrupts/common_flags.h
->  create mode 100644 arch/arm64/include/asm/interrupts/entry.h
->  create mode 100644 arch/arm64/include/asm/interrupts/masking.h
-> 
+diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
+index 1e1556e436b8..7c43e5bcccd3 100644
+--- a/drivers/pci/controller/pcie-rockchip-host.c
++++ b/drivers/pci/controller/pcie-rockchip-host.c
+@@ -13,12 +13,14 @@
+ 
+ #include <linux/bitfield.h>
+ #include <linux/bitrev.h>
++#include <linux/delay.h>
+ #include <linux/gpio/consumer.h>
+ #include <linux/interrupt.h>
+ #include <linux/iopoll.h>
+ #include <linux/irq.h>
+ #include <linux/irqchip/chained_irq.h>
+ #include <linux/irqdomain.h>
++#include <linux/ktime.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/of_pci.h>
+@@ -29,6 +31,11 @@
+ #include "../pci.h"
+ #include "pcie-rockchip.h"
+ 
++#define ROCKCHIP_PCIE_LINK_CHECK_US		5000
++#define ROCKCHIP_PCIE_LINK_CHECK_MAX_RECOVERIES	2
++#define ROCKCHIP_PCIE_LINK_BRING_UP_TRIES	5
++#define ROCKCHIP_PCIE_LINK_RETRY_WAIT_MS	500
++
+ static void rockchip_pcie_enable_bw_int(struct rockchip_pcie *rockchip)
+ {
+ 	u32 status;
+@@ -277,9 +284,40 @@ static void rockchip_pcie_set_power_limit(struct rockchip_pcie *rockchip)
+ 	rockchip_pcie_write(rockchip, status, PCIE_RC_CONFIG_CR + PCI_EXP_DEVCAP);
+ }
+ 
++/*
++ * A bad bring-up re-enters Recovery about every 200 us, and config requests
++ * through it get no completion. A good link settles in L0. Each visit to
++ * Recovery lasts about 5 us, so we busy-poll; the limit of two entries leaves
++ * margin for an occasional retrain of a good link.
++ */
++static bool rockchip_pcie_link_is_stable(struct rockchip_pcie *rockchip)
++{
++	ktime_t end = ktime_add_us(ktime_get(), ROCKCHIP_PCIE_LINK_CHECK_US);
++	bool was_recovery = false, is_recovery;
++	int recoveries = 0;
++	u32 state;
++
++	while (ktime_before(ktime_get(), end)) {
++		state = rockchip_pcie_read(rockchip, PCIE_CLIENT_DEBUG_OUT_0);
++		state &= PCIE_CLIENT_DEBUG_LTSSM_MASK;
++		is_recovery = state >= PCIE_CLIENT_DEBUG_LTSSM_RCVR_LOCK &&
++			      state <= PCIE_CLIENT_DEBUG_LTSSM_RCVR_IDLE;
++
++		if (is_recovery && !was_recovery)
++			recoveries++;
++		was_recovery = is_recovery;
++		udelay(2);
++	}
++
++	return recoveries <= ROCKCHIP_PCIE_LINK_CHECK_MAX_RECOVERIES;
++}
++
+ /**
+  * rockchip_pcie_host_init_port - Initialize hardware
+  * @rockchip: PCIe port information
++ *
++ * Return: 0 on success, -EAGAIN if another bring-up of the link may help, or
++ * another negative error code
+  */
+ static int rockchip_pcie_host_init_port(struct rockchip_pcie *rockchip)
+ {
+@@ -325,7 +363,19 @@ static int rockchip_pcie_host_init_port(struct rockchip_pcie *rockchip)
+ 				 status, PCIE_LINK_UP(status), 20,
+ 				 500 * USEC_PER_MSEC);
+ 	if (err) {
+-		dev_err(dev, "PCIe link training gen1 timeout!\n");
++		status = rockchip_pcie_read(rockchip, PCIE_CLIENT_DEBUG_OUT_0) &
++			 PCIE_CLIENT_DEBUG_LTSSM_MASK;
++		dev_warn(dev, "PCIe link training gen1 timeout, LTSSM %#x\n",
++			 status);
++		/* An empty slot stays in Detect; another try cannot help. */
++		if (status > PCIE_CLIENT_DEBUG_LTSSM_DETECT_ACTIVE)
++			err = -EAGAIN;
++		goto err_power_off_phy;
++	}
++
++	if (!rockchip_pcie_link_is_stable(rockchip)) {
++		dev_warn(dev, "PCIe link up but keeps entering Recovery\n");
++		err = -EAGAIN;
+ 		goto err_power_off_phy;
+ 	}
+ 
+@@ -377,6 +427,30 @@ static int rockchip_pcie_host_init_port(struct rockchip_pcie *rockchip)
+ 	return err;
+ }
+ 
++static int rockchip_pcie_bring_up_port(struct rockchip_pcie *rockchip)
++{
++	struct device *dev = rockchip->dev;
++	int i, err;
++
++	for (i = 0; i < ROCKCHIP_PCIE_LINK_BRING_UP_TRIES; i++) {
++		if (i) {
++			dev_info(dev, "retrying the link bring-up (%d/%d)\n", i,
++				 ROCKCHIP_PCIE_LINK_BRING_UP_TRIES - 1);
++			msleep(ROCKCHIP_PCIE_LINK_RETRY_WAIT_MS);
++		}
++		err = rockchip_pcie_host_init_port(rockchip);
++		if (err != -EAGAIN)
++			break;
++	}
++
++	if (err == -EAGAIN)
++		err = -ETIMEDOUT;
++	if (err)
++		dev_err(dev, "no usable link: %pe\n", ERR_PTR(err));
++
++	return err;
++}
++
+ static irqreturn_t rockchip_pcie_subsys_irq_handler(int irq, void *arg)
+ {
+ 	struct rockchip_pcie *rockchip = arg;
+@@ -881,7 +955,7 @@ static int rockchip_pcie_resume_noirq(struct device *dev)
+ 	if (err)
+ 		goto err_disable_0v9;
+ 
+-	err = rockchip_pcie_host_init_port(rockchip);
++	err = rockchip_pcie_bring_up_port(rockchip);
+ 	if (err)
+ 		goto err_pcie_resume;
+ 
+@@ -938,7 +1012,7 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
+ 		goto err_set_vpcie;
+ 	}
+ 
+-	err = rockchip_pcie_host_init_port(rockchip);
++	err = rockchip_pcie_bring_up_port(rockchip);
+ 	if (err)
+ 		goto err_vpcie;
+ 
+diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
+index b5da15601b58..fcdc3783b3fd 100644
+--- a/drivers/pci/controller/pcie-rockchip.h
++++ b/drivers/pci/controller/pcie-rockchip.h
+@@ -51,6 +51,9 @@
+ #define   PCIE_CLIENT_PHY_ST			BIT(12)
+ #define PCIE_CLIENT_DEBUG_OUT_0		(PCIE_CLIENT_BASE + 0x3c)
+ #define   PCIE_CLIENT_DEBUG_LTSSM_MASK		GENMASK(5, 0)
++#define   PCIE_CLIENT_DEBUG_LTSSM_DETECT_ACTIVE	0x01
++#define   PCIE_CLIENT_DEBUG_LTSSM_RCVR_LOCK	0x0b
++#define   PCIE_CLIENT_DEBUG_LTSSM_RCVR_IDLE	0x0e
+ #define   PCIE_CLIENT_DEBUG_LTSSM_L1		0x18
+ #define   PCIE_CLIENT_DEBUG_LTSSM_L2		0x19
+ #define PCIE_CLIENT_BASIC_STATUS0	(PCIE_CLIENT_BASE + 0x44)
 
--- 
+---
+base-commit: 35f800669ce835aa77364a2ab5b61be19b778d3c
+change-id: 20261018-rockchip-pcie-resume-2c4dfe23341e
+
 Best regards,
-Jinjie
+-- 
+Igor Velkov <iav@iav.lv>
+
 
 
