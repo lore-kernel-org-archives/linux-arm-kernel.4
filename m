@@ -2,69 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F97B606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD75C606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qfN+qAgX;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=UU4rwlcq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vv4YnEV6;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SRowMdmR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lRLh+6ly/zzKoywkZKGuB1GGj84cUkixJQdHrkjHSDI=; b=qfN+qAgXUB1cIG4NQxHMStGRJB
-	3cBILlrs6NEZeJkDYsLIw9I/R0EzPI2vPdupN954gqnO9sDVyxK/uItoj05GgrDPPzBLAX5ytFIZf
-	YL4bZMEVAsOrpLBe4CYfcBSPS8GWHWaj7wQck9b9lU9uMa9DOZkNhZMnCdQZk2uhTvO/yACDz21MH
-	4j8hJHgZwpWc5DTV38E8+oW84zAnNguowkHQOtAhiCnSC2apIsLQG2w4S2U/hqz5rnLPaVkWFfZfI
-	Zr1u222NrrimjATVDbz9/04SMktCkzdhbY5WtozLpasYb53f8Mis9TzE5qaFlNZdTtROgmeBk+ky2
-	aX0YJBzw==;
+	bh=AcI5O5MVmz/sMdzZjpcXmsQSI2YiMfU3J4R/RHPWjLk=; b=vv4YnEV6dSKiUw7NF7eXCokqxL
+	STYwzyOejReafqQo0uYf3b8qwkrow6vOsBOo1bXOeRnMxZnWVMSI62pDOl1PBjC/2NgOz8+32sHIA
+	oudrq1lLHRHp1QRePifpu9JENnit5/5e7DGeY95TTYY4R2drkrPIaDrnqlrNgvgpbkuC5cw5DiPgD
+	dGe7sHjf82VmCaJ1lomSvO6mL8mFKvEhUXzNUGN4BA54rrRru9NOH3Cm/u4cofRp8Qx8OYJpjwOtH
+	a1nKo/DxuEh4M20OC4N4TyEwgDhJyGw1SO++S6od3cANGueniqEvCxStIbN78GQzSSFtJOUq7jh5R
+	37u+aIlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxCE-00000002jON-44BS;
-	Mon, 16 Nov 2026 13:56:34 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xSxH0-00000002kB7-3mNT;
+	Mon, 16 Nov 2026 14:01:35 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxC8-00000002jKx-3hvJ
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:56:33 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id C74D1C4EFD7;
-	Mon, 16 Nov 2026 13:56:30 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CD6436023F;
-	Mon, 16 Nov 2026 13:56:26 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9801611BC051A;
-	Mon, 16 Nov 2026 14:56:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794837386; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=lRLh+6ly/zzKoywkZKGuB1GGj84cUkixJQdHrkjHSDI=;
-	b=UU4rwlcqjirfQp7/rZvYV3fF/Eo9GbwHtJ54CuOcxg87TpP36NfPrWr9BhCUWWEb0cp06T
-	KcJGSg+JEUZeB6kMhgBNP8NaCgbzGr0OFdq/lNw70lKM/TX9lSSGf8+QC9yxTOLuzHW1v1
-	y/k1lEPAEP08cbpDIoN1wUwcWEdyepaBZEjSNQTMObIQ1TeUHcZwed00oHrW+aHtbmzKCH
-	03Jdoc4miFHVQurIg7Yh4vDeF2b9Omy4SmBVaCfxFAStZqWQmUkJHVeWu0cibgQnfgpk8M
-	rIMbrnxzxfZWmTsxB+8TOT3o1Qgfr8Aunb6JDQojaQkAgIyXmsZV28X1j2jS3g==
-Message-ID: <2a117360a6842fd3b1929aeade3b05320c9ad4d8.camel@bootlin.com>
-Subject: Re: [PATCH] clkdev: Improve clock discovery with clk_find()
-From: Paul Cercueil <paul.cercueil@bootlin.com>
-To: Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Date: Mon, 16 Nov 2026 14:56:23 +0100
-In-Reply-To: <20261103084915.8405-1-paul.cercueil@bootlin.com>
-References: <20261103084915.8405-1-paul.cercueil@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	id 1xSxGz-00000002kAv-3i2F;
+	Mon, 16 Nov 2026 14:01:29 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4D01B44D53;
+	Mon, 16 Nov 2026 14:01:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A30E1F000C7;
+	Mon, 16 Nov 2026 14:01:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794837689;
+	bh=AcI5O5MVmz/sMdzZjpcXmsQSI2YiMfU3J4R/RHPWjLk=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=SRowMdmRKr8bt0UEpVVKpzPHsooZjMsXJe387NrjH4YfbU1S9NOyc3XS2d9qhPsVe
+	 LVSh2mlGuM+enJFFeW/z9tYYc1xnmEgDEvcISNSUWFz2cLhToPG+8igZE73r948J8/
+	 jMOzB1NVzW135Cy5yMoAXrboWiWuI80TtQZwA8sRjevSTb5U6jIHxa1/n5aXMm9wCm
+	 kCpAIfuAT6h3+CK83Xjjr/b9AeySe0PYeHivvn1IYe8E4ycSQxK+1Y/Dhh/bWKX65S
+	 8E+QHrK2n8XFgqCCvH7Vz0Q9s/62NITzlaH9GnB0yOYTVLjfIzFhrlugwH1lqbu8mN
+	 btC/04tSUV3MA==
+Subject: Re: [PATCH net] net: ethernet: mtk_eth_soc: Fix potential PPE hash table leak
+From: netdev-bot+sashiko@kernel.org
+To: liguangshuo@mail.sdu.edu.cn
+Cc: nbd@nbd.name, lorenzo@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Date: Mon, 16 Nov 2026 14:01:27 +0000
+Message-ID: <179483768794.3136.13845952044990808928@kernel.org>
+In-Reply-To: <20261112-88a3a7ff32-net-mtk@mail.sdu.edu.cn>
+References: <20261112-88a3a7ff32-net-mtk@mail.sdu.edu.cn>
+X-sashiko-severity: High
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_055629_088644_1924C83C 
-X-CRM114-Status: GOOD (  17.45  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,63 +70,185 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Russell,
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue(s) to consider.
 
-FYI I merged this patch into another patchset (of which you're in Cc)
-called "ACPI: platform: ACPI 6.5 fixed clock support":
-https://lore.kernel.org/linux-acpi/20261116135217.37038-1-paul.cercueil@boo=
-tlin.com/T/
+Critical: 0 · High: 1 (2) · Medium: 0 · Low: 0
 
-So that you also get the context about why it's needed.
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-Cheers,
--Paul
+- [High] The fix is incomplete.
 
-Le mardi 03 novembre 2026 =C3=A0 09:49 +0100, Paul Cercueil a =C3=A9crit=C2=
-=A0:
-> With a setup where a clock provider registers a clock with a device name
-> "mydev" and a clock name "myclk", calling clk_find("mydev", NULL) would
-> not actually return any match.
->=20
-> Update the code so that we can support this while maintaining the
-> existing behaviour:
->=20
-> - clk_find("dev", "con") matches in order of priority ("dev", "con"),
-> =C2=A0 ("dev", *) and (*, "con");
-> - clk_find(NULL, "con") matches (*, "con");
-> - clk_find("dev", NULL) matches the first case of ("dev", *).
-> =C2=A0 Note that in that case we don't handle wildcards for the device na=
-me
-> =C2=A0 or it would end up matching everything.
->=20
-> Signed-off-by: Paul Cercueil <paul.cercueil@bootlin.com>
-> ---
-> =C2=A0drivers/clk/clkdev.c | 4 +++-
-> =C2=A01 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/clk/clkdev.c b/drivers/clk/clkdev.c
-> index 919fc680ae4d..ee6c0afd6ec0 100644
-> --- a/drivers/clk/clkdev.c
-> +++ b/drivers/clk/clkdev.c
-> @@ -53,7 +53,9 @@ static struct clk_lookup *clk_find(const char *dev_id, =
-const
-> char *con_id)
-> =C2=A0			match +=3D 2;
-> =C2=A0		}
-> =C2=A0		if (p->con_id) {
-> -			if (!con_id || strcmp(p->con_id, con_id))
-> +			if (!con_id && !p->dev_id)
-> +				continue;
-> +			if (con_id && strcmp(p->con_id, con_id))
-> =C2=A0				continue;
-> =C2=A0			match +=3D 1;
-> =C2=A0		}
+Pre-existing issues:
+- [High] This problem wasn't introduced by this patch, but it is a high-
+  severity use-after-free in the same PPE teardown.
+- [High] This problem wasn't introduced by this patch, but it is a high-
+  severity work-cancellation ordering race in the remove path the patch…
+
+--
+
+net: ethernet: mtk_eth_soc: Fix potential PPE hash table leak
+
+This patch adds a call to mtk_ppe_deinit() in mtk_remove(). The goal is
+to destroy the PPE L2 flow rhashtables, whose bucket tables are not
+device-managed. This matches what the probe error path already does.
+
+> diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> index ad0fdc4133fb6..08973b6f0711d 100644
+> --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> @@ -5426,6 +5426,7 @@ static void mtk_remove(struct platform_device *pdev)
+>  	netif_napi_del(&eth->rx_napi);
+>  	mtk_cleanup(eth);
+
+[Severity: High]
+This is a pre-existing issue, but the commit message says
+mtk_ppe_deinit() runs "after unregistering the netdevs and cancelling
+the driver work". Is the driver work actually guaranteed to be stopped
+at this point?
+
+mtk_cleanup() frees the netdevs before it cancels either work item. It
+also cancels pending_work before monitor_work:
+
+drivers/net/ethernet/mediatek/mtk_eth_soc.c:mtk_cleanup() {
+	mtk_sgmii_destroy(eth);
+	mtk_unreg_dev(eth);
+	mtk_free_dev(eth);
+	cancel_work_sync(&eth->pending_work);
+	cancel_delayed_work_sync(&eth->reset.monitor_work);
+	...
+}
+
+monitor_work stays armed during all of mtk_remove(), and it can queue
+pending_work again:
+
+mtk_hw_reset_monitor_work() {
+	...
+	if (mtk_hw_check_dma_hang(eth))
+		schedule_work(&eth->pending_work);
+out:
+	schedule_delayed_work(&eth->reset.monitor_work,
+			      MTK_DMA_MONITOR_TIMEOUT);
+}
+
+Say a monitor_work instance is running when
+cancel_work_sync(&eth->pending_work) returns. It can queue pending_work
+again. cancel_delayed_work_sync() waits for monitor_work but does not
+cancel that newly queued pending_work.
+
+mtk_pending_work() would then run after mtk_remove() returns:
+
+	if (!eth->netdev[i] || !netif_running(eth->netdev[i]))
+		continue;
+	mtk_stop(eth->netdev[i]);
+
+Would that dereference the netdevs freed by mtk_free_dev()? The
+eth->netdev[] pointers are never cleared, and eth itself is
+devm-allocated, so it may already be freed too.
+
+pending_work queued during remove can hit the same problem. It waits
+for rtnl while unregister_netdev() holds it, and runs once rtnl is
+released.
+
+Would it be safer to disable monitor_work first and then pending_work,
+for example with disable_delayed_work_sync() and disable_work_sync(),
+before the netdevs are unregistered and freed?
+
+>  	free_netdev(eth->dummy_dev);
+> +	mtk_ppe_deinit(eth);
+
+[Severity: High]
+Does this cover all of the PPE offload hash tables? mtk_ppe_deinit()
+only destroys ppe->l2_flows. A second rhashtable that is not
+device-managed, eth->flow_table, is never destroyed anywhere in the
+driver:
+
+drivers/net/ethernet/mediatek/mtk_ppe_offload.c:mtk_eth_offload_init() {
+	if (!eth->ppe[id] || !eth->ppe[id]->foe_table)
+		return 0;
+	return rhashtable_init(&eth->flow_table, &mtk_flow_ht_params);
+}
+
+mtk_probe() calls this inside the per-PPE loop:
+
+	for (i = 0; i < ppe_num; i++) {
+		...
+		eth->ppe[i] = mtk_ppe_init(eth, eth->base + ppe_addr, i);
+		...
+		err = mtk_eth_offload_init(eth, i);
+
+Some SoCs set .ppe_num to 2 (MT7981/MT7986) or 3 (MT7988). On those,
+does each loop iteration re-initialize the shared eth->flow_table and
+lose the bucket table allocated in the previous iteration? That would
+also repeat on every EPROBE_DEFER retry.
+
+The bucket table that remains also stays allocated after mtk_remove(),
+even with this patch. The same is true for the err_deinit_ppe unwind
+in mtk_probe().
+
+There is also the deferred shrink work to consider. mtk_flow_ht_params
+sets .automatic_shrinking = true. That means rhashtable_remove_fast()
+called from mtk_flow_offload_destroy() can queue ht->run_irq_work, and
+then ht->run_work, when the table is lightly loaded.
+
+Without a rhashtable_destroy(&eth->flow_table), nothing syncs or
+cancels that work. Can rht_deferred_worker() then run on eth after
+devres has freed it?
+
+Would it make sense to initialize eth->flow_table only once, and pair
+it with rhashtable_destroy() in both mtk_remove() and the probe unwind?
+
+[Severity: High]
+This isn't a bug introduced by this patch, but mtk_ppe_deinit() also
+leaves the per-PPE debugfs entries in place. mtk_ppe_init() calls
+mtk_ppe_debugfs_init(), which does this:
+
+drivers/net/ethernet/mediatek/mtk_ppe_debugfs.c:mtk_ppe_debugfs_init() {
+	...
+	root = debugfs_create_dir(ppe->dirname, NULL);
+	debugfs_create_file("entries", S_IRUGO, root, ppe, &mtk_ppe_debugfs_foe_all_fops);
+	debugfs_create_file("bind", S_IRUGO, root, ppe, &mtk_ppe_debugfs_foe_bind_fops);
+	...
+}
+
+The root dentry is thrown away, and debugfs_remove() is never called.
+That is true for mtk_remove(), mtk_ppe_deinit() and the probe error
+path.
+
+Unbinding, or a probe failure after mtk_ppe_init(), releases ppe,
+ppe->foe_table, ppe->acct_table and the MMIO mapping through devres.
+But /sys/kernel/debug/ppeN/entries and /sys/kernel/debug/ppeN/bind
+stay in place.
+
+Can reading those files after unbind use freed memory?
+mtk_ppe_debugfs_foe_show() dereferences the freed ppe and foe_table.
+It then calls mtk_foe_entry_get_mib(), which reads registers through
+the stale ppe->base and writes into the freed acct_table:
+
+	acct->bytes += bytes;
+	acct->packets += packets;
+
+On re-probe, debugfs_create_dir() fails because the directory already
+exists. The stale files would then keep pointing at the old ppe.
+
+Could the dentry be stored in struct mtk_ppe and removed in
+mtk_ppe_deinit() and the probe error path?
+
+>  	mtk_mdio_cleanup(eth);
+>  }
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261112-88a3a7ff32-net-mtk%40mail.sdu.edu.cn
 
