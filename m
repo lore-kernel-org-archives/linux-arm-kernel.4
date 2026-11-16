@@ -2,101 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A18606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C8A606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lBH3/zDe;
-	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=PzUsyI0U
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3VoikXw1;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=NzhE4WrA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=rYZSKiWzbzGDSkOFczv6tAqyqip908dCHTB+bDdlwYA=; b=lBH3/zDen8W7NEWkG58gUDFcYa
-	gFSsT8D6zza5T9cfny37nQxGRsu3Z2OsaNBRcSJ1aWzaGIaz+pDEgOGZPeOVrFyfcRAxsotyHxshx
-	ggIx/TUP/NNm1Uo893c0OKxITZ27ppfPwQyY1leqOYf0CVPsIUwAIExvJDNsJn/SuVeL/QN6d0kkN
-	lA+Fc2OUjBTtUExy7K3Nal/rtCuQ+oWKnjFmsZBvhHYjDGouXHTPoSmWYnLYKYhU2tH18OJi4QHRE
-	A5uYCIS1yzxMznvmy9qPO9xn2U2d+J14rLDQGyL5r4Ih012/gq8T6veX28mNyOekynA+ih9eek5B1
-	Ryfrj+xw==;
+	bh=OgpKVi56iYyrqQb1XrLNVi7ftcITPhmk6C7+krOK81I=; b=3VoikXw1z2/OK3ZodoFuC9Q2Zh
+	8vU9IPaDq0LHrHzLtTOBcE4u+y7wzeEH3f1K+hCTqDyr6Ibq1arvczHtfXjhippIFkQSniVtILW2p
+	3eeugBOBFBbT3LKFc0AxkAgHAq/Nx/2dWXQUJfMqb/iOCqSzSSvjE6CTjYg2o12AuJ9ApB5tG5R/t
+	+LucIBIUYV63ZdpDC6C9j7knt6mL+kt7N9LHCHtb9EduAbMj8KTrCPzQoORU9VMX51BtlV1OLNPW6
+	sFNYd7RlyGghMnBlRS/2mDvyGfay24FsF0cdKnrE0cr7ifkUIWJxr7vckpHa8w8XoDYsbKJQD8wTJ
+	3Z0iEoJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwxJ-00000002fj2-0Y3v;
-	Mon, 16 Nov 2026 13:41:09 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1xSwzz-00000002g4I-35R2;
+	Mon, 16 Nov 2026 13:43:55 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwxF-00000002fha-3rvQ
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:41:07 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-c4d21051042so91903666b.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 05:41:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pereq.eu; s=google; t=1794836464; x=1795441264; darn=lists.infradead.org;
-        h=content-disposition:content-type:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=rYZSKiWzbzGDSkOFczv6tAqyqip908dCHTB+bDdlwYA=;
-        b=PzUsyI0ULXaZtuk8UJ6Zqd1Ufww4nrIlcNixCtp3wQAWim/L1ZexfrpSOAgDg02YPn
-         GXiS3DrVQs/dhOTs7hIyUVvsPM1xtzCoicl2t1zsWdYo9BGCALSmsViWZ7zXg3K6/41a
-         eiL20zo+cc7KmgXCQcrV/XpAzs4x/lZ8kdcW8mIqHD0DlAe/8otQoxFGukGDcKN98nDr
-         evah0/NFB9NVAd2zSsTfiqwseXQrEDc2P+eZzp2BCKyMN4BK3B8kH3Bfgx7GDOZaIgIe
-         KOZY3zdAmP9JLlD9k0U4mmmHbIrKP6B4dT4n7m0U/BG0GOkxNQ8BlPy0J5f3QyVVW7WZ
-         momQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794836464; x=1795441264;
-        h=content-disposition:content-type:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=rYZSKiWzbzGDSkOFczv6tAqyqip908dCHTB+bDdlwYA=;
-        b=C7QK7rEA7AvVnPREzrqQVWiKwOX1xbkVHnyCdxpcIVlw8YwvAC6BiOAQmOxmb+S5iX
-         qpzsB1tEcqEs9ER8l+fX2dFLyZOiBSlkpo6XbbM9qtqxdrUHJ24FxtejhLe9ebP0vIh0
-         Y5wGgsdCDKQA95B31/vrplljDdtqgD2eJVe9NLBmF4tcMQUmj0u0jRZYx3dQhmYFgJ6j
-         hslCpejBeFJWaZIRSDwk+Z9jc9O4h+CwX0XlA6g+p5NY0qa3URb/nUvhq/XAV3d8AZ+h
-         PHbvE5PBVNG8z7bCdbYwzKZQEhZ+5gxucaVWCkZHaj3Ukss+7txvYVL0eHq+yOfor2Vm
-         nS8A==
-X-Forwarded-Encrypted: i=1; AL+hErHKqwbXvkSyE3NyhqnwkfVW/ZiK8VGiP/93HV/oBhymAzT9yJs2CMIi5D5yCg0y0pBiR5qNL2yd5breNmP0kZXE@lists.infradead.org
-X-Gm-Message-State: APuU4Z9gFgllu5yF848ljUOD6C2UWRrsipfyDf/0e2jd2kUAGKO6DVY3
-	Kjh4kS49ynCGWRoZ4pmS2Crjb9QwKoXkXqhoaGgb/F1KlcvBE7GPUoroFzz0oGcsHH8=
-X-Gm-Gg: AYBFou3A3kGZRprhKQfy9RR5/1zQZKRBsDXCWz0L1cPnMOJITKKxmyHgAA5J3T37UUY
-	+GhW/7r1dtynNjUpAMKdd4L7x/0K6P9Uw9Jaa8ObrFfmgtupAt5MxPrRylcxdyBpDvROQengnPp
-	ygTlUoCKduZSCKW2LLCktrBNQKtrcGSE/j81WuGHIzS74WXkPngmwySL5kBVBSiIF16XM0BGoDa
-	0t8New4zUSOf+IKH3jqpHRhtt+kzDoiaMsMUYu5qhRn4PCkeHvac+uGdq2OH6Xj8ZqsDe6bQICz
-	Z6lrSXXo31qIS+wpXj5qN09S3maCKLtr+Ex5VdHOenjOFaZdGZKTrJYc9r+uDNKjdytdx2ovdWF
-	vdHUOAUmic1r43+7nLbeU/ip/o3/I48Bn4uXjTAHcxr7vezvhYR9sb5x/1T88MyzTJ8loUkh9yk
-	zCSe8HzrdrCfgXG4dl0cVW5Nc4j0jHraf/VrKHU85VqG84TJrLQh03Sr/sHd4/ci4Clb4gBznVG
-	vN4xqMzJzTWyIYo0bGBHpO73zHic4Hzx7XoR3bwyDz8QzAmiGTz6+1o5M8RCqbzJwsdGDopIkqk
-	bWtesdpu0lvR9/8YbtU=
-X-Received: by 2002:a17:907:9492:b0:c2e:52d6:1fb7 with SMTP id a640c23a62f3a-c509636a2ffmr771296866b.22.1794836438561;
-        Mon, 16 Nov 2026 05:40:38 -0800 (PST)
-Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b2369asm426229866b.25.2026.11.16.05.40.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 05:40:37 -0800 (PST)
-Date: Mon, 16 Nov 2026 16:40:34 +0300
-From: Dan Carpenter <dan@pereq.eu>
-To: Oliver Upton <oupton@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Karthik Bhargavan <karthik@pereq.eu>,
-	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>
-Subject: [PATCH] KVM: arm64: nv: Fix NULL dereference in kvm_inject_nested()
-Message-ID: <avsH0lxpLIF2Ug64@stanley.mountain>
+	id 1xSwzw-00000002g3f-31zP;
+	Mon, 16 Nov 2026 13:43:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=OgpKVi56iYyrqQb1XrLNVi7ftcITPhmk6C7+krOK81I=; b=NzhE4WrAx6sZNQUV4/SVRdwpX1
+	6Xt5b3BQMx6CM6lrifP4tOmcFTEPbB2/61J9kecr/gJvgzWS+IGsuRTW1yM+/spsRSki3b5pvmzxW
+	p69T2L2cWesX2gauOjZ1EA7x0kP/6vGP0qVHV94jhbUh3KqJz8Y8vvwfZ2YI8MYLEGgc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1xSwzV-00GvKE-JM; Mon, 16 Nov 2026 14:43:25 +0100
+Date: Mon, 16 Nov 2026 14:43:25 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: 1579567540@qq.com
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	David Wu <david.wu@rock-chips.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH net-next v3 0/2] net: stmmac: Add RK3572 support
+Message-ID: <d9114295-47ac-4fa7-ab4a-db631a46b363@lunn.ch>
+References: <20261116-add-board-ok3572-c-net-v3-0-a957fdcd9c7a@qq.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
+In-Reply-To: <20261116-add-board-ok3572-c-net-v3-0-a957fdcd9c7a@qq.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_054105_980250_EE6FE75F 
-X-CRM114-Status: GOOD (  15.59  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261116_054352_780671_82734560 
+X-CRM114-Status: GOOD (  15.50  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,95 +81,68 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-There is a NULL dereference of vcpu->arch.hw_mmu in kvm_inject_nested()
+On Mon, Nov 16, 2026 at 03:39:13PM +0800, Cunhao Lu via B4 Relay wrote:
+> This is one of the subsystem submissions for RK3572 support.
+> 
+> This series adds the RK3572 GMAC bindings and support for both Ethernet
+> controllers in the Rockchip stmmac glue driver. It provides RGMII and
+> RMII mode and clock control, together with RGMII delay configuration.
 
-Unable to handle kernel NULL pointer dereference at virtual address 0000000000000084
-  kvm_vcpu_put_hw_mmu (arch/arm64/kvm/nested.c:1046) (P)
-  vhe_vcpu_put (arch/arm64/kvm/arm.c:827)
-  kvm_arch_vcpu_put (arch/arm64/kvm/arm.c:860)
-  kvm_inject_nested (arch/arm64/kvm/emulate-nested.c:2903)
-  kvm_inject_nested_serror (arch/arm64/kvm/emulate-nested.c:2976)
-  kvm_inject_serror_esr (arch/arm64/kvm/inject_fault.c:365)
-  __kvm_arm_vcpu_set_events (arch/arm64/kvm/guest.c:827)
-  kvm_arch_vcpu_ioctl (arch/arm64/kvm/arm.c:2017 arch/arm64/kvm/arm.c:2157)
-  kvm_vcpu_ioctl (arch/arm64/kvm/../../../virt/kvm/kvm_main.c:4772)
 
-KVM_SET_VCPU_EVENTS does not load the vcpu, but it injects a pending
-SError or external abort straight away.  If the vcpu is in L2 context
-and L1 has asked for the exception, kvm_inject_nested() puts and loads
-a vcpu that is not loaded.  vcpu->arch.hw_mmu is NULL when the vcpu is
-not loaded, so kvm_vcpu_put_hw_mmu() dereferences a NULL pointer.
+> 
+> The RK3572 SoC has eight CPU cores: two Cortex-A73 cores and six
+> Cortex-A53 cores. It also integrates an Arm Mali-G310V2 MC1 GPU.
+> The OK3572-C board provides two Gigabit Ethernet ports, three USB3 Type-A
+> ports, a Type-C dual-role port, eMMC, microSD, and UART.
+> 
+> Testing was performed with Debian 13 minimal and Linux 7.3 on the
+> OK3572-C with the FET3572-C module.
+> 
+> Passed functionality:
+> 
+> - SD and eMMC complete the firmware, kernel, and root filesystem
+>   boot chain.
+> - UART console works at 1500000 baud.
+> - SD read/write and data persistence checks pass.
+> - All eight CPUs start; CPU frequency scaling and hotplug checks pass.
+> - Both Ethernet ports obtain IPv4 addresses and pass bidirectional file
+>   transfers.
+> - All three Type-A ports pass USB2 and USB3 enumeration, data transfers,
+>   and reconnect persistence checks.
+> - Type-C host and device modes pass in both plug orientations. Physical
+>   reconnects correctly select the expected device, host, and device roles
+>   in sequence.
+> 
+> Stability:
+> 
+> - Repeated cold and software reboots complete on SD and eMMC without data
+>   integrity failures.
+> - A combined CPU, memory, network, SD, and USB3 stress test completes
+>   without a crash, lockup, CPU offline event, or thermal shutdown.
+> - Ethernet error and drop counters do not increase during bidirectional
+>   network tests.
+> 
+> Build and checks:
+> 
+> - The kernel, modules, and board DTB build successfully.
+> - The series passes checkpatch with --strict.
+> 
+> Untested hardware and paths:
+> 
+> - NPU
+> - PCIe
+> - GPU, video output, and audio
+> - Other low-speed external interfaces
 
-To fix this bug, only put and load the vcpu when it is loaded, similar
-to what kvm_reset_vcpu() does.  When the vcpu is not loaded there is
-nothing to switch: the next kvm_arch_vcpu_load() loads L1's context.
+Most of this is irrelevant for netdev. Please write your merge commit
+message for the subsystem doing to merge.
 
-Fixes: 9aba641b9ec2 ("KVM: arm64: nv: Respect exception routing rules for SEAs")
-Fixes: 77ee70a07357 ("KVM: arm64: nv: Honor SError exception routing / masking")
-Cc: stable@vger.kernel.org
-Signed-off-by: Dan Carpenter <dan@pereq.eu>
----
-This was found through Pereq's formal analysis but the stack trace
-comes from real life testing.
-
-x86 implements kvm_arch_vcpu_ioctl() differently and puts vcpu_load()
-at the start of the ioctl.  But the way arm64 does it is deliberately
-and just something that people working with the code need to be aware
-of, I guess.
-
- arch/arm64/kvm/emulate-nested.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/kvm/emulate-nested.c b/arch/arm64/kvm/emulate-nested.c
-index 2bec81668361..22ca735a34f6 100644
---- a/arch/arm64/kvm/emulate-nested.c
-+++ b/arch/arm64/kvm/emulate-nested.c
-@@ -2862,7 +2862,7 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
- 			     enum exception_type type)
- {
- 	u64 pstate, mode;
--	bool direct_inject;
-+	bool direct_inject, loaded;
- 
- 	if (!vcpu_has_nv(vcpu)) {
- 		kvm_err("Unexpected call to %s for the non-nesting configuration\n",
-@@ -2891,6 +2891,7 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
- 	}
- 
- 	preempt_disable();
-+	loaded = (vcpu->cpu != -1);
- 
- 	vcpu_set_flag(vcpu, IN_NESTED_EXCEPTION);
- 
-@@ -2900,7 +2901,8 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
- 	 */
- 	__kvm_adjust_pc(vcpu);
- 
--	kvm_arch_vcpu_put(vcpu);
-+	if (loaded)
-+		kvm_arch_vcpu_put(vcpu);
- 
- 	kvm_inject_el2_exception(vcpu, esr_el2, type);
- 
-@@ -2915,7 +2917,8 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
- 	 */
- 	__kvm_adjust_pc(vcpu);
- 
--	kvm_arch_vcpu_load(vcpu, smp_processor_id());
-+	if (loaded)
-+		kvm_arch_vcpu_load(vcpu, smp_processor_id());
- 	vcpu_clear_flag(vcpu, IN_NESTED_EXCEPTION);
- 
- 	preempt_enable();
--- 
-2.53.0
-
+Andrew
 
