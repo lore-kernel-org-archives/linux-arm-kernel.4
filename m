@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47EF2606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8F1B606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:31:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SuDyLgls;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=crR46lRa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i11JDCgr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YvQ8bF80
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,56 +14,77 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=S7e5/3qhMzwHmcdOrhg3u7+owObXooEMey9O5v8c82I=; b=SuDyLglswwLSlx7wID6weVRQ7O
-	7bpq4lDEDe/VUCoHflxkEA3DbEIws8j5ny/xdyolJx2IzC6MILtJAA2EyflTXmrs0dY/01Z8TveNN
-	m1F1PhaeTqIPfKOJaiC+nY5tFgpJueEbAHzkK2Iw6koEx6NpIq8JACFIN4M7BwNJJ8qq+zpHAl6xT
-	aMJ/940lpclVeGRhRlv3bRAEIZPKZR49vasEZlIbxeshx+wUoUpNKXqel2CqYZ+isgfY1PCRCYJ3C
-	zD+EKjKOKZjC+9pdt2hNX3dUfBCVLYkjA5NfZS/blV+a57ZtPx1CTTEFLmFy8zU26udvydpgSAbRO
-	UwvF4LQw==;
+	bh=XJUTX/oG3xFE1N53/inUBACgrxQmH1VhG5mRIeJMkCA=; b=i11JDCgrHQypEklwstZPNsMyaT
+	tV4Eb3SB76nN2lmwVDz7xlEGPsql6bh2X5BtvdP9TtUyefnvE+ebCV4Zpa4kC5tG2v4BdHKBYKcCL
+	oeqvK5dVNMSYOywlxVE4/+yYORf5MaNBCnzb06UnHbe914FItIvIgBBOEf6xKdwndD+UbTl2YXc4k
+	AO0mLmeN34v+PL2uQ8L/P261cK0Sun2F5ShMO49C81tWcnVibkQDVeuRUxZeN3hBYy02PynabDVmz
+	+jPvP9vonNAgb3dW8XLZP54IZD3VtSOMMRA0gToRAbs+MwQ24gu5TTJM/wFpsQnMXBFXnxtpf/xJn
+	f/DTcmGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1U1-00000003ZON-1f9M;
-	Mon, 16 Nov 2026 18:31:13 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xT1UO-00000003ZbB-2Bza;
+	Mon, 16 Nov 2026 18:31:36 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1U0-00000003ZNd-45ZE
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 18:31:12 +0000
+	id 1xT1UN-00000003ZaN-2pKC;
+	Mon, 16 Nov 2026 18:31:35 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6910941E4B;
-	Mon, 16 Nov 2026 18:31:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFB1E1F000C4;
-	Mon, 16 Nov 2026 18:31:08 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C65DC630BD;
+	Mon, 16 Nov 2026 18:31:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A5451F000C4;
+	Mon, 16 Nov 2026 18:31:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794853872;
-	bh=S7e5/3qhMzwHmcdOrhg3u7+owObXooEMey9O5v8c82I=;
+	s=k20260515; t=1794853894;
+	bh=XJUTX/oG3xFE1N53/inUBACgrxQmH1VhG5mRIeJMkCA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=crR46lRanQeAEbsu7dj9ejzkWarMyTE/KgmXszbgPd4x/5fhj4QZ4a3G7UCHVFjus
-	 kQmCiu8Nru5pGrzH1NhMFCtcRvGNtOnWEWjYR3t3o2lkrDsmgLl90kFUwh4lDh2l6y
-	 YghpD/Bl7eUI8eHkteuehVpoBjx7+8wAFB64aowvkRXhOjJkQ4iSGuQzQVqvNcxfS9
-	 0wYf7KlRrWQrqsPs34Vdu2LSr/b04K2bPUeDiuiQQ52iNttgoOAbPsu7SxmL2yvSCn
-	 BagwxznYuUMIFk+Wpfu1xumVYR3Te5REvfFbPSntQhf2Se/WwptBq7NtYFTNN5Kret
-	 PhGnqfB9wDFvg==
-Date: Mon, 16 Nov 2026 18:31:06 +0000
-From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-To: Alexandru Elisei <alexandru.elisei@arm.com>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev, 
-	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
-	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
-	will@kernel.org, mark.rutland@arm.com, linux-perf-users@vger.kernel.org, 
-	catalin.marinas@arm.com, james.clark@linaro.org
-Subject: Re: [RFC PATCH v7 06/28] KVM: arm64: Add KVM_CAP_ARM_SPE capability
-Message-ID: <avtL0nlA1plEURmz@gremlin>
-References: <20260903160623.315525-1-alexandru.elisei@arm.com>
- <20260903160623.315525-7-alexandru.elisei@arm.com>
- <atDtheEuNRs7v3Gx@gremlin>
- <avXcdwY89YPFGIlk@raptor>
- <avXloVVaBeEwEplU@raptor>
+	b=YvQ8bF808RG4sXE5szH3DD7gpS+TlFCTXaX0vgrRZrdjqyhOnJo8pwDfaE3fyjFWK
+	 LAtMA0HvOeCESP193MmryXsuJFOlr176GZLcshKu2Zeiy4AXD+IRSEGlVvD93d/XbL
+	 noirZBbzEwlqSdCKe2HsbLZaX3gVjl8GsoMYefSL6ugEC2HTr+wrFwCAVsUrZz/+/s
+	 ijqQlbkwFPF+IvGTExOWIpB9J2v6ZBOLME/yfL7eeNtxdUHg1JKQzUxJGieyT4KlS5
+	 qBY9zfBP2tlR5U+F/UR2N2y6GCvTbiT2EUDIPLdW1XoTpWtSjsjuhYhH9tn3VENOlK
+	 acIc4NSXc72tQ==
+Date: Mon, 16 Nov 2026 18:31:26 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Guo Ren <guoren@kernel.org>
+Cc: gaohan@iscas.ac.cn, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
+	linux-csky@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 01/19] riscv: sunxi: describe the wider Allwinner SoC
+ family
+Message-ID: <20261116-myth-sponge-9a8cb0627b65@spud>
+References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
+ <20261114-v861-v1-1-eb71ec3ee523@iscas.ac.cn>
+ <CAJF2gTTF0b-dkLdznGzwYZmC6rP6GozX1j0Rre5t-aw6i5uDvg@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1w7qvO7R9koz6ld3"
 Content-Disposition: inline
-In-Reply-To: <avXloVVaBeEwEplU@raptor>
+In-Reply-To: <CAJF2gTTF0b-dkLdznGzwYZmC6rP6GozX1j0Rre5t-aw6i5uDvg@mail.gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,44 +95,84 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 04:13:21PM +0000, Alexandru Elisei wrote:
-> Hi Lorenzo,
->
-> On Thu, Nov 12, 2026 at 03:34:15PM +0000, Alexandru Elisei wrote:
-> > Hi Lorenzo,
+--1w7qvO7R9koz6ld3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Nov 14, 2026 at 09:13:49PM +0800, Guo Ren wrote:
+> On Sat, Nov 14, 2026 at 6:33=E2=80=AFAM Han Gao via B4 Relay
+> <devnull+gaohan.iscas.ac.cn@kernel.org> wrote:
 > >
-> > On Thu, Oct 15, 2026 at 05:51:03PM +0100, Lorenzo Stoakes (ARM) wrote:
-> > > On Thu, Sep 03, 2026 at 05:06:01PM +0100, Alexandru Elisei wrote:
-> > > > [..]
-> > > > +	if (!entry)
-> > > > +		return;
-> > >
-> > > Hmm, shouldn't failing to allocate here be an error, or at least a warning?
+> > From: Han Gao <gaohan@iscas.ac.cn>
 > >
-> > I don't think it's something that should cause the probe to fail. I could
-> > add a warning, I guess, to let the user know why KVM_CAP_ARM_SPE is missing
-> > even though the SPE module was loaded successfully.
->
-> On second thought, there's really no need to taint the kernel if the
-> allocation fails, KVM and the SPE driver can still function correctly.
-> Since the likelyhood of it happening is very low (it's a small allocation,
-> only three pointers), and userspace can detect it happening because
-> KVM_CAP_ARM_SPE is not available, I am inclined to keep it as it is and not
-> print a warning.
+> > ARCH_SUNXI is about to cover the V861 as well. Update its prompt and
+> > help text instead of adding another option.
+> >
+> > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+> > ---
+> >  arch/riscv/Kconfig.socs | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> > index cecbce0c4983..4cf3b24467e8 100644
+> > --- a/arch/riscv/Kconfig.socs
+> > +++ b/arch/riscv/Kconfig.socs
+> > @@ -61,13 +61,13 @@ config SOC_STARFIVE
+> >           This enables support for StarFive SoC platform hardware.
+> >
+> >  config ARCH_SUNXI
+> > -       bool "Allwinner sun20i SoCs"
+> > +       bool "Allwinner SoCs"
+> >         depends on MMU
+> >         select ERRATA_THEAD
+> >         select SUN4I_TIMER
+> >         help
+> > -         This enables support for Allwinner sun20i platform hardware,
+> > -         including boards based on the D1 and D1s SoCs.
+> > +         This enables support for Allwinner SoC platform hardware,
+> > +         including boards based on the D1, D1s and V861 SoCs.
+> Perhaps we could keep the help text generic and omit the specific SoC
+> models, so it won't need updating whenever support for another
+> Allwinner SoC is added:
+> This enables support for Allwinner SoC platform hardware.
 
-OK, fair enough, this isn't a big deal, thanks! :)
+Actually yea, you're right. There is apparently an allwinner device with
+an andes cpu on the way too, so there will be growth.
 
->
-> Thanks,
-> Alex
+>=20
+> >
+> >  config ARCH_TENSTORRENT
+> >         bool "Tenstorrent SoCs"
+> >
+> > --
+> > 2.55.0
+> >
+> >
+>=20
+>=20
+> --=20
+> Best Regards
+>  Guo Ren
 
---
-Cheers, Lorenzo
+--1w7qvO7R9koz6ld3
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavtL/gAKCRB4tDGHoIJi
+0pIhAP4uFWaULc3q4nslu9XRgPV6TBBGg02sy+5Omy1R8F0pfQD/ScwUGiv/JuIQ
+T4rHBR3hRAetz2ZNVtK27eqE8dA66wQ=
+=0dEM
+-----END PGP SIGNATURE-----
+
+--1w7qvO7R9koz6ld3--
 
