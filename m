@@ -2,75 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7BC606A880
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7305606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 14:09:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AfB0pLu+;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.a=rsa-sha256 header.s=2022a header.b=Le/+a0St
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YUhhFdBs;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=U+2eEMgt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6XgtXKrUb7kPgwKD/f012L0xoO7Sh8iYK023Xn9JSFI=; b=AfB0pLu+wAD2Je7NWKG4N1p6RO
-	UWrVdEjnNCW++2wZNrIH3TqR0iPSVq/FTGVKTdqIfoFj2aOKm6pILJeq9GLa/Uzkd5+v56r6JigzS
-	UGPZxPNIRmPKQDk+WVgKYbCw3tnSaaRVCgv6FZvRK287+5CwrM/41Rbstd5WQ+YNyffrhXaxiVL/+
-	fNRUxU2if3hO/43lqBEFzqX1Sg8CmNSB3q6zn2ukgbwXvEO+L09r2eOLyIe2Cs71GsVoFLenoAMck
-	IlWM62OEG1X4LPp2nikdToJ7k6SC/HCepMkEWA+P9wP90zvbsfR0zN9hvogetb3icsh13MHEBEu5l
-	cTBvPLbw==;
+	bh=U+kI0NsJYRH+LSM4mZJ4JtJDKQmYSW0KTBOTKB6ReYg=; b=YUhhFdBsaKcRW4kpwEClw9Liva
+	FOPoY3/+0DGc2psosTsqdhyiFK/zNSaGq0gTX5iaeLW84htrc9ha0URieNTIfLJg+N3hG7luZ37b0
+	FuT/Z6DpseE3KJo1Yvzn0N1D3NJIHeUj1Pj4S43TMzOQw2XdrTJE08soxzUJZxh4zOer62fJvd8mq
+	YDREk91Tei6j8EoQYpccgtm1FtW+ouMmH9XphWKBk02PQg4ZdY7+h5CMatmUYT+NI28/YoG8xvzBP
+	8n1QC3x56YFBmxiIiwYQjZWHFSzTfy2Xkuj+w+uy4uiBtNswJJYYJ5yYJV19rCZ6ox9rWudMbbZ6/
+	I9UP/7kQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxNn-00000002lIG-0oqd;
-	Mon, 16 Nov 2026 14:08:31 +0000
-Received: from pi.codeconstruct.com.au ([203.29.241.158] helo=codeconstruct.com.au)
+	id 1xSxOL-00000002lQ2-2Cb2;
+	Mon, 16 Nov 2026 14:09:05 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxNj-00000002lGf-43yS
+	id 1xSxOK-00000002lPn-3W0n
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 14:08:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1794838099;
-	bh=6XgtXKrUb7kPgwKD/f012L0xoO7Sh8iYK023Xn9JSFI=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Le/+a0St5+LbKQh4KvmBcsPiv9Z54ypsyqNjFb/uB43/ZAZK22Q4F9XYCwyRVGMey
-	 mphndvunk8dNwplRzbWJKiYV62UWsfDsL9jyF2q/UbEZUZ5QMgh7O95kDICDmjo7eM
-	 xqNYO6BwW+WzDPoVMIWG4iRZdYeBmxdW2Ny9bU3zu2HPrDHLeL19cN9csHX68+0kmw
-	 akgq6KFBgY4/y0bz+Y5z1T/MN2p9wRuoSfu79lQ/RlasxwzzX6HSxqu9ZzudxYyWkz
-	 ya96AtbI4ikjJG+DABEeCu1ywwWLrxZHV9rt9LVtT8fRhrTuVTOIODVvuYExijyBT+
-	 6Efj2sLle885w==
-Received: from pecola.lan (unknown [159.196.93.152])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id BCEAD6005F;
-	Mon, 16 Nov 2026 22:08:16 +0800 (AWST)
-Message-ID: <63b0ab24f2ec4f83ac87add03f2aa9517f7f73dd.camel@codeconstruct.com.au>
-Subject: Re: [PATCH net-next 0/2] net: mctp: Add MCTP transport for the
- Axiado AX3005 IRoT
-From: Jeremy Kerr <jk@codeconstruct.com.au>
-To: Akhila Kavi <akavi@axiado.com>, Sammai Chakravarthy	
- <schakravarthy@axiado.com>, Prasad Bolisetty <pbolisetty@axiado.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet	 <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni	 <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tzu-Hao Wei	 <twei@axiado.com>, Karthikeyan Mitran
- <kmitran@axiado.com>, Matt Johnston	 <matt@codeconstruct.com.au>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	openbmc@lists.ozlabs.org, Adam Young <admiyo@amperemail.onmicrosoft.com>
-Date: Mon, 16 Nov 2026 22:08:16 +0800
-In-Reply-To: <f752d203-8239-4203-aa04-884b4d7e5d80@axiado.com>
-References: <20261101-mctp-transport-irot-ax3005-v1-0-36ceb822f01e@axiado.com>
-	 <4102c20ece135c4d94e94af4441a01425ad159fc.camel@codeconstruct.com.au>
-	 <f752d203-8239-4203-aa04-884b4d7e5d80@axiado.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	Mon, 16 Nov 2026 14:09:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 46586403D6;
+	Mon, 16 Nov 2026 14:09:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9743A1F000C4;
+	Mon, 16 Nov 2026 14:09:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794838144;
+	bh=U+kI0NsJYRH+LSM4mZJ4JtJDKQmYSW0KTBOTKB6ReYg=;
+	h=From:To:Cc:Subject:Date;
+	b=U+2eEMgtWKb54c5VXqgbLIgwKOkPC4jO4S9FUx/Hii8fAg3t47EyGTYYf1W2+a1xg
+	 KqtMQ7QSvu8wQIukENGzncqUf/hk0TcTHUgnUxaRz61eT/cAviBkiA1UHM8kUiKadR
+	 U9ZaivT9RdlZmPZaepVrebP67w1gQZESwE0Yf/KuTrC9jlzD15hrAd5g6XKQb4QpV6
+	 LksuYhAD40xeIK/jN2EzRCb6SjejSh0EOzR5mDVY2xjXMq1Ni89IUcwfGAJIKXJp4O
+	 9QvTsVsgHGxIrE1vh2ce++Bypt7Zfg8vixJpOjgDTinpCIsTAvyx+iSuys2ka37D5k
+	 lOhrEJvANOcSw==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Alexei Starovoitov <ast@kernel.org>,
+	Daniel Borkmann <daniel@iogearbox.net>,
+	Jesper Dangaard Brouer <hawk@kernel.org>,
+	John Fastabend <john.fastabend@gmail.com>,
+	Stanislav Fomichev <sdf@fomichev.me>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	bpf@vger.kernel.org
+Subject: [PATCH v2] net: stmmac: Disable checksum insertion for XDP frame TX
+Date: Mon, 16 Nov 2026 21:48:48 +0800
+Message-ID: <20261116134848.4793-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.55.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_060828_206718_5ED75164 
-X-CRM114-Status: GOOD (  17.36  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,58 +78,78 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Akhila,
+stmmac enables TX checksum insertion for XDP frames whenever the queue
+supports it. XDP frames carry no TX checksum offload request, so this
+can overwrite a checksum already present in the packet.
 
-> Thanks for the review. To give some context first: this link is
-> entirely internal to the AX3005, and not for host communication. The
-> IRoT's MCTP endpoint is only reachable from the application subsystem
-> on the same die, through the mailbox and the shared-memory carve-out.
+dwmac can only do HW checksum for normal particular packets
+layouts, such as TCP, UDP etc. The stmmac_has_ip_ethertype() has
+well demostrated this limitation. Different with normal tx where the
+common stack supplies the skb->ip_summed metadata, XDP path doesn't
+have the necessary metadata. So to make the XDP always work properly
+when transmiting arbitrary Eth frames, dwmac HW csum needs to be
+disabled by default.
 
-Yep, understood.
+Pass false to stmmac_prepare_tx_desc() when transmitting an XDP frame
+so that the packet is sent with its checksum fields unchanged.
 
-> Both ends are fixed on the same die, and no third-party MCTP device
-> can ever be on the other end of this link, so carrying it as MMBI
-> would add nothing.
+Fixes: be8b38a722e6 ("net: stmmac: Add support for XDP_TX action")
+Fixes: 8b278a5b69a2 ("net: stmmac: Add support for XDP_REDIRECT action")
+Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+---
 
-It would mean that the driver doesn't need to be entirely custom.
+since v1:
+ - rebase against latest rcN
+ - update the commit msg
 
-I'm mainly curious as to why you went with a brand-new interface rather
-than implement MMBI.
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
 
-> The IRoT can't bridge anything to this link. As above, nothing outside
-> the chip has a hardware path to the IRoT's MCTP endpoint, so the
-> application processor is its only MCTP peer.
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+index 3014f9c7c3e6..0545f086212e 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+@@ -5284,7 +5284,6 @@ static int stmmac_xdp_xmit_xdpf(struct stmmac_priv *priv, int queue,
+ {
+ 	struct skb_shared_info *sinfo = xdp_get_shared_info_from_frame(xdpf);
+ 	struct stmmac_tx_queue *tx_q = &priv->dma_conf.tx_queue[queue];
+-	bool csum = !priv->plat->tx_queues_cfg[queue].coe_unsupported;
+ 	unsigned int txq_thr = STMMAC_TX_THRESH(priv);
+ 	unsigned int first_entry = tx_q->cur_tx;
+ 	unsigned int entry = tx_q->cur_tx;
+@@ -5306,14 +5305,6 @@ static int stmmac_xdp_xmit_xdpf(struct stmmac_priv *priv, int queue,
+ 		return STMMAC_XDP_CONSUMED;
+ 	}
+ 
+-	/* Disable TX checksum offload for jumbo frames on cores where
+-	 * checksum insertion is broken for oversized frames, matching the
+-	 * stmmac_fix_features() workaround used by the skb path.
+-	 */
+-	if (priv->plat->bugged_jumbo &&
+-	    xdp_get_frame_len(xdpf) > ETH_FRAME_LEN)
+-		csum = false;
+-
+ 	while (true) {
+ 		skb_frag_t *frag = i ? &sinfo->frags[i - 1] : NULL;
+ 		int len = frag ? skb_frag_size(frag) : xdpf->len;
+@@ -5353,7 +5344,7 @@ static int stmmac_xdp_xmit_xdpf(struct stmmac_priv *priv, int queue,
+ 		stmmac_set_tx_dma_entry(tx_q, entry, buf_type, dma_addr, len,
+ 					dma_map && frag);
+ 		stmmac_set_desc_addr(priv, desc, dma_addr);
+-		stmmac_prepare_tx_desc(priv, desc, !i, len, csum,
++		stmmac_prepare_tx_desc(priv, desc, !i, len, false,
+ 				       priv->descriptor_mode, !!i, last_frame,
+ 				       xdp_get_frame_len(xdpf));
+ 		tx_q->xdpf[entry] = last_frame ? xdpf : NULL;
+-- 
+2.55.0
 
-OK, makes sense. Be aware that you may have the other direction too, in
-which case the iRoT may need to fragment (and reassemble) packets that
-are bridged through this host, to other peers via links with a smaller
-MTU.
-
-I assume that's not in your current designs, but will crop up if those
-change.
-
-> If you would prefer, v2 can default mtu to the 68-byte baseline and
-> leave max_mtu at the negotiated limit, so the platform config raises
-> it explicitly. I'm fine with either option.
-
-Your call really. It's generally safer to start at the BTU and then
-increase, but if your platform design means that the max MTU will always
-be safe, then may as well set that.
-
-> Please send the implementation comments when you're ready; I'll fold
-> them into v2.
-
-OK, shall do.
-
-Cheers,
-
-
-Jeremy
 
