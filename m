@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D462D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 06:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAB2606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 06:22:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d29ajX1O;
-	dkim=pass (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=KeiB/C9D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dGjhK7TK;
+	dkim=pass (2048-bit key, unprotected) header.d=axiado.com header.i=@axiado.com header.a=rsa-sha256 header.s=selector1 header.b=gDfCVlne
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,133 +14,139 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SvmmvB0pBmnVgS4Zrtkcz2J9hW+b0uIVSeXmMcY2wN8=; b=d29ajX1OZzrFQ8FCk8AwAIER6J
-	yH/89XqydsaWU9ptcb5i9S5f7gmdgCZn/7fUdEyJOmS61p5BFtVPHGs+x/OsULXweMff++L603gaa
-	diVvvECzhaJqOaXvbpCXOtnmAgB41VV+zR0xHxFWE5B5uRXRKLwXudqlc2HpdWSAS4JSYpJ2JYYDw
-	22D8+v8LFw6YA78rosUE6Byii3koLt3BnWbK/lSnbrQvnGaQttYaqUIxmlNF5P0Zeb5UnF4JhM7uZ
-	g1iRTwthrzaP8FfACVCfPVeH1x9Wed5Eg2kkR7IDSPPJnU/SZ1JEYb01u1H+rqz8h4KEg+56p+AX5
-	7417hJMg==;
+	bh=I66VCwB8U6KqMZqm/jOYZ89MwWUFsrGxIloB6REqzFg=; b=dGjhK7TKsVLT4TYxb4yXoCJ56E
+	xuznjNGvmaK8Uwa1+GhdloaUKC6fspVvuOBz+Bjeb+uGuj1nUmjNFw8T21X8I6AiNmZBiSvKK/bzp
+	vhlTmyn5+Uv2Pbn9S340ads9CJzrNB32aCex06MXRk4gTlB9Be0ymRIxXt2voLcspHhPT63uXGvKt
+	nsY++rtAjf1c882inqXiUi9haHx7v+AVoNn1NWvg4YfEXLjIkeClEwKEQZczfM6FGFDYjD0d3lVL0
+	xlOLO5fc6iREEm4xFlWZGffaUIdrtnw+q4N80owXJscunc50l+ErKJViBXrF8SJRFnAsNoQb4YgDK
+	h6fEsU9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSq4q-00000001Duy-3y2z;
-	Mon, 16 Nov 2026 06:20:28 +0000
-Received: from mail-japaneastazon11023135.outbound.protection.outlook.com ([52.101.127.135] helo=TYDPR03CU002.outbound.protection.outlook.com)
+	id 1xSq6c-00000001E72-1vDf;
+	Mon, 16 Nov 2026 06:22:18 +0000
+Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSq4o-00000001DuW-0gb3;
-	Mon, 16 Nov 2026 06:20:27 +0000
+	id 1xSq6a-00000001E6E-03Wm
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 06:22:17 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VmYcgVwzgrE8qDgdVV4adnTB4G0+iv+Nr9QzYgYxjs6MnRPLJH99hmMMmOJm2Lfkpfo+iWNNyNRtVwMXLCtvBJwTVfVynepKxPkGEuyd/q+SwbqQGvAug42zM+K26E+81VYZR9lN+2vH1QB3KDJqJNHufCE5zMMjuGNMCHRYHGCvF0GJigPdUgEl3Kf5It3nbQwCR6aYwZlekViTuBIWX44+zWVsO+sQvu1XY08K+5xHgHSwPZNETxSsnFj51vLzAWi8CLYD3xFUlibUfm0XHNoTUTKNPfp4AKZMF+d46gnmqPr6VsSuIg01U8YTc4tX5PcW5iPTG6pornNZtL3bqw==
+ b=ciw3xGxwS9VWwBwyjQEYyHEEY1qvYOXlHfstUk1hy5m8ks96oyk0JTwqg/7aiTcCWPdYTV77HucmMicM328ofs87TPqkMfsyXb1R3obcEsFf5Dj5cIqBMrn4xq486sAsT1EnfNmByApC0ksrlQt0iAFt3xF/aLiNcH9gzjpAIMLM4ST1NM63dCWeZDgfx57ZkhI1vQWSRW8h3EqfziuPpSW83PsvCMSmo74eqtvQhYXm+21o4Bvt0DBuSxbHlsfGEIxRiPupujbLXMNFY/k3BOwDczhpDsWmvgX8Pcp0aYaH1egB1eww63Hk4QRZE/t4nvay9KtvkRZl6G6hky6dOQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SvmmvB0pBmnVgS4Zrtkcz2J9hW+b0uIVSeXmMcY2wN8=;
- b=WA0z0Ol5jOJE5awsi3K1BCQ1HxpRcVtacKtr5SsCZLEN2cenkgHnpCzhQoIUuBTdtY5Zl7GHBL8q4XJUCuPYzrlpO1P7YwHq61wEHphutgtT2GLVMATMMkOAWbzhQ0pCHUN/j9pYCMyl6nTL1/OEccQqgP3KCgWmo3VL1bRZ9L96Xgok0s1f7DYIXcX6TsZ8W5rySvwpEJhZfml7Q9RZCnRfMURLKv3gpSbIUa5u8jcnIN+eTBfahLVCm4HUT1XqkUMtizB6rt/te4p0aDB3TPus2OF+fNpKrlummhx1mlWh+ERJRRwzoLxbTxtM3D61XW949OuA8j1VtM7BbM2yTg==
+ bh=I66VCwB8U6KqMZqm/jOYZ89MwWUFsrGxIloB6REqzFg=;
+ b=w/V4hRQdsQ1i4Zsd5zbJWMtawoME2wMS98btopkF5haaomsTIxegRDOxcfx9nb0shlUtLFXdY4PPm4tOKa1GL3tpamqc8mgQo6ElFeGmYrdqyCotP4Dpe0kl7xkeQSd4+KI46b+yWN/fm9/xnqjF51vUClDM5+kwFBomzaC4SUNmfR7XRGvbosL/oIBbj64TSLkLA6qXG1IWM8pfvBrVSFTQ0seBioOmoqL3ugrSbnLVM2hGbp4eHKVEghlPGOTDYEGW39y9NrXkNOjTPJopddxeOxDyMUWqY82WJdde1gYWsM/Ej8yiAb4/KhEpatBveyjYQ2WKgH/VQe2qgSvQJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ smtp.mailfrom=axiado.com; dmarc=pass action=none header.from=axiado.com;
+ dkim=pass header.d=axiado.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SvmmvB0pBmnVgS4Zrtkcz2J9hW+b0uIVSeXmMcY2wN8=;
- b=KeiB/C9DLJzkL+VMtM7svzgxnhATjMfQrAL7annAGAuuotYsIZRJItyVy8Hq8LjNc4tyEpluyN6ZHaMUenPD691RXMRzjgSSHOGs5+Z0pll5uc+DaNtDkd3fSr+AHYli15YsH/1dCl1yw9qhAPUue8ad47xs/XwQTjgicLEC2WjRIO36MtrnwTxrxvuTgqbHWp6AHfqGc8ugSZGbGMwUJr8UBjfbJ0EzqobEyo4Fee8TLaxwKMOMX48kwuv1ERP+6EJP/2TSEbSXQ3H0h6tvJrT7Cev0mWfQcAxIRdrFlhE61QKyS9f05mWctvLacud8JXB/OATkgjLnGdT86dqV2A==
+ bh=I66VCwB8U6KqMZqm/jOYZ89MwWUFsrGxIloB6REqzFg=;
+ b=gDfCVlneglpkenvumjIUvBtLqH/sXS/r1iVipglRNqmmMCQQFz/c+NHpFDRTpMuJ11Pq+3XZnI8x0ngDT/nU259hxhfSqZDFy4nSUt6bEonsO7ndwpIuWe2e1eJaEkPDx3UzjP8AWupSWjQAfC4k+C9nVH9fZU0vHQMxz1nd/WRfudPZmdvVVtMYUljbRQu6pUVuST1OXkhzlgSBK4DGOP3vRSjHbiYewzm4Nh58GJ/zxpEYMj7SEqvPDDkwyjLqPg8GjBlFqlfMBxbnVmDjnHzIx2Xsy9KyZSeg15Jp2gGAeVDlbNJj0XXmYdvC0kn4gA09VHyX0W0S0rBxLRcJGw==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
- by SEYPR03MB7507.apcprd03.prod.outlook.com (2603:1096:101:143::13) with
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+Received: from CH3PR18MB5671.namprd18.prod.outlook.com (2603:10b6:610:1a3::11)
+ by LV3PR18MB6132.namprd18.prod.outlook.com (2603:10b6:408:275::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 06:20:15 +0000
-Received: from KL1PR03MB5521.apcprd03.prod.outlook.com
- ([fe80::f12b:85e:f95c:191e]) by KL1PR03MB5521.apcprd03.prod.outlook.com
- ([fe80::f12b:85e:f95c:191e%3]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 06:20:15 +0000
-Message-ID: <f6972e64-741f-46a1-b990-4d7362466bf0@amlogic.com>
-Date: Mon, 16 Nov 2026 14:20:13 +0800
+ 2026 06:22:09 +0000
+Received: from CH3PR18MB5671.namprd18.prod.outlook.com
+ ([fe80::d361:9d9c:4a15:4b84]) by CH3PR18MB5671.namprd18.prod.outlook.com
+ ([fe80::d361:9d9c:4a15:4b84%3]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
+ 06:22:08 +0000
+Message-ID: <f752d203-8239-4203-aa04-884b4d7e5d80@axiado.com>
+Date: Mon, 16 Nov 2026 11:52:12 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 1/6] firmware: meson: sm: video firmware loading via
- secure monitor
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20261022-b4-s4-vdec-upstream-v12-0-616240978792@amlogic.com>
- <20261022-b4-s4-vdec-upstream-v12-1-616240978792@amlogic.com>
-From: Zhentao Guo <zhentao.guo@amlogic.com>
-In-Reply-To: <20261022-b4-s4-vdec-upstream-v12-1-616240978792@amlogic.com>
+Subject: Re: [PATCH net-next 0/2] net: mctp: Add MCTP transport for the Axiado
+ AX3005 IRoT
+To: Jeremy Kerr <jk@codeconstruct.com.au>,
+ Sammai Chakravarthy <schakravarthy@axiado.com>,
+ Prasad Bolisetty <pbolisetty@axiado.com>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Tzu-Hao Wei <twei@axiado.com>,
+ Karthikeyan Mitran <kmitran@axiado.com>,
+ Matt Johnston <matt@codeconstruct.com.au>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org, Adam Young <admiyo@amperemail.onmicrosoft.com>
+References: <20261101-mctp-transport-irot-ax3005-v1-0-36ceb822f01e@axiado.com>
+ <4102c20ece135c4d94e94af4441a01425ad159fc.camel@codeconstruct.com.au>
+Content-Language: en-US
+From: Akhila Kavi <akavi@axiado.com>
+In-Reply-To: <4102c20ece135c4d94e94af4441a01425ad159fc.camel@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2PR02CA0023.apcprd02.prod.outlook.com
- (2603:1096:4:195::11) To KL1PR03MB5521.apcprd03.prod.outlook.com
- (2603:1096:820:51::12)
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0359.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:219::10) To CH3PR18MB5671.namprd18.prod.outlook.com
+ (2603:10b6:610:1a3::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5521:EE_|SEYPR03MB7507:EE_
-X-MS-Office365-Filtering-Correlation-Id: 935637be-7d4a-4c08-c0b5-08df43a9ad80
+X-MS-TrafficTypeDiagnostic: CH3PR18MB5671:EE_|LV3PR18MB6132:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75e66229-d74d-4727-60e5-08df43a9f124
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|366016|1800799024|10067099003|4143699003|11063799006|56012099006|261026140227099003|261028144727099003|261021135927099003|261022105027099003|261022075727099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info: dAb6uWbsrh9jSVmkd0xWu2fB4+evWZOTCO5/YQyKzj2uGXtjNx+QFeB4gWKDWeX7vblORfjt+yxVjaaHE3rA5OSgO3PHjrL4zy+AHMrDPYV36jVp0CmyVQzNgCqcxYAZHQhFMc3fJLwtWqzPcI75XjnMaBdQOTCdewp/m0G9m+UqNDer+p5mWLSYSpkOUWSgPBfL0lZuZADrX6nCfHYOVRPWVPbix2q7s0yJJMJhgytkRqsGGstjL+r6Azq4qgKWM9rFb9V8v4QBKd5ecBsnJvIAxICg6fgzoDI50u4ymjBN8Mr5rqETFi8r7Tog7PN1nNjRb2grWBBXnnNyGJmQsWz0/JlEl4ioL2F0gc8wUuiqwTcOM6RvmiEO8NZZg2zovcv04vF2CiOXLbtt3HthW6UYx7+6AHR9efYzsc0RbkLBLBPXM7qB7oOQcWp34iBj1frCzjAHGZ1Pxvm1rNg13K7yvy+e24UpOZE48wk9H4+7PFU0r31hNWP1kkCGHWgQ4xgbprs6LSZUvYSyO5AAz4UQQCKiRdtluoalG76CHmT+Yrx2H9cT3GFfIgLZJ9piuIh2IM7QcSSPGLbnp45m3wRdEPPWzHg79S0ipD1JTn17SuhtjOg+YJkKqeER3qgbhOuRrckvbEBrEgbw0VHqsLBAiy8ZhECZIkr1d8t0aMA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5521.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(366016)(1800799024)(10067099003)(4143699003)(11063799006)(56012099006)(261026140227099003)(261028144727099003)(261021135927099003)(261022105027099003)(261022075727099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|23010399003|921020|10067099003|5023799004|4143699003|56012099006|261021135927099003|261022105027099003|261021123027099003|261021121427099003|261026121527099003|261026140227099003|261028144727099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: VVXsywo5e2hbNcWp8+5eUXjDTVAkWvDOr1CB3uJ2ogoMmmrVWMSYAIYES0IAzTaVxJ5Fd5ngapOcnwVwDMv3IvkNToWDcmJkNZwJl2oM7czVoNt5F+bxuLuwZbAVLhf/Uw+ICFUQ2EUF5sRH4DRtFrkpAkgKLZ1zDvFTIndQO/9/u29JHPbxpza+WYxfSV4+hM53xNjErLGBde1y0ZcxkrwZYrsojoIOpjvLqbMpB+NzrjB4bNC3M9KOvBwHvVTnn9aZ6juDPOSDJevnSP+QbRCPH6RY6QpcHy4rWSefJWWK4FWDDYw7dUy7f2+v07fBz117ykuwbalsPDtRNVViquQ/CuFalncyEI70fJ5rRUYslI8x4Pc3Pm9A4w0dDlUmFj73M1H9G23+Ha1EWJ8FXMiHr7sX32rgdDuruHIzJidHiB90pAN3R5FoyYDv8UrYDGvZE/CNDBW/vGlC1K8UU23dLMhi92jwRtY+081qraYZXiK2Qjqt1NVOIs2TazzdJwEqlmT7qGBDlO0uFkKluKh965iG50hbyCSxz8hycac5u/0OmwxdO7Gv0auuZ4xvXZoG7L0iHVLLFPB29FaeKdAi7aQP7iKBLIDIO9f88NHBNJYjJAHzFmcHY4y5AVNhjvsF90vS1zeWJK3dvgyZYhS2SVtcwGBMDPXur4WvHozZPdfN6a0QdYYbvqyxwDlXKvgKr73pxS3MtVMl89ah3Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR18MB5671.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(23010399003)(921020)(10067099003)(5023799004)(4143699003)(56012099006)(261021135927099003)(261022105027099003)(261021123027099003)(261021121427099003)(261026121527099003)(261026140227099003)(261028144727099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003)(3023799007);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?by9KUVFkU1A1TXh1cGJRUlBxZ3JGR2VtOEN0alR6dUMzaGt5NlBjaUw1bndF?=
- =?utf-8?B?eGQ5SFZvTkgrMFVWLzlndmZORTFSNEpwWlFFaTFLS1NjUFRKRlhWUnlJaVRl?=
- =?utf-8?B?cFpiemlCL1dpTnRNN1BmeWVmMGZVQU1yQTVMcy9qeGVUc3JiRENlR3p0ZmFv?=
- =?utf-8?B?WVlrSlJxNkZ1Sy9KS0htSUg2dlA3ZjNwMW9KVmxhanV0Vy8zYjUxZllydE9D?=
- =?utf-8?B?VXY5WTE1bW9jMWZjZnpqcjdvSmZXamR4bWpTVWVqMlhrTE9mOUdJZzdlWCtx?=
- =?utf-8?B?QlhhWXV5SjVZUXFLU1RIS0Rod1BtZmkxTi9peEIrS2NWZUQ5aUowTEZubEZu?=
- =?utf-8?B?dFZqTkZSc0VINHJDcjlGTnFDV041alJiRHBSSnBwVk1vTnFyOUdYOHJQaDRT?=
- =?utf-8?B?THM1WkxXekpHSWR6eUY5YkVGaml3TUJ5ZmJneDI5a3VpZkRCR2ZKR0x2c0R2?=
- =?utf-8?B?eGY5NHZtRnZsUjZaZnJZZEcwaG9BMHY0RGd6cVpOTFhxNWkxWEc0N04yYnVR?=
- =?utf-8?B?ZXdKUUJyN3dwc3crOTBua2pIV29uNTJXckRxc29jZUZTampvMGdDNS9LS1Qw?=
- =?utf-8?B?UXJPR2tMdXlpQnR2YXJZbzRmVlVseW5vRkY4c0x1MGhHbTVOZnZzVTE2aUlO?=
- =?utf-8?B?ODQrK0pXTjN3MGpXL2xrTHJKb1JGbVBDdUhuZTlDY29VMVhldGs1VDFFbTBZ?=
- =?utf-8?B?UEpoWVl6TlV1dG5DY2diQUdQVnU4Q0o2RkZSTWgyZFp0WEszKzlpT0wvMDZh?=
- =?utf-8?B?T0NUSU54dTRubjNreXpzMy9BSURtRll6RjlvcHc3UmVRby81UHl3Mkw0cXJ2?=
- =?utf-8?B?aTF1MmppcU1iNE9TRmpJTXRBb2pHNTEvYlp0TytRaFpTQVVXMUU3d1B5Tksw?=
- =?utf-8?B?TUo3alp1ckl2di9tNW5kOWpPL1FwSVhxMWxncG1wV1lWeGx1U1l4THlDWHNa?=
- =?utf-8?B?NWFYcUlEWWZYQjM0cHdrWFJOSVhJQmtxTkkrRmhvVDdUVzkvUWJoZ3FtNlIr?=
- =?utf-8?B?bnowTkt6QlI3c1lxRVY2NDREa2EwMDhMY0h4Wi8ra1kycExaZldUUUJiNG43?=
- =?utf-8?B?Um94M2ptaUk4T3Q4RW4ySytTNUVrcWVnbGJqcm83ZkFZWHROT0d6WStDMEU1?=
- =?utf-8?B?WFpiYlNKRjZkaTZqbS9vUW9hbkJVUG1pZ3I5MGpvbFFSL2VrR3QwWllXV3hM?=
- =?utf-8?B?WUFlL05pQnBPbFplaUFQWHJWUEd4MmZ0ZVR3cjNrTFZHOGsyeWc1Z0srdWJO?=
- =?utf-8?B?eCtXTFV0c3BOTmtOTE1FSlg3RDU1TkpNa2ZxNFBKL2ovOTd0alh3SGVGbERp?=
- =?utf-8?B?OXlFc2owUjNMUEtGSkpNbzBwaStKNG5KVitRUDlueVJ3dXAwUTN5bHNzS0VT?=
- =?utf-8?B?a2pxNTFBdmVHalFmRXBiWElNSVJYamIzWUVqa0N4Z05zZ1A5RHNrbk9sUHNs?=
- =?utf-8?B?OWlIakQ2QUJQOFB4QjFOQmptYUczdVhveEtlOWszUUtmUkp6TFdYMFd0VGpz?=
- =?utf-8?B?d0I1Z2RCQzZoRDJDKzNvbGlGdS9hUHAyY0ZVUktsMExIbVhpdzF0S2tuQWlr?=
- =?utf-8?B?QUtUMENVTGdhTkJ2S0V0L0FRYTRISFdsS2FuemNXVkN4Vmo4Tit6RTB3cUcx?=
- =?utf-8?B?SXNQTDd6VG9oVnVZdWxHSmVwZmFRM1dXNzR3aFRIcHAweHIwaWJsVWM0QU9u?=
- =?utf-8?B?L2FvaXUreGNCaXRaVWRZYnJOalNlTWJsbmRlRDBucFhsMkREQ1ROM0NjbGRP?=
- =?utf-8?B?THdtMEFOVDBsMjl6bUhTL3RmVWlrVmlMQkRqdUtqaTVKOC9YS01taDQ2Zlhx?=
- =?utf-8?B?cmJwZWIvMVdDVDJJdFlZMndBZ0xncVVlK292eTl0UFFZOGFjUHNyZllsaE5h?=
- =?utf-8?B?NFlmUjZ4YVBoVnlkTXEwTUR1U2NBcnZINzdvNmsyTEJldU5aTk4rNWhYdXNL?=
- =?utf-8?B?U2FIc3I1K0wwWHQ2U3lqSTZ2MTViSlFjWFN4cUs0RUtXM2Q5WGJzWXB1MGRR?=
- =?utf-8?B?eFRpVW5VSS9uZnZlbjc0cTh0c29jdkwxNXVGdEVNNTZjZzhpbkIzdld5YWN2?=
- =?utf-8?B?S0JxSWFJVm9iUlM5Wmx5NjRpeUQwc2NOTERPTmdQNklZdm02TXEzcjJkUHdh?=
- =?utf-8?B?REpUd2tPOHQyMXcwYzdRT1RzVTlKZ2MyV1E1blFSUlRIcjZjMlNBVUlUNDZ3?=
- =?utf-8?B?aGtCak5MUzVRWERYdnhibXdSNXJrdWVBNnRLNCtSalVYSXFPRzNZNmRYQ3Iy?=
- =?utf-8?B?eVYrS3Z5aW9JOTN2dVdNVzgwbjNxTDh4eTg2Z2NvMzVGRDI4L0FBai91aHhs?=
- =?utf-8?B?TFVZS2hvMExLbExrZjJWZ0ZnSE5DNkdGK1RnYTJkbnFWUEgzZXVadz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 935637be-7d4a-4c08-c0b5-08df43a9ad80
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5521.apcprd03.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1k1Tkc4TzQ3K0hvRjJ5M3d2a3dQM0VRSkFwWXVuc204NFN6VUViaEMwWXRQ?=
+ =?utf-8?B?RURVaXdMRVo3ZlBGTDlDRGlHOHh2N0tFQXdxeWNUTlo5a3JOUjR6dC9pUDhP?=
+ =?utf-8?B?VVdzNEdQWDZ0V3VobWNLS1cvSDBEbXBwT1h4aXVRYlA1aFdNSzJqSVR1NnVX?=
+ =?utf-8?B?cDFqb1ZrMjFLNy9FdlUvVkwyMjJIWWFaY2tmM2tTSFlnQll0TWd1WHp3d1Vw?=
+ =?utf-8?B?dzlsRlBpSWt0V0FZY0h5Z0RnQ1R1WWRYUXdKZ2QrZWkrdFdMaFgzTVp0TzFL?=
+ =?utf-8?B?Nml1L3V0Qnh0ZURNamF6OGtucUlFbllIbXBZRkZkWUdjOVhiOXpFNjZNZmJI?=
+ =?utf-8?B?UmFqT2RvM3VzOHhFTVNidVYyeEhBVXJGVXJQaHBibXQ0ZW92eGphRjlDY1Rx?=
+ =?utf-8?B?UitNZ3Q0Nks5ZFZLdzZ4WEsvdUkwTDRwWW1Kei9oNlJRWDQzUHptM1BINUpD?=
+ =?utf-8?B?M1ZRSXFoWk5XaVozM0JMODJwNXM0ZStOVTJCZ3V1dlhScHBBSHhYUytLY1VT?=
+ =?utf-8?B?SGYrM0cyVExGRUF4OFpKWFJnR3RkSFluTXhic3NjemJtNlhTLzdPaHltSUp1?=
+ =?utf-8?B?QllJOUVUS0tZRld2Um9WN0YzMitBb2NTQTlMY01QMVFnVkhjN2k4S0V0dW8w?=
+ =?utf-8?B?dVFQLzlCMjQwMmlsNGNHUVZhWWZYZjBpYzZzY090Z0hvMDBSL2xiZ2EyaEl4?=
+ =?utf-8?B?Z2o5NEtMMlZleVFkdHVOdjUvSlhKcitCZlZTcTFUSjh2bFFHQVRQUHUxMmUr?=
+ =?utf-8?B?eG1sbG9oMEV0dWZNVlJxcmpjcXU3NVo3Q2FNZHJBV2t6MDJnMUFXa1VCT3FB?=
+ =?utf-8?B?NFA0ZHZkajcwVVFJM2hITXJVbW5RZ1J0NklLWXFIWjJ3MjFVMHlqN2VjNlRw?=
+ =?utf-8?B?Qk13UDB3TEE0S1cvVHVYVDdaMGEwMFhMb2tJNURJS0hidURpSXpCaWJJVGZI?=
+ =?utf-8?B?NkVtYlVhOStuY1E0aEZmekpCZkdDd0hITHRUcXB3YjJMV0NhU1djTWtmN2Fw?=
+ =?utf-8?B?NzRDYURsM1JCV2ZHYTc2ZmxFUUEwMmhPeTRyWXJnMjg0THFzWVFyR3VZZ2w1?=
+ =?utf-8?B?MldscW9pNVZDWHRuSU1HRzBPcjZCbVptdHdEUlg5eFVYTzVjdjQ1d1hJK05h?=
+ =?utf-8?B?UGpFT1cveFFMV0k1Z1EyZElUb3RZVzJpbkNJWWc1ZkU4VkxQUWN3R1pCVXFC?=
+ =?utf-8?B?aFdPc2ZLclY2Q2VmNHhIY3VFbVJ1TmwvVlI4amlhamNVVzA0em4yclc3MFUy?=
+ =?utf-8?B?SzBKbS9IVnZkdVNhV05VbHRxVC8zUWIwbWZ1TjgvYUd2cmo3aDJncU5tSFJo?=
+ =?utf-8?B?UWN6a1lESnJVbFQ5UDN0UkFyZlJLZThkMDJ2emF1eWIrR1pXN3hNNGVkNjh0?=
+ =?utf-8?B?L1d0b0gxNVJkUjgvZnN4TFBkWWtvSklEOE4rQnNQRkZnNUh4N280Tlhsano2?=
+ =?utf-8?B?UjBhSllWME8zcTVuV1dWb0J6cUo5dWZpZ2xFZytud1Z3N3NKbkZicGg5SW8z?=
+ =?utf-8?B?NDk0b2I1aXcyMVBUVjJ2SGhSVTV6Qmc5VHROVGpPMVgzajA1Q1p3N0pwaXJX?=
+ =?utf-8?B?RHlSblRCVFNkZm1KRVZHb1VrNDNGeEp4RkhaeVRWdXlhSlNuSFNlWHd5TVFi?=
+ =?utf-8?B?U0hIOHpUb2FPVzJDRGsyZmNwQmtUR0t1VVV1eUJObVErZ3IwTWZ6Wk1pTHpH?=
+ =?utf-8?B?M3lwLzhpMnAxYk54bm1qWE11U2FFemZCVnlXbjRla3ZFMnlnS29BcUFDTWV2?=
+ =?utf-8?B?Vk5UTGZUemV4YjlyK1M5QmwzTDh4OTJjb0E1WlR6VXNJQWQ4elNrSHR2RkhM?=
+ =?utf-8?B?SkJrZkIzVnZXQ2w5a3dVYis3UFB3dGI3NklJbEQza0Y0VHJFMEhpOVBuVVhT?=
+ =?utf-8?B?elovTFNCOVdSem1pVEFkY1NMOXJaMlpPNWxrUFdzd1orc1Q5R2MrYmFOMHJl?=
+ =?utf-8?B?alpaZmJzWjhsN0svQzZFSjBKRTBYL1NVQjJ6aEJDbVVFWlM5blRtM0xROHhI?=
+ =?utf-8?B?bHIya3JONGNUeXhoOWMzTE9obVhlRzl6U3pNRk9tT25sRnN3WVFOb1lQNGhP?=
+ =?utf-8?B?Q3F2a3VoOTFtWWc2eTdJZ0RuTlVLNzY4ZGFHM3lSZWhZd3dpVjBqTzllWU9B?=
+ =?utf-8?B?TnpOWldlc0FwS09SL1Q3bVlLS1VITEN1QzJnV3BzM0VycXlKWDlHdFZ1aXpO?=
+ =?utf-8?B?aEUvclUyZ0YzOFpYMWYyYmk3elFMaVB0aFA0b2hYYUhNb1R0U3cyWFF0VlBP?=
+ =?utf-8?B?RnY0aEdEcFVVbzBidERoK3FWOURKd1NjeTJtNG5SWWczM25hRE5lRG1wT2R2?=
+ =?utf-8?B?Vmd1dWRibktyNTVscC95b0tZd3RTSDJTanVHVTRxWDcvd3ZmdmhUQT09?=
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75e66229-d74d-4727-60e5-08df43a9f124
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR18MB5671.namprd18.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 06:20:15.1333
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 06:22:08.6940
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2vyjR1GQTBgVn5RjfV+mJLzE3Z3stIhOYCySCgKqcmXNApKI8CJJ/RPVzsxz7Zrfrw7CtztUSxB98ji+cEQHtA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7507
+X-MS-Exchange-CrossTenant-UserPrincipalName: iVJ0tSVh+satdHZwB/NrShB+LJ7edRfE2Df8GBZWDcpzDbDog2cjecX6qUNLMVPreSqW+spoB5N8jcQ2p8ZA3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR18MB6132
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_222026_221770_E3C9307E 
-X-CRM114-Status: GOOD (  16.23  )
+X-CRM114-CacheID: sfid-20261115_222216_073167_2DEE86E7 
+X-CRM114-Status: GOOD (  27.51  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -152,60 +158,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Neil,
 
-Patches [1/6] and [2/6] of this series add a new SMC command in
-meson/firmware, which required by the S4 stateless video decoder
-to load the firware via SMC.
-
-During the review of this series, the media maintainer, Nicolas,
-requested that these two patches be merged first, so that the
-remaining media patches can proceed on top of them. He is fine
-with either approach, merging them along with this series, or
-splitting them out into a separate patchset.
-
-So if these two patches look fine to you, an Acked-by would let
-them go through the media tree ahead of the rest. Or we would
-also be happy to split them out and send a separate series if
-you think it would be better. Any suggestion or review feedback
-would be much appreciated.
-
-Best regards,
-
-Zhentao
-
-> From: Zhentao Guo <zhentao.guo@amlogic.com>
+On 02-11-2026 08:25, Jeremy Kerr wrote:
+> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
 >
-> Add SM_LOAD_VIDEO_FW to the secure monitor command enum
-> to allow decoder drivers to load firmware through the meson_sm
-> interface.
 >
-> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
-> ---
->   include/linux/firmware/meson/meson_sm.h | 1 +
->   1 file changed, 1 insertion(+)
+> Hi Akhila,
 >
-> diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-> index 3ebc2bd9a976..3b90b49d0552 100644
-> --- a/include/linux/firmware/meson/meson_sm.h
-> +++ b/include/linux/firmware/meson/meson_sm.h
-> @@ -15,6 +15,7 @@ enum {
->          SM_THERMAL_CALIB_READ,
->          SM_A1_PWRC_SET,
->          SM_A1_PWRC_GET,
-> +       SM_LOAD_VIDEO_FW,
->   };
+>> The Axiado AX3005 SoC has an integrated root-of-trust (IRoT)
+>> co-processor next to the application processor. Security protocols such
+>> as SPDM and PLDM run between the two over MCTP. This series adds a
+>> transport for that link, so the host side uses ordinary AF_MCTP
+>> sockets.
+> One overall thing: why not use the MCTP MMBI (DSP0284) transport spec
+> for this? Sounds like this would be an exact match for the MMBI
+> use-case.
+
+Thanks for the review. To give some context first:
+this link is entirely internal to the AX3005, and not for host communication.
+The IRoT's MCTP endpoint is only reachable from the application subsystem on
+the same die, through the mailbox and the shared-memory carve-out.
+There is no hardware path to it from outside the chip:
+no PCIe, SMBus/I2C, I3C or USB connection reaches the IRoT.
+So this is strictly one point-to-point link between two fixed endpoints
+on the same SoC.
+
+You're right that the mechanism is close to MMBI: shared memory plus a doorbell.
+We looked at DSP0282/DSP0284 and decided to keep the existing protocol,
+for the reason: Interoperability, which is the main benefit of a standard binding,
+doesn't apply here. Both ends are fixed on the same die, and no third-party MCTP
+device can ever be on the other end of this link, so carrying it as MMBI would
+add nothing.For that reason the driver stays a narrow vendor binding:
+It uses MCTP_PHYS_BINDING_VENDOR and matches only the axiado,ax3005-mctp-irot compatible.
+It isn't meant as a general shared-memory transport, and it doesn't claim to be one.
+
 >
->   struct meson_sm_firmware;
+> [Also: CCing Adam who is working on PCC, which may have some overlap
+> with the mailbox protocol used here]
+
+Thanks. The two look alike: one shared-memory window per direction, a doorbell,
+and a completion before the window is reused. The differences:
+
+AX3005 is a DT platform with no ACPI, so PCC itself isn't an option here.
+Discovery is in-band. At probe the IRoT replies to a mailbox message with its window
+addresses and MTU limit.
+Each packet carries a counter, so a resent doorbell is ACKed again without the packet
+being delivered twice.
+
+Adam, if you see something both drivers could share, I'm happy to look at it.
+
 >
-> --
-> 2.42.0
+> And finally: how confident are you that the peer will never be able to
+> reassemble? Even if the peer's own MCTP stack may not reassemble,
+> there's no chance of it bridging to other endpoints in future?
+>
+> I have a few (minor) comments on the implementation, but would like to
+> sort out the overall protocol usage first.
+
+The IRoT can't bridge anything to this link. As above, nothing outside the chip has a
+hardware path to the IRoT's MCTP endpoint, so the application processor is its only MCTP peer.
+
+Defaulting the netdev MTU to the negotiated limit only makes sure that today's peer gets
+each message in a single packet. It isn't meant to stop anyone from using a smaller MTU.
+min_mtu stays at 68, so if the peer later reassembles or bridges,userspace can lower the link
+MTU, or set a per-route MTU for any EID behind it, without changing the driver.
+
+If you would prefer, v2 can default mtu to the 68-byte baseline and leave max_mtu at the
+negotiated limit, so the platform config raises it explicitly. I'm fine with either option.
+
+Please send the implementation comments when you're ready; I'll fold them into v2.
+
+>
+> Cheers,
+>
+>
+> Jeremy
+
+Regards,
+Akhila Kavi
+
 
