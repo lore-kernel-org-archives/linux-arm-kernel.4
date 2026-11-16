@@ -2,154 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5D2606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F96A606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gJgIPeEB;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=sBkeVFJ1;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=sBkeVFJ1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WPXQ2QjU;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=Ce6XbNuH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=WC6odsbv88linR8kETVekz0LF7qUlb1FWF+N1ERNnEk=; b=gJgIPeEBSOLiVCzOiSwzQwQIvo
-	aYuNDdq2fjoVuxZqjW+sBGCTXUR2omvM5Jtxk473UcNtVAleeq1lqpW1OZLdv60gPZtj9CGNB2DQl
-	aCNMzeJcZ1zpP/zTBnaRVwlT1pp2p3wAyt5ZjKrNDKwBS9ndzCTqX6XrBi8w/n2mi9iH1vNZJ3kq0
-	gD3JWZEDSLeJ8I0usEXghBc7ayRlT8zDBCWHDRdWYIH/7chnIhJj6rVW+p4YWR3zeNkRHj4rkBn7G
-	RDmpzhCbsc49/jF/LelL1kdD4KTQXeP0VbFeuQ+h+R1wxArMSLLr6/VMbjbbCw/kvoH2jM+4FVpsL
-	RwlPJc6A==;
+	bh=myLB4OwHBzyw4fpYYsjbE0atdhucZNjAIWIIh+XxrN4=; b=WPXQ2QjUAi6N6Jh+PVQ+CL6wZN
+	UZOpQS/JAHtAQEMLtoBC0JlSpFpKDrwokBS3jJ5NwQmoUS9Rk9sxdc75havCnxmAh5clDjwEIAZh8
+	VYnvzalboI9TFFh0aC76/IE0qS2S9Z8PfNmu6NE5JXKfOGY+ibfXQgxtyGQtKF857QCdxD3893Lf/
+	Jh7l47A/tFZwM6LupZ5VzDmzmP97gNwlNBtrfJ1vuVlv30czdKQ6yWtsHu0Zw1G0P+JQi7lAUA0rB
+	kQ4fEDupoofKY9T8w4DuWW9Jo76QF3Jt9FEl6KIB0BTFOCr56rMBvughlKjXwiQCgVfjn/sjeRnFf
+	QsN/Sgvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvRP-00000002IN1-2VQ6;
-	Mon, 16 Nov 2026 12:04:07 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xSvSe-00000002Ifw-3rGt;
+	Mon, 16 Nov 2026 12:05:24 +0000
+Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvRL-00000002ILQ-2Vim
+	id 1xSvSc-00000002IeT-0uej
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:04:05 +0000
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=fyUB/WL9zYK+6uQeMrtrbyRRM5oCwBo4gNE8UfId8H+iMSZ7yxaAuzMY+02Hz5QzqLOnS+20knX1lBcHElpXaz5xgUv8qMrSoPnGbMRftjsNSbswYTX6j7plnG2wED9DVcNYzzRAYzv4EWBxgrWKPcyB6FWShF+95KKkVdORMtf6XOC2/Me9MF1REPA6zuzZzt1yjqBAVayTpzroiWnh9Oe2QBnJoL8xyWqp91QNc6QabMsTpC0zbzykkbF6ualDLNqouEO6bgasjAg24iOljQxtNfduXjWHs8Mlsm3SBsKmJ3t78fNQ+UZrrPLNQ5aEaMZxqR6hihY4//cHKk9pvw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WC6odsbv88linR8kETVekz0LF7qUlb1FWF+N1ERNnEk=;
- b=fvng6m3mdHl+uYG9sC7MDXlJyVjAA/g2yQDXvLnnHN3pclMgerVIv6twoTXn5jw33Ic2NElcr8efEEyNwB9U/Du9hLYHNOm0Nd+EQslgVq5tnEIEG6DTMovOBcDTLQ2nEZvOBA/5hqvioLM+LozcrOgCmr/LDjPx5AHTA58z3BvuvtyuM+i2thzefp0wI6pDYJmpilG4YabN1jiO0B26MeDalC2LWmTCs4N/F9it09vA51F2+uYIGlEXcpSD30YArP1GQ8qiLGuVfw+xlSLygoFukKlwOG/HjCnB+s1pYF5sxJyqmj/O5eJcyGLGl1Zr2Ml1lcKqSM1N64E/cyEumQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=nvidia.com smtp.mailfrom=arm.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
- (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WC6odsbv88linR8kETVekz0LF7qUlb1FWF+N1ERNnEk=;
- b=sBkeVFJ12DfrXI7BieClKLbwQinKD7DmmRZ+aw0t/ZfsIEPqLNxScj78wTOqcp1N3omWZJSytsJqLmXJoxEIv8xv1+JPLLhVGQ3Jj11n+pFNE3WexsiHzJrWG2ptQyBEMeJTroHTQuWgEmryGdUXFGPRI04Kyw6h/tPue3uNPW4=
-Received: from DU2P250CA0001.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:231::6) by
- GV2PR08MB547301.eurprd08.prod.outlook.com (2603:10a6:150:3b9::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 12:03:56 +0000
-Received: from DB1PEPF000509FE.eurprd03.prod.outlook.com
- (2603:10a6:10:231:cafe::3a) by DU2P250CA0001.outlook.office365.com
- (2603:10a6:10:231::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Mon,
- 16 Nov 2026 12:03:56 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- DB1PEPF000509FE.mail.protection.outlook.com (10.167.242.40) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.4
- via Frontend Transport; Mon, 16 Nov 2026 12:03:55 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VpQotlYp7jMaAESnIEfgzJWBkOz+hHY0kGee8Na4XU/p7MasPxlhGk5Wk3yV6vpbeCRxUktqdcWuat8Ni7fl1Y5CgcJzG8PRHx6dQXM1/UwTlZFhgSTBlDu6znmbjb4tqccaJCivHv0KxCppLrYSNlnyAx5L3Z9R2/vIFWtu29wPj5XwGkATX+zsjlJsfXho8q16WBi3W4PNVeKQjOYjso9DkTU7vdwCo13xLfNHglPM8TRiY47nz2WWznHPqDt0IaNkp386lS7F+vFb62igTFxg+b1Xeto+66cPdmXZapNbiHbz85RhQTXD3zKBLGmiC2xVS/URqsyQwGYbiri9/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WC6odsbv88linR8kETVekz0LF7qUlb1FWF+N1ERNnEk=;
- b=tejcmCvvhku39nOFjQAolmKmUWSpj9a6fRPUVBn+CPQbWjghm7CtyIus9XmB0Qc+XTR9UNlTJK2VC4we3/M7i38RgyJWYF6rs4keibAotB4A1flIj/65T3VmRTNsqrXzTyuj+4Gjpmkj1n1AnleS15xYHu9wKp4uA25CdHDVhO8Lot4xSZ+l97z2Gwy93Y919eQ9WZZUB6Ojv3BgElawqDT6KD3YwgeNXAw+31r3HPL450CSmWmYgqRKsXfPTqHyQ0F+CmoRqGTlU8bKb1tAClalYQukgDDY+1orZrmp3VhxIa+cOcsHjv97JMX+D/JQXpff7IQo2oobI7ET/nmvnQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WC6odsbv88linR8kETVekz0LF7qUlb1FWF+N1ERNnEk=;
- b=sBkeVFJ12DfrXI7BieClKLbwQinKD7DmmRZ+aw0t/ZfsIEPqLNxScj78wTOqcp1N3omWZJSytsJqLmXJoxEIv8xv1+JPLLhVGQ3Jj11n+pFNE3WexsiHzJrWG2ptQyBEMeJTroHTQuWgEmryGdUXFGPRI04Kyw6h/tPue3uNPW4=
-Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
- signed) header.d=none;dmarc=none action=none header.from=arm.com;
-Received: from PAWPR08MB8959.eurprd08.prod.outlook.com (2603:10a6:102:33f::15)
- by WA4PR08MB496630.eurprd08.prod.outlook.com (2603:10a6:1d0:34::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 12:03:20 +0000
-Received: from PAWPR08MB8959.eurprd08.prod.outlook.com
- ([fe80::71d3:7b21:3594:e33f]) by PAWPR08MB8959.eurprd08.prod.outlook.com
- ([fe80::71d3:7b21:3594:e33f%7]) with mapi id 15.21.0615.012; Mon, 16 Nov 2026
- 12:03:20 +0000
-Message-ID: <a25bc3c5-080f-4e24-afdd-971f313a9442@arm.com>
-Date: Mon, 16 Nov 2026 12:03:18 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 09/12] iommu/arm-smmu-v3-kexec: Implement
- is_attach_deferred()
-To: Nicolin Chen <nicolinc@nvidia.com>, will@kernel.org, jgg@nvidia.com
-Cc: robin.murphy@arm.com, joro@8bytes.org, praan@google.com,
- kevin.tian@intel.com, smostafa@google.com,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- linux-kernel@vger.kernel.org, jamien@nvidia.com, kas@kernel.org,
- Cristian Prundeanu <cpru@amazon.com>, Breno Leitao <leitao@kernel.org>,
- xueshuai@linux.alibaba.com
-References: <cover.1793593923.git.nicolinc@nvidia.com>
- <8de1e1f52a03059f2e1123d259467eac23e9740e.1793593923.git.nicolinc@nvidia.com>
-Content-Language: en-US
-From: John Garry <john.garry@arm.com>
-In-Reply-To: <8de1e1f52a03059f2e1123d259467eac23e9740e.1793593923.git.nicolinc@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0102.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:191::17) To PAWPR08MB8959.eurprd08.prod.outlook.com
- (2603:10a6:102:33f::15)
+	Mon, 16 Nov 2026 12:05:23 +0000
+Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
+	(Authenticated sender: pza@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 53F71200563;
+	Mon, 16 Nov 2026 13:05:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794830720;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=myLB4OwHBzyw4fpYYsjbE0atdhucZNjAIWIIh+XxrN4=;
+	b=Ce6XbNuH5brNZhdbUzFVfiOQWZuIors5ZDiGHZbq0H7heC+CJAV03821lq6MmKMKV9XoZD
+	BTyf9IhZYlJxqCbCfj9XlRAWZ25crA3wkkrruTuzS45AeOipgjY5dQtNIRhtYHeVgoV/7n
+	XnI5zPCkBK/VI/AbcJkZm2uNVq7BbbJWYKiLFyKWmuh4wkYKksrl86rP+pQTceQgZiykWj
+	7DpmecXjt1ilPM8a816IguIp1drfqcEEUmQgGsBR2OZTXDZsCJvBotLDRGz//ie1/p8ktC
+	Fqu2BM+hQ/dp7KTph2vh5zncXCsFO7V9mfK9M9j3N2ObQh+xQLR/SsqZzXnq3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794830720;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=myLB4OwHBzyw4fpYYsjbE0atdhucZNjAIWIIh+XxrN4=;
+	b=SMy3PkaQYVUKR3rltjraWfns01w0zxrh9UgoUXYbVER4fulioewJUvI9H7vYBvbQXRz133
+	h8OLDsjkvu8BUAsQq5pQ526HlxcQ3eH+Ii4QcIq8wUwH8PlHSHnr6NTzaL9UBqpaecEGwg
+	cYFaelKZmN1RSfbtxG0axVPYwDTz3Vgl9Whds07omSbRVx8uojIljS2lfukkqrd+6TtTb1
+	IgtoLxJP9UNJIey3UyZmjSC2IQh/RcqkNcVcBfU+8EjNTQAHQAOrNbjCxyQazF0A66JvrE
+	7YtIVB7xsnF0TsMZpxdrzNEjix/6/X49PdJcA+Vbj4Q1wMosFZ0vxEz7EjtkxA==
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794830720; a=rsa-sha256;
+	cv=none;
+	b=d631/ZkM9Ikmiwd4yVTINxrLF6GTwIFVHvDISAG5stxcDBhx3DcAIr4AojkGqcqbZcKHmd
+	ICnxsKWCkTPL1FbddoK8od4Gd+MTDwER6NEHyPxDpxIlS7egWdkCQxSoo+VvSsXAavRymC
+	lJSxacXKlycJhl0KgiRrP5VmA/2yjMYTHmOKcbANRhCB5asKesMZiiwjt/E7JvBw7rz1yy
+	/Js0i3NVVdlqGwqDOIKMBiMLBDaU2m2yx5hNobeKGGJs9MzxqTa+Egj8bMwle+yWUzZNJW
+	4Q2GyXcj6h69uwhjChMx14tONM5vda/T21KFVM79pE7cHpDRLBlIjYGRRuomvw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
+Message-ID: <782e5c69196cd5618841abeadb1563d67f6e93a7.camel@pengutronix.de>
+Subject: Re: [PATCH v2 07/13] reset: add Synaptics SL2610 reset controller
+ support
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Catalin Marinas	 <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland	 <mark.rutland@arm.com>, Sebastian Hesselbarth
+ <sebastian.hesselbarth@gmail.com>,  Stephen Boyd <sboyd@kernel.org>, Brian
+ Masney <bmasney+clk@redhat.com>, Jerome Brunet	 <jbrunet+clk@baylibre.com>,
+ Linus Walleij <linusw@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Date: Mon, 16 Nov 2026 13:05:20 +0100
+In-Reply-To: <20261115102401.3520-8-jszhang@kernel.org>
+References: <20261115102401.3520-1-jszhang@kernel.org>
+	 <20261115102401.3520-8-jszhang@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: PAWPR08MB8959:EE_|WA4PR08MB496630:EE_|DB1PEPF000509FE:EE_|GV2PR08MB547301:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b23d3aa-a73a-4a46-bdb8-08df43d9b09b
-x-checkrecipientrouted: true
-NoDisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|1800799024|7416014|376014|23010399003|366016|22082099003|18002099003|6133799003|261009223027099003|11063799006|56012099006|4143699003|261102123227099003|261028144727099003|261026140227099003|261026121527099003|261022105027099003|261022075727099003|261021121427099003|261021135927099003|10067099003;
-X-Microsoft-Antispam-Message-Info-Original: D5+vQPe7V9fO7hRGB1560UmrtoCSbCNNQZ1GK9jjpeMBi0uP+aywRzBPO3yoCEBTLZNuUluzXdPAJEfY0xCqnuQiCRdyufGfy6ZAw/ITHRyuqev9wQgkfOfcw89Kv8Xxy/NiAojxwqKAxtir/Ro+r6hujIzYpRvk2RBkVdzlbGfboFO8KoETdr9r2Q6AD17BgZx7YepA4wB2CTyNbLr65xaPl8al5CnHF5tG+XZRaSRVkxc/If3Z171/+2TpZ9d0rc7BbGsQEQUpXkujlSumXrXgrs6FV/xHRFIe5mxSm4wuiwU2VlPuQRovfER3JE/wUkn1B85kDZ9+4nUmNtnt8xqDtX1MoMTG91DjkMCVkBD2pi/DXhfcQPEQNK/DGuBk7j9tft7c601wNa8lc5yzj8l5XvrBr2wtIdvsTrBVflkVEZl0GE9dFiQvuOtiU9v4vIFqGAfwYb5SDb83IWi5jv0EfhBkWgWEFg7KlX9iCX1g3VtcxMivCR4Mo2XyFc8DS/zyi3mWpGnIy4z7lgwOSM23p324/rjTNdcDANvUD+HbmJgP6XgMfJU8MD1s1hPSy02mdm6yPWZXV4QzNZKvfNKkgJrWOff7A5oVRWP653qbcQJRJaSQlDYvXyCUokW1kOYCwzeDqyOj0HtUiJnf60R/R6mBEsLnLKPGq71+1vg=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAWPR08MB8959.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(23010399003)(366016)(22082099003)(18002099003)(6133799003)(261009223027099003)(11063799006)(56012099006)(4143699003)(261102123227099003)(261028144727099003)(261026140227099003)(261026121527099003)(261022105027099003)(261022075727099003)(261021121427099003)(261021135927099003)(10067099003);DIR:OUT;SFP:1101;
-X-Exchange-RoutingPolicyChecked: Kwk0RrPA9w1lEHnt5U0RtprtYwtiVJpg3jpEJf+SUPPNSaV5+o0AVt6Ot704O/1bizXXuHbBDOXOemXO7Dipj9NKxC4l1GbVvxzRGYKgM2sZgSnzvpc8axXtP2RFDvaaOEQpsyfybOvjVsTAyJnswt5P1ENsC/ILBBO6zqlTDgu5+vXxKYSKFPQ+awUxHFC3wlaQogh6cqC0cQRwyDoime8vb7aw2VmbCT+orpXtvknf74FimX3zCc/QVhQwfZOh6uWYYUnwaYvqsYZbDLkvqp9V5x4lXBRNuA2yObsjJpw+0kY2i0dLzZBAChrUh8VbfY792cVYOLAD/TcQr7cbZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: WA4PR08MB496630
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB1PEPF000509FE.eurprd03.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: b38b1321-7dc9-4123-8f57-08df43d99b3d
-X-Microsoft-Antispam: BCL:0;ARA:13230040|35042699022|23010399003|14060799003|1800799024|82310400026|376014|7416014|36860700016|10067099003|56012099006|11063799006|4143699003|261026121527099003|261026140227099003|261028144727099003|261021135927099003|261021121427099003|261022075727099003|261022105027099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: 8RxsGAXOo7AqxYUnmzvgwXVwvbydgQBixzytCVkwxUmHeQCbviI3zwdOrc/yELmAr8xUlWCAglUJw5nY0E/SdwW9VbXbb/Z6J8fNht5+mQAC2yz5yDSHWUB9zWdLzFiiMj8FyQU3mH1PHMKts8zCXPjwjTC4GiPrXd82l/s+BqXvr8Fy5b55EpAxcYUcY7zmmnhlSf5TSkUbP+Fsz+6p2q8zXrgokP6n8EJdiG9L4InYMeM/VZEC1XWmHevDKaZG1giElOQgscWBR4qVK+qA3LVZjLZ7mSbZKp9cboVUohVCeOCdp7S5H/kB7qD3Qem3a6x/zaRV/ioDUshKUR6tldCk0FZBSPtrJf0zAef/jnprWGX3c44Ztt8eegkxQRQ+4FqWjY2ULrVquA/UKAkMbyea3UjUctbW9AabAYeUB/bgLkugq4ReEEDG16R3084PL9+4iQ7Tsz70qv7J3fksAnaHwFkzkcjJHGy2KiIne/twJ0GC/CEpFXOozz9VYIfumkBK8RF5fU/JFDtnWivOEi6wRmokINb/saH1y8UShDAhMb4pHZtVlPyY/KqEzI4X0Gex6FSf1X9kOAZysfUlhn7XGmaY6OLa3PJ6v04SLVUvLlbkaYmwQqf0RhFtst7sLVTHbhqvYWd7/dgKYjyZegKE02BXnkuV2vq4aA8hHVs5d8HG+oHFMWpGJJs4C6dCY4VSrBvh6Vc9QkYf2+zR5w==
-X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(35042699022)(23010399003)(14060799003)(1800799024)(82310400026)(376014)(7416014)(36860700016)(10067099003)(56012099006)(11063799006)(4143699003)(261026121527099003)(261026140227099003)(261028144727099003)(261021135927099003)(261021121427099003)(261022075727099003)(261022105027099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 1RdKd/gDS/6C9tcYsw3BTv9vEffPfZ5Fv6i182X8OH3ZVNT4t5y6Tw4WVtRcwE+LX3VKnG+5GTA2rdbv92l7XLLuCrT/Ivy9VGLB+MfrGQ18hfraGILgL9rUREO8zRqdkDRQyyIemKxhtykUJSUMeMAlGQ14ORNnOPMl7UwbccIo8qLGzHyIHihVII0rKKvH5GTYSZ90y3WxA3hpX/0FJaVUO6hFB8TnR7RKu/pLDoZ633yYH9oATpf31GuYWfBFZa74FiVlga3pEG67JIQOVHwYABSUjiLOkAcOOxmHXHlSEKQ2bdK6sP/lzDprWXZ4DJfYuB660xXixlSXCOw05PCQShvXRl1uqbwo6cfvQ66S0uDtYpqKl8oyfjYBM0Jz0SQMbORGEYud9nn3766eIN42BZHUObh/ncr2Jk2umGAEHsCuv5h3197o3yCPhtRQ
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 12:03:55.8877
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b23d3aa-a73a-4a46-bdb8-08df43d9b09b
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509FE.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR08MB547301
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_040403_692270_C6F3C0FD 
-X-CRM114-Status: UNSURE (   8.88  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261116_040522_573505_C16B092D 
+X-CRM114-Status: GOOD (  25.98  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -161,36 +104,306 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/2/26 05:19, Nicolin Chen wrote:
-> Though the kdump kernel adopts the crashed kernel's stream table, the iommu
-> core will still try to attach each probed device to a default domain, which
-> overwrites the adopted STE and breaks in-flight DMA from that device.
-> 
-> Implement an is_attach_deferred() callback to prevent this. For each device
-> that has STE.V=1 and STE.Cfg!=Abort in the adopted table, defer the default
-> domain attachment, until the device driver explicitly requests it.
-> 
-> Also, move arm_smmu_get_step_for_sid() to the header for the kdump function
-> to use.
-> 
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Reviewed-by: Pranjal Shrivastava <praan@google.com>
-> Tested-by: Breno Leitao <leitao@kernel.org>
-> Tested-by: Cristian Prundeanu <cpru@amazon.com>
-> Tested-by: Shuai Xue <xueshuai@linux.alibaba.com>
-> Signed-off-by: Nicolin Chen <nicolinc@nvidia.com>
+On So, 2026-11-15 at 18:23 +0800, Jisheng Zhang wrote:
+> Support the SoC and MCU reset controls exposed by the SL2610 system
+> controllers. Match the MFD-created platform devices, use the parent
+> syscon regmap and register each reset provider against the parent DT node=
+.
+>=20
+> Handle both pulse resets and sticky resets with assert/deassert controls.
+>=20
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  MAINTAINERS                  |   1 +
+>  drivers/reset/Kconfig        |  13 ++
+>  drivers/reset/Makefile       |   1 +
+>  drivers/reset/reset-sl2610.c | 224 +++++++++++++++++++++++++++++++++++
+>  4 files changed, 239 insertions(+)
+>  create mode 100644 drivers/reset/reset-sl2610.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index eae1493485ee..1bd3b2f39865 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3812,6 +3812,7 @@ F:	Documentation/devicetree/bindings/soc/synaptics/
+>  F:	arch/arm/boot/dts/synaptics/
+>  F:	arch/arm/mach-berlin/
+>  F:	arch/arm64/boot/dts/synaptics/
+> +F:	drivers/reset/reset-sl2610.c
+>  F:	drivers/soc/synaptics/
+>  F:	include/dt-bindings/clock/syna,sl2610.h
+>  F:	include/dt-bindings/reset/syna,sl2610-reset.h
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index eda9c698a95f..98e973a8798c 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -358,6 +358,19 @@ config RESET_SUNXI
+>  	help
+>  	  This enables the reset driver for Allwinner SoCs.
+> =20
+> +config RESET_SL2610
+> +	tristate "Synaptics SL2610 Reset Driver"
+> +	depends on ARCH_BERLIN || COMPILE_TEST
+> +	depends on OF && HAS_IOMEM
+> +	select SOC_SL2610_SYSCON
 
-FWIW:
+Why is this select needed?
 
-Reviewed-by: John Garry <john.garry@arm.com>
+> +	help
+> +	  Support the reset controllers in the SoC and MCU system control
+> +	  blocks of Synaptics SL2610 SoCs. Both pulse and sticky reset lines
+> +	  are supported.
+> +
+> +	  To compile this driver as a module, choose M here. The module will
+> +	  be called reset-sl2610.
+> +
+>  config RESET_TENSTORRENT_ATLANTIS
+>  	tristate "Tenstorrent atlantis reset driver"
+>  	depends on ARCH_TENSTORRENT || COMPILE_TEST
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index 489fafd6bbe3..d28276a4f2ea 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -42,6 +42,7 @@ obj-$(CONFIG_RESET_SCMI) +=3D reset-scmi.o
+>  obj-$(CONFIG_RESET_SIMPLE) +=3D reset-simple.o
+>  obj-$(CONFIG_RESET_SKY1) +=3D reset-sky1.o
+>  obj-$(CONFIG_RESET_SKY1_AUDSS) +=3D reset-sky1-audss.o
+> +obj-$(CONFIG_RESET_SL2610) +=3D reset-sl2610.o
+>  obj-$(CONFIG_RESET_SOCFPGA) +=3D reset-socfpga.o
+>  obj-$(CONFIG_RESET_SUNPLUS) +=3D reset-sunplus.o
+>  obj-$(CONFIG_RESET_SUNXI) +=3D reset-sunxi.o
+> diff --git a/drivers/reset/reset-sl2610.c b/drivers/reset/reset-sl2610.c
+> new file mode 100644
+> index 000000000000..1ca58d5a3e71
+> --- /dev/null
+> +++ b/drivers/reset/reset-sl2610.c
+> @@ -0,0 +1,224 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2026 Synaptics Incorporated
+> + *
+> + * Synaptics SL2610 reset driver
+> + *
+> + * Author: Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +#include <dt-bindings/reset/syna,sl2610-reset.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset-controller.h>
+> +#include <linux/slab.h>
+> +#include <linux/types.h>
+> +
+> +/* SL2610 ACPU subsystem */
+> +#define SL2610_GBL_PERIFRESET			0x350
+> +#define SL2610_GBL_PERIFSTICKYRESET		0x360
+> +#define SL2610_GBL_APBPERIFRESET		0x370
+> +#define SL2610_GBL_TOPSTICKYRESET		0x378
+> +#define SL2610_GBL_AVIOSTICKYRESET		0x37c
+> +
+> +/* SL2610 system subsystem */
+> +#define SL2610_SMGBL_STICKYRST0			0x400
+> +
+> +#define to_sl2610_reset_priv(p)	container_of((p), struct sl2610_reset_pr=
+iv, rcdev)
 
+Turn this into an inline function, please.
+
+> +
+> +#define SL2610_RESET(id, reg, bit, sticky)[id] =3D { reg, BIT(bit), stic=
+ky }
+> +
+> +struct sl2610_reset_cfg {
+> +	u32 reg;
+> +	u32 bit;
+> +	bool sticky;
+> +};
+> +
+> +struct sl2610_reset_data {
+> +	const struct sl2610_reset_cfg *cfgs;
+> +	size_t num;
+> +};
+> +
+> +struct sl2610_reset_priv {
+> +	struct regmap *regmap;
+> +	const struct sl2610_reset_cfg *cfgs;
+> +	struct reset_controller_dev rcdev;
+> +};
+> +
+> +static const struct sl2610_reset_cfg sl2610_reset_cfgs[] =3D {
+> +	SL2610_RESET(RST_SOC_SDIO0, SL2610_GBL_PERIFRESET, 2, false),
+> +	SL2610_RESET(RST_SOC_USB0, SL2610_GBL_PERIFRESET, 4, false),
+> +	SL2610_RESET(RST_SOC_EMMC, SL2610_GBL_PERIFRESET, 5, false),
+> +	SL2610_RESET(RST_SOC_GETH0, SL2610_GBL_PERIFRESET, 6, false),
+> +	SL2610_RESET(RST_SOC_SDIO1, SL2610_GBL_PERIFRESET, 7, false),
+> +	SL2610_RESET(RST_SOC_USB1, SL2610_GBL_PERIFRESET, 8, false),
+> +	SL2610_RESET(RST_SOC_GETH1, SL2610_GBL_PERIFRESET, 9, false),
+> +	SL2610_RESET(RST_SOC_USB0PHY, SL2610_GBL_PERIFSTICKYRESET, 0, true),
+> +	SL2610_RESET(RST_SOC_USB0CORE, SL2610_GBL_PERIFSTICKYRESET, 1, true),
+> +	SL2610_RESET(RST_SOC_USB0MAHB, SL2610_GBL_PERIFSTICKYRESET, 2, true),
+> +	SL2610_RESET(RST_SOC_USB1PHY, SL2610_GBL_PERIFSTICKYRESET, 3, true),
+> +	SL2610_RESET(RST_SOC_USB1CORE, SL2610_GBL_PERIFSTICKYRESET, 4, true),
+> +	SL2610_RESET(RST_SOC_USB1MAHB, SL2610_GBL_PERIFSTICKYRESET, 5, true),
+> +	SL2610_RESET(RST_SOC_UART0, SL2610_GBL_APBPERIFRESET, 0, false),
+> +	SL2610_RESET(RST_SOC_UART1, SL2610_GBL_APBPERIFRESET, 1, false),
+> +	SL2610_RESET(RST_SOC_UART2, SL2610_GBL_APBPERIFRESET, 2, false),
+> +	SL2610_RESET(RST_SOC_UART3, SL2610_GBL_APBPERIFRESET, 3, false),
+> +	SL2610_RESET(RST_SOC_I2C0, SL2610_GBL_APBPERIFRESET, 4, false),
+> +	SL2610_RESET(RST_SOC_I2C1, SL2610_GBL_APBPERIFRESET, 5, false),
+> +	SL2610_RESET(RST_SOC_SPI0, SL2610_GBL_APBPERIFRESET, 6, false),
+> +	SL2610_RESET(RST_SOC_SPI1, SL2610_GBL_APBPERIFRESET, 7, false),
+> +	SL2610_RESET(RST_SOC_SPI2, SL2610_GBL_APBPERIFRESET, 8, false),
+> +	SL2610_RESET(RST_SOC_SPI3, SL2610_GBL_APBPERIFRESET, 9, false),
+> +	SL2610_RESET(RST_SOC_APBTIMERS, SL2610_GBL_APBPERIFRESET, 10, false),
+> +	SL2610_RESET(RST_SOC_APBSYSCNT, SL2610_GBL_APBPERIFRESET, 11, false),
+> +	SL2610_RESET(RST_SOC_APBWDT, SL2610_GBL_APBPERIFRESET, 12, false),
+> +	SL2610_RESET(RST_SOC_APBGPIO, SL2610_GBL_APBPERIFRESET, 13, false),
+> +	SL2610_RESET(RST_SOC_APBDMA, SL2610_GBL_APBPERIFRESET, 14, false),
+> +	SL2610_RESET(RST_SOC_GPUCORE, SL2610_GBL_TOPSTICKYRESET, 0, true),
+> +	SL2610_RESET(RST_SOC_NPUCORE, SL2610_GBL_TOPSTICKYRESET, 1, true),
+> +	SL2610_RESET(RST_SOC_AVIOAIOG, SL2610_GBL_AVIOSTICKYRESET, 0, true),
+> +	SL2610_RESET(RST_SOC_AVIOVPPG, SL2610_GBL_AVIOSTICKYRESET, 1, true),
+> +	SL2610_RESET(RST_SOC_AVIOVIPG, SL2610_GBL_AVIOSTICKYRESET, 2, true),
+> +};
+> +
+> +static const struct sl2610_reset_cfg sl2610_system_reset_cfgs[] =3D {
+> +	SL2610_RESET(RST_SM_ADCCORE, SL2610_SMGBL_STICKYRST0, 0, true),
+> +	SL2610_RESET(RST_SM_ADCPRST, SL2610_SMGBL_STICKYRST0, 1, true),
+> +	SL2610_RESET(RST_SM_CAN0PRST, SL2610_SMGBL_STICKYRST0, 2, true),
+> +	SL2610_RESET(RST_SM_CAN0SRST, SL2610_SMGBL_STICKYRST0, 3, true),
+> +	SL2610_RESET(RST_SM_CAN1PRST, SL2610_SMGBL_STICKYRST0, 4, true),
+> +	SL2610_RESET(RST_SM_CAN1SRST, SL2610_SMGBL_STICKYRST0, 5, true),
+> +	SL2610_RESET(RST_SM_GPIOPRST, SL2610_SMGBL_STICKYRST0, 6, true),
+> +	SL2610_RESET(RST_SM_GPIOSRST, SL2610_SMGBL_STICKYRST0, 7, true),
+> +	SL2610_RESET(RST_SM_I2CM0PRST, SL2610_SMGBL_STICKYRST0, 8, true),
+> +	SL2610_RESET(RST_SM_I2CM0SRST, SL2610_SMGBL_STICKYRST0, 9, true),
+> +	SL2610_RESET(RST_SM_I2CM1PRST, SL2610_SMGBL_STICKYRST0, 10, true),
+> +	SL2610_RESET(RST_SM_I2CM1SRST, SL2610_SMGBL_STICKYRST0, 11, true),
+> +	SL2610_RESET(RST_SM_I3CPRST, SL2610_SMGBL_STICKYRST0, 12, true),
+> +	SL2610_RESET(RST_SM_I3CSRST, SL2610_SMGBL_STICKYRST0, 13, true),
+> +	SL2610_RESET(RST_SM_PDMPRST, SL2610_SMGBL_STICKYRST0, 14, true),
+> +	SL2610_RESET(RST_SM_PDMSRST, SL2610_SMGBL_STICKYRST0, 15, true),
+> +	SL2610_RESET(RST_SM_PVTHSRST, SL2610_SMGBL_STICKYRST0, 16, true),
+> +	SL2610_RESET(RST_SM_PVTPRST, SL2610_SMGBL_STICKYRST0, 17, true),
+> +	SL2610_RESET(RST_SM_PWMPERIRST, SL2610_SMGBL_STICKYRST0, 18, true),
+> +	SL2610_RESET(RST_SM_PWMPRST, SL2610_SMGBL_STICKYRST0, 19, true),
+> +	SL2610_RESET(RST_SM_SPIMPRST, SL2610_SMGBL_STICKYRST0, 20, true),
+> +	SL2610_RESET(RST_SM_SPIMSRST, SL2610_SMGBL_STICKYRST0, 21, true),
+> +	SL2610_RESET(RST_SM_SPISPRST, SL2610_SMGBL_STICKYRST0, 22, true),
+> +	SL2610_RESET(RST_SM_SPISSRST, SL2610_SMGBL_STICKYRST0, 23, true),
+> +	SL2610_RESET(RST_SM_UART0PRST, SL2610_SMGBL_STICKYRST0, 24, true),
+> +	SL2610_RESET(RST_SM_UART0SRST, SL2610_SMGBL_STICKYRST0, 25, true),
+> +	SL2610_RESET(RST_SM_UART1PRST, SL2610_SMGBL_STICKYRST0, 26, true),
+> +	SL2610_RESET(RST_SM_UART1SRST, SL2610_SMGBL_STICKYRST0, 27, true),
+> +	SL2610_RESET(RST_SM_UART2PRST, SL2610_SMGBL_STICKYRST0, 28, true),
+> +	SL2610_RESET(RST_SM_UART2SRST, SL2610_SMGBL_STICKYRST0, 29, true),
+> +	SL2610_RESET(RST_SM_UART3PRST, SL2610_SMGBL_STICKYRST0, 30, true),
+> +	SL2610_RESET(RST_SM_UART3SRST, SL2610_SMGBL_STICKYRST0, 31, true),
+> +};
+> +
+> +static const struct sl2610_reset_data sl2610_reset_data =3D {
+> +	.cfgs =3D sl2610_reset_cfgs,
+> +	.num =3D ARRAY_SIZE(sl2610_reset_cfgs),
+> +};
+> +
+> +static const struct sl2610_reset_data sl2610_system_reset_data =3D {
+> +	.cfgs =3D sl2610_system_reset_cfgs,
+> +	.num =3D ARRAY_SIZE(sl2610_system_reset_cfgs),
+> +};
+> +
+> +static int sl2610_reset_assert(struct reset_controller_dev *rcdev,
+> +			       unsigned long id)
+> +{
+> +	struct sl2610_reset_priv *priv =3D to_sl2610_reset_priv(rcdev);
+> +	const struct sl2610_reset_cfg *cfg =3D &priv->cfgs[id];
+> +
+> +	if (!cfg->sticky)
+> +		return -EINVAL;
+
+The core uses -ENOTSUPP for this.
+
+> +
+> +	return regmap_clear_bits(priv->regmap, cfg->reg, cfg->bit);
+> +}
+> +
+> +static int sl2610_reset_deassert(struct reset_controller_dev *rcdev,
+> +				 unsigned long id)
+> +{
+> +	struct sl2610_reset_priv *priv =3D to_sl2610_reset_priv(rcdev);
+> +	const struct sl2610_reset_cfg *cfg =3D &priv->cfgs[id];
+> +
+> +	if (!cfg->sticky)
+> +		return -EINVAL;
+
+This could just return 0.
+
+> +
+> +	return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
+> +}
+> +
+> +static int sl2610_reset_reset(struct reset_controller_dev *rcdev,
+> +			      unsigned long id)
+> +{
+> +	struct sl2610_reset_priv *priv =3D to_sl2610_reset_priv(rcdev);
+> +	const struct sl2610_reset_cfg *cfg =3D &priv->cfgs[id];
+> +
+> +	if (cfg->sticky) {
+> +		regmap_clear_bits(priv->regmap, cfg->reg, cfg->bit);
+> +		usleep_range(10, 15);
+> +		return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
+> +	}
+
+Why is this needed? Could you just return -ENOTSUPP?
+
+> +
+> +	return regmap_set_bits(priv->regmap, cfg->reg, cfg->bit);
+> +}
+> +
+> +static const struct reset_control_ops sl2610_reset_ops =3D {
+> +	.reset	=3D sl2610_reset_reset,
+> +	.assert =3D sl2610_reset_assert,
+> +	.deassert =3D sl2610_reset_deassert,
+> +};
+> +
+> +static int sl2610_reset_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *parent_np =3D pdev->dev.parent->of_node;
+> +	struct sl2610_reset_priv *priv;
+> +	const struct sl2610_reset_data *data =3D
+> +		(void *)platform_get_device_id(pdev)->driver_data;
+> +
+> +	priv =3D devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->regmap =3D syscon_node_to_regmap(parent_np);
+> +	if (IS_ERR(priv->regmap))
+> +		return PTR_ERR(priv->regmap);
+> +
+> +	priv->rcdev.owner =3D THIS_MODULE;
+> +	priv->rcdev.ops =3D &sl2610_reset_ops;
+> +	priv->rcdev.dev =3D &pdev->dev;
+> +	priv->rcdev.of_node =3D parent_np;
+> +	priv->rcdev.of_reset_n_cells =3D 1;
+
+Please don't set of_reset_n_cells. This is ignored since of_xlate is
+not set. reset_controller_register() already sets fwnode_reset_n_cells
+to 1 by default.
+
+regards
+Philipp
 
