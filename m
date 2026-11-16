@@ -2,76 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601C0606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 23:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BED7606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 23:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bqsyNmKe;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IZ/dM1u6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OT6ZynFb;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=knE7eJe9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=D744codKNdjWB0cIKo4OC/V775hatd/33THb99xe3yY=; b=bqsyNmKejq5k3D
-	jjjBiBenRVw+c2IH5iAhBtQtITm0kMn+6ljFySJijZSHQrz73XR0k2aILKpoKESozTeu0VUeDwoo3
-	TkHoCxedYWDo6q+F4GDo1dQHo8sJbTjTT6Mk3nEqxYnBeoisbOzgaGUp1igO0HjZqswHl+QA5P/80
-	i1PLXbPYEkim8kO1dCjI4jAmUeRFwxTm/VUYGUoaQ8BwhjzUWGtpRFo8OwbNwk3xrZWwBIjvAfEOi
-	eSjGInZsoW34jf4PTdzUSxe5Nxsh00mbNFST8tHhlmLXB3MD1zPxA82r69uJXpdorBL+qFbSSwB6U
-	gCAiBSS97RXbBEx79S5g==;
+	List-Owner; bh=2d1/C/muKygY+FB1LWBPJCvJTWV1hknbYasTXckto7A=; b=OT6ZynFbOz9Z5z
+	hpJyZwzAVFP71msqvUn2ugHaI0wDs8q6ZC7RweVany1D4FzHvlnsOy5iJZJK/S7qtR95izwfCcoY7
+	2fkEkSUEfLdMQ/uoNMMSYWmLGNurh53adbIb9P1ONUCL7OcMjV07h+WjR3FVqCkbG3MWTOZZn4a71
+	65VDWnMq34j3vEWUfkEQktr+jwoiR1vkz8vzdOqW2DxfRhlnzaCv3FR+R/Uadc817YHRrwf2qKF2D
+	ZXzM2o2mCH0XyLxXKUbobmbhyLe4R913uPX0dTqc3C4sMTJSvgqgdWe71LX9vzbrBbPSZeilLOHQ3
+	d/cFep8ZvRXzPY7W3o3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT5wS-000000048r4-1whP;
-	Mon, 16 Nov 2026 23:16:52 +0000
+	id 1xT69J-00000004AjF-0e9k;
+	Mon, 16 Nov 2026 23:30:09 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT5wR-000000048qj-3YUa;
-	Mon, 16 Nov 2026 23:16:51 +0000
+	id 1xT69H-00000004Aj8-0ffz
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 23:30:07 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8995E40ACA;
-	Mon, 16 Nov 2026 23:16:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D43E11F000C4;
-	Mon, 16 Nov 2026 23:16:48 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A621B43AE4;
+	Mon, 16 Nov 2026 23:30:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82DEB1F000C4;
+	Mon, 16 Nov 2026 23:30:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794871011;
-	bh=D744codKNdjWB0cIKo4OC/V775hatd/33THb99xe3yY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=IZ/dM1u68/w4ysDuF2c/9CTIYBd8/rFn5rCBuddDvWtSTc4jm3uO+TCFPOfimXYSz
-	 t8JmCxAfr+W425w+VYBo9mBMQMa/YxwMecLbewFm6yXjEZp+OAjE5TlqPKwTE8nc8K
-	 +gkYfojo8Jk+EN8F2g01KQ8p8kyXahhMagLjnu401xUHol7LTWXQ8cjPuGg8cF3QKv
-	 K9ast/IxtW9TP+dTJ5mp1g6c0Q3YuVPr80OKJlP5VfYwqzZgnwL78gks74c2qSO3s0
-	 J/i9DphSXgS62lUxieCZv/CS1km+yTO6GNrBDVt4ndV2QIPzVvG/zbemvxwFbFpndZ
-	 o3Uf7zZ1pyuFA==
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
- Christian Hewitt <christianshewitt@gmail.com>, 
- Valerio Setti <vsetti@baylibre.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261113-aiu-fifo-fix-sleep-on-spinlock-v2-1-f72015c933bf@baylibre.com>
-References: <20261113-aiu-fifo-fix-sleep-on-spinlock-v2-1-f72015c933bf@baylibre.com>
-Subject: Re: [PATCH v2] ASoC: meson: aiu-fifo: prevent sleeping when
- spinlock is held
-Message-Id: <179485994155.2504946.8052884083469699014.b4-ty@b4>
-Date: Mon, 16 Nov 2026 20:12:21 +0000
+	s=k20260515; t=1794871806;
+	bh=2d1/C/muKygY+FB1LWBPJCvJTWV1hknbYasTXckto7A=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc;
+	b=knE7eJe9I0iOVOUhqHP/z70JwloTPbFPr+PeZsASX/9e8algTjzVmBFMd+grjW9De
+	 IFeGDrj9vjHKzagyDi3YNIsKsPWGXIFSjib7Z5UHWLJLevcTYpExDYRL08dBafZEK4
+	 U3/oApXPIQaUtNPk1amyJ5jUyoI1Ns53DkOOWhmqmni2jwCP5dKwXn7cOeoRVj1qRj
+	 tZgnL8KpgTQmT2ocU8qZpOpXFh/4R1ZxEU5DAW2QwbpnFUie+0z5mF40lZy8ZlJ1jx
+	 ZacE9AXRvaDowfRwJA/Yfp1fq+K7hwwpnHyZ313WE4wbJX1QvAS8Wapr5hI6CvP/VU
+	 1sHWjAmrSAJCA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 77434391B059;
+	Mon, 16 Nov 2026 23:30:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1141; i=broonie@kernel.org;
- h=from:subject:message-id; bh=YoWPz3fhDSUGPyw/AXIX0PwVKHHA0Y9uh1d/YQgfCLQ=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLJ+993bumy3uZLDM+M/qUWzL133LQhcMW93+QKdmB1TF
- i7eJL74XUcpC4MYF4OsmCJLXBb3y/qS12v4Di5sg5nDygQyhIGLUwAm4iDC8FfmtI6mlqnJ1wX7
- Z01zdc73m8ehtmeF0TS9Fb33LhxLPVrC8N8n8ECJcFeYUdvV2R0zrzWoheWauH9dt2bpb6nn9Xm
- rZJkA
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net] net: stmmac: re-base EST after PTP settime64
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <179487180503.238365.3162953495840081408.git-patchwork-notify@kernel.org>
+Date: Mon, 16 Nov 2026 23:30:05 +0000
+References: <20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6@oss.qualcomm.com>
+In-Reply-To: <20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6@oss.qualcomm.com>
+To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ richardcochran@gmail.com, Jose.Abreu@synopsys.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,43 +72,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 13 Nov 2026 14:56:34 +0100, Valerio Setti wrote:
-> ASoC: meson: aiu-fifo: prevent sleeping when spinlock is held
+Hello:
 
-Applied to
+This patch was applied to netdev/net.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.4
+On Wed, 11 Nov 2026 10:54:27 +0100 you wrote:
+> stmmac_set_time() initializes the PTP clock through
+> stmmac_init_systime() (TSINIT) while holding only ptp_lock.  It neither
+> takes est_lock nor disables and re-bases EST around the step, unlike
+> stmmac_adjust_time(), which performs TSUPDT through
+> stmmac_adjust_systime() under est_lock.
+> 
+> Both operations change the PHC system time, so both invalidate the
+> absolute EST base time.  With settime64, a concurrent
+> tc_taprio_configure() can read the pre-step clock through gettimex64()
+> and program EST with a base time that is already stale once TSINIT
+> lands.  Separately, a taprio offload installed before the clock_settime()
+> is never re-based and keeps running with its old base time until taprio
+> is reconfigured.
+> 
+> [...]
 
-Thanks!
+Here is the summary with links:
+  - [net] net: stmmac: re-base EST after PTP settime64
+    https://git.kernel.org/netdev/net/c/4cad287cb13c
 
-[1/1] ASoC: meson: aiu-fifo: prevent sleeping when spinlock is held
-      https://git.kernel.org/broonie/sound/c/0d40a91ca56e
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 
