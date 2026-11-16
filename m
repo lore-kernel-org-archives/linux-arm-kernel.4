@@ -2,66 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4F5606D550
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84600606A8AE
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=my7bP6OL;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WTta7Q2h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SwYtag9B;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=a3DKxnkR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=VQpQ/BkgELCh0EQTsS1x2Mq4o8wvN5MsedoF6SbdzAM=; b=my7bP6OLxspZ6Bo7F1SYg1LTbZ
-	BvXTk/eHUla81eX5R/GV6e+1/A/4IWYK5BkQtMBP6xkmuugP4Qin9iYi8oYTHAVKvX6mwuApDi+kb
-	v+BaF/YGNflYRQlNcaKhuvVYiI6fQ5yoF8cNTkP1WLuZG/EqOtklJdcUjycK6NdMsq4r5SzanE929
-	ATGa67hKVGdpSqBRCICZdpHoKr10qjYFtIhHtvRf+xkOSsId6ouZerX5eVVV/FpR2RqTzHPpiKxcj
-	rFjvk+SDh/P37ktpi0Be80Z1UPH5cudQul/F6cDxHzDUEkU3+jUrcaLvFYsgKwQFV8ynkcdLuh4MZ
-	jMyK2vPw==;
+	bh=ghluR7i9/C+zU+eHJHeCwRmCECyLWGQeA4SlOQA11Y0=; b=SwYtag9BAhgLiKoCf+PNWa+Qz3
+	zIkBwvSApnVZBnooWRz+AuZqfV0UdrGKM2MbV9waGpyqLejNaGkvT7BrivuknWYJR0SmCC8NZ6+5D
+	bRrmIk2KsGLpX0rz2M4ZL9Unz7oB1iEMIsKtqVdarymqpMaQcNJ30GGfDpGIroi88Fru4gRVR+oVt
+	DcWBAot7vBF5MwgqZos1Wqg3ZrxCafHQvfhOjNO3ZKCP4+fvRX1FVYD+BuaA08E76Dsdp3D5n8yjU
+	lR+yhGtUKwRf11R7waOhweuHiFX5yP291uQzbRJeoAoFkGfmXvZuLnJcaKi9Px/MC6OLxhuZGEQEh
+	ePAvXpYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxAm-00000002igP-1U1V;
-	Mon, 16 Nov 2026 13:55:04 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSxBE-00000002iuy-0fqN;
+	Mon, 16 Nov 2026 13:55:32 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSxAc-00000002idT-34LR
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:54:54 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7CD7F464DD;
-	Mon, 16 Nov 2026 13:54:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74C8C1F000C4;
-	Mon, 16 Nov 2026 13:54:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794837294;
-	bh=VQpQ/BkgELCh0EQTsS1x2Mq4o8wvN5MsedoF6SbdzAM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=WTta7Q2hJgOqiL5DOLU+Ks+AyQXYnRI3d6+7BMmHU41M4D+s7Ttwft4z5QGx9POTi
-	 IexV9bLHOv3/9UI3BVuT2Tx8GBCRyNnTSTU1bfaJnfZRaejVJ1GYY2X8j/VduLDIaa
-	 /tmNBP8NZS4AFQKef9aYn0pcsKjvpaFRvWihBRhFJH15UvgdIK9N/wJpcV8YLbB6Vi
-	 p6WVP0fYIFoCqKUo5CvylsH20lotjRjt3JPIWecU62XvSLFvFUL8f+/LgIC8c2hSgT
-	 H4xaUpBXoq+smG/j2wjPwdQRYsvpktvBg51OuPdOFittFs5rWndroGHh5HWuDxvtvM
-	 oZbAW42SNR/Zw==
-Subject: Re: [PATCH net v3 RESEND 2/3] net: ti: icssg-prueth: Fix phylib
- stop/start in emac_restart
-From: netdev-bot+sashiko@kernel.org
-To: m-malladi@ti.com
-Cc: diogo.ivo@siemens.com, haokexin@gmail.com, philippe.schenker@impulsing.ch,
- devnexen@gmail.com, horms@kernel.org, jacob.e.keller@intel.com,
- pabeni@redhat.com, kuba@kernel.org, edumazet@kernel.org, davem@davemloft.net,
- andrew+netdev@lunn.ch, linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, danishanwar@ti.com
-Date: Mon, 16 Nov 2026 13:54:53 +0000
-Message-ID: <179483729301.3136.8061372443057253896@kernel.org>
-In-Reply-To: <20261112102140.2744508-3-m-malladi@ti.com>
-References: <20261112102140.2744508-3-m-malladi@ti.com>
-X-sashiko-severity: High
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	id 1xSxB9-00000002ire-1LJ4;
+	Mon, 16 Nov 2026 13:55:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794837325;
+	bh=ghluR7i9/C+zU+eHJHeCwRmCECyLWGQeA4SlOQA11Y0=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=a3DKxnkR1Q1qj6KV+pK7Us06htu6gNTdaWGefd4zD4iuCbRz1xop20knDeuTKh8Bz
+	 /31o5d74BX+bOJxahE4DQ3QxK3SzDWZ6T51RkPWMMufcL20rB4kIvkRO65+xb3zT1X
+	 Jsm7BVhzvGVrKI09ra5UpY8pK2I1eUI8+94r6uoZUCW5zqEmm8uD67xUurhn0qxVvx
+	 IywvAr7ntsvj4rG006U4uf5ga5ozbt3HueinT+dg9oNtFRgcTn3daxAprpZCqVJ+O5
+	 ULgejIxh1cK/iDOgufczfTafzXv5t8TzmA7PYtixaK1S2wktoKSCk+VgCv7hN1eboZ
+	 XeRDO/mOl861w==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 403E317E0060;
+	Mon, 16 Nov 2026 14:55:23 +0100 (CET)
+Message-ID: <4a641af1f6cb3cf632cd5cacd33f1e8cc98f98ed.camel@collabora.com>
+Subject: Re: [PATCH v12 0/6] Add Amlogic stateless H.264 video decoder for S4
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Zhentao Guo <zhentao.guo@amlogic.com>, Neil Armstrong	
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet	 <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ 	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski	
+ <krzysztof.kozlowski@oss.qualcomm.com>
+Date: Mon, 16 Nov 2026 08:55:22 -0500
+In-Reply-To: <b4ad7333-28f8-43bb-84a6-5b53ab884a06@amlogic.com>
+References: <20261022-b4-s4-vdec-upstream-v12-0-616240978792@amlogic.com>
+	 <b2999c2fe5193eac3ebb0796f3de44710e993200.camel@collabora.com>
+	 <b4ad7333-28f8-43bb-84a6-5b53ab884a06@amlogic.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-RSQOZvFxXRVtAXxCbLtR"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261116_055527_513208_78065D69 
+X-CRM114-Status: GOOD (  12.71  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,213 +96,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issue(s) to consider.
+--=-RSQOZvFxXRVtAXxCbLtR
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Critical: 0 · High: 1 · Medium: 2 · Low: 0
+Hi Zhentao,
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Le lundi 16 novembre 2026 =C3=A0 15:48 +0800, Zhentao Guo a =C3=A9crit=C2=
+=A0:
+> > I don't know them all, but at least this one, and CVMA1_Sony_D do not c=
+ontain
+> > field coded macroblocks, and should decode fine without the interlaced =
+reference
+> > list. We've seen a lot of artifically limited decoder like yours output=
+ 90/135.
+>=20
+> I checked the CVMA1_Sony_D=C2=A0with my bitstream analyzer, I found, for=
+=20
+> example, in frame 0, MB 320x192 is coded into field top, MB 640x176 is=
+=20
+> coded into=C2=A0field bottom, anda few more field-coded macroblocks in fr=
+ame=20
+> 0 or other frames.
+>=20
+> That said, the interlaced feature is already done. My latest self-test=
+=20
+> results with Fluster are:
+>=20
+> JVT-AVC_V1 Ran 130/135 tests successfully in 101.885 secs (ran with -j3)
+>=20
+> Do you suggest me to add the interlaced support in the next version?I'd=
+=20
+> really appreciate your suggestions.
 
-- [High] prueth_emac_restart()
-  (drivers/net/ethernet/ti/icssg/icssg_prueth.c) now calls phy_stop()…
-- [Medium] The new restart_phy error label in prueth_emac_restart()
-  restarts phylib even when the firmware is known to be stopped.
-- [Medium] The commit message presents phy_stop()/phy_start() only as a
-  way to block emac_adjust_link() R30 commands.
+Yes, please. The is no profile to separate that feature, so I think its bes=
+t to
+just include it now, have H.264 complete and then we can truly focus on the
+other codecs in follow-up.
 
---
+Nicolas
 
-net: ti: icssg-prueth: Fix phylib stop/start in emac_restart
+--=-RSQOZvFxXRVtAXxCbLtR
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-This patch adds phy_stop() calls for both ports before
-prueth_emac_restart() halts the PRU firmware, and phy_start() calls after
-the restart. It also turns the early error returns into a goto to a new
-restart_phy label. The goal is to keep emac_adjust_link() from sending R30
-commands to the PRU while it is stopped.
+-----BEGIN PGP SIGNATURE-----
 
-> diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-> index 591be5c8056b4..ef5dce595f68a 100644
-> --- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-> +++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-> @@ -1837,6 +1837,14 @@ static int prueth_emac_restart(struct prueth *prueth)
->  	struct prueth_emac *emac1 = prueth->emac[PRUETH_MAC1];
->  	int ret;
->  
-> +	/* Halt phylib to stop emac_adjust_link() from issuing R30 commands
-> +	 * to the PRU while the firmware is stopped.
-> +	 */
-> +	if (emac0->ndev->phydev)
-> +		phy_stop(emac0->ndev->phydev);
-> +	if (emac1->ndev->phydev)
-> +		phy_stop(emac1->ndev->phydev);
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavsLSgAKCRDZQZRRKWBy
+9NpVAQDKUmYBU389SJKLAsDu2/9y6RqTXzUAfKwQef9tAxWnOgEAhu33expVz0Cd
+3Cl50rQ00mB3q8fG7v9GCSSrssj/gwg=
+=YrdE
+-----END PGP SIGNATURE-----
 
-[Severity: High]
-
-What happens when one of the ports is down at this point?
-emac_phy_connect() runs at probe, so ndev->phydev is never NULL here. None
-of the callers check netif_running():
-
-prueth_netdevice_port_link()->icssg_change_mode()->prueth_emac_restart()
-prueth_netdevice_port_unlink()->prueth_emac_restart()
-prueth_hsr_port_link()->icssg_change_mode()->prueth_emac_restart()
-prueth_hsr_port_unlink()->prueth_emac_restart()
-
-prueth_emac_restart() itself checks netif_running() before calling
-netif_device_detach(), so it already expects ports to be down sometimes.
-
-A port that was never opened has its PHY in PHY_READY. A port closed by
-emac_ndo_stop() has its PHY in PHY_HALTED. phy_stop() WARNs and returns for
-both of those states:
-
-drivers/net/phy/phy.c:phy_stop() {
-	...
-	if (!phy_is_started(phydev) && phydev->state != PHY_DOWN &&
-	    phydev->state != PHY_ERROR) {
-		WARN(1, "called from state %s\n",
-		     phy_state_to_str(phydev->state));
-		return;
-	}
-	...
-}
-
-The phy_start() at restart_phy runs unconditionally. It accepts READY and
-HALTED, so it resumes the PHY and starts the state machine on a netdev
-that is administratively down.
-
-Once autoneg completes, emac_adjust_link() runs for the closed port. It
-sends icssg_config_set_speed() and ICSSG_EMAC_PORT_FORWARD commands and
-wakes the tx queues. Before this patch, that PHY stayed halted.
-
-If both ports are down, emacs_initialized is 0 and the PRUs are not
-running. Then icssg_set_port_state(ICSSG_EMAC_PORT_DISABLE) times out, the
-code jumps to restart_phy, and both PHYs are started.
-
-Wouldn't emac_adjust_link() then send R30 commands to the halted PRU cores,
-which is the case this patch is meant to prevent?
-
-On the next ifup, emac_ndo_open() calls phy_start() while the PHY is
-already in PHY_UP, PHY_NOLINK or PHY_RUNNING. phy_start() then WARNs and
-does nothing.
-
-A CAP_NET_ADMIN user can hit this with "ip link set ethX master br0", or
-by adding the port to an HSR/PRP master, while the other ICSSG port is
-down.
-
-Would it work to record which ports were running, or phy_is_started(),
-before calling phy_stop(), and restart only those PHYs?
-
-[Severity: Medium]
-
-The commit message describes phy_stop() and phy_start() only as a way to
-block emac_adjust_link() R30 commands. phy_stop() also does more than
-that. It sets PHY_HALTED and runs _phy_state_machine() synchronously.
-That path clears phydev->link, calls phy_link_down() and returns
-PHY_STATE_WORK_SUSPEND, so the PHY gets suspended. phy_start() later
-resumes it and restarts autoneg.
-
-So does every bridge or HSR/PRP join or leave that reaches
-prueth_emac_restart() now take the physical link down on both ports and
-force a full renegotiation? The link partner and the bridge, STP or HSR
-layer would see the carrier drop.
-
-Should the commit message mention this?
-
-This also seems to turn the forced resync in prueth_emac_common_start()
-into a no-op on the restart path:
-
-prueth_emac_common_start() {
-	...
-		emac->link = 0;
-
-		mutex_lock(&emac->ndev->phydev->lock);
-		emac_adjust_link(emac->ndev);
-		mutex_unlock(&emac->ndev->phydev->lock);
-	...
-}
-
-After phy_stop(), phydev->link is already 0. emac_adjust_link() sees no
-state change, so speed and FORWARD programming waits until autoneg
-finishes after phy_start().
-
-> +
->  	/* Detach the net_device for both PRUeth ports*/
->  	if (netif_running(emac0->ndev))
->  		netif_device_detach(emac0->ndev);
-> @@ -1847,20 +1855,20 @@ static int prueth_emac_restart(struct prueth *prueth)
->  	ret = icssg_set_port_state(emac0, ICSSG_EMAC_PORT_DISABLE);
->  	ret |= icssg_set_port_state(emac1, ICSSG_EMAC_PORT_DISABLE);
->  	if (ret)
-> -		return ret;
-> +		goto restart_phy;
->  
->  	/* Stop both pru cores for both PRUeth ports*/
->  	ret = prueth_emac_common_stop(prueth);
->  	if (ret) {
->  		dev_err(prueth->dev, "Failed to stop the firmwares");
-> -		return ret;
-> +		goto restart_phy;
->  	}
->  
->  	/* Start both pru cores for both PRUeth ports */
->  	ret = prueth_emac_common_start(prueth);
->  	if (ret) {
->  		dev_err(prueth->dev, "Failed to start the firmwares");
-> -		return ret;
-> +		goto restart_phy;
->  	}
-
-[ ... ]
-
-> @@ -1871,6 +1879,13 @@ static int prueth_emac_restart(struct prueth *prueth)
->  	netif_device_attach(emac0->ndev);
->  	netif_device_attach(emac1->ndev);
->  
-> +restart_phy:
-> +	/* Resume phylib now that the firmware is running again. */
-> +	if (emac0->ndev->phydev)
-> +		phy_start(emac0->ndev->phydev);
-> +	if (emac1->ndev->phydev)
-> +		phy_start(emac1->ndev->phydev);
-
-[Severity: Medium]
-
-Does this comment hold on the error paths? Say prueth_emac_common_stop()
-succeeds and then prueth_emac_common_start() fails in icssg_config(),
-prueth_emac_start() or icss_iep_init(). Its own unwind leaves the PRUs
-stopped and classification disabled. The goto restart_phy still calls
-phy_start() on both PHYs.
-
-When the state machine runs again, emac_adjust_link() calls
-icssg_config_set_speed() and icssg_set_port_state() against the halted
-PRU. Each call polls for up to 10ms before it times out.
-
-Isn't that the case the commit message says this patch fixes?
-
-  "to prevent phylib from issuing R30 commands to the stopped PRU"
-
-The label also comes after netif_device_attach(), so both netdevs stay
-detached while phylib toggles carrier and tx queues on them. The netdevs
-were already left detached on error before this patch.
-
-Should phylib be restarted only after the firmware has actually come back
-up?
-
-> +
->  	return ret;
->  }
->
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261112102140.2744508-1-m-malladi%40ti.com
+--=-RSQOZvFxXRVtAXxCbLtR--
 
