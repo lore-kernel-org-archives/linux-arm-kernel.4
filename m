@@ -2,160 +2,146 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327EF606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 07:42:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 773A2606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 07:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZUWDMjIJ;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=mCfh9+oO;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=OJSyCS6Z;
-	dkim=neutral header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=d4YSXE8w
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WSLCxDUl;
+	dkim=pass (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=AkgHxByD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eWCyBzOYdStcG81vSg5ZBEf9+pK1C4x4t0+1pPY3m2w=; b=ZUWDMjIJejhCmn
-	PJiSG77bZHFrS3Jh0xdQhPodYdinJXEWTw0eahkn/Cz+b/Yzl4bfvI3tCa3w4n6CYHrJ1Hi2TSk4X
-	uRLvWk8AUAjfXY86Kxapi+rAgsjqOhm+dL0xwZtJ4+u5GoBFfmdjY3Ext6ThtUdaPONpdeeLeBh14
-	F6H7h5RyPN97i0BEfG5o69ZLGJB44oLHsqo1KSvi6F0xpJRZODsUYV9KLj/ghWyV5EWs/kWb91z04
-	e/8r6eT6bqZ0fAecNv56yR84gRdImNRAd9JQCCEbg2hdfzUTx00R8QHH9+7Sok3I05n0SQFPNpvHo
-	9kXzwGDnZOUn9MvdpLCA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=3e9nW2/6Yw5ad6ZQzrWqg8kjnMJAeNrLhqwspkvJ0bA=; b=WSLCxDUly6fnrP4SN/yzwK6w54
+	oznDR0a0IShz3QdfNP0c9JEs/8qcy8eMl7DYIiAsMSY41fS8pY/h7tOJuFNmSvFF3G4WlPKBBXmPg
+	+Xt8kOKGOS8vczXSjPQQlZzQpwXmM2Jm2SpjLtw+63JHgqqk1fbydLx56aKgoigBNI/8KEZ3htK8S
+	7jhdoZBAxLWAiSqZKtvhJ57V+RK+50QUIxrpcQGbciCBmrwoN5EKeABxVoQwkqzbkLcYG+/NP8lnI
+	w3eZWS74b2/BlenZw4cM0EPFyK1KhAPlGhMMG11cxKHNldWosU1cAmTcPeqWQrqX2gzbL4bQ4L5Cd
+	28670+pg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrMB-00000001S3B-1vfm;
-	Mon, 16 Nov 2026 07:42:27 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xSrSS-00000001T3r-0wRY;
+	Mon, 16 Nov 2026 07:48:56 +0000
+Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrM4-00000001Rx6-2Sb1
-	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 16 Nov 2026 07:42:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=eWCyBzOYdStcG81vSg5ZBEf9+pK1C4x4t0+1pPY3m2w=; b=mCfh9+oOWb+FH0nnPeN9oTkbnG
-	Voxp2M+VwsdkapnTrEW1e1EoM8wbbDCWeKenc0U6B8+kRF7iAhQve0p7MF0hfma0OGZW5vvF9eLJe
-	Ar37J0T7wEvRS79lfsanlKgyd+jdz+fSnwjCrlbdF+IZAbxKD8tjiweWPDjft/ePzOwrfEbSMwkOK
-	TkibXTAUIq6547Z86C0dWrbIBcP9XCYTmQd9o/p6Iq2NiFgrSSumwxW6YfsPs//OHPZN6Uas5H/yP
-	9z0zre9nRcukUSzNQu2luj9veP7dRkBVxDdBUMGDRQGonPE/X9r2sNeT/OjRQnqhx2xarLU3qwUfk
-	521gWwiQ==;
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSrLy-0000000DT79-1LL9
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 07:42:16 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AG7eoRJ1894911
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 07:42:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=eWCyBzOYdSt
-	cG81vSg5ZBEf9+pK1C4x4t0+1pPY3m2w=; b=OJSyCS6ZIk1LAcZ6YXwzEbiOnWV
-	lWgAZwllEtsVjacTfHpBO0ER+CA0GH1Srxg1uCy/QkKsBPtiVU5dhw/CofqigE0m
-	KZ4N/Y5NrAUeh5whhZiU80cWr4jJgmZZ3aNVZwAZd4mpYUCAaFbg+bGRsajV8sSG
-	T20+TWL51dWMcpgC+KvRRRaCsVyB6VIczZXeYgkiLa0hQjixKKKIX+ddt4ETB2FV
-	DeHkZ+4nKzkZMIlPL70Po/I3VnhBQpBu09rVNmtP3elkAyTGhJMj+v1Yawm3RPuZ
-	6kW2c4IZi5kJQrqRBiprWAtHwHzdMxEFO4E0Iid0JZOgDgljqoVcIqPWS0A==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hxhhdwb0n-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 07:42:12 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-37628596fc9so8607904eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 23:42:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794814932; x=1795419732; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=eWCyBzOYdStcG81vSg5ZBEf9+pK1C4x4t0+1pPY3m2w=;
-        b=d4YSXE8wnDBVWR2u614uxjg8MK7YSp4fBmFmZCdF+I1k7JPyAEh/fS5/AlIy80h0Bi
-         TNuqdDUYB5JeM79kmII1q10nxmy0EiieABK46qiMhsdtPPiYoHvFhtTovFc9J3/mgK0n
-         fhombI/y3SJ26PobArCZ+KCe6A13FXdnnOWAdlHFuStd9BIlXbc5FXYEowBFG2hQqSAu
-         2TxxUy0Ow47TfK+bcMfJ8zbm5DWKWoKGGoSj7hGYq75zzwoNBjIkSaB4JWpS7HLb/yGr
-         t1YzWFxkWDRN/1EHC7pgFZtgAy/yJYiUSNAY2t2QE0P+1iiGlR8iaYK5VuTZq2Fc4fBS
-         P55w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794814932; x=1795419732;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=eWCyBzOYdStcG81vSg5ZBEf9+pK1C4x4t0+1pPY3m2w=;
-        b=RgUpi6smyNgNxtNkVTh7Ny6r3gNn++BXQtqH+/6jVYV1s0xWxmB4RT36wWD+VkpYHt
-         bfv4KKJe+dgWTugOVMkmrvXTINa2gh+gV0TlQWzHnYVsgvkZh6CXz9YYcsur7VOK8vNT
-         e3ju1S9uPuMC1Xop7aDrmL5V5vHeNNeCUbMXRm8FkglSUka0FvuXzM1VgMHQT59gOC6w
-         bEfVLbKKWQ4ax9AKWkwg3huhcZ2s9+vkiEq0HLgRR1OmZZ/GDkC2u12+6U5rES+5YWAt
-         WQM5y1diYAJ6XsHfZDb0c7WNNXwaAqj+G/H0TOr6rUyI9UYMEN8wWqp+sUSJP+KY0eqs
-         oPGg==
-X-Forwarded-Encrypted: i=1; AL+hErEqS7bY23mq+bt0XZ1JQZqKnGuq2KXKQav4ksjHVlzWK45LJdemOaIYAZU0P0hDWdRtw1mO5/MgrfkYSUVrDrgF@lists.infradead.org
-X-Gm-Message-State: APuU4Z9+2Ew76ggEmh71c0Og6DXm8sXNOgd3OFy0H9jxEh1VECA9kZWo
-	GlyH2ieHKR5QqctcCgepWB6ZIyOjaCIMqBcDkMe5xoiRO3v4LbDDV6oZ44wMkePI5/Xr0t+nVRY
-	N60QfhWFHjWPxGGjl56Ntc6W0LfZJsF8dX3WRX6YSN5f5DFaZYKMZHn24/Hl+hr9HZ2roUpkiYf
-	lYeA==
-X-Gm-Gg: AYBFou1Zgg6S1Um42SO2flDOL5V/WZAXkTNxH3G6jG3eenPMSoJjR9Yfy1EoxKYJRAr
-	zQCn8IEVzvZ1XKiB9qIPK5NOA6eQyPLqS3kmAvHv7xNb9AO2cr8ZQLZJo36MxJiQx6Uc0FVYjTp
-	4KRSmCztKdjd93C4REUExTSkZl3KVBvFRgacMIWWkZB/63+6xI9p1D+IVdYxt6vT1BzFHlj7nvN
-	5a7j8o6Z0yU6b1TNWOK4afXqRzCK3a+HFmaH+eDfZrfedN8zHvMCN2BGDoCNP/2tBfSrmFoSDQC
-	9juX4UdcZOe6WZDl/qbR+Dkh5mugadX7OntoQcKj5yRRwZcUBJNYwdw9MgjvxDoVXhSQAbd1KrJ
-	PaTOCgKu/gCGfwiDlvgscgLZtJKNjMVKA4CB1BxmyuWRlZ8VocCmI2YLLF3wzh1HgTDhBSaA36l
-	lbTrg4Cv3mygXBx7JJ/DQXoDKBEnlCXqUjig==
-X-Received: by 2002:a05:693c:805c:b0:376:9323:22b8 with SMTP id 5a478bee46e88-37965da96e5mr11689150eec.10.1794814931376;
-        Sun, 15 Nov 2026 23:42:11 -0800 (PST)
-X-Received: by 2002:a05:693c:805c:b0:376:9323:22b8 with SMTP id 5a478bee46e88-37965da96e5mr11689124eec.10.1794814930711;
-        Sun, 15 Nov 2026 23:42:10 -0800 (PST)
-Received: from ap-cloud-sh02-lnx.qualcomm.com (i-global052.qualcomm.com. [199.106.103.52])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-379569b8389sm52137536eec.25.2026.11.15.23.42.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2026 23:42:10 -0800 (PST)
-From: Songwei Chai <songwei.chai@oss.qualcomm.com>
-To: andersson@kernel.org, alexander.shishkin@linux.intel.com,
-        mike.leach@linaro.org, konrad.dybcio@oss.qualcomm.com,
-        suzuki.poulose@arm.com, james.clark@arm.com, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: Songwei Chai <songwei.chai@oss.qualcomm.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        coresight@lists.linaro.org, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org, songchai@qti.qualcomm.com,
-        Jie Gan <jie.gan@oss.qualcomm.com>
-Subject: [PATCH v18 8/8] qcom-tgu: Add reset node to initialize
-Date: Mon, 16 Nov 2026 15:41:18 +0800
-Message-Id: <20261116074118.822731-9-songwei.chai@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261116074118.822731-1-songwei.chai@oss.qualcomm.com>
-References: <20261116074118.822731-1-songwei.chai@oss.qualcomm.com>
+	id 1xSrSO-00000001T3S-3yUN;
+	Mon, 16 Nov 2026 07:48:55 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Fk4hZ+LYv9JjaWMJq5D/AanGKW0G8RR/mN1HynqVA9U7zj3XB03jb4HirdX4hTQXgm9EH7eU+Hhy4NaRoBYjLeQj7X1ORz4XdomjX4QgZg6QWPSO72nDTovzsvhdOW/hbuhJb5RkZ4Q2RAB4P4C4GK7egu8God0KYI+rwTusHewrTyY0fq0LK1oec9+52Sd58gneDTIoZ3fsGCpa1IcWupQU6Igt4b6Y9T8Bwuhfm0czsayCyl/1FvVmYCfT+8Ka5ytSraelHbppPMbuXwY+M7Q6H1Tn23cqwSfWYqS4h/8jxPqr23IKkgkyywgMV8HkTCYwEyFTsRcBoB3YjzvweQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3e9nW2/6Yw5ad6ZQzrWqg8kjnMJAeNrLhqwspkvJ0bA=;
+ b=dMa1Awxz/LxIwpAuZnZUCJ2gsEuc3fOx9upvIssXBTpNLFFr/qAKTNTI/CnP/nD+xlctHCrrvHutCkbJsEzhqZebB8t6M1c+wQSgs9B1yb9CO4rioO2x73Toafkc1eAKR3IkgjD77g7/RQb5YKI1v817Utdvb6NHBmOJgUoMANC6TYqOvXTZFZ7BUHDCG9pQNBAOPdURd+vAYaTLXR+Nlz3KoqCpGULTCw3Tp9t3NmQ6di3EAn0cIrsqsJ2qtTpEgplgeHMtwWQMvajXpbLKv4TGzru1TYKaFxOlwlscjBshBlWM7rcyRSBM7OmPEGm7R0O2LpaDsEPByHoZwdgSyQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3e9nW2/6Yw5ad6ZQzrWqg8kjnMJAeNrLhqwspkvJ0bA=;
+ b=AkgHxByDBzHIsAqq/auGLyROwGqXKMYJHKGv4JS9ewySbleq5EFqXceHjI1gEhuJOqxmY35Utd3FohkX9GLiM/ovMRyOsVx51AeFKcgbg9qoaJcplpgQtOm2hpNeFMiiZ/5YZzQ/4zpBLgeCYscOwNnubk/+z85n1+BRKYdNhScAkuGCTJ8yySml7vGoAmpK0J4pRUiEBnbU5i6Rk22H4OOJHjGYBDoXeAOW++Ik0XGs0th6cojhJSGUftlF8VD/qp6+0I9XeUnxLrUK+watUsvpHqAcPULXYWWqwHxEg1lEppWXc3naTpKZ0gyAIQXBenMEL2y9pgK0HNyKBrBmBA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
+ by SEYPR03MB7759.apcprd03.prod.outlook.com (2603:1096:101:142::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
+ 2026 07:48:44 +0000
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e]) by KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e%3]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
+ 07:48:44 +0000
+Message-ID: <b4ad7333-28f8-43bb-84a6-5b53ab884a06@amlogic.com>
+Date: Mon, 16 Nov 2026 15:48:41 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 0/6] Add Amlogic stateless H.264 video decoder for S4
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20261022-b4-s4-vdec-upstream-v12-0-616240978792@amlogic.com>
+ <b2999c2fe5193eac3ebb0796f3de44710e993200.camel@collabora.com>
+From: Zhentao Guo <zhentao.guo@amlogic.com>
+In-Reply-To: <b2999c2fe5193eac3ebb0796f3de44710e993200.camel@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI3PR03CA0008.apcprd03.prod.outlook.com
+ (2603:1096:4:297::14) To KL1PR03MB5521.apcprd03.prod.outlook.com
+ (2603:1096:820:51::12)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=VOVIDNPX c=1 sm=1 tr=0 ts=6afab3d4 cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8
- a=u6OCHy2KTxjFLSf8iyQA:9 a=6Ab_bkdmUrQuMsNx7PHu:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE2MDAzMCBTYWx0ZWRfXyWi2JmhOdySP
- 1hrX0W5U6W05+ia0M55o4qMqm/uSwliXosOWmjTzzzKfBBIX9TGZvQibc6vN8ZMg5mZsi9Gyc2s
- 1m5R3I5mj0rHE3mLhxYk0/I+MQNB5zg=
-X-Proofpoint-ORIG-GUID: 0xf9Iap2aVulIgvTgF_2YW5CyoimZrP_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE2MDAzMCBTYWx0ZWRfX3JgS5pw56rZv
- IML/9nPWrpm6FXij0gtiCkqmJPKTd6BSxCS+8Kc5WNcDTUXRNP39FeClynw8MNNUL36078I9YwN
- FuZkOhteociJmyzndxL+XteY7DaUiLh6i/BJVQ1EVUqFrEdRLqP8ZdFnNLDy2Kmspp7b/hGcoLK
- xAj4CQILkoJNKSjslwUlt1xpfjNvClqrBVkfR40lIaOK8WohAIJdeAJP6c0kgEEqqdfgkxrmmSG
- oLgIg8UI8ayjJ4H5CoJC4xlVJEx025joYnjp4jPMLJeZxBRlUH5jxd3Q3LDc5g8jUegkPIHoOOb
- wssyyxtJl6/z+TRTS0H0+LjoT+DkyI/Jdgc3yGs/MsrRavotnqlC0GjvS41mmFfRldB8Zcz9xrQ
- +oRbbsA2undBdriVTmPtxFlHs4dACEFQsjKgzN6KS0u+6HTMTUcPYAPmfzh8VGRipi9595Mk01P
- tHy6FFA+icEXuG0tNCg==
-X-Proofpoint-GUID: 0xf9Iap2aVulIgvTgF_2YW5CyoimZrP_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-16_03,2026-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 priorityscore=1501 malwarescore=0 adultscore=0
- suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611160030
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5521:EE_|SEYPR03MB7759:EE_
+X-MS-Office365-Filtering-Correlation-Id: fbccd21d-62e7-4273-4b46-08df43b6097d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|376014|7416014|1800799024|18002099003|22082099003|6133799003|261009223027099003|3023799007|5023799004|11063799006|56012099006|10067099003|4143699003|261102123227099003|261028144727099003|261026121527099003|261026140227099003|261021121427099003|261022075727099003|261021135927099003|261021123027099003|261022115727099003|261022113327099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: xvJnYEK8VYST0t03xdpqKYTOn2mFs10+lXZE4qTuz/bASnZErq40HRHXWB2UOUNOTbxWtdgFH80rKwUJEZIhQIu243VeGKC2LTHn/J7yM8KwBq09h96SuiytSIuAbpSs2mbNLspXaQ91XfQMRakHKiausmZB/hroDncCUn9OmbvLPd+G/hRiMrmmX68j4ZDksLksYpCBbL9Kdy/sTskRbCMO1LuOIUEWy5bP54dOUPPZHjA05RMhz69V76b51sEbPKw6fu/J2ElX4FOwZET+VW79iIyu47b8O+9kJ5/PgqpkTag2zwUHEGNcDDro7bHXIf1g87c37BWKsT0DJcuadJKUhBXOZDIZHIuDue0FP7FJHpN4Kg5sVIzRRlCss0E7gd1In6Irj/JFIQ98cpWVYYOAXMfSEW/RSXvvikqF/S83WkgaDNopID3pfUr6UGbyYPchzEF+/kBFyWLpkMyxLWHpwhGkuiXu1WPWrUvsSDW2+XJXIXi6Seux+DgOISr/mpk02/XITF2//Q+S3XkrSoV7/8I2HiyujUGpLIjnIb6GK6fe9vs4xeqn7BMXSDtmRu9wU9ZO1zhVxINmY3SijawPR+pMRDtKR379EniJZexJ7tshs3dk/u+RM1Qp1cng
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5521.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(376014)(7416014)(1800799024)(18002099003)(22082099003)(6133799003)(261009223027099003)(3023799007)(5023799004)(11063799006)(56012099006)(10067099003)(4143699003)(261102123227099003)(261028144727099003)(261026121527099003)(261026140227099003)(261021121427099003)(261022075727099003)(261021135927099003)(261021123027099003)(261022115727099003)(261022113327099003)(261022105027099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RC9kY284b2t6WHRWNnhTb2ZXSk91WkdSTVVOQTBpeE5TVGlQaUM4TjNPNHkx?=
+ =?utf-8?B?VWJNSjFIYTJXVXFxeXhqRXJVeFl6TFNaUkkvYVVEYnJ6cDlyVGFGRFJsUWpv?=
+ =?utf-8?B?bVhSNy9wZWtpb3FSRmFjR090YzlDL2U5TitvWHhWMGdLV2l0SmwzVnZVamhX?=
+ =?utf-8?B?a29ySEhGKzVHdG9ZQTR5aStMNm42RjZHNU1WVS9EY04vU25GQXcrTnorMlV5?=
+ =?utf-8?B?cGRaNTlEUDVMRkdLQmFMcTVBdDBTV1IwZEtrZWQ5akl2ZjFwTmxheWo4OFRh?=
+ =?utf-8?B?R2pKNzhzd0IwWUc1eGN6cUN1UUUvUFhOUHFIeDhHcFdWa0FTdm1HRXg2aVgv?=
+ =?utf-8?B?UzNEdjRvS0hHSE1xd3BBRE0wUjdXS0xqVFVwc1FoY012R2JWakw4Mk11TE9n?=
+ =?utf-8?B?Y2lqd2hKWHMxWjBPdzIzY3QzTHY5UzNPLzk0OE8wMnFaM0tIREFSU2FsWkZk?=
+ =?utf-8?B?NXNIZ2FldXRzeUkrZTRwTDFMcVNTTjhhcGE1QUlZandmUld1UUI0QnhjdDR4?=
+ =?utf-8?B?WStRdkFDTVJrNnRSK1pNMFN1WFVtYWF5U1V3Y1ZqSGdyMTZ1SkxWamNTdGdX?=
+ =?utf-8?B?ZjNEWlpzRmhwWFBaekRDTFBtZTVSbUdibTJZaDhaOENkbkdNOGFPb2lRNlRa?=
+ =?utf-8?B?bW52d1FXb3VyREJDVjAvdDZ1YTBXclNOS3gwYXZYVHZzclRwWHJRYzMyUnNh?=
+ =?utf-8?B?Z1dPUW1tT2d0d2ZscmRTeG1ySDM3WEF6dWliTFA3VmF4NFZWNkpQNWJNYWRv?=
+ =?utf-8?B?QnpSY29LYzMwblNMbzJ5ZTJZZld2UmJ5Z2pjNXFtM2U4Q0tlSTJNN2s2VEtQ?=
+ =?utf-8?B?WlRXZCtTTjhKaWx6R2V1TTZNcndBaGJ5QXBFdU16dzE0SEN2bkFvbjhCelFy?=
+ =?utf-8?B?OG12bllFTzBvWll5V0REbWd5TjJsanByWTY2dnI1eVJoaE5CcE83QWxTRUhN?=
+ =?utf-8?B?WXg1RitKYWxaNFlyMUhYRkhVaStaajVEZysrUHFtNjkrUHd0eUpyZFl5MXBw?=
+ =?utf-8?B?aXU1OWRpcWFVelZYZlBBbUg4NEl5eEM5aE9zQ3JoUTE3b3M1S3FUakpTT0xD?=
+ =?utf-8?B?VnAwQXpRQWtQckc2c29LZjdxV012NXhWbU9sMnYvRUVFZzFvUEZNUys1dGh6?=
+ =?utf-8?B?bkhLOUVNT2NZenR1SStoUXhuaDZLZlFxdWdkU3dVQkJ5VjVGVjViQk5wQmVF?=
+ =?utf-8?B?S09zQ0ozTXZVV1Q3QzA0OWRiQktodWhUbTB4bXZYOXNHTkc0RllOZjZnajdB?=
+ =?utf-8?B?V1QrS1JCaCtac2tKUTNpVGpkcFJsM3R1dmVKN0hnU05kWnJ0SjBWTjBWcHBL?=
+ =?utf-8?B?VTZPZ1FWSVNUaW1saDBSQjd4S0NrdTV2Mm80Zy80YVViUjRnQTBkcGpnejVN?=
+ =?utf-8?B?cHpvTmZJVUVCSkJuTktIaWxyTzBCeGc0ZGh5VmlxZWdhN2tJTzJNRkdDdzMv?=
+ =?utf-8?B?clN1ZXlrNVh5RTdTejd3Nm9oaC83aGFyUTNVaHBWY2pEeG43Y0F2dW94UEJa?=
+ =?utf-8?B?amFLOFZrb0FQWnQvdUdMSnpsSkgxN2dGTTBCbWxlbks0RUtFME5vYmNVMWtx?=
+ =?utf-8?B?Z0lNVEJ6T05QV2l5dUZzN0xUbTNwUk9wdTZ0eXM2WVFHY3hKTklpTU9TbXNZ?=
+ =?utf-8?B?eE5CVVhkOWgrdm45eVFWZXJXSnVET1FIL0tOOU5Fbkg2MU5HMVZacFAwMS8z?=
+ =?utf-8?B?bFlSZVBaY1IwUzVKNE9xZWtnT2FVWHVKTVhweFdCdHVseDFwMG1GN2RlNnZB?=
+ =?utf-8?B?My9GdDVZUDFuMGViUG9BTVBFc1hVSm9XN3FHY05GdnBrU0srMk9veHAxN1Rw?=
+ =?utf-8?B?UlRYdnJ2QnhwVE5VcGJlRmx6d1J4bkMxRFhqMzV1ZWVzVDZoNXNQYW1RTEdk?=
+ =?utf-8?B?OVl2dU4wVW5McmZsSlExYXlUcGZwVUZha3JPVG83Z3BIQVBOQzR6R1lFWmVF?=
+ =?utf-8?B?cVljZzRUSzh2VXJWMmVTZzJOWU1VVnNQdE9ic0QyQWNITnkwK1pNSVRvL3Rs?=
+ =?utf-8?B?RWY1WE4rMUc4V2Z1WC9qN21BVlZKN1d5Tjd0UURUNkx0S0pyWVJ0ZzE5dFBj?=
+ =?utf-8?B?anZOTnRLeGRzcWRuMmo1S3l5Vk81MGhpL3JrZ1JMS3hRTlpCSzVkTmJEc2Qr?=
+ =?utf-8?B?QzBNTEk2azlQQU9GQktMSlFXU3BYaHdKeTQ3c0dZSUVsUTVxWGZnUDNzMWZx?=
+ =?utf-8?B?bVprRis1WjRJbmNoNzdjN0VTRUlrZTBKM3piRVRmVnRXbW1zU0dESFJ4d0dM?=
+ =?utf-8?B?TUtabU9FMHBBYjEzajlkU0JBTStFNjZXUEpDbktqQlk3NWdNeVhGR3BudFBT?=
+ =?utf-8?B?Um1Lb2p1YTE0Wit2c1BxSmRsbmc3RjJmUWlWZm96RXZuSGJZekJ3QT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbccd21d-62e7-4273-4b46-08df43b6097d
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5521.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 07:48:44.2789
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vIaOyZohVLYqNKpsoxINnJaZpaDFQil4zCSdG1eWszouoKRYjFEWa8uEQbGsRBTotQKD1TVeqd+2w6SSCfbibw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7759
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_074215_225145_150B4EB3 
-X-CRM114-Status: GOOD (  24.42  )
-X-Spam-Score: -0.9 (/)
+X-CRM114-CacheID: sfid-20261115_234853_118780_E86BCBA4 
+X-CRM114-Status: GOOD (  12.61  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -166,145 +152,434 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add reset node to initialize the value of
-priority/condition_decode/condition_select/timer/counter nodes.
+Hi Nicolas,
+> Hi,
+>
+> Le jeudi 22 octobre 2026 à 13:26 +0800, Zhentao Guo via B4 Relay a écrit :
+>> Introduce initial driver support for Amlogic's new video acceleration
+>> hardware architecture, designed for video stream decoding.
+>>
+>> Compared to the current Amlogic video decoder hardware architecture,
+>> this new implementation eliminates the Esparser hardware component,
+>> enabling direct vb2 buffer input. The driver is designed to support
+>> the V4L2 M2M stateless decoder API. The initial phase includes support
+>> for H.264 decoding on Amlogic S805X2 platform.
+>>
+>> The driver needs to work alongside with a signed firmware. The loading process of
+>> the signed fw is as follow.
+>> Stage1: Decypt and decompose the full firmware package when the driver is probed.
+>>    +---------------------+                        +---------------------+
+>>    |  Decoder Driver     |                        |  TEE Shared Memory  |
+>>    |  (Kernel Space)     |                        |                     |
+>>    |  +---------------+  |                        |  +---------------+  |
+>>    |  | video_ucode   |  |                        |  | firmware      |  |
+>>    |  |    .bin       |  |  Copy payload to SHM   |  |   payload     |  |
+>>    |  | (from fs)     |  | ---------------------> |  | (Secure RAM)  |  |
+>>    |  +---------------+  |                        |  +---------------+  |
+>>    +---------------------+                        +----------+----------+
+>>                                                              |
+>>                                                              | PTA Invocation
+>>                                                              v
+>>                                         +-------------------------------+
+>>                                         |             BL32              |
+>>                                         |  +-------------------------+  |
+>>                                         |  | Decrypt Firmware        |  |
+>>                                         |  +-----------+-------------+  |
+>>                                         |              |                |
+>>                                         |              v                |
+>>                                         |  +-------------------------+  |
+>>                                         |  | Decompose the full      |  |
+>> 				       |  | firmware pacakge        |  |
+>>                                         |  +-----------+-------------+  |
+>>                                         |              |                |
+>>                                         |              v                |
+>>                                         |  +-------------------------+  |
+>>                                         |  | Store decomposed .bin   |  |
+>>                                         |  | in Secure Memory        |  |
+>>                                         |  +-------------------------+  |
+>>                                         +-------------------------------+
+>>
+>> Stage2: When a decode job is scheduled, load decrypted fw via secure monitor.
+>>
+>>    +---------------------+
+>>    |  V4L2 M2M Framework |
+>>    |  +---------------+  |
+>>    |  |  device_run   |  |
+>>    |  +------+--------+  |
+>>    +---------+-----------+
+>>              |
+>>              v
+>>    +---------------------+                  +---------------------+
+>>    |  Decoder Driver     |                  |  Secure Monitor     |
+>>    |  (Kernel Space)     |                  |      (bl32)         |
+>>    |  +---------------+  |     SMC Call     |  +---------------+  |
+>>    |  | Select Codec  |  | ---------------> |  | Select & Load |  |
+>>    |  | Specific FW   |  |                  |  | firmware.bin  |  |
+>>    |  +---------------+  |                  |  | to AMRISC     |  |
+>>    +---------------------+                  |  +-------+-------+  |
+>>                                             +----------+----------+
+>>                                                        |
+>>                                                        v
+>>                                             +---------------------+
+>>                                             |     AMRISC Core     |
+>>                                             |  +---------------+  |
+>>                                             |  | Running fw on |  |
+>>                                             |  | AMRISC        |  |
+>>                                             |  +---------------+  |
+>>                                             +---------------------+
+>>
+>> The driver is capable of:
+>> - Supporting stateless H.264 decoding up to a resolution 1920x1088(on the S805X2 platform).
+>> - Supporting I/P/B frame handling.
+>> - Supporting vb2 mmap and dma-buf modes.
+>> - Supporting frame-based decode mode. (Note that some H.264 bitstreams require
+>>    DPB reordering to generate reference lists, the stateless decoder driver
+>>    cannot access reordered reference lists in this mode, requiring the driver
+>>    to perform reference list reordering itself)
+>> - Supporting NV12/NV21 output.
+>> - Supporting Annex B start codes.
+>>
+>> This driver is tested with Gstreamer.
+>> Example:
+>> gst-launch-1.0 filesrc location=/tmp/video_640x360_mp4_hevc_450kbps_no_b.mp4 !
+>> parsebin ! v4l2slh264dec ! filesink location=/tmp/output.yuv
+>>
+>> Retry the compliance test based on kernel 7.1.0:
+>> v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
+>>
+>> Compliance test for aml-vdec-drv device /dev/video0:
+>>
+>> Driver Info:
+>> Driver name : aml-vdec-drv
+>> Card type : platform:aml-vdec-drv
+>> Bus info : platform:fe320000.video-codec
+>> Driver version : 7.1.0
+>> Capabilities : 0x84204000
+>> Video Memory-to-Memory Multiplanar
+>> Streaming
+>> Extended Pix Format
+>> Device Capabilities
+>> Device Caps : 0x04204000
+>> Video Memory-to-Memory Multiplanar
+>> Streaming
+>> Extended Pix Format
+>> Detected Stateless Decoder
+>> Media Driver Info:
+>> Driver name : aml-vdec-drv
+>> Model : aml-vdec-drv
+>> Serial :
+>> Bus info : platform:fe320000.video-codec
+>> Media version : 7.1.0
+>> Hardware revision: 0x00000000 (0)
+>> Driver version : 7.1.0
+>> Interface Info:
+>> ID : 0x0300000c
+>> Type : V4L Video
+>> Entity Info:
+>> ID : 0x00000001 (1)
+>> Name : aml_dev_drv-source
+>> Function : V4L2 I/O
+>> Pad 0x01000002 : 0: Source
+>> Link 0x02000008: to remote pad 0x1000004 of entity 'aml_dev_drv-proc' (Video Decoder): Data, Enabled, Immutable
+>>
+>> Required ioctls:
+>> test MC information (see 'Media Driver Info' above): OK
+>> test VIDIOC_QUERYCAP: OK
+>> test invalid ioctls: OK
+>>
+>> Allow for multiple opens:
+>> test second /dev/video0 open: OK
+>> test VIDIOC_QUERYCAP: OK
+>> test VIDIOC_G/S_PRIORITY: OK
+>> test for unlimited opens: OK
+>>
+>> Debug ioctls:
+>> test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+>> test VIDIOC_LOG_STATUS: OK (Not Supported)
+>>
+>> Input ioctls:
+>> test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+>> test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>> test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+>> test VIDIOC_ENUMAUDIO: OK (Not Supported)
+>> test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+>> test VIDIOC_G/S_AUDIO: OK (Not Supported)
+>> Inputs: 0 Audio Inputs: 0 Tuners: 0
+>>
+>> Output ioctls:
+>> test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+>> test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>> test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+>> test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+>> test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+>> Outputs: 0 Audio Outputs: 0 Modulators: 0
+>>
+>> Input/Output configuration ioctls:
+>> test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+>> test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+>> test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+>> test VIDIOC_G/S_EDID: OK (Not Supported)
+>>
+>> Control ioctls:
+>> test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+>> test VIDIOC_QUERYCTRL: OK
+>> test VIDIOC_G/S_CTRL: OK
+>> test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+>> test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+>> test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+>> Standard Controls: 6 Private Controls: 0
+>> Standard Compound Controls: 4 Private Compound Controls: 0
+>>
+>> Format ioctls:
+>> test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+>> test VIDIOC_G/S_PARM: OK (Not Supported)
+>> test VIDIOC_G_FBUF: OK (Not Supported)
+>> test VIDIOC_G_FMT: OK
+>> test VIDIOC_TRY_FMT: OK
+>> test VIDIOC_S_FMT: OK
+>> test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+>> test Cropping: OK (Not Supported)
+>> test Composing: OK (Not Supported)
+>> test Scaling: OK (Not Supported)
+>>
+>> Codec ioctls:
+>> test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+>> test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>> test VIDIOC_(TRY_)DECODER_CMD: OK
+>>
+>> Buffer ioctls:
+>> test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+>> test CREATE_BUFS maximum buffers: OK
+>> test VIDIOC_REMOVE_BUFS: OK
+>> test VIDIOC_EXPBUF: OK
+>> test Requests: OK
+>> test blocking wait: OK
+>>
+>> Total for aml-vdec-drv device /dev/video0: 49, Succeeded: 49, Failed: 0, Warnings: 0
+>> Fluster test result of JVT-AVC_V1.
+>> Result:
+>> Ran 77/135 tests successfully
+> After looking in my past data, 90/135 would be expected without deinterlacer. I
+> already find bugs in the review, comment on that patches.
+>
+>> - 52 test vectors failed due to interlaced or mbaff clips: The Amlogic stateless
+>>    decoder driver only support bitstreams with frame_mbs_only_flags == 1.
+>>    Test Vectors:
+>>          cabac_mot_fld0_full
+>>          cabac_mot_mbaff0_full
+>>          cabac_mot_picaff0_full
+>>          CABREF3_Sand_D
+>>          CAFI1_SVA_C
+>>          CAMA1_Sony_C
+> I don't know them all, but at least this one, and CVMA1_Sony_D do not contain
+> field coded macroblocks, and should decode fine without the interlaced reference
+> list. We've seen a lot of artifically limited decoder like yours output 90/135.
 
-Reviewed-by: Jie Gan <jie.gan@oss.qualcomm.com>
-Signed-off-by: Songwei Chai <songwei.chai@oss.qualcomm.com>
----
- .../ABI/testing/sysfs-bus-amba-devices-tgu    |  7 ++
- drivers/hwtracing/qcom/tgu.c                  | 85 +++++++++++++++++++
- 2 files changed, 92 insertions(+)
+I checked the CVMA1_Sony_D with my bitstream analyzer, I found, for 
+example, in frame 0, MB 320x192 is coded into field top, MB 640x176 is 
+coded into field bottom, anda few more field-coded macroblocks in frame 
+0 or other frames.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-index 71187071cbc8..b3a2fb9cba6e 100644
---- a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-+++ b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-@@ -51,3 +51,10 @@ KernelVersion:	7.5
- Contact:	Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai <songwei.chai@oss.qualcomm.com>
- Description:
- 		(RW) Set/Get the counter value with specific step for TGU.
-+
-+What:		/sys/bus/amba/devices/<tgu-name>/reset_tgu
-+Date:		November 2026
-+KernelVersion:	7.5
-+Contact:	Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai <songwei.chai@oss.qualcomm.com>
-+Description:
-+		(Write) Write 1 to reset the dataset for TGU.
-diff --git a/drivers/hwtracing/qcom/tgu.c b/drivers/hwtracing/qcom/tgu.c
-index aa7eaed0e738..6f76d4f83cc3 100644
---- a/drivers/hwtracing/qcom/tgu.c
-+++ b/drivers/hwtracing/qcom/tgu.c
-@@ -251,6 +251,18 @@ static ssize_t tgu_write_all_hw_regs(struct tgu_drvdata *drvdata)
- 	int i, j, k, index = 0;
- 
- 	CS_UNLOCK(drvdata->base);
-+
-+	/*
-+	 * Quiesce the detection engine before mutating any comparison input.
-+	 * This function is also reached from reset_tgu_store() while the TGU is
-+	 * already running (TGU_CONTROL == 1); rewriting the priority/condition/
-+	 * timer/counter registers register-by-register on a live engine could
-+	 * feed a transient, half-updated match into CTI/interrupt consumers.
-+	 * Programming with CONTROL == 0 and only re-enabling at the end keeps the
-+	 * program-then-enable ordering for every caller.
-+	 */
-+	writel(0, drvdata->base + TGU_CONTROL);
-+
- 	for (i = 0; i < drvdata->num_step; i++) {
- 		for (j = 0; j < MAX_PRIORITY; j++) {
- 			for (k = 0; k < drvdata->num_reg; k++) {
-@@ -470,8 +482,81 @@ static ssize_t tgu_enable_store(struct device *dev,
- }
- static DEVICE_ATTR(enable, 0644, tgu_enable_show, tgu_enable_store);
- 
-+/*
-+ * Element counts for drvdata's shadow tables, shared so the reset path
-+ * below can't drift from how each array is actually sized/indexed.
-+ */
-+#define TGU_PRIORITY_COUNT(drvdata) \
-+	(MAX_PRIORITY * (drvdata)->num_step * (drvdata)->num_reg)
-+#define TGU_CONDITION_DECODE_COUNT(drvdata) \
-+	((drvdata)->num_step * (drvdata)->num_condition_decode)
-+#define TGU_CONDITION_SELECT_COUNT(drvdata) \
-+	((drvdata)->num_step * (drvdata)->num_condition_select)
-+#define TGU_TIMER_COUNT(drvdata) \
-+	((drvdata)->num_step * (drvdata)->num_timer)
-+#define TGU_COUNTER_COUNT(drvdata) \
-+	((drvdata)->num_step * (drvdata)->num_counter)
-+
-+static ssize_t reset_tgu_store(struct device *dev,
-+			       struct device_attribute *attr, const char *buf,
-+			       size_t size)
-+{
-+	struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
-+	unsigned long value;
-+	int i, ret;
-+
-+	if (kstrtoul(buf, 0, &value) || value != 1)
-+		return -EINVAL;
-+
-+	/*
-+	 * Hold the mutex across the whole sequence so it cannot race with
-+	 * enable_tgu_store()/tgu_dataset_store(): the enabled check and the
-+	 * hardware access stay consistent. No PM reference is taken or dropped
-+	 * here - the shadow tables are plain memory, and the hardware is only
-+	 * touched when the device is already resumed via the enable reference.
-+	 */
-+	guard(mutex)(&drvdata->lock);
-+
-+	memset(drvdata->priority, 0,
-+	       TGU_PRIORITY_COUNT(drvdata) * sizeof(*drvdata->priority));
-+
-+	/*
-+	 * Every decode register is about to be overwritten with the neutral
-+	 * 'NOT' value below, so there is nothing for a prior memset to zero;
-+	 * calculate_array_location()'s step/reg indices for TGU_CONDITION_DECODE
-+	 * densely cover the whole 0..TGU_CONDITION_DECODE_COUNT(drvdata)-1 range
-+	 * with no gaps, so a flat loop over that range reaches every decode
-+	 * register.
-+	 */
-+	for (i = 0; i < TGU_CONDITION_DECODE_COUNT(drvdata); i++)
-+		drvdata->condition_decode[i] = TGU_CONDITION_DECODE_NOT;
-+
-+	memset(drvdata->condition_select, 0,
-+	       TGU_CONDITION_SELECT_COUNT(drvdata) *
-+		       sizeof(*drvdata->condition_select));
-+
-+	memset(drvdata->timer, 0,
-+	       TGU_TIMER_COUNT(drvdata) * sizeof(*drvdata->timer));
-+
-+	memset(drvdata->counter, 0,
-+	       TGU_COUNTER_COUNT(drvdata) * sizeof(*drvdata->counter));
-+
-+	/* If the TGU is running, apply the cleared configuration immediately. */
-+	if (drvdata->enabled) {
-+		ret = tgu_write_all_hw_regs(drvdata);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	dev_dbg(dev, "Qualcomm-TGU reset complete\n");
-+
-+	return size;
-+}
-+static DEVICE_ATTR_WO(reset_tgu);
-+
- static struct attribute *tgu_common_attrs[] = {
- 	&dev_attr_enable.attr,
-+	&dev_attr_reset_tgu.attr,
- 	NULL,
- };
- 
--- 
-2.34.1
+That said, the interlaced feature is already done. My latest self-test 
+results with Fluster are:
+
+JVT-AVC_V1 Ran 130/135 tests successfully in 101.885 secs (ran with -j3)
+
+Do you suggest me to add the interlaced support in the next version?I'd 
+really appreciate your suggestions.
+
+>
+>>          CAMA1_TOSHIBA_B
+>>          cama1_vtc_c
+>>          cama2_vtc_b
+>>          CAMA3_Sand_E
+>>          cama3_vtc_b
+>>          CAMACI3_Sony_C
+>>          CAMANL1_TOSHIBA_B
+>>          CAMANL2_TOSHIBA_B
+>>          CAMANL3_Sand_E
+>>          CAMASL3_Sony_B
+>>          CAMP_MOT_MBAFF_L30
+>>          CAMP_MOT_MBAFF_L31
+>>          CANLMA2_Sony_C
+>>          CANLMA3_Sony_C
+>>          CAPA1_TOSHIBA_B
+>>          CAPAMA3_Sand_F
+>>          cavlc_mot_fld0_full_B
+>>          cavlc_mot_mbaff0_full_B
+>>          cavlc_mot_picaff0_full_B
+>>          CVCANLMA2_Sony_C
+>>          CVFI1_Sony_D
+>>          CVFI1_SVA_C
+>>          CVFI2_Sony_H
+>>          CVFI2_SVA_C
+>>          CVMA1_Sony_D
+>>          CVMA1_TOSHIBA_B
+>>          CVMANL1_TOSHIBA_B
+>>          CVMANL2_TOSHIBA_B
+>>          CVMAPAQP3_Sony_E
+>>          CVMAQP2_Sony_G
+>>          CVMAQP3_Sony_D
+>>          CVMP_MOT_FLD_L30_B
+>>          CVNLFI1_Sony_C
+>>          CVNLFI2_Sony_H
+>>          CVPA1_TOSHIBA_B
+>>          FI1_Sony_E
+>>          MR6_BT_B
+>>          MR7_BT_B
+>>          MR8_BT_B
+>>          MR9_BT_B
+>>          Sharp_MP_Field_1_B
+>>          Sharp_MP_Field_2_B
+>>          Sharp_MP_Field_3_B
+>>          Sharp_MP_PAFF_1r2
+>>          Sharp_MP_PAFF_2r
+>>          CVMP_MOT_FRM_L31_B
+>> - 3 test vectors failed due to unsupported bitstream.
+>>    num_slice_group_minus1 greater than zero is not supported by the
+>>    hardware.
+>>    Test Vectors:
+>>          FM1_BT_B
+>>          FM1_FT_E
+>>          FM2_SVA_C
+>> - 2 test vectors failed because SP_SLICE type is not supported by the
+>>    hardware.
+>>    Test Vectors:
+>>          SP1_BT_A
+>>          sp2_bt_b
+>>
+>> One remain failure is CVFC1_Sony_C, which contains crop information. The md5sum of every decoded YUV indicates that original output from the decoder was correct. The YUV was cropped by gstreamer. The correct cropping method for this bitstream should be to crop 30*2 rows of pixels from both the top and bottom of the image, and 13*2 columns of pixels from both the left and right sides.However, gstreamer cropped 13*4 columns of pixels from the right side and 30*4 rows of pixels from the bottom. We are trying to find out the cause of this. Other failuers mentioned in V1 and V2 were resolved.
+>>
+> Would be nice to report this bug.
+>
+>> Changes in v12:
+>> - Add additional check to avoid the resolution happened in middle of a bitstream without streamon/off, due to the non-standard habbit of the userspace.
+>> - Add a separate initialization claim, init_ctx, to protect the hardware initialization process.
+>> - Add rejection to the formats whose type does not match the queue in all four s_fmt/try_fmt paths.
+>> - Link to v11: https://lore.kernel.org/r/20261012-b4-s4-vdec-upstream-v11-0-25939f85ada5@amlogic.com
+>>
+>> Changes in v11:
+>> - Check clock/power-on failures before operating the registers. Use pm_runtime_resume_and_get() instead of pm_runtime_get_sync() so the usage counter stays balanced on the error path.
+>> - Fix missing validation of untrusted bitstream input in the H.264 decoder.
+>> - Fix instance/resource lifetime issues: do not re-init a live decoder instance when only output or capture queue restarts.
+>> - Link to v10: https://lore.kernel.org/r/20260924-b4-s4-vdec-upstream-v10-0-1289303a58a4@amlogic.com
+>>
+>> Changes in v10:
+>> - Rename the clock/power/interrupt names in dt-binding and dts to match the name of decoder sub-core (dos, vdec, hvdec).
+>> - Fix the h264 high profile bitstreams decoding error issue.
+>> - Use the allocation bitmaps instead of poc != INVALID_POC as the slot occupancy test, since INVALID_POC (0xffffffff) aliases with the valid POC value -1.
+>> - Link to v9: https://lore.kernel.org/r/20260914-b4-s4-vdec-upstream-v9-0-72fdb0d71b02@amlogic.com
+>>
+>> Changes in v9:
+>> - Rename the clock/power/interrupt names in dt-binding and dts. Add the descriptions to the clock items in dt-binding.
+>> - Optimized the handling process for reference frame loss. The address of a lost reference frame will not be configured to the hardware, to prevent the hardware from accessing an illegal address.
+>> - Optimized the error handling paths in the driver based on v8.
+>> - Link to v8: https://lore.kernel.org/r/20260831-b4-s4-vdec-upstream-v8-0-830195b9bd91@amlogic.com
+>>
+>> Changes in v8:
+>> - Rename the clock/power names in dt-binding and dts. Add the descriptions to the canvas and secure-monitor node in dt-binding.
+>> - Improve code accroding to the feedback of sashiko bot, including:
+>>      1.Imporve the resource cleanup and error handling paths in the driver.
+>>      2.Mitigated race conditions between the decode path, interrupt handler, and resource teardown.
+>>      3.Validate codec-stream parameters passed to the driver to prevent the potential risk.
+>> - Link to v7: https://lore.kernel.org/r/20260812-b4-s4-vdec-upstream-v7-0-3fae085861bd@amlogic.com
+>>
+>> Changes in v7:
+>> - Addressed Krzysztof's review comments: fixed DTS coding style, added board info requiring the config to patch 6/6's commit message.
+>> - Improvements made per sashiko bot review, including:
+>>      1.Fixed memory out-of-bounds access / buffer overflow issues.
+>>      2.Fixed concurrency and race conditions related issues.
+>>      3.Improved the error handling paths to avoid the risk of resource leakage.
+>>      4.Fixed the improper V4L2 framework usage.
+>> - Link to v6: https://lore.kernel.org/r/20260724-b4-s4-vdec-upstream-v6-0-6072a7ee7428@amlogic.com
+>>
+>> Changes in v6:
+>> - Rename the HEVC core and the associated power, clock, and interrupt names. 'HEVC' was a development codename of the decoder IP which accelerates h265 vp9 av1 decoding, but it coincidentally matches the acronym for High Efficiency Video Coding. To avoid naming ambiguity, HEVC core is renamed to HVDEC core(H stands for HEVC).
+>> - Get rid of the unused function and interface.
+>> - Link to v5: https://lore.kernel.org/r/20260526-b4-s4-vdec-upstream-v5-0-33bc817f93f4@amlogic.com
+>>
+>> Changes in v5:
+>> - Rename the compatible and the clock item accroding to Krzysztof's feedback.
+>> - Use tee & meson_sm helpers to decrypt load the signed decoder firmware. Add the meson_sm describsion and reference to dt-binding and dts.
+>> - Link to v4: https://lore.kernel.org/r/20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com
+>>
+>> Changes in v4:
+>> - Use %pad to print dma_addr_t type instead of using %llx.
+>> - Add initial values to some local variables.
+>> - Link to v3: https://lore.kernel.org/r/20260121-b4-s4-vdec-upstream-v3-0-4496aec3d79e@amlogic.com
+>>
+>> Changes in v3:
+>> - Fixed the DT check error:
+>>    arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: video-codec@fe320000 (amlogic,s4-vcodec-dec): 'amlogic,canvas' does not match any of the regexes: '^pinctrl-[0-9]+$'
+>>    from schema $id: http://devicetree.org/schemas/media/amlogic,vcodec-dec.yaml
+>> - Added DOS reset lines to dtsi and dt-binding.
+>> - Fixed the issue where some B-frames were not decoded correctly(The fluster failures mentioned in patch V1 and V2 were mostly caused by this).
+>> - Fixed the issue where canvas_index leaks occurred during the decoding of some bitstreams.
+>> - Rework the src/dst format storage. Use v4l2_pix_format_mplane to store formats that related to bitstreams into the context. Add the reset format function to reset all the formats to default value.
+>> - Store decoding parameters related to chip platforms, such as maximum width/height and alignment requirement, organized by chip platform.
+>> - Link to v2: https://lore.kernel.org/r/20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com
+>>
+>> Changes in v2:
+>> - Fixed incorrect generation of the reference lists for some B-frames.
+>> - Rename or get rid of some properties in DTS and dt-binding.
+>> - Remove some useless code or helper functions, (eg. clk helper functions, reg I/O macros, and some superfluous print messages) replace these functions with existing ones.
+>> - Replace all the printk messages with dev_err/dev_info/dev_dbg
+>> - Use the helper functions from the existing meson-canvas driver.
+>> - Use clk_bulk_data to map clocks from DTS.
+>> - Retry the V4L2 Compliance test on 6.18-rc6, fix a newly introduced bug.
+>> - Link to v1: https://lore.kernel.org/r/20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com
+>>
+>> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+>> ---
+>> Zhentao Guo (6):
+>>        firmware: meson: sm: video firmware loading via secure monitor
+>>        firmware: meson: sm: Add video firmware loading SMC call
+>>        media: dt-bindings: Add Amlogic V4L2 video decoder
+>>        decoder: Add V4L2 stateless H.264 decoder driver
+>>        arm64: dts: amlogic: Add video decoder driver support for S4 SOCs
+>>        arm64: defconfig: Enable CONFIG_VIDEO_AMLOGIC_VDEC
+>>
+>>   .../devicetree/bindings/media/amlogic,s4-vdec.yaml |  114 +
+>>   MAINTAINERS                                        |    7 +
+>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |   33 +
+>>   arch/arm64/configs/defconfig                       |    1 +
+>>   drivers/firmware/meson/meson_sm.c                  |    1 +
+>>   drivers/media/platform/amlogic/Kconfig             |    1 +
+>>   drivers/media/platform/amlogic/Makefile            |    1 +
+>>   drivers/media/platform/amlogic/vdec/Kconfig        |   18 +
+>>   drivers/media/platform/amlogic/vdec/Makefile       |    4 +
+>>   drivers/media/platform/amlogic/vdec/TODO           |    7 +
+>>   drivers/media/platform/amlogic/vdec/aml_vdec.c     |  846 ++++++++
+>>   drivers/media/platform/amlogic/vdec/aml_vdec.h     |   33 +
+>>   drivers/media/platform/amlogic/vdec/aml_vdec_drv.c |  260 +++
+>>   drivers/media/platform/amlogic/vdec/aml_vdec_drv.h |  168 ++
+>>   drivers/media/platform/amlogic/vdec/aml_vdec_hw.c  |  570 +++++
+>>   drivers/media/platform/amlogic/vdec/aml_vdec_hw.h  |  161 ++
+>>   .../platform/amlogic/vdec/aml_vdec_platform.c      |   81 +
+>>   .../platform/amlogic/vdec/aml_vdec_platform.h      |   46 +
+>>   .../media/platform/amlogic/vdec/aml_vdec_tee_fw.c  |  249 +++
+>>   .../media/platform/amlogic/vdec/aml_vdec_tee_fw.h  |   27 +
+>>   drivers/media/platform/amlogic/vdec/h264.c         | 2209 ++++++++++++++++++++
+>>   drivers/media/platform/amlogic/vdec/h264.h         |  299 +++
+>>   drivers/media/platform/amlogic/vdec/reg_defines.h  |  177 ++
+>>   include/linux/firmware/meson/meson_sm.h            |    1 +
+>>   24 files changed, 5314 insertions(+)
+>> ---
+>> base-commit: 2efb7a11f1aa4d2dc285fe2680cca22cb9f72f64
+>> change-id: 20251027-b4-s4-vdec-upstream-0603c1a4c84a
+>>
+>> Best regards,
+
+BRs
+
+Zhentao
 
 
