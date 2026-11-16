@@ -2,111 +2,61 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95046606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 04:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C311606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 05:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OQ7XO53e;
-	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=r5p35Vat
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mfRL1g+k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Content-Type:
-	MIME-Version:References:In-Reply-To:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yb0ouDgf9S/OdWev3vcVfqdIAaKZrYAoDUUyKNG3AEU=; b=OQ7XO53eyp5knRl8pkvp9QTSej
-	lij+rqDdwdQl4GErxCDA2xFM0gJp7GwpB80UWqkvoInvzKa8aTE0pjnDjIcWpzmyZwjZ7KPpLVoiQ
-	/S43d7sO3pg1YJBejPSiJig/1M1QXw/jbMj6x5OHFtIoOwMSGPLNuJGXR+4V6hdSOtlWKSoKfccX2
-	w2yracuOhP5H0zDZBwQN7CskcvB3/6rh58DU/7VnyTg1krFIgJJj0rs67V1XE5cYiaiEQXR0iClfB
-	H7a1jXO/w1jSi+7Pv73B7TiTQXWfMY2MCREuDc170qtxoNzrBluth93cE3wr31fTfDehTpf5S3VoN
-	rfC2vRig==;
+	bh=zIG1Zp6FGJRrEDh0pN+mqn8C1jWGbL1fAfu3HFYFjzY=; b=mfRL1g+ke2/DEMYLTADxRxocja
+	I2mOGBjw0YLVHvkDO52j89z5aKZEbT+/Zax/ZmZhj72g/54k4qjupyeCWXRDzbSV8m/JljSm2PM9f
+	+7XY+VTyQSZa6569ieEQX3g1J9UWFZjex94knYCmU/f2cvbp6hPpZROjmbWflmVBXIEKlcIoq/W1W
+	qXnyGekFgrB38a1G8X/H7iu9i2kCjLlGO2POHIcLrJ3OC2sScj/TuhPr8aYBzRlrJN+OYfPlWpcTV
+	YNk2ZkKdVZ6TEkEefg+D9zSrmo5TOmbEbwkNp5QogXUosoDen2v605v642SpYWJqm9I844nBN9dDy
+	Xu0jVvYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSoQQ-000000018PG-07Wb;
-	Mon, 16 Nov 2026 04:34:38 +0000
-Received: from mail-dl1-x1236.google.com ([2607:f8b0:4864:20::1236])
+	id 1xSp4O-000000019uF-0Sa9;
+	Mon, 16 Nov 2026 05:15:56 +0000
+Received: from mail.aspeedtech.com ([211.20.114.72] helo=twmbx01.aspeedtech.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSoQF-000000018In-3hyH
+	id 1xSp4J-000000019tq-0O49
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 04:34:28 +0000
-Received: by mail-dl1-x1236.google.com with SMTP id a92af1059eb24-1b24f4b15c4so926650c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 20:34:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chrisdown.name; s=google; t=1794803667; x=1795408467; darn=lists.infradead.org;
-        h=user-agent:message-id:content-disposition:content-type:mime-version
-         :references:in-reply-to:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=yb0ouDgf9S/OdWev3vcVfqdIAaKZrYAoDUUyKNG3AEU=;
-        b=r5p35Vat5n+//hZrG6aP3ksKFGfLA1oMipACe45Dqu/AVh9jChRLNZY9GdNPahXMmp
-         nEFdtd9sVElZ995pZJJehMr+Xugnw621dXZPsBuMMj2ukzOKEYUGjPlMaL7mDOwp2wR/
-         tapb03N9tfwR6j1xonIb4Hn1IpM0J8YzMMwG0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794803667; x=1795408467;
-        h=user-agent:message-id:content-disposition:content-type:mime-version
-         :references:in-reply-to:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=yb0ouDgf9S/OdWev3vcVfqdIAaKZrYAoDUUyKNG3AEU=;
-        b=YqwaN3r6mqg7gVq0jUBGEwtbDJTcNQ1XajmEg1FLESvpD6RzkIFvKCbthf9gH41GFO
-         8UZOTKAUup3bO6Ilb+yyFLLE/qrMIRRAhDihKGsZYk7KIJ6JgMl4OreOQnRdUf2LKNnP
-         uRh8QOMu2lbUQoCq3A+FHBdUX1XmTyHDd0yqblV5pfrMZ8HXFtw9Imae/oJp9Iorpnrt
-         pB+i7zWkDII8r3WrbQpeMI6vpmwgn0rbzgBCyCwyy1MKKAR+admHAJ7knKMAE5aZLoSe
-         iPDDOMv7kjSn22w0ozJP+xJEXyrYubv3ypK73YCN+L2hhnoq/AQ3KCFKHCZzo0INU8OS
-         yoLg==
-X-Forwarded-Encrypted: i=1; AL+hErGmc8clij7FiX4Z4jgfGeatyW9k5pwsZSsngPul7yo8vBM8UpkSYYR3UsvZIK1oveZxCGRmAOY/ngECBEEpV9GO@lists.infradead.org
-X-Gm-Message-State: APuU4Z8jfk9FrF/OmBA1nQsGGv+vjFnYrOpDLFrHlflWXmrfR70eVpzx
-	9PWW1gcEw2vSA6Sgwe8pd3sDSlcVyvGcN9vlDzyn5wWCHnBcnOCN0QJk9rca8cCIScM=
-X-Gm-Gg: AYBFou25ZIwsueM+VuDgjwMpjyhbtCXPVhJBB7UqP6B95N9aflQPUxvyGUbRpL5v5A6
-	EcnVbhXE/7vfZzNS6Zb+Zz2Tf2biY5iJ1C9NlXKLwfSxjVyo+qtakuS1Z7OEeEWj+k22UlO1VxZ
-	1Yre3VsMgsoJTyDXUPBU8m+J0ZCQH9qRpq6CBet/dzkIi+es1FoMQ8F7BqKjQ8u0LO2kiQZFlYp
-	pG1kTviH6KmuJ90w2yKccvRy1eAYhxNfmEpdyc7f+IL5GL0IjXN7N9LNnwXgsR5nBK9yzvpQM8R
-	3ES6E2+a7l+8Xwv/JfnGOsMGCERT6sKUdIhA7cCpfQoZ9XsJolCuYPE9slTkiJMYhofZMnvUH7l
-	yYMHY3zEWtHfx3Eq5zDcMEgI8mRW1v289czRDvFLuvEPi7vwtSWIw1GVntEW1Xn5sqP1S7JsGOc
-	DpXVbJLghSEGxpph6KjU4YfRNjk1COEZwFu9wKrao+jFKudQWeXEvrSBUDvFvxUZWVymTZ6yh6R
-	mEW0L5I/KGZBARS0qli61NqgD4+GEsWbbBW7EAZFHnPDSYxxwv0dSZInzYL4xScfAwPmGxeE2AF
-	PGphhmjULhn9KYJZO93Bzk76G1A74rGpSCIx9O4xa4vE5mR9qfUAXf9PVzzaEZLcIpThXRAHlzC
-	Bm5WF9KyD9a9GVF/zurTVSD5k5RQEpPRBidDJue4UOgJMFeov4I+lvx+EHK6h7mV4domgxLLNnl
-	nv0evVglNpGf2DdIVJWLC2pIvX7d9Z0iCaD4e+epw5woO2j4sIljQkEy7SzO82BvNF
-X-Received: by 2002:a05:7022:b0c5:b0:181:6b8:31f1 with SMTP id a92af1059eb24-1b4f5f3475fmr11110443c88.10.1794803667022;
-        Sun, 15 Nov 2026 20:34:27 -0800 (PST)
-Received: from [172.18.0.2] ([172.56.232.151])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5031918c7sm38362148c88.9.2026.11.15.20.34.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2026 20:34:26 -0800 (PST)
-Date: Sun, 15 Nov 2026 20:34:21 -0800
-From: Chris Down <chris@chrisdown.name>
-To: tarunsahu@google.com
-Cc: Pasha Tatashin <pasha.tatashin@soleen.com>,
-	Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, maz@kernel.org,
-	will@kernel.org, David Matlack <dmatlack@google.com>,
-	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com,
-	loganodell@google.com, arnd@arndb.de, dwmw2@infradead.org,
-	baolu.lu@linux.intel.com, Bjorn Helgaas <bhelgaas@google.com>,
-	oupton@kernel.org, alex@shazbot.org, gle.com@google.com, pbonzini@redhat.com,
-	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com,
-	joro@8bytes.org, kvmarm@lists.linux.dev, linux-pci@vger.kernel.org,
-	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org,
-	kvm@vger.kernel.org, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, skhawaja@google.com, sagis@google.com,
-	linux-arch@vger.kernel.org, linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 05/19] kho: Add feature header for fine-grained ABI
-	compatibility
-In-Reply-To: <9huz5wy4tufo.fsf@tarunix.c.googlers.com>
-References: <20261110050202.529473-1-tarunsahu@google.com>
-	<20261110050202.529473-6-tarunsahu@google.com>
-	<DMRMLZSZ0LAZ.D4P70QWX0IHB@soleen.com>
-	<9huz5wy4tufo.fsf@tarunix.c.googlers.com>
+	Mon, 16 Nov 2026 05:15:54 +0000
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Mon, 16 Nov
+ 2026 13:15:41 +0800
+Received: from aspeed-fw03.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.39 via Frontend
+ Transport; Mon, 16 Nov 2026 13:15:41 +0800
+From: Cooper Huang <cooper_huang@aspeedtech.com>
+To: <andrew@codeconstruct.com.au>
+CC: <billy_tsai@aspeedtech.com>, <chin-ting_kuo@aspeedtech.com>,
+	<conor+dt@kernel.org>, <cooper_huang@aspeedtech.com>,
+	<devicetree@vger.kernel.org>, <joel@jms.id.au>, <krzk+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, <robh@kernel.org>,
+	<ryan_chen@aspeedtech.com>, <vince_chang@aspeedtech.com>
+Subject: Re: [PATCH] arm64: dts: aspeed: Enlarge AST2700 EVB kernel partition to 12 MiB
+Date: Mon, 16 Nov 2026 13:15:41 +0800
+Message-ID: <20261116051541.3503805-1-cooper_huang@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <bc6e605a8c5bee59ad9bcbce5f4fe775c9c3324e.camel@codeconstruct.com.au>
+References: <bc6e605a8c5bee59ad9bcbce5f4fe775c9c3324e.camel@codeconstruct.com.au>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Message-ID: <20261115203421.38c206b35f5b12e6@chrisdown.name>
-User-Agent: Mutt/2.4.3 (cc9e3943) (2026-10-09)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_203427_923782_FB32014A 
-X-CRM114-Status: UNSURE (   8.18  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 1.2 (+)
+X-CRM114-CacheID: sfid-20261115_211551_168122_C0D2824A 
+X-CRM114-Status: GOOD (  33.05  )
+X-Spam-Score: 0.6 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,34 +67,157 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Tarun,
+Hi Andrew,
 
-tarunsahu@google.com writes:
->Techinically this is just for readability.
+Thanks for the review. I've gone back and measured things more
+carefully; details inline.
+
+On Tue, 2026-11-03 at 14:48 +1030, Andrew Jeffery wrote:
+> On Thu, 2026-10-29 at 15:25 +0800, Cooper Huang wrote:
+> > The 128 MiB flash layout of the AST2700 EVB reserves 9 MiB for the
+> > kernel FIT image. A FIT image containing an LZMA-compressed kernel,
+> > the DTB and an initramfs is already close to that size, leaving little
+> > room for the kernel to grow.
+> >
+> > Grow the kernel partition to 12 MiB and take the 3 MiB from rofs,
 >
->WDYT?
+> Why 12MiB? Why only take 3MiB?
 
-It doesn't help readability in the generated docs, though. kernel-doc
-splits the parameter list on the comma inside the macro, so
-kho_preserve_vmalloc() comes out as
+We chose 12MiB to give roughly 3MiB of headroom over the current FIT
+while keeping u-boot, u-boot-env and rwfs (and so the persistent data
+in rwfs) where they are. It's an engineering margin rather than a
+derived figure, and there's no single correct size here, but the
+measurements below suggest it's a reasonable choice.
 
-     int kho_preserve_vmalloc (void *ptr, DECLARE_KHO_SER_HDR(kho_vmalloc# *fhdr))
+The space comes from rofs because that's where the slack is: the EVB
+rofs image is about 38.4MiB, well within the 79.875MiB that remains.
 
-and the struct memfd_luo_ser and struct luo_session_ser definitions in the
-ABI docs end up with a member like
+The LZMA-compressed kernel built with aspeed_g7_defconfig grew by
+65-72KiB from v7.2 to v7.3, and by 78-89KiB from v7.3 to c339f4010dea,
+depending on the compiler. With a 12MiB partition the FIT still has
+2.93MiB free in the worst case measured (05441d697f7f with GCC 14.2),
+providing headroom for future kernel growth and additional AST2700
+drivers.
 
-     DECLARE_KHO_SER_HDR(kho_vmalloc folios_fhdr;
+We're open to a different size if you'd prefer one.
 
-I'd go with Pasha's suggestion and use struct kho_ser_hdr directly. The
-pointer can then say which payload follows it with a comment.
+> > which now starts at 0x1020000 and shrinks from 82.875 MiB to
+> > 79.875 MiB. rofs still ends at 0x6000000, so the u-boot, u-boot-env
+> > and rwfs partitions are unchanged.
+> >
+> > This is the same layout used by the OpenBMC images ASPEED provides
+> > for the EVB [1],
+> >
+>
+> Why was what was sent upstream different to what you were doing
+> elsewhere in the software stack? It seems oddly incoherent.
 
-Chris
+It wasn't different at the time. The 9MiB layout from commit
+e77bb5dc5759 ("arm64: dts: aspeed: Add initial AST27xx SoC device
+tree"), which was posted and applied on 2026-06-09 for v7.2, matched
+what the SDK was using then. The SDK only moved to 12MiB later, on
+2026-08-24 [3], and this patch is meant to bring upstream back in line
+with it. I should have explained that in the commit message rather
+than making it look as though upstream had diverged.
+
+> > Notes:
+> > - "Already close to that size": with mainline at c339f4010dea
+> >   (v7.3-17997), ASPEED's aspeed_g7_defconfig [2] and GCC 13.2, a FIT
+>
+> A bit of a tangent, but GCC 13.2 is over 3 years old at this point.
+> Debian stable ships 14.2. Why such an old compiler?
+
+No particular reason; it's just the cross toolchain in my local build
+environment. I've now also measured with the kernel.org crosstool
+builds of GCC 14.2, 15.3 and 16.2. The older compiler doesn't change
+the conclusion. If anything GCC 14.2 makes it worse: its compressed
+kernel is about 1% larger than GCC 13.2's, and with it the FIT no
+longer fits in 9MiB at c339f4010dea.
+
+  Free space left in a 9MiB partition, in KiB (negative: doesn't fit)
+
+                  GCC 13.2  GCC 14.2  GCC 15.3  GCC 16.2
+  v7.2               165.4      98.0     167.1     153.9
+  v7.3               100.7      29.2      96.1      81.9
+  c339f4010dea        16.8     -59.8      16.5       4.1
+  05441d697f7f         8.5     -69.1      10.8      -3.0
+
+05441d697f7f is mainline master as of 2026-11-03.
+
+> >   image with the LZMA-compressed kernel, ast2700-evb.dtb and the
+> >   OpenBMC phosphor initramfs is about 8.99 MiB, less than 20 KiB
+>
+> What are your measured sizes for the kernel vs the initramfs?
+
+At c339f4010dea, in bytes:
+
+  GCC    Image.lzma     DTB  initramfs        FIT
+  13.2    7,930,161  36,758  1,451,420  9,420,020
+  14.2    8,008,518  36,758  1,451,420  9,498,376
+  15.3    7,930,429  36,758  1,451,420  9,420,288
+  16.2    7,943,155  36,758  1,451,420  9,433,012
+
+The kernel is about 84% of the FIT, the initramfs about 15% and the
+DTB 0.4%. Every commit/compiler combination in the table above has
+the same split (83.9-84.3% kernel).
+
+All builds used aspeed_g7_defconfig from [2] plus olddefconfig, then
+"make Image.lzma aspeed/ast2700-evb.dtb". Each FIT was packed with
+mkimage using the same initramfs from our OpenBMC SDK build. With
+KBUILD_BUILD_TIMESTAMP/USER/HOST fixed, two builds of the same commit
+in different directories differ by only ~400 bytes compressed (the
+only differences are the kernel and vDSO build IDs, which change with
+the build directory), so the "few KiB between builds" in my notes was
+overstated.
+
+A caveat on the config: aspeed_g7_defconfig targets our SDK kernel.
+On these mainline commits 344 of its 394 config entries apply. The
+rest are mostly drivers that aren't upstream yet (eSPI, MCTP, LTPI,
+JTAG and so on), plus FTGMAC100, which doesn't support arm64 upstream
+yet. With the same config and compiler, the compressed kernel built
+from our SDK tree (based on v6.18) is 357KiB larger than mainline
+v6.18, and that gap includes the SDK's other changes as well as those
+drivers. The mainline measurements therefore do not yet include all
+the functionality enabled in our SDK, and additional upstream driver
+support may increase the image size.
+
+> Is the initramfs content reasonable?
+
+Mostly, though there is some room to trim. It's the
+obmc-phosphor-initramfs from our OpenBMC SDK build: 254 entries,
+4.4MiB uncompressed and 1.38MiB xz-compressed. It contains busybox,
+util-linux flock, the init/update/shutdown scripts and glibc 2.43,
+which is the bulk of it at about 3.5MiB uncompressed.
+
+busybox and flock only link directly against libc, libm and ld-linux,
+but the whole glibc package is installed, including libmvec, libnsl,
+libnss_compat, libresolv, libBrokenLocale and the compatibility stubs
+(libdl, libpthread, librt, libutil, libanl, libnss_files, libnss_dns).
+Based on that dependency check alone, dropping them would save about
+160KiB compressed. I haven't yet verified that the boot and update
+paths still work without them.
+
+Even if all of it can go, that's a one-off saving of about 160KiB. In
+the worst case above (05441d697f7f with GCC 14.2), the FIT would then
+have only about 90KiB left in 9MiB. The FIT is dominated by the
+kernel, whose compressed size grew by 65-72KiB from v7.2 to v7.3 and
+by 78-89KiB from v7.3 to c339f4010dea.
+
+If this sounds reasonable, I'll send a v2 with the rationale and
+representative numbers in the commit message, and with the SDK
+history described correctly.
+
+[1] https://github.com/AspeedTech-BMC/openbmc/blob/438e761ed38644b77ba704c984cb607649bf2724/meta-aspeed-sdk/meta-ast2700-sdk/conf/machine/ast2700-default.conf
+[2] https://github.com/AspeedTech-BMC/linux/blob/76457d3afe2bd4022ca82dd9eb8fc48b84f0e9ab/arch/arm64/configs/aspeed_g7_defconfig
+[3] https://github.com/AspeedTech-BMC/openbmc/commit/f6671e0eb6a2c542bf3162df7c69906df7b301b7
+
+Thanks,
+Cooper
 
