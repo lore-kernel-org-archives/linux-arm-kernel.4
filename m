@@ -2,152 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAB2606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 06:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4F560A2612
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 06:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dGjhK7TK;
-	dkim=pass (2048-bit key, unprotected) header.d=axiado.com header.i=@axiado.com header.a=rsa-sha256 header.s=selector1 header.b=gDfCVlne
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SSWe6/cI;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=uWsqRhHS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=I66VCwB8U6KqMZqm/jOYZ89MwWUFsrGxIloB6REqzFg=; b=dGjhK7TKsVLT4TYxb4yXoCJ56E
-	xuznjNGvmaK8Uwa1+GhdloaUKC6fspVvuOBz+Bjeb+uGuj1nUmjNFw8T21X8I6AiNmZBiSvKK/bzp
-	vhlTmyn5+Uv2Pbn9S340ads9CJzrNB32aCex06MXRk4gTlB9Be0ymRIxXt2voLcspHhPT63uXGvKt
-	nsY++rtAjf1c882inqXiUi9haHx7v+AVoNn1NWvg4YfEXLjIkeClEwKEQZczfM6FGFDYjD0d3lVL0
-	xlOLO5fc6iREEm4xFlWZGffaUIdrtnw+q4N80owXJscunc50l+ErKJViBXrF8SJRFnAsNoQb4YgDK
-	h6fEsU9g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=8lgIgop5TBofNfvpM1CzFjl+Gwx0xbt7fpwVvQTmrww=; b=SSWe6/cIciX7yy
+	EQUyxysAJlBfPvlnKaNHoIogZaUcJk/yN1AiSsKzBpC7f+cVEe8vbigvydgc4NmTg9HgCJCZSJAG5
+	DYJtdmBgaOuZTyGp/kPdING/I+HZH896z5KOWmj2lfUYgZb+jBEqK5whoe6rCvdxDtgv4HrAqa6Xq
+	KN/8qikr/ulGGpzUEqQ5niS6XOb1bwBKh2urGJoTeSByQT08jnLLHMKdzsLEPXGg7gFejAoGUpV92
+	LjxqDaM5Su1S4aJngpUJwsqpnD3VTP0vu4lUFKPyOCcyukm0XqxoTPUuM8hHs4NYTw9P+kY4R4X76
+	/EmVRXv7pVDuw6uOa8rQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSq6c-00000001E72-1vDf;
-	Mon, 16 Nov 2026 06:22:18 +0000
-Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
+	id 1xSqE3-00000001Eqx-2YZ9;
+	Mon, 16 Nov 2026 06:29:59 +0000
+Received: from mail-oo1-xc31.google.com ([2607:f8b0:4864:20::c31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSq6a-00000001E6E-03Wm
+	id 1xSqDy-00000001Eij-3ADU
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 06:22:17 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ciw3xGxwS9VWwBwyjQEYyHEEY1qvYOXlHfstUk1hy5m8ks96oyk0JTwqg/7aiTcCWPdYTV77HucmMicM328ofs87TPqkMfsyXb1R3obcEsFf5Dj5cIqBMrn4xq486sAsT1EnfNmByApC0ksrlQt0iAFt3xF/aLiNcH9gzjpAIMLM4ST1NM63dCWeZDgfx57ZkhI1vQWSRW8h3EqfziuPpSW83PsvCMSmo74eqtvQhYXm+21o4Bvt0DBuSxbHlsfGEIxRiPupujbLXMNFY/k3BOwDczhpDsWmvgX8Pcp0aYaH1egB1eww63Hk4QRZE/t4nvay9KtvkRZl6G6hky6dOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I66VCwB8U6KqMZqm/jOYZ89MwWUFsrGxIloB6REqzFg=;
- b=w/V4hRQdsQ1i4Zsd5zbJWMtawoME2wMS98btopkF5haaomsTIxegRDOxcfx9nb0shlUtLFXdY4PPm4tOKa1GL3tpamqc8mgQo6ElFeGmYrdqyCotP4Dpe0kl7xkeQSd4+KI46b+yWN/fm9/xnqjF51vUClDM5+kwFBomzaC4SUNmfR7XRGvbosL/oIBbj64TSLkLA6qXG1IWM8pfvBrVSFTQ0seBioOmoqL3ugrSbnLVM2hGbp4eHKVEghlPGOTDYEGW39y9NrXkNOjTPJopddxeOxDyMUWqY82WJdde1gYWsM/Ej8yiAb4/KhEpatBveyjYQ2WKgH/VQe2qgSvQJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axiado.com; dmarc=pass action=none header.from=axiado.com;
- dkim=pass header.d=axiado.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I66VCwB8U6KqMZqm/jOYZ89MwWUFsrGxIloB6REqzFg=;
- b=gDfCVlneglpkenvumjIUvBtLqH/sXS/r1iVipglRNqmmMCQQFz/c+NHpFDRTpMuJ11Pq+3XZnI8x0ngDT/nU259hxhfSqZDFy4nSUt6bEonsO7ndwpIuWe2e1eJaEkPDx3UzjP8AWupSWjQAfC4k+C9nVH9fZU0vHQMxz1nd/WRfudPZmdvVVtMYUljbRQu6pUVuST1OXkhzlgSBK4DGOP3vRSjHbiYewzm4Nh58GJ/zxpEYMj7SEqvPDDkwyjLqPg8GjBlFqlfMBxbnVmDjnHzIx2Xsy9KyZSeg15Jp2gGAeVDlbNJj0XXmYdvC0kn4gA09VHyX0W0S0rBxLRcJGw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received: from CH3PR18MB5671.namprd18.prod.outlook.com (2603:10b6:610:1a3::11)
- by LV3PR18MB6132.namprd18.prod.outlook.com (2603:10b6:408:275::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 06:22:09 +0000
-Received: from CH3PR18MB5671.namprd18.prod.outlook.com
- ([fe80::d361:9d9c:4a15:4b84]) by CH3PR18MB5671.namprd18.prod.outlook.com
- ([fe80::d361:9d9c:4a15:4b84%3]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 06:22:08 +0000
-Message-ID: <f752d203-8239-4203-aa04-884b4d7e5d80@axiado.com>
-Date: Mon, 16 Nov 2026 11:52:12 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 0/2] net: mctp: Add MCTP transport for the Axiado
- AX3005 IRoT
-To: Jeremy Kerr <jk@codeconstruct.com.au>,
- Sammai Chakravarthy <schakravarthy@axiado.com>,
- Prasad Bolisetty <pbolisetty@axiado.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tzu-Hao Wei <twei@axiado.com>,
- Karthikeyan Mitran <kmitran@axiado.com>,
- Matt Johnston <matt@codeconstruct.com.au>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org, Adam Young <admiyo@amperemail.onmicrosoft.com>
-References: <20261101-mctp-transport-irot-ax3005-v1-0-36ceb822f01e@axiado.com>
- <4102c20ece135c4d94e94af4441a01425ad159fc.camel@codeconstruct.com.au>
-Content-Language: en-US
-From: Akhila Kavi <akavi@axiado.com>
-In-Reply-To: <4102c20ece135c4d94e94af4441a01425ad159fc.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0359.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:219::10) To CH3PR18MB5671.namprd18.prod.outlook.com
- (2603:10b6:610:1a3::11)
+	Mon, 16 Nov 2026 06:29:55 +0000
+Received: by mail-oo1-xc31.google.com with SMTP id 006d021491bc7-6ddef424972so3559857eaf.3
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 15 Nov 2026 22:29:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794810594; x=1795415394; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=8lgIgop5TBofNfvpM1CzFjl+Gwx0xbt7fpwVvQTmrww=;
+        b=uWsqRhHSEHf8aHL0Zyrk86YbaqGjI5AUexXmYrocThHoF5bT2H2NG5DuOKzNqI9xmq
+         thIklL/t+7RCnQnNZ/P/OB/mUn3/NEnJ2IHewMSCuo5+XIWJEbvPxTdI9tIK187MyJSt
+         b4hyBRQKETiDnU0ySyajh0FuNTt90/1A3sZfHzkSDLgrwim7kAMRlpZzoamL9SPtMaJI
+         JppKqbepwOLOFOM1OCcaikTF70opW//CvJ3OnfBJIf6XuMxBtApLF6Gkq8vu2Ern9SsA
+         86WQYfAA5RNlC/1wkKpaBA8D9YDWYA20HpeSnlOlYZQCddgcQSeyCrltq/NJneXqEdMd
+         5C7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794810594; x=1795415394;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=8lgIgop5TBofNfvpM1CzFjl+Gwx0xbt7fpwVvQTmrww=;
+        b=X53JaK7w61Wp/EZNQ9oED92CiWOgBTJz9q5Yx4eS+UlBmusot2d4DRBwVOuJJkq64H
+         PqTUKRZ5n9GRMm7yKwLRHIJPbXuw/252zdg2/amMpDaTKaZ1IXD8hK9BVULa4YDHFOh4
+         ybffC1VrBFst35knpY5T2+g4SskVKEI8n2EDMFxTg4/XR+6WO84t6Pn3MdgmOOV26lTQ
+         IvWSPHn/FipIEwNfEiDogm6P6VvnMVhDX4r8usTSeKS0/s/EGmfHN0jXq6tdovMcKLmB
+         QjAhkK8teuuxB84PE/Ec0hOpJ/LyVabBHxhQGyfEaieb6BIowy7RXvIoiPUOMh+m1ude
+         vJ0g==
+X-Forwarded-Encrypted: i=1; AL+hErF8f0vF1oPJG7zOWkWg2iUXjIZt5Ihc0U3MPad6L4n5MXKzBKMmJCNkUbsJHzTfK9T44+ASQ+vEbobccJfC+HB8@lists.infradead.org
+X-Gm-Message-State: APuU4Z98pAFG8ZyiaEooZUWstSK2SyE7vFbZM8x+wF0qz3e/LiDkJ2SA
+	41ps3SiUDZrXBX4xzBkSELQPLKODja1MQGd4iVhevZ0gLdRZbXd7Yp4E
+X-Gm-Gg: AYBFou3oJ3zUKcINugTLtk7eOuuSwpi1sk4pTm8B3xJy+PEKcRhLd53NX801pZXgBxI
+	fgBMBv43g0rjZ5F36C381Wa0ad8VZ6At5/Hsg6wlajPcn73b0cxx/tGTVihOV+ixfFZpH7u78Jj
+	/VSrhsCLGraha5VnqIP4O9z3u6CXcnpFaDe9n97leuGVMfRGEo1Hh8YiGoquYxxqr0Q6eMrJjcW
+	eG1y9rTzypirC3AyGEr1vU08a9FDvmQzp++BRGgR8/KbK/z55OVPkRZllKB5vyiFclj881BNmZE
+	EaLL7JMEJ8nduZcelYPT5WIa639qO0uTjjmCU4i8tXoKp4lpcWj2SSVlq8JjkZxNhFyYPmL+jt9
+	H/gOHv4yrAfqUjasmtE1PxTGfRI8OHDvCVi8HS18VrHSozr7yLHMWncQKYbIXMjDo6laa1XiOyx
+	gkkmjhNdk7C2KmP53yw1ejobHqGNzblP6G/dqWY6pq3bv5AAbvUNGpJ1Or+pktKFRl9OukCPBHj
+	ogEY1qPVDFeZxgjTttKTJD6tO95iD0o3DyRDzhwWpyNAiRHDKXRg6K8ab8F7kA49fX5AjkPT8OA
+	vMBckuMDGSiVOasNEVh9/7KZQ76Hu3YHISgrxHMIdbhFp5VAlBhPh99jDc0awlkK9BP68DAoamL
+	JDbH5JeGt2VORpbvh36XfOrtpxuZGdHb9O91ayOkP9x2sIvz69KSZc7A2GVMS7+386PaZ0TIsV6
+	auskx9r251lQzzrKttMN1yVgyfjhQoj2SdSZBoVAetVxVpPNg9qzCX
+X-Received: by 2002:a05:6820:2205:b0:70a:12a9:c43d with SMTP id 006d021491bc7-71ab4f8ca14mr5786666eaf.22.1794810593653;
+        Sun, 15 Nov 2026 22:29:53 -0800 (PST)
+Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71ab42c41e9sm7994558eaf.6.2026.11.15.22.29.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2026 22:29:53 -0800 (PST)
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Sun, 15 Nov 2026 23:29:22 -0700
+Subject: [PATCH v5 07/58] mtd: rawnand: sunxi: retain chip state until the
+ final MTD put
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR18MB5671:EE_|LV3PR18MB6132:EE_
-X-MS-Office365-Filtering-Correlation-Id: 75e66229-d74d-4727-60e5-08df43a9f124
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|23010399003|921020|10067099003|5023799004|4143699003|56012099006|261021135927099003|261022105027099003|261021123027099003|261021121427099003|261026121527099003|261026140227099003|261028144727099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: VVXsywo5e2hbNcWp8+5eUXjDTVAkWvDOr1CB3uJ2ogoMmmrVWMSYAIYES0IAzTaVxJ5Fd5ngapOcnwVwDMv3IvkNToWDcmJkNZwJl2oM7czVoNt5F+bxuLuwZbAVLhf/Uw+ICFUQ2EUF5sRH4DRtFrkpAkgKLZ1zDvFTIndQO/9/u29JHPbxpza+WYxfSV4+hM53xNjErLGBde1y0ZcxkrwZYrsojoIOpjvLqbMpB+NzrjB4bNC3M9KOvBwHvVTnn9aZ6juDPOSDJevnSP+QbRCPH6RY6QpcHy4rWSefJWWK4FWDDYw7dUy7f2+v07fBz117ykuwbalsPDtRNVViquQ/CuFalncyEI70fJ5rRUYslI8x4Pc3Pm9A4w0dDlUmFj73M1H9G23+Ha1EWJ8FXMiHr7sX32rgdDuruHIzJidHiB90pAN3R5FoyYDv8UrYDGvZE/CNDBW/vGlC1K8UU23dLMhi92jwRtY+081qraYZXiK2Qjqt1NVOIs2TazzdJwEqlmT7qGBDlO0uFkKluKh965iG50hbyCSxz8hycac5u/0OmwxdO7Gv0auuZ4xvXZoG7L0iHVLLFPB29FaeKdAi7aQP7iKBLIDIO9f88NHBNJYjJAHzFmcHY4y5AVNhjvsF90vS1zeWJK3dvgyZYhS2SVtcwGBMDPXur4WvHozZPdfN6a0QdYYbvqyxwDlXKvgKr73pxS3MtVMl89ah3Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR18MB5671.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(23010399003)(921020)(10067099003)(5023799004)(4143699003)(56012099006)(261021135927099003)(261022105027099003)(261021123027099003)(261021121427099003)(261026121527099003)(261026140227099003)(261028144727099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003)(3023799007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1k1Tkc4TzQ3K0hvRjJ5M3d2a3dQM0VRSkFwWXVuc204NFN6VUViaEMwWXRQ?=
- =?utf-8?B?RURVaXdMRVo3ZlBGTDlDRGlHOHh2N0tFQXdxeWNUTlo5a3JOUjR6dC9pUDhP?=
- =?utf-8?B?VVdzNEdQWDZ0V3VobWNLS1cvSDBEbXBwT1h4aXVRYlA1aFdNSzJqSVR1NnVX?=
- =?utf-8?B?cDFqb1ZrMjFLNy9FdlUvVkwyMjJIWWFaY2tmM2tTSFlnQll0TWd1WHp3d1Vw?=
- =?utf-8?B?dzlsRlBpSWt0V0FZY0h5Z0RnQ1R1WWRYUXdKZ2QrZWkrdFdMaFgzTVp0TzFL?=
- =?utf-8?B?Nml1L3V0Qnh0ZURNamF6OGtucUlFbllIbXBZRkZkWUdjOVhiOXpFNjZNZmJI?=
- =?utf-8?B?UmFqT2RvM3VzOHhFTVNidVYyeEhBVXJGVXJQaHBibXQ0ZW92eGphRjlDY1Rx?=
- =?utf-8?B?UitNZ3Q0Nks5ZFZLdzZ4WEsvdUkwTDRwWW1Kei9oNlJRWDQzUHptM1BINUpD?=
- =?utf-8?B?M1ZRSXFoWk5XaVozM0JMODJwNXM0ZStOVTJCZ3V1dlhScHBBSHhYUytLY1VT?=
- =?utf-8?B?SGYrM0cyVExGRUF4OFpKWFJnR3RkSFluTXhic3NjemJtNlhTLzdPaHltSUp1?=
- =?utf-8?B?QllJOUVUS0tZRld2Um9WN0YzMitBb2NTQTlMY01QMVFnVkhjN2k4S0V0dW8w?=
- =?utf-8?B?dVFQLzlCMjQwMmlsNGNHUVZhWWZYZjBpYzZzY090Z0hvMDBSL2xiZ2EyaEl4?=
- =?utf-8?B?Z2o5NEtMMlZleVFkdHVOdjUvSlhKcitCZlZTcTFUSjh2bFFHQVRQUHUxMmUr?=
- =?utf-8?B?eG1sbG9oMEV0dWZNVlJxcmpjcXU3NVo3Q2FNZHJBV2t6MDJnMUFXa1VCT3FB?=
- =?utf-8?B?NFA0ZHZkajcwVVFJM2hITXJVbW5RZ1J0NklLWXFIWjJ3MjFVMHlqN2VjNlRw?=
- =?utf-8?B?Qk13UDB3TEE0S1cvVHVYVDdaMGEwMFhMb2tJNURJS0hidURpSXpCaWJJVGZI?=
- =?utf-8?B?NkVtYlVhOStuY1E0aEZmekpCZkdDd0hITHRUcXB3YjJMV0NhU1djTWtmN2Fw?=
- =?utf-8?B?NzRDYURsM1JCV2ZHYTc2ZmxFUUEwMmhPeTRyWXJnMjg0THFzWVFyR3VZZ2w1?=
- =?utf-8?B?MldscW9pNVZDWHRuSU1HRzBPcjZCbVptdHdEUlg5eFVYTzVjdjQ1d1hJK05h?=
- =?utf-8?B?UGpFT1cveFFMV0k1Z1EyZElUb3RZVzJpbkNJWWc1ZkU4VkxQUWN3R1pCVXFC?=
- =?utf-8?B?aFdPc2ZLclY2Q2VmNHhIY3VFbVJ1TmwvVlI4amlhamNVVzA0em4yclc3MFUy?=
- =?utf-8?B?SzBKbS9IVnZkdVNhV05VbHRxVC8zUWIwbWZ1TjgvYUd2cmo3aDJncU5tSFJo?=
- =?utf-8?B?UWN6a1lESnJVbFQ5UDN0UkFyZlJLZThkMDJ2emF1eWIrR1pXN3hNNGVkNjh0?=
- =?utf-8?B?L1d0b0gxNVJkUjgvZnN4TFBkWWtvSklEOE4rQnNQRkZnNUh4N280Tlhsano2?=
- =?utf-8?B?UjBhSllWME8zcTVuV1dWb0J6cUo5dWZpZ2xFZytud1Z3N3NKbkZicGg5SW8z?=
- =?utf-8?B?NDk0b2I1aXcyMVBUVjJ2SGhSVTV6Qmc5VHROVGpPMVgzajA1Q1p3N0pwaXJX?=
- =?utf-8?B?RHlSblRCVFNkZm1KRVZHb1VrNDNGeEp4RkhaeVRWdXlhSlNuSFNlWHd5TVFi?=
- =?utf-8?B?U0hIOHpUb2FPVzJDRGsyZmNwQmtUR0t1VVV1eUJObVErZ3IwTWZ6Wk1pTHpH?=
- =?utf-8?B?M3lwLzhpMnAxYk54bm1qWE11U2FFemZCVnlXbjRla3ZFMnlnS29BcUFDTWV2?=
- =?utf-8?B?Vk5UTGZUemV4YjlyK1M5QmwzTDh4OTJjb0E1WlR6VXNJQWQ4elNrSHR2RkhM?=
- =?utf-8?B?SkJrZkIzVnZXQ2w5a3dVYis3UFB3dGI3NklJbEQza0Y0VHJFMEhpOVBuVVhT?=
- =?utf-8?B?elovTFNCOVdSem1pVEFkY1NMOXJaMlpPNWxrUFdzd1orc1Q5R2MrYmFOMHJl?=
- =?utf-8?B?alpaZmJzWjhsN0svQzZFSjBKRTBYL1NVQjJ6aEJDbVVFWlM5blRtM0xROHhI?=
- =?utf-8?B?bHIya3JONGNUeXhoOWMzTE9obVhlRzl6U3pNRk9tT25sRnN3WVFOb1lQNGhP?=
- =?utf-8?B?Q3F2a3VoOTFtWWc2eTdJZ0RuTlVLNzY4ZGFHM3lSZWhZd3dpVjBqTzllWU9B?=
- =?utf-8?B?TnpOWldlc0FwS09SL1Q3bVlLS1VITEN1QzJnV3BzM0VycXlKWDlHdFZ1aXpO?=
- =?utf-8?B?aEUvclUyZ0YzOFpYMWYyYmk3elFMaVB0aFA0b2hYYUhNb1R0U3cyWFF0VlBP?=
- =?utf-8?B?RnY0aEdEcFVVbzBidERoK3FWOURKd1NjeTJtNG5SWWczM25hRE5lRG1wT2R2?=
- =?utf-8?B?Vmd1dWRibktyNTVscC95b0tZd3RTSDJTanVHVTRxWDcvd3ZmdmhUQT09?=
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75e66229-d74d-4727-60e5-08df43a9f124
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR18MB5671.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 06:22:08.6940
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iVJ0tSVh+satdHZwB/NrShB+LJ7edRfE2Df8GBZWDcpzDbDog2cjecX6qUNLMVPreSqW+spoB5N8jcQ2p8ZA3g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR18MB6132
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261115-submit-rawnand-retained-handle-lifetime-v1-v5-7-cbc49c5c5e74@gmail.com>
+References: <20261115-submit-rawnand-retained-handle-lifetime-v1-v5-0-cbc49c5c5e74@gmail.com>
+In-Reply-To: <20261115-submit-rawnand-retained-handle-lifetime-v1-v5-0-cbc49c5c5e74@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ James Hilliard <james.hilliard1@gmail.com>, 
+ Boris Brezillon <bbrezillon@kernel.org>, 
+ Brian Norris <computersforpeace@gmail.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
+X-Mailer: b4 0.17-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261115_222216_073167_2DEE86E7 
-X-CRM114-Status: GOOD (  27.51  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261115_222954_816579_D9A70ADE 
+X-CRM114-Status: GOOD (  18.78  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,91 +111,180 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+sunxi_nand_chips_cleanup() unregisters each MTD device and immediately
+calls nand_cleanup(). Devres subsequently frees the chip and controller.
+An open MTD handle can outlive this sequence: another operation or even
+closing a writable handle reaches freed metadata and lock storage.
 
-On 02-11-2026 08:25, Jeremy Kerr wrote:
-> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
->
->
-> Hi Akhila,
->
->> The Axiado AX3005 SoC has an integrated root-of-trust (IRoT)
->> co-processor next to the application processor. Security protocols such
->> as SPDM and PLDM run between the two over MCTP. This series adds a
->> transport for that link, so the host side uses ordinary AF_MCTP
->> sockets.
-> One overall thing: why not use the MCTP MMBI (DSP0284) transport spec
-> for this? Sounds like this would be an exact match for the MMBI
-> use-case.
+Unregister each MTD device while removal notifiers can still finish I/O,
+then disconnect the chip and release the driver's initial MTD lifetime
+reference. Run nand_cleanup() during disconnection, freeing the
+per-sector working data while the driver is bound. Retain copied names,
+OOB regions, flash-node references and chip storage until the final put.
 
-Thanks for the review. To give some context first:
-this link is entirely internal to the AX3005, and not for host communication.
-The IRoT's MCTP endpoint is only reachable from the application subsystem on
-the same die, through the mailbox and the shared-memory carve-out.
-There is no hardware path to it from outside the chip:
-no PCIe, SMBus/I2C, I3C or USB connection reaches the IRoT.
-So this is strictly one point-to-point link between two fixed endpoints
-on the same SoC.
+Give the controller a reference for each retained chip and one owned by
+devres. Register that devres action first so the IRQ and hardware
+resources are released before the initial controller reference. The
+shared lock and parent device remain valid until the last chip is
+destroyed, while the disconnect gate prevents access to released
+hardware resources.
 
-You're right that the mechanism is close to MMBI: shared memory plus a doorbell.
-We looked at DSP0282/DSP0284 and decided to keep the existing protocol,
-for the reason: Interoperability, which is the main benefit of a standard binding,
-doesn't apply here. Both ends are fixed on the same die, and no third-party MCTP
-device can ever be on the other end of this link, so carrying it as MMBI would
-add nothing.For that reason the driver stays a narrow vendor binding:
-It uses MCTP_PHYS_BINDING_VENDOR and matches only the axiado,ax3005-mctp-irot compatible.
-It isn't meant as a general shared-memory transport, and it doesn't claim to be one.
+Unwind heap allocations on probe failures, including attach failures for
+which nand_scan() does not invoke the detach callback.
 
->
-> [Also: CCing Adam who is working on PCC, which may have some overlap
-> with the mailbox protocol used here]
+Fixes: 1fef62c1423b ("mtd: nand: add sunxi NAND flash controller support")
+Cc: Boris Brezillon <bbrezillon@kernel.org>
+Cc: Brian Norris <computersforpeace@gmail.com>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+Cc: Samuel Holland <samuel@sholland.org>
+Cc: Chen-Yu Tsai <wens@kernel.org>
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+ drivers/mtd/nand/raw/sunxi_nand.c | 44 ++++++++++++++++++++++++++-------------
+ 1 file changed, 30 insertions(+), 14 deletions(-)
 
-Thanks. The two look alike: one shared-memory window per direction, a doorbell,
-and a completion before the window is reused. The differences:
+diff --git a/drivers/mtd/nand/raw/sunxi_nand.c b/drivers/mtd/nand/raw/sunxi_nand.c
+index 4fcb7977de02..d175dc685681 100644
+--- a/drivers/mtd/nand/raw/sunxi_nand.c
++++ b/drivers/mtd/nand/raw/sunxi_nand.c
+@@ -27,6 +27,7 @@
+ #include <linux/dmaengine.h>
+ #include <linux/interrupt.h>
+ #include <linux/iopoll.h>
++#include <linux/mutex.h>
+ #include <linux/reset.h>
+ 
+ #define NFC_REG_CTL		0x0000
+@@ -2027,9 +2028,8 @@ static const struct mtd_ooblayout_ops sunxi_nand_ooblayout_ops = {
+ static void sunxi_nand_detach_chip(struct nand_chip *nand)
+ {
+ 	struct sunxi_nand_chip *sunxi_nand = to_sunxi_nand(nand);
+-	struct sunxi_nfc *nfc = to_sunxi_nfc(nand->controller);
+ 
+-	devm_kfree(nfc->dev, sunxi_nand->user_data_bytes);
++	kfree(sunxi_nand->user_data_bytes);
+ 	sunxi_nand->user_data_bytes = NULL;
+ }
+ 
+@@ -2045,8 +2045,7 @@ static int sunxi_nfc_maximize_user_data(struct nand_chip *nand, uint32_t oobsize
+ 	if (nsectors <= 0)
+ 		return -EINVAL;
+ 
+-	sunxi_nand->user_data_bytes = devm_kzalloc(nfc->dev, nsectors,
+-						   GFP_KERNEL);
++	sunxi_nand->user_data_bytes = kzalloc(nsectors, GFP_KERNEL);
+ 	if (!sunxi_nand->user_data_bytes)
+ 		return -ENOMEM;
+ 
+@@ -2440,8 +2439,9 @@ static void sunxi_nand_chips_cleanup(struct sunxi_nfc *nfc)
+ 		chip = &sunxi_nand->nand;
+ 		ret = mtd_device_unregister(nand_to_mtd(chip));
+ 		WARN_ON(ret);
+-		nand_cleanup(chip);
++		nand_disconnect(chip);
+ 		list_del(&sunxi_nand->node);
++		mtd_put_master(nand_to_mtd(chip));
+ 	}
+ }
+ 
+@@ -2465,8 +2465,7 @@ static int sunxi_nand_chip_init(struct device *dev, struct sunxi_nfc *nfc,
+ 		return -EINVAL;
+ 	}
+ 
+-	sunxi_nand = devm_kzalloc(dev, struct_size(sunxi_nand, sels, nsels),
+-				  GFP_KERNEL);
++	sunxi_nand = kzalloc(struct_size(sunxi_nand, sels, nsels), GFP_KERNEL);
+ 	if (!sunxi_nand)
+ 		return -ENOMEM;
+ 
+@@ -2477,19 +2476,21 @@ static int sunxi_nand_chip_init(struct device *dev, struct sunxi_nfc *nfc,
+ 		if (ret) {
+ 			dev_err(dev, "could not retrieve reg property: %d\n",
+ 				ret);
+-			return ret;
++			goto err_free_chip;
+ 		}
+ 
+ 		if (tmp > NFC_MAX_CS) {
+ 			dev_err(dev,
+ 				"invalid reg value: %u (max CS = 7)\n",
+ 				tmp);
+-			return -EINVAL;
++			ret = -EINVAL;
++			goto err_free_chip;
+ 		}
+ 
+ 		if (test_and_set_bit(tmp, &nfc->assigned_cs)) {
+ 			dev_err(dev, "CS %d already assigned\n", tmp);
+-			return -EINVAL;
++			ret = -EINVAL;
++			goto err_free_chip;
+ 		}
+ 
+ 		sunxi_nand->sels[i].cs = tmp;
+@@ -2518,18 +2519,31 @@ static int sunxi_nand_chip_init(struct device *dev, struct sunxi_nfc *nfc,
+ 
+ 	ret = nand_scan(nand, nsels);
+ 	if (ret)
+-		return ret;
++		goto err_free_chip;
++
++	ret = nand_set_lifetime(nand, sunxi_nand);
++	if (ret)
++		goto err_cleanup_nand;
+ 
+ 	ret = mtd_device_register(mtd, NULL, 0);
+ 	if (ret) {
+ 		dev_err(dev, "failed to register mtd device: %d\n", ret);
+-		nand_cleanup(nand);
++		nand_disconnect(nand);
++		mtd_put_master(mtd);
+ 		return ret;
+ 	}
+ 
+ 	list_add_tail(&sunxi_nand->node, &nfc->chips);
+ 
+ 	return 0;
++
++err_cleanup_nand:
++	nand_cleanup(nand);
++err_free_chip:
++	/* nand_scan() does not detach a chip whose attach callback failed. */
++	kfree(sunxi_nand->user_data_bytes);
++	kfree(sunxi_nand);
++	return ret;
+ }
+ 
+ static int sunxi_nand_chips_init(struct device *dev, struct sunxi_nfc *nfc)
+@@ -2610,12 +2624,14 @@ static int sunxi_nfc_probe(struct platform_device *pdev)
+ 	int irq;
+ 	int ret;
+ 
+-	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
++	nfc = kzalloc_obj(*nfc);
+ 	if (!nfc)
+ 		return -ENOMEM;
+ 
+ 	nfc->dev = dev;
+-	nand_controller_init(&nfc->controller);
++	ret = devm_nand_controller_init(dev, &nfc->controller, nfc);
++	if (ret)
++		return ret;
+ 	INIT_LIST_HEAD(&nfc->chips);
+ 
+ 	nfc->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &r);
 
-AX3005 is a DT platform with no ACPI, so PCC itself isn't an option here.
-Discovery is in-band. At probe the IRoT replies to a mailbox message with its window
-addresses and MTU limit.
-Each packet carries a counter, so a resent doorbell is ACKed again without the packet
-being delivered twice.
-
-Adam, if you see something both drivers could share, I'm happy to look at it.
-
->
-> And finally: how confident are you that the peer will never be able to
-> reassemble? Even if the peer's own MCTP stack may not reassemble,
-> there's no chance of it bridging to other endpoints in future?
->
-> I have a few (minor) comments on the implementation, but would like to
-> sort out the overall protocol usage first.
-
-The IRoT can't bridge anything to this link. As above, nothing outside the chip has a
-hardware path to the IRoT's MCTP endpoint, so the application processor is its only MCTP peer.
-
-Defaulting the netdev MTU to the negotiated limit only makes sure that today's peer gets
-each message in a single packet. It isn't meant to stop anyone from using a smaller MTU.
-min_mtu stays at 68, so if the peer later reassembles or bridges,userspace can lower the link
-MTU, or set a per-route MTU for any EID behind it, without changing the driver.
-
-If you would prefer, v2 can default mtu to the 68-byte baseline and leave max_mtu at the
-negotiated limit, so the platform config raises it explicitly. I'm fine with either option.
-
-Please send the implementation comments when you're ready; I'll fold them into v2.
-
->
-> Cheers,
->
->
-> Jeremy
-
-Regards,
-Akhila Kavi
+-- 
+2.53.0
 
 
