@@ -2,145 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06813606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F412606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 16:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zhs4LPG8;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=s3cj/+v+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oZNl0WTn;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=MLVwrKUe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=h6FHmHhHzzMvPtXvbSdom+CVxffOiyDk/za7HkqQb+A=; b=Zhs4LPG81O3Lke1DNLTFs+wPoc
-	SCh5hdrLbi4PaXhxy7+U0+M9HzK6rreGxKG0WWPIR19cdJDA/uUngnAXvCC7eaGyripNUMrNwNeVi
-	ojVIe0zU+lHD/1iDM3O89c0TLtfFdnwZoIiV4WtIGoHhgPKsmwBBaSk+l9ECHLARLqLXBCrmDa2NL
-	wtl1qEVw0++ECspZQJ740QOISJy616TeE07aCLhWKg1IURqpb5ATKQPXi1NxRc098WwEoTYvMn6uq
-	c/t3l1G7ClE5Bb2hcpPtTCrIiQ9hALxRuu+VTyFRjl5Z7VCmBG/f4ADMcgN+pVZA3X1TF3GQqXOa9
-	eGHkRkOQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=I6OtxI7WL+2TeS//8ueyKGWGZTxNUmrgjEOWm9wxKMc=; b=oZNl0WTngC+NX7
+	vaIYgLEnpArsAZeC2oRiHLcT5/Iex/LJlhFQvDOhiXL1zC/INxgLKe1hR7HRxLZT7WZ+qQp3DRbzo
+	Ch/ygvOFXycAiQ6feM/XCLAalPvpvlMoXlipjatH4zxjCuyN2zUyW9MbqZj7EMUhfQGP5J2clezMH
+	LXe4YGoCVVSVT58NzeE4WZTTGqmMuIUI1XWBNZcXTE/uvoghQpd9DJUNZl9msJCIU5dn7kgJV4hoN
+	4gNw71LKVoWwAGVBM0Nbmi3aELL3V2pcEGy2AowD2YJg8QxgMW49K3LCT+46Ck8cJNeHgo17ykP6K
+	O3EemXA2PWsSUoNhPHow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzGI-00000003A7x-2LLk;
-	Mon, 16 Nov 2026 16:08:54 +0000
-Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
+	id 1xSzNq-00000003Azv-2ysZ;
+	Mon, 16 Nov 2026 16:16:42 +0000
+Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzGF-00000003A73-0VYN;
-	Mon, 16 Nov 2026 16:08:52 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L8xVJMp/4sQuZfnMV3hTTyVX89kAUpBezTAjxnsnwXpQNAbQ7TNnakW4mk9v6JVkUTMFQ9EeE+R7Y2AC8Ydr1qz+SEcTSuJ62DXQqMhbjk30tErDEqMoyanSQ2B8dm4c2eiDgYiYY8JWOmoaXfA/L4uPSEuJvWSRRRSIXUmGyPAjCxWlHW5GabJ+nQ2iwWonviMXGPQSTorxiBPCxGF0APmYNz4ABJoRm9qwOWbMeEsNPfrlEUiPZcjfhvo+YHQUTi6LD5yrlYu6e4VYLZBaORi6JPUef+eVCT8BXk3x9r19nr9scDQ0j0Akaeuw2cnciLHoJz4Xi97unOkEko3WiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h6FHmHhHzzMvPtXvbSdom+CVxffOiyDk/za7HkqQb+A=;
- b=MPMzqj0v6k8A39kOZlRgLv+OXniWzSTiGqYBY0S8ff6MZwHUCwC+hSa1X5L84ozf3nHcx/zwy0L8ipugCvbzd7UfhS6FOg7uMKI10l22WBfwEzz+Wj4X/h6ts8Zgmr9aqWxDO6/j0HbDcfvUOp6/7QbXJj4cmg5Iih3YcWFYJwQRGjAdR7hIg95nTeJHOB9bFJqbunXAE54iac2BOEW5ediAeuG3s6czVl2ai2wjuMTogCB9XFe4pdtQOQqysws+vFfQQT7zFl5CWiLznqB0Z/eTQu3/hUJ7LZaRpcuShVX55zeqN1VUOOhE/pMW1NMnNIOwoLpltxP05DbUa4xxaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h6FHmHhHzzMvPtXvbSdom+CVxffOiyDk/za7HkqQb+A=;
- b=s3cj/+v+aGDCDsAGUDf46nmX5u/zDQfQiOVeSIGmB4nH9ektQnAHbeKuSVd92rCKIP6cLVgsyL6ujy0KzE5LOug0gD1dw8OTvigAaaVQ2NjyZ4v16hJiol1vXfcmKW/qo6iuSuRK7dRIjrIh1lkI7tJecECZQze/6jldkp17eRrMK/6/UAR6FixNRfqS9XWlp5TCQb4IUUvjuLVxYbpCNQ2VvEYYibd/jC/MRqWxTtCYazBMCzIOSVgMwG90EHGnAoZSGqXLNdPBgXboQZdPLZZKZGii37MN8ayCN/QBY8YZ+fIc1r5V1gWanQZ4+z7td1ve+wCEpbxF+IAFneU75A==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by AM9PR04MB8068.eurprd04.prod.outlook.com (2603:10a6:20b:3b5::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 16:08:45 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 16:08:45 +0000
-Date: Mon, 16 Nov 2026 10:08:32 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: junyi.zhao@amlogic.com
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
-	linux-hardening@vger.kernel.org, xianwei.zhao@amlogic.com,
-	Kelvin.Zhang@amlogic.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: i3c: silvaco,i3c-master: Add Amlogic
- A9 support
-Message-ID: <avsqgJczFes-NV2F@SMW015318>
-References: <20261116-a9_i3c-v4-0-3d3222b7128d@amlogic.com>
- <20261116-a9_i3c-v4-1-3d3222b7128d@amlogic.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261116-a9_i3c-v4-1-3d3222b7128d@amlogic.com>
-X-ClientProxiedBy: PH8PR02CA0039.namprd02.prod.outlook.com
- (2603:10b6:510:2da::26) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xSzNo-00000003AzO-1fvi
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 16:16:41 +0000
+Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-3b09a83d12aso3555155a91.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 08:16:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1794845799; x=1795450599; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=I6OtxI7WL+2TeS//8ueyKGWGZTxNUmrgjEOWm9wxKMc=;
+        b=MLVwrKUevI1nqYtNHizEv2xJidcMJyq4uaKVBh5L4xmxGnsHxHMIkn5D1HEnKnZgd7
+         JI3Ke5XtObCRo60psipXRRXkE5MUAK+XY0O9un2jtOW7Ect0xtTD7uSLEwa9/SyD1yFr
+         TeHdmuH3NWLwfosjduShIl/Pc1Mi9fRy4fw9q9kHuX6e40+t3FlLVQYYq9x3sI9JOSjQ
+         Ypa8q1A4u0gs/5CWfD9rdbr9p/Dca0KuFjVgygpZYQmw3+WmABPCQwFh/K3dDkcPkcu9
+         IM9LUwNZDsCoSafzThtasZSrjNUNj/9ooViaeSnx7BR7Mz/l5Xd7zyt6cEhhgkKNv+lY
+         aLbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794845799; x=1795450599;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=I6OtxI7WL+2TeS//8ueyKGWGZTxNUmrgjEOWm9wxKMc=;
+        b=S7iL3TGuNVOStS+ICsqM8dRvTsJc6h1bzdaMABQIztWz2D265+87MsEKrVCNBoXCpw
+         sAKx72HPNJ+b5aEmjz7IrdPy2LcsCc/EDe5ytrzyUCIrcqLjiqrgoHx3CGlEEpg6iuXf
+         uOFMUVptZPnLMcgQV0NFY7+uSAYTf8G1ck+y0BW2NjVuCuaWDnCf/xyO3Z5YzvFKuquQ
+         kYhaimjFzdHwL55a5nbJz18rsGSla2r15weEiJSww4IPtlf5ex7u9jUdiMGMD6PZSEkQ
+         WMus8bpQ6tQvah/6JcBXUOjW/ywTsJLwbkDnqXhKvs/iQktAtl1ZfUXF7zAsYg6r1iQu
+         YDIA==
+X-Forwarded-Encrypted: i=1; AL+hErF5oim45z3y6zuPYQ9Qx/DpWJTt5J2qElmM9pv+OL+QaPP9rHkd/DsaMaTAQ118e2NoWTtC5Kfa2G/iliIXee9d@lists.infradead.org
+X-Gm-Message-State: APuU4Z/Yb4qY3TJuw3OeJHgU+YHiumCutR+RIGg086pu75X1ypNLj4L9
+	Sg+ZPcm0LVKPzDej4MCPXd04oBjgfVkzGjt4hqrix4SsSo4iudChnd/HG3YX+dPZpqQ=
+X-Gm-Gg: AZFdTZdBZ/gj2elIy/rQTp8SKOhkqWMedDiO66UcedQJAlbictdTvBe13sYgFzM6IF7
+	+feSqnBzc1fJEFdc4hY1RT/FgyKWMK3Qm9m83MtKDJnM6Jxdk4GjtIhhmdymJBMccl8T/FEzl8q
+	CuAYiR0l5VbNI6rEYL1hsYgysUmkhrRPgVSVmuTKfn6a1imUqT/2ENzq5s9gtwbAmb+5e+XGLFF
+	GaW1LBLlTB8Wxqk+b8awubpdu5XifHsp6Dsx0l+QijX9o/4sWF3pO6k+NgWp9ROvUuJ9Dt1pep3
+	GNjWO724VOn2S2h5ibhmwbwdJ5qztXG8m3HrsbwTzjKIq3wed2ppFqCjW1Yf2c5JC0EMbUZLryP
+	hsEkkIr1QMgxi5rnPWretGra9RDjx/aS6G1NNpvUQX6Mc27rsDDms95rhZfESU7QOX3We2JHWA+
+	O20lXsmvtZTCozgqA3JfXi/TZJ47vRjGww0JR7yLlnVdeq79yuQONRmKZG4/ySCGAvP84Qvv04j
+	thH2b97DsriTK5GNloDhmHaYcoy8UnGetQ5bsc8jCu8Ar1DUSa05bJllbatCoCqabGdpTjRkzuW
+	UpPKKKqBbXhBVhFY/qPorf2M
+X-Received: by 2002:a17:90b:5112:b0:3a8:10e2:ad08 with SMTP id 98e67ed59e1d1-3b1b0cf4395mr11537025a91.48.1794845799382;
+        Mon, 16 Nov 2026 08:16:39 -0800 (PST)
+Received: from localhost ([97.126.173.69])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-3b1aeb17042sm17307491a91.6.2026.11.16.08.16.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 08:16:38 -0800 (PST)
+From: "Kevin Hilman (TI)" <khilman@baylibre.com>
+To: Andreas Kemnade <andreas@kemnade.info>,
+	linux-omap@vger.kernel.org
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Roger Quadros <rogerq@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: OMAP2+: pm34xx: add NEON wakeup dependency before clockdomain idle
+Date: Mon, 16 Nov 2026 08:16:31 -0800
+Message-ID: <179484576799.84649.9190527737165313514.b4-ty@b4>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261113-wip-omap3-vfp-neon-mismatch-v1-1-3f6f67b25251@baylibre.com>
+References: <20261113-wip-omap3-vfp-neon-mismatch-v1-1-3f6f67b25251@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AM9PR04MB8068:EE_
-X-MS-Office365-Filtering-Correlation-Id: 585169df-9af6-4013-f307-08df43fbe414
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|23010399003|366016|19092799006|261022105027099003|10067099003|11063799006|4143699003|56012099006|261021123027099003|261021121427099003|261009223027099003|261026140227099003|261102123227099003|261026121527099003|261028144727099003|22082099003|18002099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: Jt5EEIhKlp18UIkEx80N96ffo4w+GKpHRpsaPB96B0juXqtdVNNcjzRPbu1jEHHS6kOpOqE+X1S3OMqfHSUbbbX8TU235pgGkne6cXoG1+wnA6f+E2pN5+9H1qCclyZxmn1Ua+MCcsAbLcBNgiEzVQ8IW1QMO3eKQZAa6a2LpMCjUZ0Pe3kJR8yUjfPcGPxPDkhgRzq1in6LXKRFoK+qaoIn5i6mBx9WAvDFXdYOw7ibW8f6m8vWRzXpaiYwtadUvusrqucTrS0pyD2LfqtCAfqgm5MaOjJyIQCETuDpsEFAmBLHSyU9AMpGxIbx+dH8x/gm0PiOlaYGHWNqE6lGS34TDL9MDI419WVAjIr4xoqcJqbEunOF/1/8Sx7SBqbu5sBIZsFuys00NPu1CedtyMC8R1Xq9fas6M3dqusvmZGi40W1c5CleljUzb9lGCZVMmFmpDZzpSRHx0W9SBSULqHCO1dX3pD/eWlEJ2EewaJQLjAtPEwyn+c86tTSUQ9/3n/mboNf7DZcKivcnYNxNBLcMCaj7ZMiCkCSQV3uf2p6Pok4h67pOKRavauw+qgdJouo3hJ6QKVotMJz5MzVxgNEgJqPjy6NqB7DnHsqW7pFaT8PsR8Ke7RghThL/0sYZmFQkZNmInOuJAKHkI7QWrT5WjPgR98rflJyp14RJhc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(23010399003)(366016)(19092799006)(261022105027099003)(10067099003)(11063799006)(4143699003)(56012099006)(261021123027099003)(261021121427099003)(261009223027099003)(261026140227099003)(261102123227099003)(261026121527099003)(261028144727099003)(22082099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TBVEtnWBpNQh34n2qLv8yoluLDEShJylpgcWeU2Au9glWV39hnlN5xZsUR6t?=
- =?us-ascii?Q?93JCNKPGJMuZnRIsuWsw0VPl+XhnLTgaxjE71rbIwO0H64J6sV4hNOcvEaxp?=
- =?us-ascii?Q?tT2ZkSmD8UtT5qZhzbEQt+EHhiecBoZzYMQINLdUTpT4DSQnIr09X83ltkTv?=
- =?us-ascii?Q?VVIK3OZYNCNKLFaCeotI0wMdY8C8w5aknfwRQCazPkgAQKAforzSEh/qrqqw?=
- =?us-ascii?Q?OSHzO/zDyQuQDTqfeQBxrsySeiwcb3rKjoB5IaLBVW8A+YhqCuMHuHijawyy?=
- =?us-ascii?Q?UunwFRcnKYVui60wHwo+8EUOOh+pudqAUjShSMFc5WX+397YIqFdA5+8zIIZ?=
- =?us-ascii?Q?82fEL3EBiBGNe90WzT61zbpaL376yW2OWOF7LQyu5yKOxLUQNcfcjPrw3N3G?=
- =?us-ascii?Q?L/6KO9YFztX/f+liD9yT101J4cavGchR+PcWkQXQqtUbxfDm+GtbluB8Qo3u?=
- =?us-ascii?Q?qo+OEzjNqySLnln7hn6Ys2CXitSNFEbsPOB24BwVT2Y4nYpMS7EnWRYB7nl4?=
- =?us-ascii?Q?9Ga3ar0CAD0oMXdl9Kdf0R9eOYjWRquE3p+VmOMZ3aXLrrEhPvxo8fP3A3Uq?=
- =?us-ascii?Q?2fh1dvQ0/thcjC2oEAww6TSJku8QR5Mbz61+JBE1VzqMyYc8HVL9zl1h/1Q9?=
- =?us-ascii?Q?aNPXqsufcCQM/0pFVWbxJSdNwuM4WhaQ03aYcymfH9uTaUTNp3pe/srYYnbH?=
- =?us-ascii?Q?HSkd7jvABKhjnKZpF7bsgPZhCPHVkpAtFp/wqECdHQkBa7INsuZbSGRt1+oT?=
- =?us-ascii?Q?vhShB9YVMrScbpYHUC1GnmCEUD8iPeMJOnwumsMMaPaPxyP7fGJETJ7HGhMd?=
- =?us-ascii?Q?oz2eRDdT+U9TL4pGisPHWObmQeinjgd1+dxeDs7KPia/mhWvOaJCHc+a5UFq?=
- =?us-ascii?Q?O1crH0gCs1+knOGyrudu3BeyjlyNX5pNwCgm+SYdjv6/i8yerRl43DtmQZti?=
- =?us-ascii?Q?koycxPWnXFN0Sgj/xrXFovjHIkNRnEjKsq4NCT3hBRFhoj3mJnqAUaR0+7D8?=
- =?us-ascii?Q?xad0v7OQHJSPrCpJdR7cBnF8iEWJD16gA9xSFkTTPy+Pj1zkhkpD4BFwZQQ6?=
- =?us-ascii?Q?p7YeZdfEMMFxkfbuWI2Lc6yfvYLt/A3ehU19p386tpMsAQp0/IjikFX0im/W?=
- =?us-ascii?Q?Gu2DThF3z1dWMU24OnEZiIVSbzAVBQbTK/DiuFoXrasu8CJUWbtGtggg+Bwr?=
- =?us-ascii?Q?P+2INBoOqx2vHkjn57llDd3TfagqYG4InzDJPP02uAPIvYyv3GKgM5Ca/9Vo?=
- =?us-ascii?Q?HYqadLIh1+Hw97he3fatv3R6HnNYudlH+W9uFB7O5M6xJYi1GWlJLeXnNLUi?=
- =?us-ascii?Q?RHZt5YxLse4PiuasXxog3WxKgj1OHqco5gNKggpzr50SjwThaliMW8tERsDT?=
- =?us-ascii?Q?z7UcBlVGmPjuoKz7sIP0lJJgfcmnbtTlPRfOBFJ/j+MM0gkv/fl9f6LBx0rV?=
- =?us-ascii?Q?BhC9IlwdXrDdWR4tHMoeD7jbQHgIZA4rZSC7w/+ZHi+IqYPjrHfz18s99wL/?=
- =?us-ascii?Q?3LO7cUtPyo8q+UJyhfmXOhXTuMydeDRJyX6uqrEeBbWz5Rc9VoKyVVz187y8?=
- =?us-ascii?Q?Bdjoq+fN9uZ0C19AuboZ/ZBvIeGSXZinBHS9E0KMOXyneLkjiOURaKtP/6fX?=
- =?us-ascii?Q?L/t8CGEYv3BvgW8yoxmpuz2nAFJJQvV0jcpbFdJs5BFRdgJ4bI6xE2tYFGKi?=
- =?us-ascii?Q?2MXGu1UqmIaGY0roeTYRuIaWa+HIAyrUG7wr9df6pA6RcUrzrnppCPhzOlAQ?=
- =?us-ascii?Q?Aghf/yba/oEsZYU4CwVgiO+BNKclZnsAvBKtDOHy19RChEJsb8T5?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 585169df-9af6-4013-f307-08df43fbe414
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 16:08:45.4599
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z+tiFN1N09qJxPNljZKtrr+cTtQEOG+SgFEbNIYAUlyAlmh5nEQV1TrQFYc4vZWOBuzZffrkIa+twQSWXCfP4/2O9vdTslucfpMQ46PzVS498eY3I/OQJ9B11zwm3yLw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8068
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_080851_161903_2864454A 
-X-CRM114-Status: GOOD (  22.19  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261116_081640_435945_FA067F8B 
+X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,114 +104,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 06:49:29PM +0800, Junyi Zhao via B4 Relay wrote:
-> From: Junyi Zhao <junyi.zhao@amlogic.com>
->
-> Amlogic A9 SoCs integrate the Silvaco I3C master IP in two domains:
-> the EE-domain instance (amlogic,a9-i3c) takes "pclk" and "fast_clk"
-> like the NXP integration, while the AO-domain instance
-> (amlogic,a9-ao-i3c) lives in the Always-On domain and generates its
-> bus clock from a divider inside the controller's own register space,
-> so there is no external fast clock and only "pclk" is exposed.
->
-> The two instances differ from the vanilla Silvaco/NXP integrations in
-> clock topology and required init, so the driver matches them by
-> dedicated compatibles instead of the "silvaco,i3c-master-v1"
-> fallback: a fallback would bind the generic driver data, which
-> neither programs the fast clock rate nor handles the AO internal
-> divider, and the variant would then fail to work.
->
-> Add both compatibles to the schema without the fallback, following
-> nuvoton,npcm845-i3c, and use per-compatible if/then conditionals to
-> enforce the clock counts: two clocks for the EE-domain instance and
-> one clock for the AO-domain instance.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+On Fri, 13 Nov 2026 10:11:05 -0800, Kevin Hilman (TI) wrote:
+> On OMAP3630 (BeagleBoard-xM), about one boot in three dies early when
+> a context switch touches the VFP, which traps as undefined.
+> 
+> The VFP is unreachable because NEON is powered off while the MPU runs.
+> omap3_pm_init() sets NEON's next state to OFF/RET and lets all
+> clockdomains idle before it adds the NEON -> MPU wakeup dependency, so
+> NEON can power down immediately and stay off until the MPU next idles.
+> This was visible in pm_debug, which showed neon_pwrdm OFF:1 while
+> mpu_pwrdm OFF:0.
+> 
+> [...]
 
-> ---
->  .../bindings/i3c/silvaco,i3c-master.yaml           | 26 ++++++++++++++++++++--
->  1 file changed, 24 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
-> index 853092f75..d892d42be 100644
-> --- a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
-> +++ b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
-> @@ -13,6 +13,8 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - amlogic,a9-i3c
-> +          - amlogic,a9-ao-i3c
->            - nuvoton,npcm845-i3c
->            - silvaco,i3c-master-v1
->        - items:
-> @@ -28,14 +30,14 @@ properties:
->      maxItems: 1
->
->    clocks:
-> -    minItems: 2
-> +    minItems: 1
->      items:
->        - description: system clock
->        - description: bus clock
->        - description: other (slower) events clock
->
->    clock-names:
-> -    minItems: 2
-> +    minItems: 1
->      items:
->        - const: pclk
->        - const: fast_clk
-> @@ -70,15 +72,35 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - amlogic,a9-i3c
->                - nxp,imx94-i3c
->                - nxp,imx95-i3c
->      then:
->        properties:
->          clocks:
-> +          minItems: 2
->            maxItems: 2
->          clock-names:
-> +          minItems: 2
->            maxItems: 2
->
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,a9-ao-i3c
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +          description:
-> +            The "ao" variant is the controller instance in the Always-On (AO)
-> +            domain, which has no separate bus clock and derives the
-> +            bus clock from an internal divider.
-> +        clock-names:
-> +          maxItems: 1
-> +
->  unevaluatedProperties: false
->
->  examples:
->
-> --
-> 2.42.0
->
->
->
+Applied, thanks!
+
+[1/1] ARM: OMAP2+: pm34xx: add NEON wakeup dependency before clockdomain idle
+      commit: 604ef0e4d9d1e3b9717cb83174817af58966d30f
+
+Best regards,
+-- 
+Kevin Hilman (TI) <khilman@baylibre.com>
 
