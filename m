@@ -2,79 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05AD606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CEFA606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 18:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i8zQkrIN;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=X/bxCzJd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5D5Jh1d1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Yv/i2k/k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=q46AE2TsYo8zXLliVKO5Tx+OouQ4BpY5EoM6nx9zS/Y=; b=i8zQkrINkJx3PAYirXMqoB0zX5
-	zAXDFnMEpe0tPCkGmxJk6hQE7Wue6z6prcPtazrYuEC/JeXs9apGtVQP7E2HOD1m1RP/6L7aepdPo
-	iIW+iItLyay0TGbEl56f5Uie2YkERFt3hR03wSbkgpRuQw/H1ENmgo21F0hzz6UF8QwUek2DeruB7
-	Obs7MgtayiwaQbJrJ4HgrAI+WuVtSS0UReGqD6T1zjhxuT2iocTu325Ke7jvxNtDVOtYUgdVgEZya
-	ocIjzzSZUxEfqvTGCsz0jZP96upC3lEqZC7cMe+ydadlsLl2LUSSOD8mnOW6PQu7wfGQ4b0DZbCVo
-	72wX8k8A==;
+	bh=pDsIq9Hj0Z1uudtdxnTWzZt023tFRmK4nYb/lSKU8Jc=; b=5D5Jh1d1gP3Efb5cjGl05qg4xN
+	S9jf4Lj/kdO+91cCLDZ65tipqs6es3PUL/WIovoeQyVAzb+vWIzrh7qXVPc56xekYbYsZs69dA/5Q
+	Q2im4WOTMpSWVpJrcGNgw2lw1XaX0d+vcxcYvDH/eIYx6tmn8zeMVMtX89mnBmpVMooDE/xFQnItr
+	+AdfiVn5VjzDtBlpmYWXYAcO5sPJM1oBhCmSUUqbIm0ZPddrCrec+Hcoe7/4VcHB4G833NRp4SMhY
+	ALmkM2ZikvD2THdsK1KiWYtm+n0XVGWREjlTPkOnvBkDGFL3f/jAvZXWnDbXteA80Wdy9MBcnIW4t
+	86p69nPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1Am-00000003VIL-4BL6;
-	Mon, 16 Nov 2026 18:11:23 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xT1EG-00000003Vef-17j6;
+	Mon, 16 Nov 2026 18:14:56 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT1Al-00000003VHS-2Bjr
+	id 1xT1EE-00000003VeX-297v
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 18:11:19 +0000
+	Mon, 16 Nov 2026 18:14:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B1B286299D;
-	Mon, 16 Nov 2026 18:11:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66C5C1F000C9;
-	Mon, 16 Nov 2026 18:11:18 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 08A78422A1;
+	Mon, 16 Nov 2026 18:14:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94E141F000C4;
+	Mon, 16 Nov 2026 18:14:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794852678;
-	bh=q46AE2TsYo8zXLliVKO5Tx+OouQ4BpY5EoM6nx9zS/Y=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=X/bxCzJdAoaLpc4TJKp1MPffvF9eU2tf9Eg/YQFHd9gDjXM4+TV6RZaNrcXGeKk0p
-	 LeE6RDixr7VEnDWt/1qbysXCgJmCK2NWqseCxBD50haobqGedfGc3IDtDKL5CB/G6c
-	 2YddrXfJQ6TPnXoY/NAOlGyo5ancAkGvS10ND/rxDDVfc1fv5CTa5BG1tnfY2m3RUc
-	 jMz4AROlbCB1XQW4aVLbmZ80vKbnjy7ODpePuH4RaOjUe3nlcKRGZxliq5O7dPAdq0
-	 hs5z7UgIG5ut1WtTYdFneNza5mI+hGZF4bvAK2qZEgguvfn9GCoOES/+/fFqeX2Rbp
-	 N2SBMzBWUEr7A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xT1Ai-0000000GbgH-1eXM;
-	Mon, 16 Nov 2026 18:11:16 +0000
-Date: Mon, 16 Nov 2026 18:11:15 +0000
-Message-ID: <86h5hg1wak.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Dan Carpenter <dan@pereq.eu>
-Cc: Oliver Upton <oupton@kernel.org>,	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,	Zenghui Yu
- <yuzenghui@huawei.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Will
- Deacon <will@kernel.org>,	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,	kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org,	Karthik Bhargavan <karthik@pereq.eu>,
-	=?UTF-8?B?Q2zDqW1lbnQ=?= Blaudeau <clement@cryspen.com>
-Subject: Re: [PATCH] KVM: arm64: nv: Fix NULL dereference in kvm_inject_nested()
-In-Reply-To: <avsH0lxpLIF2Ug64@stanley.mountain>
-References: <avsH0lxpLIF2Ug64@stanley.mountain>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20260515; t=1794852893;
+	bh=pDsIq9Hj0Z1uudtdxnTWzZt023tFRmK4nYb/lSKU8Jc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Yv/i2k/k8g3RNz005a766m5TmvJ/WBREV6tP5YrUGzqOECOaLgPdBqL2wOInmQI8M
+	 9TJTbOzMiC1ZHhzaR/O+gIwuIov5o9pore6zuchZJGRWN3FpsIP3TjY0e4Cx5KNRZE
+	 oXwZj9oU2mwaNBJGSgmszH4/QJqHP8h9kgn45oJPQ9HIR4EazbUkoWkRwtnoHGms97
+	 Zpv053OurUMNSAi9JgJi2H41aUZitkZ87dkaS6UW9xOYyOtnuntQg5izG6wOermK62
+	 ldRFRI/7YmX6i+VI8N3A1PZKrMRfO5PpcUYoFjEgIwBKldiLqUW0alm0FDUVGJPMGK
+	 U2Wb8ddNmjnaw==
+Date: Mon, 16 Nov 2026 18:14:50 +0000
+From: Sudeep Holla <sudeep.holla@kernel.org>
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, philip.radford@arm.com,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Sashiko <sashiko-bot@kernel.org>
+Subject: Re: [PATCH 2/2] firmware: arm_scmi: Fix SCMI Power Control driver
+ removal
+Message-ID: <20261116-merry-hypersonic-skink-91109c@sudeepholla>
+References: <20261116084211.3066460-1-cristian.marussi@arm.com>
+ <20261116084211.3066460-3-cristian.marussi@arm.com>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: dan@pereq.eu, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, karthik@pereq.eu, clement@cryspen.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261116084211.3066460-3-cristian.marussi@arm.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,128 +79,114 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 16 Nov 2026 13:40:34 +0000,
-Dan Carpenter <dan@pereq.eu> wrote:
+On Mon, Nov 16, 2026 at 08:42:11AM +0000, Cristian Marussi wrote:
+> Once a reboot is initiated following a graceful shutdown request received
+> from the SCMI platform server there are a couple of registered notifiers
+> and possibly a scheduled delayed work.
 > 
-> There is a NULL dereference of vcpu->arch.hw_mmu in kvm_inject_nested()
+> Take care to properly stop, unregister and cleanup all such resources
+> when the driver is unbound.
 > 
-> Unable to handle kernel NULL pointer dereference at virtual address 0000000000000084
->   kvm_vcpu_put_hw_mmu (arch/arm64/kvm/nested.c:1046) (P)
->   vhe_vcpu_put (arch/arm64/kvm/arm.c:827)
->   kvm_arch_vcpu_put (arch/arm64/kvm/arm.c:860)
->   kvm_inject_nested (arch/arm64/kvm/emulate-nested.c:2903)
->   kvm_inject_nested_serror (arch/arm64/kvm/emulate-nested.c:2976)
->   kvm_inject_serror_esr (arch/arm64/kvm/inject_fault.c:365)
->   __kvm_arm_vcpu_set_events (arch/arm64/kvm/guest.c:827)
->   kvm_arch_vcpu_ioctl (arch/arm64/kvm/arm.c:2017 arch/arm64/kvm/arm.c:2157)
->   kvm_vcpu_ioctl (arch/arm64/kvm/../../../virt/kvm/kvm_main.c:4772)
-> 
-> KVM_SET_VCPU_EVENTS does not load the vcpu, but it injects a pending
-> SError or external abort straight away.  If the vcpu is in L2 context
-> and L1 has asked for the exception, kvm_inject_nested() puts and loads
-> a vcpu that is not loaded.  vcpu->arch.hw_mmu is NULL when the vcpu is
-> not loaded, so kvm_vcpu_put_hw_mmu() dereferences a NULL pointer.
-> 
-> To fix this bug, only put and load the vcpu when it is loaded, similar
-> to what kvm_reset_vcpu() does.  When the vcpu is not loaded there is
-> nothing to switch: the next kvm_arch_vcpu_load() loads L1's context.
-> 
-> Fixes: 9aba641b9ec2 ("KVM: arm64: nv: Respect exception routing rules for SEAs")
-> Fixes: 77ee70a07357 ("KVM: arm64: nv: Honor SError exception routing / masking")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Dan Carpenter <dan@pereq.eu>
+> Fixes: 2c4b97fee94a ("firmware: arm_scmi: Add SCMI System Power Control driver")
+> Reported-by: Sashiko <sashiko-bot@kernel.org>
+> Closes: https://sashiko.dev/#/bug/linux-dbe4eba7-1520-40a1-92e8-8892b6e47c4b
+> Tested-by: Cristian Marussi <cristian.marussi@arm.com>
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 > ---
-> This was found through Pereq's formal analysis but the stack trace
-> comes from real life testing.
+>  .../firmware/arm_scmi/scmi_power_control.c    | 76 +++++++++++++++++--
+>  1 file changed, 70 insertions(+), 6 deletions(-)
 > 
-> x86 implements kvm_arch_vcpu_ioctl() differently and puts vcpu_load()
-> at the start of the ioctl.  But the way arm64 does it is deliberately
-> and just something that people working with the code need to be aware
-> of, I guess.
-> 
->  arch/arm64/kvm/emulate-nested.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/kvm/emulate-nested.c b/arch/arm64/kvm/emulate-nested.c
-> index 2bec81668361..22ca735a34f6 100644
-> --- a/arch/arm64/kvm/emulate-nested.c
-> +++ b/arch/arm64/kvm/emulate-nested.c
-> @@ -2862,7 +2862,7 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
->  			     enum exception_type type)
->  {
->  	u64 pstate, mode;
-> -	bool direct_inject;
-> +	bool direct_inject, loaded;
->  
->  	if (!vcpu_has_nv(vcpu)) {
->  		kvm_err("Unexpected call to %s for the non-nesting configuration\n",
-> @@ -2891,6 +2891,7 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
->  	}
->  
->  	preempt_disable();
-> +	loaded = (vcpu->cpu != -1);
->  
->  	vcpu_set_flag(vcpu, IN_NESTED_EXCEPTION);
->  
-> @@ -2900,7 +2901,8 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
->  	 */
->  	__kvm_adjust_pc(vcpu);
->  
-> -	kvm_arch_vcpu_put(vcpu);
-> +	if (loaded)
-> +		kvm_arch_vcpu_put(vcpu);
->  
->  	kvm_inject_el2_exception(vcpu, esr_el2, type);
->  
-> @@ -2915,7 +2917,8 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
->  	 */
->  	__kvm_adjust_pc(vcpu);
->  
-> -	kvm_arch_vcpu_load(vcpu, smp_processor_id());
-> +	if (loaded)
-> +		kvm_arch_vcpu_load(vcpu, smp_processor_id());
->  	vcpu_clear_flag(vcpu, IN_NESTED_EXCEPTION);
->  
->  	preempt_enable();
+> diff --git a/drivers/firmware/arm_scmi/scmi_power_control.c b/drivers/firmware/arm_scmi/scmi_power_control.c
+> index e0680e33180e..b0a10fd92fa6 100644
+> --- a/drivers/firmware/arm_scmi/scmi_power_control.c
+> +++ b/drivers/firmware/arm_scmi/scmi_power_control.c
 
-I wonder if a marginally better approach is to add an unconditional
-vcpu_load() in the event injection ioctl:
+[...]
 
-diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-index 5959bbbfa026f..21cd872ea394b 100644
---- a/arch/arm64/kvm/arm.c
-+++ b/arch/arm64/kvm/arm.c
-@@ -2007,7 +2007,7 @@ static int kvm_arm_vcpu_get_events(struct kvm_vcpu *vcpu,
- static int kvm_arm_vcpu_set_events(struct kvm_vcpu *vcpu,
- 				   struct kvm_vcpu_events *events)
- {
--	int i;
-+	int i, ret;
- 
- 	/* check whether the reserved field is zero */
- 	for (i = 0; i < ARRAY_SIZE(events->reserved); i++)
-@@ -2019,7 +2019,11 @@ static int kvm_arm_vcpu_set_events(struct kvm_vcpu *vcpu,
- 		if (events->exception.pad[i])
- 			return -EINVAL;
- 
--	return __kvm_arm_vcpu_set_events(vcpu, events);
-+	vcpu_load(vcpu);
-+	ret = __kvm_arm_vcpu_set_events(vcpu, events);
-+	vcpu_put(vcpu);
-+
-+	return ret;
- }
- 
- /*
+> @@ -296,6 +310,10 @@ static int scmi_userspace_notifier(struct notifier_block *nb,
+>  	struct scmi_system_power_state_notifier_report *er = data;
+>  	struct scmi_syspower_conf *sc = userspace_nb_to_sconf(nb);
+>  
+> +	guard(srcu)(&sc->dead_srcu);
+> +	if (READ_ONCE(sc->dead))
+> +		return NOTIFY_DONE;
+> +
+>  	if (er->system_state >= SCMI_SYSTEM_MAX ||
+>  	    er->system_state == SCMI_SYSTEM_POWERUP) {
+>  		dev_err(sc->dev, "Ignoring unsupported system_state: 0x%X\n",
+> @@ -357,6 +375,10 @@ static int scmi_syspower_probe(struct scmi_device *sdev)
+>  	if (!sc)
+>  		return -ENOMEM;
+>  
+> +	ret = init_srcu_struct(&sc->dead_srcu);
+> +	if (ret)
+> +		return ret;
+> +
+>  	sc->state = SCMI_SYSPOWER_IDLE;
+>  	mutex_init(&sc->state_mtx);
+>  	sc->required_transition = SCMI_SYSTEM_MAX;
+> @@ -364,12 +386,53 @@ static int scmi_syspower_probe(struct scmi_device *sdev)
+>  	sc->dev = &sdev->dev;
+>  	dev_set_drvdata(&sdev->dev, sc);
+>  
+> +	INIT_DELAYED_WORK(&sc->forceful_work, scmi_forceful_work_func);
+>  	INIT_WORK(&sc->suspend_work, scmi_suspend_work_func);
+>  
+> -	return handle->notify_ops->devm_event_notifier_register(sdev,
+> -							   SCMI_PROTOCOL_SYSTEM,
+> -					 SCMI_EVENT_SYSTEM_POWER_STATE_NOTIFIER,
+> -						       NULL, &sc->userspace_nb);
+> +	ret = handle->notify_ops->event_notifier_register(handle, SCMI_PROTOCOL_SYSTEM,
+> +							  SCMI_EVENT_SYSTEM_POWER_STATE_NOTIFIER,
+> +							  NULL, &sc->userspace_nb);
+> +	if (ret) {
+> +		cleanup_srcu_struct(&sc->dead_srcu);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void scmi_syspower_remove(struct scmi_device *sdev)
+> +{
+> +	struct scmi_handle *handle = sdev->handle;
+> +	struct scmi_syspower_conf *sc;
+> +	int ret;
+> +
+> +	sc = dev_get_drvdata(&sdev->dev);
+> +	if (!sc)
+> +		return;
+> +
+> +	/* Wait for any notifier to complete and inhibit further processing */
+> +	WRITE_ONCE(sc->dead, true);
+> +	synchronize_srcu(&sc->dead_srcu);
+> +
+> +	/*
+> +	 * Once here any possible in-flight userspace or reboot notifier
+> +	 * will have completed and further notifiers will bailout immediately.
+> +	 * Cancel any work which was possibly already scheduled.
+> +	 */
+> +	cancel_delayed_work_sync(&sc->forceful_work);
+> +
 
-and be done with it, avoiding the fast-path bloating altogether.
-Unless you can spot another path where the vcpu is not loaded, but
-still requires the injection of an exception?
+To keep it symmetric with probe, do we need cancelling of suspend_work as
+well here ?
 
-Thanks,
+> +
+> +	/* Unregister reboot notifier...if any */
+> +	unregister_reboot_notifier(&sc->reboot_nb);
+> +
+> +	/* Unregister userspace notifier */
+> +	ret = handle->notify_ops->event_notifier_unregister(handle,
+> +							    SCMI_PROTOCOL_SYSTEM,
+> +							    SCMI_EVENT_SYSTEM_POWER_STATE_NOTIFIER,
+> +							    NULL, &sc->userspace_nb);
 
-	M.
+Just wondering if it is better to stop receiving notifications from firmware
+first and then cancel any pending work ? Basically reverse order of probe
+for remove.
 
 -- 
-Without deviation from the norm, progress is not possible.
+Regards,
+Sudeep
 
