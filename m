@@ -2,86 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69BD606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4447606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:34:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2ukigNDD;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=OUFkIe1a
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JRzlV8EX;
+	dkim=pass (1024-bit key, unprotected) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=RfO+wWNP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fUTAXqM2Le3OJtHSjmOIVEz97bRaEftRxX82qH/aSh0=; b=2ukigNDDpY0emX
-	2Tj3nb814Ua1Rnxs3+qEsoqiEVmfI7WbabjK/MfTG+P++Wrwe3eh9XeT1Rn7tlVN0qq0h+1y5i6RL
-	vOrKLprjybkd6Hv3/+3rfchw+/iyROUmFR9OuXoNLoaw93j9qo4M4WDuVBINMAoSXMgI1JBR7sGKE
-	ANHDobRIzKizOOojMLMphEDk4LGRRiO6yLMQH0cayOsGMGazVfVsc/ZOCl3UsCqYwfqduGQZLDqX3
-	quGk88AQkrcPXHqPxt9mVtHWYfNAzz3owJ0D35f24sa3WxRx4CkrcC2iGqNYx2SlIEVUpg8I3OLel
-	iKlQPEaI4+eGlK4YA2zA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=JmN8cB8B58PKb7JwI7Ve+4GxeEyqqosAfqMfFIjSvsk=; b=JRzlV8EXFYYt5XZMvWyMgb3NuA
+	xEPD60RFT+V7TLBefuaWc/4VndirgnwjgA5mvxnsMLeKagRxC1maxqUHGU3DL3tRcfovfU6feLro+
+	cP/6Y9aUMQMkEZcJ0mSrmgM6kR0v/ooq8+ybfdmiim/OB0vzSqCbopNqKv+yUi32ueQqWgPXK+CTZ
+	iwpWDKWvpY69JMM9sE9Lxj1bILJPVqrVM6km1M2KKhd0i/VN+rdscOqs85vTcpXZYEP4L0g2Ld0H1
+	xS9HiLkzAbIom4ijJm25ySSSvtlzvJavdVErQg1Y4IpksAOSkxZbznNq82HRvAO4b64nOnHEHZ8vy
+	nW4EZQdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwq9-00000002e7n-2RZp;
-	Mon, 16 Nov 2026 13:33:45 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1xSwJI-00000002VRM-3WDL;
+	Mon, 16 Nov 2026 12:59:48 +0000
+Received: from canpmsgout05.his.huawei.com ([113.46.200.220])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwpt-00000002e1O-0J41;
-	Mon, 16 Nov 2026 13:33:31 +0000
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c67:cdf:7464:6c04:36e4:ee87])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 57D6C4BB;
-	Mon, 16 Nov 2026 14:31:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1794835860;
-	bh=vdBlHSHVn8+ripcN6GXH7kSJda9nOEeCiSjJ2/h0zX4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=OUFkIe1adB1pjbTCXIOdaWF+1bF4vji6spHAPgoNrRZ7XKuULCEysxWkXOiah1KRl
-	 iOvnCkcpik6DoWjRU8u+zxD6GK6o0jKK7h1zzvpUe4JwjC4g3+Eb5Vtv3tIWNbkHJO
-	 HrzdZHCILTrHm4b+I8K8aQuggKoPgvTY2sglsTbc=
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Date: Mon, 16 Nov 2026 19:02:54 +0530
-Subject: [PATCH 2/2] platform/raspberrypi: vchiq-mmal: Fix warnings in the
- zero-copy path
+	id 1xSwJ9-00000002VEp-3k4W
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 16 Nov 2026 12:59:41 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=JmN8cB8B58PKb7JwI7Ve+4GxeEyqqosAfqMfFIjSvsk=;
+	b=RfO+wWNPbYEZ2kyWdbDuiZvJ5hOyoQFN0327rLbcYteHutM2wxVqRtU10AiUKHEq9v1tme0cX
+	x/0dVYiHifW0u5dWn+Jp4GHUws7ZTWu+NCykPADHUoBAXrGE1cD8pg5Jbiz0g+5JCbxZHyTQQbU
+	6Aimj8X68FHiiu02YRZCWIM=
+Received: from mail.maildlp.com (unknown [172.19.162.144])
+	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4jSny66WF2z12LDl;
+	Mon, 16 Nov 2026 20:59:42 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 0895740679;
+	Mon, 16 Nov 2026 20:59:35 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 16 Nov
+ 2026 20:59:34 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
+	<fenghuay@nvidia.com>, <catalin.marinas@arm.com>, <will@kernel.org>,
+	<mark.rutland@arm.com>, <corbet@lwn.net>, <skhan@linuxfoundation.org>,
+	<rdunlap@infradead.org>, <tony.luck@intel.com>, <Dave.Martin@arm.com>,
+	<babu.moger@amd.com>, <fustini@kernel.org>, <tglx@kernel.org>,
+	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
+	<hpa@zytor.com>, <x86@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [RFC PATCH v3 05/19] arm_mpam: resctrl: Index monitor state by resource and event
+Date: Mon, 16 Nov 2026 20:59:00 +0800
+Message-ID: <20261116125914.498841-6-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261116125914.498841-1-ruanjinjie@huawei.com>
+References: <20261116125914.498841-1-ruanjinjie@huawei.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261116-vc-sm-cma-fix-v1-2-2b0f11aa96b9@ideasonboard.com>
-References: <20261116-vc-sm-cma-fix-v1-0-2b0f11aa96b9@ideasonboard.com>
-In-Reply-To: <20261116-vc-sm-cma-fix-v1-0-2b0f11aa96b9@ideasonboard.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Stefan Wahren <wahrenst@gmx.net>, Dom Cobley <popcornmix@gmail.com>, 
- Phil Elwell <phil@raspberrypi.com>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Juerg Haefliger <juerg.haefliger@canonical.com>, 
- linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Jai Luthra <jai.luthra@ideasonboard.com>, kernel test robot <lkp@intel.com>, 
- Dan Carpenter <error27@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2223;
- i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
- bh=vdBlHSHVn8+ripcN6GXH7kSJda9nOEeCiSjJ2/h0zX4=;
- b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBq+wYV0ZM9t2kXHOt9vcgzPfACvQkshDNp9Fwdz
- jc5/Op7ADCJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCavsGFQAKCRBD3pH5JJpx
- RfpfEACLXn/iegV1rpewad+wkoruJchyQ7ZHN8GP19q6m5ktEqRPdjTqUHTaBkT1flfQ832FYQY
- EOlCcR6xNCd6mRUXt4TTZ5GB3RVNmzoq0DyMhDmF1U8mFvDQlUzg4D5TtN5KSM5cqZKoVrqMJQJ
- EIfCWzmWh7A5pJT8kf4IV85mO90eBE46+v21ed1uaUyRVudtE844vuF3iK+J3E97dsgQRXAyBuO
- Zj0FzdPK8QcVAvJ+shylrxGi8bEi607YP2vfLFkoZ1rAoXEMFj3cLiAYMJL64SEB1C0crFVZYgX
- 1Weyx+vjJL2AZNYWqDTMHf8QtYbk7fvyoY6Kwt6g3R/WbV8LQgWIvCSDmXjro6NVBGb1HfabkEN
- VBxGmufePp15j6KhMkQN60Ms9va8HquTH/6I+MpTKHZbyNDfYgzoPK56pLeyP2iGrAG60QmYSar
- Tvf05PnYm+MooykIfg6dAhcMtgCLT8idIQAQP04gGi596PgFm4zzLMs5MyGIUATYSGjOaSTdYjU
- izzpLfGZc4xtriI+40+xPLaWWts4q9uzm/r61lY5yQR4w2TIDXOiWgIYKKPLwGIetW5+DE4qkrt
- /B6y4CKGxU6J5sxM7/9iT6T+LuO7z28VC/OyWgpSxByDK+moMGaRRxQ/f4uBgAHcI/QzYXEoC2E
- FQD8AUmsfKYSw+w==
-X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_053329_270417_265D9B91 
-X-CRM114-Status: GOOD (  11.15  )
+X-CRM114-CacheID: sfid-20261116_045940_382935_A78B32A1 
+X-CRM114-Status: GOOD (  23.06  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,60 +90,390 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Fix minor issues reported by sparse and smatch around the zero-copy
-support added in mmal-vchiq.
+Currently, the picked monitor class and assignable counter state are
+stored in an array indexed solely by event ID, and every monitor
+domain's component array is populated with all events.
 
-If there is no handle present vc_sm_cma_get_vc_handle() might fail,
-which we check but end up printing and returing the value of the
-undefined `ret` variable. Fix it by returning -EINVAL and dropping `ret`
-from the print.
+Since the monitor class implementing an event is a property of the
+resource rather than the display scope, index the array by both
+resource and event, and populate each domain using only the events
+belonging to its resource.
 
-While at it, also fix the stale reference to the function name
-"vc_sm_int_handle" in the error print, which was renamed to
-"vc_sm_cma_get_vc_handle".
+Also replace the MPAM_MAX_EVENT bound with QOS_NUM_EVENTS to prevent
+out-of-bounds array indexing by event ID.
 
-Secondly, during cleanup assign NULL instead of 0 to buf->vcsm_handle,
-which is a pointer.
+This is done in preparation for L2 support.
 
-Fixes: 67d0fbe47f8a ("platform/raspberrypi: vchiq-mmal: Use vc-sm-cma to support zero copy")
-Reported-by: kernel test robot <lkp@intel.com>
-Reported-by: Dan Carpenter <error27@gmail.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202611141210.9hmxzD2V-lkp@intel.com/
-Closes: https://lore.kernel.org/r/202611141218.5FZTnFtc-lkp@intel.com/
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/resctrl/mpam_resctrl.c | 146 ++++++++++++++++++---------------
+ 1 file changed, 82 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c b/drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c
-index 8d765aa7ea12..46803ef1e071 100644
---- a/drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c
-+++ b/drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c
-@@ -1644,10 +1644,10 @@ int vchiq_mmal_submit_buffer(struct vchiq_mmal_instance *instance,
+diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+index a31c36c302d8..385c54604872 100644
+--- a/drivers/resctrl/mpam_resctrl.c
++++ b/drivers/resctrl/mpam_resctrl.c
+@@ -37,21 +37,30 @@ static struct mpam_resctrl_res mpam_resctrl_controls[RDT_NUM_RESOURCES];
+ 	     rid++, res = &mpam_resctrl_controls[rid])
  
- 		buffer->vc_handle = vc_sm_cma_get_vc_handle(buffer->vcsm_handle);
- 		if (!buffer->vc_handle) {
--			pr_err("%s: vc_sm_int_handle failed %d\n",
--			       __func__, ret);
-+			pr_err("%s: vc_sm_cma_get_vc_handle failed\n",
-+			       __func__);
- 			vc_sm_cma_free(buffer->vcsm_handle);
--			return ret;
-+			return -EINVAL;
+ /*
+- * The classes we've picked to map to resctrl events.
+- * Resctrl believes all the worlds a Xeon, and these are all on the L3. This
+- * array lets us find the actual class backing the event counters. e.g.
++ * The classes we've picked to map to resctrl events, for each resource.
++ * This array lets us find the actual class backing the event counters. e.g.
+  * the only memory bandwidth counters may be on the memory controller, but to
+- * make use of them, we pretend they are on L3. Restrict the events considered
+- * to those supported by MPAM.
++ * make use of them, we pretend they are on L3.
+  * Class pointer may be NULL.
+  */
+-#define MPAM_MAX_EVENT QOS_MBM_TOTAL_EVENT_ID
+-static struct mpam_resctrl_mon mpam_resctrl_counters[MPAM_MAX_EVENT + 1];
++static struct mpam_resctrl_mon mpam_resctrl_counters[RDT_NUM_RESOURCES][QOS_NUM_EVENTS];
+ 
+-#define for_each_mpam_resctrl_mon(mon, eventid)					\
+-	for (eventid = QOS_FIRST_EVENT, mon = &mpam_resctrl_counters[eventid];	\
+-	     eventid <= MPAM_MAX_EVENT;						\
+-	     eventid++, mon = &mpam_resctrl_counters[eventid])
++static struct mpam_resctrl_mon *
++mpam_resctrl_mon_by_rid(enum resctrl_res_level rid, enum resctrl_event_id evtid)
++{
++	return &mpam_resctrl_counters[rid][evtid];
++}
++
++static struct mpam_resctrl_mon *
++mpam_resctrl_mon(struct rdt_resource *r, enum resctrl_event_id evtid)
++{
++	return mpam_resctrl_mon_by_rid(r->rid, evtid);
++}
++
++#define for_each_mpam_resctrl_mon(mon, r, eventid)				\
++	for (eventid = QOS_FIRST_EVENT, mon = mpam_resctrl_mon(r, eventid);	\
++	     eventid < QOS_NUM_EVENTS;						\
++	     eventid++, mon = mpam_resctrl_mon(r, eventid))
+ 
+ /* The lock for modifying resctrl's domain lists from cpuhp callbacks. */
+ static DEFINE_MUTEX(domain_list_lock);
+@@ -171,9 +180,9 @@ static void resctrl_reset_task_closids(void)
+ 	read_unlock(&tasklist_lock);
+ }
+ 
+-static void mpam_resctrl_monitor_sync_abmc_vals(struct rdt_resource *l3)
++static void mpam_resctrl_monitor_sync_abmc_vals(struct rdt_resource *r)
+ {
+-	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[QOS_MBM_TOTAL_EVENT_ID];
++	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, QOS_MBM_TOTAL_EVENT_ID);
+ 
+ 	if (!mon->class)
+ 		return;
+@@ -181,9 +190,9 @@ static void mpam_resctrl_monitor_sync_abmc_vals(struct rdt_resource *l3)
+ 	if (!mon->assigned_counters)
+ 		return;
+ 
+-	l3->mon.num_mbm_cntrs = mon->class->props.num_mbwu_mon;
++	r->mon.num_mbm_cntrs = mon->class->props.num_mbwu_mon;
+ 	if (cdp_enabled)
+-		l3->mon.num_mbm_cntrs /= 2;
++		r->mon.num_mbm_cntrs /= 2;
+ 
+ 	/*
+ 	 * Continue as normal even if enabling cdp causes there to be
+@@ -377,9 +386,10 @@ struct rdt_resource *resctrl_arch_get_resource(enum resctrl_res_level l)
+ 	return &mpam_resctrl_controls[l].resctrl_res;
+ }
+ 
+-static int resctrl_arch_mon_ctx_alloc_no_wait(enum resctrl_event_id evtid)
++static int resctrl_arch_mon_ctx_alloc_no_wait(struct rdt_resource *r,
++					      enum resctrl_event_id evtid)
+ {
+-	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[evtid];
++	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, evtid);
+ 
+ 	if (!mpam_is_enabled())
+ 		return -EINVAL;
+@@ -412,7 +422,7 @@ void *resctrl_arch_mon_ctx_alloc(struct rdt_resource *r,
+ 	do {
+ 		prepare_to_wait(&resctrl_mon_ctx_waiters, &wait,
+ 				TASK_INTERRUPTIBLE);
+-		*ret = resctrl_arch_mon_ctx_alloc_no_wait(evtid);
++		*ret = resctrl_arch_mon_ctx_alloc_no_wait(r, evtid);
+ 		if (*ret == -ENOSPC)
+ 			schedule();
+ 	} while (*ret == -ENOSPC && !signal_pending(current));
+@@ -421,10 +431,11 @@ void *resctrl_arch_mon_ctx_alloc(struct rdt_resource *r,
+ 	return ret;
+ }
+ 
+-static void resctrl_arch_mon_ctx_free_no_wait(enum resctrl_event_id evtid,
++static void resctrl_arch_mon_ctx_free_no_wait(struct rdt_resource *r,
++					      enum resctrl_event_id evtid,
+ 					      u32 mon_idx)
+ {
+-	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[evtid];
++	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, evtid);
+ 
+ 	if (!mpam_is_enabled())
+ 		return;
+@@ -445,7 +456,7 @@ void resctrl_arch_mon_ctx_free(struct rdt_resource *r,
+ 
+ 	kfree(arch_mon_ctx);
+ 
+-	resctrl_arch_mon_ctx_free_no_wait(evtid, mon_idx);
++	resctrl_arch_mon_ctx_free_no_wait(r, evtid, mon_idx);
+ }
+ 
+ static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+@@ -519,7 +530,7 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
+ 	struct mpam_component *mon_comp;
+ 	u32 mon_idx = *(u32 *)arch_mon_ctx;
+ 	enum mpam_device_features mon_type;
+-	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
++	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, eventid);
+ 
+ 	resctrl_arch_rmid_read_context_check();
+ 
+@@ -546,7 +557,7 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+ 			   u32 closid, u32 rmid, int mon_idx,
+ 			   enum resctrl_event_id eventid, u64 *val)
+ {
+-	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
++	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, eventid);
+ 	struct mpam_resctrl_dom *l3_dom;
+ 	struct mpam_component *mon_comp;
+ 
+@@ -603,7 +614,7 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
+ 			     u32 closid, u32 rmid, int cntr_id,
+ 			     enum resctrl_event_id eventid)
+ {
+-	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
++	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, eventid);
+ 	struct mpam_resctrl_dom *l3_dom;
+ 	struct mpam_component *mon_comp;
+ 
+@@ -1075,10 +1086,11 @@ static int *__alloc_mbwu_array(struct mpam_class *class, u16 num_mbwu_mon)
+ 	return_ptr(array);
+ }
+ 
+-static void counter_update_class(enum resctrl_event_id evt_id,
++static void counter_update_class(enum resctrl_res_level rid,
++				 enum resctrl_event_id evt_id,
+ 				 struct mpam_class *class)
+ {
+-	struct mpam_class *existing_class = mpam_resctrl_counters[evt_id].class;
++	struct mpam_class *existing_class = mpam_resctrl_mon_by_rid(rid, evt_id)->class;
+ 
+ 	if (existing_class) {
+ 		if (existing_class->level == 3) {
+@@ -1093,7 +1105,7 @@ static void counter_update_class(enum resctrl_event_id evt_id,
  		}
- 		pr_debug("%s: import dmabuf %p - got vc handle %08X\n",
- 			 __func__, buffer->dma_buf, buffer->vc_handle);
-@@ -1694,7 +1694,7 @@ int mmal_vchi_buffer_cleanup(struct mmal_buffer *buf)
- 		ret = vc_sm_cma_free(buf->vcsm_handle);
- 		if (ret)
- 			pr_err("%s: vcsm_free failed, ret %d\n", __func__, ret);
--		buf->vcsm_handle = 0;
-+		buf->vcsm_handle = NULL;
  	}
+ 
+-	mpam_resctrl_counters[evt_id].class = class;
++	mpam_resctrl_mon_by_rid(rid, evt_id)->class = class;
+ }
+ 
+ static void mpam_resctrl_pick_counters(void)
+@@ -1127,7 +1139,7 @@ static void mpam_resctrl_pick_counters(void)
+ 				if (update_rmid_limits(class))
+ 					break;
+ 
+-				counter_update_class(QOS_OCCUP_EVENT_ID, class);
++				counter_update_class(RDT_RESOURCE_L3, QOS_OCCUP_EVENT_ID, class);
+ 				break;
+ 			default:
+ 				break;
+@@ -1149,7 +1161,7 @@ static void mpam_resctrl_pick_counters(void)
+ 			 * and it's equivalent to mbm_total and so always use
+ 			 * mbm_total.
+ 			 */
+-			counter_update_class(QOS_MBM_TOTAL_EVENT_ID, class);
++			counter_update_class(RDT_RESOURCE_L3, QOS_MBM_TOTAL_EVENT_ID, class);
+ 		}
+ 	}
+ }
+@@ -1174,7 +1186,7 @@ void resctrl_arch_config_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *
+ 			      enum resctrl_event_id evtid, u32 rmid, u32 closid,
+ 			      u32 cntr_id, bool assign)
+ {
+-	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[evtid];
++	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, evtid);
+ 
+ 	if (evtid != QOS_MBM_TOTAL_EVENT_ID) {
+ 		pr_debug("unexpected event id\n");
+@@ -1277,11 +1289,10 @@ static int mpam_resctrl_pick_domain_id(int cpu, struct mpam_component *comp)
+  * This must run after all event counters have been picked so that any free
+  * running counters have already been allocated.
+  */
+-static int mpam_resctrl_monitor_init_abmc(struct mpam_resctrl_mon *mon)
++static int mpam_resctrl_monitor_init_abmc(struct rdt_resource *r,
++					  struct mpam_resctrl_mon *mon)
+ {
+-	struct mpam_resctrl_res *res = &mpam_resctrl_controls[RDT_RESOURCE_L3];
+ 	size_t num_rmid = resctrl_arch_system_num_rmid_idx();
+-	struct rdt_resource *l3 = &res->resctrl_res;
+ 	struct mpam_class *class = mon->class;
+ 	u16 num_mbwu_mon;
+ 	int *cntrs;
+@@ -1300,21 +1311,22 @@ static int mpam_resctrl_monitor_init_abmc(struct mpam_resctrl_mon *mon)
+ 	mon->assigned_counters = cntrs;
+ 	mon->mbwu_idx_to_mon = no_free_ptr(rmid_array);
+ 
+-	l3->mon.mbm_cntr_assignable = true;
+-	l3->mon.mbm_assign_on_mkdir = true;
+-	l3->mon.mbm_cntr_configurable = false;
+-	l3->mon.mbm_cntr_assign_fixed = true;
++	r->mon.mbm_cntr_assignable = true;
++	r->mon.mbm_assign_on_mkdir = true;
++	r->mon.mbm_cntr_configurable = false;
++	r->mon.mbm_cntr_assign_fixed = true;
+ 
+-	mpam_resctrl_monitor_sync_abmc_vals(l3);
++	mpam_resctrl_monitor_sync_abmc_vals(r);
+ 
  	return 0;
  }
-
+ 
+-static int mpam_resctrl_monitor_init(struct mpam_resctrl_mon *mon,
++static int mpam_resctrl_monitor_init(struct rdt_resource *r,
+ 				     enum resctrl_event_id type)
+ {
+-	struct mpam_resctrl_res *res = &mpam_resctrl_controls[RDT_RESOURCE_L3];
+-	struct rdt_resource *l3 = &res->resctrl_res;
++	struct mpam_resctrl_res *res = container_of(r, struct mpam_resctrl_res,
++						    resctrl_res);
++	struct mpam_resctrl_mon *mon = mpam_resctrl_mon(r, type);
+ 
+ 	lockdep_assert_cpus_held();
+ 
+@@ -1333,7 +1345,7 @@ static int mpam_resctrl_monitor_init(struct mpam_resctrl_mon *mon,
+ 	 */
+ 	if (!res->class) {
+ 		pr_warn_once("Faking L3 MSC to enable counters.\n");
+-		res->class = mpam_resctrl_counters[type].class;
++		res->class = mon->class;
+ 	}
+ 
+ 	/*
+@@ -1341,8 +1353,8 @@ static int mpam_resctrl_monitor_init(struct mpam_resctrl_mon *mon,
+ 	 * monitoring class.
+ 	 * Setting name is necessary on monitor only platforms.
+ 	 */
+-	l3->name = "L3";
+-	l3->mon_scope = RESCTRL_L3_CACHE;
++	r->name = "L3";
++	r->mon_scope = RESCTRL_L3_CACHE;
+ 
+ 	/*
+ 	 * num-rmid is the upper bound for the number of monitoring groups that
+@@ -1352,23 +1364,23 @@ static int mpam_resctrl_monitor_init(struct mpam_resctrl_mon *mon,
+ 	 * this does mean userspace needs to know the architecture to correctly
+ 	 * interpret this value.
+ 	 */
+-	l3->mon.num_rmid = resctrl_arch_system_num_rmid_idx();
++	r->mon.num_rmid = resctrl_arch_system_num_rmid_idx();
+ 
+ 	if (type == QOS_MBM_TOTAL_EVENT_ID) {
+ 		int err;
+ 
+-		err = mpam_resctrl_monitor_init_abmc(mon);
++		err = mpam_resctrl_monitor_init_abmc(r, mon);
+ 		if (err)
+ 			return err;
+ 
+ 		static_assert(MAX_EVT_CONFIG_BITS == 0x7f);
+-		l3->mon.mbm_cfg_mask = MAX_EVT_CONFIG_BITS;
++		r->mon.mbm_cfg_mask = MAX_EVT_CONFIG_BITS;
+ 	}
+ 
+ 	if (!resctrl_enable_mon_event(type, false, 0, NULL))
+ 		return -EINVAL;
+ 
+-	l3->mon_capable = true;
++	r->mon_capable = true;
+ 
+ 	return 0;
+ }
+@@ -1679,7 +1691,7 @@ mpam_resctrl_alloc_domain(unsigned int cpu, struct mpam_resctrl_res *res)
+ 		 * overlapping CPUs and set up the dom->mon_comp array.
+ 		 */
+ 
+-		for_each_mpam_resctrl_mon(mon, eventid) {
++		for_each_mpam_resctrl_mon(mon, r, eventid) {
+ 			struct mpam_component *mon_comp;
+ 
+ 			if (!mon->class)
+@@ -1855,11 +1867,12 @@ void mpam_resctrl_offline_cpu(unsigned int cpu)
+ 
+ int mpam_resctrl_setup(void)
+ {
+-	int err = 0;
++	enum resctrl_event_id eventid;
+ 	struct mpam_resctrl_res *res;
+-	enum resctrl_res_level rid;
+ 	struct mpam_resctrl_mon *mon;
+-	enum resctrl_event_id eventid;
++	enum resctrl_res_level rid;
++	struct rdt_resource *r;
++	int err = 0;
+ 
+ 	wait_event(wait_cacheinfo_ready, cacheinfo_ready);
+ 
+@@ -1889,14 +1902,16 @@ int mpam_resctrl_setup(void)
+ 	/* Find some classes to use for monitors */
+ 	mpam_resctrl_pick_counters();
+ 
+-	for_each_mpam_resctrl_mon(mon, eventid) {
+-		if (!mon->class)
+-			continue;	// dummy resource
++	for_each_rdt_resource(r) {
++		for_each_mpam_resctrl_mon(mon, r, eventid) {
++			if (!mon->class)
++				continue;	// dummy resource
+ 
+-		err = mpam_resctrl_monitor_init(mon, eventid);
+-		if (err) {
+-			pr_debug("Failed to initialise event %u\n", eventid);
+-			goto internal_error;
++			err = mpam_resctrl_monitor_init(r, eventid);
++			if (err) {
++				pr_debug("Failed to initialise event %u\n", eventid);
++				goto internal_error;
++			}
+ 		}
+ 	}
+ 
+@@ -1950,10 +1965,11 @@ static void mpam_resctrl_teardown_mon(struct mpam_resctrl_mon *mon, struct mpam_
+ 
+ void mpam_resctrl_teardown_class(struct mpam_class *class)
+ {
++	enum resctrl_event_id eventid;
++	struct mpam_resctrl_mon *mon;
+ 	struct mpam_resctrl_res *res;
+ 	enum resctrl_res_level rid;
+-	struct mpam_resctrl_mon *mon;
+-	enum resctrl_event_id eventid;
++	struct rdt_resource *r;
+ 
+ 	might_sleep();
+ 
+@@ -1961,10 +1977,12 @@ void mpam_resctrl_teardown_class(struct mpam_class *class)
+ 		if (res->class == class)
+ 			res->class = NULL;
+ 	}
+-	for_each_mpam_resctrl_mon(mon, eventid) {
+-		if (mon->class == class) {
+-			mon->class = NULL;
++	for_each_rdt_resource(r) {
++		for_each_mpam_resctrl_mon(mon, r, eventid) {
++			if (mon->class != class)
++				continue;
+ 
++			mon->class = NULL;
+ 			mpam_resctrl_teardown_mon(mon, class);
+ 		}
+ 	}
 -- 
-2.56.0
+2.34.1
 
 
