@@ -2,67 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BBA1606A89B
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86A5606A33D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 17:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qCVGdyKI;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TuSee7pi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qmHyrpnn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=blGIJDCDss+E3b9SqzgbEdlWTUpb2T+aJik+W4Q8e9Y=; b=qCVGdyKI8pAxs5Vy6q/RdTFhn/
-	JPKWZOBK+ciJz/Ulo7BbTzV32fcEnAmJS2f54v8xDIxt/RWj1VTXGCXFgD4EoiGkmjlJckeIgfKFN
-	j0ZBeQU17ufdREfzZR3c6apaGhNU1OgK42XBEoV8CH0tK0LFqXRAcenX5yZyGto3+QJ37/aeWRG3Q
-	UXvi73Pt+aj6n/A1HjvLZIR0SAThluMQUED4HN/ZkZ7XkpnaNl1CDqF3vUTZO8SSY9Ieh1qJfb3FY
-	Q8RSRhlFI64T2/8Rdh0l+tHF/VOdBt/5MIpvGXiYWgXkIu6qPzNpxvL3BLRRZ+6Z4tcBxnzLk1s+V
-	IrFfPBnA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=NNv20ieaX4wZbuOOjfLaQxIZbiUJkwUImQSoKQ5uEkw=; b=qmHyrpnnfjA0AL
+	/atrPXx1cTZZkwtHGtZYzJBRTbwuLnTocmKUooiKWL0T10ekI0UijwG2WTkJkLnjZvHePvNcuRbSz
+	1ddNYqTgVSSkRIIXhwszMNkBKuXJiyrwBCbLYOQWlF+0Cs7AKZVM3Y9BN+OC9f0oKDabq5iTx9T6I
+	ikjkk57uHcJ3x+VIwolqwZibSWkOkI/3pjv2SAIWiYJfDJT0uDFe8XUIVAz7cFLADRXIebsjT3put
+	t+D6EGVZqlZa5LYBBkex7ZBOjwLOtuiwe9FikuAlL5PE+OkVjBUmtcO+BQv0JbkcYSCfEVXJrx1VS
+	KYldE1cmYCCChw0nNFbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0re-00000003S8b-1UnR;
-	Mon, 16 Nov 2026 17:51:34 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xT0u4-00000003SWs-3Xsx;
+	Mon, 16 Nov 2026 17:54:04 +0000
+Received: from nbd.name ([46.4.11.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT0rd-00000003S8I-0nEV
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 17:51:33 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 44D51605F0;
-	Mon, 16 Nov 2026 17:51:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 290F51F000C4;
-	Mon, 16 Nov 2026 17:51:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794851492;
-	bh=blGIJDCDss+E3b9SqzgbEdlWTUpb2T+aJik+W4Q8e9Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=TuSee7pijL/EQxTZBDS2rvh9VhYUoswVcG+r5Rfl+jzNs9/BAeEA+G64PHMQljEW4
-	 S7+o2QcBzV702jg+VlVZ8U1n54eSLYBffN0NJagqWuWShBpfKdl7g64a6qJTsZdjtp
-	 uo27CFZfolNpxff3rCt5GoXjpBUS4UCmkjE4y7FrYprtQE8H5Z3M1Dbi67VA3R92IN
-	 vJYjoXxHlMokNSSaxfRvRZCrmrdiW5iraCRMUDAxw2kwl3p0Oin+ILPZFgHPaPcRgv
-	 ayWoJKO5MJUOllsnyyLN1vcPoBndg3uq5ncW3/V8OCovO2qRViX3sEYv4YGIexL4vR
-	 s9kNVS4WatYdQ==
-Date: Mon, 16 Nov 2026 17:51:25 +0000
-From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-To: Alexandru Elisei <alexandru.elisei@arm.com>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev, 
-	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
-	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
-	will@kernel.org, mark.rutland@arm.com, linux-perf-users@vger.kernel.org, 
-	catalin.marinas@arm.com, james.clark@linaro.org
-Subject: Re: [RFC PATCH v7 00/28] KVM: arm64: Add Statistical Profiling
- Extension (SPE) support
-Message-ID: <avs9oxfRNGiIi8an@gremlin>
-References: <20260903160623.315525-1-alexandru.elisei@arm.com>
- <auy-TwnMbIn-r2xl@gremlin>
- <au29ACRXFEOXaWPV@raptor>
+	id 1xT0u1-00000003SVB-2EKT;
+	Mon, 16 Nov 2026 17:54:02 +0000
+Received: from [2a04:4540:1403:e6fc:5f71:2c1e:7d62:945f] (helo=bertha10..)
+	by ds12 with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <john@phrozen.org>)
+	id 1xT0tq-004GoI-2W;
+	Mon, 16 Nov 2026 18:53:50 +0100
+From: John Crispin <john@phrozen.org>
+To: Stefan Roese <sr@denx.de>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Christian Marangi <ansuelsmth@gmail.com>,
+	devicetree@vger.kernel.org,
+	lei.dong@airoha.com,
+	Linqi.zhang@airoha.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Rajeev.kumar@airoha.com,
+	upstream@airoha.com,
+	Weifeng.xu@airoha.com,
+	zhengping.zhang@airoha.com
+Subject: [PATCH v3 3/3] i2c: mt7621: add support for Airoha AN7589
+Date: Mon, 16 Nov 2026 18:53:43 +0100
+Message-Id: <20261116175343.344425-4-john@phrozen.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261116175343.344425-1-john@phrozen.org>
+References: <20261116175343.344425-1-john@phrozen.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <au29ACRXFEOXaWPV@raptor>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261116_095401_630956_B61733C5 
+X-CRM114-Status: GOOD (  21.43  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,192 +76,180 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 11:41:52AM +0000, Alexandru Elisei wrote:
-> Hi Lorenzo,
->
-> On Thu, Nov 05, 2026 at 05:47:45PM +0000, Lorenzo Stoakes (ARM) wrote:
-> > Hi Alex,
-> >
-> > I've gone through all of the patches now, thank you for your patience with
-> > the review :)
->
-> Many thanks for the stellar review, will start replying soonish.
->
-> >
-> > So there are various dependencies/architectural decisions that need to be
-> > made here to go from RFC -> non-RFC:
-> >
-> > 1. The 'Ignore MMU notifiers for guest_memfd-only memslots' patch [0] is a
-> >    hard dependency for the series. I chased over there, hopefully we can
-> >    get something landed there.
->
-> Like you said, Sean is planning to send my original version of that patch with
-> an updated commit message, thanks for the ping!
+The Airoha AN7589 carries this controller with a second control
+register at 0x68. It holds a 16 bit clock divider selected by
+SM0CTL2_SCL_DIV_SEL, wider than the 11 bit field in SM0CTL0, and SDA
+wait control. The AN7589 also runs without SCL stretching.
 
-No worries! :)
+Describe the variants as match data: whether to set SCL_STRETCH, and
+whether to program the extended divider. The extended divider is set
+up before the controller is enabled, and the SM0CTL0 divider stays
+zero. With the extended divider and the 200 MHz clock the bus runs
+from fast mode plus down to about 3 kHz, where the SM0CTL0 divider
+stops at 97.7 kHz.
 
->
-> >
-> > 2. non-VHE, pKVM, NV disallowed for SPE - As I mentioned off-list, I spoke
-> >    to Marc, and he confirmed that he's more than happy for these to be off
-> >    the table for a v1. So I think you can drop the HACK: patches and just
-> >    make these conditions of using SPE.
->
-> Oliver, some time ago, expressed the opposite preference: VHE-only is OK for an
-> RFC, but he was concerned about the discrepancy between VHE and nVHE
-> configurations. Maybe the direction for KVM changed in the meantime.
->
-> Fine by me to drop the HACK! patches, of course, that's just something to keep
-> in mind.
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+Changes in v3:
+- Cap the bus rate at 1 MHz instead of the divider from below, so the
+  limits are constant and a clock rate below 1 MHz cannot wrap the
+  divider. Same divider for every valid rate (kernel test robot,
+  sashiko).
+- Link to the report: https://lore.kernel.org/oe-kbuild-all/202611140348.p9TnfxBF-lkp@intel.com/
 
-Ack, Oliver - let us know if this is a problem (Marc suggested he was fine with
-requiring VHE), I think certainly it's useful most of all to move forwards
-without the 'HACK' patches, and with the various architectural points raised
-here addressed we can look to a non-RFC series.
+Changes in v2:
+- The extended divider supports bus rates down to about 3 kHz with
+  the 200 MHz clock. The SM0CTL0 divider stops at 97.7 kHz.
+- Set up the extended divider before the controller is enabled. The
+  SM0CTL0 divider stays zero.
 
-And obviously we can update as necessary as we go based on maintainer
-requirements.
+ drivers/i2c/busses/i2c-mt7621.c | 60 ++++++++++++++++++++++++++++-----
+ 1 file changed, 52 insertions(+), 8 deletions(-)
 
->
-> >
-> > 3. The entire VM needs to be pre-faulted, but who should do it? - I do
-> >    think that relying on userland to do this is a little iffy. So I wonder
->
-> There's plenty of iffiness that userspace already handles when it comes to
-> virtual machines.
+diff --git a/drivers/i2c/busses/i2c-mt7621.c b/drivers/i2c/busses/i2c-mt7621.c
+index 7a31cc8b89ce..ec6fbb051bea 100644
+--- a/drivers/i2c/busses/i2c-mt7621.c
++++ b/drivers/i2c/busses/i2c-mt7621.c
+@@ -10,6 +10,7 @@
+  * (C) 2014 Sittisak <sittisaks@hotmail.com>
+  */
+ 
++#include <linux/bitfield.h>
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+ #include <linux/i2c.h>
+@@ -18,6 +19,7 @@
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
++#include <linux/property.h>
+ #include <linux/reset.h>
+ 
+ #define REG_SM0CFG2_REG		0x28
+@@ -28,6 +30,7 @@
+ #define REG_PINTEN_REG		0x5c
+ #define REG_PINTST_REG		0x60
+ #define REG_PINTCL_REG		0x64
++#define REG_SM0CTL2_REG		0x68
+ 
+ /* REG_SM0CFG2_REG */
+ #define SM0CFG2_IS_AUTOMODE	BIT(0)
+@@ -54,13 +57,25 @@
+ #define SM0CTL1_MODE_MASK	(0x7 << 4)
+ #define SM0CTL1_TRI		BIT(0)
+ 
++/* REG_SM0CTL2_REG */
++#define SM0CTL2_DATA_WAIT_SDA	BIT(18)
++#define SM0CTL2_INIT_WAIT_SDA	BIT(17)
++#define SM0CTL2_SCL_DIV_SEL	BIT(16)
++#define SM0CTL2_CLK_DIV_EXT	GENMASK(15, 0)
++
+ /* timeout waiting for I2C devices to respond */
+ #define TIMEOUT_MS		1000
+ 
++struct mtk_i2c_soc_data {
++	bool scl_stretch;
++	bool ext_clk_div;
++};
++
+ struct mtk_i2c {
+ 	void __iomem *base;
+ 	struct device *dev;
+ 	struct i2c_adapter adap;
++	const struct mtk_i2c_soc_data *soc;
+ 	u32 bus_freq;
+ 	u32 clk_div;
+ 	u32 flags;
+@@ -84,6 +99,7 @@ static int mtk_i2c_wait_idle(struct mtk_i2c *i2c)
+ 
+ static void mtk_i2c_reset(struct mtk_i2c *i2c)
+ {
++	u32 ctl0;
+ 	int ret;
+ 
+ 	ret = reset_control_assert(i2c->rst);
+@@ -96,8 +112,17 @@ static void mtk_i2c_reset(struct mtk_i2c *i2c)
+ 	 * Don't set SM0CTL0_ODRAIN as its bit meaning is inverted. To
+ 	 * configure open-drain mode, this bit needs to be cleared.
+ 	 */
+-	iowrite32(((i2c->clk_div << 16) & SM0CTL0_CLK_DIV_MASK) | SM0CTL0_EN |
+-		  SM0CTL0_SCL_STRETCH, i2c->base + REG_SM0CTL0_REG);
++	ctl0 = SM0CTL0_EN;
++	if (i2c->soc->ext_clk_div)
++		iowrite32(SM0CTL2_SCL_DIV_SEL | SM0CTL2_DATA_WAIT_SDA |
++			  FIELD_PREP(SM0CTL2_CLK_DIV_EXT, i2c->clk_div),
++			  i2c->base + REG_SM0CTL2_REG);
++	else
++		ctl0 |= (i2c->clk_div << 16) & SM0CTL0_CLK_DIV_MASK;
++	if (i2c->soc->scl_stretch)
++		ctl0 |= SM0CTL0_SCL_STRETCH;
++	iowrite32(ctl0, i2c->base + REG_SM0CTL0_REG);
++
+ 	iowrite32(0, i2c->base + REG_SM0CFG2_REG);
+ }
+ 
+@@ -253,8 +278,17 @@ static const struct i2c_algorithm mtk_i2c_algo = {
+ 	.functionality = mtk_i2c_func,
+ };
+ 
++static const struct mtk_i2c_soc_data mt7621_i2c_soc_data = {
++	.scl_stretch = true,
++};
++
++static const struct mtk_i2c_soc_data an7589_i2c_soc_data = {
++	.ext_clk_div = true,
++};
++
+ static const struct of_device_id i2c_mtk_dt_ids[] = {
+-	{ .compatible = "mediatek,mt7621-i2c" },
++	{ .compatible = "mediatek,mt7621-i2c", .data = &mt7621_i2c_soc_data },
++	{ .compatible = "airoha,an7589-i2c", .data = &an7589_i2c_soc_data },
+ 	{ /* sentinel */ }
+ };
+ 
+@@ -262,11 +296,17 @@ MODULE_DEVICE_TABLE(of, i2c_mtk_dt_ids);
+ 
+ static void mtk_i2c_init(struct mtk_i2c *i2c)
+ {
+-	i2c->clk_div = clk_get_rate(i2c->clk) / i2c->bus_freq - 1;
+-	if (i2c->clk_div < 99)
+-		i2c->clk_div = 99;
+-	if (i2c->clk_div > SM0CTL0_CLK_DIV_MAX)
+-		i2c->clk_div = SM0CTL0_CLK_DIV_MAX;
++	unsigned long rate = clk_get_rate(i2c->clk);
++	u32 bus_freq = i2c->bus_freq;
++
++	if (i2c->soc->ext_clk_div) {
++		bus_freq = min(bus_freq, I2C_MAX_FAST_MODE_PLUS_FREQ);
++		i2c->clk_div = min(rate / bus_freq - 1,
++				   FIELD_MAX(SM0CTL2_CLK_DIV_EXT));
++	} else {
++		i2c->clk_div = clamp(rate / bus_freq - 1, 99,
++				     SM0CTL0_CLK_DIV_MAX);
++	}
+ 
+ 	mtk_i2c_reset(i2c);
+ }
+@@ -281,6 +321,10 @@ static int mtk_i2c_probe(struct platform_device *pdev)
+ 	if (!i2c)
+ 		return -ENOMEM;
+ 
++	i2c->soc = device_get_match_data(&pdev->dev);
++	if (!i2c->soc)
++		return -EINVAL;
++
+ 	i2c->base = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+ 	if (IS_ERR(i2c->base))
+ 		return PTR_ERR(i2c->base);
+-- 
+2.34.1
 
-Yup, does seem to be a fair bit of implicit assumptions of sanity :)
-
->
-> Or, how Oliver put it [1] (regarding migration, but it fits):
->
-> 'My take is that there's no amount of idiot-proofing we can do in KVM to prevent
-> the VMM from messing this up somehow'.
-
-Haha, right.
-
-I guess fine to require userland to set things up like that, and can always add
-an option to have it automatically set up for them in future as a nice-to-have.
-
-I want to separate out the gmem bit though, replying below:
-
->
-> [1] https://lore.kernel.org/kvm/alE3jRLtYeq-WesA@kernel.org/
->
-> >    whether it might be possible to, on SPE first run, prefault the ranges
-> >    there, and make that a condition of using it? Relatedly, KVM could
-> >    reject non-guest_memfd memslots for an SPE VM rather than trusting
-> >    userspace there too.
->
-> I'm not sure that's the best idea. Mainly two reasons:
->
-> 1. KVM will be imposing the condition that *all* writable memslots be backed by
-> guest_memfd, and *all* memory backing these memslots be pre-faulted and
-> effectively pinned.
-
-I mean this really is a requirement for SPE to work at all, since the guest is
-effectively deciding which memory is being used for SPE (I think it's perf AUX
-memory right?)
-
-I think given that it's guest-designated _and_ the guest has no idea which parts
-of memory are 'SPE safe' and 'SPE unsafe', this is a requirement.
-
->
-> There are use cases for writable memslots to describe guest memory that won't be
-> used by SPE. First thing that comes to mind would be paravirtualized interfaces
-> between host userspace and the guest. For example, pvtime - kvmtool creates a
-> RAM memslot for pvtime (i.e, non-read-only memslot), and it looks to me that
-> qemu does the same (but my knowledge of qemu is severely limited, so I might be
-> completely wrong).
-
-I don't think any of this is disallowed by the gmem requirement.
-
->
-> Then there's also the possibility that a guest might want to assign a slice of
-> RAM for use by SPE, to avoid pre-faulting and pinning the entire VM memory. In
-> this case, userspace will want to have *only* the memslot describing that slice
-> pre-faulted and pinned, and not the rest of system memory.
-
-As above, there's just no way for userspace to know which bits of memory are SPE
-safe and which are not. So I don't think this works.
-
->
-> 2. Perfomance - userspace can pre-fault in parallel, KVM cannot easily do that.
->
-> arm64 now has support for KVM_PRE_FAULT_MEMORY, I say let's use that :)
-
-:) right.
-
-OK, so maybe the right path then is to keep the prefaulting with userspace, but
-I really do think we have to have KVM reject a writable non-gmem memslot once
-SPE is enabled for the VM (and reject enabling SPE if one already exists).
-
-That should be relatively straightforward and avoids at least the most broken
-userland mistakes.
-
->
-> >
-> > 4. Dirty page logging - patch 27/28 relies on series [1] being landed,
-> >    which is also an RFC, and allows migration of SPE VMs. So we need to
-> >    decide - do we want this migration? Additionally, I think it's
-> >    reasonable to, if we want it, send both [1] and patch 27/28 as a follow
-> >    up separate from the v1 non-RFC of the series.
->
-> For background, I started this conversation in the LOG_DIRTY_PAGES support for
-> guest_memfd series [2]. Oliver had some concerns, but he didn't follow up on my
-> explanations, so I decided to send migration support as part of SPE so people
-> can have a more complete picture of how everything fits together.
->
-> I would be very happy to get basic support for SPE merged in KVM, and, if we
-> decide it's useful, migration implemented as a follow up, as that involves
-> landing dirty page logging support for guest_memfd.
-
-Ack, thanks, let's treat that as a follow-up then, I think best thing here is
-definitely to focus on getting the fundamental bits in for SPE first.
-
->
-> [2] https://lore.kernel.org/kvm/alAFmiAsNf6Xm49_@kernel.org/
->
-> >
-> > 5. Errata handling - the default already disallows SPE on the affected
-> >    silicon, which seems right. I wonder whether kvm-arm.ignore_spe_errata
-> >    should exist at all though, other than in some sort of debug mode.
->
-> It is intended as a debug/development option, to be used only when the VMs are
-> trusted. As to why it's there, it's there because without it, SPE would be
-> disabled on all the machines that I have access to, and I suspect systems not
-> affected are few and rare between.
-
-Ack ok that clarifies that :) let's then clearly mark that as such
-e.g. 'debug/development only, trusted VMs only' in the documentation, and
-tainting the kernel if it's enabled, I think, would be sensible.
-
->
-> >
-> > So 1 is a known dependency, I think there's no getting around that, and
-> > thus that makes merging [0] or something like it a top priority.
-> >
-> > It seems to me 2 is pretty clear-cut, and 4 can reasonably (if we want it)
-> > be sent as a follow up.
-> >
-> > So really 3 and 5 are the decisions to make here!
->
-> I really appreciate your enthusiasm, thanks!
-
-No worries :) am happy to put in some work on my side to help move things
-forwards (and obviously more than happy to help with review on respins of
-course :)
-
->
-> Alex
-
---
-Cheers, Lorenzo
 
