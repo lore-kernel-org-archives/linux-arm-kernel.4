@@ -2,111 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC77606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FB5606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nl2zyHCE;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=N9EiD1sS;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cMhu0XUz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ew0h5rE7;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Db7RY90V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Cc:To:Subject:
-	Date:From:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=rG+GBh1fpgsQkz9UV4Ps5a8YglcFFYNsAq1Nml020MQ=; b=nl2zyHCE6jLUmp+q9GiIv+wkm6
-	HSa3rdAK35tQQF91osFHmd6CrlLUVYbVs8ptUDLoNPSlbNdE47zkv1UQnO/XgK9IUh17gk+ovVlrq
-	C85wn909V43AkDEinnkcYo7Zkdr2Ox0JaWQ/LCIenAkEKgTsGHj0kujmOiIR1obDjJZs1wHhbL60F
-	dXxO/5IIbjtoDwI+Hj21G1gDi/Um29KcYW09a/bRGjqfjzwkrFxQZJRPG5ZcBqdlmuoaU+ldaiWhG
-	a/jW554SV1Ju2GtDCxT6lkfJQYfRVpz2rrwcRZKvZeoTQUoD7obb5KSbcmQJj7IkI9R3LEuObdhp0
-	IDBiXTXQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=h/EcMMy6lB0dwByblQ+wtEW6CQqWJ+089YlzEizOkgE=; b=Ew0h5rE7sveY9f
+	I8bVsV+rd4IT+HfbGRhhinkNApAxnaHLWnRNicBAI9736EN0IxliNcrGYvPQ8MFuUaOS+irmkI6ox
+	xFnNZHnauxQ3mwjK/6gObVQONyGh7BtiKPWjwI+VeJ1POAXOJINzwmbDD93ugi3dJ1uBGFofP68Qb
+	0AsTP835d7LrpH+UcfBAaMszFvGBr51DdLtHCL0S7H8m4CWRsLsRrr5GZXCYGXfdKzoBcyN6tsd2O
+	TrZkxppKVBr+BRp4RsaoV2ZqwSHA4M9Xpkn6wpkcqmUOQAaiTRs0Gw7hSTuroL7EroYq1/bseqy3d
+	WRTUizLDvRYAS2rMpBGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwRi-00000002Y6Y-3lkF;
-	Mon, 16 Nov 2026 13:08:30 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xSwTv-00000002YKa-1SxJ;
+	Mon, 16 Nov 2026 13:10:47 +0000
+Received: from mgamail.intel.com ([198.175.65.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwRh-00000002Y6R-3CIa
-	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 16 Nov 2026 13:08:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Message-ID:Cc:To:Subject:Date:From:
-	Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:In-Reply-To:References;
-	bh=rG+GBh1fpgsQkz9UV4Ps5a8YglcFFYNsAq1Nml020MQ=; b=N9EiD1sSojxaWQwRBKE1Z94xSY
-	XMteFEqbUKjuAfkpqWi0qFUj4fpR/Pt2hL42FPOHVCdKc6jsMCY0CvvVt5j9DVkRFsoev34uaRLtc
-	Zr/qUngmQF2Cdb8C1/0OlynUlZEKqXvgR9S7P8w8CmPcpaGAsT/tkrLgAj0YDBqPTAljw3r480rU3
-	Dh/nmpO5RfYDKsk+zSV02rd1ynV6IrU/zqr1jYiWZ6/3LsWUZPZmZwp13c51HgK0Oq5mUsYIgM45h
-	ek2fF/1xmjMPvmWoCEZ3pDCrHj7D1i8vjyXOyAF3Z0g654StP2jvUu33DTW/f5o5V/CNyYt2qtx47
-	RxfhA9Tg==;
-Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwRa-0000000Dpup-1fSN
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:08:27 +0000
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-2efc5a60bd6so2733145ad.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 05:08:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794834499; x=1795439299; darn=lists.infradead.org;
-        h=message-id:cc:to:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=rG+GBh1fpgsQkz9UV4Ps5a8YglcFFYNsAq1Nml020MQ=;
-        b=cMhu0XUzgzxSi/5CG0XwaWe1vgOXKsPYbzkvLRZCYWBs3cdvlxmnhRJ95IdyDhJyPt
-         RJLdRHL8v+/BPpBdT25yB3UkvczpNxUT3RhUdlpi867usVqxHxyxlDaI4MNI8rBsJ8xX
-         hp+BLry4x91Gj/wKFyeAWCLYE2OyRZR6spCZ9ySscpmntapG9U8lWveRD6iIzssHxsMy
-         B/Wz4ANUgi3igUOd80SoMOGka5ZuC4SthepOMDsKnVCuUF2CkShMTzxKoxkY+ht5aPCW
-         8jPA4Mr9NYal8HWDK/Gi2DPyzVNrFYr4/kjB5Q4yWppcoqX7vYkjvUkH193GYndowCZG
-         FUdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794834499; x=1795439299;
-        h=message-id:cc:to:subject:date:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=rG+GBh1fpgsQkz9UV4Ps5a8YglcFFYNsAq1Nml020MQ=;
-        b=ls3EUfdmGd2fK7Qs39/KaIdbm3y4y6uwCqbyaiZuVKKwLuM04eVzqiQ1ViNGQIarfk
-         Nj/sTBZyXlSElT7tWyFOjcA+0az1OjeSc/eH7CFEX0Wf0kQJZevtp0IG9+Yi8AO2FZae
-         dBnW0A4XsdfNcM3nHZkMoyKlxHZr6ZCujjCwsC0T9EtvKCrO68+EP2NeDKHATI4mYHKv
-         90n9F6AdjMnSdYcRKSYkEpJpe0gI/EJ4S+DUgJF8HDa2Nw9qg1zSYnZNnF8PnKly7ROh
-         djp8UrsAVuWu86hgS7wvp6LpJBJH5SvqwVj/zjWSAAAde8WHCG1iJoCTCP69aVzGNYDl
-         nCxA==
-X-Forwarded-Encrypted: i=1; AL+hErF+0Q9FOSW3I1NvCeUjaUL5vTUayV2N3HGSL80RAW2hdO1yM51XPH4BhMYEd1lAT0OQjTzY27pUrtgkFCvZrsf7@lists.infradead.org
-X-Gm-Message-State: APuU4Z8cUSrwpcEl93utqxpkFRyMXkEzxpKVbO53pWPlNOKEusFN8bBv
-	lPPj+euN/6XWBBzy40YcTk1u+ofhsZpLGKdLhHHupFmpGxyBD991hra7
-X-Gm-Gg: AYBFou2m6cOeIF4OiGOsLOuCvm8l0z/GwLUcxTiRlJofNUKOFhRMRhCGM5mqeibYJd5
-	W87nZGuGuz/JlhZd3zZ0ajzfksbXXx2yc2mKTR78HybgtVa3rStQ7N4HgBQJxkF0o9rDtrlOCGG
-	cB5brsmAGVjvu0p+sUsf5ZtwFf/jTu/V/9eGybtt4gOMfa13Xg/O1goIuDJWtUSp2q/wJK/ZAZH
-	aq4rqqBZedqaGVuvBDVxVe7QKC2KFqml/tz045LGnIQxrqxIs0Ao8ewAgyC+WGdZ1cmPS9CSX39
-	cebqzDCET+AigFjKc4k/mu47R2M0lo52HdTSecUd2dz6PYgcRUGpwuAmBC3Bbbzus1b5G6RO5s8
-	0CKqz0d1t7SQaBkZ7KLeySHvKZH3Jff5pFVJvWvtjO3uJfJm++7C1Zk/vj4whTnf6QA3CMZVhL9
-	cUfAxTEdxW9ob/WqugECOya+cQFZEOodI+Y0GK//psrnkG8shzBJwHrX84irfatUEDWj8fLM3BT
-	VbnlLf6e3XiU7dix7LaqPKRpE03ivWqia/TqnxSgIo2nVXTt/nZoK73aWF9tRQVWsp1U3bPxPDF
-	QhsGh+MSogH2WmWHpA==
-X-Received: by 2002:a17:902:cec1:b0:2e9:787c:8e68 with SMTP id d9443c01a7336-2ee0d36b42cmr109539545ad.0.1794834498913;
-        Mon, 16 Nov 2026 05:08:18 -0800 (PST)
-Received: from v2_send.eml ([2a09:bac5:4306:dc::16:229])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ee0f4ad50dsm38280985ad.7.2026.11.16.05.08.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 05:08:18 -0800 (PST)
-From: Haoran Wang <haoranwangsec@gmail.com>
-X-Google-Original-From: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
-Date: Mon, 16 Nov 2026 21:08:02 +0800
-Subject: [PATCH net-next v2] net: sparx5: check DT port reg against chip port count
-To: Daniel Machon <daniel.machon@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- UNGLinuxDriver@microchip.com
-Cc: netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>
-Message-ID: <20261116210802.2718-1-haoranwangsec@gmail.com>
+	id 1xSwTs-00000002YK6-37O9;
+	Mon, 16 Nov 2026 13:10:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794834644; x=1826370644;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version:content-transfer-encoding;
+  bh=FE8Eb/o2jNhMmUkY0cmLF5+hbV0dzwgrgopBYqNs/2g=;
+  b=Db7RY90VJBMp0IobypR/45LHYchBIG55PtBnIF62pvPKlws3a0zSfHpJ
+   FqdpSYbOXsu5Vko1Qlqk4SYO9cPLQrM3C6XhGOd6GmvrKtW7zc19lIDhG
+   Bw/McS3IAwLu1cWrpaG8snjCyFORJTj+JKn42P/U1bhQdsUscvnIPEi3I
+   mxkde87AKXLpvIROSwA+2vC8VoM80yZI32Gqll8OovpH0J6GoYSk4cd8G
+   /m/RsaudiU7b1+1rjyvtZb4jKuvE179SVNZqyUSaZhq9ZWu3qLRClpdi4
+   gWRZY5SJ9/20MP4Kk1hdTCqYGhHL8ickdcN+lxYMciEvKrdJu/weypXoq
+   A==;
+X-CSE-ConnectionGUID: YDGImwP6Tc6WsvPdxVDaJQ==
+X-CSE-MsgGUID: NSiKcmqpTgWubo7Y3XPmig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3464637"
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
+   d="scan'208";a="3464637"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2026 05:10:43 -0800
+X-CSE-ConnectionGUID: neqRBvN9TSuOXPoowwyZdg==
+X-CSE-MsgGUID: HJr8YL80TZmLcafdJ7R4kA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
+   d="scan'208";a="9388760"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.117])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2026 05:10:34 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kory Maincent <kory.maincent@bootlin.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Daniel Stone <daniels@collabora.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Mark Yacoub
+ <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, Manasi Navare
+ <navaremanasi@google.com>, Drew Davenport <ddavenport@google.com>, Louis
+ Chauvet <louis.chauvet@bootlin.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Kory Maincent
+ <kory.maincent@bootlin.com>
+Subject: Re: [PATCH RFC v3 0/8] Add support for DisplayPort link training
+ information report
+In-Reply-To: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
+Date: Mon, 16 Nov 2026 15:10:30 +0200
+Message-ID: <51ec15feef9a88e460ab6fefc48b5b982f4857c0@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_130822_358746_8FDA57D2 
-X-CRM114-Status: GOOD (  14.89  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261116_051044_859688_D7D10C7A 
+X-CRM114-Status: GOOD (  33.17  )
+X-Spam-Score: -4.3 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,69 +103,176 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-mchp_sparx5_probe() reads the DT ethernet-port 'reg' property into
-portno, which sparx5_create_port() later uses to index the fixed-size
-sparx5->ports[] array:
+On Mon, 12 Oct 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
+> DisplayPort link training negotiates the physical-layer parameters needed
+> for a reliable connection: lane count, link rate, and optionally Display
+> Stream Compression (DSC). Currently, each driver exposes this state in
+> its own way, often through driver-specific debugfs entries, with no
+> standard interface for userspace diagnostic and monitoring tools.
+>
+> This series introduces generic helpers, for exposing DP link capabilities
+> and state as standard sysfs entries.
 
-    sparx5->ports[config->portno] = spx5_port;
+So how did we end up with sysfs here?
 
-The value is never validated, so an out-of-range 'reg' (runtime overlay,
-corrupted or attacker-controlled DTB, kexec-supplied or bootloader
-fixed-up DT) turns probe into an out-of-bounds write.
+> The aim of such development is to guide users to select the most suitable
+> DisplayPort connector for their needs. For example, if you have a USB-C
+> hub with lesser capabilities than your computer=E2=80=99s native DisplayP=
+ort
+> connector (such as HBR2 versus HBR3 support), the system could recommend
+> connecting high-resolution displays directly to the computer=E2=80=99s po=
+rt
+> instead of through the hub to ensure optimal performance.
 
-Skip port nodes with an out-of-range 'reg', as lan966x does in
-lan966x_probe_port(). The bound is the per-chip port count from the
-match data (sparx5->data->consts->n_ports), so lan969x, which shares
-this probe path and has only 30 ports, is bounded correctly as well.
+I do wonder how all this is supposed to work in more complex real world
+scenarios, though.
 
-Found by a scripted scan of of_property_read_u32() call sites used to
-index fixed-size arrays, followed by manual review. Verified at runtime
-on a pristine v7.4-rc2 arm64 QEMU virt machine (inline KASAN,
-CONFIG_SPARX5_SWITCH=m): an out-of-tree module supplies only a
-malicious DT overlay, the unmodified in-tree driver performs the store.
-reg = 15839 yields a KASAN use-after-free, reg = 0x20000000 a wild
-write 4 GiB out (paging oops), and reg = 65 silent in-struct corruption
-with a later NULL oops. With this patch all three are skipped. The PoC
-and full logs are posted in the thread. Not tested on real hardware,
-QEMU virt (cortex-a57) and compile testing only.
+I believe the user primarily cares about *modes*. Which display modes
+can be used with each display/connector pair.
 
-Fixes: f3cad2611a77 ("net: sparx5: add hostmode with phylink support")
-Signed-off-by: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
----
-v1 -> v2:
+With the low level link information, are you proposing to compute the
+required bandwidth for modes in userspace? I think it's going to be a
+lot of work to compute the bandwidth requirements, taking into account
+DP SST vs. MST vs. UHBR and DSC and bit depth and everything, and you'll
+still miss any driver/GPU specific contraints. Or are you just proposing
+to match the physical characteristics only?
 
-- Check against sparx5->data->consts->n_ports instead of SPX5_PORTS,
-  so that lan969x (30 ports), which goes through the same probe, is
-  bounded correctly as well (Daniel Machon).
-- Document how the issue was found, the runtime verification and the
-  test setup, as requested by the patch bot.
+Given all the connectors and displays and their modes on a system, you
+could estimate a) for each display, what modes could be used on each
+connector, and b) for each connector, what modes could be used on a
+display, if connected. From the user POV, they could be shown why some
+display mode is not available on the current connector, and crucially,
+on which connector it could be available.
 
- drivers/net/ethernet/microchip/sparx5/sparx5_main.c | 5 +++++
- 1 file changed, 5 insertions(+)
+In general, I'm wondering if you're really after higher level
+information, something like "connector max available bandwidth
+with/without DSC", that would more directly map to the user needs as I
+see them than low level link details.
 
-diff --git a/a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-index 08a398a..1647067 100644
---- a/a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-+++ b/b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-@@ -845,6 +845,11 @@ static int mchp_sparx5_probe(struct platform_device *pdev)
- 			dev_err(sparx5->dev, "port reg property error\n");
- 			continue;
- 		}
-+		if (portno >= sparx5->data->consts->n_ports) {
-+			dev_err(sparx5->dev, "port %u: reg out of range\n",
-+				portno);
-+			continue;
-+		}
- 		config = &configs[idx];
- 		conf = &config->conf;
- 		conf->speed = SPEED_UNKNOWN;
+Do you have the userspace somewhere? That's needed for merging UABI
+anyway [1].
+
+[1] https://docs.kernel.org/gpu/drm-uapi.html#open-source-userspace-require=
+ments
+
+>
+> The new drm_dp_source_set_caps and drm_dp_sink_set_caps helper expose
+> source and sink training capabilities to userspace via sysfs attributes
+> under dp_link. Finally drm_dp_set_cur_link_params helper is provided to
+> report current link information at runtime.
+>
+> Three drivers are updated as reference implementations: i915 (direct
+> connector path), ANX7625 and MediaTek (via the bridge connector framework
+> using a new DRM_BRIDGE_OP_DP flag).
+>
+> Here is a sysfs example:
+>
+> cur_link_info_dsc            sink_link_caps_nlanes
+> cur_link_info_link_rate      source_link_caps_dsc
+> cur_link_info_nlanes         source_link_caps_link_rates
+> sink_link_caps_dsc           source_link_caps_nlanes
+> sink_link_caps_link_rates
+>
+> 1620000 2160000 2700000 3240000 4320000 5400000
+>
+> 1620000 2700000 5400000 10000000 20000000
+>
+> 5400000
+>
+> This series is rebased on top of drm-misc and may conflict with the
+> current state of the drm i915 tree. Which tree should pick this up,
+> given that it mixes core development with driver changes?
+
+For development, please just base your work on top of drm-tip, and the
+tree(s) will be sorted out later.
+
+BR,
+Jani.
+
+
+> Patch 1,2: Move helpers out of i915
+> Patch 3: Introduce DisplayPort link training capabilities and state helpe=
+rs
+> Patch 4: Read i915 DSC capabilities in any case
+> Patch 5  Use dp_connector helpers in i915 to expose link training state
+> Patch 6: Introduce DRM_BRIDGE_OP_DP and wire bridge connectors
+> Patch 7: Use dp_connector helpers in anx7625 to expose link training state
+> Patch 8: Use dp_connector helpers in mediatek to expose link training sta=
+te
+>
+> Changes in v3:
+> - Rework the core to use new helpers instead of an extension of
+>   drmm_connector_init().
+> - Add a new mutex to protect sysfs read write access instead of using
+>   the global connection_mutex.
+> - Move helpers out of i915.
+> - Add the support in the anx7625 driver.
+> - Link to v2: https://patch.msgid.link/20260619-feat_link_cap-v2-0-a3dec4=
+c02ad9@bootlin.com
+>
+> Changes in v2:
+> - Removed work converting i915 to DRM managed resource
+> - Remove voltage swing and pre-emphasis properties
+> - Expose link training state via sysfs dp_link/ group instead of
+>   connector properties
+> - Add comprehensive sysfs attributes for both source and sink capabilities
+> - Add new helpers for managing sink capabilities and for current link
+>   parameters
+> - Link to v1: https://lore.kernel.org/r/20260409-feat_link_cap-v1-0-7069e=
+8199ce2@bootlin.com
+>
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+> Kory Maincent (8):
+>       drm: Move sink link rates reading helpers out of i915
+>       drm: Move DSC capability reading helper out of i915
+>       drm: Introduce DisplayPort link training capabilities and state hel=
+pers
+>       drm/i915/display/dp: Read DPCD DSC capabilities in any case
+>       drm/i915/display/dp: Use dp_connector helpers to expose link traini=
+ng state
+>       drm/bridge: Expose link training state via new DRM_BRIDGE_OP_DP flag
+>       drm/analogix/anx7625: Use dp_connector helpers to expose link train=
+ing state
+>       drm/mediatek: Use dp_connector helpers to expose link training state
+>
+>  Documentation/ABI/testing/sysfs-class-drm-dp       |  85 +++
+>  drivers/gpu/drm/bridge/analogix/anx7625.c          |  68 +++
+>  drivers/gpu/drm/bridge/analogix/anx7625.h          |   1 +
+>  drivers/gpu/drm/display/Kconfig                    |   1 +
+>  drivers/gpu/drm/display/drm_bridge_connector.c     |  29 ++
+>  drivers/gpu/drm/display/drm_dp_helper.c            | 571 +++++++++++++++=
+++++++
+>  drivers/gpu/drm/drm_connector.c                    |  11 +
+>  drivers/gpu/drm/drm_sysfs.c                        | 155 ++++++
+>  drivers/gpu/drm/i915/display/intel_display_types.h |   2 +
+>  drivers/gpu/drm/i915/display/intel_dp.c            | 249 ++++-----
+>  .../gpu/drm/i915/display/intel_dp_link_training.c  |  14 +
+>  drivers/gpu/drm/mediatek/mtk_dp.c                  |  79 ++-
+>  include/drm/display/drm_dp.h                       |   1 +
+>  include/drm/display/drm_dp_helper.h                |  25 +
+>  include/drm/drm_bridge.h                           |  13 +
+>  include/drm/drm_connector.h                        |  53 ++
+>  include/drm/drm_sysfs.h                            |   1 +
+>  17 files changed, 1202 insertions(+), 156 deletions(-)
+> ---
+> base-commit: 34e9ab0182494d7599dc9759bc216550d814b396
+> change-id: 20260226-feat_link_cap-20cbb6f31d40
+>
+> Best regards,
+> --=20=20
+> K=C3=B6ry Maincent, Bootlin
+> Embedded Linux and kernel engineering
+> https://bootlin.com
+>
+
+--=20
+Jani Nikula, Intel
 
