@@ -2,77 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E5C606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 10:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF8F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 10:56:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hzHpeXQ7;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=uXkOgTHx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=T9JQKBzj;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=ddJw0hq0;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zL6mnPL8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=EJkLT5+FbYsBkV6aiXjOdMACJbaO9v6pAiv+btB2ar8=; b=hzHpeXQ7FX27jHuS//Z8sego15
-	8eyPiYL3d8Lw4JMR71JY6Nta1duKwtdNEV2DGLig0fTMHxQEcuU5/F20rQD6cnHIWkNd8WqhgqOoO
-	tFe+SJkwHypSDoGY+KSzn4nhd0RD9DPVGWCfTNlLUKODsskDs7V25jsIFivDdu2AbkU+lEdPzanFq
-	6P4YHSaGPvngzA6sjp2uPmiMk9dDHdWtQXgjoi6XN+RDzfG+USaQrxOEvxB4oUZktuGA0sKhqNlEu
-	b5XTEWlYjohUW60qyf1T4cwzOJa5ZOSmCgzQ+3BvbN8g8gXXNwNkpCPXA/Xd6oEdoOk7cGREtjtSA
-	G9+vcgQw==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Uuenm5c7uLenhEpnUWoxIYDWfrao2MY0rp9vEXUhv6c=; b=T9JQKBzjcMruBA
+	j8rP9onSgi8bgn2iALwLVnVubrNH3LjN8xiy5utSVYWtJPmQNChLUNmh64WTp3XqMNIYsmpw8QFYm
+	mxex/iEHL90lXbpVstB267B8gMEH164Oxfq4P2S0+xRCZMqPaWreEZ1PkYKTp74/4LL75+PadDi6a
+	XiTa8q1CPuAV+1fUkkUYPVKEl1TKPKbdq6ljt2BEIrK8Y5m1xI0evr4sR0eh4Lv7E9ty+gg881NOU
+	Cv/mpuwytstx9p4cARZSHXvR0Hsw9lZezHFah9pGyiNiM59oaBdFXfXGpOKiqLbHOoVbe7y9wCYTv
+	5rJWyQQW+i4Ph5yru1vQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSuNl-000000022Ti-22qm;
-	Mon, 16 Nov 2026 10:56:17 +0000
-Received: from mail-yw1-x1133.google.com ([2607:f8b0:4864:20::1133])
+	id 1xSuNm-000000022VV-41uR;
+	Mon, 16 Nov 2026 10:56:18 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSuNX-000000022Gn-2KgD
+	id 1xSuNl-000000022T0-1pla
+	for linux-arm-kernel@bombadil.infradead.org;
+	Mon, 16 Nov 2026 10:56:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=Uuenm5c7uLenhEpnUWoxIYDWfrao2MY0rp9vEXUhv6c=; b=ddJw0hq0bRMbe8NNtljj7d91X6
+	j51upKf6QgSrmcNx63CIME/+IiLkA0Ai5YAT8FUaQQRvU7h+yTXAbnCkUcE1/xtD/xl24qN6gNpJ8
+	pCn6SpKXaA8kZ7uH51lN480sTZwe1zf2IJ6p/nXva1JeI8v+XhXkXfgrglYolpuHBFxSTM8LRvXI7
+	YTRhDez6unIlA8oHzFwchbV+1kRf+k6FYB3m820JOYiBECoPmYgIxo8KKMsHJfgR/vfPxUIa3Qshk
+	OEV3h/qz/96H6NIz3OCTtrsSIsfPY8efzUeqFtMQ3PXow92Nx1rNH/qQSRa8QokTjOsYFsYl7DUfq
+	MfPWb4eA==;
+Received: from mail-yw1-x112b.google.com ([2607:f8b0:4864:20::112b])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xSuNh-0000000Deol-05oD
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 10:56:06 +0000
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-8b4b9ba815bso12505027b3.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 02:56:02 -0800 (PST)
+	Mon, 16 Nov 2026 10:56:15 +0000
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-8b4c685c751so10978917b3.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 02:56:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794826562; x=1795431362; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=EJkLT5+FbYsBkV6aiXjOdMACJbaO9v6pAiv+btB2ar8=;
-        b=uXkOgTHxNv58Z03rQpUddCcol98iiPdcUXno3oYkrrFmQi59leYKsHKZ16dlwY5Xh0
-         VtmKLqKu6Y3D/e8jb3eOw7bKApW/BkkjWC6K1QiCzGQyh6o72n9DWGDh3aAwW7XFam+n
-         LAN4KHkZKgVzXrL8TDdcJHB5TSHYxkuF8fhjSZ2TR74zKs+kaK207BvJP85NXVYyJ1NV
-         Zup6GCjnJ42K14M4CuVqoZNxArb9+fvDoc1nRu6fQgfDMsqLN5UaVjxW8Yhc3xUZn5X6
-         dNtmY5hb/u20WTv68Yt96+C4MWcJ7rgSgfsOWgeBtRIVsbIVdZfiSsl8sMVmWinB1fPm
-         4asw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794826562; x=1795431362;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1794826570; x=1795431370; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=EJkLT5+FbYsBkV6aiXjOdMACJbaO9v6pAiv+btB2ar8=;
-        b=YRI1D1FGVtlMIkkfIp6KcTQK2K+9HLhQa3/c84dcZJoFP9KtC5cKcQIReyhA1epk7u
-         0vdt64ZKpWJkzyT6bLSi1MqC+tcN6DT/PtrqOQYauqWXFRB19z6dvWQqINNTc/Xuk/m5
-         4dh0iGctciqHkwjN9S9/Hmga9AGs86LzFgdHkVu4TKM1Fw9r+Cdx5cOhkhOa7OBjPXfU
-         Yy+cpof3Z6LNTEYijn8l661/nBPhsqXO6d0ga7CsHOw7SSWjKgwEb0eo3CZzYWC8wQWO
-         oeQwLiOeJzl9ATUZyrom4RJWuzqyeArhZagzHxlEnXOynVCdXlxupvWtlfpGm4VubxFL
-         E2dg==
-X-Forwarded-Encrypted: i=1; AL+hErG2LbTGT7eRZ4v6jSnK2Ch8dszvBaA04J1nODF8lPMj6aSYvfSoIqn2Xs7gADZHeOsngR+hNeziF6CXpL1AyiWr@lists.infradead.org
-X-Gm-Message-State: APuU4Z9u8299cHad0TXf6eE6dGe82gxJ3VIe+qy2jYt23/gHaRzgKCLn
-	WQU/Jg44bEROf5ni0PFqhUxeUEDcuHkZRjFwEEnIVpEwew3QdOA9BYBe
-X-Gm-Gg: AZFdTZcbglSV1fXpX7vdfhVzOIu6mR9U/fU+RpdvpYYKzcRKk2bjiTEPQfkPyKxi7NX
-	8wuNT+AvLyJLeL3NsD/MUZf9rSt2v4cL1tjgfNFz6jqHSNkOBRwxPuEERq91fVS+16rrv4lQzYj
-	eK76bayfi6jrY5DeeZTkZODccTPfLMHrRcya5wqNE8XHkFZ3ixp/5w7f+vZ7K/7Cglz54VIGEyg
-	8T0zr7MJ93/P6W9QdbLecxKYH2xpFHS/ljgN9+KDedbYFPmUS7eqOmdk0jjyMIIXHMmoL9+RxK+
-	9kVVfgumU9lo5awoZrwULE4kLbhIxLz66XX76g9Ugq1D/izcfn/CEAAzS8AncX+2c8ZceQXuGOc
-	lKdzcARPU+YB2fEvrAh/ABW7UeH4eS5nvK32MzLZbKKAyHOmBOgmsKtO3s06KCRQn+8Cm4EcBpJ
-	iWoadHg3LGBvgfLaHDZkOJ5/AbWkD68AeVh9J3SPiOC15fd2/em5mBranF4FaA1gQ3zun7wJJQW
-	IaGfszqz/B69eULLpTFhcVOqMPczHXtAY2zb+a2e/GUAd25a1zKge217kpdsTVJI08zrQE1wnC5
-	aAQYpqpHjEQzTaEqI2s4jxgF5YOjb9BtghlA1CVPlNsDO2LWwi+Ju+sJ+7Y7vX0e2AlGx8OztgW
-	PYArW8El4+SDqMTd4Z3mNkDzIKCiI0pmNGhedUa2BZUi1a++gXXkGsHNTUA==
-X-Received: by 2002:a05:690c:34c9:b0:8b4:c9b1:ba6b with SMTP id 00721157ae682-8b4c9b1c520mr26140997b3.23.1794826561834;
-        Mon, 16 Nov 2026 02:56:01 -0800 (PST)
+        bh=Uuenm5c7uLenhEpnUWoxIYDWfrao2MY0rp9vEXUhv6c=;
+        b=zL6mnPL82KCgpwTw8QzAxAFtdo1npMWif5maLPEtdOd3DlWQS1nTzpwFF5YJO+D9BJ
+         83wPFPC1QLycdHJ2Q47ruiejr3KZb0gQX48gHez65ILpMHvywFhX+n4w+8f4d3LOFwUB
+         legIK4bShk/he5Qr6H5VgmpLweflLw6TDfsY7varifDUTETCrO/STLSnCyU7qtIKmwgO
+         WJNv1oeQ4BlVm+w4qv8pPZrQszZFFTecgCup5ymIFkB1bRWdfJa3tEurmDJA9Ea6Y5wo
+         HrpjQ3guPtC2QT3BfVd64vz95MicrQrSUSqvVxMFhW6MxBC0LJxJZqF1taFjMeCWiiqS
+         A+Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794826570; x=1795431370;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Uuenm5c7uLenhEpnUWoxIYDWfrao2MY0rp9vEXUhv6c=;
+        b=exnx5u/gXfzJWiwqdW2ZoVtGqgFRxF8u8fPf1t/WR8RwC8tTvWLFRtLIMrSOZPzqjQ
+         PbP+2TYl6PXHSeRMl1Lgw+0ywg4jRpMR42Q5REqf6HSifpWjrupP7OlSbh7Ae54YulWY
+         /m3lk/tmM89Ey91VsctoCOIFMhjnNOQnlZqsXwywlzg8kud46QQ+g+wjnQCXdFqTGDtT
+         QHGPxdYd9axsNz7RRLyQlUcjCZUirUWJLqluKNTUERZEV7rVG98SdBwLtNGaT5Iu9PuS
+         649dDhzuAyW23BjeYqMXknTR1seuT/8kgIg3ksWGJvKa8gFaW/lbg97hWGxOIJ2IKdnB
+         FODg==
+X-Forwarded-Encrypted: i=1; AL+hErH0Nrn35V8eSmvASro+SeoOere8aPZYUyMgZJ6BLrtvVuxuSdvYEI2IOpXGo7fv+W0SXomaIMAXhpn+tsav+sp5@lists.infradead.org
+X-Gm-Message-State: APuU4Z/P9qXuGaOyxow+azF+bIY+ZE6w0HKcbay6pnzUK1Ux2f0jhmCc
+	mZbA6DWHCsnvfcmzipcsK5eak3MM7wj4Mnjo4q+2CFrr376uDNgWzcHg
+X-Gm-Gg: AZFdTZc5rERfuNnzgvkRNHXGlO/VAWfojUtedp00RdUU2KLJcHvB8C+GaWRt5ixrKpW
+	WMxeMlA9/UMuXYNqqf5zs6VB/MVsLWEHvWtg01h/bS5NcazuCcpEsRf5pbIaEL7lrT+ri9DE6ol
+	tAXKYMoKgb2gz933N+uTg+VEbM124CbeAVrXPmBUzK2TNnhSGty0KoVXAn9TETkKkN3I2YxB4KV
+	/wbHV4qvMicoirzuldmiJvqxPPGxKBWhZ8E7LQ8WT/gaRRy8gglNaF7OcE+BsmIXu/bhN7YF0Iy
+	7vG5et08yZz3gtmMtgwOmi4LOkKucVfomrUVjg6Ajtj1v9uuB4oynKoBvO7kpnRC/pjrRBWHUj4
+	/jskS8au6JQaqayRak6rKUyFtpgilLFYkmpeGfJQTsOqjnZeF+sRNyKQ2dunoAww3GboqdaBF8S
+	A//E8qwDpuWdbWymuJTGnq2ZhuYTyqEZLASCHX+b4Tycd0B/xNaBsm7sKnciPAYFywDmn4lccAT
+	gpnVNHL1iKdBhHOTiTzoYTPEgeNWn02e8lBX6ynwk58pfutAvUajZ06lizWfoRviDesPvv4HAOK
+	W1Bv7uB8NfvTVK14K9EYTdODqpVsMGYmPIfLLYXN9kYjt8iTd6XaMeFV0ZyVMxbqx27ONjLgJy0
+	UVdrj4vZb0VAUGPmnBo2fhKVXT0DdFgekM0Fv
+X-Received: by 2002:a05:690c:389:b0:8b3:2445:889b with SMTP id 00721157ae682-8b4aa2eb92bmr50305027b3.91.1794826570279;
+        Mon, 16 Nov 2026 02:56:10 -0800 (PST)
 Received: from MaquinaLab.. ([2804:1b2:aa41:8a69:2b8b:32cb:351d:f30d])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-8b4aa7f1a0dsm82274987b3.1.2026.11.16.02.55.55
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-8b4aa7f1a0dsm82274987b3.1.2026.11.16.02.56.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 02:56:01 -0800 (PST)
+        Mon, 16 Nov 2026 02:56:09 -0800 (PST)
 From: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
 To: Vinod Koul <vkoul@kernel.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
@@ -90,17 +106,19 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] phy: sun4i-usb: add the Allwinner A733 USB PHY
-Date: Mon, 16 Nov 2026 07:55:42 -0300
-Message-ID: <20261116105544.669029-1-vinicius.eduardo.pedrosa@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: phy: document Allwinner A733 USB-2.0 PHY
+Date: Mon, 16 Nov 2026 07:55:43 -0300
+Message-ID: <20261116105544.669029-2-vinicius.eduardo.pedrosa@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261116105544.669029-1-vinicius.eduardo.pedrosa@gmail.com>
+References: <20261116105544.669029-1-vinicius.eduardo.pedrosa@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_025603_595348_7FCD25BE 
-X-CRM114-Status: GOOD (  14.29  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261116_105613_229165_A1334622 
+X-CRM114-Status: GOOD (  10.91  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,54 +129,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This adds the A733 to the sun4i-usb PHY driver. It works with the D1
-settings, except that the A733 gets SIDDQ cleared before the PHY reset
-is released (patch 2). That made an intermittent USB1 enumeration
-failure go away on my board.
+The Allwinner A733 USB 2.0 PHY uses the same configuration as the D1,
+so add its compatible with the D1 fallback. The A733-specific
+compatible lets the driver clear SIDDQ before releasing the PHY reset,
+without changing the PHY configuration.
 
-I only have one Cubie A7Z, running a local DT, since there's no A733
-dtsi upstream yet. Only USB1 is enabled in it, so PHY0 (the OTG port)
-never went through the new order. The boots ran the same reorder on
-top of 7.3-rc6, before I turned it into a per-SoC flag.
+Signed-off-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+---
+ .../devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml    | 1 +
+ 1 file changed, 1 insertion(+)
 
-The numbers are in patch 2. The comparison inside the last run alone
-(1/31 vs 0/60) isn't statistically significant, so it leans on the
-earlier 3/40 too.
-
-One question. The vendor BSP uses this order in common code, for every
-SoC. I kept it per SoC because I can't test the others and the manual
-says nothing about the order. Would you prefer it for all the SoCs that
-clear PHY_CTL_SIDDQ (D1, H616, and A100/A523 through the D1 fallback),
-or is a per-SoC flag fine?
-
-Changes in v2:
-- Reword the binding commit message into a single paragraph (Krzysztof)
-- Rebase on phy/next and drop the dependency on Xu Rao's "phy:
-  allwinner: sun4i-usb: disable the PHY2 PMU clock after SIDDQ setup".
-  Patch 2 only overlaps with it in context.
-
-v1: https://lore.kernel.org/all/20261029172325.3425046-1-vinicius.eduardo.pedrosa@gmail.com/
-
-Vinicius
-
-Vinicius Pedrosa (2):
-  dt-bindings: phy: document Allwinner A733 USB-2.0 PHY
-  phy: sun4i-usb: clear SIDDQ before the PHY reset on A733
-
- .../phy/allwinner,sun50i-a64-usb-phy.yaml     |  1 +
- drivers/phy/allwinner/phy-sun4i-usb.c         | 35 ++++++++++++++++---
- 2 files changed, 31 insertions(+), 5 deletions(-)
-
-
-base-commit: 6bdfbe223ed4735073c299a6645ebd3faac3f51f
+diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
+index 580c3296a18d..da4ad6fb3531 100644
+--- a/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
+@@ -23,6 +23,7 @@ properties:
+           - enum:
+               - allwinner,sun50i-a100-usb-phy
+               - allwinner,sun55i-a523-usb-phy
++              - allwinner,sun60i-a733-usb-phy
+           - const: allwinner,sun20i-d1-usb-phy
+ 
+   reg:
 -- 
 2.43.0
 
