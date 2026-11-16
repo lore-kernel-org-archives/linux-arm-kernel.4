@@ -2,128 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97750606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303F5606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 13:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dOEMVZck;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=NziXik4C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O7cofm8a;
+	dkim=pass (2048-bit key) header.d=ubuntu.com header.i=@ubuntu.com header.a=rsa-sha256 header.s=fe-953a8a3ca9 header.b=HNxv2Zr3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=X9W2qeZI7XaN0ALZbFt2uJyhJ4nSOVgVfY1EGY8oXf8=; b=dOEMVZck/aGNnwFRGyc2RVpAes
-	GOZWhdhfHggTDGyuqv5EK/V2rjrr30lXWJqTn9PWSV92k2GzZx++lsyVZKiLfUp7V+suLSpa6GXEp
-	1gmEzdeNfXPh//nfl5ZLM/8xC6dw2lbV+iMJwp+TBpIPaudrZE/GzS3k48RoDOHvivdlM/4ZSf7aw
-	NuBBNYGxsh0+IwqLSpjm+1ZbQd97TqnB63cm3KmmFugxlhUfcOFfmY1XTAXXJYQfrqzeKRKEBuDLO
-	z98fPbac0tP+pvNugY8IchebCsPnt7VjKo4MsjDyGzdpqkV7QNdtZXH/ScU0bsQGxR+wg43/szcys
-	Uwi1sFyw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
+	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Qopof/KzEChronzbaNdRS8yRUwb7T04Bp6EAIGWAg3s=; b=O7cofm8ad8dza3
+	keMEzHIPLRlpNLwiepuH+BPvGa1J0QTLVJFHyRKAZjO1vWepAsnsN3mm78Wq8nChoGlRScram+I0N
+	3VTtNyEjit1YICAm6TVtDn77fn//pGf0aktWD8LN0YjrVrCLvTJAtPtw5ut6G+oIgYTd2ZwYQxt4w
+	x9h6Rzj9nS/4mGsH9fMPorDYKzOKkgpglylYwTUcMgNmcovu0g5nmE5aydRTN7Yu8ifqA8ign8Srv
+	78i8s9r7UBD3Abmgq1sWXlzh0L0hk+f7+hlauns/07VrkLEJUns2uzzAXBuaI2/1ARbx0LzOQON5S
+	aGoCiWT4Qi3skc5Jo2Rg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwiu-00000002cgu-3nfL;
-	Mon, 16 Nov 2026 13:26:17 +0000
-Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
+	id 1xSwjO-00000002cvf-3EML;
+	Mon, 16 Nov 2026 13:26:47 +0000
+Received: from smtp.forwardemail.net ([121.127.44.66])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSwia-00000002cUy-0osh
+	id 1xSwjM-00000002cuP-1HRm
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 13:25:58 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OPjGmLxWAhS4SMsVVtSIZ/3ioAmEVi2uGxt1I5DF+uS58MalUGAMm1Q6GnXOlS2FtIj9dcigoWJ4rPMy9FUwiTtkMTomgaZMCp4RsM02yu6EN6Avj58b3JHCxLsAtocAxwZP9Wchce4kgv0hVE0LpUkNFhPZBaFqmNgsAhk+BnTBlDLkFPForCfHlxPNoJhK7wFQFev2TcCXBgeuYMInG8qC1CeAJ0EfqeJDpyWzjH4Cx1Hud8PyA8K4PotKMJS3Xd0FJNaQg+a/UwcygbpN67VPU1A5DJGAj0MRokfm5ZZJgYvXKlMO9VbDr54eyLQf1ZfRPd66LtmxON9Q5dEyOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X9W2qeZI7XaN0ALZbFt2uJyhJ4nSOVgVfY1EGY8oXf8=;
- b=J7UQjyWRw8KckKvRm54N47rc53KUuic3OJ2ugvYDCorDnFFld/+m3Vf2X4rgSidGmMDIydDBNWfZ66EUE2G7iECLZ+o5BuWfa5VlD36+jLfucE3186kgvzz+9hFZ0RMg4yAL56uYF/5eM8f8IP8rHAI8NKmtcxVtlWpi3ak2O/iBwsmSES38I39zuFd+nGr2/or8N7emMijTPjgqf27FBETLX6iBZI4Vm5duOr4Qf9y6NJAULFluwlogq0/5K3+urKeRqQdEtpicKFUuMETOAIyN7/a4IPKmy2zUr6qpohj4Z9euErSCX7+Ns4IVhX0dqUyb69i+4ilVZQ8coHhUmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X9W2qeZI7XaN0ALZbFt2uJyhJ4nSOVgVfY1EGY8oXf8=;
- b=NziXik4CpVO4xmY7mHyiDN5NWWwwmLKpHZa6jgx9mCI2KY4jTjXW4rw+ZACsbByL7lJ5JsQoM9pCtNjyJBH/MqgrnZmzc8WJfb4qsojj6l19mo8pHlsqlZVgzpZWdYK3Zl63qdFEcYjnkKseSamADBqBqUPeJq4X88Lyu0fOPP8pei40m2zRyXDmnSq035seJDyEY4wrJ7ko0/w4XW0+GKUOp7K/2XVikcc0Zy/nQItjSj+dKS/WL8qEFQnYMM31W1wrBtY1RjW9W/YBRQ6gJvj6pOCZqz8SZ0PthP/q7jQKvlqW4suLxK5/YmkH2aH07x2S+5SHAiGyvtgHruyrFA==
-Received: from PAZP264CA0104.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:1fb::13)
- by DU0PR10MB7357.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:447::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Mon, 16 Nov
- 2026 13:25:48 +0000
-Received: from MI3PEPF00008558.eurprd05.prod.outlook.com
- (2603:10a6:102:1fb:cafe::53) by PAZP264CA0104.outlook.office365.com
- (2603:10a6:102:1fb::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Mon,
- 16 Nov 2026 13:25:47 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- MI3PEPF00008558.mail.protection.outlook.com (10.167.240.20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 13:25:45 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 16 Nov
- 2026 14:25:29 +0100
-Received: from localhost (10.48.87.124) by STKDAG1NODE2.st.com (10.75.128.133)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Mon, 16 Nov
- 2026 14:24:28 +0100
-From: Antonio Borneo <antonio.borneo@foss.st.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Russell King <linux@armlinux.org.uk>, Wim Van Sebroeck
-	<wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Yannick Fertre
-	<yannick.fertre@foss.st.com>, Christophe Roullier
-	<christophe.roullier@foss.st.com>, <devicetree@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: Antonio Borneo <antonio.borneo@foss.st.com>,
-	<linux-watchdog@vger.kernel.org>, =?UTF-8?q?Cl=C3=A9ment=20Le=20Goffic?=
-	<clement.legoffic@foss.st.com>, Amelie Delaunay
-	<amelie.delaunay@foss.st.com>, Sashiko <sashiko-bot@kernel.org>
-Subject: [PATCH v4 15/15] arm64: dts: st: enable iwdg2 on stm32mp2xx ST boards
-Date: Mon, 16 Nov 2026 14:24:16 +0100
-Message-ID: <20261116132416.1184447-16-antonio.borneo@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261116132416.1184447-1-antonio.borneo@foss.st.com>
-References: <20261116132416.1184447-1-antonio.borneo@foss.st.com>
+	Mon, 16 Nov 2026 13:26:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ubuntu.com;
+ h=In-Reply-To: References: To: From: Subject: Cc: Message-Id: Date:
+ Content-Type: Content-Transfer-Encoding: Mime-Version; q=dns/txt;
+ s=fe-953a8a3ca9; t=1794835602;
+ bh=Qopof/KzEChronzbaNdRS8yRUwb7T04Bp6EAIGWAg3s=;
+ b=HNxv2Zr3rBSQkaClIdIS1t510Vky5f7C0ZxVBeXQ499aVpv5isUVtraFMArElQOWgs9Di0AVa
+ Fy8OuQ+N83w1K70F2NlWPHIvQUeDh/+Ag2pdFIFCihVyufWsa772NYE6w24ovAyW0A/tvrYPDrA
+ LMyBqPC4jweDI84VioeDK8nt2lkHa5SFxucqJQ/CRYaP5O+cjCqf53gQiX69LKadriCoz9gQbDf
+ KBBiv3KhXNRCj6GU9x0uz4uFCOltPeqwqpQ0h8Gp1fONJIcxQ31xufH61117b1JKuu8OmYqnRs4
+ zCjS9iC+pj8OqI7qdQcfl5GZ9BYNLeKsAQPYxYUl1OnQ==
+X-Forward-Email-ID: 6afb048fb9d3ade89ee12d0f
+X-Forward-Email-Sender: rfc822; jpeisach@ubuntu.com, smtp.forwardemail.net,
+ 121.127.44.66
+X-Forward-Email-Version: 2.19.26
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PEPF00008558:EE_|DU0PR10MB7357:EE_
-X-MS-Office365-Filtering-Correlation-Id: becea57f-4235-4343-c264-08df43e51ea5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|7416014|36860700016|23010399003|376014|921020|261021121427099003|261102123227099003|56012099006|11063799006|10067099003|261026121527099003|261021123027099003|261022105027099003|261026140227099003|261028144727099003|261009223027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 67Sa9ZicPa7CsPpllhJ7GqF/zxqIzh2NAZtSyqUWbtT+X99WQqKp+jZfrNpMd5yE9lXdl0sFhQPUnrzoTEsXmWYspUu8v6nz+RTGajz58JPMotbbR1+L+w/SgZ37v4+Yny7ByjetZu/CiLBXlKcgBaEpSvTCmLwo/rMWIFED0lcXYLoqlXv/yyPD/7uS0bnim7m/zGR5lRmgKyb6hbiDfEE57JsAY+MMxpafb4tJk/TKMVylbckSAaIPFNgmmtyG+uVLG4uemy7nBAoWslX35hCS8Z3UwkGwiraIOxr6wa1zsrn80kdC8fWg6lHP3kAs+Rfdk5K2WQYSvgbedzlIorIy3Ulq2Htl6GmnkIy//17NOBKhpIYfP56WrEhfDB+mYZMesUeHXZfAcdbwvry09Itgu6UHRJ6NygupEiqNsYgbhAioSyRGo1ZQ2Uj4CBh+GtOXeqP3jz10ZtqAtQoXGhUWm3JL9pII9PK4kgOu8z5Hxec3eonw1Wm4nOvh7JogwfbhRs/7pRPPGLq8aQonzdR3ecz+go+uIPavbaXM21EkbcZ4jcdhUKhx2qxILfAFy0EOewDViXx7s7LfDywi9nbjypEfMAjJbOxftzoEDzAR/47PQSHfSQX7RUx+gKM2UZi7QGjsER0iUAsI4SLw3dnfY1iisBXn58YVSY3iye764jBHb28dYtwPEFOyfmD43cfVYHLPOQDU0ilsBMx5fsfBuo9vg3bOex09+iYV5wSWkWfTkx2AYfhdf71HtFJt
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(36860700016)(23010399003)(376014)(921020)(261021121427099003)(261102123227099003)(56012099006)(11063799006)(10067099003)(261026121527099003)(261021123027099003)(261022105027099003)(261026140227099003)(261028144727099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: U5o5R/f8qyh5BGtu92nHf/Pj2kCPm7ftZMdNp6Asf4flZqXD31LZUU3pdg2MIdVRiYclP7q/EN8Cg+HebNT7hM2/1FZMOfEubaWjo26e5YNeUH0PPpdmp9c9X6x+sutCmnp/G2aspmqqQH9+9240ysmH6dSq5beMrFtb4284hoxWJWahdy4tNI8OSOAkcJ2+aUPrbovXrCZqxMNoPFQ3O1XV1kmCIim9LQ8BKdbrYDvYgVLC4+SywL2sOMZKW8XY6DM1NPFBEUXAoNGNVmmVKu3E3JqxiaP0ESluG9ZWBVrb+T+VtSbvhrlyhokC9y39TxXp1nTt8khprDzuFWZoibI+Th7eWrXBC0iiCUejKbZCOEKXu2bWhKcdg3z08qDt102qDuB+Uyoa5k0Bxrb+aTyNMbN3NksmLHnyTlFXDU/Qzb1JBcBODmEbaGMHFu7U
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 13:25:45.0176
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: becea57f-4235-4343-c264-08df43e51ea5
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: MI3PEPF00008558.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7357
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8; format=Flowed
+Date: Mon, 16 Nov 2026 08:26:37 -0500
+Message-Id: <DMWO4APJSZPS.16AA1EABR1AEJ@ubuntu.com>
+Cc: "Will Deacon" <will@kernel.org>, "Mark Rutland" <mark.rutland@arm.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Sven Peter"
+ <sven@kernel.org>, "Janne Grunau" <j@jannau.net>, "Neal Gompa"
+ <neal@gompa.dev>, "Marc Zyngier" <maz@kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <asahi@lists.linux.dev>, "Yuvan Shen" <yuvanshen09@gmail.com>, "Nick Chan"
+ <towinchenmi@gmail.com>
+Subject: Re: [PATCH 00/13] drivers/perf: apple_m1: Add M3/M4/A18 Pro Support
+From: "Joshua Peisach" <jpeisach@ubuntu.com>
+To: "Myria Sarvay" <myrialsarvay@gmail.com>, "Joshua Peisach"
+ <jpeisach@ubuntu.com>
+X-Mailer: aerc 0.21.0
+References: <20261103-m3-plus-pmu-events-v1-0-a8eb6c1139fe@gmail.com>
+ <DMQ0CENBZQGW.L35BD1BXYE9Z@ubuntu.com>
+ <CAFTKyQziVo3COsPZSSZOaFs7R6HhXEWNHYfgTkjyACc7bkoBDw@mail.gmail.com>
+In-Reply-To: <CAFTKyQziVo3COsPZSSZOaFs7R6HhXEWNHYfgTkjyACc7bkoBDw@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_052556_850232_7896A491 
-X-CRM114-Status: GOOD (  10.40  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261116_052644_659889_3AF19C90 
+X-CRM114-Status: GOOD (  20.87  )
+X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,108 +84,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable the node for IWDG2 in the STM32MP2xx ST boards to make the
-watchdog available for userspace.
+On Fri Nov 13, 2026 at 2:25 AM EST, Myria Sarvay wrote:
+> On Sun, Nov 08, 2026 at 12:32:46PM -0500, Joshua Peisach wrote:
+>> On Tue Nov 3, 2026 at 5:14 AM EST, Myria Sarvay via B4 Relay wrote:
+>> > This series adds support for the CPU PMU in the new M3, M4 and A18 SoC=
+s
+>> > presed in apple devices. These PMUs have new encodings for events, alo=
+ng
+>> > with larger codes for these events. All of these events are as Apple
+>> > describes them in the various kpep files found under /usr/share/kpep o=
+n
+>> > macOS 27. More events may exist, but we have no idea of their affinity=
+,
+>> > or what they actually count, so we don't include them here.
+>> >
+>> > These patches have been tested on my own M2 (t8133-j413) and M3
+>> > (t6031-j514c) devices, as well as by Yuvan on their M4 (t8132-j713)
+>> > device.
+>> >
+>> > If possible, the device tree changes should probably go through
+>> > apple-soc, as this is where the recently picked up M4 Pro/Max dts are.
+>> >
+>> > Tested-by: Yuvan Shen <yuvanshen09@gmail.com> # on t8132-j713
+>> > Signed-off-by: Myria Sarvay <myrialsarvay@gmail.com>
+>> > ---
+>> > Myria Sarvay (12):
+>> >       dt-bindings: arm: pmu: Add Apple M3/M4/A18 Pro SoC CPU PMU
+> compatibles
+>> >       drivers/perf: apple_m1: Remove unused variables
+>> >       drivers/perf: apple_m1: Support per-implementation event size
+>> >       drivers/perf: apple_m1: Use macros for per-implementation init
+> functions
+>> >       drivers/perf: apple_m1: Add Apple M3 Series Support
+>> >       drivers/perf: apple_m1: Add Apple M4 Series Support
+>> >       drivers/perf: apple_m1: Add Apple A18 Support
+>> >       arm64: dts: apple: t603x: Add PMU Device Nodes
+>> >       arm64: dts: apple: t8122: Add PMU Device Nodes
+>> >       arm64: dts: apple: t604x: Add PMU Device Nodes
+>> >       arm64: dts: apple: t8132: Add PMU Device Nodes
+>> >       arm64: dts: apple: t8140: Add PMU Device Nodes
+>> >
+>> Maybe the folder should be renamed to 'apple_arm' or something like
+>> that?
+>>
+> What do you mean by this? What folder are you referring too? If you mean
+> the device tree's, they're already under the arm64 folder, so apple_arm
+> seems redundant. If you mean the CPU PMU name, I get that, but I'm not
+> sure how to change that, given it's already hard coded with the config
+> option `APPLE_M1_CPU_PMU`. I feel like changing its name at this point
+> would cause backwards compatibility issues around kernel
+> configs/blacklists if people use them.
 
-With two watchdogs now enabled on ST STM32MP2xx boards, assign the
-watchdog0 alias to the ARM SMC watchdog that may have been started
-by an earlier boot stage. This allows userspace to identify and
-ping the appropriate watchdog.
+Sorry, brain fart. I meant the file apple_m1, to consider splitting
+it up into multiple files. It's no big deal though :)
 
-While there, sort alphabetically the aliases.
-
-Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp235f-dk.dts  | 6 ++++++
- arch/arm64/boot/dts/st/stm32mp257f-dk.dts  | 8 +++++++-
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 6 ++++++
- 3 files changed, 19 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/st/stm32mp235f-dk.dts b/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-index f06b334dc9ce1..c71b914547308 100644
---- a/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp235f-dk.dts
-@@ -22,6 +22,7 @@ / {
- 	aliases {
- 		ethernet0 = &ethernet1;
- 		serial0 = &usart2;
-+		watchdog0 = &arm_wdt;
- 	};
- 
- 	chosen {
-@@ -263,6 +264,11 @@ &i2c8 {
- 	/delete-property/dma-names;
- };
- 
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
- &ltdc {
- 	status = "okay";
- 	port {
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-index a8f18508db3e4..aa922abccdbc5 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-dk.dts
-@@ -21,9 +21,10 @@ / {
- 
- 	aliases {
- 		ethernet0 = &ethernet1;
--		serial0 = &usart2;
- 		mmc0 = &sdmmc1;
- 		mmc1 = &sdmmc2;
-+		serial0 = &usart2;
-+		watchdog0 = &arm_wdt;
- 	};
- 
- 	chosen {
-@@ -271,6 +272,11 @@ &i2c8 {
- 	/delete-property/dma-names;
- };
- 
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
- &ltdc {
- 	status = "okay";
- 	port {
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 782b4bb843eeb..dcfc29c620b02 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -24,6 +24,7 @@ aliases {
- 		ethernet1 = &ethernet1;
- 		serial0 = &usart2;
- 		serial1 = &usart6;
-+		watchdog0 = &arm_wdt;
- 	};
- 
- 	chosen {
-@@ -294,6 +295,11 @@ &i2c8 {
- 	/delete-property/dma-names;
- };
- 
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
- /* use LPTIMER with tick broadcast for suspend mode */
- &lptimer3 {
- 	status = "okay";
--- 
-2.34.1
-
+-Josh
 
