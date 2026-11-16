@@ -2,90 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B1C606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F02A606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 12:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iEB9WStw;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=g5KdVzMH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zh3RYaaE;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=kJ8nD1EG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=crdLSmlfnO7VKMZXhE1g/GIeZeZ2qlXrtngZdD7/DKk=; b=iEB9WStw/+qEXetk53nl+aKzZ6
-	qFfw2K3DNkQgoBWGXJYZlgZj8aiBT+dhvt2YJarV25xABB3GFt+M088Bmoe3IKtRnIVgTG7gcV4S8
-	1P1IKeSNG7GP3R8svYMUW24H70kLu5K+uvYx9ZI0EwZ8gW+h7Tw7eoN+aE56Wp0cDFmDlbBIWTxPc
-	vgSVbSQbb15zC1LQZCXUTB60uFRXXuxntzaSTIwY/TOw4zSbiyQdZkGY8VNP6NIVujYIKUE8bw9tk
-	Sgr0JaTueh/XiXZeDjYYrKLpdaO1UbJi6A3lGdydnwNoEbIgMYsZi1LPI/tLJx5Rrx1xA6Y+gEYKR
-	Xcjy7yng==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Mh+ToPltBb8mnDHqsdQlNCdlhh90EXZrqETmJQ+oo/w=; b=zh3RYaaEma7jDv
+	DWkaeZKBxyai5EZeQLdNiTznntBFN6FDlI0NWZLykdCdRIR/c0zUmjAf3gA6TDhoLsixysid6h8wI
+	Ae5FkyDg/8/YPWa8xBAslJTnUyQQ01DgCqIPvHL151l0iTtqCfUxo/7pQ2+QbcySmSy5LlIOHhwBf
+	r+/1e5v0bD7FEIgE0h0CO9eHtgeknOFYb808l9JxUgtM2W6pn3Vxn7KmJyhPCAfzcWqfcvrsnuCqc
+	EuHQXiak2zUWhloYMzkSjrWgNFowwlf5b4yi97D9B2U86NQx+8pp3vsPTt33nn/ihSIFgBO6ePhBh
+	zYuaZm7w+2cxwdzkeMzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvYx-00000002JMR-3YpZ;
-	Mon, 16 Nov 2026 12:11:55 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1xSvZ3-00000002JOn-3xxF;
+	Mon, 16 Nov 2026 12:12:01 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSvYv-00000002JLf-1jxH
+	id 1xSvYx-00000002JLy-0Bk9
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 12:11:54 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-48fd2e38825so2116454f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:11:52 -0800 (PST)
+	Mon, 16 Nov 2026 12:11:56 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4a1b07c3c5fso38018715e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 04:11:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794831111; x=1795435911; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=crdLSmlfnO7VKMZXhE1g/GIeZeZ2qlXrtngZdD7/DKk=;
-        b=g5KdVzMHXKzvkYz7hol11XVOjIGh1KTnTXBTN08GTdOUCSTsoy3ziYULtm9WNxAUky
-         TBskXm3cTuXyYNpnu59yZuf3ikqlFkzYmT4fkeC1YY35vIwIJERJ6rON+mVN9wrFySyg
-         Rsz3SIS+X+W/5BrG3vmDutNS8gVbgaTJfluLhvS5DIqgDfHuxESep4ZieyDt10vb/q0/
-         qpFbTCmJGkBBA+pYtmJCbDIT4J2ZNujhZHLk/LFZyIoE6ZzBpTI+R+du/hGVCgStVVGy
-         u1RrqSB/wkyXgXmhlxK7nRl0/CB2o44usFzNCoj4Fk336Dv1DWo5ZAsh8Axf7jeE8MT7
-         rBEg==
+        d=gmail.com; s=20260707; t=1794831113; x=1795435913; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Mh+ToPltBb8mnDHqsdQlNCdlhh90EXZrqETmJQ+oo/w=;
+        b=kJ8nD1EGNUh8AJCeNyvcADH4M2iIYTG/EFPynbRBeLIwT9GmrpYjmOPL0NOcoZVU6J
+         6CWoDJ2SGE2OmJbH3IbBlwfBiMQhD8OyU5uwjE8VDWlE/UldR/pveERPhDde+uxzdMPF
+         2aD/rNvbgdCuKdkZcCb+8P4Au6miDZh04CY+ICOJvJKeO3GvppMQP+kqX1r27UST/9CW
+         I0a3tWIPpHGvvb+Gzpi7LwOdX2lZuU6xxCcW3Gd+ElRIxrssnzpPH3tKtiXJs2a52AFD
+         Z53O2P/+FTj/SrQWXVS2JNFxvh1HwTKGcvq1e9Ori47j1+5P7v7ioW9Dz+Cp1Z1nIY3h
+         f6/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794831111; x=1795435911;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=crdLSmlfnO7VKMZXhE1g/GIeZeZ2qlXrtngZdD7/DKk=;
-        b=zlEIfpvWLnaQaHhRGh5W1RdUqEAF1UEqfAqovkLpnzIne73HtWG+PRcS9Tjwxn21Sv
-         TXaj9UJpN7tiYbkb/P8lOc7qypL9d3G4hwZ/LxHtW5635dbwObOHCc2CaJifjH+ClyL3
-         NTyaPF86LA5ssrF1tRSIB+5sBvJ+UiEI08S6ASQ9fiENm3x7Dc1ekYnqNlzFDF+bs+8/
-         8IGFkrPscs6oWfIz/4GS/KE/N6suTCodD6Tk845/PpPuu5PDew3NmBz2ps/DE6mlWyXT
-         jftkAvL4JCfOv7HURzkRGMBiyj3dYSHWRsOkt7pr6Y7v8P0eljk3qFnmns78z6RbYygQ
-         vPOQ==
-X-Forwarded-Encrypted: i=1; AL+hErFB/jX3rtuOoN0Rr33Lp3DGuu9G3JaaEmCu3Xr12DGB24pAeC/vPr4x8N2I98SC1edJ9AYRg9JdCOSgzpFKrHzk@lists.infradead.org
-X-Gm-Message-State: APuU4Z+bYKCSYsRJXM5IWtl3aMd//G4nqufiEoDqYtsEwkBsNnKBRZAl
-	DqkxMlUYSAv5yfeTd8u4uzuI8sgVLGph2P+sZ7k6dAuA8a3B6bw+cWr4
-X-Gm-Gg: AYBFou2HO3xeK1qQ24Lo+GbAQpoB/8IdTZQ4sMjvZyfNaiXhDeQOy+oRCdW1TruKkuT
-	69JjVuFUaHZ/BXX4okut9Gnr1103P+wqMzBLfuhLcCGVvKS50zAJZc8NRX+OfTJGcMPfOf1MPwQ
-	VSQ204D6DfaFLfdimFa7E4pKNOEsbwdqtUWIAd9AEnY5M30zjLFS7VRRw/xF2KWegW4bRyS6atM
-	q6uN8yds8w+fzJYaq1BpKswP+ZHR6lwFwoTGCmAPrbleBwX9bx6Anf86PfceGte8PNUUb+rKHL4
-	7sKBDTY/QYVOTlsBzZ/OwgGVa+gfasXJFaG+vqnAgySfDLLqR3oaYCtK5mpLMCLB5Q5KYv1JWiw
-	9Hx5lXE9CzgUE9iUWBMH2X7hEywDS0fzkby4LdCx/6e7y0MEeCjf/6cSKylG2ccPcoPQ1Z+kT2H
-	1lqjlD5YX0ehZMCV3TefQMhodRTTyE8R+c6zTdLwBKUmo+3H4O8n6rA7x30sh6vDhIQ7iHi7vYx
-	Hnc7dRwn7zlzFFyh7tfW027DuW0DjH6BHfyIcbY/+AwDhSF9wOn8JkAtFxABqIRP8oaai3riepE
-	Yzl0HZ/5c8v1CAYqt7NlCAMRVOitMqQLs+i53w8y261GQ8S2325R+5ikiTC+DHK7BZNI1nHqDu3
-	jevyjHaUbtnefMuCZLG7F/qUi7ddaxGeUJw5HD5gnoeJmuQQwiwHaGF6b8LeY9X70bzh58x+m
-X-Received: by 2002:a7b:c009:0:b0:4a1:e672:5721 with SMTP id 5b1f17b1804b1-4bb55a832famr162798335e9.13.1794831111064;
-        Mon, 16 Nov 2026 04:11:51 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794831113; x=1795435913;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Mh+ToPltBb8mnDHqsdQlNCdlhh90EXZrqETmJQ+oo/w=;
+        b=dFuVMwyhRvemroHEG4wIEYRGNRTu4MIzvOkahZL+7DajWC5oYjLUWxpBi5jpUlFtAJ
+         JlJL6UHX1AFLKbndvkVK0waWqEKj8ea1jMl5QpjpBZR6qS1vxwgdEBXQcuzhq3rITd3F
+         sgvp/jKwXfT+8cAt8iNAJxvRKnFh7IO/Bpo4aIXSmIlCh3M2tJvLdzuXbPSlS0YhRLxG
+         rPkqQkwTWYPWAm4yIGNB0Rn89qic4hCk9EfQoaErAGhroi6qOqGAJfFH3F84l9HXaHHk
+         E0IZnV1Zr/BtjMQhYAJPzneptPYs7TN6pt/bR6YriUCGkbg2X4uvMOwtADX6STqV5187
+         I68g==
+X-Forwarded-Encrypted: i=1; AL+hErHqJNIqkonWhXbJJWYJEX0LpGWELln9R2R7fe+pQ3k9zyhxleZBvtL0x/spEKVum2DujuJzsIBpb1ZOJkoKqBPN@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Bk7QZe15+QnfSLLPqd51RynRPjN79Om+HiCJ8zgRZ2JIfR/Qc
+	bBYFQ2QEYasY3hQ9IZFocgnep33YwJa+1kbZhh9FsgzBgMYIZQ3Bx0rU
+X-Gm-Gg: AYBFou1YrgdWh9FKbYqemQkjSuANIylDLRaiJKUIjV/vdWvRBsgnFrai67f4O7epyM1
+	m2fs5kcPWtiwGrrHTTd3WVsrzGbZp+p8B/2yuMZlPtPkXYDQ9BqldFNPE/2c47HOfGz4JKpxsbC
+	wPPF35p3VDdkLiHkuPzxwNsSFRyQ2BlzTCqIC4DDBSTUOunSnJ2k64Ue77s4KFUa9U2ZjxFBgwJ
+	ludXywaqfmGQGCQGeQaai5ZvqgOujwjt4/LyAbFDa688J8/xFcap0CBR9Fxi5ToQEQ0oOnSRSA5
+	LbSswPfUaWJxIWBRpUj3s4w+UVInPLb4xwzdymUiuIVayeJ2qLBm0PtcmnTvY63w8buR6fNDyDC
+	Pt0WsrGU6pP856HfLobckjMvQxqtF0C52APP6QwdE9ZWmeqlZ8DSpsXNiwfvb4n36IVIT9YYzxb
+	uYTxCtLEx5zfOJ2DknsV5wRkDaMLjuanhFgZd6rW1eXlcxVS44uWplUWZC6jLB6rEU62++Yi44X
+	56xniqTS66MywQ3xrbr+l2m1H1NDMUEQLk1klFY86u69nxJiq2XdoCgIuqH7BxYxpndy5cQKCQV
+	05ikoG1XWQJNknmcQs38hy5aPd+JomklYRbfXXwWOP5SU1LzYH6qupaiY0k2Pdy8TuTpCrGzyr3
+	F0J091neO1h+uXTPXZBPtZMnLif8ha/Rsy12/kiC5L1ZXIIz633lhhXm8L2Z7XqCGsZAuXT2S
+X-Received: by 2002:a05:600c:4e0d:b0:4bb:69b2:d3df with SMTP id 5b1f17b1804b1-4bb69b2d82fmr91695095e9.25.1794831112818;
+        Mon, 16 Nov 2026 04:11:52 -0800 (PST)
 Received: from localhost.localdomain (80-108-121-211.cable.dynamic.surfer.at. [80.108.121.211])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb70105a98sm61442005e9.5.2026.11.16.04.11.49
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb70105a98sm61442005e9.5.2026.11.16.04.11.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 04:11:50 -0800 (PST)
+        Mon, 16 Nov 2026 04:11:52 -0800 (PST)
 From: Christian Gmeiner <christian.gmeiner@gmail.com>
-Subject: [PATCH 0/2] MNT Reform 2: Fix the internal panel on i.MX8MQ
-Date: Mon, 16 Nov 2026 13:11:47 +0100
-Message-Id: <20261116-reform2-internal-panel-v1-0-765cf8d5ff4f@igalia.com>
+Date: Mon, 16 Nov 2026 13:11:48 +0100
+Subject: [PATCH 1/2] drm/panel-edp: Fix Innolux N125HCE-GN1 mode
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MQQqDQAwAvyI5N+BGuhW/Ij1Em7YBjZIVEWT/7
- uJxYGZOSOIqCbrqBJddky5WIDwqGP9sP0H9FAaqKYYQIrp8F58J1TZx4wlXNpmweY7ti5iHgVo
- o8Vo8Pe5x/875ArE+tEpoAAAA
-X-Change-ID: 20261116-reform2-internal-panel-35c872aabb28
+Message-Id: <20261116-reform2-internal-panel-v1-1-765cf8d5ff4f@igalia.com>
+References: <20261116-reform2-internal-panel-v1-0-765cf8d5ff4f@igalia.com>
+In-Reply-To: <20261116-reform2-internal-panel-v1-0-765cf8d5ff4f@igalia.com>
 To: Douglas Anderson <dianders@chromium.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Jessica Zhang <jesszhan0024@gmail.com>, 
@@ -104,9 +102,9 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  Christian Gmeiner <cgmeiner@igalia.com>
 X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_041153_475244_AC6823F7 
-X-CRM114-Status: GOOD (  11.01  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261116_041155_105501_EA1AA907 
+X-CRM114-Status: GOOD (  12.04  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,42 +115,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The internal eDP panel of the MNT Reform 2 with the i.MX8MQ module does
-not show a stable picture. There are two problems.
+From: Christian Gmeiner <cgmeiner@igalia.com>
 
-The panel-edp mode for the Innolux N125HCE-GN1 is a 70 Hz mode that is
-not in the EDID of the panel. Patch 1 replaces it with the 60 Hz timing
-from the EDID.
+The mode has a pixel clock of 162 MHz, which is 70 Hz. The EDID of the
+panel only has 60 Hz and 40 Hz. Output of edid-decode:
 
-LCDIF underflows at 1920x1080. Patch 2 connects DCSS to the MIPI-DSI
-host instead and leaves LCDIF disabled.
+  DTD 1:  1920x1080   60.001038 Hz  16:9     66.721 kHz    138.780000 MHz
+               Hfront   46 Hsync  30 Hback   84 Hpol P
+               Vfront    2 Vsync   4 Vback   26 Vpol N
+  DTD 2:  1920x1080   40.000692 Hz  16:9     44.481 kHz     92.520000 MHz
+               Hfront   46 Hsync  30 Hback   84 Hpol P
+               Vfront    2 Vsync   4 Vback   26 Vpol N
 
-Patch 2 depends on patch 1. The video PLL rate in the device tree is
-four times the 138.78 MHz pixel clock of the new mode.
+On the MNT Reform 2 with i.MX8MQ the picture flickers at 70 Hz. Use the
+60 Hz timing from the EDID.
 
+Fixes: a14c6b0eef77 ("panel-simple: add Innolux N125HCE-GN1")
 Signed-off-by: Christian Gmeiner <cgmeiner@igalia.com>
 ---
-Christian Gmeiner (2):
-      drm/panel-edp: Fix Innolux N125HCE-GN1 mode
-      arm64: dts: imx8mq-mnt-reform2: Drive the internal panel from DCSS
+ drivers/gpu/drm/panel/panel-edp.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
 
- .../boot/dts/freescale/imx8mq-mnt-reform2.dts      | 52 ++++++++++++++++++++--
- drivers/gpu/drm/panel/panel-edp.c                  | 15 ++++---
- 2 files changed, 56 insertions(+), 11 deletions(-)
----
-base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
-change-id: 20261116-reform2-internal-panel-35c872aabb28
+diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+index f7add22ccf69..0ebd756d14d0 100644
+--- a/drivers/gpu/drm/panel/panel-edp.c
++++ b/drivers/gpu/drm/panel/panel-edp.c
+@@ -1364,15 +1364,16 @@ static const struct panel_desc innolux_n116bge = {
+ };
+ 
+ static const struct drm_display_mode innolux_n125hce_gn1_mode = {
+-	.clock = 162000,
++	.clock = 138780,
+ 	.hdisplay = 1920,
+-	.hsync_start = 1920 + 40,
+-	.hsync_end = 1920 + 40 + 40,
+-	.htotal = 1920 + 40 + 40 + 80,
++	.hsync_start = 1920 + 46,
++	.hsync_end = 1920 + 46 + 30,
++	.htotal = 1920 + 46 + 30 + 84,
+ 	.vdisplay = 1080,
+-	.vsync_start = 1080 + 4,
+-	.vsync_end = 1080 + 4 + 4,
+-	.vtotal = 1080 + 4 + 4 + 24,
++	.vsync_start = 1080 + 2,
++	.vsync_end = 1080 + 2 + 4,
++	.vtotal = 1080 + 2 + 4 + 26,
++	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NVSYNC,
+ };
+ 
+ static const struct panel_desc innolux_n125hce_gn1 = {
 
-Best regards,
 -- 
-Christian Gmeiner <cgmeiner@igalia.com>
+2.56.0
 
 
