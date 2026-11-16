@@ -2,98 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62974606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 15:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29AB606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 15:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QvD82s5H;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=NusKEKiY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KZUS5eSn;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k1TPALyE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=tc6KfHj5fySnLDo/yssasn7KXGGvXcSn8JCgqMRWVxQ=; b=QvD82s5Hhuo2Wtty07advPEaUj
-	EgUGliYJbxmtbmElvzqoO8cstv45SRhWcfj+JKuz6ewoIuOiD8yoEl5jpNNllnynXpNFAsWzboLum
-	43xPpOY8QMJ4JqjanEWRIGRkb9XFvukjuoKiroGhQrv07a6DXmORzdu0jQOu/fMeQGlCbgcpzeVIN
-	XKHg8MYZ/sXbX37XMHzF5Ddm2IUdcB2WS5jZtDTzApukC8pxF0t64MYVvpSICnE9j8Zpd66/f9G2f
-	Q8qLgYllR0Ua70CrwVPHc0tuvOPXFbL+ro/Zd/BY9JsK2SoYw3eo0QKd95TScUfREaGx6H2wKdoAa
-	bYXU57VA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=LnSeRb4dN96wBhv6QjPTulpHgT7xgStRTwFnLWmVaVA=; b=KZUS5eSnOMWamS
+	WSjCI2VAUwkczR9GHnwJLZncFgqd6VFWo+az4TaV/7ZQEtmsyl1kiSGG+eR6D23X7itTSgHdVgpE9
+	AgDbLNZB1u+7P/TP1+BUCE9yeG2eStkdlV9F4bmx0G/UrPRhov2Z3286NvXmG21+XjBX4+NEDhCNB
+	FroThqht4AuhqD8uGzgwg9JNEIaY2aSNlO2xzWGIVC1Y1DaEX2xrj/wlDksHQleY7psAXPmpTzbmz
+	Jknw8ASIskIMD636IIHNy8SsIr/8VWc+jftmNYkWkxIdmV2aDIU9x86xzoWNiLo5zky8nJRJLxVNK
+	TmzCoFRJWPonKMDdduAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSz0D-0000000380I-1WCs;
-	Mon, 16 Nov 2026 15:52:17 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1xSz48-000000038R0-0zB9;
+	Mon, 16 Nov 2026 15:56:20 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSz0B-000000037zR-02nq;
-	Mon, 16 Nov 2026 15:52:16 +0000
-Received: from killaraus.ideasonboard.com (2001-14ba-7086-3000--a06.rev.dnainternet.fi [IPv6:2001:14ba:7086:3000::a06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ED0204BB;
-	Mon, 16 Nov 2026 16:49:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1794844186;
-	bh=dmodi+YIJbHNHccq3QM7tWgiNzPRHtMFkx//VJBaXh4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NusKEKiY4bzAOfEoYrIhBXyGlIkZI3PnloPf2BxBVRwuEIJvmtu+vw7O/jc41VQuU
-	 J3Ty1U67T4ibE4hILXY3O/CpMrCBJQpictxpRHUyim+WJ3gBdqwhQf8GriCHlXRv3w
-	 cuUezGZlAQGClI/3BR6NS7TrNFoxwJ2vIQYfr6tw=
-Date: Mon, 16 Nov 2026 17:52:11 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: Frank Li <Frank.Li@nxp.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-pm@vger.kernel.org, Jani Nikula <jani.nikula@linux.intel.com>,
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Tvrtko Ursulin <tursulin@ursulin.net>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
-	Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Matthew Brost <matthew.brost@intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
-	Alessio Belle <alessio.belle@imgtec.com>,
-	Luigi Santivetti <luigi.santivetti@imgtec.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-	Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-	Robin Murphy <robin.murphy@arm.com>, Yong Wu <yong.wu@mediatek.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Dafna Hirschfeld <dafna@fastmail.com>,
-	Michael Tretter <m.tretter@pengutronix.de>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Will Deacon <will@kernel.org>,
-	Vijendar Mukunda <Vijendar.Mukunda@amd.com>,
-	dri-devel@lists.freedesktop.org, imagination@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-sound@vger.kernel.org,
-	sound-open-firmware@alsa-project.org, imx@lists.linux.dev
-Subject: Re: [PATCH v2 2/2] PM: runtime: fix stub pm_runtime_get_if_in_use()
- for !CONFIG_PM
-Message-ID: <20261116155211.GB1763340@killaraus.ideasonboard.com>
-References: <20261116152513.2676573-1-Frank.Li@oss.nxp.com>
- <20261116152513.2676573-2-Frank.Li@oss.nxp.com>
- <20261116153139.GB1763944@killaraus.ideasonboard.com>
- <avskkbztzVF_SRo6@SMW015318>
+	id 1xSz46-000000038Qp-3MBT;
+	Mon, 16 Nov 2026 15:56:18 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id EABB56188B;
+	Mon, 16 Nov 2026 15:56:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E491F000C4;
+	Mon, 16 Nov 2026 15:56:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794844577;
+	bh=LnSeRb4dN96wBhv6QjPTulpHgT7xgStRTwFnLWmVaVA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=k1TPALyEzGuGelskzZPMTDhNwa0mXOqc58ZHlyZE4oQ0ZM5EJquOYbdtrBcKo1dW0
+	 GubBjMxi0pQxAEgamTiNkRPpHViVVBQSur2/ZQ5tP+jEmhqQrglbadj6Vfe3KGK0fc
+	 Wper3e3fVo7kOJNoCFBYEt9ZQTn0Ev/C0ZxiEpQ7T6poCTp83gMsU+Dpa5WRhEZXhP
+	 AQmraknEk5wW3+eEG6JqdtinEvAGRPGQodVJnIOfdazJsLTxM2GtTCdt96h51hrR+p
+	 +GpKDVhPOUVE/PTuucFiWQn6WWkUCOeBBqPKrXKCZlPyg9B6hl0lOHmwFPEslor1sK
+	 ucIgmRGENHK4w==
+Message-ID: <336dc797-2406-4d81-b322-61b85ac52bdd@kernel.org>
+Date: Mon, 16 Nov 2026 15:56:06 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <avskkbztzVF_SRo6@SMW015318>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_075215_204000_A2651BE1 
-X-CRM114-Status: GOOD (  41.80  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 00/12] nvmem: Add Raspberry Pi OTP nvmem driver
+To: Gregor Herburger <gregor.herburger@linutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>,
+ Stefan Wahren <wahrenst@gmx.net>, Srinivas Kandagatla <srini@kernel.org>,
+ Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
+ Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de>
+From: Srinivas Kandagatla <srini@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,171 +78,117 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 09:43:13AM -0600, Frank Li wrote:
-> On Mon, Nov 16, 2026 at 05:31:39PM +0200, Laurent Pinchart wrote:
-> > On Mon, Nov 16, 2026 at 10:25:11AM -0500, Frank.Li@oss.nxp.com wrote:
-> > > From: Frank Li <Frank.Li@nxp.com>
-> > >
-> > > The stub for pm_runtime_get_if_in_use() under !CONFIG_PM currently
-> > > returns -EINVAL.  The real implementation returns:
-> > >   1  - device is active and its usage counter is non-zero (bumped)
-> > >   0  - device is not in use or not active (counter not bumped)
-> > >  -EINVAL - runtime PM disabled for this device
-> > >
-> > > When CONFIG_PM is not set every device is permanently "active" and
-> > > always considered "in use", so the stub must return 1, mirroring
-> > > __pm_runtime_resume() which already returns 1 in the same build.
-> > >
-> > > Returning -EINVAL breaks callers that test the return value with
-> > > comparisons other than "!= 0 / == 0":
-> > >
-> > > drivers/gpu/drm/i915/intel_runtime_pm.c:
-> > >   if (intel_runtime_pm_get_if_in_use(rpm))
-> > >   which wraps to: ret = pm_runtime_get_if_in_use(); return ret > 0;
-> > >   With -EINVAL the wrapper returns false, causing an incorrect error
-> > >   path in the GT fence revocation code.
-> > >
-> > > drivers/gpu/drm/xe/xe_pm.c:
-> > >   if (pm_runtime_get_if_in_use(xe->drm.dev) > 0)
-> > >   With -EINVAL the condition is false; xe_pm_runtime_get_if_in_use()
-> > >   returns false, so callers believe the device is not usable.
-> > >
-> > > drivers/gpu/drm/gma500/power.c:
-> > >   return pm_runtime_get_if_in_use(dev) == 1;
-> > >   -EINVAL != 1, so the helper always returns false when !CONFIG_PM.
-> > >
-> > > drivers/gpu/drm/imagination/pvr_power.c:
-> > >   if (pm_runtime_get_if_in_use(...) <= 0)
-> > >   -EINVAL <= 0 is true, so the driver always takes the "requeue" error
-> > >   path instead of proceeding with the active device.
-> > >
-> > > sound/soc/sof/debug.c:
-> > >   if (pm_runtime_get_if_in_use(sdev->dev) == 1)
-> > >   -EINVAL != 1, so d3_prevented is never set, corrupting exception
-> > >   debug accounting.
-> > >
-> > > drivers/iommu/mtk_iommu.c:
-> > >   if (pm_runtime_get_if_in_use(dom->plat_dev->dev) <= 0)
-> > >   -EINVAL <= 0 skips the TLB flush, leaving stale IOMMU mappings.
-> > >
-> > > drivers/iommu/rockchip-iommu.c:
-> > >   Three call sites use WARN_ON_ONCE(err < 0) or similar patterns.
-> > >   -EINVAL < 0 triggers a spurious WARNING on every call.
-> > >
-> > > drivers/media/i2c/isl7998x.c:
-> > >   if (pm_runtime_get_if_in_use(dev) <= 0)  (two call sites)
-> > >   -EINVAL <= 0 causes the driver to always skip register programming
-> > >   when !CONFIG_PM.
-> > >
-> > > drivers/media/platform/rockchip/rkisp1/rkisp1-debug.c:
-> > >   if (pm_runtime_get_if_in_use(dev) <= 0)  (two call sites)
-> > >   -EINVAL <= 0 prevents any debug statistics from being collected.
-> > >
-> > > Fixes: 9d58aa46291d ("drm/i915: Fix the GT fence revocation runtime PM logic")
-> > > Fixes: cbb6a7413b17 ("drm/xe: Introduce xe_pm_runtime_get_noresume for inner callers")
-> > > Fixes: 672c473576ca ("drm/gma500: Rewrite power management code")
-> > > Fixes: 727538a4bbff ("drm/imagination: Implement power management")
-> > > Fixes: b30289e7fa92 ("ASoC: SOF: Fix runtime pm usage counter balance after fw exception")
-> > > Fixes: c0b57581b73b ("iommu/mediatek: Add power-domain operation")
-> > > Fixes: 0f181d3cf7d9 ("iommu/rockchip: Add runtime PM support")
-> > > Fixes: 51ef2be546e2 ("media: i2c: isl7998x: Add driver for Intersil ISL7998x")
-> > > Fixes: cbb819c363c5 ("media: rkisp1: debug: Collect input status by sampling ISP_FLAGS_SHD")
-> >
-> > I don't think this one is right. The rkisp1 driver only runs on ARCH_MXC
-> > and ARCH_ROCKCHIP, which select CONFIG_PM. The same may be true for some
-> > of the other fixes tags.
+
+
+On 11/10/26 4:33 PM, Gregor Herburger wrote:
+> Hi,
 > 
-> But code itself should be wrong even though these platform force enable
-> CONFIG_PM.
+> This series adds support for the Raspberry Pis OTP registers. The
+> Raspberry Pi has one or more OTP regions. These registers are accessible
+> through the firmware. Add a driver for it and add updates the devicetree
+> for the Raspberry Pi 5.
 
-How does it make the code wrong in the rkisp1 driver ? There's nothing
-to fix there, because there's no bug.
+What is the merge strategy for this series?
+Am happy to pick up non-dt patches 1-6/12 and 12/12.
+let me know other wise.
 
-I'm not saying this patch is wrong (I'll let the runtime PM folks
-provide expert feedback), but I think some of the Fixes: tags are not
-correct.
 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > > Change in v2
-> > > - new patches.
-> > >
-> > > Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-> > > Cc: linux-pm@vger.kernel.org
-> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > Cc: Maxime Ripard <mripard@kernel.org>
-> > > Cc: "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>
-> > > Cc: Simona Vetter <simona@ffwll.ch>
-> > > Cc: David Airlie <airlied@gmail.com>
-> > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > > Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-> > > Cc: Alessio Belle <alessio.belle@imgtec.com>
-> > > Cc: Luigi Santivetti <luigi.santivetti@imgtec.com>
-> > > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > > Cc: Mark Brown <broonie@kernel.org>
-> > > Cc: Jaroslav Kysela <perex@perex.cz>
-> > > Cc: Takashi Iwai <tiwai@suse.com>
-> > > Cc: Bard Liao <yung-chuan.liao@linux.intel.com>
-> > > Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>
-> > > Cc: Peter Ujfalusi <peter.ujfalusi@linux.intel.com>
-> > > Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> > > Cc: Robin Murphy <robin.murphy@arm.com>
-> > > Cc: Yong Wu <yong.wu@mediatek.com>
-> > > Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > > Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> > > Cc: Heiko Stuebner <heiko@sntech.de>
-> > > Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> > > Cc: Dafna Hirschfeld <dafna@fastmail.com>
-> > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Cc: Michael Tretter <m.tretter@pengutronix.de>
-> > > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > > Cc: Will Deacon <will@kernel.org>
-> > > Cc: Vijendar Mukunda <Vijendar.Mukunda@amd.com>
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Cc: imagination@lists.freedesktop.org
-> > > Cc: intel-gfx@lists.freedesktop.org
-> > > Cc: intel-xe@lists.freedesktop.org
-> > > Cc: iommu@lists.linux.dev
-> > > Cc: linux-arm-kernel@lists.infradead.org
-> > > Cc: linux-mediatek@lists.infradead.org
-> > > Cc: linux-media@vger.kernel.org
-> > > Cc: linux-rockchip@lists.infradead.org
-> > > Cc: linux-sound@vger.kernel.org
-> > > Cc: sound-open-firmware@alsa-project.org
-> > > Cc: imx@lists.linux.dev
-> > > ---
-> > >  include/linux/pm_runtime.h | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/include/linux/pm_runtime.h b/include/linux/pm_runtime.h
-> > > index de9e7518ecef2..1d983fe55a16a 100644
-> > > --- a/include/linux/pm_runtime.h
-> > > +++ b/include/linux/pm_runtime.h
-> > > @@ -276,7 +276,7 @@ static inline int pm_schedule_suspend(struct device *dev, unsigned int delay)
-> > >  }
-> > >  static inline int pm_runtime_get_if_in_use(struct device *dev)
-> > >  {
-> > > -	return -EINVAL;
-> > > +	return 1;
-> > >  }
-> > >  static inline int pm_runtime_get_if_active(struct device *dev)
-> > >  {
+--srini
 
--- 
-Regards,
 
-Laurent Pinchart
+> 
+> ---
+> Changes in v8:
+> - Really rebase to v7.4-rc2
+> - Add a patch to reorder rpi_firmware_property_tag enum
+> - Link to v7: https://patch.msgid.link/20261110-rpi-otp-driver-v7-0-2345d0ee65f0@linutronix.de
+> 
+> Changes in v7:
+> - Rebase to v7.4-rc2
+> - Added Patch to register rtc driver by soc enum from drvdata
+> - Link to v6: https://patch.msgid.link/20260522-rpi-otp-driver-v6-0-b0eac97d1428@linutronix.de
+> 
+> Changes in v6:
+> - Use %pe in dev_err
+> - Include <linux/slab.h> to fix build on arm
+> - Add arm defconfigs: multi_v7_defconfig and bcm2835_defconfig
+> - Reword commit messages
+> - Link to v5: https://patch.msgid.link/20260520-rpi-otp-driver-v5-0-b26e5908eeac@linutronix.de
+> 
+> Changes in v5:
+> - Move alignment check to nvmem core
+> - Use IS_REACHABLE to simplify Kconfig
+> - use root_only for private driver
+> - Add driver as module to arch64 defconfig
+> - Use MODULE_DEVICE_TABLE
+> - Remove some unused attributes, fix typos, minor fixups
+> - Link to v4: https://patch.msgid.link/20260508-rpi-otp-driver-v4-0-cf8d725d8821@linutronix.de
+> 
+> Changes in v4:
+> - Additional patch to drop unnecessary select schema
+> - fix dt-bindings
+> - use __counted_by_le
+> - additional alignment check in read/write callbacks
+> - Link to v3: https://patch.msgid.link/20260506-rpi-otp-driver-v3-0-294602663695@linutronix.de
+> 
+> Changes in v3:
+> - dts: add "raspberrypi,bcm2835-firmware" as fallback and fix dt-bindings
+> - Fix Kconfig depends
+> - Changed firmware data fields to __le32
+> - Add MODULE_ALIAS
+> - Link to v2: https://patch.msgid.link/20260505-rpi-otp-driver-v2-0-e9176ec72837@linutronix.de
+> 
+> Changes in v2:
+> - register nvmem driver from firmware driver and drop firmware sub nodes
+> - Use struct_size and __counted_by for dynamic array
+> - Drop unneeded comment in Kconfig
+> - Use NVMEM_DEVID_NONE
+> - Use kzalloc
+> - Update module description
+> - Link to v1: https://patch.msgid.link/20260408-rpi-otp-driver-v1-0-e02d1dbe6008@linutronix.de
+> 
+> ---
+> Gregor Herburger (12):
+>       firmware: raspberrypi: reorder rpi_firmware_property_tag enum
+>       soc: bcm2835: Use IS_REACHABLE for function declaration
+>       nvmem: core: Enforce stride and alignment checks for nvmem_device functions
+>       dt-bindings: raspberrypi,bcm2835-firmware: Add bcm2712-firmware compatible
+>       nvmem: Add the Raspberry Pi OTP driver
+>       firmware: raspberrypi: register nvmem driver
+>       arm64: dts: broadcom: bcm2712: add raspberrypi,bcm2712-firmware compatible
+>       dt-bindings: raspberrypi,bcm2835-firmware: Drop unnecessary select
+>       arm64: defconfig: Enable the raspberrypi otp driver as module
+>       ARM: bcm2835_defconfig: Enable the raspberrypi otp driver as module
+>       ARM: multi_v7_defconfig: Enable the raspberrypi otp driver as module
+>       firmware: raspberrypi: use drvdata to register rtc driver
+> 
+>  .../arm/bcm/raspberrypi,bcm2835-firmware.yaml      |  20 ++--
+>  arch/arm/configs/bcm2835_defconfig                 |   2 +
+>  arch/arm/configs/multi_v7_defconfig                |   1 +
+>  .../boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi    |   4 +-
+>  arch/arm64/configs/defconfig                       |   1 +
+>  drivers/firmware/raspberrypi.c                     |  62 +++++++++-
+>  drivers/nvmem/Kconfig                              |  11 ++
+>  drivers/nvmem/Makefile                             |   1 +
+>  drivers/nvmem/core.c                               |  12 ++
+>  drivers/nvmem/raspberrypi-otp.c                    | 131 +++++++++++++++++++++
+>  include/soc/bcm2835/raspberrypi-firmware.h         |  37 ++++--
+>  11 files changed, 256 insertions(+), 26 deletions(-)
+> ---
+> base-commit: b3dfbde62cf1981c4638939c159dfd087b7a72e9
+> change-id: 20260408-rpi-otp-driver-75fce1dcff7d
+> 
+> Best regards,
+> --  
+> Gregor Herburger <gregor.herburger@linutronix.de>
+> 
+
 
