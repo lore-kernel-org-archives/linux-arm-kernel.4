@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452D7606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 16:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE11606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 16:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V2CdSC42;
-	dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.a=rsa-sha256 header.s=smtp-20201208 header.b=oM6f103S
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Lf1h4a+K;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=L1rDyxgi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,66 +14,74 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=mmhsYfo4oARdZWXfsQFEQDsYzn+5x9KB/AI2fdJWlJ8=; b=V2CdSC42aPA6ITZpw/VVce3FR6
-	56T6Vt7IhQsBhIUW6S+nUoatIwAKU9dVz29dsetMGRQ77hCXE5kVrzODD2JjoyuuphHSSqGpzaIAB
-	btasxEiQ9SAik6HJ8MxvMXoIv+BUskiqW1Zhj7ZM3R8Qk8TMWdy5Y7B2gvj0RFxcFnUZrrl2Oa5Gq
-	XS2gICEKPUnRU/Xko6wQ5lVnNoogmB2pY5sH9hD/H1TJTUIoc0nWkypSKoiFQuknVpg9OAYgsYrcQ
-	ywoiz0QRmcrK0TsKQNLzB46gDrw1KtDl41yNfgmHm0j+PcO0nq47IdpRInMkiXPIFSplOqaL9HYQv
-	/nox+bgw==;
+	bh=D4lWNtZpY5yf+w+jF193Q7eCu5UhHFdmIhkqgVri7l8=; b=Lf1h4a+K5oQIsKACRbf7PRHeFt
+	Ukup5GCn5obv+IFPOQx9lrKjbWCYPTv9feIngPXS14DAuX+KG623vZ62lC+9IuYRPsvxI533hVSGa
+	YRAoAxhdxaDHp2MI8Rovuu8RQgQ8G9tOn/HCD2HfFxAeQ48dAf2xule+FdoD3z+BmCo+WB6Vv6Egb
+	Vh4QsbIsSJ7JmTzUoVAWsdVex4TBZU0xSAjSN/0inDFdDlqxPeQ4fk9M5AgYfzIJEgysyDGSTBjSe
+	zmIcyyS1abuXhQ69ddqGNiajTiCNJs11WzsYAxm/t7t1CVY3/6a0X0R3MyJ4R6QAjbVLSwnI1YOrt
+	RG4ra3qQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMII-00000006Shj-3gA6;
-	Tue, 17 Nov 2026 16:44:30 +0000
-Received: from smtp6-g21.free.fr ([2a01:e0c:1:1599::15])
+	id 1xTMIT-00000006SlA-0UcK;
+	Tue, 17 Nov 2026 16:44:41 +0000
+Received: from mgamail.intel.com ([198.175.65.19])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMIF-00000006ShL-3T2y
+	id 1xTMIR-00000006SkN-2iKs
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 16:44:29 +0000
-Received: from L23803.iliad.fr (unknown [213.36.7.12])
-	(Authenticated sender: vjardin@free.fr)
-	by smtp6-g21.free.fr (Postfix) with ESMTPSA id 505A978050F;
-	Tue, 17 Nov 2026 17:44:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1794933866;
-	bh=8l2fTCrBkpqaY8HCGM4+a4lOBeNcGWo5zClpf/ajZ4k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oM6f103Ss/FYzVeyiPMkUl88MqlTQDs0RMWOZ/YH3RrGQ9jocwoPKT4ozk682LsEL
-	 edaTT5pXBvxGo6YRUjs2zEEKVzeoguISXqseXFnycNDnsnf9DNBYoi4FWlTMweSBDn
-	 o1VOEeATe1ZhFbc8EBpEmVf5nfXKBx7QajVgGRpq+32vod1+9bjRErp9cGfmCK2L0c
-	 Bzj7pTLCGTrVyOO325anFqd6AqlCtO0b9e/X0FFSqAiOK2TRSXb9JQ3Cie/rYT0e0p
-	 lc0C1MF+QDCdHJfXwNmlkI/XPfXNTvon8HzJCOFSgxDLTAfEISvhSdUo7sX2bUT0Z/
-	 nMmm42FPMwU2A==
-Date: Tue, 17 Nov 2026 17:44:00 +0100
-From: Vincent Jardin <vjardin@free.fr>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH v6 4/5] pinctrl: freescale: add the Layerscape RCW
- pad-mux driver
-Message-ID: <avyEUKJBiDwxpLt7@L23803.iliad.fr>
-References: <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-0-fbdce4565a5c@free.fr>
- <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-4-fbdce4565a5c@free.fr>
- <avtsY-7-I7_pdyD0@lxl00025.wbi.nxp.com>
+	Tue, 17 Nov 2026 16:44:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794933880; x=1826469880;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QOxWIIE+hizNvCqiDlwiHj72tnFkpkIA/gz3CsEwsNs=;
+  b=L1rDyxgibPQBn57FhxWslmtmr0Ns4Qfa23BvLfgaqV4hzhgZZsOEPpFh
+   prmfhB3EJPyiVALm5RgEJbdruN1RJMF2kmQeoxRrSUpM1uhIY5pdy1PUe
+   v3xalNVpBbTSZajGWAhb6y5lU5VAPI0U5aI5S5SjQAV85d4oisBU4cE2s
+   980/CpXSmvWippeH5I4EkTVwRBjRS9ohpzIcbHZ5ji2zotb0OefuZv/Yl
+   CXvnIxaRYyDZ2XQkzVv6z4lDZyTWTx2V2Zjl4vnwCKaMaXnhzgPPLuF6y
+   ytnCctm4/O1o1EbiZazbOeK59G/moDiX4gg6iCDbZWWHu0MgfMoe9XO8A
+   w==;
+X-CSE-ConnectionGUID: Swf5toGmQkeJa2eeRycGvQ==
+X-CSE-MsgGUID: AfKt0HbeTfqZe9kCg6JgfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3755160"
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="3755160"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2026 08:44:38 -0800
+X-CSE-ConnectionGUID: cIHBCJjZTHqSCHUntJ9yLA==
+X-CSE-MsgGUID: KPEa74UsTrWq5ls7tngLFg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="10200067"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.254])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2026 08:44:34 -0800
+Date: Tue, 17 Nov 2026 18:44:31 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	giorgitchankvetadze1997@gmail.com, amin.gattout@gmail.com,
+	antoniu.miclaus@analog.com, gregkh@linuxfoundation.org,
+	mripard@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] iio: adc: at91_adc: fix NULL pointer dereference
+ on trigger remove
+Message-ID: <avyEb9La1tqS90Cp@ashevche-desk.local>
+References: <20261117140510.391907-1-abdelnasserhussein11@gmail.com>
+ <20261117140510.391907-2-abdelnasserhussein11@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <avtsY-7-I7_pdyD0@lxl00025.wbi.nxp.com>
+In-Reply-To: <20261117140510.391907-2-abdelnasserhussein11@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_084428_005821_3CCE4C33 
-X-CRM114-Status: GOOD (  21.55  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_084439_736275_2D26557A 
+X-CRM114-Status: GOOD (  15.25  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,78 +92,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Vladimir,
+On Tue, Nov 17, 2026 at 04:05:08PM +0200, Abdelnasser Hussein wrote:
+> When the "atmel,adc-use-external-triggers" property is not set in the
+> Device Tree, at91_adc_trigger_init() skips the external trigger slots
+> and leaves the corresponding entries in st->trig as NULL.
+> 
+> In the error rollback path of at91_adc_trigger_init() and in
+> at91_adc_trigger_remove(), iio_trigger_unregister() and
+> iio_trigger_free() are called on every slot without checking for NULL,
+> causing a NULL pointer dereference whenever an external trigger slot
+> was skipped, either because of a partial allocation failure or because
+> the external triggers are simply not used.
+> 
+> Skip NULL trigger slots in both teardown loops so that only triggers
+> that were actually allocated are unregistered and freed.
 
-> The "i2c" and "gpio" functions of lx2160a_sdhc2_data74_funcs[] here
-> hides some real unpleasantness. These 4 pins either get all assigned to
-> I2C7_SCL, I2C7_SDA, I2C8_SCL, I2C8_SDA, or they get all assigned to GPIO.
-> But they cannot be assigned in pairs of two (or individually, i.o.w. not
-> in the granularity we need), which makes independent I2C bus recovery
-> practically impossible (i2c6 as I2C while i2c7 is as GPIO).
+...
 
-yep, the doc is clear about it: SDHC2_DAT74_PMUX is a single field for
-the 4 pads, 0b001 gives GPIO_2[18:15] and 0b010 gives IIC7 and IIC8
-together (RM rev 1, 4.9.8.9). IIC7 and IIC8 are not available on any
-other pad.
+>  	for (i = 0; i < st->caps->trigger_number; i++) {
+> +		if (!st->trig[i])
+> +			continue;
+>  		iio_trigger_unregister(st->trig[i]);
+>  		iio_trigger_free(st->trig[i]);
+>  	}
 
-Checking from other angles, the A-010650 workaround uses one write for both
-buses: 0x700100130 = RegA OR 0x031. That mask looks wrong to me though: bits 5:4
-belong to SDHC2_BASE_PMUX, and OR-ing 0x001 onto 0b010 gives the reserved
-0b011. Could someone at NXP have a look ?
+Yes, but no. Please, rather fix the above mentioned IIO trigger APIs to be
+NULL-aware.
 
-> The way the code is currently written, the pin_request() call will fail here:
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Yes, in fact, it is not new with this series: both nodes have shared the
-same setting since
-  8a1365c7bbc1 ("arm64: dts: lx2160a: add pinmux and i2c gpio to support bus recovery")
-from Carlos Song (NXP) where the two pinctrl-single states covered the same
-bits, so the second controller would have failed the same way. Wihtin the
-kernel, there is no board that enables i2c6 or i2c7, so nobody did hit it!
 
-> Due to the fundamental issue of this limitation, I don't think it makes
-> sense to have the pinctrl states described in fsl-lx216x.dtsi for i2c6
-> and i2c7. Perhaps you could remove them in another change (either as a
-> follow-up, or another patch in v7 if you need to resend).
-
-Done for v7 as an additional patch: the DTS drops pinctrl-names, pinctrl-0/1
-and scl/sda-gpios from i2c6 and i2c7, and the two states nothing else uses.
-A board that needs one of these buses can add its own states, or set the
-field once with a hog on the pad-mux node.
-
-I tested on my board for regressions, since there those 4 pads carry
-the eMMC DAT[7:4]: the other I2C buses still set up their GPIO recovery,
-and the eMMC still runs in 8-bit HS400.
-
-I also went through the other fields. 7 more settings mix two
-controllers the same way:
- - flextimer on iic2, irq3-0, irq7-4, evt4-3 and evt2-0 (FTM1 and FTM2 channels)
- - sdhc-spi on sdhc1-base (SDHC1 with SPI3_PCS0) and usb on usb-ext (USB1 and USB2)
-No dts claims any of them.
-
-About your previous comment on clk-out: v7 names encoding 0 "clk-out".
-On my board, with debugfs, it shows now:
-
-  pin 20 (evt2-0) 0:? evt
-  pin 21 (clk-out) 0:? clk-out
-  pin 22 (asleep) 0:? asleep
-
-and the U-Boot port of this driver shows "clk-out : clk-out" in
-"pinmux status".
-My take: the reserved marking comes from RM rev 1: its revision history
-says "Updated 0b000 as reserved" and the CLK_OUT configuration section was
-removed, while table 19 still lists 000 (CLK_OUT).
-
-There is a similar gap on EC1: the signal tables list CLK_OUT2 on
-EC1_TXD0/GPIO4_DAT03, but EC1_PMUX only has 0b00 RGMII and 0b01 GPIO,
-0b10 and 0b11 being reserved. Would you know which value selects CLK_OUT2 ?
-
-thank you,
-  Vincent
 
