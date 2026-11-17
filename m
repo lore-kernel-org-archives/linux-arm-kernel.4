@@ -2,41 +2,41 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0CDF606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 23:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BFD0606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 23:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JabhqwPM;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=SvLsGhkT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ol4ehgFS;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Nu++3NeI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iIGCznXhTjwwAbtISLd9zxt6KkpRGg6tsCKG2gaFg90=; b=JabhqwPMnAkzYE
-	Hy1wNetxz2viwMuTJ7auJbkEEtthCJyDERaD4D0dj9UzTXdJaezvTZu4zX3bGTZGZmkbMJIK5QcsC
-	BDSza2uENWub0HmCw3x8A85QEs21RQDLS229IlgtIayWdIX9kULni4M4Rubwwt2Yk46fCAPpDue15
-	ztNZS9Xs5opYlu49YV7APr6DPAPQ805I+AmXoq1X4+4AHvb1CaUXKxa7vFpprbJo8e5lrXNX6uOLa
-	xDtlggZylAMG6FgQVwG2ed289ydEeatXS1lQnO3JI4ZCqyXzXZB89FbJCK9RDzOYs1WWUWRWJifM+
-	zqqGsGfttLH2SBtmK1yA==;
+	List-Owner; bh=OFZbREjsf49enuS/73KTBKoLcystcrUdilFE3iKgq+A=; b=Ol4ehgFSTSzNW8
+	nKvGGdZzTbP9XTGJ/p3IVWywAdd+/pku9YzCOzV342pXuGC5M0Py26w6bNz9A7qex0LDK5DexTZIf
+	I2ECFhAvu5Lxz7MCj2A0LccnQX6m4vUCg2eYVRW/7LtJLpckoJZqmd3ihZUD4t1z1nBEbvzPpO0sC
+	vyZeZRLbI3eQQUdAIW2NJlWBP1Z3R5R4THGlbmWDHUDlTi5AyvOGNztcLj7tQVMGruIvd7v6GrEzi
+	2clUlvuhv8g7goF3wUx8qyym6MBCNwEemp0dQnFe8z6iNj+6elKukT+M81ZxlwET3vAeR0jIG3gvJ
+	8X7qYCnFopMTO9fm7bHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTSRn-00000007HYW-15cz;
+	id 1xTSRn-00000007HYt-2niE;
 	Tue, 17 Nov 2026 23:18:43 +0000
 Received: from m16.mail.163.com ([117.135.210.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTSRi-00000007HWH-0sA7
+	id 1xTSRj-00000007HWc-0n4M
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 23:18:39 +0000
+	Tue, 17 Nov 2026 23:18:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=iI
-	GCznXhTjwwAbtISLd9zxt6KkpRGg6tsCKG2gaFg90=; b=SvLsGhkTDPXzAfq3BR
-	9/l8k4//D8k9qjpqRh6nqSAT52sbBOOoDZV1S38pDyyER2j/AgTIWZL6jMwOD1sH
-	CwstOyXCpV9EwQiVgZB+gbA4YVlyD4r5+KrkJ6Q1pyEtVD/eY55ea0C9I4CINX0I
-	7b4hH93gFoHRAHeRsNjYh5mww=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=OF
+	ZbREjsf49enuS/73KTBKoLcystcrUdilFE3iKgq+A=; b=Nu++3NeI1PVbPdurBW
+	WEtwwZw69UEXY4csT3e9BSE0/sh+pFE+WT8iAyYiNZ74LIudSI7rIYAeFi+Nqdn+
+	FjqiXl/FrjwyJiNn8Sm/05ySW9xelpjxUBgJLyz73BvVaupopga+NGlMoFiUz0fo
+	ntbc7ehklf3h+k3h8Q68fRdIk=
 Received: from SYPC (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id PSgvCgCXyQiu4Pxq15exGA--.55935S2;
-	Wed, 18 Nov 2026 07:18:07 +0800 (CST)
+	by gzsmtp2 (Coremail) with SMTP id PSgvCgCXyQiu4Pxq15exGA--.55935S3;
+	Wed, 18 Nov 2026 07:18:08 +0800 (CST)
 From: Yang Siyuan <hsyysy@163.com>
 To: Chen-Yu Tsai <wens@kernel.org>
 Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
@@ -49,25 +49,25 @@ Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] drm/sun4i: report coverage blending for alpha-capable planes
-Date: Wed, 18 Nov 2026 07:17:49 +0800
-Message-ID: <20261117231751.264258-1-hsyysy@163.com>
+Subject: [PATCH v2 1/2] drm/sun4i: mixer: report coverage blending for alpha-capable planes
+Date: Wed, 18 Nov 2026 07:17:50 +0800
+Message-ID: <20261117231751.264258-2-hsyysy@163.com>
 X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261117091932.12063-1-hsyysy@163.com>
+In-Reply-To: <20261117231751.264258-1-hsyysy@163.com>
 References: <20261117091932.12063-1-hsyysy@163.com>
+ <20261117231751.264258-1-hsyysy@163.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: PSgvCgCXyQiu4Pxq15exGA--.55935S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KrW8ZFy3Zw1rAw15ZFWUJwb_yoW8Jw18pF
-	WrG3Z8G34kGr4av3WfJa47XFy3ua1fGFWrWrnxJ3Z3Aw1DAFy5Gryjk3Wa9FWDJr4Ikw47
-	tws8ur9IkFyDC3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j0GQDUUUUU=
-X-CM-SenderInfo: 5kv152r16rljoofrz/xtbC7RA+cmr84LABfwAA3J
+X-CM-TRANSID: PSgvCgCXyQiu4Pxq15exGA--.55935S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxWryktrWkCFy8CrW3JFWkWFg_yoW5Jw45pF
+	4rGFy5K34UGrWYva43Ary8ZF13Wa10gFy8Kry7J3sxXr1qqF9Ik3s8K3ya9ryUArWxCr42
+	gw4UGF4q9FsFkw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jcsqJUUUUU=
+X-CM-SenderInfo: 5kv152r16rljoofrz/xtbC7hA+cmr84LADwwAA30
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_151838_652223_078B304C 
-X-CRM114-Status: UNSURE (   8.41  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261117_151839_581316_C3938D2E 
+X-CRM114-Status: GOOD (  11.08  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,41 +79,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 Linux 7.3 added validate_blend_mode_for_alpha_formats(), which warns once
 per plane that exposes a pixel format with an alpha channel but has no
-blend mode property.  Neither the DE2+ mixer planes nor the DE1 backend
-planes create one.
+blend mode property:
 
-Both engines blend a layer with its own alpha channel and do not
-premultiply, which is the DRM "coverage" equation, so advertise exactly
-DRM_MODE_BLEND_COVERAGE and leave the register programming unchanged.
+  sun4i-drm display-engine: [drm] [PLANE:35:plane-0] pixel format with
+  alpha exposed but blend mode not setup. Please fix.
 
-Changes in v2:
-- Drop the Fixes: tag.  860e748bddcc only added the generic check; it did
-  not change this driver.
-- Drop the code comments; they only restated the commit message.
-- Handle the DE1 backend planes too, in a separate patch, since they
-  expose alpha formats as well and still warned on A10/A20/A31/A33.
-- Link to v1: https://lore.kernel.org/dri-devel/20261117091932.12063-1-hsyysy@163.com/
+The mixer blends a layer using its own alpha channel: ALPHA_MODE is set
+to PIXEL when plane alpha is opaque and to COMBINED otherwise, while
+BLEND_PREMULTIPLY keeps its reset value.  That is straight alpha, i.e. the
+DRM "coverage" blending equation.
 
-Yang Siyuan (2):
-  drm/sun4i: mixer: report coverage blending for alpha-capable planes
-  drm/sun4i: backend: report coverage blending for alpha-capable planes
+Advertise exactly DRM_MODE_BLEND_COVERAGE on every mixer layer that can
+expose an alpha format (UI always, VI on DE3 and later).  This matches the
+existing register programming, keeps userspace behaviour unchanged and
+satisfies the validation.  Premultiplied blending would require driving
+BLEND_PREMULTIPLY and is left as a follow-up.
 
- drivers/gpu/drm/sun4i/sun4i_layer.c    | 7 +++++++
+The DE1 backend planes are handled by the next patch.
+
+Signed-off-by: Yang Siyuan <hsyysy@163.com>
+---
  drivers/gpu/drm/sun4i/sun8i_ui_layer.c | 7 +++++++
  drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 9 +++++++++
- 3 files changed, 23 insertions(+)
+ 2 files changed, 16 insertions(+)
 
-base-commit: 091b06388b117fefdcb63336ac09956a4914b961
+diff --git a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+index 00756ab..57bc603 100644
+--- a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
++++ b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+@@ -283,6 +283,13 @@ struct sun8i_layer *sun8i_ui_layer_init_one(struct drm_device *drm,
+ 		return ERR_PTR(ret);
+ 	}
+ 
++	ret = drm_plane_create_blend_mode_property(&layer->plane,
++						   BIT(DRM_MODE_BLEND_COVERAGE));
++	if (ret) {
++		dev_err(drm->dev, "Couldn't add blend mode property\n");
++		return ERR_PTR(ret);
++	}
++
+ 	ret = drm_plane_create_zpos_property(&layer->plane, index,
+ 					     0, plane_cnt - 1);
+ 	if (ret) {
+diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+index 09f668c..ab95c55 100644
+--- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
++++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+@@ -436,6 +436,15 @@ struct sun8i_layer *sun8i_vi_layer_init_one(struct drm_device *drm,
+ 		}
+ 	}
+ 
++	if (layer->cfg->de_type >= SUN8I_MIXER_DE3) {
++		ret = drm_plane_create_blend_mode_property(&layer->plane,
++							   BIT(DRM_MODE_BLEND_COVERAGE));
++		if (ret) {
++			dev_err(drm->dev, "Couldn't add blend mode property\n");
++			return ERR_PTR(ret);
++		}
++	}
++
+ 	ret = drm_plane_create_zpos_property(&layer->plane, index,
+ 					     0, plane_cnt - 1);
+ 	if (ret) {
 -- 
 2.56.1
 
