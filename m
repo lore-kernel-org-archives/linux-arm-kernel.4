@@ -2,67 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCE0606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A0A2606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=US2jT6WM;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=dy2z7c0V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m7KliaUe;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Yp6Nk3Pw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YhC7LMQsZJcFBItk5rzBnnu116ZCqPDPAdrEnbFmiXE=; b=US2jT6WM5qTGwu
-	ByaHLD5VtG2pXcAgeSabbZZj6gNe1K4h5V74cHEGHHQY0iqAFjz8JmSRbqZRVB131JRQpX48mpyqp
-	z00coGRRnPx/jf0bzRsr7eEpXxqgM++3npXW/uM8ajgYzAmb9lSqB/0dSD+XJUQieueDMjdv1M3jt
-	/w6k+8Wb87G4lEn2X0MBdog2UjrU8JMHySjlOISE3f3v+a6/B+zB+lshnORceGl1s4TMUZSAokx0X
-	LhFBD9ccrd8tri0StvW2BkPyAa1AkzTbVT9pejKddYpE0AbwatnHhviLT0UvJQjQlA3yc607Es2kx
-	QZmW5AVPeJeUCKNrRJgw==;
+	List-Owner; bh=D4QzFqb7Zz3Kw4h7SEQ1KpGp9R9C8saFgSFJQ/eAjQ4=; b=m7KliaUeawrwDP
+	xFGZ2pTSdmK1eFRzy/r8z2sktTGriuBgB4/YfD/rMPX5sJzde7Zc9Fq7EQ6cW5S4+rD+764ZLytwY
+	8qd+trXQpmTjSWJDfSIRYgtRMVTdwqAfLRGMR5HrS52oAoTCh9ALu0deT4WVsAFxWoLR8CHD5pMKH
+	RjwFWHyYc1ybWj3X+vrREZw3/CuBN0QIz3HyxF1/yZ1RM8UX7A5kIBwfUfVrtB1IG8pYGZ0Y35MFL
+	uI5USC4OjkLGe+smyaVRHujlelqhRnEiPALYgz48lz9a9OuP5wEWr9tjgbg8fLlkqgNRTcoBVDL9m
+	0cESXLPOj+7c3k1THvyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGuP-00000005MyK-1zEa;
-	Tue, 17 Nov 2026 10:59:29 +0000
+	id 1xTGuw-00000005NCU-3F03;
+	Tue, 17 Nov 2026 11:00:03 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGuF-00000005MwK-2U9W;
-	Tue, 17 Nov 2026 10:59:28 +0000
+	id 1xTGun-00000005N8G-2bG0;
+	Tue, 17 Nov 2026 10:59:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794913157;
-	bh=TNPoh1km3RiLkwQBgyHz7qvbpEpaEwiiICoDpf0eB/Q=;
+	s=mail; t=1794913191;
+	bh=4sqjQ5xqn6KI4BUTRNYtOb2A1Sg7FKy/GIO5i6fVqRc=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=dy2z7c0VuQ79pLm0D14yDXpjXmOH662JG6Nidn/5yWAT2HeHmYfuDWKBSgDdKheWb
-	 cm7Va7bCYdSZEpFd8RE1TJzSt1SdzXFRsbd5caCwn//ww82a4CaT7sj0gkU087ZKvN
-	 3FgiC5SpX3fK0scmLeQnuJt7WgvJV6gdU7iy/zpjgJA6cx2HDdeuIFX8vY9OiqwvDo
-	 67rU2473FAon/iZ2+JbANwzqhxAXMl9oBp1NzGcEcBnPVT4jFDsB/q0j5Gzwiqo4jV
-	 Zi5GyVEFI68u/TnN/aWk/4xbHf2nXb8mDzYRpBxy4sfHtRxFoegWB3YVIgWyRKz3gJ
-	 qmTJPeqLxACIQ==
+	b=Yp6Nk3PwHh7DyyrBFd7rnQo73o45y/B4M0gC57HkBcUbfMWfNRxCgC/ZcLJIANSdM
+	 u7KGzQ0cqnKQ7UDEHXwzc9BtFwim1qQ28MVLdQ7Yo7Wb6ubKLT9cLl0wJFbOOLw7yc
+	 AiPBhTqcUNlwrjiixVDZjluP/bkANgIK8v0Pkj4ID8z6BuwN1mnCWdjwGdxpJ9Gfui
+	 Zc+0OSZGkoBq6A/t54DeqeqXwD+oFJm0AKlu6w61696g4AtKz7ldOJbooHQ9bM9/E/
+	 dT4EiuAIElInY79kYRZlG9ccnZJ8dCVv416YvEQOWViT3tMrHUlpraROpusyGRJcHS
+	 zCqlwRPoTeHjw==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8A13417E07EC;
-	Tue, 17 Nov 2026 11:59:17 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0FD0717E00E8;
+	Tue, 17 Nov 2026 11:59:51 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: Matthias Brugger <matthias.bgg@gmail.com>, 
  Chen-Yu Tsai <wenst@chromium.org>
 Cc: linux-mediatek@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <20261109141233.983830-1-wenst@chromium.org>
-References: <20261109141233.983830-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH 0/5] arm64: dts: mediatek: mt8173-elm:
- regulator cleanup
-Message-Id: <179491315750.156157.4493365052621090774.b4-ty@b4>
-Date: Tue, 17 Nov 2026 11:59:17 +0100
+In-Reply-To: <20261106060621.2706658-1-wenst@chromium.org>
+References: <20261106060621.2706658-1-wenst@chromium.org>
+Subject: Re: [PATCH v2 0/3] arm64: dts: mediatek: mt8390-genio-common: USB
+ fixes
+Message-Id: <179491319100.156320.17530941908872114428.b4-ty@b4>
+Date: Tue, 17 Nov 2026 11:59:51 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_025919_841417_2142AF5E 
-X-CRM114-Status: UNSURE (   9.06  )
+X-CRM114-CacheID: sfid-20261117_025955_978509_2325E6DC 
+X-CRM114-Status: UNSURE (   8.13  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -83,28 +83,28 @@ X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 09 Nov 2026 22:12:27 +0800, Chen-Yu Tsai wrote:
-> This series aligns the regulators in the MT8173 Elm / Hana device trees
-> with the schematics and datasheets.
+On Fri, 06 Nov 2026 14:06:17 +0800, Chen-Yu Tsai wrote:
+> This is v2 of the Genio 510 / 700 EVK USB fixes that came out of the
+> MTK XHCI binding fix [1].
 > 
-> The comparison and digging through datasheets was mostly done by an
-> agent. This was an experiment on my end to see if it could understand
-> schematics and datasheets and help with the tedious process of comparing
-> all the documents and device tree files. I think the overall results
-> were pretty good.
+> Changes since v1:
+> - Patch 1 now also switches the type C port to a source-only port, and
+>   limits the source PDO to 5V 1A, matching the hardware (Sashiko)
+> - Patch 1 now connects the SuperSpeed and HighSpeed lines to the
+>   correct USB hubs
+> - New patch 3 fixing swapped USB hub labels
+> - Link to v1: https://lore.kernel.org/all/20261103083335.2944847-1-wenst@chromium.org/
 > 
 > [...]
 
 Applied to v7.4-next/dts64, thanks!
 
-[2/5] arm64: dts: mediatek: mt8173-elm: Fix DA9212 compatible, node names and labels
-      commit: b94b23b176a4f358b91610399bcbedc6a85328c0
-[3/5] arm64: dts: mediatek: mt8173-elm: Fix DA9212 regulator names
-      commit: 2a3238d299a3568dca7bc8ffb6d284364c96c18a
-[4/5] arm64: dts: mediatek: mt8173-elm: Tighten MT6397 regulator voltage ranges
-      commit: e3c69f848f95979487d4230ce59ccc8efdc207d0
-[5/5] arm64: dts: mediatek: mt8173-elm: Tighten DA9212 regulator voltage ranges
-      commit: d3551416f5b73a7360e5f1c004a62eb174b82953
+[1/3] arm64: dts: mediatek: mt8390-genio-common: Fix type C port mode and connection
+      commit: 1e821a4fb9e852d027a3167facce169f124f4dda
+[2/3] arm64: dts: mediatek: mt8390-genio-common: Split out USB hub enable pin mux
+      commit: 7c5f621c2bae8b84f24460e83e73e46cfd9e315a
+[3/3] arm64: dts: mediatek: mt8390-genio-common: Fix swapped USB hub labels
+      commit: 272559211b361a38789223a0ac75875b37f55d7a
 
 Cheers,
 Angelo
