@@ -2,76 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E32606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 16 Nov 2026 23:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A82E606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 00:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d+RZ9yLi;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DTrdBPSH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ffl6pPiu;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UiTeGyCY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=irKYIIyVapmuljI9vvbPAoWaC4Q3ef6wVp/TYKP+BRI=; b=d+RZ9yLismdszy
-	IZSjQWWJCz+GabUTqrFJABPlDJ6GYZsACDFh+Vggn40z/TQITLx9Jy8/MnFLRQgb0OKfHeV3wcgMt
-	QTXWbmKogFjAMMAficC6/+4L9Jd0ltNMfYGyY6BN8oHIPFOzlGcpkAnosyDCm0UimTkuaFvtM6mWm
-	jCp3QGwjXxl3qILB5DdHkgoDdqlQB2HbktYmBMffZ0EEm9ryy28zkxbOJJOdP/W/txoYH6kFoDj+I
-	TVnc98IRGTqbul8mzRfZ+ct424WeQEJ7z1tnwrBCg7WEuAGcyQ2ZCtlXp+MpLvCqPr+O3o2cS3KzB
-	qvujhqkScwO3Fg90SsJw==;
+	List-Owner; bh=2wghTaLv3bd7cxoSQxpRSgUbdH9hiZjTo57P7TCO9lY=; b=ffl6pPiueqfhLz
+	gY/wtRFTSoclK0/jSXoDdqdDY/ADJbd0t2IwtU1/RwVFSwJcrWECQMFg9nfl42oiraz/A+AZXBIpx
+	yP45nfYmyWFW+l/NGqXQtTprLpR+LcRh4vivwNT9xe8QhJlp0jA7nz7mAoQdM9Uuwdj29iQ6MScTK
+	Yb7frJinS18g6Om02ZpToShGDfl0XRIxMTpjdWEPD7zpoDQkQ9ZO2RURikcjUtXXFmE+fxAcOHaJP
+	kl+DuAJejvp7zP8Kzf7BgP1ZciRlbUjhFY+XlY8+CqtReW4XQhV/yXMIUiamFKAMZFe2LY182esib
+	yks+tDgG3cL0lhWM4/BQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT6RI-00000004CuK-24hE;
-	Mon, 16 Nov 2026 23:48:44 +0000
+	id 1xT6cR-00000004DtN-2VZh;
+	Tue, 17 Nov 2026 00:00:15 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT6R7-00000004Cmm-2w8b
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 16 Nov 2026 23:48:35 +0000
+	id 1xT6cQ-00000004DtB-1jM9;
+	Tue, 17 Nov 2026 00:00:14 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1ABC361DC4;
-	Mon, 16 Nov 2026 23:48:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 330721F000CC;
-	Mon, 16 Nov 2026 23:48:26 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A514C6286C;
+	Tue, 17 Nov 2026 00:00:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C3D71F000CA;
+	Tue, 17 Nov 2026 00:00:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794872912;
-	bh=irKYIIyVapmuljI9vvbPAoWaC4Q3ef6wVp/TYKP+BRI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=DTrdBPSHIKiy3OZLuxidPY8sGhvcshva30ud5BHE+ejEWMvHdFGldMZOS6XEFh8fP
-	 UbmVV8z9Wv9gRhCAaW/+QA8le++BqcTEpYDvd6I5JEjxW8ub39Kb15Jy1PqdGtEL7f
-	 +uVmtIjTFSRcPFTRTFvCwBHsywmVE33L48iM1vkX0Fbq5Sj0J6ebFGh6QrMYDQ4X1L
-	 W+czDzFdoFYntXJ4sgxaF19/CxyMod1n5eHAbcU9AIdNjnRQdu9Ocs6mpnjC5lhbMJ
-	 dS/7uol59Ny56SgvgNcrFxJmrt7cn1xhaqTL9NdYX/kYT5Rp7/yJqmCHCEKhG+92vV
-	 N5G7Zl5egMqKA==
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 17 Nov 2026 00:47:57 +0100
-Subject: [PATCH v5 5/6] clk: bcm: Add BCMBCA PMB clocks
+	s=k20260515; t=1794873613;
+	bh=2wghTaLv3bd7cxoSQxpRSgUbdH9hiZjTo57P7TCO9lY=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc;
+	b=UiTeGyCYpcbiQOHt/hLZ4Qfo3MvpY6j3jmb0EwgeJnBq3ZU6JiIh5gjRTeUAkyFm5
+	 kk36ipkaGNEQT8lOeEtcKmLFzr7hTNKW5HqxAWJRwR+VfPQgfwT90CLP2q4gNaoYBT
+	 jR8TcH9sgvhWvMmE+c43DrbxfrAgNpHbyuRHRTkkSN1b7U5mVOS+q64ES3TKkzyU+/
+	 sO3Nncj5dLxNqrrGZX9DMk3bCrfPE4GfblPCAAd059sk5xxgpDWf4i6U8Msstwej/P
+	 UUKdkIHZsBgiXbbeSd/Mx477ekwBkPB/RN+kQ9uV/tNK0lv4Wcy4aEMVGexayiyFsB
+	 TcY6z11uoiUdw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 3A31B391B06A;
+	Tue, 17 Nov 2026 00:00:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261117-xg6846b-bcmbca-xrdp-reset-v5-5-f584e8b8e696@kernel.org>
-References: <20261117-xg6846b-bcmbca-xrdp-reset-v5-0-f584e8b8e696@kernel.org>
-In-Reply-To: <20261117-xg6846b-bcmbca-xrdp-reset-v5-0-f584e8b8e696@kernel.org>
-To: Linus Walleij <linusw@kernel.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- William Zhang <william.zhang@broadcom.com>, 
- Anand Gore <anand.gore@broadcom.com>, 
- Kursad Oney <kursad.oney@broadcom.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Jonathan Corbet <corbet@lwn.net>, Randy Dunlap <rdunlap@infradead.org>, 
- Ulf Hansson <ulfh@kernel.org>, 
- Benjamin Larsson <benjamin.larsson@genexis.eu>
-Cc: mfd@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, linux-pm@vger.kernel.org
-X-Mailer: b4 0.16.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v2] net: ethernet: mtk-star-emac: fix device_node
+ leak in mtk_star_probe()
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <179487361177.250117.1599495795624921279.git-patchwork-notify@kernel.org>
+Date: Tue, 17 Nov 2026 00:00:11 +0000
+References: <1794455490000.585551.2561101329908158128@cmss.chinamobile.com>
+In-Reply-To: <1794455490000.585551.2561101329908158128@cmss.chinamobile.com>
+To: Xia Yan <yanxia@cmss.chinamobile.com>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, ot_yanqing.wang@mediatek.com,
+ brgl@kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ yana06070@163.com
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,462 +74,39 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a BCM6846 clock provider for the Power Management Bus (PMB) MFD
-cell. Expose six outputs from each of the RDP and BIU PLLs, the Runner
-clock divided from RDP PLL channel 1, the crystal output, PVTMON and
-block-zone clock gates.
+Hello:
 
-PVTMON and zone clocks provide gate control only.
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Signed-off-by: Linus Walleij <linusw@kernel.org>
----
- MAINTAINERS                      |   1 +
- drivers/clk/bcm/Kconfig          |  11 ++
- drivers/clk/bcm/Makefile         |   1 +
- drivers/clk/bcm/clk-bcmbca-pmb.c | 382 +++++++++++++++++++++++++++++++++++++++
- 4 files changed, 395 insertions(+)
+On Thu, 12 Nov 2026 11:51:30 +0800 you wrote:
+> mtk_star_probe() gets the PHY node from the "phy-handle" property
+> with of_parse_phandle(). The helper takes a reference on the node it
+> returns. The node is used by of_phy_connect() each time the netdevice
+> is opened.
+> 
+> That reference is never dropped. Every error return after the lookup
+> leaks it. Unbind leaks it as well: the driver is devm-only and has no
+> remove callback.
+> 
+> [...]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1d92b70c4465..770b0649cc52 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5448,6 +5448,7 @@ BROADCOM BCMBCA PMC3 PMB DRIVER
- M:	Linus Walleij <linusw@kernel.org>
- S:	Maintained
- F:	Documentation/devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml
-+F:	drivers/clk/bcm/clk-bcmbca-pmb.c
- F:	drivers/mfd/bcmbca_pmc3_pmb.c
- F:	drivers/pmdomain/bcm/bcmbca-pmb.c
- F:	drivers/reset/reset-bcmbca-pmb.c
-diff --git a/drivers/clk/bcm/Kconfig b/drivers/clk/bcm/Kconfig
-index a972d763eb77..58f815383886 100644
---- a/drivers/clk/bcm/Kconfig
-+++ b/drivers/clk/bcm/Kconfig
-@@ -1,5 +1,16 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
-+config CLK_BCMBCA_PMB
-+	tristate "Broadcom BCMBCA PMB clocks"
-+	depends on MFD_BCMBCA_PMB
-+	select REGMAP
-+	default MFD_BCMBCA_PMB
-+	help
-+	  Provide BCM6846 PLL output, Runner, crystal, PVTMON and block-zone
-+	  clocks through the Power Management Bus.
-+
-+	  The module will be called clk-bcmbca-pmb.
-+
- config CLK_BCM2711_DVP
- 	tristate "Broadcom BCM2711 DVP support"
- 	depends on ARCH_BCM2835 ||COMPILE_TEST
-diff --git a/drivers/clk/bcm/Makefile b/drivers/clk/bcm/Makefile
-index d0b6f4b1fb08..7123eefff138 100644
---- a/drivers/clk/bcm/Makefile
-+++ b/drivers/clk/bcm/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_CLK_BCMBCA_PMB)	+= clk-bcmbca-pmb.o
- obj-$(CONFIG_CLK_BCM_63XX)	+= clk-bcm63xx.o
- obj-$(CONFIG_CLK_BCM_63XX_GATE)	+= clk-bcm63xx-gate.o
- obj-$(CONFIG_CLK_BCM63268_TIMER) += clk-bcm63268-timer.o
-diff --git a/drivers/clk/bcm/clk-bcmbca-pmb.c b/drivers/clk/bcm/clk-bcmbca-pmb.c
-new file mode 100644
-index 000000000000..fcee63e2ffc6
---- /dev/null
-+++ b/drivers/clk/bcm/clk-bcmbca-pmb.c
-@@ -0,0 +1,382 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Broadcom BCM6846 Power Management Bus (PMB) clocks.
-+ *
-+ * PMB transactions sleep, so gating uses the prepare callbacks. Firmware
-+ * also uses these clocks: leave prepared clocks running and retain PLL
-+ * rates.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk-provider.h>
-+#include <linux/math64.h>
-+#include <linux/mfd/bcmbca-pmb.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include <dt-bindings/clock/brcm,bcm6846-pmb.h>
-+
-+/* PMB register offsets are in 32-bit words. */
-+#define PLL_CHANNEL_DISABLE	BIT(8)
-+#define PLL_CHANNEL_HOLD		BIT(9)
-+#define PLL_MDIV_OVERRIDE		BIT(15)
-+#define PLL_LOCK			BIT(31)
-+#define PLL_NDIV_INT		GENMASK(9, 0)
-+#define PLL_NDIV_FRAC		GENMASK(31, 12)
-+#define PLL_PDIV			GENMASK(3, 0)
-+
-+#define XTAL_CONTROL		14
-+#define XTAL_DRIVER_POWER_DOWN	BIT(17)
-+
-+#define PVTMON_CONFIG		17
-+#define PVTMON_CLOCK_ENABLE	BIT(2)
-+#define PVTMON_CLOCK_DIVIDER	GENMASK(12, 8)
-+
-+#define ZONE_CLOCK_ENABLE	BIT(0)
-+#define ZONE_MANUAL_CONTROL	BIT(7)
-+#define ZONE_POWER_DOWN_REQUEST	BIT(9)
-+#define ZONE_POWER_ON		BIT(26)
-+
-+enum bcmbca_pmb_clock_type {
-+	PMB_PLL_CHANNEL,
-+	PMB_RUNNER,
-+	PMB_XTAL,
-+	PMB_PVTMON,
-+	PMB_ZONE,
-+};
-+
-+struct bcmbca_pmb_pll_layout {
-+	u16 ch_ctrl;
-+	u16 status;
-+	u16 ndiv;
-+	u16 pdiv;
-+	u16 ch25;
-+};
-+
-+struct bcmbca_pmb_clock_desc {
-+	const char *name;
-+	enum bcmbca_pmb_clock_type type;
-+	u8 bus;
-+	u8 device;
-+	u8 channel;
-+	u16 reg;
-+	const struct bcmbca_pmb_pll_layout *pll;
-+};
-+
-+struct bcmbca_pmb_clock {
-+	struct clk_hw hw;
-+	struct device *dev;
-+	struct regmap *regmap;
-+	const struct bcmbca_pmb_clock_desc *desc;
-+};
-+
-+#define to_pmb_clock(_hw) container_of(_hw, struct bcmbca_pmb_clock, hw)
-+
-+static int bcmbca_pmb_clock_prepare(struct clk_hw *hw)
-+{
-+	struct bcmbca_pmb_clock *clock = to_pmb_clock(hw);
-+	const struct bcmbca_pmb_clock_desc *desc = clock->desc;
-+	unsigned int shift = (desc->channel % 2) * 16;
-+	unsigned int reg = BCMBCA_PMB_REG(desc->bus, desc->device, desc->reg);
-+	u32 value;
-+	int ret;
-+
-+	switch (desc->type) {
-+	case PMB_PLL_CHANNEL: {
-+		unsigned int regs[] = {
-+			BCMBCA_PMB_REG(desc->bus, desc->device, desc->pll->status),
-+			BCMBCA_PMB_REG(desc->bus, desc->device,
-+				       desc->pll->ch_ctrl + desc->channel / 2),
-+		};
-+		u32 values[ARRAY_SIZE(regs)];
-+
-+		ret = regmap_multi_reg_read(clock->regmap, regs, values, ARRAY_SIZE(regs));
-+		if (ret)
-+			return ret;
-+		/* Firmware owns PLL power and reset. */
-+		if (!(values[0] & PLL_LOCK))
-+			return -EAGAIN;
-+		/* A held output may be undergoing a firmware rate transition. */
-+		if (values[1] & (PLL_CHANNEL_HOLD << shift))
-+			return -EBUSY;
-+		return regmap_update_bits(clock->regmap, regs[1],
-+					  PLL_CHANNEL_DISABLE << shift, 0);
-+	}
-+	case PMB_XTAL:
-+		return regmap_update_bits(clock->regmap, reg, XTAL_DRIVER_POWER_DOWN, 0);
-+	case PMB_PVTMON:
-+		ret = regmap_read(clock->regmap, reg, &value);
-+		if (ret)
-+			return ret;
-+		/* Preserve the divider when firmware already enabled acquisition. */
-+		if (value & PVTMON_CLOCK_ENABLE)
-+			return 0;
-+		return regmap_update_bits(clock->regmap, reg,
-+					  PVTMON_CLOCK_ENABLE | PVTMON_CLOCK_DIVIDER,
-+					  PVTMON_CLOCK_ENABLE |
-+					  FIELD_PREP(PVTMON_CLOCK_DIVIDER, 5));
-+	case PMB_ZONE:
-+		ret = regmap_read(clock->regmap, reg, &value);
-+		if (ret)
-+			return ret;
-+		/* Power and isolation belong to the power-domain sequencer. */
-+		if (!(value & ZONE_POWER_ON) || value & ZONE_POWER_DOWN_REQUEST)
-+			return -EHOSTDOWN;
-+		if (!(value & ZONE_MANUAL_CONTROL))
-+			return 0;
-+		return regmap_update_bits(clock->regmap, reg, ZONE_CLOCK_ENABLE,
-+					  ZONE_CLOCK_ENABLE);
-+	case PMB_RUNNER:
-+		return 0;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int bcmbca_pmb_clock_is_prepared(struct clk_hw *hw)
-+{
-+	struct bcmbca_pmb_clock *clock = to_pmb_clock(hw);
-+	const struct bcmbca_pmb_clock_desc *desc = clock->desc;
-+	unsigned int shift = (desc->channel % 2) * 16;
-+	u32 value;
-+	int ret;
-+
-+	if (desc->type == PMB_PLL_CHANNEL) {
-+		unsigned int regs[] = {
-+			BCMBCA_PMB_REG(desc->bus, desc->device, desc->pll->status),
-+			BCMBCA_PMB_REG(desc->bus, desc->device,
-+				       desc->pll->ch_ctrl + desc->channel / 2),
-+		};
-+		u32 values[ARRAY_SIZE(regs)];
-+
-+		ret = regmap_multi_reg_read(clock->regmap, regs, values, ARRAY_SIZE(regs));
-+		if (ret || !(values[0] & PLL_LOCK))
-+			return 0;
-+		return !(values[1] & ((PLL_CHANNEL_DISABLE | PLL_CHANNEL_HOLD) << shift));
-+	}
-+
-+	ret = regmap_read(clock->regmap,
-+			  BCMBCA_PMB_REG(desc->bus, desc->device, desc->reg), &value);
-+	if (ret)
-+		return 0;
-+
-+	switch (desc->type) {
-+	case PMB_XTAL:
-+		return !(value & XTAL_DRIVER_POWER_DOWN);
-+	case PMB_PVTMON:
-+		return !!(value & PVTMON_CLOCK_ENABLE);
-+	case PMB_ZONE:
-+		return (value & ZONE_POWER_ON) && !(value & ZONE_POWER_DOWN_REQUEST) &&
-+		       (!(value & ZONE_MANUAL_CONTROL) || (value & ZONE_CLOCK_ENABLE));
-+	default:
-+		return 0;
-+	}
-+}
-+
-+static unsigned long bcmbca_pmb_clock_recalc_rate(struct clk_hw *hw,
-+						  unsigned long parent_rate)
-+{
-+	struct bcmbca_pmb_clock *clock = to_pmb_clock(hw);
-+	const struct bcmbca_pmb_clock_desc *desc = clock->desc;
-+	unsigned int regs[4], count = 3;
-+	u32 values[4], ndiv, pdiv, channel, mdiv;
-+	unsigned int shift = (desc->channel % 2) * 16;
-+	u64 multiplier, rate;
-+	int ret;
-+
-+	if (desc->type == PMB_XTAL)
-+		return parent_rate;
-+	/* The parent rates of these clocks are unknown. */
-+	if (desc->type != PMB_PLL_CHANNEL)
-+		return 0;
-+
-+	regs[0] = BCMBCA_PMB_REG(desc->bus, desc->device, desc->pll->ndiv);
-+	regs[1] = BCMBCA_PMB_REG(desc->bus, desc->device, desc->pll->pdiv);
-+	regs[2] = BCMBCA_PMB_REG(desc->bus, desc->device,
-+				 desc->pll->ch_ctrl + desc->channel / 2);
-+	if (desc->channel >= 2)
-+		regs[count++] = BCMBCA_PMB_REG(desc->bus, desc->device, desc->pll->ch25);
-+
-+	ret = regmap_multi_reg_read(clock->regmap, regs, values, count);
-+	if (ret) {
-+		dev_err_ratelimited(clock->dev, "cannot read %s rate: %d\n", desc->name, ret);
-+		return 0;
-+	}
-+	ndiv = values[0];
-+	pdiv = values[1];
-+	channel = values[2];
-+	if (channel & (PLL_MDIV_OVERRIDE << shift))
-+		mdiv = (channel >> shift) & 0xff;
-+	else if (desc->channel < 2)
-+		mdiv = (pdiv >> (16 + desc->channel * 8)) & 0xff;
-+	else
-+		mdiv = (values[3] >> ((desc->channel - 2) * 8)) & 0xff;
-+
-+	pdiv = FIELD_GET(PLL_PDIV, pdiv);
-+	/* No rate can be determined from a zero divider. */
-+	if (!pdiv || !mdiv)
-+		return 0;
-+	multiplier = ((u64)FIELD_GET(PLL_NDIV_INT, ndiv) << 20) |
-+		     FIELD_GET(PLL_NDIV_FRAC, ndiv);
-+	rate = div64_u64((u64)parent_rate * multiplier,
-+			 ((u64)pdiv * mdiv) << 20);
-+
-+	return rate > ULONG_MAX ? 0 : rate;
-+}
-+
-+static const struct clk_ops bcmbca_pmb_clock_ops = {
-+	.prepare = bcmbca_pmb_clock_prepare,
-+	.is_prepared = bcmbca_pmb_clock_is_prepared,
-+	.recalc_rate = bcmbca_pmb_clock_recalc_rate,
-+	/* No unprepare: these clocks can remain in use by PMC firmware. */
-+};
-+
-+static const struct bcmbca_pmb_pll_layout bcm6846_rdppll = {
-+	.ch_ctrl = 16,
-+	.status = 19,
-+	.ndiv = 21,
-+	.pdiv = 22,
-+	.ch25 = 23,
-+};
-+
-+/* The BIU PLL uses the classic BPCM register layout. */
-+static const struct bcmbca_pmb_pll_layout bcm6846_biupll = {
-+	.ch_ctrl = 11,
-+	.status = 15,
-+	.ndiv = 17,
-+	.pdiv = 18,
-+	.ch25 = 19,
-+};
-+
-+#define PMB_PLL(_id, _name, _device, _channel, _pll) \
-+	[_id] = { .name = _name, .type = PMB_PLL_CHANNEL, .bus = 1, \
-+		  .device = _device, .channel = _channel, \
-+		  .pll = _pll }
-+#define PMB_GATE(_id, _name, _type, _bus, _device, _reg) \
-+	[_id] = { .name = _name, .type = _type, .bus = _bus, \
-+		  .device = _device, .reg = _reg }
-+#define PMB_ZONE_CLK(_id, _name, _bus, _device, _zone) \
-+	PMB_GATE(_id, _name, PMB_ZONE, _bus, _device, 32 + (_zone) * 8)
-+
-+static const struct bcmbca_pmb_clock_desc bcm6846_clocks[] = {
-+	PMB_PLL(BCM6846_CLK_RDPPLL_CH0, "rdppll-ch0", 3, 0, &bcm6846_rdppll),
-+	PMB_PLL(BCM6846_CLK_RDPPLL_CH1, "rdppll-ch1", 3, 1, &bcm6846_rdppll),
-+	PMB_PLL(BCM6846_CLK_RDPPLL_CH2, "rdppll-ch2", 3, 2, &bcm6846_rdppll),
-+	PMB_PLL(BCM6846_CLK_RDPPLL_CH3, "rdppll-ch3", 3, 3, &bcm6846_rdppll),
-+	PMB_PLL(BCM6846_CLK_RDPPLL_CH4, "rdppll-ch4", 3, 4, &bcm6846_rdppll),
-+	PMB_PLL(BCM6846_CLK_RDPPLL_CH5, "rdppll-ch5", 3, 5, &bcm6846_rdppll),
-+	PMB_PLL(BCM6846_CLK_BIUPLL_CH0, "biupll-ch0", 38, 0, &bcm6846_biupll),
-+	PMB_PLL(BCM6846_CLK_BIUPLL_CH1, "biupll-ch1", 38, 1, &bcm6846_biupll),
-+	PMB_PLL(BCM6846_CLK_BIUPLL_CH2, "biupll-ch2", 38, 2, &bcm6846_biupll),
-+	PMB_PLL(BCM6846_CLK_BIUPLL_CH3, "biupll-ch3", 38, 3, &bcm6846_biupll),
-+	PMB_PLL(BCM6846_CLK_BIUPLL_CH4, "biupll-ch4", 38, 4, &bcm6846_biupll),
-+	PMB_PLL(BCM6846_CLK_BIUPLL_CH5, "biupll-ch5", 38, 5, &bcm6846_biupll),
-+	[BCM6846_CLK_RUNNER] = { .name = "runner", .type = PMB_RUNNER },
-+	PMB_GATE(BCM6846_CLK_XTAL_OUT, "xtal-out", PMB_XTAL, 1, 1, XTAL_CONTROL),
-+	PMB_GATE(BCM6846_CLK_PVTMON, "pvtmon", PMB_PVTMON, 1, 6, PVTMON_CONFIG),
-+	PMB_ZONE_CLK(BCM6846_CLK_PERIPH_ZONE0, "periph-zone0", 0, 0, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_PERIPH_ZONE1, "periph-zone1", 0, 0, 1),
-+	PMB_ZONE_CLK(BCM6846_CLK_PERIPH_ZONE2, "periph-zone2", 0, 0, 2),
-+	PMB_ZONE_CLK(BCM6846_CLK_PERIPH_ZONE3, "periph-zone3", 0, 0, 3),
-+	PMB_ZONE_CLK(BCM6846_CLK_MEMC, "memc", 1, 8, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_USB_ZONE0, "usb-zone0", 1, 10, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_USB_ZONE1, "usb-zone1", 1, 10, 1),
-+	PMB_ZONE_CLK(BCM6846_CLK_USB_ZONE2, "usb-zone2", 1, 10, 2),
-+	PMB_ZONE_CLK(BCM6846_CLK_USB_ZONE3, "usb-zone3", 1, 10, 3),
-+	PMB_ZONE_CLK(BCM6846_CLK_WAN_ZONE0, "wan-zone0", 1, 11, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_WAN_ZONE1, "wan-zone1", 1, 11, 1),
-+	PMB_ZONE_CLK(BCM6846_CLK_WAN_ZONE2, "wan-zone2", 1, 11, 2),
-+	PMB_ZONE_CLK(BCM6846_CLK_XRDP_ZONE0, "xrdp-zone0", 1, 12, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_XRDP_ZONE1, "xrdp-zone1", 1, 12, 1),
-+	PMB_ZONE_CLK(BCM6846_CLK_XRDP_ZONE2, "xrdp-zone2", 1, 12, 2),
-+	PMB_ZONE_CLK(BCM6846_CLK_RUNNER0, "runner0", 1, 14, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_RUNNER1, "runner1", 1, 15, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_RUNNER2, "runner2", 1, 16, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_PCIE0, "pcie0", 0, 18, 0),
-+	PMB_ZONE_CLK(BCM6846_CLK_PCIE1, "pcie1", 0, 19, 0),
-+	/* BIU uses the classic BPCM layout, with its zone at word 16. */
-+	PMB_GATE(BCM6846_CLK_BIU, "biu", PMB_ZONE, 1, 39, 16),
-+};
-+
-+static int bcmbca_pmb_clock_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct regmap *regmap = dev_get_regmap(dev->parent, NULL);
-+	struct clk_hw_onecell_data *data;
-+	struct bcmbca_pmb_clock *clocks;
-+	unsigned int i;
-+	int ret;
-+
-+	if (!regmap)
-+		return -ENODEV;
-+
-+	data = devm_kzalloc(dev, struct_size(data, hws, ARRAY_SIZE(bcm6846_clocks)),
-+			    GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+	data->num = ARRAY_SIZE(bcm6846_clocks);
-+	clocks = devm_kcalloc(dev, data->num, sizeof(*clocks), GFP_KERNEL);
-+	if (!clocks)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < data->num; i++) {
-+		const struct bcmbca_pmb_clock_desc *desc = &bcm6846_clocks[i];
-+		struct clk_parent_data parent = {};
-+		struct clk_init_data init = {
-+			.ops = &bcmbca_pmb_clock_ops,
-+		};
-+
-+		init.name = devm_kasprintf(dev, GFP_KERNEL, "%s-%s", dev_name(dev), desc->name);
-+		if (!init.name)
-+			return -ENOMEM;
-+		if (desc->type == PMB_RUNNER) {
-+			struct clk_hw *parent_hw = data->hws[BCM6846_CLK_RDPPLL_CH1];
-+
-+			data->hws[i] =
-+				devm_clk_hw_register_fixed_factor_parent_hw(dev, init.name,
-+									    parent_hw, 0, 1, 2);
-+			if (IS_ERR(data->hws[i]))
-+				return PTR_ERR(data->hws[i]);
-+			continue;
-+		}
-+		if (desc->type == PMB_PLL_CHANNEL || desc->type == PMB_XTAL) {
-+			parent.fw_name = "ref";
-+			init.parent_data = &parent;
-+			init.num_parents = 1;
-+		}
-+		if (desc->type == PMB_PLL_CHANNEL)
-+			init.flags = CLK_GET_RATE_NOCACHE;
-+		clocks[i].regmap = regmap;
-+		clocks[i].dev = dev;
-+		clocks[i].desc = desc;
-+		clocks[i].hw.init = &init;
-+		ret = devm_clk_hw_register(dev, &clocks[i].hw);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "failed to register %s\n", desc->name);
-+
-+		data->hws[i] = &clocks[i].hw;
-+	}
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, data);
-+}
-+
-+static const struct of_device_id bcmbca_pmb_clock_match[] = {
-+	{ .compatible = "brcm,bcm6846-pmb-clock" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, bcmbca_pmb_clock_match);
-+
-+static struct platform_driver bcmbca_pmb_clock_driver = {
-+	.probe = bcmbca_pmb_clock_probe,
-+	.driver = {
-+		.name = "bcm6846-pmb-clock",
-+		.of_match_table = bcmbca_pmb_clock_match,
-+		.suppress_bind_attrs = true,
-+	},
-+};
-+module_platform_driver(bcmbca_pmb_clock_driver);
-+
-+MODULE_AUTHOR("Linus Walleij <linusw@kernel.org>");
-+MODULE_DESCRIPTION("Broadcom BCMBCA PMB clocks");
-+MODULE_LICENSE("GPL");
+Here is the summary with links:
+  - [net-next,v2] net: ethernet: mtk-star-emac: fix device_node leak in mtk_star_probe()
+    https://git.kernel.org/netdev/net-next/c/b78cbbb527ad
 
+You are awesome, thank you!
 -- 
-2.56.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
