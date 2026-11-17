@@ -2,89 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8905606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 20:44:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F73606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 20:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZwWEITrz;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=FJLnbjyU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zHz3KpqI;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=fCS8IhTv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Subject:Message-ID:Mime-Version:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7+VP2e4/Jx1gpeLV32IskoHLYhFefIx3VrQoyhcc2vQ=; b=ZwWEITrzths2zURMljdCCQsPut
-	LGqsTfbNN/UhstlyOVSLymFBpL7Sh9uCcd3YFWvYmk7NKn5kAGbKtglf+LuSRuUK9u6hCl5zSjJQj
-	omgkyvDZXI7t/+6YrYngzH0i6LDqmqnW1ezKGW2wzIdnnoYthNsbEp+iLW8H2mJZ6MnVQCKEUXf1y
-	uPd4r2LZRG+tMYcjFaou3mMUXCbsp9XIx8O5+osBS833kHYPGzMA9MFpgLdSxYYirweWBHkThUNoK
-	I9eLRfJYZGhVDQm5Z1vED7k5tXuwXuWJi7JjGa4Oq/kv4O9cE9R136cnB0b3TF0WcUBJQNiYkD/Cr
-	usezm+8g==;
+	bh=b6mleucbMdhj8MjjlIVwGs8yhAGAA7tst/tBmXQB1UY=; b=zHz3KpqI7SdEvdAYfd8M01SCm5
+	E7/IoaeZ1NhPQ4aGIB6Dq89Mmy4El8k9ZFSQVprdHlNg07qVwTs9NJwh/cAhbO7pLZ649bi7zRFgx
+	6J8gw+olXavseWOOSTV0rwhzBtkyMhI+E1Yvy3Dvi/JMHsC3iAg8HgglcSZgoOYY8EBQM2ftPFzpy
+	ZPkeyguB847URF1M7Dogiu/hdYbLjesEIYZ/OYCrmo9gcwi5lkVVK815WIrZXalp0EPy4uTlPVXsz
+	PI1TNUuNcFGjSDxZveqSMmdYtnUS6NKLo+/Ff+SquG6hNVppAzhq9P+ErDXfTvy+XwEPul1no8Bud
+	FKemj9bA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQ20-000000072Eq-4ANM;
-	Tue, 17 Nov 2026 20:43:56 +0000
-Received: from mail-oi1-x246.google.com ([2607:f8b0:4864:20::246])
+	id 1xTQ3h-000000072b6-17Hk;
+	Tue, 17 Nov 2026 20:45:41 +0000
+Received: from mail-oi1-x247.google.com ([2607:f8b0:4864:20::247])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQ1v-000000072Cg-0cjr
+	id 1xTQ3e-000000072Zd-25kQ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 20:43:52 +0000
-Received: by mail-oi1-x246.google.com with SMTP id 5614622812f47-4cc89e86e4dso173519b6e.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 12:43:50 -0800 (PST)
+	Tue, 17 Nov 2026 20:45:39 +0000
+Received: by mail-oi1-x247.google.com with SMTP id 5614622812f47-567e742f481so101938b6e.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 12:45:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794948229; x=1795553029; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=7+VP2e4/Jx1gpeLV32IskoHLYhFefIx3VrQoyhcc2vQ=;
-        b=FJLnbjyUKxqqTY1YSzNNrZVknofuuVYRMybKuUi7Jjtx31oacqtKy8Oe32JPTTa3Cx
-         tDIPJD6MgQrEfpP682DVhJSxlLme6u3pL00OD0t4b8kTgDOw7jT8zPpKxawUFUltHRXq
-         cqqOKWHoqGdNF5FB5DRcz7Q6xdnTD8JiePZr0lqRjGdAdd/I+Ckg/93yggVQFgggr/0+
-         berorurRJ0fEOTSh9fNtyq2eaHCMTiNriS2h2uo1nK5hLj7gJoCOm8zf5yfQAkgrM79v
-         1YMBKrxaiDmlK7tJe22qjhJLX4YyAyzwwGbHS3AouP0L32uT3fz5koJAoEI9h6bCUQAS
-         YsDQ==
+        d=google.com; s=20260707; t=1794948337; x=1795553137; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=b6mleucbMdhj8MjjlIVwGs8yhAGAA7tst/tBmXQB1UY=;
+        b=fCS8IhTvv3Bl0RO5Yl5gktUSNM3YJuZaLBRfereVTHshU4+qstna/MUhXeYB5JfiEk
+         ey9fJ68D4q/JddltXK1mfqnOdTSAQxTT3YU5XG1lSj8/fj4gwgYSwnQD+s8I+3Sc9ba9
+         tp++bATyRRf1tqh8KBU5bDpux3DCH1aVwifC7H22OdGVY6dRSZzqVgs7qID4L/CwikrB
+         LkcJK5qpLUgQaMH+MbXeS285skny+hiN+yTWJKWDhGIv8GFRk+DkH39pwMxRkih9s860
+         DwioUTwj+9QGjnZ5vtnz3eIDN6qwTWZAMFgxy89PizglwGXE7iFEmY8G1WZycOHuOjVj
+         HWtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794948229; x=1795553029;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=7+VP2e4/Jx1gpeLV32IskoHLYhFefIx3VrQoyhcc2vQ=;
-        b=AqaZJhSgD9OoxWUPeT8Fy6UU3o9SArfQv0sNXlq4zGoUb4Xfl27baLwZwuAUWJBrcP
-         KgKIyB4yeF47VPxAsQKwGlX+sWBqZrAA+K2VVH51KFT0mRwYAxvj74FG1i6S472nY6a2
-         UOVlDh0BmziOYvwLy8I7e7V4WA9Jpg+rQpCyXNkS+K1kGB8CC1iAFNYTAS0expB+S3q/
-         HJYD/5A4bgsU3iAIVYgG/v3D7vgWA2F+omsZlUeujU2rDmIjiREnjSvMaujr47/8kqey
-         3COgVZRq10XX0t2y0FyhV1VwDZDhZFM/GJKGj3tmDfB8e+hVQP9o33FiRBEDXT1HsAm7
-         DUPQ==
-X-Forwarded-Encrypted: i=1; AL+hErGXxKEmX5Yw1/vteaAlqx0ILhFahNhyb9MUVaOtq1wNms1VDmRZ+sP/zGVTnVJc6H0RMoEQEkviFu9IxganEPQK@lists.infradead.org
-X-Gm-Message-State: APuU4Z9rZO+K7C1c5M+eIjkK6+ZIamTJwQJpUlHxDnyU6/R2RJM0f+DI
-	O8EveEEDiH2CltR1kOcM0sTICtgp4+cYjNARmaUAoIpCXNh6ICnCTIAntPz1KKTXUw+Eh6CaQkE
-	onTH5iVTjbuZaf+L9Fr+FjEOulg==
-X-Received: from jabha52.prod.google.com ([2002:a05:6638:6bb4:b0:620:1989:fc1c])
+        d=1e100.net; s=20260707; t=1794948337; x=1795553137;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=b6mleucbMdhj8MjjlIVwGs8yhAGAA7tst/tBmXQB1UY=;
+        b=ayuDKFabkBdgSpllRaVpvqUOhlrOWK2PM4InL4sBXqGHJdGlVpTvGAsubQ+het20eC
+         XKHiRYK9YAyHpRr8YBOUiOx/0SrqCclhKVa5S5WhSh4DW83sqnGXF4Y2T/8oMdxSJ/fP
+         lfDe/35/Syp8fHm5+G1vO6mA2xCrQVRRwScGjJt3urfa6aQhFdBnSkvox+xd4kLRarSH
+         0r0EKJpo7+N5cj8bljtSCnnlYNVYSHVOBlHLEG4K0FIcGHrPVNC5a7H6nK6NDMJ6MueP
+         tQEy5zIaUmgFcqWHC7GogSMEb2VIpIKbXMjVqIFlMQbhtPhc0cFGS5ERcdsLGWQfg4v9
+         mF1g==
+X-Forwarded-Encrypted: i=1; AL+hErGz1XInSJeTNFL8F0MQApzEU7DL5TDGEk2m5qjs0xZZrDy/NJmpcsWJ0N2d0tdwhea1bPeOhRy8W6oezeYz3RjZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z9rEQrlHXPU0ZSJmMamWt8mw9kmGTIBzdB0ZZwM6gDPpsZ3l3hI
+	zDPtp97Lzz4lONu2/wkmurFH4fn4B0Ktq/qzJgKo2KVyI3w+GCRajQnQoyD5YW5kj4bRtjWSNBp
+	zxvDnVS1CQz3dPy6hYOjbqudvGg==
+X-Received: from jajg7.prod.google.com ([2002:a02:c547:0:b0:61f:ecf1:1cac])
  (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:2384:b0:572:72d4:9ac9 with SMTP id 5614622812f47-577424093eamr890686b6e.27.1794948229188;
- Tue, 17 Nov 2026 12:43:49 -0800 (PST)
-Date: Tue, 17 Nov 2026 20:42:44 +0000
-In-Reply-To: <86fqwz1udi.wl-maz@kernel.org>
+ 2002:a05:6808:1387:b0:4c3:e93e:e331 with SMTP id 5614622812f47-5774113234amr977571b6e.30.1794948336458;
+ Tue, 17 Nov 2026 12:45:36 -0800 (PST)
+Date: Tue, 17 Nov 2026 20:45:33 +0000
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
-References: <20261116200418.3535619-1-coltonlewis@google.com>
- <20261116200418.3535619-3-coltonlewis@google.com> <86fqwz1udi.wl-maz@kernel.org>
 X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
-Message-ID: <20261117204348.4020440-1-coltonlewis@google.com>
-Subject: Re: [PATCH v1 2/2] KVM: arm64: selftests: Verify HCR_EL2.NV1 is RES0
- when E2H0 is NI_NV1
+Message-ID: <20261117204535.4036191-1-coltonlewis@google.com>
+Subject: [PATCH v2 0/2] KVM: arm64: Fix inverted E2H0 check for HCR_EL2.NV1
 From: Colton Lewis <coltonlewis@google.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Colton Lewis <coltonlewis@google.com>, Oliver Upton <oupton@kernel.org>, 
-	Joey Gouly <joey.gouly@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Fuad Tabba <fuad.tabba@linux.dev>, kvmarm@lists.linux.dev, 
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
+Cc: Leonardo Bras <leo.bras@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
+	Fuad Tabba <fuad.tabba@linux.dev>, kvmarm@lists.linux.dev, 
 	linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+	linux-kernel@vger.kernel.org, Colton Lewis <coltonlewis@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_124351_201286_3792DA46 
-X-CRM114-Status: UNSURE (   7.47  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261117_124538_544007_92DBC6F1 
+X-CRM114-Status: GOOD (  10.05  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,20 +90,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-21.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT,USER_IN_DEF_DKIM_WL autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Marc Zyngier <maz@kernel.org> writes:
+When commit b2a324ff01fe ("KVM: arm64: Use HCR_EL2 feature map to drive
+fixed-value bits") migrated HCR_EL2 fixed-bit masking to hcr_feat_map,
+feat_nv2_e2h0_ni() was written as !kvm_has_feat(kvm, FEAT_E2H0). Because
+ID_AA64MMFR4_EL1.E2H0 is a signed 4-bit field where IMP is 0, NI is -1,
+and NI_NV1 is -2, !kvm_has_feat(kvm, FEAT_E2H0) tests E2H0 < 0 and
+returns true for NI_NV1 (-2), leaving HCR_EL2.NV1 writable instead of
+RES0 for VHE-only nested guests (and conversely treating HCR_EL2.NV1 as
+RES0 when E2H0 is IMP).
 
-> I think this is the only reliable test you can implement.
+Patch 1 restores the check to kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0,
+NI) (E2H0 >= -1) so that HCR_EL2.NV1 is implemented for IMP and NI and
+forced to RES0 for NI_NV1, and renames the helper from
+feat_nv2_e2h0_ni() to feat_nv2_nv1_not_res0().
+Patch 2 extends the arm64 hello_el2 selftest to verify via
+KVM_SET_ONE_REG and KVM_GET_ONE_REG that HCR_EL2.E2H remains RES1 and
+HCR_EL2.NV1 remains RES0 when E2H0 is NI_NV1.
 
-Thanks, I dropped the guest-side HCR_EL2 check and kept only the
-KVM_SET_ONE_REG/KVM_GET_ONE_REG test in v2.
+Changes in v2:
+- Rename feat_nv2_e2h0_ni() to feat_nv2_nv1_not_res0() to match the
+  condition it checks (Leonardo).
+- Drop the guest EL2 MSR/MRS HCR_EL2 check in hello_el2, as RESx
+  read-back from the guest is not architecturally guaranteed to return
+  the effective value and ID_AA64MMFR4_EL1 reads do not necessarily
+  trap without FEAT_FGT (Marc).
+- Link to v1: https://lore.kernel.org/r/20261116200418.3535619-1-coltonlewis@google.com
 
--- Colton
+Colton Lewis (2):
+  KVM: arm64: Fix inverted E2H0 check for HCR_EL2.NV1
+  KVM: arm64: selftests: Verify HCR_EL2.NV1 is RES0 when E2H0 is NI_NV1
+
+ arch/arm64/kvm/config.c                       | 7 ++++---
+ tools/testing/selftests/kvm/arm64/hello_el2.c | 8 ++++++++
+ 2 files changed, 12 insertions(+), 3 deletions(-)
+
+
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
+-- 
+2.56.1.750.gf70dc682cf-goog
+
 
