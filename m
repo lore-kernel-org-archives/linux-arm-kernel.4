@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BABD606A32A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5B0606A329
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 07:07:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=doC4UW9Q;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=RpKDwRah
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gPg/4K0R;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=sh0MlkhJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=In5XHn8tUjmrwGSxql+VVDMlJ1U6WaHJPkyrd9YfyY8=; b=doC4UW9QKJaTDt
-	LexqdVUtMnDJs5hWhFFqzycflvGZz91bxew5xGxGNojtJGOUvzAoL0+N4F8sIti1n1NEkr04S2uU9
-	CIlx2sfc/yTdOlX4MPK0KzdeNC9mchtIvaNN3E0Blt2S1A9lo1/T1UtM+FHfz/G7X6aeJPgQGKJIe
-	msMXy+LNfqryzYurS4nhNpDG0RyAeWe7s+Eeva9Iu4KIQ5oRfX25wXoys7tXZs7zg+3cAUSm/FY+E
-	SE4SvaPuh7OqRCVrcpTY+Swg3d1P7jhdo9ffEdPICGx3WCGM+1kHG/mHuZrRrpD8pFxzhsWjsUu/A
-	Urbli+Dt3hmGechNIDsQ==;
+	List-Owner; bh=iv8DY4asFhTjzipaQVYQqam4Cbb+8XuirWHT+xFO2vo=; b=gPg/4K0RmIxQPg
+	ugPPT7STeIod4x/V3zE0romZkn7+2zG3z/oULBTbeRo7hWG2eQz/lu2mlGIVm6ugTKsn7rYosOs01
+	BrpesN5Vyj+y1wPVFCOyjGU1IAg/0gX5WK5hk3k4o2zUx1TpmNqYJXf+1h7y60FjvCs1GhnywLaNx
+	gUrHdHCzt3k4NhAnYxr+DDXIKL6nTsRL+dNf1bU4gCBniYJLVCUh1NYcvmpsiHEfaQbAHWV6Ds0MK
+	fmujTLK1Gps+6qCT5pbSFWfSBZfM1+Sepk2X6hpfppnrTYDNsdXLFwuglJU2xT7fzwaJ10gP9/xla
+	ybwBZoyPIKSeRdJZLDtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTDHp-00000004inT-06pf;
-	Tue, 17 Nov 2026 07:07:25 +0000
+	id 1xTDHo-00000004imU-2Wyd;
+	Tue, 17 Nov 2026 07:07:24 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTDHZ-00000004iQ7-2AhE
+	id 1xTDHV-00000004iQ7-3hlp
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 07:07:10 +0000
+	Tue, 17 Nov 2026 07:07:08 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E27B1688;
-	Mon, 16 Nov 2026 23:07:05 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CA4C01476;
+	Mon, 16 Nov 2026 23:07:01 -0800 (PST)
 Received: from localhost (a085714.arm.com [10.164.19.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D40553F882;
-	Mon, 16 Nov 2026 23:07:07 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0F4733F763;
+	Mon, 16 Nov 2026 23:07:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794899228; bh=rSvlSIXr+wDtZe2exxPGHZkrukV+OXQGNowh+BkvXcY=;
+	t=1794899224; bh=gWd3VSKQGcmDL0rND+7miFz0510CU52wEGtyXPxoBxM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RpKDwRahiZsvs5NYiVXBle9NMAptxzASgBjrEsOtbv2j12uijayfCF8G5LzpedR6X
-	 hwxBix7JkHGWE3238+qyf56bAhlEGeiko/kQ4tw6tnrP1PKUvJptKHjfjgWmc8S52H
-	 2qj6Vz1wFEM15r2AnKiOZOlMBY5d5KgPcdly8+B8=
+	b=sh0MlkhJYda5X1jALRTVT5SvRmycezCCIhbm8p177NP2BlcMJjCiUDiC4RBhdFhfe
+	 VkiqnTrU0lsjjF/kIqlsHyjzifa5Amj9xoyY8Ft6CFOG6m/Eg88bOG3jhBVJH3vB0a
+	 WDX0Jg+x0cp1/3EkuDCW+AWpbPGMvxOqWZ9VMtHM=
 From: Anshuman Khandual <anshuman.khandual@arm.com>
 To: linux-arm-kernel@lists.infradead.org,
 	catalin.marinas@arm.com,
@@ -53,13 +53,10 @@ Cc: Anshuman Khandual <anshuman.khandual@arm.com>,
 	Mike Rapoport <rppt@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-mm@kvack.org,
-	Andrey Ryabinin <ryabinin.a.a@gmail.com>,
-	Alexander Potapenko <glider@google.com>,
-	Andrey Konovalov <andreyknvl@gmail.com>,
-	kasan-dev@googlegroups.com
-Subject: [PATCH V3 12/14] arm64/mm: Relax KASAN shadow alignment for FEAT_D128
-Date: Tue, 17 Nov 2026 12:36:11 +0530
-Message-ID: <20261117070613.1183243-13-anshuman.khandual@arm.com>
+	Linu Cherian <linu.cherian@arm.com>
+Subject: [PATCH V3 11/14] arm64/mm: Enable TLBIP instruction based TLB flush
+Date: Tue, 17 Nov 2026 12:36:10 +0530
+Message-ID: <20261117070613.1183243-12-anshuman.khandual@arm.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261117070613.1183243-1-anshuman.khandual@arm.com>
 References: <20261117070613.1183243-1-anshuman.khandual@arm.com>
@@ -67,8 +64,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_230709_622069_A6D02B45 
-X-CRM114-Status: GOOD (  13.01  )
+X-CRM114-CacheID: sfid-20261116_230707_129799_6FAC952B 
+X-CRM114-Status: GOOD (  11.03  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,53 +85,140 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-D128 reduces the number of descriptors in each translation table, causing
-some VA size and page granule combinations that use two page table levels
-with D64 to now require three levels.
+From: Linu Cherian <linu.cherian@arm.com>
 
-For three-level page tables, the PUD level is folded while the PMD level
-remains a real translation level. Hence, PUD_SIZE represents a root-level
-span. With D128, some configurations have a KASAN shadow region smaller
-than this span, making it impossible for both KASAN shadow boundaries to
-satisfy the existing PUD_SIZE alignment requirement.
+Add TLBIP instruction support for TLB flush operation updating all relevant
+macros as necessary. This enables back pgtable level hint and address range
+support during TLB flush operation for D128 translation.
 
-The KASAN initialization code on arm64 already supports shadow boundaries
-which are not root-level aligned, by installing or cloning the next-level
-table as required.
-
-Similarly for three level D128 page tables, relax SHADOW_ALIGN to PMD_SIZE,
-which corresponds to the first non-folded level below the root level. Keep
-the existing alignment requirements unchanged for all other configurations.
-
-Cc: Andrey Ryabinin <ryabinin.a.a@gmail.com>
-Cc: Alexander Potapenko <glider@google.com>
-Cc: Andrey Konovalov <andreyknvl@gmail.com>
 Cc: Catalin Marinas <catalin.marinas@arm.com>
 Cc: Will Deacon <will@kernel.org>
+Cc: Ryan Roberts <ryan.roberts@arm.com>
 Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: kasan-dev@googlegroups.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Linu Cherian <linu.cherian@arm.com>
 Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
 ---
- arch/arm64/mm/kasan_init.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ arch/arm64/include/asm/tlbflush.h | 68 +++++++++++++++++++++++++++----
+ 1 file changed, 59 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/mm/kasan_init.c b/arch/arm64/mm/kasan_init.c
-index f61f5bc09467c..e12abea6ad156 100644
---- a/arch/arm64/mm/kasan_init.c
-+++ b/arch/arm64/mm/kasan_init.c
-@@ -178,7 +178,9 @@ static void __init kasan_pgd_populate(unsigned long addr, unsigned long end,
- 	} while (pgdp++, addr = next, addr != end);
+diff --git a/arch/arm64/include/asm/tlbflush.h b/arch/arm64/include/asm/tlbflush.h
+index e46bebeb230d6..a440a8fd0ebcf 100644
+--- a/arch/arm64/include/asm/tlbflush.h
++++ b/arch/arm64/include/asm/tlbflush.h
+@@ -41,6 +41,25 @@
+ 
+ #define __tlbi(op, ...)		__TLBI_N(op, ##__VA_ARGS__, 1, 0)
+ 
++#ifdef CONFIG_ARM64_D128
++#define __tlbip(op, arg) do {		\
++	asm (ARM64_ASM_PREAMBLE		\
++	".arch_extension d128\n\t"	\
++	"tlbip " #op ", %0, %H0\n"	\
++	: : "r" (arg.full));		\
++} while (0)
++
++#define __tlbip_user(op, arg) do {		\
++	if (arm64_kernel_unmapped_at_el0()) {	\
++		arg.low |= USER_ASID_FLAG;	\
++		__tlbip(op, (arg));		\
++	}					\
++} while (0)
++
++#endif
++
++#define TLBI_ASID_MASK		GENMASK_ULL(63, 48)
++
+ #define __tlbi_user(op, arg) do {						\
+ 	if (arm64_kernel_unmapped_at_el0())					\
+ 		__tlbi(op, (arg) | USER_ASID_FLAG);				\
+@@ -130,9 +149,15 @@ static inline void sme_dvmsync_batch(void)
+ 
+ #define TLBI_TTL_UNKNOWN	INT_MAX
+ 
++#ifdef CONFIG_ARM64_D128
++typedef union __u128_halves tlbi_arg_t;
++#define __tlbi_wrapper(op, arg)		__tlbip(op, arg)
++#define __tlbi_user_wrapper(op, arg)	__tlbip_user(op, arg)
++#else
+ typedef u64 tlbi_arg_t;
+ #define __tlbi_wrapper(op, arg)		__tlbi(op, arg)
+ #define __tlbi_user_wrapper(op, arg)	__tlbi_user(op, arg)
++#endif
+ 
+ typedef void (*tlbi_op)(tlbi_arg_t arg);
+ 
+@@ -179,17 +204,28 @@ static __always_inline void ipas2e1is(tlbi_arg_t arg)
+ 	__tlbi_wrapper(ipas2e1is, arg);
  }
  
--#if defined(CONFIG_ARM64_64K_PAGES) || CONFIG_PGTABLE_LEVELS > 4
-+#if defined(CONFIG_ARM64_D128) && CONFIG_PGTABLE_LEVELS == 3
-+#define SHADOW_ALIGN	PMD_SIZE
-+#elif defined(CONFIG_ARM64_64K_PAGES) || CONFIG_PGTABLE_LEVELS > 4
- #define SHADOW_ALIGN	P4D_SIZE
- #else
- #define SHADOW_ALIGN	PUD_SIZE
+-static __always_inline void __tlbi_level_asid(tlbi_op op, u64 addr, u32 level,
+-					      u16 asid)
++static __always_inline void __tlbi_update_level(u32 level, u64 *arg)
+ {
+-	u64 arg = __TLBI_VADDR(addr, asid);
+-
+ 	if (alternative_has_cap_unlikely(ARM64_HAS_ARMv8_4_TTL) && level <= 3) {
+ 		u64 ttl = level | (get_trans_granule() << 2);
+ 
+-		FIELD_MODIFY(TLBI_TTL_MASK, &arg, ttl);
++		FIELD_MODIFY(TLBI_TTL_MASK, arg, ttl);
+ 	}
++}
++
++static __always_inline void __tlbi_level_asid(tlbi_op op, u64 addr, u32 level, u16 asid)
++{
++#ifdef CONFIG_ARM64_D128
++	union __u128_halves arg;
++
++	arg.low = FIELD_PREP(TLBI_ASID_MASK, asid);
++	__tlbi_update_level(level, &arg.low);
++	arg.high = addr >> 12;
++#else
++	u64 arg = __TLBI_VADDR(addr, asid);
+ 
++	__tlbi_update_level(level, &arg);
++#endif
+ 	op(arg);
+ }
+ 
+@@ -479,19 +515,33 @@ static __always_inline void ripas2e1is(tlbi_arg_t arg)
+ 	__tlbi_wrapper(ripas2e1is, arg);
+ }
+ 
+-static __always_inline void __tlbi_range(tlbi_op op, u64 addr,
+-					 u16 asid, int scale, int num,
+-					 u32 level, bool lpa2)
++static __always_inline u64 __tlbi_range_args_encode_comm(u16 asid, int scale, int num, u32 level)
+ {
+ 	u64 arg = 0;
+ 
+-	arg |= FIELD_PREP(TLBIR_BADDR_MASK, addr >> (lpa2 ? 16 : PAGE_SHIFT));
+ 	arg |= FIELD_PREP(TLBIR_TTL_MASK, level > 3 ? 0 : level);
+ 	arg |= FIELD_PREP(TLBIR_NUM_MASK, num);
+ 	arg |= FIELD_PREP(TLBIR_SCALE_MASK, scale);
+ 	arg |= FIELD_PREP(TLBIR_TG_MASK, get_trans_granule());
+ 	arg |= FIELD_PREP(TLBIR_ASID_MASK, asid);
+ 
++	return arg;
++}
++
++static __always_inline void __tlbi_range(tlbi_op op, u64 addr,
++					 u16 asid, int scale, int num,
++					 u32 level, bool lpa2)
++{
++#ifdef CONFIG_ARM64_D128
++	union __u128_halves arg;
++
++	arg.low = __tlbi_range_args_encode_comm(asid, scale, num, level);
++	arg.high = addr >> 12;
++#else
++	u64 arg = __tlbi_range_args_encode_comm(asid, scale, num, level);
++
++	arg |= FIELD_PREP(TLBIR_BADDR_MASK, addr >> (lpa2 ? 16 : PAGE_SHIFT));
++#endif
+ 	op(arg);
+ }
+ 
 -- 
 2.43.0
 
