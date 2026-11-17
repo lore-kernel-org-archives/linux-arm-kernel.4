@@ -2,74 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A192B606A881
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA36606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:58:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yay7oQ1y;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=EqHGWBNu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v90kyUAX;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YHSc/OXG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iU2cW2IePpuS+D0FuL9ISarYXE3VkyR/PI0yo1keQto=; b=Yay7oQ1y+47/b2
-	ELSUP59sAIGlI9Mea/Ld3n0Vn+9vsW2F3ZZGz0bFdVlCsXhEBycRgGfhdvPA30ACURPgKcAS1ddFM
-	zuKY9e79MU/IDx1GpvipTpZM52cf2gOz+YG9YOeQMXng9+NcKqcXXKPYlofRlt/p57WaZfBsYnaG7
-	ATe/WbSZ8QgeFvNVUXg5c888/+OCCEU3zTyOaZBVkHlZ/GdAx+mikX51qXLic+P70tpOU/jMMsH3D
-	SdK2X2yGKn/DrBPZGub28rI88xH4XAab6KhGFm3r7SA6YfBcAUpz4KCcMI1qB6oNrVgUoWqVSCWZC
-	rANzrJnRDMKIy9wyMWMQ==;
+	List-Owner; bh=rnaiBVPQj6uMXrZvnEKuIpIoAtonZUFt2q6SMP8QNTo=; b=v90kyUAXIkZRyA
+	GrX4KArJzEr1ou1kQ86Rl/3Xg/301+1ytXk5I9ZheCqrJyBTTW6nmIYVLK/UbC9RpjvTDOq8k25xc
+	ErmkrRxC7p+WBUitCJP3qYo8V+G2VHfQxpJ5JCnespI72laizGIOu10xG4CzwuXwBEZrfmvAyH8S9
+	5T4zyUvs8AZ8xhCd8HPOFyakruIsG0ZfD8OTp3OkdMR6NJjXWTPz3vSPiC1l0PqCNCyluPj7Q+rIr
+	u4HvvLP5SCzWq1Bu6LTLbCQD8LHaMfx17o+xJrkm2Uf+7dUsyjmAyfrCUmsmxzchhRw3ksllhLcgq
+	6BPniemCizRlqMxhVunA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGrS-00000005MIB-1cT4;
-	Tue, 17 Nov 2026 10:56:26 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xTGsz-00000005Mbj-2iA3;
+	Tue, 17 Nov 2026 10:58:01 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGrM-00000005MEe-1srs;
-	Tue, 17 Nov 2026 10:56:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794912978;
-	bh=jGf66sH2K3XDwW9pv5TB6TILgUjOFvJHw8j34MMykL0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=EqHGWBNuokUEOWYu0ZNDuzuegP+0HeZ4GihiuMEdGu6x72WSK5BTeDoK8xbr/8OQj
-	 X8X17Ll2r+jt8vsQgbFekOZm1te9g+89jGiYq3NyB+Cd3Rr4OV8f21v2yBngTORn2K
-	 C0RnK/F1sIm4TmzEsSG3vyrUvKsn6UzeBsPQWWcYOq6Un9naNpouJpaA9qVPOn2Bb3
-	 e510m0aqQNZaZLstJkDTRy/OWptpD3TfenceB1b5fkJXYdF486iZwkBcCEjN96v/Ed
-	 fKlD97Uq+63tveUNO536CWEud1xUBFGoOH09T9jIK+lh0Ev06IjieU29njTNO+gNRN
-	 0jbHEsaAkd2rQ==
-Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E66ED17E05D6;
-	Tue, 17 Nov 2026 11:56:17 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Sean Wang <sean.wang@mediatek.com>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
- Ryan Brue <ryanbrue.dev@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20261113-rbrue-suez-upstreaming-amazon-suez-dts-v2-0-d3b8865fa50f@gmail.com>
-References: <20261113-rbrue-suez-upstreaming-amazon-suez-dts-v2-0-d3b8865fa50f@gmail.com>
-Subject: Re: (subset) [PATCH v2 0/3] arm64: dts: mediatek: Add the Amazon
- Fire HD 10 (2017)
-Message-Id: <179491297788.155632.16976214618689978473.b4-ty@b4>
-Date: Tue, 17 Nov 2026 11:56:17 +0100
+	id 1xTGsy-00000005MbS-1GlQ;
+	Tue, 17 Nov 2026 10:58:00 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id F204C4556A;
+	Tue, 17 Nov 2026 10:57:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC1711F000C4;
+	Tue, 17 Nov 2026 10:57:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794913079;
+	bh=rnaiBVPQj6uMXrZvnEKuIpIoAtonZUFt2q6SMP8QNTo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=YHSc/OXGr1YY1fvobZ/khce1xC/Chcv0soqDsluIdSFqemh/cl0fEAOABc01/mzYa
+	 dxYdZQ4V9So+5z2Gj1k5ykEsZgptwTD+Dh5HJ8EuiERn/Bbx4plyDtN1jwFRw/Jlpk
+	 wpFAKL0RvFypChmHwGjMaYQe4gnU4G8JCz9k33+E1yZBaVdS/wdBGlhW1ikL6LNieg
+	 6UhnWB81mqEGukupR2BuYP8CNKA57QRnODtUWq3i64xJn3cth69DcHKgjr9s3nwEqI
+	 nTNY1yYDAymwUJaT6lBbdaKYRHQ8P/nbnjoh8/Jvo6QUSzB/L+66gqPqJn5MmDKTWv
+	 h7bss1woxLGkg==
+Message-ID: <caae1b85-79cd-48eb-b522-eebf124ad7de@kernel.org>
+Date: Tue, 17 Nov 2026 11:57:54 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] arm64: dts: qcom: talos-lyra-evk: Add display
+ overlays for EVK board
+To: anand.tiwari@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Mohit Dsor <mohit.dsor@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Shashank Maurya <shashank.maurya@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20261102-lyra-display-upstream-post-v3-0-7f660c3b622c@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20261102-lyra-display-upstream-post-v3-0-7f660c3b622c@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_025620_767772_3FECF7EF 
-X-CRM114-Status: GOOD (  10.82  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,45 +121,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 13 Nov 2026 10:42:43 -0600, Ryan Brue wrote:
-> This adds the Amazon Fire HD 10 (2017), codename suez, an MT8173 tablet
-> with an MT6397 PMIC.
+On 02/11/2026 08:31, anand.tiwari@oss.qualcomm.com wrote:
+> Qualcomm Talos Lyra EVK SoC card are mounted on the Lyra carrier card.
+> The DSI0 interface from SoC card is routed to either the 22-pin DSI
+> connector on carrier card named as JDISP1 DSI0 or to the DSI0_B2B
+> connector, through a MUX which can be selected by a hardware DIP
+> switch. There are multiple daughter cards designed that can be
+> connected to this B2B connector.
 > 
-> Patch 1 adds the board's compatible, patch 2 the SoC's keypad controller
-> to mt8173.dtsi, and patch 3 the board, with:
+> The below B2B display interfaces are enabled by default in base DTB:
+>   - DSI-to-HDMI using the LT9611UXD daughter card
 > 
-> - The eMMC and microSD slot
-> - The micro-B port as a USB peripheral
-> - The panel, the backlight, and the touchscreen
-> - The accelerometer
-> - The light sensor
-> - The charger
-> - The lid switch
-> - The power and volume keys
-> - CPU frequency scaling and the skin thermistors
-> - The battery thermistor, on the PMIC AUXADC
+> Below overlay DTs are added for additional display configurations:
+>   - talos-lyra-evk-dlc0697: DLC0697 DSI panel for Lyra with DLC
+>     daughter card
+>   - talos-lyra-evk-raspberrypi-dsi-7inch: Raspberry Pi 7-inch DSI
+>     panel with touch via the 22-pin DSI connector for Lyra
+>   - talos-lyra-evk-waveshare-dsi-8inch: Waveshare 8-inch DSI panel
+>     with touch via the 22-pin DSI connector for Lyra
+>   - talos-lyra-evk-lvds-auo,g133han01: AUO G133HAN01 LVDS panel for
+>     Lyra with LVDS daughter card
 > 
-> [...]
+> These overlays are applied on top of the corresponding base board
+> DTBs.
+> Link: https://lore.kernel.org/all/20261027-talos-lyra-evk-v2-v3-0-658fd5a7ec99@oss.qualcomm.com/
+> 
+> Dependencies:
+> https://lore.kernel.org/r/20261012-talos-lyra-evk-v2-v2-0-dcc9316ebb59@oss.qualcomm.com
+> https://lore.kernel.org/all/20261030-lyra-display-upstream-post-v2-0-906302159392@oss.qualcomm.com/
+> https://lore.kernel.org/all/20261016-talos-gp-clk-freqs-update-v1-1-17c9a095063c@oss.qualcomm.com/
 
-Applied to v7.4-next/dts64, thanks!
+How can you have three dependencies for DTS? Some of these are event
+drivers. DTS CANNOT depend on drivers, this is just unmanageable.
 
-[1/3] dt-bindings: arm: mediatek: Add MT8173 Amazon suez
-      commit: 321069a4642ff220f73556aa541d9537211e1c9c
-[2/3] arm64: dts: mediatek: mt8173: Add the keypad controller
-      commit: a09ffcb4fd6b0a417f36e1b819b329a0b489f7ce
-[3/3] arm64: dts: mediatek: Add MT8173 Amazon suez
-      commit: d43a2180abce1831b048cdaf36ab5dc0ff5e341e
-
-Cheers,
-Angelo
-
-
+Best regards,
+Krzysztof
 
