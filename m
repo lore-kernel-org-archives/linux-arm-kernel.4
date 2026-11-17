@@ -2,62 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93012606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E73C606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 23:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aojsEtCx;
-	dkim=pass (2048-bit key, unprotected) header.d=sverdlin.org header.i=@sverdlin.org header.a=rsa-sha256 header.s=purelymail1 header.b=VpISasGt;
-	dkim=pass (2048-bit key, unprotected) header.d=purelymail.com header.i=@purelymail.com header.a=rsa-sha256 header.s=purelymail1 header.b=WPQqpMNw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=28lEcuUf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=utpAkiwFHBjBDfI84DKHsLpQh91ULE12v2wjMHOYcls=; b=aojsEtCx7AZ0qaKXL49U1YYf4D
-	SLM3tv+EO+fyTNqjKMinh+ORt1pqMFsYp7Dv9vMc3cDF9SipYUiLVAdORZzADvS2i4ohOSarIoJaU
-	008o7u8G6kuskX7nFMZ8DyoRzQVLqE3wOqNrPPqWY4ms3++5NT/Ly7VlOYsDxqNcncBfRtCA8u1EE
-	KV3vFOJbu93FVK+ZWxAk34ZY5QAw6A7/W1WrrJqI+bvK3WXA5zdQcykYE6k3eAGbRGZMRAO75nNYH
-	WVtT60REjUhAzN/LEbDbM1yLpAVai+lKCqg7aY1lUFrNbvdfwIP7LD0UABPMFcL07+ZLXY8he81FU
-	Vef/fSqQ==;
+	bh=+wBAluwliayr72IP0v4lzu4cOma3Jxi3Zj2huXDAK58=; b=28lEcuUfxoxOgqoRUVSwZKf3sg
+	AKiXEEDouGNmjePt9iPy4D5POk/OmA7YZ/5+CvwBbfe/kwq/3KgHP/+AgO5HrvhpgR4MdL40R6tyU
+	96w0UR8bFJRpvPkuRXKUJVX6ITDh6/NSCtO0x0t49aWrS0Ky+OSA9d5m/7dbf65NO60ylQgTbrgyO
+	GTu+OWJl7S6LCCCHOroWN2LtBteKLO06KIpJlLyIL3Twa+fdSdhDZx+cZUWnBOIOZ4fimyx+NcKl0
+	TMjdcS0TDBbtXiHdfCw+VIOBOi5O5KSCCH1/W9eHXYKZXetq8dqGH5Rveav22fi28sm2jVIP+s1Gv
+	rCxWGviw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTS38-00000007GRR-2LX6;
-	Tue, 17 Nov 2026 22:53:14 +0000
-Received: from sendmail.purelymail.com ([34.202.193.197])
+	id 1xTSK2-00000007Gxh-0hNK;
+	Tue, 17 Nov 2026 23:10:42 +0000
+Received: from mail-ot1-f72.google.com ([209.85.210.72])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTS35-00000007GR2-3Nr6
+	id 1xTSJz-00000007GxN-25un
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 22:53:13 +0000
-DKIM-Signature: a=rsa-sha256; b=VpISasGt6hFOUpKJTSi8dBra3gbAk0b9ucNeEEkvSqEDrMQnNovWvDWBhHWiWmB45EPYqReyCK7Sn6X/U0djwvify9yCIB43hDeIbXKLHM5QYUUSRGJUzUid3yOjmEyDLYzhjxt1IXUfFaBOROF5X9yxvrvqn6DfiUsb4gpUlQoARK8KLCElCUCDYdQk8eGi96Bo9QQKXDi39+dxnydUF5ql3qVR/IuXM4iZI6ioJFs4l7aFD0rmLu/0RtbJMt1tsuA8PHouvRhjf9ZQFvzcssgv1IzBPrE9U/TMQ09b0Tu5iZkhLHc1P7LScvCpfmMt5NOde73baMDHiAKN/k9png==; s=purelymail1; d=sverdlin.org; v=1; bh=utpAkiwFHBjBDfI84DKHsLpQh91ULE12v2wjMHOYcls=; h=Received:Message-ID:Subject:From:To:Date;
-DKIM-Signature: a=rsa-sha256; b=WPQqpMNw/2XWir5D2XHi3oGT4BNQ0Vp9yoeFLqxVPB+h019xYU004bkv1X/PlsK67Dkdy0Hpo5UvS3N+yw9L6WJZ6iF+DP23jHF3CvXu8rvhhzBWA8YdUrpM482YqXQ0ZXQqbukhRsY/CtzdI3yjQ9dkV9eLUzPhdOJJT8LxHZkbRS/U4XovujIi3W6Lw5Fik9BatQ6tO+mRUeD+AGetIJ9lkmtcGhua93XPiJYItjVwwsGy58yR1mBIVCc1MqeOpGuJcvN/Dnr9dAAM22CR2snE5SGZh95gT6gUZfzjDsCU5y9XdoUck1nhVyt73hHcUoda3qWDI6XEJtvZ18DbhA==; s=purelymail1; d=purelymail.com; v=1; bh=utpAkiwFHBjBDfI84DKHsLpQh91ULE12v2wjMHOYcls=; h=Feedback-ID:Received:Message-ID:Subject:From:To:Date;
-Feedback-ID: 815097:39668:null:purelymail
-X-Pm-Original-To: linux-arm-kernel@lists.infradead.org
-Authentication-Results: purelymail.com; auth=pass
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 150623937;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Tue, 17 Nov 2026 22:53:04 +0000 (UTC)
-Message-ID: <f7752d1d155491876ae5d4bc1694c01c8d86b789.camel@sverdlin.org>
-Subject: Re: [PATCH 5/6] arm64: dts: allwinner: a133: Add CPU OPP table
-From: Alexander Sverdlin <alex@sverdlin.org>
-To: rajanyadav0307@gmail.com
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Cody Eksal <masterr3c0rd@epochal.quest>
-Date: Tue, 17 Nov 2026 23:52:52 +0100
-In-Reply-To: <20261104-a133-series-v1-5-58217cb33a87@gmail.com>
-References: <20261104-a133-series-v1-0-58217cb33a87@gmail.com>
-	 <20261104-a133-series-v1-5-58217cb33a87@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.62.1 
+	Tue, 17 Nov 2026 23:10:41 +0000
+Received: by mail-ot1-f72.google.com with SMTP id 46e09a7af769-8488f31d754so279329a34.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 15:10:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794957038; x=1795561838;
+        h=content-transfer-encoding:content-type:to:from:subject:message-id
+         :date:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=+wBAluwliayr72IP0v4lzu4cOma3Jxi3Zj2huXDAK58=;
+        b=wmplb4SmXCojD0Q0YY77uZ2ykhYuuaIY2QVVY0hgHbAHotV88VMOPzuu9QRr5GNqD/
+         9N9pWBjqKtKFj1HJCiZvROnzOS8WseEsyBuDuwQDqsql1id7PPm2dMNJn4WHFtTj2214
+         FpJ3SYvUMejj7N0627wX+Z0O6dBqWDXRUKvS/SeDXX8tfZrglkqlu8JHWLx1nwKUO8Bz
+         LhWeD3JXv8I0fYPwhsyERExaLDW0YePxZcDGxaW5+PRK9gRvIftBBvFiIr+VbUVQ5efh
+         1wm6Y89w6Pddn/PLFR0KmvnoJ/zIMHMp3mJ7QOIcgZ3qqZe2VA3/fqSHJ4LMldtlYxE/
+         6ZOw==
+X-Forwarded-Encrypted: i=1; AL+hErGnIcoHETNzGw9/6BQBsOSeOLsbTTv6h6O2L2sx4JlBunBnEQV1S56xp+IB/aCWvAj2jbjH/10yh1o1QvCuTLrD@lists.infradead.org
+X-Gm-Message-State: APuU4Z9P08GMYnqWYtHjcJLTDqiMQxSTcbex2iM/I99OFnimQUVkLMmT
+	240aMzjbOU+fLK5i5zHQf/3QQs+jUnyKeWOv0LHJW09L2CIMJoe83IdyKiUca6FRXMjQPODY1/T
+	mixTa3Hj/XnsxjuazB7e6aifA/lv/rW+y1cHyt0WFTprXWehFXm6d+c5nfIY=
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-Received: by 2002:a05:6808:5088:b0:4a4:744:a4ff with SMTP id
+ 5614622812f47-5773db24bc2mr1479483b6e.4.1794957037943; Tue, 17 Nov 2026
+ 15:10:37 -0800 (PST)
+Date: Tue, 17 Nov 2026 15:10:37 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <6afcdeed.8f566acc.2517be.000e.GAE@google.com>
+Subject: [syzbot] [perf?] [arm?] BUG: workqueue lockup in wg_ratelimiter_gc_entries
+From: syzbot <syzbot+4610f17b25e845477657@syzkaller.appspotmail.com>
+To: acme@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org, 
+	mingo@redhat.com, namhyung@kernel.org, peterz@infradead.org, 
+	syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_145312_127167_A1600EAB 
-X-CRM114-Status: GOOD (  16.06  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_151039_571496_13CD3B9B 
+X-CRM114-Status: UNSURE (   6.20  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 1.8 (+)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,60 +78,375 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,FROM_LOCAL_HEX,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Rajan!
+Hello,
 
-On Wed, 2026-11-04 at 22:41 -0600, Rajan Yadav via B4 Relay wrote:
-> From: Rajan Yadav <rajanyadav0307@gmail.com>
->=20
-> Add the A133 CPU OPPs from the vendor BSP (sun50iw10p1.dtsi). There
-> are ten voltage sets, speed0-5 for the a0-a5/a6 grades and speed6-9
-> for the "high speed" b0-b3 grades. opp-supported-hw selects the
-> frequencies of each grade:
->=20
-> - 1464 MHz only for the a grades
-> - 1416 and 1512 MHz only for the b grades
-> - 408-1320 MHz for all
->=20
-> The highest voltage is 1.18 V, inside the 0.81-1.2 V recommended
-> operating range of VDD_CPU in the A133 datasheet (V1.5, table 5-2).
->=20
-> The BSP uses 1008 MHz where the A100 table uses 1080 MHz, at the same
-> voltages for a0-a2. U-Boot starts the CPU at 1008 MHz, which mainline
-> now reports as an unlisted initial frequency. This table follows the
-> BSP. The BSP table stops at 1512 MHz, so there is no 1608 MHz OPP,
-> although some datasheet versions list 1.6 GHz for the A133. A newer
-> factory kernel adds 1608 MHz for b0 and b1 only; that is left for a
-> follow-up.
->=20
-> The table has the A100 compatible as a fallback and the speed bin cell
-> first, so a kernel without A133 support selects speed0-2 from the speed
-> bin and gets the voltages of the A100 table, with 1008 instead of
-> 1080 MHz. It needs the efuse cells added to sun50i-a100.dtsi in the
-> previous patch.
->=20
-> A script compared every voltage and the frequency set of every grade
-> with the BSP file and found no difference.
->=20
-> Claude Code (Anthropic) drafted this table and its message from the
-> vendor BSP device tree (numbers only) and wrote the comparison script;
-> I reviewed it and tested it on a KickPi K5C.
->=20
-> Suggested-by: Andre Przywara <andre.przywara@arm.com>
-> Signed-off-by: Rajan Yadav <rajanyadav0307@gmail.com>
+syzbot found the following issue on:
 
-Reviewed-by: Alexander Sverdlin <alex@sverdlin.org>
-Tested-by: Alexander Sverdlin <alex@sverdlin.org>
+HEAD commit:    518e5b794c06 Merge tag 'for-7.3-rc3-tag' of git://git.kern.=
+.
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=3D15dffff9580000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=3Dc3be6e434b07ebb=
+6
+dashboard link: https://syzkaller.appspot.com/bug?extid=3D4610f17b25e845477=
+657
+compiler:       Debian clang version 22.1.8 (++20260613092233+e80beda6e255-=
+1~exp1~20260613092250.77), Debian LLD 22.1.8
 
-> ---
-> =C2=A0.../boot/dts/allwinner/sun50i-a133-cpu-opp.dtsi=C2=A0=C2=A0=C2=A0 |=
- 172 +++++++++++++++++++++
-> =C2=A01 file changed, 172 insertions(+)
+Unfortunately, I don't have any reproducer for this issue yet.
+
+Downloadable assets:
+disk image: https://storage.googleapis.com/syzbot-assets/8646adfc1052/disk-=
+518e5b79.raw.xz
+vmlinux: https://storage.googleapis.com/syzbot-assets/b37f45f956ef/vmlinux-=
+518e5b79.xz
+kernel image: https://storage.googleapis.com/syzbot-assets/20143fe230d6/bzI=
+mage-518e5b79.xz
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit=
+:
+Reported-by: syzbot+4610f17b25e845477657@syzkaller.appspotmail.com
+
+sched: DL replenish lagged too much
+BUG: workqueue lockup - pool cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 stuck f=
+or 156s!
+Showing busy workqueues and worker pools:
+workqueue events: flags=3D0x100
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D10 refcnt=3D11
+    in-flight: 5700:request_firmware_work_func for 156s
+    pending: nsim_dev_hwstats_traffic_work, vmstat_shepherd, psi_avgs_work,=
+ 4*ovs_dp_masks_rebalance, nsim_fib_event_work, delayed_vfree_work
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D13 refcnt=3D14
+    in-flight: 5692:reg_todo for 157s
+    pending: 4*nsim_dev_hwstats_traffic_work, 3*psi_avgs_work, 2*ovs_dp_mas=
+ks_rebalance, 2*psi_avgs_work, xfrm_state_gc_task
+workqueue events_unbound: flags=3D0x2
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D21 refcnt=3D22
+    in-flight: 146:cfg80211_wiphy_work for 155s cfg80211_wiphy_work ,12:cfg=
+80211_wiphy_work for 156s cfg80211_wiphy_work
+    pending: nsim_dev_trap_report_work, flush_memcg_stats_dwork, cfg80211_w=
+iphy_work, 4*nsim_dev_trap_report_work, 7*macvlan_process_broadcast, toggle=
+_allocation_gate, crng_reseed, macvlan_process_broadcast
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D12 refcnt=3D13
+    in-flight: 1123:cfg80211_wiphy_work for 147s ,160:cfg80211_wiphy_work f=
+or 156s cfg80211_wiphy_work ,59:cfg80211_wiphy_work for 153s ,1116:cfg80211=
+_wiphy_work for 153s ,13:cfg80211_wiphy_work for 147s ,50:cfg80211_wiphy_wo=
+rk for 147s
+    pending: 5*cfg80211_wiphy_work
+workqueue events_freezable: flags=3D0x104
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: update_balloon_stats_func
+workqueue events_power_efficient: flags=3D0x180
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D3 refcnt=3D4
+    pending: do_cache_clean, 2*check_lifetime
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D12 refcnt=3D13
+    in-flight: 5730:wg_ratelimiter_gc_entries for 156s
+    pending: neigh_managed_work, neigh_periodic_work, hash_ipmac4_gc, neigh=
+_managed_work, gc_worker, neigh_periodic_work, reg_check_chans_work, 4*chec=
+k_lifetime
+workqueue events_dfl_long: flags=3D0x2
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D8 refcnt=3D9
+    pending: 8*defense_work_handler
+workqueue kvfree_rcu_reclaim: flags=3D0xa
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D2 refcnt=3D4 MAYDAY
+    pending: 2*kfree_rcu_monitor
+workqueue netns: flags=3D0x6000a
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D4
+    in-flight: 139:cleanup_net for 159s
+workqueue mm_percpu_wq: flags=3D0x108
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: vmstat_update
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: vmstat_update
+workqueue writeback: flags=3D0x4a
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D3 MAYDAY
+    pending: wb_workfn
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D3 MAYDAY
+    pending: wb_update_bandwidth_workfn
+workqueue kblockd: flags=3D0x118
+  pwq 3: cpus=3D0 node=3D0 flags=3D0x0 nice=3D-20 active=3D1 refcnt=3D2
+    pending: blk_mq_timeout_work
+workqueue usb_hub_wq: flags=3D0x104
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D2 refcnt=3D3
+    in-flight: 5699:hub_event for 157s hub_event
+workqueue ksmbd-conn-release: flags=3D0xa
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D3 MAYDAY
+    pending: ksmbd_session_expiration_worker
+workqueue ipv6_addrconf: flags=3D0x6000a
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D11 MAYDAY
+    in-flight: 3195(RESCUER):addrconf_verify_work for 147s
+    pending: mayday_cursor_func
+    inactive: 5*addrconf_verify_work
+workqueue krxrpcd: flags=3D0x2001a
+  pwq 9: cpus=3D0-1 node=3D0 flags=3D0x4 nice=3D-20 active=3D1 refcnt=3D4
+    pending: rxrpc_peer_keepalive_worker
+workqueue bat_events: flags=3D0x6000a
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D40 MAYDAY
+    in-flight: 3226(RESCUER):batadv_dat_purge for 2s
+    pending: mayday_cursor_func
+    inactive: batadv_bla_periodic_work, 5*batadv_mcast_mla_update, 4*batadv=
+_iv_send_outstanding_bat_ogm_packet, 3*batadv_purge_orig, 4*batadv_iv_send_=
+outstanding_bat_ogm_packet, batadv_purge_orig, batadv_iv_send_outstanding_b=
+at_ogm_packet, batadv_purge_orig, 3*batadv_iv_send_outstanding_bat_ogm_pack=
+et, 5*batadv_tt_purge, batadv_dat_purge, 2*batadv_bla_periodic_work, batadv=
+_dat_purge, batadv_bla_periodic_work, batadv_dat_purge
+workqueue wg-crypt-wg0: flags=3D0x128
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_encrypt_worker
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D2 refcnt=3D3
+    pending: wg_packet_tx_worker, wg_packet_encrypt_worker
+workqueue wg-crypt-wg1: flags=3D0x128
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_encrypt_worker
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D2 refcnt=3D3
+    pending: wg_packet_encrypt_worker, wg_packet_tx_worker
+workqueue wg-crypt-wg2: flags=3D0x128
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_encrypt_worker
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D2 refcnt=3D3
+    pending: wg_packet_decrypt_worker, wg_packet_encrypt_worker
+workqueue wg-crypt-wg0: flags=3D0x128
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_encrypt_worker
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D2 refcnt=3D3
+    pending: wg_packet_tx_worker, wg_packet_encrypt_worker
+workqueue wg-crypt-wg0: flags=3D0x128
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_encrypt_worker
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D2 refcnt=3D3
+    pending: wg_packet_tx_worker, wg_packet_encrypt_worker
+workqueue wg-kex-wg1: flags=3D0x6
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_handshake_send_worker
+workqueue wg-crypt-wg1: flags=3D0x128
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_encrypt_worker
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D2 refcnt=3D3
+    pending: wg_packet_encrypt_worker, wg_packet_tx_worker
+workqueue wg-kex-wg1: flags=3D0x6
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_handshake_send_worker
+workqueue wg-crypt-wg1: flags=3D0x128
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_tx_worker
+workqueue wg-crypt-wg2: flags=3D0x128
+  pwq 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_encrypt_worker
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D2 refcnt=3D3
+    pending: wg_packet_decrypt_worker, wg_packet_encrypt_worker
+workqueue wg-kex-wg2: flags=3D0x6
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_handshake_send_worker
+workqueue wg-crypt-wg2: flags=3D0x128
+  pwq 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 active=3D1 refcnt=3D2
+    pending: wg_packet_encrypt_worker
+workqueue wg-kex-wg0: flags=3D0x6
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D2 refcnt=3D3
+    pending: 2*wg_packet_handshake_send_worker
+workqueue wg-kex-wg1: flags=3D0x6
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D2 refcnt=3D3
+    pending: 2*wg_packet_handshake_send_worker
+workqueue wg-kex-wg2: flags=3D0x6
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D2 refcnt=3D3
+    pending: 2*wg_packet_handshake_send_worker
+workqueue krds_cp_wq#0/0: flags=3D0x20002
+  pwq 8: cpus=3D0-1 flags=3D0x6 nice=3D0 active=3D1 refcnt=3D5
+    in-flight: 37:rds_shutdown_worker for 85s
+    inactive: rds_shutdown_worker
+pool 2: cpus=3D0 node=3D0 flags=3D0x0 nice=3D0 hung=3D147s workers=3D9 idle=
+: 5664 1558 5701 9 5739 5749 10
+pool 6: cpus=3D1 node=3D0 flags=3D0x0 nice=3D0 hung=3D156s workers=3D9 idle=
+: 989 5672 25 5349 5671 5679 44
+pool 8: cpus=3D0-1 flags=3D0x6 nice=3D0 hung=3D2s workers=3D11 manager: 156
+Showing backtraces of busy workers in stalled worker pools:
+pool 6:
+task:kworker/1:8     state:R  running task     stack:25288 pid:5730  tgid:5=
+730  ppid:2      task_flags:0x4208060 flags:0x00080000
+Workqueue: events_power_efficient wg_ratelimiter_gc_entries
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5526 [inline]
+ __schedule+0x17db/0x58f0 kernel/sched/core.c:7277
+ preempt_schedule_irq+0x4b/0x90 kernel/sched/core.c:7599
+ irqentry_exit_to_kernel_mode include/linux/irq-entry-common.h:539 [inline]
+ irqentry_exit+0x14f/0x910 kernel/entry/common.c:167
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:=
+674
+RIP: 0010:lock_is_held_type+0x106/0x150 kernel/locking/lockdep.c:6021
+Code: 1b 00 00 b8 ff ff ff ff 65 0f c1 05 dc 9c af 07 83 f8 01 75 25 9c 58 =
+a9 00 02 00 00 75 39 41 f7 c4 00 02 00 00 74 01 fb 89 d8 <5b> 41 5c 41 5d 4=
+1 5e 41 5f 5d e9 5b 01 03 00 cc 90 0f 0b 90 48 c7
+RSP: 0018:ffffc90004ccf9f8 EFLAGS: 00000206
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000046
+RDX: 0000000000000000 RSI: ffffffff8e69d180 RDI: ffffffff8c6da780
+RBP: 00000000ffffffff R08: ffffffff8f9962e3 R09: 1ffffffff1f32c5c
+R10: dffffc0000000000 R11: fffffbfff1f32c5d R12: 0000000000000246
+R13: ffff8880328b0000 R14: ffffffff8ed5c940 R15: 0000000000000002
+ lock_is_held include/linux/lockdep.h:249 [inline]
+ __might_resched+0x37/0x4c0 kernel/sched/core.c:9219
+ wg_ratelimiter_gc_entries+0x3a4/0x450 drivers/net/wireguard/ratelimiter.c:=
+78
+ process_one_work kernel/workqueue.c:3396 [inline]
+ process_scheduled_works+0xc3d/0x1630 kernel/workqueue.c:3479
+ worker_thread+0xa47/0xfb0 kernel/workqueue.c:3560
+ kthread+0x38b/0x480 kernel/kthread.c:436
+ ret_from_fork+0x514/0xb70 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	Tasks blocked on level-0 rcu_node (CPUs 0-1): P6242/1:b..l
+rcu: 	(detected by 0, t=3D10621 jiffies, g=3D21385, q=3D996 ncpus=3D2)
+task:syz.2.155       state:R  running task     stack:24928 pid:6242  tgid:6=
+241  ppid:5626   task_flags:0x40054c flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5526 [inline]
+ __schedule+0x17db/0x58f0 kernel/sched/core.c:7277
+ preempt_schedule_common+0x7f/0xd0 kernel/sched/core.c:7456
+ preempt_schedule_thunk+0x16/0x40 arch/x86/entry/thunk.S:12
+ __raw_spin_unlock include/linux/spinlock_api_smp.h:201 [inline]
+ _raw_spin_unlock+0x41/0x50 kernel/locking/spinlock.c:213
+ spin_unlock include/linux/spinlock.h:401 [inline]
+ zap_pte_range mm/memory.c:2095 [inline]
+ zap_pmd_range mm/memory.c:2151 [inline]
+ zap_pud_range mm/memory.c:2179 [inline]
+ zap_p4d_range mm/memory.c:2200 [inline]
+ __zap_vma_range+0x40e1/0x4f80 mm/memory.c:2240
+ unmap_vmas+0x390/0x550 mm/memory.c:2309
+ exit_mmap+0x293/0x9f0 mm/mmap.c:1315
+ __mmput+0x118/0x420 kernel/fork.c:1193
+ exit_mm+0x221/0x2d0 kernel/exit.c:617
+ do_exit+0x6cd/0x2360 kernel/exit.c:999
+ do_group_exit+0x22d/0x2f0 kernel/exit.c:1154
+ get_signal+0x121b/0x12c0 kernel/signal.c:3051
+ arch_do_signal_or_restart+0xbb/0x860 arch/x86/kernel/signal.c:337
+ __exit_to_user_mode_loop kernel/entry/common.c:66 [inline]
+ exit_to_user_mode_loop+0x10e/0x770 kernel/entry/common.c:101
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [in=
+line]
+ syscall_exit_to_user_mode include/linux/entry-common.h:343 [inline]
+ do_syscall_64+0x328/0x520 arch/x86/entry/syscall_64.c:89
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f07d6f9e159
+RSP: 002b:00007f07d7f530e8 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f07d7225fa8 RCX: 00007f07d6f9e159
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f07d7225fa8
+RBP: 00007f07d7225fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f07d7226038 R14: 00007f07d734f960 R15: 00007f07d734fa48
+ </TASK>
+rcu: rcu_preempt kthread starved for 3099 jiffies! g21385 f0x0 RCU_GP_WAIT_=
+FQS(5) ->state=3DR ->cpu=3D0
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expec=
+ted behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R  running task     stack:27496 pid:17    tgid:1=
+7    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5526 [inline]
+ __schedule+0x17db/0x58f0 kernel/sched/core.c:7277
+ __schedule_loop kernel/sched/core.c:7354 [inline]
+ schedule+0x164/0x2b0 kernel/sched/core.c:7369
+ schedule_timeout+0x152/0x2c0 kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x30c/0x11f0 kernel/rcu/tree.c:2122
+ rcu_gp_kthread+0x9e/0x2b0 kernel/rcu/tree.c:2330
+ kthread+0x38b/0x480 kernel/kthread.c:436
+ ret_from_fork+0x514/0xb70 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Tainted: G             L      syzkalle=
+r #0 PREEMPT(full)=20
+Tainted: [L]=3DSOFTLOCKUP
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Goo=
+gle 07/24/2026
+RIP: 0010:pv_native_safe_halt+0xf/0x20 arch/x86/kernel/paravirt.c:64
+Code: bc 88 02 c3 cc cc cc cc cc cc cc 90 90 90 90 90 90 90 90 90 90 90 90 =
+90 90 90 90 f3 0f 1e fa 66 90 0f 00 2d b3 c1 23 00 fb f4 <e9> 8c 08 03 00 c=
+c cc cc cc cc cc cc cc cc cc cc cc 90 90 90 90 90
+RSP: 0018:ffffffff8ea07ca0 EFLAGS: 00000242
+RAX: 00000000001b75e9 RBX: ffffffff819bb25c RCX: 8000000000000001
+RDX: 0000000000000001 RSI: ffffffff8e414979 RDI: ffffffff8c6da780
+RBP: ffffffff8ea07d78 R08: ffff8880b8633a1b R09: 1ffff110170c6743
+R10: dffffc0000000000 R11: ffffed10170c6744 R12: 0000000000000000
+R13: 1ffffffff1d51e00 R14: 1ffffffff1d40f9c R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff888124cce000(0000) knlGS:000000000000000=
+0
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000020000020f030 CR3: 000000007f564000 CR4: 00000000003526f0
+Call Trace:
+ <TASK>
+ arch_safe_halt arch/x86/kernel/process.c:767 [inline]
+ default_idle+0x9/0x20 arch/x86/kernel/process.c:768
+ default_idle_call+0x72/0xb0 kernel/sched/idle.c:122
+ cpuidle_idle_call kernel/sched/idle.c:199 [inline]
+ do_idle+0x1cc/0x540 kernel/sched/idle.c:355
+ cpu_startup_entry+0x43/0x60 kernel/sched/idle.c:454
+ rest_init+0x378/0x3a0 init/main.c:732
+ start_kernel+0x392/0x3e0 init/main.c:1190
+ x86_64_start_reservations+0x24/0x30 arch/x86/kernel/head64.c:310
+ x86_64_start_kernel+0x137/0x1b0 arch/x86/kernel/head64.c:291
+ common_startup_64+0x13e/0x157
+ </TASK>
+----------------
+Code disassembly (best guess):
+   0:	1b 00                	sbb    (%rax),%eax
+   2:	00 b8 ff ff ff ff    	add    %bh,-0x1(%rax)
+   8:	65 0f c1 05 dc 9c af 	xadd   %eax,%gs:0x7af9cdc(%rip)        # 0x7af9=
+cec
+   f:	07
+  10:	83 f8 01             	cmp    $0x1,%eax
+  13:	75 25                	jne    0x3a
+  15:	9c                   	pushf
+  16:	58                   	pop    %rax
+  17:	a9 00 02 00 00       	test   $0x200,%eax
+  1c:	75 39                	jne    0x57
+  1e:	41 f7 c4 00 02 00 00 	test   $0x200,%r12d
+  25:	74 01                	je     0x28
+  27:	fb                   	sti
+  28:	89 d8                	mov    %ebx,%eax
+* 2a:	5b                   	pop    %rbx <-- trapping instruction
+  2b:	41 5c                	pop    %r12
+  2d:	41 5d                	pop    %r13
+  2f:	41 5e                	pop    %r14
+  31:	41 5f                	pop    %r15
+  33:	5d                   	pop    %rbp
+  34:	e9 5b 01 03 00       	jmp    0x30194
+  39:	cc                   	int3
+  3a:	90                   	nop
+  3b:	0f 0b                	ud2
+  3d:	90                   	nop
+  3e:	48                   	rex.W
+  3f:	c7                   	.byte 0xc7
+
+
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+
+If the report is already addressed, let syzbot know by replying with:
+#syz fix: exact-commit-title
+
+If you want to overwrite report's subsystems, reply with:
+#syz set subsystems: new-subsystem
+(See the list of subsystem names on the web dashboard)
+
+If the report is a duplicate of another one, reply with:
+#syz dup: exact-subject-of-another-report
+
+If you want to undo deduplication, reply with:
+#syz undup
 
