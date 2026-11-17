@@ -2,84 +2,128 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44627606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9430B606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aYoQFDfU;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Fqbr4M5D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZPnyvYyl;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.a=rsa-sha256 header.s=default header.b=Vo+gMKG2;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=valla.it header.i=@valla.it header.a=rsa-sha256 header.s=default header.b=J/o/wHZM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0ZGenTYhhhmk9ojD2HrCoiIy9IDBRXToYlx91iW/n0c=; b=aYoQFDfUejA4YpDbI5nLP+JTU/
-	ih/qJ7N8RN4e4JWWv2BnWkXULuXYVyzctHJ87f/u3XDIseH2oCXOW3UO6grFgW0EGVSuMLAB4ZLvH
-	j03LWlqp1V5SF1D+DsLTtBx63B7qRsNLS/Ucde/LOleeQWIPeHkpXTuKHwGXbfBwfbNCmDn6kPZpJ
-	JbcyW++gc300k2bhPmnX63KjmTMQqKtsrsTT/xAp0GcP9Ji+95nvKPxwZH67MPNRH/QrkQ/yYO2DN
-	PoQrWVPr86++ubRdOf8z2mPg8ZqXY9UpJBFUrhoj3CJOkVWgaCOSZU4uTYYi0TohuVJWTyDnX+vVp
-	OtYbtYhQ==;
+	bh=XDw9/M2MIm98kw8EzKXejlZaq6aMnfzsqjAxXtqrIdg=; b=ZPnyvYylSbT3fGBfciQXQgWKeG
+	vcGi00ZQbP0fBx07UDTl9MA5Jyw+3aXZAI1DoALw1JbM30bfttCzoa672rRNyEsW79ApQLyGSOsDp
+	Zjd1pUoVgUEQ3DbS2xPDvQYFyKzbktyKlevOABHOMzBG5OdG1l+0aw4hEuTRLoMmUYnlKPXFsFP8+
+	84+TE8XdtjOhNSidI+nettC/uOSkC0yqXHhoK8sqv89wbsizgnjQIrhHVozstU0kXuoGkCx8//J/2
+	jgbW1CxT2ZqXtrDE12ZCgHegk8A29l5Z+/NetLf+4kAfjeVn/DnbEjSLDniKU6hzn0OtZkB4H6ogF
+	n0FmuZoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTRSG-00000007Cuy-0sdX;
-	Tue, 17 Nov 2026 22:15:08 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xTRVd-00000007D9W-3SeG;
+	Tue, 17 Nov 2026 22:18:37 +0000
+Received: from delivery.antispam.mailspamprotection.com ([185.56.87.6])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTRSD-00000007CuJ-0j2D;
-	Tue, 17 Nov 2026 22:15:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794953701;
-	bh=Jp6lTkAnzzbNf+/NdEgoToYgR1t2Gdsu0x5UIbUA/nE=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Fqbr4M5DcLUN5+ufNdjiUZjOBhaCCSlEQZ+Yf1cO8RIaW7C2nJPIRh4JFBfd+gAAw
-	 dtUFSkJizDUyevdQ4gcppeM1HxCO/3WqUrLHt2hqAQTP1ia6KzleUf4qfOYaVs68Ll
-	 d33ffm9Cyn098dBSEcH9xP9+lHt6CEwe1i0ksISb4XDPTB3GDUBipskl9nu8a+pguE
-	 TMc2+5k52qz+cxDOXwV+dKVAH1ClvuQfGfEsogQMVWYbP7KB/S5yJtqhp0mz6spqmu
-	 xJp2sq6x5VpGJtRy7UxD856oN3OeQAQrYB1Turb3zZzrfifuhp4s71sfXlcEPrBi51
-	 duA6lrsvg9edA==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5F32717E0406;
-	Tue, 17 Nov 2026 23:15:00 +0100 (CET)
-Message-ID: <4e5f5669174657fdf3ae3298cc4eaecb5176bd30.camel@collabora.com>
-Subject: Re: [PATCH v3 0/5] media: Add fdinfo support for v4l2 drivers
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Detlev Casanova <detlev.casanova@collabora.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>, Heiko Stuebner	 <heiko@sntech.de>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, kernel@collabora.com, 
-	linux-arm-kernel@lists.infradead.org, Christopher Healy <healych@amazon.com>
-Date: Tue, 17 Nov 2026 17:14:59 -0500
-In-Reply-To: <20260706-v4l2-add-fdinfo-v3-0-d556568cf38e@collabora.com>
-References: <20260706-v4l2-add-fdinfo-v3-0-d556568cf38e@collabora.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-SbHR3Iz8Jecq/hEvoD/N"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xTRVa-00000007D8e-1auI
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 22:18:36 +0000
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-h034.prod.antispam.mailspamprotection.com; s=arckey; t=1794953914;
+	 b=RvHqQnVq1hM92tneguHuvPkiVsL2bxFr0vGhYzVEQzzj6kJQDvDBhnGHmy8BN4W2cgNIkgwb1n
+	  F1P3uTjVtkX+N7mHbO7m39DYHf93j7Aty0P22sqoDUZWSYbX92Vnow5ml2evoYPBfzXafu7bnc
+	  hbiOEvEH3s2mXTrrxJR6z9QLY4AvfUykqnJ4a3v/zCh0fN9T5o+qtn8MOlK/maL4UvSYG4R/rI
+	  MwlacJJ/tq2A8UqhiliiWAeKNytE2yEYR+shVwHy7/9fobo4DC7YvOYfWn3Eu67O7UfbWYXzBq
+	  0jl+ZYGThaXoNuazqohjW9vDeH9Nq6quUAPIbefpEbUvhg==;
+ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-h034.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-h034.prod.antispam.mailspamprotection.com; s=arckey; t=1794953914;
+	bh=lLTugMaSzlCBSdBDH2IIIB/bAhkr/et1oe9MmxV/meo=;
+	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:
+	  From:Date:DKIM-Signature:DKIM-Signature;
+	b=E0S1Q5EtlF/P7Q0D1iTETQ8rJoGlggyko8UErxctgvq0BJWBdaY6OC9WSqPgFInjPESH6rT8QC
+	  /+0l9G7/GnWHfS/t/UUC4d+4ktyfOFU/+LvZMimu/S30deRDRNEA7iYqMHy7svp075FvwO5gB1
+	  0nHPHKWEkrfg4lwmj8phI4sHI2yopE4KDgkYE4Lz+WTQbH+fC6NtIuvqoHJw/xyG2UJON2fZGM
+	  fWszYzIpFpYAr3Q3i5bLmpg9SqcDKwVprxZbU7JEb8URVO8EXoWdtZ5ehQOqS1LAJBZ5/tqsVW
+	  TrnamOGwk1BgFWbbvRDV7pf4y7uJsckqnF9eTWyQimjdoQ==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
+	:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	List-Unsubscribe:Content-Transfer-Encoding;
+	bh=XDw9/M2MIm98kw8EzKXejlZaq6aMnfzsqjAxXtqrIdg=; b=Vo+gMKG2A2xTqtDPqVUfQosm+c
+	grt/rB+f5HPzlTPEGQAoyCc//jQ+qUGK4Ene7utYCeHRN7nDGIC89iQAvEb4CpMUS4yP/G13fiKcs
+	ExIiqCUBsS9d/ojB6xFNz2YWnQsIYiygrEiXGRVORWxmaqDPxkydCWPFPULrX3eLpj10=;
+Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
+	by instance-europe-west4-h034.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <francesco@valla.it>)
+	id 1xTRVT-00000000rgO-1Ucf
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 22:18:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
+	s=default; h=Subject:Cc:To:From:Date:list-help:list-unsubscribe:
+	list-subscribe:list-post:list-owner:list-archive;
+	bh=XDw9/M2MIm98kw8EzKXejlZaq6aMnfzsqjAxXtqrIdg=; b=J/o/wHZMlZNHzlGj2v3qrP9lrF
+	VBTkUAvJ0gtM++9cWsX0Yubj11+RtRGUwDNRkoZHjCrkf1RuoAIyHmo6uSXc/Cfe32dTtxBQLppcN
+	BD5OKrVRmK2m4pzECQ/oF6ps0YLJ81c0iz7XtJHKuY1T70AbxRwXbjm+kE+TAWDyHMhs=;
+Received: from [95.251.96.187] (port=64319 helo=bywater)
+	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <francesco@valla.it>)
+	id 1xTRV7-000000005TO-1T4G;
+	Tue, 17 Nov 2026 22:18:05 +0000
+Date: Tue, 17 Nov 2026 23:18:03 +0100
+From: Francesco Valla <francesco@valla.it>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+	Randy Dunlap <rdunlap@infradead.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, Robin Murphy <robin.murphy@arm.com>, 
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RFC v2 05/11] remoteproc: virtio: report
+ VIRTIO_F_ACCESS_PLATFORM when required
+Message-ID: <avzQI6R9LubGP7-d@bywater>
+References: <20261102-remoteproc_virtio_map-v2-0-26b300e01c62@valla.it>
+ <20261102-remoteproc_virtio_map-v2-5-26b300e01c62@valla.it>
+ <avs6XQpoQmY_MNYx@p14s>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avs6XQpoQmY_MNYx@p14s>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - esm19.siteground.biz
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - valla.it
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-SGantispam-id: 6e207b9c5ddbe3b3866f722d50468f4c
+X-AntiAbuse: ID - 6e207b9c5ddbe3b3866f722d50468f4c
+AntiSpam-DLS: false
+AntiSpam-DLSP: 
+AntiSpam-DLSRS: 
+AntiSpam-TS: 1.0
+CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
+CFBL-Feedback-ID: 1xTRVT-00000000rgO-1Ucf-feedback@antispam.mailspamprotection.com
+Authentication-Results: outgoing.instance-europe-west4-h034.prod.antispam.mailspamprotection.com;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_141505_416140_A5F1C27D 
-X-CRM114-Status: GOOD (  26.74  )
+X-CRM114-CacheID: sfid-20261117_141834_647931_D4B4CA16 
+X-CRM114-Status: GOOD (  37.15  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,140 +135,113 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-SbHR3Iz8Jecq/hEvoD/N
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Mon, Nov 16, 2026 at 11:16:13AM -0600, Mathieu Poirier wrote:
+> On Mon, Nov 02, 2026 at 12:26:42AM +0100, Francesco Valla wrote:
+> > Depending on the driver originating them, data buffers used for virtio
+> > communication can either:
+> > 
+> >   - already be allocated from the coherent memory area that is
+> >     accessible by the remote processor; this is the case of
+> >     remoteproc-specific virtio devices, i.e., rpmsg and rproc-serial;
+> >   - be allocated from generic kmem, and thus not necessarily accessible
+> >     directly by the remote processor.
+> > 
+> > In the second case, the DMA APIs can be exploited to obtain a
+> > functional communication, since they will take care of cache maintenance
+> > and - if required - bounce buffering. The VIRTIO_F_ACCESS_PLATFORM
+> > feature flag can be used for this purpose: with it set, the virtio
+> > framework will use the aforementioned DMA APIs to map and unmap buffers.
+> > 
+> > Bounce buffering will be transparently used in two cases:
+> > 
+> >   - if the buffer address supplied by the virtio driver is not suitable
+> >     for DMA transfers, or
+> >   - if the reserved memory associated to the vdev is a
+> >     restricted-dma-pool; in this case, *all* buffers will be bounced to
+> >     and from this pool.
+> > 
+> > With this support in place, any kind of virtio device can be supported
+> > through the remoteproc-virtio transport, at least from a data exchange
+> > standpoint.
+> > 
+> > Note that remote processors behind an IOMMU need da == pa for the memory
+> > region(s) the buffers are allocated from.
+> 
+> I'm not sure to understand the da == pa requirement - can you expand more on
+> that?
+> 
 
-Le lundi 06 juillet 2026 =C3=A0 09:42 -0400, Detlev Casanova a =C3=A9crit=
-=C2=A0:
-> fdinfo is useful to poll information from the driver.
-> Unlike the ftrace interface, it lets userspace tools get a snapshot of
-> the state of the driver at their own pace, instead of getting events for
-> each driver status change.
->=20
-> This works better to get information like HW usage time or clock
-> frequencies, as well as memory usage.
-> This patch set focuses on mem2mem drivers that are per-frame based and
-> an implementation is proposed for the Verisilicon Hantro and Rockchip
-> rkvdec drivers, limited to main clock frequency and HW usage time, as
-> well as HW cycles counting in Hantro.
->=20
-> Even though it is not used yet, per core fields are appended with=20
-> `-<core_id>` to support multi-core drivers.
->=20
-> To ease support in drivers, a v4l2_metrics struct is added.
-> It stores metrics information and provides helper functions to write
-> the fdinfo file in a standard way.
->=20
-> An example of usage of this from userspace is implemented in v4l2top:
->=20
-> https://github.com/cazou/v4l2top (Check the upstream branch)
->=20
-> checkpatch.pl warning: The 2 arguments in the show_fdinfo callback
-> definition are kept unnamed to match with the rest of the struct
-> definition.
+Yes! With a caveat: the IOMMU usage by the remoteproc framework and how
+it can integrate with this work is the main reason this is an RFC, as
+stated in the cover letter, because I'm not sure I understand all of it.
+See for example the dma-to-da conversion in [1] or the comment in [2].
 
-Please rebase and address the CI issues please. Would be nice to have other
-people comment.
+That said: all the IOMMU setup that is done today by the remoteproc core
+is linked to the *remoteproc* device, not to the rproc_vdev (i.e., the
+device backing the virtio device). For that reason, the DMA subsystem
+should not be able to know that setup even exists, in particular while
+performing swiotlb operations. Hence, the requirement to have a 1:1
+mapping between da (i.e., the address the device uses) and pa (the
+physical memory map).
 
-https://gitlab.freedesktop.org/linux-media/users/patchwork/-/pipelines/1700=
-504/
+> > 
+> > Existing use cases (e.g., rpmsg and virtio-console) are not impacted as
+> > they are explicitly excluded.
+> > 
+> > Signed-off-by: Francesco Valla <francesco@valla.it>
+> > ---
+> >  drivers/remoteproc/remoteproc_virtio.c | 10 ++++++++--
+> >  1 file changed, 8 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/remoteproc/remoteproc_virtio.c b/drivers/remoteproc/remoteproc_virtio.c
+> > index f1b362158a9c..1496659ddff9 100644
+> > --- a/drivers/remoteproc/remoteproc_virtio.c
+> > +++ b/drivers/remoteproc/remoteproc_virtio.c
+> > @@ -280,9 +280,14 @@ static u64 rproc_virtio_get_features(struct virtio_device *vdev)
+> >  	 * All non-remoteproc-specific virtio devices are assumed to be
+> >  	 * compliant with virtio specifications 1.x; there is no other method
+> >  	 * to transmit this capability from the remote processor to the host.
+> > +	 *
+> > +	 * Virtio devices that are specific for remoteproc usage take care on
+> > +	 * their own to allocate memory from the device's coherent pool; use
+> > +	 * the DMA APIs for the others through VIRTIO_F_ACCESS_PLATFORM.
+> >  	 */
+> >  	if (!rproc_virtio_rsc_vdev_rproc_specific(rsc))
+> > -		features |= (1ULL << VIRTIO_F_VERSION_1);
+> > +		features |= ((1ULL << VIRTIO_F_VERSION_1) |
+> > +			     (1ULL << VIRTIO_F_ACCESS_PLATFORM));
+> >  
+> >  	return features;
+> >  }
+> > @@ -312,7 +317,8 @@ static int rproc_virtio_finalize_features(struct virtio_device *vdev)
+> >  	features = vdev->features;
+> >  
+> >  	if (!rproc_virtio_rsc_vdev_rproc_specific(rsc))
+> > -		features &= ~(1ULL << VIRTIO_F_VERSION_1);
+> > +		features &= ~((1ULL << VIRTIO_F_VERSION_1) |
+> > +			      (1ULL << VIRTIO_F_ACCESS_PLATFORM));
+> >  
+> >  	if (WARN_ON((u32)vdev->features != features))
+> >  		return -EINVAL;
+> > 
+> > -- 
+> > 2.56.0
+> > 
+> 
 
-Nicolas
+Thank you!
 
->=20
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
-> Changes in v3:
-> - Rename the fdinfo key prefix from "media-" to "v4l2-", and "stats" to
->   "metrics"
-> - Restructure the documentation to have mandatory and optional keys
-> - Add core ID to fields
-> - Add HW cycles count support
-> - Add ABI documentation
-> - Link to v2: https://patch.msgid.link/20260617-v4l2-add-fdinfo-v2-0-d298=
-e98ce06a@collabora.com
->=20
-> Changes in v2:
-> - Simplify key/value pairs by removing repeated <eng> suffix
-> - Add media type support
-> - Add v4l2_stats helpers
-> - Add support in rkvdec too
-> - Link to v1: https://patch.msgid.link/20260612-v4l2-add-fdinfo-v1-0-7232=
-11abc861@collabora.com
->=20
-> To: Mauro Carvalho Chehab <mchehab@kernel.org>
-> To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> To: Philipp Zabel <p.zabel@pengutronix.de>
-> To: Detlev Casanova <detlev.casanova@collabora.com>
-> To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-> To: Heiko Stuebner <heiko@sntech.de>
-> Cc: kernel@collabora.com
-> Cc: linux-media@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: linux-arm-kernel@lists.infradead.org
->=20
-> ---
-> Christopher Healy (2):
->       docs: media: add documentation for V4L2 driver usage metrics
->       media: hantro: Add per-context fdinfo usage metrics
->=20
-> Detlev Casanova (3):
->       media: v4l2: Add callback for show_fdinfo
->       media: v4l2-core: Add v4l2-metrics interface
->       media: rkvdec: Add per-context fdinfo usage metrics
->=20
->  Documentation/ABI/testing/procfs-fdinfo-v4l2       | 129 +++++++++++++++=
-++++
->  .../userspace-api/media/drivers/index.rst          |   1 +
->  .../media/drivers/v4l2-usage-metrics.rst           | 137 +++++++++++++++=
-++++++
->  drivers/media/platform/rockchip/rkvdec/rkvdec.c    |  19 +++
->  drivers/media/platform/rockchip/rkvdec/rkvdec.h    |   1 +
->  drivers/media/platform/verisilicon/hantro.h        |   3 +
->  drivers/media/platform/verisilicon/hantro_drv.c    |  19 +++
->  drivers/media/platform/verisilicon/hantro_hw.h     |   1 +
->  .../platform/verisilicon/rockchip_vpu981_regs.h    |   1 +
->  .../media/platform/verisilicon/rockchip_vpu_hw.c   |   6 +
->  drivers/media/v4l2-core/Makefile                   |   2 +-
->  drivers/media/v4l2-core/v4l2-dev.c                 |  12 ++
->  drivers/media/v4l2-core/v4l2-fh.c                  |   3 +
->  drivers/media/v4l2-core/v4l2-metrics.c             |  78 ++++++++++++
->  include/media/v4l2-dev.h                           |   1 +
->  include/media/v4l2-fh.h                            |   2 +
->  include/media/v4l2-metrics.h                       |  47 +++++++
->  17 files changed, 461 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 3c587e0b08bd3c4853a22792b9166b7457870165
-> change-id: 20260610-v4l2-add-fdinfo-a790fceab329
->=20
-> Best regards,
-> -- =20
-> Detlev Casanova <detlev.casanova@collabora.com>
->=20
+Reagrds,
+Francesco
 
---=-SbHR3Iz8Jecq/hEvoD/N
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+[1] https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/remoteproc/remoteproc_core.c#L716
+[2] https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/remoteproc/remoteproc_core.c#L461
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavzR4wAKCRDZQZRRKWBy
-9C/0AP9RF0H01sdRh/eJRCsUAy8Q/aqr1DKXqin2GOcLmr/uzAEA9ouvtdSlhzQq
-TSAuxOdPvh6OjRqo481dsz54XVxmIQc=
-=aX0G
------END PGP SIGNATURE-----
-
---=-SbHR3Iz8Jecq/hEvoD/N--
 
