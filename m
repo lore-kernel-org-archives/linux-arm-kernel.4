@@ -2,11 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D2D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2709606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:03:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qITEJ0v0;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=f/DRJ1Jl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R4ZQLg9i
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,70 +13,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FcrHbezu7ZWjOBBzfj/zQMKcAeBb+uf9T04gRQhuzOk=; b=qITEJ0v0YZ7J27T4/1bJYoJXic
-	iP790cLAw4U0bbNMCpf2AboVcIPDVOv3g5YTEjADAu1MsQni9P1wF3yVaR7jDvmh4uCgQ8LSU+yy8
-	iL5hBMjNh3SfLei1jFodXuAfGd0iKjzYsa1kvLKy6LGp4VcPPfuEK9m1k0VtS0+u1ScWapR01osU4
-	Qp9px78aX/9PrZdDqYBtR+crJ0S6IFtKz9B4Seymz1dRO+HQ8DguMI93gpnhFUW5SR+9swPj9dlBP
-	3Q9nqF4xDIhVt8iX/x6Siq1/vRdIngYthnx/NH+X4Z+pPP9lc7VNjDfGRwTnFH0Hb7LvYA37ppjHB
-	Apb7Slyg==;
+	bh=DWSbG4O7NNcxX8fObj3HSY6oLeblqc38YjrZ70564Yc=; b=R4ZQLg9iVhfWm/Xj1AYs4PKIwX
+	/m0T8ueLI1QJC/gOgafGu5/V00pyOwdiUnjy1m5f3XNdvmSWp+BGKJrhpXQkCNp54dBNIT1bhHjzA
+	n0HTNebP9Bvu0+5kj1Q7MrIRUM4DVugzwNMJNhwu4r5T2A6WxkoNzzENRjkLDpbJhEBWTvTQq+KDA
+	qWhKd64EsY1myScWEKsgWyrBCDjCq5mS1q2LJaq5BtLPii9z28qO3mpOEP60Dgi3E32BFP8lKQslP
+	aD/h6uHIM1fkZwCwZdguGR5yE/SLt7vBfnGzLrVDzZAkx7KthGoyx5g1bs4lUeSqcx7BzngpmmMTu
+	8AayTOpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMZZ-00000006Uoc-1Hmg;
-	Tue, 17 Nov 2026 17:02:21 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMZW-00000006UoF-1CZu
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 17:02:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=FcrHbezu7ZWjOBBzfj/zQMKcAeBb+uf9T04gRQhuzOk=; b=f/DRJ1JlxkjQKKgiumVsBQLZiM
-	eDTDyC59fnlSke8btoyFTBTwVRFcx+9cVDiI9CG/Pz2v9BYmdwQ+QQbltpSrGKAtu9khXAdMhvLaa
-	XUlhedOVcJCmg6GCDC8DLRu+rRMS0WFHhTYyecmdffAiAPgJi315dQDd8J2q8Y3rVGrk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1xTMZJ-00HDCG-CW; Tue, 17 Nov 2026 18:02:05 +0100
-Date: Tue, 17 Nov 2026 18:02:05 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/8] dt-bindings: net: Add MDIO demultiplexer
-Message-ID: <ae24af14-8168-44f0-a150-f18057cc3c95@lunn.ch>
-References: <20261116135442.4827-1-jszhang@kernel.org>
- <20261116135442.4827-2-jszhang@kernel.org>
- <16ecb3ac-7876-4db5-9168-5ac9bf31d4b7@lunn.ch>
- <avvgy_bmRSVApCHA@xhacker>
- <bd19b55b-00b1-406d-a16b-d04c35efb7d3@lunn.ch>
- <avxhJs-51vs2Icje@xhacker>
- <6eb16cd9-27bd-4934-9621-b8928dce6902@lunn.ch>
- <avx43Nv-DJCX5_Rr@xhacker>
- <4d4dc86c-c947-40e2-bdaf-ed00a39f3771@lunn.ch>
- <avx-RO_K5h12HWx2@xhacker>
+	id 1xTMaK-00000006UuC-1tjf;
+	Tue, 17 Nov 2026 17:03:08 +0000
+Received: from elvis.franken.de ([193.175.24.41])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTMaG-00000006Ut8-19kH;
+	Tue, 17 Nov 2026 17:03:06 +0000
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1xTMaC-0005GF-00; Tue, 17 Nov 2026 18:03:00 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 034DFC0546; Tue, 17 Nov 2026 17:56:41 +0100 (CET)
+Date: Tue, 17 Nov 2026 17:56:40 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Rosen Penev <rosenp@gmail.com>
+Cc: linux-mips@vger.kernel.org, John Crispin <john@phrozen.org>,
+	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"open list:ARM/Mediatek SoC support" <linux-kernel@vger.kernel.org>,
+	"moderated list:ARM/Mediatek SoC support" <linux-arm-kernel@lists.infradead.org>,
+	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>
+Subject: Re: [PATCH] mips: ralink: mt7621: avoid casting away __iomem in
+ wraparound test
+Message-ID: <avyHSKd4l8YYdESO@alpha.franken.de>
+References: <20261004184828.31284-1-rosenp@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <avx-RO_K5h12HWx2@xhacker>
+In-Reply-To: <20261004184828.31284-1-rosenp@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_090218_606817_38B0C364 
-X-CRM114-Status: GOOD (  15.58  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_090304_460248_7F634183 
+X-CRM114-Status: GOOD (  17.83  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,36 +64,49 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 12:18:12AM +0800, Jisheng Zhang wrote:
-> On Tue, Nov 17, 2026 at 05:20:39PM +0100, Andrew Lunn wrote:
-> > > > Each transaction?
-> > > > 
-> > > > Are you proposing to use both MDIO bus master? Why? To the outside
-> > > > world, it is one MDIO bus, so you only need one active MDIO bus
-> > > 
-> > > Yep, both MDIO bus masters. I wanted to let each MAC uses its own
-> > > MDIO rather than disturbe another MAC for dual MACs case.
-> > 
-> > How does this actually work? Each bus master sees each PHY. So one
+On Sun, Oct 04, 2026 at 11:48:28AM -0700, Rosen Penev wrote:
+> CPHYSADDR() casts its argument to an integer, which strips the __iomem
+> annotation from dm and triggers a sparse warning. Compute the physical
+> address from detect_magic directly. The result is unchanged since the
+> sum never exceeds the 512MB KSEG mask.
 > 
-> This could work since the demux serializes two masters' access + only
-> point to one phy phandle in one mac's DT node.
+> Fixes: 4ddaf88aadd3 ("mips: ralink: mt7621: add missing __iomem")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202610041411.uJXWXF8i-lkp@intel.com/
+> Assisted-by: LLM
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> ---
+>  arch/mips/ralink/mt7621.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/mips/ralink/mt7621.c b/arch/mips/ralink/mt7621.c
+> index ae7b8cfedd5f..2d10c74b13c1 100644
+> --- a/arch/mips/ralink/mt7621.c
+> +++ b/arch/mips/ralink/mt7621.c
+> @@ -65,7 +65,7 @@ static bool __init mt7621_addr_wraparound_test(phys_addr_t size)
+>  {
+>  	void __iomem *dm = (void __iomem *)KSEG1ADDR(&detect_magic);
+>  
+> -	if (CPHYSADDR(dm + size) >= MT7621_LOWMEM_MAX_SIZE)
+> +	if (CPHYSADDR(&detect_magic) + size >= MT7621_LOWMEM_MAX_SIZE)
+>  		return true;
+>  	__raw_writel(MT7621_MEM_TEST_PATTERN, dm);
+>  	if (__raw_readl(dm) != __raw_readl(dm + size))
+> -- 
+> 2.56.0
 
-And it all blows up when you don't use DT, or the MDIO node is missing
-and of_mdiobus_register() falls back to mdiobus_register() which scans
-all the devices on the bus.
+applied to mips-next
 
-> Yep, I will switch to one MDIO bus solution by coping with the selector
-> in the sl2610 stmmac glue driver.
+Thomas.
 
-Good.
-
-	  Andrew
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
