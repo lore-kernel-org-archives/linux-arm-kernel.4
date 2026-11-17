@@ -2,104 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFB9606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 07:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F49606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 07:55:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VcfckWdZ;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lGhj0LAW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LfU48wjf;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=YRFQs9Vc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=8vgPP6Tx8J3tAl7vzRS2f9bzf7D4zQHjlRLap4jWt7g=; b=VcfckWdZHmjzcaDvmXLx49aYmf
-	Ch5uUs4MV4NkiMutWZ0eeqIlHPIoqiFbyMajHm8IdjtbavKQy73Vutjxkn5pNtF/2iplzuEPNVQU/
-	mU26WyRHAG2Qh+FbaDIEM0zLiA3n/ggkrd2EdeOZyoAy/wTGNjuwqhePAfy9hXOfUIfKXwQXQiynN
-	yYqWHKmx8qCIE7shCxX3bQ5IrszrxYEVymqczMbjaID+pV8gQt/6e2z0qYS848TWavlBx5odtaUnI
-	y3Y4ZheGuiB2ascmdy2k/4nVu/HDdhpt4iCKK8vvdLTfmom/MTqvYZ789jtDzQoZ7fR7w9upBaydZ
-	5nz1kjqA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=eLAQP0umCUNV9SDro5xHJpGm9BPwiX/kosczXjIBD2w=; b=LfU48wjfMo9x+Z
+	JlOncuC32fc5ZGrSqtcSoLPPhgUZO9EIwLZW1/kfMXlT/yTB0o5C+Ye5sxWiGzPThPr6+knjWnylt
+	2lenj+dvFj8rSletpo1ZMsKdL1wnKlkZKP8cqlk/FyrV9NPpyWlUb15XFcXefb3S7Mf1QUtLhgKWH
+	7A+5Jt+VyobhAn25NpQkDQjt46Y2v/epUOfxjRBSA9H2sCnYAscyby3RXQJClNRONb23XzttmEzYf
+	Wf/tclynqbd2YsdGVrcTtIOKfbO1zcp4xMhdwRQWrOO4EWfj+VJpkTDkzvur7/B444GoSMEly0yW2
+	z3af3kqpkWYrZOiIvLlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTDxg-00000004pO4-4C0m;
-	Tue, 17 Nov 2026 07:50:41 +0000
-Received: from mgamail.intel.com ([192.198.163.9])
+	id 1xTE1n-00000004pje-28JK;
+	Tue, 17 Nov 2026 07:54:55 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTDxb-00000004pMv-35Us
+	id 1xTE1j-00000004piz-33cb
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 07:50:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794901836; x=1826437836;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7tsumGXRfcakGcSfEArUg8RNIoKnnuupodfU8GGdp+M=;
-  b=lGhj0LAWYQN5pXw3lN1+iBIe1kR9L+pkMO+qaLUpLP2NC2mxE19Tgc9Z
-   0keSFOJucvPBLruP5NaXqNnyjikm0cDVi/894pzWqIZrt/6j13f5GD0lm
-   yhYtvPPLkYOTdv7LMLa3PSt750IiwqtEFBUnKKZLUf7PH4mjOCfgchcEI
-   4ZEB7xkYTe532ROa81fvFwYvXfYNLzXFllWLhiNAkynd62oxJIoZFw1ni
-   BOE2vMCexRfgR3aa9lzCXE5vBhCm7WKmzgr2X/ZyiGX26mAxAs8lHU+lX
-   lmCZ6b+YEK73d0TPJwkpH8IgWwmLWY85AVVTsFPCaVCf9ovH7meMTkchp
-   g==;
-X-CSE-ConnectionGUID: r37qaAVKQaODUFSUIvLSxA==
-X-CSE-MsgGUID: 0n9oQEyeRmOkL0G7tmqlSw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3542647"
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="3542647"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2026 23:50:35 -0800
-X-CSE-ConnectionGUID: SPVU5nc+QZS67WCpD35Wow==
-X-CSE-MsgGUID: Jd/piBRPQmaHbo+f4M+jFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="9774997"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.254])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2026 23:50:27 -0800
-Date: Tue, 17 Nov 2026 09:50:25 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Leo Yan <leo.yan@arm.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>, Johan Hovold <johan@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Will Deacon <will@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Jeremy Linton <jeremy.linton@arm.com>,
-	Marc Zyngier <maz@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@arm.com>,
-	James Clark <james.clark@linaro.org>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	Al Grant <al.grant@arm.com>, "Johnny.Fan" <johnny.fan@cixtech.com>,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	driver-core@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org
-Subject: Re: [PATCH 2/8] device property: Add software-node IRQ affinity masks
-Message-ID: <avwHQXJxOir8XXxX@ashevche-desk.local>
-References: <20261116-acpi_arm_pmu_registration_hmp-v1-0-0371d4eca626@arm.com>
- <20261116-acpi_arm_pmu_registration_hmp-v1-2-0371d4eca626@arm.com>
+	Tue, 17 Nov 2026 07:54:54 +0000
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 37C2D177;
+	Tue, 17 Nov 2026 08:52:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1794901939;
+	bh=Rs2TZRDYMtfEO5dZ9Ed294/LGxR/gQNKjwq+FdxuUqY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YRFQs9VcmKm2vUqPqdHinkvhqFfhMK1skDzco9OpBxUGc9aO6y+RSj4tgwtU8en3s
+	 tGqWeGMSOAPTuZ4hysCFFqeYwC7DzIdXmERcGlCQCDj+3t+lipZfhZMnVRLTGsXla5
+	 JJw/yvLKh1dbb9IJfbWdsm9M+U6jwvy2YEgYCFaM=
+Message-ID: <16f237de-d223-470d-915b-0542c263bd52@ideasonboard.com>
+Date: Tue, 17 Nov 2026 09:54:42 +0200
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261116-acpi_arm_pmu_registration_hmp-v1-2-0371d4eca626@arm.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 00/15] drm/tidss: Add BeagleY-AI display support (and
+ some more)
+To: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Jayesh Choudhary <j-choudhary@ti.com>,
+ Aradhya Bhatia <a-bhatia1@ti.com>, Andrew Davis <afd@ti.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Aradhya Bhatia <aradhya.bhatia@linux.dev>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Swamil Jain <s-jain1@ti.com>,
+ Devarsh Thakkar <devarsht@ti.com>, Louis Chauvet <louis.chauvet@bootlin.com>
+References: <20261103-beagley-ai-display-v5-0-f1c8d0e52bb4@ideasonboard.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+In-Reply-To: <20261103-beagley-ai-display-v5-0-f1c8d0e52bb4@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_235037_893694_ABDE9109 
-X-CRM114-Status: GOOD (  12.64  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261116_235452_250298_21CFB305 
+X-CRM114-Status: GOOD (  30.87  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,37 +77,142 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 06:21:29PM +0000, Leo Yan wrote:
-> Devices created from firmware tables may need CPU affinity information
-> without a corresponding firmware node. Allow software nodes to supply
-> this information through the common firmware node IRQ affinity API.
+Hi,
+
+On 03/11/2026 13:34, Tomi Valkeinen wrote:
+> This series aims to add display support for all display interfaces on
+> BeagleY-AI board. More generally, it adds display support for TI AM62P,
+> J722S, and related SoCs.
 > 
-> Add software_node_add_irq_affinity() to copy a CPU mask for an IRQ index,
-> and implement the software node irq_get_affinity callback. Keep each mask
-> until the node is released and reject replacement so borrowed masks remain
-> valid for the node's lifetime.
+> The main topics to highlight:
+> 
+> - The data and sync signal polarities require accessing a register
+>    (DPI0_CLK_CTRL) in the CTRL_MMR block. This has already been discussed
+>    e.g. in
+>    https://lore.kernel.org/all/20250730-fix-edge-handling-v1-0-1bdfb3fe7922%40bootlin.com/.
+>    This topic is still open, and it also touches already upstreamed SoCs
+>    with DSS (AM625). In other words, with this series, we don't have full
+>    polarity support, and DPI works exactly like upstream AM625's does.
+> 
+> - In the SoC, the two OLDI TX instances are shared between the two DSS
+>    instances. This has been a bit tricky to solve neatly. In this series
+>    the result is that in the DT we have three OLDI TX nodes, two under
+>    DSS0, one under DSS1, representing the OLDIs that the DSS instance
+>    can use.
+> 
+> - I'm no audio expert, but based on the original dts from Robert Nelson,
+>    I did get HDMI audio working, but I see "davinci-mcasp
+>    2b10000.audio-controller: Sample-rate is off by 400 PPM".
+> 
+> With this series one can use the HDMI output on BeagleY-AI. I have also
+> tested the DSI output with Raspberry Pi's 7" DSI display, and OLDI
+> output with an oscilloscope (I don't have a suitable OLDI panel) with
+> extra DT overlays.
+> 
+>   Tomi
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> ---
+> Changes in v5:
+> - Add Rb tags from Aradhya
+> - New cleanup patch: "drm/tidss: Use the AM625 features for AM62A7"
+> - Ensure tidss_oldi_create_pd_devs() is only called for primary OLDI
+> - Add missing cbass ranges for DSS1 and DSI (DSS was already there) to k3-am62p.dtsi
+> - Link to v4: https://patch.msgid.link/20261029-beagley-ai-display-v4-0-dc7f2b532478@ideasonboard.com
+> 
+> Changes in v4:
+> - Based on today's drm-misc-next
+> - Dropped the CTRL MMR related code. This means the DPI polarities are
+>    not quite right (the same as AM625)
+> - Dropped the commit to convert OLDI to an aux driver. This version uses
+>    a new (unmerged) PM dev_pm_domain_attach_by_node() to manage the OLDI
+>    power domains.
+> - Dropped a bunch of commits which were merged via "[PATCH 00/10]
+>    drm/tidss: Preparation for AM62P and BeagleY-AI display support"
+>    series.
+> - Dropped tested-by tags, as the series has changed quite a bit.
+> - Includes new fixes and cleanup patches:
+>    - vp_bus_type removal:
+>      - "Add helper to identify the AM65x OLDI video port"
+>      - "Stop using vp_bus_type for directly connected panels"
+>      - "Drop the tied off video port check from mode validation"
+>      - "Remove the unused vp_bus_type feat"
+>    - OLDI:
+>      - "Drop unnecessary forward declaration"
+>      - "Fix wrong return value from tidss_oldi_mode_valid()"
+>      - "Fix serial clock reference leak"
+>      - "Fix cleanup on a failed init"
+>      - "Move the setup of one OLDI TX to its own function"
+>      - "Add power domain support"
+> - Link to v3: https://patch.msgid.link/20260529-beagley-ai-display-v3-0-7fefdc5d1adf@ideasonboard.com
+> 
+> Changes in v3:
+> - Base on "[PATCH 0/6] arm64: ti: Use syscon for the Control Module"
+> - Drop quotation marks from Rb tags
+> - Drop Tested-by tags for the bindings patches
+> - "drm/tidss: Add external data and sync signal edge configuration": Fix
+>    error handling
+> - "drm/tidss: Add support for DPIENABLE bit": set/unset DPIENABLE in
+>    prepare/unprepare
+> - "drm/tidss: oldi: Convert OLDI to an aux driver": Improve cleanups
+>    (of_node_put, clk_put, device_link_del)
+> - Dropped "arm64: dts: ti: k3-am62p-j722s-common-main: Make main_conf a syscon"
+> - "arm64: dts: ti: k3-am62p-j722s-common-main: Add support for DSS": Add
+>    missing clocks and ti,oldi-io-ctrl for oldi1 node. Drop unused
+>    main-gpio0-ioexp-intr-default-pins node. Fix MCASP1_AXR0 pin
+>    direction. Fix DSS videoport numbering.
+> - Link to v2: https://lore.kernel.org/r/20260513-beagley-ai-display-v2-0-9e9bcefde6bc@ideasonboard.com
+> 
+> Changes in v2:
+> - Add Rb and Tb tags
+> - Drop "dt-bindings: mfd: syscon: Add ti,am625-dss-dpi0-clk-ctrl
+>    compatible", which is now implemented with the below changes.
+> - New patch "dt-bindings: display: ti,am65x-dss: Add ti,dpi-io-ctrl"
+> - Modify "drm/tidss: Add external data and sync signal edge
+>    configuration" to use the 'ti,dpi-io-ctrl' with offset.
+> - New patch "arm64: dts: ti: k3-am62p-j722s-common-main: Make main_conf
+>    a syscon".
+> - Modify "arm64: dts: ti: k3-am62p-j722s-common-main: Add support for
+>    DSS" to set 'ti,dpi-io-ctrl' properties
+> - Drop generic desc in DT bindings for power-domains property
+> - Fix pm_runtime_get_sync() return value check
+> - Link to v1: https://lore.kernel.org/r/20260420-beagley-ai-display-v1-0-f628543dfd14@ideasonboard.com
+> 
+> ---
+> Andrew Davis (1):
+>        arm64: dts: ti: beagley-ai: Enable HDMI display and audio
+> 
+> Jayesh Choudhary (1):
+>        arm64: dts: ti: k3-am62p-j722s-common-main: Add support for DSS
+> 
+> Swamil Jain (1):
+>        drm/tidss: Add support for AM62P display subsystem
+> 
+> Tomi Valkeinen (12):
+>        dt-bindings: display: ti,am65x-dss: Add AM62P DSS
+>        drm/tidss: Add helper to identify the AM65x OLDI video port
+>        drm/tidss: Stop using vp_bus_type for directly connected panels
+>        drm/tidss: Drop the tied off video port check from mode validation
+>        drm/tidss: Remove the unused vp_bus_type feat
+>        drm/tidss: Use the AM625 features for AM62A7
+>        drm/tidss: oldi: Drop unnecessary forward declaration
+>        drm/tidss: oldi: Fix wrong return value from tidss_oldi_mode_valid()
+>        drm/tidss: oldi: Fix serial clock reference leak
+>        drm/tidss: oldi: Fix cleanup on a failed init
+>        drm/tidss: oldi: Move the setup of one OLDI TX to its own function
+>        drm/tidss: oldi: Add power domain support
 
+I'll pick patches 2-11 (inclusive) to drm-misc-next. They stand alone 
+and do not depend on the PD change we need for the oldi.
 
-This is definitely not a place where to put that. Are you stating that any
-software node might find the IRQ affinity information useful? I don't think
-so. With that in mind this approach looks like a layering violation.
-
-...
-
-And overall, the domain specific (IRQ, DMA, et cetera) topics feels a bit
-misplaced when one can find that in the generic properties. We also have
-that PHY thingy, which is complete alien to word 'generic'.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+  Tomi
 
 
