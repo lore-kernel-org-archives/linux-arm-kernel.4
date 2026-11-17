@@ -2,81 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD82606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF20606A8BF
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Pf9sdwhq;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=RldvSNBi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KkC9nroh;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=ckKFsnPO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2Wq9AE25iea427W8wiH0e2Ewq13PobRIAnClSSphGUw=; b=Pf9sdwhqhHG28D
-	7JhFtH2fx3ELz8ARiHqBaQPnohL1S4AbFtFyIPT+WVNMI7aR4ji+aT10d+aBX3qXPu+OlNluDJ7ft
-	2NR+7wCrIKQ/R94XAy+mHiS/UEhAjfNrXEBOIUgPY1eNNX1t/ElxrergU67H+ZZe0GoIAMfPT9Umx
-	fSAWJIXz4jYyYXLt+iPqwB/rwjo/3Qi+Opw3T5nBwWQxEhj6b7FKItL0vz5OzI8q9cnPbHCVysz88
-	CfFJ2jv+QgxePY+zJOjHVybI/GGQvBkq9kljPJ61sN78UARwuXD2UQUpHdG8v0uVpqUzwac+z4zVw
-	M29qedH2/o4GK/crM1Mw==;
+	List-Owner; bh=BYDghbSSGp8ajBj0SqwqioXz4gab4WkH6tR1bMEa1MY=; b=KkC9nrohEgsYuR
+	yUOhvWAY+X9PZIQktw/MJBmiGSC41DeR1L19u23wwhssXAxCFk8ld5n0stu8X7RzCc8X7Tl2R9Q5g
+	Q0Q+Nz8fEg93U6rct9xvFUwuktt/7wol1HJa9eWWQe9/a776SLxXkCbjXziHQttNVnD6DcXuPPm+Y
+	FcTOgeEhsQXlpHOxBOcXGYUXf+JaBXesAc9UaJEgC7obiUJw4R6PTbm2a6TsRcwZ0w5cZ6NhQmAVg
+	CFkeNfO21XPsJ/lvcTSXYK9KBDUeHH6c9JxjuRjPxV4xwBCYl2S85UqimLIej/rcJto9A7jUzoIVf
+	/yxtCJbO0SU2qZ5KNi+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTKa2-00000006E0v-3z7w;
-	Tue, 17 Nov 2026 14:54:42 +0000
+	id 1xTKcK-00000006EaG-2zq1;
+	Tue, 17 Nov 2026 14:57:04 +0000
 Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTKZv-00000006Dtw-4BjD
+	id 1xTKcH-00000006EZl-16Bh
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 14:54:41 +0000
+	Tue, 17 Nov 2026 14:57:02 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id D4D73C79A9B;
-	Tue, 17 Nov 2026 14:54:37 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 89524C6916D;
+	Tue, 17 Nov 2026 14:57:03 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 49E9E5FD6A;
-	Tue, 17 Nov 2026 14:54:33 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D187511BC0026;
-	Tue, 17 Nov 2026 15:54:23 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 208C95FD6A;
+	Tue, 17 Nov 2026 14:56:59 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BD32711BC0039;
+	Tue, 17 Nov 2026 15:56:49 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794927271; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1794927413; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=2Wq9AE25iea427W8wiH0e2Ewq13PobRIAnClSSphGUw=;
-	b=RldvSNBih/YepnuGq2MmKOY6A9rIpEumELC0ddV1Qgq3r8IhTrV9lLpBVSihJHenq/I5Vm
-	nd/D9MLgGB234C7uQ88P5bQwFSTY+e4TDToHLYcXFPrmuKPTqcBi7dLVsJw32RGbjuDYJq
-	DSpyU8dNw+tl5D0GFkjGBp4MDLolXdsuoCK7TJlQvzelGr+QaF4TV9f8tpXJQK6ktyC3U1
-	ZIIWLKrlz+S+q7+hhl7LD9tk/gm5zD17LNzTyrGIkcrpSZqz3fehRtbOjXHyJO9Z+zne/f
-	+TVHU/jYSpNFMwbDgip6SnNlQIpAKn1oCFtg8VOPxoboHaMQCZd36nFYvjiQvQ==
-Message-ID: <d06c6f0c-a0cc-4b6c-a0ec-eb459ea0eaef@bootlin.com>
-Date: Tue, 17 Nov 2026 15:54:22 +0100
+	bh=BYDghbSSGp8ajBj0SqwqioXz4gab4WkH6tR1bMEa1MY=;
+	b=ckKFsnPOv0NWmOIZtDjV4G8YpEPKa48eiB5p5OyeEE5Idd7Cl3q2mCJFAzgSG2pDRTXU74
+	YgTwk7KCcawBZN4VG6jzjFZv8DBpoXJE5IIQBu527JZps6qPQgxFp731qDHduX23lGOy5l
+	WlDmrzk0pFKeKKUnljc4Y7fwSMW0OCUd/gzXamxydWs0xqoqvEroD3UIz/H5OESx42upZv
+	XaL1TzqXNL+TjyZ7z7ZIYUKqtdGVno5+hTRJ3JnkcL1UhqZs/BJhC7MwnJ4PFqKatiSZrX
+	EUGZJpFHqxTdi2+V7LPnCT0+gso8C/e3ded9Kfn3ukx3HgwZxQDcGoBgQGZoWA==
+Message-ID: <5231b964-215d-481d-87b3-86ff99829eba@bootlin.com>
+Date: Tue, 17 Nov 2026 15:56:49 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net v3 1/3] net: stmmac: honour Rx checksum errors in the
- AF_XDP zero-copy path
+Subject: Re: [PATCH net v3 2/3] net: stmmac: dwmac1000: don't discard frames
+ with only a checksum error
 To: Christian Schmidbauer <opensource@grische.xyz>, netdev@vger.kernel.org
 Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
  kuba@kernel.org, pabeni@redhat.com, Oleksij Rempel
  <o.rempel@pengutronix.de>, stable@vger.kernel.org,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Jesper Dangaard Brouer <hawk@kernel.org>,
- John Fastabend <john.fastabend@gmail.com>,
- Stanislav Fomichev <sdf@fomichev.me>,
- Ong Boon Leong <boon.leong.ong@intel.com>,
+ Aaro Koskinen <aaro.koskinen@nokia.com>,
  linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- bpf@vger.kernel.org
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20261114133640.3285413-1-opensource@grische.xyz>
- <20261114133640.3285413-2-opensource@grische.xyz>
+ <20261114133640.3285413-3-opensource@grische.xyz>
 From: Maxime Chevallier <maxime.chevallier@bootlin.com>
 Content-Language: en-US
-In-Reply-To: <20261114133640.3285413-2-opensource@grische.xyz>
+In-Reply-To: <20261114133640.3285413-3-opensource@grische.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_065436_939397_37E034CA 
-X-CRM114-Status: GOOD (  16.47  )
+X-CRM114-CacheID: sfid-20261117_065701_636219_C96F9E4E 
+X-CRM114-Status: GOOD (  23.76  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,63 +94,83 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 Hi,
 
 On 11/14/26 14:36, Christian Schmidbauer wrote:
-> Commit ee0aace5f844 ("net: stmmac: Correctly handle Rx checksum offload
-> errors") taught stmmac_rx() to honour the csum_none status, but
-> stmmac_dispatch_skb_zc() still ignores it and sets CHECKSUM_UNNECESSARY
-> for every IP frame whenever the checksum offload engine (CoE) is
-> enabled.
+> On dwmac1000 with enhanced descriptors, the hardware sets the Error
+> Summary (ES) bit of the Rx descriptor not only for L2 errors but also
+> for an L3/L4 checksum error. enh_desc_get_rx_status() returns
+> discard_frame whenever ES is set, and since commit 1b746ce8b397 ("net:
+> stmmac: don't overwrite discard_frame status") the checksum status is
+> only evaluated for good frames.
 > 
-> Since commit fe4042797651 ("net: stmmac: dwmac4: stop hardware from
-> dropping checksum-error packets") dwmac4 delivers such frames instead of
-> dropping them, so this path receives them.
+> Return discard_frame only when ES comes with one of the L2 error bits.
+> A frame with only a checksum error is then reported as csum_none and
+> reaches the stack as CHECKSUM_NONE, so the stack verifies the checksum
+> itself. This matches dwmac4, whose Error Summary bit does not cover
+> checksum errors.
 > 
-> Mark the skb CHECKSUM_NONE when csum_none is set, as stmmac_rx() does.
+> RDES0 bit 7 is not in the mask, because depending on the core and on
+> Rx checksum offload it reports a timestamp, an IP header checksum error
+> or a giant frame, and enh_desc_get_rx_status() cannot tell which. In
+> threshold Rx mode, a giant frame that fits one buffer therefore reaches
+> the stack with a verified FCS.
 > 
-> Fixes: bba2556efad6 ("net: stmmac: Enable RX via AF_XDP zero-copy")
-> Cc: <stable@vger.kernel.org>
-> Assisted-by: Claude:claude-opus-5-5
+> Also remove the pr_err that enh_desc_get_rx_status() prints when bit 7
+> is set. Once the MAC stops dropping checksum-error frames, any host on
+> the link can flood the kernel log by sending frames with a bad IPv4
+> header checksum.
+> 
+> This prepares for setting DMA_CONTROL_DT, which makes the MAC deliver
+> checksum-error frames instead of dropping them in its Rx FIFO.
+> 
+> Fixes: 1b746ce8b397 ("net: stmmac: don't overwrite discard_frame status")
+> Cc: <stable@vger.kernel.org> # 6.6.x: ee0aace5f844: net: stmmac: Correctly handle Rx checksum offload errors
+> Cc: <stable@vger.kernel.org> # 6.6.x
+> Assisted-by: Claude:claude-opus-4-8
 > Signed-off-by: Christian Schmidbauer <opensource@grische.xyz>
 
+I was able to test that on Altera Cyclone V, and it works. 
+
 Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Tested-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+
+Thanks,
 
 Maxime
 
 > ---
->  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
+> v2:
+> - Drop RDES0_LENGTH_ERROR from the mask of Error Summary bits. The
+>   length check further down already discards such a frame.
+> - Explain in the commit message why RDES0 bit 7 is not treated as an
+>   L2 error.
+> v1: https://lore.kernel.org/netdev/20261020190319.884375-1-opensource@grische.xyz/
+>  drivers/net/ethernet/stmicro/stmmac/enh_desc.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index 7ffed295eb14..3e5803db19b4 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -5547,7 +5547,7 @@ static struct sk_buff *stmmac_construct_skb_zc(struct stmmac_channel *ch,
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/enh_desc.c b/drivers/net/ethernet/stmicro/stmmac/enh_desc.c
+> index 7ece8d4157a8..d0622f2605aa 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/enh_desc.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/enh_desc.c
+> @@ -216,9 +216,6 @@ static int enh_desc_get_rx_status(struct stmmac_extra_stats *x,
+>  		if (unlikely(rdes0 & RDES0_OVERFLOW_ERROR))
+>  			x->rx_gmac_overflow++;
 >  
->  static void stmmac_dispatch_skb_zc(struct stmmac_priv *priv, u32 queue,
->  				   struct dma_desc *p, struct dma_desc *np,
-> -				   struct xdp_buff *xdp)
-> +				   struct xdp_buff *xdp, int status)
->  {
->  	struct stmmac_rxq_stats *rxq_stats = &priv->xstats.rxq_stats[queue];
->  	struct stmmac_channel *ch = &priv->channel[queue];
-> @@ -5575,7 +5575,8 @@ static void stmmac_dispatch_skb_zc(struct stmmac_priv *priv, u32 queue,
+> -		if (unlikely(rdes0 & RDES0_IPC_CSUM_ERROR))
+> -			pr_err("\tIPC Csum Error/Giant frame\n");
+> -
+>  		if (unlikely(rdes0 & RDES0_COLLISION))
+>  			x->rx_collision++;
+>  		if (unlikely(rdes0 & RDES0_RECEIVE_WATCHDOG))
+> @@ -230,7 +227,10 @@ static int enh_desc_get_rx_status(struct stmmac_extra_stats *x,
+>  		if (unlikely(rdes0 & RDES0_CRC_ERROR)) {
+>  			x->rx_crc_errors++;
+>  		}
+> -		ret = discard_frame;
+> +		if (rdes0 & (RDES0_DESCRIPTOR_ERROR | RDES0_OVERFLOW_ERROR |
+> +			     RDES0_COLLISION | RDES0_RECEIVE_WATCHDOG |
+> +			     RDES0_MII_ERROR | RDES0_CRC_ERROR))
+> +			ret = discard_frame;
+>  	}
 >  
->  	skb->protocol = eth_type_trans(skb, priv->dev);
->  
-> -	if (unlikely(!coe) || !stmmac_has_ip_ethertype(skb))
-> +	if (unlikely(!coe) || !stmmac_has_ip_ethertype(skb) ||
-> +	    (status & csum_none))
->  		skb_checksum_none_assert(skb);
->  	else
->  		skb->ip_summed = CHECKSUM_UNNECESSARY;
-> @@ -5789,7 +5790,8 @@ static int stmmac_rx_zc(struct stmmac_priv *priv, int limit, u32 queue)
->  
->  		switch (res) {
->  		case STMMAC_XDP_PASS:
-> -			stmmac_dispatch_skb_zc(priv, queue, p, np, buf->xdp);
-> +			stmmac_dispatch_skb_zc(priv, queue, p, np, buf->xdp,
-> +					       status);
->  			xsk_buff_free(buf->xdp);
->  			break;
->  		case STMMAC_XDP_CONSUMED:
+>  	/* After a payload csum error, the ES bit is set.
 
 
