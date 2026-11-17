@@ -2,75 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512BB606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 20:26:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD93D606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 20:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1iWZ/+LG;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=C4JfPfSl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rnaphe3D;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P7XmZhhX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=kkDShut3nNXZJqqKxEoTK2XjC9cIbBY9KkzckUmhS3Q=; b=1iWZ/+LGVKi+7eabTtnYHR9LDy
-	bdbBXHJin1ee/CKa+q3HjyfNcYy+Ip66Yh2qdJwLVYG3VTWDGYqm/FIPLnIT+wcLuEJSKJLLXCLFR
-	B9qU/UBMPmGyqpTcoS7Rhg0mjvmrEkZbcJnrbDzJiGoXov0qpCS+uBbD0ZrnHV3ZYprLMD2Be65YD
-	G9LkgnbnsEd2BZ7AGbVXEWfFCneKWsy8tjAfccUeN1ZJ/E3KEb9HWcMkqH69YhaSkaELhxKOTQ3HP
-	nyWdQDy6qwh8umavWiYG0wILRtGsEe1h0fNF/28M1NF8hBc4B6m7a2y5jL9pwOuJLAyjP6e22Ooee
-	r8Tis15A==;
+	bh=7PGWvy46LTnU0expiNZafmv9HXl2dz3Bu7LWfRKGOEc=; b=rnaphe3DGG8VIa822P1t2u+bDk
+	d9C3dgzNw+qxK5XU//LroYUlBdgnbJ/TQ9gUgbqzVVbiCZB0nmErz0oS2RZ/dwVVfTjtec5y+OCv+
+	mOavNl1suL6KoI7asXJ6u9Z1byW8v8xV6LyXs1TmJhl889Xig5eeCxWt1/CoBMlXterM2PH8LO+Vq
+	li8FmeFOL7ct8/7YX9U9DFVHKntwk1dv8eNCUaXc8SOSEUKKeDnEcGIb9bVeNbtAuwShQfv91TfQC
+	pytKijIQhBmnwuYi9l9K2S9FkH0r4i0Qh22Cc51Ib2qEr9BS6ZCntHVSR0h4mUyFhXQVnlG865F/k
+	/Zf6Tr6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTPkz-000000070fM-1N7k;
-	Tue, 17 Nov 2026 20:26:21 +0000
+	id 1xTPnz-000000070rT-3Yxb;
+	Tue, 17 Nov 2026 20:29:27 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTPkx-000000070f6-3aHw
+	id 1xTPny-000000070r6-1quo
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 20:26:19 +0000
+	Tue, 17 Nov 2026 20:29:26 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CFFF3601E4;
-	Tue, 17 Nov 2026 20:26:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 830A01F000C4;
-	Tue, 17 Nov 2026 20:26:18 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 29A9A601C4;
+	Tue, 17 Nov 2026 20:29:25 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794947364;
+	b=QCtTJahE9g5BsuJ4cX+WIf+jghVeLwp9OIuZmIOZzE+enaeTtRkNlTqliNiQdwes3nIz
+	 jeUOyLqDhLMZns+Ug9JHhHkq6QbMpht64n76fPTBlwOvBWH6TqNAth2kjgFRcrQXLrzKm
+	 qkXEmb5/nbfWdvdsSRDcrsYk62w3SJfSbKOAK/ArandlcvxmQ2SVdFdy2R6ZiUeE7XX7a
+	 j295IhTPmNUfI9Q22y0sIgTp9uTLggH2uSUlJ34CUhyBY4I4pd/pF3oDG872bRQ/d5BWY
+	 O4b9+MKMRVtO491z83QMU6QV5Red55Hpsndi/ubUAT0Uvot7MP3zHL+j0id/CADnMig==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794947364;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=7PGWvy46LTnU0expiNZafmv9HXl2dz3Bu7LWfRKGOEc=;
+	b=vd9hZMDgfkHl35yhkAXa7gxbVQsSX+GmAlpnN21ubTg+n78tSfWpWmNBuoTwrwdhpDBi
+	 rNoI7b0Qa9ukmRSraDrgxnIP0X4tPMfGSH+MMO8qHxUMofRqdld/1IP43BxQnxQf5puki
+	 X4tPzPTM5ipO/s9k48LRBV/WaqVj8rQljfi9XmhcSTUY9moeXcVal2s1GFa3xRVmCHQvi
+	 /1tFvXK86ueI552WM95l+Xqp1aQdhpkpDRbfgB8T3GAeSRf8fPt5ZvHb2JHU+BnPtv+Hu
+	 d5iWLAnZm97/In86woMiU1U4rn6BCNS3076cQ87hB3sWyN6lcuoqxk81854XVU/aAgw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 4E4491F000C5;
+	Tue, 17 Nov 2026 20:29:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794947178;
-	bh=kkDShut3nNXZJqqKxEoTK2XjC9cIbBY9KkzckUmhS3Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=C4JfPfSlKwZaO3ZlYi+QNfM7ghBEG3zRN644nsBwef1ZWkLmaWvauWXDAUIH+r+eg
-	 4+NIOC0mMsNDv0nZISaEDvhRyuMPpamaoGeVH23g+FebQa+NTejqEa6FSR97hNS7e4
-	 9day41uhm46/NL5eoXbgTDzbkgwLDfEaNhwozyrz6Tpf+40jB8huSvbSMQZGwf10SN
-	 MPFmZdG+E7ffZRsM7Yk/l16s7NBx8bxVSca2sJEV/kczuujZWRpUy8zLpMAAgRm0Fd
-	 Q7zp0hY+ICWYNmH58+Wkz0R/ZlfSOA3xd1koneGiMxELebb9CxSwJCypOkZi8CG0kV
-	 MUv+lz7/ajDoQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xTPku-0000000HDWR-1QTT;
-	Tue, 17 Nov 2026 20:26:16 +0000
-Date: Tue, 17 Nov 2026 20:29:42 +0000
-Message-ID: <87fqwz8amh.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Jinjie Ruan <ruanjinjie@huawei.com>
-Cc: <tglx@kernel.org>,
-	<radu@rendec.net>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] irqchip/gic-v3-its: Size the collection table for all possible CPUs
-In-Reply-To: <20261117123116.591621-1-ruanjinjie@huawei.com>
-References: <20261117123116.591621-1-ruanjinjie@huawei.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20260515; t=1794947364;
+	bh=7PGWvy46LTnU0expiNZafmv9HXl2dz3Bu7LWfRKGOEc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=P7XmZhhXYyeyYR6lnUwwJo8FypOzreG/btRJQfi5EV+FHyymsOTtpeOuX6TLjX70F
+	 0EeKw4swMVuv0f+k02o42QPIyKVL1dFIqh5nJuHHtMYhhbWiNXVMjRYFoSnM6gU0fu
+	 s3YlBdu+3hRaFQlgOQZ5xFoWwUewBOA/BkwGOY1qNduFFfZGkPjHweJkPCowMvLFaR
+	 AFx/atljc7SXvp5i+1jtjxWjG4GEc6sy70PvNxizQRWVzwGp/eGyUNnew7GZ6fuvcD
+	 S3xurpJxodGnZ9m9xc6jD66WiQBTIB+yZJiKzi8XvyidEoLTlIH62hz2mPdBo3IZUj
+	 pMNVOxSFo50pw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id C0E514AAD4;
+	Tue, 17 Nov 2026 20:29:23 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Tue, 17 Nov 2026 23:29:23 +0300
+Subject: [PATCH v4 1/2] dt-bindings: interrupt-controller: Add Cortina
+ Systems CS7542 peripheral interrupt controller
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: ruanjinjie@huawei.com, tglx@kernel.org, radu@rendec.net, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261117-cs75xx-intc-v4-1-0a678f35e5f3@gmail.com>
+References: <20261117-cs75xx-intc-v4-0-0a678f35e5f3@gmail.com>
+In-Reply-To: <20261117-cs75xx-intc-v4-0-0a678f35e5f3@gmail.com>
+To: Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Fil Dunsky <filipp.dunsky@gmail.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794947362; l=2389;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=m01hcJJ8xuXAEtFmd0R1Lw/ptpQwdip1II1Pbh1M174=;
+ b=a08qu7Da3/pmTatk0TPaP2A+BvY8F15Gznd80NAfJMa45L2Mk6+ka5FIYIOj3kqn7jTlPElov
+ gNuO2M2J1bCDD9hrbr2fpkVL3IB5MrOrq17a5YaQhPs0E0cXX6TkrFM
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,89 +109,94 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 17 Nov 2026 12:31:16 +0000,
-Jinjie Ruan <ruanjinjie@huawei.com> wrote:
-> 
-> The collection table is currently sized at a single ITS page size,
-> and the driver's allocation policy is to allocate a single collection
-> per CPU. On systems with more CPUs that the ITS can fit in a single
-> page, no LPI can be routed to the CPUs that don't have an allocated
-> collection, and the system grinds to a halt.
-> 
-> Change the allocation policy to allow two-level tables, similarly to
-> the other tables.
-> 
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> ---
-> v1 -> v2:
-> - Cleanup the similar calls of its_parse_indirect_baser() (Marc).
-> - Simplfy the commit message (Marc).
-> - Drop fix tag and comment (Marc).
-> - Give nr_ids a default for unrecognised BASER types.
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-At this stage, and given that this is my commit message and my code
-(plus an additional bug of your own doing), you may as well put:
+The low speed peripherals of the Cortina Systems CS75xx SoCs share one
+GIC interrupt. A small controller in the peripheral register block
+reports which of its 15 sources are asserted and allows masking them.
 
-Suggested-by: Marc Zyngier <maz@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+ .../interrupt-controller/cortina,cs7542-intc.yaml  | 57 ++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
-> ---
->  drivers/irqchip/irq-gic-v3-its.c | 17 ++++++++++++-----
->  1 file changed, 12 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> index c952c069f937..41cd359e52a7 100644
-> --- a/drivers/irqchip/irq-gic-v3-its.c
-> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> @@ -2682,7 +2682,7 @@ static int its_alloc_tables(struct its_node *its)
->  		u64 val = its_read_baser(its, baser);
->  		u64 type = GITS_BASER_TYPE(val);
->  		bool indirect = false;
-> -		u32 order;
-> +		u32 order, nr_ids;
->  
->  		if (type == GITS_BASER_TYPE_NONE)
->  			continue;
-> @@ -2696,8 +2696,7 @@ static int its_alloc_tables(struct its_node *its)
->  
->  		switch (type) {
->  		case GITS_BASER_TYPE_DEVICE:
-> -			indirect = its_parse_indirect_baser(its, baser, &order,
-> -							    device_ids(its));
-> +			nr_ids = device_ids(its);
->  			break;
->  
->  		case GITS_BASER_TYPE_VCPU:
-> @@ -2713,11 +2712,19 @@ static int its_alloc_tables(struct its_node *its)
->  				}
->  			}
->  
-> -			indirect = its_parse_indirect_baser(its, baser, &order,
-> -							    ITS_MAX_VPEID_BITS);
-> +			nr_ids = ITS_MAX_VPEID_BITS;
-> +			break;
-> +
-> +		case GITS_BASER_TYPE_COLLECTION:
-> +			nr_ids = order_base_2(num_possible_cpus());
-> +			break;
-> +
-> +		default:
-> +			nr_ids = 0;
-
-Absolutely not. The above four BASER types are the only ones that are
-allowed by the architecture. Anything else is a HW bug. So no, we're
-not silently accepting this. We scream and *abort*.
-
-	M.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/cortina,cs7542-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/cortina,cs7542-intc.yaml
+new file mode 100644
+index 000000000..2963acaf7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/cortina,cs7542-intc.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/cortina,cs7542-intc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cortina Systems CS7542 peripheral interrupt controller
++
++maintainers:
++  - Fil Dunsky <filipp.dunsky@gmail.com>
++
++description:
++  The low speed peripherals of the Cortina Systems CS75xx (Goldengate G2)
++  SoCs (two software interrupts, two timers, the AXI bridge, SPI, the five
++  GPIO banks, I2C, MDIO, SSP and the random number generator) share one GIC
++  interrupt. This controller has a status register showing the level of the
++  15 sources and an enable register to mask them. The sources are cleared in
++  the peripherals themselves.
++
++properties:
++  compatible:
++    const: cortina,cs7542-intc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 1
++    description:
++      The number of the source, 0 to 14. All sources are active high level
++      interrupts.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-controller
++  - "#interrupt-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    interrupt-controller@f0070004 {
++        compatible = "cortina,cs7542-intc";
++        reg = <0xf0070004 0x8>;
++        interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-controller;
++        #interrupt-cells = <1>;
++    };
 
 -- 
-Jazz isn't dead. It just smells funny.
+2.53.0
+
+
 
