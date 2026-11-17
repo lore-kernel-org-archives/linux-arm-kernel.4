@@ -2,65 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002C4606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 08:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAE2606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 08:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kuF7UuBE;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eem3T4eH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xoEFVEzE;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ph5A7mc/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=8i0TTE7h9bbQBwURemuTXftASyL5xgUCoM3o8JauDWs=; b=kuF7UuBE7ZgZL3DTOd1wNL9Zwe
-	5GbOlcZMz2umloS5MuUMz6lM/8eMtnNpm2WTWWcmiCaI0dnAcX8lVMvfRIkw9trFHYfe8nbbmOJ47
-	R/yrYE0ttf/SAApgFsOxthUckX18jmnw5NGVUy6VnagqQ6PRg/Yvy28ADeeNhYc8C9DhEd30yjDDk
-	fY9PqLC2EKSQqQWzYW2aiIP1mZX/BEe6Qk2R1SjDP5pqnt3k87oipr+Z5NL9A2y6bj/MmTsQ8qcSL
-	+8NwqwBDmvwXpbiyyS0/8u0SR29hwJqGAFPkyxj95/3TbhjWfmJyuDtvFBuuV99cA4OmtODl/aJaw
-	/oNwX8rg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+hujyyJhAtV9+j0TPvcHHV2OIVquZfJfleCKzkG+n+Y=; b=xoEFVEzE6XWk2d
+	yrQ7UybUXYOFN0/mrMxsZbK/0qDxG9q4WH9eYe8bb3VfK1rs8XlBA5g7hrYu8jgx1YJvCE3VY5aqE
+	3c4ooxoDk7ARFhoIjcrJuostgomtbABqaLqTul4Viyz8pFMZGDCLhwmfFu8c7GsHGQE7fRFbQwiBc
+	g79DckeDk04Y/ZgaOJ8BfIdEtqs/7zMlx/cyEpftpIdYXMVUzIMIT6vd80qaw84XfqMhc5YOjY2qK
+	dxCyFCjAd2DWAlZ62qIBkbIG7g7rAirvHlNtQeH3sh31wovbNJPdw/jezl2OfZku3TtodlZWiJyxo
+	820iQrv9mHfKxStQVrMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTERS-00000004rrK-1n0V;
-	Tue, 17 Nov 2026 08:21:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTEVc-00000004sVQ-2bX5;
+	Tue, 17 Nov 2026 08:25:44 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTERQ-00000004rrB-2JNU
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 08:21:24 +0000
+	id 1xTEVb-00000004sV6-0ZDU;
+	Tue, 17 Nov 2026 08:25:43 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AF0CF623DD;
-	Tue, 17 Nov 2026 08:21:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 066871F000C4;
-	Tue, 17 Nov 2026 08:21:21 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8BFDF466EA;
+	Tue, 17 Nov 2026 08:25:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5E651F000C5;
+	Tue, 17 Nov 2026 08:25:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794903683;
-	bh=8i0TTE7h9bbQBwURemuTXftASyL5xgUCoM3o8JauDWs=;
-	h=From:Date:Subject:To:Cc;
-	b=eem3T4eHcQ2HzlfNt5xHYmoj4MrJEUiXZ9VwDP3Hw4xrTohCP7OyUktYyAn3BimYE
-	 U3fjjBfO7WsKMNqjVOuI40CguDlb4xbE9HpDzrXcw23a2Eloy+xJ0HnGVSVZaYCC0S
-	 qjFjk+fVQ1y/s8iM7DZMQgmOg5tM3MPuDXUXGOlkEIzvCw0AmQO+s4q35C3Ud88gvH
-	 q4oMZfRv9valUvNNayO+kuPwyogjuzA8v1W1PcTere/ICiDj5uaQ8wuuCHxka5KHsj
-	 h344ZjOmpeSDdeTw7Rrcygr4mN0AHW479SPalmV1Ci5lT8elbTl53308ivtP7IorPC
-	 sy5Oet1pPCrtQ==
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 17 Nov 2026 09:21:19 +0100
-Subject: [PATCH] ARM: enable PREEMPT_LAZY
+	s=k20260515; t=1794903942;
+	bh=+hujyyJhAtV9+j0TPvcHHV2OIVquZfJfleCKzkG+n+Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=Ph5A7mc/DTICXLffxM//Teh42HusVR1+ZEw2K90Oe2JJ35j0et/QAQtx13zhz5FXR
+	 jPn1TDkoxtDQat2UPHH1gn+PPTHKJAHcf04I/1TEYl68JGR3s5yoobb6KIsFknIotA
+	 YOKjf+wA8CGQlFWMcGp5biKG1WUBFsTpnP5v4vUUhhPJrwJ4n0TEaeGdLMYMMw88tP
+	 BSy2ccJivwOBwyZgEdF3nkH70HpiU/JCVtlQkwMt7wNdYIyQsBAmBw1hAC9cx5IFL8
+	 KhFsu+574EiUUQyiro0r+xrcgKopOYBdfMq+JZWJDBH511MRixEF9aGjmB+liMljx3
+	 8f6kJdO/+VsvQ==
+Message-ID: <eaabb4ff-c748-4123-93b8-f49684600c71@kernel.org>
+Date: Tue, 17 Nov 2026 09:25:36 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261117-arm-lazy-preempt-v1-1-b5a9b0824b59@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MUQqCQBAG4KsM/7MDjpTaXiV62NZRB9KWWYlKv
- HvQd4BvR1E3LQi0w/VlxZ4rAklFSHNcJ2UbEAhN3bQi0nH0hR/x++HsqkveuD6Pl3RKvQztHRU
- hu472/pfX23H8AEkvHMtiAAAA
-X-Change-ID: 20261117-arm-lazy-preempt-05f9c4c81d6b
-To: Russell King <linux@armlinux.org.uk>, 
- Mark Rutland <mark.rutland@arm.com>, Arnd Bergmann <arnd@arndb.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Linus Walleij <linusw@kernel.org>
-X-Mailer: b4 0.16.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add IEP2 deinterlacer to
+ RK3588
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Arun Iyengar <aiyengar1990@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil@kernel.org>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Alex Bee <knaerzche@gmail.com>
+References: <20261115-iep2-v2-0-3d8798cd9a55@gmail.com>
+ <20261115-iep2-v2-3-3d8798cd9a55@gmail.com>
+ <20261116-luminous-heavenly-guan-b20f2e@quoll>
+ <yRxnTArhQFiS4u_tncJj-g@sntech.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGPBBMBCgA5AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJp2mE8AAoJEBuTQ307QWKbeaIP
+ /ihHTkTW4KsN/DQ945JJbyu5tI0J80Wue7QyyLPglyKfhgb5cLLNPpOC8cCIJsc7+W3i2P38
+ s2c1cOH6CYGE7E9ur3Vfme8NW2S2I/Z8VC7bZnzyS23wT17LrsdS/qCpx4o8U+pt/xdXDKph
+ EGRYrIEmMpUWvyYzyYKGIe25FtaayIIKpq8eZYyFcp2f/sG5IkOW5uZzHPMPdcm87jU7fyuQ
+ rAU2vx9r+ulUfQ/q9Z2roC/ode3l7t2pN7BCBCsUDp6JCrUyZrtT1e7EbA0ZRP3aOBNk2P2E
+ DQOgJGjGdO5Yx2Y9LFtltu6JbsBJHi1syGRX3AtQYOMc4Y1WGoeZJmMlvKj2ZqqXNkcWi2DS
+ IQEWB0uW6CqFsBBIMGDa+6OzdaVO/uAVXWDWml02Men3CILdI1MbVjoh8ECqYUY7OQ+JJvNN
+ vnliuq5WM3Ghd3jg/LZZrxXjdIginRHFQCjIJYLKpLZWm1/iDFedcfzqRNYmTtqscdCNHW41
+ oT3Z7BmO9xwdjuwBS6nmS6JJwkbf5Ot2QR4pB/DRU7ZwjT1qHe+9r9gF32wXVQatHNGK/VVu
+ sfwOnkdxCWkp/qb2gdQRmZh+SedStWshigH6sNfuHBloF/q+hjMRc8b2m326OZdrbSHwY1Sz
+ vti8Hn7n8NjdHO9LKB7BIdjkA9DA5WsqOuVCzsFNBFVDXDQBEADNkrQYSREUL4D3Gws46JEo
+ Z9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLueMNsWLJBv
+ BaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6eiOMheesVS
+ 5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wAGldWsRxb
+ f3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA6z6lBZn0
+ WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9YegxWKvX
+ XHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt91pFzBSO
+ IpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gUBLHFTg2h
+ YnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/JoFzZ4B0
+ p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu4vXVFBYI
+ GmpyNPYzRm0QPwARAQABwsF2BBgBCgAgAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmna
+ YUkACgkQG5NDfTtBYptX+BAApg32CkxwNucNEi8WfWA8oKkW0y8YDuY6ORMo9FWNGiT/OTy0
+ vyJrLocrpn86zwfjVp+eCrssPYh8eqJfnWqmYv6ACQtHPYzPZQ3mSo8H97Z01oUxITzCxpXm
+ ZkLgPIqtDPcC2E3dPM/fVxcyowM8XsaMA9wcsaUYrta8toOq2b9tKcjleKMfMrm0gQ9u7wUc
+ QbLkwj6TCLOwucb07GXzLTNF9PZmaDUpKAZjMjmrW+le+SFvQbhamx0rxLWPR0NWntXpbCn+
+ +ACch03p/JyTBVktxFsFyCt7pTPE1kEaeuXBTe/a2D9iQvRxRW19LvuO2e59/u1wYUiH/orz
+ wbIC2S4dBsPAPihL3ztOU1yE86GPyQtSE0kU+/7snnLt4QGi6PChf3t5gnNjAzjUUovO8rgI
+ c+5yN5heq5loYHgK6OQ9OlHzsPHO9e9MOQcKlFycs1pyijFGzDwdNUm/SchK8iWT2QApTx4A
+ K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
+ n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
+ qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
+In-Reply-To: <yRxnTArhQFiS4u_tncJj-g@sntech.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,103 +121,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add lazy preemption support following commit c8597e2dd8b6 ("arm64:
-enable PREEMPT_LAZY"). Define TIF_NEED_RESCHED_LAZY in the low flag
-bits inspected by the assembly return-to-user paths, include it in
-_TIF_WORK_MASK, and handle it in do_work_pending() by calling schedule().
+On 16/11/2026 19:32, Heiko Stübner wrote:
+> Am Montag, 16. November 2026, 13:35:28 Mitteleuropäische Normalzeit schrieb Krzysztof Kozlowski:
+>> On Sun, Nov 15, 2026 at 08:47:44AM +0000, Arun Iyengar wrote:
+>>> Add the IEP2 deinterlacer and its IOMMU to the RK3588 base dtsi. Both
+>>> share GIC SPI 117 and sit in the VDPU power domain.
+>>>
+>>> Addresses, clocks, resets and the interrupt are taken from the Rockchip
+>>> BSP rk3588s.dtsi (develop-6.1).
+>>>
+>>> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+>>> ---
+>>>  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 22 ++++++++++++++++++++++
+>>>  1 file changed, 22 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>> index aa69fd3793fd..5297519bd251 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>> @@ -1397,6 +1397,28 @@ vepu121_3_mmu: iommu@fdbac800 {
+>>>  		#iommu-cells = <0>;
+>>>  	};
+>>>  
+>>> +	iep: deinterlace@fdbb0000 {
+>>
+>> Why all these are outside soc node? That's more of a question to
+>> existing code...
+> 
+> Many years back, during the RK3288 addition I got the comment from the
+> arm-soc maintainer to drop the soc node [0]:
+> 
+> "[...] this isn't how we tend to do it any more (unless all devices
+> are physically on a bus, but then it should probably be named something else
+> than 'soc')."
+> 
+> So since then we didn't have soc nodes. Except in time for the RK3576, the
+> tune has changed, so socs from then on have a soc node again ;-) .
+> 
 
-Keep kernel-mode IRQ return preemption restricted to TIF_NEED_RESCHED,
-so lazy requests can defer preemption until return to userspace or
-escalation by the scheduler tick.
+I think the comment was misplaced and misunderstood. Indeed non-MMIO
+nodes were not supposed to be in soc. But the MMIO node are under
+MMIO-bus, which usually we call soc.
 
-Signed-off-by: Linus Walleij <linusw@kernel.org>
----
-Tested with Debian armhf on QEMU virt with four Cortex-A15 CPUs, in
-both lazy and full modes: 45 futex, 21 POSIX timer and 12 nanosleep
-checks passed, along with CPU/syscall, affinity and signal stress.
-A temporary test module verified scheduling on lazy-only syscall
-return requests. Single-CPU lazy-mode boot and stress also passed.
-ARMv5 and Thumb-2 static-lazy return-path build checks passed.
+It's documented also writing-bindings, since 2019, though :)
 
-Assisted by an LLM.
----
- arch/arm/Kconfig                   | 1 +
- arch/arm/include/asm/thread_info.h | 6 ++++--
- arch/arm/kernel/signal.c           | 2 +-
- 3 files changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 0cc289a7184a..9f5e346249a1 100644
---- a/arch/arm/Kconfig
-+++ b/arch/arm/Kconfig
-@@ -21,6 +21,7 @@ config ARM
- 	select ARCH_HAS_KCOV
- 	select ARCH_HAS_MEMBARRIER_SYNC_CORE
- 	select ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE
-+	select ARCH_HAS_PREEMPT_LAZY
- 	select ARCH_HAS_PTE_SPECIAL if ARM_LPAE
- 	select ARCH_HAS_SETUP_DMA_OPS
- 	select ARCH_HAS_SET_MEMORY
-diff --git a/arch/arm/include/asm/thread_info.h b/arch/arm/include/asm/thread_info.h
-index 943ffcf069d2..8bc647b8e079 100644
---- a/arch/arm/include/asm/thread_info.h
-+++ b/arch/arm/include/asm/thread_info.h
-@@ -144,6 +144,7 @@ extern int vfp_restore_user_hwstate(struct user_vfp *,
- #define TIF_NOTIFY_RESUME	2	/* callback before returning to user */
- #define TIF_UPROBE		3	/* breakpointed or singlestepping */
- #define TIF_NOTIFY_SIGNAL	4	/* signal notifications exist */
-+#define TIF_NEED_RESCHED_LAZY	5	/* lazy rescheduling needed */
- 
- #define TIF_USING_IWMMXT	17
- #define TIF_MEMDIE		18	/* is terminating due to OOM killer */
-@@ -156,6 +157,7 @@ extern int vfp_restore_user_hwstate(struct user_vfp *,
- 
- #define _TIF_SIGPENDING		(1 << TIF_SIGPENDING)
- #define _TIF_NEED_RESCHED	(1 << TIF_NEED_RESCHED)
-+#define _TIF_NEED_RESCHED_LAZY	(1 << TIF_NEED_RESCHED_LAZY)
- #define _TIF_NOTIFY_RESUME	(1 << TIF_NOTIFY_RESUME)
- #define _TIF_UPROBE		(1 << TIF_UPROBE)
- #define _TIF_SYSCALL_TRACE	(1 << TIF_SYSCALL_TRACE)
-@@ -172,9 +174,9 @@ extern int vfp_restore_user_hwstate(struct user_vfp *,
- /*
-  * Change these and you break ASM code in entry-common.S
-  */
--#define _TIF_WORK_MASK		(_TIF_NEED_RESCHED | _TIF_SIGPENDING | \
-+#define _TIF_WORK_MASK		(_TIF_NEED_RESCHED | _TIF_NEED_RESCHED_LAZY | \
- 				 _TIF_NOTIFY_RESUME | _TIF_UPROBE | \
--				 _TIF_NOTIFY_SIGNAL)
-+				 _TIF_NOTIFY_SIGNAL | _TIF_SIGPENDING)
- 
- #endif /* __KERNEL__ */
- #endif /* __ASM_ARM_THREAD_INFO_H */
-diff --git a/arch/arm/kernel/signal.c b/arch/arm/kernel/signal.c
-index 763e1930a1ea..efc8b8c2dc67 100644
---- a/arch/arm/kernel/signal.c
-+++ b/arch/arm/kernel/signal.c
-@@ -619,7 +619,7 @@ do_work_pending(struct pt_regs *regs, unsigned int thread_flags, int syscall)
- 	 */
- 	trace_hardirqs_off();
- 	do {
--		if (likely(thread_flags & _TIF_NEED_RESCHED)) {
-+		if (likely(thread_flags & (_TIF_NEED_RESCHED | _TIF_NEED_RESCHED_LAZY))) {
- 			schedule();
- 		} else {
- 			if (unlikely(!user_mode(regs)))
-
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261117-arm-lazy-preempt-05f9c4c81d6b
+Well, not a blocker for this patch and I leave it to you what to do with
+existing and new DTSI.
 
 Best regards,
---  
-Linus Walleij <linusw@kernel.org>
-
+Krzysztof
 
