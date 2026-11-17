@@ -2,66 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126BC606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E035B606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:01:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FwcoYPUR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kShyJxs/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p7+N1MUM;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XJXcCEro
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mxdgof000Vz5ORJZP+5WXGdU/JvR5z9YICxMThMmF1s=; b=FwcoYPURxPpeP0
-	lru5Wf6sdj1jnQrj59LD7ZK5cxtkSnU5Whhd16hz+XWMUcsXz4Zj9jGoncb9is6Ik68rJasvpl3lQ
-	vixWopdm/uYjsYy356LMVPPvT9HLTMVo1R127JtRbpXpYpLcu1zYNudOyid6zy9eNokErL1pmh21P
-	WmFVUqYUq0CL7TCNKhXTZt85ptRo0vb2ZxpnnaP/wkwLpMNpB/o6jRSoWNw0u1P/VK81xuGUzcAuS
-	k+rNffaiavrplFiTV+akRCDwaSVZYsUPZ0osidc5ERtP7C2kkohFxQDeMTTrMg2kBq5ot1Diy6qyE
-	eW1ESpOfOar3pdOGoejQ==;
+	List-Owner; bh=1n4akinMU4Hf+AOUS7LX8ylkG85tkNf4WcZP+gMfH/E=; b=p7+N1MUMQ3MLyl
+	qZ7jEIPKOna3ERbgXjNT7sfgnny7foZO46jm0V0gBm4ucVigTa3pgUuRSHjQi+oI5yzWsqQz2xM1A
+	7dZHJOA3Lb1rMZMcC0c+YzvSh6gDc1nOT7VVRIW8VRkEb91bZNBapcG125PqIk+YhUcgHHPfTnE9L
+	WqXQubBHvr/Cg7wTn1q58afQdaWxs82/XihKozCFcq8R/gAXgdY/UbX7GoeVpLUmlRBbNzTKvYgGb
+	BvrDUiKW0QwkuvMFPnM2lBveLAxPwkMtV+2/X/KZOIeITx4asop8UuYC+peyiFXRYr6+eIQz5C3Mj
+	2wwKMqPLh/SOwkk8nSfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJjE-00000006221-29B4;
-	Tue, 17 Nov 2026 14:00:08 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xTJk3-000000062Fo-01SS;
+	Tue, 17 Nov 2026 14:00:59 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJjD-0000000621r-31U3
+	id 1xTJk1-000000062F1-2SFZ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 14:00:07 +0000
+	Tue, 17 Nov 2026 14:00:57 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6654043B8C;
-	Tue, 17 Nov 2026 14:00:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44EC21F000C4;
-	Tue, 17 Nov 2026 14:00:07 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 074F042AEB
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 14:00:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED581F000C7
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 14:00:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794924007;
-	bh=mxdgof000Vz5ORJZP+5WXGdU/JvR5z9YICxMThMmF1s=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=kShyJxs/EqUlHzDNT15IHiB1HqUG1go8Y3siT2kTz/CrBJXG+gUCyd9qK0sM3oFY0
-	 w231hLSonV/VIoO19sGVJnxxC7lZ2u9d2AjDEhAEgzfcc69QB0c1GUSoHWahkLP6zt
-	 JFjk2/Ag/vo7Eq1xEXxKB85S5e8rE6os8K4CaLUkpUxN8K9DzF6oSkqr+Dr5/Qbff/
-	 +4nCKW9mtoNSriRUT1hMPUYgPsuVAuMLcjjlLV4iGYznZaAzuhE4r+R0/vZNDBv3n9
-	 p7k8JiTPyBOzrY5ALBB7phMDp6lyiM5fzVS2khjnjvpdTZ8oY+NZInwjc2U8G20/vz
-	 +O+lOxRTl4Glg==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 3A385392704C;
-	Tue, 17 Nov 2026 14:00:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20260515; t=1794924056;
+	bh=1n4akinMU4Hf+AOUS7LX8ylkG85tkNf4WcZP+gMfH/E=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=XJXcCEroAaV7bIV2RBbIv9cQ8IK7q7IczrpxrkMMo/2FTVWOiZZngfZJShFb+Krxu
+	 CeuvkYFMof6Q5FXfWeasA7J6Q5yM3v0nSXzDbZHS3xdC+2DD3Vh6HIy1yVcDw6mai7
+	 Tx337CPuzb4SDQISkZELEhbK2WHPEvyW+TGUDr1jiu+bh05gUiXgXigMus/G/ZZ5Tg
+	 JioMC1f7LPYYfexBdKBqxART6byY2phKj/ze27ao18Pd4JLyjdxtJi2c7+grzi9myY
+	 dSkeA6OJaViGjZITJE0/UzjONOl4ndx9Oj5ol5W9DKsrfjJg/XCcl4BK7tBQ0tpTyr
+	 L2W1048ZY0WoA==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5c1a3374400so430789e87.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 06:00:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErE9y+ryfQ5JEr2jhs32PNPMz7W2bcvr6FXcf/9B8Bqpi7riVtxLhiFZOkQlF3M6QXP50Q9ASYW9MWrGUSivSPqC@lists.infradead.org
+X-Gm-Message-State: APuU4Z8j4XLAH8mPIhWliJTt/VPqi6YDoQtxC4HYGjWIMbip1/znaMlE
+	PRwCuynvK5aejeOw/O8qZQadPNqMWDcwyO50fahKnivaucJJu0iHy6ZfR2GwGhzmjs+ccsLDSbm
+	5bPDsASWuXnaM4nYvgzyGHkyM3XqYgjQ=
+X-Received: by 2002:a05:6512:3a96:b0:5c1:4e4c:359c with SMTP id
+ 2adb3069b0e04-5c1709c44cemr4959950e87.36.1794924055639; Tue, 17 Nov 2026
+ 06:00:55 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next 0/4] net: lan969x: skew the core clock by 200 ppm
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179492400607.603902.8524686313704472023.git-patchwork-notify@kernel.org>
-Date: Tue, 17 Nov 2026 14:00:06 +0000
-References: <20261113-lan969x-core-skew-v1-0-b9b02b863d38@microchip.com>
-In-Reply-To: <20261113-lan969x-core-skew-v1-0-b9b02b863d38@microchip.com>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- Steen.Hegelund@microchip.com, p.zabel@pengutronix.de,
- richardcochran@gmail.com, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261107012236.28069-1-prasanth.padarthi10@gmail.com> <20261109035633.93522-1-prasanth.padarthi10@gmail.com>
+In-Reply-To: <20261109035633.93522-1-prasanth.padarthi10@gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 17 Nov 2026 15:00:43 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmNSdgJPG_8dVKBLxN2ewvYJm99S+32SyKj_psa0DX53Q@mail.gmail.com>
+X-Gm-Features: Aa3M54pM4N8FrMarps7ie1VxRtJp-XfzSOJDJp1i6ICkP2NWqZ4utwFMO5THjsE
+Message-ID: <CAD++jLmNSdgJPG_8dVKBLxN2ewvYJm99S+32SyKj_psa0DX53Q@mail.gmail.com>
+Subject: Re: [PATCH v2] pinctrl: aspeed: Use managed pinctrl registration
+To: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
+Cc: andrew@codeconstruct.com.au, joel@jms.id.au, ryan_chen@aspeedtech.com, 
+	billy_tsai@aspeedtech.com, linux-aspeed@lists.ozlabs.org, 
+	openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,41 +81,31 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+On Mon, Nov 9, 2026 at 4:57=E2=80=AFAM Prasanth Kumar Padarthi
+<prasanth.padarthi10@gmail.com> wrote:
 
-This series was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
+> The shared Aspeed probe helper registers its controller with
+> pinctrl_register(), but does not unregister it on device unbind.
+> The registration can therefore outlive device-managed data.
+>
+> Use devm_pinctrl_register() to ensure the controller is unregistered
+> during device teardown.
+>
+> Fixes: 4d3d0e4272d8 ("pinctrl: Add core support for Aspeed SoCs")
+> Signed-off-by: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
+> Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+> ---
+> Changes in v2:
+> - Add Fixes trailer.
+> - Add Reviewed-by trailer from Andrew Jeffery.
 
-On Fri, 13 Nov 2026 11:19:39 +0100 you wrote:
-> At its 328.125 MHz default, the lan969x core clock is too close to the
-> line clock frequencies for the high accuracy phase detectors to work as
-> intended, which degrades PTP accuracy. The core clock should therefore
-> be skewed about 200 ppm up. The PTP time of day (TOD) increment is
-> already set up for the skewed rate, but the driver leaves the core PLL
-> at its default, so the TOD and the clock that drives the scheduler run
-> 200 ppm apart.
-> 
-> [...]
+Patch applied as nonurgent fix.
 
-Here is the summary with links:
-  - [net-next,1/4] net: lan969x: add the core PLL registers
-    https://git.kernel.org/netdev/net-next/c/5f8d69a43e72
-  - [net-next,2/4] net: sparx5/lan969x: enable the switch core after clock setup
-    https://git.kernel.org/netdev/net-next/c/ae590854818f
-  - [net-next,3/4] net: lan969x: configure the core PLL
-    https://git.kernel.org/netdev/net-next/c/39d5dff49d71
-  - [net-next,4/4] net: sparx5/lan969x: scale the nominal TOD increment in adjfine
-    https://git.kernel.org/netdev/net-next/c/7e8651f87504
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Yours,
+Linus Walleij
 
