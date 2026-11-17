@@ -2,68 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 624E860A381F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1857B606A8B4
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:51:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hnfO29q3;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=l466RdzF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G0/0WpgV;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dYPBkrSg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AunZlTmFqRUvkgpDIQ0BwDlzDcego4W6mpMBmkXYiRc=; b=hnfO29q3hvvXxU
-	NNl/t8clH7avWO4xAD6FtuJq3x+28c4BCkK/rCi7Zh04Fxm7toxYpsskHMg208IMj9MbJvsrs6aXy
-	zd/EtpBsn/DXP8UiBHvE+HG3YHVXxA6xmHEFZu4e7b2M3rGaVIxB9dzHrY7EyIBdFKMgYBHnGXmiQ
-	OvVz8Lio3VK+/zBjCno4ISWUDcAxCUkOMdkC5LehcrJCPdfJs47VAC84dliSHNOXcFw6Xys4IleZq
-	w5EmUim/2uMeMQoicQ4hG63SpEGLFO55yGd4Wxb/rG9+ZTsbr7SXfiJqTU0FXyEa8KKafEmrTJlVa
-	Mdh4zIlusRg6iVLr/pMQ==;
+	List-Owner; bh=QKQS51dIpH/VoOQQlRFKsGbh0oMpDgEFKZcLUp0HWNw=; b=G0/0WpgVIb0SkL
+	XPYK/BASiLvTQL18RcLF03ZU5lmvJ9DehnI0gS7uwoprLHlIzUNNRGbP/IChEGfa7Q1Uc5Ld6CGL+
+	jqiYlUuekxBDppQ72yA22k/tT8MnKLVocDNEHsclEmlfKj90HSCqO1B0YjfkyXh+0+6z/0DIsvRSk
+	jWMNV+sW6jcI8Khr1W2Y6gtVzXHjVVx3qHSRPxvUxEQ+ovp1HIqBXr8FIetAYq6AD2g5ace2pW3Ur
+	YizKoYmswkeGnggVgbkxxT1qkamLyMfLEcMTljblPKYmRpAX6+IDWUEwZpA2nbh/ZK4jo9ki/MJ7y
+	FXCth0sbQuoRorI+MQiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIem-00000005k40-2Dvt;
-	Tue, 17 Nov 2026 12:51:28 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTIev-00000005k7u-05Uw;
+	Tue, 17 Nov 2026 12:51:37 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIeg-00000005k2h-26Y4
+	id 1xTIes-00000005k6v-3q2N
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 12:51:22 +0000
+	Tue, 17 Nov 2026 12:51:35 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8A4456347F;
-	Tue, 17 Nov 2026 12:51:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E5431F000C4;
-	Tue, 17 Nov 2026 12:51:16 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A74A8403C7;
+	Tue, 17 Nov 2026 12:51:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E2201F000C5;
+	Tue, 17 Nov 2026 12:51:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794919881;
-	bh=AunZlTmFqRUvkgpDIQ0BwDlzDcego4W6mpMBmkXYiRc=;
+	s=k20260515; t=1794919894;
+	bh=QKQS51dIpH/VoOQQlRFKsGbh0oMpDgEFKZcLUp0HWNw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=l466RdzFCP56bJ2OgrWBqgegMLQqnBvWZsX076mDg4ckijYkpTDN8qXfLeBdhCcsA
-	 C420sOET1ohmffKb2ufw3OhOysGpl/RTT2aJFZ9OXGpB6KeOcWP/BsqjDeoypixiuD
-	 3H5Ntv61uvhO1xhOFciwJNbOHsxX+BxeLFO7hutYhO0yMrdzp9Vp/PgRHBxWW+iZqj
-	 1ejCBSZI9oTew1CoW3Wa3FM59+9NVAYpT0NilZoG1u8/3az5sQ/HGy9NkmOyLNuCw2
-	 fSupoxA6S5SMJ9O5+BssHUi7yLWpskY3fbUAQ3OuL686y0v8EqcWsfJtUGzzfMDMJN
-	 xyR6wWVNkFeUw==
-Message-ID: <324baf32-6cf7-40d6-adcf-d709ff2a1950@kernel.org>
-Date: Tue, 17 Nov 2026 13:51:14 +0100
+	b=dYPBkrSg9vCQo0FBjn7Bfu0zE66ZW8+wELQoGVPQcLuyGxZio5sadA+SaKSRlrm+/
+	 fEiDYSM+zbqRxSIU5EsIlAwt/gUfUh8BYlEQ27D8C0dqPPVqwj/GccXq+oPT8ZQdqL
+	 rMdw4y6TtWBxZEYnPMCsydrDEKvmFhUMf1r6Cq/JZzIVeTymbHWWyUhcqWSaQwtsuQ
+	 Lua9b8KxzPNRcvVdJn6fWynl/JwfdZssI9+mfrxK1R6ATWK5LXzHNE2knLfU3irGKh
+	 V5oQE/P6uJyIPGokBTJPW1deGlKLYaMyC0dW5YzdJdE0FMFi7oxythn3WyaRpKJszd
+	 dwFcH9w9xuu1Q==
+Message-ID: <52b56201-b347-4053-8713-01cae87c4266@kernel.org>
+Date: Tue, 17 Nov 2026 13:51:28 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/22] dt-bindings: thunderbolt: Add Apple
- USB4/Thunderbolt NHI
-To: "Rob Herring (Arm)" <robh@kernel.org>, Sven Peter <sven@kernel.org>
-Cc: Janne Grunau <j@jannau.net>, Philipp Zabel <p.zabel@pengutronix.de>,
- Neal Gompa <neal@gompa.dev>, Konrad Dybcio <konradybcio@kernel.org>,
- devicetree@vger.kernel.org, Joshua Peisach <jpeisach@ubuntu.com>,
- asahi@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>,
- Mika Westerberg <westeri@kernel.org>,
- Andreas Noever <andreas.noever@gmail.com>, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Yehezkel Bernat
- <YehezkelShB@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Subject: Re: [PATCH v2 06/22] dt-bindings: thunderbolt: Add Apple
+ USB4/Thunderbolt ACIO block
+To: Sven Peter <sven@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>,
+ Neal Gompa <neal@gompa.dev>, Andreas Noever <andreas.noever@gmail.com>,
+ Mika Westerberg <westeri@kernel.org>, Yehezkel Bernat
+ <YehezkelShB@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
 References: <20260906-b4-apple-soc-tbt-v2-0-1f80085f93fb@kernel.org>
- <20260906-b4-apple-soc-tbt-v2-5-1f80085f93fb@kernel.org>
- <178968425120.4102150.11013505530489451162.robh@kernel.org>
+ <20260906-b4-apple-soc-tbt-v2-6-1f80085f93fb@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,7 +108,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <178968425120.4102150.11013505530489451162.robh@kernel.org>
+In-Reply-To: <20260906-b4-apple-soc-tbt-v2-6-1f80085f93fb@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -122,40 +121,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 18/09/2026 00:30, Rob Herring (Arm) wrote:
+On 06/09/2026 20:36, Sven Peter wrote:
+> Each Type-C port with USB4/Thunderbolt support on Apple Silicon SoCs
+> comes with block called ACIO ("Apple Converged I/O"). It contains a
+> Cortex-M3 co-processor, the hardware blocks implementing the USB4 host
+> router, the Native Host Interface (NHI) and a DART IOMMU. The
+> co-processor exposes the NHI and its DART to the main SoC bus while it
+> is running.
 > 
-> On Sun, 06 Sep 2026 20:36:28 +0200, Sven Peter wrote:
->> The Native Host Interface (NHI) provides the TX and RX rings used by the
->> software connection manager on Apple Silicon SoCs.
->>
->> The NHI is part of the ACIO host router and is exposed to the main SoC
->> bus while the ACIO co-processor is running.
->>
->> T6000 and T6020 use one DART stream for the TX and RX control rings and
->> one shared by all other rings, which are used for XDomain connections.
->> This likely improves the isolation of those host-to-host connections.
->>
->> The M3 generation uses a slightly insane set of 24 IOMMU entries. These
->> are probably one DART stream for each TX and RX ring.
->>
->> Signed-off-by: Sven Peter <sven@kernel.org>
->> Reviewed-by: Joshua Peisach <jpeisach@ubuntu.com>
->> ---
->>  .../bindings/thunderbolt/apple,t8103-usb4-nhi.yaml | 151 +++++++++++++++++++++
->>  MAINTAINERS                                        |   2 +
->>  2 files changed, 153 insertions(+)
->>
+> ACIO can only be powered on after the Type-C PHY has been switched to
+> USB4/Thunderbolt mode. The Type-C PD controller publishes the negotiated
+> mode and cable information through the Type-C class. ACIO finds the
+> corresponding Type-C port through the OF graph connection.
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> 
+
 
 We might need to revoke the reviews. The implementation here adds
 undocumented and unapproved ABI - aliases.
