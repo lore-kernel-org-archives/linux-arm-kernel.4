@@ -2,129 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9430B606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51CC1606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZPnyvYyl;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.a=rsa-sha256 header.s=default header.b=Vo+gMKG2;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=valla.it header.i=@valla.it header.a=rsa-sha256 header.s=default header.b=J/o/wHZM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wsvqhsTM;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aUZY2S06
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XDw9/M2MIm98kw8EzKXejlZaq6aMnfzsqjAxXtqrIdg=; b=ZPnyvYylSbT3fGBfciQXQgWKeG
-	vcGi00ZQbP0fBx07UDTl9MA5Jyw+3aXZAI1DoALw1JbM30bfttCzoa672rRNyEsW79ApQLyGSOsDp
-	Zjd1pUoVgUEQ3DbS2xPDvQYFyKzbktyKlevOABHOMzBG5OdG1l+0aw4hEuTRLoMmUYnlKPXFsFP8+
-	84+TE8XdtjOhNSidI+nettC/uOSkC0yqXHhoK8sqv89wbsizgnjQIrhHVozstU0kXuoGkCx8//J/2
-	jgbW1CxT2ZqXtrDE12ZCgHegk8A29l5Z+/NetLf+4kAfjeVn/DnbEjSLDniKU6hzn0OtZkB4H6ogF
-	n0FmuZoA==;
+	bh=P28P/LUBbQO6Sh4CV5K9g8WyTMgI8R9ZDNhFzP9+hV8=; b=wsvqhsTMW3krwwQNtQH2QXungA
+	lUJ8BIm3y2TboWnAyDaw/8WMmuWMYpIuK86kS6r/89tRY78a1W0c+trgyFrHHm0mEU94Tt4N8p+Ok
+	4DJ1tzHNEOwPZ8pnhmcCv11/xFjQsbxHCLsB9xngy2NHvuS2op7UhAhkcb5n0lbI+2Msvj9zeSixh
+	MTR4MlNlVzzP+9L37gqkQBisi23PMI+JVA8fqxS1bsyZFBPjGbNckBiJo9WYEYCuPeCVC1ySxUStv
+	1iEhimencFg7m8+ieRs6V62/WFapghzhy4hszWrjWDXJ5Ojt1FW/3tgc+rMK6LFeCbXTZBF9gzKf/
+	4/Qgvd+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTRVd-00000007D9W-3SeG;
-	Tue, 17 Nov 2026 22:18:37 +0000
-Received: from delivery.antispam.mailspamprotection.com ([185.56.87.6])
+	id 1xTRZa-00000007DRp-2KBK;
+	Tue, 17 Nov 2026 22:22:42 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTRVa-00000007D8e-1auI
+	id 1xTRZY-00000007DRN-0cnM
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 22:18:36 +0000
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-h034.prod.antispam.mailspamprotection.com; s=arckey; t=1794953914;
-	 b=RvHqQnVq1hM92tneguHuvPkiVsL2bxFr0vGhYzVEQzzj6kJQDvDBhnGHmy8BN4W2cgNIkgwb1n
-	  F1P3uTjVtkX+N7mHbO7m39DYHf93j7Aty0P22sqoDUZWSYbX92Vnow5ml2evoYPBfzXafu7bnc
-	  hbiOEvEH3s2mXTrrxJR6z9QLY4AvfUykqnJ4a3v/zCh0fN9T5o+qtn8MOlK/maL4UvSYG4R/rI
-	  MwlacJJ/tq2A8UqhiliiWAeKNytE2yEYR+shVwHy7/9fobo4DC7YvOYfWn3Eu67O7UfbWYXzBq
-	  0jl+ZYGThaXoNuazqohjW9vDeH9Nq6quUAPIbefpEbUvhg==;
-ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-h034.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
-	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
-	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
-	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
-	arc=none
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-h034.prod.antispam.mailspamprotection.com; s=arckey; t=1794953914;
-	bh=lLTugMaSzlCBSdBDH2IIIB/bAhkr/et1oe9MmxV/meo=;
-	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:
-	  From:Date:DKIM-Signature:DKIM-Signature;
-	b=E0S1Q5EtlF/P7Q0D1iTETQ8rJoGlggyko8UErxctgvq0BJWBdaY6OC9WSqPgFInjPESH6rT8QC
-	  /+0l9G7/GnWHfS/t/UUC4d+4ktyfOFU/+LvZMimu/S30deRDRNEA7iYqMHy7svp075FvwO5gB1
-	  0nHPHKWEkrfg4lwmj8phI4sHI2yopE4KDgkYE4Lz+WTQbH+fC6NtIuvqoHJw/xyG2UJON2fZGM
-	  fWszYzIpFpYAr3Q3i5bLmpg9SqcDKwVprxZbU7JEb8URVO8EXoWdtZ5ehQOqS1LAJBZ5/tqsVW
-	  TrnamOGwk1BgFWbbvRDV7pf4y7uJsckqnF9eTWyQimjdoQ==;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
-	:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	List-Unsubscribe:Content-Transfer-Encoding;
-	bh=XDw9/M2MIm98kw8EzKXejlZaq6aMnfzsqjAxXtqrIdg=; b=Vo+gMKG2A2xTqtDPqVUfQosm+c
-	grt/rB+f5HPzlTPEGQAoyCc//jQ+qUGK4Ene7utYCeHRN7nDGIC89iQAvEb4CpMUS4yP/G13fiKcs
-	ExIiqCUBsS9d/ojB6xFNz2YWnQsIYiygrEiXGRVORWxmaqDPxkydCWPFPULrX3eLpj10=;
-Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
-	by instance-europe-west4-h034.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <francesco@valla.it>)
-	id 1xTRVT-00000000rgO-1Ucf
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 22:18:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
-	s=default; h=Subject:Cc:To:From:Date:list-help:list-unsubscribe:
-	list-subscribe:list-post:list-owner:list-archive;
-	bh=XDw9/M2MIm98kw8EzKXejlZaq6aMnfzsqjAxXtqrIdg=; b=J/o/wHZMlZNHzlGj2v3qrP9lrF
-	VBTkUAvJ0gtM++9cWsX0Yubj11+RtRGUwDNRkoZHjCrkf1RuoAIyHmo6uSXc/Cfe32dTtxBQLppcN
-	BD5OKrVRmK2m4pzECQ/oF6ps0YLJ81c0iz7XtJHKuY1T70AbxRwXbjm+kE+TAWDyHMhs=;
-Received: from [95.251.96.187] (port=64319 helo=bywater)
-	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <francesco@valla.it>)
-	id 1xTRV7-000000005TO-1T4G;
-	Tue, 17 Nov 2026 22:18:05 +0000
-Date: Tue, 17 Nov 2026 23:18:03 +0100
-From: Francesco Valla <francesco@valla.it>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	Randy Dunlap <rdunlap@infradead.org>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, Robin Murphy <robin.murphy@arm.com>, 
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC v2 05/11] remoteproc: virtio: report
- VIRTIO_F_ACCESS_PLATFORM when required
-Message-ID: <avzQI6R9LubGP7-d@bywater>
-References: <20261102-remoteproc_virtio_map-v2-0-26b300e01c62@valla.it>
- <20261102-remoteproc_virtio_map-v2-5-26b300e01c62@valla.it>
- <avs6XQpoQmY_MNYx@p14s>
+	Tue, 17 Nov 2026 22:22:40 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 9AB37421F2;
+	Tue, 17 Nov 2026 22:22:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C0371F000C9;
+	Tue, 17 Nov 2026 22:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794954159;
+	bh=P28P/LUBbQO6Sh4CV5K9g8WyTMgI8R9ZDNhFzP9+hV8=;
+	h=From:To:Cc:Subject:Date;
+	b=aUZY2S06kYuf4atuTLbZAxbOxwlUE/nJdFcaEmhPaJfVz/IiLF/b0t6tvvUMlTpfU
+	 C/hXiA1BPLa/KvzTdLtfje64PZBu0k3slf5MVEZUDKvh4kWkPf0ywcJt1CDSksrGR4
+	 zjsGwjj3SGlM5z72YImxH1YHvz5ZZp488EOZvww9XF/t5UrhWsmCsmh0CYcXnkc/tH
+	 u6N/SMsgu37a3ENBvjkcJQxKXLeVVFOIF4EscgBxDFvklEjhYjOxlRu4KO6It7yzWm
+	 aJXg3D0jMzZAA6hF4fJ759ZzoQNDBkLhCwF+Mx16DHC/NIdaFMtMcs+gBHElzfNwcl
+	 xDaYZX9Nu7BdA==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Marc Zyngier <maz@kernel.org>,
+	Oliver Upton <oupton@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Yicong Yang <yangyicong@hisilicon.com>,
+	Zhou Wang <wangzhou1@hisilicon.com>,
+	Navneet Singh <navneetsingh@microsoft.com>,
+	apais@microsoft.com,
+	hargar@linux.microsoft.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] st64bv0 support in iommu-sva
+Date: Tue, 17 Nov 2026 23:22:22 +0100
+Message-ID: <20261117222224.1465328-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <avs6XQpoQmY_MNYx@p14s>
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - esm19.siteground.biz
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - valla.it
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-SGantispam-id: 6e207b9c5ddbe3b3866f722d50468f4c
-X-AntiAbuse: ID - 6e207b9c5ddbe3b3866f722d50468f4c
-AntiSpam-DLS: false
-AntiSpam-DLSP: 
-AntiSpam-DLSRS: 
-AntiSpam-TS: 1.0
-CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
-CFBL-Feedback-ID: 1xTRVT-00000000rgO-1Ucf-feedback@antispam.mailspamprotection.com
-Authentication-Results: outgoing.instance-europe-west4-h034.prod.antispam.mailspamprotection.com;
-	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
-	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
-	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
-	arc=none
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_141834_647931_D4B4CA16 
-X-CRM114-Status: GOOD (  37.15  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,112 +82,60 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 11:16:13AM -0600, Mathieu Poirier wrote:
-> On Mon, Nov 02, 2026 at 12:26:42AM +0100, Francesco Valla wrote:
-> > Depending on the driver originating them, data buffers used for virtio
-> > communication can either:
-> > 
-> >   - already be allocated from the coherent memory area that is
-> >     accessible by the remote processor; this is the case of
-> >     remoteproc-specific virtio devices, i.e., rpmsg and rproc-serial;
-> >   - be allocated from generic kmem, and thus not necessarily accessible
-> >     directly by the remote processor.
-> > 
-> > In the second case, the DMA APIs can be exploited to obtain a
-> > functional communication, since they will take care of cache maintenance
-> > and - if required - bounce buffering. The VIRTIO_F_ACCESS_PLATFORM
-> > feature flag can be used for this purpose: with it set, the virtio
-> > framework will use the aforementioned DMA APIs to map and unmap buffers.
-> > 
-> > Bounce buffering will be transparently used in two cases:
-> > 
-> >   - if the buffer address supplied by the virtio driver is not suitable
-> >     for DMA transfers, or
-> >   - if the reserved memory associated to the vdev is a
-> >     restricted-dma-pool; in this case, *all* buffers will be bounced to
-> >     and from this pool.
-> > 
-> > With this support in place, any kind of virtio device can be supported
-> > through the remoteproc-virtio transport, at least from a data exchange
-> > standpoint.
-> > 
-> > Note that remote processors behind an IOMMU need da == pa for the memory
-> > region(s) the buffers are allocated from.
-> 
-> I'm not sure to understand the da == pa requirement - can you expand more on
-> that?
-> 
+From: Arnd Bergmann <arnd@arndb.de>
 
-Yes! With a caveat: the IOMMU usage by the remoteproc framework and how
-it can integrate with this work is the main reason this is an RFC, as
-stated in the cover letter, because I'm not sure I understand all of it.
-See for example the dma-to-da conversion in [1] or the comment in [2].
+Hi Siddharth,
 
-That said: all the IOMMU setup that is done today by the remoteproc core
-is linked to the *remoteproc* device, not to the rproc_vdev (i.e., the
-device backing the virtio device). For that reason, the DMA subsystem
-should not be able to know that setup even exists, in particular while
-performing swiotlb operations. Hence, the requirement to have a 1:1
-mapping between da (i.e., the address the device uses) and pa (the
-physical memory map).
+Here is a what I came up with for enabling ACCDATA in arm64 Linux,
+similar to the earlier patch and rebased on current linux-next.
 
-> > 
-> > Existing use cases (e.g., rpmsg and virtio-console) are not impacted as
-> > they are explicitly excluded.
-> > 
-> > Signed-off-by: Francesco Valla <francesco@valla.it>
-> > ---
-> >  drivers/remoteproc/remoteproc_virtio.c | 10 ++++++++--
-> >  1 file changed, 8 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/remoteproc/remoteproc_virtio.c b/drivers/remoteproc/remoteproc_virtio.c
-> > index f1b362158a9c..1496659ddff9 100644
-> > --- a/drivers/remoteproc/remoteproc_virtio.c
-> > +++ b/drivers/remoteproc/remoteproc_virtio.c
-> > @@ -280,9 +280,14 @@ static u64 rproc_virtio_get_features(struct virtio_device *vdev)
-> >  	 * All non-remoteproc-specific virtio devices are assumed to be
-> >  	 * compliant with virtio specifications 1.x; there is no other method
-> >  	 * to transmit this capability from the remote processor to the host.
-> > +	 *
-> > +	 * Virtio devices that are specific for remoteproc usage take care on
-> > +	 * their own to allocate memory from the device's coherent pool; use
-> > +	 * the DMA APIs for the others through VIRTIO_F_ACCESS_PLATFORM.
-> >  	 */
-> >  	if (!rproc_virtio_rsc_vdev_rproc_specific(rsc))
-> > -		features |= (1ULL << VIRTIO_F_VERSION_1);
-> > +		features |= ((1ULL << VIRTIO_F_VERSION_1) |
-> > +			     (1ULL << VIRTIO_F_ACCESS_PLATFORM));
-> >  
-> >  	return features;
-> >  }
-> > @@ -312,7 +317,8 @@ static int rproc_virtio_finalize_features(struct virtio_device *vdev)
-> >  	features = vdev->features;
-> >  
-> >  	if (!rproc_virtio_rsc_vdev_rproc_specific(rsc))
-> > -		features &= ~(1ULL << VIRTIO_F_VERSION_1);
-> > +		features &= ~((1ULL << VIRTIO_F_VERSION_1) |
-> > +			      (1ULL << VIRTIO_F_ACCESS_PLATFORM));
-> >  
-> >  	if (WARN_ON((u32)vdev->features != features))
-> >  		return -EINVAL;
-> > 
-> > -- 
-> > 2.56.0
-> > 
-> 
+I hope this works for you, please let me know how it goes.
 
-Thank you!
+     Arnd
 
-Reagrds,
-Francesco
+Arnd Bergmann (2):
+  arm64: add HWCAP3_LS64_ACCDATA
+  arm64: dynamically enable st64bv0 for SVA
 
-[1] https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/remoteproc/remoteproc_core.c#L716
-[2] https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/remoteproc/remoteproc_core.c#L461
+ Documentation/arch/arm64/elf_hwcaps.rst |  7 ++++
+ arch/arm64/include/asm/cpufeature.h     |  5 +++
+ arch/arm64/include/asm/exception.h      |  1 +
+ arch/arm64/include/asm/mmu_context.h    | 17 ++++++++
+ arch/arm64/include/uapi/asm/hwcap.h     |  1 +
+ arch/arm64/kernel/cpufeature.c          |  1 +
+ arch/arm64/kernel/cpuinfo.c             |  1 +
+ arch/arm64/kernel/entry-common.c        | 11 ++++++
+ arch/arm64/kernel/traps.c               | 52 +++++++++++++++++++++++++
+ arch/arm64/tools/sysreg                 |  5 +++
+ 10 files changed, 101 insertions(+)
 
+-- 
+2.53.0
+
+
+Cc: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Cc: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Oliver Upton <oupton@kernel.org>,
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+Cc: Will Deacon <will@kernel.org>,
+Cc: Mark Rutland <mark.rutland@arm.com>,
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+Cc: Joey Gouly <joey.gouly@arm.com>,
+Cc: Zenghui Yu <yuzenghui@huawei.com>,
+Cc: Steffen Eiden <seiden@linux.ibm.com>,
+Cc: Yicong Yang <yangyicong@hisilicon.com>,
+Cc: Zhou Wang <wangzhou1@hisilicon.com>,
+Cc: Navneet Singh <navneetsingh@microsoft.com>,
+Cc: apais@microsoft.com, rlmenge@gmail.com,
+Cc: hargar@linux.microsoft.com, kvmarm@lists.linux.dev,
+Cc: linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org,
+Cc: linux-kernel@vger.kernel.org,
 
