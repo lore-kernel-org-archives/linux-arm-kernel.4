@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25824606BDA1
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 19:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C64F7606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 19:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=adZTnqyP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A+KjjQjI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cGy8dPIk;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lN4JKX8N
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,71 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=VMgSH84ZrrVptOxF94r333FgoxdgBqWsVgTsgWBrs2U=; b=adZTnqyPgBvyYN1tifnARmPYUx
-	1i5Cvh+bRVdAgdDXcQwZQMtoAbfT/O9jSLYWBkwNhjEUs2IVOauMXxnRBk+d3Sq2+/vRUQdbZPsVo
-	T6UtbnxJLxfHUwsC+IXHp7LF17kMiYcvojLmr6Ya/evbNOJ4ywVABBtCOx3xxX9sl0TGEuNSmJnKE
-	u4fv9in6a9VIoC/2wWHdqX3rwY1CurrQPM0uIS7B6V4EQwP0V3byroYKuVVlk8NJsNDRd/5KdLRRP
-	hHFdkBfkkFp/GvIDX/qyxH8kSpRRQcNGjQvNX1EM4IOUeTxA+KME0PH6GHiYcOUTVtwIr1M0vjcyI
-	Is66sjYQ==;
+	bh=KUlAREIsaDpRd9AokYp9Tz4cZ6wB53FKL7N7FlReAuE=; b=cGy8dPIkQc0Ks3l8n+YuwaWEcF
+	KkZAykqTWt8wOUXJuzQMmhpPg6/yZmC25wolhN/z47b59stJ1hcRTpqbbQoYOAKzK6LUX8YIDBY4s
+	rtYsGfoQi+ZyURWOWw+aaqLRkpIL+cyWOuihGeHkfGGwcHBTPpmFusC/oZ+mC6dRm5fHPPZeWaHVO
+	0FzSWkeu3Qxv8BbmlOgoZDWIS/ONjiBx9sxxWnov2E6s9WWygP81ovbZQuA+NyxMdVq5YqYeQN81o
+	ZXHZJsLNa+IRfF1LrXNMcuLMnUI2fg84oCb3wOp9cN0OfAo+mmuMfX2lZZYdH1Df+oCW/i8eGJLkG
+	tpd1ribg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTOw1-00000006tTc-1Nzt;
-	Tue, 17 Nov 2026 19:33:41 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xTOw5-00000006tfK-2XBa;
+	Tue, 17 Nov 2026 19:33:45 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTOvy-00000006tMD-0XCO;
+	id 1xTOvy-00000006tM2-0Yte;
 	Tue, 17 Nov 2026 19:33:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B6F6145708;
+	by tor.source.kernel.org (Postfix) with ESMTP id 780E161415;
 	Tue, 17 Nov 2026 19:33:37 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794944017;
-	b=aFgMPKFMF8Mcc6VotGcSnCM0FE2+fP9xmqgvQ0gjIGQ0QcLS++krEuZV5UQlmo2vNYIG
-	 nZHD0phyJVb5dJDwqVeaml+gBp2WNCfnFG7Af3H9anVcU2S3qipzYuGftZD+XMhh/TIr2
-	 p2IbOGXkUY2NCRfkwGPWO+6t4Diu7GFCGqa6ghiKLksbJ2sY0n2NO6rSXoLTigMhN4vmz
-	 YZGm1WkZMnuiYl/0LpFP6pBtUoQfZFaq6ISJg+BUjTbNsVeqhBcB6sViaZrOEwBub19MS
-	 1p4XhtXD16Af9l1J7gaHvj/pX168ph8GKb0kXkuiD9ynY3UgRPv/BGQx/IK76GtWy1w==
+	b=vyQW0jrwTYpfk9/Ex0ftMHi5u6AuWcANpqQkCksfEmgkZFbRvlYooQn+C7ObWcLsyeMJ
+	 ZQtcUyBQmYONtyTZ/qRES0/Iq8Icesuprs77C5bRf9UqbLciVkuSweCmTE7NwOrelPfBL
+	 oJy7Yv4oi48sAXwgwUaVHyKL6dg+i2jxaQp5EQySK8NB3zYfg8O03O3oG3EXB+o4sakiX
+	 jPhreMVO/FkGFnSoxIP18mXci7dSlViHLH5jMqwogdd8ERKe0V5ZCL4jPmqSKwY62+j+A
+	 31vBYwV0h26WfzAnDnje1JAAvlERGcO8IQqbSMbJk0SpLXInVY/asp9OF58IpIcTXrA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794944017;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=VMgSH84ZrrVptOxF94r333FgoxdgBqWsVgTsgWBrs2U=;
-	b=Y2f45qDoGJdcD5meAWU6vUDy/8jM0thPj/ehijE1cwhRUP5rS/xWo64Y/8VteBon3xAl
-	 U0mkD+WaL4ZerWPXNaTwOpTcG9MNGNA+4NUrFOrphmpatGRyKE9i3aFhB6YETm50+nZ+J
-	 9oHpPU4lWTbm9zREU1vdbdEPelDZnV9s1rXL8asLSVq4v1nn3raMfPsefo2cY7tz/U94l
-	 48VjhhJgifQ3Oe5SR3K8LdKr9D3A7RJ8pUW5oRbA210Np9LPXzCpHzJKSIwANrW6eZ2xm
-	 viTtDvU2O4OsbEEye7niTfPYVHky3EtcTatXcdhj8LlZCbaxiWvJZ3gEInMppw032Jw==
+	bh=KUlAREIsaDpRd9AokYp9Tz4cZ6wB53FKL7N7FlReAuE=;
+	b=Gf6wOaq3R6mslOzZfaECePvT72dhZaqWNtf525dBaHY34AqCiZV3y8D4wLoEBHGgd2Kc
+	 5tlmP6lv8dlCX3nDzyzMQVh4VJt2Jp2iYSgN7vkP2+GJNOnw9Bwngm7zqo5f7JMK+eeBn
+	 3Uu2qizcpIzkdkD3eGCCoULph07NzlcruXfib/zVwNM8SuhEVBmkluOT4MA9Q9iw8ovkH
+	 diIXIpu8K5/yfYUSKDMTxLhkQ8G5U7lKHKECMOpMATd7zVcl0ePv9ClU3wyO+VasUv1qW
+	 s9wuALbMhIgzBsKaJpqXM9xucXUNevqVjh6dcFManTnzVQZ0PJ4bqUHoZvUWmKYLvxg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 18AE31F000CD;
-	Tue, 17 Nov 2026 19:33:36 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 75BDD1F000CC;
+	Tue, 17 Nov 2026 19:33:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794944017;
-	bh=VMgSH84ZrrVptOxF94r333FgoxdgBqWsVgTsgWBrs2U=;
+	bh=KUlAREIsaDpRd9AokYp9Tz4cZ6wB53FKL7N7FlReAuE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=A+KjjQjILHj7SABlAPBJmUynPDQqpDWlFNu871jFdO+VkBIRMYB0+x7tTCbLbGuKs
-	 AwPoPcjuJ5hH7+2TIEddjko7rlllSKe7/jTD6ndw5XoPVp9Vy1snzfzYrhOn+zkftP
-	 fGbsKdlPQD8JzDStbQGsbGMcxbjQSMp6jO2VBh4XPvCX5B0/YPpNfBjAIJetqxu824
-	 IMtXzqFDLMRA1QQRA/tZAyHahY6pm/gc05efLkg8DNUSJZ4K4KbM1Z533MdDYVm/pn
-	 Fq56zT3lDDfzOuFm9iKzp+BIoaaSwchZp3ar9ZBaK7cLmFhsoVy3oRlOJrYdkaT4aY
-	 q0q6sXX32Jrdg==
+	b=lN4JKX8NFAbKV0ESp7t6poQvvDk0h74OYg4lsqpNGAHrE/YnmMkmXXR/kRmI3BSYs
+	 ybdE9p3t7qN0msVVoLW2NAy1JQwNEYlV1lIrtb/ktj13L/3rkBj9b3Q9OVwrD+nAG1
+	 AGUYnX1PUM7vJxgm/gBGj62wGsfn5US2NMPLu3npXqoFYoeKdVfNjO/8LX7de0fpps
+	 pM4sK9DG2saiiERJB87E70e60xLxPOTDKewP1Bksyzcsf1xLq29apjLz+V75IKfD8p
+	 IXwGr0JpobqoY2Uv9W5n9O92LLT3kUoddSOfxe1s2/im5F47/jQ8vnaRMCno002qK2
+	 Cy36Csj9a3pUQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 9EFD04AA96;
+	by lkml.kernel.org (Postfix) with ESMTP id 545174AA8A;
 	Tue, 17 Nov 2026 19:33:34 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Tue, 17 Nov 2026 20:33:14 +0100
-Subject: [PATCH 09/10] arm64: dts: amlogic: Add HDMI TX PHY node for GXBB
+Date: Tue, 17 Nov 2026 20:33:11 +0100
+Subject: [PATCH 06/10] drm/meson: dw-hdmi: Drop manual HHI clock and memory
+ PD setup
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261117-meson-drm-create-hdmitx-phy-v1-9-9e0ac931381c@aliel.fr>
+Message-Id: <20261117-meson-drm-create-hdmitx-phy-v1-6-9e0ac931381c@aliel.fr>
 References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
 In-Reply-To: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -95,13 +96,13 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1121;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2969;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=c/WWGT8CtU59I0+9U2adS9MjU7JCqDuzD/PZQedhJoY=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9afNZza67MOuBv5KbwRPnFV/iBXpKll6MTK+x/5xNaez
- LU0FNnfUcrCIMbFICumyNI/1/LEu8tHz3zdo54CM4eVCWQIAxenAEyk1I6R4X+1q2bbreWVx+Oa
- v74rqnE4+v7dJgOjmw9nhlouneTyfzsjQ/fjGBvVzbsfbZwbXxXf65X9de587wzJuAUVVvem52v
- 9ZAEA
+ bh=ztajGisJP2ywVUrLgoTSbxwE6I6bJ9vcioLG/C+HU6E=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9afNSxTGyZey5N+skvjVchLhoclS78EvG0Js9d8/evP3
+ 95XujdYOkpZGMS4GGTFFFn651qeeHf56Jmve9RTYOawMoEMYeDiFICJZN1hZDjqanJid/Yh/sef
+ //UvdXZv/vnThO1NygElzpwWC2vmiXUM/7Re9ZuWhJyXSo9vq768UMxaNXoWw6cJExPPavx5dqT
+ oIScA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -129,40 +130,92 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Describe the HDMI TX PHY as a child of the HHI system controller, with
-the amlogic,meson-gxbb-hdmi-tx-phy compatible and reference
-it from the HDMI TX node through "phys" and "phy-names".
+meson_dw_hdmi_init() programs two HHI registers by hand: the HDMI clock
+mux/divider/gate (HHI_HDMI_CLK_CNTL) and the HDMITX memory power-down
+bits (HHI_MEM_PD_REG0). Both are already covered by resources described
+in the DT:
+
+ - the HDMI clock is selected and rated through assigned-clocks
+   (CLKID_HDMI_SEL parented to xtal, CLKID_HDMI at 24 MHz), and gated
+   through the "isfr" clock, which the driver already enables at bind
+   time;
+ - the memory power-down bits are handled by the VPU power domain
+   referenced by "power-domains".
+
+Remove the open-coded register writes. Take an explicit runtime PM
+reference in probe and release it on removal, so that the domain is
+guaranteed to be on for the lifetime of the device.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 31 ++++++++++++++++++++++---------
+ 1 file changed, 22 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 5c2fe9dc4f80..1dfd5f6d0f68 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -316,6 +316,8 @@ &hdmi_tx {
- 		 <&clkc CLKID_GCLK_VENCI_INT0>;
- 	clock-names = "isfr", "iahb", "venci";
- 	power-domains = <&pwrc PWRC_GXBB_VPU_ID>;
-+	phys = <&hdmi_tx_phy>;
-+	phy-names = "hdmi";
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index eb33c70f29c3..20a821936b3a 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -12,6 +12,7 @@
+ #include <linux/of.h>
+ #include <linux/of_graph.h>
+ #include <linux/platform_device.h>
++#include <linux/pm_runtime.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/reset.h>
  
- 	assigned-clocks = <&clkc CLKID_HDMI_SEL>,
- 			  <&clkc CLKID_HDMI>;
-@@ -330,6 +332,11 @@ clkc: clock-controller {
- 		clocks = <&xtal>;
- 		clock-names = "xtal";
- 	};
+@@ -102,8 +103,6 @@
+ #define HDMITX_DWC_CTRL_REG	0x18
+ 
+ /* HHI Registers */
+-#define HHI_MEM_PD_REG0		0x100 /* 0x40 */
+-#define HHI_HDMI_CLK_CNTL	0x1cc /* 0x73 */
+ #define HHI_HDMI_PHY_CNTL0	0x3a0 /* 0xe8 */
+ #define HHI_HDMI_PHY_CNTL1	0x3a4 /* 0xe9 */
+ #define  PHY_CNTL1_INIT		0x03900000
+@@ -599,12 +598,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
+ {
+ 	struct meson_drm *priv = meson_dw_hdmi->priv;
+ 
+-	/* Enable clocks */
+-	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
+-
+-	/* Bring HDMITX MEM output of power down */
+-	regmap_update_bits(priv->hhi, HHI_MEM_PD_REG0, 0xff << 8, 0);
+-
+ 	/* Reset HDMITX APB & TX & PHY */
+ 	reset_control_reset(meson_dw_hdmi->hdmitx_apb);
+ 	reset_control_reset(meson_dw_hdmi->hdmitx_ctrl);
+@@ -829,9 +822,29 @@ static int __maybe_unused meson_dw_hdmi_pm_resume(struct device *dev)
+ 	return 0;
+ }
+ 
++static void meson_dw_hdmi_pm_put(void *dev)
++{
++	pm_runtime_put_sync(dev);
++}
 +
-+	hdmi_tx_phy: hdmi-phy {
-+		compatible = "amlogic,meson-gxbb-hdmi-tx-phy";
-+		#phy-cells = <0>;
-+	};
- };
+ static int meson_dw_hdmi_probe(struct platform_device *pdev)
+ {
+-	return component_add(&pdev->dev, &meson_dw_hdmi_ops);
++	struct device *dev = &pdev->dev;
++	int ret;
++
++	ret = devm_pm_runtime_enable(dev);
++	if (ret)
++		return ret;
++
++	ret = pm_runtime_resume_and_get(dev);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to power on HDMI TX\n");
++
++	ret = devm_add_action_or_reset(dev, meson_dw_hdmi_pm_put, dev);
++	if (ret)
++		return ret;
++
++	return component_add(dev, &meson_dw_hdmi_ops);
+ }
  
- &hwrng {
+ static void meson_dw_hdmi_remove(struct platform_device *pdev)
 
 -- 
 2.43.0
