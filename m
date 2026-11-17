@@ -2,58 +2,147 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2709606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4019606A8BA
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:10:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R4ZQLg9i
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=opaJzBUJ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=i/GVHIqw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=DWSbG4O7NNcxX8fObj3HSY6oLeblqc38YjrZ70564Yc=; b=R4ZQLg9iVhfWm/Xj1AYs4PKIwX
-	/m0T8ueLI1QJC/gOgafGu5/V00pyOwdiUnjy1m5f3XNdvmSWp+BGKJrhpXQkCNp54dBNIT1bhHjzA
-	n0HTNebP9Bvu0+5kj1Q7MrIRUM4DVugzwNMJNhwu4r5T2A6WxkoNzzENRjkLDpbJhEBWTvTQq+KDA
-	qWhKd64EsY1myScWEKsgWyrBCDjCq5mS1q2LJaq5BtLPii9z28qO3mpOEP60Dgi3E32BFP8lKQslP
-	aD/h6uHIM1fkZwCwZdguGR5yE/SLt7vBfnGzLrVDzZAkx7KthGoyx5g1bs4lUeSqcx7BzngpmmMTu
-	8AayTOpQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=IAAW06hQvyC0ObtIJYYxsiy/Ceen+vPpb7XOrrYEKLI=; b=opaJzBUJKKlD23
+	+nN2/qS/UIgB4MV2p5rYUwhqPx1NTUDbhU/4IIPcJMzYLzrhIXvUWsET2HeipbZLX/1usTV1+YXYl
+	VDCG/mazwcXN1R+LcL77CngrMYYJ4DNVJULBNj5eaMqpOsIphQQ6YiIePnARX3hAH1z7//QI2RiGE
+	B/Vu3CixETO+tiGMhMj9tW28y5u6sybbeDFzAlQetEsBbexMz3GeoLRxWTkXmKHnslygZMp1SZV/L
+	tcO3uiJWyvOxAQkc2x3bKk9Pt6FgM/z0cLMLoesGyKFFHmHjqnZ7356bFREb+Wk0uHxDiq5zi2uBF
+	5fPMMO2inxoYtMza9Beg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMaK-00000006UuC-1tjf;
-	Tue, 17 Nov 2026 17:03:08 +0000
-Received: from elvis.franken.de ([193.175.24.41])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMaG-00000006Ut8-19kH;
-	Tue, 17 Nov 2026 17:03:06 +0000
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1xTMaC-0005GF-00; Tue, 17 Nov 2026 18:03:00 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id 034DFC0546; Tue, 17 Nov 2026 17:56:41 +0100 (CET)
-Date: Tue, 17 Nov 2026 17:56:40 +0100
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Rosen Penev <rosenp@gmail.com>
-Cc: linux-mips@vger.kernel.org, John Crispin <john@phrozen.org>,
-	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"open list:ARM/Mediatek SoC support" <linux-kernel@vger.kernel.org>,
-	"moderated list:ARM/Mediatek SoC support" <linux-arm-kernel@lists.infradead.org>,
-	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>
-Subject: Re: [PATCH] mips: ralink: mt7621: avoid casting away __iomem in
- wraparound test
-Message-ID: <avyHSKd4l8YYdESO@alpha.franken.de>
-References: <20261004184828.31284-1-rosenp@gmail.com>
+	id 1xTMh9-00000006VIu-0VPA;
+	Tue, 17 Nov 2026 17:10:11 +0000
+Received: from omta40.uswest2.a.cloudfilter.net ([35.89.44.39])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTMh6-00000006VHm-3Uuf
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 17:10:10 +0000
+Received: from eig-obgw-6004b.ext.cloudfilter.net ([10.0.30.210])
+	by cmsmtp with ESMTPS
+	id TKskxrl1Vyb4YTMgvx3ZRJ; Tue, 17 Nov 2026 17:09:57 +0000
+Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
+	by cmsmtp with ESMTPS
+	id TMgtxb1XflaNKTMgtxf6Uo; Tue, 17 Nov 2026 17:09:55 +0000
+X-Authority-Analysis: v=2.4 cv=UbpRSLSN c=1 sm=1 tr=0 ts=6afc8a64
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=pGLkceISAAAA:8
+ a=R5edV8YtZwCzHGDMwkIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=O8hF6Hzn-FEA:10 a=KPbNTLLc3YvdawN95zVk:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:
+	List-Archive; bh=IAAW06hQvyC0ObtIJYYxsiy/Ceen+vPpb7XOrrYEKLI=; b=i/GVHIqwJWgw
+	FNAv6Dx2viwRozmojmM76xH3yBrGc0KvofgbStIu0rDayf+UeJGmFigV0CvCYsXpq+/wfym2Men/w
+	Ooek219JKD5zQ+E1P3rfv0pBLsBAHVEoaCjcHxFsjXbF2gPA15Llb5c7WdsYdGiwYiys2CaT1s8QM
+	ri5CNc98q3DOSOl4w13u5MFVfW2SDs+zDOzXiSxhlosN+T0YGn/TPB2VaNCPdAieUju9RayJBqKSq
+	rRt/3trSirUwd2N+3JdEiIh9oR5DfycnuJ5lbfHBxKJdX5sCfGtsLj8B9UVDdfsNI5zy7hXv40fQL
+	vN++ZJ9/5TLeiJ1N+n+kiA==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:53262)
+	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <linux@roeck-us.net>)
+	id 1xTMgs-00000003oeY-3UGJ;
+	Tue, 17 Nov 2026 22:39:54 +0530
+Message-ID: <be16d42f-e6bf-45d5-83a8-28afbe54e3f8@roeck-us.net>
+Date: Tue, 17 Nov 2026 09:09:53 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261004184828.31284-1-rosenp@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] hwmon: add Raspberry Pi DA9091 PMIC driver
+To: Sander Speetjens <sander.speetjens@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>
+Cc: linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org
+References: <20261117-hwmon-da9091-v1-1-f55f0af9c6a3@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20261117-hwmon-da9091-v1-1-f55f0af9c6a3@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1xTMgs-00000003oeY-3UGJ
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:53262
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 2
+X-Org: HG=direseller_whb_net_legacy;ORG=directi;
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfLeHPl9QBuT/wBNwSYb5oCgK9n8ezgZZpMf+cr9hvZpKOh48ZGUDaLF3vMsYURd/CffDTT3CvPRgURKcO9dG7r/3EWeFgUuVzGugq1NZndWe9aCczvkQ
+ 4m/McNLX02Ky7zhC5ZNNMU1Nt/exd5T2q0FPiOYewFqWe0xGKUPW2XzXaaoGrhjBF0eyxuHNi70nf4C9zOjgE34O8/wh9lVMpQxkMv5ugD+8QAwMYC8yrxsd
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_090304_460248_7F634183 
-X-CRM114-Status: GOOD (  17.83  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261117_091008_962688_966CFFCA 
+X-CRM114-Status: GOOD (  38.33  )
+X-Spam-Score: -0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,49 +153,585 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Oct 04, 2026 at 11:48:28AM -0700, Rosen Penev wrote:
-> CPHYSADDR() casts its argument to an integer, which strips the __iomem
-> annotation from dm and triggers a sparse warning. Compute the physical
-> address from detect_magic directly. The result is unchanged since the
-> sum never exceeds the 512MB KSEG mask.
+On 11/17/26 04:52, Sander Speetjens wrote:
+> Add a hwmon driver for the DA9091 PMIC found on the Raspberry Pi 5.
+> The PMIC exposes voltages, currents and temperatures exclusively
+> through the VideoCore firmware mailbox interface (property
+> 0x0003009f).
 > 
-> Fixes: 4ddaf88aadd3 ("mips: ralink: mt7621: add missing __iomem")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202610041411.uJXWXF8i-lkp@intel.com/
-> Assisted-by: LLM
-> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+
+None of the other Raspberry Pi drivers mentions the actual chip,
+so that should not be done here either. Please drop all mention
+of DA9091 and just name the driver raspberrypi-pmic-hwmon
+(or possibly raspberrypi-pmic-adc).
+
+There could be a separate "pmic" driver, for the power management
+subsystem, so we need the extension.
+
+> Requires a sufficiently recent Raspberry Pi firmware that
+> implements the structured PMIC ADC property.
+> 
+> The driver:
+> - is instantiated at runtime by the raspberrypi-firmware driver
+>    (same pattern as the Pi 5 RTC driver)
+> - reads all channels in a single batch mailbox call
+> - uses a short refresh-on-read cache
+> - exposes the sensors via the standard hwmon sysfs interface
+> 
+> Signed-off-by: Sander Speetjens <sander.speetjens@gmail.com>
 > ---
->  arch/mips/ralink/mt7621.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> This patch adds an hwmon driver for the DA9091 PMIC used on the
+> Raspberry Pi 5.
 > 
-> diff --git a/arch/mips/ralink/mt7621.c b/arch/mips/ralink/mt7621.c
-> index ae7b8cfedd5f..2d10c74b13c1 100644
-> --- a/arch/mips/ralink/mt7621.c
-> +++ b/arch/mips/ralink/mt7621.c
-> @@ -65,7 +65,7 @@ static bool __init mt7621_addr_wraparound_test(phys_addr_t size)
->  {
->  	void __iomem *dm = (void __iomem *)KSEG1ADDR(&detect_magic);
->  
-> -	if (CPHYSADDR(dm + size) >= MT7621_LOWMEM_MAX_SIZE)
-> +	if (CPHYSADDR(&detect_magic) + size >= MT7621_LOWMEM_MAX_SIZE)
->  		return true;
->  	__raw_writel(MT7621_MEM_TEST_PATTERN, dm);
->  	if (__raw_readl(dm) != __raw_readl(dm + size))
-> -- 
-> 2.56.0
+> The DA9091 exposes a set of voltage, current and temperature sensors.
+> Access is only available through the VideoCore firmware mailbox
+> interface; there is no direct register access from the ARM side.
+> 
+> A structured property tag (0x0003009f) was recently added to the
+> firmware. It returns the ADC values in binary form (index + length +
+> array of values), which is much cleaner for a kernel driver than
+> parsing the text output of the existing gencmd interface.
+> 
+> The driver follows the same instantiation pattern as the Raspberry Pi 5
+> RTC driver: the raspberrypi-firmware driver creates a platform device
+> at runtime, and this driver binds to it. All channels are read in a
+> single mailbox call and a short refresh-on-read cache is used.
+> 
+> The sensors are exposed through the standard hwmon sysfs interface so
+> tools such as `sensors`, collectd and node-exporter work without
+> modification.
+> 
+> Dependencies:
+> - Raspberry Pi firmware that implements property 0x0003009f
+> - CONFIG_RASPBERRYPI_FIRMWARE
+> 
+> Tested on a Raspberry Pi 5 with recent firmware.
+> ---
+>   drivers/firmware/raspberrypi.c             |  21 ++
 
-applied to mips-next
+Separate patch, please.
 
-Thomas.
+>   drivers/hwmon/Kconfig                      |  11 +
+>   drivers/hwmon/Makefile                     |   1 +
+>   drivers/hwmon/raspberrypi-da9091.c         | 339 +++++++++++++++++++++++++++++
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+This needs to be documented.
+
+Also, on a higher level, the driver does not apply,
+meanign Sashiko could not test it. Please ensure that
+it applies to the upstream kernel.
+
+
+>   include/soc/bcm2835/raspberrypi-firmware.h |   1 +
+>   5 files changed, 373 insertions(+)
+> 
+> diff --git a/drivers/firmware/raspberrypi.c b/drivers/firmware/raspberrypi.c
+> index 68512224e3ce..c6834dfa4dae 100644
+> --- a/drivers/firmware/raspberrypi.c
+> +++ b/drivers/firmware/raspberrypi.c
+> @@ -34,6 +34,7 @@ struct rpi_firmware {
+>   
+>   	struct platform_device *hwmon_dev;
+>   	struct platform_device *clk_dev;
+> +	struct platform_device *pmic_dev;
+>   	struct platform_device *rtc_dev;
+>   };
+>   
+> @@ -249,6 +250,23 @@ static void rpi_register_clk_driver(struct device *dev, struct rpi_firmware *fw)
+>   	fw->clk_dev = pdev;
+>   }
+>   
+> +static void rpi_register_pmic_driver(struct device *dev, struct rpi_firmware *fw)
+> +{
+> +	struct platform_device *pdev;
+> +
+> +	/* Only present on Pi 5 (bcm2712) */
+> +	if (!(of_machine_is_compatible("brcm,bcm2712") ||
+> +	      of_machine_is_compatible("brcm,bcm2712-d0")))
+> +		return;
+> +
+> +	pdev = platform_device_register_data(dev, "raspberrypi-da9091",
+
+raspberrypi-pmic-hwmon
+
+> +					     -1, NULL, 0);
+> +	if (IS_ERR(pdev))
+> +		return;
+> +
+> +	fw->pmic_dev = pdev;
+> +}
+> +
+>   static void rpi_register_rtc_driver(struct device *dev, struct rpi_firmware *fw)
+>   {
+>   	struct platform_device *pdev;
+> @@ -371,6 +389,7 @@ static int rpi_firmware_probe(struct platform_device *pdev)
+>   	rpi_firmware_print_firmware_revision(fw);
+>   	rpi_register_hwmon_driver(dev, fw);
+>   	rpi_register_clk_driver(dev, fw);
+> +	rpi_register_pmic_driver(dev, fw);
+>   	rpi_register_rtc_driver(dev, fw);
+>   	rpi_register_reboot_mode(dev, fw);
+>   
+> @@ -395,6 +414,8 @@ static void rpi_firmware_remove(struct platform_device *pdev)
+>   	fw->hwmon_dev = NULL;
+>   	platform_device_unregister(fw->clk_dev);
+>   	fw->clk_dev = NULL;
+> +	platform_device_unregister(fw->pmic_dev);
+> +	fw->pmic_dev = NULL;
+>   	platform_device_unregister(fw->rtc_dev);
+>   	fw->rtc_dev = NULL;
+>   
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 18c682e1a475..ad5f23fb86ac 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -2020,6 +2020,17 @@ config SENSORS_RASPBERRYPI_HWMON
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called raspberrypi-hwmon.
+>   
+> +config SENSORS_RASPBERRYPI_DA9091
+> +	tristate "Raspberry Pi DA9091 PMIC monitor"
+> +	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_FIRMWARE)
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+                                                         Pointless.
+
+> +	help
+> +	  If you say yes here you get support for the DA9091 PMIC
+> +	  voltage, current and temperature sensors on the Raspberry Pi 5,
+> +	  accessed via the firmware mailbox interface.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called raspberrypi-da9091.
+> +
+>   config SENSORS_SL28CPLD
+>   	tristate "Kontron sl28cpld hardware monitoring driver"
+>   	depends on MFD_SL28CPLD || COMPILE_TEST
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index d4c345ed7261..107bb5d29a94 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -211,6 +211,7 @@ obj-$(CONFIG_SENSORS_PT5161L)	+= pt5161l.o
+>   obj-$(CONFIG_SENSORS_PWM_FAN)	+= pwm-fan.o
+>   obj-$(CONFIG_SENSORS_QNAP_MCU_HWMON)	+= qnap-mcu-hwmon.o
+>   obj-$(CONFIG_SENSORS_RASPBERRYPI_HWMON)	+= raspberrypi-hwmon.o
+> +obj-$(CONFIG_SENSORS_RASPBERRYPI_DA9091) += raspberrypi-da9091.o
+>   obj-$(CONFIG_SENSORS_SBTSI)	+= sbtsi_temp.o
+>   obj-$(CONFIG_SENSORS_SCH56XX_COMMON)+= sch56xx-common.o
+>   obj-$(CONFIG_SENSORS_SCH5627)	+= sch5627.o
+> diff --git a/drivers/hwmon/raspberrypi-da9091.c b/drivers/hwmon/raspberrypi-da9091.c
+> new file mode 100644
+> index 000000000000..a021ca596658
+> --- /dev/null
+> +++ b/drivers/hwmon/raspberrypi-da9091.c
+> @@ -0,0 +1,339 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Raspberry Pi 5 DA9091 PMIC hwmon driver
+> + *
+> + * Reads voltages, currents and temperatures through the VideoCore
+> + * firmware mailbox property
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/jiffies.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <soc/bcm2835/raspberrypi-firmware.h>
+> +
+> +#define RPI_PMIC_NUM_CHANNELS	35	/* 0..34 */
+> +#define RPI_PMIC_CACHE_MS	500
+> +
+> +struct rpi_pmic_data {
+> +	struct rpi_firmware *fw;
+> +	struct device *hwmon_dev;
+> +	u32 values[RPI_PMIC_NUM_CHANNELS];
+> +	unsigned long last_update;
+> +	struct mutex lock; /* protects values[] and last_update */
+
+Why is the hardware monitoring subsystem lock insufficient ?
+
+> +};
+> +
+> +struct rpi_pmic_adc_msg {
+> +	__le32 index;
+> +	__le32 length;
+> +	__le32 values[RPI_PMIC_NUM_CHANNELS];
+> +} __packed;
+> +
+> +static const char * const rpi_pmic_labels[RPI_PMIC_NUM_CHANNELS] = {
+> +	/* Currents 0-7 */
+> +	[0]  = "3V7_WL_SW",
+> +	[1]  = "3V3_SYS",
+> +	[2]  = "1V8_SYS",
+> +	[3]  = "DDR_VDD2",
+> +	[4]  = "DDR_VDDQ",
+> +	[5]  = "1V1_SYS",
+> +	[6]  = "0V8_SW",
+> +	[7]  = "VDD_CORE",
+> +	/* Voltages 8-15 */
+> +	[8]  = "3V7_WL_SW",
+> +	[9]  = "3V3_SYS",
+> +	[10] = "1V8_SYS",
+> +	[11] = "DDR_VDD2",
+> +	[12] = "DDR_VDDQ",
+> +	[13] = "1V1_SYS",
+> +	[14] = "0V8_SW",
+> +	[15] = "VDD_CORE",
+> +	/* More currents / voltages */
+> +	[16] = "0V8_AON",
+> +	[17] = "3V3_DAC",
+> +	[18] = "3V3_ADC",
+> +	[19] = "0V8_AON",
+> +	[20] = "3V3_DAC",
+> +	[21] = "3V3_ADC",
+> +	[22] = "HDMI",
+> +	[23] = "HDMI",
+> +	[24] = "EXT5V",
+> +	[25] = "BATT",
+> +	/* Temperatures 26-34 (µ°C) */
+> +	[26] = "TEMP1",
+> +	[27] = "TEMP2",
+> +	[28] = "TEMP3",
+> +	[29] = "TEMP4",
+> +	[30] = "TEMP5",
+> +	[31] = "TEMP6",
+> +	[32] = "TEMP7",
+> +	[33] = "TEMP8",
+> +	[34] = "TEMP_BG",
+> +};
+> +
+> +/* Firmware ADC indices for each hwmon channel */
+> +static const u8 rpi_pmic_curr_idx[] = {
+> +	0, 1, 2, 3, 4, 5, 6, 7, 16, 17, 18, 22
+> +};
+> +
+> +static const u8 rpi_pmic_in_idx[] = {
+> +	8, 9, 10, 11, 12, 13, 14, 15, 19, 20, 21, 23, 24, 25
+> +};
+> +
+> +static const u8 rpi_pmic_temp_idx[] = {
+> +	26, 27, 28, 29, 30, 31, 32, 33, 34
+> +};
+> +
+> +static int rpi_pmic_fw_index(enum hwmon_sensor_types type, int channel)
+> +{
+> +	switch (type) {
+> +	case hwmon_curr:
+> +		if (channel < 0 || channel >= ARRAY_SIZE(rpi_pmic_curr_idx))
+> +			return -EINVAL;
+
+Those range checks should be handled in is_visible if needed and
+are otherwise unnecessary. Channel numbers are expected to be correct
+here. Besides, channel < 0 is more than theoretic.
+
+If you don't trust your code, add the check to the is_visible() function
+(but not the < 0 check).
+
+> +		return rpi_pmic_curr_idx[channel];
+> +	case hwmon_in:
+> +		if (channel < 0 || channel >= ARRAY_SIZE(rpi_pmic_in_idx))
+> +			return -EINVAL;
+> +		return rpi_pmic_in_idx[channel];
+> +	case hwmon_temp:
+> +		if (channel < 0 || channel >= ARRAY_SIZE(rpi_pmic_temp_idx))
+> +			return -EINVAL;
+> +		return rpi_pmic_temp_idx[channel];
+> +	default:
+> +		return -EINVAL;
+
+-EOPNOTSUPP
+
+I really don't think the function is necessary, though, since the
+callers could simply access rpi_pmic_XXX_idx[channel] directly.
+
+> +	}
+> +}
+> +
+> +static int rpi_pmic_update(struct rpi_pmic_data *data)
+> +{
+> +	struct rpi_pmic_adc_msg msg = {
+> +		.index  = cpu_to_le32(0),
+> +		.length = cpu_to_le32(RPI_PMIC_NUM_CHANNELS),
+> +	};
+> +	int ret;
+> +	unsigned int i;
+> +
+> +	ret = rpi_firmware_property(data->fw, RPI_FIRMWARE_GET_PMIC_ADC,
+> +				    &msg, sizeof(msg));
+> +	if (ret)
+> +		return ret;
+> +
+> +	// Sanity-check the response
+> +	if (le32_to_cpu(msg.length) != RPI_PMIC_NUM_CHANNELS)
+> +		return -EIO;
+> +
+> +	for (i = 0; i < RPI_PMIC_NUM_CHANNELS; i++)
+> +		data->values[i] = le32_to_cpu(msg.values[i]);
+> +
+> +	data->last_update = jiffies;
+> +	return 0;
+> +}
+> +
+> +static int rpi_pmic_read(struct device *dev, enum hwmon_sensor_types type,
+> +			 u32 attr, int channel, long *val)
+> +{
+> +	struct rpi_pmic_data *data = dev_get_drvdata(dev);
+> +	int fw_idx = rpi_pmic_fw_index(type, channel);
+> +	int ret = 0;
+> +
+> +	if (fw_idx < 0)
+> +		return fw_idx;
+> +
+> +	mutex_lock(&data->lock);
+> +
+> +	if (time_after(jiffies,
+
+Consider using 64-bit jiffies and operations.
+> +		       data->last_update + msecs_to_jiffies(RPI_PMIC_CACHE_MS))) {
+> +		ret = rpi_pmic_update(data);
+> +		if (ret)
+> +			goto out;
+> +	}
+> +
+> +	switch (type) {
+> +	case hwmon_in:
+> +		if (attr == hwmon_in_input)
+> +			*val = data->values[fw_idx] / 1000;	/* µV → mV */
+> +		else
+> +			ret = -EOPNOTSUPP;
+
+Unnecessary checks. Something like
+		fw_idx = rpi_pmic_in_idx[channel];
+		*val = data->values[fw_idx] / 1000;	/* µV → mV */
+
+or even
+		*val = data->values[rpi_pmic_in_idx[channel]];
+
+would do.
+> +		break;
+> +	case hwmon_curr:
+> +		if (attr == hwmon_curr_input)
+> +			*val = data->values[fw_idx] / 1000;	/* µA → mA */
+> +		else
+> +			ret = -EOPNOTSUPP;
+> +		break;
+> +	case hwmon_temp:
+> +		if (attr == hwmon_temp_input)
+> +			*val = data->values[fw_idx] / 1000;	/* µ°C → m°C */
+> +		else
+> +			ret = -EOPNOTSUPP;
+> +		break;
+> +	default:
+> +		ret = -EOPNOTSUPP;
+
+This one is acceptable to make the compiler happy, but not the others.
+
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&data->lock);
+> +	return ret;
+> +}
+> +
+> +static int rpi_pmic_read_string(struct device *dev,
+> +				enum hwmon_sensor_types type, u32 attr,
+> +				int channel, const char **str)
+> +{
+> +	int fw_idx = rpi_pmic_fw_index(type, channel);
+> +
+> +	if (fw_idx < 0)
+> +		return fw_idx;
+> +
+> +	if ((type == hwmon_in   && attr == hwmon_in_label)   ||
+> +	    (type == hwmon_curr && attr == hwmon_curr_label) ||
+> +	    (type == hwmon_temp && attr == hwmon_temp_label)) {
+> +		*str = rpi_pmic_labels[fw_idx];
+> +		return 0;
+> +	}
+> +
+> +	return -EOPNOTSUPP;
+> +}
+> +
+> +static umode_t rpi_pmic_is_visible(const void *data,
+> +				   enum hwmon_sensor_types type,
+> +				   u32 attr, int channel)
+> +{
+> +	int fw_idx = rpi_pmic_fw_index(type, channel);
+> +
+> +	if (fw_idx < 0)
+> +		return 0;
+> +
+> +	switch (type) {
+> +	case hwmon_in:
+> +		if (attr == hwmon_in_input || attr == hwmon_in_label)
+> +			return 0444;
+> +		break;
+> +	case hwmon_curr:
+> +		if (attr == hwmon_curr_input || attr == hwmon_curr_label)
+> +			return 0444;
+> +		break;
+> +	case hwmon_temp:
+> +		if (attr == hwmon_temp_input || attr == hwmon_temp_label)
+> +			return 0444;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static const struct hwmon_ops rpi_pmic_ops = {
+> +	.is_visible	= rpi_pmic_is_visible,
+> +	.read		= rpi_pmic_read,
+> +	.read_string	= rpi_pmic_read_string,
+> +};
+> +
+> +static const struct hwmon_channel_info * const rpi_pmic_info[] = {
+> +	HWMON_CHANNEL_INFO(in,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/*  8 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/*  9 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 10 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 11 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 12 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 13 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 14 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 15 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 19 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 20 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 21 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 23 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,	/* 24 */
+> +			   HWMON_I_INPUT | HWMON_I_LABEL	/* 25 */
+> +	),
+> +	HWMON_CHANNEL_INFO(curr,
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/*  0 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/*  1 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/*  2 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/*  3 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/*  4 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/*  5 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/*  6 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/*  7 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/* 16 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/* 17 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,	/* 18 */
+> +			   HWMON_C_INPUT | HWMON_C_LABEL	/* 22 */
+> +	),
+> +	HWMON_CHANNEL_INFO(temp,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,	/* 26 TEMP1 */
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,	/* 27 TEMP2 */
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,	/* 28 TEMP3 */
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,	/* 29 TEMP4 */
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,	/* 30 TEMP5 */
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,	/* 31 TEMP6 */
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,	/* 32 TEMP7 */
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,	/* 33 TEMP8 */
+> +			   HWMON_T_INPUT | HWMON_T_LABEL	/* 34 TEMP_BG */
+> +	),
+> +	NULL
+> +};
+> +
+> +static const struct hwmon_chip_info rpi_pmic_chip_info = {
+> +	.ops	= &rpi_pmic_ops,
+> +	.info	= rpi_pmic_info,
+> +};
+> +
+> +static int rpi_pmic_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct rpi_pmic_data *data;
+> +	struct rpi_firmware *fw;
+> +	int ret;
+> +
+> +	fw = devm_rpi_firmware_get(dev, dev->parent->of_node);
+> +	if (!fw)
+> +		return -EPROBE_DEFER;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->fw = fw;
+> +	mutex_init(&data->lock);
+> +	data->last_update = jiffies - msecs_to_jiffies(RPI_PMIC_CACHE_MS);
+> +
+> +	ret = rpi_pmic_update(data);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to read PMIC ADC property: %d\n", ret);
+> +		return ret;
+
+		return dev_err_probe(...);
+
+However, it looks like that will be the only means to detect if the firmware
+supports this functionality. If so, this needs to fail silently with -ENODEV.
+
+> +	}
+> +
+> +	data->hwmon_dev =
+> +		devm_hwmon_device_register_with_info(dev,
+> +						     "da9091", data, &rpi_pmic_chip_info, NULL);
+> +	if (IS_ERR(data->hwmon_dev))
+> +		return PTR_ERR(data->hwmon_dev);
+> +
+> +	platform_set_drvdata(pdev, data);
+
+I do not see where this is used.
+
+> +	dev_info(dev, "Raspberry Pi DA9091 PMIC hwmon registered\n");
+
+Please drop. Just make it
+	return PTR_ERR_OR_ZERO(data->hwmon_dev);
+
+> +	return 0;
+> +}
+> +
+> +static const struct platform_device_id rpi_pmic_id[] = {
+> +	{ "raspberrypi-da9091", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(platform, rpi_pmic_id);
+> +
+> +static struct platform_driver rpi_pmic_driver = {
+> +	.probe = rpi_pmic_probe,
+> +	.driver = {
+> +		.name = "raspberrypi-da9091",
+> +	},
+> +	.id_table = rpi_pmic_id,
+> +};
+> +module_platform_driver(rpi_pmic_driver);
+> +
+> +MODULE_AUTHOR("Sander Speetjens <sander.speetjens@gmail.com>");
+> +MODULE_DESCRIPTION("Raspberry Pi 5 DA9091 PMIC hwmon driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm2835/raspberrypi-firmware.h
+> index 20141eb2cb67..90d7b66b96e3 100644
+> --- a/include/soc/bcm2835/raspberrypi-firmware.h
+> +++ b/include/soc/bcm2835/raspberrypi-firmware.h
+> @@ -84,6 +84,7 @@ enum rpi_firmware_property_tag {
+>   	RPI_FIRMWARE_GET_REBOOT_FLAGS =                       0x00030064,
+>   	RPI_FIRMWARE_NOTIFY_DISPLAY_DONE =                    0x00030066,
+>   	RPI_FIRMWARE_GET_RTC_REG =                            0x00030087,
+> +	RPI_FIRMWARE_GET_PMIC_ADC =                           0x0003009f,
+>   	RPI_FIRMWARE_SET_CLOCK_STATE =                        0x00038001,
+>   	RPI_FIRMWARE_SET_CLOCK_RATE =                         0x00038002,
+>   	RPI_FIRMWARE_SET_VOLTAGE =                            0x00038003,
+> 
+> ---
+> base-commit: 5f29d1b881a5d5187237290c5e1f19886aa294db
+> change-id: 20261117-hwmon-da9091-7aeeac6d8ef8
+> 
+> Best regards,
+
 
