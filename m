@@ -2,61 +2,61 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F1D606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81C8606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=La9uZNu1;
-	dkim=pass (2048-bit key) header.d=protonmail.ch header.i=@protonmail.ch header.a=rsa-sha256 header.s=protonmail3 header.b=O7F/AtX3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f9putH+U;
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=q3ivFl7X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
 	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7gp/tEK1h0CZZzF3joRMwW+MfGEJpki8fHwQoqeeKfw=; b=La9uZNu1Am9HuZ
-	rBU9w5XN7dADoJF/JyTMnYQji7sgEklDG7qAj7ZbptrN4I25pNFtMkkCQhQ1f7k1dmcD4xCOePvcL
-	gjuyHzgu51wz+SqVyKeGP7KyRHwgk9yg7FVFmwC2db5uYn2qrpdYOjwkpUVAFkB7MN7q+iGRhIjei
-	UAiHtgvui/OHhoVKxRBbNFcSw0pmqd2OLmJIAejluCVPZH4vSRbjIBMeyleGQ0Dls3Gbr+/vsA1uL
-	VKHB+OMK45rc9cq5qsB5a6hOLBxjb1vFeBVyUd4SQQj1xHUEO8lrCSsYwFqLiMDUbR1RRPoKMUQLw
-	f3i4IH4zf+i12qXd/P+w==;
+	List-Owner; bh=TRDoGgRwa5KsWvB/IflpQ73VDTml/plhE/c6Vl1BGL4=; b=f9putH+U/IlbMG
+	58Iwgitdq3SgfIle0iLLLx3m/8uV6mY2juFAml/hyKffuBy/diETgEG3YJM6Y3QPu5pA4KFJQSjdZ
+	yBOV0B9mCxbqeSiyb9oVL8dSwgRiImFDzKCJ/q3AeRZsIU7UaRy0U0eP8+CQGlIMHV9EigjOO2d9h
+	6HoZu64xW3BbexAwMgdukYm0ATb8GveoNcOFKCeDn67zlSp0eeEOp2rkelINnLdhHNPx/7Kw2eQTI
+	KAOcbyBS0RTU38qib9yKYMfjzSdRKCUP9LCcK9NXbNaxpyifWWqRagIzxqFPanqTR7DJKaPNq3g1Q
+	6bCF5Q9W9/bg/wRMKbew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHnU-00000005VsZ-2eLY;
-	Tue, 17 Nov 2026 11:56:27 +0000
-Received: from mail-24418.protonmail.ch ([109.224.244.18])
+	id 1xTHv2-00000005WZd-2qT2;
+	Tue, 17 Nov 2026 12:04:12 +0000
+Received: from mail-106121.protonmail.ch ([79.135.106.121])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHnG-00000005VqB-1Eey;
-	Tue, 17 Nov 2026 11:56:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
-	s=protonmail3; t=1794916562; x=1795175762;
-	bh=7gp/tEK1h0CZZzF3joRMwW+MfGEJpki8fHwQoqeeKfw=;
+	id 1xTHtL-00000005WRs-2ZTS
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 12:02:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1794916942; x=1795176142;
+	bh=TRDoGgRwa5KsWvB/IflpQ73VDTml/plhE/c6Vl1BGL4=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=O7F/AtX3l6DPqkI6RguZwNBMfZ8Q78/wqNX5ZpMBIWtPvvD1yed4ILge4ywzG8cPI
-	 Lf+lgC64qGvbsf43OvQtAvHvhZsXNTIpYuxklutzWVBR2ckmfbetl/CxYxBeIG870Q
-	 kRC/0tii1TIGYeprV3n9wmpYakL+gAb1X2to14AQD5dDrDZJCvoXwUptSno4qcWUDK
-	 D3Nj91gHZtEceflE6OFXJxEN3d6M5/Q1Bm5VGKMg4Yq7dUQFRUW7NEsEPn8Yb1djRR
-	 BJqc3Hyf0V8h9QaRmeAsaCSgZRxWsB4vb6Vm8IOnL7zusjkjV7bUpKGu/K3jims+7S
-	 HwHvoHiSamLAQ==
-Date: Tue, 17 Nov 2026 11:55:52 +0000
+	b=q3ivFl7XnsQ4mk+NCr+/jvp24S4+bJ6ole8RRhDBj5kzXDzs2Zl29mveKSMA9lSt5
+	 hTXrgC4nxQJwDA4XOSo+CcmC64Y+nLiQhp2el26uv4Gqv9wlckMppTUXACcZyxt5/p
+	 ql2WZVOAoDauiGGY9bGFHEW/XAMKfYO2wgJiRFvf6TVBW4GHbDrEPmFAC1id/oXmiJ
+	 n6zy/KLADPUKutgw8Ks/23t/rfeSRJlr0ap0VDd5nrP/QzJ9qZe/Yt/vM/QwafeO3w
+	 fokzQWn0HK2N4bAEKDKjuu+NB1dI0nL3UGYMrQwKYGXaJCzz/EbPXmGi+riMTqW8pV
+	 UQZeXEMYNaIlA==
+Date: Tue, 17 Nov 2026 12:02:15 +0000
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-From: Ben Grisdale <bengris32@protonmail.ch>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>, Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, Daniel Lezcano <daniel.lezcano@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] arm64: Initial support for MediaTek MT8163 SoC
-Message-ID: <20261117115545.1983774d@ben-desktop>
-In-Reply-To: <20261105-arm64-initial-support-for-mediatek-mt8163-soc-v2-0-e68d7d428f99@protonmail.ch>
-References: <20261105-arm64-initial-support-for-mediatek-mt8163-soc-v2-0-e68d7d428f99@protonmail.ch>
-Feedback-ID: 27291966:user:proton
-X-Pm-Message-ID: 638059f9793bf86f61db029f1075fb5536fbc904
+From: Roman Vivchar <rva333@protonmail.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Lala Lin <lala.lin@mediatek.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH RESEND v5 3/4] nvmem: mtk-efuse: add CPU speedbin post-processing
+Message-ID: <k8LLawty9o68P00hLr5LO1163o_m16f_vf8fBZvdD18nOatszy1i4Dp7DeC8Hv2--Q08YyZfhCRnQbVDps0lqB2zZrx-k_GxKUaqj6eT6r4=@protonmail.com>
+In-Reply-To: <b0fa129a-e9ad-4a7b-a2aa-2202bfa23232@collabora.com>
+References: <20261117-6572-nvmem-v5-0-9b561a8a83e1@protonmail.com> <20261117-6572-nvmem-v5-3-9b561a8a83e1@protonmail.com> <b0fa129a-e9ad-4a7b-a2aa-2202bfa23232@collabora.com>
+Feedback-ID: 173184497:user:proton
+X-Pm-Message-ID: 4dc8420aa797847c5bd3778dc677e8a39e520ad9
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_035610_502177_9D42E266 
-X-CRM114-Status: UNSURE (   8.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261117_040247_383133_41646D49 
+X-CRM114-Status: GOOD (  19.93  )
 X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -68,29 +68,89 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 Hi Angelo,
 
-On Thu, 05 Nov 2026 14:28:45 +0000
-"Ben Grisdale via B4 Relay" <devnull+bengris32.protonmail.ch@kernel.org> wr=
-ote:
+On Tuesday, November 17th, 2026 at 1:56 PM, AngeloGioacchino Del Regno <ang=
+elogioacchino.delregno@collabora.com> wrote:
 
-> This series adds basic support for the MediaTek MT8163 SoC.
+> On 11/17/26 12:33, Roman Vivchar via B4 Relay wrote:
+> > From: Roman Vivchar <rva333@protonmail.com>
+> >
+> > MediaTek SoCs are often released under the same marketing name, but wit=
+h
+> > different suffix for the speedbin. For example, mt6572m has 1 GHz limit=
+,
+> > mt6572a - 1.2 GHz, mt6572w - 1.4 GHz.
+> >
+> > Since the speedbin is stored as a number in the efuse, add support for
+> > converting it to the bitmask for opp-supported-hw usage in the DT.
+> >
+> > Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+> > ---
+> >   drivers/nvmem/mtk-efuse.c | 19 +++++++++++++++++++
+> >   1 file changed, 19 insertions(+)
+> >
+> > diff --git a/drivers/nvmem/mtk-efuse.c b/drivers/nvmem/mtk-efuse.c
+> > index 980c29d01337..d2e5c69c580e 100644
+> > --- a/drivers/nvmem/mtk-efuse.c
+> > +++ b/drivers/nvmem/mtk-efuse.c
+> > @@ -70,6 +70,18 @@ static int mtk_efuse_gpu_speedbin_pp(void *context, =
+const char *id, int index,
+> >   =09return 0;
+> >   }
+> >
+> > +static int mtk_efuse_cpu_speedbin_pp(void *context, const char *id, in=
+t index,
+> > +=09=09=09=09     unsigned int offset, void *data, size_t bytes)
 >=20
-> The MT8163 is a 64-bit SoC featuring four ARM Cortex-A53 cores,
-> typically found in entry-level tablets and smart displays, such as
-> the Amazon Echo and Fire HD devices.
+> You can *literally* reuse mtk_efuse_gpu_speedbin_pp....
 
-Gentle ping on this patch series, v2 has been sitting for a bit so I
-would appreciate your review on them when you have time :)
+No, I can't. On later SoCs CPU speedbin has different encoding.
+For example, on mt6768 it can be stored in either low or high 4 bits.
+This is out of scope for this series, but I'd like if we kept this
+callback for the future SoCs.
 
-Best Regards,
-Ben Grisdale
+>=20
+> > +{
+> > +=09u8 *val =3D data;
+> > +
+> > +=09if (val[0] >=3D 8)
+> > +=09=09return -EINVAL;
+> > +
+> > +=09val[0] =3D BIT(val[0]);
+> > +=09return 0;
+> > +}
+> > +
+> >   static void mtk_efuse_fixup_dt_cell_info(struct nvmem_device *nvmem,
+> >   =09=09=09=09=09 struct nvmem_cell_info *cell)
+> >   {
+> > @@ -83,6 +95,13 @@ static void mtk_efuse_fixup_dt_cell_info(struct nvme=
+m_device *nvmem,
+> >   =09if (cell->nbits <=3D 3 &&
+> >   =09    strncmp(cell->name, "gpu-speedbin", min(sz, strlen("gpu-speedb=
+in"))) =3D=3D 0)
+> >   =09=09cell->read_post_process =3D mtk_efuse_gpu_speedbin_pp;
+> > +
+> > +=09/*
+> > +=09 * On mobile SoCs, the CPU speedbin is a number. Convert it to
+>=20
+> Other SoCs have got the same efuse style as mobile SoCs: anyway, all Medi=
+aTek
+> SoCs (apart from networking ones) are (in a way or another) variants of t=
+he
+> mobile ones.
 
+They're not really variants, some of them have no direct mt81xx/83xx siblin=
+g.
+
+Best regards,
+Roman
 
