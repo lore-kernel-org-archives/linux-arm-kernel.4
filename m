@@ -2,73 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E035B606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FB4606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p7+N1MUM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XJXcCEro
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dCotDeYY;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=VQp/2GAu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1n4akinMU4Hf+AOUS7LX8ylkG85tkNf4WcZP+gMfH/E=; b=p7+N1MUMQ3MLyl
-	qZ7jEIPKOna3ERbgXjNT7sfgnny7foZO46jm0V0gBm4ucVigTa3pgUuRSHjQi+oI5yzWsqQz2xM1A
-	7dZHJOA3Lb1rMZMcC0c+YzvSh6gDc1nOT7VVRIW8VRkEb91bZNBapcG125PqIk+YhUcgHHPfTnE9L
-	WqXQubBHvr/Cg7wTn1q58afQdaWxs82/XihKozCFcq8R/gAXgdY/UbX7GoeVpLUmlRBbNzTKvYgGb
-	BvrDUiKW0QwkuvMFPnM2lBveLAxPwkMtV+2/X/KZOIeITx4asop8UuYC+peyiFXRYr6+eIQz5C3Mj
-	2wwKMqPLh/SOwkk8nSfA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=9ammhtwy9K590KTiGuFRN9TiLwSY3ErK147SvQ2LZpc=; b=dCotDeYYef0HAUcbRI7s/rwXzk
+	m8oXPGZtbNfvxSgrx55cJ4ueuYOGBX+QvyJbiRxy8G2R71E/fVYAV1vBmCbK7EN7g2vRy473cmsTr
+	LuWZyU7vTtTAGxfQosBor59t4/+k7gIWAUJ9siiX9mZoZgQFZQU5nlRSxi4YtDESYYZt6sbsegoll
+	r/DA+0Gi6qbq+6XBqZpxfU50gvX6HLaHUISVyMtIgZU2LVMuiuCVpAgvG9IzCLcKhhOP6uNIapmRS
+	+oUq2YORvXyD/FKeBPx9sj61BAiQG192qImChh6Fu9//B9k0/hKPHoUvVVahAvP673wJB1/EsQGHl
+	8LSF4pUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJk3-000000062Fo-01SS;
-	Tue, 17 Nov 2026 14:00:59 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTJnS-000000062pR-3264;
+	Tue, 17 Nov 2026 14:04:30 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJk1-000000062F1-2SFZ
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 14:00:57 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 074F042AEB
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 14:00:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED581F000C7
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 14:00:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794924056;
-	bh=1n4akinMU4Hf+AOUS7LX8ylkG85tkNf4WcZP+gMfH/E=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=XJXcCEroAaV7bIV2RBbIv9cQ8IK7q7IczrpxrkMMo/2FTVWOiZZngfZJShFb+Krxu
-	 CeuvkYFMof6Q5FXfWeasA7J6Q5yM3v0nSXzDbZHS3xdC+2DD3Vh6HIy1yVcDw6mai7
-	 Tx337CPuzb4SDQISkZELEhbK2WHPEvyW+TGUDr1jiu+bh05gUiXgXigMus/G/ZZ5Tg
-	 JioMC1f7LPYYfexBdKBqxART6byY2phKj/ze27ao18Pd4JLyjdxtJi2c7+grzi9myY
-	 dSkeA6OJaViGjZITJE0/UzjONOl4ndx9Oj5ol5W9DKsrfjJg/XCcl4BK7tBQ0tpTyr
-	 L2W1048ZY0WoA==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5c1a3374400so430789e87.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 06:00:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErE9y+ryfQ5JEr2jhs32PNPMz7W2bcvr6FXcf/9B8Bqpi7riVtxLhiFZOkQlF3M6QXP50Q9ASYW9MWrGUSivSPqC@lists.infradead.org
-X-Gm-Message-State: APuU4Z8j4XLAH8mPIhWliJTt/VPqi6YDoQtxC4HYGjWIMbip1/znaMlE
-	PRwCuynvK5aejeOw/O8qZQadPNqMWDcwyO50fahKnivaucJJu0iHy6ZfR2GwGhzmjs+ccsLDSbm
-	5bPDsASWuXnaM4nYvgzyGHkyM3XqYgjQ=
-X-Received: by 2002:a05:6512:3a96:b0:5c1:4e4c:359c with SMTP id
- 2adb3069b0e04-5c1709c44cemr4959950e87.36.1794924055639; Tue, 17 Nov 2026
- 06:00:55 -0800 (PST)
+	id 1xTJnQ-000000062oi-0JnZ;
+	Tue, 17 Nov 2026 14:04:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=9ammhtwy9K590KTiGuFRN9TiLwSY3ErK147SvQ2LZpc=; b=VQp/2GAugCh6U8BjJBR2NURYTx
+	4wBg5YZIZUjRVRmHsptsQ+NJ5DwvHgOmov8GesBSEqbjAzFsfCODuI0UrioOSMU5J3PY/B0t5+nbB
+	JD1/lKnuopmhJN1FIGlGWWR5xShBob2ACFCt8TlzzJVpyQLQviO1rUVqOQJOD46I9yqs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1xTJn5-00HAGJ-QD; Tue, 17 Nov 2026 15:04:07 +0100
+Date: Tue, 17 Nov 2026 15:04:07 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Coia Prant <coiaprant@gmail.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Jiawen Wu <jiawenwu@trustnetic.com>,
+	Mengyuan Lou <mengyuanlou@net-swift.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
+	Fabio Baltieri <fabio.baltieri@gmail.com>, netdev@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v4 1/2] net: phy: move
+ DECLARE_PHY_INTERFACE_MASK_ZERO to core
+Message-ID: <e3c5f034-1b05-4fcf-bbe1-8b473a8d2a0f@lunn.ch>
+References: <20261110160554.918652-1-coiaprant@gmail.com>
+ <20261110160554.918652-2-coiaprant@gmail.com>
+ <20261116183012.11a7ba72@kernel.org>
+ <CALj3r0gTuJEDd==WzAQ+cK3Og-2zMqvmBrhrd2ARbKJctG5ZAQ@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261107012236.28069-1-prasanth.padarthi10@gmail.com> <20261109035633.93522-1-prasanth.padarthi10@gmail.com>
-In-Reply-To: <20261109035633.93522-1-prasanth.padarthi10@gmail.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 17 Nov 2026 15:00:43 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmNSdgJPG_8dVKBLxN2ewvYJm99S+32SyKj_psa0DX53Q@mail.gmail.com>
-X-Gm-Features: Aa3M54pM4N8FrMarps7ie1VxRtJp-XfzSOJDJp1i6ICkP2NWqZ4utwFMO5THjsE
-Message-ID: <CAD++jLmNSdgJPG_8dVKBLxN2ewvYJm99S+32SyKj_psa0DX53Q@mail.gmail.com>
-Subject: Re: [PATCH v2] pinctrl: aspeed: Use managed pinctrl registration
-To: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
-Cc: andrew@codeconstruct.com.au, joel@jms.id.au, ryan_chen@aspeedtech.com, 
-	billy_tsai@aspeedtech.com, linux-aspeed@lists.ozlabs.org, 
-	openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CALj3r0gTuJEDd==WzAQ+cK3Og-2zMqvmBrhrd2ARbKJctG5ZAQ@mail.gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_060428_116794_2C119F01 
+X-CRM114-Status: GOOD (  10.07  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,33 +81,26 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 9, 2026 at 4:57=E2=80=AFAM Prasanth Kumar Padarthi
-<prasanth.padarthi10@gmail.com> wrote:
+> I understand your concern that hiding the init inside the macro seems
+> subjective. Since you mentioned an Andrew ack is needed, and he is the
+> net PHY maintainer (who also looks after the WX driver),
 
-> The shared Aspeed probe helper registers its controller with
-> pinctrl_register(), but does not unregister it on device unbind.
-> The registration can therefore outlive device-managed data.
->
-> Use devm_pinctrl_register() to ensure the controller is unregistered
-> during device teardown.
->
-> Fixes: 4d3d0e4272d8 ("pinctrl: Add core support for Aspeed SoCs")
-> Signed-off-by: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
-> Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> ---
-> Changes in v2:
-> - Add Fixes trailer.
-> - Add Reviewed-by trailer from Andrew Jeffery.
+I don't look after the WX driver. I comment on it, as i comment on
+lots of drivers.
 
-Patch applied as nonurgent fix.
+> If Andrew also feels this doesn't belong in the core, I will drop the
+> macro entirely and switch to explicit manual initialization using
+> phy_interface_zero() in both drivers.
 
-Yours,
-Linus Walleij
+Using phy_interface_zero() is what current code does. I would also say
+using explicate = {0, } is O.K, but i would not hide it in the macro.
+
+      Andrew
 
