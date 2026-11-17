@@ -2,144 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A977606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 07:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E36606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 07:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a/mFjRnl;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=LuPxAYH5;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=DLPlIXyi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NKy0/1hE;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Ax+Ngtuk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=C1U6sGJ1wofOSp0VAiQlaKb1uloa76oQfH+mRg/e3Uo=; b=a/mFjRnlJxvYjF
-	w/XwutKYqkDH9y8moWc2eBbfN/yaJeGi/iUelio3Fe5fqxtb6GE4sb+fPkKEtBv7ly8zjJPk0rSeP
-	1T1aPN4OHX90pOaGlGTcc/jslWiYKCm2JuXlJKgnFtL7lQ9KDGaVRZ9cJDnUNJI4mH/XJOXG4X5X1
-	hGvWv429EOi7d/k1lFeyZdii6FMcK1lkghbCpOfnT8rarjqBXRMMqUaeQhiN/kKaN8ssDrNFY1IN+
-	1AC52Bv5l/K+6Y75Iz6wPVYY9P3DIsBgOBOSPubh3AaXrvwLTwL6mU3bWx216VNil/QeuPNgDZrmj
-	jFRt4cW35Z7m4RfcyB/A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=UM22wR0A7853gCkKnAtbktiuhCnfEEeAUoq/6XrZeN8=; b=NKy0/1hEAvkgZlCZilCeU6gAwK
+	xAko/R6QGpmZZVJmNQzOxL4qL+0ECfNq35PyRBs+qPAQR5w+hmUQQ88BHvWkpta1eG5B8QUaHNyjm
+	G/x718Ak5MjFkyGGMqQNgBcyXHsAJvqMMAQoLpWQFq5B00nzuPbI986U7fFwicJxznRK1i0fQFxn2
+	fbdqRPEDfGNek3ussFBixG8E0dMnEgaJZK8Yqt9sCujEtki/hzc7rlRCcoFPhL6ZQXk/RjsFs6JtE
+	4wH0h5375aTIoWFXtd32FyNv59EY7MEJCT4Rp4TRyAkrAwFfCYA8ZRCBrP0+6DzfiRoLJ86r4IBa3
+	f9X4u29Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTDht-00000004nPh-0WqW;
-	Tue, 17 Nov 2026 07:34:21 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xTDo7-00000004oXF-1eVI;
+	Tue, 17 Nov 2026 07:40:47 +0000
+Received: from mail-northcentralusazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c105::7] helo=CH4PR04CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTDhb-00000004n9h-0vOV
+	id 1xTDny-00000004oWA-0mAj
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 07:34:06 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AH2aAil3624120
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 07:34:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=C1U6sGJ1wof
-	OSp0VAiQlaKb1uloa76oQfH+mRg/e3Uo=; b=LuPxAYH5NJgQOpppiP1xJ6eD+Ha
-	uGKcXWmiEqWBP9HMl77Z1m06AOijLxs+hlTG0FcEhaq6e//0IhtaKJ6pmTXgmKIJ
-	NdCsB9XDnKQzv2hsycnW/4F5MMdl0OmVIeQiuivYIPCqRubnt729mpNx/xNgBP5e
-	7R3whG3gXooQwLBJSsLnTPLtj9Yi3lB3lDcL3M4HZ1zdIniqthkT2a65ISO5qdCo
-	XM6wMpEUhFSecf3WeQHnbSHzLgQ5eVvrPYwGIp94YYQAJdjUEd7mxEG4MKwPne8U
-	YmNeT0k+d05DzZKQMjRShpAW6kBOxGk2v9ghw/ynIiGmHw09CJP/xsmIsEA==
-Received: from mail-oo1-f69.google.com (mail-oo1-f69.google.com [209.85.161.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j07rejd04-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 07:34:02 +0000 (GMT)
-Received: by mail-oo1-f69.google.com with SMTP id 006d021491bc7-6e1fc036608so2158524eaf.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 23:34:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794900842; x=1795505642; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=C1U6sGJ1wofOSp0VAiQlaKb1uloa76oQfH+mRg/e3Uo=;
-        b=DLPlIXyihCnBEjRS99ckRzGv6NCq2Zq4HPWGR6mrMke3oKMSJeQUlrEogaeu2M5kTu
-         5xTpPGwzgbsfS0Mupt9Lt5bb9bXbIzJxY4oH+SASWiD7Tz4Gl6igJt+bdBa3VXo0pWUm
-         aVEtw6ZxuCUGPbefstQHdU6bl7EP6QqUzgdxcTSN5K4cZY1QsHmpcqrJT+J+klxS6i//
-         o/TsrXuM33GNUDTai7qAmcr7KVHHwPhYKEgi6RkVsBCyzBzEiX7VUf8lclFGeb2Ym/A1
-         lVFPFq7v90W/Bguj4oI5idVOc/o7CKnPQMP95llz/eNhlTfsJ4QJxunYercqSBAlwbwm
-         odOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794900842; x=1795505642;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=C1U6sGJ1wofOSp0VAiQlaKb1uloa76oQfH+mRg/e3Uo=;
-        b=m1KrX8xq56nDJY5udinOHG+FvvzRveCwGeT1UnysjhDbj+PP87qrEfdPkDZLFwsXnY
-         b7QK25zo9IsxH5OKD1ihQOmqjRDzgAIRC4IPlEDUS7c3JTncNRC6ivSGFmmB+TDTBnvc
-         MsjVqwvGJxgyELWo9KKsf4qsF9Jn86NiVl246HAErRRFwVu6rRc/dGwJUwzDViH7caXE
-         63p2dnQwDZQBjRuXxfACO9AQprah9Z6x5+OAh6TJkb/+16r6T391XdFBA4nhTiy2IAne
-         9ut2Hrd9dHZ3u+mAfJCB4pm1Igz7xXc4TTC/8VG1JTXSW3lh8xp8uTsqB5jzIzoEFULb
-         ZHRg==
-X-Forwarded-Encrypted: i=1; AL+hErF8ybnLNTOkNdwryEIgT8RAFa3Szc44PCEBAI9q52C0SzikXiMTNcaiTL7ERcMFhV7NZj9Pq9RRRn091Bhin4Ev@lists.infradead.org
-X-Gm-Message-State: APuU4Z/rDvzadJ7lXAt4KuR8gjK6ROb4Pu+9NK3nv5AhDYgTEmGt7ytM
-	yKQMxkSyZPgThMT5wJ5PvBhmDzhddGp53lX99+arZIM70yw+OOR9Am3voHD7K4GPZ+0Qggw1fsY
-	N0hnm+Z/HHHJUPMYEWcJwtCEPjNLRpVD5o6cqKMUb1uTfrHfb0zY2IU0bvBQRkIcfgYWDDwfM6L
-	9mwQ==
-X-Gm-Gg: AYBFou1aSG0y6JNEUQBKITvID+wI4T0FEBtQR62sTnlad7fa8BSk5kvsKukSimeFRQj
-	7VD/YAh6t0mF+sHUSqq7aGWpARu4OkRJ1H41+/vdnd89pYAEGvyv1rHLsxVBw1v2gwC845M4it0
-	PCYNL6YD1XIQcp/cDWpqs7PFjcxkFouLSarg7Q03GhKLcyxTniazGmGx/gZF9OFtPBv/9dVLoiC
-	VN8E4Eomm5XQbDdU2ZqlvBTI2r1xwkawdziOWS25ib9cYp2LEtHOvKJeRoXv5I4Q7qu+n7VwKCl
-	a32vz2Cv2RYpwGn0g+rX1I4qFrX5aJV4dI7d5VXVA1Z2r9TjLCCp9V3dEISbDPKvmWLAz6y0AXg
-	/G7IBD7CdGqwW9+hJaewKph3zfu0DjWvRXXqK9+Mzco+vWZn+t0Jcuh4RAIljY3yqeYQaz8Hbd9
-	tnvNtqgUxi1JuFOPCBTE7Ek4HXJ2XXk7Pf2Q==
-X-Received: by 2002:a05:6820:1ca3:b0:71a:e9eb:6b94 with SMTP id 006d021491bc7-71b014fdaeamr1468375eaf.20.1794900841795;
-        Mon, 16 Nov 2026 23:34:01 -0800 (PST)
-X-Received: by 2002:a05:6820:1ca3:b0:71a:e9eb:6b94 with SMTP id 006d021491bc7-71b014fdaeamr1468362eaf.20.1794900841323;
-        Mon, 16 Nov 2026 23:34:01 -0800 (PST)
-Received: from ap-cloud-sh02-lnx.qualcomm.com (i-global052.qualcomm.com. [199.106.103.52])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-862c67db8basm4944508a34.13.2026.11.16.23.33.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 23:34:00 -0800 (PST)
-From: Songwei Chai <songwei.chai@oss.qualcomm.com>
-To: andersson@kernel.org, alexander.shishkin@linux.intel.com,
-        mike.leach@linaro.org, konrad.dybcio@oss.qualcomm.com,
-        suzuki.poulose@arm.com, james.clark@arm.com, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: Songwei Chai <songwei.chai@oss.qualcomm.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        coresight@lists.linaro.org, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org, songchai@qti.qualcomm.com,
-        Jie Gan <jie.gan@oss.qualcomm.com>
-Subject: [PATCH v19 8/8] qcom-tgu: Add reset node to initialize
-Date: Tue, 17 Nov 2026 15:33:05 +0800
-Message-Id: <20261117073305.3854951-9-songwei.chai@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261117073305.3854951-1-songwei.chai@oss.qualcomm.com>
-References: <20261117073305.3854951-1-songwei.chai@oss.qualcomm.com>
+	Tue, 17 Nov 2026 07:40:43 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nnVb7JoPwAu1vVTo2MSfWuTt6Q9Ur1jgDNo0z3A5Drpg+2BttYb9gEdT0y4WlATuLr2887DJgKsksebMbnLf65vEBtHFi4Mbr19HuJ5jq3ytwznYg7MyBo/qar5eclrZjlbOab/rW81y6WILKhrOiIVJN2FIbOje30xymx4wJ3eQSrVHXdGjdjmcH+hs6K0tbyFWxcj57W8G2J89y1qbgdgfMvaYKxVbGIUAyBD3I7eMKUSkbLcHAzNn+CJ0ceHB8us7T51GeOpk03/RR2aiGuTsss0RUIjhivA8Kd79WmTj4rY3+l15A2S3r0yZSf4eokDzF9Hor66vKbMzkVgwlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UM22wR0A7853gCkKnAtbktiuhCnfEEeAUoq/6XrZeN8=;
+ b=vuF/w21xYz6HLwBaxtZOUWG+yeE2PZTNWKR+vugbXmO0Edom9D6+TBxr2pb34gTM7utoCtso2N+uRHN8KSahuCAkAqxkttNehYlh4PpcbR95TeTEyKt4cBbR/3KbDQKLqcUVuBvDYG3Wwou8YMrOYm1Ip/uSVHbZSSFbX0x44qX9URu1uHPDDbDk722Qkbbl53a24KuIOvvP0EPXeDoAzihqNh3pX4bVI6IYDh08Fyn5XA9IXriVkQoE20mmoyhzTcZ6X8Skx9LdKcgkmhK6wOskR6t/GMC+BnJs5d/Y5RheMKXm6u596VFI/w4GV9MXzrGuVWD4UC5PNrq1Ue4bLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UM22wR0A7853gCkKnAtbktiuhCnfEEeAUoq/6XrZeN8=;
+ b=Ax+NgtukHLZOVBd34SMFRSLyfX4YmbLlfU98/pGzYDnnKTpmsKz4kjYp6Z8SKUCp7iOEQzLbMxDlxG4FQI3Oagbsc6GSKTXBELVLt8kzDzE17ajA7tPKQsMTXkqdxMLhbqrsJqLKwIdlZ00b7OkYYROm4SIxFAzGgaXP8cGl0T4=
+Received: from CH5P221CA0003.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:1f2::22)
+ by LV3PR12MB9356.namprd12.prod.outlook.com (2603:10b6:408:20c::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Tue, 17 Nov
+ 2026 07:40:29 +0000
+Received: from BN3PEPF0000B371.namprd21.prod.outlook.com
+ (2603:10b6:610:1f2:cafe::7e) by CH5P221CA0003.outlook.office365.com
+ (2603:10b6:610:1f2::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Tue,
+ 17 Nov 2026 07:40:29 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN3PEPF0000B371.mail.protection.outlook.com (10.167.243.168) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.0 via Frontend Transport; Tue, 17 Nov 2026 07:40:29 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Tue, 17 Nov
+ 2026 01:40:19 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Tue, 17 Nov
+ 2026 01:40:19 -0600
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Tue, 17 Nov 2026 01:40:16 -0600
+From: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To: Linus Walleij <linusw@kernel.org>, Michal Simek <michal.simek@amd.com>
+CC: <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <saikrishna12468@gmail.com>, <git@amd.com>,
+	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: [PATCH] pinctrl: zynqmp: Ensure function names are NUL terminated
+Date: Tue, 17 Nov 2026 13:09:47 +0530
+Message-ID: <20261117073947.1100444-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.25.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE3MDAyOSBTYWx0ZWRfXwSo2X1hPnNiX
- 5QjmbBaZMJ/IMEHGQsaCeHeiiTD4i9lXJlOtXPDlTpmgyTKVSu5JWkHKWob6N8pI09iKXg6Pbhz
- AeWhe2SpSZ2aonnGGaUNNoZelL5wcB8=
-X-Proofpoint-ORIG-GUID: 2MDSxUTIvvotIcZ00IubTqucF4wAxvyo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE3MDAyOSBTYWx0ZWRfX/TOYdbR9zi72
- CQ/Npxa7uAjwoJHf5KH6t3YFsy21MIT86xodYgCEVBlOMnoD3AqZwd6LI95Xdu+8Oap7thhJIAO
- r/NdvEL11D84tQBAs3Tof+kxRvsqm7UjuGQSZSwt5zknBkrmj49pTFBRRbqd2YpD3N1c+Ajby6C
- Kfld8kGma+5QFQHpxk0MXhFy58G4/HSemlRkACICIl1vWl4pF4A53wIJpXz+c+NP6VZf/08a70O
- dokHiu7ZXwpHx0zQsVALL2SGjK3gxY4t1uEuN39OIM4P0LrWuwFQrGi/GfrbZwOKjY+omFj5Ax1
- ruASXahpw2QpNl0eFSINkVlQ5wdxzAb6LZL8DPRDKWfGuMw0eWHMrXQpDsv1RXW0h/o2U/8ddkQ
- QWEIdykegfgewi79VnY7YX2WEL+9UqaxNIgmhdy7Jw7Usku2S3lWvUWdYOaTXgZYzTU2RmpD1UZ
- z2Y40ml+Aa9MCIbqQew==
-X-Proofpoint-GUID: 2MDSxUTIvvotIcZ00IubTqucF4wAxvyo
-X-Authority-Analysis: v=2.4 cv=R9uWitRX c=1 sm=1 tr=0 ts=6afc036a cx=c_pps
- a=lVi5GcDxkcJcfCmEjVJoaw==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
- a=u6OCHy2KTxjFLSf8iyQA:9 a=rBiNkAWo9uy_4UTK5NWh:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-17_01,2026-11-16_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 malwarescore=0 phishscore=0 priorityscore=1501
- adultscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611170029
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B371:EE_|LV3PR12MB9356:EE_
+X-MS-Office365-Filtering-Correlation-Id: 20d68780-f69a-4cb0-cc59-08df447e0d80
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|82310400026|23010399003|36860700016|10067099003|11063799006|56012099006|261022075727099003|261021130227099003|261026130827099003|261026140227099003|261021121427099003|261021135927099003|261026121527099003|261021123027099003|261026135527099003|261022115727099003|261022113327099003|261022105027099003|261021133027099003|261102123227099003|261028144727099003|261009221227099003|261009221727099003|261009223327099003|261009220027099003|261009223027099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: pPmXx+KfoO+uwXAzjb4fTamkBN0wpqPkQ5SUPJHTprAo/acNG8HKimr1vCFTrK6ntnof8N2c4vproNQ779hkBoGc+h+bMYB0lAd6M9g55sEHYtTQWTvx+ZeIXtDZUrMFgfqAQBu3hrwruGkD5WzZr12V0P1JJGNzbrceuZcbJK2f4/Qs0fJOhHJrSY2R6vOGhd5Njzs10vXGDJhkGFOkwCl6Sx0aOVzPkJpbQfpsxJboKx5ln129ZluVjjexVTiU8jzlL9V3hmwLQSyoqFeKNc9v/4co5Kl+WLq1QjpBvAU+PoT03MhhTENn5K9iHgVd0TCeW79D6EsClM6tcA045NYDtcp4TsIFFeQ/mqvpclo3AeDkG0DNjZCdjz9Gfy5bS8PW8pxL03kZiYtdWI58GAQFMBIxWnFFIgya9qyguObhcpO6D8WuJXH2DKeNJTulICxFXceQuA85NFh6wX2POh3mcWUAOLbAd2bEYvhJeIbvEw2DjIoHdfOOz+aEHtvII3caQFrx1y778xdW0GknW1BdZfLiHvOZKXUPb2dgMowwWHQgcYnrLMkXjWgO3e7J8OPZMh8DqE06dxgFAWFJLaZ+4er/4tguzhgdm0Ka/BsWxD99gpL+3ED8NQZ7Dkgf3p54II7xlTyb32sk1ZoXX5wDM10B3YAzbpy5hnvICSzMzRU3rfveUv4Dxvmj7GLdvxsOl52Bv/H8gx5WmX5oFA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(23010399003)(36860700016)(10067099003)(11063799006)(56012099006)(261022075727099003)(261021130227099003)(261026130827099003)(261026140227099003)(261021121427099003)(261021135927099003)(261026121527099003)(261021123027099003)(261026135527099003)(261022115727099003)(261022113327099003)(261022105027099003)(261021133027099003)(261102123227099003)(261028144727099003)(261009221227099003)(261009221727099003)(261009223327099003)(261009220027099003)(261009223027099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: NoKuE6SCW3dGqMupJnzSEvFBpJr9c98PoJ16P+4DkhU/ZYOBy7Wm1+/WVn2R6VDi3r7L8vLVUVT6SUgc8TLTxYDtJzezXuHtkNHD2wP846/vaOiqubfM24g/E93TtEvgrroksj79UzWWTTPXjb61Q5kEy9Y0UPVdF2zHzWS5BU4SakbOBO0+l6jyR/FZje+r4SEgbmjVYSECOo8AlEt8N1mmRT6U7xAeCaq5eNw3LkfogIn7E21pEuTX9Tk/SKLZ+0ISx990AfSekkH0218h680+AKEVtUgdVlayH/N9ctz1RUUhAtroe8RmiCW0iAdWwVJShCNpbz73v0YNpXRfnWGllqkhJXH04u+aZEVezeSdVHxO/3cWcGSSIacEZvkPbn/9dDMW4Lp9aBiID2MhsXGTPJFDvIZ8MbLSu+R4XXitbKEmZI7xpnNxZow/fEtC
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 07:40:29.2622
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20d68780-f69a-4cb0-cc59-08df447e0d80
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B371.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9356
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_233403_275084_B619FA23 
-X-CRM114-Status: GOOD (  23.42  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261116_234038_229588_46895751 
+X-CRM114-Status: GOOD (  12.73  )
+X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,137 +131,47 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add reset node to initialize the value of
-priority/condition_decode/condition_select/timer/counter nodes.
+PM_QID_PINCTRL_GET_FUNCTION_NAME returns the function name in a fixed
+16-byte field and does not guarantee NUL termination. A 16-character
+name fills the entire field.
+The driver copies this field into a 16-byte buffer and subsequently
+uses it as a C string. For a non-NUL-terminated name, string operations
+can read past the end of the buffer into the adjacent groups pointer.
 
-Reviewed-by: Jie Gan <jie.gan@oss.qualcomm.com>
-Signed-off-by: Songwei Chai <songwei.chai@oss.qualcomm.com>
+Reserve an extra byte for the NUL terminator and explicitly terminate
+the copied function name.
+
+Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
 ---
- .../ABI/testing/sysfs-bus-amba-devices-tgu    |  7 ++
- drivers/hwtracing/qcom/tgu.c                  | 85 +++++++++++++++++++
- 2 files changed, 92 insertions(+)
+ drivers/pinctrl/pinctrl-zynqmp.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-index 71187071cbc8..b3a2fb9cba6e 100644
---- a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-+++ b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-@@ -51,3 +51,10 @@ KernelVersion:	7.5
- Contact:	Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai <songwei.chai@oss.qualcomm.com>
- Description:
- 		(RW) Set/Get the counter value with specific step for TGU.
-+
-+What:		/sys/bus/amba/devices/<tgu-name>/reset_tgu
-+Date:		November 2026
-+KernelVersion:	7.5
-+Contact:	Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai <songwei.chai@oss.qualcomm.com>
-+Description:
-+		(Write) Write 1 to reset the dataset for TGU.
-diff --git a/drivers/hwtracing/qcom/tgu.c b/drivers/hwtracing/qcom/tgu.c
-index 5045c0f344d0..dc8572628f57 100644
---- a/drivers/hwtracing/qcom/tgu.c
-+++ b/drivers/hwtracing/qcom/tgu.c
-@@ -241,6 +241,18 @@ static ssize_t tgu_write_all_hw_regs(struct tgu_drvdata *drvdata)
- 	int i, j, k, index = 0;
+diff --git a/drivers/pinctrl/pinctrl-zynqmp.c b/drivers/pinctrl/pinctrl-zynqmp.c
+index aba129ead04c..c778133fadc2 100644
+--- a/drivers/pinctrl/pinctrl-zynqmp.c
++++ b/drivers/pinctrl/pinctrl-zynqmp.c
+@@ -29,7 +29,11 @@
  
- 	CS_UNLOCK(drvdata->base);
-+
-+	/*
-+	 * Quiesce the detection engine before mutating any comparison input.
-+	 * This function is also reached from reset_tgu_store() while the TGU is
-+	 * already running (TGU_CONTROL == 1); rewriting the priority/condition/
-+	 * timer/counter registers register-by-register on a live engine could
-+	 * feed a transient, half-updated match into CTI/interrupt consumers.
-+	 * Programming with CONTROL == 0 and only re-enabling at the end keeps the
-+	 * program-then-enable ordering for every caller.
-+	 */
-+	writel(0, drvdata->base + TGU_CONTROL);
-+
- 	for (i = 0; i < drvdata->num_step; i++) {
- 		for (j = 0; j < TGU_MAX_PRIORITY; j++) {
- 			for (k = 0; k < drvdata->num_prio_regs; k++) {
-@@ -460,8 +472,81 @@ static ssize_t tgu_enable_store(struct device *dev,
- }
- static DEVICE_ATTR(enable, 0644, tgu_enable_show, tgu_enable_store);
- 
+ #define ZYNQMP_PIN_PREFIX			"MIO"
+ #define PINCTRL_GET_FUNC_NAME_RESP_LEN		16
+-#define MAX_FUNC_NAME_LEN			16
 +/*
-+ * Element counts for drvdata's shadow tables, shared so the reset path
-+ * below can't drift from how each array is actually sized/indexed.
++ * Firmware returns the name in a fixed-size field and does not guarantee a
++ * NUL terminator. Keep one extra byte for the NUL terminator.
 + */
-+#define TGU_PRIORITY_COUNT(drvdata) \
-+	(TGU_MAX_PRIORITY * (drvdata)->num_step * (drvdata)->num_prio_regs)
-+#define TGU_CONDITION_DECODE_COUNT(drvdata) \
-+	((drvdata)->num_step * (drvdata)->num_condition_decode)
-+#define TGU_CONDITION_SELECT_COUNT(drvdata) \
-+	((drvdata)->num_step * (drvdata)->num_condition_select)
-+#define TGU_TIMER_COUNT(drvdata) \
-+	((drvdata)->num_step * (drvdata)->num_timer)
-+#define TGU_COUNTER_COUNT(drvdata) \
-+	((drvdata)->num_step * (drvdata)->num_counter)
-+
-+static ssize_t reset_tgu_store(struct device *dev,
-+			       struct device_attribute *attr, const char *buf,
-+			       size_t size)
-+{
-+	struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
-+	unsigned long value;
-+	int i, ret;
-+
-+	if (kstrtoul(buf, 0, &value) || value != 1)
-+		return -EINVAL;
-+
-+	/*
-+	 * Hold the mutex across the whole sequence so it cannot race with
-+	 * enable_tgu_store()/tgu_dataset_store(): the enabled check and the
-+	 * hardware access stay consistent. No PM reference is taken or dropped
-+	 * here - the shadow tables are plain memory, and the hardware is only
-+	 * touched when the device is already resumed via the enable reference.
-+	 */
-+	guard(mutex)(&drvdata->lock);
-+
-+	memset(drvdata->priority, 0,
-+	       TGU_PRIORITY_COUNT(drvdata) * sizeof(*drvdata->priority));
-+
-+	/*
-+	 * Every decode register is about to be overwritten with the neutral
-+	 * 'NOT' value below, so there is nothing for a prior memset to zero;
-+	 * calculate_array_location()'s step/reg indices for TGU_CONDITION_DECODE
-+	 * densely cover the whole 0..TGU_CONDITION_DECODE_COUNT(drvdata)-1 range
-+	 * with no gaps, so a flat loop over that range reaches every decode
-+	 * register.
-+	 */
-+	for (i = 0; i < TGU_CONDITION_DECODE_COUNT(drvdata); i++)
-+		drvdata->condition_decode[i] = TGU_CONDITION_DECODE_NOT;
-+
-+	memset(drvdata->condition_select, 0,
-+	       TGU_CONDITION_SELECT_COUNT(drvdata) *
-+		       sizeof(*drvdata->condition_select));
-+
-+	memset(drvdata->timer, 0,
-+	       TGU_TIMER_COUNT(drvdata) * sizeof(*drvdata->timer));
-+
-+	memset(drvdata->counter, 0,
-+	       TGU_COUNTER_COUNT(drvdata) * sizeof(*drvdata->counter));
-+
-+	/* If the TGU is running, apply the cleared configuration immediately. */
-+	if (drvdata->enabled) {
-+		ret = tgu_write_all_hw_regs(drvdata);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	dev_dbg(dev, "Qualcomm-TGU reset complete\n");
-+
-+	return size;
-+}
-+static DEVICE_ATTR_WO(reset_tgu);
-+
- static struct attribute *tgu_common_attrs[] = {
- 	&dev_attr_enable.attr,
-+	&dev_attr_reset_tgu.attr,
- 	NULL,
- };
++#define MAX_FUNC_NAME_LEN			(PINCTRL_GET_FUNC_NAME_RESP_LEN + 1)
+ #define MAX_GROUP_PIN				50
+ #define MAX_PIN_GROUPS				50
+ #define END_OF_FUNCTIONS			"END_OF_FUNCTIONS"
+@@ -650,6 +654,7 @@ static void zynqmp_pinctrl_get_function_name(u32 fid, char *name)
+ 	 */
+ 	zynqmp_pm_query_data(qdata, payload);
+ 	memcpy(name, payload, PINCTRL_GET_FUNC_NAME_RESP_LEN);
++	name[PINCTRL_GET_FUNC_NAME_RESP_LEN] = '\0';
+ }
  
+ static int zynqmp_pinctrl_get_num_functions(unsigned int *nfuncs)
 -- 
-2.34.1
+2.25.1
 
 
