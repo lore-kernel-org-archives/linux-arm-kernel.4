@@ -2,68 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89B7606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B657606A893
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:37:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DcY9Lab0;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=swNs1Ok3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GDzFJIIN;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=BXM+M8fc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CUBa3JrKm9epugz/h6AhQXjaE++SEn+EIH8O82h1Ucg=; b=DcY9Lab0bia7z2
-	uxJqFEo/PpzcW9RYjHjGM8DXCMhUDs+UJaLSQg9ejU6+WV2aJ7Nz0myf6JuoZkv7i7hlt7Wm+rRvH
-	DmSy1Qpw+swOXBCsrGzeUKGC4ZF9jkvyT3ri4sHTE9XIk71q53mUSdfoGHMFcFn6Ib0yxXMkIfvBG
-	E/Q6ukmYFo8Coz7M4Uy5OQwgP3GflQmtXfCQ/L3jW+HWnCs4TZur9Nu34ZGENPjh4cu277WRg3lhg
-	iYa6d1YjFFzus2kPeSHT7aOG08CoecF78yjjd6Ds+NbogokpyxpuYb8fPsk38HFbfIXHD1sIdospL
-	X0QZmpyZ5aRlTu7KoUPg==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=oS2IzMkOTOqwVbbaSiypFnCxcg+JUiRxAqauHYkYtVk=; b=GDzFJIINpzNW/A
+	VfVNmOJYoCLHdCLou0Hga0VLxefVKMGrhpdAjpdHPkk0CoxU+ACjMsjZI9vwQDhbpl/2GRiapR1u6
+	sBkr8lANvZ36syPk5i1vWvB5et3r067D9Ox3WujSUEBjBsIxn6oj6hzQNdCn/NEApg9jZVPfy0zLI
+	oVzPQOl2ySOw+okJcflBB0ajwEnR5EekTn1p8c5ZcDDX19omPAx0Mw93M+wrkdCdb2MX0hbXnY9s6
+	naiOZnmMHYXJx8QOjdcyNSZ17q9SBU5iCm0iJG084IB7QziN/tFsXBBnKd6BsVMV9c2sc/kZHirUn
+	kk5CDGzvuqAAbMOi+kRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGXh-00000005Hgv-27Hz;
-	Tue, 17 Nov 2026 10:36:01 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGXb-00000005Heb-2rCr
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 10:35:59 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 845C41476;
-	Tue, 17 Nov 2026 02:35:51 -0800 (PST)
-Received: from [10.211.55.3] (unknown [10.57.17.180])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E69C3F763;
-	Tue, 17 Nov 2026 02:35:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794911754; bh=sGpkum0bjez5dkPBVcc56aaH2V4M3Z/8iWCyxbdcqTc=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=swNs1Ok3HM52gv4LK+pUD5QC0FAfKmdNAXJPkgcOotFJ2MjQfYfidCUeXHthlXj9L
-	 faVlRdxjzI5TEMMx9DTxa7TGMEPRRyFK2b8E5qjm5J1xTzmqhWpF+cozMhgov7uN0F
-	 3h3lykE2a3pQ0gElfqlX9VKEhH+kSYZRFZnrPGDk=
-Message-ID: <ce03205e-6405-4269-a061-266ef6d67e1d@arm.com>
-Date: Tue, 17 Nov 2026 10:35:50 +0000
+	id 1xTGYm-00000005I0u-3CHD;
+	Tue, 17 Nov 2026 10:37:08 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTGYi-00000005HzP-2VZn;
+	Tue, 17 Nov 2026 10:37:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794911821;
+	bh=GyVg3xRAsxKtx70hQeC7sX7CbfKbBqKN62u5s+MslSE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BXM+M8fcUEGGoeCViqwr0zSdncbEkEpmhsaTgHxCS4SgKjc7DAnBhVImbYQEtHVhi
+	 owaszfU6TBE0BVoLJbBw4WC+1FYhp30sUeNCVa0znSIdsRM2M/X11Rit8wkKmhPXUF
+	 7TnHHckG7KmqnwxUiGXp5eWAk6lUW9jEBfYp5OHom1L0yJAgujsBHg+yo69zr8Xp7g
+	 HZUN+cXCwclet40iReSxZOPaCJCSQuyepO5mQ52YIzHcw+RbLj3fx8APOhb4QroNRj
+	 PHqdGr0SU2eS6jcYxhnSj4Kk7wQMzFxTbmMd4fzhpKx+Uc6kjDpixUHwIMpPMANHoK
+	 Yj0tN17wIlxpg==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E8B7117E00E8;
+	Tue, 17 Nov 2026 11:37:00 +0100 (CET)
+Message-ID: <004a959f-e213-44ee-bad4-58376431b83e@collabora.com>
+Date: Tue, 17 Nov 2026 11:37:00 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Thunderbird Daily
-Subject: Re: [PATCH v4 2/3] arm_mpam: resctrl: Only enable CDP on a resource
- that supports it
-To: Jinjie Ruan <ruanjinjie@huawei.com>, Gavin Shan <gshan@redhat.com>,
- james.morse@arm.com, reinette.chatre@intel.com, fenghuay@nvidia.com,
- zengheng4@huawei.com, tan.shaopeng@jp.fujitsu.com, jic23@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261111081316.3828283-1-ruanjinjie@huawei.com>
- <20261111081316.3828283-3-ruanjinjie@huawei.com>
- <a783b375-7c27-4c91-b40e-7e615d33bc5b@redhat.com>
- <b1fd5fa8-bf03-4575-bc05-540a288b609d@huawei.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/35] clk: mediatek: Migrate to common probe/remove
+ helpers and fix memory leaks
+To: Akari Tsuyukusa <akkun11.open@gmail.com>,
+ Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Yassine Oudjana <y.oudjana@protonmail.com>,
+ Richard Cochran <richardcochran@gmail.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Kees Cook <kees@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig_=28The_Capable_Hub=29?=
+ <u.kleine-koenig@baylibre.com>, Danilo Krummrich <dakr@kernel.org>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Takashi Sakamoto <o-takashi@sakamocchi.jp>, Haotian Zhang
+ <vulab@iscas.ac.cn>, Miles Chen <miles.chen@mediatek.com>,
+ Sam Shih <sam.shih@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
+ Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+ Laura Nao <laura.nao@collabora.com>,
+ =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>
+References: <20261013151734.3177690-1-akkun11.open@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Ben Horgan <ben.horgan@arm.com>
-In-Reply-To: <b1fd5fa8-bf03-4575-bc05-540a288b609d@huawei.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261013151734.3177690-1-akkun11.open@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_023555_836266_F304E195 
-X-CRM114-Status: GOOD (  24.06  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261117_023704_822739_D55B17B6 
+X-CRM114-Status: GOOD (  22.31  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,116 +96,168 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Gavin, Jinjie,
-
-On 17/11/2026 03:31, Jinjie Ruan wrote:
-> Hi Gavin,
-> 
-> 在 2026/11/13 7:42, Gavin Shan 写道:
->> On 11/11/26 6:13 PM, Jinjie Ruan wrote:
->>> resctrl_arch_set_cdp_enabled() enables CDP for any cache level that is
->>> requested, even one that has no MPAM cache controls. Mounting resctrl
->>> with -o cdpl2 when only L3 can allocate still turns CDP emulation on for
->>> the whole system, so every CLOSID takes two PARTIDs while resctrl keeps
->>> its CLOSID count at the number of PARTIDs. Control groups in the upper
->>> half then map to PARTIDs beyond mpam_partid_max, which index past the
->>> configuration and monitor arrays and program out of range PARTIDs into
->>> the MSCs. On QEMU with 5 PARTIDs the first monitor read after creating
->>> 2 control groups raises MSMONCFG_ID_RANGE for PARTID 5, and MPAM is
->>> disabled.
->>>
->>> Do not enable CDP when a resource cannot allocate or is not CDP capable,
->>> as x86 does, so the mount fails instead. Only the enable path is checked,
->>> since unmount disables CDP on both cache levels to restore the MBA
->>> control.
->>>
->>> A system where only MBA can allocate, or that only has monitors, now
->>> fails a mount with CDP as well: CDP hides the MBA control because
->>> mbw_max is a per-PARTID maximum, leaving nothing for CDP to apply to.
->>>
->>> Fixes: 6789fb99282c ("arm_mpam: resctrl: Add CDP emulation")
->>> Link: https://sashiko.dev/#/bug/linux-05c19551-0bba-4a06-
->>> aa2c-3c90fab5853d
->>> Suggested-by: Ben Horgan <ben.horgan@arm.com>
->>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
->>> Cc: <stable@vger.kernel.org> # 7.1+
->>> ---
->>>   drivers/resctrl/mpam_resctrl.c | 4 ++++
->>>   1 file changed, 4 insertions(+)
->>>
->>> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/
->>> mpam_resctrl.c
->>> index 573617ba09df..afa3c084c475 100644
->>> --- a/drivers/resctrl/mpam_resctrl.c
->>> +++ b/drivers/resctrl/mpam_resctrl.c
->>> @@ -222,6 +222,10 @@ int resctrl_arch_set_cdp_enabled(enum
->>> resctrl_res_level rid, bool enable)
->>>       if (enable && mpam_partid_max < 1)
->>>           return -EINVAL;
->>>   +    if (enable && (!
->>> mpam_resctrl_controls[rid].resctrl_res.alloc_capable ||
->>> +               !mpam_resctrl_controls[rid].resctrl_res.cdp_capable))
->>> +        return -EINVAL;
->>> +
->>
->> x86 only checks 'cdp_capable', so this check isn't exactly same as to
->> what's
->> done on x86, as claimed in the commit log?
-> 
-> Sorry, the commit message is somewhat misleading and need updated.
-> 
-> In my opinion, CDP is a feature related to resource allocation, and it
-> is always reasonable to check alloc_capable.
-
-Hmm, I know the patch came from my suggestion but I think the reason
-that x86 only checks cdp_capable is that alloc_capable is that the
-alloc_capable flag is also used to indicate that the resource is fully
-setup and can be used.
-
-In resctrl_arch_set_cdp_enabled() we manipulate alloc_capable for
-re-enabling the MBA resource and the added !alloc_capable check would
-mean that we'd never be able to do that manipulation. resctrl doesn't
-call resctrl_arch_set_cdp_enabled() for the MBA resource but to be more
-resilient the MPAM interface allows it.
-
-In the future, once we start adding more controls for resources we'll
-have to be careful to do the cdp enabling and hiding of features at the
-control level rather than the feature level.
-
-Thanks,
-
-Ben
-
-> 
-> Best regards,
-> Jinjie
-> 
->>
->> int resctrl_arch_set_cdp_enabled(enum resctrl_res_level l, bool enable)
->> {
->>         struct rdt_hw_resource *hw_res = &rdt_resources_all[l];
->>
->>         if (!hw_res->r_resctrl.cdp_capable)
->>                 return -EINVAL;
->>
->>         :
->> }
->>
->>
->>>       /*
->>>        * resctrl_arch_set_cdp_enabled() is only called with enable set to
->>>        * false on error and unmount.
->>
->> Thanks,
->> Gavin
+On 10/13/26 17:16, Akari Tsuyukusa wrote:
+> This series migrates most MediaTek clock drivers to the common
+> probe/remove helpers provided by the MTK clock framework.
 > 
 
+Thanks for this big series finishing the migration, that's really appreciated.
+
+I have applied everything I could, but had to leave out anything that is touching
+FHCTL/PLLFH because that code changed a bit in one of the previous series that got
+sent for MT8189 clocks.
+
+Anyway - I also had comments about that, so it's not a big deal... specifically,
+can we avoid those ifdefs please?
+
+I seriously don't like having ifdefs around.
+
+Cheers,
+Angelo
+
+> Key changes:
+> - Fix memory leaks on module removal caused by missing
+>    platform_set_drvdata() calls (patches 1-6).
+> - Add missing MODULE_DEVICE_TABLE() (patches 7, 8).
+> - Add missing support for cpumux, PLL, FHCTL, and child-device
+>    population to the common helpers (patches 12-15).
+> - Convert all compatible clock drivers to use struct mtk_clk_desc
+>    and mtk_clk_simple_probe/remove (patches 16-35).
+> 
+> The memory leak and MODULE_DEVICE_TABLE() fixes are split from the
+> migration patches to allow backporting to stable.
+> 
+> Drivers not converted:
+> - MT6765 apmixedsys: requires direct register init.
+> - MT6795 apmixedsys: uses mtk_clk_register_ref2usb_tx().
+> - MT7629 eth/sgmiisys: uses a hacked probe sequence (multi-instance
+>    sgmii gates).
+> - MT8173 apmixedsys: uses mtk_clk_register_ref2usb_tx() and custom
+>    divider registration.
+> - MT8188/MT8195 topckgen: call devm_clk_hw_register_mux() and register
+>    a notifier.
+> - MT8196 vlpckgen: requires direct register init.
+> - MT8365 apmixedsys: uses devm_clk_hw_register_gate().
+> 
+> Patches 1-6 are based on
+> "[PATCH v2 0/6] clk: mediatek: fix memory leak on module removal"
+> (In addition fixed a compilation error in mt8173-infracfg)
+> https://lore.kernel.org/linux-mediatek/20260707074839.240676-1-akkun11.open@gmail.com/
+> 
+> Patch 5 fixes the same issue mentioned below
+> "[PATCH] clk: mediatek: clk-mt8173-apmixedsys: Invoke platform_set_drvdata on probe"
+> https://lore.kernel.org/linux-mediatek/20261010160134.112136-1-l.scorcia@gmail.com/
+> 
+> Patch 12 is based on
+> "[PATCH 1/3] clk: mediatek: clk-mtk: Add cpumux support to common probe/remove helpers"
+> https://lore.kernel.org/lkml/20260304181024.738391-1-akkun11.open@gmail.com/
+> 
+> Changes in v2:
+> - Add two new fixes "Fix index in composite clock unwind path" and
+>    "Fix memory leak in mtk_clk_register_gate()".
+> - Add new refactor "return 0 instead of r in __mtk_clk_simple_probe()"
+> - Fix missing `.data = &apmixed_desc` in the MT8167 and MT8195
+>    apmixedsys drivers.
+> - Fix PLL registration and unregistration when
+>    CONFIG_COMMON_CLK_MEDIATEK_FHCTL is disabled.
+> - Fix child-device population logic.
+> - Clarify the rationale in the SoC conversion commit messages.
+> - Minor fixes to several commit messages.
+> - Rebased onto `24a19b953e2a ("Linux 7.3-rc7")`
+>    from `075b74841bd0 ("Linux 7.2-rc6")`
+> 
+> Link to v1:
+> https://lore.kernel.org/linux-mediatek/20260803141659.559129-1-akkun11.open@gmail.com/T/
+> 
+> Akari Tsuyukusa (35):
+>    clk: mediatek: mt2712: Fix memory leak on module removal
+>    clk: mediatek: mt6795: Fix memory leak on module removal
+>    clk: mediatek: mt7622: Fix memory leak on module removal
+>    clk: mediatek: mt8135: Fix memory leak on module removal
+>    clk: mediatek: mt8173: Fix memory leak on module removal
+>    clk: mediatek: mt8192: Fix memory leak on module removal
+>    clk: mediatek: mt6735: Add missing MODULE_DEVICE_TABLE()
+>    clk: mediatek: mt7988-apmixed: Add missing MODULE_DEVICE_TABLE()
+>    clk: mediatek: Fix index in composite clock unwind path
+>    clk: mediatek: Fix memory leak in mtk_clk_register_gate()
+>    clk: mediatek: return 0 instead of r in __mtk_clk_simple_probe()
+>    clk: mediatek: Add cpumux support to common probe/remove helpers
+>    clk: mediatek: Add PLL support to common probe/remove helpers
+>    clk: mediatek: Add child-device population to probe/remove helpers
+>    clk: mediatek: Add FHCTL support to common probe/remove helpers
+>    clk: mediatek: mt2701: Switch to common probe/remove helpers
+>    clk: mediatek: mt2712-apmixedsys: Switch to common probe/remove
+>      helpers
+>    clk: mediatek: mt6735-apmixedsys: Switch to common probe/remove
+>      helpers
+>    clk: mediatek: mt6779: Switch to common probe/remove helpers
+>    clk: mediatek: mt6795: Switch to common probe/remove helpers
+>    clk: mediatek: mt6797: Switch to common probe/remove helpers
+>    clk: mediatek: mt7622: Switch to common probe/remove helpers
+>    clk: mediatek: mt7981-apmixed: Switch to common probe/remove helpers
+>    clk: mediatek: mt7986-apmixed: Switch to common probe/remove helpers
+>    clk: mediatek: mt7988-apmixed: Switch to common probe/remove helpers
+>    clk: mediatek: mt8135-apmixedsys: Switch to common probe/remove
+>      helpers
+>    clk: mediatek: mt8167-apmixedsys: Switch to common probe/remove
+>      helpers
+>    clk: mediatek: mt8173-infracfg: Switch to common probe/remove helpers
+>    clk: mediatek: mt8183: Switch to common probe/remove helpers
+>    clk: mediatek: mt8186-apmixedsys: Switch to common probe/remove
+>      helpers
+>    clk: mediatek: mt8188-apmixedsys: Switch to common probe/remove
+>      helpers
+>    clk: mediatek: mt8192: Switch to common probe/remove helpers
+>    clk: mediatek: mt8195: Switch to common probe/remove helpers
+>    clk: mediatek: mt8196: Switch to common probe/remove helpers
+>    clk: mediatek: mt8516-apmixedsys: Switch to common probe/remove
+>      helpers
+> 
+>   drivers/clk/mediatek/Kconfig                 |  34 +--
+>   drivers/clk/mediatek/clk-gate.c              |   4 +-
+>   drivers/clk/mediatek/clk-mt2701-aud.c        |  35 +--
+>   drivers/clk/mediatek/clk-mt2701.c            | 233 +++++--------------
+>   drivers/clk/mediatek/clk-mt2712-apmixedsys.c |  48 +---
+>   drivers/clk/mediatek/clk-mt6735-apmixedsys.c |  51 +---
+>   drivers/clk/mediatek/clk-mt6735-imgsys.c     |   1 +
+>   drivers/clk/mediatek/clk-mt6735-mfgcfg.c     |   1 +
+>   drivers/clk/mediatek/clk-mt6779.c            | 124 ++--------
+>   drivers/clk/mediatek/clk-mt6795-apmixedsys.c |   2 +
+>   drivers/clk/mediatek/clk-mt6795-infracfg.c   |  70 +-----
+>   drivers/clk/mediatek/clk-mt6795-pericfg.c    |  71 +-----
+>   drivers/clk/mediatek/clk-mt6797.c            | 140 ++---------
+>   drivers/clk/mediatek/clk-mt7622-apmixedsys.c |  60 +----
+>   drivers/clk/mediatek/clk-mt7622-aud.c        |  35 +--
+>   drivers/clk/mediatek/clk-mt7622-infracfg.c   |  70 +-----
+>   drivers/clk/mediatek/clk-mt7981-apmixed.c    |  37 +--
+>   drivers/clk/mediatek/clk-mt7986-apmixed.c    |  37 +--
+>   drivers/clk/mediatek/clk-mt7988-apmixed.c    |  40 +---
+>   drivers/clk/mediatek/clk-mt8135-apmixedsys.c |  48 +---
+>   drivers/clk/mediatek/clk-mt8167-apmixedsys.c |  58 ++---
+>   drivers/clk/mediatek/clk-mt8173-apmixedsys.c |   2 +
+>   drivers/clk/mediatek/clk-mt8173-infracfg.c   |  98 ++------
+>   drivers/clk/mediatek/clk-mt8183-apmixedsys.c |  51 +---
+>   drivers/clk/mediatek/clk-mt8183-audio.c      |  26 +--
+>   drivers/clk/mediatek/clk-mt8186-apmixedsys.c |  59 +----
+>   drivers/clk/mediatek/clk-mt8188-apmixedsys.c |  60 +----
+>   drivers/clk/mediatek/clk-mt8192-apmixedsys.c |  67 ++----
+>   drivers/clk/mediatek/clk-mt8192-aud.c        |  26 +--
+>   drivers/clk/mediatek/clk-mt8195-apmixedsys.c |  75 ++----
+>   drivers/clk/mediatek/clk-mt8195-apusys_pll.c |  49 +---
+>   drivers/clk/mediatek/clk-mt8196-apmixedsys.c |  67 +-----
+>   drivers/clk/mediatek/clk-mt8196-mcu.c        |  96 +++-----
+>   drivers/clk/mediatek/clk-mt8196-mfg.c        |  84 ++-----
+>   drivers/clk/mediatek/clk-mt8516-apmixedsys.c |  42 +---
+>   drivers/clk/mediatek/clk-mtk.c               |  90 ++++++-
+>   drivers/clk/mediatek/clk-mtk.h               |  12 +
+>   37 files changed, 496 insertions(+), 1607 deletions(-)
+> 
 
