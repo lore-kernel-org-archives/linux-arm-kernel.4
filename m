@@ -2,71 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE019606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D52606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=283YzqiK;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=fBTBUT2U
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wp+TnZs4;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=eFRBQMJt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6uSvfC5jYn0SZCUdkQQtcniyMzEPTSPEt/ng2+mDaK4=; b=283YzqiKwxMNx1
-	0Hfr0nFLUyeHqzSJhnWGEf8pdm58rMKgNVfxR5+t2hd/bC31h/U4wlcnoc0+qadKFs5htMeVwetE1
-	UBJfrONOSgENsaeZEq7DMLZYfGCzs4k1Rsyuuupw+HvaN8nfMEqhSanxswK5MTZsHPA/fCUV4IubP
-	GZMs+YAUsQaornhls77nDqj16f3eXK2/GrMDx1b+hwRqMk0J7YOsIR5DEV58gaLugfbgm6mWmTeRL
-	cpjmunTxco0MJEpuXu5BRLcEfC9+wJWLsB3hjhTj+W8mUDkoB68Lj5xmwfQOpF2TQobWSFYYhPHQV
-	FSyDtHR1SBPT63VdS81g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=htWpbWvWjkzp2iYbY9MWMmeINInucOJuS3Dv1JVxhx8=; b=wp+TnZs4PRAgj7VloNzBlA2IHV
+	mCE/6qYcbvtlxREnvGAdIejWr17UaZbbQJLiVcQwHPBP6XI69pGjyx5jsbIdaGRQ/1a+2T+TcWZ2J
+	uCmCOpxYtzTUTHdmUt1/dIRI0y1Oy2AlBy4CuP7UOm1m7WFO4GkDA7dsSeeJtstLzretPIFjQelDm
+	qtuxQYj5RhdhZCE0LcSEWvg1MLCIkJ8fRrbNptSbaJSPDGSyJFNl0MqWl+vgJCcT5/eAD5rEH4RZq
+	6p6MpqAejGlObO+pym2Zp6lLymbZToFSo1ye/AKReTw17KejH1tEG7D3xJEx/UZ17DlQ315vQ1wvx
+	jShHGoLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJpp-000000063nJ-1f7F;
-	Tue, 17 Nov 2026 14:06:57 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xTJqz-0000000648b-3sEN;
+	Tue, 17 Nov 2026 14:08:09 +0000
+Received: from mail-lf1-x12a.google.com ([2a00:1450:4864:20::12a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJpm-000000063kI-1UC8;
-	Tue, 17 Nov 2026 14:06:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794924412;
-	bh=vVV4spwHYbAauEsxYC6THPXIxk5VSqw/wZZWsp1RODU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=fBTBUT2UiRc1Wfv+bZejMAlCy2ZeBLbuvsf9BWFa/aPGiC2UtcZHQTGLTB0ZKuvc/
-	 SHygH84hz1USDOBqriEO2osZPaJ7bOPKXD3E4xXlGPm6oXUMNoMoQGDATgQ4aceyG3
-	 FAqanQsEuobRmY0QjGkOZMz8hBbmB7xL3g5O1mYmfGqNl8ns2VmcthD2GUvjeQvPzZ
-	 qwKDscxU1uCiy644O/rHCWUWae7WMghIzrA0PzgXa/oBCw6zwBn/ou8NDc4Pukf/o2
-	 CpZQY9600AKwjhbN8EZC5XN+qgVH7VcOQcodCaRjUlOYcdyOJFnQ6sN/1W3SVkLww6
-	 O5eKPa+ZNsmhQ==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D5B5E17E0311;
-	Tue, 17 Nov 2026 15:06:51 +0100 (CET)
-Message-ID: <3882ec4d-9f99-4419-8914-19c3a2a3cc46@collabora.com>
-Date: Tue, 17 Nov 2026 15:06:51 +0100
+	id 1xTJqx-0000000647e-45Y6
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 14:08:09 +0000
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so9376e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 06:08:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794924485; cv=none;
+        d=google.com; s=arc-20260327;
+        b=TlcEU9lzp2jcACRMszlltrAdjeNtj0hJPvmL4LnKbxSs7wFtaNzD/dyO/r4gRrtRVm
+         6C2dqAYVi4K7Af2KH9ReuBrD9dztJkA2H1bDGw+8IS9PaHpxpRkWlWC0Jtp/7YBQuyH1
+         SsGN6rs9kFO3XXHLyy6xbvtWO3wTdw+gSkeXMUOcjSOdc3ze7eLlqi7DkAGUr4B69aY6
+         JtLrJ56R2fD4y2c1o8SmgZJIeGN7aiTusXFLM71haYhStBn3MIFDnHdRzD2jK7R+JWqB
+         H0T1aMqi4V23zauCkvMJLeMPCwHH5S0u8WLhdKdC2c1QOfMdB2Nj7ma/1E2TsDp3RKJH
+         h1QQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=htWpbWvWjkzp2iYbY9MWMmeINInucOJuS3Dv1JVxhx8=;
+        fh=a7+gs/j1jYZnwxTuDZkWBGnHUka5m2AF+s2SY18+GTY=;
+        b=gh8mJQF7MROkABZhH3rznXPp0RguquHq7UhWiFA4HidVmjDQNRBNAAvLPgqhuw6RVZ
+         l5H2ns954aPEIz6whn5synna1XohmDYZt+1VuzVHduwf10i5O3HR/iFgGhbO9ZCKMyQq
+         7nL46FfeQytz4d8JK7h2ORQtUndq1s0OA6PlbYLEa1ZiUGs/fXNWliux5hXLF9ImnpBM
+         QrZRJLhkGjlwLjxief90BjUaHZZNukesUXRB3Gq6IRXSCQqdWTqD15Gh3C8Q8lRZJo+I
+         Zz13886C/ryRoopw5LIzr7tS/UvIeUoRLmA4/FznRVxac1jIDoQOVniMImlNDpv7SnNW
+         DqoA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794924485; x=1795529285; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=htWpbWvWjkzp2iYbY9MWMmeINInucOJuS3Dv1JVxhx8=;
+        b=eFRBQMJtDLBVPWCJvDThF26ggegMikDJ/ZiBz85+0tdvUz498dEFUQe7C9OkyDPZvv
+         DZtnaOWoYzUw3dR45JRd+Two0SOSwIv4buFapmKxO7l4ANnFpCnzZLMCpLRPD6bwS1Rf
+         HKCnF7QRQ0ZmXpCcyj8M6xLrgCH7P5WvqFQO2caL5SuOVFFxLQPOxmIfO9m809r5Khvl
+         5TLeIeQ/Iye1qU71gHC3g+ARoQ4ikGc5VMJ1RVZm88UFLgMjT9c8wY8lhNZU95mv0oBc
+         u5dsgVAtzHu9k7MiS6ZKdCVs+JfeKWrRJTML1YmYGQKZbIQnt1f4Yo87K6Sxbu82KMAl
+         uP7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794924485; x=1795529285;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=htWpbWvWjkzp2iYbY9MWMmeINInucOJuS3Dv1JVxhx8=;
+        b=Q6d2LN1pXLWmzrsy+S6W4lEhkM5y+TD5Wz6Z0DkRP9dSZubovPbiBDxRb/mg/3uocm
+         GjUtKcJDSbYz2TUGu117zzAkuofFhfNxq611XJM95f741nbeOojcjI4zKmhBXLTSZ/zA
+         hb785fCfVUwrSYNO0oShpUw/yRhqO4kVXet9h00uJFHcoBxkTEBYbtQBlKtizPp7p6wN
+         BK7P/mUFYVZelN4lX/y5cVtPYdbvrPwiV5V1snF7XhjHjuyobaou2hHOAO/rNap0e6hH
+         5Cgcrlm9te0hEKPzaZOxAD3GgkITz8CSzI3dHJ4zWJflJ+cjQ5QOkm/V94qbz9vqfDID
+         9TRg==
+X-Forwarded-Encrypted: i=1; AL+hErHljNPLoWyZuDuviyq1HVs3Ui35laHL8qn1i+F1li6xvxj3y+Qg3sS4xfC6jef0AeP6jd5gA2swDitDGHxIWy+F@lists.infradead.org
+X-Gm-Message-State: APuU4Z9VT4wMX5fF3T5yJTvyeBbpO2zKGEVO9I1M20FGgJIQJK8mB7Ww
+	jrOPA+Y0sVovvSiwkJAhRj7dbFKEcp/ToD7Gkn+8y1Zl0ZUYWd6XLq2Se5D8lh5KuPCMulENSqo
+	1yAge3iCRSRy+qWSKsUyKFEp+re/H9Fr7o/AVZ5n5
+X-Gm-Gg: AYBFou3jIpg8bDjCT+9WG7G1ESptFvqmpFT7pcUltdo6RIUcNhf5ck8CB7gA8D0mDvs
+	KYl1VaavxUhxFZmb5ak3+xYWzjkXZ8MQ3OXc+cOHmQHPGKLDpZwki4yjq6RsFB5kvBUurjfc9AI
+	W5nsman2/Re9r8Bw2J3pzUUjcTI+P/HEHqdpx7yYagslk5Eyn719OtnXD16VbS86Kk+MP/GdD4M
+	QqRdyIN26zR8ZdORK2+HoaRNU+cHQRlmJ0dlOD7dh1RY5vz9JVovcHxqixRuTSlXdItTM0UNAXZ
+	V4lVwyKuUtssalDZA2RP9JjJTjEUNJj8Es7qVkPKuAm9QJ8uKk+I34kOHDZIPY3ScSuLsp3JExb
+	fndTzOyg/N1C9UzI3rrHGJIjDW7oiQtdq6iMiMs0OcIAFNBpX3Re+n3k8i+lTlZH6pkdNfXAyA6
+	Y++WNmgdyl6e+rH6PESfyxJNA=
+X-Received: by 2002:ac2:4e07:0:b0:5bf:f84f:1d74 with SMTP id
+ 2adb3069b0e04-5c1a2185fadmr137629e87.13.1794924484857; Tue, 17 Nov 2026
+ 06:08:04 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: Remove undocumented, unapproved
- aliases
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20261117130556.234785-2-krzysztof.kozlowski@oss.qualcomm.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20261117130556.234785-2-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20261116164358.142785-1-steven.price@arm.com> <20261116164358.142785-3-steven.price@arm.com>
+In-Reply-To: <20261116164358.142785-3-steven.price@arm.com>
+From: Fuad Tabba <tabba@google.com>
+Date: Tue, 17 Nov 2026 14:07:28 +0000
+X-Gm-Features: AclHuK_JC9RetKL5Q3HHKVX6R6ajyHm2xDLO6StGpKQMwUtLiIUPvzFbgoEna3U
+Message-ID: <CA+EHjTwfp8p7uwP2LXEqSmTwL6ZHuDCYbvMie_Wr_30xJwfO6A@mail.gmail.com>
+Subject: Re: [PATCH v3 02/11] KVM: arm64: CCA: Introduce Realms
+To: Steven Price <steven.price@arm.com>
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>, 
+	Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei <alexandru.elisei@arm.com>, 
+	Christoffer Dall <christoffer.dall@arm.com>, linux-coco@lists.linux.dev, 
+	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>, Gavin Shan <gshan@redhat.com>, 
+	Shanker Donthineni <sdonthineni@nvidia.com>, Alper Gun <alpergun@google.com>, 
+	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>, 
+	Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kohei Enju <enju.kohei@fujitsu.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_060654_576361_0315BC5B 
-X-CRM114-Status: GOOD (  22.23  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_060808_062819_43F65D95 
+X-CRM114-Status: GOOD (  17.89  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,312 +127,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/17/26 14:05, Krzysztof Kozlowski wrote:
-> The ovl, aal, color, dsi, gce, rdma, split and other aliases were never
-> approved by Devicetree maintainers, because they were never documented
-> as actual ABI.  Drop them, because no new custom aliases are allowed for
-> years now.
-> 
-> This might break users of this undocumented ABI, so these should be
-> updated to use only documented and approved ABI.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+On Mon, 16 Nov 2026 16:43:48 +0000, Steven Price <steven.price@arm.com> wrote:
+[...]
+> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+[...]
+> @@ -1571,31 +1576,39 @@ struct kvm *kvm_arch_alloc_vm(void);
+>
+>  #define __KVM_HAVE_ARCH_FLUSH_REMOTE_TLBS_RANGE
+>
+> -#ifdef __KVM_NVHE_HYPERVISOR__
+> +#define kvm_vm_is_protected(kvm)        ((kvm)->arch.vm_flavor >= __VM_PROTECTED)
+>
+> -#define kvm_vm_is_protected(kvm)                        \
+> -        (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor == VM_PROTECTED_PKVM))
+> +#ifdef __KVM_NVHE_HYPERVISOR__
+>  /*
+>   * Accessing vcpu->kvm from nVHE hyp stub is tricky, as we need to convert the
+>   * pointer to the hyp VA. With pKVM, the nVHE code runs with the hyp_vcpu,
+> - * which is populated correctly and is gated on is_protected_kvm_enabled().
+> + * which is populated correctly. Always vcpu_is_protected_pkvm(), which is
+> + * gated on is_protected_kvm_enabled().
+>   */
+> -#define vcpu_is_protected(vcpu)                                                \
+> +#define vcpu_is_protected(vcpu)                BUILD_BUG_ON(1)
+> +#else
+> +#define vcpu_is_protected(vcpu)                kvm_vm_is_protected((vcpu)->kvm)
+> +#endif
+> +
+> +#define kvm_vm_is_protected_pkvm(kvm)                                        \
+> +        (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor == VM_PROTECTED_PKVM))
+> +
+> +/*
+> + * Rely on is_protected_kvm_enabled() check in kvm_vm_is_protected_pkvm() to
+> + * make sure the vcpu->kvm is always valid VA in the context
+> + */
+> +#define vcpu_is_protected_pkvm(vcpu)                                        \
+>          ({                                                                \
+>                  struct kvm *__kvm = READ_ONCE((vcpu)->kvm);                \
+>                                                                          \
+> -                (__kvm && kvm_vm_is_protected(__kvm));                        \
+> +                (__kvm && kvm_vm_is_protected_pkvm(__kvm));                \
+>          })
+>
+> -#else
+> -
+> -#define kvm_vm_is_protected(kvm)        ((kvm)->arch.vm_flavor >= __VM_PROTECTED)
+> -#define vcpu_is_protected(vcpu)                kvm_vm_is_protected((vcpu)->kvm)
 
-That'll just break everything.
+This brings back the _pkvm variants that Marc asked to drop in the
+plumbing series [1]. In the nVHE hyp code, kvm_vm_is_protected() and
+vcpu_is_protected() already mean pKVM-protected, so I think the hyp
+side can stay as it is.
 
-I do have a mediatek-drm restructuring series that is partially resolving this
-situation, at least for some SoCs it's getting 0 and 1 hw instance id dynamically
-recognized, but with some caveats that could be unacceptable (as in, if 0 is
-disabled and 1 is enabled, 1 becomes 0, so it's not actually resolving anything
-for real, it's just making it tick right when stars in the sky align in the
-right way, which for some SoCs is reliably possible without side effects).
+At EL1, the pKVM-only checks that a Realm vCPU also reaches are in
+kvm_arm_vcpu_power_off() and kvm_psci_vcpu_on(). Could they check
+vm_flavor == VM_PROTECTED_PKVM directly?
 
-In any case, all of the ones that have only instance 0 (and all of the instance
-0s) can be removed even right now already (still needs some testing to make sure
-that there's no regression), but everything else can't, at least not until the
-whole restructuring thing is merged as that'd break things.
+> +#define kvm_vm_is_realm(kvm)                ((kvm)->arch.vm_flavor == VM_REALM)
+> +#define vcpu_is_rec(vcpu)                kvm_vm_is_realm((vcpu)->kvm)
 
-Worst part is we have two new SoCs (MT8196, MT8189) ready to be upstreamed here,
-which took almost a year of development... and it also does rely on the aliases.
-I was in the process of slowly cleaning up those (as I said, there's already a
-restructuring that makes things a little better in this regard), but at this point
-that'll need to be done with the highest possible priority.
+vcpu_is_rec() isn't used anywhere in this series. Could it be dropped?
 
-Let me see what can I do to make the right thing to happen.
+[...]
+> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+[...]
+> @@ -906,7 +907,8 @@ static bool kvm_arm_vcpu_suspended(struct kvm_vcpu *vcpu)
+>  /* Only the guest's CPU_ON may start a vCPU EL2 holds powered off. */
+>  bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
+>  {
+> -        return READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
+> +        return vcpu_is_protected_pkvm(vcpu) &&
+> +                READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
 
-Anyway - thanks for pointing this.
+Only a pVM's vCPU can be in KVM_MP_STATE_UNINITIALIZED, so is this needed?
 
 Cheers,
-Angelo
+/fuad
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt6795.dtsi      | 17 ----------
->   arch/arm64/boot/dts/mediatek/mt8173.dtsi      | 16 ---------
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  5 ---
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  7 ----
->   .../boot/dts/mediatek/mt8188-geralt.dtsi      |  1 -
->   arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 33 -------------------
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  8 -----
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 24 --------------
->   arch/arm64/boot/dts/mediatek/mt8365.dtsi      | 13 --------
->   .../dts/mediatek/mt8390-genio-common.dtsi     |  1 -
->   .../dts/mediatek/mt8390-tungsten-smarc.dtsi   |  1 -
->   11 files changed, 126 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> index 6dd706b27830..971fb19e95df 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> @@ -21,23 +21,6 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> -	aliases {
-> -		ovl0 = &ovl0;
-> -		ovl1 = &ovl1;
-> -		rdma0 = &rdma0;
-> -		rdma1 = &rdma1;
-> -		rdma2 = &rdma2;
-> -		wdma0 = &wdma0;
-> -		wdma1 = &wdma1;
-> -		color0 = &color0;
-> -		color1 = &color1;
-> -		split0 = &split0;
-> -		split1 = &split1;
-> -		dpi0 = &dpi0;
-> -		dsi0 = &dsi0;
-> -		dsi1 = &dsi1;
-> -	};
-> -
->   	psci {
->   		compatible = "arm,psci-0.2";
->   		method = "smc";
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> index 6ec50125cea0..868b0fb84449 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> @@ -22,22 +22,6 @@ / {
->   	#size-cells = <2>;
->   
->   	aliases {
-> -		ovl0 = &ovl0;
-> -		ovl1 = &ovl1;
-> -		rdma0 = &rdma0;
-> -		rdma1 = &rdma1;
-> -		rdma2 = &rdma2;
-> -		wdma0 = &wdma0;
-> -		wdma1 = &wdma1;
-> -		color0 = &color0;
-> -		color1 = &color1;
-> -		split0 = &split0;
-> -		split1 = &split1;
-> -		dpi0 = &dpi0;
-> -		dsi0 = &dsi0;
-> -		dsi1 = &dsi1;
-> -		mdp-rdma0 = &mdp_rdma0;
-> -		mdp-rdma1 = &mdp_rdma1;
->   		mdp-rsz0 = &mdp_rsz0;
->   		mdp-rsz1 = &mdp_rsz1;
->   		mdp-rsz2 = &mdp_rsz2;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 7414c10ee664..2c3836555e55 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -35,11 +35,6 @@ aliases {
->   		i2c9 = &i2c9;
->   		i2c10 = &i2c10;
->   		i2c11 = &i2c11;
-> -		ovl0 = &ovl0;
-> -		ovl-2l0 = &ovl_2l0;
-> -		ovl-2l1 = &ovl_2l1;
-> -		rdma0 = &rdma0;
-> -		rdma1 = &rdma1;
->   	};
->   
->   	cluster0_opp: opp-table-cluster0 {
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index 621408439ffa..2f82eb532f30 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -22,13 +22,6 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> -	aliases {
-> -		ovl0 = &ovl0;
-> -		ovl-2l0 = &ovl_2l0;
-> -		rdma0 = &rdma0;
-> -		rdma1 = &rdma1;
-> -	};
-> -
->   	fhctl: fhctl@1000ce00 {
->   		compatible = "mediatek,mt8186-fhctl";
->   		clocks = <&apmixedsys CLK_APMIXED_TVDPLL>;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> index 801eee735afe..883141d8a6d5 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> @@ -9,7 +9,6 @@
->   
->   / {
->   	aliases {
-> -		dsi0 = &disp_dsi0;
->   		i2c0 = &i2c0;
->   		i2c1 = &i2c1;
->   		i2c2 = &i2c2;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> index 14a320f0c70c..f14b23dd57aa 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> @@ -23,39 +23,6 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> -	aliases {
-> -		dp-intf0 = &dp_intf0;
-> -		dp-intf1 = &dp_intf1;
-> -		dpi1 = &dpi1;
-> -		dsc0 = &dsc0;
-> -		ethdr0 = &ethdr0;
-> -		gce0 = &gce0;
-> -		gce1 = &gce1;
-> -		merge0 = &merge0;
-> -		merge1 = &merge1;
-> -		merge2 = &merge2;
-> -		merge3 = &merge3;
-> -		merge4 = &merge4;
-> -		merge5 = &merge5;
-> -		mutex0 = &mutex0;
-> -		mutex1 = &mutex1;
-> -		padding0 = &padding0;
-> -		padding1 = &padding1;
-> -		padding2 = &padding2;
-> -		padding3 = &padding3;
-> -		padding4 = &padding4;
-> -		padding5 = &padding5;
-> -		padding6 = &padding6;
-> -		padding7 = &padding7;
-> -		vdo1-rdma0 = &vdo1_rdma0;
-> -		vdo1-rdma1 = &vdo1_rdma1;
-> -		vdo1-rdma2 = &vdo1_rdma2;
-> -		vdo1-rdma3 = &vdo1_rdma3;
-> -		vdo1-rdma4 = &vdo1_rdma4;
-> -		vdo1-rdma5 = &vdo1_rdma5;
-> -		vdo1-rdma6 = &vdo1_rdma6;
-> -		vdo1-rdma7 = &vdo1_rdma7;
-> -	};
->   
->   	cpus {
->   		#address-cells = <1>;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 898953acdb61..bf5893e3002b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -23,14 +23,6 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> -	aliases {
-> -		ovl0 = &ovl0;
-> -		ovl-2l0 = &ovl_2l0;
-> -		ovl-2l2 = &ovl_2l2;
-> -		rdma0 = &rdma0;
-> -		rdma4 = &rdma4;
-> -	};
-> -
->   	clk13m: fixed-factor-clock-13m {
->   		compatible = "fixed-factor-clock";
->   		#clock-cells = <0>;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 9aaf8b6edcb5..389fb9d7ea89 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -23,30 +23,6 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> -	aliases {
-> -		dp-intf0 = &dp_intf0;
-> -		dp-intf1 = &dp_intf1;
-> -		dpi1 = &dpi1;
-> -		gce0 = &gce0;
-> -		gce1 = &gce1;
-> -		hdmi0 = &hdmi;
-> -		ethdr0 = &ethdr0;
-> -		mutex0 = &mutex;
-> -		mutex1 = &mutex1;
-> -		merge1 = &merge1;
-> -		merge2 = &merge2;
-> -		merge3 = &merge3;
-> -		merge4 = &merge4;
-> -		merge5 = &merge5;
-> -		vdo1-rdma0 = &vdo1_rdma0;
-> -		vdo1-rdma1 = &vdo1_rdma1;
-> -		vdo1-rdma2 = &vdo1_rdma2;
-> -		vdo1-rdma3 = &vdo1_rdma3;
-> -		vdo1-rdma4 = &vdo1_rdma4;
-> -		vdo1-rdma5 = &vdo1_rdma5;
-> -		vdo1-rdma6 = &vdo1_rdma6;
-> -		vdo1-rdma7 = &vdo1_rdma7;
-> -	};
->   
->   	cpus {
->   		#address-cells = <1>;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> index 2e782558fb77..4b05f6a864d4 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> @@ -20,19 +20,6 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> -	aliases {
-> -		aal0 = &aal0;
-> -		ccorr0 = &ccorr0;
-> -		color0 = &color0;
-> -		dither0 = &dither0;
-> -		dpi0 = &dpi0;
-> -		dsi0 = &dsi0;
-> -		gamma0 = &gamma0;
-> -		ovl0 = &ovl0;
-> -		rdma0 = &rdma0;
-> -		rdma1 = &rdma1;
-> -	};
-> -
->   	cpus {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-> index 669eaec662f3..a938539c92b8 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-> @@ -21,7 +21,6 @@
->   
->   / {
->   	aliases {
-> -		dsi0 = &disp_dsi0;
->   		ethernet0 = &eth;
->   		i2c0 = &i2c0;
->   		i2c1 = &i2c1;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dtsi
-> index f2ad9265be31..d70bed80274b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dtsi
-> @@ -16,7 +16,6 @@
->   
->   / {
->   	aliases {
-> -		dsi0 = &disp_dsi0;
->   		ethernet0 = &eth;
->   		i2c0 = &i2c0;
->   		i2c1 = &i2c1;
-
+[1] https://lore.kernel.org/all/86pkxs2npx.wl-maz@kernel.org/
 
