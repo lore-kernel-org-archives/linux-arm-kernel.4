@@ -2,90 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DECF606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 19:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D761B606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 19:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IaJPNELl;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=kSXbK6/f
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mTKHeDSI;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Qmm0tUOQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mS6U6LNFb4xUzBlWKPMaUzCqy2fRWteDoRLNvJCa/aE=; b=IaJPNELln7DQuz
-	p3yGpwarxz4p/pRUh4P98ynYdqZbJQetkXm8PAH0sh0I7OYdTUpwWckgkqmAyd8ENtz2h2nkbmBy+
-	VlTubgfMGPp6p+6wHFAVmV5GXcwoVmzz+8N8k9UEzs71kVIaiRN9+mYmdz/5M7EgzbNiZyMt66KOj
-	6SEdi8NgiT5Lyzf7QEZw/VDzE8UwTwr0jhDdeURE0D+/L9O4U3G/FlESpiNPkrNmTF12wyM6/N6u5
-	vyf1JjwPB3ImTV/5FCCNMZRdkPDpKihusG/zajDGTAHVUrRJXT2Tu1QV/zxK4cnTuBbG1bWnUMvYq
-	ipTJ42Wm9PyC2uUdLtwg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Ps3dmenyy5Kz+Ld8FFyPnRbKN1BblcpmGxOsdgzLlkg=; b=mTKHeDSI6MlzQTPq9NJYI3PDrm
+	QMe6d450Alh9DlGWgE3O84gAxCMAFGbJr/mHngrac7elIKdSAYAUOlgPKC3J2FfW6UunpdGHdez31
+	9m4dqLAUfwHj2aOI2fshdpSiQtWDZtfyk3a9Qas8rMxZtNm1BX9/G1Ye5P1SbGBaWRR62mgaECcKv
+	HQQU28v7QLZ1Vv4vJAWt5qhcFPqyMW6w3Jdc9a+g+NOuSmgvk/BQfr/YZ2RbbgydNdBnsHGKjVgeV
+	8qvw2d/+g0pCsWrVfq8vwXllIF+xoXQ7Pja47c9trvIXK3cILeE81Bg0qDYRAU/HnZkM6qGNqUHfH
+	l/TV8ZJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTPIo-00000006y51-04Ie;
-	Tue, 17 Nov 2026 19:57:14 +0000
-Received: from linux.microsoft.com ([13.77.154.182])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTPIl-00000006y4d-45Z1
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 19:57:13 +0000
-Received: from [192.168.0.88] (192-184-212-33.fiber.dynamic.sonic.net [192.184.212.33])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 18F6C20B7169;
-	Tue, 17 Nov 2026 11:57:09 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 18F6C20B7169
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1794945429;
-	bh=mS6U6LNFb4xUzBlWKPMaUzCqy2fRWteDoRLNvJCa/aE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kSXbK6/fN2QDV23Qjqbs8/OUmmbD3O4z81UUHQrMLbQY+AdMTueM0/0y9dfc2WXnS
-	 h5jlSN0sD6tl/ZiG4Kxqf8TVubjAuyodGw2O5Th2GH+ehC6i1XZF2mJ7+gDp13a7A0
-	 DWVDFNiwpLGYD6N4SZP+LZ/yqlx+3JZx4TJ8QjQU=
-Message-ID: <d7d4ba44-5c7f-9526-37dd-76744c277069@linux.microsoft.com>
-Date: Tue, 17 Nov 2026 11:57:08 -0800
+	id 1xTPJV-00000006yC5-3W76;
+	Tue, 17 Nov 2026 19:57:57 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTPJV-00000006yBt-1clQ;
+	Tue, 17 Nov 2026 19:57:57 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2668940141;
+	Tue, 17 Nov 2026 19:57:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11FFC1F000C5;
+	Tue, 17 Nov 2026 19:57:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794945477;
+	bh=Ps3dmenyy5Kz+Ld8FFyPnRbKN1BblcpmGxOsdgzLlkg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Qmm0tUOQix9orHJ+M60SsL7S5ClUt1Y20NqzT0jXys6ZNK0ItwdDqfKTGEkCBdNUK
+	 haEgqrt9ZTqGNc2OfXrezk4FKLR8uXM99OiduuV53V95i8z6OjPnxN7rBPTUx41faS
+	 VshZaGnMf4o6wrDlADqtp9GeqqeUkNHd0GIPP10uUyQgiBoBfK0avQ29Uz7XiFVplU
+	 8eF9t6m4O9HFD0FgJgZpKiJfb1jJomLMZcPjvdzu1eUzSV6p84AdB5AGKWhRKTMriG
+	 RTlU/NCaNqi9b6OMb+YRWBQ0bP7v7Lq7EUCyvUUaE7EKGuTY79QKtsAgDi6LuQQERs
+	 jvzXEVvAK1QKQ==
+From: netdev-bot+sinfo@kernel.org
+To: Sandeep Haemoon <sandeeph@loljews.com>
+Cc: netdev@vger.kernel.org, Felix Fietkau <nbd@nbd.name>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Russell King <linux@armlinux.org.uk>, Daniel Golle <daniel@makrotopia.org>,
+ Mason Chang <mason-cw.chang@mediatek.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v7 0/3] net: ethernet: mtk_eth_soc: 9K jumbo
+ frame support
+Date: Tue, 17 Nov 2026 19:57:55 +0000
+Message-ID: <179494547560.3291.4586654587079488988@kernel.org>
+In-Reply-To: <patch-7d2c457e68de6b53b7348d1bdbeadcec@loljews.com>
+References: <patch-7d2c457e68de6b53b7348d1bdbeadcec@loljews.com>
+Auto-Submitted: auto-generated
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v6 4/6] Drivers: hv: Mark shared memory as decrypted for
- CCA Realms
-Content-Language: en-US
-To: Kameron Carr <kameroncarr@linux.microsoft.com>
-Cc: Michael Kelley <mhklinux@outlook.com>,
- "decui@microsoft.com" <decui@microsoft.com>,
- "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
- "wei.liu@kernel.org" <wei.liu@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "mark.rutland@arm.com" <mark.rutland@arm.com>,
- "sudeep.holla@kernel.org" <sudeep.holla@kernel.org>,
- "thuth@redhat.com" <thuth@redhat.com>, "will@kernel.org" <will@kernel.org>
-References: <20261031001412.4150488-1-kameroncarr@linux.microsoft.com>
- <20261031001412.4150488-5-kameroncarr@linux.microsoft.com>
- <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
- <c6b7f583-878d-1f1e-60cc-e602e277d075@linux.microsoft.com>
- <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
- <f74db23c-ee1d-e0b1-c463-55dad00f9c61@linux.microsoft.com>
- <7ebf7187-bf42-fc11-e89b-b1aba96539d2@linux.microsoft.com>
- <5fddb57c-8805-4fbd-9e27-1c8654f29436@linux.microsoft.com>
-From: Mukesh R <mrathor@linux.microsoft.com>
-In-Reply-To: <5fddb57c-8805-4fbd-9e27-1c8654f29436@linux.microsoft.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_115712_053934_ED1EEBC3 
-X-CRM114-Status: GOOD (  23.56  )
-X-Spam-Score: -4.5 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,144 +77,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/26 11:53, Kameron Carr wrote:
-> On 11/13/2026 6:59 PM, Mukesh R wrote:
->> On 11/12/26 16:46, Mukesh R wrote:
->>> On 11/12/26 09:49, Kameron Carr wrote:
->>>> On 11/11/2026 6:43 PM, Mukesh R wrote:
->>>>> On 11/11/26 10:01, Michael Kelley wrote:
->>>>>> From: Kameron Carr <kameroncarr@linux.microsoft.com> Sent: Friday, October 30, 2026 5:14 PM
->>>>>>>
->>>>>>> In hv_common_cpu_init(), the per-CPU hypercall input/output pages need
->>>>>>> to be marked as decrypted (shared) for confidential VM isolation types.
->>>>>>> This is already done for SNP and TDX isolation; extend the same handling
->>>>>>> to Arm CCA Realm guests so that the host hypervisor can access the
->>>>>>> shared hypercall buffers.
->>>>>>>
->>>>>>> is_realm_world() is declared in include/linux/arm-rsi-cmds.h which only
->>>>>>> builds on arm64 (it includes <asm/memory.h>), so using it directly in
->>>>>>> the arch-neutral drivers/hv/hv_common.c would break the x86 build.
->>>>>>> Introduce a Hyper-V-specific helper following the established
->>>>>>> hv_isolation_type_snp() / hv_isolation_type_tdx() pattern.
->>>>>>>
->>>>>>> On architectures other than arm64 the weak default keeps the existing
->>>>>>> behaviour.
->>>>>>>
->>>>>>> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
->>>>>>> Signed-off-by: Kameron Carr <kameroncarr@linux.microsoft.com>
->>>>>>> ---
->>>>>>>     arch/arm64/hyperv/mshyperv.c   |  5 +++++
->>>>>>>     drivers/hv/hv_common.c         | 17 +++++++++++++----
->>>>>>>     include/asm-generic/mshyperv.h |  1 +
->>>>>>>     3 files changed, 19 insertions(+), 4 deletions(-)
->>>>>>>
->>>>>>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
->>>>>>> index 46ab2da..da6c3aa0 100644
->>>>>>> --- a/arch/arm64/hyperv/mshyperv.c
->>>>>>> +++ b/arch/arm64/hyperv/mshyperv.c
->>>>>>> @@ -182,3 +182,8 @@ bool hv_is_hyperv_initialized(void)
->>>>>>>         return hyperv_initialized;
->>>>>>>     }
->>>>>>>     EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
->>>>>>> +
->>>>>>> +bool hv_isolation_type_cca(void)
->>>>>>> +{
->>>>>>> +    return is_realm_world();
->>>>>>> +}
->>>>>>> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
->>>>>>> index 31256cb..a60c92c 100644
->>>>>>> --- a/drivers/hv/hv_common.c
->>>>>>> +++ b/drivers/hv/hv_common.c
->>>>>>> @@ -476,6 +476,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>>>>         u64 msr_vp_index;
->>>>>>>         gfp_t flags;
->>>>>>>         const int pgcount = hv_output_page_exists() ? 2 : 1;
->>>>>>> +    const size_t alloc_size = ALIGN((size_t)pgcount * HV_HYP_PAGE_SIZE, PAGE_SIZE);
->>>>>>>         void *mem;
->>>>>>>         int ret = 0;
->>>>>>>
->>>>>>> @@ -489,7 +490,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>>>>          * online and then taken offline
->>>>>>>          */
->>>>>>>         if (!*inputarg) {
->>>>>>> -        mem = kmalloc_array(pgcount, HV_HYP_PAGE_SIZE, flags);
->>>>>>> +        mem = kmalloc(alloc_size, flags);
->>>>>>>             if (!mem)
->>>>>>>                 return -ENOMEM;
->>>>>>>
->>>>>>> @@ -499,14 +500,16 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>>>>             }
->>>>>>>
->>>>>>>             if (!ms_hyperv.paravisor_present &&
->>>>>>> -            (hv_isolation_type_snp() || hv_isolation_type_tdx())) {
->>>>>>> -            ret = set_memory_decrypted((unsigned long)mem, pgcount);
->>>>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>>>>> +             hv_isolation_type_cca())) {
->>>>>>
->>>>>> Could this big "if" statement use "hv_is_isolation_supported()" instead
->>>>>> of explicitly testing for each CoCo VM type? I ask partly because
->>>>>> Mukesh Rathor has just submitted a patch [1] that introduces a new
->>>>>> function that does something almost exactly the same as
->>>>>> hv_is_isolation_supported() and uses it here.
->>>>>
->>>>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>>>>> +             hv_isolation_type_cca())) {
->>>>>
->>>>> With my change, this will become:
->>>>>
->>>>>           (hv_isolation_hw_cvm() || hv_isolation_type_cca())) {
->>>>
->>>> Any reason you wouldn't change hv_isolation_hw_cvm() to
->>>>
->>>>     return hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>>       hv_isolation_type_cca()
->>>>
->>>> That would seem more logical to me.
->>>>
->>>
->>> We could, I just don't know if on cca, the repeat hypercall has same
->>> behavior. I was leaving that for the arm team. Anyways, I sent question
->>> to the hyp team, if they say yes, i can update my patch to include that.
->>>
->>> Thanks,
->>> -Mukesh
->>
->>
->> Confirming, arm has same behavior and needs the fix also. So, we can def
->> expand the check to include _cca.
->>
->> I just sent V1, renaming hv_isolation_hw_cvm() to hv_isolation_type_hw().
->> If your patch goes after mine, you just need to add to your 0004*:
->>
->> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
->> index 4fdc26ade1d7..67a16b4d2235 100644
->> --- a/arch/arm64/hyperv/mshyperv.c
->> +++ b/arch/arm64/hyperv/mshyperv.c
->> @@ -134,3 +134,8 @@ bool hv_is_hyperv_initialized(void)
->>          return hyperv_initialized;
->>   }
->>   EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
->> +
->> +bool hv_isolation_type_hw(void)
->> +{
->> +       return is_realm_world();
->> +}
->>
->>
->> OR, you could pick mine 0001-* and make it part of your series, and I
->> can drop it from mine and make it dependent on yours. But mine is small
->> enough that it has higher chances of going in first.....
->>
-> 
-> This patch set has already been applied to hyperv-next, so maybe you can
-> rebase off that.
-> 
+Hi!
 
-Ok, I'll rebase my patches from hyperv-fixes to hyperv-next, and
-resubmit.
+This is an automated message. This series looks like a fix, but its
+commit messages seem to be missing some information:
 
-Thanks,
--Mukesh
+ - Whether the issue was actually triggered, or is only theoretical
+   (e.g. found by LLM and not proven at runtime). If it was triggered
+   please include the symptoms, like the stack trace or kernel messages.
 
+Please do not repost the series just to address the above. Instead,
+reply to this email with the missing information, so that reviewers
+can take it into account.
+
+*IMPORTANT*: If you do repost (for other reasons) - please include
+the relevant info in the cover letter or commit messages.
+-- 
+The evaluation is done by an LLM so it may be wrong, if you think
+that is the case please reply and explain.
 
