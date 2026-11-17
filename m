@@ -2,70 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5254C606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 18:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE1760A5BFC
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 18:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oS57Xe/P;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dqULsYEt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a+Y9NP/G;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=D/4hEkSA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=d2xN15dj3gCvbJHEB+TEBgOrVQFIeke+Q9K2cfCpikA=; b=oS57Xe/Pl/bWBngqyio3b4qoCn
-	CQVcT7B6Z5D8W46dWSeFpAlCAR4uJuRk2Ubtm5rG4dswo+nZXLDN5Py3T7vrs13ZgFdBLc8aIFg+s
-	G+pdLd3SCS1QLpd0tEswnMoOToTwJNsPzpCWg7qMwNyvBo1OaeKnOpULr0ipkMDu207f4dM3UFA+5
-	qlIEYwaOjMyyu3aW/2Ir8+JiU1rkC8bypuIQI86PFJMv9gZ1Pt/fbOAFRlTydf+UhEDxLJotf0Htm
-	Y1jSy2N2nWrZhF1F6WA7xFY7V8qwyqOVDah9J2hIObgDbFnFmAZu/FNmZ5nHq7+Dl0XTI/iyp9bm6
-	goIgDV+g==;
+	bh=8GcMvxjU7qDJE4xqlO/DI29b4UfW+btTJUDtVbb8+4M=; b=a+Y9NP/G+2XhGrnyWYWrpIsO3x
+	q0sivOCFr1kcWoz9jgg0IzRCgGOs6uJCA/27O3t6+1U6Yf/0BlZLEtof4wZMaTcH3WSsszjGx9kCt
+	ljdWi8cIAgNbOAbkW2zoIUImlLex4v6N50n0Bm62fF+RVdXULE0Xum/DwTJRq0GjouPktu1yNhGef
+	SOh0ZA0D1VSKnqgqePB1D2s08hp4ADqJU7BbshsEIEXRcMgYMwBTWojmxd5KFIA3l9kIOojO3Jbb9
+	XQK+LNesVr3DL13RiwWcxZHHzQmMUZ4b4X4Z2bd9jUKGUgWvT+gqX84Nph/I5CI/9UGfgwkb36rGa
+	j+3pemrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNuW-00000006lBF-1sb0;
-	Tue, 17 Nov 2026 18:28:04 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTNyK-00000006lXF-3i8Y;
+	Tue, 17 Nov 2026 18:32:00 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNuO-00000006lAt-2EX8
+	id 1xTNyI-00000006lVt-2J6A
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 18:27:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B972360DE9;
-	Tue, 17 Nov 2026 18:27:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 340431F000C4;
-	Tue, 17 Nov 2026 18:27:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794940075;
-	bh=d2xN15dj3gCvbJHEB+TEBgOrVQFIeke+Q9K2cfCpikA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=dqULsYEtt6CVaxlO9mQ6ePjg54L1qfwjVAX9O2MIZTa/dE0PKcBqvpx05FKgSVh5+
-	 8JYLEdhpMkz5k2XlhWPYRuija2Xqm8oC/Wmg110tvZCjq2JqblBUP5aLUrY/z7J1LR
-	 i4T7gU3FFD5E7EQpxZ7b15/60fdvrPCatwaKUO7PZ1QCWW3esoGE960t8aoT2vn/Sp
-	 etj5+atmpx4h2AyUYebq5tPIl49tk4Z9pZ9os1a3dib+Uan4/Yy2jly+jjdkp5os/z
-	 wq2Pr4qCj7UcJB17/2DLrYP9+UnmHZOxg5SmSrmnYUoy4dyX7imNgrprxXTJd3TLXr
-	 8Hlx2DJdXTB9w==
-Date: Tue, 17 Nov 2026 18:27:52 +0000
-From: Sudeep Holla <sudeep.holla@kernel.org>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: Chengyu Liu <lui2012qwq@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, arm-scmi@vger.kernel.org,
-	philip.radford@arm.com, stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] firmware: arm_scmi: Fix deadlock between reboot
- notifier and forceful work
-Message-ID: <20261117-hypersonic-beautiful-perch-bd4fcf@sudeepholla>
-References: <20261116084211.3066460-1-cristian.marussi@arm.com>
- <20261116084211.3066460-2-cristian.marussi@arm.com>
- <20261116-astonishing-urchin-from-jupiter-838cfc@sudeepholla>
- <avw5o7sTyriZ2ZiX@pluto>
- <20261117-prodigious-limpet-of-fame-3d72e6@sudeepholla>
- <CAE=Q7=4+HMtqbiK9v3jw4t31TQOYUfRXKRurZ7KcMi7GTi1v2A@mail.gmail.com>
- <avyS2OLs3XGcKXXn@pluto>
+	Tue, 17 Nov 2026 18:31:59 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wEEyWMbAnFFK0jRnS/E72R3LjT+1Pw16jx81w5iDX6jcMVV2s/TLPfwj/SjLc2hNLmK95q7qAU8aHOwJZitlncCX03XgVcpTZeZZSjhK3nHACTSeQOcgCjIpzGNS2wWDOtbVCXwqyBjoZCLXU/aUR/lFv4b73kac8Xv9bfb87z00WTwp8//v5j8VLN4/UHwGcRJ9VvBFmm5MKfAeVkcENuu1P6aGUwhqrEXyLMqTSNemktypDQuqjUECdH+73ZYaoR+g1FLYFbtdKjAx2z/dAzDScf4DRcb6xmCNIryvOm721ys6BEpEkgEZ+HtXhwoxzjGWI64Bj6kFPlSyN4HKKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8GcMvxjU7qDJE4xqlO/DI29b4UfW+btTJUDtVbb8+4M=;
+ b=PgryRVehj+g/4Rn8t1+jXSSzeB6YovFMlvsgo7Uh7z43HL2ymxNopgzkPpbTtIu8bT6Z6GZbV58IuMd/cqsA42+PojMhxit2yG431trHRwpVnrNGEkwnawuf2FhYjdy02qoLEC+xHaFZx8eQDyRIjxVUxewkvp0oOrTsScKxmA8RbDG6P819zaC3Vkv8DlEjFNX6jxG2tPqiclJYrQLjFOViXk131q4WuoVOy+TUDYSVig/VroSSVsUFuakmbgDbu3h/WlHGWKlvcs1KZxdDQVa/bUq15Ju+JdPB41YR5S96SVnnMSLyPWS4FgnuwHjxNRTO31kl6+CFi+Mju3dV1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8GcMvxjU7qDJE4xqlO/DI29b4UfW+btTJUDtVbb8+4M=;
+ b=D/4hEkSA5UNQ1E4wwl+9xUbm22ipOLDwy5XNyTOyYpF4OwCfGgqtmTA4dqDYCGpWnO6ilJdPzi2Ey6DkNunsfQVTnvQbFRnSSxrpoI9DfF1O+FhmlxUEujWdL62aiDIRATcp2srNeYWejazamJDJl8eRaq2nBuFfZWKvqmRDhpGDnbkyI4BG/QgMwtu14zqDeRYbZJFC5napHfUDjYyQH9o0va8M0e9T+BfSWKJdNUpcKk5JGwfd91AkvUuZsTrB/f+VJCL+wui+YeRKnHk+iMqiJdWIUgCS7jXzZFnvqdFdM+eDIimKC/q5XTjt11UItYhDwDmtZtNSTuGgzKkj2Q==
+Received: from DUZP191CA0006.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:4f9::16)
+ by DB9PR10MB8248.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:4ca::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Tue, 17 Nov
+ 2026 18:31:53 +0000
+Received: from MAD0EPF000008B6.eurprd04.prod.outlook.com
+ (2603:10a6:10:4f9:cafe::a2) by DUZP191CA0006.outlook.office365.com
+ (2603:10a6:10:4f9::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Tue,
+ 17 Nov 2026 18:31:52 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ MAD0EPF000008B6.mail.protection.outlook.com (10.167.241.138) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 17 Nov 2026 18:31:52 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 17 Nov
+ 2026 19:32:52 +0100
+Received: from localhost (10.48.87.100) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 17 Nov
+ 2026 19:31:51 +0100
+From: Patrick Delaunay <patrick.delaunay@foss.st.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: Conor Dooley <conor@kernel.org>, Mark Brown <broonie@kernel.org>, "Patrick
+ Delaunay" <patrick.delaunay@foss.st.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH v2 1/2] arm64: dts: st: add SCMI voltage domain regulators for STM32MP211
+Date: Tue, 17 Nov 2026 19:28:45 +0100
+Message-ID: <20261117192843.v2.1.I7bc9202635a4961733bf6f80fb06d89703bce1fc@changeid>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261117183121.654286-1-patrick.delaunay@foss.st.com>
+References: <20261117183121.654286-1-patrick.delaunay@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <avyS2OLs3XGcKXXn@pluto>
+Content-Type: text/plain
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MAD0EPF000008B6:EE_|DB9PR10MB8248:EE_
+X-MS-Office365-Filtering-Correlation-Id: e6262059-dc48-436f-955d-08df44d90ce2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|36860700016|82310400026|376014|1800799024|7416014|22082099003|18002099003|6133799003|261009223027099003|3023799007|261021123027099003|56012099006|11063799006|261028144727099003|261102123227099003|261026121527099003|261021121427099003|261026140227099003|261022105027099003|261021135927099003|10067099003|44046007;
+X-Microsoft-Antispam-Message-Info: SRHZAjpUN2aI+Al7fM9zUVR5dkLaXYXv3OiBaj31yAHMJobCTuVYkmSm63wpf/zNlpCFazBISkRIURNYdS6scSs8rkqOaYnysbp56aS8bdz14UYUy9bHibVxRKTr7YOWGKz1Tu00BYfWkZOtDQZfM/7vIQzG39151b+ruBO2akEJQXQBMAHhPBTn3D/44iq85ptd7FRAoLvCUltCDIXMSZLOmPz2ZP3eqEWQ9W9gLlzcJRvrhFsdMUuYWVQkmrqiLux2+9pSaZ6lp9UvbZ8t6Cia76Up3pHNLUtrpbsVvsqg5CLmG1ap2mbV+BsCdJF8rE72EtWzTJafR87H6lYQL8csKlbWDV2uzNSEMlVy8Y/KgUCI1EmaNZObE1bm8oFVmOC3nIwqb54JyTWfk+RCO9Vux5UyWBPo7HGHBkC2KY3r8fFIFpN2wRggh5uO2PNvwyKnVl1qCbNQWiWNAgTj/PsvYXG6LrbF3n+0xpD37uIlASxdNK65cnY9ckOtAjj4N4LP4AHXOqDwtfBTuBaIhWBICY+pnbHSvZsbZbet8kYoJQbYzuQ+ts6dOttUeSEqfnOF8dcK8LF9WQbvwt2EdlChp1/z5PC3OtgFTgRQcyxtKsChKkQPJaej/dtEGAWG2GDopal58SPGpY542Aeyz+Cpb8VbNa9cMopuZQ+1tiiC6J3tLNxdqJd+KRzen8n6QbKVSA055FzuCuimv6kcApEb9uxuZyBf3E+cZgeD0wt5vud5UUNo9A8j3UJ6UgCM
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(82310400026)(376014)(1800799024)(7416014)(22082099003)(18002099003)(6133799003)(261009223027099003)(3023799007)(261021123027099003)(56012099006)(11063799006)(261028144727099003)(261102123227099003)(261026121527099003)(261021121427099003)(261026140227099003)(261022105027099003)(261021135927099003)(10067099003)(44046007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: IcrkL6jGxI0+y3rNs/X1tj9HYZFM+N89TLmuZ/HAvOFmOA8fEdUb62+pghiQKUvHWL9SdEI5J89Kv56k45Q0p7ZqbFZA58963B88TI4Kr/wJoK2qv6NpuA2fKW+3E8xQyRFI+V8zcw3U3jGcDfavgWeuWBVVO1XBu1N9YptabI8SrjtRviF1H4BwnD4zXvcDLG2GSWaCnxlMYpI7oYR9B2x0dKbHMGlMEO2tqQVmZiaUYNZnNWkb+ONB1sF7cxMyuhG5TEPo/xCejBJp6LtvDe+6sCUVD7iXNhZQm7teuHXBGl5mDcEa/LBAQdDk8denJ5QQCF7dO4HIzgv2d0bhW8j831aCkEtVf4GxfVanN5HL5jdNTlODDKnlWf935Z4I/jojVqDbtOF/MuBRUGRxtR6HD0z4ggG8ORMOueYoyhAcIavrK5tvnOra2h64PtCx
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 18:31:52.3520
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6262059-dc48-436f-955d-08df44d90ce2
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: MAD0EPF000008B6.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB8248
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_103158_800721_DE9957E9 
+X-CRM114-Status: GOOD (  14.56  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,40 +128,132 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 05:46:00PM +0000, Cristian Marussi wrote:
-> On Wed, Nov 18, 2026 at 01:35:04AM +0800, Chengyu Liu wrote:
-> > Hi,
-> > 
-> > I think the current v2 may have reintroduced the second deadlock
-> > described in my original commit message.
-> > 
-> > scmi_forceful_work_func() still calls unregister_reboot_notifier()
-> > while holding sc->state_mtx. Could you also check the potential lock
-> > inversion between state_mtx and reboot_notifier_list.rwsem?
-> > 
-> > The reboot path holds the rwsem read lock while executing the notifier
-> > callback, which then waits for state_mtx. Meanwhile, the worker holds
-> > state_mtx while trying to unregister the notifier, which requires the
-> > rwsem write lock.
-> 
-> Yes indeed Sashiko complains about the same and the second part of the
-> issue on the rwsem is unresolved and will need more work.
-> 
+Add SCMI-based regulator descriptions in the STM32MP211 SoC DTS,
+covering VDDIO1, VDDIO2, VDDIO3 and VDDA18ADC voltage domains.
 
-That's what I was referring when I said
-" ... re-evaluate needs_forceful again here after un-registration before
-  calling below forced transition ?"
+These regulators are exposed through the SCMI voltage protocol
+and will be referenced by board-level DTS files.
 
-But then your response somehow convinced me that it is not needed 😉.
+Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+---
 
+Changes in v2:
+-  Move the SCMI ID definitions in stm32mp21-regulator.h
+   to the DTS directory; it is not a part of DT bindings
+
+ arch/arm64/boot/dts/st/stm32mp21-regulator.h | 48 ++++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp211.dtsi       | 27 +++++++++++
+ 2 files changed, 75 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp21-regulator.h
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp21-regulator.h b/arch/arm64/boot/dts/st/stm32mp21-regulator.h
+new file mode 100644
+index 000000000000..bf26b7efd2ec
+--- /dev/null
++++ b/arch/arm64/boot/dts/st/stm32mp21-regulator.h
+@@ -0,0 +1,48 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause) */
++/*
++ * Copyright (C) 2026, STMicroelectronics - All Rights Reserved
++ */
++
++#ifndef __DTS_STM32MP21_REGULATOR_H
++#define __DTS_STM32MP21_REGULATOR_H
++
++/* SCMI voltage domains identifiers */
++
++/* SOC Internal regulators */
++#define VOLTD_SCMI_VDDIO1		0
++#define VOLTD_SCMI_VDDIO2		1
++#define VOLTD_SCMI_VDDIO3		2
++#define VOLTD_SCMI_ADC			3
++#define VOLTD_SCMI_VREFBUF		4
++
++/* STPMIC regulators (STPMIC25/STM32MP2L/STPMIC1L) */
++#define VOLTD_SCMI_STPMIC_BUCK1		5
++#define VOLTD_SCMI_STPMIC_BUCK2		6
++#define VOLTD_SCMI_STPMIC_BUCK3		7
++#define VOLTD_SCMI_STPMIC_BUCK4		8
++#define VOLTD_SCMI_STPMIC_BUCK5		9
++#define VOLTD_SCMI_STPMIC_BUCK6		10
++#define VOLTD_SCMI_STPMIC_BUCK7		11
++#define VOLTD_SCMI_STPMIC_LDO1		12
++#define VOLTD_SCMI_STPMIC_LDO2		13
++#define VOLTD_SCMI_STPMIC_LDO3		14
++#define VOLTD_SCMI_STPMIC_LDO4		15
++#define VOLTD_SCMI_STPMIC_LDO5		16
++#define VOLTD_SCMI_STPMIC_LDO6		17
++#define VOLTD_SCMI_STPMIC_LDO7		18
++#define VOLTD_SCMI_STPMIC_LDO8		19
++#define VOLTD_SCMI_STPMIC_REFDDR	20
++#define VOLTD_SCMI_STPMIC_GPO1		21
++#define VOLTD_SCMI_STPMIC_GPO2		22
++#define VOLTD_SCMI_STPMIC_GPO3		23
++#define VOLTD_SCMI_STPMIC_GPO4		24
++#define VOLTD_SCMI_STPMIC_GPO5		25
++
++/* External regulators */
++#define VOLTD_SCMI_REGU0		26
++#define VOLTD_SCMI_REGU1		27
++#define VOLTD_SCMI_REGU2		28
++#define VOLTD_SCMI_REGU3		29
++#define VOLTD_SCMI_REGU4		30
++
++#endif /* __DTS_STM32MP21_REGULATOR_H */
+diff --git a/arch/arm64/boot/dts/st/stm32mp211.dtsi b/arch/arm64/boot/dts/st/stm32mp211.dtsi
+index 4bfd58b26b51..84a2b51d705f 100644
+--- a/arch/arm64/boot/dts/st/stm32mp211.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp211.dtsi
+@@ -4,6 +4,7 @@
+  * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
+  */
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include "stm32mp21-regulator.h"
+ 
+ / {
+ 	#address-cells = <2>;
+@@ -67,6 +68,32 @@ scmi_reset: protocol@16 {
+ 				reg = <0x16>;
+ 				#reset-cells = <1>;
+ 			};
++
++			scmi_voltd: protocol@17 {
++				reg = <0x17>;
++
++				scmi_regu: regulators {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					scmi_vddio1: regulator@0 {
++						reg = <VOLTD_SCMI_VDDIO1>;
++						regulator-name = "vddio1";
++					};
++					scmi_vddio2: regulator@1 {
++						reg = <VOLTD_SCMI_VDDIO2>;
++						regulator-name = "vddio2";
++					};
++					scmi_vddio3: regulator@2 {
++						reg = <VOLTD_SCMI_VDDIO3>;
++						regulator-name = "vddio3";
++					};
++					scmi_vdda18adc: regulator@3 {
++						reg = <VOLTD_SCMI_ADC>;
++						regulator-name = "vdda18adc";
++					};
++				};
++			};
+ 		};
+ 	};
+ 
 -- 
-Regards,
-Sudeep
+2.43.0
+
 
