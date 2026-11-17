@@ -2,84 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66957606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 15:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7955F606A885
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 15:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qAsVzUhb;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mPZ1QrHs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0L6lDRhG;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bqAunJ9S
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uO1DEpX/Sdk0AbUa13aZ6W/TOYUzfkDuzHxFvUxx8t4=; b=qAsVzUhb6yeXvphNJwVs3dAjFh
-	L35ylncc/TJm1Zs7qNYPRDdkTO0OhpvMkkd0OMM3uS4nTkcu4pYXFoRwXFZ5Fb4wpk0qlwgPGF2hh
-	Zz9nATrYEwHp38ygT/kAendKpRejVUouTxIhQ6oHa0Su6vvMPkfbv7RGUKY60S3W3jaLvuaymsniS
-	gMeoBbdSIBeULXM0Q+QpTnn84L2I2gM5FD2QYWBdcN1IkVVBy51bPoOF2VBaxcSCqQAP5TXD2ymiD
-	VILIkrrgHvZDbZVa9uiflguES/LZlao1vBA1OjeZ4x9MhRBiRnmUOnnPnmE6WtiMGYsRZahvYCZlG
-	NdjNRFdA==;
+	bh=Ld9+YyGfs/W/wYUchYl+G0tuTdeNOsMW/DqiAiz5bT8=; b=0L6lDRhGSJR61mk128sC6y1ipq
+	nXEUeiPGlF3e9wILSgl4m4SatidAj2es452NlCS+XxDflk2LlGtiP1eLnOkPkp/sY6c08BFe7tsPe
+	JNT30atyQZpveitcMyyLuaf1nmleR+Wy7HLbvCIRlv6WSpkwkshKvaNiDWvBQ3OZyCPOensVdueXK
+	JggHNpLpxFGYam4myM10O4NTZTKQuV9WrRs/BzO0vwT8mJkoH9LHMIS8tlwaWUIWVd/xIiGpFLxZr
+	YyRjSNBEV7CJ+1udqBgs3m/eRa20NYz5E98w2eqEgwchxkuvbS8Ix8CdoDGrK6m5/3MPWz48hVKJw
+	x2UyDKaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTLU4-00000006MNr-1hJ3;
-	Tue, 17 Nov 2026 15:52:36 +0000
-Received: from mgamail.intel.com ([192.198.163.16])
+	id 1xTLYy-00000006N2n-0eAC;
+	Tue, 17 Nov 2026 15:57:40 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTLU1-00000006MN3-2M8S
+	id 1xTLYw-00000006N2T-26Iz
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 15:52:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794930753; x=1826466753;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3CdFWivnZIGgdKSr6ahNFtljVOdDNHvNk1RCwFrBiFU=;
-  b=mPZ1QrHsi0lCvDj7va43dnWuQpdtJGm9RZZfDiJGSO6X1ulOWHs2FHQg
-   3QynfCCaxcqPnsiMGKa+y8wbkKv/qwf260FOLZcZaSTBArfac/anMDoyK
-   7QRvKA6+w8TrYnrgMYYNFSIt/NWV8YFrIE5J8ZgzxbNhA7VdzGDtygGNk
-   1ibF23DAV6D0KyQQZqBY4Yv2mLuvVYYP4tDqJKUNpAi66AaHSuDNT1h6l
-   FDojBUI9E7MzYhaWItKJYYPRxApP7vXQo8GXyv95zh/OSZuL3NsOcsNmk
-   P2sJvA+BSb0U1LinFNLuNSrpJb5jTDud4u8U7DEggbmjlPFJxz2acfx89
-   g==;
-X-CSE-ConnectionGUID: ZMtrzbztTqCqFk+p7cUEdQ==
-X-CSE-MsgGUID: 4hEOjchHTwW+MHpsZ0hRcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3742665"
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="3742665"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2026 07:52:32 -0800
-X-CSE-ConnectionGUID: toWrsmohT4m0OWvmH/CRZA==
-X-CSE-MsgGUID: sMFT57sMSEOce1NigVoc/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="10189662"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 17 Nov 2026 07:52:30 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xTLTu-00000001Bwf-2maE;
-	Tue, 17 Nov 2026 15:52:26 +0000
-Date: Tue, 17 Nov 2026 23:51:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yang Siyuan <hsyysy@163.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: oe-kbuild-all@lists.linux.dev, linux-watchdog@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] watchdog: sunxi_wdt: stop the watchdog across system
- suspend
-Message-ID: <202611172344.RbQl66xu-lkp@intel.com>
-References: <20261117092036.12192-1-hsyysy@163.com>
+	Tue, 17 Nov 2026 15:57:38 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 90E2661172;
+	Tue, 17 Nov 2026 15:57:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 419381F000CC;
+	Tue, 17 Nov 2026 15:57:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794931057;
+	bh=Ld9+YyGfs/W/wYUchYl+G0tuTdeNOsMW/DqiAiz5bT8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=bqAunJ9S14rv0YgjXfzLTU5lWReAsZ50+ynx5TK/jY5QUYHv5To3xOotDm6z+S6E7
+	 6TU5zv7Ubom9eSAy9REfh2HQlLh8OHe3A2gxGuG1XsHuiKDpCYyEkQoUSF/bcSYTE+
+	 TV4Qqlw2mbXssOi+eLAoB83Nza0kGJrJVdVBbZYgz1eJ2P/oyI4bHgDEzu4JxRFs8v
+	 7knlCmooWuzWQw2BNNxpVj8/8cnJUongLyWDcKPRZpYn3n41u5jhftUXQyGVMYlXIa
+	 M+6bXA9e8G6PMTCnIFz3tVox5M6xt3dmLk+q9gTuwBbsgJ/2TIaPnyucfn9TxzXW7B
+	 /fJwhUT8nkVbA==
+From: netdev-bot+sinfo@kernel.org
+To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
+ Jesper Dangaard Brouer <hawk@kernel.org>,
+ John Fastabend <john.fastabend@gmail.com>,
+ Stanislav Fomichev <sdf@fomichev.me>, Vladimir Oltean <olteanv@gmail.com>,
+ Furong Xu <0x1207@gmail.com>, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
+Subject: Re: [PATCH net] net: stmmac: fix num tx queues in stmmac_xdp_get_tx_queue()
+Date: Tue, 17 Nov 2026 15:57:35 +0000
+Message-ID: <179493105581.3291.4118659695077688589@kernel.org>
+In-Reply-To: <20261117-stmmac-fix-xdp_get_tx_queue-v1-1-4cd74ee7a76c@oss.qualcomm.com>
+References: <20261117-stmmac-fix-xdp_get_tx_queue-v1-1-4cd74ee7a76c@oss.qualcomm.com>
+Auto-Submitted: auto-generated
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261117092036.12192-1-hsyysy@163.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_075233_654079_E0116322 
-X-CRM114-Status: GOOD (  13.12  )
-X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,73 +77,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Yang,
+Hi!
 
-kernel test robot noticed the following build warnings:
+This is an automated message. This series looks like a fix, but its
+commit messages seem to be missing some information:
 
-[auto build test WARNING on aebb7274476403040d582c61478df8f4a7bf9cd3]
+ - How the issue was discovered, e.g. hit in production, hit during
+   development, syzbot report, manual code inspection, LLM or static
+   analysis tool scan.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yang-Siyuan/watchdog-sunxi_wdt-stop-the-watchdog-across-system-suspend/20261117-172036
-base:   aebb7274476403040d582c61478df8f4a7bf9cd3
-patch link:    https://lore.kernel.org/r/20261117092036.12192-1-hsyysy%40163.com
-patch subject: [PATCH] watchdog: sunxi_wdt: stop the watchdog across system suspend
-config: csky-randconfig-1001-20261117 (https://download.01.org/0day-ci/archive/20261117/202611172344.RbQl66xu-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 13.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261117/202611172344.RbQl66xu-lkp@intel.com/reproduce)
+ - Whether the issue was actually triggered, or is only theoretical
+   (e.g. found by LLM and not proven at runtime). If it was triggered
+   please include the symptoms, like the stack trace or kernel messages.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202611172344.RbQl66xu-lkp@intel.com/
+ - What hardware the change was tested on. For driver fixes please
+   mention the device (and if relevant firmware version) used for
+   testing, or say that the change was not tested on real hardware.
 
-All warnings (new ones prefixed by >>):
+Please do not repost the series just to address the above. Instead,
+reply to this email with the missing information, so that reviewers
+can take it into account.
 
->> drivers/watchdog/sunxi_wdt.c:245:12: warning: 'sunxi_wdt_resume' defined but not used [-Wunused-function]
-     245 | static int sunxi_wdt_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~
->> drivers/watchdog/sunxi_wdt.c:235:12: warning: 'sunxi_wdt_suspend' defined but not used [-Wunused-function]
-     235 | static int sunxi_wdt_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~
-
-
-vim +/sunxi_wdt_resume +245 drivers/watchdog/sunxi_wdt.c
-
-   228	
-   229	/*
-   230	 * The hardware watchdog has a maximum timeout of 16 seconds.  A system
-   231	 * suspend easily lasts longer than that, and the watchdog core only cancels
-   232	 * its ping worker during suspend; it does not stop the timer.  Stop the
-   233	 * watchdog explicitly while suspended and re-arm it on resume.
-   234	 */
- > 235	static int sunxi_wdt_suspend(struct device *dev)
-   236	{
-   237		struct sunxi_wdt_dev *sunxi_wdt = dev_get_drvdata(dev);
-   238	
-   239		sunxi_wdt->running_at_suspend = sunxi_wdt_is_running(&sunxi_wdt->wdt_dev);
-   240		sunxi_wdt_stop(&sunxi_wdt->wdt_dev);
-   241	
-   242		return 0;
-   243	}
-   244	
- > 245	static int sunxi_wdt_resume(struct device *dev)
-   246	{
-   247		struct sunxi_wdt_dev *sunxi_wdt = dev_get_drvdata(dev);
-   248	
-   249		if (sunxi_wdt->running_at_suspend)
-   250			sunxi_wdt_start(&sunxi_wdt->wdt_dev);
-   251	
-   252		return 0;
-   253	}
-   254	
-
+*IMPORTANT*: If you do repost (for other reasons) - please include
+the relevant info in the cover letter or commit messages.
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+The evaluation is done by an LLM so it may be wrong, if you think
+that is the case please reply and explain.
 
