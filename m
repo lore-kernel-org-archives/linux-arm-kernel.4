@@ -2,77 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D950D606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 08:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A770F606A88C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 08:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RHmZsGZ2;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Jp5Z5iRz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RbiUg6Zh;
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=GO50dc6/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yDzaN8zNsYziiwwWnbzFQP17MdrMEIb33bW6UntLbrs=; b=RHmZsGZ2RXKTJmXathMdGgCA3W
-	3jpAc12Toigp9k1oThpBoOa+u7aFRwZzbJW/KkYKvg6sdx6S8VOolf4sOjpu17gEpiGE/2fUGyyLt
-	I2I4aa0jMfRv8tBKEy2EKOWN/jlzmmSUKwkploRPE1CdmJmjuaQZK6CWGYkTtU1v2VONigUL88Qm/
-	wqW7wiaBT7wfJusprRgFmYz52lISZa9Z/0uiKJpZk3PzWZTPcvi3V0jNHQXgLry39eiUnFW9XHaY+
-	h2l0OUSAprKcBJmGF93L7COnU5U3plzoxcOG/kBIBsTCuL7+bq+o6Gq1AX6SHF1M6gXiDxwN/X/JD
-	pDY88nvQ==;
+	bh=DezbHtCd3hypT1eHDNwCunwup1tFxqb9i/BJNZQvL3k=; b=RbiUg6Zhno5q5c/dgvjvhjx7ac
+	ufMarXSgT7ijJ98MrPgbvutwH3D1/Lt+k1d3Iejnzg1IGSNGNiTTyoc43OaWpiJtcQwGCnste6gPr
+	zCo8LoO3EoRXjfx0Ha4BItA5DPIicFPdR8OxA3SKLpoBfjrcyrSCV3J6bEyFDVxLEE5JSk2VPEg3r
+	R200cDEaw9hsgdXJUdX0cz+9e06ODXyzWC7PGfUGAalvbSI55AyHPp7PwX1bAffjfXUbTMJBN8ux+
+	IPXL9AcDi5juatx0YFo/JptiCk6UaG6gwlMXAmdD2kfVS8/NBsB1B59L4F3c1pVoA8Q0JOT7AOJqq
+	WY3qutKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTEnm-00000004vao-15Uw;
-	Tue, 17 Nov 2026 08:44:30 +0000
-Received: from m16.mail.163.com ([220.197.31.5])
+	id 1xTEou-00000004vml-2gTW;
+	Tue, 17 Nov 2026 08:45:40 +0000
+Received: from mout-p-103.mailbox.org ([80.241.56.161])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTEnj-00000004vaH-1paW
+	id 1xTEoo-00000004vlg-3VOT
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 08:44:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=yD
-	zaN8zNsYziiwwWnbzFQP17MdrMEIb33bW6UntLbrs=; b=Jp5Z5iRzxtZlMcS2ld
-	xFWPzopOzl3JXot4N0gjTFrK67x/ou5zovgVSab0aEAweoZKIznyuHGrBvvesnm1
-	9BzkX86Q0teBISC4r1wHXQpM53oj3+rco7NJon5zVIEBpwtw+egI/P7askQHnzke
-	Gb0ZXnH/UhDLvsAITjDpxMPRY=
-Received: from localhost.localdomain (unknown [])
-	by gzsmtp5 (Coremail) with SMTP id QCgvCgD3X6evE_xq9TawGQ--.54072S2;
-	Tue, 17 Nov 2026 16:43:29 +0800 (CST)
-From: Haoxiang Li <haoxiang_li2024@163.com>
-To: sstabellini@kernel.org,
-	linux@armlinux.org.uk,
-	jgross@suse.com,
-	boris.ostrovsky@oracle.com,
-	tglx@kernel.org,
-	mingo@redhat.com,
-	bp@alien8.de,
-	dave.hansen@linux.intel.com,
-	x86@kernel.org,
-	hpa@zytor.com,
-	oleksandr_tyshchenko@epam.com,
-	david.vrabel@citrix.com,
-	konrad.wilk@oracle.com
-Cc: xen-devel@lists.xenproject.org,
-	linux-arm-kernel@lists.infradead.org,
+	Tue, 17 Nov 2026 08:45:39 +0000
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4jTJGK3mhYzKnh3;
+	Tue, 17 Nov 2026 09:45:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1794905129;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=DezbHtCd3hypT1eHDNwCunwup1tFxqb9i/BJNZQvL3k=;
+	b=GO50dc6/HVjeV41229FKdWwES4NpxJJhDlDZigkZ3+vM29imYgmk90hxAjJeH93i73BSH+
+	8y7RPFasxVbOKg5+zYF1b3WPdOZIQ30nU/JRGxHW3qXGsWEbh6mPjfBR2lxoLN9A53snN5
+	Kmx24gb08ySNfOtBnwMS3gqUMGgbptePByNUwnmZPGhRwCjmKLtsUh3J4UoOu0C9NMKFR4
+	gBq74VDdGpfHSExtPn9UaTTnUfBYOnseqMNMY8tGOKkIpdril77Xpyg10cunUnF9YkKn+e
+	Uux1WarCFtKCiqIWbos5DwfFOBWYdNgji+sfA2u7tp9ewbCicQQ9o8PHcoIvwA==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	"Matthew Wilcox (Oracle)" <willy@infradead.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Breno Leitao <leitao@debian.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Edward Adam Davis <eadavis@sina.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Kees Cook <kees+treewide@kernel.org>,
+	Marco Crivellari <marco.crivellari@suse.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Pan Chuang <panchuang@vivo.com>,
+	Pavel Tikhomirov <ptikhomirov@virtuozzo.com>,
+	Petr Mladek <pmladek@suse.com>,
+	Petr Pavlu <petr.pavlu@suse.com>,
+	Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	arm-scmi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Haoxiang Li <haoxiang_li2024@163.com>
-Subject: [PATCH] xen/grant-table: fix resource leak in gnttab_init()
-Date: Tue, 17 Nov 2026 16:43:25 +0800
-Message-Id: <20261117084325.1241735-1-haoxiang_li2024@163.com>
-X-Mailer: git-send-email 2.25.1
+	systemd-devel@lists.freedesktop.org
+Subject: [PATCH] [RFC] kernel/reboot: Add orderly_suspend() via /sbin/suspend user mode helper
+Date: Tue, 17 Nov 2026 09:44:19 +0100
+Message-ID: <20261117084523.50711-1-marek.vasut+renesas@mailbox.org>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: QCgvCgD3X6evE_xq9TawGQ--.54072S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxAFy3ZF45uF4kJr1fAry3CFg_yoW5WrWrpa
-	9xAryktrWrW347tFWaga4v9FWrCa97G3yIkrWUZwn8Zan7GF93Jr4IqFyjvr4kCrWkAF4S
-	y3srKr15Jr48ZaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ziO6pDUUUUU=
-X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/xtbC7hHKOWr8E7GLtAAA3H
+X-MBO-RS-ID: f8999e5d1c94626d345
+X-MBO-RS-META: rnnwiz1qpbuo1m538wigdx8oazjoq1un
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_004427_843018_4056FC46 
-X-CRM114-Status: GOOD (  12.64  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261117_004535_340046_66F2CAE7 
+X-CRM114-Status: GOOD (  24.51  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,100 +92,214 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For x86 PV guests, arch_gnttab_init() allocates virtual address areas
-and PTE pointer arrays for the shared and status frames. These
-resources are not released if the subsequent gnttab_setup() call fails.
+Currently, Linux responds to firmware-issued poweroff and reboot requests
+by invoking user mode helpers /sbin/poweroff and /sbin/reboot, which give
+userspace the ability to perform orderly poweroff and reboot according to
+policy set by userspace.
 
-Add arch_gnttab_free() and call it on this failure path before the
-existing cleanup. Provide an empty implementation for ARM, which
-is also used by ARM64.
+This is not the case for firmware-issued suspend request, which directly
+invokes pm_suspend(PM_SUSPEND_MEM), without giving userspace any way to
+determine the suspend policy. This is problematic, because the userspace
+might not be quite ready to suspend right the instant when the suspend
+request from firmware arrives, e.g. because the user is interacting with
+the device and the userspace knows that interaction will end in the near
+future, at which point the system can be suspended perfectly well.
 
-Fixes: 162e37171276 ("x86/xen: safely map and unmap grant frames when in atomic context")
-Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+Introduce a user mode helper, /sbin/suspend, which acts the same way as
+the other user mode helpers, and which is invoked when firmware-issued
+suspend request arrives. Userspace can use the helper to apply suspend
+policy, most likely by invoking init system suspend target. In case the
+helper is not present, retain current behavior and suspend immediately.
+
+Note that /sbin/suspend is non-standard. I also considered registering
+an input device and sending KEY_SUSPEND via such a device, but that does
+not seems nice. I also had a look at wake locks, but I don't think this
+is the right tool either. I am sending this as an RFC, because I would
+like to get input on this. I am including change for two platforms, SCMI
+and ZynqMP, which could benefit from this. Thank you for your input !
+
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 ---
- arch/arm/xen/grant-table.c | 4 ++++
- arch/x86/xen/grant-table.c | 9 +++++++++
- drivers/xen/grant-table.c  | 5 ++++-
- include/xen/grant_table.h  | 1 +
- 4 files changed, 18 insertions(+), 1 deletion(-)
+Cc: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Breno Leitao <leitao@debian.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Edward Adam Davis <eadavis@sina.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Kees Cook <kees+treewide@kernel.org>
+Cc: Marco Crivellari <marco.crivellari@suse.com>
+Cc: Michal Simek <michal.simek@amd.com>
+Cc: Oleg Nesterov <oleg@redhat.com>
+Cc: Pan Chuang <panchuang@vivo.com>
+Cc: Pavel Tikhomirov <ptikhomirov@virtuozzo.com>
+Cc: Petr Mladek <pmladek@suse.com>
+Cc: Petr Pavlu <petr.pavlu@suse.com>
+Cc: Prasanna Kumar T S M <ptsm@linux.microsoft.com>
+Cc: Sudeep Holla <sudeep.holla@kernel.org>
+Cc: arm-scmi@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-renesas-soc@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: systemd-devel@lists.freedesktop.org
+---
+ .../firmware/arm/scmi/scmi_power_control.c    | 11 +-----
+ drivers/soc/xilinx/zynqmp_power.c             |  4 +--
+ include/linux/reboot.h                        |  1 +
+ kernel/reboot.c                               | 34 +++++++++++++++++++
+ 4 files changed, 38 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm/xen/grant-table.c b/arch/arm/xen/grant-table.c
-index 91cf08ba1e95..69db80877bb5 100644
---- a/arch/arm/xen/grant-table.c
-+++ b/arch/arm/xen/grant-table.c
-@@ -56,3 +56,7 @@ int arch_gnttab_init(unsigned long nr_shared, unsigned long nr_status)
+diff --git a/drivers/firmware/arm/scmi/scmi_power_control.c b/drivers/firmware/arm/scmi/scmi_power_control.c
+index e791a206768c2..b61afb46ca7ef 100644
+--- a/drivers/firmware/arm/scmi/scmi_power_control.c
++++ b/drivers/firmware/arm/scmi/scmi_power_control.c
+@@ -80,7 +80,6 @@ enum scmi_syspower_state {
+  * @reboot_nb: A notifier_block optionally used to track reboot progress
+  * @forceful_work: A worker used to trigger a forceful transition once a
+  *		   graceful has timed out.
+- * @suspend_work: A worker used to trigger system suspend
+  */
+ struct scmi_syspower_conf {
+ 	struct device *dev;
+@@ -93,7 +92,6 @@ struct scmi_syspower_conf {
+ 	struct notifier_block reboot_nb;
+ 
+ 	struct delayed_work forceful_work;
+-	struct work_struct suspend_work;
+ };
+ 
+ #define userspace_nb_to_sconf(x)	\
+@@ -254,7 +252,7 @@ static void scmi_request_graceful_transition(struct scmi_syspower_conf *sc,
+ 		orderly_reboot();
+ 		break;
+ 	case SCMI_SYSTEM_SUSPEND:
+-		schedule_work(&sc->suspend_work);
++		orderly_suspend();
+ 		break;
+ 	default:
+ 		break;
+@@ -323,11 +321,6 @@ static int scmi_userspace_notifier(struct notifier_block *nb,
+ 	return NOTIFY_OK;
+ }
+ 
+-static void scmi_suspend_work_func(struct work_struct *work)
+-{
+-	pm_suspend(PM_SUSPEND_MEM);
+-}
+-
+ static int scmi_syspower_probe(struct scmi_device *sdev)
  {
- 	return 0;
+ 	int ret;
+@@ -352,8 +345,6 @@ static int scmi_syspower_probe(struct scmi_device *sdev)
+ 	sc->dev = &sdev->dev;
+ 	dev_set_drvdata(&sdev->dev, sc);
+ 
+-	INIT_WORK(&sc->suspend_work, scmi_suspend_work_func);
+-
+ 	return handle->notify_ops->devm_event_notifier_register(sdev,
+ 							   SCMI_PROTOCOL_SYSTEM,
+ 					 SCMI_EVENT_SYSTEM_POWER_STATE_NOTIFIER,
+diff --git a/drivers/soc/xilinx/zynqmp_power.c b/drivers/soc/xilinx/zynqmp_power.c
+index ce75bc5ca9633..cd1cab58e84ca 100644
+--- a/drivers/soc/xilinx/zynqmp_power.c
++++ b/drivers/soc/xilinx/zynqmp_power.c
+@@ -112,7 +112,7 @@ static irqreturn_t zynqmp_pm_isr(int irq, void *data)
+ 			orderly_poweroff(true);
+ 			break;
+ 		case SUSPEND_POWER_REQUEST:
+-			pm_suspend(PM_SUSPEND_MEM);
++			orderly_suspend();
+ 			break;
+ 		default:
+ 			pr_err("%s Unsupported InitSuspendCb reason code %d\n",
+@@ -196,7 +196,7 @@ static void zynqmp_pm_init_suspend_work_fn(struct work_struct *work)
+ 	if (pm_work->args[0] == SUSPEND_SYSTEM_SHUTDOWN) {
+ 		orderly_poweroff(true);
+ 	} else if (pm_work->args[0] == SUSPEND_POWER_REQUEST) {
+-		pm_suspend(PM_SUSPEND_MEM);
++		orderly_suspend();
+ 	} else {
+ 		pr_err("%s Unsupported InitSuspendCb reason code %d.\n",
+ 		       __func__, pm_work->args[0]);
+diff --git a/include/linux/reboot.h b/include/linux/reboot.h
+index aa08c3bbbf59a..c009deb3eb2b6 100644
+--- a/include/linux/reboot.h
++++ b/include/linux/reboot.h
+@@ -177,6 +177,7 @@ void ctrl_alt_del(void);
+ 
+ extern void orderly_poweroff(bool force);
+ extern void orderly_reboot(void);
++extern void orderly_suspend(void);
+ 
+ /**
+  * enum hw_protection_action - Hardware protection action
+diff --git a/kernel/reboot.c b/kernel/reboot.c
+index bc71183d4ad87..1d830051dc920 100644
+--- a/kernel/reboot.c
++++ b/kernel/reboot.c
+@@ -851,6 +851,7 @@ void ctrl_alt_del(void)
+ #define POWEROFF_CMD_PATH_LEN  256
+ static char poweroff_cmd[POWEROFF_CMD_PATH_LEN] = "/sbin/poweroff";
+ static const char reboot_cmd[] = "/sbin/reboot";
++static const char suspend_cmd[] = "/sbin/suspend";
+ 
+ static int run_cmd(const char *cmd)
+ {
+@@ -872,6 +873,20 @@ static int run_cmd(const char *cmd)
+ 	return ret;
  }
-+
-+void arch_gnttab_free(void)
+ 
++static int __orderly_suspend(void)
 +{
++	int ret;
++
++	ret = run_cmd(suspend_cmd);
++
++	if (ret) {
++		pr_info("Failed to start orderly suspend: fall back to suspend-to-mem\n");
++		pm_suspend(PM_SUSPEND_MEM);
++	}
++
++	return ret;
 +}
-diff --git a/arch/x86/xen/grant-table.c b/arch/x86/xen/grant-table.c
-index 5f4060b5a40d..0a89e43d804d 100644
---- a/arch/x86/xen/grant-table.c
-+++ b/arch/x86/xen/grant-table.c
-@@ -149,6 +149,15 @@ int arch_gnttab_init(unsigned long nr_shared, unsigned long nr_status)
- 	return -ENOMEM;
++
+ static int __orderly_reboot(void)
+ {
+ 	int ret;
+@@ -951,6 +966,25 @@ void orderly_reboot(void)
  }
+ EXPORT_SYMBOL_GPL(orderly_reboot);
  
-+void arch_gnttab_free(void)
++static void suspend_work_func(struct work_struct *work)
 +{
-+	if (!xen_pv_domain())
-+		return;
-+
-+	arch_gnttab_vfree(&gnttab_shared_vm_area);
-+	arch_gnttab_vfree(&gnttab_status_vm_area);
++	__orderly_suspend();
 +}
 +
- #ifdef CONFIG_XEN_PVH
- #include <xen/events.h>
- #include <xen/xen-ops.h>
-diff --git a/drivers/xen/grant-table.c b/drivers/xen/grant-table.c
-index 957500dd309a..fc18fe4cf7a3 100644
---- a/drivers/xen/grant-table.c
-+++ b/drivers/xen/grant-table.c
-@@ -1696,7 +1696,7 @@ int gnttab_init(void)
- 
- 	if (gnttab_setup() < 0) {
- 		ret = -ENODEV;
--		goto ini_nomem;
-+		goto free_gnttab;
- 	}
- 
- 	gnttab_size = nr_grant_frames * gnttab_interface->grefs_per_grant_frame;
-@@ -1707,6 +1707,9 @@ int gnttab_init(void)
- 	printk("Grant table initialized\n");
- 	return 0;
- 
-+ free_gnttab:
-+	arch_gnttab_free();
++static DECLARE_WORK(suspend_work, suspend_work_func);
 +
-  ini_nomem:
- 	for (i--; i >= 0; i--)
- 		free_page((unsigned long)gnttab_list[i]);
-diff --git a/include/xen/grant_table.h b/include/xen/grant_table.h
-index a33a60a2ea72..a635cadb61f1 100644
---- a/include/xen/grant_table.h
-+++ b/include/xen/grant_table.h
-@@ -203,6 +203,7 @@ gnttab_set_unmap_op(struct gnttab_unmap_grant_ref *unmap, phys_addr_t addr,
- }
- 
- int arch_gnttab_init(unsigned long nr_shared, unsigned long nr_status);
-+void arch_gnttab_free(void);
- int arch_gnttab_map_shared(xen_pfn_t *frames, unsigned long nr_gframes,
- 			   unsigned long max_nr_gframes,
- 			   void **__shared);
++/**
++ * orderly_suspend - Trigger an orderly system suspend
++ *
++ * This may be called from any context to trigger a system suspend.
++ * If the orderly suspend fails, it will force an immediate suspend.
++ */
++void orderly_suspend(void)
++{
++	schedule_work(&suspend_work);
++}
++EXPORT_SYMBOL_GPL(orderly_suspend);
++
+ static const char *hw_protection_action_str(enum hw_protection_action action)
+ {
+ 	switch (action) {
 -- 
-2.25.1
+2.53.0
 
 
