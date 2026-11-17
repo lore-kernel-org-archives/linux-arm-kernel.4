@@ -2,107 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C758606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA49606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:47:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MnVfYVjY;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tReKwzsj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hROk7ojP;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=q2q4cieC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=U3eIe+zxkNhC3x1FOaH9hTSZUT+PYfO56KR+OgT0gCM=; b=MnVfYVjY0uDbZ/
-	OPTdkxGKD3Mxxk8seAIdQNHIHhOn1isALJUr+NCBjVLgTiEh4yxIQq9oZBRcgD5J4RFk00b8DHwuS
-	wrIftgNAjQ71Y28ch0Vz90gR/anmYLCcr55NtaYA6BWcWey+IR3fz6iZC10psYUZlLOYr1xFpiqBE
-	03xSzwYTKVs7ecTpawApa79h4MCzwFi9yR9/QB7UJp9+aZIi50m3g6ej41H/mV0o/zG98Cxs8AUgJ
-	Q7dG8o1RzEqhBmYhwG+oFSdkYQPedh7ZleASDrS2Priko3dFDui2aOlpkg+MZk2/PJ/BkHgX9D737
-	g3sFnS1E0Cg+1rqbrhtA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Subject:Cc:To:From:Date:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=IDaAvYVXZ58edhDcqT25CtUAFfFh9zrLMuk/nutn9Sg=; b=hROk7ojPnOdvCt/1vL1jmOa8rq
+	kem+u8sWWawT8kP1PDYRqTF+1JW9cgjQmR2m0RafFmC0J9M4ghOBVjTKAxgHdYuzigYTPZd1icHPx
+	J0pRyvzyfZB6W3j88953qotJgg6YnDQtLRhSi9tlOlQKnSVujDuX1IMTFWLgFEpIjDC4M1rsyb/zQ
+	khszFF0V2wrPY9AS+lCze3tFN1V2DbyD45U/1eXszJCsfgrhtOzVH4s/zr0BKE+X3K++y3PCx6C6P
+	DI8WFA2BAdzeG1hRrNNQG7qnn2/YM+pZKT6kNaXdsxqU/vUS9F42Sfzc6lebwFhKIKswUdABrDhay
+	LBo9uSPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIYd-00000005iR0-0jO1;
-	Tue, 17 Nov 2026 12:45:07 +0000
-Received: from mail-pg1-x534.google.com ([2607:f8b0:4864:20::534])
+	id 1xTIb6-00000005j0T-2kzB;
+	Tue, 17 Nov 2026 12:47:40 +0000
+Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIYW-00000005iLz-0eDD
+	id 1xTIb4-00000005ize-1omJ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 12:45:02 +0000
-Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-cde1479f76fso414704a12.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 04:44:59 -0800 (PST)
+	Tue, 17 Nov 2026 12:47:39 +0000
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-6b4bd3d98bfso6248514a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 04:47:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794919499; x=1795524299; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=U3eIe+zxkNhC3x1FOaH9hTSZUT+PYfO56KR+OgT0gCM=;
-        b=tReKwzsjzhxwwJGDQ2p9FB5JtGMiJ4IUzzCMmJkgebQHDEj/THm6iRqTpzpEkuvja3
-         GB8iMtA60qYXe0dMouadI8VOHZij9HZfpKH1Unf9DIZ+26M2LwXT/OvAZiTNkH5vVXXa
-         AHXk0mDx9OtZdwT01VgIe7cYUqOLu+R5Bs1bT1MM0x3nEIBB0Lz5bt7Z/2//rrxJvatc
-         veZG4Du0OHk3r+RGjQ7eqe660HxEmjgnDle6GWNrfxrt0hHq7mQGxMDv5EMWM1efRGwA
-         +w9ERk+kG7Q/K3fARd63hYeaQxg6DXxtqJm7KzhSgygBiChUE+145Si+z2FPBA+p+s/H
-         9j2A==
+        d=gmail.com; s=20260707; t=1794919656; x=1795524456; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:subject:cc:to:from:date:message-id:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=IDaAvYVXZ58edhDcqT25CtUAFfFh9zrLMuk/nutn9Sg=;
+        b=q2q4cieC8NWR+fxn44RT+e0VgSbC6B2IVxLUgbbBvX4DEMy2n2zFbOE9Z2Q4A3u+n7
+         h82uBGtkSrK7iyXH3WgUfR8wq6TS5Cr2XTqrNNUjFRxq6kAbXxCXWqXicmU8GkkC91Hk
+         zl6Dq0oJomnOZJC19htM7q8vUJIUygSgvKD8ILMuV/SRIUl6NGGlRflhgmeiSx/JkYcp
+         ylFV5pmRstGiy1tU7cwIaYqrv7j34qTYvfAGGbSK/jBaV0+4enAptNC3gTTCWp8j/xKN
+         1byliAOJ5teXi+zI3zRhgvymP3l2qTAHIImUJ5MhEm52ZYDeFeXPVOWnAHEyOdlNFHiA
+         3ViA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794919499; x=1795524299;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
+        d=1e100.net; s=20260707; t=1794919656; x=1795524456;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:subject:cc:to:from:date:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=U3eIe+zxkNhC3x1FOaH9hTSZUT+PYfO56KR+OgT0gCM=;
-        b=DV9kXxcz12/tPL6ZaSPjJjSH5ffiTp0yXKF7/nZAet6I7u8deWISD6CivZ8Rlxrf2H
-         b4bJO/ajrB8u5y7sQPrIGZpTcZ6ueYtdRqkVTvi1YrGtRPE/pCR/65xeIe7Q6lmcBlKk
-         Rlu2Jn9t8vCcPFWwds7ZX+WknXIc606NEcyzGI4mtyXVdeBC2NIu9kxaYcwcQzuJUG/k
-         kITV0WGhu5gROHAdzxa/raz+9Fqmf1U1Bp6khAhzkcIaojPMwhyIdaLnn1SKHNxntSvT
-         TE2tYRQYrQyNyjkfqelokAAvG+4A/3kMEsID67Ezjcv7aEaBwFktgxVQo4tKnbq7Mh2L
-         4KjA==
-X-Forwarded-Encrypted: i=1; AL+hErG8OpMYglEmi8pLpQPa4W9nEiSYiD2brEPbtKBps+JfZprVfc5jezhXTuMUKFlvpxWwrbAVepH5UON82hhPOfkJ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+jYyHGBMfjX0GxZzvWQqtr0W7zDcHWnfzQed1tFMQZVzNGNld/
-	MZzRJWD6ht7nLVekwlkuXh/S+w9M4rT9qrwDdgCaKKsvvZy7K+fVkr4o
-X-Gm-Gg: AZFdTZfXM6zXykOOsriNhzGNbZ6JPDsdAX4cC5dmss/b/C780BF2NIzDn3ivm9QcBj3
-	tKIpoT5Li95eg9Y0/rN5KXyeGw1YkWxn5c22QJVXtWd+dPL+j1o3OfgBvuzJoUUztgX0qsbPjTT
-	J9v6syQVgNSgh9wl5wo3K45IRJSw+x+3sQ4Hm4FlipElucUuEmi/BGGm9IuFWA7+Yd46YCUIVlI
-	MN1T+Dcy03oOsQfauzUFBYzpbkc602YowKXDBOdlcsw0Rp34p5T/RAD9cp5tB5Sc9pQ0gUZtPf4
-	atOUa482NSctWXLP5cwQk22P0PNYCEOq0yVkYWPn6OfoQXCLHD6zLBflWXgupM+sM++2j7qNKy5
-	JNv5gpKPWbSz0pIagtZjXSV/Eeh8QAEZ9z6XLU5I7jvpSZCpzmmhO8J7MtZo37s3kw108NdGoEY
-	m1il7+bw8b+5yEhikxteHD40E8BBO6+GGebGY5koNDqQFcOGVvOv0Mk/c2PA8nyc4GsrHPNS50P
-	yQZsAedUzIiGWZcFVOCtgajS6hXPf+8E3MWTkjA2b2jKipRi3byUY07b0YuimcwOoeA+zxiY9Xj
-	og4ItmavvilAV+7yh0uygJbavHj1gNpzg0E=
-X-Received: by 2002:a17:90b:1f81:b0:3b0:a38a:6715 with SMTP id 98e67ed59e1d1-3b1b0d753ebmr13700852a91.59.1794919499020;
-        Tue, 17 Nov 2026 04:44:59 -0800 (PST)
-Received: from [127.0.1.1] ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2efd7a85f1dsm14585725ad.59.2026.11.17.04.44.53
+        bh=IDaAvYVXZ58edhDcqT25CtUAFfFh9zrLMuk/nutn9Sg=;
+        b=jl3JoWs3qgDSwMRxWW5yvlCg4/9gxLjQA0nLcoZumWNRQQBX8unsc4jXWRuymbq1iR
+         fPD6Iefv5CmCPtJhtekUamxR1p8hxwkhmzdr1HWvQVEK7aRo3SzdMqsZo3vHva5kA79g
+         Qez6oepmLEW+p1QirA4J42PQ6EjSfyQR7GU3GLBHMmtX5/Gmzlt3/1J9RSv9wxr3BjrX
+         HBnZS7Oi9QMJ3yl3JRZ6ymyyXEhsosdcyzWzuGyH2IJi6sM7un5B0v9yu/Jc5ECcUkoq
+         vnaN/rwSHTdyjFuA0ULtqySKSrkjboheXAtxEIjUcmiLyM404YOT7srR7cjMSdvQ2iZi
+         gHVA==
+X-Forwarded-Encrypted: i=1; AL+hErFP8avgjUptSjT7w9NIT7pWnt5FkRbnOG/cmhyoCIPONa6dSpDRolUTbX381rhtf67eFKGoFejVsTjCsZvsDyp1@lists.infradead.org
+X-Gm-Message-State: APuU4Z9q/PARd7Zt6y4E8XD6lI7qEL3jDuaWc2uyy4b0hB46V8a/yxEJ
+	wI/vHgeECYDUghpOyfkKVIQsbGL5BIPMfOxDsWSZsGuP1dp648JG7mbW
+X-Gm-Gg: AYBFou3TwZD2hDRwaYW1LMwGOPJF3S3UEKP9Pb41LUNCkazpbnMslw/WHYk82FLWWMD
+	enAtbQbryBMMudPbsiGBIrezOPK3urSSZWIQ864/8az4WZu8mkw/5WodQGaJgkkjmM8VGXsXIUq
+	WvXwOR5AvKuP9VtiwjdOc1sM6IXHb0wZ5OWPBRosHIf7fFJX/93B/CqP8n6hXHo8M9sgzGuMA75
+	FNflDD6p8JrhQrPhUIwl5GRFO/ySEdVyxxi+ROlxMeP14ycadJLkgSodkn9qP/tqQ6mgXjX4bgR
+	YMXOG+rUlhkbr2+wrSJ3SpVr3p+aDlTJJwDDNZKF4HqN3NVTb00rICYwmIKUF8RwJm5s58tTbBJ
+	M8qCIH4HNvzGUTHKDTwCj5DaOkh3UvVIMXy3InaLGrFK4ijDAL8fpc9TDFcRjmjC0vShzwjKvER
+	rQh9Ww5yGoMd3S92QYe4KnhyERuy3FaviSJe4vAeFxjDP+L3Ojv0L8mg7wLeKDrFtGnoX+v9MCp
+	aUMcyWv4shudpELAEhD8erKciPSVmSGCkgBMjQZLDXA3T6TjMIWlamS1exVrV7uA+gNqobWLlY5
+	lvB+mIUjvT3+wBaYgrXFADouU8GpGdogwx5vPzmN5wuD2eZ8xBGKo24PHnrHZMAIWY9lVS0nHsL
+	rCulnQyemY0DHFKjv
+X-Received: by 2002:a05:6402:2347:b0:6b8:7d2b:4dcb with SMTP id 4fb4d7f45d1cf-6b87d2b5390mr750722a12.14.1794919656177;
+        Tue, 17 Nov 2026 04:47:36 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-92-103.ip49.fastwebnet.it. [93.34.92.103])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b87368c70fsm430430a12.23.2026.11.17.04.47.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2026 04:44:57 -0800 (PST)
-From: Leonardo Costa <leoreis.costa@gmail.com>
-Date: Tue, 17 Nov 2026 09:44:14 -0300
-Subject: [PATCH v2 2/2] arm64: dts: freescale: imx8mm-verdin: Add Toradex
- DSI to LVDS adapter with the 10.1" V2 display
+        Tue, 17 Nov 2026 04:47:35 -0800 (PST)
+Message-ID: <6afc4ce7.4b925a68.31e7c.7768@mx.google.com>
+X-Google-Original-Message-ID: <avxM5Ldccuc6TgM_@Ansuel-XPS.>
+Date: Tue, 17 Nov 2026 13:47:32 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: netdev-bot+sinfo@kernel.org
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, llvm@lists.linux.dev
+Subject: Re: [PATCH net-next v22 00/15] net: pcs: Introduce support for
+ fwnode PCS
+References: <20261117123956.11981-1-ansuelsmth@gmail.com>
+ <179491941687.3291.11313796890436002644@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261117-v2-imx8mm-verdin-add-lvds-v2-v2-2-ecfd237cf7ee@toradex.com>
-References: <20261117-v2-imx8mm-verdin-add-lvds-v2-v2-0-ecfd237cf7ee@toradex.com>
-In-Reply-To: <20261117-v2-imx8mm-verdin-add-lvds-v2-v2-0-ecfd237cf7ee@toradex.com>
-To: Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Leonardo Costa <leonardo.costa@toradex.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794919484; l=6885;
- i=leonardo.costa@toradex.com; s=20261001; h=from:subject:message-id;
- bh=oileKM9NWf3LIxFH+bWjLKnDxeS3R++Bhw1jN8xh1DM=;
- b=W/3ZI6a1L4XOu9EJvQ1kh8Owh9i7WoY6j7p0X/zutKQwN3WSrNF0zCI/TbL7gKsMHvav/4k4k
- bYSyoV5LW7sAo6et2IxZ3Jz/tAIfsNaq/C6eifAqgw3zr+DzFxuWYjs
-X-Developer-Key: i=leonardo.costa@toradex.com; a=ed25519;
- pk=4xvoVLDt+NxIz9D8BJHhT0fD43Ig6XgSDw4jRN/gHzk=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <179491941687.3291.11313796890436002644@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_044500_243758_9970F657 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20261117_044738_518259_77151D5D 
+X-CRM114-Status: GOOD (  22.80  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,202 +127,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Leonardo Costa <leonardo.costa@toradex.com>
+On Tue, Nov 17, 2026 at 12:43:36PM +0000, netdev-bot+sinfo@kernel.org wrote:
+> Hi!
+> 
+> This is an automated message. This series looks like a fix, but its
+> commit messages seem to be missing some information:
+> 
+>  - How the issue was discovered, e.g. hit in production, hit during
+>    development, syzbot report, manual code inspection, LLM or static
+>    analysis tool scan.
+> 
+>  - Whether the issue was actually triggered, or is only theoretical
+>    (e.g. found by LLM and not proven at runtime). If it was triggered
+>    please include the symptoms, like the stack trace or kernel messages.
+> 
+> Please do not repost the series just to address the above. Instead,
+> reply to this email with the missing information, so that reviewers
+> can take it into account.
+> 
+> *IMPORTANT*: If you do repost (for other reasons) - please include
+> the relevant info in the cover letter or commit messages.
+> -- 
+> The evaluation is done by an LLM so it may be wrong, if you think
+> that is the case please reply and explain.
 
-Add a device tree overlay for the Toradex DSI to LVDS Adapter with the
-Toradex Capacitive Touch Display 10.1" LVDS V2. The adapter connects to the
-Verdin DSI_1 interface. It is based on the Texas Instruments SN65DSI84
-DSI-to-LVDS bridge and drives an Opto Logic SCX1001511GGC49 10.1" WXGA TFT
-LCD LVDS panel. Touch input is provided by an ILITEK ILI251x capacitive
-touch controller.
+The RCU """bug""" was found while evaluating the code. It's hardly possible
+to have such bug on real world scenario since PCS and MAC are currently
+tightly coupled. Nonetheless with VERY BAD PROGRAMMING it's still possible
+to trigger it.
 
-Link: https://developer.toradex.com/hardware/accessories/add-ons/dsi-lvds-adapter
-Link: https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-lvds
-Signed-off-by: Leonardo Costa <leonardo.costa@toradex.com>
----
- arch/arm64/boot/dts/freescale/Makefile             |   4 +
- ...-dsi-to-lvds-tdx-panel-cap-touch-10inch-v2.dtso | 134 +++++++++++++++++++++
- 2 files changed, 138 insertions(+)
+It's both a fix and a prerequisite for having standalone PCS support.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 0bbc4b6a6b537..b5d4afac550b6 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -258,6 +258,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7903.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7904.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-dsi-to-hdmi.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-dsi-to-lvds-tdx-panel-cap-touch-10inch-v1.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-dsi-to-lvds-tdx-panel-cap-touch-10inch-v2.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dahlia-dsi-to-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dahlia-tdx-panel-cap-touch-10inch-dsi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dahlia.dtb
-@@ -275,6 +276,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dahlia-tdx-panel-cap-touch-10inch-d
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev-dsi-to-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev-dsi-to-lvds-tdx-panel-cap-touch-10inch-v1.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev-dsi-to-lvds-tdx-panel-cap-touch-10inch-v2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev-nau8822-btl.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev-tdx-panel-cap-touch-7inch-dsi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev-uart4-mcu.dtb
-@@ -296,6 +298,8 @@ imx8mm-verdin-wifi-dahlia-tdx-panel-cap-touch-10inch-dsi-dtbs := imx8mm-verdin-w
- imx8mm-verdin-wifi-dev-dsi-to-hdmi-dtbs := imx8mm-verdin-wifi-dev.dtb imx8mm-verdin-dsi-to-hdmi.dtbo
- imx8mm-verdin-wifi-dev-dsi-to-lvds-tdx-panel-cap-touch-10inch-v1-dtbs := imx8mm-verdin-wifi-dev.dtb \
- 	imx8mm-verdin-dsi-to-lvds-tdx-panel-cap-touch-10inch-v1.dtbo
-+imx8mm-verdin-wifi-dev-dsi-to-lvds-tdx-panel-cap-touch-10inch-v2-dtbs := imx8mm-verdin-wifi-dev.dtb \
-+	imx8mm-verdin-dsi-to-lvds-tdx-panel-cap-touch-10inch-v2.dtbo
- imx8mm-verdin-wifi-dev-nau8822-btl-dtbs := imx8mm-verdin-wifi-dev.dtb imx-tdx-nau8822-btl.dtbo
- imx8mm-verdin-wifi-dev-tdx-panel-cap-touch-7inch-dsi-dtbs := imx8mm-verdin-wifi-dev.dtb \
- 	imx8mm-verdin-tdx-panel-cap-touch-7inch-dsi.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-tdx-panel-cap-touch-10inch-v2.dtso b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-tdx-panel-cap-touch-10inch-v2.dtso
-new file mode 100644
-index 0000000000000..6b0c989dbc75a
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-tdx-panel-cap-touch-10inch-v2.dtso
-@@ -0,0 +1,134 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Toradex DSI to LVDS Adapter on Verdin DSI_1 with Capacitive Touch Display
-+ * 10.1" V2 Used on Dahlia (X17) and Development Board (X48) that expose DSI_1
-+ * via a Samtec LSS-130 connector.
-+ *
-+ * https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-lvds
-+ * https://www.toradex.com/accessories/capacitive-touch-display-10.1-inch-lvds
-+ * https://developer.toradex.com/hardware/accessories/add-ons/dsi-lvds-adapter
-+ * https://www.toradex.com/accessories/verdin-dsi-to-lvds-adapter
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+&{/} {
-+	backlight_pwm3: backlight-pwm3 {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i2s_2_d_out_dsi_1_bkl_en>;
-+		brightness-levels = <0 45 63 88 119 158 203 255>;
-+		default-brightness-level = <4>;
-+		/* Verdin I2S_2_D_OUT (SODIMM 46) - DSI_1_BKL_EN_LVDS */
-+		enable-gpios = <&gpio3 24 GPIO_ACTIVE_HIGH>;
-+		power-supply = <&reg_3p3v>;
-+		/* Verdin PWM_3_DSI (SODIMM 19) - PWM_3_DSI_LVDS */
-+		pwms = <&pwm1 0 6666667 0>;
-+	};
-+
-+	panel-lvds-bridge {
-+		compatible = "optologic,scx1001511ggc49", "panel-lvds";
-+		backlight = <&backlight_pwm3>;
-+		data-mapping = "vesa-24";
-+		power-supply = <&reg_dsi_lvds>;
-+		height-mm = <136>;
-+		width-mm = <217>;
-+
-+		panel-timing {
-+			clock-frequency = <70000000>;
-+			hactive = <1280>;
-+			hback-porch = <55>;
-+			hfront-porch = <55>;
-+			hsync-len = <45>;
-+			vactive = <800>;
-+			vback-porch = <5>;
-+			vfront-porch = <5>;
-+			vsync-len = <3>;
-+			de-active = <1>;
-+			hsync-active = <0>;
-+			vsync-active = <0>;
-+			pixelclk-active = <0>;
-+		};
-+
-+		port {
-+			panel_lvds_bridge_in: endpoint {
-+				remote-endpoint = <&dsi_lvds_bridge_out>;
-+			};
-+		};
-+	};
-+
-+	reg_dsi_lvds: regulator-dsi-lvds {
-+		compatible = "regulator-fixed";
-+		/* Verdin CTRL_SLEEP_MOCI# (SODIMM 256) */
-+		gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+		regulator-name = "DSI_1_PWR_EN";
-+	};
-+};
-+
-+&i2c4 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@41 {
-+		compatible = "ilitek,ili251x";
-+		reg = <0x41>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_9_dsi>, <&pinctrl_i2s_2_bclk_touch_reset>;
-+		/* Verdin GPIO_9_DSI (SODIMM 17) - TOUCH_INT# */
-+		/* Rising edge avoids spurious interrupts from the noisy falling edge. */
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <15 IRQ_TYPE_EDGE_RISING>;
-+		/* Verdin I2S_2_BCLK (SODIMM 42) - TOUCH_RESET# */
-+		reset-gpios = <&gpio3 23 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&lcdif {
-+	status = "okay";
-+};
-+
-+&lvds_ti_sn65dsi84 {
-+	vcc-supply = <&reg_dsi_lvds>;
-+
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			dsi_lvds_bridge_in: endpoint {
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&mipi_dsi_out>;
-+			};
-+		};
-+
-+		port@2 {
-+			reg = <2>;
-+
-+			dsi_lvds_bridge_out: endpoint {
-+				remote-endpoint = <&panel_lvds_bridge_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mipi_dsi {
-+	samsung,esc-clock-frequency = <16000000>;
-+
-+	status = "okay";
-+};
-+
-+&mipi_dsi_out {
-+	remote-endpoint = <&dsi_lvds_bridge_in>;
-+};
+(hope I don't have to repeat this message for the next gozillion revision
+of this series...)
 
 -- 
-2.43.0
-
+	Ansuel
 
