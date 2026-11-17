@@ -2,75 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FB4606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A62606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 14:05:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dCotDeYY;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=VQp/2GAu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XKzKmF2q;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=c99HvclO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=9ammhtwy9K590KTiGuFRN9TiLwSY3ErK147SvQ2LZpc=; b=dCotDeYYef0HAUcbRI7s/rwXzk
-	m8oXPGZtbNfvxSgrx55cJ4ueuYOGBX+QvyJbiRxy8G2R71E/fVYAV1vBmCbK7EN7g2vRy473cmsTr
-	LuWZyU7vTtTAGxfQosBor59t4/+k7gIWAUJ9siiX9mZoZgQFZQU5nlRSxi4YtDESYYZt6sbsegoll
-	r/DA+0Gi6qbq+6XBqZpxfU50gvX6HLaHUISVyMtIgZU2LVMuiuCVpAgvG9IzCLcKhhOP6uNIapmRS
-	+oUq2YORvXyD/FKeBPx9sj61BAiQG192qImChh6Fu9//B9k0/hKPHoUvVVahAvP673wJB1/EsQGHl
-	8LSF4pUQ==;
+	bh=gwpUsyK05NpebcZHKBuJHcLynXCmkJRULUp5k1SU9r4=; b=XKzKmF2q1ln4SZG9ge47KNrphs
+	xUAHpfvuZOxrfOJ16+Esm1rzHwpf4zdVVqTyczzyM3bDhcAz3+VKWUyahazlavSIxpuKOFfy1qf/e
+	FJhkDIFNMsHN2745pv4RZJjj34UvNEB+jK8nBI5izkHJLmlmN2X7H7pJgC1GzzinVrB4HwnHWFE+j
+	QMJ6tTpKPIf/DoFOcrLk0wNcdcfCLdOPk3gQj7rh+8eiUlUZ+4FRFX2N2RBwi5Aiui4wM5EJtuYnm
+	mZAT/hYDp7CcnzCm6Q8VFBZim9CoZGhYPiw0bbluFYB0KofrFe47AvGwyLlVPrEMcR+RYFT1hr9lK
+	/LIsmz6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJnS-000000062pR-3264;
-	Tue, 17 Nov 2026 14:04:30 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
+	id 1xTJoY-0000000632T-3n6I;
+	Tue, 17 Nov 2026 14:05:38 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJnQ-000000062oi-0JnZ;
-	Tue, 17 Nov 2026 14:04:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=9ammhtwy9K590KTiGuFRN9TiLwSY3ErK147SvQ2LZpc=; b=VQp/2GAugCh6U8BjJBR2NURYTx
-	4wBg5YZIZUjRVRmHsptsQ+NJ5DwvHgOmov8GesBSEqbjAzFsfCODuI0UrioOSMU5J3PY/B0t5+nbB
-	JD1/lKnuopmhJN1FIGlGWWR5xShBob2ACFCt8TlzzJVpyQLQviO1rUVqOQJOD46I9yqs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1xTJn5-00HAGJ-QD; Tue, 17 Nov 2026 15:04:07 +0100
-Date: Tue, 17 Nov 2026 15:04:07 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Coia Prant <coiaprant@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>,
-	Mengyuan Lou <mengyuanlou@net-swift.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
-	Fabio Baltieri <fabio.baltieri@gmail.com>, netdev@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v4 1/2] net: phy: move
- DECLARE_PHY_INTERFACE_MASK_ZERO to core
-Message-ID: <e3c5f034-1b05-4fcf-bbe1-8b473a8d2a0f@lunn.ch>
-References: <20261110160554.918652-1-coiaprant@gmail.com>
- <20261110160554.918652-2-coiaprant@gmail.com>
- <20261116183012.11a7ba72@kernel.org>
- <CALj3r0gTuJEDd==WzAQ+cK3Og-2zMqvmBrhrd2ARbKJctG5ZAQ@mail.gmail.com>
+	id 1xTJoW-00000006311-2qRG
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 14:05:37 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-48e20ed3b9dso4937620f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 06:05:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794924333; x=1795529133; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=gwpUsyK05NpebcZHKBuJHcLynXCmkJRULUp5k1SU9r4=;
+        b=c99HvclOfKR2vTDSnT7wQP+4B1PjhE4QVBoQRzvejmQhT2VtPVxF9tvEzLE3WKcHfs
+         atK3/KzLUW5vFAtzW+rXW2voajO+w1VK/Fo8egYgYBTspODwG3xt9RdVvX601cn7jCT8
+         KmZ1hchPqGnXtDlUzWS0gqYS7rjNmXuQPmIB/YWkcsx8/ueuwIPQM9xVPi0njSJAMLV9
+         hTD/7zoR+oVadK9RBFPF78YCcAI+4UBhxahScit/94f5cJ7ClE9ken/ESP+HFE4p0mP6
+         8Tqc/A9EVVZ1equWlKoPCaBx7xCc3lmI+E12TP83rWymKh0FfMFOKqhDGxHCd8QFupgv
+         IA5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794924333; x=1795529133;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=gwpUsyK05NpebcZHKBuJHcLynXCmkJRULUp5k1SU9r4=;
+        b=GwxKsmPyPxMJtN1cIQvOFfcrKUtV+QyouwOTc3bZlXjziruTxXpxVAMXXeRj/y13eQ
+         t2Y6xZdcDxe//QC711ueEUZOvLLw41UBBKE9f15TsxGkrj4PdJB4JHwAqPdxb//8mjet
+         JIGJrQElp5QPHYh0feXuxz1JjfNyGJD+zXabYQUiOO25t17Gqeni1y5byYyiG8kq1TH/
+         9srnw3ySE52DM8kEquG1gCY2XQbgq2jBateHvchTBrtDMORyGB2oEaWeF/PhrNAa7SpC
+         HH2VTSxz8js8h0Z6HTPmMmazGbO3rc6Qn5Tpo2kRjreAmdJB5Exbvvh8R9s1he7aEmiG
+         AuYQ==
+X-Forwarded-Encrypted: i=1; AL+hErFhcH0BmnZBh+QDcdyF4iYa51LTNC4UcaPwLEdAyBXB0PZ9Qrf+IeVqcsOOApl6JNenwhVHFwOBTgpsR84W2Loe@lists.infradead.org
+X-Gm-Message-State: APuU4Z+R/IxU43gdshnNG2ZpILO76S8aqB5+VMkZL3p6cNGVHGIw58SF
+	VwoJ9qCQvy/L4gl4vT7YC3Z+ygSWz1PfRdQjZjma4Ps6/exJG8l7hu3H
+X-Gm-Gg: AZFdTZdC1lwDgHziJ+Her7JeWZeDA+9XtnDA34H5phf5HX/vpBMfQBYUYkBvzLeiCok
+	cLEvL/vKTvPXdMG2dBQA35DdBQWwcVP1dkQL5ugOVBMAC/y3NX0XfGXfP68B+inTdKVZbLsxVF3
+	bRJMzAJDcNDpJjOtGknDKFdcpJ9hf8PSHJKXHcF2BWkxRV5+HMr3LGBncJZlB7MLaTDeF+poSPe
+	fUVoD8x5Ro5Gh2DOv5igQYVfwgLkyExIXfT4NbZeMExweHwmQhtXWuTrX0aaI/SYj8G9qW7VokW
+	oUUAQhfHtriUb94DVdx1UtmZrHCevB/1THNxihF4Hg9n5WUqy87rTWgeekfuFeFNsT97F9gBAhO
+	HsNon4ekmJl40S6dRZIXv63Kj4blMFGUa1nIfiB+MpEU+fO225TrpzoJdTpt3R2Nvg7uVgHc4PL
+	0tmYLWEFyr5bqsO9SOxlah2pUXNCmlZZ1Fkhul5f8xj332720Y867XBZGyI5SBANopL/MXL1kx3
+	rflLeUAhEL9J0CJujhNpPayAhNvm/sIb9ttEUa4NLmsRi0Xmr7alasSCwiBSPmf3EaEAJ5Iec4R
+	NpAMnT51JWJnbesf5KFQbDuhqHYODBNZaKCtyw==
+X-Received: by 2002:a05:6000:2602:b0:48e:7476:9205 with SMTP id ffacd0b85a97d-49c71784d80mr30330262f8f.31.1794924333342;
+        Tue, 17 Nov 2026 06:05:33 -0800 (PST)
+Received: from fedora ([154.183.162.73])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a4de4cb1c3sm2623032f8f.8.2026.11.17.06.05.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Nov 2026 06:05:32 -0800 (PST)
+From: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
+To: jic23@kernel.org,
+	linux-iio@vger.kernel.org
+Cc: dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev,
+	giorgitchankvetadze1997@gmail.com,
+	amin.gattout@gmail.com,
+	antoniu.miclaus@analog.com,
+	gregkh@linuxfoundation.org,
+	mripard@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
+Subject: [PATCH v4 0/3] iio: adc: at91_adc: fix trigger NULL deref and convert to devm_*
+Date: Tue, 17 Nov 2026 16:05:07 +0200
+Message-ID: <20261117140510.391907-1-abdelnasserhussein11@gmail.com>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CALj3r0gTuJEDd==WzAQ+cK3Og-2zMqvmBrhrd2ARbKJctG5ZAQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_060428_116794_2C119F01 
-X-CRM114-Status: GOOD (  10.07  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_060536_731867_14EB266E 
+X-CRM114-Status: UNSURE (   9.90  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,26 +111,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> I understand your concern that hiding the init inside the macro seems
-> subjective. Since you mentioned an Andrew ack is needed, and he is the
-> net PHY maintainer (who also looks after the WX driver),
+This series fixes a NULL pointer dereference in at91_adc when external
+triggers are absent from the Device Tree, and converts 
+the driver to devm_* APIs.
 
-I don't look after the WX driver. I comment on it, as i comment on
-lots of drivers.
+The series is split
+into three patches:
+  1.NULL-pointer fix.
+  2.introduce a local 'struct device *dev' and use sizeof(*st) in probe().
+  3.removing manual cleanup and inlining trigger
+     and buffer setup helpers into probe().
 
-> If Andrew also feels this doesn't belong in the core, I will drop the
-> macro entirely and switch to explicit manual initialization using
-> phy_interface_zero() in both drivers.
+Changes in v4:
+  - Split v3 into three patches (Joshua Crofts, Jonathan Cameron).
+  - Patch 1:NULL check.
+  - Patch 2: Separate the local 'dev' pointer introduction and sizeof(*st)
+    change (Jonathan Cameron).
+  - Patch 3:
+    - Remove at91_adc_allocate_trigger() and at91_adc_buffer_init(),
+      inline their logic in probe(), and avoid relying on idev->dev.parent
+      (Jonathan Cameron).
+    - Remove redundant dev_err() on trigger allocation -ENOMEM
+      (Jonathan Cameron).
+    - Use dev_err_probe() in at91_ts_register() and for
+      devm_iio_device_register() failures in probe() (Jonathan Cameron).
+    
+Changes in v3:
+  - Remove redundant dev_err() after devm_input_allocate_device()
+    (Andy Shevchenko).
+  - Introduce local 'struct device *dev = &pdev->dev' in probe()
+    (Andy Shevchenko).
+  - Declare the loop iterator inside the for-loop.
 
-Using phy_interface_zero() is what current code does. I would also say
-using explicate = {0, } is O.K, but i would not hide it in the macro.
+Changes in v2:
+  - Replace the simple NULL check with a full devm_* conversion,
+    as suggested by Jonathan Cameron.
 
-      Andrew
+Abdelnasser Hussein (3):
+  iio: adc: at91_adc: fix NULL pointer dereference on trigger remove
+  iio: adc: at91_adc: use local struct device pointer in probe
+  iio: adc: at91_adc: convert to device-managed resources
+
+ drivers/iio/adc/at91_adc.c | 229 ++++++++++---------------------------
+ 1 file changed, 62 insertions(+), 167 deletions(-)
+
+-- 
+2.56.0
+
 
