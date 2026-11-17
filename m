@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41A3606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 04:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 578AE606A88F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 04:35:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=atYwFRrx;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=S/5dYqwf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zrJfwECX;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Ie75mc/d
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,64 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=kv88xp0i2ySFrcN1aLaQoGF5JG/nfVb1F5vxVlAqWpE=; b=atYwFRrxWzOp+4G8/Z4+px8ItJ
-	vJIr1Ux5SeS/MuV2Whe4ao4oARvkeMvjL86Q2xsC3FKPvbps50uDtu7MhE0FLObwsJvLaXEAtTHdW
-	Q/MtfC5FPtpwJh1dsc7nSJz1NrXSQ0RQ1PH+rJao5mYhx76zVS8EZiZqd2WWEVzLmBqnwRTfZ62Xi
-	4ksTD2yS/pegpjF0fRR85S2D1PKna8nhDwy4YgX6CJVTsngwYXx9oDH/bLCJzV7/MlFEEiLnjUU9l
-	w7ZPyzoKEQ6lAxAC0DuhcFEr1iP9utTBBdCQFekgYLPvysBKHMzsfI46Y0pVkEO0wMWPc1ymZokAE
-	So3IjfFQ==;
+	bh=Nvy6CCcqwiTypH3Zs6Qc7VXNuAG2dCzSjfHucF683qY=; b=zrJfwECXL0FaA8/dyQHfRYnNM6
+	AgE3IsHZPL7g6AYIhAYmROgN1pcBjAtjybZbXV/6r3pktLaKLEPKXx2l4CkmeZHAWrjhyDvuT3LK8
+	Q7M/IoWrCrEjSPBFwKRJmikLbbWCEjX3d+hXqGM8sX6wM8F+/IXhhMtuH14JKQu9xFbTWhJA7PKNm
+	PN759DGagnCXBH+Xy/noQInMv7zQULkeg81E4PHZzYZgFtzHJE45SvKcmWKTh/a1J5qCLHOdZn1WO
+	FJ3TXs5/bW7/etpxnWp5A6tZffjixaYTZar8Vz0MEOsqZXr2aGsV+StsHK3a5vb+nIDpRsUjJ1sUO
+	aCJeQX/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTAua-00000004XpD-2jTy;
-	Tue, 17 Nov 2026 04:35:16 +0000
-Received: from mail-pf1-x445.google.com ([2607:f8b0:4864:20::445])
+	id 1xTAuc-00000004Xrc-2nNc;
+	Tue, 17 Nov 2026 04:35:18 +0000
+Received: from mail-pj1-x1046.google.com ([2607:f8b0:4864:20::1046])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTAuU-00000004Xmc-2IlJ
+	id 1xTAua-00000004Xog-07i3
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 04:35:12 +0000
-Received: by mail-pf1-x445.google.com with SMTP id d2e1a72fcca58-8b647bbf8a9so4754339b3a.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 20:35:09 -0800 (PST)
+	Tue, 17 Nov 2026 04:35:17 +0000
+Received: by mail-pj1-x1046.google.com with SMTP id 98e67ed59e1d1-3ad53f538d2so3462474a91.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 20:35:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794890109; x=1795494909; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794890115; x=1795494915; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=kv88xp0i2ySFrcN1aLaQoGF5JG/nfVb1F5vxVlAqWpE=;
-        b=S/5dYqwfhrS8dOQ/xwUmShcUS1TODsJib6bbp/vbemWs7hDsWNB8J3R68+lWvWQDbn
-         tXhQDPrNrKDZp+UMzYIzt3lNbwePjj6vt20cIdqrfse8U7P4Y/yJshGpvL3hjId2hJus
-         pyrg+CVRGDU79Rf8GVKqqP5oRyI+ci1ApsNOmT2MpoDGiArNkpFnx653d9Wt8Wtf5bK7
-         ic5e8HY5B9tUCbYduaYF4946XrYjichkvJaK3vzCpC+IDN5/ZPDQVFlgOmYxFheeoXAp
-         jPnA0EaTGbRCPpIPFfviDTf2ilBa4faFJ7FaVyh/baBB037mbQMzZ40mhqVSDpDWr6QB
-         qkQw==
+        bh=Nvy6CCcqwiTypH3Zs6Qc7VXNuAG2dCzSjfHucF683qY=;
+        b=Ie75mc/dE4NR9EwUAYeJCnCSEx8tDABnVk8ngUpYSrD4RBBKJG9KpfpVVedkOEdEm3
+         IYsJ9EKljiEl75k9sJ+4rBYMZ8ptzqjK3DoVmLOPQcVERfgGCquy6oL7gLpiDAH8nRnp
+         +1PjcGnVCj4jT3fqMASsD1mHqhPXSmaTfOHbzSyKhn6od1eqps0tsiX7xtxiYU9gSClQ
+         iexjWKN7symuKcCHuK2tMJwoSNGLJUE+8AqSohs2MxS6b7Bblu2/65cfCHsxFAcy6Bge
+         9+KlOnA1kCwvOtrJBETRzwEM913R6h8rddXJfFBtVMwhh5imgizZa0DC+6rUGqCol7A1
+         +okg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794890109; x=1795494909;
+        d=1e100.net; s=20260707; t=1794890115; x=1795494915;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=kv88xp0i2ySFrcN1aLaQoGF5JG/nfVb1F5vxVlAqWpE=;
-        b=gIob+GMAEqpcoDnFayp9+Yr8iO6LdqqOVnB7HpQZmV6AjbihvWyZ1CUy4Qq/fNqCee
-         e8wzOUR249lmNu4pyUkugClP0RLqUua1svqXaouVpAeTcDVupDeWFImsPkEMT5UaeMX/
-         10H0hjlfAFRk2FRd1BtRBZC6bPhSzfZUgk8rYjD+Niv6pKCDkYyEkJpy86RQtHrUYuX+
-         cPWRShFvS63CpnVDHsi6459Ew93WzSZWosfsBsaSnAqkksHEWx1oAGMGZRltwrQ/icOg
-         CWhZX6mXliYiMewZdVdRYM0OKJMWBFmtRLkrLztZ61dN4DQYfTYhKsh56S8FOLnBG1tV
-         aYCw==
-X-Forwarded-Encrypted: i=1; AL+hErHENLtzLCPxLGQqH/JRPSQqO2F1S3BPTm2oIIpNTZlTJgWJ57qxcy+NQTbxOrj1VMWdV6rVFabsQcBT8AT7U0OY@lists.infradead.org
-X-Gm-Message-State: APuU4Z/rBSjNx4V+RAKO1wKWSp/AL3gbEJ4Du70m0/zgRkVLas5fGQoV
-	xXca2PJTTd34ys01G24qizDAt3VWIRmsgAMJAmnIC6ixkK+FbsU5tO2AeEteWlyhJrQ/TsZP1N+
-	/CeHJHfdNA1rGNLEvlukvlqePRg==
-X-Received: from pgcle3-n1.prod.google.com ([2002:a05:6a02:8b83:10b0:cdd:9295:e893])
+        bh=Nvy6CCcqwiTypH3Zs6Qc7VXNuAG2dCzSjfHucF683qY=;
+        b=LnF9WuicxanUI67807bs885V90TYYcBTm6PWhii9V+v5D1L9NyJYPu4Ub/WXFJJJi1
+         dO4TxFYnBqIe52bvcF2lCxvOHIBcAcHEQdPKeyigJKkYEo5pGTlqKVUVyvl3TaDIStsD
+         Znzfsk48KLezrpTyFHiOIUy1UeS9h22FnuhpODJpqUJW4gAIQ6qsx+xDEk9lgcDnyl40
+         tMgapHtFuDDtF4X6MTqIiWRBGyniudSg9j4mTf6LCBQZl7ivMNLk89HEp68aSf0Cg1OD
+         Pr3UT6pJZnDpcbfvPL51RWwbVm0U4ieugBEGNz/gVaGk7OGcH9tqmxjlwCebcCgr+gz+
+         /WmQ==
+X-Forwarded-Encrypted: i=1; AL+hErGKrMPyXNfbFuFvQFE84cUQvoGHhnn+XiemQPdUs1kBHWPdN1CRycF2gudQKLs323KT9oa+hnUhxcnHfgNAIzvj@lists.infradead.org
+X-Gm-Message-State: APuU4Z+10Zly+USFQfhKvZAZ66TH2OTNRjmXlO6N77aMrlkW3pFKP0NS
+	tgcdZBMnaAtXRQiHhYCJPsQktxxqf8qe8rQJnyqyKv1Dink+FerQDILuL3Ra/Vi2MsE6pM16Thd
+	fWQ3XPjxYZ4WQhenlfSaZXbSQiw==
+X-Received: from pjbrs16.prod.google.com ([2002:a17:90b:2b90:b0:3ae:bae0:3179])
  (user=dylanbhatch job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6a21:e347:b0:3eb:67a9:20cd with SMTP id adf61e73a8af0-3f7a6baa73fmr9854448637.18.1794890108718;
- Mon, 16 Nov 2026 20:35:08 -0800 (PST)
-Date: Tue, 17 Nov 2026 04:34:53 +0000
+ 2002:a17:90b:580c:b0:3b0:a7b5:c046 with SMTP id 98e67ed59e1d1-3b1b0b50028mr12486450a91.54.1794890114431;
+ Mon, 16 Nov 2026 20:35:14 -0800 (PST)
+Date: Tue, 17 Nov 2026 04:34:57 +0000
 In-Reply-To: <20261117043504.1021063-1-dylanbhatch@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261117043504.1021063-1-dylanbhatch@google.com>
 X-Mailer: git-send-email 2.56.0.679.gc527c65306-goog
-Message-ID: <20261117043504.1021063-2-dylanbhatch@google.com>
-Subject: [RFC PATCH 01/12] arm64, unwind: build with .eh_frame and add
- gen_lr_unwind skeleton
+Message-ID: <20261117043504.1021063-6-dylanbhatch@google.com>
+Subject: [RFC PATCH 05/12] scripts/gen_lr_unwind: emit .lr_unwind_fde and .lr_unwind_ranges
 From: Dylan Hatch <dylanbhatch@google.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
 	Mark Rutland <mark.rutland@arm.com>
@@ -88,8 +87,8 @@ Cc: Herbert Xu <herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemlof
 	Dylan Hatch <dylanbhatch@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_203510_603133_4511A1A5 
-X-CRM114-Status: GOOD (  29.09  )
+X-CRM114-CacheID: sfid-20261116_203516_102412_ACA52159 
+X-CRM114-Status: GOOD (  16.74  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,350 +108,178 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add CONFIG_ARM64_LR_UNWIND to build the kernel with .eh_frame unwind
-tables while discarding .eh_frame in the final vmlinux and module linker
-scripts unless CONFIG_UNWIND_PATCH_PAC_INTO_SCS is enabled. Wire up a
-skeleton scripts/gen_lr_unwind host tool invoked on vmlinux.o.
+Implement emit_lr_unwind_sections() in scripts/gen_lr_unwind to append
+.lr_unwind_fde, .rela.lr_unwind_fde, and .lr_unwind_ranges sections to
+the target ELF relocatable object and update its .shstrtab and section
+header table.
 
 Signed-off-by: Dylan Hatch <dylanbhatch@google.com>
 ---
- MAINTAINERS                         |   1 +
- arch/arm64/Kconfig                  |  11 +++
- arch/arm64/include/asm/module.lds.h |   2 +-
- arch/arm64/kernel/vmlinux.lds.S     |  25 ++++-
- scripts/.gitignore                  |   1 +
- scripts/Makefile                    |   2 +
- scripts/Makefile.vmlinux_o          |   8 +-
- scripts/gen_lr_unwind.c             | 137 ++++++++++++++++++++++++++++
- scripts/link-vmlinux.sh             |   2 +-
- 9 files changed, 185 insertions(+), 4 deletions(-)
- create mode 100644 scripts/gen_lr_unwind.c
+ scripts/gen_lr_unwind.c | 140 ++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 134 insertions(+), 6 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 93abbb315065d..c7c8673291702 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4047,6 +4047,7 @@ F:	include/linux/arm-rmi-cmds.h
- F:	include/linux/arm-rsi-cmds.h
- F:	include/linux/arm-smccc-rmi.h
- F:	include/linux/arm-smccc-rsi.h
-+F:	scripts/gen_lr_unwind.c
- F:	tools/testing/selftests/arm64/
- X:	arch/arm64/boot/dts/
- X:	arch/arm64/configs/defconfig
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 1075bc6618330..aa09c7ea61be3 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -2506,6 +2506,17 @@ config UNWIND_PATCH_PAC_INTO_SCS
- 	select UNWIND_TABLES
- 	select DYNAMIC_SCS
- 
-+config ARM64_LR_UNWIND
-+	bool "Generate exception-boundary unwind tables from .eh_frame"
-+	default y
-+	select UNWIND_TABLES
-+	help
-+	  Generate compact .lr_unwind_fde and .lr_unwind_ranges sections at
-+	  build time from DWARF .eh_frame unwind information to determine how
-+	  to unwind across exception boundaries (whether the return address is
-+	  live in x30, saved in the frame record at [x29], or saved in the
-+	  frame record at an SP-relative offset).
-+
- config ARM64_CONTPTE
- 	bool "Contiguous PTE mappings for user memory" if EXPERT
- 	depends on TRANSPARENT_HUGEPAGE
-diff --git a/arch/arm64/include/asm/module.lds.h b/arch/arm64/include/asm/module.lds.h
-index 603f92a8a73ed..84e5fa0250435 100644
---- a/arch/arm64/include/asm/module.lds.h
-+++ b/arch/arm64/include/asm/module.lds.h
-@@ -4,7 +4,7 @@ SECTIONS {
- 	.text.ftrace_trampoline 0 : { BYTE(0) }
- 	.init.text.ftrace_trampoline 0 : { BYTE(0) }
- 
--#ifdef CONFIG_UNWIND_TABLES
-+#ifdef CONFIG_UNWIND_PATCH_PAC_INTO_SCS
- 	/*
- 	 * Currently, we only use unwind info at module load time, so we can
- 	 * put it into the .init allocation.
-diff --git a/arch/arm64/kernel/vmlinux.lds.S b/arch/arm64/kernel/vmlinux.lds.S
-index 1869b44ae1909..b8f2963d10030 100644
---- a/arch/arm64/kernel/vmlinux.lds.S
-+++ b/arch/arm64/kernel/vmlinux.lds.S
-@@ -144,15 +144,35 @@ jiffies = jiffies_64;
- #define TRAMP_TEXT
- #endif
- 
--#ifdef CONFIG_UNWIND_TABLES
-+#ifdef CONFIG_UNWIND_PATCH_PAC_INTO_SCS
- #define UNWIND_DATA_SECTIONS				\
- 	.eh_frame : {					\
- 		__pi___eh_frame_start = .;		\
- 		*(.eh_frame)				\
- 		__pi___eh_frame_end = .;		\
- 	}
-+#define EH_FRAME_DISCARDS
- #else
- #define UNWIND_DATA_SECTIONS
-+#define EH_FRAME_DISCARDS	*(.eh_frame)
-+#endif
-+
-+#ifdef CONFIG_ARM64_LR_UNWIND
-+#define LR_UNWIND_SECTIONS				\
-+	. = ALIGN(4);					\
-+	.lr_unwind_fde : {				\
-+		__start_lr_unwind_fde = .;		\
-+		KEEP(*(.lr_unwind_fde))			\
-+		__stop_lr_unwind_fde = .;		\
-+	}						\
-+	. = ALIGN(2);					\
-+	.lr_unwind_ranges : {				\
-+		__start_lr_unwind_ranges = .;		\
-+		KEEP(*(.lr_unwind_ranges))		\
-+		__stop_lr_unwind_ranges = .;		\
-+	}
-+#else
-+#define LR_UNWIND_SECTIONS
- #endif
- 
- /*
-@@ -184,6 +204,7 @@ SECTIONS
- 		*(.interp .dynamic)
- 		*(.dynsym .dynstr .hash .gnu.hash)
- 		*(.ARM.attributes)
-+		EH_FRAME_DISCARDS
- 	}
- 
- 	. = KIMAGE_VADDR;
-@@ -212,6 +233,8 @@ SECTIONS
- 	/* everything from this point to __init_begin will be marked RO NX */
- 	RO_DATA(PAGE_SIZE)
- 
-+	LR_UNWIND_SECTIONS
-+
- 	HYPERVISOR_RODATA_SECTIONS
- 
- #ifdef CONFIG_NVHE_EL2_TRACING
-diff --git a/scripts/.gitignore b/scripts/.gitignore
-index 7004565439107..a56a49fee309c 100644
---- a/scripts/.gitignore
-+++ b/scripts/.gitignore
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- /asn1_compiler
- /gen_init_cpio
-+/gen_lr_unwind
- /gen_packed_field_checks
- /generate_rust_target
- /insert-sys-cert
-diff --git a/scripts/Makefile b/scripts/Makefile
-index d7fbb7ca098b1..cb5af9339e4ac 100644
---- a/scripts/Makefile
-+++ b/scripts/Makefile
-@@ -12,6 +12,7 @@ hostprogs-always-$(CONFIG_SYSTEM_EXTRA_CERTIFICATE)	+= insert-sys-cert
- hostprogs-always-$(CONFIG_RUST_KERNEL_DOCTESTS)		+= rustdoc_test_builder
- hostprogs-always-$(CONFIG_RUST_KERNEL_DOCTESTS)		+= rustdoc_test_gen
- hostprogs-always-$(CONFIG_TRACEPOINTS)			+= tracepoint-update
-+hostprogs-always-$(CONFIG_ARM64_LR_UNWIND)		+= gen_lr_unwind
- 
- kallsyms-objs := kallsyms.o kallsyms-sysmap.o elf-parse.o
- sorttable-objs := sorttable.o elf-parse.o
-@@ -31,6 +32,7 @@ rustdoc_test_builder-rust := y
- rustdoc_test_gen-rust := y
- 
- HOSTCFLAGS_tracepoint-update.o = -I$(srctree)/tools/include
-+HOSTCFLAGS_gen_lr_unwind.o = -I$(srctree)/tools/include
- HOSTCFLAGS_kallsyms.o = -I$(srctree)/tools/include
- HOSTCFLAGS_kallsyms-sysmap.o = -I$(srctree)/tools/include
- HOSTCFLAGS_elf-parse.o = -I$(srctree)/tools/include
-diff --git a/scripts/Makefile.vmlinux_o b/scripts/Makefile.vmlinux_o
-index 0b37bd5dc3a49..362382ec58b15 100644
---- a/scripts/Makefile.vmlinux_o
-+++ b/scripts/Makefile.vmlinux_o
-@@ -57,6 +57,10 @@ objtool-args = $(vmlinux-objtool-args-y) --link
- 
- vmlinux-o-ld-args-$(CONFIG_BUILTIN_MODULE_RANGES)	+= -Map=$@.map
- 
-+gen_lr_unwind := $(objtree)/scripts/gen_lr_unwind
-+cmd_gen_lr_unwind = $(if $(CONFIG_ARM64_LR_UNWIND), ; $(gen_lr_unwind) $@)
-+cmd_gen_lr_unwinddep = $(if $(CONFIG_ARM64_LR_UNWIND), { echo ; echo '$@: $$(wildcard $(gen_lr_unwind))' ; } >> $(dot-target).cmd)
-+
- quiet_cmd_ld_vmlinux.o = LD      $@
-       cmd_ld_vmlinux.o = \
- 	$(LD) ${KBUILD_LDFLAGS} -r -o $@ \
-@@ -64,13 +68,15 @@ quiet_cmd_ld_vmlinux.o = LD      $@
- 	$(addprefix -T , $(initcalls-lds)) \
- 	--whole-archive vmlinux.a --no-whole-archive \
- 	--start-group $(KBUILD_VMLINUX_LIBS) --end-group \
--	$(cmd_objtool)
-+	$(cmd_objtool) \
-+	$(cmd_gen_lr_unwind)
- 
- cmd_check_function_names = $(srctree)/scripts/check-function-names.sh $@
- 
- define rule_ld_vmlinux.o
- 	$(call cmd_and_savecmd,ld_vmlinux.o)
- 	$(call cmd,gen_objtooldep)
-+	$(call cmd,gen_lr_unwinddep)
- 	$(call cmd,check_function_names)
- endef
- 
 diff --git a/scripts/gen_lr_unwind.c b/scripts/gen_lr_unwind.c
-new file mode 100644
-index 0000000000000..1b52662838653
---- /dev/null
+index 118f995b2c48b..f65edd86ac78c 100644
+--- a/scripts/gen_lr_unwind.c
 +++ b/scripts/gen_lr_unwind.c
-@@ -0,0 +1,137 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Generate .lr_unwind_fde and .lr_unwind_ranges sections from .eh_frame
-+ * for arm64 exception-boundary unwinding.
-+ */
+@@ -54,6 +54,19 @@ struct lr_unwind_ctx {
+ 	size_t		cap_runs;
+ };
+ 
++#define LR_SHSTRTAB_EXTRA \
++	(sizeof(".lr_unwind_fde") + sizeof(".rela.lr_unwind_fde") + \
++	 sizeof(".lr_unwind_ranges"))
 +
-+#include <elf.h>
-+#include <errno.h>
-+#include <fcntl.h>
-+#include <stdbool.h>
-+#include <stdint.h>
-+#include <stdio.h>
-+#include <stdlib.h>
-+#include <string.h>
-+#include <sys/mman.h>
-+#include <sys/stat.h>
-+#include <unistd.h>
-+
-+struct lr_unwind_ctx {
-+	const void	*map;
-+	size_t		map_size;
-+
-+	const Elf64_Shdr *eh_sec;
-+	const Elf64_Shdr *rela_eh_sec;
-+	const Elf64_Shdr *fde_sec;
-+	unsigned int	symtab_shndx;
++struct elf_writer {
++	int		fd;
++	u64		off;
++	Elf64_Shdr	*shdrs;
++	unsigned int	shnum;
++	char		*shstrtab;
++	size_t		str_sz;
 +};
 +
-+static int parse_eh_frame(struct lr_unwind_ctx *ctx)
-+{
-+	/* TODO: Parse CIEs/FDEs from .eh_frame and .rela.eh_frame */
-+	(void)ctx;
-+	return 0;
-+}
-+
-+static int emit_lr_unwind_sections(const char *fname, struct lr_unwind_ctx *ctx,
-+				   unsigned int orig_shnum,
-+				   unsigned int shstrndx)
-+{
-+	/* TODO: Emit .lr_unwind_fde, .rela.lr_unwind_fde, and .lr_unwind_ranges */
-+	(void)fname;
-+	(void)ctx;
-+	(void)orig_shnum;
-+	(void)shstrndx;
-+	return 0;
-+}
-+
-+int main(int argc, char *argv[])
-+{
-+	struct lr_unwind_ctx ctx = { 0 };
-+	unsigned int shnum, shstrndx;
-+	const Elf64_Ehdr *ehdr;
-+	const Elf64_Shdr *shdrs;
-+	const char *shstrtab;
-+	struct stat sb;
-+	int fd, ret = 1;
-+
-+	if (argc != 2) {
-+		fprintf(stderr, "Usage: %s <file>\n", argv[0]);
-+		return 1;
-+	}
-+
-+	fd = open(argv[1], O_RDONLY);
-+	if (fd < 0) {
-+		fprintf(stderr, "gen_lr_unwind: cannot open %s: %s\n",
-+			argv[1], strerror(errno));
-+		return 1;
-+	}
-+	if (fstat(fd, &sb) < 0 || (size_t)sb.st_size < sizeof(Elf64_Ehdr)) {
-+		fprintf(stderr, "gen_lr_unwind: invalid file %s\n", argv[1]);
-+		close(fd);
-+		return 1;
-+	}
-+
-+	ctx.map_size = sb.st_size;
-+	ctx.map = mmap(NULL, ctx.map_size, PROT_READ, MAP_PRIVATE, fd, 0);
-+	close(fd);
-+	if (ctx.map == MAP_FAILED) {
-+		fprintf(stderr, "gen_lr_unwind: mmap failed on %s: %s\n",
-+			argv[1], strerror(errno));
-+		return 1;
-+	}
-+
-+	ehdr = ctx.map;
-+	if (memcmp(ehdr->e_ident, ELFMAG, SELFMAG) ||
-+	    ehdr->e_ident[EI_CLASS] != ELFCLASS64 ||
-+	    ehdr->e_ident[EI_DATA] != ELFDATA2LSB ||
-+	    ehdr->e_type != ET_REL ||
-+	    ehdr->e_machine != EM_AARCH64) {
-+		fprintf(stderr, "gen_lr_unwind: %s is not an AArch64 ET_REL ELF\n",
-+			argv[1]);
-+		goto out;
-+	}
-+
-+	shdrs = ctx.map + ehdr->e_shoff;
-+	shnum = ehdr->e_shnum == SHN_UNDEF ? shdrs[0].sh_size : ehdr->e_shnum;
-+	shstrndx = ehdr->e_shstrndx == SHN_XINDEX ?
-+		   shdrs[0].sh_link : ehdr->e_shstrndx;
-+	shstrtab = ctx.map + shdrs[shstrndx].sh_offset;
-+
-+	for (unsigned int i = 0; i < shnum; i++) {
-+		const char *name = shstrtab + shdrs[i].sh_name;
-+
-+		if (!strcmp(name, ".lr_unwind_fde"))
-+			ctx.fde_sec = &shdrs[i];
-+		else if (!strcmp(name, ".eh_frame") ||
-+			 !strcmp(name, ".init.eh_frame"))
-+			ctx.eh_sec = &shdrs[i];
-+		else if (!strcmp(name, ".rela.eh_frame") ||
-+			 !strcmp(name, ".rela.init.eh_frame"))
-+			ctx.rela_eh_sec = &shdrs[i];
-+		else if (!strcmp(name, ".symtab"))
-+			ctx.symtab_shndx = i;
-+	}
-+
-+	if (ctx.fde_sec) {
-+		ret = 0;
-+		goto out;
-+	}
-+
-+	if (!ctx.eh_sec || !ctx.rela_eh_sec || !ctx.symtab_shndx) {
-+		ret = 0;
-+		goto out;
-+	}
-+
-+	if (!parse_eh_frame(&ctx) &&
-+	    !emit_lr_unwind_sections(argv[1], &ctx, shnum, shstrndx))
-+		ret = 0;
-+	else
-+		fprintf(stderr, "gen_lr_unwind: failed to generate .lr_unwind for %s\n",
-+			argv[1]);
-+
-+out:
-+	if (ctx.map)
-+		munmap((void *)ctx.map, ctx.map_size);
-+	return ret;
-+}
-diff --git a/scripts/link-vmlinux.sh b/scripts/link-vmlinux.sh
-index d5710e900bd40..9c8bfb6ff05e0 100755
---- a/scripts/link-vmlinux.sh
-+++ b/scripts/link-vmlinux.sh
-@@ -61,7 +61,7 @@ vmlinux_link()
- 	shift
+ static int append_fde_entry(struct lr_unwind_ctx *ctx,
+ 			    const Elf64_Rela *eh_rela,
+ 			    s64 byte_off, u32 desc)
+@@ -338,16 +351,131 @@ static int parse_eh_frame(struct lr_unwind_ctx *ctx)
+ 	return ret ? -1 : 0;
+ }
  
- 	if is_enabled CONFIG_LTO_CLANG || is_enabled CONFIG_X86_KERNEL_IBT ||
--	   is_enabled CONFIG_KLP_BUILD; then
-+	   is_enabled CONFIG_KLP_BUILD || is_enabled CONFIG_ARM64_LR_UNWIND; then
- 		# Use vmlinux.o instead of performing the slow LTO link again.
- 		objs=vmlinux.o
- 		libs=
++static u64 align_up(u64 val, u64 align)
++{
++	return (val + align - 1) & ~(align - 1);
++}
++
++static int pwrite_all(int fd, const void *buf, size_t count, off_t offset)
++{
++	const u8 *p = buf;
++
++	while (count > 0) {
++		ssize_t n = pwrite(fd, p, count, offset);
++
++		if (n < 0) {
++			if (errno == EINTR)
++				continue;
++			return -1;
++		}
++		p += n;
++		count -= n;
++		offset += n;
++	}
++	return 0;
++}
++
++static int append_section(struct elf_writer *w, const char *name,
++			  const void *data, u64 size, u64 align,
++			  u32 type, u64 flags, u32 link, u32 info, u64 entsize)
++{
++	size_t name_len = strlen(name) + 1;
++	u64 sec_off = align_up(w->off, align);
++
++	if (size && pwrite_all(w->fd, data, size, sec_off) < 0)
++		return -1;
++
++	memcpy(w->shstrtab + w->str_sz, name, name_len);
++	w->shdrs[w->shnum++] = (Elf64_Shdr){
++		.sh_name	= w->str_sz,
++		.sh_type	= type,
++		.sh_flags	= flags,
++		.sh_offset	= sec_off,
++		.sh_size	= size,
++		.sh_link	= link,
++		.sh_info	= info,
++		.sh_addralign	= align,
++		.sh_entsize	= entsize,
++	};
++	w->str_sz += name_len;
++	w->off = sec_off + size;
++	return 0;
++}
++
+ static int emit_lr_unwind_sections(const char *fname, struct lr_unwind_ctx *ctx,
+ 				   unsigned int orig_shnum,
+ 				   unsigned int shstrndx)
+ {
+-	/* TODO: Emit .lr_unwind_fde, .rela.lr_unwind_fde, and .lr_unwind_ranges */
+-	(void)fname;
+-	(void)ctx;
+-	(void)orig_shnum;
+-	(void)shstrndx;
+-	return 0;
++	const Elf64_Shdr *orig_shdrs =
++		ctx->map + ((const Elf64_Ehdr *)ctx->map)->e_shoff;
++	size_t orig_str_sz = orig_shdrs[shstrndx].sh_size;
++	Elf64_Ehdr ehdr = *(const Elf64_Ehdr *)ctx->map;
++	struct elf_writer w = {
++		.fd = -1,
++		.shnum = orig_shnum,
++		.str_sz = orig_str_sz,
++		.shdrs = calloc(orig_shnum + 3, sizeof(Elf64_Shdr)),
++		.shstrtab = malloc(orig_str_sz + LR_SHSTRTAB_EXTRA),
++	};
++	unsigned int fde_shndx = orig_shnum;
++	int ret = -1;
++
++	if (!w.shdrs || !w.shstrtab)
++		goto out;
++
++	memcpy(w.shdrs, orig_shdrs, orig_shnum * sizeof(Elf64_Shdr));
++	memcpy(w.shstrtab, ctx->map + orig_shdrs[shstrndx].sh_offset,
++	       orig_str_sz);
++
++	w.off = (ehdr.e_shoff + (u64)orig_shnum * sizeof(Elf64_Shdr) ==
++		 ctx->map_size) ? ehdr.e_shoff : ctx->map_size;
++
++	munmap((void *)ctx->map, ctx->map_size);
++	ctx->map = NULL;
++
++	w.fd = open(fname, O_RDWR);
++	if (w.fd < 0)
++		goto out;
++
++	if (append_section(&w, ".lr_unwind_fde", ctx->fdes,
++			   ctx->nr_fdes * sizeof(*ctx->fdes), 4,
++			   SHT_PROGBITS, SHF_ALLOC, 0, 0, 0) < 0 ||
++	    append_section(&w, ".rela.lr_unwind_fde", ctx->fde_relas,
++			   ctx->nr_fdes * sizeof(*ctx->fde_relas), 8,
++			   SHT_RELA, SHF_INFO_LINK, ctx->symtab_shndx,
++			   fde_shndx, sizeof(Elf64_Rela)) < 0 ||
++	    (ctx->nr_ranges &&
++	     append_section(&w, ".lr_unwind_ranges", ctx->ranges,
++			    ctx->nr_ranges * sizeof(*ctx->ranges), 2,
++			    SHT_PROGBITS, SHF_ALLOC, 0, 0, 0) < 0))
++		goto out;
++
++	if (pwrite_all(w.fd, w.shstrtab, w.str_sz, w.off) < 0)
++		goto out;
++	w.shdrs[shstrndx].sh_offset = w.off;
++	w.shdrs[shstrndx].sh_size = w.str_sz;
++	w.off = align_up(w.off + w.str_sz, 8);
++
++	if (ehdr.e_shnum == SHN_UNDEF || w.shnum >= SHN_LORESERVE) {
++		ehdr.e_shnum = SHN_UNDEF;
++		w.shdrs[0].sh_size = w.shnum;
++	} else {
++		ehdr.e_shnum = w.shnum;
++	}
++	ehdr.e_shoff = w.off;
++
++	if (pwrite_all(w.fd, w.shdrs, w.shnum * sizeof(Elf64_Shdr), w.off) < 0 ||
++	    pwrite_all(w.fd, &ehdr, sizeof(ehdr), 0) < 0 ||
++	    ftruncate(w.fd, w.off + w.shnum * sizeof(Elf64_Shdr)) < 0)
++		goto out;
++
++	ret = 0;
++out:
++	if (w.fd >= 0)
++		close(w.fd);
++	free(w.shstrtab);
++	free(w.shdrs);
++	return ret;
+ }
+ 
+ int main(int argc, char *argv[])
 -- 
 2.56.0.679.gc527c65306-goog
 
