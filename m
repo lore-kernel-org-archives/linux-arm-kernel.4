@@ -2,77 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90619606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED16606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=07I0XCzb;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=tvnr+SFq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ka5ZOPG3;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=IVzG4INh;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=MJtNRRFc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=g7MlRucj6hzoIqlqipb4GtdWwD9O/OEsZ9EcZBH/LpA=; b=07I0XCzbtqDjfa
-	1EqqbqDX+YHAKOK/NDEaiy6OoFBrwl/8Wi9RYQovxEWR/3kMi+9mIiULMpy4U2ecS3go9M/vGJqcP
-	NlmjW7UcXSIjwQVRateFKKaCT8vFzjmJEUbW/zOMT8R1b0Vi6y7fMcU2FwO2AtKfuzEG3xO6Y4zxu
-	6tHLUvmwnsHLKnJr4Q0UV1gpB4iZL/+VuK/FbT7wgRYAwI2K35ReFtMHmeUkfEGdaohMkYkNVqWHb
-	5tDp4d7GarlcKc2REOC0xxVPQHvU9zWpkdo2LzVUjosSNdfjjuzbC7rtXFfJ1d6OhgmUsAw7yOXyY
-	rpEUQ/yulUhj0kk//DAg==;
+	List-Owner; bh=95IDR58HGwZG11mkyszy3LrlBW4ox835eXVGsWRIs2A=; b=ka5ZOPG3c8jfR0
+	NQgy033bP3jS1ynVojdRfSeBA5u7c32pFW5CgGGJN1f7/XX8P4e3awBqB2HyMSNi0S1Coy2i0pMFX
+	pLOiVGvnvOjIGhHHyxKXjlC331dCtOfnh6Q/r21J9ib39hPd8RhjlYNgaf2iKIayrBrC3qdbYCyu5
+	m8WdXr2VlX2Mle8tw7618mrCNez/X/3kVr9p1iYb/MmBPlRL1gWnA6RmImB3bCuMZTDjvIC9BqQnf
+	Yp2tAWU5tTAJirnurjjrjYd0xtdklbzp7h73RTE6khon5kvHB7M8G2I+qYmtATIXPpzBAfg27rGER
+	jPpTIhqSLlBfsP4tpqZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJNZ-00000005yHE-1bLB;
-	Tue, 17 Nov 2026 13:37:45 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xTJOE-00000005yqy-2aC9;
+	Tue, 17 Nov 2026 13:38:26 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJNT-00000005y9C-0BGu
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 13:37:43 +0000
+	id 1xTJNf-00000005yOC-3thx;
+	Tue, 17 Nov 2026 13:37:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=95IDR58HGwZG11mkyszy3LrlBW4ox835eXVGsWRIs2A=; b=IVzG4INhIz3hI/zTKr26cof5WK
+	RrMQcW9hQyxBZrbFiM93K5Z2WjKlah8UMOu1mYsPnTUXeUOwl1OGKipcIA8LNLen+Fe9I+xVRmnan
+	2EFLiteyrM2Eb61B1hOFwAAtcGSmDoDMRNENeuLoIm8rM3i2R5S0NgJt6qIJLl8GhSBZocefZeMos
+	oOXrnllXhiLb8F7YijnrJUevJmo70S02p5wgJjuoET1d16u3li4FZqKLT+S03Ihj0vXCw4LcKnvAn
+	on2UIbENRJk51EBY+Opnb6P/qsUV6WaVcRIZNs2f8nJZQAt/dW4nNJ7jTt/qWUNy5KkTfEtevfVjT
+	07gMA1Kg==;
+Received: from smtpout-04.galae.net ([185.171.202.116])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTJNb-0000000F0qH-0xJ1;
+	Tue, 17 Nov 2026 13:37:50 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 8280EC4CBCD;
-	Tue, 17 Nov 2026 13:37:41 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4AFC6C4CBCE;
+	Tue, 17 Nov 2026 13:37:50 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 18F5F5FC81;
-	Tue, 17 Nov 2026 13:37:37 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D972411BC0036;
-	Tue, 17 Nov 2026 14:37:24 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DC3B95FC81;
+	Tue, 17 Nov 2026 13:37:45 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8813C11BC0008;
+	Tue, 17 Nov 2026 14:37:42 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794922654; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1794922665; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=g7MlRucj6hzoIqlqipb4GtdWwD9O/OEsZ9EcZBH/LpA=;
-	b=tvnr+SFqz0ANaFeOIu2h7eLOvHj0EZWnuxud/WDxtHQ4Zpt3cbqbm0d0jztVWnscm1UMlA
-	6El1kdJKO4OWPwf29oO6VWr6RwMA0BDppRnjq6DbpEiRDD0POTTkPdWuMbNuGEMMkTms69
-	F9PrzKH+Mku9uLcsm/+nrLcGJsOjmCtSWpkbVNpOnNcwo7OKLGRfgQdKcbfQvJPgkBF864
-	Qdm5JjcTNXrCchaBQvHMRdc/d90o1TykSneuOr/g2msMi3m2zedQxbpJe5ih6BWsoLzVaY
-	bcdGbL1lqC8Tl5C4w8G0TZW19BOawLDSFtFLDcfwEBBcHbJsCABk8n5Y70RNPg==
+	bh=95IDR58HGwZG11mkyszy3LrlBW4ox835eXVGsWRIs2A=;
+	b=MJtNRRFcuFTij/dHGe2SFqarmegUKRHo8XTzH4/Mfvwvu9eBL7QNbBYpTKkLJ+tCexjhOe
+	Cz/twhKTJXtovEYcBZlewk+qr6u335s3XClL6Y2Widfi0iHnodn056ihqX2tSTLK9n85AE
+	f3/pDeRFXrv00JdTkuAnWzaeTt4x2NDaQVkF6QUGuIxDLfdJlCjdF62lZKyZkhFP/OmDkL
+	rOQj0gD4GEqvrKBz6SUW9fN+viNdWYAsLjKx11c1/0h2BwNCb7OglGZTyyrG88W91UWAV6
+	blxUl9veO8xg8Bj8ukjcUpW0/w6D+dsn5vnTUwCMsj7bXNTsrVXjvaCnsXcf8A==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Richard Weinberger <richard@nod.at>, 
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Han Xu <han.xu@nxp.com>, 
- Keguang Zhang <keguang.zhang@gmail.com>, Vladimir Zapolskiy <vz@mleia.com>, 
- Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Rosen Penev <rosenp@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
- Wentao Liang <vulab@iscas.ac.cn>, "Rob Herring (Arm)" <robh@kernel.org>, 
- Alok Tiwari <alok.a.tiwari@oracle.com>, Chen Ni <nichen@iscas.ac.cn>, 
- Runyu Xiao <runyu.xiao@seu.edu.cn>, Hemanth Selam <hemanth.selam@gmail.com>, 
- Pengpeng Hou <pengpeng@iscas.ac.cn>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig_=28The_Capable_Hub=29?= <u.kleine-koenig@baylibre.com>, 
- Triet Hoang <triet.hoang.dev@gmail.com>, linux-mtd@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- imx@lists.linux.dev, linux-mips@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, Frank.Li@oss.nxp.com
-Cc: imx@lists.linux.dev, vkoul@kernel.org
-In-Reply-To: <20261102181406.3994422-1-Frank.Li@oss.nxp.com>
-References: <20261102181406.3994422-1-Frank.Li@oss.nxp.com>
-Subject: Re: [PATCH 1/1] mtd: use dmaengine_desc_set_callback()
-Message-Id: <179492264476.2237190.6242832755498248346.b4-ty@bootlin.com>
-Date: Tue, 17 Nov 2026 14:37:24 +0100
+To: Richard Weinberger <richard@nod.at>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, 
+ Paul Cercueil <paul.cercueil@bootlin.com>
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Stefan Agner <stefan@agner.ch>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Maxim Levitsky <maximlevitsky@gmail.com>
+In-Reply-To: <20261117093751.14988-1-paul.cercueil@bootlin.com>
+References: <20261117093751.14988-1-paul.cercueil@bootlin.com>
+Subject: Re: [PATCH v2 00/12] mtd: Remove #ifdef guards for PM functions
+Message-Id: <179492266246.2237190.12954805423683969784.b4-ty@bootlin.com>
+Date: Tue, 17 Nov 2026 14:37:42 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -80,10 +81,9 @@ Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_053739_285792_5FAA0522 
-X-CRM114-Status: UNSURE (   8.31  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_133747_227780_6B7D7585 
+X-CRM114-Status: GOOD (  11.71  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,25 +97,47 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 02 Nov 2026 13:13:41 -0500, Frank.Li@oss.nxp.com wrote:
-> Replace open-coded assignments to callback and callback_param fields
-> of struct dma_async_tx_descriptor with calls to the
-> dmaengine_desc_set_callback() helper across sound drivers.
+On Tue, 17 Nov 2026 10:37:38 +0100, Paul Cercueil wrote:
+> This is the v2 of my patchset that updates the MTD core / NAND core as
+> well as several drivers to get rid of the #ifdef CONFIG_PM guards.
 > 
-> No functional change intended. Prepare to make struct
-> dma_async_tx_descriptor private to the DMA engine.
+> Instead, the code that depends on PM or runtime PM will be
+> garbage-collected by the compiler automatically if this config option is
+> not set.
 > 
 > [...]
 
 Applied to mtd/next, thanks!
 
-[1/1] mtd: use dmaengine_desc_set_callback()
-      commit: dcfabf5f3939e02d344890fe4879d8488b93890c
+[01/12] mtd: Remove #ifdef guards for PM related functions
+        commit: 7fb3ea311f1da6a6ef13ed4b4dab7fe74b82f161
+[02/12] mtd: rawnand: vf610: Remove #ifdef guards for PM related functions
+        commit: ab12847196fdcac7e72e46c5366036c024b0fd8f
+[03/12] mtd: spear_smi: Remove #ifdef guards for PM related functions
+        commit: 2a37924f5c8152c25bb485ca8419317e086a19aa
+[04/12] mtd: physmap: Remove #ifdef guards around shutdown callback
+        commit: a54ceff6976e239666f8f19ffbbeea50ae5ca3e0
+[05/12] mtd: maps: pxa2xx: Remove #ifdef guards around shutdown callback
+        commit: 397d22308379b6445890811a107dc950d4fbec05
+[06/12] mtd: nand: mtk: Remove #ifdef guards for PM related functions
+        commit: 5d1883f69df537e6ed34bba098cf49f5595dfeb6
+[07/12] mtd: rawnand: fsmc: Remove #ifdef guards for PM related functions
+        commit: 81f7cbdb040e768bed8db543221a214a5df2042e
+[08/12] mtd: rawnand: hisi504: Remove #ifdef guards for PM related functions
+        commit: 76ad0034e3013d8a03a79e6820e97e9537b769d8
+[09/12] mtd: rawnand: mtk: Remove #ifdef guards for PM related functions
+        commit: 41e59826fa387b4a151cc97c2907e0d71aa6bd64
+[10/12] mtd: rawnand: omap_elm: Remove #ifdef guards for PM related functions
+        commit: ce7455c8b2fd693cadb65078d625c7eac984ea1b
+[11/12] mtd: rawnand: r852: Remove #ifdef guards for PM related functions
+        commit: 6dbc7c326713261812531134085c7a3d23abf3be
+[12/12] mtd: rawnand: txx9ndfmc: Remove #ifdef guards for PM related functions
+        commit: dc88e180ed485a7c8c97e06c6f7e0ef896992290
 
 Patche(s) should be available on mtd/linux.git and will be
 part of the next PR (provided that no robot complains by then).
