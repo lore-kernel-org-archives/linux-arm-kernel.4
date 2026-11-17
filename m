@@ -2,115 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C990E606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 02:40:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9517606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 02:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pUhXo/uB;
-	dkim=pass (1024-bit key) header.d=nearthlab.com header.i=@nearthlab.com header.a=rsa-sha256 header.s=google header.b=Wx/tp+Ow
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gWYACmib;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SEi6DRYr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LMBbatKuFXiOiiKhIDdtLoJOCz6eVaYMtmr54QH3Bd4=; b=pUhXo/uBcS7Zox
-	wHQjHQnR5tj3j6LZXxwUaY7xTf00osLONCUrbBZckmuO2WG0l36rXU+JjK7rWq1C49J8ZDtxY8FPo
-	a38wSQQDm7m24Ya3kksbP3lDcf+AitgR+gII18qNcbhOiLCRQ2cCOJfmeus3lKAfPoNCOp4A+rFp9
-	l/3oH0PG2wdSPycRtUBkGZEOE5E9CNUynOt4vE7q2RQOBM26doTcZewCkkXWH6FuJh4y+art3NTUC
-	jMbVmudONYp+f44nzjrhkMY5HAA7ThT8awvw5HvCbiCReiR0GBm4cXXPyDa380ZubL8YXkj8kuU6C
-	fRceu/ASoCNaMl6eqRtg==;
+	List-Owner; bh=p9Z/0BbQGaDyQcSu1mdVf3G0+dswEC4x+xTDwChbKX4=; b=gWYACmibZb5YXt
+	J72c4dYC4UdHK7PXmue6dAwCmz+tmcNwZQh15y4iHnvVAIUydMEnrQkWAb+9xz8UDXmn8L9zo+8gf
+	QqlNs6nDDBLV9rg+i0OC9hB6bRaGSyfzRoRtt4ccWLHbjyCtAH0b4ihBHbQSjeWWUr4OZvinCwnY+
+	tZYPpZDECTFBi/F9zZrjflB8tYBOHRAPMDlJMS5Xrn/QXPz9pX0Ovv7TBMgg8trg4NN6ZaBB2a+d7
+	acbYovKEo6zpcPCWwbypSAgpGR0NJSJh91WdD0RRvhBhSsj/jD7iLQytjEPnNxoQsukrgKTAp1eJf
+	FJtftnGKiJNzs0FEqNHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT978-00000004Qbn-0voG;
-	Tue, 17 Nov 2026 02:40:06 +0000
-Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
+	id 1xT97N-00000004QfP-2Qn4;
+	Tue, 17 Nov 2026 02:40:21 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT974-00000004Qaw-22rK
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 02:40:03 +0000
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-2e946155442so43408005ad.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 18:40:01 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794883201; cv=none;
-        d=google.com; s=arc-20260327;
-        b=FFdXijqW35kVS+ii+LMcG1XAp6RpjwAjFsRe1/ILn5aMKnkPyhDjCR1C5BuoOLXf/n
-         h5AN3OztLWKGJ6URrdQVdqBwjIPG67hhp34ay54S/+RXqS7ANkxaSznz4sKsvYAfsLAA
-         84d2F4J68N81pHvEWldUWUI6MR6n8e6ZZa+rvPHRrc4dAzUmUvFxs7ixVKPqsm5s720v
-         OmEftC4+qTiAg28wheOKWpDDzakg2b9W9zalKU9uZONNgOtgcoNxSS7Kp9bYzzHa051I
-         RJqX4ZbOWu2L5x7/1B/Fuo9nz+OWohCXDKBa53p1RIN2nIrJmbrHyDdGX74qWULJPcIl
-         xcPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=LMBbatKuFXiOiiKhIDdtLoJOCz6eVaYMtmr54QH3Bd4=;
-        fh=3ucy1gXlSiwRON4IciYCw9jX/MAFq15kMfjhbuWBLHs=;
-        b=R7BR39TOXuB0zyjIxMaWmbENJmISd9rFBnm3/CnjKCAqaM8vsA0SEc4lotYPzC4R9O
-         8+EwMRe8Jk9Jmgh2Q2CXVFMiBniyStX9l1D6yDilZD1NXtIiE9239eII4qUpgN/Duy/W
-         zaBeltvZCLZDXBbJco0XEu2qhp9xs6POf+4jMaEcRXirdugGQZXn5vs0QhoImEMRKOEZ
-         tS5xjp4xeB18fsAhgXXUY+xrm1bFc9tvzxy6l/mH1JBU9t3M9n3yGb1b+JoGbi9DPzoJ
-         iqyiYm5VRGa8X/je5d6FLGqItJAxZ/V3GmVuKgQrRY4LP+1ZxyE8hT2BbZx3FCZpir96
-         e3Vg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nearthlab.com; s=google; t=1794883201; x=1795488001; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=LMBbatKuFXiOiiKhIDdtLoJOCz6eVaYMtmr54QH3Bd4=;
-        b=Wx/tp+OwwLgmBXzXA4boG0xtOZHbG6If6c0rV1oEkydjFMoV78WaawNIpjqJG2BB9s
-         Cbl7JKIVjKTZzipt1tVNUKsC3u848adr4puD+hA0hnpE9/1GMREAYiW2y1rLsFjZP35n
-         iaMROEHjakLCsYapvrEQt/g+IUpHAV36fFf64=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794883201; x=1795488001;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=LMBbatKuFXiOiiKhIDdtLoJOCz6eVaYMtmr54QH3Bd4=;
-        b=sjaWGhR/tYjDx2h686AlHRO36UkHEAE5bJ18m+b1SuUT8YSjp5Vv7yhXoGh6KYzWN1
-         BQo06T1apSrkuRKZ/MrHw6QZbykKN2CFqPf4ZAkXAKsoAs15fJSl/GqL17t2qIP2pXQJ
-         xueE9/mLTE1B9fwjFPxOg/P39kyEQaiivWoENqZeOPmPX1iBUhB5YE9GQkS4Kbdq1Zn2
-         eux6yvmMjLQB1hCd1n+oYvGJRgOAXyzOfZQc3s29wGsrM5isQ4C9PwYaQVyWtVsW569y
-         hKH+gcPTPOODKy4KsGHKIuhOEg5v1tgYCmRQ7BeHZbDaQ4Zp4MVoHcQ2tgzZosKrURWn
-         q3PQ==
-X-Forwarded-Encrypted: i=1; AL+hErFeqDoLuggYW/I38aMxX8GxhvA2e413o0//hQf9ON53cnZswNzra6mB9gFlOiLGsGdfNARUeLRgRCV5yUeayUF3@lists.infradead.org
-X-Gm-Message-State: APuU4Z+LBKtDwVpgY0rZM3uy+guznZXeiufPc9+1yW1o5+/04qpdbMHB
-	Ppp/oT6rG61zoxZI7+U3vCk5eLppQI9rO1z+QNTsvqEB1rim5Fewa9VcSCLjUY8Y1cH4N02x5PI
-	QaoYzu9AO0AqOv+bkEscusMORjjaJmG9Rop5sBGidRw==
-X-Gm-Gg: AZFdTZcy1PC1zok44cTxek8vzCn5MHOug99T0cbOKeWXsp7DE8wOSmcPKa6Hq1E3VaT
-	/VVtsF96Y+ghDdIHE2DdlzPzO4JIsyUUCQoqrXhfSspSewIWNd0E7qrK9amYAjhM6qEDMHxpFVb
-	6E0rUrkoZuqJ2QyK6o3fleUUOWUi0sF+0dM1AHbdXnoGfc6QcRd7MQL2pR8WXE1xOLIJ3Ido4Dn
-	Nyu9YXxKHeNM35c0YUKuZGz+2B1In53hjfH8Nf74buI5w88pCYBzDYNNpY1nF4bPU5TurerB1Vs
-	qZtR/Sp2iRSYwbY89fIuDwpAwpMCA7tLEIsxHHPgMPo76kUUHuybJusdegy+YEpMbst2NyRKb48
-	vl+RRJdkx++G+B3h8Mv+fIdPheRR8wK0M5ihoaw==
-X-Received: by 2002:a17:902:c942:b0:2dd:b795:9cb6 with SMTP id
- d9443c01a7336-2ee0daa43eamr121018955ad.21.1794883201054; Mon, 16 Nov 2026
- 18:40:01 -0800 (PST)
+	id 1xT97D-00000004QdQ-48Na;
+	Tue, 17 Nov 2026 02:40:12 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 6828040E0A;
+	Tue, 17 Nov 2026 02:40:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 463431F000CB;
+	Tue, 17 Nov 2026 02:40:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794883211;
+	bh=p9Z/0BbQGaDyQcSu1mdVf3G0+dswEC4x+xTDwChbKX4=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc;
+	b=SEi6DRYrhBNE6Tl0Oo5WFx+6/UZ+yhSjc7VRQCI9YcG/cWn/GErLeVTtIdfQlMOM2
+	 hKSC6rPIXDG/RXjHvz6cjSo3UTrLW5KA5b91YlaGIlpMTmGRW9PXs5XdCkyXzwFtLE
+	 +BB/iZGPTcVblqcIx41toyP6bmfQipdsAzLv4eJl4PsmRa3PLDmFumYFfxOSDs6gvm
+	 C5MkzF8O9n15ANciTKY5CTkL6UFMVr3PNOxhlLykuFaRCAHL1GoBoWIrkeqvJz8Oqy
+	 aivs7VQ5bn9dQP2Uo7RHqkw4qjOoCOLbApAhuiRRXx+KPtNQEZiFU/GAa1wq3oWAPf
+	 z6uVkPO7hTItQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 3A39F391B088;
+	Tue, 17 Nov 2026 02:40:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <CAFg7d9becn9_=ZzNwQ7bSBBNid28t_RnofL-Vb1cZVHVHxS9fw@mail.gmail.com>
- <20261013160612.GA1522005@bhelgaas> <CAFg7d9a2p2jtGyThS1M=2ZFDX0y5rpSK3H34ZuTz09R5r_ff0A@mail.gmail.com>
- <87h5i3xael.ffs@fw13> <87fqxbwla2.ffs@fw13>
-In-Reply-To: <87fqxbwla2.ffs@fw13>
-From: =?UTF-8?B?SGFuIC8g7ZWc7IOB7JqwU2FuZ3dvbw==?= <sangwoo.han@nearthlab.com>
-Date: Tue, 17 Nov 2026 11:39:49 +0900
-X-Gm-Features: AclHuK_Q986uTw7GVWmW0pPbL64Jb6Aqx4x9deC_Y4lkDrtjuDN2ErRNHLdvq1g
-Message-ID: <CAFg7d9bXZEy78HqxyJ9J103FvRZLQ_jyDWUimDrHfEAQtNWDfw@mail.gmail.com>
-Subject: Re: [PATCH] PCI: brcmstb: Reserve only the MSI vectors that are
- handed out
-To: Thomas Gleixner <tglx@kernel.org>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, jim2101024@gmail.com, florian.fainelli@broadcom.com, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
-	bhelgaas@google.com, bcm-kernel-feedback-list@broadcom.com, robh@kernel.org, 
-	linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Inochi Amaoto <inochiama@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_184002_553729_33CB4357 
-X-CRM114-Status: GOOD (  32.80  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v5 00/10] net/stmmac: Add Mediatek MT8189 support
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <179488320977.300516.9034533489988553857.git-patchwork-notify@kernel.org>
+Date: Tue, 17 Nov 2026 02:40:09 +0000
+References: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
+In-Reply-To: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ richardcochran@gmail.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, biao.huang@mediatek.com,
+ maxime.chevallier@bootlin.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, edumazet@kernel.org, kernel@collabora.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ krzysztof.kozlowski@oss.qualcomm.com, andrew@lunn.ch
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,245 +78,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Thomas,
+Hello:
 
-Thank you for the updated patch.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-I will test it on the BCM2712 with the same setup as before and report
-back within November.
+On Tue, 10 Nov 2026 13:08:47 +0100 you wrote:
+> This series adds the Ethernet support for Mediatek MT8189 SoC and its
+> variants (MT8371, MT8391). These SoC integrate a Gigabit Ethernet MAC
+> with RGMII/RMII/MII interface, with a similar design than previous SoCs
+> such MT8188 or MT8195.
+> 
+> This series is based on net-next tree (sha1: d26955e57475).
+> It has been tested on Mediatek Genio 520-EVK (MT8371) and 720-EVK
+> (MT8391) boards, which both integrate an Airoha AN8801R Ethernet
+> PHY, with hardware enablement series ([1]).
+> It has been also tested on Mediatek Genio 510-EVK (MT8370, variant of
+> MT8188) and 1200-EVK (MT8395, variant of MT8195).
+> 
+> [...]
 
-Thanks,
-Sangwoo
+Here is the summary with links:
+  - [net-next,v5,01/10] dt-bindings: net: mediatek-dwmac: fix unit in rx/tx delay property description
+    https://git.kernel.org/netdev/net-next/c/5fc5d2095256
+  - [net-next,v5,02/10] dt-bindings: net: mediatek-dwmac: deprecate rx/tx delay vendor properties
+    https://git.kernel.org/netdev/net-next/c/51c06131816a
+  - [net-next,v5,03/10] dt-bindings: net: mediatek-dwmac: add support for MT8189 SoC
+    https://git.kernel.org/netdev/net-next/c/97c7a711dac1
+  - [net-next,v5,04/10] net: stmmac: mediatek: simplify TX/RX delay handling in mt8195_set_delay
+    https://git.kernel.org/netdev/net-next/c/8eac6d45af9c
+  - [net-next,v5,05/10] net: stmmac: mediatek: simplify TX/RX delay handling in mt2712_set_delay
+    https://git.kernel.org/netdev/net-next/c/c837fa3a7612
+  - [net-next,v5,06/10] net: stmmac: mediatek: use standard internal delay properties
+    https://git.kernel.org/netdev/net-next/c/ec09a48fdaf3
+  - [net-next,v5,07/10] net: stmmac: mediatek: add RX/TX delay stage divider in platform data
+    https://git.kernel.org/netdev/net-next/c/e6d6f4b67511
+  - [net-next,v5,08/10] net: stmmac: mediatek: add PERI_ETH_CTRLx register offset in platform data
+    https://git.kernel.org/netdev/net-next/c/2c0c0890f9f1
+  - [net-next,v5,09/10] net: stmmac: mediatek: add support for TX clock output enable feature
+    https://git.kernel.org/netdev/net-next/c/3b2120af0091
+  - [net-next,v5,10/10] net: stmmac: mediatek: add support for MT8189 SoC
+    https://git.kernel.org/netdev/net-next/c/46d8e770222f
 
-2026=EB=85=84 11=EC=9B=94 8=EC=9D=BC (=EC=9D=BC) =EC=98=A4=ED=9B=84 9:38, T=
-homas Gleixner <tglx@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
->
-> On Fri, Oct 30 2026 at 20:20, Thomas Gleixner wrote:
-> > On Fri, Oct 30 2026 at 21:59, Han wrote:
-> >> On Thu, Oct 01 2026 at 21:29, Thomas Gleixner wrote:
-> >>   The buggy address is located 0 bytes to the right of
-> >>    allocated 48-byte region [ffff8000053a6880, ffff8000053a68b0)
-> >>
-> >> The report is caused by the patch. __msi_domain_alloc_irqs() passes
-> >> nvec_aligned (4) to __irq_domain_alloc_irqs() together with
-> >> desc->affinity, which has only nvec_used (3) entries. alloc_descs()
-> >> then reads all 4 entries. The fourth entry is read past the end of
-> >> the array. If the data there has no CPU set, the allocation fails
-> >> with -ENOSPC. Without PCI_IRQ_AFFINITY, desc->affinity is NULL, so
-> >> this read does not happen.
-> >
-> > Ah. I missed that detail. I'll look at it on Monday.
->
-> The updated patch below should handle that situation too.
->
-> Thanks,
->
->         tglx
-> ---
-> --- a/drivers/base/platform.c
-> +++ b/drivers/base/platform.c
-> @@ -421,7 +421,7 @@ int devm_platform_get_irqs_affinity(stru
->                 ptr->irq[i] =3D irq;
->         }
->
-> -       desc =3D irq_create_affinity_masks(nvec, affd);
-> +       desc =3D irq_create_affinity_masks(nvec, nvec, affd);
->         if (!desc) {
->                 ret =3D -ENOMEM;
->                 goto err_free_devres;
-> --- a/drivers/pci/msi/api.c
-> +++ b/drivers/pci/msi/api.c
-> @@ -286,7 +286,7 @@ int pci_alloc_irq_vectors_affinity(struc
->                          * for the single interrupt case.
->                          */
->                         if (affd)
-> -                               irq_create_affinity_masks(1, affd);
-> +                               irq_create_affinity_masks(1, 1, affd);
->                         pci_intx(dev, 1);
->                         return 1;
->                 }
-> --- a/drivers/pci/msi/msi.c
-> +++ b/drivers/pci/msi/msi.c
-> @@ -414,8 +414,14 @@ static int msi_capability_init(struct pc
->          */
->         pci_msi_set_enable(dev, 0);
->
-> +       /*
-> +        * Make sure a MULTI-MSI allocation is power of two even if the
-> +        * requested number of vectors (@nvec) is not.
-> +        */
-> +       unsigned int nvec_aligned =3D roundup_pow_of_two(nvec);
-> +
->         struct irq_affinity_desc *masks __free(kfree) =3D
-> -               affd ? irq_create_affinity_masks(nvec, affd) : NULL;
-> +               affd ? irq_create_affinity_masks(nvec, nvec_aligned, affd=
-) : NULL;
->
->         guard(msi_descs_lock)(&dev->dev);
->         return __msi_capability_init(dev, nvec, masks);
-> @@ -704,7 +710,7 @@ static int msix_setup_interrupts(struct
->                                  int nvec, struct irq_affinity *affd)
->  {
->         struct irq_affinity_desc *masks __free(kfree) =3D
-> -               affd ? irq_create_affinity_masks(nvec, affd) : NULL;
-> +               affd ? irq_create_affinity_masks(nvec, nvec, affd) : NULL=
-;
->
->         guard(msi_descs_lock)(&dev->dev);
->         return __msix_setup_interrupts(dev, entries, nvec, masks);
-> --- a/include/linux/interrupt.h
-> +++ b/include/linux/interrupt.h
-> @@ -370,7 +370,7 @@ extern int
->  irq_set_affinity_notifier(unsigned int irq, struct irq_affinity_notify *=
-notify);
->
->  struct irq_affinity_desc *
-> -irq_create_affinity_masks(unsigned int nvec, struct irq_affinity *affd);
-> +irq_create_affinity_masks(unsigned int nvec, unsigned int totvec, struct=
- irq_affinity *affd);
->
->  unsigned int irq_calc_affinity_vectors(unsigned int minvec, unsigned int=
- maxvec,
->                                        const struct irq_affinity *affd);
-> @@ -425,7 +425,7 @@ irq_set_affinity_notifier(unsigned int i
->  }
->
->  static inline struct irq_affinity_desc *
-> -irq_create_affinity_masks(unsigned int nvec, struct irq_affinity *affd)
-> +irq_create_affinity_masks(unsigned int nvec, unsigned int totvec, struct=
- irq_affinity *affd)
->  {
->         return NULL;
->  }
-> --- a/kernel/irq/affinity.c
-> +++ b/kernel/irq/affinity.c
-> @@ -17,13 +17,17 @@ static void default_calc_sets(struct irq
->
->  /**
->   * irq_create_affinity_masks - Create affinity masks for multiqueue spre=
-ading
-> - * @nvecs:     The total number of vectors
-> + * @nvecs:     The number of active vectors for which affinity spreading=
- is required
-> + * @totvecs:   The total number of required descriptors to handle the ov=
-er
-> + *             allocation for PCI/MSI which requires power of two even i=
-f @nvec is
-> + *             not power of two. The extra descriptors are filled with d=
-efault
-> + *             affinity and not relevant for the spreading calcuations.
->   * @affd:      Description of the affinity requirements
->   *
->   * Returns the irq_affinity_desc pointer or NULL if allocation failed.
->   */
->  struct irq_affinity_desc *
-> -irq_create_affinity_masks(unsigned int nvecs, struct irq_affinity *affd)
-> +irq_create_affinity_masks(unsigned int nvecs, unsigned int totvecs, stru=
-ct irq_affinity *affd)
->  {
->         unsigned int affvecs, curvec, usedvecs, i;
->         struct irq_affinity_desc *masks =3D NULL;
-> @@ -56,7 +60,7 @@ irq_create_affinity_masks(unsigned int n
->         if (!affvecs)
->                 return NULL;
->
-> -       masks =3D kzalloc_objs(*masks, nvecs);
-> +       masks =3D kzalloc_objs(*masks, totvecs);
->         if (!masks)
->                 return NULL;
->
-> @@ -90,7 +94,7 @@ irq_create_affinity_masks(unsigned int n
->                 curvec =3D affd->pre_vectors + affvecs;
->         else
->                 curvec =3D affd->pre_vectors + usedvecs;
-> -       for (; curvec < nvecs; curvec++)
-> +       for (; curvec < totvecs; curvec++)
->                 cpumask_copy(&masks[curvec].mask, irq_default_affinity);
->
->         /* Mark the managed interrupts */
-> --- a/kernel/irq/irqdomain.c
-> +++ b/kernel/irq/irqdomain.c
-> @@ -1611,6 +1611,17 @@ static void irq_domain_free_irqs_hierarc
->         if (!domain->ops->free)
->                 return;
->
-> +       /*
-> +        * MSI device domains are capable of bulk free.
-> +        *
-> +        * CHECKME: Are all MSI parent domains capable?
-> +        */
-> +       if (domain->flags & (IRQ_DOMAIN_FLAG_MSI_DEVICE | IRQ_DOMAIN_FLAG=
-_MSI_PARENT)) {
-> +               if (irq_domain_get_irq_data(domain, irq_base))
-> +                       domain->ops->free(domain, irq_base, nr_irqs);
-> +               return;
-> +       }
-> +
->         for (i =3D 0; i < nr_irqs; i++) {
->                 if (irq_domain_get_irq_data(domain, irq_base + i))
->                         domain->ops->free(domain, irq_base + i, 1);
-> --- a/kernel/irq/msi.c
-> +++ b/kernel/irq/msi.c
-> @@ -1333,20 +1333,28 @@ static int __msi_domain_alloc_irqs(struc
->
->                 ops->set_desc(&arg, desc);
->
-> -               virq =3D __irq_domain_alloc_irqs(domain, -1, desc->nvec_u=
-sed,
-> +               /* Make sure a MULTI-MSI allocation is power of two */
-> +               unsigned int nvec_aligned =3D roundup_pow_of_two(desc->nv=
-ec_used);
-> +
-> +               virq =3D __irq_domain_alloc_irqs(domain, -1, nvec_aligned=
-,
->                                                dev_to_node(dev), &arg, fa=
-lse,
->                                                desc->affinity);
->                 if (virq < 0)
->                         return msi_handle_pci_fail(domain, desc, allocate=
-d);
->
-> -               for (i =3D 0; i < desc->nvec_used; i++) {
-> +               for (i =3D 0; i < nvec_aligned; i++) {
->                         irq_set_msi_desc_off(virq, i, desc);
->                         irq_debugfs_copy_devname(virq + i, dev);
->                         ret =3D msi_init_virq(domain, virq + i, vflags);
->                         if (ret)
->                                 return ret;
->                 }
-> +
->                 if (info->flags & MSI_FLAG_DEV_SYSFS) {
-> +                       /*
-> +                        * This only exposes desc->nvec_used and ignores =
-the
-> +                        * overallocated MULTI-MSI ones.
-> +                        */
->                         ret =3D msi_sysfs_populate_desc(dev, desc);
->                         if (ret)
->                                 return ret;
-> @@ -1610,13 +1618,15 @@ static void __msi_domain_free_irqs(struc
->                         continue;
->
->                 /* Make sure all interrupts are deactivated */
-> -               for (i =3D 0; i < desc->nvec_used; i++) {
-> +               unsigned int nvec_aligned =3D roundup_pow_of_two(desc->nv=
-ec_used);
-> +
-> +               for (i =3D 0; i < nvec_aligned; i++) {
->                         irqd =3D irq_domain_get_irq_data(domain, desc->ir=
-q + i);
->                         if (irqd && irqd_is_activated(irqd))
->                                 irq_domain_deactivate_irq(irqd);
->                 }
->
-> -               irq_domain_free_irqs(desc->irq, desc->nvec_used);
-> +               irq_domain_free_irqs(desc->irq, nvec_aligned);
->                 if (info->flags & MSI_FLAG_DEV_SYSFS)
->                         msi_sysfs_remove_desc(dev, desc);
->                 desc->irq =3D 0;
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
