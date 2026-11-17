@@ -2,125 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 655F0606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73710606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MiXieyf/;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=nazWXZnc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oQhMO1Tq;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=WicNL6BN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=R3A9giksTUV5LFhw1F+Tr5DCtnXk+5+Vagtc4saPJKs=; b=MiXieyf/RvCzI9
-	VElTDmTLRXvSHO+TshAxBySg7/Pvm7zCiL6oBrQBFE0uiQnKf8J1TcXvsOEet7zAmUfT2MEGwGTZ7
-	bETikMkhQBjrGRN1iICjzBCaJl3+48K7psaVFXUKp72dm35qN2vLsAV8maV6LOmNMW2NVwRfN6O3Z
-	E807Bbc9JstYGV80xbcqF0SkA9EUtiasdeH8LE+VFStf3p8rUePlXCG5iXSfyFZrOokjAQxZEYYDr
-	XucTHeuqNkOF9V857v5zBhHL7X4EBnZbs7gu8jvkiAudLdPNhDnnv3p12KHsWDecfNTIxuSAqXo6W
-	HsH2F5jaQKXxbuT/O13g==;
+	List-Owner; bh=kujZ7CHhloIW/vlNMEIevDyPj6YlHLix4x32Aet8eDs=; b=oQhMO1Tq9YGflA
+	4itTdeatCn/0Rb8Sn1UQte+B6erojMzy9Zp/MUYQhtpL9xXXjwpjZcTLPD4Z/6OWYG/rPAD/cByym
+	n2XGspKNGPRWFgZHUsIUGxjdN71wDY5Cas7QsUjpTxSpY5Q8qs5OCWWWZAFyBus0wFxa+O6LJ/PhB
+	WvZBhRUe0ZHYskM0g834Ti6T1xxwm8SCKCrmp/g1peSpW/myhDpt2jyQbVimA9QF7FS9+DCY2H03I
+	qepzqnnnFia5gAbTgbbh2tMx749tEbA0zXVecrd70NjC30C/E/8fWZGnxMiO1qZoMhwGw98vQQ+84
+	U0oR8WOAGAljrQwGxVlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMnB-00000006Vla-0OIH;
-	Tue, 17 Nov 2026 17:16:25 +0000
-Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMn9-00000006Vkg-0K8z
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 17:16:24 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PE7UoyBx8RRcL7RanQGVx8YoNNiISEJc9ZvLBSHsL4RAh+4s2LUnLxFg8IIcLe5JAnp3Y6mpT88CJS8CmuTTL0c513bNNJodZzJcST6Tl8TKZnHk3a1wEx9Kxto1kKTHbAtGWwXZiq4JxWwS0YQMdVOzLi2iNZwbLoVj5H1+OpLD1kvs3hIjtysMkMFEQhIyv5zbk7MBPNn61vxVhP3KWletGc2RqAkGCOmI1r2j2jOU/l9yJKcyDoQIRFRs6r3oNVYddgkXyACfbC90AWXHgAkwXq4374S2CDOXAredlf3YAVMj48LrC6x/dKW9n6edIE4Ce1TErQkSQzvEuo9iIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R3A9giksTUV5LFhw1F+Tr5DCtnXk+5+Vagtc4saPJKs=;
- b=bzyKKUyEivWDuFJJAbsYbWEBwZiIMTPA0jnUEACg4uD9QE0h+HRgaKJvyexwI+EjdA+9GvPUn4exfJ8df/sDQlUwg74J/ZFuH7Y5HI1TGmKT6wfGUbU52YkeyWbklLh1omjWhRbotMro51WJtvldiagaC4syO8Yyrbb6vAXogthjCbfv//u5wl9NVf0rLp8EBt0JTvpMg4mbUuGI1+Elm4jb2oqxMb4JENcQeckFa9453MbN7RTmGB68Rm81uU7q99nYynrAprgPgH78G9QZXhmLWeDwnLftG6CQynCnHu0ZdFDDHWF489cvEN0xIPVjDLidGecje0DDpYEwkP7j5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R3A9giksTUV5LFhw1F+Tr5DCtnXk+5+Vagtc4saPJKs=;
- b=nazWXZncO1N8SxG//gN43eDrv3fzW8+XiD0/Mbce8mOVmB52s1IuYxKJH02vApPjjWOdrMetPfdYDAcpJmu1VvwmiUOt/JFen84wY71ROfruKl/MTvfAzpacRxsVi3t4nnpHYVgtMcpq9nTweHQV5TFzDUx19AzVUHU4Fwy+NgVn0Xl2+R14H4a699PNLnF7KEuXbm2t4/yEMzCoI0hK6cAVinChbMNs9O36rD02T1XdUFDDIxOIbQGLIgetXs+5+b8isLYMJMXtw6K9pTyCjTid+lTK60xd8yv5ItdaJE+uH/cP8dL8Yuiqwv2zWXC215bT4Kd5G50rYD21dkGxNw==
-Received: from AS9PR06CA0231.eurprd06.prod.outlook.com (2603:10a6:20b:45e::28)
- by AM9PR10MB4102.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1f9::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.8; Tue, 17 Nov
- 2026 17:16:16 +0000
-Received: from CPH1EPF0000052C.eurprd05.prod.outlook.com
- (2603:10a6:20b:45e:cafe::7b) by AS9PR06CA0231.outlook.office365.com
- (2603:10a6:20b:45e::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Tue,
- 17 Nov 2026 17:16:16 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- CPH1EPF0000052C.mail.protection.outlook.com (10.167.241.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Tue, 17 Nov 2026 17:16:15 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 17 Nov
- 2026 18:17:00 +0100
-Received: from [10.48.87.100] (10.48.87.100) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 17 Nov
- 2026 18:16:14 +0100
-Message-ID: <760d2b16-935b-4a7a-8554-42c95b99e6ea@foss.st.com>
-Date: Tue, 17 Nov 2026 18:16:14 +0100
+	id 1xTMpM-00000006VvF-1ZbF;
+	Tue, 17 Nov 2026 17:18:40 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTMpJ-00000006VuY-1oAZ;
+	Tue, 17 Nov 2026 17:18:39 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9EDBD1A00;
+	Tue, 17 Nov 2026 09:18:31 -0800 (PST)
+Received: from [192.168.178.24] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 786703F632;
+	Tue, 17 Nov 2026 09:18:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794935914; bh=SYvZ5kgkqLXULjnML9MOf+soSDEPX1HZBUqNIwR3D1g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WicNL6BNEnnoVjSHqcyjLPbIgnbWpMO4Te2V341SC1ciL9bhv9uhGutAw9bX5p3up
+	 ovDczLXMsn5EAUbtZgUoC0g1+sOmkDYh1wO8t4UYuBnoNqOuJemgpzhK/lPVUyIES0
+	 X0AJG94fC6nE+dDfzdfNoOvAJXsrwdfRCMIq6BAU=
+Message-ID: <2374cc08-fd47-435a-b1e8-c7e9a61954c4@arm.com>
+Date: Tue, 17 Nov 2026 18:18:31 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: add STM32MP21 regulator bindings
-To: Conor Dooley <conor@kernel.org>
-CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Linux STM32
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20261113141342.557258-1-patrick.delaunay@foss.st.com>
- <20261113151038.1.I3b816ba92be5ff94cfe86a2f1c643645416cdb2b@changeid>
- <20261113-crafty-quilt-2a9b9d3b0754@spud>
-Content-Language: en-US
-From: Patrick DELAUNAY <patrick.delaunay@foss.st.com>
-In-Reply-To: <20261113-crafty-quilt-2a9b9d3b0754@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CPH1EPF0000052C:EE_|AM9PR10MB4102:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee641ff3-3303-4b15-3f12-08df44ce7cec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|82310400026|36860700016|4143699003|11063799006|56012099006|261026121527099003|261026140227099003|261028144727099003|10067099003|261022105027099003|261021123027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: yHgBk3/5oHNHA+pgBTo1yfJfoYOpJB1Mqkrebe2Ny2VwE35Egl4Ppe0RFEBEPF0gj1CLHq5wvoMSFwiLiICU2+3Y+fzm91NtqPL5dJ6lYxfUJ1/W/mkRHJT+T5rt9ADE3PiYqe+TafGhPjYcbsZ+wN6O7I3zADkbbV2ksQeSWQpTy4at0fPE5dUWzxmKm/uvV0nUe6aNF3+gFBo75CEn39fDQNjN2rroeXLhxPaBlu0GO5ncxVyQ2kyduJZJuq8/IinEKZB+Eoj/QI4DhRvQf5+fDN4nGGcXlUGW8Yv+mt/yvU9vf/EZYVgPpfVsql/UYFD7tT7lspoFoUMpFLc/JE6LvSAw6onj+Cc/SThLD3Yo80LqHPwEOnAsG3LGoSb8gYCuqUA8HZL3Lw7c4hVWMIq/wPVgjp6xd1uIZmKVpMOVcSlnMQdwPImuFv9zckkJ8wUzNUtqf8nWcCyb9KNy55WHVX+1JRsxe01b/UphvXbiMH5a1e8TUTBlpadv4kAy5IO1GnY62dMzNE+yhRwcHCKZuB39/sziAapjEo4oMOCbH1WFWBtCaxjfenxNEgLIKoyLiG3GgmoPLb5T+d6ixNZyGKJLAmUT6BoTd0HXLJSdsou3msfJJTHXwncwYSISalm/BVP32YJIIo94tG+e5MuMytbLdctxyFazLJMfKaNZVr7vkeFbor88XtzKTYuLq8+2opZrjDj+a/c/aufBEA==
-X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(82310400026)(36860700016)(4143699003)(11063799006)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(10067099003)(261022105027099003)(261021123027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 9ZzyoAOJ3LbDT+2jXtZp/m2kEPMGjMJR+KtOL4hTQ+oikw9jbFphbK/H//UO2FXqQ4+22FBqVTzyCe9w1Zz4Cf3h8kDm0AhVsGxlZNwiXjyLoj69nmEfMHdYhsGxXlEIxynhLewEOkOAjKrYsfnBHlEclplK8ubbN+HFCwUMXIfaQhlarQEWj0XdHDVadbZGYT3tIKz6hUZ7g2q0e+ocAnurtnclbHI5mGFO1X3N1J2joeT/uzi6nj2xWM8i5ozjTD4cjnmfadOmki01ZFHztmj9SKkDdrwblEw80Bjo37P/SKQNWkQ3BbKOUfAJuUjVRXSoHiyi95+56itchTkvgwIklwuepEGCO6XHIn/oZRcHmbcNfJlr1oNmkJkMttpzIYgh/O4WYqBEkeVkYiakEMnNLBA5QClF7elvKtxzxV76b/oT5GLgwD+neiDT4TAX
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 17:16:15.8800
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee641ff3-3303-4b15-3f12-08df44ce7cec
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: CPH1EPF0000052C.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR10MB4102
+Subject: Re: [PATCH v2] clk: sunxi-ng: a733: Keep SCP firmware bus clocks
+ enabled
+To: Enzo Adriano <enzo.adriano.code@gmail.com>, sboyd@kernel.org,
+ bmasney+clk@redhat.com, jbrunet+clk@baylibre.com, wens@kernel.org,
+ jernej.skrabec@gmail.com, samuel@sholland.org
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Junhui Liu <junhui.liu@pigmoral.tech>,
+ Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+References: <20261112-a733-fwclk-v2@gmail.com>
+Content-Language: en-GB
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20261112-a733-fwclk-v2@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_091623_230846_EA4F9ADF 
-X-CRM114-Status: GOOD (  14.13  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_091837_578104_D11F149D 
+X-CRM114-Status: GOOD (  26.99  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,42 +75,124 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 Hi,
 
-On 11/13/26 18:12, Conor Dooley wrote:
-> On Fri, Nov 13, 2026 at 03:10:39PM +0100, Patrick Delaunay wrote:
->> These bindings will be used for the SCMI voltage domain.
->>
->> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
-> I don't believe these are bindings at all. Where is your software that
-> is using it?
-> They're no more bindings that interrupt numbers are, since they're
-> defined by the firmware, rather than what binding headers are normally
-> for: inventing meaning for numbers so that we can have an ABI.
-> These numbers arent even fixed, changing the firmware can change what
-> regulator these IDs represent, although anyone who would do that should
-> probably be taken around back.
->
-> IMO, if you want these definitions for your dts, move the header to the
-> dts directory.
-> pw-bot: changes-requested
->
-> Thanks,
-> Conor.
+the patch itself looks fine, but the comments and the commit message are 
+not entirely correct, I think.
 
+On 11/12/26 22:38, Enzo Adriano wrote:
+> The A733 PRCM's bus-r-riscv and bus-r-msgbox gates have no Linux
+> consumers, so unused-clock cleanup gates them. With vendor SCP firmware
+> running on the E902 as shipped on Cubie A7S, warm reboot then stalls.
 
-Ok, I do it in series V2.
+Please note that we don't support "vendor firmware" with mainline Linux. 
+That was mostly incompatible in the past, and while it might work these 
+days, this is not something we control and want to endorse.
+So we would be quite reluctant (to put it mildly) about merging patches 
+that are solely needed for BSP firmware bits.
 
-thanks for the review  and the advice.
+> Keep both critical until remoteproc/mailbox drivers can claim them.
 
-Patrick
+I don't think this "until" is an argument. Even if we'd have Linux 
+driver support, they would be optional to use (not compiled, not 
+loaded), and would only be needed to *communicate* with the firmware.
+
+But those clocks are actually there to drive the RISC-V core clock, and 
+also the "RISC-V side" of the peripherals, due to a lack of separate 
+clock controls in the SoC in the Allwinner design. So the kernel should 
+not care about or touch those clocks at all - which is what 
+CLK_IS_CRITICAL does.
+
+> This follows A523 bus-r-cpucfg in commit 1dba74abf3e2 ("clk: sunxi-ng:
+> Mark A523 bus-r-cpucfg clock as critical") and the temporary SCPI firmware
+> clock protection for Meson AXG fclk_div3 in drivers/clk/meson/axg.c.
+> 
+> On Cubie A7S with vendor boot0/BL31/SCP/U-Boot and without
+> clk_ignore_unused, warm reboot returns with both clocks critical and
+> stalls without them. Vinicius found either flag alone insufficient on
+> Cubie A7Z. Power-off, suspend, single flags on A7S, other
+> boards/firmware and upstream TF-A were not tested.
+> 
+> Link: https://lore.kernel.org/r/20261005183038.417798-1-vinicius.eduardo.pedrosa@gmail.com
+> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+> ---
+> Changes in v2:
+> - Drop r-timer0, bus-r-timer and bus-msgbox0: A7S warm reboot works with
+>    these at 0/0. Keep only the two E902/mailbox bus gates after Junhui's
+>    review, pending remoteproc/mailbox ownership.
+> - Rebase on CCU v7; its PRCM clock definitions are unchanged from v6.
+> 
+> v1:
+> https://lore.kernel.org/r/20261031020640-263f7b05-a7s-clock@gmail.com
+> 
+> Base: v7.4-rc1. Depends on CCU v7 (all eight patches):
+> https://lore.kernel.org/r/20261112-a733-clk-v7-0-db7c5451ffa2@pigmoral.tech
+> 
+> November 12 board test: two RAM boots and warm reboot -f returns on
+> Cubie A7S with vendor boot0/BL31/SCP/U-Boot, without clk_ignore_unused.
+> Both retained clocks were 1/1; all three dropped clocks were 0/0.
+> The no-flag stall was observed with CCU v6 on Nov 10; PRCM code is
+> byte-identical in v7, where the no-flag control was not repeated.
+> Runtime used DT v3 and its dependencies (all four UART v2 patches),
+> with the PMIC identifier and pinctrl IRQ-map context adapted to the base:
+> https://lore.kernel.org/r/cover.1794227241.git.enzo.adriano.code@gmail.com
+
+I don't think there is any need for those longish test descriptions, 
+especially if they pass.
+
+> 
+>   drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c | 7 +++++--
+>   1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c b/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
+> index b8f6e8c6e507..f2965daba0d3 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
+> +++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
+> @@ -108,7 +108,9 @@ static SUNXI_CCU_DUALDIV_MUX_GATE(r_spi_clk, "r-spi", r_spi_parents, 0x150,
+>   				  0);
+>   static SUNXI_CCU_GATE_HW(bus_r_spi_clk, "bus-r-spi", &r_ahb_clk.common.hw, 0x15c, BIT(0), 0);
+>   
+> -static SUNXI_CCU_GATE_HW(bus_r_msgbox_clk, "bus-r-msgbox", &r_ahb_clk.common.hw, 0x17c, BIT(0), 0);
+> +/* Vendor SCP firmware on E902 needs this until a remoteproc/mailbox driver claims it. */
+
+Please change this comment. Something like the msgbox clock is shared 
+between the E902 core and the Arm APs.
+
+> +static SUNXI_CCU_GATE_HW(bus_r_msgbox_clk, "bus-r-msgbox", &r_ahb_clk.common.hw,
+> +			 0x17c, BIT(0), CLK_IS_CRITICAL);
+>   
+>   static SUNXI_CCU_GATE_HW(bus_r_uart0_clk, "bus-r-uart0", &r_apb1_clk.common.hw, 0x18c, BIT(0), 0);
+>   static SUNXI_CCU_GATE_HW(bus_r_uart1_clk, "bus-r-uart1", &r_apb1_clk.common.hw, 0x18c, BIT(1), 0);
+> @@ -146,8 +148,9 @@ static SUNXI_CCU_MUX_DATA_WITH_GATE(r_riscv_clk, "r-riscv", r_riscv_parents, 0x2
+>   				  24, 2,	/* mux */
+>   				  BIT(31),	/* gate */
+>   				  0);
+> +/* Vendor SCP firmware on E902 needs this until a remoteproc/mailbox driver claims it. */
+
+and this. Just note that the E902 might be running on its own, in a pure 
+firmware role, or even completely separate from the main kernel.
+
+Oh, and also please put somewhere that this is based on the linux-sunxi 
+for-next tree, aside from just having the base-commit ID below.
+
+Cheers,
+Andre
+
+>   static SUNXI_CCU_GATE_HW(bus_r_riscv_clk, "bus-r-riscv", &r_apb0_clk.common.hw,
+> -			 0x21c, BIT(0), 0);
+> +			 0x21c, BIT(0), CLK_IS_CRITICAL);
+>   static SUNXI_CCU_GATE_HW(bus_r_riscv_cfg_clk, "bus-r-riscv-cfg", &r_apb0_clk.common.hw,
+>   			 0x21c, BIT(1), 0);
+>   
+> 
+> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 
 
