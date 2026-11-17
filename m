@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51184606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 09:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A740606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 09:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ru0v2/+H;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=jsonSMlU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m32nOEUw;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=L/lF966g
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,55 +14,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yxHn6IyMEc/gFXG0FL2K57vaxjrPtjjGVPSWUg++9V4=; b=ru0v2/+HeFvrR35RL2ct6YtIVX
-	1UdSPdabrD5yBybAhe+kk0rE/P5dsERsGVLumx6Z6DZBfzgy6DR88IGVm0NIyVjbAUz1PRu5vzboW
-	CIU3d5sVSg9Wcbm55KR2eVti9DqmPs5AUHuoocg7W5ATPHOd8YPd5IXUXOeAvY2pvhfB+AExF9Kcc
-	By+2p5SZiQQ9VBuc1YgWztDZmfrCpoeyYAiKJcyDMIGxGnAgSTjjcuugWKCjJskhmuVqXRN19+r8O
-	tzafmmt6c+Eo7tUV2I5TmDeLjIAEvsjVH6yTIqd9yS79ZrPY2NPf1n1FHwa8KcKhsopElUUrStgvT
-	W7HBOU7w==;
+	bh=JLqMyRjI44rQfOPu6Ra8q4h7mQJKrbB0IM+NTsPndY0=; b=m32nOEUwQC1by1roXMWqvZiQCf
+	IWO4IwSoiCJH2lxy+yZexyYkaDBZ7K24E/XpISF570A9Ye0R8QaeZN8J1FuM2X/92GFnZRAmWFAyY
+	2wzG6PYxE3JGwyQ+j4jxLQxcCn+UdRciCzudpdd5qDmFuEfGrOMk3+HV+cuSDvqHfOJUROM3gnOTj
+	lnvN2Svdl0W7Q8AiCN0jir/6Eu5GsmmkymZdMCyaw7DIkefi45yFV6INAR3VMkELA1AQ+zyDPyawg
+	pliifWg8a3oBBW20B8xAgcC5DBvxoZJU4K9btRrhCL5D4AtvM/juRQfMDhFi8otEvNa5Llla4dp92
+	XVSCZMgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTFMJ-000000053CG-3wpx;
-	Tue, 17 Nov 2026 09:20:11 +0000
-Received: from m16.mail.163.com ([220.197.31.4])
+	id 1xTFMQ-000000053Df-0AI0;
+	Tue, 17 Nov 2026 09:20:18 +0000
+Received: from m16.mail.163.com ([117.135.210.3])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTFMG-000000053Ba-1vBZ
+	id 1xTFMN-000000053C3-1AET
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 09:20:10 +0000
+	Tue, 17 Nov 2026 09:20:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=yx
-	Hn6IyMEc/gFXG0FL2K57vaxjrPtjjGVPSWUg++9V4=; b=jsonSMlU/qFR/LGbrw
-	US8FN5DM8ZRMxPU1uxA2FZtzN7afpX7ibK6qqV0aOnASLZyuGfYNygEkH1UeWESQ
-	/2S06Igfg++lr77IQkUFsIcjZm/6Xs+BoYrNH4jVywPmuhEODDWPUrhaApqN/ZoW
-	1FitzLJBlfpF27lY24ZMFsRQ4=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=JL
+	qMyRjI44rQfOPu6Ra8q4h7mQJKrbB0IM+NTsPndY0=; b=L/lF966gC8+FQhenqa
+	tSqNhLFB7elPTalPH0NxQIKGiY5P6sxVAJhqkkqSqJ9ZuXJSNRhv3VuWfcySp9Hu
+	vCqXaFzwAq4HBudyHOnShiS7TloKJzvBcTqxWmt7q6TD09myFUOEgDF3iOVbfxvV
+	deiKaGlLB9uVSMUVVUM+kkKrE=
 Received: from SYPC (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id PigvCgDn70U7HPxqqd4dGg--.33581S2;
-	Tue, 17 Nov 2026 17:19:55 +0800 (CST)
+	by gzsmtp3 (Coremail) with SMTP id PigvCgBHt0IuHPxqNdcdGg--.34441S2;
+	Tue, 17 Nov 2026 17:19:43 +0800 (CST)
 From: Yang Siyuan <hsyysy@163.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Simona Vetter <simona@ffwll.ch>,
 	Samuel Holland <samuel@sholland.org>,
-	linux-gpio@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 RESEND] pinctrl: sunxi: request the per-bank supply optionally
-Date: Tue, 17 Nov 2026 17:19:44 +0800
-Message-ID: <20261117091944.12082-1-hsyysy@163.com>
+Subject: [PATCH RESEND] drm/sun4i: report coverage pixel blending for alpha-capable planes
+Date: Tue, 17 Nov 2026 17:19:32 +0800
+Message-ID: <20261117091932.12063-1-hsyysy@163.com>
 X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: PigvCgDn70U7HPxqqd4dGg--.33581S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxCFW7AF4rCr1UtrW5trW7CFg_yoWrtF1xpr
-	4fXryayr4rJFyxJw4xAw12yryS9a1xJa43CFykK345AFn8GFy3Jw1jkF4YkFs8Cr4kJr4Y
-	vFyDZ34xGFn8X3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07ULeOXUUUUU=
-X-CM-SenderInfo: 5kv152r16rljoofrz/xtbC7RzvJGr8HDxjQQAA3u
+X-CM-TRANSID: PigvCgBHt0IuHPxqNdcdGg--.34441S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxWryktrWkCFy8CrWxtr4rGrg_yoW5CFy5pF
+	WrGFW5C34UCr4ava43Ary8ZF43Wa1FgFW8Kry7J3sxXr1qqF9ak3s8Caya9ryUArs7Ar42
+	gw15WF4q9F4DCw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j0GQDUUUUU=
+X-CM-SenderInfo: 5kv152r16rljoofrz/xtbC7RDsIWr8HDBgcQAA3b
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_012008_985995_3E290671 
-X-CRM114-Status: GOOD (  21.39  )
+X-CRM114-CacheID: sfid-20261117_012015_774583_EA4359DE 
+X-CRM114-Status: GOOD (  12.20  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,125 +86,80 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The per-bank "vcc-pX" supplies are optional in the device tree: the
-binding documents them, but notes that many boards do not describe them.
-sunxi_pmx_request() uses regulator_get() anyway, so the regulator core
-falls back to a dummy regulator and warns for every bank that has no
-supply:
+Linux 7.3 added validate_blend_mode_for_alpha_formats(), which warns once
+per plane that exposes a pixel format with an alpha channel but has no
+blend mode property:
 
-  sun50i-h616-r-pinctrl 7022000.pinctrl: supply vcc-pl not found, using
-  dummy regulator
+  sun4i-drm display-engine: [drm] [PLANE:35:plane-0] pixel format with
+  alpha exposed but blend mode not setup. Please fix.
 
-The H616 R_PIO is such a controller, and its PL0/PL1 pins drive the
-R_I2C bus, so every H616 board hits the warning during boot.
+The mixer blends a layer using its own alpha channel: ALPHA_MODE is set
+to PIXEL when plane alpha is opaque and to COMBINED otherwise, while
+BLEND_PREMULTIPLY keeps its reset value. That is straight alpha, i.e. the
+DRM "coverage" blending equation.
 
-Use of_regulator_get_optional() instead.  A bank supply that is described
-in the device tree is still acquired and enabled, as it powers the
-physical VCC-Px rail, but one that is absent is skipped without a
-warning.
+Advertise exactly DRM_MODE_BLEND_COVERAGE on every layer that can expose
+an alpha format (UI always, VI on DE3 and later). This matches the
+existing register programming, keeps userspace behaviour unchanged and
+satisfies the new validation. Premultiplied blending would require
+driving BLEND_PREMULTIPLY and is left as a follow-up.
 
-The OF-only lookup matters here: regulator_get_optional() also falls back
-to a global regulator-name lookup.  If a regulator with the same name as
-an absent bank supply is registered later, a subsequent pin request in
-that bank could acquire it and start the per-bank refcount at one, after
-earlier pins in the bank had already been requested without a regulator.
-Freeing any of those pins would then disable the supply while other pins
-in the bank are still active.  Restricting the lookup to the pinctrl node
-makes an absent supply permanent; record that state so later pin requests
-do not retry the lookup.  The refcount therefore stays balanced.
-
+Fixes: 860e748bddcc ("drm: ensure blend mode supported if pixel format with alpha exposed")
 Signed-off-by: Yang Siyuan <hsyysy@163.com>
 ---
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c | 13 +++++++++++++
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 14 ++++++++++++++
+ 2 files changed, 27 insertions(+)
 
-Changes in v3:
-- Use of_regulator_get_optional() instead of regulator_get_optional().
-  The latter still performs a global regulator-name lookup, which can
-  bind an unrelated regulator that appears after some pins were already
-  requested and unbalance the per-bank refcount.
-- Remember that a bank has no supply so later pin requests skip the
-  lookup, and keep the existing no-regulator check in sunxi_pmx_free().
-- Link to v2: https://lore.kernel.org/linux-gpio/20261026152027.1417178-1-hsyysy@163.com/
-- Link to v1: https://lore.kernel.org/linux-gpio/20261026144751.1392715-1-hsyysy@163.com/
----
----
- drivers/pinctrl/sunxi/pinctrl-sunxi.c | 29 +++++++++++++++++++++++++--
- drivers/pinctrl/sunxi/pinctrl-sunxi.h |  1 +
- 2 files changed, 28 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-index 70099052d..d2345a85a 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-@@ -913,23 +913,44 @@ static int sunxi_pmx_request(struct pinctrl_dev *pctldev, unsigned offset)
- 					    PINS_PER_BANK;
- 	struct sunxi_pinctrl_regulator *s_reg = &pctl->regulators[bank_offset];
- 	struct regulator *reg = s_reg->regulator;
-+	struct device_node *np = dev_of_node(pctl->dev);
- 	char supply[16];
- 	int ret;
- 
- 	if (WARN_ON_ONCE(bank_offset >= ARRAY_SIZE(pctl->regulators)))
- 		return -EINVAL;
- 
-+	if (s_reg->supply_absent)
-+		return 0;
-+
- 	if (reg) {
- 		refcount_inc(&s_reg->refcount);
- 		return 0;
+diff --git a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+index 7d894e1eb..ef059ac47 100644
+--- a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
++++ b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+@@ -283,6 +283,19 @@ struct sun8i_layer *sun8i_ui_layer_init_one(struct drm_device *drm,
+ 		return ERR_PTR(ret);
  	}
  
-+	if (!np) {
-+		s_reg->supply_absent = true;
-+		return 0;
-+	}
-+
- 	snprintf(supply, sizeof(supply), "vcc-p%c", 'a' + bank);
--	reg = regulator_get(pctl->dev, supply);
--	if (IS_ERR(reg))
 +	/*
-+	 * Use the OF-only lookup: regulator_get_optional() would also match
-+	 * a same-named regulator from another device.  Such a regulator can
-+	 * appear after some pins in this bank have already been requested,
-+	 * which would unbalance the per-bank refcount.
++	 * The mixer blends the layer using its own alpha channel with the
++	 * pixels not premultiplied (BLEND_PREMULTIPLY keeps its reset value),
++	 * which is the DRM "coverage" equation. Report it so that the blend
++	 * mode validation in drm_mode_config_validate() is satisfied.
 +	 */
-+	reg = of_regulator_get_optional(pctl->dev, np, supply);
-+	if (IS_ERR(reg)) {
-+		if (PTR_ERR(reg) == -ENODEV) {
-+			s_reg->supply_absent = true;
-+			return 0;
-+		}
-+
- 		return dev_err_probe(pctl->dev, PTR_ERR(reg),
- 				     "Couldn't get bank P%c regulator\n",
- 				     'A' + bank);
++	ret = drm_plane_create_blend_mode_property(&layer->plane,
++						   BIT(DRM_MODE_BLEND_COVERAGE));
++	if (ret) {
++		dev_err(drm->dev, "Couldn't add blend mode property\n");
++		return ERR_PTR(ret);
 +	}
- 
- 	ret = regulator_enable(reg);
- 	if (ret) {
-@@ -959,6 +980,10 @@ static int sunxi_pmx_free(struct pinctrl_dev *pctldev, unsigned offset)
- 					    PINS_PER_BANK;
- 	struct sunxi_pinctrl_regulator *s_reg = &pctl->regulators[bank_offset];
- 
-+	/* The per-bank supply is optional, so this bank may not have one. */
-+	if (!s_reg->regulator)
-+		return 0;
 +
- 	if (!refcount_dec_and_test(&s_reg->refcount))
- 		return 0;
+ 	ret = drm_plane_create_zpos_property(&layer->plane, index,
+ 					     0, plane_cnt - 1);
+ 	if (ret) {
+diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+index 92dd5a97f..b6771576b 100644
+--- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
++++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+@@ -470,6 +470,20 @@ struct sun8i_layer *sun8i_vi_layer_init_one(struct drm_device *drm,
+ 		}
+ 	}
  
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-index 8bd00c6ff..651249b23 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-@@ -162,6 +162,7 @@ struct sunxi_pinctrl_group {
- struct sunxi_pinctrl_regulator {
- 	struct regulator	*regulator;
- 	refcount_t		refcount;
-+	bool			supply_absent;
- };
- 
- struct sunxi_pinctrl {
++	/*
++	 * Only DE3 and later expose pixel formats with an alpha channel, and
++	 * the mixer blends them with straight alpha (coverage), same as the UI
++	 * layer.
++	 */
++	if (layer->cfg->de_type >= SUN8I_MIXER_DE3) {
++		ret = drm_plane_create_blend_mode_property(&layer->plane,
++							   BIT(DRM_MODE_BLEND_COVERAGE));
++		if (ret) {
++			dev_err(drm->dev, "Couldn't add blend mode property\n");
++			return ERR_PTR(ret);
++		}
++	}
++
+ 	ret = drm_plane_create_zpos_property(&layer->plane, index,
+ 					     0, plane_cnt - 1);
+ 	if (ret) {
 base-commit: 091b06388b117fefdcb63336ac09956a4914b961
 -- 
 2.56.0
