@@ -2,72 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872FC606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11647606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:04:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PlG6Qpkc;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=S9MI7p8F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F1uC7iJk;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=qOWDJIyK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=b8/Om5r4OOqZRSoAI27MxRWrMg2+0ul1nFv2YlNR7Tw=; b=PlG6Qpkc/+bBPd
-	GFYtK8HC7bAdBpZQNKQOSx5nbZu8/npF/YGsq7bmZqVdXGIxKGvotsGyWxL4XL+ZOYZkPArLGo7Va
-	f3YdTCXtsPhQF+zfEyTnJA6GuIzJI87jDhaxf6WNCkfLM13hhknVCD9P2FWfddJNFowzRtNot8FsE
-	xZgY9b7gDy7nVdx9WDMez1xHU4dMEJP6Gt7+7K7bqsg6SMH5ZmijKCt2E7fYJkgsY1nTHQesU6HH4
-	nwt58AruUE1nhxOvttmWlUhRCux84ZD22H8JyOxwuLeHahXpApaDuLatLPoMBpPk/ijnLa3ZLOHeE
-	OZI+PbWdAFs4g8H5EePA==;
+	List-Owner; bh=a/73MrPa83q5oAyGtHK9/LKyewHpBJcuxNmYG+P39mI=; b=F1uC7iJkpmp1a7
+	GdJfcfXuPFP4I3xIITxtmOW72WDqiN/4LRt9tjOdw83M7xcvRTpDnw667p9klX7BACRaesKAuCG/x
+	OQVUWEOe31/RqhvIs52aTSokTHH+EcCCUBlj3WuZxFLbW4uEGxQA5k11Eejtn1FKu8Ngn95zTVEaK
+	BrxhssVPOaN/xXO+FZydnLKySx7f4VIHL62/LmxCGYQ8zAcuwkQSsx+ogIwmvDyKMcHMHWrNVbQLN
+	XEZVK1WUuKmNyDYn9QR+YYbMnR4pysXG6tZajXubNmXhW0AS7dP5mIXX8hAWzQ7MbTNxDBN2F05Ok
+	25ig1gFUknlrg6JBRT1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHvU-00000005WdQ-0Gj8;
-	Tue, 17 Nov 2026 12:04:40 +0000
+	id 1xTHvV-00000005WeM-0Ssb;
+	Tue, 17 Nov 2026 12:04:41 +0000
 Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHni-00000005VuZ-0ODG;
-	Tue, 17 Nov 2026 11:56:43 +0000
+	id 1xTHs0-00000005WND-2aTT;
+	Tue, 17 Nov 2026 12:01:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794916595;
-	bh=AcKOBruChaR8ypBOJHDWNFYx4dckNjh02lWHi41qQSQ=;
+	s=mail; t=1794916862;
+	bh=yr19dYIzWevwtOPD6EuLHrVZjpQTApuyfHArd4dpnvk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S9MI7p8FNmcFSIt/obHNujnaCgPiQU1FpLQOE0WLyJw2ZINt1pV6WLw39NLPg/piC
-	 96yfx1Pkhk+Yzwna3+7aso9t5WF36zlRw6QPwZJlE3rwKkMreeOlNEGAO1E5UHQct5
-	 HQ4LXYhoWupon7McApOjOBvEj/1V5UiRZPJu/qHXLTABpFjUtNTKVvdgQaWMivgcNd
-	 kS2S+X7jU0S3f7E63c1HBUoJWsGysQFYN+4TV1mZlZK0H09FsQDlDuzruggtWvijxp
-	 2CugvP/KfgmjbhS2Kv1/xqzN9YzWyTTiXhqD0vzPVPNQgUakxMeG9DCutyOSaVAAUN
-	 Rnf29AE4qkIPQ==
+	b=qOWDJIyKzkSw3hMEhIDFXEn5vHffFFfPv4ZOjxaEA6nTLU1rjmB/e/k3uFLhjvJ45
+	 q32xTUrOt6qktXXc7q9uq2Mx257xUdwjbdfHRrSCd7T54Hcrq4qoTF4tF6Eg900vYL
+	 cLfsRy4C9VVNzzpB3DdSd2a6rwxYAJQqUq9yBCA3zXjbAMYjaZWrCQRzxqHaexxONI
+	 hJwJPxoqogcWYXCcRWPcEYIiCSXPQbASyrwshcMrkUDvjmbBSefkcNYvzXhMHpPUvI
+	 X5vQMxWmFeeT6mWG2apGVXTptt/KClBW9jiQAwPa2KF6m8rPeby/osr30UclnasK8E
+	 NolSjC4ZjDD9w==
 Received: from [100.64.1.21] (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 372F417E05D6;
-	Tue, 17 Nov 2026 12:56:35 +0100 (CET)
-Message-ID: <33bd4c10-ccf6-4cff-9aaa-5c58e02ee1bd@collabora.com>
-Date: Tue, 17 Nov 2026 12:56:34 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CAA2C17E0406;
+	Tue, 17 Nov 2026 13:01:01 +0100 (CET)
+Message-ID: <7fb43d3c-8c9d-43b5-b979-aef65f362ed9@collabora.com>
+Date: Tue, 17 Nov 2026 13:01:01 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v5 4/4] nvmem: mtk-efuse: add mt6572 support
-To: rva333@protonmail.com, Srinivas Kandagatla <srini@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Lala Lin <lala.lin@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20261117-6572-nvmem-v5-0-9b561a8a83e1@protonmail.com>
- <20261117-6572-nvmem-v5-4-9b561a8a83e1@protonmail.com>
+Subject: Re: [PATCH] soc: mediatek: mt8167-mmsys: fix errors in
+ multiple-output display paths
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+ linux-mediatek@lists.infradead.org
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261117113402.728183-1-l.scorcia@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20261117-6572-nvmem-v5-4-9b561a8a83e1@protonmail.com>
+In-Reply-To: <20261117113402.728183-1-l.scorcia@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_035642_044882_054747BE 
-X-CRM114-Status: UNSURE (   6.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261117_040104_855975_3E969AED 
+X-CRM114-Status: GOOD (  10.21  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,13 +83,25 @@ X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/17/26 12:33, Roman Vivchar via B4 Relay wrote:
-> From: Roman Vivchar <rva333@protonmail.com>
+On 11/17/26 12:33, Luca Leonardo Scorcia wrote:
+> Some display blocks can be used to define multiple-output pipelines.
+> The current code uses mtk_mmsys_update_bits to clear the mask bits and
+> set the desired output block bit when initializing or disconnecting a
+> pipeline. This breaks multiple output pipelines (only the last one set
+> produces output).
 > 
-> Add a platform data struct for the efuse controller.
+> Fix this by using the block bit alone as mask for multiple output route
+> components.
 > 
-> Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+> Also address some unfortunate copy and paste errors in routes between
+> OVL<->WDMA0, DITHER0<->UFOE and DITHER0<->WDMA0.
+> 
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This misses a Fixes tag.
 
+Please add the relevant one and resend.
+
+Thanks,
+Angelo
 
