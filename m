@@ -2,97 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E475606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 455F9606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:18:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bg4bH6/K;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QdLWeOj+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vI5lg+1M;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=QrDEH3jn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4adGshk3DcGvhqFeQZWKT+ilTqCtanGq6mRdY2JYAuk=; b=Bg4bH6/K7cF8YG
-	r6+aslfFWSodKo3OUR9qshHhjciaOMMNn8kN3de7ckEMbmNnQ2nQVWuOvV1y3r685cUldSaTO+svY
-	AP/uE75oVKKqfIpzV9Z90IXZE5sUVe3h8wWLtLtdMr+7wF5rlpA0KLUoFJhBi5ilnM0Mb+N8Zm229
-	pES7oN2ZQyhfOdnm5NOSnG3GLx+OZy8nfh8sBFQZMkMMQBJvi/fT0f6QaoFnlpyHi1PYQaAmnspyP
-	XoSrq1Jht6VV2gMc4eyIKkSRZFZNypTeDAbp12ohV59VzFqHSmKdMsKcIlCVU73L3gGT1zGaXsk7X
-	H8UlMv7LMivAbDo3lqzw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=e1vk46c7RCm1gjOZ4YlKUJ7kGnT29iya4vcnrK/d6x0=; b=vI5lg+1Mz6GMBBasCfDh7suCaj
+	MsaGw2ReDNamiDZsDVAqDQdoYfmk04IAiCBilkWR46IsFi+aBI0bYIpaQIa6cZ0lerIXWpdT1fKWV
+	xQg6TRl1Aw4EUAGZzzAWR2JLK0nMJJE3EVcQRtZ6q6LMUUXkbiqeMIlRJoxO6FY9YSirBX7uFcPyd
+	k6WQr9Z6NnWqYJWVaJ0ILQDxFX8xU7O4h+qjXR7QcBDSBRRgx1Zt97Wof4/ohTEBvYCk4LYZIVIDu
+	o6nUVORP9oYVRAcaBB7a8PpJdxYWu5h1s1iH57QLAskQK7ikgcJTWkM3crf5f9+oRMVoN646zrUnU
+	7NuKpuOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJ2y-00000005t0L-3TyX;
-	Tue, 17 Nov 2026 13:16:28 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1xTJ4g-00000005tJ9-0opY;
+	Tue, 17 Nov 2026 13:18:14 +0000
+Received: from esa.microchip.iphmx.com ([68.232.154.123])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJ2r-00000005sxr-0SXX
+	id 1xTJ4d-00000005tIi-3mvc
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 13:16:28 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a214c5c4c0so46040125e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 05:16:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794921379; x=1795526179; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=4adGshk3DcGvhqFeQZWKT+ilTqCtanGq6mRdY2JYAuk=;
-        b=QdLWeOj+aecadOPt56GbXTSYOwnHuZ9quqsIOAUI5Pz4onANCO3ij0TvMgGD40IR8E
-         CdesbWoxidws55O09v/HsZhCktW44ucfmsmePCdNxN5zSOWs4M/uj7mJIdStY8jEznDq
-         uXdYWmTIWn8pX9Q4mF2Ujv/fQWMM1ir73k81EDqo1mQtiEtR6oKo+uC1+I2GwSKS29Lv
-         D3MdAb2DoYp+A159G7UAOtCcZbB1yA+Q5PfrU4U2SAsniG9xmwqpgGBmHcCoz03PN2Zo
-         IBkbJuZf8RVntWGT9vnXpNdESVpS77dS+M6htfOcRqZSIsu4M24Xt3UoNX27hbZbaqiI
-         89Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794921379; x=1795526179;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=4adGshk3DcGvhqFeQZWKT+ilTqCtanGq6mRdY2JYAuk=;
-        b=TxVD2o+j1nsZpfK84Z+Rmira4B+mmpq4Ubjx73vGnHruQ3Nf3+VQMkJbmgmO/7yJbz
-         DrsAF4LGUnV7ehnul0TgYgOtkFYeJckHm5Ndv0aU6+LXS3Wf7NFda5W2gf7RobcQsoz5
-         1VKwFE3f6Op9dZEAZLzwuS+drwxOyszIgS851H2jvex5GtuVuZES08l33pJVlNsI+UG6
-         Qh4hq5YF/7QrsQ5JwNYakVr3yy5E8/pqM72STgJP5/I7kScJdHGiQoLue1UVn3yCE6Ah
-         cIrlZa8HWSg90y0nB5aEJGdtKzVHLPW8NFN00fqkjDg5Xu9G+pz2GwGGYm2dEdE9BIzL
-         cegA==
-X-Forwarded-Encrypted: i=1; AL+hErE2pdwW1D6fj6SLe+AcGEGZx/7u8pE/eXHC6jJEdvPKgwTl8PoZdUtnSNefqpC1TsnjoHwBdgKZmMqh5+ocvtZl@lists.infradead.org
-X-Gm-Message-State: APuU4Z8MT+s8pRLKGGX1JnIg0VW3ZV6LwAE7MoJd+TWPFkcXlN1dAQsT
-	V3nHGkUfwng1T8UofqmiA2IGKDw0Qzva9tcsJEhoQxq8/zTHMStpCDj2
-X-Gm-Gg: AYBFou3XEVEeefpYL0bz/XQDHl33La0N+aQB00+Xdvmj0BcCHfCWXpAokAa8G+X/VNx
-	P/6pFW2xtEMmsJ7+I8AN/49egBlISidkKGhYtCn3NRkCasej3v44/6PIRsH1EqYGlkANf7zRo9B
-	qPAwZO/n8/uzEh4wKmzuKE4trRVEr/UNZkM9kdYkNO1TrJxz/iD/kQkJr5tzewG2YbIQO7qwV6c
-	qjHJIyPYs/I1+riFln9fLCyL+3JPHe5wbqZsHRMPp/bxAX1G4jsuKwCL/fFOH45fWUU0YY1s9uM
-	U7To994uTpKj0ckkOjneOZeiTt2h8SZRvlw+jeGRUMsmiQTQh++my2LX7AU5t83huc/ShBI5Zkx
-	9gnim7dFkdjn9mr03+bNrN6cFlBfrbgBeLOSMfDn3lnmHpjTgCBGFACkmO9Xwxwf+/ZC0iyli/j
-	cNvPaLhk3o/reJudmVoUFTVXn6B92m72bnrct/HFhd2hOBA1eHSYjulIabFJWYG04fIkCGU1ryF
-	slkax9Yfw6XswsbRHV3BQ6a/DiQ20uOgUwNJwLTnjjYc/x/PzptHmXctgL3XYvmjlP0q8R43/k3
-	ATaAp7GKIaun/eat6JI2j9zF2dJ3/Tn2BNyfNpWMCdjKV5rU0adOgrCHWxljATzKNg==
-X-Received: by 2002:a05:600d:3:b0:4a1:ddaa:571e with SMTP id 5b1f17b1804b1-4bb55a50eacmr238269805e9.15.1794921378994;
-        Tue, 17 Nov 2026 05:16:18 -0800 (PST)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c5f5972a7sm26817173f8f.21.2026.11.17.05.16.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2026 05:16:17 -0800 (PST)
-Date: Tue, 17 Nov 2026 13:16:16 +0000
-From: David Laight <david.laight.linux@gmail.com>
-To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Cc: Linus Walleij <linusw@kernel.org>, Michal Simek <michal.simek@amd.com>,
- <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <saikrishna12468@gmail.com>, <git@amd.com>
-Subject: Re: [PATCH] pinctrl: zynqmp: Ensure function names are NUL
- terminated
-Message-ID: <20261117131616.0a631d5c@pumpkin>
-In-Reply-To: <20261117073947.1100444-1-sai.krishna.potthuri@amd.com>
-References: <20261117073947.1100444-1-sai.krishna.potthuri@amd.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+	Tue, 17 Nov 2026 13:18:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1794921491; x=1826457491;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=DkboOSEA4K1ZxnUPlMxr5deg62sLicMgLN4HTU1QD9U=;
+  b=QrDEH3jnxeh1U/MiZGoGBaHknYOeXRTU3b7BbLmoBLEh9isu+YRhSCMP
+   cBHDZkOsyWkoShyDt0ixvNpcHY/eB8JBewfOfwa+7i80sYvwQQGoKt/4M
+   G6kdLrMr7yn1EHUKq5uqL/6y2CK4b7vx/7qg0wVcwccOvyyqaSCJa3TQV
+   +0cYQFGo1HMtPb3F6Coxq9Svu8nAPFuNa+crLiPG4FLdESkxS9W7V+IYo
+   ukb/SMNcNRr9YcTVj/vOmEKds7bIMBbpvbUyLJC4m3D6t9nd/cLH3O2J0
+   /DpQ/SzBrNosNdhMcNQ52hsKIpMjsSf7yhfZV0AJhHnbMedaRkHQHwgd7
+   g==;
+X-CSE-ConnectionGUID: AxTgJ7i4SEe8mxlwVypmAQ==
+X-CSE-MsgGUID: nY8/6bWzR9C/Masx+JuVmg==
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="65663131"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2026 06:18:10 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.56; Tue, 17 Nov 2026 06:18:10 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
+ Transport; Tue, 17 Nov 2026 06:18:06 -0700
+From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+Subject: [PATCH net-next v3 0/3] net: sparx5: add router legs for L3
+ routing offload
+Date: Tue, 17 Nov 2026 14:17:36 +0100
+Message-ID: <20261117-sparx5_l3_routing-v3-0-e680ed79c7dc@microchip.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPBT/GoC/23OTQqDMBAF4KtI1k3JjwbtqvcoRUIcdaAmkqTBI
+ t69IZtCkVk9HvPN7CSARwjkVu3EQ8KAzuYgLxUxs7YTUBxyJoIJxQRnNKzab03/kr1374h2op0
+ SddNCPchBk7y3ehhxK+aDWIjUwhbJMzczhuj8pxxLvPTFVVycuIlTRkcjDWdcsbHu7gsa78yM6
+ 9W4pYhJ/JT29LskstJ0oFpj2jz6XzmO4wvIkO8zBgEAAA==
+To: Horatiu Vultur <horatiu.vultur@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>, "David
+ S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, Daniel Machon <daniel.machon@microchip.com>,
+	"Steen Hegelund" <Steen.Hegelund@microchip.com>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Robert Marko
+	<robert.marko@sartura.hr>, Eric Dumazet <edumazet@kernel.org>
+CC: <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-hardening@vger.kernel.org>,
+	=?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+X-Mailer: b4 0.15-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_051621_205663_35C5F2B2 
-X-CRM114-Status: GOOD (  20.74  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_051811_974981_484F2D0E 
+X-CRM114-Status: GOOD (  20.50  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,65 +97,122 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_2 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 17 Nov 2026 13:09:47 +0530
-Sai Krishna Potthuri <sai.krishna.potthuri@amd.com> wrote:
+This is the first series adding L3 unicast routing offload for IPv4
+and IPv6 to Sparx5 and LAN969x. It adds the routing registers and
+the router legs, the hardware interfaces where routing happens. No
+route is offloaded yet. Routing is enabled in the chip, but with no LPM
+rule a routed frame misses the lookup and is redirected to the CPU, so
+the kernel keeps routing every frame in software.
 
-> PM_QID_PINCTRL_GET_FUNCTION_NAME returns the function name in a fixed
-> 16-byte field and does not guarantee NUL termination. A 16-character
-> name fills the entire field.
-> The driver copies this field into a 16-byte buffer and subsequently
-> uses it as a C string. For a non-NUL-terminated name, string operations
-> can read past the end of the buffer into the adjacent groups pointer.
-> 
-> Reserve an extra byte for the NUL terminator and explicitly terminate
-> the copied function name.
-> 
-> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-> ---
->  drivers/pinctrl/pinctrl-zynqmp.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/pinctrl-zynqmp.c b/drivers/pinctrl/pinctrl-zynqmp.c
-> index aba129ead04c..c778133fadc2 100644
-> --- a/drivers/pinctrl/pinctrl-zynqmp.c
-> +++ b/drivers/pinctrl/pinctrl-zynqmp.c
-> @@ -29,7 +29,11 @@
->  
->  #define ZYNQMP_PIN_PREFIX			"MIO"
->  #define PINCTRL_GET_FUNC_NAME_RESP_LEN		16
-> -#define MAX_FUNC_NAME_LEN			16
-> +/*
-> + * Firmware returns the name in a fixed-size field and does not guarantee a
-> + * NUL terminator. Keep one extra byte for the NUL terminator.
-> + */
-> +#define MAX_FUNC_NAME_LEN			(PINCTRL_GET_FUNC_NAME_RESP_LEN + 1)
->  #define MAX_GROUP_PIN				50
->  #define MAX_PIN_GROUPS				50
->  #define END_OF_FUNCTIONS			"END_OF_FUNCTIONS"
-> @@ -650,6 +654,7 @@ static void zynqmp_pinctrl_get_function_name(u32 fid, char *name)
->  	 */
->  	zynqmp_pm_query_data(qdata, payload);
->  	memcpy(name, payload, PINCTRL_GET_FUNC_NAME_RESP_LEN);
-> +	name[PINCTRL_GET_FUNC_NAME_RESP_LEN] = '\0';
+The chips only route in VLAN aware mode. A router leg is created for a
+direct VLAN upper of the offloaded bridge when it gets its first
+address, provided the upper qualifies for hardware routing: a non-zero
+vid, the bridge VLAN protocol, the bridge MAC and no master. Any other
+configuration is routed in software as usual.
 
-Too many constants....
-You might want to try embedding 'name' in a structure.
+Patch 1 adds the register macros for the L3 routing blocks.
 
-Then, at least, you can use sizeof().
+Patch 2 adds the router legs, their lifecycle on address events, the
+global leg base MAC and the hardware enable sequence.
 
-David
+Patch 3 keeps the legs in sync with the bridge. A transition that would
+leave the hardware and kernel routing differently drops the leg instead
+of being refused, and the leg is recreated once the upper qualifies.
+It also follows bridge MAC and vid changes and the upper going down, and
+recreates the legs when a switch port joins the bridge again.
 
+The plan for future series building on this one:
 
->  }
->  
->  static int zynqmp_pinctrl_get_num_functions(unsigned int *nfuncs)
+  2: track FIB entries and trap them to the CPU, with the LPM VCAP
+  3: main and local table arbitration, FIB rule refusal and neighbour
+     host routes
+  4: forwarding through a single nexthop, ECMP and blackhole routes
+  5: routes through nexthop objects
+
+The Super VCAP shared-register race reported on v1 is fixed separately
+by commit d7a8d500d7e4 ("net: microchip: vcap: fix races on the shared
+Super VCAP block"), which is now in net-next.
+
+Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+---
+Changes in v3:
+- Split the series. The router code is now rebuilt as smaller series.
+  This series keeps the registers and the router legs. The VCAP
+  preparation moves to the second series.
+- Tighten which device may carry a router leg: a direct VLAN upper of
+  the bridge whose ports are offloaded, without a master of its own,
+  with a non-zero vid, the bridge VLAN protocol and the bridge MAC.
+- Follow the transitions that would leave the chip and kernel out of
+  sync: enslaving a leg to any master, changing its MAC, and disabling
+  vlan_filtering or changing the VLAN protocol on its bridge drop the
+  leg, which is created again when the upper qualifies.
+- Destroy a leg created from the address validator when the address add
+  fails afterwards, and handle IPv6 address removal from a work embedded
+  in the router rather than one allocated per event.
+- Keep addresses when a leg cannot be created, and route that upper
+  in software.
+- Disable a leg as an ingress router leg while its upper is down or the
+  bridge does not carry its vid.
+- Flush the legs of a bridge when its last switch port leaves and
+  recreate them on rejoin.
+- Program the leg base MAC from the bridge MAC when a leg is created,
+  not only when the bridge MAC changes.
+- Enable unicast routing only on the switch ports, and restore the
+  routing registers when the router is torn down.
+- Carry on without offload when the router cannot initialise, rather
+  than failing the probe, and skip the router without CONFIG_VLAN_8021Q.
+- Remove the blackhole leg and the IPv6 link-local trap.
+- Link to v2: https://lore.kernel.org/r/20260810-sparx5_l3_routing-v2-0-59e68cc8c8ca@microchip.com
+
+Changes in v2:
+- Reworked neighbour lifetime: anchor neighbours to the router leg
+  instead of the most-specific covering FIB entry (matching
+  mlxsw/prestera). Fixes a neighbour-entry leak (memory + VMID + host
+  VCAP rule + netdev reference) and lets the software LPM be removed
+  entirely.
+- Fixed a heap overflow in the fib6 nexthop prune path.
+- Fixed a leak on the router_init() error path.
+- Hardening: netns filtering and offload-ownership checks on the global
+  notifiers, and a NETDEV_UNREGISTER leg-teardown backstop.
+- Fixed do_div() misuse on a 32-bit value. Added the missing RCU
+  annotation on in_dev->ifa_list.
+- Zero-initialise the actionfield data in vcap_rule_mod_action_bit().
+- Updated the sparx5_router.c header comment to describe the
+  leg-anchored model.
+- Link to v1: https://lore.kernel.org/r/20260612-sparx5_l3_routing-v1-0-fc3c10160f49@microchip.com
+
+---
+Jens Emil Schulz Østergaard (3):
+      net: sparx5: add l3 routing registers
+      net: sparx5: add L3 router legs
+      net: sparx5: keep router legs in sync with the bridge
+
+ drivers/net/ethernet/microchip/sparx5/Makefile     |   2 +-
+ .../ethernet/microchip/sparx5/lan969x/lan969x.c    |   1 +
+ .../microchip/sparx5/lan969x/lan969x_regs.c        |  11 +
+ .../net/ethernet/microchip/sparx5/sparx5_main.c    |  13 +-
+ .../net/ethernet/microchip/sparx5/sparx5_main.h    |  37 +
+ .../ethernet/microchip/sparx5/sparx5_main_regs.h   | 528 ++++++++++++
+ .../net/ethernet/microchip/sparx5/sparx5_regs.c    |  11 +
+ .../net/ethernet/microchip/sparx5/sparx5_regs.h    |  11 +
+ .../net/ethernet/microchip/sparx5/sparx5_router.c  | 913 +++++++++++++++++++++
+ .../ethernet/microchip/sparx5/sparx5_switchdev.c   |  30 +-
+ .../net/ethernet/microchip/sparx5/sparx5_vlan.c    |   2 +
+ 11 files changed, 1554 insertions(+), 5 deletions(-)
+---
+base-commit: 6ff4c5942a301675eb12e5b49d53a81e604624a1
+change-id: 20260210-sparx5_l3_routing-962458e4d3da
+
+Best regards,
+-- 
+Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
 
 
