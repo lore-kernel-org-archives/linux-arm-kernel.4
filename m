@@ -2,111 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821F3606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 166D2606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:07:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eeMz0LgM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YHfLTTEk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cD9Ir/Iq;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=l/ijzxwQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=s8ovy2ctIYpvpl8sbX75T7jexueFzluuIUa2B2ordO4=; b=eeMz0LgM099B0y
-	ALUMImHdoJvyzP1cUW+jxVeId1m6lyPQHgPmWuQq766jJQvcPAWhWRZtCVxVfp3FycMZ8crl95WVS
-	KgjBXtHhKorq2dPyMLo7rMKQKQPgVpjVnlPu1lgBJAfRpWOkhLaySyQ2gJE8AOMOUfXQGeoijPlMm
-	/1Fv9wzFuB8DRMsuM3EtKkrXM0hHkPVBuhA4Jd2GSghIQuoZK/hEkNi3c0SBpuDGjsT5lxjJ2WXeq
-	QR6300o1ZYnGzBzHqHCX0DrBNcTvDpcvj60HFQw3//tt3wpWoa8jAEWbnEKpr+1ReoLnTLq/nj6ih
-	0wPuHIcZysCuqWc15qHw==;
+	List-Owner; bh=bxF8qOjp6vNnHdNjUJYc2p7+hCu25MaSOgalSgx9SVs=; b=cD9Ir/Iq+kAeUt
+	wpTR9oSE8O23WS7zy1WwZxRyEcIIgINNVRGC4/kX7Sf8Vh65NVKT6pvmxdtc9kLzQADq89QZ6vPj4
+	u1bFfwW5OdQqjItTr1sT842/OTYUkMyJ8pCRhu2jRCCNgwj5JBib0WZ7uj+fL91omGCPOeFhcIUg9
+	ojnkYpiBV10mlsqGlmImRLE/RazE0ELjXwPj+SJ509oceSoxOIfYZ2/3UUgBYKGgLwna0YB3u8NTA
+	TRYcQpKOJRMIJa2OKjSHeQxgg6WECkA66zZeOwPLgMUAerloQSSIHCohCpaCA6tr8WwZG1PT0xhn0
+	9Bx5UdU2hjo3CQxKLESQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTG54-00000005DdP-21r3;
-	Tue, 17 Nov 2026 10:06:26 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTG6E-00000005Drf-3lYU;
+	Tue, 17 Nov 2026 10:07:38 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTG54-00000005DdG-0MxX
+	id 1xTG6D-00000005DrX-3iCf
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 10:06:26 +0000
+	Tue, 17 Nov 2026 10:07:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 732014634B;
-	Tue, 17 Nov 2026 10:06:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33A8E1F000C4;
-	Tue, 17 Nov 2026 10:06:21 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 529D8628E1;
+	Tue, 17 Nov 2026 10:07:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638F41F000C5;
+	Tue, 17 Nov 2026 10:07:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794909985;
-	bh=s8ovy2ctIYpvpl8sbX75T7jexueFzluuIUa2B2ordO4=;
+	s=k20260515; t=1794910057;
+	bh=bxF8qOjp6vNnHdNjUJYc2p7+hCu25MaSOgalSgx9SVs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=YHfLTTEkDydHFHaWcIeVqdA79txK629SbKLIPwQaO51Cd6VWQD1MCEFrqW0YOre3y
-	 DEhlC4RPeI8kKdBOkW44U6eif4m2IjXiAeCq56CYu01HP6H3lO+8ZKjLP7Ji1YLBkA
-	 /ziLgp/EdWtq6ATjQjpjfMxwpfQ9iEEyPdmnHL93QPdn87cU+0+LsezhL7RwoemaDn
-	 T0ZM4kxypu0aLQj7Gjpm7lcinLk4QWDmDzu+shRnLyB71wlUb8SSGf/MTlVZauvRZn
-	 z19Rv796c9zYtM4sINmunBK+itcvF5QNGJyLH77bPfJUSXIucEQCKjmCwSwTV5xbZ1
-	 DS5EWN5GsvWqQ==
-Message-ID: <5be284b8-f321-4a9f-be59-7c85f5805fe9@kernel.org>
-Date: Tue, 17 Nov 2026 11:06:19 +0100
+	b=l/ijzxwQfcB+E2ocstph6eagwrpNqABEfE7SvWSCOkDKaUalJtZdDmiAgLI2bJoaE
+	 CtC6S1E5swy7wP86FmjYf1ioj8udPqnMn25Iqjhp9sfCMmBsUF7l686s06ksbXhONk
+	 j5SrmpfasYM7nlnNPG6KxnGdoWyyI3ZUQ0U66uLEK232hFRTEhm0UELjKeYCoNf0qg
+	 CJJX4Y6+9vkc6r15BapCVJyj5xukbfCRqte5s1XC4rkuaCV3Tn1PI/15a9jSTtvU8y
+	 QDKg3RAO1MSO7fHT96seDCFonUjcAzGnArvi3F1j4T54NmNJoKmbCyFa0DnrnEdXUq
+	 pGXMHHxTAPzRw==
+Message-ID: <badc4186-b60b-46a9-ab75-ea85ee6965b8@kernel.org>
+Date: Tue, 17 Nov 2026 11:07:27 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: xlnx,spdif: describe AXI4-Stream
- and audio clocks
-To: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>,
- Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- linux-sound@vger.kernel.org
-Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Michal Simek <michal.simek@amd.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, git@amd.com
-References: <20261117085739.3807943-1-katta.dhanunjanrao@amd.com>
- <20261117085739.3807943-2-katta.dhanunjanrao@amd.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 00/10] mm: highmem cleanups
+To: Arnd Bergmann <arnd@kernel.org>, linux-mm@kvack.org
+Cc: Arnd Bergmann <arnd@arndb.de>, Andreas Larsson <andreas@gaisler.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>, "H. Peter Anvin" <hpa@zytor.com>,
+ Ingo Molnar <mingo@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Linus Walleij <linusw@kernel.org>, "Lorenzo Stoakes (ARM)" <ljs@kernel.org>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Malin Jonsson <malin.jonsson@est.tech>, Matthew Wilcox
+ <willy@infradead.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Michal Simek <monstr@monstr.eu>, Mike Rapoport <rppt@kernel.org>,
+ Nicholas Piggin <npiggin@gmail.com>, Nishanth Menon <nm@ti.com>,
+ Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
+ linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, x86@kernel.org
+References: <20261116124832.662455-1-arnd@kernel.org>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261117085739.3807943-2-katta.dhanunjanrao@amd.com>
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <20261116124832.662455-1-arnd@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -121,137 +127,148 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 17/11/2026 09:57, Dhanunjanrao Katta wrote:
-> The SPDIF IP is fed by three clocks: the audio clock used at the
-> SPDIF/AES3 interface, the AXI4-Lite control clock and the AXI4-Stream
-> data clock. So far the binding described only two of them and carried
-> the audio clock frequency in the custom "xlnx,aud_clk_i" property.
+On 11/16/26 13:48, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
 > 
-> Describe the AXI4-Stream clock and pick its name from the IP mode,
-> s_axis_aclk for the transmitter and m_axis_aclk for the receiver. The
-> minimum clock count stays at two, so that device trees written against
-> the earlier binding keep validating and the third clock is effectively
-> optional.
+> This is an updated series from what I posted last year [1] and
+> last week[2].
 > 
-> Mark "xlnx,aud_clk_i" deprecated instead of removing it. The frequency
-> it carries is available from the rate of the audio clock, but the
-> property is part of the published binding and device trees in the field
-> still pass it. As the binding sets "additionalProperties: false",
-> removing the property outright would make those device trees fail
-> validation.
+> At LPC 2025 [3], we got rough consensus on the plan to keep the
+> funcationality present for the time being but instead reduce the scope
+> of highmem in the kernel as much as we can without hurting users.
 > 
-> Make "xlnx,spdif-mode" required. The conditional that selects the
-
-That's ABI break.
-
-> AXI4-Stream clock name keys on that property, and a conditional with no
-> "required" entry of its own also matches when the property is absent.
-> A device tree omitting the mode would therefore have been held to the
-> transmitter clock name by default. Requiring the property turns the
-> omission into a clear validation failure instead.
-
-You need to explain why, not what. Entire commit msg looks LLM written,
-honestly difficult to parse. LLM is not supposed to be used to write
-commit msg, because it means you did not understand what you did here.
-
+> The short summary is a three stage process:
 > 
-> Signed-off-by: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
-> ---
->  .../devicetree/bindings/sound/xlnx,spdif.yaml | 54 +++++++++++++++----
->  1 file changed, 44 insertions(+), 10 deletions(-)
+>  1. Nudge users towards using a larger lowmem zone with the
+>     CONFIG_VMSPLIT_* options if at all possible.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/xlnx,spdif.yaml b/Documentation/devicetree/bindings/sound/xlnx,spdif.yaml
-> index a45d8a0755fe..a4abca2027d3 100644
-> --- a/Documentation/devicetree/bindings/sound/xlnx,spdif.yaml
-> +++ b/Documentation/devicetree/bindings/sound/xlnx,spdif.yaml
-> @@ -14,6 +14,28 @@ maintainers:
->  
->  allOf:
->    - $ref: dai-common.yaml#
-> +  - if:
+>  2. Drop most __GFP_HIGHMEM allocations and corresponding kmap()
+>     calls from the kernel, leaving only the subset that is likely
+>     to contain the majority of the actual allocations.
+>     Specifically we will keep anonymous and regular file backed
+>     user mappings, zsmalloc, and huge pages.
+> 
+>  3. In a few years, also drop the page cache allocations and leave
+>     perhaps only zsmalloc using a much simpler interface.  I suggested
+>     five years as the time until we do this, but the timing depends a
+>     lot on how the first two stages work out in practice, and how long
+>     the remaining highmem users plan to keep updating their kernels.
+> 
+> This series implements stage 1, mostly using Kconfig changes to the
+> default settings but leaving the traditional behavior as a CONFIG_EXPERT
+> choice in Kconfig. With the new defaults, most installations that use
+> highmem today with 1 GiB or 2 GiB of system RAM will see all of their
+> RAM in the lowmem zone after upgrading their kernels. My estimate is
+> that instead of 80% to 90% of maintained embedded 32-bit systems, this
+> should cover over 98%.
+> 
+> As I don't actually have hardware in the category that still needs
+> highmem, I tested this using a qemu-system for Armv7 and PPC6xx running a
+> Debian userland with all combinations of VMSPLIT and HIGHMEM options. I
+> ran some kernel builds on the Arm guest to ensure that the new options
+> don't cause functional or performance regressions for regular workloads
+> that don't exceed the virtual address space. I also ran some tests
+> with Firefox and was positively surprised to see that this still works
+> on the VMSPLIT_2G_OPT configuration without highmem, though it gets
+> close to both the address space and lowmem size limits.
+> 
+> The change to use VMSPLIT_3G_OPT by default on Armv5 means that I could
+> include a patch to no longer support highmem at all on VIVT caches,
+> as suggested by Jason Gunthorpe. I also included the patch to drop
+> HIGHPTE support now, as suggested by David Hildenbrand.
+> 
+> The patches from this series are available in [4] for testing.
+> 
+> Once there are no further concerns about the contents, I would
+> suggest merging this through the asm-generic tree, as it touches
+> mostly architecture specific code and that is not easily split
+> from the core mm/* code. Merging everything through the mm
+> tree would of course also work.
+> 
+>      Arnd
+> 
+> [1] https://lore.kernel.org/all/20251219161559.556737-1-arnd@kernel.org/  # v1
+> [2] https://lore.kernel.org/all/20261112112528.1116405-1-arnd@kernel.org/ # v2
+> [3] https://lwn.net/Articles/1051010/
+> [4] https://git.kernel.org/pub/scm/linux/kernel/git/arnd/playground.git/log/?h=highmem-7.4
+> 
+> Changes since v2:
+> 
+>  - Add preparation patch for Arm PXA [sashiko-bot] 
+>  - Add preparation patch for powerpc32/kvm [sashiko-bot]
+>  - Fix Arm ARCH_MMAP_RND_BITS_MAX calculation [sashiko-bot]
+>  - Simplification for pte_alloc_one() [Mike Rapoport]
+>  - Drop stale references to highpte [David Hildenbrand]
+>  - improve __print_bad_page_map_pgtable()
+>  - Split out Arm changes for CONFIG_VMSPLIT_2G_OPT
+> 
+> Changes since v1:
+>  - rebase to v7.4-rc
+>  - add patch to drop highpte
+> 
+> Arnd Bergmann (10):
+>   ARM: remove support for highmem on VIVT
+>   ARM: drop CONFIG_HIGHPTE support
+>   ARM: pxa: support arbitrary PAGE_OFFSET
+>   powerpc: kvm: allow flexible PAGE_OFFSET
+>   arch/*: increase lowmem size to avoid highmem use
+>   ARM: add CONFIG_VMSPLIT_2G_OPT option
+>   ARM: defconfig: turn off highmem in favor of CONFIG_VMSPLIT_2G_OPT
+>   mm: remove ARCH_NEEDS_KMAP_HIGH_GET
+>   mm: drop HIGHPTE support altogether
+>   mm: print pte in __print_bad_page_map_pgtable()
+> 
+>  arch/arm/Kconfig                            |  27 +++---
+>  arch/arm/configs/aspeed_g5_defconfig        |   3 +-
+>  arch/arm/configs/gemini_defconfig           |   1 -
+>  arch/arm/configs/lpae.config                |   1 +
+>  arch/arm/configs/multi_v5_defconfig         |   1 -
+>  arch/arm/configs/multi_v7_defconfig         |   1 +
+>  arch/arm/configs/mvebu_v5_defconfig         |   1 -
+>  arch/arm/configs/omap2plus_defconfig        |   1 +
+>  arch/arm/configs/u8500_defconfig            |   1 -
+>  arch/arm/configs/vt8500_v6_v7_defconfig     |   2 -
+>  arch/arm/include/asm/highmem.h              |  56 +----------
+>  arch/arm/include/asm/pgalloc.h              |  13 +--
+>  arch/arm/mach-omap2/Kconfig                 |   1 -
+>  arch/arm/mach-pxa/pxa3xx.c                  |   2 +-
+>  arch/arm/mm/cache-feroceon-l2.c             |  31 +-----
+>  arch/arm/mm/cache-xsc3l2.c                  |  47 +--------
+>  arch/arm/mm/dma-mapping.c                   |  12 +--
+>  arch/arm/mm/flush.c                         |  19 +---
+>  arch/microblaze/Kconfig                     |   9 +-
+>  arch/microblaze/configs/mmu_defconfig       |   1 -
+>  arch/powerpc/Kconfig                        |  24 +++--
+>  arch/powerpc/configs/44x/akebono_defconfig  |   1 -
+>  arch/powerpc/configs/85xx/ksi8560_defconfig |   1 -
+>  arch/powerpc/configs/85xx/stx_gp3_defconfig |   1 -
+>  arch/powerpc/kvm/book3s_32_sr.S             |   4 +-
+>  arch/powerpc/kvm/booke_interrupts.S         |   4 +-
+>  arch/powerpc/kvm/e500_mmu_host.c            |   3 +-
+>  arch/x86/Kconfig                            |   4 +-
+>  include/linux/hugetlb.h                     |   5 +-
+>  include/linux/mm.h                          |   1 -
+>  include/linux/pgtable.h                     |  13 ---
+>  mm/highmem.c                                | 100 ++------------------
+>  mm/memory.c                                 |  21 ++--
+>  mm/pgtable-generic.c                        |  25 +++--
+>  mm/userfaultfd.c                            |   6 +-
 
-Move allOf to the bottom, before additional/unevaluatedProps
+I can pick up the MM patches after the ARM stuff upstream, or the MM patches can
+go upstream in the same go as the ARM stuff.
 
-> +      properties:
-> +        xlnx,spdif-mode:
-> +          const: 1
-> +      required:
-> +        - xlnx,spdif-mode
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          minItems: 2
-> +          items:
-> +            - const: aud_clk_i
-> +            - const: s_axi_aclk
-> +            - const: s_axis_aclk
-> +    else:
-> +      properties:
-> +        clock-names:
-> +          minItems: 2
-> +          items:
-> +            - const: aud_clk_i
-> +            - const: s_axi_aclk
-> +            - const: m_axis_aclk
+I don't expect conflicts in that area.
 
-That's the same clock. Just call it "axis"
+Just let me know what you+people prefer.
 
+-- 
+Cheers,
 
->  
->  properties:
->    compatible:
-> @@ -28,15 +50,15 @@ properties:
->        - description: SPDIF audio interrupt
->  
->    clock-names:
-> -    items:
-> -      - const: aud_clk_i
-> -      - const: s_axi_aclk
-> +    minItems: 2
-> +    maxItems: 3
-
-List stays here with minItems
-
->  
->    clocks:
-> -    minItems: 1
-> +    minItems: 2
->      items:
-> -      - description: input audio clock
-> -      - description: clock for the AXI data stream
-> +      - description: Audio clock input used at the SPDIF/AES3 interface
-> +      - description: AXI4-Lite clock
-> +      - description: AXI4-Stream clock
->  
->    xlnx,spdif-mode:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> @@ -49,8 +71,10 @@ properties:
->  
->    xlnx,aud_clk_i:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> +    deprecated: true
->      description:
-> -      Input audio clock frequency. It affects the sampling rate.
-> +      Frequency of the audio clock input. Superseded by the rate of the
-> +      clock named aud_clk_i.
->  
->  required:
->    - compatible
-> @@ -58,6 +82,7 @@ required:
->    - interrupts
->    - clock-names
->    - clocks
-> +  - xlnx,spdif-mode
-
-ABI break
-
-
-Best regards,
-Krzysztof
+David
 
