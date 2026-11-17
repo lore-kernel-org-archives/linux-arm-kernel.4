@@ -2,59 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E94B606A889
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 15:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03C6606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 15:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t/UAXVIU;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=U0103C45
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W4qBJ1qZ;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=li1CeGRX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eqH6cZQiGjLhuS/2ILWi+rrdkrrjhLjr/7WBe6GgEY8=; b=t/UAXVIUDI58rr
-	LiqfwERPy281/kw10IPC3c8ydkjMkMJOuj/YM1dd96Z4S5ywsmVSUwwP+dMyYcNskjtWXBsurs6E9
-	832dSbT7qVcjG2cKRxdiY0bMxMmS3ey5a1HKrhGX3v83jg+mJ4kPigN5nWmS69qtwEZCXQWOvGtDx
-	GuGGqv1Lu/xdUEs8Gea0BiDXWeE10E17bObGe6qkOcYJjj2sOPc7Ti8hKOailpTwLO9M77woZMcHo
-	3Jtt2uBIDwV9rcI05DHwF9BSpxpOQwlUx4CPkifaYcmcslRQZ0yno5GzEROgiSSvrqyVjDLL6DO5m
-	uFNy4zRL3tDkIBKq4Xqw==;
+	List-Owner; bh=4sbyzpJAxIDFxgcpIrMAioNZlOET3S/iWQo4KfdgHXA=; b=W4qBJ1qZk7YHfo
+	yBE6WS8ebNgqGzjNsPFZjWOwKqmiu6R6FgWF3OpZsonLjRs1KyMfgzvS6zPqvUfCS5L2R+WZLOgs/
+	/EY/zIv+XircwVkLCiMYtovq+T+3vLvegvk2+TVljYeCn5+ibb7GD9GNBkqpLbiUNhqExXCmj/C6M
+	GQ1/agOGapZXrSsYoMQwlQkOSc9K36x5JFDV272qkJQ4tD8W21MF067vzF4NMoWuAYTDoy4LELMlt
+	eivl9L52RLVNbZmgGXRpgYkbsdXcbgtKr9HokCMQD+ZcFLpQaWosBcqIPnxfzID8nEiVPuHR0OMZO
+	aQ5RXSkk1YIplJvR0uqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTLEv-00000006JkS-33Oo;
-	Tue, 17 Nov 2026 15:36:57 +0000
+	id 1xTLF4-00000006Js0-2zsh;
+	Tue, 17 Nov 2026 15:37:06 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTLER-00000006JNz-3Czh;
-	Tue, 17 Nov 2026 15:36:31 +0000
+	id 1xTLEW-00000006JPw-01lm;
+	Tue, 17 Nov 2026 15:36:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1794929785;
-	bh=EiBEmR3LHY+sgbARPDBZaZQ/gKkn1le95Y+SIanav9Q=;
+	bh=MkSaCXBSTxQzUuUwxdZcERKka6eJMOCmHXnmRjFV+Ks=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=U0103C45bXHqaXdtslgU/lln4Khf8Jn8Je14+x0F+uQlAQsOJALDbKShWPsiNtDfQ
-	 ibpU5xUzMAHb9RAAnnId1Cdae1OmzlV1jT1CwQ3AmQb8qR+QQi/k3PlhmmFUUDOQwK
-	 cmOvfWOINIBAhzBjrFVXQyLDEE2jJknnD/kNLdhI8a+OxuRsL5blQJYIf0/P1PqUWt
-	 HbRM/VPKEnoUgvrYttYqt5nnc8YVnYReoCwf29gL33/qi1HhVy4aVFiaPmuTa7t3Hn
-	 jUue0x3NRqSnyd/FpyViOsmY58nWAJlEb5m7Dx476aajGR/6LulVjL/y0YdVYHlIKg
-	 gj2jQ7yj+PBXg==
+	b=li1CeGRXekcgW3zNY8hte0CJoyyVtdFdi0KoxCi7HqqUh19dQv+fyp+71revbY61A
+	 QaSB66XJjSXjTgrfxZ/eCVMijNC+O0VL4n/LSuzGR2Sfx/iGBgDiYck4g8YUtWtBZl
+	 7Cm4pYgPwX14BOQEU6/zlCwc8rIXJ0woOJsfWaSFrRea+38nPa55XGHvJFMnpsv+DD
+	 mBQ+nBYxeNl88/6w2utW4fuVjYoqSZEU5sdT1msuU1IY7hEiMQBRnDeEMAr7RS9CSi
+	 Q+aOBnCSVme8vn0gM/YFtr3mvMC0r7qyE+Qu/LFDBsezJhHdP8VEuO/W8VZIsLsnXm
+	 4uj6rIOxe7IkQ==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange x25519)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E228817E11EC;
-	Tue, 17 Nov 2026 16:36:24 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3A47217E15E8;
+	Tue, 17 Nov 2026 16:36:25 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id A055A480035; Tue, 17 Nov 2026 16:36:24 +0100 (CET)
+	id A3F1248003A; Tue, 17 Nov 2026 16:36:24 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Tue, 17 Nov 2026 16:35:40 +0100
-Subject: [PATCH v3 4/9] PM / devfreq: rockchip-dfi: add NO_INTERRUPT perf
- capability
+Date: Tue, 17 Nov 2026 16:35:42 +0100
+Subject: [PATCH v3 6/9] PM / devfreq: rockchip-dfi: make RK3588 use its
+ clocks
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261117-rockchip-dfi-rk3588-cleanups-and-rk3576-support-v3-4-32ff1546b0e4@collabora.com>
+Message-Id: <20261117-rockchip-dfi-rk3588-cleanups-and-rk3576-support-v3-6-32ff1546b0e4@collabora.com>
 References: <20261117-rockchip-dfi-rk3588-cleanups-and-rk3576-support-v3-0-32ff1546b0e4@collabora.com>
 In-Reply-To: <20261117-rockchip-dfi-rk3588-cleanups-and-rk3576-support-v3-0-32ff1546b0e4@collabora.com>
 To: Chanwoo Choi <cw00.choi@samsung.com>, 
@@ -69,26 +69,26 @@ Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
  linux-kernel@vger.kernel.org, kernel@collabora.com, 
  Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1865;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3489;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=D5QqaQ5H3Rmhk0ZavI0Pf3JPtYfcwnNt6k7hxKDI/Gk=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr8dHgvCRs7tMBXBCK4g5Of2ePwScgpdOV96
- mQHMZX4OaYV44kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq/HR4AAoJENju1/PI
- O/qa86cP/0xndY5AkCv+lLJSeOWcAOT1yHGWXPr4LXZIY01COwNcac/mrdYD3CoJkewn8ZT/LW6
- mbtci7U+g6+S54rNLgujECFlGg2ryfhyamV0cgWowOTVu+HBvrA3X5V/G+cg/vp6QPKJYELuH4P
- DgWgso69jWWNgLuSYryy1wdXU/VvPdi/o22Rq7BM2VB3meEHwyTqtIQndDxDqcHguTDPlvgFCq0
- HkcvNnMGsww3oCD5mpiekSIMP7wvhNp92NVxxW1sCkV10w8N+rTAXJwbrEuBcpj1SWiRbt1VDaH
- zezvHwK5shoZyZ82YiWicPc1N4MMnBdA+xQQNFHeCJKn5lFcUGSehmC1C7KGWIavjiKVWN/viSW
- vkOKM+f5X8aH7k2hmDcUIvB7yk/PZbsSjdy3gfGYKX85M7lX7UJNnFtAXN1jxMdUICheeyYl8eJ
- Xp89G7UiKSWidx+DlaFEI6d+E9LruyeaoZ5dAu7RjjTHiNH9BPHfZJAC+uj4TIRHoInGhyoA2B5
- J+101MUzGAkbnCecuseJbq3t5YTqxvj5S/zdDa3WVVTusRsubNcBTnOcgFCdmFVfDIbVZgekgub
- uX7+bWtx+8pfklKEwFmHWVydWl8jVYhPhRAoA+GnHaIl4fsk60awvV5Uke38gGcIE2uv4RwXO2u
- 6EUjM4/3Ti18Jb/18+lAssA==
+ bh=0155YjzP9zSEapLDG7dpTk7D9ZfSA9H0fNKY2sr4DCo=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr8dHhdw/lAcFQs+G+ZMCZs+qix8ub0XsiTS
+ q/8DlhJYIwa84kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq/HR4AAoJENju1/PI
+ O/qanOIP/1avEdOO2y0p8l38LpIcgRUepoCcfVnmLsjeyt/Fb+8uYhYLeEWHihq1MxOPjGvFw3Q
+ PoHMrdhWvkh91TmieP+yQUi0TiG1SFw6W/wprTJVUC0Jzmbv5ohegBcasPr9wVQYnPZSXImITAJ
+ jQtAQ3Xzy5lY+4Tbw2vOpHIKWxBdHwL/yulFyPXZ4CxMsniSa8rWvClbJHT2D4itaHDXG/xfmAO
+ g6HqIJpNDekdEmN/zCvAEz0q4CVtbY/xg3lWeum4reSSVeXVNYWBvGdL2C0bZLl5r/8RHscGatl
+ pZqacgsKzBkhDdh5raeXJzZTERKZOHv/2vmlSqnh9DRBwd+YAhyyr2vvz9uck3OgWowEbc+Alcq
+ mb9x5mGuIoXJ2GGHR/5hqmEVDbe7l2tCdGGDL2o0ho6AIUjXGZQOjy1rO5PJSPZZ2LXbmfeo6ig
+ PySYEcF/DhDGuyWY3q1W4CqK4AtcRZmisy4JFwcOUVDxLcmS8DqnevMGnZn3CgdQpDWYo5SawKJ
+ Ngn16nsO79gJZ0nH1cjpU5pawlH6KUHhIVQ8k1N5u1QCTc2Y53+RJSWr9P2qKQmEXLhuDy9q1F8
+ N/4VpWmgSvjLzt4FHBxK0rpeEe2vLtwdQDVCxf3npzcu8+ZAz2fTnhj/KsiX5WBgbU6APqOOw5i
+ A7gqB/FZ9OtpA7bXrgHou9w==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_073627_995814_4FF5DC14 
-X-CRM114-Status: GOOD (  18.89  )
+X-CRM114-CacheID: sfid-20261117_073632_212023_F709A8A9 
+X-CRM114-Status: GOOD (  21.73  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -110,42 +110,94 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-The perf subsystem's PERF_PMU_CAP_NO_INTERRUPT is a bit of a
-misnomer.[1] Instead of meaning that the PMU has no interrupt, it
-actually means that the PMU does support sampling. On CPU PMUs, this is
-equivalent to not having an interrupt, but for uncore PMUs like the
-rockchip-dfi PMU is, no meaningful sample data could ever be generated
-regardless of whether or not there is an interrupt, as it is not a CPU.
+So far, RK3588 doesn't have the pclks for DDRMON used in the driver, as
+they weren't modelled before.
 
-Since rockchip-dfi doesn't seem to make use of the interrupt the DT
-provides it with anyway, this was probably never a confusion that
-existed in this case; the capability flag was likely just forgotten.
+However, they are now correctly modelled, so the driver should use them
+when possible.
 
-Add PERF_PMU_CAP_NO_INTERRUPT to the set flags for the pmu struct's
-capabilities member, so that the perf core knows about this limitation.
+Instead of unconditionally getting them for this SoC, add a new variant
+member that specifies whether the driver should let missing clocks
+slide. This is needed because we want old device trees to keep
+functioning, as otherwise we'd be introducing a breaking change for
+literally no functional difference here.
 
-Fixes: 4d586b5724d3 ("PM / devfreq: rockchip-dfi: Add perf support")
-Link: https://lore.kernel.org/all/20250619140442.GH1613376@noisy.programming.kicks-ass.net/ [1]
+Fill out a clock name list for this variant as well, and hand it to it.
+
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/devfreq/event/rockchip-dfi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/devfreq/event/rockchip-dfi.c | 29 +++++++++++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-index d02a01188ea2..eb47a1f622b1 100644
+index 150fdf577e11..a97c63cdab57 100644
 --- a/drivers/devfreq/event/rockchip-dfi.c
 +++ b/drivers/devfreq/event/rockchip-dfi.c
-@@ -648,7 +648,7 @@ static int rockchip_ddr_perf_init(struct rockchip_dfi *dfi)
- 	seqlock_init(&dfi->count_seqlock);
+@@ -117,6 +117,18 @@ struct rockchip_dfi {
+ 	const struct rockchip_dfi_variant *variant;
+ };
  
- 	pmu->module = THIS_MODULE;
--	pmu->capabilities = PERF_PMU_CAP_NO_EXCLUDE;
-+	pmu->capabilities = PERF_PMU_CAP_NO_EXCLUDE | PERF_PMU_CAP_NO_INTERRUPT;
- 	pmu->task_ctx_nr = perf_invalid_context;
- 	pmu->attr_groups = attr_groups;
- 	pmu->event_init  = rockchip_ddr_perf_event_init;
++/**
++ * struct rockchip_dfi_variant
++ * @init: pointer to the variant-specific initialisation function
++ * @stride: address offset between the DDRMON per-channel instances
++ * @ctrl_single: whether only one DDRMON instance monitors multiple channels
++ * @max_channels: maximum number of memory channels for this SoC
++ * @clk_names: pointer to a constant array of constant clock name strings
++ * @num_clk: the number of elements in the @clk_names array
++ * @clocks_optional: whether not finding the clocks is non-fatal. Set if the
++ *                   DT binding for this variant didn't require clocks in the
++ *                   past, so that the driver remains compatible with old DTs.
++ */
+ struct rockchip_dfi_variant {
+ 	int (*init)(struct rockchip_dfi *dfi);
+ 	int stride;
+@@ -124,6 +136,7 @@ struct rockchip_dfi_variant {
+ 	unsigned int max_channels;
+ 	const char * const *clk_names;
+ 	unsigned int num_clks;
++	bool clocks_optional;
+ };
+ 
+ static int rockchip_dfi_ddrtype_to_ctrl(struct rockchip_dfi *dfi, u32 *ctrl)
+@@ -806,6 +819,11 @@ static const char * const rk3399_clk_names[] = {
+ 	"pclk_ddr_mon",
+ };
+ 
++static const char * const rk3588_clk_names[] = {
++	"pclk_ddr_mon_ch0", "pclk_ddr_mon_ch1", "pclk_ddr_mon_ch2",
++	"pclk_ddr_mon_ch3",
++};
++
+ static const struct rockchip_dfi_variant rk3399_variant = {
+ 	.init = rk3399_dfi_init,
+ 	.stride = 0x14,
+@@ -826,6 +844,9 @@ static const struct rockchip_dfi_variant rk3588_variant = {
+ 	.init = rk3588_dfi_init,
+ 	.stride = 0x4000,
+ 	.max_channels = 4,
++	.clk_names = rk3588_clk_names,
++	.num_clks = ARRAY_SIZE(rk3588_clk_names),
++	.clocks_optional = true,
+ };
+ 
+ static const struct of_device_id rockchip_dfi_id_match[] = {
+@@ -885,8 +906,12 @@ static int rockchip_dfi_probe(struct platform_device *pdev)
+ 		for (i = 0; i < dfi->variant->num_clks; i++)
+ 			dfi->clocks[i].id = dfi->variant->clk_names[i];
+ 
+-		ret = devm_clk_bulk_get(dev, dfi->variant->num_clks,
+-					dfi->clocks);
++		if (dfi->variant->clocks_optional)
++			ret = devm_clk_bulk_get_optional(dev, dfi->variant->num_clks,
++							 dfi->clocks);
++		else
++			ret = devm_clk_bulk_get(dev, dfi->variant->num_clks,
++						dfi->clocks);
+ 		if (ret)
+ 			return dev_err_probe(dev, ret, "failed to get clocks\n");
+ 	}
 
 -- 
 2.53.0
