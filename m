@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345F9606A8A1
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 09:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01753606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 09:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z3/6QYfP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GpWCWra7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -13,42 +13,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CYZRM522jsotT+mYGbZi/HF1GOonj0Msu3pPKcHltIQ=; b=Z3/6QYfPFmqFngSdUdb/jRDbHB
-	1da7Glyc3JLahQPBf+1J0Zc+HTcMPifiMP8/O/An30DVB2KOZYAHk+KBXceCM8PyetVmp8PBO+mB7
-	tasJzoMwXO6HevnauqW33KlJcYqPcLQ/eoI2N/z47J0F8oJIbjikB7FP3eSDZ2++ptjqe+eCE+uCS
-	n7YDOQ3NnpxRAjTIwUFi86mjxmwA9SWWeQ30Y9NRJE7kt/MPVV9odZmGtpPruTlq8iIUPBBUAhH8v
-	gi15j0lDYns6hi1FYd+Zyltbb/ri42ViFtfBzEdgdCq6GllgeXwdrswIQ64TaodDvu+QxZxTVEnEh
-	Ve4ClHxA==;
+	bh=aXSpH/MRstkp30+5WcNoVFHY0IbutKcDkDgC9PrCYak=; b=GpWCWra7W75Z2N/q17x47POK1v
+	UIv0I3QvwPNp/awXteudKtATd7jmbJ4h1mRJcAQLMzHhqG5gv8WICUm6ZUxB4vO4+NcAhjNkLVS9f
+	hC+aw3j7fKwLbJrBTZNSQT863seUvAe9VkLV0bWM+dK3LdYq89iTGMjL2mXo545vUMyQuDbXFOo/3
+	psaV15W+IaLWhHjO02qQ4HaSa9e6NtD4g6gHfiCMySp2Y9i61mSKip6BRKGSfwRxvOv3Ij0bE8vgT
+	7Dd/vvolNXOqWXm2F5IKmrBGOz58r7PEpqlPCdg19E72RcrhkQUQwDQXspwFZPA7kkjIMOCIQ4Cva
+	nrARQsyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTFjM-0000000590v-3aPk;
-	Tue, 17 Nov 2026 09:44:00 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1xTFjL-000000058wy-1Xzt;
+	Tue, 17 Nov 2026 09:43:59 +0000
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTFjE-000000058sT-47u0
+	id 1xTFj8-000000058n8-0UTY
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 09:43:54 +0000
+	Tue, 17 Nov 2026 09:43:48 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GJyHjbbOp9y/5E5wf3P4luw2P2vRuCNGf7mzyfX51O6fcrkVls0jsckLe3yxOp5kg8tExKVcncdXyFHJa/qOq3vcfeCdEGKQ4Th/wwwozWPcy+ssEV5V7p91rdl7j6LIj3rS8AmlJ66wtLmxT1WFI/URkRrWo9Pkm06I9EYnFAlwkkqBShRL2B44Vz9o0nFylk2nM7FNLxMzKTv86qSD2kLLtOnKwGcPRenyqwbfcL/Te1igkH1dEcKYC4sGaLwAkvtbj10/ptRV72SLhRScjZqiVT2hTCGRStOVjHLgRvKSC3Wg8vuvxbpR3uuktM32VtXka88c9z2KLiBK/8xkyg==
+ b=ez/U65mR9Ebrkf9AiCYDXuCJJyEyVv7N/kcdqD73KsMvy90MeHxvVqz2gssPYSUv4FbggX+y+0O8ENYrWN3S2hacIBKH2QY68HTShhOYykQPJ5wpk7RgUB7Mg2Vv2nbXhAHE6JQ/+/RBw9IeFCYqqzSQ4lu9YPlWchTSWhF1bEzQbpLOT6r+/llC675ADhwC9gIa7MGixPN2BsBCh36YxhK3Ts+gWLATsAC3KWPrB1GQp7Gcb2uvCoTFY0SQZFlVcC6T5pTzCc5w0yHsTFuSx2hbwBaKj6usG4ErLnkUsGV8VmpoC4UqslSxPkVi3cME5tzLaDPL9eBMfX+Mv178Uw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CYZRM522jsotT+mYGbZi/HF1GOonj0Msu3pPKcHltIQ=;
- b=ZUp38fb3MCYb86I3kM6/HrRF0U/IZuR1xZoCR/oOI/TnD3GIey+akN5+DckpxYYpKJ/qRccUJJSUHzllL89Cxn6RoAbhNsNVrwQpn1A7Kku6yWLDiLU21uMjUVh7DDZrNyIeDBL4n/UwDXmCq5Jwi/x98vn3QnRho03eMJSKNCNyJqescoPGCRbKfeXCy6ytkF3hF1Lk2BrrB7SX7ywauXGnS7TePvBWwqzZCFQQescaQ/L/z7Djy/MCff3gsbzp0cuz4ZdhrFPFsfXSZzOKXXDbmRqKZudVwEWlHv22eovJo/x87EN1HN6YIexn+NlPjJkl/U42NP/1UvoUvpZD4Q==
+ bh=aXSpH/MRstkp30+5WcNoVFHY0IbutKcDkDgC9PrCYak=;
+ b=orxnc/TTblbpRZbs4bY3syiMYiAo7iRt4RIlzoKppYVB860eVSxXpQLhNLYQdMQV/CrzwVTTij/n/MY42FlpVI4K6DLtaVAf78MbEmRxab4arX11nTTuPsJim41B7BZECknB2p0/AYgQcOdCNx4rf6Ye/VXwv/NPaV2P1iPMn80qWCCMvGCRQJgOltgKjBs8IOztagMOpFs6yhyequYBxG2t0+7+YdicH7GnH5rT3XvQ2Hph4EUUV0QY3RbqMQoVFsZep3E+VWN6+z8RO3kwB3r29r0UnMTzXVKEbkrfeOyitXiPxjwF9ezRJz2YuudyUtz72uWR8eDBo170JSoCqg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
  dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
  not signed); arc=none (0)
-Received: from TY4P286CA0034.JPNP286.PROD.OUTLOOK.COM (2603:1096:405:2b2::13)
- by TY1PPFB8C1195D3.apcprd06.prod.outlook.com (2603:1096:408::922) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from SI2PR01CA0046.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::18) by TY0PR06MB5103.apcprd06.prod.outlook.com
+ (2603:1096:400:1b9::10) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Tue, 17 Nov
- 2026 09:43:44 +0000
-Received: from TY2PEPF0000AB88.apcprd03.prod.outlook.com
- (2603:1096:405:2b2:cafe::3) by TY4P286CA0034.outlook.office365.com
- (2603:1096:405:2b2::13) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 09:43:39 +0000
+Received: from SG1PEPF000082E8.apcprd02.prod.outlook.com
+ (2603:1096:4:193:cafe::93) by SI2PR01CA0046.outlook.office365.com
+ (2603:1096:4:193::18) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Tue,
- 17 Nov 2026 09:43:44 +0000
+ 17 Nov 2026 09:43:38 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
  header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
@@ -56,12 +56,12 @@ Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
  222.71.101.198 as permitted sender) receiver=protection.outlook.com;
  client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
 Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB88.mail.protection.outlook.com (10.167.253.11) with Microsoft
+ SG1PEPF000082E8.mail.protection.outlook.com (10.167.240.9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Tue, 17 Nov 2026 09:43:44 +0000
+ 15.21.615.4 via Frontend Transport; Tue, 17 Nov 2026 09:43:38 +0000
 Received: from ubuntu (unknown [172.20.64.99])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 7375F40920EB;
-	Tue, 17 Nov 2026 17:43:38 +0800 (CST)
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id C2C1840920E7;
+	Tue, 17 Nov 2026 17:43:37 +0800 (CST)
 From: Jelly Jia <Jelly.Jia@cixtech.com>
 To: vkoul@kernel.org,
 	Frank.Li@kernel.org,
@@ -75,9 +75,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Jelly.Jia@cixtech.com
-Subject: [PATCH v7 07/10] dmaengine: arm-dma350: Track descriptor byte lengths explicitly
-Date: Tue, 17 Nov 2026 17:43:32 +0800
-Message-ID: <20261117094335.1393735-8-Jelly.Jia@cixtech.com>
+Subject: [PATCH v7 05/10] dmaengine: arm-dma350: Report submitted descriptor status
+Date: Tue, 17 Nov 2026 17:43:30 +0800
+Message-ID: <20261117094335.1393735-6-Jelly.Jia@cixtech.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261117094335.1393735-1-Jelly.Jia@cixtech.com>
 References: <20261117094335.1393735-1-Jelly.Jia@cixtech.com>
@@ -86,29 +86,29 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB88:EE_|TY1PPFB8C1195D3:EE_
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E8:EE_|TY0PR06MB5103:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 4f0b8b3b-d62b-43ed-db57-08df448f454d
+X-MS-Office365-Filtering-Correlation-Id: 2f9e9c68-4385-419a-fa17-08df448f41fd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|7416014|376014|1800799024|82310400026|23010399003|261022105027099003|261026130827099003|56012099006|261021123027099003|261021121427099003|10067099003|261021130227099003|261021133027099003|261021135927099003|261102123227099003|261026140227099003|261009223027099003|261026121527099003|261022075727099003|261022113327099003|261026135527099003|261022115727099003|261028144727099003|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info: osignJsEbbxtuB8s1+2aC0f2WoDseOWTlao7ePAlmCNjU/jyBuQY8oFnSnPdV6Mag2ZxM7ZRMiIPq8r+ODXYSZ1pYkiFLQB4MRjfOgeJR/Gx7l8neLWVGjFQoqcTWaHeqSlZ7lcGNwOLYN8cmrqbMFAO+4KX/ym+DmYKF4WM6FNZH8Xz8SQwCXTdPHNQ3SW9jPHktml7129US7cw+pCE66/DGwsFqKiKfJJzGwmc5vPifO3X8hFZxcWTzIepificWLk4dEyKRimqoJ6W6yunpFpwLcwtEhTmZzt+fj0QT2K061iFAqXut4L1LqNrUUvGN3KA7O1K84EvvvI9LgMrJQP2/4k3Cg6U/Ded6R8gv4to/JoMdkTi3+0v1cav3E5sPQWfMgR2WhRKyTscmSoxDtLAB8KJAm/cDFzPxOnOnc27o5sX5AMlhxNd7d2Wp6ZkhJeh6wrkv/kxsEFCldqoB0s1TkbUm+G9MhLMosMz9AHLhIepL3rGw4znE5GP9GqR958pdkUwnaVC0wi0tp7OMkWV4FLfjSncilHnDvByQqNFUYCAYS893EOzZDZJVIFODQTbVK3NzVpEiaNQapsRK00BVa5crVJvkfSO9a5lh7nlza34HN6lGHZXl/z0/Zbv1CZEIYtslcUDiQcFD6KeuH4/OFtEAXbPigV13CUELoJsZlOvbHaWz0/wBnFVG5mw1p6rr49cHwHovPmXMm9BhQ==
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(7416014)(376014)(1800799024)(82310400026)(23010399003)(261022105027099003)(261026130827099003)(56012099006)(261021123027099003)(261021121427099003)(10067099003)(261021130227099003)(261021133027099003)(261021135927099003)(261102123227099003)(261026140227099003)(261009223027099003)(261026121527099003)(261022075727099003)(261022113327099003)(261026135527099003)(261022115727099003)(261028144727099003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|23010399003|7416014|376014|1800799024|36860700016|10067099003|56012099006|261026140227099003|261028144727099003|261021123027099003|261021121427099003|261022105027099003|261022075727099003|261102123227099003|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 3XELKxg3SUHKbV3cK/3LPIW3ZZ7Yzw727o8cBq9aTSBdgfPzpMuR5I2/gSBaIq1qJadYqdgdpegUHkrGwd2NltmQZyLAS7EKN9zn0rZ+dIDIkj0YJpGqG+wlO2OQvQ9n1LMvXDlavDqssq89e5HcbclLKayiTo8PNvTBiKZXdK+u9PJs/N/IslEITp7J7mbgQ+wxvmqB7KxGjHGsbL95p+o4iv92eTRIb9uouGdriZYbwWCka5tO8YJTrBPTikq4MKOpjkPa1uaLsgiE5+fcJ/h/vWvu7ypwj9r3771uFSPnesnfabS/AO8tSqw4HgYGjwDZkwm5sNG2Gq5K0lKeqztapXx4oDQDn4EYtMO+/1k0pQn39VHx9JVhQxHpoOUCg50q45U6OICnpGWo2g9RwgsdT3L2tMGL1uSreSmFvDL4k3aH3sMScmYZfVFxDzEQkPXlgNesJvOpI8dqfovwb9Sa4HvfX6AqPjqs9NicMxIQM5S8GI1el47aMvXOcUe8oR7Kj5gtGqDkA5rzzbHBtskPcXYCoBXhtj9hzuJXC/uDuCC59Y90+iEUc/IkMWeUptbM+rqvNtSWF1G/4uw3yM6Jcm1UzdS9ycKEkW9mydSG+NUtw36QOGyO3//zto94TqFDIiVsHjARyCWLjgUAUw609YFfzZI3Q/CRlzkUyEa5HqvrsIl+2109za+rdZgvk4IN1E3TNVkjA6NqjZe7xQ==
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(23010399003)(7416014)(376014)(1800799024)(36860700016)(10067099003)(56012099006)(261026140227099003)(261028144727099003)(261021123027099003)(261021121427099003)(261022105027099003)(261022075727099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 5CpbyMqPcfcTecdvFGYCD+cfpy0BfurY99StJbBOqcNsoo7yDk5QkmoTyQkFVDH3YXcdpsrAZd+/NaktrP/ifF5qFQASIj+6R4NJR8zHvJ4F+AU8FQbAx7vSSzku0vCv32d39le3xNLYPZj2pRWsEmq09GcTeF8Ev5s0Nc2+AAMOHzUXi7yh2bAeVQXIBiJ9WiT3wIpYbNaFNHTsvlQ2p4JQ9/bkF5Mg4ZUwRDQmQjdfBvzflf3I36Pd9mdAwOP2RroijkvpBlVrn/CgH+QZSvrOrE3tkZTELk91FRq0YFpNAvaKaB5nXlgyMUw3KFNTiUv+Iwrxl9qR2UXzg4g5KiWGAdJU/ud3YpFAqYnxWL8Nl0fji8XEdqDrgkfmR88G90OZ0fof/h3xwz9DVnVaD4wQx9LNOEzsYSOsUF8JI3yxr7syppuOk9Vl4LLMV3aJ
+X-MS-Exchange-AntiSpam-MessageData-0: et5z7dTsUJu3vaADnrP1OjLUxUHa1gvcO8Mk4dUC52Efd751wGMhkTrl408BDTZWbcqUurMUp0cSzHj1MFTCa3bdA0M6+MOt3JGL1B+i6M3Z25bQC91TKpfM/B+o+bCEr/FeDSpdw3KCu32QRbZv+INwS21nFitpVf/LaWY+MMTXCGcnFDpUcyK7pT1Md89ArJsI737owlOejum4G5iQSgNmEZmhSPXUWl+xvVSctL7+d4tVzj5QH0SaatAkDz9bpr7UcbXL5LETja7jXCXz0f/IdJyUJ/giKUocA6SFWKKWSqdaKHQ4ySnM38izZFbn2uh5r136nBG46I/INvl+hXzZpPk8Jv4wuh/SexvhsoTfro3155u5bIkAPb7R6Ne33Z7xO9n2DvJkZT9lG07LSvxtjBl/yTdxEyUvfrqUN15Ik7xT876Jg7xFr6iLWF04
 X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 09:43:44.1593
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 09:43:38.6359
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f0b8b3b-d62b-43ed-db57-08df448f454d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f9e9c68-4385-419a-fa17-08df448f41fd
 X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB88.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SG1PEPF000082E8.apcprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PPFB8C1195D3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5103
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_014353_028318_EE443DD2 
-X-CRM114-Status: GOOD (  10.94  )
+X-CRM114-CacheID: sfid-20261117_014346_158753_3B7DA1B4 
+X-CRM114-Status: GOOD (  11.47  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,106 +127,50 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Keep the total transfer length in the descriptor instead of deriving it
-from memcpy/memset-specific size fields. This allows the queued-status and
-start paths to report the total length for linked peripheral work.
+A submitted descriptor can still be on desc_submitted before issue_pending
+moves it to desc_issued. Searching only the issued list misreports such a
+cookie as failed.
 
-Use local size fields when constructing existing memcpy/memset commands.
-Keep these CPU-consumed command words and their MMIO loader in CPU byte
-order; little-endian pool storage is introduced with peripheral support.
+Search both submitted and issued descriptors when reporting queued work.
 
+Fixes: 5d099706449d ("dmaengine: Add Arm DMA-350 driver")
 Signed-off-by: Jelly Jia <Jelly.Jia@cixtech.com>
 ---
- drivers/dma/arm-dma350.c | 27 ++++++++++++++++-----------
- 1 file changed, 16 insertions(+), 11 deletions(-)
+ drivers/dma/arm-dma350.c | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
-index bf87460c1c20..465a8b9b722a 100644
+index af1b030b955f..f785251935f4 100644
 --- a/drivers/dma/arm-dma350.c
 +++ b/drivers/dma/arm-dma350.c
-@@ -178,8 +178,7 @@ enum ch_cfg_memattr {
- struct d350_desc {
- 	struct virt_dma_desc vd;
- 	u32 command[16];
--	u16 xsize;
--	u16 xsizehi;
-+	size_t bytes;
- 	u8 tsz;
- };
- 
-@@ -224,15 +223,18 @@ static struct dma_async_tx_descriptor *d350_prep_memcpy(struct dma_chan *chan,
- {
- 	struct d350_chan *dch = to_d350_chan(chan);
- 	struct d350_desc *desc;
-+	u16 xsize;
-+	u16 xsizehi;
- 	u32 *cmd;
- 
- 	desc = kzalloc_obj(*desc, GFP_NOWAIT);
- 	if (!desc)
- 		return NULL;
- 
-+	desc->bytes = len;
- 	desc->tsz = __ffs(len | dest | src | (1 << dch->tsz));
--	desc->xsize = lower_16_bits(len >> desc->tsz);
--	desc->xsizehi = upper_16_bits(len >> desc->tsz);
-+	xsize = lower_16_bits(len >> desc->tsz);
-+	xsizehi = upper_16_bits(len >> desc->tsz);
- 
- 	cmd = desc->command;
- 	cmd[0] = LINK_CTRL | LINK_SRCADDR | LINK_SRCADDRHI | LINK_DESADDR |
-@@ -247,8 +249,8 @@ static struct dma_async_tx_descriptor *d350_prep_memcpy(struct dma_chan *chan,
- 	cmd[3] = upper_32_bits(src);
- 	cmd[4] = lower_32_bits(dest);
- 	cmd[5] = upper_32_bits(dest);
--	cmd[6] = FIELD_PREP(CH_XY_SRC, desc->xsize) | FIELD_PREP(CH_XY_DES, desc->xsize);
--	cmd[7] = FIELD_PREP(CH_XY_SRC, desc->xsizehi) | FIELD_PREP(CH_XY_DES, desc->xsizehi);
-+	cmd[6] = FIELD_PREP(CH_XY_SRC, xsize) | FIELD_PREP(CH_XY_DES, xsize);
-+	cmd[7] = FIELD_PREP(CH_XY_SRC, xsizehi) | FIELD_PREP(CH_XY_DES, xsizehi);
- 	cmd[8] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
- 	cmd[9] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
- 	cmd[10] = FIELD_PREP(CH_XY_SRC, 1) | FIELD_PREP(CH_XY_DES, 1);
-@@ -262,15 +264,18 @@ static struct dma_async_tx_descriptor *d350_prep_memset(struct dma_chan *chan,
- {
- 	struct d350_chan *dch = to_d350_chan(chan);
- 	struct d350_desc *desc;
-+	u16 xsize;
-+	u16 xsizehi;
- 	u32 *cmd;
- 
- 	desc = kzalloc_obj(*desc, GFP_NOWAIT);
- 	if (!desc)
- 		return NULL;
- 
-+	desc->bytes = len;
- 	desc->tsz = __ffs(len | dest | (1 << dch->tsz));
--	desc->xsize = lower_16_bits(len >> desc->tsz);
--	desc->xsizehi = upper_16_bits(len >> desc->tsz);
-+	xsize = lower_16_bits(len >> desc->tsz);
-+	xsizehi = upper_16_bits(len >> desc->tsz);
- 
- 	cmd = desc->command;
- 	cmd[0] = LINK_CTRL | LINK_DESADDR | LINK_DESADDRHI |
-@@ -283,8 +288,8 @@ static struct dma_async_tx_descriptor *d350_prep_memset(struct dma_chan *chan,
- 
- 	cmd[2] = lower_32_bits(dest);
- 	cmd[3] = upper_32_bits(dest);
--	cmd[4] = FIELD_PREP(CH_XY_DES, desc->xsize);
--	cmd[5] = FIELD_PREP(CH_XY_DES, desc->xsizehi);
-+	cmd[4] = FIELD_PREP(CH_XY_DES, xsize);
-+	cmd[5] = FIELD_PREP(CH_XY_DES, xsizehi);
- 	cmd[6] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
- 	cmd[7] = FIELD_PREP(CH_XY_DES, 1);
- 	cmd[8] = (u8)value * 0x01010101;
-@@ -387,7 +392,7 @@ static void d350_synchronize(struct dma_chan *chan)
- 
- static u32 d350_desc_bytes(struct d350_desc *desc)
- {
--	return ((u32)desc->xsizehi << 16 | desc->xsize) << desc->tsz;
-+	return desc->bytes;
+@@ -390,6 +390,18 @@ static u32 d350_desc_bytes(struct d350_desc *desc)
+ 	return ((u32)desc->xsizehi << 16 | desc->xsize) << desc->tsz;
  }
  
- static struct virt_dma_desc *d350_find_queued_desc(struct d350_chan *dch,
++static struct virt_dma_desc *d350_find_queued_desc(struct d350_chan *dch,
++						   dma_cookie_t cookie)
++{
++	struct virt_dma_desc *vd;
++
++	list_for_each_entry(vd, &dch->vc.desc_submitted, node)
++		if (vd->tx.cookie == cookie)
++			return vd;
++
++	return vchan_find_desc(&dch->vc, cookie);
++}
++
+ static enum dma_status d350_tx_status(struct dma_chan *chan, dma_cookie_t cookie,
+ 				      struct dma_tx_state *state)
+ {
+@@ -407,7 +419,7 @@ static enum dma_status d350_tx_status(struct dma_chan *chan, dma_cookie_t cookie
+ 				dch->residue = d350_get_residue(dch);
+ 			residue = dch->residue;
+ 		} else {
+-			vd = vchan_find_desc(&dch->vc, cookie);
++			vd = d350_find_queued_desc(dch, cookie);
+ 			if (vd) {
+ 				residue = d350_desc_bytes(to_d350_desc(vd));
+ 			} else if (status == DMA_IN_PROGRESS) {
 -- 
 2.54.0
 
