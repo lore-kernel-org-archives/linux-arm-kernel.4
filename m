@@ -2,92 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866C2606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B8F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:07:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IWXzgV2g;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=lPt5x4V8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UQMGzaR0;
+	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=UDLssbJO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=HtvTu/64ettxzPxkBEvKYZ34ZkkbT9fHPhc3+fZwto0=; b=IWXzgV2gqfqfxY7u+kZkwuRqxC
-	Y/UElJ1iHfXscaR7nJHo1KeztTFk793dOoPmdekVres90621ySh9AjpX1d7+Wgsb1k2GEbjfa01tY
-	tX5w6FDEDTmX+vDpctiFp0RwFB5QonwrCNJ2ZvC3YW+wV8TlnY2lvLdnN28MDQ9dl9wT6N2EZtEY4
-	d95zHWbm1ntJssLzxcVjbvaFi52u7JKWdgyKMxiLHfugqg0DjqwYFSSpP00siibyK00Buobl12HRh
-	/W8i8pRcoEoAj4cmtJMjodSAUFZGhM29LgkMv9GgOxR0wZ9T2xx5L7IKUNySjGxOk0lxseDasWcvW
-	GSBjrLNA==;
+	bh=1/SewMH1WpRsm5/XJDgcR07cRKgzvhZWY4IcYzb3tn0=; b=UQMGzaR0ViMzSdKbOKIFH2cMGe
+	i0D3RKDIzJZA6/5tz2r2MIw9hmsPDE/6cmABft/Uyy8UFg2R16PFnXynzSKmvzZtm9IxNL8YkjqYW
+	Gr0WfNPOpXNgj46LBHpn6OG4a86qjNMeaP01EJbqJ79Vn2GS2e0lbGCaiKYXq0YoBT+Q7eusxBCjj
+	6rBmInyuwJGdFebaRlWD72RkSbKGjDHff//CeCzpEu3cSYLJ3wezLIwExoZDQWNBTwHe9AYZbX5+f
+	4/wq4SQbIXbePg2gSQcF6mTeJm7fq/QSCBIDZ7FQOpMlaIfU3TwYzBF0qioC6IlyXS2mlz7bZG7sb
+	eS0PrgPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQNa-000000074qd-2kWv;
-	Tue, 17 Nov 2026 21:06:14 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xTQOp-000000074zE-3uGI;
+	Tue, 17 Nov 2026 21:07:31 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQNX-000000074q7-3ycx
+	id 1xTQOo-000000074yq-0O6S
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 21:06:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794949568;
-	bh=ZbD9FwnOoOQeC1E98ztkUVdqmp6pvxce5xq0Ue6S3KI=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=lPt5x4V8aOdwRhqhcsDubH/sIdh16mL5AfebH6UXaLc0JLoXVC8nRITRN13oIAWY3
-	 7uDhKnSgX2PuuxE3eu13N/Zx+Aiga+bMWqZkOuU79rBaowHCmRlHq7bBK0zAn9agDx
-	 QGLrFsQArkBXg0+a+m60QhqsnDzF3K68nJC0/VbgSTe1Fdsz9V4dq2JdaYlqEq6TWn
-	 Y9qFBx5/BCgkh0UVlw38/SFJZqG/+TA+8J6f4JL6XpzuGZja9RJfnyxlGX5iO6Qsvs
-	 ZUAVE0t6WLoMFxeWICZsswSsBSiCaWLXe3lulXfk8UpUmfLaOV4rsorZ8QbvMPcMt1
-	 iXs9Fa99mEUOg==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C8B0C17E05D6;
-	Tue, 17 Nov 2026 22:06:06 +0100 (CET)
-Message-ID: <760e33e8de1f139be7dba2270313c80aeb53c1d3.camel@collabora.com>
-Subject: Re: [PATCH 01/14] media: h264: Add a more generic reflist builder
- init
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Paul Kocialkowski <paulk@sys-base.io>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,  Pengutronix Kernel Team	
- <kernel@pengutronix.de>, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil	
- <hverkuil@kernel.org>, Marco Felsch <m.felsch@pengutronix.de>, Michael
- Tretter	 <m.tretter@pengutronix.de>
-Date: Tue, 17 Nov 2026 16:06:05 -0500
-In-Reply-To: <20260522101653.2565125-2-paulk@sys-base.io>
-References: <20260522101653.2565125-1-paulk@sys-base.io>
-	 <20260522101653.2565125-2-paulk@sys-base.io>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-ZjSFNpEuHw1qtBTWERh5"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	Tue, 17 Nov 2026 21:07:31 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PMY28xN60ziEFvZqJsEn1gytlhfUHBbTkpYUSpj89dQbw745MDsP1W2bcTp9fF2EefAUfDhXihlGHsUAmplhcfw0XCmihvNT7gF2ev3oDvqfPoL2cfThT7juqptiqGyEDDxkZKFyHqxyrINqNXf0rX8FiY9AGkzBmpEFKe52MlGh8HyPeoHUPsViz8DDouvjxZL4uhLB+NX7WGv0+WtxYajSZXGKeNKBeq/BlfaZDPeW9wIB2XCjX3xp4MCt01mpLh2ntjif4/WpK7SJp8oUzYfMoXUCp+MrUxGrHF2MAhJO60caIGTGJ2LCWfYBgTx3tprYICylXjXTdXU8j5Yf4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1/SewMH1WpRsm5/XJDgcR07cRKgzvhZWY4IcYzb3tn0=;
+ b=EgsON6A5Y7AmnOaH/bp7PSI1Urz1+VPSb1Z8WdaN3JgdIR0BgXmsiZYjbOgP4rX0WnkCVnnGUJmhgwWKjDrwbX4ZTEzy520xO+QG0auw7kZHwZuFrtHq+iJ33jNkCKCplT6z5uX1qaCqoL3eRPo2bASAqibK9Pv48TCSuvZ/lNmgDev6+tZnLJXBKIKzkz3ka8VdE3IBp6oyySLc2evFK8DFeFx0RFJNuLHq9DZciFe0hjVfzOUHfKO6vw2QyxCxQqCnrkd0zwMUu7QAIvttjqtTtUnv+2KfZiYP3jCPoFIgWpPbjUyuPuXUfIXWqalr/oAtxGO4wDMClnhaK3EIUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1/SewMH1WpRsm5/XJDgcR07cRKgzvhZWY4IcYzb3tn0=;
+ b=UDLssbJOdfR1SwqYlMn8MlzhWbf4D8S+XfeeqvjdrxNH1SOjuLHngMM0u4u4I8n6noGY0IY1lNG+3txAQQI74TaNaQIUxiXxZ0j92Mon+Zb9gcCDMEVIRP28KqXYVROhcSSN63eTN2mMHaCEBIYCMzZBCsZTdsB4sM/Ste2JrQ8sC/EiUPDqM1WxiHou2WNkzdTwChSbbo+nZciVLK5Sirb80P7vK9Rk0tsW5kd7TFkcby1Ir1Q78nEL0PXayhDCUtWJpF8qS+Qqe64lL/zhPr+8E0Z8eWiACuCvbkmMfvs829t19t8EFSVtd9GRzUGLQqv4y0cy2hZXhiMXLnWHFw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
+ by AS8PR04MB8915.eurprd04.prod.outlook.com (2603:10a6:20b:42e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Tue, 17 Nov
+ 2026 21:07:24 +0000
+Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
+ ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
+ ([fe80::7fda:8431:ca1b:b023%4]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
+ 21:07:24 +0000
+Date: Tue, 17 Nov 2026 23:07:20 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: vjardin@free.fr
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, 
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>, 
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: Re: [PATCH v7 1/6] dt-bindings: pinctrl: add the NXP LX2160A RCW pad
+ mux
+Message-ID: <avzBgDksGfXb-MxZ@lxl00025.wbi.nxp.com>
+References: <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-0-5d7201970629@free.fr>
+ <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-0-5d7201970629@free.fr>
+ <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-1-5d7201970629@free.fr>
+ <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-1-5d7201970629@free.fr>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-1-5d7201970629@free.fr>
+ <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-1-5d7201970629@free.fr>
+X-ClientProxiedBy: AM0PR02CA0119.eurprd02.prod.outlook.com
+ (2603:10a6:20b:28c::16) To AM0PR04MB6900.eurprd04.prod.outlook.com
+ (2603:10a6:208:17d::10)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|AS8PR04MB8915:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9324a5ae-ac94-48ed-0a64-08df44eec6d1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|19092799006|1800799024|376014|23010399003|10070799003|22082099003|6133799003|18002099003|3023799007|10067099003|11063799006|261026121527099003|261022105027099003|56012099006|261021121427099003|261026140227099003|261102123227099003|4143699003|261028144727099003|41080700001|15866825006;
+X-Microsoft-Antispam-Message-Info: z0VF0PMhEYDLaRY4WZGWIU9Jj0vS/m4bbEv1DpSVxEk5YtBBZqb/psWkCM5akIZFG8mvnApKGqOyxMdUffuXzwXvsUj3u63Yb7Roq1CuhiClux5XtF2PQpuXgNj5JGo4LsiZELMD5x246GbQzbEATM8FdXvpUqeOsDjD6RvLmkFAZXDIcb2XW11WPZL1xegkLAWj+evDVpUH7/ElouMPJaHlOSQg8bIQxhnZIQhY3u/Wk1qmrZg8bnoAQWZIWQqg/xawg5lTmCT9cuvYrE+1i1hT7QPcwprZqh3RBjqweVAMGhDnAuWoP+fEayYFW/dAoTsavFlcYXq0fe/6c3pGvVeo4L2S0qJLpAHux9SGviVNbIe9iiVfnD2lzsmIdd6y/P6sRVCyUFiderZVEzjfnF6TAmsU3llPKZQ3HfrYrUQ9BhewB7UoJlPmeudsRLsbE2WQHw+TmYFH3CnuhstAKrHtIhQn3qLULSVSv4XWwBHzq/oen2HxtJPV4oA3hPxbe00L37kL49wxAaA9JeCWjbc7nGcWm0zDW/XYwez2BtHmZsqruRhDgeRZRllLKnYqumBDiqVZiZEssbrjwddbDz3SFQpmlIpOmslR0Okkmecq8fh/Pq6wjWPDkDcNHqHk9aOeSDMgGw1FsD/ZvUX11smUHoX0xuEa633nUywfcGL7tupzwIPcTf9v3EPpGUoNdUJro983x3X2EsfwegIVsnaUktQFXrVFe9u+3JY0NpMWtvxpXt93glGfm2WsYU8D
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(19092799006)(1800799024)(376014)(23010399003)(10070799003)(22082099003)(6133799003)(18002099003)(3023799007)(10067099003)(11063799006)(261026121527099003)(261022105027099003)(56012099006)(261021121427099003)(261026140227099003)(261102123227099003)(4143699003)(261028144727099003)(41080700001)(15866825006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9VWshaCeqA7TykiihhKKL1kacFAi597eXMHkTV2qZXtM00uvzMDhR3/zlMsP?=
+ =?us-ascii?Q?vKxSdkSCIMaIiEGRiuUCyxbLJRPVAm6MVuHSLKNE6ACiNfZwCaP+s9RTwXae?=
+ =?us-ascii?Q?uu9u2k+ZF5G/IgieZlbVU/2Lv+ucFnE/6ZAHdxhM7aSmwb1Nd3JDimNCtvCW?=
+ =?us-ascii?Q?WQ62Td0shnHlI8Zwsatq7u1/Af9sMuzHkuUQ8a4J4+Oug5KZ3868L1LJj2Eg?=
+ =?us-ascii?Q?QtCBoIstCLUVFv6eqjCk8aBaa83znR1mLiUVioMxT+sxj+maDLamSq//K9mN?=
+ =?us-ascii?Q?nzx5M+AkDfjCr1oe3eTxcrHi9HfThUehCzZetvk9Ai7bzbMhaqnbLgNfp7M2?=
+ =?us-ascii?Q?/opI/kg1PHmIVje3tWYFlJ+K4dsOfW6LeBN4PrXqOytxPzuQie56NMSP3pm5?=
+ =?us-ascii?Q?3I3bGerTozGxxTJYv0RR+Ccg/UbKTERxLfk6WR10+RsYJ+SEwk0u4c7STgG+?=
+ =?us-ascii?Q?MQ6NpC2KpZDerGDFBQ5nY5k7z5CHdJ1qd9l8p81i4Lm/yb4I0J+M/5232dux?=
+ =?us-ascii?Q?U4pKmX4jLaRnwD1e9WeEW97o0lMO3gm7G5IO9vGdY/5tu5H2mPRxYbuI8W3N?=
+ =?us-ascii?Q?YURlAerJt2LiI2CbaK0mimmjUuI8R/YezaVUjCsLKCK/hTPoDJ8NL5duj1FL?=
+ =?us-ascii?Q?AWYntf+uDMkxOFHSc/3CqNfxiw/hpCx+gE2KlOkbbK3BnV60y1PnvmG/4sIq?=
+ =?us-ascii?Q?8Ei7spsFzAIdCn6McKdwL6NMXKoX5dP1IlW53jdrpv1IsFb4YEn+cyfmwxO7?=
+ =?us-ascii?Q?rALQLldIxCyoDWWl1iI6OAI6SmusFfZDnigSQor7y7zrrFSsHcrhCNHxlxyo?=
+ =?us-ascii?Q?lX91QAXO0sAKCvsEfyG2i+4TMVqML1fTLvXhM/tolLWtTyk9jpPlpHDkYixz?=
+ =?us-ascii?Q?VcSc+b0dIXgrKQ6HgCvP9Lx+WwRhgUwKWiMEWuHVJe5Kf7LC51VW+ZE2outH?=
+ =?us-ascii?Q?i8ZLrVG1FkXYKQhSIOfKY2GwvMDXI51PpqY0/3XTkj1rDtSmvm4j58YBIng5?=
+ =?us-ascii?Q?wO3xK1FjIRBaepi+MlVwGIvKJ2t0jkwbrtGQ9UaZ4oun06DI3LkA2OQ2e68z?=
+ =?us-ascii?Q?51A7dRAMViSos7yf3LQRJVgfikulhypKJ3unLQ6dcEItd26M56S6DFS4eNZm?=
+ =?us-ascii?Q?MvSUCgAGSm8VNYpXtE/SVcfISeDwHdYeXTBIQsJ5IjiKfQKiyMEaDRNzR8CX?=
+ =?us-ascii?Q?//gOZb/hloqUGI2ouhFWXOkOPAc5uQZZibG4g6lf+arBvUFo3iBtgLa9clMc?=
+ =?us-ascii?Q?Z0S0/9no7BEshvuc+URzyp7rFhA7AbQCAVLmO4OVoYzzNRpW5Vuf8OoXiGAY?=
+ =?us-ascii?Q?exxQzWQWKnG0y4de4UUew5xTIUbn78ogQlPbG9uqMNdsfnExeIK8tApa8dXT?=
+ =?us-ascii?Q?vwczAbxwn7GKVF8OK2nNoYxUaHwbQrhoYCidbQhyN8lNwjqb9POvi+6Kod4R?=
+ =?us-ascii?Q?aYkl1uGRQ2VcwAeBtbD+P3eUOj+/8vp/Fj1ltGDVLT3znDjmt01PbvtmW404?=
+ =?us-ascii?Q?QXToFysx2lbwsQoWN7Gg+kA4SrsYcuzSObOnDWQxvTEa9ZM31AdgXgiUTGWh?=
+ =?us-ascii?Q?eRFBisgS5qERd+Oa6mWMxUJ3v6FGL6xZVjKav8LiZv6M12Fe7IUFTsOggHaE?=
+ =?us-ascii?Q?1wNuEak8FS09SDdl8dpSVEqQAouG/RIAToWE8O2kPbmngY9qdHfEM+MtU2zF?=
+ =?us-ascii?Q?Dvq7/WpyA4i7JIvMQHipoiCEUc0pEUGR3pbGY//khTFSJS61hepZI/mqCyqT?=
+ =?us-ascii?Q?FWJAnkKascAx1dUYz7NQyTcGQGlAYHJJzVihNRdGXxN3UG2H+D/1YLervpFd?=
+X-MS-Exchange-AntiSpam-MessageData-1: kAFEvp7+WYAu7Q==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9324a5ae-ac94-48ed-0a64-08df44eec6d1
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 21:07:23.9917
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TJTAtvsq8/EvuUbZxPKPKheusevsFkyQ/pwhhCD2c3D+yQ429R9fucIYJgQ49CdagahW24qBJJ398Vtgm18MBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8915
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_130612_178929_CEC7DBD1 
-X-CRM114-Status: GOOD (  19.22  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_130730_163484_309B57B0 
+X-CRM114-Status: GOOD (  13.47  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,166 +147,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-ZjSFNpEuHw1qtBTWERh5
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Le vendredi 22 mai 2026 =C3=A0 12:16 +0200, Paul Kocialkowski a =C3=A9crit=
-=C2=A0:
-> This should become part of a larger reflist builder rework.
-
-Maybe a tiny bit more meet would help? What am I reviewing, what is this ne=
-w
-builder used for?
->=20
-> Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+On Tue, Nov 17, 2026 at 03:53:11PM +0100, Vincent Jardin via B4 Relay wrote:
+> From: Vincent Jardin <vjardin@free.fr>
+> 
+> The LX2160A muxes its IIC, XSPI, SDHC, UART, IRQ, EVT, EC and USB pads
+> from fields of the RCW: read-only in RCWSR12..14 and RCWSR27 of DCFG,
+> changed at runtime through the override registers of its DCSR view.
+> 
+> Describe the pad mux as a child of DCFG at its RCWSR12 to RCWSR14 and
+> RCWSR27 windows: the override registers are at the same offsets of the
+> DCSR view of the parent. One group per RCW field, one function per
+> encoding.
+> 
+> Each function lists the groups that take it, so a pair the driver
+> would refuse, such as can on iic1, is refused by the schema.
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Vincent Jardin <vjardin@free.fr>
 > ---
->  drivers/media/v4l2-core/v4l2-h264.c | 69 +++++++++++++++++++++++++++++
->  include/media/v4l2-h264.h           |  7 +++
->  2 files changed, 76 insertions(+)
->=20
-> diff --git a/drivers/media/v4l2-core/v4l2-h264.c b/drivers/media/v4l2-cor=
-e/v4l2-h264.c
-> index c00197d095e7..4e5a177ca2c7 100644
-> --- a/drivers/media/v4l2-core/v4l2-h264.c
-> +++ b/drivers/media/v4l2-core/v4l2-h264.c
-> @@ -105,6 +105,75 @@ v4l2_h264_init_reflist_builder(struct v4l2_h264_refl=
-ist_builder *b,
->  }
->  EXPORT_SYMBOL_GPL(v4l2_h264_init_reflist_builder);
-> =20
-> +void
-> +v4l2_h264_init_reflist_builder_gen(struct v4l2_h264_reflist_builder *b,
-> +=09=09const struct v4l2_ctrl_h264_sps *sps,
-> +=09=09const struct v4l2_h264_dpb_entry dpb[V4L2_H264_NUM_DPB_ENTRIES],
-> +=09=09unsigned int pic_order_count, unsigned int frame_num, unsigned int=
- fields)
 
-Add a doc comment.
+It's a bit difficult to manually follow all the constraints, which are
+listed in the opposite way as the RM would have them (function -> valid pads
+rather than pad -> valid functions), but AI says it's OK and I'm not
+spotting any obvious problems either.
 
-> +{
-> +=09int cur_frame_num, max_frame_num;
-> +=09unsigned int i;
-> +
-> +=09max_frame_num =3D 1 << (sps->log2_max_frame_num_minus4 + 4);
-> +=09cur_frame_num =3D frame_num;
-> +
-> +=09memset(b, 0, sizeof(*b));
-> +=09b->cur_pic_order_count =3D pic_order_count;
-> +=09b->cur_pic_fields =3D fields;
-> +
-> +=09for (i =3D 0; i < V4L2_H264_NUM_DPB_ENTRIES; i++) {
-> +=09=09if (!(dpb[i].flags & V4L2_H264_DPB_ENTRY_FLAG_ACTIVE))
-> +=09=09=09continue;
-> +
-> +=09=09if (dpb[i].flags & V4L2_H264_DPB_ENTRY_FLAG_LONG_TERM)
-> +=09=09=09b->refs[i].longterm =3D true;
-> +
-> +=09=09/*
-> +=09=09 * Handle frame_num wraparound as described in section
-> +=09=09 * '8.2.4.1 Decoding process for picture numbers' of the spec.
-> +=09=09 * For long term references, frame_num is set to
-> +=09=09 * long_term_frame_idx which requires no wrapping.
-> +=09=09 */
-> +=09=09if (!b->refs[i].longterm && dpb[i].frame_num > cur_frame_num)
-> +=09=09=09b->refs[i].frame_num =3D (int)dpb[i].frame_num -
-> +=09=09=09=09=09       max_frame_num;
-> +=09=09else
-> +=09=09=09b->refs[i].frame_num =3D dpb[i].frame_num;
-> +
-> +=09=09b->refs[i].top_field_order_cnt =3D dpb[i].top_field_order_cnt;
-> +=09=09b->refs[i].bottom_field_order_cnt =3D dpb[i].bottom_field_order_cn=
-t;
-> +
-> +=09=09if (b->cur_pic_fields =3D=3D V4L2_H264_FRAME_REF) {
-> +=09=09=09u8 fields =3D V4L2_H264_FRAME_REF;
-> +
-> +=09=09=09b->unordered_reflist[b->num_valid].index =3D i;
-> +=09=09=09b->unordered_reflist[b->num_valid].fields =3D fields;
-> +=09=09=09b->num_valid++;
-> +=09=09=09continue;
-> +=09=09}
-> +
-> +=09=09if (dpb[i].fields & V4L2_H264_TOP_FIELD_REF) {
-> +=09=09=09u8 fields =3D V4L2_H264_TOP_FIELD_REF;
-> +
-> +=09=09=09b->unordered_reflist[b->num_valid].index =3D i;
-> +=09=09=09b->unordered_reflist[b->num_valid].fields =3D fields;
-> +=09=09=09b->num_valid++;
-> +=09=09}
-> +
-> +=09=09if (dpb[i].fields & V4L2_H264_BOTTOM_FIELD_REF) {
-> +=09=09=09u8 fields =3D V4L2_H264_BOTTOM_FIELD_REF;
-> +
-> +=09=09=09b->unordered_reflist[b->num_valid].index =3D i;
-> +=09=09=09b->unordered_reflist[b->num_valid].fields =3D fields;
-> +=09=09=09b->num_valid++;
-> +=09=09}
-> +=09}
-> +
-> +=09for (i =3D b->num_valid; i < ARRAY_SIZE(b->unordered_reflist); i++)
-> +=09=09b->unordered_reflist[i].index =3D i;
-> +}
-> +EXPORT_SYMBOL_GPL(v4l2_h264_init_reflist_builder_gen);
-> +
->  static s32 v4l2_h264_get_poc(const struct v4l2_h264_reflist_builder *b,
->  =09=09=09     const struct v4l2_h264_reference *ref)
->  {
-> diff --git a/include/media/v4l2-h264.h b/include/media/v4l2-h264.h
-> index 0d9eaa956123..1833c0556963 100644
-> --- a/include/media/v4l2-h264.h
-> +++ b/include/media/v4l2-h264.h
-> @@ -42,6 +42,7 @@ struct v4l2_h264_reflist_builder {
->  =09u8 cur_pic_fields;
-> =20
->  =09struct v4l2_h264_reference unordered_reflist[V4L2_H264_REF_LIST_LEN];
-> +=09/* FIXME: confusing with valid flag (active is checked). Proper termi=
-nology is "used" */
-
-Just drop a patch before that rename it?
-
->  =09u8 num_valid;
-
->  };
-> =20
-> @@ -51,6 +52,12 @@ v4l2_h264_init_reflist_builder(struct v4l2_h264_reflis=
-t_builder *b,
->  =09=09const struct v4l2_ctrl_h264_sps *sps,
->  =09=09const struct v4l2_h264_dpb_entry dpb[V4L2_H264_NUM_DPB_ENTRIES]);
-> =20
-> +void
-> +v4l2_h264_init_reflist_builder_gen(struct v4l2_h264_reflist_builder *b,
-> +=09=09const struct v4l2_ctrl_h264_sps *sps,
-> +=09=09const struct v4l2_h264_dpb_entry dpb[V4L2_H264_NUM_DPB_ENTRIES],
-> +=09=09unsigned int pic_order_count, unsigned int frame_num, unsigned int=
- fields);
-> +
->  /**
->   * v4l2_h264_build_b_ref_lists() - Build the B0/B1 reference lists
->   *
-
---=-ZjSFNpEuHw1qtBTWERh5
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavzBvQAKCRDZQZRRKWBy
-9BtfAQDuX6YWkZlnq7Kl+f+bMXt1CF2vU/q45B92Be31HwQATAEAp6eHgUOWcmtf
-VOnv8NvHgu6jahauAoGMYcbg1POycAE=
-=uvaF
------END PGP SIGNATURE-----
-
---=-ZjSFNpEuHw1qtBTWERh5--
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
