@@ -2,77 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294DB606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 06:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FD4606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 06:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qV5qFQrX;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=LyNyvH8P
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yf67mOBz;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ay4D0LzD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
-	Message-ID:Date:Content-Transfer-Encoding:Content-Type:Mime-Version:Subject:
-	Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3vsxfZ2MDOq/K41CQAgTtWIJsNxDIx0dtdlSnCViIUM=; b=qV5qFQrXuVV4PU
-	Jn5U7KgfV0jI2tmJ9F9YSr3AdF708FnVOTXQ/yDcb7Zsp+ln7hAHueJf+QPj8E0LfDH+XVB+FsPI6
-	47SJ9PP1+1c0aFwMlrR+wn4FYSi2VPp1G+1xKsGm7gH3XdrV1YB4sYB0G7/ZFeif9QigZYlHqFyYa
-	GPqctB1VJVpCeue6DFme9h+fDw8qZmJ+fizmdfWeW6eTQYd85QZwJK8bxwmnYYeEG7UXJDTb063lR
-	zrW8w9bawAqtXwzRe2SVmZbxNYp9PmLZEmsERqSWq4lpjvGXJZzid4F1/ZwCDM4cS+omssJJ0yhs+
-	asB+fCstTxUvtnJ6xdlw==;
+	List-Owner; bh=2tlG1uGoZcjaYy1xmlXhRKnsoUqHxLQ1mQdDaLWoWxw=; b=yf67mOBzB3BIbi
+	CcveO3bY8ieq5hEx9pY0YsYONCvumF81BRfy4rIkl86iCE4rB0SAKB7hpy+X9TdNurPJQeLfnrB4C
+	27ymY/HbzBQMhEx0NLmRF0VNSvfqoA52dVBfkAZgMeiG8YEVZApzr07KdjzYVn6x/Gy4Acto5sdq8
+	pe5yR0zgvMuXHSruFnO6o+vdke45prf4szj7AP1fBCENo/97bf2crkwD9yysVAUGOoEsLiUr9OkR5
+	NI5hNuDmw7s8HLSLGpcCTV+k57hO7bJ1VK7Eb//uK1AVFX1GkdUDmMcTj2SSETlc/xCqIwhXWn8Se
+	49Wl7Bd6VXiSUQB3UDsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTCR2-00000004eYi-2Ajy;
-	Tue, 17 Nov 2026 06:12:52 +0000
-Received: from out162-62-58-211.mail.qq.com ([162.62.58.211])
+	id 1xTCTA-00000004eni-04BU;
+	Tue, 17 Nov 2026 06:15:04 +0000
+Received: from mail-dl1-x122e.google.com ([2607:f8b0:4864:20::122e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTCQz-00000004eXu-10jB;
-	Tue, 17 Nov 2026 06:12:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1794895961; bh=3vsxfZ2MDOq/K41CQAgTtWIJsNxDIx0dtdlSnCViIUM=;
-	h=From:To:Cc:Subject:Date:References:In-Reply-To;
-	b=LyNyvH8PlKSUawdsGsOJNsSYwia0oQw1KWMwpPOmWCU0doc8vKci7gimMC+Tr93Kf
-	 zLTpdNPtIIKdJysfsoVRWwf9V3vNIV07EGv3EoXVIY7v457oSOBHNXOZoYvXNgpjNB
-	 9/xOarpcfIpa0HIK16NkmE2QcmueiFTRe8GeXgf4=
-X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
-X-QQ-XMAILINFO: Nco5cZgmLIi8YM/CBblmom27fNnvM6KwZ5pAr8uzyhJr2gXKCLA0OBKW05HmXh
-	 AXEIczDfcgO27RPMZ52osd/uemxiqp+la7U99Hs1eR2eB6TLGrjjSZrUG7F1T/QVApZlePcq6Ivuw
-	 klBROncxPutQEM1KSmQxkmJkEsFcGj63zxv2sz3lZybhN7EeM6ss4wnCGf5cuHVYXf+ghDg7FaD7u
-	 7OPApDlLttlc1Lk4qkRKEgIWHy4gVoHEuRPhOUxnvtkH/oAxLItSl6s5JpFdaDFuEtPkqPSIolsuC
-	 GtpCz14ZaeZhfpXbQEt/8hTDJBNLq17E8VFnGAepn0xtCz9K3GGKBQoD6nhfv0DiemGTS74NaLZz/
-	 T5Ji8IcYELJRwLloxXOcjqlfoVRZihI5J/aI07/V9OUyD/OEO1D0RxVLe8vbLQoZnYzPXrMu//Ae1
-	 mQA1otiXE2irSF7A2X6p3Ot2LyUv64gj1CpHVA8dsn6TxWvlEq223ph4wbLVYYaQDNKfdBs3Cx2M/
-	 TVeMikPLNg4oCjwtzUWYKku5G89cLvbQGUags3MbORX57XV7KWjht/5SCW2FStCp9Hp/ic3l6Dw7H
-	 4rw7Oy1Xm4ycnL+9XOwPx+vDls0p8FRqAdMUJa3tkflKvhu387vdZJfzIp9OSd+zl5P+Vpe7Vc8TI
-	 jWd5Y9M3lMIGZ/NKsoBVkkt2hfJess3YTLDuZ3DecplJaGtYjCvxK6v3tBags20u9R1Cj33W+l8/i
-	 orcXtrhvrnHmKY6Vd0BjsbNGpoEmwBlc5j6vSKPylVUjmk8KJ+0tydh+ZYpdR2EDds7vokucHyZf/
-	 w1GTsKNlAbIBQCpV1O6vUTA8wgnji0szdmVoZDkc34D2JZhj7CDpNr90LLN4bBVDz9DY53saGt/Kh
-	 x01+S5AlyH+H4ZgwmlhSmzI/2fQplGhnlQf7fLgctpXjwQ6cv0BaPss3TStTi5qaGIjo5tsf7h0eP
-	 VGxAnCjP0DNQwVBOr1SEkmQRaN3cVFcPC/wm/Y4dkZoZ+P4UBdAttClPyHK+hEH9CPjnOzBSQ8qnC
-	 tm6BZ2jX/DUKqoeGNXJULQjojqed2tC1/tKwB2kbqY+9AcvU=
-From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
-To: "=?utf-8?B?bmV0ZGV2LWJvdCtzYXNoaWtv?=" <netdev-bot+sashiko@kernel.org>
-Cc: "=?utf-8?B?bWts?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?bWFpbGhvbA==?=" <mailhol@kernel.org>, "=?utf-8?B?aGVpa28=?=" <heiko@sntech.de>, "=?utf-8?B?c29ja2V0Y2Fu?=" <socketcan@hartkopp.net>, "=?utf-8?B?ZGF2ZW0=?=" <davem@davemloft.net>, "=?utf-8?B?ZWR1bWF6ZXQ=?=" <edumazet@kernel.org>, "=?utf-8?B?a3ViYQ==?=" <kuba@kernel.org>, "=?utf-8?B?cGFiZW5p?=" <pabeni@redhat.com>, "=?utf-8?B?aG9ybXM=?=" <horms@kernel.org>, "=?utf-8?B?Y29yYmV0?=" <corbet@lwn.net>, "=?utf-8?B?c2toYW4=?=" <skhan@linuxfoundation.org>, "=?utf-8?B?cmR1bmxhcA==?=" <rdunlap@infradead.org>, "=?utf-8?B?d2c=?=" <wg@grandegger.com>, "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, 
-	"=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtZG9j?=" <linux-doc@vger.kernel.org>, "=?utf-8?B?c3RhYmxl?=" <stable@vger.kernel.org>
-Subject: Re: [PATCH net v9 04/10] can: dev: check netif_running() before bus-off recovery
+	id 1xTCT7-00000004en0-2VvJ
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 06:15:02 +0000
+Received: by mail-dl1-x122e.google.com with SMTP id a92af1059eb24-170135e43c7so6858328c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 22:15:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794896100; cv=none;
+        d=google.com; s=arc-20260327;
+        b=hOKL1EL6qsD1sZqX9B4zgusZay0DjxXyzzC9Zh47+9NFPzoHtEpdSPyexHlTkVtLfq
+         3JEPWFcUUsONzPfp2U9kRdkBXpQKwUEh00vvL8Zb84XlJ8iT8Or+JbxU7k3a/pdLuMsk
+         GlzjzInDAqY/x504u1Q4wvU9qFofnC6gRnyPQ4Qgs+xttdfssKTFfYksEECfonG0DAVR
+         FR0hGO6FeK9g/aEvSDCTbQvCbQVsZD2lFHbrVINiW1SVVv7m5owTFTiqsNCsbs26Gsrd
+         JxpFEk0wyxiQbloYrWtxkaXs6xjibW7yqRomlZRYHc8jMILwq1ni+dhlsJYurTWnOgFV
+         ES4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=2tlG1uGoZcjaYy1xmlXhRKnsoUqHxLQ1mQdDaLWoWxw=;
+        fh=nhGwTsCcOUiVXLJIO8llByUkMS0/fb2iWH2glBIHOUM=;
+        b=F8nIK7Kd4mXW0cwrUpog1pYO3LTfGydve8jIthd91SCYgC+5M8dXfXutnt6Rwssaxo
+         ckW8MTlYViBrge6fG4r4bxYhDd4D2gTxlJGhjurGDtQCKbVUX+qGEFW4wsjUUPZ0urYB
+         Mr1PIodXe1xtfGhPhKzvuojHRjCs25X2M+W1nhEZSeaLUv/RfdSkuM5MsWIsum765A9c
+         ZrMFL+nXm5SjwqIgAaJwsXS3fFfXb0bx5miAMoHTmJuHwsb7ezH6XzV5IHCVl1CwPy3K
+         1inenxY3mB+lB1Mz/bUAb6vwMVrdg0ZU89HBUxABRw0+qRslWMCjbTWmRk6Ch3p66tBN
+         fX3Q==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794896100; x=1795500900; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=2tlG1uGoZcjaYy1xmlXhRKnsoUqHxLQ1mQdDaLWoWxw=;
+        b=ay4D0LzDHkf+eDyEbhGagMw8PQE7MKoGzJbUoA4XGOiXtAPGO92tAmYFyzE458mApL
+         hbd1tgAF13hNfxCKcWa7olAfMxXwDrQmTIvzAMeePFDQPl4itzuuyy3kHp/TcxS8FnS2
+         KZnjRjkujSRzr3MYHTxSiR75p+iches5xbDPacp/nQvV0hT2rZOQpJjTj5vP22KDfKxg
+         R4tzULuD0RTekOvd1dcBiVYEGRwdbFGJV9E+AFIv/POdzz/sXBLxrUxbwepaETpkDb8v
+         2DaODBNrZWWjT/wKrOhKfD4Z3C0F6bMqVfKkD47thXv/NTpkOzdTCJhZjXrBxKwr2WOb
+         9vhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794896100; x=1795500900;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=2tlG1uGoZcjaYy1xmlXhRKnsoUqHxLQ1mQdDaLWoWxw=;
+        b=nQN1nvh4BUO9EpVRmGx02o21pr4YlEWhp0O7451Zo4fQU7RMDtReB9nEqNuwi/PkdY
+         aNLGnkXhtw9QbrSVqUMj183jNNmZWTcQoOOGZ9T82mPtOHhf8H5F5Xlk5majcN5Y4uyw
+         bLZ6u4xYZ8GDVYxQc0VppwBbAFCe1uK0iPLaqEJ62amXzq7Dz8x+rJ1tIyX5BA9qQG4n
+         Rijq9LZVavZpH7Zg/9HkJQMx1gOuXlcodSyKYzJThikec84/E7JoBIRUIEPLbrf6dJ/0
+         RwJMFVwBl0gt3sI/73WWab56zadMIY0xY1yP95vUDiZ1+DvMsYQPErD2BfzQGDnqaKbt
+         Dl1A==
+X-Forwarded-Encrypted: i=1; AL+hErGUS/8iLlUlTokoKjjUgIOOl9adLrDUMFpsS6qgMdILq41LVsqtEgiDaO7Nhogolfk1Buz6dsoe8mQYU1OpQGiR@lists.infradead.org
+X-Gm-Message-State: APuU4Z8vU0uS00eZ2ImRJCCQ4JPtKOEFawbvKTrc9fnqIzMIDR6i9jKQ
+	1eMuPhQEM2FLGlvvKqeSmPFynKtpASlENjtLs7pqpbzIXTvmqfm25Vbr6FfWYvO1dXLpt7lIims
+	dusu2fqFtEdGNKoflT9Mc7fhfG2AQEXY=
+X-Gm-Gg: AYBFou2jejuOju1Pk8gFYjyBVagS/Jy8jX350g6xgyPevJn5jWYV7pP9gGxxDYbtSLr
+	GIymeaxc2d4vy8yOFjcbCtFqeuFyyazcqcXAlSLlsFrt/EwEwy5QFEYdpDlpn2aYNGF/UaV1pgo
+	GGDF0MHNatzSUXVYXaErdHMv5LNbND8jhGVeXcaZcKJqS4MkRuBaRmkDTeDiG+gAwAH9s9QWxjs
+	YC2x+iSALhl2NDz00TNUJyFZK3z8ifCzEqJ6qCh+e15PlCGMvrWjn4FknfC6zzRp/kV4IoXGtne
+	vbD1xyK8fSrBEf0Zp01OIwq1c3CpBWAcRTcQb4R1nWX0LCdE+0TEtAdmwM3sbQXcp6glqTjjjh2
+	yFMmGEmaGQB71vxxlviKI5hLXgUEKVXUW++Av1Xs=
+X-Received: by 2002:a05:701a:cccc:20b0:1b5:32d7:7d73 with SMTP id
+ a92af1059eb24-1b532d780bbmr3902889c88.30.1794896100415; Mon, 16 Nov 2026
+ 22:15:00 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-Date: Tue, 17 Nov 2026 14:12:38 +0800
-X-Priority: 3
-Message-ID: <tencent_CF62B15F445313CD974C5502DCC84F000B06@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <20261111-rockchip-canfd-restart-close-v9-4-6643f3825ba3@qq.com>
-	<179452272955.488853.2430789088711910750@kernel.org>
-In-Reply-To: <179452272955.488853.2430789088711910750@kernel.org>
-X-QQ-mid: xmsezb41-0t1794895958twn8o40ok
+MIME-Version: 1.0
+References: <20261022-psci-fix-v3-0-9ce2133c5659@gmail.com>
+ <20261022-psci-fix-v3-1-9ce2133c5659@gmail.com> <CAPx+jO-rMeg8BvemcMUcC10enjt0dkqWvsK+uRwc75rWpLXhMg@mail.gmail.com>
+In-Reply-To: <CAPx+jO-rMeg8BvemcMUcC10enjt0dkqWvsK+uRwc75rWpLXhMg@mail.gmail.com>
+From: Reza Kurniawan <imkyufie@gmail.com>
+Date: Tue, 17 Nov 2026 13:14:49 +0700
+X-Gm-Features: AclHuK-92z3C_GXFHu7R-8mmf-2cWRgFAIJrCVXLvNtI2-ZT_Yern3kmnNXQGro
+Message-ID: <CAAq9HC4doEs2v=aW0-tR+ARD8a1OGes8xDi2BV=T7m40YFBmww@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: arm: psci: Add skip-suspend-mode-switch
+ property
+To: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
+Cc: Sudeep Holla <sudeep.holla@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulfh@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Christian Loehle <christian.loehle@arm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>, 
+	Val Packett <val@packett.cool>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Alejandro Tafalla <atafalla@dnyon.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_221249_845106_91501B45 
-X-CRM114-Status: GOOD (  13.48  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261116_221501_649095_72A2AA96 
+X-CRM114-Status: GOOD (  31.55  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,32 +127,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-PiBUaGFua8KgeW91wqBmb3LCoHlvdXLCoGNvbnRyaWJ1dGlvbiHCoFNhc2hpa2/CoEFJwqBy
-ZXZpZXfCoGZvdW5kwqAzwqBwb3RlbnRpYWwKPiBpc3N1ZShzKcKgdG/CoGNvbnNpZGVyLgo+
-IAo+IENyaXRpY2FsOsKgMMKgwrfCoEhpZ2g6wqAywqDCt8KgTWVkaXVtOsKgMMKgwrfCoExv
-dzrCoDEKPiAKPiBJZsKgeW91wqBiZWxpZXZlwqBub25lwqBvZsKgdGhlwqBpc3N1ZXPCoGFy
-ZcKgbGVnaXRpbWF0ZSzCoHBsZWFzZcKgcmVwbHnCoHRvwqBlYWNoCj4gaXNzdWXCoG9mwqBN
-ZWRpdW3CoHNldmVyaXR5wqBvcsKgaGlnaGVywqBhbmTCoGV4cGxhaW7CoHdoecKgdGhlwqBB
-ScKgaXPCoHdyb25nLgo+IElmwqBhbnnCoG9mwqB0aGVtwqBhcmXCoGxlZ2l0aW1hdGXCoGFu
-ZMKgeW91wqBwbGFuwqB0b8KgcmVzcGluLMKgcGxlYXNlwqBsZXTCoHBhdGNod29yawo+IGtu
-b3fCoGJ5wqBpbmNsdWRpbmfCoCJwdy1ib3Q6wqBjciLCoGFzwqBhwqBzZXBhcmF0ZcKgbGlu
-ZcKgYXTCoHRoZcKgZW5kwqBvZsKgeW91csKgcmVwbHkKPiAob25lwqBzdWNowqByZXBsecKg
-cGVywqBzZXJpZXPCoGlzwqBlbm91Z2gpLgo+IAo+IC3CoFtIaWdoXcKgSW7CoGNhbl9idXNf
-b2ZmKCnCoChkcml2ZXJzL25ldC9jYW4vZGV2L2Rldi5jOjI3NC0yODUpLMKgdGhlwqBuZXcK
-PiDCoMKgcnVubmluZ8KgY2hlY2vCoGFuZMKgdGhlwqBzY2hlZHVsZV9kZWxheWVkX3dvcmso
-KcKgY2FsbMKgYXJlwqB0d2/CoHNlcGFyYXRl4oCmCj4gLcKgW0hpZ2hdwqBUaGXCoG5ld8Kg
-bmV0aWZfcnVubmluZygpwqBjaGVja8KgaW7CoGNhbl9yZXN0YXJ0KCkKPiDCoMKgKGRyaXZl
-cnMvbmV0L2Nhbi9kZXYvZGV2LmM6MjAxKcKgcnVuc8KgZnJvbcKgdGhlwqByZXN0YXJ0wqBk
-ZWxheWVkwqB3b3JrwqBvbuKApgo+IC3CoFtMb3ddwqBUaGXCoG5ld8KgdGV4dMKgaW7CoERv
-Y3VtZW50YXRpb24vbmV0d29ya2luZy9jYW4ucnN0wqBtYWtlc8KgYW4KPiDCoMKgdW5jb25k
-aXRpb25hbMKgcHJvbWlzZcKgYWJvdXTCoHJlc3RhcnQtbXMuCgpwdy1ib3Q6IGNy
+On Fri, Nov 13, 2026 at 8:10=E2=80=AFPM Ulf Hansson
+<ulf.hansson@oss.qualcomm.com> wrote:
+>
+> + Sudeep
+>
+> On Thu, Oct 22, 2026 at 11:41=E2=80=AFAM Reza Kurniawan <imkyufie@gmail.c=
+om> wrote:
+> >
+> > From: Alejandro Tafalla <atafalla@dnyon.com>
+> >
+> > On some SoCs (e.g. Qualcomm MSM8917 and MSM8937), PSCI_FEATURES reports
+> > that OS-initiated mode is supported, but every PSCI_SET_SUSPEND_MODE
+> > call is rejected with NOT_SUPPORTED.
+> >
+> > PSCI provides no call to read back the current suspend mode, so the OS
+> > cannot tell which mode the firmware is operating in or why the switch
+> > is rejected.
+> >
+> > Add an optional flag that tells the OS not to issue
+> > PSCI_SET_SUSPEND_MODE on such firmware.
+>
+> I think it would be nice to further clarify what's going on in the
+> PSCI FW. If I understand correctly, the only supported mode is the
+> PSCI OS-initiated mode, hence it's always running in this mode, right?
 
+That is correct.
+
+>
+> This is clearly a violation of the PSCI spec - and I guess updating
+> the FW isn't possible at this late state, or is it?
+
+Just as Val stated, it's not possible sadly.
+
+>
+> >
+> > Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
+> > [Reza Kurniawan: split out the patch, rewrote the property description,
+> >  renamed the property]
+> > Co-developed-by: Reza Kurniawan <imkyufie@gmail.com>
+> > Signed-off-by: Reza Kurniawan <imkyufie@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/psci.yaml | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Document=
+ation/devicetree/bindings/arm/psci.yaml
+> > index 0d04389c81..2eee38d155 100644
+> > --- a/Documentation/devicetree/bindings/arm/psci.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/psci.yaml
+> > @@ -98,6 +98,19 @@ properties:
+> >        [1] Kernel documentation - ARM idle states bindings
+> >          Documentation/devicetree/bindings/cpu/idle-states.yaml
+> >
+> > +  skip-suspend-mode-switch:
+>
+> Maybe a more descriptive name can be found?
+>
+> osi-mode-only or broken-suspend-mode-osi-only?
+
+I initially settled with a similar name before (with 'osi-only'
+phrasing). I ultimately went with 'skip-suspend-mode-switch' because
+the root cause was only due to the mode switch not functioning
+properly. This property doesn't do anything regarding the mode the
+firmware is stuck at as it's only fixing the failed call. Normally,
+the driver sets the PSCI to the preferred mode at driver probe (OSI if
+supported, PC otherwise). This property simply skips that part and
+assumes the FW is already in the preferred mode. It could
+theoretically work for firmware stuck at either OSI or PC mode, as long
+as the platform shows the same symptom, It is mode-agnostic essentially.
+That being said, I'm not completely against the 'osi-only' phrasing.
+
+What do you think of the above rationale? I'm open to suggestions.
+
+I admit that the word "skip" here isn't really helpful since it counts
+as an implementation detail. "broken" should better describe that it's
+a quirk.
+
+Best regards,
+Reza
 
