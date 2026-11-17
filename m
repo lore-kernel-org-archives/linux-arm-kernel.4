@@ -2,75 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2882606A8A4
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 08:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A25606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 08:58:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yage55h9;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=sVQy5hd8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G2DXJwRl;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=3aO3mdiR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Q+8+Qcc4d5ZANtBpb5U5j6S3mXMyfrM7UV1WqSNqxMQ=; b=yage55h9CHAKJL
-	Ei322RkYQLsCzJjeAysW/M7Aza2uOb/O9ds+/o5omXGBap1opLS1wVGgJLC9gvpe4FhO8xvlq9C3g
-	8n0hopjRTNTcRTsUZ1sdn1CeMVWQBNKCbyK+2vTeSYxeElXxjeI+hxZYGbrtsGlrRVdI3TMqCJsVN
-	mKba8yqZXYvVj+NE7pw4EeOjiJmSixNpI4Wfbs8uJE5LimKaNp/rPcEAF5UjdcNzVGBUYDxhpJQvy
-	7tD8JdpUlMtNTf+NTUk5KkuJUBL9pR7fx4CJKeFETLVCMNkGJ7+G8ms6w2pDbdIOY5OD+UkRgHkrO
-	5nzKSmT3jrMdYUiWrfpg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=bagDRukm05S0b1NBhBusVsQL822xrebrr7lacm2MVrE=; b=G2DXJwRlJbuSkcOCtjOcnlQ+Jo
+	fTZQVFgiaE5/F0ooR4R4KzZoydVJ9fmcalGUEZAns9B2yfEuOY+1HMB2hZQnSaYKN3l+8EZJrXXQ6
+	r01SKWw9YdljKZTJnhMUcLV9LTP6HnWjXqaJMu8z+mcFu6z6GkOaDlvDQnPCBJfKxCunfTm/edPpT
+	HP2g2oPfgugYjTPF3qQUsnlBcPjgK6zi5fzcBA8F3T3HPGUjlwO3VT0td0ZseGhbT1kDO7+cq7WY6
+	3mECARTKV7jhAgodf61bUKwTlnqnqG5Pkhs0cwOwlT8z1Er8Mj8ial0jm6bpx+vJ9ZPqWLbA436dG
+	50S+YxwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTEs6-00000004xIT-3Or9;
-	Tue, 17 Nov 2026 08:48:58 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xTF0r-00000004yM1-2oo3;
+	Tue, 17 Nov 2026 08:58:01 +0000
+Received: from mail-northcentralusazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c105::1] helo=CH1PR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTEs4-00000004xGv-1AjL
+	id 1xTF0n-00000004yLa-2jGM
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 08:48:57 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 450F54E4014C;
-	Tue, 17 Nov 2026 08:48:52 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 181535FC81;
-	Tue, 17 Nov 2026 08:48:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 72BE911BC05B4;
-	Tue, 17 Nov 2026 09:48:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794905330; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=Q+8+Qcc4d5ZANtBpb5U5j6S3mXMyfrM7UV1WqSNqxMQ=;
-	b=sVQy5hd8INEq3tK8BfV4oagGw2sPV3PgOfFgl/Y34gyLjx7Qz78Jxdime+cfg6/8NCn3m1
-	7nYs1N6Xy2diVwMqTQ1ahmWWGzBKu10H+bAwnnHg/QNqDmAv04oRVR4znKu8aS5xLFkrRN
-	4uhzCQUL8jgc7Jz/IqX1df3M7YptQPSq57rDOQsXiwlXSzuuc7k+3Cx75NWAP33N+cqW0u
-	SXblehz4p4ElzkY8iytWq+IzcPh+vHVJoSc/DSJWSppcmqUFNXr92llabgFV7grw9S7HpI
-	pJPW0TCD6cVJJbGYALhrI1pImf4Iv18VkR+e1Cl1BN4+3XMJpZERDMRAJKNC3A==
-Message-ID: <9a17822b-3e7b-4338-8663-7007d27daac6@bootlin.com>
-Date: Tue, 17 Nov 2026 09:48:41 +0100
+	Tue, 17 Nov 2026 08:57:59 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aNW3qEvQFGUzfoSICWyjuJSxoFbok9NPtiMmcudx7emBkfsiNMGQY66eq5dh4XfK55xlLcsSAzDB4Na1rYTL+cysrzajKjINUyZlz3iFhhu4SVkGff9zL5qgiJMQO4BnGxSVcUOz9Gtyk9i4vxoEJ49JC23VU/1YyadIiM1UO42YJRUCPXT60S3auj5DMMXtgvQPa/Zy5rdzdfzS2PDMAjp0uvcjntOBr4O3NTOhvI4apnnQ5rm9kv9WBWZBHFFqKbBW57Q5sqNjWcMdj9nBeZYxNxwukkzD5EtLdRj29odhqY6cDku4e5a71ROMDX+SwhllBPTZnGiNB72VS+Yeng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bagDRukm05S0b1NBhBusVsQL822xrebrr7lacm2MVrE=;
+ b=HBUAyvwZhON74Z/LNT7N9YxzhnRrZkvSzOqM7heVFdtvQjaOi4WYgDfZwr+HEpcG2hzD+NOeTab0C92Ks21Cgx9uPgN2FONxpekDCKg114MVqQ15t6lhZIlVl0txDhMF34BeLRrMlmyMNrvZ3A6q/VDLJdHF1CV5hNP/BudNyf7ivWS6/+C53FrCtiW9NaN3d1Oc8Lji5zEN3F30EwzDtXR6DZrpyMGm6SLGnjXWgg+WCed4g+VjNs0lG9fAs2SwWlGcUmzeZUGZQxuH5t9syLCQWrSfUvOdg7DQZFk3pA6Wq8cSUPhx/GbYXgg7HHsP9fm1uH9kxy2i6npx8afJMg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bagDRukm05S0b1NBhBusVsQL822xrebrr7lacm2MVrE=;
+ b=3aO3mdiR+GmETchUxuYuABnhCvUwxsgWC4MSMV736YV6EnDnzHL+F3cGyQdAqpsDWW4c2aEAUoP0is2QcBcKht6AYNpy5ssOe9YKPTvGYTYnQPmLPcf024aAjiLM4iB68gLJc/HAZ6D16FJF0IwAO9C0in2adYMdrbh02JkszOU=
+Received: from BN0PR10CA0003.namprd10.prod.outlook.com (2603:10b6:408:143::35)
+ by MW4PR12MB6753.namprd12.prod.outlook.com (2603:10b6:303:1ec::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Tue, 17 Nov
+ 2026 08:57:49 +0000
+Received: from MN1PEPF000793FA.namprd05.prod.outlook.com
+ (2603:10b6:408:143:cafe::7) by BN0PR10CA0003.outlook.office365.com
+ (2603:10b6:408:143::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Tue,
+ 17 Nov 2026 08:57:48 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF000793FA.mail.protection.outlook.com (10.167.249.196) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 17 Nov 2026 08:57:48 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Tue, 17 Nov
+ 2026 02:57:48 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Tue, 17 Nov
+ 2026 02:57:47 -0600
+Received: from xhdrdevl202.xilinx.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Tue, 17 Nov 2026 02:57:43 -0600
+From: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
+To: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	<linux-sound@vger.kernel.org>
+CC: Vincenzo Frascino <vincenzo.frascino@arm.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, Michal Simek <michal.simek@amd.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <git@amd.com>, Dhanunjanrao Katta
+	<katta.dhanunjanrao@amd.com>
+Subject: [PATCH 0/3] ASoC: xlnx: spdif: switch to the common clock framework
+Date: Tue, 17 Nov 2026 14:27:36 +0530
+Message-ID: <20261117085739.3807943-1-katta.dhanunjanrao@amd.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net v3] net: stmmac: Clear DMA errors for multi-channel
- interrupts
-To: netdev-bot+sashiko@kernel.org
-Cc: andrew+netdev@lunn.ch, kuba@kernel.org, davem@davemloft.net,
- edumazet@google.com, pabeni@redhat.com, horms@kernel.org,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- linux@armlinux.org.uk, lorenzo.bianconi@oss.qualcomm.com, nb@tipi-net.de,
- magnusleatti@kernelriot.com, thomas.petazzoni@bootlin.com,
- alexis.lothore@bootlin.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20261113103236.2184751-1-maxime.chevallier@bootlin.com>
- <179482516756.3136.16592047633231652675@kernel.org>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <179482516756.3136.16592047633231652675@kernel.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF000793FA:EE_|MW4PR12MB6753:EE_
+X-MS-Office365-Filtering-Correlation-Id: d408e836-f92f-419d-d66c-08df4488dabc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|23010399003|36860700016|56012099006|11063799006|261026140227099003|10067099003|261028144727099003|261022105027099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 9KYNGwcCEius64JNDLgXJHGaWmjhlRp/wSMisMekWFfBljf8rQfXvEC8kaw/mLzl+//WQCXWmKjT87On95+BvGFCzQI+bG0GwxlY7EzQP9MtOp7mdEZ2/cckAqdZG9AQuRnMpsqxW+8Pztn8zSfaLpV9Eb5f5h+9VoiOJWMb1Hdxu/OT7ViX4h1u67z4kzIFRYM9dbAqr1awrguk+fjdZAgAUPEpb5YzVhVj7WTux2+Nt1Mv0bmRPxZDtOj8sbIzpmsifkkwNdXzWcdbEB8O0mkMDNIvNNIJeTj8Prycm9ro1ivWQGmajlIlSs8WdTuQNKae2PA5HDkBorfcLNYdZRmYf4zMIcPobMaOHqkIKdftRnLkSg+Bp1s2Pv1uczJYc4gh9Dnt4/mJlkO5Z3rQTHIPTLjs27+QFHPywyAiyP6CypvjqGrcEOj7/h8khhYxXWQEYFqh1tb4w6jBZ2chJZGPo0L9th6pIcMq+0mtfTU+4ac8q6g4gpqh+Hh4NVaZnRyNeEk2Q5fFb0bb0BxLX4FVZ04r9WFZPmHD3WcSFydlFkQh9AuIjx+KNzRtZPJdM2tHXiIeh9iZI1jnaHkbKpO12GJM9MNzJzECEjArhbv9L4q+JR54cDLumJHIBc39X9/L27AX/a7ZDnXWi+KAqUAKkmPCzRGb6ymGu3BpzMPtGbkImln8ITHTOqYolZ7l5YJrdLhvmCxGaAIrXc+sqg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(23010399003)(36860700016)(56012099006)(11063799006)(261026140227099003)(10067099003)(261028144727099003)(261022105027099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: rmL7o5f//kH1KrO4rnSMWXwDmXxTrwBa/dALM/g6uwBY0QtpmJIVwFO5Y75vL/JeV1THz7gcLFnxbDsIK3WDPYEle8d4M5Apr0Vy+tQzGJYTlKO7o1EEfPeCD1RkKjAdh7RRrf2xgNUhXq9ICBEju7d5xtrQklwhKcKinurBNXsNQk8oMW5DFjaUNhoMLnx/BzIbIkyKiRdbYACpgt4z3jTKCRyobyIiQ4Sb9bNjpnkXepuxTGCD/u7Lk3FWZQyQrxBjVoLkECilnT9H/WNgU6MYrIUf8kSD9MiOkf+NACRAACQiRpVQx979vwIGWa0esdP45n7hskvezJ+Fc4gdwvpo8cJQ5me2skmxfITNgRsm2m2Jd0yU7lVkyp0wklP6rSpzNcaXqlKdesTtl9HGUQsrphlH91qBOiEwPZiT9k8yz84DMXaJSB31o0aEKZrq
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 08:57:48.5511
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d408e836-f92f-419d-d66c-08df4488dabc
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF000793FA.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6753
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_004856_458273_18A941D3 
-X-CRM114-Status: GOOD (  30.37  )
+X-CRM114-CacheID: sfid-20261117_005757_715427_A4F59528 
+X-CRM114-Status: GOOD (  12.43  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,141 +128,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+The Xilinx SPDIF/AES3 IP is fed by three clocks, but the binding
+described only two of them and the driver requested only one. The audio
+clock frequency was instead passed as a plain number in the custom
+"xlnx,aud_clk_i" property, and the driver relied on the firmware to
+leave the audio and AXI4-Stream clocks running.
 
-On 11/16/26 11:32, netdev-bot+sashiko@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 2 potential
-> issue(s) to consider.
-> 
-> Critical: 0 · High: 0 (1) · Medium: 1 (1) · Low: 1 (1)
-> 
-> If you believe none of the issues are legitimate, please reply to each
-> issue of Medium severity or higher and explain why the AI is wrong.
-> If any of them are legitimate and you plan to respin, please let patchwork
-> know by including "pw-bot: cr" as a separate line at the end of your reply
-> (one such reply per series is enough).
-> 
-> - [Medium] In multi-MSI (INTM=1) mode the patch makes the MAC vector
->   responsible for fatal bus errors.
-> - [Low] stmmac_dma_err_interrupt(), called from the MAC hardirq for every
->   channel, adds another unserialized writer of the plain `unsigned long`…
-> 
-> Pre-existing issues:
-> - [High] This problem wasn't introduced by this patch, but the patch adds
->   a new hardirq source that arms it.
-> - [Medium] This problem wasn't introduced by this patch, but it concerns
->   how dwmac4_dma_interrupt() acknowledges status.
-> - [Low] This problem wasn't introduced by this patch, but Loongson is not
->   covered by it.
-> 
-> --
-> 
-> net: stmmac: Clear DMA errors for multi-channel interrupts
-> 
-> This adds a DMA_DIR_ERR direction and a DMA_CHAN_STATUS_MSK_ERR mask for
-> dwmac4. On GMAC4 cores, the multi-MSI MAC interrupt handler now calls a new
-> stmmac_dma_err_interrupt(). That helper acks AIS/FBE/RPS/RBU on every
-> channel and calls stmmac_global_err() on fatal bus errors. The goal is to
-> stop the RBU/RPS interrupt storms seen on dwmac-motorcomm.
-> 
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.h b/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.h
->> index 43b036d4e95bd..a7caac3c98e6c 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.h
->> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.h
->> @@ -173,6 +173,11 @@ static inline u32 dma_chanx_base_addr(const struct dwmac4_addrs *addrs,
->>  					 DMA_CHAN_STATUS_TI | \
->>  					 DMA_CHAN_STATUS_MSK_COMMON)
->>  
->> +#define DMA_CHAN_STATUS_MSK_ERR		(DMA_CHAN_STATUS_AIS | \
-> 
-> [Severity: Medium]
-> 
-> This is a pre-existing issue, but does putting DMA_CHAN_STATUS_AIS in this
-> mask actually clear AIS on 4.00 cores?
+This series describes the third clock, requests the audio and
+AXI4-Stream clocks through the common clock framework, and reads the
+audio rate with clk_get_rate() so that the SPDIF divider follows the
+rate actually in effect. A tidy-up of the register defines and of the
+divider values comes first so that the clock change is easy to read.
 
-Pre-existing, this should be addressed separately
-[...]
+Patch 1 describes the AXI4-Stream clock and selects its name from the IP
+mode. The minimum clock count stays at two and "xlnx,aud_clk_i" is kept
+as deprecated rather than removed, so that device trees written against
+the earlier binding keep validating. "xlnx,spdif-mode" becomes required,
+because the conditional that picks the clock name keys on it and would
+otherwise also match when the property is absent.
 
-> 
-> [Severity: Low]
-> 
-> Can one hardware event now be counted twice in the abnormal counters?
-> 
-> stmmac_dma_err_interrupt() runs this path from the MAC hardirq for every
-> channel. The per-channel RX/TX MSI handlers process the same bits:
-> DMA_CHAN_STATUS_MSK_RX contains RBU, RPS, AIS and FBE, and
-> DMA_CHAN_STATUS_MSK_TX contains AIS and FBE.
-> 
-> The counters are plain unsigned long increments:
-> 
-> 		if (unlikely(intr_status & DMA_CHAN_STATUS_RBU))
-> 			x->rx_buf_unav_irq++;
-> 		if (unlikely(intr_status & DMA_CHAN_STATUS_RPS))
-> 			x->rx_process_stopped_irq++;
-> 		...
-> 			x->fatal_bus_error_irq++;
-> 
-> Suppose RBU, RPS or FBE arrives together with RI or TI on a channel. Both
-> vectors can then read the bit before either one writes it back. Could
-> rx_buf_unav_irq, rx_process_stopped_irq and fatal_bus_error_irq in
-> ethtool -S then count the event twice? The concurrent read-modify-write
-> could also lose increments.
+Patch 2 names each register-field define after the register it belongs
+to, prefixes the remaining driver constants, and replaces the bare
+clock-divider values with an enum.
 
-I'd say, this is both unlikely and acceptable for these counters
+Patch 3 requests the audio clock and the mode-specific AXI4-Stream clock
+through the common clock framework. The stream clock is requested as
+optional so that existing two-clock device trees still probe, and a zero
+audio rate is now rejected with a diagnostic instead of falling through
+the divider switch. "xlnx,aud_clk_i" is no longer read.
 
-> 
-> [ ... ]
-> 
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
->> index 25894771e9e9f..0bcbf837d9cc8 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
->> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
->> @@ -3145,6 +3145,22 @@ static int stmmac_napi_check(struct stmmac_priv *priv, u32 chan, u32 dir)
->>  	return status;
->>  }
->>  
->> +static void stmmac_dma_err_interrupt(struct stmmac_priv *priv)
->> +{
->> +	u8 channels_to_check = max(priv->plat->rx_queues_to_use,
->> +				   priv->plat->tx_queues_to_use);
->> +	int status;
->> +	u8 chan;
->> +
->> +	for (chan = 0; chan < channels_to_check; chan++) {
->> +		status = stmmac_dma_interrupt_status(priv, priv->ioaddr,
->> +						     &priv->xstats, chan,
->> +						     DMA_DIR_ERR);
->> +		if (unlikely(status & tx_hard_error))
->> +			stmmac_global_err(priv);
-> 
-> [Severity: Medium]
-> 
-> Can the per-channel MSI handlers consume the fatal bus error before this
-> loop sees it?
+Dhanunjanrao Katta (3):
+  ASoC: dt-bindings: xlnx,spdif: describe AXI4-Stream and audio clocks
+  ASoC: xlnx: spdif: namespace register macros and use a divider enum
+  ASoC: xlnx: spdif: get clocks through the common clock framework
 
-This is also pre-existing for multi-MSI handling then.
+ .../devicetree/bindings/sound/xlnx,spdif.yaml |  54 +++++++--
+ sound/soc/xilinx/xlnx_spdif.c                 | 108 +++++++++++-------
+ 2 files changed, 113 insertions(+), 49 deletions(-)
 
-[...]
 
-> [Severity: Low]
-> 
-> This isn't a bug introduced by this patch, but Loongson multi-MSI is left
-> out here. loongson_default_data() sets:
-> 
-> 	plat->core_type = DWMAC_CORE_GMAC;
-
-Yeah I mentionned it in the commit log... The only loognson board I have (2k0300)
-uses dwmac-generic and not the loogson glue, so I can't test that one, let's
-see if anyone sees that hang on the affected platforms.
-
-Maxime
+base-commit: 7cd6b1fd8f9c1fcb1da1b761d502649f50b9800f
+-- 
+2.34.1
 
 
