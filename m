@@ -2,85 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B012606A8B7
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9520E606A88C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3/jpI7pB;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=HmF2mHi7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KpAk9lo3;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=lWzhVbeX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QoNY41bbnzpn0ZzzcjjJENFeSjOUK9Myq2AtLJ6qHJY=; b=3/jpI7pBF9CORc
-	5CaEgSjlvzq3WQdzz2rOZHtbkpUFwJUbJFbFt5aRIH9w3BWpzsn24mA7A+sGvKBmADI1FHYOoyhTu
-	1+NnV7qkoAVElPyJnycYmlnBg6iVlU/r1+s/klyYAU6WMCxfftubk7hY/iHbTO/yYABXOUWLgvz7r
-	h10cLT4C4J3C2hD5pxxqPYsBSc8MwMw0JOEAORBx7qDvcKbgA7mqxX1sVCxhojHlvTCbC99FBOeIT
-	FPjqWJgxtaBCuHtM6h6KxksHWrZXeHEM5eY5aH5RFYDaKcnjv7+seh8KXTlGZox8UTXDfM8zYHRRw
-	U2bCD9RkyN3OyOgj0OVA==;
+	List-Owner; bh=43e2SNcVBWzb1UbgyRe/OhyamtAg+Km+Wi6/wDg0QSQ=; b=KpAk9lo33UYNXc
+	qEP95xTjz5yUe6dDK78sWWdc4CrV3htePPeptFbJG9Oi6Ja5RKtz0cN5aHIZu6tBaGN7ZaDks3MGD
+	nlK+99KwIaVtwEicbZUwM6kibfAxqxf9FzDf5hb4ikxLKD1EuI0JwMoDdyMyt3ZSbf0MnjI3gmiTO
+	qOyJbep333BJLGmIXBV3Z41U+UoH4ju0dVtlgjslqDWu5obHzOHCrTKTEqNuReFvnWoiZlU8UhpIc
+	7Ysh89yCvNWALjQtu1rjtCu0J7aFT9fyRFRklMtrRqniuAwe0yIYj7e9dC1iTn0SkePSSEIbI+60A
+	7Kta4OCmpViTlKyuBmSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGZg-00000005IMp-0R2Z;
+	id 1xTGZg-00000005IP5-3tXe;
 	Tue, 17 Nov 2026 10:38:04 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGZO-00000005IBG-2CXY;
-	Tue, 17 Nov 2026 10:37:47 +0000
+	id 1xTGZP-00000005ICL-3fwh;
+	Tue, 17 Nov 2026 10:37:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794911864;
-	bh=zjAl5O9mbx/ZXUiLWzwrqKnIBURPVqzRQZrm4sbAV8s=;
+	s=mail; t=1794911866;
+	bh=BPi/q9qq8U5jbtOV/H4x+dghN6V5mYBj2nUNtLxFRAg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HmF2mHi7l0rRTsjxgk+X59KO7U/H0Cc6yprm0z2W3EwtxW5evwKVMndPQY+WQuXG/
-	 rbrmx8TlQ5u8Sv7sareD7mgvDIdadtqDavWYpYkVEtcf+zFQ1bfNyoYJzRPDpjDVe2
-	 3BBKcK5mmngHeosuE1EAbsR/ccq/A8Ien7gTfxEwnSi0SlkDVBwPO1kz1rtBZZ4jBx
-	 JuUcO4dGKrpCvEjgYdvBlwbv/MBRBiQ+pO02bA8J8jNZlMtTKz47hj4IyR5Wr5C7Ch
-	 EFpDyU0jNzOfWkR8P1XCqBtH5jykszAklLTYhGfuyV9+57hDbfgECiQ7ebWz1Y/RmW
-	 8ZFS9LJnryZAg==
+	b=lWzhVbeXhrHpZSfg1vhi0IYmf/uKR95T7TPw6Zak3JApn5n99ftHqDojn+nDc2B9B
+	 z208WnI1LuuPqfcF+xLklrPJppJvQdgKBzs++nvv7ncNEuo+7ckHp55uUtTbIaj8EL
+	 pFhuDgRkcDNFtKV2tD34/k5ZmLSm0orzrIV1//2hUQXdjRyqr9Ft2FFpw4xb9L4Id6
+	 5m2Ou3eXGLXj35SZD9krDppHxm8O5WhsAsL0x0sA6OhU6k5JcWa3JcpVN5GlGpLYrO
+	 yxB/Cn549c5Vz12LO91+twaA9J3MQ1+FYxo2onOt1LbkP89qxinRSafmslzcidzGXR
+	 vNezYw/UTo1SA==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8985E17E0BCC;
-	Tue, 17 Nov 2026 11:37:43 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5680A17E0EF0;
+	Tue, 17 Nov 2026 11:37:45 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
 	zoan37 <agentzoan@gmail.com>,
 	Stephen Boyd <sboyd@kernel.org>,
 	Brian Masney <bmasney+clk@redhat.com>,
 	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
-	Chun-Jie Chen <chun-jie.chen@mediatek.com>,
 	Chen-Yu Tsai <wenst@chromium.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Edward-JW Yang <edward-jw.yang@mediatek.com>
+	Ryan Brue <ryanbrue.dev@gmail.com>
 Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+	Edward-JW Yang <edward-jw.yang@mediatek.com>,
 	Irving-CH Lin <irving-ch.lin@mediatek.com>,
 	kernel@collabora.com,
 	linux-clk@vger.kernel.org,
 	linux-mediatek@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
 	Brian Masney <bmasney@redhat.com>
-Subject: Re: [PATCH v6 00/27] MT8189: Add support for system and base clock controllers
-Date: Tue, 17 Nov 2026 11:37:31 +0100
-Message-ID: <179491184090.148303.2331159339305939434.b4-ty@b4>
+Subject: Re: [PATCH v2] clk: mediatek: mt8173-mfgtop: do not use the clk API from power_on
+Date: Tue, 17 Nov 2026 11:37:33 +0100
+Message-ID: <179491184093.148303.15758957296593434573.b4-ty@b4>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260904-mt8189-clocks-system-base-v6-0-5df247f56938@collabora.com>
-References: <20260904-mt8189-clocks-system-base-v6-0-5df247f56938@collabora.com>
+In-Reply-To: <20260913-mfgtop-no-clk-api-power-on-v2-1-b84771a3d5bd@gmail.com>
+References: <20260913-mfgtop-no-clk-api-power-on-v2-1-b84771a3d5bd@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_023746_748677_8F2EFAF4 
-X-CRM114-Status: GOOD (  11.74  )
+X-CRM114-CacheID: sfid-20261117_023748_068517_94193055 
+X-CRM114-Status: UNSURE (   8.51  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,75 +96,20 @@ X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 04 Sep 2026 17:58:11 +0200, Louis-Alexis Eyraud wrote:
-> This series is a continuation by AngeloGioacchino Del Regno and I of a
-> previous series ([1]), that adds the clock controller support for
-> the Mediatek MT8189 SoC and its variants (MT8371, MT8391).
-> 
-> The first major changes is the split of the series in two:
-> - one for all basic clock controllers including system ones (this
-> series)
-> - one for the multimedia and graphics related clock controllers (to be
-> send in the future)
+On Sun, 13 Sep 2026 16:47:53 -0500, Ryan Brue wrote:
+> clk_mt8173_mfgtop_power_on() calls clk_prepare_enable() on the mfg_26m gate
+> that this same driver provides. That is a layering inversion which cannot
+> work: clk_core_prepare() calls clk_pm_runtime_get() on the clock provider
+> -- this driver's own device -- and genpd power transitions run at _noirq
+> time, where runtime PM is disabled and pm_runtime_resume_and_get() returns
+> -EACCES.
 > 
 > [...]
 
 Applied to v7.4-next/clk, thanks!
 
-[01/27] dt-bindings: clock: mediatek: Make '#clock-cells' required for MT8186
-        commit: 51928be3081a25842d66501b085dd6ee00d2fe0d
-[02/27] dt-bindings: clock: mediatek: Make '#clock-cells' required for MT8192
-        commit: 1a2b86804febe4870956297188e8ccfa079f4d22
-[03/27] dt-bindings: clock: mediatek: Make '#clock-cells' required for MT8195
-        commit: cb47a7976bb5e5e4a7df1df71d221b932af7b2b8
-[04/27] dt-bindings: clock: mediatek: reorder MT8186 compatibles
-        commit: 3b372542144aa2e6cb6925e6d8039abfbd9682a7
-[05/27] dt-bindings: clock: mediatek: regroup MT8188 dt-bindings into MT8186
-        commit: 09b156611b0a8fc480dc894f04a475c0c4313a98
-[06/27] dt-bindings: clock: mediatek: regroup MT8192 dt-bindings into MT8186
-        commit: 833dc5fe7832ff0d8e8935cafd09d530055d8126
-[07/27] dt-bindings: clock: mediatek: regroup MT8195 dt-bindings into MT8186
-        commit: dc3a6ae2eeab954820701713dc7d4b1556df7dc4
-[08/27] dt-bindings: clock: mediatek: Add MT8189 system/base clocks and resets
-        commit: 294637d60bc0dff970b51f32cf0a5d46bede0652
-[09/27] clk: mediatek: Harmonize mtk_pll_fenc related symbol names
-        commit: e998b6e82a481b204c097a6f24bf4d0523041ab1
-[10/27] clk: mediatek: pll: Add BAR reset register offsets
-        commit: 696eb5f8af066bd43dc2cea7c1557c39a9346f44
-[11/27] clk: mediatek: pll: Factorise pll power on/off sequences
-        commit: efa27fb6334209382fba265d1a0874fd35a5f7d6
-[12/27] clk: mediatek: pll: Add PLL stabilization delay definition
-        commit: b7285135ac89017d442941145f020eaa4664afef
-[13/27] clk: mediatek: pll: Add ops for PLLs using set/clr regs
-        commit: 7cbf375f78def36afc6a737c987e900c0b59a0ed
-[14/27] clk: mediatek: pllfh: Add configurable clock ops to mtk_pllfh_data
-        commit: 4587b6170ea5f091a456ac7613a26df798722b09
-[15/27] clk: mediatek: pllfh: Add ops for PLLs using set/clr regs
-        commit: 2def5260f4be10f60510a6a133368d52f2eb9ba8
-[16/27] clk: mediatek: Move fhctl_parse_dt call into mtk_clk_register_pllfhs
-        commit: a3ef44f33667dcef6a4487ed74fbafe2dd65cf37
-[17/27] clk: mediatek: pllfh: clear state data in mtk_clk_cleanup_pllfhs
-        commit: 6fe7aa32b1063c2c7c61261cdd5f378facae2e89
-[18/27] clk: mediatek: Add MT8189 apmixedsys clock support
-        commit: 874ab1eba81e795b8ae8bf26a5410cf80f3eab83
-[19/27] clk: mediatek: Add MT8189 topckgen clock support
-        commit: ad50e6912ab54da07142cb805283803f94f03be0
-[20/27] clk: mediatek: Add MT8189 vlpckgen clock support
-        commit: 9f5133b5d9f4fd18ec7d623b45614549f3dbae41
-[21/27] clk: mediatek: Add MT8189 vlpcfg clock support
-        commit: 67ef8994e541421b38d848cf3da88b75f241a7d6
-[22/27] clk: mediatek: Add MT8189 bus clock support
-        commit: ef1c46bbb81c4bcee613f9ca4ee8e4fcf4483e04
-[23/27] clk: mediatek: Add MT8189 dbgao clock support
-        commit: 4d2ff5667bf25203d8e898ff7931e7aaa1653ee5
-[24/27] clk: mediatek: Add MT8189 dvfsrc clock support
-        commit: 8051bf8c06a1b8224345637fe8656dc2abf97e94
-[25/27] clk: mediatek: Add MT8189 i2c clock support
-        commit: ab4fef2b58b3db345b9aadf6c806ae32ba15d2cf
-[26/27] clk: mediatek: Add MT8189 scp clock support
-        commit: e87051328cf23217e04236ceb6ee2ae72f6ddc45
-[27/27] clk: mediatek: Add MT8189 ufs clock support
-        commit: 633757ec0147497a11309e0bd877396cac5e64e1
+[1/1] clk: mediatek: mt8173-mfgtop: do not use the clk API from power_on
+      commit: 8f1cb3fc8cae44baffef31d73c772dc77e4a9061
 
 Cheers,
 Angelo
