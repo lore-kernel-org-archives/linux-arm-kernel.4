@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D109A606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 02:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A2B606A890
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 02:07:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u4lCWvqO;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=yAf6e/Da
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d1L1APQN;
+	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=jJ7Neod7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,57 +14,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vpUJEjP9x2su6rUsdB/qg950nFELOqFmn3iPrfPBO6Q=; b=u4lCWvqOnQWbfPY7cU+oIhPVHp
-	NTWrSe2FHDTYj53JuCDsQKUTjmK70hTaqggou8KN9dh+GyD49Cyk+rCD3m1byZJnAybupe1FJ9/wQ
-	10LVpUOie4V9TfnNW6gg9qhcZDo2gxYNCxWFqLSy3gYTjErUMkbtu2vE2gB4fv98YUfaE2JwciUy6
-	RA0TgEwoc9QzJ5xVI/sK1FxHFOrLt3Q1ax8/f35SrpU2wRviGfz7XV/YXpHh61igcqX3OTmQrEet2
-	Zl6ss6A0Kh8RJWmIZz4JL7BkG4A6HV4b9CeBQcJpxSlwe3JU2DSi1a/AvhDx5tVAKjZ9B18MtAqEm
-	93bEaXdA==;
+	bh=ipD9z61No5E/UoxkAuOX/M6L7hnvJUNvWGwglb7bkpU=; b=d1L1APQNKusTbUM7b6Iwxl2AhS
+	0KEFL9M9a9PNhe2BD01WVLAaF6TbO6PfWw8VrTJcoOQnrKVMIt3vq7GjrStj5RWFk8u3U9ekvleYC
+	WWFzW8HZ9P0RUun+H2crvd8B8tFqoPDsss8V93TFR2bwWK71nQk/zfp5uYZiNLWymWUrM02AsuCQR
+	tVwjL242m6+bu53663KvvW72UdK4cCNSb1sz8PuZWqWoioomnyzLqRzY+sxxflbS2My0bQjG/gLVb
+	CVLT6i0TXtZcrE5knL4h7ogeXQTFodC34+lZMDUqK4q8v5NVO+KWAct/OO25vfHsLKLj7+el/sFXH
+	FB+nOQvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT8ZG-00000004M5q-0eMw;
-	Tue, 17 Nov 2026 02:05:06 +0000
-Received: from cmccmta6.chinamobile.com ([111.22.67.139])
+	id 1xT8ay-00000004MEs-1oXG;
+	Tue, 17 Nov 2026 02:06:52 +0000
+Received: from cmccmta4.chinamobile.com ([111.22.67.137])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT8ZB-00000004M4b-38uL
+	id 1xT8av-00000004MEB-1F4i
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 02:05:04 +0000
+	Tue, 17 Nov 2026 02:06:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cmss.chinamobile.com; s=default; l=0;
 	h=from:subject:message-id:to:cc:mime-version;
 	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=yAf6e/DaQkzfXcqAsVFSJJGqUbUZw5J5+TsZ6KlMyo97xOyC0DLlJSV95XGGgyOl1ujEvB8HBRKYk
-	 lwXAULxeksP0mbJYDqAcOtHXIc00slqEumyWVKBf2g5pgxLp2y0ygvbogH3hALn4NifFnGpqZOSohQ
-	 kgyp+L/EQOPcU3Y8=
+	b=jJ7Neod7ur1ZxSEkH9hxI7kURcTDIwS7pZ7C2wSUYtqxY/3JNaqkP1Pe1Gi5qoZ3Ju7NUmbBuuPg8
+	 zZXbQRF2sNyL3VOc/OeDDt1JE4dIXs1p1+Y7Ry5ox6Xxc1zS6PW0diNQGHZsrzimkleIVyPFX/zo9D
+	 5DKHoRdaUov8O3u0=
 X-RM-TagInfo: emlType=0                                       
 X-RM-SPAM-FLAG: 00000000
 Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app05-12005 (RichMail) with SMTP id 2ee56afbb64093c-01345;
-	Tue, 17 Nov 2026 10:04:48 +0800 (CST)
-X-RM-TRANSID: 2ee56afbb64093c-01345
+	by rmmx-syy-dmz-app04-12004 (RichMail) with SMTP id 2ee46afbb6aeb2d-a3e3b;
+	Tue, 17 Nov 2026 10:06:43 +0800 (CST)
+X-RM-TRANSID: 2ee46afbb6aeb2d-a3e3b
 X-RM-TagInfo: emlType=0                                       
 X-RM-SPAM-FLAG: 00000000
 Received: from localhost.localdomain.localdomain (unknown[10.55.1.72])
-	by rmsmtp-syy-appsvr04-12004 (RichMail) with SMTP id 2ee46afbb63ab5d-9ef9c;
-	Tue, 17 Nov 2026 10:04:43 +0800 (CST)
-X-RM-TRANSID: 2ee46afbb63ab5d-9ef9c
+	by rmsmtp-syy-appsvr10-12010 (RichMail) with SMTP id 2eea6afbb6b1370-9e880;
+	Tue, 17 Nov 2026 10:06:43 +0800 (CST)
+X-RM-TRANSID: 2eea6afbb6b1370-9e880
 From: Luo Yifan <luoyifan@cmss.chinamobile.com>
-To: Aubin Constans <aubin.constans@microchip.com>,
-	Eugen Hristev <ehristev@kernel.org>,
-	linux-mmc@vger.kernel.org
-Cc: Ulf Hansson <ulfh@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
+To: Linus Walleij <linusw@kernel.org>,
+	linux-spi@vger.kernel.org
+Cc: Mark Brown <broonie@kernel.org>,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] mmc: sdhci-of-at91: handle clock enable failures in set_clks_presets()
-Date: Tue, 17 Nov 2026 10:04:46 +0800
-Message-Id: <20261117020446.19927-1-luoyifan@cmss.chinamobile.com>
+Subject: [PATCH] spi: orion: handle clock failures on runtime resume
+Date: Tue, 17 Nov 2026 10:06:46 +0800
+Message-Id: <20261117020646.20111-1-luoyifan@cmss.chinamobile.com>
 X-Mailer: git-send-email 2.24.4
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_180502_320732_F34072F7 
-X-CRM114-Status: GOOD (  13.16  )
+X-CRM114-CacheID: sfid-20261116_180649_918497_0D355C1C 
+X-CRM114-Status: GOOD (  12.22  )
 X-Spam-Score: -2.4 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,69 +81,45 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-sdhci_at91_set_clks_presets() enables hclock, mainck and gck but ignores
-the return value of all three clk_prepare_enable() calls.  It returns 0
-even when a clock could not be enabled.
+orion_spi_runtime_resume() ignores the return value of
+clk_prepare_enable() for the AXI clock and returns the result of the
+second call.  If the first clock fails, the function still enables the
+second one and reports success, and if the second clock fails the AXI
+clock is left enabled.
 
-The function is called from the probe path and from the system resume
-path.  In both cases the caller continues to use the controller even
-though the clocks may be off: probe proceeds to sdhci_get_of_property()
-and sdhci_add_host(), and sdhci_at91_runtime_resume() calls
-sdhci_runtime_resume_host(), which accesses the controller registers.
-Accessing the controller without its clocks can hang the bus.
-
-Check the return value of each clk_prepare_enable() and unwind the clocks
-enabled so far when one fails.  hclock is enabled first and is needed for
-the register accesses inside the function, so it has to be checked as
-well.
+Check both calls and undo the first one when the second fails.
 
 Signed-off-by: Luo Yifan <luoyifan@cmss.chinamobile.com>
 ---
- drivers/mmc/host/sdhci-of-at91.c | 21 ++++++++++++++++++---
- 1 file changed, 18 insertions(+), 3 deletions(-)
+ drivers/spi/spi-orion.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/mmc/host/sdhci-of-at91.c b/drivers/mmc/host/sdhci-of-at91.c
-index 7c4ac65f24..8acf2ddf58 100644
---- a/drivers/mmc/host/sdhci-of-at91.c
-+++ b/drivers/mmc/host/sdhci-of-at91.c
-@@ -173,8 +173,12 @@ static int sdhci_at91_set_clks_presets(struct device *dev)
- 	unsigned int			clk_base, clk_mul;
- 	unsigned int			gck_rate, clk_base_rate;
- 	unsigned int			preset_div;
-+	int				ret;
+diff --git a/drivers/spi/spi-orion.c b/drivers/spi/spi-orion.c
+index b8882229c0..9c3c16449c 100644
+--- a/drivers/spi/spi-orion.c
++++ b/drivers/spi/spi-orion.c
+@@ -825,9 +825,19 @@ static int orion_spi_runtime_resume(struct device *dev)
+ {
+ 	struct spi_controller *host = dev_get_drvdata(dev);
+ 	struct orion_spi *spi = spi_controller_get_devdata(host);
++	int ret;
 +
-+	ret = clk_prepare_enable(priv->hclock);
++	ret = clk_prepare_enable(spi->axi_clk);
 +	if (ret)
 +		return ret;
  
--	clk_prepare_enable(priv->hclock);
- 	caps0 = readl(host->ioaddr + SDHCI_CAPABILITIES);
- 	caps1 = readl(host->ioaddr + SDHCI_CAPABILITIES_1);
- 
-@@ -223,10 +227,21 @@ static int sdhci_at91_set_clks_presets(struct device *dev)
- 	writew(SDHCI_AT91_PRESET_COMMON_CONF | preset_div,
- 	       host->ioaddr + SDHCI_PRESET_FOR_DDR50);
- 
--	clk_prepare_enable(priv->mainck);
--	clk_prepare_enable(priv->gck);
-+	ret = clk_prepare_enable(priv->mainck);
-+	if (ret)
-+		goto err_hclock;
+-	clk_prepare_enable(spi->axi_clk);
+-	return clk_prepare_enable(spi->clk);
++	ret = clk_prepare_enable(spi->clk);
++	if (ret) {
++		clk_disable_unprepare(spi->axi_clk);
++		return ret;
++	}
 +
-+	ret = clk_prepare_enable(priv->gck);
-+	if (ret)
-+		goto err_mainck;
- 
- 	return 0;
-+
-+err_mainck:
-+	clk_disable_unprepare(priv->mainck);
-+err_hclock:
-+	clk_disable_unprepare(priv->hclock);
-+	return ret;
++	return 0;
  }
  
- static int sdhci_at91_suspend(struct device *dev)
+ static const struct dev_pm_ops orion_spi_pm_ops = {
 -- 
 2.24.4
 
