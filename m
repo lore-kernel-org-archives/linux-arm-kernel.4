@@ -2,67 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1857B606A8B4
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA50606A887
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G0/0WpgV;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dYPBkrSg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ib51hoss;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=imuRLrSg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QKQS51dIpH/VoOQQlRFKsGbh0oMpDgEFKZcLUp0HWNw=; b=G0/0WpgVIb0SkL
-	XPYK/BASiLvTQL18RcLF03ZU5lmvJ9DehnI0gS7uwoprLHlIzUNNRGbP/IChEGfa7Q1Uc5Ld6CGL+
-	jqiYlUuekxBDppQ72yA22k/tT8MnKLVocDNEHsclEmlfKj90HSCqO1B0YjfkyXh+0+6z/0DIsvRSk
-	jWMNV+sW6jcI8Khr1W2Y6gtVzXHjVVx3qHSRPxvUxEQ+ovp1HIqBXr8FIetAYq6AD2g5ace2pW3Ur
-	YizKoYmswkeGnggVgbkxxT1qkamLyMfLEcMTljblPKYmRpAX6+IDWUEwZpA2nbh/ZK4jo9ki/MJ7y
-	FXCth0sbQuoRorI+MQiQ==;
+	List-Owner; bh=6o7TDKHkFTQmT81k6n559xmxvDMTMHvxHuzIWW6x61g=; b=ib51hossHn9vN5
+	6PIyD8XDnKjGrvDLNpz0UwpZVhFQ4YjVZVq6CT9U5KCMKF/GvvaU3ENJVe0yLEcLxWrnr4AEIjoxF
+	GhyD7KhwqHOd/iUfIxTRtYLDf6sJ4spp6aNG56A+l0vD6/UhYGDsXg0q/T8XwyVAZFdswLe9/2FoQ
+	9Ku0SohdRa71uaX7zEukMFqbHVTsGua/1Ym7e5UewDwOxWxb7hX2n0eXOn/s/OaO3v1oldzcl/jx/
+	tJ6jmKN4nWUtITrO3fRAsFGtgSS5iVzmENxMEYelYSeLR3Ar9wKN+pef3TF0J0mfM4Y5SVnyM2FZc
+	epa4+jmnnx3Xp7Ck8DYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIev-00000005k7u-05Uw;
-	Tue, 17 Nov 2026 12:51:37 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xTIg3-00000005kSQ-0vhI;
+	Tue, 17 Nov 2026 12:52:47 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIes-00000005k6v-3q2N
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 12:51:35 +0000
+	id 1xTIg2-00000005kSE-0Hos;
+	Tue, 17 Nov 2026 12:52:46 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A74A8403C7;
-	Tue, 17 Nov 2026 12:51:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E2201F000C5;
-	Tue, 17 Nov 2026 12:51:30 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 80A006347C;
+	Tue, 17 Nov 2026 12:52:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C541F000C4;
+	Tue, 17 Nov 2026 12:52:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794919894;
-	bh=QKQS51dIpH/VoOQQlRFKsGbh0oMpDgEFKZcLUp0HWNw=;
+	s=k20260515; t=1794919965;
+	bh=6o7TDKHkFTQmT81k6n559xmxvDMTMHvxHuzIWW6x61g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=dYPBkrSg9vCQo0FBjn7Bfu0zE66ZW8+wELQoGVPQcLuyGxZio5sadA+SaKSRlrm+/
-	 fEiDYSM+zbqRxSIU5EsIlAwt/gUfUh8BYlEQ27D8C0dqPPVqwj/GccXq+oPT8ZQdqL
-	 rMdw4y6TtWBxZEYnPMCsydrDEKvmFhUMf1r6Cq/JZzIVeTymbHWWyUhcqWSaQwtsuQ
-	 Lua9b8KxzPNRcvVdJn6fWynl/JwfdZssI9+mfrxK1R6ATWK5LXzHNE2knLfU3irGKh
-	 V5oQE/P6uJyIPGokBTJPW1deGlKLYaMyC0dW5YzdJdE0FMFi7oxythn3WyaRpKJszd
-	 dwFcH9w9xuu1Q==
-Message-ID: <52b56201-b347-4053-8713-01cae87c4266@kernel.org>
-Date: Tue, 17 Nov 2026 13:51:28 +0100
+	b=imuRLrSgXqkUdax43NRoAuK3Vpfg25+EvcIQ1nLwKxoCiVn1gGy9M+gLFAHP8JgQF
+	 cqiH91XQ9JiWpSbZlJdi6XiHyig75UmspQkg9AGvhtz4mG9RU4RrQyn+CWU9CbgTK4
+	 m5nh1f/C6sZw7/ikVovsaJQwKv1nPt45+TxGvt8BESnBXTwobjKxsC//R3NvMeRhtE
+	 UYPtzEIdYcmz07Zn0jGOqETJ2b7dO/j7qJWF+if4QhpBUFaDaiTVgOU7I0QLH+6H3/
+	 2yr53EQAvEH/87n2Dug+rFZxNbLTwKj6EPs9WT5XqTrcxgLYhY9DlBwnw8/43OhuRu
+	 Q7U5HD4vD48XQ==
+Message-ID: <3701981f-cdda-46a7-8079-de5479ae9c27@kernel.org>
+Date: Tue, 17 Nov 2026 13:52:38 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/22] dt-bindings: thunderbolt: Add Apple
- USB4/Thunderbolt ACIO block
-To: Sven Peter <sven@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: mediatek: dpi: Add
+ compatible for mt8167
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+ linux-mediatek@lists.infradead.org
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>,
- Neal Gompa <neal@gompa.dev>, Andreas Noever <andreas.noever@gmail.com>,
- Mika Westerberg <westeri@kernel.org>, Yehezkel Bernat
- <YehezkelShB@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>,
+ Jitao shi <jitao.shi@mediatek.com>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20260906-b4-apple-soc-tbt-v2-0-1f80085f93fb@kernel.org>
- <20260906-b4-apple-soc-tbt-v2-6-1f80085f93fb@kernel.org>
+ linux-arm-kernel@lists.infradead.org
+References: <20260921113914.779393-1-l.scorcia@gmail.com>
+ <20260921113914.779393-2-l.scorcia@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,7 +110,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20260906-b4-apple-soc-tbt-v2-6-1f80085f93fb@kernel.org>
+In-Reply-To: <20260921113914.779393-2-l.scorcia@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -121,31 +123,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 06/09/2026 20:36, Sven Peter wrote:
-> Each Type-C port with USB4/Thunderbolt support on Apple Silicon SoCs
-> comes with block called ACIO ("Apple Converged I/O"). It contains a
-> Cortex-M3 co-processor, the hardware blocks implementing the USB4 host
-> router, the Native Host Interface (NHI) and a DART IOMMU. The
-> co-processor exposes the NHI and its DART to the main SoC bus while it
-> is running.
+On 21/09/2026 13:38, Luca Leonardo Scorcia wrote:
+> MediaTek mt8167 SoC has two Digital Parallel Interface (DPI) blocks,
+> one can be routed to a DPI display while the other is wired to the HDMI
+> block. They are not compatible with any other device, so add a new
+> compatible to describe them in the device tree.
 > 
-> ACIO can only be powered on after the Type-C PHY has been switched to
-> USB4/Thunderbolt mode. The Type-C PD controller publishes the negotiated
-> mode and cable information through the Type-C class. ACIO finds the
-> corresponding Type-C port through the OF graph connection.
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> index eb4f276e8dc4..6cd96a5cd4ae 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> @@ -21,6 +21,7 @@ properties:
+>        - enum:
+>            - mediatek,mt2701-dpi
+>            - mediatek,mt7623-dpi
+> +          - mediatek,mt8167-dpi
 
-
-We might need to revoke the reviews. The implementation here adds
-undocumented and unapproved ABI - aliases.
+Turns out you bring here undocumented ABI. NAK.
 
 Best regards,
 Krzysztof
