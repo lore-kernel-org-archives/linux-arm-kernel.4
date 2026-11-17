@@ -2,151 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5F5606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 16:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8FB606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 16:15:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o1GdxX2O;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=gBXmYVrB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bjwEZm9F;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=G4mSmiZL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Date:Message-Id:Subject:References:
-	In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=TmIWIwzpvVPW5qWTRBA8J9URBFsswe1CcGXepVcKOrs=; b=o1GdxX2OUB72QJs7DzFQY1mJJD
-	3vFJ0A46sFg/9ICsW+J6rsDVc8uQcoUcjKzG9J2RiP9o2wFCn7eTOdEin4+HkkBnXwVW44ngUFS0H
-	T5wKcaPIHEPz/+wfulpp9OH//7BlquXIg+3JsDZYZEuO3iAhQOTq2QGh+8NiRJl5PrDpBFi+IFaWp
-	hfz0Xu5Ry3Bx/FTbjVU9KfbxTCV676j6g7ExkFI/OvjXNCZFMx2JDbOR44diFxMVoi0tqOKrMenZd
-	oryqHn1Ti33PT5L1dYXrU75klMSAHKqgM18eLbL1bC+PCucp1PKIP5bD7jQ314lIRSAkQH6B5oC39
-	+j8wFJkw==;
+	bh=Zo7HDSI3Q+SlzaOYF7jYPSp+q4JGpMuWyCyvC0h9xhE=; b=bjwEZm9FukzsSRWLf9BwX5a4S+
+	BB9/eanQJmLJ5ijbbXxNVdSAoor++90jDj0G10fChkfjJY6k0r1fWpwPWDNxHRKWKgn4T8vxwrN8l
+	yiGWzZE8oXdXaA5rxEJ9Sh42j602ap4LBC+y5fmHfL1/ZHWYVxvVq9KYuqJEoj2+TMv0kTxpoFQX+
+	Ohkvw3HS1/5ANKYJNbAEnnsSQZIDtNgMFNXgj8MzJ0WEe1yhrRGatEBSQKysbL7Iwy/R/qSH5Qvkz
+	npkf5htv7pkEvtGaQJpO/z09k+aHOfVbDpbOmLxWBCSsd9AHkl5wudbjARTHSew4fFTob6PAraQ4o
+	TBdZXrBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTLou-00000006OSh-3hfh;
-	Tue, 17 Nov 2026 16:14:08 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xTLqC-00000006OZZ-0LQb;
+	Tue, 17 Nov 2026 16:15:28 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTLos-00000006ORu-3mLt
+	id 1xTLqB-00000006OZR-16Kc
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 16:14:07 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D+uf5bdPsY8vGHxdeQnHYQiy9Z8RFuA7vzKkUy3e86PHif/slF5M+ZICw9Z+XqbJ+9DUBDLsM5AxucGIRlYaCawJp0jYNpl0/xPkvbIKHRt/7ORuecJ3kuuDao2psRHKuhpMN6uhokOT5nJ8Fk4gluY2sAp2VNWdzKEYcumecq3efQv/cEzutW7R8MzYETbcGAlDhTzZsQoRfuQlQAUo+ZPCGBBLgJFriQiVAWIFX6lrtTeuSCeTsQPtdrttrYHwz8VaieE5NepL9Oql6ZsNrwAqtFlnm98b++/Eyo/fXdkwpd5gv8q4P5mCqCuVCtBZdt5uI9lyoyvHboCZBQ+LkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TmIWIwzpvVPW5qWTRBA8J9URBFsswe1CcGXepVcKOrs=;
- b=a2lBdXDPEoTrTohGsXwGPmK2+rKU0K/CvLzxPsUIwucnVlPnzHadXE5OUqBpRAHJokvsnWz27g7+U09MaLJyX/TfNjSDEtttyCiiaMJyuoyucTurbzo1zJAiSHLJradnKD3GfTAcd9QtVf8DAI/RCSyDojaSqK3JMjTyMMYGvhW1XBCpLK4UmJ+qJEx/f6vFT7MoEJLNTPsMLvUnTpEnPIZPrl3DuyMkmu8KbyVfAIDRsDgtoC0VbhBWypyu4MOf28SugpagkDqI5b4ohy9PxetMnlWeilRB9zmuYgSQBJ0h8gekV3z3P/VRvN68aXrecQAi6MKqLot7POToezVjgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TmIWIwzpvVPW5qWTRBA8J9URBFsswe1CcGXepVcKOrs=;
- b=gBXmYVrB77uV8DzTYJ9OiblmleUPQFksHcmpR3ao4KEpij46Y1GykIfqJryY4mkLBbVfF2daoY+MhwN+Cso1QKnk4LBOfnYxN542BnQ4WagTA8G4bbIDuBV5iiE+Chpn1vcMPTGd0YHjeJVEXL7GrnECxxOYOXt8Kw4hLxvIszKxpEMorEdwAjOKz826ny+7z5WqnoB6gTL8hrw8WwwY/L+wsROQUkxpvgJPgGCfMlERLoWpKdlmP1GpPp7H1YWgFYNaz/Tz/0qbTdpqZZ+znx4eBA2q+x2XHwBKdLcTVoO/ST7oSVAwicYToANTDKSNgVnYyR9o38nJ5usI8I02jQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
- (2603:10a6:150:32b::19) by VI2PR04MB10114.eurprd04.prod.outlook.com
- (2603:10a6:800:22d::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
- 2026 16:13:59 +0000
-Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
- ([fe80::a498:2b5a:cbdb:d6fa]) by GV2PR04MB12318.eurprd04.prod.outlook.com
- ([fe80::a498:2b5a:cbdb:d6fa%3]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
- 16:13:59 +0000
-From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- laixiangwu <laixiangwu@cmss.chinamobile.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, dri-devel@lists.freedesktop.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261030111304.2205-1-laixiangwu@cmss.chinamobile.com>
-References: <20261030111304.2205-1-laixiangwu@cmss.chinamobile.com>
-Subject: Re: [PATCH v2] drm/imx/dcss: Fix clock leak on blkctl init failure
-Message-Id: <179493203722.1421468.4624148645241955168.b4-ty@b4>
-Date: Tue, 17 Nov 2026 18:13:57 +0200
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16.0
-X-ClientProxiedBy: AM0PR02CA0158.eurprd02.prod.outlook.com
- (2603:10a6:20b:28d::25) To GV2PR04MB12318.eurprd04.prod.outlook.com
- (2603:10a6:150:32b::19)
+	Tue, 17 Nov 2026 16:15:27 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A047961222;
+	Tue, 17 Nov 2026 16:15:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 124F21F000C6;
+	Tue, 17 Nov 2026 16:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794932126;
+	bh=Zo7HDSI3Q+SlzaOYF7jYPSp+q4JGpMuWyCyvC0h9xhE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=G4mSmiZLVcOjNEBeCs+lz5x2YwtcGlK6TJK5oN/4tktNqoiKNti4QvDxiwhXF9ZHr
+	 46JQ5u8vZM1Cp2WpanWo4O/o3JKBfgaNPO35w8KCyZmSCwXmGkZbbrhJmmJ/YpOZi7
+	 ZgOo5WrDSLrXgopDCxIRaBzdJV0D38hVApWhCWKEleVUpXenD1rhTd7Bof9SEIKeNZ
+	 /IsegJHOkD6tdtNBQ6jun3EIAJs9sr1q+AzQKtb7r6lXbezyOONoZxBG80J5XZAi+B
+	 CWAwdy8MW+IYiEL5lNcL37P3AcFnWShp8NN4I5bgIrvTcNZK2YQ/RkuoyeHul/bfEy
+	 tu7fbPo0SKAyQ==
+Date: Tue, 17 Nov 2026 23:55:08 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/8] dt-bindings: net: Add MDIO demultiplexer
+Message-ID: <avx43Nv-DJCX5_Rr@xhacker>
+References: <20261116135442.4827-1-jszhang@kernel.org>
+ <20261116135442.4827-2-jszhang@kernel.org>
+ <16ecb3ac-7876-4db5-9168-5ac9bf31d4b7@lunn.ch>
+ <avvgy_bmRSVApCHA@xhacker>
+ <bd19b55b-00b1-406d-a16b-d04c35efb7d3@lunn.ch>
+ <avxhJs-51vs2Icje@xhacker>
+ <6eb16cd9-27bd-4934-9621-b8928dce6902@lunn.ch>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB12318:EE_|VI2PR04MB10114:EE_
-X-MS-Office365-Filtering-Correlation-Id: b599c1e4-a183-4edf-77f2-08df44c5c98c
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024|19092799006|23010399003|18002099003|261009223027099003|22082099003|261022105027099003|261022075727099003|261028144727099003|261026140227099003|56012099006|11063799006|10067099003;
-X-Microsoft-Antispam-Message-Info: kn6Ga5ZDz92fArhWSXSPykmJz5DUS6lhG+FYRaH4asjctDp0s4osOerlLZXbVH0Oo9Ju6/Fo+y9aTvBb1nX4FkjYdFKlRIRgty1wcWgDXfOrfdCR0J0yAA6AVFlmLMrLJ5TMvvyN/STebOji4yrudSCYqaM306ANW4laIsgD+/ivoj6J7MsKe2Az9jIDMnjFH4j3F/OEOReWoY5WK2O1D8YyaYMv12RySLpkj5X+hageonKvmizNNVFLm47MQZcPW1qaDufquajLEN0W52qLGXv4LmC3m7Zk/khxysW+tYja+TcbNkoHsp6r9xVGqOOG7l8ZT3VK74rnsNKr6UgtxbvvXxp965+/O+Qu8wUM/VQnAgoKYpmjYOMjXdst/mkgA/AQVYSZ39OiJTly7gB1Xc31WiEg8zxVV1tZZrx4zd1AQe7HlFGgoC5fNgmrjFr8mZl03QkjFb7cJHDhlMZ5YE65EMjut79/NpI4fQ5kLkC9wdEIUi+MgH+1AQYeEmXY8R/WKR5nU9ohegyTpuEE5VTaP7eu8Ij5HVZJb00imlCkIUDFRLTuIeniMCLvn3HiUHg7/sOQnztQvoma+g7dUX3Ih9wPExNhOydEp7gVQZ4YK4DYylvNcA3q2TR5RjXhVgZCgdkXepSO7xPN34S404Zdl4cymy1ixxnbAaalQm0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12318.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(19092799006)(23010399003)(18002099003)(261009223027099003)(22082099003)(261022105027099003)(261022075727099003)(261028144727099003)(261026140227099003)(56012099006)(11063799006)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZlBJNEhtTi9BUHRmRVdHY1ZtcGpick5UQzErbWVEMjJWQ3dUb3pXWURHTkhJ?=
- =?utf-8?B?T1VlWXRlZUk0dTJLZytOeWd4RURyeVhXVDUxWjFrWEw2T3hwd2wwenFlbGtl?=
- =?utf-8?B?NWVyakp1dks3NkdBZVNEcUROU3ovM3JKcjVsb3FXdGxlNUR1cTl6YnlmeHVl?=
- =?utf-8?B?L0IzZnBod0lxaEZWS0tRMFR4NHJKSDluQ1NZNzdvS25ibDlzbmxNZWxhNUM1?=
- =?utf-8?B?azBYemVIWXBBVmkzZnpNWkRhOXY3Q0pyZVN6bEt6R0JNTnovNXl0dGRaVkgx?=
- =?utf-8?B?UlV0VGxETXUrRmN3T1pGZkE0c2liMnRGY25lSWRuMnUyL1F4QURWSytMczJu?=
- =?utf-8?B?bnRhODlvcTVISmw5b3p5MWRoRk5zOFhXM0NNRFdvWCtDK1Via0pqdFVhWk1O?=
- =?utf-8?B?YXEvUkYvaTZlSFIyTWc5dzZ4NGhoNXFDUkgxZFFVSmt5dUE0MEs2ajlZdE8z?=
- =?utf-8?B?bDhQd0x0U0orWHIwMG80NC9uUXE5T0J2eGE4eGhNVmF6ZTVhMFRORy9ZaU9w?=
- =?utf-8?B?UVdKQkF2UDhWUEpsYTd6NVdxTlAzTGVDQmhvSFFJcUU1b29OelNvT245WE5K?=
- =?utf-8?B?UGhRNCsweWV4SGcxdVg0ejlPdFZ4cFZMVittLys4emYrZ3NYcGFLTzByOUVp?=
- =?utf-8?B?KzNEK3cvNEgyNGJYZlEweVVSQVBnRGQ5VFRSTEpmTS9kaVNlOXF3OUNmeWll?=
- =?utf-8?B?Qjl4Z1k2NkhzUWp1c2YyK2hQcW5sKzVYTFk1SDM1UXhNd1lUUks4cE5NZklN?=
- =?utf-8?B?YnJkWWlBU2czSkZsVHM1b3kyeHhRdmxYMVR4b2o0TWJScEJZdDRaaElESXNZ?=
- =?utf-8?B?MDZkVHlVUGVybnFOSksyVTVBcVFZc0JHNnNRNm5ONWFOeUQrQkJhZElodWRX?=
- =?utf-8?B?Q1hDTWpxY3VLbkllUDZCeGdQTTkwQVVod2ZKekV4YWhJUStCWmhPd1FUS01E?=
- =?utf-8?B?VkFldGQzVlJEYktjcHMzdVlRRU92T0xFbUpmaXdjUVBQUDQyQWRZYjJPelE2?=
- =?utf-8?B?VG51ZmdqVnFVTjZudmpDYU1LeFlKWDRNa0JQY0xoaTJnR0RSUmlkbVJRalJB?=
- =?utf-8?B?bDFleDJQNEcwaTYzWFhtbVFOOWFZSFE2S25hSDBsekZqV2IzQmprdTRPZUtO?=
- =?utf-8?B?bE9SRjE0U25JNCs1YStvOEVsMnFOVHF6Tk5WWkI1azRCMmVicFQ3YlBSYnNk?=
- =?utf-8?B?ZWpGNkxuNkJJcFVjZ0ZkYzdudDFNdDNONWROcW9CcURXbTJ2QkovWjlObVNR?=
- =?utf-8?B?ejZxNHVhQ2VtUVFCT1U5Vmo5T0hxQWIvd0ZHeDlUNEJUQjJFVzVqUWNoY2hl?=
- =?utf-8?B?MDNscnBNMmVSUStOYksvTVJqbkJESmNSNHJYalJmYXF0TkkySDM5aEY1MUNz?=
- =?utf-8?B?c2tOOERlQ1lpeHhQbTMxOUJMVkFYRkJaWnBrcHorSGJqL01sNGFoMHA3UU5Q?=
- =?utf-8?B?bGM2dVdNeTlZQ3l6ckJmSEd6NXRYWWFPUHFiSVNIemVqeHk4SE41dmFuOHZx?=
- =?utf-8?B?VUVWQStVNHB0OXN6am9EOFB3R21lNGlxZXYwYW1VdkY1bnF1UDFzL1hUeTZv?=
- =?utf-8?B?ZVpSVmNob3dmbFFibDVLUHY2Zjh3V1lNaU04eXY0ZUxTVWFyUGtUYTdhTk5M?=
- =?utf-8?B?THlrUFUwUWtlUUtzdGRMVGtPN0FOTHNWcXBYWTdHbHlNdUdBOWVGSXoyeTRr?=
- =?utf-8?B?T3l5N09vVWJaSmVmN2ZnRmcraFJGeGY5aFNCWUQ4UWVaNjl3L2tuM0h6bGtW?=
- =?utf-8?B?TUIxTHZOWEw3WWlYSHpiL2grWVVMNVVHUzNnU2xLTEgzb1BHRlR4TWxQMlJy?=
- =?utf-8?B?TE9INnlMckRmK01ySXVBMEtkUUZIMXBDcHh6QVh3dGxzclZ4dEpJbmEveENq?=
- =?utf-8?B?RENRNXpuSzVEVncwUjJCTzBrYUp3T1ZiMXM3eUxWMzhlallkT0IrbFpNejJ1?=
- =?utf-8?B?RGxvRFdPZFVQNnRWd0o0RjNvblgrL0g1aTNjZ0FQUzVVRXg1THJvcCsrMm5r?=
- =?utf-8?B?R25tSDJBdlFxcUI2ajFCUXZZR1ZSWEl1ZzJlTFlMUGJneXhNQUtBMDNuVGxJ?=
- =?utf-8?B?ME5STTcvSjNmSnU1c3BRVWlNQjlWUVdsN3NPUkNwUzAreFRvRWpWOVZ2RitU?=
- =?utf-8?B?T0ZyL1dzcUpyU2tlN20zZWhCWWZ2MGo0c3lmZGZqNmltcXNUaXNOS0dNM2sw?=
- =?utf-8?B?UDFYeXpTSWsvbGJFVllSTld0ek5NV05JZ3ZTRktZcjl4ZXJkTVRZQmcvVE8x?=
- =?utf-8?B?czVVaE1mUm8yR2s4Y2lIZWFvUVlWbkRta0t4eTF4VjZwblZERzNNQjdtQWVq?=
- =?utf-8?B?aWlHY0Rxand4bHh6aHNMc3locEZSRzRYTGNScGpicmgzUS9PUHVoVFE1aE9K?=
- =?utf-8?Q?GbQSQxpa9AAXQpQI=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b599c1e4-a183-4edf-77f2-08df44c5c98c
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12318.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 16:13:59.4464
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HELt5Bbl+RByI9XchWPbSQsESV47Ts/biSeuG5+kLkfm4gkAMUZMrMhX+MfoXrIQb3nIkJBO7e9kx5x08cluYg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10114
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_081406_947864_811C8B42 
-X-CRM114-Status: UNSURE (   8.27  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 0.0 (/)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <6eb16cd9-27bd-4934-9621-b8928dce6902@lunn.ch>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,33 +85,105 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-On Fri, 30 Oct 2026 19:13:03 +0800, laixiangwu wrote:
-> dcss_submodules_init() enables the DCSS clocks before initializing the
-> submodules, but if the first submodule (blkctl) fails to initialize the
-> function returns directly, without disabling the clocks again. All the
-> later error paths already jump to err_clocks, which calls
-> dcss_clocks_disable().
+On Tue, Nov 17, 2026 at 03:59:30PM +0100, Andrew Lunn wrote:
+> On Tue, Nov 17, 2026 at 10:13:58PM +0800, Jisheng Zhang wrote:
+> > On Tue, Nov 17, 2026 at 02:24:16PM +0100, Andrew Lunn wrote:
+> > > On Tue, Nov 17, 2026 at 01:06:19PM +0800, Jisheng Zhang wrote:
+> > > > On Mon, Nov 16, 2026 at 04:06:25PM +0100, Andrew Lunn wrote:
+> > > > > On Mon, Nov 16, 2026 at 09:54:35PM +0800, Jisheng Zhang wrote:
+> > > > > > Assume we have the following implementation:
+> > > > > >           ----------
+> > > > > >           |mmio reg|
+> > > > > > 	  ----------
+> > > > > >              |
+> > > > > >  --------    |      -------
+> > > > > >  | MAC0 |--MDIO-----| PHY |
+> > > > > >  -------- |     |   -------
+> > > > > >           |     |
+> > > > > >  -------- |     |   -------
+> > > > > >  | MAC1 |--     ----| PHY |
+> > > > > >  --------           -------
+> > > > > > 
+> > > > > > Both MAC0 and MAC1 have MDIO bus masters, and tie together to
+> > > > > > a single set of clock and data lines, which go to some PHYs. While
+> > > > > > there's a mmio reg to control which MAC mdio master can operate
+> > > > > > the single mdio clock and data lines, so only one MAC can operate
+> > > > > > the mdio clock and data lines.
+> > > > > 
+> > > > > How does this differ from pinmux?
+> > > > > 
+> > > > 
+> > > > in my case, the two MAC MDIO bus masters share the same MDC and MDIO
+> > > > pins.
+> > > 
+> > > That does not answer my question. How is this different to pinmux?
+> > 
+> > Let me explain the HW in details:
+> > The pad have their own pinmux configuation, which selects the MDC/MDIO
+> > fucntion instead of GPIO or another perif function. That pad
+> > configuration stays MDC/MDIO, I.E unchanged.
+> > 
+> > The register discussed here is a separate selector between the two
+> > MACs' MDIO controllers. With the pads already configured for MDC/MDIO,
+> > it choose whether MAC0 or MAC1 drives the MDC and MDIO.
+> > 
+> > So the proposed demux controls this internal selector and serializes
+> > selection plus the complete MDIO transaction across both MDIO
+> > controllers.
+> > 
+> > Would you prefer model the selector as pinctrl states, with an MDIO
+> > demux selecting the appropriate state under a shared lock before each
+> > transaction?
 > 
-> Since the clocks are only devm-managed for their reference (devm_clk_get),
-> a blkctl init failure leaves all five DCSS clocks prepared and enabled.
+> Each transaction?
 > 
-> [...]
+> Are you proposing to use both MDIO bus master? Why? To the outside
+> world, it is one MDIO bus, so you only need one active MDIO bus
 
-Applied, thanks!
+Yep, both MDIO bus masters. I wanted to let each MAC uses its own
+MDIO rather than disturbe another MAC for dual MACs case.
+But now it looks like a over-designed solution.
 
-[1/1] drm/imx/dcss: Fix clock leak on blkctl init failure
-      commit: 18e73878de68302508dbddbafeb5aef508640588
+> master. All the PHYs are then on that one bus.
+> 
+> I would let the DT pinctrl node connect one MDIO bus master to the
+> outside world, and that is all you need.
 
-Best regards,
--- 
-Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+What about coping with the selector in sl2610 stmmac glue layer? I.E
+use the presence of the mdio child node to identify the provider.
 
+For dual MACs case:
+
+&ethernet0 {
+	phy-phandle = <&phy0>;
+};
+
+&ethernet1 {
+	phy-phandle = <&phy1>;
+
+	mdio {
+		...
+		phy0: ethernet-phy@1 {
+			reg = <1>;
+			...
+		};
+
+		phy1: ethernet-phy@2 {
+			reg = <2>;
+			...
+		};
+	};
+};
+
+For single MAC case, it should be as simple as coding the selector
+to let itself act as the provider.
+
+This way looks simpler than modeling it as pinctrl. what do you think?
 
