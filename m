@@ -2,112 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815A0606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C0E606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:08:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KCvtgAK1;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IjKnpFNS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=po1z27Pj;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=g5Zst9//
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=gBeq2/iCMChVmV5bVu8cy+G0EEsYIJD3BwRTb22K9Y8=; b=KCvtgAK1BlXchcd2MWyMX1wQ5E
-	KR1Xv5QTFl78Bf1p1/52vBoMPOPgAnydgGBKvmX3sd6ikFTOlFqdg1vH/TfVQ6eMAGB1qK3mEEZNY
-	qKSUTAnrko7/vziUwsjmD5vKCoOfW+JIFBx3H2kd02jznccnAstpqydwQoGsPu6x7yhgggXOmMH5b
-	IArAqJy7NOMKi+bMeidO0LaCA2TBfF2fPHRG9O/Y+9+8fAtfRLuXFTYF81d/SSrjNN+29xSZli/Qd
-	uYgufFHPZo3ypEsfqKq+RU1NZ33focVrWcMbzknDGJ68eePavuWzp1Nv88fWBz7mSq/s+l2MecBw3
-	fb/qMSfA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=LFj3lXy8NNHrgy9P4EuYba2xkoAH+TOYY0+5Iczv/q8=; b=po1z27PjgThbGE
+	jdOHr4M6onkf3rwIjLUU8dUO08O2K5BA4rfUdzl9+cJEdX5Qrlx6VXx+XxcezGruPd4e47e20bAiU
+	kXsPWdrbWqLxuy/xIx+FN4WUkznAEO6m9f+6QQXAHjPMK3G9GANYOdaZxkgF3uGcextLzaR4HfXB1
+	/ME6tyU++bgseCLuojAGg/9IYcXZqFkDgYhgUJezTtcH84EIuS9nJKVoN/oQM9VcJ4PN21abvOK2I
+	nhtxwtGCompIXbKaFKIjhrN/rZZo20szeleDy5NfYCFQvv32b/l9defx03Qx4NjRKkT/e56Yw1ucw
+	nAzFObh32Ik+jQnQVUcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHz7-00000005YO7-4BoL;
-	Tue, 17 Nov 2026 12:08:28 +0000
-Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
+	id 1xTHzH-00000005YQu-3kzE;
+	Tue, 17 Nov 2026 12:08:35 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHyb-00000005YDm-2wVN
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 12:08:00 +0000
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-6b87a240de3so349117a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 04:07:52 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794917272; cv=none;
-        d=google.com; s=arc-20260327;
-        b=aqzJ94d0id+zj2kpgSbh8exghEBXyogiWty065Z0pdkUs2vEXXg/OAR/JOV4alVLnZ
-         S93BDj8xXEzUVwiVnbO5e40BV+g4oU8b8GZHXqNc5Adqbb/RmWJA9M2OhsyFj1uIXJ8D
-         3YGEpw5ysnWgETBjBQqKDutTfy76sXEvJepUhbttaTznZn+AUyK41rVvWdTUybTPJgEL
-         mS7xqvxJHudsMjnVgwAPISGYB6my+MWO4L8k5tx9HBm/QQdsNxU7uE1CKOqw3E4VxyUy
-         uvFoll6lvm7DZBfkMz/YTUyRgyBdjOVZh0YqH/jwh0tl494gs8X210q+UrA7YiuKyIrx
-         3tVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=gBeq2/iCMChVmV5bVu8cy+G0EEsYIJD3BwRTb22K9Y8=;
-        fh=T+ulIsbsOIzgCxpJOpeFeD2Q8ttdsH0Te0rsGL7+QE8=;
-        b=jPNKtwOz7nSLEQWGKr2PmkYuikBB5wL6+iYgjYVWs/m+f4GSHQDT2y1bTelH+W716H
-         IOsSSBxiVA0SyEEkPFtu/C0Q4HJ5kRVk7t9/Ekjn4SM6jqAFANoM/4Cy0LpYtVdOF/2y
-         uTs8YHNH2kU3pXL3+u6lAtzaHJfnEyvIYAXWCqkVyozo2mbyIbtPd5bsctybU5Ln0N0B
-         /J+Tk56DxIq49y6HhYdIZc/OGUk/kN4CisdSmVncIVYUByaTOqn9kEjPYFyyjRZvoBrs
-         jv8I37E8dKCiiSzcr+8fZsOVCJR8J0jxxrgTwCGNvs65nybYaIDxXw8iMGNauWKIh4/m
-         p+iw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794917272; x=1795522072; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=gBeq2/iCMChVmV5bVu8cy+G0EEsYIJD3BwRTb22K9Y8=;
-        b=IjKnpFNSJada6sPN2EeM6hXyFnjrzXF4401QuSvT5xoLhj4oU1ftcIi07xMFYVxUBQ
-         bfUF34S6V0tvXEjaSbWxgCPSN1Fex7fUHN4sLLYmmalZDrYnCmsxr4bp71D8F8rU3M8z
-         FermnKSmd9HKigM6t3Sxs1a4n6JKpbjzT3NvjiVbJr142hE0FJXl3Bu+LrbVvaWYAer2
-         /6K0FcEQAU7+K/oLwomvCbsDenGYV21F+1cOltKHlqs9x5SbZDnT+azkCaFPvXJlLfXs
-         wHuaWlM+Im/soYxwJjbY3B5IegsGf2CHiB0JMIf6rMShxatcax1vBftylU1AG/sW+lTs
-         RHuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794917272; x=1795522072;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=gBeq2/iCMChVmV5bVu8cy+G0EEsYIJD3BwRTb22K9Y8=;
-        b=QyXQ+U3GLYnN+ysYpmcKJSM7bwGVnaO/XGCzSugFsRFwh6+7WJOZZ6kFWDTUoVlpxE
-         SnwiNZumn7y0dcbiFke37hY2FbEErHAN6PYn2o31mn1uu2lWuZ/puka32NKHo/4q9/3P
-         hN42XgX3zChv38Rvoh1/FUQS597Gy6+K1Gqdhn0IVWmhwGYDUKfVvHt0id88DeyU2K/U
-         NG2QolmqRY3c6H9k9NlZd2P9j45/egDTtrZ2vT2j5x6NiVwdPJPhkETqNkJAwmp+I5Rq
-         LFuvPUYVvcf5qpR8X3nViLODn/snbu30uSxL+h1fblKRQpKNb4xpiWuaDUtJqxIOkzP7
-         SYGQ==
-X-Forwarded-Encrypted: i=1; AL+hErEw4TUG2n8da1HbGhn8NKqMCg9i6Ij1NWkzEhp11DyjhkgEkKu42kKIoZtmla6O2UANEdJ3nIBE5l+FPEs3qVfC@lists.infradead.org
-X-Gm-Message-State: APuU4Z8s2TlKKP0lxTQ4EaF9Egg0iv9plHK0AxCpYYWkTPyCvnLUf/Ma
-	BW+A8xknpPmdgFW4WS+1Q3WQpNjwGBwZzfFsgtzwGCBWVWQ7ZJyQX6CXEXCPridVtWyF+MtwcGc
-	4sis+kD9NZ07pTkCGEEdPtq75px2phkOH5g==
-X-Gm-Gg: AYBFou3VknCSCVCdY9TqKM+tzQLiVwcTGF+ri3Q3wdomUlxtlUz3v+MBMX13AndZJ7b
-	2GtOSvG+0PKREiEHb2L7S+GVZXyPnovli736PknEvMPadUb7nIJ9clzqnzU7OeDasjVl6HuNTIN
-	h8OZcx0zWMuPBkORHhmQR1YnSjsIOhvioj08R+DycMEmI5FvIjInzYRnAgUKaiZfGwogiqbVSK7
-	p+MKYWry40z2BN21mHyEIzyOKfkcTJB9G8Tl9CNzj4FeK5RTJtwLJZ4eYiRsT505TosXTWV29oU
-	6KQ0D6UOoldorn+S91Qx96v+YO2vGUf5FctGg+L967qgekwctr2BuPiFX5f8C9HEYjzcampGKs4
-	0pVUgWIUWfaml8rDTlEcNfaCzLzkIUQDKF8Y=
-X-Received: by 2002:a05:6402:c6c1:10b0:6b1:d62b:a8dc with SMTP id
- 4fb4d7f45d1cf-6b7c08b4e88mr7273282a12.1.1794917271385; Tue, 17 Nov 2026
- 04:07:51 -0800 (PST)
+	id 1xTHyn-00000005YJ5-1uoG;
+	Tue, 17 Nov 2026 12:08:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794917283;
+	bh=qGJ17IHmxkOflCOJsC/QkOY+G2dnIFle6zJPxp+P/7I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=g5Zst9//jEGwPRI2YVRn13Ge4CrvbaNDygbVKekV3LEcFCHtNupowTPbIecPAePKM
+	 zhNFpAjFJOOOCUoFV5dvjgYDgOmbcSrLROXZdi/gcOgujS3XxFXoC7YwkqP+IKXdqx
+	 1R9e6RQCGFonunfgM/RicojeTaKvGIkScD4cBgcW9CgghkiILWL89MzeFBvQi1Ihxp
+	 I9Gn1MRFjOSqS/hTCpoJLSlv3OY2wGeCBACLVD/llWvGnulPUZm0FCupxM3sz3EQwe
+	 K0rLoXI+2M312jQ6LP2d2zStRgnbsL1GxW9HzjQjR+kO4Nz+jNmXL6IJo/gDPErav0
+	 gBB8gzRb00kRg==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9365A17E00E8;
+	Tue, 17 Nov 2026 13:08:02 +0100 (CET)
+Message-ID: <6935d7a4-2f91-4abf-81e9-f77c2b6c80d2@collabora.com>
+Date: Tue, 17 Nov 2026 13:08:02 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261117113402.728183-1-l.scorcia@gmail.com> <7fb43d3c-8c9d-43b5-b979-aef65f362ed9@collabora.com>
-In-Reply-To: <7fb43d3c-8c9d-43b5-b979-aef65f362ed9@collabora.com>
-From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Date: Tue, 17 Nov 2026 13:07:40 +0100
-X-Gm-Features: AclHuK843kgmezwD-dXfy2-fm2q_WSzPEZgRrKlkUSUYV45gRmYPefogu3Bgl1c
-Message-ID: <CAORyz2L_NDcvj3KkD_6CPFO3QhX1dGWphc7Pfacif2x0n=O_DQ@mail.gmail.com>
-Subject: Re: [PATCH] soc: mediatek: mt8167-mmsys: fix errors in
- multiple-output display paths
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, 
-	Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v5 3/4] nvmem: mtk-efuse: add CPU speedbin
+ post-processing
+To: Roman Vivchar <rva333@protonmail.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Lala Lin <lala.lin@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20261117-6572-nvmem-v5-0-9b561a8a83e1@protonmail.com>
+ <20261117-6572-nvmem-v5-3-9b561a8a83e1@protonmail.com>
+ <b0fa129a-e9ad-4a7b-a2aa-2202bfa23232@collabora.com>
+ <k8LLawty9o68P00hLr5LO1163o_m16f_vf8fBZvdD18nOatszy1i4Dp7DeC8Hv2--Q08YyZfhCRnQbVDps0lqB2zZrx-k_GxKUaqj6eT6r4=@protonmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <k8LLawty9o68P00hLr5LO1163o_m16f_vf8fBZvdD18nOatszy1i4Dp7DeC8Hv2--Q08YyZfhCRnQbVDps0lqB2zZrx-k_GxKUaqj6eT6r4=@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_040755_274139_8F5BED74 
-X-CRM114-Status: UNSURE (   6.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261117_040811_022079_F9AC981F 
+X-CRM114-Status: GOOD (  20.73  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,17 +82,102 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> This misses a Fixes tag.
-> Please add the relevant one and resend.
+On 11/17/26 13:02, Roman Vivchar wrote:
+> Hi Angelo,
+> 
+> On Tuesday, November 17th, 2026 at 1:56 PM, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
+> 
+>> On 11/17/26 12:33, Roman Vivchar via B4 Relay wrote:
+>>> From: Roman Vivchar <rva333@protonmail.com>
+>>>
+>>> MediaTek SoCs are often released under the same marketing name, but with
+>>> different suffix for the speedbin. For example, mt6572m has 1 GHz limit,
+>>> mt6572a - 1.2 GHz, mt6572w - 1.4 GHz.
+>>>
+>>> Since the speedbin is stored as a number in the efuse, add support for
+>>> converting it to the bitmask for opp-supported-hw usage in the DT.
+>>>
+>>> Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+>>> ---
+>>>    drivers/nvmem/mtk-efuse.c | 19 +++++++++++++++++++
+>>>    1 file changed, 19 insertions(+)
+>>>
+>>> diff --git a/drivers/nvmem/mtk-efuse.c b/drivers/nvmem/mtk-efuse.c
+>>> index 980c29d01337..d2e5c69c580e 100644
+>>> --- a/drivers/nvmem/mtk-efuse.c
+>>> +++ b/drivers/nvmem/mtk-efuse.c
+>>> @@ -70,6 +70,18 @@ static int mtk_efuse_gpu_speedbin_pp(void *context, const char *id, int index,
+>>>    	return 0;
+>>>    }
+>>>
+>>> +static int mtk_efuse_cpu_speedbin_pp(void *context, const char *id, int index,
+>>> +				     unsigned int offset, void *data, size_t bytes)
+>>
+>> You can *literally* reuse mtk_efuse_gpu_speedbin_pp....
+> 
+> No, I can't. On later SoCs CPU speedbin has different encoding.
+> For example, on mt6768 it can be stored in either low or high 4 bits.
 
-Sure, thank you!
---
-Luca
+That's the part where you pass the right nbits in devicetree for the speedbin cell,
+being it still 4 bits, that statement doesn't change the outcome.
+
+> This is out of scope for this series, but I'd like if we kept this
+> callback for the future SoCs.
+
+All that the logic of your mtk_efuse_cpu_speedbin_pp is doing is assigning
+
+BIT(val[0])
+
+to val[0].
+
+All that the logic of mtk_efuse_gpu_speedbin_pp is doing is assigning
+
+BIT(val[0])
+
+to val[0].
+
+To me, that looks code duplication, and duplication is bad.
+
+> 
+>>
+>>> +{
+>>> +	u8 *val = data;
+>>> +
+>>> +	if (val[0] >= 8)
+>>> +		return -EINVAL;
+>>> +
+>>> +	val[0] = BIT(val[0]);
+>>> +	return 0;
+>>> +}
+>>> +
+>>>    static void mtk_efuse_fixup_dt_cell_info(struct nvmem_device *nvmem,
+>>>    					 struct nvmem_cell_info *cell)
+>>>    {
+>>> @@ -83,6 +95,13 @@ static void mtk_efuse_fixup_dt_cell_info(struct nvmem_device *nvmem,
+>>>    	if (cell->nbits <= 3 &&
+>>>    	    strncmp(cell->name, "gpu-speedbin", min(sz, strlen("gpu-speedbin"))) == 0)
+>>>    		cell->read_post_process = mtk_efuse_gpu_speedbin_pp;
+>>> +
+>>> +	/*
+>>> +	 * On mobile SoCs, the CPU speedbin is a number. Convert it to
+>>
+>> Other SoCs have got the same efuse style as mobile SoCs: anyway, all MediaTek
+>> SoCs (apart from networking ones) are (in a way or another) variants of the
+>> mobile ones.
+> 
+> They're not really variants, some of them have no direct mt81xx/83xx sibling.
+> 
+Noone looked hard to find the siblings for some of them - though there might be
+one (and just one) that has no sibling :-)
+
+Regards,
+Angelo
 
