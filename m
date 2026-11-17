@@ -2,121 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA49606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88E2606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hROk7ojP;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=q2q4cieC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q2PjrBAv;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Nut6pCgX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Subject:Cc:To:From:Date:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=IDaAvYVXZ58edhDcqT25CtUAFfFh9zrLMuk/nutn9Sg=; b=hROk7ojPnOdvCt/1vL1jmOa8rq
-	kem+u8sWWawT8kP1PDYRqTF+1JW9cgjQmR2m0RafFmC0J9M4ghOBVjTKAxgHdYuzigYTPZd1icHPx
-	J0pRyvzyfZB6W3j88953qotJgg6YnDQtLRhSi9tlOlQKnSVujDuX1IMTFWLgFEpIjDC4M1rsyb/zQ
-	khszFF0V2wrPY9AS+lCze3tFN1V2DbyD45U/1eXszJCsfgrhtOzVH4s/zr0BKE+X3K++y3PCx6C6P
-	DI8WFA2BAdzeG1hRrNNQG7qnn2/YM+pZKT6kNaXdsxqU/vUS9F42Sfzc6lebwFhKIKswUdABrDhay
-	LBo9uSPg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=NDXZE5uN16UvOOflyM5pOpVzOkug8tVrjeti6ZNqlOk=; b=q2PjrBAvh1mbDg
+	LFphctkXGlSuwt2k+QgX3lFfuvkieD7wRq8J2ojOUt//quJVifwUm4E735vfquruG++vwBbtzvZIN
+	fFnziNbR2Uv9EqDQB5wY3EPyRh2ZV+edSdO9A2elbVAqZxW7Fw7xViSABCtmtIe03K9tyxae6Fof9
+	NtaoV7Cnxg+mJzngAsMxhKypT350N2JSOkg9+hXmED85qz0nCr2eUvK8Z7stxWP8jdZkg5u3z9Yw7
+	p6vmnf0tpTu1erFTZFi0Tw+D/G+1QdA74cnPm2LQJCuzesYEX1CCDpbfW4QpckaH1k9Ktnd1kTQZe
+	SKJ8frXvVElg/D4f+hrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIb6-00000005j0T-2kzB;
-	Tue, 17 Nov 2026 12:47:40 +0000
-Received: from mail-ed1-x536.google.com ([2a00:1450:4864:20::536])
+	id 1xTIcz-00000005jWD-3MTA;
+	Tue, 17 Nov 2026 12:49:37 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIb4-00000005ize-1omJ
+	id 1xTIcy-00000005jVj-2TvW
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 12:47:39 +0000
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-6b4bd3d98bfso6248514a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 04:47:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794919656; x=1795524456; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:subject:cc:to:from:date:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=IDaAvYVXZ58edhDcqT25CtUAFfFh9zrLMuk/nutn9Sg=;
-        b=q2q4cieC8NWR+fxn44RT+e0VgSbC6B2IVxLUgbbBvX4DEMy2n2zFbOE9Z2Q4A3u+n7
-         h82uBGtkSrK7iyXH3WgUfR8wq6TS5Cr2XTqrNNUjFRxq6kAbXxCXWqXicmU8GkkC91Hk
-         zl6Dq0oJomnOZJC19htM7q8vUJIUygSgvKD8ILMuV/SRIUl6NGGlRflhgmeiSx/JkYcp
-         ylFV5pmRstGiy1tU7cwIaYqrv7j34qTYvfAGGbSK/jBaV0+4enAptNC3gTTCWp8j/xKN
-         1byliAOJ5teXi+zI3zRhgvymP3l2qTAHIImUJ5MhEm52ZYDeFeXPVOWnAHEyOdlNFHiA
-         3ViA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794919656; x=1795524456;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:subject:cc:to:from:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=IDaAvYVXZ58edhDcqT25CtUAFfFh9zrLMuk/nutn9Sg=;
-        b=jl3JoWs3qgDSwMRxWW5yvlCg4/9gxLjQA0nLcoZumWNRQQBX8unsc4jXWRuymbq1iR
-         fPD6Iefv5CmCPtJhtekUamxR1p8hxwkhmzdr1HWvQVEK7aRo3SzdMqsZo3vHva5kA79g
-         Qez6oepmLEW+p1QirA4J42PQ6EjSfyQR7GU3GLBHMmtX5/Gmzlt3/1J9RSv9wxr3BjrX
-         HBnZS7Oi9QMJ3yl3JRZ6ymyyXEhsosdcyzWzuGyH2IJi6sM7un5B0v9yu/Jc5ECcUkoq
-         vnaN/rwSHTdyjFuA0ULtqySKSrkjboheXAtxEIjUcmiLyM404YOT7srR7cjMSdvQ2iZi
-         gHVA==
-X-Forwarded-Encrypted: i=1; AL+hErFP8avgjUptSjT7w9NIT7pWnt5FkRbnOG/cmhyoCIPONa6dSpDRolUTbX381rhtf67eFKGoFejVsTjCsZvsDyp1@lists.infradead.org
-X-Gm-Message-State: APuU4Z9q/PARd7Zt6y4E8XD6lI7qEL3jDuaWc2uyy4b0hB46V8a/yxEJ
-	wI/vHgeECYDUghpOyfkKVIQsbGL5BIPMfOxDsWSZsGuP1dp648JG7mbW
-X-Gm-Gg: AYBFou3TwZD2hDRwaYW1LMwGOPJF3S3UEKP9Pb41LUNCkazpbnMslw/WHYk82FLWWMD
-	enAtbQbryBMMudPbsiGBIrezOPK3urSSZWIQ864/8az4WZu8mkw/5WodQGaJgkkjmM8VGXsXIUq
-	WvXwOR5AvKuP9VtiwjdOc1sM6IXHb0wZ5OWPBRosHIf7fFJX/93B/CqP8n6hXHo8M9sgzGuMA75
-	FNflDD6p8JrhQrPhUIwl5GRFO/ySEdVyxxi+ROlxMeP14ycadJLkgSodkn9qP/tqQ6mgXjX4bgR
-	YMXOG+rUlhkbr2+wrSJ3SpVr3p+aDlTJJwDDNZKF4HqN3NVTb00rICYwmIKUF8RwJm5s58tTbBJ
-	M8qCIH4HNvzGUTHKDTwCj5DaOkh3UvVIMXy3InaLGrFK4ijDAL8fpc9TDFcRjmjC0vShzwjKvER
-	rQh9Ww5yGoMd3S92QYe4KnhyERuy3FaviSJe4vAeFxjDP+L3Ojv0L8mg7wLeKDrFtGnoX+v9MCp
-	aUMcyWv4shudpELAEhD8erKciPSVmSGCkgBMjQZLDXA3T6TjMIWlamS1exVrV7uA+gNqobWLlY5
-	lvB+mIUjvT3+wBaYgrXFADouU8GpGdogwx5vPzmN5wuD2eZ8xBGKo24PHnrHZMAIWY9lVS0nHsL
-	rCulnQyemY0DHFKjv
-X-Received: by 2002:a05:6402:2347:b0:6b8:7d2b:4dcb with SMTP id 4fb4d7f45d1cf-6b87d2b5390mr750722a12.14.1794919656177;
-        Tue, 17 Nov 2026 04:47:36 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-92-103.ip49.fastwebnet.it. [93.34.92.103])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b87368c70fsm430430a12.23.2026.11.17.04.47.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2026 04:47:35 -0800 (PST)
-Message-ID: <6afc4ce7.4b925a68.31e7c.7768@mx.google.com>
-X-Google-Original-Message-ID: <avxM5Ldccuc6TgM_@Ansuel-XPS.>
-Date: Tue, 17 Nov 2026 13:47:32 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: netdev-bot+sinfo@kernel.org
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, llvm@lists.linux.dev
-Subject: Re: [PATCH net-next v22 00/15] net: pcs: Introduce support for
- fwnode PCS
-References: <20261117123956.11981-1-ansuelsmth@gmail.com>
- <179491941687.3291.11313796890436002644@kernel.org>
+	Tue, 17 Nov 2026 12:49:36 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id F28D64363A;
+	Tue, 17 Nov 2026 12:49:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B239E1F000C5;
+	Tue, 17 Nov 2026 12:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794919775;
+	bh=NDXZE5uN16UvOOflyM5pOpVzOkug8tVrjeti6ZNqlOk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=Nut6pCgXoh+kAmsX2ASzjgctAD9VtVsFeGVHA5qIw8RWIYMcizQCIKD8DVf6sGKeX
+	 0FQg1J2QRXe7Q5DBP6zsRTZIJS1pfmVFrcKujmdIvKTMxWwkLuiA4d9nVjCIe8g/aJ
+	 oUyBOXJUpYA9eTMoHkleUYnF17c5Jr37AxJHqI2xQSxwyyC8Avda1Sgkf3e6cRuHDJ
+	 2vgivel8MK3Jkes3aeymyZ4yMs4F4LlUI+4sJcpl4frcHiENRc96E3LDUv4MKo7j9O
+	 12PuNHxAqKFyrxResu9VmopxolYSr7JBq+qz74DcC7PfumHlmJ/+mfip049tuhHMfY
+	 jT9EA79B31bSQ==
+Message-ID: <7bebe58b-6a87-4458-bd23-a672eaef8760@kernel.org>
+Date: Tue, 17 Nov 2026 13:49:29 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <179491941687.3291.11313796890436002644@kernel.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_044738_518259_77151D5D 
-X-CRM114-Status: GOOD (  22.80  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 21/22] arm64: dts: apple: t8112: Add USB4 ACIO and NHI
+To: Sven Peter <sven@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>,
+ Neal Gompa <neal@gompa.dev>, Andreas Noever <andreas.noever@gmail.com>,
+ Mika Westerberg <westeri@kernel.org>, Yehezkel Bernat
+ <YehezkelShB@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20260906-b4-apple-soc-tbt-v2-0-1f80085f93fb@kernel.org>
+ <20260906-b4-apple-soc-tbt-v2-21-1f80085f93fb@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20260906-b4-apple-soc-tbt-v2-21-1f80085f93fb@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,48 +120,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 12:43:36PM +0000, netdev-bot+sinfo@kernel.org wrote:
-> Hi!
+On 06/09/2026 20:36, Sven Peter wrote:
+> Add the ACIO host router, NHI, DART and mailbox nodes for both Type-C
+> ports on t8112 and connect the host routers to the Type-C connectors.
+> Also describe the USB3 path from each host router to its DWC3 controller
+> so the NHI driver can create the required device link.
 > 
-> This is an automated message. This series looks like a fix, but its
-> commit messages seem to be missing some information:
+> Signed-off-by: Sven Peter <sven@kernel.org>
+> ---
+>  arch/arm64/boot/dts/apple/t8112-jxxx.dtsi |  95 ++++++++++++++-
+>  arch/arm64/boot/dts/apple/t8112.dtsi      | 186 ++++++++++++++++++++++++++++++
+>  2 files changed, 279 insertions(+), 2 deletions(-)
 > 
->  - How the issue was discovered, e.g. hit in production, hit during
->    development, syzbot report, manual code inspection, LLM or static
->    analysis tool scan.
-> 
->  - Whether the issue was actually triggered, or is only theoretical
->    (e.g. found by LLM and not proven at runtime). If it was triggered
->    please include the symptoms, like the stack trace or kernel messages.
-> 
-> Please do not repost the series just to address the above. Instead,
-> reply to this email with the missing information, so that reviewers
-> can take it into account.
-> 
-> *IMPORTANT*: If you do repost (for other reasons) - please include
-> the relevant info in the cover letter or commit messages.
-> -- 
-> The evaluation is done by an LLM so it may be wrong, if you think
-> that is the case please reply and explain.
+> diff --git a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
+> index 562e7a25a1e8..d0dc7eaaca35 100644
+> --- a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
+> @@ -13,6 +13,10 @@ / {
+>  	aliases {
+>  		atcphy0 = &atcphy0;
+>  		atcphy1 = &atcphy1;
+> +		usb4-0-acio = &usb4_0_acio;
+> +		usb4-0-nhi = &usb4_0_nhi;
+> +		usb4-1-acio = &usb4_1_acio;
+> +		usb4-1-nhi = &usb4_1_nhi;
 
-The RCU """bug""" was found while evaluating the code. It's hardly possible
-to have such bug on real world scenario since PCS and MAC are currently
-tightly coupled. Nonetheless with VERY BAD PROGRAMMING it's still possible
-to trigger it.
+Sorry, that's a no go. I will be removing all of these which were committed.
 
-It's both a fix and a prerequisite for having standalone PCS support.
-
-(hope I don't have to repeat this message for the next gozillion revision
-of this series...)
-
--- 
-	Ansuel
+Best regards,
+Krzysztof
 
