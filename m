@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F1BE606A883
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44627606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=orjlhg9d;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=P17xzKtE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aYoQFDfU;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Fqbr4M5D
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
@@ -14,52 +14,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=v0pad5rhFZNVf/DcwG2P+Ojp8s+P0GwyLe5Cg7QYVCI=; b=orjlhg9dTGaKel+B8luRe4xHdv
-	QOvKWQt9wJpdDqRagRFaLNICOepihMGaIlKOrCZomb308OnltrDdzGpRisKj61lWO4eZFunUKeOnf
-	PYBCU/hR4AhGb1977g/DRnPQtWhb0DS+xYx3UAHeuFC45IzMc5Fc9UgXrgmb6YNxJ3J0uto/cD/5x
-	7YtIcemfDwIEw0iGIY4aFTlbkXwhmZUofTEu1+d9wvgIWE/bQhmkBu4aWjDzAscE40aNoKIQ3ynhf
-	A1GAODkb2LBtNXd7NmwA8WrwtK8xn7CgxWyYlJ83h1YQJ5xnbp8pgYsq+BGTIYBfm3eAG2f0eP2GV
-	oUF4EeDA==;
+	bh=0ZGenTYhhhmk9ojD2HrCoiIy9IDBRXToYlx91iW/n0c=; b=aYoQFDfUejA4YpDbI5nLP+JTU/
+	ih/qJ7N8RN4e4JWWv2BnWkXULuXYVyzctHJ87f/u3XDIseH2oCXOW3UO6grFgW0EGVSuMLAB4ZLvH
+	j03LWlqp1V5SF1D+DsLTtBx63B7qRsNLS/Ucde/LOleeQWIPeHkpXTuKHwGXbfBwfbNCmDn6kPZpJ
+	JbcyW++gc300k2bhPmnX63KjmTMQqKtsrsTT/xAp0GcP9Ji+95nvKPxwZH67MPNRH/QrkQ/yYO2DN
+	PoQrWVPr86++ubRdOf8z2mPg8ZqXY9UpJBFUrhoj3CJOkVWgaCOSZU4uTYYi0TohuVJWTyDnX+vVp
+	OtYbtYhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTRLy-00000007C7l-1pBV;
-	Tue, 17 Nov 2026 22:08:38 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xTRSG-00000007Cuy-0sdX;
+	Tue, 17 Nov 2026 22:15:08 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTRLv-00000007C7K-3dn4;
-	Tue, 17 Nov 2026 22:08:37 +0000
+	id 1xTRSD-00000007CuJ-0j2D;
+	Tue, 17 Nov 2026 22:15:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794953312;
-	bh=YKI1+orUhC7UVyTNXTw2Fvdl/90JM9tFKLlKjK3PlCM=;
+	s=mail; t=1794953701;
+	bh=Jp6lTkAnzzbNf+/NdEgoToYgR1t2Gdsu0x5UIbUA/nE=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=P17xzKtEYoIkyovYIg//JNQKvg/4GEj5FVwp99jX0cDdTXC9lQb/W9EhSjy4qC5rs
-	 SWkD0sCZu5NTMCaxzxbsJL19dNuSkifRrI8fGB3BPCDj1XvojM2cG4QDqghRjwLaIu
-	 WTiessdUsZfL+VwYjKirmOfUXFqlqB5PGPdvMmVtjcQDYEDr5UvG6zzjlWgGO33Dvg
-	 LMPhArW19gbGU4LJpPydyQF9KKMw0CqrDVR0ciJLhS/nyPJR5GfoST5B90V96R/6IG
-	 DFRH4M2kpdKrojE9CszMkgTUQ6iEyN+G1hUOLh0K+s2tSgrKDzDD41OygH0Uq2jUjV
-	 qrnTFlt0Q+w2w==
+	b=Fqbr4M5DcLUN5+ufNdjiUZjOBhaCCSlEQZ+Yf1cO8RIaW7C2nJPIRh4JFBfd+gAAw
+	 dtUFSkJizDUyevdQ4gcppeM1HxCO/3WqUrLHt2hqAQTP1ia6KzleUf4qfOYaVs68Ll
+	 d33ffm9Cyn098dBSEcH9xP9+lHt6CEwe1i0ksISb4XDPTB3GDUBipskl9nu8a+pguE
+	 TMc2+5k52qz+cxDOXwV+dKVAH1ClvuQfGfEsogQMVWYbP7KB/S5yJtqhp0mz6spqmu
+	 xJp2sq6x5VpGJtRy7UxD856oN3OeQAQrYB1Turb3zZzrfifuhp4s71sfXlcEPrBi51
+	 duA6lrsvg9edA==
 Received: from [100.64.0.214] (unknown [100.64.0.214])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EF37017E00E8;
-	Tue, 17 Nov 2026 23:08:30 +0100 (CET)
-Message-ID: <fa76c2a0093bc0c75702dcdbfacbf0b2adc8ad9c.camel@collabora.com>
-Subject: Re: [PATCH v2 0/9] v4l2: Add tracing for stateless codecs
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5F32717E0406;
+	Tue, 17 Nov 2026 23:15:00 +0100 (CET)
+Message-ID: <4e5f5669174657fdf3ae3298cc4eaecb5176bd30.camel@collabora.com>
+Subject: Re: [PATCH v3 0/5] media: Add fdinfo support for v4l2 drivers
 From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Detlev Casanova <detlev.casanova@collabora.com>, Daniel Almeida	
- <daniel.almeida@collabora.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
-  Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
- <mhiramat@kernel.org>, Mathieu Desnoyers	 <mathieu.desnoyers@efficios.com>,
- Benjamin Gaignard	 <benjamin.gaignard@collabora.com>, Philipp Zabel
- <p.zabel@pengutronix.de>,  Heiko Stuebner	 <heiko@sntech.de>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-trace-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Date: Tue, 17 Nov 2026 17:08:30 -0500
-In-Reply-To: <20260610-v4l2-add-ftrace-v2-0-9756edf72ac1@collabora.com>
-References: <20260610-v4l2-add-ftrace-v2-0-9756edf72ac1@collabora.com>
+To: Detlev Casanova <detlev.casanova@collabora.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>, Heiko Stuebner	 <heiko@sntech.de>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, kernel@collabora.com, 
+	linux-arm-kernel@lists.infradead.org, Christopher Healy <healych@amazon.com>
+Date: Tue, 17 Nov 2026 17:14:59 -0500
+In-Reply-To: <20260706-v4l2-add-fdinfo-v3-0-d556568cf38e@collabora.com>
+References: <20260706-v4l2-add-fdinfo-v3-0-d556568cf38e@collabora.com>
 Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
  keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
  /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
@@ -75,13 +73,13 @@ Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
  bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
 Organization: Collabora Canada
 Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-+9L0I7/vQ9auKcdun9Ph"
+	protocol="application/pgp-signature"; boundary="=-SbHR3Iz8Jecq/hEvoD/N"
 User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_140836_133270_D18CE473 
-X-CRM114-Status: GOOD (  23.62  )
+X-CRM114-CacheID: sfid-20261117_141505_416140_A5F1C27D 
+X-CRM114-Status: GOOD (  26.74  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,133 +91,140 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-+9L0I7/vQ9auKcdun9Ph
+--=-SbHR3Iz8Jecq/hEvoD/N
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-Le mercredi 10 juin 2026 =C3=A0 10:33 -0400, Detlev Casanova a =C3=A9crit=
+Le lundi 06 juillet 2026 =C3=A0 09:42 -0400, Detlev Casanova a =C3=A9crit=
 =C2=A0:
-> Hi !
+> fdinfo is useful to poll information from the driver.
+> Unlike the ftrace interface, it lets userspace tools get a snapshot of
+> the state of the driver at their own pace, instead of getting events for
+> each driver status change.
 >=20
-> This patchset aims to improve codec event tracing in v4l2.
+> This works better to get information like HW usage time or clock
+> frequencies, as well as memory usage.
+> This patch set focuses on mem2mem drivers that are per-frame based and
+> an implementation is proposed for the Verisilicon Hantro and Rockchip
+> rkvdec drivers, limited to main clock frequency and HW usage time, as
+> well as HW cycles counting in Hantro.
 >=20
-> The traces added in visl by Daniel Almeida are moved to the global trace
-> events.
-> They are adapted to trace each each field separately and not just the
-> whole struct so that userspace can filter on different fields and
-> libraries like libtracefs and libtraceevent can be used to list the
-> fields instead of parsing the trace printk's.
+> Even though it is not used yet, per core fields are appended with=20
+> `-<core_id>` to support multi-core drivers.
 >=20
-> The trace event templates are also reworked to avoid long lines, but
-> quoted string splits are kept as they don't cut words.
+> To ease support in drivers, a v4l2_metrics struct is added.
+> It stores metrics information and provides helper functions to write
+> the fdinfo file in a standard way.
 >=20
-> To each trace event are also added a tgid and fd fields, helping
-> userspace track different decoding sessions (contexts) based on the given
-> file descriptor used by the given process id.
+> An example of usage of this from userspace is implemented in v4l2top:
 >=20
-> Also for better tracking, stream on and stream off events are added as
-> well as HW run and HW done events to track decoder core usage.
+> https://github.com/cazou/v4l2top (Check the upstream branch)
 >=20
-> The main focus is to be able to generate perfetto traces to show VPU usag=
-e,
-> a perfetto producer using this can be found at [1] (it will be renamed to
-> match the more generic approach than hantro).
-> Other controls can be traced later as well, this patch set only focuses o=
-n
-> mem2mem type drivers.
+> checkpatch.pl warning: The 2 arguments in the show_fdinfo callback
+> definition are kept unnamed to match with the rest of the struct
+> definition.
 
-This is getting old, can you rebase and fix all the checkpatch and smatch i=
-ssue.
-There might be some build issues too?
+Please rebase and address the CI issues please. Would be nice to have other
+people comment.
 
-https://gitlab.freedesktop.org/linux-media/users/patchwork/-/pipelines/1683=
-571/
+https://gitlab.freedesktop.org/linux-media/users/patchwork/-/pipelines/1700=
+504/
 
-cheers,
 Nicolas
 
 >=20
-> [1]:
-> https://gitlab.collabora.com/detlev/hantro-perf/-/tree/hantro-improved-in=
-fo
->=20
-> Changes since v1:
-> - Don't modify the printk format
-> - Trace all fields of the structs instead of the whole struct as a buffer
-> - Remove fdinfo patches (they will come in another patch set)
-> - Fix long lines
-> - Rename v4l2_requests.h trace header to v4l2_controls.h
-> - Add basic documentation
->=20
 > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 > ---
-> Detlev Casanova (9):
->       media: Move visl traces to v4l2-core
->       media: Map each struct field to its own trace field
->       media: Add tgid and fd fields in v4l2_fh struct
->       media: Add tgid and fd to the v4l2-requests trace fields
->       media: Add missing types to v4l2_ctrl_ptr
->       media: Trace the stateless controls when set in v4l2-ctrls-core.c
->       media: Add stream on/off traces and run them in the ioctl
->       media: Add HW run/done trace events
->       media: hantro: Add v4l2_hw run/done traces
+> Changes in v3:
+> - Rename the fdinfo key prefix from "media-" to "v4l2-", and "stats" to
+>   "metrics"
+> - Restructure the documentation to have mandatory and optional keys
+> - Add core ID to fields
+> - Add HW cycles count support
+> - Add ABI documentation
+> - Link to v2: https://patch.msgid.link/20260617-v4l2-add-fdinfo-v2-0-d298=
+e98ce06a@collabora.com
 >=20
->  drivers/media/platform/verisilicon/hantro.h        |    1 +
->  drivers/media/platform/verisilicon/hantro_drv.c    |   10 +
->  .../platform/verisilicon/rockchip_vpu981_regs.h    |    1 +
->  .../media/platform/verisilicon/rockchip_vpu_hw.c   |    4 +
->  drivers/media/test-drivers/visl/Makefile           |    2 +-
->  drivers/media/test-drivers/visl/visl-dec.c         |   76 -
->  drivers/media/test-drivers/visl/visl-trace-av1.h   |  314 ---
->  drivers/media/test-drivers/visl/visl-trace-fwht.h  |   66 -
->  drivers/media/test-drivers/visl/visl-trace-h264.h  |  349 ---
->  drivers/media/test-drivers/visl/visl-trace-hevc.h  |  464 ----
->  drivers/media/test-drivers/visl/visl-trace-mpeg2.h |   99 -
->  .../media/test-drivers/visl/visl-trace-points.c    |   11 -
->  drivers/media/test-drivers/visl/visl-trace-vp8.h   |  156 --
->  drivers/media/test-drivers/visl/visl-trace-vp9.h   |  292 ---
->  drivers/media/v4l2-core/v4l2-ctrls-api.c           |   10 +
->  drivers/media/v4l2-core/v4l2-ctrls-core.c          |  114 +
->  drivers/media/v4l2-core/v4l2-fh.c                  |    1 +
->  drivers/media/v4l2-core/v4l2-ioctl.c               |   37 +-
->  drivers/media/v4l2-core/v4l2-trace.c               |   48 +
->  include/media/v4l2-ctrls.h                         |   19 +
->  include/media/v4l2-fh.h                            |    4 +
->  include/trace/events/v4l2.h                        |   77 +
->  include/trace/events/v4l2_controls.h               | 2708 ++++++++++++++=
-++++++
->  23 files changed, 3033 insertions(+), 1830 deletions(-)
+> Changes in v2:
+> - Simplify key/value pairs by removing repeated <eng> suffix
+> - Add media type support
+> - Add v4l2_stats helpers
+> - Add support in rkvdec too
+> - Link to v1: https://patch.msgid.link/20260612-v4l2-add-fdinfo-v1-0-7232=
+11abc861@collabora.com
+>=20
+> To: Mauro Carvalho Chehab <mchehab@kernel.org>
+> To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> To: Philipp Zabel <p.zabel@pengutronix.de>
+> To: Detlev Casanova <detlev.casanova@collabora.com>
+> To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+> To: Heiko Stuebner <heiko@sntech.de>
+> Cc: kernel@collabora.com
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+>=20
 > ---
-> base-commit: acb7500801e98639f6d8c2d796ed9f64cba83d3a
-> change-id: 20260608-v4l2-add-ftrace-aec6e7f60a6c
+> Christopher Healy (2):
+>       docs: media: add documentation for V4L2 driver usage metrics
+>       media: hantro: Add per-context fdinfo usage metrics
+>=20
+> Detlev Casanova (3):
+>       media: v4l2: Add callback for show_fdinfo
+>       media: v4l2-core: Add v4l2-metrics interface
+>       media: rkvdec: Add per-context fdinfo usage metrics
+>=20
+>  Documentation/ABI/testing/procfs-fdinfo-v4l2       | 129 +++++++++++++++=
+++++
+>  .../userspace-api/media/drivers/index.rst          |   1 +
+>  .../media/drivers/v4l2-usage-metrics.rst           | 137 +++++++++++++++=
+++++++
+>  drivers/media/platform/rockchip/rkvdec/rkvdec.c    |  19 +++
+>  drivers/media/platform/rockchip/rkvdec/rkvdec.h    |   1 +
+>  drivers/media/platform/verisilicon/hantro.h        |   3 +
+>  drivers/media/platform/verisilicon/hantro_drv.c    |  19 +++
+>  drivers/media/platform/verisilicon/hantro_hw.h     |   1 +
+>  .../platform/verisilicon/rockchip_vpu981_regs.h    |   1 +
+>  .../media/platform/verisilicon/rockchip_vpu_hw.c   |   6 +
+>  drivers/media/v4l2-core/Makefile                   |   2 +-
+>  drivers/media/v4l2-core/v4l2-dev.c                 |  12 ++
+>  drivers/media/v4l2-core/v4l2-fh.c                  |   3 +
+>  drivers/media/v4l2-core/v4l2-metrics.c             |  78 ++++++++++++
+>  include/media/v4l2-dev.h                           |   1 +
+>  include/media/v4l2-fh.h                            |   2 +
+>  include/media/v4l2-metrics.h                       |  47 +++++++
+>  17 files changed, 461 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 3c587e0b08bd3c4853a22792b9166b7457870165
+> change-id: 20260610-v4l2-add-fdinfo-a790fceab329
 >=20
 > Best regards,
 > -- =20
 > Detlev Casanova <detlev.casanova@collabora.com>
 >=20
 
---=-+9L0I7/vQ9auKcdun9Ph
+--=-SbHR3Iz8Jecq/hEvoD/N
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavzQXgAKCRDZQZRRKWBy
-9O3jAQDZ8BZcn7gZDDvbPjsacktSHHnvBQ6sV6/UOIhaT59xmwD/dc0B0IzmagZI
-neZLwegym+RxxGBk7Fn60KARGmqsGgE=
-=eJc6
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavzR4wAKCRDZQZRRKWBy
+9C/0AP9RF0H01sdRh/eJRCsUAy8Q/aqr1DKXqin2GOcLmr/uzAEA9ouvtdSlhzQq
+TSAuxOdPvh6OjRqo481dsz54XVxmIQc=
+=aX0G
 -----END PGP SIGNATURE-----
 
---=-+9L0I7/vQ9auKcdun9Ph--
+--=-SbHR3Iz8Jecq/hEvoD/N--
 
