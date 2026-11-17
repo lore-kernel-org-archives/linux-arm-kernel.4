@@ -2,67 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 896B3606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E475606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p7NazTQh;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jA1WaEyL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bg4bH6/K;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QdLWeOj+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=VxC0DozNreNxgG26Yk5DzFkJ77rWztZR0nbiAbWO7/Y=; b=p7NazTQh0rbyovuJt7ija7CEZe
-	K1Ynangl7git1yBamo+c1sKPhFKaVwwWZIQZD2d3+pMTWX85pbyZWNZD3Mh/wSRkPZj83Ee7EGia8
-	gCJM2fXz25lVAZ4fcpV0WbR7lwBbBa0G8Q3wLPFGCnSlk5lH/NJ8nDc32WfVDvLuSCBSUAd3CYLwN
-	WTuiMnBLe+5jIqpVfCfXizmZ/9uG/FHJh6isUzXQuROpia57CrOVv5cOpDB7/kPuQche9SiZnWVdh
-	jLP6kwzQQmITGmbrixbVLFXmavaiG1wFYspA5ENDzKiEXjwxCBqecezztmxCZHqIi61JIP/Xm5lwi
-	3vK1xw5A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=4adGshk3DcGvhqFeQZWKT+ilTqCtanGq6mRdY2JYAuk=; b=Bg4bH6/K7cF8YG
+	r6+aslfFWSodKo3OUR9qshHhjciaOMMNn8kN3de7ckEMbmNnQ2nQVWuOvV1y3r685cUldSaTO+svY
+	AP/uE75oVKKqfIpzV9Z90IXZE5sUVe3h8wWLtLtdMr+7wF5rlpA0KLUoFJhBi5ilnM0Mb+N8Zm229
+	pES7oN2ZQyhfOdnm5NOSnG3GLx+OZy8nfh8sBFQZMkMMQBJvi/fT0f6QaoFnlpyHi1PYQaAmnspyP
+	XoSrq1Jht6VV2gMc4eyIKkSRZFZNypTeDAbp12ohV59VzFqHSmKdMsKcIlCVU73L3gGT1zGaXsk7X
+	H8UlMv7LMivAbDo3lqzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJ1T-00000005sKF-0FbL;
-	Tue, 17 Nov 2026 13:14:55 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xTJ2y-00000005t0L-3TyX;
+	Tue, 17 Nov 2026 13:16:28 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJ1M-00000005sIV-2soH
+	id 1xTJ2r-00000005sxr-0SXX
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 13:14:48 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5D86F459EE;
-	Tue, 17 Nov 2026 13:14:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27FA91F000C8;
-	Tue, 17 Nov 2026 13:14:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794921288;
-	bh=VxC0DozNreNxgG26Yk5DzFkJ77rWztZR0nbiAbWO7/Y=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=jA1WaEyLYlV3n0eHvN36mhUjJsdUalbd8O9XLwAWsAot3vbI79qy33NTi9rBKjFY/
-	 SVvXWp4SXNnc10/qnITDr4VSzzIIKEK6AGYfawnX4L3K7SJ/uIIADrOYejXCg4ttOv
-	 owaOgKtxApCZoLzSSjTVA213sbRMQrkBS658DPqPvZ8/6KIEd6cZVNDxsU//sKwv00
-	 3FnnAPuNXSOxq3PaAyVJi9gLJWAoz5rQw1kj9RxOfw5IJh9zVkBqX8H2u1YTKKf/UK
-	 EtBsr18CNdzrQfK8vD5mP4gLyWzZgbfaodF+pRpx4zfJkUwr9ZdJSkSgB5TKOf0dNS
-	 lxrCKkKn7q8gA==
-Subject: Re: [PATCH net-next v4 6/8] net: xilinx: tsn: add the endpoint RX data path
-From: netdev-bot+sashiko@kernel.org
-To: srinivas.neeli@amd.com
-Cc: nagadheeraj.rottela@amd.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, richardcochran@gmail.com, michal.simek@amd.com,
- bigeasy@linutronix.de, clrkwllms@kernel.org, rostedt@goodmis.org,
- edumazet@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rt-devel@lists.linux.dev, git@amd.com, neelisrinivas18@gmail.com
-Date: Tue, 17 Nov 2026 13:14:46 +0000
-Message-ID: <179492128674.3136.6421836248333363912@kernel.org>
-In-Reply-To: <20261113-patches_v2_external-v4-6-56bb26f042a4@amd.com>
-References: <20261113-patches_v2_external-v4-6-56bb26f042a4@amd.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Tue, 17 Nov 2026 13:16:28 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a214c5c4c0so46040125e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 05:16:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794921379; x=1795526179; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=4adGshk3DcGvhqFeQZWKT+ilTqCtanGq6mRdY2JYAuk=;
+        b=QdLWeOj+aecadOPt56GbXTSYOwnHuZ9quqsIOAUI5Pz4onANCO3ij0TvMgGD40IR8E
+         CdesbWoxidws55O09v/HsZhCktW44ucfmsmePCdNxN5zSOWs4M/uj7mJIdStY8jEznDq
+         uXdYWmTIWn8pX9Q4mF2Ujv/fQWMM1ir73k81EDqo1mQtiEtR6oKo+uC1+I2GwSKS29Lv
+         D3MdAb2DoYp+A159G7UAOtCcZbB1yA+Q5PfrU4U2SAsniG9xmwqpgGBmHcCoz03PN2Zo
+         IBkbJuZf8RVntWGT9vnXpNdESVpS77dS+M6htfOcRqZSIsu4M24Xt3UoNX27hbZbaqiI
+         89Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794921379; x=1795526179;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=4adGshk3DcGvhqFeQZWKT+ilTqCtanGq6mRdY2JYAuk=;
+        b=TxVD2o+j1nsZpfK84Z+Rmira4B+mmpq4Ubjx73vGnHruQ3Nf3+VQMkJbmgmO/7yJbz
+         DrsAF4LGUnV7ehnul0TgYgOtkFYeJckHm5Ndv0aU6+LXS3Wf7NFda5W2gf7RobcQsoz5
+         1VKwFE3f6Op9dZEAZLzwuS+drwxOyszIgS851H2jvex5GtuVuZES08l33pJVlNsI+UG6
+         Qh4hq5YF/7QrsQ5JwNYakVr3yy5E8/pqM72STgJP5/I7kScJdHGiQoLue1UVn3yCE6Ah
+         cIrlZa8HWSg90y0nB5aEJGdtKzVHLPW8NFN00fqkjDg5Xu9G+pz2GwGGYm2dEdE9BIzL
+         cegA==
+X-Forwarded-Encrypted: i=1; AL+hErE2pdwW1D6fj6SLe+AcGEGZx/7u8pE/eXHC6jJEdvPKgwTl8PoZdUtnSNefqpC1TsnjoHwBdgKZmMqh5+ocvtZl@lists.infradead.org
+X-Gm-Message-State: APuU4Z8MT+s8pRLKGGX1JnIg0VW3ZV6LwAE7MoJd+TWPFkcXlN1dAQsT
+	V3nHGkUfwng1T8UofqmiA2IGKDw0Qzva9tcsJEhoQxq8/zTHMStpCDj2
+X-Gm-Gg: AYBFou3XEVEeefpYL0bz/XQDHl33La0N+aQB00+Xdvmj0BcCHfCWXpAokAa8G+X/VNx
+	P/6pFW2xtEMmsJ7+I8AN/49egBlISidkKGhYtCn3NRkCasej3v44/6PIRsH1EqYGlkANf7zRo9B
+	qPAwZO/n8/uzEh4wKmzuKE4trRVEr/UNZkM9kdYkNO1TrJxz/iD/kQkJr5tzewG2YbIQO7qwV6c
+	qjHJIyPYs/I1+riFln9fLCyL+3JPHe5wbqZsHRMPp/bxAX1G4jsuKwCL/fFOH45fWUU0YY1s9uM
+	U7To994uTpKj0ckkOjneOZeiTt2h8SZRvlw+jeGRUMsmiQTQh++my2LX7AU5t83huc/ShBI5Zkx
+	9gnim7dFkdjn9mr03+bNrN6cFlBfrbgBeLOSMfDn3lnmHpjTgCBGFACkmO9Xwxwf+/ZC0iyli/j
+	cNvPaLhk3o/reJudmVoUFTVXn6B92m72bnrct/HFhd2hOBA1eHSYjulIabFJWYG04fIkCGU1ryF
+	slkax9Yfw6XswsbRHV3BQ6a/DiQ20uOgUwNJwLTnjjYc/x/PzptHmXctgL3XYvmjlP0q8R43/k3
+	ATaAp7GKIaun/eat6JI2j9zF2dJ3/Tn2BNyfNpWMCdjKV5rU0adOgrCHWxljATzKNg==
+X-Received: by 2002:a05:600d:3:b0:4a1:ddaa:571e with SMTP id 5b1f17b1804b1-4bb55a50eacmr238269805e9.15.1794921378994;
+        Tue, 17 Nov 2026 05:16:18 -0800 (PST)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c5f5972a7sm26817173f8f.21.2026.11.17.05.16.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Nov 2026 05:16:17 -0800 (PST)
+Date: Tue, 17 Nov 2026 13:16:16 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Cc: Linus Walleij <linusw@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <saikrishna12468@gmail.com>, <git@amd.com>
+Subject: Re: [PATCH] pinctrl: zynqmp: Ensure function names are NUL
+ terminated
+Message-ID: <20261117131616.0a631d5c@pumpkin>
+In-Reply-To: <20261117073947.1100444-1-sai.krishna.potthuri@amd.com>
+References: <20261117073947.1100444-1-sai.krishna.potthuri@amd.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_051621_205663_35C5F2B2 
+X-CRM114-Status: GOOD (  20.74  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,392 +103,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_2 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 4 potential
-issue(s) to consider.
+On Tue, 17 Nov 2026 13:09:47 +0530
+Sai Krishna Potthuri <sai.krishna.potthuri@amd.com> wrote:
 
-Critical: 0 · High: 0 · Medium: 2 · Low: 2
-
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
-
-- [Medium] In drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c,
-  ep_dma_rx_cb() gets the MCDMA S2MM metadata block (metadata[0] = S2MM…
-- [Medium] net: xilinx: tsn: RX stall from MCDMA IRQ coalescing in
-  ep_rx_refill()
-- [Low] The RX path needs the dmaengine provider to support
-  DESC_METADATA_ENGINE, and nothing checks for it.
-- [Low] The commit message says that refilling from the completion
-  callback "keeps the ring full without a separate refill worker".
-
---
-
-net: xilinx: tsn: add the endpoint RX data path
-
-This commit adds the RX data path for the Xilinx TSN endpoint driver. RX
-buffers are posted to every MCDMA RX channel on open and reaped from the
-dmaengine completion callback, which passes MAC1/MAC2 frames up the stack
-with __netif_rx() and refills the ring. A per-channel lock and a closing
-flag keep the refill from racing with teardown.
-
-> Refill each slot from the completion callback unless the interface is
-> closing, which keeps the ring full without a separate refill worker.
-
-[Severity: Low]
-Is this description accurate? The patch also adds rx_refill_timer.
-ep_rx_refill() arms it with mod_timer() when a refill leaves the ring
-empty. ep_rx_refill_timer() then submits descriptors from timer softirq
-context.
-
-The commit body never introduces the timer or says when it is armed. The
-teardown paragraph mentions "the timer" as if it had already been
-described.
-
-The timer is only explained in the v2 changelog below the '---', which is
-dropped when the patch is applied. Could the commit message describe the
-timer-based retry after an allocation failure?
-
-> diff --git a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
-> index 52d2da04a5d88..f179062c7d148 100644
-> --- a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
-> +++ b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
-
-[ ... ]
-
-> @@ -113,6 +136,181 @@ ep_get_desc(struct xlnx_tsn_ep_dma_chan *xchan, int idx)
-
-[ ... ]
-
-> +static void ep_dma_rx_cb(void *data, const struct dmaengine_result *result)
-> +{
-
-[ ... ]
-
-> +	/* MCDMA metadata: [0] = status, [1] = sideband (TID/TDEST/TUSER), [2..] = app */
-> +	tuser = metadata[1] & TSN_TUSER_MASK;
-> +	rx_len = ep->max_frm_size - result->residue;
-
-[Severity: Medium]
-Should metadata[0] be checked here too? The comment says it holds the S2MM
-BD status. Only the sideband word in metadata[1] is read, so the
-RXSOF/RXEOF bits are never checked.
-
-ep_rx_submit_desc() posts each RX slot as a single buffer of
-ep->max_frm_size (TSN_MAX_VLAN_FRAME_SIZE, 1522) bytes:
-
-    sg_dma_len(skbuf_dma->sgl) = ep->max_frm_size;
-
-If a frame longer than that reaches the S2MM channel, the MCDMA continues
-it into the next BD. That BD completes as a separate dmaengine descriptor.
-
-On the provider side, xilinx_dma_complete_descriptor() only tests the
-Cmplt bit and copies the channel-wide chan->err into desc->err. So
-result->result is DMA_TRANS_NOERROR for both parts. That gives two cases:
-
-  - The head BD has residue 0, so rx_len is 1522. It passes the length
-    check and goes up the stack truncated.
-  - The tail BD starts mid-payload. If rx_len >= ETH_HLEN and its sideband
-    carries port_id 1 or 2, eth_type_trans() reads sender-controlled
-    payload bytes as the MAC header, and then __netif_rx() delivers it.
-
-Could a remote sender use this to inject an L2 frame built from the payload
-of an oversized outer frame? That frame would be credited to the port_id
-of a BD that is not the start of the packet.
-
-The driver has no ndo_change_mtu, and nothing in the tree sets the
-MAC/switch maximum frame size. So what stops a frame over 1522 bytes (QinQ,
-or an 802.1CB R-TAG plus VLAN) from reaching the DMA? This depends on
-hardware behaviour that can't be confirmed from the tree.
-
-The commit message also says:
-
-    Drop and count frames with bad descriptor status, an invalid length or
-    no metadata pointer.
-
-However, the only status check is result->result. That is the channel-level
-error, not the per-BD status word.
-
-The later patch "net: xilinx: tsn: deliver endpoint RX frames to DSA user
-ports" uses this same port_id to pick the DSA user port. So the issue is
-still there at the end of the series.
-
-[ ... ]
-
-> @@ -306,9 +524,19 @@ static int ep_init_dmaengine(struct xlnx_tsn_ep *ep)
->  		rx_allocated++;
->  	}
+> PM_QID_PINCTRL_GET_FUNCTION_NAME returns the function name in a fixed
+> 16-byte field and does not guarantee NUL termination. A 16-character
+> name fills the entire field.
+> The driver copies this field into a 16-byte buffer and subsequently
+> uses it as a C string. For a non-NUL-terminated name, string operations
+> can read past the end of the buffer into the adjacent groups pointer.
+> 
+> Reserve an extra byte for the NUL terminator and explicitly terminate
+> the copied function name.
+> 
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> ---
+>  drivers/pinctrl/pinctrl-zynqmp.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pinctrl/pinctrl-zynqmp.c b/drivers/pinctrl/pinctrl-zynqmp.c
+> index aba129ead04c..c778133fadc2 100644
+> --- a/drivers/pinctrl/pinctrl-zynqmp.c
+> +++ b/drivers/pinctrl/pinctrl-zynqmp.c
+> @@ -29,7 +29,11 @@
 >  
-> +	for (i = 0; i < ep->num_rx_queues; i++) {
-> +		if (!ep_rx_refill(ep->rx_chans[i], false)) {
-> +			dev_err(ep->dev, "RX channel %d: no descriptors armed\n",
-> +				i);
-> +			ret = -ENOMEM;
-> +			goto err_free_chans;
-> +		}
-> +	}
-> +
->  	return 0;
+>  #define ZYNQMP_PIN_PREFIX			"MIO"
+>  #define PINCTRL_GET_FUNC_NAME_RESP_LEN		16
+> -#define MAX_FUNC_NAME_LEN			16
+> +/*
+> + * Firmware returns the name in a fixed-size field and does not guarantee a
+> + * NUL terminator. Keep one extra byte for the NUL terminator.
+> + */
+> +#define MAX_FUNC_NAME_LEN			(PINCTRL_GET_FUNC_NAME_RESP_LEN + 1)
+>  #define MAX_GROUP_PIN				50
+>  #define MAX_PIN_GROUPS				50
+>  #define END_OF_FUNCTIONS			"END_OF_FUNCTIONS"
+> @@ -650,6 +654,7 @@ static void zynqmp_pinctrl_get_function_name(u32 fid, char *name)
+>  	 */
+>  	zynqmp_pm_query_data(qdata, payload);
+>  	memcpy(name, payload, PINCTRL_GET_FUNC_NAME_RESP_LEN);
+> +	name[PINCTRL_GET_FUNC_NAME_RESP_LEN] = '\0';
 
-[Severity: Low]
-Should ep_init_dmaengine() check that the RX channels support
-DESC_METADATA_ENGINE before arming them?
+Too many constants....
+You might want to try embedding 'name' in a structure.
 
-xilinx_dma_probe() only sets DESC_METADATA_ENGINE when the DMA node has the
-optional xlnx,axistream-connected property:
+Then, at least, you can use sizeof().
 
-    if (xdev->has_axistream_connected)
-        xdev->common.desc_metadata_modes = DESC_METADATA_ENGINE;
+David
 
-Without that property, desc_check_and_set_metadata_mode() returns
--ENOTSUPP. Then dmaengine_desc_get_metadata_ptr() in ep_dma_rx_cb() fails
-for every descriptor, so every frame is dropped and counted in rx_errors.
 
-ep_rx_refill() still returns true in this case, so ndo_open() succeeds.
-The only sign of the problem is a rate-limited "Failed to get RX metadata
-pointer" warning.
-
-Would it be worth adding a dmaengine_is_metadata_mode_supported() check at
-open or probe time? The new xlnx,tsn-endpoint-ethernet-mac.yaml binding
-also doesn't say that the MCDMA node needs this property.
-
-[ ... ]
-
-> @@ -113,6 +136,181 @@ ep_get_desc(struct xlnx_tsn_ep_dma_chan *xchan, int idx)
->  	return xchan->skb_ring[idx];
 >  }
 >  
-> +static void ep_dma_rx_cb(void *data, const struct dmaengine_result *result);
-> +
-> +static int ep_rx_submit_desc(struct xlnx_tsn_ep_dma_chan *xchan)
-> +{
-> +	struct dma_async_tx_descriptor *dma_rx_desc;
-> +	struct skbuf_dma_descriptor *skbuf_dma;
-> +	struct xlnx_tsn_ep *ep = xchan->ep;
-> +	struct sk_buff *skb;
-> +	dma_cookie_t cookie;
-> +	dma_addr_t addr;
-> +
-> +	skbuf_dma = ep_get_desc(xchan, xchan->ring_head & (xchan->ring_size - 1));
-> +	if (!skbuf_dma)
-> +		return -ENOSPC;
-> +
-> +	skb = dev_alloc_skb(ep->max_frm_size);
-> +	if (!skb)
-> +		return -ENOMEM;
-> +
-> +	sg_init_table(skbuf_dma->sgl, 1);
-> +	addr = dma_map_single(xchan->dma_dev, skb->data, ep->max_frm_size,
-> +			      DMA_FROM_DEVICE);
-> +	if (unlikely(dma_mapping_error(xchan->dma_dev, addr))) {
-> +		if (net_ratelimit())
-> +			dev_warn(ep->dev, "DMA mapping error on RX submit\n");
-> +
-> +		goto err_free_skb;
-> +	}
-> +	sg_dma_address(skbuf_dma->sgl) = addr;
-> +	sg_dma_len(skbuf_dma->sgl) = ep->max_frm_size;
-> +	dma_rx_desc = dmaengine_prep_slave_sg(xchan->chan, skbuf_dma->sgl,
-> +					      1, DMA_DEV_TO_MEM,
-> +					      DMA_PREP_INTERRUPT);
-> +	if (!dma_rx_desc)
-> +		goto err_unmap_skb;
-> +
-> +	skbuf_dma->dma_address = sg_dma_address(skbuf_dma->sgl);
-> +	skbuf_dma->desc = dma_rx_desc;
-> +	dma_rx_desc->callback_param = xchan;
-> +	dma_rx_desc->callback_result = ep_dma_rx_cb;
-> +
-> +	skbuf_dma->skb = skb;
-> +	cookie = dmaengine_submit(dma_rx_desc);
-> +	if (dma_submit_error(cookie)) {
-> +		skbuf_dma->skb = NULL;
-> +		goto err_unmap_skb;
-> +	}
-> +	xchan->ring_head++;
-> +
-> +	return 0;
-> +
-> +err_unmap_skb:
-> +	dma_unmap_single(xchan->dma_dev, addr, ep->max_frm_size, DMA_FROM_DEVICE);
-> +err_free_skb:
-> +	dev_kfree_skb(skb);
-> +	return -ENOMEM;
-> +}
-> +
-> +static bool ep_rx_refill(struct xlnx_tsn_ep_dma_chan *xchan, bool arm_timer)
-> +{
-> +	int avail, i;
-> +
-> +	scoped_guard(spinlock_bh, &xchan->rx_lock) {
-> +		if (READ_ONCE(xchan->ep->closing))
-> +			return false;
-> +
-> +		avail = CIRC_SPACE(xchan->ring_head, READ_ONCE(xchan->ring_tail),
-> +				   xchan->ring_size);
-> +		for (i = 0; i < avail; i++) {
-> +			if (ep_rx_submit_desc(xchan))
-> +				break;
-> +		}
-> +		dma_async_issue_pending(xchan->chan);
-> +
-> +		if (i > 0 || xchan->ring_head != READ_ONCE(xchan->ring_tail))
-> +			return true;
-> +
-> +		if (arm_timer)
-> +			mod_timer(&xchan->rx_refill_timer,
-> +				  jiffies + EP_RX_REFILL_RETRY);
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static void ep_rx_refill_timer(struct timer_list *t)
-> +{
-> +	struct xlnx_tsn_ep_dma_chan *xchan = timer_container_of(xchan, t,
-> +							       rx_refill_timer);
-> +
-> +	ep_rx_refill(xchan, true);
-> +}
-> +
-> +static void ep_dma_rx_cb(void *data, const struct dmaengine_result *result)
-> +{
-> +	struct xlnx_tsn_ep_dma_chan *xchan = data;
-> +	struct skbuf_dma_descriptor *skbuf_dma;
-> +	size_t meta_len, meta_max_len, rx_len;
-> +	struct xlnx_tsn_ep *ep = xchan->ep;
-> +	struct net_device *ndev = ep->ndev;
-> +	struct sk_buff *skb;
-> +	u32 port_id, tuser;
-> +	u32 *metadata;
-> +
-> +	skbuf_dma = ep_get_desc(xchan, xchan->ring_tail & (xchan->ring_size - 1));
-> +	WRITE_ONCE(xchan->ring_tail, xchan->ring_tail + 1);
-> +	skb = skbuf_dma->skb;
-> +	skbuf_dma->skb = NULL;
-> +
-> +	dma_unmap_single(xchan->dma_dev, skbuf_dma->dma_address,
-> +			 ep->max_frm_size, DMA_FROM_DEVICE);
-> +
-> +	if (result->result != DMA_TRANS_NOERROR) {
-> +		if (net_ratelimit())
-> +			dev_warn(ep->dev, "RX DMA transfer error %d\n",
-> +				 result->result);
-> +
-> +		dev_kfree_skb_any(skb);
-> +		DEV_STATS_INC(ndev, rx_dropped);
-> +		DEV_STATS_INC(ndev, rx_errors);
-> +		goto submit_new;
-> +	}
-> +
-> +	metadata = dmaengine_desc_get_metadata_ptr(skbuf_dma->desc,
-> +						   &meta_len,
-> +						   &meta_max_len);
-> +	if (IS_ERR_OR_NULL(metadata)) {
-> +		if (net_ratelimit())
-> +			dev_warn(ep->dev, "Failed to get RX metadata pointer\n");
-> +
-> +		dev_kfree_skb_any(skb);
-> +		DEV_STATS_INC(ndev, rx_dropped);
-> +		DEV_STATS_INC(ndev, rx_errors);
-> +		goto submit_new;
-> +	}
-> +
-> +	/* MCDMA metadata: [0] = status, [1] = sideband (TID/TDEST/TUSER), [2..] = app */
-> +	tuser = metadata[1] & TSN_TUSER_MASK;
-> +	rx_len = ep->max_frm_size - result->residue;
-> +
-> +	if (rx_len > ep->max_frm_size || rx_len < ETH_HLEN) {
-> +		if (net_ratelimit())
-> +			dev_warn(ep->dev, "Invalid RX length %zu (max=%u, min=%u)\n",
-> +				 rx_len, ep->max_frm_size, ETH_HLEN);
-> +
-> +		dev_kfree_skb_any(skb);
-> +		DEV_STATS_INC(ndev, rx_dropped);
-> +		DEV_STATS_INC(ndev, rx_errors);
-> +		goto submit_new;
-> +	}
-> +
-> +	port_id = FIELD_GET(TSN_TUSER_PORT_ID_MASK, tuser);
-> +	if (port_id != TSN_TUSER_PORT_MAC1 && port_id != TSN_TUSER_PORT_MAC2) {
-> +		dev_dbg_ratelimited(ep->dev,
-> +				    "RX dropping unexpected TUSER port_id=%u\n",
-> +				    port_id);
-> +
-> +		dev_kfree_skb_any(skb);
-> +		DEV_STATS_INC(ndev, rx_dropped);
-> +		goto submit_new;
-> +	}
-> +
-> +	skb_put(skb, rx_len);
-> +	skb->dev = ndev;
-> +	skb->protocol = eth_type_trans(skb, ndev);
-> +	skb_checksum_none_assert(skb);
-> +	__netif_rx(skb);
-> +
-> +	DEV_STATS_INC(ndev, rx_packets);
-> +	DEV_STATS_ADD(ndev, rx_bytes, rx_len);
-> +
-> +submit_new:
-> +	ep_rx_refill(xchan, true);
-> +}
-> +
->  static netdev_tx_t ep_start_xmit(struct sk_buff *skb, struct net_device *ndev)
->  {
->  	dev_kfree_skb_any(skb);
+>  static int zynqmp_pinctrl_get_num_functions(unsigned int *nfuncs)
 
-[Severity: Medium]
-Can this leave received frames stranded when RX traffic is sparse?
-
-ep_rx_refill() queues up to avail descriptors with ep_rx_submit_desc()
-and then calls dma_async_issue_pending() once for the whole batch. On
-the provider side, xilinx_mcdma_start_transfer() sets the channel IRQ
-coalescing threshold in XILINX_MCDMA_CHAN_CR_OFFSET(chan->tdest) to
-chan->desc_pendingcount whenever that count is at most
-XILINX_MCDMA_COALESCE_MAX (24).
-
-A refill that queues between 2 and 24 descriptors therefore sets the
-threshold to that batch size. That happens when several RX
-completions are reaped before the next refill runs. It also happens
-when dev_alloc_skb() or dmaengine_prep_slave_sg() fails partway
-through a batch and a later refill tops up the rest.
-
-Batches larger than 24 skip the reprogramming. The initial fill of a
-128-entry ring is one example. In that case a threshold left over
-from an earlier small batch stays in the control register.
-
-With a threshold of N > 1, the MCDMA only raises the IOC interrupt
-after N frames have completed. xilinx_mcdma_irq_handler() only logs
-XILINX_MCDMA_IRQ_DELAY_MASK and does not call
-xilinx_dma_complete_descriptor(). No delay timeout appears to be
-programmed either.
-
-If fewer than N frames arrive, they sit in the RX buffers and
-ep_dma_rx_cb() does not run for them until enough further traffic
-arrives.
-
-The refill timer does not cover this case. ep_rx_refill() returns
-true because descriptors are still outstanding, so rx_refill_timer is
-never armed.
-
-Much of the traffic on a TSN endpoint is low rate: ARP, PTP and other
-control frames. That can mean unbounded RX latency or a queue that
-looks stalled.
-
-Should ep_rx_refill() issue pending after each submitted descriptor?
-Or does the fix belong in xilinx_dma, for example by completing
-descriptors on the delay interrupt or programming the coalesce delay
-timer? This depends on how the MCDMA coalescing behaves, so could you
-confirm what the hardware does here?
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261113-patches_v2_external-v4-0-56bb26f042a4%40amd.com
 
