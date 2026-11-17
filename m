@@ -2,73 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BD98606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 03:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46399606A8AD
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 03:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EY19gMBk;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=2XmO2F0w
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IaU6H8s9;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=YHWHhGhx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2zFul203cJABpzA7e6NhNRDGHJm49HaUa43qT7bwsi0=; b=EY19gMBk7wSiAz
-	+G+DtRmD32h2nDrZ/GAH5faLoxdA39japOe1JeHR0bEbrWCKV8SzvDhllmIcRvVkTgp4wXordfcV+
-	LDVYUOT6QIh+jGLO2PzmVnfoHz3AZ8SicexIK6Q97dc8Ap5xYtM9Poe4uGM6XLDISIIQTxwoGZ0QF
-	jygeBJT5QWbPQgw20kPcEy3+OJ5v7XzyEP1KUQPJ8cab/JFrQ2uCGDbRdP9JHkZ+LyMrKXMVKT8su
-	YuwxJpSBuolVCz/CxIzHmx/575caJv1JmBWced+jBYVbF5nsPFVsFEKVIZwN8o3BcVQsDGO5eNATM
-	82lNnGmIRXYtDisuxosA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=voRnmzxgHybbfZ7WP8roy8G4Nec1rI5G7FdlJ4W++HI=; b=IaU6H8s9e6bDvv25CPlUtlzu5l
+	kvQgmMOLi9o32zY3mMl2O4A3F76uNhiyVNm6spEdB60Q5k4GaANxzJuuPJC7DL2K3wFmAC6oBl7pL
+	WWjIlqyk5kIb8b8JmIYckwFyh04qUoWn0+CK383QxMY5CGFPKAwuKXcKQHPZIPcPDHTcs3QObbl9+
+	B8dec2BcElJAfGHjlGWbOFhAiILDmIjtLNACHR0izeCUY9HPzqhjqMgHc9kWkQfsVyf9NjeswN158
+	gpLiOCFxYdinBAn0MZ0Ajfub3rcloKvt4xHK31MoxiGbsBrmR2aKUVTM3sEA5R5+0JSY0WYaom1Wy
+	3QksiLVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT9qq-00000004TC6-0U9i;
-	Tue, 17 Nov 2026 03:27:20 +0000
-Received: from canpmsgout07.his.huawei.com ([113.46.200.222])
+	id 1xT9tU-00000004TeY-3Awp;
+	Tue, 17 Nov 2026 03:30:04 +0000
+Received: from mailgw02.mediatek.com ([216.200.240.185])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT9ql-00000004TBR-2J9l
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 03:27:18 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=2zFul203cJABpzA7e6NhNRDGHJm49HaUa43qT7bwsi0=;
-	b=2XmO2F0wYOlOqZXYbb4uoagngFo4eP0ch1UG1ZihMy/0FK3smtUs9vUYYch62jRw13m6KrVYy
-	cCoCGopLKVB4FhRpXvmtGIP691hLzWkHVGR5qVBr7Bhi42gQlY8rijG9tGzmtVnScQEeB2I4xMH
-	jAKDMqvRZmPa8BCylbnu4zg=
-Received: from mail.maildlp.com (unknown [172.19.163.200])
-	by canpmsgout07.his.huawei.com (SkyGuard) with ESMTPS id 4jT9BX5gG3zLlXL;
-	Tue, 17 Nov 2026 11:26:44 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 8EDEB40563;
-	Tue, 17 Nov 2026 11:27:03 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 17 Nov
- 2026 11:27:02 +0800
-Message-ID: <1162c8a9-2829-40a4-9ad5-6a526bc57178@huawei.com>
-Date: Tue, 17 Nov 2026 11:27:02 +0800
+	id 1xT9tS-00000004Tca-456H;
+	Tue, 17 Nov 2026 03:30:04 +0000
+X-UUID: 29c82d74e23711f1acbe4559397dec65-20261116
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=voRnmzxgHybbfZ7WP8roy8G4Nec1rI5G7FdlJ4W++HI=;
+	b=YHWHhGhxPofhVG/E4SymQsN4ti1NWwtUBxlGHroX25OZjRwsGjIy5SFFRVvtkVeeNHVXY/OQZtHl5n4wal5ywPc6cvoxg/psluI+f/7mEn6er8R8kD8IFj801S+BEPZQ8r2ohOUtn6/ZHSa0ErZFDTCZ8FkTpOho4LEw89JKVOE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.21,REQID:fcd57d45-8906-4d47-9aa6-ff95c76a59e5,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:b0318ac,CLOUDID:828cf330-f289-4656-bb36-27baf4489f11,B
+	ulkID:nil,BulkQuantity:0,SF:81|82|102|136|836|865|888|898,TC:-5,Content:0|
+	15|50|99,EDM:-3|-100,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,CO
+	L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 29c82d74e23711f1acbe4559397dec65-20261116
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 875836820; Mon, 16 Nov 2026 20:29:57 -0700
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Tue, 17 Nov 2026 11:29:54 +0800
+Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Tue, 17 Nov 2026 11:29:53 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
+	<andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, Mauro
+ Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Ricardo Ribalda
+	<ribalda@chromium.org>, Kees Cook <kees@kernel.org>, Hans Verkuil
+	<hverkuil+cisco@kernel.org>, Fei Shao <fshao@chromium.org>, Haoxiang Li
+	<haoxiang_li2024@163.com>, Chen-Yu Tsai <wenst@chromium.org>, Laurent
+ Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Tomasz Figa
+	<tfiga@chromium.org>, Philipp Zabel <p.zabel@pengutronix.de>, Benjamin
+ Gaignard <benjamin.gaignard@collabora.com>, Qianfeng Rong
+	<rongqianfeng@vivo.com>, Irui Wang <irui.wang@mediatek.com>, Jacopo Mondi
+	<jacopo.mondi@ideasonboard.com>, Fan Wu <fanwu01@zju.edu.cn>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+CC: Sakari Ailus <sakari.ailus@linux.intel.com>
+Subject: [PATCH v9 01/14] media: mediatek: vcodec: support vcp architecture
+Date: Tue, 17 Nov 2026 11:29:37 +0800
+Message-ID: <20261117032950.1425556-2-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261117032950.1425556-1-kyrie.wu@mediatek.com>
+References: <20261117032950.1425556-1-kyrie.wu@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] fs/resctrl: Give a monitor domain the counters the
- groups already use
-To: Ben Horgan <ben.horgan@arm.com>, <james.morse@arm.com>,
-	<reinette.chatre@intel.com>, <fenghuay@nvidia.com>, <tony.luck@intel.com>,
-	<Dave.Martin@arm.com>, <babu.moger@amd.com>, <will@kernel.org>,
-	<jic23@kernel.org>, <gshan@redhat.com>, <bp@alien8.de>, <x86@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20261113083506.4129060-1-ruanjinjie@huawei.com>
- <20261113083506.4129060-3-ruanjinjie@huawei.com>
- <10f43d19-2994-4ad2-8a49-2891582e32e7@arm.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <10f43d19-2994-4ad2-8a49-2891582e32e7@arm.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
- kwepemk200008.china.huawei.com (7.202.194.74)
+Content-Type: text/plain
+X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_192716_243709_1597C420 
-X-CRM114-Status: GOOD (  19.50  )
+X-CRM114-CacheID: sfid-20261116_193003_030842_54C1525A 
+X-CRM114-Status: GOOD (  13.91  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,95 +101,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Some platforms expose the video codec through the VCP coprocessor.
+Use the VCP architecture when the VCP coprocessor is found.
 
+Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+---
+ drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h  | 1 +
+ .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c      | 3 +++
+ 2 files changed, 4 insertions(+)
 
-在 2026/11/14 0:14, Ben Horgan 写道:
-> Hi Jinjie,
-> 
-> On 13/11/2026 08:35, tizi4590 wrote:
->> From: Jinjie Ruan <ruanjinjie@huawei.com>
->>
->> With assignable MBM counters, resctrl can be mounted while all CPUs of
->> a monitor domain go offline and one of them comes back, either through
->> CPU hotplug or because hibernation takes the non-boot CPUs offline. The
->> domain is destroyed and re-created, and the new domain starts with no
->> counters assigned. Counters are otherwise only assigned when a group is
->> created, when rdtgroup_assign_cntrs() takes a free counter in each
->> monitor domain for each MBM event, so no code revisits the groups that
->> already exist.
->>
->> Those groups read "Unassigned" on the new domain, on any system with
->> assignable MBM counters. A counter assigned to them later through
->> mbm_L3_assignments is the lowest free one in that domain, so the same
->> group can end up with a different counter ID on different domains. For
->> example, with the counter ID each group uses for mbm_total_bytes and
->> "_" for none:
->>
->>                                domain 0         domain 1
->>   mount, mkdir g1              default=0 g1=1   default=0 g1=1
->>   all CPUs of domain 1 offline default=0 g1=1   (destroyed)
->>   one CPU of domain 1 online   default=0 g1=1   default=_ g1=_
->>   assign g1 on domain 1        default=0 g1=1   default=_ g1=0
->>
->> Each domain has its own counters, so g1 can use counter 0 on domain 1
->> and counter 1 on domain 0 without affecting the other domain, but until
->> it is assigned on domain 1 it reads Unassigned there.
-> 
-> I brought this up before and it was assessed that no change was required:
-> https://lore.kernel.org/lkml/171f92a3-fa2e-44fb-b0d1-1250c72e31d1@amd.com/
-> 
-> Do you have any particular reason for wanting this behaviour?
-
-Hi Ben,
-
-sashiko also find this problem as below.
-
-Link:
-https://sashiko.dev/#/patchset/20261116125914.498841-1-ruanjinjie%40huawei.com
-
-Best regards,
-Jinjie
-
-> 
-> Thanks,
-> 
-> Ben
-> 
->>
->> Assign the counters when the domain comes online, after its state is
->> set up. Give each enabled MBM event of every group, including the
->> monitor groups under mon_groups/, the counter ID the group uses in
->> another domain, and leave the event unassigned when that ID is already
->> taken on the new domain. Skip groups in pseudo-lock mode, as their RMID
->> has been freed and they are not monitored.
->>
->> A group that has no counter for an event in any domain stays unassigned
->> on the new domain, as it was before. mbm_assign_on_mkdir only applies
->> when a group is created, and counters that the user removed through
->> mbm_L3_assignments stay removed.
->>
->> Fixes: ef712fe97ec5 ("fs/resctrl: Auto assign counters on mkdir and clean up on group removal")
->> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
->> Cc: <stable@vger.kernel.org>
->> Cc: Tony Luck <tony.luck@intel.com>
->> Cc: Reinette Chatre <reinette.chatre@intel.com>
->> Cc: Babu Moger <babu.moger@amd.com>
->> Cc: James Morse <james.morse@arm.com>
->> Cc: Ben Horgan <ben.horgan@arm.com>
->> Cc: Dave Martin <Dave.Martin@arm.com>
->> ---
->> Changes in v2:
->> - Drop the MPAM part of the changelog, the MPAM driver is fixed by
->>   "arm_mpam: resctrl: Use the domain's counter ID".
->> - Link to v1: https://lore.kernel.org/all/20261106094537.2337188-1-ruanjinjie@huawei.com/
-> 
+diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h
+index 300363a40..c1642fb09 100644
+--- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h
++++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h
+@@ -14,6 +14,7 @@ struct mtk_vcodec_enc_dev;
+ enum mtk_vcodec_fw_type {
+ 	VPU,
+ 	SCP,
++	VCP,
+ };
+ 
+ enum mtk_vcodec_fw_use {
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+index b4648ff6d..da051e8cb 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+@@ -379,6 +379,9 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+ 	} else if (!of_property_read_u32(pdev->dev.of_node, "mediatek,scp",
+ 					 &rproc_phandle)) {
+ 		fw_type = SCP;
++	} else if (!of_property_read_u32(pdev->dev.of_node, "mediatek,vcp",
++					 &rproc_phandle)) {
++		fw_type = VCP;
+ 	} else {
+ 		dev_dbg(&pdev->dev, "Could not get vdec IPI device");
+ 		return -ENODEV;
+-- 
+2.51.0.windows.2
 
 
