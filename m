@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C585C606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 08:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15715606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 08:59:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q7+RNWmM;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=ou61mWN0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0pZcpUX1;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Dzwt6YfY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,77 +14,107 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=4aB16DLDGn3TDJX6yEQSMFRWuGpcA9v9Fts+ljV8QNU=; b=Q7+RNWmMpt4H3YtWD58i54Ty7W
-	eQlSyco4jJhOeOYOpDwiQsRaeSY9BVq5TCDbvHB/M6VojTIniMX+jfMjuoGXsupzt0kHEavotUaTt
-	92ta3mdWiFkABHOEmiLFvEtxF9Gqc4RM7rMoow9Jjlv1G800doemkXM2Crq37niU05T+JypzdTKM2
-	NKc28gF+MFEKs+FmNG4l8rthcBZGbulJ4AeSghyEzgXpcIUOV3DCMBe/StQTMFIkJMbJdmnet3NI/
-	FMt8+MR57F6nfOKdwYpXSgbSeutTbdsIQvKrFm04gRq88CZ8Tc7dbT/UxvEZvXIL5qe9QY8dRH85P
-	4Ew4BVmg==;
+	bh=N68KbO525tUv9R3oqNM2uG3doDDd5gv1KbV0A96De3M=; b=0pZcpUX1uLxcoix0UBzyFSE4FB
+	6NDZBusF/9Cys7VXdfeyb0YuWBZTSng2sN9cuDsnpaW8a4OcSkLQ/BjvxwmQV78AMFij3J0aGlq7Z
+	HeaWeYnYjqQBhQEx9yvaJaCTorWgbY6kjk1Vt6qZLHgUySbF4DtjObS9NGgG13GpYSXM8YTnBI4eO
+	OBVJa8xlijAzEp9dBR/Wusu9x62An3xVPA+4ldPOLWwlfVnfWPjfN2f1So5G0WaTP+6mkZTjK3XKd
+	3BcWN61h9YccedfN5OSHfMyt70kjH8Dc2lNmO47Q7oCRsV/c+SfdCgeWkCcY0+m5hOenv0XRsO0Mz
+	ncawo/vQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTF2B-00000004z7B-3zrU;
-	Tue, 17 Nov 2026 08:59:23 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1xTF2E-00000004zE0-2wWE;
+	Tue, 17 Nov 2026 08:59:26 +0000
+Received: from mail-centralusazlp170110009.outbound.protection.outlook.com ([2a01:111:f403:c111::9] helo=DM5PR21CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTF1h-00000004ygL-0PRE;
-	Tue, 17 Nov 2026 08:58:54 +0000
-X-UUID: 1a43bbc4e26511f1afed4741b24580c9-20261117
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=4aB16DLDGn3TDJX6yEQSMFRWuGpcA9v9Fts+ljV8QNU=;
-	b=ou61mWN0hWJneJnfbP6b5dyd5LrgNB6J4r5S2to4V0hsQ0tAHNqsljtQUGwm9mV1PjHMtcIxs4ZfBxvO+E8TK/p3TkfzfOjJChDEuHNhhuESWd6DgaPF7KVTIHBqGHd4Vis7k0LfeckOl7lfstgbMEav2HVeHqM2af9yw7LWfOY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:2e4082e9-f88c-48fd-b5bc-ef9278ddcb0b,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:b0318ac,CLOUDID:d438af19-ae4c-4a2b-b1c4-72e411efd0c9,B
-	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
-	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 1a43bbc4e26511f1afed4741b24580c9-20261117
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 401364369; Tue, 17 Nov 2026 01:58:48 -0700
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 17 Nov 2026 16:58:45 +0800
-Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Tue, 17 Nov 2026 16:58:44 +0800
-From: Kyrie Wu <kyrie.wu@mediatek.com>
-To: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
-	<andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, Mauro
- Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>, Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>, Nathan Hebert <nhebert@chromium.org>, Arnd
- Bergmann <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>, George Sun
-	<george.sun@mediatek.com>, <linux-media@vger.kernel.org>,
+	id 1xTF1w-00000004yvj-1oto
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 08:59:11 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Oza3LD5146XXpadhrLSb8erTRktAFOCZdYbycNOdJF3g+OqKGFZsX/BI/FqzmAkSqPWlIO1fEf3jF6Zvp2TdBZ7vqYqcrXaKVSJJ/DYS1N0NSA+6WYiqZ6GDAna2dYoEskVKVuAUIQgq1FDcWFVpyzdFx4uzg2V5vvHeqFQSo+35OyOkWDSHkOOcYICkpFhu2Q14pZCykK0XLSm4P/CEfp/Th8N/CUP4keUOS3SF54vR/Zu1v2KbD0xQJDzri5Vbl1vfhW7EiOMyRUlNIYMH9oUt4PDXfjH0JDS8hDp/NGtHPrWJEe4QDC2+MIKvB/queRhO0GGLaSjgygG8dRvo/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N68KbO525tUv9R3oqNM2uG3doDDd5gv1KbV0A96De3M=;
+ b=bL74mDUkEudOLTDfuBJH9dk5mpzi3Eeb4xZRmn9iXGdUrZjeSgYGaL2JjQjGMVLFHFgBd0yq2ZFQfswrgjnq0zbKF95bFwb2GAwhrnSVmgLDE2K+zLtTXrRF61s7oZ8FquoXLKlciPSd2IDHC+c4zWQ7SSLc6Jl47DAUPveZy05LgryKKQk9iEYoj+2oLW0dJxuL6yrfuMlRZDcQhP6zOjzD3xAHvCoIbw3VNTFslPPyrZNtLUMRTu0fjkQjbiCdt7+ud6Z6kbRXHCXr6Q2P1tKHMQcLNnP8WARFGLOk4XUoBY2iCdoor5wA6F4CRV4Eh58MyMgDCbDQuTw+Sbjw5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N68KbO525tUv9R3oqNM2uG3doDDd5gv1KbV0A96De3M=;
+ b=Dzwt6YfY9TP++PHDKukPXZHfOH5lPXypNsRS90VRzW0Ve4sKW5nX19WvY7MPLlyTwpwvCYEtnAjBTeMym1zF3Rvuhb32/if+Qa1/IYoP6jNoVSg3yFGeEPaJTrg40sFnh/SKb/JjcJnrznmLhJcC3AIKW0UIk5fAgG+DnmoQ61Y=
+Received: from CH0P221CA0037.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::12)
+ by IA4PR12MB743615.namprd12.prod.outlook.com (2603:10b6:207:150::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
+ 2026 08:58:03 +0000
+Received: from MN1PEPF000793FD.namprd05.prod.outlook.com
+ (2603:10b6:610:11d:cafe::a2) by CH0P221CA0037.outlook.office365.com
+ (2603:10b6:610:11d::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.10 via Frontend Transport; Tue,
+ 17 Nov 2026 08:58:02 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF000793FD.mail.protection.outlook.com (10.167.249.200) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 17 Nov 2026 08:58:02 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Tue, 17 Nov
+ 2026 02:58:01 -0600
+Received: from xhdrdevl202.xilinx.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Tue, 17 Nov 2026 02:57:56 -0600
+From: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
+To: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	<linux-sound@vger.kernel.org>
+CC: Vincenzo Frascino <vincenzo.frascino@arm.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, Michal Simek <michal.simek@amd.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	<andrzejtp2010@gmail.com>, Yilong Zhou <yilong.zhou@mediatek.com>
-Subject: [PATCH v12 06/10] media: mediatek: vcodec: Fix vp9 4096x2176 fail for profile2
-Date: Tue, 17 Nov 2026 16:58:29 +0800
-Message-ID: <20261117085834.1464723-7-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261117085834.1464723-1-kyrie.wu@mediatek.com>
-References: <20261117085834.1464723-1-kyrie.wu@mediatek.com>
+	<linux-arm-kernel@lists.infradead.org>, <git@amd.com>, Dhanunjanrao Katta
+	<katta.dhanunjanrao@amd.com>
+Subject: [PATCH 3/3] ASoC: xlnx: spdif: get clocks through the common clock framework
+Date: Tue, 17 Nov 2026 14:27:39 +0530
+Message-ID: <20261117085739.3807943-4-katta.dhanunjanrao@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261117085739.3807943-1-katta.dhanunjanrao@amd.com>
+References: <20261117085739.3807943-1-katta.dhanunjanrao@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK: N
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF000793FD:EE_|IA4PR12MB743615:EE_
+X-MS-Office365-Filtering-Correlation-Id: 81e80bdc-0818-4d0b-98c4-08df4488e33a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|1800799024|82310400026|36860700016|10067099003|56012099006|11063799006|261026140227099003|261028144727099003|261021123027099003|261021121427099003|261022105027099003|261102123227099003|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: e+/fU9zL8bqWGsxfg4dfUfCThwOBO5X5CwMLVXNcD1IPIaW4wiejV70EySuz7bDSwV9IBkv80UIpEd6aiwtHLETGZB3gFJtoko57Mw7xCS1OtIoa1wmvrtphTB8Zhyu1u8wlsqdb4pOa7amaoTjsAT+exqkThF7UtF3/oQ4n42vZ4KrcFO0SKFiUhtmGGl2FaYLL1uFtjCeIhgKGrgiszlXAlZmEw8dUkdXetSqYHL3FjdawEqH4rfhAFxHPozpAs/EhUEuUSUjQZ44VV4njDNytAkzdn5TxWDUa/nPNM04VkD2Y2z551cWYkyDeNd6bl5m5bo0Y7ZeRtTTbQ8C5Vpuf09pLI3+N+GPBAvjq0lx9d+291nBAx5gmoN1FjHAScfHR61oJ56XEX23RHaLIKpfr8p5uwOw5tBUYrx+r40YDuN45jqvRcPaniYVWLcPJfkfZlXuEn0szNaE7J+UpqpuORbe7N9Pf45ZIYpe4jatbmbTYS8FmjvY2EnL1XXm9UIHGVyjP+cSRtzj334SbFa1ughKJMxHPBikvDf+YerFJYChbW1KAwd9ri+2BIKs1FQZHcf2hpq80UP6+PMQyioOmq9rf8JMCctD+xSrlbJ4sV3JHtAr//dpUEa/8ATQWubuk1lvo80CNmkc+crn1O/mjSp0QHg/xojT/K0w6k/nrJagtXOVrnAYSZeO0jyVWIGm4qg9gdX0GlYMxEzRQtg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(1800799024)(82310400026)(36860700016)(10067099003)(56012099006)(11063799006)(261026140227099003)(261028144727099003)(261021123027099003)(261021121427099003)(261022105027099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: XVt/RJcC/TGbMkztpkAmgoIO5cPcUo3sZAoycutekAghoXHfnLBKvkt8GCjdwcyECQcU2+bmhmD0Ev4KoPc4I//OoXG8Mt6XW8QplR3YcwSrXhrKcrPBZLXNVU5/keZPDd/j6BFFZ2O/LKovtV1xkW5j6wb7vp9vpC0BUIwLhT2agRvCixvJjG1faGGJjOIl3QKrbijXoHeFSLN3Vmqq8xVCca9suCsd/qQoUTzCqB0f+BTuzMMMnZn2PEpX9sfzFVhcPKLnZfo4TZDBJOISRQr9vI+mF0KieyIjRDJXx7Bb/mhok5dp//9q3fHYG1RWy10vUq21DJHMoSI20XP5h6dzg36dx3R49kZ9gWq/DfkwPL3TuPLsMpAyPUxEkhEiXxCtxstmCgcJmHM3RoqBea+4J9m1QF9eHfMuAYnDQneugda6RXNT1P+YsN0kqxRj
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 08:58:02.7981
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81e80bdc-0818-4d0b-98c4-08df4488e33a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF000793FD.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR12MB743615
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_005853_145997_F4A1767A 
-X-CRM114-Status: GOOD (  13.38  )
+X-CRM114-CacheID: sfid-20261117_005908_482741_DB6100C2 
+X-CRM114-Status: GOOD (  17.95  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,47 +129,101 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The DRAM address of the VP9 decoder tile info buffers may require
-as much as 36bits for 4096x2176 resolution. Fold the 4 most significant
-bits into the lower (padding) four bits of address.
+The driver requested only the AXI4-Lite clock and relied on the firmware
+to leave the AXI4-Stream and audio clocks enabled, and it took the audio
+clock rate from the "xlnx,aud_clk_i" device-tree property.
 
-Fixes: 5d418351ca8f1 ("media: mediatek: vcodec: support stateless VP9 decoding")
-Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Request and enable the audio clock, and the AXI4-Stream clock matching
+the IP mode, through the common clock framework. The AXI4-Stream clock
+is requested with devm_clk_get_optional_enabled() because device trees
+written against the earlier binding describe only two clocks.
+
+Read the audio rate with clk_get_rate() in hw_params so that the SPDIF
+clock divider follows the rate actually in effect, and reject a zero
+rate with a diagnostic rather than letting it reach the divider switch
+and return a bare -EINVAL.
+
+"xlnx,aud_clk_i" is no longer read and is marked deprecated in the
+binding.
+
+Signed-off-by: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
 ---
- .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ sound/soc/xilinx/xlnx_spdif.c | 29 ++++++++++++++++++++++++-----
+ 1 file changed, 24 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-index d08be051d..b32f5e942 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-@@ -1134,9 +1134,17 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
- 					return -EINVAL;
- 			}
- 			tiles->size[i][j] = size;
-+			/*
-+			 * If the system supports 64-bit DMA addresses, the upper 4 bits
-+			 * of the address are also encoded into the buffer entry.
-+			 * The buffer pointer (tb) is incremented after each entry is written.
-+			 */
- 			if (tiles->mi_rows[i]) {
- 				*tb++ = (size << 3) + ((offset << 3) & 0x7f);
--				*tb++ = pa & ~0xf;
-+				*tb = pa & GENMASK(31, 4);
-+				if (IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT))
-+					*tb |= (pa >> 32) & GENMASK(3, 0);
-+				tb++;
- 				*tb++ = (pa << 3) & 0x7f;
- 				mi_row = (tiles->mi_rows[i] - 1) & 0x1ff;
- 				mi_col = (tiles->mi_cols[j] - 1) & 0x3f;
+diff --git a/sound/soc/xilinx/xlnx_spdif.c b/sound/soc/xilinx/xlnx_spdif.c
+index a9d1fe9cc610..b233ab1a92dc 100644
+--- a/sound/soc/xilinx/xlnx_spdif.c
++++ b/sound/soc/xilinx/xlnx_spdif.c
+@@ -53,10 +53,11 @@ enum xspdif_clk_div {
+ 
+ struct spdif_dev_data {
+ 	u32 mode;
+-	u32 aclk;
+ 	bool rx_chsts_updated;
+ 	void __iomem *base;
+ 	struct clk *axi_clk;
++	struct clk *axis_clk;
++	struct clk *aud_clk;
+ 	wait_queue_head_t chsts_q;
+ };
+ 
+@@ -117,8 +118,15 @@ static int xlnx_spdif_hw_params(struct snd_pcm_substream *substream,
+ 	enum xspdif_clk_div clk_cfg;
+ 	u32 val, clk_div;
+ 	struct spdif_dev_data *ctx = dev_get_drvdata(dai->dev);
++	unsigned long rate;
+ 
+-	clk_div = DIV_ROUND_CLOSEST(ctx->aclk, XSPDIF_MAX_CHANNELS *
++	rate = clk_get_rate(ctx->aud_clk);
++	if (!rate) {
++		dev_err(dai->dev, "aud_clk_i rate is not available\n");
++		return -EINVAL;
++	}
++
++	clk_div = DIV_ROUND_CLOSEST(rate, XSPDIF_MAX_CHANNELS *
+ 				    XSPDIF_AES_SAMPLE_WIDTH *
+ 				    params_rate(params));
+ 
+@@ -271,8 +279,18 @@ static int xlnx_spdif_probe(struct platform_device *pdev)
+ 		return dev_err_probe(dev, ret, "cannot get SPDIF mode\n");
+ 
+ 	if (ctx->mode) {
++		ctx->axis_clk = devm_clk_get_optional_enabled(dev, "s_axis_aclk");
++		if (IS_ERR(ctx->axis_clk))
++			return dev_err_probe(dev, PTR_ERR(ctx->axis_clk),
++					     "failed to get s_axis_aclk\n");
++
+ 		dai_drv = &xlnx_spdif_tx_dai;
+ 	} else {
++		ctx->axis_clk = devm_clk_get_optional_enabled(dev, "m_axis_aclk");
++		if (IS_ERR(ctx->axis_clk))
++			return dev_err_probe(dev, PTR_ERR(ctx->axis_clk),
++					     "failed to get m_axis_aclk\n");
++
+ 		ret = platform_get_irq(pdev, 0);
+ 		if (ret < 0)
+ 			return ret;
+@@ -287,9 +305,10 @@ static int xlnx_spdif_probe(struct platform_device *pdev)
+ 		dai_drv = &xlnx_spdif_rx_dai;
+ 	}
+ 
+-	ret = device_property_read_u32(dev, "xlnx,aud_clk_i", &ctx->aclk);
+-	if (ret < 0)
+-		return dev_err_probe(dev, ret, "cannot get aud_clk_i value\n");
++	ctx->aud_clk = devm_clk_get_enabled(dev, "aud_clk_i");
++	if (IS_ERR(ctx->aud_clk))
++		return dev_err_probe(dev, PTR_ERR(ctx->aud_clk),
++				     "failed to get aud_clk_i\n");
+ 
+ 	dev_set_drvdata(dev, ctx);
+ 
 -- 
-2.51.0.windows.2
+2.34.1
 
 
