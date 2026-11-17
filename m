@@ -2,66 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64EC0606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:27:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78699606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=luE+ZMJ/;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=jKpgPEMO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hfnwWtUM;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Jchot9U+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fe/3p//Y8prPyRD5F1rxL+NnMb7IMk8fsgr6xz+sbag=; b=luE+ZMJ/DxY+na
-	OKhu6Gt/BdhBrhpO29ApGs59Jv4/ERXtEKw8T8UeG26ETeNRNMUIuTfd0iz/pUe2a77dVkUR4Hv7p
-	4XolFEp7c6JtjJwYpF8tiKmq6P7+UjdNtYy7flBRqwNvgLXe9qLTEslzCCp089c3d2HHvXgygvEn3
-	gI84gaeHESdGlOY5318TCnh5fmLRdHG2Z8RU1U0X1yEWdT3QkomnK683N5+hG+lHGsuTaBuoIj79X
-	4xVDlp3U0GEacCq5Lnc7jziAhEv1SJJXvIrOOUJkRRbLPuV025NPTQ7qNpG/90HcTPuR2QkC1Sz/0
-	ZyF6ZoFdnGDSxmDcTDkg==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=zJAwjzj8A6UyZL9292pQYGGLxeGp4pMjNVMToHHKfLc=; b=hfnwWtUMaCgWUB
+	DOTXCSaptK8iFghsR5IxOduev/QxaZJym/J9za0tqPYY2CzheAjgXfus62NkPNLEu4xtXCJvWSzSD
+	VvvqwAtaD8al3l9Sgmej6YmRhrwneZr3Tg4QzYBAlZjrU+kSH6P6qtqj4YVn+t1A1yKh6DDMRJBap
+	3U/MRRgGvS2lc8Sskv35652yKX51ntXevQ+V5i6LI0P9hxBE1YQD4CtJQ/TN84nrguNXYkTWPEZSc
+	nBc9JawLf7cU5Jf1I2W40C5gjFWqp2H5u5iMGHrNWq0wVgTlzx+E8HbUl6Zp7U4+wa9W7RGv7lo8Y
+	pDLlDo9JBsvDA2+XO8nA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHLn-00000005RR5-2Cil;
-	Tue, 17 Nov 2026 11:27:47 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHLl-00000005RQj-0c3I
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 11:27:46 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4DAF51476;
-	Tue, 17 Nov 2026 03:27:41 -0800 (PST)
-Received: from [10.211.55.3] (unknown [10.57.17.180])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3C58E3F763;
-	Tue, 17 Nov 2026 03:27:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794914864; bh=wxm/pQ0TSfOIpKm/JkaGWTEZFuZFN7dePl8WMJMCSlo=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=jKpgPEMOTXZuOWIKE+2wS8YuMBB5DffMJ+fpzA2tTs1RApaXEjTKDHlfy7+BtRsCg
-	 E0IPEjakKpBx3digU2vtbndzCPRG53ShrY0+k4DKoUgt1mWMm1jKGWZi7KqBzRvkou
-	 vEO7foeQpHnDm0qSip1l7a8JBDHoCOzi+TxFfblg=
-Message-ID: <a7dc44ee-cf2c-4e2a-9953-4f8ffeffda60@arm.com>
-Date: Tue, 17 Nov 2026 11:27:39 +0000
+	id 1xTHOG-00000005RoK-3yV3;
+	Tue, 17 Nov 2026 11:30:20 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTHOE-00000005RnG-2pVM;
+	Tue, 17 Nov 2026 11:30:20 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794915016;
+	bh=4rrJaKwJlg6MCmlVQX/KfOrKxAoT2XQ7pGHqjYwrJ6g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jchot9U+o4RxaCIJ27FWcHx524gFRsaWj1/nzyCl1f+pLc6+ayS+9z1bguMKusUOI
+	 lLbstW+OBVMsvgsdJbgAkeOho4YQ4Sq9gAxWaRR1op/G3rhSHiif+KPlp9RLfFe2XV
+	 byR5R47CF08xaTYCAZuA3BUVHXAfzC3pFjj3709ghVCFneMQsuZbXeRBfz0ubejYig
+	 WMFGk4Tu4JccCLiAdjYbEzlR1ZCDb4mHCeeeEv3RNlEG/dX8Y3ODoJlPLTQkEDcg7s
+	 WG/OTHaQub4ChOcGgTtM770xBZFFutX82kSISyfpW0yvAdIaL5++fnEYf5xx1mKD94
+	 x7heECPfjn75Q==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C3CFC17E00E8;
+	Tue, 17 Nov 2026 12:30:15 +0100 (CET)
+Message-ID: <fc0bb114-8781-43d2-bdfe-45135259a548@collabora.com>
+Date: Tue, 17 Nov 2026 12:30:15 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Thunderbird Daily
-Subject: Re: [PATCH v2 1/2] arm_mpam: resctrl: Use the domain's counter ID
-To: tizi4590 <ruanjinjie@huawei.com>, james.morse@arm.com,
- reinette.chatre@intel.com, fenghuay@nvidia.com, tony.luck@intel.com,
- Dave.Martin@arm.com, babu.moger@amd.com, will@kernel.org, jic23@kernel.org,
- gshan@redhat.com, bp@alien8.de, x86@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261113083506.4129060-1-ruanjinjie@huawei.com>
- <20261113083506.4129060-2-ruanjinjie@huawei.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] rtc: mt6397: provide the RTC's 32 kHz output as a
+ clock
+To: Ryan Brue <ryanbrue.dev@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Eddie Huang <eddie.huang@mediatek.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: linux-pm@vger.kernel.org, mfd@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-rtc@vger.kernel.org
+References: <20261116-rbrue-suez-upstreaming-mt6397-rtc-32k-v3-0-179145eb7e89@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Ben Horgan <ben.horgan@arm.com>
-In-Reply-To: <20261113083506.4129060-2-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20261116-rbrue-suez-upstreaming-mt6397-rtc-32k-v3-0-179145eb7e89@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_032745_285476_95BB7F02 
-X-CRM114-Status: GOOD (  44.29  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261117_033018_896653_4E6603FD 
+X-CRM114-Status: GOOD (  27.39  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,453 +86,85 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jinjie,
-
-On 13/11/2026 08:35, tizi4590 wrote:
-> From: Jinjie Ruan <ruanjinjie@huawei.com>
+On 11/16/26 19:46, Ryan Brue wrote:
+> The MT6397 RTC drives a 32 kHz clock out of the PMIC, which boards use as
+> the sleep clock of a Wi-Fi/Bluetooth combo chip. RTC_CON.F32KOB gates it,
+> and mainline never touches that bit, so the chip only works if the
+> bootloader happened to turn the output on.
 > 
-> resctrl assigns MBM counters per domain: mbm_L3_assignments takes a
-> domain ID, a group can have a counter in one domain and none in
-> another, and resctrl_arch_cntr_read() and resctrl_arch_reset_cntr()
-> are given the counter to use.
+
+Not just mt6397, but way more than that - upstream never touches this one
+because the main targets have always been platforms both without any modem
+and without any *tight* power optimization (historically, chromebooks, and
+Genio IoT boards, where the first are equipped with big batteries, and the
+latter is typically powered with an AC-DC brick until it gets thunderstruck).
+
+Nice to see this getting upstreamed.
+
+Both patches of this series are
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Cheers,
+Angelo
+
+> On the Amazon Fire HD 10 (2017), which can boot through U-Boot instead of
+> the vendor's LK, nothing sets it in the former - LK sets the bit at every
+> boot, and the MT6630 combo chip's Wi-Fi and Bluetooth never come up.
+> Letting the RTC provide the output as a clock lets the chip's
+> mmc-pwrseq-simple enable it. With the clock wired up both came up on that
+> board in two boots out of two, and in none of three without it.
 > 
-> The driver ignores that counter and looks the monitor up in
-> mbwu_idx_to_mon[], indexed by CLOSID and RMID.
-> resctrl_arch_config_cntr() fills that array without looking at the
-> domain, so each group has one monitor for the whole resource.
-> Whichever assignment is written last selects the monitor the group
-> reads in every domain.
-
-For me, this scenario where we read the wrong counter to be the most
-serious bug in the MPAM driver I currently know about. Thanks for
-addressing it.
-
+> The driver registers the clock only when the RTC node has #clock-cells,
+> so no existing board changes. The MT6323 shares the MT6397's driver data
+> and gets it too; every MediaTek PMIC RTC whose registers I could read has
+> F32KOB at bit 5 of RTC_CON, but for the MT6323 that is inferred from the
+> shared driver data rather than read from a datasheet.
 > 
-> For example, with the counter ID each group uses for mbm_total_bytes
-> on each domain and "_" for none:
+> Lee has applied the binding to mfd [1], so v3 is the driver part only:
+> patch 1 gives the existing write trigger member a name that says what it
+> is, as Lee asked for the new one, and patch 2 adds the clock. Both are
+> for rtc.
 > 
->                                 domain 0         domain 1
->   mount, mkdir g1               default=0 g1=1   default=0 g1=1
->   unassign both on domain 1     default=0 g1=1   default=_ g1=_
->   assign g1 on domain 1         default=0 g1=1   default=_ g1=0
+> The board's devicetree that uses the clock is not upstream yet and follows
+> separately.
 > 
-> g1 is assigned the lowest free counter on domain 1, counter 0. That
-> assignment is the last one written for g1, so it selects the monitor
-> g1 reads in every domain. On domain 0, g1 uses counter 1, but reads
-> the monitor of counter 0:
+> This series was developed with the help of an LLM.
 > 
->                       counter whose monitor is read on domain 0
->                       default      g1
->   expected            0            1
->   actual              0            0
+> [1] https://lore.kernel.org/all/179459615032.87488.12726056214378307165.b4-ty@b4/
 > 
-> That is the default group's monitor.
-> 
-> Translate the counter ID with assigned_counters[], which maps a counter
-> ID to a monitor of the class and is valid in every domain, 
-
-Ok, sounds reasonable.
-
-and drop
-> mbwu_idx_to_mon[] with the lookups in __read_mon() and __reset_mon().
-
-mbwu_idx_to_mon[] does become unused but if we want to ever support the
-default mbm_assign_mode then it may become used. A little more on this
-below but this can be considered separately from the bug fix.
-
-> With nothing left to record, resctrl_arch_config_cntr() only resets the
-> monitors of a counter when it is assigned.
-
-Isn't this a separate optimization?
-
-> 
-> Nothing consumes USE_PRE_ALLOCATED, the marker that triggered those
-> lookups, once they are gone. resctrl only allocates a monitor context
-> for an MBM event when resctrl_arch_mbm_cntr_assign_enabled() reports
-> false, and this driver always reports true for the L3, so the MBM
-> events are always read as assigned counters. Remove the marker, and
-> the MBM cases of resctrl_arch_mon_ctx_alloc_no_wait() that returned it.
-
-True but this is a separate, benign, issue with the code.
-resctrl_arch_mon_ctx_alloc() is only called for mbm counters when
-mbm_assign_mode is default rather than mbm_event. In MPAM, we currently
-only support the mbm_event mode, assigning counters. Crossing threads,
-but you had an rfc for supporting the software controller on MPAM wher
-using the default mbm_assign_mode can be considered. Regardless, please
-can you keep the changes in this patch only to those addressing the
-particular bug and other changes can be considered as separate patches.
-
-> 
-> Fixes: a5ff6ef2d73e ("arm_mpam: resctrl: Add resctrl_arch_cntr_read() & resctrl_arch_reset_cntr()")
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
 > ---
->  drivers/resctrl/mpam_internal.h |  15 ---
->  drivers/resctrl/mpam_resctrl.c  | 195 ++++++++++++--------------------
->  2 files changed, 71 insertions(+), 139 deletions(-)
+> Changes in v3:
+> - rtc: name the new struct mtk_rtc_data member control_reg, rename wrtgr
+>    to write_trigger_reg in a patch of its own, and the local con to
+>    control (Lee)
+> - dt-bindings: dropped, applied by Lee
+> - rebased onto v7.4-rc2
+> - Link to v2: https://lore.kernel.org/r/20261102-rbrue-suez-upstreaming-mt6397-rtc-32k-v2-0-19ca72815374@gmail.com
 > 
-> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-> index 1f86cc158100..e1348d958d05 100644
-> --- a/drivers/resctrl/mpam_internal.h
-> +++ b/drivers/resctrl/mpam_internal.h
-> @@ -30,14 +30,6 @@ struct platform_device;
->  #define PACKED_FOR_KUNIT
->  #endif
->  
-> -/*
-> - * This 'mon' values must not alias an actual monitor, so must be larger than
-> - * U16_MAX, but not be confused with an errno value, so smaller than
-> - * (u32)-SZ_4K.
-> - * USE_PRE_ALLOCATED is used to avoid confusion with an actual monitor.
-> - */
-> -#define USE_PRE_ALLOCATED	(U16_MAX + 1)
-> -
->  static inline bool mpam_is_enabled(void)
->  {
->  	return static_branch_likely(&mpam_enabled);
-> @@ -309,10 +301,6 @@ enum mon_filter_options {
->  };
->  
->  struct mon_cfg {
-> -	/*
-> -	 * mon must be large enough to hold out of range values like
-> -	 * USE_PRE_ALLOCATED
-> -	 */
->  	u32			mon;
->  	u8			pmg;
->  	bool			match_pmg;
-> @@ -455,9 +443,6 @@ struct mpam_resctrl_res {
->  struct mpam_resctrl_mon {
->  	struct mpam_class	*class;
->  
-> -	/* Array of allocated MBWU monitors, indexed by (closid, rmid). */
-> -	int			*mbwu_idx_to_mon;
-> -
->  	/* Array of assigned MBWU monitors, indexed by resctrl's cntr_id. */
->  	int			*assigned_counters;
->  };
-> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
-> index b28c5c04a87c..05c1bf97c43d 100644
-> --- a/drivers/resctrl/mpam_resctrl.c
-> +++ b/drivers/resctrl/mpam_resctrl.c
-> @@ -397,20 +397,13 @@ static int resctrl_arch_mon_ctx_alloc_no_wait(enum resctrl_event_id evtid)
->  {
->  	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[evtid];
->  
-> -	if (!mpam_is_enabled())
-> -		return -EINVAL;
-> -
-> -	if (!mon->class)
-> +	if (!mpam_is_enabled() || !mon->class)
->  		return -EINVAL;
-
-I don't see any reason for this refactoring.
-
->  
-> -	switch (evtid) {
-> -	case QOS_L3_OCCUP_EVENT_ID:
-> +	if (evtid == QOS_L3_OCCUP_EVENT_ID) {
->  		/* With CDP, one monitor gets used for both code/data reads */
->  		return mpam_alloc_csu_mon(mon->class);
-> -	case QOS_L3_MBM_LOCAL_EVENT_ID:
-> -	case QOS_L3_MBM_TOTAL_EVENT_ID:
-> -		return USE_PRE_ALLOCATED;
-> -	default:
-> +	} else {
->  		return -EOPNOTSUPP;
->  	}
->  }
-> @@ -464,9 +457,15 @@ void resctrl_arch_mon_ctx_free(struct rdt_resource *r,
->  	resctrl_arch_mon_ctx_free_no_wait(evtid, mon_idx);
->  }
->  
-> -static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
-> -		      enum mpam_device_features mon_type,
-> -		      int mon_idx,
-> +/* The monitor resctrl's counter @cntr_id uses for @cdp_type. */
-> +static int mon_for_cntr(struct mpam_resctrl_mon *mon, int cntr_id,
-> +			enum resctrl_conf_type cdp_type)
-> +{
-> +	return mon->assigned_counters[resctrl_get_config_index(cntr_id, cdp_type)];
-> +}
-> +
-> +static int __read_mon(struct mpam_component *mon_comp,
-> +		      enum mpam_device_features mon_type, int mon_idx,
->  		      enum resctrl_conf_type cdp_type, u32 closid, u32 rmid, u64 *val)
->  {
->  	struct mon_cfg cfg;
-> @@ -477,14 +476,6 @@ static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_c
->  	/* Shift closid to account for CDP */
->  	closid = resctrl_get_config_index(closid, cdp_type);
->  
-> -	if (mon_idx == USE_PRE_ALLOCATED) {
-> -		int mbwu_idx = resctrl_arch_rmid_idx_encode(closid, rmid);
-> -
-> -		mon_idx = mon->mbwu_idx_to_mon[mbwu_idx];
-> -		if (mon_idx == -1)
-> -			return -ENOENT;
-> -	}
-> -
->  	if (irqs_disabled()) {
->  		/* Check if we can access this domain without an IPI */
->  		return -EIO;
-> @@ -500,32 +491,6 @@ static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_c
->  	return mpam_msmon_read(mon_comp, &cfg, mon_type, val);
->  }
->  
-> -static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
-> -			     enum mpam_device_features mon_type,
-> -			     int mon_idx, u32 closid, u32 rmid, u64 *val)
-> -{
-> -	if (cdp_enabled) {
-> -		u64 code_val = 0, data_val = 0;
-> -		int err;
-> -
-> -		err = __read_mon(mon, mon_comp, mon_type, mon_idx,
-> -				 CDP_CODE, closid, rmid, &code_val);
-> -		if (err)
-> -			return err;
-> -
-> -		err = __read_mon(mon, mon_comp, mon_type, mon_idx,
-> -				 CDP_DATA, closid, rmid, &data_val);
-> -		if (err)
-> -			return err;
-> -
-> -		*val = code_val + data_val;
-> -		return 0;
-> -	}
-> -
-> -	return __read_mon(mon, mon_comp, mon_type, mon_idx,
-> -			  CDP_NONE, closid, rmid, val);
-> -}
-> -
->  /* MBWU when not in ABMC mode (not supported), and CSU counters. */
->  int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
->  			   u32 closid, u32 rmid, enum resctrl_event_id eventid,
-> @@ -553,13 +518,31 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
->  
->  	mon_type = mpam_feat_msmon_csu;
->  
-> -	return read_mon_cdp_safe(mon, mon_comp, mon_type, mon_idx,
-> -				 closid, rmid, val);
-> +	if (cdp_enabled) {
-> +		u64 code_val = 0, data_val = 0;
-> +		int err;
-> +
-> +		err = __read_mon(mon_comp, mon_type, mon_idx,
-> +				 CDP_CODE, closid, rmid, &code_val);
-> +		if (err)
-> +			return err;
-> +
-> +		err = __read_mon(mon_comp, mon_type, mon_idx,
-> +				 CDP_DATA, closid, rmid, &data_val);
-> +		if (err)
-> +			return err;
-> +
-> +		*val = code_val + data_val;
-> +		return 0;
-> +	}
-> +
-> +	return __read_mon(mon_comp, mon_type, mon_idx,
-> +			  CDP_NONE, closid, rmid, val);
-
-
-What am I missing? Aren't you just copying the contents of
-read_mon_cdp_safe()?
-
-Thanks,
-
-Ben
-
->  }
->  
->  /* MBWU counters when in ABMC mode */
->  int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
-> -			   u32 closid, u32 rmid, int mon_idx,
-> +			   u32 closid, u32 rmid, int cntr_id,
->  			   enum resctrl_event_id eventid, u64 *val)
->  {
->  	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
-> @@ -575,43 +558,38 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
->  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
->  	mon_comp = l3_dom->mon_comp[eventid];
->  
-> -	return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu,
-> -				 USE_PRE_ALLOCATED, closid, rmid, val);
-> -}
-> -
-> -static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
-> -			int mon_idx,
-> -			enum resctrl_conf_type cdp_type, u32 closid, u32 rmid)
-> -{
-> -	struct mon_cfg cfg = { };
-> -
-> -	if (!mpam_is_enabled())
-> -		return;
-> +	if (cdp_enabled) {
-> +		u64 code_val = 0, data_val = 0;
-> +		int err;
->  
-> -	/* Shift closid to account for CDP */
-> -	closid = resctrl_get_config_index(closid, cdp_type);
-> +		err = __read_mon(mon_comp, mpam_feat_msmon_mbwu,
-> +				 mon_for_cntr(mon, cntr_id, CDP_CODE),
-> +				 CDP_CODE, closid, rmid, &code_val);
-> +		if (err)
-> +			return err;
->  
-> -	if (mon_idx == USE_PRE_ALLOCATED) {
-> -		int mbwu_idx = resctrl_arch_rmid_idx_encode(closid, rmid);
-> +		err = __read_mon(mon_comp, mpam_feat_msmon_mbwu,
-> +				 mon_for_cntr(mon, cntr_id, CDP_DATA),
-> +				 CDP_DATA, closid, rmid, &data_val);
-> +		if (err)
-> +			return err;
->  
-> -		mon_idx = mon->mbwu_idx_to_mon[mbwu_idx];
-> +		*val = code_val + data_val;
-> +		return 0;
->  	}
->  
-> -	if (mon_idx == -1)
-> -		return;
-> -	cfg.mon = mon_idx;
-> -	mpam_msmon_reset_mbwu(mon_comp, &cfg);
-> +	return __read_mon(mon_comp, mpam_feat_msmon_mbwu,
-> +			  mon_for_cntr(mon, cntr_id, CDP_NONE),
-> +			  CDP_NONE, closid, rmid, val);
->  }
->  
-> -static void reset_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
-> -			       int mon_idx, u32 closid, u32 rmid)
-> +/* Reset the monitor resctrl's counter @cntr_id uses for @cdp_type. */
-> +static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
-> +			int cntr_id, enum resctrl_conf_type cdp_type)
->  {
-> -	if (cdp_enabled) {
-> -		__reset_mon(mon, mon_comp, mon_idx, CDP_CODE, closid, rmid);
-> -		__reset_mon(mon, mon_comp, mon_idx, CDP_DATA, closid, rmid);
-> -	} else {
-> -		__reset_mon(mon, mon_comp, mon_idx, CDP_NONE, closid, rmid);
-> -	}
-> +	struct mon_cfg cfg = { .mon = mon_for_cntr(mon, cntr_id, cdp_type) };
-> +
-> +	mpam_msmon_reset_mbwu(mon_comp, &cfg);
->  }
->  
->  /* Reset an assigned counter */
-> @@ -632,7 +610,12 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
->  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
->  	mon_comp = l3_dom->mon_comp[eventid];
->  
-> -	reset_mon_cdp_safe(mon, mon_comp, USE_PRE_ALLOCATED, closid, rmid);
-> +	if (cdp_enabled) {
-> +		__reset_mon(mon, mon_comp, cntr_id, CDP_CODE);
-> +		__reset_mon(mon, mon_comp, cntr_id, CDP_DATA);
-> +	} else {
-> +		__reset_mon(mon, mon_comp, cntr_id, CDP_NONE);
-> +	}
->  }
->  
->  /*
-> @@ -1170,22 +1153,6 @@ static void mpam_resctrl_pick_counters(void)
->  	}
->  }
->  
-> -static void __config_cntr(struct mpam_resctrl_mon *mon, u32 cntr_id,
-> -			  enum resctrl_conf_type cdp_type, u32 closid, u32 rmid,
-> -			  bool assign)
-> -{
-> -	/* Same CDP index remap as closid; maps cntr_id to assigned_counters[]. */
-> -	u32 mbwu_idx, mon_idx = resctrl_get_config_index(cntr_id, cdp_type);
-> -
-> -	closid = resctrl_get_config_index(closid, cdp_type);
-> -	mbwu_idx = resctrl_arch_rmid_idx_encode(closid, rmid);
-> -
-> -	if (assign)
-> -		mon->mbwu_idx_to_mon[mbwu_idx] = mon->assigned_counters[mon_idx];
-> -	else
-> -		mon->mbwu_idx_to_mon[mbwu_idx] = -1;
-> -}
-> -
->  void resctrl_arch_config_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
->  			      enum resctrl_event_id evtid, u32 rmid, u32 closid,
->  			      u32 cntr_id, bool assign)
-> @@ -1197,19 +1164,13 @@ void resctrl_arch_config_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *
->  		return;
->  	}
->  
-> -	if (!mon->mbwu_idx_to_mon || !mon->assigned_counters) {
-> -		pr_debug("monitor arrays not allocated\n");
-> +	if (!mon->assigned_counters) {
-> +		pr_debug("monitor array not allocated\n");
->  		return;
->  	}
->  
-> -	if (cdp_enabled) {
-> -		__config_cntr(mon, cntr_id, CDP_CODE, closid, rmid, assign);
-> -		__config_cntr(mon, cntr_id, CDP_DATA, closid, rmid, assign);
-> -	} else {
-> -		__config_cntr(mon, cntr_id, CDP_NONE, closid, rmid, assign);
-> -	}
-> -
-> -	resctrl_arch_reset_cntr(r, d, closid, rmid, cntr_id, QOS_L3_MBM_TOTAL_EVENT_ID);
-> +	if (assign)
-> +		resctrl_arch_reset_cntr(r, d, closid, rmid, cntr_id, evtid);
->  }
->  
->  static int mpam_resctrl_control_init(struct mpam_resctrl_res *res)
-> @@ -1296,25 +1257,16 @@ static int mpam_resctrl_pick_domain_id(int cpu, struct mpam_component *comp)
->  static int mpam_resctrl_monitor_init_abmc(struct mpam_resctrl_mon *mon)
->  {
->  	struct mpam_resctrl_res *res = &mpam_resctrl_controls[RDT_RESOURCE_L3];
-> -	size_t num_rmid = resctrl_arch_system_num_rmid_idx();
->  	struct rdt_resource *l3 = &res->resctrl_res;
->  	struct mpam_class *class = mon->class;
->  	u16 num_mbwu_mon;
->  	int *cntrs;
->  
-> -	int *rmid_array __free(kvfree) = kvmalloc_objs(*rmid_array, num_rmid);
-> -	if (!rmid_array) {
-> -		pr_debug("Failed to allocate RMID array\n");
-> -		return -ENOMEM;
-> -	}
-> -	memset(rmid_array, -1, num_rmid * sizeof(*rmid_array));
-> -
->  	num_mbwu_mon = class->props.num_mbwu_mon;
->  	cntrs = __alloc_mbwu_array(mon->class, num_mbwu_mon);
->  	if (IS_ERR(cntrs))
->  		return PTR_ERR(cntrs);
->  	mon->assigned_counters = cntrs;
-> -	mon->mbwu_idx_to_mon = no_free_ptr(rmid_array);
->  
->  	l3->mon.mbm_cntr_assignable = true;
->  	l3->mon.mbm_assign_on_mkdir = true;
-> @@ -1943,17 +1895,12 @@ static void mpam_resctrl_teardown_mon(struct mpam_resctrl_mon *mon, struct mpam_
->  {
->  	u32 num_mbwu_mon = class->props.num_mbwu_mon;
->  
-> -	if (!mon->mbwu_idx_to_mon)
-> +	if (!mon->assigned_counters)
->  		return;
->  
-> -	if (mon->assigned_counters) {
-> -		__free_mbwu_mon(class, mon->assigned_counters, num_mbwu_mon);
-> -		kvfree(mon->assigned_counters);
-> -		mon->assigned_counters = NULL;
-> -	}
-> -
-> -	kvfree(mon->mbwu_idx_to_mon);
-> -	mon->mbwu_idx_to_mon = NULL;
-> +	__free_mbwu_mon(class, mon->assigned_counters, num_mbwu_mon);
-> +	kvfree(mon->assigned_counters);
-> +	mon->assigned_counters = NULL;
->  }
->  
->  void mpam_resctrl_teardown_class(struct mpam_class *class)
+> Changes in v2:
+> - rtc: check for #clock-cells before reading the driver data, which is
+>    NULL when the PMIC has no RTC node, as on mt8173-evb (Sashiko)
+> - dt-bindings: add Krzysztof's Reviewed-by
+> - Link to v1: https://lore.kernel.org/r/20261101-rbrue-suez-upstreaming-mt6397-rtc-32k-v1-0-9758f38d7053@gmail.com
+> 
+> ---
+> Ryan Brue (2):
+>        rtc: mt6397: rename the write trigger register offset
+>        rtc: mt6397: provide the 32 kHz output as a clock
+> 
+>   drivers/rtc/rtc-mt6397.c       | 95 ++++++++++++++++++++++++++++++++++++++++--
+>   include/linux/mfd/mt6397/rtc.h |  8 +++-
+>   2 files changed, 99 insertions(+), 4 deletions(-)
+> ---
+> base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
+> change-id: 20261024-rbrue-suez-upstreaming-mt6397-rtc-32k-0a1c16f63383
+> 
+> Best regards,
 
 
