@@ -2,83 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9BD0606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E64606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3sziXul0;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=GFKR6AR/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AYcX4hZu;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=DKIAMN5X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:Mime-Version:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=U0C2c5C1ky8GXUFhcagNmONxfQIKKMC4L5ZXkx5S6y8=; b=3sziXul0aBFmCFojATK+rX0Vj5
-	cZwOkg2JlAJFj8Bw6craxe1FAiDCrTFt4/UhY5rkaDgfWl578yPtne0jugg/tgqJIy1D9R02gW41G
-	YmQRkjHHk1QU83R4J0wsUgkgiDHtQjdsHoqMd6B/I/7jsh7KdElBXN+sgIERs5xBsm1jOJHRZOozC
-	BUkQhC+UlYNzT55HiebQcH1TSdclax5Ude/6uRHtTI4pLrVkbZE6L5yp+gR3PasupXbcSBbh4s1GT
-	Wn2rRt9oNXF1GWyUNq8bO6oEKRaYgB+OcJdxTtSfJSe5nMcbRi2WedNSkVY+MQCAyNAoFWG3NQE3A
-	pRhiswog==;
+	bh=IzLYVFDyopJUGl8kdEACRtkithMX+J6kXd06oGG1awU=; b=AYcX4hZurrj6wQ6XwrSC0KrGK2
+	o6DIbahrU8L1ZrV7eBWXpjRvmw50gbIuWOEdrrLHsI1hvTsm1Ig+abpc11uPIh4DYtC9DAQzPJQs7
+	tz+AYMmRkWacH/m/DNsZlxJrgK4wmphEF7pBBMwmoYnHsfDQTBCDH7cpmY9wz7QUkewZlsADLavDw
+	LTzOd0+oEDNiWqPLtsfSEXc+1Edwgb+qayadyl3wIGFXozhTGGTA5+meuRexY6zdV8o0W7PZotUOs
+	ePYSTSgDoEKq3Ge9LAxip/myl7wNsDjQAlcPVOW2dWra/hfXr+EpPK6J/TweD3fn9NMuUiwOzckVU
+	KUlTV3OQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNED-00000006dn6-1mv7;
-	Tue, 17 Nov 2026 17:44:21 +0000
-Received: from mail-wr1-x445.google.com ([2a00:1450:4864:20::445])
+	id 1xTNEJ-00000006dqW-2F9v;
+	Tue, 17 Nov 2026 17:44:27 +0000
+Received: from mail-wr1-x448.google.com ([2a00:1450:4864:20::448])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNEB-00000006dly-1ZKh
+	id 1xTNEC-00000006dm5-1acE
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 17:44:20 +0000
-Received: by mail-wr1-x445.google.com with SMTP id ffacd0b85a97d-48fcb657f32so10770f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 09:44:18 -0800 (PST)
+	Tue, 17 Nov 2026 17:44:21 +0000
+Received: by mail-wr1-x448.google.com with SMTP id ffacd0b85a97d-4915ba023d4so21229f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 09:44:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794937457; x=1795542257; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:mime-version:date:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=U0C2c5C1ky8GXUFhcagNmONxfQIKKMC4L5ZXkx5S6y8=;
-        b=GFKR6AR/nHItqf9G4troHVACHBv7CsCgHr244wKSOuy1c5rPoGrMJRc6C9E4P+Sjdu
-         y26jL66ZfFJNtjrVrIC9VdlNBJHCZI16dbMn67sZ9usSH6htOJENegx523WlHxaDakni
-         A2yxCf7HkDuds/GCwFVdrS+sSSeesxVfG0s/eyRZ8C2t8cr1xwCvsVcZWKkfxjS0fTf4
-         r+BkSGvMPY+ZvJwA23y9M6KORw0+Xfj7miB//VQ24NLBg20dh28qTffMx+cjku8butKr
-         Oj6n4y4pba58VzsGNoR7KML3NEFRRjyuyw4/S9PGDoJptLnuYZuWo/EYa/Q3GIYlJgg1
-         /AWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794937457; x=1795542257;
-        h=content-type:cc:to:from:subject:message-id:mime-version:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=google.com; s=20260707; t=1794937458; x=1795542258; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=U0C2c5C1ky8GXUFhcagNmONxfQIKKMC4L5ZXkx5S6y8=;
-        b=MTZtQmiPri+aJv9r6ezziInJtCp9/T9gnsqRxMkb1JL7z/D8j1qNueHbWVGRgsx7xg
-         aYuq4Vcs/UDblV4gECkJShvhkB3nPM6VEuUe493vz14SGnG/seXQx58hINJzqAKKbceb
-         3xY+SlExiqQs2I3Dnh9dPxe1DkAK8he77WxOBCuDfgrq3toOLU3EXSu2jWDbAqXoM3WG
-         UFmOyCVxBeIkhpnHrfddgy6kZ5OVYEQZz/+WpIEeVAqPHClrPqrwBFWaHqTwKdJeQC+w
-         aJcyZ5LlMrB/bf9K6d8ahlKJi8pd5SAPcIFSgnBhHVULPRKycDLyMubwhtRziJ/AUwnK
-         sGmw==
-X-Forwarded-Encrypted: i=1; AL+hErF8T+B07vAglYmmnoVLMCG/3wSv0mpT0cJm5pYq21tjeYoRBl7DFzE5D59izRpStDNcqQlIv9UWDa7vGBEyF88F@lists.infradead.org
-X-Gm-Message-State: APuU4Z8H7KgM/kjXsEyXpC9n4tmQOnMoZ8slt7wUQfKvca1onU+QNbI2
-	krGp6SGYpW+AiC6y65NfxQlJpywCEdajFuWuIvdHctCNqER9W6MOUfOljo4ikroosHxeym5v8dz
-	1nZd/FPnmq87vkC9QxiSC0g==
-X-Received: from wmbeb10.prod.google.com ([2002:a05:600c:678a:b0:4a2:826:6d11])
+        bh=IzLYVFDyopJUGl8kdEACRtkithMX+J6kXd06oGG1awU=;
+        b=DKIAMN5X/ZsCN+nYttN7CVTd3jKedavaFnF36m11L1bZbbeQA/dGD3SX51F5ob9sLY
+         AzfE6ybpBsJHwhUngb57vCYAa+sv2IgOELBDTIK87AbxNNuUqS91qwhh0i2kN4z73tQg
+         H/2CdbbVKYJOdPobUb5u2U51ztJf7P7XhAuTvyzYtenE1/5/9iVexNDeu47hGGTuwNGW
+         AAraxaY60ZRUPfcU6do+Ct6vbylPwu9xel4JHCCmA4EIYi5r7MqXYaATWAVz/qMLL3B5
+         qVdF0SoDGwHlEH9GKt4Oj65L+W4GZP1VfSnpR49Sr8oS6RjwZ+2vO78FcOynhb8TNldh
+         q2FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794937458; x=1795542258;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=IzLYVFDyopJUGl8kdEACRtkithMX+J6kXd06oGG1awU=;
+        b=vq6YPuI7KZaC5A1yltRhkTHC/tRGOmYD5Hyf/SmFpBZKFlBIKa6Myvm1+PYenQMCjm
+         OUMY5STBXwlvU3Bw2cdz+jhdvribpqLTs0nwcZtePxcQ8JozxkOOd2L+eZ2J6YSbSSHc
+         /2QFkDynR7CDfWdCuhLfmM99aELeVFZ/ngD0bQQOmtIVg7cDcXBB+VQVKMzWzn5Ai8pn
+         NUkU7Kyf+u/bdlrqIll5O6BUcvX8VaSiIDo9pu74l3X8owA7wL8gkjKYXTMzsV24weQ+
+         zqIbMPISPKwoPBWsoHw5qdxbnpXxtUfPXfwODp2uMUtZdWF6o2HYl1mnaeXACLcTZx6P
+         OIGw==
+X-Forwarded-Encrypted: i=1; AL+hErF0aY4GEJe60fUUzUn8hywviTSemH7JXHBdE2RVQ0W6YDlJADEVOtq9y6vfOzIpmuIrKcVkhG/gK4eOEgZxdVMb@lists.infradead.org
+X-Gm-Message-State: APuU4Z+IVmIT2NVXYP28ETUUkA7dMujKLVM4WOnedw6ROEtXybLApt/S
+	zKvggHueXY2qevcMWys7EsNE7lYsNhDpIODVD2FGjEMeuRcdiycu3EGQMbSLMQCLf3yghFtwkmo
+	5KfQVBW+ivRNlGaunkaiYeQ==
+X-Received: from wruk18.prod.google.com ([2002:a5d:6292:0:b0:48d:f8b9:6520])
  (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600d:12:b0:4bb:6d61:af7c with SMTP id 5b1f17b1804b1-4bb6d61b56fmr164962325e9.35.1794937456737;
- Tue, 17 Nov 2026 09:44:16 -0800 (PST)
-Date: Tue, 17 Nov 2026 17:43:39 +0000
+ 2002:a05:6000:1619:b0:48c:72fc:363e with SMTP id ffacd0b85a97d-4a63eac5b33mr251344f8f.44.1794937457640;
+ Tue, 17 Nov 2026 09:44:17 -0800 (PST)
+Date: Tue, 17 Nov 2026 17:43:40 +0000
+In-Reply-To: <20261117174403.58762-1-vdonnefort@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
+References: <20261117174403.58762-1-vdonnefort@google.com>
 X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
-Message-ID: <20261117174403.58762-1-vdonnefort@google.com>
-Subject: [PATCH v4 00/23] Huge mapping support for protected VMs
+Message-ID: <20261117174403.58762-2-vdonnefort@google.com>
+Subject: [PATCH v4 01/23] KVM: arm64: Prefault host stage-2 entries on block split
 From: Vincent Donnefort <vdonnefort@google.com>
 To: maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev, 
 	linux-arm-kernel@lists.infradead.org
 Cc: joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
 	yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, 
 	kernel-team@android.com, fuad.tabba@linux.dev, qperret@google.com, 
-	weilin.chang@arm.com, Vincent Donnefort <vdonnefort@google.com>
+	weilin.chang@arm.com, Keir Fraser <keirf@google.com>, 
+	Vincent Donnefort <vdonnefort@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_094419_473531_B066F9DE 
-X-CRM114-Status: GOOD (  15.94  )
+X-CRM114-CacheID: sfid-20261117_094420_435398_8B59AE56 
+X-CRM114-Status: GOOD (  16.39  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,131 +94,95 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-21.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,USER_IN_DEF_DKIM_WL
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
+	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently, pKVM handles stage-2 mappings and ownership tracking strictly
-at the PAGE_SIZE level. This series extends pKVM to support PMD_SIZE
-block mappings, thereby enabling Transparent Huge Pages (THP) for
-protected guests. hugetlbfs is currently unsupported as it does not
-appear as swapbacked.
+From: Keir Fraser <keirf@google.com>
 
-Summary of changes:
+For the host stage-2 that is idmap, we can avoid lazy-mapping on block
+splitting by propagating existing valid mappings to neighbouring entries
+of the new table.
 
-1. Enable host stage-2 block-level annotations:
+Signed-off-by: Keir Fraser <keirf@google.com>
+Co-developed-by: Quentin Perret <qperret@google.com>
+Signed-off-by: Quentin Perret <qperret@google.com>
+Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
+---
+ arch/arm64/kvm/hyp/pgtable.c | 45 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-The host stage-2 being annotated with the GFN of the guest on the
-host->guest donation transitions, we allow block-level annotations to
-ensure the host stage-2 mapping size matches the guest stage-2.
-
-2. Expand ownership transition HVCs:
-
-Enable the ownership test to work with PMD_SIZE so we can test
-transitions supporting more than PAGE_SIZE.
-
-3. Implements the PKVM_HYP_REQ_SPLIT hypervisor request:
-
-Allows the hypervisor to ask the host to split a mapping. This ensures
-the guest s2, pkvm_mapping tree and host s2 are always using the same
-mapping size.
-
-4. Wires up THP support for protected VMs:
-
-Use a PMD_SIZE mapping for protected VMs whenever
-transparent_hugepage_adjust() acknowledge the presence of a huge-mapping
-in the VMM stage-1.
-
-Changelog:
-
-v4:
-  - Pass level instead of size to kvm_pgtable_stage2_table_install(),
-    check addr alignment, and fix kernel-doc (Sashiko)
-  - Wrap host_stage2_split_gfn_meta() with host_stage2_try() (Sashiko)
-  - Drop PKVM_HYP_REQ_SPLIT from pkvm_memunshare_call() (Sashiko)
-
-v3 (https://lore.kernel.org/all/20261102204628.401871-1-vdonnefort@google.com/):
-  - Move get_page() in stage2_map_prefault_idmap() from PATCH2 to PATCH1 (Wei-Lin, Mostafa)
-  - Set map_data.phys in kvm_pgtable_stage2_annotate() (Sashiko)
-  - Propagate -EHWPOISON and -EAGAIN from pkvm_pin_user_pages() to protected_pkvm_mem_abort() (Sashiko)
-  - Fall back to PAGE_SIZE when a PMD_SIZE mapping overlaps an existing PAGE_SIZE one (Fuad)
-  - Reject !nr_pages in pfn_range_is_valid()
-  - Use mmu_invalidate_retry()
-  - Rebase on 7.4-rc1
-
-v2 (https://lore.kernel.org/all/20260911135053.146435-1-vdonnefort@google.com/):
-  - Reorder patches to make the series bisectable.
-  - Check memcache and WARN_ON if stage-2 split fails in __pkvm_host_split_guest()
-  - __pkvm_pgtable_stage2_split(): return 0 if the block is already split.
-  - kvm_pgtable_stage2_table_install() to let mem_protect handle the stage-2 splitting.
-  - Refactor fix_host_ownership() (Wei-Lin)
-  - Handle non-linear mappings in fix_host_ownership()
-  - Drop _page_ from __pkvm_host_reclaim_page_guest and __pkvm_reclaim_dying_guest_page() (Wei-Lin)
-  - Make a separate patch for hyp_poison_range() (Wei-Lin)
-  - Use folio_add_pins in __pkvm_pgtable_stage2_split() (Wei-Lin)
-  - Hold the mmap_read_lock() for transparent_hugepage_adjust() (Sashiko)
-  - Catch 2MiB fault on existing 4KiB fault (Sashiko)
-  - Add share/unshare testing of split blocks.
-  - Rebased on 7.3-rc2
-
-v1 (https://lore.kernel.org/all/20260803100904.3563942-1-vdonnefort@google.com/)
-
-Keir Fraser (1):
-  KVM: arm64: Prefault host stage-2 entries on block split
-
-Vincent Donnefort (22):
-  KVM: arm64: Propagate host stage-2 annotated entries on block split
-  KVM: arm64: Allow block-level stage-2 annotation
-  KVM: arm64: Use block-level annotations when setting up the host
-    stage-2
-  KVM: arm64: Make pKVM ownership selftest an HVC
-  KVM: arm64: Reject zero-sized ranges in pfn_range_is_valid()
-  KVM: arm64: Add a range to __pkvm_host_share/unshare_hyp()
-  KVM: arm64: Add a range to __pkvm_host_donate_guest()
-  KVM: arm64: Add a range to hyp_poison_page()
-  KVM: arm64: Add a range to __pkvm_host_reclaim_guest()
-  KVM: arm64: Add a range to __pkvm_guest_share_host()
-  KVM: arm64: Add a range to __pkvm_guest_unshare_host()
-  KVM: arm64: Handle huge mappings in
-    __pkvm_host_force_reclaim_page_guest()
-  KVM: arm64: Handle huge mappings in __pkvm_vcpu_in_poison_fault()
-  KVM: arm64: Add a range to pKVM ownership selftest
-  KVM: arm64: Warn on pKVM guest stage-2 block collapse
-  KVM: arm64: Add vcpu conduit for pkvm_hyp_req
-  KVM: arm64: Introduce kvm_pgtable_stage2_table_install()
-  KVM: arm64: Add __pkvm_host_split_guest HVC
-  KVM: arm64: Extend pKVM page ownership selftests to cover guest block
-    split
-  KVM: arm64: Add PKVM_HYP_REQ_SPLIT
-  KVM: arm64: Raise PKVM_HYP_REQ_SPLIT on guest to host sharing
-  KVM: arm64: Stage-2 huge mappings for protected VMs
-
- arch/arm64/include/asm/kvm_asm.h              |  14 +-
- arch/arm64/include/asm/kvm_hcall.h            |  10 +-
- arch/arm64/include/asm/kvm_host.h             |  31 +
- arch/arm64/include/asm/kvm_pgtable.h          |  13 +
- arch/arm64/include/asm/kvm_pkvm.h             |  35 +-
- arch/arm64/kvm/handle_exit.c                  |   3 +
- arch/arm64/kvm/hyp/include/nvhe/mem_protect.h |  25 +-
- arch/arm64/kvm/hyp/include/nvhe/memory.h      |   5 +
- arch/arm64/kvm/hyp/include/nvhe/pkvm.h        |   6 +-
- arch/arm64/kvm/hyp/nvhe/ffa.c                 |  12 +-
- arch/arm64/kvm/hyp/nvhe/hyp-main.c            |  43 +-
- arch/arm64/kvm/hyp/nvhe/mem_protect.c         | 591 ++++++++++++------
- arch/arm64/kvm/hyp/nvhe/pkvm.c                |  41 +-
- arch/arm64/kvm/hyp/nvhe/setup.c               | 165 +++--
- arch/arm64/kvm/hyp/pgtable.c                  | 140 ++++-
- arch/arm64/kvm/mmu.c                          | 128 ++--
- arch/arm64/kvm/pkvm.c                         | 247 +++++++-
- arch/arm64/kvm/trace_pkvm.h                   |   4 +-
- 18 files changed, 1113 insertions(+), 400 deletions(-)
-
-
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+diff --git a/arch/arm64/kvm/hyp/pgtable.c b/arch/arm64/kvm/hyp/pgtable.c
+index 9c83837b184d..dfbcdd3d91a4 100644
+--- a/arch/arm64/kvm/hyp/pgtable.c
++++ b/arch/arm64/kvm/hyp/pgtable.c
+@@ -1032,10 +1032,52 @@ static int stage2_map_walk_table_pre(const struct kvm_pgtable_visit_ctx *ctx,
+ 	return 0;
+ }
+ 
++static void stage2_map_prefault_idmap(const struct kvm_pgtable_visit_ctx *ctx, kvm_pte_t *ptep)
++{
++	kvm_pte_t block_pte = ctx->old;
++	bool counted;
++	u64 pa;
++	int i;
++
++	if (!kvm_pte_valid(block_pte))
++		return;
++
++	counted = stage2_pte_is_counted(block_pte);
++
++	/*
++	 * Shared walks not supported: cannot rollback refcounts on break
++	 * failure.
++	 */
++	if (counted && WARN_ON_ONCE(kvm_pgtable_walk_shared(ctx)))
++		return;
++
++	pa = ALIGN_DOWN(ctx->addr, kvm_granule_size(ctx->level));
++	for (i = 0; i < PTRS_PER_PTE; ++i, ++ptep, pa += kvm_granule_size(ctx->level + 1)) {
++		kvm_pte_t pte = kvm_init_valid_leaf_pte(pa, block_pte, ctx->level + 1);
++
++		/*
++		 * Skip ptes in the range being modified by the caller if we're
++		 * installing last level entries. Otherwise, we need to
++		 * temporarily put in a valid mapping to make sure the
++		 * prefaulting logic is triggered on the next
++		 * stage2_map_walk_leaf(). This adds an unnecessary TLBI as
++		 * we'll presumably re-break the freshly installed block, but
++		 * that should happen very infrequently.
++		 */
++		if ((ctx->level < (KVM_PGTABLE_LAST_LEVEL - 1)) ||
++		    (pa < ctx->addr) || (pa >= ctx->end)) {
++			*ptep = pte;
++			if (counted)
++				ctx->mm_ops->get_page(ptep);
++		}
++	}
++}
++
+ static int stage2_map_walk_leaf(const struct kvm_pgtable_visit_ctx *ctx,
+ 				struct stage2_map_data *data)
+ {
+ 	struct kvm_pgtable_mm_ops *mm_ops = ctx->mm_ops;
++	struct kvm_pgtable *pgt = data->mmu->pgt;
+ 	kvm_pte_t *childp, new;
+ 	int ret;
+ 
+@@ -1053,6 +1095,9 @@ static int stage2_map_walk_leaf(const struct kvm_pgtable_visit_ctx *ctx,
+ 	if (!childp)
+ 		return -ENOMEM;
+ 
++	if (pgt->flags & KVM_PGTABLE_S2_IDMAP)
++		stage2_map_prefault_idmap(ctx, childp);
++
+ 	if (!stage2_try_break_pte(ctx, data->mmu)) {
+ 		mm_ops->put_page(childp);
+ 		return -EAGAIN;
 -- 
 2.56.1.708.g77570a6a1d-goog
 
