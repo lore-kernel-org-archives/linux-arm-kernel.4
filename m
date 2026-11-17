@@ -2,64 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF506606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F902606B443
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:40:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o7sE/mod;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PdjQOUDZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OgLMkg2L;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=g4srGreu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=jsPV85ju58AThY22ybSoCSGFxhGFAMEskuRonfrShTo=; b=o7sE/modVpiazv
-	YoDzmIuvSvjfXxZ90jtFCOKZYEsi5Nd6jgGOp1pGk2TeBtJEy3MCD9iPYjp/2uGHX2FE6w5QgkRMa
-	V0Dbq8FrjaNe2Mrf0Pib8Jm5rGxvGAM4QVN9jQOFqmLTGGuQ8Wnpm1wfJ39FFflOwn3BTkZcM1wbR
-	MWLhJXXY5g5Xlnh9v2e3CruT2AmgZYPQANuJlXLViPA0XZp5OsmP/LU/bh5n88rgRc4U14du3xXfA
-	zk1WFptIzXdiLkWcmYH0pNYKevqWmlY9oUeGiOaHMsQxvblORenUAFuig/uiU5b+WMpLAbwtLMzr/
-	WwzTb2WHYH9KzjzHPebw==;
+	List-Owner; bh=iGrxTogpmY2qlz4NFTDy01opfwQQh22j9ywkzRRz+lU=; b=OgLMkg2L3pnWfG
+	4bGgZU17/7fZX/ZzyXV1JO5+WCeQhoFkjHbrNGAPjH0Q0rvKLUgP864Gjh7AaK6NG+5kB8Inyd8R7
+	4smF2JIFLP+VQ/GxF0dtLzlvbK6yWWuLvoj0ooM58cNLAR94SMVP04GMVMbTLjs2dvfXuT2TWaK0G
+	QyaZv0Nz5UmXjYfcSz7CwJWHNWpLeJeAcKlN1gNRTlET9dskxjJZKc3lEoJP9x5WWz6y20CXK6rG8
+	UzLrjJfIpD2qb2HL27FoUzOKitxTqEJSiUqRNrEtj/eGveyejjcTAIiLg+/ODG0r4GVrJwX2UC4f3
+	xdAWn+y4USX0yUf+tfpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIPQ-00000005e0a-3Fzp;
-	Tue, 17 Nov 2026 12:35:36 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xTITk-00000005ex1-2ZBW;
+	Tue, 17 Nov 2026 12:40:04 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIPM-00000005dz3-3399;
-	Tue, 17 Nov 2026 12:35:34 +0000
+	id 1xTITj-00000005ew0-2X2F
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 12:40:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 548C9437D7;
-	Tue, 17 Nov 2026 12:35:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8838E1F000C9;
-	Tue, 17 Nov 2026 12:35:28 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 230FE4057D;
+	Tue, 17 Nov 2026 12:40:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DB1E1F01834;
+	Tue, 17 Nov 2026 12:39:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794918932;
-	bh=jsPV85ju58AThY22ybSoCSGFxhGFAMEskuRonfrShTo=;
+	s=k20260515; t=1794919203;
+	bh=iGrxTogpmY2qlz4NFTDy01opfwQQh22j9ywkzRRz+lU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=PdjQOUDZapt/y7rIWPfEmMnzN8N6SfcGSvGK9lp4B9/OmUx6J4NmhYGMHB72ALxds
-	 MN2EJ41qJzL4LGt1TKyggXuWygy6Ni3v6auXE/bg0DwXBhv8EUlkYWAd6Ep0ozn3MF
-	 LOv8AAgdmUfrIM7wzO7pTTrayPwFrnI9ihxpJbS6Y59S4zlbbKg2H1+Lx9XW7/zQxx
-	 /cyq5BxWqjkovCFOGbLSNsVNsmWqgCg1HlzxkveLelRZmHBxN0oIXCH0Yk0xK82nvY
-	 BNX1dtL7pqRpAolE5UlC+ESQuiTIK8SSELtNhTBrpRENMVhZ8jQeNR2R6lFTgrbCtI
-	 LZW7H/hj+5H3w==
-Message-ID: <d4ddb010-1722-4a77-9b59-68b625473559@kernel.org>
-Date: Tue, 17 Nov 2026 13:35:26 +0100
+	b=g4srGreuxToatVMIuAPDiO8eSqqmJs19koFwNky9XyMzCQow72SKEeWgUy+ulf3/l
+	 FQ8g9CYGyJO+trPjFlerdtrWuCgHi6pCBJpaytAudzfXWhTd9LZt+n1aPXJbVhdlH6
+	 OFtHy/2JltsmcdPHeCT1d3hQiigLKlqkOVJ20RMMc866fadpAJYx6R95sMHh/reTWa
+	 4BXYRguVwHEJPQvnPW6ZV75WOKkG7GJ1Ofcq8rDGmDFQc8fCX/394JH4lrWLIs7/kt
+	 puNyLPWlEHAi1Ey4bHWPp0MjouS9JH2SO6ncrklClyZdPtaVi5Hc8CWVyDO1S0+O3K
+	 YCW4qPX+1YfVg==
+Message-ID: <ef65915b-7a61-4f59-926c-375d654ce2d0@kernel.org>
+Date: Tue, 17 Nov 2026 13:39:56 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] arm64: dts: mediatek: mt8167: Add DRM nodes
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
- linux-mediatek@lists.infradead.org
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+Subject: Re: [PATCH v2 20/22] arm64: dts: apple: t8103: Add USB4 ACIO and NHI
+To: Sven Peter <sven@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20260505214541.333657-1-l.scorcia@gmail.com>
- <20260505214541.333657-2-l.scorcia@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>,
+ Neal Gompa <neal@gompa.dev>, Andreas Noever <andreas.noever@gmail.com>,
+ Mika Westerberg <westeri@kernel.org>, Yehezkel Bernat
+ <YehezkelShB@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20260906-b4-apple-soc-tbt-v2-0-1f80085f93fb@kernel.org>
+ <20260906-b4-apple-soc-tbt-v2-20-1f80085f93fb@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,7 +107,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20260505214541.333657-2-l.scorcia@gmail.com>
+In-Reply-To: <20260906-b4-apple-soc-tbt-v2-20-1f80085f93fb@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -122,42 +124,40 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 05/05/2026 23:44, Luca Leonardo Scorcia wrote:
-> Add all the DRM nodes required to get DSI to work on MT8167 SoC.
+On 06/09/2026 20:36, Sven Peter wrote:
+> Add the ACIO host router, NHI, DART and M3 mailbox nodes for both Type-C
+> ports on t8103 and connect the host routers to the Type-C connectors.
+> Also describe the USB3 path from each host router to its DWC3 controller
+> so the NHI driver can create the required device link.
 > 
-> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Sven Peter <sven@kernel.org>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8167.dtsi | 317 +++++++++++++++++++++++
->  1 file changed, 317 insertions(+)
+>  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi |  95 ++++++++++++++-
+>  arch/arm64/boot/dts/apple/t8103.dtsi      | 184 ++++++++++++++++++++++++++++++
+>  2 files changed, 277 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> index 27cf32d7ae35..32d3895baaa6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> @@ -16,6 +16,20 @@
->  / {
->  	compatible = "mediatek,mt8167";
->  
-> +	aliases {
-> +		aal0 = &aal;
-> +		ccorr0 = &ccorr;
-> +		color0 = &color;
-> +		dither0 = &dither;
-> +		dsi0 = &dsi;
-> +		gamma0 = &gamma;
-> +		ovl0 = &ovl0;
-> +		pwm0 = &disp_pwm;
-> +		rdma0 = &rdma0;
-> +		rdma1 = &rdma1;
-> +		wdma0 = &wdma;
+> diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> index 686fb1dd215d..01c942b0a75b 100644
+> --- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> @@ -17,6 +17,10 @@ aliases {
+>  		wifi0 = &wifi0;
+>  		atcphy0 = &atcphy0;
+>  		atcphy1 = &atcphy1;
+> +		usb4-0-acio = &usb4_0_acio;
+> +		usb4-0-nhi = &usb4_0_nhi;
+> +		usb4-1-acio = &usb4_1_acio;
+> +		usb4-1-nhi = &usb4_1_nhi;
 
-NAK
+Sorry, but what is this all atcphy and usb4-foo doing here? You do not
+get own undocumented aliases.
 
+How did this sneaked through... where do you have DT bindings maintainer
+acks on this ABI?
 
 Best regards,
 Krzysztof
