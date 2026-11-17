@@ -2,153 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0CB8606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C5460A382C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NJBBGtHF;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=GubjcS3W;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=OoIcQaiQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z/4sGYP3;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KusGYfdX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CQNCc886Hmd2ERLzq4jw1PUvCGY+4w5fk+7KZKnHLwk=; b=NJBBGtHFespJYtRoZCyt4NH3Cb
-	CVoDLDf1MpgdevOPiy0AgXwmYBjMfe+oPsS9siFahvRAd6zCzmR26SaGqf8VBNeI/7sVQHnHY47LD
-	br0yUUZz+dF4fOYA5d6Dzy/4otdjW+cMP/j5PV6v5MqQgczMSEBl3d8gDRXBMpMOdfCUfeOdlkkIF
-	eOIl94a5OpwOWwzy36y7U9THk/82xLqJpbr963dqmLPquE6iQ59+lFUg721ifGVfX9iB1HMAG6bnD
-	QHDgGGja3bbIiOLsgOFcdrVvhCLLuk+xJc8/qPxmkrtjO/SxzxrYRpLXAkjzDv8xLufMfWCip+liu
-	PTcV3rnA==;
+	bh=HVEE3Tcbne75iVGjTL3VoYX5NV8IDX+fOPLq54L1FA0=; b=Z/4sGYP3ykRBOt/etFhVJJ11bR
+	g/cTW4XRhDtLY9Kw1ITfFUznVrLQb+3TyqMLY3BpR9u0MCwtEroP+7mL8nWj5ZFcmomaj3A4rznmz
+	8ha2kRQ1qAdcdRLGH+9EwH9HlV7cZM31r+aU8ShEltKGQdpmsepY2m65zLJbu/mT4d2ehumoHk/T0
+	9aqOXn65+QQU4aRPyx2aIEN85V0WXys5B6N3OL5r6I3MGHGmkfJe89T7r4iZJQl7iFcwr9AzdFEtt
+	9OKOXO0yuMz1xz3ec/aG9OrRbP5O2Ke6ryawk+BzkNTw1Wqn+XRccXkmrhz3cTVBa90pqG6w33AjS
+	t0E0dYAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTItI-00000005pEe-2tZR;
-	Tue, 17 Nov 2026 13:06:28 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xTItp-00000005pOj-3cXv;
+	Tue, 17 Nov 2026 13:07:01 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTItE-00000005pCO-07Wl
+	id 1xTIto-00000005pOI-1n1X
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 13:06:27 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AHC0i2x1457229
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 13:06:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=CQNCc886Hmd2ERLzq4jw1PUvCGY+4w5fk+7
-	KZKnHLwk=; b=GubjcS3WWE//GTAtNVooXD6Dfo7xWxMD0xQSB3+z4b/XkFtE2Vf
-	E5oEAbrcgvPs6Hg2rFUlGD60XPEVEPezlRL5Go1CnsIKU1IQu1oBqb9gbtRWB26y
-	/rmZOsQew60thQTNvoPXehcYgbmq2Ufxh7M1hs9LjHvrkRT21sVSdmBLv6YSLAIY
-	w4JgPgVwvDwSkZXL/g75UBPuJDh5mbUl2jKnxBpHXpRoUsPE3JuSVsVR0XL552vf
-	UEnIg2N7dWfx/FyMMkZauIDFsAjANGjP87iNJM4+M2RPvNmiREP5hvoKZv6G6fAl
-	C3l5emmzK/xAYe4hSaQelPUoxAceqpcUfYg==
-Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j0nc80j64-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 13:06:22 +0000 (GMT)
-Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-7d2ec691518so706185137.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 05:06:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794920782; x=1795525582; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=CQNCc886Hmd2ERLzq4jw1PUvCGY+4w5fk+7KZKnHLwk=;
-        b=OoIcQaiQdEIjAMgH/TSzi8QOroHI1O1bwsUXqbD40IdprTlsz3udzp+M3n5T4NOOEC
-         dnfoSFgwoBV0MNEv17PyU7quMZrV9MY0NUbDJ3DEEm0cRMSNqbT2FzYzb+nvuC/w0ClI
-         rCGBzCmVh+RPwNVndc+Cfi6BqB/X+vaJToHilC4nmK/t0HkNtEaD5riSUc4iHIcrYqFY
-         iRE73XErY8sagH0izxlwUiYpUZdxa2Axc+lUlnHeMkg2AzvXLjmzVZ+4Q45TEaSRHQGh
-         hCnstNxwph3TCnWmlfuYYwhYvBr3EJn7VN6GeWzTjAGCaGFFaxbV+t4+TNTz+Sdk1sGQ
-         dfDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794920782; x=1795525582;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=CQNCc886Hmd2ERLzq4jw1PUvCGY+4w5fk+7KZKnHLwk=;
-        b=f7Prvv/enjmgSKVgizdFKgaiXS1iwAERtj8SP0FNh/tD6ZM+GPDdFMvOWtZ31j739P
-         oKWFE/BvvpfoMbx9JqTrM3WTSo4rz9SUWf0Bj00QB5g+6iCfY4vzWHOXVAuiXna0Nt+S
-         vszMre1gtM4jcmnm1TQsPgi3+hhxMGFfMqmIa4XDuJPnUGOJ6iOVvQyMqX8PZeEQkQ3q
-         8Vca50v+uV+PYwI0M1pmkXNJFMpdiBJxQ0l6L1VgKnieyPU4QcxD24Q40ncDcNWnyFdk
-         nBMGI+kMz5AtEDzcHoVwn37IOACznC5FTeXSKPGDUtr+SF6DXAmACCdqE6sRWQtpqK8i
-         iumQ==
-X-Forwarded-Encrypted: i=1; AL+hErGnvfyz/fViidCbGYKFWoZzZwIo7/sbn9yS+eXQRoV8A9pwBRJ3uaqg4ZNoull6fhzOlnyvWiqSwWnW88L2qTLh@lists.infradead.org
-X-Gm-Message-State: APuU4Z9/As/wrtHMiccowai5KcEt04C2PGSdR+GWHa0hxLnK26zkbTBy
-	Zs5dO6E2wY/A48tyfwC2EXfYpdW1XC1xi20Wv0xrdnGMpIO3v3cesg0fB4Adiuoxzw3FN603b+f
-	MRjU84lF6VP4qvHpH5+sS95dAe5PN5I0V/nPgnlxMirpqdpCD5ZFBE18g+bQUbzgh5ziJyz7KjG
-	E7xg==
-X-Gm-Gg: AYBFou3RJRmNtVDBbiPwGWDfRX02XSp7AAKtB7QX8BZjI3mN1MZkmgkqSmW/BG0lRfl
-	VIr76OSPqPJYNQFMCVosW8JRbbUNfZieAReUu0EFCu/8ME6I7sXfCO292Z8MWl6MMC2dGPIqt+1
-	dSTs8nqcWLabisqai2TsHd8cIB9oFcpvmEHTiUD07r1VUvnh0ZfZD3glNrFW6gWeZBFhRaUpsr9
-	1UN57VLsBs+5vh84h1FTAMuGOWIrpRltxAM7351OG1hH0vkP2KaRgmDYdb+nLztnq+tz/iMi++T
-	Ceyt828pgVVKvjSd692bLrSHyNrd6ptpTwIWtURNe4SoI75oRZptthzH6udoBoTdMbOI/LDtRcT
-	/uiEToJG2mWewq3KC4dxOf/XHjwC51AyDahN5puB+dVAmmUYlt0/h5K/u4G2UzQ==
-X-Received: by 2002:a05:6102:2920:b0:7d2:fdb9:b189 with SMTP id ada2fe7eead31-7d69f850c5emr659918137.34.1794920781655;
-        Tue, 17 Nov 2026 05:06:21 -0800 (PST)
-X-Received: by 2002:a05:6102:2920:b0:7d2:fdb9:b189 with SMTP id ada2fe7eead31-7d69f850c5emr659906137.34.1794920781161;
-        Tue, 17 Nov 2026 05:06:21 -0800 (PST)
-Received: from quoll ([195.50.164.66])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b7c23611casm5835117a12.9.2026.11.17.05.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2026 05:06:20 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
-        Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH] arm64: dts: apple: Remove undocumented, unapproved aliases
-Date: Tue, 17 Nov 2026 14:06:17 +0100
-Message-ID: <20261117130616.234953-2-krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: git-send-email 2.53.0
+	Tue, 17 Nov 2026 13:07:00 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id EC139413F2;
+	Tue, 17 Nov 2026 13:06:59 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794920819;
+	b=0r9uRdivsCoewUCIvlrK4zMxlXevmaH6yWMBF+nT7p7HRRZwZyZ5PsWuYdrw6719GIgp
+	 dFzSInt/f9S19cPSXf2QiPx6zOnJIt3+RZNMSK03yqEl6juUkILnEQ+af5h32WmT9jiEJ
+	 h1S7UhkxbfJ79ZDOFZX+X9217yluSyE41q6v6R9Kv70ghOK10WTY2TmQRE8QIe13dX8ca
+	 auTwZmNEMwep+/oh4QxP5y8AkSnXfHaXo2ZJXoptZBW2jdjzXpBVB81OrmmhKVKmVviQg
+	 BHR76q/vVpWLF1ZvB6eCxWagW7rBasBykwESyrQPGlTVtUOnBsxpqE0H1zeBizIGPQQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794920819;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=HVEE3Tcbne75iVGjTL3VoYX5NV8IDX+fOPLq54L1FA0=;
+	b=QuwfeivrjGypZTmqkpMEujYkm3IHy0bLqL7n4tt0kO118sRj+oTPiPYVck0QOVqfFGux
+	 a9wjEalkmDuqeBoewJMa9AD2qTRJtDA6rMGCoiNpBWu7G+6BP7UWl8AjbeSt79XGjBOtF
+	 D04LgHeMNB1sHrdOp0HAyuCL02AjCusuOIIU60BFm+siaFYycxAog+ycZO98rI0IFUkvo
+	 Xq3GhLBWqdJzPPRfxf4CZ/UFcQFHDLs/qUcOGFYjBH/Ki0fmUlMb7LUt/ZZs/q73vrcPs
+	 oAV38JDwbXSBdVUn0S8QGhPTyS94qbPM33HsjgbqpNf5NLPPMdN0CsFm5MYaTRxWuUg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 22FEB1F000C5;
+	Tue, 17 Nov 2026 13:06:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794920819;
+	bh=HVEE3Tcbne75iVGjTL3VoYX5NV8IDX+fOPLq54L1FA0=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=KusGYfdXQi2wznXRCzHL7Aq4lwcI8FtpRcxI+2rN3pyAUNIB3woFzVIh3AutC1hgi
+	 fYAFXsw46f1BdQHReX7Dbig8Rgg55iTaNTfyUm2CO1fz/iWIJGZL1B08w/Of9Zey3G
+	 kv7GV2YQFIgFqLSwMzDgWD9Xtl4nCR13o6Qz4+igw1oTdUZ64qW7tg/RwNpryK0SrX
+	 TW5wiftGS8u73LDaPHWh52KpWh48T3vEK5iEPkQG8kUXW6EstME8pCEE5iXBG+3I2i
+	 sxegNTHNEumVyHqKukHUZrw5YAPhSYI7tZPVfFPH/DIpBc8nOgI6UITtZmwaDtGZnQ
+	 X7LKRPH5JMZ0Q==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 934E14A97F;
+	Tue, 17 Nov 2026 13:06:58 +0000 (UTC)
+From: yy-Local-LLM via B4 Relay <devnull+yogo.0917.sabu.gmail.com@kernel.org>
+Subject: [PATCH RFC 0/6] SiRF AT550 / YPL514si initial RAM-boot platform
+ support
+Date: Tue, 17 Nov 2026 22:06:50 +0900
+Message-Id: <20261117-at550-rfc-v1-v1-0-5879573cb825@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5232; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=clfI8+19pJhAA+hV4S1Z6XrUeG5urAAHKTU1TXEfHlo=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBq/FFJYgi+OqbMxgoQ89jlVKosb2EARn5KZIaER
- f9mvb0IWpyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCavxRSQAKCRDBN2bmhouD
- 15HhD/9oH1BS9LqVZQUmtukQ4pBKCTUnveLA8banunKm54eECmroM6X+THHC/UIfkgTIp9t3WUn
- FSAhCkt01Vr+dQbCnSu8lY0JPjnuMK2wOaKZZZPHzbmUchlIfqpOjq4pwoom4AkX4Es+RmEXl+j
- 3LJQNF3/DGw6d+YsEHxGCl0WNBqqCrIdTR5USi8kFXSbmIh8uFOo8iSvTcpZEXHhsw4o/m29O6g
- 5fyalqopdTAJslaGkcPPy9E3NeMmGWWz52a+CAvcw+p111gRGN1W+j9JWpsEiJ09ukzCofT+zQ+
- 5b4BmJXEOPUs2GkA1d5TTbF6w96/IsN0DNRdqHHOTj8EztnF+k2+Jvx4GFFruuDI9nCvIh0snBD
- x9PQTybp61IT07uCgumlUt4Hjfsl86eagESaE5Jo6xdDPPG38hvO4f60NY2r/sbayH6VETvYHD9
- Iz+2mdtArDeIRmNrl3G7LtqmzAj8T9IZ1yJq8r9zPsHiD5zemQ5gPtSBOK+k/7Z3qtjpmJiMJC3
- IGSdHVCHvrBRzXMFBS+bmH3TXODB+w588WrxwZ0Nr+3RMdUyb8lkWdsnwm6swZutHZsdrHl1+0A
- OtNrIpUmuNoRSr0v7+QrE+J+kaaXEV01l7HPe+6ltJVVgj/OfTs2Tfw1F3DcQNEtxEbl8i9dG/k 34eoEYM979TDAuw==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=LaipeTfi c=1 sm=1 tr=0 ts=6afc514e cx=c_pps
- a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=Jk2/TV77q6/E6wQq2oQJxQ==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8
- a=Zz3YpKYli0cBJYq3SAkA:9 a=crWF4MFLhNY0qMRaF8an:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE3MDA1MiBTYWx0ZWRfX+Yo2MD6hf3Iq
- V/sulVeYE/my/tvT8d3Rtts6Hwv4E6OibXNaZUOn1G+OGnUFDxoHY8jekJnm2pE1lxDkarUT2ec
- nMzAhnPtrICv/ysOxXAX8xZI9ZfjnX4=
-X-Proofpoint-GUID: r71kmmNT6Ydr-HOChw_IUpAlhp9Yw_ZT
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE3MDA1MiBTYWx0ZWRfX7/5xNJ5yO1iz
- xDHIucDGvlD4VeHpL6jvY6dVDXosD/bA+EOnbD5yJxEUU1Z1n/tdiSyfAkxVLc7DcEb4Y0TxNHJ
- I+9d+dYz6fqlyz3EAIx+6DxFzbkNkewTKUt0hLuO3VKZOUbwNPeW403S3IHlpUEtcz+WcYTLFcX
- wXtMAvzcHH5aiZKiY/FSjVrnl8muhEro0CGyAsAquTu4ewtESYajobdrWnm5CySbiA1FM892ubT
- fIz8HPAkiU0eJOqOwMOikFVDc6XE4q0EgBn+L8EbuEkAfEIjEKDq/4i/IzwWRbqvQKSWUFFclmc
- JsUBuE62ylnV2B+mvJIYXxeRJrX9tu9ebm28gblNmPqSWVGpoVjYK743EadQ6PoZT2LnUCwD5NY
- wdHJeR6EktaaIVQ3D0efELhokRXvUaE6taq4KNaqXB1znY99sMzT1XbSxWX+pWTXFyvwNVv5fgl
- olvp9uniWBTG0z2fQKw==
-X-Proofpoint-ORIG-GUID: r71kmmNT6Ydr-HOChw_IUpAlhp9Yw_ZT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-17_02,2026-11-16_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 spamscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- lowpriorityscore=0 phishscore=0 clxscore=1015 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611170052
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_050624_076970_165768A5 
-X-CRM114-Status: GOOD (  16.59  )
-X-Spam-Score: -2.8 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDQ0Nz3cQSU1MD3aK0ZN0yQ10jU0tDQwvTRKO0VAsloJaCotS0zAqwcdF
+ KQW7OSrEQweLSpKzU5BKQQUq1tQBphOzAdQAAAA==
+X-Change-ID: 20261117-at550-rfc-v1-2591185a2fe8
+To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
+ Ulf Hansson <ulfh@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Adrian Hunter <adrian.hunter@intel.com>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, Russell King <linux@armlinux.org.uk>, 
+ Arnd Bergmann <arnd@arndb.de>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Linus Walleij <linusw@kernel.org>, Drew Fustini <fustini@kernel.org>, 
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-mmc@vger.kernel.org, linux-doc@vger.kernel.org, soc@lists.linux.dev
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794920817; l=5303;
+ i=yogo.0917.sabu@gmail.com; s=ypl514-20261117; h=from:subject:message-id;
+ bh=2VJuHtWvJ/6kBBAKkOQqaxVnf8LunGjT3BvQbOpAQfM=;
+ b=TqlrSuhkixWIR2lMSrU1nGDY+ADJU4gjIR3CMH3zWTCgohhAVNsc4WHccWXgrO6bUMFtL6UWE
+ irl8pnb2GR4D1jPLdZS1FC97ZoM/BZRsaNtgzdRlcZRgSrzz+BDGTh1
+X-Developer-Key: i=yogo.0917.sabu@gmail.com; a=ed25519;
+ pk=TIQ8Tk4xQrxyn8rmk3GI2f5qg/kO6g2KZm7YOOyBHeg=
+X-Endpoint-Received: by B4 Relay for
+ yogo.0917.sabu@gmail.com/ypl514-20261117 with auth_id=1550
+X-Original-From: yy-Local-LLM <yogo.0917.sabu@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,6 +120,7 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: yogo.0917.sabu@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -167,163 +130,101 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The atcphy and touchbar aliases were never approved by Devicetree
-maintainers, because they were never documented as actual ABI.  Drop
-them, because no new custom aliases are allowed for years now.
+This RFC adds initial SiRF AT550 support for the ARM1136-based Yupiteru
+YPL514si navigation device. It splits the working 6.12.60 bring-up into
+normal kernel subsystems and ports it to the 7.4-rc3 development tree.
 
-This might break users of this undocumented ABI, so these should be
-updated to use only documented and approved ABI.
+The device owner has now booted this 7.4-rc3 candidate on the YPL514si
+through the JWM desktop, with the console and screen keyboard. The CE
+handoff record confirms a 32 MiB Linux-owned allocation, all 8192 PFNs,
+and a counter rate of 124387750 Hz. The deployed EXE/DLL hashes match the
+prepared kit. The WM result is reported by the device owner, rather than
+being inferred from the CE pre-handoff log.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+The kernel uses standard IRQCHIP_DECLARE, TIMER_OF_DECLARE, common clock,
+input polling, SDHCI PIO and simplefb paths. Generic ARM head.S, init/main.c,
+MMU and RealView execution code are unchanged. The CE RAM allocator,
+page-table checks, handoff bridge, DT fixups and GUI software are not part
+of this kernel series.
+
+Firmware must initialize SDRAM, peripheral clocks, pin multiplexing and
+the LCD. The bootloader supplies the actual usable RAM and post-divider
+counter rate in the DT, and enables only peripherals handed to Linux.
+Memory/clock zero values in the source DTS are explicit fixup placeholders.
+The timer driver preserves the divider and rejects a running watchdog.
+
+Validation:
+- AT550-only defconfig Image/DTB build, plus built-in/module leaf drivers.
+- W=1 on the new drivers, dt_binding_check with examples/yamllint, scoped
+  dtbs_check, and ARM32 tests of the actual loader DT fixups.
+- ARM1136 QEMU at 16/24/32 MiB through JWM, five-point calibration,
+  screen-keyboard input into rxvt/PTY/ash and a readonly SD fixture.
+- Physical YPL514si boot through WM, reported by the device owner.
+QEMU uses GIC/SP804/PL181 and synthetic touch, so it is not being presented
+as validation of the physical AT550 controllers. The no-VFP defconfig also
+produces an existing unused-variable W=1 warning in unmodified signal.c;
+there are no reported new-driver warnings.
+
+Initial limits: firmware clock/pin setup is inherited; cold initialization,
+clock-tree control, DMA translation and board suspend are not implemented.
+The board DT limits SD to 25 MHz, no 1.8 V, no MMC and no SDIO. SD writes,
+card removal and suspend/resume have not been separately validated. The
+AT551 draft was cross-checked with AT550 CE mappings and prior hardware
+behavior; it is not claimed to be a complete AT550 specification.
+
+I would appreciate early feedback on the initial platform scope and the
+firmware/DT handoff contract before extending clock, pinctrl or DMA support.
+
+Signed-off-by: yy-Local-LLM <yogo.0917.sabu@gmail.com>
+
 ---
- arch/arm64/boot/dts/apple/t6002-j375d.dts      | 4 ----
- arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi | 4 ----
- arch/arm64/boot/dts/apple/t600x-j375.dtsi      | 4 ----
- arch/arm64/boot/dts/apple/t6022-j180d.dts      | 8 --------
- arch/arm64/boot/dts/apple/t6022-j475d.dts      | 4 ----
- arch/arm64/boot/dts/apple/t8103-j293.dts       | 8 --------
- arch/arm64/boot/dts/apple/t8103-jxxx.dtsi      | 2 --
- arch/arm64/boot/dts/apple/t8112-j493.dts       | 1 -
- arch/arm64/boot/dts/apple/t8112-jxxx.dtsi      | 2 --
- 9 files changed, 37 deletions(-)
+yy-Local-LLM (6):
+      dt-bindings: add SiRF AT550 and Yupiteru YPL514si descriptions
+      irqchip: add the SiRF AT550 interrupt controller
+      clocksource: add the SiRF AT550 counter and match timer
+      Input: add polled SiRF AT550 resistive touch support
+      mmc: sdhci: add SiRF AT550 programmed-I/O support
+      ARM: add the SiRF AT550 platform and YPL514si board
 
-diff --git a/arch/arm64/boot/dts/apple/t6002-j375d.dts b/arch/arm64/boot/dts/apple/t6002-j375d.dts
-index e6eb6b6c386d..9f0476e1ae2f 100644
---- a/arch/arm64/boot/dts/apple/t6002-j375d.dts
-+++ b/arch/arm64/boot/dts/apple/t6002-j375d.dts
-@@ -15,10 +15,6 @@
- / {
- 	compatible = "apple,j375d", "apple,t6002", "apple,arm-platform";
- 	model = "Apple Mac Studio (M1 Ultra, 2022)";
--	aliases {
--		atcphy4 = &atcphy0_die1;
--		atcphy5 = &atcphy1_die1;
--	};
- };
- 
- /* USB Type C */
-diff --git a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-index caded1636f3d..1a745c6593fa 100644
---- a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-@@ -15,10 +15,6 @@ / {
- 	chassis-type = "laptop";
- 
- 	aliases {
--		atcphy0 = &atcphy0;
--		atcphy1 = &atcphy1;
--		atcphy2 = &atcphy2;
--		atcphy3 = &atcphy3;
- 		bluetooth0 = &bluetooth0;
- 		serial0 = &serial0;
- 		wifi0 = &wifi0;
-diff --git a/arch/arm64/boot/dts/apple/t600x-j375.dtsi b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
-index 8a1494949e4c..3540edc56b0d 100644
---- a/arch/arm64/boot/dts/apple/t600x-j375.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
-@@ -13,10 +13,6 @@ / {
- 	chassis-type = "desktop";
- 
- 	aliases {
--		atcphy0 = &atcphy0;
--		atcphy1 = &atcphy1;
--		atcphy2 = &atcphy2;
--		atcphy3 = &atcphy3;
- 		bluetooth0 = &bluetooth0;
- 		ethernet0 = &ethernet0;
- 		serial0 = &serial0;
-diff --git a/arch/arm64/boot/dts/apple/t6022-j180d.dts b/arch/arm64/boot/dts/apple/t6022-j180d.dts
-index f76b887429dd..0b1f1bc46270 100644
---- a/arch/arm64/boot/dts/apple/t6022-j180d.dts
-+++ b/arch/arm64/boot/dts/apple/t6022-j180d.dts
-@@ -18,14 +18,6 @@ / {
- 	chassis-type = "server";
- 
- 	aliases {
--		atcphy0 = &atcphy0;
--		atcphy1 = &atcphy1;
--		atcphy2 = &atcphy2;
--		atcphy3 = &atcphy3;
--		atcphy4 = &atcphy0_die1;
--		atcphy5 = &atcphy1_die1;
--		atcphy6 = &atcphy2_die1;
--		atcphy7 = &atcphy3_die1;
- 		nvram = &nvram;
- 		serial0 = &serial0;
- 	};
-diff --git a/arch/arm64/boot/dts/apple/t6022-j475d.dts b/arch/arm64/boot/dts/apple/t6022-j475d.dts
-index 32938a3bf96a..4fc9a42160ea 100644
---- a/arch/arm64/boot/dts/apple/t6022-j475d.dts
-+++ b/arch/arm64/boot/dts/apple/t6022-j475d.dts
-@@ -17,10 +17,6 @@ / {
- 	compatible = "apple,j475d", "apple,t6022", "apple,arm-platform";
- 	model = "Apple Mac Studio (M2 Ultra, 2023)";
- 
--	aliases {
--		atcphy4 = &atcphy0_die1;
--		atcphy5 = &atcphy1_die1;
--	};
- };
- 
- &framebuffer0 {
-diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
-index 1d074b9e6018..779da65a66e3 100644
---- a/arch/arm64/boot/dts/apple/t8103-j293.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
-@@ -18,14 +18,6 @@ / {
- 	model = "Apple MacBook Pro (13-inch, M1, 2020)";
- 	chassis-type = "laptop";
- 
--	/*
--	 * All of those are used by the bootloader to pass calibration
--	 * blobs and other device-specific properties
--	 */
--	aliases {
--		touchbar0 = &touchbar0;
--	};
--
- 	led-controller {
- 		compatible = "pwm-leds";
- 		led-0 {
-diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-index 686fb1dd215d..5304a5591984 100644
---- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-@@ -15,8 +15,6 @@ aliases {
- 		serial0 = &serial0;
- 		serial2 = &serial2;
- 		wifi0 = &wifi0;
--		atcphy0 = &atcphy0;
--		atcphy1 = &atcphy1;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
-index 7cea5c594810..b0c93788c72a 100644
---- a/arch/arm64/boot/dts/apple/t8112-j493.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
-@@ -24,7 +24,6 @@ / {
- 	 */
- 	aliases {
- 		bluetooth0 = &bluetooth0;
--		touchbar0 = &touchbar0;
- 		wifi0 = &wifi0;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-index 562e7a25a1e8..31d8d2aaf30b 100644
---- a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-@@ -11,8 +11,6 @@
- 
- / {
- 	aliases {
--		atcphy0 = &atcphy0;
--		atcphy1 = &atcphy1;
- 		serial0 = &serial0;
- 		serial2 = &serial2;
- 	};
--- 
-2.53.0
+ Documentation/arch/arm/at550.rst                   |  55 +++++++++
+ Documentation/arch/arm/index.rst                   |   1 +
+ .../devicetree/bindings/arm/sirf,at550.yaml        |  22 ++++
+ .../bindings/input/touchscreen/sirf,at550-ts.yaml  |  36 ++++++
+ .../interrupt-controller/sirf,at550-intc.yaml      |  46 +++++++
+ .../devicetree/bindings/mmc/sirf,at550-sdhci.yaml  |  51 ++++++++
+ .../bindings/timer/sirf,at550-timer.yaml           |  47 ++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ MAINTAINERS                                        |  17 +++
+ arch/arm/Kconfig                                   |   1 +
+ arch/arm/Makefile                                  |   1 +
+ arch/arm/boot/dts/Makefile                         |   2 +
+ arch/arm/boot/dts/sirf/Makefile                    |   2 +
+ arch/arm/boot/dts/sirf/at550-ypl514si.dts          |  52 ++++++++
+ arch/arm/boot/dts/sirf/at550.dtsi                  |  66 ++++++++++
+ arch/arm/configs/at550_defconfig                   |  34 ++++++
+ arch/arm/mach-at550/Kconfig                        |  13 ++
+ arch/arm/mach-at550/Makefile                       |   2 +
+ arch/arm/mach-at550/at550.c                        |  11 ++
+ drivers/clocksource/Kconfig                        |   6 +
+ drivers/clocksource/Makefile                       |   2 +
+ drivers/clocksource/timer-at550.c                  | 134 +++++++++++++++++++++
+ drivers/input/touchscreen/Kconfig                  |  10 ++
+ drivers/input/touchscreen/Makefile                 |   2 +
+ drivers/input/touchscreen/at550-ts.c               | 108 +++++++++++++++++
+ drivers/irqchip/Kconfig                            |   5 +
+ drivers/irqchip/Makefile                           |   2 +
+ drivers/irqchip/irq-at550.c                        | 110 +++++++++++++++++
+ drivers/mmc/host/Kconfig                           |  10 ++
+ drivers/mmc/host/Makefile                          |   2 +
+ drivers/mmc/host/sdhci-at550.c                     |  62 ++++++++++
+ 31 files changed, 914 insertions(+)
+---
+base-commit: 666539eecdf4db623f5e3c3e55cf9f2dfad24aa4
+change-id: 20261117-at550-rfc-v1-2591185a2fe8
+
+Best regards,
+--  
+yy-Local-LLM <yogo.0917.sabu@gmail.com>
+
 
 
