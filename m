@@ -2,68 +2,140 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DD1606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 20:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB70606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:02:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TCnbE89V;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QSIOw+23
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EhKuBhp9;
+	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=JuTIQyz5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XRrmtaJXQcHPgHjUtAr7Ja7rU75296IprzuTdzeTZgc=; b=TCnbE89VA1HR80JMX8gYVIz6pu
-	le7rL4VvM/x6luXAoywhG8UB3KmgNJfpdXR1ouiObhIrlSrDgb8JC3rEVkt7WdRkd8GoRmq4RAI4z
-	fqk/+bZIxMl5z/QfCzrvKYzMWTGf4DOAusPkA7zwhfhO+2ZUfYGzwTFEnsgHrxnqxoDQXGLf0DkhL
-	8oxctlsdNV8oxmL7X7fDU9GjhMHzk8UmGIeKjzV4GXcHI+0Ie48IZ7z1oLYlxPpVkitxCMTsuST+k
-	rmUgU4gAD4iDdSecDREOg58XnJLm2Tz5unId6xSxO6tUvdwwj2TXRG9nAzNE9jmFRXPnQoE+J2Xf6
-	t8oacRjw==;
+	bh=PLNi9oq0QeGtGGDAHeG+GKXV/DgerA0rBDv8AS22WoE=; b=EhKuBhp9VVMFY20joFrzuw2iCx
+	HNyLOV+x0NyBYG7B6TtJwqhVLiRoFGXshNb5r40gJ0yPHEtLA+et0Vtwgp34J8dEAEvJOSPLwOYxF
+	GeY3h4J6w91ILmK+szGlgpA6VRC+Bd/NZfvbII0HF8igJ5URP4aPQsIqg0PCqM05GEXpfdhtSeMd1
+	eg2PrO2k6UKz9YIP+3BDYchnz+dldu5mC6qbyYunTOurJzCka5nyn/pkM92zPSgguIcoy77i6vL/O
+	hUGqu6xJBInIvT9sF4AgyJOCs31He8byADdqCw3Xi2SbV1RcmpOc62DRE7HfnAOXH49YbLwJtlJT4
+	ypny4idg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQCg-000000073du-3DsQ;
-	Tue, 17 Nov 2026 20:54:58 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTQJp-000000074f5-0gBY;
+	Tue, 17 Nov 2026 21:02:21 +0000
+Received: from mail-westeuropeazon11011032.outbound.protection.outlook.com ([52.101.70.32] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQCf-000000073dl-2ZYD
+	id 1xTQJl-000000074dW-2sMn
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 20:54:57 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with UTF8SMTP id AD88760F92;
-	Tue, 17 Nov 2026 20:54:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id D4F9D1F000C4;
-	Tue, 17 Nov 2026 20:54:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794948896;
-	bh=XRrmtaJXQcHPgHjUtAr7Ja7rU75296IprzuTdzeTZgc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=QSIOw+23KO7sT+peMfCgKOW21k98uNBwkMQsEzuUKBPCr045oc0uM3N1levgzR9ju
-	 oXwBzKwvbsWv8uCelcqd68ngfi+lEhCasNh9kt5f1sYN55Yc9EI1vXdRGUKmLgL+2r
-	 KM5DkBU4dp4qUsyyfudAMK7oONRsyzyzA4Z2b7dIuc8StNGoxjc1Mv106yu28apZie
-	 ViDhUSKBgkvva38bYzIHb+2MbgaY5qbfQASGBlXy92nIhpF3a1eMWXhw2GMCQ7xZS5
-	 eS0Qm9EVMdW8tbhAoN69qz5P+Dgp6da0wwcxeWUwdy83mS4dmt6+JS59npU6FkG5TR
-	 9lXRs0lrCueTw==
-Date: Tue, 17 Nov 2026 22:54:52 +0200
-From: Jarkko Sakkinen <jarkko@kernel.org>
-To: Yeoreum Yun <yeoreum.yun@arm.com>
-Cc: Siddharth Chintamaneni <sidchintamaneni@gmail.com>,
-	Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Stuart Yoder <stuart.yoder@arm.com>, apais@microsoft.com,
-	rachelmenge@linux.microsoft.com, hargar@linux.microsoft.com,
-	linux-integrity@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] tpm: Cache TPM2 start method
-Message-ID: <avy_HKn6whTYgCV4@kernel.org>
-References: <20261115013456.212141-1-sidchintamaneni@gmail.com>
- <20261115013456.212141-2-sidchintamaneni@gmail.com>
- <avy3xBltfKeCs85x@e129823.arm.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+	Tue, 17 Nov 2026 21:02:20 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gYJqYdVA2y1adQ4AlaR7qDsVDVkEpsITPx5DQRbr8TynCjs37PShQ7kakqhumQEb7xL7yzxKaGkRY2iVs1iV5O0PEZ9tdG+tGNoR/8CjlolyDPM+BWHiZAn1TcoMsx35Va4P5fX+uL1UAlGASrRUNd3WAhymimb4sKJLV4xxRGmoHvU9oxGXDcecABnbECCGiZhBwlRQ8O3ot1woM10M1L+J1KF86+b5u/rnEBTp8VQKGbgRklmKnMwTxI3lSn7Kyh49CXtMMq+Jz141YEw+ESrXRUGCuv/m0CSlAxeefWHkVEIWJbWVmp4J5FSYgiJhCQCXA1XBNUzLfujkrUW+ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PLNi9oq0QeGtGGDAHeG+GKXV/DgerA0rBDv8AS22WoE=;
+ b=CcxuGMGEJDZwvrHs3nrlnmlNXZcQ4eDf01pxsEX3LqLkSCLNPzapmbdpw7XUg+qh/2o30JcM7xDaWNXwD6n4T8ZKLd8PV4LKNZ55h1MFBv81rPJt55ZkmrmBRFPAt5pjQBLYXroTCjapn8SbqgXhUmRBAMcJKrZ9SveRk2lkYJOLzFpGITPu98wFAf+5XaaqB5sbvVG/VNp6r+T1mXmBgUv4XS9uoMoygxuIn+X+FkYLrRSMwrSMyRk5HYlZDjx5G8sQsbA46xPCt4r1MdGhY4KujI+dt1sJp0u2b1dDmJVlHHUvM3FTzdlCneGE8Hlpdf1yiBeKTT3GSOdUPDDXbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PLNi9oq0QeGtGGDAHeG+GKXV/DgerA0rBDv8AS22WoE=;
+ b=JuTIQyz5sMNxKIQBrRL09RDpl22QJUL0Wm6gO6S/NtX9lWFP8gVyYF7CETWpL1Pe1bb9rhzKqTyShIEs5fPyOczYWvXoL/UcaUsOFcJyQ7NbYSLo8vHrsfp5ZZi/8F0zYvNH6zxHcRhMp7/hogdCTT3PEAQBnCwwLRXJJl0T59keN8XlcZrkr31Kqnr/9LWSOXyFsoTtL984tXR7G4NyiAYK3qBCfrxXH3/q88NDzG4AHqVKnfAlzVW0sW7IvUDNJ3Xxt8R39kcl8UWOG+zUvR3ad2uWWeC6bAmIPvHaPx16DQEYUoXinC8TbD4glvKwUaDTOzoX/yp7aCCog/iLHQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
+ by GV2PR04MB707735.eurprd04.prod.outlook.com (2603:10a6:150:385::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
+ 2026 21:02:11 +0000
+Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
+ ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
+ ([fe80::7fda:8431:ca1b:b023%4]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
+ 21:02:11 +0000
+Date: Tue, 17 Nov 2026 23:02:07 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Vincent Jardin <vjardin@free.fr>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, 
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>, 
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: Re: [PATCH v6 4/5] pinctrl: freescale: add the Layerscape RCW
+ pad-mux driver
+Message-ID: <avykU0WMTq24_xkR@lxl00025.wbi.nxp.com>
+References: <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-0-fbdce4565a5c@free.fr>
+ <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-4-fbdce4565a5c@free.fr>
+ <avtsY-7-I7_pdyD0@lxl00025.wbi.nxp.com>
+ <avyEUKJBiDwxpLt7@L23803.iliad.fr>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <avy3xBltfKeCs85x@e129823.arm.com>
+In-Reply-To: <avyEUKJBiDwxpLt7@L23803.iliad.fr>
+X-ClientProxiedBy: AM8P189CA0030.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:218::35) To AM0PR04MB6900.eurprd04.prod.outlook.com
+ (2603:10a6:208:17d::10)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|GV2PR04MB707735:EE_
+X-MS-Office365-Filtering-Correlation-Id: 76cf72af-2832-47ed-d0da-08df44ee0c36
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|10070799003|19092799006|366016|1800799024|7416014|376014|18002099003|22082099003|6133799003|261009223027099003|4143699003|5023799004|11063799006|56012099006|261028144727099003|261102123227099003|261022105027099003|261026140227099003|261026121527099003|261022075727099003|261021123027099003|261021121427099003|10067099003|41080700001;
+X-Microsoft-Antispam-Message-Info: YuvPCkwf0ePw5N7pefW3VCHeMbhAh63RDCFbXam4Y89uj4BZ1ecuj0CtXHAkP9SAPpaL5qSZXBrHcsoPLfhDyWDMS4Sl4S9xGEENB2l6R6IYaEUKYp2WUw1hMs3t+T99HM3gMpPL2RXH7jKQnCXkVRjKEzVg6jlilMj8FgmgFUoq96P/5HGaVrpYqGOranW1ovPOM5R2jwirMx2GFLBSDPrZlFc0Az7+dC3PHmapqBkGBaZDKfoiKtPCA4BtskI07OWNIjZPYXNAwEuDogHwmEbzRYJTN9MBsCdlYOvaeBHoPLdyNOmlrEXurSSFLZpO9tOM1IjUMhVb9nuSU92JvMzFpqjEQxSq+JS+5lUo8Etg2HUXvskow8Hm6OCU5btQzMg7RYoRzAT7wAgEz/MRQS+mCo4FTkGz6zyE4sWR6Tk1og6J87aBJRSlPgFSMTwu7rMrdypedqnTIi7lomhK1nWoMcP7OHr5mnuYXOnhItvvTp5gdOziAgdo+8NsCBzWWDjHZQqKFvMzCRv/JamVKNVqZj7m/eyidh3DGxTzcWMnnAKEHyFzX4zRdlNaSLLgh+0K9rKjoSqZmrmatnTwz9eJmKwE0cNPy1NkZMdBV8ciHhf+kjBmuaaFyV6rd/Qoq4HXbgMFrK3jvk3qVJf9t1yA3WfhsMjMX5IWaf1FmQ8vM7Y4sorn/O9ea6BqncuV1vcsWzF1Zdd2oJuoWSBdyw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(10070799003)(19092799006)(366016)(1800799024)(7416014)(376014)(18002099003)(22082099003)(6133799003)(261009223027099003)(4143699003)(5023799004)(11063799006)(56012099006)(261028144727099003)(261102123227099003)(261022105027099003)(261026140227099003)(261026121527099003)(261022075727099003)(261021123027099003)(261021121427099003)(10067099003)(41080700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?h0Qr+9YgehzjjTkmx1LRarIpuk5tINEye91pFs72h+BrxReteVu7gK+Tfw8N?=
+ =?us-ascii?Q?IsSrNTIdbAOls62duZwbtPj1OxjTLn4ZoBXSqLJn1++4EfueG2vSUiLqIyG5?=
+ =?us-ascii?Q?NwLKNjQTHd6iELeadlRnlhnPe7PyuCxbAeagU3wh/m9nUPGGh7WVOrxz6YVM?=
+ =?us-ascii?Q?JHu17y+lp44PUk/8VbqkNH+irTXByha3BSkIHpGP/yD/q+vDJzNriBylUDgX?=
+ =?us-ascii?Q?nSMy4GN5hGgMrCKOAO1LgussB7LQFuD2amRHurRiZttXPPoXW4xbshpNpKrp?=
+ =?us-ascii?Q?N+qoDw+hLwc8zBL1WYk0w+UYDDQN+eVmwRxjPZ8jyLCx26GfWEGLP/M9tsBX?=
+ =?us-ascii?Q?a5aWFdaS6kx0E5TKU8XuzvIEMxtHsQAhFnuA+msAC0j3FpDlkWXKBG2EIaHu?=
+ =?us-ascii?Q?rmYvSG7XnHfHbOm0lP8juEvQJOnq6Eorry4acz4qWIa60SwyJlTd/DEtWram?=
+ =?us-ascii?Q?uRpsjKSZboxyQ4T63p6N+93GiHOg/G/CkHW6OMIg1VQ8nk+OTrRE8NOj0Wtn?=
+ =?us-ascii?Q?7aK88AT6I8m7uNXIf/bliGvNCc/9BiqW7D6MOECf2szjdqJoNiNw468ipKRh?=
+ =?us-ascii?Q?XbgOo0lvPOYxX1KN5ubDRmjc1hN9ZF4+a3S3miyvZxvT22qQ1O58vaPOJ7cR?=
+ =?us-ascii?Q?rpkDoUBraloiWwAzjzb37+v0D1L0mDYKmL+MAhqmR13Jk7pokjWz6GZ8YtVL?=
+ =?us-ascii?Q?+KAEgOeaDCaMSpRHJMYmAWFqlJkvtATY2bomIvgUbhkc10/hLKJcbJioXwg1?=
+ =?us-ascii?Q?fZvJY0H4HbiPL5omgdGrbqnRCilxaaet84M19JhsyP0ms4sx9TY9MyWElWQt?=
+ =?us-ascii?Q?Who8LjI2wX4TP9RiAcZOZMYB0adi2vQ9FfN4tj/QCKZtOOiZfo/FyGAvLpW8?=
+ =?us-ascii?Q?6OdKOikD5JuT6rigOs4yclRYTR7ZQfivMx5UmMa/pBHbQBz0kyg6ZRcaHSMW?=
+ =?us-ascii?Q?JF72YEV5amQzvf9SvV6o9YqgW1ilaGOe2kZR/ELwuGkGeUu9Q5Bb9xguLNUD?=
+ =?us-ascii?Q?NuHRIgvWy87aHcmGYa2hoBzQjzFh2QZO58bawXrNUE5H8TKONkabvcBUo2KM?=
+ =?us-ascii?Q?V8Lpm+5mfLGXJNsVLoUdkwkKvPZCDV1XVUL/SBFndnlAIY6FIbsUFSub8DjW?=
+ =?us-ascii?Q?/dO+cQIWlIHFSZolNAbJRW7f8KY0c643wffY14i7RdkKRsVKdSp0DAS3/rAf?=
+ =?us-ascii?Q?veL8qhYL34BmtdeeaR3uUjyBo4lr92oP5WyEOyjN/V1IkoEMtWfagfyihryR?=
+ =?us-ascii?Q?6Y11Tvp7JysiqndgWHlK+opyqG28Qp/N4HUbc3FV6WaoM6y36tiPfD2cPZH8?=
+ =?us-ascii?Q?XUlrurN95BPwKd3M3rPz0tZqHU8OOVddKfMAST/5oTPGywJY7NJR3xtijEAf?=
+ =?us-ascii?Q?Z3Lxa3Q5w1aC9mINl5eaZzkY+uwxZHJ96eIKXNsBtBUpfzDo9Q4d4oEjCf91?=
+ =?us-ascii?Q?D1QJGzv0qBzd9OCAaqPG7cTozcrfl442kl3Kerny+WNenDBRf4oTw3kaTgHf?=
+ =?us-ascii?Q?l+R2Ag4yLWaj4cAKSfPdMWVMD6yiNVt7DbPc7eG/pKZAfI+U6dqSUBN6nDM2?=
+ =?us-ascii?Q?3DkJN2aoMjeIRg5CTh9D0ttxu3RoNJHjRCAcCh8bMQt2kH8xCCirSR7hrBAA?=
+ =?us-ascii?Q?jgD79BGOr9bH+04SFmHB/NpZCYHcLlgyPdI8GjS0+AFqkFTGhJkN/u+7d26l?=
+ =?us-ascii?Q?6lNsaOuCZWeDp1DSUaGcBb/XO2Wf6GxEAREg6+0Q4AXoQvLDuI4UKOSxdRSH?=
+ =?us-ascii?Q?hA4DMAvVmaj6YMaks2VdW+rjz9M1fmKpGpae3ygVMUZ7Fuwe0oTUUSU9EyMs?=
+X-MS-Exchange-AntiSpam-MessageData-1: T9axJn1UbVFtDA==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 76cf72af-2832-47ed-d0da-08df44ee0c36
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 21:02:11.0267
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hGI0DvaKAAL6kSIdsV/d7CNiKkiSalpr/of5hGuURTMiKtbw5S3q+bY9cJ5jwTBcBvnHbNqj/Sah0rxRXDviRw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB707735
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_130217_754176_77FE0CB1 
+X-CRM114-Status: GOOD (  35.32  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,103 +146,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 08:23:32PM +0000, Yeoreum Yun wrote:
-> LGTM.
+On Tue, Nov 17, 2026 at 05:44:00PM +0100, Vincent Jardin wrote:
+> Hi Vladimir,
 > 
-> Reviewed-by: Yeoreum Yun <yeoreum.yun@arm.com>
+> > The "i2c" and "gpio" functions of lx2160a_sdhc2_data74_funcs[] here
+> > hides some real unpleasantness. These 4 pins either get all assigned to
+> > I2C7_SCL, I2C7_SDA, I2C8_SCL, I2C8_SDA, or they get all assigned to GPIO.
+> > But they cannot be assigned in pairs of two (or individually, i.o.w. not
+> > in the granularity we need), which makes independent I2C bus recovery
+> > practically impossible (i2c6 as I2C while i2c7 is as GPIO).
 > 
-> On Sun, Nov 15, 2026 at 01:34:53AM +0000, Siddharth Chintamaneni wrote:
-> > From: Jarkko Sakkinen <jarkko@kernel.org>
-> > 
-> > Both tpm_tis and tpm_crb retrieve the start method from the ACPI TPM2
-> > table during device probe, and tpm_crb_ffa also needs it before chip
-> > allocation.
-> > 
-> > Cache the start method in tpm2_acpi_start_method during tpm_init(), log
-> > it when a TPM2 ACPI table is present, and export it for the leaf
-> > drivers, defaulting to ACPI_TPM2_NOT_ALLOWED when the table is absent or
-> > invalid.
-> > 
-> > Signed-off-by: Jarkko Sakkinen <jarkko@kernel.org>
-> > Co-developed-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
-> > Signed-off-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
-> > ---
-> >  drivers/char/tpm/tpm-interface.c | 21 +++++++++++++++++++++
-> >  drivers/char/tpm/tpm.h           |  1 +
-> >  2 files changed, 22 insertions(+)
-> > 
-> > diff --git a/drivers/char/tpm/tpm-interface.c b/drivers/char/tpm/tpm-interface.c
-> > index e0385b16616b..c18b060d7da2 100644
-> > --- a/drivers/char/tpm/tpm-interface.c
-> > +++ b/drivers/char/tpm/tpm-interface.c
-> > @@ -534,8 +534,17 @@ int tpm_get_random(struct tpm_chip *chip, u8 *out, size_t max)
-> >  }
-> >  EXPORT_SYMBOL_GPL(tpm_get_random);
-> >  
-> > +#ifdef CONFIG_ACPI
-> > +u32 tpm2_acpi_start_method = ACPI_TPM2_NOT_ALLOWED;
-> > +EXPORT_SYMBOL_GPL(tpm2_acpi_start_method);
-> > +#endif
-> > +
-> >  static int __init tpm_init(void)
-> >  {
-> > +#ifdef CONFIG_ACPI
-> > +	struct acpi_table_tpm2 *tbl;
-> > +	acpi_status status;
-> > +#endif
-> >  	int rc;
-> >  
-> >  	rc = class_register(&tpm_class);
-> > @@ -562,6 +571,18 @@ static int __init tpm_init(void)
-> >  		goto out_unreg_chrdev;
-> >  	}
-> >  
-> > +#ifdef CONFIG_ACPI
-> > +	if (!acpi_disabled) {
-> > +		status = acpi_get_table(ACPI_SIG_TPM2, 1, (typeof(tbl->header) **)&tbl);
-> > +		if (ACPI_SUCCESS(status)) {
-> > +			if (tbl->header.length >= sizeof(*tbl))
-> > +				tpm2_acpi_start_method = tbl->start_method;
-> > +			acpi_put_table((struct acpi_table_header *)tbl);
-> > +			pr_info("tpm: TPM2 ACPI start method: 0x%02x\n", tpm2_acpi_start_method);
-> > +		}
-> > +	}
-> > +#endif
-> > +
-> >  	return 0;
-> >  
-> >  out_unreg_chrdev:
-> > diff --git a/drivers/char/tpm/tpm.h b/drivers/char/tpm/tpm.h
-> > index fa554c5ad80b..212ca2410c93 100644
-> > --- a/drivers/char/tpm/tpm.h
-> > +++ b/drivers/char/tpm/tpm.h
-> > @@ -100,6 +100,7 @@ void tpm_sysfs_add_device(struct tpm_chip *chip);
-> >  
-> >  
-> >  #ifdef CONFIG_ACPI
-> > +extern u32 tpm2_acpi_start_method;
-> >  extern void tpm_add_ppi(struct tpm_chip *chip);
-> >  #else
-> >  static inline void tpm_add_ppi(struct tpm_chip *chip)
-> > 
-> > base-commit: 7e52fc165aa50e70e8df3c879d04fc0ff1673d4a
-> > -- 
-> > 2.45.4
-> > 
+> yep, the doc is clear about it: SDHC2_DAT74_PMUX is a single field for
+> the 4 pads, 0b001 gives GPIO_2[18:15] and 0b010 gives IIC7 and IIC8
+> together (RM rev 1, 4.9.8.9). IIC7 and IIC8 are not available on any
+> other pad.
 > 
-> -- 
-> Sincerely,
-> Yeoreum Yun
+> Checking from other angles, the A-010650 workaround uses one write for both
+> buses: 0x700100130 = RegA OR 0x031. That mask looks wrong to me though: bits 5:4
+> belong to SDHC2_BASE_PMUX, and OR-ing 0x001 onto 0b010 gives the reserved
+> 0b011. Could someone at NXP have a look ?
+> 
+> > The way the code is currently written, the pin_request() call will fail here:
+> 
+> Yes, in fact, it is not new with this series: both nodes have shared the
+> same setting since
+>   8a1365c7bbc1 ("arm64: dts: lx2160a: add pinmux and i2c gpio to support bus recovery")
+> from Carlos Song (NXP) where the two pinctrl-single states covered the same
+> bits, so the second controller would have failed the same way. Wihtin the
+> kernel, there is no board that enables i2c6 or i2c7, so nobody did hit it!
+> 
+> > Due to the fundamental issue of this limitation, I don't think it makes
+> > sense to have the pinctrl states described in fsl-lx216x.dtsi for i2c6
+> > and i2c7. Perhaps you could remove them in another change (either as a
+> > follow-up, or another patch in v7 if you need to resend).
+> 
+> Done for v7 as an additional patch: the DTS drops pinctrl-names, pinctrl-0/1
+> and scl/sda-gpios from i2c6 and i2c7, and the two states nothing else uses.
+> A board that needs one of these buses can add its own states, or set the
+> field once with a hog on the pad-mux node.
 
-Thank you. OK, I'll just apply these.
+I'm not entirely happy with my own suggestion either, I'll comment more
+on v7.
 
-Br, Jarkko
+> 
+> I tested on my board for regressions, since there those 4 pads carry
+> the eMMC DAT[7:4]: the other I2C buses still set up their GPIO recovery,
+> and the eMMC still runs in 8-bit HS400.
+> 
+> I also went through the other fields. 7 more settings mix two
+> controllers the same way:
+>  - flextimer on iic2, irq3-0, irq7-4, evt4-3 and evt2-0 (FTM1 and FTM2 channels)
+>  - sdhc-spi on sdhc1-base (SDHC1 with SPI3_PCS0) and usb on usb-ext (USB1 and USB2)
+> No dts claims any of them.
+> 
+> About your previous comment on clk-out: v7 names encoding 0 "clk-out".
+> On my board, with debugfs, it shows now:
+> 
+>   pin 20 (evt2-0) 0:? evt
+>   pin 21 (clk-out) 0:? clk-out
+>   pin 22 (asleep) 0:? asleep
+> 
+> and the U-Boot port of this driver shows "clk-out : clk-out" in
+> "pinmux status".
+> My take: the reserved marking comes from RM rev 1: its revision history
+> says "Updated 0b000 as reserved" and the CLK_OUT configuration section was
+> removed, while table 19 still lists 000 (CLK_OUT).
+> 
+> There is a similar gap on EC1: the signal tables list CLK_OUT2 on
+> EC1_TXD0/GPIO4_DAT03, but EC1_PMUX only has 0b00 RGMII and 0b01 GPIO,
+> 0b10 and 0b11 being reserved. Would you know which value selects CLK_OUT2 ?
+
+These are good questions. I've opened a ticket internally and I'm hoping
+to get some answers regarding the correctness of the documented A-010650
+workaround procedure and the CLK_OUT/CLK_OUT2 signals, which are in a weird
+superposition of documented and not documented at the same time.
 
