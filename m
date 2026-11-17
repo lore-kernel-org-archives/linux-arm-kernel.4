@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7120606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 06:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375DC606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 06:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=poZ64hIB;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KwV0pDEu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zj/aOgHQ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PzA6bje4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Fn/7Nz6sEtWAi655Kzihh8bKMNCzwwsZZnavj9Q/a3U=; b=poZ64hIBkrOkwl
-	MwN8JzrQfRS2dSsECC0RcZApoPEltVfcoZspKGRMktM/UDcSZLokM4ggto/vqrZhBi/RItIZEHCSI
-	+LO2WFVXu9JW1uMoeIlAoO4rNPXDB02SmC4v21viuB6fV80VQtKg5h5zL20aO6ItXwMT1eusAs0wB
-	ExDjxBvJhM2eRIOSfuN/bwqRoGgYsNuHMT2C0aJBlsK6BVL6tmQj184HLO25a5AGDoQGofATFz7Pr
-	ToVon2+xWa2pFyJRIuPMLhRF8KELrq/yPU4vJNRtVpCt5tqph4IUJoFiMTmmFzy8jAIdbISyj6uZK
-	7Fs0r1lhL8OaoDMd/ntQ==;
+	List-Owner; bh=tl9vm/5oN7PPPGTUSOoXHW2ARgY0Relof58jU72z34E=; b=zj/aOgHQLdNRb6
+	BNS3hswVEOODnZ6TlD52MELqKKX/BEYH6srCS7xsc/KXXhPv7PSqs+hmu6KYqqO5DSTCCG8lvMKGb
+	UNTnfJE2eAEJcZP1d824YqMkcRBxr3X+/u6XgSw0P4Cos6g2w478vhLKpGaOj6YgdorIihAn+b9rC
+	iDlMkfX+aUNJ/5FPVQdnkCZcVkLzBnno9p6JLkcrc9X38N/fpNUa4wWNaXDwgWiKcJtCgTuqf/lzT
+	dhLQvhVxqPVzjHBG4HeB81YL1vCD1zKgfbWLFtEqCDkqBK3RSTafLAYfB6gsiiuhO5uolMWSoSJI3
+	buaxBSDpH6SIk58JWZtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTCKY-00000004did-3bcf;
-	Tue, 17 Nov 2026 06:06:10 +0000
-Received: from mail-pf1-x42d.google.com ([2607:f8b0:4864:20::42d])
+	id 1xTCKf-00000004dlG-07Nt;
+	Tue, 17 Nov 2026 06:06:17 +0000
+Received: from mail-pf1-x431.google.com ([2607:f8b0:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTCKT-00000004dgy-3oih
+	id 1xTCKX-00000004diH-3gr4
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 06:06:08 +0000
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-8a06cc097c7so3627167b3a.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 22:06:05 -0800 (PST)
+	Tue, 17 Nov 2026 06:06:11 +0000
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-8b68e59ab33so4007853b3a.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 22:06:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794895565; x=1795500365; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794895569; x=1795500369; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Fn/7Nz6sEtWAi655Kzihh8bKMNCzwwsZZnavj9Q/a3U=;
-        b=KwV0pDEulb5fpqm6ztPjcO3TQscAGKPjXaLGDY5ah3MFZcE/bpzgfj8MDEoGwNouNt
-         1EBeuPSdOdFIpvuZlJ75zxEYGoeF4zMso7RtuJPOIP+Wp2f2EcU9vSryTZpvWUX3BQ85
-         agTjQQ5GgdQYYrebYwJUAwQeR3ewHCEpgdPkQHdHG9RXeAMddkguj8FiomdBx5DPWNhy
-         bpzVKTpbcw/yMBU43X3a86yxqWHLdYge74kuu2ca3bB0LPZwaGTAsyBV8JY8DAe5M6xD
-         EcXck539vpAxi5bTJd0sv6PEXZx7T/JS+u538gHq/zMflcn8yhHatB271Mq79Sn2UH/X
-         wbdQ==
+        bh=tl9vm/5oN7PPPGTUSOoXHW2ARgY0Relof58jU72z34E=;
+        b=PzA6bje4hEWlzhqnbCJ25lXE3S+c98H+UE3Cn/+RxK4bKjeIkI/lGf9cygbELMKn31
+         ZVi3AmQscvB7QpfepzDOkSBi7Y1asQbrM/SCoWPGYWs8a+9hM2y0nXhTKm59+cgTIRzv
+         jtY5Llsjwa+t2YEjLQnnJR6LLrzkvMsRQBizEKL6/70V2kpymhAMukcK04oYUaM7dJ1n
+         CQvMTPWangZ0jQJNKxOQjigM5kZGoX9hIbhn5zoE0My/4FgIGAoTwgoSbugccaEjnLtU
+         PUol3bc0RWu3Ym8yg3aOzc02pKv8G9QW3YxBTSKWBDhlLjUG7zhjgZaeNFuXHw5L48yD
+         gHNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794895565; x=1795500365;
+        d=1e100.net; s=20260707; t=1794895569; x=1795500369;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Fn/7Nz6sEtWAi655Kzihh8bKMNCzwwsZZnavj9Q/a3U=;
-        b=FadmgjbmWpXYOKKYG60L8ffRCf/+T1a58Pa3j2as7huEUTq0ZebmmxYV+8BN61g5w+
-         jg8a5OPBqsmKS5motSVY61ND1duHH3gAYMqIJySI1/rEw0cBGOcsdoNlV6isz0EjPGbJ
-         r1bYY49w8QxF6DdSfJjxZpou6WFWeaQaFVhgZgpk4lTJwzdrHb7j1JcJaAjGqBXhB6ls
-         aUM4r0JOiyE0JZnCZNujOzOg9+qikhkHQX2RodWF5Xm8gPieHLoeWSo0Bgg0ZXFffY6G
-         kqgqiaIitd5aZcjVOEJigMCTkr+mrgpu52ZwWjXRkMszBBxmZds1/Hm9jzibsAYsdWK2
-         bltw==
-X-Forwarded-Encrypted: i=1; AL+hErEvyHswfhaFzE8eCAvAPyPpkYuHGiojqJhcgsI+wc3AHl5m4XeOZ5Cq0FAVOVYmhymy+cwJLrhtGsFAaS/SKC2T@lists.infradead.org
-X-Gm-Message-State: APuU4Z/IPcX28oumDZu6Ttl6ckjQ1XOOVt3jthJIeYxnzUQc7w8I/dmB
-	lvuRyzD3wIdF0iAztoViyVaabOjif3CTn/BQ0wcpCXQLqYcMthypoHFY
-X-Gm-Gg: AYBFou14vIIJ4mBo+SK9yDwsrAhEKZ0gpeyI/+mhD90g96joHnpYLEq0SBZO5JnnrIf
-	ndK7MGlOc61j4SNTNz11tXa4PAUNjSYsX8n1p7bDqtWQ8p/CYTj2RdajATGGyyxaQP1rZg94PRx
-	r3sWQToh1F0wyJpMb6UO0un+BN0amfNDcNM0vxir+34HfmB6Lz2ZSofuf1JbWBNBLLaV2soG6of
-	RTtl8eHKsST45Q+61kK96DAd9GJD188VoN3SHWzoEPB2GB3vhSRXbpZae6yiVGpfiRElPbsHYtD
-	UGRjFrjIf0yZEoWwvFWjJRaWHtx4zGrhLx8+EyLzgf4iwS7kZY9yDTEQ+uvm14CrT/ABM7hy32i
-	0r6dfocIX2eLXdhjqQ0sr0ui7Xc3K2kC5fF4RMRwRnnL7eNd/8j9mBf6im7SkZrJyavUJ9tJ6b3
-	sdX52jJkYFmxlddhzD9lVyoy4kxkVxogLPCL/SqRVRm3bawPCZ88eafd7eaXIR9BsewWVFJGCmS
-	S3+iEBjibsydsn5B9sTy7TO+zyKui3x3t0/nZslf7O3Hl0nxxYcc7uO0dUYvFUrhxFYifVULlYT
-	l5us/BoPfosN/PuZHGKgeKGntNhOB5fenoQPjd6pO2BZFwooiYDx9tOvQU8y7tpHeFn2Q77f4Tw
-	JVt5zZjqJ57s=
-X-Received: by 2002:a05:6a00:1990:b0:8b5:efad:d088 with SMTP id d2e1a72fcca58-8beb609d4bbmr11260989b3a.9.1794895564913;
-        Mon, 16 Nov 2026 22:06:04 -0800 (PST)
+        bh=tl9vm/5oN7PPPGTUSOoXHW2ARgY0Relof58jU72z34E=;
+        b=BgXS7odSQVwQhWwlATGSqZUG8JZ2xnw5CAT+v5x6ZHQbBFGvOsk7Tj3IuClXi3/jQ4
+         Sr+B7ur+cv0iaQ3WNJGgIbAzzD8ls1Ln/DCLMH3WOtSgigR0B3+qjzeCgwj8Lu9GRo1h
+         2fUvIBankgcBDRsUDgAmqLTR0s72444hFN3wFUWIU2Y4E5Pz5buzT24Z46CwhdEqmlT6
+         EyVBujGq8Tm6RN3145ce1hs8HQO1vIvStpu0+oZ0sRXXtKz6V7/o69VV8/U5ysT3Bicx
+         t3BqkvNkut5OPd1PFEsWw8cvwiiXwtXjCFdldZv4ZQs8avZ7oBh+M5zadnvJ01WkPSYD
+         7tSw==
+X-Forwarded-Encrypted: i=1; AL+hErEpWLsl5CUf09/QxwL1Q1mKWZKU+N5YZ3gjc3LWgRABgxLadErlpc6J6GtDnRYQcHE7jha5JxLjg4+1cfN1cNuz@lists.infradead.org
+X-Gm-Message-State: APuU4Z+5M77VoensQ9IiU++Xt1IJnPCyHTuBmUe63TRe1HLyZ2Y+ZLg/
+	7WsOnYtG3lzHdYtPrRpReh7EzQMxLVGjH7b1W/u5vMgwoUx9EGEaelPA
+X-Gm-Gg: AYBFou3IcfXJNzu7dUT1Yzb2dhWNenV0dNH5+TE43EjsLdA4mbFlcGLtfyB6y93K5Pe
+	duQM25wGVQt/SGElls49KGlvkcoVEzJXjG7oh51r+5zzgqbwpMdwZRxmUrh0DIMcjyIljWrG7ZG
+	cFLcIH/WMgndTZ8esbIjKU8qYBufALCtm/tASxk/xOG52VbF4HJNOer6XwhA+oXT6D4jkHGB9Mi
+	5zexro1B7tPecwvQg8oK/7J9s3qi3EzEStJTYNk6jHTOq+quMwsuQcHyrjbY1BWJZyaOobgWkvn
+	A5uiaKQhqQGlIqWMVkB4yP5T+5hXGXF/waEpUwg0kgV1H/pUwBbjlwCFc8KY7HtD005Q1tbuV8O
+	IHPfldcGdxavDbTpi00Q2igGM6G7Js+JoQMk+j0NEP6Tf9SBhu70xU4E9hSCOa3zlSYJ8qFAmDO
+	0qYTuOZruRDPMj+Hy6SiViHak8S36w5evYbWRhPVN2swFSnd8Sc+eD29Jc5mXRibgQkwu8jvbF8
+	gcWOCzdyZCXbVw0gIKfTe1/PPeQMcHR1AD9iS397tDDflgPY5bnd6bvvCtePsgpZb/t/vMA42Zw
+	LL4mI6cUBf6eBzCXAzlq6wrtrmJ7cjltEHGaQVL8coMpL7Q/PGGTB/R31AGYsDsN62rJ/ZHZfAN
+	+yQ/dVHO3jbU=
+X-Received: by 2002:a05:6a20:a79a:b0:3f9:3f64:9bad with SMTP id adf61e73a8af0-3f93f649df2mr5801702637.4.1794895568851;
+        Mon, 16 Nov 2026 22:06:08 -0800 (PST)
 Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8bed12a8172sm4464623b3a.13.2026.11.16.22.06.01
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8bed12a8172sm4464623b3a.13.2026.11.16.22.06.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 22:06:04 -0800 (PST)
+        Mon, 16 Nov 2026 22:06:08 -0800 (PST)
 From: Zi-Yu Chen <zychennvt@gmail.com>
 To: rafael@kernel.org,
 	daniel.lezcano@kernel.org
@@ -89,9 +89,9 @@ Cc: ychuang3@nuvoton.com,
 	linux-pm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Zi-Yu Chen <zychennvt@gmail.com>
-Subject: [PATCH 1/4] dt-bindings: reset: nuvoton,ma35d1-reset: Add #thermal-sensor-cells
-Date: Tue, 17 Nov 2026 14:04:58 +0800
-Message-Id: <20261117060501.2611071-2-zychennvt@gmail.com>
+Subject: [PATCH 2/4] reset: ma35d1: Register auxiliary device for the temperature sensor
+Date: Tue, 17 Nov 2026 14:04:59 +0800
+Message-Id: <20261117060501.2611071-3-zychennvt@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261117060501.2611071-1-zychennvt@gmail.com>
 References: <20261117060501.2611071-1-zychennvt@gmail.com>
@@ -99,8 +99,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_220605_952247_CFCDAE5A 
-X-CRM114-Status: GOOD (  12.69  )
+X-CRM114-CacheID: sfid-20261116_220609_923851_BC403092 
+X-CRM114-Status: GOOD (  18.07  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,73 +120,61 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The system management (SYS) block of the MA35D1 SoC also hosts the
-on-chip temperature sensor. The sensor is controlled through a single
-SYS register and has no resources of its own.
+The on-chip temperature sensor is controlled through a register of the
+SYS block, which is already bound to this driver. Create an auxiliary
+device so that a thermal driver can bind to it without a separate
+devicetree node.
 
-Allow the SYS node to act as a thermal sensor provider instead of
-adding a child node that would only exist to instantiate a driver.
-
-Reference the common thermal-sensor schema and update the title to
-reflect that the node describes the whole SYS block. This makes
-#thermal-sensor-cells a required property, which is fine as the sensor
-is always present in the SoC and no driver depends on the property.
+Failing to create the auxiliary device only affects temperature
+reporting, so warn and continue.
 
 Signed-off-by: Zi-Yu Chen <zychennvt@gmail.com>
 ---
- .../bindings/reset/nuvoton,ma35d1-reset.yaml        | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/reset/Kconfig        |  1 +
+ drivers/reset/reset-ma35d1.c | 11 ++++++++++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml b/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
-index 3ce7dcecd87a..a0cb0f98c1b1 100644
---- a/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/reset/nuvoton,ma35d1-reset.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index eda9c698a95f..cf42fd6f7a3c 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -220,6 +220,7 @@ config RESET_NUVOTON_MA35D1
+ 	bool "Nuvoton MA35D1 Reset Driver"
+ 	depends on ARCH_MA35 || COMPILE_TEST
+ 	default ARCH_MA35
++	select AUXILIARY_BUS
+ 	help
+ 	  This enables the reset controller driver for Nuvoton MA35D1 SoC.
  
--title: Nuvoton MA35D1 Reset Controller
-+title: Nuvoton MA35D1 System Management (SYS) Block
+diff --git a/drivers/reset/reset-ma35d1.c b/drivers/reset/reset-ma35d1.c
+index d2962c0c80be..8c82175d7466 100644
+--- a/drivers/reset/reset-ma35d1.c
++++ b/drivers/reset/reset-ma35d1.c
+@@ -4,6 +4,7 @@
+  * Author: Chi-Fang Li <cfli0@nuvoton.com>
+  */
  
- maintainers:
-   - Chi-Fang Li <cfli0@nuvoton.com>
-@@ -12,7 +12,10 @@ maintainers:
++#include <linux/auxiliary_bus.h>
+ #include <linux/bits.h>
+ #include <linux/container_of.h>
+ #include <linux/device.h>
+@@ -218,7 +219,15 @@ static int ma35d1_reset_probe(struct platform_device *pdev)
+ 	if (err)
+ 		dev_warn(&pdev->dev, "failed to register restart handler\n");
  
- description:
-   The system reset controller can be used to reset various peripheral
--  controllers in MA35D1 SoC.
-+  controllers in MA35D1 SoC. It also hosts the on-chip temperature sensor.
+-	return devm_reset_controller_register(dev, &reset_data->rcdev);
++	err = devm_reset_controller_register(dev, &reset_data->rcdev);
++	if (err)
++		return err;
 +
-+allOf:
-+  - $ref: /schemas/thermal/thermal-sensor.yaml#
- 
- properties:
-   compatible:
-@@ -26,12 +29,15 @@ properties:
-   '#reset-cells':
-     const: 1
- 
-+  '#thermal-sensor-cells':
-+    const: 0
++	/* The temperature sensor is also controlled through the SYS block */
++	if (!devm_auxiliary_device_create(dev, "thermal", NULL))
++		dev_warn(dev, "failed to create thermal auxiliary device\n");
 +
- required:
-   - compatible
-   - reg
-   - '#reset-cells'
++	return 0;
+ }
  
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   # system reset controller node:
-@@ -41,6 +47,7 @@ examples:
-         compatible = "nuvoton,ma35d1-reset", "syscon";
-         reg = <0x40460000 0x200>;
-         #reset-cells = <1>;
-+        #thermal-sensor-cells = <0>;
-     };
- ...
- 
+ static struct platform_driver ma35d1_reset_driver = {
 -- 
 2.34.1
 
