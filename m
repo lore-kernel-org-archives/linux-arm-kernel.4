@@ -2,76 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9495606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1431606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=16WYJcT8;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=iakBBvGR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TzjJurpy;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=PstnArU8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=aEhlR7qPKAUPxkiOp5YbrfbXNWOClz08iAfklv3wUSQ=; b=16WYJcT8OtnbyUxdTHYNIVgHlt
-	0FR4p7mwAOQ2QHInK3tMn58MkRxzGp2FqLuXL4oOQac8VxJO8Fug3F8Q0WMVKCsugdofmw5XxnXo9
-	Wn/4qlU9ozV0//2gx/14c86Y4fBLUZChT9AQALQ+SivZ+RMm4gZotY/8ynpdnJIDgl9+2iXpZPpKE
-	OfrA39/dwtt8ZtnH5AxT2UDjddtD39tA/Idn0CZb19dczYz0+NdY8yRKNIq7FL2x2qqUqlIdY5zZ8
-	IgDh3L1ZqmKhhKCf567sWAcleOjb2+3BoeaC8sHXV8XuTi0TMXKKpNCIihVMzV6OXZ8QSSwgnGyGs
-	Sv4yU4IQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=HVapPYqDJiHV+k8pG5+sCP1jgJgY7v6gMgsmomSO36A=; b=TzjJurpy8s7HpF
+	bPwcs3lA6PxL3cmKRtnsVD3DJUbDWRo2kgGAk0Hi++t+cPi7mhAlTdLrzW8iekR5R96FTVR5Mk7jL
+	4ol3PMfSA1h9Tl5wA85aUAdxWeg6QmiMeXuOObcLZt2Fz69llf9VRzgM1h0/H8ERqwFihLKWQWjNw
+	HJ9njpGe/UsZSxU0tidzY0LeH90BYqthzW1hiRlFwO2RwjCnwack1eDi0EbEZhD4IId94574ZV0P5
+	lnI+43vaPmEvGA/B3p3emHjseqQMY1Gm8aywhpMtAeCLPpVWpvnZWFApB9LGImaOCLpTOsdwqGnau
+	Hq6YS1pkmGa+Yy0LOs3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHXs-00000005UGg-49lG;
-	Tue, 17 Nov 2026 11:40:16 +0000
-Received: from mgamail.intel.com ([198.175.65.21])
+	id 1xTHZJ-00000005UVg-2J8q;
+	Tue, 17 Nov 2026 11:41:45 +0000
+Received: from canpmsgout12.his.huawei.com ([113.46.200.227])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHXq-00000005UGE-2d3i
+	id 1xTHZF-00000005UUP-3WyB
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 11:40:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794915615; x=1826451615;
-  h=date:from:to:cc:subject:message-id;
-  bh=i/LKQ7tX430Fby4W57/9ifIv7efWo8dmz1rsdqVpsqQ=;
-  b=iakBBvGR4a9g4v6Fp8px74Avs74MH8T5n/R8VD3SZsTgRYNbzBJBeJIs
-   b6frLkvmI/RTrzsFasjUrLLDnfHE8K2Iaz1ZKJKWkitDsPMSAA2hkLszF
-   l74DqP3XfyBKdHYA3nNU34yrCLKOPIOlTiIWe+hBLs9iLXIp4pDXrPwVE
-   ncQ429GIDRGRebfa3F/bv1MF4Ns/Ko7jhv/vuTE7JJimyZS9F1HzGUoHm
-   kjlUdA9UuWilqBusN+aqQDzx3DiOgaJSGmwatWeQQLfkS6CFZNx0e3Fp4
-   1Y6fSWyi2L/S9hYM7rY2/7AFYlVhkMFD6pwb4BFmpcT5NtVMhAphr6udt
-   w==;
-X-CSE-ConnectionGUID: o17MpPUXQmuEF6PUcsxc7g==
-X-CSE-MsgGUID: 0pYxt2qgSbeL7IIaMvOFNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3764853"
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="3764853"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2026 03:40:14 -0800
-X-CSE-ConnectionGUID: C9xzZxz2QlGUxoLtqx1/Eg==
-X-CSE-MsgGUID: NILJ59t7SHmm2EsQiKQHFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="9778001"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 17 Nov 2026 03:40:13 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xTHXm-00000001BLA-1YNX;
-	Tue, 17 Nov 2026 11:40:10 +0000
-Date: Tue, 17 Nov 2026 19:39:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Subject: [linusw-nomadik:b4:ux500-watchdog-twd-binding] BUILD SUCCESS
- 870319357d42cf1ac4dd08c67d3fa9ec3789153e
-Message-ID: <20261117193930.1L06aGDA-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+	Tue, 17 Nov 2026 11:41:44 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=HVapPYqDJiHV+k8pG5+sCP1jgJgY7v6gMgsmomSO36A=;
+	b=PstnArU8OkBdFXvuP0FmqH+j6og0/6czBUCyJjiziDEoiV5L1iGD/JFk2is0+9E6ktP2clCJI
+	v1yJKyqzMAnWB2ve4JHagm9oNvFlzCrDHSDZFXh+zjAxCDxKhFk6ARQN176QSKagfXvHBdqdpsA
+	ZbDX227SZWFAJxzrDNS6YMM=
+Received: from mail.maildlp.com (unknown [172.19.163.200])
+	by canpmsgout12.his.huawei.com (SkyGuard) with ESMTPS id 4jTN8T09ctznTZZ;
+	Tue, 17 Nov 2026 19:40:41 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id A4C6C4055B;
+	Tue, 17 Nov 2026 19:41:34 +0800 (CST)
+Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 17 Nov
+ 2026 19:41:34 +0800
+Message-ID: <f26828e6-e640-498f-81dc-d568f7cc50c7@huawei.com>
+Date: Tue, 17 Nov 2026 19:41:33 +0800
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] arm_mpam: resctrl: Only enable CDP on a resource
+ that supports it
+To: Ben Horgan <ben.horgan@arm.com>, Gavin Shan <gshan@redhat.com>,
+	<james.morse@arm.com>, <reinette.chatre@intel.com>, <fenghuay@nvidia.com>,
+	<zengheng4@huawei.com>, <tan.shaopeng@jp.fujitsu.com>, <jic23@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20261111081316.3828283-1-ruanjinjie@huawei.com>
+ <20261111081316.3828283-3-ruanjinjie@huawei.com>
+ <a783b375-7c27-4c91-b40e-7e615d33bc5b@redhat.com>
+ <b1fd5fa8-bf03-4575-bc05-540a288b609d@huawei.com>
+ <ce03205e-6405-4269-a061-266ef6d67e1d@arm.com>
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <ce03205e-6405-4269-a061-266ef6d67e1d@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_034014_729116_D4CBC0AF 
-X-CRM114-Status: UNSURE (   5.99  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261117_034142_523860_981C25D8 
+X-CRM114-Status: GOOD (  26.13  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,257 +81,155 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git b4/ux500-watchdog-twd-binding
-branch HEAD: 870319357d42cf1ac4dd08c67d3fa9ec3789153e  dt-bindings: watchdog: arm,twd-wdt: Allow power domains
 
-elapsed time: 1249m
 
-configs tested: 229
-configs skipped: 5
+在 2026/11/17 18:35, Ben Horgan 写道:
+> Hi Gavin, Jinjie,
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Hi Ben,
 
-tested configs:
-alpha                              allnoconfig    gcc-16.2.0
-alpha                             allyesconfig    gcc-16.2.0
-alpha                                defconfig    clang-24
-alpha                                defconfig    gcc-16.2.0
-arc                               allmodconfig    clang-24
-arc                                allnoconfig    gcc-16.2.0
-arc                               allyesconfig    clang-24
-arc                                  defconfig    gcc-16.2.0
-arc                          haps_hs_defconfig    gcc-16.2.0
-arc                      nsimosci_hs_defconfig    gcc-16.2.0
-arc                   randconfig-1000-20261117    gcc-13.5.0
-arc                   randconfig-1001-20261117    gcc-13.5.0
-arc                            tb10x_defconfig    clang-24
-arm                               alldefconfig    gcc-16.2.0
-arm                                allnoconfig    gcc-16.2.0
-arm                               allyesconfig    clang-24
-arm                          axm55xx_defconfig    clang-24
-arm                                  defconfig    gcc-16.2.0
-arm                       footbridge_defconfig    gcc-16.2.0
-arm                       jornada720_defconfig    clang-24
-arm                         neponset_defconfig    gcc-16.2.0
-arm                          nhk8815_defconfig    clang-24
-arm                          orion5x_defconfig    gcc-16.2.0
-arm                   randconfig-1000-20261117    gcc-13.5.0
-arm                   randconfig-1001-20261117    gcc-13.5.0
-arm                   randconfig-1002-20261117    gcc-13.5.0
-arm                   randconfig-1003-20261117    gcc-13.5.0
-arm                            spitz_defconfig    clang-24
-arm                         vexpress_defconfig    gcc-16.2.0
-arm64                             alldefconfig    gcc-16.2.0
-arm64                             allmodconfig    clang-24
-arm64                              allnoconfig    gcc-16.2.0
-arm64                                defconfig    gcc-16.2.0
-arm64                 randconfig-1000-20261117    gcc-16.2.0
-arm64                 randconfig-1001-20261117    gcc-16.2.0
-arm64                 randconfig-1002-20261117    gcc-16.2.0
-arm64                 randconfig-1003-20261117    gcc-16.2.0
-csky                              alldefconfig    clang-24
-csky                              allmodconfig    gcc-16.2.0
-csky                               allnoconfig    gcc-16.2.0
-csky                                 defconfig    gcc-16.2.0
-csky                  randconfig-1000-20261117    gcc-16.2.0
-csky                  randconfig-1001-20261117    gcc-16.2.0
-hexagon                           allmodconfig    gcc-16.2.0
-hexagon                            allnoconfig    gcc-16.2.0
-hexagon                              defconfig    gcc-16.2.0
-hexagon               randconfig-1000-20261117    clang-17
-hexagon               randconfig-1001-20261117    clang-17
-i386                              allmodconfig    clang-22
-i386                               allnoconfig    gcc-16.2.0
-i386                              allyesconfig    clang-22
-i386        buildonly-randconfig-1000-20261117    clang-22
-i386        buildonly-randconfig-1001-20261117    clang-22
-i386        buildonly-randconfig-1002-20261117    clang-22
-i386        buildonly-randconfig-1003-20261117    clang-22
-i386        buildonly-randconfig-1004-20261117    clang-22
-i386        buildonly-randconfig-1005-20261117    clang-22
-i386                                 defconfig    gcc-16.2.0
-i386                  randconfig-1000-20261117    gcc-14
-i386                  randconfig-1001-20261117    gcc-14
-i386                  randconfig-1002-20261117    gcc-14
-i386                  randconfig-1003-20261117    gcc-14
-i386                  randconfig-1004-20261117    gcc-14
-i386                  randconfig-1005-20261117    gcc-14
-i386                  randconfig-1006-20261117    gcc-14
-i386                  randconfig-1007-20261117    clang-22
-i386                  randconfig-1008-20261117    clang-22
-i386                  randconfig-1009-20261117    clang-22
-i386                  randconfig-1010-20261117    clang-22
-i386                  randconfig-1011-20261117    clang-22
-i386                  randconfig-1012-20261117    clang-22
-i386                  randconfig-1013-20261117    clang-22
-loongarch                         allmodconfig    clang-24
-loongarch                          allnoconfig    gcc-16.2.0
-loongarch                            defconfig    clang-24
-loongarch                 loongson32_defconfig    clang-24
-loongarch             randconfig-1000-20261117    clang-17
-loongarch             randconfig-1001-20261117    clang-17
-m68k                              allmodconfig    gcc-16.2.0
-m68k                               allnoconfig    gcc-16.2.0
-m68k                              allyesconfig    clang-24
-m68k                           amiga_defconfig    gcc-16.2.0
-m68k                                 defconfig    clang-24
-m68k                        m5235evb_defconfig    gcc-16.2.0
-m68k                             q40_defconfig    clang-24
-microblaze                         allnoconfig    gcc-16.2.0
-microblaze                        allyesconfig    gcc-16.2.0
-microblaze                           defconfig    clang-24
-mips                              allmodconfig    gcc-16.2.0
-mips                               allnoconfig    gcc-16.2.0
-mips                              allyesconfig    gcc-16.2.0
-mips                          bigsur_defconfig    gcc-16.2.0
-mips                      cu1830-neo_defconfig    gcc-16.2.0
-mips                           eyeq6_defconfig    clang-24
-mips                      eyeq6lplus_defconfig    gcc-16.2.0
-mips                      loongson2k_defconfig    gcc-16.2.0
-mips                       maltaaprp_defconfig    clang-24
-mips                       pic32mzda_defconfig    gcc-16.2.0
-mips                          rt305x_defconfig    clang-24
-mips                            xway_defconfig    gcc-16.2.0
-nios2                             allmodconfig    clang-20
-nios2                              allnoconfig    clang-24
-nios2                                defconfig    clang-24
-nios2                 randconfig-1000-20261117    clang-17
-nios2                 randconfig-1001-20261117    clang-17
-openrisc                          allmodconfig    clang-20
-openrisc                           allnoconfig    clang-24
-openrisc                             defconfig    gcc-16.2.0
-parisc                            allmodconfig    gcc-16.2.0
-parisc                             allnoconfig    clang-24
-parisc                            allyesconfig    clang-17
-parisc                               defconfig    gcc-16.2.0
-parisc                 generic-64bit_defconfig    clang-24
-parisc                randconfig-1000-20261117    gcc-9.5.0
-parisc                randconfig-1001-20261117    gcc-9.5.0
-parisc64                             defconfig    clang-24
-powerpc                     adder875_defconfig    clang-24
-powerpc                           allmodconfig    gcc-16.2.0
-powerpc                            allnoconfig    clang-24
-powerpc                      asp8347_defconfig    clang-24
-powerpc                       bamboo_defconfig    clang-24
-powerpc                  canyonlands_defconfig    clang-24
-powerpc                       cm5200_defconfig    clang-24
-powerpc                       ep88xc_defconfig    clang-24
-powerpc                        holly_defconfig    clang-24
-powerpc                  mpc8313_rdb_defconfig    gcc-16.2.0
-powerpc                mpc834x_itxgp_defconfig    clang-24
-powerpc                  mpc836x_rdk_defconfig    clang-24
-powerpc                      mpc83xx_defconfig    gcc-16.2.0
-powerpc                       pasemi_defconfig    gcc-16.2.0
-powerpc                       pcm030_defconfig    clang-24
-powerpc                       pmac32_defconfig    clang-24
-powerpc                      powernv_defconfig    gcc-16.2.0
-powerpc                        ppc64_defconfig    gcc-16.2.0
-powerpc               randconfig-1000-20261117    gcc-9.5.0
-powerpc               randconfig-1001-20261117    gcc-9.5.0
-powerpc                      skiroot_defconfig    clang-24
-powerpc                          wii_defconfig    gcc-16.2.0
-powerpc64             randconfig-1000-20261117    gcc-9.5.0
-powerpc64             randconfig-1001-20261117    gcc-9.5.0
-riscv                             alldefconfig    clang-24
-riscv                             allmodconfig    clang-24
-riscv                              allnoconfig    clang-24
-riscv                             allyesconfig    clang-24
-riscv                                defconfig    gcc-16.2.0
-riscv                 randconfig-1000-20261117    clang-24
-riscv                 randconfig-1001-20261117    clang-24
-s390                              allmodconfig    clang-17
-s390                               allnoconfig    clang-24
-s390                              allyesconfig    gcc-16.2.0
-s390                                 defconfig    gcc-16.2.0
-s390                                 defconfig    gcc-16.2.0
-s390                  randconfig-1000-20261117    clang-24
-s390                  randconfig-1001-20261117    clang-24
-s390                        zfcpdump_defconfig    gcc-16.2.0
-sh                                allmodconfig    gcc-16.2.0
-sh                                 allnoconfig    clang-24
-sh                                allyesconfig    clang-17
-sh                                   defconfig    gcc-14
-sh                              espt_defconfig    gcc-16.2.0
-sh                    randconfig-1000-20261117    clang-24
-sh                    randconfig-1001-20261117    clang-24
-sh                           sdk7780_defconfig    gcc-16.2.0
-sh                            se7750_defconfig    clang-24
-sh                            sh2007_defconfig    clang-24
-sh                      sh7710voipgw_defconfig    gcc-16.2.0
-sparc                              allnoconfig    clang-24
-sparc                                defconfig    gcc-16.2.0
-sparc                 randconfig-1000-20261117    gcc-15.3.0
-sparc                 randconfig-1001-20261117    gcc-15.3.0
-sparc                        sparc32_defconfig    gcc-16.2.0
-sparc                        sparc64_defconfig    clang-24
-sparc64                           allmodconfig    clang-20
-sparc64                              defconfig    gcc-14
-sparc64               randconfig-1000-20261117    gcc-15.3.0
-sparc64               randconfig-1001-20261117    gcc-15.3.0
-um                                alldefconfig    clang-24
-um                                allmodconfig    clang-17
-um                                 allnoconfig    clang-24
-um                                allyesconfig    gcc-16.2.0
-um                                   defconfig    gcc-14
-um                              i386_defconfig    clang-24
-um                              i386_defconfig    gcc-14
-um                    randconfig-1000-20261117    gcc-15.3.0
-um                    randconfig-1001-20261117    gcc-15.3.0
-um                            x86_64_defconfig    gcc-14
-x86_64                            allmodconfig    clang-22
-x86_64                             allnoconfig    clang-24
-x86_64                            allyesconfig    clang-22
-x86_64      buildonly-randconfig-1000-20261117    gcc-13
-x86_64      buildonly-randconfig-1001-20261117    gcc-13
-x86_64      buildonly-randconfig-1002-20261117    gcc-13
-x86_64      buildonly-randconfig-1003-20261117    gcc-13
-x86_64      buildonly-randconfig-1004-20261117    gcc-13
-x86_64      buildonly-randconfig-1005-20261117    gcc-13
-x86_64                               defconfig    gcc-14
-x86_64                                   kexec    clang-22
-x86_64                randconfig-1000-20261117    clang-22
-x86_64                randconfig-1001-20261117    clang-22
-x86_64                randconfig-1002-20261117    clang-22
-x86_64                randconfig-1003-20261117    clang-22
-x86_64                randconfig-1004-20261117    clang-22
-x86_64                randconfig-1005-20261117    clang-22
-x86_64                randconfig-1006-20261117    gcc-14
-x86_64                randconfig-1007-20261117    gcc-14
-x86_64                randconfig-1008-20261117    gcc-14
-x86_64                randconfig-1009-20261117    gcc-14
-x86_64                randconfig-1010-20261117    gcc-14
-x86_64                randconfig-1011-20261117    gcc-14
-x86_64                randconfig-1012-20261117    gcc-14
-x86_64                randconfig-1013-20261117    gcc-14
-x86_64                randconfig-1014-20261117    gcc-14
-x86_64                randconfig-1015-20261117    gcc-14
-x86_64                randconfig-1016-20261117    gcc-14
-x86_64                randconfig-1017-20261117    gcc-14
-x86_64                                rhel-9.4    clang-22
-x86_64                            rhel-9.4-bpf    gcc-14
-x86_64                           rhel-9.4-func    clang-22
-x86_64                     rhel-9.4-kselftests    clang-22
-x86_64                          rhel-9.4-kunit    gcc-14
-x86_64                            rhel-9.4-ltp    gcc-14
-x86_64                           rhel-9.4-rust    clang-22
-xtensa                             allnoconfig    clang-24
-xtensa                            allyesconfig    clang-20
-xtensa                           iss_defconfig    gcc-16.2.0
-xtensa                randconfig-1000-20261117    gcc-15.3.0
-xtensa                randconfig-1001-20261117    gcc-15.3.0
-xtensa                          virt_defconfig    gcc-16.2.0
-xtensa                     xip_kc705_defconfig    gcc-16.2.0
+> 
+> On 17/11/2026 03:31, Jinjie Ruan wrote:
+>> Hi Gavin,
+>>
+>> 在 2026/11/13 7:42, Gavin Shan 写道:
+>>> On 11/11/26 6:13 PM, Jinjie Ruan wrote:
+>>>> resctrl_arch_set_cdp_enabled() enables CDP for any cache level that is
+>>>> requested, even one that has no MPAM cache controls. Mounting resctrl
+>>>> with -o cdpl2 when only L3 can allocate still turns CDP emulation on for
+>>>> the whole system, so every CLOSID takes two PARTIDs while resctrl keeps
+>>>> its CLOSID count at the number of PARTIDs. Control groups in the upper
+>>>> half then map to PARTIDs beyond mpam_partid_max, which index past the
+>>>> configuration and monitor arrays and program out of range PARTIDs into
+>>>> the MSCs. On QEMU with 5 PARTIDs the first monitor read after creating
+>>>> 2 control groups raises MSMONCFG_ID_RANGE for PARTID 5, and MPAM is
+>>>> disabled.
+>>>>
+>>>> Do not enable CDP when a resource cannot allocate or is not CDP capable,
+>>>> as x86 does, so the mount fails instead. Only the enable path is checked,
+>>>> since unmount disables CDP on both cache levels to restore the MBA
+>>>> control.
+>>>>
+>>>> A system where only MBA can allocate, or that only has monitors, now
+>>>> fails a mount with CDP as well: CDP hides the MBA control because
+>>>> mbw_max is a per-PARTID maximum, leaving nothing for CDP to apply to.
+>>>>
+>>>> Fixes: 6789fb99282c ("arm_mpam: resctrl: Add CDP emulation")
+>>>> Link: https://sashiko.dev/#/bug/linux-05c19551-0bba-4a06-
+>>>> aa2c-3c90fab5853d
+>>>> Suggested-by: Ben Horgan <ben.horgan@arm.com>
+>>>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>>>> Cc: <stable@vger.kernel.org> # 7.1+
+>>>> ---
+>>>>   drivers/resctrl/mpam_resctrl.c | 4 ++++
+>>>>   1 file changed, 4 insertions(+)
+>>>>
+>>>> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/
+>>>> mpam_resctrl.c
+>>>> index 573617ba09df..afa3c084c475 100644
+>>>> --- a/drivers/resctrl/mpam_resctrl.c
+>>>> +++ b/drivers/resctrl/mpam_resctrl.c
+>>>> @@ -222,6 +222,10 @@ int resctrl_arch_set_cdp_enabled(enum
+>>>> resctrl_res_level rid, bool enable)
+>>>>       if (enable && mpam_partid_max < 1)
+>>>>           return -EINVAL;
+>>>>   +    if (enable && (!
+>>>> mpam_resctrl_controls[rid].resctrl_res.alloc_capable ||
+>>>> +               !mpam_resctrl_controls[rid].resctrl_res.cdp_capable))
+>>>> +        return -EINVAL;
+>>>> +
+>>>
+>>> x86 only checks 'cdp_capable', so this check isn't exactly same as to
+>>> what's
+>>> done on x86, as claimed in the commit log?
+>>
+>> Sorry, the commit message is somewhat misleading and need updated.
+>>
+>> In my opinion, CDP is a feature related to resource allocation, and it
+>> is always reasonable to check alloc_capable.
+> 
+> Hmm, I know the patch came from my suggestion but I think the reason
+> that x86 only checks cdp_capable is that alloc_capable is that the
+> alloc_capable flag is also used to indicate that the resource is fully
+> setup and can be used.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thank you for your explanation.
+
+> 
+> In resctrl_arch_set_cdp_enabled() we manipulate alloc_capable for
+> re-enabling the MBA resource and the added !alloc_capable check would
+
+I think you mean the following code:
+
+        if (cdp_enabled &&
+!mpam_resctrl_controls[RDT_RESOURCE_MBA].cdp_enabled)
+
+mpam_resctrl_controls[RDT_RESOURCE_MBA].resctrl_res.alloc_capable = false;
+
+        if (mpam_resctrl_controls[RDT_RESOURCE_MBA].cdp_enabled &&
+            mpam_resctrl_controls[RDT_RESOURCE_MBA].class)
+
+mpam_resctrl_controls[RDT_RESOURCE_MBA].resctrl_res.alloc_capable = true;
+
+
+> mean that we'd never be able to do that manipulation. resctrl doesn't
+
+Does you mean that we enable CDP for L2 or L3, but not for MBA, which
+causes aclloc_capable to be cleared to hide MBA. Then, when we try to
+enable CDP for MBA, it gets intercepted by this newly added
+alloc_capable() check, resulting in the enabling process failing?
+
+Sounds we should remove the alloc_capable().
+
+> call resctrl_arch_set_cdp_enabled() for the MBA resource but to be more
+> resilient the MPAM interface allows it.
+
+Yes.
+
+> 
+> In the future, once we start adding more controls for resources we'll
+> have to be careful to do the cdp enabling and hiding of features at the
+> control level rather than the feature level.
+
+I agree, in the future there will more control such as
+MBW_MAX、MBW_MIN、INTPRI、CMAX etc.
+
+> 
+> Thanks,
+> 
+> Ben
+> 
+>>
+>> Best regards,
+>> Jinjie
+>>
+>>>
+>>> int resctrl_arch_set_cdp_enabled(enum resctrl_res_level l, bool enable)
+>>> {
+>>>         struct rdt_hw_resource *hw_res = &rdt_resources_all[l];
+>>>
+>>>         if (!hw_res->r_resctrl.cdp_capable)
+>>>                 return -EINVAL;
+>>>
+>>>         :
+>>> }
+>>>
+>>>
+>>>>       /*
+>>>>        * resctrl_arch_set_cdp_enabled() is only called with enable set to
+>>>>        * false on error and unmount.
+>>>
+>>> Thanks,
+>>> Gavin
+>>
+> 
+
 
