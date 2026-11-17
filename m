@@ -2,108 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6497606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEEB606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:31:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ywauyRUJ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MlnMQN4o
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RuukeNPQ;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=6OI71rL0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=B4BbyGDYOdxgrwH11x1TPj5dZD9FRkdewUB3279Jnp0=; b=ywauyRUJ6YWaKa
-	1rc966K5r9YRkjY546LS+uE5eNsRgQD5Ju4+zA4nps7oUGKC2yFDdp+xRDT2EqPtFfE2fj6FydN66
-	ezK5CRWrcdV0XGVQ1JCaKtfSzkcvirsZ7KA6k01JN/rc5dzvrCm+x7IzGOJMicieyA85N6zu9X672
-	HYjcqtAw3BCHzBIO33e4dvY0kyd/11gC68BTsocaDqTN0zhHC6I2vR5hJXRH1eLXxOun4OnbJIy2W
-	o7BYeX0ewuqX0c/z+d6V/1TDyWsL0nxvc285x/ZA558Y14fcK3beMD4vjPDcJedqKNifRyapdPShR
-	fJkLLzq6agX7sIkfOsZQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=2YE/RceU1BDrUGj03KVYMBZ/+cla8lPDeG78rZvZ+NI=; b=RuukeNPQNZMf9V9RoYOckxi5sl
+	OCRaHqQJ64bFIQQSvuaJX/4/NbeZcZKLhBHnNwlTJt8eOxYUh5kmi03+4l4dBbotaXORqBkH2rbLt
+	jbbyiZwhITnLr9f0XfDJ15UV6bgUkBhENK871Bq7BWD602fTBlH0ockb9fVwqcqgMNPUeQjRs6PSB
+	vbiTTNNSb8amVu2YjXJghKSBbyAjkW1CXM21vwykZTy9JTHy7NPUYGUJSEwzyTifdswNK0TitVehu
+	W96P/aUg0/jtQDuZJ4yQng55SL8kMwACRqFZ+Ag/oMl0Y977WuDXSnoi0+sZg5tC80dhKB9RtkKU7
+	WluE1tDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTILI-00000005d8p-1Hq1;
-	Tue, 17 Nov 2026 12:31:20 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xTILX-00000005dCI-2VKX;
+	Tue, 17 Nov 2026 12:31:35 +0000
+Received: from canpmsgout06.his.huawei.com ([113.46.200.221])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTILG-00000005d8O-4AAV;
-	Tue, 17 Nov 2026 12:31:19 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7340C4607E;
-	Tue, 17 Nov 2026 12:31:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E57EE1F000C4;
-	Tue, 17 Nov 2026 12:31:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794918678;
-	bh=B4BbyGDYOdxgrwH11x1TPj5dZD9FRkdewUB3279Jnp0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=MlnMQN4oD+wELQv465iIaWTgpdJXpYlMIzOz4lMQTZVkQjj/lbakefSLwDiWtMwai
-	 oD9kmxFh51nfrOJg1hr5hEFzPc0azk9Cj9jLXeycBdPw4ysM1AmHfF9YraqfFdxKIT
-	 hAc6DRc6B71jDjRLwrJguq+YbWhviPQJfmtXZ8aSHQ4cEQP3WomqsJp6Y+V/Aqz79Y
-	 oESNoh6ZOkQjGkeehtCSuiGr6+j/OdroHJ95D2c25Msnb7x0/rDImo6+nGWTcYcGL8
-	 lDy1wjztW0glyZZu6q3IDnT1YjvAqTmEmT6d4ay9/EeINQPK52sp/vKsi1HClcL/Z1
-	 YxkdEArmTNSlg==
-Message-ID: <f860d2c6-25e3-495f-9cb5-d91d5585d969@kernel.org>
-Date: Tue, 17 Nov 2026 13:31:14 +0100
+	id 1xTILU-00000005dBQ-1qwn
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 12:31:34 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=2YE/RceU1BDrUGj03KVYMBZ/+cla8lPDeG78rZvZ+NI=;
+	b=6OI71rL0RN45D+2CBfhLv98JGQUKCc2nx0isLeQRxf8r6ERJPK+ReoiY+L05GjMXiuloDCk8r
+	ea+ImJUJDiRuvvdQKO1ukQWNPFOShOGOdRnPQ1xlSOTdyUkDS/TtYYFusHwWf2pGqYA81+sFbZx
+	kt70sEGchJoGC8EoaCPVq3U=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout06.his.huawei.com (SkyGuard) with ESMTPS id 4jTPGk56JZzRhXK;
+	Tue, 17 Nov 2026 20:31:10 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id BD320203AB;
+	Tue, 17 Nov 2026 20:31:24 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 17 Nov
+ 2026 20:31:24 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <maz@kernel.org>, <tglx@kernel.org>, <radu@rendec.net>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH v2] irqchip/gic-v3-its: Size the collection table for all possible CPUs
+Date: Tue, 17 Nov 2026 20:31:16 +0800
+Message-ID: <20261117123116.591621-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8167: Add DRM nodes
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
- linux-mediatek@lists.infradead.org
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20261117122802.728987-1-l.scorcia@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261117122802.728987-1-l.scorcia@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_043132_650627_143B418E 
+X-CRM114-Status: GOOD (  13.11  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,54 +74,80 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 17/11/2026 13:26, Luca Leonardo Scorcia wrote:
-> Add all the DRM nodes required to get DSI and DPI to work on MT8167 SoC.
-> 
-> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
-> Since the DPI patches have been applied to CK Hu's -next branch, this
-> patch is the sole leftover of the previous mt8167 display series [1].
-> I am resending it separately as it now contains an additional fix to the
-> disp_pwm clocks that it took me months to figure out and was causing
-> random missing display output.
-> 
->  arch/arm64/boot/dts/mediatek/mt8167.dtsi | 369 +++++++++++++++++++++++
->  1 file changed, 369 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> index 27cf32d7ae35..2bcdab2934f4 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> @@ -16,6 +16,22 @@
->  / {
->  	compatible = "mediatek,mt8167";
->  
-> +	aliases {
-> +		aal0 = &aal;
-> +		ccorr0 = &ccorr;
-> +		color0 = &color;
-> +		dither0 = &dither;
-> +		dpi0 = &dpi0;
-> +		dpi1 = &dpi1;
-> +		dsi0 = &dsi;
-> +		gamma0 = &gamma;
-> +		ovl0 = &ovl0;
-> +		pwm0 = &disp_pwm;
-> +		rdma0 = &rdma0;
-> +		rdma1 = &rdma1;
-> +		wdma0 = &wdma;
+The collection table is currently sized at a single ITS page size,
+and the driver's allocation policy is to allocate a single collection
+per CPU. On systems with more CPUs that the ITS can fit in a single
+page, no LPI can be routed to the CPUs that don't have an allocated
+collection, and the system grinds to a halt.
 
-You do not get own aliases. Where are these documented (and approved)?
+Change the allocation policy to allow two-level tables, similarly to
+the other tables.
 
-Best regards,
-Krzysztof
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+---
+v1 -> v2:
+- Cleanup the similar calls of its_parse_indirect_baser() (Marc).
+- Simplfy the commit message (Marc).
+- Drop fix tag and comment (Marc).
+- Give nr_ids a default for unrecognised BASER types.
+---
+ drivers/irqchip/irq-gic-v3-its.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+index c952c069f937..41cd359e52a7 100644
+--- a/drivers/irqchip/irq-gic-v3-its.c
++++ b/drivers/irqchip/irq-gic-v3-its.c
+@@ -2682,7 +2682,7 @@ static int its_alloc_tables(struct its_node *its)
+ 		u64 val = its_read_baser(its, baser);
+ 		u64 type = GITS_BASER_TYPE(val);
+ 		bool indirect = false;
+-		u32 order;
++		u32 order, nr_ids;
+ 
+ 		if (type == GITS_BASER_TYPE_NONE)
+ 			continue;
+@@ -2696,8 +2696,7 @@ static int its_alloc_tables(struct its_node *its)
+ 
+ 		switch (type) {
+ 		case GITS_BASER_TYPE_DEVICE:
+-			indirect = its_parse_indirect_baser(its, baser, &order,
+-							    device_ids(its));
++			nr_ids = device_ids(its);
+ 			break;
+ 
+ 		case GITS_BASER_TYPE_VCPU:
+@@ -2713,11 +2712,19 @@ static int its_alloc_tables(struct its_node *its)
+ 				}
+ 			}
+ 
+-			indirect = its_parse_indirect_baser(its, baser, &order,
+-							    ITS_MAX_VPEID_BITS);
++			nr_ids = ITS_MAX_VPEID_BITS;
++			break;
++
++		case GITS_BASER_TYPE_COLLECTION:
++			nr_ids = order_base_2(num_possible_cpus());
++			break;
++
++		default:
++			nr_ids = 0;
+ 			break;
+ 		}
+ 
++		indirect = its_parse_indirect_baser(its, baser, &order, nr_ids);
+ 		err = its_setup_baser(its, baser, cache, shr, order, indirect);
+ 		if (err < 0) {
+ 			its_free_tables(its);
+-- 
+2.34.1
+
 
