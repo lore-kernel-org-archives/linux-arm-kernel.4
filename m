@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26B4606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:46:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E127606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 22:50:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E22EF+SO;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iyO9GWF2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hpwB9yNi;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VwjGYOJh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,37 +14,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=O42IkrS9jeTCK/NHaai3Y1tyVx5hVS+EWpn+Yy3d8yI=; b=E22EF+SO2avoufeCZ3hRPxClF5
-	Dj+un+p+AolrUaMDtim6OAtH027su7duo8R4alWY+C35ZFfG60Vq+jPF8Xw3vgDXCKzRwDiARYZzG
-	rc8SQwbblgdZntsmXlVJ6kKpnfQKnEgD0WxDVhZ4FdgE+zAV5zSfBUVDuImslRLt9u4AQUMyIeVcz
-	ztJIyQOUQavlqGyx4oLH/OCqycB+q7RE9aaDJ60KlGaauS/axFjF3ti7cRJnvVIyAshjgqllvzYOa
-	3dUNVAvzMTALEqBNHosINFl9dwAoPkjMnPoxSK0v3oVtRWyA8wSZnMU0sQEkSP7ucZATfFIpa6Ok1
-	iPmt3iOw==;
+	bh=xoLIi0+olq1ojYmB+iwbcLFbgFXr/KR/iCCHN1uHop8=; b=hpwB9yNi3zz9bfuMPFdDzTdcrE
+	WGG3qaVVqUvUFYZoi5xlV3FgrNDhxZElfjO/h7rCob9R4jjJKjN8u5+4s1htTbHUwYiGN5PFG8Fee
+	bJEvDZ9t3w8yKkVWBodBWxwP7XSi/f2o36WnOv3TPC2Lw4FZ7lfV5BVnLefo1SCmIMaoC0V6lMyDR
+	Jo/kbi0jLNxUR9uxMt1aZ2Mv9wgajX9fVRKizKYPvpy3CIpen+RDkPYXt2hQt8FUFyetHEkrWTWoi
+	j3I8JqYipZubiIOd79ljGbDM2UCfSCpgDxoMS8ysAdlBE94KBED39N+z4EufpYVHjA+fGjMAQ+JzR
+	wAIJi4rA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTRwt-00000007Fsx-32v8;
-	Tue, 17 Nov 2026 22:46:47 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTRzu-00000007GFi-0UNt;
+	Tue, 17 Nov 2026 22:49:54 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTRws-00000007Fsl-1JfU
+	id 1xTRzs-00000007GFO-2HRj
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 22:46:46 +0000
+	Tue, 17 Nov 2026 22:49:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5CCF561CD0;
-	Tue, 17 Nov 2026 22:46:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E46F41F000C4;
-	Tue, 17 Nov 2026 22:46:44 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 013AA438EC;
+	Tue, 17 Nov 2026 22:49:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD8911F000C4;
+	Tue, 17 Nov 2026 22:49:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794955605;
-	bh=O42IkrS9jeTCK/NHaai3Y1tyVx5hVS+EWpn+Yy3d8yI=;
+	s=k20260515; t=1794955791;
+	bh=xoLIi0+olq1ojYmB+iwbcLFbgFXr/KR/iCCHN1uHop8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=iyO9GWF2tAcGIGrZynM3V9LMbB3J3bzToMv8b0reAugTl73Sx4KZii0IJsV1VBfx2
-	 WGvl6RFuotOhxRMGJoU5ayKO92eMS8kwLZx140AxWWqTpy1TxTk7iygRo06VzvBHN8
-	 KgfG5jrSvA2PiQ2lsc3Hi8WtAeEc1rF1q65+j9gD3pvTbBZ3l2yVzKr4usIwcq/JDY
-	 1Q9IWj5Xy4plv83pxJOrsAZLBVGf/2uNbBCzHtYS7sCo6FbiBMr4DZC2tt/7qHdLew
-	 Unjnf5r8pOmNdxp5RiA1ljIGfHRjlqUJWM/5YFgQaHNYPv+MkAG8YQg8pzZumR8Sg/
-	 0JwSgIuselQYw==
-Date: Tue, 17 Nov 2026 14:46:43 -0800
+	b=VwjGYOJhlAj8ZpYJeytQG47xN61sbDQutcXuSQlxtF0fWFJ2Zd5V6wzE0g7m6YzZN
+	 dHRFlOJKCqYCSL7pnYD63FHOCtfqV6aWC+WxNlOUCMaqFQshLLN2/31d3wdFhcv/ul
+	 0ZLTOAxA8YgseK6uBCIqBZTTL2EWys00vbsPoZpjg3w4autIth33cv5mzM+jyeFM17
+	 9LJwlgFPNWTIVl6UFi8GTDI83XZ3tp3yZ+jxmBwZYVUNCdR1NE7HmcktvaLkfBcZVU
+	 /Z1wOSx8jySqBZSGtegqLhYLeX2LeJ6LE03sGIBA89IoWz+T1OK8LN91pVBYId8I//
+	 7dc3Uql7OkHFw==
+Date: Tue, 17 Nov 2026 14:49:50 -0800
 From: Oliver Upton <oupton@kernel.org>
 To: Colton Lewis <coltonlewis@google.com>
 Cc: Marc Zyngier <maz@kernel.org>, Leonardo Bras <leo.bras@arm.com>,
@@ -54,16 +54,16 @@ Cc: Marc Zyngier <maz@kernel.org>, Leonardo Bras <leo.bras@arm.com>,
 	Fuad Tabba <fuad.tabba@linux.dev>, kvmarm@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] KVM: arm64: Fix inverted E2H0 check for
- HCR_EL2.NV1
-Message-ID: <avzZUyu9EhxAWtbd@kernel.org>
+Subject: Re: [PATCH v2 2/2] KVM: arm64: selftests: Verify HCR_EL2.NV1 is RES0
+ when E2H0 is NI_NV1
+Message-ID: <avzaDnFRQ2GTHDiN@kernel.org>
 References: <20261117204535.4036191-1-coltonlewis@google.com>
- <20261117204535.4036191-2-coltonlewis@google.com>
+ <20261117204535.4036191-3-coltonlewis@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261117204535.4036191-2-coltonlewis@google.com>
+In-Reply-To: <20261117204535.4036191-3-coltonlewis@google.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,63 +82,47 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 08:45:34PM +0000, Colton Lewis wrote:
-> ID_AA64MMFR4_EL1.E2H0 is a signed 4-bit field where:
->   - 0b0000 (IMP, 0): FEAT_E2H0 is implemented.
->   - 0b1111 (NI, -1): FEAT_E2H0 is not implemented, except HCR_EL2.NV1
->     is implemented.
->   - 0b1110 (NI_NV1, -2): Neither HCR_EL2.E2H == 0 nor HCR_EL2.NV1 is
->     implemented, and HCR_EL2.NV1 is RES0.
+On Tue, Nov 17, 2026 at 08:45:35PM +0000, Colton Lewis wrote:
+> In a VHE-only EL2 guest (KVM_ARM_VCPU_HAS_EL2 without
+> KVM_ARM_VCPU_HAS_EL2_E2H0), KVM advertises ID_AA64MMFR4_EL1.E2H0 as
+> NI_NV1, making HCR_EL2.E2H RES1 and HCR_EL2.NV1 RES0.
 > 
-> Prior to commit b2a324ff01fe ("KVM: arm64: Use HCR_EL2 feature map to
-> drive fixed-value bits"), kvm_init_nv_sysregs() marked HCR_EL2.NV1 as
-> RES0 when !kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI), i.e., when the
-> signed E2H0 field is less than NI (-1), which matches NI_NV1 (-2).
+> Extend hello_el2 to attempt clearing HCR_EL2.E2H and setting HCR_EL2.NV1
+> from userspace via KVM_SET_ONE_REG, verifying that HCR_EL2.E2H remains
+> RES1 and HCR_EL2.NV1 is masked to RES0.
 > 
-> When converting HCR_EL2 to the feature map, feat_nv2_e2h0_ni() was
-> written as !kvm_has_feat(kvm, FEAT_E2H0), where FEAT_E2H0 checks
-> E2H0 >= IMP (0). This inverted the condition: feat_nv2_e2h0_ni()
-> evaluates to true when E2H0 < 0 (including NI_NV1), leaving HCR_EL2.NV1
-> writable instead of RES0 for VHE-only nested guests where KVM advertises
-> ID_AA64MMFR4_EL1.E2H0 = NI_NV1.
-> 
-> Check kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI) so that HCR_EL2.NV1
-> is treated as implemented only when E2H0 is IMP or NI, and forced to
-> RES0 when E2H0 is NI_NV1. Rename the helper from feat_nv2_e2h0_ni() to
-> feat_nv2_nv1_not_res0() to clearly reflect what it tests.
-> 
-> Fixes: b2a324ff01fe ("KVM: arm64: Use HCR_EL2 feature map to drive fixed-value bits")
 > Signed-off-by: Colton Lewis <coltonlewis@google.com>
 > ---
->  arch/arm64/kvm/config.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+>  tools/testing/selftests/kvm/arm64/hello_el2.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
-> index adaf26ab93b85..a975ac73ed876 100644
-> --- a/arch/arm64/kvm/config.c
-> +++ b/arch/arm64/kvm/config.c
-> @@ -256,9 +256,10 @@ static bool feat_nv2(struct kvm *kvm)
->  		kvm_has_feat(kvm, ID_AA64MMFR2_EL1, NV, NV2));
->  }
+> diff --git a/tools/testing/selftests/kvm/arm64/hello_el2.c b/tools/testing/selftests/kvm/arm64/hello_el2.c
+> index bbe6862c6ab16..5910497f8fbe4 100644
+> --- a/tools/testing/selftests/kvm/arm64/hello_el2.c
+> +++ b/tools/testing/selftests/kvm/arm64/hello_el2.c
+> @@ -45,6 +45,7 @@ int main(void)
+>  	struct kvm_vcpu *vcpu;
+>  	struct kvm_vm *vm;
+>  	struct ucall uc;
+> +	u64 hcr;
 >  
-> -static bool feat_nv2_e2h0_ni(struct kvm *kvm)
-> +static bool feat_nv2_nv1_not_res0(struct kvm *kvm)
->  {
-> -	return feat_nv2(kvm) && !kvm_has_feat(kvm, FEAT_E2H0);
-> +	return feat_nv2(kvm) &&
-> +	       kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI);
->  }
+>  	TEST_REQUIRE(kvm_check_cap(KVM_CAP_ARM_EL2));
+>  
+> @@ -66,6 +67,13 @@ int main(void)
+>  		TEST_FAIL("Unhandled ucall: %ld\n", uc.cmd);
+>  	}
+>  
+> +	hcr = vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_HCR_EL2));
+> +	vcpu_set_reg(vcpu, KVM_ARM64_SYS_REG(SYS_HCR_EL2),
+> +		     (hcr & ~HCR_EL2_E2H) | HCR_EL2_NV1);
+> +	hcr = vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_HCR_EL2));
+> +	TEST_ASSERT(hcr & HCR_EL2_E2H, "HCR_EL2.E2H should be RES1");
+> +	TEST_ASSERT(!(hcr & HCR_EL2_NV1), "HCR_EL2.NV1 should be RES0");
+> +
 
-This could benefit from a comment, because testing for NI as a feature
-is very misleading. Also, I don't why this needs to spill onto another
-line.
-
-	/*
-	 * The E2H0 field is a 'negative' feature field, where a value
-	 * of -1 implies FEAT_E2H0 is not implemented but does not
-	 * restrict the use of HCR_EL2.NV1.
-	 */
-	return feat_nv2(kvm) && kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI);
+Again, comment would be helpful for why this is done from userspace,
+i.e. the RESx as seen from the guest POV is stateful but the value is
+ignored.
 
 Thanks,
 Oliver
