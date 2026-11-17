@@ -2,111 +2,138 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1E4606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7999A606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qPJ0P0lI;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h70sXyoh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WATI2/JH;
+	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=U0qdgMNA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2NYtBZm0XInhRoJxa7FTY/jwtTSFkeJiyIlnwfaMdUw=; b=qPJ0P0lI4RNwcM
-	rP80AkwMksclgIr/0PMG4rXPKpxXMqNoyVnwW1XpYuvWJ3cvOT866GZuUSkntDKpJqc200eb8W8IL
-	R93DAeN6HxfdhChUnHMOVI3UV0l5FbFF0lAiweqTf3bsKZzhR28ZQKgtMmNtfUP+92UsZd+gWI4oO
-	oxEjSC/bbHQFliIH/3B+Omtx9Bnk+73iP9YOE4JPbdHQij7RrB/4ZfBKE+Yw2zQ1d0CasjKSSuT+/
-	rCCh7bIf2zyywT8lfm2IRSZpEq3x1sg/fQD2mxI7YkDmqCkzHSPi3mun4jXUuDMlkWUU/+wK/Si4q
-	Opg/hEKOoKcPaRo0mwYg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Qw4j55Mfr2ziGuRrQ6H0SjibobW31rKl/HtHdw0fmMM=; b=WATI2/JHbdU2TPv6DSBPjiIj7G
+	8OP9VLqV/r5Lb5AlBXZjXE1/In6izh/B1q8RVetHq6uzRB64FHNzNRmriTaIIrIWSJ8vtrLAP5I5m
+	jDpkPNBubiZkVbsWgKd00caOuIEYx2ealUn7fICUBqQ61WYCQ6I/+Bx4ZOfivUcq4vnM40/STRjoW
+	MZR7ZmBZg4y5tfwxfq1+KGsfjj6iUOg/Ttr60mXrxWLBL8bUwm19rOOc1g7ptXSn0qKMRhrKws9k7
+	YSfEF1VZLvDJd6V2iobLyrAv6jEQBr17uP0ZDlsDRcKgclYUzIs13jnS8ax+hb43uCZBw4Xh/2Dmp
+	K5yVh06A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQnC-000000078Hm-0VZa;
-	Tue, 17 Nov 2026 21:32:42 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQn9-000000078HN-3wmy
-	for linux-arm-kernel@lists.infradead.org;
+	id 1xTQnB-000000078Hi-3tP6;
 	Tue, 17 Nov 2026 21:32:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5824145C9B;
-	Tue, 17 Nov 2026 21:32:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2DB01F000C5;
-	Tue, 17 Nov 2026 21:32:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794951159;
-	bh=2NYtBZm0XInhRoJxa7FTY/jwtTSFkeJiyIlnwfaMdUw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=h70sXyohBz9tlH4O2TwkxZDbGTPC86Wavmpegj94NPPusEGEuSfyRpi8XPL8G3eD5
-	 nWqY0AXNEQus3YgGIY/G1poWUowRmDxDPrUKbTXau15xSGYw6FShm4N/TwlEVp/oJp
-	 ugDHGjo+cRVfxklSfo12JXJtyxOZWZZWqqcSBsxtRZCov8l4JWXAjsfhS4YB0Vu/sa
-	 bEmFvA+XSOsIH26sobkgCI1PH4Tw2uTROhRRI47TMHRmpAZAfUD62HEMCHHpyN/rO9
-	 W4PAMjdn/gnvvk5lYIe8lxiRjAEBD1nmGzs9+EEBO3tqT54zj11XVLCSBBkaOMoZgT
-	 L4l/4FP9cdyxQ==
-Message-ID: <d38d9e09-08f1-4491-b202-f0ea0f799f64@kernel.org>
-Date: Tue, 17 Nov 2026 22:32:31 +0100
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTQn5-000000078GY-2hRm
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 21:32:39 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GQsJRcRtAC4XF2iQj1PKRWo0zheUO9odPep9LaAzh4ckP5sDhwxYWZgajulWpIPYW2VGVOJ1tFe+gEQvWfbZplJMfJkQDcMFck23bRpFeXaLD1fp5RBG15Hq3eh4Ffa8UvQef4j64cJTs1FtDkIlmPxh+noSn+OTKzJGTF1ToDt+UDIUnHvhFWMhFA8flHuF+B/wmlWhVGBdpZ7EI/ZoscefEB2b+aOmUy3CjVE+cZDdHGE6ZApRwDL+2RU7jGESsJrHy0lXuzm+HA7IDb07xKMmxg6z0DIK+lQUjLTIkS6zSuv+ygpeKO4No5/S/0uvAQz8MGYXP9IteG7q2dwuyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Qw4j55Mfr2ziGuRrQ6H0SjibobW31rKl/HtHdw0fmMM=;
+ b=L0sk8XQIb8LW0jIxb6lUsfo5ScwPgYcNea5JIytS0PqTlKzsFS8Dn5hgrZZVAn4xARHKsKBeYhvLM76wizUCjSQg2Kc9PTM220+L7rMnZc4WEeLwiDapUSwfV7a3xsfmn17Qj7OTMmc5R1sMrs9Ui+rAmQ8Yxr7Pq9KPi9n1OyPFT1KBe0xtSVp8diBelMhMN9oX+njgNhn4JraI56UUten/ujFUBLyEGh0nEYSyno6YibeXqs5Ys8YQZAIc9W2fEWaE2Q2iPiYxHUhwyd/nqVDMrwfgr0gId0ej6VglQpijNqPOlnysYd3e/sf6oDWqOhcXHxdXPfKpJ9L4XyCi8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Qw4j55Mfr2ziGuRrQ6H0SjibobW31rKl/HtHdw0fmMM=;
+ b=U0qdgMNAOX0+HWPChBtk1kBBoZ24V6p6dCQ5mwEi0/BQCMobWGiiYiNzmIkUl88I8IAAcNd2USMaFaz3S4wNqqEe9jPDQv3hdyqh9i4LRmntgB/qD34d7F4HhCmu9twE9POSWSlKgL4e7AqwNx0EAELRKEqpRanBMhSXrrYtphTRaDsFDJDj6lLCC0jBpdIib2Ntn2pp7DpSZkU6kC+9gT1eBdcFozco5jJ4C/B3E+VG8KKeKcytuU64W/KK16mvZ1OHhmlMdQMSR+vVQcAULWEfSkg3c8HSjhP3ClCvbmA+SI3C+1kQpKTO8Aj6ZSmaWMyFmvnsJVKXd0oMF+P6lg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
+ by MA8PR04MB391102.eurprd04.prod.outlook.com (2603:10a6:250:7c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
+ 2026 21:32:30 +0000
+Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
+ ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
+ ([fe80::7fda:8431:ca1b:b023%4]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
+ 21:32:30 +0000
+Date: Tue, 17 Nov 2026 23:32:26 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: vjardin@free.fr
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, 
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>, 
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: Re: [PATCH v7 6/6] arm64: dts: lx2160a: drop the I2C bus recovery of
+ i2c6 and i2c7
+Message-ID: <avzGrorxOg2GmYOl@lxl00025.wbi.nxp.com>
+References: <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-0-5d7201970629@free.fr>
+ <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-6-5d7201970629@free.fr>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261117-for-upstream-lx2160a-rcw-pinmux-v1-v7-6-5d7201970629@free.fr>
+X-ClientProxiedBy: AM0P190CA0018.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:208:190::28) To AM0PR04MB6900.eurprd04.prod.outlook.com
+ (2603:10a6:208:17d::10)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] mm: define generic pudp_invalidate()
- implementation
-To: Jinjiang Tu <tujinjiang@huawei.com>, akpm@linux-foundation.org,
- ljs@kernel.org, catalin.marinas@arm.com, will@kernel.org,
- mark.rutland@arm.com, ryan.roberts@arm.com, peterx@redhat.com,
- dave.jiang@intel.com, linux-arm-kernel@lists.infradead.org,
- linux-mm@kvack.org
-Cc: wangkefeng.wang@huawei.com, sunnanyong@huawei.com
-References: <20261117020237.4037980-1-tujinjiang@huawei.com>
- <20261117020237.4037980-2-tujinjiang@huawei.com>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20261117020237.4037980-2-tujinjiang@huawei.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|MA8PR04MB391102:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24d89bfc-e154-411f-8b25-08df44f2487d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|10070799003|19092799006|366016|376014|1800799024|7416014|18002099003|6133799003|22082099003|261009223027099003|11063799006|4143699003|5023799004|56012099006|261028144727099003|261022075727099003|261022105027099003|261026121527099003|261021123027099003|261026140227099003|261021121427099003|261102123227099003|10067099003|15866825006|41080700001;
+X-Microsoft-Antispam-Message-Info: 4gNZwoXrCZbV1oQ0VpcQihgjG0ATpnGQrjNJMbtz4shulGMH9UrprJ9sJeOEmEhfrUchh0i8E6N5Nxulx0AdrmsTC1+dieohE1pRiARyy9h8P0J4qNV6WgOWKM8e34z5uQUOXbQTOkNl/NPDv0xl3aw0MIxaMJfaiaWoVAXIEtmHWmVB3EE/u8750FZy/b8y4VVHtMNZeoaQSqcjKgAWTlWDTcKyzcT5cPMH5bqfa4gHNGtZDNjdjFe0zrBfMfuq9gtop1enDWOryQmtE3p2WHaZ4VifMNGNeiPnDCDM7APblEZLjoxUB4TnaikcgYPD1c8MoPZWLuVTHi4mcP4zQnH4Ikq2Q9u7KZr9UP4Pi2zgdfQ/lgWPbPfBLVUimWCjeljp39e5cJQihspLeCyILGYWJngcbs8VScga3A1ZU3G3R+Lq1vnRD34LjEvvVNL89i253/NnWiF5BYhDFfDKBGg8OTgmyRKZAYEuGdcLWXEyRCRKQe5OZufWd7jpQs9KLVmHV6A1lmIzvbo0WeDmFFIxVTJ/ursjYdYViyZjrnn6Odi6PGdxoUHAE4vTaKW+Qa+51hkRa9lVuCSlO8VJUCXh9NlBGbDRBzI2u8nSyUUiEXVmnuYkNRWaTQ1qgErQ6ImLVqf1UIqz2EhmIE8O6elhKDgYVAi+kx4Ar9HYKeJ7+JzqsTKpg6X6oP7aV9H7cd+DNpyM4cbcKpFI8G5F9Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(10070799003)(19092799006)(366016)(376014)(1800799024)(7416014)(18002099003)(6133799003)(22082099003)(261009223027099003)(11063799006)(4143699003)(5023799004)(56012099006)(261028144727099003)(261022075727099003)(261022105027099003)(261026121527099003)(261021123027099003)(261026140227099003)(261021121427099003)(261102123227099003)(10067099003)(15866825006)(41080700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GXKT4gIyKYUl011sh9g5vW2o5lFKc+G45KBOB3lTrCi7lqLOc4MmcL6fxdXW?=
+ =?us-ascii?Q?UTT8pXl5yNIMa7BcyhzYVoPDaQ56pnTAU3SlqYsuvVbgRveMktd7Mq5C4/VG?=
+ =?us-ascii?Q?JfOoy9HGJjP2I132CHLyWy3aGPakxQvQ355+aTf47CH1mGPKOSOub1Ol0xTo?=
+ =?us-ascii?Q?QiwjjORuCWJmJXG1a5KJ07Ir5Msa5/NN/Tk5pzi8oRny792tUyOasPCxwZu3?=
+ =?us-ascii?Q?iIL0Ylim9ChEjp0b27zHSoPpXs/Nt+b9FKYkt54Q7t8wBhr8hoQ3pdX2rIK7?=
+ =?us-ascii?Q?6IHemwNEdGfMKVkMgdVa/D/Ft46wRktpalT5TCwhhtZIoPSBnA3FezXpGVLN?=
+ =?us-ascii?Q?LaLzd8tWWSNCh9m+cVMJjPx9GCAYcfULPlvZrLrkmSH8QvIZiNWZNP3v6cbZ?=
+ =?us-ascii?Q?rjEh2XeP0fzP6XTieDsW+hazRdN6hBusXmxzOHSK9lCFd5ZJOC4NtWpd8dAS?=
+ =?us-ascii?Q?fkCtu0c4jujWOgHNAsKA/zJhVLEeUjQ1K8P+DHDxlEJSrQ3eQpqr9/Bq6dz5?=
+ =?us-ascii?Q?djJjlGv2JzGvVW8Y+QU1JfFr7jW38EBUj/Oxq/egoaVTQBM7Fg8UoOwGUI1n?=
+ =?us-ascii?Q?eR0tuALRwCD07icwbZpJQouIbhxultXeK1lYOyPUNggYuMB7O4tDkyPN/Qhh?=
+ =?us-ascii?Q?Uw6baGmhaHgdwNI4TlfsZCzL9HT+3PENZK84o/O3CDZU5pZJxGkkAV7EpJFJ?=
+ =?us-ascii?Q?aL+8Df9uwZ2B0RSUKdAjcOn8yW6hD51wja48vXkJ10VN8pH86bhW9g5OCKLf?=
+ =?us-ascii?Q?YXTSZIx/r+3kx5HAXRx9aryHGJtOTqSlF3k9Cih6hjyU1gNvEq1UgicWIgMi?=
+ =?us-ascii?Q?2bpLQzPLC/wBo/ip995fMKxfA02JRRkefkgrhia2eDaEc/B23LMRJKyz+wvc?=
+ =?us-ascii?Q?ehi6Usal7kSYXa4J+F/o38fm5YzSAMsSI4AO3pQSP4bC84z4dZwU4QUlbJ73?=
+ =?us-ascii?Q?w1i6rKnIx58lM7CW0/Dcggo/Qa627rkqB0fvTQtHBawHh59jRRtSlwjn3RDc?=
+ =?us-ascii?Q?8idTLGBbrhoZgugpHflpSIU89nZFpdfi/ucdfRzfNI74O6a7xUgdIdgASalT?=
+ =?us-ascii?Q?W9KaoQGdGvUZMR572J7dfCtWlBP8CP7X+5YaJxQYim9IWu32u6tL4YStNq0T?=
+ =?us-ascii?Q?Q2yYXIj3IzKdK1Tkk/Ml/AkpBibKzCZMp+gyC2BZxn7V9VojOYtUzU6J5f4Y?=
+ =?us-ascii?Q?y5wjCHAPvQjYgTf3PFnWYQUTmVoxSh2qiawRpCvmxH7u4efvbltufWDmPe11?=
+ =?us-ascii?Q?qMlfJVB9ov7aOjJLw6eFNUQt8S8o5DDn0wV0nr7FMbuYxNAUR62O78tFP8N6?=
+ =?us-ascii?Q?JmA871fXZEORH1uTbClT9epd8sJLxTEY41AxxsjnsVlT06fDw3SZBl2FiJLd?=
+ =?us-ascii?Q?DkaiwGObDBLKUTrtZLniirCNz224+saTYAKN1/PFkyCbYIca/T+69V++LU3s?=
+ =?us-ascii?Q?+dKVDf3m09uZf7qsmXNlq2pvA29HOUyhUpZLhRb9/a4pU5939tSC12jFbXx6?=
+ =?us-ascii?Q?T1MzCHdnSOHsRc5G8xDwt5+5HOkqJCVReTYnCHmDv+b2isMgFbtKccOpXzSg?=
+ =?us-ascii?Q?QNHemxk8JMaYyMFnJuvMdts3KmUiTg7NHOdOO+ytndI1AlotHOtxc1UNtNha?=
+ =?us-ascii?Q?oCf0PPGE7j+I5dLf6AvAoRz08g4eS3//qBuS286D1yTXJpBhuELOYrZy/Gon?=
+ =?us-ascii?Q?sliKsL0MLl+Jk1Q7s3HTiHkfd/VbntZhVTMuWzjxoAH9dIjJMQyapC8Lbxwe?=
+ =?us-ascii?Q?Z7Fjs8dBJxEEzZ1yo7AWpOU/V9xJWOOyW3Qczp+G+Z5bVfxeo6cnX+hlgG60?=
+X-MS-Exchange-AntiSpam-MessageData-1: Hf5UScD8p58VQw==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24d89bfc-e154-411f-8b25-08df44f2487d
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 21:32:30.0285
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: K9aKnepHK6R3gqK4kMTwXPALxWM2PPABFhZ3+4C301AwM5qQ2IsOeLa15biGpzgc8sGqt6CDOqldmpeBnuVlzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA8PR04MB391102
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_133238_604780_77A6BD6F 
+X-CRM114-Status: GOOD (  24.04  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,29 +144,110 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/17/26 03:02, Jinjiang Tu wrote:
-> x86 and riscv have identical pudp_invalidate() implementations. Move it to
-> mm/pgtable-generic.c with the __HAVE_ARCH_PUDP_INVALIDATE override guard.
-> PowerPC keeps its own implementation. In the later patch, arm64 will use
-> the generic implementation too.
+On Tue, Nov 17, 2026 at 03:53:16PM +0100, Vincent Jardin via B4 Relay wrote:
+> From: Vincent Jardin <vjardin@free.fr>
 > 
-> No functional change intended.
+> IIC7 and IIC8, the i2c6 and i2c7 nodes, exist only on the SDHC2_DAT[7:4]
+> pads, and one RCW field, SDHC2_DAT74_PMUX, muxes all four of them:
+>  - 0b010 gives both buses
+>  - 0b001 gives GPIO2[18:15]
 > 
-> Signed-off-by: Jinjiang Tu <tujinjiang@huawei.com>
+> The bus recovery of one controller therefore switches the pads of the
+> other one to GPIO too, and breaks a transfer of that bus, or its
+> target role.
+> No lock shared by the two drivers can avoid that.
+> 
+> The description cannot work either: both nodes point at the same two
+> states of the same pad-mux group, so the controller that probes second
+> fails with "pin ... already requested".
+> No board enables either bus, which is why it did not show.
+> 
+> Drop the pinctrl and the recovery GPIOs of both nodes, and the two states
+> nothing else uses. A board that uses one of the buses can add its own.
+
+You bring a good point, not sure why you didn't bring it on v6 prior to
+sending this new series?
+
+As you say, a board may choose to use just one of iic7/iic8, and in that
+case, bus recovery should work, as we don't care about the pin states of
+the other unused bus. I failed to see this yesterday and deemed the
+entire configuration as deletable.
+
+Now I think it's pretty strange to delete the pinctrl and gpio phandles
+from the common SoC dtsi and to tell board authors to duplicate them
+themselves if they are in that situation.
+
+I think a better alternative would be to add some comments like
+"Bus recovery functional only if i2c7 is disabled" above i2c6, and
+"Bus recovery functional only if i2c6 is disabled" above i2c7?
+
+I'm not sure whether maintainers could just ignore this patch while
+applying?
+
+> 
+> Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Link: https://lore.kernel.org/all/avtsY-7-I7_pdyD0@lxl00025.wbi.nxp.com/
+> Signed-off-by: Vincent Jardin <vjardin@free.fr>
 > ---
-
-Acked-by: David Hildenbrand (Arm) <david@kernel.org>
-
--- 
-Cheers,
-
-David
+>  arch/arm64/boot/dts/freescale/fsl-lx216x.dtsi | 20 --------------------
+>  1 file changed, 20 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx216x.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx216x.dtsi
+> index b0bb7bf944059..64903e935131b 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-lx216x.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-lx216x.dtsi
+> @@ -852,16 +852,6 @@ esdhc0_data75_pins: sdhc1-dir-sdhc-pins {
+>  					groups = "sdhc1-dir";
+>  				};
+>  
+> -				gpio1_18_15_pins: iic8-iic7-gpio-pins {
+> -					function = "gpio";
+> -					groups = "sdhc2-data74";
+> -				};
+> -
+> -				i2c6_i2c7_pins: iic8-iic7-i2c-pins {
+> -					function = "i2c";
+> -					groups = "sdhc2-data74";
+> -				};
+> -
+>  				i2c0_pins: iic1-i2c-pins {
+>  					function = "i2c";
+>  					groups = "iic1";
+> @@ -1038,11 +1028,6 @@ i2c6: i2c@2060000 {
+>  			clock-names = "ipg";
+>  			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+>  					    QORIQ_CLK_PLL_DIV(16)>;
+> -			pinctrl-names = "default", "gpio";
+> -			pinctrl-0 = <&i2c6_i2c7_pins>;
+> -			pinctrl-1 = <&gpio1_18_15_pins>;
+> -			scl-gpios = <&gpio1 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> -			sda-gpios = <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  			status = "disabled";
+>  		};
+>  
+> @@ -1055,11 +1040,6 @@ i2c7: i2c@2070000 {
+>  			clock-names = "ipg";
+>  			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+>  					    QORIQ_CLK_PLL_DIV(16)>;
+> -			pinctrl-names = "default", "gpio";
+> -			pinctrl-0 = <&i2c6_i2c7_pins>;
+> -			pinctrl-1 = <&gpio1_18_15_pins>;
+> -			scl-gpios = <&gpio1 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> -			sda-gpios = <&gpio1 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  			status = "disabled";
+>  		};
+>  
+> 
+> -- 
+> 2.43.0
+> 
+>
 
