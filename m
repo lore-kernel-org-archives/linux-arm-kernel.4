@@ -2,121 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E3F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:26:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F724606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:26:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yryfQGQI;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=y5OqPKI3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2h+kJgl5;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KpnSKYui
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=373Q6XKV7D4BGtZOuwgJiXk7Z3A+A6WU4sQOoM0c/Xg=; b=yryfQGQI2gp+9j
-	NzmDw7KSoxxjN1/mgDiac4LonYrbqzyhW7a57FFOgyLeSj6pC35e9CCO7EnP+5LZnDICJCBOYMAn4
-	ndjbvsL4fsWxsoDAqxWH+PZbkKPbESPWP+7UARcaZxObf5Z5S8C64jLw/YqyIJZkgpRb8vLSNwZFu
-	PGFzY3UJtoTgc4pXp7ymysDv4REDy1DdBqDSHsGFiGOkJgHSG3MZJOwA2h2sehbtnT0cpyL3+65ZP
-	SLfk5tjTVnpX5v3Is7G99oZYGmlabbO+kcCwYnf4nKtdXAD4jdJrNj5HXliUyVdUDJx8OxLKgUkZl
-	ZrI/48BgoqhqcUhK5kUg==;
+	List-Owner; bh=Wh+YK5GYBZZraDTZDEjxx9fOofeflJq8EylqEBbPVWU=; b=2h+kJgl5K3lTgo
+	Bck4nWZngkWv8RmjSs0ZTtuh+yBrpjGcifud7YyJFBaYyS1FLONEWfhTqa6Z78mL8BeDTf6YSw3mt
+	2Y4y712vJ8ftsFIdUzaV4BjzGqK6KpYcG13zhUdcZnMKzbhcSwq8IA73e4J6cW7kCSEBjhDafQS+1
+	ouTuiIbek4kAfTi7azO8vRTQvupceecJ2fLLN6bUdN8Uuvat2FY63kmIb+oIDOHCiRaU4CRMwt0uQ
+	8lBdX6UkGLhdvxtZbyKElcslQtq9FGnNkySpqiqBp9EfxDDMNM/cATe60N8kY2Yd6wYGdMawTo/S9
+	4qI7zvPcDwj9iPqGIM/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMwX-00000006Yg6-2KCV;
-	Tue, 17 Nov 2026 17:26:05 +0000
-Received: from mail-ej2-x09.google.com ([2a00:1450:4864:34::9])
+	id 1xTMxH-00000006YnQ-0luz;
+	Tue, 17 Nov 2026 17:26:51 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMwU-00000006YfK-2Ba1
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 17:26:03 +0000
-Received: by mail-ej2-x09.google.com with SMTP id a640c23a62f3a-c504fffd8b3so245687066b.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 09:26:01 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794936360; cv=none;
-        d=google.com; s=arc-20260327;
-        b=JEr2F8DBts5LsoF43cQAmoGr3Vu8cEVP0mziLZEzmj9X+N1GIrfN6VscD10p1Alv9S
-         tyMTtfkO/TRSqR0xcmEKuLyhTVEA6yt+oBTnvSb3pS/94O1WnIOfUFwWCdwkZWyhYHXx
-         NRyKU1ne3eeI9F0g3HGYUBPjd1w/QO5qd2RLmMY/yGO5M89p/EJ25o9sKOl+ZvdfZDW9
-         PDIWckoUEzvi3w8s6XX7p/45aivjFXhwgkxH4SraebpLSbjEf2V9dHa2xPWQJyb6kNKj
-         9gukVvSMzApK9H4CcnwxKbM4lBseGjkvyF4yzJrImfu8ZXPUx5t12lwO8lQwAuuNs3lr
-         WMqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=373Q6XKV7D4BGtZOuwgJiXk7Z3A+A6WU4sQOoM0c/Xg=;
-        fh=yAqDQyw4vnn9su5M5TrUAyzAG7cdinCouHFRedae4Eo=;
-        b=IQbVnW/wMU+zNA9pq7a+mICyKwgi1l2aAEcSHm6msiae24DBtOKqSVYLk2EneCsapK
-         QJPFIDFgwkqYmBWCaAu/OSFvKovOETPr2x/2NfWMoVNTK+pAvWqzG/x6fsw2GSWwf0XF
-         /N5gJi3IKMvPGUTX7xp9CCPwkoFnQyEOK9soVGOE1vfQ3qXDD4Qk9v1wX0J1PMeEk4o1
-         7ycZJY+US58fSYmk2N+oD4ogGgnKODGpP6AJa3yd963FDcD3K8c2p2bsf7+hMU7UhoSa
-         pDvUb7GP07HxnaU4a5kbWeRLrvpqlFreMANNYKIn/jDuyrDrsPvvCaEwrW9zmUx7/KUD
-         Nfvg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794936360; x=1795541160; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=373Q6XKV7D4BGtZOuwgJiXk7Z3A+A6WU4sQOoM0c/Xg=;
-        b=y5OqPKI3h/Z+o5wJIOZuQ9750nFEd72EF/jMoBqK2AUIYGqV8kr93ISbixeI3e4vmO
-         2r28wQisWFGgdpVX5K1x8r3m611sb1YhqLu4plQvraqFlIFZsRyNT/4281wqGKpGTAcu
-         ymY9Uw4ir85wi8g3mHuSz1k3+boQ14IF1AlW9fFLLuZvhSPHGRLy2MZxGEfUmEf6Yl53
-         /A1UkZCT7oGOHkkkX2dTxyFNxAFrZxv0a2Kp5hD0323AodJm0bFqR+/viH644MIGqfoV
-         1n/TOBM773wgRMknrDVno4vLh9bUSkf04L/RP53PwfaZFxs/kqmikGQZwKkWeYN9yPAt
-         UeSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794936360; x=1795541160;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=373Q6XKV7D4BGtZOuwgJiXk7Z3A+A6WU4sQOoM0c/Xg=;
-        b=L+Qb4/BNJnEeMnEyVU6/bdx8f9f+ip/tIFAtfeb1CId5xLxHVZ5CKH7gcv9m7sK02o
-         vhVJB2ABBCL/MOwIFG0xLlatfVuZSH6zn2pOCLPmdNuaSIw4t4lqVqKq0is++OTH2cY8
-         6p8xoAlBqQJ1UnBK1gM1X56aD3cbmMeKTSyRjtuSmPDepF843oF0gNc06/GtiM14yPgF
-         dHnlR0gC6D9keh9WVwK1OogTf6ZHGfEFjBxtd4wms76aQOilVSsAjfchUxZUhs+I4Hbc
-         0PCAnbEgix0oArEBNFcjeiol2J30Yezv6d3qFKX4cukP1mV84tJeUcoPfb2ZYrXKwaK5
-         9aXg==
-X-Forwarded-Encrypted: i=1; AL+hErH82qneAr5RHhmctNdUm53RLE9V2JzQM1vCCoqQjmsd4hUkQJrPkOGDKFyDZg5sjUcKun2nC/Z2YvfajQ0/KkIX@lists.infradead.org
-X-Gm-Message-State: APuU4Z8U9SEDXMIxO3gaBO4U3oTRkBIOgG+5wnxGAGALHufnb3UPEOcZ
-	+Cq544uF6G8i3e6GmbLfF00HWNWhDQ1CxRBQgqlgfaPHG5uEdc02iqCuuIrEeRCoxPbdMR3e4E+
-	d65MbmRGGPfGRY6TJ9J9ZS5lEsibIqJE=
-X-Gm-Gg: AYBFou2PzV27lOMbB5XnFUx63XpILXUouK8u0gSFdLdpNCBUxC6OzQTeg0HSz56H8hJ
-	2jt5cDBTvLU+hQbWZdG7UuWWI8aCDv/jbFo/2eXjCaAUiVEWvLF8Xz0cI4Lwg+PIep0uxTNJ9Cg
-	dgNzqdbwFUmNelpf2CDMxR8HXaQdvRoCSpD7pH7nEYpuTt3UUKG3gU0bt9hJUFpsKDqwb87FNRL
-	4vQPkdhFhuk09rcSgnaUmrzGhpyxldfD6W40+jAwTGAJYSNpFkUet1W9yMmvsnWmS8yRXW2XAW9
-	r3ISIZPucPAO6CUP/S2GjOtVbWTZXkfQffv2ujz6jAOScMZg0WvcYmZk01w8eSj7eF8kShiidsH
-	2/qFX4VEvYZDgjFL8LlYEQGap39JZ28rkMHzw3YLjmCT3tJ6iiP9zV5Ne4WqC+FgOesnzAIZdXw
-	pOdf/bM8uPISc=
-X-Received: by 2002:a17:907:3e9e:b0:c40:4848:f7fa with SMTP id
- a640c23a62f3a-c50965421ebmr1292812966b.44.1794936360337; Tue, 17 Nov 2026
- 09:26:00 -0800 (PST)
+	id 1xTMxG-00000006Yn7-3L7h;
+	Tue, 17 Nov 2026 17:26:50 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 458AD45EFD;
+	Tue, 17 Nov 2026 17:26:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D0521F000C4;
+	Tue, 17 Nov 2026 17:26:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794936410;
+	bh=Wh+YK5GYBZZraDTZDEjxx9fOofeflJq8EylqEBbPVWU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=KpnSKYuibRluIiM3G8ImpWk6psJ4i14a/8ojlwmASUjjpTXlSOBRoyPqJ7DZ4Lo+A
+	 +x3BQUWH8SsFBDkSf7xSIfY5NGd37rdjM+Dy5WVKsjXVnRpsP7TEbpx+Yz/YeZUrjx
+	 3zbVD8yLtdCyyUt1ByR58XjptFe90SLU0nskTQgVps+BaM4d9EKEDSexYiRyjMLDD8
+	 u9sCmG0qxRFqeoTOXDndeAC7HUcELOPxgQFVl3zIa/W1TTbjwHnKtAeTW8SzjC5oxt
+	 v1W4wHyv/CYOXuuUuQFVhdo0cYQfE4shmBf6TL9ThlmGPmG7TiSLi/fPXdsks4jHuD
+	 0UA1JDdtZQrnw==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ bui duc phuc <phucduc.bui@gmail.com>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: kernel@collabora.com, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20261112-mt8195-dai-etdm-fix-startup-v1-1-2a9fb98b9f6e@collabora.com>
+References: <20261112-mt8195-dai-etdm-fix-startup-v1-1-2a9fb98b9f6e@collabora.com>
+Subject: Re: [PATCH] ASoC: mediatek: mt8195: Fix ETDM3_OUT DAI startup
+ error
+Message-Id: <179492904204.77896.2095522512320824302.b4-ty@b4>
+Date: Tue, 17 Nov 2026 15:24:02 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261110160554.918652-1-coiaprant@gmail.com> <20261110160554.918652-2-coiaprant@gmail.com>
- <20261116183012.11a7ba72@kernel.org> <CALj3r0gTuJEDd==WzAQ+cK3Og-2zMqvmBrhrd2ARbKJctG5ZAQ@mail.gmail.com>
- <e3c5f034-1b05-4fcf-bbe1-8b473a8d2a0f@lunn.ch>
-In-Reply-To: <e3c5f034-1b05-4fcf-bbe1-8b473a8d2a0f@lunn.ch>
-From: Coia Prant <coiaprant@gmail.com>
-Date: Wed, 18 Nov 2026 01:25:47 +0800
-X-Gm-Features: AclHuK_-ty3BkaDRY6TNyMVy_fEf9UBHYFECA18oX_curJlczmmtv3pUHIwGjA8
-Message-ID: <CALj3r0iwtmfZAN9iS8yN9fic0Q9jVnbYP_Hz1VDheVvmh2GcrA@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 1/2] net: phy: move DECLARE_PHY_INTERFACE_MASK_ZERO
- to core
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	Paolo Abeni <pabeni@redhat.com>, Jiawen Wu <jiawenwu@trustnetic.com>, 
-	Mengyuan Lou <mengyuanlou@net-swift.com>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Heiko Stuebner <heiko@sntech.de>, 
-	Aleksandr Loktionov <aleksandr.loktionov@intel.com>, Fabio Baltieri <fabio.baltieri@gmail.com>, 
-	netdev@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_092602_609169_D97E2775 
-X-CRM114-Status: GOOD (  16.48  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1135; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=Ue80le/EfxT+oTQD+M3uJbCgfZW75OdtXgjrxJ1saAo=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLL+9IWlNR/MdAs4dC2ILfiqfcU+yd6blx1eGR1YazWt+
+ 9yPizcud5SyMIhxMciKKbLEZXG/rC95vYbv4MI2mDmsTCBDGLg4BWAi60oYGdYun2Kjk19yTPfX
+ 9u+Zt/sKnvpz8ORKyiZ1LOe9tfpOozTDL2bRL/s4Hi2d84mf9eyKG/xKD84dqAjmZ/g+bXrT5EW
+ mT9kA
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,49 +80,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Andrew Lunn <andrew@lunn.ch> =E4=BA=8E2026=E5=B9=B411=E6=9C=8817=E6=97=A5=
-=E5=91=A8=E4=BA=8C 22:04=E5=86=99=E9=81=93=EF=BC=9A
->
-> > I understand your concern that hiding the init inside the macro seems
-> > subjective. Since you mentioned an Andrew ack is needed, and he is the
-> > net PHY maintainer (who also looks after the WX driver),
->
-> I don't look after the WX driver. I comment on it, as i comment on
-> lots of drivers.
->
-> > If Andrew also feels this doesn't belong in the core, I will drop the
-> > macro entirely and switch to explicit manual initialization using
-> > phy_interface_zero() in both drivers.
->
-> Using phy_interface_zero() is what current code does. I would also say
-> using explicate =3D {0, } is O.K, but i would not hide it in the macro.
->
->       Andrew
+On Thu, 12 Nov 2026 12:30:46 +0100, Louis-Alexis Eyraud wrote:
+> ASoC: mediatek: mt8195: Fix ETDM3_OUT DAI startup error
 
-Hi Andrew,
+Applied to
 
-Sorry for the misunderstanding, I won't make assumptions about the
-maintainership next time.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.4
 
-Thanks for the clear guidance on the macro. I'll drop
-DECLARE_PHY_INTERFACE_MASK_ZERO() entirely.
+Thanks!
 
-In v5, I will use the explicit initialization directly at the
-declaration site in both txgbe and the XPCS driver:
+[1/1] ASoC: mediatek: mt8195: Fix ETDM3_OUT DAI startup error
+      https://git.kernel.org/broonie/sound/c/1d1b67dcd40a
 
-    DECLARE_PHY_INTERFACE_MASK(supported_interfaces) =3D { 0 };
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-This removes the buggy macro from the WX driver while keeping the
-initialization completely explicit and visible.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-I'll send out v5 with this fix and the lore links in the cover letter.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Coia
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
