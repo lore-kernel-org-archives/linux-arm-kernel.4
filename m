@@ -2,68 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A790D606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13995606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e23n5DoQ;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=AlhkpnS/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hH/iW47b;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=heECBdo3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Ed7lLF0CP7JeqyIekPCZLpbtKsM3+dJiy8vZ0Ay8D/w=; b=e23n5DoQxMzcZZ
-	2rXvO+bUCuDpeBMnZq/lOCaxPrjSWTRkhYE8JeOJbNs7ajHXYAbFfpgN1FApPbL28v0t/j0RCB6F8
-	7b9zO7jO4rNxtStrEFsV4zmcpYvKpl1j4lmMSWBflCDqH9EHOJILSV8s55N/EL6E0Q0hRkaJi3l3P
-	bnMFRK4dzYXh+r7a0DHQiMsL6keChiiw4EcRptsqry6FRpS7/TakRuRVWEQtrG6hLMsSi/0otEEB5
-	8doUgYTFhYoTXLbmB0Vtkiy65UwZTi+t5UR0eXjXvb/ziJH4lD16H7Gh13O18e5lQ/RlbWwds61Yb
-	6DCu4VXAflNDURqk1BEA==;
+	List-Owner; bh=kLI25bkyEOpFVWxpFGa0Dc97choniDCAakGqUy11xdk=; b=hH/iW47bRPfK9/
+	t93Q9+12o9LhLFx8zDT4H3onrAtGDmt5TXYR3QmGbRqa2t3hMmo1c1/iOQiTfWm15Za5dXTUlaIrv
+	NwpLqUsws3rc/ZAEDH10l37FzqPWluBX31mIQbQkSF9/5oad68C/R8JQqyx404fE120q4FvZ+sXz9
+	VVfWvB817EgjTMJ8Vd9MgkxQ5DOz9BP6KOq9y2uWV4IRCq96ZEOkvjdcGY3uD8BZDl9vzjJNeUR+M
+	IDUSkqEhnwk5HM6ZtgLDx0FqJaNKPGdLZM4drbQ/C891GDdkmv8cY/hcK+6PkN8M0VuU8msNbHa9n
+	9PNUXvOA1EHQNsQUe0eQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGzx-00000005NxU-1A4k;
-	Tue, 17 Nov 2026 11:05:13 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xTH39-00000005OZc-02To;
+	Tue, 17 Nov 2026 11:08:31 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGzu-00000005Nvr-25By;
-	Tue, 17 Nov 2026 11:05:11 +0000
+	id 1xTH36-00000005OYp-3By7
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 11:08:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794913508;
-	bh=qD+A+5r0Pu5rX+NsDc5YpHGQypt4R2BcA7Y/dGhVwQ4=;
+	s=mail; t=1794913706;
+	bh=oxvQViMU6UamivpQ1Wc/wZITpefIgLczFvQSjzV78bI=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AlhkpnS/onVNimPbPrBmaOEMj9/lUaCy+YIcEnteLP6km+nmS2zpGCFDaFacNKq7u
-	 5ZoOl1s6+XQKXzkVpzK9842JDliGu+WXMyccOEKN002T0d+7zrv06j9n1AjKqjHdVw
-	 T8y7JuGrpYakX3f8g5DrYedooFL9pi5Q9CtXWXG+qiJx5hUcsjKn4BzV4W7mGwcaow
-	 piZxWPhGnzCBR8u4ECs3dp0WSN1113Gz1AM/XS03kG3q3zSnMefRoctr3amQjvmusQ
-	 vcHtFyMe+NYLPm6lK0hwRZ901d+nn1kE2b7zilGaJJjEwSf/zQZqkzA2b8U4WB3V1O
-	 Q+fJM/Rje8Gow==
+	b=heECBdo3wDplXuRnvnV0cnRaSqjQC4O0371jNkrw0g5rtXP6vayb2jwPbg7pQdpRH
+	 3Vvw81nX9fJ6wJuaiqoeOd5P7z+W+vEbktu2seaSXFJZu9UNCocZWUCyM9lHEeQYcC
+	 Fuc8ApGGeSkVKTKP7sCG6nIATe5hy2YxvnB2d011Ra1R7JlprbB239UAOlncHQxqfi
+	 dBDOvt2u2lkX29e+3YSBozN3N4/ovp4OAr4+cbdOXoLQZGxdb6S08HrjQLi+ebc9T+
+	 oUACaS1MV6Pn5LJz9IK9jgDE5iY+wbv80Ps1aLUmG75uGKQGj5NwGEu8UM/OdbHJIO
+	 7V/XYFh3lWc4w==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 38C1617E07EC;
-	Tue, 17 Nov 2026 12:05:08 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 409A117E04B2;
+	Tue, 17 Nov 2026 12:08:25 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
-In-Reply-To: <20261030103418.2355854-1-wenst@chromium.org>
-References: <20261030103418.2355854-1-wenst@chromium.org>
-Subject: Re: [PATCH 1/3] arm64: dts: mediatek: mt8192-asurada: Add
- ramp-delay for MT6315 regulators
-Message-Id: <179491350817.164578.3923681659802112857.b4-ty@b4>
-Date: Tue, 17 Nov 2026 12:05:08 +0100
+To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Marc Zyngier <maz@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Ge Gordon <gordon.ge@bst.ai>, 
+ BST Linux Kernel Upstream Group <bst-upstream@bstai.top>, 
+ Jesper Nilsson <jesper.nilsson@axis.com>, 
+ Lars Persson <lars.persson@axis.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Dinh Nguyen <dinguyen@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Thierry Reding <thierry.reding@kernel.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ =?utf-8?q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
+ =?utf-8?q?Yu-Chun_Lin_=5B=E6=9E=97=E7=A5=90=E5=90=9B=5D?= <eleanor.lin@realtek.com>, 
+ Heiko Stuebner <heiko@sntech.de>, Shawn Lin <shawn.lin@rock-chips.com>, 
+ Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Michal Simek <michal.simek@amd.com>
+In-Reply-To: <20260523140242.586031-1-maz@kernel.org>
+References: <20260523140242.586031-1-maz@kernel.org>
+Subject: Re: (subset) [PATCH v3 00/17] arm64: Use EL2 virtual timer when
+ running VHE
+Message-Id: <179491370519.165314.8991090307928183984.b4-ty@b4>
+Date: Tue, 17 Nov 2026 12:08:25 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_030510_717923_40DDDD75 
-X-CRM114-Status: UNSURE (   7.44  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261117_030828_956771_40F642B5 
+X-CRM114-Status: GOOD (  12.09  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,31 +110,25 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 30 Oct 2026 18:34:15 +0800, Chen-Yu Tsai wrote:
-> On Asurada, the MT6315 buck regulators (Vbcpu, Vlcpu, and Vgpu) are
-> missing the regulator-ramp-delay property. Without the slew rate
-> specified, voltage increases may not have settled before switching CPU
-> or GPU to higher operating points, risking undervoltage crashes.
+On Sat, 23 May 2026 15:02:25 +0100, Marc Zyngier wrote:
+> This is the third version of the series initially posted at [1],
+> which
 > 
-> Add regulator-ramp-delay properties matching the slew rates configured
-> by firmware, with values provided by MediaTek: 8000 uV/us for Vbcpu, and
-> 4500 uV/us for Vlcpu and Vgpu.
+> - updates the ACPI GTDT parsing to deal the v3 layout and the EL2
+>   virtual timer,
+> - moves the architected timer driver to use it when running VHE,
+> - fixes a number of DTs to reflect the reality of the HW.
 > 
 > [...]
 
 Applied to v7.4-next/dts64, thanks!
 
-[1/3] arm64: dts: mediatek: mt8192-asurada: Add ramp-delay for MT6315 regulators
-      commit: 9c9f83e3368d27d1e0ba55827a171ebf551c3d0c
-[2/3] arm64: dts: mediatek: mt8195-cherry: Fix ramp-delay for Vgpu
-      commit: 04560888cde5fd8adc325a6ce47466f80b8c668f
-[3/3] arm64: dts: mediatek: mt8186-corsola-voltorb: Add MT6319 ramp-delay
-      commit: 929638df9f3b36665efd60ac71f1eed4ba36a0a5
+[11/17] arm64: dts: mediatek: Add EL2 virtual timer interrupt
+        commit: 0b3f2f7ff214827043a13549e1af6bd73f192768
 
 Cheers,
 Angelo
