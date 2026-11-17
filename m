@@ -2,86 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069FA606A884
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ACA3606A88F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:38:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zhf47jGi;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=c8Tj4FLN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nJx5rhtF;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=aG0yeLuY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=hoWf3LruwvxscR/X3fkl3XvLYalXXkWV48a76CyMCi4=; b=zhf47jGiF05OXx
-	jMd1cO1y4CWEjus+tVvtPrDfebZp99y8RJ2rs9NYIffS5Dz2LE6sBVxltkKd4ZrcK0IeMywn6pdX7
-	A8g1hyfSh0O+JBhRUSabJd4DG04+PG6UXqxygQp2Q2DEB0JXC7pmiuMxcyrVKR8bSkQQ5eZugOXNM
-	qz8BuTbRYxpXu6LItE8yD3Tm5LlHeLnThgFqeB3u1la9YIF1I9FUdIC3MS5y5HmfClePVva546a8m
-	JRuRMyZscjt5HlJh/9Z8M7VrBxge4W/myW0BqY51xkl8XZPBAujwkOgbojgKvHEq6XgSyqKycNXy3
-	XbEbA/+MdU+GdYfbKP7Q==;
+	List-Owner; bh=/oGiJHm/jh1FUNLOdXcbYyLNEuc+U0PJnk+ui2av96o=; b=nJx5rhtFJ6n87T
+	I2k3Mbqpv5mkl1wrRrtZnODkHGs5z02vD1mHXXsl+23Dk78qsbmWh1r1YtsO2l/IQ8/diIhQwQver
+	5c0c9edYsBQlTaxoO9+QWlMMtJ3Ca55ZW5E2p8O4eNDiuthdooCQQ+TFvLjDUoNL+qoIvzA+ac3nh
+	78cH9V9eyvK3n4R+FfDLtiCGN1TNos/SK7Nd7b6qGcYhr9Nrxr2/EeEifphq7Z3GHT4A2ZrqzQJGU
+	yh4LAfC+M7cOaaM78XvT4MMRlw1qsnb3jn3DO7MSaQFgkk4aUSGrXFdZzlBZ1bvKV5620nN9VvLwK
+	jRCrrS4cNSIkqWQG+iNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGZX-00000005IHd-2L0j;
-	Tue, 17 Nov 2026 10:37:55 +0000
+	id 1xTGZh-00000005IQC-16Qi;
+	Tue, 17 Nov 2026 10:38:05 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGZM-00000005IAZ-09GQ;
-	Tue, 17 Nov 2026 10:37:45 +0000
+	id 1xTGZQ-00000005IDO-30xL;
+	Tue, 17 Nov 2026 10:37:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794911862;
-	bh=wEBiVaD6NsiPNk+K0zY+bNHgPd2fjrZ3R/9puTARgmQ=;
+	s=mail; t=1794911866;
+	bh=VOW3N+kuAOhlQXMVPIKqUw8yVwXy/w9NQurJNFZ3824=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=c8Tj4FLNlUnIrv9fqoaXqE/BZBck8Dbtrdf5PzvtJwo2R56GdU5WAPkpiuMknu0If
-	 kPjuRX7Mmxt9XG/4Mqr3tN+37orXSVUCUpE2kgwOr/ZY6n8/kl2vFYWVSjOfHqXNmA
-	 MjEtF2m9mfBOyrii4nj6EV+a9QctWlmSERrXhoKA3+KRx36f7HVSndX+IB4TsGTM62
-	 XwVW+/GIs0liH7ATNba7qUJp5TSedIRu5kVMWvINsPjZcnOY5EFtFZ21pZ5leIEmOy
-	 J10NkT00A6+IXR2ZgEt0d9dlz7Az/6T2mVYQbWU5r/nIg+rFgNewNhurFLXpzTU5Ug
-	 L/Q1YUTO79V6A==
+	b=aG0yeLuY8OMnE6Cf2ENdM+pBOa2xVk8BB7i+rUJa3ZPKf6EEagNeE/cLqZj+KDzMl
+	 B+2rit060SVf8Fl0Lb7R3KzJZMEeBDhWXqwjsDKf1vgbevsUfdCsjxjckuPrj+389h
+	 AuxR/9X3ZVWCtd8ir9+Z9q8SeT50dODfe0CmmBa6EzqtzEWvE2W3VAtT/KPvGFYTBI
+	 SvjHgwie7k2wL5k7v6U71LmuXpSrB3it2GQWuYBuClo3+gMgn+P3uiGLHX/4YBbl32
+	 2V7DEgaj4Cj1+Wbf6qoVb09V098q9GC9hNq4FepGPCD/qZffIu1aBs70eMa1+hS7qy
+	 unczhdnjFCVIQ==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 34A6917E07F6;
-	Tue, 17 Nov 2026 11:37:41 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2C3F817E0390;
+	Tue, 17 Nov 2026 11:37:46 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
 	zoan37 <agentzoan@gmail.com>,
+	linux-clk@vger.kernel.org,
+	Shiji Yang <yangshiji66@outlook.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Stephen Boyd <sboyd@kernel.org>,
 	Brian Masney <bmasney+clk@redhat.com>,
 	Jerome Brunet <jbrunet+clk@baylibre.com>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
-	Akari Tsuyukusa <akkun11.open@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Chun-Jie Chen <chun-jie.chen@mediatek.com>,
 	Chen-Yu Tsai <wenst@chromium.org>,
 	Edward-JW Yang <edward-jw.yang@mediatek.com>,
 	Irving-CH Lin <irving-ch.lin@mediatek.com>,
 	kernel@collabora.com,
-	linux-clk@vger.kernel.org,
 	linux-mediatek@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Takashi Sakamoto <o-takashi@sakamocchi.jp>,
-	Danilo Krummrich <dakr@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	Laura Nao <laura.nao@collabora.com>,
-	Sjoerd Simons <sjoerd@collabora.com>
-Subject: Re: [PATCH 0/6] clk: mediatek: Fix descriptor clock ID allocation
-Date: Tue, 17 Nov 2026 11:37:29 +0100
-Message-ID: <179491184088.148303.2061993914612529497.b4-ty@b4>
+	Mark Brown <broonie@kernel.org>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] clk: mediatek: mt7981: fix "emmc_400m_sel" clock mux sources
+Date: Tue, 17 Nov 2026 11:37:34 +0100
+Message-ID: <179491184091.148303.8587843697634686350.b4-ty@b4>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260921102522.1640072-1-akkun11.open@gmail.com>
-References: <20260921102522.1640072-1-akkun11.open@gmail.com>
+In-Reply-To: <OSCPR01MB1501934D1DC407B535D78F02EBC992@OSCPR01MB15019.jpnprd01.prod.outlook.com>
+References: <OSCPR01MB1501934D1DC407B535D78F02EBC992@OSCPR01MB15019.jpnprd01.prod.outlook.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_023744_227921_342F93B3 
-X-CRM114-Status: UNSURE (   9.02  )
+X-CRM114-CacheID: sfid-20261117_023748_997118_8D7D2787 
+X-CRM114-Status: UNSURE (   6.38  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -102,37 +99,14 @@ X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 21 Sep 2026 19:25:16 +0900, Akari Tsuyukusa wrote:
-> Several MediaTek clock providers have clock IDs that do not match the
-> size of the clock array allocated by the common descriptor-based probe.
-> 
-> Add dummy entries for missing IDs so that the allocated onecell data
-> covers the complete clock ID space used by each provider.
-> 
-> Akari Tsuyukusa (6):
->   clk: mediatek: Fix MT6779 clock onecell IDs
->   clk: mediatek: Fix MT6797 clock onecell IDs
->   clk: mediatek: Reserve missing MT8167 clock ID
->   clk: mediatek: Reserve missing MT8173 topckgen IDs
->   clk: mediatek: Reserve missing MT8196 MDP clock IDs
->   clk: mediatek: Reserve missing MT8516 top clock IDs
-> 
-> [...]
+On Sun, 18 Oct 2026 13:50:16 +0800, Shiji Yang wrote:
+> According to the document "MT7981B Platform: Registers Part 1", the
+> 4th clock source of "emmc_400m_sel" group is "cb_net2_d4".
 
 Applied to v7.4-next/clk, thanks!
 
-[1/6] clk: mediatek: Fix MT6779 clock onecell IDs
-      commit: 8dcfe9e6b3cc7e0a2ae54ee89b27fc75048875d9
-[2/6] clk: mediatek: Fix MT6797 clock onecell IDs
-      commit: dbed26f4c489548a1aed48db66ec9d7b98f4189e
-[3/6] clk: mediatek: Reserve missing MT8167 clock ID
-      commit: 3ccbdb37d10af155da69a7bf26dd68e62abd45cd
-[4/6] clk: mediatek: Reserve missing MT8173 topckgen IDs
-      commit: afd8231b5a43486458b5b17608e7f9986bfde675
-[5/6] clk: mediatek: Reserve missing MT8196 MDP clock IDs
-      commit: 8779893558124fd4e4a189c2bcb1ad4ae7014e9e
-[6/6] clk: mediatek: Reserve missing MT8516 top clock IDs
-      commit: 24bf5189aadf39d713b33e58b61f39854a99b1d9
+[1/1] clk: mediatek: mt7981: fix "emmc_400m_sel" clock mux sources
+      commit: af557feaed1f9344666296284cda362d4ed53a9c
 
 Cheers,
 Angelo
