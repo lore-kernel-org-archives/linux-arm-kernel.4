@@ -2,76 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815AF606A883
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815A0606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cznzd6T5;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=KgC550Oy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KCvtgAK1;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IjKnpFNS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ezCv02AV+SxphL6JyP0juEoNENidSv9/iDZpEW3jODQ=; b=cznzd6T5wcvSo+
-	f13zxiTTZFZDU5bs5iU/zNczgdzncIS6DJEvlepRcdn/ff+f8wS9p6pggXj8D61XeOBqHyX7KimxS
-	wfD6KGceH9T+LK51xPaRj9d3SlVPEewhevU4n57b3+l26oG4/WFfrYREi9Pl6pFvmhbjsdarcHmkB
-	QlYPYxgj1bltGskMHOiJf4wpQgpDhA8ORNYHuQSuLSi14yeFvf8lXUinrcgi64Cz95QiKKbkCqgRV
-	xyvCe61CFhY/c1uzBMd5ToeNL6eVCX5aLVgFNnJS+DyGOyHfLHYXVznDy4PcZbUBFqdNG5NFzvA4e
-	0QkU7b2NtD5hDc4CJl4A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=gBeq2/iCMChVmV5bVu8cy+G0EEsYIJD3BwRTb22K9Y8=; b=KCvtgAK1BlXchcd2MWyMX1wQ5E
+	KR1Xv5QTFl78Bf1p1/52vBoMPOPgAnydgGBKvmX3sd6ikFTOlFqdg1vH/TfVQ6eMAGB1qK3mEEZNY
+	qKSUTAnrko7/vziUwsjmD5vKCoOfW+JIFBx3H2kd02jznccnAstpqydwQoGsPu6x7yhgggXOmMH5b
+	IArAqJy7NOMKi+bMeidO0LaCA2TBfF2fPHRG9O/Y+9+8fAtfRLuXFTYF81d/SSrjNN+29xSZli/Qd
+	uYgufFHPZo3ypEsfqKq+RU1NZ33focVrWcMbzknDGJ68eePavuWzp1Nv88fWBz7mSq/s+l2MecBw3
+	fb/qMSfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHxl-00000005Xzp-0nTR;
-	Tue, 17 Nov 2026 12:07:03 +0000
-Received: from canpmsgout01.his.huawei.com ([113.46.200.216])
+	id 1xTHz7-00000005YO7-4BoL;
+	Tue, 17 Nov 2026 12:08:28 +0000
+Received: from mail-ed1-x52d.google.com ([2a00:1450:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHx8-00000005Xjo-2hqG
+	id 1xTHyb-00000005YDm-2wVN
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 12:06:32 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=ezCv02AV+SxphL6JyP0juEoNENidSv9/iDZpEW3jODQ=;
-	b=KgC550OytW3A9NYWQ0vc1uMq3BoqDHhBnJKPjghKMaaHbzBiO+QqDY8fqpljOvIemmkS9X9sh
-	xBY7pnsrGS2SiH45CZE4vDhuhXKVZZJTeAMzmKAxhHmcj/qMxkVJpB90Oortw5L2oZUmqny1bDU
-	SeoBGJcDv5L7PhlZ6iPp7fI=
-Received: from mail.maildlp.com (unknown [172.19.162.223])
-	by canpmsgout01.his.huawei.com (SkyGuard) with ESMTPS id 4jTNjG1Nmfz1T4HC;
-	Tue, 17 Nov 2026 20:05:38 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 953AF40561;
-	Tue, 17 Nov 2026 20:06:16 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 17 Nov
- 2026 20:06:15 +0800
-Message-ID: <93a4ab7e-d016-42fb-a00b-1ed9ed75ae8d@huawei.com>
-Date: Tue, 17 Nov 2026 20:06:09 +0800
+	Tue, 17 Nov 2026 12:08:00 +0000
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-6b87a240de3so349117a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 04:07:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794917272; cv=none;
+        d=google.com; s=arc-20260327;
+        b=aqzJ94d0id+zj2kpgSbh8exghEBXyogiWty065Z0pdkUs2vEXXg/OAR/JOV4alVLnZ
+         S93BDj8xXEzUVwiVnbO5e40BV+g4oU8b8GZHXqNc5Adqbb/RmWJA9M2OhsyFj1uIXJ8D
+         3YGEpw5ysnWgETBjBQqKDutTfy76sXEvJepUhbttaTznZn+AUyK41rVvWdTUybTPJgEL
+         mS7xqvxJHudsMjnVgwAPISGYB6my+MWO4L8k5tx9HBm/QQdsNxU7uE1CKOqw3E4VxyUy
+         uvFoll6lvm7DZBfkMz/YTUyRgyBdjOVZh0YqH/jwh0tl494gs8X210q+UrA7YiuKyIrx
+         3tVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=gBeq2/iCMChVmV5bVu8cy+G0EEsYIJD3BwRTb22K9Y8=;
+        fh=T+ulIsbsOIzgCxpJOpeFeD2Q8ttdsH0Te0rsGL7+QE8=;
+        b=jPNKtwOz7nSLEQWGKr2PmkYuikBB5wL6+iYgjYVWs/m+f4GSHQDT2y1bTelH+W716H
+         IOsSSBxiVA0SyEEkPFtu/C0Q4HJ5kRVk7t9/Ekjn4SM6jqAFANoM/4Cy0LpYtVdOF/2y
+         uTs8YHNH2kU3pXL3+u6lAtzaHJfnEyvIYAXWCqkVyozo2mbyIbtPd5bsctybU5Ln0N0B
+         /J+Tk56DxIq49y6HhYdIZc/OGUk/kN4CisdSmVncIVYUByaTOqn9kEjPYFyyjRZvoBrs
+         jv8I37E8dKCiiSzcr+8fZsOVCJR8J0jxxrgTwCGNvs65nybYaIDxXw8iMGNauWKIh4/m
+         p+iw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794917272; x=1795522072; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=gBeq2/iCMChVmV5bVu8cy+G0EEsYIJD3BwRTb22K9Y8=;
+        b=IjKnpFNSJada6sPN2EeM6hXyFnjrzXF4401QuSvT5xoLhj4oU1ftcIi07xMFYVxUBQ
+         bfUF34S6V0tvXEjaSbWxgCPSN1Fex7fUHN4sLLYmmalZDrYnCmsxr4bp71D8F8rU3M8z
+         FermnKSmd9HKigM6t3Sxs1a4n6JKpbjzT3NvjiVbJr142hE0FJXl3Bu+LrbVvaWYAer2
+         /6K0FcEQAU7+K/oLwomvCbsDenGYV21F+1cOltKHlqs9x5SbZDnT+azkCaFPvXJlLfXs
+         wHuaWlM+Im/soYxwJjbY3B5IegsGf2CHiB0JMIf6rMShxatcax1vBftylU1AG/sW+lTs
+         RHuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794917272; x=1795522072;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=gBeq2/iCMChVmV5bVu8cy+G0EEsYIJD3BwRTb22K9Y8=;
+        b=QyXQ+U3GLYnN+ysYpmcKJSM7bwGVnaO/XGCzSugFsRFwh6+7WJOZZ6kFWDTUoVlpxE
+         SnwiNZumn7y0dcbiFke37hY2FbEErHAN6PYn2o31mn1uu2lWuZ/puka32NKHo/4q9/3P
+         hN42XgX3zChv38Rvoh1/FUQS597Gy6+K1Gqdhn0IVWmhwGYDUKfVvHt0id88DeyU2K/U
+         NG2QolmqRY3c6H9k9NlZd2P9j45/egDTtrZ2vT2j5x6NiVwdPJPhkETqNkJAwmp+I5Rq
+         LFuvPUYVvcf5qpR8X3nViLODn/snbu30uSxL+h1fblKRQpKNb4xpiWuaDUtJqxIOkzP7
+         SYGQ==
+X-Forwarded-Encrypted: i=1; AL+hErEw4TUG2n8da1HbGhn8NKqMCg9i6Ij1NWkzEhp11DyjhkgEkKu42kKIoZtmla6O2UANEdJ3nIBE5l+FPEs3qVfC@lists.infradead.org
+X-Gm-Message-State: APuU4Z8s2TlKKP0lxTQ4EaF9Egg0iv9plHK0AxCpYYWkTPyCvnLUf/Ma
+	BW+A8xknpPmdgFW4WS+1Q3WQpNjwGBwZzfFsgtzwGCBWVWQ7ZJyQX6CXEXCPridVtWyF+MtwcGc
+	4sis+kD9NZ07pTkCGEEdPtq75px2phkOH5g==
+X-Gm-Gg: AYBFou3VknCSCVCdY9TqKM+tzQLiVwcTGF+ri3Q3wdomUlxtlUz3v+MBMX13AndZJ7b
+	2GtOSvG+0PKREiEHb2L7S+GVZXyPnovli736PknEvMPadUb7nIJ9clzqnzU7OeDasjVl6HuNTIN
+	h8OZcx0zWMuPBkORHhmQR1YnSjsIOhvioj08R+DycMEmI5FvIjInzYRnAgUKaiZfGwogiqbVSK7
+	p+MKYWry40z2BN21mHyEIzyOKfkcTJB9G8Tl9CNzj4FeK5RTJtwLJZ4eYiRsT505TosXTWV29oU
+	6KQ0D6UOoldorn+S91Qx96v+YO2vGUf5FctGg+L967qgekwctr2BuPiFX5f8C9HEYjzcampGKs4
+	0pVUgWIUWfaml8rDTlEcNfaCzLzkIUQDKF8Y=
+X-Received: by 2002:a05:6402:c6c1:10b0:6b1:d62b:a8dc with SMTP id
+ 4fb4d7f45d1cf-6b7c08b4e88mr7273282a12.1.1794917271385; Tue, 17 Nov 2026
+ 04:07:51 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] arm_mpam: resctrl: Only enable CDP on a resource
- that supports it
-To: Ben Horgan <ben.horgan@arm.com>, Gavin Shan <gshan@redhat.com>,
-	<james.morse@arm.com>, <reinette.chatre@intel.com>, <fenghuay@nvidia.com>,
-	<zengheng4@huawei.com>, <tan.shaopeng@jp.fujitsu.com>, <jic23@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20261111081316.3828283-1-ruanjinjie@huawei.com>
- <20261111081316.3828283-3-ruanjinjie@huawei.com>
- <a783b375-7c27-4c91-b40e-7e615d33bc5b@redhat.com>
- <b1fd5fa8-bf03-4575-bc05-540a288b609d@huawei.com>
- <ce03205e-6405-4269-a061-266ef6d67e1d@arm.com>
- <f26828e6-e640-498f-81dc-d568f7cc50c7@huawei.com>
- <552e2119-f08c-4ec9-8c90-4be012a2d690@arm.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <552e2119-f08c-4ec9-8c90-4be012a2d690@arm.com>
+References: <20261117113402.728183-1-l.scorcia@gmail.com> <7fb43d3c-8c9d-43b5-b979-aef65f362ed9@collabora.com>
+In-Reply-To: <7fb43d3c-8c9d-43b5-b979-aef65f362ed9@collabora.com>
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Date: Tue, 17 Nov 2026 13:07:40 +0100
+X-Gm-Features: AclHuK843kgmezwD-dXfy2-fm2q_WSzPEZgRrKlkUSUYV45gRmYPefogu3Bgl1c
+Message-ID: <CAORyz2L_NDcvj3KkD_6CPFO3QhX1dGWphc7Pfacif2x0n=O_DQ@mail.gmail.com>
+Subject: Re: [PATCH] soc: mediatek: mt8167-mmsys: fix errors in
+ multiple-output display paths
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, 
+	Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems200001.china.huawei.com (7.221.188.67) To
- kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_040630_188420_B2D8ADC5 
-X-CRM114-Status: GOOD (  23.95  )
+X-CRM114-CacheID: sfid-20261117_040755_274139_8F5BED74 
+X-CRM114-Status: UNSURE (   6.81  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,177 +119,17 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+> This misses a Fixes tag.
+> Please add the relevant one and resend.
 
-
-在 2026/11/17 19:46, Ben Horgan 写道:
-> Hi Jinjie,
-> 
-> On 17/11/2026 11:41, Jinjie Ruan wrote:
->>
->>
->> 在 2026/11/17 18:35, Ben Horgan 写道:
->>> Hi Gavin, Jinjie,
->>
->> Hi Ben,
->>
->>>
->>> On 17/11/2026 03:31, Jinjie Ruan wrote:
->>>> Hi Gavin,
->>>>
->>>> 在 2026/11/13 7:42, Gavin Shan 写道:
->>>>> On 11/11/26 6:13 PM, Jinjie Ruan wrote:
->>>>>> resctrl_arch_set_cdp_enabled() enables CDP for any cache level that is
->>>>>> requested, even one that has no MPAM cache controls. Mounting resctrl
->>>>>> with -o cdpl2 when only L3 can allocate still turns CDP emulation on for
->>>>>> the whole system, so every CLOSID takes two PARTIDs while resctrl keeps
->>>>>> its CLOSID count at the number of PARTIDs. Control groups in the upper
->>>>>> half then map to PARTIDs beyond mpam_partid_max, which index past the
->>>>>> configuration and monitor arrays and program out of range PARTIDs into
->>>>>> the MSCs. On QEMU with 5 PARTIDs the first monitor read after creating
->>>>>> 2 control groups raises MSMONCFG_ID_RANGE for PARTID 5, and MPAM is
->>>>>> disabled.
->>>>>>
->>>>>> Do not enable CDP when a resource cannot allocate or is not CDP capable,
->>>>>> as x86 does, so the mount fails instead. Only the enable path is checked,
->>>>>> since unmount disables CDP on both cache levels to restore the MBA
->>>>>> control.
->>>>>>
->>>>>> A system where only MBA can allocate, or that only has monitors, now
->>>>>> fails a mount with CDP as well: CDP hides the MBA control because
->>>>>> mbw_max is a per-PARTID maximum, leaving nothing for CDP to apply to.
->>>>>>
->>>>>> Fixes: 6789fb99282c ("arm_mpam: resctrl: Add CDP emulation")
->>>>>> Link: https://sashiko.dev/#/bug/linux-05c19551-0bba-4a06-
->>>>>> aa2c-3c90fab5853d
->>>>>> Suggested-by: Ben Horgan <ben.horgan@arm.com>
->>>>>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
->>>>>> Cc: <stable@vger.kernel.org> # 7.1+
->>>>>> ---
->>>>>>   drivers/resctrl/mpam_resctrl.c | 4 ++++
->>>>>>   1 file changed, 4 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/
->>>>>> mpam_resctrl.c
->>>>>> index 573617ba09df..afa3c084c475 100644
->>>>>> --- a/drivers/resctrl/mpam_resctrl.c
->>>>>> +++ b/drivers/resctrl/mpam_resctrl.c
->>>>>> @@ -222,6 +222,10 @@ int resctrl_arch_set_cdp_enabled(enum
->>>>>> resctrl_res_level rid, bool enable)
->>>>>>       if (enable && mpam_partid_max < 1)
->>>>>>           return -EINVAL;
->>>>>>   +    if (enable && (!
->>>>>> mpam_resctrl_controls[rid].resctrl_res.alloc_capable ||
->>>>>> +               !mpam_resctrl_controls[rid].resctrl_res.cdp_capable))
->>>>>> +        return -EINVAL;
->>>>>> +
->>>>>
->>>>> x86 only checks 'cdp_capable', so this check isn't exactly same as to
->>>>> what's
->>>>> done on x86, as claimed in the commit log?
->>>>
->>>> Sorry, the commit message is somewhat misleading and need updated.
->>>>
->>>> In my opinion, CDP is a feature related to resource allocation, and it
->>>> is always reasonable to check alloc_capable.
->>>
->>> Hmm, I know the patch came from my suggestion but I think the reason
->>> that x86 only checks cdp_capable is that alloc_capable is that the
->>> alloc_capable flag is also used to indicate that the resource is fully
->>> setup and can be used.
->>
->> Thank you for your explanation.
->>
->>>
->>> In resctrl_arch_set_cdp_enabled() we manipulate alloc_capable for
->>> re-enabling the MBA resource and the added !alloc_capable check would
->>
->> I think you mean the following code:
->>
->>         if (cdp_enabled &&
->> !mpam_resctrl_controls[RDT_RESOURCE_MBA].cdp_enabled)
->>
->> mpam_resctrl_controls[RDT_RESOURCE_MBA].resctrl_res.alloc_capable = false;
->>
->>         if (mpam_resctrl_controls[RDT_RESOURCE_MBA].cdp_enabled &&
->>             mpam_resctrl_controls[RDT_RESOURCE_MBA].class)
->>
->> mpam_resctrl_controls[RDT_RESOURCE_MBA].resctrl_res.alloc_capable = true;
->>
->>
->>> mean that we'd never be able to do that manipulation. resctrl doesn't
->>
->> Does you mean that we enable CDP for L2 or L3, but not for MBA, which
->> causes aclloc_capable to be cleared to hide MBA. Then, when we try to
->> enable CDP for MBA, it gets intercepted by this newly added
->> alloc_capable() check, resulting in the enabling process failing?
-> 
-> Yes
-> 
->>
->> Sounds we should remove the alloc_capable().
-> 
-> If you mean the check for !alloc_capable, that this patch adds, then I
-> agree.
-
-Yes. That's exactly what it means, and it will fix this problem.
-
-> 
-> Thanks,
-> 
-> Ben
-> 
->>
->>> call resctrl_arch_set_cdp_enabled() for the MBA resource but to be more
->>> resilient the MPAM interface allows it.
->>
->> Yes.
->>
->>>
->>> In the future, once we start adding more controls for resources we'll
->>> have to be careful to do the cdp enabling and hiding of features at the
->>> control level rather than the feature level.
->>
->> I agree, in the future there will more control such as
->> MBW_MAX、MBW_MIN、INTPRI、CMAX etc.
->>
->>>
->>> Thanks,
->>>
->>> Ben
->>>
->>>>
->>>> Best regards,
->>>> Jinjie
->>>>
->>>>>
->>>>> int resctrl_arch_set_cdp_enabled(enum resctrl_res_level l, bool enable)
->>>>> {
->>>>>         struct rdt_hw_resource *hw_res = &rdt_resources_all[l];
->>>>>
->>>>>         if (!hw_res->r_resctrl.cdp_capable)
->>>>>                 return -EINVAL;
->>>>>
->>>>>         :
->>>>> }
->>>>>
->>>>>
->>>>>>       /*
->>>>>>        * resctrl_arch_set_cdp_enabled() is only called with enable set to
->>>>>>        * false on error and unmount.
->>>>>
->>>>> Thanks,
->>>>> Gavin
->>>>
->>>
->>
-> 
-
+Sure, thank you!
+--
+Luca
 
