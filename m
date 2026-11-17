@@ -2,163 +2,156 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B418606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED44D606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fL+w5+zA;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ezev30yd;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=eKe3fqd3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sO/y26nN;
+	dkim=pass (2048-bit key, unprotected) header.d=OUTLOOK.JP header.i=@OUTLOOK.JP header.a=rsa-sha256 header.s=selector1 header.b=cLbzDezO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YBuV1uX7APe0jRZwWDXSVbsovnQ3pKj7FGQkmChMsog=; b=fL+w5+zACDbPqE
-	l7dymTzZe9VnurQtu+IJ9G9HyYqi7gGFD41EMtxmdqrKxJ9gSY+wH1ejDsKVZb4q5bYnmzUNlihgv
-	MI2EYNiC9pMHa1BefChwmfiRnHfERnoqmhdukzxqjOtXA2SysqX3kjT8KI1LtoO7HYXkJQ64VoeFu
-	FGQbC+6OabJnFwy0quNrs347aWtaIEi2yJmW+8WNo06fpISODx2h1hu2Vbzt6uT+6zCIQXBlNvTvs
-	ig43VfupjohucqW2gEc5ZTNUoxfAsgWzEOzxBGbxh59F2eQoyqjIsQgRDf+e6ACJPQ/0pXZ0vgqJn
-	Ka+Iab5Ey8JXbKt7IBIw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=M2XB2/dEITFTwbK0u8XS8M30W42GcoAKWde8CDThEGk=; b=sO/y26nNAXa/a7H6iPW5O3v7jC
+	DvpHdWNWWYSfGRLB8IBwQLdCclPpegDCTWexprZzaGy0Lab1oDE1v9x3ypC2QVa37BfFdUC6MPeA8
+	naCEXjo5IFx5/ZQQ8usOK/qIWPxsNhKadUZIGNviWdWOlPRvoO7Y/WZzoYN31OGSgqwbOIv8ka2Dq
+	PnuVMgBFYyxRS2BdHmfHXG2WRtdhBNzi2d6svRQt8PaaLDoKweKopdxvmmfuttuWABtItIX6ToDXW
+	xB82UvUCTUc2bDHpya+tT2nt4l7eV397CL8sTpR6msfusTo+VHxAGhqZLH6uAma3Nz2VAdXW6pycS
+	Mej0z3Ug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTImT-00000005mjQ-1CRd;
-	Tue, 17 Nov 2026 12:59:25 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xTIme-00000005mtw-2cEF;
+	Tue, 17 Nov 2026 12:59:36 +0000
+Received: from mail-japanwestazolkn190100000.outbound.protection.outlook.com ([2a01:111:f403:d406::] helo=OS0P286CU011.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIm8-00000005mVZ-3FVZ
+	id 1xTImS-00000005mhG-16pB
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 12:59:07 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AHC1KIK541633
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 12:59:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YBuV1uX7APe0jRZwWDXSVbsovnQ3pKj7FGQkmChMsog=; b=ezev30ydjy5CzHCD
-	bIWBJTaYsxP7wFVzY1aN1CPcpDISQLWTFFBsQsf1KgTjfJ8IpIcrjG9WWkz4lG1D
-	D1nRItlAziRVwwcIM0HRIf2sKOgfzEn0DzEsYyWomHAYz17qRqIU+Egfe6c/DjA3
-	DKcc9PZgFaDdGCNsq1mUfoYN459NCc90Poxu8tAw5PdxJp0PDFwaOBCueJJgVOXz
-	Xuoe3b6in1fcNTfuI4PttQuyPPgV55SBalGfH6uvaPbxzXz0h1LvMAwIsNNtLU/n
-	niP4k9KvUZiqBRC4X+BQVUXADKbnishLoVzdr+NKWJ8zmHOLa6g7ZjL3CepXHBM3
-	QZve1g==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j0hkd1fta-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 12:59:03 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-93f6f4fe531so807013285a.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 04:59:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794920343; x=1795525143; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=YBuV1uX7APe0jRZwWDXSVbsovnQ3pKj7FGQkmChMsog=;
-        b=eKe3fqd3wHKYUe1Iv5HggDthtz+wh1dr0L3UlVr6FUdIfUHVFu/tJ7EZLYWDpWJXUC
-         8il17/w6Klb2T4xzQwzOKewTaoO5rL2Qnh8FCsk660bLdLZqh3fZM90oOHK0BkW8iNaO
-         3og87fJp7kHbQ0aigYQbDOP3ivbTYeijoZ8jHWpDxqVuzP7h29+7dkMv4Eru56je+Zrt
-         JwDtW6pMNdu4GNX4IHTJVhNKbpI1BsT5dgg8JsVA7e68qUr+4iC7k/Ss4tfI781wohC2
-         uzY9lp9xfC1KnfOZyysKXi+A9yfvVCl2s9qLr/XSBiEgxvfH9UEpIMFQG072SbUCN8TA
-         bZPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794920343; x=1795525143;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=YBuV1uX7APe0jRZwWDXSVbsovnQ3pKj7FGQkmChMsog=;
-        b=kkkEkE6LdWmQokCyQeo62QBxU9pJQMOj3ySRPIlAfxhKkYFdC3hK3+u9tlGIbDlI7t
-         +dsvfZoK1W9HoH2us4XealBu1gmU2juXdpcWvCnxJuuB37wGZN2adJXQoR5Tm2VmAUBq
-         hkE+nGL12321dIzIxFGKeAjxbyi2NFc2t4BMrDIwBj35xFn0QUCuAms/cwYudMRYcV66
-         yqUMpcqCf8ntPkADXtb98kYdlqqeCTzYjUCvUlSBiZCVURs1n+36Xy+JOA+HDTGRlLBx
-         h4XZZkiZs7hYijrWR7HkuqELYT/qGmENk/nrssfgEpe+EIDsFp2p41BIYb7k77X5RJsa
-         3dsw==
-X-Forwarded-Encrypted: i=1; AL+hErGBlfShcQhOHup32zDvdgmKG7E2k/hFYSb6CP2Su+Hdb7yof4HngnH8SAVP77ywWf/rNtfcRRsdB5B3eaQMnghh@lists.infradead.org
-X-Gm-Message-State: APuU4Z8L1ojPVeelZx/pVwvqT+yOP7NED3WJGVwI74JH8IBqSt/WhyIH
-	mdu2in3eOYaJOghXRwlJLo9IsrEmpMk8U3C8KgNO/qgxL89RbhbOow3Fc3ZL/8HhK14BD08jTeZ
-	9Uvbp4egsSlyvPnMOSL00wUdIRfLCEOKdL9DJ4N/+i+dYQyQWE1PR6Ln7y67HL2ceR81gaXvqLg
-	3auQ==
-X-Gm-Gg: AYBFou2ChcW5r9zqp/dD8gIBa3jxaRrqhmhrAgjWO43VCHO2XU9sH9wgOPGhO/sfv3u
-	teWSUoLn9bcd6+TWgrMU2h83OyQ1gmimohrJjNIaFJx7LZTXjlhxtBVYod7hW+U6QOMCi7gT44L
-	0NGmplHcWTXV3kZX647yTU5BdiGaUyq6yjomROwXPL7VVnjsHypH5nOVbl5VPWtToJXS/QroTvq
-	wh5VMa3eb4ic7wLrTJ8qQGVnyWrES1g09j2rVc8wqZ0opn3LDANDVtoPHJsKqumZ8Ig0M6VWpZK
-	Un+DVmmNs5T+Jc4ZsxyFhHTVQwwghAVZy941G17oQXtgEBgWykoq9SgCCMAgasEukq6B4BVBmMK
-	WfrnB794EOC1a0zS2/lnFgbgOe17tN5bh41X8B/qU6IQ71DspIWHk7ANutFQ4u64=
-X-Received: by 2002:a05:620a:2b8b:b0:93f:22af:cce7 with SMTP id af79cd13be357-9494b9af8c7mr1989881285a.12.1794920342789;
-        Tue, 17 Nov 2026 04:59:02 -0800 (PST)
-X-Received: by 2002:a05:620a:2b8b:b0:93f:22af:cce7 with SMTP id af79cd13be357-9494b9af8c7mr1989877585a.12.1794920342179;
-        Tue, 17 Nov 2026 04:59:02 -0800 (PST)
-Received: from localhost ([188.152.73.83])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c603f4e2esm27528684f8f.36.2026.11.17.04.59.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2026 04:59:00 -0800 (PST)
-From: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
-Date: Tue, 17 Nov 2026 13:58:30 +0100
-Subject: [PATCH net-next v11 4/4] net: stmmac: rework stmmac_rx to support
- XDP rx multi-buff
+	Tue, 17 Nov 2026 12:59:25 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rj5lXO54F6sAihQyd1YnMTREFvC9ZKS30xtKjxAbDzj518OGl0ILfcJxADKdvJOS8zHnpKyyeE8CBeEVp1dPQSK0ngesG2due3kTOlNGgMBnF/D6VDsiRcQyrgKfdEz0m6m2BBvVKbl0COd+UYfZ3QFsLIpMqVgdXH6XVP2lCtHcNVYT7eCj9G8StBHT2LetS5ncPiVagUCucqD9lSlgViRVinVXocDiZ158IT3KRjKeoZ4lRoTVvHYiHwbCoRdEbqhLlyhjdh5k2F4kP4/vhtjE/50e0hTvTIXsX1HcOLMvxLHmBuTlQT4SbTvIUHX3I5W14gGFgTQidSVn/btXhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=M2XB2/dEITFTwbK0u8XS8M30W42GcoAKWde8CDThEGk=;
+ b=jmLtYBKY7bhEUAzbm9GEMtnyeazLD8SbEQ3MwzusY+59Q3q39PHM73sw9AZ4TkiemoQ4Ues4ygqeBFXcfFLKM+ynL6hj02Fy1PaQs4mrtifznI1MFIgy+fOZHOOg/EbGZK/aEczCwaCUI0ZgJHCIlBEF9Euy2DQdrq4II/FMsM0DDFf0AT5MyWIif17mJQF4HjQh5GDnm04saIYSw9CHZtZ10kXnPl8PyeddRJZqwbYrbwRPC0EIl9EOmWggG/gNoj8TcOR9CKqQYBmRALpU6ekxGOxjpmt6/CKJ1V0LHzTVaqFtF+yvlEKHQ6zmSGn+5sr6ChKvCMK6cSwZ9yDs/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=OUTLOOK.JP;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M2XB2/dEITFTwbK0u8XS8M30W42GcoAKWde8CDThEGk=;
+ b=cLbzDezO9oq5yKOzOT5hDTwsUuzZ8DjJ/yZv9uDttp1epTlFSdYBveChvGHFrRodEVtneY15dVBelf7Bjmgq0AKIPTegbInomKXsp9eoPI86WQ8h6oFAY2fT/f3kejQMB+oqdK4A8OMrlot+NFSLMwt1gYbK+9t4r0/wTOnZykjx8sphXqkIH9MkovEQiqkNz9+IgnV7JbhEDJ0XfXiZNEk2wpyt8IRL9/++4dM4XJvzMae48l6MQLjJA4pZTW1sBgl8DfYYQjb6Mt+X2OPQuZq82a5lIV4gMvdV07wnutvV8x7E21wiwog3hla54s4eooHF5gD7MuToVMQg2mDA9g==
+Received: from OS7PR01MB14363.jpnprd01.prod.outlook.com
+ (2603:1096:604:388::11) by OSCPR01MB16379.jpnprd01.prod.outlook.com
+ (2603:1096:604:342::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
+ 2026 12:59:18 +0000
+Received: from OS7PR01MB14363.jpnprd01.prod.outlook.com
+ ([fe80::eeff:dfdb:bd3b:591b]) by OS7PR01MB14363.jpnprd01.prod.outlook.com
+ ([fe80::eeff:dfdb:bd3b:591b%6]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
+ 12:59:18 +0000
+From: Keisuke Tsukuda <tkdkei@outlook.jp>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sven Peter
+	<sven@kernel.org>, Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, "asahi@lists.linux.dev"
+	<asahi@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] usb: roles: wait for callbacks during unregister
+Thread-Topic: [PATCH v2 0/2] usb: roles: wait for callbacks during unregister
+Thread-Index: AQHddpN02QiGmt2o3UaR1fV5LDHdqA==
+Date: Tue, 17 Nov 2026 12:59:17 +0000
+Message-ID: <20261117125825.27629-1-tkdkei@outlook.jp>
+Accept-Language: en-US, ja-JP
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS7PR01MB14363:EE_|OSCPR01MB16379:EE_
+x-ms-office365-filtering-correlation-id: f5f401a8-d654-4d20-50ad-08df44aa96f1
+x-ms-exchange-slblob-mailprops: xgbIMsDSu2bc7yhuK2afLsfZGs5LbJY2wFevO0rKudod+8ZGkX2EOWKAT2AVQdG1UY3aCMqEmacla2BuFlYh8L8UtLuAYjerwKyFgqBbpLyeQhahd2AWMPENQIRu0jwRJQkqgXumjZgk1fB4KFNCLr2VxhUJs/xLw+UmyPB4MJphT8PPyUMXOcxWqk79zanOkQ8+pwNR47BB3IHYFcy9BEyFCtbkkW7TnZBeenwape/A+cMk4IWxJpR6yJjGmIrokFIRej8xQ4Dkf2NFsRsBOy5b+wjqSFYrKh2d9GpbrJIXHKumQeK1F1W11feSQVF/KejNkEDTk7Z6EH2LK6PSRqFqu9pc0fjEVNhEAG/jdR0sDc/ou52S5+VWLnBlTjGW0aWF5nUKdd+AgS0aOMNtE6RjASWTqDD+62Ongp8SkYPuM+mra5vlrTWPmAh89TRmdtKeJeP523PanW3TxB7qF/FNr1I9zYQX7k7RqhF5l7SCA9qhPlY+XoD8F0AQGSGGbZIHKSvKZIeiMkDa2ChmP7/4DGXOBA5hNdlNvLTF7ysmZAUvufa3La8J9ysEqpC0eTEmZvuexRyDwqU/o/od9mkkEzpkCwCDFJYaC1Zo+177pq4RpUU4ilNVXuIqb0tXEXOFc3ndupK7vhp1wsvAwoisCNy9CxOKIBCjlxVd0bckHSKq4Cqh62YdFgD0BemTGP+ZDdtzOMQXYkRScxWiVnAeJpgckMozzFiHD2Ve+Yy3usfD+t9rwGSmNsgyEVI5JUX0NodwEs/NJ/qx21fn5qPAR1UhyAlO
+x-microsoft-antispam: BCL:0;ARA:14566002|38102599003|15080799012|25031999004|31061999003|24021099003|25010399006|5062599005|41001999006|8062599012|51005399006|8060799015|19110799012|4302099013|440099028|3412199025|26104999009|102099032|10035399007|40105399003|1602099012|12091999003;
+x-microsoft-antispam-message-info: =?utf-8?B?YmV2VnNOTW9ZakZjRGhzNHh3WG02elp1emxTTmo0S3htUDhqWm5jUGM0SC9x?=
+ =?utf-8?B?czB6K0xJWkVuZ0NSaTlzZnRzZm5zcktMZHFhckc4SU43RlZaUythazNsUXBp?=
+ =?utf-8?B?T1ZFS3dYNGZpWlpRVk1MRVltY1lSMVFOKzc5NE9ra0lxVVdxUzlaSHRpVHlR?=
+ =?utf-8?B?L1FRbDhjQjNPMFFQU0ZDOVhsRVN5QW5QRXROM0tXbHZYbWk3NUdNbUdLajBw?=
+ =?utf-8?B?Z2xqenRzdllxb2RlYnhYN1o1VzMzVDZubUN0eDVGeVR0aGg3Uk1FTUs2THFm?=
+ =?utf-8?B?MHFGWGZWTHhhMGpDQnA0RlFzQm05WDBYU2RrWG03OFpPQnBIWHYvQkg4L1Fp?=
+ =?utf-8?B?elpnaDd4OVBPNWtCNHJpQXBoYUNzdHNvTEZXUmlMSlFQbEY2VHJQSldVZkVl?=
+ =?utf-8?B?N2VpMDcwSXJtSTgzTTVGaFgxbGRFdUc2dGJxa2NodzVzTVdNWU5OajhmZjI4?=
+ =?utf-8?B?Ujd2UktYYjBJQ3krZmduNjMvSGcvZTFOQXVyTTR3bkg1ZUZqQjJLb2NlcTdz?=
+ =?utf-8?B?eDNscEg2RllsN3NYcXF5dEpUd2lRazdDS3JIOFFjeG5Db1lmTXR2NFNiZ3Zq?=
+ =?utf-8?B?QkVtbzBqVFFtRy9rVUVuWFFKbVZmUTRxN1NHSVJ6ZHR1OWJ2anA4UEFsaS9a?=
+ =?utf-8?B?Z0FFajdpcElibk5pcDdjc00yNXR3UFpkMjVaWDJBclBydjZIbkRLNXJKN3ph?=
+ =?utf-8?B?VE1QQ2VHL2RmWkRSR2EzbDRRd0NIRVlLU2pxWXptdkxjRWFTY2Rza0VUZHg4?=
+ =?utf-8?B?TnhwYmdWeWt5QU04MHNxQjUrUWxoeEFYekV1SDc2dG4ySWY5NWNtZEcvSThT?=
+ =?utf-8?B?aGx2ak5QUng3MEhnbnQ0KzVzQ3dnUldMYjVvTmJnVk5HYXBCK2xZaWt6Mmdj?=
+ =?utf-8?B?ZHptQmVBdk9WRWpDYmE5b255RmpRaFdpTlMzZU9Qc2pySXpHMzhuRlBtOTZH?=
+ =?utf-8?B?ZkpFaHZ2RXpXR3ZZS1lJRzNtVHVmNU9UTjQ2ZWlreDlHMVg5OEFHb1lVdDR1?=
+ =?utf-8?B?RmdTTXZKV0hnU0hIMWRjdHhoU0piUjNUSFpDeUU0KzZ3ZEdNUXdDL1JmWE4x?=
+ =?utf-8?B?WnF2cisrZWVYb0Q1eHpSVlZHTnU0cjJCQUJpQll5dUEzZTl6SnRiWUxNMmda?=
+ =?utf-8?B?eUl0M0VvMWRlRVdJU1d2ZGlhV2dlbEdiTUt4dUl6UUFSWmwvL3BZY2FXMStC?=
+ =?utf-8?B?R09DYWZtNUF4SmpOMVMzcXZRSFltWDUwQWd1V2I2b3cyUHRwcnhkV05iZmN6?=
+ =?utf-8?B?Y0NlL0ZoQVR1RlZ4RUduZGl1ak5uQjNLQ1ZzOUJkRmhzdXJzeWQzSUk2K205?=
+ =?utf-8?B?NytVNXFueUFwZXNsMTMzdlVpdVdOSzJ1UzVXQ3YwZE9IOFNMMkNZd2txNVVq?=
+ =?utf-8?B?UGlud0QwOUlyM1JhVkhDZUl4RWZ1U0RTckF3QUpUZUtNWWFTSmg3U0VSUVdF?=
+ =?utf-8?B?TnY4QmdwdlZtSmxWODNIWm9HcEZvSWZMNjhTUzlWMjV5YWY1aW5zaXVWUklU?=
+ =?utf-8?Q?lsIwVqZ7gCm5a2ZoB8RO7Ph8TpL?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RytVcE8yYXcwd2V6WmRQb3hqWjJ5bHgyTkY5cmVJamQ1c0hYOTJ6MFg4eHJW?=
+ =?utf-8?B?Ui9wc3dvRkpPNlo2V3RrTzFZUzdQSmlMT2wyWEU2WnIxSUJIM0JkNzZYbm1h?=
+ =?utf-8?B?Mm42dVRtcXE2R1IyQlhEdlJ2L24xS3pHOFdHR1lna0FCQ0FwTEE1T0s3NTBX?=
+ =?utf-8?B?ZkFETUFpMXQ2UThmL2tIaFNoK1JPd3NSVEdjVTFXTlFLZXlwVnBZSm83OXdy?=
+ =?utf-8?B?eG9SN1JuYk5VZWVFUko4WTRwek9hcjBTcTRmSGtpb0dvVTh6NFZFMHFaZ0dU?=
+ =?utf-8?B?N1FaVTM1amZ2NkZ2YUFqMU45VWVvaWFQdXN5T1pJakc4aE9TbDk1TGs3WVpI?=
+ =?utf-8?B?SU1LQmNPYVdVRisxWmlJd2hxSjRqdkw1SHRUZFhCcnVpTVgrcWlyemVrbS9F?=
+ =?utf-8?B?eDN5cWk5UzFybDNZNm1ybXlBZ2JoTGt3Q3c5WkErVC9uUmdLZ0NLZHRuN3Nr?=
+ =?utf-8?B?aXpRSU5YVmM4VlRSWFlOSmtpaytqaVNKS1N3bUQ5V0psa3NLRm9OdnJUUGky?=
+ =?utf-8?B?TUV3K0pPZ0tJb2NKa2dNbXFEQTEzK2NsS0R1RHhIcC9pVG4zOXZxUGRPRTNh?=
+ =?utf-8?B?R2paZFl0TWVLbHcwcVBoMHBEbmlHVVg3U1VhSmJHaElGY200SnpkUG5UaFlR?=
+ =?utf-8?B?MUVEK0ROTnY1TU1zT0pjTFlBRWVYTmo0NkpScmcvdTBxeWpRUFp1dEdrcG53?=
+ =?utf-8?B?L0Z6bFpQOS9NbFpLT0YwTHNFQ2h0b2NqK3RIdjVBWVRIaGdFa1ZCSEJiTmpZ?=
+ =?utf-8?B?VU12QnJhckVBSkRXd0hSVHVvUWhwSjBielZJSmdsdDJ2T3ozM0lqYy9Wc0dL?=
+ =?utf-8?B?UjdWTHlVUW1RMkpDT1Fydm9vY0xMbDdsNUNPMnNlTEltN01LMFJmOEoyTzc3?=
+ =?utf-8?B?WDZWczM0MWRhc2Z4aEloVEtFVHdvSVRwSmtVSEZnWTVJZlYzOENLSE1uK2Yv?=
+ =?utf-8?B?d3JMcVdYMDVsL0tqU1FtWE9YRGtrSENuRm0wV2FZS0lYRElIN3VNQ29iNDRC?=
+ =?utf-8?B?eE8ydnloYS82aFlYaGx0N3dtcU5vcVhVZDFLcllDeW5RcDcyeWt1N0VrVm9D?=
+ =?utf-8?B?T2RNWms5amg0UzhTWE1oR1M5dGJMN3RvOHlYSytUV2VscXpMeHMxL1A2b1ZH?=
+ =?utf-8?B?NloremxOcDl0MjF3aGZEM21STlFLYXlRN21PckFhenZOK2pMMDQwemJMejNv?=
+ =?utf-8?B?a1NZTXJNbkxrNG55YlE4YTR1d0hWWnMvYk9rTndyYVEwTExpZnh2NDBxTVJr?=
+ =?utf-8?B?aVA2OW5XN1Q4K3RNa0h2SVBrUVg4M2pLbDlpTTVIUDFlbzJXT2h0dEpoZUhF?=
+ =?utf-8?B?aTZnOW13YU04eTF2R0tRRnJZcXhuYmFtZ0RaUCtDSXYyVUVxS2srVjNranVu?=
+ =?utf-8?B?WjJJdjhTSEpOaHphdXFIQ1BmQVF6b1JtbHNDV0xKMUZDeHRwQ2ZSWkd4Y29D?=
+ =?utf-8?B?SlZmRUZ0dGJLREU0TDFlUmcxTzJzN0t3cTNDV1UrRlJxVzhucUtrMVJHcnhw?=
+ =?utf-8?B?bmlrak9aMmg1VEdCSThTcHRTNFl4NU5ZMS9EVHBxTWYzd1ZMOGdGU3g3VDZN?=
+ =?utf-8?B?dkpvVDlrVE1FdSszeHl5bWZ6ZFRKVFY1WHYxRmJSWTlwZm9GNEg4MWk5c1F1?=
+ =?utf-8?B?VFZlVjhhdzA3RXNqWXJibjFoRENpUGhZNnFmZVVDd3ZDUytqb1d4OVZGMVU2?=
+ =?utf-8?B?Q2FFM2lWV2hBaGtkdVc5QlB3NlVja3lwdnlGbzJzSVlmcTRSSERJcUJ0NHdG?=
+ =?utf-8?B?cTQweXY0QWpSN0F5WDdoYllzaW5HRjk0aUhFb2g0enl3Y0NBSW5pS2ZzbmhZ?=
+ =?utf-8?Q?6x8a9ksx0ZpZKHtPNUAw2jTHAA2hnQ/BQZAtI=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261117-stmmac-rx-mb-v11-4-9fa5c34ef245@oss.qualcomm.com>
-References: <20261117-stmmac-rx-mb-v11-0-9fa5c34ef245@oss.qualcomm.com>
-In-Reply-To: <20261117-stmmac-rx-mb-v11-0-9fa5c34ef245@oss.qualcomm.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alexei Starovoitov <ast@kernel.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        Jesper Dangaard Brouer <hawk@kernel.org>,
-        John Fastabend <john.fastabend@gmail.com>,
-        Stanislav Fomichev <sdf@fomichev.me>,
-        Jose Abreu <Jose.Abreu@synopsys.com>,
-        Ong Boon Leong <boon.leong.ong@intel.com>,
-        Simon Horman <horms@kernel.org>, Andrii Nakryiko <andrii@kernel.org>,
-        Eduard Zingerman <eddyz87@gmail.com>,
-        Kumar Kartikeya Dwivedi <memxor@gmail.com>,
-        Martin KaFai Lau <martin.lau@linux.dev>, Song Liu <song@kernel.org>,
-        Yonghong Song <yonghong.song@linux.dev>, Jiri Olsa <jolsa@kernel.org>,
-        Emil Tsalapatis <emil@etsalapatis.com>,
-        Ihor Solodrai <ihor.solodrai@linux.dev>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bpf@vger.kernel.org, Nicolai Buchwitz <nb@tipi-net.de>,
-        Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Authority-Analysis: v=2.4 cv=eqFKXYpX c=1 sm=1 tr=0 ts=6afc4f97 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=mlS0om9xteqVCAF/aDpb2g==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=EUspDBNiAAAA:8 a=v9h4JUQAhp93ei3YNAAA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE3MDA1MSBTYWx0ZWRfX3LXSiqlduDzQ
- u5Gg7a/2wqQ54AEfC1bhmaPR9084ZQ3gHchAJ/G0E+0480miKOh7h8agjbk448IqzXQc0B4kREZ
- JMjJxyLNFAHT/iTvIdkHimxuczmtx0c=
-X-Proofpoint-GUID: VJJG-ss0qCa4DRNFX-frDzWz65TSlcsq
-X-Proofpoint-ORIG-GUID: VJJG-ss0qCa4DRNFX-frDzWz65TSlcsq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE3MDA1MSBTYWx0ZWRfX6DaH8xBU21pL
- TM976Ab5S1kF5hqHthsyliTXs8SMEuyU2E8qBwp+MMi4KKy8eaAsR6pupJNe4Nr0CSqKssW7O+v
- JBh39mxbtpODxPXpfR8FQ9WWyIgbrz1xzi7QKPyQ9nWSoM2CXslaOq6q30f+wvBVr7/147LhApo
- zfB7wXaPIsBbv56V0ycIDDL+8Vg9X21gaxy9HyWeRWnaX+kII899JfWWuaQvnqkUIuDgdyRMZ20
- DtGmPGrRBBgVlU0is1CIVRsjFgnmMb1z+hMoxNMcNruaStutIbfLh+JCzceIB99K0uWx189WDsZ
- JuQ6bnhvRO1A3u+OxJzRrDXdEF8fQCsV9QSBQ2wlVnaID7lIJTWVcg5DS8MpxRDXz6C4EGa3e0n
- zUmL9ED1QQdoQM8MAowwksT9Tc9P60RIjX7nQMICxwS29uhleM9k5CepTw0Ni9qKQ9Piuh5+3Vc
- xo+D/X7gz/BbDS3FDLA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-17_02,2026-11-16_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611170051
+X-OriginatorOrg: sct-15-20-9412-3-msonline-outlook-b83fc.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS7PR01MB14363.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5f401a8-d654-4d20-50ad-08df44aa96f1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Nov 2026 12:59:17.7326
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSCPR01MB16379
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_045906_077739_EEFA6EA2 
-X-CRM114-Status: GOOD (  27.84  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261117_045924_318699_6D4961FD 
+X-CRM114-Status: GOOD (  13.48  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -169,498 +162,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-An earlier commit dropped frames split across multiple descriptors, or
-using a second buffer, while XDP was enabled. This prevented the
-per-descriptor XDP path from re-parsing frame tails and from applying FCS
-handling to truncated buffers.
-
-Rework stmmac_rx() to accumulate all the descriptors that make up a frame
-in an xdp_buff, so the XDP program runs on the full (possibly fragmented)
-packet instead of just the first buffer. Frames split across descriptors
-or buffers are now passed to programs loaded with BPF_F_XDP_HAS_FRAGS;
-programs without that capability continue to drop fragmented frames. When
-the frame is not consumed by the program, assemble the skb from the head
-buffer and the collected fragments with __xdp_build_skb_from_buff().
-
-Note that XDP still rejects an MTU larger than ETH_DATA_LEN
-(stmmac_xdp_set_prog(), stmmac_change_mtu()) and disables SPH, so an
-ordinary frame fits in a single buffer. This path is therefore exercised
-by frames that do span several descriptors (for example jumbo frames the
-MAC admits through its jumbo-enable bit) and is groundwork for extending
-XDP to jumbo/SPH; it does not enable XDP jumbo support by itself.
-
-To do so, store the in-progress xdp_buff in rx_q->state instead of the
-partially built skb, so the accumulated head and fragments survive a NAPI
-poll boundary (mid-frame dma_own or dirty_rx break). The state is saved
-only while a frame is in progress and cleared once it completes, leaving
-it untouched when the poll does not process anything (e.g. netpoll invoked
-with a zero budget).
-
-In addition:
-- advertise NETDEV_XDP_ACT_RX_SG, since the RX path can now deliver
-  non-linear buffers to XDP;
-- register the xdp_rxq with the fragment allocation size, so
-  bpf_xdp_adjust_tail() can grow the tail of fragmented frames;
-- build the skb with __xdp_build_skb_from_buff(), which passes
-  xdp->frame_sz to napi_build_skb(), so skb_shinfo() lands on the same
-  shared_info the fragments were accumulated into. xdp->frame_sz is the
-  page_pool order-N allocation size (PAGE_SIZE << order, with
-  order_base_2() rounding num_pages up), so the head truesize grows from
-  num_pages * PAGE_SIZE: on 4K pages 12K -> 16K for an 8K buffer and
-  20K -> 32K for a 16K buffer. This is more accurate but also affects
-  non-XDP traffic and reduces the effective socket receive buffer for
-  jumbo MTU users;
-- carry the XDP metadata written with bpf_xdp_adjust_meta() into the skb
-  from the accumulated xdp_buff via skb_metadata_set(), preserving the
-  existing linear PASS path behavior and extending it to fragmented frames,
-  so TC/BPF programs can read it through data_meta;
-- attach fragments with xdp_buff_add_frag(), which initializes all the
-  shared_info fields and takes care of the pfmemalloc bit;
-- charge fragments the whole page_pool page size (xdp->frame_sz) as
-  truesize instead of the old dma_buf_sz; with SPH/buf2 most frames carry
-  a fragment, so skb->truesize grows by roughly 1.5x on 4K pages and 2x on
-  64K pages, which reduces the effective socket receive buffer. The new
-  value is more accurate now that a fragment is a full page_pool page, but
-  it is a behavior change;
-- release the buffers collected in the xdp_buff with __xdp_return_buff()
-  when a frame is dropped on RX errors, instead of relying on
-  dev_kfree_skb() recycling the skb frags; the latter no longer applies
-  now that the head and fragments live in an xdp_buff rather than a
-  partially built skb;
-- drop the whole frame when it would exceed MAX_SKB_FRAGS, where the
-  previous skb_add_rx_frag() calls were unbounded;
-- strip the Ethernet FCS from the accumulated xdp_buff with the common
-  xdp_buff_shrink_tail() helper for both linear and fragmented frames,
-  instead of trimming the skb or the first descriptor length.
-
-Reviewed-by: Nicolai Buchwitz <nb@tipi-net.de>
-Signed-off-by: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac.h      |   3 +-
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 231 ++++++++++------------
- 2 files changed, 110 insertions(+), 124 deletions(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-index fcc395321816..e9ed1a3650e5 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-@@ -133,7 +133,8 @@ struct stmmac_rx_queue {
- 	dma_addr_t dma_rx_phy;
- 	unsigned int state_saved;
- 	struct {
--		struct sk_buff *skb;
-+		struct xdp_buff xdp;
-+		unsigned int n_descs;
- 		unsigned int len;
- 		unsigned int error;
- 	} state;
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index 4da728962638..a230ca281560 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -2195,8 +2195,10 @@ static void __free_dma_rx_desc_resources(struct stmmac_priv *priv,
- 	else
- 		dma_free_rx_skbufs(priv, dma_conf, queue);
- 
--	dev_kfree_skb_any(rx_q->state.skb);
--	rx_q->state.skb = NULL;
-+	if (rx_q->state.n_descs && !rx_q->xsk_pool) {
-+		__xdp_return_buff(&rx_q->state.xdp, false);
-+		rx_q->state.n_descs = 0;
-+	}
- 	rx_q->state_saved = false;
- 	rx_q->buf_alloc_num = 0;
- 	rx_q->xsk_pool = NULL;
-@@ -2316,10 +2318,6 @@ static int __alloc_dma_rx_desc_resources(struct stmmac_priv *priv,
- 			 SKB_DATA_ALIGN(sizeof(struct skb_shared_info));
- 	num_pages = DIV_ROUND_UP(dma_buf_sz_pad, PAGE_SIZE);
- 
--	rx_q->queue_index = queue;
--	rx_q->priv_data = priv;
--	rx_q->napi_skb_frag_size = num_pages * PAGE_SIZE;
--
- 	pp_params.flags = PP_FLAG_DMA_MAP | PP_FLAG_DMA_SYNC_DEV;
- 	pp_params.pool_size = dma_conf->dma_rx_size;
- 	pp_params.order = order_base_2(num_pages);
-@@ -2351,6 +2349,10 @@ static int __alloc_dma_rx_desc_resources(struct stmmac_priv *priv,
- 		goto err_free_buf_pool;
- 	}
- 
-+	rx_q->queue_index = queue;
-+	rx_q->priv_data = priv;
-+	rx_q->napi_skb_frag_size = PAGE_SIZE << pp_params.order;
-+
- 	if (priv->extend_desc)
- 		rx_q->dma_erx = addr;
- 	else
-@@ -2362,7 +2364,8 @@ static int __alloc_dma_rx_desc_resources(struct stmmac_priv *priv,
- 	else
- 		napi_id = ch->rx_napi.napi_id;
- 
--	ret = xdp_rxq_info_reg(&rx_q->xdp_rxq, priv->dev, queue, napi_id);
-+	ret = __xdp_rxq_info_reg(&rx_q->xdp_rxq, priv->dev, queue, napi_id,
-+				 rx_q->napi_skb_frag_size);
- 	if (ret) {
- 		netdev_err(priv->dev, "Failed to register xdp rxq info\n");
- 		goto err_free_dma;
-@@ -5547,8 +5550,8 @@ static int __stmmac_xdp_run_prog(struct stmmac_priv *priv,
- static struct sk_buff *stmmac_xdp_run_prog(struct stmmac_priv *priv,
- 					   struct xdp_buff *xdp)
- {
-+	int res = STMMAC_XDP_CONSUMED;
- 	struct bpf_prog *prog;
--	int res;
- 
- 	prog = READ_ONCE(priv->xdp_prog);
- 	if (!prog) {
-@@ -5556,7 +5559,8 @@ static struct sk_buff *stmmac_xdp_run_prog(struct stmmac_priv *priv,
- 		goto out;
- 	}
- 
--	res = __stmmac_xdp_run_prog(priv, prog, xdp);
-+	if (likely(!xdp_buff_has_frags(xdp) || prog->aux->xdp_has_frags))
-+		res = __stmmac_xdp_run_prog(priv, prog, xdp);
- out:
- 	return ERR_PTR(-res);
- }
-@@ -5888,6 +5892,25 @@ static int stmmac_rx_zc(struct stmmac_priv *priv, int limit, u32 queue)
- 	return failure ? limit : (int)count;
- }
- 
-+static bool stmmac_build_xdp_frags(struct stmmac_priv *priv,
-+				   struct stmmac_rx_queue *rx_q,
-+				   unsigned int len, struct page *page,
-+				   unsigned int offset,
-+				   enum dma_data_direction dma_dir,
-+				   struct xdp_buff *xdp)
-+{
-+	dma_addr_t dma_addr = page_pool_get_dma_addr(page) + offset;
-+
-+	dma_sync_single_for_cpu(priv->device, dma_addr, len, dma_dir);
-+	if (!xdp_buff_add_frag(xdp, page_to_netmem(page), offset, len,
-+			       xdp->frame_sz)) {
-+		page_pool_put_full_page(rx_q->page_pool, page, true);
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
- /**
-  * stmmac_rx - manage the receive process
-  * @priv: driver private structure
-@@ -5901,21 +5924,20 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 	u32 rx_errors = 0, rx_dropped = 0, rx_bytes = 0, rx_packets = 0;
- 	struct stmmac_rxq_stats *rxq_stats = &priv->xstats.rxq_stats[queue];
- 	struct stmmac_rx_queue *rx_q = &priv->dma_conf.rx_queue[queue];
-+	unsigned int n_descs = 0, next_entry = rx_q->cur_rx;
- 	struct stmmac_channel *ch = &priv->channel[queue];
- 	unsigned int count = 0, error = 0, len = 0;
--	unsigned int next_entry = rx_q->cur_rx;
- 	bool in_progress = rx_q->state_saved;
- 	enum dma_data_direction dma_dir;
- 	int coe = priv->hw->rx_csum;
--	unsigned int desc_size;
--	struct sk_buff *skb = NULL;
- 	struct stmmac_xdp_buff ctx;
--	bool fcs_stripped = false;
-+	unsigned int desc_size;
- 	int xdp_status = 0;
- 	int bufsz;
- 
- 	dma_dir = page_pool_get_dma_dir(rx_q->page_pool);
--	bufsz = DIV_ROUND_UP(priv->dma_conf.dma_buf_sz, PAGE_SIZE) * PAGE_SIZE;
-+	bufsz = rx_q->napi_skb_frag_size;
-+	ctx.priv = priv;
- 
- 	if (netif_msg_rx_status(priv)) {
- 		void *rx_head = stmmac_get_rx_desc(priv, rx_q, 0);
-@@ -5928,11 +5950,12 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 	}
- 
- 	if (rx_q->state_saved) {
--		skb = rx_q->state.skb;
-+		ctx.xdp = rx_q->state.xdp;
- 		error = rx_q->state.error;
-+		n_descs = rx_q->state.n_descs;
- 		len = rx_q->state.len;
--		rx_q->state.skb = NULL;
- 		rx_q->state_saved = false;
-+		rx_q->state.n_descs = 0;
- 	}
- 
- 	while (count < limit) {
-@@ -5940,11 +5963,11 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 		enum pkt_hash_types hash_type;
- 		struct stmmac_rx_buffer *buf;
- 		struct dma_desc *np, *p;
-+		struct sk_buff *skb;
- 		int entry, status;
- 		u32 hash;
- 
- 		if (!in_progress) {
--			skb = NULL;
- 			error = 0;
- 			len = 0;
- 		}
-@@ -5992,19 +6015,11 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 				rx_errors++;
- 		}
- 
--		/* We do not support SG in XDP mode */
--		if (unlikely(!error && (status & rx_not_ls) &&
--			     stmmac_xdp_is_enabled(priv))) {
--			rx_dropped++;
--			error = 1;
--		}
--
- 		if (unlikely(error)) {
- 			if (status & rx_not_ls)
- 				goto read_again;
- 
--			dev_kfree_skb(skb);
--			goto next;
-+			goto error_free_frag;
- 		}
- 
- 		/* Buffer is good. Go on. */
-@@ -6014,120 +6029,79 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 		buf2_len = stmmac_rx_buf2_len(priv, p, status, len);
- 		len += buf2_len;
- 
--		/* Drop the packet if it is split over buf1 and buf2 on a
--		 * single descriptor if the interface is running in XDP mode.
--		 */
--		if (unlikely(stmmac_xdp_is_enabled(priv) && buf2_len)) {
--			rx_dropped++;
--			goto next;
--		}
--
--		/* ACS is disabled; strip manually. */
--		if (likely(!(status & rx_not_ls)))
--			len -= ETH_FCS_LEN;
--
--		if (!skb) {
--			/* Each frame starts here: reset the FCS handling */
--			fcs_stripped = false;
--
-+		if (!n_descs) {
- 			dma_sync_single_for_cpu(priv->device, buf->addr,
- 						buf1_len, dma_dir);
- 			net_prefetch(page_address(buf->page) +
- 				     buf->page_offset);
- 
--			if (stmmac_xdp_is_enabled(priv) && !buf2_len) {
--				buf1_len -= ETH_FCS_LEN;
--				fcs_stripped = true;
--			}
--
- 			xdp_init_buff(&ctx.xdp, bufsz, &rx_q->xdp_rxq);
- 			xdp_prepare_buff(&ctx.xdp, page_address(buf->page),
- 					 buf->page_offset, buf1_len, true);
--
--			ctx.priv = priv;
--			ctx.desc = p;
--			ctx.ndesc = np;
--
--			skb = stmmac_xdp_run_prog(priv, &ctx.xdp);
--			/* For Not XDP_PASS verdict */
--			if (IS_ERR(skb)) {
--				unsigned int xdp_res = -PTR_ERR(skb);
--
--				if (xdp_res & STMMAC_XDP_CONSUMED) {
--					page_pool_recycle_direct(rx_q->page_pool,
--								 virt_to_head_page(ctx.xdp.data));
--					buf->page = NULL;
--					rx_dropped++;
--					goto next;
--				} else if (xdp_res & (STMMAC_XDP_TX |
--						      STMMAC_XDP_REDIRECT)) {
--					xdp_status |= xdp_res;
--					buf->page = NULL;
--					goto next;
--				}
--			}
--		}
--
--		if (!skb) {
--			unsigned int metasize;
--
--			/* XDP program may expand or reduce tail */
--			buf1_len = ctx.xdp.data_end - ctx.xdp.data;
--
--			skb = napi_build_skb(page_address(buf->page),
--					     rx_q->napi_skb_frag_size);
--			if (!skb) {
--				page_pool_recycle_direct(rx_q->page_pool,
--							 buf->page);
--				buf->page = NULL;
--				rx_dropped++;
--				count++;
--				goto drain_data;
--			}
--
--			/* XDP program may adjust header */
--			skb_reserve(skb,
--				    ctx.xdp.data - ctx.xdp.data_hard_start);
--			skb_put(skb, buf1_len);
--			skb_mark_for_recycle(skb);
--
--			metasize = ctx.xdp.data - ctx.xdp.data_meta;
--			if (metasize)
--				skb_metadata_set(skb, metasize);
- 			buf->page = NULL;
- 		} else if (buf1_len) {
--			dma_sync_single_for_cpu(priv->device, buf->addr,
--						buf1_len, dma_dir);
--			skb_add_rx_frag(skb, skb_shinfo(skb)->nr_frags,
--					buf->page, buf->page_offset, buf1_len,
--					priv->dma_conf.dma_buf_sz);
-+			if (!stmmac_build_xdp_frags(priv, rx_q, buf1_len,
-+						    buf->page,
-+						    buf->page_offset,
-+						    dma_dir, &ctx.xdp)) {
-+				if (!error)
-+					rx_dropped++;
-+				error = 1;
-+			}
- 			buf->page = NULL;
- 		}
- 
- 		if (buf2_len) {
--			dma_sync_single_for_cpu(priv->device, buf->sec_addr,
--						buf2_len, dma_dir);
--			skb_add_rx_frag(skb, skb_shinfo(skb)->nr_frags,
--					buf->sec_page, 0, buf2_len,
--					priv->dma_conf.dma_buf_sz);
-+			if (!stmmac_build_xdp_frags(priv, rx_q, buf2_len,
-+						    buf->sec_page, 0,
-+						    dma_dir, &ctx.xdp)) {
-+				if (!error)
-+					rx_dropped++;
-+				error = 1;
-+			}
- 			buf->sec_page = NULL;
- 		}
-+		n_descs++;
- 
--drain_data:
- 		if (likely(status & rx_not_ls))
- 			goto read_again;
--		if (!skb)
--			continue;
- 
--		/* Got entire packet into SKB. Finish it. */
-+		/* ACS is disabled; strip manually. */
-+		len -= ETH_FCS_LEN;
-+		if (xdp_buff_shrink_tail(&ctx.xdp, ETH_FCS_LEN)) {
-+			if (!error)
-+				rx_dropped++;
-+			error = 1;
-+		}
- 
--		/* Remove FCS if needed */
--		if (!fcs_stripped && pskb_trim(skb, len)) {
--			dev_kfree_skb_any(skb);
--			rx_dropped++;
-+		if (unlikely(error))
-+			goto error_free_frag;
-+
-+		ctx.desc = p;
-+		ctx.ndesc = np;
-+
-+		skb = stmmac_xdp_run_prog(priv, &ctx.xdp);
-+		/* For Not XDP_PASS verdict */
-+		if (IS_ERR(skb)) {
-+			unsigned int xdp_res = -PTR_ERR(skb);
-+
-+			if (xdp_res & STMMAC_XDP_CONSUMED) {
-+				__xdp_return_buff(&ctx.xdp, true);
-+				rx_dropped++;
-+			} else if (xdp_res & (STMMAC_XDP_TX |
-+					      STMMAC_XDP_REDIRECT)) {
-+				xdp_status |= xdp_res;
-+			}
- 			goto next;
- 		}
- 
-+		skb = __xdp_build_skb_from_buff(&ctx.xdp);
-+		if (!skb) {
-+			rx_dropped++;
-+			goto error_free_frag;
-+		}
-+
-+		/* Got entire packet into SKB. Finish it. */
- 		stmmac_get_rx_hwtstamp(priv, p, np, skb);
- 
- 		if (priv->hw->hw_vlan_en) {
-@@ -6150,21 +6124,28 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 		if (!stmmac_get_rx_hash(priv, p, &hash, &hash_type))
- 			skb_set_hash(skb, hash, hash_type);
- 
--		skb_record_rx_queue(skb, queue);
- 		napi_gro_receive(&ch->rx_napi, skb);
- 		rx_packets++;
- 		rx_bytes += len;
- next:
- 		in_progress = false;
--		skb = NULL;
-+		n_descs = 0;
-+		count++;
-+		continue;
-+error_free_frag:
-+		if (n_descs)
-+			__xdp_return_buff(&ctx.xdp, true);
-+		in_progress = false;
-+		n_descs = 0;
- 		count++;
- 	}
- 
--	if (in_progress || skb) {
--		rx_q->state_saved = true;
--		rx_q->state.skb = skb;
-+	if (in_progress || n_descs) {
-+		rx_q->state.xdp = ctx.xdp;
-+		rx_q->state.n_descs = n_descs;
- 		rx_q->state.error = error;
- 		rx_q->state.len = len;
-+		rx_q->state_saved = true;
- 	}
- 
- 	stmmac_finalize_xdp_rx(priv, xdp_status);
-@@ -8206,6 +8187,7 @@ static int __stmmac_dvr_probe(struct device *device,
- 	ndev->hw_features = NETIF_F_SG | NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM |
- 			    NETIF_F_RXCSUM;
- 	ndev->xdp_features = NETDEV_XDP_ACT_BASIC | NETDEV_XDP_ACT_REDIRECT |
-+			     NETDEV_XDP_ACT_RX_SG |
- 			     NETDEV_XDP_ACT_XSK_ZEROCOPY;
- 
- 	/* Default qdisc num_tx_queues */
-@@ -8532,9 +8514,12 @@ static void stmmac_reset_rx_queue(struct stmmac_priv *priv, u32 queue)
- {
- 	struct stmmac_rx_queue *rx_q = &priv->dma_conf.rx_queue[queue];
- 
--	dev_kfree_skb_any(rx_q->state.skb);
--	rx_q->state.skb = NULL;
-+	if (rx_q->state.n_descs && !rx_q->xsk_pool) {
-+		__xdp_return_buff(&rx_q->state.xdp, false);
-+		rx_q->state.n_descs = 0;
-+	}
- 	rx_q->state_saved = false;
-+
- 	rx_q->cur_rx = 0;
- 	rx_q->dirty_rx = 0;
- }
-
--- 
-2.56.1
-
+QSByb2xlLXN3aXRjaCBwcm92aWRlciBjYW4gYmUgdW5yZWdpc3RlcmVkIHdoaWxlIGEgc2V0L2dl
+dCBjYWxsYmFjayBpcwpydW5uaW5nLiBUaGUgY29yZSBjaGVja3MgdGhlIHJlZ2lzdGVyZWQgZmxh
+ZyBiZWZvcmUgdGFraW5nIHRoZSBzd2l0Y2ggbG9jawphbmQgY2xlYXJzIGl0IHdpdGhvdXQgdGFr
+aW5nIHRoYXQgbG9jaywgc28gdW5yZWdpc3RlciBjYW4gcmV0dXJuIHdoaWxlIHRoZQpjYWxsYmFj
+ayBzdGlsbCB1c2VzIHByb3ZpZGVyLW93bmVkIG1lbW9yeS4gQSBzeW50aGV0aWMgcHJvdmlkZXIg
+cmVwcm9kdWNlcwp1c2UtYWZ0ZXItZnJlZSByZXBvcnRzIGluIGJvdGggY2FsbGJhY2sgcGF0aHMg
+d2l0aCBLQVNBTi4KClRoZSBjb3JlIGZpeCBtYWtlcyB1bnJlZ2lzdGVyIHdhaXQgZm9yIGNhbGxi
+YWNrcyBvbiB0aGUgc3dpdGNoIGxvY2suIFRoZQpBcHBsZSBEV0MzIHJvbGUgY2FsbGJhY2tzIHRh
+a2UgYSBwcml2YXRlIGxvY2sgdW5kZXIgdGhlIHN3aXRjaCBsb2NrLCB3aGlsZQppdHMgcmVtb3Zl
+IHBhdGggY3VycmVudGx5IGhvbGRzIHRoZSBwcml2YXRlIGxvY2sgYXJvdW5kIHVucmVnaXN0ZXIu
+IFBhdGNoIDEKbW92ZXMgQXBwbGUncyB1bnJlZ2lzdGVyIGNhbGwgYWhlYWQgb2YgdGhhdCBsb2Nr
+OyBwYXRjaCAyIGFkZHMgdGhlIGNvcmUKc3luY2hyb25pemF0aW9uLiBUaGlzIG9yZGVyIGtlZXBz
+IGludGVybWVkaWF0ZSBzdGF0ZXMgZnJlZSBvZiB0aGUgbmV3IGxvY2sKaW52ZXJzaW9uLgoKT24g
+QVJNNjQgUUVNVSB3aXRoIExpbnV4IDcuMy40IGFuZCBtYWlubGluZSA3LjQtcmMyICgwNjdjNWMy
+NGNlZjIpLApLQVNBTiByZXBvcnRlZCB1c2UtYWZ0ZXItZnJlZSBpbiBzZXQgYW5kIGdldCBjYWxs
+YmFja3MgYmVmb3JlIHRoZSBjaGFuZ2UuCkFmdGVyIGJvdGggcGF0Y2hlcywgdW5yZWdpc3RlciB3
+YWl0ZWQgZm9yIHRoZSBjYWxsYmFja3MgYW5kIG5laXRoZXIgdGVzdApyZXBvcnRlZCBLQVNBTi4g
+QSBsb2NrZGVwIHRlc3QgbW9kZWxpbmcgQXBwbGUncyBjYWxsYmFjay9yZW1vdmUgbG9jayBvcmRl
+cgp3YXJuZWQgZm9yIHRoZSBvcmlnaW5hbCBvcmRlciBhbmQgbm90IGZvciB0aGUgbmV3IG9uZS4g
+QXBwbGUgRFdDMyBoYXJkd2FyZQp3YXMgbm90IHRlc3RlZC4KCkNoYW5nZXMgaW4gdjI6Ci0gU3Bs
+aXQgdGhlIEFwcGxlIGxvY2stb3JkZXIgY2hhbmdlIGFuZCB0aGUgcm9sZS1zd2l0Y2ggY29yZSBm
+aXggaW50byB0d28KICBwYXRjaGVzLCB3aXRoIHRoZSBBcHBsZSBjaGFuZ2UgZmlyc3QsIGFzIHJl
+cXVlc3RlZCBieSBIZWlra2kgS3JvZ2VydXMuCi0gQWRkIENjOiBzdGFibGVAdmdlci5rZXJuZWwu
+b3JnIHRhZ3MgdG8gYm90aCBwYXRjaCBkZXNjcmlwdGlvbnMuCgpUaGFua3MgZm9yIHRoZSByZXZp
+ZXcsIEhlaWtraS4KCnYxOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9yLzIwMjYxMTEyMDI0MTAx
+LjgzMzIxLTEtdGtka2VpQG91dGxvb2suanAKCktlaXN1a2UgVHN1a3VkYSAoMik6CiAgdXNiOiBk
+d2MzOiBhcHBsZTogdW5yZWdpc3RlciByb2xlIHN3aXRjaCBiZWZvcmUgdGFraW5nIGxvY2sKICB1
+c2I6IHJvbGVzOiB3YWl0IGZvciBjYWxsYmFja3Mgb24gdW5yZWdpc3RlcgoKLS0tCiBkcml2ZXJz
+L3VzYi9kd2MzL2R3YzMtYXBwbGUuYyB8ICA0ICsrLS0KIGRyaXZlcnMvdXNiL3JvbGVzL2NsYXNz
+LmMgICAgIHwgMTggKysrKysrKysrKysrKystLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDE2IGluc2Vy
+dGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgo=
 
