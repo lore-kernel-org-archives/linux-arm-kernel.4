@@ -2,70 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9517606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 02:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8070606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 03:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gWYACmib;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SEi6DRYr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vC2Rm9Ml;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EAF/911a
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=p9Z/0BbQGaDyQcSu1mdVf3G0+dswEC4x+xTDwChbKX4=; b=gWYACmibZb5YXt
-	J72c4dYC4UdHK7PXmue6dAwCmz+tmcNwZQh15y4iHnvVAIUydMEnrQkWAb+9xz8UDXmn8L9zo+8gf
-	QqlNs6nDDBLV9rg+i0OC9hB6bRaGSyfzRoRtt4ccWLHbjyCtAH0b4ihBHbQSjeWWUr4OZvinCwnY+
-	tZYPpZDECTFBi/F9zZrjflB8tYBOHRAPMDlJMS5Xrn/QXPz9pX0Ovv7TBMgg8trg4NN6ZaBB2a+d7
-	acbYovKEo6zpcPCWwbypSAgpGR0NJSJh91WdD0RRvhBhSsj/jD7iLQytjEPnNxoQsukrgKTAp1eJf
-	FJtftnGKiJNzs0FEqNHg==;
+	List-Owner; bh=v86ECrw4hTZS+oi6SL4n7LCSWP3uQBdnZrQC4d8hSfE=; b=vC2Rm9Mlh4TPys
+	b/O9xKKdhjHASVp4MH3MFlb8jkS/ACCZ//DSHrTw8KVkPePhEbYsrEe+y9C+G6CZSXAyw9bg2N43c
+	9b3h3buvbqmJ3Xsuao0TDtAz9Aec1YG85daz1hgglS+3eBQMRtHSVrdDoFLBNzVteOoewzSkvqbgo
+	Y3Y8jmgn9PeE66DVTnza0yRIBUX+LP6MUS6f7nCyMYE0GaJbSjU1sSWJOaSVK+dhq1zBIanhT042z
+	jq+ziDPPsIaeRl9y8IYK5e2VeAet6Gkeg8kA5OYpUUMYlMEVkA0FRWzLVK3OBZcqh4GVmTEC9SL4v
+	VY96y+zKpx3/IwDHzfqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT97N-00000004QfP-2Qn4;
-	Tue, 17 Nov 2026 02:40:21 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xT9TR-00000004Rtk-1JGN;
+	Tue, 17 Nov 2026 03:03:09 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT97D-00000004QdQ-48Na;
-	Tue, 17 Nov 2026 02:40:12 +0000
+	id 1xT9TQ-00000004Rte-24fR
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 03:03:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6828040E0A;
-	Tue, 17 Nov 2026 02:40:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 463431F000CB;
-	Tue, 17 Nov 2026 02:40:11 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 98852605C9;
+	Tue, 17 Nov 2026 03:03:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADA6D1F000C4;
+	Tue, 17 Nov 2026 03:03:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794883211;
-	bh=p9Z/0BbQGaDyQcSu1mdVf3G0+dswEC4x+xTDwChbKX4=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=SEi6DRYrhBNE6Tl0Oo5WFx+6/UZ+yhSjc7VRQCI9YcG/cWn/GErLeVTtIdfQlMOM2
-	 hKSC6rPIXDG/RXjHvz6cjSo3UTrLW5KA5b91YlaGIlpMTmGRW9PXs5XdCkyXzwFtLE
-	 +BB/iZGPTcVblqcIx41toyP6bmfQipdsAzLv4eJl4PsmRa3PLDmFumYFfxOSDs6gvm
-	 C5MkzF8O9n15ANciTKY5CTkL6UFMVr3PNOxhlLykuFaRCAHL1GoBoWIrkeqvJz8Oqy
-	 aivs7VQ5bn9dQP2Uo7RHqkw4qjOoCOLbApAhuiRRXx+KPtNQEZiFU/GAa1wq3oWAPf
-	 z6uVkPO7hTItQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 3A39F391B088;
-	Tue, 17 Nov 2026 02:40:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20260515; t=1794884587;
+	bh=v86ECrw4hTZS+oi6SL4n7LCSWP3uQBdnZrQC4d8hSfE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=EAF/911aT3K/HgLF7Z/UTT8qhiixqrvj+5cC5G9mJXdj9Bm4icfnFSRvuognvA+4d
+	 TJC6Ir5HtYyI1539/i7VyL30DbqZ8gLppaMkDoYfqpMINGAwQMbwpzGXKRBgXQ/7We
+	 hpjy2c1Sj0KRpWS9HwAQbT3fp8dDy1KTMloD2IjIthAFnnGBNUwtjTexfF091/gwSL
+	 NB8/UB5kZUf0j5qea6V6f+owdNjBu/Voqmlb8s0Ht9ZKtKOvQ0JvRzOO33JEtSUT1a
+	 n/7EZFowKNUWhsz8t0owOk0tI6hK1K5YJ7qc3OOSrQylSoq4ws4ZejpfONouuwKlzD
+	 rN6VzJv88KSAQ==
+Date: Tue, 17 Nov 2026 03:02:58 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Luo Yifan <luoyifan@cmss.chinamobile.com>
+Cc: linux-iio@vger.kernel.org, Eugen Hristev <ehristev@kernel.org>, Nicolas
+ Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] spi: pl022: handle clk_prepare_enable() failure on
+ runtime resume
+Message-ID: <20261117030258.364ba429@jic23-hlaptop>
+In-Reply-To: <20261117020711.20158-1-luoyifan@cmss.chinamobile.com>
+References: <20261117020711.20158-1-luoyifan@cmss.chinamobile.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v5 00/10] net/stmmac: Add Mediatek MT8189 support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179488320977.300516.9034533489988553857.git-patchwork-notify@kernel.org>
-Date: Tue, 17 Nov 2026 02:40:09 +0000
-References: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
-In-Reply-To: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- richardcochran@gmail.com, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, biao.huang@mediatek.com,
- maxime.chevallier@bootlin.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, edumazet@kernel.org, kernel@collabora.com,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- krzysztof.kozlowski@oss.qualcomm.com, andrew@lunn.ch
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,60 +70,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+On Tue, 17 Nov 2026 10:07:11 +0800
+Luo Yifan <luoyifan@cmss.chinamobile.com> wrote:
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Tue, 10 Nov 2026 13:08:47 +0100 you wrote:
-> This series adds the Ethernet support for Mediatek MT8189 SoC and its
-> variants (MT8371, MT8391). These SoC integrate a Gigabit Ethernet MAC
-> with RGMII/RMII/MII interface, with a similar design than previous SoCs
-> such MT8188 or MT8195.
+> pl022_runtime_resume() ignores the return value of clk_prepare_enable()
+> and always returns 0.  A failed runtime resume is therefore reported as
+> success and the controller is used with its clock off.
 > 
-> This series is based on net-next tree (sha1: d26955e57475).
-> It has been tested on Mediatek Genio 520-EVK (MT8371) and 720-EVK
-> (MT8391) boards, which both integrate an Airoha AN8801R Ethernet
-> PHY, with hardware enablement series ([1]).
-> It has been also tested on Mediatek Genio 510-EVK (MT8370, variant of
-> MT8188) and 1200-EVK (MT8395, variant of MT8195).
+> Return the error from clk_prepare_enable().
 > 
-> [...]
+> Signed-off-by: Luo Yifan <luoyifan@cmss.chinamobile.com>
 
-Here is the summary with links:
-  - [net-next,v5,01/10] dt-bindings: net: mediatek-dwmac: fix unit in rx/tx delay property description
-    https://git.kernel.org/netdev/net-next/c/5fc5d2095256
-  - [net-next,v5,02/10] dt-bindings: net: mediatek-dwmac: deprecate rx/tx delay vendor properties
-    https://git.kernel.org/netdev/net-next/c/51c06131816a
-  - [net-next,v5,03/10] dt-bindings: net: mediatek-dwmac: add support for MT8189 SoC
-    https://git.kernel.org/netdev/net-next/c/97c7a711dac1
-  - [net-next,v5,04/10] net: stmmac: mediatek: simplify TX/RX delay handling in mt8195_set_delay
-    https://git.kernel.org/netdev/net-next/c/8eac6d45af9c
-  - [net-next,v5,05/10] net: stmmac: mediatek: simplify TX/RX delay handling in mt2712_set_delay
-    https://git.kernel.org/netdev/net-next/c/c837fa3a7612
-  - [net-next,v5,06/10] net: stmmac: mediatek: use standard internal delay properties
-    https://git.kernel.org/netdev/net-next/c/ec09a48fdaf3
-  - [net-next,v5,07/10] net: stmmac: mediatek: add RX/TX delay stage divider in platform data
-    https://git.kernel.org/netdev/net-next/c/e6d6f4b67511
-  - [net-next,v5,08/10] net: stmmac: mediatek: add PERI_ETH_CTRLx register offset in platform data
-    https://git.kernel.org/netdev/net-next/c/2c0c0890f9f1
-  - [net-next,v5,09/10] net: stmmac: mediatek: add support for TX clock output enable feature
-    https://git.kernel.org/netdev/net-next/c/3b2120af0091
-  - [net-next,v5,10/10] net: stmmac: mediatek: add support for MT8189 SoC
-    https://git.kernel.org/netdev/net-next/c/46d8e770222f
+You should probably resend including linux-spi and appropriate maintainers
+and dropping IIO folk.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+> ---
+>  drivers/spi/spi-pl022.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/spi/spi-pl022.c b/drivers/spi/spi-pl022.c
+> index f52130465a..64bf9c4b0a 100644
+> --- a/drivers/spi/spi-pl022.c
+> +++ b/drivers/spi/spi-pl022.c
+> @@ -2067,9 +2067,8 @@ static int pl022_runtime_resume(struct device *dev)
+>  	struct pl022 *pl022 = dev_get_drvdata(dev);
+>  
+>  	pinctrl_pm_select_default_state(dev);
+> -	clk_prepare_enable(pl022->clk);
+>  
+> -	return 0;
+> +	return clk_prepare_enable(pl022->clk);
+>  }
+>  
+>  static const struct dev_pm_ops pl022_dev_pm_ops = {
 
 
