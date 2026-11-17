@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20535606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:45:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA46606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i2rCJ5x4;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=hWZuMdrX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h04LTaJm;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=OGYfMfmV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cqe3toF/KkClKSXbBwvXFHp9Zb2sKOBq7rMTmjPBGC8=; b=i2rCJ5x4ALnVPJwTjPd0pzW+po
-	1ZvWW0oDkBEuKAjLryRFdzPGgEmFzGku+G72zWNM6sQt7vv7374DHlrp5hM1v+TMugCuzrKeG4LhT
-	b+o6EJB8No3GD0lyXTcMlGCJtI8DYKZmWPdmLQjdWAMCHg/wYfmyhED48sp2UGO6AdIKoQciHca+I
-	769ZAnhwHOBaypGSVVsN6+P/FsJNXskHUVzXnwe5WPewpl3R5CjvgvvposiQ7/BUhzePaNOa/1lg0
-	46/JqYHg6hssAKvGIXl/bmPIQK09kchcXuTPFNp/cQ7bCiy6vdL2sJLoE0rAp6n9sjzRLERBow/Je
-	va8UNb/Q==;
+	bh=UuxGk04qrd7q/fTUHCQmwz4O87Qp1408pkNYwbznSY4=; b=h04LTaJm4c4Luw0ZEoFTYTOlf4
+	i1VPJa0jx+BPCylrWNd0IUmttZ/WopLpa/UIoBBHBTzHUTEccyu0Dyy47dnZl2flFy32bhj2DhdkG
+	0G9Q+PPKLiZREOvDdqRGGeuYMHIgxcxudUjqpZd8zx637+Ax5ow7w1yaMw+rcOhyBKVdkVz94K80t
+	NeGRB4+0L7x9oYffVWrJS+5srH6YrgvFk7Sj+78CCFAnfOqnO+Zo7X51rpDEJlONwa6oXWjWYwEmL
+	EJEwRLJGjcMWF67V+iGV4Gy22h1CIV0dodWWLtoen9SIMCLVJFWCVEzjLi7CjDsSjsnG7q6c9Uw5v
+	vpO4D9Sw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNF4-00000006ehd-48gJ;
-	Tue, 17 Nov 2026 17:45:15 +0000
-Received: from mail-wm1-x347.google.com ([2a00:1450:4864:20::347])
+	id 1xTNF6-00000006ekr-16Ka;
+	Tue, 17 Nov 2026 17:45:16 +0000
+Received: from mail-wm1-x348.google.com ([2a00:1450:4864:20::348])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNEY-00000006eAM-0yGp
+	id 1xTNEa-00000006eC1-1Fa8
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 17:44:44 +0000
-Received: by mail-wm1-x347.google.com with SMTP id 5b1f17b1804b1-4bb6517ed8bso142955e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 09:44:41 -0800 (PST)
+	Tue, 17 Nov 2026 17:44:45 +0000
+Received: by mail-wm1-x348.google.com with SMTP id 5b1f17b1804b1-4b764ffc014so884935e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 09:44:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794937480; x=1795542280; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794937482; x=1795542282; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=cqe3toF/KkClKSXbBwvXFHp9Zb2sKOBq7rMTmjPBGC8=;
-        b=hWZuMdrXG2vF0QMAc54VlHR6JamYFYbwt6r1wweQDvuWkbxYHwQszQ21+kh76pQ/TI
-         AYYJKvlbsXOapO6S1WuHLqQ7XJvB/Ir2ToWAFhnLkyvc13vCYlDa9MzkHRwLke0rkfeM
-         QbfWt9UmspiVZC4qxs2meebpmMc3UFeMiQZOqgqwV5fESZhSaP+c2kc3XEw++A600amz
-         WF+v6q1ZUbpPV9QFEbqw3SgPPnh7RBtnBmHXmxcQDeIPwbZNAHPYHcAD49JmgfzhIexQ
-         PCRj2nbkWielovshYIIyM73PIuaqoQTUzmDIvMC+Cg9O6lvUo/m22uRDnYAcs8Avn4if
-         uJyg==
+        bh=UuxGk04qrd7q/fTUHCQmwz4O87Qp1408pkNYwbznSY4=;
+        b=OGYfMfmVg6ETcThLn6YhRyiQQiBr1OrP5le61VV2Ngs6kV6g5/Zyi62JdWtaygyOTV
+         Hd/Sd9Elw99WuN5puVTg6Xmqrjc33J5fsr4HovotKUysTQI+mM8YkRq3ePBEYC28s6bl
+         rQYrd3L4NZGMzzO0pZAlQ8Sffo5tSVUgDy8m0uwPBi3c+3JDViPCI6YaDgDwo9k2idTp
+         Wef8jNDc1M1/k/DU/BYUhOuaCSh4TBzUmIlInmChUkWYGhizWCWV4Me8VFb7yEw80HdW
+         NJIeP1WXVZ9eU6e0kfgkFHmDGtYvmeX2hUY5seE6N2TpJEtGljn3guscod13rCmnCxkP
+         KMig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794937480; x=1795542280;
+        d=1e100.net; s=20260707; t=1794937482; x=1795542282;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=cqe3toF/KkClKSXbBwvXFHp9Zb2sKOBq7rMTmjPBGC8=;
-        b=s/VxCJAitRVQOT9EsKtwrTTJdCcnATEWF4XKTeujy/3dCDTFp+U8XYA4wZe1zD8lgY
-         N6zbuc6rizOA4kGjnQc3D/V4ljTC1CEQspi/w6plzsjr6Jv2NR5U/8EudRD1wttFaOWj
-         dWtNlPYB+OSkqScYM+rlQF/tqnYY4bc8K8PH4huJ9/07rt7oV3VrD9d8m3BGQtaVr9lt
-         T6kwPCirqx0eFHSUKZxYRe7IICm0g00wFCem/8uXzz7NXJz7SZtAEQEi/7A2T7znr9Cq
-         EEbWEM/YvZ9C8pTMFzwcoKXIwbqjvqPsDznVpZteCsd8EOkVlUZFmsp2b07N4amXwS4l
-         bMXA==
-X-Forwarded-Encrypted: i=1; AL+hErE1Y78fvuTSjN8qm7fU9RkJ7N+wKQDZmRbH21nu32jkDh43+Yso8KGXYpWdODtRC6o6qfLsDkeoiCGvpuUXVAyZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+9zSkxTp2y7H/E+DKm49Uk+w02QetfNGt1eRYJs3jF+bp9y/Xt
-	PKAA5JxOgoFSXQtGjdYmsbgGFPbTsaAgj73nSRSopaVkfUDgyv8xBSbzeuVddIR3bxsGZntuEjw
-	sxXR7MvmUKBrSA77ncDLgRQ==
-X-Received: from wrbfl25.prod.google.com ([2002:a05:6000:29d9:b0:48f:c51a:3a5f])
+        bh=UuxGk04qrd7q/fTUHCQmwz4O87Qp1408pkNYwbznSY4=;
+        b=taTuEocdredUB3pAueMQ2kjhTcPVut7jv8UefKHOA420FxTunlFxjif3ZYquEIkOos
+         KmDqavcOMWqWpytCjSwpGb2zDVsdpBq4o2rKmkpQcck/k7r9tsNnqo7gsZVw7y9y0Hu2
+         QWNdK9JQHGMcqm5wjDil0VA4+iHoJGtml/JExE7DNcd3wBqpdFEPnTwmceVkK0NH9mKH
+         XismwgETSljlLFNuHscRsU06qslHhm4vIBVkC5LHHMs6ywB2MxSAxg/1LEcehghoxGty
+         NNrAIf6YiKTCKyN+xHb+d7dWf5jFg45nl8zXGqsyV1+ndF13bEjJelgL5RoU2XN5cLWG
+         DgsA==
+X-Forwarded-Encrypted: i=1; AL+hErG5R3YNXFmwsfXXjENzh2Sx+5NF44rvQQjohBl0KHa97jWSUekalO+UZ11H/pc093HMBiAnZ89fIHBx8KMdKp6j@lists.infradead.org
+X-Gm-Message-State: APuU4Z8tkzWcm55rnz27/LDkrSusy27LMXPlcJjVrNSd5FYGMcVpSdkO
+	Niifa7EJvWlcTWlTLjUeRs3J1TS+WjAQlxKQAN8l+/+uu8AKd4BoH3W5BhoQjempuJHWBXL44pO
+	tDv4MxMp/oeTnpTeGPlyExw==
+X-Received: from wmbe19.prod.google.com ([2002:a05:600c:5913:b0:4a1:fc99:15d6])
  (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:3495:b0:4bb:6847:7943 with SMTP id 5b1f17b1804b1-4bb68477c73mr204950145e9.26.1794937479694;
- Tue, 17 Nov 2026 09:44:39 -0800 (PST)
-Date: Tue, 17 Nov 2026 17:44:00 +0000
+ 2002:a05:600c:8819:b0:4a1:d8fc:8165 with SMTP id 5b1f17b1804b1-4bb55a6ad4emr280224185e9.20.1794937481614;
+ Tue, 17 Nov 2026 09:44:41 -0800 (PST)
+Date: Tue, 17 Nov 2026 17:44:02 +0000
 In-Reply-To: <20261117174403.58762-1-vdonnefort@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261117174403.58762-1-vdonnefort@google.com>
 X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
-Message-ID: <20261117174403.58762-22-vdonnefort@google.com>
-Subject: [PATCH v4 21/23] KVM: arm64: Add PKVM_HYP_REQ_SPLIT
+Message-ID: <20261117174403.58762-24-vdonnefort@google.com>
+Subject: [PATCH v4 23/23] KVM: arm64: Stage-2 huge mappings for protected VMs
 From: Vincent Donnefort <vdonnefort@google.com>
 To: maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev, 
 	linux-arm-kernel@lists.infradead.org
@@ -80,8 +80,8 @@ Cc: joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
 	weilin.chang@arm.com, Vincent Donnefort <vdonnefort@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_094442_384232_BD37051C 
-X-CRM114-Status: GOOD (  24.22  )
+X-CRM114-CacheID: sfid-20261117_094444_392983_B164C248 
+X-CRM114-Status: GOOD (  22.28  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,264 +101,267 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With the upcoming support for stage-2 huge mappings for protected VMs,
-we need a way to split blocks. Since the host has its own "copy" of the
-guest stage-2 in the pkvm_mappings rb-tree, the split must be done
-simultaneously for both that tree and the guest stage-2. Therefore the
-hypervisor can't do it on its own and must rely on the host for this
-operation.
+Enable PMD-sized stage-2 block mappings for protected VMs. This is
+possible whenever the stage-1 mapping allows it, that is, if it is
+itself backed by THPs.
 
-Create a pKVM hypervisor request to ask the host to split a specified
-region of the guest. On this request, the host can synchronise the split
-of both guest stage-2 (HVC __pkvm_host_split_guest) and the
-pkvm_mappings tree. It ensures a concurrent VM teardown can't observe a
-PMD_SIZE pkvm_mapping while the guest stage-2 is PAGE_SIZE.
+When a THP is found, an entire PMD_SIZE mapping is donated to the guest,
+unless it overlaps an existing mapping. The new PMD_SIZE mapping can
+only be broken down via the HVC __pkvm_host_split_guest() which the
+hypervisor can request with PKVM_HYP_REQ_SPLIT.
 
 Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
 ---
- arch/arm64/include/asm/kvm_host.h |   5 +
- arch/arm64/include/asm/kvm_pkvm.h |   5 +-
- arch/arm64/kvm/pkvm.c             | 148 ++++++++++++++++++++++++++++++
- arch/arm64/kvm/trace_pkvm.h       |   4 +-
- 4 files changed, 160 insertions(+), 2 deletions(-)
+ arch/arm64/kvm/mmu.c  | 128 +++++++++++++++++++++++++++---------------
+ arch/arm64/kvm/pkvm.c |  34 +++++++----
+ 2 files changed, 104 insertions(+), 58 deletions(-)
 
-diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-index 0161bcb8123b..c68693509c1e 100644
---- a/arch/arm64/include/asm/kvm_host.h
-+++ b/arch/arm64/include/asm/kvm_host.h
-@@ -142,6 +142,7 @@ enum pkvm_hyp_req_type {
- 	PKVM_HYP_NO_REQ = 0,
- 	PKVM_HYP_REQ_HYP_ALLOC,
- 	PKVM_HYP_REQ_HYP_ALLOC_SELFTEST,
-+	PKVM_HYP_REQ_SPLIT,
- 	__PKVM_HYP_REQ_TYPE_MAX,
- };
+diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+index 1db10d8d6db7..df8ec7c798dd 100644
+--- a/arch/arm64/kvm/mmu.c
++++ b/arch/arm64/kvm/mmu.c
+@@ -1489,11 +1489,9 @@ static bool fault_supports_stage2_huge_mapping(const struct kvm_s2_fault_desc *s
+ 	if (map_size == PAGE_SIZE)
+ 		return true;
  
-@@ -154,6 +155,10 @@ struct pkvm_hyp_req {
- 		struct {
- 			u32	nr_pages;
- 		} mem;
-+		struct {
-+			u32	nr_pages;
-+			u64	gfn;
-+		} split;
- 		struct {
- 			/* Helper for SMCCC encoding/decoding */
- 			u8	args[PKVM_HYP_REQ_SMCCC_ARG_SIZE_MAX];
-diff --git a/arch/arm64/include/asm/kvm_pkvm.h b/arch/arm64/include/asm/kvm_pkvm.h
-index 3e51337f2d9e..5676eed1c71e 100644
---- a/arch/arm64/include/asm/kvm_pkvm.h
-+++ b/arch/arm64/include/asm/kvm_pkvm.h
-@@ -222,7 +222,10 @@ static inline size_t pkvm_host_sve_state_size(void)
+-	/* pKVM only supports PMD_SIZE huge-mappings for non-protected VMs */
+-	if (is_protected_kvm_enabled()) {
+-		if (vcpu_is_protected(s2fd->vcpu) || map_size != PMD_SIZE)
+-			return false;
+-	}
++	/* pKVM only supports PMD_SIZE huge-mappings */
++	if (is_protected_kvm_enabled() && map_size != PMD_SIZE)
++		return false;
+ 
+ 	size = memslot->npages * PAGE_SIZE;
+ 
+@@ -1843,42 +1841,23 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
+ 	return ret;
  }
  
- struct pkvm_mapping {
--	struct rb_node node;
-+	union {
-+		struct rb_node node;
-+		struct list_head list;
-+	};
- 	u64 gfn;
- 	u64 pfn;
- 	struct {
+-static int protected_pkvm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
++static int pkvm_pin_user_pages(const struct kvm_s2_fault_desc *s2fd,
++			       struct kvm_s2_fault_vma_info *s2vi)
+ {
+ 	unsigned int flags = FOLL_HWPOISON | FOLL_LONGTERM | FOLL_WRITE;
+-	struct kvm_s2_fault_vma_info s2vi = {};
+-	struct kvm_vcpu *vcpu = s2fd->vcpu;
+-	struct kvm_pgtable *pgt = s2fd->mmu->pgt;
+-	struct mm_struct *mm = current->mm;
+-	struct kvm *kvm = vcpu->kvm;
+-	void *hyp_memcache;
+-	int ret;
++	long ret;
+ 
+-	hyp_memcache = get_mmu_memcache(vcpu);
+-	ret = topup_mmu_memcache(s2fd->mmu, hyp_memcache);
+-	if (ret)
+-		return -ENOMEM;
+-
+-	ret = kvm_s2_fault_get_vma_info(s2fd, &s2vi);
++	ret = kvm_s2_fault_get_vma_info(s2fd, s2vi);
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = account_locked_vm(mm, 1, true);
+-	if (ret)
+-		return ret;
+-
+-	mmap_read_lock(mm);
+-	ret = pin_user_pages(s2fd->hva, 1, flags, &s2vi.page);
+-	mmap_read_unlock(mm);
+-
++	ret = pin_user_pages_unlocked(s2fd->hva, 1, &s2vi->page, flags);
+ 	if (ret == -EHWPOISON) {
+ 		kvm_send_hwpoison_signal(s2fd->hva, PAGE_SHIFT);
+-		ret = 0;
+-		goto dec_account;
++		return ret;
+ 	} else if (ret != 1) {
+-		ret = -EFAULT;
+-		goto dec_account;
+-	} else if (!folio_test_swapbacked(page_folio(s2vi.page))) {
++		return -EFAULT;
++	} else if (!folio_test_swapbacked(page_folio(s2vi->page))) {
+ 		/*
+ 		 * We really can't deal with page-cache pages returned by GUP
+ 		 * because (a) we may trigger writeback of a page for which we
+@@ -1893,26 +1872,83 @@ static int protected_pkvm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
+ 		 * pages backed by swap in the knowledge that the GUP pin will
+ 		 * prevent try_to_unmap() from succeeding.
+ 		 */
+-		ret = -EIO;
+-		goto unpin;
++		unpin_user_page(s2vi->page);
++		return -EIO;
+ 	}
+ 
+-	write_lock(&kvm->mmu_lock);
+-	ret = pkvm_pgtable_stage2_map(pgt, gfn_to_gpa(s2vi.gfn), PAGE_SIZE,
+-				      page_to_phys(s2vi.page), KVM_PGTABLE_PROT_RWX,
+-				      hyp_memcache, 0);
+-	write_unlock(&kvm->mmu_lock);
+-	if (ret) {
+-		if (ret == -EAGAIN)
+-			ret = 0;
+-		goto unpin;
++	s2vi->pfn = page_to_pfn(s2vi->page);
++
++	ret = transparent_hugepage_adjust(s2fd, &s2vi->pfn, &s2vi->gfn);
++	if (ret < 0) {
++		unpin_user_page(s2vi->page);
++		return ret;
+ 	}
+ 
++	s2vi->vma_pagesize = ret;
++
+ 	return 0;
++}
++
++static int protected_pkvm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
++{
++	struct kvm_s2_fault_vma_info s2vi = {};
++	struct kvm_vcpu *vcpu = s2fd->vcpu;
++	struct kvm_pgtable *pgt = s2fd->mmu->pgt;
++	struct mm_struct *mm = current->mm;
++	struct kvm *kvm = vcpu->kvm;
++	unsigned long unaccount;
++	void *hyp_memcache;
++	u64 size;
++	int ret;
++
++	hyp_memcache = get_mmu_memcache(vcpu);
++	ret = topup_mmu_memcache(s2fd->mmu, hyp_memcache);
++	if (ret)
++		return -ENOMEM;
++
++	ret = pkvm_pin_user_pages(s2fd, &s2vi);
++	if (ret == -EHWPOISON || ret == -EAGAIN)
++		return 0;
++	else if (ret)
++		return ret;
++
++	size = s2vi.vma_pagesize;
++
++	ret = account_locked_vm(mm, size / PAGE_SIZE, true);
++	if (ret)
++		goto unpin;
++
++	kvm_fault_lock(kvm);
++	if (mmu_invalidate_retry(kvm, s2vi.mmu_seq)) {
++		ret = -EAGAIN;
++	} else {
++		ret = pkvm_pgtable_stage2_map(pgt, gfn_to_gpa(s2vi.gfn), size,
++					      __pfn_to_phys(s2vi.pfn), KVM_PGTABLE_PROT_RWX,
++					      hyp_memcache, 0);
++
++		/* undo transparent_hugepage_adjust() and try again */
++		if (ret == -E2BIG) {
++			u64 ipa = ALIGN_DOWN(s2fd->fault_ipa, PAGE_SIZE);
++
++			size = PAGE_SIZE;
++			ret = pkvm_pgtable_stage2_map(pgt, ipa, size,
++						      page_to_phys(s2vi.page),
++						      KVM_PGTABLE_PROT_RWX,
++						      hyp_memcache, 0);
++		}
++	}
++	kvm_fault_unlock(kvm);
++
++	unaccount = (ret ? s2vi.vma_pagesize : s2vi.vma_pagesize - size) / PAGE_SIZE;
++	account_locked_vm(mm, unaccount, false);
++
+ unpin:
+-	unpin_user_page(s2vi.page);
+-dec_account:
+-	account_locked_vm(mm, 1, false);
++	if (ret) {
++		unpin_user_page(s2vi.page);
++		if (ret == -EAGAIN)
++			ret = 0;
++	}
++
+ 	return ret;
+ }
+ 
 diff --git a/arch/arm64/kvm/pkvm.c b/arch/arm64/kvm/pkvm.c
-index c55b6d442d0e..58ca7ffa68e3 100644
+index 58ca7ffa68e3..5aea9e9aef17 100644
 --- a/arch/arm64/kvm/pkvm.c
 +++ b/arch/arm64/kvm/pkvm.c
-@@ -488,6 +488,64 @@ INTERVAL_TREE_DEFINE(struct pkvm_mapping, node, u64, __subtree_last,
- 		       });									\
- 	    )
+@@ -572,9 +572,8 @@ static int __pkvm_pgtable_stage2_reclaim(struct kvm_pgtable *pgt, u64 start, u64
+ 			continue;
  
-+static void pkvm_mapping_free_spares(struct list_head *spares)
-+{
-+	struct pkvm_mapping *m, *tmp;
-+
-+	list_for_each_entry_safe(m, tmp, spares, list) {
-+		list_del(&m->list);
-+		kfree(m);
-+	}
-+}
-+
-+static int pkvm_mapping_alloc_spares(struct list_head *head, u64 nr_spares)
-+{
-+	struct pkvm_mapping *m;
-+
-+	while (nr_spares--) {
-+		m = kzalloc_obj(*m, GFP_KERNEL_ACCOUNT);
-+		if (!m) {
-+			pkvm_mapping_free_spares(head);
-+			return -ENOMEM;
-+		}
-+
-+		list_add(&m->list, head);
-+	}
-+
-+	return 0;
-+}
-+
-+static void pkvm_mapping_split(struct pkvm_mapping *mapping, struct kvm_pgtable *pgt,
-+			       struct list_head *spares)
-+{
-+	struct kvm *kvm = kvm_s2_mmu_to_kvm(pgt->mmu);
-+	u64 nr_pages = mapping->nr_pages - 1;
-+	gfn_t gfn = mapping->gfn + 1;
-+	u64 pfn = mapping->pfn + 1;
-+
-+	lockdep_assert_held_write(&kvm->mmu_lock);
-+
-+	pkvm_mapping_remove(mapping, &pgt->pkvm_mappings);
-+	mapping->nr_pages = 1;
-+	pkvm_mapping_insert(mapping, &pgt->pkvm_mappings);
-+
-+	while (nr_pages--) {
-+		struct pkvm_mapping *m;
-+
-+		if (WARN_ON(list_empty(spares)))
-+			break;
-+
-+		m = list_first_entry(spares, struct pkvm_mapping, list);
-+		list_del(&m->list);
-+
-+		m->nr_pages = 1;
-+		m->gfn = gfn++;
-+		m->pfn = pfn++;
-+
-+		pkvm_mapping_insert(m, &pgt->pkvm_mappings);
-+	}
-+}
-+
- int pkvm_pgtable_stage2_init(struct kvm_pgtable *pgt, struct kvm_s2_mmu *mmu,
- 			     struct kvm_pgtable_mm_ops *mm_ops)
- {
-@@ -753,6 +811,73 @@ int pkvm_pgtable_stage2_split(struct kvm_pgtable *pgt, u64 addr, u64 size,
- 	return -EINVAL;
+ 		page = pfn_to_page(mapping->pfn);
+-		WARN_ON_ONCE(mapping->nr_pages != 1);
+ 		unpin_user_pages_dirty_lock(&page, 1, true);
+-		account_locked_vm(kvm->mm, 1, false);
++		account_locked_vm(kvm->mm, mapping->nr_pages, false);
+ 		pkvm_mapping_remove(mapping, &pgt->pkvm_mappings);
+ 		kfree(mapping);
+ 	}
+@@ -627,9 +626,17 @@ void pkvm_pgtable_stage2_destroy_pgd(struct kvm_pgtable *pgt)
+ 	WARN_ON_ONCE(!RB_EMPTY_ROOT(&pgt->pkvm_mappings.rb_root));
  }
  
 +/*
-+ * Splitting is only expected on the back of a guest HVC, while
-+ * pkvm_pgtable_stage2_split() can be called with dirty logging.
++ * Return:
++ *  0		- Mapping successfully installed.
++ *  -EAGAIN	- Mapping already exists due to a concurrent vCPU fault race.
++ *  -E2BIG	- Mapping overlaps an existing smaller one.
++ *  -EFAULT	- Mapping overlaps an existing poisoned address.
++ *  < 0		- Other negative error code on invalid arguments or HVC failure.
 + */
-+static int __pkvm_pgtable_stage2_split(struct kvm_vcpu *vcpu, phys_addr_t ipa, u64 size)
-+{
-+	struct kvm_hyp_memcache *mc = &vcpu->arch.stage2_mc;
-+	struct kvm_pgtable *pgt = vcpu->arch.hw_mmu->pgt;
-+	struct pkvm_mapping *mapping;
-+	struct kvm *kvm = vcpu->kvm;
-+	struct list_head spares;
-+	u64 nr_pages;
-+	int ret;
-+
-+	if (WARN_ON(!kvm_vm_is_protected(kvm)))
-+		return -EINVAL;
-+
-+	if (!IS_ALIGNED(ipa, PMD_SIZE) || size != PMD_SIZE)
-+		return -EINVAL;
-+
-+	ret = topup_hyp_memcache(mc, 1);
-+	if (ret)
-+		return ret;
-+
-+	/* We already have 1 pin on the huge-page */
-+	nr_pages = (size / PAGE_SIZE) - 1;
-+
-+	INIT_LIST_HEAD(&spares);
-+	ret = pkvm_mapping_alloc_spares(&spares, nr_pages);
-+	if (ret)
-+		return ret;
-+
-+	write_lock(&kvm->mmu_lock);
-+
-+	mapping = pkvm_mapping_iter_first(&pgt->pkvm_mappings, ipa, ipa + size - 1);
-+	if (!mapping) {
-+		ret = -EPERM;
-+		goto unlock_mmu;
-+	} else if (mapping->nr_pages == 1) {
-+		/* We've raced with another vCPU */
-+		ret = 0;
-+		goto unlock_mmu;
-+	} else if (mapping->nr_pages * PAGE_SIZE != PMD_SIZE) {
-+		ret = -EINVAL;
-+		goto unlock_mmu;
-+	}
-+
-+	ret = folio_add_pins(page_folio(pfn_to_page(mapping->pfn)), nr_pages);
-+	if (ret)
-+		goto unlock_mmu;
-+
-+	ret = kvm_call_hyp_nvhe(__pkvm_host_split_guest, gpa_to_gfn(ipa), size / PAGE_SIZE);
-+	if (ret) {
-+		for (int i = 0; i < nr_pages; i++)
-+			unpin_user_page(pfn_to_page(mapping->pfn + 1 + i));
-+		goto unlock_mmu;
-+	}
-+
-+	pkvm_mapping_split(mapping, pgt, &spares);
-+
-+unlock_mmu:
-+	write_unlock(&kvm->mmu_lock);
-+	pkvm_mapping_free_spares(&spares);
-+
-+	return ret;
-+}
-+
- /*
-  * Forcefully reclaim a page from the guest, zeroing its contents and
-  * poisoning the stage-2 pte so that pages can no longer be mapped at
-@@ -765,6 +890,23 @@ bool pkvm_force_reclaim_guest_page(phys_addr_t phys)
- 	return !ret || ret == -EAGAIN;
- }
- 
-+static int pkvm_hyp_req_handle_split(struct kvm_vcpu *vcpu, u64 gfn, u64 nr_pages)
-+{
-+	phys_addr_t addr = ALIGN_DOWN(gfn << PAGE_SHIFT, PMD_SIZE);
-+	phys_addr_t end = ALIGN((gfn + nr_pages) << PAGE_SHIFT, PMD_SIZE);
-+
-+	while (addr < end) {
-+		int ret = __pkvm_pgtable_stage2_split(vcpu, addr, PMD_SIZE);
-+
-+		if (ret)
-+			return ret;
-+
-+		addr += PMD_SIZE;
-+	}
-+
-+	return 0;
-+}
-+
- static int pkvm_handle_hyp_req(struct pkvm_hyp_req *req, struct kvm_vcpu *vcpu)
+ int pkvm_pgtable_stage2_map(struct kvm_pgtable *pgt, u64 addr, u64 size,
+-			   u64 phys, enum kvm_pgtable_prot prot,
+-			   void *mc, enum kvm_pgtable_walk_flags flags)
++			    u64 phys, enum kvm_pgtable_prot prot,
++			    void *mc, enum kvm_pgtable_walk_flags flags)
  {
- 	int ret = -EINVAL;
-@@ -776,6 +918,12 @@ static int pkvm_handle_hyp_req(struct pkvm_hyp_req *req, struct kvm_vcpu *vcpu)
- 	case PKVM_HYP_REQ_HYP_ALLOC_SELFTEST:
- 		ret = pkvm_hyp_topup(PKVM_TOPUP_HYP_ALLOC_SELFTEST, req->mem.nr_pages);
- 		break;
-+	case PKVM_HYP_REQ_SPLIT:
-+		if (WARN_ON_ONCE(!vcpu))
-+			break;
+ 	struct kvm *kvm = kvm_s2_mmu_to_kvm(pgt->mmu);
+ 	struct pkvm_mapping *mapping = NULL;
+@@ -639,20 +646,22 @@ int pkvm_pgtable_stage2_map(struct kvm_pgtable *pgt, u64 addr, u64 size,
+ 	u64 end = addr + size;
+ 	int ret;
+ 
+-	if (WARN_ON_ONCE(!PAGE_ALIGNED(addr | size)))
++	if (WARN_ON_ONCE(!PAGE_ALIGNED(addr)))
++		return -EINVAL;
 +
-+		ret = pkvm_hyp_req_handle_split(vcpu, req->split.gfn, req->split.nr_pages);
-+		break;
- 	}
++	if (WARN_ON_ONCE(size != PAGE_SIZE && size != PMD_SIZE))
+ 		return -EINVAL;
  
- 	trace_kvm_handle_pkvm_hyp_req(req, ret);
-diff --git a/arch/arm64/kvm/trace_pkvm.h b/arch/arm64/kvm/trace_pkvm.h
-index 493225e3282d..a0787114b892 100644
---- a/arch/arm64/kvm/trace_pkvm.h
-+++ b/arch/arm64/kvm/trace_pkvm.h
-@@ -10,10 +10,12 @@
+ 	lockdep_assert_held_write(&kvm->mmu_lock);
+ 	mapping = pkvm_mapping_iter_first(&pgt->pkvm_mappings, addr, end - 1);
  
- TRACE_DEFINE_ENUM(PKVM_HYP_NO_REQ);
- TRACE_DEFINE_ENUM(PKVM_HYP_REQ_HYP_ALLOC);
-+TRACE_DEFINE_ENUM(PKVM_HYP_REQ_SPLIT);
+ 	if (kvm_vm_is_protected(kvm)) {
+-		/* Protected VMs are mapped using RWX page-granular mappings */
+-		if (WARN_ON_ONCE(size != PAGE_SIZE))
+-			return -EINVAL;
+-
+ 		if (WARN_ON_ONCE(prot != KVM_PGTABLE_PROT_RWX))
+ 			return -EINVAL;
  
- #define PKVM_HYP_REQ_TYPES				\
- 	{ PKVM_HYP_NO_REQ, "NO_REQ" },			\
--	{ PKVM_HYP_REQ_HYP_ALLOC, "HYP_ALLOC" }
-+	{ PKVM_HYP_REQ_HYP_ALLOC, "HYP_ALLOC" },	\
-+	{ PKVM_HYP_REQ_SPLIT, "SPLIT" }
++		if (mapping && mapping->nr_pages == 1 && size > PAGE_SIZE)
++			return -E2BIG;
++
+ 		/*
+ 		 * We either raced with another vCPU or the guest PTE
+ 		 * has been poisoned by an erroneous host access.
+@@ -662,10 +671,11 @@ int pkvm_pgtable_stage2_map(struct kvm_pgtable *pgt, u64 addr, u64 size,
+ 			return ret ? -EFAULT : -EAGAIN;
+ 		}
  
- TRACE_EVENT(kvm_handle_pkvm_hyp_req,
- 	TP_PROTO(struct pkvm_hyp_req *req, int ret),
+-		ret = kvm_call_hyp_nvhe(__pkvm_host_donate_guest, pfn, gfn, 1);
++		ret = kvm_call_hyp_nvhe(__pkvm_host_donate_guest, pfn, gfn, size / PAGE_SIZE);
++
++		/* Warn if -E2BIG is overloaded */
++		WARN_ON_ONCE(ret == -E2BIG);
+ 	} else {
+-		if (WARN_ON_ONCE(size != PAGE_SIZE && size != PMD_SIZE))
+-			return -EINVAL;
+ 
+ 		/*
+ 		 * We either raced with another vCPU or we're changing between
 -- 
 2.56.1.708.g77570a6a1d-goog
 
