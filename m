@@ -2,82 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52316606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89B7606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:36:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VhjXjb1Z;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.a=rsa-sha256 header.s=zmail header.b=INKXdEZy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DcY9Lab0;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=swNs1Ok3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=CaJ1rJLSwQEJ3xQnkbS25PPEL12zni1uFP562brZmQ4=; b=VhjXjb1ZaHbRGjTjER6l580xB7
-	4edwxh1+QI3rzrMeI74uaciSfAGQ7vPGoa311F/edONkdy+HFSOx4e9Iv3txrGhIyWcbrdLiXe9rF
-	lbyZ0nMQr5iQ/kC9F9YSOUrn/KdHsUrSZGQdLy9T4kLkddEy9ZKJG9ri6ijXy6AuNE1KhKTeT+WqI
-	z0cLFID4jrTkZhjZH1TzkWjTRRX8Wfr0f8sgmA+7P3HiW2/DObWfJvGSoArAc1YFlMWB4yQ+71F3E
-	qaqyQcPFZmL2l96j/uZyZXHzJno6q2rh58g74BnBpF2M4IthsnMfUxrMixjZ0czW+Bs2b1dvmqAbj
-	xA4vz9Og==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=CUBa3JrKm9epugz/h6AhQXjaE++SEn+EIH8O82h1Ucg=; b=DcY9Lab0bia7z2
+	uxJqFEo/PpzcW9RYjHjGM8DXCMhUDs+UJaLSQg9ejU6+WV2aJ7Nz0myf6JuoZkv7i7hlt7Wm+rRvH
+	DmSy1Qpw+swOXBCsrGzeUKGC4ZF9jkvyT3ri4sHTE9XIk71q53mUSdfoGHMFcFn6Ib0yxXMkIfvBG
+	E/Q6ukmYFo8Coz7M4Uy5OQwgP3GflQmtXfCQ/L3jW+HWnCs4TZur9Nu34ZGENPjh4cu277WRg3lhg
+	iYa6d1YjFFzus2kPeSHT7aOG08CoecF78yjjd6Ds+NbogokpyxpuYb8fPsk38HFbfIXHD1sIdospL
+	X0QZmpyZ5aRlTu7KoUPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGPQ-00000005GQA-0WT8;
-	Tue, 17 Nov 2026 10:27:28 +0000
-Received: from sender6-op-o15.zoho.com ([165.173.180.15])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGPM-00000005GPF-2xl6
+	id 1xTGXh-00000005Hgv-27Hz;
+	Tue, 17 Nov 2026 10:36:01 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTGXb-00000005Heb-2rCr
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 10:27:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794911223; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Clivc2j+q5iAoTxjufxOwW0bo9td3gtNSStaakH9pymqYeMRDRmgZIttaIqehx22kg03Y6iknKn1NiNtyjdZmoyC9wOy3+J6ukoTlmuh34lQOHXyI/nMQQo7Ewk75/EChGm3o9Nsb8RrJon1EbK+ysdJxged/YTtuyqf1hoZbw0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794911223; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=CaJ1rJLSwQEJ3xQnkbS25PPEL12zni1uFP562brZmQ4=; 
-	b=EtSjqUUSE6CJPBZYq9sEyKfLY5odPpgCXRpaTtixpSx61m9JdyX+nHpuIUvo0T868TyWTh1w/JnjNJlO2z4Ey4pfvtJDzQqIxmcefHn5UeZBOS83gC6tDTMxIoZPzjnT1Re5LfPpccSm9HdX9I9xiSVhFrYItlNMYyshSgsXb4o=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: a=rsa-sha256; b=INKXdEZy9k32hIXFyq4r4o92XYBB2kusiyHKlp9yXTRTLIX/Q3AcUkUs6FEOnVl/9MLDyEiLN259SiyyL+4zNyXdBaKO3zcKm/M76KRvp6moc3QnIBdMezjEllMXkRdu4SOnyeeW0iIG8ZUsMD+lJR0Q+GPm7Ox5Oe1Fb6/Na14=; c=relaxed/relaxed; s=zmail; d=ziyao.cc; v=1; bh=CaJ1rJLSwQEJ3xQnkbS25PPEL12zni1uFP562brZmQ4=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794911222333275.566664836868;
-	Tue, 17 Nov 2026 02:27:02 -0800 (PST)
-Date: Tue, 17 Nov 2026 10:26:52 +0000
-From: Yao Zi <me@ziyao.cc>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Magnus Leatti <magnusleatti@kernelriot.com>
-Cc: me@ziyao.cc, Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Nespolino <g.nespolino@gmail.com>, netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: stmmac: dwmac-motorcomm: support
- Wake-on-LAN from S5
-Message-ID: <avwr7G83tUvZ1HP2@pie>
-References: <20261116091757.1656602-1-magnusleatti@kernelriot.com>
- <20261116091757.1656602-3-magnusleatti@kernelriot.com>
- <avscVrGbi7mFicuz@pie>
- <avsebFtnIASV-KpV@pie>
- <20261116164847.3432765-1-magnusleatti@kernelriot.com>
- <84566846-2ddd-471d-8f4f-068ef10f522d@lunn.ch>
+	Tue, 17 Nov 2026 10:35:59 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 845C41476;
+	Tue, 17 Nov 2026 02:35:51 -0800 (PST)
+Received: from [10.211.55.3] (unknown [10.57.17.180])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E69C3F763;
+	Tue, 17 Nov 2026 02:35:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794911754; bh=sGpkum0bjez5dkPBVcc56aaH2V4M3Z/8iWCyxbdcqTc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=swNs1Ok3HM52gv4LK+pUD5QC0FAfKmdNAXJPkgcOotFJ2MjQfYfidCUeXHthlXj9L
+	 faVlRdxjzI5TEMMx9DTxa7TGMEPRRyFK2b8E5qjm5J1xTzmqhWpF+cozMhgov7uN0F
+	 3h3lykE2a3pQ0gElfqlX9VKEhH+kSYZRFZnrPGDk=
+Message-ID: <ce03205e-6405-4269-a061-266ef6d67e1d@arm.com>
+Date: Tue, 17 Nov 2026 10:35:50 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <84566846-2ddd-471d-8f4f-068ef10f522d@lunn.ch>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.900.72
-X-ZohoMailClient: External
+User-Agent: Thunderbird Daily
+Subject: Re: [PATCH v4 2/3] arm_mpam: resctrl: Only enable CDP on a resource
+ that supports it
+To: Jinjie Ruan <ruanjinjie@huawei.com>, Gavin Shan <gshan@redhat.com>,
+ james.morse@arm.com, reinette.chatre@intel.com, fenghuay@nvidia.com,
+ zengheng4@huawei.com, tan.shaopeng@jp.fujitsu.com, jic23@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261111081316.3828283-1-ruanjinjie@huawei.com>
+ <20261111081316.3828283-3-ruanjinjie@huawei.com>
+ <a783b375-7c27-4c91-b40e-7e615d33bc5b@redhat.com>
+ <b1fd5fa8-bf03-4575-bc05-540a288b609d@huawei.com>
+Content-Language: en-US
+From: Ben Horgan <ben.horgan@arm.com>
+In-Reply-To: <b1fd5fa8-bf03-4575-bc05-540a288b609d@huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_022725_119137_E206AD04 
-X-CRM114-Status: GOOD (  17.51  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_023555_836266_F304E195 
+X-CRM114-Status: GOOD (  24.06  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,46 +74,116 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 02:27:07AM +0100, Andrew Lunn wrote:
-> On Mon, Nov 16, 2026 at 01:48:47PM -0300, Magnus Leatti wrote:
-> > Hi Yao,
-> > 
-> > On Mon, Nov 16, 2026 at 03:17:00PM +0000, Yao Zi wrote:
-> > > > Does the chip automatically enables WoL and loads MAC from eFuse on
-> > > > power-on?
-> > 
-> > Yes. I pulled the power cable, kept the driver from loading and dumped
-> > the registers before anything touched the chip: OOB WoL enabled, eFuse
-> > address in filter 0, PMT armed for magic packet, receiver on. The
-> > packet wake bit in WOL_CTRL is clear.
+Hi Gavin, Jinjie,
+
+On 17/11/2026 03:31, Jinjie Ruan wrote:
+> Hi Gavin,
 > 
-> I've seen BIOS poke around in PHY registers before, especially if the
-> BIOS has an option for WoL.
+> 在 2026/11/13 7:42, Gavin Shan 写道:
+>> On 11/11/26 6:13 PM, Jinjie Ruan wrote:
+>>> resctrl_arch_set_cdp_enabled() enables CDP for any cache level that is
+>>> requested, even one that has no MPAM cache controls. Mounting resctrl
+>>> with -o cdpl2 when only L3 can allocate still turns CDP emulation on for
+>>> the whole system, so every CLOSID takes two PARTIDs while resctrl keeps
+>>> its CLOSID count at the number of PARTIDs. Control groups in the upper
+>>> half then map to PARTIDs beyond mpam_partid_max, which index past the
+>>> configuration and monitor arrays and program out of range PARTIDs into
+>>> the MSCs. On QEMU with 5 PARTIDs the first monitor read after creating
+>>> 2 control groups raises MSMONCFG_ID_RANGE for PARTID 5, and MPAM is
+>>> disabled.
+>>>
+>>> Do not enable CDP when a resource cannot allocate or is not CDP capable,
+>>> as x86 does, so the mount fails instead. Only the enable path is checked,
+>>> since unmount disables CDP on both cache levels to restore the MBA
+>>> control.
+>>>
+>>> A system where only MBA can allocate, or that only has monitors, now
+>>> fails a mount with CDP as well: CDP hides the MBA control because
+>>> mbw_max is a per-PARTID maximum, leaving nothing for CDP to apply to.
+>>>
+>>> Fixes: 6789fb99282c ("arm_mpam: resctrl: Add CDP emulation")
+>>> Link: https://sashiko.dev/#/bug/linux-05c19551-0bba-4a06-
+>>> aa2c-3c90fab5853d
+>>> Suggested-by: Ben Horgan <ben.horgan@arm.com>
+>>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>>> Cc: <stable@vger.kernel.org> # 7.1+
+>>> ---
+>>>   drivers/resctrl/mpam_resctrl.c | 4 ++++
+>>>   1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/
+>>> mpam_resctrl.c
+>>> index 573617ba09df..afa3c084c475 100644
+>>> --- a/drivers/resctrl/mpam_resctrl.c
+>>> +++ b/drivers/resctrl/mpam_resctrl.c
+>>> @@ -222,6 +222,10 @@ int resctrl_arch_set_cdp_enabled(enum
+>>> resctrl_res_level rid, bool enable)
+>>>       if (enable && mpam_partid_max < 1)
+>>>           return -EINVAL;
+>>>   +    if (enable && (!
+>>> mpam_resctrl_controls[rid].resctrl_res.alloc_capable ||
+>>> +               !mpam_resctrl_controls[rid].resctrl_res.cdp_capable))
+>>> +        return -EINVAL;
+>>> +
+>>
+>> x86 only checks 'cdp_capable', so this check isn't exactly same as to
+>> what's
+>> done on x86, as claimed in the commit log?
+> 
+> Sorry, the commit message is somewhat misleading and need updated.
+> 
+> In my opinion, CDP is a feature related to resource allocation, and it
+> is always reasonable to check alloc_capable.
 
-I think it's likely not BIOS setting this up, since the chip's behavior
-is the same when a reset is manually triggered, according to Magnus'
-test.
+Hmm, I know the patch came from my suggestion but I think the reason
+that x86 only checks cdp_capable is that alloc_capable is that the
+alloc_capable flag is also used to indicate that the resource is fully
+setup and can be used.
 
-I could grab some devices with U-Boot as firmware, and check against a
-YT6801 addon card, which should confirm the power-on behavior.
+In resctrl_arch_set_cdp_enabled() we manipulate alloc_capable for
+re-enabling the MBA resource and the added !alloc_capable check would
+mean that we'd never be able to do that manipulation. resctrl doesn't
+call resctrl_arch_set_cdp_enabled() for the MBA resource but to be more
+resilient the MPAM interface allows it.
 
-Anyway, the approach of resetting the chip on .shutdown() to get WoL
-working in S5 should have nothing to do with the power-up behavior. It
-only affects whether the WoL behavior is consistent regardless of the
-reason of entering S5.
+In the future, once we start adding more controls for resources we'll
+have to be careful to do the cdp enabling and hiding of features at the
+control level rather than the feature level.
 
->      Andrew
-
--- 
 Thanks,
-Yao Zi
 
-Meow-mrrp-mrow, I'm a cat.
+Ben
+
+> 
+> Best regards,
+> Jinjie
+> 
+>>
+>> int resctrl_arch_set_cdp_enabled(enum resctrl_res_level l, bool enable)
+>> {
+>>         struct rdt_hw_resource *hw_res = &rdt_resources_all[l];
+>>
+>>         if (!hw_res->r_resctrl.cdp_capable)
+>>                 return -EINVAL;
+>>
+>>         :
+>> }
+>>
+>>
+>>>       /*
+>>>        * resctrl_arch_set_cdp_enabled() is only called with enable set to
+>>>        * false on error and unmount.
+>>
+>> Thanks,
+>> Gavin
+> 
+
 
