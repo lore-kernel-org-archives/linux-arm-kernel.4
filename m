@@ -2,108 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17DAB606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 17:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6322B606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 18:06:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MueqSoe0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cEwziJdB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kbcZjZzf;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=wxNa/zeN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=hYihUWQYpNaOwvzyXWFSsLsKCvn9Evlo2JmwSxf7NpI=; b=MueqSoe0kK4AbOrD6Dwkx+HePu
-	9F/VZEL4ibUp3RQ/+G38nxy5vfhd/G+5bDUbrgJVz7DSqlnY9tqt8oowBTeQS/1JFioQwFB7N3UYH
-	Xj1SAfe02Bln/wlWwLSns1z9rcbJlxPjzQU6ewwP/AWQqYHtvnUoNMvG7JKTiNmV6FfBaDPJtnjQ6
-	p4QgnBopR5wp/0Y3Ckxffk8KNqsIuTReJ9tnqqDoBVnixjWkqcTUE8rbISPe1cSm6xf4Lb7Rl8PRw
-	KlZCJzEpxt449prprwn2EdawGM13EpbAEZfYPV02IU0lSlIswKMxYOdZSW1PCzyOlRRvmBVWFPuhD
-	Hul0IqbA==;
+	bh=nNTfQN2WoengZbD+BXY0CaTYtpF5bLo/3jNXNE74Cmg=; b=kbcZjZzfr6V/nAOPGAL+Eb9C5d
+	zZkZjAZ6qJ/1jzKpgJxJ7D6ujhF7wLFv+JK8jPz+ubyT/W1k4flNIrG6zxVb6XYdBcDFa/2e1X4zy
+	/vJQY1l4N7Nsagm99QX1Qj8re/hfOwLidq4nEbvQkCVs+zBPu92afnBMuGHnbBmTNULBuwNwBQdF2
+	6Eii/Lbgtp+rS5CSzDdDR8DH7F09RzaZ4h1IdswMqCmUiYgRJgAahq2P9GZMqB8rhDvRkq3Rf06KK
+	1IgRcwe+H+b8U6TID06yf0W+u8Bw9anmO3lbtEDg8MQjUO5hRCUIEX5Tu3TfAcQlC771ZBogLYgV1
+	WEDU6BEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNQG-00000006hYJ-0oOO;
-	Tue, 17 Nov 2026 17:56:48 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xTNZA-00000006inT-18eQ;
+	Tue, 17 Nov 2026 18:06:00 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNQF-00000006hXV-02kN;
-	Tue, 17 Nov 2026 17:56:47 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7DC2045AC4;
-	Tue, 17 Nov 2026 17:56:46 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794938206;
-	b=r3ufT+Cj823yyjtxw+k+rpraU1d9SM+zsWzMkTC7RgMQEtG2Dky/Ffq1jI5XdTKrgqsa
-	 mGjoLUHpaRjfEpgXa3FGK+n2DHmlNQIAr4bV8WTC0dRf8saI3aSAbar2C/vB3YguySBLt
-	 XDC1aEJN96jgAKApvjRVRIjTtTRE+f3PyevVguBB/9alnaRQ8jnIfMo2EvNSb3zv2c36K
-	 NlJApBVupUHC75LN040XtbrqAgVpqctTaYh3pksRmMGY82vxEEupcRId9xaE0HX5wSoBu
-	 dnuxK0v5pGT66PMlJZ5gOWh542FmCj+Y7Ha4GvbLbBZLRYtq8+mwo1h7zncjDCDWjUA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794938206;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=hYihUWQYpNaOwvzyXWFSsLsKCvn9Evlo2JmwSxf7NpI=;
-	b=lr7/dCXUeoD/c7LTIQ2LioCOHDZH75YMnyUqwkn7rVnHWx6TzbcVp4QzjmzT/9Cef/Ex
-	 S1G9ILzSke8k1DHZBozO4Qo09lSnAvl+geVoetFc8btMyyaU8dLojwyYMzDFWsqB2JQgm
-	 Wo8QLo6wh/6y9ORGGyRnOxW3OewWZhF3x/SBif6tDRv91UOAHzIlxR/QjgsJ86HRNTtx/
-	 7z2vjUmCH4HxzuYl33wbiw4Xhgrput6tKxbUYX8XE1tLpfr6lK3qEAyFEZTmORRikcJlC
-	 B7qqJk0ydIjDR68HOVRE3mpxUS8pM2zejsQK1m4Kt00c1kTl22wbA34qERPUaD/flag==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 887B31F000C4;
-	Tue, 17 Nov 2026 17:56:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794938206;
-	bh=hYihUWQYpNaOwvzyXWFSsLsKCvn9Evlo2JmwSxf7NpI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=cEwziJdBJ1+7C1uauASeBgCYNgIU+FmCfmXO2JUA9dzWd9gaDsBtr61/36+nJyLhb
-	 0hHEBt41RuqJUix9r4aw43vJW8phjixb3EZygMdPvEd5FRFztqdlE93WRUfYwPSiYY
-	 1zXjtIrFisipqnueCmc/ZdGCnOziFdRoXS1uo94JJRU/lvWvh3/3j2EV4qvgWe4N0f
-	 T2b9+m6xR7NRmbLNz7jCxqB13c9904HeyUKxjlCqtAhGn9W97cfj3yHoSEi1WI2gZD
-	 vmZ3pHaustN+ZeJKxI/IPz3ThIgAUPa6SYv0yZSjjWzdMjSuY+P0pN7qs/2M2H+KZu
-	 My6kzdC9AIesg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 0A71C4AA30;
-	Tue, 17 Nov 2026 17:56:45 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Tue, 17 Nov 2026 19:56:34 +0200
-Subject: [PATCH v2 3/3] iio: adc: mt6359-auxadc: fix scale calculation
+	id 1xTNZ4-00000006ilW-2StN
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 18:05:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=nNTfQN2WoengZbD+BXY0CaTYtpF5bLo/3jNXNE74Cmg=; b=wxNa/zeNdpgw5Vm2AoMDMaUl+k
+	y4y0UqXscB59zJiJl/siXlxEdMJDFQLUgcWKJn3kcF8OUx7ud38lXPPJUdM6mzS0KK1abBoJI2oEM
+	rnmqmDeUJSXL77d/EplvqO8axBfO1yWK333jDPmtMCeFX+AKwMPeKkdwSmkyUBZ8y3Ss=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1xTNYg-00HEQB-OJ; Tue, 17 Nov 2026 19:05:30 +0100
+Date: Tue, 17 Nov 2026 19:05:30 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+Cc: Boon Khai Ng <boon.khai.ng@altera.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Michal Simek <michal.simek@amd.com>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net 1/2] net: altera: Fix potential use-after-free on
+ removal
+Message-ID: <b8f3c9d0-47e6-4949-bb17-477f8a4e52c9@lunn.ch>
+References: <20261117-571e631490-net-0@mail.sdu.edu.cn>
+ <20261117-571e631490-net-1@mail.sdu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261117-6768-6358-fixes-v2-3-1ffc3c2f3c80@protonmail.com>
-References: <20261117-6768-6358-fixes-v2-0-1ffc3c2f3c80@protonmail.com>
-In-Reply-To: <20261117-6768-6358-fixes-v2-0-1ffc3c2f3c80@protonmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, linux-iio@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, Roman Vivchar <rva333@protonmail.com>, 
- Jonathan Cameron <jic23@kernel.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794938202; l=1136;
- i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=dlPuJsQ30iilHCX3ky5K9VEurCW9bPVUqM4NO+pOFjs=;
- b=7iq2aIFVabqKvHpVhkrNE98UvRvNwtTEYyuql4FJ3kV8llZcoCW+TWWlKf0e2TurMkmRjRfqY
- XVTflMRCLfKApjBsZNIt3Vz8qdovb99QqUy2mSf641TdmB1ZK7qeZJ/
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
- auth_id=777
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261117-571e631490-net-1@mail.sdu.edu.cn>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_100554_642885_491B1F6C 
+X-CRM114-Status: UNSURE (   5.93  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,54 +74,22 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: rva333@protonmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Roman Vivchar <rva333@protonmail.com>
+> Fixes: bbd2190ce96d ("Altera TSE: Add main and header file for Altera Ethernet Driver")
 
-IIO_CHAN_INFO_SCALE currently returns value without dividing by
-2^realbits, overflowing the integer to an invalid value.
+The usual question: Does this bother anybody?
 
-Fix this by using IIO_VAL_FRACTIONAL and setting val2 to the ADC
-resolution.
+If not, net-next, no Fixes:
 
-Fixes: 3587914bf61d ("iio: adc: Add support for MediaTek MT6357/8/9 Auxiliary ADC")
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+    Andrew
+
 ---
- drivers/iio/adc/mt6359-auxadc.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/iio/adc/mt6359-auxadc.c b/drivers/iio/adc/mt6359-auxadc.c
-index 09432d0974cf..3a969c30f633 100644
---- a/drivers/iio/adc/mt6359-auxadc.c
-+++ b/drivers/iio/adc/mt6359-auxadc.c
-@@ -770,13 +770,9 @@ static int mt6359_auxadc_read_raw(struct iio_dev *indio_dev,
- 
- 	if (mask == IIO_CHAN_INFO_SCALE) {
- 		*val = desc->r_ratio.numerator * cinfo->vref_mV;
-+		*val2 = desc->r_ratio.denominator << chan->scan_type.realbits;
- 
--		if (desc->r_ratio.denominator > 1) {
--			*val2 = desc->r_ratio.denominator;
--			return IIO_VAL_FRACTIONAL;
--		}
--
--		return IIO_VAL_INT;
-+		return IIO_VAL_FRACTIONAL;
- 	}
- 
- 	scoped_guard(mutex, &adc_dev->lock) {
-
--- 
-2.56.1
-
-
+pw-bot: cr
 
