@@ -2,91 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AF5606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1E4606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qqsDKA78;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Nt5ZhPDl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qPJ0P0lI;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h70sXyoh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=AiRDOzpH95UQQFEtuP/vStLYkfQknTZRNwFShMgbrc0=; b=qqsDKA78QphXs6dhWv+IGSZEAC
-	GzBBxjkBVuQ9x1YpCCEAM6LE0SZsAJ2C1cT/059JvFjGDHkqyqQWTlisAaNSbLyu8TXd2yF+7XG+5
-	tIyFNVLPwoDOCSFUARawd3KajQkWr+LpXpn2CLcU+Ms2OpaupC9rSge8ejwWcAMMQVbm7jmP1BuMM
-	dSxwYNl9wdXUAtVC/FFXgcvE+PmlSOQyCyvgWsLZKQUFaAoDCqtQkEKXsLmX5k8OrOcj/6kFUDfZl
-	udp9TqNce697/H83nMNaWEB8jJ7GwcmaSVMZczPbFOut+C+bsaoWg/04F2GHe2zvvdqra6DXCtqgs
-	WTV5OU4w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=2NYtBZm0XInhRoJxa7FTY/jwtTSFkeJiyIlnwfaMdUw=; b=qPJ0P0lI4RNwcM
+	rP80AkwMksclgIr/0PMG4rXPKpxXMqNoyVnwW1XpYuvWJ3cvOT866GZuUSkntDKpJqc200eb8W8IL
+	R93DAeN6HxfdhChUnHMOVI3UV0l5FbFF0lAiweqTf3bsKZzhR28ZQKgtMmNtfUP+92UsZd+gWI4oO
+	oxEjSC/bbHQFliIH/3B+Omtx9Bnk+73iP9YOE4JPbdHQij7RrB/4ZfBKE+Yw2zQ1d0CasjKSSuT+/
+	rCCh7bIf2zyywT8lfm2IRSZpEq3x1sg/fQD2mxI7YkDmqCkzHSPi3mun4jXUuDMlkWUU/+wK/Si4q
+	Opg/hEKOoKcPaRo0mwYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQmY-000000078AW-3J71;
-	Tue, 17 Nov 2026 21:32:02 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xTQnC-000000078Hm-0VZa;
+	Tue, 17 Nov 2026 21:32:42 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQmW-000000078AB-4BcC
+	id 1xTQn9-000000078HN-3wmy
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 21:32:02 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794951118;
-	bh=LpIiOijw2hoRxKkjG5H+tycmbZiiE0IAUAHL2/Z4xMc=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Nt5ZhPDljNi6azHaM+esrUxeLggPl65a06MKoUG03kP6tB0dG4Q2oiKQPMMXcaJ1t
-	 geWVX4rbjOeuxot2WkjI6utvmpccJeAsmsguxkkLccWzrp17r3TlBYAPgNIFqQCprr
-	 vJ5rO+RHIs3YDrS21dnxt0l0HsgCDQOGQQyFx7BaI1q++kA8/Fj+m/eU1BMm7Z1vvr
-	 JOqrDReeNgiEqLzaShkTdV1bq/wBcMox8vLHCzZr3HbSj5hGmoUcLkvpsRshvbm+4O
-	 m09vk+u/MSjjORPMw4UgipK5eel41aW9qND+0AnTqaxtPjoBQAzhFrns3ku2fNmqvk
-	 A2t3YyvG8Y98Q==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6B56517E04B4;
-	Tue, 17 Nov 2026 22:31:56 +0100 (CET)
-Message-ID: <db1d7bd622df8b0edc0c329c37a350cee745b123.camel@collabora.com>
-Subject: Re: [PATCH 03/14] media: h264: Add SPS video definitions
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Paul Kocialkowski <paulk@sys-base.io>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,  Pengutronix Kernel Team	
- <kernel@pengutronix.de>, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil	
- <hverkuil@kernel.org>, Marco Felsch <m.felsch@pengutronix.de>, Michael
- Tretter	 <m.tretter@pengutronix.de>
-Date: Tue, 17 Nov 2026 16:31:55 -0500
-In-Reply-To: <20260522101653.2565125-4-paulk@sys-base.io>
-References: <20260522101653.2565125-1-paulk@sys-base.io>
-	 <20260522101653.2565125-4-paulk@sys-base.io>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-wwcCmKPZi8COV1ETuEo4"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	Tue, 17 Nov 2026 21:32:41 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5824145C9B;
+	Tue, 17 Nov 2026 21:32:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2DB01F000C5;
+	Tue, 17 Nov 2026 21:32:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794951159;
+	bh=2NYtBZm0XInhRoJxa7FTY/jwtTSFkeJiyIlnwfaMdUw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=h70sXyohBz9tlH4O2TwkxZDbGTPC86Wavmpegj94NPPusEGEuSfyRpi8XPL8G3eD5
+	 nWqY0AXNEQus3YgGIY/G1poWUowRmDxDPrUKbTXau15xSGYw6FShm4N/TwlEVp/oJp
+	 ugDHGjo+cRVfxklSfo12JXJtyxOZWZZWqqcSBsxtRZCov8l4JWXAjsfhS4YB0Vu/sa
+	 bEmFvA+XSOsIH26sobkgCI1PH4Tw2uTROhRRI47TMHRmpAZAfUD62HEMCHHpyN/rO9
+	 W4PAMjdn/gnvvk5lYIe8lxiRjAEBD1nmGzs9+EEBO3tqT54zj11XVLCSBBkaOMoZgT
+	 L4l/4FP9cdyxQ==
+Message-ID: <d38d9e09-08f1-4491-b202-f0ea0f799f64@kernel.org>
+Date: Tue, 17 Nov 2026 22:32:31 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_133201_233146_2F4D43A0 
-X-CRM114-Status: GOOD (  15.31  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] mm: define generic pudp_invalidate()
+ implementation
+To: Jinjiang Tu <tujinjiang@huawei.com>, akpm@linux-foundation.org,
+ ljs@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+ mark.rutland@arm.com, ryan.roberts@arm.com, peterx@redhat.com,
+ dave.jiang@intel.com, linux-arm-kernel@lists.infradead.org,
+ linux-mm@kvack.org
+Cc: wangkefeng.wang@huawei.com, sunnanyong@huawei.com
+References: <20261117020237.4037980-1-tujinjiang@huawei.com>
+ <20261117020237.4037980-2-tujinjiang@huawei.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
+ dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
+ QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
+ XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
+ Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
+ PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
+ WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
+ UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
+ jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
+ B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzS5EYXZpZCBIaWxk
+ ZW5icmFuZCAoQ3VycmVudCkgPGRhdmlkQGtlcm5lbC5vcmc+wsGQBBMBCAA6AhsDBQkmWAik
+ AgsJBBUKCQgCFgICHgUCF4AWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaYJt/AIZAQAKCRBN
+ 3hD3AP+DWriiD/9BLGEKG+N8L2AXhikJg6YmXom9ytRwPqDgpHpVg2xdhopoWdMRXjzOrIKD
+ g4LSnFaKneQD0hZhoArEeamG5tyo32xoRsPwkbpIzL0OKSZ8G6mVbFGpjmyDLQCAxteXCLXz
+ ZI0VbsuJKelYnKcXWOIndOrNRvE5eoOfTt2XfBnAapxMYY2IsV+qaUXlO63GgfIOg8RBaj7x
+ 3NxkI3rV0SHhI4GU9K6jCvGghxeS1QX6L/XI9mfAYaIwGy5B68kF26piAVYv/QZDEVIpo3t7
+ /fjSpxKT8plJH6rhhR0epy8dWRHk3qT5tk2P85twasdloWtkMZ7FsCJRKWscm1BLpsDn6EQ4
+ jeMHECiY9kGKKi8dQpv3FRyo2QApZ49NNDbwcR0ZndK0XFo15iH708H5Qja/8TuXCwnPWAcJ
+ DQoNIDFyaxe26Rx3ZwUkRALa3iPcVjE0//TrQ4KnFf+lMBSrS33xDDBfevW9+Dk6IISmDH1R
+ HFq2jpkN+FX/PE8eVhV68B2DsAPZ5rUwyCKUXPTJ/irrCCmAAb5Jpv11S7hUSpqtM/6oVESC
+ 3z/7CzrVtRODzLtNgV4r5EI+wAv/3PgJLlMwgJM90Fb3CB2IgbxhjvmB1WNdvXACVydx55V7
+ LPPKodSTF29rlnQAf9HLgCphuuSrrPn5VQDaYZl4N/7zc2wcWM7BTQRVy5+RARAA59fefSDR
+ 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
+ VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
+ /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
+ iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
+ 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
+ zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
+ azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
+ FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
+ sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
+ 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
+ EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
+ IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
+ 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
+ Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
+ sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
+ yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
+ 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
+ r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
+ 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
+ CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
+ qIws/H2t
+In-Reply-To: <20261117020237.4037980-2-tujinjiang@huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,183 +117,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-wwcCmKPZi8COV1ETuEo4
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Le vendredi 22 mai 2026 =C3=A0 12:16 +0200, Paul Kocialkowski a =C3=A9crit=
-=C2=A0:
-> These definitions are used to build the video part of the SPS,
-> including important fields such as frame cropping, timing info
-> (frame rate) and pixel coding.
-
-Since the kernel take control of bitstream generation, maybe it should offe=
-r to
-insert SEIs ?
-
-Nicolas
-
->=20
-> Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+On 11/17/26 03:02, Jinjiang Tu wrote:
+> x86 and riscv have identical pudp_invalidate() implementations. Move it to
+> mm/pgtable-generic.c with the __HAVE_ARCH_PUDP_INVALIDATE override guard.
+> PowerPC keeps its own implementation. In the later patch, arm64 will use
+> the generic implementation too.
+> 
+> No functional change intended.
+> 
+> Signed-off-by: Jinjiang Tu <tujinjiang@huawei.com>
 > ---
->  include/media/v4l2-h264.h | 115 ++++++++++++++++++++++++++++++++++++++
->  1 file changed, 115 insertions(+)
->=20
-> diff --git a/include/media/v4l2-h264.h b/include/media/v4l2-h264.h
-> index 1833c0556963..3b00a1b67fe5 100644
-> --- a/include/media/v4l2-h264.h
-> +++ b/include/media/v4l2-h264.h
-> @@ -12,6 +12,121 @@
-> =20
->  #include <media/v4l2-ctrls.h>
-> =20
-> +#define V4L2_H264_START_CODE_ANNEX_B=09=090x00000001
-> +
-> +#define V4L2_H264_NALU_TYPE_SLICE_NON_IDR=091
-> +#define V4L2_H264_NALU_TYPE_SLICE_IDR=09=095
-> +#define V4L2_H264_NALU_TYPE_SPS=09=09=097
-> +#define V4L2_H264_NALU_TYPE_PPS=09=09=098
-> +#define V4L2_H264_NALU_TYPE_AUD=09=09=099
-> +
-> +#define V4L2_H264_PRIMARY_PIC_TYPE_I=09=090
-> +#define V4L2_H264_PRIMARY_PIC_TYPE_IP=09=091
-> +#define V4L2_H264_PRIMARY_PIC_TYPE_IPB=09=092
-> +
-> +#define V4L2_H264_VUI_ASPECT_RATIO_IDC_EXTENDED=09255
-> +
-> +#define V4L2_H264_VUI_VIDEO_COMPONENT=09=090
-> +#define V4L2_H264_VUI_VIDEO_PAL=09=09=091
-> +#define V4L2_H264_VUI_VIDEO_NTSC=09=092
-> +#define V4L2_H264_VUI_VIDEO_SECAM=09=093
-> +#define V4L2_H264_VUI_VIDEO_MAC=09=09=094
-> +#define V4L2_H264_VUI_VIDEO_UNSPECIFIED=09=095
-> +
-> +#define V4L2_H264_VUI_COLOUR_BT709=09=091
-> +#define V4L2_H264_VUI_COLOUR_UNSPECIFIED=092
-> +#define V4L2_H264_VUI_COLOUR_BT470_SYSTEM_M=094
-> +#define V4L2_H264_VUI_COLOUR_BT470_SYSTEM_BG=095
-> +#define V4L2_H264_VUI_COLOUR_SMPTE170M=09=096
-> +#define V4L2_H264_VUI_COLOUR_SMPTE240M=09=097
-> +#define V4L2_H264_VUI_COLOUR_BT2020=09=099
-> +
-> +#define V4L2_H264_VUI_TRANSFER_BT709=09=091
-> +#define V4L2_H264_VUI_TRANSFER_UNSPECIFIED=092
-> +#define V4L2_H264_VUI_TRANSFER_BT470_SYSTEM_M=094
-> +#define V4L2_H264_VUI_TRANSFER_BT470_SYSTEM_BG=095
-> +#define V4L2_H264_VUI_TRANSFER_SMPTE170M=096
-> +#define V4L2_H264_VUI_TRANSFER_SMPTE240M=097
-> +#define V4L2_H264_VUI_TRANSFER_LINEAR=09=098
-> +#define V4L2_H264_VUI_TRANSFER_SRGB=09=0913
-> +
-> +#define V4L2_H264_VUI_MATRIX_IDENTITY=09=090
-> +#define V4L2_H264_VUI_MATRIX_BT709=09=091
-> +#define V4L2_H264_VUI_MATRIX_UNSPECIFIED=092
-> +#define V4L2_H264_VUI_MATRIX_BT470_SYSTEM_M=094
-> +#define V4L2_H264_VUI_MATRIX_BT470_SYSTEM_BG=095
-> +#define V4L2_H264_VUI_MATRIX_SMPTE170M=09=096
-> +#define V4L2_H264_VUI_MATRIX_SMPTE240M=09=097
-> +#define V4L2_H264_VUI_MATRIX_BT2020=09=099
-> +#define V4L2_H264_VUI_MATRIX_BT2020_CONST_LUM=0910
-> +
-> +#define V4L2_H264_SPS_VIDEO_FLAG_FRAME_CROPPING=09=09=09=09BIT(0)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_PARAMETERS_PRESENT=09=09=09BIT(1)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_ASPECT_RATIO_INFO_PRESENT=09=09BIT(=
-2)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_OVERSCAN_INFO_PRESENT=09=09BIT(3)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_OVERSCAN_APPROPRIATE=09=09BIT(4)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_VIDEO_SIGNAL_TYPE_PRESENT=09=09BIT(=
-5)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_VIDEO_FULL_RANGE=09=09=09BIT(6)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_COLOUR_DESCRIPTION_PRESENT=09=09BIT=
-(7)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_CHROMA_LOC_INFO_PRESENT=09=09BIT(8)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_TIMING_INFO_PRESENT=09=09BIT(9)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_FIXED_FRAME_RATE=09=09=09BIT(10)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_NAL_HRD_PARAMETERS_PRESENT=09=09BIT=
-(11)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_VCL_HRD_PARAMETERS_PRESENT=09=09BIT=
-(12)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_LOW_DELAY_HRD=09=09=09BIT(13)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_PIC_STRUCT_PRESENT=09=09=09BIT(14)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_BITSTREAM_RESTRICTION=09=09BIT(15)
-> +#define V4L2_H264_SPS_VIDEO_FLAG_VUI_MOTION_VECTORS_OVER_PIC_BOUNDARIES=
-=09BIT(16)
-> +
-> +struct v4l2_h264_sps_video_hrd {
-> +=09u8 cpb_cnt_minus1;
-> +=09u8 bit_rate_scale;
-> +=09u8 cpb_size_scale;
-> +
-> +=09u32 bit_rate_value_minus1[32];
-> +=09u32 cpb_size_value_minus1[32];
-> +=09u8 cbr_flag[32];
-> +
-> +=09u8 initial_cpb_removal_delay_length_minus1;
-> +=09u8 cpb_removal_delay_length_minus1;
-> +=09u8 dpb_output_delay_length_minus1;
-> +=09u8 time_offset_length;
-> +};
-> +
-> +struct v4l2_h264_sps_video {
-> +=09u32 frame_crop_left_offset;
-> +=09u32 frame_crop_right_offset;
-> +=09u32 frame_crop_top_offset;
-> +=09u32 frame_crop_bottom_offset;
-> +
-> +=09u8 aspect_ratio_idc;
-> +=09u16 sar_width;
-> +=09u16 sar_height;
-> +
-> +=09u8 video_format;
-> +=09u8 colour_primaries;
-> +=09u8 transfer_characteristics;
-> +=09u8 matrix_coefficients;
-> +
-> +=09u8 chroma_sample_loc_type_top_field;
-> +=09u8 chroma_sample_loc_type_bottom_field;
-> +
-> +=09u32 num_units_in_tick;
-> +=09u32 time_scale;
-> +
-> +=09struct v4l2_h264_sps_video_hrd nal_hrd;
-> +=09struct v4l2_h264_sps_video_hrd vcl_hrd;
-> +
-> +=09u32 max_bytes_per_pic_denom;
-> +=09u32 max_bits_per_mb_denom;
-> +=09u32 log2_max_mv_length_horizontal;
-> +=09u32 log2_max_mv_length_vertical;
-> +=09u32 max_num_reorder_frames;
-> +=09u32 max_dec_frame_buffering;
-> +
-> +=09u32 flags;
-> +};
-> +
->  /**
->   * struct v4l2_h264_reflist_builder - Reference list builder object
->   *
 
---=-wwcCmKPZi8COV1ETuEo4
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+Acked-by: David Hildenbrand (Arm) <david@kernel.org>
 
------BEGIN PGP SIGNATURE-----
+-- 
+Cheers,
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavzHywAKCRDZQZRRKWBy
-9J+bAPsEdUmKw823k9vFfWb96+ew2e3/HW4G5gJ8WXa4T/pgygEA1mrIyQvGdVbK
-xjclhCW5Az4OOx9fty3dU8u+g0yL6Aw=
-=6tQ6
------END PGP SIGNATURE-----
-
---=-wwcCmKPZi8COV1ETuEo4--
+David
 
