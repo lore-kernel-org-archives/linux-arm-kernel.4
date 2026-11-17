@@ -2,91 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A9B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D48C606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kzNrGbdv;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=DK60HOsv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j892Jjjr;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=hz4olVyK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=6IozNtdf6HbKzKGMEo6l7v3ccDJ192jbBuLKZ0N87Pg=; b=kzNrGbdvo8h2nAXRGzn5+JZw07
-	PqaE+MGuddL8UGyQgm+Oq8HSHnmrLQS8QRK7TkMlWR3HezDNupiSiYa5skqhQRSlygUe7bWY5ALap
-	BIhwuoxSQusk9MDzoUKztG45MxSU3h8c0Gt7sUOuwmMvoxDjp5he5jjyZx+/kin+PIAf4wJw5ws/C
-	PSJrlNkNB5XH/ktC1rQDHk1eFey8O++Sx0DnHHJbw9haVRwbwD6bSG9AvF6X55sw93RlffBbXuENQ
-	nigIJVTEYCokUwJ22YhTnshUKfYKUEkp7uNQEvgfITVNpFuOOBfFjTvBoLecJ+rsmpDg7r8KeuXJs
-	SVxnXXRw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=e/0455aVSKf4ZqTvdu8SIA7Syq8Dck34mc+Lxs2NK9Q=; b=j892JjjrIeBD4i
+	0hT3UFB2+iTOcNxDDDo4HK0J5R4fdagRpv6b37S4jXMuNoHaN8Y+Vez3SeejpYnXtXVs320mm44+7
+	XjMNd3UNVkI93XWbEYoeGuWX4eSg13X3DE81E+bABlGLgGl3LC785X1BPy/+n1HPNrAvP0araNThp
+	rOd89LcEdyuwmamufbWVarPYi1oR+DY1yJAZrZcJ5VUXulQYzgmpzNp+lkV+7HNk9YDoubg9YNHfH
+	kUo5RoBep/KE3t5DLAQ5/SAFDQlxGPHFwHAvPZmlKoz6QfilFmF9x1eW/oNsU+hfkEb2OzFI1K08q
+	JjPvUOty51Rwx5hei+ng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQwt-000000079cA-1ZN7;
-	Tue, 17 Nov 2026 21:42:43 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xTR0B-000000079vx-40jo;
+	Tue, 17 Nov 2026 21:46:07 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTQwr-000000079be-0wIS
+	id 1xTR06-000000079uw-48cu
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 21:42:42 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794951759;
-	bh=DAWQCPgIzEXdD/gx6UFSHeVExfzcx4VAtZ2MtqyfUWw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=DK60HOsvAA0/+ZyRO3J5fy8osZDPA14ty+SokRJI3jsLyf/Sj9cb4EzYHWw9kJRzW
-	 XzjIdg9OFznj+GKZJKXceaJacr/x6t8LMeHcxZ4RqIoh+HewI9ofPoEohHQmNOZIG9
-	 5Vzlf3UWf0rIrNofsKfu3pvkgeHHMHd2GYkQ70BpFttX9gahHlFLt3kh3SimzCOriH
-	 B3ay2SOyIF6koiwI3muBRXvZ2ha5SK/glTuzwooFjz5pRHxheA4+wsxHPLoVS317v7
-	 Zh9o5qwQtbcQ7LfRuq+JkbUTBjWh+OumaUEaLOj9+pdnnTQX9+orCRHDG7SAtHCA2a
-	 RizjA9w4pVsKw==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1336717E0406;
-	Tue, 17 Nov 2026 22:42:36 +0100 (CET)
-Message-ID: <980bbf45de0983f6b38a6b1f8dbf5a20310fc66c.camel@collabora.com>
-Subject: Re: [PATCH 09/14] media: verisilicon: Cancel job with runtime pm
- put/clk disable on failure
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Paul Kocialkowski <paulk@sys-base.io>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,  Pengutronix Kernel Team	
- <kernel@pengutronix.de>, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil	
- <hverkuil@kernel.org>, Marco Felsch <m.felsch@pengutronix.de>, Michael
- Tretter	 <m.tretter@pengutronix.de>
-Date: Tue, 17 Nov 2026 16:42:35 -0500
-In-Reply-To: <20260522101653.2565125-10-paulk@sys-base.io>
-References: <20260522101653.2565125-1-paulk@sys-base.io>
-	 <20260522101653.2565125-10-paulk@sys-base.io>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-nCR6jsSSCS1asrKum/3e"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	Tue, 17 Nov 2026 21:46:06 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4bb77a462c6so9592645e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 13:46:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1794951959; x=1795556759; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=e/0455aVSKf4ZqTvdu8SIA7Syq8Dck34mc+Lxs2NK9Q=;
+        b=hz4olVyKg1UMovzP6BIAWqt81u6KB65aeLXZkSeAKK2zRRxtwPT0y0msGlthJfDjhN
+         TK5ua4uzI4V/h3HAifp+7t9s0fw+RUDZ2L0cIYqCAv77LTEo2uKjYyVq+yoN+4ABFRLb
+         Kp6wWJqm2lYFwD7E+S+7aAFAWirguvpyXU72XDv70F6UGy/jDyttJJX1/ALQ94f13dbi
+         c5TjlKfkLDw9I+lCy2M8ScOz3Xh2icHXp9Av4VqSRtVX4QOg3xN2S89CzQ+NE83O1cJk
+         7trgiY2nHtxIi8Q/1z/s42MI/AoniBJg6Ax6ZQlVXs6/KzJG7CkkmtVB09GxXNE9YsZj
+         4/3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794951960; x=1795556760;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=e/0455aVSKf4ZqTvdu8SIA7Syq8Dck34mc+Lxs2NK9Q=;
+        b=w+pRtaFTwyXGIGyDO6QAiceinjqrNAADUdLQN7RrSbkFdHiPCG4lZAG2Wwat92k077
+         i79lMO3vfZm3/ntOhst76xWKGPznlQFj1dmLh7K5I4mjN5lE2+gmpubI9OtO1XKXjPpe
+         2gv31QtVO20da0vkWajgIQ2rwQXwOWZfn4whmOAdK5gSBhJqbqLo2QZowNNG64HEPklp
+         iyflDNZLyGXIacNtCQkRwodIaQG7WT2Owy8RE6mRLadvRD4gfan1nWIEnBSdT8gEk6gw
+         U+OsTngn/hM2Cfr0kK2C1TudhfrtdbnH3BqzvSbpUgiYzq0Vn6LQfkeUV5H2hi7sbGBM
+         qXXg==
+X-Forwarded-Encrypted: i=1; AL+hErFcYVs2EQGbIL7/WFhe8/KY1olilZ4cLeS5h+IbtC7pElHnPa3dU3UXMcopdW+51AOT9jxqJxT+Kakirdm6omll@lists.infradead.org
+X-Gm-Message-State: APuU4Z+b1XdHgk76ffRn/8gFsvP4Z/kWrNx+w07rW8w5trQJohmhLj7T
+	XtSBUPxnU4Zk3noNppVPNq8oijtLOUA7jqc88txbUbeXQ5p+zg2u5X61c7O9f7hjaTI=
+X-Gm-Gg: AYBFou02le1o9xrBETpTWCj+xmWQsfxBCU+jlK7WgV87ruLhH8utFPUlPcUIRScKyVw
+	x6gTdapnXwJ2udUuy/7iWNjKe/sfkmrTXiyymiyxIshIlf5iN1ufrWsDz18ugnuw9frwENINpNZ
+	XgvSMGHTs4opJ0Aa0w60KcLBztzD/uEz5yUrNearF0efIuqPnRPv94xzvuyAseghcLxFWmfrjjl
+	az54XTxQJqLeDoVRB5lUp9V1Mp6BlgX0+1on23NlIz2Q3y06vF5Hx9Ym6LvBcel+M7/V+razrh/
+	dV5NZ4coLhpwR4t6gAIjRm7eUosjEnCZ9aqQHk9JBsUKx9p7RX3JxwceO3GMlfHy/UGcAJDZ1tt
+	ZQmsQVrm1Vghp0RprMNDDTmicSAZtrYwOqBUqv8iLjKraDT9A2Q/4lItU8ejSo0Z+/rl9Hkb20U
+	unyr4tz/ccbfBA2uyksJ4SB67nPNfn9m7bJHzFIdngNPSCIZDlaofUJYFVcwq7YHGqBG7fgNCQZ
+	487rwVMgcXijJzOyimLr2mbBQIb4sGTD6KAtqBzvDAq4v8MYeo1fqORv8LEyT/EC34BSXRtglVY
+	NnyMYqtJj1M7If4xF1NNbbHTp4TLpWH06/S4vxzpGkPOCuikDqyDc5RlIfOtFZTjnKXzn7tEOEl
+	u7c4=
+X-Received: by 2002:a05:600c:a54:b0:4bb:5fd1:92aa with SMTP id 5b1f17b1804b1-4bb7da30033mr10977415e9.15.1794951959287;
+        Tue, 17 Nov 2026 13:45:59 -0800 (PST)
+Received: from ?IPV6:2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183? ([2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb7d28ec3asm15648465e9.0.2026.11.17.13.45.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Nov 2026 13:45:58 -0800 (PST)
+Message-ID: <39614a57-c375-4bee-bcea-f0ebd2d0b572@baylibre.com>
+Date: Tue, 17 Nov 2026 21:45:57 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] accel/rocket: Fix the IOMMU domain leak in
+ rocket_ioctl_create_bo
+To: Chaoyi Chen <kernel@airkyi.com>, Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+ Oded Gabbay <ogabbay@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>
+References: <20260814022453.437-1-kernel@airkyi.com>
+ <20260814022453.437-2-kernel@airkyi.com>
+Content-Language: en-US
+From: Daniel Drake <ddrake@baylibre.com>
+In-Reply-To: <20260814022453.437-2-kernel@airkyi.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_134241_422536_9ADD37DF 
-X-CRM114-Status: GOOD (  15.17  )
+X-CRM114-CacheID: sfid-20261117_134603_044329_030748E0 
+X-CRM114-Status: UNSURE (   7.68  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,96 +110,23 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-nCR6jsSSCS1asrKum/3e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Le vendredi 22 mai 2026 =C3=A0 12:16 +0200, Paul Kocialkowski a =C3=A9crit=
-=C2=A0:
-> The no-pm variant of hantro_job_finish is only good to use directly if
-> runtime pm get failed. In other cases, we need to do a runtime pm put
-> and bulk clk disable to correctly undo what was set up.
->=20
-> Fixes: 892bb6ecead9 ("media: hantro: do a PM resume earlier")
-> Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+On 14/08/2026 03:24, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> 
+> When rocket_ioctl_create_bo fails, rocket_iommu_domain_put should be
+> called to avoid an IOMMU domain leak.
+> 
+> Fixes: 658ebeac3351 ("accel/rocket: Add IOCTL for BO creation")
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Reviewed-by: Daniel Drake <ddrake@baylibre.com>
 
-Seems already fixed by 556ab0b2741d6 ("media: hantro: release runtime resou=
-rces
-when device_run fails".
-
-> ---
->  .../media/platform/verisilicon/hantro_drv.c   | 19 ++++++++++++-------
->  1 file changed, 12 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/me=
-dia/platform/verisilicon/hantro_drv.c
-> index e0c11fe8b55c..e21306f2bf2e 100644
-> --- a/drivers/media/platform/verisilicon/hantro_drv.c
-> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
-> @@ -169,29 +169,34 @@ void hantro_end_prepare_run(struct hantro_ctx *ctx)
->  static void device_run(void *priv)
->  {
->  =09struct hantro_ctx *ctx =3D priv;
-> +=09struct hantro_dev *vpu =3D ctx->dev;
->  =09struct vb2_v4l2_buffer *src, *dst;
->  =09int ret;
-> =20
->  =09src =3D hantro_get_src_buf(ctx);
->  =09dst =3D hantro_get_dst_buf(ctx);
-> =20
-> -=09ret =3D pm_runtime_resume_and_get(ctx->dev->dev);
-> +=09ret =3D pm_runtime_resume_and_get(vpu->dev);
->  =09if (ret < 0)
-> -=09=09goto err_cancel_job;
-> +=09=09goto err_cancel_job_no_pm;
-> =20
-> -=09ret =3D clk_bulk_enable(ctx->dev->variant->num_clocks, ctx->dev->cloc=
-ks);
-> +=09ret =3D clk_bulk_enable(vpu->variant->num_clocks, vpu->clocks);
->  =09if (ret)
-> -=09=09goto err_cancel_job;
-> +=09=09goto err_cancel_job_pm;
-> =20
->  =09v4l2_m2m_buf_copy_metadata(src, dst, true);
-> =20
->  =09if (ctx->codec_ops->run(ctx))
-> -=09=09goto err_cancel_job;
-> +=09=09goto err_cancel_job_clk;
-> =20
->  =09return;
-> =20
-> -err_cancel_job:
-> -=09hantro_job_finish_no_pm(ctx->dev, ctx, VB2_BUF_STATE_ERROR);
-> +err_cancel_job_clk:
-> +=09clk_bulk_disable(vpu->variant->num_clocks, vpu->clocks);
-> +err_cancel_job_pm:
-> +=09pm_runtime_put_autosuspend(vpu->dev);
-> +err_cancel_job_no_pm:
-> +=09hantro_job_finish_no_pm(vpu, ctx, VB2_BUF_STATE_ERROR);
->  }
-> =20
->  static const struct v4l2_m2m_ops vpu_m2m_ops =3D {
-
---=-nCR6jsSSCS1asrKum/3e
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavzKSwAKCRDZQZRRKWBy
-9L+6AQDMKLPrZhSUG++b0MtI5ik0wMRxfL/1mxitEeqZmMEMPQD6A0XQSzZQJRLC
-7KBSAin35Q9wXNZx0/Tkx7GU4aMYcwk=
-=tZTf
------END PGP SIGNATURE-----
-
---=-nCR6jsSSCS1asrKum/3e--
 
