@@ -2,69 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F9A606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 02:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE537606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 02:31:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AciBnqXA;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=ef/WcXmR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Cho863Sv;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=G4CQ1Nzw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YqKHThxqhV+Nx5LE0AW1AJg3y+A6AtDJSvDAZKmD6X0=; b=AciBnqXAXBjyHq
-	JeUYsMhCzVQbV5CzngtHnPRUqkQNNyJljOvspygHP3eQ9h77pmQL+uDuMxKwo/VdNdsU7CsOV9dG3
-	aa/mY9zkihvWXUkG2vn6khZVNzMeeXXJiqt7c9SpRbFQwYao9AUuO0+fUC/IKv2RHxEvDQZxLh3MT
-	TGyObW6WU6a3Q2d3ctL93n4HUD3pJ0diKkjS3H7MtDR31WFGaB3ADuXVBvL2XOoQKKGtX46jr8QfN
-	MBqp6OpUlSTHwE7Bt8JKdNupMX6WBDPi5tmBO7LydEnlAdl6M+TFWKInYJ7eQnr6hxlVN5sNi80Cw
-	T5qihh5jQy9fFX9EseiA==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=arhGKT4vqWM3pFfwqlJs9HcULxRZyX/HFPSkv4gVspE=; b=Cho863Sv8sKl+/
+	nNuKUCY9uivWoHLlQIDq1SRGva7/A75RUzBf+QETbIMq6wf1fFIikoqrfMx+ceYsh4l9wfp1cKPi1
+	eMZCgQ2POLDU2BnO3vclOO5FEuJCdDHP2Tyet5Pp92F3mYP7lui5XEbZ3eL6kz6JljTjRkdt0VlZX
+	QoJTutq/tUiCsewcmeGd1BxKsHZTskA0iGVf5Bba+R2+sdiM02/NaW1OixuR5xa1aDjdhXHpQc3Y1
+	QyyDVz1V94+Qykzyc+QIZRn/nuHG9ZNfF/bwsOtRyzeVJtc+zL+br7PU2wQWjLUswSjGKc4Vwg4HJ
+	pdDA1uL0PdUy3LSYZJKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTVQc-00000007X68-2tKD;
-	Wed, 18 Nov 2026 02:29:42 +0000
-Received: from mail-m8151.xmail.ntesmail.com ([156.224.81.51])
+	id 1xTVSS-00000007XPR-0ewl;
+	Wed, 18 Nov 2026 02:31:36 +0000
+Received: from mx.nabladev.com ([2a00:f820:417:0:178:251:229:89])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTVQZ-00000007X55-0qAd;
-	Wed, 18 Nov 2026 02:29:41 +0000
-Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 551083689;
-	Wed, 18 Nov 2026 10:29:28 +0800 (GMT+08:00)
-Message-ID: <72957827-fde8-4f4b-80a9-050d2f112316@rock-chips.com>
-Date: Wed, 18 Nov 2026 10:29:26 +0800
+	id 1xTVSP-00000007XOy-0XCr
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 02:31:34 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 25BED10F884;
+	Wed, 18 Nov 2026 03:31:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1794969089; h=from:subject:date:message-id:to:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=arhGKT4vqWM3pFfwqlJs9HcULxRZyX/HFPSkv4gVspE=;
+	b=G4CQ1NzwskCWEv+rGKnsUUbD3uvX1w83G12cEVIAQKyt3RxxMljAMQlJmZCUjWMfd+I2zH
+	opgZk8hU8Zd/cBziwYJmL+ISphfBMkeKHJ5QhFX3/jfbZfrZkTA6jcH0cEpNlA29wNIc/X
+	mXoyFJ8KHGCag4tjxn2cy/pq4MGVhdV39wMKNqzYmw5skocKh1GgKuzOKpMoEMKfh55xM+
+	Y2ZfqAM4flyE3pV1LL6hDjnTCE9MGWOTftzN1M80Lxjs3/z7hxh+nrTOj1rqoqnLJiVBGX
+	+f9kWh3L8fsCItBWXkOABbe11JlGUTftmdXsnzsrUuQJjWI0GmD3bNJ086++ng==
+Message-ID: <e9bfca58-666c-45d8-bd5d-9405b068bd08@nabladev.com>
+Date: Tue, 17 Nov 2026 17:24:49 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] accel/rocket: Fix the extra iommu_group_get call in
- rocket_job_handle_irq
-To: Daniel Drake <ddrake@baylibre.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Tomeu Vizoso <tomeu@tomeuvizoso.net>,
- Oded Gabbay <ogabbay@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jeff Hugo <jeff.hugo@oss.qualcomm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260814022453.437-1-kernel@airkyi.com>
- <20260814022453.437-4-kernel@airkyi.com>
- <0e722f43-f08c-4636-bf3e-0dbe991bf6a0@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: st: stm32mp2xxx: Remove undocumented,
+ unapproved eeprom0wl alias
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@dh-electronics.com,
+ linux-kernel@vger.kernel.org
+References: <20261117133747.244933-2-krzysztof.kozlowski@oss.qualcomm.com>
+ <ac1a1214-98dd-48da-b8e1-bc8ef9f09316@nabladev.com>
+ <93acb3fb-98ae-4dba-a3de-fcf1772239eb@oss.qualcomm.com>
 Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <0e722f43-f08c-4636-bf3e-0dbe991bf6a0@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <93acb3fb-98ae-4dba-a3de-fcf1772239eb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa1ec7cde4b03a7kunm8a7c13a3602732
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZH0lCVh4YGUseSkwZSEoeTFYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQkxVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=ef/WcXmRp3/JbdOl57cgcDsCjcrruOWIRVodPFUgqkBMQqGs1kxCk0jmzFrzuctBz/6RlanWo3XJ1Cv0IwLohI21kkIj7ZIDhYhpR0KgqQxS4A6eoDGr/XCwY6y1812V19zHiluIVZLBRYmffrSRlcepE1R4QcMPncOQLR5Fd4o=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=YqKHThxqhV+Nx5LE0AW1AJg3y+A6AtDJSvDAZKmD6X0=;
-	h=date:mime-version:subject:message-id:from;
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_182939_867316_10EA69E7 
-X-CRM114-Status: GOOD (  11.48  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_183133_411652_F269770F 
+X-CRM114-Status: GOOD (  16.97  )
+X-Spam-Score: -0.6 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,49 +78,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Daniel,
-
-On 11/18/2026 5:53 AM, Daniel Drake wrote:
-> On 14/08/2026 03:24, Chaoyi Chen wrote:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+On 11/17/26 4:13 PM, Krzysztof Kozlowski wrote:
+> On 17/11/2026 14:41, Marek Vasut wrote:
+>> On 11/17/26 2:37 PM, Krzysztof Kozlowski wrote:
+>>> The eeprom0wl alias was never approved by Devicetree maintainers,
+>>> because it was never documented as actual ABI.  There is no in-kernel
+>>> user of it, although there might be U-Boot.  External DTS users cannot
+>>> rely on undocumented ABI, thus these are pretty safe to drop.
+>>>
+>>> No new custom aliases are allowed for years now.
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>> ---
+>>>    arch/arm64/boot/dts/st/stm32mp2xxx-dhcos-som.dtsi | 1 -
+>>>    1 file changed, 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/st/stm32mp2xxx-dhcos-som.dtsi b/arch/arm64/boot/dts/st/stm32mp2xxx-dhcos-som.dtsi
+>>> index bcf63e2ea989..5795b352fccf 100644
+>>> --- a/arch/arm64/boot/dts/st/stm32mp2xxx-dhcos-som.dtsi
+>>> +++ b/arch/arm64/boot/dts/st/stm32mp2xxx-dhcos-som.dtsi
+>>> @@ -10,7 +10,6 @@ aliases {
+>>>    		serial0 = &usart6;
+>>>    		serial1 = &uart8;
+>>>    		eeprom0 = &eeprom0;
+>>> -		eeprom0wl = &eeprom0wl;
+>>>    		rtc0 = &rv3032;
+>>>    		rtc1 = &rtc;
+>>>    	};
 >>
->> The rocket attaches the IOMMU group in rocket_job_run() and detaches it
->> in rocket_job_handle_irq(). Calling  iommu_group_get() in
->> rocket_job_handle_irq() causes the reference count to increase
->> unexpectedly. And this causes rocket_core_fini() to fail to release the
->> IOMMU group, leading to a resource leak.
+>> U-Boot depends on the alias, so please don't drop this one.
 > 
+> As explained, U-Boot CANNOT depend on undocumented ABI. U-Boot is not a
+> user as understood in Linux kernel policy "we do not break users".
+> Especially that U-Boot does not even consume that DTS! We do not break
+> U-Boot as long as it is about documented ABI.
 > 
-> While there is a leak here, I think sashiko correct in saying this change would introduce a crash because core->iommu_group can be set to NULL before this codepath is reached.  That might be a simple fix.
-> 
->> Fixes: 658ebeac3351 ("accel/rocket: Add IOCTL for BO creation")
-> 
-> 
-> Wrong commit mentioned here.
-
-Thanks for you review. This is indeed a problem.
-
-And it has been a long time since I sent this series. :)
-
-During this time, I have seen a lot of similar work. For example, work
-similar to patch1 is here[0]. And some of the issues mentioned by 
-Sashikoare also being fixed by in-flight patches like[1].
-
-I'm not sure whether I should slow down the submission, since it seems
-Tomeu is quite busy and hasn't gotten to some of the backlogged patches.
-
-[0]: https://lore.kernel.org/all/20260915041152.1725014-1-vulab@iscas.ac.cn/
-[1]: https://lore.kernel.org/all/18667b2afdcaae217fa1038f5348ab23ed756bdc.1794615323.git.gahing@gahingwoo.com/
-
--- 
-Best, 
-Chaoyi
+> Here U-Boot won't be really affected, because updating DTB in the
+> kernel, does not update the one in bootloader. It does not go that way.
+> It could go opposite, so from bootloader -> kernel, but not the other
+> way around.
+U-Boot does consume Linux DTs via its CONFIG_OF_UPSTREAM .
 
