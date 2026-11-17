@@ -2,129 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 204D0606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 09:03:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21AC9606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 09:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CRkHK6qB;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=Xb+io7vT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zJ6s1zBX;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AMBDjDnm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xWRZopVkJFPOfdZdb6dsUSJiNIlH3IWCafsQuDLgxfo=; b=CRkHK6qBfztbsIxHmGHS2QB4a+
-	9u2FUP+CUSZ+FVLcD6reOOy2IU4pXF1nBkeI4zO0DueAnCt6p6x9Vbsx8BQNn5YXG2bLt2QdRiiEs
-	0kVHS8XSCPvgz6gYZCQSWvSdQ6vbog0hVA0IIJ9EnGd+k9aVWKqtSCfNdvTY1yM5HlICgO1FCZeCr
-	7o9TpSb2JCuxh5r/SF+gNZ2Mu3959Cl62fI+46e8ZhNbzhzvqMSr7rLEMo6Aprpv+CFJu3jfBkndD
-	PBj+dRcjGo/tdB/MuR4/q8X7LIxtnO6HN96AlQWwt4SmB+TiRaVAawttbD7f6xczUEoEkfX3EEsKJ
-	uLUG4iIQ==;
+	bh=/KOAVv6apLichQ/OSMK32xkM/AZHKlMXP5BUywmr1vA=; b=zJ6s1zBXuog3EMj/H9qWVzUODM
+	2lQKdjSBRevsOGNNrJSPJeRQ+QiZ3c00Tv349SG/sQkogUvaxcBP8A9v17E1dgq3JzljrhmjNLuzZ
+	YuBVnAqx4x3EwySJewAfrqfCm8UKnD7M1G4nC5qidC5y4/29diCHusDTnW20T4xB2KBR5L91/iuc5
+	+OlK1oifASrjM/Fqsvc1jo5Br2pfdRSGkF8vb8Z6fWoWZzXAfMRsP+korVp24faJ5D2Tt0LafUNhH
+	Z5l88g5hpZUlYh3EvbmH6sENB8DNGbCj5Zz7x620ZtOd/yHTX+VcX5i6HlqJUEdc4T9+lMk+gw0Pz
+	yVnr/NSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTF6N-000000050Tk-2SGt;
-	Tue, 17 Nov 2026 09:03:43 +0000
-Received: from mail-swedencentralazon11013027.outbound.protection.outlook.com ([52.101.83.27] helo=GVXPR05CU001.outbound.protection.outlook.com)
+	id 1xTF7P-000000050fy-3kKt;
+	Tue, 17 Nov 2026 09:04:47 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTF6G-000000050RC-1soX
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 09:03:42 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qUyIvV0bx66K68lSh+JyaAPZMxdbAFZKP1b0CwOSzOFbhJyEs6owsqZtmK0ARPX3VHILJzZ6bdaQH4X2fWbcCsD/ZRLbJvTvC2USfvEv2+le1BaVy/NVFzJhBADxJfGHeott3G/3JQj6vI/IZaTbeoHon6NVmmVanqxpHJ1APuxAdM2TUu3qXcUiSSBT0GBiQi7jFOVRWofFFAFBs4LfbgwOgE/4JORIbC6Yc2RkVVdFx7VBG+pvIWOyLX+ABTF5v2SMNHxTtSDupoziwsLu32L8ujGONRK4YskWlHs4wuFTXGpfDCSHhM2OYozfmeznhfNsaj1wzUXC+t1Buw00dA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xWRZopVkJFPOfdZdb6dsUSJiNIlH3IWCafsQuDLgxfo=;
- b=WOQl5CLzOD0nRxFOet8xKkL4n2JlwBhe48SBiS/5R2oh8GyppPh96oV6dUU5e7X3FKW14j4a15922PBYD6TdfOI4Nk137JUnlEeZO2PZ3oc+N7Jm0LtIPVk/YOvTmWppCGXuREOzEbwqqWBcxzQCLi/mm10ToIQuuDcjzKu62dWeFREXITxOxMUfyfJZpzTg5F2Ax2CevfxhKLfFlydG4m0kDmQ4PgckQxWFga7digToY56jMjelRzWROz5ddljKg8RVgOIlI3I9AlLDtPU6Eg12ZeRL/XEv6uHQrgj/ggTllRFtJ7Fq1mvAeojI8ZjhwRdohN+pSzYA57hSCsY9cw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xWRZopVkJFPOfdZdb6dsUSJiNIlH3IWCafsQuDLgxfo=;
- b=Xb+io7vTBLfUPPvSLga/sP6YFpXtIZn5L7em92QhP/0uN9fm/taW4PXEUaTikOQMn7ILPVgCcpeNHvRIq3vWdFrYXOUwG2dpQAZeEmvfX+zzJ2bziYBvHlArNrledVnNUNoasulnZEoxj/7SGij5ZQFhqHD1LGrgIiMtxJlqwkZgshmxeU3yq9v5lH8Ex+3QC0JAUuyvAeNj7Irht3BYWmBS/7AlEXqo1LYBR/YaO2gA36Gf+Zfk0Hz55kE1H6iwnVqLIE2bFAsj0fOClB2RmIjD8h4fO/+bTAcaRwj06lDtuXDsuAiM1t8ol1B2GhcJrQWcS7vuVx56SL3sWWFmmw==
-Received: from AM6P191CA0021.EURP191.PROD.OUTLOOK.COM (2603:10a6:209:8b::24)
- by DB8PR10MB3516.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:13c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Tue, 17 Nov
- 2026 09:03:32 +0000
-Received: from AM1PEPF000C1AD9.eurprd02.prod.outlook.com
- (2603:10a6:209:8b:cafe::a9) by AM6P191CA0021.outlook.office365.com
- (2603:10a6:209:8b::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.10 via Frontend Transport; Tue,
- 17 Nov 2026 09:03:32 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- AM1PEPF000C1AD9.mail.protection.outlook.com (10.167.242.104) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Tue, 17 Nov 2026 09:03:31 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 17 Nov
- 2026 10:04:15 +0100
-Received: from gnbcxd0016.gnb.st.com (10.130.77.119) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 17 Nov
- 2026 10:03:27 +0100
-Date: Tue, 17 Nov 2026 10:03:17 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Joshua Crofts <crofts@kernel.org>
-CC: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Chris Brandt
-	<chris.brandt@renesas.com>, Pierre-Yves MORDRET
-	<pierre-yves.mordret@foss.st.com>, Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-renesas-soc@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH 5/6] i2c: stm32f7: remove redundant
- pm_runtime_dont_use_autosuspend() calls
-Message-ID: <avwYVXluZuM4vteb@gnbcxd0016.gnb.st.com>
-References: <20261109-i2c-remove-dont-use-autosuspend-v1-0-49a08b8daf36@kernel.org>
- <20261109-i2c-remove-dont-use-autosuspend-v1-5-49a08b8daf36@kernel.org>
+	id 1xTF7O-000000050fE-2EoZ;
+	Tue, 17 Nov 2026 09:04:46 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id C177B4496A;
+	Tue, 17 Nov 2026 09:04:45 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794906285;
+	b=K5aG3FPo4svlZZxwC3BHNUorlQ/CdodVEFGQMUdxy3h9R3I32DhSC2OiqpjaEdzq5Prz
+	 AOejLnA2seTqF2n0xnWwyNhlR9PGADGxMSlVfo1GSo9mNb71Em95XCUSqi3iW9ApeKKG6
+	 lm2HW02mRhYilFroIViwKui0JktB9fI1ZhejL4bFgnfKS8JeVCYWPzUjtI0Vzt+ROm1Tf
+	 cHWKece80qWVxyGFQpygtId+xGEaxfBHptZ1TJWt2uPWPDBLVkvSj2dB1faxwCEOmlcdm
+	 haqQKUkpPBHIx6gAQcnw3rFt5Po/Mkr1axi9Z8C2VqTJv5stlBn1PbfqLICZLVfcIVQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794906285;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=/KOAVv6apLichQ/OSMK32xkM/AZHKlMXP5BUywmr1vA=;
+	b=NsNYaV6vSHvrkA7KL47EkwgPRppy8jHHyTaz/9pPtWxkpVs6Q4TrpUrvd3MHU6nmB+8u
+	 zuLTd7xN54TXnPPo5iDql/T79q+XTcp3q7ov4GPJ0JeKj++fhVShoUS6h0SWn1s05zKEH
+	 QZ51J11BjlrPTVeyZqWFLlmvGR7OQQCySqak1vSbJ/pe7OG2Q/RXnaNCID1MJdt1+V5/C
+	 QhsilGgJgdlqIXTm29Q8sjYLKf6VEfKk+xymx5HxwvBszS5/qmI0mEIo+rUJ+0wa1b6Ra
+	 QJD2yT4nL8b2g7NGBrAvIk0s6+q3ehZ9gQTMnhsGJhojxvCVmCDzaGOfR4i4/JLZK3g==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id DF77C1F000C5;
+	Tue, 17 Nov 2026 09:04:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794906285;
+	bh=/KOAVv6apLichQ/OSMK32xkM/AZHKlMXP5BUywmr1vA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=AMBDjDnmGFoKp+zjMyV1W6EV12YThZjexefuc2+ebAbaZSkLG0CTZGgvLDB0xpRp4
+	 XeBEq3toa9Tp/Jhdma7AkX/gPNXDxWzbyUM3sRQ32bhtuBOlAg2dMz0vx5iuCswYRw
+	 lM5OgKr6NcUMfCt5lYss3qy+VL1hZRcLYIfE01Crn6+ldEYf5ghhYZaTBC0tX7trA4
+	 InlOu1Nhc2ywucRgLt8yCXv888XtLQU08QWuN+BnemQ3ObR/e1HIHQf4y5n976i2Pj
+	 C2LNnu73j5wnQtiVZjwb6wzjwiQctA4LOPQTLeJSIEHA6iNJnNo9gvWmRR7zLT1oNd
+	 Y0x7LtEn7er7w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 6F6DF4A75E;
+	Tue, 17 Nov 2026 09:04:44 +0000 (UTC)
+From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
+Date: Tue, 17 Nov 2026 17:04:35 +0800
+Subject: [PATCH net-next v4 1/2] dt-bindings: net: rockchip-dwmac: Add
+ RK3572
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20261109-i2c-remove-dont-use-autosuspend-v1-5-49a08b8daf36@kernel.org>
-X-Disclaimer: ce message est personnel / this message is private
-X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM1PEPF000C1AD9:EE_|DB8PR10MB3516:EE_
-X-MS-Office365-Filtering-Correlation-Id: 16292574-1007-4a8b-defc-08df4489a753
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|82310400026|23010399003|36860700016|10067099003|4143699003|11063799006|56012099006|261026121527099003|261028144727099003|261026140227099003|261021123027099003|261022105027099003|261022075727099003|261009221727099003|261009220027099003|261009221227099003|261009223027099003|261009223327099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: wH2IhiGGtbu2hDMra96Zr2ha+777Hz1Tlk0gPteoprWkOtJRzHLwuo3W7GHX7gGoQgxvEOhQr1tAgSaPkVP870e3FRwRCYtq71mvib+376wEd4rSWGh/JoEw7FuQfcgt72AAqbrxptfXezEit3qvSP+8hf/EtstnOAv20+H+wF5GkMQL6Mx3utS2EKJh62U7z7HFwtMFdCzkX1fQqkFLkpIxdqc/v0U2gQR7bpMYk5HJseQx4I1eKk/Y2K2OMIj2LjhnZW39fGRG4b9jBL1tLvM4iCuPPdEM8yAh+ln+0qVvtjIyPZjPifThTI99rsPaDhkVneowZpRTiAW9iRg0uj4HZ3lrIk0UQSq/XJfOIagOUp26G4NWdjYhIhlt/n9Vxo3DuJvNeVcOyr4k2hYjLD5mqtJeMnqlljsoy6nzU4mOs4hhGXpie3FFCSltVo4I29O6z1n/Jm+MT/yReob44u1TjnQOYNlUR95EplUf8EzrqefZjHxmqc1mWVrAXcjt44uHsDePKntE4eTd3Yjyjad5mqmwoA4Y+hnv7g/QHhQjKT9xr6d8ROf5i7Q1QXnDwNl3VoW3++O65yeHiS4VxAiApTWVvJdrMV9Tp1Tho++NZUTzbvn/nibPkAKlOgOgznYMnMbjlcvIunxYBoxVq/niZULHaCF9KMJOGZmidn7NKvbojdtGvaM9S6IH83Pe29YarqM+M6YX34dZQskElg==
-X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(82310400026)(23010399003)(36860700016)(10067099003)(4143699003)(11063799006)(56012099006)(261026121527099003)(261028144727099003)(261026140227099003)(261021123027099003)(261022105027099003)(261022075727099003)(261009221727099003)(261009220027099003)(261009221227099003)(261009223027099003)(261009223327099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: tS5TH5zbjf3jxUBZ5g0u28gTLm8ewH5tnPYsZesZebK7M5FrQZNFKfdfKi6Zhja8M9XyHwflEVSWsyODGWi7kqsVPz6G/Soe3TgGGVaNpSwp9yCjOaoa3DlzVp7dlzpSsID18zLX8AfHlY7w3llOked95rZB+CiSZh4wiwDPLryQqRMYItcGhB6C6U/PahcIgzFaBgVYBqH5cB+IiKsygeFlSMq0CfZ8RmIxLAIj6Cgxi58cxHUioeyyPrlr5h5WwjxqwRCQZ0FMZemblNnhtKsXY2hSDME+/RPB5tAvn2ObAYjDxmydnvrEzAZ3NHpX0qVAhNzP709xHrtajS8MLiV2w9EaxbT0daAP2BGsD/SbkxLPBaEFHO6YOYPjqqrHi8QMzuHDO/gS86Fy1iDTVcaXowZzuf7SWj7VOAFErNzFufbBATqE/2ZDz5iYdytZ
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 09:03:31.7613
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16292574-1007-4a8b-defc-08df4489a753
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: AM1PEPF000C1AD9.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3516
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_010338_829771_151B1A7A 
-X-CRM114-Status: GOOD (  15.36  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261117-add-board-ok3572-c-net-v4-1-4e9da569395a@qq.com>
+References: <20261117-add-board-ok3572-c-net-v4-0-4e9da569395a@qq.com>
+In-Reply-To: <20261117-add-board-ok3572-c-net-v4-0-4e9da569395a@qq.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ David Wu <david.wu@rock-chips.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+ Jose Abreu <joabreu@synopsys.com>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Cunhao Lu <1579567540@qq.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, Andrew Lunn <andrew@lunn.ch>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794906282; l=2963;
+ i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
+ bh=nFnIN3lO+XTZBGs+5YkcYP0f6N9wWK6y8Seywzr6SIY=;
+ b=9SYat9LnbqGPUNHGpDhwc31lg+NnzZ77J6S1DEukr/EOu1//Vw0YmjkuSvvCcmc8QipZbYxnI
+ nPcSmU3Ut6dB42rJvdSt77yYeE3veNyUVKM/ntNNFBiimWPApyTMexl
+X-Developer-Key: i=1579567540@qq.com; a=ed25519;
+ pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
+X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
+ auth_id=1177
+X-Original-From: Cunhao Lu <1579567540@qq.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,56 +118,111 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: 1579567540@qq.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+From: Cunhao Lu <1579567540@qq.com>
 
-On Mon, Nov 09, 2026 at 09:50:06PM +0100, Joshua Crofts wrote:
-> Since commit d1706f9da9f4 ("PM: runtime: call pm_runtime_dont_use_autosuspend() on reinit()"),
-> driver core is now responsible for undoing any
-> pm_runtime_use_autosuspend() calls on driver exit.
-> 
-> Remove the redundant function calls.
-> 
-> Signed-off-by: Joshua Crofts <crofts@kernel.org>
-> ---
->  drivers/i2c/busses/i2c-stm32f7.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-stm32f7.c b/drivers/i2c/busses/i2c-stm32f7.c
-> index 2e1cc6a92b81..7904d888550c 100644
-> --- a/drivers/i2c/busses/i2c-stm32f7.c
-> +++ b/drivers/i2c/busses/i2c-stm32f7.c
-> @@ -2325,7 +2325,6 @@ static int stm32f7_i2c_probe(struct platform_device *pdev)
->  	pm_runtime_put_noidle(i2c_dev->dev);
->  	pm_runtime_disable(i2c_dev->dev);
->  	pm_runtime_set_suspended(i2c_dev->dev);
-> -	pm_runtime_dont_use_autosuspend(i2c_dev->dev);
->  
->  	if (i2c_dev->wakeup_src)
->  		dev_pm_clear_wake_irq(i2c_dev->dev);
-> @@ -2367,7 +2366,6 @@ static void stm32f7_i2c_remove(struct platform_device *pdev)
->  	pm_runtime_put_noidle(i2c_dev->dev);
->  	pm_runtime_disable(i2c_dev->dev);
->  	pm_runtime_set_suspended(i2c_dev->dev);
-> -	pm_runtime_dont_use_autosuspend(i2c_dev->dev);
->  
->  	if (i2c_dev->dma) {
->  		stm32_i2c_dma_free(i2c_dev->dma);
-> 
+Add the rockchip,rk3572-gmac compatible with the snps,dwmac-4.20a
+fallback and require rockchip,php-grf.
 
-Reviewed-by: Alain Volmat <alain.volmat@foss.st.com>
+Mark tx_delay and rx_delay as deprecated and disallow them for RK3572
+so new designs do not use the legacy delay properties.
 
-Regards,
-Alain
-> -- 
-> 2.56.0
-> 
+Signed-off-by: Cunhao Lu <1579567540@qq.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+---
+Changes in v3:
+- Deprecate tx_delay and rx_delay and disallow them for RK3572.
+
+Changes in v2:
+- Add RK3572 to the shared Synopsys compatible list for consistency.
+---
+ Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 15 +++++++++++++++
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml     |  1 +
+ 2 files changed, 16 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+index e8dda1961ab3..d7b7bb008235 100644
+--- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+@@ -27,6 +27,7 @@ select:
+           - rockchip,rk3506-gmac
+           - rockchip,rk3528-gmac
+           - rockchip,rk3568-gmac
++          - rockchip,rk3572-gmac
+           - rockchip,rk3576-gmac
+           - rockchip,rk3588-gmac
+           - rockchip,rv1108-gmac
+@@ -54,6 +55,7 @@ properties:
+               - rockchip,rk3506-gmac
+               - rockchip,rk3528-gmac
+               - rockchip,rk3568-gmac
++              - rockchip,rk3572-gmac
+               - rockchip,rk3576-gmac
+               - rockchip,rk3588-gmac
+               - rockchip,rv1126-gmac
+@@ -112,6 +114,7 @@ properties:
+     minimum: 0
+     maximum: 0x7F
+     default: 0x30
++    deprecated: true
+ 
+   rx_delay:
+     description: Delay value for RXD timing.
+@@ -119,6 +122,7 @@ properties:
+     minimum: 0
+     maximum: 0x7F
+     default: 0x10
++    deprecated: true
+ 
+   pcs-handle:
+     description:
+@@ -141,11 +145,22 @@ required:
+ allOf:
+   - $ref: snps,dwmac.yaml#
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: rockchip,rk3572-gmac
++    then:
++      properties:
++        rx_delay: false
++        tx_delay: false
++
+   - if:
+       properties:
+         compatible:
+           contains:
+             enum:
++              - rockchip,rk3572-gmac
+               - rockchip,rk3576-gmac
+               - rockchip,rk3588-gmac
+     then:
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index 2c4842404bf6..80d3b43e2889 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -94,6 +94,7 @@ properties:
+         - rockchip,rk3506-gmac
+         - rockchip,rk3528-gmac
+         - rockchip,rk3568-gmac
++        - rockchip,rk3572-gmac
+         - rockchip,rk3576-gmac
+         - rockchip,rk3588-gmac
+         - rockchip,rv1108-gmac
+
+-- 
+2.34.1
+
+
 
