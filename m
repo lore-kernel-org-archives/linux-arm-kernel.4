@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C902606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E51606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 21:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tXg32lGM;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=DCbgpcrp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ymhyGe4x;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=bW1WtPPL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
@@ -14,41 +14,41 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=bmfQENYgWZpmGfv2io958u6QZxK/XN9a956gDJqvbJ4=; b=tXg32lGMa7ogdCMgsV6IxXJcPt
-	VQGztkHCjZutOrGXPi+pjaWNsCOvlL0Tfv0Y0I4ElHLliPluAV2zp7wek+totojywWMMhc9YCcmwP
-	0Vkbj/owLWtVjhqNB8fL/QMAmaxMEikEj4Wy75jJ3fXT76okuk7XZmHFXVJlZROEafNt8wkWKQhKA
-	IY+wKk2VPIR0ANZVKshcO65U7PNPrlXtNVR+o9+i2NWpb7AQ8qW81R1Fcs71QO7mu1KIFPJ6WUQPd
-	QsL/uGGEXEbGppq6c4wzfRUf33in0AbUfikMGMFVAiNXri1mTkC+ZoSyHGwuJcOR9pkq1V5MECCUn
-	p4c+td9w==;
+	bh=uOYZ3YUnApgAE+Wv9P1FnmCQYiPIee7XKpJASXihcf4=; b=ymhyGe4xNCe9H9YqdLNZVnR50C
+	xOyg7jSlMsVy9ZQ/QKtasUv4KkL0GNDX1GmTvURplyGgcT32EMk8CtadpNhm5p3f/r3+SgTRQv4eJ
+	BWUYhjmWlUaBjqu/s0gfK5Pe3EsqodOqUcRRYySgcoZKq6kgTeZpqotm9mCZZSqZCsiwUr8Nujw09
+	a254z3B1/IwsMzsj04nblOc7m5AfuRzsUhgG8tB6TYm9mmQuvTeEOaac5gl3pbpn+TzeYgh/gsG0s
+	xsAPLOS4JR2fJuEeJsq2VGLB3zHOiZ69L2/9lX6ag9p+sUEK1yc0CLiMeB/exXP/ZiBBidUIBCcdk
+	tl9lHQkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTR2l-00000007AMv-2xi2;
-	Tue, 17 Nov 2026 21:48:47 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xTR51-00000007AhI-0tMp;
+	Tue, 17 Nov 2026 21:51:07 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTR2j-00000007AM8-0V7N
+	id 1xTR4x-00000007Agw-45vt
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 21:48:46 +0000
+	Tue, 17 Nov 2026 21:51:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794952123;
-	bh=bmfQENYgWZpmGfv2io958u6QZxK/XN9a956gDJqvbJ4=;
+	s=mail; t=1794952261;
+	bh=uOYZ3YUnApgAE+Wv9P1FnmCQYiPIee7XKpJASXihcf4=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=DCbgpcrpKbP9Wj0tG+57kXnefBUUMqgSXeCtWGCGDmBn112uhsB3BezV3aKZydZ+C
-	 FwYCaUmXcIA8aLi3bzkR2VAN5cfAtIjjimu8aNj6h+oNKZTQocRCmAlKVsvqb7xH9Y
-	 g2x7TOd3OsZ0Ai1q2hJLTeO1r9JTIzG4As7fMEJxDL1s3WFTUVYiQvvPXJR/ecO7nR
-	 HZ7tbY+T0Kcx3n7BXG9mFqrN/mmrcrdKLvOTm8OQU8JSps6yljTMm3QcbQYuqmBECa
-	 mSM2sxa06WF87psuqH0i4z2/YmpNnjtIYENsbWbnrdy7Cm+rPNh9h2IcqFsXNxuSbE
-	 HsC8h2h/THBlw==
+	b=bW1WtPPLvbXoAYI3Ztps0gKSqqfIfW3pUSLErv0E8g8kaRAGtFdC9xepCppn68AFz
+	 GTUTZXSICFEdDvY7Bxs++Ns1CjPqcjqYeFAJhg6Fdz6/L5Q8jlozmokrAVCaO4ix1k
+	 4vGv74cipL6KA07OmJidjxGkTh1sPmCoCKj+XIHUITFn/onmTVshGAVXXaKH8Iourv
+	 WIvRnzN9pa6GiCDqjV9JsWlGICiS0j1b3dVY5ls/LLFOxkTEg4h6Cr5VKaW8Ozmdku
+	 mVW6NYKdNU04yzdFfAUwm2b/+hlo2yTIEmBQf5oJPSQZ5NLos3XygCViplSvrkhEXX
+	 wwxP8dWnfZpRg==
 Received: from [100.64.0.214] (unknown [100.64.0.214])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1CF1417E02F2;
-	Tue, 17 Nov 2026 22:48:41 +0100 (CET)
-Message-ID: <a1aa59b44904a3b093ca02f86ee1a98f6c572583.camel@collabora.com>
-Subject: Re: [PATCH 10/14] media: hantro: use hantro_decoded_buffer only for
- dst_vq
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BD5D717E02F2;
+	Tue, 17 Nov 2026 22:50:59 +0100 (CET)
+Message-ID: <632f258f80a3b20d6edda600772e95a5c7735735.camel@collabora.com>
+Subject: Re: [PATCH 11/14] media: verisilicon: Add common encoder parm and
+ frameintervals ioctls
 From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 To: Paul Kocialkowski <paulk@sys-base.io>, devicetree@vger.kernel.org, 
 	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
@@ -61,10 +61,10 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil	
  <hverkuil@kernel.org>, Marco Felsch <m.felsch@pengutronix.de>, Michael
  Tretter	 <m.tretter@pengutronix.de>
-Date: Tue, 17 Nov 2026 16:48:40 -0500
-In-Reply-To: <20260522101653.2565125-11-paulk@sys-base.io>
+Date: Tue, 17 Nov 2026 16:50:58 -0500
+In-Reply-To: <20260522101653.2565125-12-paulk@sys-base.io>
 References: <20260522101653.2565125-1-paulk@sys-base.io>
-	 <20260522101653.2565125-11-paulk@sys-base.io>
+	 <20260522101653.2565125-12-paulk@sys-base.io>
 Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
  keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
  /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
@@ -80,13 +80,13 @@ Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
  bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
 Organization: Collabora Canada
 Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-nLh/UB/KObZ+4VCcD/xs"
+	protocol="application/pgp-signature"; boundary="=-31nN73e0jiIWmYgoHCNh"
 User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_134845_317226_23E6BE73 
-X-CRM114-Status: UNSURE (   9.78  )
+X-CRM114-CacheID: sfid-20261117_135104_421420_9A2C5610 
+X-CRM114-Status: UNSURE (   9.12  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -106,7 +106,7 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-nLh/UB/KObZ+4VCcD/xs
+--=-31nN73e0jiIWmYgoHCNh
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -114,33 +114,28 @@ Hi,
 
 Le vendredi 22 mai 2026 =C3=A0 12:16 +0200, Paul Kocialkowski a =C3=A9crit=
 =C2=A0:
-> From: Marco Felsch <m.felsch@pengutronix.de>
+> This introduces the required encoder ioctls for configuring the
+> frame rate (via the parm timeperframe field) and enumerating available
+> frame rates (via enum_frameintervals) for the encoder.
 >=20
-> The dst_vq buffer size for encoders should not use the size of the
-> 'hantro_decoded_buffer'. Make use of 'v4l2_m2m_buffer' instead till some
-> encoder requires pre buffer extra data.
->=20
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+
+Perhaps add a word or two about what it is used for (rate control right?).
 
 Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 
-Its independent, so I picked it and added a Fixes tag.
-
-cheers,
-Nicolas
-
---=-nLh/UB/KObZ+4VCcD/xs
+--=-31nN73e0jiIWmYgoHCNh
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavzLuAAKCRDZQZRRKWBy
-9HeFAP4oHdSCfI8KY84Av78wYv28NgXY9eBk1eY2xYRycAHPOwD/RnGf91mn/T5V
-d3DQ6MjLkJ2QhoahVS6bvxw7omKvbAg=
-=3IEk
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavzMQgAKCRDZQZRRKWBy
+9DylAQDgvmfKrtRkUANNPHiNDtUyH56zB5LxGC+9R+k4oMPkYQD+N5a2pBuwNnUX
+LTCWo+50B8YJ+2lyaFgk6ENf7j4GEgM=
+=X2W/
 -----END PGP SIGNATURE-----
 
---=-nLh/UB/KObZ+4VCcD/xs--
+--=-31nN73e0jiIWmYgoHCNh--
 
