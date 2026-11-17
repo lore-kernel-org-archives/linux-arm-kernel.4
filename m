@@ -2,119 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D455606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 15:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 166A8606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 15:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3hAm2pAm;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nU+uJ0Kr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=etyCaFCD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P0VaXLgh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0sIqEz1LaF2+KzKunroBAMsjb5ekTIA0W1B9PutTqFc=; b=3hAm2pAmBkscc5
-	a9ZNdDY+Ssun+HYKxxIR2Pv1tjesu4W5V1n1h+QMuK0GEGNViPWZDW5+Zt+25tyARgGPLH74Kwu3O
-	npiULqH8ZgTsZnv9kg7Z2Nq7S7d5JLLhx1ZQifpovZvJLMoGfu0rytgwbaPeSQVGSRyrrLxNrF8a2
-	Y+ZQqij9Q0Kq7BM/gDIwYdV70hRuXcPGPUNXJrksTz1RpXNKEnM7d06cVB4EL3aeB9nuKiggrmIlW
-	JPBS13Lc6zBTTKTf4/QZDk/gD7al3lNcrdzzGQ4HzwxH5G6YaCmaO7AQo84Siw1hrw4pTQ4kSoYiT
-	dzsmIZct3RWeE71+TYwQ==;
+	List-Owner; bh=HArLExOPkNyBYfmrLg8Y0BuhPejqIaFeng7leCdluOU=; b=etyCaFCDABwkFD
+	t9oGNwqzPo4MlfvQvoUy1F6EcBPDuo/D+/VFZ0G0Jwq9TyCeoD5qh9T3auQOwXAUHjy8q8rv9WKk/
+	Pf/kuKSbqPa5ezOD8y8xgXmaLeXaydkC2MS9Ak7OVt0J984/Uq0Pjnga0Q1zlhgd9YV8Jcib/4IhD
+	XSrBU/7KDTGp4ML4kw4TK7LdTcfdvL18kef1sVKlLPOTjJ5nK3OWxe0IQtIClf0/khUeUovw0IZog
+	/kaJr44Xf5hZuiLWZkrHH1ZcKZTn8ermQCPNTnHf/yNRLNi8oSHddZ1QXnYLa9YJcHsjtIkjM+ImM
+	KsLK94+QnGPPhajIUrTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTKoZ-00000006H1m-3WJA;
-	Tue, 17 Nov 2026 15:09:43 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTKq1-00000006HE8-0NsN;
+	Tue, 17 Nov 2026 15:11:13 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTKoY-00000006H1d-3PMP;
-	Tue, 17 Nov 2026 15:09:42 +0000
+	id 1xTKpz-00000006HDl-1gQS
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 15:11:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3205A61EF0;
-	Tue, 17 Nov 2026 15:09:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69EC71F000C4;
-	Tue, 17 Nov 2026 15:09:37 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 79B5463577;
+	Tue, 17 Nov 2026 15:11:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 176271F000C7;
+	Tue, 17 Nov 2026 15:11:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794928181;
-	bh=0sIqEz1LaF2+KzKunroBAMsjb5ekTIA0W1B9PutTqFc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=nU+uJ0Krv/p0zWWmbRGyr1cPRYUXNvjVxk5FBIqRmMr8PQf7JbrD3NugbmbwUvj7o
-	 oY3tq8uk4EIvesVz5P4WZFmIWC13vtmkuD/qiH1SMu2Rh/+AdT0fOCA+ldPuFH8a/h
-	 WIBmH/4LtxT/Fhnn2gEAqF7m4Y/RQXKH3uHLsWkJcqPP43Bh3TY3IdeSh7YEhRUoUL
-	 2Kxl8N5om3m/klIYFP+K68MrfRDpPv4dxpZHH4qPsApOrh9drc2S3hzza9iue/8UiN
-	 imdSMvgmyWtOzsAXTNUgWqJfOGgGA00oFWZuBN1twaWfVpEbCfCibZc5wprRCerWyf
-	 fO3yHxVFLPUFw==
-Message-ID: <53298044-3595-4231-a498-d78052799727@kernel.org>
-Date: Tue, 17 Nov 2026 16:09:35 +0100
+	s=k20260515; t=1794928270;
+	bh=HArLExOPkNyBYfmrLg8Y0BuhPejqIaFeng7leCdluOU=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=P0VaXLghcsMkwQaIOkwnz/GtT6w9pB0/ADDe33yVXJthJhDmoDsT/W7FdlRHHa71s
+	 t4g8eOpbVtynxk6GPeqicBefe5+x5HMU4peush2zh3L4GMw+l+F/6+raC2xW4IL/7C
+	 g8Mf1fhSDH9l+bhvlcwpSWvIy5rXb3rlJpIfdnflcjCVlj0z7Y+IhLW6+wI5dnu6V2
+	 d7IbH9m5uMIDtKJ8uzoLNHAqjvHmSopGMyRWYp/UFvVov0gStSu47vl5ny3bAE3eO8
+	 z0ZZcZMzkaLk9yCSb772Pw6AEKGktSa8plrQpVB1MqTJJXWzIrXDu57y2Kbr9jRMa7
+	 UVpzn06A10tiA==
+Message-ID: <14e28b99-12dc-4000-a704-8b46cfeb3c0f@kernel.org>
+Date: Tue, 17 Nov 2026 16:11:00 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: mediatek: dpi: Add
- compatible for mt8167
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Cc: linux-mediatek@lists.infradead.org,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>,
- Jitao shi <jitao.shi@mediatek.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260921113914.779393-1-l.scorcia@gmail.com>
- <20260921113914.779393-2-l.scorcia@gmail.com>
- <3701981f-cdda-46a7-8079-de5479ae9c27@kernel.org>
- <CAORyz2+wF=VDTFkRFU7jBu-zNTW7T8mnPrJZAj8ZVD-Yyr2b6A@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <CAORyz2+wF=VDTFkRFU7jBu-zNTW7T8mnPrJZAj8ZVD-Yyr2b6A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Subject: Re: [PATCH v3 04/10] powerpc: kvm: allow flexible PAGE_OFFSET
+To: Arnd Bergmann <arnd@arndb.de>, Arnd Bergmann <arnd@kernel.org>,
+ linux-mm@kvack.org, Crystal Wood <oss@buserror.net>
+Cc: Andreas Larsson <andreas@gaisler.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@redhat.com>,
+ Jason Gunthorpe <jgg@nvidia.com>, Linus Walleij <linusw@kernel.org>,
+ Lorenzo Stoakes <ljs@kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Malin Jonsson <malin.jonsson@est.tech>, Matthew Wilcox
+ <willy@infradead.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Michal Simek <monstr@monstr.eu>, Mike Rapoport <rppt@kernel.org>,
+ Nicholas Piggin <npiggin@gmail.com>, Nishanth Menon <nm@ti.com>,
+ Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
+ linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, x86@kernel.org
+References: <20261116124832.662455-1-arnd@kernel.org>
+ <20261116124832.662455-5-arnd@kernel.org>
+ <afebfaf5-f3ee-4234-875d-e5ebf1ee64fd@kernel.org>
+ <83495d02-4e09-40f0-94fe-e57a1e73d1a3@app.fastmail.com>
+Content-Language: fr-FR
+In-Reply-To: <83495d02-4e09-40f0-94fe-e57a1e73d1a3@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,44 +85,145 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 17/11/2026 14:26, Luca Leonardo Scorcia wrote:
->> Turns out you bring here undocumented ABI. NAK.
+
+
+Le 16/11/2026 à 23:54, Arnd Bergmann a écrit :
+> On Mon, Nov 16, 2026, at 14:38, Christophe Leroy (CS GROUP) wrote:
+>> Le 16/11/2026 à 13:48, Arnd Bergmann a écrit :
+>>> diff --git a/arch/powerpc/kvm/book3s_32_sr.S b/arch/powerpc/kvm/book3s_32_sr.S
+>>> index 6cfcd20d4668..0d8a7857f2bd 100644
+>>> --- a/arch/powerpc/kvm/book3s_32_sr.S
+>>> +++ b/arch/powerpc/kvm/book3s_32_sr.S
+>>> @@ -113,8 +113,8 @@
+>>>    
+>>>            li      r0, 4
+>>>            mtctr   r0
+>>> -	LOAD_REG_IMMEDIATE(r3, 0x20000000 | (0x111 * 0xc))
+>>> -        lis     r4, 0xc000
+>>> +	LOAD_REG_IMMEDIATE(r3, 0x20000000 | (0x111 * (PAGE_OFFSET >> 28)))
+>>> +        lis     r4, (PAGE_OFFSET >> 16)
+>>
+>> This is not enough I think. You need to load ctr with the number of
+>> segments you want to populate. Here above it is hardcoded to 4.
 > 
-> Hi, I'm sorry but I don't see the relation between this commit you
-> just NAKed and the bigger issue about mediatek-drm alias usage. It's
-> not like I'm introducing anything new in these DPI specific patches
-> and the individual display block drivers do not depend on the aliases
-> (they're used by mediatek-drm for building the pipeline).
+> Ok, trying this one now
+> 
+> --- a/arch/powerpc/kvm/book3s_32_sr.S
+> +++ b/arch/powerpc/kvm/book3s_32_sr.S
+> @@ -107,14 +107,12 @@
+>          KVM_LOAD_BAT(2, r9, r10, r11)
+>          KVM_LOAD_BAT(3, r9, r10, r11)
+>   
+> -       /* Restore Segment Registers */
+> -
+> -       /* 0xc - 0xf */
+> -
+> -        li      r0, 4
+> +       /* Restore Segment Registers, assumes PAGE_OFFSET is segment aligned */
+> +        li      r0, (0x100000000 - PAGE_OFFSET) >> 28
 
-To clarify: you do introduce a new compatible here and in the DTS. Here
-it is documented. This is correct.
+Fine, thank should work allthough I would have used 0x10 - (PAGE_OFFSET 
+ >> 28)
 
-However your DTS introduces also new usage of the ABI - aliases - and
-that part is not documented. New DTS cannot use undocumented ABI. This
-means that the binding was not complete. There is a mismatch or missing
-pieces between the binding and DTS.
+>           mtctr   r0
+> -       LOAD_REG_IMMEDIATE(r3, 0x20000000 | (0x111 * 0xc))
+> -        lis     r4, 0xc000
+> +       LOAD_REG_IMMEDIATE(r3, 0x20000000 | (0x111 * (PAGE_OFFSET >> 28)))
+
+Maybe an opportunity to replace 0x20000000 by SR_KP
+
+> +
+> +        lis     r4, PAGE_OFFSET@h
+>   3:      mtsrin  r3, r4
+>           addi    r3, r3, 0x111     /* increment VSID */
+>           addis   r4, r4, 0x1000    /* address of next segment */
+> 
+>>>    	/* Restore host IVPR before re-enabling interrupts. We cheat and know
+>>> -	 * that Linux IVPR is always 0xc0000000. */
+>>> -	lis	r3, 0xc000
+>>> +	 * that Linux IVPR is always PAGE_OFFSET. */
+>>> +	lis	r3, PAGE_OFFSET >> 16
+>>
+>> Maybe use PAGE_OFFSET@h instead of PAGE_OFFSET >> 16.
+>>
+>>>    	mtspr	SPRN_IVPR, r3
+>>
+>> That's probably valid but wouldn't it be more correct to use
+>> interrupt_base@h as in head_44x.S and head_85xx.S :
+>>
+>> 	lis	r4,interrupt_base@h	/* IVPR only uses the high 16-bits */
+>> 	mtspr	SPRN_IVPR,r4
+> 
+> Ok, copying that version now:
+> 
+> --- a/arch/powerpc/kvm/booke_interrupts.S
+> +++ b/arch/powerpc/kvm/booke_interrupts.S
+> @@ -229,9 +229,8 @@ _GLOBAL(kvmppc_resume_host)
+>          mtspr   SPRN_PID1, r3
+>   #endif
+>   
+> -       /* Restore host IVPR before re-enabling interrupts. We cheat and know
+> -        * that Linux IVPR is always PAGE_OFFSET. */
+> -       lis     r3, PAGE_OFFSET >> 16
+> +       /* Restore host IVPR before re-enabling interrupts. */
+> +       lis     r3, interrupt_base@h    /* IVPR only uses the high 16-bits */
+>          mtspr   SPRN_IVPR, r3
+>   
+>          /* Switch to kernel stack and jump to handler. */
+> 
+>>> @@ -115,7 +115,8 @@ static u32 get_host_mas0(unsigned long eaddr)
+>>>    	mtspr(SPRN_MAS6, 0);
+>>>    	mas4 = mfspr(SPRN_MAS4);
+>>>    	mtspr(SPRN_MAS4, mas4 & ~MAS4_TLBSEL_MASK);
+>>> -	asm volatile("tlbsx 0, %0" : : "b" (eaddr & ~CONFIG_PAGE_OFFSET));
+>>> +	asm volatile("tlbsx 0, %0" :
+>>> +		: "b" (eaddr & (rounddown_pow_of_two(PAGE_OFFSET)-1)));
+>>
+>> I think this is not valid.
+>>
+>> With PAGE_OFFSET equal to 0xc0000000,
+>>
+>> Before:
+>>
+>> eaddr & 0x3fffffff
+>>
+>> Now:
+>>
+>> eaddr & (0x80000000 - 1) = eaddr & 0x7fffffff
+> 
+> I'm probably still misunderstanding the intention of this code then,
+> my reading of the comment was that both 0x3fffffff and 0x7fffffff
+> would be valid choices here as both are below PAGE_OFFSET and
+> large enough to alias the correct set.
+> 
+> What are the actual requirements for the mask?
+
+I'm also struggling to understand this so I might be wrong. My 
+understanding at the moment is that here we are looking for the physical 
+address matching that effective addr in order to find the 1:1 MMU 
+mapping. The particularity of booke is that you cannot turn off the MMU, 
+so to simulate MMU off you have to have a MMU translation to translate 
+logical address 0 to physical address 0.
+
+Therefore IIUC the correct calculation should be (eaddr - PAGE_OFFSET)
+
+I guess we need some feedback from Scott Cristal Wood, but I have not 
+seen this person recently on the lists.
 
 > 
-> I understand why the commit to the dtsi that includes the aliases is
-> NAKed, and the eventual fix is going to require a change in all of
-> Mediatek SoCs dtsi. I am fine with the dtsi changes being blocked
-> until an appropriate solution is found. I just don't understand the
-> NAKs on the DPI components.
+> Thanks for looking at these bits in detail, I'm quite out of my
+> comfort zone here, especially with the book-e stuff.
+> 
+>          Arnd
 
-Because this binding in relation to your DTS is incomplete. Of course if
-you drop the aliases from your DTS and this will be your final and
-working solution (bindings and DTS should be complete) then this NAK is
-not relevant and can be ignored. But in current form your bindings are
-incomplete and DTS after correcting won't work...
 
-Best regards,
-Krzysztof
+Christophe
 
