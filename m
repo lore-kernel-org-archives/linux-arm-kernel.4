@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD587606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 04:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74EF9606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 04:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kWUeG6kz;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ZguXsZrN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R+rDRDmA;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Dl1kXYIR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,64 +14,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Pi0bqedEVPcKpyBR0lAV9z5CffbTAe2VaWnOw6F3Fbw=; b=kWUeG6kz/uJ/RkhLIIo2Y8giPh
-	l1sUT+80mtz9lPSonfpq4uRsAWWYAlU36Pk68qlz+G8CYU2DMzdPorkare8eYnZ19XiAX2liARWUl
-	UanPrxT9rs7EvbOoaiGA4VnzcxF7bKPcz/p5FEaOjFSK92b56Fcx6xyHuygyXrb4EzhxyQLWB/vmd
-	CB8g9x87Cw7nfVCnzdWr0+XR0OF9eleB+54sKu9pCplcwV9xFVdmzr/dQan9zW4j2w3m22B9UTF4d
-	HJTsfce/JOT9/v5G0fi6RczRiVUNiRjuPto5nCvxNi3tpf2WrARkO8DLuZ1oMCydyvC03eJVawkVO
-	rGOCMPIg==;
+	bh=T9/NqaAntZwSlf5Fz/R2wLuVPSPsxm3+6aPKCupi3FE=; b=R+rDRDmAt9Wpr2STHI9o/8GM3f
+	O7GITfxPoiXlSlzVT+97myQC0Di20Vee6UcG/e6zXj60YkOet9A7H7KK8FE/OPfRykGioo5JSlrLi
+	Y6CUjEyZdl4sBwCwE8EBWXxJSCIN/RW7aFPVL1jud3KVYjPMiK8TBSLRxe++7zjLqlyvMkFw84lm7
+	CKe8hvYP4EdFSAwmmYD0dhMDg8G+ystqIrcLKr00a7Nxa486+llBSlqepYwMzSIPU9d6BXMXHt3EJ
+	5A1L2YCAxOvUe47ZWiZIH1s7Ivs/cIsMmVNQI1ndEdh5VqTgQj2nTcrqHcMBifNrLShS4slw/XxyE
+	eNxlSvLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTAua-00000004Xpo-3ew1;
-	Tue, 17 Nov 2026 04:35:16 +0000
-Received: from mail-pg1-x546.google.com ([2607:f8b0:4864:20::546])
+	id 1xTAv7-00000004YES-3a4g;
+	Tue, 17 Nov 2026 04:35:49 +0000
+Received: from mail-pj1-x1047.google.com ([2607:f8b0:4864:20::1047])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTAuX-00000004XnR-1oHB
+	id 1xTAub-00000004Xpp-43J9
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 04:35:14 +0000
-Received: by mail-pg1-x546.google.com with SMTP id 41be03b00d2f7-cc4216aee8fso2254219a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 20:35:12 -0800 (PST)
+	Tue, 17 Nov 2026 04:35:19 +0000
+Received: by mail-pj1-x1047.google.com with SMTP id 98e67ed59e1d1-3b0a528ca65so3699462a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 16 Nov 2026 20:35:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794890112; x=1795494912; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794890116; x=1795494916; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Pi0bqedEVPcKpyBR0lAV9z5CffbTAe2VaWnOw6F3Fbw=;
-        b=ZguXsZrNbFie2NE3PTLnx2osylMjyvL/iP0XWfs2588UjqPV0aV1hCURSAyY8k79Tm
-         Bvl5PovM5yARVrjy6qejmP94KBWXsISAxkIoL9c1NheQQnQAcew+GiE6KxiwE+lN8bzh
-         QmhVDSZ5zGDCSMhyZwcskO5VO1ziJ/trfsmGjSiy09UhJRRVR/F516OCF2abFpN+nT5O
-         +YXBRAET0xYjR9J2tfa9mpzL7w0tBX+ry6b1TEUlx5mvVo1FiKsivp7aKgpOECd8f630
-         LEz5cp+iF2czGH2zOEPkceT+U+Gozk6AIBl2B6QOHXhiEN8z2qzdcnsYyBygC07KtKHR
-         k6Iw==
+        bh=T9/NqaAntZwSlf5Fz/R2wLuVPSPsxm3+6aPKCupi3FE=;
+        b=Dl1kXYIRpwkAQxoeI6wRJ2p+bPO9nQBHuZXLoW2pebp/GJ9Dol+BUMifSpI8HFTNAo
+         6Gptlzmi836QkrIjIdWcv4Hwf6nI4+KYxP/1aXG0yQG2vAWidxiZlx2ar9UhimzsMy3P
+         XOXjmCrlDVY5xdUrhiaPtps0WN8ZevTehsEXwLAzPgAgvU504e2H/FoZs0PQKoYUVdTM
+         Up0+BUkO7eZsJvVZtQF5Rh4AgKCRHEFmqtO5qTNrm+oAK2MzPh9baXDki7s4eCN9hkOZ
+         pXKN2dF0SUEUG++Ekg8hni3KST+baU8OBlFydO+ASd0W1T+Ki5ou5jry6A4VLgQtP7Us
+         MQ4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794890112; x=1795494912;
+        d=1e100.net; s=20260707; t=1794890116; x=1795494916;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Pi0bqedEVPcKpyBR0lAV9z5CffbTAe2VaWnOw6F3Fbw=;
-        b=tymNa6tu5flC4CuVHep4YGBsM0SGnhldeSE7YqiQea9eH/S+dkOBAJSGOUPx/iNVuO
-         TthBSWeqfTOjqO6w987Gt+zH6Tes9ibWlcOeFSoSpHihTWsVn85lKs7PIVoR01N1SGsL
-         aij/LhRypkIq/3c7tUcaoITaazUo2hpP8M28D6S2SUij1AMxFc0udg7VFKgAzJHPC4/p
-         Gj7QORIzAjse1wIguF4LQvZqcmtW4/i29+HXNptqbSzMIbV0cChe/HjGQdgdrk2FxzOR
-         pN4qjP+jDMntn5xmaotLVFFCSAHFro8CuyKpeVKEtVXHo3kF6d265cDTPAfZRViU0Vz5
-         4fPA==
-X-Forwarded-Encrypted: i=1; AL+hErFrCI3GY6oDLue2fOb48+eeCCOiX/zff1BmPSGfsJXfE6amvWNmXhYBnCNCfVJMqiPYJxIVHwqWU7O+H38I0vPH@lists.infradead.org
-X-Gm-Message-State: APuU4Z+uJGD2QtTs7M4XRG0Vue40k1BmLim4yeynQ179UHvRzhQIsw4P
-	dYk2U6dt9r3w7gWByDo1sGAz9dYM4lIHwXaJeBFsWLlJAOC4k/oB2uFqe0V02b1tJyqdA4UDzKj
-	kMMmsNXVr/GCbj8ecHAssZBtypA==
-X-Received: from pgbx8-n1.prod.google.com ([2002:a05:6a02:63c8:10b0:cd8:b543:4c4])
+        bh=T9/NqaAntZwSlf5Fz/R2wLuVPSPsxm3+6aPKCupi3FE=;
+        b=26ptaw9MkjTuVCAENlKwWIhZJh7uFdpDdZasuUXuwNYIOnLzMTDgc0vSQH5iShLXOG
+         M6O/xoAzlC0iUVMTvMXlb9teDijpsMnUa900i4wZaDcED2Ag+HjEEg0yoLnzTE0VQqH0
+         X+BRs1aBamns8pR2kAc4m6ESb5Q7rQUURSacQxgD/MMbqv+MF+a1m3GScmMZ+Zh4PmWf
+         ZQlQANMv2U3NdKuvHxdXgm0kl9dbhijexRQVw184wNQKowdsmQ8ZSiTiBXHMVh8BFiiI
+         ul1LwCuNdZJdJPa9FscY0q9Nzz1fD44HckRLdpS+bjbVeG/Gd9vqaF8nAsSHQSZ+eqlu
+         lUZg==
+X-Forwarded-Encrypted: i=1; AL+hErG6+2o3FeWEvhi12qr/IpvFFYXpZR0ZNVRN1fGtBGX5wZwFA8f5OAvEElri21ehTNfmTtPys2UzZaUHyRE47uyl@lists.infradead.org
+X-Gm-Message-State: APuU4Z9z+dLVoD0Ma4DPxK7IUrwtQSlCcLU5OuxxwML9k/qj64D3sjJw
+	9DIkCDKIW5yXBkrs63uXktBc2xKogRwOrOWjNm5TyjMA/wpTk1y8LNHV6SGB355Rfk6h/qgf4KC
+	yCW26i22TBCpSIajiS7M0z6modQ==
+X-Received: from plqw18.prod.google.com ([2002:a17:902:a712:b0:2e9:4ce7:154a])
  (user=dylanbhatch job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6a20:6aa0:b0:3f8:78ed:b4fe with SMTP id adf61e73a8af0-3f878edb65bmr7452950637.46.1794890111625;
- Mon, 16 Nov 2026 20:35:11 -0800 (PST)
-Date: Tue, 17 Nov 2026 04:34:55 +0000
+ 2002:a17:902:f710:b0:2e8:93b1:49cc with SMTP id d9443c01a7336-2ee0dc2a5a9mr131239395ad.35.1794890115946;
+ Mon, 16 Nov 2026 20:35:15 -0800 (PST)
+Date: Tue, 17 Nov 2026 04:34:58 +0000
 In-Reply-To: <20261117043504.1021063-1-dylanbhatch@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261117043504.1021063-1-dylanbhatch@google.com>
 X-Mailer: git-send-email 2.56.0.679.gc527c65306-goog
-Message-ID: <20261117043504.1021063-4-dylanbhatch@google.com>
-Subject: [RFC PATCH 03/12] arm64: eh_frame: track CFA and x29/x30 register
- state in CFI parser
+Message-ID: <20261117043504.1021063-7-dylanbhatch@google.com>
+Subject: [RFC PATCH 06/12] scripts/gen_lr_unwind: add --dump option to inspect
+ .lr_unwind tables
 From: Dylan Hatch <dylanbhatch@google.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
 	Mark Rutland <mark.rutland@arm.com>
@@ -88,8 +88,8 @@ Cc: Herbert Xu <herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemlof
 	Dylan Hatch <dylanbhatch@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_203513_498034_E8A1CB97 
-X-CRM114-Status: GOOD (  22.84  )
+X-CRM114-CacheID: sfid-20261116_203518_015706_2094FE37 
+X-CRM114-Status: GOOD (  22.52  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,427 +109,366 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Extend <asm/eh_frame.h> to decode ULEB128/SLEB128 operands, evaluate
-initial CIE opcodes, and track CFA (cfa_reg, cfa_off) and x29/x30
-frame-record save rules (fp_rule/fp_off, lr_rule/lr_off) across FDE
-instructions, including DW_CFA_remember_state and DW_CFA_restore_state.
+Add a --dump (-d) flag to scripts/gen_lr_unwind to dump .lr_unwind FDEs
+and instruction ranges in human-readable format. Support dumping both
+linked/post-processed objects containing .lr_unwind_fde and individual
+relocatable .o files containing only .eh_frame.
 
 Signed-off-by: Dylan Hatch <dylanbhatch@google.com>
 ---
- arch/arm64/include/asm/eh_frame.h | 273 +++++++++++++++++++++++++++---
- arch/arm64/kernel/pi/patch-scs.c  |   1 +
- 2 files changed, 249 insertions(+), 25 deletions(-)
+ scripts/gen_lr_unwind.c | 268 ++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 257 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm64/include/asm/eh_frame.h b/arch/arm64/include/asm/eh_frame.h
-index 6c17fed1860f1..1dcb5b6151bbc 100644
---- a/arch/arm64/include/asm/eh_frame.h
-+++ b/arch/arm64/include/asm/eh_frame.h
-@@ -2,6 +2,10 @@
- /*
-  * Minimal DWARF .eh_frame CFI parser for arm64.
-  *
-+ * Shared between early boot/module dynamic SCS patching
-+ * (arch/arm64/kernel/pi/patch-scs.c) and build-time .lr_unwind generation
-+ * (scripts/gen_lr_unwind.c).
-+ *
-  * This minimal DWARF CFI parser is partially based on the code in
-  * arch/arc/kernel/unwind.c, and on the document below:
-  * https://refspecs.linuxbase.org/LSB_4.0.0/LSB-Core-generic/LSB-Core-generic/ehframechpt.html
-@@ -19,7 +23,11 @@
- #define U32_MAX				((u32)~0U)
- #endif
+diff --git a/scripts/gen_lr_unwind.c b/scripts/gen_lr_unwind.c
+index f65edd86ac78c..2058601ec6135 100644
+--- a/scripts/gen_lr_unwind.c
++++ b/scripts/gen_lr_unwind.c
+@@ -35,6 +35,8 @@ struct lr_unwind_ctx {
+ 	const Elf64_Shdr *eh_sec;
+ 	const Elf64_Shdr *rela_eh_sec;
+ 	const Elf64_Shdr *fde_sec;
++	const Elf64_Shdr *rela_fde_sec;
++	const Elf64_Shdr *ranges_sec;
+ 	unsigned int	symtab_shndx;
  
-+#define AARCH64_DWARF_FP		29
- #define AARCH64_DWARF_LR		30
-+#define AARCH64_DWARF_SP		31
-+
-+#define EH_FRAME_STATE_STACK_MAX	8
- 
- #define DW_CFA_nop			0x00
- #define DW_CFA_advance_loc1		0x02
-@@ -27,14 +35,22 @@
- #define DW_CFA_advance_loc4		0x04
- #define DW_CFA_offset_extended		0x05
- #define DW_CFA_restore_extended		0x06
-+#define DW_CFA_undefined		0x07
- #define DW_CFA_same_value		0x08
-+#define DW_CFA_register			0x09
- #define DW_CFA_remember_state		0x0a
- #define DW_CFA_restore_state		0x0b
- #define DW_CFA_def_cfa			0x0c
- #define DW_CFA_def_cfa_register		0x0d
- #define DW_CFA_def_cfa_offset		0x0e
-+#define DW_CFA_def_cfa_expression	0x0f
-+#define DW_CFA_expression		0x10
-+#define DW_CFA_offset_extended_sf	0x11
-+#define DW_CFA_def_cfa_sf		0x12
- #define DW_CFA_def_cfa_offset_sf	0x13
-+#define DW_CFA_val_expression		0x16
- #define DW_CFA_negate_ra_state		0x2d
-+#define DW_CFA_GNU_args_size		0x2e
- 
- #define DW_EH_PE_sdata4			0x0b
- #define DW_EH_PE_sdata8			0x0c
-@@ -47,9 +63,27 @@ enum {
- 	EDYNSCS_INVALID_CFA_OPCODE		= 4,
+ 	const Elf64_Rela *eh_relas;
+@@ -67,6 +69,13 @@ struct elf_writer {
+ 	size_t		str_sz;
  };
  
-+enum eh_frame_reg_rule {
-+	EH_REG_UNMODIFIED	= 0,
-+	EH_REG_OFFSET		= 1,
-+	EH_REG_UNSUPPORTED	= 2,
++struct dump_sym {
++	u64		addr;
++	unsigned int	shndx;
++	bool		is_func;
++	const char	*name;
 +};
 +
-+struct eh_frame_reg_state {
-+	s64	cfa_off;
-+	s64	fp_off;
-+	s64	lr_off;
-+	u32	cfa_reg;
-+	u8	fp_rule;
-+	u8	lr_rule;
-+};
+ static int append_fde_entry(struct lr_unwind_ctx *ctx,
+ 			    const Elf64_Rela *eh_rela,
+ 			    s64 byte_off, u32 desc)
+@@ -478,6 +487,225 @@ static int emit_lr_unwind_sections(const char *fname, struct lr_unwind_ctx *ctx,
+ 	return ret;
+ }
+ 
++static int cmp_dump_sym(const void *a, const void *b)
++{
++	const struct dump_sym *sa = a, *sb = b;
 +
- struct eh_frame_cfi_state {
--	u64	loc;
--	bool	ra_negated;
-+	u64				loc;
-+	struct eh_frame_reg_state	reg;
-+	struct eh_frame_reg_state	stack[EH_FRAME_STATE_STACK_MAX];
-+	unsigned int			stack_depth;
-+	bool				ra_negated;
- };
- 
- struct eh_frame {
-@@ -75,6 +109,7 @@ struct eh_frame {
- 			u8	return_address_register;
- 			u8	augmentation_data_size;
- 			u8	fde_pointer_format;
-+			u8	cie_opcodes[];
- 		};
- 
- 		struct { /* FDE (sdata4) */
-@@ -92,40 +127,100 @@ struct eh_frame {
- };
- 
- struct eh_frame_fde_iter {
--	const u8		*start;
--	const u8		*p;
--	int			size;
--	int			code_align;
--	bool			use_sdata8;
--	const struct eh_frame	*cie;
--	const struct eh_frame	*fde;
-+	const u8			*start;
-+	const u8			*p;
-+	int				size;
-+	int				code_align;
-+	int				data_align;
-+	bool				use_sdata8;
-+	struct eh_frame_reg_state	cie_reg;
-+	const struct eh_frame		*cie;
-+	const struct eh_frame		*fde;
- };
- 
- #define EH_FRAME_FDE_ITER_INIT(buf, len) \
--	{ .start = (buf), .p = (buf), .size = (len), .code_align = 1 }
-+	{ .start = (buf), .p = (buf), .size = (len), \
-+	  .code_align = 1, .data_align = -4, \
-+	  .cie_reg = { .cfa_reg = AARCH64_DWARF_SP } }
- 
--/*
-- * Skip one uleb128/sleb128 encoded quantity from the opcode stream. All bytes
-- * except the last one have bit #7 set.
-- */
--static __always_inline int skip_xleb128(const u8 **opcode, int *size)
-+static __always_inline int eh_frame_read_uleb128(const u8 **opcode, int *size,
-+						 u64 *val)
- {
-+	unsigned int shift = 0;
-+	u64 res = 0;
- 	u8 c;
- 
- 	do {
--		if (*size <= 0)
-+		if (*size <= 0 || shift >= 64)
- 			return EDYNSCS_INVALID_CFA_OPCODE;
- 		c = *(*opcode)++;
- 		(*size)--;
-+		if (shift == 63 && c > 1)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		res |= (u64)(c & 0x7f) << shift;
-+		shift += 7;
- 	} while (c & BIT(7));
- 
-+	*val = res;
++	if (sa->shndx != sb->shndx)
++		return sa->shndx < sb->shndx ? -1 : 1;
++	if (sa->addr != sb->addr)
++		return sa->addr < sb->addr ? -1 : 1;
++	if (sa->is_func != sb->is_func)
++		return sa->is_func ? 1 : -1;
 +	return 0;
 +}
 +
-+static __always_inline int eh_frame_read_sleb128(const u8 **opcode, int *size,
-+						 s64 *val)
++static const struct dump_sym *find_dump_sym(const struct dump_sym *syms,
++					    size_t nr_syms,
++					    unsigned int shndx, u64 addr)
 +{
-+	unsigned int shift = 0;
-+	u64 res = 0;
-+	u8 c;
++	size_t lo = 0, hi = nr_syms;
++	const struct dump_sym *best = NULL;
 +
-+	do {
-+		if (*size <= 0 || shift >= 64)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		c = *(*opcode)++;
-+		(*size)--;
-+		if (shift == 63 && c != 0x00 && c != 0x7f)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		res |= (u64)(c & 0x7f) << shift;
-+		shift += 7;
-+	} while (c & BIT(7));
++	while (lo < hi) {
++		size_t mid = lo + (hi - lo) / 2;
++		const struct dump_sym *s = &syms[mid];
 +
-+	if (shift < 64 && (c & BIT(6)))
-+		res |= ~0ULL << shift;
++		if ((shndx && s->shndx < shndx) ||
++		    ((!shndx || s->shndx == shndx) && s->addr <= addr)) {
++			if (!shndx || s->shndx == shndx)
++				best = s;
++			lo = mid + 1;
++		} else {
++			hi = mid;
++		}
++	}
 +
-+	*val = (s64)res;
- 	return 0;
- }
- 
-+static __always_inline void eh_frame_set_reg_rule(struct eh_frame_reg_state *r,
-+						  u64 reg, u8 rule, s64 off)
++	return best;
++}
++
++static const char *mode_name(enum lr_unwind_mode mode)
 +{
-+	if (reg == AARCH64_DWARF_FP) {
-+		r->fp_rule = rule;
-+		r->fp_off = off;
-+	} else if (reg == AARCH64_DWARF_LR) {
-+		r->lr_rule = rule;
-+		r->lr_off = off;
++	switch (mode) {
++	case LR_UNWIND_LIVE:
++		return "LIVE";
++	case LR_UNWIND_FP:
++		return "FP";
++	case LR_UNWIND_SP:
++		return "SP";
++	default:
++		return "UNKNOWN";
 +	}
 +}
 +
-+static __always_inline void eh_frame_restore_reg(struct eh_frame_reg_state *r,
-+						 const struct eh_frame_reg_state *cie,
-+						 u64 reg)
++static int dump_lr_unwind(struct lr_unwind_ctx *ctx, const Elf64_Shdr *shdrs,
++			  unsigned int shnum, const char *shstrtab)
 +{
-+	if (reg == AARCH64_DWARF_FP) {
-+		r->fp_rule = cie->fp_rule;
-+		r->fp_off = cie->fp_off;
-+	} else if (reg == AARCH64_DWARF_LR) {
-+		r->lr_rule = cie->lr_rule;
-+		r->lr_off = cie->lr_off;
++	const struct lr_fde *fdes;
++	const Elf64_Rela *relas = NULL;
++	const lr_range_t *ranges = NULL;
++	size_t nr_fdes, nr_ranges = 0;
++	const Elf64_Sym *elf_syms = NULL;
++	size_t nr_elf_syms = 0;
++	const char *strtab = NULL;
++	struct dump_sym *dsyms = NULL;
++	size_t nr_dsyms = 0;
++	bool is_rel = (((const Elf64_Ehdr *)ctx->map)->e_type == ET_REL);
++
++	if (ctx->fde_sec) {
++		fdes = ctx->map + ctx->fde_sec->sh_offset;
++		nr_fdes = ctx->fde_sec->sh_size / sizeof(struct lr_fde);
++		if (ctx->rela_fde_sec)
++			relas = ctx->map + ctx->rela_fde_sec->sh_offset;
++		if (ctx->ranges_sec) {
++			ranges = ctx->map + ctx->ranges_sec->sh_offset;
++			nr_ranges = ctx->ranges_sec->sh_size / sizeof(lr_range_t);
++		}
++	} else {
++		if (!ctx->eh_sec || !ctx->rela_eh_sec || !ctx->symtab_shndx) {
++			fprintf(stderr, "No .lr_unwind_fde or .eh_frame section found\n");
++			return -1;
++		}
++		if (parse_eh_frame(ctx) < 0)
++			return -1;
++		fdes = ctx->fdes;
++		nr_fdes = ctx->nr_fdes;
++		relas = ctx->fde_relas;
++		ranges = ctx->ranges;
++		nr_ranges = ctx->nr_ranges;
 +	}
++
++	if (ctx->symtab_shndx) {
++		const Elf64_Shdr *sym_sec = &shdrs[ctx->symtab_shndx];
++
++		elf_syms = ctx->map + sym_sec->sh_offset;
++		nr_elf_syms = sym_sec->sh_size / sizeof(Elf64_Sym);
++		strtab = ctx->map + shdrs[sym_sec->sh_link].sh_offset;
++
++		dsyms = malloc(nr_elf_syms * sizeof(*dsyms));
++		if (!dsyms)
++			return -1;
++
++		for (size_t i = 0; i < nr_elf_syms; i++) {
++			const Elf64_Sym *s = &elf_syms[i];
++			unsigned char type = ELF64_ST_TYPE(s->st_info);
++			const char *name = strtab + s->st_name;
++
++			if (s->st_shndx == SHN_UNDEF ||
++			    s->st_shndx >= SHN_LORESERVE)
++				continue;
++			if (type != STT_FUNC && type != STT_NOTYPE)
++				continue;
++			if (!name[0] || name[0] == '$' ||
++			    !strncmp(name, ".L", 2))
++				continue;
++
++			dsyms[nr_dsyms++] = (struct dump_sym){
++				.addr = s->st_value,
++				.shndx = is_rel ? s->st_shndx : 0,
++				.is_func = (type == STT_FUNC),
++				.name = name,
++			};
++		}
++
++		qsort(dsyms, nr_dsyms, sizeof(*dsyms), cmp_dump_sym);
++	}
++
++	for (size_t i = 0; i < nr_fdes; i++) {
++		const struct lr_fde *fde = &fdes[i];
++		u32 desc = fde->range_desc;
++		u32 sp_off = LR_FDE_SP_OFF_BYTES(desc);
++		lr_range_t inline_ranges[4];
++		const lr_range_t *r_list;
++		u32 r_cnt, total_insns = 0, insn_off = 0;
++
++		if (desc & LR_FDE_INLINE) {
++			lr_fde_unpack_inline(desc, inline_ranges);
++			r_list = inline_ranges;
++			r_cnt = 4;
++		} else {
++			u32 idx = LR_OOL_IDX(desc);
++
++			r_cnt = LR_OOL_COUNT(desc);
++			if (idx + r_cnt > nr_ranges) {
++				free(dsyms);
++				return -1;
++			}
++			r_list = &ranges[idx];
++		}
++
++		for (u32 j = 0; j < r_cnt; j++)
++			total_insns += LR_RANGE_LEN(r_list[j]);
++
++		printf("FDE[%zu] ", i);
++		if (relas && elf_syms) {
++			u32 sym_idx = ELF64_R_SYM(relas[i].r_info);
++
++			if (sym_idx < nr_elf_syms) {
++				const Elf64_Sym *sym = &elf_syms[sym_idx];
++				unsigned int shndx = sym->st_shndx;
++				u64 off = sym->st_value + relas[i].r_addend;
++
++				if (shndx < shnum && shndx < SHN_LORESERVE) {
++					const char *sec_name =
++						shstrtab + shdrs[shndx].sh_name;
++					const struct dump_sym *ds =
++						find_dump_sym(dsyms, nr_dsyms,
++							      shndx, off);
++
++					if (ds)
++						printf("%s+0x%lx <%s+0x%lx>",
++						       sec_name,
++						       (unsigned long)off,
++						       ds->name,
++						       (unsigned long)(off - ds->addr));
++					else
++						printf("%s+0x%lx", sec_name,
++						       (unsigned long)off);
++				}
++			}
++		} else if (ctx->fde_sec) {
++			u64 field_addr = ctx->fde_sec->sh_addr +
++					 i * sizeof(struct lr_fde);
++			u64 pc = field_addr + (s64)fde->start_offset;
++			const struct dump_sym *ds =
++				find_dump_sym(dsyms, nr_dsyms, 0, pc);
++
++			if (ds)
++				printf("0x%016lx <%s+0x%lx>", (unsigned long)pc,
++				       ds->name, (unsigned long)(pc - ds->addr));
++			else
++				printf("0x%016lx", (unsigned long)pc);
++		}
++
++		if (desc & LR_FDE_INLINE)
++			printf(" (len=0x%x, inline, sp_off=0x%x):\n",
++			       total_insns << 2, sp_off);
++		else
++			printf(" (len=0x%x, ool[%u..%u), sp_off=0x%x):\n",
++			       total_insns << 2, LR_OOL_IDX(desc),
++			       LR_OOL_IDX(desc) + r_cnt, sp_off);
++
++		for (u32 j = 0; j < r_cnt; j++) {
++			u32 len = LR_RANGE_LEN(r_list[j]);
++			enum lr_unwind_mode mode = LR_RANGE_MODE(r_list[j]);
++
++			if (!len)
++				continue;
++			printf("  [+0x%04x..+0x%04x) %4u insns  %s",
++			       insn_off << 2, (insn_off + len) << 2,
++			       len, mode_name(mode));
++			if (mode == LR_UNWIND_SP)
++				printf(" (sp+0x%x)", sp_off);
++			printf("\n");
++			insn_off += len;
++		}
++	}
++
++	free(dsyms);
++	return 0;
 +}
 +
- static __always_inline int eh_frame_step_opcode(const u8 **opcode, int *size,
- 						const struct eh_frame_fde_iter *it,
- 						struct eh_frame_cfi_state *st)
+ int main(int argc, char *argv[])
  {
-+	u64 ureg, uoff;
-+	s64 soff;
- 	u8 op;
+ 	struct lr_unwind_ctx ctx = { 0 };
+@@ -485,22 +713,29 @@ int main(int argc, char *argv[])
+ 	const Elf64_Ehdr *ehdr;
+ 	const Elf64_Shdr *shdrs;
+ 	const char *shstrtab;
++	const char *fname;
++	bool dump = false;
+ 	struct stat sb;
+ 	int fd, ret = 1;
  
- 	if (*size <= 0)
-@@ -137,8 +232,18 @@ static __always_inline int eh_frame_step_opcode(const u8 **opcode, int *size,
- 
- 	switch (op) {
- 	case DW_CFA_nop:
-+		break;
-+
- 	case DW_CFA_remember_state:
-+		if (st->stack_depth >= EH_FRAME_STATE_STACK_MAX)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		st->stack[st->stack_depth++] = st->reg;
-+		break;
-+
- 	case DW_CFA_restore_state:
-+		if (!st->stack_depth)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		st->reg = st->stack[--st->stack_depth];
- 		break;
- 
- 	case DW_CFA_advance_loc1:
-@@ -168,18 +273,106 @@ static __always_inline int eh_frame_step_opcode(const u8 **opcode, int *size,
- 		*size -= 4;
- 		break;
- 
--	case DW_CFA_def_cfa:
- 	case DW_CFA_offset_extended:
--		if (skip_xleb128(opcode, size))
-+		if (eh_frame_read_uleb128(opcode, size, &ureg) ||
-+		    eh_frame_read_uleb128(opcode, size, &uoff))
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		eh_frame_set_reg_rule(&st->reg, ureg, EH_REG_OFFSET,
-+				      (s64)uoff * it->data_align);
-+		break;
-+
-+	case DW_CFA_offset_extended_sf:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg) ||
-+		    eh_frame_read_sleb128(opcode, size, &soff))
- 			return EDYNSCS_INVALID_CFA_OPCODE;
--		fallthrough;
-+		eh_frame_set_reg_rule(&st->reg, ureg, EH_REG_OFFSET,
-+				      soff * it->data_align);
-+		break;
-+
-+	case DW_CFA_restore_extended:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg))
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		eh_frame_restore_reg(&st->reg, &it->cie_reg, ureg);
-+		break;
-+
-+	case DW_CFA_same_value:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg))
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		eh_frame_set_reg_rule(&st->reg, ureg, EH_REG_UNMODIFIED, 0);
-+		break;
-+
-+	case DW_CFA_undefined:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg))
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		eh_frame_set_reg_rule(&st->reg, ureg, EH_REG_UNSUPPORTED, 0);
-+		break;
-+
-+	case DW_CFA_register:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg) ||
-+		    eh_frame_read_uleb128(opcode, size, &uoff))
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		eh_frame_set_reg_rule(&st->reg, ureg, EH_REG_UNSUPPORTED, 0);
-+		break;
-+
-+	case DW_CFA_def_cfa:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg) ||
-+		    eh_frame_read_uleb128(opcode, size, &uoff) ||
-+		    ureg >= U32_MAX)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		st->reg.cfa_reg = ureg;
-+		st->reg.cfa_off = (s64)uoff;
-+		break;
-+
-+	case DW_CFA_def_cfa_sf:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg) ||
-+		    eh_frame_read_sleb128(opcode, size, &soff) ||
-+		    ureg >= U32_MAX)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		st->reg.cfa_reg = ureg;
-+		st->reg.cfa_off = soff * it->data_align;
-+		break;
-+
-+	case DW_CFA_def_cfa_register:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg) ||
-+		    ureg >= U32_MAX)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		st->reg.cfa_reg = ureg;
-+		break;
-+
- 	case DW_CFA_def_cfa_offset:
-+		if (eh_frame_read_uleb128(opcode, size, &uoff))
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		st->reg.cfa_off = (s64)uoff;
-+		break;
-+
- 	case DW_CFA_def_cfa_offset_sf:
--	case DW_CFA_def_cfa_register:
--	case DW_CFA_same_value:
--	case DW_CFA_restore_extended:
--	case 0x80 ... 0xbf: /* DW_CFA_offset */
--		if (skip_xleb128(opcode, size))
-+		if (eh_frame_read_sleb128(opcode, size, &soff))
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		st->reg.cfa_off = soff * it->data_align;
-+		break;
-+
-+	case DW_CFA_def_cfa_expression:
-+		if (eh_frame_read_uleb128(opcode, size, &uoff) ||
-+		    uoff > (u64)*size)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		*opcode += uoff;
-+		*size -= uoff;
-+		st->reg.cfa_reg = U32_MAX;
-+		break;
-+
-+	case DW_CFA_expression:
-+	case DW_CFA_val_expression:
-+		if (eh_frame_read_uleb128(opcode, size, &ureg) ||
-+		    eh_frame_read_uleb128(opcode, size, &uoff) ||
-+		    uoff > (u64)*size)
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		*opcode += uoff;
-+		*size -= uoff;
-+		eh_frame_set_reg_rule(&st->reg, ureg, EH_REG_UNSUPPORTED, 0);
-+		break;
-+
-+	case DW_CFA_GNU_args_size:
-+		if (eh_frame_read_uleb128(opcode, size, &uoff))
- 			return EDYNSCS_INVALID_CFA_OPCODE;
- 		break;
- 
-@@ -191,7 +384,15 @@ static __always_inline int eh_frame_step_opcode(const u8 **opcode, int *size,
- 		st->loc += (op & 0x3f) * it->code_align;
- 		break;
- 
-+	case 0x80 ... 0xbf: /* DW_CFA_offset (reg in low 6 bits) */
-+		if (eh_frame_read_uleb128(opcode, size, &uoff))
-+			return EDYNSCS_INVALID_CFA_OPCODE;
-+		eh_frame_set_reg_rule(&st->reg, op & 0x3f, EH_REG_OFFSET,
-+				      (s64)uoff * it->data_align);
-+		break;
-+
- 	case 0xc0 ... 0xff: /* DW_CFA_restore (reg in low 6 bits) */
-+		eh_frame_restore_reg(&st->reg, &it->cie_reg, op & 0x3f);
- 		break;
- 
- 	default:
-@@ -204,7 +405,14 @@ static __always_inline int eh_frame_step_opcode(const u8 **opcode, int *size,
- static __always_inline int eh_frame_parse_cie(const struct eh_frame *frame,
- 					      struct eh_frame_fde_iter *it)
- {
--	if (sizeof(frame->size) + frame->size < sizeof(*frame))
-+	struct eh_frame_cfi_state cie_st = {
-+		.reg = { .cfa_reg = AARCH64_DWARF_SP },
-+	};
-+	const u8 *opcode;
-+	int size, ret;
-+
-+	if (sizeof(frame->size) + frame->size <
-+	    offsetof(struct eh_frame, cie_opcodes))
- 		return EDYNSCS_INVALID_CIE_HEADER;
- 
- 	/*
-@@ -225,6 +433,9 @@ static __always_inline int eh_frame_parse_cie(const struct eh_frame *frame,
- 		return EDYNSCS_INVALID_CIE_HEADER;
- 
- 	it->code_align = frame->code_alignment_factor;
-+	it->data_align = (frame->data_alignment_factor & BIT(6)) ?
-+			 (int)frame->data_alignment_factor - 128 :
-+			 frame->data_alignment_factor;
- 
- 	switch (frame->fde_pointer_format) {
- 	case DW_EH_PE_pcrel | DW_EH_PE_sdata4:
-@@ -237,6 +448,18 @@ static __always_inline int eh_frame_parse_cie(const struct eh_frame *frame,
- 		return EDYNSCS_INVALID_CIE_SDATA_SIZE;
+-	if (argc != 2) {
+-		fprintf(stderr, "Usage: %s <file>\n", argv[0]);
++	if (argc == 3 && (!strcmp(argv[1], "--dump") || !strcmp(argv[1], "-d"))) {
++		dump = true;
++		fname = argv[2];
++	} else if (argc == 2 && argv[1][0] != '-') {
++		fname = argv[1];
++	} else {
++		fprintf(stderr, "Usage: %s [--dump] <file>\n", argv[0]);
+ 		return 1;
  	}
  
-+	it->cie_reg = cie_st.reg;
-+	opcode = frame->cie_opcodes;
-+	size = (int)(sizeof(frame->size) + frame->size -
-+		     offsetof(struct eh_frame, cie_opcodes));
-+
-+	while (size > 0) {
-+		ret = eh_frame_step_opcode(&opcode, &size, it, &cie_st);
-+		if (ret)
-+			return ret;
+-	fd = open(argv[1], O_RDONLY);
++	fd = open(fname, O_RDONLY);
+ 	if (fd < 0) {
+ 		fprintf(stderr, "gen_lr_unwind: cannot open %s: %s\n",
+-			argv[1], strerror(errno));
++			fname, strerror(errno));
+ 		return 1;
+ 	}
+ 	if (fstat(fd, &sb) < 0 || (size_t)sb.st_size < sizeof(Elf64_Ehdr)) {
+-		fprintf(stderr, "gen_lr_unwind: invalid file %s\n", argv[1]);
++		fprintf(stderr, "gen_lr_unwind: invalid file %s\n", fname);
+ 		close(fd);
+ 		return 1;
+ 	}
+@@ -510,7 +745,7 @@ int main(int argc, char *argv[])
+ 	close(fd);
+ 	if (ctx.map == MAP_FAILED) {
+ 		fprintf(stderr, "gen_lr_unwind: mmap failed on %s: %s\n",
+-			argv[1], strerror(errno));
++			fname, strerror(errno));
+ 		return 1;
+ 	}
+ 
+@@ -518,10 +753,12 @@ int main(int argc, char *argv[])
+ 	if (memcmp(ehdr->e_ident, ELFMAG, SELFMAG) ||
+ 	    ehdr->e_ident[EI_CLASS] != ELFCLASS64 ||
+ 	    ehdr->e_ident[EI_DATA] != ELFDATA2LSB ||
+-	    ehdr->e_type != ET_REL ||
++	    (!dump && ehdr->e_type != ET_REL) ||
++	    (dump && ehdr->e_type != ET_REL && ehdr->e_type != ET_EXEC &&
++	     ehdr->e_type != ET_DYN) ||
+ 	    ehdr->e_machine != EM_AARCH64) {
+-		fprintf(stderr, "gen_lr_unwind: %s is not an AArch64 ET_REL ELF\n",
+-			argv[1]);
++		fprintf(stderr, "gen_lr_unwind: unsupported ELF file %s\n",
++			fname);
+ 		goto out;
+ 	}
+ 
+@@ -536,6 +773,10 @@ int main(int argc, char *argv[])
+ 
+ 		if (!strcmp(name, ".lr_unwind_fde"))
+ 			ctx.fde_sec = &shdrs[i];
++		else if (!strcmp(name, ".rela.lr_unwind_fde"))
++			ctx.rela_fde_sec = &shdrs[i];
++		else if (!strcmp(name, ".lr_unwind_ranges"))
++			ctx.ranges_sec = &shdrs[i];
+ 		else if (!strcmp(name, ".eh_frame") ||
+ 			 !strcmp(name, ".init.eh_frame"))
+ 			ctx.eh_sec = &shdrs[i];
+@@ -546,6 +787,11 @@ int main(int argc, char *argv[])
+ 			ctx.symtab_shndx = i;
+ 	}
+ 
++	if (dump) {
++		ret = dump_lr_unwind(&ctx, shdrs, shnum, shstrtab) ? 1 : 0;
++		goto out;
 +	}
 +
-+	it->cie_reg = cie_st.reg;
- 	it->cie = frame;
- 	return 0;
- }
-diff --git a/arch/arm64/kernel/pi/patch-scs.c b/arch/arm64/kernel/pi/patch-scs.c
-index b240144f7d80e..f4264dda828f7 100644
---- a/arch/arm64/kernel/pi/patch-scs.c
-+++ b/arch/arm64/kernel/pi/patch-scs.c
-@@ -61,6 +61,7 @@ static int scs_handle_fde_frame(const struct eh_frame_fde_iter *it,
- 		.loc = it->use_sdata8 ?
- 		       (u64)&frame->initial_loc64 + frame->initial_loc64 :
- 		       (u64)offset_to_ptr(&frame->initial_loc),
-+		.reg = it->cie_reg,
- 	};
- 	const u8 *opcode;
- 	int size, ret;
+ 	if (ctx.fde_sec) {
+ 		ret = 0;
+ 		goto out;
+@@ -558,11 +804,11 @@ int main(int argc, char *argv[])
+ 
+ 	if (!parse_eh_frame(&ctx) &&
+ 	    (!ctx.nr_fdes ||
+-	     !emit_lr_unwind_sections(argv[1], &ctx, shnum, shstrndx)))
++	     !emit_lr_unwind_sections(fname, &ctx, shnum, shstrndx)))
+ 		ret = 0;
+ 	else
+ 		fprintf(stderr, "gen_lr_unwind: failed to generate .lr_unwind for %s\n",
+-			argv[1]);
++			fname);
+ 
+ out:
+ 	if (ctx.map)
 -- 
 2.56.0.679.gc527c65306-goog
 
