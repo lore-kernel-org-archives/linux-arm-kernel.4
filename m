@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88E2606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62EA9606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 12:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q2PjrBAv;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Nut6pCgX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=epaF+7T9;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TuePYClO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NDXZE5uN16UvOOflyM5pOpVzOkug8tVrjeti6ZNqlOk=; b=q2PjrBAvh1mbDg
-	LFphctkXGlSuwt2k+QgX3lFfuvkieD7wRq8J2ojOUt//quJVifwUm4E735vfquruG++vwBbtzvZIN
-	fFnziNbR2Uv9EqDQB5wY3EPyRh2ZV+edSdO9A2elbVAqZxW7Fw7xViSABCtmtIe03K9tyxae6Fof9
-	NtaoV7Cnxg+mJzngAsMxhKypT350N2JSOkg9+hXmED85qz0nCr2eUvK8Z7stxWP8jdZkg5u3z9Yw7
-	p6vmnf0tpTu1erFTZFi0Tw+D/G+1QdA74cnPm2LQJCuzesYEX1CCDpbfW4QpckaH1k9Ktnd1kTQZe
-	SKJ8frXvVElg/D4f+hrQ==;
+	List-Owner; bh=YB4Rm6hbxOLC4r10E9y/WD3nBCBmdRshrgHd962ScF8=; b=epaF+7T9nExXmt
+	8m6fMFY7o1mCL4qSgWGLJ28yOu/7stAc1eSK9yZxCVIUrHE+Yxk8ULHS+bxvwh3hjamxOEaC/z44c
+	ELb8DFwJk6VbcspixKrJHc4uwPsiHhSY3vjtymQC9jajCZPF0gpokRsmUhCJ50yea3xCCMeZzSvQa
+	kV6XkL2Q4I93446VtkrhWPG2K88kD9KpVDZF+rM/SZK/WCcFzLToq1I72rcrCoveZOuwMj88HS7l3
+	8j/MmHozYr2SW17VBxtMK7/0dD87AWWePdAnOsD2qHHOyJPw4qATlY6W7OF1szP0qGsJq7yssz13/
+	dxmbdUJ3HDqRj6ufJqTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIcz-00000005jWD-3MTA;
-	Tue, 17 Nov 2026 12:49:37 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTIdh-00000005jii-0aWO;
+	Tue, 17 Nov 2026 12:50:21 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTIcy-00000005jVj-2TvW
+	id 1xTIdf-00000005jhe-2aha
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 12:49:36 +0000
+	Tue, 17 Nov 2026 12:50:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F28D64363A;
-	Tue, 17 Nov 2026 12:49:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B239E1F000C5;
-	Tue, 17 Nov 2026 12:49:31 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 03916407BC;
+	Tue, 17 Nov 2026 12:50:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E78701F000C4;
+	Tue, 17 Nov 2026 12:50:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794919775;
-	bh=NDXZE5uN16UvOOflyM5pOpVzOkug8tVrjeti6ZNqlOk=;
+	s=k20260515; t=1794919818;
+	bh=YB4Rm6hbxOLC4r10E9y/WD3nBCBmdRshrgHd962ScF8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Nut6pCgXoh+kAmsX2ASzjgctAD9VtVsFeGVHA5qIw8RWIYMcizQCIKD8DVf6sGKeX
-	 0FQg1J2QRXe7Q5DBP6zsRTZIJS1pfmVFrcKujmdIvKTMxWwkLuiA4d9nVjCIe8g/aJ
-	 oUyBOXJUpYA9eTMoHkleUYnF17c5Jr37AxJHqI2xQSxwyyC8Avda1Sgkf3e6cRuHDJ
-	 2vgivel8MK3Jkes3aeymyZ4yMs4F4LlUI+4sJcpl4frcHiENRc96E3LDUv4MKo7j9O
-	 12PuNHxAqKFyrxResu9VmopxolYSr7JBq+qz74DcC7PfumHlmJ/+mfip049tuhHMfY
-	 jT9EA79B31bSQ==
-Message-ID: <7bebe58b-6a87-4458-bd23-a672eaef8760@kernel.org>
-Date: Tue, 17 Nov 2026 13:49:29 +0100
+	b=TuePYClOw5kmn94UgSiQtLSegFdzSD4toN8mGQyksDl12VeOGoK6a4BdmfUILCJkV
+	 1gw4znUTt5s2B/7tr7XG8n7OgvM5wPt5xbhSe2XibLlIKaF7uIUOVlrHWVhUeJNVdE
+	 wmhdLxZgTNXAZqhAK7SPI8XLUOGKTj2Rwn1M0EILWLQh5KkuR8hO4ArkkxBiT+6yaM
+	 nfPJs2pu2sQDbW0BM8mVwhm42gm7Tf/XncG6IWgGmJ3GSTKAjGXHktSiImfUVlkNV5
+	 1ser9OuarpHiiSOjV+qxWqEX5qd+cwEHq1gxW8b33hyrMshlfNKGoPJk1YD4lp/juB
+	 FTaPLL+UOiYAQ==
+Message-ID: <62ff09ad-b2db-484b-9b27-6e8a3307b27b@kernel.org>
+Date: Tue, 17 Nov 2026 13:50:13 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 21/22] arm64: dts: apple: t8112: Add USB4 ACIO and NHI
+Subject: Re: [PATCH v2 22/22] arm64: dts: apple: t60xx: Add USB4 ACIO and NHI
 To: Sven Peter <sven@kernel.org>,
  Heikki Krogerus <heikki.krogerus@linux.intel.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -61,7 +61,7 @@ Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
 References: <20260906-b4-apple-soc-tbt-v2-0-1f80085f93fb@kernel.org>
- <20260906-b4-apple-soc-tbt-v2-21-1f80085f93fb@kernel.org>
+ <20260906-b4-apple-soc-tbt-v2-22-1f80085f93fb@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,7 +107,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20260906-b4-apple-soc-tbt-v2-21-1f80085f93fb@kernel.org>
+In-Reply-To: <20260906-b4-apple-soc-tbt-v2-22-1f80085f93fb@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -129,31 +129,42 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 06/09/2026 20:36, Sven Peter wrote:
-> Add the ACIO host router, NHI, DART and mailbox nodes for both Type-C
-> ports on t8112 and connect the host routers to the Type-C connectors.
+> Add the ACIO host router, NHI, DART and mailbox nodes for the four ATC
+> instances on each t600x and t602x die and connect the host routers to
+> the Type-C connectors on the MacBook Pro (j314/j316 and j414/j416), Mac
+> Studio (j375 and j475), Mac mini (j474) and Mac Pro (j180d) boards.
+> 
 > Also describe the USB3 path from each host router to its DWC3 controller
 > so the NHI driver can create the required device link.
 > 
 > Signed-off-by: Sven Peter <sven@kernel.org>
 > ---
->  arch/arm64/boot/dts/apple/t8112-jxxx.dtsi |  95 ++++++++++++++-
->  arch/arm64/boot/dts/apple/t8112.dtsi      | 186 ++++++++++++++++++++++++++++++
->  2 files changed, 279 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/apple/t6002-j375d.dts      | 101 ++++++-
+>  arch/arm64/boot/dts/apple/t600x-dieX.dtsi      | 376 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi | 158 ++++++++++-
+>  arch/arm64/boot/dts/apple/t600x-j375.dtsi      | 205 +++++++++++++-
+>  arch/arm64/boot/dts/apple/t6022-j180d.dts      | 304 +++++++++++++++++++-
+>  arch/arm64/boot/dts/apple/t6022-j475d.dts      |  10 +
+>  arch/arm64/boot/dts/apple/t6022-jxxxd.dtsi     |  91 +++++-
+>  arch/arm64/boot/dts/apple/t602x-dieX.dtsi      | 376 +++++++++++++++++++++++++
+>  8 files changed, 1604 insertions(+), 17 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-> index 562e7a25a1e8..d0dc7eaaca35 100644
-> --- a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
-> @@ -13,6 +13,10 @@ / {
+> diff --git a/arch/arm64/boot/dts/apple/t6002-j375d.dts b/arch/arm64/boot/dts/apple/t6002-j375d.dts
+> index e6eb6b6c386d..93f07df1c006 100644
+> --- a/arch/arm64/boot/dts/apple/t6002-j375d.dts
+> +++ b/arch/arm64/boot/dts/apple/t6002-j375d.dts
+> @@ -18,6 +18,10 @@ / {
 >  	aliases {
->  		atcphy0 = &atcphy0;
->  		atcphy1 = &atcphy1;
-> +		usb4-0-acio = &usb4_0_acio;
-> +		usb4-0-nhi = &usb4_0_nhi;
-> +		usb4-1-acio = &usb4_1_acio;
-> +		usb4-1-nhi = &usb4_1_nhi;
+>  		atcphy4 = &atcphy0_die1;
+>  		atcphy5 = &atcphy1_die1;
+> +		usb4-4-acio = &usb4_0_acio_die1;
+> +		usb4-4-nhi = &usb4_0_nhi_die1;
+> +		usb4-5-acio = &usb4_1_acio_die1;
+> +		usb4-5-nhi = &usb4_1_nhi_die1;
+>  	};
 
-Sorry, that's a no go. I will be removing all of these which were committed.
+Sorry, that's a no-go. NAK.
+
 
 Best regards,
 Krzysztof
