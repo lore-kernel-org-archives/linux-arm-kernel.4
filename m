@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA36606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8008606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 10:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v90kyUAX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YHSc/OXG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BVO/24tL;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m4A5KmHW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=rnaiBVPQj6uMXrZvnEKuIpIoAtonZUFt2q6SMP8QNTo=; b=v90kyUAXIkZRyA
-	GrX4KArJzEr1ou1kQ86Rl/3Xg/301+1ytXk5I9ZheCqrJyBTTW6nmIYVLK/UbC9RpjvTDOq8k25xc
-	ErmkrRxC7p+WBUitCJP3qYo8V+G2VHfQxpJ5JCnespI72laizGIOu10xG4CzwuXwBEZrfmvAyH8S9
-	5T4zyUvs8AZ8xhCd8HPOFyakruIsG0ZfD8OTp3OkdMR6NJjXWTPz3vSPiC1l0PqCNCyluPj7Q+rIr
-	u4HvvLP5SCzWq1Bu6LTLbCQD8LHaMfx17o+xJrkm2Uf+7dUsyjmAyfrCUmsmxzchhRw3ksllhLcgq
-	6BPniemCizRlqMxhVunA==;
+	List-Owner; bh=GQ9L+qVCjXe5AwcnvsNqu1jKwMGWozCdxskYX6YraMw=; b=BVO/24tLHNk6nG
+	AFaqbqu3FBcIlLXd6kotLEb8VJgQrl08Tlxqqu7HFV06ktcLeTP+HeKW0+uwrzu9gdYEwOxa+MQiY
+	Njvs5HcWMZkTA3YuFnzN5R/bIPzC75dEE6xaKQ8j2lUuZ5RHsmKOrUM+2whwL4I9A43t7CkeszPwL
+	mzHOyPUrCCWWLBbXa4UnPn+zCWqyJ0KoMjtyH2yCEOo4HYhfcO4go11jzQqegf0yASlUmo6UyPwxm
+	/p/TUZ9Y9jk0qsHhIRc/yqPsNODuZvdyy9eJ7NG8aZjiPzJiryUyvKAos9Ut/c0qRL7minzWd4Hgn
+	zWHvL06W/1cEYpauYggQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGsz-00000005Mbj-2iA3;
-	Tue, 17 Nov 2026 10:58:01 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTGtW-00000005MiD-3zb0;
+	Tue, 17 Nov 2026 10:58:34 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTGsy-00000005MbS-1GlQ;
-	Tue, 17 Nov 2026 10:58:00 +0000
+	id 1xTGtU-00000005Mhl-2TE4;
+	Tue, 17 Nov 2026 10:58:33 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F204C4556A;
-	Tue, 17 Nov 2026 10:57:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC1711F000C4;
-	Tue, 17 Nov 2026 10:57:55 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id D457260F0F;
+	Tue, 17 Nov 2026 10:58:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6D471F000C4;
+	Tue, 17 Nov 2026 10:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794913079;
-	bh=rnaiBVPQj6uMXrZvnEKuIpIoAtonZUFt2q6SMP8QNTo=;
+	s=k20260515; t=1794913111;
+	bh=GQ9L+qVCjXe5AwcnvsNqu1jKwMGWozCdxskYX6YraMw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=YHSc/OXGr1YY1fvobZ/khce1xC/Chcv0soqDsluIdSFqemh/cl0fEAOABc01/mzYa
-	 dxYdZQ4V9So+5z2Gj1k5ykEsZgptwTD+Dh5HJ8EuiERn/Bbx4plyDtN1jwFRw/Jlpk
-	 wpFAKL0RvFypChmHwGjMaYQe4gnU4G8JCz9k33+E1yZBaVdS/wdBGlhW1ikL6LNieg
-	 6UhnWB81mqEGukupR2BuYP8CNKA57QRnODtUWq3i64xJn3cth69DcHKgjr9s3nwEqI
-	 nTNY1yYDAymwUJaT6lBbdaKYRHQ8P/nbnjoh8/Jvo6QUSzB/L+66gqPqJn5MmDKTWv
-	 h7bss1woxLGkg==
-Message-ID: <caae1b85-79cd-48eb-b522-eebf124ad7de@kernel.org>
-Date: Tue, 17 Nov 2026 11:57:54 +0100
+	b=m4A5KmHWS2NqT3taOWs52E32quNQfJGgOrU9o62UG3laaR/v+bhKv0tPap72DwQmg
+	 YkewNfHc0l9f/idoqbVuHRsaYoas/hYGW3KcnW1XWxwYRo5HcEsB586yhH/ATrjmrB
+	 syR4fJT1i28EIyBIp5EshINWGcC4Oqv+TLRKhiC9z1E2xeqjX/HqIFr7poZ0jRvMBw
+	 Yse8lmQeqaW5h3w5ux70a6yVvwDjMyDZcMOWJg+6GBWFsZL+sWD1rdf3kkro0CdYaV
+	 CyP0uUOuGw5xjdhiySldJMA1/VShwEllv8SHL5ZZTwcYHYs+1PkQuUu5VYhvDVK6GY
+	 jYeYFayHveVUA==
+Message-ID: <e7d9b339-509d-44fc-9192-f10ecef91b4d@kernel.org>
+Date: Tue, 17 Nov 2026 11:58:26 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] arm64: dts: qcom: talos-lyra-evk: Add display
- overlays for EVK board
+Subject: Re: [PATCH v3 1/6] arm64: dts: qcom: talos-lyra-evk: Add LT9611UXD
+ HDMI bridge support
 To: anand.tiwari@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -59,10 +59,9 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org,
  Mohit Dsor <mohit.dsor@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Shashank Maurya <shashank.maurya@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 References: <20261102-lyra-display-upstream-post-v3-0-7f660c3b622c@oss.qualcomm.com>
+ <20261102-lyra-display-upstream-post-v3-1-7f660c3b622c@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,7 +107,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261102-lyra-display-upstream-post-v3-0-7f660c3b622c@oss.qualcomm.com>
+In-Reply-To: <20261102-lyra-display-upstream-post-v3-1-7f660c3b622c@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -121,46 +120,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 02/11/2026 08:31, anand.tiwari@oss.qualcomm.com wrote:
-> Qualcomm Talos Lyra EVK SoC card are mounted on the Lyra carrier card.
-> The DSI0 interface from SoC card is routed to either the 22-pin DSI
-> connector on carrier card named as JDISP1 DSI0 or to the DSI0_B2B
-> connector, through a MUX which can be selected by a hardware DIP
-> switch. There are multiple daughter cards designed that can be
-> connected to this B2B connector.
+> From: Mohit Dsor <mohit.dsor@oss.qualcomm.com>
 > 
-> The below B2B display interfaces are enabled by default in base DTB:
->   - DSI-to-HDMI using the LT9611UXD daughter card
+> Add support for the Lontium LT9611UXD DSI-to-HDMI bridge, enabled by
+> default on the Talos Lyra EVK base board DT, to provide HDMI output
+> on the DSI0_B2B connector on the carrier card.
 > 
-> Below overlay DTs are added for additional display configurations:
->   - talos-lyra-evk-dlc0697: DLC0697 DSI panel for Lyra with DLC
->     daughter card
->   - talos-lyra-evk-raspberrypi-dsi-7inch: Raspberry Pi 7-inch DSI
->     panel with touch via the 22-pin DSI connector for Lyra
->   - talos-lyra-evk-waveshare-dsi-8inch: Waveshare 8-inch DSI panel
->     with touch via the 22-pin DSI connector for Lyra
->   - talos-lyra-evk-lvds-auo,g133han01: AUO G133HAN01 LVDS panel for
->     Lyra with LVDS daughter card
+> LT9611UXD is connected through I2C2, with reset and interrupt
+> connected to TLMM GPIO61 and GPIO60 respectively.
 > 
-> These overlays are applied on top of the corresponding base board
-> DTBs.
-> Link: https://lore.kernel.org/all/20261027-talos-lyra-evk-v2-v3-0-658fd5a7ec99@oss.qualcomm.com/
-> 
-> Dependencies:
-> https://lore.kernel.org/r/20261012-talos-lyra-evk-v2-v2-0-dcc9316ebb59@oss.qualcomm.com
-> https://lore.kernel.org/all/20261030-lyra-display-upstream-post-v2-0-906302159392@oss.qualcomm.com/
-> https://lore.kernel.org/all/20261016-talos-gp-clk-freqs-update-v1-1-17c9a095063c@oss.qualcomm.com/
+> Signed-off-by: Mohit Dsor <mohit.dsor@oss.qualcomm.com>
+> Signed-off-by: Anand Tiwari <anand.tiwari@oss.qualcomm.com>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/talos-lyra-evk.dts | 100 ++++++++++++++++++++++++++++
 
-How can you have three dependencies for DTS? Some of these are event
-drivers. DTS CANNOT depend on drivers, this is just unmanageable.
+There is no such file. Squash your work and fix your dependencies - this
+CANNOT depend on clock changes as you imply in cover letter.
 
 Best regards,
 Krzysztof
