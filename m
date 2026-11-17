@@ -2,65 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 045C0606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DF6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 13:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B32SEFeV;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=lhRXqfF/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UoH8Jgp0;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tW/S6/XF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=T7T7UGIIkVUgG9LfHoVSYdrZwZAi99AYKs3CGE26d2s=; b=B32SEFeVMkpHi/
-	ATR7rHEiLKkmjjqlcXU430vFE9kbtuLhA7yw/Z3TOOIwoydmCYMQ3qaeOulHjsWsrb0olGC1glS/+
-	aoc01FzJsv915J3LY33/0IBkwMvlPCunAHttSI9329+5znTP5QdnUQBYiBSinka6xRVC6Y3x9p/8K
-	Hl9hYo3buPucjyevefH9IbcvzjTJXRAD6zAwOI/lQsJLTJ7r+X5p5Z0iLp7If4sllQQ2+gwPvxK8n
-	+Vtx3QScCu69Agf79NOXYjsO/QFPOw+gBySWSXJ683zAZK2zaTibPlkmTI2UPYcVkWb669TBjXEeq
-	zQxlybt9YmwTPDDvOvlA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AaDKJsLWEh7/iLpR8aPgnfDX6Rsn+z2sYbKJVVqDKhM=; b=UoH8Jgp02TH9WU1ZqIGCNbqDe7
+	6+LTpF0M2KHVr4IQSm5wYCB0lsxhIyRj5Ye8uh6xc4Rqo3zE2CNdseLXettb5TRUlRPEFGd3pIDpP
+	YY7F92MUBqabbrAZKYjTtmDCYZIQm2E4ehaK/IEkZIibgILxxrtvftnxnYumVO7tvTBLWzLTFyAqB
+	JMkBH/lUYOMbDNVd7nsv+EfY+3QyJpyPunPYfSpr6iwNj3O6CUhYsSuUgvwhU+kcI7vm6nONWSbej
+	by+TxQDZmcX/AAJREP7dSng9e81ArM2GuZswgYDP4BJk72N88AgA69Xg8t6tDVwsinTCc+jdOOCYA
+	7IYCfj1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJCj-00000005vIt-3QJz;
-	Tue, 17 Nov 2026 13:26:33 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJCb-00000005vFJ-1Sto
+	id 1xTJCy-00000005vSP-0lfL;
+	Tue, 17 Nov 2026 13:26:48 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTJCs-00000005vOU-3I6b
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 13:26:29 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DB3DC1688;
-	Tue, 17 Nov 2026 05:26:21 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A6A943F632;
-	Tue, 17 Nov 2026 05:26:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794921984; bh=vK/miWmof/8h+vBME1eqAohgMhzjU0W7rnh1mXlNVDw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lhRXqfF/HfCs5Kz9DH6iz6x718uppDib07fhNCokcLhBhJO6WCMyCf2+oH6hWehXz
-	 oSZGrC5k5p+5BsoWTwPzPpXPPhWl+nTf0S//JH8psWkz2pQOuCH2L8rqlElL6+7h3A
-	 OWD829LtetvxmFbiQBH6ygUmKWsIa3aB+PoM7Mao=
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org
-Cc: sudeep.holla@kernel.org,
-	philip.radford@arm.com,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Sashiko <sashiko-bot@kernel.org>
-Subject: [PATCH v2 2/2] firmware: arm_scmi: Fix SCMI Power Control driver removal
-Date: Tue, 17 Nov 2026 13:23:11 +0000
-Message-ID: <20261117132311.291199-3-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20261117132311.291199-1-cristian.marussi@arm.com>
-References: <20261117132311.291199-1-cristian.marussi@arm.com>
+	Tue, 17 Nov 2026 13:26:47 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-6b87a92c17eso564157a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 05:26:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794922001; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Ys3SHnhPU+uhoVOqdv4+apAS9FYnE29C2ByvdaSnvlCuweYn04sGJGQwxjvQ4/eo1+
+         zQWqrxTFRaRIKXCohtlciy9GAF8GyPoa2h5cozeZnkzdzJFOdshFMxCnn3WdUhXxD8VR
+         euVH5wHTRb3UTlHB74BJjp907FxZ/JG0+XVHweYI3H5o24FL/dOyj9NXnjOpk0D0trgM
+         U6Dmtz73/bmwXcfq8QunFfbv1wDMdGN49qEPigvQ/VspEwk2YHHALR6RxtTAwph4Rhvs
+         d3tY4rn3qC8kcE27i6Dfrhr2RQdWOBWCZYLW/d00b6gQGtJhEoQWtF6MBDpiLvoLQ+1O
+         ZfQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=AaDKJsLWEh7/iLpR8aPgnfDX6Rsn+z2sYbKJVVqDKhM=;
+        fh=WncOEkgmjaAyL42p4WZ1Z7hw6NSE4Q31WkDK0MvlPd8=;
+        b=VNEiSKSXjkBs3ea//zb/TYoATj0unBkA3FbC3uR2Wcxtc7hO2Dy1ZrKV9aLJpookjz
+         gYvtKLgG7bqIu1ccT1ZYOfgRT6FRHrhONBnorKljQu24MLemuMH1hZVeHP0CDz28qoIo
+         zTIzEmirzaGUP9rbrLbCCW7eOwneJKREkXNMzO4dP3+xYxlZQBhILSirRL9rsH/kVjmS
+         RIMbnIYEQ0uW1QZ2vk97E//o19gPoy6wfUKPNMKPYldcfF7WyBP8Cx326C4eRK4xoGwh
+         72I33qPDx1K7g1Qo9EL0ag+ZSpeW6cGFLrV/32xles3j2LPqD7Dlg12wcHj72eBbY13A
+         /FxQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794922001; x=1795526801; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=AaDKJsLWEh7/iLpR8aPgnfDX6Rsn+z2sYbKJVVqDKhM=;
+        b=tW/S6/XFnw8v0ytylPRnXvtFxs8lkP5fnsN5kUim8NPlR8Tvb/StWwTIeDp1Tw3aa5
+         vz0OvPrTCHtjJ8D5xp9CrLaKZwgFVJJzlh5MxurpKeclb1nrurtvTMbZHWqPG4xVaKPn
+         Jv3BOx18W9GIyMo78tx2cN/Xr0bZ3fTvzIIr0I0LLxguDZlYDCTd/GMWEqLj7Bw0JKS/
+         JRgWZMY9w0qG/fvlNHiI/hE0TKhi0P1B55W2O4jtWH2n76kzaa3mkxPU/8gMcDl5vgv4
+         gwMsRdmlYUcMMLv4UxcCUwhMUajPMbbaIggwi4nUq+nY1G94HncUz8H6gC7K1so5RLaN
+         XMzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794922001; x=1795526801;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=AaDKJsLWEh7/iLpR8aPgnfDX6Rsn+z2sYbKJVVqDKhM=;
+        b=wgrMtUHuQRshYoBkzk0JPJoX13QK3IPcUpbxzRij2bESRilud1/uZV01YTH1tgxDb+
+         Pjk7xLKT532FQfsUgqoI4FGmvXeFM3dYXoM1OOoO5mG12lzA9WvE53nupyPvYadpD8w2
+         07a4EHYoSRXfszcviuJtnLG3fgp4CD7urM+5DJUH3A1k3thW6kUOtIMRCmr6Dca367uC
+         W9owZRy3ebDUbwnkLRfXfRRA6z2XmIL5WHEoZBltQCmgONepSqY2LdBX9Y1rXajKm2HX
+         XuHlCSHxgPQSiZz1We1qPyPV/6zzgti7nQlYoEDdjAkTyEzwViXnkZ29gclKc/suSBpH
+         VqUw==
+X-Forwarded-Encrypted: i=1; AL+hErEIwcis3mRNustiZuUI8oY3ILIW+gROzyLBfPSlPYAst53ODIrMoLsZ+b/ZyhKkFNXovTMXEvkb/D0LkjsnGDJ9@lists.infradead.org
+X-Gm-Message-State: APuU4Z9PAl3Z549IedexIQ7hCHe91eGD49OeQ0dzrcq5dydUwm7x6kbb
+	cyHRdIGYcQ75kFgdkwDrnNRIf/775Eu7RtAXt6hpWh8+M70euBOpBldiEVgBCUIIs4XlxIwrP8+
+	OQ0mTh1OCS07swbrk2lNrbF3jhN5ZHmw=
+X-Gm-Gg: AYBFou1OyM/g38CgyBUB0bPy78wsMxOaquxcPAN0TIuyzJ7b3/+fF1qXIWoZVw+peXW
+	dVm6mUK1HofMENb5Dg4l0+xhBxa5gjQyTZ0XqMauGynW0K4xZCEQsE/alun8PaSGwYPHUFVayHG
+	WcyTdaGFjg6xVzqqLz8ukgeDcQ2jppF204tCxDxXp9EM9m1pO8mmLfVnkFyiahcyTG3hmPMdavd
+	n/J59sF536nGtcEN1T3HGZPNwYglyTa620DnNo6RVN7guFFBm4+SX5DfyncEkbLXbFfwn2l6pRC
+	1i1HdCQat4nrdZC0kCNsf7Zk8WkUd8OIvQ5PovHiHKIAPAausutGl+M78cXdayD/iVL81EfF0fv
+	F5svCawiRs5+O7CkvInlZP+o9j6AItZQkfcw=
+X-Received: by 2002:a05:6402:4504:b0:6b5:7de8:87cd with SMTP id
+ 4fb4d7f45d1cf-6b7c0d06f9amr10641554a12.42.1794922000158; Tue, 17 Nov 2026
+ 05:26:40 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260921113914.779393-1-l.scorcia@gmail.com> <20260921113914.779393-2-l.scorcia@gmail.com>
+ <3701981f-cdda-46a7-8079-de5479ae9c27@kernel.org>
+In-Reply-To: <3701981f-cdda-46a7-8079-de5479ae9c27@kernel.org>
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Date: Tue, 17 Nov 2026 14:26:28 +0100
+X-Gm-Features: AclHuK-pAjMxUsyMno9u008purn-se7dqQHzpp18oe2HOK5CuVKhIbMUqhDzQWQ
+Message-ID: <CAORyz2+wF=VDTFkRFU7jBu-zNTW7T8mnPrJZAj8ZVD-Yyr2b6A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: mediatek: dpi: Add
+ compatible for mt8167
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>, 
+	Jitao shi <jitao.shi@mediatek.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_052625_479274_47C7D41D 
-X-CRM114-Status: GOOD (  20.85  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261117_052642_841181_B94009E4 
+X-CRM114-Status: GOOD (  12.14  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,216 +126,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Once a reboot is initiated following a graceful shutdown request received
-from the SCMI platform server there are a couple of registered notifiers
-and possibly a scheduled delayed work.
+> Turns out you bring here undocumented ABI. NAK.
 
-Take care to properly stop, unregister and cleanup all such resources
-when the driver is unbound.
+Hi, I'm sorry but I don't see the relation between this commit you
+just NAKed and the bigger issue about mediatek-drm alias usage. It's
+not like I'm introducing anything new in these DPI specific patches
+and the individual display block drivers do not depend on the aliases
+(they're used by mediatek-drm for building the pipeline).
 
-Fixes: 2c4b97fee94a ("firmware: arm_scmi: Add SCMI System Power Control driver")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://sashiko.dev/#/bug/linux-dbe4eba7-1520-40a1-92e8-8892b6e47c4b
-Tested-by: Cristian Marussi <cristian.marussi@arm.com>
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
- .../firmware/arm_scmi/scmi_power_control.c    | 88 +++++++++++++++++--
- 1 file changed, 82 insertions(+), 6 deletions(-)
+I understand why the commit to the dtsi that includes the aliases is
+NAKed, and the eventual fix is going to require a change in all of
+Mediatek SoCs dtsi. I am fine with the dtsi changes being blocked
+until an appropriate solution is found. I just don't understand the
+NAKs on the DPI components.
 
-diff --git a/drivers/firmware/arm_scmi/scmi_power_control.c b/drivers/firmware/arm_scmi/scmi_power_control.c
-index bbccebe834c3..82cc6e6bb96f 100644
---- a/drivers/firmware/arm_scmi/scmi_power_control.c
-+++ b/drivers/firmware/arm_scmi/scmi_power_control.c
-@@ -43,6 +43,7 @@
-  * possibly emitted by the platform will be ignored.
-  */
- 
-+#include <linux/cleanup.h>
- #include <linux/math.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
-@@ -51,6 +52,7 @@
- #include <linux/reboot.h>
- #include <linux/scmi_protocol.h>
- #include <linux/slab.h>
-+#include <linux/srcu.h>
- #include <linux/suspend.h>
- #include <linux/time64.h>
- #include <linux/timer.h>
-@@ -75,6 +77,8 @@ enum scmi_syspower_state {
-  * @state_mtx: @state related mutex
-  * @required_transition: The requested transition as decribed in the received
-  *			 SCMI SystemPower notification
-+ * @dead_srcu: Am SRCU to protect dead flag
-+ * @dead: A boolean flag to be set during driver removal
-  * @userspace_nb: The notifier_block registered against the SCMI SystemPower
-  *		  notification to start the needed userspace interactions.
-  * @reboot_nb: A notifier_block optionally used to track reboot progress
-@@ -89,6 +93,10 @@ struct scmi_syspower_conf {
- 	struct mutex state_mtx;
- 	enum scmi_system_events required_transition;
- 
-+	/* Protect dead */
-+	struct srcu_struct dead_srcu;
-+	bool dead;
-+
- 	struct notifier_block userspace_nb;
- 	struct notifier_block reboot_nb;
- 
-@@ -105,6 +113,9 @@ struct scmi_syspower_conf {
- #define dwork_to_sconf(x)		\
- 	container_of(x, struct scmi_syspower_conf, forceful_work)
- 
-+#define work_to_sconf(x)		\
-+	container_of(x, struct scmi_syspower_conf, suspend_work)
-+
- /**
-  * scmi_reboot_notifier  - A reboot notifier to catch an ongoing successful
-  * system transition
-@@ -122,6 +133,10 @@ static int scmi_reboot_notifier(struct notifier_block *nb,
- {
- 	struct scmi_syspower_conf *sc = reboot_nb_to_sconf(nb);
- 
-+	guard(srcu)(&sc->dead_srcu);
-+	if (READ_ONCE(sc->dead))
-+		return NOTIFY_DONE;
-+
- 	mutex_lock(&sc->state_mtx);
- 	switch (reason) {
- 	case SYS_HALT:
-@@ -188,6 +203,10 @@ static void scmi_forceful_work_func(struct work_struct *work)
- 	dwork = to_delayed_work(work);
- 	sc = dwork_to_sconf(dwork);
- 
-+	guard(srcu)(&sc->dead_srcu);
-+	if (READ_ONCE(sc->dead))
-+		return;
-+
- 	mutex_lock(&sc->state_mtx);
- 	if (sc->state == SCMI_SYSPOWER_IN_PROGRESS) {
- 		dev_dbg(sc->dev, "Graceful request timed out...forcing !\n");
-@@ -225,8 +244,6 @@ static void scmi_request_graceful_transition(struct scmi_syspower_conf *sc,
- 		if (!ret) {
- 			/* Wait only up to 75% of the advertised timeout */
- 			adj_timeout_ms = mult_frac(timeout_ms, 3, 4);
--			INIT_DELAYED_WORK(&sc->forceful_work,
--					  scmi_forceful_work_func);
- 			schedule_delayed_work(&sc->forceful_work,
- 					      msecs_to_jiffies(adj_timeout_ms));
- 		} else {
-@@ -285,6 +302,10 @@ static int scmi_userspace_notifier(struct notifier_block *nb,
- 	struct scmi_system_power_state_notifier_report *er = data;
- 	struct scmi_syspower_conf *sc = userspace_nb_to_sconf(nb);
- 
-+	guard(srcu)(&sc->dead_srcu);
-+	if (READ_ONCE(sc->dead))
-+		return NOTIFY_DONE;
-+
- 	if (er->system_state >= SCMI_SYSTEM_MAX ||
- 	    er->system_state == SCMI_SYSTEM_POWERUP) {
- 		dev_err(sc->dev, "Ignoring unsupported system_state: 0x%X\n",
-@@ -326,6 +347,14 @@ static int scmi_userspace_notifier(struct notifier_block *nb,
- 
- static void scmi_suspend_work_func(struct work_struct *work)
- {
-+	struct scmi_syspower_conf *sc;
-+
-+	sc = work_to_sconf(work);
-+
-+	guard(srcu)(&sc->dead_srcu);
-+	if (READ_ONCE(sc->dead))
-+		return;
-+
- 	pm_suspend(PM_SUSPEND_MEM);
- }
- 
-@@ -346,6 +375,10 @@ static int scmi_syspower_probe(struct scmi_device *sdev)
- 	if (!sc)
- 		return -ENOMEM;
- 
-+	ret = init_srcu_struct(&sc->dead_srcu);
-+	if (ret)
-+		return ret;
-+
- 	sc->state = SCMI_SYSPOWER_IDLE;
- 	mutex_init(&sc->state_mtx);
- 	sc->required_transition = SCMI_SYSTEM_MAX;
-@@ -353,12 +386,54 @@ static int scmi_syspower_probe(struct scmi_device *sdev)
- 	sc->dev = &sdev->dev;
- 	dev_set_drvdata(&sdev->dev, sc);
- 
-+	INIT_DELAYED_WORK(&sc->forceful_work, scmi_forceful_work_func);
- 	INIT_WORK(&sc->suspend_work, scmi_suspend_work_func);
- 
--	return handle->notify_ops->devm_event_notifier_register(sdev,
--							   SCMI_PROTOCOL_SYSTEM,
--					 SCMI_EVENT_SYSTEM_POWER_STATE_NOTIFIER,
--						       NULL, &sc->userspace_nb);
-+	ret = handle->notify_ops->event_notifier_register(handle, SCMI_PROTOCOL_SYSTEM,
-+							  SCMI_EVENT_SYSTEM_POWER_STATE_NOTIFIER,
-+							  NULL, &sc->userspace_nb);
-+	if (ret) {
-+		cleanup_srcu_struct(&sc->dead_srcu);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void scmi_syspower_remove(struct scmi_device *sdev)
-+{
-+	struct scmi_handle *handle = sdev->handle;
-+	struct scmi_syspower_conf *sc;
-+	int ret;
-+
-+	sc = dev_get_drvdata(&sdev->dev);
-+	if (!sc)
-+		return;
-+
-+	/* Wait for any notifier to complete and inhibit further processing */
-+	WRITE_ONCE(sc->dead, true);
-+	synchronize_srcu(&sc->dead_srcu);
-+
-+	/*
-+	 * Once here any possible in-flight notifier will have completed and
-+	 * further notifiers will bailout immediately.
-+	 * Cancel any work which was possibly already scheduled.
-+	 */
-+	cancel_delayed_work_sync(&sc->forceful_work);
-+	cancel_work_sync(&sc->suspend_work);
-+
-+	/* Unregister reboot notifier...if any */
-+	unregister_reboot_notifier(&sc->reboot_nb);
-+
-+	/* Unregister userspace notifier */
-+	ret = handle->notify_ops->event_notifier_unregister(handle,
-+							    SCMI_PROTOCOL_SYSTEM,
-+							    SCMI_EVENT_SYSTEM_POWER_STATE_NOTIFIER,
-+							    NULL, &sc->userspace_nb);
-+	if (ret)
-+		dev_warn(sc->dev, "Failed to unregister notifier\n");
-+
-+	cleanup_srcu_struct(&sc->dead_srcu);
- }
- 
- static int scmi_system_power_resume(struct device *dev)
-@@ -385,6 +460,7 @@ static struct scmi_driver scmi_system_power_driver = {
- 	},
- 	.name = "scmi-system-power",
- 	.probe = scmi_syspower_probe,
-+	.remove = scmi_syspower_remove,
- 	.id_table = scmi_id_table,
- };
- module_scmi_driver(scmi_system_power_driver);
--- 
-2.54.0
-
+Thank you for your help
+--
+Luca Leonardo Scorcia
+l.scorcia@gmail.com
 
