@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DCDC606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 07:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88038606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 07:07:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EqznffE1;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=lmoUkNUh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HzxB/X1b;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=vW35PPri
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=hubkfbv3TdG729wINq07mWTnxSQFQXJfXvW7WLXo2fo=; b=EqznffE1sfLk1q
-	RTABW+LzhjSD2YVc0YrFyds3fsusrI+PlXbQNESZ2fSMh42Xc8atD7bUDLwl47OhyuqKwgn+u7WC1
-	qtqeqzxVN9XQeDnrIwjZOX9aWXwdP1G2Ee4GVb825eeTvvTzFaf6efvpgpMLKVnHvVsoYtofo1Ilu
-	0iSyXL++Xm9SV+7Zo+yK01SEIc1oVKqu+m0LkW1yNBfX4ZrqAPk9ZNHzwxcLrv8kklk+K46Bl5vf1
-	id+c/7EnfeDWQa6ZAZJ3OOl8WigGQCnZn7DB40cQTz8RXkDUVKLysCTrSGN3xnLS9EZHDywY2lVnG
-	25whPgAGlzh5csktCdqw==;
+	List-Owner; bh=9XHNTvsxvTs29hz6BcMFjPlN/wv+sbJF4QuCIXu6oQQ=; b=HzxB/X1bJk1kmJ
+	aljoQ3WXVIgTRPovkjYZVI5pBs6av/AM++cZ05D8HVRumOgHXgwyOMXMeJ/MOAzSy7CXWdwKlpaJp
+	KghDgG+hc4YzFDx8oDeWikPBDQ2f9OdChd59IOOv8K/LKmz8X0Oj1K0DSPrDCBXMe1xnaW/K+FvXT
+	ieyYCgUUWIvzj80PnrxKGgZJidyA58ZzEfwfhasQ6Cj6yJ3pvG8DEghCQY9rxaDKDckIBY81QyjNA
+	kkul9NGCC5hE+Msm2cR7bLa/U6J1DapXwhnA4AuN5H6CDACWyq+3HqicThV29QFOl/Bre40hhjsjd
+	mVZKsfdQzsBknn4Bu3zg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTDHl-00000004iin-2jW4;
-	Tue, 17 Nov 2026 07:07:21 +0000
+	id 1xTDHo-00000004im3-1Nko;
+	Tue, 17 Nov 2026 07:07:24 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTDHK-00000004iEx-3BTP
+	id 1xTDHS-00000004iLd-1mmX
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 17 Nov 2026 07:06:56 +0000
+	Tue, 17 Nov 2026 07:07:07 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 65EA41476;
-	Mon, 16 Nov 2026 23:06:50 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 07FBD1BD0;
+	Mon, 16 Nov 2026 23:06:58 -0800 (PST)
 Received: from localhost (a085714.arm.com [10.164.19.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9D6CF3F882;
-	Mon, 16 Nov 2026 23:06:52 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3DC053F763;
+	Mon, 16 Nov 2026 23:07:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794899213; bh=lmzjpvDjnEwgeYkHqnXkdPfrUHJQuklwB1LPf/587eQ=;
+	t=1794899221; bh=hn3PA/FHiJccaTPVEin+J5IcUo1zFJdOxKnT8wtz+xI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lmoUkNUhg0FQFHl8YE2voeTe/jnebgbTlAA3DGZqy1XxcyjmGAKsVyD9TWG5sfnFV
-	 Ed3bGf2Y+VoSJJ4PEkV5s/+4LI751g61X1hRbwpfH4RRxBvcodee7CnbrZcu9kR67A
-	 G9lPa6E+MuwbrsPMG6V22MLYpAuifpTWnV0/hgdk=
+	b=vW35PPriYm7NahrJU5oPMNGIRSEKeVAmNAUxuWBxWFPUWYAMtihBpIg3yzJaKagb/
+	 hQM249eT2uubKC73o+LX/+Jqtjlz+53e8UAcU7O4EbNPhc3qvDh/MiH4Ru9HVaPnME
+	 I/FcwBN/1c/Y8OukF6ZX1zitFJMADP88nzkPO/5U=
 From: Anshuman Khandual <anshuman.khandual@arm.com>
 To: linux-arm-kernel@lists.infradead.org,
 	catalin.marinas@arm.com,
@@ -52,10 +52,11 @@ Cc: Anshuman Khandual <anshuman.khandual@arm.com>,
 	David Hildenbrand <david@kernel.org>,
 	Mike Rapoport <rppt@kernel.org>,
 	linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org
-Subject: [PATCH V3 08/14] arm64/mm: Enable pgtable descriptor for FEAT_D128
-Date: Tue, 17 Nov 2026 12:36:07 +0530
-Message-ID: <20261117070613.1183243-9-anshuman.khandual@arm.com>
+	linux-mm@kvack.org,
+	Linu Cherian <linu.cherian@arm.com>
+Subject: [PATCH V3 10/14] arm64/mm: Add an abstraction level for tlbi_op
+Date: Tue, 17 Nov 2026 12:36:09 +0530
+Message-ID: <20261117070613.1183243-11-anshuman.khandual@arm.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261117070613.1183243-1-anshuman.khandual@arm.com>
 References: <20261117070613.1183243-1-anshuman.khandual@arm.com>
@@ -63,8 +64,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_230654_914980_0E83FA2B 
-X-CRM114-Status: GOOD (  16.82  )
+X-CRM114-CacheID: sfid-20261116_230702_609958_A44F497B 
+X-CRM114-Status: GOOD (  10.31  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,392 +80,155 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable pgtable descriptor fields and related accessors for FEAT_D128. First
-expand ptval_t as 128 bits, add all D128 specific pgtable descriptor fields
-and update accessors like ptval_get/set() and ptval_xchg_relaxed(). Also do
-ensure that ARM64_PA_BITS_52 specific handlings are not applicable for D128
-which does not follow PA bits folding mechanisms as in FEAT_[LPA|LPA2].
+From: Linu Cherian <linu.cherian@arm.com>
 
-Although all the above changes gets enabled only with CONFIG_ARM64_D128.
+With FEAT_D128, a new instruction aka TLBIP is being introduced for the TLB
+-by-range operations which has an argument size of 128 bit.
+
+Add an abstraction level to void (*tlbi_op)(u64 arg) helpers to support the
+D128 variations when applicable.
+
+No functional changes are introduced with this patch.
 
 Cc: Catalin Marinas <catalin.marinas@arm.com>
 Cc: Will Deacon <will@kernel.org>
 Cc: Ryan Roberts <ryan.roberts@arm.com>
 Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Linu Cherian <linu.cherian@arm.com>
 Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
 ---
- arch/arm64/include/asm/assembler.h     |   4 +-
- arch/arm64/include/asm/pgtable-hwdef.h | 133 +++++++++++++++++++++++++
- arch/arm64/include/asm/pgtable-prot.h  |  20 +++-
- arch/arm64/include/asm/pgtable-types.h |   4 +
- arch/arm64/include/asm/pgtable.h       |  52 +++++++++-
- arch/arm64/mm/proc.S                   |   2 +-
- 6 files changed, 208 insertions(+), 7 deletions(-)
+ arch/arm64/include/asm/tlbflush.h | 70 ++++++++++++++++---------------
+ 1 file changed, 37 insertions(+), 33 deletions(-)
 
-diff --git a/arch/arm64/include/asm/assembler.h b/arch/arm64/include/asm/assembler.h
-index 020670814bda6..93bbb9ec6b4c5 100644
---- a/arch/arm64/include/asm/assembler.h
-+++ b/arch/arm64/include/asm/assembler.h
-@@ -597,7 +597,7 @@ alternative_else_nop_endif
-  * 	ttbr:	returns the TTBR value
-  */
- 	.macro	phys_to_ttbr, ttbr, phys
--#ifdef CONFIG_ARM64_PA_BITS_52
-+#if defined(CONFIG_ARM64_PA_BITS_52) && !defined(CONFIG_ARM64_D128)
- 	orr	\ttbr, \phys, \phys, lsr #46
- 	and	\ttbr, \ttbr, #TTBR_BADDR_MASK_52
- #else
-@@ -606,7 +606,7 @@ alternative_else_nop_endif
- 	.endm
+diff --git a/arch/arm64/include/asm/tlbflush.h b/arch/arm64/include/asm/tlbflush.h
+index a05520d3a0131..e46bebeb230d6 100644
+--- a/arch/arm64/include/asm/tlbflush.h
++++ b/arch/arm64/include/asm/tlbflush.h
+@@ -130,49 +130,53 @@ static inline void sme_dvmsync_batch(void)
  
- 	.macro	phys_to_pte, pte, phys
--#ifdef CONFIG_ARM64_PA_BITS_52
-+#if defined(CONFIG_ARM64_PA_BITS_52) && !defined(CONFIG_ARM64_D128)
- 	orr	\pte, \phys, \phys, lsr #PTE_ADDR_HIGH_SHIFT
- 	and	\pte, \pte, #PHYS_TO_PTE_ADDR_MASK
- #else
-diff --git a/arch/arm64/include/asm/pgtable-hwdef.h b/arch/arm64/include/asm/pgtable-hwdef.h
-index 1ee1a6d9db6d4..16fb74c47b742 100644
---- a/arch/arm64/include/asm/pgtable-hwdef.h
-+++ b/arch/arm64/include/asm/pgtable-hwdef.h
-@@ -101,6 +101,137 @@
- #define CONT_PMD_SIZE		(CONT_PMDS * PMD_SIZE)
- #define CONT_PMD_MASK		(~(CONT_PMD_SIZE - 1))
+ #define TLBI_TTL_UNKNOWN	INT_MAX
  
-+#ifdef CONFIG_ARM64_D128
-+
-+/*
-+ * Hardware page table definitions.
-+ *
-+ * Level -1 descriptor (PGD).
-+ */
-+#define PGD_SKL_SHIFT		109
-+#define PGD_SKL_MASK		GENMASK_U128(110, 109)
-+#define PGD_SKL_TABLE		(_AT(pgdval_t, 0) << PGD_SKL_SHIFT)
-+
-+#define PGD_TYPE_TABLE		_AT(pgdval_t, (PTE_VALID | PGD_SKL_TABLE))
-+#define PGD_TYPE_MASK		_AT(pgdval_t, (PTE_VALID | PGD_SKL_MASK))
-+#define PGD_TABLE_AF		(_AT(pgdval_t, 1) << 10)	/* Ignored if no FEAT_HAFT */
-+#define PGD_TABLE_PXN		_AT(pgdval_t, 0)		/* Not supported for D128 */
-+#define PGD_TABLE_UXN		_AT(pgdval_t, 0)		/* Not supported for D128 */
-+
-+/*
-+ * Level 0 descriptor (P4D).
-+ */
-+#define P4D_SKL_SHIFT		109
-+#define P4D_SKL_MASK		GENMASK_U128(110, 109)
-+#define P4D_SKL_TABLE		(_AT(p4dval_t, 0) << P4D_SKL_SHIFT)
-+#define P4D_SKL_SECT		(_AT(p4dval_t, 3) << P4D_SKL_SHIFT)
-+
-+#define P4D_TYPE_TABLE		_AT(p4dval_t, (PTE_VALID | P4D_SKL_TABLE))
-+#define P4D_TYPE_MASK		_AT(p4dval_t, (PTE_VALID | P4D_SKL_MASK))
-+#define P4D_TYPE_SECT		_AT(p4dval_t, (PTE_VALID | P4D_SKL_SECT))
-+#define P4D_SECT_RDONLY		(_AT(p4dval_t, 1) << 7)		/* nDirty */
-+#define P4D_TABLE_AF		(_AT(p4dval_t, 1) << 10)	/* Ignored if no FEAT_HAFT */
-+#define P4D_TABLE_PXN		_AT(p4dval_t, 0)		/* Not supported for D128 */
-+#define P4D_TABLE_UXN		_AT(p4dval_t, 0)		/* Not supported for D128 */
-+
-+/*
-+ * Level 1 descriptor (PUD).
-+ */
-+#define PUD_SKL_SHIFT		109
-+#define PUD_SKL_MASK		GENMASK_U128(110, 109)
-+#define PUD_SKL_TABLE		(_AT(pudval_t, 0) << PUD_SKL_SHIFT)
-+#define PUD_SKL_SECT		(_AT(pudval_t, 2) << PUD_SKL_SHIFT)
-+
-+#define PUD_TYPE_TABLE		_AT(pudval_t, (PTE_VALID | PUD_SKL_TABLE))
-+#define PUD_TYPE_MASK		_AT(pudval_t, (PTE_VALID | PUD_SKL_MASK))
-+#define PUD_TYPE_SECT		_AT(pudval_t, (PTE_VALID | PUD_SKL_SECT))
-+#define PUD_SECT_RDONLY		(_AT(pudval_t, 1) << 7)		/* nDirty */
-+#define PUD_TABLE_AF		(_AT(pudval_t, 1) << 10)	/* Ignored if no FEAT_HAFT */
-+#define PUD_TABLE_PXN		_AT(pudval_t, 0)		/* Not supported for D128 */
-+#define PUD_TABLE_UXN		_AT(pudval_t, 0)		/* Not supported for D128 */
-+
-+/*
-+ * Level 2 descriptor (PMD).
-+ */
-+#define PMD_SKL_SHIFT		109
-+#define PMD_SKL_MASK		GENMASK_U128(110, 109)
-+#define PMD_SKL_TABLE		(_AT(pmdval_t, 0) << PMD_SKL_SHIFT)
-+#define PMD_SKL_SECT		(_AT(pmdval_t, 1) << PMD_SKL_SHIFT)
-+
-+#define PMD_TYPE_MASK		_AT(pmdval_t, (PTE_VALID | PMD_SKL_MASK))
-+#define PMD_TYPE_TABLE		_AT(pmdval_t, (PTE_VALID | PMD_SKL_TABLE))
-+#define PMD_TYPE_SECT		_AT(pmdval_t, (PTE_VALID | PMD_SKL_SECT))
-+#define PMD_TABLE_AF		(_AT(pmdval_t, 1) << 10)	/* Ignored if no FEAT_HAFT */
-+#define PMD_TABLE_PXN		_AT(pmdval_t, 0)		/* Not supported for D128 */
-+#define PMD_TABLE_UXN		_AT(pmdval_t, 0)		/* Not supported for D128 */
-+
-+/*
-+ * Section
-+ */
-+#define PMD_SECT_USER		(_AT(pmdval_t, 1) << 115)	/* PIIndex[0] */
-+#define PMD_SECT_RDONLY		(_AT(pmdval_t, 1) << 7)		/* nDirty */
-+#define PMD_SECT_S		(_AT(pmdval_t, 3) << 8)
-+#define PMD_SECT_AF		(_AT(pmdval_t, 1) << 10)
-+#define PMD_SECT_NG		(_AT(pmdval_t, 1) << 11)
-+#define PMD_SECT_CONT		(_AT(pmdval_t, 1) << 111)
-+#define PMD_SECT_PXN		(_AT(pmdval_t, 1) << 117)	/* PIIndex[2] */
-+#define PMD_SECT_UXN		(_AT(pmdval_t, 1) << 118)	/* PIIndex[3] */
-+
-+/*
-+ * AttrIndx[2:0] encoding (mapping attributes defined in the MAIR* registers).
-+ */
-+#define PMD_ATTRINDX(t)		(_AT(pmdval_t, (t)) << 2)
-+#define PMD_ATTRINDX_MASK	(_AT(pmdval_t, 7) << 2)
-+
-+/*
-+ * Level 3 descriptor (PTE).
-+ */
-+#define PTE_SKL_SHIFT		109
-+#define PTE_SKL_MASK		GENMASK_U128(110, 109)
-+#define PTE_SKL_SECT		(_AT(pteval_t, 0) << PTE_SKL_SHIFT)
-+
-+#define PTE_VALID		(_AT(pteval_t, 1) << 0)
-+#define PTE_TYPE_MASK		_AT(pteval_t, (PTE_VALID | PTE_SKL_MASK))
-+#define PTE_TYPE_PAGE		_AT(pteval_t, (PTE_VALID | PTE_SKL_SECT))
-+#define PTE_USER		(_AT(pteval_t, 1) << 115)	/* PIIndex[0] */
-+#define PTE_RDONLY		(_AT(pteval_t, 1) << 7)		/* nDirty */
-+#define PTE_SHARED		(_AT(pteval_t, 3) << 8)		/* SH[1:0], inner shareable */
-+#define PTE_AF			(_AT(pteval_t, 1) << 10)	/* Access Flag */
-+#define PTE_NG			(_AT(pteval_t, 1) << 11)	/* nG */
-+#define PTE_GP			(_AT(pteval_t, 1) << 113)	/* BTI guarded */
-+#define PTE_DBM			(_AT(pteval_t, 1) << 116)	/* PIIndex[1] */
-+#define PTE_CONT		(_AT(pteval_t, 1) << 111)	/* Contiguous range */
-+#define PTE_PXN			(_AT(pteval_t, 1) << 117)	/* PIIndex[2] */
-+#define PTE_UXN			(_AT(pteval_t, 1) << 118)	/* PIIndex[3] */
-+#define PTE_SWBITS_MASK		_AT(pteval_t, GENMASK_U128(100, 91))
-+
-+#define PTE_ADDR_LOW		(((_AT(pteval_t, 1) << (55 - PAGE_SHIFT)) - 1) << PAGE_SHIFT)
-+
-+/*
-+ * AttrIndx[2:0] encoding (mapping attributes defined in the MAIR* registers).
-+ */
-+#define PTE_ATTRINDX(t)		(_AT(pteval_t, (t)) << 2)
-+#define PTE_ATTRINDX_MASK	(_AT(pteval_t, 7) << 2)
-+
-+/*
-+ * PIIndex[3:0] encoding (Permission Indirection Extension)
-+ */
-+#define PTE_PI_MASK	GENMASK_U128(118, 115)
-+#define PTE_PI_SHIFT	115
-+
-+/*
-+ * POIndex[3:0] encoding (Permission Overlay Extension)
-+ */
-+#define PTE_PO_IDX_0	(_AT(pteval_t, 1) << 121)
-+#define PTE_PO_IDX_1	(_AT(pteval_t, 1) << 122)
-+#define PTE_PO_IDX_2	(_AT(pteval_t, 1) << 123)
-+#define PTE_PO_IDX_3	(_AT(pteval_t, 1) << 124)
-+
-+#define PTE_PO_IDX_MASK		GENMASK_U128(124, 121)
-+#define PTE_PO_IDX_SHIFT	121
-+
-+#else /* !CONFIG_ARM64_D128 */
-+
- /*
-  * Hardware page table definitions.
-  *
-@@ -215,7 +346,9 @@
- #define PTE_PO_IDX_2	(_AT(pteval_t, 1) << 62)
+-typedef void (*tlbi_op)(u64 arg);
++typedef u64 tlbi_arg_t;
++#define __tlbi_wrapper(op, arg)		__tlbi(op, arg)
++#define __tlbi_user_wrapper(op, arg)	__tlbi_user(op, arg)
  
- #define PTE_PO_IDX_MASK		GENMASK_ULL(62, 60)
-+#define PTE_PO_IDX_SHIFT	60
- 
-+#endif /* CONFIG_ARM64_D128 */
- 
- /*
-  * Memory Attribute override for Stage-2 (MemAttr[3:0])
-diff --git a/arch/arm64/include/asm/pgtable-prot.h b/arch/arm64/include/asm/pgtable-prot.h
-index 590ef4328f12f..e71f2e3444481 100644
---- a/arch/arm64/include/asm/pgtable-prot.h
-+++ b/arch/arm64/include/asm/pgtable-prot.h
-@@ -13,10 +13,15 @@
- /*
-  * Software defined PTE bits definition.
-  */
--#define PTE_WRITE		(PTE_DBM)		 /* same as DBM (51) */
-+#define PTE_WRITE		(PTE_DBM)		 /* same as DBM (51 / 116) */
- #define PTE_SWP_EXCLUSIVE	(_AT(pteval_t, 1) << 2)	 /* only for swp ptes */
-+#ifdef CONFIG_ARM64_D128
-+#define PTE_DIRTY		(_AT(pteval_t, 1) << 91)
-+#define PTE_SPECIAL		(_AT(pteval_t, 1) << 92)
-+#else
- #define PTE_DIRTY		(_AT(pteval_t, 1) << 55)
- #define PTE_SPECIAL		(_AT(pteval_t, 1) << 56)
-+#endif
- 
- /*
-  * PTE_PRESENT_INVALID=1 & PTE_VALID=0 indicates that the pte's fields should be
-@@ -28,7 +33,11 @@
- #define PTE_PRESENT_VALID_KERNEL (PTE_VALID | PTE_MAYBE_NG)
- 
- #ifdef CONFIG_HAVE_ARCH_USERFAULTFD_WP
--#define PTE_UFFD		(_AT(pteval_t, 1) << 58) /* userfaultfd tracking */
-+#ifdef CONFIG_ARM64_D128
-+#define PTE_UFFD		(_AT(pteval_t, 1) << 94) /* userfaultd tracking */
-+#else
-+#define PTE_UFFD		(_AT(pteval_t, 1) << 58) /* userfaultd tracking */
-+#endif /* CONFIG_ARM64_D128 */
- #define PTE_SWP_UFFD		(_AT(pteval_t, 1) << 3)	 /* only for swp ptes */
- #else
- #define PTE_UFFD		(_AT(pteval_t, 0))
-@@ -131,11 +140,18 @@ static inline bool __pure lpa2_is_enabled(void)
- 
- #endif /* __ASSEMBLER__ */
- 
-+#ifdef CONFIG_ARM64_D128
-+#define pte_pi_index(pte)	(((pte) & PTE_PI_MASK) >> PTE_PI_SHIFT)
-+#define pte_po_index(pte)	((pte_val(pte) & PTE_PO_IDX_MASK) >> PTE_PO_IDX_SHIFT)
-+#else
- #define pte_pi_index(pte) ( \
- 	((pte & BIT(PTE_PI_IDX_3)) >> (PTE_PI_IDX_3 - 3)) | \
- 	((pte & BIT(PTE_PI_IDX_2)) >> (PTE_PI_IDX_2 - 2)) | \
- 	((pte & BIT(PTE_PI_IDX_1)) >> (PTE_PI_IDX_1 - 1)) | \
- 	((pte & BIT(PTE_PI_IDX_0)) >> (PTE_PI_IDX_0 - 0)))
-+#define pte_po_index(pte)	FIELD_GET(PTE_PO_IDX_MASK, pte_val(pte))
-+#endif
+-static __always_inline void vae1is(u64 arg)
++typedef void (*tlbi_op)(tlbi_arg_t arg);
 +
- 
- /*
-  * Page types used via Permission Indirection Extension (PIE). PIE uses
-diff --git a/arch/arm64/include/asm/pgtable-types.h b/arch/arm64/include/asm/pgtable-types.h
-index 2f2f5527930f5..83160f8a19fda 100644
---- a/arch/arm64/include/asm/pgtable-types.h
-+++ b/arch/arm64/include/asm/pgtable-types.h
-@@ -17,7 +17,11 @@
-  * Generic page table descriptor format from which
-  * all level specific descriptors can be derived.
-  */
-+#ifdef CONFIG_ARM64_D128
-+typedef u128 ptval_t;
-+#else
- typedef u64 ptval_t;
-+#endif
- 
- typedef ptval_t pteval_t;
- typedef ptval_t pmdval_t;
-diff --git a/arch/arm64/include/asm/pgtable.h b/arch/arm64/include/asm/pgtable.h
-index bd31211624d4d..e1aba9c8f4061 100644
---- a/arch/arm64/include/asm/pgtable.h
-+++ b/arch/arm64/include/asm/pgtable.h
-@@ -84,18 +84,62 @@ static inline void arch_leave_lazy_mmu_mode(void)
- 	arch_flush_lazy_mmu_mode();
++static __always_inline void vae1is(tlbi_arg_t arg)
+ {
+-	__tlbi(vae1is, arg);
+-	__tlbi_user(vae1is, arg);
++	__tlbi_wrapper(vae1is, arg);
++	__tlbi_user_wrapper(vae1is, arg);
  }
  
-+#ifdef CONFIG_ARM64_D128
-+#define ptval_get(x)							\
-+({									\
-+	typeof(&(x)) __x = &(x);					\
-+	union __u128_halves __v;					\
-+									\
-+	asm volatile ("ldp %[lo], %[hi], %[v]\n"			\
-+		: [lo] "=r"(__v.low),					\
-+		  [hi] "=r"(__v.high)					\
-+		: [v] "Q"(*__x)						\
-+	);								\
-+	*(typeof(__x))(&__v.full);					\
-+})
-+
-+#define ptval_set(x, val)						\
-+({									\
-+	typeof(&(x)) __x = &(x);					\
-+	union __u128_halves __v = { .full = *(u128*)(&(val)) };		\
-+									\
-+	asm volatile ("stp %[lo], %[hi], %[v]\n"			\
-+		: [v] "=Q"(*__x)					\
-+		: [lo] "r"(__v.low),					\
-+		  [hi] "r"(__v.high)					\
-+	);								\
-+})
-+#else
- #define ptval_get(x)		READ_ONCE(x)
- #define ptval_set(x, val)	WRITE_ONCE(x, val)
-+#endif
- 
- static inline ptval_t ptval_cmpxchg_relaxed(ptval_t *ptep, ptval_t old,
- 					      ptval_t new)
+-static __always_inline void vae2is(u64 arg)
++static __always_inline void vae2is(tlbi_arg_t arg)
  {
-+#ifdef CONFIG_ARM64_D128
-+	return cmpxchg128_relaxed(ptep, old, new);
-+#else
- 	return cmpxchg_relaxed(ptep, old, new);
-+#endif
+-	__tlbi(vae2is, arg);
++	__tlbi_wrapper(vae2is, arg);
  }
  
- static inline ptval_t ptval_xchg_relaxed(ptval_t *ptep, ptval_t new)
+-static __always_inline void vale1(u64 arg)
++static __always_inline void vale1(tlbi_arg_t arg)
  {
-+#ifdef CONFIG_ARM64_D128
-+	union __u128_halves r = { .full = new };
-+
-+	asm volatile(
-+	".arch_extension lse128\n"
-+	"swpp %[lo], %[hi], %[v]\n"
-+		: [lo] "+r" (r.low),
-+		  [hi] "+r" (r.high),
-+		  [v] "+Q" (*ptep)
-+		:);
-+	return r.full;
-+#else
- 	return xchg_relaxed(ptep, new);
-+#endif
+-	__tlbi(vale1, arg);
+-	__tlbi_user(vale1, arg);
++	__tlbi_wrapper(vale1, arg);
++	__tlbi_user_wrapper(vale1, arg);
  }
  
- #define pmdp_get pmdp_get
-@@ -157,7 +201,7 @@ static inline void pgprot_write(pgprot_t *prot, pgprot_t val)
- 	__flush_tlb_range(vma, address, address + PMD_SIZE, PMD_SIZE, 2,	\
- 			  TLBF_NOBROADCAST | TLBF_NONOTIFY | TLBF_NOWALKCACHE)
- 
--#ifdef CONFIG_ARM64_PA_BITS_52
-+#if defined(CONFIG_ARM64_PA_BITS_52) && !defined(CONFIG_ARM64_D128)
- static inline phys_addr_t __pte_to_phys(pte_t pte)
+-static __always_inline void vale1is(u64 arg)
++static __always_inline void vale1is(tlbi_arg_t arg)
  {
- 	pte_val(pte) &= ~PTE_MAYBE_SHARED;
-@@ -272,7 +316,7 @@ static inline bool por_el0_allows_pkey(u8 pkey, bool write, bool execute)
- 	(((pte_val(pte) & (PTE_VALID | PTE_USER)) == (PTE_VALID | PTE_USER)) && (!(write) || pte_write(pte)))
- #define pte_access_permitted(pte, write) \
- 	(pte_access_permitted_no_overlay(pte, write) && \
--	por_el0_allows_pkey(FIELD_GET(PTE_PO_IDX_MASK, pte_val(pte)), write, false))
-+	por_el0_allows_pkey(pte_po_index(pte), write, false))
- #define pmd_access_permitted(pmd, write) \
- 	(pte_access_permitted(pmd_pte(pmd), (write)))
- #define pud_access_permitted(pud, write) \
-@@ -1588,11 +1632,15 @@ static inline void update_mmu_cache_range(struct vm_fault *vmf,
- 	update_mmu_cache_range(NULL, vma, addr, ptep, 1)
- #define update_mmu_cache_pmd(vma, address, pmd) do { } while (0)
+-	__tlbi(vale1is, arg);
+-	__tlbi_user(vale1is, arg);
++	__tlbi_wrapper(vale1is, arg);
++	__tlbi_user_wrapper(vale1is, arg);
+ }
  
-+#ifdef CONFIG_ARM64_D128
-+#define phys_to_ttbr(addr)	(addr)
-+#else
- #ifdef CONFIG_ARM64_PA_BITS_52
- #define phys_to_ttbr(addr)	(((addr) | ((addr) >> 46)) & TTBR_BADDR_MASK_52)
- #else
- #define phys_to_ttbr(addr)	(addr)
- #endif
-+#endif
+-static __always_inline void vale2is(u64 arg)
++static __always_inline void vale2is(tlbi_arg_t arg)
+ {
+-	__tlbi(vale2is, arg);
++	__tlbi_wrapper(vale2is, arg);
+ }
  
- /*
-  * On arm64 without hardware Access Flag, copying from user will fail because
-diff --git a/arch/arm64/mm/proc.S b/arch/arm64/mm/proc.S
-index 99aacf03367da..f590c81ef0c76 100644
---- a/arch/arm64/mm/proc.S
-+++ b/arch/arm64/mm/proc.S
-@@ -250,7 +250,7 @@ SYM_FUNC_ALIAS(__pi_idmap_cpu_replace_ttbr1, idmap_cpu_replace_ttbr1)
+-static __always_inline void vaale1is(u64 arg)
++static __always_inline void vaale1is(tlbi_arg_t arg)
+ {
+-	__tlbi(vaale1is, arg);
++	__tlbi_wrapper(vaale1is, arg);
+ }
  
- 	.macro	pte_to_phys, phys, pte
- 	and	\phys, \pte, #PTE_ADDR_LOW
--#ifdef CONFIG_ARM64_PA_BITS_52
-+#if defined(CONFIG_ARM64_PA_BITS_52) && !defined(CONFIG_ARM64_D128)
- 	and	\pte, \pte, #PTE_ADDR_HIGH
- 	orr	\phys, \phys, \pte, lsl #PTE_ADDR_HIGH_SHIFT
- #endif
+-static __always_inline void ipas2e1(u64 arg)
++static __always_inline void ipas2e1(tlbi_arg_t arg)
+ {
+-	__tlbi(ipas2e1, arg);
++	__tlbi_wrapper(ipas2e1, arg);
+ }
+ 
+-static __always_inline void ipas2e1is(u64 arg)
++static __always_inline void ipas2e1is(tlbi_arg_t arg)
+ {
+-	__tlbi(ipas2e1is, arg);
++	__tlbi_wrapper(ipas2e1is, arg);
+ }
+ 
+ static __always_inline void __tlbi_level_asid(tlbi_op op, u64 addr, u32 level,
+@@ -447,32 +451,32 @@ static inline void arch_tlbbatch_flush(struct arch_tlbflush_unmap_batch *batch)
+  *    operations can only span an even number of pages. We save this for last to
+  *    ensure 64KB start alignment is maintained for the LPA2 case.
+  */
+-static __always_inline void rvae1is(u64 arg)
++static __always_inline void rvae1is(tlbi_arg_t arg)
+ {
+-	__tlbi(rvae1is, arg);
+-	__tlbi_user(rvae1is, arg);
++	__tlbi_wrapper(rvae1is, arg);
++	__tlbi_user_wrapper(rvae1is, arg);
+ }
+ 
+-static __always_inline void rvale1(u64 arg)
++static __always_inline void rvale1(tlbi_arg_t arg)
+ {
+-	__tlbi(rvale1, arg);
+-	__tlbi_user(rvale1, arg);
++	__tlbi_wrapper(rvale1, arg);
++	__tlbi_user_wrapper(rvale1, arg);
+ }
+ 
+-static __always_inline void rvale1is(u64 arg)
++static __always_inline void rvale1is(tlbi_arg_t arg)
+ {
+-	__tlbi(rvale1is, arg);
+-	__tlbi_user(rvale1is, arg);
++	__tlbi_wrapper(rvale1is, arg);
++	__tlbi_user_wrapper(rvale1is, arg);
+ }
+ 
+-static __always_inline void rvaale1is(u64 arg)
++static __always_inline void rvaale1is(tlbi_arg_t arg)
+ {
+-	__tlbi(rvaale1is, arg);
++	__tlbi_wrapper(rvaale1is, arg);
+ }
+ 
+-static __always_inline void ripas2e1is(u64 arg)
++static __always_inline void ripas2e1is(tlbi_arg_t arg)
+ {
+-	__tlbi(ripas2e1is, arg);
++	__tlbi_wrapper(ripas2e1is, arg);
+ }
+ 
+ static __always_inline void __tlbi_range(tlbi_op op, u64 addr,
 -- 
 2.43.0
 
