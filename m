@@ -2,90 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F1D606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 09:21:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0EE606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 09:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PdOolUqf;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=wcMqPt0Q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v3Icl5f/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eRSTQspS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:
-	Subject:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NelY0F3SQaoHpZaa48RfVKojhT0mMWhbxVhRpg0tfCU=; b=PdOolUqfP8zxsS
-	ysk6QYoERDEOAEGno9Sn3Ysi3D8fo9klxAPV2PM0WNWSrjuY8IHThKanG629FNkLwlvp6kuSSqlJI
-	IU5oRcoRiZXjgwRpGp6wI78TZ4uDnXKNpWe+KEotSedVu57RnGXTI39vA0cSZ+shfKRt2gkz6U1uS
-	f2jxORipmsXJoqi7scQsZjGAvwJcWv154DspQN9rCX43TtFR6MJX/SJn2ni1ZYxxHbHeYr8/x4gza
-	g0CTo0yI/2huWWM+TutYF+jNFiY2G9KmAbOIU6ClBLAe+2EkUVWE/Pt+LyEi/XD2usX+cK3CorzX6
-	fpZD2viPQranOfwQEEHw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=y0Dxc4AUtnds+NirsV609zNbchLGxMc3AgfuhcVTQUs=; b=v3Icl5f/ooNm9CysB8jkf+3/7w
+	XU1yW4+AdX4Myv68zfK6fQJh7F+lUjj9Gb/1Z2PQ6XU/jlEwilhO+PZKPdxFnC9aUEoQltOKf8r13
+	ojJq5pLuBdDfhQfgY61PRe2teuWOGk2W3NGE/UM+rhAqAqahwIyB8j4sAdHi2G6kIrqS7qrG0zd2Q
+	p8RYt0VLLlbKdM1s/MTHy3tcKEoJaLkRpAySSbzOe9NHmjksH2KI38u5iLy+taN8DcsHRiv+IIRzA
+	32HpUslTmiUqGL7RkJd1X8jGlMSFO66lrc1eTN1oC43rSEy1AAJV6j1ZxHVkkvsD8vaJOaOlnrKNF
+	lgk2UjQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTFNh-000000053eG-3SBC;
-	Tue, 17 Nov 2026 09:21:37 +0000
-Received: from canpmsgout05.his.huawei.com ([113.46.200.220])
+	id 1xTFPe-0000000546G-0qEf;
+	Tue, 17 Nov 2026 09:23:38 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTFNd-000000053ZP-1TNh;
-	Tue, 17 Nov 2026 09:21:36 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=NelY0F3SQaoHpZaa48RfVKojhT0mMWhbxVhRpg0tfCU=;
-	b=wcMqPt0QhszyRzva4g7wZmx964J1LB82GE/yeVL9LyN+DZ3q7eziWeveRgCFaAaPBdYeCBQiX
-	9FaWQ1vHk5u3RT5eFgJLnfpdsyXTk+FiUTHQg8fFnGbdIKoRqYmksHh6O0iFhakPsKKPB35Ps5S
-	cmyonBF0d5EmEbjEKCpSmik=
-Received: from mail.maildlp.com (unknown [172.19.162.140])
-	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4jTK2j3ctZz12LD4;
-	Tue, 17 Nov 2026 17:20:29 +0800 (CST)
-Received: from whupemk100004.china.huawei.com (unknown [7.152.185.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 503DB203AB;
-	Tue, 17 Nov 2026 17:21:22 +0800 (CST)
-Received: from [10.173.125.21] (10.173.125.21) by
- whupemk100004.china.huawei.com (7.152.185.74) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 17 Nov 2026 17:21:18 +0800
-Subject: Re: [PATCH v6 3/7] mm/memory-failure: add hwpoison_boot_page() to
- flag an inherited frame
-To: Breno Leitao <leitao@debian.org>
-CC: <linux-efi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-mm@kvack.org>, <linux-cxl@vger.kernel.org>,
-	<driver-core@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<rmikey@meta.com>, <riel@surriel.com>, <harry@kernel.org>,
-	<kernel-team@meta.com>, Ard Biesheuvel <ardb@kernel.org>, Ilias Apalodimas
-	<ilias.apalodimas@linaro.org>, Thomas Gleixner <tglx@kernel.org>, Ingo Molnar
-	<mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, Dave Hansen
-	<dave.hansen@linux.intel.com>, <x86@kernel.org>, "H. Peter Anvin"
-	<hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand
-	<david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, "Liam R. Howlett"
-	<liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport
-	<rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, Michal Hocko
-	<mhocko@suse.com>, Naoya Horiguchi <nao.horiguchi@gmail.com>, Oscar Salvador
-	<osalvador@suse.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael
- J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Catalin
- Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Mark
- Rutland <mark.rutland@arm.com>, <kas@kernel.org>,
-	<kexec@lists.infradead.org>, Brendan Jackman <brendan.jackman@linux.dev>,
-	Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
-	<shakeel.butt@linux.dev>
-References: <20261016-hwpoison-kho-v6-0-f304255147da@debian.org>
- <20261016-hwpoison-kho-v6-3-f304255147da@debian.org>
-From: Miaohe Lin <linmiaohe@huawei.com>
-Message-ID: <869891e5-3f4f-e404-1068-53e6ff169805@huawei.com>
-Date: Tue, 17 Nov 2026 17:21:17 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+	id 1xTFPZ-0000000545h-4A9N;
+	Tue, 17 Nov 2026 09:23:34 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2C05C61299;
+	Tue, 17 Nov 2026 09:23:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 571371F000C7;
+	Tue, 17 Nov 2026 09:23:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794907412;
+	bh=y0Dxc4AUtnds+NirsV609zNbchLGxMc3AgfuhcVTQUs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=eRSTQspSxgaqoaoK60PFKexxHJe0ahOvWAZv8sFb02FsK7851Tdx9jqtFimAE+JSw
+	 FVzgjicajcGYzSjx6YKbwyyxCzAO7iXon19D5mByJfrLyIjFnT7kkToPaR1Rb8MeFz
+	 NgYy/7vY42oGvZyvEfwh26G8SO4X/XAcuWPU0kwL/Vfv6ZD3eucTVVvc56AlnIoloI
+	 Ie/7B2shCxsgNnfSAnRCdaY7+oFhWmWqFsxkYWiloEZX+WsDXsW+AXoHxgjCOrWw7s
+	 YvqurGf7Fl9VpIT9QtgrRHm1DiUVbi5BqQZAfzhWbh0eoIP6Q8xNe+ZWhujYEhvFod
+	 HnJR10Ui3iGAg==
+Date: Tue, 17 Nov 2026 10:23:30 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Florian Maurer <fmaurer@disroot.org>
+Cc: Felix Fietkau <nbd@nbd.name>, Ryder Lee <ryder.lee@mediatek.com>,
+	Shayne Chen <shayne.chen@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, stable@vger.kernel.org
+Subject: Re: [PATCH wireless 1/2] wifi: mt76: npu: return rx slots to the NPU
+ only after refilling them
+Message-ID: <avwdEgGBeZWWGvzq@lore-qca>
+References: <cover.1793927986.git.fmaurer@disroot.org>
+ <d6314f34e0965464207656d38a145490b6437aa5.1793927986.git.fmaurer@disroot.org>
+ <au3igPTxdz3i64SO@lore-desk>
+ <20261108205350.2956138-1-fmaurer@disroot.org>
+ <avGnv8Jr7BAiQhG1@lore-desk>
+ <avrdu8qr9L2sEuTz@lore-desk>
+ <20261116162741.2438098-1-fmaurer@disroot.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20261016-hwpoison-kho-v6-3-f304255147da@debian.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems200001.china.huawei.com (7.221.188.67) To
- whupemk100004.china.huawei.com (7.152.185.74)
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_012134_040238_2B00376C 
-X-CRM114-Status: GOOD (  25.65  )
-X-Spam-Score: -3.8 (---)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s+XiL6GVKLQjZ58r"
+Content-Disposition: inline
+In-Reply-To: <20261116162741.2438098-1-fmaurer@disroot.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,100 +80,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026/10/16 20:15, Breno Leitao wrote:
-> A kernel that kexecs inherits the frames its predecessor found
-> hardware-poisoned. It has to carry them as PG_hwpoison in its own memmap,
-> so that everything that already understands the flag covers them,
-> including the kexec segment placement check.
-> 
-> Add a helper that sets the flag and counts the frame in
-> num_poisoned_pages. It runs while the memmap is initialised, before
-> memory_dev_init() has run. memblk_nr_poison_inc() divides by
-> sections_per_block, which memory_dev_init() sets, so the helper
-> increments num_poisoned_pages itself instead of calling
-> num_poisoned_pages_inc().
-> 
-> An inherited frame is a hardware failure like any other, so the helper
-> sets hw_memory_failure. Without it, unpoison_memory() accepts the frame,
-> clears the flag and drops the last reference, which frees a frame that
-> is still bad.
-> 
-> The helper also counts the frame as managed, as a frame that fails at
-> run time stays counted. Memory offlining subtracts every frame of the
-> block that is not PageOffline, so a frame that was never counted leaves
-> the managed page count too low after an offline.
-> 
-> The per-node memory failure statistics are not updated. This kernel
-> handled no failure, it only inherited one.
-> 
+--s+XiL6GVKLQjZ58r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for your patches. :) Some questions below.
+On Nov 16, Florian Maurer wrote:
+> On Mon, Nov 09, 2026 at 12:00:15PM +0100, Lorenzo Bianconi wrote:
+> > q->head and q->tail are not the same when we have refilled the queue
+> > with new buffers. Moreover, I think if mt76_npu_fill_rx_queue() fails
+> > [...] it is not correct to use q->head for dma_idx
+>=20
+> You're right, q->tail it is. In my tests I could not tell your version
+> and mine apart, so nothing speaks for head + 1.
+>=20
+> > Can you please check the updated patch below?
+>=20
+> Sorry for the delay. I tested it on the W1700K (kernel 6.18.55, mt76
+> 467ae2e3) and it works: no oops, no rx stall.
+>=20
+> What I ran: your diff as posted, plus read-only counters that write
+> nothing to the descriptors. Load was 62 minutes of iperf3 from an
+> ath11k mesh peer at 113-259 Mbit/s, with four busy loops at nice -20
+> on the W1700K for 3 s every 18 s. In that time:
+>=20
+> - 61.9 M frames on MT_RXQ_NPU1, 1.88 M on MT_RXQ_NPU0, of which 227781
+>   span two slots
+> - no oops, no page_pool warning
+> - no descriptor that changed between consume and refill
+> - no refill failure, no skb failure, no tx-free parse error
+>=20
+> Tested-by: Florian Maurer <fmaurer@disroot.org>
+>=20
+> I found another issue of the NPU while testing, so this took me some
+> time as well:
+> In one minute, 226 multi-slot frames in a row did not end on the slot
+> with LAST. Slots of the rx ring go missing under this kind of load (I
+> suspect the NPU drops them), and counting slots by PKT_COUNT then
+> assembles the following frames one slot off, in your version and in
+> mine. I think tx-free events are lost the same way.
+> I will post it as a separate [BUG] report in the next days.
+>=20
+> Optional: in my tree I made the poll report the budget as used when
+> the skb allocation fails, so napi polls again instead of waiting for
+> an interrupt. It never triggered here.
+>=20
+> Please post your patch with the Tested-by. My 2/2 can be dropped.
+>=20
+> Thanks,
+> Florian
 
-> Signed-off-by: Breno Leitao <leitao@debian.org>
-> ---
->  mm/internal.h       | 5 +++++
->  mm/memory-failure.c | 8 ++++++++
->  2 files changed, 13 insertions(+)
-> 
-> diff --git a/mm/internal.h b/mm/internal.h
-> index da14c56fb24e11..4bd3bbce86e0ad 100644
-> --- a/mm/internal.h
-> +++ b/mm/internal.h
-> @@ -1169,6 +1169,7 @@ void SetPageHWPoisonTakenOff(struct page *page);
->  void ClearPageHWPoisonTakenOff(struct page *page);
->  bool take_page_off_buddy(struct page *page);
->  bool put_page_back_buddy(struct page *page);
-> +void __init hwpoison_boot_page(struct page *page);
->  struct task_struct *task_early_kill(struct task_struct *tsk, int force_early);
->  void add_to_kill_ksm(struct task_struct *tsk, const struct page *p,
->  		     struct vm_area_struct *vma, struct list_head *to_kill,
-> @@ -1181,6 +1182,10 @@ static inline int unmap_poisoned_folio(struct folio *folio, unsigned long pfn, b
->  {
->  	return -EBUSY;
->  }
-> +
-> +static inline void hwpoison_boot_page(struct page *page)
-> +{
-> +}
->  #endif
->  
->  extern unsigned long  __must_check vm_mmap_pgoff(struct file *, unsigned long,
-> diff --git a/mm/memory-failure.c b/mm/memory-failure.c
-> index a2ca8df501caee..d0d6b184ee469f 100644
-> --- a/mm/memory-failure.c
-> +++ b/mm/memory-failure.c
-> @@ -96,6 +96,14 @@ void num_poisoned_pages_sub(unsigned long pfn, long i)
->  		memblk_nr_poison_sub(pfn, i);
->  }
->  
-> +void __init hwpoison_boot_page(struct page *page)
+ack, I will do. Thanks for testing.
 
-Should we add some debug aids to let users know the origin of these hwpoisoned pages?
+Regards,
+Lorenzo
 
-> +{
-> +	SetPageHWPoison(page);
+--s+XiL6GVKLQjZ58r
+Content-Type: application/pgp-signature; name=signature.asc
 
-Should we try to hold an extra page refcnt, as memory_failure does?
+-----BEGIN PGP SIGNATURE-----
 
-> +	atomic_long_inc(&num_poisoned_pages);
-> +	hw_memory_failure = true;
-> +	adjust_managed_page_count(page, 1);
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCavwdEgAKCRA6cBh0uS2t
+rFKTAQDrf8StTOI65bgn5xeopIFbWqMbx61UDKD54phLvPS85AEArtbOPqgpGZ5M
+4Q3sUXE6HqctYejU8r0x6vlcCI7NVAc=
+=x/Dy
+-----END PGP SIGNATURE-----
 
-Is what adjust_managed_page_count does inconsistent with what the hwpoison_boot_page
-function describes? Should it be factored out?
-Also, is adjust_managed_page_count time-consuming? Should we consider batching the calls
-to reduce the impact on system boot latency? Maybe I'm overthinking it...
-
-Thanks.
-.
-
+--s+XiL6GVKLQjZ58r--
 
