@@ -2,76 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E37B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D311606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 17 Nov 2026 11:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lqMektY6;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=RCJ4jS0O
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=14+b024B;
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.a=rsa-sha256 header.s=2212171451 header.b=AdL89ub8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:To:
+	Message-Id:Date:From:Cc:Content-Type:References:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oIe3p67w4/MbeGv4zncqvt3AjFKp/+ub75gyoZv00yk=; b=lqMektY6c+6n2w
-	im4sPQiLhl+rg/cJ09S5SGOfIUrfW/lN72XNfaiMLcGVV4+2e/Xl+nJ2qzhJgi0R/T5gbA9L4Kk0V
-	Zfg2keiaw2yxW0MQydkolzzuWfGrj+/upmQ5dNx5cqBuLxOfRT3LNw7ggDa3ShNPBQR21pdAs8Bjs
-	oUYcCUZqn/6jMVXzvHNf2v8OMG5ndy7Ig/F7Vfs+Qx7jcgaLkVIZOUsfSCIOp8v7Go151Aw6LYcI9
-	Dq6WmlFnidcvvz1C1iwiS+wY6EbLh2fZxZMKvtmaFJ0gJ5CVKtUzQl5RJlST4T0+vixDs8ld7Pfq/
-	HI/SBeRamne5rk5QBuNQ==;
+	List-Owner; bh=qgcXr3Kfe2i/grQTzX0p6YOpmAeo7+UNA6FacQY2sPU=; b=14+b024BXss2e1
+	aueiiAWyQ7Ptld5sExtGFwboXr7DzR7rwEEFQ+kdaroxS/2egAh/4FwcSYrL12DUclo6wvpnNKXGy
+	4FmCLxgJkfas/XRvgPoFwiTbMBbMDJoRnQ5HjNi9Mz9tMy8Scd8slmEHceTN+bDPmxn0bDpjUc2kB
+	AjVyQZjyavSbxJBmefFJHq3MBpfoPkxtDGwcHn6FQA4fOS1oD+MbeWm4bLMJ56O4uTyAlHnAJkuGv
+	ZrJlmfZBIdtFAu/+qxDH1oto5nLTOGlqNdsAaiSzpCgApHO3ffYHwwEb9pvU5dZtD5oTu3nxR6xD9
+	iRab2Ic4hGyhDm2RinEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHGd-00000005QaC-1Fne;
-	Tue, 17 Nov 2026 11:22:27 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xTHGl-00000005QdE-1xqD;
+	Tue, 17 Nov 2026 11:22:35 +0000
+Received: from va-1-113.ptr.blmpb.com ([209.127.230.113])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTHGZ-00000005QZL-29sa;
-	Tue, 17 Nov 2026 11:22:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794914541;
-	bh=fA7EhNWJGQMJleB4jeAMNpc2PM2vJfFLxpgDHBdrh/Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RCJ4jS0O1HgXzb6a7gu4e2T24gqN8Sq6ElCpkeEzqhKHDWzHxucj6RSxoY0gKXb6+
-	 kSS1ilPDNoclzdLQzkEts/2EHXVHs3b+WsQm5VJlX4SGvlg0miHdiF+aYr5nqgTa23
-	 90XS0A7GxLhacqR4ITX5hw6Z18fvBHQWJFEDsDHnTJMSToGp0PD8RyKYwVN85X2UjV
-	 T47zlhaPyupNsFckWGP1f/moMioiwRkfcQQk512x+FzuKOZW8uEU+BMhzImMJd7EV1
-	 At0U7fDzKFivcP8mcXX3E9gtTjTosIyz3YBraDkr3UAY+65oqKspx4LaQgLv9xG6f5
-	 8hyclFiQY99kw==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7924F17E0A27;
-	Tue, 17 Nov 2026 12:22:20 +0100 (CET)
-Message-ID: <0956ff3c-1bf9-42bd-b498-721696ce2b9e@collabora.com>
-Date: Tue, 17 Nov 2026 12:22:20 +0100
+	id 1xTHGf-00000005Qa0-44V2
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 17 Nov 2026 11:22:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=2212171451; d=bytedance.com; t=1794914541; h=from:subject:
+ mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
+ mime-version:in-reply-to:message-id;
+ bh=qgcXr3Kfe2i/grQTzX0p6YOpmAeo7+UNA6FacQY2sPU=;
+ b=AdL89ub8AgKPW4E9xn6q9Op0Zl67JYr7g9NMx1mEM9/TMFCvEwVoibj7TTAAx9ePBQSn09
+ hS2Yax2fGIMGz/ALuKv52X6mHHGK8j32XlCg6ZD39v1mQszmYz2aubDo1IYAhPGO0237nM
+ HgOoBx+oBeO2//iwJodiJj3Hardm9i1vCwjraomK+wd1vRwEB1al3GDSOdPxwXNsAsUetA
+ IJs6WnMfy5f9VuruTZeQf/AWovVkq1RGvHQsL7P7QcrLuYa8I5cEk2iGU4t56jgAOexe9p
+ s3FNLpGd1lHVtOvodiaf+G1Wyo1CJMq9JifrgVSJVu3tmyLqKSBZIIQtFzP1fQ==
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] watchdog: mediatek: Add MT6833
-To: i@udp0.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, Wim Van Sebroeck
- <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-watchdog@vger.kernel.org, linux-serial@vger.kernel.org,
- phone-devel@vger.kernel.org, Roman Vivchar <rva333@protonmail.com>
-References: <20261117-mt6833-base-v2-0-058a0685c40c@udp0.com>
- <20261117-mt6833-base-v2-3-058a0685c40c@udp0.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20261117-mt6833-base-v2-3-058a0685c40c@udp0.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Mime-Version: 1.0
 Content-Transfer-Encoding: 7bit
+X-Original-From: Rui Qi <qirui.001@bytedance.com>
+References: <20261111073906.652400-1-qirui.001@bytedance.com> <avdVsAOC_fpoDNDr@arm.com>
+X-Lms-Return-Path: <lba+26afc38eb+5d5781+lists.infradead.org+qirui.001@bytedance.com>
+Content-Type: text/plain; charset=UTF-8
+Cc: <will@kernel.org>, <mark.rutland@arm.com>, <ardb@kernel.org>, 
+	<song@kernel.org>, <dylanbhatch@google.com>, 
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, 
+	<stable@vger.kernel.org>
+From: "Rui Qi" <qirui.001@bytedance.com>
+Date: Tue, 17 Nov 2026 19:22:03 +0800
+Message-Id: <c6cc9216-147d-41dc-8139-690fac6f6015@bytedance.com>
+User-Agent: Mozilla Thunderbird
+To: "Catalin Marinas" <catalin.marinas@arm.com>
+Subject: Re: [PATCH v2] arm64: module: Use text-poke for late PLT/veneer emission
+In-Reply-To: <avdVsAOC_fpoDNDr@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_032223_734623_8A8E1B7A 
-X-CRM114-Status: UNSURE (   9.64  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261117_032230_111407_A6D18EFD 
+X-CRM114-Status: GOOD (  25.81  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,27 +72,124 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/17/26 10:11, Rui Cao via B4 Relay wrote:
-> From: Rui Cao <i@udp0.com>
+On 11/14/26 2:23 AM, Catalin Marinas wrote:
+> Thanks Rui for respinning.
 > 
-> Match MT6833's watchdog. It works as MT6589's, but its TOPRGU reset
-> layout isn't known well enough to describe, so it gets no match data
-> and the driver registers no reset controller for it.
+> On Wed, Nov 11, 2026 at 03:39:06PM +0800, Rui Qi wrote:
+>> diff --git a/arch/arm64/include/asm/module.h b/arch/arm64/include/asm/module.h
+>> index fb9b88eebeb1..4a1a47f8ba1a 100644
+>> --- a/arch/arm64/include/asm/module.h
+>> +++ b/arch/arm64/include/asm/module.h
+>> @@ -6,6 +6,7 @@
+>>  #define __ASM_MODULE_H
+>>  
+>>  #include <asm-generic/module.h>
+>> +#include <asm/text-patching.h>
+>>  
+>>  struct mod_plt_sec {
+>>  	int			plt_shndx;
+>> @@ -29,6 +30,21 @@ u64 module_emit_plt_entry(struct module *mod, Elf64_Shdr *sechdrs,
+>>  u64 module_emit_veneer_for_adrp(struct module *mod, Elf64_Shdr *sechdrs,
+>>  				void *loc, u64 val);
+>>  
+>> +/*
+>> + * Write a relocation value to @place within a module.  While the module
+>> + * is MODULE_STATE_UNFORMED the destination is writable and a direct store
+>> + * is used; once the module is fully formed the region is read-only and
+>> + * executable, so the write is routed through the text-poke API.
+>> + */
+>> +#define module_write_place(place, val, mod) do {			\
+>> +	__typeof__(*place) __val = (val);				\
+>> +									\
+>> +	if (mod->state == MODULE_STATE_UNFORMED)			\
+>> +		*(place) = __val;					\
+>> +	else								\
+>> +		aarch64_insn_copy(place, &(__val), sizeof(*place));	\
+>> +} while (0)
 > 
-> Signed-off-by: Rui Cao <i@udp0.com>
+> A nit here, I'd move this macro to asm/text-patching.h since
+> asm/module.h is pulled in by linux/module.h. Even better if you could
+> make this a function (either static inline or out of line).
+> 
 
-Hopefully we can get the TOPRGU reset controller layout somehow somewhere, because
-it's a pity not to have it... though, I think that the only reset that would be
-actually needed is the CONN one (for the modem) and nothing else.
+I'll replace the macro with an out-of-line function:
 
-So
+    void module_write_place(void *place, const void *val,
+                            size_t size, struct module *mod);
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+I'll declare it in asm/text-patching.h with a forward declaration of
+struct module, and define it in arch/arm64/kernel/module.c.
 
+Keeping the implementation out of line avoids adding a dependency on
+linux/module.h to text-patching.h. The header only needs the module
+pointer type, while access to mod->state and MODULE_STATE_UNFORMED
+stays in the .c file.
+
+
+>> --- a/arch/arm64/kernel/module-plts.c
+>> +++ b/arch/arm64/kernel/module-plts.c
+>> @@ -76,11 +76,13 @@ u64 module_emit_plt_entry(struct module *mod, Elf64_Shdr *sechdrs,
+>>  	int i = pltsec->plt_num_entries;
+>>  	int j = i - 1;
+>>  	u64 val = sym->st_value + rela->r_addend;
+>> +	struct plt_entry entry;
+>>  
+>>  	if (is_forbidden_offset_for_adrp(&plt[i].adrp))
+>>  		i++;
+>>  
+>> -	plt[i] = get_plt_entry(val, &plt[i]);
+>> +	entry = get_plt_entry(val, &plt[i]);
+>> +	module_write_place(&plt[i], entry, mod);
+> 
+> Sashiko reported PLT exhaustion/overrun and ADRP corruption when
+> relocations are reapplied after unloading and reloading a target module:
+> 
+> https://sashiko.dev/#/patchset/20261111073906.652400-1-qirui.001@bytedance.com
+> 
+> These look like existing problems, only exposed now because we no longer
+> get the ROX fault. I think they can be addressed in separate follow-up
+> patches. This patch still fixes the fault on the first application.
+> 
+
+Agreed, pre-existing.  I checked: plt_num_entries is only reset to 0 in
+module_frob_arch_sections(), i.e. once at load.  livepatch reapplication
+(klp_apply_object_relocs() -> apply_relocate_add(), e.g. on target-module
+unload/reload) doesn't reset it, so module_emit_plt_entry() keeps emitting
+past the original entries and overruns .plt; before this patch that path
+died on the ROX fault first.  I'll send a separate follow-up.  The .plt
+section is shared across target objects, so the fix is more than a count
+reset.
+
+
+> However, could we include a bounds check before writing the PLT entry,
+> maybe with a WARN_ON_ONCE? Once late writes use text-poke, retrying
+> after slot exhaustion can overwrite memory beyond .plt.
+> 
+> Thanks.
+> 
+
+Yes.  The hole is in module_emit_plt_entry(): the write runs before the
+existing WARN_ON, so on exhaustion text-poke corrupts past .plt before
+the check fires.  module_emit_veneer_for_adrp() already checks before
+its write (and returns 0 on exhaustion), so it isn't affected.
+
+I'll add, after the is_forbidden_offset_for_adrp() bump and before the
+write:
+
+    if (WARN_ON_ONCE(i >= pltsec->plt_max_entries))
+        return 0;
+
+This is the same condition as the post-write check -- num_entries becomes
+i + 1, so (num_entries > plt_max_entries) <=> (i >= plt_max_entries) --
+just evaluated before the write.  The caller maps a 0 return to -ENOEXEC,
+so exhaustion becomes a clean load failure instead of corruption.  The
+post-write WARN_ON is then redundant and I'll drop it.
+
+v3 to follow.
 
