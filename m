@@ -2,149 +2,146 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B56B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 04:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF89B606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 04:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VYCjZ7ck;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=QwKLl0Jl;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=dEkABgsA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u/Ebzv9v;
+	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=Mt3PzOCp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xNJaMwym5ZKKLsYL6cTFMXYIEs5/IfORKVL2O86kwWk=; b=VYCjZ7ck29hSt5
-	voR2tyzoq4fgMtKhU3EjYX8jvj3hxDXcdFmKr7zgfG0M5GgKHAML3jyTkxX+8l+yYijJXunXrVlJL
-	ItcBkef7iJj9Hl/UfmpSRNmREjUIOxrho5ekzquPxOBRpqmMdPSKjkuc8OZrwupMZ/cuwJLRoRuVQ
-	OKTxftzxqlDW8enIl80wrjH9Qacs8if271scNb/7YoBBQokhMVwQ06i9ogRZwddIjZ28L6stcTtBk
-	4oh6RgcHQcHeZ6A3YjBSmqtaBmmkTYoxO57tWHyz6F5Mkc9Cd3HPH4B1Y4Hrogeg4tomwKRThlu5P
-	FcLpEPLt+N4LJ0AhAfBQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=vnQPJjjH6hN5V7veicXc949/FeYS+wOHdGFONuB19cA=; b=u/Ebzv9vJI2JkFnZ/wGBQN86tz
+	Hm5lQE9B4Mm1RSIGc1iT8PCIp4iKcQ5Q62zQJDH2cBaHFTe1Gxr3CkXZW4gPKdhp070FZ12KbwjTz
+	4CL41d4Yh80YqvIX7YFuWFwbTfEloyJxZm1OwHdbWPIvHZ/be6NN9X0RVgt0x1X5r1EO2oD79HuIh
+	0PoAGQTdoVW2FAB2odnJYd3QTZU00BIrVx50+O8kBNhMAUIv3mRSWJgGKuaG2wHeRmDJjrNBumlgE
+	mF/GEowCM/h78n4tVTLEpjK5UrQNtA1fy0jFqW5Cx9pdEBo0+Q//9L5x+CA8eY3eJthvHG+QJ6Od0
+	Oh3k8J/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTX5B-00000007gxP-3uUe;
-	Wed, 18 Nov 2026 04:15:41 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xTX7l-00000007hAm-21x8;
+	Wed, 18 Nov 2026 04:18:21 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTX59-00000007gwZ-3sp0
+	id 1xTX7i-00000007hAM-0bpU
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 04:15:41 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AI2UxMU1430528
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 04:15:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xNJaMwym5ZKKLsYL6cTFMXYIEs5/IfORKVL2O86kwWk=; b=QwKLl0Jld8xitQup
-	l+HsJF2Dv2+jTBtru7ZsdYqqX1NdfW0xBgn87bKfSnM9ZJLMF/kN9FpBAGdPKCHB
-	uYeHUEIDc3sHm9wMyOQ27YYb+qqvkOUnoPDSIS5N+H97Xig1YLWL2IqcHFLunPry
-	/EqNW2Q5csx24b8hEyrL3RIskz/46RkabyYrs85YIg6jAJBNIOQJB6XtFQODoQqG
-	EaF5JtRDv9ifdpGkQLKwKUyAN5nqvWmS4xZtL3LAXGS+JW7gzkTXBwVHvDNoOh3Y
-	DgOJZasNpMNlXve0huTRL4PRoUj5aVNigf3l6MTztQVYUxvQghspkm6WIEr/wb0d
-	BsBqPA==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j0yv914fp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 04:15:38 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3b08364cdc7so432542a91.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 20:15:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794975338; x=1795580138; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=xNJaMwym5ZKKLsYL6cTFMXYIEs5/IfORKVL2O86kwWk=;
-        b=dEkABgsAzzrEFu6xT+GmYhu/KXI5F/LCT1RISftrJ/8NU/uY9E9UkrKJc7f7V5r2xV
-         5O/SE+Gw3fqHGgzvxgAM4nuaixUeYLbUxgctvKFmrNv8EDfndGahYMxuSCEeEU7OzyEZ
-         5cqe5HYYIXL9HIUWMLKatMNacmJ3sJBdMMQSnVDVbxmNuJX3tlYhDVeccKJqQQm96Rih
-         i6xvHs0wesYfngrJO7IU1yn5K7HdIDQpSIR6VtVnJNoDXLOjN41zz6ZrUbSqNlqpMy3f
-         bXQx2D2KVm+xYn2F2DMZ//LxkHipH0jA/5pbCNjqiEtJW5keyszSaqD+R03JZGWEvlFg
-         SDyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794975338; x=1795580138;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=xNJaMwym5ZKKLsYL6cTFMXYIEs5/IfORKVL2O86kwWk=;
-        b=w13iAQxEDcXf5GpPpkjCrDreZ7Jk3cvkinGmKB/Pg4FNKCl3dUXz4Sub2gZRYkZQX6
-         9EvsPivP9+sVTj7Hn1pblq7Anq+5M+qHH112kxVwBWksQsOa4cZwY6NpqVm9WOTMLwse
-         x/lnwki+rcB/8X1wBcNmkL4YOLYtTt19GfxNOEObx1GgJv+pU2LC869x9u48zH5VM0lQ
-         evUuZbOziLt95iacJpY1BiM+PNltnoJKxZliCX0h6Gr2lPtrRztHWfuJwxsdK/gROKBl
-         /91OxEx2CYDFqlAnvnQgWU2Z3XZGx0F5tkb8nsxEiTJRHsxbB4x5usWzRUaqfB6k+fm2
-         2NJQ==
-X-Forwarded-Encrypted: i=1; AL+hErH5HereC/Yn7lFWu/jIQqO+gQP3Di1wZRQLqkdcmhjXx8iQf80GLkTMOSrhp5Pri1Jzkil5WGPEdBBQ5NYzLqIY@lists.infradead.org
-X-Gm-Message-State: APuU4Z9GArivEQAm7Kucw58WU9vI+neSj4l3Tjpgc1NVow/SEKpvUb1N
-	2dISH4B8Ut1gJZDk3aczMioz6LDzBpx56yKKIIX9bUVjT9FLtnbXHWMmbGLLbW28tV1JGfYuO+I
-	eJi8adpXqmPYWE1wUEyfcyjEtfHuS75KSnI7Lk18btX0UKN4t9ZL+bQ3KDDhMV1K/CQeRQRPEXt
-	I2xQ==
-X-Gm-Gg: AZFdTZf9SGk//KhH719eVDnd5E5s1ljNeSIloDHua6KfFnGj7NffD7CAR/M3u54W6Ki
-	QW0We/aaivQeqQrm+1u4h/b9qVsmxUFLaOMibqQHR05GONgivr7muyH8Nq6aP4FPo3nPuAbHtjH
-	fkWBnaBARXlx531cw1qTXkjf3Wd4Tdfe91L02vLa5XgdKtOD7z/13a3DyK/owOxS4QDU5Mdj1xM
-	FDb8j4dtMyTrm3DtdKEJkbG2cCkDtx3rAxefA0Bt4HaNqIZl6Ap/NS2fDvZUPtT569jzso+Gmr3
-	31VOT1GqntHP5xvnRbHMTuQmfSl4JQlmfZdRFgvKpi43WI5dOIlrRbCIRcCKCDSnFGuRZ1a+7a9
-	KMaXFFB1uxx3fK+zVn5utZj1bruZFWkGcdeNrVWSs+5GM/PutV07E498iOzkSVK0FLd+mS5SV9/
-	fSboxC440gs/m1YoMPj2mK0IabrXcLRx3vPbq1BeOl5w==
-X-Received: by 2002:a17:90a:d2d0:b0:3b3:b621:4026 with SMTP id 98e67ed59e1d1-3b3d04d00e7mr1481996a91.0.1794975338065;
-        Tue, 17 Nov 2026 20:15:38 -0800 (PST)
-X-Received: by 2002:a17:90a:d2d0:b0:3b3:b621:4026 with SMTP id 98e67ed59e1d1-3b3d04d00e7mr1481969a91.0.1794975337581;
-        Tue, 17 Nov 2026 20:15:37 -0800 (PST)
-Received: from [10.133.33.86] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b3d56f6657sm547501a91.4.2026.11.17.20.15.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Nov 2026 20:15:37 -0800 (PST)
-Message-ID: <c310d7ef-28cc-4ad0-9414-8b5ead52f53c@oss.qualcomm.com>
-Date: Wed, 18 Nov 2026 12:15:32 +0800
+	Wed, 18 Nov 2026 04:18:19 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uydlNblYZYNUoRs63a7z0mHvVGgjT8ilEPucWMl9tCdca9i4Nt5gYZ4YNJJNZwntBWbvqoO4fbAWFL9PhzozQDboY7UvyTyo+P58ZvdnNVCYmWi5EJ+ownuk39HvkKe8GeqeowgU2KIuWScD2bhQn4cGZDprtFyP7SVL8PIgCxjGDCd1ZHg7QfFe8IeUYVTly9zvrJkJzfw9piUbMfWFLqWqVQCXkhcs29ZmtTsv/RWJ7sstzxjnMrYqgQLTZyu2fQOFjXZ2lIhH53J2pYJLEEvkwSO51TLWCwm2z5eGIisu8QuZ9dhbbI4sic/5BVRCC4E7vK4ozvsSashIuju74Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vnQPJjjH6hN5V7veicXc949/FeYS+wOHdGFONuB19cA=;
+ b=KqQbVvBaO0zoX2B2cnMWwkIMQsBp23C1ZlaV7PjsXY82iBLLbQfG2aI3lulHPvWC8sjSFNhjzUhx5l8pehNwihIyDCv7nb185eDQstVyGQ2SywimdTJzWpX866fjbPuBGURv2IAGahHlHMfjjV5kmwcXojIA3QEvNLRgezKULXfUcX97YbM6UlajWnRBIWTW4uGnq80fX0OYdlq14+i+81oD/Mahb6zh/8GBuca1bQBCjZIhasfmhjX6sZ1wS3U822Tiv+mMGqLL4jfEFoBqi5842+/flwQkl0WisKVV5bfi3jPTHava1vOEEPWqjhweKpn9wcq7jxAMGYNgI7J3cQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vnQPJjjH6hN5V7veicXc949/FeYS+wOHdGFONuB19cA=;
+ b=Mt3PzOCp/dJmMIcL7u+wlWS+ycG+o2DpKhWPTuC/fUj2VZXGwLtDp8x5IIPo2of2LP5qe5UhjAjC1nJ1vvGOiyUH0SVEMsmV4W+1L8D2G0E2vTYD3Hg5ret2WkkgZ0wnTLVFT0BKUh/UdIvXo5HP2I7452JNEo3y5xgwYSxl3fClgBN5u74j4cX3AlFRvEkbejAhQLnXH820yJvafQ1/itDvgxhZdh0xXfUk8E8PejMp1gJZ2xwD3DUp5aPga34GoHDy3E1xj6hShhNReZr4wepyCUmhVUYtaTlKGRrUv3UBuAM+TjiZtf+gJz59qn/9bwnQMzfJ5UXvlZUwF5lD+w==
+Received: from AS4PR04MB9338.eurprd04.prod.outlook.com (2603:10a6:20b:4e6::17)
+ by VI0PR04MB11940.eurprd04.prod.outlook.com (2603:10a6:800:307::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
+ 2026 04:18:10 +0000
+Received: from AS4PR04MB9338.eurprd04.prod.outlook.com
+ ([fe80::7c4c:9c56:8552:f680]) by AS4PR04MB9338.eurprd04.prod.outlook.com
+ ([fe80::7c4c:9c56:8552:f680%7]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
+ 04:18:10 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: "netdev-bot+sashiko@kernel.org" <netdev-bot+sashiko@kernel.org>, "Wei Fang
+ (OSS)" <wei.fang@oss.nxp.com>
+CC: Clark Wang <xiaoning.wang@nxp.com>, "andrew@lunn.ch" <andrew@lunn.ch>,
+	"olteanv@gmail.com" <olteanv@gmail.com>, "andrew+netdev@lunn.ch"
+	<andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org"
+	<kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"horms@kernel.org" <horms@kernel.org>, "richardcochran@gmail.com"
+	<richardcochran@gmail.com>, "linusw@kernel.org" <linusw@kernel.org>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v7 net-next 9/9] net: dsa: netc: add PTP one-step
+ timestamping support
+Thread-Topic: [PATCH v7 net-next 9/9] net: dsa: netc: add PTP one-step
+ timestamping support
+Thread-Index: AQHdcaU8FIWnfsUcvkazg7XTHvzRILcuwWcAgAR9yZA=
+Date: Wed, 18 Nov 2026 04:18:10 +0000
+Message-ID: <AS4PR04MB933806268CA9276C44A5696D887A2@AS4PR04MB9338.eurprd04.prod.outlook.com>
+References: <20261111062753.1397582-10-wei.fang@oss.nxp.com>
+ <179472746829.2199510.2714083926199671078@kernel.org>
+In-Reply-To: <179472746829.2199510.2714083926199671078@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_Enabled=True;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_SiteId=686ea1d3-bc2b-4c6f-a92c-d99c5c301635;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_SetDate=2026-11-18T03:59:41.0000000Z;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_Name=NXP
+ Confidential;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_ContentBits=3;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_Method=Standard
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS4PR04MB9338:EE_|VI0PR04MB11940:EE_
+x-ms-office365-filtering-correlation-id: dc2fc065-acab-4e5d-0bdc-08df452af4c1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|19092799006|23010399003|38070700021|10067099003|5023799004|4143699003|56012099006|261026140227099003|11063799006|261028144727099003|261021121427099003|261022105027099003|261022075727099003|261026121527099003|261021123027099003|261102123227099003|261009223027099003|22082099003|18002099003|6133799003;
+x-microsoft-antispam-message-info: /nmp85ks+s7wa3zg0jPfeIJ7TzOdxARjWrkkif6Iq/CKuDVRI01WZFh6sV4SyDTajUE8+WOLXRMETdy2qqTiAa4+wt0vZtI6gHoZvP8lGVt2wmow3G8eXsgEMDcZAOLSgaz+8oQjUywcDafZd32mq7fH1kmhGQxBahMdaftzpz4cY9Ku5wPr+p4c+urLSAJlFkZno2E7qojRYec3B+nq5uZAMITvErWC2xDsQEIEFMV5OuFaAOROEZvEH0v2geEKyXtwvw8gUkNMOXudT/LwFK041Nput2E5Oryd5l7tU1G3I2psULu8y6GvR3YzzYJ8fQT3SDlz+bNj47xjorL24fKH3s9rxroSfxwV4tJfg2ZmAbUbDMcU6pUxflUzQX8OFCMyzgVLfZGMw+ahOTcy++K4xtivhQLMmkNFqcIc5wjE+viylG1pDOvkvERVbWb6vQ/3T+hfJVTKv1vZbJCOKtGWxis9ze0It4BwuEFbdabd1CUhA2R9w0bqoBfQrwuxkUFjAS+92NglsWW5AJRswiqHn1Rsu+MyousA9irFAmLMZjfQcMrP4LHh5WlPASpErArRKw8kXAv05QKzDCypabyi7Tow8pcVK60p3JQ/ZEZrnXJTNxr0QV5ZklO3SZknPk9QE+Es6hb0GnbaaNATh72ItPgQkldtzx6vaM9qv28Ed2oWQZUstQ5tT3VqBY8DbhM3ZZM/RfgxjkLTfVUpXsBVSz4FokBDHDCzNWF5QIA=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9338.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(19092799006)(23010399003)(38070700021)(10067099003)(5023799004)(4143699003)(56012099006)(261026140227099003)(11063799006)(261028144727099003)(261021121427099003)(261022105027099003)(261022075727099003)(261026121527099003)(261021123027099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?8kFfOKaWW0q9QZn6zTqS6s0/h4ry/YTuOTfv4VOCZY8xFnlCXmhzNOPFLmwX?=
+ =?us-ascii?Q?9Fh1jreuNDAiyH7yU+WluMxk1lyvIUYBV7kTlTFVE5iwfJ2S5N+nOSUSYKqy?=
+ =?us-ascii?Q?HBCAGoav/qWYw44LZKByHnJRNdRhiXLnSJLaBqZvG+4LmMa8iZavIrREipoj?=
+ =?us-ascii?Q?tkxUc8GVYV2KYrWijsy2nTCaFcvvmqap7QtjRylm8WItZXokf8H6sQ1jNh6j?=
+ =?us-ascii?Q?VH4tZbZbdjBUveABYLYkwvklGvlWbp41hnVp7ygsTKhKu7NGuO1Fzte+xHJd?=
+ =?us-ascii?Q?wUUhv+gCjTuiR9l6f+WaEXZYAgRGOCegXUNAEnNuyyM+wH6dNo3kV+0hiWFE?=
+ =?us-ascii?Q?ioPNL2msV4n7R/bUXk64DqGu+ZNBwmCQU5tBRetVPXT/wrm7jBIeEJ8ZQJjR?=
+ =?us-ascii?Q?eRsUTyzHz+w2u24FYY1RhrkDqg1poAQ/hXbdbQ+pdRoR0yqPU6Nazbr3fXd/?=
+ =?us-ascii?Q?RVyoSU0dybjJlaZBXEbbYgVdOt12yE6Jd0iSdB5TlwfQOroyZf/R8b4dU9te?=
+ =?us-ascii?Q?u2+RUNXMJXL16Vktff7dOe+vm+cF+wBel1aNbKlqhYG9fqeun2KunbBU7JXC?=
+ =?us-ascii?Q?e7ptJy1pfHdxtL0LB2QeTcmlqU//vrjbcXdeCpA12Gf5kmgSWo+W39YrGn3T?=
+ =?us-ascii?Q?JoJkhnbGKGtd3qlpcq6ai0igeIth9acunHCNpeJzde8lmRi1o4q8IxWnqmRk?=
+ =?us-ascii?Q?3gbzUCyHe83gCvQ4Sib7YwJfhYFUHBu9LdkWgte+UTI283AA9/K5uJAoHrXS?=
+ =?us-ascii?Q?YJVsmS2W+fLt4+YXhGwczk7ZxUBSng/XH9aFmsY8UtwaGIvJielSQsW3mzih?=
+ =?us-ascii?Q?JeVpevZXvqFEcvYFIWqynHCS4wQge6FekB6ycQgvvPv5bRQzzxuMo+QBooeZ?=
+ =?us-ascii?Q?Ise5H7OkeB/eaOr7FPxAcKR2uZUoWfG6km5XbA8NyQg6/GNFxxtRdQYkGiaA?=
+ =?us-ascii?Q?fsV3uVEatjMjrK4rS59VvJ+Ddit/JomvWtD4wqra+A0ixaJ+fZKAYRu5tHgM?=
+ =?us-ascii?Q?RgXdLDaurGUxx5/bW8ZXDeO5/gABTWMu8vaAJxv2i0vp0uY+mv+321zjTEj3?=
+ =?us-ascii?Q?mZl9sPcX0okq/aCJw2ll3g2XYx+kO7raVhzNeP5NW/Qa+fN4Proy0LZqTQM8?=
+ =?us-ascii?Q?LzMmSKHQNiWvQ/lLh93IzdVVdlT9JDy/1+9j9UykQPlfN9GVu0pOvQTX1bfu?=
+ =?us-ascii?Q?6o/XLLb5JOeMNNWO0MKmVM0bqKSrOqO0x4qgHp/GqSa6Lxy2w3g5ifUud9we?=
+ =?us-ascii?Q?mDlsjGK5eZxpN+gk14abBwCqiUTKoc+/HOveaVUNkpDZKGGDG1fx1AeKzRNY?=
+ =?us-ascii?Q?UA2QF1ZDqa6MtZJ+0OPRLG1I3lEf1Qvc91TvWODtiJydwnDH1FVBEbe3bq8M?=
+ =?us-ascii?Q?f3//QbMakwscpyatlFTrMQv3BjmVHB4HSwyaNj6e9KSTKJ9aTODGxD5EHYI9?=
+ =?us-ascii?Q?Fwphpybm9jwCG738HWqigaHFn11RftmKjD1AqQUPczrEEYtHKJ5rp0t0B6rj?=
+ =?us-ascii?Q?aWIBTMYztShTe80oAQyEnAugUnqXumb2hZ2WPUBY2XnfKdVMDuEDCe7sE+1b?=
+ =?us-ascii?Q?eBQPBhYJuC+E5CpPDHBOpyS4vURxw/GND0oZfkGIMp18xmcc9zWA/1GtFYUq?=
+ =?us-ascii?Q?4BuGKSUs2kRO8CVeBohTHNjGF9TIbBYouKItdtfZcaccAB54NgdZcX+DUXad?=
+ =?us-ascii?Q?4VYjbOLAy4AuHIjYNusc8Ztk5ADx9GmFeC5J6aNQiuZHEbPb?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] cpufreq: mediatek-hw: Release resources when hardware
- enable fails
-To: Haoxiang Li <haoxiang_li2024@163.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, hector.yuan@mediatek.com
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
-References: <20261118034205.2002363-1-haoxiang_li2024@163.com>
-Content-Language: en-US
-From: Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
-In-Reply-To: <20261118034205.2002363-1-haoxiang_li2024@163.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDAxNiBTYWx0ZWRfX5ejiDY4ft9Ro
- QEx2g5WNX9ieBA4pbjFP5zS8xb4UceJ8+2nd7wQezqVarNybm/cOGg4kcPPXDzCc1gHB+Di2WtB
- Uq4Iog8dE89la3jyUyLHZC4jXXWemmrVQylVyth8VLVHmU2tzmxdSk4FgrS64PunfR7fU/M/sst
- X3OMPbGb2vGqmlmtIkmysZhsmMT4MgLldBvvzsohQqzLrEqUWUZWMTeRXKhPiLBRxvFfjlF8BI1
- 0Rs4wcGUri/9eHu4IrtZdhWJWZuaNW7S8/woVssY58A/qvl49tEkgUVXV7y+zrQhkTtnD2NJLmt
- gnAzuUka7Zu9x7Z6moCvFQfwOzsT23rDVFRmBsFGufyW5LvO9MsbIy9+YkbCt8Q7ZXGkAHTPxet
- PDNofxySl9WZxgDwvfIBsIWqQ3FNakxkh9PvBwXY4utQkhowO7yx/ufGoGd+TQ4lhWw5DvHbI5/
- XQ+VCqm5FLktE/4Htdw==
-X-Proofpoint-GUID: 6SbDz9knEjsurdRS5oucj2GGJMwbtrng
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDAxNiBTYWx0ZWRfX26sFY4Gs2CD9
- 77YMmufj0Oh7PGAMxfeokEG48tEU7qkfL4NJd6hhFH6g91epEr0L22o43Kj2nE38jcqGHXF3Zua
- Zjc8ZfE38oyRQ3kh4z4d3H7sykxm01s=
-X-Authority-Analysis: v=2.4 cv=LuQHWXdc c=1 sm=1 tr=0 ts=6afd266a cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=Byx-y9mGAAAA:8 a=ae5kI6K66oS_w7Z61gEA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-ORIG-GUID: 6SbDz9knEjsurdRS5oucj2GGJMwbtrng
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-18_01,2026-11-16_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 impostorscore=0 malwarescore=0 suspectscore=0 clxscore=1015
- adultscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611180016
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9338.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc2fc065-acab-4e5d-0bdc-08df452af4c1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2026 04:18:10.6623
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dY9VP5y6eUds2dxVWpFgqr6cDJPFQL6fkvg6KRUDWZ7mNmP1fE4S/rdn0fxK6ktH2UTjmZYITTwts/b6PVsgqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11940
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_201539_984297_23AE4541 
-X-CRM114-Status: GOOD (  23.07  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261117_201818_389464_D53BC706 
+X-CRM114-Status: GOOD (  39.55  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,88 +152,179 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/18/2026 11:42 AM, Haoxiang Li wrote:
-> If the CPUFreq hardware fails to become enabled, mtk_cpufreq_hw_cpu_init()
-> directly returns -ENODEV without releasing allocated resources.
-> 
-> Reuse mtk_cpufreq_hw_cpu_exit() on this error path to clear the hardware
-> enable request, unmap the registers and release the memory region.
-> 
-> Fixes: d776790a5536 ("cpufreq: mediatek-hw: Fix double devm_remap in hotplug case")
+> > +   if (np->onestep_state =3D=3D NETC_ONESTEP_IN_FLIGHT &&
+> > +       time_is_before_jiffies64(expire_time))
+> > +           return true;
+>
+> [Severity: Low]
+> Is it safe to treat PM_SINGLE_STEP as free based only on elapsed time?
+>
+> After netc_port_onestep_work() programs the register and calls
+> onestep_sync_xmit(), the tagged frame may not have left yet. It can still
+> be in the conduit qdisc, the ENETC TX ring, or a switch egress queue (for
+> example under pause/PFC or a closed Qbv gate).
+>
+> Three paths seem to reprogram the register without knowing whether the
+> previous subtype 3 frame has gone out:
+>
+>   netc_port_onestep_sync_enqueue(), once netc_onestep_timeout() is true
+>
+>   netc_port_tstamp_timeout_work(), which sets resume_onestep after 5 s
+>
+>   netc_mac_link_down()->netc_port_disable_onestep() followed by
+>   netc_mac_link_up()->netc_port_enable_onestep(), which sets
+>   NETC_ONESTEP_IDLE without tracking frames already handed to the conduit
+>
+> Suppose the old frame goes out after the register has been rewritten for
+> a new Sync with a different layout (L2 vs UDPv4 vs UDPv6, or VLAN vs
+> untagged). Would the MAC then apply the new correction offset and CH bit
+> to the old frame?
+>
+> The NETC_ONESTEP_VALID_WINDOW comment says such a frame "is already
+> invalid, whether it has been dropped or not". In this case, though, the
+> hardware could add the residence time at the wrong byte offset, for
+> example inside the IPv4 header or the originTimestamp. It could also
+> update or skip the UDP checksum wrongly. The frame on the wire would then
+> be malformed, not just carrying a stale correction field.
+>
+
+Old frames will be discarded by the receiver due to format errors or checks=
+um
+errors, so there is nothing to worry about.
+
+> This depends on when the hardware latches PM_SINGLE_STEP. That point is
+> inferred from the commit message, not checked against a datasheet.
+>
+> [ ... ]
+>
+> > +void netc_port_onestep_sync_enqueue(struct dsa_switch *ds, int port,
+> > +                               struct sk_buff *skb)
+> > +{
+> > +   struct netc_port *np =3D NETC_PORT(ds, port);
+> > +
+> > +   spin_lock_bh(&np->onestep_lock);
+> > +   if (unlikely(np->onestep_state =3D=3D NETC_ONESTEP_PORT_INACTIVE))
+> > +           goto free_skb;
+> > +
+> > +   if (unlikely(skb_queue_len(&np->onestep_queue) >=3D
+> NETC_ONESTEP_QTH))
+> > +           goto free_skb;
+>
+> [Severity: Low]
+> Can an unprivileged local sender crowd the real Sync frames out of
+> onestep_queue?
+>
+> SOF_TIMESTAMPING_TX_HARDWARE needs no capability. ptp_classify_raw()
+> treats any UDP datagram to port 319 as a PTP event, and the sender
+
+I think this is an overreaction; ptp_classify_raw() is designed to filter P=
+TP
+frames.
+
+> controls the payload (msgtype Sync, twoStepFlag clear). With
+> HWTSTAMP_TX_ONESTEP_SYNC set, such frames take this path:
+>
+>   dsa_user_xmit()
+>     dsa_skb_tx_timestamp()
+>       netc_port_txtstamp()
+>         netc_port_prepare_onestep_sync()   /* NETC_PTP_FLAG_ONESTEP */
+>   netc_xmit()
+>     netc_port_onestep_sync_enqueue()       /* shared FIFO, drop at 512 */
+>   netc_port_onestep_work()                 /* one frame per response */
+>
+> These frames share the single per-port onestep_queue with the ptp4l
+> Syncs. A flood would delay the real Syncs, or get them dropped once
+> NETC_ONESTEP_QTH is reached.
+>
+> The same sender can also send non-Sync event frames. Those take the
+> two-step path and can use up the 16-entry ts_req_id pool. Then
+> netc_port_onestep_work() drops the real Syncs when netc_get_ts_req_id()
+> fails. If tagged frames are also lost in the conduit, the queue stays
+> stuck until the window check fires on a later enqueue or the 5 s timeout
+> runs.
+>
+> The ts_req_id pool exhaustion already exists before this patch. What is
+> new is the serialized one-step FIFO.
+>
+> [ ... ]
+>
+> > @@ -409,6 +718,67 @@ int netc_port_hwtstamp_get(struct dsa_switch *ds,
+> int port,
+> >     return 0;
+> >  }
+> >
+> > +static void netc_port_prepare_onestep_sync(struct netc_port *np,
+> > +                                      struct sk_buff *skb,
+> > +                                      u32 ptp_class, bool *twostep)
+> > +{
+>
+> [ ... ]
+>
+> > +   /* Ensure the buffer is linear and writable so the packet can be
+> > +    * parsed and updated in place. Otherwise, fall back to two-step.
+> > +    */
+> > +   if (unlikely(skb_linearize_cow(skb))) {
+> > +           *twostep =3D true;
+> > +           return;
+> > +   }
+>
+> [Severity: Medium]
+> What happens here if the frame really is a one-step Sync (msgtype Sync,
+> twoStepFlag clear)?
+>
+> skb_linearize_cow() makes a GFP_ATOMIC copy whenever the skb is cloned
+> or
+> nonlinear. A clone is common, for example from dev_queue_xmit_nit() when
+> tcpdump is attached to the user port. So this can fail under memory
+> pressure before the message type is checked.
+>
+> netc_port_txtstamp() then sends the frame down the two-step path:
+>
+>       if (tx_type =3D=3D HWTSTAMP_TX_ON || twostep)
+>               netc_port_prepare_twostep(np, skb);
+>
+> netc_xmit() then gives the frame a subtype 2 tag. On this path
+> originTimestamp is never written, PM_SINGLE_STEP is not programmed, and
+> the correction field is not updated. The frame still says it is one-step,
+> so no Follow_Up will be sent.
+>
+> Would the slave then compute its offset from whatever originTimestamp
+> user space left in the frame? The socket would also get an unexpected
+> hardware TX timestamp through skb_complete_tx_timestamp().
+>
+> The commit message says:
+>
+>   "Frames that are not one-step Sync still fall back to two-step
+>   timestamping."
+>
+> and:
+>
+>   "If the originTimestamp field of the sync frame is not in the linear
+>   buffer of the skb or the correction offset exceeds the hardware
+>   capability, the frame will be dropped."
+>
+> Should this path drop the frame and count it in tx_dropped, like the
+> offset check further down? The ptp_parse_header() failure falls back the
+> same way. There the header is incomplete, though, so that frame cannot be
+> a well-formed Sync.
+
+From a software perspective, this is a trade-off and cannot completely solv=
+e
+the problem unless skb_linearize_cow() never fails; otherwise, the driver
+cannot parse the message type. The issue raised by Sashiko can indeed occur=
+,
+but only under memory pressure. Once the memory pressure subsides, PTP
+synchronization will return to normal. So there is nothing we can do this i=
+ssue,
+I would like to leave it as it is.
 
 
-The same commit also introduced a leak in mtk_cpu_resources_init():
-when mtk_cpu_create_freq_table() fails, it returns without iounmap()
-and release_mem_region(). Could you fix that path too, as a separate
-patch in a v2 series with the same Fixes tag?
-
-
-> Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
-> ---
->   drivers/cpufreq/mediatek-cpufreq-hw.c | 25 +++++++++++++------------
->   1 file changed, 13 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
-> index 2c57371ad502..65f15fe935db 100644
-> --- a/drivers/cpufreq/mediatek-cpufreq-hw.c
-> +++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
-> @@ -289,6 +289,18 @@ static int mtk_cpu_resources_init(struct platform_device *pdev,
->   	return ret;
->   }
->   
-> +static void mtk_cpufreq_hw_cpu_exit(struct cpufreq_policy *policy)
-> +{
-> +	struct mtk_cpufreq_domain *data = policy->driver_data;
-> +	struct resource *res = data->res;
-> +	void __iomem *base = data->base;
-> +
-> +	/* HW should be in paused state now */
-> +	writel_relaxed(0x0, data->reg_bases[REG_FREQ_ENABLE]);
-> +	iounmap(base);
-> +	release_mem_region(res->start, resource_size(res));
-> +}
-> +
->   static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->   {
->   	struct platform_device *pdev = cpufreq_get_driver_data();
-> @@ -321,6 +333,7 @@ static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->   		if (!(sig & CPUFREQ_HW_STATUS)) {
->   			pr_info("cpufreq hardware of CPU%d is not enabled\n",
->   				policy->cpu);
-> +			mtk_cpufreq_hw_cpu_exit(policy);
->   			return -ENODEV;
->   		}
->   
-> @@ -330,18 +343,6 @@ static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->   	return 0;
->   }
->   
-> -static void mtk_cpufreq_hw_cpu_exit(struct cpufreq_policy *policy)
-> -{
-> -	struct mtk_cpufreq_domain *data = policy->driver_data;
-> -	struct resource *res = data->res;
-> -	void __iomem *base = data->base;
-> -
-> -	/* HW should be in paused state now */
-> -	writel_relaxed(0x0, data->reg_bases[REG_FREQ_ENABLE]);
-> -	iounmap(base);
-> -	release_mem_region(res->start, resource_size(res));
-> -}
-> -
->   static void mtk_cpufreq_register_em(struct cpufreq_policy *policy)
->   {
->   	struct em_data_callback em_cb = EM_DATA_CB(mtk_cpufreq_get_cpu_power);
-
-
--- 
-Thx and BRs,
-Zhongqiu Han
+NXP Confidential
 
