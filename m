@@ -2,77 +2,156 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F643606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 409A6606A740
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:26:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U3PzSBkx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HW87yscd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i9K+WMYc;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=YQar5ru2;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=TX6p1IrM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=C/3wjl6fCG2L5aBuDBQtitmDyI0wLilqwEumq3Ter0c=; b=U3PzSBkxp8Ma5jHzLSt4mIK7Lr
-	WLGnrb6kGcm5H+3JjGAwaenaWiDk477XbZCECNkgBKyJfV5SMQE+6+zM5oFZKnNEWIlOTd5txx62O
-	EkU+67PtZ9J5oE7boC9xfTyAVRMG3NV9EfMDSEJMTl6cCiPMQdodsbRtHsWXlBDCxHnJtoksGdfEb
-	03cvSIYsiKepEEaeyww7we7AIQjDVRwVFIvGqlGnVfmJf8pHIXqdS1MIinGdqWjwgXtkR769McWVd
-	zS3ZevnkVyoZ3JjimYJgNMHX35XjsdXezOMCUI450+VJQ/UHBm1oa7tW0O8xY+h83F6J3lv+lP7lk
-	chHxXVUg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=RW3VrDJt2jwVTxo1IxmYUqwi3Wi45tGK1TjCoqfFq0w=; b=i9K+WMYc33q5HL
+	lCBER/p7r5PZVpyA+Exh3fGxQyRtO9qxLG+EBOsW+mzpHhD0ufY0Us8gMEYL6sC7hZEAHqiX9LvBa
+	NeIrjUr+I1pOsPJwh/7O89RDr6BsIzhFzruHQzr/pnn9gsz3Z11wz0k4oE4561+xIkW/wAjMzZZdj
+	LSp5pqaP5BFFLeMvApKFVPFBE1khNx733XVrKcfmoOdRzjjz/WU9+Vbm8WkDai69cnm6P4ezPTwY2
+	G2C0QOGP5mnkgoR1Yi64WLeEG7XutsJwTObcnHuxKY0GTu9EUH/Zr1UhDGi8BDCp2eeghfLOWNI7q
+	JxbpBON/OQhDJWNtnzxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjKM-00000009krc-03d4;
-	Wed, 18 Nov 2026 17:20:10 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTjQY-00000009lYq-06RE;
+	Wed, 18 Nov 2026 17:26:34 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjKK-00000009krM-32dM
+	id 1xTjQV-00000009lYU-2KeC
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 17:20:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0F4D063230;
-	Wed, 18 Nov 2026 17:20:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC3B11F000C4;
-	Wed, 18 Nov 2026 17:20:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795022406;
-	bh=C/3wjl6fCG2L5aBuDBQtitmDyI0wLilqwEumq3Ter0c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=HW87yscdcuN4vnAlyxlzUKgtD2YYe+cwtk2Lo84P1XZ0/JkyMbT+BboAqgDtZNaI6
-	 mJRTfdJVd7vDF83DNgoX/tNpnTvosuqWQON5Z2PdmRNqGN9B4DYutFLkIw69I39xGi
-	 t8WODwJWBpgI8hupY27/Vn68MOLKGOh8GK+iz9e+YbnlYSfWK3QPx2GS5Shh9Bvl0y
-	 Rg+/9lqXDsegi47vvUCyAxeayH698guLu2hwVPQOBASrXJ55rG2V0TQGxz+5aA4h12
-	 8Lf0Y0jicqhQhNB7945LSKRzOV8S4ZqaI+y02VUXlVaEXMxIMpwHIhsnnAJch7tgYO
-	 BcIxas1TC6rCQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xTjKG-000000003n8-2pNs;
-	Wed, 18 Nov 2026 17:20:04 +0000
-Date: Wed, 18 Nov 2026 17:20:04 +0000
-Message-ID: <861p8i12gr.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Zenghui Yu <zenghui.yu@linux.dev>
-Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
-	tglx@kernel.org,
-	radu@rendec.net,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] irqchip/gic-v3-its: Size the collection table for all possible CPUs
-In-Reply-To: <9751bd2c-897c-433c-a4da-5ec420ced322@linux.dev>
-References: <20261118025106.623070-1-ruanjinjie@huawei.com>
-	<9751bd2c-897c-433c-a4da-5ec420ced322@linux.dev>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Wed, 18 Nov 2026 17:26:32 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AIHGfGp3968178
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 17:26:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RW3VrDJt2jwVTxo1IxmYUqwi3Wi45tGK1TjCoqfFq0w=; b=YQar5ru2ZJRA21yd
+	iG69+sbMplKpJXo7wVX6UP5PPD90Cy9ibfd4l7ZuEFKY8rrHN/VDBNLpHiAu9rlZ
+	YbOlLg9l44mCmgjJhIceUOLa+lJsqxPbLFWQXDQLhKFxKlo3atLqau/bhX8a9iP4
+	SxJx4lIrxxSLitIRlth7Tkx3SUsJoyg76ZqxKPWaPhQceejykdeNC38wiARdwfi4
+	6dEHZY/fAwZo9Wwg4prbO4Wu8xnUBaqVpq3v+Y9Tv+kc6wmQ9pkK1fgaBTUR3dhH
+	suy9pn/N4pcvvV/mGyl1ZaRnK2VrBhf2geRafZTZ76t9TiiXXStrGO9BI66kc8QN
+	8KBbuA==
+Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j1fgg09vt-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 17:26:30 +0000 (GMT)
+Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-383f2d05c73so122225eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 09:26:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795022789; x=1795627589; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:organization
+         :references:in-reply-to:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=RW3VrDJt2jwVTxo1IxmYUqwi3Wi45tGK1TjCoqfFq0w=;
+        b=TX6p1IrMMh+00NFbFM8AdUAsf7GLnHwgRcoGplbliP6oDdop1a607syk3kntBQY5b/
+         TAzJl+I6NX93p4WVMd+603C2YOiWgEL7ZFo1mDpbApGqfHHICdgR1dTe/pDQ45jAsAvk
+         MqVkDAmGb9dcANlfNepULV8oce88ZJHolX4103QCdbxc1DVmnrdejcO73AV9ksi2Z5pa
+         O+Y8OGI8682GaO6HERdl4ojVrwYuygfl813HYvxyYS4gvIg5Y4XMB/hcm5gaLrwHeIZ6
+         6ujTgEvdrti9J+eb+tQwkWkYXsJ9PxX/3kcuNiRq+8k2CujNqOtLyxe1PZFtgirwLZZa
+         2Suw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795022789; x=1795627589;
+        h=content-transfer-encoding:content-type:mime-version:organization
+         :references:in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=RW3VrDJt2jwVTxo1IxmYUqwi3Wi45tGK1TjCoqfFq0w=;
+        b=Bz95/T9fkfqSVhOLfWic05GFbM2TL6VGLzIbCmQ0Q1vS2gI3NYkLB0ggZb4jhwcshn
+         Iok0hhK1ORgoOidntKj/TtFr+69rFN7U9i1t1jD4YUVJUaNlqTflNp5nf106jGjdDxP9
+         omPti/74svCEmtKegZLU9CJ+y2NCoWwWrHN5XadEPYAhFBnUs6FM8gG2XgDTALTs1+/7
+         mqyEaBKmBpwalBFGlr9ehyTAglyDdA4BQthdWegMjQXnB9a1nfBSuY4tjbJ04xAqRK0i
+         Ud3qdOC+aayUEVDckFUluxLlW9eypIoIjUIMQIa9ibp+pLPcxyB1U3OedfYCB3mluUqd
+         VWhQ==
+X-Forwarded-Encrypted: i=1; AL+hErHqBRf8eSrcDRJapLlD0FxSrVmdf7ie7V1DCtd0mWOeoY6tAK+cFGoZWRV0GNav7hheAOD/3SVaRt+8iRyKHgPE@lists.infradead.org
+X-Gm-Message-State: APuU4Z8W6SDMS4sLsX5AvKwb0Y0LVztaJpbraBAekI6/lXYQOLoTzQJr
+	+DCGRGRol+4Bk8IdLNikxWntPEhLFQDsC6zOgya+OxXleUUCiL52v4QmJ0D3pQTwwCGF4rsQ4ju
+	++UDTKvqkkqAseue5DHRzRQ4Tqo3xacUOTduh9siFGaNP4Js1TVjSOty6BlMMAnmlV0l1Gd0vsP
+	25ew==
+X-Gm-Gg: AZFdTZd5kHWyHVokJ5HOVjjFu2Xq7A5RDMjs/ouxx1blNeKBkFCnnpR2jC9uYswkFbC
+	c67W1+fZOR4vunGSYotkg/9BSlyFe0NK8oEyaEV3FgfOTEB2zoMiyWdiu40qDmPtQ/FYq4n8L2r
+	4CMyk88VXRJ/1L829nFzWAhSoH2HRHTywQEnHT8C7AECHTWdpbaSn2ENXrJIm/M0E4zCF9WHoSH
+	6CEq+hLd7n5h7JqfjvptMLhBh0ZXVz8vd9Xx7UE43rthVo6JQNNzMcSqdnyQaazZUUcXhmasJYW
+	HrKi37MvmeTSM6MOAVs1pudU0fqi4wkGMkR7U+7BxTdjDxNiv7oYTmIhsfNA2gZmXHdlpPESXe6
+	GKpxkCPFQVTvLg5rgvfc1lFori6s6G9osAI9nzJAnOzHqvQOYcz59sRM/Gp/3kQMHxNDMis0/un
+	Mox8OlfcPOy43mR7PS4Rh9QoXoU+Y=
+X-Received: by 2002:a05:7300:bc19:b0:36a:18e2:64c with SMTP id 5a478bee46e88-3827f98ff0cmr3828972eec.11.1795022788945;
+        Wed, 18 Nov 2026 09:26:28 -0800 (PST)
+X-Received: by 2002:a05:7300:bc19:b0:36a:18e2:64c with SMTP id 5a478bee46e88-3827f98ff0cmr3828923eec.11.1795022787802;
+        Wed, 18 Nov 2026 09:26:27 -0800 (PST)
+Received: from localhost (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-382a7eaf3b3sm10705697eec.27.2026.11.18.09.26.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2026 09:26:27 -0800 (PST)
+Date: Wed, 18 Nov 2026 09:26:23 -0800
+From: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
+        sudeep.holla@kernel.org, james.quinlan@broadcom.com,
+        f.fainelli@gmail.com, vincent.guittot@linaro.org,
+        etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+        d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
+        philip.radford@arm.com, david@kernel.org, souvik.chakravarty@arm.com,
+        leitao@kernel.org, kas@kernel.org, puranjay@kernel.org,
+        usama.arif@linux.dev, kernel-team@meta.com
+Subject: Re: [PATCH v15 10/35] firmware: arm_scmi: Add Telemetry resources
+ enumeration
+Message-ID: <20261118092623.00000cc4@oss.qualcomm.com>
+In-Reply-To: <av1rTY1cZjRbxzD6@pluto>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
+	<20261109091221.2532706-11-cristian.marussi@arm.com>
+	<20261112100145.00000560@oss.qualcomm.com>
+	<avYZ2t_GoT7BN2nU@pluto>
+	<20261116133638.00006cc3@oss.qualcomm.com>
+	<av1rTY1cZjRbxzD6@pluto>
+Organization: Qualcomm
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-w64-mingw32)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: zenghui.yu@linux.dev, ruanjinjie@huawei.com, tglx@kernel.org, radu@rendec.net, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: spH-yd0QsrDogs51GYE5xQeD9ibffrjC
+X-Proofpoint-ORIG-GUID: spH-yd0QsrDogs51GYE5xQeD9ibffrjC
+X-Authority-Analysis: v=2.4 cv=fOSsTpae c=1 sm=1 tr=0 ts=6afddfc6 cx=c_pps
+ a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=7CQSdrXTAAAA:8 a=woqvtWepuCvEniIg8AEA:9 a=CjuIK1q_8ugA:10
+ a=bBxd6f-gb0O0v-kibOvt:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDA2OSBTYWx0ZWRfX7lH5ps1bsKef
+ jyh96l/CuR3PmXH8pKqKzopktlbfBRz394wbblRcUVNHbeGbd9UpiUFpCF5g4lEMM4EXc1Jnzgu
+ ajEs1eYFQTlaB8NFHgOr+GXM8nsjWJw=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDA2OSBTYWx0ZWRfX8ODffS6e2LTc
+ iDVOPwNQvy5pFskBR0UCI5OkJhv5I6omgXAfbURURKpn0kNJBAEbR7M4W8MnhZVRiZXLx1uHNzU
+ z+Ebp0ovDH+8eYySPFXZoQ8ikM9UXViWGz/CEV9PNjsSMWF9+fEcP1Taz2WFb4QCSGLAveBKg19
+ eDPqVDWPcvcuoOUCV2J943OdEqhTBmL7Ue8z/RdCMiWkVpkVC6MxomYQuyK2ByEga9BD6nftXFM
+ AdJyQGdJJA5/PsN5CIi07NQu4AL1mjgIGBnOheNstZnTaU7N380pUTXU/CMuJISPUUgheyuKQJU
+ PfI9KcOt88piiq507DDYUUgrbQZ7HajEpZCpN/1zNyaaqkev6kwpaTdINCOztN5CiTXZPPJWjtK
+ Dsa4FMUpvlclVqfUbVytN0c3MCcvr6SAz3KcCv6HcULecd59ZWJ4BQaZ8HQ5CPukwU3fvXxzbFq
+ b+3zEOtMOaJ7cuA4HLA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-18_05,2026-11-16_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 spamscore=0 adultscore=0 impostorscore=0 bulkscore=0
+ malwarescore=0 suspectscore=0 clxscore=1015 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611180069
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_092631_720033_C177B6AF 
+X-CRM114-Status: GOOD (  64.83  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,44 +162,189 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 18 Nov 2026 16:44:11 +0000,
-Zenghui Yu <zenghui.yu@linux.dev> wrote:
+On Wed, 18 Nov 2026 09:09:33 +0000
+Cristian Marussi <cristian.marussi@arm.com> wrote:
+
+> On Mon, Nov 16, 2026 at 01:36:38PM -0800, Jonathan Cameron wrote:
+> > On Thu, 12 Nov 2026 19:56:10 +0000
+> > Cristian Marussi <cristian.marussi@arm.com> wrote:
+> >   
 > 
-> On 11/18/26 10:51 AM, Jinjie Ruan wrote:
-> > The collection table is currently sized at a single ITS page size,
-> > and the driver's allocation policy is to allocate a single collection
-> > per CPU. On systems with more CPUs that the ITS can fit in a single
-> > page, no LPI can be routed to the CPUs that don't have an allocated
-> > collection, and the system grinds to a halt.
+> Hi,
 > 
-> The issue on the reported hardware ("384-CPU HiSilicon HIP12 system", as
-> described in v1) is fixed by allocating 2 pages for the flat collection
-> table. That is fine.
-> 
+> > > On Thu, Nov 12, 2026 at 10:01:45AM -0800, Jonathan Cameron wrote:  
+> > > > On Mon,  9 Nov 2026 09:11:56 +0000
+> > > > Cristian Marussi <cristian.marussi@arm.com> wrote:
+> > > >     
+> > > > > Add basic Telemetry allocation and initialization routines, introducing and
+> > > > > wiring-up the logic needed to enumerate all the SCMI Telemetry resources
+> > > > > optionally using a lazy on-demand scheme: this approach factors in the
+> > > > > flexibility needed to minimize the amount of initialization work based on
+> > > > > the effective access pattern used by the upper layer ABI.
+> > > > > 
+> > > > > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>    
+> > > > 
+> > > > Hi Cristian,
+> > > > 
+> > > > This stretches across the patch set but first elements related to it are
+> > > > in this patch.  How do we handle larger values of de_data_sz?
+> > > >     
+> > > 
+> > > We dont. This was somethig that was on my todo list initially, but then
+> > > I realized that there was NO FW-side plan to actually implement anything
+> > > larger than 64bit.  
 > > 
-> > Change the allocation policy to allow two-level tables, similarly to
-> > the other tables.
+> > Understood, some set of firmware that you have isn't doing this. I don't
+> > necessarily mind not supporting it initially but like the other features
+> > it is very useful to have an implementation to make sure it doesn't break
+> > the ABI. I don't want to go through a 'move to version 2 ABI if you want
+> > this feature' path.
+> >  
 > 
-> But I'm afraid that the two-level CT is still not supported: nothing in the
-> driver allocates the level-2 CTs.
+> Agreed that it would be better if avoided.
+>  
+> > Let's just say I hit this for a reason. Whether that reason makes it into
+> > a production firmware is an open question at the moment.
+> > 
+> > FWIW I have both QEMU based emulation (I'm working through the process to be
+> > able to share that) and the changes to fit in via what I think is the
+> > cleanest ABI change. Kernel / userspace change below.
+> > I modified this from my original proposal to take into account the
+> > desire to add it later (even if to me it smells like papering over a bug
+> > rather than adding a feature!).  See below for what that required.
+> > Not only shmti is tested.  The LLM found bugs in it's own fast channel
+> > code, so take that with a pinch of salt!
+> >  
+> 
+> I skimmed through your patch and it is mostly in line with what I was
+> imagining (not even protyped though), i.e. in a nutshell
+> 
+>  - an ABI feature bit to add MUTIWORD support
+>  - a flag bit to activate this feature on all _READ IOCTLs at will
+>  - a repurpose of the pad field in scmi_tlm_sample
+> 
+> What I find awkward is the usage of pad as an index: that will expose
+> a lot of duplicate data since all DEs multi-words are now scattered
+> through a number of sample with the same ID and TS, and a bit cumbersome
+> to handle in userspace to reconstruct the multi-word value.
+> 
+> My non-tested-nor-prototyped idea was instead to repurpose the pad field
+> as a length, so as to pack all the multi-words payload as the trailing
+> part of a flexible array member (an extrnal array really being an ABI)
+> and use a single structure to read a complete DE.
+> 
+> In this case the problem would be to maintain backward compatibility
+> with the current scmi_tlm_de_sample.
 
-Hmmm. You're are absolutely right.
+Indeed, that's what drove the just using an index approach.
 
-It should only be a matter of plugging its_alloc_table_entry() in
-its_alloc_collections() and getting the error handling right (which
-is, I reckon, the hardest part).
+> 
+> At first I was thinking that we could simply introduce a new alternative
+> scmi_tlm_de_multi_sample structure that is used in place of the current
+> scmi_tlm_de_sample ONLY when feataure bits is available AND requested: so
+> userspace knows that when sets flag.MULTIWORD it has to use the
+> multi-word structure in input where pad is a length and there are multipe vals.
+> 
+> While this would work for all the bulk ops since they take a __u64 pointer
+> to a payload structure really (so it does NOT really matter what they are
+> carrying as long as it is consistent with the advertised feature bits and
+> request flag),  it CANNOT work for DE_READ where scmi_tlm_de_sample is
+> used directly...so a change in the current, not-merged, ABI would be
+> needed anyway....
+> 
+> Then...I thought that maybe we dont even need this...and this part could be
+> judged horrific maybe, so feel free to stop reading if your eyes starts
+> bleeding :P
+> 
+> Currently we have
+> 
+> struct scmi_tlm_de_sample {                                                      
+>         __u32 id;                                                                
+>         __u32 pad;                                                               
+>         __u64 tstamp;                                                            
+>         __u64 val;                                                               
+> };                     
+> 
+> with pad being unused and the whole structure that can be used alone
+> or packed into a container struct.
+> 
+> WHAT IF... when MULTIWORD feature is enabled AND requested we repurpose
+> the meaning NOT ONLY of <pad> but also of <val> and use this latter NOT
+> as a payload for a single value returned but as a pointer to an external
+> array of words counted by pad ?
+> 
+> The structure size remains the same, while its interpretation vary based
+> on the requested flag when such feature is available.
+> 
+> It may be a bit cumbersome still on userspace for bulk requests since
+> scmi_tlm_batch will contain a pointer to an array of possibly varied
+> sized items, so item_sz represents the common basic scmi_tlm_de_sample
+> size which in turn carries the sizing inside the repurposed <pad>
+> field inside for each single sample item
 
-Thanks,
+Are they variable sized, or indirections?   Today I think
+scmi_tlm_data_read() simply points to an array of scmi_tlm_de_sample.
+In this scheme it continues to do that but some of those then have
+pointers on to additional storage.  That's a more complex beast
+to manage. 
 
-	M.
+> 
+> ...so you can anyway check the provided user-input sizes it is just
+> scattered all over and as a consequence also the user provided data
+> would have to be a bit fragmented since 
+> 
+>  - batch points to an array of scmi_tlm_de_sample sized by items_sz
+>  - each sample in turn points to its array of values sized by <pad>
+I read this as implying they all do this including the small ones.
 
--- 
-Without deviation from the norm, progress is not possible.
+>  - you can really mix both kind of DEs in the same request: some
+>    can carry the single word value embedded in val, multiwords can
+>    point to teh <pad> sized external array.
+
+But nope.  It is a grab bag of different types that happen to be
+the same length.
+
+> 
+> ...mmm sort of start liking this hoorr...or I am missing something ?
+> 
+> ... O_o ... it would need a tad of documentation of course ...
+
+Quite a bit!  And probably a helper library.
+
+> 
+> If you have not fainted in despair, I (and some LLM) could prototype
+> something like this in one of the next series ... certainly not in V16.
+> 
+> ... thoughts ? insults ? :P
+
+It's an option.  More compact than the index one, though overheads of
+allocations might undo that unless they tend to be many line DEs
+and does avoid duplication of the metadata and timestamp (if there) which
+are guaranteed to match in every line.  Give we are trending towards
+basically having this breaking ABI change (be it with an opt in)
+it maybe comes down to invasiveness of changes in userspace that would
+be needed to accommodate it.
+
+Probably a case for a prototype and see what it looks like.
+
+Anyhow, I guess now we have two options on the table we can conclude
+it is 'probably' going to be a safe ABI extension to make in a follow
+up series.  Not ideal, but I'd rather this didn't substantially slow
+down the progress to getting to full feature set.
+
+Jonathan
+
+
+> 
+> Thanks,
+> Cristian
+
 
