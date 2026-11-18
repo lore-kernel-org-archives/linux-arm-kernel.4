@@ -2,70 +2,129 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22AAB606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA214606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SZnXaT7P;
-	dkim=pass (1024-bit key, unprotected) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=z0jnAwdU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2d+3o+BB;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=A+IbsQLr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=r48Rw5Mf1Z1H/zuqAu7fHLPDWHapg4Hllfo984G7QyM=; b=SZnXaT7PclgDs8
-	Z9//8H9psnOTqgCsQGL3IHGPDV1nmp+hqs4Qqs3mY9kF+NWC7QX2joKSiU4isl5UeL7mOmqW7x7go
-	RE2VAwljuVg8zVgNPCKYXg0gI3176JeyAU57tVMnupBoh0OsfITsxt+BON/x1BRpz2GEqEW+GUQqD
-	SyVTKkwRqrYAENOOgFxOi1yNm72DK3WJHvAH8Q/2tvzn4nycn4hYOAlN+LEDbym8C288lhhP6MNKY
-	Vcl8+Z5APFlyW2cHuMHJ+jxnnyUnOFoiT2wjwsy+zZ8fW7YgxYrsjOEUT8P+V3pDWSBlLXotNFE8X
-	O9+zeU0RbeHhmLxkaYSg==;
+	List-Owner; bh=wOn/pGEezpQoBd9mjToSeDVf7ZtMRTL7JcTDuGSTQWA=; b=2d+3o+BBkOZIDE
+	d+yEWLf3T7jD4deeK6CYzC+5LJL4nkVKICx8SGfTUMoksJuRJXrH+/gJTmlhaKZDqHP2P9dMJUg1a
+	xNcCmLT6h0Vbmw4eb9QEKqsm0Yj3Ly2/s4ztP7p4vVCh31H7SXk12hA0Ll28TYv/kJIcRVM6I3t1c
+	PHbNd/zZCGufiupSo0JeKoaAlWEC5gwURhBvMzKp5i5KX6ZlwMEP9DuaJR3hWJyLSJTy6t0QH6Ssx
+	yXmtpMswEMUAXWorVgke0D7v2r2iViqZ00s5RnK5mcwTcbds+A2nNe6eMh2OXGD08SnU+CVx7BJDW
+	Wi6394ZezPUTjQRjYrlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTebp-00000008pIy-28HR;
-	Wed, 18 Nov 2026 12:17:53 +0000
-Received: from canpmsgout03.his.huawei.com ([113.46.200.218])
+	id 1xTehX-00000008pt4-1Woi;
+	Wed, 18 Nov 2026 12:23:47 +0000
+Received: from mail-francecentralazon11013018.outbound.protection.outlook.com ([40.107.162.18] helo=PA4PR04CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTebk-00000008pHj-0hYS
+	id 1xTehU-00000008psR-43EY
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 12:17:51 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=r48Rw5Mf1Z1H/zuqAu7fHLPDWHapg4Hllfo984G7QyM=;
-	b=z0jnAwdUj7P7DbVF5OPaURYpZNFavWoiGqNBxVrxKyJUmlO9B9FkHzYZhs4kqjuLSZOxDZF6Z
-	ys4dZ73bnl0Y2Qr80edjQK3IcbiSeXxh0t6P7mogl9eZ68IZEssBaCaFfhAZI1Vq+j3M0EPyeCM
-	jSuim9xhZLx2BUGUG+tfPs0=
-Received: from mail.maildlp.com (unknown [172.19.162.140])
-	by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4jV0vk53gvzpSv5;
-	Wed, 18 Nov 2026 20:16:50 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id C9852202E6;
-	Wed, 18 Nov 2026 20:17:40 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 18 Nov
- 2026 20:17:40 +0800
-Message-ID: <58a4c350-539d-49ca-826f-d19563895a29@huawei.com>
-Date: Wed, 18 Nov 2026 20:17:39 +0800
+	Wed, 18 Nov 2026 12:23:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bV4qge6wZO/HXpxyuKa10u63zisSSlrEV1zbRCB+78/LvHb6/zyZaA2kIUqvI+5iTmwjtE/q+6rbrSOMKrQumhd7jGUBdPuaQlPIU4ORioEwQT2SjX0yOgDAVa5IgKpavseV3RgwGbB4BlCkhBORHAt3CeXgNcTATz401sIfT+LHBMcfNnsAfHFVkTxDgBaYSHePRxKhB9AfbDlIo6Dx5DAeEWXKrCH8FtmcrKstYaNzQza22z4w70SmZCz1Q+NqwWMja4BeGdNJ3V5Z4q7YG7mWdUF4aEWEMOzBkzPaXGy/XL2b3ALhNhh8t/ytGkr+7gfKuKknqudFXYHU2nl/Sg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wOn/pGEezpQoBd9mjToSeDVf7ZtMRTL7JcTDuGSTQWA=;
+ b=ekTXkJ8vvAlwj71frP/cPro0F3kbkDNwPp/Sh8nrzHv42/v3w1IGX8+/3DKYD3FQD7yWTXp4M987hljtPQGQ5b7+P0jgT589AwIK59/z9wZ/YdgU55utDGAveFwwDweIA8wSokFO4CVj3kV5o0YaaxhbN6IqiHxvILmj+MxllwUmbKVs9DgsRYANnbbkIwzFqZlBt0r7M/kovczy74mFOHm31WcJwIk1CNzXtfegoSIACJPE3AFZ0ayU8joOBNdiaZNhw1L0y8RnW8mwSXftox6gECsV8df8E1fa1M6R5FjNo5bjqjMPTdmwt7N5gtkWc0ekJDLUspsBrE/jwWMMww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wOn/pGEezpQoBd9mjToSeDVf7ZtMRTL7JcTDuGSTQWA=;
+ b=A+IbsQLrBILIXSHwbvWeutY6LknaPOQ2EU+jR7PFiZtImm9AzqLAcpUZpfNGxzIW2dA2Kz7xhJb8ZQ1VtAV7beifNQzSdHM3/REbaHC5q/tD+AyNl8C8IfujzpO7OpETAYM5BL7DxOY2KRE/2UNAV/8vK91bP77Vwc1kWKR0Zn2jGoXbNusoDIAoMfDfHIIFkm6l/8ofFPurSwe2ZpqjDE/cleZMR3IILdnTz+95qvurJuYCEWl1lVg5r//qXpD9cU9WAW7xSl0WasIk4x0NwX2NtFpTIX9zmpedEt6VoDHVtuQt9N2b9ikVAuFmABujh29Qr1pBIVmUW1dOgspzLw==
+Received: from AS4P192CA0051.EURP192.PROD.OUTLOOK.COM (2603:10a6:20b:658::10)
+ by PA2PR10MB8603.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:426::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.8; Wed, 18 Nov
+ 2026 12:23:36 +0000
+Received: from CPH1EPF0000051F.eurprd04.prod.outlook.com
+ (2603:10a6:20b:658:cafe::95) by AS4P192CA0051.outlook.office365.com
+ (2603:10a6:20b:658::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Wed,
+ 18 Nov 2026 12:23:34 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ CPH1EPF0000051F.mail.protection.outlook.com (10.167.241.234) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 12:23:34 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Wed, 18 Nov
+ 2026 13:24:18 +0100
+Received: from [10.252.6.76] (10.252.6.76) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Wed, 18 Nov
+ 2026 13:23:32 +0100
+Message-ID: <67ff81c6-fba3-4357-b297-079c2ea2ebc0@foss.st.com>
+Date: Wed, 18 Nov 2026 13:23:31 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/39] arm64: Add support for FEAT_NMI
-To: Vladimir Murzin <vladimir.murzin@arm.com>,
-	<linux-arm-kernel@lists.infradead.org>
-CC: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
-	<lpieralisi@kernel.org>, <liaochang1@huawei.com>,
-	<ashok.raj@oss.qualcomm.com>, <maz@kernel.org>
-References: <20261112132042.129062-1-vladimir.murzin@arm.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <20261112132042.129062-1-vladimir.murzin@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
- kwepemk200008.china.huawei.com (7.202.194.74)
+Subject: Re: [PATCH 2/5] dt-bindings: arm: stm32: Add clock-controller
+ sub-node to STM32MP2 SYSCFG
+To: Conor Dooley <conor@kernel.org>
+CC: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, Christophe Roullier
+	<christophe.roullier@foss.st.com>, Dario Binacchi
+	<dario.binacchi@amarulasolutions.com>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20261110-ups_mp25_clk_syscfg-v1-0-667829cd290a@foss.st.com>
+ <20261110-ups_mp25_clk_syscfg-v1-2-667829cd290a@foss.st.com>
+ <20261110-confidant-bundle-08385b99bd78@spud>
+ <c4f08bb7-cea5-4f79-8a11-4045220f3b89@foss.st.com>
+ <20261112-worsening-yahoo-323ef21dc921@spud>
+Content-Language: en-US
+From: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+In-Reply-To: <20261112-worsening-yahoo-323ef21dc921@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CPH1EPF0000051F:EE_|PA2PR10MB8603:EE_
+X-MS-Office365-Filtering-Correlation-Id: a39c2c03-8806-4dfe-b353-08df456ec3bb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|36860700016|82310400026|4143699003|11063799006|56012099006|261102123227099003|261026140227099003|261026121527099003|10067099003|261028144727099003|261022105027099003|261021121427099003|261022075727099003|261102124527099003|261009223027099003|18002099003|22082099003|13003099007|3023799007;
+X-Microsoft-Antispam-Message-Info: UyX5g47/B4ZUEvMXQYORjct/949TyySHPWJ3hz7JHUsUpQ1Z66cBRfmt0/+BQNb6nA2JPQWjAJpUKDreCqcbigtqat6VEJ2sw/nKeDM2d2GuNDWIvlJd6hiast1/Xa7+CO23r7oA0lZRnUG0m7qZWRRC0gBsSRij7V+OnGynm6fnr2jACxmNXAzEdYutgyz2Mfiv8CXrqe+hW31O07Ol0X0OIZMf/KBWCxp90CA/oY8LtpjxRt/X+LJeGMr2gVA2ZBR3hWBuMz+mSEvDg73Sz56xFQH6icplHyt7c6vC+jWXQ2aMMasvcsxc/GNtS1Kxm/lAGxukTBZSzhd+tbIMam2qpuKT+08hH4qbwzxI880F3Y8+EcKvKos4YQGDRJOQY+NemtP7SEx8STtamyJMe7Mq9ixgzm/k+vJkb4PXrlpLb3l18DKKaiZo9yaohOFoUedQtSU47yPl8pCqUwE72ikoO1aJrpHe8VRXOpSBQQW9ESIsrghZV4pvnLAOdcihTmJQMBxE/fFlI903k3WegFWtlzUc5Xcd6lI8EOaHfgpXAoYKlUd+Kwt4rRAXir+9sU/vjAGdmzwx9kXQSnB0oWPXHTyc7FCAC9QSV9AAAs3euNXZ29mcggiGIA6R/8mb2DhH2H2BoHRp3L9M/wzhtSDY9KcUm6y9fMZZMY3J9dU=
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(36860700016)(82310400026)(4143699003)(11063799006)(56012099006)(261102123227099003)(261026140227099003)(261026121527099003)(10067099003)(261028144727099003)(261022105027099003)(261021121427099003)(261022075727099003)(261102124527099003)(261009223027099003)(18002099003)(22082099003)(13003099007)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: MMXbBTi3FpxtQj+51xKZh3CgtpmXbQuKPpQsrjhnhvW5mjVrD2OqOD/L1gwyahGKfuQGXM2gNAkdi0kYT/CJMzuMS0DmrUEWDUQ1yePPItdNCd2gfrfjrxuSPQ6OJe9oOtb3HAU+8QC/qp4QaHUNiQ2GCbiEUepVtVQ9SBxjEx5q7oBRrDvxZodivjkmS3mrVK/GWaAZjIOhrMoaWYeP8nfuQM3RRIkU4QeIV88PxC3V++EhjAo1+KPvF8C8KWnWbSPWW7NPjgdDDu01oR8eoLINtt7qCszXznDImtuzhsWeDEIGlL0ekKUo6LObeTJDFjIfdwvfWWdAs/SG8fVQV1OTPU+kAdhnaD0H0XqoMR+/1i49Wir/8SsPfRXDav/Uz62/v8J6l0isPWxlIfWZpa1bze3n0sZOcQr+Qpms6EDCFlbMktxXMST9yemjv5wu
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 12:23:34.1595
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a39c2c03-8806-4dfe-b353-08df456ec3bb
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: CPH1EPF0000051F.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR10MB8603
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_041749_789763_E573A2EB 
-X-CRM114-Status: GOOD (  40.88  )
+X-CRM114-CacheID: sfid-20261118_042345_020765_0FEC9E6A 
+X-CRM114-Status: GOOD (  24.43  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,384 +144,126 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Vladimir,
+Hi Conor,
 
-I gave the series a test on a Kunpeng HIP12 machine with 384 CPUs,
-GICv4.2, firmware with SDEI event 0. The PE implements FEAT_NMI and the
-GIC implements FEAT_GICv3_NMI.
+On 11/12/26 19:38, Conor Dooley wrote:
+> On Thu, Nov 12, 2026 at 09:36:59AM +0100, Gabriel FERNANDEZ wrote:
+>> Hi Conor,
+>>
+>> Thanks for review
+>>
+>> On 11/10/26 19:54, Conor Dooley wrote:
+>>> On Tue, Nov 10, 2026 at 11:42:17AM +0100, Gabriel Fernandez wrote:
+>>>> The LTDC pixel clock multiplexer of the STM32MP23x and STM32MP25x
+>>>> SYSCFG is described by a clock-controller sub-node of the SYSCFG node.
+>>>>
+>>>> Add this sub-node to the SYSCFG binding. It is required on STM32MP23x
+>>>> and STM32MP25x and not allowed on the other SoCs.
+>>>>
+>>>> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+>>> Why does this need a child node at all, can't the clock controller
+>>> properties go straight into this syscon node?
+>>>
+>>> Cheers,
+>>> Conor.
+>> I sent a v2 [1] shortly before your reply, which explains this in the
+>> commit message, but the question still applies to it, so let me answer
+>> here.
+>>
+>>  From a hardware point of view, the mux inputs could indeed be described
+>> in the SYSCFG node. The problem is that this node is a "syscon": when
+>> the syscon core creates the regmap of the node (syscon_node_to_regmap()
+>> or syscon_regmap_lookup_by_*()), it takes the first clock of the node as
+>> the clock of the registers, keeps it prepared and enables/disables it
+>> around each register access.
+>>
+>> The SYSCFG has no clock gate in the RCC, so this first clock would be
+>> the LTDC kernel clock, i.e. the first input of the mux. It would then be
+>> enabled on every SYSCFG access by all the users of this syscon (PCIe,
+>> ComboPHY, Ethernet, OMM...).
+> Why are any of these things getting probed before the clock controller?
+> I had it in my head that clock initialisation was done super early on,
+> before smp even begins, so the clock driver would probe and generate the
+> regmap before this can happen?
+Only the clock providers declared with CLK_OF_DECLARE() are initialised
+that early. Here the SYSCFG node isn't bound to a clock driver but to
+the STM32MP2 SYSCFG driver (drivers/soc/st), a platform driver which
+populates the USB2 PHY sub-nodes. The mux parents come from the RCC,
+which is also a platform driver, with SCMI parents.
 
-Tested-by: Jinjie Ruan <ruanjinjie@huawei.com>
+That said, your suggestion was the right direction, and Krzysztof asked
+for the same on v2. v3 [1] drops the child node and puts the clock
+properties in the SYSCFG node. The SYSCFG driver now creates the regmap
+itself and registers it with of_syscon_register_regmap() before
 
-Rather than a single boot, I varied the four dimensions that select a
-different masking path:
+populating its sub-nodes and creating the clock device, so the syscon
 
-  - PE FEAT_NMI       : present / masked with id_aa64pfr1.nmi=0
-  - GIC superpriority : present / disabled
-  - Pseudo-NMI        : irqchip.gicv3_pseudo_nmi=0/1
-  - SDEI cross-CPU    : firmware event 0 active / disabled
+core doesn't attach the LTDC kernel clock to it.
 
-The last one needs a patch to switch attached at the end.
-
-# The Results are as below:
-
-  Grp  PE GIC pse SDEI | supports active pseudo IRQS_NMI fast  result
-  ------------------------------------------------------------------
-  A    y  y   n   y    |   1       1      0        4      y     PASS
-  A2   y  y   n   n    |   1       1      0        4      y     PASS
-  A3   y  y   y   n    |   1       0      1        4      y     PASS
-  B    y  y   y   y    |   1       0      1        4      y     PASS
-  C    n  y   n   y    |   0       0      0        4      y     PASS
-  D    n  y   y   y    |   0       0      1        4      y     PASS
-  E    y  y   n   y    |   0       0      0        0      y *   PASS
-  F    y  n   n   y    |   1       1      0        0      n     PASS
-  G    y  n   n   n    |   0       0      0        0      n     PASS
-  H    y  n   y   n    |   0       0      1        4      y     PASS
-
-  supports     system_supports_nmi()
-  active       system_uses_nmi()
-  pseudo       system_uses_irq_prio_masking()
-  IRQS_NMI     IRQ descriptors with IRQS_NMI set (IPIs + arm-pmu)
-  fast         cpumask_backtrace() at a CPU spinning with local IRQs
-               disabled returns in ms (NMI delivered) rather than
-               ~1.5 s (plain IPI)
-
-## IRQS_NMI is 4 means 4 types of NMI Interrupt Tests:
-
-     IRQ  hwirq      purpose
-    ---------------------------------------------------------------
-      4   0x3  SGI   IPI_CPU_STOP_NMI - stop a CPU on panic
-      7   0x6  SGI   IPI_KGDB_ROUNDUP - kgdb roundup
-      8   0x7  SGI   IPI_CPU_BACKTRACE - hardlockup all-CPU backtrace
-     42   0x17 PPI   arm-pmu (PMUv3) - perf sampling
-
-
-  * E is CONFIG_ARM64_NMI=n plus SDEI. "fast" there comes from SDEI,
-    not from the architected path; IRQS_NMI=0 says so.
-
-# Checks that run on every boot and pass in all applicable groups:
-
-  irqflags / exception state
-      save, restore and nesting round trip for DAIF, PMR and ALLINT;
-      arch_irqs_disabled_flags() takes ALLINT into account;
-      local_irq_disable() leaves ALLINT clear, and an NMI is still
-      delivered inside that window.
-
-  exception contexts
-      arm64_exc_hwstate_of_context() for PROCESS / NOIRQ / NONMI /
-      ERROR / CRITICAL, including that CRITICAL sets ALLINT and NOIRQ
-      does not; local_exceptions_save_mask()/restore() for NOIRQ and
-      CRITICAL; local_exceptions_force_daif_save()/restore() on the
-      idle/WFI path (pseudo-NMI only).
-
-  pstate
-      regs_irqs_disabled() honours PSR_ALLINT_BIT; the bit survives the
-      ptrace path.
-
-  kprobes
-      registering a probe does not disturb ALLINT, including when it is
-      set (so an NMI cannot become deliverable inside a probe); a probe
-      on the real "msr allint" / "mrs xN, allint" instruction is
-      rejected with -EINVAL.
-
-  adjacent subsystems
-      an EFI runtime call does not clobber ALLINT; perf events keep
-      counting across an ALLINT toggle.
-
-  genirq
-      add_interrupt_randomness() is never called in NMI context.
-
-  CPU stop
-      spin one CPU with IRQs disabled, then panic: the stop escalation
-      reaches the NMI rung, "SMP: retry stop with NMI for CPUs 0".
-
-# The problem
-
-SDEI wins over the architected IPI path, unconditionally
-
-arch_trigger_cpumask_backtrace() returns as soon as
-sdei_nmi_trigger_cpumask_backtrace() succeeds, so on a platform where
-firmware offers SDEI event 0 the irqchip NMI path is never reached.
-
-More importantly PSTATE.ALLINT has no effect on the backtrace:
-
-    SDEI active   : cpumask_backtrace() returns in ~14 ms with ALLINT set
-    SDEI disabled : the same call takes ~1.5 s   with ALLINT set
-
-That is, the NMI delivered by SDEI bypasses the PSTATE.ALLINT masking
-(the interruption is cleared within 14 ms). The NMI that goes through
-the GIC superpriority is restricted by ALLINT (the masking is cleared
-after 1.5s).
-
-And there is no equivalent of "irqchip.gicv3_pseudo_nmi=" for SDEI NMI.
-
-The patch used for the SDEI switch is as below.
 
 Best regards,
-Jinjie
+Gabriel
 
-diff --git a/drivers/firmware/arm_sdei_nmi.c
-b/drivers/firmware/arm_sdei_nmi.c
-index 038eb79e28ac..22e8c3e7aa75 100644
---- a/drivers/firmware/arm_sdei_nmi.c
-+++ b/drivers/firmware/arm_sdei_nmi.c
-@@ -62,6 +62,24 @@
-
- static bool sdei_nmi_available;
-
-+static bool sdei_nmi_disabled __ro_after_init;
-+
-+static int __init sdei_nmi_disable_setup(char *str)
-+{
-+       return kstrtobool(str, &sdei_nmi_disabled);
-+}
-+early_param("sdei_nmi.disabled", sdei_nmi_disable_setup);
-+
- #define SDEI_NMI_EVENT                 0
-
- /*
-@@ -168,7 +186,7 @@ static void sdei_nmi_raise_backtrace(cpumask_t *mask)
-  */
- bool sdei_nmi_trigger_cpumask_backtrace(const cpumask_t *mask, int
-exclude_cpu)
- {
--       if (!sdei_nmi_available)
-+       if (!sdei_nmi_available || sdei_nmi_disabled)
-                return false;
-
-        nmi_trigger_cpumask_backtrace(mask, exclude_cpu,
-@@ -194,6 +212,9 @@ void sdei_nmi_stop_cpus(const cpumask_t *mask)
- {
-        unsigned int cpu;
-
-+       if (sdei_nmi_disabled)
-+               return;
-+
-        WRITE_ONCE(sdei_nmi_stopping, true);
-
-        /*
-@@ -238,6 +259,10 @@ static int __init sdei_nmi_init(void)
-        }
-
-        sdei_nmi_available = true;
-+       if (sdei_nmi_disabled) {
-+               pr_info("Sdei nmi disabled by sdei_nmi.disabled\n");
-+               return 0;
-+       }
-        pr_info("using SDEI cross-CPU NMI (SDEI_EVENT_SIGNAL, event %u)\n",
-                SDEI_NMI_EVENT);
-
-在 2026/11/12 21:20, Vladimir Murzin 写道:
-> FEAT_NMI provides an architected mechanism for supporting non-maskable
-> interrupts (NMIs) and less-masked interrupts (LMIs).
-> 
-> Since we already support pseudo-NMIs via priority masking, introducing
-> another flavour of NMI on top of the existing infrastructure could
-> easily become messy, making the code harder to follow and reason
-> about.
-> 
-> To avoid that, this series first makes room for the new NMI "tenant"
-> by restructuring the existing exception masking logic.
-> 
-> The main idea is to separate the logical view of exception state from
-> its hardware representation. To achieve this, we introduce logical
-> exception contexts that can be mapped onto the corresponding hardware
-> state. This naturally consolidates the hardware-specific handling into
-> a small number of places, while allowing the rest of the code to
-> operate purely in terms of logical exception contexts.
-> 
-> Since this restructuring is non-trivial and carries a risk of subtle
-> behavioural changes, the series adds extensive debug checks to verify
-> that the hardware state always matches the expected logical state.
-> 
-> With this restructuring in place, wiring FEAT_NMI into the new
-> framework becomes much more manageable. GIC support for NMI is build
-> on top.
-> 
-> This work would not have been possible without the contributions of
-> Ada Couprie Diaz, Mark Brown, and Lorenzo Pieralisi - please credit
-> them for everything that works well. Any remaining bugs or issues are
-> entirely my own.
-> 
-> Most of the testing has been done on QEMU, Fast Model and pre-silicon
-> environment, so the series definitely benefit from extensive testing
-> on real hardware (without NMI, with pseudo-NMI, and with FEAT_NMI).
-> 
-> Patches are organized as follow
-> 
-> 1 - 15
->   Rework of existing pseudo-NMI logic to make room for FEAT_NMI
-> 
-> 16 - 33
->   FEAT_NMI support including some preparation patches which have
->   no dependencies:
->     - efi/runtime-wrappers: Permit architectures to override IRQ flags checks
->     - arm64: smp: Abstract SGI and LPI operations
-> 
-> 34 - 35
->   GICv3 support for NMI
-> 
-> 36 - 39
->   GICv5 support for NMI (including some preparation patches)
-> 
-> Changelog
-> 
->   v1 -> v2
-> 
->     - Rebased on v7.4-rc2
->     - Select HAVE_PERF_EVENTS_NMI when FEAT_NMI is enabled
->     - Reworked APEI SEA handling to mask exceptions sequentially   
->     - Updated GICv3 initialization to clear NMI configuration
->     - Added Tested-by and Reviewed-by tags where approriate
->     - Droped tags due to meaningful changes for:
->       + "arm64: replace local_daif helpers"
->       + "irqchip/gic-v3: Implement FEAT_GICv3_NMI support"
-> 
->   RFC v2 -> v1
-> 
->     - Rebased on v7.3-rc3.
->     - Dropped RFC tag, have not received objections, at the same time
->       got support from Jinjie
->     - Dropped prerequisite patches already present in the newer base
->     - Added logic to reject probing/stepping over ALLINT
->     - Moved addition of arm64_debug_exc_context() in separate patch
->     - Reworked debug logic for validating direction of exception
->       transition
->     - Split support for NMI in GICv5 in 3 separate patches
->     - Added review tags
-> 
->   RFC v1 -> RFC v2
-> 
->     - Rebased on v7.2-rc5.
->     - Improved commit descriptions.
->     - Split some patches into smaller ones.
->     - Added a graceful fallback for IPI requests when FEAT_NMI is
->       supported by the CPU but unsupported by the interrupt
->       controller.
->     - Split the GICv3 preparation from the FEAT_GICv3_NMI
->       implementation.
->     - Added NMI support to GICv5, primarily as an illustration of the
->       implementation, although it also happens to work on Fast Model.
->     - Added review tags only to unchanged patches. Review tags were
->       intentionally dropped from modified patches to reflect those
->       changes and encourage re-review.
-> 
-> RFC v1:
->   https://lore.kernel.org/linux-arm-kernel/20260709121333.23507-1-vladimir.murzin@arm.com/
-> 
-> RFC v2:
->   https://lore.kernel.org/linux-arm-kernel/20260727163453.7969-1-vladimir.murzin@arm.com/
-> 
-> v1:
->   https://lore.kernel.org/linux-arm-kernel/20260914102102.68597-1-vladimir.murzin@arm.com/
-> 
-> Thanks!
-> Vladimir
-> 
-> Ada Couprie Diaz (15):
->   arm64: irqflags: Introduce arm64-specific irqflags type
->   arm64: irqflags: save and use both DAIF and PMR
->   arm64: interrupts: Add common exception state helpers
->   arm64: entry: Introduce entry specific exception masking helpers
->   arm64: entry: replace DAIF helpers with entry helpers
->   arm64: interrupts: Introduce exception masking save/restore helpers
->   arm64: interrupts: introduce a helper for GIC priority initialization
->   arm64: replace local_daif helpers
->   arm64: cpuidle: use new helpers to bypass interrupt priority masking
->   arm64: remove daifflags.h
->   arm64: gicv3: remove GIC_PRIO_PSR_I_SET
->   arm64: ptrace: Add PSR_ALLINT_BIT
->   arm64: cpufeature: Detect PE support for FEAT_NMI
->   arm64: nmi: Manage masking for superpriority interrupts
->   arm64: irq: Report FEAT_NMI masking local IRQs
-> 
-> Lorenzo Pieralisi (2):
->   irqchip/gic-v3: Rename nmi to pseudo_nmi
->   irqchip/gic-v3: Implement FEAT_GICv3_NMI support
-> 
-> Mark Brown (5):
->   arm64: booting: Document boot requirements for FEAT_NMI
->   arm64: sysreg: Add definitions for immediate versions of MSR ALLINT
->   arm64: idreg: Add an override for FEAT_NMI
->   arm64: nmi: Add handling of superpriority interrupts as NMIs
->   arm64: nmi: Add Kconfig for NMI
-> 
-> Vladimir Murzin (17):
->   arm64: process: Lift check for exception state to generic
->     infrastructure
->   arm64: cpufeature: Remove system_has_prio_mask_debugging()
->   arm64: irqflags: Switch to CONFIG_DEBUG_IRQFLAGS
->   arm64: Kconfig: Remove CONFIG_ARM64_DEBUG_PRIORITY_MASKING
->   efi/runtime-wrappers: Permit architectures to override IRQ flags
->     checks
->   arm64/efi: Implement override for IRQ flags checks
->   arm64: probes: Reject stepping over ALLINT
->   arm64: suspend: Always initialise PSTATE.ALLINT
->   arm64/efi: Add ALLINT to IRQ flags checks
->   arm64: kprobes: Disable NMIs
->   arm64: smp: Abstract SGI and LPI operations
->   arm64: smp: Fall back to IRQ when IPI NMI request fails
->   arm64: nmi: Select HAVE_PERF_EVENTS_NMI for FEAT_NMI
->   arm64: smp: Add NMI support for LPI-backed IPIs
->   genirq: Trust local irqchip when considering IRQ for NMI
->   genirq: Do not call add_interrupt_randomness() in NMI context
->   irqchip/gic-v5: Add NMI support
-> 
->  Documentation/arch/arm64/booting.rst          |   6 +
->  arch/arm64/Kconfig                            |  31 +-
->  arch/arm64/include/asm/assembler.h            |  20 +-
->  arch/arm64/include/asm/cpucaps.h              |   2 +
->  arch/arm64/include/asm/cpufeature.h           |  14 +-
->  arch/arm64/include/asm/cpuidle.h              |  18 +-
->  arch/arm64/include/asm/daifflags.h            | 144 --------
->  arch/arm64/include/asm/efi.h                  |  42 ++-
->  arch/arm64/include/asm/entry-common.h         |   8 +-
->  arch/arm64/include/asm/insn.h                 |   1 +
->  .../include/asm/interrupts/common_flags.h     | 255 +++++++++++++
->  arch/arm64/include/asm/interrupts/entry.h     | 102 ++++++
->  arch/arm64/include/asm/interrupts/masking.h   | 166 +++++++++
->  arch/arm64/include/asm/irqflags.h             | 150 ++++----
->  arch/arm64/include/asm/kvm_host.h             |   1 -
->  arch/arm64/include/asm/mmu_context.h          |   1 -
->  arch/arm64/include/asm/ptrace.h               |  25 +-
->  arch/arm64/include/asm/sysreg.h               |   2 +
->  arch/arm64/include/uapi/asm/ptrace.h          |   1 +
->  arch/arm64/kernel/acpi.c                      |  43 +--
->  arch/arm64/kernel/cpufeature.c                |  68 +++-
->  arch/arm64/kernel/debug-monitors.c            |   1 -
->  arch/arm64/kernel/entry-common.c              | 335 +++++++++++++-----
->  arch/arm64/kernel/entry.S                     |  14 +-
->  arch/arm64/kernel/hibernate.c                 |  14 +-
->  arch/arm64/kernel/hw_breakpoint.c             |  16 +-
->  arch/arm64/kernel/irq.c                       |  45 ++-
->  arch/arm64/kernel/machine_kexec.c             |   4 +-
->  arch/arm64/kernel/pi/idreg-override.c         |   1 +
->  arch/arm64/kernel/probes/decode-insn.c        |  11 +-
->  arch/arm64/kernel/probes/kprobes.c            |  24 +-
->  arch/arm64/kernel/process.c                   |  24 +-
->  arch/arm64/kernel/setup.c                     |   4 +-
->  arch/arm64/kernel/signal.c                    |   1 -
->  arch/arm64/kernel/smp.c                       | 217 ++++++++----
->  arch/arm64/kernel/suspend.c                   |  14 +-
->  arch/arm64/kernel/traps.c                     |   1 -
->  arch/arm64/kvm/hyp/nvhe/switch.c              |   2 +-
->  arch/arm64/kvm/hyp/vgic-v3-sr.c               |   7 +-
->  arch/arm64/kvm/hyp/vhe/switch.c               |  14 +-
->  arch/arm64/mm/fault.c                         |   1 -
->  arch/arm64/mm/mmu.c                           |   7 +-
->  arch/arm64/tools/cpucaps                      |   2 +
->  drivers/firmware/efi/runtime-wrappers.c       |  32 +-
->  drivers/irqchip/irq-gic-v3.c                  | 145 +++++++-
->  drivers/irqchip/irq-gic-v5.c                  | 244 ++++++++++++-
->  include/linux/irq.h                           |   2 +-
->  include/linux/irqchip/arm-gic-v3-prio.h       |   8 -
->  include/linux/irqchip/arm-gic-v3.h            |   4 +
->  kernel/irq/handle.c                           |   3 +-
->  kernel/irq/manage.c                           |   5 -
->  51 files changed, 1696 insertions(+), 606 deletions(-)
->  delete mode 100644 arch/arm64/include/asm/daifflags.h
->  create mode 100644 arch/arm64/include/asm/interrupts/common_flags.h
->  create mode 100644 arch/arm64/include/asm/interrupts/entry.h
->  create mode 100644 arch/arm64/include/asm/interrupts/masking.h
-> 
-
+>
+>> Registering our own regmap with of_syscon_register_regmap() from the
+>> SYSCFG driver doesn't solve it either: these users reach the SYSCFG
+>> through vendor phandles (st,syscon, st,syscfg-amcr) or by compatible,
+>> which are not tracked by fw_devlink, so one of them can create the
+>> syscon regmap, with the clock, before the SYSCFG driver probes.
+>>
+>> Apart from adding a dummy clock in first position, which would describe
+>> something which doesn't exist in the hardware, I didn't find a way to
+>> keep these properties in the SYSCFG node. So the mux is described by a
+>> sub-node with its own clock inputs, like the USB2 PHYs of the SYSCFG
+>> which are already described as sub-nodes.
+>>
+>> In v2, the '#clock-cells' property of the SYSCFG node is deprecated, so
+>> that the sub-node is the only provider of this clock. No driver ever
+>> registered a clock on the SYSCFG node, so this doesn't change anything
+>> for existing devicetrees.
+>>
+>> [1] https://lore.kernel.org/r/20261110-ups_mp25_clk_syscfg-v2-0-624559bb8ec7@foss.st.com
+>>
+>> Best regards,
+>>
+>> Gabriel
+>>
+>>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml | 6 ++++++
+>>>>    1 file changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
+>>>> index a559f8b03b84..38c844e8f19d 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
+>>>> @@ -45,6 +45,10 @@ properties:
+>>>>      "#size-cells":
+>>>>        const: 1
+>>>> +  clock-controller:
+>>>> +    type: object
+>>>> +    $ref: /schemas/clock/st,stm32mp25-syscfg-clk.yaml#
+>>>> +
+>>>>    patternProperties:
+>>>>      "^phy@2[48]00$":
+>>>>        type: object
+>>>> @@ -80,6 +84,7 @@ allOf:
+>>>>            - "#address-cells"
+>>>>            - "#clock-cells"
+>>>>            - "#size-cells"
+>>>> +        - clock-controller
+>>>>            - phy@2400
+>>>>            - phy@2800
+>>>>        else:
+>>>> @@ -87,6 +92,7 @@ allOf:
+>>>>            '#address-cells': false
+>>>>            '#clock-cells': false
+>>>>            '#size-cells': false
+>>>> +        clock-controller: false
+>>>>            phy@2400: false
+>>>>            phy@2800: false
+>>>>
+>>>> -- 
+>>>> 2.43.0
+>>>>
 
