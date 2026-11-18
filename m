@@ -2,102 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C60A606A7DB
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:31:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB14E606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W2dUu1Lk;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=M86BY3i7;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=xF1cBubf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=upB2R1of;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=GgVG8kOR;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=JFLVxPet
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HZRhzohPMCWnjUa9Wuq7F+UN8Ol3LPrkIa7VF+1QeZg=; b=W2dUu1LkuUX9fN
-	kjL7jCOKejDcYvzbQ7OqYJXQ0LROTUPjveLzs6LHzfAgG/Jh4sIJu5Nke2+sKPagEcvAJofV/dOoG
-	u2haDjKtuyEWQcgoPVuMI1yzwmJJlHmF222/8yZrrrUjtVycZHewMuwWJakqi95rbQMRqYQrue8JP
-	Ay81Xntlha5w/T9abNB7YMmHBZ89HaJ8wEayZ7E3MbbIT+B+uGrFDCNQHT8JhKc7Sftu44UQMSfQk
-	yqF0OPf6DgaMyaj6kOYOcz48BYgsOwI6DlsbdRHUIliaogHELioqNSM4JWG0F3JVheUPx6XAh3MQ2
-	/fi0/kCvD8zLzzg5e2UA==;
+	List-Owner; bh=nmZMeH/lx+Th8Qg8Y5/5yDNje4F1kGKD5kvMgCaAHss=; b=upB2R1ofUGV0kL
+	brQ2cfHk8XEZ+dssy7AjHYf41p8ngN1Qr1br5oLPvTpPV5l2bKTr0pL829+4+iHZl80jfDrtOQar6
+	ydiuQqAWmVVpN2Iq5mQd3h5u4w1He7zZk7Uq/oF5gJ3xRDQY4TvnXLrNul9k6wNgTBX5DqiYmozd9
+	boG0RX85ai2d6tEuzZxxo0n4U1T75N4G3iXbxDq63G6cm/Dz/5xoTp9QcnrHU/K6KiQti0pnHltq8
+	Vk0GTSYp8LiqYdZuWCZ/BnSvTk4+qarg0ajlHlP/N66XsXN76X99fHAhESZ01CPCC55LOHmFN6Bof
+	6aYHzE+ju6EpTc8UFVxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiZC-00000009VNG-1PFB;
-	Wed, 18 Nov 2026 16:31:26 +0000
+	id 1xTiZD-00000009VPw-1RVI;
+	Wed, 18 Nov 2026 16:31:27 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiY6-00000009UTW-09x9
+	id 1xTiYB-00000009UYb-2qY6
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 18 Nov 2026 16:30:19 +0000
+	Wed, 18 Nov 2026 16:30:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=HZRhzohPMCWnjUa9Wuq7F+UN8Ol3LPrkIa7VF+1QeZg=; b=M86BY3i7SIZQ2dazeIg4FpVSyT
-	TiyHvo71kIK6BtWV+fg88FqQxAV33vGH+kEDcbd1knPJjiscvdIwf9D7Yx0A2iWwPXIDz2Cv31n31
-	5lhrTxMEJX0eRIKg+4A2ChsMb0XEufyQTvwnJvSW/DVWFCGesqq5/ebBICF/HGjHx4ASTHOGK0HF3
-	i5W3Wd7pr54Wj5OhgUkjJtuNZTXXMWrpBTxyR4UZHpPQN/0caOsFxvi8aexPK+0pB9pmldS9qA1TS
-	nQqjJ0Qu9CZFEvsqzZcDBc65k0rJuhr3k1CxQs89munnt+XTlGril9PEO29gunMuZ7wauh0C4DJTC
-	6z4YSxBA==;
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	bh=nmZMeH/lx+Th8Qg8Y5/5yDNje4F1kGKD5kvMgCaAHss=; b=GgVG8kORkv1gWyPxW2CJ2H8fUA
+	OyQq3SuYMpKaAd1ye9ahwWSMD/zpElVCAWVswxGYGMdfXx+r5TmjoyhkCwnocmspHZ2jy3UikjdwM
+	PBzjx8GAJphveccrPx0bGyP33j/mF68gExxc97fudYp7rEn07SNYvgwrtyfX6Dkt8g/teNHGrhsFw
+	scsi/ZH2h+/yL1pD9QPbBxtPiONQVaQzh3nzR05l4R4Rjumr1hvoDvSwH1/xf/IDwty8+hl8kiE4Z
+	fiuZSl5CzyVVU6Ak4dtS9GSPx/Tj4zwR5uBALOmETJ/NzhNps1+l8i+tCEPHRD2lf7+qhWSmpSClu
+	tW4fvp6g==;
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiY1-0000000GGgL-2DBq
+	id 1xTiY7-0000000GGjt-3na2
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:30:16 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4a2153c8525so9246235e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:30:11 -0800 (PST)
+	Wed, 18 Nov 2026 16:30:21 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-491971ac844so1206824f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:30:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795019410; x=1795624210; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795019418; x=1795624218; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=HZRhzohPMCWnjUa9Wuq7F+UN8Ol3LPrkIa7VF+1QeZg=;
-        b=xF1cBubfuDXn1IrAZLy55rdETfQ1r0zt4FWIOIRhHoePH2WoIkNydBE2WEz6s41FC4
-         yrRFKhJcUlAtr0+C5CMREZONSygyXAYmEewZ1TwriQ5PQ9zfCZq9FB3lUx8Jw09X5hd9
-         oR82AQtq1lz0GPbeAh4e9M1XBWDbmzXnc21vSPZBo9jW+DAiIYY7Ukyl+B0nxRUAHDCC
-         g21HQvbHVPNtUctfNvj8bJ6O4yTMe7dYEbqEUTgwKSzKKZc8jYBpzw6MpLacDu+BEhQK
-         mptsX4LxrDFq0s+kfRehdc1Isd3xd3yMj/E7HxlY4vJJs+FJHBWYtNHhBobm8/o347q8
-         Bccw==
+        bh=nmZMeH/lx+Th8Qg8Y5/5yDNje4F1kGKD5kvMgCaAHss=;
+        b=JFLVxPetzSVXIY7oMVvKz4aYli4dK3k+jzLVYIjpLPWd/POZ6YBf3cQ0JSUMWl5kIM
+         aiFox77Kicg3zKYLjPKcKGz/xhRmlhaQAZXhsaZ/EhIjBJqUUgHcG1hr/catmoBuHUkK
+         1fX14+ois2BGVA4OM9pbAkg+qpZL25TwxOQkd2kGV75V3jpLaoFbxqs61xc3GsuR8JnL
+         V5MiJJKNftr3xoHKJkwhWK5DtCsgPwDYOnO3U+ywuPES7txV56VQ5hxWXRTKYaCiMVhZ
+         wuEoPpgyZcqmghUYc7AUfS8ryKYq9wk6jXOPavYp6ruPD3CM5uY785o4RnxI5lw9DKl7
+         vXWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795019410; x=1795624210;
+        d=1e100.net; s=20260707; t=1795019418; x=1795624218;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=HZRhzohPMCWnjUa9Wuq7F+UN8Ol3LPrkIa7VF+1QeZg=;
-        b=x9WSHr69KpmmzunzCd/jMV+sKNh2ScqYhyg9dFledYZmJetXUN514/eKnct/AMq14l
-         /wuM8VHWLB8eR+61TrpvKXYCfqM5UufT3ILC/i+HmfinB5q/uWHGuIg+2jl25zT1y9YQ
-         9rqDmpHsSeyo3MuGc/nx4KmCWpMEKdDW+yWhCcTtJy9xrlE5Had7gJ2S6VoW6GTdFpgK
-         l4ANITWNxwFpbpe4hJQMC/KaOi6FxPRuJ3eta2lTMvvn0YvHGhNR/IB4A9/M2j6W70Q/
-         tZJRLpITm+FbGnhyOtVBNv2PSPhhZ7IulL+ZQPKpXzYuVm2jsYf1AcOCUpBbinSKrfVj
-         u3dQ==
-X-Forwarded-Encrypted: i=1; AL+hErGEh0w42ghekFdNxBoGoe54Ml1VN/SJ43cAuNMi+TF9Znn/r8zzPuV8+tRTDul3EEgIxkuhw4148VBxuuk/ZcGI@lists.infradead.org
-X-Gm-Message-State: APuU4Z+ynfOu/pDXepoEKOOPPVjKWlz9NHsCnhnRj3h0o+jp8gAJqujn
-	UeeAI68hh4e/i5UvXWzbruTbTeNjvZK7bBbLlda94L9qm9UF+VGdBeYuZtL+nLYd9do+nRBpXeZ
-	7sFOyOAA=
-X-Gm-Gg: AYBFou0yGT5D7PLtzm5pKGLAvu79NOH3rSruOZdqbMgK7VpUmG0N9+FGHtl0R84hCDW
-	Tv/GB6LIZ7tHSVd+sJhfed56Ouhi2D5hZgYioblCl+X9Rqv4MOREL4+sEMBqk9y7cBHVfj/HUCO
-	K9jvUqFW1/3UYoySJNFic/xMx1Dd0hWHck6P9FHV8W1+PknBXsaw8LVIvTkJTawRTDGYjdSVJev
-	XL2QbxeeGEjKPDsiQTptHz+EnumEsuj71RBtaqVPDO7Rk5i+S+FVaj+2xOl4NBu6CZF8maftZdI
-	u+8Pekfb96gaIj/5v0p8IjazAe2q75zgDZkBQfZK+t8ZV1paD7IDwl0WCfL/fl+eSLLKa/SLF0p
-	CSFrs6wLdd6nc1JkWCU1jxE0rTDemBKA1P6ZrXeg3V2+ijP2yAg76MaOFFnGU80tTyCJqLWe62F
-	H5Rf1sFLs0c3cTYgiaf0Hjngydjnyj7hKfGtnuvm7qC9BnTr4EvUtI7k/djpBwylo4+/E8nEEMm
-	55gQJa0h0occQzf8ncMXUsxOnEve4RWD049dBp5Wt0ZQxAbaVhDawmgEneenS/Gb3wMYV1mbOYi
-	BJs+GlkKQ0qcEdLkjTnx58Q1dxdWBToW
-X-Received: by 2002:a05:600d:82c5:b0:4a2:1a:a120 with SMTP id 5b1f17b1804b1-4bb7da127e1mr70127165e9.6.1795019409839;
-        Wed, 18 Nov 2026 08:30:09 -0800 (PST)
+        bh=nmZMeH/lx+Th8Qg8Y5/5yDNje4F1kGKD5kvMgCaAHss=;
+        b=FEHU/ehEbsv8/ZpbKksCpp+JsAS2GfXbq1YDIvp4Hewav1ODPZuqK9ZOszPgaNWfOA
+         dOigic+qelCyTF9mhfQgwc+P7UfEEqcwWS/3uXlMp1FIENezub8dkX7YQrS0c49cxFUm
+         ltPoL8eiIuQCWvKY7b+ibuRBPJktVXZzx8vuNUKRmN2pPlg9gaetjFshdpHDaO4xzJqX
+         jWzWAOpMYndgin9LKQxZBWu3D+BZHITEPW8QCvYtmHyq/XYse/aRvHYCKeDRmC3m+CFK
+         iPn5MzZjDWDARvqrL+7Y0M4GZdz7g1ojJdvz5TeshBwowZy40jxxvHQsJIl9ixz2eQFB
+         AEpQ==
+X-Forwarded-Encrypted: i=1; AL+hErG0fZo4mSe2hpXjKJCHvk0MroiDhu23BJ7FFpvrecPFhhNQdvPFp4mPL7OArdINemm9j/Nww6CQUCfwLBCLkWPx@lists.infradead.org
+X-Gm-Message-State: APuU4Z/L4mZ/D1Dy+LaWwHQpuZ+oXMHIq++baTBEyrufnqHfGCzOMPYT
+	+nVSriBr+t65jNJQq6Tmy3xiHKpSdiD1s1ovHZRWOu0owPKRaAF0/Dll2n8W4tP+5v0=
+X-Gm-Gg: AZFdTZd++6HLrqgvpBnivvgQ5qcPz00fHGXjkEWaudsjm21PkVfFMFR8FgeL1wLz8A1
+	F34eTR1/1aMF7h7QB4IA3ZuE0J7alnFYeHp7BOPTHnlA74U6k59kosBw0dg+1qfFpoL0CofYMMQ
+	57qlOK7tQ/e9cpVlB6XATgLwNoe79otq/GYR8aNHJ6JmZ36tD4it1e/BYpl3tqz2E+KllFuVXjq
+	CLnCjtSvNYXnTAYd5zpRzesK1s9QqzC01S7otJB/RWZeUkC2omnEgrhw/3yVyliElYUghb07dMj
+	7dUXuOy6LJ6hzsUw7jz7hPlFYOi+6RGXnt/HygMEn9l12dyohXW3muGrmmMozv7u8xZ2dEVOJNk
+	+zzMuuEACokSq/SjxL03gw8PJNeSnfM4BSShHLSPXG8Ha434HOtJ25A6wFnFmQ9UQ7flTvtFQjy
+	yrSxS3UYknVp1wlpsD3N71uC8/PjtEZfkb2BEDb8jtZMwfwImn6o1cYrBQ2G1QCmxwPTP5gBCUU
+	5NlRfOz216zJdfbJOXD2pF0NUcPgA23w7hjrAXWkiQb+C/tqdPOiBhT9AY7K0TrH7kR3dhyWBLB
+	KRygQy7tME5c/uJNtT2swoBeDReoAXER1A==
+X-Received: by 2002:a05:6000:64d:b0:48e:fdd:41d9 with SMTP id ffacd0b85a97d-4a63b603a06mr6175135f8f.31.1795019417807;
+        Wed, 18 Nov 2026 08:30:17 -0800 (PST)
 Received: from pop-os.local ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.30.08
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.30.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 08:30:09 -0800 (PST)
+        Wed, 18 Nov 2026 08:30:17 -0800 (PST)
 From: James Clark <james.clark@linaro.org>
-Date: Wed, 18 Nov 2026 16:29:42 +0000
-Subject: [PATCH 20/34] perf cs-etm: Remove the decoded packet ring buffer
+Date: Wed, 18 Nov 2026 16:29:49 +0000
+Subject: [PATCH 27/34] perf cs-etm: Add packet-only timestamp decoder ops
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-james-coresight-jit-v1-20-dad4d90747f6@linaro.org>
+Message-Id: <20261118-james-coresight-jit-v1-27-dad4d90747f6@linaro.org>
 References: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 In-Reply-To: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 To: Arnaldo Carvalho de Melo <acme@kernel.org>, 
@@ -111,8 +110,8 @@ Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_163014_169411_BF343A88 
-X-CRM114-Status: GOOD (  18.72  )
+X-CRM114-CacheID: sfid-20261118_163019_915535_46B818A3 
+X-CRM114-Status: GOOD (  17.22  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -132,221 +131,123 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Full decoding now stops after every output packet, so the frontend
-drains the packet ring before the decoder can produce another packet.
+Add OpenCSD packet-processing callbacks that find the next timestamp
+without fetching instructions or producing instruction ranges. Bound the
+search with CS_ETM_TIMESTAMP_SEARCH_MAX packets.
 
-Write directly into the frontend's current packet instead. Remove the
-ring storage but retain the packet count as the pending-packet
-indicator, which will be removed later.
+Keep the timestamp search state in cs_etm_timestamp_decoder, separate
+from the full packet decoder. Each source's callback context identifies
+its protocol. The frontend continues to use the existing full decoder.
 
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- tools/perf/util/cs-etm-decoder/cs-etm-decoder.c | 64 ++++++++++---------------
- tools/perf/util/cs-etm.c                        | 35 ++++----------
- tools/perf/util/cs-etm.h                        |  7 +--
- 3 files changed, 36 insertions(+), 70 deletions(-)
+ tools/perf/util/cs-etm-decoder/cs-etm-decoder.c | 79 +++++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
 diff --git a/tools/perf/util/cs-etm-decoder/cs-etm-decoder.c b/tools/perf/util/cs-etm-decoder/cs-etm-decoder.c
-index d7b596aeaa41..e2eb606f2feb 100644
+index 4f8da538d645..685d8d75912f 100644
 --- a/tools/perf/util/cs-etm-decoder/cs-etm-decoder.c
 +++ b/tools/perf/util/cs-etm-decoder/cs-etm-decoder.c
-@@ -96,22 +96,8 @@ int cs_etm_decoder__get_packet(struct cs_etm_packet_queue *packet_queue,
- 	/* Nothing to do, might as well just return */
- 	if (packet_queue->packet_count == 0)
- 		return 0;
--	/*
--	 * The queueing process in function cs_etm_decoder__buffer_packet()
--	 * increments the tail *before* using it.  This is somewhat counter
--	 * intuitive but it has the advantage of centralizing tail management
--	 * at a single location.  Because of that we need to follow the same
--	 * heuristic with the head, i.e we increment it before using its
--	 * value.  Otherwise the first element of the packet queue is not
--	 * used.
--	 */
--	packet_queue->head = (packet_queue->head + 1) &
--			     (CS_ETM_PACKET_MAX_BUFFER - 1);
--
--	*packet = packet_queue->packet_buffer[packet_queue->head];
+@@ -33,6 +33,14 @@
+ #define CS_PKT_MON	0
+ #endif
  
- 	packet_queue->packet_count--;
--
- 	return 1;
- }
- 
-@@ -312,36 +298,36 @@ cs_etm_decoder__buffer_packet(struct cs_etm_queue *etmq,
- 			      const u8 trace_chan_id,
- 			      enum cs_etm_sample_type sample_type)
- {
--	u32 et = 0;
-+	struct cs_etm_packet *packet;
- 	int cpu;
- 
--	if (packet_queue->packet_count >= CS_ETM_PACKET_MAX_BUFFER - 1)
-+	if (packet_queue->packet_count)
- 		return OCSD_RESP_FATAL_SYS_ERR;
- 
- 	if (cs_etm__get_cpu(etmq, trace_chan_id, &cpu) < 0)
- 		return OCSD_RESP_FATAL_SYS_ERR;
- 
--	et = packet_queue->tail;
--	et = (et + 1) & (CS_ETM_PACKET_MAX_BUFFER - 1);
--	packet_queue->tail = et;
--	packet_queue->packet_count++;
-+	packet = cs_etm__etmq_get_packet(etmq, trace_chan_id);
-+	if (!packet)
-+		return OCSD_RESP_FATAL_SYS_ERR;
- 
--	packet_queue->packet_buffer[et].sample_type = sample_type;
--	packet_queue->packet_buffer[et].isa = cs_etm_decoder__get_isa(elem);
--	packet_queue->packet_buffer[et].cpu = cpu;
--	packet_queue->packet_buffer[et].start_addr = CS_ETM_INVAL_ADDR;
--	packet_queue->packet_buffer[et].end_addr = CS_ETM_INVAL_ADDR;
--	packet_queue->packet_buffer[et].instr_count = 0;
--	packet_queue->packet_buffer[et].last_instr_taken_branch = false;
--	packet_queue->packet_buffer[et].last_instr_size = 0;
--	packet_queue->packet_buffer[et].last_instr_type = 0;
--	packet_queue->packet_buffer[et].last_instr_subtype = 0;
--	packet_queue->packet_buffer[et].last_instr_cond = 0;
--	packet_queue->packet_buffer[et].flags = 0;
--	packet_queue->packet_buffer[et].exception_number = UINT32_MAX;
--	packet_queue->packet_buffer[et].trace_chan_id = trace_chan_id;
--	packet_queue->packet_buffer[et].el = ocsd_EL_unknown;
--	packet_queue->packet_buffer[et].tid = -1;
-+	packet_queue->packet_count++;
-+	packet->sample_type = sample_type;
-+	packet->isa = cs_etm_decoder__get_isa(elem);
-+	packet->cpu = cpu;
-+	packet->start_addr = CS_ETM_INVAL_ADDR;
-+	packet->end_addr = CS_ETM_INVAL_ADDR;
-+	packet->instr_count = 0;
-+	packet->last_instr_taken_branch = false;
-+	packet->last_instr_size = 0;
-+	packet->last_instr_type = 0;
-+	packet->last_instr_subtype = 0;
-+	packet->last_instr_cond = 0;
-+	packet->flags = 0;
-+	packet->exception_number = UINT32_MAX;
-+	packet->trace_chan_id = trace_chan_id;
-+	packet->el = ocsd_EL_unknown;
-+	packet->tid = -1;
- 
- 	cs_etm__etmq_set_traceid_queue_ready(etmq, trace_chan_id);
- 	return OCSD_RESP_WAIT;
-@@ -361,7 +347,7 @@ cs_etm_decoder__buffer_range(struct cs_etm_queue *etmq,
- 	if (ret != OCSD_RESP_CONT && ret != OCSD_RESP_WAIT)
- 		return ret;
- 
--	packet = &packet_queue->packet_buffer[packet_queue->tail];
-+	packet = cs_etm__etmq_get_packet(etmq, trace_chan_id);
- 
- 	packet->start_addr = elem->st_addr;
- 	packet->end_addr = elem->en_addr;
-@@ -407,7 +393,7 @@ cs_etm_decoder__buffer_exception(struct cs_etm_queue *etmq,
- 	if (ret != OCSD_RESP_CONT && ret != OCSD_RESP_WAIT)
- 		return ret;
- 
--	packet = &queue->packet_buffer[queue->tail];
-+	packet = cs_etm__etmq_get_packet(etmq, trace_chan_id);
- 	packet->exception_number = elem->exception_number;
- 	if (elem->context.el_valid)
- 		packet->el = elem->context.exception_level;
-@@ -491,7 +477,7 @@ cs_etm_decoder__set_tid(struct cs_etm_queue *etmq,
- 	if (ret != OCSD_RESP_CONT && ret != OCSD_RESP_WAIT)
- 		return ret;
- 
--	packet = &packet_queue->packet_buffer[packet_queue->tail];
-+	packet = cs_etm__etmq_get_packet(etmq, trace_chan_id);
- 	packet->tid = tid;
- 	if (elem->context.el_valid)
- 		packet->el = elem->context.exception_level;
-diff --git a/tools/perf/util/cs-etm.c b/tools/perf/util/cs-etm.c
-index f33e410e85bf..0175b2facaac 100644
---- a/tools/perf/util/cs-etm.c
-+++ b/tools/perf/util/cs-etm.c
-@@ -615,30 +615,6 @@ static u64 cs_etm__etmq_get_sort_timestamp(struct cs_etm_queue *etmq,
- 	return packet_queue->cs_timestamp;
- }
- 
--static void cs_etm__clear_packet_queue(struct cs_etm_packet_queue *queue)
--{
--	int i;
--
--	queue->head = 0;
--	queue->tail = 0;
--	queue->packet_count = 0;
--	for (i = 0; i < CS_ETM_PACKET_MAX_BUFFER; i++) {
--		queue->packet_buffer[i].isa = CS_ETM_ISA_UNKNOWN;
--		queue->packet_buffer[i].start_addr = CS_ETM_INVAL_ADDR;
--		queue->packet_buffer[i].end_addr = CS_ETM_INVAL_ADDR;
--		queue->packet_buffer[i].instr_count = 0;
--		queue->packet_buffer[i].last_instr_taken_branch = false;
--		queue->packet_buffer[i].last_instr_size = 0;
--		queue->packet_buffer[i].last_instr_type = 0;
--		queue->packet_buffer[i].last_instr_subtype = 0;
--		queue->packet_buffer[i].last_instr_cond = 0;
--		queue->packet_buffer[i].flags = 0;
--		queue->packet_buffer[i].exception_number = UINT32_MAX;
--		queue->packet_buffer[i].trace_chan_id = UINT8_MAX;
--		queue->packet_buffer[i].cpu = INT_MIN;
--	}
--}
--
- static int cs_etm__init_traceid_queue(struct cs_etm_queue *etmq,
- 				      struct cs_etm_traceid_queue *tidq,
- 				      u8 trace_chan_id)
-@@ -647,8 +623,6 @@ static int cs_etm__init_traceid_queue(struct cs_etm_queue *etmq,
- 	struct auxtrace_queue *queue;
- 	struct cs_etm_auxtrace *etm = etmq->etm;
- 
--	cs_etm__clear_packet_queue(&tidq->packet_queue);
--
- 	queue = &etmq->etm->queues.queue_array[etmq->queue_nr];
- 	tidq->trace_chan_id = trace_chan_id;
- 	tidq->decode_el = ocsd_EL_unknown;
-@@ -772,6 +746,15 @@ static struct cs_etm_traceid_queue
- 	return NULL;
- }
- 
-+struct cs_etm_packet *cs_etm__etmq_get_packet(struct cs_etm_queue *etmq,
-+					      u8 trace_chan_id)
-+{
-+	struct cs_etm_traceid_queue *tidq;
++/*
++ * Limit when searching forwards for a timestamp.
++ *
++ * Timestamps follow context packets (which appear on trace on) after only
++ * 1 or 2 atoms. Allow up to 1024 packets across all interleaved trace IDs.
++ */
++#define CS_ETM_TIMESTAMP_SEARCH_MAX 1024
 +
-+	tidq = cs_etm__etmq_get_traceid_queue(etmq, trace_chan_id);
-+	return tidq ? tidq->packet : NULL;
+ struct cs_etm_decoder {
+ 	void *data;
+ 	void (*packet_printer)(const char *msg, void *data);
+@@ -48,6 +56,19 @@ struct cs_etm_packet_decoder {
+ 	struct cs_etm_traceid_ctxt *traceid_ctxt;
+ };
+ 
++struct cs_etm_timestamp_source {
++	struct cs_etm_timestamp_decoder *decoder;
++	int protocol;
++};
++
++struct cs_etm_timestamp_decoder {
++	struct cs_etm_decoder base;
++	u64 timestamp; /* Raw trace timestamp. */
++	u64 timestamp_search_index;
++	u32 timestamp_packet_count;
++	struct cs_etm_timestamp_source sources[];
++};
++
+ static u32
+ cs_etm_decoder__mem_access(const void *context,
+ 			   const ocsd_vaddr_t address,
+@@ -512,6 +533,64 @@ static ocsd_datapath_resp_t cs_etm_decoder__gen_trace_elem_printer(
+ 	return resp;
+ }
+ 
++static ocsd_datapath_resp_t __maybe_unused
++cs_etm_decoder__timestamp(const void *context, const ocsd_datapath_op_t op,
++			  const ocsd_trc_index_t indx, const void *packet)
++{
++	const struct cs_etm_timestamp_source *source = context;
++	struct cs_etm_timestamp_decoder *decoder = source->decoder;
++	bool timestamp = false;
++
++	if (op != OCSD_OP_DATA)
++		return OCSD_RESP_CONT;
++	if (indx < decoder->timestamp_search_index)
++		return OCSD_RESP_CONT;
++
++	decoder->timestamp_packet_count++;
++	switch (source->protocol) {
++	case CS_ETM_PROTO_ETMV3: {
++		const ocsd_etmv3_pkt *pkt = packet;
++
++		if (pkt->type == ETM3_PKT_TIMESTAMP) {
++			decoder->timestamp = pkt->timestamp;
++			timestamp = true;
++		}
++		break;
++	}
++	case CS_ETM_PROTO_PTM: {
++		const ocsd_ptm_pkt *pkt = packet;
++
++		if (pkt->type == PTM_PKT_TIMESTAMP) {
++			decoder->timestamp = pkt->timestamp;
++			timestamp = true;
++		}
++		break;
++	}
++	case CS_ETM_PROTO_ETMV4i:
++	case CS_ETM_PROTO_ETE: {
++		const ocsd_etmv4_i_pkt *pkt = packet;
++
++		if (pkt->type == ETM4_PKT_I_TIMESTAMP) {
++			decoder->timestamp = pkt->ts.timestamp;
++			timestamp = true;
++		}
++		break;
++	}
++	default:
++		return OCSD_RESP_FATAL_INVALID_PARAM;
++	}
++
++	/* Report where the timestamp was found */
++	if (timestamp)
++		decoder->timestamp_search_index = indx;
++
++	if (timestamp ||
++	    decoder->timestamp_packet_count >= CS_ETM_TIMESTAMP_SEARCH_MAX)
++		return OCSD_RESP_WAIT;
++
++	return OCSD_RESP_CONT;
 +}
 +
- struct cs_etm_packet_queue
- *cs_etm__etmq_get_packet_queue(struct cs_etm_queue *etmq, u8 trace_chan_id)
- {
-diff --git a/tools/perf/util/cs-etm.h b/tools/perf/util/cs-etm.h
-index e404753820dc..c757a1fb465d 100644
---- a/tools/perf/util/cs-etm.h
-+++ b/tools/perf/util/cs-etm.h
-@@ -193,14 +193,9 @@ struct cs_etm_packet {
- 	pid_t tid;
- };
- 
--#define CS_ETM_PACKET_MAX_BUFFER 1024
--
- struct cs_etm_packet_queue {
- 	u32 packet_count;
--	u32 head;
--	u32 tail;
- 	u64 cs_timestamp; /* Timestamp, in ns when has_virtual_ts == true */
--	struct cs_etm_packet packet_buffer[CS_ETM_PACKET_MAX_BUFFER];
- };
- 
- #define KiB(x) ((x) * 1024)
-@@ -260,6 +255,8 @@ int cs_etm__etmq_update_decode_context(struct cs_etm_queue *etmq,
- bool cs_etm__has_timestamps(struct cs_etm_queue *etmq);
- void cs_etm__etmq_set_traceid_queue_ready(struct cs_etm_queue *etmq,
- 					  u8 trace_chan_id);
-+struct cs_etm_packet *cs_etm__etmq_get_packet(struct cs_etm_queue *etmq,
-+					      u8 trace_chan_id);
- struct cs_etm_packet_queue
- *cs_etm__etmq_get_packet_queue(struct cs_etm_queue *etmq, u8 trace_chan_id);
- int cs_etm__process_auxtrace_info_full(union perf_event *event __maybe_unused,
+ static int
+ cs_etm_decoder__create_etm_decoder(struct cs_etm_decoder_params *d_params,
+ 				   struct cs_etm_trace_params *t_params,
 
 -- 
 2.43.0
