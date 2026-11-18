@@ -2,107 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3649606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 09:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A79C5606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 09:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eTk1usn5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Dgmn1fRk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WrpcuUN7;
+	dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.a=rsa-sha256 header.s=google header.b=JIkVxV2B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=jOW5o5razoH7JZilM4XOTCBHa7GM+dbv2PqjZiPktqg=; b=eTk1usn558IuQix2+DYvWaN+WQ
-	VPnNIiK3UjnWxSxKx/eQS/c+H9A0N52AFgkF9vLws/YiJJUhpLnD63rF7/B2oXa97TG6R6QNPC9D/
-	0lX3ETEQgEgg4KI1tnmUbZFnh58633X3WcOzrRM3tvr71cdf5mYOiNt1JdkNi1TwixOHTxjcGR3IA
-	mNNRkrODYHIm9HyxkozNA/5Kpyt4kRo9YfHlVS+laLDjcUklVIaKZIEAySSyXop0NmX3deTIW2sWh
-	hIzn6ubUukFfuQX56F65QCgoQkxDieUWi1/IWZCQIx8TnqA4vpMeugNaTsGVmJSVbxrUika5c1yWT
-	f3/aOr4Q==;
+	bh=cpTBG70GLztkppBlWDxA4zs5YJB3Ae5lFCFEvrLL98I=; b=WrpcuUN7xF1e5D32SQl9jfFb3L
+	V3A+llM+1G5UC0sSOEi0YmEiRcEUddib851nb6Nq/qWKrITLt3Nk05xk2LibpnluKeGZBlCfZ3px0
+	c5vn2XDk5B/f85bGSA5LhbsItvzAZKumxo4Lv9NM8d/mjO+d4U3767ZVOc4umxvjONHNVoexOpnIc
+	w9+8tY6DK0kHTBcW36wZ4tTcfNEbMxlghLGRyjdvRM9uJ5iCxUDhP2+tbqbjj19nnvMra4gyQD1oG
+	lbwMBXl+ti2k0+jOcwBSO2o7i0BIeETD3cEeMhXIxEUjz8vhtdZQ0fEGb7DZV6S/GB04O/Od3lz/P
+	hP49Hd4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTba3-00000008HJY-0z4T;
-	Wed, 18 Nov 2026 09:03:51 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTbfT-00000008I2m-0rd9;
+	Wed, 18 Nov 2026 09:09:27 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTba1-00000008HJ4-3G7Y;
-	Wed, 18 Nov 2026 09:03:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AD2F86140D;
-	Wed, 18 Nov 2026 09:03:48 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794992628;
-	b=jiyylxlxcF45E37ZMl3JX1jgojwugjhykVHSCAseeQI6dTSEsZuDBcOt7ioQZeOFJ+JN
-	 Of8j8vbUSVXsTEUdgpBkImlXf6jJaZp082SbjeOom78hTkcFMEGLJiRvZC6Fkvj00vWz2
-	 KiVoG7cLd/NHg8gtFj8wtP0qXtyX8Ysd+cijHkSoHkzsDCJi186MBUYcixd0XMb40f8NR
-	 PKSIxsFWUiuRDYuGctmpXZa8LOCkQYeH10xVWiezhjTBAta0VM3R55j+HP/ySmoBIp6Uy
-	 smA5FkR/l2GTR6DoRdbE0bjoJgrrXE72W9VrpvdpzzlwQtaMY/1siEKZ0PUDYoUogTQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794992628;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=jOW5o5razoH7JZilM4XOTCBHa7GM+dbv2PqjZiPktqg=;
-	b=vPSNDL/8L08kncJOT3yvnysHOd6HWN5aP+JQMX8n4Tx+eQ1iDiGMTdcIVd1ox0dMhZuB
-	 6IJEsobs01T7Zk6q7BR6myCagKjrQVTDDu+bFpJS79m9rbUhAOmS0seBLGEnb+lXFPNZP
-	 PcsyFywQfEIFAuHA5PDgbILGQwQg68fe7Fo1+g8AOFYDJgF7h+ly4GsiGJBIeJ74mZD9V
-	 PLSZYA4Ptd8bn61QyQ0XIj8mQpOUf4F1vT8jy2r2vx3mZk/+Pc5fFAzkJTJCY7RftN2zt
-	 h5gm8oB246J3R34KBXm09hfkuHlCxJKI0EivkaU+vFdKZuLDMskWId34/f4WdmZ9iTg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B9FA71F000C4;
-	Wed, 18 Nov 2026 09:03:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794992628;
-	bh=jOW5o5razoH7JZilM4XOTCBHa7GM+dbv2PqjZiPktqg=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=Dgmn1fRkE1Rp6vbBuXL3bNKLudKpbeZ04XCEG9mnKAgFHs2+l9cC9uFBpoEknRVRA
-	 NhrAyg9AzlWTLn8ioXkOQ1+bZE8kwbGPxYnlKw15tZcY3pTMyaG1eaMKzkeSWy+1GT
-	 fcNIZxUgXlwdpZgvr+AySP2QazeuylWi9fUI86DtRcokNzYqN4UFTzL4Pnv7pL84jC
-	 iMoIgcHyAPvvYXhvboMoypAa5JpXxbsAXDgZ+SOkRuP5BxpYdI/NG5GOl9niQ98ghi
-	 daAPwhVR3/0EQ6QH/Vf2bjRHCIRVr2HzNblKv4wc4pXWSsXQ2uZI9vRoQBD06/z4KY
-	 21AwNq0W/+KDQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 1AAE04ACAB;
-	Wed, 18 Nov 2026 09:03:47 +0000 (UTC)
-From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
-Date: Wed, 18 Nov 2026 17:03:46 +0800
-Subject: [PATCH v2] pmdomain: rockchip: Roll back power-on when leaving
- idle fails
+	id 1xTbfQ-00000008I1r-237p
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 09:09:25 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4b467581b98so8367995e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 01:09:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google; t=1794992962; x=1795597762; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=cpTBG70GLztkppBlWDxA4zs5YJB3Ae5lFCFEvrLL98I=;
+        b=JIkVxV2BN8e4xcEiZY2U6SbYbBwPbW7gGhoOqG4r4pbF2wIHbxCgG5XQyeN6xFpqoG
+         W6qPh0DVUOonIpqlkskC4T2PSp36jmMCNyfLZFr2N0ffTkRMCCVoW95THK1h56E9xbfU
+         BsEZnOkgOMbBQUgoFHp2jXKBReElVq54hBzOE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794992962; x=1795597762;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=cpTBG70GLztkppBlWDxA4zs5YJB3Ae5lFCFEvrLL98I=;
+        b=X3AswkpqN4O6XZoMLZrNoosWjOwAwnX0x/dbRYpXmxQyY7JPHi5Cwuc5NcT4fk+IW5
+         xQsO8GRFcMJHE2iIJVmXH46GtTwJJwtHQWrVHyTs7hoURuASasWUfDcAWt0Y9MHgNwN1
+         2066KG6QZ2Qr0GucmGggb/OG8NGD0/RkQXDAsBCqGu8Cj24OGqV6Q+sHny8cbMQZNPW0
+         HgINWe82H2TlW9rBSmSk2qhJWHDmFDWGxw5lA/ygkBhhQzGGzWS1xLlJ/AWqrQG/FOuq
+         XkGxScT9mEVYxEz7EF+mxj+Qnljv0N0STUBW/m88TATHannxpjMUoEB5CzNHAqoTIWt+
+         o+cQ==
+X-Forwarded-Encrypted: i=1; AL+hErF/VsSgK5sNAq97Rs6LE51S2H8aZ2SySnXrK7wBm/KzgDMGUlbL0Db3kJ5n9++eu5tKBJC8iiH4rzpNFZFE/rur@lists.infradead.org
+X-Gm-Message-State: APuU4Z/9kGOGwKIUVDEh5SrzPKZFUYOCnNJltvApyuu2DkDdBJu6qplv
+	2puiS8lS5WJNHZzLiRx22T65L7Z1RGbVfFBfjXvrAiP9B2daTYrUA7ml7b2jxPWjBkg=
+X-Gm-Gg: AYBFou0WpoQXt3HH23abqbamqIhh10zaxkc6U1hRjCzJorxg+jK3kDsjxrpTmd2Ols/
+	kf2pmCx33HqDa21PTArPS+lRsljnEu7DZMgxJCnR9AzdHQKXugv5cS58aYiCDX72JaM8pXrMFmQ
+	FY6XWCZ3IeujdsNIk+6TA0TkiSKo9lDKlPhQ0LsDlU/Zx0XgLMPRQBbsnd8LmDZI3jVX0Q9Zh8i
+	+cL1+0uQbxQQaSbfG++GNNo/L5jS65RpEoItUp9jO+VbqGfCY69O/3QjenKc40qN7e3C9eC7rwB
+	wDROPcq/Z49A+WsVL0kAhfkmgTMnKdpTv7UrCIyMMiNczDNVz1qkTdzllKaiiihce7zVZChfHj3
+	/wLKMSY7cbzrd7JVkeQeHvQLGcAl1+SkL0XDU9y5le29BkuAYYxPOrLmDLQflAbPVDFe4RNZSZW
+	ehCTkrjN2wkA42AwTcvHa5oAEtZ08xLL0Yt1RNjOufr5xH8zW6tcqXB9WnvfczlRbAaX7kUbKhA
+	5FuJh1e9HV6n84xvWmGvUw9gEQxNuIaJUbsxTMi5IsTeNc4K8317vTOl25IHu9+BUggOMBjLgsh
+	YphUNgmHQQ31SOhxlEW6rXDFEqcsJFbSVoNAl7HaTiJjQg==
+X-Received: by 2002:a05:600c:8b34:b0:4bb:781f:6067 with SMTP id 5b1f17b1804b1-4bb7d6cd404mr33290135e9.1.1794992961833;
+        Wed, 18 Nov 2026 01:09:21 -0800 (PST)
+Received: from tone.k.g (lan.nucleusys.com. [92.247.61.126])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb78418853sm185770195e9.8.2026.11.18.01.09.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2026 01:09:21 -0800 (PST)
+From: Petko Manolov <petko.manolov@konsulko.com>
+To: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	arnemaximilian.richter@draeger.com,
+	martynas.grybauskas@draeger.com,
+	Petko Manolov <petko.manolov@konsulko.com>
+Subject: [PATCH v4 0/2] arm: dts: nxp: imx: add Draeger M48 CPU board
+Date: Wed, 18 Nov 2026 11:09:10 +0200
+Message-ID: <20261118090914.38082-1-petko.manolov@konsulko.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261118-fix-rockchip-pmdomain-power-on-rollback-v2-1-3e4e93a19996@qq.com>
-X-B4-Tracking: v=1; b=H4sIAPFp/WoC/5WOSxKCMBBEr0Jl7VgMH38r72GxCGGQEUhCgqhFc
- XcDnsDlq3ndPbPw5Ji8uESzcDSxZ6MDJLtIqEbqOwFXgUUSJwfEGKHmNzijWtWwBdtXppeswZo
- XOTA6nLqulKoFhUjBz6hGFKHNOgrRbelW/Ng/ywepca1fjYb9aNxne2XC1ft/dUJAyM8yy4+nl
- NKUrsOwV6YXxbIsXz5+zsTtAAAA
-X-Change-ID: 20261101-fix-rockchip-pmdomain-power-on-rollback-c11e1014ef11
-To: Ulf Hansson <ulfh@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Peter Geis <pgwipeout@gmail.com>
-Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Cunhao Lu <1579567540@qq.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794992626; l=4100;
- i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
- bh=iNwwI4s6GSLy+qcCrFrOUdp0m3/C5bTABfIfePwVyzQ=;
- b=H63KA2kbZQ2Udd1ZDZZGo9Hi68SF/NWCbC3+XwmNAXq8T/k3dsQ+VxVWUvmFLqYBBiUmgoEex
- xw75v/1FNqUD4mT0epcOH217F8bJF6A2hMLTH1oMBT5JU4Fy1okbdl4
-X-Developer-Key: i=1579567540@qq.com; a=ed25519;
- pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
-X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
- auth_id=1177
-X-Original-From: Cunhao Lu <1579567540@qq.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_010924_554539_EE8C1E22 
+X-CRM114-Status: GOOD (  12.61  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,129 +106,51 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: 1579567540@qq.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Cunhao Lu <1579567540@qq.com>
+Adds the device trees for “Dräger M48 on NXP i.MX6 (Q|DL) and Intel/Altera
+SoCFPGA Cyclone V” board variant.  It has both (the SoC and FPGA) on the
+same carrier and they are cross-monitoring each other.  The SoCFPGA boots
+independently off qspi flash.
 
-When NIU idle exit fails after PMU power-on, clocks and the regulator
-reference are released while the domain remains powered. genpd treats
-it as off and may power off its parents.
+This is the imx6 devicetree part.  There are two bindings as well as device
+trees, since M48 is using two parts: imx6q and imx6dl.
 
-Request idle again and, if successful, use the low-level power-off path
-before releasing resources. This preserves saved QoS and notifies
-firmware while retaining the original error.
+new in v4:
+  - added the missing GPIO_OPEN_DRAIN definitions on I2C recovery GPIOs;
+  - fixed the halved LVDS pixel clock in split mode;
 
-If rollback fails, resources are still released and genpd may power off
-the parents.
+new in v3:
+  - used LLM to cleanup most of the errors and warnings;
+  - proper use of dt-schema this time around;
 
-Fixes: 6b2690df3f03 ("pmdomain: rockchip: fix rockchip_pd_power error handling")
-Signed-off-by: Cunhao Lu <1579567540@qq.com>
----
-This pre-existing idle-exit failure case was reported by Sashiko AI
-during the RK3572 mainlining work:
-https://sashiko.dev/#/patchset/20261022-add-board-ok3572-c-v1-0-0b0fd85a31ee@qq.com?part=10
+new in v2:
+  - add the tag from Conor Dooley <conor.dooley@microchip.com>;
+  - it should be clarified that "draeger" vendor prefix is added in
+    my previous Draeger M48 patch series;
 
-If leaving NIU idle fails after PMU power-on, the domain remains powered
-while genpd treats it as off. The error path releases the clocks and
-regulator reference, and genpd may power off the parent domains.
+Petko Manolov (2):
+  dt-bindings: arm: fsl: add Draeger M48 dual-cpu board
+  arm: dts: nxp: imx: Add devicetree files for M48
 
-This patch requests idle again and, if successful, powers the domain
-off before releasing those resources. It preserves the saved QoS state
-and original error, and uses the low-level path to notify firmware.
+ .../devicetree/bindings/arm/fsl.yaml          |   2 +
+ arch/arm/boot/dts/nxp/imx/Makefile            |   2 +
+ .../boot/dts/nxp/imx/imx6dl-draeger-m48.dts   |  16 ++
+ .../boot/dts/nxp/imx/imx6q-draeger-m48.dts    |  16 ++
+ .../boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi | 213 ++++++++++++++++++
+ 5 files changed, 249 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-draeger-m48.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-draeger-m48.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi
 
-Validation:
-
-- All 48 host simulations passed, covering power cycles, idle-exit and
-  rollback failures, QoS preservation and error propagation. No sanitizer
-  findings.
-
-- Hardware testing on OK3572-C: 20 patched and 50 unpatched NVM1 power
-  cycles passed. Request-write injection caused native idle-exit polling
-  timeouts. The fix powered the domain off in 3/3 cases; the original
-  driver left it ON. QoS and the original error were preserved, and
-  retries succeeded after removing the injection.
-
-Persistent rollback idle and power-off timeouts were also tested:
-resources were still released with the domain ON and genpd OFF. These
-failure paths remain unresolved, and genpd may still power off the parents.
-
-AI assistance:
-
-- Codex / DeepSeek V4.1 Flash were used for:
-  - Reviewing and adjusting code style to follow community conventions
-  - Automating tests
-  - Collecting data
----
-Changes in v2:
-- Rebase onto the next branch of Ulf Hansson's linux-pm.git tree.
-- Link to v1:
-  https://patch.msgid.link/20261101-fix-rockchip-pmdomain-power-on-rollback-v1-1-59a45783e33e@qq.com
----
- drivers/pmdomain/rockchip/pm-domains.c | 27 ++++++++++++++++++++++++++-
- 1 file changed, 26 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-index 6abef60a5b4c..2c021784316a 100644
---- a/drivers/pmdomain/rockchip/pm-domains.c
-+++ b/drivers/pmdomain/rockchip/pm-domains.c
-@@ -648,6 +648,29 @@ static int rockchip_do_pmu_set_power_domain(struct rockchip_pm_domain *pd,
- 	return 0;
- }
- 
-+/*
-+ * The caller holds the PMU lock and transition resources. Use the low-level
-+ * power-off path to avoid overwriting the saved QoS state.
-+ */
-+static void rockchip_pd_power_on_rollback(struct rockchip_pm_domain *pd)
-+{
-+	int ret;
-+
-+	ret = rockchip_pmu_set_idle_request(pd, true);
-+	if (ret < 0) {
-+		dev_err(pd->pmu->dev,
-+			"failed to idle domain '%s' on rollback: %d\n",
-+			pd->genpd.name, ret);
-+		return;
-+	}
-+
-+	ret = rockchip_do_pmu_set_power_domain(pd, false);
-+	if (ret < 0)
-+		dev_err(pd->pmu->dev,
-+			"failed to power off domain '%s' on rollback: %d\n",
-+			pd->genpd.name, ret);
-+}
-+
- static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power_on)
- {
- 	struct rockchip_pmu *pmu = pd->pmu;
-@@ -682,8 +705,10 @@ static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power_on)
- 	if (power_on) {
- 		/* if powering up, leave idle mode */
- 		ret = rockchip_pmu_set_idle_request(pd, false);
--		if (ret < 0)
-+		if (ret < 0) {
-+			rockchip_pd_power_on_rollback(pd);
- 			goto out;
-+		}
- 
- 		rockchip_pmu_restore_qos(pd);
- 	}
-
----
-base-commit: 6f5c8ec9302c5ad8904dbdfe8cf2a538ff835572
-change-id: 20261101-fix-rockchip-pmdomain-power-on-rollback-c11e1014ef11
-
-Best regards,
---  
-Cunhao Lu <1579567540@qq.com>
-
+-- 
+2.47.3
 
 
