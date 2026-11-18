@@ -2,74 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E24606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 08:45:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17F6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 08:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rqhM8/tf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XEXixdfx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vbjLqbik;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VQuC2NJ4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pwLw1PN0N5G0/zB/Y6J6/hvuDTRFVTY/2ACWaIVrQfg=; b=rqhM8/tffQN984
-	/gqJhaUaqzcUEh0N4fQ3yji1Mwh6TWQGVjq/gm0ISn6PtiS55uA1v4oeuuZaA9EGTVpbssEka7Ay5
-	CsYtgPaCl9B0PgYR0GRrMFAWnhw0Vnk6ZQJomwjSpB+A5VHhzBR8Z97aX9Q3p8JWg1ou1E6aWUkty
-	qYAJbXeuodtVaOipWOAqkHLIhXQ1EkB+YducgFHaJQduHQrT9nrLoSyBrTsQhZZ8YCDI4dOg3NrOe
-	iglZ7vBAxrhTrACco32NvbRU0NyFON4F74od9cacF3nvqufCeEWFq35BkqnfolAoNSXpACkz47N61
-	cJPvYVC/viWTqcQP99Qg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=vJGcGSSjcKVHc6b8pVWGQNzThgXfLhxChnkSyknWbOs=; b=vbjLqbikvo4qK0wSRiYGKAkNvg
+	iZomeUTesN9OGbiT4scIxzT3/tE9Qz/jnuJrM0FLxKXFmkcA5Ipk+RDVsWpD4/ObBtum1zN2Ak8oA
+	zQpnBUp4JnMUx/xMwbecRIFBysm8Axnx3BzU9WiVEvcUau1du3VvtN0y6lTcDQv5MvAe8quLUEWIk
+	AGK5TS9XuqXAeHgtO0b+z2HXWHVPTBcijrJJqCm4JgdD5U75H6PtZgsEYv/h2udH+XmuTqwMQ9hcs
+	VANwDoU/jsFkE4NF3SYkfeZTMRvBnFYcB9y6aLsQkT3IUvjnS82IBWnbFaE3iIoI2hx5JrTMz0aB2
+	6LY5IXAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTbID-00000008D4k-24cf;
-	Wed, 18 Nov 2026 08:45:25 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTbL4-00000008Dwn-0mMr;
+	Wed, 18 Nov 2026 08:48:22 +0000
+Received: from mgamail.intel.com ([192.198.163.18])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTbIA-00000008D2x-3JEh;
-	Wed, 18 Nov 2026 08:45:23 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9B37F60DF7;
-	Wed, 18 Nov 2026 08:45:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13FF81F000C4;
-	Wed, 18 Nov 2026 08:45:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794991521;
-	bh=pwLw1PN0N5G0/zB/Y6J6/hvuDTRFVTY/2ACWaIVrQfg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=XEXixdfxIzWEjdmYVlLVXQKKC/1OSeLK4Dd2KI/ueBBJ2zsxZdV01ZPnYYNWVPzEW
-	 aKSn5DRrdjMn96VrFDKoBWo3Ev/LzcHi2s7mSQnjtViNEbm+GleedWTNvwp3fG08CN
-	 1CQJJbNAg0dO84aDdBlajIscTmlxNv9LWlsjdZFS7d5lSVLTM1V0u0I9hAGxeXFkxc
-	 OlNJ/zRLaG0REmdXEZ4lNqW8+0MERdiuohXnQQzCK/SidctsNm/jJPr9Ex5b5O4NK6
-	 7iK5eLYGfDfHBYuFeF3s34LutpI/mxoKWZ2XrZBmyPmEsMCjW1AO97sGOfu/9uhrnL
-	 WWoLktO2YGCJQ==
-From: Jiri Olsa <jolsa@kernel.org>
-To: Alexei Starovoitov <ast@kernel.org>,
-	Daniel Borkmann <daniel@iogearbox.net>,
-	Andrii Nakryiko <andrii@kernel.org>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Oleg Nesterov <oleg@redhat.com>
-Cc: bpf@vger.kernel.org,
-	x86@kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-trace-kernel@vger.kernel.org,
-	Martin KaFai Lau <martin.lau@linux.dev>,
-	Eduard Zingerman <eddyz87@gmail.com>,
-	Song Liu <song@kernel.org>,
-	Yonghong Song <yonghong.song@linux.dev>,
-	Will Deacon <will@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	rtm@csail.mit.edu
-Subject: [PATCH bpf 2/2] selftests/bpf: Test which ctx registers a uprobe prog can write
-Date: Wed, 18 Nov 2026 09:44:50 +0100
-Message-ID: <20261118084451.12590-3-jolsa@kernel.org>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261118084451.12590-1-jolsa@kernel.org>
-References: <20261118084451.12590-1-jolsa@kernel.org>
+	id 1xTbL1-00000008Dvk-0v3T
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 08:48:20 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794991700; x=1826527700;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=69uAnuF7duZcZRgShYJQb+omDDGQbvMHTSaXAjeuHeM=;
+  b=VQuC2NJ48s41uxhcA3Wi16xEo+I1URIo0AjVmgVIcIWXyTmBlN+yF6/Q
+   2Y1dROGIhVAfS7/gN34qBxPm0MWPr5CVcTvf4Q0P6K4L0fD6qansfqAVa
+   plSxBninfpNWelYVV83kVymllfe4ztx2XTzNo0G2Xo379QuUG+OnmfmEY
+   KDrqAnkKs5Ontw0HiBgDNrQ5rr1xur8WTYfAMxU4DQOXGi5Ry98dG/Tdy
+   7SdHB0J/9TFD12sRBOmXBhxfdzklNUSi05dtjFbAz0m0lfhRtgCqTBaX0
+   eBkRCqKpan1NtXsN+J70qytZnGsGfV19tFP3wPs+usc/oMN7G6gukR7rT
+   w==;
+X-CSE-ConnectionGUID: PgAdLhqoQw2x7WPpAZEe3Q==
+X-CSE-MsgGUID: cUnewMNuRqWnNdRB52NgoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3816797"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="3816797"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2026 00:48:19 -0800
+X-CSE-ConnectionGUID: 7OikgetmSnmgLK4gxGWkzg==
+X-CSE-MsgGUID: wD5IT/7YQQWIqN7+H0Q0Fw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="10097320"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.157])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2026 00:48:14 -0800
+Date: Wed, 18 Nov 2026 10:48:12 +0200
+From: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v33 0/5] Add ASPEED AST2600 I2C controller driver
+Message-ID: <av1mTEtWCf8zFbjp@ashevche-desk.local>
+References: <20260623-upstream_i2c-v33-0-6d5338fc56ed@aspeedtech.com>
+ <TYZPR06MB79202A00572E81CBC29399F4F27A2@TYZPR06MB7920.apcprd06.prod.outlook.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <TYZPR06MB79202A00572E81CBC29399F4F27A2@TYZPR06MB7920.apcprd06.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_004819_307267_36A24992 
+X-CRM114-Status: GOOD (  33.16  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,258 +99,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A uprobe program can write only the pt_regs fields that ptrace can set
-to any value. Add verifier tests for x86-64, arm64 and riscv:
+On Wed, Nov 18, 2026 at 08:14:51AM +0000, Ryan Chen wrote:
+> Hi Andy,
+> 
+> This patch series has been stable in our testing on AST2600 hardware,
+> and we have also received positive feedback from customer testing.
+> The issues identified by Sashiko have also been addressed.
+> I plan to rebase the series onto the latest upstream kernel and submit v34.
+> Before doing so, I would appreciate your feedback on whether there are any
+> remaining concerns or blockers that we should address.
+> 
+> If there are no outstanding issues, I hope the series can be considered for
+> merging after the next review.
+> 
+> Thanks for your time and support.
 
-  - writes to the general registers, the stack pointer and the
-    instruction pointer load
-  - writes to cs, ss, flags and orig_ax on x86-64, to pstate and
-    orig_x0 on arm64, and to status, badaddr and cause on riscv fail
-    with "invalid bpf_context access"
-  - a 4-byte write to the low half of a read-only field fails too
-  - reading a read-only field still works
-  - on x86-64, a kprobe program that writes ctx->flags fails to load
+Are you asking me or Andi Shyti?
+If it was to me, I have no time for this right now, sorry.
 
-Other arches get one test that just loads.
+> > Subject: [PATCH v33 0/5] Add ASPEED AST2600 I2C controller driver
+> > 
+> > This series adds support for the AST2600 I2C controller “new register set”
+> > implementation.
+> > 
+> > The AST2600 I2C controller introduces a revised register layout which
+> > separates controller and target functionality into distinct register blocks, and
+> > extends clock divider configuration and packet-based transfer support
+> > compared to the legacy mixed register layout used on earlier ASPEED SoCs.
+> > 
+> > The current driver implementation for the AST2600 I2C peripheral is through
+> > the hardware's "compatibility mode", which exposes a register set that
+> > matches the previous generation hardware (AST2500 and earlier).
+> > 
+> > Instead, add a driver that works in new-register-set mode, to allow the new
+> > features, and will provide support for future hardware that will not implement
+> > compatibility mode.
+> > 
+> > In order to support the new mode, we need a DT binding change to reflect the
+> > reference to the global register set. Since the binding still represents the same
+> > (AST2600 SoC) physical hardware, we continue to use the existing compatible
+> > string of "aspeed,ast2600-i2c-bus".
+> > 
+> > However: since we're changing semantics for an existing binding, we allow
+> > backwards compatibility by selecting on presence/absence of the newly-added
+> > properties, and fall back to the old driver (ie., in compatibility mode) when we
+> > detect a DT using the old binding spec.
+> > 
+> > Specifically:
+> > 
+> > - ast2600-i2c-bus nodes that provide the `aspeed,global-regs` property
+> >   (present in the new binding and absent in the legacy binding) will be
+> >   successfully probed by the new driver
+> > 
+> > - ast2600-i2c-bus nodes without `aspeed,global-regs` continue to use the
+> >   existing driver (in legacy register mode), ensuring that platforms
+> >   with the current DTBs remain functional
 
-Signed-off-by: Jiri Olsa <jolsa@kernel.org>
----
- .../selftests/bpf/prog_tests/verifier.c       |   2 +
- .../bpf/progs/verifier_uprobe_write_ctx.c     | 196 ++++++++++++++++++
- 2 files changed, 198 insertions(+)
- create mode 100644 tools/testing/selftests/bpf/progs/verifier_uprobe_write_ctx.c
-
-diff --git a/tools/testing/selftests/bpf/prog_tests/verifier.c b/tools/testing/selftests/bpf/prog_tests/verifier.c
-index 6a494c381266..5a31f04677e0 100644
---- a/tools/testing/selftests/bpf/prog_tests/verifier.c
-+++ b/tools/testing/selftests/bpf/prog_tests/verifier.c
-@@ -131,6 +131,7 @@
- #include "verifier_unpriv.skel.h"
- #include "verifier_unwind.skel.h"
- #include "verifier_unpriv_perf.skel.h"
-+#include "verifier_uprobe_write_ctx.skel.h"
- #include "verifier_value_adj_spill.skel.h"
- #include "verifier_value.skel.h"
- #include "verifier_value_illegal_alu.skel.h"
-@@ -321,6 +322,7 @@ void test_verifier_uninit(void)               { RUN(verifier_uninit); }
- void test_verifier_unpriv(void)               { RUN(verifier_unpriv); }
- void test_verifier_unwind(void)               { RUN(verifier_unwind); }
- void test_verifier_unpriv_perf(void)          { RUN(verifier_unpriv_perf); }
-+void test_verifier_uprobe_write_ctx(void)     { RUN(verifier_uprobe_write_ctx); }
- void test_verifier_value_adj_spill(void)      { RUN(verifier_value_adj_spill); }
- void test_verifier_value(void)                { RUN(verifier_value); }
- void test_verifier_value_illegal_alu(void)    { RUN(verifier_value_illegal_alu); }
-diff --git a/tools/testing/selftests/bpf/progs/verifier_uprobe_write_ctx.c b/tools/testing/selftests/bpf/progs/verifier_uprobe_write_ctx.c
-new file mode 100644
-index 000000000000..f5ed453b1798
---- /dev/null
-+++ b/tools/testing/selftests/bpf/progs/verifier_uprobe_write_ctx.c
-@@ -0,0 +1,196 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include "vmlinux.h"
-+#include <bpf/bpf_helpers.h>
-+#include "bpf_misc.h"
-+
-+/*
-+ * A uprobe prog can write only the registers that ptrace can set to any
-+ * value. The fields the kernel restores on the way to user space (segments,
-+ * flags, privilege state) are read-only.
-+ */
-+
-+#define WRITE_CTX(name, field, sz)					\
-+__naked void name(void)							\
-+{									\
-+	asm volatile ("							\
-+	r2 = 0;								\
-+	*(" #sz " *)(r1 + %[off]) = r2;					\
-+	r0 = 0;								\
-+	exit;								\
-+"	:								\
-+	: __imm_const(off, offsetof(struct pt_regs, field))		\
-+	: __clobber_all);						\
-+}
-+
-+#define READ_CTX(name, field)						\
-+__naked void name(void)							\
-+{									\
-+	asm volatile ("							\
-+	r0 = *(u64 *)(r1 + %[off]);					\
-+	r0 = 0;								\
-+	exit;								\
-+"	:								\
-+	: __imm_const(off, offsetof(struct pt_regs, field))		\
-+	: __clobber_all);						\
-+}
-+
-+#if defined(__TARGET_ARCH_x86)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->ax")
-+__success
-+WRITE_CTX(write_ax, ax, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->r15")
-+__success
-+WRITE_CTX(write_r15, r15, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->di")
-+__success
-+WRITE_CTX(write_di, di, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->ip")
-+__success
-+WRITE_CTX(write_ip, ip, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->sp")
-+__success
-+WRITE_CTX(write_sp, sp, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write lower half of ctx->ax")
-+__success
-+WRITE_CTX(write_ax_u32, ax, u32)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->orig_ax")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_orig_ax, orig_ax, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->cs")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_cs, cs, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write lower half of ctx->cs")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_cs_u32, cs, u32)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->flags")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_flags, flags, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->ss")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_ss, ss, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: read ctx->flags")
-+__success
-+READ_CTX(read_flags, flags)
-+
-+SEC("kprobe")
-+__description("kprobe: write ctx->flags")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(kprobe_write_flags, flags, u64)
-+
-+#elif defined(__TARGET_ARCH_arm64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->regs[0]")
-+__success
-+WRITE_CTX(write_x0, regs[0], u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->regs[30]")
-+__success
-+WRITE_CTX(write_x30, regs[30], u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->sp")
-+__success
-+WRITE_CTX(write_sp, sp, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->pc")
-+__success
-+WRITE_CTX(write_pc, pc, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->pstate")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_pstate, pstate, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write lower half of ctx->pstate")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_pstate_u32, pstate, u32)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->orig_x0")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_orig_x0, orig_x0, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: read ctx->pstate")
-+__success
-+READ_CTX(read_pstate, pstate)
-+
-+#elif defined(__TARGET_ARCH_riscv)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->epc")
-+__success
-+WRITE_CTX(write_epc, epc, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->a0")
-+__success
-+WRITE_CTX(write_a0, a0, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->t6")
-+__success
-+WRITE_CTX(write_t6, t6, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->status")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_status, status, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->badaddr")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_badaddr, badaddr, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: write ctx->cause")
-+__failure __msg("invalid bpf_context access")
-+WRITE_CTX(write_cause, cause, u64)
-+
-+SEC("uprobe")
-+__description("uprobe: read ctx->status")
-+__success
-+READ_CTX(read_status, status)
-+
-+#else
-+
-+SEC("uprobe")
-+__description("uprobe: ctx writes not checked on this arch")
-+__success
-+__naked void unsupported(void)
-+{
-+	asm volatile ("r0 = 0; exit;" ::: __clobber_all);
-+}
-+
-+#endif
-+
-+char _license[] SEC("license") = "GPL";
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
