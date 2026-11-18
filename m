@@ -2,107 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9DD3606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D34606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pyrXN/zi;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Y33l58Nd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fJMNwOlj;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=i2nS57/d
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AZ7qkD0L75OuzyZ7+z/b4gyTaud+oMoBaIWST7AAwg8=; b=pyrXN/zihZ/wIq
-	j3+YjfdYq4zTFWr0JcPZQ+rfnNwAiBU9Z/29nBOYGBJsv4MpyRarggmnXzzVgL36+5KYsGjRHsbdF
-	pVZlXSyD2nyStP+8Tj/yr2JBTQS05P844cHWajBgn7ae7rAiPZ/hMnBXv+oeHXngXW7FseOFicE3m
-	ulvVwfNlTprPqSgl8+L4pFRvGFmpCAGrQY3P5wQkHIq6P9AWBsKlzJAA7bZFOMEOurzMmeLCx73wv
-	tSNO6A17l4hY4T9huCoKsX5qVHsCGznrSNLhBRP3szvKNYTC5itoJRzOYwgjy1BA1rZfI6FPDF02/
-	OyMxrAwnyLwzryGfAmEQ==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=iegO1ScyIKepMRPTphuPeK+/U3J87IRzMupap8884ho=; b=fJMNwOljp5JYMQ
+	sbB4c6oNa/58WG4kNLWAClRjk7JA3DHa+I44PM6rmN9tW2+O2CvNXf+0uWuHVxTikjbs1P6D/Tiis
+	V1LMv+ml/lT+neZre2/96Bc1iBhmTMjoe2qe18BJkGK+n4bxqR+/rBhwqf6ZY7tM17ZSOE6J6g9S9
+	C7vbgNGbRaXsFB3WJhtCF/POMHMoAJH7mjQQFEazasdH9Orf/T639YNJ2J88nvFoVdhHSU0ZC3qvP
+	ST9LGaIPEnddrjUzk5HmLdLGPCFP/KEHxKtDanYrW3odHCBucJ5AnbpCXivYEQd38kLqxFfaVPB+4
+	0AiquwGg0jpkT2MHen2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdzN-00000008jk3-2Z6p;
-	Wed, 18 Nov 2026 11:38:09 +0000
-Received: from mail-pj1-x102a.google.com ([2607:f8b0:4864:20::102a])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdzJ-00000008jjS-14bD
+	id 1xTe6G-00000008kOd-2OYC;
+	Wed, 18 Nov 2026 11:45:16 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTe6C-00000008kOG-3EqU
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 11:38:08 +0000
-Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-3b3a5c9130bso526645a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 03:38:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795001884; x=1795606684; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=AZ7qkD0L75OuzyZ7+z/b4gyTaud+oMoBaIWST7AAwg8=;
-        b=Y33l58Nd1oOU/jfJ4ltSjDpaz/+12aEvIdQAa7w/9YabXylMELjIUuUGEDnP+Rp6K/
-         Z2tkf4Y66cftc0df/2RN2CtMoRjdiVdgsEHdgRP8gC20ercnstK55D9Fv7hP/IMHT2DO
-         ahVW4vX7zCU7KOwAatCUpdQGSRq9FaYZe/3rW5J5U2QrGrDLuk3zGwUttb0fBkQqDC4d
-         eLZPq3yo5liO337fYLL4ycuFcSZV0JYJ4f1Rrq2sB2vyspsOpollwbVEz3rDx6/PQHNL
-         LGzvjmqOxECat1LGbSxTSYgM5Ytlrcj5GlCNP5/LfDvSbUD1Erhk4HOJxqOCmv7mwXXM
-         KReg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795001884; x=1795606684;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=AZ7qkD0L75OuzyZ7+z/b4gyTaud+oMoBaIWST7AAwg8=;
-        b=ztJ/mkfz9Yq3ZtBrwtPuYpEWxWS7nMS37H2q7TRbhnk6zVF6AIlWJLc8hDztnPVBjm
-         eSq+Epw2GcEnj3cybVDrkP17Qg6TlPygGSVUkuDvYBUQx9gamoPduAexmO8HLNuHb7Xw
-         AyAMA5zEcD49vHHdcQYPgigwwqf14NmnU8AkGzCbkwxwPuyHHw/90lq999JbJcEu1/SV
-         0mRrCfrmMGe+QHJVZ8KzOQFQuK6XkcOD/xP9nP9R8R1QF58h4ltPfjjTIpPyv99ZAXJO
-         ITzr9aJoT1hPWYZJOAVWz8t8149lFThEEJWxfLI3EQnlnC9oj+iGkkn6qvO246IixmOs
-         wRrg==
-X-Forwarded-Encrypted: i=1; AL+hErE9wTNekV08ujnphy0CKvfbfjQicysOTeH7zJ8yaIItBmaL6GZEWLuwOc8Ou8/Qmr6C9IV/k/RtQwhLztId0rzm@lists.infradead.org
-X-Gm-Message-State: APuU4Z99+gTshLF7yPTH+poclv3QF80cTC68UzNai2xoxkIvb1guzk65
-	EtwfuxNEgzu0fTG+O8OSrcl/mg8uXXJB+DUQu6mAim1gjXOVIK2E1m50
-X-Gm-Gg: AZFdTZeHwV3F+V18itIWbvDSfHMgVvIdzktm4djPK8IX/IVwQ0ayA3ZGlP0UT4xjJKs
-	3Lscv6q8qSPEiyOMF3AUxEB/TIsxTtXOXZimC69BjhLPs/wCszcCoPITy1BzBHT+/3LWJIGrSI4
-	8Q7Y+6o9QBWqdORkwQUq+thL7j17TqwYBiyJRLQFYNtm8c5UiILcnnuHUQZiZC9INox93vouuGB
-	WJMaTPlIVu2AJ/RVDFnW87UsAqQ7S+9tGr/iwL4HatJF+w/rTEz7qYhLwNBASXQNQgWpXbmzwPy
-	qP273qXfEID/8xHKhoBfW0luND+/7XLnmdetV2eQzWwYP1U46NqGdjgIv6gvsHi4pr+ZOhiDyxK
-	dqcwJKOs1asNGytwNk5fGMJX8xMRLy5YnWsVzYrFJ0M/kGf3ENYbcBbuzQrf+/zrZsQydNxylJ0
-	0CfFYFGbPPm+Ncd+RqUvBoivPaSZTWbS0/RXynWjV+t0IIBW1Ow0HoXEerJLhSvxcEEtAJM7Vld
-	TIeFn/v/fJrc4sRz+ozi0l9f5BB7JFy7ZuS7bFQIbWdPwZP930MfNLXeulw/lnQb+LQxJ0YAlNd
-	t5AxXTBmUE6MAk3Z646bs8nxk8AC8oAfHJ72CgS5B3TXz2CFQ4DBmLQ2mRofG5qEQMuvK0NDm/Q
-	KGpczElYEVrY=
-X-Received: by 2002:a17:90b:5407:b0:3a6:e901:e79b with SMTP id 98e67ed59e1d1-3b3d074d841mr2303560a91.15.1795001884103;
-        Wed, 18 Nov 2026 03:38:04 -0800 (PST)
-Received: from 1.tailnet.ftu ([1.54.0.190])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b3ac254ba6sm8950084a91.4.2026.11.18.03.38.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 03:38:03 -0800 (PST)
-From: =?UTF-8?q?Tr=E1=BA=A7n=20Trung=20Nh=C3=A2n?= <nhan.094.vn@gmail.com>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kees Cook <kees@kernel.org>,
-	Tony Luck <tony.luck@intel.com>,
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: exynos: Add initial support for Samsung Galaxy Note8
-Date: Wed, 18 Nov 2026 18:37:19 +0700
-Message-ID: <20261118113756.304373-1-nhan.094.vn@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <CADrjBPph5r0rjZPLz7db9-QtmN5+7S2Ft8Zgn1oi+C0Okvas_w@mail.gmail.com>
-References: <20261118-upstream-greatlte-dts-v2-0-bc2f23ce81c6@gmail.com> <20261118-upstream-greatlte-dts-v2-2-bc2f23ce81c6@gmail.com> <CADrjBPph5r0rjZPLz7db9-QtmN5+7S2Ft8Zgn1oi+C0Okvas_w@mail.gmail.com>
+	Wed, 18 Nov 2026 11:45:14 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 272651596;
+	Wed, 18 Nov 2026 03:45:08 -0800 (PST)
+Received: from [10.2.212.8] (e134344.arm.com [10.2.212.8])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A31BB3F673;
+	Wed, 18 Nov 2026 03:45:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795002311; bh=QYPIUljbflagwWrhzGCV/oc6H81q55CY6izIufpXiVM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=i2nS57/dL9GMlRGCHC6TBkRTbIIdQ3MplrBjbsU1lgUz1fGW0MnPx0bDQ83/ZE5d4
+	 7EchqPau7wzXTD+7/TxKWhiaDbeG9kC5Sa7hDRLoaI41PxBDEvPPm/wILSnovrRuNx
+	 fz2vGyzyzAKXEl28kZBqheMU6eh2gSsLzUdhSaiM=
+Message-ID: <7c0c29c6-55c9-412a-9620-e44d39a5a806@arm.com>
+Date: Wed, 18 Nov 2026 11:45:06 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 RESEND 5/7] fs/resctrl: Release the limbo RMIDs when
+ the CDP state changes
+To: Jinjie Ruan <ruanjinjie@huawei.com>,
+ Reinette Chatre <reinette.chatre@intel.com>, tony.luck@intel.com,
+ Dave.Martin@arm.com, james.morse@arm.com, babu.moger@amd.com,
+ corbet@lwn.net, skhan@linuxfoundation.org, rdunlap@infradead.org,
+ tglx@kernel.org, mingo@redhat.com, bp@alien8.de,
+ dave.hansen@linux.intel.com, hpa@zytor.com, fenghuay@nvidia.com,
+ tan.shaopeng@fujitsu.com, will@kernel.org, gshan@redhat.com,
+ zengheng4@huawei.com, jic23@kernel.org, x86@kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261110133938.3768632-1-ruanjinjie@huawei.com>
+ <20261110133938.3768632-6-ruanjinjie@huawei.com>
+ <3c48dac2-78af-44c9-b546-e5fcf7bbd8d6@intel.com>
+ <7aa50421-6e92-4ea6-be39-88045e682a9f@arm.com>
+ <449bb402-9620-493d-9e2b-85d093ad1401@huawei.com>
+Content-Language: en-US
+From: Ben Horgan <ben.horgan@arm.com>
+In-Reply-To: <449bb402-9620-493d-9e2b-85d093ad1401@huawei.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_033805_302555_500AE529 
-X-CRM114-Status: GOOD (  18.17  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_034513_290351_564F1AEA 
+X-CRM114-Status: GOOD (  29.41  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,70 +81,101 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Peter,
+Hi Jinjie,
 
-On Wed, 18 Nov 2026 at 10:51, Peter Griffin <peter.griffin@linaro.org> wrote:
-> Does the Samsung bootloader not pass a correctly populated memory node
-> for the device? Or is this required because UniLoader doesn't pass
-> along the memory node it received from the previous stage bootloader?
+On 18/11/2026 11:20, Jinjie Ruan wrote:
+> 
+> 
+> 在 2026/11/13 5:18, Ben Horgan 写道:
+>> Hi Reinette, Jinjie,
+>>
+>> On 11/11/2026 18:33, Reinette Chatre wrote:
+>>> Hi Jinjie,
+>>>
+>>> On 11/10/26 5:39 AM, Jinjie Ruan wrote:
+>>>
+>>>> still carry those RMIDs are accounted to the next user of each RMID.
+>>>>
+>>>> The CDP state that matters is the one that changes the PARTIDs used by
+>>>> the monitors, which is not necessarily the CDP state of the L3
+>>>> resource. MPAM gives every CLOSID two PARTIDs in all MSCs while CDP is
+>>>> enabled on any resource, so enabling CDP on L2 alone also changes the
+>>>> PARTIDs the L3 monitors use. Add resctrl_arch_mon_cdp_enabled() to let
+>>>> the architecture report this. Only MPAM can be affected, so the RMIDs
+>>>> are only released where the RMID depends on the CLOSID. On x86 the
+>>>> RMID does not depend on the CLOSID, and resctrl_arch_mon_cdp_enabled()
+>>>> returns false.
+>>>
+>>> nack. The helper name and value returned on x86 is the first hint that this
+>>> is not right. For x86 the value is not a statement about x86: CDP exists on
+>>> x86 and can be enabled, so a function called resctrl_arch_mon_cdp_enabled()
+>>> returning false reads as wrong until the comment above it explains that what
+>>> is really being reported is whether CDP changes the IDs the monitors use.
+>>
+>> The invariant that the limbo handler is currently relying on is that the
+>> mapping of rmid index to the underlying hardware monitor index is fixed.
+>> For MPAM, if cdp is enabled at all then the mapping is changed and so
+>> the invariant does not hold between mounts. MPAM's emulation of CDP is
+>> why it breaks the invariant. resctrl shouldn't need to care about this
+>> MPAM specific reason and should only care whether or not the invariant
+>> is upheld or not. In the future, MPAM may use more than the two existing
+>> indexing schemes. For instance, if we wanted to have one memory
+>> bandwidth monitor per monitor group, without assignment, then we would
+>> need to limit the number of monitor groups.
+>>
+>>>
+>>> Every architecture now needs to match this. This looks more like forcing
+>>> every architecture to indicate whether it has the same quirk as MPAM.
+>>>
+>>> If there is no way to handle this in MPAM driver then handling this should at
+>>> least be contained between resctrl filesystem and MPAM driver. This should not
+>>> be forced on all architectures.
+>>
+>> I don't see a way for the MPAM to keep the same RMID for when it is
+>> emulating CDP and when it's not.
+>>
+>>>
+>>> I trust the MPAM folks to say whether it can or cannot be done in MPAM driver.
+>>> If this is not possible in MPAM driver then it looks like this needs to go back
+>>> to include the L2 CDP check as was done in previous version. With this check 
+>>> gated by IS_ENABLED(CONFIG_RESCTRL_RMID_DEPENDS_ON_CLOSID) it does hint "MPAM"
+>>> but would also need a comment to explain why that is done.
+>>>
+>>
+>> Would something like an rmid indexing generation count be any better or
+>> is that just overthinking it?
+>>
+>> int resctrl_arch_rmid_indexing_generation(void);
+>>
+>> If the indexing never changes the arch could always return 1 and if it
+>> does change the architecture can bump the number on every change. It
+>> would still never change when resctrl is mounted.
+> 
+> As Renette suggeted, maybe we could include the L2 CDP check as was done
+> in previous version to make the fix simple?
 
-From what I can check here, it's a bit of both. S-Boot doesn't build
-the memory node itself. It loads the DTB from the boot image it boots
-(BOOT, or RECOVERY as in my test); it checks that a /memory node
-exists, and only fills in the bank at 0x900000000
-(reg = <0x9 0x0 0x80000000>) when it detects 6GB of DRAM. The other
-three banks have to be in the DTB already. Samsung's own device tree
-for this phone lists them and leaves the size of the fourth bank as 0
-for S-Boot to fill in. From
-arch/arm64/boot/dts/exynos/exynos8895-greatlte_common.dtsi in
-Samsung's kernel source release for the Note8 (SM-N950F_PP_Opensource,
-N950FXXSGDUG6, on opensource.samsung.com):
-
-	memory@80000000 {
-		device_type = "memory";
-		reg = <0x0 0x80000000 0x3C800000>;
-	};
-
-	memory@C0000000 {
-		device_type = "memory";
-		reg = <0x0 0xC0000000 0x40000000>;
-	};
-
-	memory@880000000 {
-		device_type = "memory";
-		reg = <0x00000008 0x80000000 0x80000000>;
-	};
-
-	memory@900000000 {
-		device_type = "memory";
-		reg = <0x00000009 0x00000000 0x0>;
-	};
-
-The DTB in the stock SM-N950N BOOT image (N950NKSU5DZE2) has the same
-four nodes.
-
-S-Boot does the same on SM-N950F: the device tree fixups in its
-N950FXXSGDUG6 bootloader are the same code as in the SM-N950N
-N950NKSU5DZE2 one. Every Exynos Note8 ships with 6GB of RAM, so the
-fourth bank is always filled in and the DTS doesn't need to differ
-between them.
-
-uniLoader then doesn't pass that DTB on. It boots the kernel with the
-DTB linked into it and only adds the initrd properties to /chosen, so
-nothing S-Boot wrote reaches the kernel and the memory node has to be in
-the DTS. dreamlte and starlte do the same for the same reason.
-
-btw, the name's Nhân; Trần is the family name, and if the convention is
-to write first name first, I'd be pleased to adjust!
+If the check stays cdp specific then I'd consider iterating through all the resources to make it
+clear that the check is whether cdp is enabled on any resource or not at all. It seems likely that
+at some point an L4 resource will be added. The extra cache level would be useful for arm64 systems
+with an L3 cache in the DSU and also a system level cache in the MCN.
 
 Thanks,
-Nhân
+
+Ben
+
+> 
+>>
+>> Thanks,
+>>
+>> Ben
+> 
+
 
