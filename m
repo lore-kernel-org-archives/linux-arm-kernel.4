@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11460606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 20:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1CCE606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 20:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=koKBJlt6;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ak41hTEh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hXiv7Ety;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iwUpONJa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,60 +14,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XJmqha3jczEcaerimpEtNez8vFhS9CMO3UzYk56rIsY=; b=koKBJlt6i5WMnxaajmEJMBcgYW
-	RAidLUYSg1fdavxNDLuaG34mHovI/XtEgdReJpsdIZ50W/hBE05yCUGzB9TAjqa+hawjGi79uryEM
-	j5gyaJbu+J/DcxSHK2Vi4DSA3UtXVkdd1JK5ApTTOa2Chr0tNXwFAOBL0HVVczr8lMlGWHZpOASPy
-	sNulxI357Pj8GRAiFhkVliBy7gpybgDw3ZshDHTrxU/HyERHctyf9BtYhsOtYZ9pJHcTt2GJfCJ1N
-	CwCUWGE/jFTt+/cq0rUtgBt43PxI4M/Ht++Cbv7BEJeD9lXQnXeagu7ETciiSQL7BIVWPRmo7WImM
-	q7fZ31Jg==;
+	bh=Ooh2Ut4OkXb4cnFIzK24GOQEm3EtxNlb5xhtxv/8OV4=; b=hXiv7EtyHPZls0U7G3hUSrbLQy
+	HHscrPe3mWrx7yuM9cRehMN8n7bLfNdcexnCCPuUKgj3+tpDaoHrAo7a0YVD1+YYz33mbBtzRBaZC
+	b5b3vi9QugyNKK2WPJ3sfh4Ah2KpXH3RPHjYj7SMA6posX5aE8begT9OYDYfV+zdMqbY231HazxKi
+	DGde0yEiRmyGh6rKCs/UAVS6CRujNbNTgs+ejr3/aijEdQK8shQM89nTQeH3Rww0UyGFADsFxikt9
+	EFTxh4eBhTKj2rXG+V1wboThc0fP0DZ7iNUtKY2otLyksoMOAydC/qep5Ku+jNp93J7r2L39Z8G6d
+	9yPIoS8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTmKf-0000000ADXL-3fXC;
-	Wed, 18 Nov 2026 20:32:41 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTmKt-0000000ADbX-0Fls;
+	Wed, 18 Nov 2026 20:32:55 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTmKe-0000000ADX8-1emM;
-	Wed, 18 Nov 2026 20:32:40 +0000
+	id 1xTmKs-0000000ADbE-18fN;
+	Wed, 18 Nov 2026 20:32:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1FCFE63B78;
-	Wed, 18 Nov 2026 20:32:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9666B1F000C6;
-	Wed, 18 Nov 2026 20:32:38 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id B6F5963B82;
+	Wed, 18 Nov 2026 20:32:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 433671F000C4;
+	Wed, 18 Nov 2026 20:32:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795033958;
-	bh=XJmqha3jczEcaerimpEtNez8vFhS9CMO3UzYk56rIsY=;
+	s=k20260515; t=1795033973;
+	bh=Ooh2Ut4OkXb4cnFIzK24GOQEm3EtxNlb5xhtxv/8OV4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Ak41hTEh2Or4toXQzz7176z2UqaczmbWwvTnufoviYFJytOETfRg2aa0QK/68A9Nm
-	 gxIYDh6Ag75SdaG3TKZW+16O2wyybY+cPkHsLxDWD/QC6bQ5ym6fGzH9mXMsP5DIN3
-	 RHP8zK8feAO8BB4Mab8J7Y97Ukhy6y5e7wtbkPSyl4jNHX5Gx8z9d2Rd9qpgn4b7jr
-	 auWnbP5kFSpwUUmbK7pHZg5D0Ah7yuAxK01zgG47x/QVPNEYHIg57EsxCwJ2N6MCb9
-	 jY8keMjByapseewDHzDH4TGhtnl06j0T31BCfNER9ddo3G9guNLbixjZlh1e4oJdCw
-	 NFaYBExwJyP7A==
-Date: Wed, 18 Nov 2026 14:32:36 -0600
-From: Rob Herring <robh@kernel.org>
+	b=iwUpONJaUZJPm+lXfBmkJc0tKTinjGLkWtnilXXoN2c5fi4Cj/2nKIMegk74eoqwI
+	 S/9+rLm9GzfnB4NHfENFH/Lz0PrpvlBvocecRjvuNR5xNun/AxYylBQyPOJ3YU0c+5
+	 hzIE9sWbbGAF9xmHBgvni12CMMGL7heqcEvsP5XIMGHCLPUAI1OP3NfLBGh9QKhcpG
+	 +Di9hNVRs82vn+OjO6QWEBIYZtDMhJMkyRtT6+q4N9E9oQII6G58ZTMtei6KzYg1hn
+	 5BiQ+wU4nOzTfnfoMicgqiA4ryx1KIUKHTvPlgPCoXNmcV6E91OTWsJWAwVLAyk4Bi
+	 4PqgTqj5roQeA==
+Date: Wed, 18 Nov 2026 14:32:51 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Arun Iyengar <aiyengar1990@gmail.com>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Niklas Cassel <cassel@kernel.org>,
-	Pranjal Shrivastava <praan@google.com>,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
+Cc: Simon Xue <xxm@rock-chips.com>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
 	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>,
-	Finley Xiao <finley.xiao@rock-chips.com>
-Subject: Re: [PATCH v3 2/3] iommu/arm-smmu-v3: Enable an optional clock
-Message-ID: <20261118203236.GA823624-robh@kernel.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>, iommu@lists.linux.dev,
+	Pranjal Shrivastava <praan@google.com>,
+	Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org,
+	"Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Niklas Cassel <cassel@kernel.org>, linux-kernel@vger.kernel.org,
+	Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH v3 1/3] dt-bindings: iommu: arm,smmu-v3: Allow a clock
+ and a reset
+Message-ID: <179503397082.838785.14210006963521500308.robh@kernel.org>
 References: <20261113-smmu-v3-pcie-pd-v3-0-39eb4f919529@gmail.com>
- <20261113-smmu-v3-pcie-pd-v3-2-39eb4f919529@gmail.com>
+ <20261113-smmu-v3-pcie-pd-v3-1-39eb4f919529@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261113-smmu-v3-pcie-pd-v3-2-39eb4f919529@gmail.com>
+In-Reply-To: <20261113-smmu-v3-pcie-pd-v3-1-39eb4f919529@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,55 +87,19 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 13, 2026 at 08:45:06AM +0000, Arun Iyengar wrote:
-> On the RK3588 the PCIe SMMU's clock is gated as unused when no PCIe
-> controller holds it, and the next register access (the CR0 write at
-> shutdown) hangs. Enable the clock from the firmware node, if there is
-> one, while the driver is bound.
-> 
-> Do it first in probe, as the firmware probe may take a Tegra CMDQV
-> reference that only arm_smmu_impl_probe() releases.
+
+On Fri, 13 Nov 2026 08:45:05 +0000, Arun Iyengar wrote:
+> The RK3588 PCIe MMU-600 has a clock (ACLK_MMU_PCIE) and a reset
+> (SRST_A_MMU_PCIE) in the CRU. When no PCIe controller holds the clock,
+> it is gated as unused and the SMMU stops responding. Allow one clock and
+> one reset.
 > 
 > Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 > ---
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>  Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> index 6d4520c47308..d3f42316b0d6 100644
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> @@ -12,6 +12,7 @@
->  #include <linux/acpi.h>
->  #include <linux/acpi_iort.h>
->  #include <linux/bitops.h>
-> +#include <linux/clk.h>
->  #include <linux/crash_dump.h>
->  #include <linux/delay.h>
->  #include <linux/err.h>
-> @@ -5786,12 +5787,22 @@ static int arm_smmu_device_probe(struct platform_device *pdev)
->  	resource_size_t ioaddr;
->  	struct arm_smmu_device *smmu;
->  	struct device *dev = &pdev->dev;
-> +	struct clk *clk;
->  
->  	smmu = devm_kzalloc(dev, sizeof(*smmu), GFP_KERNEL);
->  	if (!smmu)
->  		return -ENOMEM;
->  	smmu->dev = dev;
->  
-> +	/*
-> +	 * Before the firmware probe: it may take a reference on the Tegra
-> +	 * CMDQV device that only arm_smmu_impl_probe() releases.
-> +	 */
-> +	clk = devm_clk_get_optional_enabled(dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return dev_err_probe(dev, PTR_ERR(clk),
-> +				     "failed to enable clock\n");
 
-The primary point of the "optional" flavor of get functions is so the 
-get function itself can print an error rather than every driver doing 
-it. So drop the error print here.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
