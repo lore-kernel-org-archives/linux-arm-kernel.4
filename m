@@ -2,81 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6FB606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 00:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86397606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 00:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RbvsjdUs;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Vix5oa89
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FK2MTOBR;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=bG+Ue8f/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=1UbMEHB0WKx0u4dst6bzVbW5BKGdyKKbsda1yqu6+p8=; b=RbvsjdUswNT4uwiAHSqiBX5Ro6
-	plpm6TBTc9FXmMpmihpJMfx3Kjra1av3y0bK5k5nDqNk5Bg8ZYHtIC2AK4hBpG2g2qtYDg0rDcpEu
-	vXmtaN75Bd8JC37m3m5KX+JWbuZjELS5YRW6R3+PDWaGUt63sI+1K0DR7J8HfAB5nP8+JJ2U7ai2U
-	gBoSJbC65Ly2nVTmrvtMzrLVLlHn1ZPLHigpanbMRznIpj9Fbxtb0x87bDbwG4s3VUFTDYOG7ZaSP
-	f2bZax3peSTjFSYwBks87YFbLb6vmMxEwbIvkQF7Z5Ufb9gRcVHJ2t4sAYvMyghkW/5nr/3OdjGcG
-	MnofCV1A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=E+RsS1tq+kLfqFUPfdWPYkZYK/Z9niwBH23LyHoXUfs=; b=FK2MTOBRrOFJe2
+	q9IgONRarb0q8U49btN8g3F4yAUIRgOO3O9hwwrItIiknBY3CzOW9oNKl76ukR4pc/6cn2J2s68Rj
+	1kyT1ac2rWVGoZPxfhy9ZJ2d2aQxWGOI9XjJBqYvPMUj6ZBzpbGl+nqGpXIG2v5yfKOerJ8qFqmI4
+	pNwUvVdgHzjdO9tmqYvJSF5XtvOZ+IPVjX0XZoHFF9TA5U9WtRJN/5mWTvGf2ehdMnBBj4ekqNpnV
+	Bo43HhRe24VcFdrjJP0GyKIvA8ZIKlyZ3gczfGwtUPPBiLCNQvPdFJiO/G31HBmFzDxJXrn5qw6I9
+	bvBn7n8HP0+2T8hcaetg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTTtG-00000007PNz-1Ny6;
-	Wed, 18 Nov 2026 00:51:10 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTTtP-00000007PQU-2DE4;
+	Wed, 18 Nov 2026 00:51:19 +0000
+Received: from m16.mail.163.com ([220.197.31.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTTtF-00000007PNo-1GS6;
-	Wed, 18 Nov 2026 00:51:09 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B849F415D4;
-	Wed, 18 Nov 2026 00:51:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 874611F000C4;
-	Wed, 18 Nov 2026 00:51:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794963068;
-	bh=1UbMEHB0WKx0u4dst6bzVbW5BKGdyKKbsda1yqu6+p8=;
-	h=Date:From:To:cc:Subject:In-Reply-To:References;
-	b=Vix5oa89sYVH+p/PIq4YrS+tl+Q2d4GuSof4iYPr1Jes1ukCV07Ax1mT31gYyRuBk
-	 KDVy1Xc7YkJFjBGk5YUHJzXhopjFDdL078g//rtk1yAnqg319z95CNtPuGG0OYycRO
-	 8Wa4KGYOH0uIUrNnDpu51YSb5byQaABCxt57BX04GkSmivdOSX53foyLpW6Hir1D/2
-	 Ojjfm7+wHiSWS3iuLZLjwaicqWHiDLEhCM8IKXgCSRYPXKRQo8/HxBpYGfmGkUl7uh
-	 +vbQm41d1rp042Qx55pJ1nSLVSkIsdEJ9zElVuG66GwEr7i5ZiJxXGuq6KYhnQeAcp
-	 dwuP02Th8yGRQ==
-Date: Tue, 17 Nov 2026 17:51:05 -0700 (MST)
-From: Paul Walmsley <pjw@kernel.org>
-To: Han Gao <gaohan@iscas.ac.cn>
-cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-    Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-    Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>, 
-    Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
-    Samuel Holland <samuel.holland@sifive.com>, 
-    Daniel Lezcano <daniel.lezcano@kernel.org>, 
-    Anup Patel <anup@brainfault.org>, Stephen Boyd <sboyd@kernel.org>, 
-    Brian Masney <bmasney+clk@redhat.com>, 
-    Jerome Brunet <jbrunet+clk@baylibre.com>, Chen-Yu Tsai <wens@kernel.org>, 
-    Jernej Skrabec <jernej.skrabec@gmail.com>, 
-    Samuel Holland <samuel@sholland.org>, 
-    Philipp Zabel <p.zabel@pengutronix.de>, 
-    Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-    Maxime Ripard <mripard@kernel.org>, Linus Walleij <linusw@kernel.org>, 
-    Andre Przywara <andre.przywara@arm.com>, Han Gao <rabenda.cn@gmail.com>, 
-    linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-    Paul Walmsley <paul.walmsley@sifive.com>, 
-    Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
-    devicetree@vger.kernel.org, linux-csky@vger.kernel.org, 
-    linux-sunxi@lists.linux.dev, linux-clk@vger.kernel.org, 
-    linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, 
-    linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 01/19] riscv: sunxi: describe the wider Allwinner SoC
- family
-In-Reply-To: <20261114-v861-v1-1-eb71ec3ee523@iscas.ac.cn>
-Message-ID: <fc63c0c4-5b79-87f9-aa42-7ed541361052@kernel.org>
-References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn> <20261114-v861-v1-1-eb71ec3ee523@iscas.ac.cn>
+	id 1xTTtJ-00000007PO5-1acF
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 00:51:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=E+
+	RsS1tq+kLfqFUPfdWPYkZYK/Z9niwBH23LyHoXUfs=; b=bG+Ue8f/UZ5gtZAA+S
+	Cfs1vGehNw0RAcWGiRrj0YkI3g4WPMgDuC44WvS4aFS+swNndP7XBUxl0N2m8fln
+	CeP8a5WqncCJDI+hrMhqhK+dr0ugt0/PVQOgWmcHzzQTMXt+ETvqFzJgmfol3sxy
+	pAtwybU1J3AVMga+Yh7MMQavU=
+Received: from SYPC (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgBHsYd49vxqwTllGg--.46287S2;
+	Wed, 18 Nov 2026 08:51:05 +0800 (CST)
+From: Yang Siyuan <hsyysy@163.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: linux-watchdog@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4] watchdog: sunxi_wdt: stop the watchdog across system suspend
+Date: Wed, 18 Nov 2026 08:50:48 +0800
+Message-ID: <20261118005048.385059-1-hsyysy@163.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <ece4aa08-fb86-4f76-b4b8-a9351a71df14@roeck-us.net>
+References: <ece4aa08-fb86-4f76-b4b8-a9351a71df14@roeck-us.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: PygvCgBHsYd49vxqwTllGg--.46287S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCr1rury5ZF1ktF1UXF1UZFb_yoWrGr43pF
+	4Yya4FkrW0qr4avr4aywnrAFn5G3ZYg34UAryxG34fA3Z8Gr1rGFy0qr1UAwsxGrWrGF1r
+	uF1Ut3yxGayq9a7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jVYLkUUUUU=
+X-CM-SenderInfo: 5kv152r16rljoofrz/xtbC7Rm16Wr89nkdMgAA3e
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_165113_842976_71861941 
+X-CRM114-Status: GOOD (  18.57  )
+X-Spam-Score: 0.4 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,26 +73,117 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, 14 Nov 2026, Han Gao via B4 Relay wrote:
+The H616 watchdog has a maximum timeout of 16 seconds.  systemd keeps
+/dev/watchdog0 open with RuntimeWatchdogSec=16s, but during system
+suspend all userspace is frozen and the watchdog core does not stop the
+hardware.  A suspend longer than the timeout therefore resets the board
+before it can resume.
 
-> From: Han Gao <gaohan@iscas.ac.cn>
-> 
-> ARCH_SUNXI is about to cover the V861 as well. Update its prompt and
-> help text instead of adding another option.
-> 
-> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+Add system sleep PM ops to stop the watchdog before suspend and restart
+it after resume if it was running.  The driver did not store its private
+data in the platform device, so add platform_set_drvdata() for the PM
+callbacks.
 
-Assuming this series is going to go up through arm-soc -
+Use DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr(), and use
+watchdog_hw_running() instead of a private flag to decide whether the
+hardware needs to be stopped and restarted.
 
-Acked-by: Paul Walmsley <pjw@kernel.org> # arch/riscv
+Tested on an Anbernic RG35XX-SP: a 30-second s2idle suspend resumes
+without the 16-second watchdog reset, and /dev/watchdog0 keeps working
+afterwards.
 
+Signed-off-by: Yang Siyuan <hsyysy@163.com>
+---
+Changes in v4:
+- Drop __maybe_unused again.  The W=1 report was against v1, which used
+  SET_SYSTEM_SLEEP_PM_OPS(); that macro expands to nothing when
+  CONFIG_PM_SLEEP=n, so the callbacks were unused.  v2 already replaced it
+  with DEFINE_SIMPLE_DEV_PM_OPS(), whose SYSTEM_SLEEP_PM_OPS() takes the
+  callback addresses through pm_sleep_ptr() even with CONFIG_PM_SLEEP=n,
+  so the functions are never unused.  The v3 change is reverted in v4.
 
-- Paulk
+Changes in v3:
+- Mark the PM callbacks __maybe_unused, in response to a W=1 report that
+  turned out to be against v1.  Reverted in v4.
+
+Changes in v2:
+- Use DEFINE_SIMPLE_DEV_PM_OPS()/pm_sleep_ptr() to avoid unused-function
+  warnings with CONFIG_PM_SLEEP=n.
+- Use watchdog_hw_running() instead of tracking running_at_suspend.
+- Drop the inaccurate ping-worker reference from the comment.
+
+ drivers/watchdog/sunxi_wdt.c | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/drivers/watchdog/sunxi_wdt.c b/drivers/watchdog/sunxi_wdt.c
+index a6500eb..3fdc7bf 100644
+--- a/drivers/watchdog/sunxi_wdt.c
++++ b/drivers/watchdog/sunxi_wdt.c
+@@ -225,6 +225,35 @@ static int sunxi_wdt_start(struct watchdog_device *wdt_dev)
+ 	return 0;
+ }
+ 
++/*
++ * The hardware watchdog has a maximum timeout of 16 seconds.  A system
++ * suspend easily lasts longer than that, and the watchdog core does not
++ * stop the hardware during system sleep.  Stop the watchdog explicitly
++ * while suspended and re-arm it on resume if it was running.
++ */
++static int sunxi_wdt_suspend(struct device *dev)
++{
++	struct sunxi_wdt_dev *sunxi_wdt = dev_get_drvdata(dev);
++
++	if (watchdog_hw_running(&sunxi_wdt->wdt_dev))
++		sunxi_wdt_stop(&sunxi_wdt->wdt_dev);
++
++	return 0;
++}
++
++static int sunxi_wdt_resume(struct device *dev)
++{
++	struct sunxi_wdt_dev *sunxi_wdt = dev_get_drvdata(dev);
++
++	if (watchdog_hw_running(&sunxi_wdt->wdt_dev))
++		sunxi_wdt_start(&sunxi_wdt->wdt_dev);
++
++	return 0;
++}
++
++static DEFINE_SIMPLE_DEV_PM_OPS(sunxi_wdt_pm_ops,
++				sunxi_wdt_suspend, sunxi_wdt_resume);
++
+ static const struct watchdog_info sunxi_wdt_info = {
+ 	.identity	= DRV_NAME,
+ 	.options	= WDIOF_SETTIMEOUT |
+@@ -307,6 +336,8 @@ static int sunxi_wdt_probe(struct platform_device *pdev)
+ 	if (IS_ERR(sunxi_wdt->wdt_base))
+ 		return PTR_ERR(sunxi_wdt->wdt_base);
+ 
++	platform_set_drvdata(pdev, sunxi_wdt);
++
+ 	sunxi_wdt->wdt_dev.info = &sunxi_wdt_info;
+ 	sunxi_wdt->wdt_dev.ops = &sunxi_wdt_ops;
+ 	sunxi_wdt->wdt_dev.timeout = WDT_MAX_TIMEOUT;
+@@ -348,6 +379,7 @@ static struct platform_driver sunxi_wdt_driver = {
+ 	.driver		= {
+ 		.name		= DRV_NAME,
+ 		.of_match_table	= sunxi_wdt_dt_ids,
++		.pm		= pm_sleep_ptr(&sunxi_wdt_pm_ops),
+ 	},
+ };
+ 
+
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
+-- 
+2.56.1
+
 
