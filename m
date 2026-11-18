@@ -2,68 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70D060A2612
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 08:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FD1606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 08:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZAnL88Ta;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eyZgpKqi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jvKFyuJ9;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P+cY+lTo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RgUy9ilEvlBEFEAO7I4cAOPp0gwuSrRk3EbpdwQzjWw=; b=ZAnL88TaQ1/i/U
-	BoBNyQoo05CRbY4lUYjOLsZyKbas8KCsJPn8hH5Z+q/LlwS9hfquDbQttiLjMq26MRcYIO3mOCdJN
-	mnoFDbD5QFimFAaOxQY9NJLWj1hRYNWa2HczecQv/oF9Gx99Z+I4jrvTGY0pOybiYkIFsiEX/6klm
-	xP6upX+do0OERWM80FRmGQR08VChnyHpyeHscKrei8K9l/SiQQ7EiCR0qO1xqnZxlahdl/Ktb0mF3
-	+yjYx1k8gqiXc25OeA9XqTVkFAgGvuv/Ma7Fb0MOWQMuS5e2rdYRoYFmV59/uSshUifVBeViQjTUb
-	8kF+5LXhn7TqDhomIy0w==;
+	List-Owner; bh=fDgvd2bO7Xp9qpMeR7EvFEr4dO1CNV2TCx7+94vVafk=; b=jvKFyuJ9aYyR/E
+	MPUVpwNZoC327xfIfEboakVlB/R786LW6g+4pElZjfAUVicTcVBogKzEmiDnUAlTdNHdLEVnh/HOA
+	wa6g5Kdh+cSRIRv7QNRLyKkR5F+XB5CWcMouHDD2Udtzv8H3qdkA1SUOa+1+H3PGAYQhDQ4eQOJmd
+	XKZN5XXGzUJkvvSyW4AcXz6QOrN4ogk3/1T/QhmjcY1LC1B5p5id00e8Cv5nm9NZXABKyaCZIC/hv
+	buQuXGrFDuvJ2UBRJlLhOHpT4aFJ5HNE5y6PWJWMthAnjWHzM+guDCtymms3xnCAmJo5W8GIG6dCK
+	Li2JAjWVPuqsjGnQGBdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTaqd-000000088z2-1UJE;
-	Wed, 18 Nov 2026 08:16:55 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTavJ-00000008APo-2Wsc;
+	Wed, 18 Nov 2026 08:21:45 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTaqb-000000088wn-2wnd;
-	Wed, 18 Nov 2026 08:16:54 +0000
+	id 1xTavI-00000008APg-2kTU
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 08:21:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CD44261F84;
-	Wed, 18 Nov 2026 08:16:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C6151F000C7;
-	Wed, 18 Nov 2026 08:16:47 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 9B4B661E12;
+	Wed, 18 Nov 2026 08:21:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40F7B1F000C4;
+	Wed, 18 Nov 2026 08:21:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794989812;
-	bh=RgUy9ilEvlBEFEAO7I4cAOPp0gwuSrRk3EbpdwQzjWw=;
+	s=k20260515; t=1794990103;
+	bh=fDgvd2bO7Xp9qpMeR7EvFEr4dO1CNV2TCx7+94vVafk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=eyZgpKqi1/eEwQCPJrV3JHvcJ7BJGBNdzKNHXVr3jKwh4sH1XYEDz2ntepME7DESg
-	 RynbIxG67nQEjpWK8wULhrtDLIgfzLw02BoIEZemabyGctWPxDh2ED0VNIWZ7Nn/ii
-	 oQEMNKOi8vzgwiCjW+VzZrLrH/7Lszdd8R9FBpF6hLobiDEl9x5afuwm6I6NTLQ7XX
-	 W9Xo3n4885KmOX0PxkdYbqvJFTTV6b/fkalC3u5gEJXdvnsmvWR32N2eFpqGHpg2a2
-	 hyGKW4gdmpSFb5UQH/+v4aMbk0k9fpXxTssQD0m1F7/Ed1YmmfsiR9haZJMrES+4Zh
-	 GEib5Gvt6vpSA==
-Message-ID: <3a9e999f-5ff5-422c-aa65-b8560dca84bc@kernel.org>
-Date: Wed, 18 Nov 2026 09:16:46 +0100
+	b=P+cY+lToslaZalIsnJyT7cQJ8dOg6T2eNMw0sOcPi6FeVR7PRVeEvNFxCw0cgjsCg
+	 9x3ImY10mVKVdPd8QS/H7WO4AjwhFa7XlTCvUNBg4H/ZSmFIlXd8k9WQby9UewHwwx
+	 ojbFmmc7GBMw/dIEINlxzuzkbIN5j124FDP0DCXmH3EnG6DWNWiqLCcWS498AGCVPv
+	 8claF5gHCGrv8mt4lfBYmWmJo0nBDKRya1YH6MuzwIz6ZTqwiaBNPQSsyGJZ//J/JM
+	 lkzR25nqdlS4LcSG2r4+hnr+tao56xp1I4HbLvr16FBbufyc/ulsJUikhd/wx8lvQv
+	 AldS6b0GSC3vQ==
+Message-ID: <cd8934e9-8feb-43fb-92b6-9033fef92af7@kernel.org>
+Date: Wed, 18 Nov 2026 09:21:37 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/9] dt-bindings: phy: rockchip,rk3588-mipi-dcphy:
- Select TX or RX, add phy-type
-To: Jason Yang <jason98166@gmail.com>, Vinod Koul <vkoul@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Guochun Huang <hero.huang@rock-chips.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Michael Riesch <michael.riesch@collabora.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
-References: <20261118-dcphy-rx-v1-v7-0-8de1adac3a74@gmail.com>
- <20261118-dcphy-rx-v1-v7-2-8de1adac3a74@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: samsung: Document greatlte board
+ binding
+To: nhansp <nhan.094.vn@gmail.com>, Peter Griffin <peter.griffin@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+References: <20261116-upstream-greatlte-dts-v1-0-768d49fb7d85@gmail.com>
+ <20261116-upstream-greatlte-dts-v1-1-768d49fb7d85@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,7 +104,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261118-dcphy-rx-v1-v7-2-8de1adac3a74@gmail.com>
+In-Reply-To: <20261116-upstream-greatlte-dts-v1-1-768d49fb7d85@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -130,53 +125,14 @@ X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 18/11/2026 06:55, Jason Yang wrote:
-> The Samsung MIPI D-/C-PHY block on RK3588 and RK3576 has a transmitter
-> for DSI and a receiver for CSI-2, and the DSI host and the CSI-2 host
-> can use the transmitter and the receiver at the same time. The single
-> cell of this binding selects the mode and refers to the transmitter, so
-> the receiver cannot be described.
+On 16/11/2026 15:50, nhansp wrote:
+> Add a compatible for the Samsung Galaxy Note8 (SM-N950N), codenamed
+> greatlte, which is based on the Exynos 8895 SoC.
 > 
-> Change the cell to select the transmitter or the receiver. The
-> transmitter and the receiver cannot operate in different modes [1], so
-> the optional phy-type property of the PHY node sets the mode for the
-> whole block, D-PHY by default:
-> 
-> 	/* the MIPI DSI host, driving the transmitter */
-> 	phys = <&mipidcphy0 PHY_DIRECTION_TX>;
-> 
-> 	/* the MIPI CSI-2 host, driving the receiver */
-> 	phys = <&mipidcphy0 PHY_DIRECTION_RX>;
-> 
-> For C-PHY the consumers stay the same and the PHY node gets:
-> 
-> 	phy-type = <PHY_TYPE_CPHY>;
-> 
-> Existing DTs on a newer kernel: PHY_TYPE_DPHY and PHY_TYPE_CPHY remain
-> valid as deprecated values. They select the transmitter and imply
-> phy-type = <PHY_TYPE_DPHY> or <PHY_TYPE_CPHY> respectively, so nothing
-> changes for them.
-> 
-> New DTs on an older kernel: an ABI break. The older kernel ignores
-> phy-type and takes any cell value as the mode of the block. A DSI node
-> with PHY_DIRECTION_TX therefore gets no display, and a CSI-2 node with
-> PHY_DIRECTION_RX gets no camera.
-> 
-> [1] RK3588 TRM: section 22.1 (overview): "The TX and RX only support
->     operate in the same PHY mode."
-> 
-> Suggested-by: Michael Riesch <michael.riesch@collabora.com>
-> Link: https://lore.kernel.org/r/94d47cab-10c6-4ec3-84a0-3bddc9d67f5f@collabora.com
-> Signed-off-by: Jason Yang <jason98166@gmail.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
-> Tested-by: Quentin Schulz <quentin.schulz@cherry.de> # RK3588 Tiger CSI1 2-lane IMX219, CSI0 2-lane OV5675+DSI
+> Signed-off-by: nhansp <nhan.094.vn@gmail.com>
 
-Please drop the tag, this did not happen. In the future, please add only
-applicable tags. Otherwise share how this code was executed and tested
-on the actual hardware (make process, like building code, is obviously
-not testing).
-
+Please read submitting patches and understand what you are signing off.
+We don't take anonymous contributions.
 
 Best regards,
 Krzysztof
