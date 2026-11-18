@@ -2,88 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8678606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 20:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0709D606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 20:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x5KUgAkY;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ILw8sBLc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=szfz72F+;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VXyk6zvn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7xlWmwrLiTN9oWrbWWc4bJ9ER2WNpvMfBsQ0dHA4HLk=; b=x5KUgAkYZDAtkVtMv/XiT8j8Zu
-	fhwuLIBLOAGBIYucGFdoznmtNBYcJTzM1zuDNlpxQ4+fA54dx/iC6Xr/Uhk9r7NGhQ3yuOsw/hKNo
-	gqgzNeR8m1RRJG62hV0AgZ0s1oJ7VG9x59cqlOKPp4eld+l38EqDiUwUKPh7oSwb3IfTEVxhgzNnL
-	cPwwyYQZuTe4OqvPK4EvbiuEBeFpTEmb4IOqiF3vL1ZgLdnfpgxicYnJewIJYuQAqsdWC4a3v36bW
-	FA8zK8gnvV9ORpGWWrpV6MjqMCkvIGeHgy3F9/Uxx4vCTDfS1rwfVEccBH465iVlfdL2iqZqY4euE
-	Fp2dwC7g==;
+	bh=CgfZZyH7KabdKr1+wIIK9g0k0FRDxF2NmtOKcQevUd8=; b=szfz72F+60ebW77p8dCei04R0z
+	TVdmbRWZB3DBSgf+XTw5a8T95OuqdDOIN4EChlNNF9LnWl/n6zKbiXhNjLCamRDLLOvYw0itK7DGx
+	Vq/q9/7R4rFY2XYUMYxKXDrBDw0HFCd9D0b/i3FZPz8/d/9YgTK28if8wT4yxIxzn9Rr1R/WW9FLg
+	GI7VEds+KQO4qjDQOidn43/EWg+VLCD88sVmfDxIoS78CWa2GHG3Op0VTWm5oHZk+x37s1SQeicDM
+	6/cWn1n1PzYPcV9cBEheBLFG4gXOa9atgcB/ZLHFNEkNtPfaX5m7CkobWHOIkSAX3D1ZU699qpAMR
+	hKebK1qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTmOe-0000000AEhA-2dlo;
-	Wed, 18 Nov 2026 20:36:48 +0000
-Received: from mail-oi1-x245.google.com ([2607:f8b0:4864:20::245])
+	id 1xTmfv-0000000AGQP-2nSD;
+	Wed, 18 Nov 2026 20:54:39 +0000
+Received: from mgamail.intel.com ([192.198.163.9])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTmOO-0000000AEbU-0Bf5
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 20:36:33 +0000
-Received: by mail-oi1-x245.google.com with SMTP id 5614622812f47-4ea2c058e67so1364898b6e.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 12:36:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795034189; x=1795638989; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=7xlWmwrLiTN9oWrbWWc4bJ9ER2WNpvMfBsQ0dHA4HLk=;
-        b=ILw8sBLcUjEf0Drj9gn8ycxH7rywqOz27RrnJ6JwNIvCx9hJZazeRxr+iQHx2YIYOd
-         36E4lSJbtqq7m59DAWwoHOkoKSqfydfypniki0ZUTRryBxi+K1nROQeSXgcogXCWJDqd
-         fewnlKyKRsetG9eWDbhe2IgEnTF24kEf+3DWBI+XOjrndJmcUd8LsACqWoXRrRmrpuKq
-         44TMMfxGO5T9fiAt7RTPNZFlDnNnm9dzPzcGgRJORp2E5RZfggLv5JHuSXxFQmK5U2Nd
-         h0j7bmD4QIm/CDQ4t8fTVVkJZrDVzX0sfYsFEqmK9sElIcoPG3xYNb51MryTQ4IgRxNy
-         DETA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795034189; x=1795638989;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=7xlWmwrLiTN9oWrbWWc4bJ9ER2WNpvMfBsQ0dHA4HLk=;
-        b=zOqCsjcqJwQhgILetXN+e/YQK359XQIIoFsYPFqmEdVg+371eXR3atuXten52qBhST
-         yaR/ANlhaQ5kU6d8ZQDuKkLi3OgUoBuB0RpyugEE4c2mG5eeS/AE7hJRrTBLf+Rdn36e
-         48Hg+pmQjhgn5tIJMjCin4l5ckw8ig8zrMXhmTRITFTWsYckR8AneT+LxMhLiOy8LrTU
-         N0/AU55XScU5cVZn3BjEOFI/heBC3u/JQ9cuageXQWAvjurYU/+Lbp77Hnkp6Z8B73Hn
-         e9LQ/phFvhZIreKSKCIE6ZXLUM+PiaZRgl+jCJozfLP4oN7+6XjmlzlkOY5uCai9b0EF
-         5i2A==
-X-Forwarded-Encrypted: i=1; AL+hErFXZtZCo6ALM4mIVbFzWHpjJhWhzAtcxKmhq+PSohGPZkosMprbiewSkDIQspZXWdS6unebd109L0l1KgmMnT30@lists.infradead.org
-X-Gm-Message-State: APuU4Z/Zxb03R0y+LdPpH8NNp87RB7UcxrbUuNx8NYuXQm9m+sdPZG1S
-	5NDBMZUw93XSM8j33bprchuJDmBMtUoT1SKxd/beRrw+6j/hbOXyszPNt7YfU1BOq5FZ4tmuGXn
-	2nftXD/MdNB0QBg5SVAEtYAKK/g==
-X-Received: from iobn34-n2.prod.google.com ([2002:a05:6602:c6e2:20b0:9c4:bd6e:a838])
- (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:1927:b0:4af:5d69:1cb4 with SMTP id 5614622812f47-5773cd2176emr4714167b6e.15.1795034188500;
- Wed, 18 Nov 2026 12:36:28 -0800 (PST)
-Date: Wed, 18 Nov 2026 20:36:25 +0000
-In-Reply-To: <20261118203625.743428-1-coltonlewis@google.com>
+	id 1xTmfs-0000000AGPi-1Ckn;
+	Wed, 18 Nov 2026 20:54:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795035276; x=1826571276;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3Z8yZI/D4aXBD6yY6mwl1Kv3eFQ1J90JCFRfS4YRBT4=;
+  b=VXyk6zvnWtJaxA4FbrzTwi9wPkJQPvHdYeckQwzRfK8ZyUCRq82ml91P
+   hUiZQ0vsmdnge+IZoaLrgyKJunC7dfdRlYNseUyx5dzH3HvHhoOmOHNQr
+   lm1KGLv6/aob9yf5NQeITlSf56KixOp9PrsGIManH9p7CjtvCk7Z2Ifob
+   03mTp8RQkqtWXLfKij9chqSZw3ti+bxCIBFC0399H+CXdNTjsD+u1CBrY
+   Af59IYk7eSWa9489J5A3qMtng+5np+ARDRl1ULJINrjrqPRcHTfdT/Vr2
+   LLFO+AT3ctsXv0shoscUnYnsUjCJEYaLh1OjZ5bV8+8LeYfxILObQcQ6I
+   w==;
+X-CSE-ConnectionGUID: SJSkipwHSvCIKenG77bJww==
+X-CSE-MsgGUID: IzomxjGVToWExLujVy626w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3750867"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="3750867"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2026 12:54:35 -0800
+X-CSE-ConnectionGUID: zFQUWE4eQdiLMAAJFqq2rQ==
+X-CSE-MsgGUID: za9zUMc1RhSZjEpYJWoLOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="10460438"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 18 Nov 2026 12:54:32 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1xTmfl-00000001ELO-0Yml;
+	Wed, 18 Nov 2026 20:54:29 +0000
+Date: Thu, 19 Nov 2026 04:54:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel@collabora.com,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCH v3 6/9] PM / devfreq: rockchip-dfi: make RK3588 use its
+ clocks
+Message-ID: <202611190436.kIOKt8jJ-lkp@intel.com>
+References: <20261117-rockchip-dfi-rk3588-cleanups-and-rk3576-support-v3-6-32ff1546b0e4@collabora.com>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261118203625.743428-1-coltonlewis@google.com>
-X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
-Message-ID: <20261118203625.743428-3-coltonlewis@google.com>
-Subject: [PATCH v3 2/2] KVM: arm64: selftests: Verify HCR_EL2.NV1 is RES0 when
- E2H0 is NI_NV1
-From: Colton Lewis <coltonlewis@google.com>
-To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
-Cc: Leonardo Bras <leo.bras@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
-	Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
-	Fuad Tabba <fuad.tabba@linux.dev>, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Colton Lewis <coltonlewis@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261117-rockchip-dfi-rk3588-cleanups-and-rk3576-support-v3-6-32ff1546b0e4@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_123632_183246_ED380F8E 
-X-CRM114-Status: GOOD (  10.05  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261118_125436_423055_8D75CF29 
+X-CRM114-Status: GOOD (  14.14  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,62 +100,45 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In a VHE-only EL2 guest (KVM_ARM_VCPU_HAS_EL2 without
-KVM_ARM_VCPU_HAS_EL2_E2H0), KVM advertises ID_AA64MMFR4_EL1.E2H0 as
-NI_NV1, making HCR_EL2.E2H RES1 and HCR_EL2.NV1 RES0.
+Hi Sebastian,
 
-Extend hello_el2 to attempt clearing HCR_EL2.E2H and setting HCR_EL2.NV1
-from userspace via KVM_SET_ONE_REG, verifying that HCR_EL2.E2H remains
-RES1 and HCR_EL2.NV1 is masked to RES0. Add a comment explaining why the
-check is performed from userspace rather than inside the guest.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Colton Lewis <coltonlewis@google.com>
----
- tools/testing/selftests/kvm/arm64/hello_el2.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+[auto build test WARNING on chanwoo/devfreq-next]
+[also build test WARNING on chanwoo/devfreq-testing next-20261116]
+[cannot apply to rockchip/for-next robh/for-next linus/master v7.4-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/tools/testing/selftests/kvm/arm64/hello_el2.c b/tools/testing/selftests/kvm/arm64/hello_el2.c
-index bbe6862c6ab16..3bd3596f5fb1e 100644
---- a/tools/testing/selftests/kvm/arm64/hello_el2.c
-+++ b/tools/testing/selftests/kvm/arm64/hello_el2.c
-@@ -45,6 +45,7 @@ int main(void)
- 	struct kvm_vcpu *vcpu;
- 	struct kvm_vm *vm;
- 	struct ucall uc;
-+	u64 hcr;
- 
- 	TEST_REQUIRE(kvm_check_cap(KVM_CAP_ARM_EL2));
- 
-@@ -66,6 +67,20 @@ int main(void)
- 		TEST_FAIL("Unhandled ucall: %ld\n", uc.cmd);
- 	}
- 
-+	/*
-+	 * Verify RES0/RES1 enforcement from userspace rather than inside
-+	 * the guest. From the guest's perspective RESx bits may be
-+	 * stateful (reading back as written) even though their value is
-+	 * ignored, whereas KVM_SET_ONE_REG applies the effective masks
-+	 * directly.
-+	 */
-+	hcr = vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_HCR_EL2));
-+	vcpu_set_reg(vcpu, KVM_ARM64_SYS_REG(SYS_HCR_EL2),
-+		     (hcr & ~HCR_EL2_E2H) | HCR_EL2_NV1);
-+	hcr = vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_HCR_EL2));
-+	TEST_ASSERT(hcr & HCR_EL2_E2H, "HCR_EL2.E2H should be RES1");
-+	TEST_ASSERT(!(hcr & HCR_EL2_NV1), "HCR_EL2.NV1 should be RES0");
-+
- 	kvm_vm_free(vm);
- 	return 0;
- }
+url:    https://github.com/intel-lab-lkp/linux/commits/Sebastian-Reichel/dt-bindings-devfreq-event-rockchip-dfi-add-clocks-to-rk3588/20261117-163537
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git devfreq-next
+patch link:    https://lore.kernel.org/r/20261117-rockchip-dfi-rk3588-cleanups-and-rk3576-support-v3-6-32ff1546b0e4%40collabora.com
+patch subject: [PATCH v3 6/9] PM / devfreq: rockchip-dfi: make RK3588 use its clocks
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20261119/202611190436.kIOKt8jJ-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 16.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261119/202611190436.kIOKt8jJ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202611190436.kIOKt8jJ-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: drivers/devfreq/event/rockchip-dfi.c:139 struct member 'num_clks' not described in 'rockchip_dfi_variant'
+>> Warning: drivers/devfreq/event/rockchip-dfi.c:139 Excess struct member 'num_clk' description in 'rockchip_dfi_variant' (did you mean one of: 'num_clks')
+>> Warning: drivers/devfreq/event/rockchip-dfi.c:139 struct member 'num_clks' not described in 'rockchip_dfi_variant'
+>> Warning: drivers/devfreq/event/rockchip-dfi.c:139 Excess struct member 'num_clk' description in 'rockchip_dfi_variant' (did you mean one of: 'num_clks')
+
 -- 
-2.56.1.750.gf70dc682cf-goog
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
