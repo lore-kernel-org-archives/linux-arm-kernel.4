@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30C0606A333
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF01360A262E
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 10:52:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PD9l2kBx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EJlr6Yjt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nfphgxqv;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KGNY2nH/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7gsWmvqHjORY7K1m06+fKawyHuEa0Hrt5rL694njs3E=; b=PD9l2kBxCPVbC4r9fZUssUtb5A
-	U9Mdd6grPr2ZCk7ooHBBAIRW4abt4xos7hs+mY2NimkaGtUu4LAsmt7mzx71LU0ZeTQMCdQxBVn5A
-	Sqru/9QrHPIl+254VMM1vZg0WFrVZ37dXPrcFKPA7/6Vc2XaWELPQSfbKHUltKAryPDp8M9bqEXue
-	UnpC8gNnGsGUsWqSjaIU7QmxN6+6UbSo+GCW9x6okgZqau/CZBuWFw4pgrguKGDwI/5GGcawBEzMS
-	tfr6UA9RUPYTLYUSDHloTiEtp4uGyveICA27UwrqZcIhQsl5k45pI9NiaZAVeXA/ZnRNbkz6IADWE
-	N3+qPqcQ==;
+	bh=E3osvfmeF/jQrh3Wedc0Un28ejx+8cAJcxtwjUsQUnc=; b=nfphgxqvY+2pGoshs+wVZheJcT
+	gu97/dNNfk5o00e3tSSdPeTA3Ns2V9fqeahzQzzCZswr170AA0/nHW1/Dp5b3CMq9AcrcBen+Dv8R
+	Ah6hK4pZ0I2/geH1IZzISwK3st3THeSlYnRfoXnWKfJih7Uvdn4eJYBHlTDUG8d0n9HO5TYCEjPlr
+	aSdT+vxT62pJgrvGp7R/79nqsA4av5rJq1w7y6MfXCjHEH/aBkby9vOAkNd87xyQak2QvO0AGIx7y
+	DL/GHURX/c2sMz/3/Al3ASULB+fPNvTJyWunBCkFa6whPT+67y4dcWVAINAXNcN861L5oJXLp4dc4
+	ZRetJdWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdHB-00000008d1e-1Koq;
+	id 1xTdHB-00000008d1y-1oqu;
 	Wed, 18 Nov 2026 10:52:29 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdH9-00000008d0a-3mX8
+	id 1xTdH9-00000008d0b-3mVF
 	for linux-arm-kernel@lists.infradead.org;
 	Wed, 18 Nov 2026 10:52:27 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BE2C941210;
-	Wed, 18 Nov 2026 10:52:26 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7984D4481B;
+	Wed, 18 Nov 2026 10:52:27 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794999146;
-	b=OInwZ1SS1WMPlSC/VhRWGKIGRSxDHkfx/7cnGbPP8b/Nx1VQ5lP+Gu1KY2JoInLQETVh
-	 hbnvzH01M0TmymWzEGr+JKiTMgDb59MI+9U/Lf6RS37cra25Mu2l9i/1sna/n4jnCBupg
-	 TeO+WKqvkxWMgDRvuXVfiJht4WZ/z4M4IVgtqWR2DSVfc4jf40LbwraLLGF3mmBNz06Sg
-	 MVifEzCuU2/REqqcc2PhxzjxpoUG28ZOzSuvD2mQBaTGCw1OkLolEbAvGnhaQbvhz7H0S
-	 /VrpgTmKnweawoYMNdF8MiPhcVe5ElS8TnLgtGCjdYG/IvO+sqUsPj79SK6XwZRgLNA==
+	t=1794999147;
+	b=KyeEJLZug1bVLrzp9ukOsnDz4NJ3WBQmD9LaDUdlvfUcxErdnInchGVpeDSKK+sm5TtN
+	 iq1gUzXazwGLBazJxDGZhjcolnYlqHjAfc3GEqIk3beFCSJr/xMPFEBYulxNXcuEGWG+E
+	 5IPiTCUeY16sCII/K/12BKmSkYTVS9Xn+3GoNcmcWkOMrB+7C9JR9X8V4uRhbwwcX+U0v
+	 lyzfkfd0lzqvLeSAwPPwmRK5NefQbfr48xipra/g3MRl9Wj9EYW4z/cOrCPYjyY6N2tcT
+	 f0P5W5mdB/iD0dbiPluUERtjWlBL/pJf7tdXqy1r/uyx06jDre5KWvM8oJ5xEpXPgjQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794999146;
+	c=relaxed/relaxed; t=1794999147;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=7gsWmvqHjORY7K1m06+fKawyHuEa0Hrt5rL694njs3E=;
-	b=UaEfz8RCmR/YO56PJcgeFX+JauR+Ie3t4217F5XNPPStGX3JNTUQJ4Y65iNrRnGMEMIW
-	 c/M7kpglmP97K1oCkYJ+g4Ek77bBEx6jPUyl41ZhzEkFEvs1+vPPUw+pNGHps1b58PcnO
-	 YwA2FRmGT9hrdFUQxQAdmfxN0n6X7NUdxGPI2WBQhXXRu+ZY+ZRvBHx28DtuHDAUWP0Wx
-	 Jea3IVgBW8CgOhZTVhiW9UAbVN/CidMPfL4AlFer7LVY9cRMI62qbA04hpVJd/XqFo9UD
-	 W4qOFVHI3nS5UsLvhLruV/+r5o4lspV5VQLy3TEOUNWCq1zGcTd5AgAlKQb4uPp7nSg==
+	bh=E3osvfmeF/jQrh3Wedc0Un28ejx+8cAJcxtwjUsQUnc=;
+	b=Sipv9VaGTkINXx0fAzF/iyO9Dh2wtOybLo7pJ7PLqmoCEBBGwjM9krvaUMChoBIngtqw
+	 6tdelS/C0l2+fycgMHvCdGKxcB8/HiMz7hvWgrgqAreM9U8r3svqiCWlnA0fxHEY61eL3
+	 5DY/RUhlLyG7+IOnhzDsYEyY0pAh5xhgFPTQ6rvrTA2LRQI0BGy2561dKeB2uSZS0T8YF
+	 iXZfZC9+zvjpyK1TszaR7UphvKVpwmG0xDkSndb5ANcJ8xKCGv+3qv2jSGc6I6qo6QS6B
+	 J0E6yarlUd/J3TMP7g6OWl+Ca4ppoJfWvcwyLv25OKJtKa8B7+c4tBDsgBHlW+VE+Tw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E33121F000C5;
+	by smtp.kernel.org (Postfix) with ESMTPS id EBFF61F000C6;
 	Wed, 18 Nov 2026 10:52:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794999146;
-	bh=7gsWmvqHjORY7K1m06+fKawyHuEa0Hrt5rL694njs3E=;
+	s=k20260515; t=1794999147;
+	bh=E3osvfmeF/jQrh3Wedc0Un28ejx+8cAJcxtwjUsQUnc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=EJlr6Yjty1SPLK9BRj7k1c6KYMpBSMsHX7PFgWZPs4Gi3QF1NkvHFRjAtK1iFYHYd
-	 rvicB05dCV34uSyXIJ9/O6bjueE+4PDIJ7Gp2jxQ1CGD59uTJAJnMrwR/C9Jt2arOI
-	 KGMgzeP3QGv0GWFDw827/bftGeWwErtMoZQm/hxqBAraFhXPffnTKWIMGtK5jwWFyT
-	 KFFZ14MqPqZqZZNRVZAkcZocQQwb2pfI9sYvpH0jDsVOpRcMsSZ0vVjYQYp+mErGaw
-	 NW9SI1MGIg8AErKWdn+uokrrb3kwpSrxDNPGWTSHhHtbfbx5EpvyDw/JG0tpuXTrWP
-	 FPWNHbdkvQk4Q==
+	b=KGNY2nH/wdEXd9FAhwn/Cf88a0tEcwXRE9VSnO2cqeHhgAUZ6Zy1k2JFi+ZR66mbk
+	 wK85vOHBY2K8czhTBOq9qNgiVXyOk51B28jX2dbka4YTo9ZvqhUFRNZJp3/ih4geoH
+	 VIA1wnzmrX2JyZfccwJ6wLgaDWOpF7rFARri3IpyBvFSruqAD20MjxkCmwzRLv1Pti
+	 4J5iJNEMl5YYajHx3oHrIrMaZ4xjiENV8wmuFHQsIEifKOMq+RdrGrCdZ0a1JWtCGR
+	 xf3CzRIauydj6wJuENzos1GKB8r3j+gYFodoxPZqaguN4R6jE+QUQAbLMGOKgeq0+q
+	 UZ3fkCCqYaecQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 614834AD0C;
+	by lkml.kernel.org (Postfix) with ESMTP id 78CCE4AD14;
 	Wed, 18 Nov 2026 10:52:25 +0000 (UTC)
 From: Rajan Yadav via B4 Relay <devnull+rajanyadav0307.gmail.com@kernel.org>
-Date: Wed, 18 Nov 2026 04:52:24 -0600
-Subject: [PATCH v2 1/6] dt-bindings: opp: h6: Add A133 operating points
+Date: Wed, 18 Nov 2026 04:52:25 -0600
+Subject: [PATCH v2 2/6] cpufreq: sun50i: Move nvmem cell reading into a
+ helper
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261118-a133-series-v2-1-8bcec9c9aadf@gmail.com>
+Message-Id: <20261118-a133-series-v2-2-8bcec9c9aadf@gmail.com>
 References: <20261118-a133-series-v2-0-8bcec9c9aadf@gmail.com>
 In-Reply-To: <20261118-a133-series-v2-0-8bcec9c9aadf@gmail.com>
 To: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>, 
@@ -95,14 +96,14 @@ Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
  linux-kernel@vger.kernel.org, Alexander Sverdlin <alex@sverdlin.org>, 
  Cody Eksal <masterr3c0rd@epochal.quest>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
+ Paul Kocialkowski <paulk@sys-base.io>, kernel test robot <lkp@intel.com>, 
  Rajan Yadav <rajanyadav0307@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794999144; l=6454;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794999144; l=3315;
  i=rajanyadav0307@gmail.com; s=20261103; h=from:subject:message-id;
- bh=t1FpjYwSX+5T/HhM/HdhDFg5tta8TvLt0nYNWKvJh/Y=;
- b=s/+eOpb58cAPqfEPoRIndBMnjW5N+hQVNtb5yB7TgCrvO8dxB3q8zH55rGPr+O+5mLo8WdCJb
- n6oj4pWjl3MDvSbHtUcjNY2mL5SZTWLcmNVOG5j6EiPwwquLn5YXLyu
+ bh=vQMAtGZJDRtx69UU5Evyhp22Ohka9g8vqRSa6Av0uww=;
+ b=/iR630XagWCGKfxs4w50SDK7/FVOhyuA5FzDZPxddcU6aWe/8piODyfVMs7rA3b/D4urOCi82
+ 64oUMcsnWoBAn6Jv6brrnV5NomY/KceOQyiYDxirESf4l6e+iIJd57/
 X-Developer-Key: i=rajanyadav0307@gmail.com; a=ed25519;
  pk=4ZPeiP5qrv2b44q/Obxi2koUS70Q6npbttJnpUoTlgg=
 X-Endpoint-Received: by B4 Relay for rajanyadav0307@gmail.com/20261103 with
@@ -130,164 +131,112 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Rajan Yadav <rajanyadav0307@gmail.com>
 
-The vendor BSP for the A100/A133 family (sun50iw10) selects the CPU
-speed grade from four efuse fields and the die revision: the speed bin
-(SID offset 0x1c, which also holds the ICPU current), the chip marking
-ID (0x00), a value programmed at production that the BSP calls PCPU
-(0x20) and a bin extension bit (0x28). It knows 11 grades, a0-a6 and
-b0-b3. The A100 operating points describe only three speed bins, taken
-from 0x1c.
+The A133 speed grade needs several efuse cells, but the cell reading
+is open coded in sun50i_cpufreq_get_efuse() for a single cell. Move it
+into sun50i_cpufreq_read_cell(), which takes the cell name, so the next
+patch can read the A133 cells by name.
 
-Add allwinner,sun50i-a133-operating-points for this. In its tables the
-N of opp-microvolt-speedN is the vendor grade: 0-5 are a0-a5 (a6 has
-the same OPPs and voltages as a5) and 6-9 are b0-b3. The four cells are
-named, with the speed bin first. The meaning of the PCPU field is not
-documented; the name follows the vendor BSP.
+No functional change: the existing users read the first cell, as
+before, with the same length check, byte order and error message. The
+raw bytes are now held in a __le32, the type le32_to_cpu() expects,
+which also removes the sparse warning "cast to restricted __le32" that
+the kernel test robot reported.
 
-Indices 0-2 are the vendor grades a0-a2, which have the voltages of the
-three A100 speed bins. So allwinner,sun50i-a100-operating-points is a
-valid fallback: software that knows only the A100 compatible reads the
-first cell, selects one of speed0-2 with the A100 rule and gets the
-OPPs and voltages of the A100 table today, with 1008 instead of
-1080 MHz. That is the A100 selection, not the vendor's; the new
-compatible adds the vendor's. The binding requires indices 0-2 to stay
-usable this way.
+Claude Code (Anthropic) drafted this refactor and its message; I
+reviewed and tested it.
 
-The new compatible is SoC specific, like the root compatible
-allwinner,sun50i-a133; the A100 compatible stays as it is for existing
-DTBs. The schema now also limits the other compatibles to the single
-unnamed cell that all in-tree users have.
-
-Claude Code (Anthropic) drafted this change and its message from the
-vendor BSP sources (field layout and numbers only, no code copied); I
-reviewed it and checked it with dt_binding_check and dtbs_check.
-
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202603021703.aBD0w99y-lkp@intel.com/
+Reviewed-by: Alexander Sverdlin <alex@sverdlin.org>
 Tested-by: Alexander Sverdlin <alex@sverdlin.org>
 Signed-off-by: Rajan Yadav <rajanyadav0307@gmail.com>
 ---
- .../opp/allwinner,sun50i-h6-operating-points.yaml  | 94 ++++++++++++++++++++--
- 1 file changed, 86 insertions(+), 8 deletions(-)
+ drivers/cpufreq/sun50i-cpufreq-nvmem.c | 55 ++++++++++++++++++++--------------
+ 1 file changed, 33 insertions(+), 22 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-index 75ab552f6ec..5fa6a1074da 100644
---- a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-+++ b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-@@ -16,24 +16,70 @@ description: |
-   Voltage Scaling Tables define the voltage and frequency values based
-   on the speedbin blown in the efuse combination.
+diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+index 9261d148a16..34c0897c22c 100644
+--- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
++++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+@@ -31,6 +31,34 @@ struct sunxi_cpufreq_data {
+ 	u32 (*efuse_xlate)(u32 speedbin);
+ };
  
-+  With allwinner,sun50i-a133-operating-points, the speed bin index N of
-+  opp-microvolt-speedN and opp-supported-hw is the speed grade of the
-+  Allwinner BSP: 0-5 are a0-a5 (a6 uses the a5 values) and 6-9 are b0-b3.
-+  Indices 0-2 must be usable as the A100 speed bins 0-2, because software
-+  using the A100 fallback compatible selects only these.
++static int sun50i_cpufreq_read_cell(struct device *cpu_dev,
++				    struct device_node *np, const char *id,
++				    u32 *value)
++{
++	struct nvmem_cell *cell;
++	void *buf;
++	size_t len;
++	__le32 tmp = 0;
 +
- allOf:
-   - $ref: opp-v2-base.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: allwinner,sun50i-a133-operating-points
-+    then:
-+      properties:
-+        nvmem-cells:
-+          minItems: 4
-+      required:
-+        - nvmem-cell-names
-+    else:
-+      properties:
-+        nvmem-cells:
-+          maxItems: 1
-+        nvmem-cell-names: false
++	cell = of_nvmem_cell_get(np, id);
++	if (IS_ERR(cell))
++		return dev_err_probe(cpu_dev, PTR_ERR(cell),
++				     "Could not get nvmem cell\n");
++
++	buf = nvmem_cell_read(cell, &len);
++	nvmem_cell_put(cell);
++	if (IS_ERR(buf))
++		return PTR_ERR(buf);
++
++	if (len <= 4)
++		memcpy(&tmp, buf, len);
++	*value = le32_to_cpu(tmp);
++
++	kfree(buf);
++
++	return 0;
++}
++
+ static u32 sun50i_h6_efuse_xlate(u32 speedbin)
+ {
+ 	u32 efuse_value;
+@@ -191,12 +219,9 @@ static bool dt_has_supported_hw(void)
+ static int sun50i_cpufreq_get_efuse(void)
+ {
+ 	const struct sunxi_cpufreq_data *opp_data;
+-	struct nvmem_cell *speedbin_nvmem;
+ 	const struct of_device_id *match;
+ 	struct device *cpu_dev;
+-	void *speedbin_ptr;
+-	u32 speedbin = 0;
+-	size_t len;
++	u32 speedbin;
+ 	int ret;
  
- properties:
-   compatible:
--    enum:
--      - allwinner,sun50i-a100-operating-points
--      - allwinner,sun50i-h6-operating-points
--      - allwinner,sun50i-h616-operating-points
-+    oneOf:
-+      - enum:
-+          - allwinner,sun50i-a100-operating-points
-+          - allwinner,sun50i-h6-operating-points
-+          - allwinner,sun50i-h616-operating-points
-+      - items:
-+          - const: allwinner,sun50i-a133-operating-points
-+          - const: allwinner,sun50i-a100-operating-points
+ 	cpu_dev = get_cpu_device(0);
+@@ -214,25 +239,11 @@ static int sun50i_cpufreq_get_efuse(void)
  
-   nvmem-cells:
-     description: |
--      A phandle pointing to a nvmem-cells node representing the efuse
--      register that has information about the speedbin that is used
--      to select the right frequency/voltage value pair. Please refer
--      to the nvmem-cells bindings in
-+      Phandles pointing to nvmem-cells nodes representing the efuse
-+      registers that have information about the speedbin that is used
-+      to select the right frequency/voltage value pair. Please refer to
-+      the nvmem-cells bindings in
-       Documentation/devicetree/bindings/nvmem/nvmem.yaml and also the
-       examples below.
-+    minItems: 1
-+    items:
-+      - description:
-+          Speed bin, or the chip marking ID on the H616. With the A133
-+          compatible, bits 15:12 are the CPU bin and bits 11:0 the ICPU
-+          current in units of 0.1 mA.
-+      - description: Chip marking ID.
-+      - description:
-+          Value programmed at production, called PCPU by Allwinner. Bits
-+          11:0 are used together with the ICPU current to select the speed
-+          grade; their unit is not documented.
-+      - description:
-+          Bin extension. Bit 31 is used to select the speed grade.
-+
-+  nvmem-cell-names:
-+    items:
-+      - const: bin
-+      - const: marking
-+      - const: pcpu
-+      - const: bin-ext
+ 	opp_data = match->data;
  
-   opp-shared: true
+-	speedbin_nvmem = of_nvmem_cell_get(np, NULL);
+-	if (IS_ERR(speedbin_nvmem))
+-		return dev_err_probe(cpu_dev, PTR_ERR(speedbin_nvmem),
+-				     "Could not get nvmem cell\n");
+-
+-	speedbin_ptr = nvmem_cell_read(speedbin_nvmem, &len);
+-	nvmem_cell_put(speedbin_nvmem);
+-	if (IS_ERR(speedbin_ptr))
+-		return PTR_ERR(speedbin_ptr);
+-
+-	if (len <= 4)
+-		memcpy(&speedbin, speedbin_ptr, len);
+-	speedbin = le32_to_cpu(speedbin);
+-
+-	ret = opp_data->efuse_xlate(speedbin);
+-
+-	kfree(speedbin_ptr);
++	ret = sun50i_cpufreq_read_cell(cpu_dev, np, NULL, &speedbin);
++	if (ret)
++		return ret;
  
-@@ -132,4 +178,36 @@ examples:
-         };
-     };
+-	return ret;
++	return opp_data->efuse_xlate(speedbin);
+ };
  
-+  - |
-+    opp-table {
-+        compatible = "allwinner,sun50i-a133-operating-points",
-+                     "allwinner,sun50i-a100-operating-points";
-+        nvmem-cells = <&cpu_speed_grade>, <&chip_marking>,
-+                      <&cpu_pcpu>, <&cpu_bin_ext>;
-+        nvmem-cell-names = "bin", "marking", "pcpu", "bin-ext";
-+        opp-shared;
-+
-+        opp-408000000 {
-+            clock-latency-ns = <244144>; /* 8 32k periods */
-+            opp-hz = /bits/ 64 <408000000>;
-+
-+            opp-microvolt-speed0 = <900000>;
-+            opp-microvolt-speed1 = <900000>;
-+            opp-microvolt-speed2 = <900000>;
-+            opp-microvolt-speed8 = <940000>;
-+            opp-supported-hw = <0x107>;
-+        };
-+
-+        opp-1512000000 {
-+            clock-latency-ns = <244144>; /* 8 32k periods */
-+            opp-hz = /bits/ 64 <1512000000>;
-+
-+            opp-microvolt-speed6 = <1180000>;
-+            opp-microvolt-speed7 = <1130000 1130000 1140000>;
-+            opp-microvolt-speed8 = <1100000>;
-+            opp-microvolt-speed9 = <1080000>;
-+            opp-supported-hw = <0x3c0>;
-+        };
-+    };
-+
- ...
+ static int sun50i_cpufreq_nvmem_probe(struct platform_device *pdev)
 
 -- 
 2.34.1
