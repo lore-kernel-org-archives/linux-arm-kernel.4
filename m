@@ -2,70 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87AD60A3815
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF47606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Zjz/Zzq;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=iIaSAgs7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JW6ca679;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=i4AadcTo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QXxc5ot+vlrpdqmyd7tRC2ZxCHOrFo4InfagjyJYHbQ=; b=1Zjz/Zzq+LvMAw
-	U0s6U1LKvLn6vP1KOf7l3hZjCuo2201RyWtJeQBjo5yPpyw/cuqavmDHER3D4DPFPnxrUuYKU4GP+
-	+vkltKsBO4ZZ/9yh7hniPqGtu/1kja/8JRVz4ubGQw+o+kb+z5Uop/a2f/i4T+ADWtwDEtCQLYt3g
-	47ATOurW9rjBjkLYh3N9w5D4BLRVz8nV8UuB+sxQr2R8/+Oh5p9VaXFkKywjQ+y3pj46a5wXCXgC+
-	dWYfeqfenn0Vq0N6qkOrWeIDIOVk1LzTB5d3Z2hsIzzohB36/j2f4Pzx7fJ/36p77Z1qmZi+iu+B1
-	NY5otQ4ZnySh8UJYBdgA==;
+	List-Owner; bh=j2BNbivZPHPibCEyc+H9GBBrQYs+VsZCs/2qn47xLAI=; b=JW6ca679doWaOR
+	1Aiu9iAJ6x7pBhGrt5w9cibFgA1cyNlH25JG7d5yzqoUbLb7qj7s7nJ9HGF5+yha5o+v/vIkICZmX
+	+ljEoYRtDjo2EbTmKXMFJYjgYdWWtQAtPNEE/n+M5vLs3eqQrJAzyfcsV/g4UO6qzHhrmTTCv6I1q
+	bjbbGc0iiAqefd1Rb+yITLNU0vyhcBG65gg0coQfFKNHK8Wa0pTu+piA2LW7QfzuGQK8Uydb+5PMZ
+	BbdYUMkKypywgMxr2+Fn8DlvRjNa5JOFZL1mElouAi0Vho6kp2ssAlJeun6dHnLUb4KtHsolE+J3r
+	QxccY8xah/sWYigldhOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThlO-00000009L4o-0iTe;
-	Wed, 18 Nov 2026 15:39:59 +0000
+	id 1xThls-00000009LGi-21Kh;
+	Wed, 18 Nov 2026 15:40:28 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThlH-00000009L1o-2GAJ
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:39:53 +0000
+	id 1xThlT-00000009L7K-2wyR;
+	Wed, 18 Nov 2026 15:40:05 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F285C1477;
-	Wed, 18 Nov 2026 07:39:47 -0800 (PST)
-Received: from [10.0.136.98] (M0PRX50XMG.cambridge.arm.com [10.0.136.98])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 28CCE3F632;
-	Wed, 18 Nov 2026 07:39:49 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E80641477;
+	Wed, 18 Nov 2026 07:39:59 -0800 (PST)
+Received: from [10.57.69.78] (unknown [10.57.69.78])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1988D3F632;
+	Wed, 18 Nov 2026 07:39:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795016390; bh=pRHQq9jHd5WU+gVj8Uypqp7K7FRf83zEeV7eEsHdPRA=;
+	t=1795016402; bh=UmjalxywmS7cNpDQUWtopHm/4dset/da/ZsuV9sIQp4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iIaSAgs7fJabN3cXkoWC0i7T/2byGsPZWGMkOppHww3EtYoeJCk3+DAzoW4j3+B/z
-	 c4w/sTUuoR4PKhtq85KPwOT2ZATNpPB3PJ/1DdInpXxZS/dmJ+VO6wn/vHHQaIk8yt
-	 h15zkNUxCf6nMhw+9KCOEPh4tiTU5xQSO7OZ+ync=
-Message-ID: <535a378e-4d68-4a5c-a85d-3366e2a1626c@arm.com>
-Date: Wed, 18 Nov 2026 15:39:47 +0000
+	b=i4AadcToOCPgX632yqW2lnrSqScyRtw9QtO2o3OxZKLKLdOUdMia2PtHh/ABU/HxR
+	 8Fa1If1Dumx3yG9CNeisIFfYXssDXYPXrNj8IoWLqqKk+HTJFXs1zscm+UxOhVGqq6
+	 ZgiAMXhgWMFCf+l0zwEIO6v4b8RFRSIcQs/hLplg=
+Message-ID: <35a06829-dd6d-4ef1-aadf-245d1e7ca433@arm.com>
+Date: Wed, 18 Nov 2026 16:39:58 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/10] irqchip/gic-v5: Serialise ITS invalidation
- commands
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
- Radu Rendec <radu@rendec.net>, Timothy Hayes <timothy.hayes@arm.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Jonathan Cameron <jic23@kernel.org>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Sashiko AI <sashiko-bot@kernel.org>, stable@vger.kernel.org
-References: <20261104-host_gicv5_fixes-v2-0-e47ad20ea3c8@arm.com>
- <20261104-host_gicv5_fixes-v2-4-e47ad20ea3c8@arm.com>
- <auw-5EyY_aifcv1N@red-moon>
+Subject: Re: [PATCH v2] clk: sunxi-ng: a733: Keep SCP firmware bus clocks
+ enabled
+To: wens@kernel.org
+Cc: Enzo Adriano <enzo.adriano.code@gmail.com>, sboyd@kernel.org,
+ bmasney+clk@redhat.com, jbrunet+clk@baylibre.com, jernej.skrabec@gmail.com,
+ samuel@sholland.org, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Junhui Liu <junhui.liu@pigmoral.tech>,
+ Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+References: <20261112-a733-fwclk-v2@gmail.com>
+ <2374cc08-fd47-435a-b1e8-c7e9a61954c4@arm.com>
+ <CAGb2v66w9XYO7CUFrvJq2HL7ELABptg=3Bs4XbZxMh7VU0pepw@mail.gmail.com>
+ <124bb855-f2f6-4b10-b0be-99fb53cc2ee8@arm.com>
+ <CAGb2v65A4rAFTFYyB_sZBC9O7fb0TJWE1YRjdGrLeNgwyVzcSw@mail.gmail.com>
 Content-Language: en-GB
-From: Sascha Bischoff <sascha.bischoff@arm.com>
-In-Reply-To: <auw-5EyY_aifcv1N@red-moon>
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <CAGb2v65A4rAFTFYyB_sZBC9O7fb0TJWE1YRjdGrLeNgwyVzcSw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_073951_667410_94C0AB70 
-X-CRM114-Status: GOOD (  20.94  )
+X-CRM114-CacheID: sfid-20261118_074003_838904_95B6E1D1 
+X-CRM114-Status: GOOD (  43.23  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,101 +88,197 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 05/11/2026 08:31, Lorenzo Pieralisi wrote:
-> On Wed, Nov 04, 2026 at 05:47:58PM +0000, Sascha Bischoff wrote:
->> The ITS uses the shared DIDR and EIDR registers to select the DeviceID
->> and EventID whose translation is to be invalidated. Event
->> invalidations for different IRQs can overlap, as can an event
->> invalidation and a device invalidation. The per-IRQ descriptor lock
->> does not serialise these commands, so writes can interleave and cause
->> an invalidation to use the DeviceID or EventID of another IRQ being
->> invalidated concurrently on a different CPU.
+Hi,
+
+On 11/18/26 16:15, Chen-Yu Tsai wrote:
+> On Wed, Nov 18, 2026 at 10:51 PM Andre Przywara <andre.przywara@arm.com> wrote:
 >>
->> Serialise the command register writes and STATUSR.IDLE polls for both
->> invalidation paths with a per-ITS raw spinlock. The KVM
->> gicv5_its_set_vcpu_affinity() callback calls the event invalidation
->> helper via irq_set_vcpu_affinity(), which holds the IRQ descriptor
->> lock. This path cannot sleep, so use atomic polling.
-> 
-> Same comment here as IRS sync. This one though looks like a host
-> driver bug that can happen regardless of KVM, so I'd just fix it
-> and remove/rephrase this paragraph.
-
-Done, thanks!
-
-> 
->> Fixes: 57d72196dfc8 ("irqchip/gic-v5: Add GICv5 ITS support")
->> Reported-by: Sashiko AI <sashiko-bot@kernel.org>
->> Link: https://sashiko.dev/#/patchset/20261016155741.979985-1-sascha.bischoff@arm.com?part=11
-> 
-> Again, this is linking to a report on a series that wasn't merged
-> yet but probably it makes sense to leave it there for context.
-
-Yeah, I was just trying to make it clear where this was reported and how.
-
-Thanks,
-Sascha
-
-> 
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
->> ---
->>   drivers/irqchip/irq-gic-v5-its.c | 9 +++++++++
->>   1 file changed, 9 insertions(+)
-> 
-> Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> 
->> diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
->> index 28e39b065de0e..6d98f3dbe34b6 100644
->> --- a/drivers/irqchip/irq-gic-v5-its.c
->> +++ b/drivers/irqchip/irq-gic-v5-its.c
->> @@ -16,6 +16,7 @@
->>   #include <linux/of_address.h>
->>   #include <linux/of_irq.h>
->>   #include <linux/slab.h>
->> +#include <linux/spinlock.h>
->>   
->>   #include <linux/irqchip.h>
->>   #include <linux/irqchip/arm-gic-v5.h>
->> @@ -28,6 +29,8 @@
->>   struct gicv5_its_chip_data {
->>   	struct	xarray			its_devices;
->>   	struct	mutex			dev_alloc_lock;
->> +	/* Event and device invalidation commands share DIDR. */
->> +	raw_spinlock_t			inv_lock;
->>   	struct	fwnode_handle		*fwnode;
->>   	struct gicv5_its_devtab_cfg	devtab_cfgr;
->>   	void	__iomem			*its_base;
->> @@ -129,6 +132,8 @@ static int gicv5_its_itt_cache_inv(struct gicv5_its_chip_data *its, u32 device_i
->>   	eidr = FIELD_PREP(GICV5_ITS_EIDR_EVENTID, event_id);
->>   	eventr = FIELD_PREP(GICV5_ITS_INV_EVENTR_I, 0x1);
->>   
->> +	guard(raw_spinlock_irqsave)(&its->inv_lock);
->> +
->>   	its_writeq_relaxed(its, didr, GICV5_ITS_DIDR);
->>   	its_writel_relaxed(its, eidr, GICV5_ITS_EIDR);
->>   	its_writel_relaxed(its, eventr, GICV5_ITS_INV_EVENTR);
->> @@ -371,6 +376,9 @@ static int gicv5_its_device_cache_inv(struct gicv5_its_chip_data *its,
->>   		  FIELD_PREP(GICV5_ITS_INV_DEVICER_EVENTID_BITS,
->>   			     its_dev->itt_cfg.event_id_bits)	|
->>   		  FIELD_PREP(GICV5_ITS_INV_DEVICER_L1, 0x0);
->> +
->> +	guard(raw_spinlock_irqsave)(&its->inv_lock);
->> +
->>   	its_writeq_relaxed(its, didr, GICV5_ITS_DIDR);
->>   	its_writel_relaxed(its, devicer, GICV5_ITS_INV_DEVICER);
->>   
->> @@ -1112,6 +1120,7 @@ static int __init gicv5_its_init_bases(void __iomem *its_base, struct fwnode_han
->>   		return -ENOMEM;
->>   
->>   	mutex_init(&its_node->dev_alloc_lock);
->> +	raw_spin_lock_init(&its_node->inv_lock);
->>   	xa_init(&its_node->its_devices);
->>   	its_node->fwnode = handle;
->>   	its_node->its_base = its_base;
+>> Hi,
 >>
->> -- 
->> 2.34.1
+>> On 11/18/26 14:41, Chen-Yu Tsai wrote:
+>>> On Wed, Nov 18, 2026 at 1:18 AM Andre Przywara <andre.przywara@arm.com> wrote:
+>>>>
+>>>> Hi,
+>>>>
+>>>> the patch itself looks fine, but the comments and the commit message are
+>>>> not entirely correct, I think.
+>>>>
+>>>> On 11/12/26 22:38, Enzo Adriano wrote:
+>>>>> The A733 PRCM's bus-r-riscv and bus-r-msgbox gates have no Linux
+>>>>> consumers, so unused-clock cleanup gates them. With vendor SCP firmware
+>>>>> running on the E902 as shipped on Cubie A7S, warm reboot then stalls.
+>>>>
+>>>> Please note that we don't support "vendor firmware" with mainline Linux.
+>>>> That was mostly incompatible in the past, and while it might work these
+>>>> days, this is not something we control and want to endorse.
+>>>> So we would be quite reluctant (to put it mildly) about merging patches
+>>>> that are solely needed for BSP firmware bits.
+>>>>
+>>>>> Keep both critical until remoteproc/mailbox drivers can claim them.
+>>>>
+>>>> I don't think this "until" is an argument. Even if we'd have Linux
+>>>> driver support, they would be optional to use (not compiled, not
+>>>> loaded), and would only be needed to *communicate* with the firmware.
+>>>>
+>>>> But those clocks are actually there to drive the RISC-V core clock, and
+>>>> also the "RISC-V side" of the peripherals, due to a lack of separate
+>>>> clock controls in the SoC in the Allwinner design. So the kernel should
+>>>> not care about or touch those clocks at all - which is what
+>>>> CLK_IS_CRITICAL does.
+>>>
+>>> No. CLK_IS_CRITICAL also tells the kernel to turn it on, and you then
+>>> can never turn it off. You get a big warning if you try to defeat the
+>>> refcounting, but nothing else happens.
 >>
+>> Good point, so is CLK_IGNORE_UNUSED a better flag? As far as I can see,
+>> it only prevents turning it off if unclaimed, it doesn't turn it on if
+>> it was off initially, and it doesn't disallow turning it off.
+> 
+> Yes. It's like an uncoordinated simplefb? :p
+
+I guess you could see it that way, although Linux wouldn't directly know 
+about it.
+
+>>> So what if the *real* remoteproc driver needs to turn the clock off to
+>>> pause the RISC-V core? It can't
+>>
+>> I guess this depends on the use case, which isn't very well defined. If
+>> this E902 is really a remoteproc device entirely controlled by Linux,
+>> then sure: Linux should have full control over its clock.
+>> But if it's running some kind of firmware component, then the kernel
+>> shouldn't mess with it, IMHO. But I think there is still the arisc on
+>> the A733, so this would more likely run the management processor (SCP) code?
+> 
+> Even if it had firmware already running, if it provides some interface to
+> the OS (other than PSCI / SCMI), then you'd probably still have a remoteproc
+> driver claiming and somewhat controlling it, plus rpmsg or something else
+> to bridge the firmware interface.
+> 
+> OTOH, AFAIK some SCP, such as crust, are pretty much transparent to the OS,
+> i.e. the OS doesn't know about it. The RISC-V core is probably useful beyond
+> just being the SCP. You could offload control of various hardware blocks to
+> it if you wanted, or you could have it be an always on sensor hub. Either way
+> the OS would have some control over it and some defined interface to it.
+
+Yes, that is what I mean: there are two distinct use cases: the realtime 
+one, where Linux uses remoteproc to offload timing critical load, and 
+the "SCP" one, where it just runs in the background, and the kernel is 
+not directly involved. For this latter case we would need to not turn 
+off the clocks.
+
+The question now is whether this SCP use case is something we deem 
+useful, for mainline. If it's just about to run the BSP firmware, I 
+think we shouldn't bother, we just don't support that. But if we end up 
+running something like crust on the E902, then it's a different story.
+
+So I wonder if we should just pragmatically add CLK_IGNORE_UNUSED, to 
+not shut on the door on this SCP use case later.
+If we ever only want to use remoteproc, I think we don't need this patch.
+
+Cheers,
+Andre
+
+>>> So, not a fan of this. If the loaded firmware somehow needs some resources
+>>> then perhaps the software that loaded it needs to somehow tell the kernel
+>>> they are needed, like the bootloader patching the DT passed to the kernel.
+>>>
+>>> If the firmware needs a piece of DRAM, you don't say in the kernel that
+>>> this piece of DRAM is off-limits. You let the bootloader tell the kernel.
+>>> Static DRAM carve outs with reserved-memory nodes in the DT source is also
+>>> ugly, as you could end up with mismatches if the firmware somehow changed.
+>>>
+>>> IMO CLK_IS_CRITICAL should be used for things that the kernel knows it needs
+>>> but there's nothing to claim it.
+>>>
+>>>
+>>> ChenYu
+>>>
+>>>>> This follows A523 bus-r-cpucfg in commit 1dba74abf3e2 ("clk: sunxi-ng:
+>>>>> Mark A523 bus-r-cpucfg clock as critical") and the temporary SCPI firmware
+>>>>> clock protection for Meson AXG fclk_div3 in drivers/clk/meson/axg.c.
+>>>>>
+>>>>> On Cubie A7S with vendor boot0/BL31/SCP/U-Boot and without
+>>>>> clk_ignore_unused, warm reboot returns with both clocks critical and
+>>>>> stalls without them. Vinicius found either flag alone insufficient on
+>>>>> Cubie A7Z. Power-off, suspend, single flags on A7S, other
+>>>>> boards/firmware and upstream TF-A were not tested.
+>>>>>
+>>>>> Link: https://lore.kernel.org/r/20261005183038.417798-1-vinicius.eduardo.pedrosa@gmail.com
+>>>>> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+>>>>> ---
+>>>>> Changes in v2:
+>>>>> - Drop r-timer0, bus-r-timer and bus-msgbox0: A7S warm reboot works with
+>>>>>      these at 0/0. Keep only the two E902/mailbox bus gates after Junhui's
+>>>>>      review, pending remoteproc/mailbox ownership.
+>>>>> - Rebase on CCU v7; its PRCM clock definitions are unchanged from v6.
+>>>>>
+>>>>> v1:
+>>>>> https://lore.kernel.org/r/20261031020640-263f7b05-a7s-clock@gmail.com
+>>>>>
+>>>>> Base: v7.4-rc1. Depends on CCU v7 (all eight patches):
+>>>>> https://lore.kernel.org/r/20261112-a733-clk-v7-0-db7c5451ffa2@pigmoral.tech
+>>>>>
+>>>>> November 12 board test: two RAM boots and warm reboot -f returns on
+>>>>> Cubie A7S with vendor boot0/BL31/SCP/U-Boot, without clk_ignore_unused.
+>>>>> Both retained clocks were 1/1; all three dropped clocks were 0/0.
+>>>>> The no-flag stall was observed with CCU v6 on Nov 10; PRCM code is
+>>>>> byte-identical in v7, where the no-flag control was not repeated.
+>>>>> Runtime used DT v3 and its dependencies (all four UART v2 patches),
+>>>>> with the PMIC identifier and pinctrl IRQ-map context adapted to the base:
+>>>>> https://lore.kernel.org/r/cover.1794227241.git.enzo.adriano.code@gmail.com
+>>>>
+>>>> I don't think there is any need for those longish test descriptions,
+>>>> especially if they pass.
+>>>>
+>>>>>
+>>>>>     drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c | 7 +++++--
+>>>>>     1 file changed, 5 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c b/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
+>>>>> index b8f6e8c6e507..f2965daba0d3 100644
+>>>>> --- a/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
+>>>>> +++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
+>>>>> @@ -108,7 +108,9 @@ static SUNXI_CCU_DUALDIV_MUX_GATE(r_spi_clk, "r-spi", r_spi_parents, 0x150,
+>>>>>                                   0);
+>>>>>     static SUNXI_CCU_GATE_HW(bus_r_spi_clk, "bus-r-spi", &r_ahb_clk.common.hw, 0x15c, BIT(0), 0);
+>>>>>
+>>>>> -static SUNXI_CCU_GATE_HW(bus_r_msgbox_clk, "bus-r-msgbox", &r_ahb_clk.common.hw, 0x17c, BIT(0), 0);
+>>>>> +/* Vendor SCP firmware on E902 needs this until a remoteproc/mailbox driver claims it. */
+>>>>
+>>>> Please change this comment. Something like the msgbox clock is shared
+>>>> between the E902 core and the Arm APs.
+>>>>
+>>>>> +static SUNXI_CCU_GATE_HW(bus_r_msgbox_clk, "bus-r-msgbox", &r_ahb_clk.common.hw,
+>>>>> +                      0x17c, BIT(0), CLK_IS_CRITICAL);
+>>>>>
+>>>>>     static SUNXI_CCU_GATE_HW(bus_r_uart0_clk, "bus-r-uart0", &r_apb1_clk.common.hw, 0x18c, BIT(0), 0);
+>>>>>     static SUNXI_CCU_GATE_HW(bus_r_uart1_clk, "bus-r-uart1", &r_apb1_clk.common.hw, 0x18c, BIT(1), 0);
+>>>>> @@ -146,8 +148,9 @@ static SUNXI_CCU_MUX_DATA_WITH_GATE(r_riscv_clk, "r-riscv", r_riscv_parents, 0x2
+>>>>>                                   24, 2,        /* mux */
+>>>>>                                   BIT(31),      /* gate */
+>>>>>                                   0);
+>>>>> +/* Vendor SCP firmware on E902 needs this until a remoteproc/mailbox driver claims it. */
+>>>>
+>>>> and this. Just note that the E902 might be running on its own, in a pure
+>>>> firmware role, or even completely separate from the main kernel.
+>>>>
+>>>> Oh, and also please put somewhere that this is based on the linux-sunxi
+>>>> for-next tree, aside from just having the base-commit ID below.
+>>>>
+>>>> Cheers,
+>>>> Andre
+>>>>
+>>>>>     static SUNXI_CCU_GATE_HW(bus_r_riscv_clk, "bus-r-riscv", &r_apb0_clk.common.hw,
+>>>>> -                      0x21c, BIT(0), 0);
+>>>>> +                      0x21c, BIT(0), CLK_IS_CRITICAL);
+>>>>>     static SUNXI_CCU_GATE_HW(bus_r_riscv_cfg_clk, "bus-r-riscv-cfg", &r_apb0_clk.common.hw,
+>>>>>                          0x21c, BIT(1), 0);
+>>>>>
+>>>>>
+>>>>> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+>>>>
+>>
+>>
+> 
 
 
