@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3B1606CA76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7B3606CA67
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:36:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a2DS5S2e;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=CvtEomsE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Asd5UBQO;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Nl6BFD0a
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=OHstQ0JYZUrsLqwWcoko7GWdw5mEgCrc6XUjx6ToQKM=; b=a2DS5S2e6WFJX+
-	TnAM0NU8CpIetbaCqTTMd4UDgVHjNFpeWT5kWnORE+OJNz6tv5rVWIhWSJqSoVvEiPvV3XlvT14HL
-	Myt1qoIEXuISdIiSL86FMeHgyWcB7coXsxlCVpbJxwdp41zkW57QOEhoRiAk5aFsKZsryGfQ+kvrT
-	k74y15XVrzosvIzU2VYdU80yBruG6kgRaW289Qan8QXNnBpAmBBq/Tv8uOH6La16XHhKDP1pYgT8C
-	nOUOML2jg5RAmwVaxY/j9xwcGEsFcqrP3iZd/CIvipBiUnAmQ+Cv5pTy5/WHU1r07A3vRxPXQq2qP
-	cOg7+fYspl2ictjgJ9yw==;
+	List-Owner; bh=PXsX2Szqj0S/0jHIInP8OKgsOnASiL9LEwJEu1Zu26M=; b=Asd5UBQOay39Lz
+	c8SW3jIrDczs7Z+5FsN521uN/x0aiLlU+31/F/cyDJ8siodRJmFk2oyK1q3N2KsR6kS3/9Ep0I0W0
+	Iwk1xCH1z6hxxQyk95niAKbtN8poqP4CLGRnxJ8vQXPw9hiz6cWl684AQjeywrlZcqfVLKuLWmSFN
+	xSQ/llBWAzyC0Z5tRda/ubw/YWHGd4QvCO1Mw+GY7KFXo6S6vUbJ8sUnWVE7vNskFde1i21PUkV5g
+	HIagc9WXzIpSRFKiKr+qH6KyVIrZF4VQzUuQ3SkjzRoHuXtWNvpLtbhKQ7aaI0FkTyt9uPMaImUnL
+	I10hA/hOzVILjC2XRsSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjZr-00000009mh2-0bRG;
-	Wed, 18 Nov 2026 17:36:11 +0000
+	id 1xTjZq-00000009mf2-2TwH;
+	Wed, 18 Nov 2026 17:36:10 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjZl-00000009mcu-0emU
+	id 1xTjZe-00000009mZM-0zXS
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 17:36:07 +0000
+	Wed, 18 Nov 2026 17:35:59 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AB9601477;
-	Wed, 18 Nov 2026 09:36:00 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7A1BC1655;
+	Wed, 18 Nov 2026 09:35:54 -0800 (PST)
 Received: from e133894.arm.com (e133894.arm.com [10.2.80.62])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C99153F632;
-	Wed, 18 Nov 2026 09:36:01 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B7D5F3F632;
+	Wed, 18 Nov 2026 09:35:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795023363; bh=C9wq7t7vi5DkZGv7bjayDlpCJKB/Nv8vETEEU8P+2s0=;
+	t=1795023357; bh=3tepdP1KrkoQ3MGeLGjjywE9LDtjU2cFOY1rH+LrUiU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=CvtEomsEISaQdL6L5DoAJ038wrAqyMxp2OHM35l2Ddw2CLVi1aIpXDYP5RRhlO0ht
-	 zIEybOUNP6Zp1I0X9RC6qPZ2Zl2KK3z8sdwfrEdMuu1oygOUdJfZauvuav1g0r6BaD
-	 w3V8sFLA30974i2XfJnJovDD8F9vkGqkMOrPQusk=
+	b=Nl6BFD0aI+mXWXA198CplDLOlseL8CZWXisQByoJOPp0UXB6Nbt4fBBcZNaGLL+Bz
+	 hWfeGRxOdKJyTtv4uXtfMgCK0TtoEaG9T2WIn/LZDrHV2errc0qNIQkbaIPK1G3ssi
+	 zFBkswatAQVc4wPk1ul2nJGOdprD1UuHPlsukvlc=
 From: Sascha Bischoff <sascha.bischoff@arm.com>
-Date: Wed, 18 Nov 2026 17:35:34 +0000
-Subject: [PATCH v3 05/14] irqchip/gic-v5: Serialise ITS invalidation
- commands
+Date: Wed, 18 Nov 2026 17:35:31 +0000
+Subject: [PATCH v3 02/14] irqchip/gic-v5: Only set IRS DPS when 1ofN
+ routing is supported
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-host_gicv5_fixes-v3-5-13c1859e8aa3@arm.com>
+Message-Id: <20261118-host_gicv5_fixes-v3-2-13c1859e8aa3@arm.com>
 References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
 In-Reply-To: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
 To: Marc Zyngier <maz@kernel.org>, 
@@ -60,12 +60,11 @@ To: Marc Zyngier <maz@kernel.org>,
  "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Fuad Tabba <fuad.tabba@linux.dev>, 
- Sascha Bischoff <sascha.bischoff@arm.com>, 
- Sashiko AI <sashiko-bot@kernel.org>
+ Sascha Bischoff <sascha.bischoff@arm.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_093605_299997_E341659F 
-X-CRM114-Status: GOOD (  11.00  )
+X-CRM114-CacheID: sfid-20261118_093558_323334_63224E52 
+X-CRM114-Status: GOOD (  12.83  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,75 +84,63 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The ITS uses the shared DIDR and EIDR registers to select the DeviceID
-and EventID to invalidate. Event invalidations for different IRQs can
-overlap, as can an event invalidation and a device invalidation. The
-per-IRQ descriptor lock does not serialise these commands, so
-concurrent writes can cause an invalidation to use the DeviceID or
-EventID set by another concurrent invalidation.
+IRS_PE_CR0.DPS is RES0 when the IRS does not support 1ofN routing.
+Read the capability from IRS_IDR0 and skip programming DPS on systems
+without support for 1ofN routing, rather than blindly writing it.
 
-Serialise the command register writes and STATUSR.IDLE polls for both
-invalidation paths with a per-ITS raw spinlock. Use atomic polling
-while holding the lock.
-
-Fixes: 57d72196dfc8 ("irqchip/gic-v5: Add GICv5 ITS support")
-Reported-by: Sashiko AI <sashiko-bot@kernel.org>
+Fixes: 5cb1b6dab2def ("irqchip/gic-v5: Add GICv5 IRS/SPI support")
 Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
 Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: stable@vger.kernel.org
-Link: https://sashiko.dev/#/patchset/20261016155741.979985-1-sascha.bischoff@arm.com?part=11
 ---
- drivers/irqchip/irq-gic-v5-its.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/irqchip/irq-gic-v5-irs.c   | 14 +++++++++-----
+ include/linux/irqchip/arm-gic-v5.h |  1 +
+ 2 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
-index f876dc0de1b96..88d18822a1ff4 100644
---- a/drivers/irqchip/irq-gic-v5-its.c
-+++ b/drivers/irqchip/irq-gic-v5-its.c
-@@ -16,6 +16,7 @@
- #include <linux/of_address.h>
- #include <linux/of_irq.h>
- #include <linux/slab.h>
-+#include <linux/spinlock.h>
+diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
+index 9d60f474aa4f6..4edf787f3f97f 100644
+--- a/drivers/irqchip/irq-gic-v5-irs.c
++++ b/drivers/irqchip/irq-gic-v5-irs.c
+@@ -541,12 +541,15 @@ int gicv5_irs_register_cpu(int cpuid)
+ 		return -ENXIO;
+ 	}
  
- #include <linux/irqchip.h>
- #include <linux/irqchip/arm-gic-v5.h>
-@@ -28,6 +29,8 @@
- struct gicv5_its_chip_data {
- 	struct	xarray			its_devices;
- 	struct	mutex			dev_alloc_lock;
-+	/* Event and device invalidation commands share DIDR. */
-+	raw_spinlock_t			inv_lock;
- 	struct	fwnode_handle		*fwnode;
- 	struct gicv5_its_devtab_cfg	devtab_cfgr;
- 	void	__iomem			*its_base;
-@@ -129,6 +132,8 @@ static int gicv5_its_itt_cache_inv(struct gicv5_its_chip_data *its, u32 device_i
- 	eidr = FIELD_PREP(GICV5_ITS_EIDR_EVENTID, event_id);
- 	eventr = FIELD_PREP(GICV5_ITS_INV_EVENTR_I, 0x1);
+-	cr0 = FIELD_PREP(GICV5_IRS_PE_CR0_DPS, 0x1);
+-	irs_writel_relaxed(irs_data, cr0, GICV5_IRS_PE_CR0);
++	/* IRS_PE_CR0.DPS is RES0 when 1ofN routing is unsupported. */
++	if (gicv5_global_data.one_of_n) {
++		cr0 = FIELD_PREP(GICV5_IRS_PE_CR0_DPS, 0x1);
++		irs_writel_relaxed(irs_data, cr0, GICV5_IRS_PE_CR0);
  
-+	guard(raw_spinlock_irqsave)(&its->inv_lock);
-+
- 	its_writeq_relaxed(its, didr, GICV5_ITS_DIDR);
- 	its_writel_relaxed(its, eidr, GICV5_ITS_EIDR);
- 	its_writel_relaxed(its, eventr, GICV5_ITS_INV_EVENTR);
-@@ -371,6 +376,9 @@ static int gicv5_its_device_cache_inv(struct gicv5_its_chip_data *its,
- 		  FIELD_PREP(GICV5_ITS_INV_DEVICER_EVENTID_BITS,
- 			     its_dev->itt_cfg.event_id_bits)	|
- 		  FIELD_PREP(GICV5_ITS_INV_DEVICER_L1, 0x0);
-+
-+	guard(raw_spinlock_irqsave)(&its->inv_lock);
-+
- 	its_writeq_relaxed(its, didr, GICV5_ITS_DIDR);
- 	its_writel_relaxed(its, devicer, GICV5_ITS_INV_DEVICER);
+-	ret = gicv5_irs_wait_for_pe_cr0(irs_data);
+-	if (ret)
+-		return ret;
++		ret = gicv5_irs_wait_for_pe_cr0(irs_data);
++		if (ret)
++			return ret;
++	}
  
-@@ -1112,6 +1120,7 @@ static int __init gicv5_its_init_bases(void __iomem *its_base, struct fwnode_han
- 		return -ENOMEM;
+ 	pr_debug("CPU %d enabled PE IAFFID 0x%x\n", cpuid, iaffid);
  
- 	mutex_init(&its_node->dev_alloc_lock);
-+	raw_spin_lock_init(&its_node->inv_lock);
- 	xa_init(&its_node->its_devices);
- 	its_node->fwnode = handle;
- 	its_node->its_base = its_base;
+@@ -725,6 +728,7 @@ static int __init gicv5_irs_init(struct gicv5_irs_chip_data *irs_data)
+ 	if (list_empty(&irs_nodes)) {
+ 		idr = irs_readl_relaxed(irs_data, GICV5_IRS_IDR0);
+ 		gicv5_global_data.virt_capable = !!FIELD_GET(GICV5_IRS_IDR0_VIRT, idr);
++		gicv5_global_data.one_of_n = !!FIELD_GET(GICV5_IRS_IDR0_ONE_N, idr);
+ 
+ 		idr = irs_readl_relaxed(irs_data, GICV5_IRS_IDR1);
+ 		irs_setup_pri_bits(idr);
+diff --git a/include/linux/irqchip/arm-gic-v5.h b/include/linux/irqchip/arm-gic-v5.h
+index 299e75bc95255..34e22e7d4a4c7 100644
+--- a/include/linux/irqchip/arm-gic-v5.h
++++ b/include/linux/irqchip/arm-gic-v5.h
+@@ -532,6 +532,7 @@ struct gicv5_chip_data {
+ 	u8			cpuif_id_bits;
+ 	u8			irs_pri_bits;
+ 	bool			virt_capable;
++	bool			one_of_n;
+ 	struct {
+ 		__le64 *l1ist_addr;
+ 		u32 l2_size;
 
 -- 
 2.34.1
