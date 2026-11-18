@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 721D1606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:32:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1429460A6F5B
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OFIr58Cx;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=DvzCfnnB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z56jHB7Y;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=dYl4jP/t
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SUKdIa18y3lriXkABUAwIeNo7mM2QG9cDpZiXv9NeIU=; b=OFIr58CxQs5Dom58G7iq/4MLqp
-	Y9BdjIS5ALHfhygSTM1rimG6oJ4ZkkUIQpDPexBPikaMK8cNxGKPZ2IDZ++0xVwMhkjaqHMmh5v+/
-	0L9LjKZZvUYY975waHxE8GfytPpAEDNXst+9rFtbLVq0sY3qy5ajXsrfs5JZEUsaTM7TZqBysccwB
-	llxPr8zG6qprprRxS708KHcroMIm5O0iv6rKYOJE7S/zxNfaxG6+Vyxbh4pPHs2F3UyruvUz7867M
-	PfPVlVUNSVnA7jbUPTyNrUfjYpMuTAMzH7ssdCqnXgF0xkBwpMA4ROLyIgcNRSFUxGgePR23l8+xY
-	sFRnZ+jQ==;
+	bh=am3V468DuHp4DRiSd4+Y2x/+bxYIJ7R8lgMYTP4Hdrw=; b=z56jHB7YQHG7KDLGcSx6/XjLg8
+	WSBp9pURxtk3dehi16ShQwGdsdPhfIn2KljrOUzWikBoUCU2mhHrYsmzAIJ6LNgLv517yGYH13fyp
+	kvTvuSWhoc/o2taiNOO4OTyi9x1aqN8Iz1RaSbLoJTHSxTcD2l2ugexQEzb/QhOPejrZZpQ/KQklF
+	EFY8/P7cQid1e8v+cR6HxGRbnTuuEdPoNxuaB4XBZBeTsm5JMLg6hmFtlc1MoOrBGU3ojUlvTdH9B
+	tmzTxP+Oid/pAztq7YEuRFFiclHjMlhGBuno73pGQVSIquotKhy52/hfULzNID/oRUsMOSLZd5aTq
+	JI8dyLRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTp8e-0000000AV0g-3AYA;
-	Wed, 18 Nov 2026 23:32:28 +0000
+	id 1xTp8o-0000000AV3t-3qRR;
+	Wed, 18 Nov 2026 23:32:38 +0000
 Received: from mail-eastus2azlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c110::1] helo=BN1PR04CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTp8b-0000000AUyO-2f1x
+	id 1xTp8c-0000000AUyR-1Y2o
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 23:32:27 +0000
+	Wed, 18 Nov 2026 23:32:28 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EO+at/f/iTRZD8Hk/i3SWVpQ9qTO91HznnEyCfg7gPxk43hbpy2MKWnpopnp+pCxQHdsNhiIwEKkHZIs2ZD8HeV66UIudBt1slk3gx3uF6AYx9BRUmE0Hp7GnExy+2SvPgf6p9eK3hXB4C8hhyrO7dywZ32lNWQd9TIs+38faD4UmWDg0Ah7H0Ru4CgaUeW1R0ZTlZ7uxz4B14YW6613KjwKrBrC/IP81pceBcV9zlDOJBiJfEKeG0fkC77D3XP+Ebo9j2JlnFcDGH/t0vpW1u9EgUj7g8ccrka/Argzjq+8q1iZj8FJrS65eHcm+qlmIWEZmzR0AFQT+JlByRkzPQ==
+ b=ypTiq2o3TaujgpvwNMEB52MiSXhtaZtVILZNgiT79r84VN+cbIhHJtizmIDFVpt/lOeKkgKpJq4/2Fb/mm72h+0nkQoSLx521YpXwosJMRKUInk9QZUSfESW2E9O9YXjpJL4Zjpz8EKdBO6pefYyDesAJQRyDtYulh/ubtC3+OpTevWUja/aDuFWFU9ou9dd+f2JmblJvUw/12BozFWh4ulMZBpkJRnT/Cb1LnZRK6uv/0xChIRPyLFCcpUWxxcGuJ5+BfMsH2+yRC6JBj8E55nM90UaqnncPml5V7Zbsu8Px4zMdl9xi6ydWZlYsccvBKtIskQgh5QRRONGwSz8KA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SUKdIa18y3lriXkABUAwIeNo7mM2QG9cDpZiXv9NeIU=;
- b=tWgb1JJJtDjTgzNWtDFL3h1422bqs+CTjiGt7nfc1SCpJV6c1G4JdekUGPnqmcPIGidT8USWw9rVH3lmBgY1x+kLBrQhH6C7a9NwtAfwzUhTN+yFZQj2hYp11GDzdaVnkjsgke7BEqgisN2RLWQxr5mywnHLluQgaMVGygPeOJb003mYV/xTR1QYOYnhujVuvwBjPyQNMSI1kfcUBI2yWTiuXYG4vcsWO74zv2itVgDDLDnuK/7qWy4qFHX8Iew9jRxl0MiXUg6tUDkr1Aor7uV0AKxrNcdBI9U8GCmxp9a4Kq6hUY+MnF5plbwujKNpgL8n74JFRSkyPnDGpRFecw==
+ bh=am3V468DuHp4DRiSd4+Y2x/+bxYIJ7R8lgMYTP4Hdrw=;
+ b=eeb59SuSjc9pWiwOJEXLJXTQ1+3jQhDmzOAO97r8fBzUwQ0Xsh00Ssnnpn5luxjF/AtHB97hty8GQz60/YzzP6m5bqeGY+CzQ8F5jG4sCM3kKaFMMmg5z+WvsQ4HZU5zGwY+HgZ6QWAjrwUmZ5WXhs2vGAtYD3889xEcNjDdLmoioEVCtILVspwAeEfe2a09wVGHOieoA7GQ2nw5z/WVBa8dTFqgRrxxfqyJntB+FyBtJ4JZnLyCUOx2k9H2PoG6fOQ6DJcLYAjV1G2+QosiIQ+hLE2H5Ap0VP3v5wowFdkKkeWxUxfw0a883/XkJ4BLnuP2M3PjGqzOF4rgrgaRQQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
+ 165.204.84.17) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SUKdIa18y3lriXkABUAwIeNo7mM2QG9cDpZiXv9NeIU=;
- b=DvzCfnnBWo+85qu7P19dY4nfGXrRzwz8COeRsaDa0u0sCU8Sew9B4nKPtbgQ6/qBFy6wKJPEUFCeBxS1s/cmu+X0UCtDacV4Pbp6Of3kdjEuf2olPAwjbzr51dULpQ6V/ULc5yUDKvRDphR7XjC1UKGDjzq4B1bXAlCuOuqqA5c=
-Received: from MN0P223CA0007.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:52b::27)
- by DS0PR12MB8042.namprd12.prod.outlook.com (2603:10b6:8:141::9) with
+ bh=am3V468DuHp4DRiSd4+Y2x/+bxYIJ7R8lgMYTP4Hdrw=;
+ b=dYl4jP/tu9h0duS5vDNZbFGPFc3zIsiYYcZmLOvWsnHWbeeAiV9INsn+Gs14H0MnGfAVRqoQsdc5bRkjVoXYEKfRw2zXADZ09opYEYpgZJVGA3zQlE/cglMbps9y/vXIWuNCfF3gDddAJzjY4cWHrkqP+oMlVAkegzOwBT1rqEE=
+Received: from MN0PR02CA0003.namprd02.prod.outlook.com (2603:10b6:208:530::6)
+ by DS0PR12MB8502.namprd12.prod.outlook.com (2603:10b6:8:15b::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
- 2026 23:32:16 +0000
-Received: from IA0PEPF0000003A.namprd03.prod.outlook.com
- (2603:10b6:208:52b:cafe::88) by MN0P223CA0007.outlook.office365.com
- (2603:10b6:208:52b::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Wed,
- 18 Nov 2026 23:32:16 +0000
+ 2026 23:32:20 +0000
+Received: from IA0PEPF00000039.namprd03.prod.outlook.com
+ (2603:10b6:208:530:cafe::8e) by MN0PR02CA0003.outlook.office365.com
+ (2603:10b6:208:530::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Wed,
+ 18 Nov 2026 23:32:20 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -61,60 +61,58 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- IA0PEPF0000003A.mail.protection.outlook.com (10.167.249.71) with Microsoft
+ IA0PEPF00000039.mail.protection.outlook.com (10.167.249.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 23:32:16 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 23:32:20 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 18 Nov
- 2026 17:32:13 -0600
+ 2026 17:32:17 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 18 Nov
+ 2026 17:32:17 -0600
 Received: from xsjgregoryw50.xilinx.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
- Transport; Wed, 18 Nov 2026 17:32:12 -0600
+ Transport; Wed, 18 Nov 2026 17:32:17 -0600
 From: Gregory Williams <gregory.williams@amd.com>
-To: 
-CC: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, Oded Gabbay <ogabbay@kernel.org>,
-	kishore Manne <nava.kishore.manne@amd.com>, Izhar Ameer Shaikh
-	<izhar.ameer.shaikh@amd.com>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jay Buddhabhatti <jay.buddhabhatti@amd.com>,
-	Ronak Jain <ronak.jain@amd.com>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 00/15] accel: Add AMD Versal AI Engine driver (with Versal Gen 2 firmware support)
-Date: Wed, 18 Nov 2026 15:31:56 -0800
-Message-ID: <20261118233211.4121361-1-gregory.williams@amd.com>
+To: Michal Simek <michal.simek@amd.com>
+CC: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 03/15] firmware: xilinx: Add comments about number of arguments
+Date: Wed, 18 Nov 2026 15:31:59 -0800
+Message-ID: <20261118233211.4121361-4-gregory.williams@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261118233211.4121361-1-gregory.williams@amd.com>
+References: <20261118233211.4121361-1-gregory.williams@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PEPF0000003A:EE_|DS0PR12MB8042:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2445c1eb-ac39-4516-33b0-08df45cc2e39
+X-MS-TrafficTypeDiagnostic: IA0PEPF00000039:EE_|DS0PR12MB8502:EE_
+X-MS-Office365-Filtering-Correlation-Id: 36801715-31d7-4359-ed6b-08df45cc30b4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|82310400026|23010399003|36860700016|10067099003|261026140227099003|261026130827099003|261021130227099003|56012099006|11063799006|5023799004|261026121527099003|261022075727099003|261021123027099003|261021135927099003|261021121427099003|261022105027099003|261022113327099003|261022115727099003|261102123227099003|261028144727099003|261009223027099003|18002099003|6133799003|13003099007;
-X-Microsoft-Antispam-Message-Info: EgYGFKH9ODa04kx1XUqQjsguWBRU6P9OG0oBaBRBvlrAI3KcEhUX0MCc0ecbJC8TGlxuaC1wZwyqbjOLxmdC6gKUJ396DCsQUtZmJJdbED+LPAQbfi76gGjQ8250HqaC2NNDUb+7YTNR/IIe036dRTmfN9ghixyiy5OiMLnFVmENNtXE0Z1Dm0BXa9+4oGuWz+j6MzwiS1lF2xCaUsaCEK02StFV9LhHKvB600GI1VCi3zlLtMyKQ272mBKByAKSWLk4YMrYMYspudOYTn/J30xD6iwteFdwX1wZbqEfI5pD3n0b+M6GM2Mdl8H4SyR9VU8waQvRSOGU2lbRTHnvwP7UGDytn3lMcpKTM/eofONOTDPENXk51DWrNZOZaIU9UEtRDAxP2XyY6dJlgzt3fL50WNxTXmU7T0lVf+zn6PRSRFL5yigzuF9OCHXIkUSAVmxeRwz19liP7TSn9YpbH1FWpLIZZhXE5VaLANPf663zRXpdTdGUXnPQp4qmqGy0dVPrHta9Pu/X6rX1o4Rj3bP37Lzmaz9sy6WsHirLW+tVVuXJDK7VbnNWOmgorxJ6r9hya6ziMCSmmcJ5pSsVR8r5ENSnNFU8HTr5vk8xXXDWZ7zY/HPJBtOm5ikMRO0BridrvirwTXreCRsloKS3Hg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(82310400026)(23010399003)(36860700016)(10067099003)(261026140227099003)(261026130827099003)(261021130227099003)(56012099006)(11063799006)(5023799004)(261026121527099003)(261022075727099003)(261021123027099003)(261021135927099003)(261021121427099003)(261022105027099003)(261022113327099003)(261022115727099003)(261102123227099003)(261028144727099003)(261009223027099003)(18002099003)(6133799003)(13003099007);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|82310400026|36860700016|1800799024|376014|261102123227099003|261026140227099003|261028144727099003|11063799006|261022075727099003|261021121427099003|261021123027099003|261022105027099003|5023799004|56012099006|10067099003|18002099003|22082099003|261009223027099003|6133799003;
+X-Microsoft-Antispam-Message-Info: AH71FgN5W1fVuq6bHQb4+l4A0RMsJQC+fhOXpIRzZOpjNv3tjg+1e4KO99RxUmVYymKYhF96n3MTc2CZPzeJ0IpaE9o6TXYHqC3vXiYLlJFT3m7UpYpxNpKEm/gjmmk5S3xIaASfrmY4KpKJWABy83SQOxoZDso3tcRJCyyNW+ueIvKVSyrCD3IRRMwl5I84LYwTwy/pZLvZjch7aP5LyhTI9DL1ZIFLte9rLJFQeykRtn07HqgnGW+V24NCilHWWO5sKbFlA0TFnB/vUwE4yBm5CZMz3a1mDxWBba9Af6s2VlYD2Ti43O3MQw7hahPTglyiMxOOkdqWt3OgW+zwF7RX6ZBZb+8342T4kGAJOTDH9Q4rzmP7L8Gccy/iRH3aLSa3QB3WBsyVcAyPir4A5dO6Jedkz3fbbndvHUTQHJnAnzQs00wo4OdW0apAeA7rKE4Tn4/EdHULLUDsqrEIKu6dycvJA0rpq1Y5Qnw7CVV190YCKYfKRP8JF8hfQLkZjvBUi/gEuOiDlIjOWzXic/1DBnAQXkzLHtXp/i541/zdgmWNeiHQnPE+lsVK8z/M2UO0YKsrpfrYn8qfhDJ9nUdiuCTzTgqDwqakqVXYOxDolHOXOFri+nvf5wU9KSLBDG5W0rFWPTDL65lK5doy+1PqPEtP7Qfi0LKQBG96+wKLnbxtsXLA8SGxJoeL2PlW9YiRegfyMWGVqsgr9Nzubw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(36860700016)(1800799024)(376014)(261102123227099003)(261026140227099003)(261028144727099003)(11063799006)(261022075727099003)(261021121427099003)(261021123027099003)(261022105027099003)(5023799004)(56012099006)(10067099003)(18002099003)(22082099003)(261009223027099003)(6133799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: w2q3jFfjRHO4VZOoF+ZbvDI9kTIGJF5LDvW4ZA3SkYltiffo4Ljd1pmzCHM+VPVYWgx+3gkzRz9D5gVh2zOT47jT1NwSASh7J+80dN4U86Eq2H1mkz5E9e544dGVUk1q/dtP8tqy7hetD2edexbPZoUQApyS7lCCpHjZRFySbtWqJKHKcyXWQ9zmUeKetNDIR8ejA5ujSBKW5bVHOdfLdYQSwX2PITXrQkOIS+g9SmfRwJ4b/lyrGAvofcr3F05iFNjO8HtzYExShKU53KO7a1rv2Y3BxGEJYouG8YL8XAOvB3tAQTvKzMClvhPJVuJsq1HGooOOQfaPymHFVKRCh/6g0cvmnjFuXTif4oOi60fowBQNkUj984mph3avYyCf/e51urQYHcfyIvOC0GS5ffQeNtWNURBw/AbHoo9Mp1edUrt23x4FxCzFkBMd7+++
+X-MS-Exchange-AntiSpam-MessageData-0: 8dqnKjd6uLKhZzCm6Ijw+U7mguSGRNQE0Urd0yRy/eon4HJnDWMeJw/ejsa+6oaMfJvFpjIik6WDteAPiNBCY0+GOM32BbYQeLuT40grHgR2JH0ny1vx2AsjI2P/eCJo4ym8MWEAadBdG8a02AU3zgxuuGMZNi/Nminvga5ocac0jHrpEgecLf9BSyrJj55WtbfGgh6ZHc3zhIBVEM1Vfrk6m/v5cRUTWqxIQmWCGpTWGMQmh8R3fvAUa1o+GBYICLeFDu65as7nll3+U5bS0iDz32MpKuY4x/HHPbwooVxCP6XUkf5magO/njI7PnQrA5ALKVQffWj/iOKfookbn5+1jvHGrkZqoe4lpmze7ekDUHCXyVKDrZGLDdUl3+cIakdaGSd29x1KFfsoQL7Wv/p3VFwYPlKbWT5ucgrY+hIc0W7tAX5wLeN7pxyVX8aM
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 23:32:16.0588
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 23:32:20.2357
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2445c1eb-ac39-4516-33b0-08df45cc2e39
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36801715-31d7-4359-ed6b-08df45cc30b4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: IA0PEPF0000003A.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: IA0PEPF00000039.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8042
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8502
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_153225_721221_5D9EF9AD 
-X-CRM114-Status: GOOD (  22.08  )
+X-CRM114-CacheID: sfid-20261118_153226_418086_69BD127F 
+X-CRM114-Status: GOOD (  17.75  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,122 +124,83 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds a driver for the AMD AI Engine (AIE) found on Versal
-devices, together with the firmware changes the driver depends on. AI Engine
-is a tile array based accelerator used for applications such as beamforming and
-machine learning inference. Tiles are organised in columns, and groups of
-columns form partitions that an application requests, initialises and releases.
+From: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>
 
-Several registers in the AI Engine array (column and shim resets, memory
-zeroisation, tile clock gating, NoC and interrupt routing) are privileged
-and can only be written by the trusted firmware. The driver therefore
-packs operations into a DMA buffer and hands it to the platform firmware,
-which executes them in order.
+The driver checks the number of arguments, but it is not clear what those
+values reflect. Introduce the SMC_ARG_CNT_BASIC_32 macro and add comments
+to clarify.
 
-Firmware patches included
--------------------------
-Patches 1-10 are not part of the AI Engine driver itself, but the driver
-cannot work without them, so they are included here to keep the series
-self-contained and reviewable in one place:
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+Signed-off-by: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>
+---
+ drivers/firmware/xilinx/zynqmp.c     | 14 +++++++++++---
+ include/linux/firmware/xlnx-zynqmp.h | 10 ++++++++--
+ 2 files changed, 19 insertions(+), 5 deletions(-)
 
-  - 1-5:  zynqmp firmware driver refactoring and a va_start()/va_end()
-          fix (patch 2 carries Fixes: tags), preparing for the extended
-          SMCCC call format.
-  - 6-7:  Versal Gen 2 compatible string and firmware support, where all
-          EEMI APIs use the extended SMCCC payload.
-  - 8-9:  Versal Gen 2 clock binding and clk driver match entry.
-  - 10:   firmware IOCTL support for the Versal Gen 2 AIE run time
-          operations, used by the driver.
-
-I am happy to split out or reorder the firmware and clock patches if the
-maintainers prefer to take them through their own trees, and would
-appreciate guidance on how the series should be merged.
-
-AI Engine driver
-----------------
-  - 11:   devicetree binding for the AI Engine.
-  - 12:   driver core: device probe, partition request and release.
-  - 13:   pm ops: building and sending firmware operation packets.
-  - 14:   enabling and disabling tile clocks.
-  - 15:   partition initialize and teardown (reset operations).
-
-Previous submission
--------------------
-This driver was posted for review a little over a year ago:
-
-  https://lore.kernel.org/dri-devel/20250702155630.1737227-1-gregory.williams@amd.com/
-
-Since then the scope of what is proposed for upstream has changed, this series
-is considerably different from that posting, in particular targeting only Versal
-Gen 2 support. All comments received on the earlier posting have been addressed
-or in this version.
-
-Abhyuday Godhasara (1):
-  drivers: firmware: xilinx: Add IOCTL support for the AIE run time
-    operations
-
-Gregory Williams (5):
-  dt-bindings: soc: xilinx: Add Versal AI Engine DT binding
-  accel/amd-ai-engine: Add AMD AI Engine device driver
-  accel/amd-ai-engine: Add pm ops for firmware calls
-  accel/amd-ai-engine: Add support to enable/disable tile clocks
-  accel/amd-ai-engine: Add reset operations
-
-Naman Trivedi (1):
-  dt-bindings: clock: versal: add Versal Gen 2 compatible string
-
-Senthil Nathan Thangaraj (8):
-  firmware: xilinx: Separate TF-A checking
-  firmware: xilinx: Call va_start after pm feature check
-  firmware: xilinx: Add comments about number of arguments
-  firmware: xilinx: Use match data for ZynqMP/Versal
-  firmware: xilinx: Rename zynqmp_pm_invoke_fw_fn()
-  dt-bindings: firmware: xilinx: Add Versal Gen 2 compatible string
-  firmware: xilinx: Add support for Versal Gen 2
-  clk: zynqmp: Add Versal Gen 2 compatible string
-
- .../bindings/clock/xlnx,versal-clk.yaml       |   5 +-
- .../firmware/xilinx/xlnx,zynqmp-firmware.yaml |   3 +
- .../bindings/soc/xilinx/xlnx,ai-engine.yaml   |  61 +++
- MAINTAINERS                                   |   9 +
- drivers/accel/Kconfig                         |   1 +
- drivers/accel/Makefile                        |   3 +-
- drivers/accel/amd-ai-engine/Kconfig           |  15 +
- drivers/accel/amd-ai-engine/Makefile          |  14 +
- .../accel/amd-ai-engine/ai-engine-aiemlv2.c   | 441 ++++++++++++++++
- drivers/accel/amd-ai-engine/ai-engine-clock.c | 154 ++++++
- drivers/accel/amd-ai-engine/ai-engine-dev.c   | 255 ++++++++++
- .../accel/amd-ai-engine/ai-engine-internal.h  | 377 ++++++++++++++
- drivers/accel/amd-ai-engine/ai-engine-part.c  | 140 ++++++
- drivers/accel/amd-ai-engine/ai-engine-pm.c    | 472 ++++++++++++++++++
- drivers/accel/amd-ai-engine/ai-engine-res.c   | 184 +++++++
- drivers/accel/amd-ai-engine/ai-engine-reset.c |  69 +++
- drivers/clk/zynqmp/clkc.c                     |   1 +
- drivers/firmware/xilinx/zynqmp.c              | 340 +++++++++++--
- include/linux/amd-ai-engine.h                 | 115 +++++
- include/linux/firmware/xlnx-zynqmp.h          |  65 ++-
- 20 files changed, 2679 insertions(+), 45 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
- create mode 100644 drivers/accel/amd-ai-engine/Kconfig
- create mode 100644 drivers/accel/amd-ai-engine/Makefile
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-aiemlv2.c
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-clock.c
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-dev.c
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-internal.h
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-part.c
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-pm.c
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-res.c
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-reset.c
- create mode 100644 include/linux/amd-ai-engine.h
-
+diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
+index e264a1914f06..fb8ea7b9fdb1 100644
+--- a/drivers/firmware/xilinx/zynqmp.c
++++ b/drivers/firmware/xilinx/zynqmp.c
+@@ -454,6 +454,10 @@ int zynqmp_pm_invoke_fw_fn(u32 pm_api_id, u32 *ret_payload, u32 num_args, ...)
+ 	u32 args[SMC_ARG_CNT_32] = {0};
+ 	u32 module_id;
+ 
++	/*
++	 * Of the 16 32-bit argument registers, the extended SMC header uses 3,
++	 * leaving at most SMC_ARG_CNT_32 (13) for arguments.
++	 */
+ 	if (num_args > SMC_ARG_CNT_32)
+ 		return -EINVAL;
+ 
+@@ -512,12 +516,16 @@ int zynqmp_pm_invoke_fn(u32 pm_api_id, u32 *ret_payload, u32 num_args, ...)
+ 	 * Added SIP service call Function Identifier
+ 	 * Make sure to stay in x0 register
+ 	 */
+-	u64 smc_arg[8];
++	u64 smc_arg[SMC_ARG_CNT_64];
+ 	int ret, i;
+ 	va_list arg_list;
+-	u32 args[14] = {0};
++	u32 args[SMC_ARG_CNT_BASIC_32] = {0};
+ 
+-	if (num_args > 14)
++	/*
++	 * Of the 16 32-bit argument registers, the basic SMC header uses 2,
++	 * leaving at most SMC_ARG_CNT_BASIC_32 (14) for arguments.
++	 */
++	if (num_args > SMC_ARG_CNT_BASIC_32)
+ 		return -EINVAL;
+ 
+ 	/* Check if feature is supported or not */
+diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+index 41a1cd810bda..681ab99ceffc 100644
+--- a/include/linux/firmware/xlnx-zynqmp.h
++++ b/include/linux/firmware/xlnx-zynqmp.h
+@@ -79,8 +79,14 @@
+ /* Number of 64bits arguments for SMC call */
+ #define SMC_ARG_CNT_64	8U
+ 
+-/* Number of 32bits arguments for SMC call */
+-#define SMC_ARG_CNT_32	13U
++/*
++ * The SMC call provides 16 32-bit argument registers. The header consumes
++ * some of them, so the number left for arguments depends on the SMC format:
++ *  - Extended SMC: 3 used by the header, SMC_ARG_CNT_32 (13) for arguments.
++ *  - Basic SMC:    2 used by the header, SMC_ARG_CNT_BASIC_32 (14) for arguments.
++ */
++#define SMC_ARG_CNT_32		13U	/* Extended SMC 32-bit arg count */
++#define SMC_ARG_CNT_BASIC_32	14U	/* Basic SMC 32-bit arg count */
+ 
+ /* Number of arguments for a callback */
+ #define CB_ARG_CNT     4
 -- 
 2.34.1
 
