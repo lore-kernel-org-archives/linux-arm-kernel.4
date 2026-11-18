@@ -2,81 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66AE060A2600
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 14:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D4C606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 14:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=udOps4fF;
-	dkim=pass (2048-bit key) header.d=fau.de header.i=@fau.de header.a=rsa-sha256 header.s=fau-2021 header.b=XVzbMVpL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Al6zEzNc;
+	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=J9u6jso8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nV1O6jvV7LY84nmyWvTeb3FZb9IncqxS3F8jpRloohk=; b=udOps4fFJ0+5t5m9zTbGVEG+Fk
-	zKbz7wiYkQpeolHC1YLOD3OJ3W1T4F+kcHCJZI7rPAzPZ/QmDJRomOscmZqgr+ppDs3XMG57zo2Fq
-	GWPZ3WOxNIEqtoYNeRumfxy8BXOxBMRNPn5UrVB0rFylYg0wXCOc/smtMwHOTgyBwbV6yhU2ql6IC
-	4TStQYVMz4sX5v8vp9uAky8Ms8fCBBf4EQ07hcjD/K+5BFd4ozCWkgCr++IFd8VMlLaCanuORjPwx
-	nKwGajN2CtKkcdTmvYXXwvd5aWWp+Ea4YdCSyU2LrnlEujeQlwrR9p44dlu4w+jRQISYFcTLnf0JR
-	L/ucx7NQ==;
+	bh=fSgwhlmKyQGQwctHqc43zOlvjdBzMgAkGZ09qlZCKuI=; b=Al6zEzNc0ixhZPOcOP7KK/MQYl
+	SmVAtwxYujohdaunwlM+J1oXHVDNxRXvH1hWTsULV3/dcO3cSxxIMm+1Hjb03NhxHcYP114/39J9z
+	G9/UwA9kIquGQbeOW0TI0OXv90+0mOii3dnNg1foHvusk5beYnoWWZNhO3qyvRvtAIhFxeqqzMKCm
+	kwdpGPXykvyxb4p2fMQJwz15fU2pRNZscJ+ogabGTSvqomnOWd0WAMbtTkuP8tRxGvVl0yxZcfmD0
+	ReNtkI7GWpmEzMCNRZW+/Vw0k1pB8YPnevOoR0Xfp8a2jxtFtqLwhJRzM9gXop9m/QMpaFVsRR1MC
+	7pUkg8WQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTgdg-000000096RX-20sr;
-	Wed, 18 Nov 2026 14:27:56 +0000
-Received: from mx-rz-2.rrze.uni-erlangen.de ([2001:638:a000:1025::15])
+	id 1xTgeD-000000096e1-1HM6;
+	Wed, 18 Nov 2026 14:28:29 +0000
+Received: from mail-m49197.qiye.163.com ([45.254.49.197])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTgdT-000000096J9-42RF
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 14:27:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fau.de; s=fau-2021;
-	t=1795012049; bh=nV1O6jvV7LY84nmyWvTeb3FZb9IncqxS3F8jpRloohk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From:To:CC:
-	 Subject;
-	b=XVzbMVpLS0l21PdU1UrLo6qa5n5nJURXRUjkvdjgVEmnHTJFU8iodHSziacY9VHGS
-	 t2HmIyq98BqtfM7s6ch/h15TFlHdNMEnOLmFl91exGNxTrEWsgWkrM6gO8nH54aeUi
-	 DxD6G+yAbzkoSDOcVm7phlcBbl3uEnmZP4bi02nCkBlYmsWwQzMYrnUSTPlVSqoDXb
-	 LeCMCEs4St4+v119DuF24wHaIh5tMhdoLgYaegoKVAnAdoM0JxtfZJMu+EqVT2L80i
-	 avoZMyImbN4EqJhKWX/wGHNhGIxpxCFP8K5W+Wm6dqDbCIngYMen31tvxBIpoy6SOL
-	 WLcEuB7zQOOXg==
-Received: from mx-rz-smart.rrze.uni-erlangen.de (mx-rz-smart.rrze.uni-erlangen.de [IPv6:2001:638:a000:1025::1e])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-rz-2.rrze.uni-erlangen.de (Postfix) with ESMTPS id 4jV3pT4tyFzPjlr;
-	Wed, 18 Nov 2026 15:27:29 +0100 (CET)
-X-Virus-Scanned: amavisd-new at boeck4.rrze.uni-erlangen.de (RRZE)
-X-RRZE-Flag: Not-Spam
-X-RRZE-Submit-IP: 2001:620:618:5b8:2:80b3:0:385
-Received: from localhost (unknown [IPv6:2001:620:618:5b8:2:80b3:0:385])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: U2FsdGVkX18FgheTGs5bb6/Cj/sYgy4rpAX9+EqkDi0=)
-	by smtp-auth.uni-erlangen.de (Postfix) with ESMTPSA id 4jV3pQ4jwyzPjjf;
-	Wed, 18 Nov 2026 15:27:26 +0100 (CET)
-From: Luis Gerhorst <luis.gerhorst@fau.de>
-To: Ryan Roberts <ryan.roberts@arm.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,  Will Deacon
- <will@kernel.org>,  Mark Rutland <mark.rutland@arm.com>,  Alexei
- Starovoitov <ast@kernel.org>,  Daniel Borkmann <daniel@iogearbox.net>,
-  John Fastabend <john.fastabend@gmail.com>,  Andrew Morton
- <akpm@linux-foundation.org>,  Alexander Viro <viro@zeniv.linux.org.uk>,
-  linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org,
-  bpf@vger.kernel.org,  stable@vger.kernel.org
-Subject: Re: [PATCH v1] arm64: Mitigate Spectre v1 in the BPF interpreter
-In-Reply-To: <20261117172341.3152407-1-ryan.roberts@arm.com>
-References: <20261117172341.3152407-1-ryan.roberts@arm.com>
-User-Agent: mu4e 1.12.12; emacs 31.1
-Date: Wed, 18 Nov 2026 15:27:25 +0100
-Message-ID: <871p8ib4fm.fsf@fau.de>
+	id 1xTgeB-000000096ch-0cMa;
+	Wed, 18 Nov 2026 14:28:28 +0000
+Received: from lgs.. (unknown [101.76.249.61])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 5526d7a04;
+	Wed, 18 Nov 2026 22:28:22 +0800 (GMT+08:00)
+From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+To: Yue Wang <yue.wang@Amlogic.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pci@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] PCI: meson: Fix potential use-after-free after PHY provider removal
+Date: Wed, 18 Nov 2026 22:28:21 +0800
+Message-ID: <20261118-324f82bd41-pci-meson-0@mail.sdu.edu.cn>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa1ef0f076c03a1kunmfe1958691a169f
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZTUhLVhlCGElJQxodSU5KGVYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWUtVS1VLVUtZBg
+	++
+DKIM-Signature: a=rsa-sha256;
+	b=J9u6jso8uxOqF1ixoniwY6KndX5ryqPnNLKDGPlR9JGvTenW6T/GKKNor60TS/vnGbYxX0j8BNgeGR0r0YsTF++W2HC7PNfYDWjjjYnI/B3koqT04ZOX/BoSjjUBFpp6ZiFVZ7KtiIwTKzejsAanv1MECs2sJcjTwO+b9mE5ugY=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
+	bh=fSgwhlmKyQGQwctHqc43zOlvjdBzMgAkGZ09qlZCKuI=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_062744_512588_F7DEA03D 
-X-CRM114-Status: GOOD (  29.56  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261118_062827_443455_6F072825 
+X-CRM114-Status: UNSURE (   8.16  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,159 +79,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Ryan Roberts <ryan.roberts@arm.com> writes:
+The PHY reference keeps the PHY device alive, but not the provider
+driver resources used by its callbacks. Without a managed dependency,
+unbinding the provider first can leave meson_pcie_power_off() accessing
+freed provider data during PCIe removal.
 
-> The BPF verifier can accept programs with unsafe speculative paths by
-> inserting BPF_NOSPEC instructions instead of rejecting them. It relies
-> on those instructions to prevent execution of the unsafe paths.
->
-> The arm64 JIT implements BPF_NOSPEC with a speculation barrier, but the
-> interpreter calls barrier_nospec(), which falls back to a no-op on
-> arm64. Programs executed by the interpreter therefore lack the
-> Spectre-v1 barriers assumed by the verifier. Contrary to the code
-> comment, kernel-wide SSBD does not provide this protection, since it
-> mitigates Spectre v4 rather than Spectre v1.
->
-> Rename spec_bar() to barrier_nospec() so that the interpreter and other
-> callers receive SB if supported, or DSB NSH followed by ISB otherwise.
->
-> Defining barrier_nospec() would also add barriers to the generic
-> copy_from_user() and copy_from_user_iter() paths. These are unnecessary
-> on arm64: its uaccess primitives mask user pointers so that they cannot
-> address kernel memory even when an access_ok() check is mispredicted.
->
-> Introduce user_access_may_speculate_kernel_addr(), defaulting to true,
-> and have arm64 return false. Then update the uaccess sites to call
-> barrier_nospec() conditionally on the macro.
->
-> Cc: stable@vger.kernel.org
-> Fixes: d6f1c85f2253 ("bpf: Fall back to nospec for Spectre v1")
-> Signed-off-by: Ryan Roberts <ryan.roberts@arm.com>
+Add a managed link to the PHY provider so the PCIe controller is unbound
+before the provider releases its resources.
 
-Thanks! Tested that this prevents the attack (just recovery of OOB
-value, did not aim for real secret) on Cavium ThunderX2 (no FEAT_SB) as
-expected.
+This issue was found by our static analysis tool under development.
+Fixes: 4b0dc84b2939 ("PCI: meson: Add missing remove callback")
+Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+---
+ drivers/pci/controller/dwc/pci-meson.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Tested-by: Luis Gerhorst <luis.gerhorst@fau.de>
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 8559d132dcde..251673bc5963 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -401,6 +401,10 @@ static int meson_pcie_probe(struct platform_device *pdev)
+ 		return PTR_ERR(mp->phy);
+ 	}
+ 
++	if (!device_link_add(dev, mp->phy->dev.parent,
++			     DL_FLAG_AUTOREMOVE_CONSUMER))
++		return dev_err_probe(dev, -EINVAL, "failed to link PHY provider\n");
++
+ 	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(mp->reset_gpio)) {
+ 		dev_err(dev, "get reset gpio failed\n");
 
-> ---
->  arch/arm64/include/asm/barrier.h | 6 +++---
->  arch/arm64/include/asm/uaccess.h | 3 +++
->  arch/arm64/kernel/proton-pack.c  | 2 +-
->  include/linux/uaccess.h          | 7 ++++++-
->  kernel/bpf/core.c                | 9 +--------
->  lib/iov_iter.c                   | 3 ++-
->  6 files changed, 16 insertions(+), 14 deletions(-)
->
-> diff --git a/arch/arm64/include/asm/barrier.h b/arch/arm64/include/asm/barrier.h
-> index 9495c4441a46..088ee29d36f4 100644
-> --- a/arch/arm64/include/asm/barrier.h
-> +++ b/arch/arm64/include/asm/barrier.h
-> @@ -40,9 +40,9 @@
->   */
->  #define dgh()		asm volatile("hint #6" : : : "memory")
->
-> -#define spec_bar()	asm volatile(ALTERNATIVE("dsb nsh\nisb\n",		\
-> -						 SB_BARRIER_INSN"nop\n",	\
-> -						 ARM64_HAS_SB))
-> +#define barrier_nospec() asm volatile(ALTERNATIVE("dsb nsh\nisb\n",		\
-> +						  SB_BARRIER_INSN"nop\n",	\
-> +						  ARM64_HAS_SB) : : : "memory")
->
->  #define gsb_ack()	asm volatile(GSB_ACK_BARRIER_INSN : : : "memory")
->  #define gsb_sys()	asm volatile(GSB_SYS_BARRIER_INSN : : : "memory")
-> diff --git a/arch/arm64/include/asm/uaccess.h b/arch/arm64/include/asm/uaccess.h
-> index 9f5bd9c69c24..6fd03dc1ae76 100644
-> --- a/arch/arm64/include/asm/uaccess.h
-> +++ b/arch/arm64/include/asm/uaccess.h
-> @@ -174,6 +174,9 @@ static inline void __user *__uaccess_mask_ptr(const void __user *ptr)
->  	return safe_ptr;
->  }
->
-> +/* __uaccess_mask_ptr() prevents speculative accesses to kernel addresses. */
-> +#define user_access_may_speculate_kernel_addr() false
-> +
->  /*
->   * The "__xxx" versions of the user access functions do not verify the address
->   * space - it must have been done previously with a separate "access_ok()"
-> diff --git a/arch/arm64/kernel/proton-pack.c b/arch/arm64/kernel/proton-pack.c
-> index 3bcf86154d95..c96e93eca3b9 100644
-> --- a/arch/arm64/kernel/proton-pack.c
-> +++ b/arch/arm64/kernel/proton-pack.c
-> @@ -559,7 +559,7 @@ static enum mitigation_state spectre_v4_enable_hw_mitigation(void)
->  	 * could mis-speculate branches and bypass a conditional barrier.
->  	 */
->  	if (IS_ENABLED(CONFIG_ARM64_ERRATUM_3194386))
-> -		spec_bar();
-> +		barrier_nospec();
->
->  	return SPECTRE_MITIGATED;
->  }
-> diff --git a/include/linux/uaccess.h b/include/linux/uaccess.h
-> index 67cdb0a4f583..5a1fa4f48c77 100644
-> --- a/include/linux/uaccess.h
-> +++ b/include/linux/uaccess.h
-> @@ -50,6 +50,10 @@
->   #define mask_user_address(src) (src)
->  #endif
->
-> +#ifndef user_access_may_speculate_kernel_addr
-> +#define user_access_may_speculate_kernel_addr() true
-> +#endif
-> +
->  /*
->   * Architectures should provide two primitives (raw_copy_{to,from}_user())
->   * and get rid of their private instances of copy_{to,from}_user() and
-> @@ -179,7 +183,8 @@ _inline_copy_from_user(void *to, const void __user *from, unsigned long n)
->  		 * lead to nasty side effects *after* the copy is
->  		 * finished:
->  		 */
-> -		barrier_nospec();
-> +		if (user_access_may_speculate_kernel_addr())
-> +			barrier_nospec();
->  	}
->  	instrument_copy_from_user_before(to, from, n);
->  	res = raw_copy_from_user(to, from, n);
-> diff --git a/kernel/bpf/core.c b/kernel/bpf/core.c
-> index 0b8456f2dce9..abd938d310bb 100644
-> --- a/kernel/bpf/core.c
-> +++ b/kernel/bpf/core.c
-> @@ -2250,14 +2250,7 @@ static u64 ___bpf_prog_run(u64 *regs, const struct bpf_insn *insn)
->  	/* ST, STX and LDX*/
->  	ST_NOSPEC:
->  		/* Speculation barrier for mitigating Speculative Store Bypass,
-> -		 * Bounds-Check Bypass and Type Confusion. In case of arm64, we
-> -		 * rely on the firmware mitigation as controlled via the ssbd
-> -		 * kernel parameter. Whenever the mitigation is enabled, it
-> -		 * works for all of the kernel code with no need to provide any
-> -		 * additional instructions here. In case of x86, we use 'lfence'
-> -		 * insn for mitigation. We reuse preexisting logic from Spectre
-> -		 * v1 mitigation that happens to produce the required code on
-> -		 * x86 for v4 as well.
-> +		 * Bounds-Check Bypass and Type Confusion.
->  		 */
->  		barrier_nospec();
->  		CONT;
-> diff --git a/lib/iov_iter.c b/lib/iov_iter.c
-> index fa4fe2e92383..abd27189beff 100644
-> --- a/lib/iov_iter.c
-> +++ b/lib/iov_iter.c
-> @@ -60,7 +60,8 @@ size_t copy_from_user_iter(void __user *iter_from, size_t progress,
->  		 * lead to nasty side effects *after* the copy is
->  		 * finished:
->  		 */
-> -		barrier_nospec();
-> +		if (user_access_may_speculate_kernel_addr())
-> +			barrier_nospec();
->  	}
->  	to += progress;
->  	instrument_copy_from_user_before(to, iter_from, len);
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+-- 
+2.43.0
+
 
