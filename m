@@ -2,195 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C3660A2600
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33DC3606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:52:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x/gjyQyR;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=cqIgjI7r;
-	dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.a=rsa-sha256 header.s=proofpoint-05-2026 header.b=APrffa5p;
-	dkim=neutral header.d=ticloud.onmicrosoft.com header.i=@ticloud.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-ticloud-onmicrosoft-com header.b=X8n+jzUn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=riPyn1S1;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=G6W0Zgap
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=j4EZ2rDwAjqxdYv1TNNSflD1AzzP7hTHP5n8zfkaohI=; b=x/gjyQyRmWF1NO
-	55Q3YhgLxIpxe7n4n1wAWXD6qPnddKIMmIT5B3POM5V+bImDIv772ykwmYW9tUOFBW/d4RVhlhWfy
-	s9Mp3OkaxfnYLKiAnlAA3iZL8UOgV4kM7u1+J/NTLrWWxATQK6pMTeYtXd8xCT/n7aeKbdweLV5kV
-	K5D5NGCecb10bpZPhmgYKgjUvcoIXD0xExjUePK76D5ibd3iUgN0R/ixuAYSNgRuE6qb2iQB++gS4
-	HZBA22B4sABtuoUiAj6/V0DnD6q22UYKm9KfteQaU7SFBv0Vmqyjf3NcF2bHWVuFdIM50n9ilbnLi
-	yuFBd+WGVbuc1WnbJVAQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Xr3ARsn3HSOBe/bAlEDhSRHDkU6XOfuvo4/af9LL+fg=; b=riPyn1S1tis9nUXkBSRMcJbgtN
+	bz5iXincMXubJd7bIVUM3VuZDo49hljfMh7uHgcUZumSCd5qch/ebCOlgrWYdhmfqyR/dwY0XaOkL
+	FvfPCXc90MuuhnTtYQna+ewlFZdFz3C9+5ArWL2cedz62Q4PDneKa/cDvOmEqy7H5I6TqalqW4upY
+	20gRQjRjWurxS6qVu9nM2YOehit6c0cNgmdQIJgV1hwG3W4jKNG7b6EqI3AATm5VKuAzZf0rgMwJZ
+	DnJSDcwwDmc/3nHnsKenLw67UQAon2+nir3Ppaht0I/1T94vEVu6iANQuweod9R48W2V0Ny87AjnI
+	HCg2+qow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkjm-0000000A21Y-2Wbf;
-	Wed, 18 Nov 2026 18:50:30 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xTkl8-0000000A2JA-0j6x;
+	Wed, 18 Nov 2026 18:51:54 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkjk-0000000A20f-0gkV
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 18 Nov 2026 18:50:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=j4EZ2rDwAjqxdYv1TNNSflD1AzzP7hTHP5n8zfkaohI=; b=cqIgjI7rfjvEcbGgxuVmPbx3HI
-	8FALGywOuKoQ5IVJhqtdd9NWSzi8Jx9cq12rbwBxfMN04u/KkhPjtfxFf6g8Db1STnOIPewy8UW7H
-	MwvvZnF1iEbbac7nmkypGknwcxo3gt1wt8HDswNOpFOgR6BVVqrYMdxBYgSa5SZAMzNyZCnCCpDhW
-	BX7caiRmXg11TCHlIPDz8R9cO+PE2hpwPmJxZ41RBJ6pG58njvkh2fGXMs8fGu5gLHm2pgjNrprs0
-	lniKa8gcg5ZqH8NDmg88kjQl3L2faItPYg12j7TS/18y6B5axO9kqocpt8lHLriglFfI00Qq2nWrF
-	unXxvgvA==;
-Received: from mx0a-0002e601.pphosted.com ([148.163.150.75])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkjc-0000000GQZq-1nAW
+	id 1xTkl2-0000000A2Hw-1erJ
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 18:50:25 +0000
-Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
-	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 6AIHFm6t3882377;
-	Wed, 18 Nov 2026 12:49:36 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	proofpoint-05-2026; bh=j4EZ2rDwAjqxdYv1TNNSflD1AzzP7hTHP5n8zfkao
-	hI=; b=APrffa5pfOthml/40jSSF4XFIh9oBcEUdZXHvzt2w0M+P1qBlVpka3uuu
-	2Gj31YyzoJ+PP7JZSVHXy/FXahujPmZimGXGVWb+NsDR1BjF3xxRm4Lf9RGCxwxS
-	AQbsJTJdVBRk6CFauu4yFfR63fsl515sdHivU2eNV3XaU2t3wk1XjCjM5oqxDqJe
-	giFHHvtlZYbLVYdfAi9PET3PguY/orjSwN3pnXxqcjWev13q2xE4YIbBIeqEuT5F
-	5reUixkCjsMRDtwDX1HejcK+YglHaldPYz96LxjGAEDkrvSUYC5HHMonkRHcAuDn
-	54AMDskpoaqNXpOhueY4X26Skt29Q==
-Received: from ch5pr02cu005.outbound.protection.outlook.com (mail-northcentralusazon11012029.outbound.protection.outlook.com [40.107.200.29])
-	by m0384305.ppops.net (PPS) with ESMTPS id 4j19fp32bh-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 18 Nov 2026 12:49:36 -0600 (CST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ibpdxuCEu+y+r5ZlZElyLpx0l6J62vyO3dDByzfzsgJuTyRZ2GUnxdIuBF2yShXt7p8Xx5qnS3rzghQ7k7j+9mzpUP9H4B/ftuAWWrBFRgnd5WRPKnL2EzGnMg3OYI1dZ1BiAiw76HFII0ExC2xeDwejYg7wX0X+VtbA3OoIcmPfg+mUcxU1iYTmzFRsgaLPS0Iih3xy5p9tOu4NARU1vUYon7Pe0jLo14APIgRmOtd/NyLHYcB2x8YkkT1hk416o9gQJU+PHhNF1HkdPhHxHwhS7CdS5PsBNumhrucHU+nDStjyYYob8fyj+GRozl4dPJTiTO6JiDWR4Z/IrOQzfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j4EZ2rDwAjqxdYv1TNNSflD1AzzP7hTHP5n8zfkaohI=;
- b=cP9Xhljq6FgsS/19iu72pMv87yZH9sGCnEm1fUE3sJ/WGZY2nXQ5Tnf+ENy62prtfq23IBnJaT/VMVOL973rfNrnbTXAL1O9GczmHNObL64uqPLRj4DpwACyPytY2yo/gKx6JGe82Xj3pFY0njNBKSxwAB1mbP72gcNnfabkSClUItTZi8QcvnRKX9CpegqpFOPpAH+ceMuKf04VpQiX+vaTyHaP9U0SuCUhE+DkcHPBFdGQcCR+lxNOSCNR4FxqDhGyy86msay95PG5QBpgoc1Xx92Qbl2o8YU8hnTWzSo+X1H/epeaWpDPMIip5SGE7uYafzepbVEfhx94v/X9yQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=suse.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
+	Wed, 18 Nov 2026 18:51:52 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-48e3b22e971so817854f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:51:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ticloud.onmicrosoft.com; s=selector1-ticloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j4EZ2rDwAjqxdYv1TNNSflD1AzzP7hTHP5n8zfkaohI=;
- b=X8n+jzUnXmfyModc9v3oWh8oFdeDxXtaZcahuCakdpYckx0F4idKk7bvrKCLQQvjyzUMgBnRRL7/yZAEWasXWBE/lQfsyYTAXKgBWlWWESU/K+YB1+i7sMYsvrFNLgjiwPJkIAhI7Dzh1nkxIXYyTl41THxi/m6JUCvkDDI3ngs=
-Received: from SJ2P220CA0009.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:5da::8)
- by MN2PR10MB4127.namprd10.prod.outlook.com (2603:10b6:208:1d8::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.13; Wed, 18 Nov
- 2026 18:48:29 +0000
-Received: from SJ1PEPF000026C6.namprd04.prod.outlook.com
- (2603:10b6:a03:5da:cafe::95) by SJ2P220CA0009.outlook.office365.com
- (2603:10b6:a03:5da::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Wed,
- 18 Nov 2026 18:48:29 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 198.47.23.194) smtp.mailfrom=ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- SJ1PEPF000026C6.mail.protection.outlook.com (10.167.244.103) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 18:48:29 +0000
-Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 18 Nov
- 2026 12:47:44 -0600
-Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 18 Nov
- 2026 12:47:44 -0600
-Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45 via Frontend
- Transport; Wed, 18 Nov 2026 12:47:44 -0600
-Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
-	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6AIIliEh321271;
-	Wed, 18 Nov 2026 12:47:44 -0600
-Received: from localhost (meghana.dhcp.ti.com [172.24.231.93] (may be forged))
-	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 6AIIlgrA007573;
-	Wed, 18 Nov 2026 12:47:43 -0600
-From: Meghana Malladi <m-malladi@ti.com>
-To: <marco.crivellari@suse.com>, <kees+treewide@kernel.org>,
-        <laixiangwu@cmss.chinamobile.com>, <philippe.schenker@impulsing.ch>,
-        <haokexin@gmail.com>, <devnexen@gmail.com>, <horms@kernel.org>,
-        <jacob.e.keller@intel.com>, <m-malladi@ti.com>, <sdf@fomichev.me>,
-        <john.fastabend@gmail.com>, <hawk@kernel.org>, <daniel@iogearbox.net>,
-        <ast@kernel.org>, <pabeni@redhat.com>, <kuba@kernel.org>,
-        <edumazet@kernel.org>, <davem@davemloft.net>, <andrew+netdev@lunn.ch>
-CC: <bpf@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <srk@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        <danishanwar@ti.com>
-Subject: [PATCH net-next 2/2] net: ti: icssg-prueth: Add ethtool RX flow classification support
-Date: Thu, 19 Nov 2026 00:17:27 +0530
-Message-ID: <20261118184729.2302130-3-m-malladi@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261118184729.2302130-1-m-malladi@ti.com>
-References: <20261118184729.2302130-1-m-malladi@ti.com>
+        d=baylibre.com; s=google; t=1795027906; x=1795632706; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Xr3ARsn3HSOBe/bAlEDhSRHDkU6XOfuvo4/af9LL+fg=;
+        b=G6W0ZgapSRCPlDGA7vcqseAfBVIrd39SmOUUxX+Wumx1wwykZYfwOBulldDm6Yv66m
+         bLl7ax/k4R6b+NoIpmTpoO+o8WNKZXlKwquTodsbZxDXv3COm87IQiRGUmYm4fkJwivS
+         /Kgr2q/8XEmvlsd4XnopkAfyKlGY5MPnCB0hREeVokMfBW/ZACnf0IsWZWERyW1tgM4/
+         +6MTdMHXOYwTBxxUd/92f3gpLgd5umGQ28Qxus0u650WhlIx5uJi5Tlr3mn0QuieRRgh
+         Xu0JWuJhEHSv11z6sC60kxzSXV5fN3QO3NeCrSdb8lIlyK5mzrINSWXtBHKB7RYCwQh+
+         MnVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795027906; x=1795632706;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Xr3ARsn3HSOBe/bAlEDhSRHDkU6XOfuvo4/af9LL+fg=;
+        b=kNpSYYi85CzKNQ6c4yHIGdsx1LVtfRu1LEyB3R3LFVGKLLe4FDqXZB+53dzHvyz9nF
+         w1Q3gnDUrpxUJbG95de41D3MtyvlcGhVCeixYFE+Sv1/lz7sIxV3XGUVsb8+hxCh/YY8
+         3BKsX3rhJLjXlRWj3RyJL90kIFxpwQFSgSoqrRAXolRPX2QB/oGEk3MYyBF+OlV0hseY
+         jEuXqISFrpLQV0G5ptxezjost0UWUgaK9ZfLGLn7LXJ0C8xM3NHHkx6gRYtUhiL4nqi2
+         C2umIQOj/7g3F8a156fIKbNraf3Y8bIK2PPsGta1Mh9XPs8BNjNeKsZyKCnThvUPxu0l
+         s45g==
+X-Forwarded-Encrypted: i=1; AL+hErESIoYu5VUU9QZQAo88XuTsqOA7Tdh0RZuwsHB/Dfa+m6GwAxsx/D0hyy2EDNNN40tAQejzupQ2RW2nrBWfUEBG@lists.infradead.org
+X-Gm-Message-State: APuU4Z/G52lL7kNIisCeTvRnHdfKoKb7Qx6wCNhnrps4szL4vckYGNUZ
+	vBKFDSpu5I6+Ix++0YzBWX7jYk4SVmHb6t5Dg5t31qy2DkXGKbyrSo5GVxjYpEjxEoc=
+X-Gm-Gg: AZFdTZdXWuXNUHBfVN+rLBPp6jqGg/ARJkQSJIhjmmVqsmB61UoY73pkA0ccsjaEqZy
+	hjzx02R/ZAuTjUwoYQldkdaGN1dx+xPZlNB/nddQlCe1DKorryrxOc5P/MsvBTmJyPyLONL9LFd
+	brgiG7TjFuTHqi8WFZmJo5jH/IY16QP6ebaFzSEzpY204C74TusStPUCKaBjPn06HCQiB+fCTM+
+	eLqSUkXvzzjSuwnhP2Bn/NozQD28JVdy2ytmSqE9WMStXRqMc2SxL44gOi+4T/FogHJ+0C/P8ZR
+	wiL5LXmafyUCYkP+3CTolq/v/at96ay6Ir9fa8JM4FprRg4T4rYLI4uqXQJk3bKV3RvOakooH96
+	OM+76mGefit3OFF2dga9TA5cX4UrWMotv+H5PlP+4Twgwu0Poz247LrtvZOOUfzKmC6pzFlWGrg
+	tNOboulU41ADKU/3AC08slSq6dQRG1phCKc895VuPkA6e3cAUYUxpBVn4qCmEFCIz5glo7xMGrm
+	jhFNwVGqX6DipS3Er/k01jCzq8C1XjakG049xtfwaJqrzxvB+PzoC0CxhXqU0aC/AZth/r5RVci
+	1rv0thNjljOhGxtZmYmXOUya4ekSmL/kqZjMSpnposYXi/mzmgC7Cat0bNJ6/LSODZPsBRDWqtY
+	fGwmxQLctxv3nb4pgVi9nuktRtp7DVvTvPH5sLjBLXDTkgw==
+X-Received: by 2002:a05:6000:2601:b0:4a8:647c:f965 with SMTP id ffacd0b85a97d-4a8648c3f15mr2958154f8f.41.1795027905569;
+        Wed, 18 Nov 2026 10:51:45 -0800 (PST)
+Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654b807fesm5807868f8f.10.2026.11.18.10.51.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2026 10:51:45 -0800 (PST)
+Date: Wed, 18 Nov 2026 19:51:41 +0100
+From: Carlo Caione <ccaione@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 5/7] clk: amlogic: Add S7 PLL clock controller driver
+Message-ID: <av2kitSLJNxlAKiv@macbook.homenet.telecomitalia.it>
+References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
+ <20261106-upstream-s7-clk-v1-5-7d501d62621f@baylibre.com>
+ <179499607256.413320.18141155995846183804.b4-review@b4>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C6:EE_|MN2PR10MB4127:EE_
-X-MS-Office365-Filtering-Correlation-Id: e671cc52-89a5-4311-d42d-08df45a4898f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|82310400026|1800799024|376014|7416014|23010399003|6133799003|22082099003|18002099003|261009223027099003|3023799007|921020|56012099006|261102130727099003|261026121527099003|261102123227099003|10067099003|261028144727099003|261026140227099003|261021121427099003|261022105027099003|261021123027099003|261022075727099003;
-X-Microsoft-Antispam-Message-Info: rTYKuO8RGZtiXPCRrMqUnz3PXYkMq7R/Ku8+pb7sZOrov4D/boV9h8G8KMJ1+NBxNsZpcZPKXA8SRgCWLl1/okc9O6cWt4rACCl2keXzWY8ckJPlN0zBSk0KkLYd3gXoK7PxD/LtUnbHnS+Bg2jcgPXmrVw+39HaGuayBZN1jIY0oI/DmecjMfZ/4b9P5pZdZuJHgG5x7Eqft6QxeI+XL78O/MhJ5oBhoLoBj7toNV28bP1D86a0p6faznVrdDFJkWYJRjU2vWqT1MOataEqXrKP4FVv8bg/Q8+5cIN+j5seYBw4xfzqFaSLl3SSvFAi0IhbYgJ7DywbDW6xgtuciLxMahCXLWTCpFmgfdrW5Py0t2TPlcqkj+MPH/AXAeUfchrI1h7IFHB/ubjpQ2yx0msOtmN2Bg/wynEYipVa8p7iEh9pNGUmb6ga7Ts8MoCmfJFBgAk4TmtrTbD6emtOEQjPfcoIa4fKXhF4v8NyMnY3Vx43xgSnbj+6mmDteaGO82xfSc/HezHdOPbndPkC5O+KGcDvcWTgpI/GGs1RsQCvUd4zNDQ0ocsavdHERJz07yBQFGyigeeqXBks1xZ9IgNt/XfBWfXJyvlMKajLHcmECUF/StAxmXBs/nuEivA6QUe6pz1mf6ckP6QZwfyPJqZ4WEpXIGODWtDNaZ/fMcxoTljWTZimWGjPMXWwCTlwxtPGsLMqCIi5ATNaZG6hzwBxhVqz6ouX6a9YPBDLx+rqNOco7FzrQxv67roMIL01
-X-Forefront-Antispam-Report: CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(7416014)(23010399003)(6133799003)(22082099003)(18002099003)(261009223027099003)(3023799007)(921020)(56012099006)(261102130727099003)(261026121527099003)(261102123227099003)(10067099003)(261028144727099003)(261026140227099003)(261021121427099003)(261022105027099003)(261021123027099003)(261022075727099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: LJIOAF/JkO6kstyHv0S30JRq6o1okFToHvxmlkfWAYWsDuzo/2Y7X725JmEwBR0DXLaF1Tky4ZqSCEUAC7sQ7wONCe0v96vglRX5GcOh0ky9mA0we9snmKwrLCSF7J9fbNGii3kfk/E81dsvYsqW10mQIMXO1ierI65PqX+O/cio7TCqpxtC4Io4UszoxIh9xhg8k7T+32TqtqpPyZWYxlL/9B3NajMxGg9xBVB4+EnxjfMay+9gZrps6x01mXarYzr9fuVXty/TtDfw+endl/9kSKWYs89ACgMi60I3qoc0E8cGdK4o/x+OD0FF1uTmm+96afCafEpZAk/gSYAe0XqT4rvdkY/CBABLhNcmnLy1lEtTaT/aE2/2jc5dUVlIh61ktRRvzNYJAGb/mW4FBasBLPtF5rFKA5tljRBZFv5Lc7GA9WopqI0sqaFvrbMe
-X-Exchange-RoutingPolicyChecked: 5mwOoRq0hgEdDXZ1Gj9GqNY0KC7jKUCTPwTksjgpG9Euc6vjssA2oYf00SCqnXpNIecr+63cjSo3B2EMm1v3iv21BEo7yEZ2WtrswB43U020h+yKq3DXmmU0RxyKxa1grMIaJvDaVhe3qU+NBhaR81/YvZ/h++y68VmM5NPQ5lfnnGU0YHtfO54pRoZvEFjBREaFbvnzhphtFHsrCJKHc7rFYDHAtxgFUaaE229AtNF6OXTi9Dvu86lDUzncnlWJmH08e++Bnxc77T3ZtCiQXSqGy+aLPHJYcHf6ehE52Pmf7Njr3Dnq6O5z1JGdpdFRsmZiS+7QSbxeQ2zV9TU8nA==
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 18:48:29.3468
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e671cc52-89a5-4311-d42d-08df45a4898f
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000026C6.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR10MB4127
-X-Proofpoint-GUID: uEZZ7YC5jEKV32QliHb80WD01ZvTNacb
-X-Authority-Analysis: v=2.4 cv=ebKo7LEH c=1 sm=1 tr=0 ts=6afdf340 cx=c_pps
- a=6BjqzLHNfcmCQygjyc7k5Q==:117 a=WotqVVQAdb04rnGuttW3Kw==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
- a=s63m1ICgrNkA:10 a=AlMIdn_sM9wA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Z8NIEmU8O1QQgoT56wFK:22 a=taLDd7a_hP9WKsMzeGRc:22 a=sozttTNsAAAA:8
- a=fzIV0iIhEgMQ3wqdSLwA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDA3NCBTYWx0ZWRfX5s2HNgaghPJx
- pm6pEAYcCYnNXmJEDhChhqUaCeuY3cVJF8KPzhS0W3VaSy6/9GgGXIjbKLKdlCgoaWr/YMoaC3b
- fpu9D4wNN7egT90MatrsDEA7D7PZc8M=
-X-Proofpoint-ORIG-GUID: uEZZ7YC5jEKV32QliHb80WD01ZvTNacb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDA3NCBTYWx0ZWRfX6L0yt7gvuOtz
- JoWLUaYIrovOu28kwqzWDjUX1EpOeEINtYr17cY7pzlSoo4L6FqTXSgcdM0x09DHkwzqXgNZqtL
- rQWFTME3gHCyM8J3bKZH8k9AqGFsX3fMeicOIZ7wIx7hRgYMIlW8LVFW+qOH+tIcYB8rkiDbdKL
- 6ubMmP8y6OX4iKCSaIplp/IRS/jfExkPQ4LUKytAn/kmWxG8NOFFgbh04fq0l35BhS4Th7Akp/A
- RvOc2wUOWxmqIyjvyQ+4vhSVaDug32IbK3yZMzNogxq5QAA82nKaio+b4ES9LsYBAV+o04UlwpA
- vOGhynckfrtL3ZXBJQrbpXy1Ydk3HTf69n+aNPJTYulgx0gxc/vVENZkRJjdLs4AbS/F3ecdFVN
- cd5RhqFywx33Mdngl2prCPIlju01xkTG86vc2jJ5N1htLVrGk+9YYYHLz952LH/gylrukqiWP/A
- oaNuH1qgFHbN8u8HCJA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-18_05,2026-11-16_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 impostorscore=0 lowpriorityscore=0 bulkscore=0
- adultscore=0 priorityscore=1501 spamscore=0 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611180074
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <179499607256.413320.18141155995846183804.b4-review@b4>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_185020_850965_24373F2A 
-X-CRM114-Status: GOOD (  16.65  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261118_105148_475050_A69B393B 
+X-CRM114-Status: GOOD (  29.60  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -201,661 +109,111 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable dynamic RX flow classification via ethtool set_rxnfc/get_rxnfc.
-Users can install/remove filter rules to steer packets to specific RX flows
-based on EtherType patterns via FT3 hardware filters.
+On Wed, Nov 18, 2026 at 11:01:12 +0100, Jerome Brunet wrote:
+> > The S7 PLL controller provides the fixed PLL with its fclk dividers,
+> > the GP0, HIFI0 and HIFI1 PLLs, and the HDMI PLL.
+> > 
+> > Add a driver for it. The GP0 and HIFI PLLs are expected to run with
+> > their input divided by 2 (div0p5) and the HDMI PLL without it, as the
+> > firmware and the init sequences set them up.
+> > 
+> > Signed-off-by: Carlo Caione <ccaione@baylibre.com>> > +
 
-- Add RXNFC rule tracking structures and lifecycle management
-- Implement ethtool get_rxnfc/set_rxnfc callbacks
-- FT3 slot allocation and hardware programming for pattern matching
-- RX classifier OR table updates based on active rules
-- Max 15 rules per EMAC, using FT3 slots 0-13,15 (slot 14 reserved)
+[...]
+> > +/* The datasheet documents FIXPLL_CTRL1[30:26] as a single fclk_en field */
+> 
+> Not sure what this imply ?
 
-Signed-off-by: Meghana Malladi <m-malladi@ti.com>
----
+It means that each of the five bits enables one divider, while the
+datasheet only documents the five bits as a single field. I'll reword
+the comment to say that.
 
-RFC->v1 Changelog:
-Sashiko comments addressed:
-- Classifier/cleanup loop clobbers HSR/PRP classifiers 10/11
-- Masks not checked; ring_cookie==0 rule never reaches HW 
-- fs->location not validated; FT3 slot â‰  location; duplicates
-- icssg_rxnfc_rule_get_all NULL deref / heap overflow 
-- ETHTOOL_GRXRINGS dead code in emac_get_rxnfc
-- SR1 uses icssg_ethtool_ops but rxnfc uninitialized
-- Rules lost on suspend/resume; not re-applied on open
-- Rules leaked when driver removed while interface down
+> > +S7_FCLK(fclk_div2, 1, 2, FIXPLL_CTRL1, 30);
+> > +S7_FCLK(fclk_div3, 1, 3, FIXPLL_CTRL1, 26);
+> > +S7_FCLK(fclk_div4, 1, 4, FIXPLL_CTRL1, 27);
+> > +S7_FCLK(fclk_div5, 1, 5, FIXPLL_CTRL1, 28);
+> > +S7_FCLK(fclk_div7, 1, 7, FIXPLL_CTRL1, 29);
+> > +S7_FCLK(fclk_div2p5, 2, 5, FIXPLL_CTRL0, 25);
+> > +
+> > +static const struct pll_mult_range s7_pll_mult_range = {
+> > +	.min = 134,
+> > +	.max = 265,
+> > +};
+> > +
+> > +static const struct reg_sequence s7_gp0_pll_init_regs[] = {
+> > +	{ .reg = GP0PLL_CTRL0,	.def = 0x02520800 },
+> > +	{ .reg = GP0PLL_CTRL1,	.def = 0x09900322 },
+> > +	{ .reg = GP0PLL_CTRL2,	.def = 0x00000000 },
+> > +	{ .reg = GP0PLL_CTRL3,	.def = 0x00000006 },
+> > +};
+> > +
+> > +static struct clk_fixed_factor s7_gp0_pll_div0p5 = {
+> > +	.mult = 1,
+> > +	.div = 2,
+> > +	.hw.init = &(struct clk_init_data) {
+> > +		.name = "gp0_pll_div0p5",
+> > +		.ops = &clk_fixed_factor_ops,
+> > +		.parent_data = &(const struct clk_parent_data) {
+> > +			.fw_name = "gp0",
+> > +		},
+> > +		.num_parents = 1,
+> > +	},
+> 
+> Is it the good old predivider here ? Shouldn't it be modelled with
+> a read-only divider rather that a fixed factor ? just in case whatever
+> came before did not leave things as we first expected ?
+> 
+> Applies to the other PLL instances
 
-Sashiko comments skipped:
-- ringrxfdq overflow with multi-flow, doesn't get affected for
-  BCDMA
-- prueth_create_rxq napi hang - fixed in previous patch
-- Sequential prueth_destroy_rxqs destroys flow 0 pool before
-  flows 1..N drained - doesn't get affected for BCDMA
-- __be16 â†’ u16 sparse warning - low priority and fix doesn't add
-  much value
+Nope, not the good old provider, this is separate from N: N is in CTRL0
+and our init sequence sets it to 1. This is CTRL1[27], div0p5_en.
 
- .../net/ethernet/ti/icssg/icssg_classifier.c  | 407 ++++++++++++++++++
- drivers/net/ethernet/ti/icssg/icssg_common.c  |   4 +
- drivers/net/ethernet/ti/icssg/icssg_ethtool.c |  59 +++
- drivers/net/ethernet/ti/icssg/icssg_prueth.c  |   9 +
- drivers/net/ethernet/ti/icssg/icssg_prueth.h  |  35 ++
- 5 files changed, 514 insertions(+)
+Now, it was indeed a read-only divider in an earlier (messier and
+unpublished) version. The problem was that with a cold PLL it could
+cache the power-on setting (/1) at registration, then the VCO init
+sequence would enable /2 without updating that cached parent rate
+basically breaking both rate reporting and set_rate. The fixed factor
+avoids this mismatch when Linux initializes the PLL.
 
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_classifier.c b/drivers/net/ethernet/ti/icssg/icssg_classifier.c
-index 87a8577093dbb..520b3f3377784 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_classifier.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_classifier.c
-@@ -105,6 +105,14 @@ enum ft1_cfg_type {
- 	((BIT(slot) << RX_CLASS_FT_FT1_MATCH_SHIFT) & \
- 	RX_CLASS_FT_FT1_MATCH_MASK)
- 
-+#define RX_CLASS_FT_FT3_MATCH(slot)	\
-+	((BIT(slot) << RX_CLASS_FT_FT3_MATCH_SHIFT) & \
-+	RX_CLASS_FT_FT3_MATCH_MASK)
-+
-+/* FT3 Configuration registers and modes */
-+#define FT3_CFG_REGISTER_EQUAL		(1U)
-+#define FT3_CFG_REGISTER_VLAN_SKIP	BIT(2)
-+
- /* HSR/PRP protocol frame filtering */
- #define HSR_PTP_ETHERTYPE_OFFSET	0x12
- #define PRP_PTP_ETHERTYPE_OFFSET	0x0C
-@@ -532,3 +540,402 @@ void icssg_ft3_hsr_configurations(struct regmap *miig_rt, int slice,
- 	}
- }
- EXPORT_SYMBOL_GPL(icssg_ft3_hsr_configurations);
-+
-+/* RX Flow Classification (ethtool) rule management */
-+
-+/* Allocate free FT3 slot, avoiding reserved slot 14 */
-+static int allocate_ft3_slot(struct prueth_emac *emac)
-+{
-+	u16 used = emac->rxnfc.ft3_slots_used | ICSSG_FT3_RESERVED_SLOTS;
-+	int slot;
-+
-+	for (slot = 0; slot < ICSSG_NUM_FT3_SLOTS; slot++) {
-+		if (!(used & BIT(slot))) {
-+			emac->rxnfc.ft3_slots_used |= BIT(slot);
-+			return slot;
-+		}
-+	}
-+	return -ENOSPC;
-+}
-+
-+/* Free allocated FT3 slot */
-+static void free_ft3_slot(struct prueth_emac *emac, int slot)
-+{
-+	emac->rxnfc.ft3_slots_used &= ~BIT(slot);
-+}
-+
-+/* Program FT3 filter slot with ethertype pattern */
-+static void icssg_ft3_program_filter(struct regmap *miig_rt, int slice,
-+				     int slot, struct icssg_rxnfc_rule *rule)
-+{
-+	const struct ethtool_rx_flow_spec *fs = &rule->flow_spec;
-+	u16 ether_type;
-+
-+	/* Extract EtherType from flow spec (network byte order) */
-+	ether_type = fs->h_u.ether_spec.h_proto;
-+
-+	/* Deactivate filter before programming */
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_CFG), 0);
-+
-+	/* EtherType is at byte 12 in standard Ethernet frames */
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_START),
-+		     PRP_PTP_ETHERTYPE_OFFSET);
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_START_AUTO), 0);
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_START_OFFSET), 0);
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_JUMP_OFFSET), 0);
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_LEN), 0);
-+
-+	/* FT3 compares a 32-bit LE word at FT3_START. EtherType occupies the
-+	 * lower 16 bits of that word. FT3_T_MASK=0xFFFF0000 masks the upper
-+	 * 16 bits (payload bytes), so only the lower 16 bits are compared.
-+	 *
-+	 * h_proto is __be16 (network byte order). On LE the raw integer value
-+	 * equals the lower 16 bits of the LE 32-bit word at the EtherType
-+	 * offset in the frame — e.g. IPv4 0x0800 BE → h_proto = 0x0008 on LE,
-+	 * which is exactly what FT3 sees in the lower 16 bits of the word at
-+	 * byte 12. No conversion needed; using be16_to_cpu() here would invert
-+	 * the byte order and break the match.
-+	 * Reference: FT3_PTP_PATTERN = 0xF788 = htons(0x88F7) = raw h_proto value.
-+	 */
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_T),
-+		     (__force u32)ether_type);
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_T_MASK), FT3_ETHERTYPE_MASK);
-+
-+	/* Enable filter: register-equal mode */
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_CFG),
-+		     FT3_CFG_REGISTER_EQUAL);
-+}
-+
-+/* Disable FT3 filter slot */
-+static void icssg_ft3_disable_filter(struct regmap *miig_rt, int slice, int slot)
-+{
-+	regmap_write(miig_rt, FT3_N_REG(slice, slot, FT3_CFG), 0);
-+}
-+
-+/* Update RX classifiers for all active FT3 rules.
-+ * Classifier N maps to RX flow N (firmware routes classifier-N hits to
-+ * UDMA flow rx_flow_id_base + N). Build a per-classifier OR table so
-+ * that each target queue gets its own classifier entry.
-+ */
-+static void icssg_rxnfc_classifier_update(struct prueth_emac *emac)
-+{
-+	struct prueth *prueth = emac->prueth;
-+	struct regmap *miig_rt = prueth->miig_rt;
-+	int slice = prueth_emac_slice(emac);
-+	u32 or_table[ICSSG_NUM_CLASSIFIERS] = { };
-+	struct icssg_rxnfc_rule *rule;
-+	int n;
-+
-+	if (slice < 0)
-+		return;
-+
-+	/* Build per-classifier OR table: classifier index = target queue index */
-+	list_for_each_entry(rule, &emac->rxnfc.rules, list) {
-+		int cls = rule->queue_index;
-+
-+		if (cls < emac->rx_flow_num)
-+			or_table[cls] |= RX_CLASS_FT_FT3_MATCH(rule->ft3_slot);
-+	}
-+
-+	/* Write OR tables for classifiers 0..rx_flow_num-1. Only update
-+	 * classifiers within the user-flow range to avoid disturbing HSR/PRP
-+	 * classifiers (e.g. 10/11) beyond it. Use RX_CLASS_N_REG with
-+	 * RX_CLASS_OR_EN — NOT RX_CLASS_OR_REG which uses rx_class_or_base
-+	 * (= rx_class_base + 4), causing an off-by-4 that lands on AND_EN of
-+	 * classifier n+1 instead of OR_EN of classifier n.
-+	 */
-+	for (n = 0; n < emac->rx_flow_num; n++) {
-+		regmap_write(miig_rt,
-+			     RX_CLASS_N_REG(slice, n, RX_CLASS_OR_EN),
-+			     or_table[n]);
-+	}
-+}
-+
-+/* Validate rule parameters */
-+static int validate_rule(struct prueth_emac *emac,
-+			 struct ethtool_rx_flow_spec *fs)
-+{
-+	/* Only ETHER_FLOW supported; reject extension flags */
-+	if (fs->flow_type != ETHER_FLOW)
-+		return -EOPNOTSUPP;
-+
-+	/* Only exact EtherType match supported — reject partial proto mask,
-+	 * non-zero MAC address masks, and flow extension flags.
-+	 */
-+	if (fs->m_u.ether_spec.h_proto != htons(0xFFFF))
-+		return -EOPNOTSUPP;
-+	if (!is_zero_ether_addr(fs->m_u.ether_spec.h_dest) ||
-+	    !is_zero_ether_addr(fs->m_u.ether_spec.h_source))
-+		return -EOPNOTSUPP;
-+
-+	/* Check RX queue is valid */
-+	if (fs->ring_cookie >= emac->rx_flow_num)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+/* Check if identical rule already exists */
-+static bool rule_exists(struct prueth_emac *emac,
-+			struct ethtool_rx_flow_spec *fs)
-+{
-+	struct icssg_rxnfc_rule *rule;
-+
-+	list_for_each_entry(rule, &emac->rxnfc.rules, list) {
-+		if (rule->flow_spec.flow_type == fs->flow_type &&
-+		    rule->flow_spec.h_u.ether_spec.h_proto ==
-+		    fs->h_u.ether_spec.h_proto) {
-+			return true;
-+		}
-+	}
-+	return false;
-+}
-+
-+/* Initialize RX flow classification */
-+void icssg_rxnfc_rule_init(struct prueth_emac *emac)
-+{
-+	INIT_LIST_HEAD(&emac->rxnfc.rules);
-+	mutex_init(&emac->rxnfc.rxnfc_lock);
-+	emac->rxnfc.rxnfc_rule_count = 0;
-+	emac->rxnfc.ft3_slots_used = ICSSG_FT3_RESERVED_SLOTS; /* Mark slot 14 reserved */
-+}
-+EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_init);
-+
-+/* Restore RX flow classification hardware state from the in-memory rule list.
-+ * Call after icssg_class_default() resets the classifier registers on open or
-+ * after firmware restart so that existing rules take effect again.
-+ */
-+void icssg_rxnfc_rule_restore(struct prueth_emac *emac)
-+{
-+	struct prueth *prueth = emac->prueth;
-+	struct regmap *miig_rt = prueth->miig_rt;
-+	int slice = prueth_emac_slice(emac);
-+	struct icssg_rxnfc_rule *rule;
-+
-+	if (slice < 0)
-+		return;
-+
-+	mutex_lock(&emac->rxnfc.rxnfc_lock);
-+
-+	list_for_each_entry(rule, &emac->rxnfc.rules, list)
-+		icssg_ft3_program_filter(miig_rt, slice, rule->ft3_slot, rule);
-+
-+	icssg_rxnfc_classifier_update(emac);
-+
-+	mutex_unlock(&emac->rxnfc.rxnfc_lock);
-+}
-+EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_restore);
-+
-+/* Cleanup RX flow classification */
-+void icssg_rxnfc_rule_cleanup(struct prueth_emac *emac)
-+{
-+	struct prueth *prueth = emac->prueth;
-+	struct regmap *miig_rt = prueth->miig_rt;
-+	int slice = prueth_emac_slice(emac);
-+	struct icssg_rxnfc_rule *rule, *tmp;
-+	int n;
-+
-+	if (slice < 0)
-+		return;
-+
-+	mutex_lock(&emac->rxnfc.rxnfc_lock);
-+
-+	/* Disable all active FT3 filters */
-+	list_for_each_entry_safe(rule, tmp, &emac->rxnfc.rules, list) {
-+		icssg_ft3_disable_filter(miig_rt, slice, rule->ft3_slot);
-+		free_ft3_slot(emac, rule->ft3_slot);
-+		list_del(&rule->list);
-+		kfree(rule);
-+	}
-+
-+	emac->rxnfc.rxnfc_rule_count = 0;
-+	emac->rxnfc.ft3_slots_used = ICSSG_FT3_RESERVED_SLOTS;
-+
-+	/* Clear user-rule classifier OR tables; stop at rx_flow_num to avoid
-+	 * disturbing HSR/PRP classifiers beyond the user-flow range.
-+	 */
-+	for (n = 0; n < emac->rx_flow_num; n++)
-+		regmap_write(miig_rt,
-+			     RX_CLASS_N_REG(slice, n, RX_CLASS_OR_EN), 0);
-+
-+	mutex_unlock(&emac->rxnfc.rxnfc_lock);
-+}
-+EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_cleanup);
-+
-+/* Add a new RX flow classification rule */
-+int icssg_rxnfc_rule_add(struct prueth_emac *emac, struct ethtool_rxnfc *info)
-+{
-+	struct ethtool_rx_flow_spec *fs = &info->fs;
-+	struct prueth *prueth = emac->prueth;
-+	struct regmap *miig_rt = prueth->miig_rt;
-+	int slice = prueth_emac_slice(emac);
-+	struct icssg_rxnfc_rule *rule;
-+	int ft3_slot;
-+	int ret;
-+
-+	if (slice < 0)
-+		return -EINVAL;
-+
-+	/* Validate rule parameters */
-+	ret = validate_rule(emac, fs);
-+	if (ret)
-+		return ret;
-+
-+	/* Validate explicit location: reject special specifiers, out-of-range
-+	 * values, and the reserved slot 14 used by HSR/PRP.
-+	 */
-+	if (fs->location != RX_CLS_LOC_ANY) {
-+		if (fs->location >= ICSSG_RXNFC_MAX_RULES ||
-+		    BIT(fs->location) & ICSSG_FT3_RESERVED_SLOTS)
-+			return -EINVAL;
-+	}
-+
-+	mutex_lock(&emac->rxnfc.rxnfc_lock);
-+
-+	/* Check max rules */
-+	if (emac->rxnfc.rxnfc_rule_count >= ICSSG_RXNFC_MAX_RULES) {
-+		ret = -ENOSPC;
-+		goto unlock;
-+	}
-+
-+	/* Check for duplicate flow spec */
-+	if (rule_exists(emac, fs)) {
-+		ret = -EEXIST;
-+		goto unlock;
-+	}
-+
-+	/* Allocate FT3 slot. For explicit locations, the location IS the FT3
-+	 * slot — this keeps location and slot aligned so rule_del operates on
-+	 * the correct hardware slot. For RX_CLS_LOC_ANY, auto-allocate the
-+	 * lowest free slot and assign it as the location.
-+	 */
-+	if (fs->location != RX_CLS_LOC_ANY) {
-+		ft3_slot = fs->location;
-+		if (emac->rxnfc.ft3_slots_used & BIT(ft3_slot)) {
-+			ret = -EBUSY;
-+			goto unlock;
-+		}
-+		emac->rxnfc.ft3_slots_used |= BIT(ft3_slot);
-+	} else {
-+		ft3_slot = allocate_ft3_slot(emac);
-+		if (ft3_slot < 0) {
-+			ret = -ENOSPC;
-+			goto unlock;
-+		}
-+		fs->location = ft3_slot;
-+	}
-+
-+	/* Allocate rule structure */
-+	rule = kzalloc(sizeof(*rule), GFP_KERNEL);
-+	if (!rule) {
-+		ret = -ENOMEM;
-+		free_ft3_slot(emac, ft3_slot);
-+		goto unlock;
-+	}
-+
-+	/* Program FT3 hardware */
-+	rule->flow_spec = *fs;
-+	rule->ft3_slot = ft3_slot;
-+	rule->queue_index = fs->ring_cookie;
-+	rule->location = fs->location;
-+
-+	icssg_ft3_program_filter(miig_rt, slice, ft3_slot, rule);
-+
-+	/* Add to rule list */
-+	list_add(&rule->list, &emac->rxnfc.rules);
-+	emac->rxnfc.rxnfc_rule_count++;
-+
-+	/* Update classifier */
-+	icssg_rxnfc_classifier_update(emac);
-+
-+	ret = 0;
-+
-+unlock:
-+	mutex_unlock(&emac->rxnfc.rxnfc_lock);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_add);
-+
-+/* Delete a RX flow classification rule */
-+int icssg_rxnfc_rule_del(struct prueth_emac *emac, u32 location)
-+{
-+	struct prueth *prueth = emac->prueth;
-+	struct regmap *miig_rt = prueth->miig_rt;
-+	int slice = prueth_emac_slice(emac);
-+	struct icssg_rxnfc_rule *rule, *tmp;
-+	int ret = -ENOENT;
-+
-+	if (slice < 0)
-+		return -EINVAL;
-+
-+	mutex_lock(&emac->rxnfc.rxnfc_lock);
-+
-+	list_for_each_entry_safe(rule, tmp, &emac->rxnfc.rules, list) {
-+		if (rule->location == location) {
-+			icssg_ft3_disable_filter(miig_rt, slice, rule->ft3_slot);
-+			free_ft3_slot(emac, rule->ft3_slot);
-+			list_del(&rule->list);
-+			kfree(rule);
-+			emac->rxnfc.rxnfc_rule_count--;
-+			icssg_rxnfc_classifier_update(emac);
-+			ret = 0;
-+			break;
-+		}
-+	}
-+
-+	mutex_unlock(&emac->rxnfc.rxnfc_lock);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_del);
-+
-+/* Get single RX flow classification rule */
-+int icssg_rxnfc_rule_get(struct prueth_emac *emac, u32 location,
-+			 struct ethtool_rx_flow_spec *fs)
-+{
-+	struct icssg_rxnfc_rule *rule;
-+	int ret = -ENOENT;
-+
-+	mutex_lock(&emac->rxnfc.rxnfc_lock);
-+
-+	list_for_each_entry(rule, &emac->rxnfc.rules, list) {
-+		if (rule->location == location) {
-+			*fs = rule->flow_spec;
-+			ret = 0;
-+			break;
-+		}
-+	}
-+
-+	mutex_unlock(&emac->rxnfc.rxnfc_lock);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_get);
-+
-+/* Get all RX flow classification rules */
-+int icssg_rxnfc_rule_get_all(struct prueth_emac *emac, u32 *rule_locs,
-+			     u32 rule_locs_capacity, u32 *rule_cnt)
-+{
-+	struct icssg_rxnfc_rule *rule;
-+	u32 count = 0;
-+	int ret = 0;
-+
-+	mutex_lock(&emac->rxnfc.rxnfc_lock);
-+
-+	list_for_each_entry(rule, &emac->rxnfc.rules, list) {
-+		if (!rule_locs) {
-+			/* Caller passed rule_cnt=0: just count active rules */
-+			count++;
-+			continue;
-+		}
-+		if (count >= rule_locs_capacity) {
-+			ret = -EMSGSIZE;
-+			break;
-+		}
-+		rule_locs[count++] = rule->location;
-+	}
-+
-+	*rule_cnt = count;
-+
-+	mutex_unlock(&emac->rxnfc.rxnfc_lock);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_get_all);
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_common.c b/drivers/net/ethernet/ti/icssg/icssg_common.c
-index 6cd2a77c491ac..e5ad57d2a0713 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_common.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_common.c
-@@ -1830,6 +1830,10 @@ void prueth_netdev_exit(struct prueth *prueth,
- 	if (of_phy_is_fixed_link(emac->phy_node))
- 		of_phy_deregister_fixed_link(emac->phy_node);
- 
-+	/* Free any rules added while the interface was down */
-+	if (!emac->is_sr1)
-+		icssg_rxnfc_rule_cleanup(emac);
-+
- 	pruss_release_mem_region(prueth->pruss, &emac->dram);
- 	free_netdev(emac->ndev);
- 	prueth->emac[mac] = NULL;
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_ethtool.c b/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
-index 68646cb7df442..35eb056dab6d9 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
-@@ -300,6 +300,62 @@ static int emac_set_per_queue_coalesce(struct net_device *ndev, u32 queue,
- 	return 0;
- }
- 
-+static u32 emac_get_rx_ring_count(struct net_device *ndev)
-+{
-+	struct prueth_emac *emac = netdev_priv(ndev);
-+
-+	return emac->rx_flow_num;
-+}
-+
-+static int emac_get_rxnfc(struct net_device *ndev, struct ethtool_rxnfc *info,
-+			  u32 *rule_locs)
-+{
-+	struct prueth_emac *emac = netdev_priv(ndev);
-+	int ret = 0;
-+
-+	if (emac->is_sr1)
-+		return -EOPNOTSUPP;
-+
-+	switch (info->cmd) {
-+	case ETHTOOL_GRXCLSRLCNT:
-+		info->rule_cnt = emac->rxnfc.rxnfc_rule_count;
-+		info->data = ICSSG_RXNFC_MAX_RULES | RX_CLS_LOC_SPECIAL;
-+		break;
-+	case ETHTOOL_GRXCLSRULE:
-+		ret = icssg_rxnfc_rule_get(emac, info->fs.location, &info->fs);
-+		break;
-+	case ETHTOOL_GRXCLSRLALL: {
-+		u32 rule_cnt = 0;
-+
-+		ret = icssg_rxnfc_rule_get_all(emac, rule_locs,
-+					       info->rule_cnt, &rule_cnt);
-+		info->rule_cnt = rule_cnt;
-+		break;
-+	}
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return ret;
-+}
-+
-+static int emac_set_rxnfc(struct net_device *ndev, struct ethtool_rxnfc *info)
-+{
-+	struct prueth_emac *emac = netdev_priv(ndev);
-+
-+	if (emac->is_sr1)
-+		return -EOPNOTSUPP;
-+
-+	switch (info->cmd) {
-+	case ETHTOOL_SRXCLSRLINS:
-+		return icssg_rxnfc_rule_add(emac, info);
-+	case ETHTOOL_SRXCLSRLDEL:
-+		return icssg_rxnfc_rule_del(emac, info->fs.location);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
- const struct ethtool_ops icssg_ethtool_ops = {
- 	.get_drvinfo = emac_get_drvinfo,
- 	.get_msglevel = emac_get_msglevel,
-@@ -323,5 +379,8 @@ const struct ethtool_ops icssg_ethtool_ops = {
- 	.set_eee = emac_set_eee,
- 	.nway_reset = emac_nway_reset,
- 	.get_rmon_stats = emac_get_rmon_stats,
-+	.get_rx_ring_count = emac_get_rx_ring_count,
-+	.get_rxnfc = emac_get_rxnfc,
-+	.set_rxnfc = emac_set_rxnfc,
- };
- EXPORT_SYMBOL_GPL(icssg_ethtool_ops);
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-index 716f1b9195d67..b08e74e24a5a3 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-@@ -1101,6 +1101,12 @@ static int emac_ndo_open(struct net_device *ndev)
- 
- 	icssg_mii_update_mtu(prueth->mii_rt, slice, ndev->max_mtu);
- 
-+	/* Re-program FT3 filters and classifier OR tables from the persistent
-+	 * rule list. icssg_class_default() called above resets all classifiers,
-+	 * so rules must be restored here on every open/restart.
-+	 */
-+	icssg_rxnfc_rule_restore(emac);
-+
- 	ret = request_threaded_irq(emac->tx_ts_irq, NULL, prueth_tx_ts_irq,
- 				   IRQF_ONESHOT, dev_name(dev), emac);
- 	if (ret)
-@@ -1715,6 +1721,9 @@ static int prueth_netdev_init(struct prueth *prueth,
- 	emac->ndev->pcpu_stat_type = NETDEV_PCPU_STAT_TSTATS;
- 	INIT_WORK(&emac->rx_mode_work, emac_ndo_set_rx_mode_work);
- 
-+	/* Initialize RX flow classification */
-+	icssg_rxnfc_rule_init(emac);
-+
- 	INIT_DELAYED_WORK(&emac->stats_work, icssg_stats_work_handler);
- 
- 	ret = pruss_request_mem_region(prueth->pruss,
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.h b/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-index d54966730d102..af225e4ea00a6 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-+++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-@@ -11,6 +11,7 @@
- #include <linux/bpf.h>
- #include <linux/bpf_trace.h>
- #include <linux/etherdevice.h>
-+#include <linux/ethtool.h>
- #include <linux/genalloc.h>
- #include <linux/if_vlan.h>
- #include <linux/if_hsr.h>
-@@ -192,6 +193,26 @@ struct prueth_swdata {
- /* Minimum coalesce time in usecs for both Tx and Rx */
- #define ICSSG_MIN_COALESCE_USECS 20
- 
-+/* RX flow classification (ethtool) */
-+#define ICSSG_RXNFC_MAX_RULES    15      /* Max user-installable rules */
-+#define ICSSG_FT3_RESERVED_SLOTS BIT(14) /* Slot 14 reserved for HSR/PRP */
-+
-+/* RX flow classification rule structure */
-+struct icssg_rxnfc_rule {
-+	struct list_head list;
-+	struct ethtool_rx_flow_spec flow_spec;  /* User-provided filter */
-+	u16 ft3_slot;                            /* Allocated FT3 slot (0-15, excluding 14) */
-+	int location;                            /* Rule location (user-provided) */
-+	u32 queue_index;                         /* RX flow to route matches to */
-+};
-+
-+struct prueth_rxnfc {
-+	struct list_head rules;
-+	struct mutex rxnfc_lock;
-+	unsigned int rxnfc_rule_count;
-+	u16 ft3_slots_used;
-+};
-+
- /* data for each emac port */
- struct prueth_emac {
- 	bool is_sr1;
-@@ -256,6 +277,9 @@ struct prueth_emac {
- 	struct xdp_attachment_info xdpi;
- 	int xsk_qid;
- 	unsigned long *xsk_queues;
-+
-+	/* RX flow classification via ethtool */
-+	struct prueth_rxnfc rxnfc;
- };
- 
- /* The buf includes headroom compatible with both skb and xdpf */
-@@ -400,6 +424,17 @@ static inline int prueth_emac_slice(struct prueth_emac *emac)
- 	}
- }
- 
-+/* RX flow classification functions */
-+void icssg_rxnfc_rule_init(struct prueth_emac *emac);
-+void icssg_rxnfc_rule_restore(struct prueth_emac *emac);
-+void icssg_rxnfc_rule_cleanup(struct prueth_emac *emac);
-+int icssg_rxnfc_rule_add(struct prueth_emac *emac, struct ethtool_rxnfc *info);
-+int icssg_rxnfc_rule_del(struct prueth_emac *emac, u32 location);
-+int icssg_rxnfc_rule_get(struct prueth_emac *emac, u32 location,
-+			 struct ethtool_rx_flow_spec *fs);
-+int icssg_rxnfc_rule_get_all(struct prueth_emac *emac, u32 *rule_locs,
-+			     u32 rule_locs_capacity, u32 *rule_cnt);
-+
- extern const struct ethtool_ops icssg_ethtool_ops;
- extern const struct dev_pm_ops prueth_dev_pm_ops;
- 
--- 
-2.43.0
+After dropping NOINIT_ENABLED from the HIFI PLLs, the remaining
+assumption is that an already-running GP0 has div0p5 enabled. That
+matches the firmware I tested, but the driver does not check it.
 
+I could (in theory) return to read-only dividers but with probe-time
+setup before registering the clocks to establish the divider setting for
+PLLs Linux will initialize, and selecting suitable multiplier limits for
+any inherited setting we preserve (the current limits assume /2).
+
+Any preference (or any other approach at all)?
+
+[...]
+> > +/* hifi is HIFI0 in the datasheet */
+> 
+> What is stopping us from calling that then ?
+
+Nothing, I kept the S4 name.
+
+[...]
+> > +/*
+> > + * The datasheet documents HDMIPLL_CTRL2[22:19] and [18:15] as single fields:
+> > + * each is two power-of-two dividers.
+> 
+> This comment is somehow confusing because it only partialy matches the clocks
+> defined bellow. Please clarify.
+
+Riiight. [22:19] holds od0 [20:19] and od1 [22:21], and [18:15] holds
+the hdmi_pll divider [16:15] plus [18:17], which isn't modelled. I'll
+clarify.
+
+Thanks,
+
+--
+Carlo Caione
 
