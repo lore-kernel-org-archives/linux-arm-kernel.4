@@ -2,71 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 536F1606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EAF606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hX/ARGjs;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=dRStX11h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h8Rske4g;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=UkM6G1KM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5Z5/zjedC8T+CAY4SMgSU23abppwtiRyhcMgN9UWEQ0=; b=hX/ARGjsOadL/d
-	0tOXl+duM7MXHu9ipA4MdWXTxL8BP2wtwsbSggsXEU5JisdBBC8VUR/HpLS/htY23nGXji5j1mgf8
-	0VcywYAh25sRQpoLF0grYZGw0vlEWH5Zb2qTeW/Jsu6RqJKRMfm76Q26DAQ9GOE7+r/xFP5pGDwAN
-	n/IFjdoJMMKKbACBqTPAix+DGPw5k5vZyVmI/ivLLdoFG4ZheRSlUka1n32Z8BnOgNsq/dwHDc8cU
-	2L/z2vuk3U29BSvOuUmIul70jSAibWYSdDTF1ZLVAo/JbvRwS3HGm9+xxzYU8clqspx+xXts8rVJY
-	Cazz/Vm42cvcnDbm4PJg==;
+	List-Owner; bh=8bqfpbBHkizT5LV4unUjsrB2ytVrIgjNmcwUFqqZaG0=; b=h8Rske4galXJsL
+	Cc7YaLrT8l+fpmkovY2U++SueZ0Iycu8R+Skznwn5lBYCQEomvQD7KrkTi0SEKmhfVjQ2fp+nES1w
+	TESBe/BioHw8vcY69BX4BmefYEYQYeSnuyNyVZ7w+Co0nUDVWqcdeWoJSFQgBGFGp6N01fj157k9e
+	wDBmwgG5DFsq6myjC8M0s6bQdUi2hr7tDii6yUX8NbkkSrk5qvQiY+r5so/1IUda8PxfQ6Ll2Unu3
+	H5tEVKp4QrVtQI3ZL1vLRc7pLu1B1SYEj4qE4IxoF1KdQRXbYAkWo70b/bU4PsGl/uPFLndwbQ0O1
+	pVyB42vs9mfU3VG4hJcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdWP-00000008gAu-0Xks;
-	Wed, 18 Nov 2026 11:08:13 +0000
-Received: from mail-m17218.xmail.ntesmail.com ([45.195.17.218])
+	id 1xTdZ2-00000008gNs-2TW0;
+	Wed, 18 Nov 2026 11:10:56 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdWJ-00000008gAD-3XYz;
-	Wed, 18 Nov 2026 11:08:11 +0000
-Received: from [172.16.12.74] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5523317e8;
-	Wed, 18 Nov 2026 19:08:00 +0800 (GMT+08:00)
-Message-ID: <0cd86b2b-004b-4a36-ab8e-fd3b50960413@rock-chips.com>
-Date: Wed, 18 Nov 2026 19:07:59 +0800
+	id 1xTdYy-00000008gNT-2Lcf;
+	Wed, 18 Nov 2026 11:10:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795000249;
+	bh=C6+HY4ClMrV2fwaShVwciggPOYGg14zJs95/gfFRXeU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UkM6G1KMQCte1V3ulm2JnI7GWk61W6NCccHcxfvacoXdy3DBDgySwYYbXTgr1zAaO
+	 zQlhQ9XDFEHqknUNHUYQnocaHdLxWhmbM2qbfODwMKxNAlwP3CkwyGEn0aeY0MbQi4
+	 Z5NCIhWhIVRjQwGc8L/dt8WtbK2KDO2K/PN85ZGkPJBMq1f2EC4w/3KOXbk+ZUJtA5
+	 yoRuv0KYgMqnL0l1gnuVZdtfUhwx2Fz8wiei9ocHrTDnXIaP/TOR93AHvukBQhSBS+
+	 4XuCsItFKgZ3deLFJ/TxSB3HjMqn/CAVfXhCxpWdW+6MBkjXWRZJWeu4WFFVn/tMEv
+	 8DjZLR3oQgqPw==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 46C7617E07EC;
+	Wed, 18 Nov 2026 12:10:48 +0100 (CET)
+Message-ID: <779efc61-646d-4735-b54d-7bc7436385bd@collabora.com>
+Date: Wed, 18 Nov 2026 12:10:47 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/8] drm/rockchip: vop2: Only accept AFBC YTR for 8 bit
- RGB on RK3588
-To: aiyengar1990@gmail.com, Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan
- <andyshrk@163.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+Subject: Re: [PATCH v2 4/4] arm64: dts: mediatek: mt8167: Add DRM nodes
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+ linux-mediatek@lists.infradead.org
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Piotr Zalewski <pZ010001011111@proton.me>,
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261113-vop2-fixes-v3-0-08ae37e83b5c@gmail.com>
- <20261113-vop2-fixes-v3-5-08ae37e83b5c@gmail.com>
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>,
+ Jitao shi <jitao.shi@mediatek.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260921113914.779393-1-l.scorcia@gmail.com>
+ <20260921113914.779393-5-l.scorcia@gmail.com>
+ <bbefcf0b-b31e-4f74-bf79-b0ccc983f62b@kernel.org>
+ <200ef6c1-eced-4c36-832d-3fb409aac866@collabora.com>
+ <5715e9e5-857d-4104-aedd-9662da0fc0ab@kernel.org>
+ <911e4163-8a2c-4ca2-8903-8d3ddb7266e8@collabora.com>
+ <600165c4-eaa7-4b1e-806c-63d3b97d5064@kernel.org>
+ <63da5790-984b-4760-8e92-85b5d2269b30@collabora.com>
+ <94ed1340-94bd-49ee-ba31-9bb63164c89a@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <20261113-vop2-fixes-v3-5-08ae37e83b5c@gmail.com>
+In-Reply-To: <94ed1340-94bd-49ee-ba31-9bb63164c89a@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa1ee57974103a8kunm31e77375358449
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaGEpLVkgYHUMZT0tPSU9KTFYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=dRStX11hKIKXImeBPSFSnbL4EsfI4ippAvDWiIMjgZwMZsNT/qSSdtmiAfpCFt89dJ4cV435LnMtrQE35l6abkTOSitQjAvB++qhkLwniOfRYGWOa7YzW9QPxuBS9iSdHbj+zvbil7mXmytF+itkskDXYcYyHHEY34tnh6X3yiM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=5Z5/zjedC8T+CAY4SMgSU23abppwtiRyhcMgN9UWEQ0=;
-	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_030809_369940_2920A699 
-X-CRM114-Status: GOOD (  15.55  )
+X-CRM114-CacheID: sfid-20261118_031052_807847_3197170C 
+X-CRM114-Status: GOOD (  48.56  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,57 +92,160 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Arun,
-
-On 11/14/2026 12:39 AM, Arun Iyengar via B4 Relay wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
+On 11/17/26 17:00, Krzysztof Kozlowski wrote:
+> On 17/11/2026 15:21, AngeloGioacchino Del Regno wrote:
+>>
+>>>>
+>>>> Any advice on how to possibly resolve this without rewriting the entire thing?
+>>>>
+>>>> Mapping that by mmio address in the driver seems too stupid/dirty/bad/etc.
+>>>
+>>> Driver needs that, so why exactly stupid?
+>>
+>> Really feels like going back to the days when devicetree was not a thing and all of
+>> the MMIOs (on ARM at least) were added into a mach file.
 > 
-> According to the TRM, the AFBC decoder of the RK3588 Cluster windows
-> supports the lossless colour transform (YTR) only for the 8 bit RGB
-> formats. An RGB565 buffer with YTR gives a black picture and
-> POST_BUF_EMPTY, while the same buffer without YTR displays fine.
+> Well, adding an alias just to tell that device node with MMIO address
+> 0xdeadbeef is ID 0 is very similar, just placed differently. The
+> "aliases" are the mapping between MMIO and ID. Driver code also can do
+> the mapping between MMIO and ID.
 > 
-> Don't accept YTR for any other format on RK3588.
+>>
+>>   >
+>>> You do not represent any
+>>> actual hardware information in DT with these aliases.
+>>
+>> That depends on how you see it (as in, on the point of view), really, because well
+>> technically the second ReadDMA IP is ... not the ... primary, as it's the secondary
+>> one - as much as the third DPI is not the primary one (even though DRM can make it
+>> so that it can be used as a primary output, but that's a software thing, not HW).
+>>
+>> So... well, with that point of view... those aliases *are* representing information
+>> about the hardware.
+>>
+>> But I know that you're not complaining just about this, and this reply is not a way
+>> to argue all that much, just a bit of thinking out loud.
 > 
-> Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
->   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> index e8ef83d6924b..de3da292b05a 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -404,6 +404,11 @@ static bool rockchip_vop2_mod_supported(struct drm_plane *plane, u32 format,
->   	if (vop2_convert_afbc_format(format) == VOP2_AFBC_FMT_INVALID)
->   		return false;
->   
-> +	if (vop2->version == VOP_VERSION_RK3588 && (modifier & AFBC_FORMAT_MOD_YTR) &&
-> +	    vop2_convert_afbc_format(format) != VOP2_AFBC_FMT_ARGB8888 &&
-> +	    vop2_convert_afbc_format(format) != VOP2_AFBC_FMT_RGB888)
-> +		return false;
-> +
->   	/* Different windows have different format/modifier support */
->   	for (i = 0; i < plane->modifier_count; i++) {
->   		if (plane->modifiers[i] == modifier)
+> Being simply "second" is not alone useful information. It's pointless,
+> it does not matter neither to hardware nor to drivers.
+
+Hmm... Sorry, but I disagree about this statement - it does matter in some cases.
+
+The driver's POV is of course out of context here, as we're talking about DT//HW.
+
+(I know that you know, this is to avoid misunderstanding from anyone else reading
+this thread).
+
+> If it matters,
+> then probably that "second" has some other meaning and it maps to an
+> actual hardware topology difference, then often it deserves its own
+> compatible or property, depending on the difference.
 > 
 
-Yes, RK3588 only supports VOP2_AFBC_FMT_ARGB8888/VOP2_AFBC_FMT_RGB888 
-with AFBC_FORMAT_MOD_YTR.
+This is a bit more complicated than that: "second" may or may not have another
+meaning, as in, it may or may not be topologically different in the whole context
+of the controller.
 
-Shall we move this new check a bit earlier, right after the RK3588 10bpc 
-formats check? Also add a comment and a drm_dbg_kms trace for it.
+Having different compatibles wouldn't do either, because having 10 compats for one
+IP which is 99.9% compatible if not for very very very very (add as many "very" as
+you wish here) small details that definitely don't deserve a new compatible... and
+besides, a driver parsing more than 90 compatible strings would be... how can I
+express that in professional words? :-)))
 
-Best regards,
-Damon
+>>
+>>   >
+>>> You want to tell
+>>> drivers how drivers should behave - that's not a job for DT,
+>>
+>> I want to tell drivers what is the first or the second or the third hardware
+>> instance of the same IP, I don't want to tell drivers how drivers should behave
+>> from devicetree.
+>> The drivers are behaving differently with different hardware (read as: hardware
+>> that is *physically* located in front of something else, or somewhere else anyway)
+>> as in with different hardware instances.
+> 
+> Then alias is not the way to represent these differences.
+> 
 
+Are we opening a can of worms here?
+
+There are a bunch of (generic, yes, and I think acceptable-because-generic, right?)
+aliases for other devices like UART, I2C, SPI, etc which instance is actually
+represented by an alias - and this is *not* for HW, but rather for drivers' device
+node number consistency in the userspace (of course not just MTK, but all of them).
+
+That makes things a bit weird then when we assert that devicetree describes the HW
+and, compared to what we're analyzing in this specific MediaTek case (which does in
+a way describe hardware, as in hw instance number), the LS busses aliases are just
+software details in an inappropriate place (DT) at this point?
+
+I wonder if there's anything that can be done for that case, because then now I'm
+kind of sensing that there's something else that is fundamentally wrong and that
+1. Leads to confusion (not in experienced people usually, but not granted)
+2. May actually help resolving situations that are similar to this one
+
+I'm well aware that whatever comes out of this won't be for this round, nor for the
+next one, but rather something that may eventually take (a lot of) time to assess
+and address, but still.
+
+Mind you - I keep thinking out loud - but I believe sometimes this is what makes
+good (hopefully) ideas come to mind.
+
+>>
+>>> that's job
+>>> for driver data. Of course if there is smarter way than MMIO->ID, I am
+>>> all in.
+>>
+>> You can't imagine how much I was hoping for you to say something about an
+>> alternative solution to that.
+>>
+>> As I said, it feels a bit like pre-DT times, but what I get from you is that this
+>> is cleaner than just adding information about the real hardware instance number in
+>> devicetree (no that's not just MediaTek, qcom also had similar issues as you said).
+> 
+> Sure, I understand. This is an workaround and might be less applicable
+> here. It might be possible that your hardware needs a dedicated
+> property.
+
+I didn't check the others - but from what I remember, Qualcomm also has this kind
+of workaround somewhere (in some driver[s]) - so that pushes the count to two
+vendors, let alone the number of SoCs affected which is .. well, more than two :-)
+
+I wonder if someone (unfortunately not me or at least not in the next 6 months)
+should do ... well, something ... to fix this situation in a good way.
+
+Adding the same workaround to MediaTek would make the argument stronger when that
+someone actually gets to resolving this situation somehow.
+
+> Unfortunately, this cannot be a custom per-device alias.
+> 
+
+I will come up with some way (right now, I have no idea how) to get this situation
+addressed in MediaTek DRM, maybe it's going to be that MMIO address workaround, or
+maybe not, let's see what I can do here.
+
+Surely though, either way, that's not good news - not just because it's going to
+slow down the upstreaming by a whole lot - but mostly because it's all about
+adding one more workaround for something that is "left in the future-decisions-box"
+in the kernel.
+
+Having to do this makes me sad, and this is mostly because I have no other choice.
+
+I'm sure you know what I mean here, so I won't add any more words to this already
+long reply.
+
+P.S.: Luca, you don't need to add the aliases to your SoC, because there's only one
+instance of the display controller IPs that you're adding; for DSI1/2 DPI1/2 and
+those final outputs, I guess just leave them out for now and add just the first....
+
+Cheers,
+Angelo
 
