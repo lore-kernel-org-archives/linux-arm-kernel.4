@@ -2,80 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FBE606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 14:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3773606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 14:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w7moj3mR;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=JXaesICp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GufC1u0i;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=XJpCTgCD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=FYR6lAR4F/kvDycE+JdAzmdMYH84ljUk0yMV3grV5hc=; b=w7moj3mRZgeo1JWt1XavIil3tq
-	vyqhYDaqwgmsYs/kuSj+ucqulVy4ewnSRs8zRpJ3ujbpE7JNE6W4hrTqwZyHrDJOSc6y06aHgEq9j
-	hDns/DQ+CQW+lp20ayd2zYtGZG7RYPnX9wFPK9eUZK90wqf41E0OHdJIbGYPNfmIrcKq3vD9ASLfI
-	ngFP4NrkPyg15lFKXXUb2S20LpNx83DctBZQrBB8LCpDbIwPAk5Af8Di3g777mhgsNTLEKTWftYmP
-	Buc8JV3CB4Ei8th2b6Wb5LrPWm0RA5iFPe+j1VnAuiu2bBSPSXGBHGi5JyK66XN84IH4toat9e4Vj
-	Oz1+saiQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AP66JK+9IZWV70ief0dIKlL0g1lFT7CpEkSpmNESw+A=; b=GufC1u0iDszJgv
+	VJyiW1YRkqkZQweBwg0D8iThICgqvuVOodkkB4OAY3X/nfObvdu9FZ+FZpO7Nfbsu5ary3+9SQ6d1
+	5iH/4nLyh3PHLBYu3dtxHU1k5tb2NCXJgde1i0NG3CtQ1r9Pt4wJghbDncGPRToejpEpuAyQGjKRF
+	it0PklZKll+e+tuijVxqMkV5U7a2JSGVCH6PxNTGFnKMAatDpVx17RQkM8mDOmSNrUfThHiy7X0js
+	MEjOaBbdGxQGW1MHNoyTd5XZT1vfjBimv8tYyAewMMq+WLM878vu68SVKGOgyl/0FRrxd9QOhn3za
+	vbW+obngYZoBw7k6awWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTh5a-00000009B26-1i9w;
-	Wed, 18 Nov 2026 14:56:46 +0000
-Received: from mout-p-202.mailbox.org ([2001:67c:2050:0:465::202])
+	id 1xTh5o-00000009B6h-2SBI;
+	Wed, 18 Nov 2026 14:57:00 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTh5W-00000009B1I-2YO8;
-	Wed, 18 Nov 2026 14:56:44 +0000
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4jV4S43N4hzMlyX;
-	Wed, 18 Nov 2026 15:56:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1795013796;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FYR6lAR4F/kvDycE+JdAzmdMYH84ljUk0yMV3grV5hc=;
-	b=JXaesICprn2CjnyE3WbO0RBrhdYyl2dJwYp//aiyC6Noq2rjpsgib9XRUqsadUfJ9uE3w1
-	dxKZ4GEUL34w4XtnHTnAwi13rpmb8PKj7zGdSXzlsiCD9G2PVmqwHjOY5oDfuAJx4L8QF5
-	0RvWnV4O4slFX8sIiXhskD88hZGoP1PTC1TNbmI4I2fO4HJ85JuD/ej2kj2fPQH7XNE62x
-	0oO0zKOrEQFharLAyIGSDgaYgzq1FO1uD4LaXfHJpo6hs+PckE4agQVPI8C4AJEqYYDq63
-	B8rFp88zeKzw2PawoZKe1P4+8mAps2RRpoUlW0TKhNn1Kswdbm0DbAb3vpNBjA==
-Message-ID: <d825fa6717dc907247cbaec6c7555eccb5676b9b.camel@mailbox.org>
-Subject: Re: [PATCH] ASoC: meson: aiu-fifo: prevent sleeping when spinlock
- is held
-From: Manuel Ebner <manuelebner@mailbox.org>
-To: Valerio Setti <vsetti@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
- <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl	 <martin.blumenstingl@googlemail.com>, Kuninori Morimoto	
- <kuninori.morimoto.gx@renesas.com>, Christian Hewitt	
- <christianshewitt@gmail.com>, linux-sound@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 18 Nov 2026 15:56:32 +0100
-In-Reply-To: <34e02f23-1ace-4a13-9353-b73a1464a592@baylibre.com>
-References: <20261111-aiu-fifo-fix-sleep-on-spinlock-v1-1-dc9ee401a7cf@baylibre.com>
-	 <0140bc0b3d1078bf8851340e0cb893b2907e146a.camel@mailbox.org>
-	 <34e02f23-1ace-4a13-9353-b73a1464a592@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xTh5f-00000009B3B-35Dj
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 14:56:53 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a1b07c3c5fso10477045e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 06:56:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1795013809; x=1795618609; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=AP66JK+9IZWV70ief0dIKlL0g1lFT7CpEkSpmNESw+A=;
+        b=XJpCTgCDXoxxmj+Z0HJoDAZ5DnWRfKKhIG+pvwuiOH0UcyYKGzJHIx+BA4zauVbOM0
+         MMC6NKsRC5+wbexnYUssU0KFf9r2+qXs3ez2We6c4yZ4et8QwY5oUjpaHWB35vhIF8wY
+         DZ8vuGOjGKKAfgOyFdw1c/8LiFSz8jsJpRbwIhJOEltLXulhnXfeRvg0DvzTtAHrC74w
+         nDbfobkH7KNWCAPJtaXXU6C87aqztylhF22pQOjYifh/JYy7pAckOS+0v+57ajtQ3apF
+         eeN9fy0vVQD0LmsmqUhLrMx934Ntlbgb0uXY/TNAIQwTbA2UsRNOJXUKdHLy4qyfIx+J
+         3FBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795013809; x=1795618609;
+        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=AP66JK+9IZWV70ief0dIKlL0g1lFT7CpEkSpmNESw+A=;
+        b=BIbD9iuajHyZeBvjU9lzs3Jg7aqsc2UgomvMSdZmwKV0mvrqpOzbDEvWiRnW4h3S6I
+         vQayTwWSUpUUrqx4JPlJK9aUpE3tHL4mMB2wa0SCMTXID6iusyFIxBwbj1TS81GLXc5t
+         B4QckIRQCIzdAbk+H6AlS8xHeAKGuKrIE+LGfc423inIwL1vCdREWdGLUMQKzN4cikN8
+         X7iRntP/d1pFhdGuciMp8pKTiaNJKYwQOgms0zaiY97RSAyitcvO4S4bgOJEuyUxP1sL
+         6aC3gQJKz4R4/+QETueRDmWbmst87I96rE+WaOO6+W3nLVFZE0ipuU2h6C5xZkWVorxJ
+         yTow==
+X-Forwarded-Encrypted: i=1; AL+hErH83qoF5Z3/hcNBfz4qFWIFslZfM3fnADKmvt7FzKZVNuVX+sPTy8VleWATGe5e9HtwcmQiIOhXGAn49gWaHk7e@lists.infradead.org
+X-Gm-Message-State: APuU4Z/pb2AsFN6AYfGRVPttQSJM5PNI38JlYKw+qWxA0TIZbUtztbHS
+	DK1Rks/DF6j92P48qvmv9uclfbH0sbgVQmxWkAOhpy0VoR4sQ0XIEATIElL5MIpKQgumT/OTDrs
+	JLoTQOag=
+X-Gm-Gg: AYBFou3nbI5P0qAhAEYxr72Q+JwAj/yH0W3RP5O4mgeLkusaEB7MAucNLHFZjGr18OA
+	wpf/XT6uGP1yubCPTdLdmb5mbJJ8J0LwKc5yYqKD4/XdHJ6Fc+ShdqqjxJtqliCiVyk2/eNsXNP
+	tvmte4UVsTlx9+lCe6qzJ3ESWOU3AUvjAIQJftC5dCR03KJ18y8Y5gkJLZNHbqFSqYBe9rAEvOo
+	y4jLYTHHSdUZ1RfgF+S7YAw5dxIJgkb9AZPLOsHzXy5e0Vxr/bEUGH9NNabqD3ss5HPxpNZojIP
+	8RziBdlMqn48sHorugB30ybD/N9zqBqRZqA6J/ybL27SS+FAkaiOdbVvSE42Tqg4WKS80q5RImo
+	656oKG18Nqh6tosRC4qbdTi5otqjls01wSYRD/d11pAdgk9BMu5Yf36Z+8wE+ugaXAL47s8srAi
+	h/6Lse+EYo4eoqRY1D0FkVLiXSoCjq1fW4ttbzA+CwtxdbMUMlvx1IVpKGC3lOzKqcgooVgjrZD
+	WY37vqBLT3skz7SiHBx7EF/AXSsvWubd96zDTeG7i/RmMQW3tCZiXXfIbZRGy/Wz/kmVvvBuNBW
+	CRPjI2dOvyjgRNGPyN3hlq/B5Si/PzXPu4CzUNQV4RsriVoVNX72Awqgm0FhewBHiycKAXROdww
+	VllaqGs42N4/jpXUsJlpVxVfpzG3zR4eqrIz6C5WVJoICz+DO6hGH7T9FwOrWTcXeFT83jp2CpL
+	0dwmaA1QsCyZN+pg==
+X-Received: by 2002:a05:600c:3e07:b0:4bb:5de1:e90f with SMTP id 5b1f17b1804b1-4bb7da44cbdmr52983185e9.31.1795013808498;
+        Wed, 18 Nov 2026 06:56:48 -0800 (PST)
+Received: from ?IPV6:2a02:8440:7506:415f:b2ff:e89f:45f0:164b? (2a02-8440-7506-415f-b2ff-e89f-45f0-164b.rev.sfr.net. [2a02:8440:7506:415f:b2ff:e89f:45f0:164b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a655db6d45sm5131667f8f.33.2026.11.18.06.56.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Nov 2026 06:56:48 -0800 (PST)
+Message-ID: <f837a7b5-7fce-4571-96b2-f3d307d203c2@baylibre.com>
+Date: Wed, 18 Nov 2026 15:56:45 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MBO-RS-ID: b463c6fe2c6dcd9de92
-X-MBO-RS-META: 1twaz6xuakpuacrj8wctghpe57hhkz9j
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/11] pinctrl: scmi: send the drive strength in
+ microamperes
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Sudeep Holla <sudeep.holla@kernel.org>,
+ Cristian Marussi <cristian.marussi@arm.com>,
+ Linus Walleij <linusw@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+ Andy Shevchenko <andy@kernel.org>, Dhruva Gole <d-gole@ti.com>,
+ Bartosz Golaszewski <brgl@kernel.org>, arm-scmi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20261113-clegoffic-pinctrl-scmi-gpio-v2-0-faccb4685d88@baylibre.com>
+ <20261113-clegoffic-pinctrl-scmi-gpio-v2-1-faccb4685d88@baylibre.com>
+ <CAMuHMdWwp4RtKnBpFNJPHdigzrQ-wf3yt-pBZGG9QKs9tcd_Ow@mail.gmail.com>
+Content-Language: en-US, fr
+From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
+Autocrypt: addr=clegoffic@baylibre.com; keydata=
+ xjMEafx9bxYJKwYBBAHaRw8BAQdAtc85GIwDXLz0rh9thWXC80Lji0otVDVncXT4qaS4j1fN
+ K0Nsw6ltZW50IExlIEdvZmZpYyA8Y2xlZ29mZmljQGJheWxpYnJlLmNvbT7ClgQTFgoAPhYh
+ BJjMiHuM4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsDBQkJZgGABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEH6EW4KtCh6Tt+sA/jVC35rY1npFlOy7YnncTdrID8Qf855JA78IzXgvzpGp
+ AP9FkuuT80m66PP3DvgYX9kVnG17mSDKO0+v2W18v6ZgCM44BGn8fW8SCisGAQQBl1UBBQEB
+ B0DMwF4u//aQyzsFlO8rPJ/cqsAuPH80IeIA3HOEo5mlVgMBCAfCfgQYFgoAJhYhBJjMiHuM
+ 4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsMBQkJZgGAAAoJEH6EW4KtCh6TdSgBAMDS0MiWCivt
+ LjzZc9bs+P/xdXywUjDKq3lpQGJ6vZ0GAP9vI6DnN7vwVK6jt6/+0aBGkog5Ura9+WwRFEdM
+ vLfPDQ==
+In-Reply-To: <CAMuHMdWwp4RtKnBpFNJPHdigzrQ-wf3yt-pBZGG9QKs9tcd_Ow@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_065643_404747_A0E9955D 
-X-CRM114-Status: GOOD (  27.08  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261118_065651_822658_69055F82 
+X-CRM114-Status: GOOD (  19.92  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,110 +125,76 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 2026-11-16 at 17:41 +0100, Valerio Setti wrote:
-> Hi Manuel
->=20
-> > I have read your patch and have a question.
-> [...]
+Hi Geert,
 
-Ack.
+On 11/17/26 3:35 PM, Geert Uytterhoeven wrote:
+> Hi Clément,
+>
+> On Fri, 13 Nov 2026 at 16:02, Clément Le Goffic <clegoffic@baylibre.com> wrote:
+>> SCMI gives the drive strength in microamperes, but
+>> PIN_CONFIG_DRIVE_STRENGTH is in milliamperes and was sent unchanged.
+>> Convert it on set and on get. It is the only unit that differs: the
+>> debounce is in microseconds and the pull resistances in ohms on both
+>> sides, and every other value is a flag or implementation defined.
+>>
+>> Fixes: eb524cb651b7 ("pinctrl: Implementation of the generic scmi-pinctrl driver")
+>> Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+>> Signed-off-by: Clément Le Goffic <clegoffic@baylibre.com>
+>
+> Thanks for your patch, which is now commit cc2f90768e971bcc ("pinctrl:
+> scmi: send the drive strength in microamperes") in pinctrl/for-next.
 
-> > > @@ -48,14 +49,22 @@ static int aiu_fifo_i2s_trigger(struct snd_pcm_su=
-bstream *substream, int cmd,
-> > > =C2=A0=C2=A0=09=09=09=09struct snd_soc_dai *dai)
-> > > =C2=A0=C2=A0{
-> > > =C2=A0=C2=A0=09struct snd_soc_component *component =3D dai->component=
-;
-> > > +=09unsigned int val;
-> >=20
-> > Here is val.
-> >=20
-> > > +=09int ret;
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0=09switch (cmd) {
-> > > =C2=A0=C2=A0=09case SNDRV_PCM_TRIGGER_START:
-> > > =C2=A0=C2=A0=09case SNDRV_PCM_TRIGGER_RESUME:
-> > > =C2=A0=C2=A0=09case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-> > > -=09=09snd_soc_component_write(component, AIU_RST_SOFT,
-> > > -=09=09=09=09=09AIU_RST_SOFT_I2S_FAST);
-> > > -=09=09snd_soc_component_read(component, AIU_I2S_SYNC);
-> > > +=09=09ret =3D regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_=
-SOFT_I2S_FAST);
-> > > +=09=09if (ret < 0)
-> > > +=09=09=09return snd_soc_ret(component->dev, ret,
-> > > +=09=09=09=09=09=C2=A0=C2=A0 "Failed to write register on trigger");
-> > > +
-> > > +=09=09ret =3D regmap_read(component->regmap, AIU_I2S_SYNC, &val);
-> >=20
-> > So as I understand val/&val is just there to listen and forget what get=
-s returned.
-> > That's kinda weird, but not an issue.
->=20
-> Well, I understand that it might be weird from a software point of view,=
-=20
-> but it makes sense from the hardware one. According to the manual:
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0 A read from this register indicates that the nex=
-t sample to be
-> =C2=A0=C2=A0=C2=A0=C2=A0 sent out of the interface should go into the lef=
-t channel of
-> =C2=A0=C2=A0=C2=A0=C2=A0 the dac.
-> > > @@ -37,8 +38,11 @@ snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_=
-component *component,
-> > > =C2=A0=C2=A0=09struct aiu_fifo *fifo =3D snd_soc_dai_dma_data_get_pla=
-yback(dai);
-> > > =C2=A0=C2=A0=09struct snd_pcm_runtime *runtime =3D substream->runtime=
-;
-> > > =C2=A0=C2=A0=09unsigned int addr;
-> >=20
-> > Here it's addr. It's not yours, you just kept it.
-> >=20
-> > > +=09int ret;
-> > > =C2=A0=20
-> > > -=09addr =3D snd_soc_component_read(component, fifo->mem_offset + AIU=
-_MEM_RD);
-> > > +=09ret =3D regmap_read(component->regmap, fifo->mem_offset + AIU_MEM=
-_RD, &addr);
-> >=20
-> > Similar as above. But why is addr here and val above? I think it's the =
-same role in regmap_read().
-> > Would it make sense to name both the same? If it does, I'm in favor of =
-val, because that's in the
-> > kernel-doc of regmap_read().
-> >=20
-> > > +=09if (ret < 0)
-> > > +=09=09return snd_soc_ret(component->dev, ret, "Failed to read FIFO p=
-ointer");
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0=09return bytes_to_frames(runtime, addr - (unsigned int)r=
-untime->dma_addr);
-> > Here addr is used, so it's not same as above.
-> >=20
-> > Looking forward to your POV.
->=20
-> Here I left 'addr' to minimize the number of changes in the patch.
-> Looking at it again now, I'm more in favor of keeping it as 'addr'. I=20
-> understand that the regmap documentation uses 'val', but in this case we=
-=20
-> know that the returned value is really an address of memory, not just a=
-=20
-> generic value.
-> Also keeping the name as it is makes the last line of that function=20
-> reading smoothly.
->=20
-> However if you deem this unacceptable I can change as you requested.=20
-> Just let me know.
+Yes, Linus took it 1h before my v2 and I didn't see it.
 
-I'm good with 'addr', thanks for the explanation.=20
- Manuel
+[...]
 
->=20
-> Best regards,
+>> +static u32 pinctrl_scmi_map_pinconf_arg_get(enum pin_config_param param, u32 value)
+>> +{
+>> +       if (param == PIN_CONFIG_DRIVE_STRENGTH)
+>> +               return value / MILLI;
+>
+> Does this need rounding?
+
+Rounding does not help I think: SCMI only talks µA, and 10800 µA has no exact mA form.
+I will send a fix that returns -EINVAL on get when the value is not a whole mA.
+PIN_CONFIG_DRIVE_STRENGTH_UA still gives the exact value.
+
+> While MILLI = 1000UL is correct from a numerical point of view,
+> it is not correct from a semantical point of view.
+>
+> <linux/units.h> has:
+>
+>     #define MICROWATT_PER_MILLIWATT 1000UL
+>
+> In the absence of a generic conversion value, "(MICRO / MILLI)" might
+> be better.
+
+Agreed, I will send a follow-up once Linus answers my question on v1 patch 7 about where to base v3 [1].
+
+[...]
+
+>> +               *arg *= MILLI;
+>
+> What happens if the result differs from the original value in µA,
+> due to truncation or rounding?
+>
+> Likewise about the use of MILLI.
+
+Multiplying a whole mA by 1000 gives an exact µA value, so it never differs, unless it overflows the u32.
+The same fix will return -EINVAL for that case.
+The platform refuses a value it does not support and the set fails with -EINVAL.
+
+[1] https://lore.kernel.org/all/ce463c97-8fde-44b3-b3bd-c21a69ee61b9@baylibre.com/
+
+Best regards,
+Clément
+
 
