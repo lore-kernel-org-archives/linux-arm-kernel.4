@@ -2,144 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C83606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3B3606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pzEh/m2P;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=SmXFyTTp;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=bhwk00LZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yPYkyhZQ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YkKcKa96
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=aGe5/35woBldXiPfqQ49uVeqf5gd1K2N9K/JlpgH0bM=; b=pzEh/m2P7e0OyP
-	tym0iLaF5UCO33/FlcMn4cg9rmtk9RpahgMdSpYeCNr3VhsgUFY7QgHSYgIs8dHD0FUQw2AkWuJJn
-	27ZKFFE+5Dzc8YMkNflH1QbYheK+cudHkRF3MIuA4pzaMODoWrRY8780mj3TT4KGkx/BaeS6bfyL5
-	wkr5TMGy6I6Rekx+ik6oDw+TrDEesVD9Da9BxnnQGWyDPa79BitaNccB2EHdqhkI3AOgV218drDvl
-	5ABc9nepVosfpWDyzcfzMYhNvXOZ0Ost4SS2yxU+kdBymLrenG/W9GWO6cDxUepfCNQexxtES3vfY
-	/hc9cSN720mRk5lFZ1CA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ta3st23k7aJtViHx8b5Y0gwAd71zJE3W0PZkE87cjbA=; b=yPYkyhZQb25yTleigR8rJvXwR4
+	KlHNKiGBoP1TRqajBp7Tf7syYPZPTuaOKCUuso4wpBI2li2FSdfreK/wT39Jn8uBTtTVElnf5goNr
+	DBiUioYZ0BZhvpRUVDGqsXu6l1XrwW6aLmjKo+llJDhvtZfJwO9UoygSS+SHqObhNg1wuW7fnQC79
+	VXAsVo63Isd+zqT99aAuT2sG/69xU3K6I2MPQ1I02v4QyC5CntYrXzDKH9+OKYl9gnID9+0/Djq+y
+	JjOC9NNv8aELDGYBj8MRiH/D91g73AbB+wFppdUe3f1Zes4PEFQal3Cs7r6gqlJVTKyM5yGwmTmxi
+	82qLvzRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiLQ-00000009Qvr-32ur;
-	Wed, 18 Nov 2026 16:17:18 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xTiMF-00000009RE6-3zyc;
+	Wed, 18 Nov 2026 16:18:03 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiLC-00000009QlU-27kG
+	id 1xTiMC-00000009RBZ-1h8r
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:16:59 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AIDQ6R33912208
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 16:16:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=aGe5/35woBl
-	dXiPfqQ49uVeqf5gd1K2N9K/JlpgH0bM=; b=SmXFyTTpfxkyIIUFFruIb6Wl0m9
-	IhD+1LOsHb5gF2fMOJ19it96xX5wdl/2kRwo563HugOxMaJUyCzSU6fExEWKU9A8
-	AAk819vkz0Q7tLs9QDl/c9kArEAF0SNWGdV5Qbzx3ZEneFU81vEkw7+u8XxcnskY
-	izIpzcT4TutiM2OUn/iopob9I+CD2CnZzuDvRxPz794BnBV4TrqZ9KcafE7Zya7y
-	HhePdMueDFKtyMuFOZt9UmOwk+zFfz7esTE7mstfOumDGgZsXFZiN00K2dljkDS/
-	mqrXyNv3mnkZOVe5yOU755x6JdOSrJuErlXCF5eGbnkMdQOfxrNtsUXDyEQ==
-Received: from mail-vk1-f199.google.com (mail-vk1-f199.google.com [209.85.221.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j0yv9c0ca-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 16:16:57 +0000 (GMT)
-Received: by mail-vk1-f199.google.com with SMTP id 71dfb90a1353d-5ece5510b79so800633e0c.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:16:57 -0800 (PST)
+	Wed, 18 Nov 2026 16:18:02 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-49a92144733so549863f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:17:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795018617; x=1795623417; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=aGe5/35woBldXiPfqQ49uVeqf5gd1K2N9K/JlpgH0bM=;
-        b=bhwk00LZmQf2cqq4uyayb9MByFYh31TgYcHaJcaFXYUgqgF2HCrk24qFE2DdDnHndf
-         +JSxY8sWxndLtkT1hc9Bd3P18Gy1SieQTuP1hc1MeTmfQkg9NNQg6JNUyeivjC9aR4Vp
-         HbcFSBPJ3dZ19tdy0EcRnD6Gmcsr/e0AGwRcE1xZOuZm3PyIav94z1DgNoOpSB2O68/x
-         lVIdyNlUN1q4F5OuHvbbAbXLmrNhaGYRH+0Gj2GW6iILVz29XQqJzyAZZgPSZxN1x+zZ
-         QsDus7blDk5E8DXslAN6X65jQ0uu+55WeLZt67J1an8Gv30GpqVerH8cn1FuPzoM1YSN
-         FKAQ==
+        d=gmail.com; s=20260707; t=1795018677; x=1795623477; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=ta3st23k7aJtViHx8b5Y0gwAd71zJE3W0PZkE87cjbA=;
+        b=YkKcKa96bH+weo+r00CKxtddjGQ2qdMC5B9cA67Rp0apGqxfbxq9IU3r5lo8PJWrvh
+         8+jHZwCbZdM4+UEWz4xhVEZuRQQcaT29Ob3TSA4GrZqsrBrXJm/VcRKHGxvQnYv8qtMa
+         D4c2w3PtQLbAwzvRUlAAJNeA7+KweZ4povwQ3e986XhIKYc7DFpaVkhkkDHVuW9zTsVf
+         4BsAMk+4r6l+qw0O8q/FJb0vPEs/ch9T9e6RpV+y1J5X00iNGGpngBKYVCplMywPzSHc
+         SEbUdcIQfA6fw9rXQu9hOrbkXIQ99yBQkN8Nqreus/YONncdV9ltYfGhRMgH543/tWBv
+         CHGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795018617; x=1795623417;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=aGe5/35woBldXiPfqQ49uVeqf5gd1K2N9K/JlpgH0bM=;
-        b=kdhCZOvHCOyP+ablIa1e3H7/Ub2HWGggi7+APoZeRJAMt0gLtHrPe7bpJYpU+W0JTv
-         VyoivEqVSn4OB5bh1lXYtyk+CGIRZ4rsi7FHtNxcagUY00jtVPms04r23eIgkvN73Gcb
-         UJ/+PhbjYE2cCjmlNcwrTWMaC7YdEt01euyPQzq3P9YvRVeJbjKsm+B4Uc//ZXmtyF6/
-         GdLI9rLt6B2e6c25Wm5PCnwFKdGBVKnCvKNu/A1uXosL3RwTmAJsDl0tne/X0Sk6gz3T
-         JQW0lvD03ENhQs3tre5n4RuxgRlQKByoIb9Q8v17KXcaADXOAVT6UkqiQLQQ4jXcLhsd
-         KZIA==
-X-Forwarded-Encrypted: i=1; AL+hErERNejJydVTZLHiCfRLD73/eTMY3AnDjR61ZK8fIer3MWIL7BYoKk6qH60n27LmsnhYfqwVwZys8ry5ofGWRBtO@lists.infradead.org
-X-Gm-Message-State: APuU4Z8luy8B9KOH0v7kUr4PFLAjPy1UmA9AnUVDAKoDcC45wW2izPiq
-	h2GYEB/xt6/13cFRyeFpe9UxobMTc1GNUfMEcFFlQu7OL1ai39CoOzuD/ECjvHuLR+DGTR3k1bo
-	eIsZ5CEWeMwUbLNNWEUuIJluVYAJgAPnG6+SaF2+wV+k5i398aMf+2lGHZU/MxBg+pXxZdtv85f
-	YaTg==
-X-Gm-Gg: AYBFou0WujLjb2MistJrGaHOzHfu0kaZ+JqRO5Ctqiw+VMoIiSBEXYsF/fJE4In6EPM
-	MxrTv0izvfvUSSYNnaMTlHqqQK0rLml04tcawEW3TvN7XqOXvES7H5RGHfEShuValJhcMD/Clgf
-	O1iLIu1/a0YT2x3JxCztSewRNjXVf2SQ/pqmSL+SqkIbqNApXoRrxfVlHKlD1sy70NeHH8TVaZO
-	X1BvfdPWoLfpWTKhWSky8sXIvxZU9KN/eEJksZhaVZCB/MTiwM2+JC0ARtLkG7nN+RP26Ex+Spl
-	ejg3ACmyTKEo2+092ycZvJ7JFj5lSMaT+s58m5iDzcQ9mfZZg3GWqHH6jn2v0PVPqJGvHpiUykC
-	feW+qxeGOipArEkUWGEA49K0Af4T1T6ZQYk2+MaJ8bwMzcBQJqB6mcZrAjkC1a9HJSY7yX3fIjW
-	y3
-X-Received: by 2002:a05:6122:1b8e:b0:5ec:7589:f9e0 with SMTP id 71dfb90a1353d-5ee64724bd7mr1781034e0c.11.1795018616623;
-        Wed, 18 Nov 2026 08:16:56 -0800 (PST)
-X-Received: by 2002:a05:6122:1b8e:b0:5ec:7589:f9e0 with SMTP id 71dfb90a1353d-5ee64724bd7mr1781018e0c.11.1795018616101;
-        Wed, 18 Nov 2026 08:16:56 -0800 (PST)
-Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:d355:fe70:14a0:ac8d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb78418853sm217090495e9.8.2026.11.18.08.16.55
+        d=1e100.net; s=20260707; t=1795018677; x=1795623477;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=ta3st23k7aJtViHx8b5Y0gwAd71zJE3W0PZkE87cjbA=;
+        b=VBZ7mutCMXzwEslaRwx5JC85QHjWA3Qbaojg8rwxPYPukbUJuXTmNMjZhMrCr+kovv
+         lTbUBCU/lsy8Dpcbbf4A0UF74cK8Knr1u/eWTJn7HyO1WeQT+XmBvTcnT3nkQTOzEAF+
+         nXFlLMl5DwL2xEkjcoNf0LUExTNTquydETqteAAw0nE0vt8ytmzZpqEUhq+r8gmiiz52
+         WV5g1/ZNdhUZrmJV2D7xuOx2P9Watsp++5vHrWbCSnT93CShOpwjnTL+qP0MvKRh42rV
+         +w2l+1NEihykiwVIOdbBXrk9siS3CZh652xP0OKWtnrBhroCdPnYvwggEvva4X8+sgo6
+         BbUQ==
+X-Forwarded-Encrypted: i=1; AL+hErEUUBIyZ06NMY8s09N9MrHfijLY/gxVTd69boS0fZJV+VPtjS2/XQf1jPlOLCJHr9U/ieIoWvwg8hgGB1Cm5hCJ@lists.infradead.org
+X-Gm-Message-State: APuU4Z9c2ndgiS+xqjeNJ9ZN6hgG2faHAJ0MWPaq+GWCJmIFILr3BtWS
+	frRMVqYcjeD+xHzQzm70aBek9L8Clk/UlCjIwV0ZOZatX6rNfvo5IhY/
+X-Gm-Gg: AZFdTZcSv9iB74BEYMekLjfxgsikcGgmkZyPRuhABHMfiYaoN5+irKFvpX26Cim1NSW
+	7VT9NpgeUdiZdoI7p1RljMLImXKluRS10YuNpvfSaRF+S1bXrLGDQlLHJgM3uLk94q8ktSKyHfO
+	DLWCDGUrPk6havXwdyQD9opI4TnJtXUMyUJCAY23en3OzCy0HDFxM9aY8mri/02zf8E4CTgEerw
+	U+u2Bk8oNrdaDsBYGEeQmXlN+o5q+s87pjPHxurmhznrfbD8Dnxc/3OChBNuObvnQGj+pfrhMBe
+	N5t6tv0MQ6NijUGAX0PqrKVLzjril5Z4pzYKzS7b1Q6OQiIA6tqvmzXG7+p4prgIRTfhVnjNQxt
+	aIUP0Cmz9MXvraV//K7V0m8hFO1ETyb9VBxV1KL22Hz8NY1LP42bPa0zGI0BmCnIxYbw3CCnQ0G
+	g79N0h4Lr6RpZANuWD25HW9lQs2jd5Z9Nl6/gxR9PXJWJcSWvILNm86+0xW6c6B4wR8C6/2lkus
+	Arw47dE0Xm2hF+OeLEXhNmjt+9vI7/vumR5cA/y2MFRO0gswBzey35i228VOn6h7lr4xUCWG2Nr
+	dWWetUhCremANtCfjRmk4fiULBAXv7yK9o43P6b5LG4wH+0qDGt2x2N43ac9w5HMMghZRMiUi0d
+	oiVAl9qUkJqBI2+FQaEWuCKoIWIJREFcByg==
+X-Received: by 2002:a05:6000:3104:b0:4a7:557:fcc with SMTP id ffacd0b85a97d-4a705665645mr5379933f8f.53.1795018676598;
+        Wed, 18 Nov 2026 08:17:56 -0800 (PST)
+Received: from [10.161.246.232] (host-164-37-100-34.net.onlyservers.com. [164.37.100.34])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a65100bf42sm5329699f8f.1.2026.11.18.08.17.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 08:16:55 -0800 (PST)
-From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-To: rafael@kernel.org, tglx@linutronix.de
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Peter Ziljstra <peterz@infradead.org>,
-        Bradley Morgan <brads@mainlining.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC support),
-        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
-Subject: [PATCH RESEND v2 2/2] powercap: idle_inject: Create per-CPU threads on registration
-Date: Wed, 18 Nov 2026 17:15:27 +0100
-Message-ID: <0fd0b28b29f6d9ad38bc91f3582bfee511fbf4f8.1794992905.git.daniel.lezcano@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1794992905.git.daniel.lezcano@oss.qualcomm.com>
-References: <cover.1794992905.git.daniel.lezcano@oss.qualcomm.com>
+        Wed, 18 Nov 2026 08:17:56 -0800 (PST)
+From: Alexander Letuchiy <asalde.le1@gmail.com>
+Subject: [PATCH v2 0/2] pinctrl: mediatek: Add MT6895 support
+Date: Wed, 18 Nov 2026 19:17:35 +0300
+Message-Id: <20261118-pinctrl-mt6895-v2-0-0728c4eddcac@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDA2NCBTYWx0ZWRfXxU9/96hvOgfp
- rxhghek7MFn6TIOgiAN+uGlh3BLbgzptzWvCEQc/5uAjlaWPBgdJFr+h/2/GYt2am+KYtIPdUew
- 0tQgCMKyvcAYyrac70jGhD/ld4MR0oo=
-X-Authority-Analysis: v=2.4 cv=acT0Dhot c=1 sm=1 tr=0 ts=6afdcf79 cx=c_pps
- a=+D9SDfe9YZWTjADjLiQY5g==:117 a=xqWC_Br6kY4A:10 a=zJRp6_cAMcgA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=gowsoOTTUOVcmtlkKump:22 a=Z4Rwk6OoAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=OuZLqq7tAAAA:8 a=z2xlO20o2AOZ5rEB0BcA:9 a=vmgOmaN-Xu0dpDh8OwbV:22
- a=HkZW87K1Qel5hWWM3VKY:22 a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDA2NCBTYWx0ZWRfX65yRbgud0krQ
- Bs8e1yNaIl3AtHWqzNHPEiOD2zpwbWOjir5+XLWiGEL7PUZX4NLju00H5B5GKryF47R6BZsRpSl
- 0W6yoGfle6nzh+Bny94Z/4yt+zXf5ySSJjUY6ut5os36uXq9hx8kQ1OW9LEmSQgE08XuHa0TD/N
- OvbgFBYYSvmVnCw4OjbfcWLMpoUGa1ekP6u89+5QjOGqcraqGBiIy5cEs+VK5K5+4sOHp07zWUc
- Pek0fYrLAtsd4xxGZDWCnFseyc5Glp2MfEkiVi3624tTZOxWb2GLRhYueWjU5JTvOKXITwp7xOg
- k5DY2y+k8WoKotWbcppMUpAGWcbdJRee12/Ep7HjBXHutHOebFJNe13Jr/8qMiGxtTo1DBUHr6R
- I15ZNUTBW/viNEOUNm25Vf6c/5OVvI7s1bfVfTZ7lSyUerXe1rdw03NKjMPMWtz7lGBQ+7oz9Fw
- d99UzOdC95QIjZ+YyXg==
-X-Proofpoint-ORIG-GUID: tU9ZrWRSEseOltcT2xwvxmcPf5jlGgkD
-X-Proofpoint-GUID: tU9ZrWRSEseOltcT2xwvxmcPf5jlGgkD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-18_04,2026-11-16_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 phishscore=0 impostorscore=0 bulkscore=0
- malwarescore=0 priorityscore=1501 spamscore=0 clxscore=1015 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611180064
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNQQ6DIBQFr2L+ujSAVKmr3qNxgRT1NwoGqGlju
+ HvFrrucZN68DYLxaAI0xQberBjQ2R34qQA9KjsYgo+dgVNeMUYlWdDq6Ccyx0peL0QKyTmndS+
+ Uhn20eNPj+wje2x+HV/c0OuZKNkYM0fnP8biy7P2Nr4xQ0tdUaCHKrmTqNswKp7N2M7QppS+y8
+ HwtvgAAAA==
+X-Change-ID: 20261108-pinctrl-mt6895-84822207f4ac
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Alexander Letuchiy <asalde.le1@gmail.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_081658_706202_2A293D6D 
-X-CRM114-Status: GOOD (  26.51  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261118_081800_492400_BA5726A3 
+X-CRM114-Status: GOOD (  12.79  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,215 +112,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-Message-ID: <20261118161527.fgIDKLe2y_LUprY_AXrKpHUjt_efsg1M9HEwn-8a3_M@z>
 
-Create idle injection threads when a device registers instead of
-creating them unconditionally during early initialization. Destroy the
-threads when the device unregisters.
+This series adds the pin controller of the MediaTek Dimensity 8000/8100
+(MT6895) SoC: the binding and a driver on top of the common Paris code.
 
-Use a per-device smpboot descriptor with the device's CPU mask so thread
-creation and CPU hotplug handling are limited to the CPUs registered by
-that device. Allow stopping devices whose offline CPUs have not yet had
-a thread created, and update the registration documentation to describe
-the thread lifecycle and possible failures.
+The pinmux macro header and the pio node are part of v2
+of the MT6895 / Xiaomi Poco X4 GT initial support series [1].
 
-Serialize CPU ownership checks and claims with a framework-wide mutex.
-Without serialization, registrations with overlapping masks can both
-observe an unclaimed CPU and overwrite each other's device pointer.
-Their smpboot descriptors can then share the same per-CPU task, allowing
-one device's teardown to destroy a thread belonging to another device.
-Registration rollback can also clear another caller's ownership.
+The tables come from the MediaTek driver in the Xiaomi kernel source
+release [2]. They were checked field by field against that driver and
+against register dumps from the device running the vendor kernel.
 
-Hold the mutex through smpboot registration and failure rollback, and
-during thread unregistration through ownership release. This prevents a
-CPU from being claimed again until its previous thread is destroyed.
+Tested on a Xiaomi Poco X4 GT (xaga) on top of next-20261117: pinmux,
+pin configuration, GPIO and EINT.
 
-Stop idle injection before acquiring the mutex, keeping timer callback
-cancellation and stop-side hotplug exclusion outside the ownership
-critical section. Neither the idle injection threads nor their smpboot
-hotplug paths acquire this mutex. The existing caller-side lifecycle
-synchronization requirement remains in effect.
+[1] https://patch.msgid.link/20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com
+[2] https://github.com/MiCode/Xiaomi_Kernel_OpenSource/tree/56ec519f6
+    (branch xaga-s-oss)
 
-Reported-by: Andrew Morton <akpm@linux-foundation.org>
-Cc: Rafael J. Wysocki (Intel) <rafael@kernel.org>
-Signed-off-by: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-Reviewed-by: Bradley Morgan <brads@mainlining.org>
+Assisted-by: Claude:claude-opus-5-5
+
 ---
- drivers/powercap/idle_inject.c | 69 +++++++++++++++++++++-------------
- 1 file changed, 42 insertions(+), 27 deletions(-)
+Changes in v2:
+- pinctrl-mt6895: pad mt6895_pull_type[] with entries for the virtual
+  EINT pins 227-246 to avoid an out-of-bounds read from
+  mtk_pinconf_bias_get_combo() (e.g. via debugfs pinconf-pins)
+  (Sashiko)
+- Rebased on next-20261117
+- Link to v1: https://patch.msgid.link/20261108-pinctrl-mt6895-v1-0-f704c443b31a@gmail.com
 
-diff --git a/drivers/powercap/idle_inject.c b/drivers/powercap/idle_inject.c
-index a25eb2018acd..24646b8be9ac 100644
---- a/drivers/powercap/idle_inject.c
-+++ b/drivers/powercap/idle_inject.c
-@@ -10,11 +10,9 @@
-  * It relies on the smpboot kthreads feature providing common code for CPU
-  * hotplug and thread [un]parking.
-  *
-- * All of the kthreads used for idle injection are created at init time.
-- *
-- * Next, the users of the idle injection framework provide a cpumask via
-- * its register function. The kthreads will be synchronized with respect to
-- * this cpumask.
-+ * Users of the idle injection framework provide a cpumask via its register
-+ * function. The kthreads are created on demand for CPUs in this mask and
-+ * will be synchronized with respect to it.
-  *
-  * The idle + run duration is specified via separate helpers and that allows
-  * idle injection to be started.
-@@ -40,6 +38,7 @@
- #include <linux/cpu.h>
- #include <linux/hrtimer.h>
- #include <linux/kthread.h>
-+#include <linux/mutex.h>
- #include <linux/sched.h>
- #include <linux/slab.h>
- #include <linux/smpboot.h>
-@@ -60,6 +59,7 @@ struct idle_inject_thread {
- /**
-  * struct idle_inject_device - idle injection data
-  * @timer: idle injection period timer
-+ * @threads: per-device CPU hotplug thread descriptor
-  * @idle_duration_us: duration of CPU idle time to inject
-  * @run_duration_us: duration of CPU run time to allow
-  * @latency_us: max allowed latency
-@@ -82,6 +82,7 @@ struct idle_inject_thread {
-  */
- struct idle_inject_device {
- 	struct hrtimer timer;
-+	struct smp_hotplug_thread threads;
- 	unsigned int idle_duration_us;
- 	unsigned int run_duration_us;
- 	unsigned int latency_us;
-@@ -92,6 +93,9 @@ struct idle_inject_device {
- static DEFINE_PER_CPU(struct idle_inject_thread, idle_inject_thread);
- static DEFINE_PER_CPU(struct idle_inject_device *, idle_inject_device);
- 
-+/* Serialize CPU ownership changes and the associated thread lifecycle. */
-+static DEFINE_MUTEX(idle_inject_lock);
-+
- /**
-  * idle_inject_wakeup - Wake up idle injection threads
-  * @ii_dev: target idle injection device
-@@ -279,7 +283,8 @@ void idle_inject_stop(struct idle_inject_device *ii_dev)
- 		iit = per_cpu_ptr(&idle_inject_thread, cpu);
- 		iit->should_run = 0;
- 
--		wait_task_inactive(iit->tsk, TASK_ANY);
-+		if (iit->tsk)
-+			wait_task_inactive(iit->tsk, TASK_ANY);
- 	}
- 
- 	cpu_hotplug_enable();
-@@ -319,12 +324,12 @@ static int idle_inject_should_run(unsigned int cpu)
-  * idle
-  *
-  * This function creates an idle injection control device structure for the
-- * given set of CPUs and initializes the timer associated with it. This
-+ * given set of CPUs, registers their kthreads and initializes the timer. This
-  * function also allows to register update()callback.
-  * It does not start any injection cycles.
-  *
-- * Return: NULL if memory allocation fails, idle injection control device
-- * pointer on success.
-+ * Return: NULL if allocation or thread registration fails, or a CPU is already
-+ * registered; idle injection control device pointer on success.
-  */
- 
- struct idle_inject_device *idle_inject_register_full(struct cpumask *cpumask,
-@@ -342,6 +347,8 @@ struct idle_inject_device *idle_inject_register_full(struct cpumask *cpumask,
- 	ii_dev->latency_us = UINT_MAX;
- 	ii_dev->update = update;
- 
-+	mutex_lock(&idle_inject_lock);
-+
- 	for_each_cpu(cpu, to_cpumask(ii_dev->cpumask)) {
- 
- 		if (per_cpu(idle_inject_device, cpu)) {
-@@ -352,6 +359,20 @@ struct idle_inject_device *idle_inject_register_full(struct cpumask *cpumask,
- 		per_cpu(idle_inject_device, cpu) = ii_dev;
- 	}
- 
-+	ii_dev->threads = (struct smp_hotplug_thread) {
-+		.store = &idle_inject_thread.tsk,
-+		.setup = idle_inject_setup,
-+		.thread_fn = idle_inject_fn,
-+		.thread_comm = "idle_inject/%u",
-+		.thread_should_run = idle_inject_should_run,
-+		.cpumask = to_cpumask(ii_dev->cpumask),
-+	};
-+
-+	if (smpboot_register_percpu_thread(&ii_dev->threads))
-+		goto out_rollback;
-+
-+	mutex_unlock(&idle_inject_lock);
-+
- 	return ii_dev;
- 
- out_rollback:
-@@ -361,6 +382,8 @@ struct idle_inject_device *idle_inject_register_full(struct cpumask *cpumask,
- 		per_cpu(idle_inject_device, cpu_rb) = NULL;
- 	}
- 
-+	mutex_unlock(&idle_inject_lock);
-+
- 	kfree(ii_dev);
- 
- 	return NULL;
-@@ -372,11 +395,11 @@ EXPORT_SYMBOL_NS_GPL(idle_inject_register_full, "IDLE_INJECT");
-  * @cpumask: CPUs to be affected by idle injection
-  *
-  * This function creates an idle injection control device structure for the
-- * given set of CPUs and initializes the timer associated with it.  It does not
-- * start any injection cycles.
-+ * given set of CPUs, registers their kthreads and initializes the timer. It
-+ * does not start any injection cycles.
-  *
-- * Return: NULL if memory allocation fails, idle injection control device
-- * pointer on success.
-+ * Return: NULL if allocation or thread registration fails, or a CPU is already
-+ * registered; idle injection control device pointer on success.
-  */
- struct idle_inject_device *idle_inject_register(struct cpumask *cpumask)
- {
-@@ -398,23 +421,15 @@ void idle_inject_unregister(struct idle_inject_device *ii_dev)
- 
- 	idle_inject_stop(ii_dev);
- 
-+	mutex_lock(&idle_inject_lock);
-+
-+	smpboot_unregister_percpu_thread(&ii_dev->threads);
-+
- 	for_each_cpu(cpu, to_cpumask(ii_dev->cpumask))
- 		per_cpu(idle_inject_device, cpu) = NULL;
- 
-+	mutex_unlock(&idle_inject_lock);
-+
- 	kfree(ii_dev);
- }
- EXPORT_SYMBOL_NS_GPL(idle_inject_unregister, "IDLE_INJECT");
--
--static struct smp_hotplug_thread idle_inject_threads = {
--	.store = &idle_inject_thread.tsk,
--	.setup = idle_inject_setup,
--	.thread_fn = idle_inject_fn,
--	.thread_comm = "idle_inject/%u",
--	.thread_should_run = idle_inject_should_run,
--};
--
--static int __init idle_inject_init(void)
--{
--	return smpboot_register_percpu_thread(&idle_inject_threads);
--}
--early_initcall(idle_inject_init);
--- 
-2.43.0
+---
+Alexander Letuchiy (2):
+      dt-bindings: pinctrl: mediatek: Document MT6895 pin controller
+      pinctrl: mediatek: Add support for MT6895 pinctrl
+
+ .../bindings/pinctrl/mediatek,mt6895-pinctrl.yaml  |  228 ++
+ drivers/pinctrl/mediatek/Kconfig                   |   10 +
+ drivers/pinctrl/mediatek/Makefile                  |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt6895.c          | 1638 ++++++++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6895.h      | 2717 ++++++++++++++++++++
+ 5 files changed, 4594 insertions(+)
+---
+base-commit: 7cfbf79c66c63e807ea452abf0546e6f6d6833a6
+change-id: 20261108-pinctrl-mt6895-84822207f4ac
+
+Best regards,
+--  
+Alexander Letuchiy <asalde.le1@gmail.com>
 
 
