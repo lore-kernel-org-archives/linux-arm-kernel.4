@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56CF60A2633
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:51:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F8060A2612
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:51:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l7pxJE8F;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=AqkcoMpB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XLua6Br7;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=EiQvB8Il
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xUapXh3LAgb7b70G8vyUmRNtjSNpiBwfvZc2/AN9HVM=; b=l7pxJE8F8LK6k/
-	lhO40/4CMs8yzCU0Mw1+qyHH7xU7EdOz0fJ7a9jGtpXaZXw3qyz1y7Wrry8QfVWt0RpmgEjFF3h1b
-	70jZRfJqPZtAQaclaqK3SGMuACmy6kTOIAyVpWq85d4Q8Ojl2muA35+1OTNU/ka7mT3d3rob6idZO
-	MVNe9OU/y0kd4iCBSAN6NH4kJPK62YaEckgy1UlcxNel/pfMGFfYagKJG6Y/Cd+j1z1rNqfUjRO+5
-	axxcNL+UEnDPZNkdYkp01B/TE+M2rsYGwqrBsu4mJQrJ8/nYhF7HvhiJ7A7g/0wlcZe6JkvI4KPIo
-	B3e52SBKWuDtuGEHPuPQ==;
+	List-Owner; bh=Eh62CGm2Nsq9fXhqb4JToE+PGEtwNRrXsYjmXaK4NJM=; b=XLua6Br7kUA4i+
+	zuBBdIURdWeB2Q7A40ZuAZ9hGqXclLt74PpTXyQYOILtnkmxUbF8lCioz6Hccf2QSHMmQW7CJj7ZK
+	qzLET2ulgch2YtLbSiZkX0U/K0vG2VMFKBww/g02WP5Lo4mYKIM9mlYAsEGFjPl6DwcA8s+f8It2y
+	toOKnzSkgHW2/qm1Dx8s1PErbiQE6DQO0R8gs3fLrAMzwcK2MmhncEf0s4QnCTPIRfGmUCKQ4Xm6H
+	NnFE7BWeKyBm0pVQ9Im6IoPjOsYKvpD+F7W1r6AdLRDgakyiG7NWjvpe0s4rnHM/h8dKC203TYoUy
+	qYS9Zt2TBRb6O8IHYUTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTisG-00000009aJT-0ieX;
-	Wed, 18 Nov 2026 16:51:08 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xTisj-00000009ai9-0xGg;
+	Wed, 18 Nov 2026 16:51:37 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTirw-00000009a4k-22IX
+	id 1xTisK-00000009aMm-1Xmm
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:50:50 +0000
+	Wed, 18 Nov 2026 16:51:19 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 4B15FC4F77E;
-	Wed, 18 Nov 2026 16:50:51 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id E382D1A16CA;
+	Wed, 18 Nov 2026 16:51:10 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 64E785FE9B;
-	Wed, 18 Nov 2026 16:50:46 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D06BC11BC27C2;
-	Wed, 18 Nov 2026 17:50:39 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B321C5FE9B;
+	Wed, 18 Nov 2026 16:51:10 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D0C8E11BC28AB;
+	Wed, 18 Nov 2026 17:50:59 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795020644; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795020664; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=xUapXh3LAgb7b70G8vyUmRNtjSNpiBwfvZc2/AN9HVM=;
-	b=AqkcoMpBiz3XS00Cy58lcSFWUufRCXidqGvtyszIqVzlzetrLf0+ci2ep2icS4eHtvQ54N
-	urai6hCpRpE/8zQ41/7c3CUWidc9HRteu7u0vRf9de7DtMXZ//3TkmCaFsdGjCvVLQ73Pp
-	2FZ1NC0jLvYw+UuAgUQBwHgb4gj5ZfFI6M5neW2s6+KLfQ9nEapxwmEVZav82PTiZvN/P0
-	CQ2nx1mmQoPdIIBEYBx8H0RuV3gPf3Ky8LNQFNnFkE3mo8x4WMP6mEhmJ+9LEeSWblWibs
-	8RAHw3ogDmsBMqKalZ+CpT2VFbpy/0GKDlePV+Ag+k5cv9/Bcx/VhIBlGnuyCA==
+	bh=Eh62CGm2Nsq9fXhqb4JToE+PGEtwNRrXsYjmXaK4NJM=;
+	b=EiQvB8IlBXeskRVuZIk+9LUmJHb+zNcOEZffWBbadRZyaHwc1Huk+PzHMzT59jPqiqeW3N
+	JX0JvojfkWQaZohjDjd6OW9qEyoYKGYhPcuSnAJmjFZl8uysnaz1D55X6J6CE6chbFeShc
+	3Ct9pS63qarXZSXGxOKQ2efBfamD6KiiEFHAW3yPX7v1YbIsZEc1PqEaIQjzjFQ28fxTxm
+	o1hxvcj8RuoGcjYZRX2MUtzbXeeYxnv7Q2E9aHxKuvEmSjPos9qYEp8+D210ufoabVpSip
+	iVyQPQXBlUYduwbVtVa6hOyrbbXdM3m0vpYqe09VHHIkGBnms/edlF8K8mpsHQ==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 18 Nov 2026 17:49:49 +0100
-Subject: [PATCH RFC v3 06/31] drm/connector: add
- drm_connector_hdmi_dynamic_init()
+Date: Wed, 18 Nov 2026 17:49:52 +0100
+Subject: [PATCH RFC v3 09/31] drm/display: bridge-connector: use a dynamic
+ connector
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-drm-bridge-hotplug-v3-6-44bb3b4a828f@bootlin.com>
+Message-Id: <20261118-drm-bridge-hotplug-v3-9-44bb3b4a828f@bootlin.com>
 References: <20261118-drm-bridge-hotplug-v3-0-44bb3b4a828f@bootlin.com>
 In-Reply-To: <20261118-drm-bridge-hotplug-v3-0-44bb3b4a828f@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -79,8 +79,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
 X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_085048_906738_660BFD02 
-X-CRM114-Status: GOOD (  12.66  )
+X-CRM114-CacheID: sfid-20261118_085112_719834_40397A3D 
+X-CRM114-Status: GOOD (  20.39  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,98 +100,271 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In preparation for adding hotpluggable bridges into the
-drm_bridge_connector, we need connectors to be created dynamically, both
-regular connectors and HDMI ones. drm_connector_init() already has a
-dynamic variant, add one for HDMI connectors too.
+Currently the drm_bridge_connector uses drmm functions to add the
+drm_connector. For bridge hotplug drmm allocations are not suitable because
+a connector may have to be added and removed multiple times in the lifetime
+of a card.
+
+In preparation for bridge hotplug, use the dynamic variants of
+drm_connector[_hdmi]_init() and the non-drmm versions of
+drmm_connector_hdmi_cec[_notifier]_register() so the drm_connector can be
+removed without removing the whole card.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 ---
 
 Changes in v3:
-- fix error management dead code
-- fix kerneldoc
-
-Changes in v2:
-- rebased on current drm-misc-next: now drm_connector_hdmi_init() can fail,
-  so call drm_connector_cleanup(connector) if that happens
+- convert CEC code to non-drmm too
+- fix connector state error management
+- put the connector on error paths after the dynamic_init() step
+- fix drmm-allocation leak on drm_bridge_connector_init() error path
 ---
- drivers/gpu/drm/drm_connector.c | 43 +++++++++++++++++++++++++++++++++++++++++
- include/drm/drm_connector.h     |  6 ++++++
- 2 files changed, 49 insertions(+)
+ drivers/gpu/drm/display/drm_bridge_connector.c | 141 ++++++++++++++++++-------
+ 1 file changed, 102 insertions(+), 39 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index 877c12b75090..3f548a97bf94 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -704,6 +704,49 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
- }
- EXPORT_SYMBOL(drmm_connector_hdmi_init);
+diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
+index f4a71801e8a3..015f6750b7f5 100644
+--- a/drivers/gpu/drm/display/drm_bridge_connector.c
++++ b/drivers/gpu/drm/display/drm_bridge_connector.c
+@@ -132,11 +132,27 @@ struct drm_bridge_connector {
+ 	 * bridge connector.
+ 	 */
+ 	struct drm_connector_hdmi_funcs hdmi_funcs;
++	/** @has_cec_adapter: true if a CEC adapter is registered */
++	bool has_cec_adapter;
++	/** @has_cec_notifier true if a CEC notifier is registered */
++	bool has_cec_notifier;
+ };
  
-+/**
-+ * drm_connector_hdmi_dynamic_init - Init a preallocated dynamic HDMI connector
-+ * @dev: DRM device
-+ * @connector: A pointer to the HDMI connector to init
-+ * @funcs: callbacks for this connector
-+ * @hdmi_funcs: HDMI-related callbacks and capabilities for this connector
-+ * @connector_type: user visible type of the connector
-+ * @ddc: optional pointer to the associated ddc adapter
-+ *
-+ * Initialises a preallocated dynamic HDMI connector. Connectors can be
-+ * subclassed as part of driver connector objects.
-+ *
-+ * See drm_connector_dynamic_init(), the same constraints apply here. This
-+ * is just the HDMI version.
-+ *
-+ * Returns:
-+ * Zero on success, error code on failure.
-+ */
-+int drm_connector_hdmi_dynamic_init(struct drm_device *dev,
-+				    struct drm_connector *connector,
-+				    const struct drm_connector_funcs *funcs,
-+				    const struct drm_connector_hdmi_funcs *hdmi_funcs,
-+				    int connector_type,
-+				    struct i2c_adapter *ddc)
+ #define to_drm_bridge_connector(x) \
+ 	container_of(x, struct drm_bridge_connector, base)
+ 
++static void drm_bridge_connector_put_bridges(struct drm_bridge_connector *bridge_connector)
 +{
-+	int ret;
-+
-+	ret = drm_connector_hdmi_sanity_checks(dev, connector, hdmi_funcs, connector_type);
-+	if (ret)
-+		return ret;
-+
-+	ret = drm_connector_dynamic_init(dev, connector, funcs, connector_type, ddc);
-+	if (ret)
-+		return ret;
-+
-+	ret = drm_connector_hdmi_initialize(dev, connector, hdmi_funcs);
-+	if (ret)
-+		drm_connector_cleanup(connector);
-+
-+	return ret;
++	drm_bridge_put(bridge_connector->bridge_edid);
++	drm_bridge_put(bridge_connector->bridge_hpd);
++	drm_bridge_put(bridge_connector->bridge_detect);
++	drm_bridge_put(bridge_connector->bridge_modes);
++	drm_bridge_put(bridge_connector->bridge_hdmi);
++	drm_bridge_put(bridge_connector->bridge_hdmi_audio);
++	drm_bridge_put(bridge_connector->bridge_dp_audio);
++	drm_bridge_put(bridge_connector->bridge_hdmi_cec);
 +}
-+EXPORT_SYMBOL(drm_connector_hdmi_dynamic_init);
 +
+ /* -----------------------------------------------------------------------------
+  * Bridge Connector Hot-Plug Handling
+  */
+@@ -267,6 +283,14 @@ drm_bridge_connector_color_format(const struct drm_connector_state *conn_state)
+ 	return conn_state->color_format;
+ }
+ 
++static void drm_bridge_connector_dynconn_destroy(struct drm_connector *connector)
++{
++	struct drm_bridge_connector *bridge_connector = to_drm_bridge_connector(connector);
++
++	drm_connector_cleanup(connector);
++	drm_bridge_connector_put_bridges(bridge_connector);
++}
++
+ static const struct drm_connector_funcs drm_bridge_connector_funcs = {
+ 	.fill_modes = drm_helper_probe_single_connector_modes,
+ 	.atomic_create_state = drm_bridge_connector_create_state,
+@@ -275,6 +299,7 @@ static const struct drm_connector_funcs drm_bridge_connector_funcs = {
+ 	.debugfs_init = drm_bridge_connector_debugfs_init,
+ 	.oob_hotplug_event = drm_bridge_connector_oob_hotplug_event,
+ 	.color_format = drm_bridge_connector_color_format,
++	.destroy = drm_bridge_connector_dynconn_destroy,
+ };
+ 
+ /* -----------------------------------------------------------------------------
+@@ -823,20 +848,6 @@ static const struct drm_connector_hdmi_cec_funcs drm_bridge_connector_hdmi_cec_f
+  * Bridge Connector Initialisation
+  */
+ 
+-static void drm_bridge_connector_put_bridges(struct drm_device *dev, void *data)
+-{
+-	struct drm_bridge_connector *bridge_connector = (struct drm_bridge_connector *)data;
+-
+-	drm_bridge_put(bridge_connector->bridge_edid);
+-	drm_bridge_put(bridge_connector->bridge_hpd);
+-	drm_bridge_put(bridge_connector->bridge_detect);
+-	drm_bridge_put(bridge_connector->bridge_modes);
+-	drm_bridge_put(bridge_connector->bridge_hdmi);
+-	drm_bridge_put(bridge_connector->bridge_hdmi_audio);
+-	drm_bridge_put(bridge_connector->bridge_dp_audio);
+-	drm_bridge_put(bridge_connector->bridge_hdmi_cec);
+-}
+-
+ static struct drm_connector *
+ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
+ 				struct drm_device *drm,
+@@ -849,10 +860,6 @@ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
+ 	int connector_type;
+ 	int ret;
+ 
+-	ret = drmm_add_action(drm, drm_bridge_connector_put_bridges, bridge_connector);
+-	if (ret)
+-		return ERR_PTR(ret);
+-
+ 	bridge_connector->encoder = encoder;
+ 
+ 	/*
+@@ -1053,17 +1060,21 @@ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
+ 				drm_bridge_connector_scrambler_disable;
+ 		}
+ 
+-		ret = drmm_connector_hdmi_init(drm, connector,
+-					       &drm_bridge_connector_funcs,
+-					       &bridge_connector->hdmi_funcs,
+-					       connector_type, ddc);
++		ret = drm_connector_hdmi_dynamic_init(drm, connector,
++						      &drm_bridge_connector_funcs,
++						      &bridge_connector->hdmi_funcs,
++						      connector_type, ddc);
+ 	} else {
+-		ret = drmm_connector_init(drm, connector,
+-					  &drm_bridge_connector_funcs,
+-					  connector_type, ddc);
++		ret = drm_connector_dynamic_init(drm, connector,
++						 &drm_bridge_connector_funcs,
++						 connector_type, ddc);
+ 	}
+-	if (ret)
+-		return ret;
++	if (ret) {
++		drm_bridge_connector_put_bridges(bridge_connector);
++		return ERR_PTR(ret);
++	}
++
++	/* From now on the connector is referenced and has to be put */
+ 
+ 	if (bridge_connector->bridge_hdmi_audio ||
+ 	    bridge_connector->bridge_dp_audio) {
+@@ -1084,35 +1095,48 @@ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
+ 						    bridge->hdmi_audio_spdif_playback,
+ 						    bridge->hdmi_audio_dai_port);
+ 		if (ret)
+-			return ERR_PTR(ret);
++			goto err_put_connector;
+ 	}
+ 
+ 	if (bridge_connector->bridge_hdmi_cec &&
+ 	    bridge_connector->bridge_hdmi_cec->ops & DRM_BRIDGE_OP_HDMI_CEC_NOTIFIER) {
+ 		struct drm_bridge *bridge = bridge_connector->bridge_hdmi_cec;
+ 
+-		ret = drmm_connector_hdmi_cec_notifier_register(connector,
+-								NULL,
+-								bridge->hdmi_cec_dev);
++		ret = drm_connector_hdmi_cec_notifier_register(connector,
++							       NULL,
++							       bridge->hdmi_cec_dev);
+ 		if (ret)
+-			return ERR_PTR(ret);
++			goto err_put_connector;
++
++		bridge_connector->has_cec_notifier = true;
+ 	}
+ 
+ 	if (bridge_connector->bridge_hdmi_cec &&
+ 	    bridge_connector->bridge_hdmi_cec->ops & DRM_BRIDGE_OP_HDMI_CEC_ADAPTER) {
+ 		struct drm_bridge *bridge = bridge_connector->bridge_hdmi_cec;
+ 
+-		ret = drmm_connector_hdmi_cec_register(connector,
+-						       &drm_bridge_connector_hdmi_cec_funcs,
+-						       bridge->hdmi_cec_adapter_name,
+-						       bridge->hdmi_cec_available_las,
+-						       bridge->hdmi_cec_dev);
++		ret = drm_connector_hdmi_cec_register(connector,
++						      &drm_bridge_connector_hdmi_cec_funcs,
++						      bridge->hdmi_cec_adapter_name,
++						      bridge->hdmi_cec_available_las,
++						      bridge->hdmi_cec_dev);
+ 		if (ret)
+-			return ERR_PTR(ret);
++			goto err_unregister_cec_notifier;
++
++		bridge_connector->has_cec_adapter = true;
+ 	}
+ 
+ 	drm_connector_helper_add(connector, &drm_bridge_connector_helper_funcs);
+ 
++	if (!connector->state) {
++		struct drm_connector_state *state = drm_bridge_connector_create_state(connector);
++		if (IS_ERR(state)) {
++			ret = PTR_ERR(state);
++			goto err_unregister_cec_adapter;
++		}
++		connector->state = state;
++	}
++
+ 	if (bridge_connector->bridge_hpd)
+ 		connector->polled = DRM_CONNECTOR_POLL_HPD;
+ 	else if (bridge_connector->bridge_detect)
+@@ -1128,9 +1152,43 @@ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
+ 
+ 	ret = drm_connector_attach_encoder(connector, encoder);
+ 	if (ret)
+-		return ERR_PTR(ret);
++		goto err_unregister_cec_adapter;
++
++	ret = drm_connector_dynamic_register(connector);
++	if (ret)
++		goto err_unregister_cec_adapter;
+ 
+ 	return connector;
++
++err_unregister_cec_adapter:
++	if (bridge_connector->has_cec_adapter)
++		drm_connector_hdmi_cec_unregister(connector);
++err_unregister_cec_notifier:
++	if (bridge_connector->has_cec_notifier)
++		drm_connector_hdmi_cec_notifier_unregister(connector);
++err_put_connector:
++	drm_connector_put(connector);
++
++	return ERR_PTR(ret);
++}
++
++static void drm_bridge_connector_fini(struct drm_bridge_connector *bridge_connector)
++{
++	struct drm_connector *connector = &bridge_connector->base;
++
++	drm_connector_unregister(connector);
++	if (bridge_connector->has_cec_adapter)
++		drm_connector_hdmi_cec_unregister(connector);
++	if (bridge_connector->has_cec_notifier)
++		drm_connector_hdmi_cec_notifier_unregister(connector);
++	drm_connector_put(connector);
++}
++
++static void drmm_bridge_connector_fini(struct drm_device *dev, void *res)
++{
++	struct drm_bridge_connector *bridge_connector = (struct drm_bridge_connector *)res;
++
++	drm_bridge_connector_fini(bridge_connector);
+ }
+ 
  /**
-  * drmm_connector_hdmi_ini2 - Init a preallocated HDMI connector
-  * @dev: DRM device
-diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-index f656ed8324d3..6490dc0a3fe1 100644
---- a/include/drm/drm_connector.h
-+++ b/include/drm/drm_connector.h
-@@ -2731,6 +2731,12 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
- 			     const struct drm_connector_hdmi_funcs *hdmi_funcs,
- 			     int connector_type,
- 			     struct i2c_adapter *ddc);
-+int drm_connector_hdmi_dynamic_init(struct drm_device *dev,
-+				    struct drm_connector *connector,
-+				    const struct drm_connector_funcs *funcs,
-+				    const struct drm_connector_hdmi_funcs *hdmi_funcs,
-+				    int connector_type,
-+				    struct i2c_adapter *ddc);
- int drmm_connector_hdmi_ini2(struct drm_device *dev,
- 			     struct drm_connector *connector,
- 			     const char *vendor, const char *product,
+@@ -1155,6 +1213,7 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+ {
+ 	struct drm_bridge_connector *bridge_connector;
+ 	struct drm_connector *connector;
++	int ret;
+ 
+ 	bridge_connector = drmm_kzalloc(drm, sizeof(*bridge_connector), GFP_KERNEL);
+ 	if (!bridge_connector)
+@@ -1164,6 +1223,10 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+ 	if (IS_ERR(connector))
+ 		return connector;
+ 
++	ret = drmm_add_action_or_reset(drm, drmm_bridge_connector_fini, bridge_connector);
++	if (ret)
++		return ERR_PTR(ret);
++
+ 	return connector;
+ }
+ EXPORT_SYMBOL_GPL(drm_bridge_connector_init);
 
 -- 
 2.56.1
