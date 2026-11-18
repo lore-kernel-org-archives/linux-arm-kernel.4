@@ -2,79 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC98606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64423606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:33:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d8oPcDvp;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=abW4jvFc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VbYb5t8O;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=eyo362ur
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=aTn2TCJftFrQcjFW3PjA+4u4l+dCEluOrUERM1gp3h8=; b=d8oPcDvppnCsi1lkRrYjhg9X9E
-	rjRXBSb38rhAHv+3iKiUcr2heAiIAdoXMkMub6sNON53jQFlFIOoUzncNXDlxZRf1ORYBvr3LZRYr
-	rDRKospw97of/30+0VjlC4mbjZvHyryX9E6Pa+98w+XlmG1Gs589NOl1YFEmw/nzOq/tt7J+wLVba
-	gc0aI8HEsKlassdZQ+R4zc4f4MRyKMylaqZ/0xwLlvlSzy6iKqZYRAwZT9d9vn/94OKwbJBdgcAOD
-	p13PYYc0eLDOuRE+a6WvGquvc+128q2GE02R5T3J4DABaAKTZ+AZ4KRCgqDGFWenF5NgWa1/FyRpM
-	q1vsIHFA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=FkG1M7L3zIjGXumIoOOlMZR+O73PQTM6nqG0PHku6sU=; b=VbYb5t8OuHQXUf
+	+hFKXeFGv+viiXA/ALAwrmhZBh1Q/gEY6KEVvls4Bdb/KQ4/ql9IVcsaXHdqNfvL8xC+xuPygMmIu
+	OR7RkbaT4VD8Fajc6yKeeoPs+6+w46SSuVYlj0VzHZvzoHBGNUhi5b+bsU0mG2dwa7qBAUaC8U3fz
+	9Rou/+v7TWHoABz4uG5zzIqGG45EogOvHdrOS7djI5wWsIcHb9Ydbet2Uuq76hXpJS3Qdfqp6Zdlg
+	8pPGqHW7UtSixfQySDJbc+ElrNJu/pLVKN7g1oe5hjcJO9oF4EyIfWeLzKNCQtQynffBatochMtGO
+	Ozy2L0/GhfUtjE3SadRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdu3-00000008ihb-0IIl;
-	Wed, 18 Nov 2026 11:32:39 +0000
-Received: from mgamail.intel.com ([198.175.65.9])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdty-00000008iff-2ReZ
+	id 1xTduz-00000008itA-1O9q;
+	Wed, 18 Nov 2026 11:33:39 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTduw-00000008isH-0vQd
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 11:32:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795001555; x=1826537555;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NFnWDBhLRuLnoG+Wd51C14eK9xiBcw4DRsn9WMOefmI=;
-  b=abW4jvFc7crgpcg/T/MC4I+64X0OaBgz3Gut+gyqA03Wm6UAsdF4PIHB
-   BW4oWi9KNdYbqp7p9RtbuK8zwqb40Rp8oYRNP4a+e0eypTk174vhE6TPZ
-   PDxuxma6ZfTDcQd9R4Dm/6jRy+KNzJSI3OAY3YIycNKBZHfL/kOZrTTJf
-   Ls+TktquHhLayWDc2Lio+XtALMlfqabRPt2/wN0GE6CmB1Pfq8BLaqPst
-   45mlnAxT2Z7FMeKgULjd6oDROhZ/5M9TTkjbXERN/y2lnoOn7sozvix1E
-   ntl9xGxO5mQBAwf8Aw332h7nOCZEnwIG1TD7h9S+TMfePo1ziR5gO+Ef2
-   Q==;
-X-CSE-ConnectionGUID: 39rLXvodSGOrOLS+Jx89HA==
-X-CSE-MsgGUID: nlutFj8iQSajyo0UjziPqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3655558"
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3655558"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2026 03:32:34 -0800
-X-CSE-ConnectionGUID: Znnbo5KrSmmzYywMrCBbGA==
-X-CSE-MsgGUID: il3ajXlvRVeG50ClETylRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="10489712"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.244.243])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2026 03:32:31 -0800
-Date: Wed, 18 Nov 2026 12:32:24 +0100
-From: Mehdi Djait <mehdi.djait@linux.intel.com>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, git@amd.com, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, "open list:XILINX VIDEO IP CORES" <linux-media@vger.kernel.org>
-Subject: Re: [PATCH v2] media: xilinx: vip: Make use of the
- devm_clk_get_enabled()
-Message-ID: <av2MP0VlOKC5RUXk@mdjait-mobl>
-References: <8c5500e70fcd2b4da35e985b9f8a976afa1991b0.1794999782.git.michal.simek@amd.com>
+	Wed, 18 Nov 2026 11:33:35 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 693131596;
+	Wed, 18 Nov 2026 03:33:30 -0800 (PST)
+Received: from [10.57.70.68] (unknown [10.57.70.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7F90C3F673;
+	Wed, 18 Nov 2026 03:33:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795001613; bh=csl8kCTvz4XLKbFvRoYYYYrgaV2LpO+qLRWnlyKVl84=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eyo362urxliBQcBcqOcEl9e1QlQWWWQHXvpyHTu/vd/bS3HdZH8Bd4wi6QQ4+0ddq
+	 vYaGDIBsof+HNIzGdS0nbDVtuXoFA+k5vXjogbBUsVR1xSuvVlaEQfHOOCEl/Xe0HU
+	 E9Hg+ss0vh+eH7NXWRpy7lSLWwc7qY8stVcYjyZY=
+Message-ID: <878eabf1-0742-45ad-892a-4c6a7b615d1f@arm.com>
+Date: Wed, 18 Nov 2026 11:33:28 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8c5500e70fcd2b4da35e985b9f8a976afa1991b0.1794999782.git.michal.simek@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v23 3/8] coresight: tmc: add a function to switch the ETR
+ to a free etr_buf
+Content-Language: en-GB
+To: Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@arm.com>,
+ James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Mao Jinlong <jinlong.mao@oss.qualcomm.com>, Abel Vesa <abelvesa@kernel.org>,
+ Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20261118-enable-byte-cntr-for-ctcu-v23-0-67fd9db6bc0e@oss.qualcomm.com>
+ <20261118-enable-byte-cntr-for-ctcu-v23-3-67fd9db6bc0e@oss.qualcomm.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20261118-enable-byte-cntr-for-ctcu-v23-3-67fd9db6bc0e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_033234_654490_7326C507 
-X-CRM114-Status: GOOD (  10.53  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261118_033334_384714_1116165F 
+X-CRM114-Status: GOOD (  29.51  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,37 +81,148 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Michal,
-
-On Wed, Nov 18, 2026 at 12:03:04PM +0100, Michal Simek wrote:
-> There is missing return value check from clk_prepare_enable(). Fix it by
-> using devm_clk_get_enabled() macro.
+On 18/11/2026 08:02, Jie Gan wrote:
+> Add tmc_etr_switch_buf_node() to switch the ETR to a free etr_buf of the
+> etr_buf_list without disabling the sink. It returns the node of the
+> switched out etr_buf, so its synced data can be read while the ETR keeps
+> tracing into the new one.
 > 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Stopping the ETR, swapping the etr_buf and restarting the ETR have to be
+> done in one critical section. Otherwise tmc_disable_etr_sink() can run
+> in between and leave drvdata->etr_buf out of sync with the hardware.
+> Provide the sequence as a TMC helper, so callers don't need to know
+> about the locking of the ETR state.
+> 
+> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 > ---
+>   drivers/hwtracing/coresight/coresight-tmc-etr.c | 65 +++++++++++++++++++++++++
+>   drivers/hwtracing/coresight/coresight-tmc.h     |  4 ++
+>   2 files changed, 69 insertions(+)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> index e9213f456834..5032f5598e15 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> @@ -1224,6 +1224,71 @@ static void __tmc_etr_disable_hw(struct tmc_drvdata *drvdata)
+>   
+>   }
+>   
+> +static void tmc_etr_reset_sysfs_buf(struct tmc_drvdata *drvdata)
+> +{
+> +	u32 sts;
+> +
+> +	CS_UNLOCK(drvdata->base);
+> +	tmc_write_rrp(drvdata, drvdata->sysfs_buf->hwaddr);
+> +	tmc_write_rwp(drvdata, drvdata->sysfs_buf->hwaddr);
+> +	sts = readl_relaxed(drvdata->base + TMC_STS) & ~TMC_STS_FULL;
+> +	writel_relaxed(sts, drvdata->base + TMC_STS);
 
-[..]
+see below
 
->  void xvip_cleanup_resources(struct xvip_device *xvip)
->  {
-> -	clk_disable_unprepare(xvip->clk);
 
-so the xvip_cleanup_resources() is empty after removing the
-clk_disable_unprepare() call.
 
-It is also called in xilinx-tpg.c and xilinx-vtc.c
 
->  }
->  EXPORT_SYMBOL_GPL(xvip_cleanup_resources);
+> +	CS_LOCK(drvdata->base);
+> +}
+> +
+> +/**
+> + * tmc_etr_switch_buf_node - switch the ETR to a free buffer of the etr_buf_list.
+> + * @drvdata:	drvdata of the TMC device.
+> + *
+> + * Stop the ETR, hand over the current buffer for reading, switch to a free
+> + * buffer and restart the ETR. All of this is done with @drvdata->spinlock held,
+> + * so it can't race with the sink disable path.
+> + *
+> + * Return: the node of the switched out buffer, or NULL if the sink isn't in
+> + * sysfs mode or there is no free buffer. The ETR is left untouched in both
+> + * cases.
+> + */
+> +struct etr_buf_node *tmc_etr_switch_buf_node(struct tmc_drvdata *drvdata)
+> +{
+> +	struct etr_buf_node *nd, *curr_node = NULL, *picked_node = NULL;
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+> +	if (coresight_get_mode(drvdata->csdev) != CS_MODE_SYSFS)
+> +		goto out;
+> +
+> +	list_for_each_entry(nd, &drvdata->etr_buf_list, link) {
+> +		if (nd->sysfs_buf == drvdata->sysfs_buf)
+> +			curr_node = nd;
+> +		else if (!picked_node && nd->is_free && !nd->reading)
+> +			picked_node = nd;
+> +	}
+> +
+> +	if (!curr_node || !picked_node) {
+> +		curr_node = NULL;
+> +		goto out;
+> +	}
+> +
+> +	__tmc_etr_disable_hw(drvdata);
+> +
+> +	/* The switched out buffer is free again once it has been read */
+> +	curr_node->is_free = true;
+> +	curr_node->pos = 0;
+> +	curr_node->reading = true;
+> +	picked_node->is_free = false;
+> +	drvdata->sysfs_buf = picked_node->sysfs_buf;
+> +	drvdata->etr_buf = picked_node->sysfs_buf;
+> +
+> +	tmc_etr_reset_sysfs_buf(drvdata);
 
---
-Kind Regards
-Mehdi Djait
+Why are we doing this, when the following __tmc_etr_enable_hw() already 
+does the right thing ?
+
+Suzuki
+
+
+> +	if (__tmc_etr_enable_hw(drvdata))
+> +		dev_err(&drvdata->csdev->dev, "Failed to restart the ETR\n");
+> +out:
+> +	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
+> +
+> +	return curr_node;
+> +}
+> +EXPORT_SYMBOL_GPL(tmc_etr_switch_buf_node);
+> +
+>   void tmc_etr_disable_hw(struct tmc_drvdata *drvdata)
+>   {
+>   	__tmc_etr_disable_hw(drvdata);
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
+> index 7c604b9f92e5..30b15c38b080 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc.h
+> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
+> @@ -212,12 +212,15 @@ struct tmc_resrv_buf {
+>    * struct etr_buf_node - node of the etr_buf_list
+>    * @sysfs_buf:	Allocated sysfs_buf.
+>    * @is_free:	Indicates whether the buffer is free to choose.
+> + * @reading:	Indicates the buffer attached to the node is being read by
+> + *		the user.
+>    * @pos:	Offset to the start of the buffer.
+>    * @link:	list_head of the node.
+>    */
+>   struct etr_buf_node {
+>   	struct etr_buf		*sysfs_buf;
+>   	bool			is_free;
+> +	bool			reading;
+>   	loff_t			pos;
+>   	struct list_head	link;
+>   };
+> @@ -465,5 +468,6 @@ struct etr_buf *tmc_etr_get_buffer(struct coresight_device *csdev,
+>   extern const struct attribute_group coresight_etr_group;
+>   void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata);
+>   int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes);
+> +struct etr_buf_node *tmc_etr_switch_buf_node(struct tmc_drvdata *drvdata);
+>   
+>   #endif
+> 
+
 
