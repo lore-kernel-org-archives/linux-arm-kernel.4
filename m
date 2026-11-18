@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB088606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 13:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48125606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 13:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kt+9WN7f;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=xryRjjKn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OaVzC1oS;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=2BTeSE9z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iNWdLzbXEobM28b9C+AS459N37QlRkIdIpDJ06HXMhk=; b=kt+9WN7f+CP/Gh
-	6vL3C9Sye9rHrdaNfJznN/aZJZSqetHZfrZAkJBa1lTR31bX7jZDGrdy7KBQrM1kNeXRdoh6rTECZ
-	GXxezc/PFUXGgyBMC+3kJp4NoJmSwYjTGWrNGRrsrZk1dNCy9KR9tSz+fstaGaBw4CwlrEp6dE5zp
-	c+ul59cEHNqr5FAKo4RGebDRtQiV+HvR/qAcLA+TzBvPgA9BauaDp9QMT+GtSZZX/zs8kQ2zZCOiN
-	Tq86jC+/eNvzGvC58Ep7clLBcx6is7/Tiz8+TSbHWEvpg8L7Z+qDPp/FQAibf/M0DQqyheNuXV4Fx
-	IqTnD6RgCwa3en3R6NOQ==;
+	List-Owner; bh=5d40pelDz1y7QtJWt7O/gaUwObkgrkM/NMpACCUfxCQ=; b=OaVzC1oS+YOAYb
+	YCeWIqg1W+/kgoQ86J5mTpTTrHPv2JqeCoda9wQqi3sl4AXFDs7fhTu+e18ykiGe9I3PfsnimH4yo
+	1xJMtIZXBO71vnPnbQNUH1x7v3Q0arKBYYreRlRFr8V6VvMiRxr9LL+MmzH9bpeRSnjnieULx//LJ
+	GmFP0uhp4OFo1iwjLCVZJGEqK/xDcs7HKuPIZfltNhurEgrdD1PPM7sU9KGLMay7CrYRU/ZLflyrE
+	Ne+sp+rSdCq5ZO3PTddY8PKLftilwgDbGfNwwxRgVwVQx015rXvqfeEbJcY/28RVSrTRSLmwDhms0
+	lkoC7b+gzKfTNc7j1r0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTfrk-00000008xi2-1r4k;
-	Wed, 18 Nov 2026 13:38:24 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xTfrx-00000008xpb-2NDe;
+	Wed, 18 Nov 2026 13:38:37 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTfra-00000008xd0-0wcX
+	id 1xTfrh-00000008xf7-0ygi
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 13:38:16 +0000
+	Wed, 18 Nov 2026 13:38:23 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 32FB1C4F77E;
+	by smtpout-02.galae.net (Postfix) with ESMTPS id EC3101A16D0;
 	Wed, 18 Nov 2026 13:38:17 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 584675FE9B;
-	Wed, 18 Nov 2026 13:38:12 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 782B511BC1FF3;
-	Wed, 18 Nov 2026 14:38:05 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BADBE5FE9B;
+	Wed, 18 Nov 2026 13:38:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5116F11BC2075;
+	Wed, 18 Nov 2026 14:38:10 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795009089; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795009095; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=iNWdLzbXEobM28b9C+AS459N37QlRkIdIpDJ06HXMhk=;
-	b=xryRjjKnwNLk3nhHVovTFZtcUQ9bp1fVnRMgGUOd8lXQ7atzoRB8JavI+4TrAWp++dlX7z
-	dec2Aayds3t/KdfaQp3U2T5nYjV9SFoUAzXTDSZt/arxoz+Lmjio7Dki9ErYit3QZqk6Se
-	Yku9KAp7+b8NG8ea4qlsBmpWMi4oVuZBYH2d5c1Rj7CwMOFL4TgwnLUiTSkCPcgq/Gcyg9
-	sUzLYFlyXwqpEyVEO0QkRDaUzsOhHdH0dS+xn7PpBzfin37igvjo+sIckKhz/F1bbvQb20
-	Rg4QlV0GC4cPvnRNLIswNvUyAXNIFNlAD9cU8XFkIbrtepxw5d9u5Kqi7AXOfQ==
+	bh=5d40pelDz1y7QtJWt7O/gaUwObkgrkM/NMpACCUfxCQ=;
+	b=2BTeSE9zLvDJmDegoUxQDxreFr6+iol4YOdpmaJExZ250fUHPdvSgIeA6xLIjh4gh/xuAQ
+	G6TqTAMWaVpLR3g+xdNfN0BCTuKutupFqEu9YJ0HdYrf70luuYhQ5WVv536WdX9SAI2WHp
+	bnwuu/6xZeE22V1FSvvZ6oYE+JAi2O8TGGHqqmWpyx5zQjcwiX/AXSp2AR0tkhfj6hgBsr
+	35ULM+tL2qz3XS2L/sjPIs8MIY0N4NzFX2Kd/6VNyWsO9O/rdhBtPFTC8KzNxAAgClNJs8
+	rbeazvn09+J8l/p0g2F/4cOceSnOMyL/Pm0R5D3HgKnqQr1pcsw6Rt/D3il0Hw==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 18 Nov 2026 14:37:11 +0100
-Subject: [PATCH v11 04/10] clk: nuvoton: ma35d1: Retrieve HXT/LXT from DT
- when possible
+Date: Wed, 18 Nov 2026 14:37:12 +0100
+Subject: [PATCH v11 05/10] clk: nuvoton: ma35d1: Reparent the gates
+ correctly
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-perso-ma35d1-upstream-clk-v11-4-bd1d1e060926@bootlin.com>
+Message-Id: <20261118-perso-ma35d1-upstream-clk-v11-5-bd1d1e060926@bootlin.com>
 References: <20261118-perso-ma35d1-upstream-clk-v11-0-bd1d1e060926@bootlin.com>
 In-Reply-To: <20261118-perso-ma35d1-upstream-clk-v11-0-bd1d1e060926@bootlin.com>
 To: Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
@@ -76,8 +76,8 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_053814_478707_AE0DF53C 
-X-CRM114-Status: GOOD (  17.72  )
+X-CRM114-CacheID: sfid-20261118_053822_237326_E72A51C0 
+X-CRM114-Status: GOOD (  13.67  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,106 +97,159 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-HXT and LXT are crystal oscillator inputs of the clock controller. As
-such, they are external clock sources which should not be registered by
-this driver.
+The clock tree is still incorrect. There are four main clocks in this
+system:
+- HXT: external high-speed crystal oscillator
+- LXT: external low-speed crystal oscillator
+- HIRC: internal high-speed RC oscillator
+- LIRC: internal low-speed RC oscillator
+Each clock has a 'gate' control to disable it. While in the TRM the
+'gate' appears aside, in the CCF topology, the gates should be
+below. This is because if we gate one of those clocks, none of the
+children clocks continue ticking.
 
-HXT is already described in the DT, but is not named. In order to point
-to this parent from its direct child which is HXT_GATE, we must provide
-a fw_name (when it is named, new DTs) and a .name (for when it's not
-named, but the fixed clock node name is used).
+Reparent hxt_gate under hxt, and all hxt children under hxt_gate.
+Do the same for the three other clock sources listed above.
 
-LXT is missing in old DTs, so we must create that clock and register it
-for backward compatibility reasons. It should however be described and
-pointed at in updated DTs.
-
-Both HXT and LXT are exposed by this driver only in the backward
-compatibility case. Otherwise, both clocks are expected to be retrieved
-from the DT.
+After this change, the frequencies are identical, but the clock tree
+looks much closer to the reality.
 
 Fixes: 691521a367cf ("clk: nuvoton: Add clock driver for ma35d1 clock controller")
 Cc: stable@vger.kernel.org
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/clk/nuvoton/clk-ma35d1.c | 44 +++++++++++++++++++++++++++++++++-------
- 1 file changed, 37 insertions(+), 7 deletions(-)
+ drivers/clk/nuvoton/clk-ma35d1.c | 78 +++++++++++++++++++++++-----------------
+ 1 file changed, 45 insertions(+), 33 deletions(-)
 
 diff --git a/drivers/clk/nuvoton/clk-ma35d1.c b/drivers/clk/nuvoton/clk-ma35d1.c
-index 00d635cdb604..33b397d7b7c5 100644
+index 33b397d7b7c5..65a2691002a7 100644
 --- a/drivers/clk/nuvoton/clk-ma35d1.c
 +++ b/drivers/clk/nuvoton/clk-ma35d1.c
-@@ -65,6 +65,14 @@ static DEFINE_SPINLOCK(ma35d1_lock);
+@@ -74,34 +74,46 @@ static const struct clk_parent_data lxtg_parent_data[] = {
+ };
  
- #define MA35D1_MUX_MAX_PARENTS	10
- 
-+static const struct clk_parent_data hxtg_parent_data[] = {
-+	{ .fw_name = "hxt", .name = "clk_hxt" },
-+};
-+
-+static const struct clk_parent_data lxtg_parent_data[] = {
-+	{ .fw_name = "lxt", .name = "lxt" },
-+};
-+
  /* Mux parent selection, by index into the controller's clock table */
- static const int ca35clk_parent_idx[] = { HXT, CAPLL, DDRPLL };
+-static const int ca35clk_parent_idx[] = { HXT, CAPLL, DDRPLL };
++static const int ca35clk_parent_idx[] = { HXT_GATE, CAPLL, DDRPLL };
  static const int sysclk0_parent_idx[] = { EPLL_DIV2, SYSPLL };
-@@ -191,6 +199,15 @@ static struct clk_hw *ma35d1_clk_gate(struct device *dev, const char *name, cons
- 				    reg, shift, 0, &ma35d1_lock);
- }
+-static const int sysclk1_parent_idx[] = { HXT, SYSPLL };
++static const int sysclk1_parent_idx[] = { HXT_GATE, SYSPLL };
+ static const int axiclk_parent_idx[] = { AXICLK_DIV2, AXICLK_DIV4 };
+-static const int ccap_parent_idx[] = { HXT, VPLL, APLL, SYSPLL };
++static const int ccap_parent_idx[] = { HXT_GATE, VPLL, APLL, SYSPLL };
+ static const int sdh_parent_idx[] = { SYSPLL, APLL };
+ static const int dcu_parent_idx[] = { EPLL_DIV2, SYSPLL };
+ static const int gfx_parent_idx[] = { EPLL, SYSPLL };
+-static const int dbg_parent_idx[] = { HIRC, SYSPLL };
+-static const int timer0_parent_idx[] = { HXT, LXT, PCLK0, -1, -1, LIRC, -1, HIRC };
+-static const int timer1_parent_idx[] = { HXT, LXT, PCLK0, -1, -1, LIRC, -1, HIRC };
+-static const int timer2_parent_idx[] = { HXT, LXT, PCLK1, -1, -1, LIRC, -1, HIRC };
+-static const int timer3_parent_idx[] = { HXT, LXT, PCLK1, -1, -1, LIRC, -1, HIRC };
+-static const int timer4_parent_idx[] = { HXT, LXT, PCLK2, -1, -1, LIRC, -1, HIRC };
+-static const int timer5_parent_idx[] = { HXT, LXT, PCLK2, -1, -1, LIRC, -1, HIRC };
+-static const int timer6_parent_idx[] = { HXT, LXT, PCLK0, -1, -1, LIRC, -1, HIRC };
+-static const int timer7_parent_idx[] = { HXT, LXT, PCLK0, -1, -1, LIRC, -1, HIRC };
+-static const int timer8_parent_idx[] = { HXT, LXT, PCLK1, -1, -1, LIRC, -1, HIRC };
+-static const int timer9_parent_idx[] = { HXT, LXT, PCLK1, -1, -1, LIRC, -1, HIRC };
+-static const int timer10_parent_idx[] = { HXT, LXT, PCLK2, -1, -1, LIRC, -1, HIRC };
+-static const int timer11_parent_idx[] = { HXT, LXT, PCLK2, -1, -1, LIRC, -1, HIRC };
+-static const int uart_parent_idx[] = { HXT, SYSCLK1_DIV2 };
+-static const int wdt0_parent_idx[] = { -1, LXT, PCLK3_DIV4096, LIRC };
+-static const int wdt1_parent_idx[] = { -1, LXT, PCLK3_DIV4096, LIRC };
+-static const int wdt2_parent_idx[] = { -1, LXT, PCLK4_DIV4096, LIRC };
+-static const int wwdt0_parent_idx[] = { -1, -1, PCLK3_DIV4096, LIRC };
+-static const int wwdt1_parent_idx[] = { -1, -1, PCLK3_DIV4096, LIRC };
+-static const int wwdt2_parent_idx[] = { -1, -1, PCLK4_DIV4096, LIRC };
++static const int dbg_parent_idx[] = { HIRC_GATE, SYSPLL };
++static const int timer0_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK0, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer1_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK0, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer2_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK1, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer3_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK1, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer4_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK2, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer5_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK2, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer6_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK0, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer7_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK0, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer8_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK1, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer9_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK1, -1, -1,
++					 LIRC_GATE, -1, HIRC_GATE };
++static const int timer10_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK2, -1, -1,
++					  LIRC_GATE, -1, HIRC_GATE };
++static const int timer11_parent_idx[] = { HXT_GATE, LXT_GATE, PCLK2, -1, -1,
++					  LIRC_GATE, -1, HIRC_GATE };
++static const int uart_parent_idx[] = { HXT_GATE, SYSCLK1_DIV2 };
++static const int wdt0_parent_idx[] = { -1, LXT_GATE, PCLK3_DIV4096, LIRC_GATE };
++static const int wdt1_parent_idx[] = { -1, LXT_GATE, PCLK3_DIV4096, LIRC_GATE };
++static const int wdt2_parent_idx[] = { -1, LXT_GATE, PCLK4_DIV4096, LIRC_GATE };
++static const int wwdt0_parent_idx[] = { -1, -1, PCLK3_DIV4096, LIRC_GATE };
++static const int wwdt1_parent_idx[] = { -1, -1, PCLK3_DIV4096, LIRC_GATE };
++static const int wwdt2_parent_idx[] = { -1, -1, PCLK4_DIV4096, LIRC_GATE };
+ static const int spi0_parent_idx[] = { PCLK1, APLL };
+ static const int spi1_parent_idx[] = { PCLK2, APLL };
+ static const int spi2_parent_idx[] = { PCLK1, APLL };
+@@ -109,11 +121,11 @@ static const int spi3_parent_idx[] = { PCLK2, APLL };
+ static const int qspi_parent_idx[] = { PCLK0, APLL };
+ static const int i2s_parent_idx[] = { APLL, SYSCLK1_DIV2 };
+ static const int can_parent_idx[] = { APLL, VPLL };
+-static const int cko_parent_idx[] = { HXT, LXT, HIRC, LIRC,
++static const int cko_parent_idx[] = { HXT_GATE, LXT_GATE, HIRC_GATE, LIRC_GATE,
+ 				      AXICLK_DIV4, SYSPLL, DDRPLL,
+ 				      EPLL_DIV2, APLL, VPLL };
+-static const int smc_parent_idx[] = { HXT, PCLK4 };
+-static const int kpi_parent_idx[] = { HXT, LXT };
++static const int smc_parent_idx[] = { HXT_GATE, PCLK4 };
++static const int kpi_parent_idx[] = { HXT_GATE, LXT_GATE };
  
-+static struct clk_hw *ma35d1_clk_gate_parent_data(struct device *dev, const char *name,
-+						  const struct clk_parent_data *parent_data,
-+						  void __iomem *reg, u8 shift)
-+{
-+	return devm_clk_hw_register_gate_parent_data(dev, name, parent_data,
-+						     CLK_SET_RATE_PARENT,
-+						     reg, shift, 0, &ma35d1_lock);
-+}
-+
- static int ma35d1_get_pll_setting(struct device_node *clk_node, u32 *pllmode)
- {
- 	const char *of_str;
-@@ -219,7 +236,7 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
- 	static struct clk_hw **hws;
- 	static struct clk_hw_onecell_data *ma35d1_hw_data;
- 	u32 pllmode[PLL_MAX_NUM];
--	int ret;
-+	int ret, num_clks;
+ static const struct clk_div_table ip_div_table[] = {
+ 	{0, 2}, {1, 4}, {2, 6}, {3, 8}, {4, 10},
+@@ -284,16 +296,16 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
+ 					 clk_base + REG_CLK_PWRCTL, 3);
  
- 	ma35d1_hw_data = devm_kzalloc(dev,
- 				      struct_size(ma35d1_hw_data, hws, MA35D1_CLK_COUNT),
-@@ -240,12 +257,25 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
+ 	hws[CAPLL] = ma35d1_reg_clk_pll(dev, CAPLL, pllmode[0], "capll",
+-					hws[HXT], clk_base + REG_CLK_PLL0CTL0);
++					hws[HXT_GATE], clk_base + REG_CLK_PLL0CTL0);
+ 	hws[SYSPLL] = ma35d1_clk_fixed("syspll", 180000000);
+ 	hws[DDRPLL] = ma35d1_reg_clk_pll(dev, DDRPLL, pllmode[1], "ddrpll",
+-					hws[HXT], clk_base + REG_CLK_PLL2CTL0);
++					hws[HXT_GATE], clk_base + REG_CLK_PLL2CTL0);
+ 	hws[APLL] = ma35d1_reg_clk_pll(dev, APLL, pllmode[2], "apll",
+-				       hws[HXT], clk_base + REG_CLK_PLL3CTL0);
++				       hws[HXT_GATE], clk_base + REG_CLK_PLL3CTL0);
+ 	hws[EPLL] = ma35d1_reg_clk_pll(dev, EPLL, pllmode[3], "epll",
+-				       hws[HXT], clk_base + REG_CLK_PLL4CTL0);
++				       hws[HXT_GATE], clk_base + REG_CLK_PLL4CTL0);
+ 	hws[VPLL] = ma35d1_reg_clk_pll(dev, VPLL, pllmode[4], "vpll",
+-				       hws[HXT], clk_base + REG_CLK_PLL5CTL0);
++				       hws[HXT_GATE], clk_base + REG_CLK_PLL5CTL0);
  
--	hws[HXT] = ma35d1_clk_fixed("hxt", 24000000);
--	hws[HXT_GATE] = ma35d1_clk_gate(dev, "hxt_gate", "hxt",
--					clk_base + REG_CLK_PWRCTL, 0);
--	hws[LXT] = ma35d1_clk_fixed("lxt", 32768);
--	hws[LXT_GATE] = ma35d1_clk_gate(dev, "lxt_gate", "lxt",
--					clk_base + REG_CLK_PWRCTL, 1);
-+	num_clks = of_clk_get_parent_count(clk_node);
-+	if (num_clks < 1 || num_clks > 2)
-+		return -EINVAL;
-+
-+	/*
-+	 * Old DTs do not describe the low-speed crystal. They may also expect
-+	 * an HXT output from this driver. In practice, nobody should use these
-+	 * clocks directly, but they must be kept for backward compatility
-+	 * purposes.
-+	 */
-+	if (num_clks == 1) {
-+		hws[HXT] = ma35d1_clk_fixed("hxt", 24000000);
-+		hws[LXT] = ma35d1_clk_fixed("lxt", 32768);
-+	}
-+
-+	hws[HXT_GATE] = ma35d1_clk_gate_parent_data(dev, "hxt_gate", hxtg_parent_data,
-+						    clk_base + REG_CLK_PWRCTL, 0);
-+	hws[LXT_GATE] = ma35d1_clk_gate_parent_data(dev, "lxt_gate", lxtg_parent_data,
-+						    clk_base + REG_CLK_PWRCTL, 1);
- 	hws[HIRC] = ma35d1_clk_fixed("hirc", 12000000);
- 	hws[HIRC_GATE] = ma35d1_clk_gate(dev, "hirc_gate", "hirc",
- 					 clk_base + REG_CLK_PWRCTL, 2);
+ 	hws[EPLL_DIV2] = ma35d1_clk_fixed_factor(dev, "epll_div2", "epll", 1, 2);
+ 	hws[EPLL_DIV4] = ma35d1_clk_fixed_factor(dev, "epll_div4", "epll", 1, 4);
+@@ -461,7 +473,7 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
+ 	hws[CKO_GATE] = ma35d1_clk_gate(dev, "cko_gate", "cko_div",
+ 					clk_base + REG_CLK_SYSCLK1, 13);
+ 
+-	hws[GTMR_GATE] = ma35d1_clk_gate(dev, "gtmr_gate", "hirc",
++	hws[GTMR_GATE] = ma35d1_clk_gate(dev, "gtmr_gate", "hirc_gate",
+ 					 clk_base + REG_CLK_SYSCLK1, 14);
+ 
+ 	hws[GPA_GATE] = ma35d1_clk_gate(dev, "gpa_gate", "hclk0",
+@@ -662,7 +674,7 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
+ 	hws[UART16_GATE] = ma35d1_clk_gate(dev, "uart16_gate", "uart16_div",
+ 					   clk_base + REG_CLK_APBCLK0, 28);
+ 
+-	hws[RTC_GATE] = ma35d1_clk_gate(dev, "rtc_gate", "lxt",
++	hws[RTC_GATE] = ma35d1_clk_gate(dev, "rtc_gate", "lxt_gate",
+ 					clk_base + REG_CLK_APBCLK0, 29);
+ 	hws[DDR_GATE] = ma35d1_clk_gate(dev, "ddr_gate", "ddrpll",
+ 					clk_base + REG_CLK_APBCLK0, 30);
 
 -- 
 2.56.0
