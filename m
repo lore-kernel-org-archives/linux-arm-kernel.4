@@ -2,111 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08708606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 06:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AEDC606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 06:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nLgjdCQj;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ocFocBd1;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=iXt7kOav
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WWWFfnSY;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=n1wkh3cs;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=AOtZfRlQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=yOCQbA2wY5BnvDNCmEwPpHQ2C1R6OpFI9nR4EwL4mVc=; b=nLgjdCQjEdufdSGXkAjSb/g6Cc
-	NstyvqyLpz3W4HJU5GQFUZyt1dCuHquuf58ACSn9Y2AbVUz4agYknwxvEXgAWqmLRYCvC2eTkNQ+x
-	ED/vHLn4IQoUV3Qa3OSpUYsp2qR4ZsuDSYsSvo/Jgdf2BGbmtruOEoOOVDxWlS8Ro56Cb6Ypy5Mhd
-	FJmlegxxQHEgaqTY42eR2MMafOgIyXwo5J5liC3MzWCjCIl5j1RCckU/Rp/Yj4EAw5IEX7phX4GXf
-	KuAGVLlj5fKbwFJidV47wdRCJ3cwG5P3clu51Xhk0TiBko8jqa/OilxvSX8DckjAgyJLKlCkS1C3f
-	LVkhgtQg==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=gW1cwmnx+UZv9BFAWitQV7byHeHaVyflC6wvXZvXB0w=; b=WWWFfnSY+RONJY
+	U/DJWZJvUMo2Xr4GZlDo0ZcJx2PjdW8i0rYN+1pUkqLRw/oOwIcQGfFI2WWNV5qKOLZs3EzczKO0I
+	shCjJgmH8LrUp9BBC6Ikpt03Rz+r+ZoBTwqct5yllFBkwboYmuZ9liIKbNyFcBDyNxj8fUyWfsi05
+	NE8pB37UFjekBJe/AnNe/SdQCKxoPlgtmqPLNG+D6yKyMqUboTt7jTZ9ne3tJ+R68PQ1KAuGioqkL
+	rKgOI85moxPnXyMu0uaGatfE2SD27Mz98K/wYZpmzNJqo76JLvUIHkobCwGsZoDCs54OsVqGbIzyG
+	0bbrRGBCqGQMTKLNO7hA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTYp3-00000007pfr-0z1O;
-	Wed, 18 Nov 2026 06:07:09 +0000
+	id 1xTYpA-00000007phZ-1UWr;
+	Wed, 18 Nov 2026 06:07:16 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTYp0-00000007pfO-1o27
+	id 1xTYp5-00000007pgE-1cqY
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 06:07:07 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AI2V5eC764264
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 06:07:05 GMT
+	Wed, 18 Nov 2026 06:07:12 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AI2V2vT1959905
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 06:07:11 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=yOCQbA2wY5BnvDNCmEwPpH
-	Q2C1R6OpFI9nR4EwL4mVc=; b=ocFocBd1+X/sFdLPGnl5ewkR9MWzKhmO8zM35z
-	Z6A7DBz6+yIvrTICliYcvxBWbMdLulaXxP8wuOHig/o3aUvET/YjG7pHn+aqHPDj
-	Le3hkvPqg2acr5gM3e0czCHTsAYnYcqtShHsQzusIysyYcYMDambB1POfCIyvVSQ
-	UZ4v4g0oJyhoClg7KCmeeegBvkryzmBHtoqhRY90cGaaSQi5H6eQH+o8A0CEmPe3
-	DG77vGcFwHJFsuxjl5MRCpt3r/AwAr1/5ODFQbZI3ot3x2bTS6E4Vvyb0DLBJNbC
-	62sOIWTRa/ofEleMpx0trbiQi90O/pkOe6UhoLR+79KeUmEw==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j0yvb9fcm-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gW1cwmnx+UZv9BFAWitQV7byHeHaVyflC6wvXZvXB0w=; b=n1wkh3cspR3YAudw
+	jUR/+VB4/wKBtHU/RWvyUZYA/ozqzsfvR4ExHsQyNfPiHxWTi8phuYXykIhhcetf
+	VZtAXS0FryCN8fhd4ZSepPR2YGXqZjFO0lJWjse126MgVVDPdyhy4+4YWWL7X5kp
+	OpRb5eRNCCvYI04xnTmkKTnbvgxX8sZn12WZTvbHYXrN+I89mfNKIX1xvbgF2qjx
+	mCm4Pk62gx9+HUnDfEERBo2dOOAx14bfEu3rbTl4yKDtZDQvA7Tqagx0r4EYaOV9
+	ZneKGjpo4jTXP+b4Ipq7t9giwkH/MgeG1Zf4QeL8/fgujTntKMwuc0wz8cSeG3+1
+	FzDGpw==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j0yv9hfe9-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 06:07:04 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3ad30487d55so797509a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 22:07:04 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 06:07:10 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3b17b31c3beso636431a91.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 22:07:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794982024; x=1795586824; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=yOCQbA2wY5BnvDNCmEwPpHQ2C1R6OpFI9nR4EwL4mVc=;
-        b=iXt7kOav5U6Eoi85lSnRdMnjC3GQoEXTh7v+9wV7nad4szTjVoS/2wyH9+Z2DDHJSX
-         f5qqU0UnWNSGLLhImAJlaYFAg6k/1D+PlPo1BPznDtMThX+LPeiDjH0nxXlJ4TERkh/H
-         nvFTcV8/m28V3PZ3TWwLjuGfDw0N3M5xR9w8KMOnAy7BX1JjUbIb0dMB9eDXkRQDeAUV
-         dpNcRVq5TQqFism9WFvWizkk4YMxyuhfPi57Yt5LfjG+QnioLS/5stSp6FFzmhriWl5N
-         qt5eDTm6LSsI40dJNoY1kpVl4vLzp24ypNCI4UUzpBJzZTtW5HVeiRFlqbwZ3JF4uOC9
-         VW9A==
+        d=oss.qualcomm.com; s=google; t=1794982030; x=1795586830; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=gW1cwmnx+UZv9BFAWitQV7byHeHaVyflC6wvXZvXB0w=;
+        b=AOtZfRlQJ3JYZfAxubXBDzMhlykqSScd0ZQSHjz8Z3HG5aEltvQg7WtJcPFQbXhB/L
+         EslhewonLIjOxOORoxrvtyFKKErmrTwZeWmI8mlPD7BwJXJGvp97VqRTJMzHmlLxN0+D
+         3LDLRYgXs8FCOHdnQAGNwFnj1fRZtTcILSAGN7FBS+rEqOzyXgv5QFy//1uTlG/KPHjE
+         es3EiMcKmRZ97t8qCh9CkblEuV9JjspKjrU0eYbBXoNeZniH6aXjyf8R1KVwV/EcBr6F
+         r/bxMA7Sx+hAWpv4wkHSoTyyq+LRWxZo5XNvOq+uD02JxngwrZqIIX4fRvDEgrym1SMh
+         Ik/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794982024; x=1795586824;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=yOCQbA2wY5BnvDNCmEwPpHQ2C1R6OpFI9nR4EwL4mVc=;
-        b=oG/5uWP3ip9PMeCUkJ23+HoX2uHZc0+PGgCh3+b+vGQNuf8p9Aw3miC1RfJWGN3bRF
-         hvHEGyVfi1ar2gMGG5NA3VWwkX8z0wB1/gi8VqLECvsm99fpmzGK1yVoESbZVoQPAQaR
-         f7BnYONtPJV+2JXRRLiHxpfMHTdxfmve28LriF/MySXlMlquyBFtHVLIspsde2t3UXPk
-         PlhpsTSqN2iE9SCHll+30ZR48l7MiZeY/aHqaj8KbSgmcbXd9hqf7aaaSZpoHV6aItsY
-         fmqby3TgW7XdSIsdpF7NE3GxDyhAwqc+iwQop+7+SvPYa/kgAhfVcY0DIgpMPDwe2meV
-         qhyA==
-X-Forwarded-Encrypted: i=1; AL+hErHbWx5SQEVKn8E3m/vMiA5TZgfuNTTu9CurO+gm72jOOOUkmojz3bok3bLXUB0wufoyd8EfJkdJCaBmot1UEgTZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z8CLjs9lYHYJ/8vS7OsmaS66ou0TPRmOHX6pIWGoCtJ8v8ult6V
-	nDu18HEvLHWEw5GBzgsuTCS1gpcBd8MvoUhAbiIS/LrU2FRKilf8vdZCViVKkvq4BTkA3QBglP7
-	3fZMbKZB1mdUOSW9HJOE7DBsmyeTh9b6lhA00fXm5fkIZs1CXyVqoGA2AfFNSAMlQeACyMcu9E7
-	FGjlOklc+5KA==
-X-Gm-Gg: AZFdTZdXzgWHtthDXdCjuAgXphN58gqaaAdUwlL4yO+nG0qDEg7+Bugf9Qldz5qEBkV
-	kF7qKg8XMaChg+4B2vosubdxZkXuMGUM0vGozCimmddlY/Jp0aYAshudtXIZdHUJozASnHcAEwN
-	3i3fDXsqHzbj2R5PU5IY8qIlGeUbbl1AYLJZ5b65m+/a1t/1mhSGfr5mJbOBDY570rS+9htnRIE
-	465aBN1TlI+xu89qISTGAPfa8SHIlv1faASknVmalkXG5Z9EatsdPn5NYFT55ToyhIWsvRJa44i
-	Vs3A10RwY8T/o9l0DanaZYfiUxO4AgJ5hJiYnfobWT9H7ltH1yUMKzFW0eMKi+sbxaeolOC3DiQ
-	nDIpXJ7EcFeohIOTDyE/BGBbQ5LzVe7PJsWbgfAonvReoCTNrA7+p65R8Uu44dzUWjunqGYSRSv
-	GBun8=
-X-Received: by 2002:a17:90b:3890:b0:3a4:ad5c:d48a with SMTP id 98e67ed59e1d1-3b3d07d52bemr1757203a91.67.1794982023874;
-        Tue, 17 Nov 2026 22:07:03 -0800 (PST)
-X-Received: by 2002:a17:90b:3890:b0:3a4:ad5c:d48a with SMTP id 98e67ed59e1d1-3b3d07d52bemr1757168a91.67.1794982023252;
-        Tue, 17 Nov 2026 22:07:03 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794982030; x=1795586830;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=gW1cwmnx+UZv9BFAWitQV7byHeHaVyflC6wvXZvXB0w=;
+        b=MTp5A3FQIDUr+1MHM+t4BIbIfbsZgKv6GEAaJhU3AkM67t1aMyLsDEfny6quuYCJSO
+         Kz9xugnnbA5TfbgDVkrjOr+yLnzcUL0NRA+T6rlIBOuZEoW68f721Dd3KZE+pNqqclpr
+         K5fzeADGYtrFu1exOVMaqO0XpKY8LGRnMPUC0ZOUcWjNRtNIvyFlaTElOdMPAgN3nadP
+         vzjLRSOr23BP5Wu84KPv/mKzlM4xJo7eVM3aUcXgDXewqnd6mry5rhuqbkZ03iatsDja
+         Hz7Zz8UX4g26p2Y66ojB22p4LBEiT1twDaA6IRVLNpm25UIdcyzmdC3uha/eNO9Vje29
+         Te8A==
+X-Forwarded-Encrypted: i=1; AL+hErEIelQnnqcxRo2nRlYzG3/rd2rNL8bHQpHml/H8gvkEw6A8q5pTmrinDEY7luvvPky4aTxFT7dXYe+h09YvvOsB@lists.infradead.org
+X-Gm-Message-State: APuU4Z9kxOLeyMwj8lSi9Ix/XCERhbI/cNkNnLUmEgd6xpAP7kYEWueD
+	MnYHXyOSoWE9EImdFb/XoEtwOjhyAuuxT7h6bLyTEynKv10JUrZV9I+yw2sWIwA0JEIjZ8gehP4
+	3E8VgjMbTiW0zTyg2Ksy+Dt91Blzi63lnBB/Ao1k9JYiozSHc5Q1tBVG55jTxvmRMPA5Qbw/rWK
+	jo2A==
+X-Gm-Gg: AZFdTZfkTp9M0NV4vMgOXQbSD0Sht15AaO6Wi1qr1ApGRUYFH52157ozhJm4CTHYS95
+	mBrtTy/kBW3E13mtZwKdfl9QUYZTZj6jvnvRLDcsspjYf3TSlCfMfiobjxoV7bPFA+EDybxmRyh
+	rIrjiZwkcAd2vkugaIrLcBWjDeyr3UtUnnkG4NB/ShjBwArlr4dJhucmamy3p2hQo5aZjdA/PxC
+	+oXZ5zWSP+D3+PqqfjzHXPeLpvLjRDEF2qneH8/jg5J8fiUnCxtqoG3IsUhWMlPu/ENB/s+dxfV
+	zsRBQRIupEDfsZPn9HNri2MmO8/GU6Jl8V/k1pb1Kefv69rVjqqJZ+Xyn5ZP32jQUZHKR8FXs6r
+	qPPD9mrF+mGEciuTfw43T0I/ujg5Kxw5G323NeUIDnskbMF4Nn3xp82fMEs5XaPwf3bkWf8ZHV4
+	FrJMc=
+X-Received: by 2002:a17:90a:dfc8:b0:3a6:f1d2:57f8 with SMTP id 98e67ed59e1d1-3b3d06a4a99mr1641421a91.2.1794982029856;
+        Tue, 17 Nov 2026 22:07:09 -0800 (PST)
+X-Received: by 2002:a17:90a:dfc8:b0:3a6:f1d2:57f8 with SMTP id 98e67ed59e1d1-3b3d06a4a99mr1641388a91.2.1794982029266;
+        Tue, 17 Nov 2026 22:07:09 -0800 (PST)
 Received: from hu-smankad-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b3abb786ecsm7476382a91.2.2026.11.17.22.06.57
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b3abb786ecsm7476382a91.2.2026.11.17.22.07.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2026 22:07:02 -0800 (PST)
+        Tue, 17 Nov 2026 22:07:08 -0800 (PST)
 From: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-Subject: [PATCH v4 0/2] Add fallback method to handle RPM notification in
- MPM driver
-Date: Wed, 18 Nov 2026 11:36:17 +0530
-Message-Id: <20261118-b4-shikra_lpm_addition-v4-0-46ee87e22576@oss.qualcomm.com>
+Date: Wed, 18 Nov 2026 11:36:18 +0530
+Subject: [PATCH v4 1/2] irqchip: irq-qcom-mpm: Register MPM with cpu_pm for
+ RPM notification
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAFlA/WoC/3XPTQrCMBAF4KtI1kaSSdpGV95DRCZ/NmhbTTQo0
- rsbFcSF3Qy8gfcN8yDJxeASWc0eJLocUhj6EuR8RkyL/d7RYEsmwKBmNW+oljS14RBxdzx1O7Q
- 2XEqFSlxqo0Cjd46U8ik6H25veLMtuQ3pMsT7+07mr+2HbLiYIjOnjAqrKmU9GK39ekhpcb7i0
- QxdtyiDvOQMX40zXk1qUDQ0jefIbFULNaGJHw0m382iaBIkamONVyD/aOM4PgFl3JlUXwEAAA=
- =
-X-Change-ID: 20260617-b4-shikra_lpm_addition-4a9bc82bafee
+Message-Id: <20261118-b4-shikra_lpm_addition-v4-1-46ee87e22576@oss.qualcomm.com>
+References: <20261118-b4-shikra_lpm_addition-v4-0-46ee87e22576@oss.qualcomm.com>
+In-Reply-To: <20261118-b4-shikra_lpm_addition-v4-0-46ee87e22576@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -120,43 +117,43 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Sneh Mankad <sneh.mankad@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794982017; l=3315;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794982017; l=6532;
  i=sneh.mankad@oss.qualcomm.com; s=20250818; h=from:subject:message-id;
- bh=PRPGaYLGmhNCUHjIssf8urCHwf49nXM/4eEJNt3ORxA=;
- b=EOohxv1ZnOJUxvyvaTp6btqK3MNGqfePG9Pi7+5ki2K19SbkUJM2hFpxvgve1ZKveGwU5OPA9
- OJmGKGltEwnAtzn5OiFdoRv3G0qvfPM5LipyJ8DKCk6/jhtN2mvU6WM
+ bh=1nPE6pBBUxkFLJ0rhvjZWQHDg5ZiwkVhjD+deyj8UWU=;
+ b=hwgPZPuAZgl2DF7fKHIkmt6id3bmx16Wu9LKenTevW3RXeWswtcnPol5i9kwpqH5fRq15dE2p
+ A7kvyvyjE09AKi1OZml0aQiUULB11nsqDaRyz0d6w5Syr5lgUI4gAyJ
 X-Developer-Key: i=sneh.mankad@oss.qualcomm.com; a=ed25519;
  pk=sv57EGwdcfnp6xJmoBCIT1JFSqWI+gawRHkJWj/T2B0=
-X-Proofpoint-GUID: GOVs4xpgi4IIEHzDdDcvZJDDbbt7qMqz
-X-Proofpoint-ORIG-GUID: GOVs4xpgi4IIEHzDdDcvZJDDbbt7qMqz
-X-Authority-Analysis: v=2.4 cv=YfgodARf c=1 sm=1 tr=0 ts=6afd4088 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+X-Authority-Analysis: v=2.4 cv=QenzLcbv c=1 sm=1 tr=0 ts=6afd408e cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=VwQbUJbxAAAA:8 a=ag1SF4gXAAAA:8 a=EUspDBNiAAAA:8 a=-g7Su3eQ9jgtFDl0TfQA:9
- a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22 a=Yupwre4RP9_Eg_Bd0iYG:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDAyNCBTYWx0ZWRfX1vlZGkMT5I3L
- hdfhN0hcCDT+GiClpgue5+EQ/ggqA/Zu1HT8hS5HJ4NYgSwHM/Llw/jtxeStbSOMSlOTR0qu+9L
- QNGg3eASbdKeJecsURf4zVkqa8Tph9o=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDAyNCBTYWx0ZWRfXzAsiVKlV7izD
- dvVETVNM+T+evvV1ZiAeszT1D6lt8NHMo5Ffux2TWQYVQ4L2/g0CQ+0KmmxnKNeiVeAqZXpvhnu
- e2sGBdssaUMZKBi2nRehjTBty3b7GlQTBg5JxDa3vJuGzotqnnwW2knAFYx0qZkSwOrcm+mf/Nj
- cuiAWAmZLfLb3TTIBO3Y5rQIvmeEeOrokVpDaim08xoHVZEEbyKP/9/hBQJkwCcZ7S1k3asrRP1
- 1JbCupIQx0RS+DZGQa7nYOlMcV4iziRgCyVXOrEtSkas06cDlLxFeC4pRh8uOD+FvL2Kn/Gh2UP
- MZyGHPZfKvGlqPPIUBZJDwb+AWMRLp0eJO7gjWt6+2co3j5xNCxSNvPAJd1raDM/N7Jz4HVK1I6
- 8qc/3ZeAaxiTbb+2m8H7HdfUcnncFt8F0do4/9uYMcMjshPxjgOWBMBDyLdmejjVU6b8C6GOyHL
- vj8b6sDUCJIhNfpSmog==
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=VwQbUJbxAAAA:8 a=ag1SF4gXAAAA:8 a=EUspDBNiAAAA:8 a=lt-0Ylhkz4Il63NEeiEA:9
+ a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22 a=Yupwre4RP9_Eg_Bd0iYG:22
+X-Proofpoint-ORIG-GUID: aA4Fz82--fyVCEKx6T7bjE2jGCE8fNbg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDAyNCBTYWx0ZWRfX6I/BGKkK1tyO
+ +cI55YrfPk8NYInxPMAjnz3O/bYuXScfIDUn6tR3jBMM0+wmRUrks4zKeoFYMXZwHJPyWXRN3s9
+ Ibit4NPSZcTTR8iM6spfeZILo2E/pRIZozq6TLs7pCjN8CyYY38uzmbfFrIVH/FYAId3oz4vSke
+ 45wb/mo6qSrznNkyUi4X7UjHYyjf0BBv0/Wbs7II8tsjgbVxX+ZAuLlhyzzb8D2C3h34SzmRNiD
+ 0NL55PXhBnu0kUGPMocVqrJzXoQUKXLYIVPpWd2490ByPSCH/cHd96rQJbZ0/yD+lJz4kUbA1r1
+ M3jrTNKHI5sbNCsCk2d0UxRAXSU0X8sDkvonfHpu7n4NiUtOPSoiKdqQ2KY+K7z4zjOipihs5IT
+ fn8OYDq4KBFujmovntsDyDDvOfHDEwiZEbvKsWpNYBbQ5c2r2lKFKVkIQqCO+U6wl4+1fhd/qCM
+ 5AWmcnsf9xzrbWlQEGw==
+X-Proofpoint-GUID: aA4Fz82--fyVCEKx6T7bjE2jGCE8fNbg
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDAyNCBTYWx0ZWRfXx/JckW9X9MNt
+ L3ys3/zIxKD9OdlVJ4D5saSrqgE1H/Ne7h4CXgWCG9+koKNdEKp1EtKNBzovWigP6au3/v+eguq
+ 5yeJfcqPwCoPyOLKjsie7G0n6Ji10Pc=
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-18_01,2026-11-16_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 lowpriorityscore=0 phishscore=0 impostorscore=0 malwarescore=0
- adultscore=0 priorityscore=1501 spamscore=0 bulkscore=0 suspectscore=0
+ spamscore=0 phishscore=0 clxscore=1015 suspectscore=0 impostorscore=0
+ bulkscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0 malwarescore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611180024
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_220706_531300_2484EB8F 
-X-CRM114-Status: GOOD (  17.60  )
+X-CRM114-CacheID: sfid-20261117_220711_442936_1F3B0652 
+X-CRM114-Status: GOOD (  32.14  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -206,47 +203,174 @@ For now as first step, register with cpu_pm as a fallback to manage RPM
 notification. Trigger the RPM notification when the last CPU in CPU cluster
 goes to power collapse.
 
-Add idle states for CPUs and CPU cluster for Shikra.
-
 [1] https://lore.kernel.org/all/20260909134240.685115374@linuxfoundation.org
 
 Signed-off-by: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
 ---
-Changes in v4:
-- Some code correctness in the driver changes introduced.
-- Link to v3: https://lore.kernel.org/r/20261027-b4-shikra_lpm_addition-v3-0-424abcdcf824@oss.qualcomm.com
+ drivers/irqchip/irq-qcom-mpm.c | 106 +++++++++++++++++++++++++++++++----------
+ 1 file changed, 81 insertions(+), 25 deletions(-)
 
-Changes in v3:
-- Skip timer programming for now till we add support to register MPM
-  under CPU cluster power domain without blocking its idle states.
-- Skip modifying DTs other than Shikra to prioritize Shikra LPM
-  enablement.
-- Move genPD/cpu_pm registration after mbox_request_channel().
-- Link to v2: https://lore.kernel.org/r/20261015-b4-shikra_lpm_addition-v2-0-ac7f1a0d5638@oss.qualcomm.com
+diff --git a/drivers/irqchip/irq-qcom-mpm.c b/drivers/irqchip/irq-qcom-mpm.c
+index 181320528a47ac1bde6cf7d2d0a9f79499990092..b837be1cce0e571de983799c4b7f2228f11d04fa 100644
+--- a/drivers/irqchip/irq-qcom-mpm.c
++++ b/drivers/irqchip/irq-qcom-mpm.c
+@@ -4,6 +4,7 @@
+  * Copyright (c) 2010-2020, The Linux Foundation. All rights reserved.
+  */
+ 
++#include <linux/cpu_pm.h>
+ #include <linux/delay.h>
+ #include <linux/err.h>
+ #include <linux/init.h>
+@@ -85,6 +86,8 @@ struct qcom_mpm_priv {
+ 	unsigned int reg_stride;
+ 	struct irq_domain *domain;
+ 	struct generic_pm_domain genpd;
++	struct notifier_block mpm_pm;
++	atomic_t cpus_in_pm;
+ };
+ 
+ static u32 qcom_mpm_read(struct qcom_mpm_priv *priv, unsigned int reg,
+@@ -292,10 +295,8 @@ static irqreturn_t qcom_mpm_handler(int irq, void *dev_id)
+ 	return ret;
+ }
+ 
+-static int mpm_pd_power_off(struct generic_pm_domain *genpd)
++static int handle_rpm_notification(struct qcom_mpm_priv *priv)
+ {
+-	struct qcom_mpm_priv *priv = container_of(genpd, struct qcom_mpm_priv,
+-						  genpd);
+ 	int i, ret;
+ 
+ 	for (i = 0; i < priv->reg_stride; i++)
+@@ -311,6 +312,50 @@ static int mpm_pd_power_off(struct generic_pm_domain *genpd)
+ 	return 0;
+ }
+ 
++static int mpm_pd_power_off(struct generic_pm_domain *genpd)
++{
++	struct qcom_mpm_priv *priv = container_of(genpd, struct qcom_mpm_priv, genpd);
++
++	return handle_rpm_notification(priv);
++}
++
++static int mpm_cpu_pm_callback(struct notifier_block *nfb, unsigned long action, void *v)
++{
++	struct qcom_mpm_priv *priv = container_of(nfb, struct qcom_mpm_priv, mpm_pm);
++	int cpus_in_pm;
++
++	switch (action) {
++	case CPU_PM_ENTER:
++		cpus_in_pm = atomic_inc_return(&priv->cpus_in_pm);
++		/*
++		 * NOTE: comments for num_online_cpus() point out that it's
++		 * only a snapshot so we need to be careful. It should be OK
++		 * for us to use, though.  It's important for us not to miss
++		 * if we're the last CPU going down so it would only be a
++		 * problem if a CPU went offline right after we did the check
++		 * AND that CPU was not idle AND that CPU was the last non-idle
++		 * CPU. That can't happen. CPUs would have to come out of idle
++		 * before the CPU could go offline.
++		 */
++		if (cpus_in_pm < num_online_cpus())
++			return NOTIFY_OK;
++		break;
++	case CPU_PM_ENTER_FAILED:
++	case CPU_PM_EXIT:
++		atomic_dec(&priv->cpus_in_pm);
++		return NOTIFY_OK;
++	default:
++		return NOTIFY_DONE;
++	}
++
++	if (handle_rpm_notification(priv)) {
++		atomic_dec(&priv->cpus_in_pm);
++		return NOTIFY_BAD;
++	}
++
++	return NOTIFY_OK;
++}
++
+ static bool gic_hwirq_is_mapped(struct mpm_gic_map *maps, int cnt, u32 hwirq)
+ {
+ 	int i;
+@@ -415,26 +460,6 @@ static int qcom_mpm_probe(struct platform_device *pdev, struct device_node *pare
+ 	if (irq < 0)
+ 		return irq;
+ 
+-	genpd = &priv->genpd;
+-	genpd->flags = GENPD_FLAG_IRQ_SAFE;
+-	genpd->power_off = mpm_pd_power_off;
+-
+-	genpd->name = devm_kasprintf(dev, GFP_KERNEL, "%s", dev_name(dev));
+-	if (!genpd->name)
+-		return -ENOMEM;
+-
+-	ret = pm_genpd_init(genpd, NULL, false);
+-	if (ret) {
+-		dev_err(dev, "failed to init genpd: %d\n", ret);
+-		return ret;
+-	}
+-
+-	ret = of_genpd_add_provider_simple(np, genpd);
+-	if (ret) {
+-		dev_err(dev, "failed to add genpd provider: %d\n", ret);
+-		goto remove_genpd;
+-	}
+-
+ 	priv->mbox_client.dev = dev;
+ 	priv->mbox_client.knows_txdone = true;
+ 	priv->mbox_chan = mbox_request_channel(&priv->mbox_client, 0);
+@@ -469,14 +494,45 @@ static int qcom_mpm_probe(struct platform_device *pdev, struct device_node *pare
+ 		goto remove_domain;
+ 	}
+ 
++	if (of_find_property(np, "#power-domain-cells", NULL)) {
++		genpd = &priv->genpd;
++		genpd->flags = GENPD_FLAG_IRQ_SAFE;
++		genpd->power_off = mpm_pd_power_off;
++
++		genpd->name = devm_kasprintf(dev, GFP_KERNEL, "%s", dev_name(dev));
++		if (!genpd->name) {
++			ret = -ENOMEM;
++			goto remove_domain;
++		}
++
++		ret = pm_genpd_init(genpd, NULL, false);
++		if (ret) {
++			dev_err(dev, "failed to init genpd: %d\n", ret);
++			goto remove_domain;
++		}
++
++		ret = of_genpd_add_provider_simple(np, genpd);
++		if (ret) {
++			dev_err(dev, "failed to add genpd provider: %d\n", ret);
++			goto remove_genpd;
++		}
++	} else {
++		priv->mpm_pm.notifier_call = mpm_cpu_pm_callback;
++		ret = cpu_pm_register_notifier(&priv->mpm_pm);
++		if (ret) {
++			dev_err(dev, "failed to register for CPU_PM notifications: %d\n", ret);
++			goto remove_domain;
++		}
++	}
++
+ 	return 0;
+ 
++remove_genpd:
++	pm_genpd_remove(genpd);
+ remove_domain:
+ 	irq_domain_remove(priv->domain);
+ free_mbox:
+ 	mbox_free_channel(priv->mbox_chan);
+-remove_genpd:
+-	pm_genpd_remove(genpd);
+ 	return ret;
+ }
+ 
 
-Changes in v2:
-- Enable Shikra LPMs in the first patch, following patches concern
-  MPM driver.
-- Register with cpu_pm as a fallback to manage RPM notification.
-- Move USECS_TO_CYCLES and xloops_to_cycles to common header delay.h.
-- Reformat qcom_mpm_offset() as per feedback.
-- Avoid deleting cluster_pd node in qrb2210-rb1.dts.
-- Link to v1: https://lore.kernel.org/r/20260713-b4-shikra_lpm_addition-v1-0-3d858df2cbbf@oss.qualcomm.com
-
----
-Sneh Mankad (2):
-      irqchip: irq-qcom-mpm: Register MPM with cpu_pm for RPM notification
-      arm64: dts: qcom: shikra: Add CPU idle states
-
- arch/arm64/boot/dts/qcom/shikra.dtsi |  93 +++++++++++++++++++++++++++++-
- drivers/irqchip/irq-qcom-mpm.c       | 106 ++++++++++++++++++++++++++---------
- 2 files changed, 173 insertions(+), 26 deletions(-)
----
-base-commit: 7777cc195ca1301a28008ca5cdb98bdb2a9d0def
-change-id: 20260617-b4-shikra_lpm_addition-4a9bc82bafee
-
-Best regards,
 -- 
-Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+2.34.1
 
 
