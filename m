@@ -2,39 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7787960A260D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7859606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:44:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4ix/DTS+;
-	dkim=pass (2048-bit key, unprotected) header.d=axiado.com header.i=@axiado.com header.a=rsa-sha256 header.s=selector1 header.b=B/P5acUu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QED/ghJ2;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=Hh5s2tJd;
+	dkim=pass (2048-bit key, unprotected) header.d=axiado.com header.i=@axiado.com header.a=rsa-sha256 header.s=selector1 header.b=hyBSGB+V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HZMOm20gFH4toRjNeRgUEuNleU7M2bR+o6n1w6S2un0=; b=4ix/DTS+2sptCC
-	+KNRv1RpyZe35deUliMJ8FARJMDyHugj2VTmoK1zmuG1d3EJhveulibe7Y3ibu9dT64o6DqC8sqzD
-	NAd9WyjDisI8e+a0fcLrUvtAC2eL3278c8cfUTNlDyKsSjlSemrXepxrO4RAAeBI4u5RyXcKn+vJn
-	IkfdhVBkMf+ShlHM5BVb0TPCz78Xg4opw1IDjrTYy6pJJ4tjP+yJ8ods3Pr3t/UvYWOJYFX24DQAS
-	r/tPomKuIIQFvsbu6CUj+27P0M9t9VhLLU0eHEKppurxR4TD+8uz347DOV9+8OAVTQkqGBFqeeCt/
-	V1LKcm5iQvtXqAioF4yg==;
+	List-Owner; bh=pbHIj214Hk02i60FxDGc0rIbuGw9Ckkid9eISLKfVhI=; b=QED/ghJ27jTDx5
+	0nKRu6qA6G7xOM3lvkqAszwVkS40U9zXLxerKMgoL9oRUufhNhSyOvhk3rfA5nEi+5GB0xjz0pErB
+	9v1/C1igk0caoMKLanxDikCM6bXykil7u2iYescILrnS8qHu6S11iN6+j5YhNZzh8HnZhDUOB82bf
+	SKYM3DGYUuW5nf8eox6v6mwxtalnP+gf9joruigsInfnIIwxw3r8sXilrmlJM8Sk0Vl/aPYiXbvKi
+	9OzPPCbxca2TzniGan0QOEQLw75tTqGxKOm6fOKl1esXxRe8CbxX4Ehe/O46X+bZH5sm0jf38H9nS
+	enhbbl3rn85t0t3l6eLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTezk-00000008t0O-2M41;
-	Wed, 18 Nov 2026 12:42:36 +0000
-Received: from mail-northcentralusazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c105::5] helo=CH5PR02CU005.outbound.protection.outlook.com)
+	id 1xTf1H-00000008tGR-0Rio;
+	Wed, 18 Nov 2026 12:44:11 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTezc-00000008sxR-0XC6
+	id 1xTf1E-00000008tFi-3e7V
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 18 Nov 2026 12:44:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=pbHIj214Hk02i60FxDGc0rIbuGw9Ckkid9eISLKfVhI=; b=Hh5s2tJdYtHR61vCpj3dJm3cKi
+	mQ96dXZguxixWN+PSLct05y6hkH1OJZx87gWTz9YktYeFB6OImUEeI0bG9xD+7z5RLhgP5RlkPfDi
+	3v9LOtGg+SEa1N55Zqrowhc/R05PmWyq4rNKMyT6CS7S0K6fLOu0IdZBrpi9Ms9AIIJduCwRPl0FJ
+	RXwiOmpTsqF106v31FazWvbmi8qPEMmd5fir2zO04kc6AuSv6ZKRPBRTUaFp/v1MTJcRy5L+9/8Zd
+	soScQ6xIwubbu8UHTdHXB+S9c1RE02VR01a7dU07qx5GGcVnmerNebnwkxFZlxwor8KAcxG5mqRvo
+	z/nWsdIQ==;
+Received: from mail-centralusazon11021091.outbound.protection.outlook.com ([52.101.62.91] helo=DM5PR21CU001.outbound.protection.outlook.com)
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTf18-0000000DQba-29eo
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 12:42:32 +0000
+	Wed, 18 Nov 2026 12:44:06 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xd9LDBrniPiapeHzOvtAyJqoXl1cg54AmyB2ZCKjZjrFlIusb0vgs0SYC4nu3ManV3OxCPHz1gRCZLfV3BulvZvmo4nEnm7FfH4JlHfBopZ9F2fjKinvdEY8r6Ox4eIJMlurzH49BLMO5lC3a3ARIo+rHhzu3FbrkL40bTDsRG5mbXv7Kw57DeROB3CCHo6lqIsDsuRIzqAibgCC9kDPc/ke/1UmVh/j/e4JFYLgOOxMHNfMlC2VOfocbx2z2USTiq0/G85pmUpeRur15d5ztJElpOdqW+H2sD2tpEDL+dfwIu7dl7s8/f3IkdzGzCMDaYPTIUG8eOwNZCfzkFK88Q==
+ b=qMZcx6Bn14Q2RxnUUvpylh6XJtF7rPTBRmwRTJb5xmdM8MNGLKhM5y0UCkvNnaMNcl9xeb7crCfqeF0cRIYa9nLFXXu9lIKgq9PNfMDU8ioDO2cGvrsGFDtrxIXZfWPw6NEw6psXKoAH0Jhw8hNVPx+seGOllkuLajXT63hQGoPvbXTGLHDYY7QV41hl9BKed8yH+pEykDGTpFB1cP6In0JlXzj0HRxzodI+ElSfWUfASr+Bp30VzuyptucoLLrOPemwvZEp+/AdMtGDPE7FD5vYN5GlGY2acTHgbSZ2NMaM7+LzjJsqDDkprQJxPuxrRE+6izcNxOyeE9njQnGUQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HZMOm20gFH4toRjNeRgUEuNleU7M2bR+o6n1w6S2un0=;
- b=Fy+lqLocsxNUcndq81saepnwK0uCMgmROc7aXevDoDk6tSwWJek0xD5YCGF/b5r76D9vZLkpoFdl+kGw63pdpyX/eOJUp+TyAih/AmMGHI/xndnOPcB+0v7p8tNpTrB4QQz8WWnhlr9xwiURlNylRigo2e7DljKTL2PYDSYJnXIK/2ECsidr1Dtrg2O4qtrVS1jWUus6R7E4j3ITdZIQziLKGvCYDbFJlE1uLS0FY+00MwD6VbSsRTL90PQXds7hyJXkgRx33HgJGa+GV9J/EJ6isphhLCQP6ASwbEpgkKzGLoMLBCe9IhvxnfIg8g8N012gapT2VqEknO64epypUQ==
+ bh=pbHIj214Hk02i60FxDGc0rIbuGw9Ckkid9eISLKfVhI=;
+ b=r4yYRgAY1NNES0Q1dlk+BuyCm5/x1j4tX3tbxsZZQJsHrhfUURQMC2ACKnuhjGU6M8LXIrjyqGHII/fVvDW+iLEcCKNbP10wXRZce+Kdy13J/gIUK7eyLjY8UX080saKpc7qfoxCFKa8M6eaTxjChy/29Qbn7fzj66xUeS3hVMMu+E8Rxy92Isc8JTpZqqp4M6sLVwMRAjuumm5J1/uayNVm5o5ps28PiXfJsyWRYRDOvjff5P3k44AHlfqys5ObcDZAhXiEQcKGQorST6iOPSn/Dw3ocOEpWvhKrPLJEDxAhx0oKTh25aL/M1tA6g+9XtKU2hO4HiaWVpdNbHfsZw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
  64.62.143.114) smtp.rcpttodomain=axiado.com smtp.mailfrom=axiado.com;
  dmarc=none action=none header.from=axiado.com; dkim=none (message not
@@ -42,18 +58,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HZMOm20gFH4toRjNeRgUEuNleU7M2bR+o6n1w6S2un0=;
- b=B/P5acUuO/uQCkcGrjA/dtQl7JpuaLitzm3U4yRLrkcQ+i4jDVQ6rM9XqdvJHmsfLKKrLsm3D+ZBAvVIYL5t0+znZV5u4h0ZbpEEx27v5IcDa3SBoeuDYOzqbX2zM6AyvOT61JWHSjP46VgwqTQrS09ygSc7lm3jYoZnlSwBM9ic5gVRLyyqQgWOm4mO6z52gZ8k/gmfH1NjKYdu8H9H9oIjZvm3vJE6MC1eVCHLjToY9ejj1eqdgqYzVizfpLEN6pMkgvkIdnhO4POkBhyHGzYFWoSMHijN3fCsZA1Vg5fGjybABuzA6YypVXAfpU5+RNgRHNoLK8p5UIrCNSECCw==
-Received: from CH0PR03CA0280.namprd03.prod.outlook.com (2603:10b6:610:e6::15)
- by PH7PR18MB5130.namprd18.prod.outlook.com (2603:10b6:510:159::8) with
+ bh=pbHIj214Hk02i60FxDGc0rIbuGw9Ckkid9eISLKfVhI=;
+ b=hyBSGB+Vf0ReXo9O7BodjF/W3Ps3AmB7VcNGwUbttxeq6EgG0IvBp2KDjuMydALW5aUETt9zrK+MV+M036dwj5Lj4FxSaLvlzj+THNY/rZNOwf5uPMOOnWQGRIyJ7mOQZHSERGjLpEtwkH/vxjLW+sYG/I9tgYNs1g9moVqqynm0AC3J35V0Kdva8lk03iPvvxSEY0SJ9h8d58wmAvMO1Fmhm33iMP+S/IPr2YB6ofYvNho/MUdD2GtriGieCNDd9UUKwxMwU/RBM4v7EvvtHw8JBTGqS7A/RiPmWtJfxcHEyDCD19nsPw/Y5m8ew5VuyudDmkzC11Y7GZs65caZZw==
+Received: from SJ0PR13CA0161.namprd13.prod.outlook.com (2603:10b6:a03:2c7::16)
+ by PH0PR18MB4591.namprd18.prod.outlook.com (2603:10b6:510:c2::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
- 2026 12:42:17 +0000
-Received: from BN3PEPF0000B36F.namprd21.prod.outlook.com
- (2603:10b6:610:e6:cafe::1b) by CH0PR03CA0280.outlook.office365.com
- (2603:10b6:610:e6::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Wed,
- 18 Nov 2026 12:42:16 +0000
+ 2026 12:42:16 +0000
+Received: from BY1PEPF0002696A.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c7:cafe::90) by SJ0PR13CA0161.outlook.office365.com
+ (2603:10b6:a03:2c7::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.8 via Frontend Transport; Wed, 18
+ Nov 2026 12:42:16 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
  is 64.62.143.114) smtp.mailfrom=axiado.com; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=axiado.com;
@@ -61,20 +77,20 @@ Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
  designate 64.62.143.114 as permitted sender) receiver=protection.outlook.com;
  client-ip=64.62.143.114; helo=smtp.corp.axiado.com;
 Received: from smtp.corp.axiado.com (64.62.143.114) by
- BN3PEPF0000B36F.mail.protection.outlook.com (10.167.243.166) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.0
- via Frontend Transport; Wed, 18 Nov 2026 12:42:16 +0000
+ BY1PEPF0002696A.mail.protection.outlook.com (10.167.244.154) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.4
+ via Frontend Transport; Wed, 18 Nov 2026 12:42:15 +0000
 Received: from axz-uw1-build-vm02.corp.axiado.com (unknown [10.14.1.22])
-	by smtp.corp.axiado.com (Postfix) with ESMTP id B75604186B59;
+	by smtp.corp.axiado.com (Postfix) with ESMTP id A38974186B58;
 	Wed, 18 Nov 2026 04:42:15 -0800 (PST)
 From: Petar Stepanovic <pstepanovic@axiado.com>
-Date: Wed, 18 Nov 2026 04:42:15 -0800
-Subject: [PATCH v7 2/2] pwm: add Axiado AX3000 PWM driver
+Date: Wed, 18 Nov 2026 04:42:14 -0800
+Subject: [PATCH v7 1/2] dt-bindings: pwm: add Axiado AX3000 PWM
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-axiado-ax3000-pwm-v7-2-bbd21a8cf861@axiado.com>
+Message-Id: <20261118-axiado-ax3000-pwm-v7-1-bbd21a8cf861@axiado.com>
 References: <20261118-axiado-ax3000-pwm-v7-0-bbd21a8cf861@axiado.com>
 In-Reply-To: <20261118-axiado-ax3000-pwm-v7-0-bbd21a8cf861@axiado.com>
 To: Akhila Kavi <akavi@axiado.com>, 
@@ -85,39 +101,40 @@ To: Akhila Kavi <akavi@axiado.com>,
  Tzu-Hao Wei <twei@axiado.com>, Karthikeyan Mitran <kmitran@axiado.com>
 Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- openbmc@lists.ozlabs.org, Petar Stepanovic <pstepanovic@axiado.com>
+ openbmc@lists.ozlabs.org, Petar Stepanovic <pstepanovic@axiado.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795005735; l=10793;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795005735; l=2434;
  i=pstepanovic@axiado.com; s=20250916; h=from:subject:message-id;
- bh=pTsazFuEWX/eyhXAPbu9xJQ5lD2CMQPNNZ74sJc1A6g=;
- b=W12NBH9+dwc+9S5d/2TH+IFJlm/s0B+cH+okjhknCwRbsy5zF4mj0O0jSrUbGenrskjd0AGey
- uRc6qJ94TS1DDUOb8Gf9A7ybcdHvwaFRBjtZXKA79gMZhAoo6RWdfgK
+ bh=Ovyp0lmVWDOK8u38msydnUtLEbKhOScK8qjkDwjN1xI=;
+ b=SsHinR3KE2b59M8qelHKG9FT65I+TNI11AplZC/eku5cyf7R0Lezesm9aKeXqpHC8//I2RlZY
+ IwuO8nIZPIaDHLwAf+XHjXXjhOkQ3DspoGeksDTMaMGXbEUbX3/JhrK
 X-Developer-Key: i=pstepanovic@axiado.com; a=ed25519;
  pk=70f1UJOGT9U11ZK6o+ENXtv0I5wBE3e+Y9YWODzRsdI=
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B36F:EE_|PH7PR18MB5130:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0355b3de-5420-4a12-2dcc-08df457160b3
+X-MS-TrafficTypeDiagnostic: BY1PEPF0002696A:EE_|PH0PR18MB4591:EE_
+X-MS-Office365-Filtering-Correlation-Id: b105cdba-1045-413d-d5ed-08df45716049
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|23010399003|376014|36860700016|1800799024|261102123227099003|56012099006|261026140227099003|261026121527099003|10067099003|261022113327099003|261022105027099003|261021123027099003|261022075727099003|261028144727099003|261021121427099003|261009223027099003|18002099003|22082099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: OU5C/AnuTOZYlK4pjjnYHay0f6YaPt7mqlMsWkAbrnZkifjuM8QX1aUlSh1PJlaTxD1bdyI2pzPZMSKvAGCfDIizLBsvtUyhdf5o7DIPuG6FeN1+Q10xLfj0vQ+BAj7H5QzBtyhyzkd1b7zVfSKf21eWcWdjM546jS6/PhwOyW1OPoaKroY8YlGFCCiGsbvewVwGVc4fcS+cFLwSneTjSOfe6XoguvNdPPe9XAXdRHpauXx8GdUjUHzl7YsCGUnAwCHpFFKrpSUawHcGQobujkDDST8hoszshBAuLXOsG9sHJlwL0APhhh7ctbc3Egu3ybO6iT7jWZ68YNsS6qGIvUy6OKNdyizXJCAIyFJoBuMMBSRwIgTYwLN98o3nVJcgzfv1by4mIYEepY6lhqbc9FqHswn50wXty0EMtbmJVvCXJS5rF8n9HgXnbwIoPS8khNQ/IZQRl+arX4eii23O71Ne69A2FWf1IA9HH4f6WY35nc0I/m1qDKeBwSuyVhy673BzU8nnjadL4Ntys2WNxEHVLxCRXNfQLR71EWiGuAX14KgdTdFk6nHnlWu4N3vYtIkGbftO/uOB82vUfLBzxO9Z1jRh7eV8WeRQU9Du8v1CVUp/s07jaE9a3tpt0umJneiZ+C8npE1lZIH+PlKFiY7GVIeEHEK39l4UdrVcjj/fQUWQQyMgaJoAN8aBjZ1J5HXAqovbCvAL5nS4cqLi3Q==
-X-Forefront-Antispam-Report: CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(23010399003)(376014)(36860700016)(1800799024)(261102123227099003)(56012099006)(261026140227099003)(261026121527099003)(10067099003)(261022113327099003)(261022105027099003)(261021123027099003)(261022075727099003)(261028144727099003)(261021121427099003)(261009223027099003)(18002099003)(22082099003)(6133799003)(3023799007);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|82310400026|1800799024|36860700016|376014|261102123227099003|261026140227099003|261026121527099003|261028144727099003|261021121427099003|261022105027099003|56012099006|10067099003|22082099003|18002099003|261009223027099003|13003099007|3023799007;
+X-Microsoft-Antispam-Message-Info: jBtb6P/P3N/8iTq7VojaEakV3RAPGYTbnLaW4Q58DftPMFdEk1nsVDyZ9Dr6RiahUBwqnSTcVWAlGIQdad68tJFhoguQgzyynZZ5H4iVObPk8LDzZaAp6b6sDHYQ8CpfCZAKWAJE4/drSOK2opGdX3CRd+1mMiZY9zMIw15sEa2nsMdwPHnGMbqd28XUie9wR81Qbg6Cg/oKNiZMZxXXj8rzqizXK8vex61F5WxnU94pl/gy9QMYvRwIeDIUBuWcQvpSiST0DgBgS4A67bzu1sn2gkiIubzUvbT0dE21+rJa5KoAo2qcs3R1Eh2cE6otAIMnGdBV1p8hw/NbegnY3Wxy2nsrVw++WRHQZ8pDWKORDf5GXBT3cS+J54Jio19NScdfgyGMmZHNyHcmcBiyCqm4j10t6bn1tiOci61isk8TUZVBlRyCqf8zwjlAFU8BN4+RcYLXmtRJ46OzTUjtpFAU8DNVeOB67lUEulqWsQ/LOLy7NYg+wHwyKhx43aj5UnlkJb30n4/mSlzr5pJNAyoirLVMogWd0Kkw3kYnK3B+aqxOPKThJs8RMZ1uOqDbyKE+JVchR6tZsQUMOReiFCdLDqwTQI6k2yn6zKHaUfbrvxmVymJ4XJL8jMBm0j9zDvODd4RkZ5Hj5wPsorWFmg==
+X-Forefront-Antispam-Report: CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(82310400026)(1800799024)(36860700016)(376014)(261102123227099003)(261026140227099003)(261026121527099003)(261028144727099003)(261021121427099003)(261022105027099003)(56012099006)(10067099003)(22082099003)(18002099003)(261009223027099003)(13003099007)(3023799007);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 5959gUQwItvz4xoNbaZSg36yHDvrHgGHmxEdwxyVTTb9UW03fyR5G9r95HI72doi+dWXGDDBBqokObgccbZYFz0m2LalnOwx2nXAuPqDWV3UDlFSq+jouRJe+DXspxMO7C7d5+tQ9IqTOBBhYRL7YFEXp/e1l75Lsj1v/s2bLm5NJ6BqX2QBcgw11xHZ0MeFYDfIQmEKERBB5CXxn9kQmbVYz0QzsU0V32OBsjrXLDJQhUwui7/8c23WXCKKu2R648rySVqRlQ/bdMi8ml8vv8TNXMoNKyZlV5ZbJ7kBsTczq6najiZ8aM5dteoXrIDP9r5zyMsZeFgsXdULF8jlDP705znQuSKgZyO4US2hmtyjnpBgDY40WMCNrV6dTXNfd2nPBz/O3q98Qu0rEOHWiEYiYHKSXoWBnr8gXaDCkzLATO9CpRk7iznXRz9y6ChK
+X-MS-Exchange-AntiSpam-MessageData-0: d7s00itYJ9OR87pcvgumWIPx9xMwrUfUktk+zSZwccvjPLosdQVOYq3negvnVv/z0Ksf9msFOROIN6BJ5mFEu+t4L1lABdbzQHA89xjZH9+FsGMJ8FvUM1vNjvwVQi3rWqemrJ/4/PTf3+q1IcTRm3KAQ4XlTE3AqKbdl9BjRrTSzWhMaFZJJ2pESMqWidFdUjAduW5Dpb6kOS20f7NbvpOwHY/6swFHeLaNfXNT38p7nusKqp34wuaT7B41gqIrUI7WV3uhMI0vetvbmiUcDSABXK79Bqu6DHE/pg8WvGM4jcBLfl2zSjkwt+fgstVA/Jun1W3dXVJhFLD/l1Cnjwt96gN1LlCKZejfcdQEFOS4wFQK1ysOML/FgRP83I9s753rCFG+Aa4i4NX16wM/2wSbM8ffeJlBvmlik0R4ErpakBBThHx+1g5WnmVlQxrl
 X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 12:42:16.4106
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 12:42:15.8261
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0355b3de-5420-4a12-2dcc-08df457160b3
+X-MS-Exchange-CrossTenant-Network-Message-Id: b105cdba-1045-413d-d5ed-08df45716049
 X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[64.62.143.114];Helo=[smtp.corp.axiado.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B36F.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0002696A.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR18MB5130
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR18MB4591
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_044228_295264_29C23541 
-X-CRM114-Status: GOOD (  26.38  )
+X-CRM114-CacheID: sfid-20261118_124402_857297_9AAD4746 
+X-CRM114-Status: GOOD (  12.00  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -132,368 +149,99 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Axiado AX3000 and AX3005 SoCs include a single-channel PWM
-controller.
+The Axiado AX3000 and AX3005 SoCs include PWM controllers that can be
+used to generate configurable PWM output signals.
 
-Add a driver supporting period, duty-cycle, and enable-state
-configuration through the Linux PWM framework.
-
-Disabling the hardware controller drives its output high. A 0% duty
-cycle is implemented using the controller's constant-low encoding,
-because a zero high time is interpreted by the hardware as a
-constant-high output. The constant-low state is reported as a 0% duty
-cycle with a one-clock-cycle period on readback.
-
-AX3005 uses the same programming model as AX3000 and is supported
-through the axiado,ax3000-pwm fallback compatible.
-
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Petar Stepanovic <pstepanovic@axiado.com>
 ---
- MAINTAINERS              |   1 +
- drivers/pwm/Kconfig      |  11 ++
- drivers/pwm/Makefile     |   1 +
- drivers/pwm/pwm-axiado.c | 282 +++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 295 insertions(+)
+ .../devicetree/bindings/pwm/axiado,ax3000-pwm.yaml | 53 ++++++++++++++++++++++
+ MAINTAINERS                                        |  8 ++++
+ 2 files changed, 61 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml b/Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml
+new file mode 100644
+index 000000000000..f0d5a3dd70e1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/axiado,ax3000-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Axiado AX3000 PWM controller
++
++maintainers:
++  - Petar Stepanovic <pstepanovic@axiado.com>
++  - Akhila Kavi <akavi@axiado.com>
++  - Prasad Bolisetty <pbolisetty@axiado.com>
++
++description:
++  The Axiado PWM controller found on the AX3000 and AX3005 SoCs.
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: axiado,ax3000-pwm
++      - items:
++          - const: axiado,ax3005-pwm
++          - const: axiado,ax3000-pwm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 3
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - "#pwm-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    pwm@80801c00 {
++      compatible = "axiado,ax3000-pwm";
++      reg = <0x80801c00 0x1000>;
++      #pwm-cells = <3>;
++      clocks = <&clk>;
++    };
++
 diff --git a/MAINTAINERS b/MAINTAINERS
-index fe85aaa5a7eb..c148c9099045 100644
+index 222b7fc2c3aa..fe85aaa5a7eb 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4562,6 +4562,7 @@ M:	Prasad Bolisetty <pbolisetty@axiado.com>
- L:	linux-pwm@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml
-+F:	drivers/pwm/pwm-axiado.c
+@@ -4555,6 +4555,14 @@ S:	Orphan
+ F:	Documentation/devicetree/bindings/sound/axentia,*
+ F:	sound/soc/atmel/tse850-pcm5142.c
  
++AXIADO AX3000 PWM DRIVER
++M:	Petar Stepanovic <pstepanovic@axiado.com>
++M:	Akhila Kavi <akavi@axiado.com>
++M:	Prasad Bolisetty <pbolisetty@axiado.com>
++L:	linux-pwm@vger.kernel.org
++S:	Supported
++F:	Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml
++
  AXIADO SARADC DRIVER
  M:	Petar Stepanovic <pstepanovic@axiado.com>
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 729776086879..3ea749d83272 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -129,6 +129,17 @@ config PWM_ATMEL_TCB
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-atmel-tcb.
- 
-+config PWM_AXIADO
-+	tristate "Axiado PWM support"
-+	depends on ARCH_AXIADO || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	help
-+	  PWM framework driver for the PWM controller found on Axiado
-+	  AX3000 and AX3005 SoCs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-axiado.
-+
- config PWM_AXI_PWMGEN
- 	tristate "Analog Devices AXI PWM generator"
- 	depends on MICROBLAZE || NIOS2 || ARCH_ZYNQ || ARCH_ZYNQMP || ARCH_INTEL_SOCFPGA || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 5630a521a7cf..434d913cfc79 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -8,6 +8,7 @@ obj-$(CONFIG_PWM_ARGON_FAN_HAT)	+= pwm-argon-fan-hat.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
- obj-$(CONFIG_PWM_ATMEL_TCB)	+= pwm-atmel-tcb.o
-+obj-$(CONFIG_PWM_AXIADO)	+= pwm-axiado.o
- obj-$(CONFIG_PWM_AXI_PWMGEN)	+= pwm-axi-pwmgen.o
- obj-$(CONFIG_PWM_BCM2835)	+= pwm-bcm2835.o
- obj-$(CONFIG_PWM_BCM_IPROC)	+= pwm-bcm-iproc.o
-diff --git a/drivers/pwm/pwm-axiado.c b/drivers/pwm/pwm-axiado.c
-new file mode 100644
-index 000000000000..08ae3d8ed4bb
---- /dev/null
-+++ b/drivers/pwm/pwm-axiado.c
-@@ -0,0 +1,282 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * SPDX-FileCopyrightText: 2021-2026 Axiado Corporation.
-+ */
-+
-+/*
-+ * Limitations:
-+ * - Only normal polarity is supported.
-+ * - The hardware has no shadow registers, so configuration changes take
-+ *   effect immediately without waiting for the current period to complete.
-+ * - The output is driven high while the hardware is disabled.
-+ * - Supported period range: 2 through 0xfffffffe PWM input clock cycles;
-+ *   0xffffffff is reserved by the hardware for a constant low output.
-+ *   Longer periods are clamped to the maximum.
-+ * - A 0% duty cycle is emitted using the constant low encoding because the
-+ *   hardware interprets a zero high time as a constant high output. The
-+ *   requested period is lost in that case and is reported as a single clock
-+ *   cycle.
-+ * - A 100% duty cycle is supported and emits a constant high output.
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/math64.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+
-+/* Register offsets */
-+#define AXIADO_PWM_CTRL_REG	0x0000
-+#define AXIADO_PWM_PERIOD_REG	0x0004
-+#define AXIADO_PWM_HIGH_REG	0x0008
-+
-+/* Period and duty cycle limits */
-+#define AXIADO_PWM_PERIOD_MIN	2
-+#define AXIADO_PWM_PERIOD_MAX	0xfffffffe
-+#define AXIADO_PWM_PERIOD_CONST_LOW	0xffffffff
-+#define AXIADO_PWM_DUTY_MIN	1
-+
-+/* Control register bits */
-+#define AXIADO_PWM_CTRL_ENABLE	BIT(0)
-+
-+struct axiado_pwm_chip {
-+	void __iomem *base;
-+	unsigned long rate;
-+};
-+
-+struct axiado_pwm_waveform {
-+	u32 period;
-+	u32 duty;
-+	bool enabled;
-+};
-+
-+static int
-+axiado_pwm_round_waveform_tohw(struct pwm_chip *chip,
-+			       struct pwm_device *pwm,
-+			       const struct pwm_waveform *wf,
-+			       void *_wfhw)
-+{
-+	struct axiado_pwm_chip *axpwm = pwmchip_get_drvdata(chip);
-+	struct axiado_pwm_waveform *wfhw = _wfhw;
-+	u64 period;
-+	u64 duty;
-+	int ret = 0;
-+
-+	/* Encode a disabled request as a zeroed hardware waveform. */
-+	if (!wf->period_length_ns) {
-+		*wfhw = (struct axiado_pwm_waveform) { };
-+
-+		return 0;
-+	}
-+
-+	period = mul_u64_u64_div_u64(wf->period_length_ns, axpwm->rate,
-+				     NSEC_PER_SEC);
-+	duty = mul_u64_u64_div_u64(wf->duty_length_ns, axpwm->rate,
-+				   NSEC_PER_SEC);
-+
-+	if (!duty) {
-+		/*
-+		 * A zero high time makes the hardware emit a constant high
-+		 * output, so use the constant low period encoding for a 0%
-+		 * duty cycle. The high time must stay non-zero because it
-+		 * takes precedence over that encoding. The requested period
-+		 * is lost, .round_waveform_fromhw() reports a single clock
-+		 * cycle instead.
-+		 */
-+		*wfhw = (struct axiado_pwm_waveform) {
-+			.period = AXIADO_PWM_PERIOD_CONST_LOW,
-+			.duty = AXIADO_PWM_DUTY_MIN,
-+			.enabled = true,
-+		};
-+
-+		/* That single cycle is longer than a sub-cycle request. */
-+		return period ? 0 : 1;
-+	}
-+
-+	if (period < AXIADO_PWM_PERIOD_MIN) {
-+		period = AXIADO_PWM_PERIOD_MIN;
-+		ret = 1;
-+	} else if (period > AXIADO_PWM_PERIOD_MAX) {
-+		period = AXIADO_PWM_PERIOD_MAX;
-+	}
-+
-+	/*
-+	 * Period clamping can leave the converted duty greater than the
-+	 * final hardware period. In that case, clamp it to 100% duty.
-+	 */
-+	if (duty > period)
-+		duty = period;
-+
-+	*wfhw = (struct axiado_pwm_waveform) {
-+		.period = period,
-+		.duty = duty,
-+		.enabled = true,
-+	};
-+
-+	return ret;
-+}
-+
-+static int
-+axiado_pwm_round_waveform_fromhw(struct pwm_chip *chip,
-+				 struct pwm_device *pwm,
-+				 const void *_wfhw,
-+				 struct pwm_waveform *wf)
-+{
-+	struct axiado_pwm_chip *axpwm = pwmchip_get_drvdata(chip);
-+	const struct axiado_pwm_waveform *wfhw = _wfhw;
-+	u32 period = wfhw->period;
-+	u32 duty = wfhw->duty;
-+
-+	if (!wfhw->enabled) {
-+		*wf = (struct pwm_waveform) {
-+			.period_length_ns = 0,
-+		};
-+
-+		return 0;
-+	}
-+
-+	/*
-+	 * The constant low encoding doesn't hold a period. Report the
-+	 * shortest one, the output is low for all of it either way.
-+	 */
-+	if (!duty) {
-+		if (period == AXIADO_PWM_PERIOD_CONST_LOW)
-+			period = AXIADO_PWM_PERIOD_MAX;
-+
-+		duty = period;
-+	} else if (period == AXIADO_PWM_PERIOD_CONST_LOW) {
-+		period = 1;
-+		duty = 0;
-+	} else if (duty > period) {
-+		duty = period;
-+	}
-+
-+	*wf = (struct pwm_waveform) {
-+		.period_length_ns =
-+			mul_u64_u64_div_u64_roundup(period, NSEC_PER_SEC,
-+						    axpwm->rate),
-+		.duty_length_ns =
-+			mul_u64_u64_div_u64_roundup(duty, NSEC_PER_SEC,
-+						    axpwm->rate),
-+		.duty_offset_ns = 0,
-+	};
-+
-+	return 0;
-+}
-+
-+static int axiado_pwm_read_waveform(struct pwm_chip *chip,
-+				    struct pwm_device *pwm,
-+				    void *_wfhw)
-+{
-+	struct axiado_pwm_chip *axpwm = pwmchip_get_drvdata(chip);
-+	struct axiado_pwm_waveform *wfhw = _wfhw;
-+	u32 ctrl;
-+
-+	ctrl = readl(axpwm->base + AXIADO_PWM_CTRL_REG);
-+
-+	*wfhw = (struct axiado_pwm_waveform) {
-+		.period = readl(axpwm->base + AXIADO_PWM_PERIOD_REG),
-+		.duty = readl(axpwm->base + AXIADO_PWM_HIGH_REG),
-+		.enabled = !!(ctrl & AXIADO_PWM_CTRL_ENABLE),
-+	};
-+
-+	return 0;
-+}
-+
-+static int axiado_pwm_write_waveform(struct pwm_chip *chip,
-+				     struct pwm_device *pwm,
-+				     const void *_wfhw)
-+{
-+	struct axiado_pwm_chip *axpwm = pwmchip_get_drvdata(chip);
-+	const struct axiado_pwm_waveform *wfhw = _wfhw;
-+
-+	if (!wfhw->enabled) {
-+		writel(0, axpwm->base + AXIADO_PWM_CTRL_REG);
-+
-+		return 0;
-+	}
-+
-+	/*
-+	 * The hardware has no shadow registers. These writes may alter the
-+	 * active waveform before the current period has completed.
-+	 */
-+	writel(wfhw->period, axpwm->base + AXIADO_PWM_PERIOD_REG);
-+	writel(wfhw->duty, axpwm->base + AXIADO_PWM_HIGH_REG);
-+	writel(AXIADO_PWM_CTRL_ENABLE, axpwm->base + AXIADO_PWM_CTRL_REG);
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops axiado_pwm_ops = {
-+	.sizeof_wfhw = sizeof(struct axiado_pwm_waveform),
-+	.round_waveform_tohw = axiado_pwm_round_waveform_tohw,
-+	.round_waveform_fromhw = axiado_pwm_round_waveform_fromhw,
-+	.read_waveform = axiado_pwm_read_waveform,
-+	.write_waveform = axiado_pwm_write_waveform,
-+};
-+
-+static int axiado_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct axiado_pwm_chip *axpwm;
-+	struct pwm_chip *chip;
-+	struct clk *clk;
-+	int ret;
-+
-+	chip = devm_pwmchip_alloc(dev, 1, sizeof(*axpwm));
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	axpwm = pwmchip_get_drvdata(chip);
-+
-+	axpwm->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(axpwm->base))
-+		return dev_err_probe(dev, PTR_ERR(axpwm->base),
-+				     "Failed to map registers\n");
-+
-+	clk = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk),
-+				     "Failed to get/enable clock\n");
-+
-+	ret = devm_clk_rate_exclusive_get(dev, clk);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to lock clock rate\n");
-+
-+	axpwm->rate = clk_get_rate(clk);
-+	if (!axpwm->rate)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Failed to get clock rate\n");
-+
-+	chip->ops = &axiado_pwm_ops;
-+	chip->atomic = true;
-+
-+	ret = devm_pwmchip_add(dev, chip);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to add PWM chip\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id axiado_pwm_match[] = {
-+	{ .compatible = "axiado,ax3000-pwm" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, axiado_pwm_match);
-+
-+static struct platform_driver axiado_pwm_driver = {
-+	.driver = {
-+		.name = "axiado-pwm",
-+		.of_match_table = axiado_pwm_match,
-+	},
-+	.probe = axiado_pwm_probe,
-+};
-+module_platform_driver(axiado_pwm_driver);
-+
-+MODULE_AUTHOR("Axiado Corporation");
-+MODULE_DESCRIPTION("Axiado PWM driver");
-+MODULE_LICENSE("GPL");
+ M:	Akhila Kavi <akavi@axiado.com>
 
 -- 
 2.34.1
