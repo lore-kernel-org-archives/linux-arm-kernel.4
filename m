@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32843606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 08:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70D060A2612
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 08:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R+5/2QE7;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ciSYwUKz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZAnL88Ta;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eyZgpKqi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3lhAlUNkS+D4HLJq1aM/fS656gTvYxUU+0mp+A/Baow=; b=R+5/2QE71ZLKp6
-	NfzNEZi7+qLG4koNXtNy5rjT4xdLlpkFr0thZu7V1wxpM9BbysbY2jKQeX28M9mBaW7TdjC7wEGIg
-	yuUj1UfRgSjeO2UUViTKRXk+zIhAsjJzQql0ewkL8+PqAUp8z5QTtPXEJxLtnnQOeGNaZ1AWG4Yt7
-	023VMhJ/E9jWkzqtVVZRRzLA+fXs9LsRc5FuiSrR9yJD2MFv/G7bPOcp/vWAa1IBQ8L3/qhsHgU/x
-	9YbyozhMnmndeBG59AkB2F45nGKr1mW0cOqDt8qK5aqjKKRMc2A+DBGDGQTR+L0YtZFEZ08lPYc/l
-	K7XE6KdhSbq949GgohWw==;
+	List-Owner; bh=RgUy9ilEvlBEFEAO7I4cAOPp0gwuSrRk3EbpdwQzjWw=; b=ZAnL88TaQ1/i/U
+	BoBNyQoo05CRbY4lUYjOLsZyKbas8KCsJPn8hH5Z+q/LlwS9hfquDbQttiLjMq26MRcYIO3mOCdJN
+	mnoFDbD5QFimFAaOxQY9NJLWj1hRYNWa2HczecQv/oF9Gx99Z+I4jrvTGY0pOybiYkIFsiEX/6klm
+	xP6upX+do0OERWM80FRmGQR08VChnyHpyeHscKrei8K9l/SiQQ7EiCR0qO1xqnZxlahdl/Ktb0mF3
+	+yjYx1k8gqiXc25OeA9XqTVkFAgGvuv/Ma7Fb0MOWQMuS5e2rdYRoYFmV59/uSshUifVBeViQjTUb
+	8kF+5LXhn7TqDhomIy0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTaqE-000000088Xf-3fZ8;
-	Wed, 18 Nov 2026 08:16:30 +0000
+	id 1xTaqd-000000088z2-1UJE;
+	Wed, 18 Nov 2026 08:16:55 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTaqD-000000088W4-3L4x;
-	Wed, 18 Nov 2026 08:16:29 +0000
+	id 1xTaqb-000000088wn-2wnd;
+	Wed, 18 Nov 2026 08:16:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E59AF61F84;
-	Wed, 18 Nov 2026 08:16:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EE231F000C4;
-	Wed, 18 Nov 2026 08:16:24 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id CD44261F84;
+	Wed, 18 Nov 2026 08:16:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C6151F000C7;
+	Wed, 18 Nov 2026 08:16:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794989788;
-	bh=3lhAlUNkS+D4HLJq1aM/fS656gTvYxUU+0mp+A/Baow=;
+	s=k20260515; t=1794989812;
+	bh=RgUy9ilEvlBEFEAO7I4cAOPp0gwuSrRk3EbpdwQzjWw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=ciSYwUKzslFlTGgflCx1EuNcb5k2uqINYbzORJn9lcIpz5qxIUOgBWxLA82t+WtDd
-	 sQl0cLnTAn0/vwD0cH1QosCPEdd/xZnQF6aBEC+0pnr1s1KX490KLSazQzHzPhhDFI
-	 mDja1T/QJNF2uKBVZa8M7p//aC2ketxVdeo2wUWhZjy/JzAIrJmAAz+U/xCcLKZAfY
-	 cVy9ED5OG3iOjzzZCbe+nXV9IGJqDFkCt6S5aF8BWRFMkd1vPJxr0AKi44OagQEPkO
-	 Mgt/01w/MPOkG4dOXH/n8umF/2DB79oLAwuOeZAJ5DjE0v5A5Y7ahMxWbhfTKF8xi6
-	 xjkLn/Lb2hgNQ==
-Message-ID: <29edd29a-c8a2-4f75-87df-ffe37154d008@kernel.org>
-Date: Wed, 18 Nov 2026 09:16:22 +0100
+	b=eyZgpKqi1/eEwQCPJrV3JHvcJ7BJGBNdzKNHXVr3jKwh4sH1XYEDz2ntepME7DESg
+	 RynbIxG67nQEjpWK8wULhrtDLIgfzLw02BoIEZemabyGctWPxDh2ED0VNIWZ7Nn/ii
+	 oQEMNKOi8vzgwiCjW+VzZrLrH/7Lszdd8R9FBpF6hLobiDEl9x5afuwm6I6NTLQ7XX
+	 W9Xo3n4885KmOX0PxkdYbqvJFTTV6b/fkalC3u5gEJXdvnsmvWR32N2eFpqGHpg2a2
+	 hyGKW4gdmpSFb5UQH/+v4aMbk0k9fpXxTssQD0m1F7/Ed1YmmfsiR9haZJMrES+4Zh
+	 GEib5Gvt6vpSA==
+Message-ID: <3a9e999f-5ff5-422c-aa65-b8560dca84bc@kernel.org>
+Date: Wed, 18 Nov 2026 09:16:46 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/9] dt-bindings: phy: Add PHY_DIRECTION_TX/RX
- definitions
+Subject: Re: [PATCH v7 2/9] dt-bindings: phy: rockchip,rk3588-mipi-dcphy:
+ Select TX or RX, add phy-type
 To: Jason Yang <jason98166@gmail.com>, Vinod Koul <vkoul@kernel.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -61,11 +61,9 @@ Cc: Michael Riesch <michael.riesch@collabora.com>,
  Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
  linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Quentin Schulz <quentin.schulz@cherry.de>
+ linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
 References: <20261118-dcphy-rx-v1-v7-0-8de1adac3a74@gmail.com>
- <20261118-dcphy-rx-v1-v7-1-8de1adac3a74@gmail.com>
+ <20261118-dcphy-rx-v1-v7-2-8de1adac3a74@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,7 +109,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261118-dcphy-rx-v1-v7-1-8de1adac3a74@gmail.com>
+In-Reply-To: <20261118-dcphy-rx-v1-v7-2-8de1adac3a74@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -133,22 +131,44 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 18/11/2026 06:55, Jason Yang wrote:
-> A MIPI D-PHY or C-PHY can be a transmitter or a receiver. Some PHY
-> blocks have one of each and can use them at the same time, so one PHY
-> node offers two PHYs. The existing cell, PHY_TYPE_DPHY or
-> PHY_TYPE_CPHY, selects the mode of the whole block, not one of the two
-> PHYs.
+> The Samsung MIPI D-/C-PHY block on RK3588 and RK3576 has a transmitter
+> for DSI and a receiver for CSI-2, and the DSI host and the CSI-2 host
+> can use the transmitter and the receiver at the same time. The single
+> cell of this binding selects the mode and refers to the transmitter, so
+> the receiver cannot be described.
 > 
-> Add PHY_DIRECTION_TX and PHY_DIRECTION_RX for a cell that selects the
-> transmitter or the receiver. The first user is the Rockchip RK3588 MIPI
-> DC-PHY, where the transmitter serves a DSI host and the receiver a CSI-2
-> host.
+> Change the cell to select the transmitter or the receiver. The
+> transmitter and the receiver cannot operate in different modes [1], so
+> the optional phy-type property of the PHY node sets the mode for the
+> whole block, D-PHY by default:
+> 
+> 	/* the MIPI DSI host, driving the transmitter */
+> 	phys = <&mipidcphy0 PHY_DIRECTION_TX>;
+> 
+> 	/* the MIPI CSI-2 host, driving the receiver */
+> 	phys = <&mipidcphy0 PHY_DIRECTION_RX>;
+> 
+> For C-PHY the consumers stay the same and the PHY node gets:
+> 
+> 	phy-type = <PHY_TYPE_CPHY>;
+> 
+> Existing DTs on a newer kernel: PHY_TYPE_DPHY and PHY_TYPE_CPHY remain
+> valid as deprecated values. They select the transmitter and imply
+> phy-type = <PHY_TYPE_DPHY> or <PHY_TYPE_CPHY> respectively, so nothing
+> changes for them.
+> 
+> New DTs on an older kernel: an ABI break. The older kernel ignores
+> phy-type and takes any cell value as the mode of the block. A DSI node
+> with PHY_DIRECTION_TX therefore gets no display, and a CSI-2 node with
+> PHY_DIRECTION_RX gets no camera.
+> 
+> [1] RK3588 TRM: section 22.1 (overview): "The TX and RX only support
+>     operate in the same PHY mode."
 > 
 > Suggested-by: Michael Riesch <michael.riesch@collabora.com>
-> Link: https://lore.kernel.org/r/7425ac83-f6d8-4443-a26e-a47f9306aa24@collabora.com
+> Link: https://lore.kernel.org/r/94d47cab-10c6-4ec3-84a0-3bddc9d67f5f@collabora.com
 > Signed-off-by: Jason Yang <jason98166@gmail.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 > Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
 > Tested-by: Quentin Schulz <quentin.schulz@cherry.de> # RK3588 Tiger CSI1 2-lane IMX219, CSI0 2-lane OV5675+DSI
 
