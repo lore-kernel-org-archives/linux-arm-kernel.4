@@ -2,85 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 726E8606A32F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07C160A2608
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A75qUOVJ;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=cdHCX7d0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UXjCHJh6;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=k11pVwgw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Rpi69KOE+RewZqGKWGe5fV1itNLcgLER2USO6GkvbTk=; b=A75qUOVJ4vth8S
-	5eZlcvIWY8cfrPZMhxru+/K0rBXJ/SL3IY9NuFgVnt1UUAKD68PsMcH1P1Ik1wvijaKA9dWzkGwzJ
-	rKY9WQGyj6V6p3tZfbSX2Udw+BoVRbXRF31PrvZECbsQW+576C4JIk+I7xcBXeHlz0t1a6v7kjYG1
-	UcfmdCMTEzXV+WFwKnoIMfINBSKUiXR1uP3kXrktDM4xafdy9Nrzaj6WHFkqUkxYv2ZVIBCzS5db0
-	orx8g8j50qfVUIv0XQkaZ6SUiSJjwqcsxeAL4SEa/liY/XndBkf24jb70ugfA7Z2VzrddzIsRQVy5
-	AU8iIl/MCxyMc6zMy9sA==;
+	List-Owner; bh=Babeb2HFdoGfJcLZPBXE1y9vKgkFHl2HkzCwc6W1yGQ=; b=UXjCHJh6bcOxV2
+	/CBRf3kp6/RHbl+kJpKu8VnS07dE2Kh/Mwxamli/eJ07PRSg88kfSj3RIpyQNm3NISrb4GnWC0Fi3
+	9s/ispPF98nEf7H3vHXhBu1S5tfAsI8sqKOoWVvZYzd4Bs4kSOiAD0LxUyy9s8itxe0RrGnsNk+3s
+	7LBT5eg9RmhqociQbFytDQtCfei++30kprZqkGDdUJ5WgM9VEbpaS1SqC0UZ7AfjBd9aQHUrb40Iq
+	DEn+JY4hTxAYl/bL3j6VpzzW4XgPcoQfkXMIhUTx2X+ToOl2ql4t0mqJ+JNprqo2CSFnBj/C00KC1
+	xHXRoMTJGY7omiqDlVUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXr-00000009U93-00p0;
-	Wed, 18 Nov 2026 16:30:03 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1xTiXq-00000009U8r-3YAh;
+	Wed, 18 Nov 2026 16:30:02 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXl-00000009U1a-3e7D
+	id 1xTiXk-00000009U0b-3Qgq
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:29:59 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-4a2f4ca0dcfso629871f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:29:57 -0800 (PST)
+	Wed, 18 Nov 2026 16:29:58 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4b467581b98so14607975e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:29:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795019395; x=1795624195; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795019394; x=1795624194; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Rpi69KOE+RewZqGKWGe5fV1itNLcgLER2USO6GkvbTk=;
-        b=cdHCX7d0Zdzl4JHc89I7R/jTouMpLzGcowhPpdZ485nczNni8K+ZDGMDRhnSaMkkuz
-         xEMs4S/d+TUcyEARW2K5Hrq3Jy4gdHwWY9lMuR11QFmS1dU6cZ4+j68lOtH7HdWbHeum
-         CrYJ9Ln0af1pfEbtl8RbAgOxLL+XdTCYKQksOURjwXU+wkepgj4cI1HX1R/Lduk5u92U
-         0YLDDxsnJkITDi+g8kg24aYdOMx3TShzmhla0Rc8ilZp6VRP9bcgE3KzR9op/K7Zz7bI
-         FEcWdZ8OGKv2FErKKiAGeeRW+kpBzEyn58KNZZftz3Ww/T5RXagP1QTbi1IkDjYInCi8
-         mK6A==
+        bh=Babeb2HFdoGfJcLZPBXE1y9vKgkFHl2HkzCwc6W1yGQ=;
+        b=k11pVwgw6rXZku6sIefl6tVaiMbWqLpa3jfH1URpiYFkPpgJT/iU+J4OUQK2/fLdTc
+         yVZypL/LPFzYak5VCzpG8Aayzzb2K4A0FHk5ak2Rxc9Twa7KuvrTmb4yQCMWaGpeLBEA
+         Va0SJcEw1LClcoLIGWuqQOLag4LpKs4HYUBFjqiUd5XFCdY8Dm0SgRDrst6Ma3xbcjol
+         7hUvIgCRKTKB6jAq6LSlT+MTrp001FItiEs/gkhrS7Y19+1DxSq80mCxC5gUY04XRff5
+         rI6qBIoo65dsPfzbD9KXcsi6JWEEEHs2nhTXxzUSAEVfliJVxMDnbJtoHGEbagTFnKee
+         o1HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795019395; x=1795624195;
+        d=1e100.net; s=20260707; t=1795019394; x=1795624194;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Rpi69KOE+RewZqGKWGe5fV1itNLcgLER2USO6GkvbTk=;
-        b=NEvTac78Aomt/MdBXDUU8becWK5Abd7OrszLNcKoe1WKMU7xW0sT0lVZhfVgrmPrMn
-         iz6ZDJI4HP4p/m9ZSdriqzGcK3/wICYFfCiVGj1HMvie/YVwCmRu8Yo3rwTvLhzu5R2G
-         0NmcEuuNPfZwNbXFjt5dYB830HIaMsn99L6Lf2wvdUTCw2KwW46THaCR0scWpnVEo8j5
-         808oOjhwhsy0WC3t4jkinnj0JvgMvP5xC4h1qNAepVvS3cVRnja8KkWZbCT7ZFsqrldA
-         8x4kRlJTpRPgJ7JLYYpqQWeQzG4de1A9gmgn2xpldITGSNBXAymtJ4p1FiCqbm0N481K
-         fC5w==
-X-Forwarded-Encrypted: i=1; AL+hErHtotHUXTpi6FF//w9ZYnTjXBkB8XZ37UR3/8Uil42zs4B+kfVAPUsr6tDrcc3yPokCnk95O4UcLWznUuw4FVb4@lists.infradead.org
-X-Gm-Message-State: APuU4Z+BFpXMXhnRsbtijOmI0VzCtbQiXwvLJPvZNFaGb3HXD0r3usN4
-	q5JlZr/kbvaQ066Ydo4SDmyT/kaQaXDnem0a1M1zb5P1mPc5SU3dMIcDD+fOT34onXY=
-X-Gm-Gg: AZFdTZc61sQOSsC9fcGmw6q354XR9yWG4SioOF4lhUx9zvao3LgxMULjLyPmicIs1jS
-	fXbi4+IbhedzivSFJECZesuMPlIPft6PeQQPGlaO983UC0OpI8UFcBwYiVfO5mjH3hfAYpCYlhS
-	3JjfS99UWslAtLd+BSe10Nx4LoQfXYSX1ONxi+tT8j3M95iLEajg3CHi1O5b+fnOMD4Xa4R8pQo
-	jhv8gCYkkRKZyPoF4Y0wQ2h98gZ52786pllAdo2vfrhIEEb8LeQ+WJD6JH7XnBZJWPijpUWjQ/D
-	p0/L5V8wN1ZO6NfUjdB+Mq2JfETwh8M9KY6UAmBOJO318Yd7kFicexpQwgpLXcGjyEgEvgN+z4v
-	hjFMAdgtT0k8hKbDIYmOPJGk5f5sAQBSJwy9tZ/U2j2aJoyk6jCbdD1Re+2E9QZb0ivMTWb9sT9
-	SAiGZzoyYoAqsSwrujv2HYz6MWFPi5DR/b9E2to/fUx5siL9e3NeS46882GZ0OqzeGCHXzgiSMd
-	kZo87g/d72VzmxOIv6rTcDhi6cVFvlqhYl1ueSNJX15rr+QyCmjCikWcCZRlhPFaGgvan55ynpB
-	O0keccCh21nGctnlx9NH/OtmTi+Xmkd5WQ==
-X-Received: by 2002:a05:6000:1a8d:b0:493:c0a:507d with SMTP id ffacd0b85a97d-4a63648e24fmr6898857f8f.1.1795019395221;
-        Wed, 18 Nov 2026 08:29:55 -0800 (PST)
-Received: from pop-os.local ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=Babeb2HFdoGfJcLZPBXE1y9vKgkFHl2HkzCwc6W1yGQ=;
+        b=t2HxqOugLShUgVUZlHuoP3UekdQ/OdX9WhFSUvhGldv+7aTY4smqv6pxqhqrSQhzFl
+         NJPf0WxouMnI8j8PmGGWskgMLQWPkAH6ViRs1R0cv60FWEasDv917OIjwBqjlX7D1Zjw
+         pYLdME7wiJkzAC03yJSh7eb/MATA6sOgzF4WbE43MIx6k8d1D2mibqCaEMkJWyMua+TY
+         G2s7QJCzfRr4HpepGyTSfBbKfvf1yUe9AxfWvMjDdPuTSR0ARZ1UpAgnrw6m1fOKfMKK
+         UrthYo5Lm8LrkfSp70foMAD4o2z7uOOZtY19JHV7hkyGWiG3iCsm2TCaZfThq46dam4E
+         TM9Q==
+X-Forwarded-Encrypted: i=1; AL+hErHt866v85o0yTRgfON4L5hCrDAwz7OggSn+mU/ft3BavMANaCCm8K62YILSbd2G9Q8PDNVrSgkgogVzDWwG6K67@lists.infradead.org
+X-Gm-Message-State: APuU4Z/wAV+B0wk91WLhvlY3ea+7CiqXKqV0VM3fz3i/z9HlJ+5zSvT/
+	vYXd0GWrqDcPThc96GMdXozAvgCIcsgUYUwhA1kAabMaPbFxekOfZquTl7RdFZFoBVU=
+X-Gm-Gg: AYBFou2BvMpINenrzbcdosJYKOqX69mldGdYBjsAiAtjznqxzQOQqmwbvrj7bhgyQZN
+	3mcK1zRldo0vncOxZPTSQV/ml5Quxu+MmgiLZSwTmFCAAS9r9w73jLrlVCUPg9G7tBGG64BSYXF
+	QJtQ6DlaWr9bILmMovLdhOZtyJ3o0gQRHVVekhC+QRw1SlxLBttkBT87b/ulFh5yxJz1XA05AGD
+	GteQiTb77HHgc0FCpLyPkLGdfzlCgWzKZpRudxPcFm/ZwKGHJPyRlu/RcsN56q5pq/WkvCZbSS/
+	vWLKg60j1uUGXVVZBapBDnAfu0e1Sq9lDJrV6bbU4TCKa7D0QhB2ZI5LSiZEz2a147dGvHV5AGU
+	rzXYUhhlCb/gk7Q9ObBXwwaUYqDsqXbXmqyNuAL5Jo0g9RIfCE5HKRtCPiNs5SBtoURIZpt9S7w
+	OI6xylnkhCUyy/FEaF0PELCVXTvQ+zl56i7NGiGWlLNtrWgDuiAvTIXCzdcUFhWinaWuWbV/HuL
+	bsI1Ba92CrY0eNl3tzvdVQPbS7ys3Jp3TggQ5DCCPOaWG4L72icZ4xZKb/812oohVhhHIsfXDp/
+	G5mk6HBsEa9WaP5EdQ2LH0jTQ1tMURPg
+X-Received: by 2002:a05:600c:8b34:b0:4bb:781f:6067 with SMTP id 5b1f17b1804b1-4bb7d6cd404mr58751415e9.1.1795019394229;
         Wed, 18 Nov 2026 08:29:54 -0800 (PST)
+Received: from pop-os.local ([37.18.141.193])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2026 08:29:53 -0800 (PST)
 From: James Clark <james.clark@linaro.org>
-Date: Wed, 18 Nov 2026 16:29:29 +0000
-Subject: [PATCH 07/34] perf build-id: Cache the vDSO in build ID mmap mode
+Date: Wed, 18 Nov 2026 16:29:28 +0000
+Subject: [PATCH 06/34] perf cs-etm: Don't read past the end of the map
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-james-coresight-jit-v1-7-dad4d90747f6@linaro.org>
+Message-Id: <20261118-james-coresight-jit-v1-6-dad4d90747f6@linaro.org>
 References: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 In-Reply-To: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 To: Arnaldo Carvalho de Melo <acme@kernel.org>, 
@@ -94,8 +94,8 @@ Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_082957_949349_6F325783 
-X-CRM114-Status: GOOD (  20.02  )
+X-CRM114-CacheID: sfid-20261118_082956_901715_C1FFCF4A 
+X-CRM114-Status: GOOD (  15.31  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,51 +115,39 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since --buildid-mmap became the default, perf record doesn't add the
-vDSO to the build ID cache. Caching a DSO requires its build ID, but the
-vDSO doesn't have a file so the kernel can't add one to its mmap event.
-Build IDs that are missing from mmap events were previously read when
-writing the build ID table to the header, but the table isn't written
-in build ID mmap mode.
+OpenCSD caches instruction memory one page size at a time. Perf reads
+this requested size from the file on disk without limiting it to the end
+of the map, so the page can contain ELF metadata from the file that
+wasn't mapped. If a subsequent read for a different .so file falls into
+this range, then it won't be decoded properly.
 
-This breaks decoding of hardware trace through the vDSO after perf
-inject -b. Inject adds a build ID for the vDSO, so perf script looks it
-up in the build ID cache and can't find it:
+Fix it by clamping the read size to the end of the map. Now when OpenCSD
+requests an address outside of that range, Perf will load the next .so
+file rather than OpenCSD using the mis-cached data.
 
-  CS ETM Trace: Debug data not found for address 0xffff95edb310 in [vdso]
-
-Fix it by reading the vDSO's build ID from perf's copy of the vDSO
-before caching it.
-
-Fixes: 53b00ff358dc ("perf record: Make --buildid-mmap the default")
+Fixes: c9a01a11dfe6 ("perf tools: Add support for decoding CoreSight trace data")
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- tools/perf/util/build-id.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ tools/perf/util/cs-etm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/tools/perf/util/build-id.c b/tools/perf/util/build-id.c
-index 02233ef0eaff..cc813f421c9b 100644
---- a/tools/perf/util/build-id.c
-+++ b/tools/perf/util/build-id.c
-@@ -886,6 +886,18 @@ static int dso__cache_build_id(struct dso *dso, struct machine *machine,
- 	char *allocated_name = NULL;
- 	int ret = 0;
+diff --git a/tools/perf/util/cs-etm.c b/tools/perf/util/cs-etm.c
+index 3fce3c357943..fb4582dc378e 100644
+--- a/tools/perf/util/cs-etm.c
++++ b/tools/perf/util/cs-etm.c
+@@ -1213,6 +1213,12 @@ static u32 __cs_etm__mem_access(struct cs_etm_queue *etmq,
+ 
+ 	offset = map__map_ip(al.map, address);
  
 +	/*
-+	 * The kernel can't add the vDSO's build ID to mmap events because it
-+	 * doesn't have a file, so read it from the copy that perf made. That
-+	 * copy is of the host's vDSO, so it can't be used for guests.
++	 * Clamp to the map size to avoid putting unmapped ELF file data from
++	 * the .so into OpenCSD's cache as map data.
 +	 */
-+	if (is_vdso && machine__is_host(machine) && !dso__has_build_id(dso)) {
-+		struct build_id bid = { .size = 0, };
++	size = min_t(u64, size, map__end(al.map) - address);
 +
-+		if (filename__read_build_id(name, &bid) > 0)
-+			dso__set_build_id(dso, &bid);
-+	}
-+
- 	if (!dso__has_build_id(dso) || !dso__hit(dso))
- 		return 0;
+ 	map__load(al.map);
  
+ 	len = dso__data_read_offset(dso, maps__machine(thread__maps(thread)),
 
 -- 
 2.43.0
