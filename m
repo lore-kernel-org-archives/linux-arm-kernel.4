@@ -2,50 +2,51 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E49E606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F874606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BohwI3BY;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=VfMYMAuM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SVOuyoHq;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=gOtf1/KA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yYNwdmBSIDxtuxPrHW8cdhm8SfdRppfZaAmTog96H2A=; b=BohwI3BYmCrUzr
-	vhrIzkElK7Er+xsBAq3a6JIUphutTzPpMj4CPPJfu1LE4h9rq/tbV0y09MLA0gdWEqw3/V0KgJdoy
-	Ni1GVuZMmM8KDAG3MO6dr/OFflnEpTZNY2MN6VacEo8XkzmaKEliSLlD3y8uZMnICoAjAPQXIfRrJ
-	Jtc2b//LmSvVCCV4mOtuDtXyLmoz2apjABxLv5CTwxzvyEQ0NyqJ0gQfuTvlWfbIvKpRPzy3cxvpJ
-	qOXlT7Auwt6vrFWXSqNoCCWIMZV6wEwN9eZJ5AvL5jgauU5FWa3V9GZyTrhli/E2DD7vgTCibuchT
-	fyzojzVq44Ahga5IjbUA==;
+	List-Owner; bh=1IbllusjMRCIaAIXLA41cjwGt2hmRdKFmrBTakj2Av0=; b=SVOuyoHqRzfHYB
+	TWJdsV7zayYzoxEmd4R1leUBjt8PNOfs70Plf3r/z2yMr/ygV2LHzFy2YRJMNTC61t2QdxOVwpGKe
+	fwvU6fR+sgbWKp9De8Bzd0Sb3LZRil5nN3pJcencLQN9CxQAjmj+yYXO3qHWi66X8cxsGgoXBdmnx
+	RscBayY1v1W9U8vOTn9EyN0qt0k8v9JFVveeWJWNvj5AnsooZUMqQIw8ygLSkhS9rnnFUSdnWdtNp
+	z+pTs1xAij/f1r2D79iNqLmb9fXgK7RXJbRY+8QNGbzmkfoDDQK5rQCEat2ybk2BUgDwRSFUtWg1Z
+	ZA/He42XpnKActpQcWQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiHV-00000009QHl-1ss3;
-	Wed, 18 Nov 2026 16:13:09 +0000
+	id 1xTiHd-00000009QJX-2Nxt;
+	Wed, 18 Nov 2026 16:13:17 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiHS-00000009QHA-1vIT
+	id 1xTiHX-00000009QIA-1u8C
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:13:08 +0000
+	Wed, 18 Nov 2026 16:13:12 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5FF44339;
-	Wed, 18 Nov 2026 08:13:02 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0561E1596;
+	Wed, 18 Nov 2026 08:13:08 -0800 (PST)
 Received: from [10.57.62.206] (unknown [10.57.62.206])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E29C53F673;
-	Wed, 18 Nov 2026 08:12:59 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C54163F673;
+	Wed, 18 Nov 2026 08:13:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795018385; bh=7HisUsPk+KXisBKOhhwZZBhSMTa8p36OAkhoTk09/p8=;
+	t=1795018390; bh=nK7TBcSEp2JbydJ2xoCE0lvuJ2Yl2LRjmtzjJylPKjQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VfMYMAuMFySbcli51fpiRUiyHhsrWxVA0JvsMlnhNMKHwT3OC8N7svYDR6AXpwyRI
-	 DQ3ucKevGEEZxmSMHnhWCReSwkfPCO0oRhqJaRKuPRh1v7zUXh0fBwqw4KIilbCFx/
-	 PLAJ0VltMjZX2DM+j8kxWZtoujx0Rpj6phIcEFV0=
-Message-ID: <a36b5c53-5148-4b08-b399-ae64b1ad8707@arm.com>
-Date: Wed, 18 Nov 2026 16:12:57 +0000
+	b=gOtf1/KAKZj0LMreurjK+QC939uTJvImRh1Xm/OujjEONs/gFKqLMkCFvInwO66+E
+	 urAh8koJGsYtsUadAI9jgqq8h9ix5b0q6/3JxMcNYtb277lkuF12K29garixfPWOYV
+	 9zDoYMbQFXlvdFTnpzct0re30aKTlLViMKjThLAg=
+Message-ID: <6f0f15ef-37c5-491c-9b71-f78ff5b50a23@arm.com>
+Date: Wed, 18 Nov 2026 16:12:59 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/11] KVM: arm64: CCA: Introduce Realms
+Subject: Re: [PATCH v3 03/11] KVM: arm64: Handle attributes in
+ stage2_unmap_range
 To: Fuad Tabba <tabba@google.com>
 Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
  Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -64,16 +65,17 @@ Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
  Lorenzo Pieralisi <lpieralisi@kernel.org>,
  Kohei Enju <enju.kohei@fujitsu.com>
 References: <20261116164358.142785-1-steven.price@arm.com>
- <20261116164358.142785-3-steven.price@arm.com>
- <CA+EHjTwfp8p7uwP2LXEqSmTwL6ZHuDCYbvMie_Wr_30xJwfO6A@mail.gmail.com>
+ <20261116164358.142785-4-steven.price@arm.com>
+ <CA+EHjTyeE0gbLgfiDePPVRR88GFVa7G-G8sr8k6vzM7v_uHxdA@mail.gmail.com>
 From: Steven Price <steven.price@arm.com>
 Content-Language: en-GB
-In-Reply-To: <CA+EHjTwfp8p7uwP2LXEqSmTwL6ZHuDCYbvMie_Wr_30xJwfO6A@mail.gmail.com>
+In-Reply-To: <CA+EHjTyeE0gbLgfiDePPVRR88GFVa7G-G8sr8k6vzM7v_uHxdA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_081306_591421_7122847B 
-X-CRM114-Status: GOOD (  18.17  )
+X-CRM114-CacheID: sfid-20261118_081311_538160_99CCC967 
+X-CRM114-Status: UNSURE (   7.70  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,99 +89,31 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 17/11/2026 14:07, Fuad Tabba wrote:
-> On Mon, 16 Nov 2026 16:43:48 +0000, Steven Price <steven.price@arm.com> wrote:
+On 17/11/2026 14:16, Fuad Tabba wrote:
+> On Mon, 16 Nov 2026 16:43:49 +0000, Steven Price <steven.price@arm.com> wrote:
 > [...]
->> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-> [...]
->> @@ -1571,31 +1576,39 @@ struct kvm *kvm_arch_alloc_vm(void);
->>
->>  #define __KVM_HAVE_ARCH_FLUSH_REMOTE_TLBS_RANGE
->>
->> -#ifdef __KVM_NVHE_HYPERVISOR__
->> +#define kvm_vm_is_protected(kvm)        ((kvm)->arch.vm_flavor >= __VM_PROTECTED)
->>
->> -#define kvm_vm_is_protected(kvm)                        \
->> -        (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor == VM_PROTECTED_PKVM))
->> +#ifdef __KVM_NVHE_HYPERVISOR__
->>  /*
->>   * Accessing vcpu->kvm from nVHE hyp stub is tricky, as we need to convert the
->>   * pointer to the hyp VA. With pKVM, the nVHE code runs with the hyp_vcpu,
->> - * which is populated correctly and is gated on is_protected_kvm_enabled().
->> + * which is populated correctly. Always vcpu_is_protected_pkvm(), which is
->> + * gated on is_protected_kvm_enabled().
->>   */
->> -#define vcpu_is_protected(vcpu)                                                \
->> +#define vcpu_is_protected(vcpu)                BUILD_BUG_ON(1)
->> +#else
->> +#define vcpu_is_protected(vcpu)                kvm_vm_is_protected((vcpu)->kvm)
->> +#endif
->> +
->> +#define kvm_vm_is_protected_pkvm(kvm)                                        \
->> +        (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor == VM_PROTECTED_PKVM))
->> +
->> +/*
->> + * Rely on is_protected_kvm_enabled() check in kvm_vm_is_protected_pkvm() to
->> + * make sure the vcpu->kvm is always valid VA in the context
->> + */
->> +#define vcpu_is_protected_pkvm(vcpu)                                        \
->>          ({                                                                \
->>                  struct kvm *__kvm = READ_ONCE((vcpu)->kvm);                \
->>                                                                          \
->> -                (__kvm && kvm_vm_is_protected(__kvm));                        \
->> +                (__kvm && kvm_vm_is_protected_pkvm(__kvm));                \
->>          })
->>
->> -#else
->> -
->> -#define kvm_vm_is_protected(kvm)        ((kvm)->arch.vm_flavor >= __VM_PROTECTED)
->> -#define vcpu_is_protected(vcpu)                kvm_vm_is_protected((vcpu)->kvm)
+>> With the introduction of private memory support, we need to
+>> handle invalidation requests with filters for a given type.
+>> Add support for passing the attributes down.
 > 
-> This brings back the _pkvm variants that Marc asked to drop in the
-> plumbing series [1]. In the nVHE hyp code, kvm_vm_is_protected() and
-> vcpu_is_protected() already mean pKVM-protected, so I think the hyp
-> side can stay as it is.
+> nit: what this passes down is a filter rather than attributes, in both
+> the subject and the message.
+
+True - I'll update the commit message.
+
 > 
-> At EL1, the pKVM-only checks that a Realm vCPU also reaches are in
-> kvm_arm_vcpu_power_off() and kvm_psci_vcpu_on(). Could they check
-> vm_flavor == VM_PROTECTED_PKVM directly?
+> Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
 
-Ah, yes that should work better. Thanks for the suggestion.
-
->> +#define kvm_vm_is_realm(kvm)                ((kvm)->arch.vm_flavor == VM_REALM)
->> +#define vcpu_is_rec(vcpu)                kvm_vm_is_realm((vcpu)->kvm)
-> 
-> vcpu_is_rec() isn't used anywhere in this series. Could it be dropped?
-
-Yep, I can move it after this series.
-
-> [...]
->> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> [...]
->> @@ -906,7 +907,8 @@ static bool kvm_arm_vcpu_suspended(struct kvm_vcpu *vcpu)
->>  /* Only the guest's CPU_ON may start a vCPU EL2 holds powered off. */
->>  bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
->>  {
->> -        return READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
->> +        return vcpu_is_protected_pkvm(vcpu) &&
->> +                READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
-> 
-> Only a pVM's vCPU can be in KVM_MP_STATE_UNINITIALIZED, so is this needed?
-
-I guess not. I'll drop this change.
-
-Thanks,
+Thanks!
 Steve
 
 > Cheers,
 > /fuad
-> 
-> [1] https://lore.kernel.org/all/86pkxs2npx.wl-maz@kernel.org/
 
 
