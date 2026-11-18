@@ -2,109 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20099606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 01:25:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6B5606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 01:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2CmPe8we;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Evf4aKWw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xne4aqIV;
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=jxgQrE+5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=savT1NQUMXc5EKxPUj2lCIipe5ZvsTIstXbCVAOb+ck=; b=2CmPe8wenPcBLg/eXqzsi4xYxb
-	As4qLLtqeV6nvrUgALQ3s0E/sMGAS/oJ4G2YPPHx1b0hyAI40O/mwasQDpNJtvGTtQs3CKKY4HZ86
-	/LoYgGIgph6QYZ5KdLZmA1eT5k0oIoSmUgfekqGiGmCfm8RX5zUAabcd3M+VrAO3VinVOZkkC+van
-	SB6T3q/ydo/rZbmNdf3hvJTicA2BYSQ4DN5ikjyPvMkqAZFdRFBJFwn7+NK7nMPmiBxVZrTw8gP/v
-	2RriGRDU/PxFCdu+zxhQd6G3BUdWJmjBsHH7wH4WE2baExXm04qhUZO3h/AFZPo0mfaDqjuzF/foF
-	ZiwioHrg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=En2HFkVRz7jUndIJWs1vjfMzW7QUrXLJFOywq7zEjgM=; b=xne4aqIV7gMUEd
+	as4CN0cwoc2ij2oLfrQMF8rb9wMe3RWvJNjmJvVzBJ2oxgas7jGTFqc3NqdzV20vdx+jwVP3jOaVx
+	Qk4ULj+H8STAOJkYFNzeJ4ipCFVtelkbViCmmpBeHST0sDM7DBjg1n/NTIc41xxWk2w2b4iTplzDr
+	6Ee49MnotGYp2FgKAFKApECuM+kA0PvnwXEIjm3pHay/tx7xwNaP8EwJbMRKG61/ag8cy4VC5eZ8e
+	tkq75cfyUWICe9lwvwIDqpmKDQXKeCIaO9JuHqaxDJv9m45UEKbWEsWAkHOWId5/1J8P4NmEbbgBm
+	oXFm2Q8Npup7Z2dgOcMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTUQW-00000007Rgs-3QYu;
-	Wed, 18 Nov 2026 01:25:33 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTUQV-00000007RgL-2yBf;
-	Wed, 18 Nov 2026 01:25:31 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D69A260E11;
-	Wed, 18 Nov 2026 01:25:30 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794965130;
-	b=FdFSA3OnyT04HXpSk9/nU7vXQbeDi3dTcPiqQkVt1tHVZICobQ/DRsjW6qCNYY23xERk
-	 SSWSTjslBqrrrgJOQrRTwXEn1rcFRcRVceQDQBef+RBFPq+ef9oXBMKMRXB0nyb2M7WFd
-	 xaQxqLxZTlW2gf+9lN7VO3tAGiSe6fyLugzkmhDTaItyDyZA9qdG9n6oYzOnOPkB58pLf
-	 L9nJd3hkQ2bzR1GsCVPoPxnXnFZeYrFmh3U11Jg5EDwj6q/Qvvu2EiJXBOM3L9I57Zmwh
-	 qVqN/QPx64thzh6TxoyiR4Y7D5G0xUO3hc64es/5UOxrNJsavXdqgE5optvLgrDl4mg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794965130;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=savT1NQUMXc5EKxPUj2lCIipe5ZvsTIstXbCVAOb+ck=;
-	b=CH9/rRnq6QiCKW21YlZ4AFjgHbMvgR6vYNWJJLhHXgB2H20B4o/z6KV2WfuwA4p0jTTA
-	 5UKncLAu2ncz1RC4Pwsfnn5DZc+Uk/IUZuBeoR4DjQGIZKIA566EMdynMZM2lgHPi9sDn
-	 +d2maUmQSGa6whu19gmcJqqwgAkOF466X24ZK2nMPpKsD2A1TA+UY639y5R+O3jfBPsfR
-	 gMIHBvpQ6wdSRo0hrmLHhjFv5RzX29AGDNA2t1jf8ZArHU7OodpNt/3Gk7mEu7thO8gNI
-	 EROysKXbOla1BCyMiYnMbmNww+BmNtJL7T6jQqTzMA6SgmCTIFLtK+MFbn2K1MAoFjQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 06ED71F000C4;
-	Wed, 18 Nov 2026 01:25:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794965130;
-	bh=savT1NQUMXc5EKxPUj2lCIipe5ZvsTIstXbCVAOb+ck=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=Evf4aKWwXD6FnbomEzIViDwLr+j9kKcQ4QLt5ZsvWEkKZ2vp3zAzTEwdbBuSoeyzO
-	 eNMbPeVVcOUSefDgAMtzmMcgMBQmJbVYF1cww93S+aPtkGg3F57UVifiR0ezJKIqQA
-	 5NXuQra188K2VFVNjldDEoCHhPE0Iv6MbjGb6LIasAi90HlBtLb91GyMFjWB/E5FVL
-	 dPATX5jgSB3WSCY34CTQ3SRpkFF4jvloZRrmsARW9aM/UEAMC0djIg2EiRyLegUiTY
-	 INuu/GoP1qG1xQDVMEzwGUmhOrP2yprp/SzpkzTEz89TIqA5YlQfXMhbVAWWb2MlJV
-	 14M3VGRoW7ULg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 5D1B14AB8A;
-	Wed, 18 Nov 2026 01:25:29 +0000 (UTC)
-From: Zi-Hao Huang via B4 Relay <devnull+zi-hao.huang.mediatek.com@kernel.org>
-Date: Wed, 18 Nov 2026 09:25:18 +0800
-Subject: [PATCH] drm/mediatek: dsi: Don't let a signal cut the IRQ wait
- short
+	id 1xTUUV-00000007S7o-0b7h;
+	Wed, 18 Nov 2026 01:29:39 +0000
+Received: from linux.microsoft.com ([13.77.154.182])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTUUS-00000007S6C-3BB7
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 01:29:38 +0000
+Received: from [192.168.0.88] (192-184-212-33.fiber.dynamic.sonic.net [192.184.212.33])
+	by linux.microsoft.com (Postfix) with ESMTPSA id B292620B7169;
+	Tue, 17 Nov 2026 17:29:34 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com B292620B7169
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1794965375;
+	bh=En2HFkVRz7jUndIJWs1vjfMzW7QUrXLJFOywq7zEjgM=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=jxgQrE+5/+IOWBmij56qJv+Q2l5X0GuaotxyKD2Gfuk04WROOvvx4dIY6ORHw/sMG
+	 IcQB2mHFqf5nkMayKL0Rx+z5gAvYLhaWns+WHpxm4EShE4HNXIUfgNY/adszgUx3h6
+	 kVjufo8h4+/Ztb9gA9rLNYY44ETfakE+9+dKPEoA=
+Message-ID: <f1b8a32c-6fb5-cfed-df69-8499f2e94cc8@linux.microsoft.com>
+Date: Tue, 17 Nov 2026 17:29:34 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261118-mtk-dsi-irq-wait-v1-1-205f25fac8b2@mediatek.com>
-X-B4-Tracking: v=1; b=H4sIAH3+/GoC/x3MzQpAUBBA4VfRrE2ZSciryGJyB5P83SuUvLub5
- bc454Gg3jRAnTzg9bRg6xJBaQLdKMugaC4aOOOCiCqcjwldMDS/4yV2oHBeEouTgkuI2ea1t/t
- fNu37fkZKzT5iAAAA
-X-Change-ID: 20261118-mtk-dsi-irq-wait-a24712ada627
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- shaoming chen <shaoming.chen@mediatek.com>, dri-devel@lists.freedesktop.org, 
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Zi-Hao Huang <zi-hao.huang@mediatek.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794965128; l=2609;
- i=zi-hao.huang@mediatek.com; s=20261112; h=from:subject:message-id;
- bh=mBD6dS6d064X8Z2NA64EwiPmxgRAZHmv32EB6c3egAE=;
- b=h0n34iq4oweQpJL4Q1/996A0FU3QFKpqo/f4lya6mqbzxROzBIxyGIe0y5Q1hebLNaOvGCuh6
- Uzd8VWv4YnTCLk29wrnRg3YlOT4kPhXxSEBsbUMS+exxPHW/ApTnAvr
-X-Developer-Key: i=zi-hao.huang@mediatek.com; a=ed25519;
- pk=tbMIVegYSSBtz5MaQSUCX9RJO88MA/AI5cbmQKbaoIc=
-X-Endpoint-Received: by B4 Relay for zi-hao.huang@mediatek.com/20261112
- with auth_id=1493
-X-Original-From: Zi-Hao Huang <zi-hao.huang@mediatek.com>
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v6 4/6] Drivers: hv: Mark shared memory as decrypted for
+ CCA Realms
+Content-Language: en-US
+From: Mukesh R <mrathor@linux.microsoft.com>
+To: Kameron Carr <kameroncarr@linux.microsoft.com>
+Cc: Michael Kelley <mhklinux@outlook.com>,
+ "decui@microsoft.com" <decui@microsoft.com>,
+ "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
+ "wei.liu@kernel.org" <wei.liu@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
+ "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+ "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "mark.rutland@arm.com" <mark.rutland@arm.com>,
+ "sudeep.holla@kernel.org" <sudeep.holla@kernel.org>,
+ "thuth@redhat.com" <thuth@redhat.com>, "will@kernel.org" <will@kernel.org>
+References: <20261031001412.4150488-1-kameroncarr@linux.microsoft.com>
+ <20261031001412.4150488-5-kameroncarr@linux.microsoft.com>
+ <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
+ <c6b7f583-878d-1f1e-60cc-e602e277d075@linux.microsoft.com>
+ <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
+ <f74db23c-ee1d-e0b1-c463-55dad00f9c61@linux.microsoft.com>
+ <7ebf7187-bf42-fc11-e89b-b1aba96539d2@linux.microsoft.com>
+ <5fddb57c-8805-4fbd-9e27-1c8654f29436@linux.microsoft.com>
+ <d7d4ba44-5c7f-9526-37dd-76744c277069@linux.microsoft.com>
+In-Reply-To: <d7d4ba44-5c7f-9526-37dd-76744c277069@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_172936_860033_4D60A3C3 
+X-CRM114-Status: GOOD (  22.01  )
+X-Spam-Score: -4.5 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,81 +96,154 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: zi-hao.huang@mediatek.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
 
-From: Zi-Hao Huang <zi-hao.huang@mediatek.com>
+On 11/17/26 11:57, Mukesh R wrote:
+> On 11/16/26 11:53, Kameron Carr wrote:
+>> On 11/13/2026 6:59 PM, Mukesh R wrote:
+>>> On 11/12/26 16:46, Mukesh R wrote:
+>>>> On 11/12/26 09:49, Kameron Carr wrote:
+>>>>> On 11/11/2026 6:43 PM, Mukesh R wrote:
+>>>>>> On 11/11/26 10:01, Michael Kelley wrote:
+>>>>>>> From: Kameron Carr <kameroncarr@linux.microsoft.com> Sent: Friday, October 30, 2026 5:14 PM
+>>>>>>>>
+>>>>>>>> In hv_common_cpu_init(), the per-CPU hypercall input/output pages need
+>>>>>>>> to be marked as decrypted (shared) for confidential VM isolation types.
+>>>>>>>> This is already done for SNP and TDX isolation; extend the same handling
+>>>>>>>> to Arm CCA Realm guests so that the host hypervisor can access the
+>>>>>>>> shared hypercall buffers.
+>>>>>>>>
+>>>>>>>> is_realm_world() is declared in include/linux/arm-rsi-cmds.h which only
+>>>>>>>> builds on arm64 (it includes <asm/memory.h>), so using it directly in
+>>>>>>>> the arch-neutral drivers/hv/hv_common.c would break the x86 build.
+>>>>>>>> Introduce a Hyper-V-specific helper following the established
+>>>>>>>> hv_isolation_type_snp() / hv_isolation_type_tdx() pattern.
+>>>>>>>>
+>>>>>>>> On architectures other than arm64 the weak default keeps the existing
+>>>>>>>> behaviour.
+>>>>>>>>
+>>>>>>>> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
+>>>>>>>> Signed-off-by: Kameron Carr <kameroncarr@linux.microsoft.com>
+>>>>>>>> ---
+>>>>>>>>     arch/arm64/hyperv/mshyperv.c   |  5 +++++
+>>>>>>>>     drivers/hv/hv_common.c         | 17 +++++++++++++----
+>>>>>>>>     include/asm-generic/mshyperv.h |  1 +
+>>>>>>>>     3 files changed, 19 insertions(+), 4 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
+>>>>>>>> index 46ab2da..da6c3aa0 100644
+>>>>>>>> --- a/arch/arm64/hyperv/mshyperv.c
+>>>>>>>> +++ b/arch/arm64/hyperv/mshyperv.c
+>>>>>>>> @@ -182,3 +182,8 @@ bool hv_is_hyperv_initialized(void)
+>>>>>>>>         return hyperv_initialized;
+>>>>>>>>     }
+>>>>>>>>     EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
+>>>>>>>> +
+>>>>>>>> +bool hv_isolation_type_cca(void)
+>>>>>>>> +{
+>>>>>>>> +    return is_realm_world();
+>>>>>>>> +}
+>>>>>>>> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
+>>>>>>>> index 31256cb..a60c92c 100644
+>>>>>>>> --- a/drivers/hv/hv_common.c
+>>>>>>>> +++ b/drivers/hv/hv_common.c
+>>>>>>>> @@ -476,6 +476,7 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>>>>>         u64 msr_vp_index;
+>>>>>>>>         gfp_t flags;
+>>>>>>>>         const int pgcount = hv_output_page_exists() ? 2 : 1;
+>>>>>>>> +    const size_t alloc_size = ALIGN((size_t)pgcount * HV_HYP_PAGE_SIZE, PAGE_SIZE);
+>>>>>>>>         void *mem;
+>>>>>>>>         int ret = 0;
+>>>>>>>>
+>>>>>>>> @@ -489,7 +490,7 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>>>>>          * online and then taken offline
+>>>>>>>>          */
+>>>>>>>>         if (!*inputarg) {
+>>>>>>>> -        mem = kmalloc_array(pgcount, HV_HYP_PAGE_SIZE, flags);
+>>>>>>>> +        mem = kmalloc(alloc_size, flags);
+>>>>>>>>             if (!mem)
+>>>>>>>>                 return -ENOMEM;
+>>>>>>>>
+>>>>>>>> @@ -499,14 +500,16 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>>>>>             }
+>>>>>>>>
+>>>>>>>>             if (!ms_hyperv.paravisor_present &&
+>>>>>>>> -            (hv_isolation_type_snp() || hv_isolation_type_tdx())) {
+>>>>>>>> -            ret = set_memory_decrypted((unsigned long)mem, pgcount);
+>>>>>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>>>>>>>> +             hv_isolation_type_cca())) {
+>>>>>>>
+>>>>>>> Could this big "if" statement use "hv_is_isolation_supported()" instead
+>>>>>>> of explicitly testing for each CoCo VM type? I ask partly because
+>>>>>>> Mukesh Rathor has just submitted a patch [1] that introduces a new
+>>>>>>> function that does something almost exactly the same as
+>>>>>>> hv_is_isolation_supported() and uses it here.
+>>>>>>
+>>>>>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>>>>>>>> +             hv_isolation_type_cca())) {
+>>>>>>
+>>>>>> With my change, this will become:
+>>>>>>
+>>>>>>           (hv_isolation_hw_cvm() || hv_isolation_type_cca())) {
+>>>>>
+>>>>> Any reason you wouldn't change hv_isolation_hw_cvm() to
+>>>>>
+>>>>>     return hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>>>>>       hv_isolation_type_cca()
+>>>>>
+>>>>> That would seem more logical to me.
+>>>>>
+>>>>
+>>>> We could, I just don't know if on cca, the repeat hypercall has same
+>>>> behavior. I was leaving that for the arm team. Anyways, I sent question
+>>>> to the hyp team, if they say yes, i can update my patch to include that.
+>>>>
+>>>> Thanks,
+>>>> -Mukesh
+>>>
+>>>
+>>> Confirming, arm has same behavior and needs the fix also. So, we can def
+>>> expand the check to include _cca.
+>>>
+>>> I just sent V1, renaming hv_isolation_hw_cvm() to hv_isolation_type_hw().
+>>> If your patch goes after mine, you just need to add to your 0004*:
+>>>
+>>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
+>>> index 4fdc26ade1d7..67a16b4d2235 100644
+>>> --- a/arch/arm64/hyperv/mshyperv.c
+>>> +++ b/arch/arm64/hyperv/mshyperv.c
+>>> @@ -134,3 +134,8 @@ bool hv_is_hyperv_initialized(void)
+>>>          return hyperv_initialized;
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
+>>> +
+>>> +bool hv_isolation_type_hw(void)
+>>> +{
+>>> +       return is_realm_world();
+>>> +}
+>>>
+>>>
+>>> OR, you could pick mine 0001-* and make it part of your series, and I
+>>> can drop it from mine and make it dependent on yours. But mine is small
+>>> enough that it has higher chances of going in first.....
+>>>
+>>
+>> This patch set has already been applied to hyperv-next, so maybe you can
+>> rebase off that.
+>>
+> 
+> Ok, I'll rebase my patches from hyperv-fixes to hyperv-next, and
+> resubmit.
+> 
+> Thanks,
+> -Mukesh
+> 
 
-mtk_dsi_wait_for_irq_done() waits for the DSI IRQ with
-wait_event_interruptible_timeout(). If it returns early, for example
-with -ERESTARTSYS when a signal is pending, both callers still treat the
-command as done, because they only handle a return value of 0 as a
-failure.
+On second thought, given these are overloaded functions, adding a new
+function makes it complicated. Since it's only two places, it's just
+not worth it. Punting on it for now...
 
-On an MT8196 board this led to a hard lockup during shutdown. The wait
-returned before the IRQ arrived, the panel disable sequence went on and
-restarted video mode, and the late CMD_DONE interrupt was then handled
-by mtk_dsi_irq(). The handler writes RACK and loops until DSI_BUSY
-clears, but DSI_BUSY stays set while video mode is running, so the CPU
-never leaves the handler until the watchdog fires. Forcing the wait to
-return early reproduces the lockup every time, and it no longer
-happens once the wait cannot return early.
-
-The wait is made from the driver's own context to synchronise with the
-hardware, not on behalf of a userspace request, and it is bounded by its
-timeout. Use wait_event_timeout() so that it only ends on the IRQ or the
-timeout.
-
-wake_up_interruptible() cannot wake a task in uninterruptible sleep, so
-switch mtk_dsi_irq() to wake_up(). Without it every wait would last
-until its timeout.
-
-Fixes: dd5080a54df8 ("drm/mediatek: add dsi interrupt control")
-Signed-off-by: Zi-Hao Huang <zi-hao.huang@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dsi.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-index f82506e10fd5..1315dd31a834 100644
---- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-@@ -627,9 +627,8 @@ static s32 mtk_dsi_wait_for_irq_done(struct mtk_dsi *dsi, u32 irq_flag,
- 	unsigned long jiffies = msecs_to_jiffies(timeout);
- 	struct drm_device *drm = dsi->bridge.dev;
- 
--	ret = wait_event_interruptible_timeout(dsi->irq_wait_queue,
--					       dsi->irq_data & irq_flag,
--					       jiffies);
-+	ret = wait_event_timeout(dsi->irq_wait_queue,
-+				 dsi->irq_data & irq_flag, jiffies);
- 	if (ret == 0) {
- 		drm_warn(drm, "Wait DSI IRQ(0x%08x) Timeout\n", irq_flag);
- 
-@@ -656,7 +655,7 @@ static irqreturn_t mtk_dsi_irq(int irq, void *dev_id)
- 
- 		mtk_dsi_mask(dsi, DSI_INTSTA, status, 0);
- 		mtk_dsi_irq_data_set(dsi, status);
--		wake_up_interruptible(&dsi->irq_wait_queue);
-+		wake_up(&dsi->irq_wait_queue);
- 	}
- 
- 	return IRQ_HANDLED;
-
----
-base-commit: 067c5c24cef23d913b67eaaf71ae67e7169a6620
-change-id: 20261118-mtk-dsi-irq-wait-a24712ada627
-
-Best regards,
--- 
-Zi-Hao Huang <zi-hao.huang@mediatek.com>
-
+Thanks,
+-Mukesh
 
 
