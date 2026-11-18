@@ -2,60 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B784606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596B7606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4DIMsE7q;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=NzqAERMn;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=Np15XjIh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bgCEyOBh;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=T4GEtQyn;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=nTtqyQ+t
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yuXnA40b2u+Mi2FzfkpuShKnyxfnwry4FJFmbbBdxUg=; b=4DIMsE7q/shOaw
-	C+H/O2HYP2tTHD2c8k/I1iGod+c5JhWt+u2okkW0CQQSDB68XqS3llvCvm/HcH2q7LvXd3+0N96z3
-	B5WaIQobvhgY4XxD9HFhHxNBN8wwmnbHZB9EdYI1e4VtT/k7art4O3DWJ56qNR+xNKGooUbWkcu/c
-	ayuW0bZXnlV+ZZi6FC5x4lDcfpVy6nQja3PpKAfmry+UOCZGgOxiI+CQ55qP20D2ssJVyDQgbLpGD
-	+aMY5Nf4qZBNP5OQOJByxlEQoULPSsVygJ9gUlzQ0480gKoBu6Z2YCjV6Nb9oGlGkQcJMHztvARX9
-	Ydc0z9d5910NUIm8eQ7g==;
+	List-Owner; bh=SujFBGnh6yTulhxhe+ai56SzIpUdalRGR1bKdRxm9dY=; b=bgCEyOBhtaxqt0
+	eBnqNvGxmLQKb236U13SAokIAlEMvmwTNs61Pr8auRK+syxBpk09LQ6slwzJQSDyulY5Lz9bAkW7r
+	Gr8gBubctWW/U2b3EHmMFvFKFA8sJSRPxaTFS36u74V0z3oM7k3C84fxWRI6EO4k7auiWCkmQSd3N
+	Z7qcz5Ciwh3yEtUV0tD75x8QlWRR0Cm70KAc0o6hjUWTQc6ea7SjuqDKFMYOC6kUVjwEqMClS8gSV
+	kHC1dhqVkfKwG2Z8IVpQe7pkQAQEbvEvj7qTfsyJ58+7w4F7pBOa2ZYzJIUa9ypw+MDBt1PknbaFu
+	wiv3KITQkKkJoBMAdFNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRe-00000009EZQ-2h3f;
-	Wed, 18 Nov 2026 15:19:34 +0000
+	id 1xThSE-00000009F6a-1nUY;
+	Wed, 18 Nov 2026 15:20:10 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRW-00000009EQV-427e
+	id 1xThRr-00000009EnH-1Oi9
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 18 Nov 2026 15:19:27 +0000
+	Wed, 18 Nov 2026 15:19:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=yuXnA40b2u+Mi2FzfkpuShKnyxfnwry4FJFmbbBdxUg=; b=NzqAERMnbXBdiuOtzbViMJLNKQ
-	iNYBdUcx3a7FnQB5vepSF0bFpXE8B5l3pcam+81KvUKXZpD3zffiFiaJVNhoi7bOU8GeNpC1LahNB
-	OubyTEazueLas7UebDwH6mfkLGafKYCpGusad27LScYONhSqDLrKEeN26MahvLgYG5dh7PH1rmNfF
-	WCD4cAFx+gKjVyBYnWBpNLSt3vbrdTtNzHpFhnW42lC+CTSpagr9n7c3NMq3S428SEIuMnZzcmG2L
-	wy+sdB/UZK/FXqb4/HruY+hesHtTTEnpp7L7orEAJsDQnyPI00vfjBfEzLdVVlTcy9HsUss1hQbo0
-	tlMvndMw==;
-Received: from out-197.mta1.migadu.com ([95.215.58.197] helo=mta1.migadu.com)
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=SujFBGnh6yTulhxhe+ai56SzIpUdalRGR1bKdRxm9dY=; b=T4GEtQynR4H2oKj5yJB9dsqLMU
+	/u8ZWj9V1Y3qpmyM4xheZOrV41Lehb0vvab4W5fSTfdQJbsu2tw/p2ZtvrJCQYEL6LdAWT+1vyeWT
+	IIYx/8PVYLv5SJyH+EaGh8+YGfwAFC/fHC1WaCOxfMVeZyaLJfGS40U+0BEwuniSfHsZyCOtTorqy
+	tiCvwG0u7rkkNuhTy2Z753n5EpJMmjbopURhwhTBkDEmRv/ZLE+MvCVql1EWrhKJwIm2SAeaVX5ID
+	p+y6psOyjqltzwFR7n/KjuSXkSAcHrRDA962CglhVx96cPEPrrXgxYGHeJ/YYYpYEnJLdscJz19U/
+	+VVfJ9VA==;
+Received: from out-1.mta1.migadu.com ([95.215.58.1] helo=mta1.migadu.com)
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRT-0000000GC3l-15h1
+	id 1xThRm-0000000GC8c-0Vme
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:19:25 +0000
+	Wed, 18 Nov 2026 15:19:44 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=Pp1GfdczrRGPwsK1fk1F5//bwoV0T9EmPdenf1KqcJ4=;
+DKIM-Signature: a=rsa-sha256; bh=LaHx7qcqjbwEKcmj0Cj8QcEXuKFYCBuqRrKkPXxYHjQ=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795015158; v=1; x=1795619958;
- b=Np15XjIhSULCAgrWxl0i8TAV0k8wHgKKcfiG4D7/Iz6wsLAe71TrDxpWYfmrypUd+Rx/8UsE
- yugWieuAQux5T2QhWr1yry/+iDpamQz0bg4WqWmvpZ7plD5XpzQimEXazi/zOo0UDnVY2PXxxMS
- gyY5slccec7uArkFWiBRfpA8=
+ t=1795015180; v=1; x=1795619980;
+ b=nTtqyQ+tY34a17lqzHxa4NvK/WH2RL9iNEMV9574d37qvkRmAhpvU+1N5oZCWnzak9prDmLE
+ NX+Z7ct8eSllzk/mRLA9CdW+nL5PeUvkQJI76iTOsGUAMOeNs+Ik0FynDAH9fGYjkR5xG9hmhY3
+ 5ab/P81YhtRlL3G6D1a36Xuk=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id c7201d5f7500edcc;
-	Wed, 18 Nov 2026 15:19:17 +0000
-X-Mizu-Trace-ID: c7201d5f7500edcc
+Received: by smtp.migadu.com with ESMTPS id e544babb2f80ab37;
+	Wed, 18 Nov 2026 15:19:40 +0000
+X-Mizu-Trace-ID: e544babb2f80ab37
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -81,19 +81,18 @@ Cc: Will Deacon <will@kernel.org>,
 	kvmarm@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 03/13] irqchip/gic-v3: Disable GICv4 features in pKVM
-Date: Wed, 18 Nov 2026 15:18:54 +0000
-Message-ID: <20261118151904.4099560-4-fuad.tabba@linux.dev>
+Subject: [PATCH v4 07/13] KVM: arm64: Deprivilege the host under stop_machine()
+Date: Wed, 18 Nov 2026 15:18:58 +0000
+Message-ID: <20261118151904.4099560-8-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261118151904.4099560-1-fuad.tabba@linux.dev>
 References: <20261118151904.4099560-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_151923_495946_BB791B8F 
-X-CRM114-Status: GOOD (  17.39  )
+X-CRM114-CacheID: sfid-20261118_151942_020389_2D3C9914 
+X-CRM114-Status: GOOD (  14.79  )
 X-Spam-Score: -0.9 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,109 +112,63 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Bartłomiej Grzesik <bgrzesik@google.com>
+pkvm_drop_host_privileges() installs the host stage 2 with
+on_each_cpu(), and each CPU goes back to running the host as soon as its
+own __pkvm_prot_finalize() returns. That doesn't work for the ITS
+takeover that a subsequent patch adds here. The other CPUs must not post
+ITS commands while the driver switches to its copy of the command queue,
+and a takeover that fails has to leave every CPU privileged.
 
-In subsequent patches the hypervisor takes the ITS from the host and
-checks each command the host queues. Those patches don't emulate the
-vLPI commands, as VMAPP's VPT_base, for one, is a host-chosen address
-the ITS and the redistributors write to.
+Finalise from a stop_machine() callback instead, so that the takeover
+can run with the other CPUs stopped and before any CPU is finalised. An
+error from any CPU is still returned to finalize_pkvm().
 
-Clear has_vlpis and has_rvpeid at redistributor probe in protected mode,
-so the host never issues a vLPI command, and print that GICv4 is off.
-The host loses GICv4 direct injection for its non-protected guests, a
-feature that's off unless kvm-arm.vgic_v4_enable is set. A guest
-migrated from a host with GICD_TYPER2.nASSGIcap set can't be restored
-either, as KVM rejects that GICD_TYPER2 value without GICv4.1. Document
-the loss of direct injection in kernel-parameters.txt.
-
-Add gic_is_protected_kvm() to irq-gic-common.h to test for protected
-mode, as the ITS driver uses it too from the next patch on. It calls
-kvm_get_mode(), so the header now includes linux/kvm_host.h.
-
-Signed-off-by: Bartłomiej Grzesik <bgrzesik@google.com>
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- Documentation/admin-guide/kernel-parameters.txt |  8 +++++---
- drivers/irqchip/irq-gic-common.h                | 13 +++++++++++++
- drivers/irqchip/irq-gic-v3.c                    |  8 ++++++++
- 3 files changed, 26 insertions(+), 3 deletions(-)
+ arch/arm64/kvm/pkvm.c | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index 0b3c140babd94..3e63e44609522 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -3275,8 +3275,9 @@ Kernel parameters
- 				hardware (with FEAT_NV2).
+diff --git a/arch/arm64/kvm/pkvm.c b/arch/arm64/kvm/pkvm.c
+index 016997288fd23..16dfb249b4961 100644
+--- a/arch/arm64/kvm/pkvm.c
++++ b/arch/arm64/kvm/pkvm.c
+@@ -11,6 +11,7 @@
+ #include <asm/kvm_mmu.h>
+ #include <linux/memblock.h>
+ #include <linux/mutex.h>
++#include <linux/stop_machine.h>
  
- 			Defaults to VHE/nVHE based on hardware support. Setting
--			mode to "protected" will disable kexec and hibernation
--			for the host. To force nVHE on VHE hardware, add
-+			mode to "protected" will disable kexec, hibernation and
-+			GICv4 direct LPI injection for the host. To force nVHE
-+			on VHE hardware, add
- 			"arm64_sw.hvhe=0 id_aa64mmfr1.vh=0" to the
- 			command-line.
- 			"nested" and "protected" are experimental and should be
-@@ -3296,7 +3297,8 @@ Kernel parameters
+ #include <asm/kvm_pkvm.h>
  
- 	kvm-arm.vgic_v4_enable=
- 			[KVM,ARM,EARLY] Allow use of GICv4 for direct
--			injection of LPIs.
-+			injection of LPIs. Has no effect when
-+			kvm-arm.mode=protected.
+@@ -312,25 +313,19 @@ int pkvm_init_host_vm(struct kvm *kvm)
+ 	return 0;
+ }
  
- 	kvm-arm.wfe_trap_policy=
- 			[KVM,ARM] Control when to set WFE instruction trap for
-diff --git a/drivers/irqchip/irq-gic-common.h b/drivers/irqchip/irq-gic-common.h
-index 710cab61d9195..3ce1dc7abf648 100644
---- a/drivers/irqchip/irq-gic-common.h
-+++ b/drivers/irqchip/irq-gic-common.h
-@@ -10,6 +10,9 @@
- #include <linux/irqdomain.h>
- #include <linux/msi.h>
- #include <linux/irqchip/arm-gic-common.h>
-+#ifdef CONFIG_ARM64
-+#include <linux/kvm_host.h>
-+#endif
+-static void __init _kvm_host_prot_finalize(void *arg)
++static int __init __pkvm_drop_host_privileges(void *arg)
+ {
+-	int *err = arg;
+-
+-	if (WARN_ON(kvm_call_hyp_nvhe(__pkvm_prot_finalize)))
+-		WRITE_ONCE(*err, -EINVAL);
++	return WARN_ON(kvm_call_hyp_nvhe(__pkvm_prot_finalize)) ? -EINVAL : 0;
+ }
  
- struct gic_quirk {
- 	const char *desc;
-@@ -29,6 +32,16 @@ void gic_enable_quirks(u32 iidr, const struct gic_quirk *quirks,
- void gic_enable_of_quirks(const struct device_node *np,
- 			  const struct gic_quirk *quirks, void *data);
+ static int __init pkvm_drop_host_privileges(void)
+ {
+-	int ret = 0;
+-
+ 	/*
+ 	 * Flip the static key upfront as that may no longer be possible
+ 	 * once the host stage 2 is installed.
+ 	 */
+ 	static_branch_enable(&kvm_protected_mode_initialized);
+-	on_each_cpu(_kvm_host_prot_finalize, &ret, 1);
+-	return ret;
++	return stop_machine(__pkvm_drop_host_privileges, NULL, cpu_online_mask);
+ }
  
-+#ifdef CONFIG_ARM64
-+/* is_protected_kvm_enabled() can't be used, as the GIC probes before the cpucaps are final. */
-+static inline bool gic_is_protected_kvm(void)
-+{
-+	return kvm_get_mode() == KVM_MODE_PROTECTED;
-+}
-+#else
-+static inline bool gic_is_protected_kvm(void) { return false; }
-+#endif
-+
- #define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING    (1 << 0)
- #define RDIST_FLAGS_RD_TABLES_PREALLOCATED     (1 << 1)
- #define RDIST_FLAGS_FORCE_NON_SHAREABLE        (1 << 2)
-diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
-index 94873646d46fb..f02c568d95653 100644
---- a/drivers/irqchip/irq-gic-v3.c
-+++ b/drivers/irqchip/irq-gic-v3.c
-@@ -1123,6 +1123,14 @@ static void gic_update_rdist_properties(void)
- 	gic_iterate_rdists(__gic_update_rdist_properties);
- 	if (WARN_ON(gic_data.ppi_nr == UINT_MAX))
- 		gic_data.ppi_nr = 0;
-+
-+	/* pKVM doesn't emulate the vLPI commands. */
-+	if (gic_is_protected_kvm() && gic_data.rdists.has_vlpis) {
-+		pr_info("GICv4 features disabled in protected KVM mode\n");
-+		gic_data.rdists.has_vlpis = false;
-+		gic_data.rdists.has_rvpeid = false;
-+	}
-+
- 	pr_info("GICv3 features: %d PPIs%s%s\n",
- 		gic_data.ppi_nr,
- 		gic_data.has_rss ? ", RSS" : "",
+ static void __init pkvm_selftests(void)
 -- 
 2.47.3
 
