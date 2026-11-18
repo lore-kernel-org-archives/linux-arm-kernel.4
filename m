@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3984660A263B
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA8C60A2623
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V2Q2KrNR;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=F98UCwi9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sFgrX1jD;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=YSuRmTo6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5fkeFCaDG41DZYF7IvV8UUkr7pM8RaBUzj0UR3hY470=; b=V2Q2KrNRdNozAl
-	HZRYgfvVJX9VyTOdVICX3QgiXp1Dgqi7hvm7vgRQjUH0eRncr1cva70wTKm/280Our/bzNp31AayG
-	dJiEfVyZ45GGul/m4JOX1jdLIZPB5R3rUuvPPyT5fI7E7/xe599Z0sKkkU0mNXMpy7dUkzmfvA2WF
-	nkQaHireUyHG86Ju/TL9Y1htu9KP4GHygrpRw8czJMxvwmMqvs2qLdJKhHNdaKdA8fw6pGzxkuVRq
-	CfqMJHG4FBUw9BAAj+Vm2XhMd07IPQS/jBqCFx/wwgnx/kx6nOG2O8rfEY10FDxpDFsL3P3Ry07G8
-	tFQYleYR7rEC1WI76ioQ==;
+	List-Owner; bh=76aqbnqCYQ7fdmyHaSUxIGlKFS3LT6cSMcAAza6UkNU=; b=sFgrX1jDNe39Mh
+	mXaqxubwXVDFYh90uJr/duJtJQmSorsTsxhW5YZHYxEuAbDyh1vcQsQ/IZwTr1lQSsj+xloTI01Df
+	olGsyw7tphq9HrYwRGi+3RsuSOIvI3z+oyZ0GA00WWW0ssLP6+XvtU747iDAquerJEX8dgCg+eFSZ
+	A1ZO6W5Z33HyP7Sp70PCy0K3QHNkavV4ImXAhZXor51Z4vi3m73IRLup+z+w2EQZESkmD6euj579x
+	CnRFR+r0YTskWH92Rfs9LB5g6gXkzqXql+5/Ez5sATjRYuwUZmwFtmCElN6GR8e83icfsxo3xv1p4
+	GjyZ/rnzr6Bb44wjy+dQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjZq-00000009mgc-40LM;
+	id 1xTjZq-00000009mg2-3EQ1;
 	Wed, 18 Nov 2026 17:36:10 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjZi-00000009mbY-1X2K
+	id 1xTjZf-00000009mab-3eHr
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 17:36:03 +0000
+	Wed, 18 Nov 2026 17:36:01 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8516D1596;
-	Wed, 18 Nov 2026 09:35:58 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E4E41477;
+	Wed, 18 Nov 2026 09:35:56 -0800 (PST)
 Received: from e133894.arm.com (e133894.arm.com [10.2.80.62])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C37F23F632;
-	Wed, 18 Nov 2026 09:35:59 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BDB703F632;
+	Wed, 18 Nov 2026 09:35:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795023361; bh=40kNhZdUlRxGoDSPD1exXdec4Ru2AT99R7S68imoT9I=;
+	t=1795023359; bh=GVQ+fg1ZPd0l/66YV1Ea5qwjVqwbzbn++yGuNHOoox4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=F98UCwi9GcfyhsAfsZmrYLeyUHQ8S69KHl7noWpv8Kw/2DpQ8G87TCrGWROF4i7Xt
-	 iYrGehei+uAj2snutjWxOjcB/j7ZEhqc/EXGuU87RZzffKa9CgAtnEF9MI4j2RX3Rz
-	 oOHmdZ5NPkBll0aglvD1ODL0e9DsVnfGW5R8XAsk=
+	b=YSuRmTo6m+dImS5Nu39p3/uZrEB8kUlqtAYoU1+FO/cf/GD0UGOD0NpxACfkZKLPX
+	 9Y+u0eGijT/+aR/2bMuxFuWaRQxxHoBNpp+O5DVmcT9GiZFKCHCvrkIZwbdcNvAH3v
+	 aaB+FmLEoDB1PlZgJ4MqFaBa/2v03dq1Ch7lMcAs=
 From: Sascha Bischoff <sascha.bischoff@arm.com>
-Date: Wed, 18 Nov 2026 17:35:33 +0000
-Subject: [PATCH v3 04/14] irqchip/gic-v5: Retain the L2 IST when mapping
- times out
+Date: Wed, 18 Nov 2026 17:35:32 +0000
+Subject: [PATCH v3 03/14] irqchip/gic-v5: Serialise IRS synchronisation
+ requests
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-host_gicv5_fixes-v3-4-13c1859e8aa3@arm.com>
+Message-Id: <20261118-host_gicv5_fixes-v3-3-13c1859e8aa3@arm.com>
 References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
 In-Reply-To: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
 To: Marc Zyngier <maz@kernel.org>, 
@@ -63,8 +63,8 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Sascha Bischoff <sascha.bischoff@arm.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_093602_469195_93B6008C 
-X-CRM114-Status: GOOD (  12.79  )
+X-CRM114-CacheID: sfid-20261118_093559_952417_1C8D7E51 
+X-CRM114-Status: GOOD (  10.20  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,58 +84,58 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If the IDLE poll after IRS_MAP_L2_ISTR times out, the mapping
-operation has not been cancelled and could arguably still happen at a
-later stage. Clearing the L1 entry and freeing the L2 IST can
-therefore race with hardware completing the map and accessing the
-freed table.
+IRS_SYNCR writes are ignored while IRS_SYNC_STATUSR.IDLE is clear.
+Concurrent calls to gicv5_irs_syncr() can overlap, causing a request
+to be dropped. A caller can then observe the earlier request
+completing and assume that its own events have been processed.
 
-Retain the L1 entry and L2 IST on failure. Reject a subsequent
-allocation that finds a nonzero but invalid L1 entry, so it cannot
-overwrite the entry while the earlier mapping may still be
-pending. Mark the retained table as intentional for kmemleak on both
-success and failure.
+gicv5_irs_syncr() may need to be called in atomic context. Serialise
+the request and completion poll with a raw spinlock, and use atomic
+polling.
 
-Fixes: 0f01013258768 ("irqchip/gic-v5: Add GICv5 LPI/IPI support")
-Reported-by: Fuad Tabba <fuad.tabba@linux.dev>
+Fixes: 57d72196dfc8 ("irqchip/gic-v5: Add GICv5 ITS support")
 Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
-Link: https://lore.kernel.org/r/20261112145814.853424-1-fuad.tabba@linux.dev
+Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: stable@vger.kernel.org
 ---
- drivers/irqchip/irq-gic-v5-irs.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+ drivers/irqchip/irq-gic-v5-irs.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
-index ead76560ea08f..78deb46baa784 100644
+index 4edf787f3f97f..ead76560ea08f 100644
 --- a/drivers/irqchip/irq-gic-v5-irs.c
 +++ b/drivers/irqchip/irq-gic-v5-irs.c
-@@ -217,6 +217,10 @@ int gicv5_irs_iste_alloc(const u32 lpi)
- 	if (FIELD_GET(GICV5_ISTL1E_VALID, le64_to_cpu(l1ist[index])))
- 		return 0;
+@@ -10,6 +10,7 @@
+ #include <linux/log2.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
++#include <linux/spinlock.h>
  
-+	/* A previous map timed out; do not overwrite its pending L1 entry. */
-+	if (READ_ONCE(l1ist[index]))
-+		return -EBUSY;
-+
- 	l2ist = kzalloc(l2size, GFP_KERNEL);
- 	if (!l2ist)
- 		return -ENOMEM;
-@@ -235,13 +239,11 @@ int gicv5_irs_iste_alloc(const u32 lpi)
- 	l2istr = FIELD_PREP(GICV5_IRS_MAP_L2_ISTR_ID, lpi);
- 	irs_writel_relaxed(irs_data, l2istr, GICV5_IRS_MAP_L2_ISTR);
+ #include <linux/irqchip.h>
+ #include <linux/irqchip/arm-gic-v5.h>
+@@ -22,6 +23,8 @@
+ #define LPI_ID_BITS_LINEAR		12
  
-+	/* The map cannot be cancelled, so retain the table even on timeout. */
-+	kmemleak_ignore(l2ist);
- 	ret = gicv5_irs_ist_synchronise(irs_data);
--	if (ret) {
--		l1ist[index] = 0;
--		kfree(l2ist);
-+	if (ret)
- 		return ret;
--	}
--	kmemleak_ignore(l2ist);
+ static DEFINE_PER_CPU_READ_MOSTLY(struct gicv5_irs_chip_data *, per_cpu_irs_data);
++/* Synchronization requests must not overlap in an IRS Domain. */
++static DEFINE_RAW_SPINLOCK(irs_sync_lock);
+ static LIST_HEAD(irs_nodes);
  
- 	/*
- 	 * Make sure we invalidate the cache line pulled before the IRS
+ static u32 irs_readl_relaxed(struct gicv5_irs_chip_data *irs_data,
+@@ -507,10 +510,11 @@ void gicv5_irs_syncr(void)
+ 		return;
+ 
+ 	syncr = FIELD_PREP(GICV5_IRS_SYNCR_SYNC, 1);
++	guard(raw_spinlock_irqsave)(&irs_sync_lock);
+ 	irs_writel_relaxed(irs_data, syncr, GICV5_IRS_SYNCR);
+ 
+-	gicv5_wait_for_op(irs_data->irs_base, GICV5_IRS_SYNC_STATUSR,
+-			  GICV5_IRS_SYNC_STATUSR_IDLE);
++	gicv5_wait_for_op_atomic(irs_data->irs_base, GICV5_IRS_SYNC_STATUSR,
++				 GICV5_IRS_SYNC_STATUSR_IDLE, NULL);
+ }
+ 
+ int gicv5_irs_register_cpu(int cpuid)
 
 -- 
 2.34.1
