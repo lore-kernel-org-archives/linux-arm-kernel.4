@@ -2,72 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28A0606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 09:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A302F606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 09:51:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XHm5oV6Z;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=SD/4ffKk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zVmGPzHQ;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=i0Q0+vah
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/PG22HUnpipGjaN800i0S6Qg/5eh4aaNl1rldurwMEw=; b=XHm5oV6ZRnMCxS
-	EeaB87cXgdxXNtf/r5UDIDDXUW6nY5UeNO0nz/BnNDpDhrbURwKjbpAWC6icuiNb3xtTAhYVBfQbp
-	Q0RqhhzNo/fxgq7QHAfrp9EGvojDLCnNBpj0VWkNAvhWMtqUpD2/8WmyYVsKn1ooqO/SqRJih4vpd
-	BL47A+dFIOBrz52dM4MPpVuAENraojtua5SsZVpcG3aHQ2Q+qPG7Q6Y1Kf1eHfn5l795/F2ZwTyU7
-	yaVEcmORqCqVgyiozEXDT7zXcaSIEABZBJSzQUwESbYSr/Mx3zCW/0qIrqIZkK7W/C5c4QkGpCNQd
-	84pYInhg+RiqUmAgqShg==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=bd8Cnycxgyr/ojYs5MysmoTkBj0fIEXfTZ9x/S6rg5o=; b=zVmGPzHQsV82UuGZXkEUX6r2x4
+	WOD6i1p4HUwZJRhFuIn+nzG3rSfzvbx8Eemgjnc+DIa9oDTtj2U9vtgV7mn7abMRrsRnQnE8TXHvv
+	0oVA5t1FW/r64/WYhjl8b07OR3bV3CDSF5SZEUNgbGWzdycylZFoXJICN5Y3UBh42OeUPd9puxRwE
+	bZAq5L0Az/OqaQHkeMpYa9hpYQlP8q7fNDWT3xopBFRA9sC0LNinsewe3mupdiFWh77HY75Dr6A/5
+	pbHrXhDIXPCDNK+O9OH5nOUqDJkpCwJoe7i6sVaJylZVJIc3W/exPYYpbtq7lyirPp4KX8RaMAEOp
+	vvZKhPkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTcHH-00000008QiB-3Tna;
-	Wed, 18 Nov 2026 09:48:31 +0000
-Received: from mail-m12868.netease.com ([103.209.128.68])
+	id 1xTcKK-00000008R3g-1rcn;
+	Wed, 18 Nov 2026 09:51:40 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTcHF-00000008Qh3-0k1Z;
-	Wed, 18 Nov 2026 09:48:31 +0000
-Received: from [172.16.12.74] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5520d7b24;
-	Wed, 18 Nov 2026 17:48:24 +0800 (GMT+08:00)
-Message-ID: <abc2d0e2-521c-4ae8-8a8b-e41c8f2bc482@rock-chips.com>
-Date: Wed, 18 Nov 2026 17:48:23 +0800
+	id 1xTcKI-00000008R32-12BY;
+	Wed, 18 Nov 2026 09:51:39 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AI9k3xL3353922;
+	Wed, 18 Nov 2026 09:51:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=bd8Cnycxgyr/ojYs5MysmoTkBj0fIEXfTZ9
+	x/S6rg5o=; b=i0Q0+vahXLEPMFPkBFgljkZ1aLVVlGcHx3l99MNj8vAgO55EDu1
+	0b9SqvmwyJ9ic0+M/MASq3DArIve3mYuQYs34CO9+z7/uRQPZWixMzarRMCiwAVS
+	PpYC3pdRA7hG0TnQm7lC4MTJQhFpBiPIfz5GAU/o4zMNovOVGEB8qyDxSura64FC
+	l9/ajri4XlVatmVsxDxAvAUzuKTxlnmmIT+xK1u+YZEWasXk/cwKR0Hw9ELca++j
+	j1BwpTxTgeZt9NO6cCJ1BKTNqJdUmgJu4AazTdYudqUyNPo+HfV/txvjgiaS3SkK
+	Ou6TTElXcBbHsC3GN+6ztvZ2KouWEH8gvcQ==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j0yvateaq-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 18 Nov 2026 09:51:06 +0000 (GMT)
+Received: from pps.filterd (apblrppmta02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AI9p3Gn375487;
+	Wed, 18 Nov 2026 09:51:03 GMT
+Received: from hu-devc-blr-u24-a.qualcomm.com (hu-vikrsi-blr.qualcomm.com [10.190.111.249])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 6AI9p35w375477
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 18 Nov 2026 09:51:03 +0000 (GMT)
+Received: by hu-devc-blr-u24-a.qualcomm.com (Postfix, from userid 4853235)
+	id B62A624881; Wed, 18 Nov 2026 15:21:02 +0530 (+0530)
+From: Vikram Singh <vikram.singh3@oss.qualcomm.com>
+To: peterz@infradead.org, mingo@redhat.com, acme@kernel.org,
+        namhyung@kernel.org, mark.rutland@arm.com,
+        alexander.shishkin@linux.intel.com, jolsa@kernel.org,
+        irogers@google.com, adrian.hunter@intel.com, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+        atishp@rivosinc.com, anup.patel@oss.qualcomm.com, will@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        beeman@rivosinc.com
+Cc: Vikram Singh <vikram.singh3@oss.qualcomm.com>,
+        linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v5 0/7] riscv: pmu: Add support for Control Transfer Records Ext.
+Date: Wed, 18 Nov 2026 15:20:46 +0530
+Message-ID: <20261118095053.3871267-1-vikram.singh3@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/8] drm/rockchip: vop2: Fix the HDMI sync polarity bit
- order on RK3588
-To: aiyengar1990@gmail.com, Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan
- <andyshrk@163.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Piotr Zalewski <pZ010001011111@proton.me>,
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261113-vop2-fixes-v3-0-08ae37e83b5c@gmail.com>
- <20261113-vop2-fixes-v3-4-08ae37e83b5c@gmail.com>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <20261113-vop2-fixes-v3-4-08ae37e83b5c@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa1ee0eb96103a8kunmdffd083c34ef57
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaSUNJVkhDSk5CTU1KSE0dHlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=SD/4ffKkoOL31/82SahftnhWFXNBC2jzLaHRzM6GbsP7Hbz3SM51Nc/ri1edybUEcvBM1vA6QZGVF2GKQEQxxlf/94JzVNKPVwCz54XpfMjMuHYMB7p5dV1v6A1h3RsDGFwHhPp1FIvUv9mwhNUdb1w6+7TO8NXhAb4sKHf6wsY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=/PG22HUnpipGjaN800i0S6Qg/5eh4aaNl1rldurwMEw=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Authority-Analysis: v=2.4 cv=SMzXx+vH c=1 sm=1 tr=0 ts=6afd750a cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=yOCtJkima9RkubShWh1s:22 a=xvfqbYfxAAAA:20 a=O76HWA22AAAA:20
+ a=VwQbUJbxAAAA:8 a=h0uksLzaAAAA:8 a=NEAV23lmAAAA:8 a=JfrnYn6hAAAA:8
+ a=20KFwNOVAAAA:8 a=7CQSdrXTAAAA:8 a=QyXUC8HyAAAA:8 a=1XWaLZrsAAAA:8
+ a=pFyQfRViAAAA:8 a=_O3DOGVWAAAA:8 a=EUspDBNiAAAA:8 a=Epjr2bh0dWxRFF0fu90A:9
+ a=MSi_79tMYmZZG2gvAgS0:22 a=1CNFftbPRP8L7MoqJWF3:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+ a=oJz5jJLG1JtSoe7EL652:22 a=2TKV-7w1aU1AVAwN0oqT:22 a=bA3UWDv6hWIuX7UZL3qL:22
+X-Proofpoint-GUID: vH15hF1coqHfeu1IT8UqIny5nynf735H
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDAzOSBTYWx0ZWRfX/X3bV1lru355
+ 9tC/vs2FhX7+bXPuXptsLYDQi7K83t0UIRq2wnwKoWdysqht99gzyK0lez+0N/hQVpoNjvvQ55g
+ KkvDMvw1MGB8YObUUAz9DzBOzQAtZxYFiVzB10lOlIO/iuYJXtUarkzuUfoqzeNTcZfOHfI+PJu
+ grPEKPdjjyhcAkBYr0A41WJYmFEkMz4X4qQD2JL3X5GpHvxKg2mcni//U1K84HBtCYp2cRYGSct
+ cvSu5WuYS8ZKs2R3TvUzU0oJBGdEGJngpIAmUN40p71di+di472wx+8OFu3UeGZfCH6WAyqIwzH
+ QaENYrW1FmaCCS9llUfohpmK+jMbPi7EAJezsxukiEfBfpytP2nJp47c6NitEfLyGWmy5qzV+ss
+ Itakfe6Hcv5VLMGtjdj72UCJSy9yePjokFy4TX4nsquoCzQw/Cb8NcFrjFRE3stLJUgehdwYv5D
+ d+QZj3aHDNwUaDBqnAw==
+X-Proofpoint-ORIG-GUID: vH15hF1coqHfeu1IT8UqIny5nynf735H
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDAzOSBTYWx0ZWRfX+gIjO3f4yV1h
+ vK8U8oBbsvrbhICNQFB0ekStS5cC7ijLKmc1uwVKx2bcNnIiVm/Cka5EnoDizPk8jhqCTPY+x7T
+ dwA4euVs/13JbxM9t/G7hyPNfBfbk1Y=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-18_02,2026-11-16_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0 lowpriorityscore=0 impostorscore=0 phishscore=0
+ priorityscore=1501 suspectscore=0 bulkscore=0 adultscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611180039
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_014829_815051_3CB89806 
-X-CRM114-Status: GOOD (  16.24  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_015138_290104_0DB39663 
+X-CRM114-Status: GOOD (  23.64  )
+X-Spam-Score: -2.7 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,66 +120,123 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Arun,
+his series enables Control Transfer Records extension support on riscv
+architecture. This extension is similar to Arch LBR in x86 and BRBE in ARM.
+The Extension has been ratified and latest release can be found here [0]
 
-On 11/14/2026 12:39 AM, Arun Iyengar via B4 Relay wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> In GRF_VO1_CON0 the HDMI vsync polarity bit comes before the hsync one
-> (bits 5 and 6 for HDMI0, 7 and 8 for HDMI1), but rk3588_get_hdmi_pol()
-> puts hsync first. Modes with mixed sync polarities go out with both
-> syncs inverted: the HDMI controller sees 1920x1080@144 +HSync -VSync
-> as -HSync +VSync in VIDEO_INTERFACE_STATUS0.
-> 
-> Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
->   drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> index 3e654cb99ddf..6d08988d7007 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> @@ -1683,13 +1683,13 @@ static u32 rk3588_get_mipi_port_mux(int vp_id)
->   		return 0;
->   }
->   
-> -/* The sync polarity bits in GRF_VO1_CON0 are set for a negative sync */
-> +/* GRF_VO1_CON0: vsync bit below the hsync bit, each set for a negative sync */
->   static u32 rk3588_get_hdmi_pol(u32 polflags)
->   {
->   	u32 val;
->   
-> -	val = (polflags & BIT(HSYNC_POSITIVE)) ? 0 : BIT(HSYNC_POSITIVE);
-> -	val |= (polflags & BIT(VSYNC_POSITIVE)) ? 0 : BIT(VSYNC_POSITIVE);
-> +	val = (polflags & BIT(VSYNC_POSITIVE)) ? 0 : BIT(0);
-> +	val |= (polflags & BIT(HSYNC_POSITIVE)) ? 0 : BIT(1);
->   
->   	return val;
->   }
-> 
+CTR extension depends on both the implementation of S-mode and Sscsrind
+extension v1.0.0 [1]. CTR access ctrsource, ctrtartget and ctrdata CSRs
+using sscsrind extension.
 
-Oh, this is a good catch. I verified the RK3588 HDMI sync polarity bits 
-are arranged differently from other interfaces.
+The series is based on Smcdeleg/Ssccfg counter delegation extension [2]
+patches [3]. CTR itself doesn't depend on counter delegation support. This
+rebase is basically to include the Smcsrind patches.
 
-Would it make sense to add two macros for these bits under 
-RK3588_GRF_VO1_CON0 in rockchip_drm_vop2.h:
+The last patch is in the perf tool to allow processing 256 entries. Without
+this perf seems to consider that sample as corrupted and discards it.
 
-#define RK3588_HDMI_VSYNC_INVERT	BIT(0)
-#define RK3588_HDMI_HSYNC_INVERT	BIT(1)
+Here is the link to a quick guide [4] to setup and run a basic perf demo on
+Linux to use CTR Ext.
 
-rather than using raw BIT(0) and BIT(1)?
+Qemu patches are merged upstream and is available with latest version.
 
-Best regards,
-Damon
+Opensbi patch is merged upstream and is available with latest version.
+
+[0]: https://github.com/riscv/riscv-control-transfer-records/releases/tag/v1.0
+[1]: https://github.com/riscvarchive/riscv-indirect-csr-access/releases/tag/v1.0.0
+[2]: https://github.com/riscvarchive/riscv-smcdeleg-ssccfg/releases/tag/v1.0.0
+[3]: https://lore.kernel.org/lkml/20250114-counter_delegation-v2-0-8ba74cdb851b@rivosinc.com/
+[4]: https://github.com/vikramsgh/riscv_linux_ctr_demo/wiki/Steps-to-run-basic-CTR-demo-on-RISCV-Virt
+
+To: Peter Zijlstra <peterz@infradead.org>
+To: Ingo Molnar <mingo@redhat.com>
+To: Arnaldo Carvalho de Melo <acme@kernel.org>
+To: Namhyung Kim <namhyung@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+To: Alexander Shishkin <alexander.shishkin@linux.intel.com>
+To: Jiri Olsa <jolsa@kernel.org>
+To: Ian Rogers <irogers@google.com>
+To: Adrian Hunter <adrian.hunter@intel.com>
+To: Paul Walmsley <paul.walmsley@sifive.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>
+To: Albert Ou <aou@eecs.berkeley.edu>
+To: Alexandre Ghiti <alex@ghiti.fr>
+To: Atish Kumar Patra <atishp@rivosinc.com>
+To: Anup Patel <anup.patel@oss.qualcomm.com>
+To: Will Deacon <will@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Beeman Strong <beeman@rivosinc.com>
+Cc: linux-perf-users@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-riscv@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org
+
+---
+Changelog:
+v5:
+- Rebased CTR driver and support files to Linux kernel version 7.4 RC3 
+
+v4:
+- Ported CTR driver and support files from kernel version 6.14 to kernel version 7.2
+- Added CSR indirect access header file to be used by CTR driver
+- Changes in sched_task call back signature to accomodate new kernel headers
+- Minor clean up
+
+v3:
+- Added missing To/Cc, especially devicetree@vger.kernel.org
+- Changed the commit description to better describe the need of
+  perf tool change that increases max sample size processing
+  capacity of remove_loops function.
+- Minor fixes found while doing a virtualization PoC.
+- Added the missing commit and repository information to dt-bindings,
+  indicating where the extension was ratified.
+
+v2
+- Added context save/restore support for tasks using CTR feature.
+- https://lore.kernel.org/lkml/20250116230955.867152-1-rkanwal@rivosinc.com/ 
+
+v1:
+- https://lore.kernel.org/lkml/20240529185337.182722-1-rkanwal@rivosinc.com/
+---
+
+Vikram Singh (7):
+  perf: Increase the maximum number of branches remove_loops() can
+    process.
+  riscv: pmu: Add Control transfer records CSR definations.
+  riscv: Add Control Transfer Records extension parsing
+  riscv: pmu: Add infrastructure for Control Transfer Record
+  riscv: pmu: Add driver for Control Transfer Records Ext
+  riscv: pmu: Integrate CTR Ext support in riscv_pmu_dev driver
+  dt-bindings: riscv: add Sxctr ISA extension description
+
+ .../devicetree/bindings/riscv/extensions.yaml |  29 +
+ MAINTAINERS                                   |   3 +
+ arch/riscv/include/asm/csr.h                  |  95 +++
+ arch/riscv/include/asm/hwcap.h                |   6 +
+ arch/riscv/kernel/cpufeature.c                |   2 +
+ drivers/perf/Kconfig                          |  16 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/riscv_ctr.c                      | 609 ++++++++++++++++++
+ drivers/perf/riscv_pmu.c                      |  21 +-
+ drivers/perf/riscv_pmu_legacy.c               |   2 +
+ drivers/perf/riscv_pmu_sbi.c                  |  87 ++-
+ include/linux/perf/riscv_pmu.h                |  59 +-
+ tools/perf/util/machine.c                     |  21 +-
+ 13 files changed, 939 insertions(+), 12 deletions(-)
+ create mode 100644 drivers/perf/riscv_ctr.c
+
+-- 
+2.43.0
 
 
