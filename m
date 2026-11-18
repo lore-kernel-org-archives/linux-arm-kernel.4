@@ -2,97 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B748606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 10:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C40606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 10:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CRCG3+J+;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dprufoQW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HJUeXYJ4;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kPUDmeEJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=urL0eMB5iRPIEjTLq6WXSe5g/qGCtlbh75jFBqhB950=; b=CRCG3+J+ex1wZp
-	KWmQk4ssZomCQ8D6rz++POK0Rbyc1OJUGu8ydoNqkjSJA//FqlDwf2i4pI3YkAbA7lxJGKsxippca
-	Hciso8N1SIx7afUC4evfvfoyUrh5aGK9FgP4la7qC3bQiAAfAwqkzGDTN2SQdIZuBL5Hr/RHFd4XB
-	fEP98PPWuDfMja95sfEWkruou4DyrozVkeLfBvoLFROHTc29NqO9JAv0UA9uXmlciQYw+qekoHZBv
-	GSfM8ieJju6n4oVScRDmlHxJuyl8v4cZNqO792CxPm0DGjN8pVD81qFjasjHJBP6Adf+d6lxdYgra
-	FibXVBy3GdPgdoDEyuxg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=K7KquJB0iAeuldcjDbnxEMbU3cJg6vn2vioTN0svKlk=; b=HJUeXYJ4RzHc1T4JUfWTIz1rYt
+	rMC0XAihnELIo14tlKAhG+4XrutnbYQwRH09aGEtQWbI++L/pnSENZbLdlgFdaQiirw2WnHf63WTa
+	iClIUG60oXQd4UbL4FMEE1Hbyh9YAgjtKEwIyokPdlDZtH/9E9r5bk5pDHgW+q1URPxDuXa7htDLa
+	5gdTfkHxT44VNPK/IKR2kCUWqPk41rkuO6vViInJzfSZbaYLtUUL/z7gybsCu8qGtvS/3A66R4IW1
+	GmgqxQW1SY6z0OTBcSEN0Y0KMUIhxiAh+ze2UGXdmehZwg/Px7N+1UjIoUGeUjPitmSAnPevl32it
+	1ytQCjYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTceN-00000008Wje-0OuG;
-	Wed, 18 Nov 2026 10:12:23 +0000
-Received: from mail-ej2-x05.google.com ([2a00:1450:4864:34::5])
+	id 1xTcfT-00000008X8L-27BM;
+	Wed, 18 Nov 2026 10:13:31 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTceG-00000008WhO-3adj
+	id 1xTcfS-00000008X8D-2qO5
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 10:12:18 +0000
-Received: by mail-ej2-x05.google.com with SMTP id a640c23a62f3a-c5119f642fdso22601366b.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 02:12:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794996735; x=1795601535; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=urL0eMB5iRPIEjTLq6WXSe5g/qGCtlbh75jFBqhB950=;
-        b=dprufoQWx030M23bfCbU3zu1sVaECNVLTTXuXaiEZuPuBXeLR7PGtCK1kPGgenEcb6
-         FKC1cMc5F33xWdtLNqhO01RQZxvNYTL8R8UvuXXy6HYrfojNoaelcdoml4dWvx7hFqrJ
-         w773rzk+aX+1XM9e2WpoXe0AZi/2xbGj3Qfr9/PGLOwpDv8dedu4Zd66S0TY0czarbhr
-         XK27C9IulyRwRq9z0Bm4O5ddN9P+BveIqXTqzcWnoCjbmRrUajBxT2rRvFSogsgr++2g
-         aSzcOb42dU1yZLkXAkjNmxtI02qqQqHJVGrxdMg1qILucDp4PmzuIrbIvIF5CcCz/uTv
-         7OYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794996735; x=1795601535;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=urL0eMB5iRPIEjTLq6WXSe5g/qGCtlbh75jFBqhB950=;
-        b=KSyMSJgUT4UdN42VdmLBxjH3vwfg6R4b40/lYzx9yTPja12+aiPYnX8rKm0UA6J6Jy
-         IFiN2aGrItlZNaZ2+oxE6/xkpF+X1ImERXeXyl+4pkVF/ylQtIJsRDQNyz3dUMmqH3CG
-         9POPHD/Bn19IAdHmEG7n3BzhS930nYwEYAzrD4RSK1+Lb0Ou+B0gE0uR0IOu3W3f4Q7+
-         HlT9MZxPshDFC6VvsHbpQ+c2E0h/4u7+JYd3dKpBEMeq7KuZCypcXMDnwVc8OEubmMIQ
-         Q9rNKRhoy5ZOFuj/uZIs24LBWYgQ87tt9QjJqlMfmdI9LDRkZZNUp4sToVS4IrmwW4iu
-         Tx+Q==
-X-Gm-Message-State: APuU4Z9ZJDqkCmAd5IgMWwEH+3/3WNorDGh5NzNh0R9KjIsem4BFSMC4
-	q8aOEO57k5aeJYKPbJKQsk8t/3b3A6py7jSE+zDuffGfrQCos2Spo5m3
-X-Gm-Gg: AYBFou1S1OZeCbtb1AOs7fNvHOsGcA83PGAbUUbwFs26urLSPOMLYIaNPW4RaFwrLwF
-	biFH1KBc0jiwDZ8jQ4s6YYPqhODmZe8DZvf21z/gZn2B1nV/2kSimL1h/GYzfZQ2Fhi3g7bkaTI
-	D01bLTDIc3Ts0oxfVOZSNJTeB63sObu6/hxOGsqISm1ISWE0b/vLZWks9ooWf1WCue8/nqaKbZK
-	m1sIdop/VYm501xYhc+HA9C0k2BkHa3xYjd1PID7DEl3LkbdbF4p/G5ePTWGAZLZFvT3BFdhKos
-	B+Kyu+3Ki+qdvIO23N43HhrngcAyD6fmyFPahySGQdqfMTiC2Nhh/O3eh5j28NDLSQqwUZVVVKr
-	78NUoxtat+YKyMZL2ZHHb3XDjNCfq6Zix/8splqj0CEJysJ63SV0MLQhvY5v37e5TveD5mQk0pI
-	BE/BN8T/fp7xkPDH5mk98RH+QV1MvsKyeadqTKODIKEtr/ZUJnqbhCWhcMvbNqFFuwzjyRMcJ45
-	wJED/B9D+WihLsAoCuA1fvIsP+4+bLJ1VHd1PBRNPtV9A/hxWfbRlSVB1bSyAGVYORU90YnmsBF
-	m8D1FpidQV0iZbbs/KCNy7zjUtwsDPnCml4QUVE3AFIyo0xXxnatmhp3DafSOkTDw18EZLtUxTk
-	K3BqgNYcAixiA/QI38adscFCgk64wPTNkdXidM/RknSWBojX5PfFSZTGr
-X-Received: by 2002:a17:907:d406:b0:c49:cfcf:8d7f with SMTP id a640c23a62f3a-c510e3bd593mr169522666b.46.1794996734526;
-        Wed, 18 Nov 2026 02:12:14 -0800 (PST)
-Received: from thi-server.fritz.box (dslb-092-076-089-226.092.076.pools.vodafone-ip.de. [92.76.89.226])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c510c83f332sm78436366b.7.2026.11.18.02.12.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 02:12:14 -0800 (PST)
-From: Thilo Zirnstein <thi.zirnstein@gmail.com>
-To: michal.simek@amd.com,
-	andi.shyti@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thilo Zirnstein <thi.zirnstein@gmail.com>,
-	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Subject: [PATCH v4 1/2] i2c: i2c-xiic: fix clearing of bnb irq
-Date: Wed, 18 Nov 2026 11:11:46 +0100
-Message-ID: <20261118101147.3350796-2-thi.zirnstein@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261118101147.3350796-1-thi.zirnstein@gmail.com>
-References: <20261118101147.3350796-1-thi.zirnstein@gmail.com>
+	Wed, 18 Nov 2026 10:13:30 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 34F5040DD8;
+	Wed, 18 Nov 2026 10:13:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15EBC1F000C4;
+	Wed, 18 Nov 2026 10:13:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794996810;
+	bh=K7KquJB0iAeuldcjDbnxEMbU3cJg6vn2vioTN0svKlk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=kPUDmeEJ1RdT5b0SHiFZS31z/zx+gJisyeUTOVI1yE5tffuKcoYFRO/5t2spiSi/3
+	 RZ4V3QOix8A4Ho2fgbs4Wxg7wBH+VIHNuPGIx0rEF+geXZ1k0H6nW85QxNSIvAkC/G
+	 Mi1xrvXJjv28sNaTm8GogfENt2u61KTctCEglf3jQduLhffRlfpYpBlU492fahfxO8
+	 85Ll8Q3hDV0UrbxKKNh9flRzO9EA40Upn20vxqJQpK0DoOjHI1wqSlXkoh3qUuDiUr
+	 1Wu2JJfy+/tpzOvQlrSqgH8MshZU7bb/p7XWGM66SEJApUjV+ahp3KBYSbryWL2tyF
+	 HnrZSLhqku14Q==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xTcfP-0000000HST2-3hYZ;
+	Wed, 18 Nov 2026 10:13:27 +0000
+Date: Wed, 18 Nov 2026 10:13:27 +0000
+Message-ID: <86a4n61m7s.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Oliver Upton <oupton@kernel.org>
+Cc: Colton Lewis <coltonlewis@google.com>,
+	Leonardo Bras <leo.bras@arm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	kvm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] KVM: arm64: Fix inverted E2H0 check for HCR_EL2.NV1
+In-Reply-To: <avzZUyu9EhxAWtbd@kernel.org>
+References: <20261117204535.4036191-1-coltonlewis@google.com>
+	<20261117204535.4036191-2-coltonlewis@google.com>
+	<avzZUyu9EhxAWtbd@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_021216_913385_DD2847D4 
-X-CRM114-Status: GOOD (  17.74  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: oupton@kernel.org, coltonlewis@google.com, leo.bras@arm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, fuad.tabba@linux.dev, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,121 +89,112 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a function for clearing the bnb bit,
-It waits for all preconditions before clearing the bnb bit or times out.
+On Tue, 17 Nov 2026 22:46:43 +0000,
+Oliver Upton <oupton@kernel.org> wrote:
+> 
+> On Tue, Nov 17, 2026 at 08:45:34PM +0000, Colton Lewis wrote:
+> > ID_AA64MMFR4_EL1.E2H0 is a signed 4-bit field where:
+> >   - 0b0000 (IMP, 0): FEAT_E2H0 is implemented.
+> >   - 0b1111 (NI, -1): FEAT_E2H0 is not implemented, except HCR_EL2.NV1
+> >     is implemented.
+> >   - 0b1110 (NI_NV1, -2): Neither HCR_EL2.E2H == 0 nor HCR_EL2.NV1 is
+> >     implemented, and HCR_EL2.NV1 is RES0.
+> > 
+> > Prior to commit b2a324ff01fe ("KVM: arm64: Use HCR_EL2 feature map to
+> > drive fixed-value bits"), kvm_init_nv_sysregs() marked HCR_EL2.NV1 as
+> > RES0 when !kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI), i.e., when the
+> > signed E2H0 field is less than NI (-1), which matches NI_NV1 (-2).
+> > 
+> > When converting HCR_EL2 to the feature map, feat_nv2_e2h0_ni() was
+> > written as !kvm_has_feat(kvm, FEAT_E2H0), where FEAT_E2H0 checks
+> > E2H0 >= IMP (0). This inverted the condition: feat_nv2_e2h0_ni()
+> > evaluates to true when E2H0 < 0 (including NI_NV1), leaving HCR_EL2.NV1
+> > writable instead of RES0 for VHE-only nested guests where KVM advertises
+> > ID_AA64MMFR4_EL1.E2H0 = NI_NV1.
+> > 
+> > Check kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI) so that HCR_EL2.NV1
+> > is treated as implemented only when E2H0 is IMP or NI, and forced to
+> > RES0 when E2H0 is NI_NV1. Rename the helper from feat_nv2_e2h0_ni() to
+> > feat_nv2_nv1_not_res0() to clearly reflect what it tests.
+> > 
+> > Fixes: b2a324ff01fe ("KVM: arm64: Use HCR_EL2 feature map to drive fixed-value bits")
+> > Signed-off-by: Colton Lewis <coltonlewis@google.com>
+> > ---
+> >  arch/arm64/kvm/config.c | 7 ++++---
+> >  1 file changed, 4 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
+> > index adaf26ab93b85..a975ac73ed876 100644
+> > --- a/arch/arm64/kvm/config.c
+> > +++ b/arch/arm64/kvm/config.c
+> > @@ -256,9 +256,10 @@ static bool feat_nv2(struct kvm *kvm)
+> >  		kvm_has_feat(kvm, ID_AA64MMFR2_EL1, NV, NV2));
+> >  }
+> >  
+> > -static bool feat_nv2_e2h0_ni(struct kvm *kvm)
+> > +static bool feat_nv2_nv1_not_res0(struct kvm *kvm)
+> >  {
+> > -	return feat_nv2(kvm) && !kvm_has_feat(kvm, FEAT_E2H0);
+> > +	return feat_nv2(kvm) &&
+> > +	       kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI);
+> >  }
+> 
+> This could benefit from a comment, because testing for NI as a feature
+> is very misleading. Also, I don't why this needs to spill onto another
+> line.
+> 
+> 	/*
+> 	 * The E2H0 field is a 'negative' feature field, where a value
+> 	 * of -1 implies FEAT_E2H0 is not implemented but does not
+> 	 * restrict the use of HCR_EL2.NV1.
+> 	 */
+> 	return feat_nv2(kvm) && kvm_has_feat(kvm, ID_AA64MMFR4_EL1, E2H0, NI);
+> 
 
-Reviewed-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Signed-off-by: Thilo Zirnstein <thi.zirnstein@gmail.com>
----
- drivers/i2c/busses/i2c-xiic.c | 40 ++++++++++++++++++++++++++++-------
- 1 file changed, 32 insertions(+), 8 deletions(-)
+I really wonder why I bothered describing this, introducing a bug in
+the process. There is no known universe where we can deal with NV1 not
+being RES0, and this helper is purely academic (and therefore wrong).
 
-diff --git a/drivers/i2c/busses/i2c-xiic.c b/drivers/i2c/busses/i2c-xiic.c
-index ba560462d451..e68e17bdf0ba 100644
---- a/drivers/i2c/busses/i2c-xiic.c
-+++ b/drivers/i2c/busses/i2c-xiic.c
-@@ -233,6 +233,8 @@ static const struct timing_regs timing_reg_values[] = {
- #define XIIC_RESET_MASK             0xAUL
+My personal take on this particular problem is as follows.
 
- #define XIIC_PM_TIMEOUT		1000	/* ms */
-+/* timeout waiting for bus busy */
-+#define XIIC_BB_TIMEOUT_US	1000
- /* timeout waiting for the controller to respond */
- #define XIIC_I2C_TIMEOUT	(msecs_to_jiffies(1000))
- /* timeout waiting for the controller finish transfers */
-@@ -394,6 +396,30 @@ static int xiic_wait_tx_empty(struct xiic_i2c *i2c)
- 	return 0;
+Thanks,
+
+	M.
+
+diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
+index adaf26ab93b85..2e81f45dc9921 100644
+--- a/arch/arm64/kvm/config.c
++++ b/arch/arm64/kvm/config.c
+@@ -256,11 +256,6 @@ static bool feat_nv2(struct kvm *kvm)
+ 		kvm_has_feat(kvm, ID_AA64MMFR2_EL1, NV, NV2));
  }
-
-+static void xiic_clear_en_bnb(struct xiic_i2c *i2c)
-+{
-+	u8 sr = 0, isr = 0;
-+	int ret;
-+
-+	isr = xiic_getreg8(i2c, XIIC_IISR_OFFSET);
-+	if (!(isr & XIIC_INTR_BNB_MASK)) {
-+		xiic_irq_en(i2c, XIIC_INTR_BNB_MASK);
-+		return;
-+	}
-+
-+	ret = read_poll_timeout_atomic(xiic_getreg8, sr,
-+			sr & XIIC_SR_BUS_BUSY_MASK, 0, XIIC_BB_TIMEOUT_US, 0,
-+			i2c, XIIC_SR_REG_OFFSET);
-+
-+	if (ret) {
-+		dev_err(i2c->dev, "Failed to clear bnb\n");
-+		return;
-+	}
-+
-+	xiic_setreg8(i2c, XIIC_IISR_OFFSET, XIIC_INTR_BNB_MASK);
-+	xiic_irq_en(i2c, XIIC_INTR_BNB_MASK);
-+}
-+
- /**
-  * xiic_setclk - Sets the configured clock rate
-  * @i2c: Pointer to the xiic device structure
-@@ -883,9 +909,6 @@ static irqreturn_t xiic_process(int irq, void *dev_id)
- 	}
-
- 	if (pend & XIIC_INTR_BNB_MASK) {
--		/* IIC bus has transitioned to not busy */
--		clr |= XIIC_INTR_BNB_MASK;
+ 
+-static bool feat_nv2_e2h0_ni(struct kvm *kvm)
+-{
+-	return feat_nv2(kvm) && !kvm_has_feat(kvm, FEAT_E2H0);
+-}
 -
- 		/* The bus is not busy, disable BusNotBusy interrupt */
- 		xiic_irq_dis(i2c, XIIC_INTR_BNB_MASK);
+ static bool feat_rasv1p1(struct kvm *kvm)
+ {
+ 	return (kvm_has_feat(kvm, ID_AA64PFR0_EL1, RAS, V1P1) ||
+@@ -1034,7 +1029,7 @@ static const struct reg_bits_to_feat_map hcr_feat_map[] = {
+ 		   HCR_EL2_NV2		|
+ 		   HCR_EL2_NV,
+ 		   feat_nv2),
+-	NEEDS_FEAT(HCR_EL2_NV1, feat_nv2_e2h0_ni), /* Missing from JSON */
++	NEEDS_FEAT_FLAG(HCR_EL2_NV1, FORCE_RESx), /* Missing from JSON, RES0 as an IMPDEF choice */
+ 	NEEDS_FEAT(HCR_EL2_API		|
+ 		   HCR_EL2_APK,
+ 		   feat_pauth),
 
-@@ -1030,7 +1053,7 @@ static void xiic_start_recv(struct xiic_i2c *i2c)
-
- 		xiic_setreg16(i2c, XIIC_DTR_REG_OFFSET, val);
-
--		xiic_irq_clr_en(i2c, XIIC_INTR_BNB_MASK);
-+		xiic_clear_en_bnb(i2c);
- 	} else {
- 		/*
- 		 * If previous message is Tx, make sure that Tx FIFO is empty
-@@ -1097,7 +1120,7 @@ static void xiic_start_recv(struct xiic_i2c *i2c)
-
- 	if (i2c->nmsgs == 1)
- 		/* very last, enable bus not busy as well */
--		xiic_irq_clr_en(i2c, XIIC_INTR_BNB_MASK);
-+		xiic_clear_en_bnb(i2c);
-
- 	/* the message is tx:ed */
- 	i2c->tx_pos = msg->len;
-@@ -1181,11 +1204,11 @@ static void xiic_start_send(struct xiic_i2c *i2c)
- 		/* Clear any pending Tx empty, Tx Error and then enable them */
- 		xiic_irq_clr_en(i2c, XIIC_INTR_TX_EMPTY_MASK |
- 				XIIC_INTR_TX_ERROR_MASK |
--				XIIC_INTR_BNB_MASK |
- 				((i2c->nmsgs > 1 || xiic_tx_space(i2c)) ?
- 				XIIC_INTR_TX_HALF_MASK : 0));
-
- 		xiic_fill_tx_fifo(i2c);
-+		xiic_clear_en_bnb(i2c);
- 	} else {
- 		/*
- 		 * If previous message is Tx, make sure that Tx FIFO is empty
-@@ -1227,8 +1250,9 @@ static void xiic_start_send(struct xiic_i2c *i2c)
-
- 		/* Clear any pending Tx empty, Tx Error and then enable them */
- 		xiic_irq_clr_en(i2c, XIIC_INTR_TX_EMPTY_MASK |
--				XIIC_INTR_TX_ERROR_MASK |
--				XIIC_INTR_BNB_MASK);
-+				XIIC_INTR_TX_ERROR_MASK);
-+
-+		xiic_clear_en_bnb(i2c);
- 	}
-
- 	i2c->prev_msg_tx = true;
---
-2.43.0
-
+-- 
+Without deviation from the norm, progress is not possible.
 
