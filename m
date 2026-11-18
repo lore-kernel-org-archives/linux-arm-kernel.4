@@ -2,67 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E4A606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4EEA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G2uhSBPX;
-	dkim=pass (2048-bit key, unprotected) header.d=sverdlin.org header.i=@sverdlin.org header.a=rsa-sha256 header.s=purelymail1 header.b=O1Tujep7;
-	dkim=pass (2048-bit key, unprotected) header.d=purelymail.com header.i=@purelymail.com header.a=rsa-sha256 header.s=purelymail1 header.b=ZEibGolm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t5DXo07o;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fjJ9tHlI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=9HNLhAXOgbRNf2ky8rheK6IxntgF9p+aCnutm+Ne68s=; b=G2uhSBPXGPQ52MbNhK/ft8fI3o
-	oIm7WU74J9FzrcZeZ1YyZnDr/vysO/NF582WVKQG6cc11XK8gEnMJ3Hzt6YEhABPH3hniR74Ahe3N
-	veYo8AdCSo0r2r9NWoD0/A89gKJ55Ium2w4FwgSiyc2a7eOc6oYi+ffUrWKBUhyhtgKB6QmFszrWZ
-	/3RTLeSfmW5NITBXNQ/ykFqfAbg1WV/mM8lo8JwHC3GuBVszR1ELH9a0gLwB4q7Now/gJwCC8Dm5a
-	XeUnJDMoxrosY5ElbSbg62DDxJIUwiRJRw61CIA7NuJixLutQMDeGNMBA8EB13raOHOhiM1U/ETHp
-	W9pSLaug==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=mTjGPBEegQRgp+TkjbZALo5DNvb5ic4MusjOWTiPzo8=; b=t5DXo07oVonuDd
+	PMlJaT5hrjJGvKxqhUsB4MzT0yZ2NtThmb0qBawiO1OTcjWX7rEKi367L02EqmPY4iWHfE+3VMegR
+	VqFSBn3pCHRFeUVx/q9ZdKu1niyWB9aA4/sNoBD4CPdWH2NUvxR3Uv42CynV9KosL+4x8QArlF1A5
+	BAGZf+vrDXlOlwWh6gviQq829F79dpiiMu3+hDfpCduUFgOQSV3ZlKBybBerLVQ/bPg9InRwHk/o/
+	nkWAhVdc/yNbqxRaKpsq0xWYTof9SgnG7Fui2iJcykFgMbdEw9BgtNWSG8jAJmvg0ZDBeOaqDM0W7
+	d6l2TIWLc48oE5SqyhsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTk1L-00000009qld-1WMz;
-	Wed, 18 Nov 2026 18:04:35 +0000
-Received: from sendmail.purelymail.com ([34.202.193.197])
+	id 1xTkFK-00000009scv-3LUl;
+	Wed, 18 Nov 2026 18:19:02 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTk1G-00000009ql4-2x3V
+	id 1xTkFI-00000009scX-4B8x
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 18:04:33 +0000
-DKIM-Signature: a=rsa-sha256; b=O1Tujep7e/1XVyvKYvTvEuu+aRkA7UNavJ0Laxf/KlP8djM4XIeOB+IYuo0oCjhxzv/VERgrW4Rwq1dfHoiz95+sFAUvRNah1B8ZgPith9FRCTlreZdOzGmxFIJi/bpYgi9ENkPebJYvwPPifbkDGzorUw334gKlnLHWciWXqYoGvCRnFk8omXt3le4IEnBgZaAPCdDJVUOmFKGYSLSHoBPNQoLY46/GjfcFBPqy+61dAcS0gYaW39X197+uWiq/SHklcSOWJo1g2R1p2/cE9u8OIs/c5LiFPA5bcF0Ldc1whuH/vdyp2d9c6P/LN6TgZ/wweYsjpGvUScml45+74Q==; s=purelymail1; d=sverdlin.org; v=1; bh=9HNLhAXOgbRNf2ky8rheK6IxntgF9p+aCnutm+Ne68s=; h=Received:Message-ID:Subject:From:To:Date;
-DKIM-Signature: a=rsa-sha256; b=ZEibGolmRRT+fr6f7AFEfGyKtqG19THS+PjvG3QEhx8l67hnzTGs8/PX85sejIBukIfMd0qZawhR4/CB9cgp6IO6tLCpV01mwUWW3znGa08ZqAzcB09ikcOLs9gs3TqUacJPUsjvYTMEVHBEqeoIGieS/CfnGFK6pBJOcUnTWNrV84fFZGPoRpB3g7W5pDMMj7ZaPN1m/mQYxWu/OT4m6SjET5Ye6nBlYo0sClkGdkqp8b9qdcY1DkGFOKX00zVm6BGMuFzpbJIgxhMO3xz1CzviNayuXuJyBg0Sx7hh2GOYAafRUi/FuOHuRsmDv2doqhqfzpP1NvagqNo/0hjJyQ==; s=purelymail1; d=purelymail.com; v=1; bh=9HNLhAXOgbRNf2ky8rheK6IxntgF9p+aCnutm+Ne68s=; h=Feedback-ID:Received:Message-ID:Subject:From:To:Date;
-Feedback-ID: 815097:39668:null:purelymail
-X-Pm-Original-To: linux-arm-kernel@lists.infradead.org
-Authentication-Results: purelymail.com; auth=pass
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 2014938321;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Wed, 18 Nov 2026 18:04:06 +0000 (UTC)
-Message-ID: <2105df7b92b20c5268a9a32c202e1cd6c24a6b27.camel@sverdlin.org>
-Subject: Re: [PATCH v3 3/3] arm64: dts: allwinner: add Radxa Cubie A7S board
-From: Alexander Sverdlin <alex@sverdlin.org>
-To: Enzo Adriano <enzo.adriano.code@gmail.com>, andre.przywara@arm.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org, 
-	jernej.skrabec@gmail.com, samuel@sholland.org
-Cc: Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>, Jerome
- Brunet <jbrunet@baylibre.com>, Pablo Mazzini <pmazzini@gmail.com>, Vinicius
- Pedrosa	 <vinicius.eduardo.pedrosa@gmail.com>, Jun Yan
- <jerrysteve1101@gmail.com>,  Lukas Schmid <lukas.schmid@netcube.li>
-Date: Wed, 18 Nov 2026 19:03:59 +0100
-In-Reply-To: <0fe5938e04cc8a5af3825a0e01bd07b626a15b46.1794227241.git.enzo.adriano.code@gmail.com>
-References: <cover.1794227241.git.enzo.adriano.code@gmail.com>
-	 <0fe5938e04cc8a5af3825a0e01bd07b626a15b46.1794227241.git.enzo.adriano.code@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.62.1 
+	Wed, 18 Nov 2026 18:19:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1984D635F2
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 18:19:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6CEE1F000C6
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 18:18:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795025939;
+	bh=mTjGPBEegQRgp+TkjbZALo5DNvb5ic4MusjOWTiPzo8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=fjJ9tHlITqozv2A92bNFUGPP3O63gD73RHRUV66TQHLqaE4cc6+TzRhFOqy9gzhem
+	 GTHREosT5FaTm2Pjdg+AjYNxu5//4SEZfEhEHhiozX8SZeWZ/8dEtGFuYPFxYwM4gK
+	 etPTTSZracOXrm1gcffhReZFmNPHRh3Hm7sBQgaV8+PuzeQ/1B/K/+OagIpFMxgsFY
+	 jkFkF/peQjEbokh2deNwGkjXqHFoWqnVcoWlqBfshEuyRIR2UswgkPTtiN2rgj3CcH
+	 snSBneN/QS5am26e2yW9pua73F29jEy+Csb7B9imBfYjzayRVV3WVJ7VRlyQkE0aLl
+	 GLz3xpVN2IP9Q==
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5c1593fd141so1231482e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:18:59 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHnpwoXKzVrZDf6jPVOncYngoH7wm6+m5+B8SQAnFPv2I6plSfpjujSO4GpYwKY093A6fK/wPi/8/+QS5Tu5o0K@lists.infradead.org
+X-Gm-Message-State: APuU4Z9UCOH0mTFC2nTIPAWfN+ybkQS47RlKQu/vx42MMawInJn95fUF
+	M4nPiIBCP+gDMREvwJTzv5ycfyIO4NRx9svCFkK/2wG56rgzggDQ1iXRMfiIPR9VQ3FXTYJ+mQE
+	JT9yXDiABf22rr9nm/WhTcOIYRLK5lyc=
+X-Received: by 2002:a05:6512:401a:b0:5bf:d54c:1fb1 with SMTP id
+ 2adb3069b0e04-5c1a9b709a1mr1153837e87.2.1795025938593; Wed, 18 Nov 2026
+ 10:18:58 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_100432_017630_5D8C9377 
-X-CRM114-Status: GOOD (  17.16  )
-X-Spam-Score: -2.1 (--)
+References: <20261110-debug-info-v2-1-73ad7aa0874b@amlogic.com>
+In-Reply-To: <20261110-debug-info-v2-1-73ad7aa0874b@amlogic.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 18 Nov 2026 19:18:45 +0100
+X-Gmail-Original-Message-ID: <CAD++jLk66k1EJg0cO_+12HSBdOLvkCD65V_9eDzpXpHBK4z=Dw@mail.gmail.com>
+X-Gm-Features: Aa3M54oSzmSzW6vVL6kt_cC3y7y55k_eM3IqSPDViqpXGwp_Vn4eEmeBhlms50g
+Message-ID: <CAD++jLk66k1EJg0cO_+12HSBdOLvkCD65V_9eDzpXpHBK4z=Dw@mail.gmail.com>
+Subject: Re: [PATCH v2] pinctrl: amlogic: a4: Allow functions without groups
+To: xianwei.zhao@amlogic.com
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,368 +80,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Enzo,
+On Tue, Nov 10, 2026 at 6:09=E2=80=AFAM Xianwei Zhao via B4 Relay
+<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
 
-On Mon, 2026-11-09 at 23:45 -0500, Enzo Adriano wrote:
-> Enable the Cubie A7S serial console, PMIC and microSD slot to provide
-> an initial usable board configuration. Supply the 26 MHz crystal and
-> 32768 Hz RTC input, enable UART0 and the AXP318W on R-I2C0, and describe
-> the PMIC input/output and CPU supply connections from the Radxa Cubie
-> A7S schematic v1.10. Preserve firmware settings on rails whose working
-> voltage is not established. BLDO2 has no programmed voltage constraint:
-> its software 3.3 V selector does not establish its physical output with
-> the schematic's nominal 2.4 V input.
->=20
-> Describe the card's SWOUT2 supply and PF6 active-high detect with an
-> internal pull-down. Enable MMC0 at up to 50 MHz using 3.3 V signaling
-> only. Its high-voltage path uses VCCIO; CLDO5 also feeds PC and the PF
-> 1.8 V input and must not be raised for SD signaling. Firmware must
-> select the 3.3 V PF path; dynamic voltage switching is not provided.
-> Keep other storage off.
->=20
-> Connect the documented bank supplies. PL's self-supply phandle is
-> omitted to avoid the PMIC/I2C/pinctrl bootstrap cycle, as on the
-> upstream Cubie A5E; ALDO1 is retained always-on. The separate pinctrl
-> voltage-mode fix is required for these bank-supply connections.
->=20
-> These board DTS bytes were RAM-booted on a Cubie A7S with vendor
-> firmware on November 4: UART0, PMIC registration and MMC0 read-only
-> transfers worked. Card writes, physical hotplug, 1.8 V signaling and
-> physical BLDO2 voltage were not tested.
-
-Should the history be moved below "---"?
-
-> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>
+> Allow function nodes without child groups during device tree
+> parsing instead of returning an error.
+>
+> Only count and parse nodes with the "func-" prefix as pinctrl
+> functions, ignoring other non-GPIO child nodes.
+>
+> This allows the driver to support function nodes without
+> groups and avoid treating unrelated device tree nodes as
+> pinctrl functions.
+>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
-> =C2=A0arch/arm64/boot/dts/allwinner/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0.../dts/allwinner/sun60i-a733-cubie-a7s.dts=C2=A0=C2=A0 | 284 +++++=
-+++++++++++++
-> =C2=A02 files changed, 285 insertions(+)
-> =C2=A0create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-=
-a7s.dts
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts=
-/allwinner/Makefile
-> index d1f768dd6461..792152525b43 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -68,3 +68,4 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun55i-a527-cubie-a5e.dtb
-> =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun55i-h728-x96qpro+.dtb
-> =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun55i-t527-avaota-a1.dtb
-> =C2=A0dtb-$(CONFIG_ARCH_SUNXI) +=3D sun55i-t527-orangepi-4a.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun60i-a733-cubie-a7s.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7s.dts b/ar=
-ch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7s.dts
-> new file mode 100644
-> index 000000000000..341c24360ce2
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7s.dts
-> @@ -0,0 +1,284 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +/dts-v1/;
-> +
-> +#include "sun60i-a733.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +=09model =3D "Radxa Cubie A7S";
-> +=09compatible =3D "radxa,cubie-a7s", "allwinner,sun60i-a733";
-> +
-> +=09aliases {
-> +=09=09mmc0 =3D &mmc0;
-> +=09=09serial0 =3D &uart0;
-> +=09};
-> +
-> +=09chosen {
-> +=09=09stdout-path =3D "serial0:115200n8";
-> +=09};
-> +
-> +=09reg_ps: regulator-system-power {
-> +=09=09compatible =3D "regulator-fixed";
-> +=09=09regulator-name =3D "ps";
-> +=09=09regulator-min-microvolt =3D <5000000>;
-> +=09=09regulator-max-microvolt =3D <5000000>;
-> +=09=09regulator-always-on;
-> +=09};
-> +
-> +=09reg_ldo_input: regulator-ldo-input {
-> +=09=09compatible =3D "regulator-fixed";
-> +=09=09regulator-name =3D "ldo-input";
-> +=09=09/* ETA3521: 0.6 V * (1 + RP298 / RP299), 30k / 10k. */
-> +=09=09regulator-min-microvolt =3D <2400000>;
-> +=09=09regulator-max-microvolt =3D <2400000>;
-> +=09=09regulator-always-on;
-> +=09=09vin-supply =3D <&reg_ps>;
-> +=09};
-> +
-> +=09osc32k: osc32k-clk {
+> Add debugging information for error dts and Error pinctrl config not affe=
+ct normal pin work.
+> ---
+> Changes in v2:
 
-Should two regulators and the clock have been sorted in the reverse order?
+Dropped v1 and applied this instead.
 
-> +=09=09compatible =3D "fixed-clock";
-> +=09=09#clock-cells =3D <0>;
-> +=09=09clock-frequency =3D <32768>;
-> +=09};
-> +};
-> +
-> +&cpu0 {
-> +=09cpu-supply =3D <&reg_dcdc5>;
-> +};
-> +
-> +&cpu1 {
-> +=09cpu-supply =3D <&reg_dcdc5>;
-> +};
-> +
-> +&cpu2 {
-> +=09cpu-supply =3D <&reg_dcdc5>;
-> +};
-> +
-> +&cpu3 {
-> +=09cpu-supply =3D <&reg_dcdc5>;
-> +};
-> +
-> +&cpu4 {
-> +=09cpu-supply =3D <&reg_dcdc5>;
-> +};
-> +
-> +&cpu5 {
-> +=09cpu-supply =3D <&reg_dcdc5>;
-> +};
-> +
-> +&cpu6 {
-> +=09cpu-supply =3D <&reg_dcdc3>;
-> +};
-> +
-> +&cpu7 {
-> +=09cpu-supply =3D <&reg_dcdc3>;
-> +};
-> +
-> +&mmc0 {
-> +=09bus-width =3D <4>;
-> +=09cap-sd-highspeed;
-> +=09cd-gpios =3D <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-> +=09disable-wp;
-> +=09max-frequency =3D <50000000>;
-> +=09no-1-8-v;
-> +=09vmmc-supply =3D <&reg_swout2>;
-> +=09/* The 3.3 V path uses VCC-IO; no Port F voltage switching yet. */
-> +=09vqmmc-supply =3D <&reg_swout2>;
-> +=09status =3D "okay";
-
-see below...
-
-> +};
-> +
-> +&osc {
-> +=09clock-frequency =3D <26000000>;
-> +};
-> +
-> +&pio {
-> +=09vcc-pb-supply =3D <&reg_swout2>;
-> +=09vcc-pc-supply =3D <&reg_cldo5>;
-> +=09vcc-pd-supply =3D <&reg_swout1>;
-> +=09vcc-pe-supply =3D <&reg_bldo1>;
-> +=09vcc-pf-supply =3D <&reg_cldo5>;
-> +=09vcc-pg-supply =3D <&reg_aldo1>;
-> +=09vcc-ph-supply =3D <&reg_swout2>;
-> +=09vcc-pj-supply =3D <&reg_swout1>;
-> +=09vcc-pk-supply =3D <&reg_bldo1>;
-> +};
-> +
-> +&r_i2c0 {
-> +=09status =3D "okay";
-
-Should "status" have been last (preceded by a blank line)? (dts-coding-styl=
-e.rst)
-
-> +=09pinctrl-names =3D "default";
-> +=09pinctrl-0 =3D <&r_i2c0_pl_pins>;
-> +
-> +=09axp318w: pmic@36 {
-> +=09=09compatible =3D "x-powers,axp318w";
-> +=09=09reg =3D <0x36>;
-> +=09=09interrupt-parent =3D <&nmi_intc>;
-> +=09=09interrupts =3D <0 IRQ_TYPE_LEVEL_LOW>;
-> +=09=09interrupt-controller;
-> +=09=09#interrupt-cells =3D <1>;
-> +
-> +=09=09aldo156in-supply =3D <&reg_ps>;
-> +=09=09aldo234in-supply =3D <&reg_aldo1>;
-> +=09=09bldoin-supply =3D <&reg_ldo_input>;
-> +=09=09cldoin-supply =3D <&reg_ldo_input>;
-> +=09=09dldoin-supply =3D <&reg_ps>;
-> +=09=09eldoin-supply =3D <&reg_dcdc9>;
-> +=09=09ips-supply =3D <&reg_ps>;
-> +=09=09vin19-supply =3D <&reg_ps>;
-> +=09=09vin23-supply =3D <&reg_ps>;
-> +=09=09vin45-supply =3D <&reg_ps>;
-> +=09=09vin678-supply =3D <&reg_ps>;
-> +
-> +=09=09regulators {
-> +=09=09=09reg_dcdc1: dcdc1 {
-> +=09=09=09=09regulator-name =3D "vcc-3v3";
-> +=09=09=09=09regulator-min-microvolt =3D <3300000>;
-> +=09=09=09=09regulator-max-microvolt =3D <3300000>;
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dcdc2: dcdc2 {
-> +=09=09=09=09regulator-name =3D "vdd-sys";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dcdc3: dcdc3 {
-> +=09=09=09=09regulator-name =3D "vdd-cpub";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dcdc4: dcdc4 {
-> +=09=09=09=09regulator-name =3D "vdd-gpu";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dcdc5: dcdc5 {
-> +=09=09=09=09regulator-name =3D "vdd-cpul";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dcdc6: dcdc6 {
-> +=09=09=09=09regulator-name =3D "vcc-draml";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dcdc7: dcdc7 {
-> +=09=09=09=09regulator-name =3D "vcc-dram";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dcdc8: dcdc8 {
-> +=09=09=09=09regulator-name =3D "vcc-ufs-io";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dcdc9: dcdc9 {
-> +=09=09=09=09regulator-name =3D "eldo-input";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_swout1: swout1 {
-> +=09=09=09=09regulator-name =3D "vcc33-lcd";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_swout2: swout2 {
-> +=09=09=09=09regulator-name =3D "vcc-io-card";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_aldo1: aldo1 {
-> +=09=09=09=09regulator-name =3D "vcc-pl";
-> +=09=09=09=09regulator-min-microvolt =3D <3300000>;
-> +=09=09=09=09regulator-max-microvolt =3D <3300000>;
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_bldo1: bldo1 {
-> +=09=09=09=09regulator-name =3D "vcc-pe-pk-mcsi";
-> +=09=09=09};
-> +
-> +=09=09=09reg_bldo2: bldo2 {
-> +=09=09=09=09regulator-name =3D "vcc-lvds0";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_bldo4: bldo4 {
-> +=09=09=09=09regulator-name =3D "vcc18-codec";
-> +=09=09=09=09regulator-min-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-max-microvolt =3D <1800000>;
-> +=09=09=09};
-> +
-> +=09=09=09reg_cldo1: cldo1 {
-> +=09=09=09=09regulator-name =3D "vcc33-18-usb";
-> +=09=09=09=09regulator-min-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-max-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_cldo2: cldo2 {
-> +=09=09=09=09regulator-name =3D "vcc18-hdmi";
-> +=09=09=09=09regulator-min-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-max-microvolt =3D <1800000>;
-> +=09=09=09};
-> +
-> +=09=09=09reg_cldo3: cldo3 {
-> +=09=09=09=09regulator-name =3D "vcc-pll-dram";
-> +=09=09=09=09regulator-min-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-max-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_cldo5: cldo5 {
-> +=09=09=09=09regulator-name =3D "vcc18-pf-pc";
-> +=09=09=09=09regulator-min-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-max-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dldo1: dldo1 {
-> +=09=09=09=09regulator-name =3D "vcc-efuse";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_dldo6: dldo6 {
-> +=09=09=09=09regulator-name =3D "vcc-ufs";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_eldo1: eldo1 {
-> +=09=09=09=09regulator-name =3D "vcc09-vdd2l";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_eldo6: eldo6 {
-> +=09=09=09=09regulator-name =3D "vdd-cpus";
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +
-> +=09=09=09reg_rtc_ldo: rtc-ldo {
-> +=09=09=09=09regulator-name =3D "vcc-rtc";
-> +=09=09=09=09regulator-min-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-max-microvolt =3D <1800000>;
-> +=09=09=09=09regulator-always-on;
-> +=09=09=09};
-> +=09=09};
-> +=09};
-> +};
-> +
-> +&r_pio {
-> +=09/* PL powers the PMIC bus itself; firmware must keep ALDO1 enabled. *=
-/
-> +=09vcc-pm-supply =3D <&reg_aldo1>;
-> +};
-> +
-> +&rtc {
-> +=09clocks =3D <&r_ccu CLK_BUS_R_RTC>, <&osc>, <&r_ccu CLK_R_AHB>,
-> +=09=09 <&osc32k>;
-> +=09clock-names =3D "bus", "hosc", "ahb", "ext-osc32k";
-> +};
-> +
-> +&uart0 {
-> +=09pinctrl-names =3D "default";
-> +=09pinctrl-0 =3D <&uart0_pb_pins>;
-> +=09status =3D "okay";
-
-see above...
-
-> +};
+Yours,
+Linus Walleij
 
