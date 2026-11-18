@@ -2,104 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A82606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 13:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DDE606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 13:07:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RGE/FvEl;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Aeh42kva
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1GKVeNsD;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=QupW6SWA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=DyYtVveBhQy52iIUqNxGmc614rtRmx5Sogui3LnM34E=; b=RGE/FvElKlvzJ0y+Mhp16SeGVr
-	WI5YHUfKdmiq5xN6y0+ZEuKFVlWvNSCgK4imWUVAh7BoL3yme+yGQxzkAcFH8XdbnICqkdOC/absd
-	OoSqapXV/57tbAr94qeZF0Os2UnTJ+miGHDIOvMc31q1ESLRr+UMaDofj6dSNgwE/ayHqRm3ngC27
-	+TVjQ+anjkjkPnd5b3XBkNchgHK2WrHkbqCuJhvh2g3J9jZ/NBodMXOBt3VCHClYF/FE+FBv2n8zD
-	g0bhljFG1+1PDxO+0ezU2tN3z1B7zHLJeIM+9oDzUB4b5X/Lfz6d+MgjwB0qgTXmYD9GyxS2NMQS6
-	KBWF+4gw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=jqZDsw4/Pv9G6TuHSSZvax905ZGFTyfcu7eywgbZg64=; b=1GKVeNsDCb6DB4
+	R1PVZy98XHAzVQJ1dcTEZy6A0sZG5GR+7s58VBceNUBEy/3//kXF7uVLTzIt9d7KcENQ8cdBnL5q6
+	6U5ukJIyirpS6tctdViWHLYhVxYbt29eKwhnwmVWvCLc3P87NhDyK9nV2oILrnaDaDcJ8cJprCEcY
+	AxAT+3l9sGpCiexL/OdPc7hC+vk1YUoHsqRFHeXI+1st2kNwZ9YJIzcQtpqyTTRFmKYXAyf7dt0CQ
+	o4OHKYyvE79q4Znem7DVbOCvyv3D42efSvb9Z95F4DWU8g8sPCy2QIOIBKq9cIADM3nYFHGru4Fx4
+	hUCEYi3fgJZAyEIGkKJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTfMv-00000008ugP-3YWo;
-	Wed, 18 Nov 2026 13:06:33 +0000
-Received: from mail-pj1-x102f.google.com ([2607:f8b0:4864:20::102f])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTfMq-00000008ue6-1CQt
+	id 1xTfNg-00000008uxX-0Oyk;
+	Wed, 18 Nov 2026 13:07:20 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTfNc-00000008uvR-1lht
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 13:06:33 +0000
-Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-3ae2b7e1e17so587501a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 05:06:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795007187; x=1795611987; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=DyYtVveBhQy52iIUqNxGmc614rtRmx5Sogui3LnM34E=;
-        b=Aeh42kvapCE+Liry5otFuzbqLm6x/P4EhsNgqr3817+/RW/l/cnyAROwCs0Cjy6I9X
-         0IAIMF2e8OIYg1+UpKIVfuDiWlsZBe8TFI14I83MkqrUemO0vJTeD2B/4uO0769Mqtbt
-         BXGnK6N0x+ODBSkeI90hhz38lt6D02YFOx2Mypp9CPyNOtKO9Om+kNw9EWsVIayAM+ul
-         TSvimsMAcY+ZufDpZLKBwaunmb71QgGHMb2XgwNQQh3iseIhsCO1zGnGLZz2CHo+2XC+
-         mOIsw/ovlYk9waF2qV5tc8pt5i7iWiPn50vR+zORBkrydHVUsfXRqf+rYoXMKypCcfsV
-         xAuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795007187; x=1795611987;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=DyYtVveBhQy52iIUqNxGmc614rtRmx5Sogui3LnM34E=;
-        b=l/CMAC+Leolgfc+TAlGzwXB8ZGC3hb5Qyj70iE1ZcLuDuX15lPqDlMlLF819eAhzqp
-         NPpIuiZlNd1FYTGUJ8rwjQplbSj3Kf/ypIMOF4nq26MptVHMYB+I+zbWpGOoOXDmOhiG
-         bbc6upL1KqM+LGsxDeVyDAJbCWgWH0KDmclfrHyvCS4byA5V5lL596qVr0f6W46DM6VW
-         XA2h1r8Nk4kRJr0ilqPF5zFzaSgsq90X/PTgd6U6HDEhxs2QhHUns7RSwTZKqBr2R9uW
-         Zu6tc8eRPLarqjGkFTnpzzLT6DvN+15IcjqHFiyr2s4fMMOHHAS1MvZc7Y964STQvt1B
-         hV9Q==
-X-Forwarded-Encrypted: i=1; AL+hErGtTSxVRiE7M6KZIW5CJr3QIqvem2L4Xqcp68LMLbjQsPucjd5ILAkSq0Ox6p+teGr811BkcV96mDvFj59yZWGs@lists.infradead.org
-X-Gm-Message-State: APuU4Z+kSNZVJD9pO1ymAsl3P7FE8ji4HBezvPmScvx9aDosfxjTupeY
-	jznH+QT2m9n2rAPVYxw8brOUlbzCuvUhgKfbRod7rc4vUW+a8FwhE2/a
-X-Gm-Gg: AZFdTZcv4esPjMBNDNogUu8KrmoIrYtoYuCc90F2jlLQW6DcaXqvIn8WOHXYc4OtEUf
-	c+8H/2HHb2GMlnz0aTAq/cFwcRy5FYQigp5QD59kqN59fMrbv2PZInsnMs+h4vX/Dg/DPXT3SFM
-	t9vdH44Vg/5kjYfW7tNNZRwZO6GX03MHQDj6SQZWLCyHcbXmW30txhk4Xc5UqapxYuZoCuHM4si
-	RgnljpjOt8QXHdZUqwflHc8PtOzyIz3yuKKjvNp5C4uPd1huLak+M1i++wWmObDinqbjtCdTpUv
-	avgdsCgE0I1K6cynXKokScSCOgSaZBzyy23rxV35CBbXToWecdiqVD540KIB9RETQXPKVQy8BE+
-	04d58/6YcQ3yI8HF03Qce34U4cB5MUY8sfUyh6D5Pdv08B59Vp3PaqyRdhV+wWk8Ccqd7ES+Nty
-	M2Ew3jhBbhEAE63t3THXAI6UnhoOoyWnuqHVzSFa7bNy/SLTJ7T+XmpmcZlNJWXwiIQQOR0tR50
-	g93s6EDvHfJwHZBwJykEGKqsUhr1V9nsZGj2tiKjeQ4nFzNTC2yzqcf+bqR1RCKvVq5UR4OTIX3
-	d40vW7r0CmQW6XFFsxIV7+hyftHJOstd
-X-Received: by 2002:a17:90b:2243:b0:3b3:c44b:b774 with SMTP id 98e67ed59e1d1-3b3d07a7a7fmr2534441a91.45.1795007186887;
-        Wed, 18 Nov 2026 05:06:26 -0800 (PST)
-Received: from macbookair ([187.40.224.113])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b3d1c03e04sm4314633a91.15.2026.11.18.05.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 05:06:26 -0800 (PST)
-Date: Thu, 19 Nov 2026 00:06:16 +1100
-From: Myria Sarvay <myrialsarvay@gmail.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Sven Peter <sven@kernel.org>,
-	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-	Yuvan Shen <yuvanshen09@gmail.com>
-Subject: Re: [PATCH v2 02/15] drivers/perf: apple_m1: Remove unused variables
-Message-ID: <av2iyF3Ssa5mwgTH@macbookair>
-References: <20261107-m3-plus-pmu-events-v2-0-acf1e78da039@gmail.com>
- <20261107-m3-plus-pmu-events-v2-2-acf1e78da039@gmail.com>
- <865wxu1jfa.wl-maz@kernel.org>
+	Wed, 18 Nov 2026 13:07:18 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AB2A21596;
+	Wed, 18 Nov 2026 05:07:08 -0800 (PST)
+Received: from [10.57.92.80] (unknown [10.57.92.80])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 96E0D3F673;
+	Wed, 18 Nov 2026 05:07:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795007231; bh=HEpShK6JaeOW8psRd/l3RPEF82DAOAZP4AgLiMMwhBU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QupW6SWAiFEoX/bwQ9NysNdamPSKgk89MHHXCd0ACOkYEIz954lHFV8MRL+DE8cVG
+	 YvCIPkg66Qttzfq0/Yl5ggwKsbTyrwVYlkPbhyQ4vl5CspuegAHlQidKIHDBtY6SOC
+	 9bEqTQJAqeft2gn5jMI19CDKxiclG9Aly36P/81I=
+Message-ID: <08d06f8c-026c-4503-8783-6b8a1b59d620@arm.com>
+Date: Wed, 18 Nov 2026 13:07:06 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <865wxu1jfa.wl-maz@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: perf: arm,smmu-v3-pmcg: Allow
+ power-domains
+To: Amita Mishra <amitamishra@google.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20261118101913.3135869-1-amitamishra@google.com>
+ <20261118101913.3135869-2-amitamishra@google.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20261118101913.3135869-2-amitamishra@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_050628_331275_B225542A 
-X-CRM114-Status: GOOD (  16.37  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_050716_598929_431AE601 
+X-CRM114-Status: GOOD (  15.97  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,42 +73,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 11:13:45AM +0000, Marc Zyngier wrote:
-> On Sat, 07 Nov 2026 10:48:49 +0000,
-> Myria Sarvay via B4 Relay <devnull+myrialsarvay.gmail.com@kernel.org> wrote:
-> > 
-> > From: Myria Sarvay <myrialsarvay@gmail.com>
-> > 
-> > These variables are calculated elsewhere as well, remove the extra dead
-> > code.
-> > 
-> > Signed-off-by: Myria Sarvay <myrialsarvay@gmail.com>
-> > Fixes: a639027a1be1 ("drivers/perf: Add Apple icestorm/firestorm CPU PMU driver")
+On 2026-11-18 10:19 am, Amita Mishra wrote:
+> On some SoCs, SMMUv3 Performance Monitor Counter Groups (PMCGs) reside
+> in switchable power domains rather than an always-on domain.
 > 
-> Not quite. In this patch, the variables were very much in use. They
-> became useless with 75ecffc361bbc ("drivers/perf: apple_m1: Refactor
-> event select/filter configuration").
-> 
-> Please adjust the tag accordingly, or just drop it because this really
-> isn't a fix, only a minor cleanup.
+> Document the optional power-domains property so that runtime power
+> management can manage the PMCG power state.
 
-Yeah, sashiko picked this up. I had fixed it locally for v3, but was
-just waiting for other reviews before sending another series with just a
-fixes tag. Thanks for picking it up!
+Isn't power-domain-consumer one of the common schemas that's 
+automatically applicable to any node anyway? I would think that unless 
+we have a specific expectation and description of what each 
+power-domains entry should represent - which we cannot reasonably do in 
+a binding that is for the architectural PMCG interface rather than any 
+specific implementation of such - we'd be better off just leaving it 
+implicit.
 
+> Signed-off-by: Amita Mishra <amitamishra@google.com>
+> ---
+>   Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml | 3 +++
+>   1 file changed, 3 insertions(+)
 > 
-> Thanks,
-> 
-> 	M.
-> 
-> -- 
-> Without deviation from the norm, progress is not possible.
+> diff --git a/Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml b/Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml
+> index a4b53a6a1ebf..aea6623bb98c 100644
+> --- a/Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml
+> +++ b/Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml
+> @@ -36,6 +36,9 @@ properties:
+>   
+>     msi-parent: true
+>   
+> +  power-domains:
+> +    maxItems: 1
+
+Even for existing implementations it would be quite possible for a PMCG 
+to be functionally dependent on multiple power domains (yes some of them 
+should usually be hierarchical, but still...) - what justifies 1 being 
+the only "correct" number?
+
+Thanks,
+Robin.
+
+> +
+>   required:
+>     - compatible
+>     - reg
+
 
