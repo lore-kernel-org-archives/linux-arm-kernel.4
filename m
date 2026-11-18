@@ -2,75 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64423606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888A2606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VbYb5t8O;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=eyo362ur
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xG0mw2Ja;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=X6RWyuln
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FkG1M7L3zIjGXumIoOOlMZR+O73PQTM6nqG0PHku6sU=; b=VbYb5t8OuHQXUf
-	+hFKXeFGv+viiXA/ALAwrmhZBh1Q/gEY6KEVvls4Bdb/KQ4/ql9IVcsaXHdqNfvL8xC+xuPygMmIu
-	OR7RkbaT4VD8Fajc6yKeeoPs+6+w46SSuVYlj0VzHZvzoHBGNUhi5b+bsU0mG2dwa7qBAUaC8U3fz
-	9Rou/+v7TWHoABz4uG5zzIqGG45EogOvHdrOS7djI5wWsIcHb9Ydbet2Uuq76hXpJS3Qdfqp6Zdlg
-	8pPGqHW7UtSixfQySDJbc+ElrNJu/pLVKN7g1oe5hjcJO9oF4EyIfWeLzKNCQtQynffBatochMtGO
-	Ozy2L0/GhfUtjE3SadRA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AV5zitI1IdkcOHGkiPiF8QdIMkhW2zoRM0PJ71FqnqQ=; b=xG0mw2JaBRM1Tw1Es/CLjZQyaz
+	iwWWTSHV4CaofiDLXKivR+nSRsrixKa3KfgvUGi5X2oXoJvNEn7AThUFictU2aFCLNAPIaaNA991Y
+	oM1nU5PDZ5FsTI48mkJIGgTQGNox2c+bQDcEAHHOciHfCzVMeL9wPbGSl56lR67BkLhfESQqwUCzY
+	+8bSTtcDjXF9QPMh+hOeDxVYU0Ud1LSiD8VC066bF48cvW6ce3yH8kuabuwm02R5Ia8vlDhlUHaEE
+	Xebb3wZOkj0HSf1g7w8YQa3OfgGbsbOCuMEn5O38YBCyG/PW292Lc87h0lxcz9wW4zkQgTW+FfizL
+	YsRelHFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTduz-00000008itA-1O9q;
-	Wed, 18 Nov 2026 11:33:39 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTduw-00000008isH-0vQd
+	id 1xTdx9-00000008jBh-3DfD;
+	Wed, 18 Nov 2026 11:35:51 +0000
+Received: from canpmsgout08.his.huawei.com ([113.46.200.223])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTdx6-00000008jAQ-3a1s
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 11:33:35 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 693131596;
-	Wed, 18 Nov 2026 03:33:30 -0800 (PST)
-Received: from [10.57.70.68] (unknown [10.57.70.68])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7F90C3F673;
-	Wed, 18 Nov 2026 03:33:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795001613; bh=csl8kCTvz4XLKbFvRoYYYYrgaV2LpO+qLRWnlyKVl84=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eyo362urxliBQcBcqOcEl9e1QlQWWWQHXvpyHTu/vd/bS3HdZH8Bd4wi6QQ4+0ddq
-	 vYaGDIBsof+HNIzGdS0nbDVtuXoFA+k5vXjogbBUsVR1xSuvVlaEQfHOOCEl/Xe0HU
-	 E9Hg+ss0vh+eH7NXWRpy7lSLWwc7qY8stVcYjyZY=
-Message-ID: <878eabf1-0742-45ad-892a-4c6a7b615d1f@arm.com>
-Date: Wed, 18 Nov 2026 11:33:28 +0000
+	Wed, 18 Nov 2026 11:35:51 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=AV5zitI1IdkcOHGkiPiF8QdIMkhW2zoRM0PJ71FqnqQ=;
+	b=X6RWyuln2WkBkC0v+D8U0Na1zXfPiXTpyfpArrY6cGgjrIJTKDdSrmfywrF1dqqaGmpqK9v1q
+	IgrKqDTd+RouZc4MRkA3m1o14TWHuzJJMvnDv9CzRtSBiCaKVG/J9dHs8PZt55TvkfRO3QzYlXw
+	t6+OP9K0N5XHRJjk8Q1arw0=
+Received: from mail.maildlp.com (unknown [172.19.163.163])
+	by canpmsgout08.his.huawei.com (SkyGuard) with ESMTPS id 4jTzzt48wqzmV6N;
+	Wed, 18 Nov 2026 19:35:22 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 1A8564057A;
+	Wed, 18 Nov 2026 19:35:42 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 18 Nov
+ 2026 19:35:41 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
+	<fenghuay@nvidia.com>, <jic23@kernel.org>, <zengheng4@huawei.com>,
+	<tan.shaopeng@jp.fujitsu.com>, <gshan@redhat.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH v5 1/3] arm_mpam: resctrl: Leave CDP off when there are too few PARTIDs
+Date: Wed, 18 Nov 2026 19:35:30 +0800
+Message-ID: <20261118113532.638039-2-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261118113532.638039-1-ruanjinjie@huawei.com>
+References: <20261118113532.638039-1-ruanjinjie@huawei.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v23 3/8] coresight: tmc: add a function to switch the ETR
- to a free etr_buf
-Content-Language: en-GB
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@arm.com>,
- James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Mao Jinlong <jinlong.mao@oss.qualcomm.com>, Abel Vesa <abelvesa@kernel.org>,
- Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20261118-enable-byte-cntr-for-ctcu-v23-0-67fd9db6bc0e@oss.qualcomm.com>
- <20261118-enable-byte-cntr-for-ctcu-v23-3-67fd9db6bc0e@oss.qualcomm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261118-enable-byte-cntr-for-ctcu-v23-3-67fd9db6bc0e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_033334_384714_1116165F 
-X-CRM114-Status: GOOD (  29.51  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261118_033549_438141_F1D9EC8E 
+X-CRM114-Status: GOOD (  12.28  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,148 +78,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 18/11/2026 08:02, Jie Gan wrote:
-> Add tmc_etr_switch_buf_node() to switch the ETR to a free etr_buf of the
-> etr_buf_list without disabling the sink. It returns the node of the
-> switched out etr_buf, so its synced data can be read while the ETR keeps
-> tracing into the new one.
-> 
-> Stopping the ETR, swapping the etr_buf and restarting the ETR have to be
-> done in one critical section. Otherwise tmc_disable_etr_sink() can run
-> in between and leave drvdata->etr_buf out of sync with the hardware.
-> Provide the sequence as a TMC helper, so callers don't need to know
-> about the locking of the ETR state.
-> 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->   drivers/hwtracing/coresight/coresight-tmc-etr.c | 65 +++++++++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-tmc.h     |  4 ++
->   2 files changed, 69 insertions(+)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> index e9213f456834..5032f5598e15 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> @@ -1224,6 +1224,71 @@ static void __tmc_etr_disable_hw(struct tmc_drvdata *drvdata)
->   
->   }
->   
-> +static void tmc_etr_reset_sysfs_buf(struct tmc_drvdata *drvdata)
-> +{
-> +	u32 sts;
-> +
-> +	CS_UNLOCK(drvdata->base);
-> +	tmc_write_rrp(drvdata, drvdata->sysfs_buf->hwaddr);
-> +	tmc_write_rwp(drvdata, drvdata->sysfs_buf->hwaddr);
-> +	sts = readl_relaxed(drvdata->base + TMC_STS) & ~TMC_STS_FULL;
-> +	writel_relaxed(sts, drvdata->base + TMC_STS);
+Enabling CDP requires at least 2 PARTIDs. If there are too few PARTIDs,
+resctrl_arch_set_cdp_enabled() returns -EINVAL, but only after it has
+recorded CDP as enabled, halved the monitor count and turned off the
+mbw_max MBA control. resctrl then believes CDP is off, which leaves the
+two sides out of step and the halved monitor count and the missing MBA
+control are not undone.
 
-see below
+Check the PARTID limit before anything is changed so a failed enable has
+no effect.
 
+Fixes: 6789fb99282c ("arm_mpam: resctrl: Add CDP emulation")
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Reviewed-by: Gavin Shan <gshan@redhat.com>
+Cc: <stable@vger.kernel.org>
+---
+v5:
+- Add Reviewed-by.
+- Remove the unnecessary stable version.
+---
+ drivers/resctrl/mpam_resctrl.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-
-
-> +	CS_LOCK(drvdata->base);
-> +}
-> +
-> +/**
-> + * tmc_etr_switch_buf_node - switch the ETR to a free buffer of the etr_buf_list.
-> + * @drvdata:	drvdata of the TMC device.
-> + *
-> + * Stop the ETR, hand over the current buffer for reading, switch to a free
-> + * buffer and restart the ETR. All of this is done with @drvdata->spinlock held,
-> + * so it can't race with the sink disable path.
-> + *
-> + * Return: the node of the switched out buffer, or NULL if the sink isn't in
-> + * sysfs mode or there is no free buffer. The ETR is left untouched in both
-> + * cases.
-> + */
-> +struct etr_buf_node *tmc_etr_switch_buf_node(struct tmc_drvdata *drvdata)
-> +{
-> +	struct etr_buf_node *nd, *curr_node = NULL, *picked_node = NULL;
-> +	unsigned long flags;
-> +
-> +	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
-> +	if (coresight_get_mode(drvdata->csdev) != CS_MODE_SYSFS)
-> +		goto out;
-> +
-> +	list_for_each_entry(nd, &drvdata->etr_buf_list, link) {
-> +		if (nd->sysfs_buf == drvdata->sysfs_buf)
-> +			curr_node = nd;
-> +		else if (!picked_node && nd->is_free && !nd->reading)
-> +			picked_node = nd;
-> +	}
-> +
-> +	if (!curr_node || !picked_node) {
-> +		curr_node = NULL;
-> +		goto out;
-> +	}
-> +
-> +	__tmc_etr_disable_hw(drvdata);
-> +
-> +	/* The switched out buffer is free again once it has been read */
-> +	curr_node->is_free = true;
-> +	curr_node->pos = 0;
-> +	curr_node->reading = true;
-> +	picked_node->is_free = false;
-> +	drvdata->sysfs_buf = picked_node->sysfs_buf;
-> +	drvdata->etr_buf = picked_node->sysfs_buf;
-> +
-> +	tmc_etr_reset_sysfs_buf(drvdata);
-
-Why are we doing this, when the following __tmc_etr_enable_hw() already 
-does the right thing ?
-
-Suzuki
-
-
-> +	if (__tmc_etr_enable_hw(drvdata))
-> +		dev_err(&drvdata->csdev->dev, "Failed to restart the ETR\n");
-> +out:
-> +	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-> +
-> +	return curr_node;
-> +}
-> +EXPORT_SYMBOL_GPL(tmc_etr_switch_buf_node);
-> +
->   void tmc_etr_disable_hw(struct tmc_drvdata *drvdata)
->   {
->   	__tmc_etr_disable_hw(drvdata);
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-> index 7c604b9f92e5..30b15c38b080 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc.h
-> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-> @@ -212,12 +212,15 @@ struct tmc_resrv_buf {
->    * struct etr_buf_node - node of the etr_buf_list
->    * @sysfs_buf:	Allocated sysfs_buf.
->    * @is_free:	Indicates whether the buffer is free to choose.
-> + * @reading:	Indicates the buffer attached to the node is being read by
-> + *		the user.
->    * @pos:	Offset to the start of the buffer.
->    * @link:	list_head of the node.
->    */
->   struct etr_buf_node {
->   	struct etr_buf		*sysfs_buf;
->   	bool			is_free;
-> +	bool			reading;
->   	loff_t			pos;
->   	struct list_head	link;
->   };
-> @@ -465,5 +468,6 @@ struct etr_buf *tmc_etr_get_buffer(struct coresight_device *csdev,
->   extern const struct attribute_group coresight_etr_group;
->   void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata);
->   int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes);
-> +struct etr_buf_node *tmc_etr_switch_buf_node(struct tmc_drvdata *drvdata);
->   
->   #endif
-> 
+diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+index 5468367776e2..aa3b3a093857 100644
+--- a/drivers/resctrl/mpam_resctrl.c
++++ b/drivers/resctrl/mpam_resctrl.c
+@@ -210,6 +210,9 @@ int resctrl_arch_set_cdp_enabled(enum resctrl_res_level rid, bool enable)
+ 	if (enable)
+ 		pr_warn("CDP is an expert feature and may cause MPAM to malfunction.\n");
+ 
++	if (enable && mpam_partid_max < 1)
++		return -EINVAL;
++
+ 	/*
+ 	 * resctrl_arch_set_cdp_enabled() is only called with enable set to
+ 	 * false on error and unmount.
+@@ -239,9 +242,6 @@ int resctrl_arch_set_cdp_enabled(enum resctrl_res_level rid, bool enable)
+ 		mpam_resctrl_controls[RDT_RESOURCE_MBA].resctrl_res.alloc_capable = true;
+ 
+ 	if (enable) {
+-		if (mpam_partid_max < 1)
+-			return -EINVAL;
+-
+ 		partid_d = resctrl_get_config_index(RESCTRL_RESERVED_CLOSID, CDP_DATA);
+ 		partid_i = resctrl_get_config_index(RESCTRL_RESERVED_CLOSID, CDP_CODE);
+ 	}
+-- 
+2.34.1
 
 
