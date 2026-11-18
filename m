@@ -2,52 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4228060A2602
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F6E606CA76
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f22Ggfgl;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DOhzPM0y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JAsoTpTM;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Q1kiQHQO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=OygdrmFY09KvJCoOLe6f0ni4hy8AuKmct+wdRcMH4GY=; b=f22GgfglrhcClc
-	Xbya/wQde10SfWH1pUtlOvlSl5v3TVVzyb2+HiE4Nb+yigHABCZnAFI+3UVgWvgQimBh0CFAfEn/8
-	49o8cBGK+1SfI9spBR8IJJffS1/CfStBI1jB7fl06a+5v1BjHqft6x6mzFVhkPwgD5eCL/g7Wqg9W
-	a6im2UGhw54edAw9XAp9FJCpSj2qMA/TMWJAOUlFpspOnc11Vo3wWs1WRO+LOBhanXzqONwRZoN8e
-	by2M8jwq1CV/J5MW5DPE9KfUmN3vhFMaje0aQva395Ehz5h1yCQ+UBM40cNyz8YUUNx9VbCc69TMm
-	8yJGgD96nsAPIbvHQEFg==;
+	List-Owner; bh=J+G+xC0p74vn2sEkBQl3yCBMl8hOWZRkKoYR/SB/aqM=; b=JAsoTpTMotWDWT
+	0HNeCFoB2rxkqdKaNsZM+gOetdh++tJ5IN+Ae+laXMkc7B5Lup9Z3rJz22ry5IJ6QCb6trAtjIv51
+	usMwmrEKXq0G4EW7mrn9B5F/wuGgSMtAfhbgmWUDmxNm3Y2efWYegECv9Ninxn2ylOAPlC/lSfrrB
+	h7q8q/d4RakNI0qxSxK3Cf4ItDkqeeSpxsy1UWqD+CzINPDmAlmObvrhkbtDqhGzfG4aqD3sh63DH
+	aZdcjfdXVa1O4CKyTr7T4wVkwyJDxdiLWGSYIt3FvGg5fWTcexc8BIdM2TravGFucPnj/dCgThTVP
+	Gt5q+UEiVjpzwuOTRCzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjZr-00000009miV-2qH8;
-	Wed, 18 Nov 2026 17:36:11 +0000
+	id 1xTjaU-00000009nDY-3z1r;
+	Wed, 18 Nov 2026 17:36:50 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjZo-00000009meH-2jNx
+	id 1xTjZq-00000009mf0-2WsY
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 17:36:09 +0000
+	Wed, 18 Nov 2026 17:36:12 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B9C921655;
-	Wed, 18 Nov 2026 09:36:04 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BEEA71477;
+	Wed, 18 Nov 2026 09:36:06 -0800 (PST)
 Received: from e133894.arm.com (e133894.arm.com [10.2.80.62])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 022913F632;
-	Wed, 18 Nov 2026 09:36:05 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 081523F632;
+	Wed, 18 Nov 2026 09:36:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795023367; bh=upgto9NrOT43Megv54sEqbwgn9RKS4Z2UQH6+PLVkvs=;
+	t=1795023369; bh=rsTiDEUCjaTZ+bVkbUwBYd8TOQnnZyJQiitr8SarOe8=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=DOhzPM0ybgoMSi6cHvxYUpGm9ZqevR9GJS9Er7CPwy0gKh0Qt0Q9IKuBwXGM59TPr
-	 733yPvUUG53upfW003994Rk/5xSFE0VY2vWc86/KyF6eeHOeX5Vp0vHX4H2YljJvtQ
-	 nH+9weJI37W/i612puXE6F3wHERYbU0ErQ4F/qRI=
+	b=Q1kiQHQOjL6S/H9sv6STu4W8q0jSJvqXjeT296gNATQunMfXvBsm3AD7gdDXJX9MK
+	 roblsVt853Nwi1IQXGEq+F99FeLnSLFGgfwXQh8vOx7UukZ0RruaNcAqcTXwqCymMd
+	 GHyt3llEW5UHKyUXVUROlroT/u4GiNMycjB5aOKw=
 From: Sascha Bischoff <sascha.bischoff@arm.com>
-Date: Wed, 18 Nov 2026 17:35:36 +0000
-Subject: [PATCH v3 07/14] irqchip/gic-v5: Honour ACPI ITS noncoherent flag
+Date: Wed, 18 Nov 2026 17:35:37 +0000
+Subject: [PATCH v3 08/14] irqchip/gic-v5: Use firmware node name in ITS
+ warning
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-host_gicv5_fixes-v3-7-13c1859e8aa3@arm.com>
+Message-Id: <20261118-host_gicv5_fixes-v3-8-13c1859e8aa3@arm.com>
 References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
 In-Reply-To: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
 To: Marc Zyngier <maz@kernel.org>, 
@@ -62,8 +63,8 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Sascha Bischoff <sascha.bischoff@arm.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_093608_748434_8457EF2B 
-X-CRM114-Status: GOOD (  12.14  )
+X-CRM114-CacheID: sfid-20261118_093610_716556_5353E018 
+X-CRM114-Status: GOOD (  12.20  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,35 +84,42 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The ACPI ITS probe passes its noncoherent flag to
-gicv5_its_init_bases(), but the common initializer checks a DT
-property instead. For an ACPI ITS, this always selects coherent cache
-settings and skips the cache maintenance required for its tables.
+The common ITS initialiser can be called with an ACPI firmware node.
+If firmware leaves the ITS enabled, the warning dereferences the DT
+node pointer, which is NULL on that path.
 
-Use the noncoherent argument, which both firmware paths already
-supply.
+Use the firmware node name for the warning and drop the DT-only
+pointer.
 
 Fixes: a97efa5ba5946 ("irqchip/gic-v5: Add ACPI ITS probing")
 Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
 Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: stable@vger.kernel.org
 ---
- drivers/irqchip/irq-gic-v5-its.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/irqchip/irq-gic-v5-its.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
-index 5f9fa80ea6aa6..9e8077dada5ef 100644
+index 9e8077dada5ef..876437017ccc5 100644
 --- a/drivers/irqchip/irq-gic-v5-its.c
 +++ b/drivers/irqchip/irq-gic-v5-its.c
-@@ -1135,7 +1135,7 @@ static int __init gicv5_its_init_bases(void __iomem *its_base, struct fwnode_han
- 			goto out_free_node;
- 	}
+@@ -1109,7 +1109,6 @@ static int gicv5_its_init_domain(struct gicv5_its_chip_data *its, struct irq_dom
+ static int __init gicv5_its_init_bases(void __iomem *its_base, struct fwnode_handle *handle,
+ 				       struct irq_domain *parent_domain, bool noncoherent)
+ {
+-	struct device_node *np = to_of_node(handle);
+ 	struct gicv5_its_chip_data *its_node;
+ 	u32 cr0, cr1;
+ 	bool enabled;
+@@ -1129,7 +1128,8 @@ static int __init gicv5_its_init_bases(void __iomem *its_base, struct fwnode_han
  
--	if (of_property_read_bool(np, "dma-noncoherent")) {
-+	if (noncoherent) {
- 		/*
- 		 * A non-coherent ITS implies that some cache levels cannot be
- 		 * used coherently by the cores and GIC. Our only option is to mark
+ 	cr0 = its_readl_relaxed(its_node, GICV5_ITS_CR0);
+ 	enabled = FIELD_GET(GICV5_ITS_CR0_ITSEN, cr0);
+-	if (WARN(enabled, "ITS %s enabled, disabling it before proceeding\n", np->full_name)) {
++	if (WARN(enabled, "ITS %s enabled, disabling it before proceeding\n",
++		 fwnode_get_name(handle))) {
+ 		ret = gicv5_its_disable(its_node);
+ 		if (ret)
+ 			goto out_free_node;
 
 -- 
 2.34.1
