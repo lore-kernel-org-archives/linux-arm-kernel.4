@@ -2,85 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1906606A334
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56171606A335
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zHCfr913;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=gHG4sN4X
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k2nCKoRz;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=bITZurwG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oCXi5c27gxkETQPEkp8qfLLdejyp5sedYaxTjamqL5A=; b=zHCfr913W0uc4l
-	CujUzxOkLcCWKdmZG+IqKdvWA8/xoXy/boEEJOo2z/VeFxdymTs01A1h58xbRUoiUtt0wVwyw6dic
-	kZ4aZRgoLDUbWIajpQuFNGl9JVUXhb+Nk1dtWJxAc7So/ldQ5/nLnp6BfDZlMOpHa/V+0EYCZzKi1
-	iMQ0QmHVTnLr7mwk7msVN2a5tLh1ndptG59K+mcunsU7oeWBX5+HX8z8h7p3pxtjIY2TqVdBM6E4/
-	Lt4RKAPWiEUL5N/97CJVpLFSXcpxQvAxfoDZpoPL1q+KQ0plv7pWNMoiohntuqUTqjhjx1mL3u6vz
-	BspDPJMC6nIwjtaUU2Ew==;
+	List-Owner; bh=OWO/4pb+xROsjF0+5i909plVTiV5kvL03eZF9ypm+2s=; b=k2nCKoRzT4poiI
+	yM92Bvc6vI7uFwjqRTAFXgVesHQd9NuO37iM/o8v7+TJ4nk278SFKecS6B3m3l1upTl1yyE5tqf+E
+	8Yn+e8c18raIHN+n0EIORh3LnL6f/kUYc2rAlm8jaDJeTz7q70kpaXsctL3uqNKIQeWHFKw1aE/x2
+	8OIEtjYyUlfJPMT9fzy1Wl2qf83k93dgOytaRWKUXvHPxIrWLX4IbMjjBgXC3wC3DjrpddFosL+jA
+	d/AgzwbWOOCtxoCx/pr7lcleF6yVj6uvl5fbJJO30MrEWZoTqh/5IpiyoN1xPYhi/LMoFhd4mC8WG
+	wgU+jMMrTE+TXKa8NuDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiZK-00000009VfI-3Wja;
-	Wed, 18 Nov 2026 16:31:34 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1xTiZG-00000009VWX-1mQH;
+	Wed, 18 Nov 2026 16:31:30 +0000
+Received: from mail-wr1-f46.google.com ([209.85.221.46])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiYF-00000009UcG-2aGA
+	id 1xTiYC-00000009UZe-1jEd
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:30:29 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-48dee593f18so1101677f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:30:26 -0800 (PST)
+	Wed, 18 Nov 2026 16:30:26 +0000
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-491971ac844so1206920f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:30:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795019425; x=1795624225; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795019422; x=1795624222; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=oCXi5c27gxkETQPEkp8qfLLdejyp5sedYaxTjamqL5A=;
-        b=gHG4sN4XOVor6ybHfIiecBnBamdvUDVHG4MXvaP3H4TP+zub7vyfaVQRBJ1uUDLeil
-         Zy4brkuOoZFogbNRjaxtJi04RUe6lhnCoYM9Oc3D5+e6b40iI4++oTwlVyy93zDnCWF8
-         9x3Iw6nQ8MbT9PcaSTuJoinEe25mqYNEIgwyF2qrnKCS4hQnAORp0tweEs3TToeRRWHN
-         kRGs98UgTrUdPADcwNA6aEK5CfpQZJOQtE9skwykTF9r6eCRYAbfi4W7V3FtPD7Cq7f2
-         g+xo8YAwUWcgxpIfkW0Aw/AuqTt6dW3UPlPRCIWayHkW30o7moO/b60nkLGIOxgye9zt
-         njIQ==
+        bh=OWO/4pb+xROsjF0+5i909plVTiV5kvL03eZF9ypm+2s=;
+        b=bITZurwGmZk6MieFVRFirgyocR2pvHLNCPQ/oOM678dT2Yj/uxj8a3xtqTCq4KMp3t
+         5fDqYBom4QMTfjdm9VXkDbGUGMWUJlyZZyyAwguZ2yX5XpuVYAxM9gDIvCJeV0B1qzaJ
+         ScUuZHkqh1yAQPnTmLVilIic5sZLcV25hJiTgvnfd1wlcUjf8a0+D9E+PUyfRrDDUCwj
+         Lq6pPfNbWA6j/z90vuXp9WiipyZIzOz0tmvdUpDJbOuLz1lKXZR3U+5wTbYAn5GnaWdc
+         8woFNyY4kQpESY3F75VEUnU8BbWqHLxxReuvtkE64FoAuCOZW72rGIxdfEiI96ZiQm48
+         aPtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795019425; x=1795624225;
+        d=1e100.net; s=20260707; t=1795019422; x=1795624222;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=oCXi5c27gxkETQPEkp8qfLLdejyp5sedYaxTjamqL5A=;
-        b=JF5fswwl0UcwRZGnyN9Qql4Dat7A+0XmePbEyjTBJl0ewDRhr5+hUO3311BAom5ymA
-         Y1hrXCCSiHuND5d6j78365lhSxmQMfbR3W8QMdd1JXDPkd6u4/lGuiVgm4fcaRS0osSD
-         FA8zbzb76UGGEf2rpKlvv7svUA67I4byCx3XFH2dZjBSNU7ZQ8/y5BIBJ45s7fSdatmY
-         32IRjEvnUNdoVDiBTZ7GMKMRTBchozRT2uMf3Eyomo4AMBKuxUzPkrPjaDyTQ+c2325F
-         yVSBLmKSIXD2CZWwNVb0/ftFhB7KqCOjngQlr1LInBsfaiFDebQctENMIDUPXgp8d4Ml
-         2Y7A==
-X-Forwarded-Encrypted: i=1; AL+hErFbgal9bW9Cc9PTF1F7oFfVshSZavb5ocIqQ7h9EweJSkG+kqTndehO4MwnuCqbiXXr6AQ0Tg/7GOlz4nDLfemL@lists.infradead.org
-X-Gm-Message-State: APuU4Z/ihiQ8iyTaGQQubK5ghkd0saCjNv1tcwD1BH17qSx/NmBHT+/p
-	mnwZhJHVTd1A+YcLKZmPsQWie7fW20MOlK5K3l9KQy2ygbfhui2MDz6fHpYAYK2Ihc0=
-X-Gm-Gg: AZFdTZciAkat0qFLJC9zwn7ACDbeulNxsnMf1Pd9KnZwBxGoblunx9kqm7Ho6q1BhUr
-	QBTKF2xqvto6t8Wnhgvfwd1YIGE1Y+8ph7eO09BLe74EkQodWVeQ6ssW2dKgL7j5cK7P/GltQ8r
-	zaZzlGqJJza6JgFVN3U0xHP9RKoKEr6xq83pooC2ZWlZCe8lLDMPxpEzhgdt1OXdZRyJslquh9C
-	biRKQi97+K9LJ5qN65u4W11V44kC9maDgcvQNzns9J/N8AHoZ2fPVjXzgDOqTAdJCWwn2eF8cew
-	ORZB/IS8A/YDH2TVcAsTJ4NesGhz79xX/ON+foLMCmTp+pAdmwj944vN6weE8pB6QAPEflIrS4x
-	s/CwwQskd21F6IcaYzgAbfQ+RwWvzwn8/nNSbysCFEfgr/7MfK9LFpU4SRK6gJvV4G57vc6Pzve
-	43Av3YkbaUAsk0QFMeUX+4ibSTNlS4HbXPdTezyOi9MjhV28ltL/lX+yiIezQ2E5L6+WEVaUQG8
-	z5dT7TxtcclwX1y5PXwWc2qrRk+KYlP1lzantZ/hGm2SeY2ruGRJO88hROOvQTa8cthr5cQ+Nwv
-	nNvuJDcGvG5cIFGiSO6M/mNgYY8iyfYS
-X-Received: by 2002:a05:6000:26ca:b0:4a7:9630:7b57 with SMTP id ffacd0b85a97d-4a7963080f2mr4671595f8f.44.1795019425254;
-        Wed, 18 Nov 2026 08:30:25 -0800 (PST)
+        bh=OWO/4pb+xROsjF0+5i909plVTiV5kvL03eZF9ypm+2s=;
+        b=Nvz34XEsewhclxeFllDS9Oi2gSEZWD5m2GJ5IZ90hFZ+V7x0wskDA2NQpgpo6uuuVe
+         0UMKaaD3xcvaW7jEHbHboZ05HR2b4nnALgm+U59LOxRBUsw9T6HzLzOMqq/6otVup2B5
+         8As7hzapGH5HcMx7Aby7RxupDcaBawe48Oip36t0m6+aIYVUImsnVqW2cmEH/DI6zpdx
+         7gMx+vSXsw8HJT3BubmLD67DVjdlH+KoFsfDCR0z7DdmKlz1c9YH5Ckw48R2MKBrHu3V
+         NvHGCVrD4Yjm2cAPiIx1TNBoeEckFlyGxER7UnXv9PcFQOKl+aJWJi+dyxRcU9UneDn9
+         eSlA==
+X-Forwarded-Encrypted: i=1; AL+hErFaCVCRHOUh8tWKYF5TJc2DNDoAK+qQ58ep0ZGDasxHimHrgr40bmYWN5VgZiCr6/2o0GSvME5EP+lE4RPrn+fH@lists.infradead.org
+X-Gm-Message-State: APuU4Z9E2UTPneTK51hWmio7XY+a5dQmIUY+re5EbIXPoqd3Wq+6g5PL
+	sCx7t2p5WYTL3KE7Yg/x8UeL++1YxNka88931DyXnxoFHAdLZYSaHKkuej1mcfGJfP8=
+X-Gm-Gg: AZFdTZcLlnWdwdnclkSv2mhI8Zc0DRELstIA+UJP9EUp0DlPc5DDagNPDB3I6EsipUV
+	kvotTPLUxxUutGes/OZoCiKDbS4RKxWO//9Y9FrfGYOmrvd6FjyCB2xxThRiqBwDQ/Va4qCsFNi
+	VZTTuhEqqvZ7iwbYl6ni4hwpCR0FC2qHZ9UQcpMKx2Y0J/VlNLzwW25BDuWHerVJJ6eQ2819Evk
+	uyhGXZlvde4fftTEk+FdCcXRZFElF3DScEqOpZCEvE/DmwGkOkHAo6VdEOi1Nmj1pUilc5tIQJl
+	75WYIKQj1ICVZtEAlSPP5vZu50BB/ia9doEqWSkT5C5eFxjBUZjsbW4y7jze70tbpUXY4Juh+8K
+	nDwgThu4Ugx0qdLzSqCwZzRyjreKGOFIq8+3NlSfR2kHQWpyHcrixOW3JRJlwy1M0bpIEBW4hBa
+	wUGcKynkOZQmsg6JP14UWcQzNzs+kp+HUsJo3nbtXM2287b+cleWcQKS7qEpShijAbCax74kKCJ
+	hkJao2TXPQ2aIJW3PfCQGYjmac33u9X+kaTq9F+NjzI4jNtRQn/LQRMwmYWgZe5MN6ija/Z+PUD
+	CLoqZRPkkJDyEzs9oPai0zXivBKD8Md/
+X-Received: by 2002:a05:6000:184d:b0:4a6:4862:28fc with SMTP id ffacd0b85a97d-4a648622a17mr7753290f8f.7.1795019422213;
+        Wed, 18 Nov 2026 08:30:22 -0800 (PST)
 Received: from pop-os.local ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.30.24
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.30.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 08:30:24 -0800 (PST)
+        Wed, 18 Nov 2026 08:30:21 -0800 (PST)
 From: James Clark <james.clark@linaro.org>
-Date: Wed, 18 Nov 2026 16:29:56 +0000
-Subject: [PATCH 34/34] perf test cs-etm: Add an HHVM JIT call stack test
+Date: Wed, 18 Nov 2026 16:29:53 +0000
+Subject: [PATCH 31/34] perf test cs-etm: Add a Java JIT source-line test
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-james-coresight-jit-v1-34-dad4d90747f6@linaro.org>
+Message-Id: <20261118-james-coresight-jit-v1-31-dad4d90747f6@linaro.org>
 References: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 In-Reply-To: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 To: Arnaldo Carvalho de Melo <acme@kernel.org>, 
@@ -94,8 +94,8 @@ Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_083027_709478_4A5D95A6 
-X-CRM114-Status: GOOD (  14.05  )
+X-CRM114-CacheID: sfid-20261118_083024_512915_4C652055 
+X-CRM114-Status: GOOD (  21.79  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,109 +115,194 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Record a Hack workload with HHVM's jitdump enabled and compare the
-decode matches the expected order of execution.
+Record a deterministic Java workload using the JVMTI agent and check
+that the decoded source lines match the expected sequence.
+
+Alternate fresh class loaders and request garbage collection to
+encourage address re-use so that we can test if trace timestamps match
+up to jitdump events.
 
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- tools/perf/tests/shell/coresight/hhvm-jit.sh | 89 ++++++++++++++++++++++++++++
- 1 file changed, 89 insertions(+)
+ tools/perf/Makefile.perf                          |  4 +-
+ tools/perf/tests/shell/coresight/java-jit.sh      | 65 ++++++++++++++++++
+ tools/perf/tests/shell/coresight/lib/PerfJit.java | 82 +++++++++++++++++++++++
+ 3 files changed, 150 insertions(+), 1 deletion(-)
 
-diff --git a/tools/perf/tests/shell/coresight/hhvm-jit.sh b/tools/perf/tests/shell/coresight/hhvm-jit.sh
+diff --git a/tools/perf/Makefile.perf b/tools/perf/Makefile.perf
+index b74b534e1153..53c10e8e4556 100644
+--- a/tools/perf/Makefile.perf
++++ b/tools/perf/Makefile.perf
+@@ -992,7 +992,9 @@ install-tests: all install-gtk
+ 		$(INSTALL) tests/shell/base_report/*.sh '$(DESTDIR_SQ)$(perfexec_instdir_SQ)/tests/shell/base_report'; \
+ 		$(INSTALL) tests/shell/base_report/*.txt '$(DESTDIR_SQ)$(perfexec_instdir_SQ)/tests/shell/base_report'; \
+ 		$(INSTALL) -d -m 755 '$(DESTDIR_SQ)$(perfexec_instdir_SQ)/tests/shell/coresight' ; \
+-		$(INSTALL) tests/shell/coresight/*.sh '$(DESTDIR_SQ)$(perfexec_instdir_SQ)/tests/shell/coresight'
++		$(INSTALL) tests/shell/coresight/*.sh '$(DESTDIR_SQ)$(perfexec_instdir_SQ)/tests/shell/coresight'; \
++		$(INSTALL) -d -m 755 '$(DESTDIR_SQ)$(perfexec_instdir_SQ)/tests/shell/coresight/lib'; \
++		$(INSTALL) tests/shell/coresight/lib/*.java -m 644 '$(DESTDIR_SQ)$(perfexec_instdir_SQ)/tests/shell/coresight/lib'
+ 
+ install-bin: install-tools install-tests
+ 
+diff --git a/tools/perf/tests/shell/coresight/java-jit.sh b/tools/perf/tests/shell/coresight/java-jit.sh
 new file mode 100755
-index 000000000000..cde8725519e6
+index 000000000000..cb6099efa899
 --- /dev/null
-+++ b/tools/perf/tests/shell/coresight/hhvm-jit.sh
-@@ -0,0 +1,89 @@
++++ b/tools/perf/tests/shell/coresight/java-jit.sh
+@@ -0,0 +1,65 @@
 +#!/bin/bash
-+# CoreSight HHVM JIT call stacks (exclusive)
++# CoreSight Java JIT source lines and code address reuse (exclusive)
 +# SPDX-License-Identifier: GPL-2.0
 +
 +set -e
 +set -o pipefail
 +
++script_dir=$(dirname "$0")
++
++# Requires a HotSpot JDK (11+) and libperf-jvmti with line number support.
 +perf list pmu | grep cs_etm > /dev/null || exit 2
 +# Require TRBE so that the trace always has virtual timestamps.
 +if ! ls /sys/bus/coresight/devices/trbe* > /dev/null 2>&1; then
 +	echo "No TRBE sinks, skipping"
 +	exit 2
 +fi
-+command -v hhvm > /dev/null || { echo "SKIP: missing hhvm"; exit 2; }
++command -v java > /dev/null || exit 2
++command -v javac > /dev/null || exit 2
++command -v timeout > /dev/null || exit 2
++for lib in "${LIBJVMTI:-}" \
++	"$(dirname "$(readlink -f "$(type -P perf)")")/libperf-jvmti.so" \
++	"${PREFIX:-/usr}/lib64/libperf-jvmti.so" "${PREFIX:-/usr}/lib/libperf-jvmti.so"; do
++	if [ -f "$lib" ]; then
++		LIBJVMTI=$(readlink -f "$lib")
++		break
++	fi
++done
++[ -f "${LIBJVMTI:-}" ] || { echo "SKIP: missing libperf-jvmti.so"; exit 2; }
 +
-+tmpdir=$(mktemp -d /tmp/__perf_test.coresight_hhvm_jit.XXXXX)
-+trap '[ "$?" -eq 0 ] && rm -rf "$tmpdir" || echo "HHVM JIT test files retained in $tmpdir"' EXIT
++tmpdir=$(mktemp -d /tmp/__perf_test.coresight_java_jit.XXXXX)
++trap '[ "$?" -eq 0 ] && rm -rf "$tmpdir" || echo "Java JIT test files retained in $tmpdir"' EXIT
 +trap 'exit 1' TERM INT
 +
-+# Use the control pipe to only trace the two call stacks rather than all of HHVM's startup.
-+# Run stacks() twice to test hot and cold versions.
-+cat > "$tmpdir/hello.hack" << 'EOF'
-+function command(resource $ctl, resource $ack, string $cmd): void {
-+  \fwrite($ctl, $cmd."\n");
-+  \fflush($ctl);
-+  // perf writes sizeof("ack\n"), including the trailing NUL.
-+  invariant(\fread($ack, 5) === "ack\n\0", "Missing perf control ack");
-+}
-+
-+<<__NEVER_INLINE>>
-+function leaf(string $s): void {
-+  echo $s;
-+}
-+
-+<<__NEVER_INLINE>>
-+function a2(string $s): void {
-+  leaf($s);
-+}
-+
-+<<__NEVER_INLINE>>
-+function a1(string $s): void {
-+  a2($s);
-+}
-+
-+<<__NEVER_INLINE>>
-+function b1(string $s): void {
-+  leaf($s);
-+}
-+
-+<<__NEVER_INLINE>>
-+function stacks(string $hello, string $world): void {
-+  a1($hello);
-+  b1($world);
-+}
-+
-+<<__EntryPoint>>
-+function main(): void {
-+  $ctl = \fopen(\getenv("PERF_CTL_FIFO") as string, "w");
-+  $ack = \fopen(\getenv("PERF_ACK_FIFO") as string, "r");
-+  command($ctl, $ack, "enable");
-+  stacks("Hello, ", "world\n");
-+  stacks("Hello, ", "world\n");
-+  command($ctl, $ack, "disable");
-+}
-+EOF
++javac -g --release 11 -d "$tmpdir" "$script_dir/lib/PerfJit.java"
 +mkfifo "$tmpdir/ctl" "$tmpdir/ack"
-+export PERF_CTL_FIFO="$tmpdir/ctl" PERF_ACK_FIFO="$tmpdir/ack"
-+export JITDUMP_USE_ARCH_TIMESTAMP=1
++export JITDUMPDIR="$tmpdir" JITDUMP_USE_ARCH_TIMESTAMP=1
 +
-+# HHVM deletes the jitdump on exit unless KeepPerfPidMap is set.
-+perf record \
++# Compile only run(), and collect trace only while it executes.
++# A small code cache and class unloading encourage address reuse.
++timeout 60s perf record \
 +	-o "$tmpdir/data" -e cs_etm//u -D -1 -m ,8M \
 +	--control "fifo:$tmpdir/ctl,$tmpdir/ack" -- \
-+	hhvm -vEval.PerfJitDump=1 -vEval.PerfJitDumpDir="$tmpdir" \
-+	-vEval.KeepPerfPidMap=1 "$tmpdir/hello.hack" > "$tmpdir/out"
-+[ "$(cat "$tmpdir/out")" = "$(printf 'Hello, world\nHello, world')" ]
++	java -Xbatch -XX:-TieredCompilation -XX:CompileThreshold=100 \
++	-XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints \
++	'-XX:CompileCommand=compileonly,PerfJit$*::run' \
++	-XX:ReservedCodeCacheSize=4m -XX:+UseSerialGC \
++	-agentpath:"$LIBJVMTI" -cp "$tmpdir" PerfJit "$tmpdir/ctl" "$tmpdir/ack"
 +
 +perf inject --jit -b \
 +	-i "$tmpdir/data" -o "$tmpdir/injected.data"
 +
-+perf script -i "$tmpdir/injected.data" \
-+	--itrace=b -F ip,sym > "$tmpdir/script"
++perf script \
++	-i "$tmpdir/injected.data" --itrace=i1i -F ip,srcline \
++	--symbols 'PerfJit$First.run(),PerfJit$Second.run()' > "$tmpdir/script"
 +
-+stacks="stacks a1 a2 leaf a2 a1 stacks b1 leaf b1 stacks"
-+printf '%s\n' main $stacks main $stacks main > "$tmpdir/expected"
-+sed -nE 's/^.*hello\.hack::(main|stacks|a1|a2|b1|leaf)$/\1/p' "$tmpdir/script" |
-+	uniq > "$tmpdir/actual"
++# The workload runs eight pairs of First.run() and Second.run().
++awk '/\/\/ TRACE$/ { lines = lines "PerfJit.java:" NR "\n" }
++     END { for (i = 0; i < 8; i++) printf "%s", lines }' \
++	"$script_dir/lib/PerfJit.java" > "$tmpdir/expected"
++
++# Ignore entry/return lines and retain the order of the marked Java lines.
++sed -n 's/^.*PerfJit\.java:/PerfJit.java:/p' "$tmpdir/script" | uniq > "$tmpdir/lines"
++grep -Fxf "$tmpdir/expected" "$tmpdir/lines" > "$tmpdir/actual" || true
 +diff -u "$tmpdir/expected" "$tmpdir/actual"
-+echo "HHVM JIT call stacks match the expected sequence"
++echo "Java JIT source lines match the expected sequence"
+diff --git a/tools/perf/tests/shell/coresight/lib/PerfJit.java b/tools/perf/tests/shell/coresight/lib/PerfJit.java
+new file mode 100644
+index 000000000000..30b22e952bd4
+--- /dev/null
++++ b/tools/perf/tests/shell/coresight/lib/PerfJit.java
+@@ -0,0 +1,82 @@
++// SPDX-License-Identifier: GPL-2.0
++import java.io.FileInputStream;
++import java.io.FileWriter;
++import java.io.InputStream;
++import java.util.Arrays;
++
++public class PerfJit {
++    public static class First implements Runnable {
++        public static volatile int value;
++        public void run() {
++            value += 1; // TRACE
++            value += 2; // TRACE
++            value += 3; // TRACE
++            value += 0; // Give the last checked line a DWARF end address.
++        }
++    }
++
++    public static class Second implements Runnable {
++        public static volatile int value;
++        public void run() {
++            value += 4; // TRACE
++            value += 5; // TRACE
++            value += 6; // TRACE
++            value += 0; // Give the last checked line a DWARF end address.
++        }
++    }
++
++    static FileWriter control;
++    static FileInputStream ack;
++
++    static void command(String command) throws Exception {
++        if (control != null) {
++            control.write(command + "\n");
++            control.flush();
++            // perf writes sizeof("ack\n"), including the trailing NUL.
++            byte[] reply = new byte[5];
++            if (ack.readNBytes(reply, 0, reply.length) != reply.length ||
++                !Arrays.equals(reply, new byte[] {'a', 'c', 'k', '\n', 0}))
++                throw new Exception("Missing perf control ack");
++        }
++    }
++
++    static void phase(String name, int repeats) throws Exception {
++        byte[] code;
++        try (InputStream in = PerfJit.class.getResourceAsStream("PerfJit$" + name + ".class")) {
++            code = in.readAllBytes();
++        }
++        // A fresh loader allows this class and its compiled code to be reclaimed.
++        Class<?> block = new ClassLoader(null) {
++            Class<?> load() { return defineClass(null, code, 0, code.length); }
++        }.load();
++        Runnable work = (Runnable) block.getConstructor().newInstance();
++        for (int i = 0; i < 20000; i++)
++            work.run();
++        command("enable");
++        for (int i = 0; i < repeats; i++)
++            work.run();
++        command("disable");
++    }
++
++    public static void main(String[] args) throws Exception {
++        if (args.length >= 2) {
++            control = new FileWriter(args[0]);
++            ack = new FileInputStream(args[1]);
++        }
++        int rounds = args.length >= 3 ? Integer.parseInt(args[2]) : 8;
++        int repeats = args.length >= 4 ? Integer.parseInt(args[3]) : 1;
++        // Warm up the FIFO path before enabling trace for the first method.
++        command("disable");
++        for (int i = 0; i < rounds * 2; i++) {
++            phase(i % 2 == 0 ? "First" : "Second", repeats);
++            for (int gc = 0; gc < 3; gc++) {
++                System.gc();
++                Thread.sleep(20);
++            }
++        }
++        if (control != null) {
++            control.close();
++            ack.close();
++        }
++    }
++}
 
 -- 
 2.43.0
