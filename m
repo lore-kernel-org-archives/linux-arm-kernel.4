@@ -2,82 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18971606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56557606A32A
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q0yN+GK+;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=pT4iXIZi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m18QOsgH;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=a/CjEp/l
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XxS1Hr5iSvOl6fOwkjhZi3LzWbITchcX649E4+3LqoA=; b=q0yN+GK+BHLCZU
-	lqlzlWIh4a6lGLr5F6eVcFQc+BVm2wgi8YmxU7x0fHA7stMoY4rawwjHd1KjPlkqTJnZ5F1iICaAI
-	hREq+L5c/+RMHMYRqn2Eu5IugiizazUNdpbOvTHCIqQZ66BNCuU5xVnNELqXg7Y0Nq1tmVEfLqhzo
-	PwGQkFQ5GvRTcEk/YpHk49G5xDtoQmnpOBxXg5LH9FI/EgTCEGXIRfehuuy/Jlx/ObjENlZtkG6i5
-	unCS9xPIfFyaX/IjrGVISO5fZLfAWWuuZRDELRIUj7ycVSJNu47Yay5+Rhao6IxnESQnZqSpq3t3n
-	sYMqXAi7sW851A4SOdjw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:
+	Cc:To:Subject:MIME-Version:Date:Message-ID:Content-Type:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=y2Daclv3pL9H+Z77v1N/YFpOGh7HbXy37WIqhvkcADA=; b=m18QOsgHJrxC6V+Y68aO2FwJu5
+	3x02A7WAoPe550OC7IZfuiQbnjYY6XsCOASrGZpymtWO1+OxfmSNWjwj+TEX1rIeHqswagr1dZs3E
+	sw67VbHUCla8Fr10mfGHGyXUEN0sM6H/nJMfPubS5WBU3gRUzOnj23HwZzogeUzD6SvVwTyzG37dt
+	4RPQ1bK7xWpQeIpbjBPDqg7X+HwWo4wwJfjB+L4ha8aO2/s7O80rji50UY2Lqexn22HO+H2TLE+YL
+	8563IAKbCG+OTpmHehPXvzGTkJPiZPPu4+/x/a6hZQFiJWY6HTR2tuiwqAIr/uqhM80BnQ1/eYOEN
+	BUxco/xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRd-00000009EWz-2ktT;
+	id 1xThRd-00000009EW1-0hZt;
 	Wed, 18 Nov 2026 15:19:33 +0000
-Received: from out-169.mta1.migadu.com ([95.215.58.169] helo=mta1.migadu.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRL-00000009EJu-3gEX
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xThQp-00000009Dvn-1VoE
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:19:19 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=12FyQSDWC04tw1AfNqnvah2Vp7QoZOeWEZh8bpTz72o=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795015154; v=1; x=1795619954;
- b=pT4iXIZi5+9GTPpooN17TmVPWTOcyrMLbCC96719y1LunQR+qo3uJ0FDUVUTotKS41z9qQbG
- nPwphHerLiYdU0Svt5gZxMT94I2VXYk33m7eTl+ZDCyXwnE57adRnZpfzz7NxA4OrcaCRe/abpr
- 25GoHKNlWSmxlYBaZUI9NvEA=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id d5f1326243dc5c6c;
-	Wed, 18 Nov 2026 15:19:14 +0000
-X-Mizu-Trace-ID: d5f1326243dc5c6c
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>
-Cc: Will Deacon <will@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Raghavendra Rao Ananta <rananta@google.com>,
-	Sascha Bischoff <Sascha.Bischoff@arm.com>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Sebastian Ene <sebastianene@google.com>,
-	=?UTF-8?q?Bart=C5=82omiej=20Grzesik?= <bgrzesik@google.com>,
-	Mostafa Saleh <smostafa@google.com>,
-	Vincent Donnefort <vdonnefort@google.com>,
-	Vladimir Murzin <vladimir.murzin@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Zenghui Yu <zenghui.yu@linux.dev>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Radu Rendec <radu@rendec.net>,
-	Fuad Tabba <tabba@google.com>,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 01/13] KVM: arm64: Donate MMIO to the hypervisor
-Date: Wed, 18 Nov 2026 15:18:52 +0000
-Message-ID: <20261118151904.4099560-2-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261118151904.4099560-1-fuad.tabba@linux.dev>
-References: <20261118151904.4099560-1-fuad.tabba@linux.dev>
+	Wed, 18 Nov 2026 15:18:45 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A28B21655;
+	Wed, 18 Nov 2026 07:18:39 -0800 (PST)
+Received: from [10.57.62.206] (unknown [10.57.62.206])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C9A9D3F632;
+	Wed, 18 Nov 2026 07:18:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795015122; bh=w8XDtw7u6zTGcD/Dwtz8Nec/j+mFGkTq9Cwd9QWx4y0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=a/CjEp/lWJU4QLjpelP/JTZv2ruOnbBbt+JLSbKpYAP4VCqrHHdtlgkcAWih3sdxj
+	 WYJKvmin5k2Qjivd13tyo7baEd5InyOwxPHvleh83xiTrhEYXBsYsilr0DlLJongQ1
+	 fQ7iiucy60FJx40w9DUaxvWafVfHMCNzI7k8LEzc=
+Content-Type: multipart/mixed; boundary="------------DUFNbHBbvPDY00EhsT6K87G7"
+Message-ID: <cc27e6a8-6bfa-4c82-92a7-33175baf6803@arm.com>
+Date: Wed, 18 Nov 2026 15:18:35 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/11] KVM: arm64: guest_memfd: Check mmap support when
+ preparing memslot
+To: Suzuki K Poulose <suzuki.poulose@arm.com>, Fuad Tabba <tabba@google.com>
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
+ Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+References: <20261116164358.142785-1-steven.price@arm.com>
+ <20261116164358.142785-2-steven.price@arm.com>
+ <CA+EHjTy5xBmavNWSYPjqU9qXtssV3ZHzsUr1s_4bVOt1GnDLVg@mail.gmail.com>
+ <6bb490cd-ebbe-41d7-adf3-d6eaf0e53478@arm.com>
+ <b1ef7241-54b0-4a17-83b6-0008e722f2f6@arm.com>
+ <8a095a42-662a-416d-a5d7-79e10161201c@arm.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <8a095a42-662a-416d-a5d7-79e10161201c@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_071916_090055_C3A4FFC8 
-X-CRM114-Status: GOOD (  22.04  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261118_071843_546416_B6AB9C7D 
+X-CRM114-Status: GOOD (  13.57  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,178 +88,97 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Mostafa Saleh <smostafa@google.com>
+This is a multi-part message in MIME format.
+--------------DUFNbHBbvPDY00EhsT6K87G7
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Add __pkvm_host_donate_hyp_mmio() so IOMMU drivers in the hypervisor can
-take ownership of the IOMMU MMIO. The range is mapped in the hypervisor
-private range and annotated as owned by the hypervisor in the host
-stage-2, so host accesses fault and further donations of the same range
-are refused. MMIO has no struct hyp_page, so the annotation is the only
-state, and a dedicated function is simpler than teaching the memory
-donation path about MMIO. Donation is only allowed before the host is
-de-privileged, which is when the hypervisor IOMMU drivers initialise.
+On 18/11/2026 12:04, Suzuki K Poulose wrote:
+> On 18/11/2026 11:14, Steven Price wrote:
+>> On 18/11/2026 10:34, Suzuki K Poulose wrote:
+>>> Hi Steven
+>>>
+>>> On 17/11/2026 14:05, Fuad Tabba wrote:
+>>>> Hi Steven,
+>>>>
+>>>> On Mon, 16 Nov 2026 16:43:47 +0000, Steven Price
+>>>> <steven.price@arm.com> wrote:
+>>>>> Check the guest_memfd backing file when deciding whether an arm64
+>>>>> memslot has mappable memory rather than checking whether the slot is
+>>>>> gmem only. A public helper function is added to be able to reuse the
+>>>>> static kvm_gmem_supports_mmap() function.
+>>>>
+>>>> nit: could the message say why this is needed? It's a no-op until
+>>>> patch 8 defines kvm_arch_has_private_mem(), which makes every
+>>>> guest_memfd slot gmem-only.
+>>>
+>>> I still don't understand why this is needed. For arm64 we have always
+>>> prevented guest_memfd without MMAP, in kvm_arch_prepare_memory_region().
+>>
+>> Fuad is correct, this isn't really needed until patch 8. Patch 8 defines
+>> kvm_arch_has_private_mem() - that means that gmem_in_place_conversion
+>> becomes true (see include/linux/kvm_host.h). That in turn means that
+> 
+>> every guest_memfd slot is KVM_MEMSLOT_GMEM_ONLY including slots backed
+>> by a file without mmap support.
+> 
+> But we dont support slots without MMAP anyways even without this series.
+>  So, does it really matter for arm64 ?
 
-Make kvm_pgtable_stage2_unmap() leave invalid counted PTEs (annotations)
-in place. host_stage2_unmap_dev_all() unmaps all non-memory ranges to
-recycle page-table pages under memory pressure, and would otherwise drop
-the annotation and let the host fault the MMIO back in. No caller depends
-on the old behaviour: host_stage2_unmap_dev_all() only covers non-memory
-ranges, where no annotation existed until now, and the guest unmap paths
-check that the PTE is valid first. Returning an error for counted PTEs
-instead is not an option, as a non-zero visitor return stops the walk,
-which would abort recycling at the first hypervisor-owned MMIO page and
-inject an abort into the host for an unrelated address.
+So ChatGPT produced the attached test. It creates a non-mappable gmem
+and tries to add it to a normal (non-realm/non-pkvm) VM. With v7.4-rc1
+it is rejected. However without this patch it succeeds.
 
-Link: https://lore.kernel.org/r/20261015200903.2735565-2-smostafa@google.com
-Signed-off-by: Mostafa Saleh <smostafa@google.com>
-[fuad: pass kvm_pgtable_get_leaf() the walk flags ee26443f3dd70 added;
- drop __pkvm_hyp_donate_host_mmio(), which this series doesn't call]
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
----
- arch/arm64/include/asm/kvm_pgtable.h          |  2 +
- arch/arm64/kvm/hyp/include/nvhe/mem_protect.h |  5 ++
- arch/arm64/kvm/hyp/nvhe/mem_protect.c         | 62 ++++++++++++++++++-
- arch/arm64/kvm/hyp/pgtable.c                  |  8 +--
- 4 files changed, 70 insertions(+), 7 deletions(-)
+The issue is that gmem_in_place_conversion changes the behaviour for
+normal VMs.
 
-diff --git a/arch/arm64/include/asm/kvm_pgtable.h b/arch/arm64/include/asm/kvm_pgtable.h
-index 1c9c57cd6ae40..1a3f6e851c94f 100644
---- a/arch/arm64/include/asm/kvm_pgtable.h
-+++ b/arch/arm64/include/asm/kvm_pgtable.h
-@@ -721,6 +721,8 @@ int kvm_pgtable_stage2_annotate(struct kvm_pgtable *pgt, u64 addr, u64 size,
-  * freed. Unmapping a cacheable page will ensure that it is clean to the PoC if
-  * FWB is not supported by the CPU.
-  *
-+ * Invalid counted PTEs (annotations) are left in place.
-+ *
-  * Return: 0 on success, negative error code on failure.
-  */
- int kvm_pgtable_stage2_unmap(struct kvm_pgtable *pgt, u64 addr, u64 size);
-diff --git a/arch/arm64/kvm/hyp/include/nvhe/mem_protect.h b/arch/arm64/kvm/hyp/include/nvhe/mem_protect.h
-index ec85a95471207..16e5864ab7f08 100644
---- a/arch/arm64/kvm/hyp/include/nvhe/mem_protect.h
-+++ b/arch/arm64/kvm/hyp/include/nvhe/mem_protect.h
-@@ -36,6 +36,11 @@ int __pkvm_guest_share_host(struct pkvm_hyp_vcpu *vcpu, u64 gfn);
- int __pkvm_guest_unshare_host(struct pkvm_hyp_vcpu *vcpu, u64 gfn);
- int __pkvm_host_unshare_hyp(u64 pfn);
- int __pkvm_host_donate_hyp(u64 pfn, u64 nr_pages);
-+/*
-+ * Donate MMIO range to the hypervisor, it will be mapped in the hypervisor's
-+ * private range and unmapped from the host stage-2.
-+ */
-+int __pkvm_host_donate_hyp_mmio(u64 pfn, u64 nr_pages, unsigned long *haddr);
- int __pkvm_hyp_donate_host(u64 pfn, u64 nr_pages);
- int __pkvm_host_share_ffa(u64 pfn, u64 nr_pages);
- int __pkvm_host_unshare_ffa(u64 pfn, u64 nr_pages);
-diff --git a/arch/arm64/kvm/hyp/nvhe/mem_protect.c b/arch/arm64/kvm/hyp/nvhe/mem_protect.c
-index d4c332a918035..a6dacaca77610 100644
---- a/arch/arm64/kvm/hyp/nvhe/mem_protect.c
-+++ b/arch/arm64/kvm/hyp/nvhe/mem_protect.c
-@@ -385,7 +385,11 @@ static int host_stage2_unmap_dev_all(void)
- 	u64 addr = 0;
- 	int i, ret;
- 
--	/* Unmap all non-memory regions to recycle the pages */
-+	/*
-+	 * Unmap all non-memory regions to recycle the pages.
-+	 * That relies on kvm_pgtable_stage2_unmap() not clearing
-+	 * counted PTEs which include hypervisor MMIO.
-+	 */
- 	for (i = 0; i < hyp_memblock_nr; i++, addr = reg->base + reg->size) {
- 		reg = &hyp_memory[i];
- 		ret = kvm_pgtable_stage2_unmap(pgt, addr, reg->base - addr);
-@@ -1146,6 +1150,62 @@ int __pkvm_host_donate_hyp(u64 pfn, u64 nr_pages)
- 	return ret;
- }
- 
-+int __pkvm_host_donate_hyp_mmio(u64 pfn, u64 nr_pages, unsigned long *haddr)
-+{
-+	u64 phys = hyp_pfn_to_phys(pfn);
-+	u64 size = PAGE_SIZE * nr_pages;
-+	unsigned long addr;
-+	kvm_pte_t pte;
-+	u64 offset;
-+	int ret;
-+
-+	/* Only before de-privilege. */
-+	if (static_branch_unlikely(&kvm_protected_mode_initialized))
-+		return -EPERM;
-+
-+	if (!pfn_range_is_valid(pfn, nr_pages))
-+		return -EINVAL;
-+
-+	host_lock_component();
-+	for (offset = 0; offset < size; offset += PAGE_SIZE) {
-+		if (addr_is_memory(phys + offset)) {
-+			ret = -EINVAL;
-+			goto unlock;
-+		}
-+		ret = kvm_pgtable_get_leaf(&host_mmu.pgt, phys + offset, &pte, NULL, 0);
-+		if (ret)
-+			goto unlock;
-+		if (pte && !kvm_pte_valid(pte)) {
-+			ret = -EPERM;
-+			goto unlock;
-+		}
-+	}
-+
-+	ret = __pkvm_create_private_mapping(phys, size, PAGE_HYP_DEVICE, &addr);
-+	if (ret)
-+		goto unlock;
-+
-+	/*
-+	 * Mark the range as owned by the hypervisor in the host stage-2.
-+	 * The annotation makes host accesses fault, and is retained by
-+	 * host_stage2_unmap_dev_all()
-+	 */
-+	ret = host_stage2_try(kvm_pgtable_stage2_annotate, &host_mmu.pgt,
-+			      phys, size, &host_s2_pool,
-+			      KVM_HOST_INVALID_PTE_TYPE_DONATION,
-+			      FIELD_PREP(KVM_HOST_DONATION_PTE_OWNER_MASK, PKVM_ID_HYP));
-+	if (ret) {
-+		hyp_lock_component();
-+		WARN_ON(kvm_pgtable_hyp_unmap(&pkvm_pgtable, addr, size) != size);
-+		hyp_unlock_component();
-+	} else {
-+		*haddr = addr;
-+	}
-+unlock:
-+	host_unlock_component();
-+	return ret;
-+}
-+
- int __pkvm_hyp_donate_host(u64 pfn, u64 nr_pages)
- {
- 	u64 phys = hyp_pfn_to_phys(pfn);
-diff --git a/arch/arm64/kvm/hyp/pgtable.c b/arch/arm64/kvm/hyp/pgtable.c
-index 9c83837b184d3..041bd0d522f2c 100644
---- a/arch/arm64/kvm/hyp/pgtable.c
-+++ b/arch/arm64/kvm/hyp/pgtable.c
-@@ -1163,13 +1163,9 @@ static int stage2_unmap_walker(const struct kvm_pgtable_visit_ctx *ctx,
- 	kvm_pte_t *childp = NULL;
- 	bool need_flush = false;
- 
--	if (!kvm_pte_valid(ctx->old)) {
--		if (stage2_pte_is_counted(ctx->old)) {
--			kvm_clear_pte(ctx->ptep);
--			mm_ops->put_page(ctx->ptep);
--		}
-+	/* Invalid PTEs are left in place, including annotations. */
-+	if (!kvm_pte_valid(ctx->old))
- 		return 0;
--	}
- 
- 	if (kvm_pte_table(ctx->old, ctx->level)) {
- 		childp = kvm_pte_follow(ctx->old, mm_ops);
--- 
-2.47.3
+Thanks,
+Steve
 
+
+--------------DUFNbHBbvPDY00EhsT6K87G7
+Content-Type: text/x-csrc; charset=UTF-8; name="guest_memfd_nommap_repro.c"
+Content-Disposition: attachment; filename="guest_memfd_nommap_repro.c"
+Content-Transfer-Encoding: base64
+
+Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seQovKgogKiBSZXByb2R1
+Y2UgdGhlIG5vbi1SZWFsbSBndWVzdF9tZW1mZCBtZW1zbG90IHJlZ3Jlc3Npb24uCiAqIEJ1
+aWxkIGZyb20gdGhlIGtlcm5lbCByb290IHdpdGg6CiAqIGNjIC1XYWxsIC1XZXh0cmEgLU8y
+IC1JdG9vbHMvaW5jbHVkZSAtSXRvb2xzL2luY2x1ZGUvdWFwaSBcCiAqICAgIHRvb2xzL3Rl
+c3Rpbmcvc2VsZnRlc3RzL2t2bS9hcm02NC9ndWVzdF9tZW1mZF9ub21tYXBfcmVwcm8uYyAt
+byAvdG1wL2dtZW0tcmVwcm8KICovCiNpbmNsdWRlIDxlcnJuby5oPgojaW5jbHVkZSA8ZmNu
+dGwuaD4KI2luY2x1ZGUgPGxpbnV4L2t2bS5oPgojaW5jbHVkZSA8c3RkaW50Lmg+CiNpbmNs
+dWRlIDxzdGRpby5oPgojaW5jbHVkZSA8c3lzL2lvY3RsLmg+CiNpbmNsdWRlIDxzeXMvbW1h
+bi5oPgojaW5jbHVkZSA8dW5pc3RkLmg+CgppbnQgbWFpbih2b2lkKQp7Cglsb25nIHNpemUg
+PSBzeXNjb25mKF9TQ19QQUdFU0laRSk7CglzdHJ1Y3Qga3ZtX2NyZWF0ZV9ndWVzdF9tZW1m
+ZCBnbWVtID0geyAuc2l6ZSA9IHNpemUgfTsKCXN0cnVjdCBrdm1fdXNlcnNwYWNlX21lbW9y
+eV9yZWdpb24yIHJlZ2lvbiA9IHsKCQkuZmxhZ3MgPSBLVk1fTUVNX0dVRVNUX01FTUZELAoJ
+CS5tZW1vcnlfc2l6ZSA9IHNpemUsCgl9OwoJaW50IGt2bSwgdm0sIGZkLCByZXQsIGVycm9y
+OwoJdm9pZCAqaHZhOwoKCWlmIChzaXplIDw9IDApCgkJcmV0dXJuIDE7Cglrdm0gPSBvcGVu
+KCIvZGV2L2t2bSIsIE9fUkRXUiB8IE9fQ0xPRVhFQyk7CglpZiAoa3ZtIDwgMCkgewoJCXBl
+cnJvcigib3BlbiAvZGV2L2t2bSIpOwoJCXJldHVybiAxOwoJfQoJdm0gPSBpb2N0bChrdm0s
+IEtWTV9DUkVBVEVfVk0sIDApOwoJaWYgKHZtIDwgMCkgewoJCXBlcnJvcigiS1ZNX0NSRUFU
+RV9WTSIpOwoJCXJldHVybiAxOwoJfQoJZmQgPSBpb2N0bCh2bSwgS1ZNX0NSRUFURV9HVUVT
+VF9NRU1GRCwgJmdtZW0pOwoJaWYgKGZkIDwgMCkgewoJCXBlcnJvcigiS1ZNX0NSRUFURV9H
+VUVTVF9NRU1GRCIpOwoJCXJldHVybiAxOwoJfQoJaHZhID0gbW1hcChOVUxMLCBzaXplLCBQ
+Uk9UX1JFQUQgfCBQUk9UX1dSSVRFLAoJCSAgIE1BUF9QUklWQVRFIHwgTUFQX0FOT05ZTU9V
+UywgLTEsIDApOwoJaWYgKGh2YSA9PSBNQVBfRkFJTEVEKSB7CgkJcGVycm9yKCJtbWFwIik7
+CgkJcmV0dXJuIDE7Cgl9CglyZWdpb24udXNlcnNwYWNlX2FkZHIgPSAodWludHB0cl90KWh2
+YTsKCXJlZ2lvbi5ndWVzdF9tZW1mZCA9IGZkOwoJcmV0ID0gaW9jdGwodm0sIEtWTV9TRVRf
+VVNFUl9NRU1PUllfUkVHSU9OMiwgJnJlZ2lvbik7CgllcnJvciA9IGVycm5vOwoJaWYgKHJl
+dCA9PSAtMSAmJiBlcnJvciA9PSBFSU5WQUwpIHsKCQlwdXRzKCJQQVNTOiBub24tbWFwcGFi
+bGUgZ3Vlc3RfbWVtZmQgbWVtc2xvdCByZWplY3RlZCIpOwoJCXJldHVybiAwOwoJfQoJZnBy
+aW50ZihzdGRlcnIsICJGQUlMOiBLVk1fU0VUX1VTRVJfTUVNT1JZX1JFR0lPTjIgcmV0dXJu
+ZWQgJWQgKGVycm5vICVkKVxuIiwKCQlyZXQsIHJldCA8IDAgPyBlcnJvciA6IDApOwoJcmV0
+dXJuIDE7Cn0K
+
+--------------DUFNbHBbvPDY00EhsT6K87G7--
 
