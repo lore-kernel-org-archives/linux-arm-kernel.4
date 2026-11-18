@@ -2,74 +2,131 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60140606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 19:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34620606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 19:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cChB05QB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0Nz3rEpp;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=bRlFGNT8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UXmrWCd9sdxcHQ/x+OlrIwugLe+LY5HSaRXQxnKJOIE=; b=cChB05QB5wSKn0
-	oxI8PNu273PASzfkd0lgfriZ/JjPrEf2SJjMG8B3FQ9i32q1HrD2U8yHUlKBZ1rztqw/WkhuMS9qo
-	524tHl3NyRMBFbUfPVtc5HxJpX8uqr4jOWeGbhT4b9eB3/Q2vYdP+sNFGP0LgoBVgdAcYuKYoE2Nh
-	bVvJwNG3hGfwr2znYtMLXk073/B7WqNywlWY7Wfi1AExY+0Cv8bMU+ziKY5lAP6Qt3Dfg4baRSKKO
-	ROwU3RcZzlJp0x2TAREldXOeLv8OE/Df9AV9p+/fGcF7LRBemHAKFMCHGeTLJJv4H8XcwR875Y9au
-	NAIj4klVHuxtEa7dzULw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=0qLvS8HyY33C18uwySXcG4KSwLWIv6i5SrDL0fZ0bpU=; b=0Nz3rEpp5piv4nloyQQMekeqTX
+	PPr02HSmg9numvu6HgDpf2Xvw/lqVwDX0f6ocVFrQ36+nPC4DfO+SN2IuRKTs3UQ/93NLNsW58gdF
+	axgAttx3xHDHPJlK5UWJXNtWV16FXJb7GHcu9gGAWyHQMX3hcYy7IMMz5kSHSUjgJlCOf9mJsleZB
+	a9zoGWEeoKZf1gKU7uPTIVro8M0tPV6mjVT686+Wo9pCCkQ1HpaBeRv9XbdUL0ybtBapkjhtbghEs
+	hTP49Xxh/awyiRbYpCj0sI3K7JD6sm94QsDaonz07RSi65m+rgXMFDYmLg0KKeHlWRZPaRl3oN0X6
+	grvlRyPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTlcR-0000000A9OY-1xoG;
-	Wed, 18 Nov 2026 19:46:59 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTlii-0000000AAN5-2f3A;
+	Wed, 18 Nov 2026 19:53:28 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTlc8-0000000A98R-0Aaj
+	id 1xTlif-0000000AAMR-10wK
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 19:46:40 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B5DD940E4D;
-	Wed, 18 Nov 2026 19:46:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 483281F000C9;
-	Wed, 18 Nov 2026 19:46:34 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Ulf Hansson <ulfh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Paul Elder <paul.elder+renesas@ideasonboard.com>,
-	=?UTF-8?q?Cl=C3=A9ment=20Le=20Goffic?= <clegoffic@baylibre.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>
-Cc: arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v5 14/15] pmdomain: renesas: r8a78000: Add SCMI remapping support
-Date: Wed, 18 Nov 2026 20:45:02 +0100
-Message-ID: <e6816327da51f9fbeef67f13aac723b891e5042f.1795029012.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1795029012.git.geert+renesas@glider.be>
-References: <cover.1795029012.git.geert+renesas@glider.be>
+	Wed, 18 Nov 2026 19:53:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=brCyxo/7vDW7cwtb8xQaMmcnaPQB75NvKpCX4ic3MpVt4z1SC8e+IuRhVhWjTuNkPDSGGiAgtccSR0gjh5/M0iVedhj2PblwO4UsZxFwfY7nbqhVAxjUEX5WlO4aEyv/4/OppVd+Sjm7BVZ06hH+Tna+VzYMi0fih0P8uYYBCzTI3dmr+QW4L8vEOlPubt1TxocckDcXpvJIgMjvAvWZSiSQb0U/gMbsHV2oJ7rB3cfsJHXCWlG7RowTS7yiwJBfK0YfAnONUYnCllQFxt9wcvI7Xrowxg7zZA4VqTdd7oW2LM94eNV917TZL/jm7hQvcipPdXMRXqCjAdcW91Hwtg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0qLvS8HyY33C18uwySXcG4KSwLWIv6i5SrDL0fZ0bpU=;
+ b=bz3UZxBnNB2zE93c6nh1s7jdq1TfGgxM6CKnne/ox1xR4m+pbnsIT0AevADx2Ln3owTNcxJJ2SyjBpQaMkgP4NCtMx746fdnPigQ5jTdMoB81H0KztkTvO2pCBYsqPsWcRTggGJ433cT8viMg/URXF1Be1WrA7omSl7vngVU9yWRKC1cCaHFD841Iv6rNuE+0/TrcI9lfKhf19NJ5tpdgnkFDqUpvcV/ETQhkDO2iIJwjLoJHQyt4nSI3BIqAvos6ZFoOFDiLDwU5xvcEn43gPaTyiAMlwVK9/aqdRs4zKOeFipYlnsnczEUifC85baxNzPeZ92jwyzubL4Z0A13jA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0qLvS8HyY33C18uwySXcG4KSwLWIv6i5SrDL0fZ0bpU=;
+ b=bRlFGNT8Mf8Pncoy31k2BZ0qOedBB4Gu/vws5elpN69h23Y1axcyoXgAen34/E3tGZSqs/CzdoYsrxDnU+fjAI7Uaxx1dsOZ4kN5fAOElMDIS8a9401t0EyvNn6igCUt7axbfmOwZR61ZeGMNlVfjC4+hWf98dH5EkKPro8OENjHSftKbvu2zdWxlu5iCNFMr+f38TTu6CJwtF/thWciQPAuXvU4S7JKrhLibDAntV8p2y9Kic/8AU2owiYR35rr5zbI6Gtbz3jCuRYNTR6TtK2vflMuBxxWF8PQCDPbWWqho3yQJPG9DrWtTInTRbdDXLCIlpO1tskCodCdS1e87w==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by AS8PR04MB7893.eurprd04.prod.outlook.com (2603:10a6:20b:2ab::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
+ 2026 19:53:19 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
+ 19:53:18 +0000
+Date: Wed, 18 Nov 2026 13:53:10 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Ulf Hansson <ulfh@kernel.org>,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH] dmaengine: ste_dma40: Use power domain for LCLA SRAM
+Message-ID: <av4CJkri6LQO9FxG@SMW015318>
+References: <20261115-ux500-dma40-powerdomain-v1-1-da8b6e1a0376@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261115-ux500-dma40-powerdomain-v1-1-da8b6e1a0376@kernel.org>
+X-ClientProxiedBy: PH7P221CA0035.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:33c::15) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AS8PR04MB7893:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04d58961-e260-4dc0-8ff7-08df45ad97c9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|1800799024|19092799006|376014|261022113327099003|261021135927099003|261022075727099003|261021123027099003|10067099003|11063799006|56012099006|261026135527099003|261022115727099003|261021133027099003|261026140227099003|261028144727099003|261021130227099003|261021121427099003|261022105027099003|261026130827099003|261026121527099003|261102123227099003|261009221227099003|261009223027099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: Upt9hohSbvUu3yKPFPAAh4MhyCKAeO53LkZpPYu0UT08+g3albE4OH+sfVeP3YQIxBPwwpruqikShpuzisy4CCiFWPYn89+7Pb7SBKWji6+p5VLEr7990/d7My+sr/w2HIJnj9PMlaf0BRTy4wy/btXzPVHv9oyCEZA0Hvyen651JXD1Grg6KmMy95h8JkPjFkLHlv+DizF+VxQZK6ayVagxHwGA2rP6xKNY5L064EdpI4j9TU30bIl6UrMJ/pd/8OsZtpgVIUGuz44RaXmUbLCpXa34oHo55juHjgcBcnHeA//qEvvKE9aQkCGCu2JdLRNtqnZKCL0VKEpsEiRQvi8c8jg99Uezd6EqghA7Lvv/b/UaPZglVT+6hptBwIJDuis54L9sLldNfHWpEl/AvKcwsoLMH0ow6U8gFF/OoxAXbYtDhO69ngvAak2JikMCr2tUlVTQe0DFuyYUZmJU7URPaoBDQ1WE90UyGbhFIGlDDdrW53fI6zHEzaw9OJQCvmTcZWWnqtRCy582Cj3d2uOrrn3oD5mMBtvIFG2cjo+b/KeG8FuYOChKCst9mEhYxKM5DGlDXpsPxdHN4k5tFK4qIsdjke68XVc6I93/OBvD43x554xdwZjzWfXdZ9itT8ySmdpJet9DSRxSSi7iYPLnvAVfGopHB9SWdOIruJA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(19092799006)(376014)(261022113327099003)(261021135927099003)(261022075727099003)(261021123027099003)(10067099003)(11063799006)(56012099006)(261026135527099003)(261022115727099003)(261021133027099003)(261026140227099003)(261028144727099003)(261021130227099003)(261021121427099003)(261022105027099003)(261026130827099003)(261026121527099003)(261102123227099003)(261009221227099003)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?p3GBR2L2Epq8nCyYfSWBueSmRkZ0M2R6apPZ4s2Q7nFHhzx/SBHQlgR4SS7j?=
+ =?us-ascii?Q?Ffqrsj0bubA+Uc2TT5SdW6KY9mJvJI5t+OYCaYenRhCAX1TGob2N/THKyuAp?=
+ =?us-ascii?Q?19ENpQA6qOnaev0FvbABBJ9s7m5UBxn3yl8V571YkotS35w7Ugd8YbOxwz6r?=
+ =?us-ascii?Q?EBTIE/29URV4udgzLh3JL0IH8AEY6PE131ihzD4rG7ynhWNIsnd6yJHUExC+?=
+ =?us-ascii?Q?QE0yHAj+bSOFJYoslnSfjHrrEkUVD7EXG8SytALlGhax0or2eltMqV5wygtu?=
+ =?us-ascii?Q?jL+zxjn7CT0F225dd3V08UQ0B43p1y3fidpBWWFFRc5vaDdQvxgqR/vANiCj?=
+ =?us-ascii?Q?D8on5C2SKu5i6v7LSJ3ykl8gViPR7VQW0gEi/n3AOn/MXL40ShJTWJqY5bZh?=
+ =?us-ascii?Q?BVVcj+EtOEE9XIlmCoFNejaJ21VNaYRiAlfuSgcI5KO//yxDw/7IC0jYa8Nk?=
+ =?us-ascii?Q?E3Wbmd8IZyzeqZXrfBAS3hV1v5a4EYbCRrLZNpz88Kh1ogOEtdCH+LfsUMhV?=
+ =?us-ascii?Q?Dz7ErZgVa8Q6b5Hm40Aho1chI39KqQyovblF+wcRVsNH1MvTsWADZ4mp5/Gn?=
+ =?us-ascii?Q?32xID6nn81kW4mqIaKyrIBMzg9QsXKxKT7X+fFQFv0apZSVAf6kO6bYlGdS0?=
+ =?us-ascii?Q?b3wBO8QYO7F8Ru0AopoWcmQMn/n0smENr+/y9pcXbCNaD/Ig7Ijjv6MV7D4P?=
+ =?us-ascii?Q?vbm9zKxhZvf83S3Cwc8asaBId6KNwTEoQvqn5+BjypnfVf3DHhNKl2goj68P?=
+ =?us-ascii?Q?1rFgp9TD7a3++zi1YD1y38AuEbhlpmuFZGwzNfmwBXqZtA8w3uS7zJJ2vMPL?=
+ =?us-ascii?Q?SyK9lqEaBiZPJtPkC495fKX00NxYkr2fHyza3YwuxbyxrlR3hQwHivXGcedz?=
+ =?us-ascii?Q?h+3TUIpjL85rW6qA4e5kCaQio77iomnMlw2FWXlPqr2YtrAOW+oGTPUUWZSb?=
+ =?us-ascii?Q?7PfoWRU900CP3K1sTYmmjqyrqv+SDsBzn0Tl+WC8UXCg7O2GAyD8cmqAoR5x?=
+ =?us-ascii?Q?Vt3zHyMt25K7VL56rOKnybvgZ8BHs3M38ZKDe5m583VAI+pYA0FjNOFFcKiE?=
+ =?us-ascii?Q?AlS7FjUmna+eF3gieWymsgyuVsKUXiCjcMhqeE+No7mvjHAMYfCpTxJ+XFmj?=
+ =?us-ascii?Q?OVNEsWkwLve50bxZL077rs+cbZ1KKpXnxEvc3056rOrJAHYwZWttH35Y2FA1?=
+ =?us-ascii?Q?4dHePkkrNw4nDylp6TAsbLafufV6ohL0JnlMtdv0cyuY/pJahzL5Yg++qXPG?=
+ =?us-ascii?Q?UiPPqu6WhMim/WuWT1YQFwakERcwIsgc605H40j7jMjMtHElubG4XJptv9zZ?=
+ =?us-ascii?Q?I+gr8c+6xJL1NPgZMdLepQ+Vaq4lRhWkSSjRSl11UXFRfaGWVjIa8+sC0YhF?=
+ =?us-ascii?Q?6OE/xg+c2zaxHRtWBNrDgRMl4VmtCH8QOqrYUsgszB5/xg3z0QRXbnh13/fz?=
+ =?us-ascii?Q?AyVHSCqTUWMj2syiQ/5+GE3+0xSIGWTL1Ra31AfSpgxFUFQmeESIKBLNDgHX?=
+ =?us-ascii?Q?kCz/+2cO3WojMDF/7iPywcWhzTnNwIcr2AQRyKa7r1RrlM4p6HmCDFXwJ56e?=
+ =?us-ascii?Q?ZC0EjZNj8mFo0ot1CfRC+pZGxV10Kyh2PlqO1OZZ2vXn2k/CBj98HExLi/MP?=
+ =?us-ascii?Q?QmR+Eb0P12M+fJPk9q6XyZRbdlio0HP2/Kjj/OvhJ4a449qxNZSZjCT9IUHQ?=
+ =?us-ascii?Q?AnSkHaZhjomMBZWEasd0jJ2mnVIzvegAyHD3T6xqePjlZcGqvjNa7oQ2yrOI?=
+ =?us-ascii?Q?edlrZkt7UC8NSJ7DWOQXY8TeVlEKLa7WHl+uw7Cj2UgX4yMiCZSc?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04d58961-e260-4dc0-8ff7-08df45ad97c9
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 19:53:18.9611
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5JxwFtAmV6TtdhihrTN2HwZqA/69yus3TuEceLt3dNYSFWUdOq4ZRD67odotjCW78ZHMupM0XDdidiYBa+vbRQybgDc4NQw4nrmy61XS1rl1L5KxzRjkWKgsD0TMqsX7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7893
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_115325_437667_FEF3F757 
+X-CRM114-Status: GOOD (  37.94  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,692 +137,573 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Extend the Module Controller driver for R-Car X5H with SCMI support, to
-remap hardware power domain, module, and reset IDs to abstractions
-(power domains, clocks, and resets) offered by the SCMI firmware when
-running on a system with SCMI, and SCMI support is enabled.  Take into
-account some peculiarities of the current SCMI firmware implementations,
-like missing handling of gateable functional clock parents.
-Support for power domains, and module clocks and resets used by serial,
-I2C, and SPI devices is included.
+On Sun, Nov 15, 2026 at 10:26:27PM +0100, Linus Walleij wrote:
+> Replace the LCLA ESRAM regulator with runtime PM of the SRAM device
+> owning the ESRAM34 power domain.
+>
+> Use the existing LCLA SRAM phandle instead of the never-set
+> use_esram_lcla flag and the obsolete named memory resource.
+> The bool indicating if we use LCLA SRAM seems pointless, let's just
+> check if it's NULL or not. Simpler.
+>
+> Acquire the SRAM runtime PM reference when allocating a DMA channel,
+> before taking its spinlock, and release it when the channel is freed.
+> Descriptor preparation can run under a client's spinlock, so it cannot
+> synchronously resume the SRAM.
+>
+> Acquiring a handle to the SRAM can fail and then we defer probe.
+>
+> Since we can defer probe(), probe() and friends can't be tagged as
+> __init anymore, and it's better like this anyway.
+>
+> Keep a stateless device link for system-sleep ordering without adding
+> a runtime PM dependency to the IRQ-safe DMA controller.
+>
+> Suggested-by: Frank Li <Frank.li@oss.nxp.com>
+> Signed-off-by: Linus Walleij <linusw@kernel.org>
+> ---
+> The Ux500 genpd prerequisites have been merged into the powerdomain tree.
+> Probably the fix sent earlier should be merged first:
+> "dmaengine: ste_dma40: Keep prepared descriptors across termination"
+>
+> The SRAM driver will be patched separately.
+> ---
+>  drivers/dma/ste_dma40.c | 253 +++++++++++++++++++++++++++---------------------
+>  1 file changed, 142 insertions(+), 111 deletions(-)
+>
+> diff --git a/drivers/dma/ste_dma40.c b/drivers/dma/ste_dma40.c
+> index f1cbc719c4f0..eca1ae95fe1c 100644
+> --- a/drivers/dma/ste_dma40.c
+> +++ b/drivers/dma/ste_dma40.c
+> @@ -21,8 +21,8 @@
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_dma.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/amba/bus.h>
+> -#include <linux/regulator/consumer.h>
+>
+>  #include "dmaengine.h"
+>  #include "ste_dma40.h"
+> @@ -41,7 +41,6 @@
+>   * certain use cases.
+>   * @num_of_soft_lli_chans: The number of channels that needs to be configured
+>   * to use SoftLLI.
+> - * @use_esram_lcla: flag for mapping the lcla into esram region
+>   * @num_of_memcpy_chans: The number of channels reserved for memcpy.
+>   * @memcpy_channels: The event lines used for memcpy.
+>   * @num_of_phy_chans: The number of physical channels implemented in HW.
+> @@ -52,7 +51,6 @@ struct stedma40_platform_data {
+>  	int				 disabled_channels[STEDMA40_MAX_PHYS];
+>  	int				*soft_lli_chans;
+>  	int				 num_of_soft_lli_chans;
+> -	bool				 use_esram_lcla;
+>  	int				 num_of_memcpy_chans;
+>  	u32				 memcpy_channels[D40_MEMCPY_MAX_CHANS];
+>  	int				 num_of_phy_chans;
+> @@ -301,7 +299,7 @@ struct d40_reg_val {
+>  	unsigned int val;
+>  };
+>
+> -static __initdata struct d40_reg_val dma_init_reg_v4a[] = {
+> +static struct d40_reg_val dma_init_reg_v4a[] = {
+>  	/* Clock every part of the DMA block from start */
+>  	{ .reg = D40_DREG_GCC,    .val = D40_DREG_GCC_ENABLE_ALL},
+>
+> @@ -319,7 +317,8 @@ static __initdata struct d40_reg_val dma_init_reg_v4a[] = {
+>  	{ .reg = D40_DREG_LCTIS2, .val = 0xFFFFFFFF},
+>  	{ .reg = D40_DREG_LCTIS3, .val = 0xFFFFFFFF}
+>  };
+> -static __initdata struct d40_reg_val dma_init_reg_v4b[] = {
+> +
+> +static struct d40_reg_val dma_init_reg_v4b[] = {
+>  	/* Clock every part of the DMA block from start */
+>  	{ .reg = D40_DREG_GCC,    .val = D40_DREG_GCC_ENABLE_ALL},
+>
+> @@ -413,6 +412,7 @@ struct d40_desc {
+>   * struct d40_lcla_pool - LCLA pool settings and data.
+>   *
+>   * @base: The virtual address of LCLA. 18 bit aligned.
+> + * @esram: I/O mapping when LCLA resides in SRAM instead of system memory.
+>   * @dma_addr: DMA address, if mapped
+>   * @base_unaligned: The original kmalloc pointer, if kmalloc is used.
+>   * This pointer is only there for clean-up on error.
+> @@ -423,6 +423,7 @@ struct d40_desc {
+>   */
+>  struct d40_lcla_pool {
+>  	void		*base;
+> +	void __iomem	*esram;
+>  	dma_addr_t	dma_addr;
+>  	void		*base_unaligned;
+>  	unsigned int	 alloc_order;
+> @@ -578,7 +579,8 @@ struct d40_gen_dmac {
+>   * to phy_chans entries.
+>   * @plat_data: Pointer to provided platform_data which is the driver
+>   * configuration.
+> - * @lcpa_regulator: Pointer to hold the regulator for the esram bank for lcla.
+> + * @lcla_dev: SRAM device for the ESRAM bank used by LCLA.
+> + * @lcla_link: Device link to keep system PM ordered against LCLA.
+>   * @phy_res: Vector containing all physical channels.
+>   * @lcla_pool: lcla pool settings and data.
+>   * @lcpa_base: The virtual mapped address of LCPA.
+> @@ -613,7 +615,8 @@ struct d40_base {
+>  	struct d40_chan			**lookup_log_chans;
+>  	struct d40_chan			**lookup_phy_chans;
+>  	struct stedma40_platform_data	 *plat_data;
+> -	struct regulator		 *lcpa_regulator;
+> +	struct device			 *lcla_dev;
+> +	struct device_link		 *lcla_link;
+>  	/* Physical half channels */
+>  	struct d40_phy_res		 *phy_res;
+>  	struct d40_lcla_pool		  lcla_pool;
+> @@ -630,6 +633,25 @@ struct d40_base {
+>  	struct d40_chan			 phy_chans[];
+>  };
+>
+> +static int d40_lcla_runtime_get(struct d40_base *base)
+> +{
+> +	if (!base->lcla_dev)
+> +		return 0;
+> +
+> +	return pm_runtime_resume_and_get(base->lcla_dev);
+> +}
+> +
+> +static void d40_lcla_runtime_put(struct d40_base *base)
+> +{
+> +	if (base->lcla_dev)
+> +		pm_runtime_put(base->lcla_dev);
+> +}
+> +
+> +static void d40_transfer_runtime_put(struct d40_base *base)
+> +{
+> +	pm_runtime_put_autosuspend(base->dev);
+> +}
+> +
+>  static bool chan_is_physical(struct d40_chan *chan)
+>  {
+>  	return chan->log_num == D40_PHY_CHAN;
+> @@ -859,7 +881,6 @@ static void d40_log_lli_to_lcxa(struct d40_chan *chan, struct d40_desc *desc)
+>  	bool cyclic = desc->cyclic;
+>  	int curr_lcla = -EINVAL;
+>  	int first_lcla = 0;
+> -	bool use_esram_lcla = chan->base->plat_data->use_esram_lcla;
+>  	bool linkback;
+>
+>  	/*
+> @@ -912,7 +933,6 @@ static void d40_log_lli_to_lcxa(struct d40_chan *chan, struct d40_desc *desc)
+>  	for (; lli_current < lli_len; lli_current++) {
+>  		unsigned int lcla_offset = chan->phy_chan->num * 1024 +
+>  					   8 * curr_lcla * 2;
+> -		struct d40_log_lli *lcla = pool->base + lcla_offset;
+>  		unsigned int flags = 0;
+>  		int next_lcla;
+>
+> @@ -936,16 +956,17 @@ static void d40_log_lli_to_lcxa(struct d40_chan *chan, struct d40_desc *desc)
+>  		 * One unused LCLA in the cyclic case if the very first
+>  		 * next_lcla fails...
+>  		 */
+> -		d40_log_lli_lcla_write(lcla,
+> -				       &lli->dst[lli_current],
+> -				       &lli->src[lli_current],
+> -				       next_lcla, flags);
+> -
+> -		/*
+> -		 * Cache maintenance is not needed if lcla is
+> -		 * mapped in esram
+> -		 */
+> -		if (!use_esram_lcla) {
+> +		if (pool->esram) {
+> +			/* LCPA and LCLA use the same four-word SRAM layout. */
+> +			d40_log_lli_lcpa_write(pool->esram + lcla_offset,
+> +					       &lli->dst[lli_current],
+> +					       &lli->src[lli_current],
+> +					       next_lcla, flags);
+> +		} else {
+> +			d40_log_lli_lcla_write(pool->base + lcla_offset,
+> +					       &lli->dst[lli_current],
+> +					       &lli->src[lli_current],
+> +					       next_lcla, flags);
+>  			dma_sync_single_range_for_device(chan->base->dev,
+>  						pool->dma_addr, lcla_offset,
+>  						2 * sizeof(struct d40_log_lli),
+> @@ -1661,7 +1682,7 @@ static struct d40_desc *d40_queue_start(struct d40_chan *d40c)
+>  			d40_desc_done(d40c, d40d);
+>  			d40c->pending_tx++;
+>  			d40c->busy = false;
+> -			pm_runtime_put_autosuspend(d40c->base->dev);
+> +			d40_transfer_runtime_put(d40c->base);
+>  			tasklet_schedule(&d40c->tasklet);
+>  			return ERR_PTR(err);
+>  		}
+> @@ -1717,7 +1738,7 @@ static void dma_tc_handle(struct d40_chan *d40c)
+>  		if (d40_queue_start(d40c) == NULL) {
+>  			d40c->busy = false;
+>
+> -			pm_runtime_put_autosuspend(d40c->base->dev);
+> +			d40_transfer_runtime_put(d40c->base);
+>  		}
+>  	}
+>
+> @@ -2270,7 +2291,7 @@ static int d40_free_dma(struct d40_chan *d40c)
+>  		d40c->base->lookup_phy_chans[phy->num] = NULL;
+>
+>  	if (d40c->busy)
+> -		pm_runtime_put_autosuspend(d40c->base->dev);
+> +		d40_transfer_runtime_put(d40c->base);
+>
+>  	d40c->busy = false;
+>  	d40c->phy_chan = NULL;
+> @@ -2646,6 +2667,12 @@ static int d40_alloc_chan_resources(struct dma_chan *chan)
+>  	struct d40_chan *d40c =
+>  		container_of(chan, struct d40_chan, chan);
+>  	bool is_free_phy;
+> +
+> +	/* Preparation and submission may run with the client's spinlock held. */
+> +	err = d40_lcla_runtime_get(d40c->base);
+> +	if (err < 0)
+> +		return err;
+> +
+>  	spin_lock_irqsave(&d40c->lock, flags);
+>
+>  	dma_cookie_init(chan);
+> @@ -2703,6 +2730,8 @@ static int d40_alloc_chan_resources(struct dma_chan *chan)
+>  	pm_runtime_put_autosuspend(d40c->base->dev);
+>   unlock:
+>  	spin_unlock_irqrestore(&d40c->lock, flags);
+> +	if (err < 0)
+> +		d40_lcla_runtime_put(d40c->base);
+>  	return err;
+>  }
+>
+> @@ -2725,6 +2754,10 @@ static void d40_free_chan_resources(struct dma_chan *chan)
+>  	if (err)
+>  		chan_err(d40c, "Failed to free channel\n");
+>  	spin_unlock_irqrestore(&d40c->lock, flags);
+> +
+> +	/* Keep SRAM powered if stopping the channel failed. */
+> +	if (!d40c->phy_chan)
+> +		d40_lcla_runtime_put(d40c->base);
+>  }
+>
+>  static struct dma_async_tx_descriptor *d40_prep_memcpy(struct dma_chan *chan,
+> @@ -2877,7 +2910,7 @@ static int d40_terminate_all(struct dma_chan *chan)
+>  	 */
+>  	d40_term_all(d40c);
+>  	if (d40c->busy)
+> -		pm_runtime_put_autosuspend(d40c->base->dev);
+> +		d40_transfer_runtime_put(d40c->base);
+>  	d40c->busy = false;
+>
+>  	spin_unlock_irqrestore(&d40c->lock, flags);
+> @@ -3047,9 +3080,9 @@ static int d40_set_runtime_config_write(struct dma_chan *chan,
+>
+>  /* Initialization functions */
+>
+> -static void __init d40_chan_init(struct d40_base *base, struct dma_device *dma,
+> -				 struct d40_chan *chans, int offset,
+> -				 int num_chans)
+> +static void d40_chan_init(struct d40_base *base, struct dma_device *dma,
+> +			  struct d40_chan *chans, int offset,
+> +			  int num_chans)
+>  {
+>  	int i = 0;
+>  	struct d40_chan *d40c;
+> @@ -3123,8 +3156,8 @@ static void d40_ops_init(struct d40_base *base, struct dma_device *dev)
+>  	dev->dev = base->dev;
+>  }
+>
+> -static int __init d40_dmaengine_init(struct d40_base *base,
+> -				     int num_reserved_chans)
+> +static int d40_dmaengine_init(struct d40_base *base,
+> +			      int num_reserved_chans)
+>  {
+>  	int err ;
+>
+> @@ -3201,29 +3234,11 @@ static int __init d40_dmaengine_init(struct d40_base *base,
+>  #ifdef CONFIG_PM_SLEEP
+>  static int dma40_suspend(struct device *dev)
+>  {
+> -	struct d40_base *base = dev_get_drvdata(dev);
+> -	int ret;
+> -
+> -	ret = pm_runtime_force_suspend(dev);
+> -	if (ret)
+> -		return ret;
+> -
+> -	if (base->lcpa_regulator)
+> -		ret = regulator_disable(base->lcpa_regulator);
+> -	return ret;
+> +	return pm_runtime_force_suspend(dev);
+>  }
+>
+>  static int dma40_resume(struct device *dev)
+>  {
+> -	struct d40_base *base = dev_get_drvdata(dev);
+> -	int ret = 0;
+> -
+> -	if (base->lcpa_regulator) {
+> -		ret = regulator_enable(base->lcpa_regulator);
+> -		if (ret)
+> -			return ret;
+> -	}
+> -
+>  	return pm_runtime_force_resume(dev);
+>  }
+>  #endif
+> @@ -3313,7 +3328,7 @@ static const struct dev_pm_ops dma40_pm_ops = {
+>
+>  /* Initialization functions. */
+>
+> -static int __init d40_phy_res_init(struct d40_base *base)
+> +static int d40_phy_res_init(struct d40_base *base)
+>  {
+>  	int i;
+>  	int num_phy_chans_avail = 0;
+> @@ -3405,8 +3420,8 @@ static void d40_drop_kmem_cache_action(void *d)
+>  	kmem_cache_destroy(desc_slab);
+>  }
+>
+> -static int __init d40_hw_detect_init(struct platform_device *pdev,
+> -				     struct d40_base **retbase)
+> +static int d40_hw_detect_init(struct platform_device *pdev,
+> +			      struct d40_base **retbase)
+>  {
+>  	struct stedma40_platform_data *plat_data = dev_get_platdata(&pdev->dev);
+>  	struct device *dev = &pdev->dev;
+> @@ -3592,7 +3607,7 @@ static int __init d40_hw_detect_init(struct platform_device *pdev,
+>  	return 0;
+>  }
+>
+> -static void __init d40_hw_init(struct d40_base *base)
+> +static void d40_hw_init(struct d40_base *base)
+>  {
+>
+>  	int i;
+> @@ -3640,13 +3655,9 @@ static void __init d40_hw_init(struct d40_base *base)
+>
+>  	/* Write which interrupt to clear */
+>  	writel(pcicr, base->virtbase + base->gen_dmac.interrupt_clear);
+> -
+> -	/* These are __initdata and cannot be accessed after init */
+> -	base->gen_dmac.init_reg = NULL;
+> -	base->gen_dmac.init_reg_size = 0;
+>  }
+>
+> -static int __init d40_lcla_allocate(struct d40_base *base)
+> +static int d40_lcla_allocate(struct d40_base *base)
+>  {
+>  	struct d40_lcla_pool *pool = &base->lcla_pool;
+>  	size_t lcla_size = SZ_1K * base->num_phy_chans;
+> @@ -3728,8 +3739,7 @@ static int __init d40_lcla_allocate(struct d40_base *base)
+>  	return ret;
+>  }
+>
+> -static int __init d40_of_probe(struct device *dev,
+> -			       struct device_node *np)
+> +static int d40_of_probe(struct device *dev, struct device_node *np)
+>  {
+>  	struct stedma40_platform_data *pdata;
+>  	int num_phy = 0, num_memcpy = 0, num_disabled = 0;
+> @@ -3781,13 +3791,70 @@ static int __init d40_of_probe(struct device *dev,
+>  	return 0;
+>  }
+>
+> -static int __init d40_probe(struct platform_device *pdev)
+> +static int d40_lcla_sram_setup(struct d40_base *base)
+> +{
+> +	struct device *dev = base->dev;
+> +	struct device_node *np, *parent;
+> +	struct platform_device *sram;
+> +	struct resource res;
+> +	bool ready;
+> +	int ret;
+> +
+> +	np = of_parse_phandle(dev->of_node, "sram", 1);
+> +	if (!np)
+> +		return 0;
+> +
+> +	ret = of_address_to_resource(np, 0, &res);
+> +	parent = of_get_parent(np);
+> +	of_node_put(np);
+> +	if (ret) {
+> +		of_node_put(parent);
+> +		return ret;
+> +	}
+> +	if (!parent)
+> +		return -EINVAL;
+> +
+> +	if (!IS_ALIGNED(res.start, LCLA_ALIGNMENT) ||
+> +	    resource_size(&res) < SZ_1K * base->num_phy_chans ||
+> +	    res.end > U32_MAX) {
+> +		of_node_put(parent);
+> +		return dev_err_probe(dev, -EINVAL, "Invalid LCLA SRAM region\n");
+> +	}
+> +
+> +	sram = of_find_device_by_node(parent);
+> +	of_node_put(parent);
+> +	if (!sram)
+> +		return -EPROBE_DEFER;
+> +	base->lcla_dev = &sram->dev;
+> +
+> +	device_lock(base->lcla_dev);
+> +	ready = device_is_bound(base->lcla_dev);
+> +	device_unlock(base->lcla_dev);
+> +	if (!ready)
+> +		return -EPROBE_DEFER;
+> +
+> +	base->lcla_link = device_link_add(dev, base->lcla_dev,
+> +					  DL_FLAG_STATELESS);
+> +	if (!base->lcla_link)
+> +		return -ENOMEM;
+> +
+> +	/* The SRAM driver owns the containing region. */
+> +	base->lcla_pool.esram = devm_ioremap(dev, res.start, resource_size(&res));
+> +	if (!base->lcla_pool.esram)
+> +		return -ENOMEM;
+> +
+> +	writel(res.start, base->virtbase + D40_DREG_LCLA);
+> +	dev_info(dev, "using LCLA SRAM at %pa\n", &res.start);
+> +
+> +	return 0;
+> +}
+> +
+> +static int d40_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct device_node *np = pdev->dev.of_node;
+>  	struct device_node *np_lcpa;
+>  	struct d40_base *base;
+> -	struct resource *res;
+>  	struct resource res_lcpa;
+>  	void *dmaenginem_reg_group;
+>  	int num_reserved_chans;
+> @@ -3844,26 +3911,12 @@ static int __init d40_probe(struct platform_device *pdev)
+>  		d40_err(dev, "Failed to ioremap LCPA region\n");
+>  		goto report_failure;
+>  	}
+> -	/* If lcla has to be located in ESRAM we don't need to allocate */
+> -	if (base->plat_data->use_esram_lcla) {
 
-Note that SCMI clocks representing hardware modules expose access to
-Module Standby control: they are fake clocks, with a zero clock rate,
-that can just be enabled and disabled.  Hence they are controlled from
-the clock domain's start/stop callbacks, together with gateable
-functional clock parents.
+Does it break old dts's back compatiblity?
 
-This lets us avoid putting SCMI IDs in DT, and allows us to use the same
-hardware description in SoC DTS for systems with and without SCMI
-firmware.
+Frank
 
-For now, it is assumed SCMI power domain, clock, and reset IDs are
-stable, and match SCP FW SDKv4.31.0 and later.
-
-Suggested-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
-v5:
-  - Add Tested-by,
-  - Rebase,
-  - Shrink hardware power domain IDs and firmware IDs to 16 bits,
-  - Replace unified power_map and mod_map by keeping the original
-    power_id_map and mod_id_map, and adding separate arrays of genpd and
-    reset_control pointers,
-  - Let power_id_map_find() and mod_id_map_find() return indices,
-  - Unify "Mapping HW power domain 0x%x to ..." debug prints in
-    r8a78000_genpd_xlate(),
-  - Move check for non-existent SCMI clock inside scmi_get_clk(),
-  - Add support for missing SCMI firmware IDs indicated by -1,
-  - Fix double clk_put() in pm_clk_add_clk() error handling,
-  - Replace devm_kcalloc() by devm_kzalloc_objs(),
-  - Fix reset control leaks in fill_mod_map() error path,
-  - Replace fill_power_map() and fill_mod_map() by get_genpds() resp.
-    get_rstcs(),
-  - Fix scmi_clk_np reference leak by marking it __free(), and
-    retaining it explicitly on probe success.
-  - Drop unneeded mdlc name comments from r8a78000_mdlc_fw[],
-
-v4:
-  - Let r8a78000_mdlc_attach_dev() return success when the MDLC instance
-    is not found, to avoid breaking users referring in DT to an SCMI
-    power-domain directly,
-  - Mark scmi_{reset,power}_np __free(device_node),
-  - Extract scmi_get_clk(),
-  - Add support for gateable fck parents,
-  - Assume all SCMI clock IDs are stable, and drop support for handling
-    different ID spaces,
-  - Include initial mapping table for SCP FW SDKv4.31.0 and later,
-  - Propagate all reset failures, as SCP FW SDKv4.28.0 which restricted
-    HSCIF0 reset is no longer supported,
-  - Drop renesas,scmi-firmware support, just find an arm,scmi node
-    instead,
-  - Fall back to the non-SCMI defaults when any of SCMI power domain,
-    clock, or reset support is disabled,
-
-v3:
-  - Rebase to v7.3-rc1,
-  - Consistently use /* sentinel */ for zero sentinels,
-  - s/genpd_get_from_provider/of_genpd_get_from_provider/,
-  - s/firmware/renesas,scmi-firmware/,
-  - Replace reset_controller_get_provider() by
-    reset_control_get_from_provider_exclusive(),
-  - Call reset_control_*() APIs instead of internal reset_control_ops
-    methods,
-  - Rename struct mod_map to struct mod_map_in,
-  - Add struct mod_map, which also contains a reset_control pointer,
-  - Add fill_mod_map() to obtain all SCMI reset_control structures
-    up-front, as one can no longer use lazy look-up,
-  - Prefix DEFINE_MDLC_RESET_WRAPPER() parameters with underscores,
-  - Reword,
-
-v2:
-  - Spin off from "pmdomain: renesas: Add R-Car X5H MDLC SCMI remapping
-    driver".
-  - Propagate error codes from scmi_get_base_info() now it can return
-    -EPROBE_DEFER,
-  - Improve error message on scmi_get_base_info() failure,
-  - Check if SCMI firmware node is available,
-  - Replace scmi_power_np and scmi_reset_np members of struct
-    r8a78000_mdlc_priv by local variables in r8a78000_mdlc_probe(), and
-    pass the former to fill_power_map(),
-  - Move check for supported firmware version up,
-  - Fall back to the default support when SCMI support or firmware is
-    not available, or when the detected SCMI firmware version is not
-    supported by the driver,
-  - Drop mapping tables.
----
- drivers/pmdomain/renesas/r8a78000-mdlc.c | 408 +++++++++++++++++++++--
- 1 file changed, 383 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/pmdomain/renesas/r8a78000-mdlc.c b/drivers/pmdomain/renesas/r8a78000-mdlc.c
-index 733bf68dab2ce6dc..79f6f1a9ae95d245 100644
---- a/drivers/pmdomain/renesas/r8a78000-mdlc.c
-+++ b/drivers/pmdomain/renesas/r8a78000-mdlc.c
-@@ -5,19 +5,41 @@
-  * Copyright (C) 2026 Glider bv
-  */
- 
-+#include <linux/cleanup.h>
-+#include <linux/clk.h>
- #include <linux/dev_printk.h>
- #include <linux/device-id/of.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_clock.h>
- #include <linux/pm_domain.h>
- #include <linux/reset-controller.h>
-+#include <linux/reset.h>
-+#include <linux/scmi_protocol.h>
- #include <linux/slab.h>
- 
- #include <dt-bindings/power/renesas,r8a78000-mdlc.h>
- 
-+struct power_id_map_entry {
-+	u16 hw_id;		/* Hardware power domain ID */
-+	u16 fw_id;		/* SCMI firmware power domain ID */
-+};
-+
-+struct power_id_map {
-+	const struct power_id_map_entry *entries;
-+	unsigned int size;
-+};
-+
-+#define POWER_ID_MAP(_entries) .power_map = &(struct power_id_map) {	\
-+	.entries = _entries,						\
-+	.size = ARRAY_SIZE(_entries),					\
-+}
-+
- struct mod_id_map_entry {
- 	u16 hw_id;		/* Hardware module ID */
-+	s16 fw_id;		/* SCMI clock (= reset) ID or -1 */
-+	s16 fw_fck_parent;	/* SCMI functional clock parent ID or -1 */
- };
- 
- struct mod_id_map {
-@@ -32,9 +54,15 @@ struct mod_id_map {
- 
- struct mdlc_info {
- 	u32 base;
-+	const struct power_id_map *power_map;
- 	const struct mod_id_map *mod_map;
- };
- 
-+struct mdlc_data {
-+	const struct mdlc_info *default_info;
-+	const struct mdlc_info *fw_info;
-+};
-+
- /**
-  * struct r8a78000_mdlc_priv - Module Controller Private Data
-  *
-@@ -43,7 +71,11 @@ struct mdlc_info {
-  * @rcdev: Reset controller entity
-  * @dev: MDLC device
-  * @np: Device node in DT representing the MDLC
-- * @mod_map: Mapping from hardware module IDs
-+ * @scmi_clk_np: Device node in DT for the SCMI firmware clock protocol
-+ * @power_map: Mapping from hardware power domain IDs to SCMI power domain IDs
-+ * @mod_map: Mapping from hardware module IDs to SCMI clock and reset IDs
-+ * @genpds: Power domains, indexed by @power_map entry index
-+ * @rstcs: Reset controls, indexed by @mod_map entry index
-  */
- struct r8a78000_mdlc_priv {
- 	struct hlist_node link;
-@@ -51,7 +83,11 @@ struct r8a78000_mdlc_priv {
- 	struct reset_controller_dev rcdev;
- 	struct device *dev;
- 	struct device_node *np;
-+	struct device_node *scmi_clk_np;
-+	const struct power_id_map *power_map;
- 	const struct mod_id_map *mod_map;
-+	struct generic_pm_domain **genpds;
-+	struct reset_control **rstcs;
- };
- 
- static struct generic_pm_domain *r8a78000_genpd_always_on;
-@@ -59,12 +95,27 @@ static struct generic_pm_domain *r8a78000_genpd_always_on;
- static HLIST_HEAD(r8a78000_mdlc_list);
- static DEFINE_MUTEX(r8a78000_mdlc_lock);	/* protects the list above */
- 
-+static int power_id_map_find(const struct power_id_map *map, u32 hw_id)
-+{
-+	if (!map)
-+		return -1;
-+
-+	for (unsigned int i = 0; i < map->size; i++) {
-+		if (map->entries[i].hw_id == hw_id)
-+			return i;
-+	}
-+
-+	return -1;
-+}
-+
- static struct generic_pm_domain *r8a78000_genpd_xlate(
- 			const struct of_phandle_args *spec, void *data)
- {
- 	struct r8a78000_mdlc_priv *priv = container_of(data,
- 					struct r8a78000_mdlc_priv, genpd_data);
-+	struct generic_pm_domain *genpd;
- 	struct device *dev = priv->dev;
-+	int idx;
- 	u32 id;
- 
- 	if (spec->args_count != 2)
-@@ -73,15 +124,22 @@ static struct generic_pm_domain *r8a78000_genpd_xlate(
- 	id = spec->args[0];
- 
- 	if (id >= R8A78000_MDLC_PD_AON) {
--		dev_dbg(dev,
--			"Mapping HW power domain 0x%x to always-on domain\n",
--			id);
--		return r8a78000_genpd_always_on;
-+		genpd = r8a78000_genpd_always_on;
-+		goto found;
- 	}
- 
--	/* For now only always-on domains are supported */
--	dev_err(dev, "Unknown power domain 0x%x\n", id);
--	return ERR_PTR(-ENOENT);
-+	idx = power_id_map_find(priv->power_map, id);
-+	if (idx < 0) {
-+		dev_err(dev, "Unknown power domain 0x%x\n", id);
-+		return ERR_PTR(-ENOENT);
-+	}
-+
-+	genpd = priv->genpds[idx];
-+
-+found:
-+	dev_dbg(dev, "Mapping HW power domain 0x%x to %s\n", id, genpd->name);
-+
-+	return genpd;
- }
- 
- #define rcdev_to_priv(_rcdev)	\
-@@ -116,18 +174,22 @@ static int r8a78000_mdlc_reset_xlate(struct reset_controller_dev *rcdev,
- 		return -ENOENT;
- 	}
- 
--	dev_dbg(dev, "Ignoring HW reset 0x%x\n", id);
--	return id;
-+	if (!priv->rstcs[idx])
-+		dev_dbg(dev, "Ignoring HW reset 0x%x\n", id);
-+	else
-+		dev_dbg(dev, "Mapping HW reset 0x%x to SCMI reset %d\n", id,
-+			priv->mod_map->entries[idx].fw_id);
-+
-+	return idx;
- }
- 
--#define DEFINE_MDLC_RESET_WRAPPER(op)					    \
--	static int r8a78000_mdlc_ ## op(struct reset_controller_dev *rcdev, \
--					unsigned long id)		    \
--	{								    \
--		struct r8a78000_mdlc_priv *priv = rcdev_to_priv(rcdev);	    \
--									    \
--		dev_dbg(priv->dev, "%s: Ignoring\n", __func__);		    \
--		return 0;						    \
-+#define DEFINE_MDLC_RESET_WRAPPER(_op)					     \
-+	static int r8a78000_mdlc_ ## _op(struct reset_controller_dev *rcdev, \
-+					 unsigned long id)		     \
-+	{								     \
-+		struct r8a78000_mdlc_priv *priv = rcdev_to_priv(rcdev);	     \
-+									     \
-+		return reset_control_ ## _op(priv->rstcs[id]);		     \
- 	}
- 
- DEFINE_MDLC_RESET_WRAPPER(reset)
-@@ -142,12 +204,51 @@ static const struct reset_control_ops r8a78000_mdlc_reset_ops = {
- 	.status = r8a78000_mdlc_status,
- };
- 
-+static struct device_node *scmi_find_proto(struct device_node *scmi, u32 proto)
-+{
-+	for_each_available_child_of_node_scoped(scmi, child) {
-+		u32 reg;
-+
-+		if (of_property_read_u32(child, "reg", &reg))
-+			continue;
-+
-+		if (reg == proto)
-+			return_ptr(child);
-+	}
-+
-+	return NULL;
-+}
-+
-+static struct clk *scmi_get_clk(struct device *dev, struct device_node *np,
-+				s16 fw_id)
-+{
-+	struct of_phandle_args scmi_spec = {
-+		.np = np,
-+		.args_count = 1,
-+		.args[0] = fw_id,
-+	};
-+	struct clk *clk;
-+
-+	if (fw_id < 0)
-+		return NULL;
-+
-+	clk = of_clk_get_from_provider(&scmi_spec);
-+	if (IS_ERR(clk))
-+		dev_err(dev, "Cannot get SCMI clock %d: %pe\n", fw_id, clk);
-+	else
-+		dev_dbg(dev, "SCMI clock %d is %pC\n", fw_id, clk);
-+
-+	return clk;
-+}
-+
- static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
- 				    struct device *dev)
- {
- 	struct device_node *np = dev->of_node;
-+	const struct mod_id_map_entry *entry;
- 	struct r8a78000_mdlc_priv *priv;
- 	struct of_phandle_args pd_spec;
-+	struct clk *clk, *parent;
- 	int ret, idx;
- 	u32 id;
- 
-@@ -164,9 +265,10 @@ static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
- 	}
- 
- 	if (!priv) {
--		dev_err(dev, "%s: MDLC %pOF not found\n", __func__, pd_spec.np);
-+		dev_warn(dev, "%s: Ignoring non-MDLC %pOF\n", __func__,
-+			 pd_spec.np);
- 		of_node_put(pd_spec.np);
--		return -ENODEV;
-+		return 0;
- 	}
- 
- 	id = pd_spec.args[1];
-@@ -178,8 +280,148 @@ static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
- 		return -ENOENT;
- 	}
- 
--	dev_dbg(dev, "Ignoring HW module 0x%x\n", id);
-+	if (!priv->scmi_clk_np) {
-+		dev_dbg(dev, "Ignoring HW module 0x%x\n", id);
-+		return 0;
-+	}
-+
-+	entry = &priv->mod_map->entries[idx];
-+	dev_dbg(dev, "Mapping HW module 0x%x to SCMI clock %d fck parent %d\n",
-+		id, entry->fw_id, entry->fw_fck_parent);
-+
-+	clk = scmi_get_clk(dev, priv->scmi_clk_np, entry->fw_id);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	parent = scmi_get_clk(dev, priv->scmi_clk_np, entry->fw_fck_parent);
-+	if (IS_ERR(parent)) {
-+		ret = PTR_ERR(parent);
-+		goto fail_put_clk;
-+	}
-+
-+	if (!clk && !parent) {
-+		/* Ignore missing SCMI clocks */
-+		return 0;
-+	}
-+
-+	ret = pm_clk_create(dev);
-+	if (ret)
-+		goto fail_put_parent;
-+
-+	if (parent) {
-+		ret = pm_clk_add_clk(dev, parent);
-+		if (ret) {
-+			pm_clk_destroy(dev);
-+			goto fail_put_parent;
-+		}
-+	}
-+	if (clk) {
-+		ret = pm_clk_add_clk(dev, clk);
-+		if (ret) {
-+			pm_clk_destroy(dev);
-+			goto fail_put_clk;
-+		}
-+	}
- 	return 0;
-+
-+fail_put_parent:
-+	clk_put(parent);
-+fail_put_clk:
-+	clk_put(clk);
-+	return ret;
-+}
-+
-+static void r8a78000_mdlc_detach_dev(struct generic_pm_domain *domain,
-+				     struct device *dev)
-+{
-+	if (!pm_clk_no_clocks(dev))
-+		pm_clk_destroy(dev);
-+}
-+
-+static struct generic_pm_domain **get_genpds(struct r8a78000_mdlc_priv *priv,
-+					     struct device_node *scmi_power_np)
-+{
-+	const struct power_id_map *map = priv->power_map;
-+	struct generic_pm_domain **genpds, *genpd;
-+	struct of_phandle_args scmi_spec;
-+	struct device *dev = priv->dev;
-+	u16 fw_id;
-+
-+	if (!map)
-+		return NULL;
-+
-+	genpds = devm_kzalloc_objs(dev, *genpds, map->size);
-+	if (!genpds)
-+		return ERR_PTR(-ENOMEM);
-+
-+	for (unsigned int i = 0; i < map->size; i++) {
-+		fw_id = map->entries[i].fw_id;
-+
-+		scmi_spec.np = scmi_power_np;
-+		scmi_spec.args_count = 1;
-+		scmi_spec.args[0] = fw_id;
-+
-+		genpd = of_genpd_get_from_provider(&scmi_spec);
-+		if (IS_ERR(genpd))
-+			return dev_err_cast_probe(dev, genpd,
-+					"Failed to get SCMI power domain %u\n",
-+					fw_id);
-+
-+		dev_dbg(dev, "SCMI power domain %u is %s\n", fw_id,
-+			genpd->name);
-+
-+		genpds[i] = genpd;
-+
-+		/* Hook up clock domain support */
-+		genpd->attach_dev = r8a78000_mdlc_attach_dev;
-+		genpd->detach_dev = r8a78000_mdlc_detach_dev;
-+		/* Setting flags this late has no impact, but does not hurt */
-+		genpd->flags |= GENPD_FLAG_PM_CLK;
-+		genpd->dev_ops.stop = pm_clk_suspend;
-+		genpd->dev_ops.start = pm_clk_resume;
-+	}
-+
-+	return genpds;
-+}
-+
-+static struct reset_control **get_rstcs(struct r8a78000_mdlc_priv *priv,
-+					struct fwnode_handle *scmi_reset_fwnode)
-+{
-+	const struct mod_id_map *map = priv->mod_map;
-+	struct fwnode_reference_args scmi_spec;
-+	struct reset_control **rstcs, *rstc;
-+	struct device *dev = priv->dev;
-+	s16 fw_id;
-+
-+	if (!map)
-+		return NULL;
-+
-+	rstcs = devm_kzalloc_objs(dev, *rstcs, map->size);
-+	if (!rstcs)
-+		return ERR_PTR(-ENOMEM);
-+
-+	for (unsigned int i = 0; i < map->size; i++) {
-+		fw_id = map->entries[i].fw_id;
-+		if (!scmi_reset_fwnode || fw_id < 0)
-+			continue;
-+
-+		scmi_spec.fwnode = scmi_reset_fwnode;
-+		scmi_spec.nargs = 1;
-+		scmi_spec.args[0] = fw_id;
-+
-+		rstc = reset_control_get_from_provider_exclusive(&scmi_spec);
-+		if (IS_ERR(rstc)) {
-+			while (i--)
-+				reset_control_put(rstcs[i]);
-+
-+			return dev_err_cast_probe(dev, rstc,
-+					"Failed to get SCMI reset %u\n", fw_id);
-+		}
-+
-+		rstcs[i] = rstc;
-+	}
-+
-+	return rstcs;
- }
- 
- static void r8a78000_mdlc_unlink(void *data)
-@@ -213,6 +455,8 @@ static int r8a78000_genpd_always_on_singleton(struct device *dev)
- 
- 	genpd->name = "always-on";
- 	genpd->attach_dev = r8a78000_mdlc_attach_dev;
-+	genpd->detach_dev = r8a78000_mdlc_detach_dev;
-+	genpd->flags |= GENPD_FLAG_PM_CLK;
- 
- 	ret = pm_genpd_init(genpd, &pm_domain_always_on_gov, false);
- 	if (ret) {
-@@ -227,8 +471,13 @@ static int r8a78000_genpd_always_on_singleton(struct device *dev)
- 
- static int r8a78000_mdlc_probe(struct platform_device *pdev)
- {
-+	struct device_node *scmi_reset_np __free(device_node) = NULL;
-+	struct device_node *scmi_power_np __free(device_node) = NULL;
-+	struct device_node *scmi_clk_np __free(device_node) = NULL;
-+	struct device_node *scmi __free(device_node) = NULL;
- 	struct device *dev = &pdev->dev;
- 	struct device_node *np = dev->of_node;
-+	const struct mdlc_data *mdlc_data;
- 	struct r8a78000_mdlc_priv *priv;
- 	const struct mdlc_info *info;
- 	struct resource *res;
-@@ -238,10 +487,12 @@ static int r8a78000_mdlc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	info = of_device_get_match_data(dev);
--	if (!info)
-+	mdlc_data = of_device_get_match_data(dev);
-+	if (!mdlc_data)
- 		return -ENODEV;
- 
-+	info = mdlc_data->default_info;
-+
- 	priv = devm_kzalloc_obj(dev, *priv);
- 	if (!priv)
- 		return -ENOMEM;
-@@ -249,6 +500,47 @@ static int r8a78000_mdlc_probe(struct platform_device *pdev)
- 	priv->dev = dev;
- 	priv->np = np;
- 
-+	if (!IS_ENABLED(CONFIG_ARM_SCMI_POWER_DOMAIN) ||
-+	    !IS_ENABLED(CONFIG_COMMON_CLK_SCMI) ||
-+	    !IS_ENABLED(CONFIG_RESET_SCMI)) {
-+		dev_dbg(dev, "SCMI pmdomain/clock/reset support is disabled\n");
-+		goto fallback;
-+	}
-+
-+	scmi = of_find_compatible_node(NULL, NULL, "arm,scmi");
-+	if (!scmi) {
-+		dev_dbg(dev, "Cannot find SCMI firmware node\n");
-+		goto fallback;
-+	}
-+
-+	if (!of_device_is_available(scmi)) {
-+		dev_dbg(dev, "SCMI firmware node is not available\n");
-+		goto fallback;
-+	}
-+
-+	scmi_power_np = scmi_find_proto(scmi, SCMI_PROTOCOL_POWER);
-+	if (!scmi_power_np) {
-+		dev_dbg(dev,
-+			"Cannot find SCMI power domain management protocol\n");
-+		goto fallback;
-+	}
-+
-+	scmi_clk_np = scmi_find_proto(scmi, SCMI_PROTOCOL_CLOCK);
-+	if (!scmi_clk_np) {
-+		dev_dbg(dev, "Cannot find SCMI clock management protocol\n");
-+		goto fallback;
-+	}
-+
-+	scmi_reset_np = scmi_find_proto(scmi, SCMI_PROTOCOL_RESET);
-+	if (!scmi_reset_np) {
-+		dev_dbg(dev, "Cannot find SCMI reset management protocol\n");
-+		goto fallback;
-+	}
-+
-+	priv->scmi_clk_np = scmi_clk_np;
-+	info = mdlc_data->fw_info;
-+
-+fallback:
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	if (!res)
- 		return -ENODEV;
-@@ -263,8 +555,25 @@ static int r8a78000_mdlc_probe(struct platform_device *pdev)
- 		return -ENODEV;
- 	}
- 
-+	priv->power_map = info->power_map;
- 	priv->mod_map = info->mod_map;
- 
-+	/*
-+	 * We cannot do lazy look-up in r8a78000_genpd_xlate(), as that
-+	 * function is called with of_genpd_mutex already held.
-+	 */
-+	priv->genpds = get_genpds(priv, scmi_power_np);
-+	if (IS_ERR(priv->genpds))
-+		return PTR_ERR(priv->genpds);
-+
-+	/*
-+	 * We cannot do lazy look-up in r8a78000_mdlc_reset_xlate(), as that
-+	 * function is called with reset_list_mutex already held.
-+	 */
-+	priv->rstcs = get_rstcs(priv, of_fwnode_handle(scmi_reset_np));
-+	if (IS_ERR(priv->rstcs))
-+		return PTR_ERR(priv->rstcs);
-+
- 	scoped_guard(mutex, &r8a78000_mdlc_lock) {
- 		hlist_add_head(&priv->link, &r8a78000_mdlc_list);
- 	}
-@@ -295,11 +604,14 @@ static int r8a78000_mdlc_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to register reset controller\n");
- 
-+	/* Retained in priv->scmi_clk_np */
-+	retain_and_null_ptr(scmi_clk_np);
-+
- 	return 0;
- }
- 
- static const struct mod_id_map_entry r8a78000_mdlc_perw_mod_default[] = {
--	{ 0x54 },	/* HSCIF0 */
-+	{ 0x54, -1, -1 },	/* HSCIF0 */
- };
- 
- static const struct mdlc_info r8a78000_mdlc_default[] = {
-@@ -310,10 +622,56 @@ static const struct mdlc_info r8a78000_mdlc_default[] = {
- 	{ /* sentinel */ }
- };
- 
-+static const struct mod_id_map_entry r8a78000_mdlc_perw_mod_fw[] = {
-+	{ 0x40, 205, -1 },	/* SCIF0 */
-+	{ 0x41, 206, -1 },	/* SCIF1 */
-+	{ 0x42, 207, -1 },	/* SCIF3 */
-+	{ 0x43, 208, -1 },	/* SCIF4 */
-+	{ 0x44, 209, -1 },	/* I2C1 */
-+	{ 0x45, 210, -1 },	/* I2C2 */
-+	{ 0x46, 211, -1 },	/* I2C3 */
-+	{ 0x47, 212, -1 },	/* I2C4 */
-+	{ 0x48, 213, -1 },	/* I2C5 */
-+	{ 0x49, 214, -1 },	/* I2C6 */
-+	{ 0x4a, 215, -1 },	/* I2C7 */
-+	{ 0x4b, 216, -1 },	/* I2C8 */
-+	{ 0x4f, 220, 1667 },	/* MSI4 / MSOCK_PERW_BUS */
-+	{ 0x50, 221, 1667 },	/* MSI5 / MSOCK_PERW_BUS */
-+	{ 0x51, 222, 1667 },	/* MSI6 / MSOCK_PERW_BUS */
-+	{ 0x52, 223, 1667 },	/* MSI7 / MSOCK_PERW_BUS */
-+	{ 0x54, 224, -1 },	/* HSCIF0 */
-+	{ 0x55, 225, -1 },	/* HSCIF1 */
-+	{ 0x56, 226, -1 },	/* HSCIF2 */
-+	{ 0x57, 227, -1 },	/* HSCIF3 */
-+};
-+
-+static const struct mod_id_map_entry r8a78000_mdlc_scp_mod_fw[] = {
-+	{ 0x50, 776, 1459 },	/* MSI0 / MSO_SCP_MAIN */
-+	{ 0x51, 777, 1459 },	/* MSI1 / MSO_SCP_MAIN */
-+	{ 0x52, 778, 1459 },	/* MSI2 / MSO_SCP_MAIN */
-+	{ 0x53, 779, 1459 },	/* MSI3 / MSO_SCP_MAIN */
-+};
-+
-+static const struct mdlc_info r8a78000_mdlc_fw[] = {
-+	{
-+		.base = 0xc05d0000,
-+		MOD_ID_MAP(r8a78000_mdlc_perw_mod_fw),
-+	}, {
-+		.base = 0xc1330000,
-+		MOD_ID_MAP(r8a78000_mdlc_scp_mod_fw),
-+	},
-+	{ /* sentinel */ }
-+};
-+
-+static const struct mdlc_data r8a78000_mdlc_data = {
-+	.default_info = r8a78000_mdlc_default,
-+	.fw_info = r8a78000_mdlc_fw,
-+};
-+
- static const struct of_device_id r8a78000_mdlc_match[] = {
- 	{
- 		.compatible = "renesas,r8a78000-mdlc",
--		.data = &r8a78000_mdlc_default,
-+		.data = &r8a78000_mdlc_data,
- 	},
- 	{ /* sentinel */ }
- };
--- 
-2.43.0
-
+> -		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> -							"lcla_esram");
+> -		if (!res) {
+> -			ret = -ENOENT;
+> -			d40_err(dev,
+> -				"No \"lcla_esram\" memory resource\n");
+> -			goto report_failure;
+> -		}
+> -		base->lcla_pool.base = devm_ioremap(dev, res->start,
+> -						    resource_size(res));
+> -		if (!base->lcla_pool.base) {
+> -			ret = -ENOMEM;
+> -			d40_err(dev, "Failed to ioremap LCLA region\n");
+> -			goto report_failure;
+> -		}
+> -		writel(res->start, base->virtbase + D40_DREG_LCLA);
+> -
+> -	} else {
+> +	ret = d40_lcla_sram_setup(base);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "Failed to set up LCLA SRAM\n");
+> +		goto destroy_cache;
+> +	}
+> +	if (!base->lcla_pool.esram) {
+>  		ret = d40_lcla_allocate(base);
+>  		if (ret) {
+>  			d40_err(dev, "Failed to allocate LCLA area\n");
+> @@ -3879,26 +3932,6 @@ static int __init d40_probe(struct platform_device *pdev)
+>  		goto destroy_cache;
+>  	}
+>
+> -	if (base->plat_data->use_esram_lcla) {
+> -
+> -		base->lcpa_regulator = regulator_get(base->dev, "lcla_esram");
+> -		if (IS_ERR(base->lcpa_regulator)) {
+> -			d40_err(dev, "Failed to get lcpa_regulator\n");
+> -			ret = PTR_ERR(base->lcpa_regulator);
+> -			base->lcpa_regulator = NULL;
+> -			goto destroy_cache;
+> -		}
+> -
+> -		ret = regulator_enable(base->lcpa_regulator);
+> -		if (ret) {
+> -			d40_err(dev,
+> -				"Failed to enable lcpa_regulator\n");
+> -			regulator_put(base->lcpa_regulator);
+> -			base->lcpa_regulator = NULL;
+> -			goto destroy_cache;
+> -		}
+> -	}
+> -
+>  	writel_relaxed(D40_DREG_GCC_ENABLE_ALL, base->virtbase + D40_DREG_GCC);
+>
+>  	pm_runtime_irq_safe(base->dev);
+> @@ -3954,22 +3987,18 @@ static int __init d40_probe(struct platform_device *pdev)
+>  		dma_unmap_single(base->dev, base->lcla_pool.dma_addr,
+>  				 SZ_1K * base->num_phy_chans,
+>  				 DMA_TO_DEVICE);
+> -
+> -	if (!base->plat_data->use_esram_lcla &&
+> -	    !base->lcla_pool.base_unaligned && base->lcla_pool.base)
+> +	if (!base->lcla_pool.base_unaligned && base->lcla_pool.base)
+>  		free_pages((unsigned long)base->lcla_pool.base,
+>  			   base->lcla_pool.alloc_order);
+>
+>  	kfree(base->lcla_pool.base_unaligned);
+> -
+> -	if (base->lcpa_regulator) {
+> -		regulator_disable(base->lcpa_regulator);
+> -		regulator_put(base->lcpa_regulator);
+> -	}
+> +	if (base->lcla_link)
+> +		device_link_del(base->lcla_link);
+> +	if (base->lcla_dev)
+> +		put_device(base->lcla_dev);
+>
+>   report_failure:
+> -	d40_err(dev, "probe failed\n");
+> -	return ret;
+> +	return dev_err_probe(dev, ret, "probe failed\n");
+>  }
+>
+>  static const struct of_device_id d40_match[] = {
+> @@ -3978,15 +4007,17 @@ static const struct of_device_id d40_match[] = {
+>  };
+>
+>  static struct platform_driver d40_driver = {
+> +	.probe = d40_probe,
+>  	.driver = {
+>  		.name  = D40_NAME,
+>  		.pm = &dma40_pm_ops,
+>  		.of_match_table = d40_match,
+> +		.suppress_bind_attrs = true,
+>  	},
+>  };
+>
+>  static int __init stedma40_init(void)
+>  {
+> -	return platform_driver_probe(&d40_driver, d40_probe);
+> +	return platform_driver_register(&d40_driver);
+>  }
+>  subsys_initcall(stedma40_init);
+>
+> ---
+> base-commit: becfc375b0ee95818c531ed43ecda26c90f7617a
+> change-id: 20261115-ux500-dma40-powerdomain-135a566b03ff
+>
+> Best regards,
+> --
+> Linus Walleij <linusw@kernel.org>
+>
 
