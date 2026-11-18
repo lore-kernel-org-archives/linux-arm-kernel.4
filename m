@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 302D8606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C75D60A261E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:37:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XOxrRMXL;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZnFBLaJi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IhgSO8AA;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dHi4w3mk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,55 +14,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ne9zjfCtE2ZYUY/5J+qHTBhV7SIbNLnRnfVz2YJDTqU=; b=XOxrRMXLxVa8hUhEGioUDFqXcr
-	D/dSmpqIxIoBZhgBQRIr7BDpF4FhhgacAbJ78sDb0beyGtWVE9mMDq8laQ0B6Kh8JaMHP8Sjek4JG
-	zBdpsGYPW2i92m7AqHxX61Sff+kGnIMzDn8bxzpKfLH2ZDY5YenZWlvGgTF8o5xrzGTfemo6/26sA
-	+mBRjlbSRCIR7vR7l3bbOjvGe4+Xb6zsD24ZCZdiWTz7vhv18X6ff+rSvztjUla2l0j+DglFy0Idd
-	Lj37PqhG+XNasPMqKbO7Vrh0GnNu/JDHPeCm9ItFOVXWlWXllXJurNKD1wkGdcT6Pou4h4BFLz8t1
-	p8Ggwp/w==;
+	bh=3PuxUg1W68XqcVeQwdFsUJ1UdoYaIGk5p/NFYNEmsqI=; b=IhgSO8AA1t9YlPneuUNymmmEHt
+	tnkBuCNhD1G6T9ZDo6V8YM2mvHt+6XNE9veWL8dncr0abWudVxI9mcLKi22Q7VMTCrXhyxVmyH7C8
+	EOQ5Tjg64pR3nqU3by1CUYMahbAui2JV9y7x3iOE4+Ti/Yqgq1UgkKQGlHNT4cBS03PB46Z6SUYTL
+	TEchUvE4jsIdD3SIM5LaX7SFP8ShpW8wNs4hOlIu0v+IWDgDXNCiaNdpSiXH591fkNI6vB7oVXxh0
+	JA+vGObtj2jVCPhz7kVgfv2NdJiZyHVIyLu8bocNbPsjrKQzsu7BXXd4PmKhTTl/DKY2IrrD3tjr3
+	nP41qW4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTibd-00000009XYp-28De;
-	Wed, 18 Nov 2026 16:33:57 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTiez-00000009YDu-1fR2;
+	Wed, 18 Nov 2026 16:37:27 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiZh-00000009WIt-0b6C
+	id 1xTiey-00000009YDf-0Zjz
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:31:57 +0000
+	Wed, 18 Nov 2026 16:37:24 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3272A4374C;
-	Wed, 18 Nov 2026 16:31:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D37041F000C4;
-	Wed, 18 Nov 2026 16:31:55 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E6B1462A2A;
+	Wed, 18 Nov 2026 16:37:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72D881F000C8;
+	Wed, 18 Nov 2026 16:37:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795019516;
-	bh=Ne9zjfCtE2ZYUY/5J+qHTBhV7SIbNLnRnfVz2YJDTqU=;
+	s=k20260515; t=1795019842;
+	bh=3PuxUg1W68XqcVeQwdFsUJ1UdoYaIGk5p/NFYNEmsqI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ZnFBLaJi6RcEic/+9H5w4sIwZIkB+fnu0L7z9GJjIX5mDcz2/9l//34AP9Wh4SG/T
-	 I0OtIQ4XDPgRuwTOJq+PI5uZUfSycMTi6M96eNe2u7y0yBtvV68mtKTJSeUpdUXcg0
-	 JU+M17y+AbLItrwJGiPGetc6fOEMgfyt/bTm6u9ZioMeyqUEYkVwt1um7Kv7ZjG4gX
-	 myzW6MOFrtP7pfSZC0+qmGfuWSfItXR/TuVlmM6YZbWFTGM+HdggDC9w5Vc2laEaep
-	 XGhXAroYBK0kiWB7JlKmFP21z9V3QQgqxhRDT2zvrJpT20sDFSFxv/20yI92+haDmu
-	 NxmxG5man5cNg==
-Date: Wed, 18 Nov 2026 10:31:53 -0600
+	b=dHi4w3mktKxZKBR1jENFnTDvtk0OFCuIffS1Qy1+yvVPh6ZnusJAqE0i7QzQpsjbj
+	 jUjdxWg7RMTI/xHAAi1NmRfjEK8Af7Fc2ckpfrw3JEDirV+XF7E1edY6H5Ng8XSC0r
+	 17dmY4BLbpsi74rxY9jaSEelrlgVsqpsf6inteVkE4xOiCy34R8w0jUjNKuMdyla97
+	 WGRqC7HUCoO+rcwKBYVJw89fUaOU5yVymq7sSq2NoF9xUOl+UWprlLZEmdnZtA3acZ
+	 UIyiL7W6GephTCaa7GcFvlGJqI/tbMNl/ZEg3CjIm1psJ4mkSdY47kJefi52zZyTEP
+	 CE4Xy4j1u555Q==
+Date: Wed, 18 Nov 2026 10:37:20 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chi-Wen Weng <cwweng.linux@gmail.com>
-Cc: nuno.sa@analog.com, dlechner@baylibre.com,
-	linux-arm-kernel@lists.infradead.org, jic23@kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org, cwweng@nuvoton.com, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, andy@kernel.org,
-	chernyakin.victor.j@outlook.com
-Subject: Re: [PATCH v5 1/3] dt-bindings: iio: adc: Fix channel property
- validation
-Message-ID: <179501951295.2811032.13608319647135153156.robh@kernel.org>
-References: <20261117082832.1551574-1-cwweng.linux@gmail.com>
- <20261117082832.1551574-2-cwweng.linux@gmail.com>
+To: Antonio Borneo <antonio.borneo@foss.st.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Sashiko <sashiko-bot@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Amelie Delaunay <amelie.delaunay@foss.st.com>,
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	Russell King <linux@armlinux.org.uk>,
+	Yannick Fertre <yannick.fertre@foss.st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	=?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
+Subject: Re: [PATCH v4 07/15] dt-bindings: watchdog: st,stm32-iwdg: add
+ access-controllers property
+Message-ID: <179501983985.2891459.3666177158331281459.robh@kernel.org>
+References: <20261116132416.1184447-1-antonio.borneo@foss.st.com>
+ <20261116132416.1184447-8-antonio.borneo@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261117082832.1551574-2-cwweng.linux@gmail.com>
+In-Reply-To: <20261116132416.1184447-8-antonio.borneo@foss.st.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,31 +91,18 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Tue, 17 Nov 2026 16:28:30 +0800, Chi-Wen Weng wrote:
-> From: Chi-Wen Weng <cwweng@nuvoton.com>
+On Mon, 16 Nov 2026 14:24:08 +0100, Antonio Borneo wrote:
+> Add the optional access-controllers property to reference one
+> domain access controllers protecting the watchdog peripheral.
 > 
-> The common ADC channel binding currently uses an anyOf constraint
-> to require the reg property and select between single-channel and
-> diff-channels.
-> 
-> However, the reg-only branch allows validation to succeed even when
-> both single-channel and diff-channels are present, bypassing the
-> intended mutual exclusion.
-> 
-> Replace the anyOf constraint with an explicit reg requirement and
-> a not constraint that rejects channels specifying both properties.
-> 
-> This preserves support for reg-only, single-ended and differential
-> channel descriptions while rejecting conflicting configurations.
-> 
-> Fixes: dd471a2b7759 ("dt-bindings: iio: adc: Add single-channel property")
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Chi-Wen Weng <cwweng@nuvoton.com>
+> Reported-by: Sashiko <sashiko-bot@kernel.org>
+> Link: https://sashiko.dev/#/patchset/20261106163429.618392-1-antonio.borneo%40foss.st.com?part=5
+> Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
 > ---
->  .../devicetree/bindings/iio/adc/adc.yaml        | 17 +++++++----------
->  1 file changed, 7 insertions(+), 10 deletions(-)
+>  Documentation/devicetree/bindings/watchdog/st,stm32-iwdg.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
