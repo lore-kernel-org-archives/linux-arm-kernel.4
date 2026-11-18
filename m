@@ -2,68 +2,136 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EADB4606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D508606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=361ISdXu;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=BeDnEUjL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4KOwOuA3;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=JCJ0UsCN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PRfp6SOVrrAYPUPThQxBxPybxQdM+w6pFXYthm3P4rY=; b=361ISdXuBh//J8
-	7SuWSO2A1z6u8ybBoAMAdUBklZ+dTM14OMTAgZTv1nYim7bwF5FatTuJBLsZI77fsPT2Ik8dgaeCJ
-	MzylxZk5SoXc+QcGtn+EUWHf/by1mhF4L0f+HEHeCMPRQNZnBf6HKOJYbtp7S7RypFil9VyyE0A/V
-	+SBk4yOxSgtJpu8jMKAG6gPTWOHPhX8Up/dOeQv4ZP4lXP/QwApxWaVtyiX8byuhVubheua+Tu9F/
-	rW17YIiFwhok/suvul5FKarut1lHSrnztbzHpgXahzjnASjruR10l4YS126TpxIDdK0MgSClJZbZb
-	KXzzrr08t/gRjm/poWhg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=zJq2pXKkRaQQrrq6h28WTqWjtESIWQfBtpmGTeUaphA=; b=4KOwOuA3LDJq3buay73NDsORDV
+	cwO353q/n8QUumKAgKt5CXlsFq84Xs580Zb9iOycoz6U5f6lpa3KSSt0Ntv+iXew/ix3HP112JEJQ
+	qmkhsLCrEfaDW0MddfyXdAZx0SSSB3ogAO2FtyOPfDpSJ7TebNV5eLrxBe+74ovadqwnV5qs+AUL3
+	hinrAmzSW2u4i5luV4YzW6AyzGCtsBAwWNMYF2IIVkFnFZU/B4Mr7JULONpc35nXMdHPKvkyo5vnu
+	5EV6jUabfBWoomfIv5zCzKpe2mfABIiaXCYHpPgcDOg2qdQNFGSEZ8gNrif0eVQ0uAANTpXwE53uu
+	OP0pw/Yw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTj2k-00000009fwM-0zRU;
-	Wed, 18 Nov 2026 17:01:58 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTj2X-00000009fnK-2KBE
+	id 1xTj31-00000009g8Q-1YJd;
+	Wed, 18 Nov 2026 17:02:15 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTj2n-00000009fxx-3KHQ
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 17:01:57 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B9B401477;
-	Wed, 18 Nov 2026 09:01:41 -0800 (PST)
-Received: from [10.2.212.8] (e134344.arm.com [10.2.212.8])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EE5373F673;
-	Wed, 18 Nov 2026 09:01:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795021304; bh=LS1Mza+LT5GtPiXw370EYY3WnzupngYzyQpWADqAtBc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BeDnEUjL7hljS5HnslQ+mrbt0j2OSrGwkAzycbQGkJ56SzUhqugnrlY8dqEC28ay1
-	 u6jKSZVACBDEC9FfwNUZ9l5pYvH+LDxkflx7EPYK5/+/CdPKaETp7p686GRaRLt21D
-	 wrYcvhttDLmUtC6v+LjtNCVWHa4Zvg+KdEgdNSHw=
-Message-ID: <de5ead8d-bfee-4e30-958b-d55e4a7160b4@arm.com>
-Date: Wed, 18 Nov 2026 17:01:41 +0000
+	Wed, 18 Nov 2026 17:02:08 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AIqvefXWVJgciLuS9gIU0dWL0QrLvFlCqwpnMwwFyeMRStsMCfywWRcm5Wi8dYZJ1+8hcmpY2NwIjc5/cUw0e9IUDmTC3r8JgY7p+2/waOq8URx9/jNDrTdHF/3z9QNGUxqlUVg3q1J2f82RgoZQ6BzNS3q2q+6p0VZGAk4eZmmnafHSezsdBS6w15Wdpzc+Kyy2v15hAIShkSCNI3xlRsYAb4SCAJ6KIma4hl3RZlrcesqZIRDeRRI16um0EG9FChGrvaUJpBQIb7KlUM6dW+IaCO3k88MCGvKLH+nHiREpX5jQrz8GMmaZxXFU2rlzZ8urWWU5ZCYlzhcQUr3DvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zJq2pXKkRaQQrrq6h28WTqWjtESIWQfBtpmGTeUaphA=;
+ b=FKfwr9TCqqa9u7C40+lYb6AGuXs6hh+sgV6UZ83JJu1mMLHO1xRO6e1K8tdmryOtOlYiFfkVNu/7klOhn7Hgl0R+z8q9/3YrQlRRdY8HOiN2bZC1HuWRetBBW9imy8D7YF2v5W6hPJ8E/sgIQR5WcVs/trOMWK+YWdd4IXFQPSWq9Ps/FvlVVt0TIDVoP1Pc2FO790TiGcGhUk5DBAMB+E5VSkb8FQt8497/um6JLXvjYZsUz/OrbcUAxjAdbGI6/H0q1fCTlm/PHoe/uqkkkDqOZr6Fxj+bYPY2yzd6iyF0q+YBgrHZ2560Wvc888kcO2aexkdmtQwxryiGR8V5lg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zJq2pXKkRaQQrrq6h28WTqWjtESIWQfBtpmGTeUaphA=;
+ b=JCJ0UsCNvvI/Gg7iLD8etLChtN7iNn9o0xh4sKw30hXHAWNyWlf20FE5fCfEnLVjEdYdS09Tm4MbhC7Q6pC1v4lj0kHrU3UNYSazhkf5mSkuhY3fIrjLz19/cvpfa1VvpxJ1oBqy/uJ83CJ7Q1cxlKUEyjJoiMYkHhZCUrK9LJWygOublRKxhC3W6AKKk/X0T2mJThSosbK/ndjSSfFj2mfJ/JGIssoXIigzrdXkjfYZ7Hg1P+84okfiQdW/9EdaQbEIOh6k4kSqbC5AiPVAJG0fwWWUPq1nLbL++ACKfCX86qjIqRk9rhWP6+DSkqyNXjvqcHjwHg1ND1UHjLK1lA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by AM9PR04MB9014.eurprd04.prod.outlook.com (2603:10a6:20b:430::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
+ 2026 17:01:57 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
+ 17:01:57 +0000
+Date: Wed, 18 Nov 2026 11:01:47 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Hyunjung Ko <hj351016@gmail.com>
+Cc: Amelie Delaunay <amelie.delaunay@foss.st.com>,
+	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	dmaengine@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v2] dmaengine: stm32-dmamux: don't call runtime PM under
+ a spinlock
+Message-ID: <av3Z-35-RJvHegmf@SMW015318>
+References: <90b4417d-f2fe-498a-8128-3229eb284d8c@foss.st.com>
+ <20261118152843.1126665-1-hj351016@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261118152843.1126665-1-hj351016@gmail.com>
+X-ClientProxiedBy: PH8P222CA0012.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:510:2d7::25) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/8] arm_mpam: resctrl: Do not fail CPU online when
- domain setup fails
-To: Reinette Chatre <reinette.chatre@intel.com>, james.morse@arm.com,
- Dave.Martin@arm.com, fenghuay@nvidia.com, ruanjinjie@huawei.com
-Cc: tony.luck@intel.com, yu.c.chen@intel.com, babu.moger@amd.com,
- fustini@kernel.org, tan.shaopeng@fujitsu.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- patches@lists.linux.dev
-References: <cover.1794283825.git.reinette.chatre@intel.com>
- <e0a6d37967c016019c82cbe368dd915902ecbca8.1794283825.git.reinette.chatre@intel.com>
-Content-Language: en-US
-From: Ben Horgan <ben.horgan@arm.com>
-In-Reply-To: <e0a6d37967c016019c82cbe368dd915902ecbca8.1794283825.git.reinette.chatre@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AM9PR04MB9014:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9a3d1e8-559e-4877-866e-08df4595a734
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016|19092799006|23010399003|261026121527099003|261022105027099003|56012099006|4143699003|11063799006|261102123227099003|10067099003|261021121427099003|261021123027099003|261026140227099003|261009223027099003|261028144727099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: MjY0LqNrRE99dDw6AD6Llt0gFmOSbc7VSlTMR50azJC6PuvSY83BsC855WU374PqkwaDgWouDINUJwMhYdOcDX+L0EeiuCwZzrU9QVh5yiD7PAwBFaVzqnk4Pr5XWqE5QIgI4ZLksbUwpBZ7MB1nBRRWUVjLPbh8HrcJr1poJ+Z4W4suEuUHUpcX6SePRCtmv3CMzNjctLUYu+1uh5PLE/43ATAraWZU3QTAKAoRpSJcwqK2w/casUf71xJJ2BhJWYWa0ypsWIKjXIW4+EuRwbTngiChjqLw+vQzMXnpiHUVbl+x1atUhYU+IR/q5cSYpkbZvhYDOI3Ui3AejJTYsLBWCJ6QTEcLKQFLZIAtpPUkYUZI51eDFJmmT9t3ckR4PLUo3yQXbGR3XM7WglzGxgehn41sRSxzS0L+g7mZcV3ov6VTfRYk/1eFVo2pNT5jYJi1e4DOVKQErIo7ZA6JiG/RTG4/lYzyoC5EmrSXweyuIRNQIdfG08NywdlkhUwgGHphEC2TVSyf64f3EGl6HiN8kzIeDEHaVQp4WQIL3+ZWqe34idmx/LI5i/E7IfFxzG1GF4CvYC8+s3+SeprW20aNZ2aqEUzDcMPBEtBfPhmDikANE7HVRZtHlwVhh9It
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(19092799006)(23010399003)(261026121527099003)(261022105027099003)(56012099006)(4143699003)(11063799006)(261102123227099003)(10067099003)(261021121427099003)(261021123027099003)(261026140227099003)(261009223027099003)(261028144727099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dL0A5DXWflDVOWgxyQtUz6URwxO3Ucpmdo7PHjh07ZFEEqihThDFDQ//njUN?=
+ =?us-ascii?Q?gdWYfJBP3TrwWAD+bbU/2DykjxLK+t1MwPJOM8P0a/4i/Nqtvq2n2aKRPbzA?=
+ =?us-ascii?Q?/c7G6HGDXbRXXUR2ZBgoU6xnjHXWtMrx5kPyXZfHCufCasJ3MhDIrCW6E6s4?=
+ =?us-ascii?Q?ey5hScbv28+/i/XRnkm+0mRVbl5YmkI/cGacYOLh44wIshPJO/akCTBG0Z3C?=
+ =?us-ascii?Q?Heuqn0bwAL3uHALcOx/zKaFMOSnMsngF52Atl6LDjAfP755FW9f6o43MyzsQ?=
+ =?us-ascii?Q?kCvIxkb1FsD2gLIuiJ6X+EjJvViRaML7actzFzDP7I4QgkYh0plOjjUreVrp?=
+ =?us-ascii?Q?64cMWfO4bt+pi6vatkiJKypf3HHrHaKax4Di6yLhNGQtfl/3JF+TqsFXOMCL?=
+ =?us-ascii?Q?h16h/sWgcRdZ0E/Vwb5THPsoPdsUCW62rKM0ESEEUG1ffxoXBksRkEnjuNQj?=
+ =?us-ascii?Q?ajeXUedzZsIdwUSjwHioXrFyM3rQnTL/sdpVnGvlm3g8E1H3Lm13tK2A+E10?=
+ =?us-ascii?Q?Hjb4N5At79InD8j6ehJU5m5Gess6nkns1/YF7N9GVQ0CgQFcz9+uSF486o0e?=
+ =?us-ascii?Q?PUTYsVy/coN4Pt9JmyPesTrT7or3INlJqCkcQaaBNJZVAY9ZdgvwpZYggL6z?=
+ =?us-ascii?Q?lT7/Ie3ARQD6yjo+leLjnTCwFnEHz1qmRdWhJE5e6EMTxXRAll96+ttD+Nxi?=
+ =?us-ascii?Q?FD8u8wFigzi+PqSQo17OUK9BTT1sR2zKtnt+gS9i/Z/D08uo47cJBWkOyJsl?=
+ =?us-ascii?Q?JUqr5hNmyHLmAWOmyryQzyCuFZy3MGVUeZNs+rIfrDr+PRua5PSnokYv9hPo?=
+ =?us-ascii?Q?MjTyJj5KoBFEMWAaOLn1eUmID0l/DlZ4nIrT3bZwJLyPz1Nx9eqlaFMZDox0?=
+ =?us-ascii?Q?0JP2hUD2DWtVAJTLNLOjTiS0spPwPcT0cJ1Ot64cLDZjuaajp0di7UOufSO5?=
+ =?us-ascii?Q?SapNzrBGA5GnYj1+5wcMH/grpbwspgtgIOzEl82JuzdaBcBbu676mlunG4NZ?=
+ =?us-ascii?Q?1EsCdId85rWn09Qvw+6VOfXmcj2mtT3JVrw1xEj0p17YRHYzojdGzDp3qOqJ?=
+ =?us-ascii?Q?68sG72371QdJ2jR42yda7eWd1KWjmuPQs0snkI5e8Us0DTiy6fje9ObEJ5jq?=
+ =?us-ascii?Q?TAMajdSghtBPJhtGGYjzb+01cHLcNl6SmJ11p50RzDQ7INDhMtUGFNWoeIa/?=
+ =?us-ascii?Q?q+86gtg7a80CvEhQgIqPyBB24ek38UI9xDW4vyMY11KkozmgmcgFloftr6Xz?=
+ =?us-ascii?Q?WzTnK/7L5Cfm7wbk/ULr1FMQbTMt59dTWFGhmdbRYXgKt6DKdUzNYqbV20E2?=
+ =?us-ascii?Q?qddDgA1OtxtxaZs2dEqGDWrz+2nVfCRD160mKe5eN7ZzB+IWDLE3/1PcndjW?=
+ =?us-ascii?Q?zgCB1UnjUjcK123SLaJu/ccntbLhCfm7xTxqjP26cwhhmgXH8jEmf20MBk+T?=
+ =?us-ascii?Q?A0ZgzJIYaQHJkmeGfE55NjR2h+Puahkq3BnrWnZw88avk3HYhjCIlS9ktEWy?=
+ =?us-ascii?Q?0Edc4qh7p+E5I0uWvlt0mnZe7mLyP29x6Wx3PjDOay1jYPnMCdIdfu54vaoJ?=
+ =?us-ascii?Q?54yV4q0tBgwkR1RB30tJWw9ycAzAVx4BW9lsR13qEWYkIROj3tREI7lySSeQ?=
+ =?us-ascii?Q?j7N5ZUz2FQyfZw3hv8jUinrLbmqWOG5knRublJaFDj+GbHqDhuUrbRz8gY8n?=
+ =?us-ascii?Q?8U7KXPe9fF/Q0A7D5TlNpebJrzLczFEGXAAA2fPyD78F6LLmdHTe1QXYcslx?=
+ =?us-ascii?Q?cwHzVeAS9pc0GN1u94UrH4VTHu0fCW/gSiQEypBmAPq2MeYaflyF?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9a3d1e8-559e-4877-866e-08df4595a734
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 17:01:56.9700
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T+/GveYg2Cb8GbhJU5uFxp9C5NWeukUUf/hEix4+cU/0TRbhi1Jcl2AxzyFr2A9Yjq1Udax9UkQuWlGzB8SWrfLsnSCc3PkXVUFb159WkV/KhMHW8X1F9g8dbfXM9yBi
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB9014
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_090145_892584_31C51B7C 
-X-CRM114-Status: GOOD (  37.72  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261118_090201_870746_132AE32B 
+X-CRM114-Status: GOOD (  23.33  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,214 +142,94 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Reinette,
+On Thu, Nov 19, 2026 at 12:28:43AM +0900, Hyunjung Ko wrote:
 
-On 10/11/2026 04:19, Reinette Chatre wrote:
-> When a CPU comes online, mpam_resctrl_online_cpu() adds it to the resctrl
-> domains of each resource in use, and sets up a new domain when the CPU
-> is the first of its domain to come online. A failure to set up a domain
-> is returned as the failure of MPAM's CPU hotplug startup callback.
-> 
-> The CPU hotplug core does not run the teardown callback for a CPU whose
-> startup callback failed, so everything done for the CPU before the
-> failure stays in place: the CPU remains in the domains of the resources
-> that were handled before the failing one, and MPAM's per-MSC state for
-> the CPU is not undone. If the failure happens when MPAM installs its
-> CPU hotplug callbacks during enabling, the hotplug core discards the
-> callbacks, leaving MPAM enabled and resctrl initialized but MPAM no
-> longer notified of CPU hotplug. If it happens when a CPU comes online
-> later, the CPU fails to come online.
-> 
-> Setting up a domain only fails if a memory allocation fails or if a
-> class unexpectedly has no component for the CPU. For such rare failures
-> losing a resctrl domain is a smaller cost than failing CPU online or
-> leaving MPAM in an inconsistent state.
-> 
-> Do not report domain setup failures from mpam_resctrl_online_cpu() and
-> leave the CPU without a domain for that resource. Make
-> mpam_resctrl_alloc_domain() return nothing since its failures are no
-> longer reported. Keep adding the CPU to resctrl's default group even
-> when a domain could not be set up, since the CPU is online and runs
-> tasks regardless, and resctrl expects every online CPU to belong to a
-> resource group. Warn on a failed domain allocation and on a missing
-> monitoring component so these failures are not silent. Drop the warning
-> when a CPU going offline has no domain, since a missing domain is now
-> expected.
-> 
-> Only domains that were set up are exposed through resctrl and torn down
-> when their CPUs go offline. When another CPU of the same domain comes
-> online, it sets up the domain again, and if that succeeds the domain
-> does not include the CPU for which setup failed.
-> 
-> Signed-off-by: Reinette Chatre <reinette.chatre@intel.com>
-> Tested-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> Reviewed-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Avoid post new version patch to old email thread, which cause other tools.
 
-Looks good to me.
-
-Reviewed-by: Ben Horgan <ben.horgan@arm.com>
-
+> stm32_dmamux_route_allocate() calls pm_runtime_resume_and_get() while
+> holding dmamux->lock with interrupts disabled, and stm32_dmamux_free()
+> calls pm_runtime_put_sync() in the same way.  The runtime callbacks
+> enable and disable the clock with clk_prepare_enable() /
+> clk_disable_unprepare(), which can sleep, and the device is not marked
+> pm_runtime_irq_safe(), so both sleep in atomic context.
+>
+> The lock was in the wrong place: it did not protect the runtime PM call,
+> while the CCR write in stm32_dmamux_route_allocate() was left unlocked
+> even though stm32_dmamux_free() writes the same register under the lock.
+> Move the runtime PM calls outside the lock in both functions and take
+> the lock for the CCR write instead, matching stm32_dmamux_free().
+>
+> Fixes: 4f3ceca254e0 ("dmaengine: stm32-dmamux: Add PM Runtime support")
+> Cc: stable@vger.kernel.org
+> Suggested-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> Signed-off-by: Hyunjung Ko <hj351016@gmail.com>
 > ---
-> Changes since RFC v2:
-> - Add Jinjie's Reviewed-by tag.
-> - Add Jinjie's Tested-by tag.
-> - WARN when domain allocation fails. (Ben)
-> - Squash patch that replaces WARN_ON_ONCE(0) with
->   WARN_ON_ONCE(!any_mon_comp). (Ben)
-> ---
->  drivers/resctrl/mpam_devices.c  |  2 +-
->  drivers/resctrl/mpam_internal.h |  4 ++--
->  drivers/resctrl/mpam_resctrl.c  | 37 +++++++++++++++------------------
->  3 files changed, 20 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-> index 27abf60f4d67..a95326f2ef88 100644
-> --- a/drivers/resctrl/mpam_devices.c
-> +++ b/drivers/resctrl/mpam_devices.c
-> @@ -2247,7 +2247,7 @@ static int mpam_cpu_online(unsigned int cpu)
->  	}
->  
->  	if (mpam_resctrl_enabled)
-> -		return mpam_resctrl_online_cpu(cpu);
-> +		mpam_resctrl_online_cpu(cpu);
->  
->  	return 0;
->  }
-> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-> index 1f86cc158100..84c7adbb1a40 100644
-> --- a/drivers/resctrl/mpam_internal.h
-> +++ b/drivers/resctrl/mpam_internal.h
-> @@ -525,13 +525,13 @@ int mpam_get_cpumask_from_cache_id(unsigned long cache_id, u32 cache_level,
->  #ifdef CONFIG_RESCTRL_FS
->  int mpam_resctrl_setup(void);
->  void mpam_resctrl_exit(void);
-> -int mpam_resctrl_online_cpu(unsigned int cpu);
-> +void mpam_resctrl_online_cpu(unsigned int cpu);
->  void mpam_resctrl_offline_cpu(unsigned int cpu);
->  void mpam_resctrl_teardown_class(struct mpam_class *class);
->  #else
->  static inline int mpam_resctrl_setup(void) { return 0; }
->  static inline void mpam_resctrl_exit(void) { }
-> -static inline int mpam_resctrl_online_cpu(unsigned int cpu) { return 0; }
-> +static inline void mpam_resctrl_online_cpu(unsigned int cpu) { }
->  static inline void mpam_resctrl_offline_cpu(unsigned int cpu) { }
->  static inline void mpam_resctrl_teardown_class(struct mpam_class *class) { }
->  #endif /* CONFIG_RESCTRL_FS */
-> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
-> index d0c7c741ce90..ec39f3909388 100644
-> --- a/drivers/resctrl/mpam_resctrl.c
-> +++ b/drivers/resctrl/mpam_resctrl.c
-> @@ -1640,8 +1640,8 @@ static struct mpam_component *find_component(struct mpam_class *class, int cpu)
->  	return NULL;
->  }
->  
-> -static struct mpam_resctrl_dom *
-> -mpam_resctrl_alloc_domain(unsigned int cpu, struct mpam_resctrl_res *res)
-> +static void mpam_resctrl_alloc_domain(unsigned int cpu,
-> +				      struct mpam_resctrl_res *res)
->  {
->  	int err;
->  	struct mpam_resctrl_dom *dom;
-> @@ -1656,11 +1656,11 @@ mpam_resctrl_alloc_domain(unsigned int cpu, struct mpam_resctrl_res *res)
->  	comp = find_component(class, cpu);
->  	/* class has no component for this CPU */
->  	if (WARN_ON_ONCE(!comp))
-> -		return ERR_PTR(-EINVAL);
-> +		return;
->  
->  	dom = kzalloc_node(sizeof(*dom), GFP_KERNEL, cpu_to_node(cpu));
-> -	if (!dom)
-> -		return ERR_PTR(-ENOMEM);
-> +	if (WARN_ON_ONCE(!dom))
-> +		return;
->  
->  	if (r->alloc_capable) {
->  		dom->ctrl_comp = comp;
-> @@ -1701,11 +1701,8 @@ mpam_resctrl_alloc_domain(unsigned int cpu, struct mpam_resctrl_res *res)
->  			if (mon_comp)
->  				any_mon_comp = mon_comp;
->  		}
-> -		if (!any_mon_comp) {
-> -			WARN_ON_ONCE(0);
-> -			err = -EFAULT;
-> +		if (WARN_ON_ONCE(!any_mon_comp))
->  			goto offline_ctrl_domain;
-> -		}
->  
->  		mon_d = &dom->resctrl_mon_dom;
->  		mpam_resctrl_domain_hdr_init(cpu, any_mon_comp, r->rid, &mon_d->hdr);
-> @@ -1719,7 +1716,7 @@ mpam_resctrl_alloc_domain(unsigned int cpu, struct mpam_resctrl_res *res)
->  		pr_debug("Skipped monitor domain online - no monitors\n");
->  	}
->  
-> -	return dom;
-> +	return;
->  
->  offline_ctrl_domain:
->  	if (r->alloc_capable) {
-> @@ -1728,9 +1725,6 @@ mpam_resctrl_alloc_domain(unsigned int cpu, struct mpam_resctrl_res *res)
->  	}
->  free_domain:
->  	kfree(dom);
-> -	dom = ERR_PTR(err);
-> -
-> -	return dom;
->  }
->  
->  /*
-> @@ -1782,7 +1776,7 @@ mpam_resctrl_get_domain_from_cpu(int cpu, struct mpam_resctrl_res *res)
->  	return mpam_resctrl_get_mon_domain_from_cpu(cpu);
->  }
->  
-> -int mpam_resctrl_online_cpu(unsigned int cpu)
-> +void mpam_resctrl_online_cpu(unsigned int cpu)
->  {
->  	struct mpam_resctrl_res *res;
->  	enum resctrl_res_level rid;
-> @@ -1797,9 +1791,13 @@ int mpam_resctrl_online_cpu(unsigned int cpu)
->  
->  		dom = mpam_resctrl_get_domain_from_cpu(cpu, res);
->  		if (!dom) {
-> -			dom = mpam_resctrl_alloc_domain(cpu, res);
-> -			if (IS_ERR(dom))
-> -				return PTR_ERR(dom);
-> +			/*
-> +			 * On failure the CPU is left without a domain for this
-> +			 * resource, which mpam_resctrl_offline_cpu() tolerates.
-> +			 * resctrl_online_cpu() still adds the CPU to the default
-> +			 * group because the CPU is online and runs tasks.
-> +			 */
-> +			mpam_resctrl_alloc_domain(cpu, res);
->  		} else {
->  			if (r->alloc_capable) {
->  				struct rdt_ctrl_domain *ctrl_d = &dom->resctrl_ctrl_dom;
-> @@ -1815,8 +1813,6 @@ int mpam_resctrl_online_cpu(unsigned int cpu)
->  	}
->  
->  	resctrl_online_cpu(cpu);
-> -
-> -	return 0;
->  }
->  
->  void mpam_resctrl_offline_cpu(unsigned int cpu)
-> @@ -1837,8 +1833,9 @@ void mpam_resctrl_offline_cpu(unsigned int cpu)
->  		if (!res->class)
->  			continue;	// dummy resource
->  
-> +		/* The domain may be missing if its setup failed. */
->  		dom = mpam_resctrl_get_domain_from_cpu(cpu, res);
-> -		if (WARN_ON_ONCE(!dom))
-> +		if (!dom)
->  			continue;
->  
->  		if (r->alloc_capable) {
 
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+> v2: Amelie Delaunay pointed out that v1 was correct but incomplete:
+>     - also take dmamux->lock for the CCR write in
+>       stm32_dmamux_route_allocate(), which stm32_dmamux_free() already
+>       does for the same register;
+>     - also move pm_runtime_put_sync() out of the lock in
+>       stm32_dmamux_free(), which has the same sleep-in-atomic problem.
+>     Link to v1: https://lore.kernel.org/all/20261118082853.926607-1-hj351016@gmail.com/
+>
+>  drivers/dma/stm32/stm32-dmamux.c | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/dma/stm32/stm32-dmamux.c b/drivers/dma/stm32/stm32-dmamux.c
+> index 5731871..8290122 100644
+> --- a/drivers/dma/stm32/stm32-dmamux.c
+> +++ b/drivers/dma/stm32/stm32-dmamux.c
+> @@ -73,10 +73,10 @@ static void stm32_dmamux_free(struct device *dev, void *route_data)
+>  	stm32_dmamux_write(dmamux->iomem, STM32_DMAMUX_CCR(mux->chan_id), 0);
+>  	clear_bit(mux->chan_id, dmamux->dma_inuse);
+>
+> -	pm_runtime_put_sync(dev);
+> -
+>  	spin_unlock_irqrestore(&dmamux->lock, flags);
+>
+> +	pm_runtime_put_sync(dev);
+> +
+>  	dev_dbg(dev, "Unmapping DMAMUX(%u) to DMA%u(%u)\n",
+>  		mux->request, mux->master, mux->chan_id);
+>
+> @@ -139,13 +139,9 @@ static void *stm32_dmamux_route_allocate(struct of_phandle_args *dma_spec,
+>  	}
+>
+>  	/* Set dma request */
+> -	spin_lock_irqsave(&dmamux->lock, flags);
+>  	ret = pm_runtime_resume_and_get(&pdev->dev);
+> -	if (ret < 0) {
+> -		spin_unlock_irqrestore(&dmamux->lock, flags);
+> +	if (ret < 0)
+>  		goto err_put_dma_spec_np;
+> -	}
+> -	spin_unlock_irqrestore(&dmamux->lock, flags);
+>
+>  	mux->request = dma_spec->args[0];
+>
+> @@ -156,8 +152,11 @@ static void *stm32_dmamux_route_allocate(struct of_phandle_args *dma_spec,
+>  	dma_spec->args[0] = mux->chan_id - min;
+>  	dma_spec->args_count = 4;
+>
+> +	spin_lock_irqsave(&dmamux->lock, flags);
+>  	stm32_dmamux_write(dmamux->iomem, STM32_DMAMUX_CCR(mux->chan_id),
+>  			   mux->request);
+> +	spin_unlock_irqrestore(&dmamux->lock, flags);
+> +
+>  	dev_dbg(&pdev->dev, "Mapping DMAMUX(%u) to DMA%u(%u)\n",
+>  		mux->request, mux->master, mux->chan_id);
+>
+> --
+> 2.43.0
+>
 
