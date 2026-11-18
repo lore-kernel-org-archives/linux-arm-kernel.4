@@ -2,53 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA8C60A2623
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4228060A2602
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sFgrX1jD;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=YSuRmTo6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f22Ggfgl;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DOhzPM0y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=76aqbnqCYQ7fdmyHaSUxIGlKFS3LT6cSMcAAza6UkNU=; b=sFgrX1jDNe39Mh
-	mXaqxubwXVDFYh90uJr/duJtJQmSorsTsxhW5YZHYxEuAbDyh1vcQsQ/IZwTr1lQSsj+xloTI01Df
-	olGsyw7tphq9HrYwRGi+3RsuSOIvI3z+oyZ0GA00WWW0ssLP6+XvtU747iDAquerJEX8dgCg+eFSZ
-	A1ZO6W5Z33HyP7Sp70PCy0K3QHNkavV4ImXAhZXor51Z4vi3m73IRLup+z+w2EQZESkmD6euj579x
-	CnRFR+r0YTskWH92Rfs9LB5g6gXkzqXql+5/Ez5sATjRYuwUZmwFtmCElN6GR8e83icfsxo3xv1p4
-	GjyZ/rnzr6Bb44wjy+dQ==;
+	List-Owner; bh=OygdrmFY09KvJCoOLe6f0ni4hy8AuKmct+wdRcMH4GY=; b=f22GgfglrhcClc
+	Xbya/wQde10SfWH1pUtlOvlSl5v3TVVzyb2+HiE4Nb+yigHABCZnAFI+3UVgWvgQimBh0CFAfEn/8
+	49o8cBGK+1SfI9spBR8IJJffS1/CfStBI1jB7fl06a+5v1BjHqft6x6mzFVhkPwgD5eCL/g7Wqg9W
+	a6im2UGhw54edAw9XAp9FJCpSj2qMA/TMWJAOUlFpspOnc11Vo3wWs1WRO+LOBhanXzqONwRZoN8e
+	by2M8jwq1CV/J5MW5DPE9KfUmN3vhFMaje0aQva395Ehz5h1yCQ+UBM40cNyz8YUUNx9VbCc69TMm
+	8yJGgD96nsAPIbvHQEFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjZq-00000009mg2-3EQ1;
-	Wed, 18 Nov 2026 17:36:10 +0000
+	id 1xTjZr-00000009miV-2qH8;
+	Wed, 18 Nov 2026 17:36:11 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTjZf-00000009mab-3eHr
+	id 1xTjZo-00000009meH-2jNx
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 17:36:01 +0000
+	Wed, 18 Nov 2026 17:36:09 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E4E41477;
-	Wed, 18 Nov 2026 09:35:56 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B9C921655;
+	Wed, 18 Nov 2026 09:36:04 -0800 (PST)
 Received: from e133894.arm.com (e133894.arm.com [10.2.80.62])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BDB703F632;
-	Wed, 18 Nov 2026 09:35:57 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 022913F632;
+	Wed, 18 Nov 2026 09:36:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795023359; bh=GVQ+fg1ZPd0l/66YV1Ea5qwjVqwbzbn++yGuNHOoox4=;
+	t=1795023367; bh=upgto9NrOT43Megv54sEqbwgn9RKS4Z2UQH6+PLVkvs=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=YSuRmTo6m+dImS5Nu39p3/uZrEB8kUlqtAYoU1+FO/cf/GD0UGOD0NpxACfkZKLPX
-	 9Y+u0eGijT/+aR/2bMuxFuWaRQxxHoBNpp+O5DVmcT9GiZFKCHCvrkIZwbdcNvAH3v
-	 aaB+FmLEoDB1PlZgJ4MqFaBa/2v03dq1Ch7lMcAs=
+	b=DOhzPM0ybgoMSi6cHvxYUpGm9ZqevR9GJS9Er7CPwy0gKh0Qt0Q9IKuBwXGM59TPr
+	 733yPvUUG53upfW003994Rk/5xSFE0VY2vWc86/KyF6eeHOeX5Vp0vHX4H2YljJvtQ
+	 nH+9weJI37W/i612puXE6F3wHERYbU0ErQ4F/qRI=
 From: Sascha Bischoff <sascha.bischoff@arm.com>
-Date: Wed, 18 Nov 2026 17:35:32 +0000
-Subject: [PATCH v3 03/14] irqchip/gic-v5: Serialise IRS synchronisation
- requests
+Date: Wed, 18 Nov 2026 17:35:36 +0000
+Subject: [PATCH v3 07/14] irqchip/gic-v5: Honour ACPI ITS noncoherent flag
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-host_gicv5_fixes-v3-3-13c1859e8aa3@arm.com>
+Message-Id: <20261118-host_gicv5_fixes-v3-7-13c1859e8aa3@arm.com>
 References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
 In-Reply-To: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
 To: Marc Zyngier <maz@kernel.org>, 
@@ -63,8 +62,8 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Sascha Bischoff <sascha.bischoff@arm.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_093559_952417_1C8D7E51 
-X-CRM114-Status: GOOD (  10.20  )
+X-CRM114-CacheID: sfid-20261118_093608_748434_8457EF2B 
+X-CRM114-Status: GOOD (  12.14  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,58 +83,35 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-IRS_SYNCR writes are ignored while IRS_SYNC_STATUSR.IDLE is clear.
-Concurrent calls to gicv5_irs_syncr() can overlap, causing a request
-to be dropped. A caller can then observe the earlier request
-completing and assume that its own events have been processed.
+The ACPI ITS probe passes its noncoherent flag to
+gicv5_its_init_bases(), but the common initializer checks a DT
+property instead. For an ACPI ITS, this always selects coherent cache
+settings and skips the cache maintenance required for its tables.
 
-gicv5_irs_syncr() may need to be called in atomic context. Serialise
-the request and completion poll with a raw spinlock, and use atomic
-polling.
+Use the noncoherent argument, which both firmware paths already
+supply.
 
-Fixes: 57d72196dfc8 ("irqchip/gic-v5: Add GICv5 ITS support")
+Fixes: a97efa5ba5946 ("irqchip/gic-v5: Add ACPI ITS probing")
 Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
 Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
 Cc: stable@vger.kernel.org
 ---
- drivers/irqchip/irq-gic-v5-irs.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/irqchip/irq-gic-v5-its.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
-index 4edf787f3f97f..ead76560ea08f 100644
---- a/drivers/irqchip/irq-gic-v5-irs.c
-+++ b/drivers/irqchip/irq-gic-v5-irs.c
-@@ -10,6 +10,7 @@
- #include <linux/log2.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
-+#include <linux/spinlock.h>
+diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
+index 5f9fa80ea6aa6..9e8077dada5ef 100644
+--- a/drivers/irqchip/irq-gic-v5-its.c
++++ b/drivers/irqchip/irq-gic-v5-its.c
+@@ -1135,7 +1135,7 @@ static int __init gicv5_its_init_bases(void __iomem *its_base, struct fwnode_han
+ 			goto out_free_node;
+ 	}
  
- #include <linux/irqchip.h>
- #include <linux/irqchip/arm-gic-v5.h>
-@@ -22,6 +23,8 @@
- #define LPI_ID_BITS_LINEAR		12
- 
- static DEFINE_PER_CPU_READ_MOSTLY(struct gicv5_irs_chip_data *, per_cpu_irs_data);
-+/* Synchronization requests must not overlap in an IRS Domain. */
-+static DEFINE_RAW_SPINLOCK(irs_sync_lock);
- static LIST_HEAD(irs_nodes);
- 
- static u32 irs_readl_relaxed(struct gicv5_irs_chip_data *irs_data,
-@@ -507,10 +510,11 @@ void gicv5_irs_syncr(void)
- 		return;
- 
- 	syncr = FIELD_PREP(GICV5_IRS_SYNCR_SYNC, 1);
-+	guard(raw_spinlock_irqsave)(&irs_sync_lock);
- 	irs_writel_relaxed(irs_data, syncr, GICV5_IRS_SYNCR);
- 
--	gicv5_wait_for_op(irs_data->irs_base, GICV5_IRS_SYNC_STATUSR,
--			  GICV5_IRS_SYNC_STATUSR_IDLE);
-+	gicv5_wait_for_op_atomic(irs_data->irs_base, GICV5_IRS_SYNC_STATUSR,
-+				 GICV5_IRS_SYNC_STATUSR_IDLE, NULL);
- }
- 
- int gicv5_irs_register_cpu(int cpuid)
+-	if (of_property_read_bool(np, "dma-noncoherent")) {
++	if (noncoherent) {
+ 		/*
+ 		 * A non-coherent ITS implies that some cache levels cannot be
+ 		 * used coherently by the cores and GIC. Our only option is to mark
 
 -- 
 2.34.1
