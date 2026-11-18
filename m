@@ -2,60 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61A2606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E21606A32C
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=T37zE5Gc;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=MRrRVgeN;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=uRUCCjhw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pMltCCk5;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=qoGg7anD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=koCdIud5bvpKPiL3HIQENure4nj+SWr6XN5dow1D4zc=; b=T37zE5GcyLEDH2
-	850uUUBK3Vsm/cl8fYzd66NOBZnv3YER/HuT6Gee3U05nwcgaJjh7TrZpMCJOwjTyvDYI5N9+YiTo
-	uec9z4Gr2TMpz3id1oPb4syOyVwU1lRsM2XGLYC5toZEPEuXTejk8aAN1+Fwva2IMY0HX/tagzGi6
-	T6fMAgvtdYVSJlbm+clcyNPPJLAml3mcvs2qw2YYbrmqQx29cHCu2ZUuqauweuJP+njHcaRfwE/jV
-	+wVDqUWkREZzTUhcpo1EQSyy22reFnkgtUf8PXKz0CaCoZz11XZWEpZJJplmbxbAXbNB8Z9kIiYbq
-	HVKkjJYnfWJLMYxq85Mw==;
+	List-Owner; bh=rPx810a2flH9Psi7MrOMCvXrfkjTeB2Yo61ogPCEmWE=; b=pMltCCk53GopeB
+	dAM0XCjMEQMboxmbcjrtWKuCk97OwvmvdrglVLxrOjiJFUjWG84ssV9oLemRGtm8B5idruzAtx+fi
+	tnDsE+MBus8sO74vNJgkUpj9Woc9JpWfFQq/y04bV1fMm+109++L5Y4AOLKkQeh0P20wkRHnE/zA4
+	yJbGMKgt5jEgUdb8MdxzKppNovB5dyrnDj3R92s+8/W1XeUOUaGt4TblalRdqKPehmoUs2RJraBn6
+	DDqF3r2l/JH/u9kbctdOP/oewGtxJXnvQcvCO1QaROyjbBkAQzImxBF1kqmTm1FTgOpizhcHBg4cw
+	nyGHQONrH4CFumJq4AHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRe-00000009EXs-0eSt;
-	Wed, 18 Nov 2026 15:19:34 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xThRd-00000009EXD-3QqM;
+	Wed, 18 Nov 2026 15:19:33 +0000
+Received: from out-180.mta1.migadu.com ([95.215.58.180] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRW-00000009EQU-3x6U
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 18 Nov 2026 15:19:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=koCdIud5bvpKPiL3HIQENure4nj+SWr6XN5dow1D4zc=; b=MRrRVgeNStpz/5U/I8J+ps2aeQ
-	j2iCq9gSjgEvtgyQvpPrwB3mTpPQNe8C8UWDbOOQPj7s1PRxl3kJGd85v4UNwK0sV5HaUMRfok03e
-	6Vq60LuTqqdxIq6wYEd0uowHzKEueD7VDiULSaSl3O982NvilbqHEp1UcFd6kR5eVC66E3+TSO4OO
-	V33gF1946n1Nnoz91ad1vuwAu9y2c+vBzay4326vqHzQ3BEFXttdarynatcnsKD07z2AgmTs8Fxen
-	ELKsnil7BJ6DlI66hDl2V4JsQELP+RL2hl08pDdNnnjRfLchZyhpXDMB6/046dZcmjpDouA2QlZYb
-	uEUWdRyQ==;
-Received: from out-209.mta1.migadu.com ([95.215.58.209] helo=mta1.migadu.com)
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRT-0000000GC4A-3SLR
+	id 1xThRN-00000009EKw-2SU3
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:19:25 +0000
+	Wed, 18 Nov 2026 15:19:20 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=Bb7O1wsvqN0w+zVyjmLfDDD+fQI7fDHwilt03qAD9W4=;
+DKIM-Signature: a=rsa-sha256; bh=BpvlpGxqweTjuX9nBiR22uqAp+CdbTtP+gfVwPifVjQ=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795015160; v=1; x=1795619960;
- b=uRUCCjhwGpctUfiXbk62GkkckYA5hgq6TPTHmQXtQes/s/ys0Vcxe3zPbj820cOC7dySK1WO
- ZJypSIFBLRZLOO1Rbx0UMSGVECEzanCIf/GLYZPcUuVU8qVeyI9r/wPNqknioxB24odHvYSA/HJ
- yQZwqlD5XfLVWeAJkRKkzs00=
+ t=1795015156; v=1; x=1795619956;
+ b=qoGg7anDJn0i4ZkY2V528MfAr3+o6UrEWwbaoq0wiDo2SNZO1jBLe3Ws9OUEIbfqKFiLKu01
+ 5h5IAOYmWKB/oktK4E4v8x72DjYwI9BKKRTCwOVrTzK2IcqItKjhJvE+sglZqqW1CJUmQmivRhC
+ 823q+5ATXLNzKVozAtq2oFfM=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 9ade009b9b921e73;
-	Wed, 18 Nov 2026 15:19:20 +0000
-X-Mizu-Trace-ID: 9ade009b9b921e73
+Received: by smtp.migadu.com with ESMTPS id 86f4abf1d8cad364;
+	Wed, 18 Nov 2026 15:19:15 +0000
+X-Mizu-Trace-ID: 86f4abf1d8cad364
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -81,20 +65,19 @@ Cc: Will Deacon <will@kernel.org>,
 	kvmarm@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 04/13] irqchip/gic-v3-its: Page-align ITT allocations in pKVM
-Date: Wed, 18 Nov 2026 15:18:55 +0000
-Message-ID: <20261118151904.4099560-5-fuad.tabba@linux.dev>
+Subject: [PATCH v4 02/13] KVM: arm64: Take host-registered MMIO regions at pKVM finalisation
+Date: Wed, 18 Nov 2026 15:18:53 +0000
+Message-ID: <20261118151904.4099560-3-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261118151904.4099560-1-fuad.tabba@linux.dev>
 References: <20261118151904.4099560-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_151923_765535_17523FDD 
-X-CRM114-Status: GOOD (  11.89  )
-X-Spam-Score: -0.9 (/)
+X-CRM114-CacheID: sfid-20261118_071917_787024_D6E620BD 
+X-CRM114-Status: GOOD (  17.35  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,38 +96,108 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Bartłomiej Grzesik <bgrzesik@google.com>
+From: Sebastian Ene <sebastianene@google.com>
 
-In a subsequent patch the host donates the pages of each device's ITT
-to the hypervisor. A page the hypervisor already owns can't be donated
-again, so the MAPD of a device whose ITT shares a page with another
-device's would be rejected.
+To emulate a device for the host, the hypervisor has to own the device's
+registers, so that a host access to them takes a stage-2 abort rather
+than reaching the device.
 
-Round each ITT up to whole pages in protected mode. This costs up to a
-page per MSI device, where several 256-byte ITTs would have shared one.
-That's tens of pages on a phone and thousands on a server with thousands
-of VFs.
+Allow the host to register MMIO regions before the hypervisor
+initialises, and have __pkvm_init_finalise() donate each one and record
+where it's mapped in the hypervisor's private range. The donation runs
+before pkvm_check_host_ownership(), which then covers those mappings
+too. A failed donation fails the hypervisor's initialisation before the
+host stage 2 is installed, so the hypervisor doesn't have to give
+anything back.
 
-Signed-off-by: Bartłomiej Grzesik <bgrzesik@google.com>
+The host doesn't register a region yet.
+
+Signed-off-by: Sebastian Ene <sebastianene@google.com>
+Co-developed-by: Fuad Tabba <fuad.tabba@linux.dev>
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- drivers/irqchip/irq-gic-v3-its.c | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/include/asm/kvm_pkvm.h     | 12 ++++++++++++
+ arch/arm64/kvm/hyp/nvhe/mem_protect.c |  3 +++
+ arch/arm64/kvm/hyp/nvhe/setup.c       | 22 ++++++++++++++++++++++
+ 3 files changed, 37 insertions(+)
 
-diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-index c952c069f9373..bbfea565149bb 100644
---- a/drivers/irqchip/irq-gic-v3-its.c
-+++ b/drivers/irqchip/irq-gic-v3-its.c
-@@ -3493,6 +3493,9 @@ static struct its_device *its_create_device(struct its_node *its, u32 dev_id,
- 	nr_ites = max(2, nvecs);
- 	sz = nr_ites * (FIELD_GET(GITS_TYPER_ITT_ENTRY_SIZE, its->typer) + 1);
- 	sz = max(sz, ITS_ITT_ALIGN);
-+	/* The hypervisor takes whole pages for each ITT. */
-+	if (gic_is_protected_kvm())
-+		sz = PAGE_ALIGN(sz);
+diff --git a/arch/arm64/include/asm/kvm_pkvm.h b/arch/arm64/include/asm/kvm_pkvm.h
+index fd042d2b54624..4695c35b31e1a 100644
+--- a/arch/arm64/include/asm/kvm_pkvm.h
++++ b/arch/arm64/include/asm/kvm_pkvm.h
+@@ -17,6 +17,18 @@
  
- 	itt = itt_alloc_pool(its->numa_node, sz);
+ #define HYP_MEMBLOCK_REGIONS 128
  
++/* MMIO regions the host registers for the hypervisor to take at finalisation. */
++#define PKVM_PROTECTED_REGS_NUM	8
++
++struct pkvm_protected_reg {
++	u64			pfn;
++	u64			nr_pages;
++	void __iomem		*hyp_va;
++};
++
++extern struct pkvm_protected_reg kvm_nvhe_sym(pkvm_protected_regs)[];
++extern unsigned int kvm_nvhe_sym(num_protected_reg);
++
+ int pkvm_init_host_vm(struct kvm *kvm);
+ int pkvm_create_hyp_vm(struct kvm *kvm);
+ bool pkvm_hyp_vm_is_created(struct kvm *kvm);
+diff --git a/arch/arm64/kvm/hyp/nvhe/mem_protect.c b/arch/arm64/kvm/hyp/nvhe/mem_protect.c
+index a6dacaca77610..8d45f45d30e6a 100644
+--- a/arch/arm64/kvm/hyp/nvhe/mem_protect.c
++++ b/arch/arm64/kvm/hyp/nvhe/mem_protect.c
+@@ -28,6 +28,9 @@ struct host_mmu host_mmu;
+ 
+ static struct hyp_pool host_s2_pool;
+ 
++unsigned int num_protected_reg;
++struct pkvm_protected_reg pkvm_protected_regs[PKVM_PROTECTED_REGS_NUM];
++
+ static DEFINE_PER_CPU(struct pkvm_hyp_vm *, __current_vm);
+ #define current_vm (*this_cpu_ptr(&__current_vm))
+ 
+diff --git a/arch/arm64/kvm/hyp/nvhe/setup.c b/arch/arm64/kvm/hyp/nvhe/setup.c
+index 7bbc26b28faa5..18f348d1331a8 100644
+--- a/arch/arm64/kvm/hyp/nvhe/setup.c
++++ b/arch/arm64/kvm/hyp/nvhe/setup.c
+@@ -295,6 +295,24 @@ static int fix_hyp_pgtable_refcnt(void)
+ 				&walker);
+ }
+ 
++static int donate_protected_mmio_regions(void)
++{
++	struct pkvm_protected_reg *region;
++	unsigned long haddr;
++	int ret, i;
++
++	for (i = 0; i < num_protected_reg; i++) {
++		region = &pkvm_protected_regs[i];
++		ret = __pkvm_host_donate_hyp_mmio(region->pfn, region->nr_pages, &haddr);
++		if (ret)
++			return ret;
++
++		region->hyp_va = (void __iomem *)haddr;
++	}
++
++	return 0;
++}
++
+ void __noreturn __pkvm_init_finalise(void)
+ {
+ 	struct kvm_cpu_context *host_ctxt = host_data_ptr(host_ctxt);
+@@ -335,6 +353,10 @@ void __noreturn __pkvm_init_finalise(void)
+ 	if (ret)
+ 		goto out;
+ 
++	ret = donate_protected_mmio_regions();
++	if (ret)
++		goto out;
++
+ 	ret = pkvm_check_host_ownership();
+ 	if (ret)
+ 		goto out;
 -- 
 2.47.3
 
