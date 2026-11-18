@@ -2,68 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BAFC606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD6B60A2616
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eJNkEqUA;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=upju8KOf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FUV1Nq8v;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PklrzH67
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QuOoANZ8hChXmnk+D4HOljpYAuIPsGom8C5JI4EqOIA=; b=eJNkEqUA0Rjx0D
-	87aP9JoLRAdwdt1nKjFZF88G2wHoURXOUIJ/uZ7hVhrEDal9cQWNFNjiPdrZZ5+re+rno+F7XiSfX
-	ZdE2iaprBOWV9AYr2KsvdZcwlNIY4OcTGKPsclQenNzpQn24uVgEeSx6SXDZyA/f7tkQXlaZ5hcAt
-	fvxCBus9SXYBGJTbe6yFUHVlQVcS6Co1wgTgVkVdLf74LBpU+jEGBIfH5cKHlbDj7gbBBCV7S/p4v
-	VSaCZhtfuB1SoRnesqnV90JAgky0v0lzrZiyFmxcNaRfCAn9EHKhrjKiPakdPgSs/5ptqKzoOPCs2
-	nLwYRHWjV3En38hCns9Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xMfIcPgaVZTBupxAWvjD3tsTuymj4i3EzJ8xT6VI/p4=; b=FUV1Nq8vSY1WZRZ/x9hZG3BLw/
+	YkkVqS42I5++sExhOmjVCMU2idPp21JIukfQj11JiFDuw10NjB7aVOmAjxV5aNJTyEWMJOyc1WL+A
+	alnKBTDUYu4ZW1M4Tecl+6NL66H47M3t/CqcexBQma9oVZYWvTxTyIf7Lwa96E3Zw36Hpdl2NAaXu
+	OEvHoNYWwKJzaTEQB44/Z8AnrkM1XU6YEnhd436AptTWeIIgtIpjcOQ/f2H9LbGXUpZUh2vmPxdtu
+	jwKSmaUI2AR5BIT3ED4KftQzY7aqgw1/cgG0tX0eKJs0XOazamDU+36ctb5+zpJU7NIiw56FYfXrf
+	B/O+oHsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiW4-00000009Ter-18qI;
-	Wed, 18 Nov 2026 16:28:12 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiW1-00000009Te8-2hto
+	id 1xTiWh-00000009Tk8-0TiB;
+	Wed, 18 Nov 2026 16:28:51 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTiWg-00000009Tjy-1kaB
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:28:10 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4AFA9143D;
-	Wed, 18 Nov 2026 08:28:03 -0800 (PST)
-Received: from [10.2.212.8] (e134344.arm.com [10.2.212.8])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 42FBA3F673;
-	Wed, 18 Nov 2026 08:28:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795019286; bh=6Cc3/L/EkFsV4cpEwdGr/GoAJIUVzESLRiO77LL1sto=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=upju8KOfyoRVKgl0BNh8Kg4gn4vcnI6W9Zq3xt8ufdl6cGJpJz3j018OQ29r9Slrd
-	 f1pFw8KEspQx/CW+vz67JWDyyyRGj8lcUgbvqppKIoF3XtMukExy8P689/SMhLuTiK
-	 AeSNpHz/FZC3QKxoZWzS3SvtO5aB8yVOVB3aJCiQ=
-Message-ID: <691a76a5-7b22-4c2a-8861-3581791a01c0@arm.com>
-Date: Wed, 18 Nov 2026 16:28:02 +0000
+	Wed, 18 Nov 2026 16:28:50 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8F33640F1D;
+	Wed, 18 Nov 2026 16:28:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 323E21F000C5;
+	Wed, 18 Nov 2026 16:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795019329;
+	bh=xMfIcPgaVZTBupxAWvjD3tsTuymj4i3EzJ8xT6VI/p4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=PklrzH67Sm6BG0wMKCibEmN0wipTMtwuYNQTaO0oROI/MLEYX0dxwEq7Fj3dAYGUg
+	 TvWFvjHfnOQiSSOvCF1kUX+UY6tAJEhmaD+DQWkLhKK1W3qnSryXdhQdL5K7qQSOXF
+	 k7qH+KNrTQzKAPN6dA1Nr9AcJn2fwH+T7WbtolbXXCpzX2gd0LaBQ6TDQY3QsO9ixu
+	 9RsmTdVwvaG/ieur/RamGcDyW6ka7+v27m98sRaj7BY9gEuZZcG+buikf1nifjRadX
+	 i8bBa7Ql+jkMlAizPEMkCES303wwSlANuqatezeo05bDhkSsBVyx7q+mA6/wI4XbXn
+	 oogAb2VkVQaMw==
+Date: Wed, 18 Nov 2026 10:28:47 -0600
+From: Rob Herring <robh@kernel.org>
+To: Suraj Gupta <suraj.gupta2@amd.com>
+Cc: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 2/6] dt-bindings: net: xlnx,xxv-ethernet: Add
+ Xilinx XXV 10G/25G Ethernet
+Message-ID: <20261118162847.GA2433918-robh@kernel.org>
+References: <20261114182947.2908628-1-suraj.gupta2@amd.com>
+ <20261114182947.2908628-3-suraj.gupta2@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/8] arm_mpam: resctrl: Add a helper to find the
- component counting an event
-To: Reinette Chatre <reinette.chatre@intel.com>, james.morse@arm.com,
- Dave.Martin@arm.com, fenghuay@nvidia.com, ruanjinjie@huawei.com
-Cc: tony.luck@intel.com, yu.c.chen@intel.com, babu.moger@amd.com,
- fustini@kernel.org, tan.shaopeng@fujitsu.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- patches@lists.linux.dev
-References: <cover.1794283825.git.reinette.chatre@intel.com>
- <8635f50f938afbe3f58dcd69966c2dd45e2394cd.1794283825.git.reinette.chatre@intel.com>
-Content-Language: en-US
-From: Ben Horgan <ben.horgan@arm.com>
-In-Reply-To: <8635f50f938afbe3f58dcd69966c2dd45e2394cd.1794283825.git.reinette.chatre@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_082809_795777_A07A218D 
-X-CRM114-Status: GOOD (  31.21  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261114182947.2908628-3-suraj.gupta2@amd.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,228 +78,102 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Reinette,
-
-On 10/11/2026 04:19, Reinette Chatre wrote:
-> resctrl_arch_cntr_read() and resctrl_arch_reset_cntr() both drive the
-> monitors MPAM pre-allocated for bandwidth counting. Each starts with the
-> same sequence: check that MPAM is enabled, reject cache occupancy and
-> events without a class, then take the component counting the event from
-> the monitoring domain.
+On Sat, Nov 14, 2026 at 11:59:43PM +0530, Suraj Gupta wrote:
+> The XXV Ethernet IP integrates a 10G/25G Ethernet MAC with an in-core
+> PCS/PMA driving a high-speed serial transceiver. Its payload is moved by
+> an external AXI DMA (or multichannel DMA) controller referenced through
+> the dmas/dma-names properties. Document the IP in a dedicated schema
+> file.
 > 
-> The duplicated sequence has to be kept in sync by hand. Only the failure
-> handling differs: one reports the failure to its caller while the other
-> has no way to do so.
+> Add the "xlnx,xxv-ethernet-1.0" compatible with the 10gbase-r and
+> 25gbase-r phy-modes, the rx_core/drp/s_axi clocks and the AXI DMA
+> channel properties. The GT transceiver reference clock is described as
+> an optional fourth "ref" clock, for boards where it is supplied by a
+> Linux-managed clock provider rather than a fixed oscillator.
 > 
-> Add find_mbwu_mon_comp() to locate the component, returning an error
-> pointer on the failures both callers test for. Ignore that error in
-> resctrl_arch_reset_cntr(), which cannot report it.
+> Add "xlnx,has-statistics-counters" as well. The statistics counters are
+> an optional part of the IP, selected by the "Include Statistics Counters"
+> build option (PG210), and unlike the 1G MAC the subsystem has no ability
+> register that reports whether they were included, so the devicetree has
+> to describe it.
 > 
-> No functional change intended.
+> Require "xlnx,rxmem". The driver reads it unconditionally at probe time
+> and fails if it is absent, and the value is what bounds the largest frame
+> the device accepts, both when validating a new MTU and when deciding
+> whether jumbo frames can be enabled.
 > 
-> Suggested-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> Signed-off-by: Reinette Chatre <reinette.chatre@intel.com>
+> Disallow phy-handle, its deprecated phy and phy-device spellings, and
+> pcs-handle. All are inherited from ethernet-controller.yaml, so
+> unevaluatedProperties does not reject them, but the subsystem has no MDIO
+> bus master and its PCS is in-core, so neither an external PHY nor an
+> external PCS can be attached. Constrain managed to in-band-status for the
+> same reason; it stays optional, as the link is always managed in-band.
+> 
+> Signed-off-by: Suraj Gupta <suraj.gupta2@amd.com>
 > ---
-> Changes since RFC v2:
-> - New patch.
-> ---
->  drivers/resctrl/mpam_resctrl.c | 62 ++++++++++++++++++++++------------
->  1 file changed, 41 insertions(+), 21 deletions(-)
+>  .../bindings/net/xlnx,xxv-ethernet.yaml       | 146 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 147 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
 > 
-> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
-> index 5468367776e2..1b1e724ae040 100644
-> --- a/drivers/resctrl/mpam_resctrl.c
-> +++ b/drivers/resctrl/mpam_resctrl.c
-> @@ -7,6 +7,7 @@
->  #include <linux/cacheinfo.h>
->  #include <linux/cpu.h>
->  #include <linux/cpumask.h>
-> +#include <linux/err.h>
->  #include <linux/errno.h>
->  #include <linux/limits.h>
->  #include <linux/list.h>
-> @@ -541,26 +542,51 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
->  				 closid, rmid, val);
->  }
->  
-> -/* MBWU counters when in ABMC mode */
-> -int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
-> -			   u32 closid, u32 rmid, int mon_idx,
-> -			   enum resctrl_event_id eventid, u64 *val)
-> +/*
-> + * find_mbwu_mon_comp() - Find the component counting @eventid in a domain
-> + * @d:		The monitoring domain to search.
-> + * @eventid:	The event to find the counting component for.
-> + *
-> + * The counters reached through this component are the monitors MPAM
-> + * pre-allocated for bandwidth counting. Cache occupancy is not counted by> + * those monitors, it is read on demand via resctrl_arch_rmid_read().
-> + *
-> + * Return: the component counting @eventid in @d, or an error pointer when
-> + * MPAM is disabled, when @eventid is cache occupancy, or when no class was
-> + * picked to count @eventid.
-> + */
-> +static struct mpam_component *find_mbwu_mon_comp(struct rdt_l3_mon_domain *d,
-> +						 enum resctrl_event_id eventid)
-
-I find this a somewhat strange helper. It's operation is not mbwu specific except for its rejection
-of CSU events and it doesn't support the similar code in resctrl_arch_rmid_read(). Something a bit
-more general that just finds the monitoring component is easier to understand for me.
-
-What do you think of something like the change below? (The baseline is unhelpful, as it's your
-series with the first patch removed and the build fixed but hopefully it illustrates the idea well
-enough.)
-
-$ git diff
-diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
-index c14343fb5a95..343b4fd351f6 100644
---- a/drivers/resctrl/mpam_resctrl.c
-+++ b/drivers/resctrl/mpam_resctrl.c
-@@ -510,12 +510,20 @@ static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component
-                          CDP_NONE, closid, rmid, val);
- }
-
-+static struct mpam_component * find_mon_comp(struct rdt_domain_hdr *hdr,
-+                                            enum resctrl_event_id eventid)
-+{
-+       struct mpam_resctrl_mon_dom *l3_dom;
-+
-+       l3_dom = container_of(hdr, struct mpam_resctrl_mon_dom, resctrl_mon_dom.hdr);
-+       return l3_dom->mon_comp[eventid];
-+}
-+
- /* MBWU when not in ABMC mode (not supported), and CSU counters. */
- int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
-                           u32 closid, u32 rmid, enum resctrl_event_id eventid,
-                           void *arch_priv, u64 *val, void *arch_mon_ctx)
- {
--       struct mpam_resctrl_mon_dom *l3_dom;
-        struct mpam_component *mon_comp;
-        u32 mon_idx = *(u32 *)arch_mon_ctx;
-        enum mpam_device_features mon_type;
-@@ -529,8 +537,7 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
-        if (eventid >= QOS_NUM_EVENTS || !mon->class)
-                return -EINVAL;
-
--       l3_dom = container_of(hdr, struct mpam_resctrl_mon_dom, resctrl_mon_dom.hdr);
--       mon_comp = l3_dom->mon_comp[eventid];
-+       mon_comp = find_mon_comp(hdr, eventid);
-
-        if (eventid != QOS_L3_OCCUP_EVENT_ID)
-                return -EINVAL;
-@@ -547,7 +554,6 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
-                           enum resctrl_event_id eventid, u64 *val)
- {
-        struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
--       struct mpam_resctrl_dom *l3_dom;
-        struct mpam_component *mon_comp;
-
-        if (!mpam_is_enabled())
-@@ -556,8 +562,7 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
-        if (eventid == QOS_L3_OCCUP_EVENT_ID || !mon->class)
-                return -EINVAL;
-
--       l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
--       mon_comp = l3_dom->mon_comp[eventid];
-+       mon_comp = find_mon_comp(&d->hdr, eventid);
-
-        return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu,
-                                 USE_PRE_ALLOCATED, closid, rmid, val);
-@@ -604,7 +609,6 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
-                             enum resctrl_event_id eventid)
- {
-        struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
--       struct mpam_resctrl_dom *l3_dom;
-        struct mpam_component *mon_comp;
-
-        if (!mpam_is_enabled())
-@@ -613,8 +617,7 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
-        if (eventid == QOS_L3_OCCUP_EVENT_ID || !mon->class)
-                return;
-
--       l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
--       mon_comp = l3_dom->mon_comp[eventid];
-+       mon_comp = find_mon_comp(&d->hdr, eventid);
-
-        reset_mon_cdp_safe(mon, mon_comp, USE_PRE_ALLOCATED, closid, rmid);
- }
-
-
-Thanks,
-
-Ben
-
->  {
-> -	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
->  	struct mpam_resctrl_dom *l3_dom;
-> -	struct mpam_component *mon_comp;
-> +	struct mpam_resctrl_mon *mon;
->  
->  	if (!mpam_is_enabled())
-> -		return -EINVAL;
-> +		return ERR_PTR(-EINVAL);
->  
-> +	mon = &mpam_resctrl_counters[eventid];
->  	if (eventid == QOS_L3_OCCUP_EVENT_ID || !mon->class)
-> -		return -EINVAL;
-> +		return ERR_PTR(-EINVAL);
->  
->  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
-> -	mon_comp = l3_dom->mon_comp[eventid];
->  
-> -	return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu,
-> -				 USE_PRE_ALLOCATED, closid, rmid, val);
-> +	return l3_dom->mon_comp[eventid];
-> +}
+> diff --git a/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
+> new file mode 100644
+> index 000000000000..caf582c72a8d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
+> @@ -0,0 +1,146 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/xlnx,xxv-ethernet.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/* MBWU counters when in ABMC mode */
-> +int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
-> +			   u32 closid, u32 rmid, int mon_idx,
-> +			   enum resctrl_event_id eventid, u64 *val)
-> +{
-> +	struct mpam_component *mon_comp;
+> +title: Xilinx XXV 10G/25G Ethernet Subsystem
 > +
-> +	mon_comp = find_mbwu_mon_comp(d, eventid);
-> +	if (IS_ERR(mon_comp))
-> +		return PTR_ERR(mon_comp);
+> +maintainers:
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> +  - Suraj Gupta <suraj.gupta2@amd.com>
 > +
-> +	return read_mon_cdp_safe(&mpam_resctrl_counters[eventid], mon_comp,
-> +				 mpam_feat_msmon_mbwu, USE_PRE_ALLOCATED,
-> +				 closid, rmid, val);
->  }
->  
->  static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
-> @@ -603,20 +629,14 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
->  			     u32 closid, u32 rmid, int cntr_id,
->  			     enum resctrl_event_id eventid)
->  {
-> -	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
-> -	struct mpam_resctrl_dom *l3_dom;
->  	struct mpam_component *mon_comp;
->  
-> -	if (!mpam_is_enabled())
-> +	mon_comp = find_mbwu_mon_comp(d, eventid);
-> +	if (IS_ERR(mon_comp))
->  		return;
->  
-> -	if (eventid == QOS_L3_OCCUP_EVENT_ID || !mon->class)
-> -		return;
-> -
-> -	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
-> -	mon_comp = l3_dom->mon_comp[eventid];
-> -
-> -	reset_mon_cdp_safe(mon, mon_comp, USE_PRE_ALLOCATED, closid, rmid);
-> +	reset_mon_cdp_safe(&mpam_resctrl_counters[eventid], mon_comp,
-> +			   USE_PRE_ALLOCATED, closid, rmid);
->  }
->  
->  /*
+> +description:
+> +  The Xilinx XXV Ethernet Subsystem implements a 10G/25G Ethernet MAC with an
+> +  in-core PCS/PMA driving a high-speed serial transceiver. It supports the
+> +  10GBASE-R and 25GBASE-R line rates, with 25G operation following the 25G
+> +  Ethernet Consortium specification. Because the PCS/PMA is integrated into
+> +  the IP, the subsystem has no MDIO bus master and is not managed through an
+> +  external MDIO PHY; link state is read from the MAC's own status registers.
+> +  As there is no PHY to manage, the link is always managed in-band.
+> +  Any SFP module management (e.g. I2C) is handled by separate IP outside this
+> +  binding. Its payload is moved by an external AXI DMA (or multichannel DMA)
+> +  controller referenced through the "dmas" property.
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,xxv-ethernet-1.0
 
+I hope you based 1.0 on something? Looks made up to me.
+
+From here[1], looks like you are missing some versions:
+
+The offset of user configuration registers in the IP was updated (and 
+removed in case of USER_REG_1) which breaks backward compatibility of 
+any custom user config application code with newer versions of the IP. 
+Please make sure to use the correct offset as per the IP version as 
+specific below and ignore "XXE_USR0_OFFSET". Please note that this has 
+NO impact on the example as this definition is not used.
+
+    Upto IP Version 2.2 https://docs.xilinx.com/v/u/2.2-English/pg210-25g-ethernet, USER_REG_0 is at offset 0x184 and USER_REG_1 is at offset 0x188
+
+    IP Version 2.3 and above https://docs.xilinx.com/v/u/2.3-English/pg210-25g-ethernet, USER_REG_0 is at offset 0x134 and USER_REG_1 is removed
+
+Rob
+
+[1] https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842542/Baremetal+XXV+Ethernet+driver
 
