@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A69606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A97EA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ffm+t1r6;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=BA7Z0G2j
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=prWjmRMw;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=pUgfagwF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Q5C/iHN7Lmzj8RXtCSxUA965C7B7NlmPdCiPikMVO9w=; b=Ffm+t1r6aVguTD
-	cjPbK1Y6msTagSp0E4E9u38vGiiqpDv51PyClumYpDL/qDVaouY+Z3dYxC046FYp2KFWpPJaW07uD
-	vTmDyvX2ZRDmxCQF9J9dPSr0ww0JxzcRVgS6sjZwOVgzx35PTxtwWHOSN+vqkDjFn4S8sbetMKbto
-	NCc3N2wJndqJTtra7QT94uzadNxNCvymoSkuW2uip+rI3+w98urPaPOZVd2kmW/4SfsTYCDx6QSHA
-	7/D9Kb7ccSeRrT9TOTDozFevryO9owq1x3j+s+QojtZTb9mx3bxmZhOHryq4AcnI5hbW2jk4OMaWi
-	/zn78i9fpWdnGMVcFT/w==;
+	List-Owner; bh=pWhnfvWenZjOfquzYUSnlcmZobUEBcHEFf7Qs3x3jIo=; b=prWjmRMwLL6/BV
+	HCDZbe+a3+TEbjBciXGVo6joAdKGvmC65kQoLrbzfiFpaKdy9WMFd7B80ywIPRWQKANQh0qYOZ0IS
+	zbM/C1Nu53pHsn8/g9PLerRksftXl9XUzzlAkDHbLuLzBSjUoBvB6uMSSChZGlzI5mfnxzCrhzSqI
+	m43nkLeVrbMbTfVDdlUC1FPbEI8xK3QYcnA6QIW9FzPi3CezczBdH7LzQoByPZ/QzqxT3fyZVqpXQ
+	D5c4urRrDxVvzbldQyniUdimqmSzt1EL48AQnmSOnkErnSup2BRXnpdLn1bPt/BtusTSHpiYSM5W4
+	BFb98Nm1k3kMiNrjMPGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTelR-00000008qFz-2w3Y;
-	Wed, 18 Nov 2026 12:27:49 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1xTelb-00000008qJZ-3hvU;
+	Wed, 18 Nov 2026 12:27:59 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTelO-00000008qFJ-2uzH
+	id 1xTelZ-00000008qIA-2sEZ
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 12:27:48 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-48dfc0421d9so756780f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 04:27:45 -0800 (PST)
+	Wed, 18 Nov 2026 12:27:58 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-49465892f7bso653872f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 04:27:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795004864; x=1795609664; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1795004875; x=1795609675; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:content-language
          :references:cc:to:subject:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Q5C/iHN7Lmzj8RXtCSxUA965C7B7NlmPdCiPikMVO9w=;
-        b=BA7Z0G2jB76EUGqyOq+5DivelS72d2cD1wSvdsuA8bRlVMv1dOHgqZXFHHecUxUVRx
-         hhMU00hXWRK4T8Bjx/Pcf8nZbt69A3hYAvLc8367fNlqfdLjx0XJO0NqcsWIq3tRqq1o
-         4tkDvkGYSXdq9QYXZstNI9NCYOxgJnw0d3dU44YHUoRH4x1kx53OmOAeA8myUXEj7RAO
-         l3KJWKwTTO75ZNU0zjWolUh29rEOsLmFCXajjSXjV5t4rXYsDEMlccNg4JrwrPQNq2aD
-         HOg40Gjmvq405B3G31ykz9+8vj5DujmHnMJ3JUoEWysRZldIbsNMj1tRXWUgfZ6Qtv5k
-         z0cA==
+        bh=pWhnfvWenZjOfquzYUSnlcmZobUEBcHEFf7Qs3x3jIo=;
+        b=pUgfagwF07epxOthydXOg5trufdJfMZg4oCAIEAIwybp6uDQ3HDKibCtdgtMWEo1DG
+         1vfbfPp1dt7ETdafZ7mThIb94mpTkKZyia6aggca/NV90Is4oaiPKgcv63KebNEdFioU
+         ItT9MjX0ljJ2oD3O/zRD55snr86mI1m0V2KESDFWGmJ73IvmaJe7KUx5h+uh92cs3HYp
+         IcaebjP513H6NUj7MUASFi43I4+3o2EEOWMvtcmLo+vQHYKTXNJw2dfPMmtxJkLG8YG+
+         wFv9P8zGRB66ajob5NvIJpRsceMjRkTAvP84QCJlcpj7JTWXR1404Bn0HGEfPnX66WZk
+         8HYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795004864; x=1795609664;
+        d=1e100.net; s=20260707; t=1795004875; x=1795609675;
         h=content-transfer-encoding:content-type:in-reply-to:content-language
          :references:cc:to:subject:from:user-agent:mime-version:date
          :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Q5C/iHN7Lmzj8RXtCSxUA965C7B7NlmPdCiPikMVO9w=;
-        b=J8LvnkN2Ntcp54Q8Tj0Z6X2GE4zCfn8h8WaJmr3C/5qsRtAP0TRo0TCUhk2FJKRYUV
-         GOjYph6/5mPeJ6eE7keaEpq4Uk6+sZFmIDUb/YcFeI6zU2PPE+24d4DiMny22lsTMYfB
-         eMcsWEbi8L9HDx5hrht07GiocibggXJARMGR6N/08N4wLlM99uxZu9YitGUDIpS6va3v
-         O6Erg418mv4GjNRXJhocd5XYw3VFefj0rE30Sn2+4/44Ja2GGRkCUQ8D73AP72v6Vyc9
-         9AQaRoJ30+dAaf4eaSE8Huy9bgMqkQMexocVwi11sFdKkz+kIQeKy/MN/7z3LoI6GryC
-         Ow1g==
-X-Forwarded-Encrypted: i=1; AL+hErGomlTh0qcT+B6qO3Uv7glD2qmhpicwb5EZr4GSo+SyKRzHCDiaxyrZrlt0BUG51C5hi2usZfukrh8pRs1YVk/n@lists.infradead.org
-X-Gm-Message-State: APuU4Z9pOCFZSjE/JvKnQTzanUDh2wZH2VFx1AKmPY4PVxs8rVfbon/G
-	exSBt6c0Rl/OPqBjddB3uzxrVGd+rDaDvvTA3fw1TpNVHkkSZ5RwXdXGf3iPId1QZ3g=
-X-Gm-Gg: AZFdTZeP1BOP376ton64SLm/aWQpZgVStBunzmtmC1o0o/I2QsSMaDtwRB40uca4fQG
-	ruPCzFQknPrcqjABnskGgXHR+AodHsj9K2YdsXFgJN7Y1DgeddPEgTirG6PuKXnTUybTWY/JFmt
-	EggNJTFHAYraKDh6UlId8pIA9NNnFKum4BDkaDC8uUsScEJVpAPYupDzVLIy8367YzfPVtTmPl8
-	Rf84IuIYh1HydJwGVvltZhKajrFcgWHaJMnfO3qYaJzuZEinJK5LS3E/xPdJnvXNqOlFOqUGYjU
-	Qsb6hdIUFWaT/8tx8fMVJGh4+REThaJQ9Ip0zoCF+YGeBtxfVRJbI39eEi7hJAKHhFOkj7hx0BW
-	aXAWucEzsZlrTWZqcSwEpSLS+yldoJwjLYSuB/X+neLvj35a70pdd02B9iTybgDz7YrYu76uCH4
-	bbNsEgxmKh2opKVS8dk5W1JPedHCPJ8aF/QD7SwR1x4NPmiwlI8/LKoj7MOt9aQ4M4kV9b/ADSf
-	D+Yp3zcXoRW8oM6232kUme2KjNB/o207FET/T6hk/xXie8uObBtnIYo06EMsVKppH0mtLrvX1f5
-	SRD1t1kDGWyUAm6AdGkQdXjVfbdmxwuxrCdyFI8rKAr5aS43nrM5QFovs5oRRW5Gza3+Pl8o7o2
-	w0Q==
-X-Received: by 2002:a5d:4f10:0:b0:49c:fde4:1af5 with SMTP id ffacd0b85a97d-4a63bbc41c8mr4416511f8f.54.1795004864445;
-        Wed, 18 Nov 2026 04:27:44 -0800 (PST)
+        bh=pWhnfvWenZjOfquzYUSnlcmZobUEBcHEFf7Qs3x3jIo=;
+        b=FpR7CWKYLl+AN2d/uzTECtnshE7Lt7y+eA+7vXaAfFp2Cc0Bx1IAHqTnNQiIGnMY6k
+         /wUsP0zLzrXSdqIU5YlmzCPpb0ewkS8D04iyg0i/m/3Ubs4z8fsLOtivLkEKvpRpiLFa
+         oxDINCgrFSsqLgWKr9MoN5/20UOhbC9iuVoWr/Ev3PXamOlHXka23m2icpOs8kBbRsUJ
+         7o5b8mXZc28oJZFTbxO1Ie8ycntJuJIDr3KpLphLaVrR1VnRbmgJ4+ceUFnRNjYl2EKM
+         s7imp2aTZGC3s8wMygCed2vduZ/JEdykghc/4UF/Be7GnNR1+QaiQsMUzNWTZso7ju2J
+         W8vA==
+X-Forwarded-Encrypted: i=1; AL+hErERRlbLJhaSlCmtq42buqjz13WGc631pnqDQ9SBgCnr0FdGkrsLJJJTwkTJ+o8DNRENJ15DN+V/drPQl1rk2VdB@lists.infradead.org
+X-Gm-Message-State: APuU4Z8nwG8YD+QpeTy8OMSllfS0ZEtc82/qL8TP4TyWQYeUJ6GviNUv
+	PekstBH5/Karprhr9X5u1heZDWQPqjBFRbK2raX+R63rt5QYzeajM596/04ObqTEvYA=
+X-Gm-Gg: AZFdTZfoJa3n5H49/PXF2nrlMOG60sckOEZzt03mgrn/3/kzhYYXMrcEgjhoooYW1ET
+	41gG8DJAUFsAcEXquEop+WWnNCjZQzffxHn+4FMekoc5UEwPQPpFVwykhTqWiJHVMbyO3OjXSMo
+	glj640NMgFXZWMk0jVAVtNlw3VR/LtYXjhzesdTJE0o/1y0vrjg3Ocrs1+p2uCCyNlk6fjKK3Rp
+	vEAAuA01LsK5S54m+xu3xEzX+x4vr29xmlqsWQ41HLgBgxeoke62ZlYJvnAV0T5KPEpIh/JTJ1W
+	Jm7QZ4dq23TdcshWnFysYwjedl7PcF7iMm1MSL/XrSCqf7ftjPA/t+gmctvQswfq4gDfv3twgAy
+	ovjoi87v0K5L8jZGQwVAo92+vseMfRDWbTzQsca8vlsQpwKwn9FJD2trqwAYwcDM5vgFGb2zoEX
+	6+92ZO9RbBS5XWtv/ZsyLfENJxJgiArOXPBgWiPvnnZAxc15L98l8CsMgbeucctL9eXoXxGiCeU
+	8d1KGZylJMnCn+zDG9qhk+kb/WDSIrXem2LQvGpmA63uzFoq6l/pQwFHynNieeYHGPKY12EtzGO
+	H66nuLhuoEj3N3+duAbQe9ihkhB1WpYXKYjG7GZO1Kz8KNKnSeqXdo51Uz3PkowhPnoe/pGP6id
+	R0wZ/JwgOFVRpXSet3+juzXM=
+X-Received: by 2002:a5d:5d0f:0:b0:4a7:9630:7b32 with SMTP id ffacd0b85a97d-4a7963080d9mr2359433f8f.46.1795004875475;
+        Wed, 18 Nov 2026 04:27:55 -0800 (PST)
 Received: from ?IPV6:2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183? ([2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c3a7sm4875705f8f.9.2026.11.18.04.27.42
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a655f9f4a7sm4675322f8f.34.2026.11.18.04.27.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Nov 2026 04:27:43 -0800 (PST)
-Message-ID: <f91804a6-39bc-4a86-b24e-9588327e092e@baylibre.com>
-Date: Wed, 18 Nov 2026 12:27:41 +0000
+        Wed, 18 Nov 2026 04:27:55 -0800 (PST)
+Message-ID: <0bcd84bb-6a87-453f-9b68-04dfa95f34a4@baylibre.com>
+Date: Wed, 18 Nov 2026 12:27:53 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Daniel Drake <ddrake@baylibre.com>
-Subject: Re: [PATCH v17 04/12] accel/rocket: let the core suspend after a
- reset
+Subject: Re: [PATCH v17 08/12] accel/rocket: select the per-core clock and
+ reset counts from match data
 To: Jiaxing Hu <gahing@gahingwoo.com>, tomeu@tomeuvizoso.net,
  heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
@@ -97,15 +97,14 @@ Cc: royalnet026@gmail.com, ulf.hansson@oss.qualcomm.com,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <cover.1794615324.git.gahing@gahingwoo.com>
- <2afd051e37b8dd4f10e347a3537b0086973d554c.1794615323.git.gahing@gahingwoo.com>
+ <fcdd7117d3d7fe99ea1658c39b6d1a05428823f4.1794615323.git.gahing@gahingwoo.com>
 Content-Language: en-US
-In-Reply-To: <2afd051e37b8dd4f10e347a3537b0086973d554c.1794615323.git.gahing@gahingwoo.com>
+In-Reply-To: <fcdd7117d3d7fe99ea1658c39b6d1a05428823f4.1794615323.git.gahing@gahingwoo.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_042746_783167_2871681E 
-X-CRM114-Status: UNSURE (   8.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261118_042757_755706_AF2381C1 
+X-CRM114-Status: GOOD (  14.11  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,26 +124,37 @@ X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
-
 On 14/11/2026 03:05, Jiaxing Hu wrote:
-> The earlier test on the ROCK 4D was done on the v15 code: the job after a
-> timeout went from all 128 channels wrong to all 128 correct.
+> The RK3576 and the RK3588 use the same NPU block, but with different
+> numbers of clocks and resets.
 > 
-> Repeated resets were triggered with a 2 ms job timeout.
-> 
-> v15 (put, then reset): tested twice; both times the board hung within the
-> same second as the first batch of job timeouts, with nothing printed.
-> 
-> v16 (reset, then put): tested four times; the board never hung.
-> 
-> So moving pm_runtime_put_autosuspend() after rocket_core_reset() avoids
-> the board hanging during a reset.
-
-These sentences (history of the patch series) are commentary rather than
-commit message material, they should go after the ---.
-See Commentary section in submitting-patches.rst
+> Take the number of clocks and resets for each core from soc_data in the
+> match data, so the driver uses the right count on each SoC.
 
 
+Rather than these clock and reset count rules via soc_data here, can we
+just rely on the DT validation that is almost equivalent?
+
+Then we can use devm_clk_bulk_get_all() and
+devm_reset_control_array_get_exclusive() and not worry about checking
+counts and names within the driver.
+
+dtbs_check will already catch cases where the wrong number of clocks or
+resets is provided, or where the names don't match the ones expected in
+the bindings.
+
+>   static int rocket_probe(struct platform_device *pdev)
+>   {
+> +	const struct rocket_soc_data *soc = of_device_get_match_data(&pdev->dev);
+>   	int ret;
+>   
+> +	if (!soc) {
+> +		dev_err(&pdev->dev, "no match data for this device\n");
+> +		return -ENODEV;
+> +	}
+
+
+Since this would only be caused by a programming error, no print is
+necessary.
 
 
