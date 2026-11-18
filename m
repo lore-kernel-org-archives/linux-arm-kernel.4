@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C9960A3806
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38FD606A32C
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cwLumB1d;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=W+mKfVC1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CkwcsjXg;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=H+lTydkf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eocEYsU9h/jwR33n/5xfCsJpDlX1NehsHZ0nbPGW/CI=; b=cwLumB1dcdrj7I
-	xlHbUzCq5q4RWz17DJfkhdGBrIQI4J7slNdSTx0rrh99B7FuAYBwZ65JYyPooANMmPqOGlvfTAKqJ
-	DdakXLwRpXDXEUaa7dkI4RmruulZn0NYtywYIk25soS2VGyhIb4SWE3O9uWNNjtz8ymxlQ1iX2tv8
-	8fJPXqLC6gXHLpMcTmUm5pjT5HDp6NHpX6qjddsxBy40RAGY8D5zH6Zs/BwrjKahWw2KRNXqjqYxW
-	D05A6ZpBg2zSTv2yIcdJL/jPhz0BSohP9BLyp7sSajtOOwwyg1mTk9/ywsEpzpcgPJo88+WRsAMEt
-	7iYswH2cSnT8eL4uI9oQ==;
+	List-Owner; bh=+gnpBc9synDIKGRlYDbwpGZkwJIbWk7JkbUzq9+aVgs=; b=CkwcsjXgRORa7S
+	UoyIT1qtvQhtIGr0huT/3w2q40Z/fHpEv3eqUcYz+pzNBib5xIw0UKu/lUzTdQYvS0Yjwdqku8Ai+
+	qHxAHRph/NLFVklHAS96nwKY+Vsm4jUE2kQrUGz1vhIvHlVUf281eHBfBcSVrMtTIbsGNl+BvQXr7
+	+ao6KtlJ1STcXJHzqskq9lFgrqXG7oXdtm4wMEobu+f19kInvmwKpbGIruQKprCKg32w7FzK+Iffq
+	vDSYhIb9+O44itakb/A4AkNxxOxRBSrJeGFOde/iy37RoOLnHUuA19dCLOltbSrfjechEUl+UXohE
+	i15NSWvgygidfl2rw3ZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTitO-00000009ba1-2vQv;
+	id 1xTitO-00000009bZM-1R3k;
 	Wed, 18 Nov 2026 16:52:18 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTit6-00000009bG6-3KS4
+	id 1xTiss-00000009avj-1470
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:52:05 +0000
+	Wed, 18 Nov 2026 16:51:57 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id D8EA7C4F77B;
-	Wed, 18 Nov 2026 16:52:03 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id B1FD61A16CA;
+	Wed, 18 Nov 2026 16:51:44 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id EF3775FE9B;
-	Wed, 18 Nov 2026 16:51:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E764511BC28D2;
-	Wed, 18 Nov 2026 17:51:51 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 78A0D5FE9B;
+	Wed, 18 Nov 2026 16:51:44 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7555411BC27C2;
+	Wed, 18 Nov 2026 17:51:33 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795020717; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795020698; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=eocEYsU9h/jwR33n/5xfCsJpDlX1NehsHZ0nbPGW/CI=;
-	b=W+mKfVC11JBGEkMq8G9bOcxsUP1/xM0k3Bqwf99ObkK8MmefP6O6q1FNUGHnJDyGTj5Z9e
-	WxRD2lrFOy17nR+Thfshj4WGouWlQ4E5RslCOj0K14ruRp42Zcib9gi9wTzqpIvdrQLV02
-	tZVQeX0B1ecL3Zgg2XLXY7bGs6x4D2+jOZkeQ9997du7PXNInvogPw0WBdHAN5/8pmaZ+j
-	wHR/JEhk+1TbtsxxCbHA1VQWmNMSV3Asp6bUOI/OfRTSAd75hjuStPv7BSsiGpJ5Fjtt4D
-	Y9UQmZNGj2cyPMu24G9+mOBv4EycxgC1w8rcQ9TvmDjpsZfFHcTApVvt+5DRrw==
+	bh=+gnpBc9synDIKGRlYDbwpGZkwJIbWk7JkbUzq9+aVgs=;
+	b=H+lTydkfRATyFQnDcoY+R+GWl/BZjyUg4ecff1G/brsXOX+bUihMNt5xTeFxCZSMDjk9AQ
+	LPv7JujcpJ5HB+Fw5vcVM0GzxUKR0CRj8lp97+horbT+xuJA+LRZ7WnIsn2R/BDqMYJhMr
+	c8cxC7a9e2SfHp/dUYPnLcjVDuY+7sH0xhyZBp59QPpRXMUQYcawemXphHqdpi8E502D+R
+	FOriwXmJFijaDd1Bmeb1A6WoZoY+soKRlc+p7jc6m9Hp+JzdVKHiVV+u6mPz1YrR4Wu/Kk
+	l2NkWj2IMDpgrYBaDw6FfCkifr173jcLBzrIRN0ZjEVCegLIwe5YgsOgkA/lrw==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 18 Nov 2026 17:50:00 +0100
-Subject: [PATCH RFC v3 17/31] drm/bridge: notify about added and detached
- bridges
+Date: Wed, 18 Nov 2026 17:49:58 +0100
+Subject: [PATCH RFC v3 15/31] drm/atomic: drm_atomic_private_obj_fini:
+ protect private_obj removal from list
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-drm-bridge-hotplug-v3-17-44bb3b4a828f@bootlin.com>
+Message-Id: <20261118-drm-bridge-hotplug-v3-15-44bb3b4a828f@bootlin.com>
 References: <20261118-drm-bridge-hotplug-v3-0-44bb3b4a828f@bootlin.com>
 In-Reply-To: <20261118-drm-bridge-hotplug-v3-0-44bb3b4a828f@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -79,8 +79,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
 X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_085204_111428_81E8F6F0 
-X-CRM114-Status: GOOD (  11.35  )
+X-CRM114-CacheID: sfid-20261118_085146_523056_02AB6B32 
+X-CRM114-Status: GOOD (  12.94  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,65 +100,75 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In preparation to support DRM bridge hotplug, let the drm_bridge code emit
-an event when a bridge is added and when it is detached, so that this event
-can trigger the actions needed to (de)configure the pipeline and
-(un)register the connector as appropriate.
+Currently drm_bridge_detach() expects that the bridge private_obj is not
+locked by a drm_modeset_acquire_ctx, and it warns in case that happens:
+
+  drm_bridge_detach()
+  -> drm_atomic_private_obj_fini()
+     -> list_del(&obj->head) // removes priv_obj from
+                             // dev->mode_config.privobj_list
+     -> obj->funcs->atomic_destroy_state()
+     -> drm_modeset_lock_fini(&obj->lock)
+        -> WARN_ON(!list_empty(&lock->head)) // warn if priv_obj->lock
+	                                     // is still in ctx->locked
+
+The expectation is not respected when introducing bridge hot-plugging. In
+such case the warning triggers if the bridge is being removed concurrently
+to an operation that locks the private object using a
+drm_modeset_acquire_ctx, such as in this execution scenario:
+
+  CPU0:
+  drm_mode_obj_get_properties_ioctl() // userspace request
+  -> DRM_MODESET_LOCK_ALL_BEGIN()
+  .  -> drm_for_each_privobj() // loop on dev->mode_config.privobj_list
+  .     - lock the privobj mutex
+  .	- add priv_obj->lock to ctx->locked
+  .	  (list of locks to be released later)
+  .
+  .                         CPU1:
+  .                         drm_bridge_detach() // bridge hot-unplug
+  .		            -> WARN triggers!
+  .
+  -> DRM_MODESET_LOCK_ALL_END()
+     -> for each lock in ctx->locked
+	- remove priv_obj->lock from ctx->locked
+        - unlock the privobj mutex
+
+Fix this by using DRM_MODESET_LOCK_ALL_BEGIN/END() around the list removal
+in drm_atomic_private_obj_fini() to ensure the two threads above
+(CPU0/CPU1) cannot happen concurrently.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 ---
 
-Changes in v3:
-- also notify on added bridges (for non-DSI bridges)
-- use new v3 notifier API name
----
- drivers/gpu/drm/Kconfig      | 1 +
- drivers/gpu/drm/drm_bridge.c | 6 ++++++
- 2 files changed, 7 insertions(+)
+ * This patch was sent separately in the past [0]
+ * The issue is still happening with hotplug without this patch
+ * The issue has also been reported by sashiko when reviewing v2 [1]
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 5268bf47b2e3..105dd46a0a45 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -17,6 +17,7 @@ menuconfig DRM
- # device and dmabuf fd. Let's make sure that is available for our userspace.
- 	select KCMP
- 	select VIDEO
-+	select DRM_HOTPLUG_EVENT_NOTIFIER
- 	help
- 	  Kernel-level support for the Direct Rendering Infrastructure (DRI)
- 	  introduced in XFree86 4.0. If you say Y here, you need to select
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index d54245f3c4d3..bcf65cddbd6e 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -34,6 +34,7 @@
- #include <drm/drm_debugfs.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_encoder.h>
-+#include <drm/drm_hotplug_event_notifier.h>
- #include <drm/drm_file.h>
- #include <drm/drm_of.h>
- #include <drm/drm_print.h>
-@@ -475,6 +476,8 @@ void drm_bridge_add(struct drm_bridge *bridge)
- 	mutex_lock(&bridge_lock);
- 	list_add_tail(&bridge->list, &bridge_list);
- 	mutex_unlock(&bridge_lock);
+[0] https://lore.kernel.org/dri-devel/20260324-drm-bridge-atomic-vs-remove-private_obj-v3-1-64deefe84044@bootlin.com/
+[1] https://lore.kernel.org/all/20261001130542.A40D11F00898@smtp.kernel.org/
+---
+ drivers/gpu/drm/drm_atomic.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+index 81591173265d..ad2099b4dffd 100644
+--- a/drivers/gpu/drm/drm_atomic.c
++++ b/drivers/gpu/drm/drm_atomic.c
+@@ -1089,7 +1089,13 @@ EXPORT_SYMBOL(drm_atomic_private_obj_init);
+ void
+ drm_atomic_private_obj_fini(struct drm_private_obj *obj)
+ {
++	struct drm_modeset_acquire_ctx ctx;
++	int ret = 0;
 +
-+	drm_hotplug_event_notifier_notify(DRM_BRIDGE_ADDED, bridge);
- }
- EXPORT_SYMBOL(drm_bridge_add);
- 
-@@ -695,6 +698,9 @@ void drm_bridge_detach(struct drm_bridge *bridge)
- 		bridge->funcs->detach(bridge);
- 
- 	list_del_init(&bridge->chain_node);
++	DRM_MODESET_LOCK_ALL_BEGIN(obj->dev, ctx, 0, ret);
+ 	list_del(&obj->head);
++	DRM_MODESET_LOCK_ALL_END(obj->dev, ctx, ret);
 +
-+	drm_hotplug_event_notifier_notify(DRM_BRIDGE_DETACHED, bridge);
-+
- 	bridge->dev = NULL;
- 	drm_bridge_put(bridge);
+ 	obj->funcs->atomic_destroy_state(obj, obj->state);
+ 	drm_modeset_lock_fini(&obj->lock);
  }
 
 -- 
