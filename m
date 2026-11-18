@@ -2,86 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49410606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8E4606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HTLKYVvD;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jHYmmH/C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dHUKduzB;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=E5gQTmv2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Emak8Lm259YoIJ5aFedEql1wejCbZp03w6luolSmcoo=; b=HTLKYVvDfU5NOl2y26jJ1IwQ9N
-	IsfozNO8PJvl7xf8oZjdncZDIaI8oQAvp1hPUjk2N4oNP8X9rromtRyxhk1MazQHsgqcGa4ZkKfOD
-	ViQ9YLAwGnGZiSE8biS+XyJrBryWK7Q1nYpLDxQSi4ep0ejvp3fi8pQ4xMP+Up0nesBPq52oSj9r9
-	h1c3zR3dw8ntlqOi05ucmJufDUIrdJjfjayphpZUNnvSiP4/jlFdx3DeI6odMgKV2jMsgBv3PSkl9
-	u1F0P3K7EexIzJBz8kbYYOD3Abc/o1+u8M6kJFno9NCLJ3tr8gq9y1NlXJTGVt5rUswwz61MS0+zR
-	KBDNONxQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=kpFNtNivNFK5E09pZOo62DDo/NkEsRhWz34V2Kf54aw=; b=dHUKduzBSdOG5h
+	0HIaOE5fFTJnvTM2U8MQma9i/NYQv141xn49+RMqY6iH8AtRehu4LUMQMSgCkAjb4Vfo25XHK7c0A
+	sbcfjg7uuqG1oOZUC1BijDjQKmxEXnRUuh7lnMgo4DqWHMNZ6WjshCmtCuLjxG6lF+ZwfeO0VRSFR
+	BdI5eVz5o613P1rJQ/adT8Q8nG2Ii4rMA7myGeibn4nNWNeQqTqOZLh7JM0U/vgdD8X6T4EvqmRYq
+	mGxHqRPfA0557QkDMz4ED1ogR7F7K3bV1bhvEIlj3UU2jlyHTVvzg3ZJk5zcy31WkS9peiu/bCc++
+	hMiJF6M4lu8LSedC/afg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdbr-00000008gdH-0908;
-	Wed, 18 Nov 2026 11:13:51 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdbp-00000008gcz-1Lf6
+	id 1xTdcf-00000008goi-0tKT;
+	Wed, 18 Nov 2026 11:14:41 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTdcc-00000008gnG-2cYD
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 11:13:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 53B19600B4;
-	Wed, 18 Nov 2026 11:13:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08C251F000C4;
-	Wed, 18 Nov 2026 11:13:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795000428;
-	bh=Emak8Lm259YoIJ5aFedEql1wejCbZp03w6luolSmcoo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=jHYmmH/CEPhhkA1F8K8VYzo6YYE/AvQW1kkuC2JZXWBZwjm1c+nbxUS0AjGQHmPXi
-	 tu3TYIhPlm/n57dvSP9+IoyYSUsK/BKK5nzd0AROgWHBP7d8NkQoYVvKUBj4iv4lCq
-	 TZI4MkL4XlI3QhwmqmfCijlrudzXysUPPHFrwZthQzbUcrfr+1wiZw3yVbb/UHQbaA
-	 /+L/LYWBk9weInCbSqtTdVCUpSdY+bpP3VVIiyKX8Blh1ZS6M02BnRJrylWzO7yapj
-	 PE4PXTFvLmDk8C/qIMKChnU4zPK7Ki0C3gGgoFLwpkgDVx5XOyobvdnUAND90Rzp57
-	 N9mmUV5pU6W5A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xTdbl-0000000HUEo-2k8X;
-	Wed, 18 Nov 2026 11:13:45 +0000
-Date: Wed, 18 Nov 2026 11:13:45 +0000
-Message-ID: <865wxu1jfa.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: myrialsarvay@gmail.com
-Cc: Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sven Peter <sven@kernel.org>,
-	Janne Grunau <j@jannau.net>,
-	Neal Gompa <neal@gompa.dev>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev,
-	Yuvan Shen <yuvanshen09@gmail.com>
-Subject: Re: [PATCH v2 02/15] drivers/perf: apple_m1: Remove unused variables
-In-Reply-To: <20261107-m3-plus-pmu-events-v2-2-acf1e78da039@gmail.com>
-References: <20261107-m3-plus-pmu-events-v2-0-acf1e78da039@gmail.com>
-	<20261107-m3-plus-pmu-events-v2-2-acf1e78da039@gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Wed, 18 Nov 2026 11:14:39 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D56301596;
+	Wed, 18 Nov 2026 03:14:32 -0800 (PST)
+Received: from [10.57.62.206] (unknown [10.57.62.206])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 192D23F673;
+	Wed, 18 Nov 2026 03:14:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795000475; bh=TKbqgMIPduy318TAL4Aa4U0sAxhaULPe1XRzCdumkbg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=E5gQTmv2MiIyZx1MnDRo90tJYN43gume5p7d6KB3NmpM0o7uA6PCE2zYcpBmb8Jsi
+	 t3YfPJKXHuK2Zrp0s0DHEAbc9gp1pTOZXTjE28mbBo8mvrgYgeYJhxuIMZjSTozrXA
+	 vi/rEcEBJt1XoR6wS15Ak9Tq4KWaTk6E+nieQkTo=
+Message-ID: <b1ef7241-54b0-4a17-83b6-0008e722f2f6@arm.com>
+Date: Wed, 18 Nov 2026 11:14:23 +0000
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: myrialsarvay@gmail.com, will@kernel.org, mark.rutland@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, sven@kernel.org, j@jannau.net, neal@gompa.dev, linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, asahi@lists.linux.dev, yuvanshen09@gmail.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/11] KVM: arm64: guest_memfd: Check mmap support when
+ preparing memslot
+To: Suzuki K Poulose <suzuki.poulose@arm.com>, Fuad Tabba <tabba@google.com>
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
+ Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+References: <20261116164358.142785-1-steven.price@arm.com>
+ <20261116164358.142785-2-steven.price@arm.com>
+ <CA+EHjTy5xBmavNWSYPjqU9qXtssV3ZHzsUr1s_4bVOt1GnDLVg@mail.gmail.com>
+ <6bb490cd-ebbe-41d7-adf3-d6eaf0e53478@arm.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <6bb490cd-ebbe-41d7-adf3-d6eaf0e53478@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_031438_711798_83B1C0DD 
+X-CRM114-Status: GOOD (  11.04  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,35 +86,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, 07 Nov 2026 10:48:49 +0000,
-Myria Sarvay via B4 Relay <devnull+myrialsarvay.gmail.com@kernel.org> wrote:
+On 18/11/2026 10:34, Suzuki K Poulose wrote:
+> Hi Steven
 > 
-> From: Myria Sarvay <myrialsarvay@gmail.com>
+> On 17/11/2026 14:05, Fuad Tabba wrote:
+>> Hi Steven,
+>>
+>> On Mon, 16 Nov 2026 16:43:47 +0000, Steven Price
+>> <steven.price@arm.com> wrote:
+>>> Check the guest_memfd backing file when deciding whether an arm64
+>>> memslot has mappable memory rather than checking whether the slot is
+>>> gmem only. A public helper function is added to be able to reuse the
+>>> static kvm_gmem_supports_mmap() function.
+>>
+>> nit: could the message say why this is needed? It's a no-op until
+>> patch 8 defines kvm_arch_has_private_mem(), which makes every
+>> guest_memfd slot gmem-only.
 > 
-> These variables are calculated elsewhere as well, remove the extra dead
-> code.
-> 
-> Signed-off-by: Myria Sarvay <myrialsarvay@gmail.com>
-> Fixes: a639027a1be1 ("drivers/perf: Add Apple icestorm/firestorm CPU PMU driver")
+> I still don't understand why this is needed. For arm64 we have always
+> prevented guest_memfd without MMAP, in kvm_arch_prepare_memory_region().
 
-Not quite. In this patch, the variables were very much in use. They
-became useless with 75ecffc361bbc ("drivers/perf: apple_m1: Refactor
-event select/filter configuration").
+Fuad is correct, this isn't really needed until patch 8. Patch 8 defines
+kvm_arch_has_private_mem() - that means that gmem_in_place_conversion
+becomes true (see include/linux/kvm_host.h). That in turn means that
+every guest_memfd slot is KVM_MEMSLOT_GMEM_ONLY including slots backed
+by a file without mmap support.
 
-Please adjust the tag accordingly, or just drop it because this really
-isn't a fix, only a minor cleanup.
+But regardless the check for kvm_memslot_is_gmem_only() isn't really
+what the code is trying to do. The fact that the memslot is "gmem only"
+isn't really relevant. The thing we care about is the mappability.
+
+But I agree the commit message could do with improving. I'll expand that.
 
 Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Steve
 
