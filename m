@@ -2,99 +2,180 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB180606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF8E606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=po/aD/pf;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=CJZhaDa2;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=hS/edfTq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cdSYtEMY;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=hcoVLgn0;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=qF4RgSeg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Itjh7PVyS4MnhuZlB6spo2FIevaOkNAo+PWyYUOolEI=; b=po/aD/pfewxbex
-	RpEGCXOX9S71inciXZD9t5Ba5SdXohDNSu/cMEw0zFIlq1oeYE+BdHA8ac+12T3aULDzr1+dUihmX
-	PCBtJTryuGF9pLU3xo3iQ5VpSy70NJWK2tI+DRCGmimncIE/p10GYaKxjQdy9rIsGFf7UeExic+a7
-	8/y7f9N8MnqrckRwU+xKjxJr2r8JL3ynD+TOCS2lpOOmM3ktKOxY9fZbOiTGzdipqmL2OoMPx3fjQ
-	ccfkObSp2L6Mz2uCHT+UYl609vU6GvEYmUmaQKUQSzPFMgZGdS10Iu3k25iOAo0HlfCLerjYMhd1O
-	S//iO+HWHdgXWSSQdzhg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=9J3xe2t5kut9oDt9oHBCLvCsv0gbBmqmVWj0JVVNs6w=; b=cdSYtEMYySKFJzF0NryyVwdLr3
+	HVfxj2Knp6uS2h/Epj09Z20qakGgCtXrNdYhd+GrOleQBZPDTe+/3tOWNS73AyB2EfBYrOBoIVJuX
+	pRN83L0Bqehgy3E8gHD+RamW+t6+9NQhjqvSoEEV9rS8RtLvRAJAbM5z1CxUc15YUlj0XJt0TLjKP
+	fgabWWfZWgHDtIK9IdrFeK5KhhmJwWw92KVFDJXIVF0FfWcNa1wF9LyuCD6b38LE/NTLuZH+fAmBM
+	l0bTvB/L3hrLpLEw2duk+080IOw5hZE2wFesRPesdWum/RpXcBwFNllhEKHr0ou8y4rDLfQKrqU3V
+	h2bJ7q9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThT0-00000009FgZ-1Hpx;
-	Wed, 18 Nov 2026 15:20:58 +0000
+	id 1xThUH-00000009GXs-40T7;
+	Wed, 18 Nov 2026 15:22:18 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThSQ-00000009FJU-3uYA
+	id 1xThUF-00000009GWN-3dum
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 18 Nov 2026 15:20:23 +0000
+	Wed, 18 Nov 2026 15:22:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=Itjh7PVyS4MnhuZlB6spo2FIevaOkNAo+PWyYUOolEI=; b=CJZhaDa2xVYyoI/LJbeCyv1jdz
-	dt7xPVjvvvfmiydK41dX+WuXhTJ9bzb59xOiD3Amd7Pl+GaMmQizwDqN8pvKpzXI1pNrTeRG/BtsB
-	bWS4f2NTBSeYmuqllEom0hW0Sz9oJYTZnd8QRD13NAbGY5p8TqWj/1S03TAOIzUeeA/q8BTyImuKd
-	jrxSl5B7VelWiQv4ryY39bMDB1RCdDlEFzGyfiTiKikGi1ZCRwdKdovc10jhCmjgA/irZIx5kvqFD
-	OSAL7PC+OT4Si3rDZ1xjO7gtM0JlHvAhEg7XwVp4y+TbnnRa9x29UypI+GKJf244Ufh6Fm3LPu/TF
-	eOh25fHA==;
-Received: from out-98.mta0.migadu.com ([2001:41d0:1004:224b::62] helo=mta0.migadu.com)
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Transfer-Encoding
+	:Content-Type:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=9J3xe2t5kut9oDt9oHBCLvCsv0gbBmqmVWj0JVVNs6w=; b=hcoVLgn0HGnkZugpZig+GVlq3Z
+	Tx/Teu29v/WAhV+Y0MwvbIDmAHCdDfTeshvg5c5UQpUZd5FEHSVaARQTXIgazjb/lxSpSI2sgVAss
+	PtRdJc7NHfgbvCZH5rpuR7zqyRLpnyKha3ZE8KI2Q91mwMrKTizRnpmjR33jn6/t+By947fltbfP1
+	QD8W9R3OlAwBVU6HfnwZ+lquIs/8GTanADxsjRHDJWFnS0hhotoc36Yup+DD3qqkfTx3SX2YmU2m3
+	hSdXYz9pzQFN+zvL+sik2NhnQqCA1XuHc6qJt7x8v2r3HicxXtcc04CDutPbgzeJcgaCw6c8OEtyi
+	spS7o0mw==;
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThSM-0000000GCFV-2f0H
+	id 1xThUC-0000000GCVN-2Dgs
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:20:21 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=YuK9yLvWMFzDq0qy/GDY7XRkOD+HY+MO6XstOh132Dw=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795015215; v=1; x=1795620015;
- b=hS/edfTqpxWARJxTJA+ZxVYB/8ow/RyoVinv4JQ2Xo6hSwCP8wP8dbh0lkZHCiH/U9hc+ufi
- XGQqTJYw/RXt/BWhFZI2npAeVIyEgLjeqcCfCMfRezi8qseFbAhXbD7dag3tSAxXld8Jj8GRzrC
- k3otbO1EYN3eb3xet+VKvfuU=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 939c6d14e0bb3540;
-	Wed, 18 Nov 2026 15:20:12 +0000
-X-Mizu-Trace-ID: 939c6d14e0bb3540
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>
-Cc: Will Deacon <will@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Raghavendra Rao Ananta <rananta@google.com>,
-	Sascha Bischoff <Sascha.Bischoff@arm.com>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Sebastian Ene <sebastianene@google.com>,
-	=?UTF-8?q?Bart=C5=82omiej=20Grzesik?= <bgrzesik@google.com>,
-	Mostafa Saleh <smostafa@google.com>,
-	Vincent Donnefort <vdonnefort@google.com>,
-	Vladimir Murzin <vladimir.murzin@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Zenghui Yu <zenghui.yu@linux.dev>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Radu Rendec <radu@rendec.net>,
-	Fuad Tabba <tabba@google.com>,
-	kvmarm@lists.linux.dev,
+	Wed, 18 Nov 2026 15:22:14 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IUX/HTATZMRTlx4dhee5AMqnM+ARDrg9i8dqq3ZK9OqVKsGbFfb9bCORFZ10tj2Pdk+JlhimsJTHQXwrdSrR6qOYiV2o2R6uiY6opeJUb4YTqYWt6FkhkcDpAF1IqkKzPy8ZysJIXsB/0adY30zjyVfJq/NMY7OOnnNp0j/hfJF2lUUs+z5qFIMM/gbFyUWQmgpmok5IcNlLWMgN9gzeyjE1PR7VVA6x+HHjofLOIRAJaJ2CH2tsfiiMZzf16X13hbPt1Z2M5nf/h2cMrPBEJPxIC81HImTxDZBuivSgR7JhqF1c2lMQX+ZAqKxpyTXvcgywg7nEk7xjHZc/xr4VZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9J3xe2t5kut9oDt9oHBCLvCsv0gbBmqmVWj0JVVNs6w=;
+ b=FGMSE6fKshbXBE63Vf1YeJlYnNTHsgvyZq11ymq2vogwZjsMdI9NYshyY36uxF7JjnHc1E286b/4HQ7UyFdpkwbppeE9p/66Iwy9XkMdRLadG4+18nh5GTDcwgBauMIYPLmLzr9OOhi/M8FgxPg5iLloEtrWhRJBFYDnxroscuvzEAOPGDZMZ+OC5YGL24IsdAbFEZvexlga6byUGe76JQzToJiPpyopj1vpt4Ac++2r1s5OP4l4o2B8nsu3CG3ZMCjn6wPALWqzgB2jj/7DTlzOQ2/VkkKuumBK6/sYkdTbfnFFze8oxguR1HU/2zWnsV4Cxce4g2U11MbvNGmaVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9J3xe2t5kut9oDt9oHBCLvCsv0gbBmqmVWj0JVVNs6w=;
+ b=qF4RgSegKcgrYG1AG07dZ6LillIwefIVSgXqJ4dXpf2hfEzl73zwAO7SeUDggUaqjzWEnul5bmJyuN3ZC9Id3mSYctgoh0UMreFdbMSu6ykICk0Q/KN4eJjCkI+K3XC2kmqPAo046i1KO5DloJt6KtBeFzgWqg9zGTEErbwdbSMyPrBOZma/u9rr7iLh6fjZaO6ewoAcPZ444w9oyCKqJUXm0thyVd75XmMy2W1saWRHaVSbiO2zXinia7gds+IxWqzpuXWB4Qu2fuF96PfuVi9dD0Fv8p2bHAZf+ewxxWY7yhVtywZPc1UXEoRTdZ82/vlh9lJjwowdVmY+wOVQag==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
+ (2603:10a6:150:32b::19) by AM0PR04MB6977.eurprd04.prod.outlook.com
+ (2603:10a6:208:189::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Wed, 18 Nov
+ 2026 15:22:06 +0000
+Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
+ ([fe80::a498:2b5a:cbdb:d6fa]) by GV2PR04MB12318.eurprd04.prod.outlook.com
+ ([fe80::a498:2b5a:cbdb:d6fa%3]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
+ 15:22:06 +0000
+From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+To: Abel Vesa <abelvesa@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+	linux-clk@vger.kernel.org,
+	imx@lists.linux.dev,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 11/13] KVM: arm64: Take the ITT of every device the host maps
-Date: Wed, 18 Nov 2026 15:19:02 +0000
-Message-ID: <20261118151904.4099560-12-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261118151904.4099560-1-fuad.tabba@linux.dev>
-References: <20261118151904.4099560-1-fuad.tabba@linux.dev>
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v12 0/5] Add support for i.MX94 DCIF
+Date: Wed, 18 Nov 2026 15:21:51 +0000
+Message-ID: <20261118-dcif-upstreaming-v12-0-29b35e27a1cc@oss.nxp.com>
+X-Mailer: git-send-email 2.53.0
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20260602-dcif-upstreaming-fb177f3c9351
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AS4PR09CA0008.eurprd09.prod.outlook.com
+ (2603:10a6:20b:5e0::18) To GV2PR04MB12318.eurprd04.prod.outlook.com
+ (2603:10a6:150:32b::19)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB12318:EE_|AM0PR04MB6977:EE_
+X-MS-Office365-Filtering-Correlation-Id: f3ba1cca-16e7-4ba3-e1e2-08df4587b494
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|1800799024|7416014|376014|23010399003|366016|18002099003|6133799003|261009223027099003|3023799007|921020|11063799006|261026140227099003|56012099006|261026121527099003|10067099003|261021121427099003|261022113327099003|261028144727099003|261022105027099003|261022075727099003|261021123027099003|261102123227099003;
+X-Microsoft-Antispam-Message-Info: xZsw3eyuu+qESDgkDJjc08srw/MfsIwkt+g/IZ/kf6GiMZfccPgHrWQh6zozyJj71AaIP1APn4Tda91Vywfl13ady7SP+X9MPKgCXgFcoUJC5Wvdzh+sTnZzEuSlnP8KVgTIAYsE625EWSUCD6ZUKDFSB6f63wJ7OVP7dhSFur5Rv1LQMXwXJXGYADq5LZBAy9WYlELnA/6OTgoInUX5jgmpl50kw7MmN3Ce5pU1SUX9BrUIdkyaFPDdOrSH1OYSDWi1MEYKUvdu4LKBQutzKcxV+zxAkQDq2hY3xYoUySUIeBNp/hzafzkFb/u0JzDfYv4v+8HpLr/1srm6BcqG68D//SatbYzv/0RdyLAZ2outjGObg4PlKuYdzFGBZs104Gnber7e3ZawJPpcbLqoOx+kzUGDQ4qqIRyRQc4+KcvLhUJHad8frSRnu+RgEFbZb3GMg2E1FfS/CRhgKSwjy7O/NRyxqmyq+Qexk4sfJPoVDbvg/opMJzqe0TNds/ctqmX/O/b1rk1XOmYfXU8kJ5hfbIM6mQACXE6NvLmTqNx4rUoOptSHWz/2trQAOqlGzFgNimAl1qWEfgCAFw5IvPDnlO6TSoEvTzoAJ8MnlcscMQ/0P4xjDy6Xcq+ytToJElrxBDpzC+edxqIrWi/7/EXUNKQsz2OHUIdZALOygpE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12318.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(7416014)(376014)(23010399003)(366016)(18002099003)(6133799003)(261009223027099003)(3023799007)(921020)(11063799006)(261026140227099003)(56012099006)(261026121527099003)(10067099003)(261021121427099003)(261022113327099003)(261028144727099003)(261022105027099003)(261022075727099003)(261021123027099003)(261102123227099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGx5eC9Xc3FPSkhFaCtkUXJiZzdXRUZ2dVg5NnhCemdEWHZhSXpZUjFodzg3?=
+ =?utf-8?B?M1hiVW13cVM0aXpteG5BMHlSTGVZVVFrdEJIY0xYZkpMcHgvQi9XMTNTT1ZN?=
+ =?utf-8?B?YTU0blpxM010cnJTRUU5aXpJMkdiV28rVGpFTUV2VUFZNlI3UjZyZEt1ODJB?=
+ =?utf-8?B?TWN5Q1phZVNEL0hEaHhOTW9pNGk2MHcxQVpTMWVpVk1mSGdmSWFlV0kwT0Nw?=
+ =?utf-8?B?RTBsa2t4Ykovb2R4S0xLYWV1UVlrbzByZmZGb05BVFpMN3hsMjJKY3lHYlV6?=
+ =?utf-8?B?M2tqZldmUVg4cVh1dmN6N3RBOTk1b3NtOGgweWw1RmdKN0ZNNDQ3S0lRUU5r?=
+ =?utf-8?B?Qkw0UmF3YldmeER3MExWempRNE16R0ZvcE5QUnU1QUx2UGpPMXMyU0FNWlNN?=
+ =?utf-8?B?WTBSTnhYVW0wWFI4NlB2dGdJUTRILzIyYVBFOUd0bHRITDVWZ2lJbWkvNWs3?=
+ =?utf-8?B?dGY0YzJ2RWFmczlhdXp0bkZQaUZkb1NDV1U5bFpiclhIQlhqZ3pCRXhYMi9V?=
+ =?utf-8?B?akFNR2FRSjVXcEN1N1EzTkVpbzRIRm9KNzBCRUp4eDdJMTFHenFOTzBnOGhK?=
+ =?utf-8?B?UTVBVlp6bTB1T3Z5SkM1Z3NPMkw2RzRONGFXY1pldDRRV2NmdWY2NkdZQnhv?=
+ =?utf-8?B?K2RyY0xZOXo5cTEzdk1xcEFXWHJBMFZRbEl0bWJJa0hxa0h5TytUYitNWUJh?=
+ =?utf-8?B?SmNHVXltU2hGRmc5OFg1ZnZLdzNWdU02RUFXaFBzN0xWV3hkd09Reng2NlpF?=
+ =?utf-8?B?ZFhYYmI3dTRkU09MMkFhc2lGVXpyTVhaRURueXlDNjA2WjRaem83MUZIM2F3?=
+ =?utf-8?B?aTVqVUNHT3JYdkxIREE1SWlSODRBVUNoMlRSUmhhMHMrZTBaeHo2NnA5aUkr?=
+ =?utf-8?B?S2M0VUg1WC9URkYzeDZRYWpEYVVocE1FZVVLRlhPQktDeHRnZ2VIeTA0d0Vi?=
+ =?utf-8?B?NnZoekVEUzd2ZTdZZ1BwemNJNVhvRnlhaFBjMjJORXdmajBFUWRTSjFmb0Iy?=
+ =?utf-8?B?c29vOWllR2lZM1owWTJrQys4YmxVRGpFQTNMckkrYmdtSmtLclVWN1VZeGkx?=
+ =?utf-8?B?dHpHS0F4R3AvK3pQeDF2bjhhYUo5U1JJaFZhVDNDMXhHNEM0TW1weFNnZ1R5?=
+ =?utf-8?B?cTRKekRMcUFzR3Z1cWljTzE2b04xYWhKL0htWW02UzluODZIcmg0SzVEaWp1?=
+ =?utf-8?B?M1hYVWRZVHB1WEF4UEFvdmZIQkt2WDhyS1pqcm00cDIvVUtVd1A2eVhsOHNC?=
+ =?utf-8?B?WmM0UEdmODRkYWtmQzJHek9JaXhqTjNCQ2J4KzhLT1RMWTMzSTdwQlpJRytn?=
+ =?utf-8?B?dE9nQzVQdGRoWnNObHdFYzVVRTYxZi9Wa3dKdHhGdXZseXNXZ2ZuSWs1NUVI?=
+ =?utf-8?B?SldrWW9oV2ZvRkRKdFBlN2U3YjEyb3p4ZDE1bVF2c3N1eXlnclUxSVZacXZy?=
+ =?utf-8?B?NlZVNWV4ZXlZLzdUb3hqNnlvU3luU2RwQjJmMUpjZWhtWnUvN1dScjMzbkFy?=
+ =?utf-8?B?SUFkUFBjeW1lekgwNXB2NHZvd3hGTk5KV0pxU1djb3dxMHdVMnozem5jbjBE?=
+ =?utf-8?B?SUlsaHgrVXpwc3VwVUJvNnpKQ3pYQ2Z6R0tVcVF0UlFmKytMTEovSm9oenNE?=
+ =?utf-8?B?QkIrcVZlcUhUbkpkMkJIT1JhSTB0bGxuZ1UxZXdQdXNMVFV1YTF0Z3JpK3BF?=
+ =?utf-8?B?YWpyUU4yTDBpRnZURVBZOWtuY3RQMThHc3BrekpET2l6eXdPVHA0SjRpUFlj?=
+ =?utf-8?B?bkxmb2RKVmNaMC9lRWI4Z0hvV1V1WUV0SzhDMjV3cU1BaTdYR21OWFg4RFha?=
+ =?utf-8?B?S1RrRTd4ck9PaE1YYXpMZlZQR2N4NXdoWVNRbjV5VUV3SzNEYkE5dGV2SXZa?=
+ =?utf-8?B?c0VXclhNQ1lLelg5TERTZ3JHamxTTnRia3JwWW1Zc0J5Zm8rR0lPWTc0NnI0?=
+ =?utf-8?B?cDJ5YlJuamRUenJNNk41L0tIS1lBQVdOZWQ1d0Y2ODZuVDl1bWVuVnY4em1z?=
+ =?utf-8?B?TklSRzVwb3lob2t0Z0gxL0FsdENSZ09XRkFKQlRvc1lCdFlkakxTRjdXVmNy?=
+ =?utf-8?B?bjF0d013cVlhdkZ6aEdyQTMwN0F3dHFLMEY0RS9rZlNSbEwzSmNLSUorb2VQ?=
+ =?utf-8?B?Vnp4UDR3WE44YlBoM1g1OEFnMEJhNVp3d1piWnNaQnFDdkFLVko2Z1pCWlZm?=
+ =?utf-8?B?QVNacWZKUFdORU5seHdXM2s3bXM2Nnh4ZnpUODZhWWp4eEdFZ0FXYzNUaGJh?=
+ =?utf-8?B?Q0Zld2hOSU1DTG9TVWtiaWZGRlpJRTFVRVYxRjlXVU0yWEkyOGcxa0VGUkNx?=
+ =?utf-8?B?MGlqZlYxRnRsTDNXVVFCZWtFZC9Fc1N5TWV0WDkrcDJmUGxlVFNpMWpwamcr?=
+ =?utf-8?Q?vbs8HLnktP9HI/i0=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3ba1cca-16e7-4ba3-e1e2-08df4587b494
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12318.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 15:22:06.4972
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: V3R7NYU3BRZEslZR9Nrp3w/gNnaoJf4ZT/mVwPrKxXjvcGqLBqAFvNY7Gk1nzAZ5sbKsnh4jj4Al9VsuE2NVUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6977
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_152018_674272_360CA157 
-X-CRM114-Status: GOOD (  35.88  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261118_152212_500407_C09EE4AB 
+X-CRM114-Status: GOOD (  21.08  )
+X-Spam-Score: 1.9 (+)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,549 +186,238 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On a translation, the ITS indexes the collection and vPE tables with
-whatever ICID and vPEID the ITE holds. As "The format of the ITT entries
-is IMPLEMENTATION DEFINED" (IHI 0069H.b 5.3.10), the hypervisor can't
-check an ITT the host can write.
+Hi,
 
-On a MAPD with V == 1, the hypervisor takes the ITT's pages and zeroes
-them before forwarding the command, and rejects the MAPD if the DeviceID
-is already mapped, the ITT isn't page-aligned or Size exceeds
-GITS_TYPER.ID_bits. It sizes the ITT from the MAPD's Size and
-GITS_TYPER.ITT_entry_size, except on QDF2400 rev 1, whose ITS writes
-16-byte entries whatever ITT_entry_size holds (erratum 0065). The ITTs
-of the devices mapped before the takeover, which the driver lists, are
-taken without being zeroed.
+This patch-set adds support for the i.MX94 Display Control Interface.
 
-A MAPD is UNPREDICTABLE when "There is an existing mapping for the
-DeviceID and the mapped ITT contains valid EventID mappings" (5.3.10),
-whether V is 0 or 1. If the host unmaps a device without discarding its
-events first, the ITS may go on using the ITT. The hypervisor doesn't
-track which events a device has mapped, so it never gives an ITT back.
-On a MAPD with V == 0 it marks the device retired, and a later MAPD for
-that DeviceID reuses the ITT, zeroed, if the command gives the same
-address and the ITT is large enough. If the command gives another
-address, the hypervisor takes the new ITT and keeps the old one too. The
-driver keeps a freed device's ITT as well, for the next device with its
-DeviceID, so in protected mode ITT memory doesn't go back to the kernel.
+Thanks,
+Laurentiu
 
-A GITS_CBASER write resets the queue, so it now aborts until the ITS has
-consumed every forwarded command, as a dropped MAPD would leave a device
-tracked that the ITS never mapped. The hypervisor counts the consumed
-commands from GITS_CREADR, which it reads when the host does and before
-a GITS_CWRITER or GITS_CTLR write. The driver writes GITS_CBASER only on
-resume, after its waits, so a resume aborts only if a wait timed out
-before suspend.
-
-The hypervisor tracks a fixed number of DeviceIDs per ITS, about 1300 on
-a 4K host, and returns that number from the setup call. Retired ones are
-included, so that's a limit on the DeviceIDs mapped since boot.
-its_create_device() fails beyond that number rather than queue a MAPD
-the hypervisor would reject.
-
-Co-developed-by: Sebastian Ene <sebastianene@google.com>
-Signed-off-by: Sebastian Ene <sebastianene@google.com>
-Co-developed-by: Bartłomiej Grzesik <bgrzesik@google.com>
-Signed-off-by: Bartłomiej Grzesik <bgrzesik@google.com>
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- arch/arm64/kvm/hyp/nvhe/its_emulate.c | 172 +++++++++++++++++++++++++-
- arch/arm64/kvm/pkvm.c                 |   2 +-
- drivers/irqchip/irq-gic-v3-its.c      |  66 +++++++++-
- include/linux/irqchip/arm-gic-v3.h    |   5 +-
- 4 files changed, 231 insertions(+), 14 deletions(-)
+Changes in v12:
+- Rebased to latest linux-next (next-20261116);
+- Dropped the fsl-ldb patches (v11 1/7 and 2/7) since they were applied
+  to drm-misc-next by Luca and are now in linux-next;
+- 1/5: No change;
+- 2/5: Take a vblank reference while the CRC is enabled, otherwise the
+  VS_BLANK interrupt gets masked on a static screen and reads from the
+  debugfs crc/data file block forever; always stop the CRC when the CRTC
+  is disabled (Sashiko); in the IRQ handler, only handle the status bits
+  that are enabled in IE0/IE1 and return IRQ_NONE when none is pending
+  (Sashiko); reject negative ROI coordinates in the CRC source parser
+  (Sashiko); propagate runtime PM resume failures from
+  dcif_hw_probe_init() and call it after KMS init, so the hardware is
+  not touched before the bridge lookup can defer and before the
+  supplier device links are created (Sashiko); reject framebuffers whose
+  pitch does not fit in the 16-bit CTRLDESC3 pitch field (Sashiko); use
+  of_drm_get_bridge_by_endpoint() instead of the deprecated
+  devm_drm_of_get_bridge(), and drop the DRM_PANEL_BRIDGE select and the
+  unused drm_panel.h include (Luca); declare and initialize the __free()
+  bridge pointers in one statement (Luca, Sashiko); allow COMPILE_TEST
+  and compiled DCIF with allmodconfig on i386, x86_64 and arm; update
+  the copyright year to 2026 in all source code files(Luca);
+- 3/5: Collected Rob's r-b tag;
+- 4/5: No change;
+- 5/5: No change;
+- Link to v11: https://patch.msgid.link/20261110-dcif-upstreaming-v11-0-9e13c85ae0d8@oss.nxp.com
 
-diff --git a/arch/arm64/kvm/hyp/nvhe/its_emulate.c b/arch/arm64/kvm/hyp/nvhe/its_emulate.c
-index 145997d54ce72..4a3659f727a94 100644
---- a/arch/arm64/kvm/hyp/nvhe/its_emulate.c
-+++ b/arch/arm64/kvm/hyp/nvhe/its_emulate.c
-@@ -29,14 +29,31 @@ struct its_table {
- 	bool			indirect;
- };
- 
-+/* A device the host has mapped. Once unmapped it is retired, and its ITT pages stay hyp-owned. */
-+struct its_device_map {
-+	phys_addr_t		itt_pa;
-+	u32			device_id;
-+	u32			nr_pages;
-+	u8			event_bits;
-+	bool			retired;
-+};
-+
- /* Per-ITS state, in the pages the host donated at setup. */
- struct its_priv {
- 	hyp_spinlock_t		lock;
- 	void __iomem		*base;
-+	u64			typer;
- 	u64			cbaser;
-+	u8			id_bits;
-+	u8			itt_entry_size;
- 	struct its_table	tables[GITS_BASER_NR_REGS];
- 	struct its_table	*dev_table;
- 
-+	/* Sorted by device_id, in the rest of the donated pages. */
-+	struct its_device_map	*devices;
-+	u32			nr_devices;
-+	u32			max_devices;
-+
- 	/* The hardware queue, which is hyp-owned, and the host's pinned copy of it. */
- 	void			*cmdq_hw;
- 	void			*cmdq_copy;
-@@ -47,6 +64,9 @@ struct its_priv {
- 
- 	/* The GITS_CREADR offset last read. */
- 	u32			hw_creadr;
-+	/* Commands forwarded to the ITS, and consumed by it. */
-+	u64			seq_submitted;
-+	u64			seq_completed;
- };
- 
- static int its_pin_host_pages(phys_addr_t pa, u64 nr_pages)
-@@ -121,11 +141,103 @@ static bool its_publish_l1(struct its_priv *its, u32 device_id)
- 	return true;
- }
- 
-+/* The index of device_id, or where it would be inserted. */
-+static u32 its_dev_search(struct its_priv *its, u32 device_id, bool *found)
-+{
-+	u32 lo = 0, hi = its->nr_devices;
-+
-+	while (lo < hi) {
-+		u32 mid = lo + (hi - lo) / 2;
-+
-+		if (its->devices[mid].device_id < device_id)
-+			lo = mid + 1;
-+		else
-+			hi = mid;
-+	}
-+
-+	*found = lo < its->nr_devices && its->devices[lo].device_id == device_id;
-+	return lo;
-+}
-+
-+/*
-+ * The driver page-aligns ITTs in pKVM. A MAPD on an ITT that isn't all zeros is
-+ * UNPREDICTABLE, so @zero is set for a runtime MAPD. A retired device's ITT is
-+ * reused if the MAPD gives its address and it is large enough.
-+ */
-+static int its_take_itt(struct its_priv *its, u32 device_id, u8 event_bits,
-+			phys_addr_t itt_pa, bool zero)
-+{
-+	struct its_device_map *dev;
-+	u32 idx, nr_pages;
-+	size_t size;
-+	bool found;
-+	int ret;
-+
-+	if (event_bits > its->id_bits || !PAGE_ALIGNED(itt_pa))
-+		return -EINVAL;
-+
-+	idx = its_dev_search(its, device_id, &found);
-+	dev = &its->devices[idx];
-+	if (found && !dev->retired)
-+		return -EEXIST;
-+	if (!found && its->nr_devices == its->max_devices)
-+		return -ENOSPC;
-+
-+	size = PAGE_ALIGN(BIT_ULL(event_bits) * its->itt_entry_size);
-+	nr_pages = size >> PAGE_SHIFT;
-+	if (!found || itt_pa != dev->itt_pa || nr_pages > dev->nr_pages) {
-+		ret = __pkvm_host_donate_hyp(PHYS_PFN(itt_pa), nr_pages);
-+		if (ret)
-+			return ret;
-+	} else {
-+		nr_pages = dev->nr_pages;
-+	}
-+
-+	if (zero) {
-+		memset(hyp_phys_to_virt(itt_pa), 0, size);
-+		gic_flush_dcache_to_poc(hyp_phys_to_virt(itt_pa), size);
-+	}
-+
-+	if (!found) {
-+		memmove(dev + 1, dev, (its->nr_devices - idx) * sizeof(*dev));
-+		its->nr_devices++;
-+	}
-+	*dev = (struct its_device_map) {
-+		.itt_pa = itt_pa,
-+		.device_id = device_id,
-+		.nr_pages = nr_pages,
-+		.event_bits = event_bits,
-+	};
-+	return 0;
-+}
-+
-+/*
-+ * A MAPD with V == 0 is UNPREDICTABLE while the ITT holds valid ITEs. The ITS may
-+ * then go on using the ITT, so it is never given back to the host.
-+ */
-+static void its_retire(struct its_priv *its, u32 device_id)
-+{
-+	bool found;
-+	u32 idx;
-+
-+	idx = its_dev_search(its, device_id, &found);
-+	if (found)
-+		its->devices[idx].retired = true;
-+}
-+
- static bool its_mapd(struct its_priv *its, struct its_cmd_block *cmd)
- {
- 	u32 device_id = its_cmd_get_deviceid(cmd->raw_cmd);
- 
--	return its_publish_l1(its, device_id);
-+	if (!its_publish_l1(its, device_id))
-+		return false;
-+
-+	if (its_cmd_get_validbit(cmd->raw_cmd))
-+		return !its_take_itt(its, device_id, its_cmd_get_size(cmd->raw_cmd),
-+				     its_cmd_get_ittaddr(cmd->raw_cmd), true);
-+
-+	its_retire(its, device_id);
-+	return true;
- }
- 
- static bool its_process_cmd(struct its_priv *its, struct its_cmd_block *cmd)
-@@ -151,11 +263,19 @@ static bool its_process_cmd(struct its_priv *its, struct its_cmd_block *cmd)
- 	}
- }
- 
-+/* Count the commands consumed since the last read. */
- static u64 its_read_creadr(struct its_priv *its)
- {
- 	u64 creadr = readq_relaxed(its->base + GITS_CREADR);
- 	u32 offset = creadr & GITS_CREADR_OFFSET;
- 
-+	/*
-+	 * A disabled ITS consumes no commands, so GITS_CREADR moving while it is
-+	 * disabled, as after a reset behind the hypervisor, isn't progress.
-+	 */
-+	if (readl_relaxed(its->base + GITS_CTLR) & GITS_CTLR_ENABLE)
-+		its->seq_completed += ((offset + its->cmdq_size - its->hw_creadr) %
-+				       its->cmdq_size) / sizeof(struct its_cmd_block);
- 	its->hw_creadr = offset;
- 
- 	return creadr;
-@@ -199,6 +319,7 @@ static bool its_cwriter_write(struct its_priv *its, u64 val)
- 		 */
- 		gic_flush_dcache_to_poc(its->cmdq_hw + its->cmd_offset, sizeof(cmd));
- 		its->cmd_offset = (its->cmd_offset + sizeof(cmd)) % its->cmdq_size;
-+		its->seq_submitted++;
- 	}
- 
- 	dsb(ishst);
-@@ -231,7 +352,11 @@ static bool its_bases_intact(struct its_priv *its)
- 
- static bool its_ctlr_write(struct its_priv *its, u64 val)
- {
--	u32 ctlr = readl_relaxed(its->base + GITS_CTLR);
-+	u32 ctlr;
-+
-+	/* Read while still disabled, so a reset GITS_CREADR isn't counted as progress. */
-+	its_read_creadr(its);
-+	ctlr = readl_relaxed(its->base + GITS_CTLR);
- 
- 	if ((val & GITS_CTLR_ENABLE) && !(ctlr & GITS_CTLR_ENABLE)) {
- 		/*
-@@ -258,12 +383,13 @@ static bool its_disabled_quiescent(struct its_priv *its)
- 
- static bool its_cbaser_write(struct its_priv *its)
- {
--	if (!its_disabled_quiescent(its))
-+	/* The write resets the queue, and the ITS drops any command it hasn't consumed. */
-+	if (!its_disabled_quiescent(its) || its->seq_completed != its->seq_submitted)
- 		return false;
- 
- 	writeq_relaxed(its->cbaser, its->base + GITS_CBASER);
- 
--	/* The write reset GITS_CREADR to 0, and the ITS drops what was queued before it. */
-+	/* The write reset GITS_CREADR to 0. */
- 	its->cmd_offset = 0;
- 	its->hw_creadr = 0;
- 	writeq_relaxed(0, its->base + GITS_CWRITER);
-@@ -320,7 +446,10 @@ static bool its_emulate(struct its_priv *its, u64 offset, bool write, u64 *val,
- 			return false;
- 		break;
- 	case GITS_CREADR:
--		break;
-+		*val = its_read_creadr(its);
-+		if (size == sizeof(u32))
-+			*val = lower_32_bits(*val);
-+		return true;
- 	default:
- 		return false;
- 	}
-@@ -380,6 +509,8 @@ static int its_take_cmdq(struct its_priv *its, phys_addr_t copy_pa)
- 	its->cmdq_size = size;
- 	its->cmd_offset = cwriter;
- 	its->hw_creadr = creadr;
-+	/* Commands the host queued before setup are submitted, not yet consumed. */
-+	its->seq_submitted = ((cwriter + size - creadr) % size) / sizeof(struct its_cmd_block);
- 	return 0;
- }
- 
-@@ -511,6 +642,22 @@ static int its_take_tables(struct its_priv *its, struct its_pkvm_desc *desc)
- 	return 0;
- }
- 
-+static int its_take_devices(struct its_priv *its, struct its_pkvm_desc *desc)
-+{
-+	int ret;
-+	u32 i;
-+
-+	for (i = 0; i < desc->nr_devices; i++) {
-+		struct its_pkvm_device dev = desc->devices[i];
-+
-+		ret = its_take_itt(its, dev.device_id, dev.event_bits, dev.itt_pa, false);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- int pkvm_its_emulate_setup(phys_addr_t its_base, phys_addr_t desc_pa,
- 			   size_t desc_size)
- {
-@@ -546,7 +693,16 @@ int pkvm_its_emulate_setup(phys_addr_t its_base, phys_addr_t desc_pa,
- 
- 	hyp_spin_lock_init(&its->lock);
- 	its->base = region->hyp_va;
-+	its->typer = readq_relaxed(its->base + GITS_TYPER);
- 	its->cbaser = readq_relaxed(its->base + GITS_CBASER);
-+	its->id_bits = FIELD_GET(GITS_TYPER_IDBITS, its->typer) + 1;
-+	its->itt_entry_size = FIELD_GET(GITS_TYPER_ITT_ENTRY_SIZE, its->typer) + 1;
-+	its->devices = (void *)(its + 1);
-+	its->max_devices = (priv_pages * PAGE_SIZE - sizeof(*its)) / sizeof(*its->devices);
-+
-+	/* QDF2400 rev 1.x, erratum 0065: the ITS writes 16-byte ITEs where GITS_TYPER says 8. */
-+	if (readl_relaxed(its->base + GITS_IIDR) == 0x00001070)
-+		its->itt_entry_size = 16;
- 
- 	ret = its_take_cmdq(its, desc->cmdq_copy_pa);
- 	if (ret)
-@@ -556,8 +712,12 @@ int pkvm_its_emulate_setup(phys_addr_t its_base, phys_addr_t desc_pa,
- 	if (ret)
- 		return ret;
- 
-+	ret = its_take_devices(its, desc);
-+	if (ret)
-+		return ret;
-+
- 	WARN_ON(__pkvm_hyp_donate_host(PHYS_PFN(desc_pa), desc_pages));
- 	/* Published by stop_machine()'s exit, and no host CPU traps until then. */
- 	region->priv = its;
--	return 0;
-+	return its->max_devices;
- }
-diff --git a/arch/arm64/kvm/pkvm.c b/arch/arm64/kvm/pkvm.c
-index ddd797d21d42d..03854cc84a9f9 100644
---- a/arch/arm64/kvm/pkvm.c
-+++ b/arch/arm64/kvm/pkvm.c
-@@ -85,7 +85,7 @@ static int __init pkvm_init_its_emulation(phys_addr_t its_base,
- 	int ret;
- 
- 	ret = kvm_call_hyp_nvhe(__pkvm_its_emulate_setup, its_base, virt_to_phys(desc), desc_size);
--	if (ret)
-+	if (ret < 0)
- 		kvm_err("ITS@%pa: emulation setup failed: %d\n", &its_base, ret);
- 
- 	return ret;
-diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-index c00178249a04b..1bbe4fa1bf09f 100644
---- a/drivers/irqchip/irq-gic-v3-its.c
-+++ b/drivers/irqchip/irq-gic-v3-its.c
-@@ -49,6 +49,7 @@
- #define ITS_FLAGS_WORKAROUND_CAVIUM_23144	(1ULL << 2)
- #define ITS_FLAGS_FORCE_NON_SHAREABLE		(1ULL << 3)
- #define ITS_FLAGS_WORKAROUND_HISILICON_162100801	(1ULL << 4)
-+#define ITS_FLAGS_HYP_OWNED			(1ULL << 5)
- 
- #define RD_LOCAL_LPI_ENABLED                    BIT(0)
- #define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
-@@ -128,6 +129,9 @@ struct its_node {
- 	u32			pre_its_base; /* for Socionext Synquacer */
- 	int			vlpi_redist_offset;
- 	struct its_pkvm_state	*pkvm;
-+	u32			pkvm_max_devices;
-+	/* Freed devices whose ITT the hypervisor keeps. Protected by dev_alloc_lock. */
-+	struct list_head	pkvm_retired;
- };
- 
- static DEFINE_PER_CPU(struct its_node *, local_4_1_its);
-@@ -3344,6 +3348,18 @@ static struct its_device *its_find_device(struct its_node *its, u32 dev_id)
- 	return its_dev;
- }
- 
-+static struct its_device *its_find_retired(struct its_node *its, u32 dev_id)
-+{
-+	struct its_device *its_dev;
-+
-+	list_for_each_entry(its_dev, &its->pkvm_retired, entry) {
-+		if (its_dev->device_id == dev_id)
-+			return its_dev;
-+	}
-+
-+	return NULL;
-+}
-+
- static struct its_baser *its_get_baser(struct its_node *its, u32 type)
- {
- 	int i;
-@@ -3457,7 +3473,7 @@ static bool its_alloc_vpe_table(u32 vpe_id)
- static struct its_device *its_create_device(struct its_node *its, u32 dev_id,
- 					    int nvecs, bool alloc_lpis)
- {
--	struct its_device *dev;
-+	struct its_device *dev, *retired;
- 	unsigned long *lpi_map = NULL;
- 	unsigned long flags;
- 	u16 *col_map = NULL;
-@@ -3468,6 +3484,14 @@ static struct its_device *its_create_device(struct its_node *its, u32 dev_id,
- 	int id_bits;
- 	int sz;
- 
-+	retired = its_find_retired(its, dev_id);
-+
-+	/* The hypervisor rejects a MAPD past its device tracker's capacity. */
-+	if ((its->flags & ITS_FLAGS_HYP_OWNED) && !retired &&
-+	    list_count_nodes(&its->its_device_list) + list_count_nodes(&its->pkvm_retired) >=
-+	    its->pkvm_max_devices)
-+		return NULL;
-+
- 	if (!its_alloc_device_table(its, dev_id))
- 		return NULL;
- 
-@@ -3488,7 +3512,15 @@ static struct its_device *its_create_device(struct its_node *its, u32 dev_id,
- 	if (gic_is_protected_kvm())
- 		sz = PAGE_ALIGN(sz);
- 
--	itt = itt_alloc_pool(its->numa_node, sz);
-+	/* The hypervisor zeroes and flushes a retired ITT when its device is mapped again. */
-+	if (retired && retired->itt_sz >= sz) {
-+		itt = retired->itt;
-+		sz = retired->itt_sz;
-+	} else {
-+		itt = itt_alloc_pool(its->numa_node, sz);
-+		if (itt)
-+			gic_flush_dcache_to_poc(itt, sz);
-+	}
- 
- 	dev = kzalloc_obj(*dev);
- 
-@@ -3504,13 +3536,18 @@ static struct its_device *its_create_device(struct its_node *its, u32 dev_id,
- 
- 	if (!dev || !itt || !col_map || (!lpi_map && alloc_lpis)) {
- 		kfree(dev);
--		itt_free_pool(itt, sz);
-+		if (!retired || itt != retired->itt)
-+			itt_free_pool(itt, sz);
- 		bitmap_free(lpi_map);
- 		kfree(col_map);
- 		return NULL;
- 	}
- 
--	gic_flush_dcache_to_poc(itt, sz);
-+	/* An ITT too small to reuse stays with the hypervisor, so drop its record too. */
-+	if (retired) {
-+		list_del(&retired->entry);
-+		kfree(retired);
-+	}
- 
- 	dev->its = its;
- 	dev->itt = itt;
-@@ -3542,6 +3579,13 @@ static void its_free_device(struct its_device *its_dev)
- 	list_del(&its_dev->entry);
- 	raw_spin_unlock_irqrestore(&its_dev->its->lock, flags);
- 	kfree(its_dev->event_map.col_map);
-+
-+	/* The hypervisor keeps the ITT, for the next mapping of this DeviceID. */
-+	if (its_dev->its->flags & ITS_FLAGS_HYP_OWNED) {
-+		list_add(&its_dev->entry, &its_dev->its->pkvm_retired);
-+		return;
-+	}
-+
- 	itt_free_pool(its_dev->itt, its_dev->itt_sz);
- 	kfree(its_dev);
- }
-@@ -5250,6 +5294,7 @@ static int __init its_compute_its_list_map(struct its_node *its)
-  * each one before the ITS sees it.
-  */
- struct its_pkvm_state {
-+	u32			max_devices;
- 	void			*priv;
- 	void			*cmdq;
- 	struct its_baser	*dev_baser;
-@@ -5261,7 +5306,7 @@ struct its_pkvm_state {
- /* Held, with every ITS's dev_alloc_lock, from prepare to finish. */
- static DEFINE_MUTEX(its_pkvm_lock);
- 
--/* Pages for the hypervisor's per-ITS state. */
-+/* The hypervisor's per-ITS state, its device tracker included. */
- #define ITS_PKVM_PRIV_ORDER	3
- 
- static int __init its_pkvm_alloc_copies(struct its_node *its,
-@@ -5344,11 +5389,17 @@ static int __init its_pkvm_hand_over(struct its_node *its,
- 				     its_pkvm_setup_fn setup)
- {
- 	struct its_pkvm_state *st = its->pkvm;
-+	int ret;
- 
- 	if (st->dev_l1)
- 		memcpy(st->dev_l1, st->dev_baser->base, PAGE_ORDER_TO_SIZE(st->dev_baser->order));
- 
--	return setup(its->phys_base, st->desc, st->desc_size);
-+	ret = setup(its->phys_base, st->desc, st->desc_size);
-+	if (ret < 0)
-+		return ret;
-+
-+	st->max_devices = ret;
-+	return 0;
- }
- 
- static void __init its_pkvm_switch(struct its_node *its)
-@@ -5357,6 +5408,8 @@ static void __init its_pkvm_switch(struct its_node *its)
- 
- 	its->cmd_write = (struct its_cmd_block *)st->cmdq + (its->cmd_write - its->cmd_base);
- 	its->cmd_base = st->cmdq;
-+	its->pkvm_max_devices = st->max_devices;
-+	its->flags |= ITS_FLAGS_HYP_OWNED;
- 	st->cmdq = NULL;
- 	st->priv = NULL;
- 
-@@ -5747,6 +5800,7 @@ static struct its_node __init *its_node_init(struct resource *res,
- 	mutex_init(&its->dev_alloc_lock);
- 	INIT_LIST_HEAD(&its->entry);
- 	INIT_LIST_HEAD(&its->its_device_list);
-+	INIT_LIST_HEAD(&its->pkvm_retired);
- 
- 	its->typer = gic_read_typer(its_base + GITS_TYPER);
- 	its->base = its_base;
-diff --git a/include/linux/irqchip/arm-gic-v3.h b/include/linux/irqchip/arm-gic-v3.h
-index 5fc06ca11a53b..cc6279087678f 100644
---- a/include/linux/irqchip/arm-gic-v3.h
-+++ b/include/linux/irqchip/arm-gic-v3.h
-@@ -705,7 +705,10 @@ struct its_pkvm_desc {
- 	struct its_pkvm_device	devices[];
- };
- 
--/* Called with every CPU stopped, so it must not sleep. */
-+/*
-+ * Returns < 0 or the number of devices the hypervisor can track on this ITS.
-+ * Called with every CPU stopped, so it must not sleep.
-+ */
- typedef int (*its_pkvm_setup_fn)(phys_addr_t its_base,
- 				 struct its_pkvm_desc *desc, size_t desc_size);
- 
--- 
-2.47.3
+Changes in v11:
+- Rebased to latest linux-next (next-20261109);
+- Dropped "drm/bridge: fsl-ldb: Get the next non-panel bridge" since the
+  driver already gets the next bridge after upstream commit 802372cf316a
+  ("drm/bridge: fsl-ldb: don't create a panel_bridge") (Luca). The
+  remaining cleanups suggested by Luca were sent as a separate patch,
+  not needed by this series:
+  https://lore.kernel.org/r/20261030163254.3175671-1-laurentiu.palcu@oss.nxp.com
+- Dropped the standalone MAINTAINERS patch. The entry is now added
+  together with the DCIF binding (3/7) and the driver (4/7) to make
+  checkpatch happy;
+- 1/7: No change;
+- 2/7: Collected Luca's r-b tag;
+- 3/7: Add the MAINTAINERS entry;
+- 4/7: Program the plane registers (format, size, pitch, base address,
+  layer enable) only from the plane update path, no longer from CRTC
+  enable; arm the vblank event with drm_crtc_arm_vblank_event() in
+  atomic_flush and drop the driver-private event caching, which fixes
+  the vblank refcount and early-event issues; on probe, mask and ack the
+  interrupts left enabled by the bootloader, and request the IRQ only
+  after KMS init to avoid a NULL CRTC dereference; dropped the unneeded
+  mod_devicetable.h and drm_fb_dma_helper.h includes; style fixes in
+  the of_device_id table and platform_driver initializer (Uwe); follow
+  the reference manual software reset sequence: wait for the DPI to go
+  idle after clearing DISP_ON and hold the AXI fetches (AXI_RD_HOLD)
+  until the pending reads are done before pulsing SW_RST; stop the
+  controller at probe if the bootloader left it running; add device
+  links to the display CSR and the LDB to enforce the suspend/resume
+  ordering, which fixes a vblank timeout after system resume; include
+  <linux/bitfield.h> in dcif-reg.h; in mode_valid, reject modes larger
+  than the mode_config max_width/max_height and modes whose porches or
+  sync widths overflow the 12-bit DPI timing fields;
+- 5/7: Renamed the 'ldb' child node to the generic 'bridge' node name
+  (Conor);
+- 6/7: Renamed the ldb@4 node to bridge@4 accordingly;
+- 7/7: No change;
+- Link to v10: https://patch.msgid.link/20261006-dcif-upstreaming-v10-0-bcfb28de0aae@oss.nxp.com
 
+Changes in v10:
+- Rebased to latest linux-next (next-20261005);
+- 1/9: No functional change;
+- 2/9: Switch to using of_drm_get_bridge_by_endpoint() helper for
+  fetching the next bridge;
+- 3/9: No functional change;
+- 4/9: No functional change;
+- 5/9: Fixed a pixel-clock unit mismatch bug, ROI now derived from mode
+  at program time, CRC reprogrammed on ROI/source change, bus-format
+  validated with a whitelist, forced modeset on CRTC activation
+  (dcif_atomic_check), vblank event flushed on disable to avoid hangs,
+  dropped PREMULTI blend support since PREMULTI is not mandatory anymore
+  and the display controller does not support it, probe error paths
+  checked, shared dcif_set_csc()/dcif_plane_disable_layer() helpers
+  introduced;
+- 6/9: restructured to reuse the existing conditional schema pattern for
+  the new nxp,imx94-lvds-csr compatible, instead of unconditional
+  properties. Dropped Krzysztof r-b tag as it needs reviewed;
+- 7/9: No functional change (context shift);
+- 8/9: regulator nodes relocated/renamed (reg_1v8_ext/reg_3v3_ext ->
+  reg_1p8v_ext/reg_3p3v_ext) to match existing naming convention;
+- 9/9: No functional change (context shift);
+- Link to v9: https://patch.msgid.link/20260612-dcif-upstreaming-v9-0-8d0ff89aa3c5@oss.nxp.com
+
+Changes in v9:
+- Rebased to latest linux-next (next-20260611);
+- 2/9: Reworked to store the next bridge in fsl_ldb->bridge.next_bridge
+  (taking a reference with drm_bridge_get()) instead of adding a new
+  dedicated field. Removed the r-b tags for this patch since it needs a
+  fresh review;
+- 3/9: Fixed the i.MX94 LDB max_clk_khz limit (165 MHz -> 148.5 MHz) to
+  match the actual hardware limit. Removed the r-b tags for this patch
+  since it needs a fresh review;
+- 4/9: Added a 'required:' properties list to the binding. Removed
+  Krzysztof's r-b tag for this patch since it needs a fresh review;
+- 5/9: Renamed the CRC source helpers (dcif_crc_source_*) and made them
+  unconditionally available, dropping the CONFIG_DEBUG_FS stubs;
+  improved CRC source parsing (auto ROI for the full-frame source,
+  unsigned params, safer string handling); rebased onto the
+  drm_atomic_state -> drm_atomic_commit rename in linux-next; reworked
+  CRC/modeset gating with new has_crc and crtc_pm_enabled flags and
+  proper PM error handling; switched event_lock to spinlock_irq; removed
+  a redundant connector-attach call and fixed an error format string;
+  added new pixel formats and full alpha/blend-mode support;
+- 6/9: YAML quoting style fix only, no functional change;
+- 7/9: Combined the former "arm64: dts: imx943: Add LVDS/DISPLAY CSR
+  nodes" prerequisite and the "arm64: dts: imx943: Add display pipeline
+  nodes" patch into a single new patch targeting the shared imx94.dtsi
+  instead of imx943.dtsi, removing the dependency on Peng Fan's
+  not-yet-merged patch;
+- 8/9: Renamed the IT6263 bridge node to 'hdmi@4c' and fixed its
+  reset-gpios polarity to GPIO_ACTIVE_LOW;
+- Link to v8: https://lore.kernel.org/r/20260304-dcif-upstreaming-v8-0-bec5c047edd4@oss.nxp.com
+
+Changes in v8:
+- Rebased to latest linux-next (next-20260303). Patch 2/9 had a minor
+  conflict bacause of a patch introduced recently;
+- 8/9: Fixed CHECK_DTBS errors reported by Rob's bot due to missing
+  regulators. Removed the r-b tag for this patch because it needs a
+  fresh review;
+- Link to v7: https://lore.kernel.org/r/20260122-dcif-upstreaming-v7-0-19ea17eb046f@oss.nxp.com
+
+Changes in v7:
+- Rebased to latest linux-next;
+- Addressed some new checkpatch warnings: kzalloc -> kzalloc_obj;
+- Fixed a couple of static check warnings in probe();
+- Added Luca's r-b tag for bridge refcounting;
+- Link to v6: https://lore.kernel.org/r/20251103-dcif-upstreaming-v6-0-76fcecfda919@oss.nxp.com
+
+Changes in v6:
+- 2/9: Collected r-b tag from Francesco;
+- 3/9: Removed ch_max_clk_khz variable as suggested by Luca and added
+  his r-b tag;
+- 4/9: Collected r-b tag;
+- 5/9: Call drm_bridge_put() automatically in
+  dcif_crtc_query_output_bus_format() by using a cleanup action (Luca);
+- 6/9: Moved allOf: block after required: block (Krzysztof). Collected
+  r-b tag;
+- Link to v5: https://lore.kernel.org/r/20250911-dcif-upstreaming-v5-0-a1e8dab8ae40@oss.nxp.com
+
+Changes in v5:
+- 4/9: Removed "bindings for" from the title, changed the port
+  definition and simplified the example;
+- 6/9: Fixed the way 'ldb' child node is declared: declare the
+  'ldb' child node out of if:then: block and set the property
+  to false for compatibles other than nxp,imx94-lvds-csr;
+- Link to v4: https://lore.kernel.org/r/20250903123332.2569241-1-laurentiu.palcu@oss.nxp.com
+
+Changes in v4:
+- Addressed remaining DCIF driver comments from Frank;
+- Limit the 'ldb' child node only to CSRs compatible with 'nxp,imx94-lvds-csr'
+  in the binding file. Since LVDS CSRs are a minority, I chose to
+  use the if:then: construct instead of if:not:then:;
+- Remove the '#address-cells' and '#size-cells' from the ldb node, in
+  imx94.dtsi, as they're not needed;
+- Link to v3: https://lore.kernel.org/r/20250806150521.2174797-1-laurentiu.palcu@oss.nxp.com
+
+Changes in v3:
+- Removed the BLK CTL patches and created a separate patch set [2] for them;
+- Collected r-b tags for 1/9, 2/9, 3/9 and 9/9;
+- Removed the DCIF QoS functionality until I find a better way to
+  implement it through syscon. QoS functionality will be added in
+  subsequent patches. Also, used devm_clk_bulk_get_all() and used
+  dev_err_probe() as suggested;
+- Addressed Frank's and Krzysztof's comments on the DCIF bindings;
+- Addressed Frank's comments on dtsi and dts files;
+- Added a new binding patch, 6/9, for adding 'ldb' optional property to
+  nxp,imx95-blk-ctl.yaml;
+- Link to v2: https://lore.kernel.org/r/20250716081519.3400158-1-laurentiu.palcu@oss.nxp.com
+
+Changes in v2:
+- reworked the BLK_CTL patch and split in 2 to make it easier for
+  review;
+- split the dts and dtsi patch in 2 separate ones;
+- addressed Frank's comments in DCIF driver;
+- addressed Rob's comments for the bindings files;
+- addressed a couple of checkpatch issues;
+- Link to v1: https://lore.kernel.org/r/20250709122332.2874632-1-laurentiu.palcu@oss.nxp.com
+
+---
+Laurentiu Palcu (4):
+      dt-bindings: display: imx: Add i.MX94 DCIF
+      dt-bindings: clock: nxp,imx95-blk-ctl: Add LDB bridge child node
+      arm64: dts: imx94: Add display pipeline nodes
+      arm64: dts: imx943-evk: Add display support using IT6263
+
+Sandor Yu (1):
+      drm/imx: Add support for i.MX94 DCIF
+
+ .../bindings/clock/nxp,imx95-blk-ctl.yaml          |  24 +-
+ .../bindings/display/imx/nxp,imx94-dcif.yaml       |  90 +++
+ MAINTAINERS                                        |   9 +
+ arch/arm64/boot/dts/freescale/imx94.dtsi           |  82 +++
+ arch/arm64/boot/dts/freescale/imx943-evk.dts       |  86 +++
+ drivers/gpu/drm/imx/Kconfig                        |   1 +
+ drivers/gpu/drm/imx/Makefile                       |   1 +
+ drivers/gpu/drm/imx/dcif/Kconfig                   |  15 +
+ drivers/gpu/drm/imx/dcif/Makefile                  |   5 +
+ drivers/gpu/drm/imx/dcif/dcif-crc.c                | 235 +++++++
+ drivers/gpu/drm/imx/dcif/dcif-crc.h                |  54 ++
+ drivers/gpu/drm/imx/dcif/dcif-crtc.c               | 710 +++++++++++++++++++++
+ drivers/gpu/drm/imx/dcif/dcif-drv.c                | 250 ++++++++
+ drivers/gpu/drm/imx/dcif/dcif-drv.h                |  90 +++
+ drivers/gpu/drm/imx/dcif/dcif-kms.c                | 181 ++++++
+ drivers/gpu/drm/imx/dcif/dcif-plane.c              | 300 +++++++++
+ drivers/gpu/drm/imx/dcif/dcif-reg.h                | 270 ++++++++
+ 17 files changed, 2402 insertions(+), 1 deletion(-)
+---
+base-commit: 38c8be16846f10f3a710351357e4f4ace7254c8e
+change-id: 20260602-dcif-upstreaming-fb177f3c9351
+
+Best regards,
+--  
+Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
 
