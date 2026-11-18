@@ -2,66 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C059606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 07:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2723606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 07:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IBBl/bIx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EZOl1dB/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VXpVMIMd;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=ehFSdTb7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=9Gz9IBeSccjjCHOtf0va00995nWsD5fHKwWB7RAq70w=; b=IBBl/bIx2mAN49pGvPHw1dlQpL
-	CbUKg0ITk/Ur+61c21Ovpy2/AgaTnbqfH6h8fFoKod9k3TRN8MWFegwCqywdREtzjXBX+zGWFmzNM
-	4uRWmehtJjehjikiwNv2i7Kdj5WfzmHvY/OvVYUjzV7cvDgnS1VZHnNqjruOFuPl2UUp70745I0A9
-	zyExFa0xlz7TN6HQbB+jwh8tXCvlZB+L07xKeyrWVJZrz7veHnz/9iFKgEpZDhbDhj3K5qxLsFMbs
-	vod7RaL6HGqcJesT7WYshFYmKuFF7uYdvQ9ku29e1DkhsWsX7ui8mUmP7M5ibO689YUKbandGOZkI
-	wDrIQLIA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=tb4WIW6lqZ5+Z3GQF5djG9Xnbu4tg/4H1vvuQxWHZEg=; b=VXpVMIMdlSFjuL
+	JLN0/Q8K+MtKZ9wx/NqugPPv1jNEzsPFojxw5tsr21FGCNlv8lkgraoITklf0NW6n8rYsxw/UltTf
+	aFqclBhPGz6en2aYIVh2VB4oO3pTZ3L1OsNOYOdMoim7rOmDikZO12suA58s7u7+Ws0qJ5ygAlOlr
+	UCSzsloTCBwH3JUwFC0+iF7+RvWiGegtYUrEldfRL7ARTEnf3lNWiZD49X8ZyEbjipds8zt3jTPFt
+	eu8FLr9YvzhsT645omQBVCgX79LnPUDCX80fGMfBEt6SEUSoMGFRwJX8dDhlPfMeqYoKUeMJiRxBH
+	hPIAG6sq1KTtmb6YhOkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTaRd-0000000841j-21TX;
-	Wed, 18 Nov 2026 07:51:05 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTaUi-000000084V2-1LFe;
+	Wed, 18 Nov 2026 07:54:16 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTaRd-0000000841T-0PQj
+	id 1xTaUf-000000084UO-3Nn2
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 07:51:05 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2EB1561F70;
-	Wed, 18 Nov 2026 07:51:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 017641F000CA;
-	Wed, 18 Nov 2026 07:51:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794988263;
-	bh=9Gz9IBeSccjjCHOtf0va00995nWsD5fHKwWB7RAq70w=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=EZOl1dB/r549l0Cjg4hv5vm3frN1mJhwKzcv8N+U0AfAdGRph2GCf+cfu9tPRWU9a
-	 +iCkKFQvCFAKu4hmxbhrZ1HBbCOvZn7HvTKwXBL6rJINM1HKL5Lpj1P+5AmplPMrit
-	 ndP3VQ6rNSZPsZzMnnGQHEeuQ+wKq26psutOxsBQSkJW4fcb8OeKdBBdUgcYSrDR40
-	 rcrTsLIIO9bzklbHVpRok+xnIID2lDMGcagJVlnxq5brnkZPK8NAYnbnaSWx7IIPv7
-	 YyXivQtxkN2o03cJUEz5It4N0IMH7IYyAVPbddcS0pHGBvIO6HEqxd6Zt2zEr+X9Ve
-	 66RS8xK5egR3g==
-Subject: Re: [PATCH v2] net: stmmac: Disable checksum insertion for XDP frame TX
-From: netdev-bot+sashiko@kernel.org
-To: jszhang@kernel.org
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
- daniel@iogearbox.net, hawk@kernel.org, john.fastabend@gmail.com,
- sdf@fomichev.me, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, bpf@vger.kernel.org
-Date: Wed, 18 Nov 2026 07:51:02 +0000
-Message-ID: <179498826255.3136.11066531883770287407@kernel.org>
-In-Reply-To: <20261116134848.4793-1-jszhang@kernel.org>
-References: <20261116134848.4793-1-jszhang@kernel.org>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Wed, 18 Nov 2026 07:54:15 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id E20AC1A16A7;
+	Wed, 18 Nov 2026 07:54:11 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B37195FE9B;
+	Wed, 18 Nov 2026 07:54:11 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 433CB11BC05A5;
+	Wed, 18 Nov 2026 08:54:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1794988450; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=tb4WIW6lqZ5+Z3GQF5djG9Xnbu4tg/4H1vvuQxWHZEg=;
+	b=ehFSdTb7uzrE6rWYmg35Q80WHEhS+LYoh5/jgxjMBUtq3YOPIPQRNGsHszTdpZDhC0eM+h
+	+Z3t9bGej6AxdCqgXoUS40XFXxMHaFCkeB5XmXEtEBOfc8UIa4zUko7flR9Yj2eRi2ARIl
+	zmRXEpcBIlSf3oPeCV1DeD9lc+W+zOztiZJFW4hGoTy5pixgPuCVFuqH4mg9euuq4OMoOR
+	c3YH3rjGHsxXELQXYqWaG/m0ycwKUr6t8xa2wkIde2j+85OG04m696IEyDZ3LZ7kLRsAV5
+	EPKg1J4Vp4wedu0QFepN1tbPB+blaLolM0E2FQTvOZRk6tvDmSCRossHxazw8w==
+Message-ID: <26aa0b74-e3f8-4405-ab87-743f5f8ef197@bootlin.com>
+Date: Wed, 18 Nov 2026 08:54:05 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/13] arm64: add Synaptics SL2610 SoCs and RDK boards
+To: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20261115102401.3520-1-jszhang@kernel.org>
+ <avrx2EhgZ10ED40P@xhacker>
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <avrx2EhgZ10ED40P@xhacker>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_235414_157671_941D152D 
+X-CRM114-Status: GOOD (  19.10  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,96 +85,150 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue(s) to consider.
+Le 16/11/2026 à 13:06, Jisheng Zhang a écrit :
+> On Sun, Nov 15, 2026 at 06:23:39PM +0800, Jisheng Zhang wrote:
+>> Add initial support for the Synaptics SL261X SoCs and corresponding
+>> RDK boards.
+>>
+>> The SL261X SoCs include five pin-to-pin compatible SoCs: SL2611, SL2613,
+>> SL2615, SL2617, and SL2619.
+>>
+>> Only reset, pinctrl, clk/pll, uart, gpio, i2c, spi, i3c are included in
+>> this series. The support for Ethernet, USB, SDHCI, CAN, DMAC, XSPI will
+>> be submitted after this series is merged.
+>>
+>> since v1:
+>>   - rebase on latest rcN
+>>   - drop some patches which have been merged
+>>   - let the "gbl" node export pinctrl/reset/clk devices with
+>>     MFD_CELL_NAME()
+>>   - use <linux/platform_device.h> instead of <linux/mod_devicetable.h>
+>>   - adopt some coding suggestions from Uwe
+>>   - Use 0 and 1 to select normal and strong pull-up on 10-bit pads
+> 
+> Other SoCs doesn't use this defintion for pull up or strong pull up.
+> After consulting our HW people, the strong pull up isn't used at
+> all, so I will remove strong pull up support in newer version. We can
+> add back its support when it's really needed in the future, nothing
+> breaks.
+I've found a similar definition here:
+https://elixir.bootlin.com/linux/v7.3.1/source/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml#L73-L78
+But also a plain new property here:
+https://elixir.bootlin.com/linux/v7.3.1/source/Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.yaml#L153-L155
+And another with the real strong pull-up value:
+https://elixir.bootlin.com/linux/v7.3.1/source/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml#L94-L99
+As you said, if it's not used, we can skip it and add a property in
+the future (or the real value if we have it).
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 0
+But we won't be able to use 1 for strong and 0 for normal.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Regards,
+Richard
+> 
+>>   - collect Acked-by tag
+>>
+>> Jisheng Zhang (13):
+>>    arm64: kconfig: let ARCH_BERLIN cover Synaptics arm64 SoCs
+>>    pinctrl: berlin: use u16 instead of u8 for the offset
+>>    pinctrl: berlin: enable module build support
+>>    pinctrl: berlin: add optional pinconf support
+>>    dt-bindings: soc: synaptics: add SL2610 system controllers
+>>    soc: synaptics: add SL2610 system controller support
+>>    reset: add Synaptics SL2610 reset controller support
+>>    pinctrl: berlin: add Synaptics SL2610 pin controller support
+>>    clk: berlin: add Synaptics clock controller helpers
+>>    clk: berlin: add Synaptics SL2610 clocks and PLLs
+>>    dt-bindings: arm: berlin: add Synaptics SL2610 SoCs and RDK boards
+>>    arm64: dts: synaptics: add SL2610 family SoCs
+>>    arm64: dts: synaptics: add SL2610 family RDK boards
+>>
+>>   .../bindings/arm/marvell,berlin.yaml          |  20 +
+>>   .../soc/synaptics/syna,sl2610-soc-syscon.yaml | 178 ++++
+>>   MAINTAINERS                                   |   8 +
+>>   arch/arm64/Kconfig.platforms                  |   4 +-
+>>   arch/arm64/boot/dts/synaptics/Makefile        |   5 +
+>>   arch/arm64/boot/dts/synaptics/sl2611-rdk.dts  |  16 +
+>>   arch/arm64/boot/dts/synaptics/sl2611.dtsi     | 457 +++++++++++
+>>   arch/arm64/boot/dts/synaptics/sl2613-rdk.dts  |  16 +
+>>   arch/arm64/boot/dts/synaptics/sl2613.dtsi     |  12 +
+>>   arch/arm64/boot/dts/synaptics/sl2615-rdk.dts  |  16 +
+>>   arch/arm64/boot/dts/synaptics/sl2615.dtsi     |  46 ++
+>>   arch/arm64/boot/dts/synaptics/sl2617-rdk.dts  |  16 +
+>>   arch/arm64/boot/dts/synaptics/sl2617.dtsi     |  46 ++
+>>   arch/arm64/boot/dts/synaptics/sl2619-rdk.dts  |  16 +
+>>   arch/arm64/boot/dts/synaptics/sl2619.dtsi     |  44 +
+>>   .../boot/dts/synaptics/sl261x-rdk-common.dtsi | 135 ++++
+>>   drivers/clk/Kconfig                           |   1 +
+>>   drivers/clk/berlin/Kconfig                    |  34 +
+>>   drivers/clk/berlin/Makefile                   |   4 +
+>>   drivers/clk/berlin/clk-sl2610.c               | 360 +++++++++
+>>   drivers/clk/berlin/sl-clk.c                   | 279 +++++++
+>>   drivers/clk/berlin/sl-clk.h                   |  31 +
+>>   drivers/clk/berlin/sl-sysmgr-clk.c            | 241 ++++++
+>>   drivers/clk/berlin/sl-sysmgr-clk.h            |  44 +
+>>   drivers/clk/berlin/sl2610-pll.c               | 145 ++++
+>>   drivers/clk/berlin/sl2610-pll.h               |  14 +
+>>   drivers/pinctrl/berlin/Kconfig                |  16 +
+>>   drivers/pinctrl/berlin/Makefile               |   1 +
+>>   drivers/pinctrl/berlin/berlin.c               | 259 +++++-
+>>   drivers/pinctrl/berlin/berlin.h               |  17 +-
+>>   drivers/pinctrl/berlin/pinctrl-sl2610.c       | 759 ++++++++++++++++++
+>>   drivers/reset/Kconfig                         |  13 +
+>>   drivers/reset/Makefile                        |   1 +
+>>   drivers/reset/reset-sl2610.c                  | 224 ++++++
+>>   drivers/soc/Kconfig                           |   1 +
+>>   drivers/soc/Makefile                          |   1 +
+>>   drivers/soc/synaptics/Kconfig                 |  14 +
+>>   drivers/soc/synaptics/Makefile                |   2 +
+>>   drivers/soc/synaptics/sl2610-syscon.c         |  84 ++
+>>   include/dt-bindings/clock/syna,sl2610.h       | 131 +++
+>>   include/dt-bindings/reset/syna,sl2610-reset.h |  80 ++
+>>   41 files changed, 3771 insertions(+), 20 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2611-rdk.dts
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2611.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2613-rdk.dts
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2613.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2615-rdk.dts
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2615.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2617-rdk.dts
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2617.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2619-rdk.dts
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2619.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/synaptics/sl261x-rdk-common.dtsi
+>>   create mode 100644 drivers/clk/berlin/Kconfig
+>>   create mode 100644 drivers/clk/berlin/clk-sl2610.c
+>>   create mode 100644 drivers/clk/berlin/sl-clk.c
+>>   create mode 100644 drivers/clk/berlin/sl-clk.h
+>>   create mode 100644 drivers/clk/berlin/sl-sysmgr-clk.c
+>>   create mode 100644 drivers/clk/berlin/sl-sysmgr-clk.h
+>>   create mode 100644 drivers/clk/berlin/sl2610-pll.c
+>>   create mode 100644 drivers/clk/berlin/sl2610-pll.h
+>>   create mode 100644 drivers/pinctrl/berlin/pinctrl-sl2610.c
+>>   create mode 100644 drivers/reset/reset-sl2610.c
+>>   create mode 100644 drivers/soc/synaptics/Kconfig
+>>   create mode 100644 drivers/soc/synaptics/Makefile
+>>   create mode 100644 drivers/soc/synaptics/sl2610-syscon.c
+>>   create mode 100644 include/dt-bindings/clock/syna,sl2610.h
+>>   create mode 100644 include/dt-bindings/reset/syna,sl2610-reset.h
+>>
+>> -- 
+>> 2.55.0
+>>
+>>
+> 
 
-- [Medium] The patch hard-codes csum=false in stmmac_xdp_xmit_xdpf()
-  (drivers/net/ethernet/stmicro/stmmac/stmmac_main.c).
-
---
-
-net: stmmac: Disable checksum insertion for XDP frame TX
-
-This commit stops stmmac from requesting hardware checksum insertion for
-frames sent through XDP_TX and ndo_xdp_xmit. It does this by passing false
-as the csum argument to stmmac_prepare_tx_desc() in stmmac_xdp_xmit_xdpf().
-The bugged_jumbo special case is removed because it is no longer needed.
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index 25894771e9e9f..aa73801119be8 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -5284,7 +5284,6 @@ static int stmmac_xdp_xmit_xdpf(struct stmmac_priv *priv, int queue,
->  {
->  	struct skb_shared_info *sinfo = xdp_get_shared_info_from_frame(xdpf);
->  	struct stmmac_tx_queue *tx_q = &priv->dma_conf.tx_queue[queue];
-> -	bool csum = !priv->plat->tx_queues_cfg[queue].coe_unsupported;
-
-[ ... ]
-
-> @@ -5353,7 +5344,7 @@ static int stmmac_xdp_xmit_xdpf(struct stmmac_priv *priv, int queue,
->  		stmmac_set_tx_dma_entry(tx_q, entry, buf_type, dma_addr, len,
->  					dma_map && frag);
->  		stmmac_set_desc_addr(priv, desc, dma_addr);
-> -		stmmac_prepare_tx_desc(priv, desc, !i, len, csum,
-> +		stmmac_prepare_tx_desc(priv, desc, !i, len, false,
->  				       priv->descriptor_mode, !!i, last_frame,
->  				       xdp_get_frame_len(xdpf));
-
-[Severity: Medium]
-Could this break existing XDP setups that rely on the MAC to fix up
-checksums?
-
-Since be8b38a722e6 and 8b278a5b69a2, stmmac_xdp_xmit_xdpf() has asked for
-hardware checksum insertion on every XDP_TX and redirected frame. At first
-it passed true, and since b1eded580ab2 it has passed:
-
-    !priv->plat->tx_queues_cfg[queue].coe_unsupported
-
-Some XDP programs rewrite L3/L4 headers without updating the checksums,
-for example NAT, L4 load balancers that rewrite addresses or ports, and
-encapsulation. On COE-capable dwmac queues these have worked because the
-hardware recomputed the checksums. With csum hard-coded to false, it looks
-like those frames would go out with stale checksums and receivers would
-drop them.
-
-The code change itself seems reasonable, given the stmmac_has_ip_ethertype()
-limitation and the lack of checksum metadata on XDP frames. The concern is
-how the change is labelled.
-
-The commit carries two Fixes: tags pointing at 2021 commits and has no
-stable annotation, so it is likely to be picked up for stable backports.
-The commit message says the packet is sent "with its checksum fields
-unchanged", but it doesn't mention that this changes on-wire behaviour for
-existing users.
-
-For comparison, the earlier commit ecf5985006dd ("net: stmmac: Disable
-unsolicited checksum insertion for AF_XDP TX") made the same kind of change
-on the AF_XDP zero-copy path. That commit included:
-
-    Cc: stable+noautosel@kernel.org # high regression risk
-
-and the note "Applications must supply complete checksums".
-
-Would it make sense to add a similar noautosel annotation here? Should the
-commit message also say that XDP programs must now supply complete
-checksums?
 
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261116134848.4793-1-jszhang%40kernel.org
+Richard Genoud, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
