@@ -2,72 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8A49606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 13:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAC0C606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 13:59:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xT6d6QYE;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=w2yA106F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jKL6iJh9;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=PibSgD/W
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=p8W7nF+8/0GpmdrafluDmhLN8w1Ilw7JEncFQW6UsL4=; b=xT6d6QYEkejkOX
-	h367LCEXYodXsVSUbS16YDKBJnQnpjTyer1FLUahbPi/xPrNgx72rvn0KSIogcZTIGaAS4EDbAUBK
-	aBgs5newlSJb4Bo8VO9V2fuBd6xFAYtxu4SEsZM3U9t4eXGjy0LUtqZE9Hf7dcs+v9vkwkaZ1ZcC4
-	jBi3V7FmzUgdLZXUDhimfMZL/qgDV1yXddQrpQ5x4v5J6RXQQ9JzCCsUNYmQG8ZOnv0FyL9jn/1zZ
-	h0eYet7dsFC6gkZsltGe1zlMiuYlJsdFBu6PhHJ0um2EVhJEGDxUDqsoxxrVWr2KENNbjXYJMg2Qs
-	/2OJrZaWnPIfM7KMg4Kw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=s+BpYLchpa1pf5ajqwxSUuxe/1gF9WVzSXBzO3/xxkc=; b=jKL6iJh9F8EjYf6pZHWIoD64pf
+	tHzJhR/xn4qfxvqNmT1V2x7UHOHnoJh8JQs8v4u4Qz8gSGqjZ4qzs4kwnyR42LYDAexjCoHjgaTcJ
+	zWlY3jKgvqUpCsornG+2PyW2dFYuYJcv/RFX1gJutOt51WQMyPN6wZ8bKsQVt8/KXWDoyyiALkX64
+	I7I5+u48HkgyVFYzPg8AY4U2pCXZeYcAJq3iI2nHMiHeQN+sQqFCRqF7HnVFafwAgFcKp+OEXQgxl
+	vnfVSblWFaPz4lNx2gvazDcAkFNPlQk3T/sJPFokZmjK8AWOIphz3x2D/vGlwdfCF3Ig0HPQQH0Ic
+	+AXIn6CA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTg8K-0000000919P-1Be7;
-	Wed, 18 Nov 2026 13:55:32 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xTgC2-000000091ef-379P;
+	Wed, 18 Nov 2026 13:59:22 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTg8B-0000000914g-1RAA
+	id 1xTgBz-000000091eG-2YAd
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 13:55:24 +0000
+	Wed, 18 Nov 2026 13:59:20 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 75C62C4F77E
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 13:55:26 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id D15BE4E4162A;
+	Wed, 18 Nov 2026 13:59:17 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9F71F5FE9B;
-	Wed, 18 Nov 2026 13:55:21 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AD13D11BC212E;
-	Wed, 18 Nov 2026 14:55:15 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9FAD15FE9B;
+	Wed, 18 Nov 2026 13:59:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6003511BC14FB;
+	Wed, 18 Nov 2026 14:59:10 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795010116; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=p8W7nF+8/0GpmdrafluDmhLN8w1Ilw7JEncFQW6UsL4=;
-	b=w2yA106F/QARJtffg2Mqi/520RwGck5KpeQQ4jvq8fQoIoV0grdRDBCrbv6sRkAKc5tzHi
-	o/HWK/FAYVhWG3AMY+CasirtlljF00E78NOvfi6lqpoJcYRDAshlobSaGTQUXrn6P6S8Ji
-	rG9XdFtiH131BFkbwnGtk8HYbd8sMlMDjjPq0P5aVEnWiIzAcV7J7Q5oBQ2ENGbBCq8hqb
-	O2/X/dMnsabSjnlaKuPKMOk+sQ/fig3Ocgmbfy26JMdDxcwMICCOa5vZYMugY8v0hDzwHk
-	2qE8Jmzt0aaIdmTLvhqW9lq30AvuTXTzqaxHSpy23lMae30lbL7CWKyhgaWNxw==
+	t=1795010352; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=s+BpYLchpa1pf5ajqwxSUuxe/1gF9WVzSXBzO3/xxkc=;
+	b=PibSgD/WM5RFvQx33QLstwvEjIYO03evEsIlyaYPXStLWyKsHsdID6YRjQabtUFFaiygKS
+	xRAffipgYRDrm6Ma/waV3nj94zyfHMAuDL3EY9G4hE+GEnX0Zv27rEA3PgqA5BsnyKXQ8H
+	Ja/Y4ykMxqeKx5cryCsNiqxlPKa7cQIyWuVmYR1ex1zBXiaSkaanY/oJMdu5aWmMx9gQzA
+	LpW6QBllsTboqL70FmWyV658LWImyjcV+Cu+APy3Uw4SDK7ujjXNXIcNVRmy63y4oRC+Cp
+	0eDf+IlLzkterx+5/ID7Kh0AVCamD/abeRlCj7CQZOUj6pPTba+Nto5A+d/iVA==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 18 Nov 2026 14:54:57 +0100
-Subject: [PATCH 3/3] MAINTAINERS: Add myself as Nuvoton MA35D1 SPI
- controller driver maintainer
+Date: Wed, 18 Nov 2026 14:59:04 +0100
+Subject: [PATCH] spi: airoha: Explicitly prevent continuous reads
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-winbond-upstreaming-ma35d1-qspi-cont-read-fix-v1-3-e5066ad2efe3@bootlin.com>
-References: <20261118-winbond-upstreaming-ma35d1-qspi-cont-read-fix-v1-0-e5066ad2efe3@bootlin.com>
-In-Reply-To: <20261118-winbond-upstreaming-ma35d1-qspi-cont-read-fix-v1-0-e5066ad2efe3@bootlin.com>
-To: Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
+Message-Id: <20261118-winbond-upstreaming-airoha-cont-read-v1-1-acc0b6410868@bootlin.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2NQQ6CQAwAv0J6tgktiaBfMR6W3QI92CVdUBPC3
+ 914nDnMHFDEVQrcmwNc3lo0WwW6NBCXYLOgpsrALV+JaMCP2pgt4b6WzSW81GYM6nkJGLNtWF1
+ C6joeeh5vPUeoqdVl0u9/83ie5w8xLwqEdgAAAA==
+X-Change-ID: 20261118-winbond-upstreaming-airoha-cont-read-1332872b972c
+To: Lorenzo Bianconi <lorenzo@kernel.org>, Ray Liu <ray.liu@airoha.com>, 
  Mark Brown <broonie@kernel.org>
 Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Steam Lin <stlin2@winbond.com>, linux-spi@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Miquel Raynal <miquel.raynal@bootlin.com>
+ Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>, 
+ linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_055523_556272_4E7A48A6 
-X-CRM114-Status: UNSURE (   9.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261118_055919_802163_0BD7CDB0 
+X-CRM114-Status: GOOD (  11.17  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,37 +87,50 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-I have the platform, I currently use it for my developpements and
-therefore I care about the clock controller driver and the SPI
-controller driver not being constantly broken. I would like to step up
-to help the Nuvoton team (not visible in the diff since they created
-an MA35D1 catch-all entry) in the maintaince of this driver.
+The SPI NAND core currently treats the lack of "large reads" as an
+indication that continuous reads might not be properly supported, but
+this is fragile and might evolve. The real problem with the Airoha
+controller is that it lacks full control over its CS, which may be
+spuriously deasserted. We now have a flag for this, so set it and make
+it clear that this controller is not suitable for continuous reading, at
+least with chips processing a CS deassertion as an end of read
+condition.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/spi/spi-airoha-snfi.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 93abbb315065..cfceb0a635dc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19982,6 +19982,13 @@ F:	drivers/nubus/
- F:	include/linux/nubus.h
- F:	include/uapi/linux/nubus.h
+diff --git a/drivers/spi/spi-airoha-snfi.c b/drivers/spi/spi-airoha-snfi.c
+index 95bfde7c8e7f..1070d4697fcb 100644
+--- a/drivers/spi/spi-airoha-snfi.c
++++ b/drivers/spi/spi-airoha-snfi.c
+@@ -1018,6 +1018,10 @@ static const struct spi_controller_mem_ops airoha_snand_nodma_mem_ops = {
+ 	.exec_op = airoha_snand_exec_op,
+ };
  
-+NUVOTON MA35D1 SPI CONTROLLER DRIVER
-+M:	Miquel Raynal <miquel.raynal@bootlin.com>
-+L:	linux-spi@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/spi/nuvoton,ma35d1-qspi.yaml
-+F:	drivers/spi/spi-ma35d1-qspi.c
++static const struct spi_controller_mem_caps airoha_snand_mem_caps = {
++	.no_cs_assertion = true,
++};
 +
- NUVOTON NCT6694 MFD DRIVER
- M:	Ming Yu <tmyu0@nuvoton.com>
- S:	Supported
+ static int airoha_snand_setup(struct spi_device *spi)
+ {
+ 	struct airoha_snand_ctrl *as_ctrl;
+@@ -1121,6 +1125,7 @@ static int airoha_snand_probe(struct platform_device *pdev)
+ 	ctrl->num_chipselect = 2;
+ 	ctrl->mem_ops = dma_enable ? &airoha_snand_mem_ops
+ 				   : &airoha_snand_nodma_mem_ops;
++	ctrl->mem_caps = &airoha_snand_mem_caps;
+ 	ctrl->bits_per_word_mask = SPI_BPW_MASK(8);
+ 	ctrl->mode_bits = SPI_RX_DUAL;
+ 	ctrl->setup = airoha_snand_setup;
 
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261118-winbond-upstreaming-airoha-cont-read-1332872b972c
+
+Best regards,
 -- 
-2.56.0
+Miquel Raynal <miquel.raynal@bootlin.com>
 
 
