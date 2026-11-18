@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 385EF606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 21:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41FD9606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 21:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BLP6vKPt;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WVchp0/w
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bawiayFu;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=USA++iVm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=PLbFsZjlW9Fgd0b7uazzqvhlWAMluE6KMHEmsSBUhsY=; b=BLP6vKPtEOJON6Zqc3b5jf3U6e
-	00VjaBrzvE+DMSG+JAaaHhMJ4kPiyfIxdOuupolSFthLrRP8ACRjOmMuMKDM5LqU33bCdb6P48yAT
-	dcJM+gVFNoiNdkAlzM6t0Ip1JPhb5Z0GwpOaEIl8dVfiemDdVRWxwr3DUkhKV4rid875X14vwGpI3
-	rN6DH/AG+byTT2QWWOYnS5G02Nlw0LvNQEEu8ARFgm5tTIk69lNQgGsGAxBWpIRy8VQSQeREZlB4u
-	stgz8bnSWYkPIH2LBOJkCsRZTIaPA820mc/4+fSgdIsm3Ftcu0RWzag45CadkpyMXsDT/mUXznif8
-	AbBkiSTw==;
+	bh=Ub5FGgymBIHQ/4R5fQ4sm6HAhxGJYj6EuFKbouwlUbU=; b=bawiayFuWuTXTbtv8pvwu+NtRo
+	edRjBZc3tTsxXqdR5cqf9z4vCnDSLH2btzmzzJ3JhcLXk35OBsVggTKHdGpL3fDfKnXnAfYqZBVnN
+	6wejwdq1HFoP/mPnj0k8DE6a0mQWelJH/HcYhLmcjyFbrnkEHVPxai8LsluORoJODOWumqBhgLZ79
+	AZUKTAj0sBAtUjggoCFZV58E26HZTKRr/xtQI/5YWAJnAdmCLr1PyRK/c7511OAB1rtt6rCQTVSs6
+	+iWeV/FvkQz3VU4HYLFlNdVBmryCLsDc7m9kitEZG2bz5p4/DnJQs1LoiNLpG58dxOU/xOW8Wyy0Y
+	F48Hr3Gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTnTq-0000000ALiA-1Lls;
-	Wed, 18 Nov 2026 21:46:14 +0000
+	id 1xTnUD-0000000ALxl-0MeK;
+	Wed, 18 Nov 2026 21:46:37 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTnTp-0000000ALhP-1dkg;
-	Wed, 18 Nov 2026 21:46:13 +0000
+	id 1xTnTp-0000000ALhf-4ANg;
+	Wed, 18 Nov 2026 21:46:14 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CD4DF63EF2;
-	Wed, 18 Nov 2026 21:46:12 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 5F3BA63EF6;
+	Wed, 18 Nov 2026 21:46:13 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795038372;
-	b=U2RRlYd/jgBAVflnzxa1eeNr/jv8JqH50al/LFymeEau6VH9HH6S6nAp1RRZZ3TRGqb8
-	 Clrt95iOdY07NnweNfIOmzYUZuuWja1XFj+YYWgi8ruHJz0+PIj7CV/TyuwzU4kbyw0h7
-	 OFeXGGgqc8eq5qOhbY6hxwgOwiurGA/aIfbD6M32cEeN9Ege2kTME1jXWSiyLCSAMNDal
-	 I35upFRGvAc+hfzuSfUJLdxy4e2X9XMJQxWyt10QGS0jS5ql4mp+ykgMgDTr3VhzDzc7P
-	 LUxtEAS/EvvrE8jyOkNznl+MMWcRkU7TcOINDI/oa0+SzUwF8aYIL2kk7o1S1g0mHUw==
+	t=1795038373;
+	b=Crl3x4yV9K7Bo8go0ZfcXFlHr95VOAGQyCc5puae5/f/mbmKTHnfUPTxXAsOzLUDHcv6
+	 x4OpyBsm1G6H5SU1u3PQItauQOZVbDkYpyqvaT8yTKRU8/gcRWpE8ethJMMbg3n3M5hoO
+	 dcO90LN8fIWV9qRhPzkQ273JRxLgOqrxonvIZDTq4IXBCQNJPBSahx0A5bui5WjW3/cbN
+	 NWMgtoQI/2sqYBHzUj4HWHHThOYm8GNBsIZj+9D3EPlVUderRaxWTvTg8SLpJB1RcXeSg
+	 /cUyxafyIQ4U/E3dl/HFIefxGDop2aP10HAloR8ev1VINjyoSYk/mtzxXdvsSJcKXsA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795038372;
+	c=relaxed/relaxed; t=1795038373;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=PLbFsZjlW9Fgd0b7uazzqvhlWAMluE6KMHEmsSBUhsY=;
-	b=KxNPn8luUb+MDZ0dx5PE6ZfVWqfq//AgFvGZGwRFmiUXIEtOQ5SIDJMme+z5UX9WG4qp
-	 HlovW8hjG7BDXnImULC+8+2DNWk+tBNnJ/Ybz+QRJrEkJndeTTyQOBRh2/hZx3Tn2KAhJ
-	 2gSnpahf+iYirbTBfz4Mh/PQX9M5NuWfE9s4293ag+B8FIJ9Nw5ZMjrTd5rpwUH4ilMx6
-	 iyw149yxAZlqeixeizlNeEiPmtXE3JuAKQqRy6G5Q5VHWUw4ZT09xE3ZkyWqaMol5eQsP
-	 TnUKl8C8YgY1AViuVLPdc1hx4B2g7YOuzdmo5JAsEqukPnffDVOZVxI9hT2xnthfevA==
+	bh=Ub5FGgymBIHQ/4R5fQ4sm6HAhxGJYj6EuFKbouwlUbU=;
+	b=nGGxKkZmi53bb29v3XH5I/iPVvDjoGAE2SiYTqyBqmn+TJvckGK0zLg66+ZPVhyT9vgw
+	 mKbbjBPEDeViT82TvOkiMASUGVXQQNwDjvAO7cLV6Rgj+Z3W6ev7sEDL4QWlE6cC3Wgwc
+	 b0t9F6rNzNvB29MwY+ynCb/qO0T7CGKGr+LOQ4WP6KKT3qP/AZiIn65GcbYKPYeIBkeyK
+	 vfUJd0xomYFDAtwhjSej1+eAZTm6d81eHHTHYBe/vLLHrghRywjItBt6iKYecV6rKabEm
+	 20QDWVPGUYBVMt+/4ARFfdYv+TvGNCEd/f6IcBFZHCWBVRMRX0gA9Bxe7fgQbg63+ow==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 031241F000C4;
+	by smtp.kernel.org (Postfix) with ESMTPS id 0823F1F000C6;
 	Wed, 18 Nov 2026 21:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795038372;
-	bh=PLbFsZjlW9Fgd0b7uazzqvhlWAMluE6KMHEmsSBUhsY=;
+	s=k20260515; t=1795038373;
+	bh=Ub5FGgymBIHQ/4R5fQ4sm6HAhxGJYj6EuFKbouwlUbU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=WVchp0/w4K2OY6jU1p2fTFghGq6MXmIxpnh/AInNa6mdAhxpBXFDcvz1MbORjbPrT
-	 XxiDgJUv2Q/ndcO3uiVPGRGUezI0GBZIAq0FVE11b8izFrR52xpRqGKPniZcTVYTGn
-	 d3Mg2EV7wjot1XAoTAcl8ccFbm7q62VAsoBESLiRk0VZp92KCmjKCOnbvC+Fu0PhDx
-	 1yCPcBP1Zjqf5pTS+kGnVAie6Aq+X/1dHtQ9h2yaZ7SCFNTNGjbyVvF6YcmEYTCDAk
-	 Jueh7ncrBxeGLFsR/9k3HEe4w8lSbFQ4BDTi6m/0XuUJDXGtLYM/NLOrM/gwz0TEzk
-	 pHFFZiEbH+UPQ==
+	b=USA++iVmokDbfAysQ5onjaOXhvCS9xdjcVh2JBM0M/6CgfrW6KFy+IAF1UFRvljJ5
+	 mDCCKqVDQYUatAHIojwDqHlhALn+ASBE8Ty+RN80ru2vx+/n/HlT2zYcYeYEVqH8Tp
+	 2sl6oAPtsUyZvmjzJ++Nz4z6dShsVaFdsAnLCmvGl3E+NNfQ1NTN2lZxs3IMWd1kcy
+	 E3/S1XcPFdZbMpEnoH3rcUWGoa05Ek9j0kpBffdTrHev/SNHyB+2nu+DuBWuSQcMAV
+	 ZFfRvSxl+crNrniMFslZxIg6qYTNIK56CW2f/AlQ8pMMZrrraRecgQkSUavf3a0zs+
+	 7Y16MbBeM2BjA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 768344AFCF;
+	by lkml.kernel.org (Postfix) with ESMTP id 8CCCC4AFD1;
 	Wed, 18 Nov 2026 21:46:11 +0000 (UTC)
 From: Joachim Eastwood via B4 Relay <devnull+joachim.eastwood.gmail.com@kernel.org>
-Date: Wed, 18 Nov 2026 22:45:28 +0100
-Subject: [PATCH 1/4] drm/bridge: synopsys: dw-hdmi-qp: Propagate the bus
- format to the bridge input
+Date: Wed, 18 Nov 2026 22:45:29 +0100
+Subject: [PATCH 2/4] drm/bridge: synopsys: dw-hdmi-qp: Attach the next
+ bridge in the chain
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261118-dw-hdmi-qp-bridge_attach-v1-1-e370920bc7f3@gmail.com>
+Message-Id: <20261118-dw-hdmi-qp-bridge_attach-v1-2-e370920bc7f3@gmail.com>
 References: <20261118-dw-hdmi-qp-bridge_attach-v1-0-e370920bc7f3@gmail.com>
 In-Reply-To: <20261118-dw-hdmi-qp-bridge_attach-v1-0-e370920bc7f3@gmail.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -100,11 +100,11 @@ Cc: dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  Joachim Eastwood <joachim.eastwood@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795038370; l=1192;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795038370; l=2517;
  i=joachim.eastwood@gmail.com; s=20260701; h=from:subject:message-id;
- bh=nDJvSyZzGdE5qngozS/m2hFt6NKpTw1uO/xm8cw5j3s=;
- b=JFd+Zi0dC98JQcizj9hNwpmDvrJlcpUfvhPeVkS2AWTJFlVRJpK98ox/5bgN8QespKtpcmmpM
- tOKQMAg02ILBPLPcTg/EUCrZ005csilIyVwrppOhgIXsgRm7EEs5Kme
+ bh=1lj8+1BKN4Nmy9uS7g9V3h/v7ntQIcakt96ADfZAy+E=;
+ b=qq32ej2OwuLI/6OrZU8KxRARx2vkpz9KS9rNSkIXUhwn2XNIS7+VOH1ZX6Rl+Vc7M/OvdOdHH
+ E5qFVxvmA1HCsi5jMmSESIPXKvWfeo2N8U7fvzw7LjmNPZ7lQWSvd9k
 X-Developer-Key: i=joachim.eastwood@gmail.com; a=ed25519;
  pk=ZN/8xWtdYaSd5oEfloYSZ1a+/ri0n0VZqjlEeHlbXFU=
 X-Endpoint-Received: by B4 Relay for joachim.eastwood@gmail.com/20260701
@@ -132,28 +132,73 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Joachim Eastwood <joachim.eastwood@gmail.com>
 
-Propagate the output format to the input, so the negotiated format is
-available no matter what follows the bridge. There is no functional
-change when dw-hdmi-qp is the last bridge, as the glue already uses the
-output format in that case.
+Implement the drm_bridge_funcs attach function so dw-hdmi-qp will attach
+to the next bridge in the chain. This will allow the properties on the
+next bridge be used. In the case of hdmi-connector this will make
+properties like ddc-i2c-bus and hpd-gpios can override the on-chip
+functions in dw-hdmi-qp.
 
 Signed-off-by: Joachim Eastwood <joachim.eastwood@gmail.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 30 ++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-index 9842209288369..eed249aca1e23 100644
+index eed249aca1e23..200229e5d9afc 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-@@ -1026,6 +1026,7 @@ static void dw_hdmi_qp_bridge_hpd_disable(struct drm_bridge *bridge)
+@@ -16,6 +16,7 @@
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/of.h>
++#include <linux/of_graph.h>
  
+ #include <drm/bridge/dw_hdmi_qp.h>
+ #include <drm/display/drm_hdmi_helper.h>
+@@ -39,6 +40,9 @@
+ #define DDC_CI_ADDR		0x37
+ #define DDC_SEGMENT_ADDR	0x30
+ 
++/* OF graph port carrying the output towards the HDMI connector */
++#define DW_HDMI_QP_OUTPUT_PORT	1
++
+ struct dw_hdmi_qp_i2c {
+ 	struct i2c_adapter	adap;
+ 
+@@ -1024,7 +1028,33 @@ static void dw_hdmi_qp_bridge_hpd_disable(struct drm_bridge *bridge)
+ 		hdmi->phy.ops->disable_hpd(hdmi, hdmi->phy.data);
+ }
+ 
++static int dw_hdmi_qp_bridge_attach(struct drm_bridge *bridge,
++				    struct drm_encoder *encoder,
++				    enum drm_bridge_attach_flags flags)
++{
++	struct dw_hdmi_qp *hdmi = bridge->driver_private;
++	struct device_node *remote __free(device_node) =
++		of_graph_get_remote_node(hdmi->dev->of_node,
++					 DW_HDMI_QP_OUTPUT_PORT, -1);
++
++	/*
++	 * The HDMI connector node is optional. When present, chain its bridge
++	 * so that properties such as ddc-i2c-bus, hpd-gpios and supplies are
++	 * honoured by the DRM bridge connector.
++	 */
++	if (!remote)
++		return 0;
++
++	struct drm_bridge *next_bridge __free(drm_bridge_put) =
++		of_drm_find_and_get_bridge(remote);
++	if (!next_bridge)
++		return -EPROBE_DEFER;
++
++	return drm_bridge_attach(encoder, next_bridge, bridge, flags);
++}
++
  static const struct drm_bridge_funcs dw_hdmi_qp_bridge_funcs = {
++	.attach = dw_hdmi_qp_bridge_attach,
  	.atomic_get_output_bus_fmts = drm_atomic_helper_bridge_get_hdmi_output_bus_fmts,
-+	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
+ 	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
  	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
- 	.atomic_create_state = drm_atomic_helper_bridge_create_state,
 
 -- 
 2.56.0
