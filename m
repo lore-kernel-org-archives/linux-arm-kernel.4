@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254C4606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF33D606C3E9
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S0CX+gII;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=bVLM09yF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2AUhgX3h;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=YgeOU+V1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9rbmVMuhauk6RT7/BuxdWNH6HE9Yom6LLFGVubFIKV0=; b=S0CX+gII1DHYWw
-	JVD3XCC2TgvM/T6JYlVk1cDVRtbbhVNi+yIxTyKTG0pdJ2KqTlbYXrGBRpWtyoyo5Irna6ddxREC1
-	gnSe/ltAJWMiL5jbWpP4S6VjJz7tbcLlh6sGvWqNZYgNMokHa94LvggInrQgroPmuEb/OGU1LTypu
-	gmFhq098SRZSUEx4K2HrK//Og8vBfrRTq4nxbiJCDlmBs9Rc/C/SEINzYZHqQLYvblrpMIJHuqm+8
-	AQbBIFYHg4S2bMIXwcM7cv5BIbupUdafEVuqXtv4ivNJSEmB99tPKkowCxs/U5bhHRlASXWi64jCw
-	OsVx6EX2OHzD8M+TfLeQ==;
+	List-Owner; bh=XqjkmMfgNZGBMzqUNuESUkbxBno+SUpnXC2EkRATNvQ=; b=2AUhgX3hFx6Cip
+	KRkxdvngPQmYIr7vneQJ1ODSjHi+QnGPrzFfRBKA1xY5AfV619cL3WwhXP6nWP5mLU2Sq6XVgLjxu
+	6aSATYMmqJJNmo/Hl2qqnmMrBGN/d0BTyiLAHqmXpAN6RHIkMHH8CC5EGHviJxLP6CWbXjIzGXQha
+	8wHQgG5j+pO1TBvi3yaMrTDOfQMcLyazyvhUpecEgiTvtyGo0UITgeQG/uSNmYQ4pr9npubaxwkcX
+	9GwduLFv/XvJzCT04E7dXU4FzxR3U2kVKAqHMYeNfG1kbAB+amtenNy49q23pIbU1vz4hez/+bZku
+	HYsJkFgM1q8xXrkwAy5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXr-00000009UAG-1zRa;
-	Wed, 18 Nov 2026 16:30:03 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1xTiXv-00000009UGG-2hGq;
+	Wed, 18 Nov 2026 16:30:07 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXm-00000009U2E-3VRJ
+	id 1xTiXn-00000009U2u-3lIP
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:29:59 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-48b001cd92bso728638f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:29:57 -0800 (PST)
+	Wed, 18 Nov 2026 16:30:01 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-497614c95f0so736427f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:29:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795019396; x=1795624196; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795019397; x=1795624197; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=9rbmVMuhauk6RT7/BuxdWNH6HE9Yom6LLFGVubFIKV0=;
-        b=bVLM09yF8r1j2P3wHUBqk+uK1BGhmk0S298Gw35CHxzgDyFfG3NvlQ53qB+0fvys8u
-         rWblOiTa8+MiM69OdvDZU5R5H19t5i+pzz8RQUhZFnvnLmyW4CX8YQy1rwO36EWeBFbT
-         cqSgljGO+xHzSv8SYiiDHiDgnv9O3EXOmgH5tMlaqYTj65qCxUxxkLD69IkGA7Z2DRF8
-         pLPs72aeF5gfaP5m9cKOIRsT8zL/IDMMyk1DWwrxGD1Hbq7HOAj7TOwxY6T4ms/6osAu
-         bIBjKsbMikgGVSKqQ8p96uPJ99URkxmMky/FMQV4/9R6FcI1dYnEW3hTUU3IxpeNqvLv
-         xOuQ==
+        bh=XqjkmMfgNZGBMzqUNuESUkbxBno+SUpnXC2EkRATNvQ=;
+        b=YgeOU+V136kid/apnyKbf7hvkHdylUshRM3Stz4gM6jpbDdW2SqcQLtg9MpVAuVg8Q
+         7Qy6sFSeO4mHrYtdnJhzXYHJ+JI09PNnKDznkPMrQYFPxnX1AB7Q4HY47SrJHr+OKKqm
+         tXUUxr2cCrllViJQXPG8WWSpGUc09slviEESntUuKp691j54bSJe8iXAzpUDwMSvjdxk
+         qst5+QR7odjeaGrLRkgaR/4TOZK41nxHj5aQcGSDqsLPDi2KuCR8vmjCxpX5sleez9WU
+         ksClPV1B9yS6hWF/46VGUlageiRAQauhlnaVE1jEENqhxgo1EdcGIWSlslRdUcp1Bgdw
+         e3Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795019396; x=1795624196;
+        d=1e100.net; s=20260707; t=1795019397; x=1795624197;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=9rbmVMuhauk6RT7/BuxdWNH6HE9Yom6LLFGVubFIKV0=;
-        b=LlrMFObDCV6G+56JFtZbcAK9H0xPj/9E128/oknMaT3Flvt++fpsYeGMzGLeGI0gH1
-         Z7xYYjqAHC+SWLx4Fid5TmOJ3N6lwAKYYNWrIAi1IIEBr+FQ5KbtJRz7AIhnGsXGrq1g
-         Kb1RYla3oztn/l977j9qiWTHg/1wBM3A5TuKCSfiCOkHnN84XIphGvCjKO2dHax+NPTf
-         e1naNh0H/2yqkGqdXpINcKVBtv4H++D+yPquImqfSSUzyw9OyBOMp9QKLVdUkbMh5Fe5
-         Tg+2PLo7nNm+sEO6QKQswRB+/0TYlzC/15tB5K970gtt3flMYSm+DFhIFeeV+TnMu2Bl
-         rOjw==
-X-Forwarded-Encrypted: i=1; AL+hErHd4c9fAjJf9932uoN2PwJsL0GVdJBw6xiouvVO3QTRxvlu6h57Um4gWcNjYHqIEbdAXS8aVgRBIKWajPezCXwx@lists.infradead.org
-X-Gm-Message-State: APuU4Z+7+YuqKzpp35lsyPhTys7zvZpQ7OEHxu6rmFIx4vk+ENo+P3RE
-	FnGya7g63i3ReavNjbfR4x71laP0HuH7x6nR8rBlZFgtj4fzo0gh9GQBsHjA1esq2ck=
-X-Gm-Gg: AZFdTZcwDKUEsTMdbibwm7EST+8ZIfpNQQFqSaqhkKDxArBlasThuNRC4alh3ogRDG6
-	FQthG73O99l0Tlt+Iz4faFo+R/rjpoa6cu1NGz+BWRyyk6GZm0USLsLWeLQ6yvPCRvQ1akX5+yD
-	IM9qDYiH3KClM2qL8iJw5Veqinr+jyeB/MylUxTLsNZWP9QJPhZQZb7rpgfLGKbEfpitAku8aqq
-	sLUTvPqHEVyTFiLWB35zTHF7Z70gIYUz5DVNNTPz/RNNlmtwYazSyVBDu3cFX/nriUtrm6yiBi5
-	oTMb2hbAUOfBmy6fU5CkkhK5Ff/i1yDakjD4ZGdFwFUyRW9KW0lR+IZLY1+ZWHL5bp6XbIJGjej
-	pm8Uz/t9FGm6f1Cx/R1BL+B4LO1pFHxM9yfh4fI2WwOTItHPud6FiAp6m3Jc3BsLxezErpVuifi
-	hD37lRcoh28zdaaNbMiAio6RmuUsYymZsXhTeeTg4wnSgHJmEVm7eRI/iVn1X/y3sbDmGjNHnpd
-	wIMaa0uU8fkIfQ/zTCGKS8BKbXD5H2kv5DX4ZkXRF4kjq23twg8XoyNGHVkMHHJdXtXhvTDF/RB
-	CYtzf0MWenOrTnuJ3raFEdwZJsQCcasp
-X-Received: by 2002:a5d:5888:0:b0:48f:bc59:ab9c with SMTP id ffacd0b85a97d-4a638338280mr6254961f8f.12.1795019396217;
-        Wed, 18 Nov 2026 08:29:56 -0800 (PST)
+        bh=XqjkmMfgNZGBMzqUNuESUkbxBno+SUpnXC2EkRATNvQ=;
+        b=lp77GYq0LESp5ts1Nm/MG0U9p77tAfMMYUJM0s4ANDwza9RWLrIpv4YEUW8gNtUjhP
+         Vbi2vMxfVku3bicGpGVXsoD8rpOICCo7IrDJz5BRWY4/bLaUS5zU1tP2bPQaVHIdLzhY
+         NZPFaVpJg2ITCeZoo0hhZtXBzD/AjzKRWXJb5S+S6TqHLIxwdcLSsD8mBV4FZocLBWUD
+         quHHVkb0zt5BKgcLD5QlVp0sUB+4SsGlgYmRyLc+b3HRtfIcPkbJ104F38srywZc7zfe
+         ag+H87HCe50g3OmU6vDIQPF1IMmwqJIdsGd7qB6+/ZLk2h5rdIkRPqOgrPPcbR88l3Ez
+         BWTw==
+X-Forwarded-Encrypted: i=1; AL+hErFlZQiPsdX2TwAMCdSSYwtBqXLJEnxniSxJpOJQSaCfoYyg1BETFyvfMEyscpMp3mnHAt3EE5+Dv9V6v6By/jQ8@lists.infradead.org
+X-Gm-Message-State: APuU4Z8XYGVfB/sPZEEIYPP1NnjNca/2zQm9Am4Voz3RE497g7NGrGUB
+	B6mAzAa/yUgjV4eVnVhLtm/FLBAyUdT7CoU12IgWg4JRJOxg6MVBCRJcaA0bDNsqHZU=
+X-Gm-Gg: AYBFou2yuOhL/Uffyd4sTbchIkS71igbrnv7gJpSplvllK9207CaYeKPIZ1iUeEHjRc
+	12zTsBZNl564qmFyDdtZdUvakOu3vPKlHnac+oCoLkHIyoDvGqvfeYl+IbXuhc42ejDY6ELz0Bl
+	CcSa2f9ffqjCBs+mJYog6O/c3+jRUJ5WKJ2/MELMkrJfQ91e4yJeGBBvd5tCItL5hkv03uAkCeC
+	EDsemLgYBgO6TX1/IfkUk7IsPvFtpSEko3atzh4cf4hHW0MiK0dZwDaw85t04LJsZt1fKoXtF7U
+	asGicPKT8rVE/5Hnnr6eiyfjDfWrAApfYl+5QbgzsYgqkOpHzqt7wo6CDLcU5LwyvZX/XQQ0hpP
+	R4jaslNWE05b8TQj6Lktq2TgTFDOfxZ5IPjz9ey6l9L2cZH02Xl2FUUe9B/kKV+sq+VFlI73yft
+	eduhgQ/17zYvxzV6vObWsDatCw/hWgsVxAqssY2152QZCUCWFSqbvIVlASjO5WQfEFkR5NE6r/r
+	0vzWUnXebTtAyWOEd6142069LFV5h5UJEHMGnq2TNbovVjDB8WUvasg4eZ6pH/+pUBtj3FO+KEW
+	hyprbc9IrDMj4VzKIwE7CbJjOYQ9VoLK
+X-Received: by 2002:a05:600c:83ca:b0:4bb:60b1:4409 with SMTP id 5b1f17b1804b1-4bb7da26fb7mr62550495e9.19.1795019397271;
+        Wed, 18 Nov 2026 08:29:57 -0800 (PST)
 Received: from pop-os.local ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.55
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 08:29:55 -0800 (PST)
+        Wed, 18 Nov 2026 08:29:56 -0800 (PST)
 From: James Clark <james.clark@linaro.org>
-Date: Wed, 18 Nov 2026 16:29:30 +0000
-Subject: [PATCH 08/34] perf cs-etm: arm-spe: Use arch timestamp in HW
- tracers
+Date: Wed, 18 Nov 2026 16:29:31 +0000
+Subject: [PATCH 09/34] perf cs-etm: arm-spe: Report error if default clock
+ isn't used
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-james-coresight-jit-v1-8-dad4d90747f6@linaro.org>
+Message-Id: <20261118-james-coresight-jit-v1-9-dad4d90747f6@linaro.org>
 References: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 In-Reply-To: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 To: Arnaldo Carvalho de Melo <acme@kernel.org>, 
@@ -95,8 +95,8 @@ Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_082958_929803_DEE5DD69 
-X-CRM114-Status: GOOD (  10.59  )
+X-CRM114-CacheID: sfid-20261118_082959_969655_9621EB21 
+X-CRM114-Status: GOOD (  13.72  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -116,47 +116,45 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-To allow the JIT dump records to be correlated with the HW timestamp in
-trace, set JITDUMP_USE_ARCH_TIMESTAMP.
+Coresight already reported an error if a different clock was used, but
+this also applies to SPE so add the same error there.
 
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- tools/perf/arch/arm/util/cs-etm.c    | 5 +++++
- tools/perf/arch/arm64/util/arm-spe.c | 5 +++++
- 2 files changed, 10 insertions(+)
+ tools/perf/arch/arm/util/cs-etm.c    | 2 +-
+ tools/perf/arch/arm64/util/arm-spe.c | 6 ++++++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/tools/perf/arch/arm/util/cs-etm.c b/tools/perf/arch/arm/util/cs-etm.c
-index 84a5d7392a5f..809da6f1a892 100644
+index 809da6f1a892..5a64c17cf254 100644
 --- a/tools/perf/arch/arm/util/cs-etm.c
 +++ b/tools/perf/arch/arm/util/cs-etm.c
-@@ -909,6 +909,11 @@ struct auxtrace_record *cs_etm_record_init(int *err)
- 		goto out;
- 	}
+@@ -365,7 +365,7 @@ static int cs_etm_recording_options(struct auxtrace_record *itr,
+ 		return ret;
  
-+	if (setenv("JITDUMP_USE_ARCH_TIMESTAMP", "1", 1)) {
-+		*err = -errno;
-+		return NULL;
-+	}
-+
- 	ptr = zalloc(sizeof(struct cs_etm_recording));
- 	if (!ptr) {
- 		*err = -ENOMEM;
+ 	if (opts->use_clockid) {
+-		pr_err("Cannot use clockid (-k option) with %s\n",
++		pr_err("Cannot use clockid (-k option) with %s, can only correlate samples with the default clock.\n",
+ 		       CORESIGHT_ETM_PMU_NAME);
+ 		return -EINVAL;
+ 	}
 diff --git a/tools/perf/arch/arm64/util/arm-spe.c b/tools/perf/arch/arm64/util/arm-spe.c
-index 8d6a2bde2892..53899c7de846 100644
+index 53899c7de846..834419f04617 100644
 --- a/tools/perf/arch/arm64/util/arm-spe.c
 +++ b/tools/perf/arch/arm64/util/arm-spe.c
-@@ -521,6 +521,11 @@ struct auxtrace_record *arm_spe_recording_init(int *err,
- 		return NULL;
+@@ -416,6 +416,12 @@ static int arm_spe_recording_options(struct auxtrace_record *itr,
+ 				       evsel->pmu->name);
+ 				return -EINVAL;
+ 			}
++
++			if (opts->use_clockid) {
++				pr_err("Cannot use clockid (-k option) with %s, can only correlate samples with the default clock.\n",
++				       evsel->pmu->name);
++				return -EINVAL;
++			}
+ 		}
  	}
  
-+	if (setenv("JITDUMP_USE_ARCH_TIMESTAMP", "1", 1)) {
-+		*err = -errno;
-+		return NULL;
-+	}
-+
- 	sper = zalloc(sizeof(struct arm_spe_recording));
- 	if (!sper) {
- 		*err = -ENOMEM;
 
 -- 
 2.43.0
