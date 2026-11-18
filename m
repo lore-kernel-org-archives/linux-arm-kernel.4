@@ -2,91 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02E5606A890
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 09:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C3F606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 09:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bYvZ/D9S;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=X1pWf1Xo;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DlSl4ORP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Vwod7mtF;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hzDhmOnd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=UCFK2XrxT4aYumhmLixld0RBAVN3HTGK74ZaNmsbpF8=; b=bYvZ/D9SHC+Jn6SJa/Ei2cP7jG
-	MKOf3HhFYuLz5i6wf1ZUlxkJGxnSauwIZHg60RGoUZkfeaOOeuBmXT6vatZE8id3fpIyBPGsdKNw8
-	NgJPSnnYtWGxhpLvyYg1eX5uppOE+MvwVBInoNK2/o8K29N8Gjo9iGlxnhSRtXW2t8u79F7y8C7qY
-	BQAJPvCIS3fVsADIkAGAsWAecx7HpNYDkQqLIwOSdc4Th7WDIgsp45fi3zNSVKX2FGKRSlWPlt/pt
-	mlhvO2qjswgHZvPVmqX4hQzAFOObMkyy/Ml7HbVXVTSuavbP/lK60BSFQn2DI5yJc0QQiqIUjd78Q
-	IOrfmFxQ==;
+	bh=6kMD1fNj6wzaHQZY5xqzyLpbzOdBgDw5LurfM0uInyg=; b=Vwod7mtFmTJLzpU2W+tkBPfVzS
+	jl/NnhMBuTJyMnko7RKmBVH1AeyC3xFgwCftZcbyaJMVwYKSm1oF/5bRbnYVHliFrid5rN1Rx3sFy
+	SPRbOdD3NCqhAlzayLxKNnj3JUnZZZLgc4IwsG2KlvXkbX/hwellkDFYKk2IJjXstmTFCrrt3Amuv
+	qthALbohouK8EjKUEwU6YI8qdZXsxkApim+yvbbcBRT9oqxjA3US8QuyUKBQBU5j22kson66PURue
+	KaqypjX6wx2hJSfthH36Nmix2E7+Oy7aORPOnC6puj6h/EzMbeo/nlVBAMWbJalGcRo3TtiO/0nD8
+	0GbNe9rA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTbg4-00000008IAE-2Q0m;
-	Wed, 18 Nov 2026 09:10:04 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xTbhp-00000008INh-064Y;
+	Wed, 18 Nov 2026 09:11:53 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTbfq-00000008I7x-0iEB
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 18 Nov 2026 09:09:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=UCFK2XrxT4aYumhmLixld0RBAVN3HTGK74ZaNmsbpF8=; b=X1pWf1XoqjoElafOaNmNn6+xMS
-	ZjS5sBJDUO+T6E2nAztSSLNu/gmq+o8wZ+lfSoLkzOtaBOJWiY3jTEX0JMFOqw6k45BG+KAweckNA
-	hwZ2vjIJ/U43Tn2Qt2edJCFafeAro5jLjjHdKH+AF05f237ivVWmyTTDcaan4JGekJ6MojaQJn9Ur
-	e72YqRlObBh28Uif1AAYq/qubR0dWO3f6VF7sngvDSv3D18RBb+M3cnfcO6H7KpmwkVOVYpKPXlMr
-	3P1r8jieM61QozKcUk91ysWLy2d77WACIenFSzH8WJQlXNdMv9lZngvr2ooDVp7Nlx83JxAlKN3f2
-	uYrCFEqA==;
-Received: from foss.arm.com ([217.140.110.172])
-	by desiato.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTbfn-0000000Fpq0-0OVl
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 09:09:48 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 75E2A1596;
-	Wed, 18 Nov 2026 01:09:41 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EDB283F673;
-	Wed, 18 Nov 2026 01:09:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794992984; bh=eSz0PxGeBD26st5Qjfax1QZdj5MFOwsoVrD4nzHQPhE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DlSl4ORPTXrotbsKlAhxDE48kJ0JGL6ujGN1vMNgdmYl3DQ3KXQAoJ9yZSyxKIgoe
-	 j0XLNhCqYcr3Nl6UFGeBFOCgwc7X4cjPyGZK5ocYiRRqpYUCat1na6NhoBQnqMD5r9
-	 Co2fHoUKkTN/0dEsQRTpRvwL2wEsLHyFnt/H6NYU=
-Date: Wed, 18 Nov 2026 09:09:33 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
-	sudeep.holla@kernel.org, james.quinlan@broadcom.com,
-	f.fainelli@gmail.com, vincent.guittot@linaro.org,
-	etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
-	d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
-	philip.radford@arm.com, david@kernel.org,
-	souvik.chakravarty@arm.com, leitao@kernel.org, kas@kernel.org,
-	puranjay@kernel.org, usama.arif@linux.dev, kernel-team@meta.com
-Subject: Re: [PATCH v15 10/35] firmware: arm_scmi: Add Telemetry resources
- enumeration
-Message-ID: <av1rTY1cZjRbxzD6@pluto>
-References: <20261109091221.2532706-1-cristian.marussi@arm.com>
- <20261109091221.2532706-11-cristian.marussi@arm.com>
- <20261112100145.00000560@oss.qualcomm.com>
- <avYZ2t_GoT7BN2nU@pluto>
- <20261116133638.00006cc3@oss.qualcomm.com>
+	id 1xTbho-00000008INP-1qMU;
+	Wed, 18 Nov 2026 09:11:52 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 0491445F29;
+	Wed, 18 Nov 2026 09:11:51 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794993110;
+	b=hR1kiX5idtGfpGxX4UahvXDSVmTF9zcab7CcEwzu0QYrc7flIC9mDe848GoJHYxOt50O
+	 /W2PqOnaw8xChy+YNaWW7ozfVmJBfYs/yHwYHSvMO0cpxV/nPjUyzCIDw5xvtJR7vs6Vb
+	 mNYMdmKge7Mga3jhkWzqFnex9ekkm3NX/RZYhgQKaDg/RS0BbB7KCHxQ6t5//FhB9LKjF
+	 Sb0AQArT36grAhXdnl3yhUnA52fAcI+kUgsK4kv0yW6sIVRb6c5rqAcVognbPpM7UYTjd
+	 OcX3LZTmw6R0W7JjiGZpeid2dnkwmPcGiebYX2Dcyjq8+lUQndgUFiik7UiwDiPyoTg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794993110;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=6kMD1fNj6wzaHQZY5xqzyLpbzOdBgDw5LurfM0uInyg=;
+	b=l9Id+rVrpPlnktfRaLaFILN0oQUrQoM4YgYvkIQguvFp/XVv6zFeXVUkLpi4IatdlEae
+	 uQ2dn3vEDZZaazSOqQiJVvyu8xFWiphm3JjxLx+RjATawCo/zC5NnM/qtl7Fed/mmoXxM
+	 sD4lEFoBy6AVQ5D4QiELUT8JDjpneiQbZoHsFqswg7Zajqwq14NkOcFtBHhi2yVPJNwZx
+	 OJMNsOHX5+XkzIZsIkmyXuF3PU+vjp0MlVY1+c1fG+SHm5PEFwl79nEZgvsUCCrdNQ8/0
+	 CNuFZ8BZEeQ3GrqF8EMamWAbAZ+RCrX0IdI8+GoOoH5UDLCnzpvcqP/Es/L9mPfioKA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 259521F000C4;
+	Wed, 18 Nov 2026 09:11:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794993110;
+	bh=6kMD1fNj6wzaHQZY5xqzyLpbzOdBgDw5LurfM0uInyg=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=hzDhmOndv6vk22bho00XETE5VxlHN1kPFJd87SDRe6s8sIWE93voTA6mnkMOmFrcc
+	 wgr5xuIDoqLFPER9tCCqXNkhhNX8mT6KavJ3CCkjAHIaPoHldercEmRAc9dk8vxa5b
+	 e0mx6/EpyphnzV7H5Ma+48rA8uIttUxrNar5up0LcJ7TKB6JdKSE6bn2vQ6p6nJFrE
+	 DeJQJYxV0j5V/eoEtXu9pGDrASBtiN6J0/mcHYnJNGY7GXnTJiPIJmyhhPQtaK6KZm
+	 oADABk8b2L6fvlTzBux0FeGv+Ven7wZD5cc3SqJITmyI6wFCr5B1D8tdIUapEi2rf4
+	 OCzy9RYQyL4cg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9654F4ACA9;
+	Wed, 18 Nov 2026 09:11:49 +0000 (UTC)
+From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
+Subject: [PATCH v5 0/2] pmdomain: rockchip: Add RK3572 power domains
+Date: Wed, 18 Nov 2026 17:11:38 +0800
+Message-Id: <20261118-add-board-ok3572-c-pmdomain-v5-0-f1af919dd434@qq.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261116133638.00006cc3@oss.qualcomm.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_090947_449929_13641430 
-X-CRM114-Status: GOOD (  45.29  )
-X-Spam-Score: -2.5 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMpr/WoC/33OTU7DMBAF4KtUXmNkj3+asOIeqAvHM6EGJW7tY
+ hVVuTt2EdBKKMsnvfneXFimFCizp82FJSohhzjXYB42zO/d/Eo8YM0MBFgpQHGHyIfoEvL4rsw
+ WuOeHCePkwsxhFIBOStVZYlU4JBrD+aq/7L5z/hjeyJ8a2Rr7kE8xfV7ni2y9nyX4b6lILrgYx
+ IidcUoSPR+Pjz5OrOkFbu/XPy1QoW2PiBqoBy/vIHUL2XVINUiglRoV9nAP6T9ICr0O6QpJ48d
+ uMM6S6X+hZVm+AFclxHunAQAA
+X-Change-ID: 20261023-add-board-ok3572-c-pmdomain-2f02da11386e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Elaine Zhang <zhangqing@rock-chips.com>, Ulf Hansson <ulfh@kernel.org>
+Cc: Cunhao Lu <1579567540@qq.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Finley Xiao <finley.xiao@rock-chips.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794993108; l=6231;
+ i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
+ bh=VOirG8rvip50FshLKtHOl6mSFVznO9ijKIGNDn4J0Fs=;
+ b=4AGzzWGIrq8amBZPZnkvTzXpmTGJiLYOyvc8VnnOE52TbAwHGwC8ZE2nOcvPqTg1H6PbzIxDw
+ 75xk7Uh14WiAmL0CZxCJS3UqExRDF+mlJrxjGBpJbzmXH4Y4If+2J6W
+X-Developer-Key: i=1579567540@qq.com; a=ed25519;
+ pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
+X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
+ auth_id=1177
+X-Original-From: Cunhao Lu <1579567540@qq.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,147 +113,169 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: 1579567540@qq.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 01:36:38PM -0800, Jonathan Cameron wrote:
-> On Thu, 12 Nov 2026 19:56:10 +0000
-> Cristian Marussi <cristian.marussi@arm.com> wrote:
-> 
+This is one of the subsystem submissions for RK3572 support.
 
-Hi,
+This series adds the RK3572 power-controller binding and power IDs,
+followed by support for all 14 power domains. It includes system GRF
+firmware shift-ready checks, NPU voltage-domain control and genpd startup
+protection for boot-enabled IMG, VOP, VOP_PRE and VO.
 
-> > On Thu, Nov 12, 2026 at 10:01:45AM -0800, Jonathan Cameron wrote:
-> > > On Mon,  9 Nov 2026 09:11:56 +0000
-> > > Cristian Marussi <cristian.marussi@arm.com> wrote:
-> > >   
-> > > > Add basic Telemetry allocation and initialization routines, introducing and
-> > > > wiring-up the logic needed to enumerate all the SCMI Telemetry resources
-> > > > optionally using a lazy on-demand scheme: this approach factors in the
-> > > > flexibility needed to minimize the amount of initialization work based on
-> > > > the effective access pattern used by the upper layer ABI.
-> > > > 
-> > > > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>  
-> > > 
-> > > Hi Cristian,
-> > > 
-> > > This stretches across the patch set but first elements related to it are
-> > > in this patch.  How do we handle larger values of de_data_sz?
-> > >   
-> > 
-> > We dont. This was somethig that was on my todo list initially, but then
-> > I realized that there was NO FW-side plan to actually implement anything
-> > larger than 64bit.
-> 
-> Understood, some set of firmware that you have isn't doing this. I don't
-> necessarily mind not supporting it initially but like the other features
-> it is very useful to have an implementation to make sure it doesn't break
-> the ABI. I don't want to go through a 'move to version 2 ABI if you want
-> this feature' path.
->
+The RK3572 SoC has eight CPU cores: two Cortex-A73 cores and six
+Cortex-A53 cores. It also integrates an Arm Mali-G310V2 MC1 GPU.
+The OK3572-C board provides two Gigabit Ethernet ports, three USB3 Type-A
+ports, a Type-C dual-role port, eMMC, microSD, and UART.
 
-Agreed that it would be better if avoided.
- 
-> Let's just say I hit this for a reason. Whether that reason makes it into
-> a production firmware is an open question at the moment.
-> 
-> FWIW I have both QEMU based emulation (I'm working through the process to be
-> able to share that) and the changes to fit in via what I think is the
-> cleanest ABI change. Kernel / userspace change below.
-> I modified this from my original proposal to take into account the
-> desire to add it later (even if to me it smells like papering over a bug
-> rather than adding a feature!).  See below for what that required.
-> Not only shmti is tested.  The LLM found bugs in it's own fast channel
-> code, so take that with a pinch of salt!
->
+This series depends on the separately submitted power-on rollback fix [1].
+Firmware readiness failures reuse it, preserving the original error and
+saved QoS. If rollback fails, the domain may remain on while resources are
+released and genpd may power down its parent.
 
-I skimmed through your patch and it is mostly in line with what I was
-imagining (not even protyped though), i.e. in a nutshell
+[1] https://patch.msgid.link/20261118-fix-rockchip-pmdomain-power-on-rollback-v2-1-3e4e93a19996@qq.com
 
- - an ABI feature bit to add MUTIWORD support
- - a flag bit to activate this feature on all _READ IOCTLs at will
- - a repurpose of the pad field in scmi_tlm_sample
+Testing was performed with Debian 13 minimal and Linux 7.3 on the
+OK3572-C with the FET3572-C module. Shared peripheral tests were run with
+the system booted from SD, while eMMC validation covered the complete
+boot chain.
 
-What I find awkward is the usage of pad as an index: that will expose
-a lot of duplicate data since all DEs multi-words are now scattered
-through a number of sample with the same ID and TS, and a bit cumbersome
-to handle in userspace to reconstruct the multi-word value.
+Passed functionality:
 
-My non-tested-nor-prototyped idea was instead to repurpose the pad field
-as a length, so as to pack all the multi-words payload as the trailing
-part of a flexible array member (an extrnal array really being an ABI)
-and use a single structure to read a complete DE.
+- SD and eMMC complete the firmware, kernel, and root filesystem
+  boot chain.
+- UART console works at 1500000 baud.
+- SD read/write and data persistence checks pass.
+- All eight CPUs start; CPU frequency scaling and hotplug checks pass.
+- Both Ethernet ports obtain IPv4 addresses and pass bidirectional file
+  transfers.
+- All three Type-A ports pass USB2 and USB3 enumeration, data transfers,
+  and reconnect persistence checks.
+- Type-C host and device modes pass in both plug orientations. Physical
+  reconnects correctly select the expected device, host, and device roles
+  in sequence.
 
-In this case the problem would be to maintain backward compatibility
-with the current scmi_tlm_de_sample.
+Stability:
 
-At first I was thinking that we could simply introduce a new alternative
-scmi_tlm_de_multi_sample structure that is used in place of the current
-scmi_tlm_de_sample ONLY when feataure bits is available AND requested: so
-userspace knows that when sets flag.MULTIWORD it has to use the
-multi-word structure in input where pad is a length and there are multipe vals.
+- Repeated cold and software reboots complete on SD and eMMC without
+  data integrity failures or power-domain transition failures.
+- A combined CPU, memory, network, SD, and USB3 stress test completes
+  without a crash, lockup, CPU offline event, or thermal shutdown.
+- Ethernet error and drop counters do not increase during bidirectional
+  network tests.
 
-While this would work for all the bulk ops since they take a __u64 pointer
-to a payload structure really (so it does NOT really matter what they are
-carrying as long as it is consistent with the advertised feature bits and
-request flag),  it CANNOT work for DE_READ where scmi_tlm_de_sample is
-used directly...so a change in the current, not-merged, ABI would be
-needed anyway....
+Power-domain validation:
 
-Then...I thought that maybe we dont even need this...and this part could be
-judged horrific maybe, so feel free to stop reading if your eyes starts
-bleeding :P
+- All 14 domains register; 11 complete 1,140 runtime-PM cycles. NPU VD
+  sequencing and startup-protection release are checked.
+- Physical cold boot with an eMMC root filesystem succeeds. Read/write
+  checks pass on eMMC, SD and two USB storage devices; both Ethernet
+  ports pass ping tests bound to their respective interfaces.
+- Thirteen return-value injections after successful operations check
+  idle-exit and firmware-readiness rollback, NPU cleanup, original errors
+  and saved QoS. Retries succeed after removing injection.
+- 124 host model cases using the driver and genpd pass ASan and UBSan.
 
-Currently we have
+Build and checks:
 
-struct scmi_tlm_de_sample {                                                      
-        __u32 id;                                                                
-        __u32 pad;                                                               
-        __u64 tstamp;                                                            
-        __u64 val;                                                               
-};                     
+- The kernel, modules, and board DTB build successfully.
+- Strict checkpatch reports no errors.
 
-with pad being unused and the whole structure that can be used alone
-or packed into a container struct.
+Untested hardware and paths:
 
-WHAT IF... when MULTIWORD feature is enabled AND requested we repurpose
-the meaning NOT ONLY of <pad> but also of <val> and use this latter NOT
-as a payload for a single value returned but as a pointer to an external
-array of words counted by pad ?
+- NPU
+- PCIe
+- GPU, video output, and audio
+- CPU rates above 1.2 GHz and voltage scaling
+- Other low-speed external interfaces
 
-The structure size remains the same, while its interpretation vary based
-on the requested flag when such feature is available.
+Some files in this series are derived from the Forlinx OK3572-C BSP
+Alpha1. Thanks to Forlinx for their support.
+Thanks also to Rockchip's David Wu, Elaine Zhang, Finley Xiao, Frank
+Wang, William Wu, and Ye Zhang for providing the driver source files.
 
-It may be a bit cumbersome still on userspace for bulk requests since
-scmi_tlm_batch will contain a pointer to an array of possibly varied
-sized items, so item_sz represents the common basic scmi_tlm_de_sample
-size which in turn carries the sizing inside the repurposed <pad>
-field inside for each single sample item
+AI assistance:
 
-...so you can anyway check the provided user-input sizes it is just
-scattered all over and as a consequence also the user provided data
-would have to be a bit fragmented since 
+- Codex / DeepSeek V4.1 Flash were used for:
+  - Reviewing and adjusting code style to follow community conventions
+  - Automating tests
+  - Collecting data
 
- - batch points to an array of scmi_tlm_de_sample sized by items_sz
- - each sample in turn points to its array of values sized by <pad>
- - you can really mix both kind of DEs in the same request: some
-   can carry the single word value embedded in val, multiwords can
-   point to teh <pad> sized external array.
+Signed-off-by: Cunhao Lu <1579567540@qq.com>
+---
+Changes in v5:
+- Rebase onto the next branch of Ulf Hansson's linux-pm.git tree.
+- Link to v4:
+  https://patch.msgid.link/20261104-add-board-ok3572-c-pmdomain-v4-0-15cf8b5a6e59@qq.com
 
-...mmm sort of start liking this hoorr...or I am missing something ?
+Changes in v4:
+- Drop generic pending-state tracking and power-off recovery; reuse the
+  separate power-on rollback fix for firmware readiness errors.
+- Support all 14 domains, including NPU voltage-domain control and
+  cleanup after failed transitions.
+- Retain boot-enabled IMG, VOP, VOP_PRE and VO domains until sync_state.
+- Use firmware shift-ready naming for the GRF status.
+- Build ungate write masks with unsigned arithmetic.
+- Link to v3:
+  https://patch.msgid.link/20261026-add-board-ok3572-c-pmdomain-v3-0-70d614d3d921@qq.com
 
-... O_o ... it would need a tad of documentation of course ...
+Changes in v3:
+- Track incomplete shutdowns to preserve QoS and complete firmware updates.
+- Preserve pending memory resets across shutdown and cancel unfinished
+  power-on requests.
+- Attempt to restore the domain after power-off errors, while preserving
+  the original error returned to genpd.
+- Link to v2:
+  https://patch.msgid.link/20261023-add-board-ok3572-c-pmdomain-v2-0-79ddd42e92c1@qq.com
 
-If you have not fainted in despair, I (and some LLM) could prototype
-something like this in one of the next series ... certainly not in V16.
+Changes in v2:
+- Split the original RK3572 support series by subsystem.
+- Track low-level power-on and restoration separately. Retain unfinished
+  memory resets across retries, avoid repeating completed resets, and
+  preserve QoS snapshots when shutting down after a failed power-on.
+- Link to v1:
+  https://patch.msgid.link/20261022-add-board-ok3572-c-v1-0-0b0fd85a31ee@qq.com
 
-... thoughts ? insults ? :P
+---
+Raw dmesg: see v2 cover letter.
 
-Thanks,
-Cristian
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+To: Elaine Zhang <zhangqing@rock-chips.com>
+To: Ulf Hansson <ulfh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
+
+---
+Cunhao Lu (1):
+      pmdomain: rockchip: Add RK3572 power domains
+
+Finley Xiao (1):
+      dt-bindings: power: rockchip: Add RK3572 power domains
+
+ .../bindings/power/rockchip,power-controller.yaml  |  17 +++
+ drivers/pmdomain/rockchip/pm-domains.c             | 168 +++++++++++++++++++--
+ .../power/rockchip,rk3572-power-controller.h       |  30 ++++
+ 3 files changed, 204 insertions(+), 11 deletions(-)
+---
+base-commit: 8b2e839ba5666876a9f0f0887c7b12c66dac5fbc
+change-id: 20261023-add-board-ok3572-c-pmdomain-2f02da11386e
+
+Best regards,
+--  
+Cunhao Lu <1579567540@qq.com>
+
+
 
