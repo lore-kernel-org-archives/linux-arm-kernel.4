@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8AB9606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 04:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47FE4606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 05:08:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RPN0j3/K;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=ZkvXRGQy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uDoBo09y;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YXeiifdf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,90 +14,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lGriT5mvGmwLjZVhyWJORLnWv5py1JwCn14OrwKl/ns=; b=RPN0j3/Ku0s5GCj+er6PPBOM+Z
-	MJ0m44GPsliwUxRc27ht/AOQei30VYtdgChcYAbP7dpTxF7Vm9adXwYa5W2KFm2xp0nF5GJPaznBz
-	GhbLEUt93S9MnoVuVGlOQ+eWSykBmIrCmv2D9GIn2odJF4VysSbaMGrQYVwaJYBBHzB/sdyLhPEs4
-	vduwMSrVHGAobVqPKAd22efO7+HkDPm4Tlfu1X3GcMgs2woiLzJn9ZOfmVAXqlAW0Guw1VSHJul72
-	ScINKzHipKT39wMxxQdchNc131m25BUiy/QncncMg0WQSxvSfcZ4h9RZonNIY13xcLP9zE465vO6Z
-	r4XuLdOA==;
+	bh=mGkb+EjOSlLHs2Hp50X4VPuLXnV4T0Mq79/QyiPYW5E=; b=uDoBo09yBFBWNozz/4OEpXFVCL
+	dyrfWYR0wv/e7Vokbu4MtfV5B4/QKzJJyFvCyZRlrhX1yRILXwDGJB4RV2ZlKX2dUoIRePAVW+8zr
+	NdGxl7ZdZbvhhB5lMxt/zBAYUm1pVyr3KSSUuK7oNHTSeNG6NHHl3k+7eug3skgOjgiPimQZlps03
+	LTlUEiONAKRZ8LxpFLRbIrjSalg4KNtwbji6N7zmz+LpKyxNq5/Aky2A4AUF6ix9pQzwB54birawY
+	K7BH7essDJ9odPBd9H5zmu4AW9gB846Bj5qR3GAfXlofUmNw/Y7HW6cqPUSqavZggd2m55D1XqCgX
+	EqdKqDHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTXDk-00000007hY8-1Ul9;
-	Wed, 18 Nov 2026 04:24:32 +0000
-Received: from omta036.useast.a.cloudfilter.net ([44.202.169.35])
+	id 1xTXtr-00000007jZW-0Ljq;
+	Wed, 18 Nov 2026 05:08:03 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTXDi-00000007hXB-31XT
+	id 1xTXtp-00000007jZQ-3SVj
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 04:24:31 +0000
-Received: from eig-obgw-5002b.ext.cloudfilter.net ([10.0.29.226])
-	by cmsmtp with ESMTPS
-	id TUDCxVyCo4vCDTXDhxSfaW; Wed, 18 Nov 2026 04:24:29 +0000
-Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
-	by cmsmtp with ESMTPS
-	id TXDgxKPCQb2qJTXDgx20qF; Wed, 18 Nov 2026 04:24:29 +0000
-X-Authority-Analysis: v=2.4 cv=A7tsP7WG c=1 sm=1 tr=0 ts=6afd287d
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=Byx-y9mGAAAA:8
- a=bFsclcQv4yI7B98-yzEA:9 a=CjuIK1q_8ugA:10 a=KPbNTLLc3YvdawN95zVk:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-	:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-	:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=lGriT5mvGmwLjZVhyWJORLnWv5py1JwCn14OrwKl/ns=; b=ZkvXRGQyU0Wzkfafy1hMVHyBGu
-	HCriZteRWNHQit/5wA01C7TLyBVGK2iOveswT90ziJ2AfriLIUXMGCGTwlBnNsaDRorcqjItIFQW2
-	a5bmgGt2lfTj8ShHcmxjmPi6evkb1+wyslBtAyZEk7c1QrNUrWNevqcaRuBXNIwm43smI3xYCmW8Z
-	fqvhqEh5dErJ3qO0uE8lJwRrY8DBn5PE3iccQmtedd4ed1oZE9kdXzFqLeIv4oL1WFfGND1L78JYO
-	JsVK1CyKrTuaGoBH5u1XsVo+3kl0mtVGaFn0+8Lk3rVxRYylcXvn3tw8fgwi8N5sE4Dg5tM3lW/xN
-	SpglVpHw==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:42556 helo=server.roeck-us.net)
-	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <linux@roeck-us.net>)
-	id 1xTXDg-00000004C8t-0Nnp;
-	Wed, 18 Nov 2026 09:54:28 +0530
-Date: Tue, 17 Nov 2026 20:24:27 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Yang Siyuan <hsyysy@163.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	linux-watchdog@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] watchdog: sunxi_wdt: stop the watchdog across system
- suspend
-Message-ID: <164e54ff-8a1f-4841-92eb-7fe1b7815a64@roeck-us.net>
-References: <ece4aa08-fb86-4f76-b4b8-a9351a71df14@roeck-us.net>
- <20261118005048.385059-1-hsyysy@163.com>
+	Wed, 18 Nov 2026 05:08:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 43BC0403A3;
+	Wed, 18 Nov 2026 05:08:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 675D71F000C4;
+	Wed, 18 Nov 2026 05:08:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794978481;
+	bh=mGkb+EjOSlLHs2Hp50X4VPuLXnV4T0Mq79/QyiPYW5E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=YXeiifdf0c/VhG5hMZSwUNR54qAqBFdaXyJZbh5XcO/2sqRss6CDwRKOn3GvreXYA
+	 N8sol7JhMY1rQdccZSTvUitx5wYvboW86yXgWSWAqMyOJFFfLQaulb3z3D+J1KKGNj
+	 KDMuYXlqz5Q94NnaURODLkdhuwDGTuqKRTVpXT3y3saAU73g2ANCWZTuKGPqc7N+23
+	 Q8zu1NrpoUOL6Gvlb3JNFhApR/lkmZ4+eUo6/6hPvi61HJLTfYG85N7R02b51F/fjT
+	 iEBaFvS4e9nIPbqwTLRgJSI+dEhsnuXdSkDG8vMrQvHYn8169Rt/V6pDb5vdckAerd
+	 hjtaO/DrnzNPA==
+Date: Tue, 17 Nov 2026 21:07:58 -0800
+From: Eric Biggers <ebiggers@kernel.org>
+To: Dylan Hatch <dylanbhatch@google.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S . Miller" <davem@davemloft.net>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nsc@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Weinan Liu <wnliu@google.com>, Jens Remus <jremus@linux.ibm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-kbuild@vger.kernel.org, linux-crypto@vger.kernel.org,
+	llvm@lists.linux.dev, Josh Poimboeuf <jpoimboe@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Indu Bhagat <ibhagatgnu@gmail.com>,
+	Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+	live-patching@vger.kernel.org
+Subject: Re: [RFC PATCH 11/12] arm64, crypto/lib: annotate leaf functions
+ with CFI info
+Message-ID: <20261118050758.GD3400@sol>
+References: <20261117043504.1021063-1-dylanbhatch@google.com>
+ <20261117043504.1021063-12-dylanbhatch@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261118005048.385059-1-hsyysy@163.com>
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1xTXDg-00000004C8t-0Nnp
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (server.roeck-us.net) [108.223.40.66]:42556
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 10
-X-Org: HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfFY23prWjnBEgFl/7PiuOgkt8eJDnm6+DT4ItZyHECMPAsqtK3kvjkJnJ1S3iMvlPXJPdIWL4AfBdQ4gR1g8/VOXJzvod0ic+emjaBI1808XbvjCobOY
- CIy1oFNiSDJ7w/+lPZ/WJVFv4bS/dAewuAj0aYhH2IXsVLCWZzP/tp+YwRRAZ6dZCvHrNFV0ig/DdWTZbJbAqlw0+O0vXFCAiK673lMfU+WzC2xDYqJJb8jf
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_202430_870934_7E911FE3 
-X-CRM114-Status: GOOD (  12.06  )
-X-Spam-Score: -0.1 (/)
+In-Reply-To: <20261117043504.1021063-12-dylanbhatch@google.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,37 +85,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 08:50:48AM +0800, Yang Siyuan wrote:
-> The H616 watchdog has a maximum timeout of 16 seconds.  systemd keeps
-> /dev/watchdog0 open with RuntimeWatchdogSec=16s, but during system
-> suspend all userspace is frozen and the watchdog core does not stop the
-> hardware.  A suspend longer than the timeout therefore resets the board
-> before it can resume.
+On Tue, Nov 17, 2026 at 04:35:03AM +0000, Dylan Hatch wrote:
+> Several arm64 assembly functions are leaf functions (they do not call
+> other functions and do not modify x30). Add SYM_[TYPED_]LEAF_FUNC_*
+> macros in <asm/linkage.h> that emit .cfi_startproc / .cfi_endproc so
+> that .eh_frame entries are generated for these leaf functions and LR can
+> be recovered by the unwinder when an exception is taken from one of
+> them.
 > 
-> Add system sleep PM ops to stop the watchdog before suspend and restart
-> it after resume if it was running.  The driver did not store its private
-> data in the platform device, so add platform_set_drvdata() for the PM
-> callbacks.
-> 
-> Use DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr(), and use
-> watchdog_hw_running() instead of a private flag to decide whether the
-> hardware needs to be stopped and restarted.
-> 
-> Tested on an Anbernic RG35XX-SP: a 30-second s2idle suspend resumes
-> without the 16-second watchdog reset, and /dev/watchdog0 keeps working
-> afterwards.
-> 
-> Signed-off-by: Yang Siyuan <hsyysy@163.com>
+> Signed-off-by: Dylan Hatch <dylanbhatch@google.com>
+> ---
+>  arch/arm64/crypto/aes-ce-ccm-core.S    | 12 +++----
+>  arch/arm64/crypto/aes-neonbs-core.S    | 16 +++++-----
+>  arch/arm64/crypto/ghash-ce-core.S      | 20 ++++++++----
+>  arch/arm64/crypto/sm4-ce-ccm-core.S    | 16 +++++-----
+>  arch/arm64/crypto/sm4-ce-cipher-core.S |  4 +--
+>  arch/arm64/crypto/sm4-ce-core.S        | 44 +++++++++++++-------------
+>  arch/arm64/crypto/sm4-ce-gcm-core.S    | 16 +++++-----
+>  arch/arm64/crypto/sm4-neon-core.S      | 12 +++----
+>  arch/arm64/include/asm/linkage.h       | 33 +++++++++++++++++++
+>  arch/arm64/kernel/entry.S              |  7 ----
+>  arch/arm64/lib/clear_user.S            |  4 +--
+>  arch/arm64/lib/copy_from_user.S        |  4 +--
+>  arch/arm64/lib/copy_page.S             |  4 +--
+>  arch/arm64/lib/copy_to_user.S          |  4 +--
+>  arch/arm64/lib/memchr.S                |  4 +--
+>  arch/arm64/lib/memcmp.S                |  4 +--
+>  arch/arm64/lib/memcpy.S                |  8 ++---
+>  arch/arm64/lib/memset.S                |  8 ++---
+>  arch/arm64/lib/mte.S                   | 28 ++++++++--------
+>  arch/arm64/lib/strchr.S                |  4 +--
+>  arch/arm64/lib/strcmp.S                |  4 +--
+>  arch/arm64/lib/strlen.S                |  4 +--
+>  arch/arm64/lib/strncmp.S               |  4 +--
+>  arch/arm64/lib/strnlen.S               |  4 +--
+>  arch/arm64/lib/strrchr.S               |  4 +--
+>  arch/arm64/lib/tishift.S               | 12 +++----
 
-Applied.
+Presumably you'll need to update lib/crypto/arm64/*.S and
+lib/crc/arm64/*.S as well.
 
-Thanks,
-Guenter
+- Eric
 
