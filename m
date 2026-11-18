@@ -2,118 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9BF606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 06:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBF9606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 07:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hKCIvYFV;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=rD+jRhQi;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hv6cbJ4M
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tN3OjB6w;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=J7jSSrjT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=FKkYWihfdRNCMKKO6J64hBPhG+NVMAKKX6FQ+i+pK6Q=; b=hKCIvYFVn9ClGpf9qnJHwWsbmS
-	BvTdp2axQDmuw63KodwXcdL0Y0lnnm6zm6i+T3BGgonqdMld9sgQQjWSzTLbJByKxy6I4rqOXm58F
-	OARi6cxEp1T/ih0H88ZmzfUM4cKw/o3MxKsguK6HNOm8U9lSAI/GuE+O/r08xpD7OETIuYjo4gPPa
-	o2QY0Ak4q8xnm6RTIAx2dkbwtY++lgiwBS0b8y5NOgmoyv1lHX64NC+GzCDbo2R0MpsjugZWh0ZdY
-	SkgIqqICuk6feZV48knhHPVGOc/YuYKJMNrYurzsS6xvnlCVDX+cKlTPu6BTUhetiKqYGySV4jmLw
-	lQYJ0udA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:
+	Subject:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=P7MAWPsIyxJf7EbFe+B6P/kIKs4QOghNXNz4nngxpow=; b=tN3OjB6waBOHm/
+	k0dIDMyYZn9ewfEjVZRjtTgBtXaDut1v6cu/9U1fOa6hujzwRk/V56CKsqw6M2tozcsgbw3mxmar0
+	pUHjpz9qOIbIYhactRJw9R0JI1gCWS/c6/GQ91q/5N1HoAXz19bHSdhhcTFbITsdwm7KuF7z6HRKk
+	VQ2hc4PTr1Rxg/wyTUC/6ORFg+VqpLVVpyfHZj2YEZi2pzr57KwGRclHRT26YY5aWbwPtg+xde+jx
+	pmbz333cZ4wk46VwOIburRHD5QkFgxwPfCKd3fNBVLpF2FizN5ZvFzBeEH/+GrDVO8mm5+bATMgi1
+	6fDx4gpHbK0xUWeR6j0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTZXD-00000007wXv-2Cdr;
-	Wed, 18 Nov 2026 06:52:47 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xTZf4-00000007xLI-425B;
+	Wed, 18 Nov 2026 07:00:54 +0000
+Received: from canpmsgout01.his.huawei.com ([113.46.200.216])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTZXB-00000007wX6-29me
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 18 Nov 2026 06:52:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=FKkYWihfdRNCMKKO6J64hBPhG+NVMAKKX6FQ+i+pK6Q=; b=rD+jRhQiXhKewPgbi+Kuaw5jZ0
-	t1wQWzDABa3ez2Tj4zDX7GOkzKtRQrp/noayOWWafVU1bECaJLHG4JHXM6PEWWaxWPz4YiRcop8Er
-	x1jc8EkbtkhYjBbUMqbLpWpQysBqCVIJz/o68vgSmH5quzLMOYigQ/C+QqLldKUqaL2c/lC2yzhud
-	iFYhq8RxXjeuupiSRBDjNR7OAW0dIpCyngQJdvagRDHhZTo8NdW1DuwxNymOxoaK7kaqdikTN98CS
-	D0EiyrP4fPHtQiV8bxparEuOWhXKg4MYUlio2qJ2FHmZoJy6pcXGmfdgfyNMClbcp5MDN6rdQgtht
-	E/E7c8+g==;
-Received: from mgamail.intel.com ([192.198.163.13])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTZX6-0000000FiQP-1488
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 06:52:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794984761; x=1826520761;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DrEUIZ3qyU/ux7WrUPR07gul8fRUSWl1kJJN3nWoEdY=;
-  b=hv6cbJ4MXsusRRaSmY5wnFjKSH0dcZJ2QUSagoIxTiqPQxqDWO8MNo/B
-   2K8RtAR3UD2id/fC1lB/T5CB+tumEWXjRvEtN5VmnT+wKvP6n5tnsDkPE
-   i54V/pnrXabgcOMPgavDCDW7e6cDGys6X9faq1hmH1rFdYHTpGNvPFDoh
-   FyQouphVzk0mTi5+nQnEo9j5893fJJ5hEqAkiIGYCSWCAdRYH7HE4I9gy
-   lA3MnHk7tyOTQ6CFTC95Mt1zxoG9TFSw2gx+ttIhUiQmMAb7MoslgBtC+
-   rhOi8Y4a8KRw592AD4C925/gtl0bgl/h0nPrLxazrHzoj557fF3/6tkmu
-   A==;
-X-CSE-ConnectionGUID: yzi5AREbQp24xHE5SFLRog==
-X-CSE-MsgGUID: 6iK5kv4TRqelSEg1ROvXOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3772248"
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3772248"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2026 22:52:36 -0800
-X-CSE-ConnectionGUID: T9CVNhvrRNOyjSE6/SDleg==
-X-CSE-MsgGUID: tRAtyKlLR/y4UDhkKRsFDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="9988327"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.47.46])
-  by orviesa007.jf.intel.com with ESMTP; 17 Nov 2026 22:52:28 -0800
-Date: Wed, 18 Nov 2026 14:43:32 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>
-Cc: linux-coco@lists.linux.dev, Alex Williamson <alex@shazbot.org>,
-	Alexey Kardashevskiy <aik@amd.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jacob Pan <jacob.pan@linux.microsoft.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>, Joerg Roedel <joro@8bytes.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
-	Nicolin Chen <nicolinc@nvidia.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Steven Price <steven.price@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>, iommu@lists.linux.dev,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-tegra@vger.kernel.org, patches@lists.linux.dev
-Subject: Re: [PATCH v9 02/13] virt: coco: tsm: Remove the device from lookup
- before PCI teardown
-Message-ID: <av1JFH8W63T37bK6@yilunxu-OptiPlex-7050>
-References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <20261116081935.85372-3-aneesh.kumar@kernel.org>
+	id 1xTZf1-00000007xJK-0AOs;
+	Wed, 18 Nov 2026 07:00:53 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=P7MAWPsIyxJf7EbFe+B6P/kIKs4QOghNXNz4nngxpow=;
+	b=J7jSSrjT45mE5pHwCz2jP6dil7Qtqxs30D1JSCVyUZxDpTWnLABaUARqY/hWeyFvY/IB9XGsp
+	P+tfgFIg8WIVjm1rA89skfheUdG6YkoeqBaYgCDEUNGssDh+oDpRHRydEVFk6/GpGQol0k0xnUJ
+	vFIRtHpdkDpniGa5blvowA4=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout01.his.huawei.com (SkyGuard) with ESMTPS id 4jTstD2f2Yz1T4KR;
+	Wed, 18 Nov 2026 15:00:04 +0800 (CST)
+Received: from whupemk100004.china.huawei.com (unknown [7.152.185.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id E0224203AB;
+	Wed, 18 Nov 2026 15:00:43 +0800 (CST)
+Received: from [10.173.125.21] (10.173.125.21) by
+ whupemk100004.china.huawei.com (7.152.185.74) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Wed, 18 Nov 2026 15:00:40 +0800
+Subject: Re: [PATCH v6 5/7] drivers/base/memory: count the poison a block
+ already holds when creating it
+To: Breno Leitao <leitao@debian.org>
+CC: <linux-efi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-mm@kvack.org>, <linux-cxl@vger.kernel.org>,
+	<driver-core@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<rmikey@meta.com>, <riel@surriel.com>, <harry@kernel.org>,
+	<kernel-team@meta.com>, Ard Biesheuvel <ardb@kernel.org>, Ilias Apalodimas
+	<ilias.apalodimas@linaro.org>, Thomas Gleixner <tglx@kernel.org>, Ingo Molnar
+	<mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, Dave Hansen
+	<dave.hansen@linux.intel.com>, <x86@kernel.org>, "H. Peter Anvin"
+	<hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand
+	<david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, "Liam R. Howlett"
+	<liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport
+	<rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, Michal Hocko
+	<mhocko@suse.com>, Naoya Horiguchi <nao.horiguchi@gmail.com>, Oscar Salvador
+	<osalvador@suse.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael
+ J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Mark
+ Rutland <mark.rutland@arm.com>, <kas@kernel.org>,
+	<kexec@lists.infradead.org>, Brendan Jackman <brendan.jackman@linux.dev>,
+	Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+	<shakeel.butt@linux.dev>
+References: <20261016-hwpoison-kho-v6-0-f304255147da@debian.org>
+ <20261016-hwpoison-kho-v6-5-f304255147da@debian.org>
+From: Miaohe Lin <linmiaohe@huawei.com>
+Message-ID: <f0f5e60a-819e-68e7-09b2-4080f4716e9e@huawei.com>
+Date: Wed, 18 Nov 2026 15:00:39 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261116081935.85372-3-aneesh.kumar@kernel.org>
+In-Reply-To: <20261016-hwpoison-kho-v6-5-f304255147da@debian.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
+ whupemk100004.china.huawei.com (7.152.185.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_065240_565618_C2FF47BA 
-X-CRM114-Status: GOOD (  25.49  )
-X-Spam-Score: -2.3 (--)
+X-CRM114-CacheID: sfid-20261117_230051_740871_A3833766 
+X-CRM114-Status: GOOD (  26.42  )
+X-Spam-Score: -3.8 (---)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,118 +96,101 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 01:49:24PM +0530, Aneesh Kumar K.V (Arm) wrote:
-> PCI connect looks up a TSM by ID under pci_tsm_rwsem. Previously,
-> pci_tsm_unregister() released that lock after tearing down PCI state
-> while the TSM was still in the class lookup. A racing connect could then
-> attach a new PCI context that the teardown would never see.
+On 2026/10/16 20:15, Breno Leitao wrote:
+> A frame flagged poisoned before memory_dev_init() runs cannot be counted
+> on its memory block. memblk_nr_poison_inc() divides by sections_per_block,
+> which memory_dev_init() sets, and the block does not exist yet. The block
+> is then created reading zero, however many of its frames are poisoned.
 > 
-> Remove the device from the class lookup first, then take the PCI write
-> lock to drain in-flight operations and destroy their contexts. Drop the
-> device reference only after PCI teardown completes.
+> Until now nothing could poison a frame that early. It becomes possible
+> once a kernel flags the frames it inherits from the one that kexeced into
+> it, as it initializes its memmap.
 > 
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> Cc: Alexey Kardashevskiy <aik@amd.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Lukas Wunner <lukas@wunner.de>
-> Cc: linux-coco@lists.linux.dev
-> Fixes: 3225f52cde56 ("PCI/TSM: Establish Secure Sessions and Link Encryption")
-> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
+> memory_block_online() refuses a block that holds a poisoned frame, and a
+> counter stuck at zero lets one through.
+> 
+> Count what a block holds when it is created at boot. The walk sits behind
+> num_poisoned_pages, so a machine with no poison does not pay for it.
+> 
+> Signed-off-by: Breno Leitao <leitao@debian.org>
 > ---
->  drivers/virt/coco/tsm-core.c | 20 +++++++++++++-------
->  1 file changed, 13 insertions(+), 7 deletions(-)
+>  drivers/base/memory.c | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
-> diff --git a/drivers/virt/coco/tsm-core.c b/drivers/virt/coco/tsm-core.c
-> index 03894c5663f1..57db3f14cf46 100644
-> --- a/drivers/virt/coco/tsm-core.c
-> +++ b/drivers/virt/coco/tsm-core.c
-> @@ -56,23 +56,22 @@ static struct tsm_dev *alloc_tsm_dev(struct device *parent)
->  	return no_free_ptr(tsm_dev);
->  }
+> diff --git a/drivers/base/memory.c b/drivers/base/memory.c
+> index 5eead3346f1e32..77481f375c2206 100644
+> --- a/drivers/base/memory.c
+> +++ b/drivers/base/memory.c
+> @@ -220,11 +220,16 @@ int memory_notify(enum memory_block_state state, void *v)
 >  
-> -static struct tsm_dev *tsm_register_pci_or_reset(struct tsm_dev *tsm_dev,
-> -						 struct pci_tsm_ops *pci_ops)
-> +static int __tsm_register(struct tsm_dev *tsm_dev, struct pci_tsm_ops *pci_ops)
+>  #if defined(CONFIG_MEMORY_FAILURE) && defined(CONFIG_MEMORY_HOTPLUG)
+>  static unsigned long memblk_nr_poison(struct memory_block *mem);
+> +static void memblk_nr_poison_init(struct memory_block *mem);
+>  #else
+>  static inline unsigned long memblk_nr_poison(struct memory_block *mem)
 >  {
->  	int rc;
->  
->  	tsm_dev->pci_ops = pci_ops;
->  	rc = pci_tsm_register(tsm_dev);
->  	if (rc) {
-> +		tsm_dev->pci_ops = NULL;
-
-Previous comment shows this can't solve any racing connect problem.
-And with your next patch, the racing connect is solved. So I think
-remove it.
-
->  		dev_err(tsm_dev->dev.parent,
->  			"PCI/TSM registration failure: %d\n", rc);
-> -		device_unregister(&tsm_dev->dev);
-> -		return ERR_PTR(rc);
-> +		return rc;
->  	}
->  
->  	/* Notify TSM userspace that PCI/TSM operations are now possible */
->  	kobject_uevent(&tsm_dev->dev.kobj, KOBJ_CHANGE);
-> -	return tsm_dev;
-> +	return 0;
-
-I really don't think we need this wrapper. In next patch we move uevent
-out, so this wrapper is just:
-
-	tsm_dev->pci_ops = pci_ops;
-	pci_tsm_register();
-
-Open code it, as Alexey and I suggest before. All kinds of xxx_tsm_register()
-are really confusing.
-
+>  	return 0;
 >  }
->  
->  struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
-> @@ -96,15 +95,22 @@ struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
->  	if (rc)
->  		return ERR_PTR(rc);
->  
-> -	return tsm_register_pci_or_reset(no_free_ptr(tsm_dev), pci_ops);
-> +	rc = __tsm_register(tsm_dev, pci_ops);
-> +	if (rc) {
-> +		device_del(dev);
-> +		return ERR_PTR(rc);
-> +	}
-> +	return no_free_ptr(tsm_dev);
+> +
+> +static inline void memblk_nr_poison_init(struct memory_block *mem)
+> +{
+> +}
 
-I think none of the above changes belongs to this patch. They don't
-solve any problem mentioned in the changelog.
+If defined(CONFIG_MEMORY_FAILURE) but CONFIG_MEMORY_HOTPLUG is not defined, memory block
+created at boot time will lose nr_hwpoison count. Is this expected?
 
-They belong to the next patch.
-
->  }
->  EXPORT_SYMBOL_GPL(tsm_register);
+>  #endif
 >  
->  void tsm_unregister(struct tsm_dev *tsm_dev)
+>  /*
+> @@ -807,6 +812,7 @@ static int add_memory_block(unsigned long block_id, int nid, unsigned long state
+>  	mem->state = state;
+>  	mem->nid = nid;
+>  	INIT_LIST_HEAD(&mem->group_next);
+> +	memblk_nr_poison_init(mem);
+>  
+>  #ifndef CONFIG_NUMA
+>  	if (state == MEM_ONLINE)
+> @@ -1251,4 +1257,28 @@ static unsigned long memblk_nr_poison(struct memory_block *mem)
 >  {
-> +	/* Remove the class lookup first. */
-> +	device_del(&tsm_dev->dev);
->  	if (tsm_dev->pci_ops)
-
-The patch 1 rejects NULL pci_ops, so is this check still needed? Can we
-remove this check in your Patch 1?
-
->  		pci_tsm_unregister(tsm_dev);
-> -	device_unregister(&tsm_dev->dev);
-> +	put_device(&tsm_dev->dev);
+>  	return atomic_long_read(&mem->nr_hwpoison);
 >  }
->  EXPORT_SYMBOL_GPL(tsm_unregister);
->  
-> -- 
-> 2.43.0
-> 
-> 
+> +
+> +/*
+> + * Frames poisoned before the block existed were never counted on it. Count
+> + * them now, or the first unpoison takes the counter below zero.
+> + */
+> +static void memblk_nr_poison_init(struct memory_block *mem)
+> +{
+> +	unsigned long pfn = section_nr_to_pfn(mem->start_section_nr);
+> +	unsigned long end = pfn + PAGES_PER_SECTION * sections_per_block;
+> +	unsigned long nr = 0;
+> +
+> +	/* A hotplugged block is created before its pages are online. */
+> +	if (mem->state != MEM_ONLINE || !atomic_long_read(&num_poisoned_pages))
+> +		return;
+> +
+> +	for (; pfn < end; pfn++) {
+> +		struct page *page = pfn_to_online_page(pfn);
+
+Above comment says the pages of this memory block are not online. So pfn_to_online_page
+here will return the wanted page?
+
+> +
+> +		if (page && PageHWPoison(page))
+> +			nr++;
+
+Now that the table is a bitmap with one bit per 2MB of physical memory, would it be more
+appropriate to process it at 2 MB granularity?
+
+Thanks.
+.
 
