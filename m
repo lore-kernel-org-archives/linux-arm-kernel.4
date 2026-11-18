@@ -2,144 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E365606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC8B606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wi5/4PxN;
-	dkim=pass (2048-bit key, unprotected) header.d=iopsys.eu header.i=@iopsys.eu header.a=rsa-sha256 header.s=selector1 header.b=4T411Hc1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eApru8Ac;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=FRR3vDb3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wKgFGck7J6Vixl2hYumkVASvZivhzBNR2xbVF5IDOY8=; b=wi5/4PxNDv7XeKNaC45HRKmwZK
-	2ZGy0vF+LTIsYU8sM5U2OFeCSH2+wOgxKD1cZbgFjNQqvmEc23hfwRe+rZIIK/w3uju6BdEhqMANK
-	USMAaXO58CGW0pNkPqjYuaP7VSgg9X4Ls8NNSQiZVzT2KlUgAAMyxZ3DcwlW/zZj3mXd8lPuXphH+
-	taZKv+Hnf3tDlNWfG6gOdZUrgn/bGDUJPbcpkzpUmhPQfTnQdYDeNze7o9mYAbpqICf16k75AtHN4
-	hpRvs3Z3ZBR/qeHQuAPjvBFo50i4/navYUDwed1SXAiPXl/yu/ZUIHAZRaN8Eek/N5/cn4n3dtjmY
-	OrPhwT1Q==;
+	bh=D44eleHLuJyjN6DHxxZnS6xNAMu1xhOqNbQfUqInx60=; b=eApru8AcTlP3vpJ9eyEsROynw8
+	GMuAzBmMz6Wx1bbQSASCU/Qs3wMS9YKb5NM8vrpFJBNAfQT1QqLMD0VvpmgHaeyX1Nc3cOz8myTqs
+	eUTIhp+lKMs7yfhw10nuLfG4GoS/9h57dJf7KRX96WKgiv5cHY2oIKwsOkNBYlcU7Hz3u1H5OLtfr
+	89xJceoGVMdhQ/62K/PzullI6ZXBTiW6SJrnQ6l2+w+zaS4YttPdfPjHITOKYEy5k6N5Qgkfj212H
+	I21yVfVv1rc9oiGdG6EYody+3VHlne39E51uTSftha3edRJke7crynAp+rQX19AIpOi0TL4pujpMb
+	/sTpJpIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkXL-0000000A033-1jNC;
-	Wed, 18 Nov 2026 18:37:39 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkXH-0000000A02B-0k2X
+	id 1xTkZA-0000000A0Kv-3TUR;
+	Wed, 18 Nov 2026 18:39:32 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTkZ8-0000000A0KB-1Lu7
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 18:37:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D89D3CuijOw3iflMS7YCgJz/MbMdNGTSDl1Y3VaRUC7DFUfL+fTAvajz1Mw9NyojHRWkIOgH8gAnd8HSaDLKmJb/SK3+WFkMyC1J5F4bq66ljBSaUXxL3LIOwIk5g7JOsq9IkTIa5cFdpRIgluJfWEgHHY3FzHQo8n/pBRH/iwARNndgg4qgMpqLtke6C7ixOXBl5QL0mQFft1y8/ILD9ETUq31ydA61NyXmubw5OS8tAmQkuSzZEdyldE2OG9RCcftE+IrCTefHJ/4LPulALwB9fL7vQ4Xh8t4utVHzs09oKaQ3uz8dS2AfYehlaXU/FPgdxYKwfhGOn1N71w2C8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wKgFGck7J6Vixl2hYumkVASvZivhzBNR2xbVF5IDOY8=;
- b=ZTCoFbNlS1HdKOL+p0inG758sYIccP3CjNTQdpbvuvHUiDodOFNH5SvfnjAWThv0+QF86Z2Z+tL67DGKcPjwRmdOmBFkRQCP3OUy2cRWJ+2RSECLXV+w5LX1BxvspRtRyk1C+daAvSl+l3vT8GgxKL93yUtvLFuzmjGY/rnU8zm8tbtNvLWz6NDrOTWxJZj3Djh+8KXfCshxSdG2yoZjSYQFg2Dl40HHQ5ViqafVhPROTHnhNcoxob+3gDpjoG7k8swHBoiQnnLgRGfcHAr63UQIdHu5SlMDAP6UQCyiaSlWCAZc9fbWZzmMuylV/xk9G4tvEfu+AwmGdy4o1PAgsw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
- dkim=pass header.d=iopsys.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wKgFGck7J6Vixl2hYumkVASvZivhzBNR2xbVF5IDOY8=;
- b=4T411Hc1agCOvx5xWTdS1LT2nSaJN9t7faSRhWLp0v/no8W6TNCwdgQK/k3/nELqJXcZ4ZaJ+fq74hVol5bQBs4RI9xaNhe3K+m/26OPXCmBmkLIG8W+zcImzl94OpZ0NDwKNX1TW3OXZ/eS8+gWcbYnS3grIVBd2uyrMIHbHkoK3FiLlOaiMH/WAJ4MJ1z8u8hNwuHaeQgAFdWDlBF6fodP2Ot3qczW79ANf1/Uv/LDugcYQ4TAZOojhJUD+15dray6Hsu7RLKyKnBeRqtIJQRrEREZ7laieICevRidVBO6q6D+LIWj7DLRZ6lMfIc1x6TLqPWQqhV1Ayl7kuB0og==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=iopsys.eu;
-Received: from DU2PR08MB10037.eurprd08.prod.outlook.com (2603:10a6:10:49a::20)
- by PAXPR08MB6334.eurprd08.prod.outlook.com (2603:10a6:102:dc::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
- 2026 18:37:25 +0000
-Received: from DU2PR08MB10037.eurprd08.prod.outlook.com
- ([fe80::3c7:6d2e:8afe:e4dc]) by DU2PR08MB10037.eurprd08.prod.outlook.com
- ([fe80::3c7:6d2e:8afe:e4dc%3]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
- 18:37:25 +0000
-Message-ID: <37fc133b-a5f3-4b4d-ba2a-002239bbcebc@iopsys.eu>
-Date: Wed, 18 Nov 2026 21:37:21 +0300
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] spi: airoha: Explicitly prevent continuous reads
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Ray Liu <ray.liu@airoha.com>,
- Mark Brown <broonie@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20261118-winbond-upstreaming-airoha-cont-read-v1-1-acc0b6410868@bootlin.com>
-From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-Content-Language: en-US, ru-RU
-In-Reply-To: <20261118-winbond-upstreaming-airoha-cont-read-v1-1-acc0b6410868@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: GV2PEPF000480F2.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::430) To DU2PR08MB10037.eurprd08.prod.outlook.com
- (2603:10a6:10:49a::20)
+	Wed, 18 Nov 2026 18:39:31 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DB3F71477;
+	Wed, 18 Nov 2026 10:39:23 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6921E3F673;
+	Wed, 18 Nov 2026 10:39:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795027166; bh=b9vWe5L5qO916p8NmyWR01efXGtOjiyiUcgpP0QJEtk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FRR3vDb3GSkepgLG3AAzkS+1kPr35nFe6nJJyxRkX0CieGAiPFkYLX0xc2n1x5EXT
+	 67TN8mLY2T6a9mGS1e+KmBwuUossBj1AwcJtiOD0F2OhSWg3KWPZBLdNB6+DwbVp93
+	 ok8WUT0svLaRvyAblfG5JWaSDM6iB8HFzT7B7n5c=
+Date: Wed, 18 Nov 2026 18:39:16 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+Cc: Sudeep Holla <sudeep.holla@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
+	james.quinlan@broadcom.com, f.fainelli@gmail.com,
+	vincent.guittot@linaro.org, etienne.carriere@st.com,
+	peng.fan@oss.nxp.com, michal.simek@amd.com, d-gole@ti.com,
+	elif.topuz@arm.com, lukasz.luba@arm.com, philip.radford@arm.com,
+	david@kernel.org, souvik.chakravarty@arm.com, leitao@kernel.org,
+	kas@kernel.org, puranjay@kernel.org, usama.arif@linux.dev,
+	kernel-team@meta.com
+Subject: Re: [PATCH v15 00/35] Introduce SCMI Telemetry support
+Message-ID: <av3w1CbwYxFRPStZ@pluto>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
+ <20261117170709.00002088@oss.qualcomm.com>
+ <20261118-poetic-robust-raptor-bcff2b@sudeepholla>
+ <20261118093203.000069f1@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR08MB10037:EE_|PAXPR08MB6334:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36d3b9ff-705f-43b7-67b6-08df45a2fd65
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|1800799024|376014|22082099003|18002099003|261028144727099003|56012099006|11063799006|261026140227099003|261102123227099003|261026121527099003|261022105027099003|261021121427099003|261022075727099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: AWBRWJoUGJdZYQQiYc4pVOyLMTv4Uu3xNz3LV7B+ODwKlMmcJiPqBGVcE/m+eeeucKaHXh37Zio/+VPFI1Q25sKSlJogVdwqAdBjkJ2UbfmP6M0lMWSXs6KiUTo+cTqAyIqqmaZI6h2+a9UJtCfZRXdszuq0K1mhxVQAfzS4VYNuttWykRAhKKj0tlMI+pXhHOiZJJHav7pWlU8xaevMGrFIiZCWHZKHewcF6kUB9u6+tRTOYrs2L7mLfyqRLzu8mGlMQJtMn8/BniT3R4nFzwwo7CYjnYsyhmE8jHsr0TlBbhreB7Ju4j4fkaZJeAk3mJRrPQqB842u/MBlbY5JuEnlhr/0b9XKPxjrpbgy40KCavrfnaHQm2k86Yo2NeR1HNU/eV8ZfqFMuWiXOrpUNCmnoGpWoQZBp3oOrh6DbVmpglOwXTq0gFjFOQ7VpjI31DNOo5/T5ITHslWapdJ8Jzj1tbctP0LyuErp6OV0W/FybDH+Lc91i1nP9/JKZHzTfX/6618NKF8SOT5ejtQVZt4Xe1xcMKsQ7ap6kuzovPRngwW5AeDIShWj3bmfpn9Fv4WDR53LGStkfGHo/kHYS8HlCsdLR/P2ChY5ToZTil0vU9gDmclHd2m6s3TYrt7vH8ETjBURRmmKrqYPIrrHwCoE/l+09XmqqTJhULY117c=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR08MB10037.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(22082099003)(18002099003)(261028144727099003)(56012099006)(11063799006)(261026140227099003)(261102123227099003)(261026121527099003)(261022105027099003)(261021121427099003)(261022075727099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RTR2S2JFUUY0M01VSUdDL09GWlFVL0FaWjdxa0N3Y2U0WGFFMVp5alJBcFY4?=
- =?utf-8?B?Zll5MUFUZ1dyUUVSN2FYVE5kaDdJNEp6dHB5WSsyQVdPMHpIeWhiWlA0NVNu?=
- =?utf-8?B?R2FPN2d6dnBYZVFNQ0sySTREQ2lsa1VFNmdDb1hrVEoydXBWMW9DempzRDdQ?=
- =?utf-8?B?Q2g5eWc1a3IwUGRpTllaZVBtYUpPTXdNNUZLNGtZQmFSRTNsaTBvc0g0bjhu?=
- =?utf-8?B?K0JLSSs2WC9hck01L3A3blpTMjV1YXl3cXRsaUl1Q2tWUmdwMVVJVWpBVG04?=
- =?utf-8?B?RmZGQVRBVW9lWnorR2RjeHdUSm5abGhlT3ljeFg1SDJBTVlGV1ZyRXdFeHN4?=
- =?utf-8?B?VEZJTldSSGt1dHJSUHdlU3E5b0tCQ3lCUzI5UCtLOHVmT29XMTkxWHI0dkd3?=
- =?utf-8?B?d282bm55Z1dQT1c0RE1KSEJZaGVvdE5BdWpsQTlvcGFpVklnWk1QaWFveXRX?=
- =?utf-8?B?REFXRC9YWmdiU05CMExldnRYWUFzUWpJdU1Rd1U2YUpDVEc2aUZWVElVOEtn?=
- =?utf-8?B?UGxINmZXNjJ5Q3U1VzNjRWNiajRGY3dUL3Z6V0pyNDJpNEpPSU9rcm1BdS9C?=
- =?utf-8?B?SzlCUHJPenBGQmNjVXlLZTQwb0taL3hxNVpBajhtc3RpRFBhcElYaGhtQ295?=
- =?utf-8?B?ekIxdlNYVDNlOFRrZVlKSCtwcXJWaEJ0THVudlRhdVpWcWhDV0M5b01hWUJq?=
- =?utf-8?B?NlpnQ082d2RQK1ZHL1lSWUlmY2lGUm5GbFEyRWlXTUlGQW9aRzNrQ2cvR0FJ?=
- =?utf-8?B?SDk4Zk9KUG1YMnNNU0lDWkJHenJSa0M4cnRZVUVDREd2d3FGTHJMSkpBdGtM?=
- =?utf-8?B?UHhPc0paZUYxeEh4WGsrSDhDWWNVc25STld2azNoRjlOeTJMeGVGS0hWTXhQ?=
- =?utf-8?B?cWEyMFNmUnBNTlMvOFpEbVc2VThOM3NydEZuQlJJWm5NRVY2Rzl5MnVpc0o4?=
- =?utf-8?B?elhsTDBUQk5OZ0JhTzBaVWlqamlVWTAxSkRrM29oWVZlWmdvSGk5VW1BNEY1?=
- =?utf-8?B?bGNZNkhZRFZTSjRJTTB1ZG02WFBad01JcTN5cDV3S2tiYkJSZlFtdG9BKzhj?=
- =?utf-8?B?OFQzSkoyTHJSWE1EQzFoNE1aZ01CbmNsZTRQWXZ1VDNsTDdXcFZ0T3dqbTFW?=
- =?utf-8?B?SnZldU04SFNNYjhUSDVpOURLMm1PUnhXQWNLek5qRktTNFB6a2lXOU0wdENs?=
- =?utf-8?B?ZmJ6UENqaHVEMlI1Tml2Wjcxa0xmY0NLVXVjVzFDS3NVVjl0QmJYYi9NaTRN?=
- =?utf-8?B?V1oxMEFDd2ZsbUpZc1RaUzdCQkJJNWs5aE9Rc3dGL3NMZ1VKQWViZmtsVUZs?=
- =?utf-8?B?YVNnUDhCU1FCMkFIWFBMaVNVelI0bFF0cmFRaExKL1ZMYjlGTXdpcnpCTFc5?=
- =?utf-8?B?RE9LTHFYRWpkT1cwRGNReXJsSHRjMkNyTUh6MU5vNEtaeEdIMXB4a0RoSjBC?=
- =?utf-8?B?YTYvbEQxcW9ra1lFcUZ2Z2tpczd4bkMrdWorelRNV1Z3S0ZhN1NXMUFDZWVL?=
- =?utf-8?B?V1ZlQXJ6K0Q1dm1xQVNkU0VXZlJEc2syYlBIVlV3azJtNDh4Zm8vTXk2K2h1?=
- =?utf-8?B?dDZyVkFFS3RiNTdMV1dhSUtKeXFmUjhOUWE1S01PRjFxeUVSYXFlbE53aFQy?=
- =?utf-8?B?TUR5cDdUK0FPTWYrMDdVaUtKSWtObStJaWxJeGYvaTFkSElhSG5vZkVLSFJK?=
- =?utf-8?B?LytudGhHQS9NVnNZM2JITElOdVNGWDlleWtnZVdqNGova1NObDlZMi93M3lE?=
- =?utf-8?B?UU52a2QwRDIvWUxGaFpSSTFhTkVxU3JZY3NmMU9KajgrWlFtRzBndjJUR1lk?=
- =?utf-8?B?ZkkrazBwVlBTZHhBcUxsUGlMRkZ3eTFzSk45Ryt3RDZHUXJHYmFhNUlLdnhk?=
- =?utf-8?B?N0U4enQ3RWFNa0lqZjFXbW5hdExwckMzTHkwZlkxSEtDUWVycWlpYVQwQWNx?=
- =?utf-8?B?eUxzTStEWHZ0dmxDbG5udkN2VU5NTFBXNzdDckJhRVArL0R1ZFQ2ZlpQUEE3?=
- =?utf-8?B?WkJXT3hsdmYxN0w4TTZUenMxdzJtOWV1U1NQVXhFRU9JZ2IwTXUvTUgybU9D?=
- =?utf-8?B?dC9teSswZkNvN0dnMHVadWNiWERTd3I0YzV4R2FmblBGeW5jZ0xEdjR3VlVE?=
- =?utf-8?B?ZVFvSGRJRDlGNWdJRjZkUWo5UGVRWmYxMWJvWjJPRC9yUUVtZ2xNUGtTb2dt?=
- =?utf-8?B?WXJUZUEzRmpaeFNHMXJjV29QUXpPNHQwdGxiZkhuT1NPRlhnVTdhaGhORXIw?=
- =?utf-8?B?aDlWQXI2Z2N4MnNvTFpuOHM0UGlMN01GNVA0azV3TW13YXc2NXJJbjFBYTky?=
- =?utf-8?B?cHFwcFd4T1RlV1pyUkw3SHRmSDNPejdoVFB2S3oyWDQxOHA0bXZ6Z2xrMmdF?=
- =?utf-8?Q?kTRRMrBMzZ1wJyNU=3D?=
-X-OriginatorOrg: iopsys.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36d3b9ff-705f-43b7-67b6-08df45a2fd65
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR08MB10037.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 18:37:25.0749
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ho/aYxhcqY9ZguChdL44i/vXNB2j8FAjbSBjLPlfA2tZdSkBySta0re316KjWcSi139ytBH0+z/FeAY0y/KgHAXDXandnaKkB60HPoWYAIo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR08MB6334
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261118093203.000069f1@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_103735_957307_B03C334E 
-X-CRM114-Status: GOOD (  20.89  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261118_103930_467106_C65EF854 
+X-CRM114-Status: GOOD (  28.93  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,71 +81,80 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello Miquel,
+On Wed, Nov 18, 2026 at 09:32:03AM -0800, Jonathan Cameron wrote:
+> On Wed, 18 Nov 2026 09:33:44 +0000
+> Sudeep Holla <sudeep.holla@kernel.org> wrote:
+> 
+> > On Tue, Nov 17, 2026 at 05:07:09PM -0800, Jonathan Cameron wrote:
+> > > On Mon,  9 Nov 2026 09:11:46 +0000
+> > > Cristian Marussi <cristian.marussi@arm.com> wrote:
+> > >   
+> > > > Hi all,
+> > > > 
+> > > > [TLDR Summary]
+> > > >  [V15 highlights]
+> > > >  - general cleanup and hardening driven by reviews
+> > > >  - improved TDCF access routines to minimize lost samples under load
+> > > >  - completed ABI docs
+> > > > 
+> > > >  [V16 TODO]
+> > > >   - address any remaining V15 outstanding Sashiko/reviewers issues
+> > > > 
+> > > > The upcoming SCMI v4.0 specification [0] introduces a new SCMI protocol
+> > > > dedicated to System Telemetry.  
+> > > 
+> > > This is one from the family of issues you find when reviewing ones own
+> > > (well LLM generated) emulation, realizing it doesn't match the spec,
+> > > and yet works.
+> > > 
+> > > This works fine without the required SCMI protocol property in ACPI.
+> > > 2.2.2 of ACPI for System Control and Management Interface 1.0
+> > > Platform Design Document. 111115A 1.0
+> > > 
+> > > Now, in here is an informative statement...
+> > > 
+> > > Protocols not listed using a property may not be enumerate by the operating system.
+> > > 
+> > > But they are... 
+> > >  
+> > 
+> > Correct, I intentionally left that out. I do have a patch that restricts it
+> > strictly to the listed property. However, I held off on pushing it because of
+> > an issue we saw on an internal test platform.
+> > 
+> > On that platform, the firmware advertised the protocol to the OSPM via the
+> > base protocol, even though it wasn't functional at all. Once they realized
+> > this, they simply dropped the entry from the ACPI SCMI device as a workaround
+> > instead of properly fixing the base protocol discovery. While understandable,
+> > relying on that workaround delays proper firmware fixes.
+> > 
+> > That is why I went with the non-mandatory "may not be" wording. I am happy to
+> > merge that restriction patch if a real production platform actually needs it,
+> > but until then, leaving it open helps catch and fix broken firmware
+> > implementations 😄.
+> 
+> You can't merge it safely as at a later date because chances are high
+> someone is relying on the current behavior and not presenting that
+> (currently pointless) package in ACPI for some protocol or other.
+> 
+> I'm fine with a permanent decision not to check this but I don't see it
+> as a thing that can ever change (except maybe now whilst there are not
+> that many platforms out there using it!)
+> 
 
-I think the patch is bad for the following reasons:
-* As I know there is no CS issue with Airoha controller. It works properly.
-* Airoha controller supports large reads (but only in PIO  mode). Thus
-  continuous reading may work properly. Unfortunately PIO reading several
-  times slower than DMA reading.
-* DMA reading is much faster, but can't be used for continuous reading.
-  Maximum transfer size is 8191 bytes.
+Even though the change would be at the transport layer, given that it is
+NOT impacting the Base protocol, cant we anyway quirk it later on based on FW
+vendor/version as an extrema ratio so as to support anyway older FW
+leveraging the current behaviour ? (not ideal I agree...and I have to
+double check what changes could be needed in the quirk framework..)
 
-Thus for new Airoha controllers (en7523, an7581 and newer) it's better do
-not use continuous reading and read pages using DMA. Old controllers (like
-en7512) does not support DMA, so they can benefit from continuous mode
-reading.
-
-On 11/18/26 16:59, Miquel Raynal wrote:
-> The SPI NAND core currently treats the lack of "large reads" as an
-> indication that continuous reads might not be properly supported, but
-> this is fragile and might evolve. The real problem with the Airoha
-> controller is that it lacks full control over its CS, which may be
-> spuriously deasserted. We now have a flag for this, so set it and make
-> it clear that this controller is not suitable for continuous reading, at
-> least with chips processing a CS deassertion as an end of read
-> condition.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  drivers/spi/spi-airoha-snfi.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/spi/spi-airoha-snfi.c b/drivers/spi/spi-airoha-snfi.c
-> index 95bfde7c8e7f..1070d4697fcb 100644
-> --- a/drivers/spi/spi-airoha-snfi.c
-> +++ b/drivers/spi/spi-airoha-snfi.c
-> @@ -1018,6 +1018,10 @@ static const struct spi_controller_mem_ops airoha_snand_nodma_mem_ops = {
->  	.exec_op = airoha_snand_exec_op,
->  };
->  
-> +static const struct spi_controller_mem_caps airoha_snand_mem_caps = {
-> +	.no_cs_assertion = true,
-> +};
-> +
->  static int airoha_snand_setup(struct spi_device *spi)
->  {
->  	struct airoha_snand_ctrl *as_ctrl;
-> @@ -1121,6 +1125,7 @@ static int airoha_snand_probe(struct platform_device *pdev)
->  	ctrl->num_chipselect = 2;
->  	ctrl->mem_ops = dma_enable ? &airoha_snand_mem_ops
->  				   : &airoha_snand_nodma_mem_ops;
-> +	ctrl->mem_caps = &airoha_snand_mem_caps;
->  	ctrl->bits_per_word_mask = SPI_BPW_MASK(8);
->  	ctrl->mode_bits = SPI_RX_DUAL;
->  	ctrl->setup = airoha_snand_setup;
->
-> ---
-> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-> change-id: 20261118-winbond-upstreaming-airoha-cont-read-1332872b972c
->
-> Best regards,
+Thanks,
+Cristian
 
