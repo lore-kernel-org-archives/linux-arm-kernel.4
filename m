@@ -2,74 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0B4606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 21:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48AEE606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 21:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GHgdS30i;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=e/v+eP0h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pNQfhcfy;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UV+J/67M
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=jr2i5Ws8efXcq7fsLottyNoSDK02f27nflx3w/WwBX4=; b=GHgdS30iYo3liB
-	ZQZ5HRMMIXQx2Cf2wdofiGSwShVkrvzaVMPvbfcoG8Bjbzv9VS5hfcMk6g2OUF0HljEYkpNq8Vx5J
-	VlmjvHGKRTlPXOxScnlZF3s8r6n0TeT8to2t5yvDnJ+GD7ArysyfibumJEXnASzPrsBThJgVY5LyA
-	ZVOcj+SqBBijdnjOye/8LhztLC8SEZhaBOXuMdULakhx0p7LTB5Ln5tvAbj8fNy5BYQ427VErpTWy
-	bESgv3tteEziGsdAvHL5skCnJ60RYOu7lSU3q4dCZ/buwvHE8sMoZHXJsfcjrpGXQWbgAuq3x3xff
-	wA1hJCrhA1IP6BjVkxhw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=HDCAkeZEKgNECITteEp+O5Hl5QzBetAGqDu6m3T4vtc=; b=pNQfhcfyykEMyVm1+U1UeUSVsH
+	jYqVZhkEetEe8wmSJCbwxlh3EwTBr1gp8ZORYX5jUJlvPo34GckiIPyh0+V9hC9TSRwF7adssE45s
+	rNBiiDSPLXaPTxWtoeA/PIJDmYQdTB4kLJf7dugejwogqCEAqFHOxy8EvXsRVqKA03hlcEaky7q0A
+	Q9eOokqp288KoByGa5nMCctlDp/E+3cMRbUCUpxAdo0BnP1RAPuWj0ps8rMRAslSHPCH1nTJzK3Ps
+	Hbbuh/Z0gNspfwaB5+gFYbyE2b4pI0Xy/rM86BnIStx0/wZPoE6HFfki1aAuYMlw3og7T3bdKSY68
+	5HL3wd9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTmuj-0000000AHgx-3g8H;
-	Wed, 18 Nov 2026 21:09:57 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTmwz-0000000AI2P-1giz;
+	Wed, 18 Nov 2026 21:12:17 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTmui-0000000AHgW-3KIb
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 21:09:56 +0000
+	id 1xTmwy-0000000AI1z-0hQv;
+	Wed, 18 Nov 2026 21:12:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B5B3563D99
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 21:09:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 704381F000CA
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 21:09:55 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 9A74863DD9;
+	Wed, 18 Nov 2026 21:12:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C7651F000C4;
+	Wed, 18 Nov 2026 21:12:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795036195;
-	bh=jr2i5Ws8efXcq7fsLottyNoSDK02f27nflx3w/WwBX4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=e/v+eP0hWOV6kjrBAYvATcWqJ/gpTYajGabAuTPKDi7RdPofCoC4e4edajjc5vl40
-	 9yfvw4ZdmUN7Uf2c53lZTCOqs505LhW/o4zhZIDc+pnvObwR31spw8mxRUee1Al9y8
-	 tMCLQxfN0H8Y8nP2MqZA1EC3Wyb3Hb0imIEt6VKrRrtYYbZ0OfGkb5yehDHQqfy5DZ
-	 fNqnR2Ds/v3WKlR+NbSZQ1jSa65a8kBBXS8dDyquOO89DCX7OWtqJiKP51UimA9hNt
-	 W+8MYCG0JCTZKPxdOJ8Zz7jjSftDVIP+0zfe7+dV58zgGOzzdco5q6OTz8JltFYLQP
-	 EpFBCJR/jEn5w==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5c07c7306e1so1251130e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 13:09:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGYo3nclcAVRFiF59VmkPCyKB7obwaSZ74huHbQqJiomVQxud314TUMintsMqntxU1B1yzYE7rV1ot/Vg5SFbHN@lists.infradead.org
-X-Gm-Message-State: APuU4Z8GswfgQw/PJbFCsrVDH9587Bxe2ydbqFS1IzYBZOc1d3QVVxri
-	Se0JtlOTN9vi53ZVkEUr+Hc9vJw3BeNIO84kUpWAtQaFM2QdwB4az3Hl8XmvDOYZq2e8djCo3CC
-	RCza5cN1g4nwXjlqonenHv6xijR59yHM=
-X-Received: by 2002:a05:6512:6891:10b0:5c1:b107:2bb with SMTP id
- 2adb3069b0e04-5c1b107097dmr214230e87.29.1795036194225; Wed, 18 Nov 2026
- 13:09:54 -0800 (PST)
+	s=k20260515; t=1795036335;
+	bh=HDCAkeZEKgNECITteEp+O5Hl5QzBetAGqDu6m3T4vtc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=UV+J/67MbY357XaDQY1wb463wX0IRk8wkHXFkoWEZenbFaJyhzFuIQfXCNSwvwfJU
+	 qy6eTYeIkjCOEiGamXPX38F9pDt1amP3aLvKuwNzXFBA5vb4wdeguOZ46imbpQM3HH
+	 VbmZy/7x+nH69YQY2OOsAnYP+h77GPwhZ10eb8lYWdibiRsgakr8hNR513hYa6OsHA
+	 gpASOlSPUVEOm4CFtta8+PxVQjSIgJg3YiJ5RcBr/ZHi2Xty17GWUHctn85sd1BqVt
+	 XJsm/JrHHT7qBnq9NK7Lz9rP/vkw47eMBX/Cx9FWYGHGKivBZvrjK+3uTjCI4IYbJ+
+	 LGk/gzldD+MoA==
+Date: Wed, 18 Nov 2026 15:12:13 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Arun Iyengar <aiyengar1990@gmail.com>
+Cc: "Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Sergei Khomenkov <shomenkow@gmail.com>, linux-media@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+	Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Tharit Tangkijwanichakul <tharitt97@gmail.com>,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Robin Murphy <robin.murphy@arm.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Will Deacon <will@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: Re: [PATCH v3 09/12] dt-bindings: iommu: verisilicon: Add the reset
+ lines
+Message-ID: <179503633303.1026294.13265931291841937198.robh@kernel.org>
+References: <20261113-hantro-robust-v3-0-82383c722ad2@gmail.com>
+ <20261113-hantro-robust-v3-9-82383c722ad2@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261110083253.1525-1-laixiangwu@cmss.chinamobile.com>
-In-Reply-To: <20261110083253.1525-1-laixiangwu@cmss.chinamobile.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 18 Nov 2026 22:09:40 +0100
-X-Gmail-Original-Message-ID: <CAD++jLn1P9hT-YH9vM9VSvoMRei5LJv+hDZMH1en6CfFXPB-5w@mail.gmail.com>
-X-Gm-Features: Aa3M54qVfEnBQGnC1md9osy2E13w8uoX854ImpVfar6VoMvtX9B4F6U4NV-DAk4
-Message-ID: <CAD++jLn1P9hT-YH9vM9VSvoMRei5LJv+hDZMH1en6CfFXPB-5w@mail.gmail.com>
-Subject: Re: [PATCH v2] pinctrl: stm32: Fix reset control leak in
- stm32_pctl_probe() error paths
-To: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-Cc: antonio.borneo@foss.st.com, mcoquelin.stm32@gmail.com, 
-	alexandre.torgue@foss.st.com, linux-gpio@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261113-hantro-robust-v3-9-82383c722ad2@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,28 +87,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 10, 2026 at 9:32=E2=80=AFAM Xiangwu Lai
-<laixiangwu@cmss.chinamobile.com> wrote:
 
-> Signed-off-by: laixiangwu <laixiangwu@cmss.chinamobile.com>
+On Fri, 13 Nov 2026 16:40:40 +0000, Arun Iyengar wrote:
+> The RK3588 AV1 IOMMU is part of the AV1 block and has no reset lines
+> of its own: the four AV1 resets also cover it. Its registers can't be
+> accessed while they are asserted. Describe them.
+> 
+> Suggested-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
 
-Fix your email address in .gitconfig please so you don't use
-your login name as name.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Example:
-
-[user]
-        name =3D Linus Walleij
-        email =3D linusw@kernel.org
-
-
-Yours,
-Linus Walleij
 
