@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BF4606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 10:52:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51130606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 10:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3TIwtpX4;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FLmSuKsn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q/VrQOWD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=T08J5mk/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xrAEk6/4WGNXDqt6SdPWcxivaPvWRQHVDKqiBuuVVeE=; b=3TIwtpX4Q6x+7ICubqpHlGQhF6
-	XN3AVRd3C+avMPkA4wcYgR3cIQH8KLy6kG6y4CHFN/wMDB7i7sQai2RiXrI56E6XFOF/NEKdS6ytA
-	hpyh/ildYFNaGriL6/W0iz2wpANfnm2lUKGzPx/IQ03gH1VtvFG57sdMR4+NPYCqfF30/fkV7vB+r
-	L5LSsIQ/mBXjcecOqLoaJTg/L6gU/HpqHfGDf0wZLymJeOjQbkL2z6F0CWnqi3y7aNIgmUFcV/vjy
-	Z8/xqaXo+arfXfSJm4B0q37w3oPioaqibRzRcHkDqCGEeoV70CITIEtnJUT2Ir2pBXPvksQ+qDXwb
-	0vxaJwJQ==;
+	bh=ekSWlwMFYCJb5CWNs9PahwiZ4lvhB0X9D5Up2UC4Rjo=; b=Q/VrQOWDK4P3jKXMyISJFFd1Gs
+	5A2Vi8z1f3TZphKQ7ApcC3g7tHrqkIXSAMa/it4mEWAC0ikvOEcmqBCaIlmfeIj/pQLnJHbma2kNH
+	EBYlJlHVY3MhCbThrrAZStdV1ZFyfJ1QM4vytskR3rDkZ5W6SgrE4G/5xd4nhMhI6e0ksE0EqQDuh
+	33ckAheByJ0N8bB23I3grZmVFXR6PWO7gXaXLfukw8w8iQxgVQVJNCUocDekQfFvSWzRKRfdz5gxh
+	vIQR4lLt1qLFXDWPn6KaWIhImxSF8zp35k6yfyWi3nqaoHL/HQqiD3F/+PVKUruLmYGtA5m2Bdrud
+	oE8YiBgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdHB-00000008d2I-2Flv;
+	id 1xTdHB-00000008d35-38Jc;
 	Wed, 18 Nov 2026 10:52:29 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdHA-00000008d0w-1Hwe
+	id 1xTdHA-00000008d14-2s2W
 	for linux-arm-kernel@lists.infradead.org;
 	Wed, 18 Nov 2026 10:52:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1510E4025D;
+	by sea.source.kernel.org (Postfix) with ESMTP id 5FCE945FFF;
 	Wed, 18 Nov 2026 10:52:28 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794999148;
-	b=mg8UbZCYxgwekOA0F1e5ThM4Etrp+N/FjM4oMu5xIbuQkTUSgu50fpZH0iPIXvEpph+X
-	 hDRXDn9ybpwKAziPKoHxstjQyhkYBfNpSDdU8+SDY/HcYViw4oIkEGG8iStDFNpGoi1tj
-	 3uQLHCxJRCfdDGZicCU4Wisn1xV6monq5jBZFzf6nL1TbvZpZbOwn+QO8NrOoRmD/pMD9
-	 uOxdLmsFxXzyH+pUVQ+9A0k9Ze0fUsI0RxvlduvcgGFW+aQ72HYWAJ/L5hNu3aGySyWER
-	 Eq8YPbBv6QEqQm0BRGvROISrMccMc9+EAE+8rNG9YfkQKnojpI3hc2rUXd/1QbS98zg==
+	b=VOTTUb8d3CKjguUjFo7lsae+fiQwaDYp726xJuW3/FpL4qWiIHXL1IxheP0oXMdvXs0i
+	 y0kel/6tlVWjFiZnbkIQaKlF5oD0wkow8V4CkHkDHA11rOKlZNYFW93136m4gy6ed5XVa
+	 Mp3XN0melYnqjY84WypwhV+1xtZPZzXu8cpbmT0gwF9E5voIFseezv0CxM+5y7lhArzxy
+	 WHKcplzy0E18r04zJdRx8igP3tr8+dZYqrb5g/aaFhTEJDX7o/cddAa59zeEGCSt09qk2
+	 CwySHSswf43IQefSFPiAESXZwjoYVOKySILvcL+ixjGcWp4y1hvifAsKvDMwedMJcdw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794999148;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=xrAEk6/4WGNXDqt6SdPWcxivaPvWRQHVDKqiBuuVVeE=;
-	b=rW8aq4KbrhhZDyd3vQmXjVbsbZ+o7LDKu/3qcHNY342OuQSZa0HczBZPRSGSrFlsroTS
-	 aLTEOw85Xl/p6zL/b3jHYdg7RP8XdU1GR57WsSEKApHxSScpTypkMgTcrqW1VyNl/1JYd
-	 /ZFaSz5rlYnRtYNSujtcI0JC4QEGfUQWDtXDkAhiEsSQx4etxK6AnN3b9R5sWXjF5F1SC
-	 /KQcKzb3Xtaao55kDkmbFXb61ajamNteNFxCGqJvWepRITwYk9SsWzDXjpsaQi7iMRcGu
-	 GpVvI4+j0mAZZm0/cdqw3tpufRGgCztPmYK/kqeowCquEodHfi8g9MpfCSFNpisnhuQ==
+	bh=ekSWlwMFYCJb5CWNs9PahwiZ4lvhB0X9D5Up2UC4Rjo=;
+	b=QfjAlkXvjIf10KpP7nK+ZlVaZ0pzmyUtziH5mo4z3VlfmtmPKIWq32uv73Pd2LhZN0bY
+	 hQ7xljUQ8fWBD4niogYKhFQbXfxnz7eIx06cUXhoDQpr/rnBYCVn0+kSM/911TIfmel/E
+	 0ZRgUZUoPSsDnjnRbSJ723MIObN3RNzCn3qrheZjrvWVm30i3GEaP+4U1hI44GRYLYq+D
+	 +dxhEJVgbL/mlFe6fU5uKc42+ueB/vXUSsydhJ1YaW4qbPBtXVmqIAkMLGliArgZ0rdEl
+	 omb78gXpARoU6t0oUjGokKmUDzfQRVYtp77aMShBwSyzsvr6H5Db5MG5Yh+kRFdFdZw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 2736E1F000C8;
-	Wed, 18 Nov 2026 10:52:26 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 3F1D71F000CF;
+	Wed, 18 Nov 2026 10:52:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794999147;
-	bh=xrAEk6/4WGNXDqt6SdPWcxivaPvWRQHVDKqiBuuVVeE=;
+	s=k20260515; t=1794999148;
+	bh=ekSWlwMFYCJb5CWNs9PahwiZ4lvhB0X9D5Up2UC4Rjo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=FLmSuKsn0a8nrabKv3rbcj8Q7aPeYDxgKLK4EBmfDubuBX3Ym6U5yevh55ttN4/49
-	 WO4rLPEprjk7HPS1Dga5CaaIk8Ag7E0SQHyB4e2XSy/GBRtuyVI6jKHhORQbsMvhJ4
-	 QSuXzEksAZ8rGlwlgZjCyoYZzuU9u3XEo9T5P+ArPukkedHfw1uEbW4pfpvq1J/Duj
-	 qsawcGSbje4wxV2a47M9u66T3fvs+kumYQ1u0JmGUdgClnD8qavsdJORXWHvn3Wdlj
-	 /6X3+Cmv5aJrFl0hCvRwhmkfJICZgBT3yUyAfZSckZ6KXhmemk5uy9ZZ5MF3Sil/Xa
-	 4h96mY/HElIhw==
+	b=T08J5mk/RX+6cdghSOFju2FhuuUou8N/LBUCqTfCa0UBoNFADH1c0K+WWAd5VX7q+
+	 qQ9i1fmK3w/dGi9R8ZelK4hnt+aRYzdu5NocH0lCTxB+XvifWeP5tG5Xbkf3172m0T
+	 QAGhnl4/MISUWXDLO6pnwWSbVPsXOsGAD+/OTaOSog++vtmQlW/7pHUEvChE84BUh5
+	 YrdKeXodM9ip2r5An5YEzOmHJZDtx4kUaVbKd0Gb/INaNWQA+dvmuYnoNDgCForaxG
+	 jF0QMbqWXfGILVyi+ZWKgjbkRucvanuiwjQf8+uxJKJsHSt8NrZZlsi63KvjyUjq+t
+	 FGou5gFdsE31g==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A75664AD1C;
+	by lkml.kernel.org (Postfix) with ESMTP id BE0884AD20;
 	Wed, 18 Nov 2026 10:52:25 +0000 (UTC)
 From: Rajan Yadav via B4 Relay <devnull+rajanyadav0307.gmail.com@kernel.org>
-Date: Wed, 18 Nov 2026 04:52:27 -0600
-Subject: [PATCH v2 4/6] arm64: dts: allwinner: a100: Add A133 speed grade
- efuse cells
+Date: Wed, 18 Nov 2026 04:52:28 -0600
+Subject: [PATCH v2 5/6] arm64: dts: allwinner: a133: Add CPU OPP table
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261118-a133-series-v2-4-8bcec9c9aadf@gmail.com>
+Message-Id: <20261118-a133-series-v2-5-8bcec9c9aadf@gmail.com>
 References: <20261118-a133-series-v2-0-8bcec9c9aadf@gmail.com>
 In-Reply-To: <20261118-a133-series-v2-0-8bcec9c9aadf@gmail.com>
 To: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>, 
@@ -99,11 +98,11 @@ Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
  Paul Kocialkowski <paulk@sys-base.io>, 
  Rajan Yadav <rajanyadav0307@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794999144; l=1665;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794999144; l=8781;
  i=rajanyadav0307@gmail.com; s=20261103; h=from:subject:message-id;
- bh=QDA+B3vGjPJfqlQByEbIUmG8/8wRVGARGoza4DrglDc=;
- b=hKLNDqmnQeDuJKQ7lx/vsNw7nGNI8PDmyb6Eo9Oy/s3ocVt9hvtNz/XziotlRlyPxC7g9ztRC
- F8W7C4Be9nyCsMkCNgx/hxLqbVshw8HalMmPmMOMJ7gBbd1MQThH8UG
+ bh=S+uzsmUxTcW+8l4ePq+AR9wIIhaHfO1sQ5kGjKEbYc8=;
+ b=Z1W2EcEk0u4/zpyvz+58cjfxO4XScNr+ZSFY4Po66FZn9lAt7r2eIttql/Zm9+MB23ZWG8vF7
+ lm5AEAE8SPxCHurWhhPwzl+ash1AglMpeWGOG9tRC4ODdhyx7C6x09g
 X-Developer-Key: i=rajanyadav0307@gmail.com; a=ed25519;
  pk=4ZPeiP5qrv2b44q/Obxi2koUS70Q6npbttJnpUoTlgg=
 X-Endpoint-Received: by B4 Relay for rajanyadav0307@gmail.com/20261103 with
@@ -131,55 +130,255 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Rajan Yadav <rajanyadav0307@gmail.com>
 
-The A133 speed grade selection also needs the chip marking ID (SID
-offset 0x00), the word at 0x20, whose low 12 bits the vendor BSP calls
-PCPU, and the word at 0x28 with the bin extension bit. Add nvmem cells
-for them at the offsets the BSP uses. The H616 reads the same kind of
-marking ID at offset 0x00 as its speed grade.
+Add the A133 CPU OPPs from the vendor BSP (sun50iw10p1.dtsi), plus
+1608 MHz for b0 and b1 from the vendor table in the factory firmware of
+the KickPi K5C. There are ten voltage sets, speed0-5 for the a0-a5/a6
+grades and speed6-9 for the "high speed" b0-b3 grades.
+opp-supported-hw selects the frequencies of each grade:
 
-The cells are used by the A133 OPP table added later in this series;
-the A100 OPP table keeps using only the existing 0x1c cell.
+- 1464 MHz only for the a grades
+- 1416 and 1512 MHz only for the b grades
+- 1608 MHz only for b0 and b1, the revision A-E "high speed" grades
+- 408-1320 MHz for all
 
-Claude Code (Anthropic) drafted this change and its message from the
-vendor BSP device tree; I reviewed it and checked it with dtbs_check.
+The highest voltage is 1.18 V, inside the 0.81-1.2 V recommended
+operating range of VDD_CPU in the A133 datasheet (V1.5, table 5-2).
 
-Reviewed-by: Alexander Sverdlin <alex@sverdlin.org>
-Tested-by: Alexander Sverdlin <alex@sverdlin.org>
+The BSP uses 1008 MHz where the A100 table uses 1080 MHz, at the same
+voltages for a0-a2. U-Boot starts the CPU at 1008 MHz, which mainline
+now reports as an unlisted initial frequency. This table follows the
+BSP.
+
+The BSP table stops at 1512 MHz, although some datasheet versions list
+1.6 GHz for the A133. The factory firmware of the KickPi K5C (Linux
+4.9.170, built January 2026) has the same table plus five OPPs:
+1608 MHz for b0 (1.18 V) and b1 (1.13 V, at most 1.14 V), and 1416 MHz
+for a0-a2. This patch takes the 1608 MHz OPP from it.
+
+The K5C is a b2 part and never uses this OPP. With a test-only change
+that forces the grade, the CPU PLL locked at 1608 MHz and the PMIC was
+set to 1.18 V for b0 and 1.13 V for b1. Forced to b0, two 20-minute
+runs of full load on the K5C without a heatsink reached the 90 C
+passive trip after 10-13 minutes; from then on the temperature stayed
+between 83.5 and 90.4 C.
+
+The table has the A100 compatible as a fallback and the speed bin cell
+first, so a kernel without A133 support selects speed0-2 from the speed
+bin and gets the voltages of the A100 table, with 1008 instead of
+1080 MHz. It needs the efuse cells added to sun50i-a100.dtsi in the
+previous patch.
+
+A script compared every voltage and the frequency set of every grade
+with both vendor tables. It found no difference to the BSP file other
+than the added 1608 MHz OPP, and no difference to the factory table
+other than its 1416 MHz OPP for a0-a2.
+
+Claude Code (Anthropic) drafted this table and its message from the
+two vendor device trees (numbers only) and wrote the comparison script;
+I reviewed it and tested it on a KickPi K5C.
+
+Suggested-by: Andre Przywara <andre.przywara@arm.com>
 Signed-off-by: Rajan Yadav <rajanyadav0307@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-index ba6020989ce..d1164f3b549 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-@@ -176,6 +176,10 @@ efuse@3006000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 
-+			chip_marking: chip-marking@0 {
-+				reg = <0x0 0x2>;
-+			};
+---
+Changes in v2:
+- Add 1608 MHz for b0 and b1 from the factory firmware table, as Andre
+  asked; the commit message describes the source and the K5C tests.
+- Alexander's Reviewed-by and Tested-by for v1 are not carried over
+  because of this change. Alexander, could you check whether they
+  still apply to this version?
+---
+ .../boot/dts/allwinner/sun50i-a133-cpu-opp.dtsi    | 182 +++++++++++++++++++++
+ 1 file changed, 182 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a133-cpu-opp.dtsi
+new file mode 100644
+index 00000000000..dd5fdeea7ea
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-cpu-opp.dtsi
+@@ -0,0 +1,182 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (C) 2026 Rajan Yadav <rajanyadav0307@gmail.com>
++/*
++ * A133 CPU OPPs. The voltages and grade selection follow the Allwinner
++ * vendor BSP (sun50iw10p1.dtsi); 1608 MHz for b0 and b1 is from the vendor
++ * table in the factory firmware of the KickPi K5C. Index 0-5 are the
++ * vendor's a0-a5 grades (a6 uses the a5 values), index 6-9 are the "high
++ * speed" b0-b3 grades. This needs the efuse cells from sun50i-a100.dtsi.
++ */
 +
- 			ths_calibration: calib@14 {
- 				reg = <0x14 8>;
- 			};
-@@ -183,6 +187,14 @@ ths_calibration: calib@14 {
- 			cpu_speed_grade: cpu-speed-grade@1c {
- 				reg = <0x1c 0x2>;
- 			};
++/ {
++	cpu_opp_table: opp-table-cpu {
++		compatible = "allwinner,sun50i-a133-operating-points",
++			     "allwinner,sun50i-a100-operating-points";
++		nvmem-cells = <&cpu_speed_grade>, <&chip_marking>,
++			      <&cpu_pcpu>, <&cpu_bin_ext>;
++		nvmem-cell-names = "bin", "marking", "pcpu", "bin-ext";
++		opp-shared;
 +
-+			cpu_pcpu: cpu-pcpu@20 {
-+				reg = <0x20 0x2>;
-+			};
++		opp-408000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <408000000>;
 +
-+			cpu_bin_ext: cpu-bin-ext@28 {
-+				reg = <0x28 0x4>;
-+			};
- 		};
- 
- 		watchdog@30090a0 {
++			opp-microvolt-speed0 = <900000>;
++			opp-microvolt-speed1 = <900000>;
++			opp-microvolt-speed2 = <900000>;
++			opp-microvolt-speed3 = <940000>;
++			opp-microvolt-speed4 = <940000>;
++			opp-microvolt-speed5 = <920000>;
++			opp-microvolt-speed6 = <900000>;
++			opp-microvolt-speed7 = <900000>;
++			opp-microvolt-speed8 = <940000>;
++			opp-microvolt-speed9 = <920000>;
++			opp-supported-hw = <0x3ff>;
++		};
++
++		opp-600000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <600000000>;
++
++			opp-microvolt-speed0 = <900000>;
++			opp-microvolt-speed1 = <900000>;
++			opp-microvolt-speed2 = <900000>;
++			opp-microvolt-speed3 = <940000>;
++			opp-microvolt-speed4 = <940000>;
++			opp-microvolt-speed5 = <920000>;
++			opp-microvolt-speed6 = <900000>;
++			opp-microvolt-speed7 = <900000>;
++			opp-microvolt-speed8 = <940000>;
++			opp-microvolt-speed9 = <920000>;
++			opp-supported-hw = <0x3ff>;
++		};
++
++		opp-816000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <816000000>;
++
++			opp-microvolt-speed0 = <940000>;
++			opp-microvolt-speed1 = <900000>;
++			opp-microvolt-speed2 = <900000>;
++			opp-microvolt-speed3 = <940000>;
++			opp-microvolt-speed4 = <940000>;
++			opp-microvolt-speed5 = <920000>;
++			opp-microvolt-speed6 = <900000>;
++			opp-microvolt-speed7 = <900000>;
++			opp-microvolt-speed8 = <940000>;
++			opp-microvolt-speed9 = <920000>;
++			opp-supported-hw = <0x3ff>;
++		};
++
++		opp-1008000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1008000000>;
++
++			opp-microvolt-speed0 = <1020000>;
++			opp-microvolt-speed1 = <980000>;
++			opp-microvolt-speed2 = <950000>;
++			opp-microvolt-speed3 = <1020000>;
++			opp-microvolt-speed4 = <960000>;
++			opp-microvolt-speed5 = <940000>;
++			opp-microvolt-speed6 = <980000>;
++			opp-microvolt-speed7 = <950000>;
++			opp-microvolt-speed8 = <960000>;
++			opp-microvolt-speed9 = <940000>;
++			opp-supported-hw = <0x3ff>;
++		};
++
++		opp-1200000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1200000000>;
++
++			opp-microvolt-speed0 = <1100000>;
++			opp-microvolt-speed1 = <1020000>;
++			opp-microvolt-speed2 = <1000000>;
++			opp-microvolt-speed3 = <1100000>;
++			opp-microvolt-speed4 = <980000>;
++			opp-microvolt-speed5 = <960000>;
++			opp-microvolt-speed6 = <1020000>;
++			opp-microvolt-speed7 = <1000000>;
++			opp-microvolt-speed8 = <980000>;
++			opp-microvolt-speed9 = <960000>;
++			opp-supported-hw = <0x3ff>;
++		};
++
++		opp-1320000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1320000000>;
++
++			opp-microvolt-speed0 = <1160000>;
++			opp-microvolt-speed1 = <1060000>;
++			opp-microvolt-speed2 = <1030000>;
++			opp-microvolt-speed3 = <1160000>;
++			opp-microvolt-speed4 = <1020000>;
++			opp-microvolt-speed5 = <1000000>;
++			opp-microvolt-speed6 = <1060000>;
++			opp-microvolt-speed7 = <1030000>;
++			opp-microvolt-speed8 = <1020000>;
++			opp-microvolt-speed9 = <1000000>;
++			opp-supported-hw = <0x3ff>;
++		};
++
++		opp-1416000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1416000000>;
++
++			opp-microvolt-speed6 = <1100000>;
++			opp-microvolt-speed7 = <1070000>;
++			opp-microvolt-speed8 = <1060000>;
++			opp-microvolt-speed9 = <1040000>;
++			opp-supported-hw = <0x3c0>;
++		};
++
++		opp-1464000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1464000000>;
++
++			opp-microvolt-speed0 = <1180000>;
++			opp-microvolt-speed1 = <1180000>;
++			opp-microvolt-speed2 = <1130000>;
++			opp-microvolt-speed3 = <1180000>;
++			opp-microvolt-speed4 = <1100000>;
++			opp-microvolt-speed5 = <1080000>;
++			opp-supported-hw = <0x3f>;
++		};
++
++		opp-1512000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1512000000>;
++
++			opp-microvolt-speed6 = <1180000>;
++			opp-microvolt-speed7 = <1130000 1130000 1140000>;
++			opp-microvolt-speed8 = <1100000>;
++			opp-microvolt-speed9 = <1080000>;
++			opp-supported-hw = <0x3c0>;
++		};
++
++		opp-1608000000 {
++			clock-latency-ns = <244144>; /* 8 32k periods */
++			opp-hz = /bits/ 64 <1608000000>;
++
++			opp-microvolt-speed6 = <1180000>;
++			opp-microvolt-speed7 = <1130000 1130000 1140000>;
++			opp-supported-hw = <0xc0>;
++		};
++	};
++};
++
++&cpu0 {
++	operating-points-v2 = <&cpu_opp_table>;
++};
++
++&cpu1 {
++	operating-points-v2 = <&cpu_opp_table>;
++};
++
++&cpu2 {
++	operating-points-v2 = <&cpu_opp_table>;
++};
++
++&cpu3 {
++	operating-points-v2 = <&cpu_opp_table>;
++};
 
 -- 
 2.34.1
