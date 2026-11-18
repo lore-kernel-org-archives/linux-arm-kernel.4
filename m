@@ -2,36 +2,36 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A54606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 19:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3BC5606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 19:46:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zYMgHxAZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ve8hQDAz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=y9RdTA+zbyBK0+/wQZ5SzJTG+lnQpcUHH/68C3VFGS0=; b=zYMgHxAZrV4b09
-	729kwQoKkZzIEgjensd/3gsBJS1w8tvfosxvCXMSJ3A1TTmmjW0rD3K8l1E7KnHR3B9r7EHOiP/6E
-	FFKhzHP7+CgyFL1nPwhWNdZGPYjfxcbXQ0K3xXwfsWmmWf6pxKxNCjipZljX2l9gkfRQezbCajNy0
-	3205Oo3o3SBb67C4jzUKDvU6nAd6N/Q2HTDWcPQyfzWSaGfkcMhu7hhiMO+IxnB6+lorSgElXjTTz
-	l4lVyp9Nr46587iQb/WwjYWoZHoVc/8mXVQbLl/ZcS2n8NjgLF7/VooodntJmZhg49UO39SbA6L8f
-	cRHoAAuGfkFU5LR4Y56w==;
+	List-Owner; bh=fFhFFydjW3HxQoqI50yENOOeBsptqJid+tkFNjaQeiY=; b=Ve8hQDAzXWVu0q
+	a3nay5YiwE2cJARe8AkeGjnoWCBru9R8t7dqjMLp+Eae18OggyePBWXd12ZZoUILeWnGPAiSNlld6
+	Farf+hOC3EWPssq4F9FNXjNOqlBBnIMfvo5xmAjajcg3uFzKwk0rm9BODmHZuIJuZ2R9UJqGNvPRb
+	93milRb9Ewod/1UWcxfI8/iKkwnWcG6VeVuw9iHafSgTqLRYPRHF4+w7NAIDAC5iHNpCQz+Y09qcT
+	BHCk9i8Ql8DvHE57GMhZ1S1utQb+N+hWnXQ3/Dl3s90XsCZssAzaKAGPbyfLnlAv2nLfyjh+4mHgb
+	vVswntsqg7qibfP240JQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTlbJ-0000000A8RF-1qoO;
-	Wed, 18 Nov 2026 19:45:49 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTlbW-0000000A8a6-3Hlt;
+	Wed, 18 Nov 2026 19:46:02 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTlbI-0000000A8Pm-1eyC
+	id 1xTlbP-0000000A8Uk-0EkQ
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 19:45:48 +0000
+	Wed, 18 Nov 2026 19:45:55 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2A44A43C6D;
+	by tor.source.kernel.org (Postfix) with ESMTP id 14A74639B9;
+	Wed, 18 Nov 2026 19:45:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78C381F000CD;
 	Wed, 18 Nov 2026 19:45:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1A751F000C6;
-	Wed, 18 Nov 2026 19:45:42 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -61,9 +61,9 @@ Cc: arm-scmi@vger.kernel.org,
 	linux-pm@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v5 05/15] clk: renesas: r8a78000: Add SCMI remapping support
-Date: Wed, 18 Nov 2026 20:44:53 +0100
-Message-ID: <e01baebc546ed6f1b71a0487a59cda73239ea7f1.1795029012.git.geert+renesas@glider.be>
+Subject: [PATCH v5 06/15] reset: Extract __reset_control_get_from_provider()
+Date: Wed, 18 Nov 2026 20:44:54 +0100
+Message-ID: <d7124dcb62bbe39f3a2a8fe284bffffaece1ed45.1795029012.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1795029012.git.geert+renesas@glider.be>
 References: <cover.1795029012.git.geert+renesas@glider.be>
@@ -87,309 +87,143 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Extend the Clock Pulse Generator driver for R-Car X5H with SCMI support,
-to remap DT clock IDs to abstractions (clocks) offered by the SCMI
-firmware when running on a system with SCMI, and SCMI support is
-enabled.  Take into account some peculiarities of the current SCMI
-firmware implementations, and fall-back to fixed-rate clocks as
-replacements for SCMI clocks that are not available.
-Support for bus clocks used by serial, I2C, and SPI devices is included.
+Extract the code to create a reset_control structure from a given
+provider into its own function, so it can be reused later.
 
-This lets us avoid putting SCMI IDs in DT, and allows us to use the same
-hardware description in SoC DTS for systems with and without SCMI
-firmware.
-
-For now, it is assumed SCMI clock IDs are stable, and match SCP FW
-SDKv4.31.0 and later.
-
-Suggested-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
 v5:
   - Add Tested-by,
-  - Rebase,
-  - Shrink firmware clock IDs to 16 bits,
-  - Add parentheses to FIXED_CLK() macro definition,
-  - Extract get_fallback() and simplify fallback code,
-  - Rework mapping data structures,
-  - Add missing clk_put() after of_clk_get_from_provider() in get_hws(),
 
 v4:
-  - Drop unneeded IS_ERR() check after __clk_get_hw(),
-  - Mark scmi_clk_np __free(device_node),
-  - Assume all SCMI clock IDs are stable, and drop support for handling
-    different ID spaces,
-  - Include initial mapping table for SCP FW SDKv4.31.0 and later,
-  - Try SCMI clocks first, and fall back to the default fixed-frequency
-    clocks when not available, as recent firmware versions no longer
-    restrict access to some bus clocks,
-  - Drop renesas,scmi-firmware support, just find an arm,scmi node
-    instead,
-  - Fall back to the non-SCMI defaults when SCMI clock support is
-    disabled,
+  - Keep RESET_CONTROL_FLAGS_BIT_OPTIONAL clearing in
+    __fwnode_reset_control_get(),
+  - Return directly instead of assigning to a local variable, letting us
+    drop the latter and simplify scoped_guard() to plain guard(),
+  - Add Reviewed-by,
 
 v3:
-  - Rebase,
-  - Consistently use /* sentinel */ for zero sentinels,
-  - s/firmware/renesas,scmi-firmware/,
-  - Reword,
-
-v2:
-  - Spin off from "clk: renesas: Add R-Car X5H CPG SCMI remapping
-    driver",
-  - Use reverse xmas ordering in r8a78000_cpg_probe(),
-  - Propagate error codes from scmi_get_base_info() now it can return
-    -EPROBE_DEFER,
-  - Improve error message on scmi_get_base_info() failure,
-  - Check if SCMI firmware node is available,
-  - Replace the scmi_clk_np member of struct r8a78000_cpg_priv by a
-    local variable in r8a78000_cpg_probe(), and pass it to
-    fill_clk_map(),
-  - Join split short lines,
-  - Fall back to the default support when SCMI support or firmware is
-    not available, or when the detected SCMI firmware version is not
-    supported by the driver,
-  - Drop mapping tables.
+  - New.
 ---
- drivers/clk/renesas/r8a78000-cpg.c | 138 ++++++++++++++++++++++++++---
- 1 file changed, 128 insertions(+), 10 deletions(-)
+ drivers/reset/core.c | 85 +++++++++++++++++++++++---------------------
+ 1 file changed, 45 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/clk/renesas/r8a78000-cpg.c b/drivers/clk/renesas/r8a78000-cpg.c
-index fd97e1558d423f95..9a6e4f76581e4c24 100644
---- a/drivers/clk/renesas/r8a78000-cpg.c
-+++ b/drivers/clk/renesas/r8a78000-cpg.c
-@@ -13,13 +13,14 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/scmi_protocol.h>
- #include <linux/slab.h>
- 
- #include <dt-bindings/clock/renesas,r8a78000-cpg.h>
- 
- struct clk_id_map_entry {
- 	u16 dt_id;		/* DT binding clock ID */
--	u16 fw_id;		/* FIXED_CLK() ID */
-+	u16 fw_id;		/* SCMI firmware clock ID or FIXED_CLK() ID */
- };
- 
- struct clk_id_map {
-@@ -32,6 +33,11 @@ struct clk_id_map {
- 	.size = ARRAY_SIZE(_entries),			\
+diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+index 38e189d04d09b270..0e11f4c81c10d601 100644
+--- a/drivers/reset/core.c
++++ b/drivers/reset/core.c
+@@ -1135,6 +1135,49 @@ __reset_find_rcdev(const struct fwnode_reference_args *args, bool gpio_fallback)
+ 	return NULL;
  }
  
-+struct cpg_data {
-+	const struct clk_id_map *default_map;
-+	const struct clk_id_map *fw_map;
-+};
-+
- enum fixed_clk {
- 	FIXED_CLK_66M,
- 	FIXED_CLK_133M,
-@@ -44,13 +50,14 @@ static const unsigned long fixed_clk_rates[] = {
- 	[FIXED_CLK_266M] = 266660000,
- };
- 
--#define FIXED_CLK(rate)		FIXED_CLK_ ## rate
-+#define FIXED_CLK_OFFSET	0x8000
-+#define FIXED_CLK(rate)		(FIXED_CLK_OFFSET + FIXED_CLK_ ## rate)
- 
- /**
-  * struct r8a78000_cpg_priv - Clock Pulse Generator Private Data
-  *
-  * @dev: CPG device
-- * @map: Mapping from DT clock IDs to fixed-rate clock IDs
-+ * @map: Mapping from DT clock IDs to SCMI or fixed-rate clock IDs
-  * @hws: Clocks, indexed by @map entry index
-  */
- struct r8a78000_cpg_priv {
-@@ -89,6 +96,11 @@ static struct clk_hw *r8a78000_clk_get(struct of_phandle_args *spec, void *data)
- 	}
- 
- 	hw = priv->hws[idx];
-+	if (!hw) {
-+		/* CLOCK_ATTRIBUTES is not supported */
-+		dev_err(dev, "Clock %u is not available\n", id);
-+		return ERR_PTR(-ENOENT);
-+	}
- 
- 	dev_dbg(dev, "Mapping DT clock %u to %s at %lu Hz\n", id,
- 		clk_hw_get_name(hw), clk_hw_get_rate(hw));
-@@ -96,6 +108,21 @@ static struct clk_hw *r8a78000_clk_get(struct of_phandle_args *spec, void *data)
- 	return hw;
- }
- 
-+static struct device_node *scmi_find_proto(struct device_node *scmi, u32 proto)
++static struct reset_control *
++__reset_control_get_from_provider(const struct fwnode_reference_args *args,
++				  struct fwnode_handle *consumer, int index,
++				  bool gpio_fallback,
++				  enum reset_control_flags flags)
 +{
-+	for_each_available_child_of_node_scoped(scmi, child) {
-+		u32 reg;
++	struct reset_controller_dev *rcdev;
++	int rstc_id = -EINVAL;
 +
-+		if (of_property_read_u32(child, "reg", &reg))
-+			continue;
++	guard(mutex)(&reset_list_mutex);
 +
-+		if (reg == proto)
-+			return_ptr(child);
++	rcdev = __reset_find_rcdev(args, gpio_fallback);
++	if (!rcdev)
++		return ERR_PTR(-EPROBE_DEFER);
++
++	if (WARN_ON(args->nargs != rcdev->fwnode_reset_n_cells))
++		return ERR_PTR(-EINVAL);
++
++	if (rcdev->of_xlate && is_of_node(consumer)) {
++		struct device_node *np = to_of_node(consumer);
++		struct of_phandle_args of_args;
++		int ret;
++
++		ret = of_parse_phandle_with_args(np,
++					 gpio_fallback ? "reset-gpios" : "resets",
++					 gpio_fallback ? "#gpio-cells" : "#reset-cells",
++					 gpio_fallback ? 0 : index,
++					 &of_args);
++		if (ret)
++			return ERR_PTR(ret);
++
++		rstc_id = rcdev->of_xlate(rcdev, &of_args);
++		of_node_put(of_args.np);
++	} else if (rcdev->fwnode_xlate) {
++		rstc_id = rcdev->fwnode_xlate(rcdev, args);
 +	}
++	if (rstc_id < 0)
++		return ERR_PTR(rstc_id);
 +
-+	return NULL;
++	guard(mutex)(&rcdev->lock);
++	return __reset_control_get_internal(rcdev, rstc_id, flags);
 +}
 +
- static struct clk_hw **register_fixed_clks(struct device *dev)
- {
- 	unsigned int n = ARRAY_SIZE(fixed_clk_rates);
-@@ -123,11 +150,26 @@ static struct clk_hw **register_fixed_clks(struct device *dev)
- 	return_ptr(hws);
- }
+ struct reset_control *
+ __fwnode_reset_control_get(struct fwnode_handle *fwnode, const char *id, int index,
+ 			   enum reset_control_flags flags)
+@@ -1142,10 +1185,7 @@ __fwnode_reset_control_get(struct fwnode_handle *fwnode, const char *id, int ind
+ 	bool optional = flags & RESET_CONTROL_FLAGS_BIT_OPTIONAL;
+ 	bool gpio_fallback = false;
+ 	struct reset_control *rstc = ERR_PTR(-EINVAL);
+-	struct reset_controller_dev *rcdev;
+ 	struct fwnode_reference_args args;
+-	struct of_phandle_args of_args;
+-	int rstc_id = -EINVAL;
+ 	int ret;
  
--static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv)
-+static struct clk_hw *get_fallback(const struct clk_id_map *map, u16 dt_id,
-+				   struct clk_hw **fixed_hws)
-+{
-+	for (unsigned int i = 0; i < map->size; i++) {
-+		if (map->entries[i].dt_id == dt_id)
-+			return fixed_hws[map->entries[i].fw_id - FIXED_CLK_OFFSET];
-+	}
-+
-+	return NULL;
-+}
-+
-+static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv,
-+			       const struct clk_id_map *fallback,
-+			       struct device_node *scmi_clk_np)
- {
- 	const struct clk_id_map *map = priv->map;
-+	struct of_phandle_args scmi_spec;
- 	struct device *dev = priv->dev;
--	struct clk_hw **hws;
-+	struct clk_hw **hws, *hw;
-+	struct clk *clk;
- 	u16 fw_id;
- 
- 	struct clk_hw **fixed_hws __free(kfree) = register_fixed_clks(dev);
-@@ -140,7 +182,35 @@ static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv)
- 
- 	for (unsigned int i = 0; i < map->size; i++) {
- 		fw_id = map->entries[i].fw_id;
--		hws[i] = fixed_hws[fw_id];
-+		if (fw_id >= FIXED_CLK_OFFSET) {
-+			hws[i] = fixed_hws[fw_id - FIXED_CLK_OFFSET];
-+			continue;
-+		}
-+
-+		scmi_spec.np = scmi_clk_np;
-+		scmi_spec.args_count = 1;
-+		scmi_spec.args[0] = fw_id;
-+
-+		clk = of_clk_get_from_provider(&scmi_spec);
-+		if (IS_ERR(clk))
-+			return dev_err_cast_probe(dev, clk,
-+				"Failed to get SCMI clock %u\n", fw_id);
-+
-+		hw = __clk_get_hw(clk);
-+		clk_put(clk);
-+		if (!hw)
-+			hw = get_fallback(fallback, map->entries[i].dt_id,
-+					  fixed_hws);
-+		if (!hw) {
-+			/* CLOCK_ATTRIBUTES is not supported */
-+			dev_warn(dev, "SCMI clock %u is NULL\n", fw_id);
-+			continue;
-+		}
-+
-+		dev_dbg(priv->dev, "SCMI clock %u is %s at %lu Hz\n", fw_id,
-+			clk_hw_get_name(hw), clk_hw_get_rate(hw));
-+
-+		hws[i] = hw;
+ 	if (!fwnode)
+@@ -1185,46 +1225,11 @@ __fwnode_reset_control_get(struct fwnode_handle *fwnode, const char *id, int ind
+ 		}
  	}
  
- 	return hws;
-@@ -148,22 +218,57 @@ static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv)
+-	guard(mutex)(&reset_list_mutex);
+-
+-	rcdev = __reset_find_rcdev(&args, gpio_fallback);
+-	if (!rcdev) {
+-		rstc = ERR_PTR(-EPROBE_DEFER);
+-		goto out_put;
+-	}
+-
+-	if (WARN_ON(args.nargs != rcdev->fwnode_reset_n_cells)) {
+-		rstc = ERR_PTR(-EINVAL);
+-		goto out_put;
+-	}
+-
+-	if (rcdev->of_xlate && is_of_node(fwnode)) {
+-		ret = of_parse_phandle_with_args(to_of_node(fwnode),
+-					 gpio_fallback ? "reset-gpios" : "resets",
+-					 gpio_fallback ? "#gpio-cells" : "#reset-cells",
+-					 gpio_fallback ? 0 : index,
+-					 &of_args);
+-		if (ret) {
+-			rstc = ERR_PTR(ret);
+-			goto out_put;
+-		}
+-
+-		rstc_id = rcdev->of_xlate(rcdev, &of_args);
+-		of_node_put(of_args.np);
+-	} else if (rcdev->fwnode_xlate) {
+-		rstc_id = rcdev->fwnode_xlate(rcdev, &args);
+-	}
+-	if (rstc_id < 0) {
+-		rstc = ERR_PTR(rstc_id);
+-		goto out_put;
+-	}
+-
+ 	flags &= ~RESET_CONTROL_FLAGS_BIT_OPTIONAL;
  
- static int r8a78000_cpg_probe(struct platform_device *pdev)
- {
-+	struct device_node *scmi_clk_np __free(device_node) = NULL;
-+	struct device_node *scmi __free(device_node) = NULL;
- 	struct device *dev = &pdev->dev;
-+	const struct cpg_data *cpg_data;
- 	struct r8a78000_cpg_priv *priv;
- 	const struct clk_id_map *map;
+-	scoped_guard(mutex, &rcdev->lock)
+-		rstc = __reset_control_get_internal(rcdev, rstc_id, flags);
++	rstc = __reset_control_get_from_provider(&args, fwnode, index,
++						 gpio_fallback, flags);
  
--	map = of_device_get_match_data(dev);
--	if (!map)
-+	cpg_data = of_device_get_match_data(dev);
-+	if (!cpg_data)
- 		return -ENODEV;
+-out_put:
+ 	fwnode_handle_put(args.fwnode);
  
-+	map = cpg_data->default_map;
-+
- 	priv = devm_kzalloc_obj(dev, *priv);
- 	if (!priv)
- 		return -ENOMEM;
- 
- 	priv->dev = dev;
-+
-+	if (!IS_ENABLED(CONFIG_COMMON_CLK_SCMI)) {
-+		dev_dbg(dev, "SCMI clock support is disabled\n");
-+		goto fallback;
-+	}
-+
-+	scmi = of_find_compatible_node(NULL, NULL, "arm,scmi");
-+	if (!scmi) {
-+		dev_dbg(dev, "Cannot find SCMI firmware node\n");
-+		goto fallback;
-+	}
-+
-+	if (!of_device_is_available(scmi)) {
-+		dev_dbg(dev, "SCMI firmware node is not available\n");
-+		goto fallback;
-+	}
-+
-+	scmi_clk_np = scmi_find_proto(scmi, SCMI_PROTOCOL_CLOCK);
-+	if (!scmi_clk_np) {
-+		dev_dbg(dev, "Cannot find SCMI clock management protocol\n");
-+		goto fallback;
-+	}
-+
-+	map = cpg_data->fw_map;
-+
-+fallback:
- 	priv->map = map;
- 
--	priv->hws = get_hws(priv);
-+	/*
-+	 * We cannot do lazy look-up in r8a78000_clk_get(), as that function is
-+	 * called with of_clk_mutex already held.
-+	 */
-+	priv->hws = get_hws(priv, cpg_data->default_map, scmi_clk_np);
- 	if (IS_ERR(priv->hws))
- 		return PTR_ERR(priv->hws);
- 
-@@ -176,10 +281,23 @@ static const struct clk_id_map_entry r8a78000_cpg_default[] = {
- 	{ R8A78000_CPG_SGASYNCD16_PERW_BUS,	FIXED_CLK(66M) },
- };
- 
-+static const struct clk_id_map_entry r8a78000_cpg_fw[] = {
-+	{ R8A78000_CPG_SGASYNCD4_PERW_BUS,	1661 },
-+	{ R8A78000_CPG_SGASYNCD8_PERW_BUS,	1662 },
-+	{ R8A78000_CPG_SGASYNCD16_PERW_BUS,	1663 },
-+	{ R8A78000_CPG_MSO_SCP_MAIN,		1459 },
-+	{ R8A78000_CPG_MSOCK_PERW_BUS,		1667 },
-+};
-+
-+static const struct cpg_data r8a78000_cpg_data = {
-+	.default_map = CLK_ID_MAP(r8a78000_cpg_default),
-+	.fw_map = CLK_ID_MAP(r8a78000_cpg_fw),
-+};
-+
- static const struct of_device_id r8a78000_cpg_match[] = {
- 	{
- 		.compatible = "renesas,r8a78000-cpg",
--		.data = CLK_ID_MAP(r8a78000_cpg_default),
-+		.data = &r8a78000_cpg_data,
- 	},
- 	{ /* sentinel */ }
- };
+ 	return rstc;
 -- 
 2.43.0
 
