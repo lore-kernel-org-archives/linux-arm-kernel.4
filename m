@@ -2,101 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393A3606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 09:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02E5606A890
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 09:10:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FFsDdtL+;
-	dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.a=rsa-sha256 header.s=google header.b=fGslIPcu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bYvZ/D9S;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=X1pWf1Xo;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DlSl4ORP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yV1RxJJscrXOeI7Q/8W59C0ANld22tAuW0rA5vcBUxc=; b=FFsDdtL+lDCCPL
-	axbV5kX+Pg38GUayNB/6bmmdMDTO+kx9CdoYVf95NInM79WcPAjtLA5RPrkZyJXCR4acXOyZx6Cy0
-	OEktnr7OoZKWI+2xULYDucU+3CWN5i7U1rEuewzcgoE0pnOQCCnaSXRz5acx9Cm3lwDJESQMNt+r9
-	DhRCkGV+G1xYWmaByjAmOvQb9N+RkqcmiXdhQLyyGTPAvYUeD20pa+iKtBfr1MArI6E66QFdY74/8
-	JS2Q3S0MlQ5a2cQD3TKyYp/dIjzMlgriYNiHWgn1f7oeG1ZdsUxXRCN2/mCTICTUXZHAinTO5LnTr
-	88mpi5F2dsUjo1RrSRwQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=UCFK2XrxT4aYumhmLixld0RBAVN3HTGK74ZaNmsbpF8=; b=bYvZ/D9SHC+Jn6SJa/Ei2cP7jG
+	MKOf3HhFYuLz5i6wf1ZUlxkJGxnSauwIZHg60RGoUZkfeaOOeuBmXT6vatZE8id3fpIyBPGsdKNw8
+	NgJPSnnYtWGxhpLvyYg1eX5uppOE+MvwVBInoNK2/o8K29N8Gjo9iGlxnhSRtXW2t8u79F7y8C7qY
+	BQAJPvCIS3fVsADIkAGAsWAecx7HpNYDkQqLIwOSdc4Th7WDIgsp45fi3zNSVKX2FGKRSlWPlt/pt
+	mlhvO2qjswgHZvPVmqX4hQzAFOObMkyy/Ml7HbVXVTSuavbP/lK60BSFQn2DI5yJc0QQiqIUjd78Q
+	IOrfmFxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTbg4-00000008IA1-1pdp;
+	id 1xTbg4-00000008IAE-2Q0m;
 	Wed, 18 Nov 2026 09:10:04 +0000
-Received: from mail-wm1-f49.google.com ([209.85.128.49])
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTbfS-00000008I2R-3yrQ
+	id 1xTbfq-00000008I7x-0iEB
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 18 Nov 2026 09:09:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=UCFK2XrxT4aYumhmLixld0RBAVN3HTGK74ZaNmsbpF8=; b=X1pWf1XoqjoElafOaNmNn6+xMS
+	ZjS5sBJDUO+T6E2nAztSSLNu/gmq+o8wZ+lfSoLkzOtaBOJWiY3jTEX0JMFOqw6k45BG+KAweckNA
+	hwZ2vjIJ/U43Tn2Qt2edJCFafeAro5jLjjHdKH+AF05f237ivVWmyTTDcaan4JGekJ6MojaQJn9Ur
+	e72YqRlObBh28Uif1AAYq/qubR0dWO3f6VF7sngvDSv3D18RBb+M3cnfcO6H7KpmwkVOVYpKPXlMr
+	3P1r8jieM61QozKcUk91ysWLy2d77WACIenFSzH8WJQlXNdMv9lZngvr2ooDVp7Nlx83JxAlKN3f2
+	uYrCFEqA==;
+Received: from foss.arm.com ([217.140.110.172])
+	by desiato.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTbfn-0000000Fpq0-0OVl
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 09:09:28 +0000
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so6273745e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 01:09:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1794992965; x=1795597765; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=yV1RxJJscrXOeI7Q/8W59C0ANld22tAuW0rA5vcBUxc=;
-        b=fGslIPcub0QHPxyMnuo38sqqrpFGutfZNfcJtQ7ikUPPaM8ZkT37nOYasMSupN6rGO
-         0QFP2nHMQYXwOPe7aBDMBNDGfSsmYBKmfsZ75rJLRsIOOm1wW+i68JBMQh02b9kNyeaM
-         jFCuCGJSJQk5mzGExPJPFDnLZC9gAZpDyaQHo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794992965; x=1795597765;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=yV1RxJJscrXOeI7Q/8W59C0ANld22tAuW0rA5vcBUxc=;
-        b=NKI6KACT74XCn3EHdmFj2Td1Loq8Bg3SxvY8eCGvVpRjaWKCXg60I4M5KtoOyQEI2+
-         R6aoWHcloaCZ6zGekabvPJFUL15+GQHqvHozwlBYKGG0oCej8G5qdvb9kskkQAM06Vnz
-         fH5xMU+FQPYctNwFas407b5zCOlhxRPdwc1/LsyuIhQ16M//xBBeYMCUYFiGzoCbH2gU
-         81FcqF9ucvuZQquOuVvEf6r++Q2fYj1sKle0toAnF9Ib3NUHtagOds7jtdcKBmiTVim9
-         W2+JLvMxvFTxB54+Z4W0Qcie3rAWNz398EWsQO5gDO/ixptrZShQEUcebLE5PWdpANV3
-         M55g==
-X-Forwarded-Encrypted: i=1; AL+hErF5FiujAVsjTxwNynuGKiW6WYoL7XRMzXJ1Dv4j04RJ6WJhsbn/4SYAj6Y57G7d25VcIvEDlWUsCkdoFiVTf4FP@lists.infradead.org
-X-Gm-Message-State: APuU4Z87/heJ0dBBnGBCN5wjgpo6R7BlDFstO9t+6ON1ORZpQ32bF7j6
-	QhKdkhNU687ruzGZbS4brTLvc8sozFCw0wiJNL4j/8HGw2c6IvQctWkPKblPLqJJ7+E=
-X-Gm-Gg: AYBFou0/0ndD/bTT2z79FcZxDfmESnSh7nMT6cAKBU8alfc0/UFZbR8idUH+KJ6EI74
-	BaL8XIcKBOgnXpCMUSzxoIsbTaeRg6iPQ70yRYLbZZMcJ6jaxYYBnTMzA+LkllanYze8NcpztOO
-	SqyScC3hSff7h/uIAk+yCOgu/VlPfnzbwjrdD0GGsrtw/Z2BDzm35Mhw+ABr6KeDBnkltcIKl2Y
-	63lqnmnmxJcrLq764ZG64bDhvYD4bQodVAj/3tveVFjmGbWRaVxRkHoLuMV3wMsNLMCz6UH7yXy
-	3rJdHzZ9uss/3W00AvQTLPl5BwU62o5j42gnPHnffyYCsNw/PbxtxHbnDZaT0Cc0zzC7uq7rzmV
-	c+bolVTkp0D93t1wfiUIX4tnBfbNDUHqIH1bBPyBSB+yHpSvm+lC3z79VKZl0rFrM9Newm1tGsQ
-	HBh3tYnM3uDWmmEqB2yZRlr+PVXydLRZmKnbYBZkS8MPOa36jnMmX/VyZHPZNkyaDVIk3aNAUMu
-	e1HDiqWl0xe1ND3Oc/Mwq24TKiIMi2DacEAarcQPeYukunJ8ZKGqtvpV/HBUQ0ge5gayn0e9yWA
-	rxdsuVzoLKfcMwTuKA1f9gY0Ulen26tHf0lkDlZXBuHnjg==
-X-Received: by 2002:a05:600c:3111:b0:4a6:4d6b:a840 with SMTP id 5b1f17b1804b1-4bb7da2bb49mr34889065e9.31.1794992964669;
-        Wed, 18 Nov 2026 01:09:24 -0800 (PST)
-Received: from tone.k.g (lan.nucleusys.com. [92.247.61.126])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb78418853sm185770195e9.8.2026.11.18.01.09.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 01:09:24 -0800 (PST)
-From: Petko Manolov <petko.manolov@konsulko.com>
-To: linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	arnemaximilian.richter@draeger.com,
-	martynas.grybauskas@draeger.com,
-	Petko Manolov <petko.manolov@konsulko.com>
-Subject: [PATCH v4 2/2] arm: dts: nxp: imx: Add devicetree files for M48
-Date: Wed, 18 Nov 2026 11:09:12 +0200
-Message-ID: <20261118090914.38082-3-petko.manolov@konsulko.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261118090914.38082-1-petko.manolov@konsulko.com>
-References: <20261118090914.38082-1-petko.manolov@konsulko.com>
+	Wed, 18 Nov 2026 09:09:48 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 75E2A1596;
+	Wed, 18 Nov 2026 01:09:41 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EDB283F673;
+	Wed, 18 Nov 2026 01:09:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794992984; bh=eSz0PxGeBD26st5Qjfax1QZdj5MFOwsoVrD4nzHQPhE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DlSl4ORPTXrotbsKlAhxDE48kJ0JGL6ujGN1vMNgdmYl3DQ3KXQAoJ9yZSyxKIgoe
+	 j0XLNhCqYcr3Nl6UFGeBFOCgwc7X4cjPyGZK5ocYiRRqpYUCat1na6NhoBQnqMD5r9
+	 Co2fHoUKkTN/0dEsQRTpRvwL2wEsLHyFnt/H6NYU=
+Date: Wed, 18 Nov 2026 09:09:33 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
+	sudeep.holla@kernel.org, james.quinlan@broadcom.com,
+	f.fainelli@gmail.com, vincent.guittot@linaro.org,
+	etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+	d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
+	philip.radford@arm.com, david@kernel.org,
+	souvik.chakravarty@arm.com, leitao@kernel.org, kas@kernel.org,
+	puranjay@kernel.org, usama.arif@linux.dev, kernel-team@meta.com
+Subject: Re: [PATCH v15 10/35] firmware: arm_scmi: Add Telemetry resources
+ enumeration
+Message-ID: <av1rTY1cZjRbxzD6@pluto>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
+ <20261109091221.2532706-11-cristian.marussi@arm.com>
+ <20261112100145.00000560@oss.qualcomm.com>
+ <avYZ2t_GoT7BN2nU@pluto>
+ <20261116133638.00006cc3@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261116133638.00006cc3@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_010927_025488_65214844 
-X-CRM114-Status: GOOD (  17.15  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_090947_449929_13641430 
+X-CRM114-Status: GOOD (  45.29  )
+X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,317 +97,146 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-M48 is a heterogeneous board made by Draeger that is based on two
-independent cpus, that are monitoring each other.  One of them is
-imx6, the other is Altera SoCFPGA Cyclone 5.  The latter is booting
-independently off qspi.
+On Mon, Nov 16, 2026 at 01:36:38PM -0800, Jonathan Cameron wrote:
+> On Thu, 12 Nov 2026 19:56:10 +0000
+> Cristian Marussi <cristian.marussi@arm.com> wrote:
+> 
 
-Add the DT for the two variants of M48 that are based on imx6q and
-imx6dl.
+Hi,
 
-Signed-off-by: Petko Manolov <petko.manolov@konsulko.com>
----
- arch/arm/boot/dts/nxp/imx/Makefile            |   2 +
- .../boot/dts/nxp/imx/imx6dl-draeger-m48.dts   |  16 ++
- .../boot/dts/nxp/imx/imx6q-draeger-m48.dts    |  16 ++
- .../boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi | 213 ++++++++++++++++++
- 4 files changed, 247 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-draeger-m48.dts
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-draeger-m48.dts
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi
+> > On Thu, Nov 12, 2026 at 10:01:45AM -0800, Jonathan Cameron wrote:
+> > > On Mon,  9 Nov 2026 09:11:56 +0000
+> > > Cristian Marussi <cristian.marussi@arm.com> wrote:
+> > >   
+> > > > Add basic Telemetry allocation and initialization routines, introducing and
+> > > > wiring-up the logic needed to enumerate all the SCMI Telemetry resources
+> > > > optionally using a lazy on-demand scheme: this approach factors in the
+> > > > flexibility needed to minimize the amount of initialization work based on
+> > > > the effective access pattern used by the upper layer ABI.
+> > > > 
+> > > > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>  
+> > > 
+> > > Hi Cristian,
+> > > 
+> > > This stretches across the patch set but first elements related to it are
+> > > in this patch.  How do we handle larger values of de_data_sz?
+> > >   
+> > 
+> > We dont. This was somethig that was on my todo list initially, but then
+> > I realized that there was NO FW-side plan to actually implement anything
+> > larger than 64bit.
+> 
+> Understood, some set of firmware that you have isn't doing this. I don't
+> necessarily mind not supporting it initially but like the other features
+> it is very useful to have an implementation to make sure it doesn't break
+> the ABI. I don't want to go through a 'move to version 2 ABI if you want
+> this feature' path.
+>
 
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index 1a2539fa19b4..cdd252fd5109 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -104,6 +104,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-dfi-fs700-m60.dtb \
- 	imx6dl-dhcom-pdk2.dtb \
- 	imx6dl-dhcom-picoitx.dtb \
-+	imx6dl-draeger-m48.dtb \
- 	imx6dl-eckelmann-ci4x10.dtb \
- 	imx6dl-emcon-avari.dtb \
- 	imx6dl-gw51xx.dtb \
-@@ -219,6 +220,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-display5-tianma-tm070-1280x768.dtb \
- 	imx6q-dmo-edmqmx6.dtb \
- 	imx6q-dms-ba16.dtb \
-+	imx6q-draeger-m48.dtb \
- 	imx6q-ds.dtb \
- 	imx6q-emcon-avari.dtb \
- 	imx6q-evi.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-draeger-m48.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-draeger-m48.dts
-new file mode 100644
-index 000000000000..b0bc9a67f5b3
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-draeger-m48.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * (C) Copyright 2020 Draeger and Licensors, info@draeger.com
-+ *
-+ * Device Tree file for Draeger M48 Board
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx6dl.dtsi"
-+#include "imx6qdl-draeger-m48.dtsi"
-+
-+/ {
-+	model = "Draeger M48 i.MX6 DualLite";
-+	compatible = "draeger,imx6dl-m48", "fsl,imx6dl";
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-draeger-m48.dts b/arch/arm/boot/dts/nxp/imx/imx6q-draeger-m48.dts
-new file mode 100644
-index 000000000000..ff9c337e93fb
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-draeger-m48.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * (C) Copyright 2020 Draeger and Licensors, info@draeger.com
-+ *
-+ * Device Tree file for Draeger M48 Board
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx6q.dtsi"
-+#include "imx6qdl-draeger-m48.dtsi"
-+
-+/ {
-+	model = "Draeger M48 i.MX6 Quad";
-+	compatible = "draeger,imx6q-m48", "fsl,imx6q";
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi
-new file mode 100644
-index 000000000000..bb2c149c64bb
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi
-@@ -0,0 +1,213 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * (C) Copyright 2020 Draeger and Licensors, info@draeger.com
-+ * Based on work by Russell King
-+ *
-+ * Device Tree file for Draeger M48 Board
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	aliases {
-+		mmc0 = &usdhc3;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart1;
-+	};
-+
-+	/* Will be filled by the bootloader */
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0x80000000>;
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy>;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy: ethernet-phy@0 {
-+			reg = <0>;
-+			rxc-skew-ps = <1380>;
-+			rxd0-skew-ps = <0>;
-+			rxd1-skew-ps = <0>;
-+			rxd2-skew-ps = <0>;
-+			rxd3-skew-ps = <0>;
-+			rxdv-skew-ps = <0>;
-+			txc-skew-ps = <1860>;
-+			txd0-skew-ps = <0>;
-+			txd1-skew-ps = <0>;
-+			txd2-skew-ps = <0>;
-+			txd3-skew-ps = <0>;
-+			txen-skew-ps = <0>;
-+		};
-+	};
-+};
-+
-+&hdmi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hdmi>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	scl-gpios = <&gpio4 12 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio4 13 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	eeprom_mac: eeprom@50 {
-+		compatible = "atmel,24c08";
-+		reg = <0x50>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-+	scl-gpios = <&gpio3 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio3 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
-+&ldb {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lvds>;
-+	fsl,dual-channel;
-+	status = "okay";
-+
-+	lvds-channel@0 {
-+		fsl,data-mapping = "spwg";
-+		fsl,data-width = <24>;
-+		status = "okay";
-+
-+		display-timings {
-+			native-mode = <&timing0>;
-+
-+			/* LVDS split mode */
-+			timing0: timing-1920x1080 {
-+				clock-frequency = <142380000>;
-+				hactive = <1920>;
-+				vactive = <1080>;
-+				hback-porch = <60>;		/* left * 2 */
-+				hfront-porch = <60>;		/* right * 2 */
-+				vback-porch = <30>;
-+				vfront-porch = <3>;
-+				hsync-len = <60>;		/* hsync * 2 */
-+				vsync-len = <17>;
-+			};
-+		};
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL1__ENET_MDIO		0x1b0b0
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC		0x1b0b0
-+			MX6QDL_PAD_RGMII_TXC__RGMII_TXC		0x13018
-+			MX6QDL_PAD_RGMII_TD0__RGMII_TD0		0x1b018
-+			MX6QDL_PAD_RGMII_TD1__RGMII_TD1		0x1b018
-+			MX6QDL_PAD_RGMII_TD2__RGMII_TD2		0x1b018
-+			MX6QDL_PAD_RGMII_TD3__RGMII_TD3		0x1b018
-+			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL	0x13018
-+			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK	0x1b0b0
-+			MX6QDL_PAD_RGMII_RXC__RGMII_RXC		0x13030
-+			MX6QDL_PAD_RGMII_RD0__RGMII_RD0		0x1b030
-+			MX6QDL_PAD_RGMII_RD1__RGMII_RD1		0x1b030
-+			MX6QDL_PAD_RGMII_RD2__RGMII_RD2		0x1b030
-+			MX6QDL_PAD_RGMII_RD3__RGMII_RD3		0x1b030
-+			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL	0x13030
-+		>;
-+	};
-+
-+	pinctrl_hdmi: hdmigrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D16__HDMI_TX_DDC_SDA	0x4001b8b1
-+			MX6QDL_PAD_EIM_EB2__HDMI_TX_DDC_SCL	0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__I2C2_SCL		0x4001b820
-+			MX6QDL_PAD_KEY_ROW3__I2C2_SDA		0x4001b820
-+		>;
-+	};
-+
-+	pinctrl_i2c2_gpio: i2c2gpiogrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__GPIO4_IO12		0x4001b820
-+			MX6QDL_PAD_KEY_ROW3__GPIO4_IO13		0x4001b820
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D17__I2C3_SCL		0x4001b820
-+			MX6QDL_PAD_EIM_D18__I2C3_SDA		0x4001b820
-+		>;
-+	};
-+
-+	pinctrl_i2c3_gpio: i2c3gpiogrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D17__GPIO3_IO17		0x4001b820
-+			MX6QDL_PAD_EIM_D18__GPIO3_IO18		0x4001b820
-+		>;
-+	};
-+
-+	pinctrl_lvds: lvdsgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_A22__GPIO2_IO16		0x1b010	/* DISPLAY_EN */
-+			MX6QDL_PAD_EIM_A20__GPIO2_IO18		0x1b010	/* BACKLIGHT_EN */
-+			MX6QDL_PAD_EIM_A18__GPIO2_IO20		0x1b010	/* DISP0_CONTRAST */
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_DAT7__UART1_TX_DATA	0x1b010
-+			MX6QDL_PAD_SD3_DAT6__UART1_RX_DATA	0x1b010
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD		0x1b060
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK		0x1b060
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0		0x1b060
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1		0x1b060
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2		0x1b060
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3		0x1b060
-+			MX6QDL_PAD_NANDF_CS1__SD3_VSELECT	0x1b060
-+		>;
-+	};
-+};
--- 
-2.47.3
+Agreed that it would be better if avoided.
+ 
+> Let's just say I hit this for a reason. Whether that reason makes it into
+> a production firmware is an open question at the moment.
+> 
+> FWIW I have both QEMU based emulation (I'm working through the process to be
+> able to share that) and the changes to fit in via what I think is the
+> cleanest ABI change. Kernel / userspace change below.
+> I modified this from my original proposal to take into account the
+> desire to add it later (even if to me it smells like papering over a bug
+> rather than adding a feature!).  See below for what that required.
+> Not only shmti is tested.  The LLM found bugs in it's own fast channel
+> code, so take that with a pinch of salt!
+>
 
+I skimmed through your patch and it is mostly in line with what I was
+imagining (not even protyped though), i.e. in a nutshell
+
+ - an ABI feature bit to add MUTIWORD support
+ - a flag bit to activate this feature on all _READ IOCTLs at will
+ - a repurpose of the pad field in scmi_tlm_sample
+
+What I find awkward is the usage of pad as an index: that will expose
+a lot of duplicate data since all DEs multi-words are now scattered
+through a number of sample with the same ID and TS, and a bit cumbersome
+to handle in userspace to reconstruct the multi-word value.
+
+My non-tested-nor-prototyped idea was instead to repurpose the pad field
+as a length, so as to pack all the multi-words payload as the trailing
+part of a flexible array member (an extrnal array really being an ABI)
+and use a single structure to read a complete DE.
+
+In this case the problem would be to maintain backward compatibility
+with the current scmi_tlm_de_sample.
+
+At first I was thinking that we could simply introduce a new alternative
+scmi_tlm_de_multi_sample structure that is used in place of the current
+scmi_tlm_de_sample ONLY when feataure bits is available AND requested: so
+userspace knows that when sets flag.MULTIWORD it has to use the
+multi-word structure in input where pad is a length and there are multipe vals.
+
+While this would work for all the bulk ops since they take a __u64 pointer
+to a payload structure really (so it does NOT really matter what they are
+carrying as long as it is consistent with the advertised feature bits and
+request flag),  it CANNOT work for DE_READ where scmi_tlm_de_sample is
+used directly...so a change in the current, not-merged, ABI would be
+needed anyway....
+
+Then...I thought that maybe we dont even need this...and this part could be
+judged horrific maybe, so feel free to stop reading if your eyes starts
+bleeding :P
+
+Currently we have
+
+struct scmi_tlm_de_sample {                                                      
+        __u32 id;                                                                
+        __u32 pad;                                                               
+        __u64 tstamp;                                                            
+        __u64 val;                                                               
+};                     
+
+with pad being unused and the whole structure that can be used alone
+or packed into a container struct.
+
+WHAT IF... when MULTIWORD feature is enabled AND requested we repurpose
+the meaning NOT ONLY of <pad> but also of <val> and use this latter NOT
+as a payload for a single value returned but as a pointer to an external
+array of words counted by pad ?
+
+The structure size remains the same, while its interpretation vary based
+on the requested flag when such feature is available.
+
+It may be a bit cumbersome still on userspace for bulk requests since
+scmi_tlm_batch will contain a pointer to an array of possibly varied
+sized items, so item_sz represents the common basic scmi_tlm_de_sample
+size which in turn carries the sizing inside the repurposed <pad>
+field inside for each single sample item
+
+...so you can anyway check the provided user-input sizes it is just
+scattered all over and as a consequence also the user provided data
+would have to be a bit fragmented since 
+
+ - batch points to an array of scmi_tlm_de_sample sized by items_sz
+ - each sample in turn points to its array of values sized by <pad>
+ - you can really mix both kind of DEs in the same request: some
+   can carry the single word value embedded in val, multiwords can
+   point to teh <pad> sized external array.
+
+...mmm sort of start liking this hoorr...or I am missing something ?
+
+... O_o ... it would need a tad of documentation of course ...
+
+If you have not fainted in despair, I (and some LLM) could prototype
+something like this in one of the next series ... certainly not in V16.
+
+... thoughts ? insults ? :P
+
+Thanks,
+Cristian
 
