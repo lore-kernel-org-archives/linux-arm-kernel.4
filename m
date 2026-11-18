@@ -2,95 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5223660A2614
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE9D606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:36:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rSznHOC0;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Fe2/18J1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EEIbF/IM;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YEiwg4VY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vIXaxwabzQ8+Hyu7ckpupUBYG45/UINkuK4etw8/0xM=; b=rSznHOC0BUFQ2COOM1ZsFW2Dup
-	NyTPtHAiZbJ8CposRSVa8VwKXhxfJuJQj6csyPAJBGfzRFijTQY/i1I3+83ZM+QBMciJ38HptasIu
-	ETiDhA/jXZQkiIAxehyOyMf7KNDiauZONGL2f5PsBvTd57FLjEvZ2kSvKIZJiXRcHGLvQ+ScNhI3o
-	Tv66sevGtdLs27FiHo77PcA3T8es2B1pTShsiMeV4o5/GDxrAeRCgEev6orAv4huy00kGT5leEOuf
-	3eooT4JZ+vW7BaTiexcrVTJL0H5msdmRmLCgS8nVcb59PDeO0mfcV7ZWKCmYhv6Gic/xyK9gN4B0z
-	+vqFlWGQ==;
+	bh=PhnMB43dmhhOP+uEehjfYbWyisR+iluGA4pbiWpu2q0=; b=EEIbF/IM+N/9LqDPPWy2rPW/hy
+	wvTuZXoipTQRxmQSNN6BYD8W7Q3X//5vMEmSRX1NyKxlTN4yByq41zJSgKOjuTUC/a3Yn6d+jyaUq
+	r2rTHGkqqlqlLP47jo/3kTUwR5rBSXQFrOBRGCfy4qoxMj33vkITiOf8jXCIILcJHKNmLfol6P4KI
+	LfL5AorxgIXyT11PwEtPVlYDbgaHQ4HJiJE5M6dXBdOTIBZclYVQttm93Daz/wvIjBDJmTSnIiCCH
+	mX3xG16wGSzy9WBiUkhIYFBKaMobTM1Ratz0D/Hvo+dduzQjz9FPO0BfEV04vM1lzw163ry9vEXyK
+	zivfw5cQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThhO-00000009KL4-0IOw;
-	Wed, 18 Nov 2026 15:35:50 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xThhX-00000009KQX-14L2;
+	Wed, 18 Nov 2026 15:35:59 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThhI-00000009KHt-3zX5;
-	Wed, 18 Nov 2026 15:35:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795016142;
-	bh=Pa+l9p/ldmFV5IzkC7e19kzsj1Gaw7fnpk5iOSUaRGQ=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Fe2/18J1Y2lrX6s3KGi1hDkc4VGGUhXoV+T5mwr8GtCf1GSJ275r0E9kw3HxkjBO4
-	 UpG0xmlRDEL4FvKm/ZHIDsTvhV76dLuifnu3O+R67M9PmOOkdxc3Fusplve3aD9jQG
-	 LsOJ8nZaNGTwUkh2kG63o1krsjvpSuiq4t2uwHJJZSsEUb7HwbCcdPJt3NwTSyc6Ny
-	 j4o4Jj9AS1yyATJftwF2T9Xr7+iI3Rx0AX4rVdr/+qj23OWvVqgh/ApZlvHqnu6ivc
-	 8XZ8xOSfhB0dnwfU4NV+1eo0HZAb0J48OFnxFGJEuFJfe7/MqBI25X/SXnDiTWtx7x
-	 Ww+LNjbsQRX+A==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C106C17E0564;
-	Wed, 18 Nov 2026 16:35:39 +0100 (CET)
-Message-ID: <41750a65530034b0dfb144f4c8c10bae3bbe60eb.camel@collabora.com>
-Subject: Re: [PATCH v12 01/10] dt-bindings: media: mediatek: decoder: Add
- MT8189 mediatek,vcodec-decoder
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Rob Herring <robh@kernel.org>, Kyrie Wu <kyrie.wu@mediatek.com>
-Cc: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen	
- <andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>,  Hans Verkuil
- <hverkuil@xs4all.nl>, Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
- <arnd@arndb.de>,  Irui Wang <irui.wang@mediatek.com>, George Sun
- <george.sun@mediatek.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
- <andrzejtp2010@gmail.com>, Yilong Zhou	 <yilong.zhou@mediatek.com>
-Date: Wed, 18 Nov 2026 10:35:38 -0500
-In-Reply-To: <20261118152011.GA1714890-robh@kernel.org>
-References: <20261117085834.1464723-1-kyrie.wu@mediatek.com>
-	 <20261117085834.1464723-2-kyrie.wu@mediatek.com>
-	 <20261118152011.GA1714890-robh@kernel.org>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-39yOFI3IZD1p7uEEO9ym"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xThhS-00000009KNp-3gBE
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 15:35:55 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 99B46624A8;
+	Wed, 18 Nov 2026 15:35:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D4D01F000C6;
+	Wed, 18 Nov 2026 15:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795016153;
+	bh=PhnMB43dmhhOP+uEehjfYbWyisR+iluGA4pbiWpu2q0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=YEiwg4VYtGuqGQJP5AIPXvqqK8mL8uNE+40MF1Ru0rtQdXp4Xd4OzqIn6c3xS/zz9
+	 Tj24RvH6VjLdr9XTcDeGOKiexcgoAP3L3NGDGjhbmlmlubZq3ytpi2LJUp6Qi8cdqX
+	 uxiMy4jgVMCaDWY5OOUDlx2vkx1rMTEt/YycTBdLzayKz/LYgULi9ApJ17qghFnQ8Q
+	 WfCBGXbeJBGzc1d9OGXfDB7+wUSZgw1ypZS+7uJPXhXLpJtmeXMqC60z7h59GKVlos
+	 W0yxzBWnuGgX7UKaWOw05nuX4ZdwPYXr/IJGp/zkHNKDAafpU4vlR799d26p8xbRup
+	 O/e8Y8TTy3IAg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xThhP-000000000We-1Pzi;
+	Wed, 18 Nov 2026 15:35:51 +0000
+Date: Wed, 18 Nov 2026 15:35:50 +0000
+Message-ID: <8633sy17ah.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Myria Sarvay <myrialsarvay@gmail.com>
+Cc: Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sven Peter <sven@kernel.org>,
+	Janne Grunau <j@jannau.net>,
+	Neal Gompa <neal@gompa.dev>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev,
+	Yuvan Shen <yuvanshen09@gmail.com>,
+	Nick Chan <towinchenmi@gmail.com>
+Subject: Re: [PATCH v2 03/15] drivers/perf: apple_m1: Support per-implementation event tables
+In-Reply-To: <av2p17j8AglpTSAz@macbookair>
+References: <20261107-m3-plus-pmu-events-v2-0-acf1e78da039@gmail.com>
+	<20261107-m3-plus-pmu-events-v2-3-acf1e78da039@gmail.com>
+	<864ide1hb1.wl-maz@kernel.org>
+	<av2p17j8AglpTSAz@macbookair>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_073545_202990_C02B29D0 
-X-CRM114-Status: GOOD (  16.44  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: myrialsarvay@gmail.com, will@kernel.org, mark.rutland@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, sven@kernel.org, j@jannau.net, neal@gompa.dev, linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, asahi@lists.linux.dev, yuvanshen09@gmail.com, towinchenmi@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,57 +95,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-39yOFI3IZD1p7uEEO9ym
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, 18 Nov 2026 13:36:23 +0000,
+Myria Sarvay <myrialsarvay@gmail.com> wrote:
+> 
+> On Wed, Nov 18, 2026 at 11:59:30AM +0000, Marc Zyngier wrote:
+> >
+> > Looking at the following patches, I feel that this series is taking
+> > the long route to get to a relatively clear point: most of the
+> > invariant that we relied on for M1, slightly relaxed for M2 (counter
+> > width), are even more relaxed for M3+ (event width). We therefore need
+> > to indirect things. The way you do it is to mirror the current setup,
+> > with a whole set of callbacks per implementation and a bunch of
+> > additional helpers.
+> > 
+> > But instead of having a set of helper functions, one per
+> > implementation, with an ever increasing set of parameters, it really
+> > feels like we could do with a more data-centric approach where we have
+> > a single data structure describing an implementation, containing all
+> > the relevant data (pointer to the event mapping table, flags, bit
+> > indices for the user/kernel/guest/host attributes, and so on. We could
+> > then have a single set of callbacks that work on everything.
+> > 
+> > You could convert M1/M2 to that, then just add the relevant
+> > descriptions for M3+, which should just add data and the init
+> > functions, nothing else.
+> > 
+> > Does this make sense to you?
+> 
+> Hi Marc,
+> 
+> It does make sense, and should reduce duplicated code, I'm just not
+> confident I have the right idea as to how to implement it. I don't want
+> to duplicate a lot of the generic arm_pmu code, so it looks like it'd
+> probably have to be modified to allow passing a hardware specific detail
+> struct to all the callbacks, likely stored as a new field (void *) in
+> the arm_pmu struct itself. Does that vaguely sound right to you?
 
-Le mercredi 18 novembre 2026 =C3=A0 09:20 -0600, Rob Herring a =C3=A9crit=
-=C2=A0:
-> On Tue, Nov 17, 2026 at 04:58:24PM +0800, Kyrie Wu wrote:
-> > Add compatible for video decoder on MT8189 platform. Compared with
-> > former ICs, the MT8189 decoder use iommu to instead of smmu, and
-> > use scp architecture, the frequency is only 406MHZ, and cannot reach
-> > more than 700MHZ. It uses two clocks named soc-vdec and vdec. At the
-> > same time, the decoder supports the vp9 decoding protocol for the first
-> > time in single IC.
-> >=20
-> > Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> > Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > ---
-> >  .../media/mediatek,vcodec-subdev-decoder.yaml | 24 +++++++++++++++++--
-> >  1 file changed, 22 insertions(+), 2 deletions(-)
->=20
-> This patch should be based on this one:
->=20
-> https://lore.kernel.org/20261019212431.4109371-1-robh@kernel.org
+I'm not sure we really need an extra field. arm_pmu already has a
+pointer to the platform device (pmu->plat_device, also as
+pmu->dev.parent). It means you can use dev_{get,set}_data() on the
+attached device. That's a bit of pointer chasing, but nothing that we
+can't easily swallow if placed behind a convenient macro.
 
-Ack.
+> 
+> Also, with this rewrite, if we're going to make the code a whole lot
+> more generic, and take hardware specific data from a static struct,
+> would it make sense to rename the driver/all the callbacks while we're
+> at it, now that we're adding a lot more than just M1/M2 pmu events?
 
->=20
-> Rob
+I don't think names matter much. If I had my way, all variables and
+functions would be called "bob". I'd suggest you look into the
+refactoring without worrying about the naming, and if that's the last
+problem we have to solve, we'll be in a remarkably good place! ;-)
 
---=-39yOFI3IZD1p7uEEO9ym
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+Thanks,
 
------BEGIN PGP SIGNATURE-----
+	M.
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav3FygAKCRDZQZRRKWBy
-9J+DAP4gKGQQnQ/zLHxmgqQbgAGqlrumu2hJskKy01zGA4GVPAD/fm6R5hueQywc
-oui/a0M7xHVlfupp0bee2wjaGx+5QAE=
-=t7+b
------END PGP SIGNATURE-----
-
---=-39yOFI3IZD1p7uEEO9ym--
+-- 
+Without deviation from the norm, progress is not possible.
 
