@@ -2,73 +2,177 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1CEA60A2614
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D036A606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=baMaVpjp;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=JWVFmd9+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OdS02L3B;
+	dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.a=rsa-sha256 header.s=proofpoint-05-2026 header.b=aG6lu1KO;
+	dkim=pass (1024-bit key) header.d=ticloud.onmicrosoft.com header.i=@ticloud.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-ticloud-onmicrosoft-com header.b=HppMumam
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=q47HBnsBXsh2bthirykI6rD+fkcQs2OaoEr05am18HI=; b=baMaVpjpjCJzNAcp7c5syz/BlE
-	yO0M84wOHA9pLpidJNq/9yZD1NZxZ+wpDFHAC5E3dQNOfyMm3bQ0F/JqRRHyeA8X3JfeDV5G/DoBF
-	vvlShPy85ibrvgH/UCT2m+bIyNk+iHMIBy/rw3CKo3Ne7HRx6DLFpRKPicXEmI58tpLcij/ITG5nK
-	V3u6by0aB1Yb23k4CF7RtFJ+nh4d7vYGCAqL8UMjCi6nn6vYvE/Oxr8O7UusA2VCnVCMjh6kDK564
-	BlvvafyAPGg2az9s3iRUMxHMEu6WjUKKJxD+/S4vmVUV1GE7eWu3YsjvH3a97lsSJqFvTuPtk6lQU
-	5LHe0cwg==;
+	bh=oGoIdUKZC58CfGSe4NIMIb7tr32EOH9GaV3TFHeepVU=; b=OdS02L3BwkyKjuxzW3HoGTETw6
+	cX9NN2/8XCrD9veT2/fDY6CjCMBHb9noS6ybYKZ+ZtjU2ixKsAB0YKMnUO95EiWWgL8KDnMWwWVoZ
+	vXosDnd9aViHUenqz/B0GL8Cfp8dR93ePUkGg1JaPPs1TTxWwcD0xG7D5pMzxoBerca2qPjGmhGJ+
+	kZQJdlE0f7fA5ZHQWxTLa53dPIQse+kfer8rnukQkY6jqOMDfMrfbJrJDK1D9eVJjTGpNjQVtNp+t
+	1uadlhavCsqQRZL8Psoh25y3HmVbX6YH1YnXAWwTnP5FV1TSEV39cEAXtUobvQt9ulGBZUVl6e8QS
+	9LxFwJNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkfR-0000000A1N1-2wLn;
-	Wed, 18 Nov 2026 18:46:01 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkfP-0000000A1MT-06ia
+	id 1xTkio-0000000A1iF-0KBw;
+	Wed, 18 Nov 2026 18:49:30 +0000
+Received: from mx0b-0002e601.pphosted.com ([148.163.154.28])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTkij-0000000A1gw-2aEP
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 18:46:00 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B61601477;
-	Wed, 18 Nov 2026 10:45:54 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 330113F673;
-	Wed, 18 Nov 2026 10:45:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795027557; bh=RgXpgp1b64sl9UfssU3kG9kquYvtoA69zMUuuOQNjXM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JWVFmd9+3yNomI/qoopkleACN5TNxUN3On+VVyud7IpUCc/SG+Ig7dye/VtQj3Gz+
-	 XscHeHYR6bZSkFh7ZNolGXymS8NH5Kbskz2yOHb3ZSiVXRIV0xMb2DzwXo6Pfv+j9w
-	 MozS/n6dl2ICb40gnwWiNxAS4XWK/eIpmthc0otc=
-Date: Wed, 18 Nov 2026 18:45:51 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Sudeep Holla <sudeep.holla@kernel.org>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	Chengyu Liu <lui2012qwq@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, arm-scmi@vger.kernel.org,
-	philip.radford@arm.com, stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] firmware: arm_scmi: Fix deadlock between reboot
- notifier and forceful work
-Message-ID: <av3yX-5WUt8bT8Jg@pluto>
-References: <20261116084211.3066460-1-cristian.marussi@arm.com>
- <20261116084211.3066460-2-cristian.marussi@arm.com>
- <20261116-astonishing-urchin-from-jupiter-838cfc@sudeepholla>
- <avw5o7sTyriZ2ZiX@pluto>
- <20261117-prodigious-limpet-of-fame-3d72e6@sudeepholla>
- <CAE=Q7=4+HMtqbiK9v3jw4t31TQOYUfRXKRurZ7KcMi7GTi1v2A@mail.gmail.com>
- <avyS2OLs3XGcKXXn@pluto>
- <20261117-hypersonic-beautiful-perch-bd4fcf@sudeepholla>
+	Wed, 18 Nov 2026 18:49:28 +0000
+Received: from pps.filterd (m0374956.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AIHG6lQ2871555;
+	Wed, 18 Nov 2026 12:48:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=oGoIdUKZC58Cf
+	GSe4NIMIb7tr32EOH9GaV3TFHeepVU=; b=aG6lu1KOpTHYUDoUQT+65OEySjLal
+	bstLPPyOHsvu5b0doFofnNVYtC+/ugY7tmhs4sFshsbqNoNsKoqsUW5P/A/yP6xC
+	OlnKPWhv760MnlgbWYQ5REPocTo+TO2l82uqAaX5eiK+9SGbGDTtPYnsTm6FyJTC
+	XtzVlBlB7ubpxYiCDfhhZ1Kqlif6ctRalP3vZJHufoTiW2F9RaTsqic4iP6Y9lOP
+	GtJccNNP39g8p6CI2pal8BpEPzO9iNO8TLHMxWcr/hWx7haY3rUj+YsmsOzugor7
+	LIxROAGP9+xheq3gTS+LB1Bxz+pwvv5G6bLPBSKXFrT2beKrHb5d5filg==
+Received: from ch5pr02cu005.outbound.protection.outlook.com (mail-northcentralusazon11012028.outbound.protection.outlook.com [40.107.200.28])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4j0yuw6ccw-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 18 Nov 2026 12:48:44 -0600 (CST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=R/ST2NU2OdC+qXIJ1drKyhtzKxYc58xuEsLwSM2yWWbundGkoSlVoynhif0nGD4dNJMjonoLDZolqtQdbT6Vmw3nG3ifg7dvhrOC8K0aTGXFTDtkBugPZUuAsqiSXoeromoBevJS0+Rj97kfRF0JOjvDudb+29N5j+ePBvL5a06T74SszmlFyV00gRBv+WwxC3ppy23YduZ7mrjzcFw/U+iPLBYs6py85vJwp41RmFPO1YOXOz21CPT9Qj5AU2pfuS63de/qKjsQU75NgO7GJ1VBXEir7x8Rop9JOG/NIfEUAlFym1gOLNS7X/T6yVDYXHWeYBcIokrLmIppTGTXEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oGoIdUKZC58CfGSe4NIMIb7tr32EOH9GaV3TFHeepVU=;
+ b=gX2cldhOi65gvEtKWPnTmbaPJNz+K4/XfpDHfN41F86D7I2kAcpImhni/QyzJuJI2gWhWbbNoYCxyeUuGIIDXBx6rciZFXsR9T5GDF7SbxUlSCrhDxWhGdCRa3KWVGQjntj/r2ISR1fRYlE7XQkndHL4YuFQ4WpOKPeVCa/qTy9HMm988AobPQPMj5df2K8CDtVlNalb7dqzEoMziJGywoET822bUSWUhvsEQvG76DGX0e1OCM77v7r/z6A9QZ114dBiFQ4La2mnRM7z4Ub4Hkkd7QRKeYldnDYjFD32/d2zcGLr//h2nrKyYa1trNgsaIpnPeSAK44n51hmr/qJow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=suse.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ticloud.onmicrosoft.com; s=selector1-ticloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oGoIdUKZC58CfGSe4NIMIb7tr32EOH9GaV3TFHeepVU=;
+ b=HppMumam2REBQEjehFP1vWbs1YE5Lm7fC3M+euisutMDeZEQ1LvfR1mGahzcB0q1oiASU7VWIJINTpSkQpxWrfACTpHY+zVIJ2dc9FX6ocxHeX1R4CH20BOtN5ALx6RKg5O6wGAI2LRbJtL2/0xm0k8spPQgQv3Eiiblhhlj6GU=
+Received: from MN2PR15CA0056.namprd15.prod.outlook.com (2603:10b6:208:237::25)
+ by PH7PR10MB7054.namprd10.prod.outlook.com (2603:10b6:510:276::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
+ 2026 18:48:41 +0000
+Received: from BN5PEPF0004698B.namprd02.prod.outlook.com
+ (2603:10b6:208:237:cafe::2b) by MN2PR15CA0056.outlook.office365.com
+ (2603:10b6:208:237::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Wed, 18
+ Nov 2026 18:48:40 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 198.47.21.195) smtp.mailfrom=ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BN5PEPF0004698B.mail.protection.outlook.com (10.167.245.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 18:48:39 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 18 Nov
+ 2026 12:47:35 -0600
+Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 18 Nov
+ 2026 12:47:35 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE208.ent.ti.com
+ (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45 via Frontend
+ Transport; Wed, 18 Nov 2026 12:47:35 -0600
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6AIIlZeo2563981;
+	Wed, 18 Nov 2026 12:47:35 -0600
+Received: from localhost (meghana.dhcp.ti.com [172.24.231.93] (may be forged))
+	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 6AIIlXjo007449;
+	Wed, 18 Nov 2026 12:47:34 -0600
+From: Meghana Malladi <m-malladi@ti.com>
+To: <marco.crivellari@suse.com>, <kees+treewide@kernel.org>,
+        <laixiangwu@cmss.chinamobile.com>, <philippe.schenker@impulsing.ch>,
+        <haokexin@gmail.com>, <devnexen@gmail.com>, <horms@kernel.org>,
+        <jacob.e.keller@intel.com>, <m-malladi@ti.com>, <sdf@fomichev.me>,
+        <john.fastabend@gmail.com>, <hawk@kernel.org>, <daniel@iogearbox.net>,
+        <ast@kernel.org>, <pabeni@redhat.com>, <kuba@kernel.org>,
+        <edumazet@kernel.org>, <davem@davemloft.net>, <andrew+netdev@lunn.ch>
+CC: <bpf@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        <danishanwar@ti.com>
+Subject: [PATCH net-next 0/2] net: ti: icssg: Multi-flow RX and ethtool RX flow classification
+Date: Thu, 19 Nov 2026 00:17:25 +0530
+Message-ID: <20261118184729.2302130-1-m-malladi@ti.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261117-hypersonic-beautiful-perch-bd4fcf@sudeepholla>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN5PEPF0004698B:EE_|PH7PR10MB7054:EE_
+X-MS-Office365-Filtering-Correlation-Id: f7ff8387-171e-4d97-90f4-08df45a48f96
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|82310400026|1800799024|36860700016|376014|7416014|18002099003|6133799003|261009223027099003|3023799007|13003099007|921020|56012099006|261022105027099003|261021121427099003|261028144727099003|261021123027099003|261026140227099003|10067099003|261102123227099003;
+X-Microsoft-Antispam-Message-Info: aSbL5zYjEisZc+XAMcOuL/KFKk0Kh3VvyGtVKl27Akhlwf6JYdysu/iGLiVOmr9mLscPLlBHFGmNo8H5ls8ZGJ8P4keTThH9brEusaWVHIULhHAs3ODu+pchpJ0yOIWxVRe3e4Przpd8GaPd/45b8e6w8oVHs/0rGgE64StG63p3C+KIFPqHrpj2JfcWMAhxfTv3zK1Vq62jQDRJMPnhqKxGTBM/YxosxojLBKnJVn4o5051YCkh7hevF7uOl5V2Y0akTbvn5fnXhEEjHVttL0j50cV43yTTmDis+MkzeiSCYqVXGkcaPjfjQscPQqShqiLqVLgjxnTxedMfc4xzgVaXdWlIPSH0TE/m2O3HVrL0doGUyAOdG5UgPoVqxywlD574uP1I+uVbyjqSD9G13lLeE3dC0ak5nxaRpWZp6e29XnyO627OTzJFnUIpJquIyFGot2nJCCvzhUZvvUEdZVT8JPTcz5GynXN1z7xVApTWW+dmgi6Dk7mHywru+gvcbyDgUfc1xfMZLZja7aZn+0Yo1z2hO7TirOsds2cjiowCz6xZhylshT3OzijcO25ofeZ9AquTvP02gmSNbQkRs/HnNffPmtHIRjygx55ZCLLLy9Mjx5zoWZEVdwaX75kVeHFvRXZKaXS2scPKA0xW8lz9L4KnOsIJPDJxQl65E/5ecEpulrhtOO3kfrm1v2xF
+X-Forefront-Antispam-Report: CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(1800799024)(36860700016)(376014)(7416014)(18002099003)(6133799003)(261009223027099003)(3023799007)(13003099007)(921020)(56012099006)(261022105027099003)(261021121427099003)(261028144727099003)(261021123027099003)(261026140227099003)(10067099003)(261102123227099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: UpjzGU91yLLvpG0CTTjzhimrm+FsMKma9ysB6iweAOdl2b62tuQN9f03ynvmeqtxH/BrPvW+PfLOUY8npg2nM9eKshpDKdziLZAsa0h7l7ewoRWFFVqa67HtyHwwMd1txsgMiCIpz75w38OUYhvqtZPVFIAAPbJSObjsXGuIu5QTBGRIlj3wyEVwhZnR8h28uYgPBMdDASCjdi6sMRn8B4aDbewRKIuT+4Xxe5nRxqhatpBzhbTxx30DHo4cUMABNLJxWmZe9FKryTCBJO5hgK2qtEO/nA64fHQb6GxgAjKMgLNYZvMglMV2ilcu5WxIKu6ogVg5LDS9EbDHJ6OHAm9wRvOsQHg1vM8KXidqG57IZFoZBJMzIkQnCbjgvCmHOSswZyTBJgEYE6tDe7NI83Hag4+DuhIFv5OQLPvQbl6trB5mqyQ0pMM3+2MzePwQ
+X-Exchange-RoutingPolicyChecked: VxN85K0bGcPD4fb//x3M6H2EhKRfnEbBYpN62d+qGwJRXAn3IYGAguHKtWoxIwgySBV/nQ2A+NJJPqXp7mKhILC92rZWZfDGYmMmzLK4mcRzObbhMhtiJ96Y0ppjvvUwsLWycZKmWO7EjRZ+6SQV69h8LDVM72Xr+Fn0K0yG7e2cCwJq4o3hAdwDRtiuW9AQQOeWQbMiikgcsE1EzwgilszXi0UZcwuDXi61giCRKqJ/wkeT58ittqa1cF2Y46ue+13LmS6pSzlaJrP9gpkRIQI8iqIEGCEtuJ00KKGRpre6rEXjfw0NCCM06+r3dsosUwJtz7/gPKHbjKJyqSvtNA==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 18:48:39.4778
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7ff8387-171e-4d97-90f4-08df45a48f96
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN5PEPF0004698B.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB7054
+X-Authority-Analysis: v=2.4 cv=TJXQ2Fla c=1 sm=1 tr=0 ts=6afdf30c cx=c_pps
+ a=7whtcbPCeBOLW6TxF+pv5A==:117 a=tJyPKKxUohctrY4NYmUjkA==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=zJRp6_cAMcgA:10 a=AlMIdn_sM9wA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22 a=jwouBfj2j3NM8CExmVVE:22
+ a=VwQbUJbxAAAA:8 a=sozttTNsAAAA:8 a=aIMHsmKe8IOObArol7sA:9
+X-Proofpoint-ORIG-GUID: GzRyDaDs12blvR-1g2SYX4D3NLKXcI9L
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDA3NCBTYWx0ZWRfXzV2h/ofqS6vj
+ Sc6MIj5zBydpoMPeGR0/mAAIADY7mHEz3tRhIZupucRlG8leHONBZzt/KyBaIfv1ICdghWlJ2jR
+ EDRdf4fKVGllYVHGXHQIoF4KIMms2aGVHu45ESSAHH3bB3+Oyg8YFjsX19ytlK4ZlINWDhpa5/0
+ FYhL+dLSlWumE7jw43P7IrW74shNkGEMKLOd3BfLFjAyX1EVBSY+Q335BR0n6xSDRig99gzu2ZG
+ g6wKXwjaJ1lkTyseki/+5+AbdMBK8rkQpIJcdOhCyBCEEC1PacI5UtFT2azIlbUWRFAxUaWP7gy
+ TfNJIlJbihqQByiNvtShkG/PFnXsgbmhLML0Ejc9sk3jy+pF7ABR184+OtkAojrZWqCPBCugEQ7
+ ReAyN51skjIBwm0t/FTraHP/efoxDhwdICRB4vqWtgtPQxRJu2LzJw3japAeTpZ/cGjFpxcWfxE
+ GNn89t8fq3KR/1j6qCQ==
+X-Proofpoint-GUID: GzRyDaDs12blvR-1g2SYX4D3NLKXcI9L
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDA3NCBTYWx0ZWRfX5tOjG3GGyZ0T
+ dT/q93wXDt3NaciLxbkZdxB6C5rIiK/3YneAT7dzq1W5gW/y1yS9CVr/d0X+6ETjpDv6pHKmRXh
+ yZUatMi3+yPBlr9S+EmGL3A0JAxixLc=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-18_05,2026-11-16_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1011 malwarescore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611180074
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_104559_132970_DB233D44 
-X-CRM114-Status: GOOD (  17.93  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261118_104926_006631_7B06EEBA 
+X-CRM114-Status: UNSURE (   9.77  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,45 +183,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 06:27:52PM +0000, Sudeep Holla wrote:
-> On Tue, Nov 17, 2026 at 05:46:00PM +0000, Cristian Marussi wrote:
-> > On Wed, Nov 18, 2026 at 01:35:04AM +0800, Chengyu Liu wrote:
-> > > Hi,
-> > > 
-> > > I think the current v2 may have reintroduced the second deadlock
-> > > described in my original commit message.
-> > > 
-> > > scmi_forceful_work_func() still calls unregister_reboot_notifier()
-> > > while holding sc->state_mtx. Could you also check the potential lock
-> > > inversion between state_mtx and reboot_notifier_list.rwsem?
-> > > 
-> > > The reboot path holds the rwsem read lock while executing the notifier
-> > > callback, which then waits for state_mtx. Meanwhile, the worker holds
-> > > state_mtx while trying to unregister the notifier, which requires the
-> > > rwsem write lock.
-> > 
-> > Yes indeed Sashiko complains about the same and the second part of the
-> > issue on the rwsem is unresolved and will need more work.
-> > 
-> 
-> That's what I was referring when I said
-> " ... re-evaluate needs_forceful again here after un-registration before
->   calling below forced transition ?"
-> 
+This series adds multi-flow RX support to the ICSSG ethernet driver and
+exposes it via ethtool RX flow classification (rxnfc).
 
-I know what you mean... 
+Patch (1/2): restructures the driver to support up to 8 independent RX flows
+per EMAC interface. Each flow gets its own NAPI instance, IRQ, hrtimer,
+page pool, and XDP/AF_XDP context while sharing a single UDMA channel and
+descriptor pool. AF_XDP zero-copy is updated to track per-flow pools via a
+bitmap, and per-flow page pool recycling is fixed by storing the flow_id in
+prueth_swdata.
 
-> But then your response somehow convinced me that it is not needed 😉.
+Patch (2/2): adds ethtool ETHTOOL_SRXCLSRLINS/SRXCLSRLDEL/SRXCLSRLALL support.
+Rules match on EtherType (ETHER_FLOW) and steer matched frames to a
+user-specified RX queue via ICSSG FT3 hardware content filters and the
+16-entry classifier table. The classifier N result maps directly to UDMA
+flow rx_flow_id_base+N, so queue steering takes effect in hardware without
+per-packet CPU involvement.
 
-..but I fooled myself too O_o
+Tested on AM64x EVM (SR2), both eth1 (PRU0/slice0) and eth2
+(PRU1/slice1) with 8 RX flows. Verified via /proc/interrupts IRQ deltas
 
-Thanks,
-Cristian
+RFC: https://lore.kernel.org/all/20261103134501.4123194-1-m-malladi@ti.com/
+
+Meghana Malladi (2):
+  net: ti: icssg-prueth: Add multi-flow RX support with per-flow NAPI
+  net: ti: icssg-prueth: Add ethtool RX flow classification support
+
+ .../net/ethernet/ti/icssg/icssg_classifier.c  | 407 ++++++++++++++++++
+ drivers/net/ethernet/ti/icssg/icssg_common.c  | 380 +++++++++-------
+ drivers/net/ethernet/ti/icssg/icssg_config.h  |   7 +-
+ drivers/net/ethernet/ti/icssg/icssg_ethtool.c |  77 +++-
+ drivers/net/ethernet/ti/icssg/icssg_prueth.c  | 336 ++++++++-------
+ drivers/net/ethernet/ti/icssg/icssg_prueth.h  |  95 ++--
+ .../net/ethernet/ti/icssg/icssg_prueth_sr1.c  | 266 ++++++++++--
+ 7 files changed, 1189 insertions(+), 379 deletions(-)
+
+
+base-commit: d6816d9a93b66a12bf01e10037e377f3333ad6cc
+-- 
+2.43.0
+
 
