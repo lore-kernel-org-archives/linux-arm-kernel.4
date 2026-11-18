@@ -2,119 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D99606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 03:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94602606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 03:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MLgFvLV9;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mOkz6pax
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qXKN49aj;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=NcZwdC7v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=pMB2AXoRBZXKC3VHrDoIQ+zmQluYyx7XzY5w5JiTaps=; b=MLgFvLV9dpHpXxBTq/qzYd0sZ9
-	+Wx+UdMOtr5eo6BcCycISfpsKAV0FdmxnjP1WowRv+qzv2hIhYcKS6SyJMjOGwkPEJXjHrr0aVhBU
-	3zpI6SpZxfd2F1OvoXnsVQH6ve/MOl/mi8VSUEzca6HS8ozHZOcI4t4OS2J80Bpf7IP/b5Z0F9yCD
-	WCkLeTyozmkxOF6MWxsKvgGr0OuJlzfkTP2i0SymnyxuVB6wI2rOSXXsEKZ0N60rVaM9mRgSEUiOC
-	wQbAPMySlFCTw4935F76uxjthW01hbamR1Pk/TgLMruyBxO2eLWUltWQAr0jq5SXw7P88Bs8FqfUi
-	pjz0jXXA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=QxPLlUCoVQqJYhyMkTxfLdrY9v27MM52DmoZGS4cc+4=; b=qXKN49ajAXOpc8
+	BQDmSylReiKmtCKvuHseumMLcc/ev5Jsd9+NP1nDroSTKPT4De+muOHIrg+0FVtpHUulaie6Y+AM3
+	/1+jBr/VoqABBFME0F9EVO/tK86AOtFTrA9Ya2CHS6H9zkTgfTDc8X5fgFwUklEJ2nuzSBxLTC3Cr
+	bZ2G7+Z6q+MYve/+g9QlY8fBsNLwzrQlbcv71la5VFxnDmXkMKUKRdm/U7PRd8ZV1+QqhOstYVBdu
+	T6/5z70zdd6KQkpXjLg8/3P8wEBMg/csQwxWtL4N3hJGr//GKpzVWAGSuFG+E+RDaYWFNUX8Gqii4
+	1ooUi9vx+vXUWBjLLYyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTWDU-00000007c9i-2Ckx;
-	Wed, 18 Nov 2026 03:20:12 +0000
-Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
+	id 1xTWGI-00000007cZz-0Z7g;
+	Wed, 18 Nov 2026 03:23:06 +0000
+Received: from canpmsgout02.his.huawei.com ([113.46.200.217])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTWDR-00000007c9J-3jVl
+	id 1xTWGE-00000007cZG-3CuX
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 03:20:11 +0000
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-3ad3ef75223so657801fa.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 17 Nov 2026 19:20:08 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794972007; cv=none;
-        d=google.com; s=arc-20260327;
-        b=Q+CusArQJy7N9kX4LyDwtiNRAKNzV+nqPdiYwIK+dkhfbu/AkxIfXrf+qmyVZphbYs
-         USGkJOKCitIpsimvCJOdoBotzrkypho4pEJhM6KqHAuI53qqy5s34LPBSylPArGkKqwg
-         TWEyXwdntzuFN5qUgVROp8Dfnu8nhbu96TY4cuG9vP4ocdXel9lAISA/fFgvQhOV8sLu
-         sTx/UwziqrXSr2cUneEsx4xwL/fmjm1XYWDQPWwnc9TAa8x59Ti8JAsFBd+c5WFw4cFy
-         ZB39WgP+Pgn7+bOPf10hTHeXwbGvNTzUdIsNiQGzHnxQEqttKasUwczMdtU/xrm5TiHe
-         /xqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=pMB2AXoRBZXKC3VHrDoIQ+zmQluYyx7XzY5w5JiTaps=;
-        fh=AfbR0uCseqt4VS/AUXppo+rbUfbo8gl+37SQjmtR2D8=;
-        b=LvhJ1ac8RngPmSBPKmc1ZykyLrf7ooUEc+qKG1t5Rz1Arvme3ZlIinfCTFM9Flg/sx
-         LuRCLTboVUg5cVM8KTWAkADPwCU7oG6Kb0WUXzaKS/pSv0LAVK9bs8cHlMMuTi68ne0i
-         U/a4iH/AEi5tGH4zJxv4DLBFmfl7M+F/S/MP9f1aRer0SC1XrXxNrSQeLvn7zOIua9AZ
-         pteRKBZJP8ziJ3iPP/VYO6faax/loVv6pXBsEM+7j+62Ipup+t9Hwedu6xxtTKj1cwu5
-         PIiilgbFSfrSaRqHut+ecAFOCQMKRVsbYETorCVXK6ogjoNnsQhyjr6xlCbAlFE/aU+f
-         xFHQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794972007; x=1795576807; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=pMB2AXoRBZXKC3VHrDoIQ+zmQluYyx7XzY5w5JiTaps=;
-        b=mOkz6paxnpZFV9CsjRrp40AHR2s9YyGwSAWT/n5Cw3KBygJfOB35XAjrMlo8jdCYej
-         mx7411E11aog9G9cDNMSqpGAlk4fjK3QbH3oj0WCVd3KAHFOmW6UPGmyYIiQS5QIKQK8
-         THu7CJdu4xrCKyUcoN0iGMtNGKe1oS5BMwYaptfMf1WmN6bzBtjtHX5pEw7LAoJ/Po7I
-         cGeGJJ50RyRrdRQi1h0/FN4Y63gALIx7N5H0OHNsV57xo9KcONVSPnvtoZLe/q4/3FRC
-         3vLLdsyoQf50+L41P8JiDIIBDpetmk+CWPQGLYudepxlGRREAoI351doipzx+QHBDTT1
-         BYmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794972007; x=1795576807;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=pMB2AXoRBZXKC3VHrDoIQ+zmQluYyx7XzY5w5JiTaps=;
-        b=1IL5VxuIcohBcxoCJCxqZn2uoYRrYO878sPMT32uoSaF7UmVNQLzBGCGfAnloodjz3
-         Py2PhyMeVXK6X5QmwumNPEzzw+/XpWLQHLMjF/4JM8UE2h+xbkJM4af0pv1mXJDESkJN
-         VS7qABoZThmLPOGLYDuXeYjZ97dCdoI6dWEx4d+HTncTlqdHfc9G3vL+uPgFwc7OeqaT
-         n5U4pDcF4wzFRKPn87FbeGfgUPAMv4ySjeikTGfo2K2aKVEkogmXvhNfQTE0PKm+6hXh
-         MGHSH834nx7Y3wrGrhbkHlVYTCEU4Dgvoet0Drn6Vj3SkQxSv11twX8yEgiR80L6N73W
-         rirg==
-X-Forwarded-Encrypted: i=1; AL+hErGJrNi4nXhMx3ot49UtO85Y03TRUW0vRk27JMknQ4rLriE8KTzloLwqHv+8u/hIzn+eM9//Dt4s8Tf159w+lYW8@lists.infradead.org
-X-Gm-Message-State: APuU4Z/kqps0xGSI4H51+4voHGzN77TfGiikhriP5heGkul0ESTzFRsd
-	sppQBPCtwq57XOlYsl6DCRdOSq8Dqkmb50yzM5k3A5OD3XnCT5l4AS2IzGmKmBiqLBLUKfANc7K
-	9By35wos0u+MtyhvlzgC6Ldx4ER+ZEV4=
-X-Gm-Gg: AYBFou2rbR1OC1RD2tkSURIx9mtkrWn0WaJTBnCh2fgewpDgIXjLN8as3Cs1L689DVI
-	fDrWdT7oI19nWf0LC6Icm5zRS5uwdqxH0tUNJN9s1JF9HBKXMR0xEMB8iLID+cYWwa175px3LmF
-	uCf3lbjNEbPz+c1uI38uc2ycTpRRrnYfrNzoDQ9gvKooaxqvUZRhCpCC474Ctk6mgEhr4v1ghna
-	Tncnuwi1m06ZLlxfCOXmEL/d5n4YgOsxHIh9IKWPEk4EZLRUHlspaCHsiLuyDJUjt9cXD5vdx3X
-	69arwdaIZliGxMiNzZpVJusCB8xv5r0FDUTA2/eS5LTK9qZ/vbucjV4p3BZxJHyMbiii1mkEF/J
-	Y9O8fCZ28hJ3PxrhNpwyB7Xubg/1aScdVmdhc9snl++B2MfTTnY91WQJ1TlV1EerdpW7kl8L46b
-	5TVG8GG+Gh4s2AUuAR
-X-Received: by 2002:a05:6512:1326:b0:5c1:4e17:1ed6 with SMTP id
- 2adb3069b0e04-5c1aa2d9e10mr388793e87.6.1794972006813; Tue, 17 Nov 2026
- 19:20:06 -0800 (PST)
+	Wed, 18 Nov 2026 03:23:04 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=QxPLlUCoVQqJYhyMkTxfLdrY9v27MM52DmoZGS4cc+4=;
+	b=NcZwdC7vV+sbXM9JnlznGZlgNd9yPLVKQi8Vdlrh341nP8uraOUA3TEqE8yfxlfkAiC/dxN6H
+	ggk6naOMAMf9IjHGY/2QkBaVRjCg6wJ5vyiMFH16UiysjkY85HAqv6iKJreNvw9yC8Y588F3D98
+	mcNgxYUbM53qiMqAIIeLnLE=
+Received: from mail.maildlp.com (unknown [172.19.162.223])
+	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4jTn2h1MSYzcbPw;
+	Wed, 18 Nov 2026 11:22:04 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 488F340575;
+	Wed, 18 Nov 2026 11:22:56 +0800 (CST)
+Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 18 Nov
+ 2026 11:22:55 +0800
+Message-ID: <b8f89c7e-0ea3-4d55-bf4d-d87242b79bb6@huawei.com>
+Date: Wed, 18 Nov 2026 11:22:54 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261113-b4-sun8i-emac-ephy-defer-v1-1-12a8591702fe@gmail.com>
- <179490321548.3136.12535368591168637116@kernel.org> <7b9a4fe1-a885-4ace-bad0-b819ac8b11b4@bootlin.com>
-In-Reply-To: <7b9a4fe1-a885-4ace-bad0-b819ac8b11b4@bootlin.com>
-From: Arun Iyengar <aiyengar1990@gmail.com>
-Date: Tue, 17 Nov 2026 19:19:55 -0800
-X-Gm-Features: Aa3M54qlIUAd0hNudODtwjUM3vp3szpxLVn6rqxVCrMmIBzKBehn34SS0rG8Tt0
-Message-ID: <CAEy9hNW=h41aoAaBQJzL80X4BgMM=xQe6Y4_sR6jw3RWBue0sA@mail.gmail.com>
-Subject: Re: [PATCH net-next] net: stmmac: dwmac-sun8i: Defer probe when the
- EPHY clock is not ready
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: netdev-bot+sashiko@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
-	edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, 
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@kernel.org, 
-	jernej.skrabec@gmail.com, samuel@sholland.org, clabbe.montjoie@gmail.com, 
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm_mpam: resctrl: Use the domain's counter ID
+To: Ben Horgan <ben.horgan@arm.com>, <james.morse@arm.com>,
+	<reinette.chatre@intel.com>, <fenghuay@nvidia.com>, <tony.luck@intel.com>,
+	<Dave.Martin@arm.com>, <babu.moger@amd.com>, <will@kernel.org>,
+	<jic23@kernel.org>, <gshan@redhat.com>, <bp@alien8.de>, <x86@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20261113083506.4129060-1-ruanjinjie@huawei.com>
+ <20261113083506.4129060-2-ruanjinjie@huawei.com>
+ <a7dc44ee-cf2c-4e2a-9953-4f8ffeffda60@arm.com>
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <a7dc44ee-cf2c-4e2a-9953-4f8ffeffda60@arm.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_192009_987106_C6342CE4 
-X-CRM114-Status: UNSURE (   7.72  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261117_192303_118871_528FF01A 
+X-CRM114-Status: GOOD (  40.23  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,26 +79,467 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Maxime,
 
-You and the bot are right: get_ephy_nodes() runs after stmmac_pltfr_probe()
-has registered the netdev, so the deferral comes too late.
 
-Yes, the internal and the external PHY are both behind the mux. stmmac
-attaches the PHY at open, so today the mux is registered only after the
-netdev is visible.
+在 2026/11/17 19:27, Ben Horgan 写道:
+> Hi Jinjie,
 
-It was build-tested only, as the notes said; I have no H3, H5 or V3s board
-with the internal PHY.
+Hi Ben,
 
-I will drop this patch and move the mux registration into the MDIO setup,
-together with the probe and remove ordering that Chen-Yu raised on the mux
-use-after-free patch.
+> 
+> On 13/11/2026 08:35, tizi4590 wrote:
+>> From: Jinjie Ruan <ruanjinjie@huawei.com>
+>>
+>> resctrl assigns MBM counters per domain: mbm_L3_assignments takes a
+>> domain ID, a group can have a counter in one domain and none in
+>> another, and resctrl_arch_cntr_read() and resctrl_arch_reset_cntr()
+>> are given the counter to use.
+>>
+>> The driver ignores that counter and looks the monitor up in
+>> mbwu_idx_to_mon[], indexed by CLOSID and RMID.
+>> resctrl_arch_config_cntr() fills that array without looking at the
+>> domain, so each group has one monitor for the whole resource.
+>> Whichever assignment is written last selects the monitor the group
+>> reads in every domain.
+> 
+> For me, this scenario where we read the wrong counter to be the most
+> serious bug in the MPAM driver I currently know about. Thanks for
+> addressing it.
+> 
+>>
+>> For example, with the counter ID each group uses for mbm_total_bytes
+>> on each domain and "_" for none:
+>>
+>>                                 domain 0         domain 1
+>>   mount, mkdir g1               default=0 g1=1   default=0 g1=1
+>>   unassign both on domain 1     default=0 g1=1   default=_ g1=_
+>>   assign g1 on domain 1         default=0 g1=1   default=_ g1=0
+>>
+>> g1 is assigned the lowest free counter on domain 1, counter 0. That
+>> assignment is the last one written for g1, so it selects the monitor
+>> g1 reads in every domain. On domain 0, g1 uses counter 1, but reads
+>> the monitor of counter 0:
+>>
+>>                       counter whose monitor is read on domain 0
+>>                       default      g1
+>>   expected            0            1
+>>   actual              0            0
+>>
+>> That is the default group's monitor.
+>>
+>> Translate the counter ID with assigned_counters[], which maps a counter
+>> ID to a monitor of the class and is valid in every domain, 
+> 
+> Ok, sounds reasonable.
+> 
+> and drop
+>> mbwu_idx_to_mon[] with the lookups in __read_mon() and __reset_mon().
+> 
+> mbwu_idx_to_mon[] does become unused but if we want to ever support the
+> default mbm_assign_mode then it may become used. A little more on this
+> below but this can be considered separately from the bug fix.
+> 
+>> With nothing left to record, resctrl_arch_config_cntr() only resets the
+>> monitors of a counter when it is assigned.
+> 
+> Isn't this a separate optimization?
+> 
+>>
+>> Nothing consumes USE_PRE_ALLOCATED, the marker that triggered those
+>> lookups, once they are gone. resctrl only allocates a monitor context
+>> for an MBM event when resctrl_arch_mbm_cntr_assign_enabled() reports
+>> false, and this driver always reports true for the L3, so the MBM
+>> events are always read as assigned counters. Remove the marker, and
+>> the MBM cases of resctrl_arch_mon_ctx_alloc_no_wait() that returned it.
+> 
+> True but this is a separate, benign, issue with the code.
+> resctrl_arch_mon_ctx_alloc() is only called for mbm counters when
+> mbm_assign_mode is default rather than mbm_event. In MPAM, we currently
+> only support the mbm_event mode, assigning counters. Crossing threads,
+> but you had an rfc for supporting the software controller on MPAM wher
+> using the default mbm_assign_mode can be considered. Regardless, please
+> can you keep the changes in this patch only to those addressing the
+> particular bug and other changes can be considered as separate patches.
+
+Will drop this cleanup, thank you!
+
+> 
+>>
+>> Fixes: a5ff6ef2d73e ("arm_mpam: resctrl: Add resctrl_arch_cntr_read() & resctrl_arch_reset_cntr()")
+>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>> Cc: <stable@vger.kernel.org>
+>> ---
+>>  drivers/resctrl/mpam_internal.h |  15 ---
+>>  drivers/resctrl/mpam_resctrl.c  | 195 ++++++++++++--------------------
+>>  2 files changed, 71 insertions(+), 139 deletions(-)
+>>
+>> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
+>> index 1f86cc158100..e1348d958d05 100644
+>> --- a/drivers/resctrl/mpam_internal.h
+>> +++ b/drivers/resctrl/mpam_internal.h
+>> @@ -30,14 +30,6 @@ struct platform_device;
+>>  #define PACKED_FOR_KUNIT
+>>  #endif
+>>  
+>> -/*
+>> - * This 'mon' values must not alias an actual monitor, so must be larger than
+>> - * U16_MAX, but not be confused with an errno value, so smaller than
+>> - * (u32)-SZ_4K.
+>> - * USE_PRE_ALLOCATED is used to avoid confusion with an actual monitor.
+>> - */
+>> -#define USE_PRE_ALLOCATED	(U16_MAX + 1)
+>> -
+>>  static inline bool mpam_is_enabled(void)
+>>  {
+>>  	return static_branch_likely(&mpam_enabled);
+>> @@ -309,10 +301,6 @@ enum mon_filter_options {
+>>  };
+>>  
+>>  struct mon_cfg {
+>> -	/*
+>> -	 * mon must be large enough to hold out of range values like
+>> -	 * USE_PRE_ALLOCATED
+>> -	 */
+>>  	u32			mon;
+>>  	u8			pmg;
+>>  	bool			match_pmg;
+>> @@ -455,9 +443,6 @@ struct mpam_resctrl_res {
+>>  struct mpam_resctrl_mon {
+>>  	struct mpam_class	*class;
+>>  
+>> -	/* Array of allocated MBWU monitors, indexed by (closid, rmid). */
+>> -	int			*mbwu_idx_to_mon;
+>> -
+>>  	/* Array of assigned MBWU monitors, indexed by resctrl's cntr_id. */
+>>  	int			*assigned_counters;
+>>  };
+>> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+>> index b28c5c04a87c..05c1bf97c43d 100644
+>> --- a/drivers/resctrl/mpam_resctrl.c
+>> +++ b/drivers/resctrl/mpam_resctrl.c
+>> @@ -397,20 +397,13 @@ static int resctrl_arch_mon_ctx_alloc_no_wait(enum resctrl_event_id evtid)
+>>  {
+>>  	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[evtid];
+>>  
+>> -	if (!mpam_is_enabled())
+>> -		return -EINVAL;
+>> -
+>> -	if (!mon->class)
+>> +	if (!mpam_is_enabled() || !mon->class)
+>>  		return -EINVAL;
+> 
+> I don't see any reason for this refactoring.
+> 
+>>  
+>> -	switch (evtid) {
+>> -	case QOS_L3_OCCUP_EVENT_ID:
+>> +	if (evtid == QOS_L3_OCCUP_EVENT_ID) {
+>>  		/* With CDP, one monitor gets used for both code/data reads */
+>>  		return mpam_alloc_csu_mon(mon->class);
+>> -	case QOS_L3_MBM_LOCAL_EVENT_ID:
+>> -	case QOS_L3_MBM_TOTAL_EVENT_ID:
+>> -		return USE_PRE_ALLOCATED;
+>> -	default:
+>> +	} else {
+>>  		return -EOPNOTSUPP;
+>>  	}
+>>  }
+>> @@ -464,9 +457,15 @@ void resctrl_arch_mon_ctx_free(struct rdt_resource *r,
+>>  	resctrl_arch_mon_ctx_free_no_wait(evtid, mon_idx);
+>>  }
+>>  
+>> -static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+>> -		      enum mpam_device_features mon_type,
+>> -		      int mon_idx,
+>> +/* The monitor resctrl's counter @cntr_id uses for @cdp_type. */
+>> +static int mon_for_cntr(struct mpam_resctrl_mon *mon, int cntr_id,
+>> +			enum resctrl_conf_type cdp_type)
+>> +{
+>> +	return mon->assigned_counters[resctrl_get_config_index(cntr_id, cdp_type)];
+>> +}
+>> +
+>> +static int __read_mon(struct mpam_component *mon_comp,
+>> +		      enum mpam_device_features mon_type, int mon_idx,
+>>  		      enum resctrl_conf_type cdp_type, u32 closid, u32 rmid, u64 *val)
+>>  {
+>>  	struct mon_cfg cfg;
+>> @@ -477,14 +476,6 @@ static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_c
+>>  	/* Shift closid to account for CDP */
+>>  	closid = resctrl_get_config_index(closid, cdp_type);
+>>  
+>> -	if (mon_idx == USE_PRE_ALLOCATED) {
+>> -		int mbwu_idx = resctrl_arch_rmid_idx_encode(closid, rmid);
+>> -
+>> -		mon_idx = mon->mbwu_idx_to_mon[mbwu_idx];
+>> -		if (mon_idx == -1)
+>> -			return -ENOENT;
+>> -	}
+>> -
+>>  	if (irqs_disabled()) {
+>>  		/* Check if we can access this domain without an IPI */
+>>  		return -EIO;
+>> @@ -500,32 +491,6 @@ static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_c
+>>  	return mpam_msmon_read(mon_comp, &cfg, mon_type, val);
+>>  }
+>>  
+>> -static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+>> -			     enum mpam_device_features mon_type,
+>> -			     int mon_idx, u32 closid, u32 rmid, u64 *val)
+>> -{
+>> -	if (cdp_enabled) {
+>> -		u64 code_val = 0, data_val = 0;
+>> -		int err;
+>> -
+>> -		err = __read_mon(mon, mon_comp, mon_type, mon_idx,
+>> -				 CDP_CODE, closid, rmid, &code_val);
+>> -		if (err)
+>> -			return err;
+>> -
+>> -		err = __read_mon(mon, mon_comp, mon_type, mon_idx,
+>> -				 CDP_DATA, closid, rmid, &data_val);
+>> -		if (err)
+>> -			return err;
+>> -
+>> -		*val = code_val + data_val;
+>> -		return 0;
+>> -	}
+>> -
+>> -	return __read_mon(mon, mon_comp, mon_type, mon_idx,
+>> -			  CDP_NONE, closid, rmid, val);
+>> -}
+>> -
+>>  /* MBWU when not in ABMC mode (not supported), and CSU counters. */
+>>  int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
+>>  			   u32 closid, u32 rmid, enum resctrl_event_id eventid,
+>> @@ -553,13 +518,31 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
+>>  
+>>  	mon_type = mpam_feat_msmon_csu;
+>>  
+>> -	return read_mon_cdp_safe(mon, mon_comp, mon_type, mon_idx,
+>> -				 closid, rmid, val);
+>> +	if (cdp_enabled) {
+>> +		u64 code_val = 0, data_val = 0;
+>> +		int err;
+>> +
+>> +		err = __read_mon(mon_comp, mon_type, mon_idx,
+>> +				 CDP_CODE, closid, rmid, &code_val);
+>> +		if (err)
+>> +			return err;
+>> +
+>> +		err = __read_mon(mon_comp, mon_type, mon_idx,
+>> +				 CDP_DATA, closid, rmid, &data_val);
+>> +		if (err)
+>> +			return err;
+>> +
+>> +		*val = code_val + data_val;
+>> +		return 0;
+>> +	}
+>> +
+>> +	return __read_mon(mon_comp, mon_type, mon_idx,
+>> +			  CDP_NONE, closid, rmid, val);
+> 
+> 
+> What am I missing? Aren't you just copying the contents of
+> read_mon_cdp_safe()?
+> 
+> Thanks,
+> 
+> Ben
+> 
+>>  }
+>>  
+>>  /* MBWU counters when in ABMC mode */
+>>  int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+>> -			   u32 closid, u32 rmid, int mon_idx,
+>> +			   u32 closid, u32 rmid, int cntr_id,
+>>  			   enum resctrl_event_id eventid, u64 *val)
+>>  {
+>>  	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
+>> @@ -575,43 +558,38 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+>>  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
+>>  	mon_comp = l3_dom->mon_comp[eventid];
+>>  
+>> -	return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu,
+>> -				 USE_PRE_ALLOCATED, closid, rmid, val);
+>> -}
+>> -
+>> -static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+>> -			int mon_idx,
+>> -			enum resctrl_conf_type cdp_type, u32 closid, u32 rmid)
+>> -{
+>> -	struct mon_cfg cfg = { };
+>> -
+>> -	if (!mpam_is_enabled())
+>> -		return;
+>> +	if (cdp_enabled) {
+>> +		u64 code_val = 0, data_val = 0;
+>> +		int err;
+>>  
+>> -	/* Shift closid to account for CDP */
+>> -	closid = resctrl_get_config_index(closid, cdp_type);
+>> +		err = __read_mon(mon_comp, mpam_feat_msmon_mbwu,
+>> +				 mon_for_cntr(mon, cntr_id, CDP_CODE),
+>> +				 CDP_CODE, closid, rmid, &code_val);
+>> +		if (err)
+>> +			return err;
+>>  
+>> -	if (mon_idx == USE_PRE_ALLOCATED) {
+>> -		int mbwu_idx = resctrl_arch_rmid_idx_encode(closid, rmid);
+>> +		err = __read_mon(mon_comp, mpam_feat_msmon_mbwu,
+>> +				 mon_for_cntr(mon, cntr_id, CDP_DATA),
+>> +				 CDP_DATA, closid, rmid, &data_val);
+>> +		if (err)
+>> +			return err;
+>>  
+>> -		mon_idx = mon->mbwu_idx_to_mon[mbwu_idx];
+>> +		*val = code_val + data_val;
+>> +		return 0;
+>>  	}
+>>  
+>> -	if (mon_idx == -1)
+>> -		return;
+>> -	cfg.mon = mon_idx;
+>> -	mpam_msmon_reset_mbwu(mon_comp, &cfg);
+>> +	return __read_mon(mon_comp, mpam_feat_msmon_mbwu,
+>> +			  mon_for_cntr(mon, cntr_id, CDP_NONE),
+>> +			  CDP_NONE, closid, rmid, val);
+>>  }
+>>  
+>> -static void reset_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+>> -			       int mon_idx, u32 closid, u32 rmid)
+>> +/* Reset the monitor resctrl's counter @cntr_id uses for @cdp_type. */
+>> +static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+>> +			int cntr_id, enum resctrl_conf_type cdp_type)
+>>  {
+>> -	if (cdp_enabled) {
+>> -		__reset_mon(mon, mon_comp, mon_idx, CDP_CODE, closid, rmid);
+>> -		__reset_mon(mon, mon_comp, mon_idx, CDP_DATA, closid, rmid);
+>> -	} else {
+>> -		__reset_mon(mon, mon_comp, mon_idx, CDP_NONE, closid, rmid);
+>> -	}
+>> +	struct mon_cfg cfg = { .mon = mon_for_cntr(mon, cntr_id, cdp_type) };
+>> +
+>> +	mpam_msmon_reset_mbwu(mon_comp, &cfg);
+>>  }
+>>  
+>>  /* Reset an assigned counter */
+>> @@ -632,7 +610,12 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
+>>  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
+>>  	mon_comp = l3_dom->mon_comp[eventid];
+>>  
+>> -	reset_mon_cdp_safe(mon, mon_comp, USE_PRE_ALLOCATED, closid, rmid);
+>> +	if (cdp_enabled) {
+>> +		__reset_mon(mon, mon_comp, cntr_id, CDP_CODE);
+>> +		__reset_mon(mon, mon_comp, cntr_id, CDP_DATA);
+>> +	} else {
+>> +		__reset_mon(mon, mon_comp, cntr_id, CDP_NONE);
+>> +	}
+>>  }
+>>  
+>>  /*
+>> @@ -1170,22 +1153,6 @@ static void mpam_resctrl_pick_counters(void)
+>>  	}
+>>  }
+>>  
+>> -static void __config_cntr(struct mpam_resctrl_mon *mon, u32 cntr_id,
+>> -			  enum resctrl_conf_type cdp_type, u32 closid, u32 rmid,
+>> -			  bool assign)
+>> -{
+>> -	/* Same CDP index remap as closid; maps cntr_id to assigned_counters[]. */
+>> -	u32 mbwu_idx, mon_idx = resctrl_get_config_index(cntr_id, cdp_type);
+>> -
+>> -	closid = resctrl_get_config_index(closid, cdp_type);
+>> -	mbwu_idx = resctrl_arch_rmid_idx_encode(closid, rmid);
+>> -
+>> -	if (assign)
+>> -		mon->mbwu_idx_to_mon[mbwu_idx] = mon->assigned_counters[mon_idx];
+>> -	else
+>> -		mon->mbwu_idx_to_mon[mbwu_idx] = -1;
+>> -}
+>> -
+>>  void resctrl_arch_config_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+>>  			      enum resctrl_event_id evtid, u32 rmid, u32 closid,
+>>  			      u32 cntr_id, bool assign)
+>> @@ -1197,19 +1164,13 @@ void resctrl_arch_config_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *
+>>  		return;
+>>  	}
+>>  
+>> -	if (!mon->mbwu_idx_to_mon || !mon->assigned_counters) {
+>> -		pr_debug("monitor arrays not allocated\n");
+>> +	if (!mon->assigned_counters) {
+>> +		pr_debug("monitor array not allocated\n");
+>>  		return;
+>>  	}
+>>  
+>> -	if (cdp_enabled) {
+>> -		__config_cntr(mon, cntr_id, CDP_CODE, closid, rmid, assign);
+>> -		__config_cntr(mon, cntr_id, CDP_DATA, closid, rmid, assign);
+>> -	} else {
+>> -		__config_cntr(mon, cntr_id, CDP_NONE, closid, rmid, assign);
+>> -	}
+>> -
+>> -	resctrl_arch_reset_cntr(r, d, closid, rmid, cntr_id, QOS_L3_MBM_TOTAL_EVENT_ID);
+>> +	if (assign)
+>> +		resctrl_arch_reset_cntr(r, d, closid, rmid, cntr_id, evtid);
+>>  }
+>>  
+>>  static int mpam_resctrl_control_init(struct mpam_resctrl_res *res)
+>> @@ -1296,25 +1257,16 @@ static int mpam_resctrl_pick_domain_id(int cpu, struct mpam_component *comp)
+>>  static int mpam_resctrl_monitor_init_abmc(struct mpam_resctrl_mon *mon)
+>>  {
+>>  	struct mpam_resctrl_res *res = &mpam_resctrl_controls[RDT_RESOURCE_L3];
+>> -	size_t num_rmid = resctrl_arch_system_num_rmid_idx();
+>>  	struct rdt_resource *l3 = &res->resctrl_res;
+>>  	struct mpam_class *class = mon->class;
+>>  	u16 num_mbwu_mon;
+>>  	int *cntrs;
+>>  
+>> -	int *rmid_array __free(kvfree) = kvmalloc_objs(*rmid_array, num_rmid);
+>> -	if (!rmid_array) {
+>> -		pr_debug("Failed to allocate RMID array\n");
+>> -		return -ENOMEM;
+>> -	}
+>> -	memset(rmid_array, -1, num_rmid * sizeof(*rmid_array));
+>> -
+>>  	num_mbwu_mon = class->props.num_mbwu_mon;
+>>  	cntrs = __alloc_mbwu_array(mon->class, num_mbwu_mon);
+>>  	if (IS_ERR(cntrs))
+>>  		return PTR_ERR(cntrs);
+>>  	mon->assigned_counters = cntrs;
+>> -	mon->mbwu_idx_to_mon = no_free_ptr(rmid_array);
+>>  
+>>  	l3->mon.mbm_cntr_assignable = true;
+>>  	l3->mon.mbm_assign_on_mkdir = true;
+>> @@ -1943,17 +1895,12 @@ static void mpam_resctrl_teardown_mon(struct mpam_resctrl_mon *mon, struct mpam_
+>>  {
+>>  	u32 num_mbwu_mon = class->props.num_mbwu_mon;
+>>  
+>> -	if (!mon->mbwu_idx_to_mon)
+>> +	if (!mon->assigned_counters)
+>>  		return;
+>>  
+>> -	if (mon->assigned_counters) {
+>> -		__free_mbwu_mon(class, mon->assigned_counters, num_mbwu_mon);
+>> -		kvfree(mon->assigned_counters);
+>> -		mon->assigned_counters = NULL;
+>> -	}
+>> -
+>> -	kvfree(mon->mbwu_idx_to_mon);
+>> -	mon->mbwu_idx_to_mon = NULL;
+>> +	__free_mbwu_mon(class, mon->assigned_counters, num_mbwu_mon);
+>> +	kvfree(mon->assigned_counters);
+>> +	mon->assigned_counters = NULL;
+>>  }
+>>  
+>>  void mpam_resctrl_teardown_class(struct mpam_class *class)
+> 
+
 
