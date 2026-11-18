@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48AEE606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 21:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A79F2606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 21:13:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pNQfhcfy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UV+J/67M
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vZEoDBpf;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=omuiVZJh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,69 +14,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=HDCAkeZEKgNECITteEp+O5Hl5QzBetAGqDu6m3T4vtc=; b=pNQfhcfyykEMyVm1+U1UeUSVsH
-	jYqVZhkEetEe8wmSJCbwxlh3EwTBr1gp8ZORYX5jUJlvPo34GckiIPyh0+V9hC9TSRwF7adssE45s
-	rNBiiDSPLXaPTxWtoeA/PIJDmYQdTB4kLJf7dugejwogqCEAqFHOxy8EvXsRVqKA03hlcEaky7q0A
-	Q9eOokqp288KoByGa5nMCctlDp/E+3cMRbUCUpxAdo0BnP1RAPuWj0ps8rMRAslSHPCH1nTJzK3Ps
-	Hbbuh/Z0gNspfwaB5+gFYbyE2b4pI0Xy/rM86BnIStx0/wZPoE6HFfki1aAuYMlw3og7T3bdKSY68
-	5HL3wd9w==;
+	bh=lstpkAIMdhIw+8kIInQTbIFSQvVqWAgkCSm9ri4rJmg=; b=vZEoDBpf7XQYjMQabeMc3cAKo6
+	TcwhaclE2Zf6S4V1BQmPu1Z4DOhurSZ6uNa8ALVENbcnnF/j6O68cZFfWIj/9JBGtXUY1UyGhf6b/
+	0QOTtjNdc5Hhw7pMRM+ralJYKww6eqhis01iy9M7kzFqfOdS44o5wSbwCpI7rqGhUOa53H6CqpmpK
+	Ne/vjwkqa1Qmm7M851+ToaTA8xUEZM1UGOPX92JWkWDIP2wysfkZwGLzkJQpY2yh63lJw6+sdttj7
+	AE5N5kyLrVDuQesmX2BfUV7/Rc9f6BNwUEUsRaj6d+dHP42GiKd90R2XwoqlalUh3lpTdOXRejR71
+	KuaunokA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTmwz-0000000AI2P-1giz;
-	Wed, 18 Nov 2026 21:12:17 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTmyK-0000000AIGf-3cXJ;
+	Wed, 18 Nov 2026 21:13:40 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTmwy-0000000AI1z-0hQv;
-	Wed, 18 Nov 2026 21:12:16 +0000
+	id 1xTmyI-0000000AIGM-41Va
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 21:13:39 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9A74863DD9;
-	Wed, 18 Nov 2026 21:12:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C7651F000C4;
-	Wed, 18 Nov 2026 21:12:15 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7BC8940973;
+	Wed, 18 Nov 2026 21:13:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34C421F000C4;
+	Wed, 18 Nov 2026 21:13:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795036335;
-	bh=HDCAkeZEKgNECITteEp+O5Hl5QzBetAGqDu6m3T4vtc=;
+	s=k20260515; t=1795036418;
+	bh=lstpkAIMdhIw+8kIInQTbIFSQvVqWAgkCSm9ri4rJmg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=UV+J/67MbY357XaDQY1wb463wX0IRk8wkHXFkoWEZenbFaJyhzFuIQfXCNSwvwfJU
-	 qy6eTYeIkjCOEiGamXPX38F9pDt1amP3aLvKuwNzXFBA5vb4wdeguOZ46imbpQM3HH
-	 VbmZy/7x+nH69YQY2OOsAnYP+h77GPwhZ10eb8lYWdibiRsgakr8hNR513hYa6OsHA
-	 gpASOlSPUVEOm4CFtta8+PxVQjSIgJg3YiJ5RcBr/ZHi2Xty17GWUHctn85sd1BqVt
-	 XJsm/JrHHT7qBnq9NK7Lz9rP/vkw47eMBX/Cx9FWYGHGKivBZvrjK+3uTjCI4IYbJ+
-	 LGk/gzldD+MoA==
-Date: Wed, 18 Nov 2026 15:12:13 -0600
+	b=omuiVZJhZM6x9teRUwaSK7YbBaY600rkORp2u2GDqoekPAKmsJ6G8Ka5+5mq4vFxP
+	 jn0IR2UqCzS2BP99PhVTj3jIMgzRQ7Grt8rTmBlqCQQAhsOOMUDMK0LiLGsTXZfNKY
+	 fZlV2NHg271oRxu5Fy+E0DuJKRXX7iluhp50der5q2Jp8llNkQrsjUmWGxvGkkFdiS
+	 Eg6BdLRyIYAd8YjHQjSC4Z1PM7yQwpKA8kmkHQXjcl1ky5JNj4QqhKr+irC3PiyBtc
+	 IWWZLuGbMwRAFhvkn42J1QNYYMEFMCCa12btmQz34oKbia9o9Mwn2dZgrRKe3Iph9T
+	 LkketrxYjMRGg==
+Date: Wed, 18 Nov 2026 15:13:36 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Arun Iyengar <aiyengar1990@gmail.com>
-Cc: "Joerg Roedel (AMD)" <joro@8bytes.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sergei Khomenkov <shomenkow@gmail.com>, linux-media@vger.kernel.org,
-	Heiko Stuebner <heiko@sntech.de>,
-	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-	Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Tharit Tangkijwanichakul <tharitt97@gmail.com>,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: airlied@gmail.com, jbrunet+clk@baylibre.com,
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+	Chen-Yu Tsai <wens@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	Robin Murphy <robin.murphy@arm.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Will Deacon <will@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: Re: [PATCH v3 09/12] dt-bindings: iommu: verisilicon: Add the reset
- lines
-Message-ID: <179503633303.1026294.13265931291841937198.robh@kernel.org>
-References: <20261113-hantro-robust-v3-0-82383c722ad2@gmail.com>
- <20261113-hantro-robust-v3-9-82383c722ad2@gmail.com>
+	dri-devel@lists.freedesktop.org, conor+dt@kernel.org,
+	bmasney+clk@redhat.com, simona@ffwll.ch, linux-clk@vger.kernel.org,
+	tzimmermann@suse.de, sboyd@kernel.org,
+	Andre Przywara <andre.przywara@arm.com>,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	krzk+dt@kernel.org
+Subject: Re: [PATCH v3 7/8] dt-bindings: display: allwinner: Split H616 DE33
+ layer reg space
+Message-ID: <179503641576.1032413.14291544816555567669.robh@kernel.org>
+References: <20261115061102.229680-1-jernej.skrabec@gmail.com>
+ <20261115061102.229680-8-jernej.skrabec@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261113-hantro-robust-v3-9-82383c722ad2@gmail.com>
+In-Reply-To: <20261115061102.229680-8-jernej.skrabec@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,16 +87,49 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Fri, 13 Nov 2026 16:40:40 +0000, Arun Iyengar wrote:
-> The RK3588 AV1 IOMMU is part of the AV1 block and has no reset lines
-> of its own: the four AV1 resets also cover it. Its registers can't be
-> accessed while they are asserted. Describe them.
+On Sun, 15 Nov 2026 07:11:01 +0100, Jernej Skrabec wrote:
+> As it turns out, current H616 DE33 binding was written based on
+> incomplete understanding of DE33 design. Namely, planes are shared
+> resource and not tied to specific mixer, which was the case for previous
+> generations of Display Engine (DE3 and earlier).
 > 
-> Suggested-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> This means that current DE33 binding doesn't properly reflect HW and
+> using it would mean that second mixer (used for second display output)
+> can't be supported.
+> 
+> Remove layer register space, which will be represented with additional
+> node, and replace it with phandle, which will point to that new, shared
+> node. That way, all mixers can share same layers.
+> 
+> This change is intentionally not backward compatible and the old binding
+> will not be supported by the driver, for the following reasons:
+> 
+> - It can't describe the hardware. Plane register space is shared
+>   between all mixers, but the old binding puts it in the mixer node, so
+>   only one mixer can ever claim it. The second mixer can't be supported
+>   with the old binding at all. It also has no way to reference plane to
+>   mixer mapping registers, which live in display clocks register space.
+> 
+> - Supporting it would mean keeping a second, mixer-local plane
+>   management path in the driver, with hardcoded plane mapping, which
+>   doesn't match the hardware and which can't be tested, since nothing
+>   uses it.
+> 
+> - It was never used. Upstream H616 DT has no Display Engine nodes and
+>   the rest of H616 display pipeline (TCON, HDMI, PHY) is not supported
+>   upstream yet, so the old binding never produced a working display.
+>   Vendor BSP kernels use a completely different DT structure and no
+>   other known DT consumer (U-Boot, *BSD, Zephyr, TF-A, ...) implements
+>   H616 display support. Only out of tree WIP patches used it and those
+>   are updated together with the kernel.
+> 
+> The driver will print an error, asking to update the device tree, when
+> the old binding is detected.
+> 
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 > ---
->  Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>  .../display/allwinner,sun8i-a83t-de2-mixer.yaml  | 16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
