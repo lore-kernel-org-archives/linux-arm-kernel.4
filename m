@@ -2,90 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E2C460A2634
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DFEA60A2604
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WN+t8Cx1;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qskUgRn5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B+INqUaH;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dTcRlM/r
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=TJp+v10EMij7VbtZSi1N0VBoPPwdYg/YL3FSqlitLFE=; b=WN+t8Cx15v6orRWdObcC4vYV/0
-	YOwIaX0nQrAZTxmSLOhJlAvb9JIDAGSAtFzJSrN3gpnllXXafwtxaUDP89gtf7WugyO4Us8JZC/ZD
-	Benn/U0fz15ME3Cgr6Z7xzFa7yQ68e5nKOxsYA7iaC2IlQCuz1Vvbx9M6ZrnVthJNLrffJNTaHk2c
-	NhqDYVvr40T0pFlzLGGXud/UVsigetaP+QCjIUahkNqNdwEgHhvWQsLbNMZuC0neIhJdMZcsLFWKT
-	9psEV82Q4HqNpPaz1P+0QjNeu4r1LbphQC3h8OrV4d8nl2nelb1ix1aeVCFIEMFHsTGf2PEDre46q
-	RiQChFtQ==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=7C5jMvL4BZCrVCkE7uNmOmEvbc8VSHqIMhSM8aawM+4=; b=B+INqUaHc3mIBY
+	qowxzA4RJ3hkfWKTz0K0rFvWomSQu3Odq2pKNYVHVB0H/4yxbuiy6qtVCtn4vsCL3fix0BkCmUsa7
+	IJYZoZSLi4/vXBLM4gNczHgpkMgyWgAt2nWlfFLiLKi2c1fxZ6R+ZXkTcts4M3smSCKa3O277Ahwz
+	HdKE2QwsmFlK3hVAZWh5ijnWt8Jtb6yyIl9zk/z5fzfmnFpGoTIGxBGEkMUi40AaUkTOi75qdLEqn
+	8daZE0U8ZYB+22DmgOBo/WfqeJsksLftXDGUwRHTKsNyWQ85Kj/1QOvloy6DPItZo04saZmLFpya/
+	bpdYq7vVeOO0lja4n3+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTp6Z-0000000AUAK-1e8W;
-	Wed, 18 Nov 2026 23:30:19 +0000
+	id 1xTp6i-0000000AUG0-3CR4;
+	Wed, 18 Nov 2026 23:30:28 +0000
 Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTp6X-0000000AU8q-15tb
+	id 1xTp6Z-0000000AU9d-0Ebd
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 23:30:18 +0000
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-c511c0e2826so130296066b.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 15:30:16 -0800 (PST)
+	Wed, 18 Nov 2026 23:30:20 +0000
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-c445c95d553so228627066b.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 15:30:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795044615; x=1795649415; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=TJp+v10EMij7VbtZSi1N0VBoPPwdYg/YL3FSqlitLFE=;
-        b=qskUgRn5Idc5/qg2jkk4PrHihsv20V+skWjnr8NqtMB+is7M9er8POGjI4NSB/Nlzi
-         8P5dymqNul9irDYr6FA8jWD8XprJ+ToEGy4Ndth1y4Plwq93rxdw4PvrS03xz7xijrfJ
-         lG3xEP8gIc9PN8pJO/wm+4jsQL4byUtJUbR0TOH+soonIaAFnXhUaCXM1NryzOpmukRv
-         CYr3+PkZL2KFx73OceKUE//RfyqaaHxElJbYy4auD/56BrICab1F5F0muT0cVvIbvKIV
-         hmW7aQwQ/7ff8FByZ0vRUMkkrgN/0nnxL6fMmWC+X6afUZiPidaaNG1A5XCvhdftBcal
-         f6UA==
+        d=gmail.com; s=20260707; t=1795044617; x=1795649417; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=7C5jMvL4BZCrVCkE7uNmOmEvbc8VSHqIMhSM8aawM+4=;
+        b=dTcRlM/rKbNF2ELx2RLOzN397y4TpXqbYxlaKTmwvX8S9tX0f+aZw1y3zzNxTagiQz
+         uM2Ec4EK0GJ2PAEIg4WdPneJPtnEjSzs8kOrcTJjlleZYzEuae4FkRXoJ0rXcxvHfqPa
+         /vPyw3eVP2+HUt54w+fAE7ypJqW40/XtU8yYL/lauyqYIHUMbgwdBTMpOqDDsXa03k1f
+         Bw2XOsWcm2dIlnu/qFjtwiseosEAIMqpbtdVWhj/rOF74OcMS74RSAs72S0j2W0pN7jN
+         57mW/aW/7AGi0qqF0z3yYs3brL/24PA5l6c6KM/qFYDtIVDMHFHF1O/esXf9FFAkikZM
+         bPUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795044615; x=1795649415;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=TJp+v10EMij7VbtZSi1N0VBoPPwdYg/YL3FSqlitLFE=;
-        b=fmEfKDooqMzv2ldaMfxhEdbhcd/9l/LwN8N+sIaQ5Sd1hXZtkpFwg0pvBSjbRKpCdK
-         s+0zR9wPrWHQj+28NEdJt4oSssH4P6Kaqtn89fstL7phpskv1vsxqACnpxXHEEGgsXJf
-         CY8FJVhcrDZ59R+6gA65kPxe/MSmJurX8t1/y9ehn7Vr6+kJz0NDtVp9X34rzug1OMxv
-         9v7DhJ/Pi2V8HB1MCRRgIGFWaS/URNq6bDZjAMw8/AXquMrJ2esQqyG8hLma+jEPxG0H
-         s5K+M5CXZxpuOgfrG51d8OEfZU5rbtK4ElHH4L86SkVCz/OYk+RmA+ufp9aFRLXy4wJG
-         +JoA==
-X-Forwarded-Encrypted: i=1; AL+hErHOQB+Fi7x25kVv5vqNbBZ0vGuEp8BHTbZv9UnMwhgZvM2d6Hj/CcutYsUgsovjMXmPqdo9R4MlfGvAoqXdTejJ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+UATX7iQbt/uTzGIhKEzAhlsFuXxe5xVrXjKXIMuR0GRgDS6DT
-	TsJ9DrkLMSfSegTUo60mG+XlOjQ8hscRueqqhDAr/MOVtXsOrgOqJeik
-X-Gm-Gg: AYBFou2gWKWryJiFG3Mli0cHyqY+AnWKs1CNDm5QxCeovGAd+2BYLpm1CfTvPjlkJvm
-	aVg8y2Qdwxp1GNBWXWoGPER8/osukVLmeG8B0fucl7tWFNyf23+j2mhR+OW8SNKeIaTnbHOtq8i
-	arRAOxkGeN8LTDKi3fbR+iRbp0nVYZAZyzF/0kBtELzLsBzvIYC3hNEbldsinAUbG4fLAhPCu8e
-	Kh6Nm/n+iXWKuX0Bf2w0jrCobazbRj34eJbjXh0Pv6IScYqYLYuwuhRXdxSeHHKM4rQfFVM9ih5
-	mi7dbGgZhcEPoWiSMea8+2GZm6mph3AYhcWrZEqZFt45Gn2xVNXC3LaPsEb3o3s0XiYlYV/zExG
-	PvKeXOVu1mFACa+ex+f2L+XYc/tlpxakuN00aMiY29cnCtBIEjjTaPZHhMhqETdlxryca9O043/
-	Z/KAO85H6Qq6O/Kr2R/4podFljWR5ZVmOoJpxoAv5JkBe7C3uvIZI4j/ZKQEcObcE15CxvwNVye
-	Fb0red+9P6fAuauIDuGYIxWL9Kr4u/bBeJ91t5J9irxAegxM8bK/iDyVfF3HrPguuK7IlNAO6ok
-	8tiOCpC2DcXkWn0IP9LR0zYAqo63OyMjlYuqkCCW2UI=
-X-Received: by 2002:a17:907:3d8b:b0:c50:5005:8ecf with SMTP id a640c23a62f3a-c510e0e8be4mr378449666b.8.1795044614898;
-        Wed, 18 Nov 2026 15:30:14 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795044617; x=1795649417;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7C5jMvL4BZCrVCkE7uNmOmEvbc8VSHqIMhSM8aawM+4=;
+        b=x5d0OduMG8UWYgmQnNXMtoTA36N8Ddrahq8Tj3eBja4TqV8PLw5QtYvEmcMwgJOQW+
+         mO/H5U1IIxw3UM7SVwJPuVvkmWiqy5MwlQmPLKd7U5AMyoVcJo7fuKvsMcDNeMMBtjhM
+         rTj1+F2qdrmOO8+PSGqRV+Hn609vgfEzoVD6zmwUMq/cJcVKq385fD4ED0ThjtwnZFrj
+         wx9sMoBj3CQTd8uCczyXKPFpZpE/C1IKAXRpyNjCHIA0GpMhdWwzX6zpWJf/cODC8f3D
+         wfsBXk+euthqnzk5Ca+nSrIiovtN2TpHo7JVOF7Km6c2mSLyvuoxYwgvT5d52TehKu7t
+         xXRw==
+X-Forwarded-Encrypted: i=1; AL+hErHinUhJ3TLC/mn7sn6JZIeKMxE6rRYOZsy6rzFpGET1Kkwdf6Io/DRequxcO7a+jCJq8zW06IEf5WfHKDf9dKbN@lists.infradead.org
+X-Gm-Message-State: APuU4Z/jvpd/r3bj1OtceZIXdWaYedCJlAKjWkdhr+tbjSd5IOaJKNF1
+	m6pHGMjdgSD47ZaszlyLMUKOV1GgQjitszNO7lFk//RjZInfo5eCi6Pd
+X-Gm-Gg: AYBFou0NpHKnRVtQ/pLpNaV6nALFPpr4Q9MFl4SL5MbGN8VjdoDB3mJ4cFzBOg9qU74
+	Haoo+fG/e+ExsoU+4ayjHsPaTLhIL7WOLMm3/J6Ro4YGcM+Du8uE4IIiXnAzbyBYXlXGdBUpSuo
+	bJtkqrrGz0gnfDp/DKLqOb6T5sFz1RdJCG+2WEnvRdchBjaTU3lcHtyg/vCPhUDhZ9FYCXPSuNu
+	cMbLY4UTvLRKM1Ko5RRx2oQzIe3fO6lsmzQ4fJtbxohKOvnUetiTe+00npJ4sSFthuiUu2+kZl3
+	cCZ1HB5q6aRz19dLxfZVlMeb9gPQtLiKpxtXqPeuVqbJj9rFHqT8V+vjfxI8r21E8RpeZj/gNX4
+	Bg633MbDDzLDIAjUvwOVTM8FoYp4H0Qt1NpI8RoXiwNyCNJV14jwhuaznknh5jlO2Ae/j6hitFc
+	hlQDjMfxo7znI+tPBK7+1XbFlKgptPv+a4E1Pf/bovbXst2Z0oG7l2b3a7xfo+7NYX9blD0pQmJ
+	ybFrwHhAzUfM+cMTpMeltZAAnvrwgYIDBDgm5M7TYAJKO/SMVLhV/bVAgI/oC9UgFjCgrTMNShB
+	0EYrepF/sN+g9j3I3G/8Ud53djNJM5S4/bO6h5inDUc=
+X-Received: by 2002:a17:907:1611:b0:c41:266:68a7 with SMTP id a640c23a62f3a-c510e22ac27mr381182866b.10.1795044617416;
+        Wed, 18 Nov 2026 15:30:17 -0800 (PST)
 Received: from localhost.localdomain ([193.107.16.241])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c51234d2159sm47809166b.78.2026.11.18.15.30.12
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c51234d2159sm47809166b.78.2026.11.18.15.30.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 15:30:14 -0800 (PST)
+        Wed, 18 Nov 2026 15:30:17 -0800 (PST)
 From: Dmitry Yashin <dmt.yashin@gmail.com>
-Subject: [PATCH v3 0/4] arm64: dts: rockchip: add Forlinx OK3568-C
-Date: Thu, 19 Nov 2026 04:29:38 +0500
-Message-Id: <20261119-ok3568-c-v3-0-071840643591@gmail.com>
+Date: Thu, 19 Nov 2026 04:29:39 +0500
+Subject: [PATCH v3 1/4] dt-bindings: arm: rockchip: add Forlinx FET3568-C
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOI0/moC/22NTQ7CIBgFr9KwFvMBQoor72FctPy0qC0GKtE0v
- btQE9OFy0nezJtRNMGZiI7VjIJJLjo/ZmC7Cqm+GTuDnc6MKFABkgH2N8ZFjRVWILmkvCWGCpT
- nj2Cse62p8+XL8dlejZqKXxa9i5MP7/UrkbL7k00EA27AWs255UryUzc07r5XfkAlm+hPJEDER
- qRZBFFrUR8YGKG34rIsHyni6izrAAAA
-X-Change-ID: 20260930-ok3568-c-c095925b1e26
+Message-Id: <20261119-ok3568-c-v3-1-071840643591@gmail.com>
+References: <20261119-ok3568-c-v3-0-071840643591@gmail.com>
+In-Reply-To: <20261119-ok3568-c-v3-0-071840643591@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
@@ -93,16 +90,17 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
  Dmitry Yashin <dmt.yashin@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795044612; l=2429;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795044612; l=1181;
  i=dmt.yashin@gmail.com; s=20260930; h=from:subject:message-id;
- bh=yfphZ0mTqNHaO6RXY1MSM8psuzP4gCsZLr935QJ6cDE=;
- b=neG5FXjHJ3lCTzvjwqvTzSD1TXFJGfOQShzFZwf6DbnyC1XRKKAAxGFAUAWz78in6AAG21nNg
- boa7IydzY68Bg+Dw2CevsXCSp8YiulDdybhGSbFA898d0oXb2CSm1Ju
+ bh=pPsEz//R/5mbHWtInqzwe95ndZ3s89rfdZjnVNEV7dE=;
+ b=JqRsW3Up71ea4lmgiyptHVdI9zefUyJcZhSPDaVQD9V3n0RhfBpSIm3puK58UPdbQDyE6fu+c
+ KGx8zjYmXDWCBUePjda/4weNDbAB1rAwqMACrAI4TImu77tHti9PyKo
 X-Developer-Key: i=dmt.yashin@gmail.com; a=ed25519;
  pk=vBe9jaaOEH5bQEvfzb1tWOlz3AMIcXCu/GL/CdlwJco=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_153017_318248_637C632E 
-X-CRM114-Status: GOOD (  12.94  )
+X-CRM114-CacheID: sfid-20261118_153019_142546_207E4736 
+X-CRM114-Status: UNSURE (   9.51  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,72 +112,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series add support for Forlinx OK3568-C board based on FET3568-C SoM
-(rk3568). Patches 1-3 add .dtsi for FET3568-C and .dts for OK3568-C.
-Patch 4 adds .dtso for FIT-PCIE-SATA adapter that allows to connect
-SATA drives to the board.
+FET3568-C is an System on Module made by Forlinx based on Rockchip RK3568.
+This SoM used by OK3568-C Board.
 
-Note: tested on v1.1 board. On v1.2 RTL8211F phys use dedicated
-crystal oscillator instead of 25 MHz reference clock from SoC. Patch
-should be compatible with both revisions, as in [1] solution.
+FET3568-C features:
+- Rockchip RK3568
+- DDR4 1/2/4/8 GB
+- eMMC 8/16/32/64 GB
+- RK809 PMIC
 
-[1] https://lore.kernel.org/all/20250704-rk3576-rock4d-phy-handling-fixes-v1-1-1d64130c4139@kernel.org/
+Add devicetree binding for Forlinx FET3568-C SoM.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Dmitry Yashin <dmt.yashin@gmail.com>
 ---
-Changes in v3:
-- dropped rfkill-gpio dt-binding patch as not appropriate
-- dropped rfkill-gpio node from the board's device tree
-- Link to v2: https://patch.msgid.link/20261016-ok3568-c-v2-0-068d68430e6d@gmail.com
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Changes in v2:
-- added patch for rfkill-gpio's dt-binding with reset-gpios property to
-  suppress dt warnings
-- removed mmc-pwrseq. AW-CM358SM has only power management PDn pin
-  for both wifi and bt. Using shared wifi_bt_reg_on regulator fixes
-  bluetooth failure on cold boots
-- added bluetooth wakein/wakeout pins
-- moved leds/common.h to the SoM dtsi
-- switched gmac's phy-mode to rgmii-id
-- added rfkill-gpio for modem reset
-- dropped unused wifi and bt pinctrl's
-- Link to v1: https://patch.msgid.link/20260930-ok3568-c-v1-0-a0ffd55f5c95@gmail.com
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index a799bb843f74..30a6794861cc 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -324,6 +324,13 @@ properties:
+           - const: firefly,rk3568-roc-pc
+           - const: rockchip,rk3568
+ 
++      - description: Forlinx FET3568-C SoM
++        items:
++          - enum:
++              - forlinx,ok3568-c
++          - const: forlinx,fet3568-c
++          - const: rockchip,rk3568
++
+       - description: Forlinx FET3588-C SoM
+         items:
+           - enum:
 
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-rockchip@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-
----
-Dmitry Yashin (4):
-      dt-bindings: arm: rockchip: add Forlinx FET3568-C
-      arm64: dts: rockchip: add Forlinx FET3568-C
-      arm64: dts: rockchip: add Forlinx OK3568-C
-      arm64: dts: rockchip: add FIT-PCIE-SATA overlay
-
- .../devicetree/bindings/arm/rockchip.yaml          |   7 +
- arch/arm64/boot/dts/rockchip/Makefile              |   6 +
- arch/arm64/boot/dts/rockchip/rk3568-fet3568-c.dtsi | 332 ++++++++++++
- .../rockchip/rk3568-ok3568-c-fit-pcie-sata.dtso    |  16 +
- arch/arm64/boot/dts/rockchip/rk3568-ok3568-c.dts   | 566 +++++++++++++++++++++
- 5 files changed, 927 insertions(+)
----
-base-commit: 72d3fcf802c45d00b300f25b848a93c3a2bd7c7e
-change-id: 20260930-ok3568-c-c095925b1e26
-
-Best regards,
---  
-Dmitry Yashin <dmt.yashin@gmail.com>
+-- 
+2.56.0
 
 
