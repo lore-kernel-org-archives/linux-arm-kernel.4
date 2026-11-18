@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6235D606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B77DF606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:30:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r71tb4Fp;
-	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=J4/9tCQO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HWSyD0pf;
+	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=Rq0q5Xzx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,67 +14,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ocgERdCX40/QdZP3bdVNa/cddm/zWvOFkBxBwp4HIFM=; b=r71tb4FpqmARY4/DLlgeBp790t
-	wY8gjWyeonA3pVL6fyPahNOMuXZBw9UNgZpuT45Z+wc89u77OxuFosIWIZSksenJgRpFi4lbMzQxL
-	3p/4ib8P9hlvJbjRMQVy+RnZ3E2fpjyS97b1mrOkwzyq7/IttdH6ok59sXiaf24+zxlWm3fK2oSLk
-	BCHmLEpWBuCJ7u1W1y9ePE+eQLsP/wbGdvE4iZb8aW8y4wq53wTpXZ37cnA5vJQ4ji1eG70AAKhAU
-	xxvLAViePAfzFusfAj2+xVc3o5GGRljnFKvuaEerlXKsXIvVi/5uMvxaZ6q0snM6fja+902/rD7nX
-	tGtpG10A==;
+	bh=EYl3x4KFTe1dpc4bktfuekDHeh02aSOmfJOAZ9DaLew=; b=HWSyD0pfh01rsq+B/SIP0RVTgB
+	Uwh9jFS7qVzBUrKOWl8SfJoD7hBb8H24Zh22DCvlgNRCw3uhicayRzo/fy7zEfrhUZcRdv5/Hdchd
+	RHBDkXGNhpnv10aGMEFH+UO9wgj0ZJvqmIHcHMgRbOG7pHgV2IYHQbZj2MZKC8njvvD+KAmeVh/kG
+	nKxiRzKqYm6/t/QYlrcHB4JIFBTWqkMTBvzg0bUOOT/CwcT5jeVvTzatn8rp5g/Ou1807jGxc9JWh
+	HpuBlREOGCGcLzZBubQWOMS4OKOF25QIA2Yh+Dl/9vI01f9XBhe6ZlxOMwHPrfg1hN+d5RVAJ1gGK
+	aMtLbATg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThbk-00000009IYn-2HHU;
-	Wed, 18 Nov 2026 15:30:00 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1xThbu-00000009IdK-2qK4;
+	Wed, 18 Nov 2026 15:30:10 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThbh-00000009IXl-3H16
+	id 1xThbs-00000009Ib9-0xV5
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:29:58 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4ac95761c85so8973095e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 07:29:57 -0800 (PST)
+	Wed, 18 Nov 2026 15:30:09 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4a35ac4475dso8600155e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 07:30:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pereq.eu; s=google; t=1795015795; x=1795620595; darn=lists.infradead.org;
+        d=pereq.eu; s=google; t=1795015806; x=1795620606; darn=lists.infradead.org;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=ocgERdCX40/QdZP3bdVNa/cddm/zWvOFkBxBwp4HIFM=;
-        b=J4/9tCQOm3E6BqnhoivAF4DyEujHyVjEPsHRKzQQutKSEKO5waWFJEXbhf1y7CpJws
-         qnqDauadoJj94QYIm8d82n1Pu3reMB1q8zpoj6dJLBR6XBgTw+zswbgmb5t49AQEuvo9
-         7edlJ2uk0/EkKeklGALOWL8OEx9308x1p7aQ07OjCcvH5Hj3US9EGfcL6ODuldh2i4A+
-         UskTwHZrjv3bk6IXMJgo611w2w9Qykd2tDdd4DqTKdtUOiu4CpG81KV8229pYe+Vdnm8
-         EgB/iCeSsupTm+nOIKsdQeQ0QoJ35/bclaluXuZvOuks0LmAh7eBce6Ar4Oos6/fvx/x
-         83CA==
+        bh=EYl3x4KFTe1dpc4bktfuekDHeh02aSOmfJOAZ9DaLew=;
+        b=Rq0q5Xzx/pdTMU5kYgYsYKDWz7s1dHP5vlII6sc+koL+eXoKKlaht1p951mQ0p40Cz
+         fGJ+Qc/LmY/1MkFPsnTbS8K/7KVb+vqv+wWM14+xLSM85ULtxNF2OM0idBMBD8GGKwkF
+         bNL3L34Hte8bX5kvdtvSnww4E7t5EWTDmlmqwsRadGYMJyU9vvVCmtf9v7pOwKD0HL66
+         eeqIg84LOQGYSpJ/5XhemVgoEpg+mqRbfAB9V3vMcVnDo5z8DXb43F63x838JZE9G2lR
+         JNBFgx8Wr0QzmMQUnHJi8fLM1WW5TCKshND4EfqXVWKayo3gn4z8vZixKX8y9R59u9ue
+         vimQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795015795; x=1795620595;
+        d=1e100.net; s=20260707; t=1795015806; x=1795620606;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ocgERdCX40/QdZP3bdVNa/cddm/zWvOFkBxBwp4HIFM=;
-        b=scvD3vOMN5OUjCebYEvazGxY4Nbesr0hqplmqavSOY6/n1F3W1T7VjFcU4RwKoTfSg
-         aAk2veuqjIye5xjoGRqzGfh+w+CUdVVc710FanrlvFL+zHjQSxPYksSW9SjYD17gZjzc
-         hBXlrD0P9qJcBr1hiIa1ZHU+PsFF+8/MdWa8psX/bKbA+Y8OU8xsZJdSQYKc25iXJTas
-         NtYjINVCsrx3IAWtXftEd6g0aWUxFcHBiuTjKLunqPWY+wRk2LfJizf2R05M0+ILoi7W
-         pGFBopfW1PIwv3Xu5sRX9bajuIYuDDzlk+cpAb9UIdUMI45OytKGAsNrBBJRqt9sG32G
-         1QMg==
-X-Forwarded-Encrypted: i=1; AL+hErGgL7V+O5xB1XIwjbRnO2bxBx6ds2KxO7ysqkHO00AO9hYMqvIGK0tFd8D52I9C4hblHVIwEeuhs8KNtSFfnTsE@lists.infradead.org
-X-Gm-Message-State: APuU4Z9kJJ4wQ1Z2IjCRd/ksZRB8i7lEmKh2VRhOBgcT1h+YZEJrAtm2
-	XnKEb5nuV0yX6wvz7322k6fscLaf+fZL++CZI3qm5ommN2RUELPwgWDWeXNrQikAeh4=
-X-Gm-Gg: AYBFou3TqeD1wHE9UBDMQ7F0OEGSj0hYpDB2blgIOCElzogmXKo+wNzG1JBFkhAV/II
-	kmPO65zibfvbXksGOKzOPlLKZe1Runz3GMl89UJCmsg2K7C6zSrCf3C66nhCCAEi210y2G6he8T
-	miKD6OQ0Y1Lj0lHTQYV271TFIrbPCNN/R6dDobStfPLdU0k70NbcKZLwL6Lg3MMrPl2Lx4dDntS
-	H+ZBfvj53aokjIl1U8oDZguKDTc3Xcsn/pLMOqolFAaflbuAmQ7Xpo46HowuzAjpRSJLyuMO5Wu
-	OBHbagqfMgehbtoiwNO9VfTER4XNg6eRMojBMKwupUUKPRlZMnkskv4s24B1iTJFlZM8IDSmSsl
-	giXCnrMAGVbn3ZDXM8x+ZsEw4HX56mREaNd+Y4bmaFD7NacbnQjQXQAKRzfottG3G7lzFN1MuDY
-	5d7qazyvYC2PoqxefpP8wsE0M7rAxuUtM4+AONVKZIXvEjHSX122q7ZfxoCsqBQr7vmZj76+0H+
-	OIzL7ECuzyUlLRFXbKFDdq5Zzp/YAbDi/kzVttIR+b0oowRLYFtC0PyIQWR9kvsek2ouWa+C7WW
-	LHDS4IJni+M+AAxN1ueyx+5EnYV469xKkolGY5df
-X-Received: by 2002:a05:600c:4e04:b0:4a1:fc98:1cb1 with SMTP id 5b1f17b1804b1-4bb7d5d4113mr52050185e9.2.1795015795013;
-        Wed, 18 Nov 2026 07:29:55 -0800 (PST)
+        bh=EYl3x4KFTe1dpc4bktfuekDHeh02aSOmfJOAZ9DaLew=;
+        b=OPbnfk7llXDMzyo1oHq+UKBrP/MjV3WP6noHGfS+i6kcdXDSbrqQ5WKugvSGkPHMgo
+         xAGXNPNUtmCvhIxOejBXP7zgSo9Lxo0R8W1MWXAQ8ltMq7hEqz4u7mrJlCszETOdmSD2
+         lpr099G5vufrUc4XhiQqMu7CEwJgzAHo4U504CZ/cVesBMgRgFXrn0JCPflfFu4lEaqS
+         S8ECzeufe8JkzCnHyteqrQKd8/6IYvz3oSQZnWIRL5G+ZTOCvXyBQxjT7+1DLKC9gYo/
+         FiOWYUXysTVVG/FIYRWQTDovZ75H1vraSkEr48l2jWLH9gEcD8NyRtpZpFNHmCVxgqst
+         MXXg==
+X-Forwarded-Encrypted: i=1; AL+hErFHlPXL0H4jwuhuaUDf8NBJzV3d7Mu3X9sPd9rlLeriK7V9m8vDCE6RRTJcvnz9bvRaQShZOqZu6fRzdewE5MmV@lists.infradead.org
+X-Gm-Message-State: APuU4Z9RMJjyNqU6O2AyUIoX6Z2mm+gKwjxYIRxnQtmODxSm3uFLyQYf
+	gNviPAsky0gtv86/rktYAhMvKvEl0IKm13g4UboqKChK6Lw0mC3Ip1yBGb/CMe5IA/g=
+X-Gm-Gg: AYBFou0p/6Il2sQVreCYJmhjkphn6iuRVZjdG5P8g/sH+okiEa1DuwiqK3daqcj3tpL
+	Q5NkpJUqxDgmvGCVDTtBgR3LCrGpadlr3smdrGB/LYnNiKTyOiMh79gBQqSudAnehmOLGvSoeIn
+	vyqGUgRIhsmOYP1JnUkIJ1RyakTFMtK5bp5qKcSlvgEp9C85fPtioZolbmu32XGyrZ32gkVBzwf
+	/8hkqS+DuPv1rXNmV6D4mlIP8ZUy8X7pOWvijaaUIRQKfiq6tN7oNMrBxGji+MznLNLECUXc5yU
+	ClY2Xf/jt+7uHAg656P4CMVcjyiDLfpdIzBJa+GmJrNynIa+ne2CpEWpytFrQTkVTHFx9TA6NOP
+	oqpOLFK0oy76z95BFqp7iMRzeFlbQ286pgxdViop+rVRO+455ik1DrNyq9OAUIdij9NmalmdmgS
+	TFjC0di67/erGb+PT0fdJrcmb8dT1nCy0nsEoo7iA7bgoBjwC1V/DWe9oj5iwagbIvaSt+4E7Mw
+	ByECeLY3I+nvscB4sgjPYdMoP8ARyzXAb/aqtdg6fcA7/Lq8+vFZFL3Ktipu7GgqSCRzyFemefs
+	f0gnCGi/88jlmmaOJPQj
+X-Received: by 2002:a05:600c:3556:b0:4bb:6519:477e with SMTP id 5b1f17b1804b1-4bb7da24a4dmr59631565e9.17.1795015805629;
+        Wed, 18 Nov 2026 07:30:05 -0800 (PST)
 Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb7d2c3c93sm106797465e9.13.2026.11.18.07.29.53
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb783f7eecsm275894275e9.3.2026.11.18.07.30.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 07:29:54 -0800 (PST)
-Date: Wed, 18 Nov 2026 18:29:51 +0300
+        Wed, 18 Nov 2026 07:30:05 -0800 (PST)
+Date: Wed, 18 Nov 2026 18:30:02 +0300
 From: Dan Carpenter <dan@pereq.eu>
 To: Marc Zyngier <maz@kernel.org>
 Cc: Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
@@ -87,9 +87,9 @@ Cc: Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
 	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
 	Karthik Bhargavan <karthik@pereq.eu>,
 	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>
-Subject: [PATCH 1/3] KVM: arm64: nv: Forward PIR_EL2, PIRE0_EL2 and POR_EL2
- traps
-Message-ID: <79097fe98499631673fd536ef2f1b8cfc92b979d.1795014776.git.dan@pereq.eu>
+Subject: [PATCH 2/3] KVM: arm64: nv: Forward CNTP_TVAL_EL02 and
+ CNTV_TVAL_EL02 traps
+Message-ID: <80eb37d600ee6fa51f4c5fb478a31e8f0be180ef.1795014776.git.dan@pereq.eu>
 References: <cover.1795014776.git.dan@pereq.eu>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
@@ -97,8 +97,8 @@ Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <cover.1795014776.git.dan@pereq.eu>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_072957_846992_2D6CDA9F 
-X-CRM114-Status: GOOD (  14.00  )
+X-CRM114-CacheID: sfid-20261118_073008_273421_EF5FD1B2 
+X-CRM114-Status: GOOD (  11.23  )
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,42 +118,36 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These registers were added to KVM, but not to the encoding_to_cgt[]
-table which decides when a trap is forwarded to a nested hypervisor.
+There are a couple timer related entries messing in the nested
+virtualization traps.
 
-The result is that if an L1 hypervisor runs its L2 with HCR_EL2.NV set
-(meaning the L2 is itself a hypervisor), and the L2 accesses these
-registers, KVM handles the access itself and it goes to the L1's own
-registers instead of being emulated on L1.  This is quite a serious bug
-because it lets the L2 change the permissions of the L1's own stage 1
-translations.  It could mark everything as no-access and cause a crash
-in L1 or mark everything as read-write-execute which weakens the
-protections in L1.
+With nested virtualization you can run a hypervisor in L1 and then you
+can run another hypervisor under that one in L2 and a guest under that
+in L3.  Without these then if L2 tries to read or write L3's timers it
+instead reads and writes to its own timers.
 
-Add the three registers with CGT_HCR_NV, MAIR_EL2 and AMAIR_EL2.
-
-Fixes: 874ae1d48e60 ("KVM: arm64: Handle PIR{,E0}_EL2 traps")
-Fixes: 5970e9903f03 ("KVM: arm64: Add basic support for POR_EL2")
+Fixes: c271269e3570 ("KVM: arm64: nv: Add trap routing for CNTHCTL_EL2.EL1{NVPCT,NVVCT,TVT,TVCT}")
 Cc: stable@vger.kernel.org
 Signed-off-by: Dan Carpenter <dan@pereq.eu>
 ---
- arch/arm64/kvm/emulate-nested.c | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/kvm/emulate-nested.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/arch/arm64/kvm/emulate-nested.c b/arch/arm64/kvm/emulate-nested.c
-index 2bec81668361..bf4b8a44b9c4 100644
+index bf4b8a44b9c4..9e0c15e6be47 100644
 --- a/arch/arm64/kvm/emulate-nested.c
 +++ b/arch/arm64/kvm/emulate-nested.c
-@@ -889,6 +889,9 @@ static const struct encoding_to_trap_config encoding_to_cgt[] __initconst = {
- 	SR_TRAP(SYS_PMSCR_EL2,		CGT_HCR_NV),
- 	SR_TRAP(SYS_MAIR_EL2,		CGT_HCR_NV),
- 	SR_TRAP(SYS_AMAIR_EL2,		CGT_HCR_NV),
-+	SR_TRAP(SYS_PIR_EL2,		CGT_HCR_NV),
-+	SR_TRAP(SYS_PIRE0_EL2,		CGT_HCR_NV),
-+	SR_TRAP(SYS_POR_EL2,		CGT_HCR_NV),
- 	SR_TRAP(SYS_MPAMHCR_EL2,	CGT_HCR_NV),
- 	SR_TRAP(SYS_MPAMVPMV_EL2,	CGT_HCR_NV),
- 	SR_TRAP(SYS_MPAM2_EL2,		CGT_HCR_NV),
+@@ -942,8 +942,10 @@ static const struct encoding_to_trap_config encoding_to_cgt[] __initconst = {
+ 		      sys_reg(3, 5, 14, 1, 0), CGT_HCR_NV),
+ 	SR_TRAP(SYS_CNTP_CTL_EL02,	CGT_CNTHCTL_EL1NVPCT),
+ 	SR_TRAP(SYS_CNTP_CVAL_EL02,	CGT_CNTHCTL_EL1NVPCT),
++	SR_TRAP(SYS_CNTP_TVAL_EL02,	CGT_HCR_NV),
+ 	SR_TRAP(SYS_CNTV_CTL_EL02,	CGT_CNTHCTL_EL1NVVCT),
+ 	SR_TRAP(SYS_CNTV_CVAL_EL02,	CGT_CNTHCTL_EL1NVVCT),
++	SR_TRAP(SYS_CNTV_TVAL_EL02,	CGT_HCR_NV),
+ 	SR_TRAP(OP_AT_S1E2R,		CGT_HCR_NV),
+ 	SR_TRAP(OP_AT_S1E2W,		CGT_HCR_NV),
+ 	SR_TRAP(OP_AT_S12E1R,		CGT_HCR_NV),
 -- 
 2.53.0
 
