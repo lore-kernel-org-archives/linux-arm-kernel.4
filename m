@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3D260A261C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C54C606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YMJ8597x;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=d5XMhfpZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dFGNNAU+;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=pnCyCc8W
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,68 +14,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6V1QA3P52x46nv3P41ByzMEuwbndT8/SrZmGlBnbrBs=; b=YMJ8597xK9D2a3nTy6L2WW8uhb
-	ljNJvq/tiWhgAv/8yXFY0i36E9/uxh7s6WO4VBJ04TXLNGZFZZFJ+mkWUfXXyySS8rEjRbsHwtHkB
-	LMv4jVNhMhlc3XUICijkacoxpJTzzLaHYp2Cuncy8J9mueA3RGH8ejzmdCPyZRqP/VdqwoJQPvrYv
-	1FSY8jwQe4mnJQR1DTm9PT4FgOaVusV1ptbRpv4tfsyojARDFRSferDTwdHDy7jrOZQHIO6lejXgd
-	BDIQNqT6qhyOHUZgKnl5k51CF+GAcQB+hdaf30L+6xoPamGJGXD/WjaAHb7Fm4M4qnvKlsXo+WCbW
-	Ha9GGHjA==;
+	bh=8sF7COacRN1vGXnrZrNazsi2/3EiiL8z1PsIPlc+wKk=; b=dFGNNAU+JjoIK/omf0hyphXsNf
+	oA6pXP3dL4IIDBH/Q9CwhZQG//2axu4nLvein6zzW5rYB13ptJe9W+CuBoCupV1DmCGxPI+pcxVm6
+	3KFTW40aLRszfWboJ2nqTiUWiUn9FURZt3o/CTsfPnbJOKvogDzQXsfURI7ttiM1RjAxF3dnYQXky
+	MjXg7F8Iub2L1YlBk9XWfuXuWOgk9R6tcR4FAsDXOl1ASMRVuVy2ejErBc//ME8U8g1OFCyd0wUV4
+	uZ/uSbyfDzEwFxYrWNiC3m2jNucXHaSwS9Zr/r6jcUAh1X4W0blTaWRGTb9Fh3a2v87nB9egROSy3
+	2eyAN9ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkJl-00000009vPH-0moH;
-	Wed, 18 Nov 2026 18:23:37 +0000
-Received: from mail-ed1-x546.google.com ([2a00:1450:4864:20::546])
+	id 1xTkK4-00000009vv6-29db;
+	Wed, 18 Nov 2026 18:23:56 +0000
+Received: from mail-wm1-x345.google.com ([2a00:1450:4864:20::345])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkIT-00000009tY6-1KYw
+	id 1xTkIX-00000009tcc-0P8u
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 18:22:21 +0000
-Received: by mail-ed1-x546.google.com with SMTP id 4fb4d7f45d1cf-6b3f6d9827eso1191683a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:22:15 -0800 (PST)
+	Wed, 18 Nov 2026 18:22:22 +0000
+Received: by mail-wm1-x345.google.com with SMTP id 5b1f17b1804b1-4a359c7f47bso10966405e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:22:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795026133; x=1795630933; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795026136; x=1795630936; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=6V1QA3P52x46nv3P41ByzMEuwbndT8/SrZmGlBnbrBs=;
-        b=d5XMhfpZGclKgdHO9Wv9YstKVBSAacTGMdLcSIHZDstyjo9Um8QxELSIpKgPzMj2rX
-         5MCeMsqNRqQKZrasf/0chwncPcwrWVwtMWO1ZVtCr3+0PKBvD+KTOmHXCT5tBPotiLIj
-         G5FBZ2SVORxQ+j3X9uZ6UD/vQ/y+Mfh8tB0aB21Ke3v5ycTLPDJQHcH44My1X4/czfSh
-         tGNe18rvxAjIggCP5CN9gJIDIxJmZp+OnnBR52ZfVWnVQ6sFLAddpaXkWBd268fNvXB4
-         OJZX5M8C3+fT1GjCxkkG9/Tz7LBYiONNHVk3RXJYCG52ISYNJrmHV4vaXYvg8doT9tAS
-         mnJA==
+        bh=8sF7COacRN1vGXnrZrNazsi2/3EiiL8z1PsIPlc+wKk=;
+        b=pnCyCc8WD4kyWAvGIF635TuTsv9bzmY7RCnKAhukhb2Xm47v6PC1xqdxOzocC9AaHT
+         bU6L8ngBxJPSAnuqhsocA7p9uYLbPTp6e8HN1ey9FEedUlaDQRNDOxeZuMVDRPBbwBP/
+         3WsntMAQHVoavoRivO83pZ56wiK70qnfb8RlYG44SsdUuM9uHCrDINmwIX+VZGUV1Y3v
+         J6VKZDwOcY9oQfpSv876QpGFIbJ44EUTDI2rHjIWuty7MqClqk0f1n+balJDNI1VpOLW
+         u4Slwc6xQR4RlylVUgCUqyhtX6IniLAhXoHHRgfFmmWUuFtX6K+xLvOHPWnX1ODeK4Cy
+         sJjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795026133; x=1795630933;
+        d=1e100.net; s=20260707; t=1795026136; x=1795630936;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=6V1QA3P52x46nv3P41ByzMEuwbndT8/SrZmGlBnbrBs=;
-        b=rsZcVBAiGJB9iqiMY32RWHRU6Fylt8GCusqZ9XZYMWS7190DqVexVdR2BQ9VBcEHnz
-         YmmVRcYb35MpINLOt3Yr584S/3Q8MZC14SfYVhBI1hoGT4Km+YSrQQaYbF42dDCgg16h
-         2oE2PPaVbxAfnYa1tobYp7SqYUJHkBuNM0EOmZzENA+f5AOcgE8JTPMlv1vId7bOhhM2
-         hwb+ThEJuj2zlDmFGh/mCzPaum7f3Kg56DPQ+eWXl+7fRVCHqQ7wTxqo2ALsFdseKskZ
-         QnpLZO1c1P/XzZxr/0EyJiifv7POtUHKnjP5V+MhvgT+WXsbxPk96jkPJ3bPJUKTSpuf
-         w6mw==
-X-Gm-Message-State: APuU4Z/pdcFtx3DrMl2ohIlFsbCGJB6a82uxNETjwkki2u52Ju7q/79h
-	OBUzxjxK67GvIHALcEdg5y8fLMrvKMOHPp9nCMNw3Dlxjj2Fev7FJfBzYISHn1SAO0EolAJkFw=
+        bh=8sF7COacRN1vGXnrZrNazsi2/3EiiL8z1PsIPlc+wKk=;
+        b=ApwbEl6uhxZVYPVYdtIYyxd95kDOHLl8sJ5POXSwvj0vnJ2DAsGbFuhDmfaSoNvNLs
+         hGCPxsai6NeSviFglo7uEfx1kwz8dxgvQX4NJiCkWm12TYUSIoaRAkcWo2wDp/VIKzch
+         2b3WJKOSNVI1MxaIuVFCzTH8ndJEoD9XwiJbVsgDckhM+V/NsWrkIhn3RBSbEA5QxlCi
+         keGTrybsZGD9IWqoqswvCpBYE/k2fAnjMBtKC5I7oEkAtcP+DJL2azzd3CpExN6BJL1Z
+         YjdX8osF5zTEKAxrbEHbfvHyDP+LIdGU6WFEoIJESfWbO/vJC1+TTpUbL1aROeV5bFWu
+         KBUg==
+X-Gm-Message-State: APuU4Z+UU/d6Fkv4cLkd5h+bf+AcjIMh4M2PnOmBpk1zje3oACM7rpHj
+	4dtnMNqjWqAIuFvOr0R4Fyg6SiQ5kNvKUptlWpSqgjD5xtCvvf4AHT8HqfwoJSgUb4bFjZJkUg=
 	=
-X-Received: from edew2-n1.prod.google.com ([2002:a05:6402:a202:10b0:6b5:71b1:5396])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6402:1f14:b0:6b5:8719:6d51
- with SMTP id 4fb4d7f45d1cf-6b887ebcae0mr3272336a12.32.1795026132980; Wed, 18
- Nov 2026 10:22:12 -0800 (PST)
-Date: Wed, 18 Nov 2026 19:21:21 +0100
+X-Received: from wmxt15-n1.prod.google.com ([2002:a05:600d:864f:10b0:4bb:609a:3944])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:3555:b0:4a2:150f:1601
+ with SMTP id 5b1f17b1804b1-4bb7da2be68mr70517655e9.12.1795026136002; Wed, 18
+ Nov 2026 10:22:16 -0800 (PST)
+Date: Wed, 18 Nov 2026 19:21:23 +0100
 In-Reply-To: <20261118182105.1633603-21-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261118182105.1633603-21-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3998; i=ardb@kernel.org;
- h=from:subject; bh=ScJHVhvjJW7cZodEmI3s6Cu3UVcx7Ou1mV7bexdNsCg=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIevvm+XHVDP+rDqpPevtwVUH9HN5H0z+4TiXyzef2ytjQ
- WGR+pnWjlIWBjEuBlkxRRaB2X/f7Tw9UarWeZYszBxWJpAhDFycAjARgTiG/26JnzVEZXSTBTIv
- WAWbGX+pc2v625DpGBy5NU8yO96ameGfAdeGb2bd6xq27tfckbBu19bz8pZxd/nDMva/DQ7bf/A kPwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2989; i=ardb@kernel.org;
+ h=from:subject; bh=mMy4EOR4GKL669ZECvINo54lmzHNhYmaQBvXpm8/VGc=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIevvm1UmrxnyoqPFFE209K4fZTWeG7MtSqmC6ROf9YfZl
+ Xe15KQ6SlkYxLgYZMUUWQRm/3238/REqVrnWbIwc1iZQIYwcHEKwETm9jAyzGPUu7r22ayNLf+V
+ bb67davLvrqTphuU2Hpe0f73hFcrQxn+iosLFkU+ZtZgvOfNbiglFLlGbcbVis8FQhy1+U/E05d wAQA=
 X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
-Message-ID: <20261118182105.1633603-36-ardb+git@google.com>
-Subject: [PATCH v4 15/19] efi/libstub: Make efi_remap_image() return efi_status_t
+Message-ID: <20261118182105.1633603-38-ardb+git@google.com>
+Subject: [PATCH v4 17/19] efi/libstub: arm64: Drop zboot code_size hack
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-efi@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
@@ -84,8 +84,8 @@ Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
 	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_102217_436418_B0101ABF 
-X-CRM114-Status: GOOD (  16.25  )
+X-CRM114-CacheID: sfid-20261118_102221_166369_0A7B658E 
+X-CRM114-Status: GOOD (  13.21  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,93 +107,90 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-efi_remap_image() uses the EFI Memory Attributes Protocol to remap code
-and data regions with the appropriate permissions. This could fail for a
-variety of regions, all of which are currently ignored.
-
-So relay the failure status code if any occur when invoking the
-protocol. Locating the protocol itself is allowed to fail, as remapping
-the image is likely unnecessary in the first place if the protocol does
-not exist.
+Now that the code size can be obtained via the generic image_info
+struct, there is no longer a need to inject it explicitly during the
+build.
 
 Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- drivers/firmware/efi/libstub/efi-stub-helper.c | 15 ++++++++++-----
- drivers/firmware/efi/libstub/efistub.h         |  4 ++--
- 2 files changed, 12 insertions(+), 7 deletions(-)
+ arch/arm64/boot/Makefile               | 3 ---
+ arch/arm64/kernel/image-vars.h         | 4 ----
+ drivers/firmware/efi/libstub/arm64.c   | 4 +---
+ drivers/firmware/efi/libstub/zboot.lds | 4 ----
+ 4 files changed, 1 insertion(+), 14 deletions(-)
 
-diff --git a/drivers/firmware/efi/libstub/efi-stub-helper.c b/drivers/firmware/efi/libstub/efi-stub-helper.c
-index 8e43eb3f418b..e50deec99686 100644
---- a/drivers/firmware/efi/libstub/efi-stub-helper.c
-+++ b/drivers/firmware/efi/libstub/efi-stub-helper.c
-@@ -697,9 +697,11 @@ efi_status_t efi_wait_for_key(unsigned long usec, efi_input_key_t *key)
-  * region of the loaded image read-only/executable, and the remainder
-  * read-write/non-executable. The code region is assumed to start at the base
-  * of the image, and will therefore cover the PE/COFF header as well.
-+ *
-+ * Return: EFI_SUCCESS on success, other EFI status codes on failure.
-  */
--void efi_remap_image(unsigned long image_base, unsigned alloc_size,
--		     unsigned long code_size)
-+efi_status_t efi_remap_image(unsigned long image_base, unsigned alloc_size,
-+			     unsigned long code_size)
+diff --git a/arch/arm64/boot/Makefile b/arch/arm64/boot/Makefile
+index d42d07667822..509b59518818 100644
+--- a/arch/arm64/boot/Makefile
++++ b/arch/arm64/boot/Makefile
+@@ -51,7 +51,4 @@ EFI_ZBOOT_BFD_TARGET	:= elf64-littleaarch64
+ EFI_ZBOOT_MACH_TYPE	:= ARM64
+ EFI_ZBOOT_FORWARD_CFI	:= $(CONFIG_ARM64_BTI_KERNEL)
+ 
+-EFI_ZBOOT_OBJCOPY_FLAGS	= --add-symbol zboot_code_size=0x$$( \
+-				$(NM) vmlinux|grep _kernel_codesize|cut -d' ' -f1)
+-
+ include $(srctree)/drivers/firmware/efi/libstub/Makefile.zboot
+diff --git a/arch/arm64/kernel/image-vars.h b/arch/arm64/kernel/image-vars.h
+index 329d5e214b36..ca634cedcf63 100644
+--- a/arch/arm64/kernel/image-vars.h
++++ b/arch/arm64/kernel/image-vars.h
+@@ -140,10 +140,6 @@ KVM_NVHE_ALIAS(kvm_protected_mode_initialized);
+ 
+ #endif /* CONFIG_KVM */
+ 
+-#ifdef CONFIG_EFI_ZBOOT
+-_kernel_codesize = ABSOLUTE(__inittext_end - _text);
+-#endif
+-
+ /*
+  * LLD will occasionally error out with a '__init_end does not converge' error
+  * if INIT_IDMAP_DIR_SIZE is defined in terms of _end, as this results in a
+diff --git a/drivers/firmware/efi/libstub/arm64.c b/drivers/firmware/efi/libstub/arm64.c
+index f8bb890b9631..8a051412814d 100644
+--- a/drivers/firmware/efi/libstub/arm64.c
++++ b/drivers/firmware/efi/libstub/arm64.c
+@@ -88,8 +88,6 @@ efi_status_t check_platform_features(void)
+ #define DCTYPE	"cvau"
+ #endif
+ 
+-u32 __weak code_size;
+-
+ void efi_cache_sync_image(unsigned long image_base,
+ 			  unsigned long alloc_size)
  {
- 	static efi_guid_t guid = EFI_MEMORY_ATTRIBUTE_PROTOCOL_GUID;
- 	efi_memory_attribute_protocol_t *memattr;
-@@ -710,10 +712,12 @@ void efi_remap_image(unsigned long image_base, unsigned alloc_size,
- 	 * If the firmware implements the EFI_MEMORY_ATTRIBUTE_PROTOCOL, let's
- 	 * invoke it to remap the text/rodata region of the decompressed image
- 	 * as read-only and the data/bss region as non-executable.
-+	 * Don't bother if the protocol does not exist: it means all memory is
-+	 * read-write-exec anyway.
- 	 */
- 	status = efi_bs_call(locate_protocol, &guid, NULL, (void **)&memattr);
- 	if (status != EFI_SUCCESS)
--		return;
-+		return EFI_SUCCESS;
+@@ -100,7 +98,7 @@ void efi_cache_sync_image(unsigned long image_base,
+ 	/* only perform the cache maintenance if needed for I/D coherency */
+ 	if (!(ctr & BIT(CTR_EL0_IDC_SHIFT))) {
+ 		unsigned long base = image_base;
+-		unsigned long size = code_size;
++		unsigned long size = alloc_size;
  
- 	// Get the current attributes for the entire region
- 	status = memattr->get_memory_attributes(memattr, image_base,
-@@ -721,7 +725,7 @@ void efi_remap_image(unsigned long image_base, unsigned alloc_size,
- 	if (status != EFI_SUCCESS) {
- 		efi_warn("Failed to retrieve memory attributes for image region: 0x%lx\n",
- 			 status);
--		return;
-+		return status;
- 	}
+ 		do {
+ 			asm("dc " DCTYPE ", %0" :: "r"(base));
+diff --git a/drivers/firmware/efi/libstub/zboot.lds b/drivers/firmware/efi/libstub/zboot.lds
+index e1365907f805..e0f0bf005854 100644
+--- a/drivers/firmware/efi/libstub/zboot.lds
++++ b/drivers/firmware/efi/libstub/zboot.lds
+@@ -2,8 +2,6 @@
  
- 	// Mark the code region as read-only
-@@ -729,7 +733,7 @@ void efi_remap_image(unsigned long image_base, unsigned alloc_size,
- 						EFI_MEMORY_RO);
- 	if (status != EFI_SUCCESS) {
- 		efi_warn("Failed to remap code region read-only\n");
--		return;
-+		return status;
- 	}
+ ENTRY(__efistub_efi_zboot_header);
  
- 	// If the entire region was already mapped as non-exec, clear the
-@@ -749,4 +753,5 @@ void efi_remap_image(unsigned long image_base, unsigned alloc_size,
- 		if (status != EFI_SUCCESS)
- 			efi_warn("Failed to remap data region non-executable\n");
- 	}
-+	return status;
- }
-diff --git a/drivers/firmware/efi/libstub/efistub.h b/drivers/firmware/efi/libstub/efistub.h
-index 4e6af37c4ecb..27b60ad81264 100644
---- a/drivers/firmware/efi/libstub/efistub.h
-+++ b/drivers/firmware/efi/libstub/efistub.h
-@@ -1291,8 +1291,8 @@ struct efi_smbios_type4_record {
- const u8 *__efi_get_smbios_string(const struct efi_smbios_record *record,
- 				  const u8 *offset);
+-PROVIDE(zboot_code_size = ABSOLUTE(0));
+-
+ SECTIONS
+ {
+ 	.head : ALIGN(4096) {
+@@ -22,8 +20,6 @@ SECTIONS
+ 		*(.rodata* .init.rodata* .srodata*)
  
--void efi_remap_image(unsigned long image_base, unsigned alloc_size,
--		     unsigned long code_size);
-+efi_status_t efi_remap_image(unsigned long image_base, unsigned alloc_size,
-+			     unsigned long code_size);
- efi_status_t efi_kaslr_relocate_kernel(unsigned long *image_addr,
- 				       unsigned long *alloc_size,
- 				       const struct efi_image_info **image_info,
+ 		. = ALIGN(4);
+-		__efistub_code_size = .;
+-		LONG(zboot_code_size);
+ 		__efistub_efistub_image_info_offset = .;
+ 		LONG(efistub_image_info_offset);
+ 
 -- 
 2.56.1.708.g77570a6a1d-goog
 
