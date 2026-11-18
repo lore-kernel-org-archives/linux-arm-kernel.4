@@ -2,58 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA3D606A33B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921EE606A33B
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jzY300B7;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=J/xp2jZq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t+6Zdtt6;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=g+DVdC/q;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=PogcMlwB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dWxfOxs6Q0dpbo4RjDNuIDxsM7SkDxHUe3z8fq4Q1kY=; b=jzY300B7jRmCv2
-	cWMXVvlXoHA4q1fDygIdY1OxsRMYAAHtoYcK1WEwi6jhTp+pwFEsER1MqVjd4VYyQUta7YeQBs9uX
-	LfikDn/eWaApVmwZ2Afhc4ntHXHaAzMr16rSUcl24f+cIo4xPytGYqRuEt53EzjKxcG7sNBOr++Xb
-	RtpwjMaQVDQFZ4VQIMmIE43VRJH/N7Qzr8oKSPEZfQB7QQwyP3IaY8nykHkUV7VnsrensThdrmSnI
-	4MKylJ6Sdba4zEidDM6CxwwCP1xYX9YG+ZSG7lOEheQWW4fN0xDcI/atxuQBoifyDm68+Q0vzi/20
-	kAK/veS5hBOqLRkZICRw==;
+	List-Owner; bh=uSF6Lm8D9ry+Y4D3XvKzoxiIo/io7aCbvge+8z/Jst0=; b=t+6Zdtt6ztOJsU
+	2dk63xT1YVuTKaoVHCs3f0HJ2Y1lb9viee9EXdu5Mie1XJrMfEUDQcmZyzaHu5Ur9jCtcUNkQyYq5
+	GH0PjdJe33J0aNfppJnFAGvOyIoPDGRFr4/fcZPQh+1tHf/Fta4+OxIfc+YRdxCmjxyqklHKcUYFP
+	JXxLOir+1Vct+pwjWgicF1ZmdqDjfq4z69AEjUU7QsQvJZOEqp5OqIDElJZdsLsdz1fcYCmUdYaTc
+	Gzp7TjdXTsstChm9MlV65L0QMgFKC1uMHvy/23+AMT/bUyTVENW9n5eN0ghJ8S+yOZT1nwH916+jw
+	Mnzho17WryEgV6cJ3T0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTitO-00000009bZ0-0jQN;
+	id 1xTitO-00000009bZi-1yQZ;
 	Wed, 18 Nov 2026 16:52:18 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTisi-00000009afr-2n41
+	id 1xTit5-00000009bEe-2w1c
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 18 Nov 2026 16:51:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=uSF6Lm8D9ry+Y4D3XvKzoxiIo/io7aCbvge+8z/Jst0=; b=g+DVdC/qwDJ+nlhsphnFQOGi/v
+	+9ICu+Gz0KmOcMExr6PsKlVlpfgMJuEzJELYOF13nR1/OCDkTvM3mYf57Ze/RRs5J18O9TdfSZkd3
+	br+tI9uv+yHHldHXQF7OGBE1pWkVtaU4ZlMqoKxNVXswoAEmTluXeUgpw6YR+QKIWjoUKiihr/3gO
+	AEUwdLBcD5+zSbFTlLxdnkxLabYi2R5vBiFkgRQCfBGGRpREzXlb5s6TxtpkdutjqKsBQp4O3ftAC
+	LwCHtGrI/80fHJjXj+axo1Vv6e9h5TLSV2Ax8zrDfdI8zeJNlbPi7eLSCXCfK1NpLCkvUySMmAuDP
+	e+Lj0G+w==;
+Received: from smtpout-04.galae.net ([185.171.202.116])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTit1-0000000GISl-0Ubo
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:51:44 +0000
+	Wed, 18 Nov 2026 16:51:57 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 0C6124E41635;
-	Wed, 18 Nov 2026 16:51:35 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id A502FC4F77B;
+	Wed, 18 Nov 2026 16:51:58 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C7B035FE9B;
-	Wed, 18 Nov 2026 16:51:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7677511BC28C8;
-	Wed, 18 Nov 2026 17:51:28 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BFC015FE9B;
+	Wed, 18 Nov 2026 16:51:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9782911BC28D5;
+	Wed, 18 Nov 2026 17:51:42 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795020693; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795020707; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=dWxfOxs6Q0dpbo4RjDNuIDxsM7SkDxHUe3z8fq4Q1kY=;
-	b=J/xp2jZquTe/vOWqVCmtWy9eaF6Mfv6x/+hq/4vcEivdM9AVG1LNAsrPXT7PhT3MXBo6Gs
-	z1RU4KRAqWkY+Pgfbgpuqrcr2pCUjoBTfadAW1a6V+3Xv/sPDL41q1FOtLNI6yNJRkthLv
-	+XJyvOI8ddPi838LQpe+OwzaWz2TxVKppoAzg7nH4/Qys2KwGyY7+ydSBZMVpCJWi/Ov2Z
-	kOHGlSkEwaypk/x2hQn6Nk+b/CxZdVdl2CC4+AWDW7MjOR05WvGLefkP1l8+mThEr3Hujz
-	O3mQJ23axbxKs/tl01yTckTEGChiB3GtX4d8onB/3e2YgJd8a9lhOsoEJNN6oQ==
+	bh=uSF6Lm8D9ry+Y4D3XvKzoxiIo/io7aCbvge+8z/Jst0=;
+	b=PogcMlwBR63e9momGn9yjG4jUwb6nd2qRa7NNgPHc43TLqn91hUljIQrJSJWfM8AyZ+9Q7
+	CstFhlZ3Gt5JuM+JsircvYwm/qipxMd77w0ET/+GbelZA8DMIKgT5OzSvq4Hzv1yDvigm/
+	N3yEVF8VYu9B8tbuPjfSeDluw208JkeHFIPLspSl1TaavtzMceifzEdiOe4WexlyvghBul
+	K3GA2n5TY9Mky9UbYWPqDaVMTbYBBPfauFfhE/mNGXt/nYBG6oGI/Z5QlChVB6iqelWIhy
+	NQS2NjUVOQYUXYJALwwOk6uS7o3tZictG+ILfoobCfSRWcmrBFrvjUywYRyuww==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 18 Nov 2026 17:49:57 +0100
-Subject: [PATCH RFC v3 14/31] drm/bridge: ti-sn65dsi86: protect device
- resources on unplug
+Date: Wed, 18 Nov 2026 17:49:59 +0100
+Subject: [PATCH RFC v3 16/31] drm: event-notifier: add mechanism to notify
+ about hotplug events
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-drm-bridge-hotplug-v3-14-44bb3b4a828f@bootlin.com>
+Message-Id: <20261118-drm-bridge-hotplug-v3-16-44bb3b4a828f@bootlin.com>
 References: <20261118-drm-bridge-hotplug-v3-0-44bb3b4a828f@bootlin.com>
 In-Reply-To: <20261118-drm-bridge-hotplug-v3-0-44bb3b4a828f@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -79,9 +95,9 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
 X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_085137_061380_EA2E1B17 
-X-CRM114-Status: GOOD (  15.41  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_165155_131762_E10A7F1B 
+X-CRM114-Status: GOOD (  22.88  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,169 +116,216 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-To support hot-unplug of this bridge we need to protect access to device
-resources in case device removal happens concurrently to other code.
+In preparation for supporting DRM bridge hotplug, add an event notifier to
+allow interested parties to be notified about events they need to react to.
 
-Some care is needed for the case when drm_bridge_unplug() happens before
-ti_sn_bridge_atomic_post_disable(), so the latter cannot release supplier
-resources taken by ti_sn_bridge_atomic_pre_enable(): runtime PM (and in
-turn regulators) and refclk.
+For the initial implementation of bridge hotplug, a few events are needed:
 
-To ensure those resources are released exactly once on device removal:
+ * A bridge was added (happening in drm_bridge.c)
+ * A bridge was detached (happening in drm_bridge.c)
+ * A MIPI device was attached to a MIPI host (happening in drm_mipi_dsi.c)
 
- * move the code to release them to a dedicated function
- * register that function when the resources are taken in
-   ti_sn_bridge_atomic_pre_enable()
- * if ti_sn_bridge_atomic_post_disable() happens before drm_bridge_unplug()
-   (typical non-hot-unplug case):
-   * ti_sn_bridge_atomic_post_disable() can enter the critical section
-     (drm_bridge_enter() returns 0) -> it releases and executes the
-     devres action
- * if ti_sn_bridge_atomic_post_disable() happens after drm_bridge_unplug()
-   (typical hot-unplug case):
-   * ti_sn_bridge_remove() -> drm_bridge_unplug() defuses
-     ti_sn_bridge_atomic_post_disable() so it cannot execute the devres
-     action
-   * the devres action is executed just after ti_sn_bridge_remove()
+Being originated from different modules, implement the event notifier
+mechanism in a new module with minimal dependencies that event producers
+can easily use to send events.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 ---
 
-New patch in v3
+Changes in v3:
+- Renamed to clarify the scope is only about hotplug
+- Extend enum drm_event_notifier_event documentation
+- Add DRM_BRIDGE_ADDED event to support non-DSI (and some DSI too) bridges
+- Reword event description in a more concise way
+- Make DRM_HOTPLUG_EVENT_NOTIFIER a bool, not a tristate: DRM_MIPI_DSI
+  cannot be made a tristate with current code, and it depends on
+  DRM_HOTPLUG_EVENT_NOTIFIER
+- Use EXPORT_SYMBOL_GPL instead of EXPORT_SYMBOL to avoid GPL-bypass of the
+  notifier API
 
-This commit basically replicates the same change done on the ti-sn65dsi83
-driver, now upstream:
-https://lore.kernel.org/all/20251112-drm-bridge-atomic-vs-remove-v3-2-85db717ce094@bootlin.com/
+Changes in v2:
+- added missing include
 ---
- drivers/gpu/drm/bridge/ti-sn65dsi86.c | 50 ++++++++++++++++++++++++++++++++---
- 1 file changed, 46 insertions(+), 4 deletions(-)
+ MAINTAINERS                                  |  8 ++++
+ drivers/gpu/drm/Kconfig                      |  3 ++
+ drivers/gpu/drm/Makefile                     |  2 +
+ drivers/gpu/drm/drm_hotplug_event_notifier.c | 62 ++++++++++++++++++++++++++++
+ include/drm/drm_hotplug_event_notifier.h     | 52 +++++++++++++++++++++++
+ 5 files changed, 127 insertions(+)
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi86.c b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-index 4fd9fde77d2b..75e36bf261b0 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-@@ -852,9 +852,15 @@ static void ti_sn_bridge_atomic_disable(struct drm_bridge *bridge,
- 					struct drm_atomic_commit *state)
- {
- 	struct ti_sn65dsi86 *pdata = bridge_to_ti_sn65dsi86(bridge);
-+	int idx;
-+
-+	if (!drm_bridge_enter(bridge, &idx))
-+		return;
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9ebc0f35ae59..fc404918c938 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9319,6 +9319,14 @@ F:	include/drm/drm_gpusvm.h
+ F:	include/drm/drm_pagemap.h
+ F:	include/drm/drm_pagemap_util.h
  
- 	/* disable video stream */
- 	regmap_update_bits(pdata->regmap, SN_ENH_FRAME_REG, VSTREAM_ENABLE, 0);
++DRM HOTPLUG EVENT NOTIFIER
++M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
++L:	dri-devel@lists.freedesktop.org
++S:	Maintained
++T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
++F:	drivers/gpu/drm/drm_hotplug_event_notifier.c
++F:	include/drm/drm_hotplug_event_notifier.h
 +
-+	drm_bridge_exit(idx);
- }
+ DRM LOG
+ M:	Jocelyn Falempe <jfalempe@redhat.com>
+ M:	Javier Martinez Canillas <javierm@redhat.com>
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 61111d50b1c6..5268bf47b2e3 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -33,6 +33,9 @@ endmenu
  
- static void ti_sn_bridge_set_dsi_rate(struct ti_sn65dsi86 *pdata,
-@@ -1124,11 +1130,16 @@ static void ti_sn_bridge_atomic_enable(struct drm_bridge *bridge,
- 	int ret = -EINVAL;
- 	int max_dp_lanes;
- 	unsigned int bpp;
-+	int idx;
+ if DRM
+ 
++config DRM_HOTPLUG_EVENT_NOTIFIER
++	bool
 +
-+	if (!drm_bridge_enter(bridge, &idx))
-+		return;
+ config DRM_MIPI_DBI
+ 	tristate
+ 	depends on DRM
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index 2c6bc093a923..e4268c5b771a 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -95,6 +95,8 @@ drm-$(CONFIG_DRM_DRAW) += drm_draw.o
+ drm-$(CONFIG_DRM_RAS) += drm_ras.o drm_ras_nl.o drm_ras_genl_family.o
+ obj-$(CONFIG_DRM)	+= drm.o
  
- 	connector = drm_atomic_get_new_connector_for_encoder(state,
- 							     bridge->encoder);
- 	if (!connector) {
- 		dev_err_ratelimited(pdata->dev, "Could not get the connector\n");
-+		drm_bridge_exit(idx);
- 		return;
- 	}
- 
-@@ -1206,6 +1217,7 @@ static void ti_sn_bridge_atomic_enable(struct drm_bridge *bridge,
- 	}
- 	if (ret) {
- 		DRM_DEV_ERROR(pdata->dev, "%s (%d)\n", last_err_str, ret);
-+		drm_bridge_exit(idx);
- 		return;
- 	}
- 
-@@ -1215,26 +1227,57 @@ static void ti_sn_bridge_atomic_enable(struct drm_bridge *bridge,
- 	/* enable video stream */
- 	regmap_update_bits(pdata->regmap, SN_ENH_FRAME_REG, VSTREAM_ENABLE,
- 			   VSTREAM_ENABLE);
++obj-$(CONFIG_DRM_HOTPLUG_EVENT_NOTIFIER) += drm_hotplug_event_notifier.o
 +
-+	drm_bridge_exit(idx);
-+}
-+
+ obj-$(CONFIG_DRM_PANEL) += drm_panel.o
+ obj-$(CONFIG_DRM_PANEL_ORIENTATION_QUIRKS) += drm_panel_orientation_quirks.o
+ obj-$(CONFIG_DRM_PANEL_BACKLIGHT_QUIRKS) += drm_panel_backlight_quirks.o
+diff --git a/drivers/gpu/drm/drm_hotplug_event_notifier.c b/drivers/gpu/drm/drm_hotplug_event_notifier.c
+new file mode 100644
+index 000000000000..9cc252d10c73
+--- /dev/null
++++ b/drivers/gpu/drm/drm_hotplug_event_notifier.c
+@@ -0,0 +1,62 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * Release resources taken by ti_sn_bridge_atomic_pre_enable().
++ * Internal event notifier of events about DRM bridge hotplug
 + *
-+ * Invoked by ti_sn_bridge_atomic_post_disable() normally, or by devres
-+ * after ti_sn_bridge_remove() in case this happens befora
-+ * atomic_post_disable.
++ * Copyright (C) 2026 GE HealthCare
++ * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
 + */
-+static void ti_sn_bridge_release_resources(void *data)
++
++#include <linux/module.h>
++#include <linux/notifier.h>
++
++#include <drm/drm_hotplug_event_notifier.h>
++
++static BLOCKING_NOTIFIER_HEAD(drm_hotplug_event_notifier);
++
++/**
++ * drm_hotplug_event_notifier_register - Register to be notified of DRM
++ *                                       hotplug events
++ * @nb: the notifier block to be registered
++ *
++ * @nb will be notified of events defined in
++ * &drm_hotplug_event_notifier_event
++ *
++ * Returns 0 on success, %-EEXIST on error.
++ */
++int drm_hotplug_event_notifier_register(struct notifier_block *nb)
 +{
-+	struct ti_sn65dsi86 *pdata = (struct ti_sn65dsi86 *)data;
++	return blocking_notifier_chain_register(&drm_hotplug_event_notifier, nb);
++}
++EXPORT_SYMBOL_GPL(drm_hotplug_event_notifier_register);
 +
-+	if (!pdata->refclk)
-+		ti_sn65dsi86_disable_comms(pdata);
++/**
++ * drm_hotplug_event_notifier_unregister - Unregister from being notified
++ *                                         of DRM hotplug events
++ * @nb: the notifier block to be unregistered
++ *
++ * @nb will stop being notified of events defined in
++ * &drm_hotplug_event_notifier_event
++ *
++ * Returns zero on success or %-ENOENT on failure.
++ */
++int drm_hotplug_event_notifier_unregister(struct notifier_block *nb)
++{
++	return blocking_notifier_chain_unregister(&drm_hotplug_event_notifier, nb);
++}
++EXPORT_SYMBOL_GPL(drm_hotplug_event_notifier_unregister);
 +
-+	pm_runtime_put_sync(pdata->dev);
- }
- 
- static void ti_sn_bridge_atomic_pre_enable(struct drm_bridge *bridge,
- 					   struct drm_atomic_commit *state)
- {
- 	struct ti_sn65dsi86 *pdata = bridge_to_ti_sn65dsi86(bridge);
-+	int idx;
++/**
++ * drm_hotplug_event_notifier_notify - Emit an event to be notified to
++ *                                     registered entities
++ * @event: event ID as defined in &drm_hotplug_event_notifier_event
++ * @data: metadata associated to the event
++ */
++void drm_hotplug_event_notifier_notify(unsigned long event, void *data)
++{
++	blocking_notifier_call_chain(&drm_hotplug_event_notifier, event, data);
++}
++EXPORT_SYMBOL_GPL(drm_hotplug_event_notifier_notify);
 +
-+	if (!drm_bridge_enter(bridge, &idx))
-+		return;
- 
- 	pm_runtime_get_sync(pdata->dev);
- 
- 	if (!pdata->refclk)
- 		ti_sn65dsi86_enable_comms(pdata, state);
- 
-+	devm_add_action(pdata->dev, ti_sn_bridge_release_resources, pdata);
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("Luca Ceresoli <luca.ceresoli@bootlin.com>");
++MODULE_DESCRIPTION("Notifier for DRM components addition/removal and attach/detach");
+diff --git a/include/drm/drm_hotplug_event_notifier.h b/include/drm/drm_hotplug_event_notifier.h
+new file mode 100644
+index 000000000000..008e041444be
+--- /dev/null
++++ b/include/drm/drm_hotplug_event_notifier.h
+@@ -0,0 +1,52 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Internal event notifier of events about DRM bridge hotplug
++ *
++ * Copyright (C) 2026 GE HealthCare
++ * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
++ */
 +
- 	/* td7: min 100 us after enable before DSI data */
- 	usleep_range(100, 110);
++#ifndef _DRM_HOTPLUG_EVENT_NOTIFIER_H_
++#define _DRM_HOTPLUG_EVENT_NOTIFIER_H_
 +
-+	drm_bridge_exit(idx);
- }
- 
- static void ti_sn_bridge_atomic_post_disable(struct drm_bridge *bridge,
- 					     struct drm_atomic_commit *state)
- {
- 	struct ti_sn65dsi86 *pdata = bridge_to_ti_sn65dsi86(bridge);
-+	int idx;
++#include <linux/notifier.h>
 +
-+	if (!drm_bridge_enter(bridge, &idx))
-+		return;
- 
- 	/* semi auto link training mode OFF */
- 	regmap_write(pdata->regmap, SN_ML_TX_MODE_REG, 0);
-@@ -1243,10 +1286,9 @@ static void ti_sn_bridge_atomic_post_disable(struct drm_bridge *bridge,
- 	/* disable DP PLL */
- 	regmap_write(pdata->regmap, SN_PLL_ENABLE_REG, 0);
- 
--	if (!pdata->refclk)
--		ti_sn65dsi86_disable_comms(pdata);
-+	devm_release_action(pdata->dev, ti_sn_bridge_release_resources, pdata);
- 
--	pm_runtime_put_sync(pdata->dev);
-+	drm_bridge_exit(idx);
- }
- 
- static enum drm_connector_status
-@@ -1514,7 +1556,7 @@ static void ti_sn_bridge_remove(struct auxiliary_device *adev)
- 	if (!pdata)
- 		return;
- 
--	drm_bridge_remove(&pdata->bridge);
-+	drm_bridge_unplug(&pdata->bridge);
- 
- 	of_node_put(pdata->host_node);
- }
++/**
++ * enum drm_hotplug_event_notifier_event - DRM bridge hotplug and
++ *                                         hotunplug events
++ *
++ * Describe any event about DRM bridge appearing, disappearing, or getting
++ * connected at runtime (hotplug). Any of these events may need to trigger
++ * a response in order to start or stop the video pipeline, including
++ * creating or destroying a drm_connector.
++ *
++ * Each of these events is accompanied by a void* argument, whose meaning
++ * is event-specific and defined per each event.
++ */
++enum drm_hotplug_event_notifier_event {
++	/**
++	 * @DRM_MIPI_DSI_ATTACHED: A MIPI DSI device has just been attached
++	 * to its MIPI DSI host. @data is a pointer to the attached &struct
++	 * mipi_dsi_device.
++	 */
++	DRM_MIPI_DSI_ATTACHED,
++	/**
++	 * @DRM_BRIDGE_ADDED: A bridge has just been added by calling
++	 * drm_bridge_add(). As such, it is not yet attached to an encoder
++	 * and is not part of any encoder bridge chain. @data is a pointer
++	 * to the added &struct drm_bridge.
++	 */
++	DRM_BRIDGE_ADDED,
++	/**
++	 * @DRM_BRIDGE_DETACHED: A bridge has just been detached and
++	 * removed from the encoder bridge chain. @data is a pointer to the
++	 * detached &struct drm_bridge.
++	 */
++	DRM_BRIDGE_DETACHED,
++};
++
++int drm_hotplug_event_notifier_register(struct notifier_block *nb);
++int drm_hotplug_event_notifier_unregister(struct notifier_block *nb);
++void drm_hotplug_event_notifier_notify(unsigned long event, void *data);
++
++#endif /* _DRM_HOTPLUG_EVENT_NOTIFIER_H_ */
 
 -- 
 2.56.1
