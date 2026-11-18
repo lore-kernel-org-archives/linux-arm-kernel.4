@@ -2,139 +2,153 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7859606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE19606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QED/ghJ2;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=Hh5s2tJd;
-	dkim=pass (2048-bit key, unprotected) header.d=axiado.com header.i=@axiado.com header.a=rsa-sha256 header.s=selector1 header.b=hyBSGB+V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EeBS2JL8;
+	dkim=pass (2048-bit key, unprotected) header.d=kontron.de header.i=@kontron.de header.a=rsa-sha256 header.s=selector1 header.b=Mtnv5zc6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pbHIj214Hk02i60FxDGc0rIbuGw9Ckkid9eISLKfVhI=; b=QED/ghJ27jTDx5
-	0nKRu6qA6G7xOM3lvkqAszwVkS40U9zXLxerKMgoL9oRUufhNhSyOvhk3rfA5nEi+5GB0xjz0pErB
-	9v1/C1igk0caoMKLanxDikCM6bXykil7u2iYescILrnS8qHu6S11iN6+j5YhNZzh8HnZhDUOB82bf
-	SKYM3DGYUuW5nf8eox6v6mwxtalnP+gf9joruigsInfnIIwxw3r8sXilrmlJM8Sk0Vl/aPYiXbvKi
-	9OzPPCbxca2TzniGan0QOEQLw75tTqGxKOm6fOKl1esXxRe8CbxX4Ehe/O46X+bZH5sm0jf38H9nS
-	enhbbl3rn85t0t3l6eLA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:From:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=li65XB04WseXUq8cuZWYwEHkNArGTVKVnfLUbCTETGs=; b=EeBS2JL8cw+096tVKuw8NxEJtV
+	rj0l+gSbjzvBQ3nzSqXAsMWvAokTCpofNxHSaiVic1YVYjFvv4NeX+ujDRje9MeCpsHZHbVUg5ALY
+	hFDItEzjcbnc4VzWCOTVMvk3ux/FhGQ5UIADAwPweCmJXLHh6vMokA1Dvs+GhGG/QNzZlFDaAFsNY
+	VQqhOr1DGUp1tJjXrx0oWyVwuMSI9apSNVM8IVOY7V22sGMc9Zjr4us+SiQp1SGPk49OIlJzpn7yP
+	VolmjQ6jfdSd0JsiHtQXSV1OFlzcVkXZcbBkgfeIcJimb6109N0XW9ziGaROh7x7/fNVYh8BXEgUx
+	rNPeuI+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTf1H-00000008tGR-0Rio;
-	Wed, 18 Nov 2026 12:44:11 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1xTf44-00000008tYq-2DUL;
+	Wed, 18 Nov 2026 12:47:04 +0000
+Received: from mail-northeuropeazon11021135.outbound.protection.outlook.com ([52.101.65.135] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTf1E-00000008tFi-3e7V
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 18 Nov 2026 12:44:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=pbHIj214Hk02i60FxDGc0rIbuGw9Ckkid9eISLKfVhI=; b=Hh5s2tJdYtHR61vCpj3dJm3cKi
-	mQ96dXZguxixWN+PSLct05y6hkH1OJZx87gWTz9YktYeFB6OImUEeI0bG9xD+7z5RLhgP5RlkPfDi
-	3v9LOtGg+SEa1N55Zqrowhc/R05PmWyq4rNKMyT6CS7S0K6fLOu0IdZBrpi9Ms9AIIJduCwRPl0FJ
-	RXwiOmpTsqF106v31FazWvbmi8qPEMmd5fir2zO04kc6AuSv6ZKRPBRTUaFp/v1MTJcRy5L+9/8Zd
-	soScQ6xIwubbu8UHTdHXB+S9c1RE02VR01a7dU07qx5GGcVnmerNebnwkxFZlxwor8KAcxG5mqRvo
-	z/nWsdIQ==;
-Received: from mail-centralusazon11021091.outbound.protection.outlook.com ([52.101.62.91] helo=DM5PR21CU001.outbound.protection.outlook.com)
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTf18-0000000DQba-29eo
+	id 1xTf3z-00000008tXf-2tdb
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 12:44:06 +0000
+	Wed, 18 Nov 2026 12:47:02 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qMZcx6Bn14Q2RxnUUvpylh6XJtF7rPTBRmwRTJb5xmdM8MNGLKhM5y0UCkvNnaMNcl9xeb7crCfqeF0cRIYa9nLFXXu9lIKgq9PNfMDU8ioDO2cGvrsGFDtrxIXZfWPw6NEw6psXKoAH0Jhw8hNVPx+seGOllkuLajXT63hQGoPvbXTGLHDYY7QV41hl9BKed8yH+pEykDGTpFB1cP6In0JlXzj0HRxzodI+ElSfWUfASr+Bp30VzuyptucoLLrOPemwvZEp+/AdMtGDPE7FD5vYN5GlGY2acTHgbSZ2NMaM7+LzjJsqDDkprQJxPuxrRE+6izcNxOyeE9njQnGUQg==
+ b=s9VuuxN8boBa9Tqutycp5jxINfMyYV2HZCcicoAY0FKRa8WkHSGTFPFJ+1i97Acf7zjUsfMGD3jB9GPXgqDkCUTHkAfe+j0QVcqYlPdMThK54/BSMKjb2a16XZZch/5dUZ2fu2W7vtpHlSVf1FaHR0P3toEJb6fXx1s1MUpdROq3+lxphGmDLD78Yf3i78BI2kxxg6+eRAhuyhJ0eqW7ui/bX4W3bfH2J1YRjJz3aqe+oZZ0vXhpShptbCy0mnZ3RIileCt9H8CPkhqF6ml34fyeV/jsPef2gokecQEp11ZL/4xP+ZCZ7TfE1zl4tDKTMnugPVBJt6mTqnqaM0d6qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pbHIj214Hk02i60FxDGc0rIbuGw9Ckkid9eISLKfVhI=;
- b=r4yYRgAY1NNES0Q1dlk+BuyCm5/x1j4tX3tbxsZZQJsHrhfUURQMC2ACKnuhjGU6M8LXIrjyqGHII/fVvDW+iLEcCKNbP10wXRZce+Kdy13J/gIUK7eyLjY8UX080saKpc7qfoxCFKa8M6eaTxjChy/29Qbn7fzj66xUeS3hVMMu+E8Rxy92Isc8JTpZqqp4M6sLVwMRAjuumm5J1/uayNVm5o5ps28PiXfJsyWRYRDOvjff5P3k44AHlfqys5ObcDZAhXiEQcKGQorST6iOPSn/Dw3ocOEpWvhKrPLJEDxAhx0oKTh25aL/M1tA6g+9XtKU2hO4HiaWVpdNbHfsZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 64.62.143.114) smtp.rcpttodomain=axiado.com smtp.mailfrom=axiado.com;
- dmarc=none action=none header.from=axiado.com; dkim=none (message not
- signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
+ bh=li65XB04WseXUq8cuZWYwEHkNArGTVKVnfLUbCTETGs=;
+ b=ZTTBK69+N/2Gh4QdQiOAEpl+ab87/XX0lfWqhb8hfPbqXMiwLLxr86PK43+hT1CoYQWeaKHl5MVEzfa2lJm0l/w3neLb5O093CQP+PrUuex0zoUc0Kl5t3p/C94GRrOrkPOWqN9EW5lY2NZ8i8y9GdMhrh5sEy98LMLfoXcNTkF8A1kJTcX0CLUAcFVm9nWOikpFI9buzFCp0F1TleLSqtdUWWJsWNosn8jbxNIj7/ClNLeDIb1WN0uSoKci8MoOkwqgiZlv08tFHQFpxgMrewRJD5cHNDqNnuwtjXan5I6a3f/c5F4/kehMklCNp084j2KJvX+9pMZUet6emJSeKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kontron.de;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pbHIj214Hk02i60FxDGc0rIbuGw9Ckkid9eISLKfVhI=;
- b=hyBSGB+Vf0ReXo9O7BodjF/W3Ps3AmB7VcNGwUbttxeq6EgG0IvBp2KDjuMydALW5aUETt9zrK+MV+M036dwj5Lj4FxSaLvlzj+THNY/rZNOwf5uPMOOnWQGRIyJ7mOQZHSERGjLpEtwkH/vxjLW+sYG/I9tgYNs1g9moVqqynm0AC3J35V0Kdva8lk03iPvvxSEY0SJ9h8d58wmAvMO1Fmhm33iMP+S/IPr2YB6ofYvNho/MUdD2GtriGieCNDd9UUKwxMwU/RBM4v7EvvtHw8JBTGqS7A/RiPmWtJfxcHEyDCD19nsPw/Y5m8ew5VuyudDmkzC11Y7GZs65caZZw==
-Received: from SJ0PR13CA0161.namprd13.prod.outlook.com (2603:10b6:a03:2c7::16)
- by PH0PR18MB4591.namprd18.prod.outlook.com (2603:10b6:510:c2::21) with
+ bh=li65XB04WseXUq8cuZWYwEHkNArGTVKVnfLUbCTETGs=;
+ b=Mtnv5zc6cN/BUEPpsxiwZXZzf8MBL6qF5udebUndjcr3YusB4h/xAGEPoezHoa1RYxwm6eH27Dw5CaVqVZfofBHUPXySu9fEtaMk2ckrk13O+JVH2QZDHYRuY6/0H/5WAakdowg+caGEcVMj2ynmvahJPwtb0NE+QdbsxfCG2+cKgPH/2WHi8FED31Flws8ONcwhpQX66QYiIPvgiquGyyvzQkzSfzcLjvEnkQzpInVyPp7dD2Ijmc1soHg8ixV7m3b4avdLbuUvk/kwGuFDA9xzRB/rgVSwd4mb0tdYqIyrj3F96Ef2v1Hh8KoX9yfWUqdoS4sGK+dtTg71uftHKg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fb::23)
+ by GV1PR10MB679331.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:3be::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
- 2026 12:42:16 +0000
-Received: from BY1PEPF0002696A.namprd05.prod.outlook.com
- (2603:10b6:a03:2c7:cafe::90) by SJ0PR13CA0161.outlook.office365.com
- (2603:10b6:a03:2c7::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.8 via Frontend Transport; Wed, 18
- Nov 2026 12:42:16 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 64.62.143.114) smtp.mailfrom=axiado.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
- designate 64.62.143.114 as permitted sender) receiver=protection.outlook.com;
- client-ip=64.62.143.114; helo=smtp.corp.axiado.com;
-Received: from smtp.corp.axiado.com (64.62.143.114) by
- BY1PEPF0002696A.mail.protection.outlook.com (10.167.244.154) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.4
- via Frontend Transport; Wed, 18 Nov 2026 12:42:15 +0000
-Received: from axz-uw1-build-vm02.corp.axiado.com (unknown [10.14.1.22])
-	by smtp.corp.axiado.com (Postfix) with ESMTP id A38974186B58;
-	Wed, 18 Nov 2026 04:42:15 -0800 (PST)
-From: Petar Stepanovic <pstepanovic@axiado.com>
-Date: Wed, 18 Nov 2026 04:42:14 -0800
-Subject: [PATCH v7 1/2] dt-bindings: pwm: add Axiado AX3000 PWM
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.8; Wed, 18 Nov
+ 2026 12:46:47 +0000
+Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a276:4ad7:962:da22]) by AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a276:4ad7:962:da22%3]) with mapi id 15.21.0639.006; Wed, 18 Nov 2026
+ 12:46:47 +0000
+Message-ID: <180d2335-e328-48a4-b376-a90464279027@kontron.de>
+Date: Wed, 18 Nov 2026 13:46:45 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v51 5/7] firmware: imx: adds miscdev
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: pankaj.gupta@oss.nxp.com, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Pankaj Gupta <pankaj.gupta@nxp.com>,
+ Randy Dunlap <rdunlap@infradead.org>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Arnd Bergmann <arnd@arndb.de>, Peng Fan <peng.fan@nxp.com>
+References: <20260915-imx-se-if-v51-0-4a7dac612cb5@nxp.com>
+ <20260915-imx-se-if-v51-5-4a7dac612cb5@nxp.com>
+ <2034fb2f-f169-46a5-85e8-fa723ddb0360@app.fastmail.com>
+ <aqqqDnOMmlfqit6u@SMW015318>
+ <f3e1e3de-6abf-48cb-aba7-7b231c38ec5c@kontron.de>
+Content-Language: en-US, de-DE
+In-Reply-To: <f3e1e3de-6abf-48cb-aba7-7b231c38ec5c@kontron.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PA7P264CA0171.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:36f::20) To AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:1fb::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-axiado-ax3000-pwm-v7-1-bbd21a8cf861@axiado.com>
-References: <20261118-axiado-ax3000-pwm-v7-0-bbd21a8cf861@axiado.com>
-In-Reply-To: <20261118-axiado-ax3000-pwm-v7-0-bbd21a8cf861@axiado.com>
-To: Akhila Kavi <akavi@axiado.com>, 
- Prasad Bolisetty <pbolisetty@axiado.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>, 
- Tzu-Hao Wei <twei@axiado.com>, Karthikeyan Mitran <kmitran@axiado.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- openbmc@lists.ozlabs.org, Petar Stepanovic <pstepanovic@axiado.com>, 
- Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795005735; l=2434;
- i=pstepanovic@axiado.com; s=20250916; h=from:subject:message-id;
- bh=Ovyp0lmVWDOK8u38msydnUtLEbKhOScK8qjkDwjN1xI=;
- b=SsHinR3KE2b59M8qelHKG9FT65I+TNI11AplZC/eku5cyf7R0Lezesm9aKeXqpHC8//I2RlZY
- IwuO8nIZPIaDHLwAf+XHjXXjhOkQ3DspoGeksDTMaMGXbEUbX3/JhrK
-X-Developer-Key: i=pstepanovic@axiado.com; a=ed25519;
- pk=70f1UJOGT9U11ZK6o+ENXtv0I5wBE3e+Y9YWODzRsdI=
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY1PEPF0002696A:EE_|PH0PR18MB4591:EE_
-X-MS-Office365-Filtering-Correlation-Id: b105cdba-1045-413d-d5ed-08df45716049
+X-MS-TrafficTypeDiagnostic: AM9PR10MB4277:EE_|GV1PR10MB679331:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc4105a3-89fa-4356-7977-08df457201fe
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|82310400026|1800799024|36860700016|376014|261102123227099003|261026140227099003|261026121527099003|261028144727099003|261021121427099003|261022105027099003|56012099006|10067099003|22082099003|18002099003|261009223027099003|13003099007|3023799007;
-X-Microsoft-Antispam-Message-Info: jBtb6P/P3N/8iTq7VojaEakV3RAPGYTbnLaW4Q58DftPMFdEk1nsVDyZ9Dr6RiahUBwqnSTcVWAlGIQdad68tJFhoguQgzyynZZ5H4iVObPk8LDzZaAp6b6sDHYQ8CpfCZAKWAJE4/drSOK2opGdX3CRd+1mMiZY9zMIw15sEa2nsMdwPHnGMbqd28XUie9wR81Qbg6Cg/oKNiZMZxXXj8rzqizXK8vex61F5WxnU94pl/gy9QMYvRwIeDIUBuWcQvpSiST0DgBgS4A67bzu1sn2gkiIubzUvbT0dE21+rJa5KoAo2qcs3R1Eh2cE6otAIMnGdBV1p8hw/NbegnY3Wxy2nsrVw++WRHQZ8pDWKORDf5GXBT3cS+J54Jio19NScdfgyGMmZHNyHcmcBiyCqm4j10t6bn1tiOci61isk8TUZVBlRyCqf8zwjlAFU8BN4+RcYLXmtRJ46OzTUjtpFAU8DNVeOB67lUEulqWsQ/LOLy7NYg+wHwyKhx43aj5UnlkJb30n4/mSlzr5pJNAyoirLVMogWd0Kkw3kYnK3B+aqxOPKThJs8RMZ1uOqDbyKE+JVchR6tZsQUMOReiFCdLDqwTQI6k2yn6zKHaUfbrvxmVymJ4XJL8jMBm0j9zDvODd4RkZ5Hj5wPsorWFmg==
-X-Forefront-Antispam-Report: CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(82310400026)(1800799024)(36860700016)(376014)(261102123227099003)(261026140227099003)(261026121527099003)(261028144727099003)(261021121427099003)(261022105027099003)(56012099006)(10067099003)(22082099003)(18002099003)(261009223027099003)(13003099007)(3023799007);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|23010399003|366016|22082099003|18002099003|4143699003|11063799006|56012099006|261026121527099003|261028144727099003|261026140227099003|261021135927099003|261022105027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: Ky0PdT6lBXaqUqjecjl5xWVsDN41TJKrUDSUO8Q2g/q+iJRpN941SVEYlWJTWVlzl2bqZgMbRwyNb2xkaqeeJMjN/MxaltNb1uUE8rar3ccSjY5P467z5ScWItxp7yJePRhNMA5a+eN1wDpyZsQWh/uoBTpYbmViuP6xv5LLxpZiEdqlYbjFmMcQRXvkAgdr2CcSNFD9kLs51aNDwHp7TH4M7pvIo5Wjl5sWacndVY3KQ6+IZYl0uKHn5hoWPxYNnQygRdxls9INa4y5ZbWqJw0szvE51YqfaMp2PFZXiZqSorIVIpXsweeCO8s53ynE8T2czxO/JNDP9pgfmDnqgrZ9HbrVqumSU7DdWfyKzj4hgfRMCuo0sKPi0UztvGMaaEc/oaX4FimhpjAMr9WH7+KZEeT722haq0WlTp1jHYTEIny3uouOmyGuBbTKstfmM3j8iwMhGzisKVtOr0pEsVelgQKlIe5nljq1Nsc1xlKJq0P7GA9zlM9GFxnCncRrWPybGmFrKTuA+kNb+LTVzipdPxMAuGiZFjG7KoA9yP4/4nXltoyYoK0X/FT+sPkPr3USAq/wjSDOtGwhrZqTwWFHQlllTQT1ADGlp/oX+AsLNvDsIE61dx3uHhbfC7GNUYhC51fLF/obQZX+3ul0VPxPcSSsSyYqw+xUrh2j4gg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(23010399003)(366016)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006)(261026121527099003)(261028144727099003)(261026140227099003)(261021135927099003)(261022105027099003)(10067099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: d7s00itYJ9OR87pcvgumWIPx9xMwrUfUktk+zSZwccvjPLosdQVOYq3negvnVv/z0Ksf9msFOROIN6BJ5mFEu+t4L1lABdbzQHA89xjZH9+FsGMJ8FvUM1vNjvwVQi3rWqemrJ/4/PTf3+q1IcTRm3KAQ4XlTE3AqKbdl9BjRrTSzWhMaFZJJ2pESMqWidFdUjAduW5Dpb6kOS20f7NbvpOwHY/6swFHeLaNfXNT38p7nusKqp34wuaT7B41gqIrUI7WV3uhMI0vetvbmiUcDSABXK79Bqu6DHE/pg8WvGM4jcBLfl2zSjkwt+fgstVA/Jun1W3dXVJhFLD/l1Cnjwt96gN1LlCKZejfcdQEFOS4wFQK1ysOML/FgRP83I9s753rCFG+Aa4i4NX16wM/2wSbM8ffeJlBvmlik0R4ErpakBBThHx+1g5WnmVlQxrl
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 12:42:15.8261
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVJHV05KOHBValhCVGN5d1NqQWRFRkhseG9aWmJMTmRhYnltbzBmYUlJL0Rl?=
+ =?utf-8?B?WUJhVC91QWV3dElTSFN1WGNaVmcxanZsSUxQUC9CbE0rMU5DNDRoMU5CLzRE?=
+ =?utf-8?B?ZU1qdnh6TXZieGNEc1V2WHVNbVBnRTdOU3pwc1RObytyT3h1c0RoaEYxaEU4?=
+ =?utf-8?B?elJKMW5UdjZ4TnltaFRYRXpxK20vSXFOMlIyQVdTL3RucWVKeWxjSHhTcWxr?=
+ =?utf-8?B?UDVvcTYyazh4WG43akM2RVBlZ3NMd2R2emJzZjBQUTlRWFEweHp0Y3FhSHE5?=
+ =?utf-8?B?UGJXUEt1ejRNKzVRNGp0dlI1azhWajlIajNwOGFNR3lPOUVIUjc4L0tJZ3da?=
+ =?utf-8?B?S1pxWG4veHRTazQ4Yld6eFBvUkhvNkR4Y1JEV3RnY3h6T1JTTmlsV3MrTW5s?=
+ =?utf-8?B?UkxpZndJNk5NMHUrdHFxT21iZ3ppRXBkRENpNkx4T2Vtd2F0bDFLVSt1alMw?=
+ =?utf-8?B?U0xWZ0VkNGwxZy9HVG1reWlWc2M3RVJlL0Y5bmpOSjJLaXBTK0VyNjUvSzBK?=
+ =?utf-8?B?d1ZGL2UwRFI3dW4vOTVaQzRzVmhrMy9YdU40MDBENURtaUZlNHBHdUdIalo5?=
+ =?utf-8?B?R0g3cndoYnBPOVN3QjJoUnllN0tuSlF2VFh5TUFlYUpMZkdHQ2xabUtNZGky?=
+ =?utf-8?B?aUJBL1pya2FXM3A1elprcnRBZGNFeTh5Y3NGMXJ5V3YrODc3N2tXWlNaN0hR?=
+ =?utf-8?B?d1RSeUNmbVI5UlNxZ09tbURwQ2tad0NBUGFMVlJxWGQxc2ZjeS9DeThUdSt1?=
+ =?utf-8?B?ZCtsQ1FLd2dBNm55Ylc2NWFySVBVY3JRZGNsMTF1dEpVb2hNTzd0SUtldGM1?=
+ =?utf-8?B?RHgySWJaeDNLVjNEbjZqaTdIL1NNTXVoU3dpdlhxTVVxZTF0MHp3eXk2OE5v?=
+ =?utf-8?B?THFRcXl1eDZnY0pvNUNxUFlFQ2M5T3NqOUE3U3J1Y2Vud3lEKzZRZUZKTlV4?=
+ =?utf-8?B?ZG9Ld3Myd3cwOGNUVGdWLzRMNk5mb29mcnhNdUFyUzlyZ2x1a2pBK09tWkdo?=
+ =?utf-8?B?Y3lvMDNKRWNkNXNQMENGRG91aXBTeWRwNEl4L3p0RVRYWUtDeERkdnJmajhu?=
+ =?utf-8?B?bWVKSlUyWHNHa3k3eDlSaWdseXNwNUgzaUtIOUQxSU1DbEJYaEJBcVh1Ty9O?=
+ =?utf-8?B?SUhsV0s2VHZ4b2FpM3FicHZzU09tOXJMandjMlFvVWUza2hNaG11ekhVbklo?=
+ =?utf-8?B?T0YwN2dsWEMzcmpWUUlab3R3MnNJQ1JmT0F1K1dGaEVtY0UrT3gzNEV4VFZs?=
+ =?utf-8?B?UTVsSHlvWDZscFlqdTkzMG8vWUk1NDQ3ZjFSSE5sS2JEbi80ajlWbG9MTW9M?=
+ =?utf-8?B?eVB2OU1RVHV2L0JVUURjZWMzSmxOYmdYaUJFV283UkZucHZIQVJ0MGJIamRR?=
+ =?utf-8?B?ZWVNb0tFQkR3NFNHbWJEQ29LM1NFVlo3Vm15cWRuRVEzcjVLRDBkRHVoS3RU?=
+ =?utf-8?B?aVNVTEVnOUlpOTFMajVPU3R1YWhKTXFUdU9icjNRV2NVaEdjeEV1R2xiSkZM?=
+ =?utf-8?B?MUlrZWZmR2J6am9ZV1hyK2NQSE5iWGc1ckFJZ0RqSkY4ZTBPK1pVd0VUajRy?=
+ =?utf-8?B?R0dMUnE1MVpwQ3VSSGN2S1RzL3F0b3RWSVM4MHhQbDVDaC9HNjE0U1pwY3NJ?=
+ =?utf-8?B?NlFtNnB5QXI0SnJ0QXhKMXZyN2xnQ1ZoNmF0eEJxZWM3VjhqR2RVVGVLUHcy?=
+ =?utf-8?B?Z3o1ek9oTUpWMElHSEJVR1FoTEFDTnIzendhTzlBbW43bHBOeGFCQ2xuK0ZD?=
+ =?utf-8?B?Ti9rTXM0anV6d1VYMGllSDB4a3RiMlo1bFhoMFRJSkViZnZia1Q2YWtYN2Nh?=
+ =?utf-8?B?SG9Nem16Wmtac08wcjRhdHZsMW1jTUpKTEdBblNTT0dOb0JpeEFSZytjVGto?=
+ =?utf-8?B?NE9kemp4dnIybU84Y0h1M3RtMTl2eStLeWFXTnEwbmtmZU01NDE3Y1JGZVli?=
+ =?utf-8?B?eUsxMGdKaTd6QnJad3JLR091RmhJUHZNMzgxQkVQOVU1UDh4bFdXSk1DV05u?=
+ =?utf-8?B?cHYxdW1oNGhNNkhpVlVWc2tvRTFEVjVxaWdYNGR4eTJnVFo3cy9KNnZiZ25l?=
+ =?utf-8?B?UFFVMG1jdHlzTWE3NDFDY3RMYlEreGJ5dHYreUtmRVVBZnVKY1lRTG96S3lR?=
+ =?utf-8?B?YnAyTHltZTZqcVVJUTFPQWFLUmNCVkpHMnd4TGsveDNUdXhPL0J6ZXVsVThx?=
+ =?utf-8?B?MTVhZkh4QW9wNmJLVVA5QXVENGZuNXdtK0d5aUtTQTBwbWVtS2E3eVlvbnR4?=
+ =?utf-8?B?aXd3OWYrSGVDWnpGcDkzV1dYT08yL0xaVzEydHI5RG9jNk1DenA2aTBDVDEr?=
+ =?utf-8?B?WXFDSHFNMHo4R1ZvTVJkSk13bzB4UVJ1WkJFbnozV25ORGRBSnN4RGYzZXhZ?=
+ =?utf-8?Q?ym4JyVX74TapihdA=3D?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc4105a3-89fa-4356-7977-08df457201fe
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 12:46:47.3108
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b105cdba-1045-413d-d5ed-08df45716049
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[64.62.143.114];Helo=[smtp.corp.axiado.com]
-X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0002696A.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR18MB4591
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fLpQ6Fjvh90elOHSSvl5GYtc9+A/5KkBfklhC0Lw9uQaLSnwa5ki3UxIySswKbbcYLAhiMKEE2Ahw04E7Shb+SRN1qZ150XWGHrfE+pmKbE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR10MB679331
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_124402_857297_9AAD4746 
-X-CRM114-Status: GOOD (  12.00  )
+X-CRM114-CacheID: sfid-20261118_044700_143549_5272AE33 
+X-CRM114-Status: GOOD (  21.65  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -146,104 +160,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Axiado AX3000 and AX3005 SoCs include PWM controllers that can be
-used to generate configurable PWM output signals.
++Cc: Peng
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Petar Stepanovic <pstepanovic@axiado.com>
----
- .../devicetree/bindings/pwm/axiado,ax3000-pwm.yaml | 53 ++++++++++++++++++++++
- MAINTAINERS                                        |  8 ++++
- 2 files changed, 61 insertions(+)
+Hi NXP developers,
 
-diff --git a/Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml b/Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml
-new file mode 100644
-index 000000000000..f0d5a3dd70e1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/axiado,ax3000-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Axiado AX3000 PWM controller
-+
-+maintainers:
-+  - Petar Stepanovic <pstepanovic@axiado.com>
-+  - Akhila Kavi <akavi@axiado.com>
-+  - Prasad Bolisetty <pbolisetty@axiado.com>
-+
-+description:
-+  The Axiado PWM controller found on the AX3000 and AX3005 SoCs.
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: axiado,ax3000-pwm
-+      - items:
-+          - const: axiado,ax3005-pwm
-+          - const: axiado,ax3000-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 3
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - "#pwm-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pwm@80801c00 {
-+      compatible = "axiado,ax3000-pwm";
-+      reg = <0x80801c00 0x1000>;
-+      #pwm-cells = <3>;
-+      clocks = <&clk>;
-+    };
-+
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 222b7fc2c3aa..fe85aaa5a7eb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4555,6 +4555,14 @@ S:	Orphan
- F:	Documentation/devicetree/bindings/sound/axentia,*
- F:	sound/soc/atmel/tse850-pcm5142.c
- 
-+AXIADO AX3000 PWM DRIVER
-+M:	Petar Stepanovic <pstepanovic@axiado.com>
-+M:	Akhila Kavi <akavi@axiado.com>
-+M:	Prasad Bolisetty <pbolisetty@axiado.com>
-+L:	linux-pwm@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/pwm/axiado,ax3000-pwm.yaml
-+
- AXIADO SARADC DRIVER
- M:	Petar Stepanovic <pstepanovic@axiado.com>
- M:	Akhila Kavi <akavi@axiado.com>
+On 05.10.26 16:28, Frieder Schrempf wrote:
+> On 16.09.26 16:39, Frank Li wrote:
+>> On Wed, Sep 16, 2026 at 03:16:13PM +0200, Arnd Bergmann wrote:
+>>> On Mon, Sep 14, 2026, at 21:40, pankaj.gupta@oss.nxp.com wrote:
+>>>> From: Pankaj Gupta <pankaj.gupta@nxp.com>
+>>>>
+>>>> Adds the driver for communication interface to secure-enclave, that
+>>>> enables exchanging messages with NXP secure enclave HW IP(s)
+>>>> like EdgeLock Enclave, from:
+>>>> - User-Space Applications via character driver.
+>>>>
+>>>> ABI documentation for the NXP secure-enclave driver.
+>>>
+>>> I just saw this in linux-next, where it has caused a build failure
+>>> for a missing include of linux/slab.h. I hadn't see the series
+>>> before (even though it is a v51, which seems crazy), but I am
+>>
+>> It is in linux-next about v37, but build bot find many problems, I dropped
+>> it and request to fix it. And sashiko is online recently and also find many
+>> risk. I request to clean up it, and local AI environment have difference
+>> with sashiko, so bump to v51.
+>>
+>> I put to linux-next again to make sure that pass all build test.
+>>
+>> Other two problems, need more time to check whole review history. reply
+>> you later.
+> 
+> So this is still in linux-next, but was not sent in the pull request for
+> 7.4. It's rather confusing to me that maintainers add stuff to
+> linux-next for build-testing and then leave it there, neither removing
+> it, nor continuing the mainlining process.
+> 
+> Frank, what is the plan?
+> 
+> I'm currently rebasing my work for the NVMEM driver onto linux-next, but
+> as there have been so many iterations and this whole thing took so long,
+> I want to make sure that this is not another dead end where I'm wasting
+> my time on.
 
--- 
-2.34.1
+I need to ping here, again. What is the plan at NXP to move on with
+this? This is blocking multiple features that depend on ELE firmware
+support for i.MX9 and similar platforms from being upstreamed.
 
+Thanks for your support in advance!
+
+Best regards
+Frieder
 
