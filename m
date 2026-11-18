@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84EDA60A2629
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA46960A2602
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VLnbyKeT;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=IF/hsisT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i4+EgJgA;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=K8ZgQ5po
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,68 +14,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=IEeaARdatv0A7mhpnidkLGUlVtXUnSTDUsZkbCqBIIw=; b=VLnbyKeTenHhvS4Wu6wOG7f0J3
-	YLJoQ2/DEu/5/QRiOrMZsQij0bTzU825f3U5g6GKNXygGjpG4ycG2Iu2gEXanP7uLzwEV5gGiv3lY
-	wLhXOLQpQQvX5gm4O/a/VuAy+kBqKAQms/GzqxjestENs2NPvd/6J441t1E3je/9xJSsWVhwce7KJ
-	hrgDaTIzpMVQ/yvj4VJRe1xqmKBUyG7dyrEDLvyjjoExB6b2Dvh+SBW77u7e1UFCvDi5FQioTNZby
-	R/5mjVJZ0sTWwhAnRQjwBJdjA6W5rcB0SslralhMaC+AWM6NmfTC+6ysXo5QJGh4kNl+RaXwzyWkg
-	6qfENaig==;
+	bh=ufXRKDkvqGZ7V1E+zy+j379v8X/+jc3iv3T/Ea9AhuA=; b=i4+EgJgAKUq4RJn/FAmdv3GDFO
+	dJJO+zxWAo73cx8FukvqT/arJlt9D9FwXfA2Ab1DiSWyImwjHfTrW71QtnQTZkKQn3u/MDy+52CEY
+	3eyRpvkWPGTeayOB0rGbxBDFh1Gf7ZS5l2+oJEtcsHj7hFFmpBsod/GPu9iD4BBLB0Ws2FQ1U9Edp
+	LgKdc54I9AH2p4lcJWaTvntUORbfd2o6qOlj08l2YgIECBYw0seTVc2JX9pUDzk6AxPQKc+CPM8KS
+	Gs22q7tKCj13T+8j7D6ETuKOKn8eDI/eIgwqWz02zGqfGkfikC2k5Yd+rubvA81dNMVeDmwYKMB4l
+	lzk7+1yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkJD-00000009uYF-2pB1;
-	Wed, 18 Nov 2026 18:23:03 +0000
-Received: from mail-wm1-x348.google.com ([2a00:1450:4864:20::348])
+	id 1xTkJk-00000009vOb-3SjH;
+	Wed, 18 Nov 2026 18:23:36 +0000
+Received: from mail-wr1-x447.google.com ([2a00:1450:4864:20::447])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkIK-00000009tOn-3nKA
+	id 1xTkIR-00000009tVl-02N4
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 18:22:10 +0000
-Received: by mail-wm1-x348.google.com with SMTP id 5b1f17b1804b1-4a2065a2ef9so12691615e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:22:08 -0800 (PST)
+	Wed, 18 Nov 2026 18:22:19 +0000
+Received: by mail-wr1-x447.google.com with SMTP id ffacd0b85a97d-499ca65ae87so37109f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:22:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795026125; x=1795630925; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795026132; x=1795630932; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=IEeaARdatv0A7mhpnidkLGUlVtXUnSTDUsZkbCqBIIw=;
-        b=IF/hsisTf5S5QkAv+/ucOw3TpmUR8pOPkWNP8wt3DRjB2XMWqOdOxFMXUCpApx+C73
-         qHrt5B8EkawLijqsIVu2wxW66BGq9ordmQGkS4UBcDy9UBh/82WM4El/BeVQP9InXqH0
-         +B7yZKSMp/MMsitQ6lWrrvYbGVL7adbgVzWST9mz0IX9qGzNJixEvjIe8MkJbRMgWobC
-         5VwXCVJe0ysYm78Qo2O7mxRYTZFNiiIPKzkBRbaSvy1R07ZZoFtsaKZ/09oRkLKxA15g
-         1AmnuUtcq6AWZIIs1ETcD+1DecK7LV+b7zAPEBU1pJegVK3thYKP/Sjs6o5TQLJ/W3dZ
-         aV+Q==
+        bh=ufXRKDkvqGZ7V1E+zy+j379v8X/+jc3iv3T/Ea9AhuA=;
+        b=K8ZgQ5poRYbqNWT6CUreXrIWxLieIpAzC81xueH/jC/9vIOykjs3b8fqZztr5+B7GH
+         DIZcr9EatC60Dee1IwE4BUBxj1DXgxHzVn8vXQVsg57pksfiWFD1+UJpG8ahFn3ieTcc
+         WCoYXPThWWofD+npynRGSNE97brR546WNOcnTa+3DQnFxFsGo81Ntf7KrJ39+dbZCaWK
+         uSq2sPPCNgSo8Ua1v5IkDTHmlrppSc0mA/Sh1rzvqI3lqTy4bNaVmRbSCNA/J+LnVQvo
+         k0x7VYBITSah8XklLuoIw/BRw0X1eYShlTHLSwNVzSTix/RP4ZXjr3IMTAs3wszPNdp4
+         MzfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795026125; x=1795630925;
+        d=1e100.net; s=20260707; t=1795026132; x=1795630932;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=IEeaARdatv0A7mhpnidkLGUlVtXUnSTDUsZkbCqBIIw=;
-        b=mSZvCmBxmR0W4QK4yBElovz+GE/9fmrZraKGrp9PhJRJe+i6Pgw6qXPTe01fqtgoYl
-         PtmZiYiu+kC03jYNDeKQ5krjvLmyXBuO7FiZUqZCGqtR0hOV9K+Dx+oGE3iPdoxfayHb
-         3ESwD/elk1lBo7HBSfE2G8dHgZ405ZQ3pMOmHS/J6VBuTSFBM+EePgNEsOLMj3E9x5Kv
-         yQzC7Yj1wnc2Cvn2anLQIMhPIvWNvEO9kF4oGyyhSIUE/NPfRx4k4t9xwz2l2gvhUrfI
-         kjcHXGIMXPQv2s3VXSks1qxqOhWQx/9HO6v2ccP0j4cwK8qIEOZYI2TNA8XZCa/9TNH/
-         fCWQ==
-X-Gm-Message-State: APuU4Z/9lbSQm+Gl0Q/I5Z7DbjwqIGTim5pOgcEI9RQNyUyMVyMmyAxT
-	Ozd2bD4iVYlclc8ZwE+GvsUb99K/H6GhoideHCeHrBGw7qPUJfHAp/TYjtTplL2JneQszBDZYA=
+        bh=ufXRKDkvqGZ7V1E+zy+j379v8X/+jc3iv3T/Ea9AhuA=;
+        b=Pg71CA+q0leldT6kt0JdvNXOJQGT6Z6m/GplBp4ew/8HnXmeqr6KtGLFIxvmdzfly3
+         hpI4NIVTKRUTdOn6V8Yzn9VoviveTdWiVW0mLlgJAoFj3N0go648biSCW9eKS9gwnD4G
+         dmVRK16m6V+7RRlR9T+2eg2qQWOZPue3jfCNMh7UkudYkaECBPAJmvlz07160tkJ00Mx
+         juM4o2ipfn19udC9P9slPPE8ZHebM05dFOQt2mwT1Ph6upM9zZ6hRgoq46nWLcx7A8sw
+         KY95NwSpTZTyApD8kkRQDNhRlmbG6TevDmQIzx7reR1YAEl96sIROPbAHKEdwQCEiE+t
+         wdjQ==
+X-Gm-Message-State: APuU4Z+iWnmjjoShOIzsKQKndqr57IIt4jOJclDC/kiraSN1WSDcb9bs
+	1bcZXolqJa2Y2I23iN1AMQkCKWwCZS//ro1yoQh7vlCcJYGYbIgIxyZKZkQQVe36r7EHB67iww=
 	=
-X-Received: from wmsl30.prod.google.com ([2002:a05:600c:1d1e:b0:4a2:df9b:ef74])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:4e02:b0:4bb:6b59:aac3
- with SMTP id 5b1f17b1804b1-4bb7da44054mr69467855e9.29.1795026125277; Wed, 18
- Nov 2026 10:22:05 -0800 (PST)
-Date: Wed, 18 Nov 2026 19:21:17 +0100
+X-Received: from wrbdh5.prod.google.com ([2002:a05:6000:a85:b0:48a:f5b5:2f71])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6000:41dd:b0:492:b1c5:6db6
+ with SMTP id ffacd0b85a97d-4a8e3f70001mr836395f8f.6.1795026131432; Wed, 18
+ Nov 2026 10:22:11 -0800 (PST)
+Date: Wed, 18 Nov 2026 19:21:20 +0100
 In-Reply-To: <20261118182105.1633603-21-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261118182105.1633603-21-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4679; i=ardb@kernel.org;
- h=from:subject; bh=BY4lNS3U3HJqg99nmA1jm5uVn1J2yFNPSkQm9h6irHI=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIevvm4Wphpfm8/sXp+4V/dL0O9xUmSnwvrtj2M3pv1sN/
- 9XOe3+po5SFQYyLQVZMkUVg9t93O09PlKp1niULM4eVCWQIAxenAExk6QmGX8xWJ/TOemt4m/Aw
- lk7+uOJa7ReJe6vtN6p/Fvh1Or37hwojw8dZU7T4rG8eFZ/mW9XoEuD1xad9vWilmfU6Dou6SLH dHAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1259; i=ardb@kernel.org;
+ h=from:subject; bh=2JP+cT9iihC5uYGXzSyzWCniO925ZMwvqz8a7g9Ari0=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIevvm6WGnSc5J+WcVbnAJc433bqPOze3x3t/lFj+ivTJ9
+ 1IurmjvKGVhEONikBVTZBGY/ffdztMTpWqdZ8nCzGFlAhnCwMUpABOxXMrwz2xaQsuyS1zrH/yb
+ dOxUcZ7zBe4/av8WMjnc3BUXcZ6ldALDP4s91ycxG6wzmBcq1hDzZc3ikPLX4te+xBasDvn43ri fgxEA
 X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
-Message-ID: <20261118182105.1633603-32-ardb+git@google.com>
-Subject: [PATCH v4 11/19] efi/libstub: Drop reserve_addr/_size params from handle_kernel_image()
+Message-ID: <20261118182105.1633603-35-ardb+git@google.com>
+Subject: [PATCH v4 14/19] efi/libstub: riscv: Use struct efi_image_info to
+ access image properties
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-efi@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
@@ -84,8 +85,8 @@ Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
 	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_102209_242695_B192C6AD 
-X-CRM114-Status: UNSURE (   9.38  )
+X-CRM114-CacheID: sfid-20261118_102215_135029_77B2D067 
+X-CRM114-Status: UNSURE (   9.96  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -108,116 +109,38 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-The reserve_addr and reserve_size variable pointers passed to
-handle_kernel_image() are no longer used, so drop them from the caller
-and from the prototype.
+Instead of exposing individual symbols to the EFI stub explicitly via
+the linker script, use the generic struct efi_image_info, which accesses
+the original symbols via PC-relative references from the stub itself.
 
+This improves code reuse across architectures, and makes it easier to
+add new references in a generic manner.
+
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- drivers/firmware/efi/libstub/arm32-stub.c     | 2 --
- drivers/firmware/efi/libstub/arm64-stub.c     | 2 --
- drivers/firmware/efi/libstub/efi-stub-entry.c | 6 ------
- drivers/firmware/efi/libstub/efistub.h        | 2 --
- drivers/firmware/efi/libstub/loongarch-stub.c | 2 --
- drivers/firmware/efi/libstub/riscv-stub.c     | 2 --
- 6 files changed, 16 deletions(-)
+ arch/riscv/kernel/image-vars.h | 8 --------
+ 1 file changed, 8 deletions(-)
 
-diff --git a/drivers/firmware/efi/libstub/arm32-stub.c b/drivers/firmware/efi/libstub/arm32-stub.c
-index 55d4fa3177a9..3ca20d2dd4d2 100644
---- a/drivers/firmware/efi/libstub/arm32-stub.c
-+++ b/drivers/firmware/efi/libstub/arm32-stub.c
-@@ -86,8 +86,6 @@ struct efi_image_info efistub_image_info = {};
- 
- efi_status_t handle_kernel_image(unsigned long *image_addr,
- 				 unsigned long *image_size,
--				 unsigned long *reserve_addr,
--				 unsigned long *reserve_size,
- 				 efi_loaded_image_t *image,
- 				 efi_handle_t image_handle,
- 				 const struct efi_image_info **image_info)
-diff --git a/drivers/firmware/efi/libstub/arm64-stub.c b/drivers/firmware/efi/libstub/arm64-stub.c
-index 6140def24c69..af38cf73cf01 100644
---- a/drivers/firmware/efi/libstub/arm64-stub.c
-+++ b/drivers/firmware/efi/libstub/arm64-stub.c
-@@ -15,8 +15,6 @@
- 
- efi_status_t handle_kernel_image(unsigned long *image_addr,
- 				 unsigned long *image_size,
--				 unsigned long *reserve_addr,
--				 unsigned long *reserve_size,
- 				 efi_loaded_image_t *image,
- 				 efi_handle_t image_handle,
- 				 const struct efi_image_info **image_info)
-diff --git a/drivers/firmware/efi/libstub/efi-stub-entry.c b/drivers/firmware/efi/libstub/efi-stub-entry.c
-index 36ea6aa2cfcc..a2fefe1ded05 100644
---- a/drivers/firmware/efi/libstub/efi-stub-entry.c
-+++ b/drivers/firmware/efi/libstub/efi-stub-entry.c
-@@ -36,9 +36,6 @@ efi_status_t __efiapi efi_pe_entry(efi_handle_t handle,
- 	efi_status_t status;
- 	unsigned long image_addr;
- 	unsigned long image_size = 0;
--	/* addr/point and size pairs for memory management*/
--	unsigned long reserve_addr = 0;
--	unsigned long reserve_size = 0;
- 
- 	WRITE_ONCE(efi_system_table, systab);
- 
-@@ -66,8 +63,6 @@ efi_status_t __efiapi efi_pe_entry(efi_handle_t handle,
- 	efi_info("Booting Linux Kernel...\n");
- 
- 	status = handle_kernel_image(&image_addr, &image_size,
--				     &reserve_addr,
--				     &reserve_size,
- 				     image, handle, &image_info);
- 	if (status != EFI_SUCCESS) {
- 		efi_err("Failed to relocate kernel\n");
-@@ -77,7 +72,6 @@ efi_status_t __efiapi efi_pe_entry(efi_handle_t handle,
- 	status = efi_stub_common(handle, image, image_info, cmdline_ptr);
- 
- 	efi_free(image_size, image_addr);
--	efi_free(reserve_size, reserve_addr);
- 
- 	return status;
- }
-diff --git a/drivers/firmware/efi/libstub/efistub.h b/drivers/firmware/efi/libstub/efistub.h
-index e45d16095247..4e6af37c4ecb 100644
---- a/drivers/firmware/efi/libstub/efistub.h
-+++ b/drivers/firmware/efi/libstub/efistub.h
-@@ -1150,8 +1150,6 @@ struct efi_image_info {
+diff --git a/arch/riscv/kernel/image-vars.h b/arch/riscv/kernel/image-vars.h
+index bf703eba3fa5..c18b24792a29 100644
+--- a/arch/riscv/kernel/image-vars.h
++++ b/arch/riscv/kernel/image-vars.h
+@@ -23,14 +23,6 @@
+  * linked at. The routines below are all implemented in assembler in a
+  * position independent manner
   */
- efi_status_t handle_kernel_image(unsigned long *image_addr,
- 				 unsigned long *image_size,
--				 unsigned long *reserve_addr,
--				 unsigned long *reserve_size,
- 				 efi_loaded_image_t *image,
- 				 efi_handle_t image_handle,
- 				 const struct efi_image_info **image_info);
-diff --git a/drivers/firmware/efi/libstub/loongarch-stub.c b/drivers/firmware/efi/libstub/loongarch-stub.c
-index d57e3d3557a5..8f2145bd9ad2 100644
---- a/drivers/firmware/efi/libstub/loongarch-stub.c
-+++ b/drivers/firmware/efi/libstub/loongarch-stub.c
-@@ -96,8 +96,6 @@ efi_status_t efi_relocate_kernel(unsigned long *image_addr,
+-__efistub__start		= _start;
+-__efistub__start_kernel		= _start_kernel;
+-__efistub__end			= _end;
+-__efistub__edata		= _edata;
+-__efistub___inittext_end	= __inittext_end;
+-#if defined(CONFIG_EFI_EARLYCON) || defined(CONFIG_SYSFB)
+-__efistub_sysfb_primary_display	= sysfb_primary_display;
+-#endif
  
- efi_status_t handle_kernel_image(unsigned long *image_addr,
- 				 unsigned long *image_size,
--				 unsigned long *reserve_addr,
--				 unsigned long *reserve_size,
- 				 efi_loaded_image_t *image,
- 				 efi_handle_t image_handle,
- 				 const struct efi_image_info **image_info)
-diff --git a/drivers/firmware/efi/libstub/riscv-stub.c b/drivers/firmware/efi/libstub/riscv-stub.c
-index 840fdd63dccf..8cd0cd9b0048 100644
---- a/drivers/firmware/efi/libstub/riscv-stub.c
-+++ b/drivers/firmware/efi/libstub/riscv-stub.c
-@@ -12,8 +12,6 @@
- 
- efi_status_t handle_kernel_image(unsigned long *image_addr,
- 				 unsigned long *image_size,
--				 unsigned long *reserve_addr,
--				 unsigned long *reserve_size,
- 				 efi_loaded_image_t *image,
- 				 efi_handle_t image_handle,
- 				 const struct efi_image_info **image_info)
+ /*
+  * These double-word integer shifts are used by the library code, and
 -- 
 2.56.1.708.g77570a6a1d-goog
 
