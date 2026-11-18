@@ -2,78 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2723606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 07:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4BC9606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 07:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VXpVMIMd;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=ehFSdTb7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H+2VgmVw;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=RyQFNc4i
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=tb4WIW6lqZ5+Z3GQF5djG9Xnbu4tg/4H1vvuQxWHZEg=; b=VXpVMIMdlSFjuL
-	JLN0/Q8K+MtKZ9wx/NqugPPv1jNEzsPFojxw5tsr21FGCNlv8lkgraoITklf0NW6n8rYsxw/UltTf
-	aFqclBhPGz6en2aYIVh2VB4oO3pTZ3L1OsNOYOdMoim7rOmDikZO12suA58s7u7+Ws0qJ5ygAlOlr
-	UCSzsloTCBwH3JUwFC0+iF7+RvWiGegtYUrEldfRL7ARTEnf3lNWiZD49X8ZyEbjipds8zt3jTPFt
-	eu8FLr9YvzhsT645omQBVCgX79LnPUDCX80fGMfBEt6SEUSoMGFRwJX8dDhlPfMeqYoKUeMJiRxBH
-	hPIAG6sq1KTtmb6YhOkg==;
+	List-Owner; bh=yoojdmS52xksREd25PZVdu2MX9Ot+zg4Wegw5yQYlu4=; b=H+2VgmVw74m5Wj
+	cftuR5cQNI2G+u4tEDmKSNQBpG93JZ1LDxPfkUhiVnMPjixvGvfxpMVXGfGXIM2AJJNGmRCuJq+qH
+	yFnNVBh6bdHGBLWh3HyPetK0YayXDVlGtwJxOOCqwqXQkPnKvh5X86ldpEhNjJbYWiCUBB1G5hi9/
+	KuqPwxb2dy5+S/t3WHS2On0Wk2YhiBGLXgf1Yy0LIgL3T+sOlcVIia0La8o7743javWxN6/0tExUg
+	sN/6byAwTU7ZrQ7JbmPX9AChBbO3ys+5RaDlTSuSLpbxMV6yZtgBykwxadrDFvrQk3Yt+lz8jbUZl
+	fzUSkCn6M7J7SVnsaG/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTaUi-000000084V2-1LFe;
-	Wed, 18 Nov 2026 07:54:16 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xTaWJ-000000084f9-3Cr8;
+	Wed, 18 Nov 2026 07:55:55 +0000
+Received: from mail-m12846.netease.com ([103.209.128.46])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTaUf-000000084UO-3Nn2
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 07:54:15 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id E20AC1A16A7;
-	Wed, 18 Nov 2026 07:54:11 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B37195FE9B;
-	Wed, 18 Nov 2026 07:54:11 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 433CB11BC05A5;
-	Wed, 18 Nov 2026 08:54:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794988450; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=tb4WIW6lqZ5+Z3GQF5djG9Xnbu4tg/4H1vvuQxWHZEg=;
-	b=ehFSdTb7uzrE6rWYmg35Q80WHEhS+LYoh5/jgxjMBUtq3YOPIPQRNGsHszTdpZDhC0eM+h
-	+Z3t9bGej6AxdCqgXoUS40XFXxMHaFCkeB5XmXEtEBOfc8UIa4zUko7flR9Yj2eRi2ARIl
-	zmRXEpcBIlSf3oPeCV1DeD9lc+W+zOztiZJFW4hGoTy5pixgPuCVFuqH4mg9euuq4OMoOR
-	c3YH3rjGHsxXELQXYqWaG/m0ycwKUr6t8xa2wkIde2j+85OG04m696IEyDZ3LZ7kLRsAV5
-	EPKg1J4Vp4wedu0QFepN1tbPB+blaLolM0E2FQTvOZRk6tvDmSCRossHxazw8w==
-Message-ID: <26aa0b74-e3f8-4405-ab87-743f5f8ef197@bootlin.com>
-Date: Wed, 18 Nov 2026 08:54:05 +0100
+	id 1xTaWE-000000084eA-35Yp;
+	Wed, 18 Nov 2026 07:55:53 +0000
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 551bffbb0;
+	Wed, 18 Nov 2026 15:55:45 +0800 (GMT+08:00)
+Message-ID: <8e614b4d-b2be-4da8-8003-de88f22ab7ef@rock-chips.com>
+Date: Wed, 18 Nov 2026 15:55:44 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/13] arm64: add Synaptics SL2610 SoCs and RDK boards
-To: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20261115102401.3520-1-jszhang@kernel.org>
- <avrx2EhgZ10ED40P@xhacker>
-From: Richard GENOUD <richard.genoud@bootlin.com>
-Content-Language: en-US, fr
-Organization: Bootlin
-In-Reply-To: <avrx2EhgZ10ED40P@xhacker>
+Subject: Re: [PATCH v3 2/8] drm/rockchip: vop2: Don't use uninitialised
+ dividers on RK3588
+To: aiyengar1990@gmail.com, Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan
+ <andyshrk@163.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Piotr Zalewski <pZ010001011111@proton.me>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261113-vop2-fixes-v3-0-08ae37e83b5c@gmail.com>
+ <20261113-vop2-fixes-v3-2-08ae37e83b5c@gmail.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20261113-vop2-fixes-v3-2-08ae37e83b5c@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0aa1eda7965b03a8kunm1a1ddd1833dd04
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDGR5DVkgeHktKSUlMSx4aTlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=RyQFNc4ij2drw6Fx0nqJbDh+SFPMGM1Pqfbh0IhdR4KcOBgFgAMAIFpF/e2okYwYuUcCAohtps8YxDc0spFY7KMXP83tQQMfG/ESJAeh/zlQa5QQZh4F0HozwlE4sFb7RobNAO+ZD02FwVmFtA6gw0qFMA3yf1x3NBMlsCXp4qI=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=yoojdmS52xksREd25PZVdu2MX9Ot+zg4Wegw5yQYlu4=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_235414_157671_941D152D 
-X-CRM114-Status: GOOD (  19.10  )
+X-CRM114-CacheID: sfid-20261117_235551_345337_D4CB4551 
+X-CRM114-Status: GOOD (  16.43  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,150 +78,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Le 16/11/2026 à 13:06, Jisheng Zhang a écrit :
-> On Sun, Nov 15, 2026 at 06:23:39PM +0800, Jisheng Zhang wrote:
->> Add initial support for the Synaptics SL261X SoCs and corresponding
->> RDK boards.
->>
->> The SL261X SoCs include five pin-to-pin compatible SoCs: SL2611, SL2613,
->> SL2615, SL2617, and SL2619.
->>
->> Only reset, pinctrl, clk/pll, uart, gpio, i2c, spi, i3c are included in
->> this series. The support for Ethernet, USB, SDHCI, CAN, DMAC, XSPI will
->> be submitted after this series is merged.
->>
->> since v1:
->>   - rebase on latest rcN
->>   - drop some patches which have been merged
->>   - let the "gbl" node export pinctrl/reset/clk devices with
->>     MFD_CELL_NAME()
->>   - use <linux/platform_device.h> instead of <linux/mod_devicetable.h>
->>   - adopt some coding suggestions from Uwe
->>   - Use 0 and 1 to select normal and strong pull-up on 10-bit pads
+On 11/14/2026 12:39 AM, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
 > 
-> Other SoCs doesn't use this defintion for pull up or strong pull up.
-> After consulting our HW people, the strong pull up isn't used at
-> all, so I will remove strong pull up support in newer version. We can
-> add back its support when it's really needed in the future, nothing
-> breaks.
-I've found a similar definition here:
-https://elixir.bootlin.com/linux/v7.3.1/source/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml#L73-L78
-But also a plain new property here:
-https://elixir.bootlin.com/linux/v7.3.1/source/Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.yaml#L153-L155
-And another with the real strong pull-up value:
-https://elixir.bootlin.com/linux/v7.3.1/source/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml#L94-L99
-As you said, if it's not used, we can skip it and add a property in
-the future (or the real value if we have it).
-
-But we won't be able to use 1 for strong and 0 for normal.
-
-Regards,
-Richard
+> rk3588_calc_cru_cfg() converts all four dividers with ilog2(), but every
+> interface only sets the ones it uses: dclk_out_div is left uninitialised
+> for HDMI, eDP and DPI, if_dclk_div for DP, MIPI and DPI, and
+> if_pixclk_div for DP and DPI. For HDMI and eDP the uninitialised
+> dclk_out_div is then written to RK3588_VP_CLK_CTRL.
 > 
->>   - collect Acked-by tag
->>
->> Jisheng Zhang (13):
->>    arm64: kconfig: let ARCH_BERLIN cover Synaptics arm64 SoCs
->>    pinctrl: berlin: use u16 instead of u8 for the offset
->>    pinctrl: berlin: enable module build support
->>    pinctrl: berlin: add optional pinconf support
->>    dt-bindings: soc: synaptics: add SL2610 system controllers
->>    soc: synaptics: add SL2610 system controller support
->>    reset: add Synaptics SL2610 reset controller support
->>    pinctrl: berlin: add Synaptics SL2610 pin controller support
->>    clk: berlin: add Synaptics clock controller helpers
->>    clk: berlin: add Synaptics SL2610 clocks and PLLs
->>    dt-bindings: arm: berlin: add Synaptics SL2610 SoCs and RDK boards
->>    arm64: dts: synaptics: add SL2610 family SoCs
->>    arm64: dts: synaptics: add SL2610 family RDK boards
->>
->>   .../bindings/arm/marvell,berlin.yaml          |  20 +
->>   .../soc/synaptics/syna,sl2610-soc-syscon.yaml | 178 ++++
->>   MAINTAINERS                                   |   8 +
->>   arch/arm64/Kconfig.platforms                  |   4 +-
->>   arch/arm64/boot/dts/synaptics/Makefile        |   5 +
->>   arch/arm64/boot/dts/synaptics/sl2611-rdk.dts  |  16 +
->>   arch/arm64/boot/dts/synaptics/sl2611.dtsi     | 457 +++++++++++
->>   arch/arm64/boot/dts/synaptics/sl2613-rdk.dts  |  16 +
->>   arch/arm64/boot/dts/synaptics/sl2613.dtsi     |  12 +
->>   arch/arm64/boot/dts/synaptics/sl2615-rdk.dts  |  16 +
->>   arch/arm64/boot/dts/synaptics/sl2615.dtsi     |  46 ++
->>   arch/arm64/boot/dts/synaptics/sl2617-rdk.dts  |  16 +
->>   arch/arm64/boot/dts/synaptics/sl2617.dtsi     |  46 ++
->>   arch/arm64/boot/dts/synaptics/sl2619-rdk.dts  |  16 +
->>   arch/arm64/boot/dts/synaptics/sl2619.dtsi     |  44 +
->>   .../boot/dts/synaptics/sl261x-rdk-common.dtsi | 135 ++++
->>   drivers/clk/Kconfig                           |   1 +
->>   drivers/clk/berlin/Kconfig                    |  34 +
->>   drivers/clk/berlin/Makefile                   |   4 +
->>   drivers/clk/berlin/clk-sl2610.c               | 360 +++++++++
->>   drivers/clk/berlin/sl-clk.c                   | 279 +++++++
->>   drivers/clk/berlin/sl-clk.h                   |  31 +
->>   drivers/clk/berlin/sl-sysmgr-clk.c            | 241 ++++++
->>   drivers/clk/berlin/sl-sysmgr-clk.h            |  44 +
->>   drivers/clk/berlin/sl2610-pll.c               | 145 ++++
->>   drivers/clk/berlin/sl2610-pll.h               |  14 +
->>   drivers/pinctrl/berlin/Kconfig                |  16 +
->>   drivers/pinctrl/berlin/Makefile               |   1 +
->>   drivers/pinctrl/berlin/berlin.c               | 259 +++++-
->>   drivers/pinctrl/berlin/berlin.h               |  17 +-
->>   drivers/pinctrl/berlin/pinctrl-sl2610.c       | 759 ++++++++++++++++++
->>   drivers/reset/Kconfig                         |  13 +
->>   drivers/reset/Makefile                        |   1 +
->>   drivers/reset/reset-sl2610.c                  | 224 ++++++
->>   drivers/soc/Kconfig                           |   1 +
->>   drivers/soc/Makefile                          |   1 +
->>   drivers/soc/synaptics/Kconfig                 |  14 +
->>   drivers/soc/synaptics/Makefile                |   2 +
->>   drivers/soc/synaptics/sl2610-syscon.c         |  84 ++
->>   include/dt-bindings/clock/syna,sl2610.h       | 131 +++
->>   include/dt-bindings/reset/syna,sl2610-reset.h |  80 ++
->>   41 files changed, 3771 insertions(+), 20 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2611-rdk.dts
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2611.dtsi
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2613-rdk.dts
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2613.dtsi
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2615-rdk.dts
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2615.dtsi
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2617-rdk.dts
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2617.dtsi
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2619-rdk.dts
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2619.dtsi
->>   create mode 100644 arch/arm64/boot/dts/synaptics/sl261x-rdk-common.dtsi
->>   create mode 100644 drivers/clk/berlin/Kconfig
->>   create mode 100644 drivers/clk/berlin/clk-sl2610.c
->>   create mode 100644 drivers/clk/berlin/sl-clk.c
->>   create mode 100644 drivers/clk/berlin/sl-clk.h
->>   create mode 100644 drivers/clk/berlin/sl-sysmgr-clk.c
->>   create mode 100644 drivers/clk/berlin/sl-sysmgr-clk.h
->>   create mode 100644 drivers/clk/berlin/sl2610-pll.c
->>   create mode 100644 drivers/clk/berlin/sl2610-pll.h
->>   create mode 100644 drivers/pinctrl/berlin/pinctrl-sl2610.c
->>   create mode 100644 drivers/reset/reset-sl2610.c
->>   create mode 100644 drivers/soc/synaptics/Kconfig
->>   create mode 100644 drivers/soc/synaptics/Makefile
->>   create mode 100644 drivers/soc/synaptics/sl2610-syscon.c
->>   create mode 100644 include/dt-bindings/clock/syna,sl2610.h
->>   create mode 100644 include/dt-bindings/reset/syna,sl2610-reset.h
->>
->> -- 
->> 2.55.0
->>
->>
+> Set the dividers an interface doesn't use to 1.
+> 
+> Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
+> Suggested-by: Damon Ding <damon.ding@rock-chips.com>
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+>   drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> index c44648e1bc0d..f340aba5bfd1 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> @@ -1597,6 +1597,7 @@ static unsigned long rk3588_calc_cru_cfg(struct vop2_video_port *vp, int id,
+>   		 */
+>   		*if_pixclk_div = 2;
+>   		*if_dclk_div = 4;
+> +		*dclk_out_div = 1;
+>   	} else if (vop2_output_if_is_edp(id)) {
+>   		/*
+>   		 * edp_pixclk = edp_dclk > dclk_core
+> @@ -1609,6 +1610,7 @@ static unsigned long rk3588_calc_cru_cfg(struct vop2_video_port *vp, int id,
+>   		 */
+>   		*if_pixclk_div = K;
+>   		*if_dclk_div = K;
+> +		*dclk_out_div = 1;
+>   	} else if (vop2_output_if_is_dp(id)) {
+>   		if (output_mode == ROCKCHIP_OUT_MODE_YUV420)
+>   			dclk_out_rate = v_pixclk >> 3;
+> @@ -1622,6 +1624,8 @@ static unsigned long rk3588_calc_cru_cfg(struct vop2_video_port *vp, int id,
+>   			return 0;
+>   		}
+>   		*dclk_out_div = dclk_rate / dclk_out_rate;
+> +		*if_pixclk_div = 1;
+> +		*if_dclk_div = 1;
+>   	} else if (vop2_output_if_is_mipi(id)) {
+>   		if_pixclk_rate = dclk_core_rate / K;
+>   		/*
+> @@ -1643,8 +1647,12 @@ static unsigned long rk3588_calc_cru_cfg(struct vop2_video_port *vp, int id,
+>   		 * mipi pixclk == dclk_out
+>   		 */
+>   		*if_pixclk_div = 1;
+> +		*if_dclk_div = 1;
+>   	} else if (vop2_output_if_is_dpi(id)) {
+>   		dclk_rate = v_pixclk;
+> +		*dclk_out_div = 1;
+> +		*if_pixclk_div = 1;
+> +		*if_dclk_div = 1;
+>   	}
+>   
+>   	*dclk_core_div = dclk_rate / dclk_core_rate;
 > 
 
+Reviewed-by: Damon Ding <damon.ding@rock-chips.com>
 
--- 
-Richard Genoud, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+Damon
+
 
