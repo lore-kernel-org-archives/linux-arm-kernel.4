@@ -2,153 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE19606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C40DF606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 12:54:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EeBS2JL8;
-	dkim=pass (2048-bit key, unprotected) header.d=kontron.de header.i=@kontron.de header.a=rsa-sha256 header.s=selector1 header.b=Mtnv5zc6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NuXiWTPx;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=cBUnezY3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:From:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=li65XB04WseXUq8cuZWYwEHkNArGTVKVnfLUbCTETGs=; b=EeBS2JL8cw+096tVKuw8NxEJtV
-	rj0l+gSbjzvBQ3nzSqXAsMWvAokTCpofNxHSaiVic1YVYjFvv4NeX+ujDRje9MeCpsHZHbVUg5ALY
-	hFDItEzjcbnc4VzWCOTVMvk3ux/FhGQ5UIADAwPweCmJXLHh6vMokA1Dvs+GhGG/QNzZlFDaAFsNY
-	VQqhOr1DGUp1tJjXrx0oWyVwuMSI9apSNVM8IVOY7V22sGMc9Zjr4us+SiQp1SGPk49OIlJzpn7yP
-	VolmjQ6jfdSd0JsiHtQXSV1OFlzcVkXZcbBkgfeIcJimb6109N0XW9ziGaROh7x7/fNVYh8BXEgUx
-	rNPeuI+w==;
+	bh=G17J7pDh+avlQuW0DxA3Qojcg455TcPTlRVkxP2LNDc=; b=NuXiWTPx1qXVD208Tp4Y9HhGVa
+	tSQWZALrkOKUtFPhfycrsL9UZQeo8Tg2ZhSJP81beqH9G1t7ihZOHEIdFagveuKcEgLC7iLEAArCQ
+	EYIP8hvyiAB/HBkWM2UnGNQ89ErajY9aJ3cjy12wRMo6u2kGxaBAoumennBkCNVUMUFtU3V4clO7W
+	1VQwmSl95P2ZV1nSY4gor/W/+gsANA9CYahLjni3QgxWSN822C+BpGQpzhuIBdbNWBEzNR29fEgJy
+	e5xWaB49Hm72PEBIiCmr2ZUU2ZUCpxE3vRtilBkKRKEs7EQzMF+7I8gFjaLq7L1//O6zWkZ7gRunh
+	oClcvOWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTf44-00000008tYq-2DUL;
-	Wed, 18 Nov 2026 12:47:04 +0000
-Received: from mail-northeuropeazon11021135.outbound.protection.outlook.com ([52.101.65.135] helo=DU2PR03CU002.outbound.protection.outlook.com)
+	id 1xTfBR-00000008u5M-1Yxf;
+	Wed, 18 Nov 2026 12:54:41 +0000
+Received: from canpmsgout08.his.huawei.com ([113.46.200.223])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTf3z-00000008tXf-2tdb
+	id 1xTfBM-00000008u4R-09HU
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 12:47:02 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s9VuuxN8boBa9Tqutycp5jxINfMyYV2HZCcicoAY0FKRa8WkHSGTFPFJ+1i97Acf7zjUsfMGD3jB9GPXgqDkCUTHkAfe+j0QVcqYlPdMThK54/BSMKjb2a16XZZch/5dUZ2fu2W7vtpHlSVf1FaHR0P3toEJb6fXx1s1MUpdROq3+lxphGmDLD78Yf3i78BI2kxxg6+eRAhuyhJ0eqW7ui/bX4W3bfH2J1YRjJz3aqe+oZZ0vXhpShptbCy0mnZ3RIileCt9H8CPkhqF6ml34fyeV/jsPef2gokecQEp11ZL/4xP+ZCZ7TfE1zl4tDKTMnugPVBJt6mTqnqaM0d6qw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=li65XB04WseXUq8cuZWYwEHkNArGTVKVnfLUbCTETGs=;
- b=ZTTBK69+N/2Gh4QdQiOAEpl+ab87/XX0lfWqhb8hfPbqXMiwLLxr86PK43+hT1CoYQWeaKHl5MVEzfa2lJm0l/w3neLb5O093CQP+PrUuex0zoUc0Kl5t3p/C94GRrOrkPOWqN9EW5lY2NZ8i8y9GdMhrh5sEy98LMLfoXcNTkF8A1kJTcX0CLUAcFVm9nWOikpFI9buzFCp0F1TleLSqtdUWWJsWNosn8jbxNIj7/ClNLeDIb1WN0uSoKci8MoOkwqgiZlv08tFHQFpxgMrewRJD5cHNDqNnuwtjXan5I6a3f/c5F4/kehMklCNp084j2KJvX+9pMZUet6emJSeKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kontron.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=li65XB04WseXUq8cuZWYwEHkNArGTVKVnfLUbCTETGs=;
- b=Mtnv5zc6cN/BUEPpsxiwZXZzf8MBL6qF5udebUndjcr3YusB4h/xAGEPoezHoa1RYxwm6eH27Dw5CaVqVZfofBHUPXySu9fEtaMk2ckrk13O+JVH2QZDHYRuY6/0H/5WAakdowg+caGEcVMj2ynmvahJPwtb0NE+QdbsxfCG2+cKgPH/2WHi8FED31Flws8ONcwhpQX66QYiIPvgiquGyyvzQkzSfzcLjvEnkQzpInVyPp7dD2Ijmc1soHg8ixV7m3b4avdLbuUvk/kwGuFDA9xzRB/rgVSwd4mb0tdYqIyrj3F96Ef2v1Hh8KoX9yfWUqdoS4sGK+dtTg71uftHKg==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fb::23)
- by GV1PR10MB679331.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:3be::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.8; Wed, 18 Nov
- 2026 12:46:47 +0000
-Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a276:4ad7:962:da22]) by AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a276:4ad7:962:da22%3]) with mapi id 15.21.0639.006; Wed, 18 Nov 2026
- 12:46:47 +0000
-Message-ID: <180d2335-e328-48a4-b376-a90464279027@kontron.de>
-Date: Wed, 18 Nov 2026 13:46:45 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v51 5/7] firmware: imx: adds miscdev
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: pankaj.gupta@oss.nxp.com, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Pankaj Gupta <pankaj.gupta@nxp.com>,
- Randy Dunlap <rdunlap@infradead.org>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Arnd Bergmann <arnd@arndb.de>, Peng Fan <peng.fan@nxp.com>
-References: <20260915-imx-se-if-v51-0-4a7dac612cb5@nxp.com>
- <20260915-imx-se-if-v51-5-4a7dac612cb5@nxp.com>
- <2034fb2f-f169-46a5-85e8-fa723ddb0360@app.fastmail.com>
- <aqqqDnOMmlfqit6u@SMW015318>
- <f3e1e3de-6abf-48cb-aba7-7b231c38ec5c@kontron.de>
-Content-Language: en-US, de-DE
-In-Reply-To: <f3e1e3de-6abf-48cb-aba7-7b231c38ec5c@kontron.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PA7P264CA0171.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:36f::20) To AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:1fb::23)
+	Wed, 18 Nov 2026 12:54:40 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=G17J7pDh+avlQuW0DxA3Qojcg455TcPTlRVkxP2LNDc=;
+	b=cBUnezY3ndiDrLsbWzbnPsvhKqQQN7p8U+GC/aJ0ec5jMXKFHMn9laTnyl0wVSokGNp80h3Qh
+	v94GbaTzuejeXQpb6zVPAsr4PV4dgkLTSCUC+VNSBgk9O+f90/sbXuRPsbeY9/8hZKQU73LkZC8
+	bLOcAQgoGITXPPrSbt48tMY=
+Received: from mail.maildlp.com (unknown [172.19.163.163])
+	by canpmsgout08.his.huawei.com (SkyGuard) with ESMTPS id 4jV1kl4M0XzmV6N;
+	Wed, 18 Nov 2026 20:54:07 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 272C34048B;
+	Wed, 18 Nov 2026 20:54:27 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 18 Nov
+ 2026 20:54:26 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
+	<fenghuay@nvidia.com>, <will@kernel.org>, <jic23@kernel.org>,
+	<gshan@redhat.com>, <tan.shaopeng@jp.fujitsu.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH v3] arm_mpam: resctrl: Use the domain's counter ID
+Date: Wed, 18 Nov 2026 20:54:17 +0800
+Message-ID: <20261118125417.671859-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR10MB4277:EE_|GV1PR10MB679331:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc4105a3-89fa-4356-7977-08df457201fe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|23010399003|366016|22082099003|18002099003|4143699003|11063799006|56012099006|261026121527099003|261028144727099003|261026140227099003|261021135927099003|261022105027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: Ky0PdT6lBXaqUqjecjl5xWVsDN41TJKrUDSUO8Q2g/q+iJRpN941SVEYlWJTWVlzl2bqZgMbRwyNb2xkaqeeJMjN/MxaltNb1uUE8rar3ccSjY5P467z5ScWItxp7yJePRhNMA5a+eN1wDpyZsQWh/uoBTpYbmViuP6xv5LLxpZiEdqlYbjFmMcQRXvkAgdr2CcSNFD9kLs51aNDwHp7TH4M7pvIo5Wjl5sWacndVY3KQ6+IZYl0uKHn5hoWPxYNnQygRdxls9INa4y5ZbWqJw0szvE51YqfaMp2PFZXiZqSorIVIpXsweeCO8s53ynE8T2czxO/JNDP9pgfmDnqgrZ9HbrVqumSU7DdWfyKzj4hgfRMCuo0sKPi0UztvGMaaEc/oaX4FimhpjAMr9WH7+KZEeT722haq0WlTp1jHYTEIny3uouOmyGuBbTKstfmM3j8iwMhGzisKVtOr0pEsVelgQKlIe5nljq1Nsc1xlKJq0P7GA9zlM9GFxnCncRrWPybGmFrKTuA+kNb+LTVzipdPxMAuGiZFjG7KoA9yP4/4nXltoyYoK0X/FT+sPkPr3USAq/wjSDOtGwhrZqTwWFHQlllTQT1ADGlp/oX+AsLNvDsIE61dx3uHhbfC7GNUYhC51fLF/obQZX+3ul0VPxPcSSsSyYqw+xUrh2j4gg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(23010399003)(366016)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006)(261026121527099003)(261028144727099003)(261026140227099003)(261021135927099003)(261022105027099003)(10067099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVJHV05KOHBValhCVGN5d1NqQWRFRkhseG9aWmJMTmRhYnltbzBmYUlJL0Rl?=
- =?utf-8?B?WUJhVC91QWV3dElTSFN1WGNaVmcxanZsSUxQUC9CbE0rMU5DNDRoMU5CLzRE?=
- =?utf-8?B?ZU1qdnh6TXZieGNEc1V2WHVNbVBnRTdOU3pwc1RObytyT3h1c0RoaEYxaEU4?=
- =?utf-8?B?elJKMW5UdjZ4TnltaFRYRXpxK20vSXFOMlIyQVdTL3RucWVKeWxjSHhTcWxr?=
- =?utf-8?B?UDVvcTYyazh4WG43akM2RVBlZ3NMd2R2emJzZjBQUTlRWFEweHp0Y3FhSHE5?=
- =?utf-8?B?UGJXUEt1ejRNKzVRNGp0dlI1azhWajlIajNwOGFNR3lPOUVIUjc4L0tJZ3da?=
- =?utf-8?B?S1pxWG4veHRTazQ4Yld6eFBvUkhvNkR4Y1JEV3RnY3h6T1JTTmlsV3MrTW5s?=
- =?utf-8?B?UkxpZndJNk5NMHUrdHFxT21iZ3ppRXBkRENpNkx4T2Vtd2F0bDFLVSt1alMw?=
- =?utf-8?B?U0xWZ0VkNGwxZy9HVG1reWlWc2M3RVJlL0Y5bmpOSjJLaXBTK0VyNjUvSzBK?=
- =?utf-8?B?d1ZGL2UwRFI3dW4vOTVaQzRzVmhrMy9YdU40MDBENURtaUZlNHBHdUdIalo5?=
- =?utf-8?B?R0g3cndoYnBPOVN3QjJoUnllN0tuSlF2VFh5TUFlYUpMZkdHQ2xabUtNZGky?=
- =?utf-8?B?aUJBL1pya2FXM3A1elprcnRBZGNFeTh5Y3NGMXJ5V3YrODc3N2tXWlNaN0hR?=
- =?utf-8?B?d1RSeUNmbVI5UlNxZ09tbURwQ2tad0NBUGFMVlJxWGQxc2ZjeS9DeThUdSt1?=
- =?utf-8?B?ZCtsQ1FLd2dBNm55Ylc2NWFySVBVY3JRZGNsMTF1dEpVb2hNTzd0SUtldGM1?=
- =?utf-8?B?RHgySWJaeDNLVjNEbjZqaTdIL1NNTXVoU3dpdlhxTVVxZTF0MHp3eXk2OE5v?=
- =?utf-8?B?THFRcXl1eDZnY0pvNUNxUFlFQ2M5T3NqOUE3U3J1Y2Vud3lEKzZRZUZKTlV4?=
- =?utf-8?B?ZG9Ld3Myd3cwOGNUVGdWLzRMNk5mb29mcnhNdUFyUzlyZ2x1a2pBK09tWkdo?=
- =?utf-8?B?Y3lvMDNKRWNkNXNQMENGRG91aXBTeWRwNEl4L3p0RVRYWUtDeERkdnJmajhu?=
- =?utf-8?B?bWVKSlUyWHNHa3k3eDlSaWdseXNwNUgzaUtIOUQxSU1DbEJYaEJBcVh1Ty9O?=
- =?utf-8?B?SUhsV0s2VHZ4b2FpM3FicHZzU09tOXJMandjMlFvVWUza2hNaG11ekhVbklo?=
- =?utf-8?B?T0YwN2dsWEMzcmpWUUlab3R3MnNJQ1JmT0F1K1dGaEVtY0UrT3gzNEV4VFZs?=
- =?utf-8?B?UTVsSHlvWDZscFlqdTkzMG8vWUk1NDQ3ZjFSSE5sS2JEbi80ajlWbG9MTW9M?=
- =?utf-8?B?eVB2OU1RVHV2L0JVUURjZWMzSmxOYmdYaUJFV283UkZucHZIQVJ0MGJIamRR?=
- =?utf-8?B?ZWVNb0tFQkR3NFNHbWJEQ29LM1NFVlo3Vm15cWRuRVEzcjVLRDBkRHVoS3RU?=
- =?utf-8?B?aVNVTEVnOUlpOTFMajVPU3R1YWhKTXFUdU9icjNRV2NVaEdjeEV1R2xiSkZM?=
- =?utf-8?B?MUlrZWZmR2J6am9ZV1hyK2NQSE5iWGc1ckFJZ0RqSkY4ZTBPK1pVd0VUajRy?=
- =?utf-8?B?R0dMUnE1MVpwQ3VSSGN2S1RzL3F0b3RWSVM4MHhQbDVDaC9HNjE0U1pwY3NJ?=
- =?utf-8?B?NlFtNnB5QXI0SnJ0QXhKMXZyN2xnQ1ZoNmF0eEJxZWM3VjhqR2RVVGVLUHcy?=
- =?utf-8?B?Z3o1ek9oTUpWMElHSEJVR1FoTEFDTnIzendhTzlBbW43bHBOeGFCQ2xuK0ZD?=
- =?utf-8?B?Ti9rTXM0anV6d1VYMGllSDB4a3RiMlo1bFhoMFRJSkViZnZia1Q2YWtYN2Nh?=
- =?utf-8?B?SG9Nem16Wmtac08wcjRhdHZsMW1jTUpKTEdBblNTT0dOb0JpeEFSZytjVGto?=
- =?utf-8?B?NE9kemp4dnIybU84Y0h1M3RtMTl2eStLeWFXTnEwbmtmZU01NDE3Y1JGZVli?=
- =?utf-8?B?eUsxMGdKaTd6QnJad3JLR091RmhJUHZNMzgxQkVQOVU1UDh4bFdXSk1DV05u?=
- =?utf-8?B?cHYxdW1oNGhNNkhpVlVWc2tvRTFEVjVxaWdYNGR4eTJnVFo3cy9KNnZiZ25l?=
- =?utf-8?B?UFFVMG1jdHlzTWE3NDFDY3RMYlEreGJ5dHYreUtmRVVBZnVKY1lRTG96S3lR?=
- =?utf-8?B?YnAyTHltZTZqcVVJUTFPQWFLUmNCVkpHMnd4TGsveDNUdXhPL0J6ZXVsVThx?=
- =?utf-8?B?MTVhZkh4QW9wNmJLVVA5QXVENGZuNXdtK0d5aUtTQTBwbWVtS2E3eVlvbnR4?=
- =?utf-8?B?aXd3OWYrSGVDWnpGcDkzV1dYT08yL0xaVzEydHI5RG9jNk1DenA2aTBDVDEr?=
- =?utf-8?B?WXFDSHFNMHo4R1ZvTVJkSk13bzB4UVJ1WkJFbnozV25ORGRBSnN4RGYzZXhZ?=
- =?utf-8?Q?ym4JyVX74TapihdA=3D?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc4105a3-89fa-4356-7977-08df457201fe
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 12:46:47.3108
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fLpQ6Fjvh90elOHSSvl5GYtc9+A/5KkBfklhC0Lw9uQaLSnwa5ki3UxIySswKbbcYLAhiMKEE2Ahw04E7Shb+SRN1qZ150XWGHrfE+pmKbE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR10MB679331
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_044700_143549_5272AE33 
-X-CRM114-Status: GOOD (  21.65  )
+X-CRM114-CacheID: sfid-20261118_045437_376380_9AA226E7 
+X-CRM114-Status: GOOD (  17.84  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -160,63 +76,163 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-+Cc: Peng
+resctrl assigns MBM counters per domain: mbm_L3_assignments takes a
+domain ID, a group can have a counter in one domain and none in
+another, and resctrl_arch_cntr_read() and resctrl_arch_reset_cntr()
+are given the counter to use.
 
-Hi NXP developers,
+The driver ignores that counter and looks the monitor up in
+mbwu_idx_to_mon[], indexed by CLOSID and RMID.
+resctrl_arch_config_cntr() fills that array without looking at the
+domain, so each group has one monitor for the whole resource.
+Whichever assignment is written last selects the monitor the group
+reads in every domain.
 
-On 05.10.26 16:28, Frieder Schrempf wrote:
-> On 16.09.26 16:39, Frank Li wrote:
->> On Wed, Sep 16, 2026 at 03:16:13PM +0200, Arnd Bergmann wrote:
->>> On Mon, Sep 14, 2026, at 21:40, pankaj.gupta@oss.nxp.com wrote:
->>>> From: Pankaj Gupta <pankaj.gupta@nxp.com>
->>>>
->>>> Adds the driver for communication interface to secure-enclave, that
->>>> enables exchanging messages with NXP secure enclave HW IP(s)
->>>> like EdgeLock Enclave, from:
->>>> - User-Space Applications via character driver.
->>>>
->>>> ABI documentation for the NXP secure-enclave driver.
->>>
->>> I just saw this in linux-next, where it has caused a build failure
->>> for a missing include of linux/slab.h. I hadn't see the series
->>> before (even though it is a v51, which seems crazy), but I am
->>
->> It is in linux-next about v37, but build bot find many problems, I dropped
->> it and request to fix it. And sashiko is online recently and also find many
->> risk. I request to clean up it, and local AI environment have difference
->> with sashiko, so bump to v51.
->>
->> I put to linux-next again to make sure that pass all build test.
->>
->> Other two problems, need more time to check whole review history. reply
->> you later.
-> 
-> So this is still in linux-next, but was not sent in the pull request for
-> 7.4. It's rather confusing to me that maintainers add stuff to
-> linux-next for build-testing and then leave it there, neither removing
-> it, nor continuing the mainlining process.
-> 
-> Frank, what is the plan?
-> 
-> I'm currently rebasing my work for the NVMEM driver onto linux-next, but
-> as there have been so many iterations and this whole thing took so long,
-> I want to make sure that this is not another dead end where I'm wasting
-> my time on.
+For example, with the counter ID each group uses for mbm_total_bytes
+on each domain and "_" for none:
 
-I need to ping here, again. What is the plan at NXP to move on with
-this? This is blocking multiple features that depend on ELE firmware
-support for i.MX9 and similar platforms from being upstreamed.
+                                domain 0         domain 1
+  mount, mkdir g1               default=0 g1=1   default=0 g1=1
+  unassign both on domain 1     default=0 g1=1   default=_ g1=_
+  assign g1 on domain 1         default=0 g1=1   default=_ g1=0
 
-Thanks for your support in advance!
+g1 is assigned the lowest free counter on domain 1, counter 0. That
+assignment is the last one written for g1, so it selects the monitor
+g1 reads in every domain. On domain 0, g1 uses counter 1, but reads
+the monitor of counter 0:
 
-Best regards
-Frieder
+                      counter whose monitor is read on domain 0
+                      default      g1
+  expected            0            1
+  actual              0            0
+
+That is the default group's monitor.
+
+Translate the counter ID with assigned_counters[], which maps a counter
+ID to a monitor of the class and is valid in every domain.
+
+mbwu_idx_to_mon[] is left alone: resctrl_arch_config_cntr() still fills
+it, but the read and reset paths no longer consult it, and a future
+default mbm_assign_mode may use the array, so removing it can be
+considered separately. Unassigning a counter now resets its monitor,
+where before the lookup made the reset a no-op; the monitor is reset
+again when the counter is next assigned.
+
+Fixes: a5ff6ef2d73e ("arm_mpam: resctrl: Add resctrl_arch_cntr_read() & resctrl_arch_reset_cntr()")
+Suggested-by: Ben Horgan <ben.horgan@arm.com>
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: <stable@vger.kernel.org>
+---
+v3:
+- Keep mbwu_idx_to_mon[] and remove the cleanup. (Ben)
+- Split out as a mpam seperate patch.
+- Remove unnessary stable version.
+- v2: https://lore.kernel.org/all/20261113083506.4129060-2-ruanjinjie@huawei.com/
+---
+ drivers/resctrl/mpam_resctrl.c | 50 ++++++++++++++++++++++++++++------
+ 1 file changed, 42 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+index 8e9d5c68c2c1..0d290962ef62 100644
+--- a/drivers/resctrl/mpam_resctrl.c
++++ b/drivers/resctrl/mpam_resctrl.c
+@@ -463,6 +463,15 @@ void resctrl_arch_mon_ctx_free(struct rdt_resource *r,
+ 	resctrl_arch_mon_ctx_free_no_wait(evtid, mon_idx);
+ }
+ 
++/* The monitor resctrl's counter @cntr_id uses for @cdp_type. */
++static int mon_for_cntr(struct mpam_resctrl_mon *mon, int cntr_id,
++			enum resctrl_conf_type cdp_type)
++{
++	u32 idx = resctrl_get_config_index(cntr_id, cdp_type);
++
++	return mon->assigned_counters[idx];
++}
++
+ static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+ 		      enum mpam_device_features mon_type,
+ 		      int mon_idx,
+@@ -558,7 +567,7 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
+ 
+ /* MBWU counters when in ABMC mode */
+ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+-			   u32 closid, u32 rmid, int mon_idx,
++			   u32 closid, u32 rmid, int cntr_id,
+ 			   enum resctrl_event_id eventid, u64 *val)
+ {
+ 	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
+@@ -574,8 +583,30 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+ 	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
+ 	mon_comp = l3_dom->mon_comp[eventid];
+ 
+-	return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu,
+-				 USE_PRE_ALLOCATED, closid, rmid, val);
++	/* A counter ID maps to one monitor per CDP configuration. */
++	if (cdp_enabled) {
++		u64 code_val = 0, data_val = 0;
++		int err;
++
++		err = __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
++				 mon_for_cntr(mon, cntr_id, CDP_CODE),
++				 CDP_CODE, closid, rmid, &code_val);
++		if (err)
++			return err;
++
++		err = __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
++				 mon_for_cntr(mon, cntr_id, CDP_DATA),
++				 CDP_DATA, closid, rmid, &data_val);
++		if (err)
++			return err;
++
++		*val = code_val + data_val;
++		return 0;
++	}
++
++	return __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
++			  mon_for_cntr(mon, cntr_id, CDP_NONE),
++			  CDP_NONE, closid, rmid, val);
+ }
+ 
+ static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+@@ -603,13 +634,16 @@ static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon
+ }
+ 
+ static void reset_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+-			       int mon_idx, u32 closid, u32 rmid)
++			       int cntr_id, u32 closid, u32 rmid)
+ {
+ 	if (cdp_enabled) {
+-		__reset_mon(mon, mon_comp, mon_idx, CDP_CODE, closid, rmid);
+-		__reset_mon(mon, mon_comp, mon_idx, CDP_DATA, closid, rmid);
++		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_CODE),
++			    CDP_CODE, closid, rmid);
++		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_DATA),
++			    CDP_DATA, closid, rmid);
+ 	} else {
+-		__reset_mon(mon, mon_comp, mon_idx, CDP_NONE, closid, rmid);
++		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_NONE),
++			    CDP_NONE, closid, rmid);
+ 	}
+ }
+ 
+@@ -631,7 +665,7 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
+ 	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
+ 	mon_comp = l3_dom->mon_comp[eventid];
+ 
+-	reset_mon_cdp_safe(mon, mon_comp, USE_PRE_ALLOCATED, closid, rmid);
++	reset_mon_cdp_safe(mon, mon_comp, cntr_id, closid, rmid);
+ }
+ 
+ /*
+-- 
+2.34.1
+
 
