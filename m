@@ -2,58 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2565E606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3330D606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DtY9n5hf;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=nlzPAAzK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pAMIFKCx;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=kDhgIP+E;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=aM/xKKxj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qEXY815K3czAZD0w1DbKowETMw8pki3I34kxi7YffyU=; b=DtY9n5hfFvJae3
-	e5vUz02ttfMQBx82OZIowH0NnFqqgKJOQccNP87Ck89tNID0AMlG04gFbGyThryaN5TJz+DtBZmit
-	GzpBI5p0wYEtaro9x2ztdxtx63wTHS6c/zAWifKJ+gSx32pAshNEKsjF+fMqCakbTFZ99dLg8dVpI
-	yODU92D/560Lzxrx6VnZZMOUfF1zmOhsm29RvLFJc3qAlgIqY+yox/HQCY861H3Ok7Lvteq5+iOK1
-	VOM8wIxhfugO81gvHQz1Jm43USd+djI/5YF0Wk2Ow+uvLv6CgfUj0zMq1J7MzSo/z7JWDymjsLjz9
-	tSoNGhIiXcnlNdZkVyPw==;
+	List-Owner; bh=VcG30sa+93pw9ClhwzPfhT8lh5QnjKv4zrX533cn6l0=; b=pAMIFKCxKPyHWo
+	J0rL7mUVvYkFXgcZS3m7X8f3beUJHpgzb0x8F4imAZcg++0G10QR23BhvdFToclPMEQ6D69D3ogs5
+	KPSp2NCIBJHO2sln0qeb/kfcWSSM+Bw3pBLA+AGCvIv03uzQbn8dTnfr35Ebd46fps5mtqVTmuJr3
+	lI7ApycfLli7MzI51wFyRi2QDXcD+2mTHMd/1It0/CXvSfIMjjrqeFlA6QAAWSERQLhajHAyyiaT8
+	jJgLi+9jQpLNP0eFJkml0+rcy+Tg13cEIn2kokZ4L9y/mAJqjjk6ef1SQvp89H1ipONNbkDhEqbMJ
+	JSAinuM+794kbElckEGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTius-00000009cgp-3PNH;
-	Wed, 18 Nov 2026 16:53:50 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xTivZ-00000009d7X-2pOo;
+	Wed, 18 Nov 2026 16:54:33 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiu6-00000009cGq-2vBN
+	id 1xTiuY-00000009cWd-09qE
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 18 Nov 2026 16:53:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=VcG30sa+93pw9ClhwzPfhT8lh5QnjKv4zrX533cn6l0=; b=kDhgIP+EvOFB1YlKq93LSmh1Y6
+	6PFqez6Rm8AGG5unC0jGpXt1URVxgKTDhA5Enr2VNoK+UeFaz2AJ89ypF/Sk6SElaA3gSjMiDca66
+	vvLnrDxChKHkWpTYUBd6PikEKDdN8Kaooe+7ZP4tRMKLaMyuEG6rJiHIdOze7WajxvQRlSm8XrDMy
+	SLYFWtav7D8083LyggYOgsBj7O/7hrKylF/OWQxtAA2Vfm+Q32fo5cE3k/bCTdjiFUietYzrvw3gS
+	eSgzQN0J1k2pgOfrN9ymgwcF4HNZTdPHZ25KeUpixA1rOgae49yDYM/JP3aXgIDGLd8EFic7rMbew
+	g0JvpaSQ==;
+Received: from smtpout-04.galae.net ([185.171.202.116])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTiuT-0000000GIqO-2f7g
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:53:15 +0000
+	Wed, 18 Nov 2026 16:53:28 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 1BDC11A16CA;
-	Wed, 18 Nov 2026 16:53:01 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 58159C4F77B;
+	Wed, 18 Nov 2026 16:53:29 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D843C5FE9B;
-	Wed, 18 Nov 2026 16:53:00 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7D93A11BC28EE;
-	Wed, 18 Nov 2026 17:52:52 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 72B275FE9B;
+	Wed, 18 Nov 2026 16:53:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D321711BC2937;
+	Wed, 18 Nov 2026 17:53:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795020778; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795020798; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=qEXY815K3czAZD0w1DbKowETMw8pki3I34kxi7YffyU=;
-	b=nlzPAAzKTeecGqjp3FQ5HbH5c98OKdqg+fGn5IHEMBYahN+cJJt34qGQMjXYuwQbBd/qIi
-	a0Bng8ScR1RpOXJBJhqWnK89KP1Wy4bcXeyqQzYdXmx8tLxaYt3XORS9yc8iR2h2RINOAk
-	inxbmJqLBV1jIMLXE0cRfjQmB2EPGe8GXE2DtdVvb4Esc1iplcqO317UOIPYF5OuLYBEWK
-	b7DDfdJO69OJlCQi4aMT2khhTbdKBp1I841R7CaRFXqBw8eQN18gpr29NAT+18gtPsnDCF
-	SFf5hyLM+5qojmx2TPYZmWmj2O5gsUq+VgBpDT2SYgRAS+I3Z0087k3AUiwPOA==
+	bh=VcG30sa+93pw9ClhwzPfhT8lh5QnjKv4zrX533cn6l0=;
+	b=aM/xKKxjopE+Un5pt3rwL4bpxQPJBEFkuGVgKiqIOb6YhHHag/yNUmZvbYEenYPRG+3XuS
+	rHvbA+f2lEzwesExwsKoOgYlQKez5kYzTwmyTr2IpUAlg7gPaS89LogdlBPwBqqAXRBhxr
+	X9mJJC6w2ZcI1XLqR1FCqxndSFDuj6bMYSDLyAg/O+Kqelo9TBdXBJEsINJJ6Z0ZOmuraN
+	Rc8oWhcPQ8y9nnbs7Yn16lCGOD4MH9LHnC1dIkgvNTyxWlfU0RgTNO2XNS0GzI+epE/LXA
+	ltVhAceUE/E/nOyNvzvq0pWVa6fZsgIeBTKjvGBTueDyNn4uvsbjahWtlkmeVg==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 18 Nov 2026 17:50:10 +0100
-Subject: [PATCH RFC v3 27/31] drm/tests: atomic: add tests for
- drm_atomic_shutdown_encoder()
+Date: Wed, 18 Nov 2026 17:50:13 +0100
+Subject: [PATCH RFC v3 30/31] drm: drm_hotplug_helper: new helper to
+ implement bridge hotplug
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-drm-bridge-hotplug-v3-27-44bb3b4a828f@bootlin.com>
+Message-Id: <20261118-drm-bridge-hotplug-v3-30-44bb3b4a828f@bootlin.com>
 References: <20261118-drm-bridge-hotplug-v3-0-44bb3b4a828f@bootlin.com>
 In-Reply-To: <20261118-drm-bridge-hotplug-v3-0-44bb3b4a828f@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -79,9 +95,9 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
 X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_085303_650866_F16D060E 
-X-CRM114-Status: GOOD (  17.61  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_165326_076452_386A986A 
+X-CRM114-Status: GOOD (  34.48  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,252 +116,452 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add KUnit tests to exercise the newly added drm_atomic_shutdown_encoder(),
-including in the case of a card with multiple CRTCs.
+Add a new helper to support cards implementing hotpluggable drm_bridges.
+
+drmm_hotplug_helper_init() registers to get notified of relevant events and
+react by creating a bridge (if the pipeline is complete in the hardware)
+and destroying it on bridge removal.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 ---
 
-New patch in v3
----
- drivers/gpu/drm/tests/drm_bridge_test.c | 209 ++++++++++++++++++++++++++++++++
- 1 file changed, 209 insertions(+)
+Changes in v3:
+- Do not require the first bridge is non-hotpluggable
+- Support non-DSI bridges too
+- Add callback to report connector add/remove
+- Do not store the drm_device pointer, get it from the encoder
+- use new v3 notifier API name
 
-diff --git a/drivers/gpu/drm/tests/drm_bridge_test.c b/drivers/gpu/drm/tests/drm_bridge_test.c
-index 15583ade8494..ee10c8801fb1 100644
---- a/drivers/gpu/drm/tests/drm_bridge_test.c
-+++ b/drivers/gpu/drm/tests/drm_bridge_test.c
-@@ -5,6 +5,7 @@
- #include <linux/cleanup.h>
- #include <linux/media-bus-format.h>
+Changes in v2:
+- Add callback to report connector addition/removal
+- Sanity-check drmm_hotplug_helper_init() parameters
+- Reformat kdoc comment
+---
+ MAINTAINERS                                  |   8 +
+ drivers/gpu/drm/display/Kconfig              |   7 +
+ drivers/gpu/drm/display/Makefile             |   2 +
+ drivers/gpu/drm/display/drm_hotplug_helper.c | 325 +++++++++++++++++++++++++++
+ include/drm/drm_hotplug_helper.h             |  30 +++
+ 5 files changed, 372 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index fc404918c938..86a08dc33a16 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -8218,6 +8218,14 @@ F:	Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml
+ F:	drivers/accel/rocket/
+ F:	include/uapi/drm/rocket_accel.h
  
-+#include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_atomic_state_helper.h>
- #include <drm/drm_atomic_uapi.h>
-@@ -945,6 +946,213 @@ static struct kunit_suite drm_bridge_alloc_test_suite = {
- 	.test_cases = drm_bridge_alloc_tests,
- };
++DRM BRIDGE HOTPLUG HELPER
++M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
++S:	Maintained
++T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
++F:	Documentation/devicetree/bindings/display/bridge/
++F:	drivers/gpu/drm/display/drm_hotplug_helper.c
++F:	include/drm/drm_hotplug_helper.h
++
+ DRM COMPUTE ACCELERATORS DRIVERS AND FRAMEWORK
+ M:	Oded Gabbay <ogabbay@kernel.org>
+ L:	dri-devel@lists.freedesktop.org
+diff --git a/drivers/gpu/drm/display/Kconfig b/drivers/gpu/drm/display/Kconfig
+index df09cf9a8ca1..e086e2fd08a4 100644
+--- a/drivers/gpu/drm/display/Kconfig
++++ b/drivers/gpu/drm/display/Kconfig
+@@ -22,6 +22,13 @@ config DRM_BRIDGE_CONNECTOR
+ 	help
+ 	  DRM connector implementation terminating DRM bridge chains.
  
++config DRM_HOTPLUG_HELPER
++	bool
++	depends on OF
++	select DRM_BRIDGE_CONNECTOR
++	help
++	  Helper code to implement a card supporting hotpluggable bridges.
++
+ config DRM_DISPLAY_DP_AUX_CEC
+ 	bool "Enable DisplayPort CEC-Tunneling-over-AUX HDMI support"
+ 	select DRM_DISPLAY_DP_HELPER
+diff --git a/drivers/gpu/drm/display/Makefile b/drivers/gpu/drm/display/Makefile
+index 0ff4a1ad0222..ce6dbd65833b 100644
+--- a/drivers/gpu/drm/display/Makefile
++++ b/drivers/gpu/drm/display/Makefile
+@@ -5,6 +5,8 @@ obj-$(CONFIG_DRM_DISPLAY_DP_AUX_BUS) += drm_dp_aux_bus.o
+ drm_display_helper-y := drm_display_helper_mod.o
+ drm_display_helper-$(CONFIG_DRM_BRIDGE_CONNECTOR) += \
+ 	drm_bridge_connector.o
++drm_display_helper-$(CONFIG_DRM_HOTPLUG_HELPER) += \
++	drm_hotplug_helper.o
+ drm_display_helper-$(CONFIG_DRM_DISPLAY_DP_HELPER) += \
+ 	drm_dp_dual_mode_helper.o \
+ 	drm_dp_helper.o \
+diff --git a/drivers/gpu/drm/display/drm_hotplug_helper.c b/drivers/gpu/drm/display/drm_hotplug_helper.c
+new file mode 100644
+index 000000000000..ea32bdb0af8f
+--- /dev/null
++++ b/drivers/gpu/drm/display/drm_hotplug_helper.c
+@@ -0,0 +1,325 @@
++// SPDX-License-Identifier: GPL-2.0+
 +/*
-+ * Two CRTC/encoder/bridge/connector pipelines on the same DRM device, to
-+ * check that drm_atomic_shutdown_encoder() only stops one.
++ * Copyright (C) 2026 GE HealthCare
++ * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
 + */
-+struct drm_bridge_two_priv {
-+	struct drm_device drm;
-+	struct drm_plane *plane[2];
-+	struct drm_crtc *crtc[2];
-+	struct drm_encoder encoder[2];
-+	struct drm_bridge_priv *bridge[2];
-+	struct drm_connector *connector[2];
++
++#include <linux/of.h>
++#include <linux/of_graph.h>
++
++#include <drm/drm_bridge.h>
++#include <drm/drm_bridge_connector.h>
++#include <drm/drm_hotplug_event_notifier.h>
++#include <drm/drm_hotplug_helper.h>
++#include <drm/drm_managed.h>
++#include <drm/drm_print.h>
++
++struct drm_hotplug_helper {
++	/**
++	 * @encoder: The encoder at the start of the bridges chain
++	 */
++	struct drm_encoder *encoder;
++	/**
++	 * @event_cb: Callback to report connector addition/removal
++	 */
++	drm_hotplug_helper_event_cb event_cb;
++	/**
++	 * @drm_event_nb: Notifier to receive DRM hotplug-related events
++	 */
++	struct notifier_block drm_event_nb;
++	/**
++	 * @connector: The drm_connector added/removed on plug/unplug
++	 */
++	struct drm_connector *connector;
++	/**
++	 * @event_mutex: Protect entry points (init, fini, event notifier)
++	 * from concurrent attach and connector creation or destruction
++	 */
++	struct mutex event_mutex;
++	/**
++	 * @first_bridge_ep: Device tree node of the encoder endpoint
++	 * connected to the first bridge
++	 */
++	struct device_node *first_bridge_ep;
 +};
 +
-+static const struct drm_bridge_funcs drm_test_bridge_atomic_no_destroy_funcs = {
-+	.atomic_enable		= drm_test_bridge_atomic_enable,
-+	.atomic_disable		= drm_test_bridge_atomic_disable,
-+	.atomic_destroy_state	= drm_atomic_helper_bridge_destroy_state,
-+	.atomic_duplicate_state	= drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_create_state	= drm_atomic_helper_bridge_create_state,
-+};
-+
-+static struct drm_bridge_two_priv *
-+drm_test_bridge_two_init(struct kunit *test)
++/*
++ * True if the encoder bridge chain is complete, i.e. the last bridge in
++ * the chain is the last bridge expected in the hardware (e.g. a panel).
++ */
++static bool drm_hotplug_helper_bridge_chain_is_complete(struct drm_hotplug_helper *hotplug_helper)
 +{
-+	struct drm_bridge_two_priv *priv;
-+	struct drm_device *drm;
-+	struct device *dev;
-+	int i, ret;
++	struct drm_bridge *last_bridge __free(drm_bridge_put) =
++		drm_bridge_chain_get_last_bridge(hotplug_helper->encoder);
++	struct drm_device *drm = hotplug_helper->encoder->dev;
 +
-+	dev = drm_kunit_helper_alloc_device(test);
-+	if (IS_ERR(dev))
-+		return ERR_CAST(dev);
-+
-+	priv = drm_kunit_helper_alloc_drm_device(test, dev, struct drm_bridge_two_priv,
-+						 drm, DRIVER_MODESET | DRIVER_ATOMIC);
-+	if (IS_ERR(priv))
-+		return priv;
-+
-+	drm = &priv->drm;
-+
-+	for (i = 0; i < 2; i++) {
-+		priv->bridge[i] = devm_drm_bridge_alloc(dev, struct drm_bridge_priv, bridge,
-+							&drm_test_bridge_atomic_no_destroy_funcs);
-+		if (IS_ERR(priv->bridge[i]))
-+			return ERR_CAST(priv->bridge[i]);
-+
-+		priv->plane[i] = drm_kunit_helper_create_primary_plane(test, drm,
-+								       NULL, NULL, NULL, 0, NULL);
-+		if (IS_ERR(priv->plane[i]))
-+			return ERR_CAST(priv->plane[i]);
-+
-+		priv->crtc[i] = drm_kunit_helper_create_crtc(test, drm,
-+							     priv->plane[i], NULL, NULL, NULL);
-+		if (IS_ERR(priv->crtc[i]))
-+			return ERR_CAST(priv->crtc[i]);
-+
-+		ret = drmm_encoder_init(drm, &priv->encoder[i], NULL, DRM_MODE_ENCODER_TMDS, NULL);
-+		if (ret)
-+			return ERR_PTR(ret);
-+
-+		priv->encoder[i].possible_crtcs = drm_crtc_mask(priv->crtc[i]);
-+
-+		priv->bridge[i]->bridge.type = DRM_MODE_CONNECTOR_VIRTUAL;
-+
-+		ret = drm_kunit_bridge_add(test, &priv->bridge[i]->bridge);
-+		if (ret)
-+			return ERR_PTR(ret);
-+
-+		ret = drm_bridge_attach(&priv->encoder[i], &priv->bridge[i]->bridge, NULL, 0);
-+		if (ret)
-+			return ERR_PTR(ret);
-+
-+		priv->connector[i] = drm_bridge_connector_init(drm, &priv->encoder[i]);
-+		if (IS_ERR(priv->connector[i]))
-+			return ERR_CAST(priv->connector[i]);
++	/* We expect at least one bridge */
++	if (!last_bridge) {
++		drm_dbg_driver(drm, "no bridges in pipeline (yet)\n");
++		return false;
 +	}
 +
-+	drm_mode_config_reset(drm);
++	struct drm_bridge *next_bridge __free(drm_bridge_put) =
++		drm_bridge_get_next(last_bridge);
 +
-+	return priv;
-+}
-+
-+static int drm_test_enable_pipeline(struct kunit *test,
-+				    struct drm_device *drm,
-+				    struct drm_crtc *crtc,
-+				    struct drm_connector *connector,
-+				    const struct drm_display_mode *mode)
-+{
-+	struct drm_modeset_acquire_ctx ctx;
-+	int ret;
-+
-+	drm_modeset_acquire_init(&ctx, 0);
-+
-+retry:
-+	ret = drm_kunit_helper_enable_crtc_connector(test, drm, crtc, connector, mode, &ctx);
-+	if (ret == -EDEADLK) {
-+		drm_modeset_backoff(&ctx);
-+		goto retry;
++	/* No next bridge expected, pipeline is complete */
++	if (!next_bridge) {
++		drm_dbg_driver(drm, "pipeline complete\n");
++		return true;
 +	}
 +
-+	drm_modeset_drop_locks(&ctx);
-+	drm_modeset_acquire_fini(&ctx);
++	/* Next bridge expected but not there now, pipeline incomplete */
++	if (next_bridge == ERR_PTR(-ENODEV)) {
++		drm_dbg_driver(drm, "pipeline not (yet) complete\n");
++		return false;
++	}
 +
-+	return ret;
++	/* Unexpected error */
++	if (IS_ERR(next_bridge))
++		drm_warn(drm, "%s error %pe\n", __func__, next_bridge);
++
++	/* next_bridge is valid, but not (yet|anymore) in chain */
++	return false;
++}
++
++/**
++ * drm_hotplug_helper_connector_add - add the drm_connector
++ * @hotplug_helper: drm_hotplug_helper to add the drm_connector to
++ *
++ * Returns 0 on success or a negative error otherwise.
++ */
++static int drm_hotplug_helper_connector_add(struct drm_hotplug_helper *hotplug_helper)
++{
++	struct drm_device *drm = hotplug_helper->encoder->dev;
++	struct drm_connector *connector;
++
++	if (drm_WARN_ON(drm, hotplug_helper->connector))
++		return -EBUSY;
++
++	connector = drm_bridge_connector_dynamic_add(drm, hotplug_helper->encoder);
++	if (IS_ERR(connector))
++		return PTR_ERR(connector);
++
++	hotplug_helper->connector = connector;
++	hotplug_helper->event_cb(DRM_HOTPLUG_HELPER_CONNECTOR_ADDED, connector);
++
++	dev_dbg(drm->dev, "added bridge connector\n");
++
++	return 0;
 +}
 +
 +/*
-+ * Test that drm_atomic_shutdown_encoder() disables the CRTC feeding the
-+ * encoder and detaches its connector.
++ * Removes the connector, which must be present.
++ *
++ * Must be called with the hotplug_helper->event_mutex locked.
 + */
-+static void drm_test_drm_atomic_shutdown_encoder(struct kunit *test)
++static void drm_hotplug_helper_connector_remove(struct drm_hotplug_helper *hotplug_helper)
 +{
-+	struct drm_bridge_init_priv *priv;
-+	struct drm_display_mode *mode;
-+	struct drm_bridge_priv *bridge_priv;
++	struct drm_device *drm = hotplug_helper->encoder->dev;
++
++	if (drm_WARN_ON(drm, !hotplug_helper->connector))
++		return;
++
++	dev_dbg(drm->dev, "removing bridge connector\n");
++
++	hotplug_helper->event_cb(DRM_HOTPLUG_HELPER_CONNECTOR_REMOVING, hotplug_helper->connector);
++	drm_bridge_connector_dynamic_remove(hotplug_helper->connector);
++	hotplug_helper->connector = NULL;
++}
++
++/*
++ * Propagate the attach chain and possibly add a drm_bridge_connector after
++ * a new drm_bridge is hot-plugged.
++ *
++ * The connector is added only if the pipeline is now complete. This could
++ * not be the case for various reasons:
++ *
++ * - the new bridge is just unrelated to our encoder
++ * - the new bridge is not the next one in the pipeline
++ * - the new bridge is the next in the pipeline but the pipeline is not yet
++ *   complete
++ *
++ * All these cases are normal, not an error.
++ *
++ * Must be called with the hotplug_helper->event_mutex locked.
++ */
++static void drm_hotplug_helper_try_complete(struct drm_hotplug_helper *hotplug_helper)
++{
++	struct device *dev = hotplug_helper->encoder->dev->dev;
++	int err;
++
++	WARN_ON(!mutex_is_locked(&hotplug_helper->event_mutex));
++
++	/*
++	 * drm_connector already present, the new bridge must be for
++	 * another card
++	 */
++	if (hotplug_helper->connector)
++		return;
++
++	struct drm_bridge *last_bridge __free(drm_bridge_put) =
++		drm_bridge_chain_get_last_bridge(hotplug_helper->encoder);
++
++	if (last_bridge) {
++		/*
++		 * Some bridge(s) already in the chain, propagate the
++		 * attach call chain from the current chain tail to newly
++		 * hotplugged bridge(s)
++		 */
++		dev_dbg(dev, "propagate attach after %ps\n", last_bridge->funcs);
++
++		err = last_bridge->funcs->attach(last_bridge, hotplug_helper->encoder,
++						 DRM_BRIDGE_ATTACH_NO_CONNECTOR);
++		if (err)
++			return;
++	} else {
++		/* Bridge chain still empty, find first bridge and attach */
++
++		const struct device_node *first_bridge_node __free(device_node) =
++			of_graph_get_remote_port_parent(hotplug_helper->first_bridge_ep);
++		if (!of_device_is_available(first_bridge_node))
++			return;
++
++		struct drm_bridge *first_bridge __free(drm_bridge_put) =
++			of_drm_find_and_get_bridge(first_bridge_node);
++		if (!first_bridge)
++			return;
++
++		dev_dbg(dev, "attach chain starting at %ps\n", first_bridge->funcs);
++
++		err = drm_bridge_attach(hotplug_helper->encoder, first_bridge, NULL,
++					DRM_BRIDGE_ATTACH_NO_CONNECTOR);
++		if (err)
++			return;
++	}
++
++	/* Add the connector if the encoder chain is now complete */
++	if (drm_hotplug_helper_bridge_chain_is_complete(hotplug_helper))
++		drm_hotplug_helper_connector_add(hotplug_helper);
++}
++
++static int drm_hotplug_helper_handle_event(struct notifier_block *nb,
++					   unsigned long event, void *data)
++{
++	struct drm_hotplug_helper *hotplug_helper =
++		container_of(nb, struct drm_hotplug_helper, drm_event_nb);
++	struct device *dev = hotplug_helper->encoder->dev->dev;
++
++	guard(mutex)(&hotplug_helper->event_mutex);
++
++	dev_dbg(dev, "received event %lu\n", event);
++
++	switch (event) {
++	case DRM_BRIDGE_ADDED:
++	case DRM_MIPI_DSI_ATTACHED:
++		/*
++		 * A bridges hot-plugged, try adding the
++		 * drm_bridge_connector
++		 */
++		drm_hotplug_helper_try_complete(hotplug_helper);
++		break;
++	case DRM_BRIDGE_DETACHED:
++	{
++		/*
++		 * A bridge was unplugged, remove the drm_bridge_connector
++		 * if it's part of the same pipeline
++		 */
++		struct drm_bridge *bridge = (struct drm_bridge *)data;
++
++		if (hotplug_helper->connector &&
++		    bridge->encoder == hotplug_helper->encoder)
++			drm_hotplug_helper_connector_remove(hotplug_helper);
++		break;
++	}
++	default:
++	}
++
++	return NOTIFY_DONE;
++}
++
++static void drmm_hotplug_helper_fini(struct drm_device *dev, void *res)
++{
++	struct drm_hotplug_helper *hotplug_helper = (struct drm_hotplug_helper *)res;
++
++	guard(mutex)(&hotplug_helper->event_mutex);
++
++	if (hotplug_helper->connector)
++		drm_hotplug_helper_connector_remove(hotplug_helper);
++
++	of_node_put(hotplug_helper->first_bridge_ep);
++}
++
++static void drmm_hotplug_helper_notifier_unregister(struct drm_device *dev, void *res)
++{
++	struct notifier_block *nb = (struct notifier_block *)res;
++
++	drm_hotplug_event_notifier_unregister(nb);
++}
++
++/**
++ * drmm_hotplug_helper_init - Initialise the hotplug helper for an encoder
++ * @encoder: the encoder where the bridge chain starts; must be already
++ *           associated to the drm_device (e.g. by drm_encoder_init())
++ * @event_cb: callback invoked when a drm_connector is added or removed
++ * @first_bridge_ep: device tree node of the encoder endpoint connected to
++ *                   the first bridge
++ *
++ * Register to receive hotplug-related events and react to them:
++ * - when a new bridge appears: tries to attach the whole bridge chain,
++ *   then checks if the pipeline is now complete, and if it is it adds a
++ *   drm_bridge_connector (which in turn will add a drm_connector)
++ * - when a bridge disappears, remove the drm_bridge_connector (which in
++ *   turn will remove the drm_connector)
++ *
++ * When a connector is added or removed, the @event_cb will be called.
++ *
++ * The caller does not need to attach the bridge(s) anymore because the
++ * hotplug_helper will do it, including at init time in case all bridges
++ * are present already.
++ *
++ * Returns a pointer to the new &drm_hotplug_helper on success, or a
++ * negative error pointer otherwise.
++ */
++struct drm_hotplug_helper *drmm_hotplug_helper_init(struct drm_encoder *encoder,
++						    drm_hotplug_helper_event_cb event_cb,
++						    struct device_node *first_bridge_ep)
++{
++	struct drm_hotplug_helper *hotplug_helper;
 +	int ret;
 +
-+	priv = drm_test_bridge_init(test, &drm_test_bridge_atomic_funcs);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv);
++	if (!encoder || !event_cb || !first_bridge_ep)
++		return ERR_PTR(-EINVAL);
 +
-+	mode = drm_kunit_display_mode_from_cea_vic(test, &priv->drm, 16);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, mode);
++	struct drm_device *drm = encoder->dev;
++	if (WARN_ON(IS_ERR_OR_NULL(drm)))
++		return ERR_PTR(-EINVAL);
 +
-+	ret = drm_test_enable_pipeline(test, &priv->drm, priv->crtc, priv->connector, mode);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
++	hotplug_helper = drmm_kzalloc(drm, sizeof(*hotplug_helper), GFP_KERNEL);
++	if (!hotplug_helper)
++		return ERR_PTR(-ENOMEM);
 +
-+	bridge_priv = priv->test_bridge;
-+	KUNIT_ASSERT_EQ(test, bridge_priv->enable_count, 1);
-+	KUNIT_ASSERT_EQ(test, bridge_priv->disable_count, 0);
-+	KUNIT_ASSERT_PTR_EQ(test, priv->connector->state->crtc, priv->crtc);
++	mutex_init(&hotplug_helper->event_mutex);
++	hotplug_helper->encoder = encoder;
++	hotplug_helper->event_cb = event_cb;
++	hotplug_helper->drm_event_nb.notifier_call = drm_hotplug_helper_handle_event;
++	hotplug_helper->first_bridge_ep = of_node_get(first_bridge_ep);
 +
-+	drm_atomic_shutdown_encoder(&priv->encoder);
++	ret = drmm_add_action_or_reset(drm, drmm_hotplug_helper_fini, hotplug_helper);
++	if (ret)
++		return ERR_PTR(ret);
 +
-+	KUNIT_EXPECT_EQ(test, bridge_priv->disable_count, 1);
-+	KUNIT_EXPECT_NULL(test, priv->connector->state->crtc);
-+	KUNIT_EXPECT_FALSE(test, priv->crtc->state->active);
++	ret = drm_hotplug_event_notifier_register(&hotplug_helper->drm_event_nb);
++	if (ret)
++		return ERR_PTR(ret);
++
++	ret = drmm_add_action_or_reset(drm, drmm_hotplug_helper_notifier_unregister,
++				       &hotplug_helper->drm_event_nb);
++	if (ret)
++		return ERR_PTR(ret);
++
++	guard(mutex)(&hotplug_helper->event_mutex);
++	drm_hotplug_helper_try_complete(hotplug_helper);
++
++	return 0;
 +}
-+
++EXPORT_SYMBOL_GPL(drmm_hotplug_helper_init);
+diff --git a/include/drm/drm_hotplug_helper.h b/include/drm/drm_hotplug_helper.h
+new file mode 100644
+index 000000000000..ba14d547f8ff
+--- /dev/null
++++ b/include/drm/drm_hotplug_helper.h
+@@ -0,0 +1,30 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
 +/*
-+ * Test that drm_atomic_shutdown_encoder() is a no-op when the encoder is not
-+ * driving any output.
++ * Copyright (C) 2026 GE HealthCare
++ * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
 + */
-+static void drm_test_drm_atomic_shutdown_encoder_disabled(struct kunit *test)
-+{
-+	struct drm_bridge_init_priv *priv;
-+	struct drm_bridge_priv *bridge_priv;
 +
-+	priv = drm_test_bridge_init(test, &drm_test_bridge_atomic_funcs);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv);
++#ifndef __DRM_HOTPLUG_HELPER_H__
++#define __DRM_HOTPLUG_HELPER_H__
 +
-+	bridge_priv = priv->test_bridge;
-+
-+	drm_atomic_shutdown_encoder(&priv->encoder);
-+
-+	KUNIT_EXPECT_EQ(test, bridge_priv->enable_count, 0);
-+	KUNIT_EXPECT_EQ(test, bridge_priv->disable_count, 0);
-+	KUNIT_EXPECT_NULL(test, priv->connector->state->crtc);
-+}
-+
-+/*
-+ * Test that drm_atomic_shutdown_encoder() only stops the pipeline of the
-+ * given encoder and leaves the other CRTC untouched.
++/**
++ * enum drm_hotplug_helper_event - DRM hotplug helper connector events
 + */
-+static void drm_test_drm_atomic_shutdown_encoder_two_crtcs(struct kunit *test)
-+{
-+	struct drm_bridge_two_priv *priv;
-+	struct drm_display_mode *mode;
-+	int ret;
-+
-+	priv = drm_test_bridge_two_init(test);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv);
-+
-+	mode = drm_kunit_display_mode_from_cea_vic(test, &priv->drm, 16);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, mode);
-+
-+	ret = drm_test_enable_pipeline(test, &priv->drm, priv->crtc[0], priv->connector[0], mode);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+
-+	ret = drm_test_enable_pipeline(test, &priv->drm, priv->crtc[1], priv->connector[1], mode);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+
-+	KUNIT_ASSERT_EQ(test, priv->bridge[0]->enable_count, 1);
-+	KUNIT_ASSERT_EQ(test, priv->bridge[1]->enable_count, 1);
-+
-+	drm_atomic_shutdown_encoder(&priv->encoder[0]);
-+
-+	KUNIT_EXPECT_EQ(test, priv->bridge[0]->disable_count, 1);
-+	KUNIT_EXPECT_NULL(test, priv->connector[0]->state->crtc);
-+	KUNIT_EXPECT_FALSE(test, priv->crtc[0]->state->active);
-+
-+	KUNIT_EXPECT_EQ(test, priv->bridge[1]->disable_count, 0);
-+	KUNIT_EXPECT_PTR_EQ(test, priv->connector[1]->state->crtc, priv->crtc[1]);
-+	KUNIT_EXPECT_TRUE(test, priv->crtc[1]->state->active);
-+}
-+
-+static struct kunit_case drm_atomic_shutdown_encoder_tests[] = {
-+	KUNIT_CASE(drm_test_drm_atomic_shutdown_encoder),
-+	KUNIT_CASE(drm_test_drm_atomic_shutdown_encoder_disabled),
-+	KUNIT_CASE(drm_test_drm_atomic_shutdown_encoder_two_crtcs),
-+	{ }
++enum drm_hotplug_helper_event {
++	/** @DRM_HOTPLUG_HELPER_CONNECTOR_ADDED: A drm_connector has just been added */
++	DRM_HOTPLUG_HELPER_CONNECTOR_ADDED,
++	/** @DRM_HOTPLUG_HELPER_CONNECTOR_REMOVING: A drm_connector is about to be removed */
++	DRM_HOTPLUG_HELPER_CONNECTOR_REMOVING,
 +};
 +
-+static struct kunit_suite drm_atomic_shutdown_encoder_test_suite = {
-+	.name = "drm_atomic_shutdown_encoder",
-+	.test_cases = drm_atomic_shutdown_encoder_tests,
-+};
++/**
++ * drm_hotplug_helper_event_cb - Callback to report connector addition and removal.
++ */
++typedef void (*drm_hotplug_helper_event_cb)(enum drm_hotplug_helper_event event,
++					    struct drm_connector *connector);
 +
- /**
-  * drm_test_bridge_chain_verify_fmt - Verify bridge chain format selection
-  * @test: pointer to KUnit test object
-@@ -1375,6 +1583,7 @@ kunit_test_suites(
- 	&drm_bridge_get_current_state_test_suite,
- 	&drm_bridge_helper_reset_crtc_test_suite,
- 	&drm_bridge_alloc_test_suite,
-+	&drm_atomic_shutdown_encoder_test_suite,
- 	&drm_bridge_bus_fmt_test_suite,
- );
- 
++struct drm_hotplug_helper *drmm_hotplug_helper_init(struct drm_encoder *encoder,
++						    drm_hotplug_helper_event_cb event_cb,
++						    struct device_node *next_bridge_ep);
++
++#endif /* __DRM_HOTPLUG_HELPER_H__ */
 
 -- 
 2.56.1
