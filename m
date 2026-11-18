@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41FD9606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6683B606A320
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 21:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bawiayFu;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=USA++iVm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lSWsNZeH;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NtKxG7XQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ub5FGgymBIHQ/4R5fQ4sm6HAhxGJYj6EuFKbouwlUbU=; b=bawiayFuWuTXTbtv8pvwu+NtRo
-	edRjBZc3tTsxXqdR5cqf9z4vCnDSLH2btzmzzJ3JhcLXk35OBsVggTKHdGpL3fDfKnXnAfYqZBVnN
-	6wejwdq1HFoP/mPnj0k8DE6a0mQWelJH/HcYhLmcjyFbrnkEHVPxai8LsluORoJODOWumqBhgLZ79
-	AZUKTAj0sBAtUjggoCFZV58E26HZTKRr/xtQI/5YWAJnAdmCLr1PyRK/c7511OAB1rtt6rCQTVSs6
-	+iWeV/FvkQz3VU4HYLFlNdVBmryCLsDc7m9kitEZG2bz5p4/DnJQs1LoiNLpG58dxOU/xOW8Wyy0Y
-	F48Hr3Gg==;
+	bh=UYCzXL6/0dZ8X2NJb8r8x4jhecKOjPKN/Z3O1wEqXoE=; b=lSWsNZeHk6jha+hopdjgfgNskP
+	B5liOlF2fueHhCGrkoP5RTYA+9Ug+sVIhtuzoUJsL/2IxECdQNSm8jZkLnlg11nvHlKZNxuhzaC4o
+	FFxSgFx6M3IRERxSuEPiXyi4Irn4rBXQckyvuyb+Eh7prM7bmpAaEqK9ay0Y6/2cNW+HiSrDIWagO
+	DgMyPbK5BONrS2ox9/Mmxxd0fotfTQNBqIsvu6GhRPLvjM+iZpz1SWdKFqpg/dGrAQ0bfdFnk/LDo
+	91MY+1lWvsv27pWvGephQ4csDP/kpyshoDj/+oykTV0b1I+0cnKCOMx0wAJyRPWPln+eX65x8HHRm
+	vDXznrkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTnUD-0000000ALxl-0MeK;
+	id 1xTnUD-0000000ALyJ-1W96;
 	Wed, 18 Nov 2026 21:46:37 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTnTp-0000000ALhf-4ANg;
-	Wed, 18 Nov 2026 21:46:14 +0000
+	id 1xTnTr-0000000ALiP-0gPe;
+	Wed, 18 Nov 2026 21:46:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5F3BA63EF6;
+	by sea.source.kernel.org (Postfix) with ESMTP id D522D411E1;
 	Wed, 18 Nov 2026 21:46:13 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795038373;
-	b=Crl3x4yV9K7Bo8go0ZfcXFlHr95VOAGQyCc5puae5/f/mbmKTHnfUPTxXAsOzLUDHcv6
-	 x4OpyBsm1G6H5SU1u3PQItauQOZVbDkYpyqvaT8yTKRU8/gcRWpE8ethJMMbg3n3M5hoO
-	 dcO90LN8fIWV9qRhPzkQ273JRxLgOqrxonvIZDTq4IXBCQNJPBSahx0A5bui5WjW3/cbN
-	 NWMgtoQI/2sqYBHzUj4HWHHThOYm8GNBsIZj+9D3EPlVUderRaxWTvTg8SLpJB1RcXeSg
-	 /cUyxafyIQ4U/E3dl/HFIefxGDop2aP10HAloR8ev1VINjyoSYk/mtzxXdvsSJcKXsA==
+	b=xpR+nkbt8CO251WZpr3In+Zdmd0akzAF55lbOau2ccBBbAFrmIo1JOoxLBczBXrP6H0N
+	 f9ra42B+LjyoRVhGCZIRltAjG271vRyGW4V3cJITlC5A7dvuBTZm50iGah6dNkrFeCXCc
+	 kO54zb4Za31dE/q700w1wJaLH7SHMnqvbUlLgxpGJsN59gEzwwUfFyMrXb5WJrNG3RqQX
+	 gv0HwXz+d6QF6D37+U2+BUyfLLCLL6v06q7x4tbjCBJJy5vY4pHvwAB2Muh60GWgKJWPD
+	 q+5wZ7wLTyHyReENKKJqmhbSdco4GVPYZ+2q2J7+ej25suzE9ZIO0JzszIS8eTZyplw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795038373;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Ub5FGgymBIHQ/4R5fQ4sm6HAhxGJYj6EuFKbouwlUbU=;
-	b=nGGxKkZmi53bb29v3XH5I/iPVvDjoGAE2SiYTqyBqmn+TJvckGK0zLg66+ZPVhyT9vgw
-	 mKbbjBPEDeViT82TvOkiMASUGVXQQNwDjvAO7cLV6Rgj+Z3W6ev7sEDL4QWlE6cC3Wgwc
-	 b0t9F6rNzNvB29MwY+ynCb/qO0T7CGKGr+LOQ4WP6KKT3qP/AZiIn65GcbYKPYeIBkeyK
-	 vfUJd0xomYFDAtwhjSej1+eAZTm6d81eHHTHYBe/vLLHrghRywjItBt6iKYecV6rKabEm
-	 20QDWVPGUYBVMt+/4ARFfdYv+TvGNCEd/f6IcBFZHCWBVRMRX0gA9Bxe7fgQbg63+ow==
+	bh=UYCzXL6/0dZ8X2NJb8r8x4jhecKOjPKN/Z3O1wEqXoE=;
+	b=2FKf9ff1fGD/raTZ7c1eZf9ILKpDMzXlWn13EidUsj1CsbJp7Nb6Ls4x6FGAqs06wp8r
+	 MshtoCfbeiVlvnHtOarinCTPOxMZDiYsrnDN5JG26Jl0xKQkU6HoIdXCOpbAkA08lbNbF
+	 Z0JrIiSy0ND5xB2OasqJq8OMASiJC5ca6+VdpfzJaN5rxAHeJFo8x1C/xA5iswPC/jIvw
+	 k+1nMgdLVD35sRcge+C2v4wIEpckedoqVXj42OLQR3C53Tp3OxQ4ra/Kethir71AbvAO7
+	 sLY9HrMYs92LN2/s8jIMTiLi4IO5VJgf9MM9xVhnmhkvzSNePjKiEMAa2LH9mpmyh8g==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 0823F1F000C6;
+	by smtp.kernel.org (Postfix) with ESMTPS id 32B131F000C8;
 	Wed, 18 Nov 2026 21:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795038373;
-	bh=Ub5FGgymBIHQ/4R5fQ4sm6HAhxGJYj6EuFKbouwlUbU=;
+	bh=UYCzXL6/0dZ8X2NJb8r8x4jhecKOjPKN/Z3O1wEqXoE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=USA++iVmokDbfAysQ5onjaOXhvCS9xdjcVh2JBM0M/6CgfrW6KFy+IAF1UFRvljJ5
-	 mDCCKqVDQYUatAHIojwDqHlhALn+ASBE8Ty+RN80ru2vx+/n/HlT2zYcYeYEVqH8Tp
-	 2sl6oAPtsUyZvmjzJ++Nz4z6dShsVaFdsAnLCmvGl3E+NNfQ1NTN2lZxs3IMWd1kcy
-	 E3/S1XcPFdZbMpEnoH3rcUWGoa05Ek9j0kpBffdTrHev/SNHyB+2nu+DuBWuSQcMAV
-	 ZFfRvSxl+crNrniMFslZxIg6qYTNIK56CW2f/AlQ8pMMZrrraRecgQkSUavf3a0zs+
-	 7Y16MbBeM2BjA==
+	b=NtKxG7XQkvwn5unUUAqUMFIZbag8Nm/Qo1NW6RETai45wTTcEOneyZkVMLxnl1Dt/
+	 Z9US/8D/t+O3lJorxJTilg8N41LvOiJxeGprQ2O9udTEd8k1l9h0ZJ0aAkjNJV7rfk
+	 K/7keCUsVyM7gHla7KHhbKQW2dIoF499YeLNWANEvI9YzyYjvjTdjeOHzNiW2sE75z
+	 q2u/axNVC18cdCBe6XBkVUHkmJBmn/bqe2qcJjfAfdufTFNWT7tL55nEEF41nYsvWH
+	 dJ2Iv4bSin9u1Jv2EBZEyJ5PXje/l8if5MzmWgJO2Lll6qV/ryIccS3eR01kziI5oZ
+	 QdsupgDA7SdGw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 8CCCC4AFD1;
+	by lkml.kernel.org (Postfix) with ESMTP id B90724AFD9;
 	Wed, 18 Nov 2026 21:46:11 +0000 (UTC)
 From: Joachim Eastwood via B4 Relay <devnull+joachim.eastwood.gmail.com@kernel.org>
-Date: Wed, 18 Nov 2026 22:45:29 +0100
-Subject: [PATCH 2/4] drm/bridge: synopsys: dw-hdmi-qp: Attach the next
- bridge in the chain
+Date: Wed, 18 Nov 2026 22:45:31 +0100
+Subject: [PATCH 4/4] arm64: dts: rockchip: enable hdmi sound on
+ rk3588-h96-max-v58
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261118-dw-hdmi-qp-bridge_attach-v1-2-e370920bc7f3@gmail.com>
+Message-Id: <20261118-dw-hdmi-qp-bridge_attach-v1-4-e370920bc7f3@gmail.com>
 References: <20261118-dw-hdmi-qp-bridge_attach-v1-0-e370920bc7f3@gmail.com>
 In-Reply-To: <20261118-dw-hdmi-qp-bridge_attach-v1-0-e370920bc7f3@gmail.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -100,11 +100,11 @@ Cc: dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  Joachim Eastwood <joachim.eastwood@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795038370; l=2517;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795038370; l=838;
  i=joachim.eastwood@gmail.com; s=20260701; h=from:subject:message-id;
- bh=1lj8+1BKN4Nmy9uS7g9V3h/v7ntQIcakt96ADfZAy+E=;
- b=qq32ej2OwuLI/6OrZU8KxRARx2vkpz9KS9rNSkIXUhwn2XNIS7+VOH1ZX6Rl+Vc7M/OvdOdHH
- E5qFVxvmA1HCsi5jMmSESIPXKvWfeo2N8U7fvzw7LjmNPZ7lQWSvd9k
+ bh=Olvh2LZXh8fwddYqdBGYqLRZSxdXzrxttsogQiNz044=;
+ b=+rBsl+l7IxeVv/QH09lai1TD/u5HoNCnxlTLKxgYu1V3vc3HHrgm7mebshsZbQVpZmgFuMJtE
+ bOzsqqGuVLXBxOpqr3SQ/NERCfJSzRqjNasrbGxdvb4yJFOU/7PH+ZL
 X-Developer-Key: i=joachim.eastwood@gmail.com; a=ed25519;
  pk=ZN/8xWtdYaSd5oEfloYSZ1a+/ri0n0VZqjlEeHlbXFU=
 X-Endpoint-Received: by B4 Relay for joachim.eastwood@gmail.com/20260701
@@ -132,73 +132,39 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Joachim Eastwood <joachim.eastwood@gmail.com>
 
-Implement the drm_bridge_funcs attach function so dw-hdmi-qp will attach
-to the next bridge in the chain. This will allow the properties on the
-next bridge be used. In the case of hdmi-connector this will make
-properties like ddc-i2c-bus and hpd-gpios can override the on-chip
-functions in dw-hdmi-qp.
+Enable hdmi0_sound and i2s5_8ch to get sound over HDMI.
 
 Signed-off-by: Joachim Eastwood <joachim.eastwood@gmail.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 30 ++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-index eed249aca1e23..200229e5d9afc 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-@@ -16,6 +16,7 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/of.h>
-+#include <linux/of_graph.h>
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dts b/arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dts
+index da6282c105255..5dd3f71932ec1 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dts
+@@ -239,6 +239,10 @@ hdmi0_out_con: endpoint {
+ 	};
+ };
  
- #include <drm/bridge/dw_hdmi_qp.h>
- #include <drm/display/drm_hdmi_helper.h>
-@@ -39,6 +40,9 @@
- #define DDC_CI_ADDR		0x37
- #define DDC_SEGMENT_ADDR	0x30
++&hdmi0_sound {
++	status = "okay";
++};
++
+ &hdptxphy0 {
+ 	status = "okay";
+ };
+@@ -299,6 +303,10 @@ hym8563: rtc@51 {
+ 	};
+ };
  
-+/* OF graph port carrying the output towards the HDMI connector */
-+#define DW_HDMI_QP_OUTPUT_PORT	1
++&i2s5_8ch {
++	status = "okay";
++};
 +
- struct dw_hdmi_qp_i2c {
- 	struct i2c_adapter	adap;
- 
-@@ -1024,7 +1028,33 @@ static void dw_hdmi_qp_bridge_hpd_disable(struct drm_bridge *bridge)
- 		hdmi->phy.ops->disable_hpd(hdmi, hdmi->phy.data);
- }
- 
-+static int dw_hdmi_qp_bridge_attach(struct drm_bridge *bridge,
-+				    struct drm_encoder *encoder,
-+				    enum drm_bridge_attach_flags flags)
-+{
-+	struct dw_hdmi_qp *hdmi = bridge->driver_private;
-+	struct device_node *remote __free(device_node) =
-+		of_graph_get_remote_node(hdmi->dev->of_node,
-+					 DW_HDMI_QP_OUTPUT_PORT, -1);
-+
-+	/*
-+	 * The HDMI connector node is optional. When present, chain its bridge
-+	 * so that properties such as ddc-i2c-bus, hpd-gpios and supplies are
-+	 * honoured by the DRM bridge connector.
-+	 */
-+	if (!remote)
-+		return 0;
-+
-+	struct drm_bridge *next_bridge __free(drm_bridge_put) =
-+		of_drm_find_and_get_bridge(remote);
-+	if (!next_bridge)
-+		return -EPROBE_DEFER;
-+
-+	return drm_bridge_attach(encoder, next_bridge, bridge, flags);
-+}
-+
- static const struct drm_bridge_funcs dw_hdmi_qp_bridge_funcs = {
-+	.attach = dw_hdmi_qp_bridge_attach,
- 	.atomic_get_output_bus_fmts = drm_atomic_helper_bridge_get_hdmi_output_bus_fmts,
- 	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
- 	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+ &gmac1 {
+ 	clock_in_out = "output";
+ 	phy-handle = <&rgmii_phy1>;
 
 -- 
 2.56.0
