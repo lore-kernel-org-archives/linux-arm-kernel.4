@@ -2,134 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9607960A2607
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:59:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786DD60A2604
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ScYPRVuQ;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=RoudCvML
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0Mf8uGCi;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TLmD8M3S
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
-	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=V8y8uyklrzp/tIyfPpbUSMfiF42PsKOnC0d86vjJPe8=; b=ScYPRVuQ1tkHQH
-	1E6b1hC3E3engacTMMFD8OblCk5pS1BJBBKat3r9vVM1CZznpHpECqRq4HyHndthfGTfl1rIQkBG9
-	/W7iREIHh2/BZzd7WsYkKJzijxRA75O1uEVd3WibhkcpIwR+CavjDWy7F3Z55HBM1uEKMVeT97523
-	QPlKzut0/A2julvMBMhlXF693OskyDBGUiMNMSWvTkU5AvTc/2QlK82WRNODaKpI1GB788yzRR6yP
-	ahcyxoqw99F779A2wGhj3m67fe3C8GX+Wm1w1dlyfTjmMIooUu3QlX14AcyoY5WjVGZgmlgZc7Q6f
-	XzkaIA9YWWfe7Dn/jtSQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=t6a0qUAEvTRsG3736CRjvd9xj+hEAg897zrjwcV0qhs=; b=0Mf8uGCi1uoIonVmjg2b5/lxHP
+	8F0dg3G7IVzDSUfmz+Q7UErC681wbZyifwSZXxqC8ARPNnT6XcslRwg7uf4kE0uVcHgzA8UeGB0sr
+	hhuVnA7wVWPqN+Rx+moXVn4yV1gFiCxcYKDsIrTw2NMi3MskXSMKBZCo+6eigT/fK19xDDGCKU2Fr
+	2+qz+XIyMGdvwrx0s5p6ZQ+QRVjjlo/1w/5d9y3Ef09BS9ka5jz+XGElKDhwjycfE5tyR9rMZWzc4
+	bE64HjPDhhhCcAElX7L7cdp/F1BKqAF4aGri77XNrH6/T6HGpF1DM37wV7NtiyAtD+pDZWe7FqsPd
+	QieHAC1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTeK7-00000008mD7-1LlL;
+	id 1xTeK7-00000008mCl-0r9B;
 	Wed, 18 Nov 2026 11:59:35 +0000
-Received: from mail-northeuropeazon11011058.outbound.protection.outlook.com ([52.101.65.58] helo=DU2PR03CU002.outbound.protection.outlook.com)
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTeK4-00000008mAB-1ivW
+	id 1xTeK6-00000008mBl-1iK2
 	for linux-arm-kernel@lists.infradead.org;
 	Wed, 18 Nov 2026 11:59:34 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TIcutvCkHPpMukVk3GPfwib7whmPcdVTnUhK12sUcPc4ldbi+9aI89dKXiJmPBOwJNI++/wl1dsXi2Pi2sDcRWI+91Z3p/5K2rqwA20e2Ehunde3oBYTKMdFodl7ekBoCNX9PRJcpq80NFLG0SJXg4CiKbgKmpOGzfEPMeDQvvE7T7KsUqxz1/YBEt+CzaNk9kFq524IZjBLOoCux2MZlPjv+8Z2gmV9LlZFyJ/Xj0w5jUdJV3K/r144LO0bzTAlSBsxh9qVYCVG0jleWADPzpNvZwYLg7tG0ItoWHmTuXD01TufS+edgynQ51LSmoLS2BldtgCeAvN6+0lz38UORw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V8y8uyklrzp/tIyfPpbUSMfiF42PsKOnC0d86vjJPe8=;
- b=KBfnGvoHPFE8t9QjJnAFgMc6N0k/pRqtChgIHOUAk5OTZIfC8n4S0S12dPp6yJr305AM+QM5oMBnIujN7NU6+Cw2/fvRN3DYEaEN0FP+hEolqUTNuYAvS6QBiLctn6S1ZJqFqzudmGqXyZ5Syrc+VdeKS7Dt6sVEy+GgYme9lwZXAwyufqz0wx6XN8w2StPF0/KSG1PKDWoy2zBpMQ7lK9iMY5pewPlnny5zUMMs/tmjG1uvShLFf/VppG+mvdYXha+hRXL0Hqp1gJ7whVy408ZxtEMNpdJQL6A1iAZerkTsXSjHVEQz5/z2dUH8z/aFcL+eN04HnuP80YZ133K93Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V8y8uyklrzp/tIyfPpbUSMfiF42PsKOnC0d86vjJPe8=;
- b=RoudCvMLpuHUeBxcmassklELjaT+IqcvxZmfHcXi69aH5CcrWOKptU1TgpLu7aIphtGVlC40zjvoaG7Al83EkNc0FM7QOKvR5N+OxWV6sEv6iMGq+RmJBHQALmkq8DdhNLlqwWzz1RLDrqrY3aJZQYyQ8kRRbtJM+cd52//SO4gkksewj/BQSjYVd44hRBlV5tz2XosWU+i1wmXq6VY7iGJ3Jt/n6vssa81BZN6VpSCXguf+X+W7UDYH2mh5BFuXRLZybhJWBu7H+7ikUwkH6PYuGeuJNPVy1mABLCtfEp6V502BcBDE9NGOZGGOxdoq0KalljmZb60OGZVnxq0mUg==
-Received: from DU7P194CA0006.EURP194.PROD.OUTLOOK.COM (2603:10a6:10:553::15)
- by PA3PR10MB9312.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:4d5::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.4; Wed, 18 Nov
- 2026 11:59:26 +0000
-Received: from DU2PEPF00028D0E.eurprd03.prod.outlook.com
- (2603:10a6:10:553:cafe::37) by DU7P194CA0006.outlook.office365.com
- (2603:10a6:10:553::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Wed,
- 18 Nov 2026 11:59:26 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DU2PEPF00028D0E.mail.protection.outlook.com (10.167.242.22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 11:59:26 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Wed, 18 Nov
- 2026 13:00:10 +0100
-Received: from localhost (10.252.6.76) by STKDAG1NODE2.st.com (10.75.128.133)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Wed, 18 Nov
- 2026 12:59:25 +0100
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-Date: Wed, 18 Nov 2026 12:59:11 +0100
-Subject: [PATCH v3 6/6] arm64: dts: st: add LTDC pixel clock mux inputs on
- stm32mp25
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5324044832;
+	Wed, 18 Nov 2026 11:59:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1998C1F000D0;
+	Wed, 18 Nov 2026 11:59:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795003173;
+	bh=t6a0qUAEvTRsG3736CRjvd9xj+hEAg897zrjwcV0qhs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=TLmD8M3SujNa0QtYF8gLynGLwQ3o0Jh/fMNhFJ1k2eHY4Nx5voFNq08nnMqY+xbba
+	 eoJEwUtiTfULSfdPSAmMY7RExNHeRt/BM+TFfpigWTnFcmps/CrWkEWRtaP/V82F6N
+	 EAT9yfo0jBBBxeEtBbROn0qIGtHz1p7gFLFPqUaBNwoCPYy4efvTl16NexGeDr7KQo
+	 YtidpzDrMmuU+DTNQioCeedKmIdxOB4F3t9eM1yw9jNbNcFGtfJ89RD0TIFcBwBGKZ
+	 I6KM9UUU1sm2u6XnTumiQsg3L2RPe5SAd/cJpfvXEpCIVg5aXDTPlFraS6Gf8cZ+Fz
+	 v+x+x6geMX+gg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xTeK3-0000000HVE0-0rV3;
+	Wed, 18 Nov 2026 11:59:31 +0000
+Date: Wed, 18 Nov 2026 11:59:30 +0000
+Message-ID: <864ide1hb1.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: myrialsarvay@gmail.com
+Cc: Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sven Peter <sven@kernel.org>,
+	Janne Grunau <j@jannau.net>,
+	Neal Gompa <neal@gompa.dev>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev,
+	Yuvan Shen <yuvanshen09@gmail.com>,
+	Nick Chan <towinchenmi@gmail.com>
+Subject: Re: [PATCH v2 03/15] drivers/perf: apple_m1: Support per-implementation event tables
+In-Reply-To: <20261107-m3-plus-pmu-events-v2-3-acf1e78da039@gmail.com>
+References: <20261107-m3-plus-pmu-events-v2-0-acf1e78da039@gmail.com>
+	<20261107-m3-plus-pmu-events-v2-3-acf1e78da039@gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20261118-ups_mp25_clk_syscfg-v3-6-935de791a4ce@foss.st.com>
-References: <20261118-ups_mp25_clk_syscfg-v3-0-935de791a4ce@foss.st.com>
-In-Reply-To: <20261118-ups_mp25_clk_syscfg-v3-0-935de791a4ce@foss.st.com>
-To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Christophe Roullier
-	<christophe.roullier@foss.st.com>, <patrick.delaunay@foss.st.com>,
-	<yannick.fertre@foss.st.com>
-CC: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795003158; l=1510;
- i=gabriel.fernandez@foss.st.com; s=20261013; h=from:subject:message-id;
- bh=2vG7JRKnOw8O7I8F1WBdWWK6arSZYCWApn/mtQdKBWs=;
- b=MM7vP/goYAZK8ahqjNbNHn18xAh0w8iQ16KIXs0vrVUhKZIgqIJYFfVYDRGCW6ziXpX+BBDiZ
- iQfXRXwk1SvCHj84wgIIDhTRgYTSLiwBX9txNRjkX9dcBV7nE0Tj0H9
-X-Developer-Key: i=gabriel.fernandez@foss.st.com; a=ed25519;
- pk=BVZE1QjIfcrviw9RyyOGQGGsg9CNbaxyjYn9pAlkNyQ=
-X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PEPF00028D0E:EE_|PA3PR10MB9312:EE_
-X-MS-Office365-Filtering-Correlation-Id: 91d4f1a8-253d-4488-31ae-08df456b649b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|23010399003|7416014|376014|36860700016|1800799024|921020|261102123227099003|56012099006|11063799006|261026140227099003|10067099003|261022105027099003|261021123027099003|261028144727099003|261021121427099003|261009223027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: XdOo5JM0t8QGWDrMWft4ErGypWF9cTNkz9NuGOVwgIRF9vyA+gBJDqQkgu0ZFqgTZANrX2Gis07zvNO1KswBuXYi5c5rky1iLR1Izuz+hqgo2giWuyJWMJgeEY5k3DZ/wv0h3k/yGM43bizZtpkE1KYgeKckW1fvdNDNqXjCGmqVvzeAOsDk+XQNh0Y0Ez4dAAufryjOoGzuRLY4jd2LUMSNmHzmExUHhwMnWEcd4+hWxGcQbEQRZ6ibczV+eTh8Ak2HL7O1RhG32e9FU8QBOxPhAFW6Ew0I+fRGit5TbEGXc8/9OvKBVvnVwU3kVvIT6PHu/Miq26QSfG3k0eRO5unAbX93cAPLTD6ApzytixSJgPtnx/0phwb9gdjRtmQj2NcqLiANEf656Oew5HhdGH3NtYbyAHD7PHsTSfibcR9a+XJYRTE19Y5s7R2Cs3yeKlQBdp9w3QXrqas9akE+fHtux1ss9+Ig3J0J9hQ/2w8XS9PdoZmKLBP57zpYjOJk713LzG+VY3f5j+uEkQTB44uE6FsMQYtBAc+Jf6Xa3PCMOMDHN87KACOH+23OaYU/rA8ebF63h27/+F8vw0jJnfP7eJtI/70U1wyrZdzrmeZ+iQepBVHyV4Y+QlPHm82s1tqhbOc06KUOqIy19PnIJ4pyZTks5SInqwEX7p2szCN9MNx67WHQCEOUjayicN6SmzZqpsLg+QJ2qrm/jJvytJNXAmr9mkwk5Sx8H0aKqsHt7eWloWljv90Ypg9gUgJo
-X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(23010399003)(7416014)(376014)(36860700016)(1800799024)(921020)(261102123227099003)(56012099006)(11063799006)(261026140227099003)(10067099003)(261022105027099003)(261021123027099003)(261028144727099003)(261021121427099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: atS4A25y6LxvS0BRVR11X/pF5viVoENdoI/wwVc9oInKm4S/fkvAlD2VzAF7dN2z/Fmp3zgBNkHD9571fc7Py0RD0k8kyCywyyq5QAEbJigZcMpRnnKtbgsTV2RkNFqklU6VJ4U3LjpXEz2/abUzTiL73HMVmaLIx7v9pgssCEXFGjuquxoT87BTnW+WaUZ4FKBIwmDyTPIwk962QQC/6nY+JUSDu54AopohF3YQYlsAMjz1WEOPINkanPe47uZ2jvJFp7oF6YoaRm4u1f2hZ3qEn7G9evy2AnMN8vFqKgs5kn7yVXaFryFqojxgi0C2CQGpRrPhuzTiNhgflWjuWKaKCRj/sQRx8sMq8PVKKhGdIHOwr6ATKf11suDY5Pf4X877Fem49UFbqnlHvMyu5o/2cuXb9kKRTp+Gtt4RAkl5S51re71nks958JzXPY20
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 11:59:26.0319
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91d4f1a8-253d-4488-31ae-08df456b649b
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: DU2PEPF00028D0E.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA3PR10MB9312
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_035932_459717_E32125E9 
-X-CRM114-Status: GOOD (  10.66  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: myrialsarvay@gmail.com, will@kernel.org, mark.rutland@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, sven@kernel.org, j@jannau.net, neal@gompa.dev, linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, asahi@lists.linux.dev, yuvanshen09@gmail.com, towinchenmi@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,57 +93,234 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Describe the inputs of the LTDC pixel clock mux in the SYSCFG node,
-which is the provider of the LTDC "ref" clock.
+On Sat, 07 Nov 2026 10:48:50 +0000,
+Myria Sarvay via B4 Relay <devnull+myrialsarvay.gmail.com@kernel.org> wrote:
+> 
+> From: Nick Chan <towinchenmi@gmail.com>
+> 
+> Use per-implementation event tables to allow supporting implementations
+> with a different list of events and event affinities.
+> 
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> Co-developed-by: Myria Sarvay <myrialsarvay@gmail.com>
+> Signed-off-by: Myria Sarvay <myrialsarvay@gmail.com>
+> ---
+>  drivers/perf/apple_m1_cpu_pmu.c | 113 ++++++++++++++++++++++++----------------
+>  1 file changed, 69 insertions(+), 44 deletions(-)
+> 
+> diff --git a/drivers/perf/apple_m1_cpu_pmu.c b/drivers/perf/apple_m1_cpu_pmu.c
+> index de4026c63afd..2ff0c2e0b737 100644
+> --- a/drivers/perf/apple_m1_cpu_pmu.c
+> +++ b/drivers/perf/apple_m1_cpu_pmu.c
+> @@ -43,9 +43,6 @@
+>   * moment, we don't really need to distinguish between the two because we
+>   * know next to nothing about the events themselves, and we already have
+>   * per cpu-type PMU abstractions.
+> - *
+> - * If we eventually find out that the events are different across
+> - * implementations, we'll have to introduce per cpu-type tables.
+>   */
+>  enum m1_pmu_events {
+>  	M1_PMU_PERFCTR_RETIRE_UOP				= 0x1,
+> @@ -167,7 +164,7 @@ static const u16 m1_pmu_event_affinity[M1_PMU_PERFCTR_LAST + 1] = {
+>  	[M1_PMU_PERFCTR_UNKNOWN_fd]				= ONLY_2_4_6,
+>  };
+>  
+> -static const unsigned m1_pmu_perf_map[PERF_COUNT_HW_MAX] = {
+> +static const unsigned int m1_pmu_perf_map[PERF_COUNT_HW_MAX] = {
+>  	PERF_MAP_ALL_UNSUPPORTED,
+>  	[PERF_COUNT_HW_CPU_CYCLES]		= M1_PMU_PERFCTR_CORE_ACTIVE_CYCLE,
+>  	[PERF_COUNT_HW_INSTRUCTIONS]		= M1_PMU_PERFCTR_INST_ALL,
+> @@ -486,11 +483,12 @@ static void m1_pmu_write_counter(struct perf_event *event, u64 value)
+>  	isb();
+>  }
+>  
+> -static int m1_pmu_get_event_idx(struct pmu_hw_events *cpuc,
+> -				struct perf_event *event)
+> +static int apple_pmu_get_event_idx(struct pmu_hw_events *cpuc,
+> +				   struct perf_event *event,
+> +				   const u16 event_affinities[])
+>  {
+>  	unsigned long evtype = event->hw.config_base & M1_PMU_CFG_EVENT;
+> -	unsigned long affinity = m1_pmu_event_affinity[evtype];
+> +	unsigned long affinity = event_affinities[evtype];
+>  	int idx;
+>  
+>  	/*
+> @@ -509,6 +507,12 @@ static int m1_pmu_get_event_idx(struct pmu_hw_events *cpuc,
+>  	return -EAGAIN;
+>  }
+>  
+> +static int m1_pmu_get_event_idx(struct pmu_hw_events *cpuc,
+> +				struct perf_event *event)
+> +{
+> +	return apple_pmu_get_event_idx(cpuc, event, m1_pmu_event_affinity);
+> +}
+> +
+>  static void m1_pmu_clear_event_idx(struct pmu_hw_events *cpuc,
+>  				   struct perf_event *event)
+>  {
+> @@ -536,44 +540,52 @@ static void m1_pmu_stop(struct arm_pmu *cpu_pmu)
+>  	__m1_pmu_set_mode(PMCR0_IMODE_OFF);
+>  }
+>  
+> +static int apple_pmu_map_event(struct perf_event *event,
+> +			       const unsigned int (*perf_map)[],
+> +			       unsigned int flags)
+> +{
+> +	event->hw.flags |= flags;
+> +	return armpmu_map_event(event, perf_map, NULL, M1_PMU_CFG_EVENT);
+> +}
+> +
+> +/*
+> + * Apple PMU counters have been observed to be either 48 or
+> + * 64 bits wide, depending on the SoC. However, the MSB is
+> + * what triggers an overflow interrupt, so we advertise the
+> + * counters as being 1-bit smaller than hardware so as to
+> + * mimick ARM PMU behaviour
+> + */
+>  static int m1_pmu_map_event(struct perf_event *event)
+>  {
+> -	/*
+> -	 * Although the counters are 48bit wide, bit 47 is what
+> -	 * triggers the overflow interrupt. Advertise the counters
+> -	 * being 47bit wide to mimick the behaviour of the ARM PMU.
+> -	 */
+> -	event->hw.flags |= ARMPMU_EVT_47BIT;
+> -	return armpmu_map_event(event, &m1_pmu_perf_map, NULL, M1_PMU_CFG_EVENT);
+> +	return apple_pmu_map_event(event, &m1_pmu_perf_map, ARMPMU_EVT_47BIT);
+>  }
+>  
+>  static int m2_pmu_map_event(struct perf_event *event)
+>  {
+> -	/*
+> -	 * Same deal as the above, except that M2 has 64bit counters.
+> -	 * Which, as far as we're concerned, actually means 63 bits.
+> -	 * Yes, this is getting awkward.
+> -	 */
+> -	event->hw.flags |= ARMPMU_EVT_63BIT;
+> -	return armpmu_map_event(event, &m1_pmu_perf_map, NULL, M1_PMU_CFG_EVENT);
+> +	return apple_pmu_map_event(event, &m1_pmu_perf_map, ARMPMU_EVT_63BIT);
+>  }
+>  
+> -static int m1_pmu_map_pmuv3_event(unsigned int eventsel)
+> +static int apple_pmu_map_pmuv3_event(unsigned int eventsel, const u16 pmceid_map[])
+>  {
+> -	u16 m1_event = HW_OP_UNSUPPORTED;
+> +	u16 apple_event = HW_OP_UNSUPPORTED;
 
-Only the LTDC kernel clock is available on STM32MP251; the LVDS and DSI
-clocks are added on STM32MP255.
+nit: s/apple_event/hw_event/.
 
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 2 ++
- arch/arm64/boot/dts/st/stm32mp255.dtsi | 7 ++++++-
- 2 files changed, 8 insertions(+), 1 deletion(-)
+>  
+>  	if (eventsel < ARMV8_PMUV3_MAX_COMMON_EVENTS)
+> -		m1_event = m1_pmu_pmceid_map[eventsel];
+> +		apple_event = pmceid_map[eventsel];
+>  
+> -	return m1_event == HW_OP_UNSUPPORTED ? -EOPNOTSUPP : m1_event;
+> +	return apple_event == HW_OP_UNSUPPORTED ? -EOPNOTSUPP : apple_event;
+>  }
+>  
+> -static void m1_pmu_init_pmceid(struct arm_pmu *pmu)
+> +static int m1_pmu_map_pmuv3_event(unsigned int eventsel)
+> +{
+> +	return apple_pmu_map_pmuv3_event(eventsel, m1_pmu_pmceid_map);
+> +}
+> +
+> +static void apple_pmu_init_pmceid(struct arm_pmu *pmu)
+>  {
+>  	unsigned int event;
+>  
+>  	for (event = 0; event < ARMV8_PMUV3_MAX_COMMON_EVENTS; event++) {
+> -		if (m1_pmu_map_pmuv3_event(event) >= 0)
+> +		if (pmu->map_pmuv3_event(event) >= 0)
+>  			set_bit(event, pmu->pmceid_bitmap);
+>  	}
+>  }
+> @@ -616,33 +628,22 @@ static int m1_pmu_set_event_filter(struct hw_perf_event *event,
+>  	return 0;
+>  }
+>  
+> -static int m1_pmu_init(struct arm_pmu *cpu_pmu, u32 flags)
+> +static int apple_pmu_init(struct arm_pmu *cpu_pmu)
+>  {
+>  	cpu_pmu->handle_irq	  = m1_pmu_handle_irq;
+>  	cpu_pmu->enable		  = m1_pmu_enable_event;
+>  	cpu_pmu->disable	  = m1_pmu_disable_event;
+>  	cpu_pmu->read_counter	  = m1_pmu_read_counter;
+>  	cpu_pmu->write_counter	  = m1_pmu_write_counter;
+> -	cpu_pmu->get_event_idx	  = m1_pmu_get_event_idx;
+>  	cpu_pmu->clear_event_idx  = m1_pmu_clear_event_idx;
+>  	cpu_pmu->start		  = m1_pmu_start;
+>  	cpu_pmu->stop		  = m1_pmu_stop;
+> -
+> -	if (flags & ARMPMU_EVT_47BIT)
+> -		cpu_pmu->map_event = m1_pmu_map_event;
+> -	else if (flags & ARMPMU_EVT_63BIT)
+> -		cpu_pmu->map_event = m2_pmu_map_event;
+> -	else
+> -		return WARN_ON(-EINVAL);
+> -
+>  	cpu_pmu->reset		  = m1_pmu_reset;
+>  	cpu_pmu->set_event_filter = m1_pmu_set_event_filter;
+>  
+> -	cpu_pmu->map_pmuv3_event  = m1_pmu_map_pmuv3_event;
+> -	m1_pmu_init_pmceid(cpu_pmu);
+> +	apple_pmu_init_pmceid(cpu_pmu);
+>  
+>  	bitmap_set(cpu_pmu->cntr_mask, 0, M1_PMU_NR_COUNTERS);
+> -	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_EVENTS] = &m1_pmu_events_attr_group;
+>  	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_FORMATS] = &m1_pmu_format_attr_group;
+>  	return 0;
+>  }
+> @@ -651,25 +652,49 @@ static int m1_pmu_init(struct arm_pmu *cpu_pmu, u32 flags)
+>  static int m1_pmu_ice_init(struct arm_pmu *cpu_pmu)
+>  {
+>  	cpu_pmu->name = "apple_icestorm_pmu";
+> -	return m1_pmu_init(cpu_pmu, ARMPMU_EVT_47BIT);
+> +	cpu_pmu->get_event_idx	  = m1_pmu_get_event_idx;
+> +	cpu_pmu->map_event	  = m1_pmu_map_event;
+> +
+> +	cpu_pmu->map_pmuv3_event  = m1_pmu_map_pmuv3_event;
+> +
+> +	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_EVENTS] = &m1_pmu_events_attr_group;
+> +	return apple_pmu_init(cpu_pmu);
+>  }
+>
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index dac3d2d23ff0..7a91c29309fe 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -2076,6 +2076,8 @@ exti1: interrupt-controller@44220000 {
- 		syscfg: syscon@44230000 {
- 			compatible = "st,stm32mp25-syscfg", "syscon";
- 			reg = <0x44230000 0x10000>;
-+			clocks = <&rcc CK_KER_LTDC>;
-+			clock-names = "ltdc";
- 			#clock-cells = <0>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-index 7a598f53a2a0..e9c8ed9882c9 100644
---- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-@@ -40,4 +40,9 @@ venc: venc@480e0000 {
- 		clocks = <&rcc CK_BUS_VENC>;
- 		access-controllers = <&rifsc 90>;
- 	};
--};
-\ No newline at end of file
-+};
-+
-+&syscfg {
-+	clocks = <&rcc CK_KER_LTDC>, <&lvds>, <&clk_dsi_txbyte>;
-+	clock-names = "ltdc", "lvds", "dsi";
-+};
+Looking at the following patches, I feel that this series is taking
+the long route to get to a relatively clear point: most of the
+invariant that we relied on for M1, slightly relaxed for M2 (counter
+width), are even more relaxed for M3+ (event width). We therefore need
+to indirect things. The way you do it is to mirror the current setup,
+with a whole set of callbacks per implementation and a bunch of
+additional helpers.
+
+But instead of having a set of helper functions, one per
+implementation, with an ever increasing set of parameters, it really
+feels like we could do with a more data-centric approach where we have
+a single data structure describing an implementation, containing all
+the relevant data (pointer to the event mapping table, flags, bit
+indices for the user/kernel/guest/host attributes, and so on. We could
+then have a single set of callbacks that work on everything.
+
+You could convert M1/M2 to that, then just add the relevant
+descriptions for M3+, which should just add data and the init
+functions, nothing else.
+
+Does this make sense to you?
+
+Thanks,
+
+	M.
 
 -- 
-2.43.0
-
+Without deviation from the norm, progress is not possible.
 
