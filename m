@@ -2,91 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6B5606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 01:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D5D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 01:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xne4aqIV;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=jxgQrE+5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n8/8npR5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=En2HFkVRz7jUndIJWs1vjfMzW7QUrXLJFOywq7zEjgM=; b=xne4aqIV7gMUEd
-	as4CN0cwoc2ij2oLfrQMF8rb9wMe3RWvJNjmJvVzBJ2oxgas7jGTFqc3NqdzV20vdx+jwVP3jOaVx
-	Qk4ULj+H8STAOJkYFNzeJ4ipCFVtelkbViCmmpBeHST0sDM7DBjg1n/NTIc41xxWk2w2b4iTplzDr
-	6Ee49MnotGYp2FgKAFKApECuM+kA0PvnwXEIjm3pHay/tx7xwNaP8EwJbMRKG61/ag8cy4VC5eZ8e
-	tkq75cfyUWICe9lwvwIDqpmKDQXKeCIaO9JuHqaxDJv9m45UEKbWEsWAkHOWId5/1J8P4NmEbbgBm
-	oXFm2Q8Npup7Z2dgOcMw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=IK47gmLXjQYtR3QPjuBqimLTbqJ+3Tf6AL6xgIEzRt0=; b=n8/8npR5UTZjbG1euojgKR9ZzU
+	pAJOuZCHxdSPq/m9LhluFZ0RyWwlCg2D7l84HT1v3dPZsH8gwX8lqn6FHIoDC2DXFzIU6iDmZ9jqh
+	cBKNIoFNQHBYVvnyR+VMJo5yZullN99iPmRCP5j8IsFknFu98D+ElvULrnpN+E7A+mrh8D5j17jS2
+	YexFM7jOdekKCqLZT4p+3zMSVxb04IuMoS5S2syHGGMdGoBoKz+kSJN+L2ib9IXEjmuHRBv93tn8X
+	cKLLQ33a9JRByJ96pNU5Kepl+zOZ6kXDL4NWXQOILKHIc7OLTqG8vGygl7bQKQBgLHpY4rr8OUz/v
+	rR4kaQmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTUUV-00000007S7o-0b7h;
-	Wed, 18 Nov 2026 01:29:39 +0000
-Received: from linux.microsoft.com ([13.77.154.182])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTUUS-00000007S6C-3BB7
+	id 1xTUj7-00000007TYb-3Mt8;
+	Wed, 18 Nov 2026 01:44:45 +0000
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTUj4-00000007TYE-3Xtq
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 01:29:38 +0000
-Received: from [192.168.0.88] (192-184-212-33.fiber.dynamic.sonic.net [192.184.212.33])
-	by linux.microsoft.com (Postfix) with ESMTPSA id B292620B7169;
-	Tue, 17 Nov 2026 17:29:34 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com B292620B7169
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1794965375;
-	bh=En2HFkVRz7jUndIJWs1vjfMzW7QUrXLJFOywq7zEjgM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=jxgQrE+5/+IOWBmij56qJv+Q2l5X0GuaotxyKD2Gfuk04WROOvvx4dIY6ORHw/sMG
-	 IcQB2mHFqf5nkMayKL0Rx+z5gAvYLhaWns+WHpxm4EShE4HNXIUfgNY/adszgUx3h6
-	 kVjufo8h4+/Ztb9gA9rLNYY44ETfakE+9+dKPEoA=
-Message-ID: <f1b8a32c-6fb5-cfed-df69-8499f2e94cc8@linux.microsoft.com>
-Date: Tue, 17 Nov 2026 17:29:34 -0800
+	Wed, 18 Nov 2026 01:44:44 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xXzgN6Gd2ECq7NND9/rV8DX2iX/M21NqgNkLu3EY+0l+Ws6lpBgqD3AHgSoFyU/NvqBjdzVais4jdOOUVE64W8YD2ZdDYGSHd80WwJroEHvZabNIJF3PHuXNK6PCZsDCDY87AqoNfh8ddIj6eRWNI2qZ4BHKsp/sZGK4WIvigqfK5tQhh0giKoRAsyDh++BNN0k6a9jMBsIPa9EITNoZAWcVJAP/h+GWzIsEzLZ6BLwFX1Mp9P0Hoh2nsDCCrwq0Ir41RumLj7NE4Hqx8LkYUTZnuFXHvyQeFow/1aKOjLgrAOtHZGWM4lolA5Cs2J3wZPXZHvdvEPCPwyuNy1Ahpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IK47gmLXjQYtR3QPjuBqimLTbqJ+3Tf6AL6xgIEzRt0=;
+ b=xRBy2LYSQdTPYBkXQ5pdk7JX02zAogOhfm8l/TpdwXH6KYXfWCVZbyYdXXOApEMF7nScLEZQozw9PZqg+0IHQoQYbTG/NHPBgOJM3pvg6bZWzs52qhUOn0B92oSe9auXUbdECyJ4/S1Aumzlb28gLHAZJNDYU2D8NKM8RmsMpMYb5f4b2kK5RLjU0HCiVMm8A21LNOwYa6Pf6r6ZLyZtWp6e606z31r8Nz3dpFyfnSBuncnh0U+t/iHaa2MucVwZ3zDdgpI1k/QAyesICr8avOn30h1ofsJBXrYXybCN80mFs9ok/9Cu6mEuRimSP2lX5+2ZxJwAyUKZA30eBTJPBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TY4P286CA0107.JPNP286.PROD.OUTLOOK.COM (2603:1096:405:380::7)
+ by TY0PR06MB5458.apcprd06.prod.outlook.com (2603:1096:400:329::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.8; Wed, 18 Nov
+ 2026 01:44:34 +0000
+Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
+ (2603:1096:405:380:cafe::ad) by TY4P286CA0107.outlook.office365.com
+ (2603:1096:405:380::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Wed,
+ 18 Nov 2026 01:44:34 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB83.mail.protection.outlook.com (10.167.253.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 01:44:33 +0000
+Received: from hongliang-System-Product-Name (unknown [172.20.64.180])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id AF7D5427EFC6;
+	Wed, 18 Nov 2026 09:44:31 +0800 (CST)
+From: Hongliang Yang <hongliang.yang@cixtech.com>
+To: linux-usb@vger.kernel.org
+Cc: gregkh@linuxfoundation.org,
+	peter.chen@kernel.org,
+	pawell@cadence.com,
+	rogerq@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	Gary.Yang@cixtech.com,
+	fugang.duan@cixtech.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	Hongliang Yang <hongliang.yang@cixtech.com>
+Subject: Re: [PATCH v9 2/2] usb: cdns3: Add CIX Sky1 glue driver
+Date: Wed, 18 Nov 2026 09:44:31 +0800
+Message-ID: <20261118014431.3405198-1-hongliang.yang@cixtech.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <sashiko-outbox-218132@kernel.org>
+References: <20261117021705.2202892-1-hongliang.yang@cixtech.com> <20261117021705.2202892-3-hongliang.yang@cixtech.com> <sashiko-outbox-218132@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v6 4/6] Drivers: hv: Mark shared memory as decrypted for
- CCA Realms
-Content-Language: en-US
-From: Mukesh R <mrathor@linux.microsoft.com>
-To: Kameron Carr <kameroncarr@linux.microsoft.com>
-Cc: Michael Kelley <mhklinux@outlook.com>,
- "decui@microsoft.com" <decui@microsoft.com>,
- "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
- "wei.liu@kernel.org" <wei.liu@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "mark.rutland@arm.com" <mark.rutland@arm.com>,
- "sudeep.holla@kernel.org" <sudeep.holla@kernel.org>,
- "thuth@redhat.com" <thuth@redhat.com>, "will@kernel.org" <will@kernel.org>
-References: <20261031001412.4150488-1-kameroncarr@linux.microsoft.com>
- <20261031001412.4150488-5-kameroncarr@linux.microsoft.com>
- <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
- <c6b7f583-878d-1f1e-60cc-e602e277d075@linux.microsoft.com>
- <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
- <f74db23c-ee1d-e0b1-c463-55dad00f9c61@linux.microsoft.com>
- <7ebf7187-bf42-fc11-e89b-b1aba96539d2@linux.microsoft.com>
- <5fddb57c-8805-4fbd-9e27-1c8654f29436@linux.microsoft.com>
- <d7d4ba44-5c7f-9526-37dd-76744c277069@linux.microsoft.com>
-In-Reply-To: <d7d4ba44-5c7f-9526-37dd-76744c277069@linux.microsoft.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB83:EE_|TY0PR06MB5458:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 6a1fac70-3cca-4e3f-4e47-08df45157eed
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|23010399003|82310400026|1800799024|376014|7416014|261028144727099003|261026140227099003|261026121527099003|4143699003|261022105027099003|56012099006|10067099003|18002099003|261009223027099003|22082099003;
+X-Microsoft-Antispam-Message-Info: Z5lZR5EGuU+HLUYA9YGptiqYGHkwLmWPGrKZz85GC85q0H3pG5mcRyNCzxO7VIhMMtl3EbH2Weru88fCTh2O3JLewBLynhTbfwfvczArqpV82IRzpGUYSgz3iAzuI3S0M+DzAmBmJGr7GauDPturNBO+4BJMGwhI3aFHZSNtZbn1LLEVuXopxpfmE+ZNfXQsgZEUWuVV0JT0lCkPEoln0arvxzcKIRnY6q8UpE/nFnWhhA0pwFdk1Td4AV3rO9iewpXU37dcJ6vJ18aHCCyeSNCxpu4RnOQ3sAzTP8D1CMKO+svZ39es528OWYTGH7/X/GAWOwB2EnK5Bz5wJd+95hMdyzyWxuHrR/qyskukh6usRlCZiRCAtuElnkrZLLckQNgHSTx5pDRcCoEhl/L2KbwadtLHmjeir9wF35gcDYxcTL3X+yPxG2bAecjYKzX1wMTB9TQit8LIUGQRxnMtn9dg1oxyOR3sJiUi/8EJs/RK1XiyQ1SIQCr5eF3Hqd5BRSdsEceOFfasql2UDcKmVPCvEQQlCoGwLpBMuabC5XsGe4D/DMC69mHoue3XkBRALV2oc3NadTFtmsB1p904WX9dMExZnHRO1SnWDaApmFEFK0EOnGclm93O4msdPHBCqw4IJ/TI0JfWggLf2HnVC91KgMB2eayGRmNhAozz2ikpYL0zWtFzrFAiOsoDkyffTbJRvz2CDOri0ZiFdPSxBA==
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(23010399003)(82310400026)(1800799024)(376014)(7416014)(261028144727099003)(261026140227099003)(261026121527099003)(4143699003)(261022105027099003)(56012099006)(10067099003)(18002099003)(261009223027099003)(22082099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: A89+EZXZcYUTuBccOXOiDzLNA1NEuyES7LhpatZUPA21PVkWGX0sGPTsPfiSMA/QJxbWyfzw+RXEpgopQrZ8EhdmfThEgLo5Iedvn1PDjVCYRQwrSVRLy7DtIzU4MGeb8v7wmyZN8GYYWysrQarJOWfkMbB2SfdyHEY5L/fTt6W2v0rg1EgZlRRfg6E8G3ezQ9/JIPgdxyk3J4I06/T8AADMiuq1n/16j74GTDyucYW9spz3PKaMJokC4SRqUqtLMx9QmseugQz1F2CjQqi0D1LlG84wtpt08nrWj2DaLdeKhKgPO2g/gOsLDD0HDbj0imKlHfX6rRtKOifh5BxNqqBsz6w79v+zrhESAQ9nVZxKQjWNH0U0TW505yGPsQj45qGzXErxQa2kbdAsLGybp/b1nHx8VlNzduVV0uHc17zPRwxK25jCd75USNE5RLq2
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 01:44:33.3547
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a1fac70-3cca-4e3f-4e47-08df45157eed
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB83.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5458
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_172936_860033_4D60A3C3 
-X-CRM114-Status: GOOD (  22.01  )
-X-Spam-Score: -4.5 (----)
+X-CRM114-CacheID: sfid-20261117_174442_889636_4EFD1170 
+X-CRM114-Status: UNSURE (   9.05  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,153 +125,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/17/26 11:57, Mukesh R wrote:
-> On 11/16/26 11:53, Kameron Carr wrote:
->> On 11/13/2026 6:59 PM, Mukesh R wrote:
->>> On 11/12/26 16:46, Mukesh R wrote:
->>>> On 11/12/26 09:49, Kameron Carr wrote:
->>>>> On 11/11/2026 6:43 PM, Mukesh R wrote:
->>>>>> On 11/11/26 10:01, Michael Kelley wrote:
->>>>>>> From: Kameron Carr <kameroncarr@linux.microsoft.com> Sent: Friday, October 30, 2026 5:14 PM
->>>>>>>>
->>>>>>>> In hv_common_cpu_init(), the per-CPU hypercall input/output pages need
->>>>>>>> to be marked as decrypted (shared) for confidential VM isolation types.
->>>>>>>> This is already done for SNP and TDX isolation; extend the same handling
->>>>>>>> to Arm CCA Realm guests so that the host hypervisor can access the
->>>>>>>> shared hypercall buffers.
->>>>>>>>
->>>>>>>> is_realm_world() is declared in include/linux/arm-rsi-cmds.h which only
->>>>>>>> builds on arm64 (it includes <asm/memory.h>), so using it directly in
->>>>>>>> the arch-neutral drivers/hv/hv_common.c would break the x86 build.
->>>>>>>> Introduce a Hyper-V-specific helper following the established
->>>>>>>> hv_isolation_type_snp() / hv_isolation_type_tdx() pattern.
->>>>>>>>
->>>>>>>> On architectures other than arm64 the weak default keeps the existing
->>>>>>>> behaviour.
->>>>>>>>
->>>>>>>> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
->>>>>>>> Signed-off-by: Kameron Carr <kameroncarr@linux.microsoft.com>
->>>>>>>> ---
->>>>>>>>     arch/arm64/hyperv/mshyperv.c   |  5 +++++
->>>>>>>>     drivers/hv/hv_common.c         | 17 +++++++++++++----
->>>>>>>>     include/asm-generic/mshyperv.h |  1 +
->>>>>>>>     3 files changed, 19 insertions(+), 4 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
->>>>>>>> index 46ab2da..da6c3aa0 100644
->>>>>>>> --- a/arch/arm64/hyperv/mshyperv.c
->>>>>>>> +++ b/arch/arm64/hyperv/mshyperv.c
->>>>>>>> @@ -182,3 +182,8 @@ bool hv_is_hyperv_initialized(void)
->>>>>>>>         return hyperv_initialized;
->>>>>>>>     }
->>>>>>>>     EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
->>>>>>>> +
->>>>>>>> +bool hv_isolation_type_cca(void)
->>>>>>>> +{
->>>>>>>> +    return is_realm_world();
->>>>>>>> +}
->>>>>>>> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
->>>>>>>> index 31256cb..a60c92c 100644
->>>>>>>> --- a/drivers/hv/hv_common.c
->>>>>>>> +++ b/drivers/hv/hv_common.c
->>>>>>>> @@ -476,6 +476,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>>>>>         u64 msr_vp_index;
->>>>>>>>         gfp_t flags;
->>>>>>>>         const int pgcount = hv_output_page_exists() ? 2 : 1;
->>>>>>>> +    const size_t alloc_size = ALIGN((size_t)pgcount * HV_HYP_PAGE_SIZE, PAGE_SIZE);
->>>>>>>>         void *mem;
->>>>>>>>         int ret = 0;
->>>>>>>>
->>>>>>>> @@ -489,7 +490,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>>>>>          * online and then taken offline
->>>>>>>>          */
->>>>>>>>         if (!*inputarg) {
->>>>>>>> -        mem = kmalloc_array(pgcount, HV_HYP_PAGE_SIZE, flags);
->>>>>>>> +        mem = kmalloc(alloc_size, flags);
->>>>>>>>             if (!mem)
->>>>>>>>                 return -ENOMEM;
->>>>>>>>
->>>>>>>> @@ -499,14 +500,16 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>>>>>             }
->>>>>>>>
->>>>>>>>             if (!ms_hyperv.paravisor_present &&
->>>>>>>> -            (hv_isolation_type_snp() || hv_isolation_type_tdx())) {
->>>>>>>> -            ret = set_memory_decrypted((unsigned long)mem, pgcount);
->>>>>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>>>>>> +             hv_isolation_type_cca())) {
->>>>>>>
->>>>>>> Could this big "if" statement use "hv_is_isolation_supported()" instead
->>>>>>> of explicitly testing for each CoCo VM type? I ask partly because
->>>>>>> Mukesh Rathor has just submitted a patch [1] that introduces a new
->>>>>>> function that does something almost exactly the same as
->>>>>>> hv_is_isolation_supported() and uses it here.
->>>>>>
->>>>>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>>>>>> +             hv_isolation_type_cca())) {
->>>>>>
->>>>>> With my change, this will become:
->>>>>>
->>>>>>           (hv_isolation_hw_cvm() || hv_isolation_type_cca())) {
->>>>>
->>>>> Any reason you wouldn't change hv_isolation_hw_cvm() to
->>>>>
->>>>>     return hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>>>       hv_isolation_type_cca()
->>>>>
->>>>> That would seem more logical to me.
->>>>>
->>>>
->>>> We could, I just don't know if on cca, the repeat hypercall has same
->>>> behavior. I was leaving that for the arm team. Anyways, I sent question
->>>> to the hyp team, if they say yes, i can update my patch to include that.
->>>>
->>>> Thanks,
->>>> -Mukesh
->>>
->>>
->>> Confirming, arm has same behavior and needs the fix also. So, we can def
->>> expand the check to include _cca.
->>>
->>> I just sent V1, renaming hv_isolation_hw_cvm() to hv_isolation_type_hw().
->>> If your patch goes after mine, you just need to add to your 0004*:
->>>
->>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
->>> index 4fdc26ade1d7..67a16b4d2235 100644
->>> --- a/arch/arm64/hyperv/mshyperv.c
->>> +++ b/arch/arm64/hyperv/mshyperv.c
->>> @@ -134,3 +134,8 @@ bool hv_is_hyperv_initialized(void)
->>>          return hyperv_initialized;
->>>   }
->>>   EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
->>> +
->>> +bool hv_isolation_type_hw(void)
->>> +{
->>> +       return is_realm_world();
->>> +}
->>>
->>>
->>> OR, you could pick mine 0001-* and make it part of your series, and I
->>> can drop it from mine and make it dependent on yours. But mine is small
->>> enough that it has higher chances of going in first.....
->>>
->>
->> This patch set has already been applied to hyperv-next, so maybe you can
->> rebase off that.
->>
-> 
-> Ok, I'll rebase my patches from hyperv-fixes to hyperv-next, and
-> resubmit.
-> 
-> Thanks,
-> -Mukesh
-> 
+Both halves are real.
 
-On second thought, given these are overloaded functions, adding a new
-function makes it complicated. Since it's only two places, it's just
-not worth it. Punting on it for now...
+> Can this leak cdns_sky1_pdata and silently succeed when creating the child
+> device fails?
 
-Thanks,
--Mukesh
+Yes. With matches == NULL of_platform_populate() always returns 0:
+of_platform_bus_create() returns 0 as soon as
+of_platform_device_create_pdata() returns NULL. That function also returns
+before it stores platform_data when the node is unavailable, when
+OF_POPULATED is set, or when of_device_alloc() fails, and only the
+of_device_add() failure path frees the buffer, through
+platform_device_release(). With the child checked by
+cdnsp_sky1_check_children(), the reachable cases are the two -ENOMEM ones.
 
+v10 checks the result instead of the return value:
+
+	core = of_find_device_by_node(core_np);
+	if (!core) {
+		dev_err(dev, "failed to create the cdns3 child device\n");
+		ret = -ENODEV;
+		goto err_quiesce;
+	}
+
+probe fails rather than returning 0 with the clocks and the resets still
+active, and the buffer is freed where of_platform_populate() itself returns
+an error.
+
+The one case the caller cannot see is of_device_add() failing after the
+buffer was handed over: it returns NULL like the of_device_alloc() failure
+and has already freed the buffer. The two are indistinguishable, so the
+buffer is left alone there - a one-off 16-byte leak under OOM rather than a
+double free.
 
