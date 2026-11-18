@@ -2,61 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE88A606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 10:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56137606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 10:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vPjD7SNg;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=ASB9sl6E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LtEjlgPL;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dysLopPW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2d12lWVGBsaoMn/Enc4uD3O8Aj7O2S/+EaVF50C+EQ4=; b=vPjD7SNg3rCUYb1A7cS5P/bh8S
-	QWKQIqppWqxGczZ6cHLLZATKzw45Uf6yvd8VblCuWgjt9FfCAJiaxcWgTX+gKXXMjIv/QMaNI1P9B
-	iVFU1JbvPG8KgnkGy6v7KOY3Lxo8m24xpcM0OlL6EfC0ZJU588YAACy/pH5L5zTeDByaoD7wcHctv
-	Q2vFacbLgyHLupXQA5qC/hFhykBMUVGZzwp+Mo4culi4gL3BStHmmBtOTvzkj/zX3tTOXz4r3wRwE
-	yNROatsxd6OXyyRiw50KM3xQq41Zzz0qiBHwQ9XYdmgs39yMJtKPyQUDuM2m49NYPUpZ4YMpQH4j6
-	2Wxh4Fiw==;
+	bh=memSx6w5HIqi6Xog48xQOQU+JeaIiIIsaYQx0kH8P4E=; b=LtEjlgPLNJTLqe1q6RPMBXbbCG
+	S36u1sVKpYuSnTwYUsesEJbxCWtcpBD8j2/CojC2ggAQ9nqfJGyA9rhmOmT5bwN6obCnn+G6HVowU
+	sscxgzvKgzjITXOYLhhgdfDX+tehi+efPckrTa+bZ1pISAV9johjE9J82qFo/6kFtQs1GW01bGJck
+	se5+OQQBL8PXvW4SbPnzIFEzNHBHf7ZIsfGrGPyrhx6BXkThXhz3FsYx7geBdrZf0apfGNrWg3OlD
+	qpIPkbbdLCglKKy4nvpzL1cxKYGbnan3BJCFYkn5bYtBg0sUId58WT9cRJXRmQN7Por34MTgw4Ff0
+	pJJeE8iQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdIn-00000008dve-28Hv;
-	Wed, 18 Nov 2026 10:54:09 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1xTdJp-00000008eEl-05V4;
+	Wed, 18 Nov 2026 10:55:14 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdIl-00000008duy-3a5F;
-	Wed, 18 Nov 2026 10:54:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=2d12lWVGBsaoMn/Enc4uD3O8Aj7O2S/+EaVF50C+EQ4=; b=ASB9sl6EOSdJIB1EGdzGn/PsUI
-	tjmO5szAeJdZlM3+Q+1IxHT6bEQz7NGbHeDeXN/VaxTVXWPcEGKc4AfeQfzAuyTuxCIVTt7MpD5t/
-	XlSIvngr8SDDvOVk9p25Jn/Q/FYRGNish8CUgxxwlY5S/t2eXyRIV1e04CKzxeg55zOC/EKwYhBkO
-	GGKPXSQczmZOV3gvlJe9BxKNc5Kdwfh74CEC8xAFFoZieOiti6wZ9MnWlrXi0cC/pRxJv6OdZvQ5k
-	F+DEY3D2KFaFrIzZppTvcBQ5gdYd88NvoFprVbrXRsYK2qEsmfnrs9yIAcKEjRDQLi4S3L2LG/LU8
-	ffa/brvQ==;
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: broonie@kernel.org, linux-spi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- quentin.schulz@cherry.de, Lee Jones <lee@kernel.org>,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH v3 6/7] spi: rockchip: Move to pm_runtime_resume_and_get
-Date: Wed, 18 Nov 2026 11:54:02 +0100
-Message-ID: <ldw_Vn7fRw2QdWAMZ2npBw@sntech.de>
-In-Reply-To: <av0CaMF_jOyqMYA0@venus>
-References: <20261117235021.2013719-1-heiko@sntech.de>
- <20261117235021.2013719-7-heiko@sntech.de> <av0CaMF_jOyqMYA0@venus>
+	id 1xTdJo-00000008eEY-05ws
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 10:55:12 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id A0B3B43D04;
+	Wed, 18 Nov 2026 10:55:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 806941F000C4;
+	Wed, 18 Nov 2026 10:55:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794999311;
+	bh=memSx6w5HIqi6Xog48xQOQU+JeaIiIIsaYQx0kH8P4E=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=dysLopPW6xzBxxVX4sabNEd7hRGAwc/NKR16PzrI3FOaD3p5wWsfF0tME+iCqseut
+	 JtOSf4LAr+6YdhLpZ4CSyxnk0vu5lHQL4YEROuT/nH6hYJz7KKH1v/tdZd6PovX8zX
+	 NfiCvVElD2VGXMuIuk2zk+KeJUWLpO73HLe2E6KLcUlf7Y4ohXiItq/1KV1s45hv3R
+	 o63fvHyqjmqHDwLm/qcq14HQ5l3CejFYnjhFtP8qPFnmv5lDy3sDBhorIJ4YJyivhO
+	 AU1A/i5pNXhIOb/b2veQbtRZnaQlDyRwjiJLE9CsIWDVP7R+yUMWAsHpY+hBFEMIMh
+	 qyiO/hTdi0TrA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xTdJl-0000000HTmw-1aNo;
+	Wed, 18 Nov 2026 10:55:09 +0000
+Date: Wed, 18 Nov 2026 10:55:08 +0000
+Message-ID: <867bia1kab.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Oliver Upton <oupton@kernel.org>,
+	Will Deacon <will@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	Sean Christopherson <seanjc@google.com>,
+	Shuah Khan <shuah@kernel.org>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Vincent Donnefort <vdonnefort@google.com>,
+	Quentin Perret <qperret@google.com>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	kvm@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 01/19] KVM: arm64: Hide generic ptrauth from protected VMs without ptrauth
+In-Reply-To: <CA+EHjTwJ9XTCfrfBLgGjed3GrRtiTnk-ErvPSwU-AhvyTVcnsw@mail.gmail.com>
+References: <20261109084854.840576-1-fuad.tabba@linux.dev>
+	<20261109084854.840576-2-fuad.tabba@linux.dev>
+	<86bj7n1bzx.wl-maz@kernel.org>
+	<CA+EHjTwJ9XTCfrfBLgGjed3GrRtiTnk-ErvPSwU-AhvyTVcnsw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_025407_889988_8EC4A64D 
-X-CRM114-Status: GOOD (  15.47  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: fuad.tabba@linux.dev, oupton@kernel.org, will@kernel.org, catalin.marinas@arm.com, mark.rutland@arm.com, pbonzini@redhat.com, seanjc@google.com, shuah@kernel.org, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, vdonnefort@google.com, qperret@google.com, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,46 +98,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Am Mittwoch, 18. November 2026, 02:53:32 Mitteleurop=C3=A4ische Normalzeit =
-schrieb Sebastian Reichel:
-> Hi,
->=20
-> On Wed, Nov 18, 2026 at 12:50:20AM +0100, Heiko Stuebner wrote:
-> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> >=20
-> > Currently pm_runtime_get_sync() is used, which increments the usage
-> > count even if the resume was not successful.
-> >=20
-> > Move to the more modern pm_runtime_resume_and_get() which handles the
-> > usage counter better.
-> >=20
-> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> > ---
->=20
-> This only makes sense when combined with error handling. Keeping
-> the use count increased makes more sense for the current code:
->=20
-> pm_runtime_get_sync(); // keep use count increased on failure
-> random_code();
-> pm_runtime_put(); // always decrease the RPM use count
->=20
-> Meanwhile your new code would result in double decrease on error:
+On Tue, 17 Nov 2026 19:47:36 +0000,
+Fuad Tabba <fuad.tabba@linux.dev> wrote:
+> 
+> Hi Marc,
+> 
+> On Tue, 17 Nov 2026 19:41:54 +0000, Marc Zyngier <maz@kernel.org> wrote:
+> [...]
+> > Burying a fix in a selftest series is a recipe to make sure it is
+> > ignored for a full cycle... Why isn't that with the "massive feature
+> > set" series?
+> 
+> It's in this one because pkvm_id_regs depends on it. The test checks
+> that GPA and GPI read 0 in a protected VM without ptrauth, and it
+> fails without the fix.
 
-darn, one should not go "eh, let's just use the same pm-runtime pattern,
-should be easy" ;-) .
+But that's a *test*. Nobody runs tests as a production workload.
+Delaying a fix to satisfy testing makes no sense to me. If someone
+screams that their tests are failing, let them scream, safe in the
+knowledge that you have fixed the problem rather than the symptom.
 
-But I guess real error handling in those cases might actually desireable.
+> Would you prefer that I send it on its own, or with the respin of the
+> features series?
 
+I'll cherry-pick it directly.
 
-Heiko
+Thanks,
 
+	M.
 
-
+-- 
+Without deviation from the norm, progress is not possible.
 
