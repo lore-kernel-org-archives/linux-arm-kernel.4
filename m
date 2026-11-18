@@ -2,85 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D56606A7D6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1906606A334
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ecy9Ioau;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=gO1DGLIT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zHCfr913;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=gHG4sN4X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=p5DfdVn/AdFJR7mLtmlVcoQWNFblslFrL6J6esnTWlo=; b=ecy9Ioau+5BvCF
-	+t/ViGG6NL/6CPTGsk8bXVtwabKIrpq+s/0SUTN+oWRprHK1cdlH24JW5rJg/fKLkEuRLzshR9kRG
-	d+/GFBfl4LhLqgTNrnY6npqVSUgMjJvqLph2nPc4upg3P6V213t3roS51vXqcDGCF0E6e/fg8vEkc
-	kCKMzpkyA3ftMllUSMa3LEqUnDzMKqEgjXWLopMVAwHcBIK7kR++DPHj9bnUttrB71YqlP7Yyhj/D
-	c0j9jv+GKS5n6KthB8fcUgpM5MkzXxy0G+7naruBxPU0rqsJoFdYRAUhZibKW1J0Lqlpprz5ypsDN
-	AaUsZgTv/DfWRcD/LLCA==;
+	List-Owner; bh=oCXi5c27gxkETQPEkp8qfLLdejyp5sedYaxTjamqL5A=; b=zHCfr913W0uc4l
+	CujUzxOkLcCWKdmZG+IqKdvWA8/xoXy/boEEJOo2z/VeFxdymTs01A1h58xbRUoiUtt0wVwyw6dic
+	kZ4aZRgoLDUbWIajpQuFNGl9JVUXhb+Nk1dtWJxAc7So/ldQ5/nLnp6BfDZlMOpHa/V+0EYCZzKi1
+	iMQ0QmHVTnLr7mwk7msVN2a5tLh1ndptG59K+mcunsU7oeWBX5+HX8z8h7p3pxtjIY2TqVdBM6E4/
+	Lt4RKAPWiEUL5N/97CJVpLFSXcpxQvAxfoDZpoPL1q+KQ0plv7pWNMoiohntuqUTqjhjx1mL3u6vz
+	BspDPJMC6nIwjtaUU2Ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiZG-00000009VXL-3KYq;
-	Wed, 18 Nov 2026 16:31:30 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1xTiZK-00000009VfI-3Wja;
+	Wed, 18 Nov 2026 16:31:34 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXp-00000009U4J-3z5k
+	id 1xTiYF-00000009UcG-2aGA
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:30:04 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-48b001cd92bso728705f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:30:01 -0800 (PST)
+	Wed, 18 Nov 2026 16:30:29 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-48dee593f18so1101677f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:30:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795019399; x=1795624199; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795019425; x=1795624225; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=p5DfdVn/AdFJR7mLtmlVcoQWNFblslFrL6J6esnTWlo=;
-        b=gO1DGLITGPn48ikOeDGRfJHhe+SLRY76bd2PJd81jVNfAqznCvaPqgbBTr6JjghBaq
-         bMkru7wGO6EZLaYfdimYufeSJ9vYX4cwnXTnFBxT76H4EujtEaZfhtl7Nu9AWKgEswbJ
-         OCkwajN98RTK/k0N4ndfaCKV7edHYKSioqZaHcKzOdkFPscSMftDAiKEbofDQY+1Zue0
-         9shGj7RRRuyr0bVHVlt9AGzAu/xtVdx9u47naBAB1vx92jTrblJGwhMxDFgL5xW8b+qd
-         DJsK5Fh7AmVf1igcitmNZ0HigvYS7tx+sFM+2XNHioEgKEmSwV4/j8xYqNmPgVpA16KA
-         Fnog==
+        bh=oCXi5c27gxkETQPEkp8qfLLdejyp5sedYaxTjamqL5A=;
+        b=gHG4sN4XOVor6ybHfIiecBnBamdvUDVHG4MXvaP3H4TP+zub7vyfaVQRBJ1uUDLeil
+         Zy4brkuOoZFogbNRjaxtJi04RUe6lhnCoYM9Oc3D5+e6b40iI4++oTwlVyy93zDnCWF8
+         9x3Iw6nQ8MbT9PcaSTuJoinEe25mqYNEIgwyF2qrnKCS4hQnAORp0tweEs3TToeRRWHN
+         kRGs98UgTrUdPADcwNA6aEK5CfpQZJOQtE9skwykTF9r6eCRYAbfi4W7V3FtPD7Cq7f2
+         g+xo8YAwUWcgxpIfkW0Aw/AuqTt6dW3UPlPRCIWayHkW30o7moO/b60nkLGIOxgye9zt
+         njIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795019399; x=1795624199;
+        d=1e100.net; s=20260707; t=1795019425; x=1795624225;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=p5DfdVn/AdFJR7mLtmlVcoQWNFblslFrL6J6esnTWlo=;
-        b=YSu5mgwLfWNoiF+eC3E09U3ZrMO19hDYPop08W2CD5vwHNX6p5xCtT3pPEXDAG0OlI
-         JuOlWFjEe6SxaKxlLLYcqZoLnmUWxecJsbPZVe1GTSYk1yK1hfdkUJXIAD1tgYIz14Us
-         P/hXuTlgWGaDGGMkMDKeGJHqSHvw9cCkkj8QWhBAgRCZTPE/m6zlOYsMbL1eIdz7X0WL
-         8mGwszkC2xU2bojJs8R67ys6EUCb3A/vs8BsoNPk76cQt4Yf+eI5PQq1FRT4pvyOyDH5
-         8cqyHrQbz/6zbbidbfVIPuPOZfCR+bI7pRlT3X4qZlmUwsHFtWPxsJNCyWcJxcoDsfSc
-         Trzw==
-X-Forwarded-Encrypted: i=1; AL+hErEk66dV0pGmBYS6pXxAW21WfuY9HJPed4ppYOmxJEnfmAqCOMqbh0TKy6a5B+iiCUq5LhLAqM9qjljlomCjlPSD@lists.infradead.org
-X-Gm-Message-State: APuU4Z9TR45aA5K9kiVIef7klVlDAMwUoRCZV02MeIDI46WAvU3fnA9F
-	f7Msh93XkxnAE8t0y01ugw0sttjPnVhu0k0S5rulJ5mAynHPyHohJvCMTXRwujNtDFo=
-X-Gm-Gg: AZFdTZeFoscI0QPCeDD4CZXViIBFB/PV3FltwFMCeYRoO0vuHcA9eDfDOdNzIgEmwE3
-	wEq+CptW7QjMkAR5opPgLzL7UsFSPdIS/WfwumxSf+qUZ25lANN1wL74c2/PyEk9xY09T0Cc5ch
-	pTgOihOXGtTsm5W5/igBzE1aj2hPF579gVqdnBFST3PVFMCTsz74RwFavS0eJoSGXcbwFjx6cls
-	209bYZ0iEySfe3NS4QsLWLRbdIlH4q7qFECThqi3uJcwiz85xsvZm/eJ0XJLdNjrh3ErhEpxye6
-	xtbex+O4eC8iHR/tzysCHCUxLHa49qf5udUcubJn3YBxcErcnYPi5jwGki3YknYQmdAkxij6CwG
-	MwEYpPcIblk5gznQkqjFDHKQXf34NTiqt5rId/n51tdVyeVLJUfzIQahD5YJE/IWI1kSJ4Gte6B
-	ugX2/KQ1sQKFpk997maoO6FzDxivzbaibFXcnsm98XYUXSk5p7QXKNM58kgXmfRRalshX7JnKkj
-	j4kc1wY9MBGoA7qG4GfJ+yZjtNuuUTBD3ykpzIyIRnVdQUEWN12fnlh/TrQbAV9hAq2KdE6istv
-	YmZ1N1OY/D8dgR+RW0ZCMrWXY5LMipul
-X-Received: by 2002:a05:6000:46c5:b0:48c:7f18:c85e with SMTP id ffacd0b85a97d-4a63b50cdfamr4894691f8f.45.1795019399370;
-        Wed, 18 Nov 2026 08:29:59 -0800 (PST)
+        bh=oCXi5c27gxkETQPEkp8qfLLdejyp5sedYaxTjamqL5A=;
+        b=JF5fswwl0UcwRZGnyN9Qql4Dat7A+0XmePbEyjTBJl0ewDRhr5+hUO3311BAom5ymA
+         Y1hrXCCSiHuND5d6j78365lhSxmQMfbR3W8QMdd1JXDPkd6u4/lGuiVgm4fcaRS0osSD
+         FA8zbzb76UGGEf2rpKlvv7svUA67I4byCx3XFH2dZjBSNU7ZQ8/y5BIBJ45s7fSdatmY
+         32IRjEvnUNdoVDiBTZ7GMKMRTBchozRT2uMf3Eyomo4AMBKuxUzPkrPjaDyTQ+c2325F
+         yVSBLmKSIXD2CZWwNVb0/ftFhB7KqCOjngQlr1LInBsfaiFDebQctENMIDUPXgp8d4Ml
+         2Y7A==
+X-Forwarded-Encrypted: i=1; AL+hErFbgal9bW9Cc9PTF1F7oFfVshSZavb5ocIqQ7h9EweJSkG+kqTndehO4MwnuCqbiXXr6AQ0Tg/7GOlz4nDLfemL@lists.infradead.org
+X-Gm-Message-State: APuU4Z/ihiQ8iyTaGQQubK5ghkd0saCjNv1tcwD1BH17qSx/NmBHT+/p
+	mnwZhJHVTd1A+YcLKZmPsQWie7fW20MOlK5K3l9KQy2ygbfhui2MDz6fHpYAYK2Ihc0=
+X-Gm-Gg: AZFdTZciAkat0qFLJC9zwn7ACDbeulNxsnMf1Pd9KnZwBxGoblunx9kqm7Ho6q1BhUr
+	QBTKF2xqvto6t8Wnhgvfwd1YIGE1Y+8ph7eO09BLe74EkQodWVeQ6ssW2dKgL7j5cK7P/GltQ8r
+	zaZzlGqJJza6JgFVN3U0xHP9RKoKEr6xq83pooC2ZWlZCe8lLDMPxpEzhgdt1OXdZRyJslquh9C
+	biRKQi97+K9LJ5qN65u4W11V44kC9maDgcvQNzns9J/N8AHoZ2fPVjXzgDOqTAdJCWwn2eF8cew
+	ORZB/IS8A/YDH2TVcAsTJ4NesGhz79xX/ON+foLMCmTp+pAdmwj944vN6weE8pB6QAPEflIrS4x
+	s/CwwQskd21F6IcaYzgAbfQ+RwWvzwn8/nNSbysCFEfgr/7MfK9LFpU4SRK6gJvV4G57vc6Pzve
+	43Av3YkbaUAsk0QFMeUX+4ibSTNlS4HbXPdTezyOi9MjhV28ltL/lX+yiIezQ2E5L6+WEVaUQG8
+	z5dT7TxtcclwX1y5PXwWc2qrRk+KYlP1lzantZ/hGm2SeY2ruGRJO88hROOvQTa8cthr5cQ+Nwv
+	nNvuJDcGvG5cIFGiSO6M/mNgYY8iyfYS
+X-Received: by 2002:a05:6000:26ca:b0:4a7:9630:7b57 with SMTP id ffacd0b85a97d-4a7963080f2mr4671595f8f.44.1795019425254;
+        Wed, 18 Nov 2026 08:30:25 -0800 (PST)
 Received: from pop-os.local ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.58
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.30.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 08:29:58 -0800 (PST)
+        Wed, 18 Nov 2026 08:30:24 -0800 (PST)
 From: James Clark <james.clark@linaro.org>
-Date: Wed, 18 Nov 2026 16:29:33 +0000
-Subject: [PATCH 11/34] perf cs-etm: Track threads in timeless mode
+Date: Wed, 18 Nov 2026 16:29:56 +0000
+Subject: [PATCH 34/34] perf test cs-etm: Add an HHVM JIT call stack test
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-james-coresight-jit-v1-11-dad4d90747f6@linaro.org>
+Message-Id: <20261118-james-coresight-jit-v1-34-dad4d90747f6@linaro.org>
 References: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 In-Reply-To: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 To: Arnaldo Carvalho de Melo <acme@kernel.org>, 
@@ -94,8 +94,8 @@ Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_083002_099090_CF713DB1 
-X-CRM114-Status: GOOD (  18.44  )
+X-CRM114-CacheID: sfid-20261118_083027_709478_4A5D95A6 
+X-CRM114-Status: GOOD (  14.05  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,106 +115,109 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Associating TIDs with PIDs is useful with and without timestamps. This
-is an old assumption from when timeless == per-thread mode so remove it.
-
-Update the comment to say exactly why this needs to be done and move it
-to a single function so it's not repeated.
+Record a Hack workload with HHVM's jitdump enabled and compare the
+decode matches the expected order of execution.
 
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- tools/perf/util/cs-etm.c | 53 +++++++++++++++++-------------------------------
- 1 file changed, 19 insertions(+), 34 deletions(-)
+ tools/perf/tests/shell/coresight/hhvm-jit.sh | 89 ++++++++++++++++++++++++++++
+ 1 file changed, 89 insertions(+)
 
-diff --git a/tools/perf/util/cs-etm.c b/tools/perf/util/cs-etm.c
-index 11ebfdf1e933..67e3e2becd0f 100644
---- a/tools/perf/util/cs-etm.c
-+++ b/tools/perf/util/cs-etm.c
-@@ -2984,23 +2984,22 @@ static int cs_etm__process_timestamped_queues(struct cs_etm_auxtrace *etm)
- 	return ret;
- }
- 
--static int cs_etm__process_itrace_start(struct cs_etm_auxtrace *etm,
--					union perf_event *event)
-+static int cs_etm__associate_tid(struct cs_etm_auxtrace *etm, pid_t pid,
-+				 pid_t tid)
- {
- 	struct thread *th;
- 
--	if (etm->timeless_decoding)
--		return 0;
--
- 	/*
--	 * Add the tid/pid to the log so that we can get a match when we get a
--	 * contextID from the decoder. Only track for the host: only kernel
--	 * trace is supported for guests which wouldn't need pids so this should
--	 * be fine.
-+	 * TIDs share their maps with their PID, but the association between the
-+	 * two is only tracked by Perf on COMM, FORK and SAMPLE records.
-+	 * Trace doesn't generate normal samples, and COMM and FORK may be
-+	 * missed when attaching so pass the relationship using other record
-+	 * types.
-+	 *
-+	 * Only track for the host: only kernel trace is supported for guests
-+	 * which wouldn't need pids so this should be fine.
- 	 */
--	th = machine__findnew_thread(&etm->session->machines.host,
--				     event->itrace_start.pid,
--				     event->itrace_start.tid);
-+	th = machine__findnew_thread(&etm->session->machines.host, pid, tid);
- 	if (!th)
- 		return -ENOMEM;
- 
-@@ -3009,19 +3008,18 @@ static int cs_etm__process_itrace_start(struct cs_etm_auxtrace *etm,
- 	return 0;
- }
- 
-+static int cs_etm__process_itrace_start(struct cs_etm_auxtrace *etm,
-+					union perf_event *event)
-+{
-+	return cs_etm__associate_tid(etm, event->itrace_start.pid,
-+				     event->itrace_start.tid);
+diff --git a/tools/perf/tests/shell/coresight/hhvm-jit.sh b/tools/perf/tests/shell/coresight/hhvm-jit.sh
+new file mode 100755
+index 000000000000..cde8725519e6
+--- /dev/null
++++ b/tools/perf/tests/shell/coresight/hhvm-jit.sh
+@@ -0,0 +1,89 @@
++#!/bin/bash
++# CoreSight HHVM JIT call stacks (exclusive)
++# SPDX-License-Identifier: GPL-2.0
++
++set -e
++set -o pipefail
++
++perf list pmu | grep cs_etm > /dev/null || exit 2
++# Require TRBE so that the trace always has virtual timestamps.
++if ! ls /sys/bus/coresight/devices/trbe* > /dev/null 2>&1; then
++	echo "No TRBE sinks, skipping"
++	exit 2
++fi
++command -v hhvm > /dev/null || { echo "SKIP: missing hhvm"; exit 2; }
++
++tmpdir=$(mktemp -d /tmp/__perf_test.coresight_hhvm_jit.XXXXX)
++trap '[ "$?" -eq 0 ] && rm -rf "$tmpdir" || echo "HHVM JIT test files retained in $tmpdir"' EXIT
++trap 'exit 1' TERM INT
++
++# Use the control pipe to only trace the two call stacks rather than all of HHVM's startup.
++# Run stacks() twice to test hot and cold versions.
++cat > "$tmpdir/hello.hack" << 'EOF'
++function command(resource $ctl, resource $ack, string $cmd): void {
++  \fwrite($ctl, $cmd."\n");
++  \fflush($ctl);
++  // perf writes sizeof("ack\n"), including the trailing NUL.
++  invariant(\fread($ack, 5) === "ack\n\0", "Missing perf control ack");
 +}
 +
- static int cs_etm__process_switch_cpu_wide(struct cs_etm_auxtrace *etm,
- 					   union perf_event *event)
- {
--	struct thread *th;
- 	bool out = event->header.misc & PERF_RECORD_MISC_SWITCH_OUT;
- 
--	/*
--	 * Context switch in per-thread mode are irrelevant since perf
--	 * will start/stop tracing as the process is scheduled.
--	 */
--	if (etm->timeless_decoding)
--		return 0;
--
- 	/*
- 	 * SWITCH_IN events carry the next process to be switched out while
- 	 * SWITCH_OUT events carry the process to be switched in.  As such
-@@ -3030,21 +3028,8 @@ static int cs_etm__process_switch_cpu_wide(struct cs_etm_auxtrace *etm,
- 	if (!out)
- 		return 0;
- 
--	/*
--	 * Add the tid/pid to the log so that we can get a match when we get a
--	 * contextID from the decoder. Only track for the host: only kernel
--	 * trace is supported for guests which wouldn't need pids so this should
--	 * be fine.
--	 */
--	th = machine__findnew_thread(&etm->session->machines.host,
--				     event->context_switch.next_prev_pid,
-+	return cs_etm__associate_tid(etm, event->context_switch.next_prev_pid,
- 				     event->context_switch.next_prev_tid);
--	if (!th)
--		return -ENOMEM;
--
--	thread__put(th);
--
--	return 0;
- }
- 
- static int cs_etm__process_event(struct perf_session *session,
++<<__NEVER_INLINE>>
++function leaf(string $s): void {
++  echo $s;
++}
++
++<<__NEVER_INLINE>>
++function a2(string $s): void {
++  leaf($s);
++}
++
++<<__NEVER_INLINE>>
++function a1(string $s): void {
++  a2($s);
++}
++
++<<__NEVER_INLINE>>
++function b1(string $s): void {
++  leaf($s);
++}
++
++<<__NEVER_INLINE>>
++function stacks(string $hello, string $world): void {
++  a1($hello);
++  b1($world);
++}
++
++<<__EntryPoint>>
++function main(): void {
++  $ctl = \fopen(\getenv("PERF_CTL_FIFO") as string, "w");
++  $ack = \fopen(\getenv("PERF_ACK_FIFO") as string, "r");
++  command($ctl, $ack, "enable");
++  stacks("Hello, ", "world\n");
++  stacks("Hello, ", "world\n");
++  command($ctl, $ack, "disable");
++}
++EOF
++mkfifo "$tmpdir/ctl" "$tmpdir/ack"
++export PERF_CTL_FIFO="$tmpdir/ctl" PERF_ACK_FIFO="$tmpdir/ack"
++export JITDUMP_USE_ARCH_TIMESTAMP=1
++
++# HHVM deletes the jitdump on exit unless KeepPerfPidMap is set.
++perf record \
++	-o "$tmpdir/data" -e cs_etm//u -D -1 -m ,8M \
++	--control "fifo:$tmpdir/ctl,$tmpdir/ack" -- \
++	hhvm -vEval.PerfJitDump=1 -vEval.PerfJitDumpDir="$tmpdir" \
++	-vEval.KeepPerfPidMap=1 "$tmpdir/hello.hack" > "$tmpdir/out"
++[ "$(cat "$tmpdir/out")" = "$(printf 'Hello, world\nHello, world')" ]
++
++perf inject --jit -b \
++	-i "$tmpdir/data" -o "$tmpdir/injected.data"
++
++perf script -i "$tmpdir/injected.data" \
++	--itrace=b -F ip,sym > "$tmpdir/script"
++
++stacks="stacks a1 a2 leaf a2 a1 stacks b1 leaf b1 stacks"
++printf '%s\n' main $stacks main $stacks main > "$tmpdir/expected"
++sed -nE 's/^.*hello\.hack::(main|stacks|a1|a2|b1|leaf)$/\1/p' "$tmpdir/script" |
++	uniq > "$tmpdir/actual"
++diff -u "$tmpdir/expected" "$tmpdir/actual"
++echo "HHVM JIT call stacks match the expected sequence"
 
 -- 
 2.43.0
