@@ -2,151 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5085A606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 06:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC08F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 06:34:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C1H6hsPX;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=XDsMkXyp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W1m1wPES;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.a=rsa-sha256 header.s=test20231205 header.b=nAKa9CPq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Kk3Hn3DHlz1cPajRvCKocWJn+LgcjZzQ+PdSVfcHk+M=; b=C1H6hsPXkqJKLlR3u8s3/HztiJ
-	y5Htc+yYcdIEX5vIhPNN4f7FFFlhX5Dnqfm2h3qSm111nub1RLg8VdjGIYrA/SrzeolCMLJ/Tdo37
-	60kCaE6RZGAU50odIieI3/EfLQ88Ui/XjMxxR/FwZNIUonD3e0XJwMH8XH75qQM6okHQRPM+J0E1F
-	1u/93vjKgEOGoyWQWndmbqYEqDxJsKeKX4ibdTNhgoLXUDCuoy+V9sA5NmluIoauIuFTIXKHzCMEK
-	NXLN5zuBBPE0aJvUvnmF/S2HJc3ElrqLZzronYOnGjsxNtBrK7Mxr55eSKHDTjF0QIcIWLpe+fyV4
-	rRm3hnlg==;
+	bh=+LkSY5GlXR1Cv2REFbi0XBAyEkYgGEsqiwtvr/sPn20=; b=W1m1wPESyQoLTDsWapquSxJuKU
+	/kFH3cM33Un13qoHCs8S2YYgdklXY9CGKbIm8UqvDcDMhHQresydpzNJj0cwYwenh/mklJ+fk8oO7
+	fgsgfoHW7vfFqAx+0+4hiBpCLdvPL1ArNn83TiVfHu8LWSCb0yhaVH2tTyvoKX1GRdHVyhfs5G9bB
+	zRVW/ASXc0APqsvJN7WvlyIuN/7tJA1YjcZhBRq0a4BadTULXb46O63sWsc079JtFC8OGQqQbKnnD
+	/JG89lnLvt9iQ3WM04ORLjcJu/vTnY4wpdpkb1io6OLsBydDXvxJcWZIfawRBcnB6ePRzdVcw3WG2
+	x99esmXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTZ6B-00000007ty7-0JW9;
-	Wed, 18 Nov 2026 06:24:51 +0000
-Received: from mail-westus3azlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c107::3] helo=PH0PR06CU001.outbound.protection.outlook.com)
+	id 1xTZF4-00000007ubT-0EQn;
+	Wed, 18 Nov 2026 06:34:02 +0000
+Received: from outgoing2021.csail.mit.edu ([128.30.2.78])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTZ68-00000007txG-0MdO
+	id 1xTZF0-00000007ub9-35RE
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 06:24:49 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C4cfJ8RDXsLlVeN47cgpPIr1MvyTCMGAnFawzypmRCkx5A+vnyHRMcW/SJlbcww+xjquqd6REs55KY0CQXyF5lYGUE0+sssdg2XWTygBy4pR7vKdfoZT7xzNzKHEH0KQZ2eBzht/LK7Gs7CkyonPKQlKnIvDoTA/bXe3mEnh/ABJ5sDZwlz9nHQ4q1Rt9sEkgoq2cFiF4HgL9i8O/h5eygwP6KkpLK6ixLuIBtnfGeNVii/u9kw0kPGHxl4DT2RjfsEmGdHvXeyYNf0q0bC9OdrZeXxL1d6sQI2gouZntVKTqGXpchNOvisNwmbgjIpte0B0tusZEyGZVwxUTG5kig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Kk3Hn3DHlz1cPajRvCKocWJn+LgcjZzQ+PdSVfcHk+M=;
- b=N2kUXHQpVhXvvjgtZXiBomB1m1U1wbGmwvO62q3AdrCkM5ljq7KAO4YHe+Cm869GDpKQKwLSPBljl1XhdFwTobMz0vObDQaruc8tcrGCfdvPwkLmOwlPs6bzRHN09z8L+1MIz0liPPbj8VKl01JSFSMCKDz0NI3xMZp6JlQTfp/eyjCTgDew/sjAKUkpv0p7NAuSHKwArFn1fVXz6h/sRHaihEqDb9StYD0XZv1/v1N5kmsXEm9hjzCPEDwcOItBn3g9sQ4riizuLfX1urIRlfTN8ULwGDKOmRmXbwfDt6mnAsaHknKx4+y1Qw6dIDsSxhLBIyoizGwFNAi1JxrUew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Kk3Hn3DHlz1cPajRvCKocWJn+LgcjZzQ+PdSVfcHk+M=;
- b=XDsMkXyp/2+MDb3jHaFxLoWosB6UWPOoFti9pxCvs7rqu0oLiIrMl04Z8xQzgU+lpe6eeZ7jb8D3LjfyODSHwkAp64b3Ux0Fc9QqbMOYR1aZBPoHD7B4QzM42SqNS66MoVNTV4mxwrhn4U4OS8GZ+NjVDOUz5nN3yQFMQU11Lv8=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CY8PR12MB7516.namprd12.prod.outlook.com (2603:10b6:930:94::9)
- by IA0PR12MB8862.namprd12.prod.outlook.com (2603:10b6:208:48e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
- 2026 06:24:39 +0000
-Received: from CY8PR12MB7516.namprd12.prod.outlook.com
- ([fe80::b6cb:7a8c:fe0f:b9cd]) by CY8PR12MB7516.namprd12.prod.outlook.com
- ([fe80::b6cb:7a8c:fe0f:b9cd%6]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
- 06:24:39 +0000
-Message-ID: <5cbd17e2-f3ee-44a7-9a6d-bde4380520d7@amd.com>
-Date: Wed, 18 Nov 2026 11:54:30 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] dmaengine: zynqmp_dma: Add per-channel reset
- support
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Michael Tretter <m.tretter@pengutronix.de>,
- Harini Katakam <harini.katakam@amd.com>,
- Shyam Pandey <radhey.shyam.pandey@amd.com>, Abin Joseph
- <abin.joseph@amd.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- git@amd.com
-References: <20261106-adma_per_channel_reset_v5-v5-0-f9990669362f@amd.com>
- <20261106-adma_per_channel_reset_v5-v5-4-f9990669362f@amd.com>
- <avtpSXEdyeWpghqd@SMW015318>
-Content-Language: en-US
-From: "Golla, Nagendra" <Nagendra.Golla@amd.com>
-In-Reply-To: <avtpSXEdyeWpghqd@SMW015318>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0093.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::20) To CY8PR12MB7516.namprd12.prod.outlook.com
- (2603:10b6:930:94::9)
+	Wed, 18 Nov 2026 06:34:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=outgoing.csail.mit.edu; s=test20231205; h=In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=+LkSY5GlXR1Cv2REFbi0XBAyEkYgGEsqiwtvr/sPn20=; t=1794983638; x=1795847638; 
+	b=nAKa9CPql0z+1sMynzYMl8vekukgptl7utHFq5cKufEkBl/0vDkjijQJqZn6KgpgsQymqtpmM0q
+	vw2xaH7w9B83apDnI3EjxYxL3BsAzXqzTDVB6yJpLraDtAd7yl6B9Qv5jjjYhD6p4yoFtUnCxF0Si
+	/pA8yceNqqcdsMDEZlHGX6hTW5HKQM9+W8+WrGqqNXYM+/bnYT/SExyBsCXUkd9ZZakQxjoi5CM7U
+	2j55xEuXZW5oIP98+aH7uiJ2AFRU2U/W4seAMrVbLiPAd7XX5MUXzNVDeoxsqKh68OVmUPuPw5FPE
+	6wA0ILMQKg1Qpt5K7vdNoIAnikC+zjo8BnLg==;
+Received: from [167.220.238.88] (helo=csail.mit.edu)
+	by outgoing2021.csail.mit.edu with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <srivatsa@csail.mit.edu>)
+	id 1xTZEw-00EuZP-Ef;
+	Wed, 18 Nov 2026 01:33:54 -0500
+Date: Wed, 18 Nov 2026 12:03:46 +0530
+From: "Srivatsa S. Bhat" <srivatsa@csail.mit.edu>
+To: Prasanna Kumar T S M <ptsm@linux.microsoft.com>
+Cc: tgopinath@linux.microsoft.com, ssengar@linux.microsoft.com,
+	michal.simek@amd.com, rajan.vaja@xilinx.com, tejas.patel@xilinx.com,
+	abhyuday.godhasara@xilinx.com, gregkh@linuxfoundation.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	tglx@linutronix.de
+Subject: Re: [PATCH 2/2] soc: xilinx: Fix event manager CPU hotplug state
+ cleanup
+Message-ID: <av1GyoUdnxMV_C2p@csail.mit.edu>
+References: <20261103062051.676519-1-ptsm@linux.microsoft.com>
+ <20261103063515.679043-1-ptsm@linux.microsoft.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR12MB7516:EE_|IA0PR12MB8862:EE_
-X-MS-Office365-Filtering-Correlation-Id: 433f1427-1e49-40be-2b92-08df453c9f8a
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|23010399003|10067099003|4143699003|56012099006|11063799006|261026140227099003|261026121527099003|261022075727099003|261021121427099003|261021123027099003|261022105027099003|261102123227099003|261028144727099003|261009223027099003|22082099003|18002099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: 3VoWxfLvAvBIKb2ft/J9msZDdC0jv4umbBvFDjkCOk+kws3uZ7cGc9iEEb8xGwBbLJKDIERRgg0gLyFqds9WH5jYc75BxjlKNxmuISJVlhuxsq51x1ySO9VgkgGwn1+OSgf7DygZBxkWmuk0csxVzVQEqCCvH1DoQYueKJaOfqAaoETuvrsWusBjxyWp6mSWxv0EHEd8QQfgv2XmcdC3yQpQB2DwHC/m9OKXenhmsuyvBfadQOUeHRrj5l0HGbVfODbWasYvgcB6aCMqyFqVQ9wuVQKLSQ3RPHD6Oq8FeP2HPhY9+MAVntdHYgaxJfxjL1T2btTGsK+IA5U7ZGFiB01fcJCD1KOUOYvSHOvnSctNRza6MW9iwCztc5VdFyvVYl7mXQnc6BAoqCP6DxWmJf6IKfbO314qgsYYTkYlXMKV75Ma4N81OcAs+mAUyLNTcemrOBqw5yaZ5Wpiaa2woh3/6EMK4m77KPI8EWZntczccn0QMJ5dbKqt+PtTwAVvVzZmHp4q6xud2Cr+nkCZ/irHNLc3RdKKHolTWQRBa9EFRRrLL/8jqwjGL0+eZt36xnoM11rMnUfJjI4IsSJiIg9iPlwK9lZPF/K6NsmPihO1tEHltVVumhPDRLkmFL8ZP333fvhBtroy99YhhHOISfKZAl0dK6kRRtHJdwSR8ig=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR12MB7516.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(10067099003)(4143699003)(56012099006)(11063799006)(261026140227099003)(261026121527099003)(261022075727099003)(261021121427099003)(261021123027099003)(261022105027099003)(261102123227099003)(261028144727099003)(261009223027099003)(22082099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q29pSy9PV21rTVJDM3E3SXFZUGNEcXRLZENtQi9LcndrVWM2Z2JINWVwdld2?=
- =?utf-8?B?MHJvd0pySVMvUktpM05aQjFrYUgxeUFySzFDRmlTWVg0dUc2K0ZxeEx2a2Vl?=
- =?utf-8?B?aWNKUUdmbkFnWFdTS21GdTdiZjhOVDNjUmN5aGRBeUMzaXozZTB2MVg3bUl0?=
- =?utf-8?B?dEU0Z3RFbm9ZRjlSUVZxaEkvcWhiVENMc3FNeGZaaEdWWmRjM2R3TUxTRnNp?=
- =?utf-8?B?ZVA3VHBwdVJ6TW9pdENBa0JFN1VZYStmK3NhNHVOcXJVMkx1bGtiSVVadXlt?=
- =?utf-8?B?aVFNazVTUXhFdnpiNlJDZjNGRWd2ZkVYamNuL3BFOGRBMGZFLzhaR2RSc3Bq?=
- =?utf-8?B?Mi8zS2pjWW1RZGxIVHFvcnRNV1h2eStiKzlMM2NFeHJ5dVdUeUJwSGxjTVFi?=
- =?utf-8?B?bTFJeUg0YVZMa3l6TzBsRFE5d3FkWUxBVHcwcFZtMHd2cGphM2RIUXh2allC?=
- =?utf-8?B?d3BkWXQxMXBMTmhqS3FQWVMwc2tOSnFQTlhXUWtYS0ZTN1dSVzgza01jbFI5?=
- =?utf-8?B?Q2RhcmRSU0FNT29iYW1xNm52clYrMDZ2dFFoOUcxK3ErZGtPRlpYQmg3OWlo?=
- =?utf-8?B?N2FHU2pkMjE2d29hSVNoWUs0c3QxMGJ6cWNUSTZiV2hsb1hwUGhlUldPak9I?=
- =?utf-8?B?TldiYUt6SkV0TFFpYjN0UGtjQS9SQkFzamU1Y0tOTlVMUmNWZHY3VDRoU0Ft?=
- =?utf-8?B?dHNKbWduSnBDZVg3Z2tsNVZ3QW4yeGNWcXg3c1Y4STFubjc4dW1HamNaaEU4?=
- =?utf-8?B?Qk1PL0F0SHlqRzRjaEdUejVreStSR1RtV0FnQzAvNzNIaWNmdFFvYWc0enNi?=
- =?utf-8?B?N0s5eU43bmsrcTlDdmsrNmQ2Vy82YUV0a0JNQkxRaENUV2xRNUhJYWdKcG41?=
- =?utf-8?B?TGtNNktxSWJRZzlrYk83ZUFsR3ZBQ09zcWp0bGc3MHdLTEEwU0hqZXZPVTZs?=
- =?utf-8?B?ZjJpeXJHc0JhOHJiTDU2a21SUGVtMHUyejVpOW44ZmhKa0hqMzZWcTRWekkz?=
- =?utf-8?B?VytxbGIwMzBydlZUSFlxUmVPV1dKNG9KVEFHQnNHQVZFbWZGZEV0KzhIOWU0?=
- =?utf-8?B?WGVFV3Y5Vm5jclR1YjZlbFI4ZnROOGNQL0h5a3EzOFZaakUzMGQyRTRJQ1ZC?=
- =?utf-8?B?Y1FDSGg3cFBYR0FXV3J3UVhMNXFGYXVsbXBZYXhlTkVFNVpCd2FJa0JQTzVC?=
- =?utf-8?B?Y3l6WFVuUnBzN1BUaUx1UEdkd09yUzRvcCttUU9HVVhXbTNBZzM3MjlTWDZz?=
- =?utf-8?B?VkFSeTNRT1NVT1MrUGNMdUt0VFl2T2dLSFgydklEYnMxd3pkTUJmcmxxMmVN?=
- =?utf-8?B?WkJneWw3S2cyUFJENnJySkFqcTlsNDNXcStKQWJ2SUlTYWxCWUVlZkN6L1Ri?=
- =?utf-8?B?TU9IeFdRUXZYajhHdTdFKzBlV3VTTTczL1lPNy9NQ0lldnF5bkNNcDBCRi82?=
- =?utf-8?B?YVY0ZWN1dlp3RnBNUUJBRWlWMWw4aHVCbXl1NjhFZGF2RlN2M1FVd3Zyeitn?=
- =?utf-8?B?c2R5dUlXVWd4OUFWN0hvVHVsNTh2eVlxSGRlK2tUUVVGalNzZGJOZis0WWo5?=
- =?utf-8?B?UGo4andReFNJZC9DMmh6MjhLemZCTHVPZDh5ZmhLSmgwZEdpS0NGcGJZeStB?=
- =?utf-8?B?RnF0ZkFwcWptUHR2NmVXMGhkNEtzRjdDdTd6dFFrMHhYY0FudW55MWNmQ29z?=
- =?utf-8?B?TVdYMi9NdnZVOVlWQ3lUV1ZuWHlsaE81dWxyZEprWnJYV2xuVkhrOE8wTC9Z?=
- =?utf-8?B?N3QzQW5FdGNYTXRHRHpldlUwUFM3STZuV05YbjFjUnFIOXpSdHRHYUZvaE5p?=
- =?utf-8?B?ei91ekFNNGJMTEpoR2VZODFhdkNJNHBaNE9veENmQXQ2Mk9qclFZeUZOZUJj?=
- =?utf-8?B?aWxrclV5WHJjZ0ZHR1hEUlBsdldJS3RMdlQ4bVBpSDNad1lOU1FETmROV1Vo?=
- =?utf-8?B?UmhKRG5UY0pYYzFlT3YrTmh1RTNxSkcwZXdBeDhJMlU4KzRBc0hCdGRCREpx?=
- =?utf-8?B?TGFPNWpEQkZmaC9qOEl3ZVVXd2F2bitrTFY3M29Qc2p6dVJCbldvYlVhYzM1?=
- =?utf-8?B?VWtPbU1abGRybkRCeFJ1bXRqbTBzeWhRanBvRnpwM1RIUktTbm9JR1BKU1NK?=
- =?utf-8?B?dmlFcmZ5bkd1VGx5QmJRbS9UU0dHci9zOHJCb0FMYndUQUd3Vkg1UllQaHhK?=
- =?utf-8?B?b0krRzBUNlhWcnBWYjFxU05yYXRqUEhKc092dzhtbDQ4aWlrWUxISzRxbDBz?=
- =?utf-8?B?Qzh2S0pBNnkyNS9DZjdLQXNQUWxNaU05NWVSWWhTc0F0SkxkVnNsMWh1bjE2?=
- =?utf-8?B?bGJDU2V6cW9ncXhxWlFxSHZKY0pXUTQ3M3ZSMFVJcjM3VW1FZ1F3UT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 433f1427-1e49-40be-2b92-08df453c9f8a
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7516.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 06:24:39.0866
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Gcbg9GcT7ssuQ8RJQwuVJMCiEFg0V27Kl7iOxiGWSmxblq21/RztUJznkDrQ5khtdsjZPwGcb704xfz8ylRIgw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8862
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261103063515.679043-1-ptsm@linux.microsoft.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_222448_173485_37B73595 
-X-CRM114-Status: GOOD (  18.53  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261117_223358_948626_25FADD25 
+X-CRM114-Status: GOOD (  22.44  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,99 +79,93 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Frank,
-
-On 11/17/2026 2:06 AM, Frank Li wrote:
-> On Fri, Nov 06, 2026 at 03:40:26PM +0530, Golla Nagendra wrote:
->> Versal Gen2 and Versal Net expose a dedicated reset line per ZDMA
->> channel. Trigger a reset pulse during probe using device_reset().
->>
->> For Versal Net and Versal Gen2, reset is a required DT property, so
->> probe returns an error if the reset property is missing. For legacy
->> SoCs, the reset path is skipped.
->>
->> Signed-off-by: Golla Nagendra <nagendra.golla@amd.com>
->> ---
->>   drivers/dma/xilinx/zynqmp_dma.c | 10 +++++++++-
->>   1 file changed, 9 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/dma/xilinx/zynqmp_dma.c b/drivers/dma/xilinx/zynqmp_dma.c
->> index cb0eb13f9b05..12696fa44c66 100644
->> --- a/drivers/dma/xilinx/zynqmp_dma.c
->> +++ b/drivers/dma/xilinx/zynqmp_dma.c
->> @@ -19,6 +19,7 @@
->>   #include <linux/clk.h>
->>   #include <linux/io-64-nonatomic-lo-hi.h>
->>   #include <linux/pm_runtime.h>
->> +#include <linux/reset.h>
->>
->>   #include "../dmaengine.h"
->>
->> @@ -937,6 +938,14 @@ static int zynqmp_dma_chan_probe(struct zynqmp_dma_device *zdev,
->>   	if (IS_ERR(chan->regs))
->>   		return PTR_ERR(chan->regs);
->>
->> +	match_data = of_device_get_match_data(&pdev->dev);
->> +	if (match_data && match_data->has_reset) {
->> +		err = device_reset(&pdev->dev);
->> +		if (err)
->> +			return dev_err_probe(&pdev->dev, err,
->> +					     "failed to reset channel\n");
->> +	}
->> +
+On Mon, Nov 02, 2026 at 10:35:15PM -0800, Prasanna Kumar T S M wrote:
+> On driver removal, the event manager removes the CPUHP_AP_ONLINE_DYN
+> CPU hotplug state instead of the its actual state. This can leave the
+> event manager callbacks dangling. Use the actual CPU hotplug state
+> during driver removal.
 > 
-> Use device_reset_optional() will simple code. Your binding already verify
-> dts, needn't check again.
-
-Thanks for the review
-
-The binding schema restricts the resets property to Versal Gen2 and 
-Versal Net, where it is required.
-
-An unconditional device_reset_optional() does not enforce this required 
-property for Versal Gen2 and Versal Net devices in alignment with the DT 
-binding schema. If the required reset is missing, 
-device_reset_optional() would allow the driver to continue probing.
-
-Whereas, in the current approach, the match-data check limits reset 
-handling to Versal Gen2 and Versal Net. Calling device_reset() for those 
-compatibles enforces the required reset property and ensures that probe 
-fails if the required reset is missing or cannot be applied, in 
-alignment with the DT binding schema.
-
-For legacy compatibles, the driver skips reset handling even if an old 
-or unvalidated DTB contains an unexpected resets property.
-
-Hence, we prefer the current approach. Could you please advise if you 
-see any concerns?
-
-Thanks,
-Nagendra
+> Hotplug registration failures are also ignored, allowing probe to
+> succeed without the callbacks needed to enable event interrupts on
+> CPUs brought online later.
 > 
-> Frank
+> Fixes: c7fdb2404f66 ("drivers: soc: xilinx: add xilinx event management driver")
+> Signed-off-by: Prasanna Kumar T S M <ptsm@linux.microsoft.com>
+> ---
+>  drivers/soc/xilinx/xlnx_event_manager.c | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
 > 
->>   	chan->bus_width = ZYNQMP_DMA_BUS_WIDTH_64;
->>   	chan->dst_burst_len = ZYNQMP_DMA_MAX_DST_BURST_LEN;
->>   	chan->src_burst_len = ZYNQMP_DMA_MAX_SRC_BURST_LEN;
->> @@ -952,7 +961,6 @@ static int zynqmp_dma_chan_probe(struct zynqmp_dma_device *zdev,
->>   		return -EINVAL;
->>   	}
->>
->> -	match_data = of_device_get_match_data(&pdev->dev);
->>   	if (match_data)
->>   		chan->irq_offset = match_data->offset;
->>
->>
->> --
->> 2.43.7
->>
+> diff --git a/drivers/soc/xilinx/xlnx_event_manager.c b/drivers/soc/xilinx/xlnx_event_manager.c
+> index f733dc42b3b1..2d8bfeab4190 100644
+> --- a/drivers/soc/xilinx/xlnx_event_manager.c
+> +++ b/drivers/soc/xilinx/xlnx_event_manager.c
+> @@ -24,6 +24,7 @@ static DEFINE_PER_CPU_READ_MOSTLY(int, dummy_cpu_number);
+>  
+>  static int virq_sgi;
+>  static int event_manager_availability = -EACCES;
+> +static enum cpuhp_state hp_state;
+>  
+>  /* SGI number used for Event management driver */
+>  #define XLNX_EVENT_SGI_NUM	(15)
+> @@ -625,8 +626,6 @@ static int xlnx_event_init_sgi(struct platform_device *pdev)
+>  
+>  static void xlnx_event_cleanup_sgi(struct platform_device *pdev)
+>  {
+> -	cpuhp_remove_state(CPUHP_AP_ONLINE_DYN);
+> -
+>  	on_each_cpu(xlnx_disable_percpu_irq, NULL, 1);
+>  
+>  	irq_clear_status_flags(virq_sgi, IRQ_PER_CPU);
+> @@ -660,8 +659,13 @@ static int xlnx_event_manager_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	/* Setup function for the CPU hot-plug cases */
+> -	cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "soc/event:starting",
+> -			  xlnx_event_cpuhp_start, xlnx_event_cpuhp_down);
+> +	hp_state = cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
+> +			"soc/event:starting", xlnx_event_cpuhp_start,
 
+Let's change :starting to :online as per convention, as this is
+associated with the ONLINE_DYN state.
+
+Can we also edit the callback names for symmetry similar to the
+suggestion for patch 1/2?
+
+> +			xlnx_event_cpuhp_down);
+> +	if (hp_state < 0) {
+> +		xlnx_event_cleanup_sgi(pdev);
+> +		return hp_state;
+> +	}
+>  
+>  	ret = zynqmp_pm_register_sgi(sgi_num, 0);
+>  	if (ret) {
+> @@ -670,6 +674,7 @@ static int xlnx_event_manager_probe(struct platform_device *pdev)
+>  		else
+>  			dev_err(&pdev->dev, "SGI %d registration failed, err %d\n", sgi_num, ret);
+>  
+> +		cpuhp_remove_state(hp_state);
+>  		xlnx_event_cleanup_sgi(pdev);
+>  		return ret;
+>  	}
+> @@ -704,6 +709,7 @@ static void xlnx_event_manager_remove(struct platform_device *pdev)
+>  	if (ret)
+>  		dev_err(&pdev->dev, "SGI unregistration over TF-A failed with %d\n", ret);
+>  
+> +	cpuhp_remove_state(hp_state);
+>  	xlnx_event_cleanup_sgi(pdev);
+>  
+>  	event_manager_availability = -EACCES;
+
+It looks like this patch 2/2 doesn't have the kind of bugs in the
+cleanup path that affected patch 1/2, so that's good.
+
+Regards,
+Srivatsa
 
