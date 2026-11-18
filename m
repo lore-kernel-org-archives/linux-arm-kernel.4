@@ -2,158 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE38606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D043606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YQ+Uth2o;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=i8mKLDli
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mkRJTlC3;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mJ9iEzpF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:In-Reply-To:
-	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=5gmN6H+RSfew5cKRkkzfR78AcJ/HC4QuJ1A3RJGQZBo=; b=YQ+Uth2optswDAQYq8wK22mzPI
-	rW0dFwPX9TFwHfM3dTNqlv3sn080aZbyKR+vvxzEbNpNlhPlnnKCor67TebuHGAIxvklyn9XWsrsr
-	zAfWhyk+KyxPaJKAm/DsqIQM91umUvFfiVnVVbDEUyPjZ1JVtieyHRKdIp4OPUfIaCHlGrK8P293w
-	tmbf9f/FWDsQATDqicT4bxwE0DdD23LYZxle2IHhwM88jDsgyNFmB/0HLJuEeJhhNFJpYvWiZBD+z
-	lcKXxrCcXUlx134xEFAKoZSCIlHUmT3pOlpAcscjXVrwbcN3yFrx7OfJdxkdNNn7Kz6tftEtsqY0i
-	GWAkZWoQ==;
+	bh=eQBlPzsdCnXUF+GyLfk4qn4PYlra+1Sjq9ndrbvDC2w=; b=mkRJTlC3mlxnvDR7u2d4Xf/Kx0
+	eRDic/nsYJhNsORA5KuEKEBdl0WSRx4A9/xk15TjKi9mgQVAziW54lvg/s3SFCGK0zBjYssKKIiDy
+	dkhpkimTXnwQgXrQYH7uO6aFs+4PbzMBESe2qbJXPoiu/QFk0O8yRfISK+P7g4oIXYCTLoGaraOrl
+	JiPPmyP1mi1H4apytGJIK9EcC+9RTdyhTwFIu0+qZiDqoWo8Ynqg22uQYem0JXHevtpvuW+jsN6XP
+	jiw6/f0ILgYepoeHTaCPRyqZqyLYPa6zWAS0hLGjyPQilHTveA0+K0FWuD54fEFBtyER7LCWS/Zgx
+	VIFWbpLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTpIa-0000000AWZw-2wUJ;
-	Wed, 18 Nov 2026 23:42:44 +0000
-Received: from mail-yw1-x112f.google.com ([2607:f8b0:4864:20::112f])
+	id 1xTpNA-0000000AWoz-14h6;
+	Wed, 18 Nov 2026 23:47:28 +0000
+Received: from mail-yx1-xb12a.google.com ([2607:f8b0:4864:20::b12a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTpIY-0000000AWZ8-22HC
+	id 1xTpN7-0000000AWoK-1gNs
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 23:42:43 +0000
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-8b4b9ba815bso11019297b3.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 15:42:41 -0800 (PST)
+	Wed, 18 Nov 2026 23:47:27 +0000
+Received: by mail-yx1-xb12a.google.com with SMTP id 956f58d0204a3-67db6d4054eso1725611d50.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 15:47:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795045643; cv=none;
+        d=google.com; s=arc-20260327;
+        b=WWA9KsSyt7aJvE8jSPE2PfUM2LcfVpbijOrMPbwu/SKhc3eQelCLIhD/C57ufmLWAb
+         F8NrO5K5KFc1PzD6RggeL078vEYjRaAFQBVVxJ3e+TjqXRHQwY6fA/SP4VSL4SGC2Yiy
+         nYXahs74tZxSo4pahPdFF0sqWSZxQBIqtmP8I4msrsXRk+X3K3HW2CKNQAo5OZqx6pwk
+         OOokdxMrrMjxoqwTbD+kBfmU7h9QY4gDjeWfQ3aWcUT1NZywSB/mOvGSeut/43Nr59dg
+         X0jASeinu2E4k4xoFXZnXrLmze4zjQd5zx/15xkvJfs7KpBEg7s4aj3oGLDnPGRnSslU
+         69yg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=eQBlPzsdCnXUF+GyLfk4qn4PYlra+1Sjq9ndrbvDC2w=;
+        fh=3e9hc/XhdeqZDzqeTh7qRFKdhJF19C0ZWeR1i1T+VYA=;
+        b=Oo1O4BKUDThGdX0w5gCyo6tT3SJF8mQiSS7unEhMvXAXTfEOFaO+fI5x0EAfDe12zK
+         sGarsVSGMuu0fup2WcLnuWC0XudSrb91Tfv7zFQfoH7a/UU59HTyBCb8DHQuHzhjGJ7o
+         7yOu4ZghlKRaSJevSrdYdXjalEQqNMO43mCGQFyrKSgEx4oA1fUEury9pH+ZfCCmKoQe
+         9F8iBMxLkjmqA35kBvDej00yDqmZKTWXgXUzxmUZYjdxoaHWgpbX7NjfvHU3kH8R7ooa
+         qs9IX3A+H9qqR+rTCnUEdwhupHGnhJRiCEmzpsfH3MQ/m1GIUfS/cg1tvq6Qnc7UN2J/
+         ONig==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795045360; x=1795650160; darn=lists.infradead.org;
-        h=content-type:in-reply-to:autocrypt:from:content-language:references
-         :cc:to:subject:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=5gmN6H+RSfew5cKRkkzfR78AcJ/HC4QuJ1A3RJGQZBo=;
-        b=i8mKLDliFy35RdZBAOACsmg4xfHMlFjxiz/+LhrfLk1O5fd47Y69vzVjdivYdvj0xm
-         aP83rlh56wYTfm0QQFJq6fgJg2w5xS3SiZg0dMPu5TN3nxTRwfCVUkHNP4bOOtseTKkz
-         TaJjR9GbxvTW6qQziDg1sseyqSPTa8a41MCmd8Qr3O4QvRmh2y0B2B2SFeEQkB+Ib3jy
-         LkD46Qyfr1Btx1dUaVk11VkqHstXxFKvOErct+XtBKaXQfGdHUkHKNR4O4GTQKrQrNtv
-         RrMIC7d9FGCnqkP1JMVlYNX7FqWgFQKMbWD6gA06mSmn0cZWiTkGeFzd2XV5gRDB7MyE
-         RDrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795045360; x=1795650160;
-        h=content-type:in-reply-to:autocrypt:from:content-language:references
-         :cc:to:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=gmail.com; s=20260707; t=1795045643; x=1795650443; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=5gmN6H+RSfew5cKRkkzfR78AcJ/HC4QuJ1A3RJGQZBo=;
-        b=J3+VRR/9eyzqsaxfOSwqejqFPpnvfVlwWyX5yxVHTM2cF7DXKIRndqDhAv216iC1HO
-         gnTaCYhW+0/w094jT9oiX9fCKBg3v7zs+QDU5RQG4TlrUgmwS/dn/BcJ7p4lLckApc3G
-         3kJxF9P5iFBTCkrlZdbH2VDpYEVD7z1Z+fLZ2Z2kIB2tRVRz29tytpIn3swN1qtS1A72
-         YPfbqtmK5cdQYiAZvtKmim2e5qNlCzehFIghsYvy6UMBAxINTPVZ+vr2zxd6rIzG0KS1
-         6qSOPdXg5oo0QVYXLrHpfrOz+A7EkZTuq+xqKNfzrTSm3s2I9Gsus/9+1FgcRB5RdRNy
-         XXBA==
-X-Forwarded-Encrypted: i=1; AL+hErGDiJxOja/0ibjL7jysa+JbRtZCqceNz9Fpjr+eSBTFTIjLwgM+xmR4/PT6SEcu8EPnlkMXdr47HvFlWTdSX9Lv@lists.infradead.org
-X-Gm-Message-State: APuU4Z9Gr9Pnahk772+rD3nLRnpcwgHMITThR33g3Wco/+2QdBBm484s
-	BhEDcDI7bcYWIinfZyjgEblXUNiqMPAp9q/nDZO4ANPNef2wWTzo6Q6b
-X-Gm-Gg: AZFdTZcLXEtmXBZ+9XdkAXMaxY5MP5Fod9zQbruHXaMkeQkO67Jl1uky0Ot7UVAEAcw
-	NuaN1Qj+BuAeUrKeKuXAFXdOv2wpfp3UgG0AD1WgKJkKazM5i3ietn0PlUOTyOlB2Ho2579IVfC
-	it9uOsZIxI8PBNqSF52OXM7Y+a4M5bd40fPx3gZx6f+gYQadg6aaAS0m7+waXHCzVBo+T6qTgE1
-	zBMnbliawd11QZ+oFcXl8WnjVB+S3LOY/9xNNqKzBrRk32VTYudSir2KWBasJ4GB1wodFPQ+TCc
-	+yosg4hLyaoPPgzqAGwHCSe2WQH/pO7JTOU4096ixTyC6Mu1yl6LBckqx9pR2an4CdAp69UJzq+
-	GPo8OOB+Mq6dRBlFilnjkYc7xTG4yzVVsq4APVer74jFrq2ksxVdtd0buNb3bIuPr+H0s4K3g9I
-	RV966Lc3NWgutFRANPFGDQM/tbu8eyb3aSXrFeIDgLUSGHplNb3DtYWQK2pN4xBSLGuOqTtHhWc
-	1vSOtP9AUWJPn0Kls3EuN3A3wBZqvD1j4LUX39KZmlWmBuDR6dORDFJGawXxk4KobXSrFWF6MCF
-	HRZ/INzf5PFEE3fNzYDFxZ5B/NpdiOQ9vQ==
-X-Received: by 2002:a05:690c:306:b0:8b0:e479:6872 with SMTP id 00721157ae682-8b4fed09583mr22589027b3.17.1795045360439;
-        Wed, 18 Nov 2026 15:42:40 -0800 (PST)
-Received: from [10.138.10.6] ([149.102.242.31])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-8b4fdf1d0desm25041597b3.1.2026.11.18.15.42.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Nov 2026 15:42:39 -0800 (PST)
-Message-ID: <650f89ef-9745-4f75-b254-80fa5ac4773d@gmail.com>
-Date: Wed, 18 Nov 2026 18:42:15 -0500
+        bh=eQBlPzsdCnXUF+GyLfk4qn4PYlra+1Sjq9ndrbvDC2w=;
+        b=mJ9iEzpFUdxli8L7UjGN2Cmev026j+eTrACfEgPkeeNDmKIBF4wOHOVsQroQUSgLFE
+         96wjgNSxm1NsdFlCtUASeN8h3M2V5cHBYh7WUiiUlAamE5ifK4QlUYhDNQjvVrjf2YYG
+         J/YZ8GHKpXdByZbWupHcK9IxYxgDgMBiPWbuTHEWWNKzBOqdAh9AquJ4fo+s5zjhAke9
+         DaavQHLbvozjZw8XjhaheO2hZoVsu+aKL4UrgeQ89qYPBz5dKSAg4g1B3UrGnD+akPTJ
+         qLt7+YAjTMS1NckFu0fnjDqnk0a9O/avbSGSFSBZyesbyEgWyrmZ5vLQOhYNAqSBpIJo
+         PMOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795045643; x=1795650443;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=eQBlPzsdCnXUF+GyLfk4qn4PYlra+1Sjq9ndrbvDC2w=;
+        b=BYQPpHLzgFkDOVkQ34fMeqGYska0ZhNh/SxSnq0aQpmR2C/MbWAbj7nb4UlGAwNnoL
+         1Q47UzchxpidbM/gqLYx2IvMc8P0DtB6RgxM46T96qbq5b6hnBOeT4nMXKCAiEfh+hlv
+         eedu13SJxdorPIWeFn6kNB9NmAujoH2KXNQ0WIA10AJn2HGK6zUfM4yty61snsfQVjHF
+         yC7ghyNOGdpasLveTZcdNnl9u7v0HvF+YLt9lfNVP/plUSHWJ0MHpll2gOcPpEcjHHib
+         pjC3YBmvKF5bmOzC4MP7sNggmqSh5ihG49j6xcCAm/AHq45frm8JanNTCLC9ZLKI2ROG
+         3wfw==
+X-Forwarded-Encrypted: i=1; AL+hErHQgR78USjvlp6Du4S601lMSt++huV1+tTtiCBHuRcAef4xoTPzVGSg1GVru3m13ucrenLmZcrClnQZOVlZvjrL@lists.infradead.org
+X-Gm-Message-State: APuU4Z8J7aaKj6aXq4G6CeSG9qd/UFILHDAPupNz+d6DcPxgSuxw5Kmj
+	7ILQg63LWkqYbPxdtKMvBPccys5OlsEYKm3E9hWqHgajB2L2SDmtLdGiipOhH5sysZS3jhA+JBM
+	ed/R8S5578Mh1WcmJ5ecjS+rSugrv9Ls=
+X-Gm-Gg: AZFdTZcqK/ku5+fI9WvLyggrmBx8r6V1HHTq6kx6V1/fvuTG73Qn18EvU+KLmM3KTub
+	VBzh966oQGixuO4DJMD/3YAQ//I8mYJ7HF8gcptsPZhQVLfBg/HEyqa9LYax68Z4fMZhKwL+9LA
+	lAZolOKzqCjuej/8odAbnjwPWybo6NIkdhtbw0Cj1bDK5S5G53dBlXX05aeiVHfVKg3CPYjfF4M
+	eX5fImwnh8obIXhg+qxDJD/1+oKgClpy+QtlT6ueMelVPl3YJnK1EPf+EqIIIj4kX3SJkfGBPyo
+	BTerO9DUG4glCCsCbL88Vgh2Fx3Wf6565bg6wHizhFe/+zAVRZD0OE+0NCNOLAsSkhJnMgZLe5K
+	ceVoOwmnTMqMkcld2N8NxpNFciyhp1CLpKNFwta8YhW2Ih1n+rPsHLwAFbeJlOX6EHwzYJzGjzy
+	QDALxYFUTd6teKRy0Lz7tzIWEUNf5p8tWEpqowekIsJK+nWKFk/FR+sO51QwHGwWi9bTJJwZcdT
+	QW95J4=
+X-Received: by 2002:a05:690e:43ce:b0:67d:b262:92f8 with SMTP id
+ 956f58d0204a3-67dd3fdc0c2mr1270228d50.46.1795045643596; Wed, 18 Nov 2026
+ 15:47:23 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/9] KEYS: keycrypt: keys that user space can use but
- never read
-To: Rodolfo Giometti <giometti@enneenne.com>,
- David Howells <dhowells@redhat.com>, Jarkko Sakkinen <jarkko@kernel.org>,
- keyrings@vger.kernel.org
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Jens Wiklander <jenswi@kernel.org>,
- Sumit Garg <sumit.garg@kernel.org>, op-tee@lists.trustedfirmware.org,
- =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>,
- Pankaj Gupta <pankaj.gupta@nxp.com>, Sahil Malhotra
- <sahil.malhotra@nxp.com>, Ahmad Fatoum <a.fatoum@pengutronix.de>,
- Richard Weinberger <richard@nod.at>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Eric Biggers <ebiggers@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap
- <rdunlap@infradead.org>, linux-crypto@vger.kernel.org,
- linux-integrity@vger.kernel.org, linux-security-module@vger.kernel.org,
- linux-kselftest@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-api@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20261118140421.584086-1-giometti@enneenne.com>
-Content-Language: en-US
-From: Demi Marie Obenour <demiobenour@gmail.com>
-Autocrypt: addr=demiobenour@gmail.com; keydata=
- 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
- +MYSfkEjBz0E8CLOcAw7JIwAaeBT
-In-Reply-To: <20261118140421.584086-1-giometti@enneenne.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------jzPPC6cqPSJxGVQJoosVKqnL"
+References: <20261117222224.1465328-1-arnd@kernel.org>
+In-Reply-To: <20261117222224.1465328-1-arnd@kernel.org>
+From: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Date: Wed, 18 Nov 2026 15:47:12 -0800
+X-Gm-Features: AclHuK_2KS4BekP-0pSMj9w4NCC-36T5SpqBDjBsi3PNo1diUcnpEXUOY_hCT2A
+Message-ID: <CAE5sdEgtUDxOqnOHn+Z8PE2xgA7khft_62J5KOH824SiviUNoA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] st64bv0 support in iommu-sva
+To: Arnd Bergmann <arnd@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Fuad Tabba <fuad.tabba@linux.dev>, Marc Zyngier <maz@kernel.org>, 
+	Oliver Upton <oupton@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
+	Zenghui Yu <yuzenghui@huawei.com>, Steffen Eiden <seiden@linux.ibm.com>, 
+	Yicong Yang <yangyicong@hisilicon.com>, Zhou Wang <wangzhou1@hisilicon.com>, 
+	Navneet Singh <navneetsingh@microsoft.com>, apais@microsoft.com, 
+	hargar@linux.microsoft.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_154242_556113_4BE315AE 
-X-CRM114-Status: GOOD (  16.61  )
+X-CRM114-CacheID: sfid-20261118_154725_476832_68D61737 
+X-CRM114-Status: GOOD (  17.38  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -165,158 +125,74 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------jzPPC6cqPSJxGVQJoosVKqnL
-Content-Type: multipart/mixed; boundary="------------TfokhGkQ0eBXMCucH70BiVLN";
- protected-headers="v1"; hp="clear"
-Message-ID: <650f89ef-9745-4f75-b254-80fa5ac4773d@gmail.com>
-Date: Wed, 18 Nov 2026 18:42:15 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/9] KEYS: keycrypt: keys that user space can use but
- never read
-To: Rodolfo Giometti <giometti@enneenne.com>,
- David Howells <dhowells@redhat.com>, Jarkko Sakkinen <jarkko@kernel.org>,
- keyrings@vger.kernel.org
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Jens Wiklander <jenswi@kernel.org>,
- Sumit Garg <sumit.garg@kernel.org>, op-tee@lists.trustedfirmware.org,
- =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>,
- Pankaj Gupta <pankaj.gupta@nxp.com>, Sahil Malhotra
- <sahil.malhotra@nxp.com>, Ahmad Fatoum <a.fatoum@pengutronix.de>,
- Richard Weinberger <richard@nod.at>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Eric Biggers <ebiggers@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap
- <rdunlap@infradead.org>, linux-crypto@vger.kernel.org,
- linux-integrity@vger.kernel.org, linux-security-module@vger.kernel.org,
- linux-kselftest@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-api@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20261118140421.584086-1-giometti@enneenne.com>
-Content-Language: en-US
-From: Demi Marie Obenour <demiobenour@gmail.com>
-Autocrypt: addr=demiobenour@gmail.com; keydata=
- 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
- +MYSfkEjBz0E8CLOcAw7JIwAaeBT
-In-Reply-To: <20261118140421.584086-1-giometti@enneenne.com>
+On Tue, 17 Nov 2026 at 14:22, Arnd Bergmann <arnd@kernel.org> wrote:
+>
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> Hi Siddharth,
+>
+> Here is a what I came up with for enabling ACCDATA in arm64 Linux,
+> similar to the earlier patch and rebased on current linux-next.
+>
+> I hope this works for you, please let me know how it goes.
+>
+>      Arnd
+>
 
---------------TfokhGkQ0eBXMCucH70BiVLN
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Hi Arnd,
 
-On 11/18/26 9:04 AM, Rodolfo Giometti wrote:
-> This RFC proposes a key type, "keycrypt", whose material user space can=
+Thanks a lot for putting this together and rebasing it on linux-next,
+much appreciated!
 
-> use for symmetric operations but never read: AES-256-CBC, HMAC-SHA256
-> and an authenticated AES-256-GCM stream, through a file descriptor that=
+I'll review and test both patches on our hardware and get back to you
+with results/feedback before this week.
 
-> KEYCTL_CRYPT_OPEN returns for one key and one operation.
+Siddharth
 
-I haven't looked at the API, but from a cryptographic perspective,
-this encourages very poor practices.  AES-GCM even allows userspace
-to extract the secret authentication key.
-
-AES-256-CBC isn't a suitable mode on its own, unless it's combined
-with a MAC in encrypt-then-MAC.  Even then, it has a 2^64 birthday
-bound, so it should only be used 2^48 times with a single key unless
-the key is ephemeral.
-
-AES-GCM is not a suitable algorithm either.  If you allow encrypting
-with a key loaded from persistent storage, there is no way for the API
-to ensure it is only used with a unique nonce.  Nonce reuse leaks the
-authentication key and allows forgeries.  Using random nonces isn't
-good enough either: NIST only allows 2^32 encryptions in this case,
-and the API can't enforce that limit.
-
-For long-term keys, all of the following are much safer choices.
-They have 192-bit nonces, which means that one can generate them
-at random for each encryption without any problems.
-
-- XAES-256-GCM
-- XChaCha20-Poly1305
-- AEGIS-256
-
-AES-GCM-SIV is also okay, provided that you are fine with occasionally
-leaking if two plaintexts are equal.  This happens whenever there is
-a nonce collision, so with probability 2^-32 after 2^32 encryptions.
---=20
-Sincerely,
-Demi Marie Obenour (she/her/hers)
-
---------------TfokhGkQ0eBXMCucH70BiVLN--
-
---------------jzPPC6cqPSJxGVQJoosVKqnL
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEopQtqVJW1aeuo9/sszaHOrMp8lMFAmr+N+MACgkQszaHOrMp
-8lNdbA/+LXcNkxhaSmkBIlfaAw6S95byA9OavCx3gDwybKkdpBRsqEMuUDmi6Krv
-sUsDLaeMdH3ar/BHBgzdRhYzWSYylQxAXK5kyk9Dl+eyd7ytersCCZOWNqQEXZm8
-J2LKr4uL8732Pdf9nju8nULZYGbZMMOruowXjBaVMXexkB1+6mlo5Nlg2GWQi+tq
-Hq9ZznN68KGW4g+4Tf1yUAVTrCV1il7GWH5B2NmiYoE+X7gXBAm/SN6AZFOBdC8R
-9RqyWBD49MqMMo2bJUtpO4GYBp5Nq/mj51QZMQft/SuzJIukGVOgBZjs4tYc6Rzw
-aYoqSJs44bHE4zdSItWMBMDMrFE4QwSZT9B79wJDYMc1XYC8GTEcV+A63nqID8Pm
-cGeJ75QYBrQPSOGE8Y6JeniPKwFOHc+ZapobcMEZIo/e84/XsTLt3/WLlm92W+AK
-b1B+kFVPbKu7aAp59KPE/6woXt1nWraeSJ2yT6kJv7nVlDTgmVjROCYIWx1z7Zxb
-w3CLI05Dru/vR3Kfrb1qIwcExSnqHikSICBFrlCtcJ2QIXAe7q97XMUOtrG/r/tV
-PhAcmfxf24npXFn3RhkkaT+XxqY891rJUHLUDfu1p8Rs8+QA+wf9ti+I/Ow0zC1c
-TQibXKQlhu/Pb1CwVlGfg5OG29hOQEplCyaVjnQK5oPaw9O5NEs=
-=AtsF
------END PGP SIGNATURE-----
-
---------------jzPPC6cqPSJxGVQJoosVKqnL--
+> Arnd Bergmann (2):
+>   arm64: add HWCAP3_LS64_ACCDATA
+>   arm64: dynamically enable st64bv0 for SVA
+>
+>  Documentation/arch/arm64/elf_hwcaps.rst |  7 ++++
+>  arch/arm64/include/asm/cpufeature.h     |  5 +++
+>  arch/arm64/include/asm/exception.h      |  1 +
+>  arch/arm64/include/asm/mmu_context.h    | 17 ++++++++
+>  arch/arm64/include/uapi/asm/hwcap.h     |  1 +
+>  arch/arm64/kernel/cpufeature.c          |  1 +
+>  arch/arm64/kernel/cpuinfo.c             |  1 +
+>  arch/arm64/kernel/entry-common.c        | 11 ++++++
+>  arch/arm64/kernel/traps.c               | 52 +++++++++++++++++++++++++
+>  arch/arm64/tools/sysreg                 |  5 +++
+>  10 files changed, 101 insertions(+)
+>
+> --
+> 2.53.0
+>
+>
+> Cc: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+> Cc: Fuad Tabba <fuad.tabba@linux.dev>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Oliver Upton <oupton@kernel.org>,
+> Cc: Catalin Marinas <catalin.marinas@arm.com>,
+> Cc: Will Deacon <will@kernel.org>,
+> Cc: Mark Rutland <mark.rutland@arm.com>,
+> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+> Cc: Joey Gouly <joey.gouly@arm.com>,
+> Cc: Zenghui Yu <yuzenghui@huawei.com>,
+> Cc: Steffen Eiden <seiden@linux.ibm.com>,
+> Cc: Yicong Yang <yangyicong@hisilicon.com>,
+> Cc: Zhou Wang <wangzhou1@hisilicon.com>,
+> Cc: Navneet Singh <navneetsingh@microsoft.com>,
+> Cc: apais@microsoft.com, rlmenge@gmail.com,
+> Cc: hargar@linux.microsoft.com, kvmarm@lists.linux.dev,
+> Cc: linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org,
+> Cc: linux-kernel@vger.kernel.org,
 
