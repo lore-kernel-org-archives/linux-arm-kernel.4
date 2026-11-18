@@ -2,74 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E7C606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640C8606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3rTfAaxM;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=kyAL86Bt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nauD3jTO;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=jDHxUj55
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/A6opRZsaFZ9lkmOVMamZXIZfOAQ5sSBkBZO5tlVAlk=; b=3rTfAaxMH+j21V
-	sK3C/DLBzqZU1KZfe/Col8P1lxRktsQQFgLQ/tc9UyyrqojMesLDcHKc7atzm6kVF33Z4s0eD9Ukt
-	PZ/hCV4xAVplx0HMeIOJiHH6gjRDQW2E9VAGDrzPs/hLrKduDTI40I92XyzCUm5y1/DXqowKCuWAs
-	vsj/4MYyb1gJSlM0SztoR96xLm/KsnvwT2jxOqcymryqoy/z6bqrINToQgRyzyfGUj91FfqbrGg2t
-	fhwKl7ikw6OQwoC4jb43idZ6z23kkuEDeQOc18XuqFOFicvBGNbIoLHGuLctFCTu9OxZOKgtQi1/T
-	ANbXpas+iK8xNy6tl+ig==;
+	List-Owner; bh=yV5ZF4ovd04Yk8LO1jsbdhbZodkcuM8PKaJ/YNDNZQg=; b=nauD3jTO28BOy1
+	eD7Ad0DTry6nasJqKeQKbl2Zu+E88yRst36s1eSki5DEt/QMFuNPU+0yxI3mTDv19srM0+P2vWumT
+	CN7vGL3gFt7yROHwxwpyoxX7Ta0iPTrnyRSoeMhSSlrdf90qzAa65X1WVkW9oBCK3AUdmz2KnZcQf
+	yOe9SbbHwfIp7kUhEUtyvNze3zKQl1dAP0gAKuDKMmtSXoxR9Gl4qJjHLInTuw1+GV8ENmji1gkRU
+	Cbw2RJFsrq6BzS4YVj8cfuuwwUtuPbC3ehoDnvh4RLT+jjb1QgEGroS+sfCH2tzdZnqBQ+n9lIiyS
+	lDWCxragASdj2RYYMwKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdeE-00000008h0t-3l22;
-	Wed, 18 Nov 2026 11:16:18 +0000
+	id 1xTdfs-00000008hEc-1B7s;
+	Wed, 18 Nov 2026 11:18:00 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdeC-00000008h0E-375N
+	id 1xTdfp-00000008hEE-46Gl
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 11:16:18 +0000
+	Wed, 18 Nov 2026 11:17:59 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C244E1596;
-	Wed, 18 Nov 2026 03:16:12 -0800 (PST)
-Received: from [10.57.70.68] (unknown [10.57.70.68])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 348CE3F673;
-	Wed, 18 Nov 2026 03:16:12 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CF7061596;
+	Wed, 18 Nov 2026 03:17:53 -0800 (PST)
+Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DDB3B3F673;
+	Wed, 18 Nov 2026 03:17:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795000575; bh=iLP9S0NH412Zwx3LNhRGYAraeXk9erJEWXtRoZDB+zY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kyAL86BtbOL7jbko8CCUePFTTBJW9kcTp2GiDquOTc9D8w5h0PhNepAmmppleRly2
-	 tuwuC52XqxlsFBb7oYQJylNLRzsIERUEsTzhI+1P+5lX85FvG3EdiGeRzebZchJnm6
-	 b9fyt2gQKP+DXROZOOJmU4q7mYdNDnYo2kBwrVgg=
-Message-ID: <3348a751-87df-4f22-80e0-8467c6b263f9@arm.com>
-Date: Wed, 18 Nov 2026 11:16:10 +0000
+	t=1795000676; bh=cA7Cw/mcdSfEIqCAekaqUsnbbh0sl7jqa85TKPMypr0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=jDHxUj551E/KPCST/go5rVjQPgWgAkUHRoGAvKwdoMYjgqDZPprH6PrdXL02Nnxak
+	 H2iaMuUmpU3dwgn3hQOrhvtRfhuAupbSI+Bl0YL9Q0GzqAmwlANoAxR6Baa9Sdccc4
+	 I6ExOfuMwwovYmqX7gLYlc5424IU6sfuiImDo73A=
+From: Leonardo Bras <leo.bras@arm.com>
+To: Colton Lewis <coltonlewis@google.com>
+Cc: Leonardo Bras <leo.bras@arm.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Oliver Upton <oupton@kernel.org>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	kvm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] KVM: arm64: Fix inverted E2H0 check for HCR_EL2.NV1
+Date: Wed, 18 Nov 2026 11:17:49 +0000
+Message-ID: <av2JXKl7tBFPd_gD@LeoBrasDK>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261117204343.4017815-1-coltonlewis@google.com>
+References: <20261116200418.3535619-1-coltonlewis@google.com> <20261116200418.3535619-2-coltonlewis@google.com> <avyNBn24sLjxrfgR@LeoBrasDK> <20261117204343.4017815-1-coltonlewis@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v23 2/8] coresight: tmc: add create/clean functions for
- etr_buf_list
-Content-Language: en-GB
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@arm.com>,
- James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Mao Jinlong <jinlong.mao@oss.qualcomm.com>, Abel Vesa <abelvesa@kernel.org>,
- Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20261118-enable-byte-cntr-for-ctcu-v23-0-67fd9db6bc0e@oss.qualcomm.com>
- <20261118-enable-byte-cntr-for-ctcu-v23-2-67fd9db6bc0e@oss.qualcomm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261118-enable-byte-cntr-for-ctcu-v23-2-67fd9db6bc0e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_031616_868657_648F855B 
-X-CRM114-Status: GOOD (  55.87  )
+X-CRM114-CacheID: sfid-20261118_031758_057532_165F575F 
+X-CRM114-Status: UNSURE (   8.72  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -81,353 +79,24 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 18/11/2026 08:02, Jie Gan wrote:
-> Introduce functions for creating and inserting or removing the
-> etr_buf_node to/from the etr_buf_list.
+On Tue, Nov 17, 2026 at 08:42:19PM +0000, Colton Lewis wrote:
+> Leonardo Bras <leo.bras@arm.com> writes:
 > 
-> The byte-cntr functionality requires two etr_buf to receive trace data.
-> The active etr_buf collects the trace data from source device, while the
-> byte-cntr reading function accesses the deactivated etr_buf after is
-> has been filled and synced, transferring data to the userspace.
+> > Maybe feat_nv2_e2h0_not_res0(). What do you think?
 > 
-> Reviewed-by: Mike Leach <mike.leach@arm.com>
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->   drivers/hwtracing/coresight/coresight-tmc-core.c |   1 +
->   drivers/hwtracing/coresight/coresight-tmc-etr.c  | 205 ++++++++++++++++++++++-
->   drivers/hwtracing/coresight/coresight-tmc.h      |  18 ++
->   3 files changed, 222 insertions(+), 2 deletions(-)
+> Agreed on renaming it. Since HCR_EL2.NV1 is the bit marked RES0 (while
+> ID_AA64MMFR4_EL1.E2H0 is the signed ID field controlling it), I renamed
+> the helper to feat_nv2_nv1_not_res0() in v2.
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> index bc5a133ada3e..bc7dd676da47 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> @@ -835,6 +835,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
->   		idr_init(&drvdata->idr);
->   		mutex_init(&drvdata->idr_mutex);
->   		dev_list = "tmc_etr";
-> +		INIT_LIST_HEAD(&drvdata->etr_buf_list);
->   		break;
->   	case TMC_CONFIG_TYPE_ETF:
->   		desc.groups = coresight_etf_groups;
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> index 361a433e6f0c..e9213f456834 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> @@ -1268,7 +1268,9 @@ static struct etr_buf *tmc_etr_get_sysfs_buffer(struct coresight_device *csdev)
->   		raw_spin_lock_irqsave(&drvdata->spinlock, flags);
->   	}
->   
-> -	if (drvdata->reading || coresight_get_mode(csdev) == CS_MODE_PERF) {
-> +	/* The sysfs_buf is owned by the etr_buf_list, don't replace it */
-> +	if (drvdata->reading || coresight_get_mode(csdev) == CS_MODE_PERF ||
-> +	    !list_empty(&drvdata->etr_buf_list)) {
->   		ret = -EBUSY;
->   		goto out;
->   	}
-> @@ -1918,6 +1920,204 @@ const struct coresight_ops tmc_etr_cs_ops = {
->   	.panic_ops	= &tmc_etr_sync_ops,
->   };
->   
-> +/* Remove the nodes of the list, the buffer @keep is never freed. */
-> +static void __tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata,
-> +				     struct etr_buf *keep)
-> +{
-> +	struct etr_buf_node *nd, *next;
-> +	unsigned long flags;
-> +
-> +	list_for_each_entry_safe(nd, next, &drvdata->etr_buf_list, link) {
-> +		raw_spin_lock_irqsave(&drvdata->spinlock, flags);
-> +		if (keep && nd->sysfs_buf == keep) {
-> +			/*
-> +			 * The buffer is owned by drvdata->sysfs_buf and may hold
-> +			 * the captured trace data, whatever the mode of the sink
-> +			 * is now. Only drop the list's reference to it.
-> +			 */
-> +			nd->sysfs_buf = NULL;
-> +		} else if (nd->sysfs_buf == drvdata->sysfs_buf) {
-> +			if (coresight_get_mode(drvdata->csdev) == CS_MODE_SYSFS)
-> +				/*
-> +				 * The sink is still enabled in sysfs mode. Keep
-> +				 * the live buffer owned by drvdata->sysfs_buf
-> +				 * and only drop the list's reference to it.
-> +				 */
-> +				nd->sysfs_buf = NULL;
-> +			else
-> +				/* Free the buffer below through nd->sysfs_buf */
-> +				drvdata->sysfs_buf = NULL;
-> +		}
-> +		list_del(&nd->link);
-> +		raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-> +
-> +		/* Free the buffer (NULL is ignored) and the node out of the lock */
-> +		tmc_etr_free_sysfs_buf(nd->sysfs_buf);
-> +		kfree(nd);
-> +	}
-> +}
-> +
-> +/**
-> + * tmc_clean_etr_buf_list - clean the etr_buf_list.
-> + * @drvdata:	driver data of the TMC device.
-> + *
-> + * Remove all nodes from @drvdata->etr_buf_list and free their buffers.
-> + * If a node holds the live sysfs_buf and the sink is enabled in sysfs mode, the
-> + * node is removed but the buffer is not freed; ownership stays with
-> + * drvdata->sysfs_buf.
-> + *
-> + * Locking: must not be called with @drvdata->spinlock held. The spinlock is
-> + * taken internally to serialise the @drvdata->sysfs_buf accesses and the
-> + * removal of the nodes against the ETR sink enable/disable paths and the
-> + * generic sysfs read. There must be only one owner of the list at a time.
-> + * Must be called from process context: buffers are freed with the lock
-> + * released.
-> + */
-> +void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata)
-> +{
-> +	__tmc_clean_etr_buf_list(drvdata, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(tmc_clean_etr_buf_list);
-> +
-> +/**
-> + * tmc_create_etr_buf_list - create a list to manage the etr_buf_node.
-> + * @drvdata:	driver data of the TMC device.
-> + * @num_nodes:	number of nodes want to create with the list.
-> + *
-> + * Locking: must not be called with @drvdata->spinlock held. The spinlock is
-> + * taken internally to serialise the @drvdata->sysfs_buf accesses and every
-> + * update of @drvdata->etr_buf_list against the ETR sink enable/disable paths
-> + * and the generic sysfs read. There must be only one owner of the list at a
-> + * time. Must be called from process context: buffers and nodes are allocated
-> + * with the lock released.
-> + *
-> + * Return: 0 upon success, else the error number: -EBUSY if a generic sysfs
-> + * read is in progress, -EINVAL if the sink is not enabled in sysfs mode or
-> + * a buffer is of the reserved buffer mode, or the error of the allocation.
-> + * The live sysfs_buf is never freed on failure.
-> + */
-> +int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes)
-> +{
-> +	struct etr_buf_node *new_node;
-> +	struct etr_buf *sysfs_buf, *live_buf = NULL;
-> +	unsigned long flags;
-> +	size_t size = drvdata->size;
-> +	int i = 0, ret = 0;
-> +
-> +	/* We don't need a list if there is only one node */
-> +	if (num_nodes < 2)
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * All the etr_buf of the reserved mode are mapped to the same reserved
-> +	 * region, so they can't be used as separate buffers of the list.
-> +	 */
-> +	if (drvdata->etr_mode == ETR_MODE_RESRV)
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * We expect that sysfs_buf in drvdata has already been allocated.
-> +	 * Wrap the live sysfs_buf into the first node so the captured trace
-> +	 * data is preserved. Take the sysfs_buf and add the node under the
-> +	 * lock, so that the ETR sink enable path sees a non-empty list and
-> +	 * doesn't replace the buffer.
-> +	 */
-> +	new_node = kzalloc_obj(*new_node, GFP_KERNEL);
-> +	if (!new_node)
-> +		return -ENOMEM;
+> -- Colton
 
-Since we know we need num_node entries at max, could we not allocate 
-them in oneshot (kcalloc()) and free the unused ones at the end ?
-
-> +
-> +	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
-> +	/* The sysfs_buf is in use by a sysfs read session */
-> +	if (drvdata->reading) {
-
-> +		raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-> +		kfree(new_node);
-> +		return -EBUSY;
-
-This pattern is repeating quite a lot, do you think this can be a single
-exit from the function for such cases, something like goto err_unlock;
-
-> +	}
-> +
-> +	/*
-> +	 * The sink enable path reuses or frees the sysfs_buf of a sink which
-> +	 * isn't enabled, so only wrap it while the sink is enabled in sysfs mode.
-> +	 */
-> +	if (coresight_get_mode(drvdata->csdev) != CS_MODE_SYSFS) {
-> +		raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-> +		kfree(new_node);
-> +		return -EINVAL;
-
-2
-
-> +	}
-> +
-> +	if (drvdata->sysfs_buf) {
-> +		/* The mode may have been changed since the sink was enabled */
-> +		if (drvdata->sysfs_buf->mode == ETR_MODE_RESRV) {
-> +			raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-> +			kfree(new_node);
-> +			return -EINVAL;
-
-3
-
-> +		}
-> +
-> +		live_buf = drvdata->sysfs_buf;
-> +		/* Keep the buffers of the list in the size of the live one */
-> +		size = live_buf->size;
-> +		new_node->sysfs_buf = live_buf;
-> +		new_node->is_free = false;
-> +		list_add(&new_node->link, &drvdata->etr_buf_list);
-> +		new_node = NULL;
-> +		i++;
-> +	}
-> +	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-> +	/* Free the node if there is no live sysfs_buf to wrap */
-> +	kfree(new_node);
-> +
-> +	while (i < num_nodes) {
-> +		new_node = kzalloc_obj(*new_node, GFP_KERNEL);
-> +		if (!new_node) {
-> +			ret = -ENOMEM;
-> +			break;
-> +		}
-> +
-> +		/* Allocate the buffer with the lock released */
-> +		sysfs_buf = tmc_alloc_etr_buf(drvdata, size, 0, cpu_to_node(0), NULL);
-> +		if (IS_ERR(sysfs_buf)) {
-> +			kfree(new_node);
-> +			ret = PTR_ERR(sysfs_buf);
-> +			break;
-> +		}
-> +
-> +		/* The buffer mode may have been changed to the reserved mode */
-> +		if (sysfs_buf->mode == ETR_MODE_RESRV) {
-> +			tmc_etr_free_sysfs_buf(sysfs_buf);
-> +			kfree(new_node);
-> +			ret = -EINVAL;
-> +			break;
-> +		}
-> +
-> +		new_node->sysfs_buf = sysfs_buf;
-> +		/*
-> +		 * The drvdata->sysfs_buf write and the list update need the
-> +		 * spinlock, to serialise against the ETR sink enable/disable
-> +		 * paths.
-> +		 */
-> +		raw_spin_lock_irqsave(&drvdata->spinlock, flags);
-> +		/* We don't have an available sysfs_buf in drvdata, set one up */
-> +		if (!drvdata->sysfs_buf) {
-> +			drvdata->sysfs_buf = sysfs_buf;
-> +			new_node->is_free = false;
-
-Is this supposed to be done in enable ?
-
-> +		} else {
-> +			new_node->is_free = true;
-> +		}
-> +		list_add_tail(&new_node->link, &drvdata->etr_buf_list);
-> +		raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-
-Instead of adding every node as we go, could we maintain a local list 
-and add that to the the etr_buf_list at the end of all the allocations
-and when we are sure that things are still sane to do ?
-Set all new_node->free = true and when we get to add the local list
-set the sys_buf with the first entry and mark it false.
-
-> +		i++;
-> +	}
-> +
-> +	/*
-> +	 * Clean the list if there is an error, but keep the live sysfs_buf even
-> +	 * if the sink was disabled meanwhile, as it holds the captured trace data.
-> +	 */
-> +	if (ret)
-> +		__tmc_clean_etr_buf_list(drvdata, live_buf);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(tmc_create_etr_buf_list);
-> +
->   int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
->   {
->   	int ret = 0;
-> @@ -1928,7 +2128,8 @@ int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
->   		return -EINVAL;
->   
->   	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
-> -	if (drvdata->reading) {
-> +	/* The sysfs_buf is owned by the etr_buf_list */
-> +	if (drvdata->reading || !list_empty(&drvdata->etr_buf_list)) {
->   		ret = -EBUSY;
->   		goto out;
->   	}
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-> index 319a354ede9f..7c604b9f92e5 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc.h
-> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-> @@ -208,6 +208,20 @@ struct tmc_resrv_buf {
->   	s64		len;
->   };
->   
-> +/**
-> + * struct etr_buf_node - node of the etr_buf_list
-> + * @sysfs_buf:	Allocated sysfs_buf.
-> + * @is_free:	Indicates whether the buffer is free to choose.
-
-super minor nit: Does this mean the buffer is available for tracing ?
-Simply "free" is good enough. Or choose inverted logic "live" or "busy"
-
-Suzuki
-
-> + * @pos:	Offset to the start of the buffer.
-> + * @link:	list_head of the node.
-> + */
-> +struct etr_buf_node {
-> +	struct etr_buf		*sysfs_buf;
-> +	bool			is_free;
-> +	loff_t			pos;
-> +	struct list_head	link;
-> +};
-> +
->   /**
->    * struct tmc_drvdata - specifics associated to an TMC component
->    * @atclk:	optional clock for the core parts of the TMC.
-> @@ -245,6 +259,7 @@ struct tmc_resrv_buf {
->    *		(after crash) by default.
->    * @crash_mdata: Reserved memory for storing tmc crash metadata.
->    *		 Used by ETR/ETF.
-> + * @etr_buf_list: List that is used to manage allocated etr_buf.
->    */
->   struct tmc_drvdata {
->   	struct clk		*atclk;
-> @@ -275,6 +290,7 @@ struct tmc_drvdata {
->   	struct etr_buf		*perf_buf;
->   	struct tmc_resrv_buf	resrv_buf;
->   	struct tmc_resrv_buf	crash_mdata;
-> +	struct list_head        etr_buf_list;
->   };
->   
->   struct etr_buf_operations {
-> @@ -447,5 +463,7 @@ struct etr_buf *tmc_etr_get_buffer(struct coresight_device *csdev,
->   				   enum cs_mode mode,
->   				   struct coresight_path *path);
->   extern const struct attribute_group coresight_etr_group;
-> +void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata);
-> +int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes);
->   
->   #endif
-> 
-
+Awesome! Thanks!
+Leo
 
