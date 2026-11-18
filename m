@@ -2,60 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596B7606A335
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6454606A330
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bgCEyOBh;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=T4GEtQyn;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=nTtqyQ+t
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Rm3od5iK;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=BvWl24tk;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=xKSb0yMy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SujFBGnh6yTulhxhe+ai56SzIpUdalRGR1bKdRxm9dY=; b=bgCEyOBhtaxqt0
-	eBnqNvGxmLQKb236U13SAokIAlEMvmwTNs61Pr8auRK+syxBpk09LQ6slwzJQSDyulY5Lz9bAkW7r
-	Gr8gBubctWW/U2b3EHmMFvFKFA8sJSRPxaTFS36u74V0z3oM7k3C84fxWRI6EO4k7auiWCkmQSd3N
-	Z7qcz5Ciwh3yEtUV0tD75x8QlWRR0Cm70KAc0o6hjUWTQc6ea7SjuqDKFMYOC6kUVjwEqMClS8gSV
-	kHC1dhqVkfKwG2Z8IVpQe7pkQAQEbvEvj7qTfsyJ58+7w4F7pBOa2ZYzJIUa9ypw+MDBt1PknbaFu
-	wiv3KITQkKkJoBMAdFNA==;
+	List-Owner; bh=4abZZAGFr+op4Fiin9qqMvU61lk2F4uPWmmjiHuLcbQ=; b=Rm3od5iKOWdtKI
+	NplJfp6u3SZG6BgiM+qrX3/o8d+q0sW5K/+LIsk7lFJQxPms0ZWxT4mm9hcRb+EPeeOcGbaxkF98W
+	LepgRHwWFqHThGZ3QZew50I4ufp8P9GJfS8CrE3bskQGjs7WXPjLYgsNnvEhN7G2CU0PMjNxeuCzu
+	Q/ZBSUkh8Qq2i8Az6L05I0u7Q4milbzfn+bv6cB312kmXvpEnOgw5ROCPAlAv/pwAjUqosp2xQAx7
+	A1WM/Drk4ef5Hp8nSEn1EoLTOXQtZpkBKaXVae/BgyeSWKdDf925MYRTs6eALj+9AF3wxtv9PQrDq
+	hYi8kRuCfl1DiI1zGwtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThSE-00000009F6a-1nUY;
+	id 1xThSE-00000009F77-3Tkw;
 	Wed, 18 Nov 2026 15:20:10 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRr-00000009EnH-1Oi9
+	id 1xThRr-00000009EnE-3rhs
 	for linux-arm-kernel@bombadil.infradead.org;
 	Wed, 18 Nov 2026 15:19:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=SujFBGnh6yTulhxhe+ai56SzIpUdalRGR1bKdRxm9dY=; b=T4GEtQynR4H2oKj5yJB9dsqLMU
-	/u8ZWj9V1Y3qpmyM4xheZOrV41Lehb0vvab4W5fSTfdQJbsu2tw/p2ZtvrJCQYEL6LdAWT+1vyeWT
-	IIYx/8PVYLv5SJyH+EaGh8+YGfwAFC/fHC1WaCOxfMVeZyaLJfGS40U+0BEwuniSfHsZyCOtTorqy
-	tiCvwG0u7rkkNuhTy2Z753n5EpJMmjbopURhwhTBkDEmRv/ZLE+MvCVql1EWrhKJwIm2SAeaVX5ID
-	p+y6psOyjqltzwFR7n/KjuSXkSAcHrRDA962CglhVx96cPEPrrXgxYGHeJ/YYYpYEnJLdscJz19U/
-	+VVfJ9VA==;
-Received: from out-1.mta1.migadu.com ([95.215.58.1] helo=mta1.migadu.com)
+	bh=4abZZAGFr+op4Fiin9qqMvU61lk2F4uPWmmjiHuLcbQ=; b=BvWl24tkNpjKbg0eJufJalOa90
+	8Trbdvyy+7Wq9Kids7kp2/pwHWaSYyKXBt9SHWueT7Gi9ETIpNvX5cwifPjdlsR21504b+2ooIsvV
+	6vHbTDbholzBmcEn7ChrgzZd2wJKkcpCYtoxlaz2S9l4GIR8K/X5+oHMXluSbdkSDRuEzgZxtyj4O
+	aXIuX/IzmNts6WYD1qulM4jzoYfgWV6i64XXrE5rTO3+KplqqBSdHpflo7r1UMjBX45z7w5JPRXjm
+	wYwyj//lFmNTdJvhaoQchwInNYULgnBjtG8r4dWiWTsAfg0eft3bOw69sglUCutqYdRYV13fEB9xO
+	vKeD7nRQ==;
+Received: from out-51.mta0.migadu.com ([2001:41d0:1004:224b::33] helo=mta0.migadu.com)
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThRm-0000000GC8c-0Vme
+	id 1xThRm-0000000GC8Z-0J34
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:19:44 +0000
+	Wed, 18 Nov 2026 15:19:46 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=LaHx7qcqjbwEKcmj0Cj8QcEXuKFYCBuqRrKkPXxYHjQ=;
+DKIM-Signature: a=rsa-sha256; bh=AgR9DTR2Y4DJllQF/5/cjrLNXKWsG0SIqMY2siOpC2M=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795015180; v=1; x=1795619980;
- b=nTtqyQ+tY34a17lqzHxa4NvK/WH2RL9iNEMV9574d37qvkRmAhpvU+1N5oZCWnzak9prDmLE
- NX+Z7ct8eSllzk/mRLA9CdW+nL5PeUvkQJI76iTOsGUAMOeNs+Ik0FynDAH9fGYjkR5xG9hmhY3
- 5ab/P81YhtRlL3G6D1a36Xuk=
+ t=1795015178; v=1; x=1795619978;
+ b=xKSb0yMy4rDzsorbN5K8uw5G5Ki/2BIcjXZhP4T1iud4f7XIHrWONQYM6C1/SZBbOeUApbbm
+ zYzPhmYs3W+EZAgHyOyLanZhr0EqVESo+2vlI4jJUEn4Tj9uDVbeTQAg7PvaSy3h8MTsvzU+xka
+ i8mPaFJd6cuDBOvkwg8aDyPc=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id e544babb2f80ab37;
-	Wed, 18 Nov 2026 15:19:40 +0000
-X-Mizu-Trace-ID: e544babb2f80ab37
+Received: by smtp.migadu.com with ESMTPS id dc4acb5ede39579a;
+	Wed, 18 Nov 2026 15:19:38 +0000
+X-Mizu-Trace-ID: dc4acb5ede39579a
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -81,9 +81,9 @@ Cc: Will Deacon <will@kernel.org>,
 	kvmarm@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 07/13] KVM: arm64: Deprivilege the host under stop_machine()
-Date: Wed, 18 Nov 2026 15:18:58 +0000
-Message-ID: <20261118151904.4099560-8-fuad.tabba@linux.dev>
+Subject: [PATCH v4 05/13] irqchip/gic-v3-its: Compute the wait target under the ITS lock
+Date: Wed, 18 Nov 2026 15:18:56 +0000
+Message-ID: <20261118151904.4099560-6-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261118151904.4099560-1-fuad.tabba@linux.dev>
 References: <20261118151904.4099560-1-fuad.tabba@linux.dev>
@@ -91,9 +91,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_151942_020389_2D3C9914 
-X-CRM114-Status: GOOD (  14.79  )
-X-Spam-Score: -0.9 (/)
+X-CRM114-CacheID: sfid-20261118_151942_036997_28279434 
+X-CRM114-Status: GOOD (  14.55  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,63 +112,86 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-pkvm_drop_host_privileges() installs the host stage 2 with
-on_each_cpu(), and each CPU goes back to running the host as soon as its
-own __pkvm_prot_finalize() returns. That doesn't work for the ITS
-takeover that a subsequent patch adds here. The other CPUs must not post
-ITS commands while the driver switches to its copy of the command queue,
-and a takeover that fails has to leave every CPU privileged.
+its_wait_for_range_completion() converts the posted command pointer into
+a queue offset against its->cmd_base, after the caller has dropped
+its->lock. That's fine while cmd_base never changes, but the pKVM
+takeover in a subsequent patch switches cmd_base to a copy of the queue
+while the other CPUs are stopped, and a CPU stopped in the wait before
+it has converted the pointer would compute its target against the wrong
+base.
 
-Finalise from a stop_machine() callback instead, so that the takeover
-can run with the other CPUs stopped and before any CPU is finalised. An
-error from any CPU is still returned to finalize_pkvm().
+Compute the offset in its_post_commands(), under the lock, and pass it
+to the wait instead of the pointer.
+
+No functional change intended.
 
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- arch/arm64/kvm/pkvm.c | 13 ++++---------
- 1 file changed, 4 insertions(+), 9 deletions(-)
+ drivers/irqchip/irq-gic-v3-its.c | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/kvm/pkvm.c b/arch/arm64/kvm/pkvm.c
-index 016997288fd23..16dfb249b4961 100644
---- a/arch/arm64/kvm/pkvm.c
-+++ b/arch/arm64/kvm/pkvm.c
-@@ -11,6 +11,7 @@
- #include <asm/kvm_mmu.h>
- #include <linux/memblock.h>
- #include <linux/mutex.h>
-+#include <linux/stop_machine.h>
- 
- #include <asm/kvm_pkvm.h>
- 
-@@ -312,25 +313,19 @@ int pkvm_init_host_vm(struct kvm *kvm)
- 	return 0;
+diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+index bbfea565149bb..734fe4fb52bd6 100644
+--- a/drivers/irqchip/irq-gic-v3-its.c
++++ b/drivers/irqchip/irq-gic-v3-its.c
+@@ -1144,13 +1144,13 @@ static struct its_cmd_block *its_allocate_entry(struct its_node *its)
+ 	return cmd;
  }
  
--static void __init _kvm_host_prot_finalize(void *arg)
-+static int __init __pkvm_drop_host_privileges(void *arg)
+-static struct its_cmd_block *its_post_commands(struct its_node *its)
++static u64 its_post_commands(struct its_node *its)
  {
--	int *err = arg;
--
--	if (WARN_ON(kvm_call_hyp_nvhe(__pkvm_prot_finalize)))
--		WRITE_ONCE(*err, -EINVAL);
-+	return WARN_ON(kvm_call_hyp_nvhe(__pkvm_prot_finalize)) ? -EINVAL : 0;
+ 	u64 wr = its_cmd_ptr_to_offset(its, its->cmd_write);
+ 
+ 	writel_relaxed(wr, its->base + GITS_CWRITER);
+ 
+-	return its->cmd_write;
++	return wr;
  }
  
- static int __init pkvm_drop_host_privileges(void)
+ static void its_flush_cmd(struct its_node *its, struct its_cmd_block *cmd)
+@@ -1167,13 +1167,12 @@ static void its_flush_cmd(struct its_node *its, struct its_cmd_block *cmd)
+ 
+ static int its_wait_for_range_completion(struct its_node *its,
+ 					 u64	prev_idx,
+-					 struct its_cmd_block *to)
++					 u64	to_idx)
  {
--	int ret = 0;
--
- 	/*
- 	 * Flip the static key upfront as that may no longer be possible
- 	 * once the host stage 2 is installed.
- 	 */
- 	static_branch_enable(&kvm_protected_mode_initialized);
--	on_each_cpu(_kvm_host_prot_finalize, &ret, 1);
--	return ret;
-+	return stop_machine(__pkvm_drop_host_privileges, NULL, cpu_online_mask);
+-	u64 rd_idx, to_idx, linear_idx;
++	u64 rd_idx, linear_idx;
+ 	u32 count = 1000000;	/* 1s! */
+ 
+ 	/* Linearize to_idx if the command set has wrapped around */
+-	to_idx = its_cmd_ptr_to_offset(its, to);
+ 	if (to_idx < prev_idx)
+ 		to_idx += ITS_CMD_QUEUE_SZ;
+ 
+@@ -1216,10 +1215,10 @@ void name(struct its_node *its,						\
+ 	  buildtype builder,						\
+ 	  struct its_cmd_desc *desc)					\
+ {									\
+-	struct its_cmd_block *cmd, *sync_cmd, *next_cmd;		\
++	struct its_cmd_block *cmd, *sync_cmd;				\
+ 	synctype *sync_obj;						\
+ 	unsigned long flags;						\
+-	u64 rd_idx;							\
++	u64 rd_idx, wr_idx;						\
+ 									\
+ 	raw_spin_lock_irqsave(&its->lock, flags);			\
+ 									\
+@@ -1242,10 +1241,10 @@ void name(struct its_node *its,						\
+ 									\
+ post:									\
+ 	rd_idx = readl_relaxed(its->base + GITS_CREADR);		\
+-	next_cmd = its_post_commands(its);				\
++	wr_idx = its_post_commands(its);				\
+ 	raw_spin_unlock_irqrestore(&its->lock, flags);			\
+ 									\
+-	if (its_wait_for_range_completion(its, rd_idx, next_cmd))	\
++	if (its_wait_for_range_completion(its, rd_idx, wr_idx))		\
+ 		pr_err_ratelimited("ITS cmd %ps failed\n", builder);	\
  }
  
- static void __init pkvm_selftests(void)
 -- 
 2.47.3
 
