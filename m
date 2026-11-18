@@ -2,11 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C57660A382D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF23606A9D0
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uDtRWSqS;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=4ItbNvjn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nf5Vjjle;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=oKdB8HG+;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=fu9jL5m7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,45 +15,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=AMeR6NDUiz18N+Bo2DvJOVGkvlTFuB6dauhlohGe6GI=; b=uDtRWSqSIyVd061PkHXJZ7/HvG
-	qdGynwNI5V84cSGCjiehsyoSS8LsBqUl3e4Og7xzjJiyX1UmduPa+DA7mwEENpumucm+8wseVL1Jo
-	mDFsUcs19dF42EjLvcJM04nTgdLM4W2yXbezQOlHwlkCijZQgpD6XgbhZnmuA5ANYkVqU15f6hbcS
-	lO6M5zc2h/icBHJPpwce6tDq5DTmMDFs2gFYlQxwBlfwlP5Bl0wfyFffN6GL7yepssCsRshrHFc/0
-	lP67renTLFn7FGJohDX7HtPVJuWYS3BXkt6Mq04xgj5a4IEiRuo9U9QBouxkBaFp1hS/eqi7eudkZ
-	fvf3QYMA==;
+	bh=JorPTiacwS74P1OKvh5U1c+yCkBeFH5wY6zitGMy7QE=; b=nf5VjjleR3GN5XUgL4hLtHPyRe
+	Sqr5uHYdX1XeKEQ2B35LCQSWh0OKBdy6oAYL/UcKwFtKku2A8QpJbRmw8p3bZIAokovUtLZcMM56k
+	NJaXxix5jEXPHTGfiuj1Ch8w8Avald2VpDRArs1qtWRVI1a4JXyCsxA2sWl9wtK8CgLM+TeJaRj9f
+	FrYtBPnSu1RYkrRPVME7eTxsJruwN8L7fGhfc+mAvdKDfuR0a1cgFJUA/1DdS5TSiVBjigEsIj8Qk
+	bThUEVpbC/kI3L3AOgZkptMOoPL+Y3XrxwaoFa90iRbxmNP9bJCPUxqSNZE1bCCl0ypCFrGC7qevR
+	0eQw03Aw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTp9J-0000000AVN1-3Jzy;
-	Wed, 18 Nov 2026 23:33:09 +0000
-Received: from mail-westcentralusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c112::5] helo=CY7PR03CU001.outbound.protection.outlook.com)
+	id 1xTpAK-0000000AVq5-0X7T;
+	Wed, 18 Nov 2026 23:34:12 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTp8o-0000000AV3P-29q5
+	id 1xTpAI-0000000AVpr-1JDF
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 18 Nov 2026 23:34:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=JorPTiacwS74P1OKvh5U1c+yCkBeFH5wY6zitGMy7QE=; b=oKdB8HG+Dd3PhGUKLiFPc5ZBvT
+	gwa6E/RWLaKtsa/HkUkYnY+0H3XaQe5+l0CU9kBI6N0Un7Y2Sc2XLeAO4H2Y5cUfSQZQzUDfx8fP9
+	GZdD5kej5z7jg6ntZM+2cheaiEepWrXcncLYuzI7QA43sp0XnSRwG1nj9fSntXkqJL4D5aMIvlg8g
+	4d9kmzSY1lUYzxDkL/y2jCpdL00tSaN6Ia4q/0T+riIGC9opHf5reLlXWz9qY3BFoJBmYxu4Oew25
+	G84i7zBtVG8v1cCIPwguPxRK3s0oDo2oh6sznI+QfWmVrXdor12jZbRV6bq3cZh1vYMWHeqqtfWFv
+	xQbT+c3Q==;
+Received: from mail-centralusazlp170110009.outbound.protection.outlook.com ([2a01:111:f403:c111::9] helo=DM5PR21CU001.outbound.protection.outlook.com)
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTpAE-00000000gry-1gJH
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 23:32:40 +0000
+	Wed, 18 Nov 2026 23:34:08 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lgaTxgAgC47PvFh9ipQOmHdz69slJKmMzh3w/BImDtkI5fqp4YPdElL/E5lorWPVXgrlqS6lAGr6BKUoexbOzKCtdKMOaAYujudgsF4Fw4B5YwatFxpUTewt0LovIgeEbzQuvA40PCY5nMux7lPCW1xLhDV6aj+5qaK1MI5u5FitrfQmELUmRQ9X4vyqivCap7tQtH5m77ufNXrAFuG19f3GLjnTxGmeMV0BoUT1giKi/BLbo0Z1g5CKC6Jea9HnuSEA15ZY0SVTpRCIuf91Jdu31dCQ5zzKWWj1ADFEk27T57n7W+CHz6qvc1QhK4v56DBNxiqdI9Q+FZeyzAy3lw==
+ b=SIQkWJU5CgY7izHFbYPFkSaHxWk6LdCq2Z9pdfv5ZMhtQSQf9VDiSYMTrccWkVaY8Ios559jOuI3uOrE0vqSp8DS/e/J4IZZUalXmz7+tiOGnhoSc/UZQXgepy/+E+nO1YLC72OeTTI0VNbuyCmpLn433KdWG4L4bkAxqIQ0f+YdCiAL8ieGCr6Lv24lSwDI6TcGJfVu4XtzJPafoAIHsVwXrCDi5YR2VyYGyXDNHl+6s9K50r4uDNBWhmLlNwxiutrskG+svPtH7/9Vi9i2L+RLzmgS4W/zTjUo8HSWeG3eJ+iSkV8G7xv72rOJ12EjqhLMug1aMWC+DlMaVLCWwg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AMeR6NDUiz18N+Bo2DvJOVGkvlTFuB6dauhlohGe6GI=;
- b=wPLUyLHC9MtVApaEdhpf3l73XalGH2TE7GDodU3d8p17E1qbhb1H2J34GJhPjV7SwyPEGB6YriNauyB8J0WVvcGZ29WWyWMT8dzOsB9k7X8fVbWFYTMkCBTpQGiiKtrkr6wLYFz4jtMumE6TIrvYA16ObIJqNgbOoXFf3Z5DBEpQByR+eUJzmFma121FTRGZc7ZL/aej+1vHUb2wfIloCF7sLY8MiM8x0t5uowsuLNEJ97o4YcSiATXtPwusjOo4deeUbx/YolxMKC6N01cMttk5vIW44DhwHU5/l2wveyA1nULKOC0Ly7iUW9AHwS7urSZHtmG/zsFUvlPURfoS9A==
+ bh=JorPTiacwS74P1OKvh5U1c+yCkBeFH5wY6zitGMy7QE=;
+ b=o2raEEu++/T6/9ONBjDLuYZe/xEypi7yAqDl+a7EyQmdgzRy3nsWcbbpsZN3d8ZN6LJBSjVJixwFq02wJ6DxsgNfgqUZU9PkZyLicZpiORJDoPe6H5sA8h9EcOdlhJgk5twQ0WevJOPnfXfs8H3IU9MNQGXtWn0qhuOp2hwEzpS+Fue0VxSLnDFwRJZghInhGFTt42RONKgQ2yU0TYrM0EKaJEABDVW0VY2znC0uUGxVrNR9FK+ltiDZtgS6fUbMfyFIB/DumKM1pWrfiJfmU9A5muYKEvIQbGoXg7zGxG27x+RsDhf91UwA+15If53rz6/naqTPp9OynLPyAxqruQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
+ 165.204.84.17) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AMeR6NDUiz18N+Bo2DvJOVGkvlTFuB6dauhlohGe6GI=;
- b=4ItbNvjnwiPdu9WUJqKsOlHwrPWpDlI1Bhil4KF3C3FHlJ5UbI+DY5y1Yi0ljZkVAVT7FH2WxUtl89M0wM4iDsNap/HvKjQv2Y8oGTrX9GYXlv5wt4CMSCzyo9yCPsKn1Nsp1gxaJYxVu8fBmrksdluLYlqOcQyXDpQ7+AwWWIA=
-Received: from BL1PR13CA0083.namprd13.prod.outlook.com (2603:10b6:208:2b8::28)
- by DS7PR12MB8323.namprd12.prod.outlook.com (2603:10b6:8:da::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.14; Wed, 18 Nov 2026 23:32:32 +0000
-Received: from IA0PEPF0000003C.namprd03.prod.outlook.com
- (2603:10b6:208:2b8:cafe::3f) by BL1PR13CA0083.outlook.office365.com
- (2603:10b6:208:2b8::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.8 via Frontend Transport; Wed, 18
- Nov 2026 23:32:32 +0000
+ bh=JorPTiacwS74P1OKvh5U1c+yCkBeFH5wY6zitGMy7QE=;
+ b=fu9jL5m7Mry7XJRrMBReXufv8Ta6eS/ie5dpoi+FxzeX4BH4hPDntqvw7W6PJSROSzyRkAffoLcut9+XM6BzHnbKZrJuHhE9xXds8IcoilGKwMfHWLIz5wg+3I5gHzaOLxaGzg4dwTc7MzuxwoX8qbWJTbVQIFL8Hle8XsbX5jA=
+Received: from BL1PR13CA0145.namprd13.prod.outlook.com (2603:10b6:208:2bb::30)
+ by IA4PR12MB9811.namprd12.prod.outlook.com (2603:10b6:208:54e::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
+ 2026 23:32:21 +0000
+Received: from IA0PEPF0000003E.namprd03.prod.outlook.com
+ (2603:10b6:208:2bb:cafe::7a) by BL1PR13CA0145.outlook.office365.com
+ (2603:10b6:208:2bb::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.0 via Frontend Transport; Wed, 18
+ Nov 2026 23:32:21 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -60,24 +77,27 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- IA0PEPF0000003C.mail.protection.outlook.com (10.167.249.73) with Microsoft
+ IA0PEPF0000003E.mail.protection.outlook.com (10.167.249.75) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 23:32:32 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 23:32:21 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 18 Nov
- 2026 17:32:29 -0600
+ 2026 17:32:20 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 18 Nov
+ 2026 17:32:20 -0600
 Received: from xsjgregoryw50.xilinx.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
- Transport; Wed, 18 Nov 2026 17:32:28 -0600
+ Transport; Wed, 18 Nov 2026 17:32:19 -0600
 From: Gregory Williams <gregory.williams@amd.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+To: Michal Simek <michal.simek@amd.com>
+CC: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 11/15] dt-bindings: soc: xilinx: Add Versal AI Engine DT binding
-Date: Wed, 18 Nov 2026 15:32:07 -0800
-Message-ID: <20261118233211.4121361-12-gregory.williams@amd.com>
+Subject: [PATCH 05/15] firmware: xilinx: Rename zynqmp_pm_invoke_fw_fn()
+Date: Wed, 18 Nov 2026 15:32:01 -0800
+Message-ID: <20261118233211.4121361-6-gregory.williams@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261118233211.4121361-1-gregory.williams@amd.com>
 References: <20261118233211.4121361-1-gregory.williams@amd.com>
@@ -87,28 +107,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PEPF0000003C:EE_|DS7PR12MB8323:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71174006-f00d-49ba-a19c-08df45cc37bf
+X-MS-TrafficTypeDiagnostic: IA0PEPF0000003E:EE_|IA4PR12MB9811:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11deb09b-3155-48c8-6bf6-08df45cc31b4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|376014|1800799024|82310400026|23010399003|261022075727099003|261102123227099003|261026121527099003|261028144727099003|56012099006|11063799006|261026140227099003|10067099003|261022105027099003|261021121427099003|261009223027099003|22082099003|18002099003|6133799003|13003099007|3023799007;
-X-Microsoft-Antispam-Message-Info: QZDtI8lXDvxX9zdXX6xeiYKN2pcukiz+dNHomft0GadG2MWZ0IfGAkXEa5daXash7/lJlbYq+igFlCdN9So3cdnLWQ2KqRFNNCtrS0DolGRGvHcDdctlRp3vVakfxG+TIi+PIDk0/oaS561Pb4N8nOhfFeTxG/PScgbpku+Sd84XnFX9m1YlQ8I5Yfpob9cRKJ+CGOKY+svl68V7fHtv98e3eL+Rx2v0S/1yCbi4z+c6K+sUiImNV+HTJ81OoLxFVaA8ZRCkoev93U8xU5b0oW6PcIWqmwlIB5jUR3HpYXZaLTKZ3uPUFz+RagXl2m/VgnOuY+CYe+Ms/k6tL3SJgWYlfxyjadwTDfZ+0V2gfqrFHQTa/a8nqOUxSJivRvdz1yGJYpx4p8ZtgOWAerWo2a+49QzM39QzmMRfpCFK1A77at2Fa3h9KYz5OBWbVNJpZ5ao2KNtmDSuiGnjve4hBt0jGqoa6TG/HCwn1QO6KghNS9lpAR4Ao/vEz4ofPNDsmyEGTv3YmaGtS/eq+3Cq50H7ZviOmc6ltXkgqM+VmdztLJZKWtBIr4ygZ3FH6qfUYwgXytvdkAk/dOKmHDWoYEV96OmIOe0aGpYgtxOXc8d2S8BZFJF3Hxr/ie2lkU4MzE0pGYb8xbRFD/SzNSbceg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(376014)(1800799024)(82310400026)(23010399003)(261022075727099003)(261102123227099003)(261026121527099003)(261028144727099003)(56012099006)(11063799006)(261026140227099003)(10067099003)(261022105027099003)(261021121427099003)(261009223027099003)(22082099003)(18002099003)(6133799003)(13003099007)(3023799007);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|82310400026|36860700016|1800799024|376014|261102123227099003|261026140227099003|261026121527099003|261028144727099003|11063799006|261022075727099003|261021121427099003|261021123027099003|261022105027099003|261102130727099003|5023799004|56012099006|10067099003|18002099003|22082099003|261009223027099003|6133799003;
+X-Microsoft-Antispam-Message-Info: sElF/Lf4+BBDJk7wiK7TRyxvQVSlgq4IDsh+zkv8BSO+Gsne81SkMHSCFW5aQ2tknEDXScZl3YxvwT/2ln8W7LaHX8J1sY+C7WS0rwJWk3eRIBCAG9IaxtQtCA/EzXZdxmJ4A290WzPfor3AU9D9bWsw7kRDvwKZ28FyqrWXqfoHnEFZ0LE4NhsyPLrOBlA51kUfybRLVOmStJDDkA35nw33bFeQxwYEnkKLIwsFTa4DTmtYQ+ToApG+bDaH5Uh/3Mt8LTPblwY0L6ZqieE3hlU19HDbykwvdg8bROHzNKspJj6Hz+tE4GXhuFIUmVHsMrhVpW4ANOF9XdZ2dgXETbsvUZ26WxQWE7vUxFO5k5groShXZoW/u9BrKuksp/Tb8uOTYzAoxyFznct8BLd2h3TR7vSJjN9OeTgH2b4Yc3b38kWdkLFQPdbRSvKrjlZcapf5t2dxUHohZYSgJjvc9bPi5hkhBKq0ORAx8nbpDBklwL9RqgvI5gbCk7Y40MuH1sY+nGFGYuVZE/m4tANXOgNl52tBSO0mQHdadm+sxZy+kaJk5HYGVBjcm7aACKJF45hTI6OGbuBmoVheBsKvXzS4uqafTqgpvP2oBL1DxyT5Xg15aW27VO93of7me+2VNt2g4e95fGBnQSGvD0OfUzlXB6x5cjkU1cZ/3+BztNkK6ESuDSSQMB9O5LXN+EX2IEJqeNSomEEpm+F8MWxw4g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(36860700016)(1800799024)(376014)(261102123227099003)(261026140227099003)(261026121527099003)(261028144727099003)(11063799006)(261022075727099003)(261021121427099003)(261021123027099003)(261022105027099003)(261102130727099003)(5023799004)(56012099006)(10067099003)(18002099003)(22082099003)(261009223027099003)(6133799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: LuYvtbEVt9fhXXt52ql6EPe0wsoVnGuf3S9OFDNl4DAkmkFC7SMsXY4k40E6I4hx7OtLmGPw8VK2pTqAZZgELIYFYwofYmkLqgX/YnRBTPGNGnm7uSrcHWBLhPxu54tqHSf8RCpV61xMOyrLRAjD3YjEH/QEkWkOqOmguVJ+gyuqmrPkJq0ZuH621qneluXFJ0F52foSBkv8RCjyVYrH4/h4+m0zVLqiq4HpEZUeYRaPfVIAebukwQSeFWdL6/i3/QqAM4ZPD9WJg+V7BEMezb0f31yhtdd3xmX5DmbW5aFoJrnubd0lmqC0DNquOzs8yPKTnbQb6yea8EnagGwFaQPWRjWM+GHftAjzRD+SsZGH+AlTnYGJL3TbdLFAXI+yIvc+E3vqMbWtVm7arJdNKlOnX8HnT/9y87QsF6z8+fdlI3vbr+WAzWkBEpWUi9xQ
+X-MS-Exchange-AntiSpam-MessageData-0: 01pXQi2JR3srvYKhZ/vUz/moVv2OHhz8UG+znLvCAyWB4qb7s+8o31v7PhRXs5W46NKbdZyb+UzL79cKYYprHFbbVpo9RbxOTHEnOxU8zXg18521fyXiJX5SCPeT8/HPbf2nF06USYYX1/gDItt/mXWhHyTDPkdEoKQLeGI0RhCHhL7IArGCkixD+t3IOUewoih8xplv6YQv5xCS1eGCXmGNgtwNGeUAVjNlvyqRRVe9rJFCJQTIrVn71IRZVlrha/kwJnM65Tpa7iZom++bZHX1lMR6UlM9Em9MLv7R386OuK8xRr2ZpX0A2A+TvpnTiJDxnxsMlQKx8atZFHb3QF32iPHJJySrrfWPjp7dXyhmaJnft7j+VRkGFNj38oLR5ULjaP9i7lTCoLf6nVv71OyZsRUENeupJDFXNDOo+l3Exoc2DfHoeXeP4roVOpX8
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 23:32:32.0497
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 23:32:21.9105
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71174006-f00d-49ba-a19c-08df45cc37bf
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11deb09b-3155-48c8-6bf6-08df45cc31b4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: IA0PEPF0000003C.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: IA0PEPF0000003E.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8323
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR12MB9811
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_153238_559189_81CA0CDE 
-X-CRM114-Status: GOOD (  16.21  )
+X-CRM114-CacheID: sfid-20261118_233406_646615_D28717F3 
+X-CRM114-Status: GOOD (  13.40  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -128,86 +148,67 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add documentation to describe Versal AI Engine device tree bindings. AI
-Engine is a tile array based processor with many cores and local memory
-cache. Data routing between the cores is done through internal switches,
-interface tiles are used to connect to external sources such as memory
-or PL. Configuration registers of the device are accessed through a
-memory mapped AXI address space.
+From: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>
 
-Signed-off-by: Gregory Williams <gregory.williams@amd.com>
+The function name zynqmp_pm_invoke_fw_fn() doesn't really reflect what this
+function does, so rename it to zynqmp_pm_fw_call_extended(), which reflects
+which firmware format is used.
+
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+Signed-off-by: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>
 ---
- .../bindings/soc/xilinx/xlnx,ai-engine.yaml   | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
+ drivers/firmware/xilinx/zynqmp.c     | 10 +++++-----
+ include/linux/firmware/xlnx-zynqmp.h |  2 +-
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml b/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
-new file mode 100644
-index 000000000000..6c97b5f0fb03
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/xilinx/xlnx,ai-engine.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright(C) 2026 Advanced Micro Devices, Inc. All rights reserved.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/xilinx/xlnx,ai-engine.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AMD AI Engine for Versal SoCs
-+
-+maintainers:
-+  - Gregory Williams <gregory.williams@amd.com>
-+
-+description:
-+  The AMD AI Engine is a tile processor with many cores (up to 400) that
-+  can run in parallel with some devices containing local cache (memory tiles).
-+  The data routing between cores is configured through internal switches, and
-+  shim tiles interface with external interconnect, such as memory or PL.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - xlnx,versal2-aieml
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: aclk0
-+
-+  xlnx,firmware-device-id:
-+    description:
-+      Device identifier as defined by Versal firmware interface. This value is
-+      passed unchanged to firmware calls.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - xlnx,firmware-device-id
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      ai_engine: ai-engine@20000000000 {
-+        compatible = "xlnx,versal2-aieml";
-+        reg = <0x200 0x00 0x01 0x00>;
-+        clocks = <&aclk0>;
-+        clock-names = "aclk0";
-+        xlnx,firmware-device-id = <0x18224072>;
-+      };
-+    };
+diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
+index f5ad99e0026c..709370933741 100644
+--- a/drivers/firmware/xilinx/zynqmp.c
++++ b/drivers/firmware/xilinx/zynqmp.c
+@@ -440,7 +440,7 @@ int zynqmp_pm_is_function_supported(const u32 api_id, const u32 id)
+ EXPORT_SYMBOL_GPL(zynqmp_pm_is_function_supported);
+ 
+ /**
+- * zynqmp_pm_invoke_fw_fn() - Invoke the system-level platform management layer
++ * zynqmp_pm_fw_call_extended() - Invoke the system-level platform management layer
+  *			caller function depending on the configuration
+  * @pm_api_id:		Requested PM-API call
+  * @ret_payload:	Returned value array
+@@ -461,7 +461,7 @@ EXPORT_SYMBOL_GPL(zynqmp_pm_is_function_supported);
+  *
+  * Return: Returns status, either success or error+reason
+  */
+-int zynqmp_pm_invoke_fw_fn(u32 pm_api_id, u32 *ret_payload, u32 num_args, ...)
++int zynqmp_pm_fw_call_extended(u32 pm_api_id, u32 *ret_payload, u32 num_args, ...)
+ {
+ 	/*
+ 	 * Added SIP service call Function Identifier
+@@ -796,9 +796,9 @@ int zynqmp_pm_query_data(struct zynqmp_pm_query_data qdata, u32 *out)
+ 	u32 ret_payload[PAYLOAD_ARG_CNT] = {0};
+ 
+ 	if (sip_svc_version >= SIP_SVC_PASSTHROUGH_VERSION) {
+-		ret = zynqmp_pm_invoke_fw_fn(PM_QUERY_DATA, ret_payload, 4,
+-					     qdata.qid, qdata.arg1,
+-					     qdata.arg2, qdata.arg3);
++		ret = zynqmp_pm_fw_call_extended(PM_QUERY_DATA, ret_payload, 4,
++						 qdata.qid, qdata.arg1,
++						 qdata.arg2, qdata.arg3);
+ 		/* To support backward compatibility */
+ 		if (!ret && !ret_payload[0]) {
+ 			/*
+diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+index 681ab99ceffc..58f2e3fddfaf 100644
+--- a/include/linux/firmware/xlnx-zynqmp.h
++++ b/include/linux/firmware/xlnx-zynqmp.h
+@@ -578,7 +578,7 @@ struct zynqmp_pm_query_data {
+ };
+ 
+ int zynqmp_pm_invoke_fn(u32 pm_api_id, u32 *ret_payload, u32 num_args, ...);
+-int zynqmp_pm_invoke_fw_fn(u32 pm_api_id, u32 *ret_payload, u32 num_args, ...);
++int zynqmp_pm_fw_call_extended(u32 pm_api_id, u32 *ret_payload, u32 num_args, ...);
+ 
+ #if IS_REACHABLE(CONFIG_ZYNQMP_FIRMWARE)
+ int zynqmp_pm_get_api_version(u32 *version);
 -- 
 2.34.1
 
