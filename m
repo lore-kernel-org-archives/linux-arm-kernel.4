@@ -2,75 +2,159 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A4FA606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE38606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CDeBkUbL;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=G6quvtmI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YQ+Uth2o;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=i8mKLDli
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:In-Reply-To:
+	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=rSO1YX8ECwF6lWE7jTNfVJI7sFNdXuobHYLm3j4lLjM=; b=CDeBkUbLhD6CG+8vh12YVWqnMh
-	fgIHmzxPB9u282kdSPLSeFMMhSJ0UVM+Di/pGJDheREKSM5VDcH7yf23qqB3yVNfcoyElwBoUNu0Z
-	1+zVcOLmoLjui47E9rimLEkpC8Vp8p1ywRYxJ7K2fq9QEt66HcWkPPhH+f48rfaFP1N9Nfy6hbcnm
-	VWO5dYIq6Y+QTs90zOsv6C9h7ZiVAG5un4hwR/U3ME/DTpvo7l9GRi9CuxAtrLTUN9jWd33NfD0yG
-	QsiH4zFcT+Q98HMntwUPobs2FS9kFuGkIzksXnZ+WpAT42pIPzwf0zxzg2v9cLB+AlndWbi5ykB2F
-	ue4hFjsg==;
+	bh=5gmN6H+RSfew5cKRkkzfR78AcJ/HC4QuJ1A3RJGQZBo=; b=YQ+Uth2optswDAQYq8wK22mzPI
+	rW0dFwPX9TFwHfM3dTNqlv3sn080aZbyKR+vvxzEbNpNlhPlnnKCor67TebuHGAIxvklyn9XWsrsr
+	zAfWhyk+KyxPaJKAm/DsqIQM91umUvFfiVnVVbDEUyPjZ1JVtieyHRKdIp4OPUfIaCHlGrK8P293w
+	tmbf9f/FWDsQATDqicT4bxwE0DdD23LYZxle2IHhwM88jDsgyNFmB/0HLJuEeJhhNFJpYvWiZBD+z
+	lcKXxrCcXUlx134xEFAKoZSCIlHUmT3pOlpAcscjXVrwbcN3yFrx7OfJdxkdNNn7Kz6tftEtsqY0i
+	GWAkZWoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTpHR-0000000AWO9-1bZc;
-	Wed, 18 Nov 2026 23:41:33 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTpIa-0000000AWZw-2wUJ;
+	Wed, 18 Nov 2026 23:42:44 +0000
+Received: from mail-yw1-x112f.google.com ([2607:f8b0:4864:20::112f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTpHQ-0000000AWNz-2Hpz;
-	Wed, 18 Nov 2026 23:41:32 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 99B746427E;
-	Wed, 18 Nov 2026 23:41:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7A1D1F000C5;
-	Wed, 18 Nov 2026 23:41:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795045291;
-	bh=rSO1YX8ECwF6lWE7jTNfVJI7sFNdXuobHYLm3j4lLjM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=G6quvtmIAnAIa/2BWcN9t0CtnflDE2825rvG4CvCmJtlY/d/K7rXajjLf/3ag9UFF
-	 QaKv2LgifFS+21hUYitPHmHbbtoYt2HCNrR5LddVBeYl7rBJM5jgkndby5p+RNwQPt
-	 5epMhbP9mzuW8gUqHu+yWYw+6HjDQHOBfv7UO2xjblgACrVAKv/aioDjGOrcBKP7RA
-	 u53iU9oszIuzsVCy5CwqAtXzf4d0OolBeribe8ofCdGBZDgaj3NuEvPgEh8+P60U5y
-	 j8OIVNNQTdOlIAx4+YbXuYoWdJWmcnZXOuKrqUjF2d2l6bpNPgtH9k8CYsjb58C6eU
-	 KNSbkAwvA2ViQ==
-Date: Wed, 18 Nov 2026 18:41:28 -0500
-From: Brian Masney <masneyb@kernel.org>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Nicolai Buchwitz <nb@tipi-net.de>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>, Stefan Wahren <wahrenst@gmx.net>,
-	Phil Elwell <phil@raspberrypi.com>, netdev@vger.kernel.org,
-	James Clark <jjc@jclark.com>
-Subject: Re: (subset) [PATCH 0/3] clk: bcm2835: describe the BCM2711 GISB
- clock for the GENET MDIO controller
-Message-ID: <av43qJ1JUBgjFUtf@x1g10>
-References: <20261020-devel-bcm2711-gisb-clk-v1-0-a1728724d0f8@tipi-net.de>
- <179358503716.355577.9187303706042543606.b4-ty@b4>
- <2e846fdb-32e9-4ba9-a6e7-ef67d24c4f8d@broadcom.com>
+	id 1xTpIY-0000000AWZ8-22HC
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 23:42:43 +0000
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-8b4b9ba815bso11019297b3.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 15:42:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795045360; x=1795650160; darn=lists.infradead.org;
+        h=content-type:in-reply-to:autocrypt:from:content-language:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=5gmN6H+RSfew5cKRkkzfR78AcJ/HC4QuJ1A3RJGQZBo=;
+        b=i8mKLDliFy35RdZBAOACsmg4xfHMlFjxiz/+LhrfLk1O5fd47Y69vzVjdivYdvj0xm
+         aP83rlh56wYTfm0QQFJq6fgJg2w5xS3SiZg0dMPu5TN3nxTRwfCVUkHNP4bOOtseTKkz
+         TaJjR9GbxvTW6qQziDg1sseyqSPTa8a41MCmd8Qr3O4QvRmh2y0B2B2SFeEQkB+Ib3jy
+         LkD46Qyfr1Btx1dUaVk11VkqHstXxFKvOErct+XtBKaXQfGdHUkHKNR4O4GTQKrQrNtv
+         RrMIC7d9FGCnqkP1JMVlYNX7FqWgFQKMbWD6gA06mSmn0cZWiTkGeFzd2XV5gRDB7MyE
+         RDrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795045360; x=1795650160;
+        h=content-type:in-reply-to:autocrypt:from:content-language:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=5gmN6H+RSfew5cKRkkzfR78AcJ/HC4QuJ1A3RJGQZBo=;
+        b=J3+VRR/9eyzqsaxfOSwqejqFPpnvfVlwWyX5yxVHTM2cF7DXKIRndqDhAv216iC1HO
+         gnTaCYhW+0/w094jT9oiX9fCKBg3v7zs+QDU5RQG4TlrUgmwS/dn/BcJ7p4lLckApc3G
+         3kJxF9P5iFBTCkrlZdbH2VDpYEVD7z1Z+fLZ2Z2kIB2tRVRz29tytpIn3swN1qtS1A72
+         YPfbqtmK5cdQYiAZvtKmim2e5qNlCzehFIghsYvy6UMBAxINTPVZ+vr2zxd6rIzG0KS1
+         6qSOPdXg5oo0QVYXLrHpfrOz+A7EkZTuq+xqKNfzrTSm3s2I9Gsus/9+1FgcRB5RdRNy
+         XXBA==
+X-Forwarded-Encrypted: i=1; AL+hErGDiJxOja/0ibjL7jysa+JbRtZCqceNz9Fpjr+eSBTFTIjLwgM+xmR4/PT6SEcu8EPnlkMXdr47HvFlWTdSX9Lv@lists.infradead.org
+X-Gm-Message-State: APuU4Z9Gr9Pnahk772+rD3nLRnpcwgHMITThR33g3Wco/+2QdBBm484s
+	BhEDcDI7bcYWIinfZyjgEblXUNiqMPAp9q/nDZO4ANPNef2wWTzo6Q6b
+X-Gm-Gg: AZFdTZcLXEtmXBZ+9XdkAXMaxY5MP5Fod9zQbruHXaMkeQkO67Jl1uky0Ot7UVAEAcw
+	NuaN1Qj+BuAeUrKeKuXAFXdOv2wpfp3UgG0AD1WgKJkKazM5i3ietn0PlUOTyOlB2Ho2579IVfC
+	it9uOsZIxI8PBNqSF52OXM7Y+a4M5bd40fPx3gZx6f+gYQadg6aaAS0m7+waXHCzVBo+T6qTgE1
+	zBMnbliawd11QZ+oFcXl8WnjVB+S3LOY/9xNNqKzBrRk32VTYudSir2KWBasJ4GB1wodFPQ+TCc
+	+yosg4hLyaoPPgzqAGwHCSe2WQH/pO7JTOU4096ixTyC6Mu1yl6LBckqx9pR2an4CdAp69UJzq+
+	GPo8OOB+Mq6dRBlFilnjkYc7xTG4yzVVsq4APVer74jFrq2ksxVdtd0buNb3bIuPr+H0s4K3g9I
+	RV966Lc3NWgutFRANPFGDQM/tbu8eyb3aSXrFeIDgLUSGHplNb3DtYWQK2pN4xBSLGuOqTtHhWc
+	1vSOtP9AUWJPn0Kls3EuN3A3wBZqvD1j4LUX39KZmlWmBuDR6dORDFJGawXxk4KobXSrFWF6MCF
+	HRZ/INzf5PFEE3fNzYDFxZ5B/NpdiOQ9vQ==
+X-Received: by 2002:a05:690c:306:b0:8b0:e479:6872 with SMTP id 00721157ae682-8b4fed09583mr22589027b3.17.1795045360439;
+        Wed, 18 Nov 2026 15:42:40 -0800 (PST)
+Received: from [10.138.10.6] ([149.102.242.31])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-8b4fdf1d0desm25041597b3.1.2026.11.18.15.42.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Nov 2026 15:42:39 -0800 (PST)
+Message-ID: <650f89ef-9745-4f75-b254-80fa5ac4773d@gmail.com>
+Date: Wed, 18 Nov 2026 18:42:15 -0500
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2e846fdb-32e9-4ba9-a6e7-ef67d24c4f8d@broadcom.com>
-User-Agent: Mutt/2.4.3 (2026-10-09)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/9] KEYS: keycrypt: keys that user space can use but
+ never read
+To: Rodolfo Giometti <giometti@enneenne.com>,
+ David Howells <dhowells@redhat.com>, Jarkko Sakkinen <jarkko@kernel.org>,
+ keyrings@vger.kernel.org
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Jens Wiklander <jenswi@kernel.org>,
+ Sumit Garg <sumit.garg@kernel.org>, op-tee@lists.trustedfirmware.org,
+ =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>,
+ Pankaj Gupta <pankaj.gupta@nxp.com>, Sahil Malhotra
+ <sahil.malhotra@nxp.com>, Ahmad Fatoum <a.fatoum@pengutronix.de>,
+ Richard Weinberger <richard@nod.at>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Eric Biggers <ebiggers@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap
+ <rdunlap@infradead.org>, linux-crypto@vger.kernel.org,
+ linux-integrity@vger.kernel.org, linux-security-module@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-api@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20261118140421.584086-1-giometti@enneenne.com>
+Content-Language: en-US
+From: Demi Marie Obenour <demiobenour@gmail.com>
+Autocrypt: addr=demiobenour@gmail.com; keydata=
+ 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
+ +MYSfkEjBz0E8CLOcAw7JIwAaeBT
+In-Reply-To: <20261118140421.584086-1-giometti@enneenne.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------jzPPC6cqPSJxGVQJoosVKqnL"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_154242_556113_4BE315AE 
+X-CRM114-Status: GOOD (  16.61  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,50 +165,158 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Florian,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------jzPPC6cqPSJxGVQJoosVKqnL
+Content-Type: multipart/mixed; boundary="------------TfokhGkQ0eBXMCucH70BiVLN";
+ protected-headers="v1"; hp="clear"
+Message-ID: <650f89ef-9745-4f75-b254-80fa5ac4773d@gmail.com>
+Date: Wed, 18 Nov 2026 18:42:15 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/9] KEYS: keycrypt: keys that user space can use but
+ never read
+To: Rodolfo Giometti <giometti@enneenne.com>,
+ David Howells <dhowells@redhat.com>, Jarkko Sakkinen <jarkko@kernel.org>,
+ keyrings@vger.kernel.org
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Jens Wiklander <jenswi@kernel.org>,
+ Sumit Garg <sumit.garg@kernel.org>, op-tee@lists.trustedfirmware.org,
+ =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>,
+ Pankaj Gupta <pankaj.gupta@nxp.com>, Sahil Malhotra
+ <sahil.malhotra@nxp.com>, Ahmad Fatoum <a.fatoum@pengutronix.de>,
+ Richard Weinberger <richard@nod.at>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Eric Biggers <ebiggers@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap
+ <rdunlap@infradead.org>, linux-crypto@vger.kernel.org,
+ linux-integrity@vger.kernel.org, linux-security-module@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-api@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20261118140421.584086-1-giometti@enneenne.com>
+Content-Language: en-US
+From: Demi Marie Obenour <demiobenour@gmail.com>
+Autocrypt: addr=demiobenour@gmail.com; keydata=
+ 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
+ +MYSfkEjBz0E8CLOcAw7JIwAaeBT
+In-Reply-To: <20261118140421.584086-1-giometti@enneenne.com>
 
-On Fri, Nov 13, 2026 at 07:39:42PM -0800, Florian Fainelli wrote:
-> On 11/1/2026 6:03 PM, Brian Masney wrote:
-> > On Tue, 20 Oct 2026 16:58:08 +0200, Nicolai Buchwitz wrote:
-> > > clk: bcm2835: describe the BCM2711 GISB clock for the GENET MDIO controller
-> > > 
-> > > The timestamped MDIO write series [1] needs the reference clock the
-> > > GENET MDIO controller divides its MDC from. On BCM2711 that clock is
-> > > not described anywhere, so 5/5 of that series hardcodes 200 MHz behind
-> > > a compatible match, and mdio-bcm-unimac's clock-frequency handling
-> > > assumes the 250 MHz of the STB chips.
-> > > 
-> > > [...]
-> > 
-> > Applied, thanks!
-> > 
-> > [1/3] dt-bindings: clock: bcm2835: add the BCM2711 GISB clock
-> >        https://git.kernel.org/clk/linux/c/af7994af5228
-> > [2/3] clk: bcm2835: register the BCM2711 GISB clock
-> >        https://git.kernel.org/clk/linux/c/ab94dbf30233
-> 
-> Brian, can you also take patch #3, or you would have create an immutable
-> branch for me to pull from. Patch #3 depends upon the BCM2711_CLOCK_GISB
-> constant being defined.
+--------------TfokhGkQ0eBXMCucH70BiVLN
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I ended up rebasing the clk trees and I pulled these two commits out
-into a separate clk-broadcom branch that's based on top of v7.4-rc1.
+On 11/18/26 9:04 AM, Rodolfo Giometti wrote:
+> This RFC proposes a key type, "keycrypt", whose material user space can=
 
-https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/log/?h=clk-broadcom
+> use for symmetric operations but never read: AES-256-CBC, HMAC-SHA256
+> and an authenticated AES-256-GCM stream, through a file descriptor that=
 
-Is that sufficient for you to pull? If not, I can spin off a proper
-immutable branch with a signed git tag. If there's any other
-Broadcom-related clk commits this development cycle, I will add them to
-the clk-broadcom branch, but there's nothing else in the queue at the
-moment.
+> KEYCTL_CRYPT_OPEN returns for one key and one operation.
 
-Brian
+I haven't looked at the API, but from a cryptographic perspective,
+this encourages very poor practices.  AES-GCM even allows userspace
+to extract the secret authentication key.
+
+AES-256-CBC isn't a suitable mode on its own, unless it's combined
+with a MAC in encrypt-then-MAC.  Even then, it has a 2^64 birthday
+bound, so it should only be used 2^48 times with a single key unless
+the key is ephemeral.
+
+AES-GCM is not a suitable algorithm either.  If you allow encrypting
+with a key loaded from persistent storage, there is no way for the API
+to ensure it is only used with a unique nonce.  Nonce reuse leaks the
+authentication key and allows forgeries.  Using random nonces isn't
+good enough either: NIST only allows 2^32 encryptions in this case,
+and the API can't enforce that limit.
+
+For long-term keys, all of the following are much safer choices.
+They have 192-bit nonces, which means that one can generate them
+at random for each encryption without any problems.
+
+- XAES-256-GCM
+- XChaCha20-Poly1305
+- AEGIS-256
+
+AES-GCM-SIV is also okay, provided that you are fine with occasionally
+leaking if two plaintexts are equal.  This happens whenever there is
+a nonce collision, so with probability 2^-32 after 2^32 encryptions.
+--=20
+Sincerely,
+Demi Marie Obenour (she/her/hers)
+
+--------------TfokhGkQ0eBXMCucH70BiVLN--
+
+--------------jzPPC6cqPSJxGVQJoosVKqnL
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEopQtqVJW1aeuo9/sszaHOrMp8lMFAmr+N+MACgkQszaHOrMp
+8lNdbA/+LXcNkxhaSmkBIlfaAw6S95byA9OavCx3gDwybKkdpBRsqEMuUDmi6Krv
+sUsDLaeMdH3ar/BHBgzdRhYzWSYylQxAXK5kyk9Dl+eyd7ytersCCZOWNqQEXZm8
+J2LKr4uL8732Pdf9nju8nULZYGbZMMOruowXjBaVMXexkB1+6mlo5Nlg2GWQi+tq
+Hq9ZznN68KGW4g+4Tf1yUAVTrCV1il7GWH5B2NmiYoE+X7gXBAm/SN6AZFOBdC8R
+9RqyWBD49MqMMo2bJUtpO4GYBp5Nq/mj51QZMQft/SuzJIukGVOgBZjs4tYc6Rzw
+aYoqSJs44bHE4zdSItWMBMDMrFE4QwSZT9B79wJDYMc1XYC8GTEcV+A63nqID8Pm
+cGeJ75QYBrQPSOGE8Y6JeniPKwFOHc+ZapobcMEZIo/e84/XsTLt3/WLlm92W+AK
+b1B+kFVPbKu7aAp59KPE/6woXt1nWraeSJ2yT6kJv7nVlDTgmVjROCYIWx1z7Zxb
+w3CLI05Dru/vR3Kfrb1qIwcExSnqHikSICBFrlCtcJ2QIXAe7q97XMUOtrG/r/tV
+PhAcmfxf24npXFn3RhkkaT+XxqY891rJUHLUDfu1p8Rs8+QA+wf9ti+I/Ow0zC1c
+TQibXKQlhu/Pb1CwVlGfg5OG29hOQEplCyaVjnQK5oPaw9O5NEs=
+=AtsF
+-----END PGP SIGNATURE-----
+
+--------------jzPPC6cqPSJxGVQJoosVKqnL--
 
