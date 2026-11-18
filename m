@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3177B60A261A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ABAC60A2618
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=alw8Lbe9;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=LczECebt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4S3y5XIz;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ntfIyUgI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,69 +14,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LM4UWhtNaf+31HpscxLGjqcPcYVKjie0R23WUyOHwoM=; b=alw8Lbe9PMKAXTpm4oRER3GxBJ
-	TraLOQI+PzlUeHTJOPgm2rWL1Nqn8vRvn2+AEvC1KRrY9tsF9IPCNqCEUaHuPyrOckCVSkJGu7WnV
-	8+VBg7QbNP99TXaRHWi+5u09datfKBZDZfdvYyVHTBtTgsAh7JU6Z4d6mPhRx4ZuXhjXvmHqB+GlV
-	RlKSx43mHs9cFAyGS5/Eev3zCHVAFBs0ktR+caU0ujW3XDyoAN61s4QXmFEXulUl+Zxad6eZFDGkN
-	LEW+4XXV8dY2WZWUjDndJrK5ppC+gNClF+8d9DOsKXrhOX2FDf69HXCV3p1qOikTMLSGRvbvT2PHL
-	cyxTltdA==;
+	bh=SihVeKYKUcYtwtVeDbgNDziHJwcySsXbAtpJvKrk9Z8=; b=4S3y5XIzyK/Kw+3dYEuRG8rXTO
+	C7798lt/B8nE4c4soPbZ5ivgQ2DpslnFe4b5X2J/TQhDnIAQXX4bpr539jLRay6huB48JXFHd/jZW
+	rGtnsDFBgsFXYFK5gxzTHRee9D2j4lBEppbroVzGYCzhFX1aoaTUc2B9cSZb4/LEJMCBcqNFLIeSK
+	YT/TUQuwxOfsqlsKe+JSJIvt515U9wmhog1YE9EryAXVEha2J3o+kyevtWvuqQB0gvMy4/aJZKoCq
+	Ebbc/JSLzHEPWab8y/2iCZdpe97uxvd9DbVhgSv7Oa/mtAAKE/bhhjfXd3Il1vc0TeihOKvyx4VZb
+	UmIzpAHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkJB-00000009uU4-2wjz;
-	Wed, 18 Nov 2026 18:23:01 +0000
-Received: from mail-wm1-x348.google.com ([2a00:1450:4864:20::348])
+	id 1xTkJC-00000009uVK-1kDo;
+	Wed, 18 Nov 2026 18:23:02 +0000
+Received: from mail-wm1-x345.google.com ([2a00:1450:4864:20::345])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkIB-00000009tEc-1FnO
+	id 1xTkIH-00000009tLw-2b7P
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 18:22:01 +0000
-Received: by mail-wm1-x348.google.com with SMTP id 5b1f17b1804b1-49953abe51fso8964035e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:21:58 -0800 (PST)
+	Wed, 18 Nov 2026 18:22:06 +0000
+Received: by mail-wm1-x345.google.com with SMTP id 5b1f17b1804b1-4a359b714f8so8476785e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:22:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795026116; x=1795630916; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795026122; x=1795630922; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=LM4UWhtNaf+31HpscxLGjqcPcYVKjie0R23WUyOHwoM=;
-        b=LczECebtUnuThkeoreeOpHxBRSg8Oxe7hMawdUbSmHm1f6vfmLgk9H0Bwz4whK08NB
-         AORhSeS4jbgRQumQZEluXubffAA7ieXU2u1dj6OWTHPAwKWgVVf2xCoX2sB/yXPMpSw/
-         AbFI1ifUyxNgyatdaenoumQDcGM7HSNNB+GNx5YCDk8aP5LPcfDxu4VhrLt/DRrH++Fe
-         cKlCqC5L2tadHqq0oIcAn3leIwLb24NgtFoYZolclGKPWD5CUduONigMCcRyOr1oteAy
-         Orm4ecZzk2LY2X+1Qo27GfyxVi4OjxRqMOX8bGhRkb2TrwfLUZ3wbRstLYDt41U4mxsn
-         vLdg==
+        bh=SihVeKYKUcYtwtVeDbgNDziHJwcySsXbAtpJvKrk9Z8=;
+        b=ntfIyUgIgC5++BoD02OeSkBavPWAu65dl/oZzODaJqTRd/2HBiAgei5TcoU08sT2qU
+         FAjGi/ZGR2Ro9w1ryZYZD2vypRoQ13B4qL1ksdnQdR0lDBu18eZfuMyVzdm9iU5Rml1J
+         HJXGvXTYzsKdgEZlczMQKcVedsdRABSd2cJgtMxgWG6DMu9DXV3IBmBQFkBnZMO5jqQk
+         16mAvphMw8apGYBtoPunIKxEWPwchSkty3kbbgWP7fc9sTCOc8MAfuwINaQGv7ohQkBb
+         M3iMim9diZZdcNVn54a0L9xGJUcey5IkQHR6bbuOhKVl3s7clrmWJVDKN2gQ73K+KQcP
+         iv4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795026116; x=1795630916;
+        d=1e100.net; s=20260707; t=1795026122; x=1795630922;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=LM4UWhtNaf+31HpscxLGjqcPcYVKjie0R23WUyOHwoM=;
-        b=cxYAFwp3D7t6Itf3QtTOq1N8+rZwtgVlQoiuqGjxr2XOoEdhtHDa0nJUm0teRCtHRB
-         z5OTpJL3I/v6AtC9Bz5dnu7uK6B1mmhmpC2Q7jPTYRsl8QjvY9Wlr+8R7Fc5ZyfSQhd7
-         NOclT4Dk/WKfeZr2K5unAiYvKC3gcEqAa73Qzq+XLeWavQTeZxSdcBuyO1xWSXTYZMZH
-         dWGUqqKsLf3Nb8ckiHmVn5sOXoLihMRS2pMVsrTMS/Ri5A+MNRCwMgwH0mATyaYYtiRX
-         R4plHK6V1hczlcIcO0pY+7HDp3G3QaPLJqpEuS5sxjWKpDA9uyaFeoo1B3w/y++bP/6P
-         wFxw==
-X-Gm-Message-State: APuU4Z8hn1Z5x+chOnc2MSG4PfM+EaJAz4pXBawLvKZ5JjTEMVw5mG9z
-	jaRc63HPKizGDorcJIgltbGhrSZX6/coWPpyn7Ps3rycSJ+PLCG2zL72hVSC3zI3U9k+bV6uIw=
+        bh=SihVeKYKUcYtwtVeDbgNDziHJwcySsXbAtpJvKrk9Z8=;
+        b=hpdvoXqcqw7wRnlbrpB2gHzeDE0Ywd1log8SB24QstHQfQSFl/z2uYhdSvc952HhJy
+         o2cq94JIvJu5+wRK2B7UcDddO7oBI0odwQJD016g6iXKPMOjRFAge6skWcd8mHM7m03S
+         spw2mVkxhDlxxtZigByxUsO85dcKKXNNNbFRg/6TUMPhRLQLPhzTTeY5rsIsYFq2RB6C
+         haD4DlltbBq6SeZPN3gyJsgs6rVWcE6JNjuFt3B1DJVJwAqgBwwtmJJv2JBv+Z25kxy2
+         1tk3nZqYeOrlXOwKe1C+UQa/6iu769V+fjLrnWG9eK3t+lQNuoZjwl1GLwYohVwJNXkm
+         JuRA==
+X-Gm-Message-State: APuU4Z/J90f5U/NNw7fH6Kmwtx6S8NJu+zfWZaSMrywg9nqW7ZMgTF9q
+	ivlsctIHZ5WGA9QmI9g9Nn0vL0poxPTh1qv0Dxzs4BgabcBWLNwZmjrzXmkwSCK8Tl7sF0Tpug=
 	=
-X-Received: from wmdd13.prod.google.com ([2002:a05:600c:a20d:b0:4a1:fd4d:ad4e])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:1f82:b0:4a6:44b:2593
- with SMTP id 5b1f17b1804b1-4bb7da4a0b5mr67681055e9.29.1795026116240; Wed, 18
- Nov 2026 10:21:56 -0800 (PST)
-Date: Wed, 18 Nov 2026 19:21:12 +0100
+X-Received: from wmbiv20.prod.google.com ([2002:a05:600c:5494:b0:4a5:9877:cd58])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600d:82c5:b0:4bb:693e:4c8e
+ with SMTP id 5b1f17b1804b1-4bb7da270bamr81627805e9.21.1795026122038; Wed, 18
+ Nov 2026 10:22:02 -0800 (PST)
+Date: Wed, 18 Nov 2026 19:21:15 +0100
 In-Reply-To: <20261118182105.1633603-21-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261118182105.1633603-21-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6981; i=ardb@kernel.org;
- h=from:subject; bh=tY79MuljiH6CJlV+ev4wNhil+QqJwdsIKUw56aBQG+A=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIevvm1lNN8P7zu5v4p15yGKDz8auyrpX/8JO3Jjzc7F76
- 017o5MXOkpZGMS4GGTFFFkEZv99t/P0RKla51myMHNYmUCGMHBxCsBEUgIYGR63qslb1WQ1vd02
- 2zHFaJFdsHRqTosaz6KMYu1kmbOTnjEyrGDhOMqipm5t7P47ZencAkmF7oJ5rN21V9xDhLxCvig zAAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10740; i=ardb@kernel.org;
+ h=from:subject; bh=td1YOzQllFOmKxcYaPTJfDzgNk5vXqWQSMoBqMUdfHI=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIevvm3lKLDOcmw5vsfpY4HN61YsfO1ZVFP5R2Ddt+tdT7
+ 0SNuR5KdJSyMIhxMciKKbIIzP77bufpiVK1zrNkYeawMoEMYeDiFICJWLxkZGifybL/yIZlD6Zx
+ nTg6x2bmMqvGORzSqncMzldJ7ggKO1DJyDBrr83xtSx3Uw+8jGyU8XtwRdSwzi7yYO37Wdv3bLe +9pILAA==
 X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
-Message-ID: <20261118182105.1633603-27-ardb+git@google.com>
-Subject: [PATCH v4 06/19] efi/libstub: arm: Size the decompressed kernel
- allocation precisely
+Message-ID: <20261118182105.1633603-30-ardb+git@google.com>
+Subject: [PATCH v4 09/19] efi/libstub: Pass kernel entrypoint down to efi_enter_kernel()
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-efi@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
@@ -85,8 +84,8 @@ Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
 	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_102159_416699_AA77FF3C 
-X-CRM114-Status: GOOD (  27.58  )
+X-CRM114-CacheID: sfid-20261118_102205_685699_D211F748 
+X-CRM114-Status: GOOD (  22.01  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,150 +107,281 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-The ARM EFI stub reserves a window for the decompressed kernel, as the
-decompressor writes it to memory without regard for other allocations
-made while running under the firmware. Currently, this window is
-MAX_UNCOMP_KERNEL_SIZE (32 MiB) in size, but it starts 5 pages below the
-kernel's start address, to cover the initial page tables. This leaves
-32 MiB minus 5 pages for the kernel itself, and nothing checks whether
-that is sufficient. Large kernels (e.g., multiplatform builds with debug
-options enabled) can exceed this, in which case the decompressed image
-and its BSS overrun the reservation into memory that the firmware
-regards as free, and which may have been handed out for the FDT, the
-initrd or the EFI memory map.
+Update the EFI stub code shared by arm64 and RISC-V so that the kernel
+entry point is taken from struct efi_image_info rather than from opaque
+arithmetic performed on linker symbols.
 
-So instead, size the window based on the actual memory footprint of the
-kernel: the uncompressed image size, which is stored in the last 4 bytes
-of the compressed payload, plus the size of BSS, which is recorded in
-the zImage tag table, plus the size of the initial page tables, which is
-4 pages, or 5 pages when LPAE is enabled.
+Notably, this results in EFI zboot to enter via the actual kernel
+entrypoint rather than byte 0x0 of the loaded image on these
+architectures. Beyond that, it is mostly a cleanup that will allow
+special linker exports for global symbols to be dropped in subsequent
+patches.
 
-While at it, drop the requirement that the window is aligned to a power
-of two that is at least TEXT_OFFSET, which means 4 MiB when TEXT_OFFSET
-is 0x208000 or 0x308000. The only actual requirement is that the
-physical start of the kernel minus TEXT_OFFSET, which becomes
-PHYS_OFFSET, is a multiple of 2 MiB, as required by the phys-to-virt
-patching code. The reason for the larger alignment was that the existing
-logic breaks down when the slack below the kernel exceeds the alignment,
-and so this is fixed by making the additional space that is allocated to
-accommodate the alignment the larger of 2 MiB and the size of the slack.
-This also ensures that PHYS_OFFSET never ends up below the 2 MiB aligned
-block containing the start of the allocation, which only requires DRAM
-to be 2 MiB aligned rather than 4 MiB aligned.
-
-Finally, free the unused parts at either end of the allocation without
-updating alloc_base and alloc_size in place, so that both frees are
-derived directly from the original allocation, and return the reserved
-window to the caller as is.
-
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- arch/arm/include/asm/efi.h                | 15 ++--------
- drivers/firmware/efi/libstub/arm32-stub.c | 31 ++++++++++++--------
- 2 files changed, 20 insertions(+), 26 deletions(-)
+ arch/arm/boot/compressed/head.S           |  3 ++-
+ arch/arm64/include/asm/efi.h              |  2 --
+ arch/riscv/include/asm/efi.h              |  2 --
+ drivers/firmware/efi/libstub/arm64-stub.c | 15 ---------------
+ drivers/firmware/efi/libstub/arm64.c      | 16 ++--------------
+ drivers/firmware/efi/libstub/efi-stub.c   |  2 +-
+ drivers/firmware/efi/libstub/efistub.h    | 13 +++++++------
+ drivers/firmware/efi/libstub/fdt.c        |  5 +++--
+ drivers/firmware/efi/libstub/loongarch.c  |  3 ++-
+ drivers/firmware/efi/libstub/riscv-stub.c | 13 -------------
+ drivers/firmware/efi/libstub/riscv.c      | 16 +++-------------
+ 11 files changed, 20 insertions(+), 70 deletions(-)
 
-diff --git a/arch/arm/include/asm/efi.h b/arch/arm/include/asm/efi.h
-index e408399d5f0e..c28508c6e107 100644
---- a/arch/arm/include/asm/efi.h
-+++ b/arch/arm/include/asm/efi.h
-@@ -56,22 +56,11 @@ void efi_virtmap_unload(void);
+diff --git a/arch/arm/boot/compressed/head.S b/arch/arm/boot/compressed/head.S
+index 9f406e9c0ea6..6e4d8ce0efbb 100644
+--- a/arch/arm/boot/compressed/head.S
++++ b/arch/arm/boot/compressed/head.S
+@@ -1450,7 +1450,8 @@ __enter_kernel_from_hyp:
+ 		b	__enter_kernel
  
- /* arch specific definitions used by the stub code */
+ ENTRY(efi_enter_kernel)
+-		mov	r4, r0			@ preserve image base
++		ldr	r4, [r0]		@ preserve image base
++		add	r4, r4, r0
+ 		mov	r8, r1			@ preserve DT pointer
  
--/*
-- * A reasonable upper bound for the uncompressed kernel size is 32 MBytes,
-- * so we will reserve that amount of memory. We have no easy way to tell what
-- * the actuall size of code + data the uncompressed kernel will use.
-- * If this is insufficient, the decompressor will relocate itself out of the
-- * way before performing the decompression.
-- */
--#define MAX_UNCOMP_KERNEL_SIZE	SZ_32M
+ 		adr_l	r0, call_cache_fn
+diff --git a/arch/arm64/include/asm/efi.h b/arch/arm64/include/asm/efi.h
+index e8a9783235cb..d5775f38efea 100644
+--- a/arch/arm64/include/asm/efi.h
++++ b/arch/arm64/include/asm/efi.h
+@@ -103,8 +103,6 @@ static inline unsigned long efi_get_kimg_min_align(void)
+ #define EFI_ALLOC_ALIGN		SZ_64K
+ #define EFI_ALLOC_LIMIT		((1UL << 48) - 1)
+ 
+-extern unsigned long primary_entry_offset(void);
 -
  /*
-  * phys-to-virt patching requires that the physical to virtual offset is a
-- * multiple of 2 MiB. However, using an alignment smaller than TEXT_OFFSET
-- * here throws off the memory allocation logic, so let's use the lowest power
-- * of two greater than 2 MiB and greater than TEXT_OFFSET.
-+ * multiple of 2 MiB.
-  */
--#define EFI_PHYS_ALIGN		max(UL(SZ_2M), roundup_pow_of_two(TEXT_OFFSET))
-+#define EFI_PHYS_ALIGN		SZ_2M
+  * On ARM systems, virtually remapped UEFI runtime services are set up in two
+  * distinct stages:
+diff --git a/arch/riscv/include/asm/efi.h b/arch/riscv/include/asm/efi.h
+index 46a355913b27..ded51c656126 100644
+--- a/arch/riscv/include/asm/efi.h
++++ b/arch/riscv/include/asm/efi.h
+@@ -43,8 +43,6 @@ static inline unsigned long efi_get_kimg_min_align(void)
+ void arch_efi_call_virt_setup(void);
+ void arch_efi_call_virt_teardown(void);
  
- /* on ARM, the initrd should be loaded in a lowmem region */
- static inline unsigned long efi_get_max_initrd_addr(unsigned long image_addr)
-diff --git a/drivers/firmware/efi/libstub/arm32-stub.c b/drivers/firmware/efi/libstub/arm32-stub.c
-index 1073dd947516..1ab15d66e709 100644
---- a/drivers/firmware/efi/libstub/arm32-stub.c
-+++ b/drivers/firmware/efi/libstub/arm32-stub.c
-@@ -76,6 +76,12 @@ void efi_handle_post_ebs_state(void)
- 		      &efi_entry_state->sctlr_after_ebs);
+-unsigned long stext_offset(void);
+-
+ void efi_icache_sync(unsigned long start, unsigned long end);
+ 
+ #endif /* _ASM_EFI_H */
+diff --git a/drivers/firmware/efi/libstub/arm64-stub.c b/drivers/firmware/efi/libstub/arm64-stub.c
+index b57cccd75ab5..6140def24c69 100644
+--- a/drivers/firmware/efi/libstub/arm64-stub.c
++++ b/drivers/firmware/efi/libstub/arm64-stub.c
+@@ -10,7 +10,6 @@
+ #include <linux/efi.h>
+ #include <asm/efi.h>
+ #include <asm/memory.h>
+-#include <asm/sections.h>
+ 
+ #include "efistub.h"
+ 
+@@ -35,20 +34,6 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
+ 					 efi_kaslr_get_phys_seed(image_handle));
  }
  
-+/* last unaligned u32 in the image carries the uncompressed size */
-+extern u32 input_data_end[] __aligned(1);
+-asmlinkage void primary_entry(void);
+-
+-unsigned long primary_entry_offset(void)
+-{
+-	/*
+-	 * When built as part of the kernel, the EFI stub cannot branch to the
+-	 * kernel proper via the image header, as the PE/COFF header is
+-	 * strictly not part of the in-memory presentation of the image, only
+-	 * of the file representation. So instead, we need to jump to the
+-	 * actual entrypoint in the .text region of the image.
+-	 */
+-	return (char *)primary_entry - _text;
+-}
+-
+ void efi_icache_sync(unsigned long start, unsigned long end)
+ {
+ 	caches_clean_inval_pou(start, end);
+diff --git a/drivers/firmware/efi/libstub/arm64.c b/drivers/firmware/efi/libstub/arm64.c
+index d35c6dd76601..e892302f4189 100644
+--- a/drivers/firmware/efi/libstub/arm64.c
++++ b/drivers/firmware/efi/libstub/arm64.c
+@@ -117,24 +117,12 @@ void efi_cache_sync_image(unsigned long image_base,
+ 	efi_remap_image(image_base, alloc_size, code_size);
+ }
+ 
+-unsigned long __weak primary_entry_offset(void)
+-{
+-	/*
+-	 * By default, we can invoke the kernel via the branch instruction in
+-	 * the image header, so offset #0. This will be overridden by the EFI
+-	 * stub build that is linked into the core kernel, as in that case, the
+-	 * image header may not have been loaded into memory, or may be mapped
+-	 * with non-executable permissions.
+-	 */
+-       return 0;
+-}
+-
+-void __noreturn efi_enter_kernel(unsigned long entrypoint,
++void __noreturn efi_enter_kernel(const struct efi_image_info *image_info,
+ 				 unsigned long fdt_addr,
+ 				 unsigned long fdt_size)
+ {
+ 	void (* __noreturn enter_kernel)(u64, u64, u64, u64);
+ 
+-	enter_kernel = (void *)entrypoint + primary_entry_offset();
++	enter_kernel = efistub_kernel_entry(image_info);
+ 	enter_kernel(fdt_addr, 0, 0, 0);
+ }
+diff --git a/drivers/firmware/efi/libstub/efi-stub.c b/drivers/firmware/efi/libstub/efi-stub.c
+index bf9a9f53a95c..55bf7ed50c81 100644
+--- a/drivers/firmware/efi/libstub/efi-stub.c
++++ b/drivers/firmware/efi/libstub/efi-stub.c
+@@ -191,7 +191,7 @@ efi_status_t efi_stub_common(efi_handle_t handle,
+ 
+ 	install_memreserve_table();
+ 
+-	status = efi_boot_kernel(handle, image, image_addr, cmdline_ptr);
++	status = efi_boot_kernel(handle, image, image_info, cmdline_ptr);
+ 
+ 	free_primary_display(dpy);
+ 
+diff --git a/drivers/firmware/efi/libstub/efistub.h b/drivers/firmware/efi/libstub/efistub.h
+index edc768a54473..e45d16095247 100644
+--- a/drivers/firmware/efi/libstub/efistub.h
++++ b/drivers/firmware/efi/libstub/efistub.h
+@@ -1054,9 +1054,6 @@ typedef efi_status_t (*efi_exit_boot_map_processing)(
+ efi_status_t efi_exit_boot_services(void *handle, void *priv,
+ 				    efi_exit_boot_map_processing priv_func);
+ 
+-efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
+-			     unsigned long kernel_addr, char *cmdline_ptr);
+-
+ void *get_fdt(unsigned long *fdt_size);
+ 
+ efi_status_t efi_alloc_virtmap(efi_memory_desc_t **virtmap,
+@@ -1189,6 +1186,10 @@ void *efistub_kernel_entry(const struct efi_image_info *image_info)
+ 	return offset_to_ptr(&image_info->entry_offset);
+ }
+ 
++efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
++			     const struct efi_image_info *image_info,
++			     char *cmdline_ptr);
 +
-+/* entry #3 in the zimage magic table carries the kernel's BSS size */
-+extern u32 zimage_magic_table[] asm("_table_start");
-+
+ static inline
+ void *efistub_sysfb_display_info(const struct efi_image_info *image_info)
+ {
+@@ -1205,9 +1206,9 @@ efi_status_t efi_stub_common(efi_handle_t handle,
+ 
+ efi_status_t efi_handle_cmdline(efi_loaded_image_t *image, char **cmdline_ptr);
+ 
+-asmlinkage void __noreturn efi_enter_kernel(unsigned long entrypoint,
+-					    unsigned long fdt_addr,
+-					    unsigned long fdt_size);
++void __noreturn efi_enter_kernel(const struct efi_image_info *image_info,
++				 unsigned long fdt_addr,
++				 unsigned long fdt_size);
+ 
+ void efi_handle_post_ebs_state(void);
+ 
+diff --git a/drivers/firmware/efi/libstub/fdt.c b/drivers/firmware/efi/libstub/fdt.c
+index f01450b49975..09e9e5bc831e 100644
+--- a/drivers/firmware/efi/libstub/fdt.c
++++ b/drivers/firmware/efi/libstub/fdt.c
+@@ -344,7 +344,8 @@ efi_status_t allocate_new_fdt_and_exit_boot(void *handle,
+ }
+ 
+ efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
+-			     unsigned long kernel_addr, char *cmdline_ptr)
++			     const struct efi_image_info *image_info,
++			     char *cmdline_ptr)
+ {
+ 	unsigned long fdt_addr;
+ 	efi_status_t status;
+@@ -359,7 +360,7 @@ efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
+ 	if (IS_ENABLED(CONFIG_ARM))
+ 		efi_handle_post_ebs_state();
+ 
+-	efi_enter_kernel(kernel_addr, fdt_addr, fdt_totalsize((void *)fdt_addr));
++	efi_enter_kernel(image_info, fdt_addr, fdt_totalsize((void *)fdt_addr));
+ 	/* not reached */
+ }
+ 
+diff --git a/drivers/firmware/efi/libstub/loongarch.c b/drivers/firmware/efi/libstub/loongarch.c
+index 2b0c87dc9908..7f21e79384d3 100644
+--- a/drivers/firmware/efi/libstub/loongarch.c
++++ b/drivers/firmware/efi/libstub/loongarch.c
+@@ -66,8 +66,9 @@ unsigned long __weak kernel_entry_address(unsigned long kernel_addr,
+ }
+ 
+ efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
+-			     unsigned long kernel_addr, char *cmdline_ptr)
++			     const struct efi_image_info *image_info, char *cmdline_ptr)
+ {
++	unsigned long kernel_addr = efistub_kernel_base(image_info);
+ 	kernel_entry_t real_kernel_entry;
+ 	struct exit_boot_struct priv;
+ 	unsigned long desc_size;
+diff --git a/drivers/firmware/efi/libstub/riscv-stub.c b/drivers/firmware/efi/libstub/riscv-stub.c
+index e4f9723d5055..840fdd63dccf 100644
+--- a/drivers/firmware/efi/libstub/riscv-stub.c
++++ b/drivers/firmware/efi/libstub/riscv-stub.c
+@@ -6,23 +6,10 @@
+ #include <linux/efi.h>
+ 
+ #include <asm/efi.h>
+-#include <asm/sections.h>
+ #include <linux/unaligned.h>
+ 
+ #include "efistub.h"
+ 
+-unsigned long stext_offset(void)
+-{
+-	/*
+-	 * When built as part of the kernel, the EFI stub cannot branch to the
+-	 * kernel proper via the image header, as the PE/COFF header is
+-	 * strictly not part of the in-memory presentation of the image, only
+-	 * of the file representation. So instead, we need to jump to the
+-	 * actual entrypoint in the .text region of the image.
+-	 */
+-	return _start_kernel - _start;
+-}
+-
  efi_status_t handle_kernel_image(unsigned long *image_addr,
  				 unsigned long *image_size,
  				 unsigned long *reserve_addr,
-@@ -83,18 +89,22 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
- 				 efi_loaded_image_t *image,
- 				 efi_handle_t image_handle)
+diff --git a/drivers/firmware/efi/libstub/riscv.c b/drivers/firmware/efi/libstub/riscv.c
+index 49db47c05bfe..7be2774dea90 100644
+--- a/drivers/firmware/efi/libstub/riscv.c
++++ b/drivers/firmware/efi/libstub/riscv.c
+@@ -72,20 +72,10 @@ efi_status_t check_platform_features(void)
+ 	return EFI_SUCCESS;
+ }
+ 
+-unsigned long __weak stext_offset(void)
++void __noreturn efi_enter_kernel(const struct efi_image_info *image_info,
++				 unsigned long fdt, unsigned long fdt_size)
  {
--	const int slack = TEXT_OFFSET - 5 * PAGE_SIZE;
--	int alloc_size = MAX_UNCOMP_KERNEL_SIZE + EFI_PHYS_ALIGN;
-+	unsigned long kernel_memsize = input_data_end[-1] + zimage_magic_table[3];
-+	const int pgdir_size = (4 + IS_ENABLED(CONFIG_ARM_LPAE)) * PAGE_SIZE;
-+	int alloc_size = pgdir_size + ALIGN(kernel_memsize, EFI_PAGE_SIZE);
-+	const int slack = TEXT_OFFSET - pgdir_size;
-+	const unsigned long margin = max(EFI_PHYS_ALIGN, slack);
- 	unsigned long alloc_base, kernel_base;
- 	efi_status_t status;
+-	/*
+-	 * This fallback definition is used by the EFI zboot stub, which loads
+-	 * the entire image so it can branch via the image header at offset #0.
+-	 */
+-	return 0;
+-}
+-
+-void __noreturn efi_enter_kernel(unsigned long entrypoint, unsigned long fdt,
+-				 unsigned long fdt_size)
+-{
+-	unsigned long kernel_entry = entrypoint + stext_offset();
+-	jump_kernel_func jump_kernel = (jump_kernel_func)kernel_entry;
++	jump_kernel_func jump_kernel = efistub_kernel_entry(image_info);
  
  	/*
- 	 * Allocate space for the decompressed kernel as low as possible.
--	 * The region should be 16 MiB aligned, but the first 'slack' bytes
-+	 * The region should be 2 MiB aligned, but the first 'slack' bytes
- 	 * are not used by Linux, so we allow those to be occupied by the
- 	 * firmware.
- 	 */
--	status = efi_low_alloc_above(alloc_size, EFI_PAGE_SIZE, &alloc_base, 0x0);
-+	status = efi_low_alloc_above(alloc_size + margin, EFI_PAGE_SIZE,
-+				     &alloc_base, 0x0);
- 	if (status != EFI_SUCCESS) {
- 		efi_err("Unable to allocate memory for uncompressed kernel.\n");
- 		return status;
-@@ -103,7 +113,7 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
- 	if ((alloc_base % EFI_PHYS_ALIGN) > slack) {
- 		/*
- 		 * More than 'slack' bytes are already occupied at the base of
--		 * the allocation, so we need to advance to the next 16 MiB block.
-+		 * the allocation, so we need to advance to the next 2 MiB block.
- 		 */
- 		kernel_base = round_up(alloc_base, EFI_PHYS_ALIGN);
- 		efi_info("Free memory starts at 0x%lx, setting kernel_base to 0x%lx\n",
-@@ -113,16 +123,11 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
- 	}
- 
- 	*reserve_addr = kernel_base + slack;
--	*reserve_size = MAX_UNCOMP_KERNEL_SIZE;
-+	*reserve_size = alloc_size;
- 
- 	/* now free the parts that we will not use */
--	if (*reserve_addr > alloc_base) {
--		efi_bs_call(free_pages, alloc_base,
--			    (*reserve_addr - alloc_base) / EFI_PAGE_SIZE);
--		alloc_size -= *reserve_addr - alloc_base;
--	}
--	efi_bs_call(free_pages, *reserve_addr + MAX_UNCOMP_KERNEL_SIZE,
--		    (alloc_size - MAX_UNCOMP_KERNEL_SIZE) / EFI_PAGE_SIZE);
-+	efi_free(*reserve_addr - alloc_base, alloc_base);	/* no-op if 0 */
-+	efi_free(alloc_base + margin - *reserve_addr, *reserve_addr + alloc_size);
- 
- 	*image_addr = kernel_base + TEXT_OFFSET;
- 	*image_size = 0;
+ 	 * Jump to real kernel here with following constraints.
 -- 
 2.56.1.708.g77570a6a1d-goog
 
