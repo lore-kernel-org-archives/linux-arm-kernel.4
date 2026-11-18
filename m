@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B8D60A2602
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 19:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEFE606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 19:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=irWoeBfb;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BDJPVTAD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EmaeFXtq;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k5HDhFWd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,65 +14,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=j8NHvkg0mcHS6NppRIX+eDEokhzbE1hV9ZJ/sEvlK4U=; b=irWoeBfbj1JW14Ys4tTvQvp8M1
-	JdzHuu68uCiteM+asqLZ71yURVzCAAdLsv8ixPdoWokgYMXFKGRYxNh2I731EnsLkJKPb9J1J4oDu
-	eAsIuwReWz2hgoGofFNpqsiDerO5yUzT/PzgN0gS3UxI5SWdP2TcjdD+UswCofKrEOqKPsOv9nSgy
-	3DMg3EGi04qOOO4ULDhqDaJhgokikuoE0ov+RLwLeDSfnMP9LucI6IuoR0MlbDx1LREoswLsyITVS
-	MQFNsud9EasFGNe2iZfNHNKVpyS1FO/u6xWxj80CT7BiPQds03bM9NK9yOaJCL8+/X9pmpHiLQ9xo
-	agoUM+Zg==;
+	bh=UCh5hxQKcdbzNOsUZdCUK4aYJ8BLmHiwc+AaL/5mCtw=; b=EmaeFXtqmaBHRCbYIkYkzoG2Bn
+	i3ssDoaSyJcLIMoX9Tt64bzVKIV2Wdf6v8pRk6ui9IgtlgGRBWjj/mEDcZNzWxhyVpRDe41p8oFe4
+	40YYg5yc9bqD51rU/FsQMvze0VN4Ct47F17izvCmnRhI+zgr3icxeoC8hdFcSYY8gOyhmP25UWT6L
+	Ic/+AycZO+6GW/wks3BM02x/vkfAvZWcFzvVcLZ5Z/3qLHb+1kzf4Kml0Aq6PJRqTjxV32Sa0DBLk
+	vN0jIjl95ASXCaVyYrcQyE5upe2GgS2/GiGztDrwg6017qQN4qWRBic+CRDwSWvzQOcARxWPCTEm+
+	/wMYZSpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTl1P-0000000A4zz-2JFK;
-	Wed, 18 Nov 2026 19:08:43 +0000
+	id 1xTl32-0000000A5GO-0Kvd;
+	Wed, 18 Nov 2026 19:10:24 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTl1O-0000000A4yj-10Zm;
-	Wed, 18 Nov 2026 19:08:42 +0000
+	id 1xTl31-0000000A5Fu-0ttx
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 19:10:23 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6E7B1625B6;
-	Wed, 18 Nov 2026 19:08:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAAFB1F000C4;
-	Wed, 18 Nov 2026 19:08:40 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 51B8263892;
+	Wed, 18 Nov 2026 19:10:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1E961F000C9;
+	Wed, 18 Nov 2026 19:10:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795028921;
-	bh=j8NHvkg0mcHS6NppRIX+eDEokhzbE1hV9ZJ/sEvlK4U=;
+	s=k20260515; t=1795029022;
+	bh=UCh5hxQKcdbzNOsUZdCUK4aYJ8BLmHiwc+AaL/5mCtw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=BDJPVTADU+MiIs2CIl8rFOWWP+9Kt+G6akZKawZPdkAf8/Qm/NUbj1bozbJgxecFG
-	 CJWqECGUh9QehHXJKFCjGT5C4nsLfq/JT9mKc9UMMxk5pw13fC+My2ZBlj+8s8Ijrf
-	 eeVTd1gMOF+J3ER8O4/CteXSRjHc3ry65VUWdDO/Ez0ilceOqiLLzGLoWsGDAwegW9
-	 63MbdibGqqdzH/1YN+xjeYbdiXqeLeYoDMicEE/3c+oIpqAGUt6vZYTqzrSz3hY1Ut
-	 yDxj2PlvVER2TSmMwEPQlAMwfhF7ia8EPRxb14ufHd+/277knxt3tuD9qq5Ajj5OW3
-	 tOpjPFZQvUduw==
-Date: Wed, 18 Nov 2026 13:08:39 -0600
+	b=k5HDhFWdwjKadxktuCmDcMvY+D3moREE+GETDz0pFNOebjgwsDrTn87jPGwHdYOW3
+	 L8EeQr9uUYADO1ofNqcw94QXA0ad4XWFaCJpxob3CGBh+zTdfBU0MoAtTIHo+dsINM
+	 Vk+U7DpDuOAiImIsXxCBaBEZvJavktPLwXMCzUAGcyMMzKf4jOMjzzFR1aqW+Ur2jr
+	 NmyFmfVJnR2pLP76e5OJaD28i+sKjwkU2T48ZvYfxNtKA78yw34Lv9NEhVZ9XkCaQ2
+	 6JHJFHzv+3QCM24PB1zGtor0DJLnniixl7X7/UJeGUQNJSadj2nRVVwN4FHDkmqX9g
+	 WH8r046ydH57g==
+Date: Wed, 18 Nov 2026 13:10:20 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Cunhao Lu <1579567540@qq.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-	Heiko Stuebner <heiko@sntech.de>, netdev@vger.kernel.org,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>, David Wu <david.wu@rock-chips.com>,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: rockchip-dwmac: Add
- RK3572
-Message-ID: <179502891855.247733.11686816962535109949.robh@kernel.org>
-References: <20261117-add-board-ok3572-c-net-v4-0-4e9da569395a@qq.com>
- <20261117-add-board-ok3572-c-net-v4-1-4e9da569395a@qq.com>
+To: Jelly Jia <Jelly.Jia@cixtech.com>
+Cc: linux-clk@vger.kernel.org, bmasney+clk@redhat.com, tglx@kernel.org,
+	cix-kernel-upstream@cixtech.com, vkoul@kernel.org,
+	joakim.zhang@cixtech.com, radu@rendec.net,
+	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	robin.murphy@arm.com, devicetree@vger.kernel.org, sboyd@kernel.org,
+	linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+	jbrunet+clk@baylibre.com, Frank.Li@kernel.org, krzk+dt@kernel.org
+Subject: Re: [PATCH v4 1/5] dt-bindings: soc: cix: Describe the Sky1 AUDSS
+ DMA IRQ controller
+Message-ID: <179502901965.259850.4106981988225434645.robh@kernel.org>
+References: <20261117094408.1393837-1-Jelly.Jia@cixtech.com>
+ <20261117094408.1393837-2-Jelly.Jia@cixtech.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261117-add-board-ok3572-c-net-v4-1-4e9da569395a@qq.com>
+In-Reply-To: <20261117094408.1393837-2-Jelly.Jia@cixtech.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,25 +83,20 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Tue, 17 Nov 2026 17:04:35 +0800, Cunhao Lu wrote:
-> Add the rockchip,rk3572-gmac compatible with the snps,dwmac-4.20a
-> fallback and require rockchip,php-grf.
+On Tue, 17 Nov 2026 17:44:04 +0800, Jelly Jia wrote:
+> The AUDSS CRU contains a separate AP interrupt gate for each of the eight
+> DMA-350 channels. The enabled inputs are combined onto one GIC interrupt.
+> These gates are part of the CRU register block, not the DMA controller.
 > 
-> Mark tx_delay and rx_delay as deprecated and disallow them for RK3572
-> so new designs do not use the legacy delay properties.
+> Describe the CRU as an interrupt-controller in addition to its clock and
+> reset functions. A child interrupt specifier contains the DMA channel
+> index, matching the corresponding gate bit; the parent interrupt is the
+> combined GIC line.
 > 
-> Signed-off-by: Cunhao Lu <1579567540@qq.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Jelly Jia <Jelly.Jia@cixtech.com>
 > ---
-> Changes in v3:
-> - Deprecate tx_delay and rx_delay and disallow them for RK3572.
-> 
-> Changes in v2:
-> - Add RK3572 to the shared Synopsys compatible list for consistency.
-> ---
->  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 15 +++++++++++++++
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml     |  1 +
->  2 files changed, 16 insertions(+)
+>  .../bindings/soc/cix/cix,sky1-audss-cru.yaml  | 31 +++++++++++++++++--
+>  1 file changed, 29 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
