@@ -2,36 +2,36 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32693606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 19:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59FCD606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 19:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GdZgmTKS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0giGP3Sw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BTE2anEG9LPJErAH6uRm3+Ilwh8tw2gLhWmPz+1HGfo=; b=GdZgmTKSiA6TJp
-	YggGMFXOpEzvt8o1kOPh5uCtjvqxL19EK3HR3A3V/VKm6lmgr1ZoSnPFTRHehFHbgI17DVqC+/kod
-	OXgvP4PZLOqS9GJxng5ha/FtY/3iUmLY6B4jJCutNcbrUMdZAfP/+g1LLW/vR3FanhTl7V/7DCdAF
-	QWHpoDmPlBJIBVIAJgKN0rzvjqQ9CUvseTqEACNE+vlN+oajOsaSKDfJAhzEaI08PLAVvLiDfuPmR
-	mTVLH0pjfyD4kSxAx8hobRG422k5Ei9dxJ8FraCrPuXzMyQiFIzN+us1JZ+Kl/uEkOCQXp9ALlo4i
-	6PxCPgXgmdwg8t3Z+5fw==;
+	List-Owner; bh=dP3XDxcbkDxBHVzVunybo/0fEra3abNXamUCZJfJJlU=; b=0giGP3SwYMH0W7
+	MOm/qT9J3KDIxqdAt5WUTXnGCOJq7PBPzFqotMd5gjvGPBC8JwcfYpind0qi3PgqnRgJJHwH2PKSZ
+	4FrX8Cn30GA4ZwdaVlFf2QApNcME5hvMiuEROCusttHfJUztFSUJdewx1X9hriAJmo9UJZeLHhXLy
+	rIHkG1KSY+tNGIIWNwNbIGG4CFuTUga1lONcI5pcuK7h7/o1FBXpvQJ7ojtks04N96jhxYIo9Qu8E
+	4iLsDI5Yj/ztHECqhM4T9+X4ejkWdf/vIo3M88B6YFv38Pm4q/X0XWjULZ6zefl7npF27JbP3iJIw
+	1BQtFU+blKbva+wsIw2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTlc6-0000000A95e-08wH;
-	Wed, 18 Nov 2026 19:46:38 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTlcR-0000000A9P1-2bRB;
+	Wed, 18 Nov 2026 19:46:59 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTlbx-0000000A8xl-0f7U
+	id 1xTlcD-0000000A9DV-2qlB
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 19:46:29 +0000
+	Wed, 18 Nov 2026 19:46:45 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2FC46639B7;
-	Wed, 18 Nov 2026 19:46:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A50CF1F000C7;
-	Wed, 18 Nov 2026 19:46:22 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5B9DE472F6;
+	Wed, 18 Nov 2026 19:46:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 159091F000C4;
+	Wed, 18 Nov 2026 19:46:39 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -61,9 +61,9 @@ Cc: arm-scmi@vger.kernel.org,
 	linux-pm@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v5 12/15] pmdomain: renesas: r8a78000: Replace sentinel by explicit ID map size
-Date: Wed, 18 Nov 2026 20:45:00 +0100
-Message-ID: <ee60a54c457af21277a13e8e1db36ce83209b3f5.1795029012.git.geert+renesas@glider.be>
+Subject: [PATCH v5 15/15] arm64: dts: renesas: ironhide: Enable SCMI devpd, sys, clock, and reset
+Date: Wed, 18 Nov 2026 20:45:03 +0100
+Message-ID: <066ce69ad5d9b6a041ef4bf36ad5e75f87ccb421.1795029012.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1795029012.git.geert+renesas@glider.be>
 References: <cover.1795029012.git.geert+renesas@glider.be>
@@ -87,147 +87,62 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The use of a sentinel in the module ID mapping array will become
-cumbersome when the need arises to find out the actual number of
-elements in the array.  Rework the mapping data structure to fix this,
-also improving naming.  Let mod_id_map_find() return an index, to be
-used for indexing additional mapping target arrays later.
-Add a MOD_ID_MAP() initialization macro for brevity.
+SCP FW SDKv4.28.0 and later for Renesas R-Car X5H Ironhide not only
+implement the SCMI base protocol, but also the SCMI power domain, system
+power, clock, and reset domain management protocols.
 
-While at it, drop the check for "!map" in mod_id_map_find(), as that
-pointer can never be NULL.
+Enable support for the latter by adding the corresponding SCMI protocol
+subnodes.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
 v5:
-  - New.
----
- drivers/pmdomain/renesas/r8a78000-mdlc.c | 49 +++++++++++++-----------
- 1 file changed, 27 insertions(+), 22 deletions(-)
+  - Add Tested-by,
 
-diff --git a/drivers/pmdomain/renesas/r8a78000-mdlc.c b/drivers/pmdomain/renesas/r8a78000-mdlc.c
-index 1ace1fb10870f646..6477abe64511e880 100644
---- a/drivers/pmdomain/renesas/r8a78000-mdlc.c
-+++ b/drivers/pmdomain/renesas/r8a78000-mdlc.c
-@@ -16,13 +16,23 @@
- 
- #include <dt-bindings/power/renesas,r8a78000-mdlc.h>
- 
--struct mod_map {
--	int hw_id;		/* Hardware module ID or -1 sentinel */
-+struct mod_id_map_entry {
-+	u32 hw_id;		/* Hardware module ID */
- };
- 
-+struct mod_id_map {
-+	const struct mod_id_map_entry *entries;
-+	unsigned int size;
-+};
+v4:
+  - No changes,
+
+v3:
+  - No changes,
+
+v2:
+  - Fix misindentations,
+  - Add scmi_clk node, as it is no longer added in earlier commits.
+---
+ .../boot/dts/renesas/r8a78000-ironhide.dts    | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts b/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
+index b2d6b06c63881896..ade8bcd3a0e5ee8b 100644
+--- a/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
++++ b/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
+@@ -31,6 +31,25 @@ scmi: scmi {
+ 			arm,no-completion-irq;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
 +
-+#define MOD_ID_MAP(_entries) .mod_map = &(struct mod_id_map) {		\
-+	.entries = _entries,						\
-+	.size = ARRAY_SIZE(_entries),					\
-+}
++			scmi_devpd: protocol@11 {
++				reg = <0x11>;
++				#power-domain-cells = <1>;
++			};
 +
- struct mdlc_info {
- 	u32 base;
--	const struct mod_map *mod_map;
-+	const struct mod_id_map *mod_map;
- };
++			scmi_sys: protocol@12 {
++				reg = <0x12>;
++			};
++
++			scmi_clk: protocol@14 {
++				reg = <0x14>;
++				#clock-cells = <1>;
++			};
++
++			scmi_reset: protocol@16 {
++				reg = <0x16>;
++				#reset-cells = <1>;
++			};
+ 		};
+ 	};
  
- /**
-@@ -41,7 +51,7 @@ struct r8a78000_mdlc_priv {
- 	struct reset_controller_dev rcdev;
- 	struct device *dev;
- 	struct device_node *np;
--	const struct mod_map *mod_map;
-+	const struct mod_id_map *mod_map;
- };
- 
- static struct generic_pm_domain *r8a78000_genpd_always_on;
-@@ -77,17 +87,14 @@ static struct generic_pm_domain *r8a78000_genpd_xlate(
- #define rcdev_to_priv(_rcdev)	\
- 	container_of(_rcdev, struct r8a78000_mdlc_priv, rcdev)
- 
--static const struct mod_map *mod_map_find(const struct mod_map *map, u32 id)
-+static int mod_id_map_find(const struct mod_id_map *map, u32 hw_id)
- {
--	if (!map)
--		return NULL;
--
--	for (; map->hw_id >= 0; map++) {
--		if (map->hw_id == id)
--			return map;
-+	for (unsigned int i = 0; i < map->size; i++) {
-+		if (map->entries[i].hw_id == hw_id)
-+			return i;
- 	}
- 
--	return NULL;
-+	return -1;
- }
- 
- static int r8a78000_mdlc_reset_xlate(struct reset_controller_dev *rcdev,
-@@ -95,7 +102,7 @@ static int r8a78000_mdlc_reset_xlate(struct reset_controller_dev *rcdev,
- {
- 	struct r8a78000_mdlc_priv *priv = rcdev_to_priv(rcdev);
- 	struct device *dev = priv->dev;
--	const struct mod_map *map;
-+	int idx;
- 	u32 id;
- 
- 	if (spec->args_count != 1)
-@@ -103,8 +110,8 @@ static int r8a78000_mdlc_reset_xlate(struct reset_controller_dev *rcdev,
- 
- 	id = spec->args[0];
- 
--	map = mod_map_find(priv->mod_map, id);
--	if (!map) {
-+	idx = mod_id_map_find(priv->mod_map, id);
-+	if (idx < 0) {
- 		dev_err(dev, "Unknown reset 0x%x\n", id);
- 		return -ENOENT;
- 	}
-@@ -141,9 +148,8 @@ static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
- 	struct device_node *np = dev->of_node;
- 	struct r8a78000_mdlc_priv *priv;
- 	struct of_phandle_args pd_spec;
--	const struct mod_map *map;
- 	unsigned int id;
--	int ret;
-+	int ret, idx;
- 
- 	ret = of_parse_phandle_with_args(np, "power-domains",
- 					 "#power-domain-cells", 0, &pd_spec);
-@@ -166,8 +172,8 @@ static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
- 	id = pd_spec.args[1];
- 	of_node_put(pd_spec.np);
- 
--	map = mod_map_find(priv->mod_map, id);
--	if (!map) {
-+	idx = mod_id_map_find(priv->mod_map, id);
-+	if (idx < 0) {
- 		dev_err(dev, "Unknown module 0x%x\n", id);
- 		return -ENOENT;
- 	}
-@@ -292,15 +298,14 @@ static int r8a78000_mdlc_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
--static const struct mod_map r8a78000_mdlc_perw_mod_default[] = {
-+static const struct mod_id_map_entry r8a78000_mdlc_perw_mod_default[] = {
- 	{ 0x54 },	/* HSCIF0 */
--	{ -1 }
- };
- 
- static const struct mdlc_info r8a78000_mdlc_default[] = {
- 	{
- 		.base = 0xc05d0000,
--		.mod_map = r8a78000_mdlc_perw_mod_default,
-+		MOD_ID_MAP(r8a78000_mdlc_perw_mod_default),
- 	},
- 	{ /* sentinel */ }
- };
 -- 
 2.43.0
 
