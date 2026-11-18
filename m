@@ -2,58 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BEA3606A33D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346E0606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 17:07:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KzivHj4w;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=GeVUKz0p
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=knjrlQ47;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=N7tWJTXq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=kFZC9tucpVhNJbgeqCn+d/WcROzjtP2rv0y3T4mg1tY=; b=KzivHj4w9yrQ7T
-	SZve2w2t0ROekRy8LS1A4rIkJ0vqxOTVLE2Yxvgw4svBgXWlyXIn/rgfdqGRc2YlZRHGr87N9IARs
-	EMln37JSaY6C1KA4n1hNE/4IcdbsQINc39F92j2jJdtYn1f/sv8RQjXcFNqp2OqgeZWYZ9UscFb5W
-	88H7+p0uuOWK8VbA/JrnIX/lDttNu6SQb5+iCA7EO7c9uMNrF9cmbjxGMG9eDc1XOoksvqWunhfWd
-	c7CRJ8Ri+q4QjlrYeb+qZmrjOtetzC7ULkjlSHV6SqSKxBNOeHHdHNXCB0V0qV5gZ/9jS/ws9IRe9
-	sjhtyy6FJGAGLfgWW8oQ==;
+	List-Owner; bh=tGR1Pheja8UX+q7j6BPbOePxrbdEA1lKf+oSFzTuAy4=; b=knjrlQ47DLthMH
+	JpIKBAW79l6yosA+wQoKMrvBErc6MQ2VeQIpzUmjB2EF0vR9jwrSuMg1K+KqBq65POAwqMmurItZc
+	OfnFAs8OAy5WnY19HfCSJaLsAh8vtH8QKNBTPjOOo17lKhCa5EuHWMqfhnX7thAMC6LIfoU2CCzWC
+	HjFkme31H1hyXTtrNTYc3yrrsPguk0leCZ9zDoRdI+kzl2C95tDbPWGOsRJvmgXMX3+qQc7Zrbx2M
+	k1Ovm7i0G/+ZLC6w2RArlTCWUbUiVcuxjo8PALRKhJLm+o9Km7wbAlwh9okTLwyQByvbcT08n7K4E
+	rzmQgUKpOD10HQstf3nQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTj7O-00000009hHF-2DGK;
-	Wed, 18 Nov 2026 17:06:46 +0000
+	id 1xTj82-00000009hco-0kM4;
+	Wed, 18 Nov 2026 17:07:26 +0000
 Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTj7E-00000009hAW-2EpQ
+	id 1xTj7O-00000009hGR-3UTv
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 17:06:38 +0000
+	Wed, 18 Nov 2026 17:06:48 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 02F621A169B;
-	Wed, 18 Nov 2026 17:06:35 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 4B1891A16CB;
+	Wed, 18 Nov 2026 17:06:45 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BFBAA5FE9B;
-	Wed, 18 Nov 2026 17:06:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CE98011BC1F23;
-	Wed, 18 Nov 2026 18:06:28 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 18D525FE9B;
+	Wed, 18 Nov 2026 17:06:45 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 30A7811BC29F5;
+	Wed, 18 Nov 2026 18:06:38 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795021593; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795021603; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=kFZC9tucpVhNJbgeqCn+d/WcROzjtP2rv0y3T4mg1tY=;
-	b=GeVUKz0pIuAccn9dkHbm1aUU6BFn85veWvaTHDBRN655UUqTzoN+Vz43SlyM/wgPq3/AlO
-	+eV1xRXDjH2EK77wXEMcSwVaMgwhPtZuIj6XK9bD8xBl7m9Ul1gOu0YWngIr6rnEEJKucx
-	DWaLGV/RrhG53on8mVMakgtz+imjCSGfBVl8F2kTIKw4xa+Orkc0B5v9+nkyKF/HqVWKuO
-	gMzMhocoeWRyZ3PUjHHj6FbdteK2m5Ta+285AuaUjbL6YwgiQLiTctEUF/AeEmSkzBLPuC
-	xc4DFDm8mYYRIITHrXwyjntx2cUngjaN4gofN6uqovFxvp3OCBGv3Jn4L8oV1Q==
+	bh=tGR1Pheja8UX+q7j6BPbOePxrbdEA1lKf+oSFzTuAy4=;
+	b=N7tWJTXq91CmHZAVeUCRic974Wak36ycLZYVPBV19l92gS7EePUMS1QnL3VxQ1UwyxXGj/
+	a637ctUnvyPT3jQEj2+XKFQp72QJXDfmxVBX5B8E+eebxCN+gfh7ZAGztl1uzH5/RkHkV+
+	bUzI0fP5YKlTBwOHwa6cJblkbW4dcoerCq2Ifu8kqroQ5P2D9/wUe6x1QJSga9PAOBmlvs
+	UdYaczEBb91ov+wceS8QCAlrTfce89d26ARjirGNOgoWAKL32rQvZjIHGQ4O3qDvAKWlMU
+	ZuxPzQfkEHw4+5r3VE10OydcUKq6QhFafH3AbGFKMm1oSgB2xlhj1Q0GnG/hQQ==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 18 Nov 2026 17:59:16 +0100
-Subject: [PATCH v12 07/10] clk: Create
- devm_clk_hw_register_fixed_rate_parent_hw()
+Date: Wed, 18 Nov 2026 17:59:18 +0100
+Subject: [PATCH v12 09/10] clk: nuvoton: ma35d1: Fix CCAP muxes bus width
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-perso-ma35d1-upstream-clk-v12-7-bee2c8dad4e1@bootlin.com>
+Message-Id: <20261118-perso-ma35d1-upstream-clk-v12-9-bee2c8dad4e1@bootlin.com>
 References: <20261118-perso-ma35d1-upstream-clk-v12-0-bee2c8dad4e1@bootlin.com>
 In-Reply-To: <20261118-perso-ma35d1-upstream-clk-v12-0-bee2c8dad4e1@bootlin.com>
 To: Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
@@ -72,12 +71,12 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
  linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
  openbmc@lists.ozlabs.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
- Jerome Brunet <jbrunet@baylibre.com>
+ stable@vger.kernel.org
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_090636_738159_BD5CCAD9 
-X-CRM114-Status: GOOD (  12.01  )
+X-CRM114-CacheID: sfid-20261118_090647_138075_7C270ACC 
+X-CRM114-Status: GOOD (  11.51  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,44 +96,37 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-clk-provider.h exposes many different helpers to help registering
-clocks. Most of them expose both a 'basic' variant and their 'devm_'
-extension (with just the last parameter of the inner function call
-becoming true instead of false). Do the same with:
+Both CCAP muxes are registered with a single bit bus width which is
+obviously wrong since there are 4 possible parents. Fix the mux field
+width.
 
-     clk_hw_register_fixed_rate_parent_hw() by creating
-devm_clk_hw_register_fixed_rate_parent_hw().
-
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+Fixes: 691521a367cf ("clk: nuvoton: Add clock driver for ma35d1 clock controller")
+Cc: stable@vger.kernel.org
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- include/linux/clk-provider.h | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/clk/nuvoton/clk-ma35d1.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index a355d1ee5189..c2b80cb3ab0b 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -458,6 +458,19 @@ struct clk *clk_register_fixed_rate(struct device *dev, const char *name,
- 					     fixed_rate)		      \
- 	__clk_hw_register_fixed_rate((dev), NULL, (name), NULL, (parent_hw),  \
- 				     NULL, (flags), (fixed_rate), 0, 0, false)
-+/**
-+ * devm_clk_hw_register_fixed_rate_parent_hw - register fixed-rate clock with
-+ * the clock framework
-+ * @dev: device that is registering this clock
-+ * @name: name of this clock
-+ * @parent_hw: pointer to parent clk
-+ * @flags: framework-specific flags
-+ * @fixed_rate: non-adjustable clock rate
-+ */
-+#define devm_clk_hw_register_fixed_rate_parent_hw(dev, name, parent_hw, flags, \
-+						  fixed_rate)		       \
-+	__clk_hw_register_fixed_rate((dev), NULL, (name), NULL, (parent_hw),   \
-+				     NULL, (flags), (fixed_rate), 0, 0, true)
- /**
-  * clk_hw_register_fixed_rate_parent_data - register fixed-rate clock with
-  * the clock framework
+diff --git a/drivers/clk/nuvoton/clk-ma35d1.c b/drivers/clk/nuvoton/clk-ma35d1.c
+index a5a36f88d973..97a90cdb48c7 100644
+--- a/drivers/clk/nuvoton/clk-ma35d1.c
++++ b/drivers/clk/nuvoton/clk-ma35d1.c
+@@ -424,13 +424,13 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
+ 	hws[EMAC1_GATE] = ma35d1_clk_gate(dev, "emac1_gate", "epll_div2",
+ 					  clk_base + REG_CLK_SYSCLK0, 28);
+ 
+-	hws[CCAP0_MUX] = ma35d1_clk_mux(dev, "ccap0_mux", clk_base + REG_CLK_CLKSEL0, 12, 1, hws,
++	hws[CCAP0_MUX] = ma35d1_clk_mux(dev, "ccap0_mux", clk_base + REG_CLK_CLKSEL0, 12, 2, hws,
+ 					ccap_parent_idx, ARRAY_SIZE(ccap_parent_idx));
+ 	hws[CCAP0_DIV] = ma35d1_clk_divider(dev, "ccap0_div", "ccap0_mux",
+ 					    clk_base + REG_CLK_CLKDIV1, 8, 4);
+ 	hws[CCAP0_GATE] = ma35d1_clk_gate(dev, "ccap0_gate", "ccap0_div",
+ 					  clk_base + REG_CLK_SYSCLK0, 29);
+-	hws[CCAP1_MUX] = ma35d1_clk_mux(dev, "ccap1_mux", clk_base + REG_CLK_CLKSEL0, 14, 1, hws,
++	hws[CCAP1_MUX] = ma35d1_clk_mux(dev, "ccap1_mux", clk_base + REG_CLK_CLKSEL0, 14, 2, hws,
+ 					ccap_parent_idx, ARRAY_SIZE(ccap_parent_idx));
+ 	hws[CCAP1_DIV] = ma35d1_clk_divider(dev, "ccap1_div", "ccap1_mux",
+ 					    clk_base + REG_CLK_CLKDIV1,
 
 -- 
 2.56.0
