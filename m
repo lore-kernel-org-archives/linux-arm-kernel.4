@@ -2,104 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C394606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5223660A2614
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:35:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=neDjip/8;
-	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=LufmRfqs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rSznHOC0;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Fe2/18J1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=I38LaCNb2hWbpAi7aqstQLKMG4G4TLfyKK4eAQEVhf4=; b=neDjip/8NzCBJXfOcmjo1WgSbi
-	Hyb03k70xFBRhh78XbN9m7TWq4ExUAxaCnjCtvNJW0Mh5bJT+025Gyvmqp2LMVdQJFSek6ONqv48G
-	8nAt5FzhYBJX8aq/9T5QO3EezkETIgHtFn6Iocx6JQQGFKno5V9LlvuU7mANNzsVgw/RukqGDZCOX
-	I8wZAtcYx5kIsGjvcYBIWtwt8hhmL0ce49ZbtdZ1JfFHVEFpaJV5n8siV5XNuUTfymATocMPpHZol
-	GSOw+ddj4nnaODrBlTdXQsBS8B54VjqS9oLOwb81kivY05GJxgWRwzYAVUM28LgGxSGYfBfdmvzPD
-	2F0omfOg==;
+	bh=vIXaxwabzQ8+Hyu7ckpupUBYG45/UINkuK4etw8/0xM=; b=rSznHOC0BUFQ2COOM1ZsFW2Dup
+	NyTPtHAiZbJ8CposRSVa8VwKXhxfJuJQj6csyPAJBGfzRFijTQY/i1I3+83ZM+QBMciJ38HptasIu
+	ETiDhA/jXZQkiIAxehyOyMf7KNDiauZONGL2f5PsBvTd57FLjEvZ2kSvKIZJiXRcHGLvQ+ScNhI3o
+	Tv66sevGtdLs27FiHo77PcA3T8es2B1pTShsiMeV4o5/GDxrAeRCgEev6orAv4huy00kGT5leEOuf
+	3eooT4JZ+vW7BaTiexcrVTJL0H5msdmRmLCgS8nVcb59PDeO0mfcV7ZWKCmYhv6Gic/xyK9gN4B0z
+	+vqFlWGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThhF-00000009KH9-42Go;
-	Wed, 18 Nov 2026 15:35:41 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1xThhO-00000009KL4-0IOw;
+	Wed, 18 Nov 2026 15:35:50 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThhC-00000009KG5-2UxJ
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:35:39 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-48e3b22e971so615923f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 07:35:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pereq.eu; s=google; t=1795016136; x=1795620936; darn=lists.infradead.org;
-        h=content-disposition:content-type:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=I38LaCNb2hWbpAi7aqstQLKMG4G4TLfyKK4eAQEVhf4=;
-        b=LufmRfqsmvJUs+6V3rNvSGy2Nf/mE1ONIIh+2eM/G0uZ/LTY0nZzakEpdtZlxOcUNH
-         HxBGyafTZzZWboioH5OjlhAYU9G6ozPUovFoR8Is9w7C6Af2uRlJDUZPVT0S4X9savWF
-         xEwdb0U9QkgG7A6PnzAu/+DngEKa20tqtBSWHNSVlKhFKlBZvQnCwGDbCL8G+mFSU2Rr
-         vtgskV+CCiAC7N2VxpRhvSxBewjxofYepAzvPOHypa5kVeIsGgUKPHcNHMqoFNQEGYz4
-         XQL9bcqzE7r4ux3nkDeUVvESoY1sHg+JFXIWepfmhR7vosfDPd42L9AtFJ7v/b/i3+vJ
-         o5RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795016136; x=1795620936;
-        h=content-disposition:content-type:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=I38LaCNb2hWbpAi7aqstQLKMG4G4TLfyKK4eAQEVhf4=;
-        b=abyY3vwibZpPRRbpaczW9z1T0b29lXMnUhLZF/q6cgoiJvEAiy7cYIq1tp2NH6Jb10
-         mQDSjruVvRZMVpW1dMOJ7fhLIuZ3YxeXyHScK7jikcVu+cXJCtMZMTin7WR2dyZU8M0P
-         P3G1OJAmorc323Zh7rfgDo4rhTwNImD+lS6gcnjAnYdDodj8s2Qbj7380OCkBsQo8ppb
-         SLS2PDMCwxds5+1dw/RAUzx1jd0xTYZlgDN+2w+HLb/dqavfmep7TUJMGs1t3tGdbAJJ
-         FwyS0aaWdwTRpQo3wzXbtljVMktwjL6SOu37mGwG+8BdX1rZED1K8XpAHoYtcY1bmJxi
-         PngA==
-X-Forwarded-Encrypted: i=1; AL+hErEOSC5rUAYRzb3AiMtaP8gX+eOa68s25wQyU7K8MsC9Oky9V3V+eU1YZZpHvzMbV0yOv4NtH8ESYI7jrGJexgr+@lists.infradead.org
-X-Gm-Message-State: APuU4Z+aqVh85QSSrJbtqdY74YsnCkBIgL9Aw4kaz0xF4yw3Qic0LEKt
-	V/cRHiNfha2D4icuG5vqwbE7FkHUu1SYwFsRg9RN5DdcLImddMoYumoyX+O8Kwl490Q=
-X-Gm-Gg: AZFdTZfOAG97YY327Se8dWQq7l/R2C0X1ufhPGhtc38WYNSfGazkVrEuuoAc/Tvne6b
-	3bdZr3T+qw2j3VCHLblDGyYzGQNXbNPnC0YafWCQr+L2J3PV0LwRi4h/SB10hm3AaZY8OW3lAOl
-	nJBD7fsty6n934KTBYQYPJqUFJc1KnehXe7FX6IlLM0MbLCNsiagO2q5CtwTxXkoVInMwNevBaS
-	7g9t0xmkEQoIUqlASQniOKjzxDSdCeS9ZXVzbd0un2zzNfEzuyNZxBMts+eHTbDFmnGX70iEwOj
-	5Re8bDStHZUSieSxYurBv5uXw98g97EWbsO7TgHM7aTxXGLA+kC/ceiApHiCXbVj3VACnK5umfT
-	zc4v6/OZJdf4ozp8dCcTmNQkfZzNqVhK0Qz5COdnF1v6ZGaeEYFWi9uJrOEMNYT39IubE1y7MTl
-	41B5oMVlAMoaJctLg/arZM9j9YBS1jAM7x/uOb9GKyi/rIK/gX3dZDfOf6bkvYdJrIPIdvWT/gs
-	czMwh9k2mLKhKsDYM3KwZ5FlTertcT1xUdVqmbz3AWhBKOJgiZneERw1ZW4Qef4GOB/DvqvORZx
-	N0eMzLdOmSYDGfWUlgE=
-X-Received: by 2002:a05:6000:144c:b0:4a6:bc53:246d with SMTP id ffacd0b85a97d-4a6bc6269b6mr5843166f8f.45.1795016136152;
-        Wed, 18 Nov 2026 07:35:36 -0800 (PST)
-Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a656c11643sm5196571f8f.49.2026.11.18.07.35.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 07:35:35 -0800 (PST)
-Date: Wed, 18 Nov 2026 18:35:32 +0300
-From: Dan Carpenter <dan@pereq.eu>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Christoffer Dall <christoffer.dall@arm.com>,
-	Jintack Lim <jintack.lim@linaro.org>,
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
-	Karthik Bhargavan <karthik@pereq.eu>,
-	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>
-Subject: [PATCH] KVM: arm64: nv: Ignore TLBI IPAS2E1 above the IPA limit
-Message-ID: <av3FxJpUvpb_8qMC@stanley.mountain>
+	id 1xThhI-00000009KHt-3zX5;
+	Wed, 18 Nov 2026 15:35:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795016142;
+	bh=Pa+l9p/ldmFV5IzkC7e19kzsj1Gaw7fnpk5iOSUaRGQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=Fe2/18J1Y2lrX6s3KGi1hDkc4VGGUhXoV+T5mwr8GtCf1GSJ275r0E9kw3HxkjBO4
+	 UpG0xmlRDEL4FvKm/ZHIDsTvhV76dLuifnu3O+R67M9PmOOkdxc3Fusplve3aD9jQG
+	 LsOJ8nZaNGTwUkh2kG63o1krsjvpSuiq4t2uwHJJZSsEUb7HwbCcdPJt3NwTSyc6Ny
+	 j4o4Jj9AS1yyATJftwF2T9Xr7+iI3Rx0AX4rVdr/+qj23OWvVqgh/ApZlvHqnu6ivc
+	 8XZ8xOSfhB0dnwfU4NV+1eo0HZAb0J48OFnxFGJEuFJfe7/MqBI25X/SXnDiTWtx7x
+	 Ww+LNjbsQRX+A==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C106C17E0564;
+	Wed, 18 Nov 2026 16:35:39 +0100 (CET)
+Message-ID: <41750a65530034b0dfb144f4c8c10bae3bbe60eb.camel@collabora.com>
+Subject: Re: [PATCH v12 01/10] dt-bindings: media: mediatek: decoder: Add
+ MT8189 mediatek,vcodec-decoder
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Rob Herring <robh@kernel.org>, Kyrie Wu <kyrie.wu@mediatek.com>
+Cc: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen	
+ <andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>,  Hans Verkuil
+ <hverkuil@xs4all.nl>, Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
+ <arnd@arndb.de>,  Irui Wang <irui.wang@mediatek.com>, George Sun
+ <george.sun@mediatek.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+ <andrzejtp2010@gmail.com>, Yilong Zhou	 <yilong.zhou@mediatek.com>
+Date: Wed, 18 Nov 2026 10:35:38 -0500
+In-Reply-To: <20261118152011.GA1714890-robh@kernel.org>
+References: <20261117085834.1464723-1-kyrie.wu@mediatek.com>
+	 <20261117085834.1464723-2-kyrie.wu@mediatek.com>
+	 <20261118152011.GA1714890-robh@kernel.org>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-39yOFI3IZD1p7uEEO9ym"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_073538_666643_8CBD7FF6 
-X-CRM114-Status: GOOD (  15.29  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261118_073545_202990_C02B29D0 
+X-CRM114-Status: GOOD (  16.44  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,54 +104,54 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In theory, an L1 hypervisor could issue a TLBI IPAS2E1 for an IPA
-above the host's IPA limit.  The s2_mmu_unmap_ipa() function would
-pass it to kvm_stage2_unmap_range(), the page table walk would fail
-with -ERANGE, and that would trigger the WARN_ON() in
-kvm_vm_stage2_unmap_range():
+--=-39yOFI3IZD1p7uEEO9ym
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-	WARN_ON(stage2_apply_range(mmu, start, start + size, fn, may_block));
+Le mercredi 18 novembre 2026 =C3=A0 09:20 -0600, Rob Herring a =C3=A9crit=
+=C2=A0:
+> On Tue, Nov 17, 2026 at 04:58:24PM +0800, Kyrie Wu wrote:
+> > Add compatible for video decoder on MT8189 platform. Compared with
+> > former ICs, the MT8189 decoder use iommu to instead of smmu, and
+> > use scp architecture, the frequency is only 406MHZ, and cannot reach
+> > more than 700MHZ. It uses two clocks named soc-vdec and vdec. At the
+> > same time, the decoder supports the vp9 decoding protocol for the first
+> > time in single IC.
+> >=20
+> > Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> > Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> > ---
+> >  .../media/mediatek,vcodec-subdev-decoder.yaml | 24 +++++++++++++++++--
+> >  1 file changed, 22 insertions(+), 2 deletions(-)
+>=20
+> This patch should be based on this one:
+>=20
+> https://lore.kernel.org/20261019212431.4109371-1-robh@kernel.org
 
-The TLBI's IPA field goes up to 48 bits, so this needs a host whose IPA
-limit (its PARange) is below 48 bits, and it would also need to support
-nested virtualization.  There are very few CPUs which meet both these
-requirements.
+Ack.
 
-The fix for this is to return early.  Since there is nothing mapped above
-the limit, there is nothing to do.  This matches how handle_ripas2e1is()
-also ignores TLBIs that start outside the PA_bits range.
+>=20
+> Rob
 
-Fixes: 70109bcd701e ("KVM: arm64: nv: Handle TLBI IPAS2E1{,IS} operations")
-Signed-off-by: Dan Carpenter <dan@pereq.eu>
----
-This bug was identified as part of our formal analysis work at Pereq.  I
-have not been able to reproduce it on real hardware.  The only CPU Claude
-can think of where you might be able to trigger it is possibly the Apple
-M2?  Not 100% sure about that.
+--=-39yOFI3IZD1p7uEEO9ym
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
- arch/arm64/kvm/sys_regs.c | 3 +++
- 1 file changed, 3 insertions(+)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
-index ef4554656ddf..19a914941aff 100644
---- a/arch/arm64/kvm/sys_regs.c
-+++ b/arch/arm64/kvm/sys_regs.c
-@@ -4236,6 +4236,9 @@ static void s2_mmu_unmap_ipa(struct kvm_s2_mmu *mmu,
- 	max_size = compute_tlb_inval_range(mmu, info->ipa.addr);
- 	base_addr &= ~(max_size - 1);
- 
-+	if (base_addr >= kvm_phys_size(mmu))
-+		return;
-+
- 	/*
- 	 * See comment in s2_mmu_unmap_range() for why this is allowed to
- 	 * reschedule.
--- 
-2.53.0
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav3FygAKCRDZQZRRKWBy
+9J+DAP4gKGQQnQ/zLHxmgqQbgAGqlrumu2hJskKy01zGA4GVPAD/fm6R5hueQywc
+oui/a0M7xHVlfupp0bee2wjaGx+5QAE=
+=t7+b
+-----END PGP SIGNATURE-----
 
+--=-39yOFI3IZD1p7uEEO9ym--
 
