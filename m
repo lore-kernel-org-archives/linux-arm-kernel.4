@@ -2,85 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4786360A5BCF
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254C4606A33E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c+tLIzHl;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=kzssk+H1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S0CX+gII;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=bVLM09yF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7HY3Xyy42ADU9ACuHgExJQX2qZxHihPnkeqAIQZiRGg=; b=c+tLIzHl+9JIPo
-	YZMAeaWwWTyWtm6S95UhD/ezHqF06bu03yoFBziRRtGXESToDiFzdR5JTZH754y3BrFHi+MzU75De
-	2w1V4N/qGVQjr9Xdp1jgPLmhmH+qlHhDjJ7H+EKfvVEAiODQy/0Kvq9qhaAwqUxBqN48udZSh8sN5
-	mbtfhCx6VS1dZN+dN7nrXKTPzgZ/MWD6w1nc9sw1XyBzYQ4sZJW2hqzk41W/+nsCwlfKNHt7jijt5
-	xlfb5bdWFrJ/b6/mKao1V31c+bW0SVtJlgn/hnBtFENILmnAJylmX/0mcAqlL71Js/ijncbw5LKwh
-	1zcmm+zN6RmK9/TR+iMw==;
+	List-Owner; bh=9rbmVMuhauk6RT7/BuxdWNH6HE9Yom6LLFGVubFIKV0=; b=S0CX+gII1DHYWw
+	JVD3XCC2TgvM/T6JYlVk1cDVRtbbhVNi+yIxTyKTG0pdJ2KqTlbYXrGBRpWtyoyo5Irna6ddxREC1
+	gnSe/ltAJWMiL5jbWpP4S6VjJz7tbcLlh6sGvWqNZYgNMokHa94LvggInrQgroPmuEb/OGU1LTypu
+	gmFhq098SRZSUEx4K2HrK//Og8vBfrRTq4nxbiJCDlmBs9Rc/C/SEINzYZHqQLYvblrpMIJHuqm+8
+	AQbBIFYHg4S2bMIXwcM7cv5BIbupUdafEVuqXtv4ivNJSEmB99tPKkowCxs/U5bhHRlASXWi64jCw
+	OsVx6EX2OHzD8M+TfLeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXq-00000009U7E-0s7f;
-	Wed, 18 Nov 2026 16:30:02 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1xTiXr-00000009UAG-1zRa;
+	Wed, 18 Nov 2026 16:30:03 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXi-00000009Tzq-3s1q
+	id 1xTiXm-00000009U2E-3VRJ
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:29:56 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-492690dd5daso986658f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:29:54 -0800 (PST)
+	Wed, 18 Nov 2026 16:29:59 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-48b001cd92bso728638f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:29:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795019392; x=1795624192; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795019396; x=1795624196; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=7HY3Xyy42ADU9ACuHgExJQX2qZxHihPnkeqAIQZiRGg=;
-        b=kzssk+H1WLp3QT2HUFVlN2GNuAY20SRcci//Fj3dKA0kV5/jSPmSTMr1f6XEsIvoX0
-         19zAdedYoM7AdY+PKYgDrLe5/mgBRkmPlgww3rpOMOwLDL3ALXYzlHjPfdylR2SqDAB1
-         YhtPGppIiHYL902Q7wyKB+FXGBb1FwxK/3Lgqx+sk4YKss64YUIQRTVpgrAAFsvzUgxo
-         jBbsB04ZeyvPa4TR/ab4dfxfVyjzFEw9I2G3iYgenJYXHha8u1grL7Ii6IC1vy7OMfwy
-         ukOqlE+7Pf3TAfM4Wjgsso1Z3k3pioUlHBlI/AbUxO7p+OlLHCgTyNRuCAi8yOQkm0T5
-         mQnw==
+        bh=9rbmVMuhauk6RT7/BuxdWNH6HE9Yom6LLFGVubFIKV0=;
+        b=bVLM09yF8r1j2P3wHUBqk+uK1BGhmk0S298Gw35CHxzgDyFfG3NvlQ53qB+0fvys8u
+         rWblOiTa8+MiM69OdvDZU5R5H19t5i+pzz8RQUhZFnvnLmyW4CX8YQy1rwO36EWeBFbT
+         cqSgljGO+xHzSv8SYiiDHiDgnv9O3EXOmgH5tMlaqYTj65qCxUxxkLD69IkGA7Z2DRF8
+         pLPs72aeF5gfaP5m9cKOIRsT8zL/IDMMyk1DWwrxGD1Hbq7HOAj7TOwxY6T4ms/6osAu
+         bIBjKsbMikgGVSKqQ8p96uPJ99URkxmMky/FMQV4/9R6FcI1dYnEW3hTUU3IxpeNqvLv
+         xOuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795019392; x=1795624192;
+        d=1e100.net; s=20260707; t=1795019396; x=1795624196;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=7HY3Xyy42ADU9ACuHgExJQX2qZxHihPnkeqAIQZiRGg=;
-        b=patnaeRBSdhEBSz04KRmHU2Y7HfimYwIRGaXgX2hNWuyc58sdbzZCmkhdWUeeiQR1E
-         7tYu+4nnUMUgLqGXNOFL/uHKUNG6oBdmMCJgMJhK1swqzBb5cEo9E4pISMMLBCiTFW9N
-         4vNGhB6bqbshy6Orz040kuqZ54bd4gmUqVREYTgGFst9C6t3Jn2Dib3f/zPvaGWXH5TX
-         Oq1A8lP1Ffgs/E5endafPl1ATreh+GMoxvRqOSoyKqB+k7/BAaR99KBX1eFx3TKGr7RI
-         Gz3FEkt/w1HH+SThGWJ2oRvRqIa7MWqUq+xUikifvmBf5KeUUmFemxFQ3mVyzxK6tulQ
-         wDUg==
-X-Forwarded-Encrypted: i=1; AL+hErGwrtbMorGGmTUYfy2awNJ+UFTYDeaqwq380Guv2ezHbde1ixJvpBtaeMtuaiEXt/UplPP/qaaU4bLT+RbtaEAZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+WJUsEP7+VIkWjbrIZY3uuvKTHbjX/1xanojjCJWVreDmT5InS
-	Ii4h2cKxL6hVjdILmRJVs3M7poiBOj+Ox9Tm4HRMctIX3qJu9uWTElP+6qBsuenwxrQ=
-X-Gm-Gg: AZFdTZd0rx0sdsh+C49ex6OPwpqO80Sj0tettrF4Kr8dPNub0tqnHq69hce3XGUSGnp
-	LDIwnAPptqLdNRvfycWbXxylM+TXzhuxf16BAOYbKWFz2wJpPLwJl4D5Fp2o6mGYHyAeoNAAYs1
-	ptTpuD2LPXwvZZSQYoywY36CDQkakJ1SKP/cuwHaojHcHKT0SkMkFCRQnoDz5qDdMY80ovHIZoT
-	Nzzt3fzVynGn+al67wsbzBFms0Jk1f9WNCp3vy43F8D8WA9cEVdb9oCGipAvs7FFTdKAskzEDt7
-	me7dPWKKTNj4TxYwdRitfojI3pspLRdOVOZLIiOLbTf5QfpEm13WEt1KDu9hN/9hN9nDHNOEZ/c
-	kzFQv8AZUN/itbGrcx6yQ95ivVOyU9yz6qPeeRZHhyFB4XaYg6kDqBfBeVNuoGapt2i0+zeOFph
-	8NPED1WHHiyhOTXeG+yjWkz3wpO3up7h5ouKw2UCIk2Gfv6ramjCOTX77yyAAtvZg2mhNimdA+9
-	2lvp3K/OTLo0eRhA7Stw0wQJPdE7QZ2ubyop0TVde5WhUY986PsP6FQwK2S1WfDIQjtLJPRsglQ
-	5uHi+CI1l9yaO8A442Bf4tIp2x/05sG5
-X-Received: by 2002:a05:6000:15c8:b0:4a4:c39a:1d4d with SMTP id ffacd0b85a97d-4a63bea7683mr5023380f8f.52.1795019392133;
-        Wed, 18 Nov 2026 08:29:52 -0800 (PST)
+        bh=9rbmVMuhauk6RT7/BuxdWNH6HE9Yom6LLFGVubFIKV0=;
+        b=LlrMFObDCV6G+56JFtZbcAK9H0xPj/9E128/oknMaT3Flvt++fpsYeGMzGLeGI0gH1
+         Z7xYYjqAHC+SWLx4Fid5TmOJ3N6lwAKYYNWrIAi1IIEBr+FQ5KbtJRz7AIhnGsXGrq1g
+         Kb1RYla3oztn/l977j9qiWTHg/1wBM3A5TuKCSfiCOkHnN84XIphGvCjKO2dHax+NPTf
+         e1naNh0H/2yqkGqdXpINcKVBtv4H++D+yPquImqfSSUzyw9OyBOMp9QKLVdUkbMh5Fe5
+         Tg+2PLo7nNm+sEO6QKQswRB+/0TYlzC/15tB5K970gtt3flMYSm+DFhIFeeV+TnMu2Bl
+         rOjw==
+X-Forwarded-Encrypted: i=1; AL+hErHd4c9fAjJf9932uoN2PwJsL0GVdJBw6xiouvVO3QTRxvlu6h57Um4gWcNjYHqIEbdAXS8aVgRBIKWajPezCXwx@lists.infradead.org
+X-Gm-Message-State: APuU4Z+7+YuqKzpp35lsyPhTys7zvZpQ7OEHxu6rmFIx4vk+ENo+P3RE
+	FnGya7g63i3ReavNjbfR4x71laP0HuH7x6nR8rBlZFgtj4fzo0gh9GQBsHjA1esq2ck=
+X-Gm-Gg: AZFdTZcwDKUEsTMdbibwm7EST+8ZIfpNQQFqSaqhkKDxArBlasThuNRC4alh3ogRDG6
+	FQthG73O99l0Tlt+Iz4faFo+R/rjpoa6cu1NGz+BWRyyk6GZm0USLsLWeLQ6yvPCRvQ1akX5+yD
+	IM9qDYiH3KClM2qL8iJw5Veqinr+jyeB/MylUxTLsNZWP9QJPhZQZb7rpgfLGKbEfpitAku8aqq
+	sLUTvPqHEVyTFiLWB35zTHF7Z70gIYUz5DVNNTPz/RNNlmtwYazSyVBDu3cFX/nriUtrm6yiBi5
+	oTMb2hbAUOfBmy6fU5CkkhK5Ff/i1yDakjD4ZGdFwFUyRW9KW0lR+IZLY1+ZWHL5bp6XbIJGjej
+	pm8Uz/t9FGm6f1Cx/R1BL+B4LO1pFHxM9yfh4fI2WwOTItHPud6FiAp6m3Jc3BsLxezErpVuifi
+	hD37lRcoh28zdaaNbMiAio6RmuUsYymZsXhTeeTg4wnSgHJmEVm7eRI/iVn1X/y3sbDmGjNHnpd
+	wIMaa0uU8fkIfQ/zTCGKS8BKbXD5H2kv5DX4ZkXRF4kjq23twg8XoyNGHVkMHHJdXtXhvTDF/RB
+	CYtzf0MWenOrTnuJ3raFEdwZJsQCcasp
+X-Received: by 2002:a5d:5888:0:b0:48f:bc59:ab9c with SMTP id ffacd0b85a97d-4a638338280mr6254961f8f.12.1795019396217;
+        Wed, 18 Nov 2026 08:29:56 -0800 (PST)
 Received: from pop-os.local ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.51
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 08:29:51 -0800 (PST)
+        Wed, 18 Nov 2026 08:29:55 -0800 (PST)
 From: James Clark <james.clark@linaro.org>
-Date: Wed, 18 Nov 2026 16:29:26 +0000
-Subject: [PATCH 04/34] perf libdw: Don't look up the module by ELF address
+Date: Wed, 18 Nov 2026 16:29:30 +0000
+Subject: [PATCH 08/34] perf cs-etm: arm-spe: Use arch timestamp in HW
+ tracers
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-james-coresight-jit-v1-4-dad4d90747f6@linaro.org>
+Message-Id: <20261118-james-coresight-jit-v1-8-dad4d90747f6@linaro.org>
 References: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 In-Reply-To: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 To: Arnaldo Carvalho de Melo <acme@kernel.org>, 
@@ -94,8 +95,8 @@ Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_082955_222588_17C43107 
-X-CRM114-Status: GOOD (  16.89  )
+X-CRM114-CacheID: sfid-20261118_082958_929803_DEE5DD69 
+X-CRM114-Status: GOOD (  10.59  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,61 +116,47 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-libdw__addr2line() finds the module with dwfl_addrmodule() using the ELF
-address. However, libdw reports modules loaded from disk at a fixed bias
-of 0x10000, so any ELF address below that isn't considered to be in the
-module. This means that source lines for very small binaries and JIT
-files can't be found by libdw.
+To allow the JIT dump records to be correlated with the HW timestamp in
+trace, set JITDUMP_USE_ARCH_TIMESTAMP.
 
-This used to be hidden by falling back to the next addr2line style, but
-now missing information stops the fallback since commit (62d7cdc8d587
-"perf libdw: Optimize fallback logic for missing DWARF"). So perf script
-fails to show source line for these addresses.
-
-Perf creates a separate Dwfl session for each DSO and only loads that
-DSO's file into it, so take the session's only module instead of looking
-it up by address to fix the issue.
-
-Fixes: 88c51002d06f ("perf addr2line: Add a libdw implementation")
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- tools/perf/util/libdw.c | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+ tools/perf/arch/arm/util/cs-etm.c    | 5 +++++
+ tools/perf/arch/arm64/util/arm-spe.c | 5 +++++
+ 2 files changed, 10 insertions(+)
 
-diff --git a/tools/perf/util/libdw.c b/tools/perf/util/libdw.c
-index 90767361f485..4f472ff9f1bf 100644
---- a/tools/perf/util/libdw.c
-+++ b/tools/perf/util/libdw.c
-@@ -164,6 +164,14 @@ static int libdw_a2l_cb(Dwarf_Die *die, void *_args)
- 	return DWARF_CB_ABORT;
- }
- 
-+static int libdw__get_module(Dwfl_Module *mod, void **userdata __maybe_unused,
-+			     const char *name __maybe_unused,
-+			     Dwarf_Addr base __maybe_unused, void *arg)
-+{
-+	*(Dwfl_Module **)arg = mod;
-+	return DWARF_CB_ABORT;
-+}
-+
- int libdw__addr2line(u64 addr, char **file, unsigned int *line_nr,
- 		     struct dso *dso, bool unwind_inlines,
- 		     struct inline_node *node, struct symbol *sym)
-@@ -188,7 +196,13 @@ int libdw__addr2line(u64 addr, char **file, unsigned int *line_nr,
+diff --git a/tools/perf/arch/arm/util/cs-etm.c b/tools/perf/arch/arm/util/cs-etm.c
+index 84a5d7392a5f..809da6f1a892 100644
+--- a/tools/perf/arch/arm/util/cs-etm.c
++++ b/tools/perf/arch/arm/util/cs-etm.c
+@@ -909,6 +909,11 @@ struct auxtrace_record *cs_etm_record_init(int *err)
  		goto out;
  	}
  
--	mod = dwfl_addrmodule(dwfl, addr);
-+	/*
-+	 * The session only contains this DSO, but libdw places offline modules
-+	 * away from address 0. Take the module directly rather than looking it
-+	 * up by an ELF address, which isn't a module address.
-+	 */
-+	mod = NULL;
-+	dwfl_getmodules(dwfl, libdw__get_module, &mod, 0);
- 	if (!mod) {
- 		ret = 0;
- 		goto out;
++	if (setenv("JITDUMP_USE_ARCH_TIMESTAMP", "1", 1)) {
++		*err = -errno;
++		return NULL;
++	}
++
+ 	ptr = zalloc(sizeof(struct cs_etm_recording));
+ 	if (!ptr) {
+ 		*err = -ENOMEM;
+diff --git a/tools/perf/arch/arm64/util/arm-spe.c b/tools/perf/arch/arm64/util/arm-spe.c
+index 8d6a2bde2892..53899c7de846 100644
+--- a/tools/perf/arch/arm64/util/arm-spe.c
++++ b/tools/perf/arch/arm64/util/arm-spe.c
+@@ -521,6 +521,11 @@ struct auxtrace_record *arm_spe_recording_init(int *err,
+ 		return NULL;
+ 	}
+ 
++	if (setenv("JITDUMP_USE_ARCH_TIMESTAMP", "1", 1)) {
++		*err = -errno;
++		return NULL;
++	}
++
+ 	sper = zalloc(sizeof(struct arm_spe_recording));
+ 	if (!sper) {
+ 		*err = -ENOMEM;
 
 -- 
 2.43.0
