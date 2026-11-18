@@ -2,124 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29071606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1BEE606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 18:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W9UZ6/eq;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=TJnW3jsu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A8G4xLeN;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=fWuPtWTk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+RjrsMo1wlOqEsK/cd65y47zWVlQQUb8SgKleyWEtTw=; b=W9UZ6/eq4yh4Ed
-	feXIUC5uOG7Bo6++P22naKZiNM9sfha390vEUzGYxA61pY1WVxEdUngyEeZBI6JV7/ScR0JCU/8QW
-	4GBezW4RiQOMDiE4L3YbhbADjtA0syJOFbS/kJ2RnHhuBP+ta1WdcPUsQZ0qSeZYy7q/wzO0NA+39
-	GMU50L/Ejog7g0psLvQCAZWM03Y14upTD/PUbYY5hXheVriEHXHfv6WqZXP+AS4mrdCZF+1Oduded
-	nKmqJkzLEQY3EHwk8UhvzS3/poYuAWJVHeKYljv0H/Tlw+qbSY/l9OetT34lkKcNf05wWcKaK2uu5
-	70UiPsvDbDdzQp7RH18Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8uARk++meO5zgQMDlHPkaRg5Ipl+Zw0cx2xa6wUMMvU=; b=A8G4xLeNW0TQks7c0YIlHSt219
+	eaFX2F9xi4SoS8UEcd7KYzGw0wXosgTdna3lq1pF+bvyZJ3hPt3kLVViGBgMqF6mTesY32vjmZj4d
+	aca5afOYNXHW0hFMg8t0pVhv+pzZq8MFoFTOdDL+JruUX3qMwF5GJ+x7x8YeY2dT0ZRoxHDwEbAxX
+	jSc5sEPSRJsHg3vLshsWa1/r5UKW7nogTCxV+PeLoc4IQLgdIMyoCfBY9HXne6VKBU3xNxh14T5eF
+	TsNHLL3GQ+p6EU5yJoBpkNsLPky2vFcwLOC4e92ijmA0tyrKLPN+zUT68OYgVE7NBKna6RhxIkwdn
+	fNiVCF+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkI9-00000009tFP-4BWl;
-	Wed, 18 Nov 2026 18:21:58 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xTkIN-00000009tTR-2ZhB;
+	Wed, 18 Nov 2026 18:22:11 +0000
+Received: from mail-wm1-x347.google.com ([2a00:1450:4864:20::347])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTkHz-00000009t6S-38Sm
+	id 1xTkI4-00000009t8i-3GDj
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 18:21:50 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y2RVYGk3Y/E7yNCEGAvsxflffKmCYyD/ZdoKM3FFt0is+ii5HASuOQZZI986pz0vkhyyMWX32k9hsoOCxiaL36vf7nAy81Pdyofo6LfseIJBWScdJs8pjifuB7r/9KIwut7vyQc6uJ1RYWJCyfYnUAOyj9rknZj1LZws6st99hLvI4CyIuGRjLq08ttA8O0tMRgXvdzBia3PLhVXMyiDX6MFlQB6c6JlBUxZh+Ad4nhQg9pDiFTs2QTDCCtJRvNmH2M0MkLoO3tAcCOqJ6AB4LOEc+OEK1+YWFHjqr9CGkQLyOTj1yS6BlFjW1z6/Q5MIhYDJ+T6qbd01boIjGrbmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+RjrsMo1wlOqEsK/cd65y47zWVlQQUb8SgKleyWEtTw=;
- b=YRjoNh2jCwu1mqHgj8IJhCOZZqoTqHeqpJwE54wcMp+XbuBxCs2x5KprRmugSgM2QC/oZWQL1jOoLwSC+S0UTuWEW/NBk5Jx7oe87AR/wvci6X20/58Vj5cd2X5Z/TRUF8wVdptXoqHRWiqLFIRPTach2vbdQ14qIS/u4wpePkIRGHfQVyRsLS8WHpcP0e1HARFCrxfDslVWXo+e7aT2Dk89nb+Ck6kqcM6S5s8Jy0JCByYlzudeHJl3SaxtxZIASQxOj8VD4a1YspcW3xaZ4TZIsZp2DnGV3gSgZHdrCyED3KoBWZojIuy35jk2bgGXMbfZMkYelRX9lcaPtB+BtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=gmail.com smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+RjrsMo1wlOqEsK/cd65y47zWVlQQUb8SgKleyWEtTw=;
- b=TJnW3jsuTHbpRq3Ve9zPi3LfyHDfHmuolNlMLNHt31TYgaS+4+YV+EyepnCB0sUS5XyzgENh6HWKUdP3K6W9fRXWCKSeOUxWFlHmEoPcGZbJrT3sH5yFM712sSvimrJncQ1cPY3Kp02ecUDGVg4n2gA282Vui4/qulJ5r8OBkhjbpCUXkD227rjIBJKfZxg4zA67jmYNaR8ra5VFQUYHQpYNFQXWL71GTh/djS0R/Pcuujo8evZa3RJ4eTIpdeJtL/byFCRhg8ojCXwuzhklqF8VdJoAf1FWXqeOSN0/P0hdlTkrC2sMZce2zWQ4mrrhVWsgkmPsrkISFQ+692DgwA==
-Received: from MA2P292CA0027.ESPP292.PROD.OUTLOOK.COM (2603:10a6:250::16) by
- AS2PR10MB6896.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5fb::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.6; Wed, 18 Nov
- 2026 18:21:40 +0000
-Received: from MAD0EPF000008B0.eurprd04.prod.outlook.com
- (2603:10a6:250:0:cafe::a7) by MA2P292CA0027.outlook.office365.com
- (2603:10a6:250::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Wed,
- 18 Nov 2026 18:21:40 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- MAD0EPF000008B0.mail.protection.outlook.com (10.167.241.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 18:21:40 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Wed, 18 Nov
- 2026 19:22:41 +0100
-Received: from [10.252.8.55] (10.252.8.55) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Wed, 18 Nov
- 2026 19:21:39 +0100
-Message-ID: <512ee5b6-e257-4b77-846f-41ab8f6f90d0@foss.st.com>
-Date: Wed, 18 Nov 2026 19:21:38 +0100
+	Wed, 18 Nov 2026 18:21:55 +0000
+Received: by mail-wm1-x347.google.com with SMTP id 5b1f17b1804b1-4ba01393800so8827495e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 10:21:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795026109; x=1795630909; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=8uARk++meO5zgQMDlHPkaRg5Ipl+Zw0cx2xa6wUMMvU=;
+        b=fWuPtWTkLdD1pApH5G+yIj+wVD8RC3JqkwN8C0Li/6mofEvrqWI8Xr6dy09PycYxUG
+         6UFvnyg1Fq/JevYgOiDboxQjF33HQiKfvQteq/KAvtVhjsgpCqefnwToCJTbFdPLGQvp
+         2FT8HPXQO81+1qg+UjHcP6cH61N4CfWdvV3h2R0DqBe57IE9rv/7rAApr1wEWds9PXKL
+         hruz4A5kVrmfuF7qaMePa1c6R7GpgDyLfGF37pUlLypQSwKMqaksefNvh4o8pbecje0t
+         qlXiRW0BPyjFpg+WBBZPyazcFe2dKfstPAuADXLKXwMw5vhsq4mKOaOhbexWkUeWn//k
+         0HNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795026109; x=1795630909;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=8uARk++meO5zgQMDlHPkaRg5Ipl+Zw0cx2xa6wUMMvU=;
+        b=sUtxTIK576KfYTfEkMIyhhWIvwxRO1F6A7y6t0F1N5cit9SxHP8zsYZMz5AI+7S7Cz
+         ww+gNrQGZFS8NZy3/jskRtU1KjVBLVR5X6nUG70FR5ULfL5C7dwNSvLLc86ySDlzy9V2
+         p/eHvCGH4Hk2AUboP7s29LYnhYNXLWzdb30q39sdcscf4pnYWcM0DPo09/YcMzboaSet
+         UC/J0zz+0qC625wmm2C/UH6UnDunBlxdscGjIe0h3Y9SBBCb4uJ6cG+Oedt2og9jpiQI
+         CK4UNqyiLXwcYvabeUmCGKnaXUQHMB1hRnrQP3gmOq99/Qh1AFXUOC8YuoVWTSrrSgc1
+         sCzw==
+X-Gm-Message-State: APuU4Z+CQoUIcIHJlPxxKpnC+EqAEbYLbRDLHWHCLixBoCdmcJmHzd2G
+	WC/0jm7c4/GAB33OR/jxLlKLiMcdlOjnMCs3jqEn+HEdLwiAIqaxU5cgLnZUKah2w+fhpbvd5Q=
+	=
+X-Received: from wruh8.prod.google.com ([2002:a5d:6888:0:b0:4a7:4422:f19c])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:468b:b0:4bb:6cef:d14b
+ with SMTP id 5b1f17b1804b1-4bb7d5d64c3mr73846785e9.2.1795026108878; Wed, 18
+ Nov 2026 10:21:48 -0800 (PST)
+Date: Wed, 18 Nov 2026 19:21:08 +0100
+In-Reply-To: <20261118182105.1633603-21-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dmaengine: stm32-dmamux: don't call runtime PM under a
- spinlock
-To: Hyunjung Ko <hj351016@gmail.com>, Vinod Koul <vkoul@kernel.org>, Frank Li
-	<Frank.Li@kernel.org>
-CC: Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, <dmaengine@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<stable@vger.kernel.org>
-References: <90b4417d-f2fe-498a-8128-3229eb284d8c@foss.st.com>
- <20261118152843.1126665-1-hj351016@gmail.com>
-Content-Language: en-US
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
-In-Reply-To: <20261118152843.1126665-1-hj351016@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MAD0EPF000008B0:EE_|AS2PR10MB6896:EE_
-X-MS-Office365-Filtering-Correlation-Id: 50157988-218b-4bef-bd70-08df45a0ca9b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700016|23010399003|18002099003|22082099003|6133799003|261009223027099003|13003099007|56012099006|261026121527099003|4143699003|261026140227099003|261102123227099003|261028144727099003|261021123027099003|261022105027099003|261021121427099003|10067099003|11063799006;
-X-Microsoft-Antispam-Message-Info: bsk6whgrCxGg5d05pXP8PiDsk77TkXPhrH9+M1/gh6yOwS1mEHUj36pKQkLkwL+LZZxFJl8TqP2enmDMGzA4zXtI73ZJ3CgBL5puljXTgRJQ+bLcH26UcxEoGsOVy3WrXv/Tet6cBGY118mdpDdQFK05eH5zVRRop8SZvedxoY/ahmbVe28wn7Zh6ktpPzT+AhKm/Sp5P7hTc6by/4qUyU6V+8XXjCUQLGO7FWxWY92FPjz9+CKID1nIJc0YZhFuJCMFZgvP4cfxpVuwCCIcuvbOibfiaIoJlBdtnCoH7ouhEsbcxw13OyP/5KL947q28WpzzAHfNEaXBW6Nu1YmNwlSOGsG27uD5cnCML2nbWYaOtYTqm+6JNv4M73maByHp2M03VrvDTZJBbtg26hx417F7KhdY4Jjxavny9rAhYNkm+FH1nav+96tUhQO34XCL0yPymgaxNRrTEELIZX7mq+md2JdkUUPxKgsep5iow+BYeWjc7/7Yykz+OEmhcD2948IqRvqpZWlvqsAZrlOjfHk2x8zrnkKYfYWPJbleQnFSr66UzUAo9tRU24l+YeMowP5R9bYcl3w1OfXsle5bU8zcRFBGZdM1Fyvf+zDAy/jS0n6A76INFNnA4EQ8qr7ksbV1lTWGi4g3C6cwRJYJg==
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(23010399003)(18002099003)(22082099003)(6133799003)(261009223027099003)(13003099007)(56012099006)(261026121527099003)(4143699003)(261026140227099003)(261102123227099003)(261028144727099003)(261021123027099003)(261022105027099003)(261021121427099003)(10067099003)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: eQtNnHY8fsBammgSgKr4rz9dPEJDEU133FY4aV142vU3fx6TP8emmej14Fu+mlXEVlUGt0KA6wOQuec8xVUCGcefz+x3UMmNE5nGOQrZhBzlj47vIveXuwTNXhZLCJgExSID1NUaoK6Db910uzk+7CqQuFXUJVWb+hICaKck9M0oRsUkdHmt/ZlNuXicM02zqtqfgKy7mZR4hRgBqFx1kfYlafIqU6QZsTowkJeie16oGqvKdv3kfNaAcOOXsPg9TLFG4kRvtaUQZm+d3B8aAzL5Igt+qQTlpkOKXTpqD+4y+awMMq8cVmZ/4sTvN2h36NKLcT41Dmr+aJK+E9NFjFJxnx/61xjfFOPf5He05/tYoPHloHDDUdDCjejE3++jarxXaUmpBRI+WMbmGYtAaEQFEviWCK7CEA3GtLukuJgC3GO/gilaUsHcAmmJ3ltG
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 18:21:40.5037
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50157988-218b-4bef-bd70-08df45a0ca9b
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: MAD0EPF000008B0.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR10MB6896
+Mime-Version: 1.0
+References: <20261118182105.1633603-21-ardb+git@google.com>
+X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1519; i=ardb@kernel.org;
+ h=from:subject; bh=vKdz9BGSZVExEz+d9rJxUgExCcdNux9c9+LOmmgmNfY=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIevvmymTmUW7PTesiP30fqlynVQUw7ELZQZ1eu0r/0sfD
+ THmbeTsKGVhEONikBVTZBGY/ffdztMTpWqdZ8nCzGFlAhnCwMUpABO5sILhr3jAfmfn0L3nqq/N
+ 4sjPd9leY7N46grXDmOWVeV76+sV5jEy7Mrxff+YpWTaT9GJLTl/ck9uODnZ+qH+kt6Sk/v3H0i IZQIA
+X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
+Message-ID: <20261118182105.1633603-23-ardb+git@google.com>
+Subject: [PATCH v4 02/19] riscv: Use _stext not _text to denote the start of
+ kernel code
+From: Ard Biesheuvel <ardb+git@google.com>
+To: linux-efi@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
+	Jason Gunthorpe <jgg@nvidia.com>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Huacai Chen <chenhuacai@kernel.org>, loongarch@lists.linux.dev, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_102148_462637_957706C9 
-X-CRM114-Status: GOOD (  20.57  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_102154_005071_4E16E1BA 
+X-CRM114-Status: GOOD (  16.09  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,93 +98,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
+	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/18/26 16:28, Hyunjung Ko wrote:
-> stm32_dmamux_route_allocate() calls pm_runtime_resume_and_get() while
-> holding dmamux->lock with interrupts disabled, and stm32_dmamux_free()
-> calls pm_runtime_put_sync() in the same way.  The runtime callbacks
-> enable and disable the clock with clk_prepare_enable() /
-> clk_disable_unprepare(), which can sleep, and the device is not marked
-> pm_runtime_irq_safe(), so both sleep in atomic context.
-> 
-> The lock was in the wrong place: it did not protect the runtime PM call,
-> while the CCR write in stm32_dmamux_route_allocate() was left unlocked
-> even though stm32_dmamux_free() writes the same register under the lock.
-> Move the runtime PM calls outside the lock in both functions and take
-> the lock for the CCR write instead, matching stm32_dmamux_free().
-> 
-> Fixes: 4f3ceca254e0 ("dmaengine: stm32-dmamux: Add PM Runtime support")
-> Cc: stable@vger.kernel.org
-> Suggested-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-> Signed-off-by: Hyunjung Ko <hj351016@gmail.com>
+From: Ard Biesheuvel <ardb@kernel.org>
 
-I’ve tested your patch on the stm32mp157f-dk2. Thanks!
+On RISC-V, _text and _stext currently refer to the same location, i.e.,
+the start of the .text output section, which follows the image header
+(.head.text) emitted by HEAD_TEXT_SECTION. _start is the symbol that
+refers to the actual start of the image.
 
-Reviewed-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-Tested-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+On other architectures such as arm64, _text refers to the start of the
+image, and _stext to the start of the kernel code, and generic code
+(such as the EFI stub) may start relying on this distinction.
 
-> ---
-> v2: Amelie Delaunay pointed out that v1 was correct but incomplete:
->      - also take dmamux->lock for the CCR write in
->        stm32_dmamux_route_allocate(), which stm32_dmamux_free() already
->        does for the same register;
->      - also move pm_runtime_put_sync() out of the lock in
->        stm32_dmamux_free(), which has the same sleep-in-atomic problem.
->      Link to v1: https://lore.kernel.org/all/20261118082853.926607-1-hj351016@gmail.com/
-> 
->   drivers/dma/stm32/stm32-dmamux.c | 13 ++++++-------
->   1 file changed, 6 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/dma/stm32/stm32-dmamux.c b/drivers/dma/stm32/stm32-dmamux.c
-> index 5731871..8290122 100644
-> --- a/drivers/dma/stm32/stm32-dmamux.c
-> +++ b/drivers/dma/stm32/stm32-dmamux.c
-> @@ -73,10 +73,10 @@ static void stm32_dmamux_free(struct device *dev, void *route_data)
->   	stm32_dmamux_write(dmamux->iomem, STM32_DMAMUX_CCR(mux->chan_id), 0);
->   	clear_bit(mux->chan_id, dmamux->dma_inuse);
->   
-> -	pm_runtime_put_sync(dev);
-> -
->   	spin_unlock_irqrestore(&dmamux->lock, flags);
->   
-> +	pm_runtime_put_sync(dev);
-> +
->   	dev_dbg(dev, "Unmapping DMAMUX(%u) to DMA%u(%u)\n",
->   		mux->request, mux->master, mux->chan_id);
->   
-> @@ -139,13 +139,9 @@ static void *stm32_dmamux_route_allocate(struct of_phandle_args *dma_spec,
->   	}
->   
->   	/* Set dma request */
-> -	spin_lock_irqsave(&dmamux->lock, flags);
->   	ret = pm_runtime_resume_and_get(&pdev->dev);
-> -	if (ret < 0) {
-> -		spin_unlock_irqrestore(&dmamux->lock, flags);
-> +	if (ret < 0)
->   		goto err_put_dma_spec_np;
-> -	}
-> -	spin_unlock_irqrestore(&dmamux->lock, flags);
->   
->   	mux->request = dma_spec->args[0];
->   
-> @@ -156,8 +152,11 @@ static void *stm32_dmamux_route_allocate(struct of_phandle_args *dma_spec,
->   	dma_spec->args[0] = mux->chan_id - min;
->   	dma_spec->args_count = 4;
->   
-> +	spin_lock_irqsave(&dmamux->lock, flags);
->   	stm32_dmamux_write(dmamux->iomem, STM32_DMAMUX_CCR(mux->chan_id),
->   			   mux->request);
-> +	spin_unlock_irqrestore(&dmamux->lock, flags);
-> +
->   	dev_dbg(&pdev->dev, "Mapping DMAMUX(%u) to DMA%u(%u)\n",
->   		mux->request, mux->master, mux->chan_id);
->   
+So switch the only user of _text in arch/riscv, i.e., the "Kernel code"
+resource that is exposed via /proc/iomem (and from which the "Kernel
+image" resource inherits its start address), over to _stext. This is a
+no-op given that both symbols currently resolve to the same address, but
+it permits _text to be moved to the start of the image, making it an
+alias of _start.
+
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+---
+ arch/riscv/kernel/setup.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+index d79f99b86033..e6112d424fde 100644
+--- a/arch/riscv/kernel/setup.c
++++ b/arch/riscv/kernel/setup.c
+@@ -91,7 +91,7 @@ static int __init add_kernel_resources(void)
+ 	 * child nodes.
+ 	 */
+ 
+-	code_res.start = __pa_symbol(_text);
++	code_res.start = __pa_symbol(_stext);
+ 	code_res.end = __pa_symbol(_etext) - 1;
+ 	code_res.flags = IORESOURCE_SYSTEM_RAM | IORESOURCE_BUSY;
+ 
+-- 
+2.56.1.708.g77570a6a1d-goog
 
 
