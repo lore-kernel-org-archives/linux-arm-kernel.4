@@ -2,75 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F187860A2602
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E49E606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=drVjTae1;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CWKxRHqi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BohwI3BY;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=VfMYMAuM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=GvkZuL7EUYi6CcMwWs16tPXol8X6MeKcm8CLi/VsEzk=; b=drVjTae1mU9pTGlQNq0HxCgvzD
-	V8D/mo4s26J50mLX8Wp7FzKgLegE/HnG7GUPXFLAF7aau0z9+PIl3C9Adaei+t4ssle7gy9gT9cet
-	j+yWvh4lPnhFFKuazTOlfBkMr8weR0rmTCXHWGXMIF8x2fnh7eId0vACh1WaXvbUg39INXjY24fPB
-	1/73M1HWPhVZbQSHJfQQJSXH7mYGZgfU8xww3jqgztaAP83AdzM/abw7spRUFLDDviJ4N/T/bVXVm
-	36Lvjk/JD7m4i3856oOCRpzt9l2MJ171XB594kjIQK8OkO06wNjNQkExpw4Ug17CeeENaN1moFUR3
-	VdqpsqHg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=yYNwdmBSIDxtuxPrHW8cdhm8SfdRppfZaAmTog96H2A=; b=BohwI3BYmCrUzr
+	vhrIzkElK7Er+xsBAq3a6JIUphutTzPpMj4CPPJfu1LE4h9rq/tbV0y09MLA0gdWEqw3/V0KgJdoy
+	Ni1GVuZMmM8KDAG3MO6dr/OFflnEpTZNY2MN6VacEo8XkzmaKEliSLlD3y8uZMnICoAjAPQXIfRrJ
+	Jtc2b//LmSvVCCV4mOtuDtXyLmoz2apjABxLv5CTwxzvyEQ0NyqJ0gQfuTvlWfbIvKpRPzy3cxvpJ
+	qOXlT7Auwt6vrFWXSqNoCCWIMZV6wEwN9eZJ5AvL5jgauU5FWa3V9GZyTrhli/E2DD7vgTCibuchT
+	fyzojzVq44Ahga5IjbUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiBf-00000009PK9-2Wg4;
-	Wed, 18 Nov 2026 16:07:07 +0000
-Received: from mgamail.intel.com ([192.198.163.13])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiBc-00000009PJL-1JOg
+	id 1xTiHV-00000009QHl-1ss3;
+	Wed, 18 Nov 2026 16:13:09 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTiHS-00000009QHA-1vIT
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:07:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795018024; x=1826554024;
-  h=date:from:to:cc:subject:message-id;
-  bh=XDCZY3cl1IYwBUXB+21TrkQP2V8tVdr2hWYXkTcC6Ag=;
-  b=CWKxRHqiCORJERGKWWbLo+pQaacIUWxTXuz2Fsx61u8YBG8Rrou6ZMyj
-   pmo7AWbn2D8yRkXA+DY6o8gb9kQqc4NDImGye9uwOIDNI5Zct65UCt6qn
-   YMgnkKJdD7hs1Npjy8BEk7PCUhh4+3o4x8ZkAaJIUw0/roox7Hwy2tj0k
-   hpkreXiaqsictkVZIxlgYvoexd/Xj4kwuPn+SkQXd0Q0tYqbius7GGHaM
-   zkA47SdaTzLd55a+y6qc8U03laGSsxGzmpGHbFDmpXmVxqjpOsOH11bBW
-   35cVO0z2qljga71m4CPqOTe8FDcamDLK3CM/iNxrhTFBUkqbKcPQ5zq7s
-   w==;
-X-CSE-ConnectionGUID: Xn+XfqMlRHytI1jo63g4+w==
-X-CSE-MsgGUID: uTaE2bkVQtuDjFjUeRpaaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3826078"
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3826078"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2026 08:06:19 -0800
-X-CSE-ConnectionGUID: hPCqybxWTOuwdvKa4VFJ7A==
-X-CSE-MsgGUID: oSF6bTHEQ9CW+CpnQLEELA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="10576890"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 18 Nov 2026 08:06:18 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xTiAq-00000001Dlb-04PS;
-	Wed, 18 Nov 2026 16:06:16 +0000
-Date: Thu, 19 Nov 2026 00:05:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Subject: [linusw-nomadik:for-next] BUILD SUCCESS
- 96561f4bc602db784d06e35c8918876036c08057
-Message-ID: <20261119000522.3xXBzjeN-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+	Wed, 18 Nov 2026 16:13:08 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5FF44339;
+	Wed, 18 Nov 2026 08:13:02 -0800 (PST)
+Received: from [10.57.62.206] (unknown [10.57.62.206])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E29C53F673;
+	Wed, 18 Nov 2026 08:12:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795018385; bh=7HisUsPk+KXisBKOhhwZZBhSMTa8p36OAkhoTk09/p8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VfMYMAuMFySbcli51fpiRUiyHhsrWxVA0JvsMlnhNMKHwT3OC8N7svYDR6AXpwyRI
+	 DQ3ucKevGEEZxmSMHnhWCReSwkfPCO0oRhqJaRKuPRh1v7zUXh0fBwqw4KIilbCFx/
+	 PLAJ0VltMjZX2DM+j8kxWZtoujx0Rpj6phIcEFV0=
+Message-ID: <a36b5c53-5148-4b08-b399-ae64b1ad8707@arm.com>
+Date: Wed, 18 Nov 2026 16:12:57 +0000
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 02/11] KVM: arm64: CCA: Introduce Realms
+To: Fuad Tabba <tabba@google.com>
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+References: <20261116164358.142785-1-steven.price@arm.com>
+ <20261116164358.142785-3-steven.price@arm.com>
+ <CA+EHjTwfp8p7uwP2LXEqSmTwL6ZHuDCYbvMie_Wr_30xJwfO6A@mail.gmail.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <CA+EHjTwfp8p7uwP2LXEqSmTwL6ZHuDCYbvMie_Wr_30xJwfO6A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_080704_401345_02046FB8 
-X-CRM114-Status: UNSURE (   5.76  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261118_081306_591421_7122847B 
+X-CRM114-Status: GOOD (  18.17  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,219 +85,101 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git for-next
-branch HEAD: 96561f4bc602db784d06e35c8918876036c08057  ARM: configs: u8500: Enable audio graph card2
+On 17/11/2026 14:07, Fuad Tabba wrote:
+> On Mon, 16 Nov 2026 16:43:48 +0000, Steven Price <steven.price@arm.com> wrote:
+> [...]
+>> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+> [...]
+>> @@ -1571,31 +1576,39 @@ struct kvm *kvm_arch_alloc_vm(void);
+>>
+>>  #define __KVM_HAVE_ARCH_FLUSH_REMOTE_TLBS_RANGE
+>>
+>> -#ifdef __KVM_NVHE_HYPERVISOR__
+>> +#define kvm_vm_is_protected(kvm)        ((kvm)->arch.vm_flavor >= __VM_PROTECTED)
+>>
+>> -#define kvm_vm_is_protected(kvm)                        \
+>> -        (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor == VM_PROTECTED_PKVM))
+>> +#ifdef __KVM_NVHE_HYPERVISOR__
+>>  /*
+>>   * Accessing vcpu->kvm from nVHE hyp stub is tricky, as we need to convert the
+>>   * pointer to the hyp VA. With pKVM, the nVHE code runs with the hyp_vcpu,
+>> - * which is populated correctly and is gated on is_protected_kvm_enabled().
+>> + * which is populated correctly. Always vcpu_is_protected_pkvm(), which is
+>> + * gated on is_protected_kvm_enabled().
+>>   */
+>> -#define vcpu_is_protected(vcpu)                                                \
+>> +#define vcpu_is_protected(vcpu)                BUILD_BUG_ON(1)
+>> +#else
+>> +#define vcpu_is_protected(vcpu)                kvm_vm_is_protected((vcpu)->kvm)
+>> +#endif
+>> +
+>> +#define kvm_vm_is_protected_pkvm(kvm)                                        \
+>> +        (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor == VM_PROTECTED_PKVM))
+>> +
+>> +/*
+>> + * Rely on is_protected_kvm_enabled() check in kvm_vm_is_protected_pkvm() to
+>> + * make sure the vcpu->kvm is always valid VA in the context
+>> + */
+>> +#define vcpu_is_protected_pkvm(vcpu)                                        \
+>>          ({                                                                \
+>>                  struct kvm *__kvm = READ_ONCE((vcpu)->kvm);                \
+>>                                                                          \
+>> -                (__kvm && kvm_vm_is_protected(__kvm));                        \
+>> +                (__kvm && kvm_vm_is_protected_pkvm(__kvm));                \
+>>          })
+>>
+>> -#else
+>> -
+>> -#define kvm_vm_is_protected(kvm)        ((kvm)->arch.vm_flavor >= __VM_PROTECTED)
+>> -#define vcpu_is_protected(vcpu)                kvm_vm_is_protected((vcpu)->kvm)
+> 
+> This brings back the _pkvm variants that Marc asked to drop in the
+> plumbing series [1]. In the nVHE hyp code, kvm_vm_is_protected() and
+> vcpu_is_protected() already mean pKVM-protected, so I think the hyp
+> side can stay as it is.
+> 
+> At EL1, the pKVM-only checks that a Realm vCPU also reaches are in
+> kvm_arm_vcpu_power_off() and kvm_psci_vcpu_on(). Could they check
+> vm_flavor == VM_PROTECTED_PKVM directly?
 
-elapsed time: 1509m
+Ah, yes that should work better. Thanks for the suggestion.
 
-configs tested: 191
-configs skipped: 144
+>> +#define kvm_vm_is_realm(kvm)                ((kvm)->arch.vm_flavor == VM_REALM)
+>> +#define vcpu_is_rec(vcpu)                kvm_vm_is_realm((vcpu)->kvm)
+> 
+> vcpu_is_rec() isn't used anywhere in this series. Could it be dropped?
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Yep, I can move it after this series.
 
-tested configs:
-alpha                              allnoconfig    gcc-16.2.0
-alpha                             allyesconfig    gcc-16.2.0
-alpha                                defconfig    gcc-16.2.0
-arc                               allmodconfig    clang-24
-arc                                allnoconfig    gcc-16.2.0
-arc                               allyesconfig    clang-24
-arc                                  defconfig    gcc-16.2.0
-arc                   randconfig-1000-20261118    gcc-10.5.0
-arc                   randconfig-1001-20261118    gcc-10.5.0
-arc                         vdk_hs38_defconfig    clang-24
-arm                                allnoconfig    gcc-16.2.0
-arm                               allyesconfig    clang-24
-arm                      am200epdkit_defconfig    clang-24
-arm                                  defconfig    gcc-16.2.0
-arm                           ixp4xx_defconfig    gcc-16.2.0
-arm                   randconfig-1000-20261118    gcc-10.5.0
-arm                   randconfig-1001-20261118    gcc-10.5.0
-arm                   randconfig-1002-20261118    gcc-10.5.0
-arm                   randconfig-1003-20261118    gcc-10.5.0
-arm                         realview_defconfig    clang-17
-arm                          s3c6400_defconfig    clang-24
-arm                         spear3xx_defconfig    clang-24
-arm64                             allmodconfig    clang-24
-arm64                              allnoconfig    gcc-16.2.0
-arm64                                defconfig    gcc-16.2.0
-arm64                 randconfig-1000-20261118    gcc-16.2.0
-arm64                 randconfig-1001-20261118    gcc-16.2.0
-arm64                 randconfig-1002-20261118    gcc-16.2.0
-arm64                 randconfig-1003-20261118    gcc-16.2.0
-csky                              allmodconfig    gcc-16.2.0
-csky                               allnoconfig    gcc-16.2.0
-csky                                 defconfig    gcc-16.2.0
-csky                  randconfig-1000-20261118    gcc-16.2.0
-csky                  randconfig-1001-20261118    gcc-16.2.0
-hexagon                           allmodconfig    gcc-16.2.0
-hexagon                            allnoconfig    gcc-16.2.0
-hexagon                              defconfig    gcc-16.2.0
-hexagon               randconfig-1000-20261118    clang-22
-hexagon               randconfig-1001-20261118    clang-22
-i386                              alldefconfig    clang-17
-i386                              allmodconfig    clang-22
-i386                               allnoconfig    gcc-16.2.0
-i386                              allyesconfig    clang-22
-i386        buildonly-randconfig-1000-20261118    gcc-12
-i386        buildonly-randconfig-1001-20261118    gcc-12
-i386        buildonly-randconfig-1002-20261118    gcc-12
-i386        buildonly-randconfig-1003-20261118    gcc-12
-i386        buildonly-randconfig-1004-20261118    gcc-12
-i386        buildonly-randconfig-1005-20261118    gcc-12
-i386                                 defconfig    gcc-16.2.0
-i386                  randconfig-1000-20261118    clang-22
-i386                  randconfig-1001-20261118    clang-22
-i386                  randconfig-1002-20261118    clang-22
-i386                  randconfig-1003-20261118    clang-22
-i386                  randconfig-1004-20261118    clang-22
-i386                  randconfig-1005-20261118    clang-22
-i386                  randconfig-1006-20261118    clang-22
-i386                  randconfig-1007-20261118    clang-22
-i386                  randconfig-1008-20261118    clang-22
-i386                  randconfig-1009-20261118    clang-22
-i386                  randconfig-1010-20261118    clang-22
-i386                  randconfig-1011-20261118    clang-22
-i386                  randconfig-1012-20261118    clang-22
-i386                  randconfig-1013-20261118    clang-22
-loongarch                         allmodconfig    clang-24
-loongarch                          allnoconfig    gcc-16.2.0
-loongarch                            defconfig    clang-24
-loongarch             randconfig-1000-20261118    clang-22
-loongarch             randconfig-1001-20261118    clang-22
-m68k                              allmodconfig    gcc-16.2.0
-m68k                               allnoconfig    gcc-16.2.0
-m68k                              allyesconfig    clang-24
-m68k                                 defconfig    clang-24
-m68k                        m5249evb_defconfig    gcc-16.2.0
-m68k                         stmark2_defconfig    clang-24
-microblaze                        alldefconfig    gcc-16.2.0
-microblaze                         allnoconfig    gcc-16.2.0
-microblaze                        allyesconfig    gcc-16.2.0
-microblaze                           defconfig    clang-24
-mips                              allmodconfig    gcc-16.2.0
-mips                               allnoconfig    gcc-16.2.0
-mips                              allyesconfig    gcc-16.2.0
-mips                       bmips_stb_defconfig    gcc-16.2.0
-mips                       malta_kvm_defconfig    clang-24
-mips                 malta_qemu_32r6_defconfig    clang-24
-mips                          rt305x_defconfig    clang-24
-nios2                             allmodconfig    clang-20
-nios2                              allnoconfig    clang-24
-nios2                                defconfig    clang-24
-nios2                 randconfig-1000-20261118    clang-22
-nios2                 randconfig-1001-20261118    clang-22
-openrisc                          allmodconfig    clang-20
-openrisc                           allnoconfig    clang-24
-openrisc                             defconfig    gcc-16.2.0
-openrisc                     or1ksim_defconfig    gcc-16.2.0
-parisc                            allmodconfig    gcc-16.2.0
-parisc                             allnoconfig    clang-24
-parisc                            allyesconfig    clang-17
-parisc                               defconfig    gcc-16.2.0
-parisc                randconfig-1000-20261118    gcc-8.5.0
-parisc                randconfig-1001-20261118    gcc-8.5.0
-parisc64                             defconfig    clang-24
-powerpc                     adder875_defconfig    clang-17
-powerpc                           allmodconfig    gcc-16.2.0
-powerpc                            allnoconfig    clang-24
-powerpc                      asp8347_defconfig    clang-24
-powerpc                       katmai_defconfig    clang-24
-powerpc                   mpc866_ads_defconfig    clang-17
-powerpc                       pasemi_defconfig    clang-24
-powerpc               randconfig-1000-20261118    gcc-8.5.0
-powerpc               randconfig-1001-20261118    gcc-8.5.0
-powerpc                      tqm8540_defconfig    clang-24
-powerpc                      tqm8555_defconfig    gcc-16.2.0
-powerpc64             randconfig-1000-20261118    gcc-8.5.0
-powerpc64             randconfig-1001-20261118    gcc-8.5.0
-riscv                             allmodconfig    clang-24
-riscv                              allnoconfig    clang-24
-riscv                             allyesconfig    clang-24
-riscv                                defconfig    gcc-16.2.0
-riscv                     nommu_k210_defconfig    clang-24
-riscv                 randconfig-1000-20261118    gcc-11.5.0
-riscv                 randconfig-1001-20261118    gcc-11.5.0
-s390                              allmodconfig    clang-17
-s390                               allnoconfig    clang-24
-s390                              allyesconfig    gcc-16.2.0
-s390                                 defconfig    gcc-16.2.0
-s390                  randconfig-1000-20261118    gcc-11.5.0
-s390                  randconfig-1001-20261118    gcc-11.5.0
-s390                        zfcpdump_defconfig    clang-24
-sh                                allmodconfig    gcc-16.2.0
-sh                                 allnoconfig    clang-24
-sh                                allyesconfig    clang-17
-sh                                   defconfig    gcc-14
-sh                         edosk7760_defconfig    gcc-16.2.0
-sh                              espt_defconfig    clang-17
-sh                           polaris_defconfig    clang-17
-sh                    randconfig-1000-20261118    gcc-11.5.0
-sh                    randconfig-1001-20261118    gcc-11.5.0
-sh                           rsk7269_defconfig    clang-24
-sh                    rts7751r2dplus_defconfig    clang-17
-sh                              sh03_defconfig    clang-24
-sh                   sh7785lcr_32bit_defconfig    clang-17
-sh                             titan_defconfig    gcc-16.2.0
-sparc                              allnoconfig    clang-24
-sparc                                defconfig    gcc-16.2.0
-sparc64                           allmodconfig    clang-20
-sparc64                              defconfig    gcc-14
-um                                allmodconfig    clang-17
-um                                 allnoconfig    clang-24
-um                                allyesconfig    gcc-16.2.0
-um                                   defconfig    gcc-14
-um                              i386_defconfig    gcc-14
-um                            x86_64_defconfig    gcc-14
-x86_64                            allmodconfig    clang-22
-x86_64                             allnoconfig    clang-24
-x86_64                            allyesconfig    clang-22
-x86_64      buildonly-randconfig-1000-20261118    gcc-14
-x86_64      buildonly-randconfig-1001-20261118    gcc-14
-x86_64      buildonly-randconfig-1002-20261118    gcc-14
-x86_64      buildonly-randconfig-1003-20261118    gcc-14
-x86_64      buildonly-randconfig-1004-20261118    gcc-14
-x86_64      buildonly-randconfig-1005-20261118    gcc-14
-x86_64                               defconfig    gcc-14
-x86_64                                   kexec    clang-22
-x86_64                randconfig-1000-20261118    gcc-14
-x86_64                randconfig-1001-20261118    gcc-14
-x86_64                randconfig-1002-20261118    gcc-14
-x86_64                randconfig-1003-20261118    gcc-14
-x86_64                randconfig-1004-20261118    gcc-14
-x86_64                randconfig-1005-20261118    gcc-14
-x86_64                randconfig-1006-20261118    gcc-14
-x86_64                randconfig-1007-20261118    gcc-14
-x86_64                randconfig-1008-20261118    gcc-14
-x86_64                randconfig-1009-20261118    gcc-14
-x86_64                randconfig-1010-20261118    gcc-14
-x86_64                randconfig-1011-20261118    gcc-14
-x86_64                randconfig-1012-20261118    gcc-14
-x86_64                randconfig-1013-20261118    gcc-14
-x86_64                randconfig-1014-20261118    gcc-14
-x86_64                randconfig-1015-20261118    gcc-14
-x86_64                randconfig-1016-20261118    gcc-14
-x86_64                randconfig-1017-20261118    gcc-14
-x86_64                                rhel-9.4    clang-22
-x86_64                            rhel-9.4-bpf    gcc-14
-x86_64                           rhel-9.4-func    clang-22
-x86_64                     rhel-9.4-kselftests    clang-22
-x86_64                          rhel-9.4-kunit    gcc-14
-x86_64                            rhel-9.4-ltp    gcc-14
-x86_64                           rhel-9.4-rust    clang-22
-xtensa                             allnoconfig    clang-24
-xtensa                            allyesconfig    clang-20
+> [...]
+>> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+> [...]
+>> @@ -906,7 +907,8 @@ static bool kvm_arm_vcpu_suspended(struct kvm_vcpu *vcpu)
+>>  /* Only the guest's CPU_ON may start a vCPU EL2 holds powered off. */
+>>  bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
+>>  {
+>> -        return READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
+>> +        return vcpu_is_protected_pkvm(vcpu) &&
+>> +                READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
+> 
+> Only a pVM's vCPU can be in KVM_MP_STATE_UNINITIALIZED, so is this needed?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+I guess not. I'll drop this change.
+
+Thanks,
+Steve
+
+> Cheers,
+> /fuad
+> 
+> [1] https://lore.kernel.org/all/86pkxs2npx.wl-maz@kernel.org/
+
 
