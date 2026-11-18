@@ -2,104 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB45606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B20606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xXpNrbVh;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zaucxQLM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=orUZJN7n;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=2R2b9+uz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xD6Dy3y4d1wnxROTLCHN7ijMhBMBe0bu6u+PB8rbtjg=; b=xXpNrbVhAQVnH7
-	BOQjBmAUNQJJ5xwFwM7h2SHwtsGQ7rBrGLF7WYPoBGbw5lnyzSUlvTtfx+aTzcBktu+bZYbEfbuXu
-	pqX0v8zv5K83fugV7Rx2VT/OjotZnUPmg0m1w0FdBriGWuY9b24s8Y6PdZAfWuUgjt9Kks0AnP81s
-	4HeXaCb/+z0oqIW4t4tVGtJqg97XfxDS9mfGZNZhleZ1wQNITVX20T5dmQ5a5IfeZnqClBtRK/i9c
-	ND/J2fSmbm6mJ0f1TAgboC0yJm3vrj0amg2ZJhEoQBRViZMD7Cst2fUD0eYmoKkd/QWBCXK+fj17u
-	RoWNhXy1TBt+yH3pg6ew==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=o4IhjYnsAkS+A/M5yq5qkGtMA6PWttIKEDUvGkvU2eY=; b=orUZJN7nyfr1T9THb/JnrQ2+p/
+	VSwuSeGApnA6nW+Eg5IXDFDckETlJGPuvpJMRauB7Guk8pmBJwI+twN1UCPv3TIfncvH4i3RnlkZP
+	+9LqQLsT/V033MSHTkyF7Qrobg3dpZfvlKqR8ZLlhqImElErHyI+VfILZtU7oKr47R7ak1WKNCytZ
+	UyxvEL3EOjTCYVCHJx1J6b8ywjrESbDnpNu6f5GPmtyQtSEBWUhg9g10HwIdTuY7lqw/YAEQwz2Te
+	+fBXei3Ufvro3Ek3BVAgJGEchGfiMouw5Kn7+nfVoSZNYB0q86orOP3fFAaty367f1XfNINXqguAN
+	wpRmsNPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiMQ-00000009RJx-0Qae;
-	Wed, 18 Nov 2026 16:18:14 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1xTiQB-00000009Ruj-1ZE4;
+	Wed, 18 Nov 2026 16:22:07 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiMH-00000009RDs-0KjX
+	id 1xTiQ8-00000009RtW-2UJm
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:18:07 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-490f38e9688so827562f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:18:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795018682; x=1795623482; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=xD6Dy3y4d1wnxROTLCHN7ijMhBMBe0bu6u+PB8rbtjg=;
-        b=zaucxQLMQLdSlMUuJcXtEu4+umNa6gLv39bK3fbHs2406TShPyEb5V6MTiiORACeOh
-         odb3jXiNq0S0kptcKAtdH2nKXHwCIh4p2UONekt5vk4ZQF1zd7Dfldm/bIjM79tRf8Ru
-         LZaqT61kSMEOhy+zMe7KfQJJI646nD8Wc7OesTNRWsLIsaxHyxcUJnZ4HcDjjVeSF0e5
-         owhGy0oyO3qvHrE77TmNMPz8dXzdebYd0sBoPwFkFjfSfTz25o2rUQKmL0yEtpvhWqAw
-         nmo7GiLyGgHUpn5ba/OSaY5PgLa8QFk2Y5tDw6bbZf3KIBzgbR28SP2mFrgMSZJeIF2N
-         J1pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795018682; x=1795623482;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=xD6Dy3y4d1wnxROTLCHN7ijMhBMBe0bu6u+PB8rbtjg=;
-        b=N3L+5SAB5QxqN/iRXeOxN4Hwljtj58NQDflcQb2GYjobD9xXY7dSZ4ToP6jfvZR5/Y
-         OeXoglHQjrnJ5rkX6j/0n8croRUctvhLlZrUQn6zuKT2XPfuq4k2ignFg46q48mDL7Ym
-         YcRf8dH4qldIyQoKaT1i7k6HMoPLNTL/edyr7Y+aNA3EumZKrZG+jCtSQcGckacinX1c
-         uQXpm1g8uNFz9uhsA9UX5fbwomOhVkBujLy4ch2aRu126DLi8HbNjFrWIW55gJov3yPI
-         ngE/jPpwtS+uoGznUznDBkxlA0dePgyqSrty9aX7wm3ViwP3/TQ0zYcVVL5dNVXz2hoM
-         HTZw==
-X-Forwarded-Encrypted: i=1; AL+hErFqvzAwrqqzNFw6ZanT6Dd1SG7Jhvt1JkxQOcVFCp6Wx9cJl/flknsPLOTJoXAer4ahobS2qGvcWb0X7lTGBo9S@lists.infradead.org
-X-Gm-Message-State: APuU4Z82UilhisUJxZS9+YCXJELo8LWOjq1+oj/SAbz7KISa1OqiZEZx
-	DZgPuu9CrxocqSYPMne24ez+VhC90GByarwstFYG9C+WhV6lf5Qc59Zn
-X-Gm-Gg: AZFdTZfo7udgCz0XDbMQ2x66ot+F0ul+/k/oU9st5wSdVKTCKY5qWvStaXvZRQ83dX9
-	+KVGvecQxaQ/ZKk1MjqFzI06n40jRATQcKporYafaVcSkHYYCGaVV5Mkblr4uBABzpHKy/9aI9R
-	/2GJ4Uu+DiiThs0+b8uKKFtAtlRjvPay4ktNO0t+lNxD+kBDFfvi6hmXilLDNj5MNORQpjOCU2K
-	kw3IRA5+/vR1Ywm13cpha7dEanivtSzC3oOLC60urJh/7YG/kQrnc6pGrepmSQrCuMlsc5/IavJ
-	vl91A+tULXJBjNL2fxK0qw8mPQ17UMBtbkJ+rfuhs7D1okoGciDytcVqR7lBzaZN+X69xpNPAj2
-	P4E1czURdiVXrcHPS2GzH/rzkBfHQVrhkn4ALJtDhB04a32WkeyJSy2Q+b1Mr7nvvUvKqIPMPwh
-	pdAszqbNDQOyP/P21Bc2S3wa2AWmQn3fD/LPzclqasd/7kv4XuakJojZi0pGv2cDlhwJX+VgQ9D
-	rsEnFC/EWv83VV72HeGqNMNy8OGKERyCEfuCOp9uoVupECSgRn3yI3d76kK+2nPbZ5ivsvQmWJ9
-	XywbqeO7IGLVcXOXscqXsr8Eyp6d3r1ePLAu9xr3GFs0gQLeGVNlXwT883iAtBvPYaTw2h1+C6T
-	5386o8ffWFpPzBM92rpzCZb95Cqk9BK34Bg==
-X-Received: by 2002:a05:6000:29c8:b0:4a3:c963:c1c3 with SMTP id ffacd0b85a97d-4a63937fce8mr4376849f8f.15.1795018682433;
-        Wed, 18 Nov 2026 08:18:02 -0800 (PST)
-Received: from [10.161.246.232] (host-164-37-100-34.net.onlyservers.com. [164.37.100.34])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a65100bf42sm5329699f8f.1.2026.11.18.08.17.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 08:18:02 -0800 (PST)
-From: Alexander Letuchiy <asalde.le1@gmail.com>
-Date: Wed, 18 Nov 2026 19:17:36 +0300
-Subject: [PATCH v2 1/2] dt-bindings: pinctrl: mediatek: Document MT6895 pin
- controller
+	Wed, 18 Nov 2026 16:22:06 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id F3BD71A16D4;
+	Wed, 18 Nov 2026 16:21:58 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B705A5FE9B;
+	Wed, 18 Nov 2026 16:21:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7D84B11BC26F9;
+	Wed, 18 Nov 2026 17:21:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795018913; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=o4IhjYnsAkS+A/M5yq5qkGtMA6PWttIKEDUvGkvU2eY=;
+	b=2R2b9+uzpz1RycSQMmA4zCkWe9M65VvGUkYqRX+1u1KTtAl8zxLwkxnHPQzqR+VdJ/ZVor
+	kIofdG4xnPPGBNUYwJiaLMXaKsZtgpxvBcUqKZXh3hBPGL34QX4TXjMYE9262PDctTHfdN
+	psc7w4JRcm9gz7pc71uccgTshjFCV7MnvBpCPCLx2Gh/nICOzHtu/mkuKYWWjWymqsNveU
+	EIgpPrgO6h6OTH742MiFpMRc/gtna3bfUhXufygoUb+nXK9z44VYKSjveYMc5XnXJLWOsY
+	oXqrEyeMqo8GJbHfCGUwPznZERl8pzdjVyTMumDJ+1vKnscB9D6tqz2fPoUSJw==
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+	Nicolai Buchwitz <nb@tipi-net.de>,
+	Ovidiu Panait <ovidiu.panait.rb@renesas.com>,
+	Joseph Steel <recv.jo@gmail.com>,
+	Muhammad Nazim Amirul Nazle Asmade <muhammad.nazim.amirul.nazle.asmade@altera.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	thomas.petazzoni@bootlin.com,
+	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH net-next] net: stmmac: xgmac: Report the VLAN tag type from the descriptor
+Date: Wed, 18 Nov 2026 17:21:34 +0100
+Message-ID: <20261118162136.2782405-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-pinctrl-mt6895-v2-1-0728c4eddcac@gmail.com>
-References: <20261118-pinctrl-mt6895-v2-0-0728c4eddcac@gmail.com>
-In-Reply-To: <20261118-pinctrl-mt6895-v2-0-0728c4eddcac@gmail.com>
-To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Alexander Letuchiy <asalde.le1@gmail.com>
-X-Mailer: b4 0.15.2
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_081805_217406_55CE7E95 
-X-CRM114-Status: GOOD (  16.82  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261118_082204_813046_92E4A6CB 
+X-CRM114-Status: GOOD (  16.73  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,266 +88,108 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add device tree bindings for the pin controller found in the MediaTek
-Dimensity 8000/8100 (MT6895) SoC.
+Stmmac's double VLAN handling hasn't been working great for a while,
+it's been recently reworked for dwmac4 by Ovidiu Panait. In that work,
+it was found that the tag stripping hardcodes the 8021Q tag type for
+XGMAC while stripping the tag, while the IP actually reports the outer
+tag type in the descriptor.
 
-The controller has 227 GPIOs spread over a GPIO base and 13 IOCFG
-blocks, and an EINT controller made of five blocks (W, E, S, N, C).
+The tag type can be one of 6 different values (note inner/outer is
+reversed in the macro names):
 
-Pins with PUPD/R1/R0 or RSEL pull-ups take the raw MTK_PUPD_SET_R1R0_*
-and MTK_PULL_SET_RSEL_* values in bias-pull-up and bias-pull-down.
-There is no public table of the RSEL resistances for this SoC, so the
-binding does not offer the ohm-based values used on MT8188 and MT8195.
+ - XGMAC_ET_LT_VLAN_STAG       single S-tag
+ - XGMAC_ET_LT_VLAN_CTAG       single C-tag
+ - XGMAC_ET_LT_DVLAN_CTAG_CTAG outer C-tag, inner C-tag
+ - XGMAC_ET_LT_DVLAN_STAG_STAG outer S-tag, inner S-tag
+ - XGMAC_ET_LT_DVLAN_CTAG_STAG outer S-tag, inner C-tag
+ - XGMAC_ET_LT_DVLAN_STAG_CTAG outer C-tag, inner S-tag
 
-Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
+Report that tag type through a dedicated desc ops and report it to the
+stack.
+
+We keep the 8021Q fallback when we don't have the ops, as we don't
+set NETIF_F_HW_VLAN_STAG_FILTER on the cores that don't support that.
+
+This has been tested on AgileX5 with the vlan.py selftest.
+
+Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 ---
- .../bindings/pinctrl/mediatek,mt6895-pinctrl.yaml  | 228 +++++++++++++++++++++
- 1 file changed, 228 insertions(+)
+ .../net/ethernet/stmicro/stmmac/dwxgmac2_descs.c    | 13 +++++++++++++
+ drivers/net/ethernet/stmicro/stmmac/hwif.h          |  2 ++
+ drivers/net/ethernet/stmicro/stmmac/stmmac_vlan.c   |  6 +++++-
+ 3 files changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6895-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6895-pinctrl.yaml
-new file mode 100644
-index 000000000000..e3ecfffc084e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6895-pinctrl.yaml
-@@ -0,0 +1,228 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/mediatek,mt6895-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
+index 6719ac6e395b..71ce2bc9b5e1 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
+@@ -76,6 +76,18 @@ static bool dwxgmac2_wrback_get_rx_vlan_valid(struct dma_desc *p)
+ 	       et_lt <= XGMAC_ET_LT_DVLAN_STAG_CTAG;
+ }
+ 
++static u16 dwxgmac2_wrback_get_rx_vlan_proto(struct dma_desc *p)
++{
++	switch (FIELD_GET(XGMAC_RDES3_ET_LT, le32_to_cpu(p->des3))) {
++	case XGMAC_ET_LT_VLAN_STAG:
++	case XGMAC_ET_LT_DVLAN_STAG_STAG:
++	case XGMAC_ET_LT_DVLAN_CTAG_STAG:
++		return ETH_P_8021AD;
++	default:
++		return ETH_P_8021Q;
++	}
++}
 +
-+title: MediaTek MT6895 Pin Controller
+ static int dwxgmac2_get_rx_frame_len(struct dma_desc *p, int rx_coe)
+ {
+ 	return (le32_to_cpu(p->des3) & XGMAC_RDES3_PL);
+@@ -352,6 +364,7 @@ const struct stmmac_desc_ops dwxgmac210_desc_ops = {
+ 	.set_rx_owner = dwxgmac2_set_rx_owner,
+ 	.get_rx_vlan_tci = dwxgmac2_wrback_get_rx_vlan_tci,
+ 	.get_rx_vlan_valid = dwxgmac2_wrback_get_rx_vlan_valid,
++	.get_rx_vlan_proto = dwxgmac2_wrback_get_rx_vlan_proto,
+ 	.get_rx_frame_len = dwxgmac2_get_rx_frame_len,
+ 	.enable_tx_timestamp = dwxgmac2_enable_tx_timestamp,
+ 	.get_tx_timestamp_status = dwxgmac2_get_tx_timestamp_status,
+diff --git a/drivers/net/ethernet/stmicro/stmmac/hwif.h b/drivers/net/ethernet/stmicro/stmmac/hwif.h
+index 8ae95e91a36a..047bda5cbd92 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/hwif.h
++++ b/drivers/net/ethernet/stmicro/stmmac/hwif.h
+@@ -60,6 +60,8 @@ struct stmmac_desc_ops {
+ 	u16 (*get_rx_vlan_tci)(struct dma_desc *p);
+ 	/* Get the valid status of descriptor */
+ 	bool (*get_rx_vlan_valid)(struct dma_desc *p);
++	/* Get the vlan tag proto from the descriptor */
++	u16 (*get_rx_vlan_proto)(struct dma_desc *p);
+ 	/* Return the transmit status looking at the TDES1 */
+ 	int (*tx_status)(struct stmmac_extra_stats *x,
+ 			 struct dma_desc *p, void __iomem *ioaddr);
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_vlan.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_vlan.c
+index fb9aad748cb3..bf23d82e9f38 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_vlan.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_vlan.c
+@@ -209,8 +209,12 @@ static void vlan_rx_hw(struct mac_device_info *hw,
+ {
+ 	if (hw->desc->get_rx_vlan_valid(rx_desc)) {
+ 		u16 vid = hw->desc->get_rx_vlan_tci(rx_desc);
++		u16 proto = ETH_P_8021Q;
+ 
+-		__vlan_hwaccel_put_tag(skb, htons(ETH_P_8021Q), vid);
++		if (hw->desc->get_rx_vlan_proto)
++			proto = hw->desc->get_rx_vlan_proto(rx_desc);
 +
-+maintainers:
-+  - Alexander Letuchiy <asalde.le1@gmail.com>
-+
-+description:
-+  The MediaTek MT6895 Pin controller is used to control SoC pins.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt6895-pinctrl
-+
-+  reg:
-+    items:
-+      - description: pin controller base
-+      - description: rm group IO
-+      - description: rt group IO
-+      - description: rmm group IO
-+      - description: bl group IO
-+      - description: bm group IO
-+      - description: br group IO
-+      - description: brr group IO
-+      - description: lb group IO
-+      - description: lm group IO
-+      - description: rtt group IO
-+      - description: tr group IO
-+      - description: tl group IO
-+      - description: lt group IO
-+      - description: EINT controller W block
-+      - description: EINT controller E block
-+      - description: EINT controller S block
-+      - description: EINT controller N block
-+      - description: EINT controller C block
-+
-+  reg-names:
-+    items:
-+      - const: base
-+      - const: rm
-+      - const: rt
-+      - const: rmm
-+      - const: bl
-+      - const: bm
-+      - const: br
-+      - const: brr
-+      - const: lb
-+      - const: lm
-+      - const: rtt
-+      - const: tr
-+      - const: tl
-+      - const: lt
-+      - const: eint-w
-+      - const: eint-e
-+      - const: eint-s
-+      - const: eint-n
-+      - const: eint-c
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    description:
-+      Number of cells in GPIO specifier. Since the generic GPIO binding is used,
-+      the amount of cells must be specified as 2. See the below mentioned gpio
-+      binding representation for description of particular cells.
-+    const: 2
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  gpio-line-names:
-+    maxItems: 247
-+
-+  interrupts:
-+    description: EINT controller interrupt
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+# PIN CONFIGURATION NODES
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    additionalProperties: false
-+
-+    patternProperties:
-+      '^pins':
-+        type: object
-+        allOf:
-+          - $ref: /schemas/pinctrl/pincfg-node.yaml
-+          - $ref: /schemas/pinctrl/pinmux-node.yaml
-+        description:
-+          A pinctrl node should contain at least one subnodes representing the
-+          pinctrl groups available on the machine. Each subnode will list the
-+          pins it needs, and how they should be configured, with regard to muxer
-+          configuration, pullups, drive strength, input enable/disable and input
-+          schmitt.
-+
-+        properties:
-+          pinmux:
-+            description:
-+              Integer array, represents gpio pin number and mux setting.
-+              Supported pin number and mux are defined as macros in
-+              arch/arm64/boot/dts/mediatek/mt6895-pinfunc.h for this SoC.
-+
-+          drive-strength:
-+            enum: [2, 4, 6, 8, 10, 12, 14, 16]
-+
-+          drive-strength-microamp:
-+            enum: [125, 250, 500, 1000]
-+
-+          bias-pull-down:
-+            oneOf:
-+              - type: boolean
-+                description: normal pull down.
-+              - enum: [100, 101, 102, 103]
-+                description: PUPD/R1/R0 pull down type. See MTK_PUPD_SET_R1R0_
-+                  defines in dt-bindings/pinctrl/mt65xx.h.
-+              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-+                description: RSEL pull down type. See MTK_PULL_SET_RSEL_ defines
-+                  in dt-bindings/pinctrl/mt65xx.h.
-+
-+          bias-pull-up:
-+            oneOf:
-+              - type: boolean
-+                description: normal pull up.
-+              - enum: [100, 101, 102, 103]
-+                description: PUPD/R1/R0 pull up type. See MTK_PUPD_SET_R1R0_
-+                  defines in dt-bindings/pinctrl/mt65xx.h.
-+              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-+                description: RSEL pull up type. See MTK_PULL_SET_RSEL_ defines
-+                  in dt-bindings/pinctrl/mt65xx.h.
-+
-+          bias-disable: true
-+
-+          output-high: true
-+
-+          output-low: true
-+
-+          input-enable: true
-+
-+          input-disable: true
-+
-+          input-schmitt-enable: true
-+
-+          input-schmitt-disable: true
-+
-+        required:
-+          - pinmux
-+
-+        additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/pinctrl/mt65xx.h>
-+    #define PINMUX_GPIO0__FUNC_GPIO0 (MTK_PIN_NO(0) | 0)
-+    #define PINMUX_GPIO6__FUNC_SCL0 (MTK_PIN_NO(6) | 1)
-+    #define PINMUX_GPIO7__FUNC_SDA0 (MTK_PIN_NO(7) | 1)
-+
-+    pio: pinctrl@10005000 {
-+        compatible = "mediatek,mt6895-pinctrl";
-+        reg = <0x10005000 0x1000>,
-+              <0x11c20000 0x1000>,
-+              <0x11c30000 0x1000>,
-+              <0x11c40000 0x1000>,
-+              <0x11d10000 0x1000>,
-+              <0x11d30000 0x1000>,
-+              <0x11d40000 0x1000>,
-+              <0x11d50000 0x1000>,
-+              <0x11d60000 0x1000>,
-+              <0x11e10000 0x1000>,
-+              <0x11ea0000 0x1000>,
-+              <0x11eb0000 0x1000>,
-+              <0x11f20000 0x1000>,
-+              <0x11f30000 0x1000>,
-+              <0x11e50000 0x1000>,
-+              <0x11ce0000 0x1000>,
-+              <0x11de0000 0x1000>,
-+              <0x11fe0000 0x1000>,
-+              <0x1c01e000 0x1000>;
-+        reg-names = "base", "rm", "rt", "rmm", "bl", "bm", "br",
-+                    "brr", "lb", "lm", "rtt", "tr", "tl", "lt",
-+                    "eint-w", "eint-e", "eint-s", "eint-n", "eint-c";
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&pio 0 0 227>;
-+        interrupt-controller;
-+        interrupts = <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
-+        #interrupt-cells = <2>;
-+
-+        gpio-pins {
-+            pins {
-+                pinmux = <PINMUX_GPIO0__FUNC_GPIO0>;
-+                bias-pull-up;
-+                drive-strength = <6>;
-+            };
-+        };
-+
-+        i2c0-pins {
-+            pins-bus {
-+                pinmux = <PINMUX_GPIO6__FUNC_SCL0>,
-+                         <PINMUX_GPIO7__FUNC_SDA0>;
-+                bias-pull-up = <MTK_PULL_SET_RSEL_111>;
-+                drive-strength-microamp = <1000>;
-+            };
-+        };
-+    };
-
++		__vlan_hwaccel_put_tag(skb, htons(proto), vid);
+ 	}
+ }
+ 
 -- 
-2.56.0
+2.56.1
 
 
