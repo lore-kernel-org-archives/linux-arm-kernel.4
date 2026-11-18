@@ -2,86 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EAF606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FC3F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 11:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h8Rske4g;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=UkM6G1KM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vuNP09wV;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qzhUnvXL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=8bqfpbBHkizT5LV4unUjsrB2ytVrIgjNmcwUFqqZaG0=; b=h8Rske4galXJsL
-	Cc7YaLrT8l+fpmkovY2U++SueZ0Iycu8R+Skznwn5lBYCQEomvQD7KrkTi0SEKmhfVjQ2fp+nES1w
-	TESBe/BioHw8vcY69BX4BmefYEYQYeSnuyNyVZ7w+Co0nUDVWqcdeWoJSFQgBGFGp6N01fj157k9e
-	wDBmwgG5DFsq6myjC8M0s6bQdUi2hr7tDii6yUX8NbkkSrk5qvQiY+r5so/1IUda8PxfQ6Ll2Unu3
-	H5tEVKp4QrVtQI3ZL1vLRc7pLu1B1SYEj4qE4IxoF1KdQRXbYAkWo70b/bU4PsGl/uPFLndwbQ0O1
-	pVyB42vs9mfU3VG4hJcA==;
+	List-Owner; bh=sHi5V+1hpRfrxl1HVLwRyrTDDCQxfUTOQX4vPNFhHb8=; b=vuNP09wVVYcyk7
+	82nQw5jZxRARl/qtwB85DmtBISBKA0DgP4fO12aX+keEToE7K9NmNbajar9/CRhXUHAOacSD6tUIx
+	Z/fmXzhGoSLApo+8sYfaOb/x71OzO2/dyV3ROTBmX618TPHVByYGuwa4JADh2+ChZ14nJFyLwRjM1
+	twxi+Ql+XffFXqGOJEnVC2JMCI9T7indBO7K846O1KH4gAdsCHa6GFGSJaI7Nk7TYWQlh88m6czj3
+	h5WzlyGz4ihd32s3xo2hdDnpddQmluI+8TBnCsmr2RQKtrpP27nEezUoGaKgICTrN9K6vyiaUuW+F
+	GmCTtv7tOIg5pEsei7bA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdZ2-00000008gNs-2TW0;
-	Wed, 18 Nov 2026 11:10:56 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xTdbM-00000008gZc-3X4U;
+	Wed, 18 Nov 2026 11:13:20 +0000
+Received: from mail-yx1-xb130.google.com ([2607:f8b0:4864:20::b130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTdYy-00000008gNT-2Lcf;
-	Wed, 18 Nov 2026 11:10:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795000249;
-	bh=C6+HY4ClMrV2fwaShVwciggPOYGg14zJs95/gfFRXeU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UkM6G1KMQCte1V3ulm2JnI7GWk61W6NCccHcxfvacoXdy3DBDgySwYYbXTgr1zAaO
-	 zQlhQ9XDFEHqknUNHUYQnocaHdLxWhmbM2qbfODwMKxNAlwP3CkwyGEn0aeY0MbQi4
-	 Z5NCIhWhIVRjQwGc8L/dt8WtbK2KDO2K/PN85ZGkPJBMq1f2EC4w/3KOXbk+ZUJtA5
-	 yoRuv0KYgMqnL0l1gnuVZdtfUhwx2Fz8wiei9ocHrTDnXIaP/TOR93AHvukBQhSBS+
-	 4XuCsItFKgZ3deLFJ/TxSB3HjMqn/CAVfXhCxpWdW+6MBkjXWRZJWeu4WFFVn/tMEv
-	 8DjZLR3oQgqPw==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 46C7617E07EC;
-	Wed, 18 Nov 2026 12:10:48 +0100 (CET)
-Message-ID: <779efc61-646d-4735-b54d-7bc7436385bd@collabora.com>
-Date: Wed, 18 Nov 2026 12:10:47 +0100
+	id 1xTdbI-00000008gZ3-1PZt
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 11:13:19 +0000
+Received: by mail-yx1-xb130.google.com with SMTP id 956f58d0204a3-67be4f2f4d4so814489d50.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 03:13:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795000394; cv=none;
+        d=google.com; s=arc-20260327;
+        b=rhSqpV55J95Kq+sODFh82DYHCPSCLOpDvOD7vIX2AA02OrwxYevAlVLErRrZDidRUw
+         BMEHIHEPcKPAdgpzRTeNK5aSJ87OGHNF7Kl9JbA3kZRB3m9YRLjWiDRcpD+fyhDlnXtw
+         oPoE8H6VCoyK/R8Uiy1/gX8yXFti1wFZaIF2lF+0RBRFM8yIWPA9j+Y7NhqNM0e3dfKu
+         7LRIq680QIkAeq5zUx7Q0KwgUmUxGNDSGEdYg4bVHip1JEB1GOOBuOdg7xd/WTnGvGQI
+         g4oCfmxU+4WINhTj+BZJMZ9jibeoo53c1htow1M2H98FpmkTzt/N2ohjOrS5tWBE9g9w
+         pA1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=sHi5V+1hpRfrxl1HVLwRyrTDDCQxfUTOQX4vPNFhHb8=;
+        fh=yM4aIXZHfT7ai3EjN7RC49StNwlUJ3ffucCdLafHm3I=;
+        b=Lc7eI7vNnHbq55Nkge5a/IRM76xnqcCIFQOTYcWscCNEA608/fRZCtAYUHSH6YaNxE
+         1x9ABgetwrVOLTaY5o32AWbEKSXQ4KUJXJCNceXoPaZCcYH067gIKEQkq14/8Lg54jDI
+         OZBJHQuk2C5kIDMdlgyf87zIR7O10sRRTF0lxzlkkKsGAWVS5k2X/l441+5yyX7BoCd0
+         3V5lEp/Mcam6BRCq021tV3YNv2mY2iey0mVYsKNH7uBC+HzA3JwOcqoxwtszTUMVcgWk
+         AuhXwUuZ1ZJ3CJG3vdyDAlMVShVUufr0/kbSUucWQZyf+8uSUXw/zVgsls1BTKpR5/xf
+         sNKQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795000394; x=1795605194; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=sHi5V+1hpRfrxl1HVLwRyrTDDCQxfUTOQX4vPNFhHb8=;
+        b=qzhUnvXL/7BSEHonOYmD8Cd9ED3P3I7jNGa4WyDKx356/h/tyD9gRr03LdQNGQ9Rou
+         0hcpxeEUS7PHDUg2lZ5kD3W91iBjJfb2K59tNYW7RBJ8lrG3+MyHBsVOyuKH1lXoUj1v
+         TTkaTMpTnB7aSqXyY6hrp6bzYRhOMe3ot9LEEj/0mznFEwHjQT7zvKEHD57wE0MdvUIY
+         bMaeScvRpgHhydRH/8T4fHYRJNhFWeD8BPGxYGwLX1wiLa2kcgEWcG+z/BSfW/hy3DXX
+         wwDJxNT7VTqxSAEPvDVhL/Aj3tR83be91amFkF8SWaVg8i0c3uMzpTwbjBic4R5BmO0B
+         EYlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795000394; x=1795605194;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=sHi5V+1hpRfrxl1HVLwRyrTDDCQxfUTOQX4vPNFhHb8=;
+        b=OIsc7fgTUmxyO02FHd/Z/o0llnas9C+lgwQK0zgA+dJq1dEv9bFxBjwZ4VFhltBKdn
+         RJS4CjRhWlowsLCHAcHRaKeDKXnAPyFvqkQgbmjOWVrZa+LB47If4RJ35qIKcpMwkR4t
+         q6N8GLBuw6QTUXIcQHMdPurXMHzNPo5Mq6GDih83kek0vZLq0HEIplaHrxhifugJZKG8
+         zRmht8ZVNl0iYJC7h+xzJDcq3WeH/nl5uXaKEJ+DQLBZBJtrRp36GzPFJezqcXQQvxmk
+         AX0Jm3wMRCE2LXncFop7EXVifnaux6ohTKp7YMEbU5u8smgSS/mNYm0u3QBKip7Jl/O8
+         8JDw==
+X-Forwarded-Encrypted: i=1; AL+hErHHEpMKNrA7Kh5cb7IiWusjcOuo1XN1QhLJb6XarnrwPg6r3goYXJYRc++zNnWK6B6uFWnoJhgqL9hEOo0GzSg5@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Kw0rpW35tEnjMIgQ8F7ecdjVkOS3cOv4Pm7/mhjFp4F+3CY2g
+	K8+/KBg3tto+bUNnKXKZy2i1mxRL+9EeaWWXezR1ZHTaL2KE6o86DGAHjaXABTpHEqvOmkO3Goe
+	Y2H6UyCAKJIg8iXvjHDysM9RlbOjYLU62dJ93KA==
+X-Gm-Gg: AZFdTZfL8f7ZGjlZn7oXI4ozxQObbPJ+BCyQgBA+tjbCvbRG2mBVJ889WPFACmr+Ecz
+	mFGR0ICg1F/IyffeqorqVT6atuBt9IILodQbMo2dTvoDoRHmbMDmpGTPnALetnAEw/S2mdgCB4C
+	IigrIvPx7irrQ/1Egal8+AKnGppBaQVlSwkQgJ1HRkxL3ve9pgqa7RHjZy7baWfTkLuo/7FJHkH
+	nAnT+TmzjNALOqXFD0r6Y9oTCAHjIOWgInAMvlHVQrnDlVVVK+MiGzmtRion8rxBghuLRoQ370/
+	5lTX05i5Vq+pnnL5andOLfnKkbFbDIauamJsb0KItppNIeBh+e+0hF58jo2Ve93vEELlyyjnnM5
+	y3MGBzCGc5ogG3EegL94h5akn1+4MwQe9qQ1hM6+EjP+rMTG4dVZymzBrItwOV3qIBJ4M/lF8Ch
+	ypjBZ8InHYXr162Zw=
+X-Received: by 2002:a05:690c:720a:b0:8b4:fc2d:2fbc with SMTP id
+ 00721157ae682-8b4fecfa8fdmr6432697b3.17.1795000394419; Wed, 18 Nov 2026
+ 03:13:14 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: mediatek: mt8167: Add DRM nodes
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Luca Leonardo Scorcia <l.scorcia@gmail.com>,
- linux-mediatek@lists.infradead.org
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>,
- Jitao shi <jitao.shi@mediatek.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260921113914.779393-1-l.scorcia@gmail.com>
- <20260921113914.779393-5-l.scorcia@gmail.com>
- <bbefcf0b-b31e-4f74-bf79-b0ccc983f62b@kernel.org>
- <200ef6c1-eced-4c36-832d-3fb409aac866@collabora.com>
- <5715e9e5-857d-4104-aedd-9662da0fc0ab@kernel.org>
- <911e4163-8a2c-4ca2-8903-8d3ddb7266e8@collabora.com>
- <600165c4-eaa7-4b1e-806c-63d3b97d5064@kernel.org>
- <63da5790-984b-4760-8e92-85b5d2269b30@collabora.com>
- <94ed1340-94bd-49ee-ba31-9bb63164c89a@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <94ed1340-94bd-49ee-ba31-9bb63164c89a@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20261103-a100-thermal-trips-v1-1-73bce7ff0767@gmail.com>
+ <CAGb2v64fEDzpn-ytggienzYjOGiQYsJ=SLCVx4zz9psw=bvjYg@mail.gmail.com>
+ <CANxy8yTbu63ykQnqa_XA=HhV7JTDZd3ac2XWGzYNwuHBAd2DuQ@mail.gmail.com>
+ <CANxy8ySZ_ErH4gi3PbWv6bb+uLvvUV4_-WmBkDrMw+RJqazA5w@mail.gmail.com> <CAGb2v65D6ACO83fAm5_Jh4RC5X3H=26EQYHAz8tVOWEVerSPXA@mail.gmail.com>
+In-Reply-To: <CAGb2v65D6ACO83fAm5_Jh4RC5X3H=26EQYHAz8tVOWEVerSPXA@mail.gmail.com>
+From: Rajan Yadav <rajanyadav0307@gmail.com>
+Date: Wed, 18 Nov 2026 05:13:03 -0600
+X-Gm-Features: AclHuK9n1arnwuviwRTqKqG6GX0B1k9jEh54QwQkpt5LgjUFE7LwWPEIi0qBPfo
+Message-ID: <CANxy8yT4E474NpEZPE_6QHh1UJvj7xQEVR4mOxW759y75SBd2g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: a100: Add CPU thermal trips and
+ cooling maps
+To: wens@kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_031052_807847_3197170C 
-X-CRM114-Status: GOOD (  48.56  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_031316_383727_CB38D36D 
+X-CRM114-Status: GOOD (  18.84  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,160 +125,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/17/26 17:00, Krzysztof Kozlowski wrote:
-> On 17/11/2026 15:21, AngeloGioacchino Del Regno wrote:
->>
->>>>
->>>> Any advice on how to possibly resolve this without rewriting the entire thing?
->>>>
->>>> Mapping that by mmio address in the driver seems too stupid/dirty/bad/etc.
->>>
->>> Driver needs that, so why exactly stupid?
->>
->> Really feels like going back to the days when devicetree was not a thing and all of
->> the MMIOs (on ARM at least) were added into a mach file.
-> 
-> Well, adding an alias just to tell that device node with MMIO address
-> 0xdeadbeef is ID 0 is very similar, just placed differently. The
-> "aliases" are the mapping between MMIO and ID. Driver code also can do
-> the mapping between MMIO and ID.
-> 
->>
->>   >
->>> You do not represent any
->>> actual hardware information in DT with these aliases.
->>
->> That depends on how you see it (as in, on the point of view), really, because well
->> technically the second ReadDMA IP is ... not the ... primary, as it's the secondary
->> one - as much as the third DPI is not the primary one (even though DRM can make it
->> so that it can be used as a primary output, but that's a software thing, not HW).
->>
->> So... well, with that point of view... those aliases *are* representing information
->> about the hardware.
->>
->> But I know that you're not complaining just about this, and this reply is not a way
->> to argue all that much, just a bit of thinking out loud.
-> 
-> Being simply "second" is not alone useful information. It's pointless,
-> it does not matter neither to hardware nor to drivers.
+Hi Chen-Yu,
 
-Hmm... Sorry, but I disagree about this statement - it does matter in some cases.
+A gentle ping on this patch. It has Andre's Reviewed-by and still
+applies cleanly to sunxi/for-next.
+As agreed, the OPP fix comes first: v2 of the A133 speed grade and OPP
+series is now on the list [1]. Its thermal tests rely on the 90 C trip
+from this patch, so it would be good if this one could go in first.
+[1] https://lore.kernel.org/all/20261118-a133-series-v2-0-8bcec9c9aadf@gmai=
+l.com/
+Thanks,
+Rajan
 
-The driver's POV is of course out of context here, as we're talking about DT//HW.
-
-(I know that you know, this is to avoid misunderstanding from anyone else reading
-this thread).
-
-> If it matters,
-> then probably that "second" has some other meaning and it maps to an
-> actual hardware topology difference, then often it deserves its own
-> compatible or property, depending on the difference.
-> 
-
-This is a bit more complicated than that: "second" may or may not have another
-meaning, as in, it may or may not be topologically different in the whole context
-of the controller.
-
-Having different compatibles wouldn't do either, because having 10 compats for one
-IP which is 99.9% compatible if not for very very very very (add as many "very" as
-you wish here) small details that definitely don't deserve a new compatible... and
-besides, a driver parsing more than 90 compatible strings would be... how can I
-express that in professional words? :-)))
-
->>
->>   >
->>> You want to tell
->>> drivers how drivers should behave - that's not a job for DT,
->>
->> I want to tell drivers what is the first or the second or the third hardware
->> instance of the same IP, I don't want to tell drivers how drivers should behave
->> from devicetree.
->> The drivers are behaving differently with different hardware (read as: hardware
->> that is *physically* located in front of something else, or somewhere else anyway)
->> as in with different hardware instances.
-> 
-> Then alias is not the way to represent these differences.
-> 
-
-Are we opening a can of worms here?
-
-There are a bunch of (generic, yes, and I think acceptable-because-generic, right?)
-aliases for other devices like UART, I2C, SPI, etc which instance is actually
-represented by an alias - and this is *not* for HW, but rather for drivers' device
-node number consistency in the userspace (of course not just MTK, but all of them).
-
-That makes things a bit weird then when we assert that devicetree describes the HW
-and, compared to what we're analyzing in this specific MediaTek case (which does in
-a way describe hardware, as in hw instance number), the LS busses aliases are just
-software details in an inappropriate place (DT) at this point?
-
-I wonder if there's anything that can be done for that case, because then now I'm
-kind of sensing that there's something else that is fundamentally wrong and that
-1. Leads to confusion (not in experienced people usually, but not granted)
-2. May actually help resolving situations that are similar to this one
-
-I'm well aware that whatever comes out of this won't be for this round, nor for the
-next one, but rather something that may eventually take (a lot of) time to assess
-and address, but still.
-
-Mind you - I keep thinking out loud - but I believe sometimes this is what makes
-good (hopefully) ideas come to mind.
-
->>
->>> that's job
->>> for driver data. Of course if there is smarter way than MMIO->ID, I am
->>> all in.
->>
->> You can't imagine how much I was hoping for you to say something about an
->> alternative solution to that.
->>
->> As I said, it feels a bit like pre-DT times, but what I get from you is that this
->> is cleaner than just adding information about the real hardware instance number in
->> devicetree (no that's not just MediaTek, qcom also had similar issues as you said).
-> 
-> Sure, I understand. This is an workaround and might be less applicable
-> here. It might be possible that your hardware needs a dedicated
-> property.
-
-I didn't check the others - but from what I remember, Qualcomm also has this kind
-of workaround somewhere (in some driver[s]) - so that pushes the count to two
-vendors, let alone the number of SoCs affected which is .. well, more than two :-)
-
-I wonder if someone (unfortunately not me or at least not in the next 6 months)
-should do ... well, something ... to fix this situation in a good way.
-
-Adding the same workaround to MediaTek would make the argument stronger when that
-someone actually gets to resolving this situation somehow.
-
-> Unfortunately, this cannot be a custom per-device alias.
-> 
-
-I will come up with some way (right now, I have no idea how) to get this situation
-addressed in MediaTek DRM, maybe it's going to be that MMIO address workaround, or
-maybe not, let's see what I can do here.
-
-Surely though, either way, that's not good news - not just because it's going to
-slow down the upstreaming by a whole lot - but mostly because it's all about
-adding one more workaround for something that is "left in the future-decisions-box"
-in the kernel.
-
-Having to do this makes me sad, and this is mostly because I have no other choice.
-
-I'm sure you know what I mean here, so I won't add any more words to this already
-long reply.
-
-P.S.: Luca, you don't need to add the aliases to your SoC, because there's only one
-instance of the display controller IPs that you're adding; for DSI1/2 DPI1/2 and
-those final outputs, I guess just leave them out for now and add just the first....
-
-Cheers,
-Angelo
+On Tue, Nov 3, 2026 at 9:33=E2=80=AFAM Chen-Yu Tsai <wens@kernel.org> wrote=
+:
+>
+> On Tue, Nov 3, 2026 at 10:47=E2=80=AFPM Rajan Yadav <rajanyadav0307@gmail=
+.com> wrote:
+> >
+> > On Tue, Nov 3, 2026 at 7:07 PM Chen-Yu Tsai <wens@kernel.org> wrote:
+> > > Does the downstream BSP have this? It would be nice if we could port
+> > > it over. Then you can properly use the power allocator and/or the
+> > > schedutil governor.
+> >
+> > Yes. The BSP (sun50iw10p1.dtsi) has dynamic-power-coefficient =3D <190>
+> > on cpu0, and sustainable-power =3D <1200> on the CPU thermal zone.
+> >
+> > The energy model uses the OPP voltages, and Andre points out that the
+> > current OPPs are A100-only and don't fit the A133. So I'd like to fix
+> > the OPPs first, and then add the coefficient as a follow-up, tested wit=
+h
+> > the power allocator on the K5C. Is that okay with you?
+>
+> That works.
 
