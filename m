@@ -2,105 +2,155 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E719606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A95606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 23:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BKnuxpCt;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z0LLTpoJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=321Ua0/Q;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=WzXoqy9E;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=OwGudlZS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=XKF4reDlniKlCY8ZnfoFYrLEAXRDzaCbY1fijRI1jvg=; b=BKnuxpCtQok3wl9nzD02F4g0Ug
-	gexoGA++FL1qrIUHH3onIIXGQxXXke/kdO2pcrKP84zPYAMWTAC4Wbt6NHtbRev/k6Gu0i9TMRH46
-	FbEOLCrU88ZDUGwzqe9XTWO4POw/k8hYOv5o76PY8FjCQScOsVcNC+0tLnhwjVUJvJJsTtZ+DuK/Z
-	gdHP0X9WbeRLWhp+PE+bauJuwrGgUiDzW+0dDdOlsqVPlBH/+0TixX+BuAs44OusGTBxvxMfoGj3e
-	3hjoRJThuBD3UPKhpN8OxWVZf3i/SQuV7KK5reZb7FN2D4ZvSP8/EgS5n/qZVjHRJzrW92CCr0E5Q
-	LC3GM+DQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=LVpZsBQ2E3YbTOVgeYCjz8Lxd6C9Ro2zeP2g1RQdtq4=; b=321Ua0/Q5DoG4h
+	5l1HT+L58NNw31lHPWe3e2A9/kxFWwxGDjMejxrMpeSj5g5HjSKc+kqheF/HU6JTlmVqmzWmy8eLl
+	uYaVItKyNNBVLf2E6ucMerp/u8s58+lSpnLSR8lrcJq73Gsz7j8jEOncAXuvOgVk6vOw0pHQn2oRe
+	1cPaSCdwmtlgdJBdlYLeulQ5LvMg2Hz1PTRJxTu8CMmxc2cDj5n+Z976cypZZiv/1o0FYcPXxakqg
+	CAWAkYZypI7yzqXzUCbnPkIYsiIKW5uMqNYDekVwgeHp6+b8WhE7kzW+Y5vUTWZd94KG5jueX9Unq
+	oR75tPZx8y/b6GrpUyig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xToeM-0000000ARqn-0uES;
-	Wed, 18 Nov 2026 23:01:10 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTotq-0000000AT2s-34GG;
+	Wed, 18 Nov 2026 23:17:10 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xToeK-0000000ARqd-2kGa;
-	Wed, 18 Nov 2026 23:01:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B2C946415A;
-	Wed, 18 Nov 2026 23:01:07 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795042867;
-	b=TxYAPgWRxVrwph/TaeniTXqu/olZCwwVBmxvIh/nqtlUxXcGT2aicZcTmX658JYVrkP8
-	 wstKSMONoSupMupE5NVWtHGYtUP1jeQlTxjfi11x7cxCxpe8/MWv8M00LQOUZNhKXN/Cv
-	 Hom8x2cmIT+JAzuQLZlqsAAgi7ftyxDQEr+JAjLoI2iNVXJXk+lWoUcNtbIqdqFDRzwv1
-	 pjtSUrUnD8SctjIj8YbjSGItP6Ye6fMqpQIoc8uHtiC3rJOniBm/QZn4635+bzATVGn9u
-	 Bub1uhA4YKeMbY72PexlDZY9YaWdv5jW4DVM3SKePhImwimHy+/skgxqRubum7xnodA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795042867;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=XKF4reDlniKlCY8ZnfoFYrLEAXRDzaCbY1fijRI1jvg=;
-	b=Adc0Q67+ieOTNHrlfdVivrvSerypK+g0DVwXjfJXlMoNJVHmwdB39TO0RdyyACpGxiD3
-	 7N4OWoNIa+6B1UMRtZk5RW9KPvc9dAik8dWnauwJoZDA5LcwA5HuiUXPo7mQegQahaOle
-	 Ybc5ISrrpmQqVBQlADka4j22YndvfIT1IVZ0B4Dci3Q6RKUtNIBm8xngB6/7worQoHYBr
-	 bcb5TGL6OtjNgfvbvRrXS+IPZwWqdEn37uwuNlgSZ042XqQZ+Mr/yLsBPsdjQT4b4/ETH
-	 tVsDGDNTuDA9TA9jzSW1fix2M7dkJtkJK/SCXacfb0aZ6/bTN373il5gK5Jhs+lpGFQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id F03A21F000C5;
-	Wed, 18 Nov 2026 23:01:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795042867;
-	bh=XKF4reDlniKlCY8ZnfoFYrLEAXRDzaCbY1fijRI1jvg=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=Z0LLTpoJmE4wiRNTudtV6TVfccSt2qKZaKXlajJEgK/za7yAp9/NWEmCclEmfLfhJ
-	 F1Slxcn16vnqOR6UwJ19q39/UKl5VWWzI/uJyrLim9ortnUNKPxpIN12Dz6x+v8JAY
-	 99FSGEutW7UQPw+39fgXVLHHy9dMU5yA/MRvXaBan8+1zfZSonOymTIMSNKpIJ96ru
-	 Ow35KXUsyRRlbzyn+BIQcSDCRUYus0LDuFam2LVnN9iAKVCXjE1ofljkAljQYGr+la
-	 dsBv4cG1WWwlP/SiX4ROLAmC9oeSPqpWr4s9rYaR/SPZw61k26zg1WwHb7Frg47QnQ
-	 HzzNzO1xsUmCA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 7D9374B004;
-	Wed, 18 Nov 2026 23:01:06 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Wed, 18 Nov 2026 23:01:05 +0000
-Subject: [PATCH] arm64: dts: rockchip: Keep the PCIe power of Kobol
- Helios64 on
+	id 1xToto-0000000AT2T-2KdM
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 18 Nov 2026 23:17:09 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AILDYx1274787
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 23:17:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LVpZsBQ2E3YbTOVgeYCjz8Lxd6C9Ro2zeP2g1RQdtq4=; b=WzXoqy9EZ8KUqGzJ
+	dXcwQReYR+9nFSrq0rPM9W0S5fsrigFhMcZUm1L203qq4hjYQlupifvfpSbRBWH3
+	vx+FjGkIXoIPtxMSEFxD++aCJuLCSgLUrBX1ObLXVHM9EJJdytruqp+W3Ag5vTIK
+	qj7ztlV7CjWCKf1lmYEsj5u2oyN7yxYTlk/PQQBGJ4PZGoWt+MALbOv7lewgWnB6
+	brOwltFJANKvco4ZYgD2EwVnNsvPBWHucCg0zcUbpZcnoPWLs+S7ADwAtF4k8ABD
+	DScPdnZw0l5oTjPjU06QTe3g6geaPCqsdUsQRnwp0PvHfdg6mFtEirwPiAG6I1ki
+	FEdSrA==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j1dpca7pf-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 23:17:07 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-38131260a5dso4173432eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 15:17:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795043827; x=1795648627; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:organization
+         :references:in-reply-to:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=LVpZsBQ2E3YbTOVgeYCjz8Lxd6C9Ro2zeP2g1RQdtq4=;
+        b=OwGudlZS6QcSHBfVWTPdP+4ksUr7sqwRN4gz0ZocHcgdovRllzN0Q2jv4UBiJkZmaV
+         RmCwqz7qXNXqlsNNfTKTjgt7SEKrzF+an0mZK0fBIox43DEOX7AEoZjbzV2N8yo1mv62
+         AgvuExPCwH/rdqLK6UB9/CHLCDx8hm7cUfnUgOukqY1Os3s/vFBYI2s7l+XuSrp250Uv
+         H0lJIzmQUnjJU9AA0/zZHzp0JYyhWonUsxjnpjP+jKCY25vgbmIW3FqEC821LgR1dzry
+         VqlX7XUiq2O7T+RZ0z1H+1fCCcrHlNslmSebekD6awrQIFdJohK02xedkHBmhj1mf/ni
+         KJBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795043827; x=1795648627;
+        h=content-transfer-encoding:content-type:mime-version:organization
+         :references:in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=LVpZsBQ2E3YbTOVgeYCjz8Lxd6C9Ro2zeP2g1RQdtq4=;
+        b=tmIJAgU9NBPXqwg0g2ooPQGhcADxhy+KBs440x52c3q3fWnySlcixTLqY7D1tFPgmL
+         PgmACM6abLeG7VyEWJvNa+PzVNdF6qCy2EkOX9iU9/QE8/xBEN5cBilN76yRzqOlWICp
+         fFfPDaD9fT42aZlUvHnpjUG13K7LGlVl+ouI60P/NEpv+1AfJQMcxFzZD+/JgxK63UVj
+         0lkPvk+Bs4NbeXVioaDn3mbScK/22PABA0BmjPmI7GDe3lQ5vvygo/Y/yo4stKpeGBFs
+         PhpRC+HY5627PG9yRSfs/fnXvVG8ZQwQzqsw04PBEFpAVJoYe2sLdpceuIDGe15Vn3kf
+         Kp9Q==
+X-Forwarded-Encrypted: i=1; AL+hErEblbTOASXKr2ceJUXXA04PFmRi5tV238MwSDRubbKyP64gbVLwMU+P1hPQ/QyxJmg0egVJItxGkYuyF8wMjFSv@lists.infradead.org
+X-Gm-Message-State: APuU4Z9gO7nbBnLv5ADJ85wVFJYznCaG3sLa3Fp+6qjKw7W4yssqrQkH
+	K1bbKpJSZIVbXrRUDOE1/3usFSq+zyiAWkc9i5cyPFi4i2HSuJkiyG02lzuXUQWg3kR+/h8ySvX
+	UB02tFFt+JVla9zELtcqk0C6AM6tXOdJ2rKr7bY0TaUGCkTzaVrdQDCdToFSuDGHgFhv3Asmyln
+	eUQw==
+X-Gm-Gg: AZFdTZct1pjoCNuUuEHEe20SHBJTRSlvmb2XCm+qyS+Ug/TrP9L8ZkW7/rkyRFQrc0p
+	CM7Oe/HTCttHB8mQZ4tuwe4RWrgoKiwbDMZoHLSKJ4KSiDJUHB8O1mrNht4nzfL/SvzhVdb9woo
+	VHpPiYU2wONemWv3E+Eslz+mTgb8f3H8dBS5YfUcB5fhwstZMSzatwXH2EPhl833VyIqE62HR8y
+	0h39yBh613FC6F0MPmTOyuFX/KE6gtl86J+E964UFYmc4DsCejq188p7B9TL8KIQSNIOwiMK4Em
+	CTDTCT1HATcziKcK4uva6IKiTDqxDqucEO9GQAwbBYfctkyvXfmW0AAj7eTMZoOKGEw6MiHr+uW
+	cltSmfPSBwvvStm6B8EAmOYtP6Od1fSclXiWY5AGKXg42zqW/arCxpk5V2uwErSap0mnkT3Mrj3
+	2nwsPhvOK55nZRcT2OBysXcz0YK7g=
+X-Received: by 2002:a05:693c:42c9:b0:36f:a72d:29f with SMTP id 5a478bee46e88-3828111ab25mr3971443eec.34.1795043826812;
+        Wed, 18 Nov 2026 15:17:06 -0800 (PST)
+X-Received: by 2002:a05:693c:42c9:b0:36f:a72d:29f with SMTP id 5a478bee46e88-3828111ab25mr3971402eec.34.1795043826254;
+        Wed, 18 Nov 2026 15:17:06 -0800 (PST)
+Received: from localhost (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-382a7eaf3b3sm12541673eec.27.2026.11.18.15.17.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2026 15:17:05 -0800 (PST)
+Date: Wed, 18 Nov 2026 15:17:01 -0800
+From: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Sudeep Holla <sudeep.holla@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, arm-scmi@vger.kernel.org,
+        linux-doc@vger.kernel.org, james.quinlan@broadcom.com,
+        f.fainelli@gmail.com, vincent.guittot@linaro.org,
+        etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+        d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
+        philip.radford@arm.com, david@kernel.org, souvik.chakravarty@arm.com,
+        leitao@kernel.org, kas@kernel.org, puranjay@kernel.org,
+        usama.arif@linux.dev, kernel-team@meta.com
+Subject: Re: [PATCH v15 00/35] Introduce SCMI Telemetry support
+Message-ID: <20261118151701.00007190@oss.qualcomm.com>
+In-Reply-To: <av3w1CbwYxFRPStZ@pluto>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
+	<20261117170709.00002088@oss.qualcomm.com>
+	<20261118-poetic-robust-raptor-bcff2b@sudeepholla>
+	<20261118093203.000069f1@oss.qualcomm.com>
+	<av3w1CbwYxFRPStZ@pluto>
+Organization: Qualcomm
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-w64-mingw32)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261118-helios64-pcie-always-on-v1-1-b77dcf4f01b4@iav.lv>
-X-B4-Tracking: v=1; b=H4sIADAu/moC/x3MywqEMAxA0V+RrA00ZaiPXxEXHSeOAWmlAR8U/
- 93i8izuzaCchBX6KkPiXVRiKKC6gmnx4c8ov2KwxjoianHhVaK6D26TMPr18JdiDOiNpe/cGNe
- 1DZR6SzzL+Z6H8b4f+VBGr2kAAAA=
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1592; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=csC4RQd6YR8LhC4D4T+ae3/8hKPMoykDjDiK28IYahI=;
- b=kA0DAAoWMpeVi+pfeQMByyZiAGr+LjGjXuGgGi0NcgRJibYyX3z3oA2z4fntgBZHDpxaGAz22
- Yh1BAAWCgAdFiEEkMIo2mik1f1PSDfgMpeVi+pfeQMFAmr+LjEACgkQMpeVi+pfeQOdGQEAixzq
- JcOSwoAS3wZZDLkOiE1x//+RWLpYCBczjYcLrKcBAJYJLXShTf5deewKTgzhNeB8iCyJzBXRINC
- Jv3xurRoD
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Authority-Analysis: v=2.4 cv=YJ0KWhGx c=1 sm=1 tr=0 ts=6afe31f3 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=7CQSdrXTAAAA:8 a=VwQbUJbxAAAA:8 a=iv0zGsx7Xu7kTqO63LoA:9 a=QEXdDO2ut3YA:10
+ a=6Ab_bkdmUrQuMsNx7PHu:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDA4NSBTYWx0ZWRfX12BRaLDs/6gh
+ kTz+kUMZdHMmecjR01jwdQRYoAOYJ0zf7XrU5WFZf1fIZx3TT2eG81VZP/Ox8KhEdTIO813Oahr
+ 6Af59p7TWNvpQFcxjW3y5A/NZiZR/fqxrTCdyzQnzOq3Zb1bRF7DnuYNztJihDcT5yXjNxsZvph
+ MmeCQG1MLtNJ2yU3kC0bDEP1Mm7NlhSVpoLmU89/R8EKNunhq61yUb7iu0gNW3nhTSLvvVYV/J3
+ E/lAeLbtXKpmUlSH8LNy6q5iKSLYx/+uqAHgjB5Rd+5H+GDXmz6P4hH8gFRHRG2v2y4pefp/xwK
+ Y8aiQ6r5k6IoPH+l3xLTrslFMvFXKWiNCA+msj22lO2G5iXEuTsA2r16nhTcdWRS5FIuXy/eK0X
+ thV/YB2Xu/VRkJIMFvIkCYSRHqZE+hA+his2IVLOJ4njw7OgFyYsCOvU+JdofI8c8Y2XaXRDBsg
+ asHC1tuSqm67/S+WRYA==
+X-Proofpoint-ORIG-GUID: sjjz-96tkhB_5EyBW3JygEG5LJhq__uR
+X-Proofpoint-GUID: sjjz-96tkhB_5EyBW3JygEG5LJhq__uR
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDA4NSBTYWx0ZWRfX1JJ33ArSGxLe
+ VAdXHcmjBf7yCl7eiYJLRIRk9CKpc/S0CCMhVeVuDUdH3Kl/aqnVNhuSNNgxzH1QO6hIvBy69Mq
+ 4nWcT2nFeYJ2zt9ojRYIwcBRH4/KVDM=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-18_07,2026-11-16_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 bulkscore=0 malwarescore=0 priorityscore=1501
+ lowpriorityscore=0 suspectscore=0 phishscore=0 spamscore=0 adultscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611180085
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_151708_630879_2EF9950F 
+X-CRM114-Status: GOOD (  36.81  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,58 +160,106 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+On Wed, 18 Nov 2026 18:39:16 +0000
+Cristian Marussi <cristian.marussi@arm.com> wrote:
 
-The JMB585 SATA controller needs PERST# high for about 60 ms after its
-supply comes up. If PERST# is low at power-on, the chip stays dead
-until the next power cycle.
+> On Wed, Nov 18, 2026 at 09:32:03AM -0800, Jonathan Cameron wrote:
+> > On Wed, 18 Nov 2026 09:33:44 +0000
+> > Sudeep Holla <sudeep.holla@kernel.org> wrote:
+> >  =20
+> > > On Tue, Nov 17, 2026 at 05:07:09PM -0800, Jonathan Cameron wrote: =20
+> > > > On Mon,  9 Nov 2026 09:11:46 +0000
+> > > > Cristian Marussi <cristian.marussi@arm.com> wrote:
+> > > >    =20
+> > > > > Hi all,
+> > > > >=20
+> > > > > [TLDR Summary]
+> > > > >  [V15 highlights]
+> > > > >  - general cleanup and hardening driven by reviews
+> > > > >  - improved TDCF access routines to minimize lost samples under l=
+oad
+> > > > >  - completed ABI docs
+> > > > >=20
+> > > > >  [V16 TODO]
+> > > > >   - address any remaining V15 outstanding Sashiko/reviewers issues
+> > > > >=20
+> > > > > The upcoming SCMI v4.0 specification [0] introduces a new SCMI pr=
+otocol
+> > > > > dedicated to System Telemetry.   =20
+> > > >=20
+> > > > This is one from the family of issues you find when reviewing ones =
+own
+> > > > (well LLM generated) emulation, realizing it doesn't match the spec,
+> > > > and yet works.
+> > > >=20
+> > > > This works fine without the required SCMI protocol property in ACPI.
+> > > > 2.2.2 of ACPI for System Control and Management Interface 1.0
+> > > > Platform Design Document. 111115A 1.0
+> > > >=20
+> > > > Now, in here is an informative statement...
+> > > >=20
+> > > > Protocols not listed using a property may not be enumerate by the o=
+perating system.
+> > > >=20
+> > > > But they are...=20
+> > > >   =20
+> > >=20
+> > > Correct, I intentionally left that out. I do have a patch that restri=
+cts it
+> > > strictly to the listed property. However, I held off on pushing it be=
+cause of
+> > > an issue we saw on an internal test platform.
+> > >=20
+> > > On that platform, the firmware advertised the protocol to the OSPM vi=
+a the
+> > > base protocol, even though it wasn't functional at all. Once they rea=
+lized
+> > > this, they simply dropped the entry from the ACPI SCMI device as a wo=
+rkaround
+> > > instead of properly fixing the base protocol discovery. While underst=
+andable,
+> > > relying on that workaround delays proper firmware fixes.
+> > >=20
+> > > That is why I went with the non-mandatory "may not be" wording. I am =
+happy to
+> > > merge that restriction patch if a real production platform actually n=
+eeds it,
+> > > but until then, leaving it open helps catch and fix broken firmware
+> > > implementations =F0=9F=98=84. =20
+> >=20
+> > You can't merge it safely as at a later date because chances are high
+> > someone is relying on the current behavior and not presenting that
+> > (currently pointless) package in ACPI for some protocol or other.
+> >=20
+> > I'm fine with a permanent decision not to check this but I don't see it
+> > as a thing that can ever change (except maybe now whilst there are not
+> > that many platforms out there using it!)
+> >  =20
+>=20
+> Even though the change would be at the transport layer, given that it is
+> NOT impacting the Base protocol, cant we anyway quirk it later on based o=
+n FW
+> vendor/version as an extrema ratio so as to support anyway older FW
+> leveraging the current behaviour ? (not ideal I agree...and I have to
+> double check what changes could be needed in the quirk framework..)
 
-At boot pcie_power is already on and PERST# is pulled high, so the
-driver only pulses PERST# on a running chip. On unbind the driver
-switches pcie_power off; on bind it asserts PERST# before it switches
-the supply back on, and the link never trains (LTSSM in Detect.Active).
+Quirking after a change is a pain because you only find out that it was
+a problem when the regressions shouts start occurring.
 
-Keep pcie_power on, so that a rebind resets the chip the way boot does.
-
-Tested with unbind/bind of the controller on v7.4-rc2 (plus the pending
-rockchip-host link retry patch, which did not trigger): 0 of 4 attempts
-without this change, 8 of 8 with it.
-
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
- arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-index 76beac38699f..aba8a0c87edb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-@@ -230,6 +230,7 @@ pcie_power: regulator-pcie-power {
- 		gpio = <&gpio1 RK_PD0 GPIO_ACTIVE_HIGH>;
- 		pinctrl-0 = <&pcie_pwr>;
- 		pinctrl-names = "default";
-+		regulator-always-on;
- 		regulator-boot-on;
- 		regulator-name = "pcie_power";
- 		startup-delay-us = <10000>;
-
----
-base-commit: a9d78db32fe78bdbe7c66ba77cb7dbb729b885de
-change-id: 20261118-helios64-pcie-always-on-a021bf706987
-
-Best regards,
--- 
-Igor Velkov <iav@iav.lv>
-
+I'd quirk the other way and paper over anyone who requires that record
+to hid some firmware bug. Their stuff doesn't work today, so no regression!=
+ :)
+>=20
+> Thanks,
+> Cristian
 
 
