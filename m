@@ -2,123 +2,138 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83522606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C872606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 15:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m9t0K0fY;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=CdmbG308
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QOIt/U/c;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=mDBBfEnI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=g0g4io6Yi9vEUzFvaHJk5/CKxY8b3/ttJE+tckycN6o=; b=m9t0K0fY/G7vao
-	YaWgjKbU2ID3BxripUAgCbPhaPJsQ8zyGgw7pVZlBabsjB+RFh4pnGwS3ow92T8tPIUgBSojWwH0r
-	jm5FRUer9yFHsuctXO5hBZkdisLpWh1Wl9aE7Z2/v4JPYHwnAj2CfEab2wNSlrcpWu6LeE2+c0qs2
-	hKqIiwIAS7OpqQBABGYnb8HBr8uSpOucI7o/iOOUuX5fTKC5M1QJlQKFIvDadMQTaCxwcBhcyPEAb
-	vVWs34SDTXkaYL2Z5yP3S3FcBXuw8p9Aj+zvwAb+WuVa32H8+6qQlOnj5ONnhSfT7sOTyOZZ0zkh/
-	EiSfjVhsjtwgwiuLAF8g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=eY2hHNDdt1qZV3S19uhVtiep8ZuUlQu9tochO15/uXs=; b=QOIt/U/cDdE2gUF9ftR475IBiB
+	57vmeA3GDmiIeOLgXS42djoTbmkIt17dk1le7NBd/pwR2gULfikG+hVspPLkB3Yt8o1tIGKa3y+0c
+	0P3nahK3GLHQRBlUP1VQAX7CgiUlpUaWW4z1tUfLyyRzfY4/NkuZ+JRbTgPAQ0tUmyzBu6aWqvZEi
+	9ZU94F/0k21ddymiNpS2gZ0CqJhLoj7MJRgniQqOTa1tqKFlSKXuztslO7D86vGHfkXBUuCt2Cb7Z
+	0G+mZIHw0conhjSZPzo3BkD6MGc/w1NGG1ajqdJ5kQZxCZbwLFeMnotap8RrVh9teIdbhvHIhkGXD
+	RUxgfnSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThXO-00000009Hmj-0wM4;
-	Wed, 18 Nov 2026 15:25:30 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xThZA-00000009I6z-2i2X;
+	Wed, 18 Nov 2026 15:27:20 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xThXK-00000009HkV-22Jp
+	id 1xThZ7-00000009I6b-176U
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 15:25:27 +0000
+	Wed, 18 Nov 2026 15:27:19 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yiqQtg54g4/fl9SZveqeHlEHbnZx6Aibcrz29Pf6rsmnGYc/8GR8dyU/L52riSeEYo4JSndImxjOPVCEOB9rvUJjO5fJOFKevDgS/4PFalmQ2LNyT4AelSTqikMkrTffz2u3CWGnzBw5TwAs6AcztNIWB76UBl9S0GhI6Ub3sco5BNyNNsvNQynGYYbgXC5VXge4H6BgmjeyOay98gEeLWjGx36RYzbF7yJe1u5bvbOJCCF2Iyjcda6lXvW6OqjC11WCSgFLzp5zYDLqFk1bb35C4n6D75quiCJa11fF6l+wBlNlaOE88S4hJsSbq+04BoP7qkbpWancuPh1aKpM7w==
+ b=v3EnXgYFMZ8CSRzqmBDtnTrK/HJSL4aci41Xo4F6XqtScpy2CAV/I/3OltaOHV53DJaQU+gBF+SeawlRnSydIJxD2rUk+wXJW/2uILMmDGX3y+andt/pgivnSft7MIvUlf9mTXEY+KzQhxLB1MGO4hbgeozpXlV9FvOPBXEYOG9cx405cGU4wfbanqUleM34RzuysQ2cHODiSkS33193Iy6dSNEn9VZFuarKxxx5kMCoATYB9gvGf5NGA2yAVrqi0qQNZSthv8U8ARkStBmV0Dzy9IDY59J9wvnKcwHYhKXetJGIojXSnoWtchBl9HYraewp7MLoNRwMVgNL0qv30w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g0g4io6Yi9vEUzFvaHJk5/CKxY8b3/ttJE+tckycN6o=;
- b=vNCj0QyBnViYs/x4PEFoxdSFRKkyC0h9koXO8gsvTst9NaL1KlbJDtrmRYq+i9Qm/dKx/NhOwq+xc0p1IuCWYm7DLxIqh/bhLMlXnh7BMgHug3k+0TAKYk1jSgfsFffaey2dux2bVxmZaPTUZPxDIuxNcniEFhkKbygXuFoVlX2qoXmC6JEpqPPwnnimJidyn/sII1OB/7CoPfKMznFLOKNmnLp7EqQ208eGjn7gFUrZP0S87cB+o9InfKqpFWPKFjK8tMSavZGkvzf46NdM+zbRgmbuxcMwNZfSsEPkciioCG9jYAP/zGei3/7EU7Eun6oBM6aKjbNGLHHgOzi4Og==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=gmail.com smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
+ bh=eY2hHNDdt1qZV3S19uhVtiep8ZuUlQu9tochO15/uXs=;
+ b=kHx0xyrbjD316E1FwydkVe/LL93FMtpxRYhg+7hJZM8XMtBE5FMzvPZqMGi9I+m/iCeEgKkaq2SQ6z3070jskSkWpxlOGTNsnaVaAST7sJ7zHFl7KtcWabfC8ewy7GKF1J6hnnTXwF3VVS1OE0kHMzUpu+sOZ4Fq0OxUd81/aF2g9VozESw6BwDifvRmtsrGAXZiS0un5+eX6jiMgwzNw7axn7zAWrpbj8nYtSrnHuaXunckwLCUpzyD1TSNgkdVcjU473Rg2ls4Vj5XHp997BmrWdW8yDWGHXl1tPv+u6cGEGegoRAp5sao1gJ8E/knGkcqgTp7VV1P1Ru9OO+P7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g0g4io6Yi9vEUzFvaHJk5/CKxY8b3/ttJE+tckycN6o=;
- b=CdmbG308Nija/Ttbt8p0j1YU7DIdq8nsDemGHe1NqQZU48YrxmKZXrApKqOz8Gq92KyFlj7EE5q7yj6egZoccqHEpv4D7LzHE/fanlirV/2Zyn1GfB4QNjA37nj9sE4MTjVhMz124mV9G1DgakvvyHDm3D8Hxqzke0ZNjtZFQ7yquyLckEQC4T0CMmi06A6+r7SYKBDzyho4VEr67+UoIifm4qPp0oQbMd3UqgxsA7Ym1eFwf4hL9fWC9JzzgOpgPU2HICtla9b+6FW6rhT7ZNnJnITCnXI8QDpNWe0O7bNQbSh2E+9CrwgCEO1r2aWbEU52rCpNjFjWCB+FEybptg==
-Received: from DUZPR01CA0052.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:469::8) by AS8PR10MB7899.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:629::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.8; Wed, 18 Nov
- 2026 15:25:18 +0000
-Received: from DB1PEPF000509F5.eurprd02.prod.outlook.com
- (2603:10a6:10:469:cafe::37) by DUZPR01CA0052.outlook.office365.com
- (2603:10a6:10:469::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Wed,
- 18 Nov 2026 15:25:18 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DB1PEPF000509F5.mail.protection.outlook.com (10.167.242.151) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 18 Nov 2026 15:25:18 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Wed, 18 Nov
- 2026 16:26:03 +0100
-Received: from [10.252.8.55] (10.252.8.55) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Wed, 18 Nov
- 2026 16:25:17 +0100
-Message-ID: <90b4417d-f2fe-498a-8128-3229eb284d8c@foss.st.com>
-Date: Wed, 18 Nov 2026 16:25:00 +0100
+ bh=eY2hHNDdt1qZV3S19uhVtiep8ZuUlQu9tochO15/uXs=;
+ b=mDBBfEnIdJvr+FR6hnjhgiLsYq/DP3eLxYRE5qLItKYdyLj3QDUD42i9JnaI7NVX8wXeuzahcKg+u5zx/RVJJ8GuSyWuGiJAjzZki7QAZFVQr63FRYa2mknNXXCOQrYeEwQpE1Od1+9Z4rAAfOrP+E4Po+vtLcR2db6kJe8q1mO1BlcNfEPa59Z355TWIaaGbJzVKs+Jb9oqiCnV1/LNMsD4+LETmWLgN2rPoQA5EQgZghU2Pla/qKipSgPSWOy8GsafmvWm9NU1ksJrvfv20uHd/Ui2zBCq2OG/oyhP2dHDeKofxJ/C4GrJ0VNdELqlck8hLRhqrpljP5HkKvm27Q==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
+ (2603:10a6:150:32b::19) by PAXPR04MB8974.eurprd04.prod.outlook.com
+ (2603:10a6:102:20d::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.9; Wed, 18 Nov
+ 2026 15:27:10 +0000
+Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
+ ([fe80::a498:2b5a:cbdb:d6fa]) by GV2PR04MB12318.eurprd04.prod.outlook.com
+ ([fe80::a498:2b5a:cbdb:d6fa%3]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
+ 15:27:10 +0000
+Date: Wed, 18 Nov 2026 17:27:06 +0200
+From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v11 4/7] drm/imx: Add support for i.MX94 DCIF
+Message-ID: <av3C0ietJXI1ax3X@vm>
+References: <20261110-dcif-upstreaming-v11-0-9e13c85ae0d8@oss.nxp.com>
+ <20261110-dcif-upstreaming-v11-4-9e13c85ae0d8@oss.nxp.com>
+ <179449701677.2030221.6593749298448668349.b4-review@b4>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <179449701677.2030221.6593749298448668349.b4-review@b4>
+X-ClientProxiedBy: AS4P189CA0047.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:659::19) To GV2PR04MB12318.eurprd04.prod.outlook.com
+ (2603:10a6:150:32b::19)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dmaengine: stm32-dmamux: don't resume runtime PM under a
- spinlock
-To: Hyunjung Ko <hj351016@gmail.com>, Vinod Koul <vkoul@kernel.org>, Frank Li
-	<Frank.Li@kernel.org>
-CC: Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, <dmaengine@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<stable@vger.kernel.org>
-References: <20261118082853.926607-1-hj351016@gmail.com>
-Content-Language: en-US
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
-In-Reply-To: <20261118082853.926607-1-hj351016@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509F5:EE_|AS8PR10MB7899:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5bdc56de-c934-40c1-a3c8-08df4588272b
+X-MS-TrafficTypeDiagnostic: GV2PR04MB12318:EE_|PAXPR04MB8974:EE_
+X-MS-Office365-Filtering-Correlation-Id: 79f7bb89-8be6-4f17-470c-08df458869c3
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|376014|23010399003|82310400026|1800799024|10067099003|11063799006|56012099006|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: u1MvC4h1jMw/+vmtWaQo1IymemcZ3c5IJVCDppvzONik5enmucdj/r0xh1H2oheeVkgwFxM7uz/2DZ/RIZU9/9dFxE/3wVf5U8qaVUN7cpAgalYxfxkK9A5LWMETCOzHnGv2tcwXjHa/g3OjgsKMNEdmKdxotWRGH7te9SfW6yzjyMo7JWzdIgRbM1KyCcL/XRrw3thPCX81VRu+E9/elMtujawJpzrSubpsv5V7kCMClio5TxfnbB8TFf6is8GnY/U6iKp60QwlTtr4STGAw1HW258x6/n28M9oB7jdlSt3YOzBwhHP22+6u4MDeW/HtAhoFkmw46pAQVrQY3qCRQ/8lEFER5+9op4iqaqt8PsHAEABqq0kvarph6ZL2V2qDuGRu3mccPMyX/6iLyT+Zrw7nCOEJEsD99omSCHF+jFEB/5MAhtP4UdiDOhLm86LMR79jjL1EUADCASc0TOvWhKLHAaNV7W48xIyBJdvvMyfgj/+4R3DistfusIwpZEZaonyy7lPmIxvt1n27Eg79FU43zAl9RTQclY4E9Re+hTS/Jm6QQZlv0XN03fpl4avYXThEpxzAOQGd5F+nHAXxIsTkh2sr1EJ9594Y6buOrFQpBB243rpsPfUvhCDHsT3cEJmM8yFy3RN8p5a93sqW6uir2wBWLJnulms7k2tQiyplRp5jjTKx4iMbsthF/pg6bSyQELmVkRA7FF3BX5UuQ==
-X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(376014)(23010399003)(82310400026)(1800799024)(10067099003)(11063799006)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|19092799006|7416014|1800799024|366016|23010399003|261009223027099003|261009221727099003|261009220027099003|4143699003|11063799006|261022105027099003|261028144727099003|261102123227099003|56012099006|261026121527099003|261009223327099003|261009221227099003|261026140227099003|261021121427099003|10067099003|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: 2XMeuwlxi3I0rS4TcYTYs3FJ2SZYzUEVbcWUl3ryi80h9SIZdtTZ2mO7EusxnV4f8PlrvqqSYn1VOkryjMhXJOjjrX0+xhynHAO6iwITNmsG15l0bYwz+V2PVxf08pnYOSluG1FvcOmL3Ous6kLdMFmAfs6kOw0hZig/R60zspWVY3SdnvbpOgAOPJhNOpLop47qTz5FMivuvHC1cWp4Cfhda2I/7MzVgGWUez5sGFipfi8UbYAweuYNIlfiaMFGyQEOaucEM7oGJDOys6pE+iG13zmynXdPNOKXrJnHipWCKINSLVxpU1LOKELBi+82okAIWWP5ckVs8Xp1Fe/iQ2HhEbSgXzA6Rv6phoEvHVX/CVeU3ZnJ7d39p4C3tRxAsc58OhaPzTloMQQX4as0RZR6E39/rWnO3VF8F6T29ytQiuaHqpDr25LpBdEVh2ti3PCEm5yn74QoIP4hDwpe0nV6A8FVRymhxoHJr2jridGt1O33Vxc9qhb1CO5DjI/r+Jy0tSLGZYdRvJL6q2dTFYaL3B9Rkv+W8JeAO00r2/eMe+HBakAw3hyWr/bW2blvwWg4av3mBCYTFYhMPYsyxjSPifJH3iXvH8RmG8wThoaKEuxwCIZv5uMjm74gEkGDbB+o363XBy6HlIhXfZiEbzKw4yL0OACA7CvkuDrGGR4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12318.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(7416014)(1800799024)(366016)(23010399003)(261009223027099003)(261009221727099003)(261009220027099003)(4143699003)(11063799006)(261022105027099003)(261028144727099003)(261102123227099003)(56012099006)(261026121527099003)(261009223327099003)(261009221227099003)(261026140227099003)(261021121427099003)(10067099003)(22082099003)(18002099003)(3023799007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 3ZEjy5k8nT+CmOpSq8y/yMGSE72+IvlX21TYWyXIaNNbXeU5qI7eQvTbaSV4vHZf7cOycr6lz6v+wbBAHB5JPQEnbbQpTUP4dGwRvAS843V5nfT2t4pvr3kRGKEW7YZ++fEdihSK0coWpy8YY8FBmva78k8JCXhAmE5CwMKh+MrOZo811AoAIcRLEW5zyBdilRV5KD9KW9+P8evUgltYh7aTyIoKM9WFnZe234ZQDuQ5umocsel7dL7HplFZt315W6m2xdy38naHRMcdwrWgH3b06o3QUVNLkM/YhblpGGkRD8ojL0cVSfhZkvE1cr8WO+Qwm4rdQRKpITWdY5r5iwgTXciUQH+KqdjMx9gHw3f88AtKBL0CYZQ3qS8tn958Ej3FhAKakTZGMcXqXjdREnGJRH0WPJBE+5EjIyeBHEDZA8ej4mji7Fl3vg8GbgbV
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 15:25:18.3811
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?O+xQBYzhPfo2I5pjwaVBqPy3imeA9CNdNgS1IRuI/fVmJVaicUxORySfJYYI?=
+ =?us-ascii?Q?urJv3Q8BFxu7apcgFDqHvqUk2dgdxbFcB4tVJ0hW8uUD1y7IqorLzNgMgxsz?=
+ =?us-ascii?Q?KSLq5iIXgGe3fF6mYnws1fKjCO1L8c+PmGi8VOUVsrngHAR72mQr6Zf09q0r?=
+ =?us-ascii?Q?4KTl/hBPuIX6jz9Sj5HsPHcvEJpD57jBFXC2x/0F5MOeW6hgdfWnR6p/olNu?=
+ =?us-ascii?Q?Ib94P2CM1ODohL6QSAG3hJ28+Dc5jWVmfs+HPkHbChOa8CdNN8MWax9798Qm?=
+ =?us-ascii?Q?AiO7xdIEZF9c7xaNeFaGjt6E4Gfdhbf46WmJJWApkOR7Uh4HUFX0ByaOnmVn?=
+ =?us-ascii?Q?vP/qrTkTK7rAOLPjQrdhRwYBfHDXDGFP7jugqPKaui0L4uB99dupM+fmuOfB?=
+ =?us-ascii?Q?VUhNfgRjbFIN0PaMNdukjjVA1JB5az96A4XY9MGcgE/kN6DCg3p1/G4eKGMC?=
+ =?us-ascii?Q?UHMCMRaANKx5d/vq4Q1ozUQClSOhX9f7nme4aiKfp0Zfgz2A8TtDOf5+0HNQ?=
+ =?us-ascii?Q?OF3wGDR+Sxr1PuD5qD0Qnf5BEeJupqkUmseYvr1kjRZxYtDtCCJ/i/oduE03?=
+ =?us-ascii?Q?ql8kMJSiD1lJyj9xmFozTtM97Z2NaImdoxeuXOAVWNh1WrhGShsDyGaLc1Y9?=
+ =?us-ascii?Q?SprR3P2eCkemk79NLPrZaifP48PtxrxSAG3y2EV5VtRakNh57X0+I/z+tEdV?=
+ =?us-ascii?Q?DGIwdBh/t1gYoyXZ2kxc2ha3xUuYKz5vPaRKdQXHW0EO1h+Q1bBMEFasCcYH?=
+ =?us-ascii?Q?RaGwQu9hid81bT/a97y68UyHb7MqrbvmeVOlfb6cyYiWtSukzhaG5pDWPpDi?=
+ =?us-ascii?Q?bDefV5e4vvNEBZ0IEKFpBFxXoB3nUzOuWzTJP+ZaRsxslxHUjZNu7RnBN7km?=
+ =?us-ascii?Q?ZbmRe7PB4kgOEq00NmbJxh7sBqrnDcI6XyG+4pF6UeS8r2blXnMcd1g2rXVG?=
+ =?us-ascii?Q?BGOZ/rmPBMrlnYlDNDRyhL0hw/Nj47wdUw/rcnHoaQIfFBQIMStpQ+/dYOyl?=
+ =?us-ascii?Q?iLcKD/5fHHTVAPX69NefbK5Z4CCmWmUOUd3/A0LVWBAlr3u0YrftiiLFXIXz?=
+ =?us-ascii?Q?fTexIMpP/nTYJDGtBVJ/rARtAPlO3fqn6WX3ilFmwIQJHvWzRK+ItihIT79B?=
+ =?us-ascii?Q?OjJkwIKzya+vDu8rHqQgLfFms8bxGuAByDzQBSGfhRGAHIbv5tJxza/JtRek?=
+ =?us-ascii?Q?6gdVGKFAQ6x8qvh74b+Gl3KNlir7KxsRgluOX8W1/s2AFHRaG0dzUhmW29vB?=
+ =?us-ascii?Q?Oue2zaJecstaduxtHXNCDWGp1DBaK1B7NPlUsTTWoZqGNlooVPSy7hX+QnQu?=
+ =?us-ascii?Q?YAj4dMFqSzXLf9Y/5QWphxqfrf7pRZFYj8J/WqbKqunbazE/WFaLGP0xbfhA?=
+ =?us-ascii?Q?BIC7CKTTLwKG91VPFFiO3pszS/6Kwak/PwgI95CIlZsNqJDVlxzduC6Kneni?=
+ =?us-ascii?Q?suI5yzqqefj6f/bg/NGXdJ1GSvSneRJe2VREofnQ/PYei8Y3+SDX2RfWxwq5?=
+ =?us-ascii?Q?/fhrLB6/+0g1H8OcAVf+CwMKo+nTfkMEysp3YX92U7KX7M5GMv36TW1siZcX?=
+ =?us-ascii?Q?czk8fl529mev71XPbIHNFX392DgcScVBfx8LYq8xbc726UMRIu0g/wzl3xLF?=
+ =?us-ascii?Q?4Uzd0BMkaUxO9LiL5LFnDB0LPWMHWKdDdQ2KCwxj+ojFNYz1kQERFYrqIr6g?=
+ =?us-ascii?Q?T8P/JhuvUSIsq0k7nEL5GRmrNr6QchomMEDLkvsdFx9j8Webed0dCDSQO1yA?=
+ =?us-ascii?Q?Zfk8gFtm79X7ACTtrlMlBJgi/qa3Auw=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79f7bb89-8be6-4f17-470c-08df458869c3
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12318.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 15:27:10.3727
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bdc56de-c934-40c1-a3c8-08df4588272b
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509F5.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB7899
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OIU4ERWak21ngOiqd+AyCDd5V9kvaW2bq9uFaoXIcXnFpjuf7f56hGYYRRD93jATa+A8hIlfNmQov1GLxwo0/Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8974
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_072526_572726_C98E02A2 
-X-CRM114-Status: GOOD (  17.90  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_072718_567977_4F11A408 
+X-CRM114-Status: GOOD (  27.09  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,94 +144,145 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+Hi Luca,
 
-On 11/18/26 09:28, Hyunjung Ko wrote:
-> stm32_dmamux_route_allocate() calls pm_runtime_resume_and_get() while
-> holding dmamux->lock with interrupts disabled. The runtime-resume
-> callback stm32_dmamux_runtime_resume() calls clk_prepare_enable(), which
-> can sleep, and the device is not marked pm_runtime_irq_safe(), so this
-> can sleep in atomic context.
+Thanks for the review.
 
-Indeed.
+On Thu, Nov 12, 2026 at 04:23:36PM +0100, Luca Ceresoli wrote:
+> Hello Laurentiu,
+> 
+> > The i.MX94 Display Control Interface features:
+> >  * Up to maximum 3 layers of alpha blending:
+> >     - 1 background layer(Layer 0);
+> >     - 1 foreground layer(Layer 1);
+> >     - A programmable constant color behind the background layer;
+> >  * Each layer supports:
+> >     - programmable plane size;
+> >     - programmable background color;
+> >     - embedded alpha and global alpha;
+> >  * Data output with CRC checksum for 4 programmable regions;
+> >
+> > Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> # bridge refcounting
+> > Signed-off-by: Sandor Yu <sandor.yu@nxp.com>
+> > Co-developed-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> > Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> 
+> Looks OK, I just have a small remark and a few minor nitpicks, see below.
+> 
+> > +++ b/drivers/gpu/drm/imx/dcif/Kconfig
+> > @@ -0,0 +1,16 @@
+> > +config DRM_IMX_DCIF
+> > +	tristate "DRM support for NXP i.MX94 DCIF"
+> > +	select DRM_KMS_HELPER
+> > +	select DRM_GEM_DMA_HELPER
+> > +	select DRM_DISPLAY_HELPER
+> > +	select DRM_PANEL_BRIDGE
+> 
+> This should be unneeded now. As o fnow it is basically a complicated way to
+> say 'select DRM_PANEL'. And you are (rightfully) not using the panel API,
+> so this line should probably just be removed. Please double check by
+> building multiple configs, including an allmodconfig.
+
+Indeed, I addressed this in v12 and compiled DCIF with allmodconfig for
+i386, x86_64 and arm, 
 
 > 
-> The lock does not protect anything here: the dma_inuse bitmap is already
-> updated under the lock earlier in the function, and this second critical
-> section only wraps the pm_runtime call. Drop the lock around it.
+> > +++ b/drivers/gpu/drm/imx/dcif/dcif-crc.c
+> > @@ -0,0 +1,221 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +/*
+> > + * Copyright 2025 NXP
+> 
+> 2026 I guess... v11, a long journey, hopefully it won't slip to 2027! :)
 
-The lock is misplaced and completely useless here. Your patch is correct 
-but incomplete.
-The lock should instead protect the CCR register write, as in 
-stm32_dmamux_free(), which also needs to be fixed.
+Thanks, I guess I forgot to update this. It was/is a long journey
+indeed... :/ Addressed in v12.
 
 > 
-> Fixes: 4f3ceca254e0 ("dmaengine: stm32-dmamux: Add PM Runtime support")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hyunjung Ko <hj351016@gmail.com>
-> ---
->   drivers/dma/stm32/stm32-dmamux.c | 6 +-----
->   1 file changed, 1 insertion(+), 5 deletions(-)
+> > +++ b/drivers/gpu/drm/imx/dcif/dcif-crtc.c
+> ...
+> > +static int dcif_crtc_query_output_bus_format(struct drm_crtc *crtc,
+> > +					     struct drm_crtc_state *crtc_state)
+> > +{
+> > +	struct dcif_crtc_state *dcif_state = to_dcif_crtc_state(crtc_state);
+> > +	struct drm_bridge *bridge __free(drm_bridge_put) = NULL;
 > 
-> diff --git a/drivers/dma/stm32/stm32-dmamux.c b/drivers/dma/stm32/stm32-dmamux.c
-> index 57318715d9f3..890328b3d302 100644
-> --- a/drivers/dma/stm32/stm32-dmamux.c
-> +++ b/drivers/dma/stm32/stm32-dmamux.c
-> @@ -139,13 +139,9 @@ static void *stm32_dmamux_route_allocate(struct of_phandle_args *dma_spec,
->   	}
->   
->   	/* Set dma request */
-> -	spin_lock_irqsave(&dmamux->lock, flags);
->   	ret = pm_runtime_resume_and_get(&pdev->dev);
-> -	if (ret < 0) {
-> -		spin_unlock_irqrestore(&dmamux->lock, flags);
-> +	if (ret < 0)
->   		goto err_put_dma_spec_np;
-> -	}
-> -	spin_unlock_irqrestore(&dmamux->lock, flags);
->   
->   	mux->request = dma_spec->args[0];
->   
+> While this is OK, there is generally a preference to declare and assign in
+> the same statement when using cleanup actions, so...
+> 
+> > +	struct drm_bridge_state *bridge_state;
+> > +	u32 bus_format;
+> > +
+> > +	dcif_state->bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+> > +	dcif_state->bus_flags = 0;
+> > +
+> > +	bridge = dcif_crtc_get_bridge(crtc, crtc_state);
+> 
+> ...it should all happen here, as:
+> 
+> 	struct drm_bridge *bridge __free(drm_bridge_put) =
+> 		dcif_crtc_get_bridge(crtc, crtc_state);
 
-In addition, I suggest:
-@@
--	stm32_dmamux_write(dmamux->iomem, STM32_DMAMUX_CCR(mux->chan_id),
--			   mux->request);
-+	spin_lock_irqsave(&dmamux->lock, flags);
-+	stm32_dmamux_write(dmamux->iomem, STM32_DMAMUX_CCR(mux->chan_id),
-+			   mux->request);
-+	spin_unlock_irqrestore(&dmamux->lock, flags);
-+
+Addressed in v12.
 
-And moving pm_runtime_put_sync() in stm32_dmamux_free():
-@@ static void stm32_dmamux_free(struct device *dev, void *route_data)
-      /* Clear dma request */
-      spin_lock_irqsave(&dmamux->lock, flags);
+> 
+> > +++ b/drivers/gpu/drm/imx/dcif/dcif-kms.c
+> > @@ -0,0 +1,168 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +/*
+> > + * Copyright 2025 NXP
+> > + */
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#include <drm/drm_atomic.h>
+> > +#include <drm/drm_atomic_helper.h>
+> > +#include <drm/drm_bridge.h>
+> > +#include <drm/drm_bridge_connector.h>
+> > +#include <drm/drm_gem_framebuffer_helper.h>
+> > +#include <drm/drm_panel.h>
+> 
+> Unused include?
 
-      stm32_dmamux_write(dmamux->iomem, STM32_DMAMUX_CCR(mux->chan_id), 0);
-      clear_bit(mux->chan_id, dmamux->dma_inuse);
+Removed, thanks.
 
--	pm_runtime_put_sync(dev);
--
-      spin_unlock_irqrestore(&dmamux->lock, flags);
+> 
+> > +static int dcif_kms_init(struct dcif_dev *dcif)
+> > +{
+> > +	struct drm_device *drm = &dcif->drm;
+> > +	struct device_node *np = drm->dev->of_node;
+> > +	struct drm_connector *connector;
+> > +	struct drm_bridge *bridge;
+> > +	int ret;
+> > +
+> > +	ret = dcif_crtc_init(dcif);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	bridge = devm_drm_of_get_bridge(drm->dev, np, 0, 0);
+> 
+> This function is deprecated. You can use of_drm_get_bridge_by_endpoint()
+> instead, which returns a refcounted bridge pointer. And since the bridge
+> pointer is a local variable you can just use a cleanup action to put it
+> easily:
+> 
+>   struct drm_bridge *bridge __free(drm_bridge_put) = of_drm_get_bridge_by_endpoint(...);
 
-+	pm_runtime_put_sync(dev);
-+
-      dev_dbg(dev, "Unmapping DMAMUX(%u) to DMA%u(%u)\n",
-          mux->request, mux->master, mux->chan_id);
+Thanks for the hint. I updated the driver to use the new function.
 
-
-Runtime PM calls are made outside the lock, which is held only for the 
-CCR write and the dma_inuse bitmap.
-
-Regards,
-Amelie
+-- 
+Thanks,
+Laurentiu
 
