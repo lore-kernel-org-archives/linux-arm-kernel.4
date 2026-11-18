@@ -2,85 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07C160A2608
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E699560A5BEB
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 18 Nov 2026 16:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UXjCHJh6;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=k11pVwgw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=48BioTR7;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=NGBwojoS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Babeb2HFdoGfJcLZPBXE1y9vKgkFHl2HkzCwc6W1yGQ=; b=UXjCHJh6bcOxV2
-	/CBRf3kp6/RHbl+kJpKu8VnS07dE2Kh/Mwxamli/eJ07PRSg88kfSj3RIpyQNm3NISrb4GnWC0Fi3
-	9s/ispPF98nEf7H3vHXhBu1S5tfAsI8sqKOoWVvZYzd4Bs4kSOiAD0LxUyy9s8itxe0RrGnsNk+3s
-	7LBT5eg9RmhqociQbFytDQtCfei++30kprZqkGDdUJ5WgM9VEbpaS1SqC0UZ7AfjBd9aQHUrb40Iq
-	DEn+JY4hTxAYl/bL3j6VpzzW4XgPcoQfkXMIhUTx2X+ToOl2ql4t0mqJ+JNprqo2CSFnBj/C00KC1
-	xHXRoMTJGY7omiqDlVUQ==;
+	List-Owner; bh=dNQDu45hRxK42vQ4yOX5cPIZBkSnKSKiQldYYSn1aqI=; b=48BioTR7swawmL
+	2YgghDX+7/+W284FXLZrIfeZd7a5gsvEs96V1SbZbtEYl2ueQ3HvCfNhi1c6+NcOyeczKeyW7AXGr
+	xPV7NNPRWd/gzjnt2Gk5SKDgLRd6erCl9Z/zru2u0og7s3+BK3XG8mJpqZkrNboqOqPGQ4iohylpy
+	j0VazWqFFKFa/+F5fA8uTAl2Pxr+vGRFqz0R2ZeU1JAo/NO/10WPR8DltwcLn4smoB20TMhWVFd68
+	ewd7Zs/0eMR7KAyu59YUxf8ksKgacR7QOZS6J9RdZEciltf+wnXxwMSMFDy1v28QBHvuD8EoGRCak
+	RAeAaJA6n26bVoGuImNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXq-00000009U8r-3YAh;
-	Wed, 18 Nov 2026 16:30:02 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1xTiXp-00000009U6Y-3rGt;
+	Wed, 18 Nov 2026 16:30:01 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTiXk-00000009U0b-3Qgq
+	id 1xTiXh-00000009Tz7-1PVb
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 18 Nov 2026 16:29:58 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4b467581b98so14607975e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:29:55 -0800 (PST)
+	Wed, 18 Nov 2026 16:29:54 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-491846221ffso998111f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 08:29:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795019394; x=1795624194; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795019391; x=1795624191; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Babeb2HFdoGfJcLZPBXE1y9vKgkFHl2HkzCwc6W1yGQ=;
-        b=k11pVwgw6rXZku6sIefl6tVaiMbWqLpa3jfH1URpiYFkPpgJT/iU+J4OUQK2/fLdTc
-         yVZypL/LPFzYak5VCzpG8Aayzzb2K4A0FHk5ak2Rxc9Twa7KuvrTmb4yQCMWaGpeLBEA
-         Va0SJcEw1LClcoLIGWuqQOLag4LpKs4HYUBFjqiUd5XFCdY8Dm0SgRDrst6Ma3xbcjol
-         7hUvIgCRKTKB6jAq6LSlT+MTrp001FItiEs/gkhrS7Y19+1DxSq80mCxC5gUY04XRff5
-         rI6qBIoo65dsPfzbD9KXcsi6JWEEEHs2nhTXxzUSAEVfliJVxMDnbJtoHGEbagTFnKee
-         o1HA==
+        bh=dNQDu45hRxK42vQ4yOX5cPIZBkSnKSKiQldYYSn1aqI=;
+        b=NGBwojoSVgrp3DrcM6Gyr6o6ztGbwdYavnvuKskwuHot/dO4+FAEBvnr7acBj7n98o
+         H/TxEUwM9hrNynOUDehO+7jMILHuR+dDt8o8iY4qHmmdGEe5M63YkbAfvOPuOeJhxWd6
+         SpLtmTt2m/UVepX8wUMctgdZS8oy1DSMWSO745MogTKsIBpeXiB5MUSqn0yJC3hJVti0
+         lpD6MbIax7Mea1uWlMOaVjE6pSUMuXci9ppdHjp1/AnZuTQ0B4eecb7rQcQgD/e9xpCs
+         IuxzTPZhMB79XpuUElRJelsCeYgA3CglqbOx7Sgs+6wRIP1rwd6SgOxWBGIOMnBq6pIw
+         o9Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795019394; x=1795624194;
+        d=1e100.net; s=20260707; t=1795019391; x=1795624191;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Babeb2HFdoGfJcLZPBXE1y9vKgkFHl2HkzCwc6W1yGQ=;
-        b=t2HxqOugLShUgVUZlHuoP3UekdQ/OdX9WhFSUvhGldv+7aTY4smqv6pxqhqrSQhzFl
-         NJPf0WxouMnI8j8PmGGWskgMLQWPkAH6ViRs1R0cv60FWEasDv917OIjwBqjlX7D1Zjw
-         pYLdME7wiJkzAC03yJSh7eb/MATA6sOgzF4WbE43MIx6k8d1D2mibqCaEMkJWyMua+TY
-         G2s7QJCzfRr4HpepGyTSfBbKfvf1yUe9AxfWvMjDdPuTSR0ARZ1UpAgnrw6m1fOKfMKK
-         UrthYo5Lm8LrkfSp70foMAD4o2z7uOOZtY19JHV7hkyGWiG3iCsm2TCaZfThq46dam4E
-         TM9Q==
-X-Forwarded-Encrypted: i=1; AL+hErHt866v85o0yTRgfON4L5hCrDAwz7OggSn+mU/ft3BavMANaCCm8K62YILSbd2G9Q8PDNVrSgkgogVzDWwG6K67@lists.infradead.org
-X-Gm-Message-State: APuU4Z/wAV+B0wk91WLhvlY3ea+7CiqXKqV0VM3fz3i/z9HlJ+5zSvT/
-	vYXd0GWrqDcPThc96GMdXozAvgCIcsgUYUwhA1kAabMaPbFxekOfZquTl7RdFZFoBVU=
-X-Gm-Gg: AYBFou2BvMpINenrzbcdosJYKOqX69mldGdYBjsAiAtjznqxzQOQqmwbvrj7bhgyQZN
-	3mcK1zRldo0vncOxZPTSQV/ml5Quxu+MmgiLZSwTmFCAAS9r9w73jLrlVCUPg9G7tBGG64BSYXF
-	QJtQ6DlaWr9bILmMovLdhOZtyJ3o0gQRHVVekhC+QRw1SlxLBttkBT87b/ulFh5yxJz1XA05AGD
-	GteQiTb77HHgc0FCpLyPkLGdfzlCgWzKZpRudxPcFm/ZwKGHJPyRlu/RcsN56q5pq/WkvCZbSS/
-	vWLKg60j1uUGXVVZBapBDnAfu0e1Sq9lDJrV6bbU4TCKa7D0QhB2ZI5LSiZEz2a147dGvHV5AGU
-	rzXYUhhlCb/gk7Q9ObBXwwaUYqDsqXbXmqyNuAL5Jo0g9RIfCE5HKRtCPiNs5SBtoURIZpt9S7w
-	OI6xylnkhCUyy/FEaF0PELCVXTvQ+zl56i7NGiGWlLNtrWgDuiAvTIXCzdcUFhWinaWuWbV/HuL
-	bsI1Ba92CrY0eNl3tzvdVQPbS7ys3Jp3TggQ5DCCPOaWG4L72icZ4xZKb/812oohVhhHIsfXDp/
-	G5mk6HBsEa9WaP5EdQ2LH0jTQ1tMURPg
-X-Received: by 2002:a05:600c:8b34:b0:4bb:781f:6067 with SMTP id 5b1f17b1804b1-4bb7d6cd404mr58751415e9.1.1795019394229;
-        Wed, 18 Nov 2026 08:29:54 -0800 (PST)
+        bh=dNQDu45hRxK42vQ4yOX5cPIZBkSnKSKiQldYYSn1aqI=;
+        b=0m60r7Mpj5FFZ28amzh7hS74J1beGyRh/56sb60znKWvGNypRtNmvgb8gIeniCpWjQ
+         1h/a+cOTRx2Nc5r0qjHnRq57ZIUC1HRJZQCnOByL1Gpyo7LA54gLJ6fQY7ItUVJHf8fx
+         FE9jQeCRD+82ItsosPbe3zvIl2zIOopszhYVxSC10vbevdzWKLuwAQn7i4p/0ryNkVQu
+         4tMsiQn7IOw3ri3dw+gVwNafJ0IQaN8pU6XaRBq1tkSqNzYOcUmKATZizcTv8FtrE06Q
+         00JO0gs4qIOidzm/VIwU5YYhAZ/9oS1uTc7czKnk+il1ORUD5AGf539BZ1Urdj01nsRe
+         QSiw==
+X-Forwarded-Encrypted: i=1; AL+hErENyK4JSS6BT6QhRlIffaZPUxzfrGGlTjgzB58mTJ9JNi7SKx3hUdRC3Bc/uYL9Xn18Ebmk/GpRXq1oxOFA+Wdu@lists.infradead.org
+X-Gm-Message-State: APuU4Z8fiPQUiukSO6V5o1qqUB1SNYUMXr1smBS4mZFJT1Vq0Jv/dnnR
+	7aAUq12Vx5MsYUTE8S7CkbfMzi/G+oXgxFWhRQSVtD4ZHs2AWmA7CqJFZpWxzVpuCpY=
+X-Gm-Gg: AZFdTZfsvZKvTB0o67LKII0rp+1h1lT949EBl4hUhPmV8qsRVgL+dSXEOfB0vZuOXQE
+	XOq05AUDyJFtu56lG6Xm1H3kLA1kMhHK8DM4ZyXPGhKgwFt0udcfODjgnQoBu0yuA8bkzISDM/c
+	YbjfXFSWOMPBZ5RBOWPHai5xRqaDQMG4aBs9N3S7lfTFXkOE4sOP8VUv5JCAtKK89kj5qE/B7OD
+	R9sKQwcrDQz4gWfgsnSxWW6EX7M/yrvrbMji5Sf4rOi1fECWcDIk/aALeqkhet86UCfRlsJbUdE
+	IryAYrWyxDE01cJXCu8Vb6pBbdlLF3kP6xl0w8XrPkG8eNEXbz5ZVpYs1Cy3C9nTVgGYKimewDh
+	/A024MifH6lv6W7hkLpdlZIhpuc1kUmfRItWT7XzhmY2EUsYk35bO1tOEFIQGY2iKMMQJhfzEU1
+	NM2rGYEcctwi/3NcSRR8jTo1kjvIj0UlV/1y5RYHsTjRK2gyLyIn9wAP3lKJdYAwDWN9Eoge09c
+	Y3WXsJULvd5g8AvyaF5qHFd+mTc9DznsdLe/k9qerFKG0jXQiwDuIh0H7hlMdDx42nEiWBnVAyr
+	qXysp0HztwJTNTVO5+NnHM/jPsNN1tv690jyE4WtXOVnQRvHm9li1g==
+X-Received: by 2002:a05:6000:4312:b0:4a6:4ac6:d952 with SMTP id ffacd0b85a97d-4a64ac6dad3mr6914932f8f.31.1795019391032;
+        Wed, 18 Nov 2026 08:29:51 -0800 (PST)
 Received: from pop-os.local ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.53
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a654a8c23bsm4980927f8f.12.2026.11.18.08.29.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 08:29:53 -0800 (PST)
+        Wed, 18 Nov 2026 08:29:50 -0800 (PST)
 From: James Clark <james.clark@linaro.org>
-Date: Wed, 18 Nov 2026 16:29:28 +0000
-Subject: [PATCH 06/34] perf cs-etm: Don't read past the end of the map
+Date: Wed, 18 Nov 2026 16:29:25 +0000
+Subject: [PATCH 03/34] perf jit: Add address ranges to DWARF compilation
+ units
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261118-james-coresight-jit-v1-6-dad4d90747f6@linaro.org>
+Message-Id: <20261118-james-coresight-jit-v1-3-dad4d90747f6@linaro.org>
 References: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 In-Reply-To: <20261118-james-coresight-jit-v1-0-dad4d90747f6@linaro.org>
 To: Arnaldo Carvalho de Melo <acme@kernel.org>, 
@@ -94,8 +95,8 @@ Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_082956_901715_C1FFCF4A 
-X-CRM114-Status: GOOD (  15.31  )
+X-CRM114-CacheID: sfid-20261118_082953_476653_3428BA86 
+X-CRM114-Status: GOOD (  23.41  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,39 +116,227 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-OpenCSD caches instruction memory one page size at a time. Perf reads
-this requested size from the file on disk without limiting it to the end
-of the map, so the page can contain ELF metadata from the file that
-wasn't mapped. If a subsequent read for a different .so file falls into
-this range, then it won't be decoded properly.
+The JIT ELF writer emits a line table and a compilation unit containing
+only DW_AT_stmt_list. LLVM locates the CU by address before looking up a
+source line, but the CU address range isn't written into the DWARF.
+Therefore it can't resolve these files even though GNU addr2line could
+by reading the line table directly. This means that JIT src line lookups
+when LLVM is used.
 
-Fix it by clamping the read size to the end of the map. Now when OpenCSD
-requests an address outside of that range, Perf will load the next .so
-file rather than OpenCSD using the mis-cached data.
+Pass the generated code size to the debug information writer and emit
+DW_AT_low_pc and DW_AT_high_pc address ranges. Also mark the compilation
+unit as childless to match its contents.
 
-Fixes: c9a01a11dfe6 ("perf tools: Add support for decoding CoreSight trace data")
+Add a test which writes JIT debug information at a nonzero runtime load
+address and resolves an ELF-relative address through LLVM.
+
+Fixes: c3f8644c21df ("perf report: Support LLVM for addr2line()")
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- tools/perf/util/cs-etm.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ tools/perf/tests/genelf.c      | 70 +++++++++++++++++++++++++++++++++++++++++-
+ tools/perf/util/genelf.c       |  2 +-
+ tools/perf/util/genelf.h       |  3 +-
+ tools/perf/util/genelf_debug.c | 22 +++++++++----
+ 4 files changed, 88 insertions(+), 9 deletions(-)
 
-diff --git a/tools/perf/util/cs-etm.c b/tools/perf/util/cs-etm.c
-index 3fce3c357943..fb4582dc378e 100644
---- a/tools/perf/util/cs-etm.c
-+++ b/tools/perf/util/cs-etm.c
-@@ -1213,6 +1213,12 @@ static u32 __cs_etm__mem_access(struct cs_etm_queue *etmq,
+diff --git a/tools/perf/tests/genelf.c b/tools/perf/tests/genelf.c
+index 95f3be1b683a..4d23778c1979 100644
+--- a/tools/perf/tests/genelf.c
++++ b/tools/perf/tests/genelf.c
+@@ -5,6 +5,8 @@
+ #include <string.h>
+ #include <unistd.h>
+ #include <linux/compiler.h>
++#include <linux/kernel.h>
++#include <linux/unaligned.h>
  
- 	offset = map__map_ip(al.map, address);
+ #include "debug.h"
+ #include "tests.h"
+@@ -12,6 +14,8 @@
+ #ifdef HAVE_JITDUMP
+ #include <libelf.h>
+ #include "../util/genelf.h"
++#include "../util/jitdump.h"
++#include "../util/llvm.h"
+ #endif
  
-+	/*
-+	 * Clamp to the map size to avoid putting unmapped ELF file data from
-+	 * the .so into OpenCSD's cache as map data.
-+	 */
-+	size = min_t(u64, size, map__end(al.map) - address);
+ #define TEMPL "/tmp/perf-test-XXXXXX"
+@@ -50,4 +54,68 @@ static int test__jit_write_elf(struct test_suite *test __maybe_unused,
+ #endif
+ }
+ 
+-DEFINE_SUITE("Test jit_write_elf", jit_write_elf);
++static int test__jit_write_elf_dwarf(struct test_suite *test __maybe_unused,
++				     int subtest __maybe_unused)
++{
++#if defined(HAVE_JITDUMP) && defined(HAVE_LIBDW_SUPPORT) && defined(HAVE_LIBLLVM_SUPPORT)
++	const uint64_t load_addr = 0x12340000;
++	static const char filename[] = "jit.c";
++	unsigned char code[16] = { 0 };
++	unsigned char debug[2 * (sizeof(struct debug_entry) + sizeof(filename))];
++	struct debug_entry *entry = (struct debug_entry *)debug;
++	char path[] = TEMPL;
++	char *file = NULL;
++	unsigned int line = 0;
++	int fd, ret = TEST_FAIL;
 +
- 	map__load(al.map);
++	/* The second row terminates the first row's source-line range. */
++	for (int i = 0; i < 2; i++) {
++		put_unaligned(load_addr + i * 8, &entry->addr);
++		put_unaligned(42 + i, &entry->lineno);
++		put_unaligned(0, &entry->discrim);
++		memcpy(entry + 1, filename, sizeof(filename));
++		entry = debug_entry_next(entry);
++	}
++
++	fd = mkstemp(path);
++	if (fd < 0) {
++		perror("mkstemp failed");
++		return TEST_FAIL;
++	}
++
++	if (jit_write_elf(fd, load_addr, "main", code, sizeof(code),
++			  debug, 2, NULL, 0, 0))
++		goto out;
++
++	/* LLVM must find the CU from the ELF address before reading its lines. */
++	if (llvm__addr2line(path, GEN_ELF_TEXT_OFFSET + 4, &file, &line,
++			    NULL, false, NULL, NULL) <= 0) {
++		pr_debug("LLVM could not resolve the JIT source line\n");
++		goto out;
++	}
++	if (!file || strcmp(file, filename) || line != 42) {
++		pr_debug("Unexpected JIT source line: %s:%u\n", file ?: "??", line);
++		goto out;
++	}
++	ret = TEST_OK;
++out:
++	free(file);
++	close(fd);
++	unlink(path);
++	return ret;
++#else
++	return TEST_SKIP;
++#endif
++}
++
++static struct test_case tests__jit_write_elf[] = {
++	TEST_CASE("Write JIT ELF", jit_write_elf),
++	TEST_CASE_REASON("Resolve JIT ELF source line with LLVM", jit_write_elf_dwarf,
++			 "requires JIT dump, libdw and LLVM support"),
++	{ .name = NULL, }
++};
++
++struct test_suite suite__jit_write_elf = {
++	.desc = "Test jit_write_elf",
++	.test_cases = tests__jit_write_elf,
++};
+diff --git a/tools/perf/util/genelf.c b/tools/perf/util/genelf.c
+index 14882def9704..fc145f9401d2 100644
+--- a/tools/perf/util/genelf.c
++++ b/tools/perf/util/genelf.c
+@@ -449,7 +449,7 @@ jit_write_elf(int fd, uint64_t load_addr __maybe_unused, const char *sym,
  
- 	len = dso__data_read_offset(dso, maps__machine(thread__maps(thread)),
+ #ifdef HAVE_LIBDW_SUPPORT
+ 	if (debug && nr_debug_entries) {
+-		retval = jit_add_debug_info(e, load_addr, debug, nr_debug_entries);
++		retval = jit_add_debug_info(e, load_addr, csize, debug, nr_debug_entries);
+ 		if (retval)
+ 			goto error;
+ 	} else
+diff --git a/tools/perf/util/genelf.h b/tools/perf/util/genelf.h
+index 9f0b875d6548..67309794239a 100644
+--- a/tools/perf/util/genelf.h
++++ b/tools/perf/util/genelf.h
+@@ -10,7 +10,8 @@ int jit_write_elf(int fd, uint64_t code_addr, const char *sym,
+ 		  void *unwinding, uint64_t unwinding_header_size, uint64_t unwinding_size);
+ #ifdef HAVE_LIBDW_SUPPORT
+ /* genelf_debug.c */
+-int jit_add_debug_info(Elf *e, uint64_t code_addr, void *debug, int nr_debug_entries);
++int jit_add_debug_info(Elf *e, uint64_t code_addr, int code_size,
++		       void *debug, int nr_debug_entries);
+ #endif
+ 
+ #if   defined(__arm__)
+diff --git a/tools/perf/util/genelf_debug.c b/tools/perf/util/genelf_debug.c
+index 7d9ef43aa6ac..a124ab40f36b 100644
+--- a/tools/perf/util/genelf_debug.c
++++ b/tools/perf/util/genelf_debug.c
+@@ -449,9 +449,13 @@ add_debug_abbrev(struct buffer_ext *be)
+ {
+         emit_unsigned_LEB128(be, 1);
+         emit_unsigned_LEB128(be, DW_TAG_compile_unit);
+-        emit_unsigned_LEB128(be, DW_CHILDREN_yes);
++	emit_unsigned_LEB128(be, DW_CHILDREN_no);
+         emit_unsigned_LEB128(be, DW_AT_stmt_list);
+         emit_unsigned_LEB128(be, DW_FORM_data4);
++	emit_unsigned_LEB128(be, DW_AT_low_pc);
++	emit_unsigned_LEB128(be, DW_FORM_addr);
++	emit_unsigned_LEB128(be, DW_AT_high_pc);
++	emit_unsigned_LEB128(be, DW_FORM_addr);
+         emit_unsigned_LEB128(be, 0);
+         emit_unsigned_LEB128(be, 0);
+         emit_unsigned_LEB128(be, 0);
+@@ -459,9 +463,11 @@ add_debug_abbrev(struct buffer_ext *be)
+ 
+ static void
+ add_compilation_unit(struct buffer_ext *be,
+-		     size_t offset_debug_line)
++		     size_t offset_debug_line, int code_size)
+ {
+ 	struct compilation_unit_header *comp_unit_header;
++	uintptr_t low_pc = GEN_ELF_TEXT_OFFSET;
++	uintptr_t high_pc = low_pc + code_size;
+ 	size_t old_size = buffer_ext_size(be);
+ 
+ 	buffer_ext_add(be, &default_comp_unit_header,
+@@ -469,6 +475,9 @@ add_compilation_unit(struct buffer_ext *be,
+ 
+ 	emit_unsigned_LEB128(be, 1);
+ 	emit_uword(be, offset_debug_line);
++	/* DW_FORM_addr uses the address size declared in the CU header. */
++	buffer_ext_add(be, &low_pc, sizeof(low_pc));
++	buffer_ext_add(be, &high_pc, sizeof(high_pc));
+ 
+ 	comp_unit_header = buffer_ext_addr(be) + old_size;
+ 	comp_unit_header->total_length = (buffer_ext_size(be) - old_size) -
+@@ -476,7 +485,7 @@ add_compilation_unit(struct buffer_ext *be,
+ }
+ 
+ static int
+-jit_process_debug_info(uint64_t code_addr,
++jit_process_debug_info(uint64_t code_addr, int code_size,
+ 		       void *debug, int nr_debug_entries,
+ 		       struct buffer_ext *dl,
+ 		       struct buffer_ext *da,
+@@ -489,7 +498,7 @@ jit_process_debug_info(uint64_t code_addr,
+ 		put_unaligned(get_unaligned(&ent->addr) - code_addr, &ent->addr);
+ 		ent = debug_entry_next(ent);
+ 	}
+-	add_compilation_unit(di, buffer_ext_size(dl));
++	add_compilation_unit(di, buffer_ext_size(dl), code_size);
+ 	add_debug_line(dl, debug, nr_debug_entries, GEN_ELF_TEXT_OFFSET);
+ 	add_debug_abbrev(da);
+ 	if (0) buffer_ext_dump(da, "abbrev");
+@@ -498,7 +507,8 @@ jit_process_debug_info(uint64_t code_addr,
+ }
+ 
+ int
+-jit_add_debug_info(Elf *e, uint64_t code_addr, void *debug, int nr_debug_entries)
++jit_add_debug_info(Elf *e, uint64_t code_addr, int code_size,
++		   void *debug, int nr_debug_entries)
+ {
+ 	Elf_Data *d;
+ 	Elf_Scn *scn;
+@@ -510,7 +520,7 @@ jit_add_debug_info(Elf *e, uint64_t code_addr, void *debug, int nr_debug_entries
+ 	buffer_ext_init(&di);
+ 	buffer_ext_init(&da);
+ 
+-	if (jit_process_debug_info(code_addr, debug, nr_debug_entries, &dl, &da, &di))
++	if (jit_process_debug_info(code_addr, code_size, debug, nr_debug_entries, &dl, &da, &di))
+ 		goto out;
+ 
+ 	/*
 
 -- 
 2.43.0
