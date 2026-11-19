@@ -2,90 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC032606A32F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE351606A331
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:03:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f3Q/6G4J;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RHi4rO8Q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0ifKRAbl;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MS0IzOOU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sLCD0hdTnv6Da453ywGRbhFkVAe80xOO0sEFoswojxk=; b=f3Q/6G4JRx9/rT2rTY5zT4/uR9
-	aTZkrG8ZwsZ+lcYQYZDrIngQOe0lzbNOnmiDLn//isIKuSCREDq8pekxr4ppTKbbovB3gLZzV1dQO
-	O3CBNoMSv47HCsoCQFfAXxDl/OhUmQVzeU5IX/MN/aR/Ei55Ho4msLqFOY3nBD37YK6TDUgvpQHvv
-	TmOmiiVSDuMgqNOvv2hA2AzmG/1U+sU8WoS47KgRqOZxKb7WJSp360wpk/i1LdZQLQkYcdUh9/ayl
-	tNpT0jWpHsslzWstEf40i9xKI3VJ8vqknLwAuDmLC902bYUuLUb2KfWaL1SFTIk7xbNmIhbQc4VmC
-	zK02zXzw==;
+	bh=qNGnohMiCzeV/2nST/vZxlru2Awqvea6Nd2NAaEq//s=; b=0ifKRAblmstJjpbk2IfDWj8Gbu
+	Y0lKuO5wL85VQI+PNV0j49kEMeI25yMHTQOSou5cMtq3lhmlRUro3AVvOxIVl8NLr1DiY3a4Lq/sn
+	AeLZS8fjh5Nf6K4NVxUB+pfICF7XKl6rqSozhFSIy5b+izvUkz2+vF95Fmj45p3CpStqErjJ3HFof
+	EjRdsH1NGmC2acEcg775DHkeQ83cex+PohG4gpTb61e3FUqnMqsL/KD6oB8Hbc9N1kFlrlsvq0jyz
+	mLIN+In/yxvnO6k4n1yBRh5X3/ebwvfj/jISw+J1TOkgWANy9qhlvTjQOjcoPkZXg6+DGSH2LSOx4
+	3o3SB+5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzv4-0000000BeOE-3Tuz;
+	id 1xTzv4-0000000BeOZ-3rl5;
 	Thu, 19 Nov 2026 11:03:10 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzv4-0000000BeNq-092Q
+	id 1xTzv4-0000000BeNp-0yp5
 	for linux-arm-kernel@lists.infradead.org;
 	Thu, 19 Nov 2026 11:03:10 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C86DF472C1;
+	by tor.source.kernel.org (Postfix) with ESMTP id A8D5C60CF7;
 	Thu, 19 Nov 2026 11:03:09 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795086189;
-	b=ViUR7r4AW67OyLXMSNpQqwq/36ZDjeKMmgwZQtsqwr9o7Yf3XlgAeJxGnSeLNbID9fYN
-	 GrROmvGWGbZLsn6grrcc4eMhQTTcbTN9HQWhdJUDoqfwSKyOy3CfoRwn9KBRb4kweF0Bd
-	 AEprxQ8SszChuKUG1r6CpGcOzLR2VL897tQsfCpmGRrLNDRVhzQWdN7Y2eiideyxc6I9z
-	 xmWsGDRRWOuWKHnp42cHSO5/ukJjCENlVRqMBmbXLCPK0eVXsXiGZ3d6kbC48ogCM+kAX
-	 nnqJEDgJrFUm7q+ysmyTI/hfP+jQLhNi44VSempZLI8sQ1T0apqZBzDpKzZvzgtRNhg==
+	b=MAA9bqDNVxc+3W6ZaI6Ay8LE83Sy8peiPITUAt+djcnq9X/jO1xSbqz1whIpAQUvnxm7
+	 EFB0+/n25zWHoyFG6CKmMFJIwcDbngvLLlKyh6QfA7taCMYt6y8nxOY1b/aBswmAuc42g
+	 8TZLaVlHb0Cgt61s9gE0wDGSLfuu8MChFOZ7OJeBm+yfzvaU4AolISA/QyRVqgLRX3jxX
+	 7ZMFYyY0drSpR0BULiq1jyDyw+iDbr7wcUwBLJIOdAQjhyLFLf0hJhkaKrxJsWtb+0Dpg
+	 /xxEmSgouCFsD/xiS+IAuHiy+42mSIHDuxE4AEyfHeeRaInLmyyg3oEoxN7pKoS9idQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795086189;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=sLCD0hdTnv6Da453ywGRbhFkVAe80xOO0sEFoswojxk=;
-	b=nqbmnwXS5BB9kt3/+eelmLVOH1LdZf6qRHu5NsqsCr+kUy7O2nZ+uJblpXtmMc0nsyrY
-	 DhgAX5aMmzm4/JJ7kxnIATHXXh1en6xr+/t9u7UqzUCHkPmxE37lWk2ywgry2DzjBUMau
-	 mEJXNDzp0QCHV5OmSh+BZObnzvCihVVLZ0q3LpktcMVPmj/m6s0BSfWrjaxOIcD0J0mIc
-	 wfgmK5cIX4S70ottLKiX7IhvHh4Ivryj6R6ptEGnOKeJdIS8+8PXwMhHk+FvDIl83IGmK
-	 9I8rC0hdM7bjx0xw3DCp0h1uFqSmNBy7urQJ78sFlNyySOnGEewDpg/twSHeyEwXXqw==
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=qNGnohMiCzeV/2nST/vZxlru2Awqvea6Nd2NAaEq//s=;
+	b=1QDRhFKP8zSxl7dXQKPRqvRELV0gYlIQSapIzmn20NY2NxgouDhAwS9ywRRReHmb32bp
+	 DuTRko8Cb4rCCI49mM8w4REPq5NQgULrSy0lEoMRWAMnHLkHMKmNyzaSeG6XbxxlS01Ef
+	 DOctQI3qykjD0CQYEoO/0sj11KAFNPsjuJ+yOKuDCGWH52NbzhO/EGGzsF3DN/CLO0hmQ
+	 n6CwgBjxv3J584NVnSsB8LqjZ4dtNxJqJzbUSZoatPikYxUXMhi0UvsSjTPXXyjYBy+cp
+	 qTVDEm6YFpatOjBfXGLgue++mRZfl3Bvdmb7U9cNEDzehjXfmf7EqfTarxMSjZz3VTA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id CA0D11F000C8;
+	by smtp.kernel.org (Postfix) with ESMTPS id CA0A71F000C7;
 	Thu, 19 Nov 2026 11:03:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795086189;
-	bh=sLCD0hdTnv6Da453ywGRbhFkVAe80xOO0sEFoswojxk=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=RHi4rO8Q3TethLmELW9eofpbccexQauNRAX1pGsu+vat8emS0Pbc94HbZfXHPSmbx
-	 0R4EF8gcPED7IUuEk30A/sfWEE4a27lDMe2Skb2/dYeZkHu/+ebGhD5Xff4q0SASUz
-	 avI6sw5Vd2x+6xKBZUGG6kR9GL7mX25m+CiOX5vGQ47dFm5LGk5J83uaDKgb/j6gKq
-	 KxMYyrOez+RGrSJzl8+G0oaIX9ubX/OpF/KzUk672b0jEJNBxmC4p14hAbUcEWKEa9
-	 mFqWeuPp5cUH/4u8GijFSzo6AxkRlo/2FpaS/PN/1AVsw7ML+26CJ0QYDWHM/wsUx1
-	 VQCf81PWRrSaw==
+	bh=qNGnohMiCzeV/2nST/vZxlru2Awqvea6Nd2NAaEq//s=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=MS0IzOOUK9QBP2zCQofQi+1b5BXor9HpiesakmJ/BYy72oKVcOX7UFUCBGDLr6oU1
+	 X/u9OXybkAZX3yHYB92PKPfeXR1hkZDk1eD7FImw5V7UHEZdWGGSZR6ygrM+BajaZe
+	 Khrtwzqi3Fa2tyG5h7ucMfG8mm7E3lBb53WMMMOsuqsgwpshlFZw456oh0p4SoXIP5
+	 6VRvCo1kb/gyFl8zJOKFgNPIx5lfmvEFRyxghBmiTU5YDDUyOLxEAoat/KSbsuruPp
+	 qUQoVKMz1KkJyXEOr/u+CStqBGn609fB3m72R3F50NpWOmeanCNYG00+8dyfQTEfZu
+	 LQKrtx/GV7Qpw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 289EA4B268;
+	by lkml.kernel.org (Postfix) with ESMTP id 431404B266;
 	Thu, 19 Nov 2026 11:03:08 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Subject: [PATCH v5 0/2] gpio: Add Cortina Systems CS75xx GPIO driver
-Date: Thu, 19 Nov 2026 14:02:48 +0300
-Message-Id: <20261119-cs75xx-gpio-v5-0-8d14f2bb614b@gmail.com>
+Date: Thu, 19 Nov 2026 14:02:49 +0300
+Subject: [PATCH v5 1/2] dt-bindings: gpio: Add Cortina Systems CS7542 GPIO
+ controller
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/1WNwQ6CMBAFf4Xs2ZoWSwFP/ofhUMsKa4SSFkkN6
- b9b4ORxknnzVvDoCD1csxUcLuTJjgmKUwam12OHjNrEkPNcCS4KZnxZhMC6iSzDlutLiSi1qiA
- tJodPCnvt3hzsP48XmnlLbEZPfrbuu98tcvOOshDqr7xIxpluK65rKbFW6tYNmt5nYwdoYow/W
- rGDqbgAAAA=
-X-Change-ID: 20261015-cs75xx-gpio-ed0a37ee4a68
+Message-Id: <20261119-cs75xx-gpio-v5-1-8d14f2bb614b@gmail.com>
+References: <20261119-cs75xx-gpio-v5-0-8d14f2bb614b@gmail.com>
+In-Reply-To: <20261119-cs75xx-gpio-v5-0-8d14f2bb614b@gmail.com>
 To: Linus Walleij <linusw@kernel.org>, 
  Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -95,16 +92,17 @@ Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
  Fil Dunsky <filipp.dunsky@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795086186; l=4741;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795086186; l=2247;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=7ReSjLy5tQcxGd7K4Ei7RJhi7iM5iBMo99bERKuG4cQ=;
- b=GMU11+a3H1pgmVIv3jre/3NQqK6uKkdG80san6lNXNOMDCPdY2Fo6PxsLffpjtgpJjZ/iKDMu
- Tv1teZuuy9jBVzAOxkkdNTfAKsG24/VnFfS6mTK4TOgzsmMS/rjDF/D
+ bh=6OdrTQPhY1jNQj4i0+0IbDQKAnU7nQcBZYFWTSNHycw=;
+ b=DwwXCNuzU3x6pm7aweLuak25Zy4x1XAfQug/Uti4tQFx8EnQVefrqxuwliuvScUT1/rMlw9+n
+ GzymnxCR07MAb8YmunAo9X0SZAnRUwKlWWza6du7YGvGeGoG5DcGOn7
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
  auth_id=1085
 X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,111 +114,100 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Cortina Systems CS75xx ("Goldengate G2") SoCs have five banks of 32
-GPIO lines, each bank with its own interrupt. This series adds the
-binding and a driver based on gpio-mmio; level and edge triggers are
-supported, both edges are emulated by flipping the polarity.
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Each pin is either a GPIO line or belongs to a peripheral (NAND,
-Ethernet, UART, I2C, ...). That choice is made in the global control
-block, which is not part of the GPIO controller: as discussed on v1 [1],
-the driver does not touch the pin mux and leaves it as the boot loader
-set it up, until there is a pin controller driver for that block.
-Testing the reset button on the Securifi Almond+ requires selecting
-GPIO37 in the global pin mux before gpio-keys is probed; the current
-boot path does not provide that setup. The tests used a separate,
-board-specific setup step. The GPIO driver does not program the mux.
+The Cortina Systems CS75xx SoCs have five banks of 32 GPIO lines. Each
+pin is shared between a GPIO line and a peripheral function; the pin
+mux lives in the global control block and is not described here.
 
-The driver used to be part of a series with the interrupt controller,
-I2C and watchdog drivers and the device tree changes. That series is now
-split per subsystem. The driver can be built with COMPILE_TEST without
-the platform series [2], which is under review separately. The other
-Kconfig option, ARCH_CORTINA_ACCESS, is defined by that series in
-arch/arm/mach-goldengate/Kconfig; it is not in mainline yet. There is no
-code dependency on the platform series. The device tree nodes will
-follow with the other CS75xx dts changes once the platform is merged.
-
-There is no public documentation; the register layout comes from the GPL
-vendor kernels. Tested on a Securifi Almond+ (CS7542): the reset button
-(GPIO 37) works as an active-low gpio-keys input, and the SX8650
-touchscreen uses a level-triggered GPIO interrupt.
-
-[1] https://lore.kernel.org/all/20261012-dreamlike-hazily-19bb60326f0a@spud/
-[2] https://lore.kernel.org/all/20261114-b4-cs75xx-v7-0-8f17f38821b4@gmail.com/
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
-Changes in v5:
-- explain that ARCH_CORTINA_ACCESS is introduced by the platform series;
-  COMPILE_TEST allows building this driver without that series
-- correct the pin mux setup required for testing the Almond+ reset button
-- clear the interrupt status after changing the trigger type, so that
-  unmasking an edge interrupt does not fire a stale event (sashiko-bot)
-- collect Reviewed-by tags; Linus, I kept yours over the one-line change
-  above
-- Link to v4: https://patch.msgid.link/20261116-cs75xx-gpio-v4-0-ad80a944e966@gmail.com
+ .../bindings/gpio/cortina,cs7542-gpio.yaml         | 65 ++++++++++++++++++++++
+ 1 file changed, 65 insertions(+)
 
-Changes in v4:
-- rebase on v7.4-rc1
-- split out of "Cortina Systems CS75xx: interrupt controller, GPIO, I2C
-  and TWD watchdog" so that each driver can go through its own tree; no
-  longer based on the platform series
-- the pin mux registers are not part of the GPIO controller (Conor): the
-  binding has a single reg entry and the driver no longer switches the
-  pin mux when a line is requested
-  (Rob, your Reviewed-by on v3 is not carried because of this change)
-- switch a line to input for an interrupt only when it is not requested;
-  flip the polarity of a both-edges line after the ack, so that an edge
-  in between is not lost (sashiko-bot)
-- drop the gpio_chip owner, gpiolib sets it; sort the Makefile entry
-- Link to v3: https://patch.msgid.link/20261013-b4-cs75xx-s2-v3-0-181bb0d23f4c@gmail.com
+diff --git a/Documentation/devicetree/bindings/gpio/cortina,cs7542-gpio.yaml b/Documentation/devicetree/bindings/gpio/cortina,cs7542-gpio.yaml
+new file mode 100644
+index 000000000..faa302180
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/cortina,cs7542-gpio.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/cortina,cs7542-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cortina Systems CS7542 GPIO controller
++
++maintainers:
++  - Fil Dunsky <filipp.dunsky@gmail.com>
++
++description:
++  The Cortina Systems CS75xx (Goldengate G2) SoCs have five banks of 32
++  GPIO lines, each with its own interrupt. Every pin is shared between a
++  GPIO line and a peripheral function; the choice is made in the global
++  control block and is not part of the GPIO controller.
++
++properties:
++  compatible:
++    const: cortina,cs7542-gpio
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++
++  gpio-line-names:
++    maxItems: 32
++
++  gpio-reserved-ranges: true
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - gpio-controller
++  - "#gpio-cells"
++  - interrupt-controller
++  - "#interrupt-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    gpio@f00701f0 {
++        compatible = "cortina,cs7542-gpio";
++        reg = <0xf00701f0 0x20>;
++        interrupt-parent = <&intc>;
++        interrupts = <7>;
++        gpio-controller;
++        #gpio-cells = <2>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++    };
 
-Changes in v3:
-- rebase on v6 of the platform series
-- Link to v2: https://patch.msgid.link/20261013-b4-cs75xx-s2-v2-0-94f8c0a90cda@gmail.com
-
-Changes in v2:
-- rebase on v5 of the platform series
-- do not include <linux/mod_devicetable.h> (Uwe)
-- update the both-edges mask only for a valid trigger type and test it
-  under the lock in the interrupt handler; refuse more than 32 lines
-  (sashiko-bot)
-- Link to v1: https://patch.msgid.link/20261012-b4-cs75xx-s2-v1-0-8a7641b7b79c@gmail.com
-
-To: Linus Walleij <linusw@kernel.org>
-To: Bartosz Golaszewski <brgl@kernel.org>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-
----
-Fil Dunsky (2):
-      dt-bindings: gpio: Add Cortina Systems CS7542 GPIO controller
-      gpio: Add Cortina Systems CS75xx GPIO driver
-
- .../bindings/gpio/cortina,cs7542-gpio.yaml         |  65 +++++
- drivers/gpio/Kconfig                               |  12 +
- drivers/gpio/Makefile                              |   1 +
- drivers/gpio/gpio-cs75xx.c                         | 283 +++++++++++++++++++++
- 4 files changed, 361 insertions(+)
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261015-cs75xx-gpio-ed0a37ee4a68
-
-Best regards,
---  
-Fil Dunsky <filipp.dunsky@gmail.com>
+-- 
+2.53.0
 
 
 
