@@ -2,105 +2,138 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE61606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E81B606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1I0PezDP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cuoFtAGc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K8ZSqTku;
+	dkim=pass (2048-bit key, unprotected) header.d=ginzinger.com header.i=@ginzinger.com header.a=rsa-sha256 header.s=selector1 header.b=L8dIo8lu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-ID:Content-Type:Message-ID:Date:Subject:CC:
+	To:From:Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=V374vhCLF+Wk+6zO/0bsQmIu1zRg2QDczdW9dhiJxto=; b=1I0PezDP8nvFFIyGV8Ms+xJGoA
-	BjHhMfgoQK64SPm5pzmglsBfPrSjCta2eOJnonEt59wheDgUVDyhgr8iP93BUYEb/1Lp9fO10U/0Y
-	jkoPZxOOiqIAd25w8BU8R4w/+pbgYcM40mjKWeBT6DubL6i/K8Y6c2CXoZzvf3wa0SDK+w+M6x2pj
-	B0Bkg37z05QAjnlmnHt6TWg7GnElZTFI+91v7/1j/lwzhxNQ6SoqCek7qUQmTmPDptGBknitdp9i0
-	vxQezOBdtqsDfH3lHwbRgESr0j+EdOd511a4NPGU/IPrYnw8KJHo8CYyQe7ZUQ45HQk73lApXMDe7
-	0HD9n9NA==;
+	bh=vdguBDB+jiBRrQls6YjHCK68oHlxhhWejyIj93sc8j4=; b=K8ZSqTkuO1xtYtWsKXm1S/Topw
+	slft3cBw/uc53FDv54lUnBbztmuKSY0T1ftqTeSdiffeEum9d7hf5veTO+P8bdEXSGqwzIEFM6YKL
+	TKyv3Ebv+7YixW3Y0cn5CzpB3sQUBHG8FcvkO+QfKcZZBL8IRaI9zJCZWyQeI6tDQjXlj8kwSdYL/
+	F7R08GOwnMrzP6YNy6dxjhIUB7C11pm4/WMF1FnkHbB3Ysv9jLWrNMKj8M8DrIq9r6jdE2+aJ0nB9
+	KKMH6yHskqHayw+cjODb8/uuewsWLm17m7STQoA0/JAvv8an5I4iZJ86upv31IOBWdCA82IkLof8z
+	hgiIiW9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzvH-0000000BeUR-13ne;
-	Thu, 19 Nov 2026 11:03:23 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xU02j-0000000BffA-3llf;
+	Thu, 19 Nov 2026 11:11:05 +0000
+Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzv5-0000000BeOG-2RHK
+	id 1xU02h-0000000Bfdq-0wTw
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 11:03:12 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8205962579;
-	Thu, 19 Nov 2026 11:03:10 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795086190;
-	b=as9+ZqlHKEt0L6hHQ3U2TU8rXvOnCSi4oESKoT7YP7hfmWzaacCnR5B3uc2QODFGWc9G
-	 DA/cr3wTSuqm8bg0tn6LGinNkVNjmOQi1lS8Ti1r5Ba6RVOyrbWazKFE6FntU/otJWFcb
-	 r1k3O7owr96tLCGHO2q0pfB2jWPKwS+aqSlUp67XzBEZFvd9IdlX5nHxushaJ4kCGXM59
-	 tgYHZL2U/d9OqhwvmNiB+D95VbYWdgBSiGC5RKTtNzfVa5+d1xPt6JRryy2tDMCP6hB4y
-	 ttwacmCMngOewJmaHrCkv46BzRi6FrXBG30NjRZ8a+mWupxp34SKBSj0PSU91MHdXDg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795086190;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=V374vhCLF+Wk+6zO/0bsQmIu1zRg2QDczdW9dhiJxto=;
-	b=j93xnJ+u1uh1TKAqWNq6DxbMRwdqjKFB1MgFLQOPs9tgh7s0S7RHu3qfzHFGyzf8s/PY
-	 FC4cLYcWg898eZ88gRy0uASTPKLWQFj7clwn/elJJ1SQrzvwykOCFiPDus5iMgF9zGxiL
-	 K13D70I2fRXPYMGJ9tD7kFLFsVjuTj6xnJc+FbkfPeyR/gJPh7GGZRuyG3Ap7GtZIUMJh
-	 Vr3YdaXijsto77U7Id4ejtI2tbxBycFXWqBQS9CXqZFYV6owqZzibk8n/vLIZWsw+pK5k
-	 RhdEXPjku31JBn2453Q8Si3Ih/LY7WnYwoOGI09H+BOOiP8KvxAY5zFmjQa0gFHOhNQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D09121F000C9;
-	Thu, 19 Nov 2026 11:03:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795086190;
-	bh=V374vhCLF+Wk+6zO/0bsQmIu1zRg2QDczdW9dhiJxto=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=cuoFtAGclN1q9KPnMDSjT0tFf80hQs8mj1yU6z6Kg5azJs3fijU3eIGmfvhPCCP8D
-	 fXHPONUlyvCKap0rGK4BJJ9IfpW/0OYBsTXucgEUYmD+FRhve6+lo5oj7QPyYxS2lH
-	 qbqVjCH8I6q4SKyvgdFDj/7OsIax29HmlO6iSQ1ksCbhNVa9MMqWiP1vwnxLvhrsXS
-	 uyoAKzKWy3rs0HssXNzaNJerinOiz9vm4HOwDeAWhNuOdWKuqLfjCC3qZKjbYR656e
-	 n1JTNWQW7doa3j9dE1nK+RFlkcinNoZGAan/cFafkguJhPu8FVY/PrwnHCTUyX+IGG
-	 Dq46Lrk6lFpBg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 5C8A14B26C;
-	Thu, 19 Nov 2026 11:03:08 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Thu, 19 Nov 2026 14:02:50 +0300
-Subject: [PATCH v5 2/2] gpio: Add Cortina Systems CS75xx GPIO driver
+	Thu, 19 Nov 2026 11:11:04 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NyTE+QuO5tjZLfKjXYpgmxgrgQIEhASK7O3vh+mjaWSBdmhRTbsuil+0Kt5Ctur1eF3ZrnxkCTSPZcp1HRSl2dhuMHBiGGpC8ZIvVXubPk7ZwizdcAAIpo1aPG4+n5wLyIoaHVJB5EaNkpdqwTR+FCTDrS7SsoKqYF80Cb4aPrmYSoCbbrSzYtMF9tI0FcvKWjAadV2LSr28H3X1DYVfSkbAynObEkD2SJrYBkzFy4WBMtuoASOoZ3DQfnoS/W7YA+Z3QqtI4o+/LMQdM9+fL8YrXwyPXrFEaULmdCvZEjEd7mED39axn1JZ+/xzYRngMFhtxuVfAIJaJQ0ABZp5qg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vdguBDB+jiBRrQls6YjHCK68oHlxhhWejyIj93sc8j4=;
+ b=HrchtOeegWfSYa6J9Y8G6dHhTTK1F/WpkSNzYrPzOH3XWhCEXnfuCpmL2BTJEO/z5P6kBVANd102cy5txwPLseLrwPXNz0PVbpZZGynz/mqjUPMlZdiiLS483sIDrcNUB6/BXwVSFQTDXQlZWkv0zIbLXsGo+bgxY9KnuHBAZs91qfAQt59tWsZ7nYwm60GdydIQEY6aPz7Vw6NHjdka2ZgI8qL/nwWzfZyDwvFRDjSgHGWXiqXJsl2bQGVQsTnAmMmyMUSj7zLrvIDJwqIQTPWkF5g10SSTihtWWUVYYOSk9PhVWScR0euZos1ikETuh4ut20cvbxmPwYzbx5kV+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 20.93.157.195) smtp.rcpttodomain=arm.com smtp.mailfrom=ginzinger.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=ginzinger.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ginzinger.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vdguBDB+jiBRrQls6YjHCK68oHlxhhWejyIj93sc8j4=;
+ b=L8dIo8luv7rZUPHxPpXyngB3vx+YHcFDJ1XmiNK+/fwWqtSxUj5ldgnVLVhSZCPeXCtIgMBkvvRDS3mIkDY6AcY9V6DaBqChwJOOmu2ekBnO51k5vr+bfeoHBjDuCxctTiAVOy0ejqyN0cRGkVoqdmxcMYR2J0kgp3UUhwxayiDxJfpst4ptDAR9CsnP0DqazrDHz3eDOVCsPU3fTVC8thut0WStykaOk01xNi8Cme6Rh7GKvNHWFPGXTH30/1GEElGLxP/Jtccc6WJopJ+41cn1DTVOPraJqLg9nEiZ30R5rhqUJeBtp0jDZeraezQy6r7qGWpvrtjHUcNUVkZoWg==
+Received: from DB8PR04CA0012.eurprd04.prod.outlook.com (2603:10a6:10:110::22)
+ by AM8PR06MB7650.eurprd06.prod.outlook.com (2603:10a6:20b:357::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
+ 2026 11:10:55 +0000
+Received: from DB1PEPF000509E9.eurprd03.prod.outlook.com
+ (2603:10a6:10:110:cafe::44) by DB8PR04CA0012.outlook.office365.com
+ (2603:10a6:10:110::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.10 via Frontend Transport; Thu,
+ 19 Nov 2026 11:10:55 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 20.93.157.195) smtp.mailfrom=ginzinger.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=ginzinger.com;
+Received-SPF: Pass (protection.outlook.com: domain of ginzinger.com designates
+ 20.93.157.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.93.157.195; helo=westeu11-emailsignatures-cloud.codetwo.com;
+ pr=C
+Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
+ DB1PEPF000509E9.mail.protection.outlook.com (10.167.242.59) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Thu, 19 Nov 2026 11:10:55 +0000
+Received: from AM0PR07CU002.outbound.protection.outlook.com (40.93.65.70) by westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Thu, 19 Nov 2026 11:10:54 +0000
+Received: from VI1PR06MB5549.eurprd06.prod.outlook.com (2603:10a6:803:d6::26)
+ by VE1PR06MB6879.eurprd06.prod.outlook.com (2603:10a6:800:1a2::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
+ 2026 11:10:51 +0000
+Received: from VI1PR06MB5549.eurprd06.prod.outlook.com
+ ([fe80::2c95:365d:522:dd25]) by VI1PR06MB5549.eurprd06.prod.outlook.com
+ ([fe80::2c95:365d:522:dd25%6]) with mapi id 15.21.0615.013; Thu, 19 Nov 2026
+ 11:10:50 +0000
+From: Kepplinger-Novakovic Martin <Martin.Kepplinger-Novakovic@ginzinger.com>
+To: "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>, "mike.leach@arm.com"
+	<mike.leach@arm.com>, "james.clark@linaro.org" <james.clark@linaro.org>,
+	"leo.yan@arm.com" <leo.yan@arm.com>, "alexander.shishkin@linux.intel.com"
+	<alexander.shishkin@linux.intel.com>
+CC: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "coresight@lists.linaro.org"
+	<coresight@lists.linaro.org>, Roosen Henri <Henri.Roosen@ginzinger.com>
+Subject: [BUG] coresight: during reboot-loop-test, boot hangs during 1st us
+Thread-Index: AQHdeBaifF0kKSQwekSOv3vY1w/vig==
+Date: Thu, 19 Nov 2026 11:10:50 +0000
+Message-ID: <f3e3c30ef76310fb6fb7d00019a8ef11e91ee1e1.camel@ginzinger.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
+ signed) header.d=none;dmarc=none action=none header.from=ginzinger.com;
+x-ms-traffictypediagnostic: VI1PR06MB5549:EE_|VE1PR06MB6879:EE_|DB1PEPF000509E9:EE_|AM8PR06MB7650:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d253446-d38e-42a2-c6f1-08df462dc7fd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|376014|366016|23010399003|1800799024|18002099003|261009221727099003|261009220027099003|261009221227099003|260925022911599003|260925021911599003|260925021311599003|11063799006|56012099006|261102123227099003|261028144727099003|261009223027099003|261009223327099003|261026121527099003|261026140227099003|261021123027099003|261021135927099003|261022105027099003|261022075727099003|261021121427099003|38070700021|10067099003;
+X-Microsoft-Antispam-Message-Info-Original: WIEkTyed+kHcM0q37ffIQMvwkfcWvJttoKG55Ljdwf0nD1Er2vpF/tsDoLElpsdjTwh7BLwBLp6T8gALXQACnTYL4gu3IKBmbSI8IQae6A+RcewFBYQXd17qwyMIX1l9hUPecQcJqDHdNXOX0hg4G57vAWuixgUv2YW+IhiL3LS92Lf5Nn2UvF6PZ6UgK7KNGIBcMjt5fZJw6Ojxl9jqlZYkNBuXCLB0pfVqg2M3Ue6Q8eE/Gp07dcV/0QDqT6DmF32sLunyHAbfd+/zuPtwnTlsyykEMwYWGsmV6FkxEiJ3v212wj+QT/o/dS8rHbCx47fyS+8ILijKOtqTQWgZDrVdCAWOdYDhxVbCAth7KGh6raeiylpqB2dfFn3m/J2o6IKZTAP1wc3hTugS2ZoGwAuZ9C5yZax5LmTfUpV5Vbxk8Wr6NnVqDDJatmuwMiAYniJXZIbG/6gs14Z0i5Fw6BAPsbyQCqa9McEfY26rtnFCtocCBE68uFrHddtA2/o4Ch4wCkkfV++zum0yQRnWHLuR93KqrvdfmHV/EBKZmk652WagPunxqlxYvay/YQjyzhCuQ8HLYt4OhHJxumI67+mxpPJyEJyDv1u3jQmkR+45FDb0bDVfuF9erVgHiXmAIUL9L1L60jnYZfbJCivw5SGa4NqBvjcEFb6Fznh7wzDGF1arpKxRvYcZeH/p8FUtZvXYjFF19pjQIHzz3O0lm6levVAAf4tRiqOU8r0Uu7I=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR06MB5549.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(18002099003)(261009221727099003)(261009220027099003)(261009221227099003)(260925022911599003)(260925021911599003)(260925021311599003)(11063799006)(56012099006)(261102123227099003)(261028144727099003)(261009223027099003)(261009223327099003)(261026121527099003)(261026140227099003)(261021123027099003)(261021135927099003)(261022105027099003)(261022075727099003)(261021121427099003)(38070700021)(10067099003);DIR:OUT;SFP:1102;
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A3081A20B458F042A82B5D8E9FC2E51E@eurprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261119-cs75xx-gpio-v5-2-8d14f2bb614b@gmail.com>
-References: <20261119-cs75xx-gpio-v5-0-8d14f2bb614b@gmail.com>
-In-Reply-To: <20261119-cs75xx-gpio-v5-0-8d14f2bb614b@gmail.com>
-To: Linus Walleij <linusw@kernel.org>, 
- Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Fil Dunsky <filipp.dunsky@gmail.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795086186; l=10491;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=2tnGziWrBseSW4RURGkE53ZtaZ0kbwmEIU62H72AIQo=;
- b=e4TQWVyzBi5ZNeK1NnH9bCrBZ402CoA4EK87G28+X64wHMBff9V9TfAFiUSEnXprXRPA4eUf+
- uJlqCdIVJfTCv1XlF/Ah8fPUYRZaGc+9zgWdPPIk0gTvAfOQ6Fpr4jT
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
+X-Exchange-RoutingPolicyChecked: hQlp4h6JMO9lQiEk3oujCqMO17+YmI/ouqYetAoH/WXpgDyTqeIRhi5aqCQ6EQO/NH1+5bVDLtqbq9/oEl9nj8gEfgbIcOzVizabOeHjzAgv2bmX2SA+wNz3uf/mAGzvDbG1I9PS3/0QjimFxsI7fKUq1FCE5bn8FvhG3DdF9hFiHyiFHFGGpFmAoRwRaeEr/PXRJhscQxpUz+oDIX3z1T+FfKaRWzssNhCSa+xPFh0D+kuNCV0sw1J/skS8abUeUgmCK93sNPeawS0KDZ5b30nKkNNwtzJihfaX79xCZdVTTQAZQLvacgwT173HIQCXVGSR8XLYKjo9GsgBaDcR7w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR06MB6879
+X-CodeTwo-MessageID: f1660c16-98a8-45b1-b802-cc25e09a1d18.20261119111054@westeu11-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB1PEPF000509E9.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: e41d7586-6514-49a1-d969-08df462dc54d
+X-Microsoft-Antispam: BCL:0;ARA:13230040|14060799003|36860700016|376014|35042699022|23010399003|1800799024|82310400026|10067099003|260925021311599003|11063799006|260925022911599003|260925021911599003|56012099006|261022105027099003|261021135927099003|261021123027099003|261021121427099003|261026140227099003|261026121527099003|261022075727099003|261028144727099003|261102123227099003|261009221727099003|261009223327099003|261009221227099003|261009220027099003|261009223027099003|18002099003;
+X-Microsoft-Antispam-Message-Info: hLfcccBR7/RNAc4y7JjFPSHJ78OVaBZ85a5Csw53NBzVHyE1pPj9lbRqQVaO6NxUWLj+SkM4S+aSEiPkrfMSbnFjz5vT8z6TjumUfaOniBrCBe+h2vRCigwX8ILzSe0Hs/CnGQl4PeWPSTxVUGOP9G3Cz9m7bKSWm20cIjwIx0OevJihZpO3O9itTgjOlVuW3OosssXYuMBiY/qDm18uAh6+8fQSAnKHC/cJ0iIUDwQ+XRLtPMPQlG9CMSQHoUbMPvJJgQA0Y4j3FKKUIARz1kxW3m7UyxNM2UexIO+ntzPOLMSEgCfgfIzJfEiaurvoIIJ+5YxOIcCNtbcN76HJWu4K3ZQGdLFGeRAoPgAZ7ERnvHb3ulBorkSGLS3RkutQz9Hn4mMMnkNL0qYU2IrxlqeIgu1XBW+X4ZrV6o0V84LkToqo6MntTJ2cQ4HbW9RGtWntqwdwDzqhwF9UOUjj1xe9JJCwn8h/QPNATXsMcc3Ux7Lm46VetPq0lW5LfMcdslr8O9qv7kAyTntlJK1Gi2Yhw48XHewmOPaY3+qZuhvSYjkzzWKIrhI7sLYZLDpjNQiwCRyZ0Bo0mNiGMFWxYjt5iP43p8nucHJ0NdbuS43CSmvRmwdvb7BhNpMGAw9h190FfkmrukJzjH50euDsV4i0fzz2JPrs0621LXiKeM1J0+fL1pOZD1BDYUbN8GS5VEl7ETxw4qUnQRHt4JuFfg==
+X-Forefront-Antispam-Report: CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230040)(14060799003)(36860700016)(376014)(35042699022)(23010399003)(1800799024)(82310400026)(10067099003)(260925021311599003)(11063799006)(260925022911599003)(260925021911599003)(56012099006)(261022105027099003)(261021135927099003)(261021123027099003)(261021121427099003)(261026140227099003)(261026121527099003)(261022075727099003)(261028144727099003)(261102123227099003)(261009221727099003)(261009223327099003)(261009221227099003)(261009220027099003)(261009223027099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: E3DEDiPc578Bvj0878BmE2gWcFgRZxJNlVamer7488/EDIuLQ4tfhZ4so8qGwMYsB0BNFrtPwsNKc6Ms13zEtCCrMQr8f2Crcfw7X3fFc4tqwET3EQD3eiWwo5u33VhmcOuG2Jmrb2RZ801W02tQuposmAAEGumcsYvGBwjCLiyMss1exFxIn3duWSy/6FDqfkpo9geMbqLyFj7dLrgXPvAXZXiz8+Ptf2VMwc0XuTl063rzkGq2fuGy8Bg/C1hCqe+HBBI/PIFgCd8Df42NkuOVTPIFAMuEdDcU0lrodUUVi1SIyIm++Gi/BUB6aXVPzOwy12ogBlGuVCn4v/fqnY7X93h8cJOaEmTA83s125u5OeE9CpFaWzBqhDGWAzgQFjINualkunfOm1tgKU/bbcNYM4jGV+Y/27lUS9xT8BZfw2l+2jU37pLo3gSMuemG
+X-OriginatorOrg: ginzinger.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 11:10:55.1241
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d253446-d38e-42a2-c6f1-08df462dc7fd
+X-MS-Exchange-CrossTenant-Id: 198354b3-f56d-4ad5-b1e4-7eb8b115ed44
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=198354b3-f56d-4ad5-b1e4-7eb8b115ed44;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509E9.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR06MB7650
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_031103_342966_D10CE6DC 
+X-CRM114-Status: GOOD (  10.75  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,362 +143,48 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
-
-Add a driver for the GPIO banks of the Cortina Systems CS75xx SoCs. The
-data and direction registers are handled by gpio-mmio; each bank has its
-own interrupt with level and edge triggers, both edges are emulated by
-flipping the polarity.
-
-A pin only works as a GPIO when the pin mux in the global control block
-selects the GPIO function. That is not part of the GPIO controller and
-is left to the boot loader until there is a pin controller driver.
-
-Reviewed-by: Linus Walleij <linusw@kernel.org>
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
----
- drivers/gpio/Kconfig       |  12 ++
- drivers/gpio/Makefile      |   1 +
- drivers/gpio/gpio-cs75xx.c | 283 +++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 296 insertions(+)
-
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index 55e428002..cc00cfe48 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -300,6 +300,18 @@ config GPIO_CLPS711X
- 	help
- 	  Say yes here to support GPIO on CLPS711X SoCs.
- 
-+config GPIO_CS75XX
-+	tristate "Cortina Systems CS75xx GPIO support"
-+	depends on ARCH_CORTINA_ACCESS || COMPILE_TEST
-+	select GPIO_GENERIC
-+	select GPIOLIB_IRQCHIP
-+	help
-+	  Say yes here to support the GPIO banks of the Cortina Systems
-+	  CS75xx SoCs, including their interrupts.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called gpio-cs75xx.
-+
- config GPIO_DAVINCI
- 	tristate "TI Davinci/Keystone GPIO support"
- 	default y if ARCH_DAVINCI
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index 88f748846..2c2e18ef2 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -60,6 +60,7 @@ obj-$(CONFIG_GPIO_SNPS_CREG)		+= gpio-creg-snps.o
- obj-$(CONFIG_GPIO_CROS_EC)		+= gpio-cros-ec.o
- obj-$(CONFIG_GPIO_CRYSTAL_COVE)		+= gpio-crystalcove.o
- obj-$(CONFIG_GPIO_CS5535)		+= gpio-cs5535.o
-+obj-$(CONFIG_GPIO_CS75XX)		+= gpio-cs75xx.o
- obj-$(CONFIG_GPIO_DA9052)		+= gpio-da9052.o
- obj-$(CONFIG_GPIO_DA9055)		+= gpio-da9055.o
- obj-$(CONFIG_GPIO_DAVINCI)		+= gpio-davinci.o
-diff --git a/drivers/gpio/gpio-cs75xx.c b/drivers/gpio/gpio-cs75xx.c
-new file mode 100644
-index 000000000..733284444
---- /dev/null
-+++ b/drivers/gpio/gpio-cs75xx.c
-@@ -0,0 +1,283 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Cortina Systems CS75xx GPIO controller
-+ *
-+ * Each bank has 32 lines with direction, data and interrupt registers.
-+ * Whether a pin is driven by the GPIO bank or by its peripheral function
-+ * (NAND, Ethernet, UART, ...) is selected in the global control block,
-+ * which this driver does not touch: the pin mux is left as the boot loader
-+ * set it up.
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/cleanup.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/gpio/generic.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/irq.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#define CS75XX_GPIO_CFG		0x00	/* 1: input, 0: output */
-+#define CS75XX_GPIO_OUT		0x04
-+#define CS75XX_GPIO_IN		0x08
-+#define CS75XX_GPIO_LVL		0x0c	/* 1: high level or rising edge */
-+#define CS75XX_GPIO_EDGE	0x10	/* 1: edge, 0: level */
-+#define CS75XX_GPIO_IE		0x14
-+#define CS75XX_GPIO_INT		0x18	/* write 1 to clear */
-+
-+struct cs75xx_gpio {
-+	struct gpio_generic_chip chip;
-+	void __iomem *base;
-+	u32 both_edges;
-+};
-+
-+/* Both edges are emulated by flipping the polarity on every interrupt */
-+static void cs75xx_gpio_set_polarity(struct cs75xx_gpio *g, u32 mask)
-+{
-+	u32 lvl = readl(g->base + CS75XX_GPIO_LVL);
-+
-+	if (readl(g->base + CS75XX_GPIO_IN) & mask)
-+		lvl &= ~mask;
-+	else
-+		lvl |= mask;
-+
-+	writel(lvl, g->base + CS75XX_GPIO_LVL);
-+}
-+
-+static void cs75xx_gpio_irq_ack(struct irq_data *d)
-+{
-+	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
-+	struct cs75xx_gpio *g = gpiochip_get_data(gc);
-+	u32 mask = BIT(irqd_to_hwirq(d));
-+
-+	guard(gpio_generic_lock_irqsave)(&g->chip);
-+	writel(mask, g->base + CS75XX_GPIO_INT);
-+	/* Arm the opposite edge after the ack, so that it is not lost */
-+	if (g->both_edges & mask)
-+		cs75xx_gpio_set_polarity(g, mask);
-+}
-+
-+static void cs75xx_gpio_irq_mask(struct irq_data *d)
-+{
-+	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
-+	struct cs75xx_gpio *g = gpiochip_get_data(gc);
-+	irq_hw_number_t hwirq = irqd_to_hwirq(d);
-+
-+	scoped_guard(gpio_generic_lock_irqsave, &g->chip) {
-+		u32 ie = readl(g->base + CS75XX_GPIO_IE);
-+
-+		writel(ie & ~BIT(hwirq), g->base + CS75XX_GPIO_IE);
-+	}
-+
-+	gpiochip_disable_irq(gc, hwirq);
-+}
-+
-+static void cs75xx_gpio_irq_unmask(struct irq_data *d)
-+{
-+	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
-+	struct cs75xx_gpio *g = gpiochip_get_data(gc);
-+	irq_hw_number_t hwirq = irqd_to_hwirq(d);
-+	u32 ie;
-+
-+	gpiochip_enable_irq(gc, hwirq);
-+
-+	guard(gpio_generic_lock_irqsave)(&g->chip);
-+	/*
-+	 * The status of a level interrupt is latched while the line is
-+	 * asserted, also after the ack, so it may be stale by now. Clear it,
-+	 * it is set again right away if the line is still asserted.
-+	 */
-+	if (irqd_is_level_type(d))
-+		writel(BIT(hwirq), g->base + CS75XX_GPIO_INT);
-+	ie = readl(g->base + CS75XX_GPIO_IE);
-+	writel(ie | BIT(hwirq), g->base + CS75XX_GPIO_IE);
-+}
-+
-+static int cs75xx_gpio_irq_set_type(struct irq_data *d, unsigned int type)
-+{
-+	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
-+	struct cs75xx_gpio *g = gpiochip_get_data(gc);
-+	u32 mask = BIT(irqd_to_hwirq(d));
-+	u32 lvl, edge, both_edges;
-+
-+	guard(gpio_generic_lock_irqsave)(&g->chip);
-+
-+	lvl = readl(g->base + CS75XX_GPIO_LVL);
-+	edge = readl(g->base + CS75XX_GPIO_EDGE);
-+	both_edges = g->both_edges & ~mask;
-+
-+	switch (type & IRQ_TYPE_SENSE_MASK) {
-+	case IRQ_TYPE_LEVEL_LOW:
-+		lvl &= ~mask;
-+		edge &= ~mask;
-+		break;
-+	case IRQ_TYPE_LEVEL_HIGH:
-+		lvl |= mask;
-+		edge &= ~mask;
-+		break;
-+	case IRQ_TYPE_EDGE_FALLING:
-+		lvl &= ~mask;
-+		edge |= mask;
-+		break;
-+	case IRQ_TYPE_EDGE_RISING:
-+		lvl |= mask;
-+		edge |= mask;
-+		break;
-+	case IRQ_TYPE_EDGE_BOTH:
-+		both_edges |= mask;
-+		edge |= mask;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	g->both_edges = both_edges;
-+	writel(lvl, g->base + CS75XX_GPIO_LVL);
-+	writel(edge, g->base + CS75XX_GPIO_EDGE);
-+	if (g->both_edges & mask)
-+		cs75xx_gpio_set_polarity(g, mask);
-+	/* The new trigger may have latched the status already, drop it */
-+	writel(mask, g->base + CS75XX_GPIO_INT);
-+
-+	if (type & IRQ_TYPE_LEVEL_MASK)
-+		irq_set_handler_locked(d, handle_level_irq);
-+	else
-+		irq_set_handler_locked(d, handle_edge_irq);
-+
-+	return 0;
-+}
-+
-+static int cs75xx_gpio_irq_reqres(struct irq_data *d)
-+{
-+	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
-+	irq_hw_number_t hwirq = irqd_to_hwirq(d);
-+	int ret;
-+
-+	/*
-+	 * The boot loader may leave the line configured as an output. Only
-+	 * touch it when nobody else has requested it.
-+	 */
-+	char *label __free(kfree) = gpiochip_dup_line_label(gc, hwirq);
-+	if (IS_ERR(label))
-+		return PTR_ERR(label);
-+	if (!label) {
-+		ret = gc->direction_input(gc, hwirq);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return gpiochip_reqres_irq(gc, hwirq);
-+}
-+
-+static void cs75xx_gpio_irq_relres(struct irq_data *d)
-+{
-+	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
-+
-+	gpiochip_relres_irq(gc, irqd_to_hwirq(d));
-+}
-+
-+static const struct irq_chip cs75xx_gpio_irq_chip = {
-+	.name			= "cs75xx-gpio",
-+	.irq_ack		= cs75xx_gpio_irq_ack,
-+	.irq_mask		= cs75xx_gpio_irq_mask,
-+	.irq_unmask		= cs75xx_gpio_irq_unmask,
-+	.irq_set_type		= cs75xx_gpio_irq_set_type,
-+	.irq_request_resources	= cs75xx_gpio_irq_reqres,
-+	.irq_release_resources	= cs75xx_gpio_irq_relres,
-+	.flags			= IRQCHIP_IMMUTABLE | IRQCHIP_MASK_ON_SUSPEND,
-+};
-+
-+static void cs75xx_gpio_irq_handler(struct irq_desc *desc)
-+{
-+	struct gpio_chip *gc = irq_desc_get_handler_data(desc);
-+	struct cs75xx_gpio *g = gpiochip_get_data(gc);
-+	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	unsigned long pending;
-+	unsigned int offset;
-+
-+	chained_irq_enter(chip, desc);
-+
-+	pending = readl(g->base + CS75XX_GPIO_INT) &
-+		  readl(g->base + CS75XX_GPIO_IE);
-+
-+	for_each_set_bit(offset, &pending, gc->ngpio)
-+		generic_handle_domain_irq(gc->irq.domain, offset);
-+
-+	chained_irq_exit(chip, desc);
-+}
-+
-+static int cs75xx_gpio_probe(struct platform_device *pdev)
-+{
-+	struct gpio_generic_chip_config config;
-+	struct device *dev = &pdev->dev;
-+	struct gpio_irq_chip *girq;
-+	struct cs75xx_gpio *g;
-+	int irq, ret;
-+
-+	g = devm_kzalloc(dev, sizeof(*g), GFP_KERNEL);
-+	if (!g)
-+		return -ENOMEM;
-+
-+	g->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(g->base))
-+		return PTR_ERR(g->base);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return irq;
-+
-+	config = (struct gpio_generic_chip_config) {
-+		.dev = dev,
-+		.sz = 4,
-+		.dat = g->base + CS75XX_GPIO_IN,
-+		.set = g->base + CS75XX_GPIO_OUT,
-+		.dirin = g->base + CS75XX_GPIO_CFG,
-+	};
-+
-+	ret = gpio_generic_chip_init(&g->chip, &config);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "unable to init generic GPIO\n");
-+
-+	if (g->chip.gc.ngpio > 32)
-+		return dev_err_probe(dev, -EINVAL, "too many lines: %u\n",
-+				     g->chip.gc.ngpio);
-+
-+	/* Mask and clear all interrupts before the parent is set up */
-+	writel(0, g->base + CS75XX_GPIO_IE);
-+	writel(~0, g->base + CS75XX_GPIO_INT);
-+
-+	girq = &g->chip.gc.irq;
-+	gpio_irq_chip_set_chip(girq, &cs75xx_gpio_irq_chip);
-+	girq->parent_handler = cs75xx_gpio_irq_handler;
-+	girq->num_parents = 1;
-+	girq->parents = devm_kcalloc(dev, 1, sizeof(*girq->parents),
-+				     GFP_KERNEL);
-+	if (!girq->parents)
-+		return -ENOMEM;
-+	girq->parents[0] = irq;
-+	girq->default_type = IRQ_TYPE_NONE;
-+	girq->handler = handle_bad_irq;
-+
-+	return devm_gpiochip_add_data(dev, &g->chip.gc, g);
-+}
-+
-+static const struct of_device_id cs75xx_gpio_of_match[] = {
-+	{ .compatible = "cortina,cs7542-gpio" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cs75xx_gpio_of_match);
-+
-+static struct platform_driver cs75xx_gpio_driver = {
-+	.probe = cs75xx_gpio_probe,
-+	.driver = {
-+		.name = "cs75xx-gpio",
-+		.of_match_table = cs75xx_gpio_of_match,
-+	},
-+};
-+module_platform_driver(cs75xx_gpio_driver);
-+
-+MODULE_DESCRIPTION("Cortina Systems CS75xx GPIO driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.53.0
-
-
+aGkgU3V6dWtpLCBNaWtlIGFuZCBvdGhlcnMsCgpJIGRvbid0IHJlYWxseSBrbm93IHRoZSBjb3Jl
+c2lnaHQgaGFyZHdhcmUgYnV0IHdpdGggQ09SRVNJR0hUIGVuYWJsZWQsIHdoZW4gSSBkbwoicmVi
+b290IHRlc3RzIiBvbiBpbXg4bXAsIEkgc2VlIHRoZSBrZXJuZWwgaGFuZyBhZnRlciAocmFuZG9t
+bHkpIDIwMCB0byAyMDAwIChzb21ldGltZXMKYSBoYW5nIHdhcyBzZWVuIGV2ZW4gbGF0ZXIpIHJl
+Ym9vdHMgYXQgKmFib3V0KiB0aGUgbGluZSBiZWxvdy4gQnV0IGluZGVlZCBub3QgZXhhY3RseQp0
+aGF0IGxpbmUuIHNvbWV0aW1lcyBpdCBzdG9wcyA0LTcgbGluZXMgZWFybGllciEKClsgICAgMC4w
+MDAwMDBdIEJvb3RpbmcgTGludXggb24gcGh5c2ljYWwgQ1BVIDB4MDAwMDAwMDAwMCBbMHg0MTBm
+ZDAzNF0KWyAgICAwLjAwMDAwMF0gTGludXggdmVyc2lvbiA2LjE4LjYzLWdlLTI2LjEwKy1nZV9i
+ZXA0LWV0YS0xLTAwMTk1LWdiOGJlYmM2OTJmOTYgKHJvb3RAZ2luemluZ2VyKSAoYWFyY2g2NC1i
+dWlsZHJvb3QtbGludXgtZ251LWdjYy5icl9yZWFsIChCdWlsZHJvb3QKLWdmMDAyMjg3ZikgMTMu
+NC4wLCBHTlUgbGQgKEdOVSBCaW51dGlscykgMi40My4xKSAjNDEgU01QIFBSRUVNUFQgVGh1IE5v
+diAxMiAwOTowODowMyBDRVQgMjAyNgpbICAgIDAuMDAwMDAwXSBLQVNMUiBkaXNhYmxlZCBkdWUg
+dG8gbGFjayBvZiBzZWVkClsgICAgMC4wMDAwMDBdIE1hY2hpbmUgbW9kZWw6IEJFLVA0IGkuTVg4
+TVBsdXMgaW4gTkRNClsgICAgMC4wMDAwMDBdIE5VTUE6IEZha2luZyBhIG5vZGUgYXQgW21lbSAw
+eDAwMDAwMDAwNDAwMDAwMDAtMHgwMDAwMDAwMDdmZmZmZmZmXQpbICAgIDAuMDAwMDAwXSBOT0RF
+X0RBVEEoMCkgYWxsb2NhdGVkIFttZW0gMHg3ZmRiNmU4MC0weDdmZGI5YjdmXQpbICAgIDAuMDAw
+MDAwXSBab25lIHJhbmdlczoKWyAgICAwLjAwMDAwMF0gICBETUEgICAgICBbbWVtIDB4MDAwMDAw
+MDA0MDAwMDAwMC0weDAwMDAwMDAwN2ZmZmZmZmZdClsgICAgMC4wMDAwMDBdICAgRE1BMzIgICAg
+ZW1wdHkKWyAgICAwLjAwMDAwMF0gICBOb3JtYWwgICBlbXB0eQpbICAgIDAuMDAwMDAwXSBNb3Zh
+YmxlIHpvbmUgc3RhcnQgZm9yIGVhY2ggbm9kZQpbICAgIDAuMDAwMDAwXSBFYXJseSBtZW1vcnkg
+bm9kZSByYW5nZXMKWyAgICAwLjAwMDAwMF0gICBub2RlICAgMDogW21lbSAweDAwMDAwMDAwNDAw
+MDAwMDAtMHgwMDAwMDAwMDdmZmZmZmZmXQpbICAgIDAuMDAwMDAwXSBJbml0bWVtIHNldHVwIG5v
+ZGUgMCBbbWVtIDB4MDAwMDAwMDA0MDAwMDAwMC0weDAwMDAwMDAwN2ZmZmZmZmZdClsgICAgMC4w
+MDAwMDBdIGNtYTogUmVzZXJ2ZWQgMzIgTWlCIGF0IDB4MDAwMDAwMDA3Y2MwMDAwMApbICAgIDAu
+MDAwMDAwXSBwc2NpOiBwcm9iaW5nIGZvciBjb25kdWl0IG1ldGhvZCBmcm9tIERULgpbICAgIDAu
+MDAwMDAwXSBwc2NpOiBQU0NJdjEuMSBkZXRlY3RlZCBpbiBmaXJtd2FyZS4KWyAgICAwLjAwMDAw
+MF0gcHNjaTogVXNpbmcgc3RhbmRhcmQgUFNDSSB2MC4yIGZ1bmN0aW9uIElEcwpbICAgIDAuMDAw
+MDAwXSBwc2NpOiBNSUdSQVRFX0lORk9fVFlQRSBub3Qgc3VwcG9ydGVkLgoKVGhlIGtlcm5lbCBk
+b2VzIG5vdCBwYW5pYy4gSXQgaGFuZ3MuIFRoZSBwcm9ibGVtIGdvZXMgYXdheSBhbmQgaXQgcmVi
+b290cyBpbmRlZmluaXRlbHkKd2hlbiBJIGRpc2FibGUgY29yZXNpZ2h0IGluIHRoZSBjb25maWcu
+CgpJIHNvbWV0aW1lcyBuZWVkIHRvIHJ1biBhbiBvbGQgdjUuMTAtaW14IGJhc2VkIGtlcm5lbCwg
+d2hlcmUgSSd2ZSAqbm90KiByZXByb2R1Y2VkCnRoaXMgaGFuZyB3aXRoIGNvcmVzaWdodCBlbmFi
+bGVkLgoKV2FzIHRoZXJlIGEgcmVncmVzc2lvbiBpbiBtYWlubGluZSBvciBkb2VzIE5YUCBoYXZl
+IGEgZml4IGluIHRoZWlyIHRyZWU/IEhhdmUgeW91IHNlZQpzb21ldGhpbmcgbGlrZSB0aGlzIGJl
+Zm9yZT8KCkknbSBoYXBweSB0byB0ZXN0IGEgcGF0Y2gsCgp0aGFuayB5b3UsCiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgbWFydGluCg==
 
