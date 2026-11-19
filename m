@@ -2,119 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF914606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:20:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BAE6606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DBZWmZDT;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=ATu9pVSH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xKKpDNA+;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Hv48jMV4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=RQ7PD0wiv0VHC6N2fQDz/R9Q3BvCGmwRHV2aZkr1bBQ=; b=DBZWmZDTqPN2rkSYzcqCHGn/0R
-	tWhDYnVhmNHQGmBB5/tnOkv4E0VyLet1jED/RY5cx4D2vqyaLbD7rmDQWSUJghgFliYdKbGdJwvUC
-	PPM3gr6ftGBPA65BXNCt+v7obV6CsQREeduhYCn/uQGL6BSgQeEZRuBC1a03r2rlfjPh3wkCwbHf6
-	D0DbSXkjuy4FUSn71eu6ERYGiGAa+OU7drAzd0GliTkRUSOWpqY77Nf2SeYuPuFUMXv/w71/g0IR4
-	JMulguQHN3q2P5pHM9QNBlglxyt0ekoDiRPSDZK6Ru+unBeEk7ulE0VczsgySd+UbbVAFNQ3+2z0U
-	mOGLvEMQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=msdP55vXlTy09UO8puWvvjC8jVxycl34xfHbtsiaeYU=; b=xKKpDNA+NjdbVq
+	dFAgWvcPBJoLwcZ4KOlcfZuaymI64YVLFMntDd+cvAQEgsniOYWkRWqwU1Y0VAOBz2FDXrHgOh6p5
+	PotxVcSnKoyPiqsEtaIBenllFU8UaXPePS8X7GegPoY/Qg6NInVeSZ1f4HMJAIE7ZcGzAIXV1JU7d
+	MGaxhoPCEMPbPmyWrmGCsl7DQZ+6ODVSkSZG93JbLH3vylw9AhdW0hpdR+8vlFhkI+HrfgGLBpDiE
+	3Qe+We7Hwh2EA3Yw0UsKISzX9hFGeMU64p4/tjY1rcCFK3B+PdoPB+GK15xapKIogbULZTaMeUHYJ
+	Llu+r0r38W0i+ASgK0hQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU306-0000000CCor-26Ub;
-	Thu, 19 Nov 2026 14:20:34 +0000
-Received: from mail-northcentralusazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c105::5] helo=CH5PR02CU005.outbound.protection.outlook.com)
+	id 1xU32p-0000000CDGV-08ly;
+	Thu, 19 Nov 2026 14:23:23 +0000
+Received: from mail-dl1-x122e.google.com ([2607:f8b0:4864:20::122e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU301-0000000CCmV-1H0H
+	id 1xU32m-0000000CDFU-228u
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:20:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fW/9LLikWEtlzjLDndRHtBS7HbR41P9f5ka8XKjBAtt6Jhjkj1Ec89bUJEVwsk52pJKlHsWaZj5WvAbR8rgzr3+gGqnMWXCN18pQvE5z+i8430METp0W/w08Mg7milj9RRGrVmdBFe3xSWC4k5/KFXfYi0HBIg6TtArTHWDKrSW79HsMFPAWjB+z60PA/hf5/M1DtlZZXwNQzzU5aCA5Hkk/62Q3Rwf1ECVOj1kQ1H18zMvGR0sLuvwpKFJDVoi6tE9cwSKIdKHnmBBH9MDsEmcrD3NrNrKV0jUmj2veIlKNKdDflO4lWag/vI5drJD/of891SQTS5ITQ+lvnSH+ww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RQ7PD0wiv0VHC6N2fQDz/R9Q3BvCGmwRHV2aZkr1bBQ=;
- b=sW/vaxf9dLI4HbWAWf+UJePMCUcWfoI3xgFf85fsVuL4Gb/boPiSNEq+rT3Ohj3X+av2jEtKlpxsRMrcA2Wemn+ldGE4DXQkT/jqEKsCHIE12NoS3+vqdTb/tKVCKCwCuKPqoJA8mYdzRFmjozcVPIa4gryp/eR/nsrWpzfAuStkmfMB7gblCTSP360De76ke8LA35J/gnyLthRyPXmJo+8qb5Yap7bT5+rZhgUPRBHMc+CPjahcZN9LvXf5HbRSenszDXxZSV2Xdv5afcMFFU759VRuN3xUG9VtY72s3lNlskqgDmEQDAcfAd21A9lkO9UXe2ltJ8hDRXeNt0aUag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RQ7PD0wiv0VHC6N2fQDz/R9Q3BvCGmwRHV2aZkr1bBQ=;
- b=ATu9pVSHcAnx0rdaC8ehfci0uNO1Z1OceK/Uwdsacj6qZHhHFYXF53fILtoG7W02n0OC6QibASnxA/WkrccVLFQDC2hMMsyA+op1UibrIGBBuhVW+Iu5vgio8NyYYxpvoMmQThoSgFQ9Q5rHCHSLsN0QHSt3Q2V8/T+CMvL0IIs=
-Received: from MW4PR04CA0251.namprd04.prod.outlook.com (2603:10b6:303:88::16)
- by LV2PR12MB5750.namprd12.prod.outlook.com (2603:10b6:408:17e::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
- 2026 14:20:21 +0000
-Received: from BY1PEPF00026967.namprd05.prod.outlook.com
- (2603:10b6:303:88:cafe::7a) by MW4PR04CA0251.outlook.office365.com
- (2603:10b6:303:88::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Thu,
- 19 Nov 2026 14:20:21 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BY1PEPF00026967.mail.protection.outlook.com (10.167.244.151) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 14:20:20 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
- 2026 08:20:15 -0600
-Received: from localhost (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57 via Frontend
- Transport; Thu, 19 Nov 2026 08:20:15 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@amd.com>, <git@amd.com>
-CC: Harini T <harini.t@amd.com>, Conor Dooley <conor+dt@kernel.org>,
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
-	<devicetree@vger.kernel.org>, "moderated list:ARM/ZYNQ ARCHITECTURE"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH] arm64: zynqmp: dts: Add RTC clock nodes for ZynqMP
-Date: Thu, 19 Nov 2026 15:20:09 +0100
-Message-ID: <e660f7ed31d0e605ede493941cb2d18ba34fd7b0.1795098007.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.43.0
+	Thu, 19 Nov 2026 14:23:21 +0000
+Received: by mail-dl1-x122e.google.com with SMTP id a92af1059eb24-1b3acec6677so3303501c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 06:23:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795098198; x=1795702998; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=msdP55vXlTy09UO8puWvvjC8jVxycl34xfHbtsiaeYU=;
+        b=Hv48jMV40t1uhHw4cjWiEStzH5fSPajH/9dia2kBcfZpicCwT/Y2I2qkY5EHYqqdXX
+         sBiwlV/23hSQS6wCyjNVC+/xIAyMRzOUmjgVb0by1DtVNMlhTyssxUkiliaP81y0In02
+         xv1LxRK2tdbRCwY6g6XDvmunGgfI+aRv3GGVi2/2EUbWaGMgo1n4nH8Y4PTsCA38tSa+
+         3Ja8QClrW8K2px4FDu8zTlzdeosNgOYWd7sA7WO3XVlw1PSFquuaz3dFXVnYi+PAJvkl
+         +Qt/PC4bMpRdD1pul1V1VMXS2kBrFQYUAYlGIJXHUykE6e9tY8un5o7d6/5Nb5qWxt8O
+         M3Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795098198; x=1795702998;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=msdP55vXlTy09UO8puWvvjC8jVxycl34xfHbtsiaeYU=;
+        b=P4XB2OxwrMPQ0K0RMyFk+2bUl+naAyzyyIUwnwdj2LaFIqSk6eyb2ysqkoiEeavb8f
+         tpn5rvAG+0B0iE2cizWPTAj467ypHWf8EVjIFfz5zoC7KoFR1AL3YllZ8pEu60f9YaXL
+         SJTeGOlfnAUYEPXGGGa8Tj9JBVLKpmMM/hERsh9MS6aVWYyKLbk6PzyzPKzsgjqyDhLr
+         Of/enIY3UOnTi0L5rjtt2Y1ODrkhxLniycHEu3fyNirO1kZeg22Mq4hZVW1LbYASttjv
+         HMBEwFyTwgS/6vv0w1BxYd3nAbxvVIUoabuZVBmfmqS9FHIlcJsR7VqwAA4pI1vFTF9z
+         xq6Q==
+X-Forwarded-Encrypted: i=1; AL+hErFPayokwn7JnVprZ4lluyql8XnBgAGnsmTlCPsbynXxWbZXf81gy9BM+Na3t+At07sMBUoCC0BUGGBJupgh/MPf@lists.infradead.org
+X-Gm-Message-State: APuU4Z/aS4HAWPmRATYTl88ptnsFXJd/8o7xKJkLHT/OhE8cggKq6Way
+	wT59BOUGPTwsCyjVrOPgpEMQguHyXVU+dRd1xjraDi4GaFALTdpBxIBn
+X-Gm-Gg: AYBFou13In5AhKrv0C08iwAHw9rfXLZfORTsWJAudWHn9pKI8wEtHbbOT9UoFJhGhyR
+	cGcaKMAYFeiIVoccUKi9U6GoiOhwmh5SF9Xp0cppoXZPypHyvegHYRdu/FjqYSw1s1Bjv+aj9Sm
+	tbpfzDcFd0he4cSPUqtUeUF8qwpBOT19f15mashT2SeHs4szUdo/drIsPooBqn9HvOhK+a+2F49
+	GNZ6q5qRQfYdo3eE0Rsv6XDetZKAcBrpmBOJkSDErTF9yeaJ1pM6Kp7XiPLhvxgNA3Le5m54oVu
+	wsBFs8Px/KNzpkcyckOwaQKIfMwjdtCqb47qDvaKw4uTDnQJVYqu2+PaSF5WYWU29jra6m/CS8L
+	HUs2mm2IV3Cf95lsJqKpGNJDzMVAlJBuB8QjLjoOf/5akGuki28awuz9fCHFs8txYHQPc1vwBgn
+	UUjwgB1L/IiSYTFv99Q8OWrqupX59z1lLU/gZkHLjykKvcSfgmDNY2VzQCg4uJ8mI2JTV+2yLDg
+	ynaZVBH8sZ5E82TxQ+Id1MD96rilr7uS+P8V7kzGMYaNZbKag3ZAqlb/U67N3TQ8v92QGEs5XEv
+	WvZ5MvBMOCRGZajD0h8255tg9XzUtxR+2bdG9uG3jpSnCr5XO1B4
+X-Received: by 2002:a05:701a:c961:b0:1b5:10cf:c402 with SMTP id a92af1059eb24-1b543d09a83mr5609963c88.10.1795098197560;
+        Thu, 19 Nov 2026 06:23:17 -0800 (PST)
+Received: from localhost.localdomain ([103.149.158.188])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b549e398e4sm10306022c88.15.2026.11.19.06.23.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2026 06:23:17 -0800 (PST)
+From: Sreeraj S Kurup <sreekuttan2156239@gmail.com>
+To: krzk@kernel.org
+Cc: alim.akhtar@samsung.com,
+	bhelgaas@google.com,
+	jingoohan1@gmail.com,
+	kwilczynski@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	lpieralisi@kernel.org,
+	mani@kernel.org,
+	peter.griffin@linaro.org,
+	robh@kernel.org,
+	sreekuttan2156239@gmail.com
+Subject: Re: [PATCH v8] PCI: exynos: Handle PCIe PHY initialization errors 
+Date: Thu, 19 Nov 2026 14:22:51 +0000
+Message-ID: <20261119142251.2665-1-sreekuttan2156239@gmail.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <0a3b7886-3800-42ee-8e22-80944114dfcf@kernel.org>
+References: <0a3b7886-3800-42ee-8e22-80944114dfcf@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1795; i=michal.simek@amd.com; h=from:subject:message-id; bh=AwEeBYhun7qKcgHhhR3sVbr2EIMDHpII5COdK2jpNrI=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWT9Z52z4w7/UjGdQ5xq+e/PbvknsMJmDquwQmj68WCVE 8/059dZdZSyMIhxMMiKKbJMZ9JxWPPt2lKx5ZH5MHNYmUCGMHBxCsBEjFwY/seKZjjzyd44eVO8 /Zd+iEn0OqmCzusv34vPqDu3K1PM8irDP7MVsXecs+Mcdv7b3XVXvuTtc+OL1zd/XO61oX/uupb PrMwA
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY1PEPF00026967:EE_|LV2PR12MB5750:EE_
-X-MS-Office365-Filtering-Correlation-Id: c640ee0c-9cfc-48d4-29e7-08df46483e76
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|1800799024|36860700016|376014|82310400026|261021123027099003|10067099003|11063799006|56012099006|261021121427099003|261102123227099003|261009223027099003|18002099003|3023799007;
-X-Microsoft-Antispam-Message-Info: n3Ng6h7xIe/33kOxXiBsH7My6UX5QDOiIxrXyEne7yyxYoGVS+nQQ6GhHnl4GMLw0XPPsb/b1uveYzgrUX4VyQ3IPmiayEvl0j7676g2Osv+a8IIN89twAgRvVZO/6ad6y/bduAHV/48nNsnCRepkP+fFPLnqPpM1HpF3lS2Lc6Sa3SK+Nb4p4Mezx31OU5UgVPo+lbJ/SDWTybpBjX/5WlWVPwp/BJ9dYCGBG/L5KdepsYFyKJNiwcPgShPxr41v1uKq2qEYgjhmkwjhlqXRkMZjluGh8oC5E/astwTeXQI2bbE1/aid2VAf/yOWVp45HwFaR2wCMdkBSNlpXeBF7cEYpQeKxEjXczlQT6oqqusScF022kLNMVGoS4epFBdyUx8mCl74OiudR9Dx6Mfvq2vfi/Eh9zZOIcvssOpKovj8fioYXvK9krQ5lkml6GKiNSmfrxUiM52QQMQxsKbPxhYTqnbzzHSWBaJs2ldkmitirY++u8SCneJRZ4uikVLHC4xe8VKw0trSg0xijjxFF6qDrm5pmnsAbdSSTV2arPp7V5MnAiPHPbfCGQOCl3mQiim/yfDCmpsRgxb9p2uczu19pM0aKlsx6VZ2wBrbp/MXfwOmAXRGjOzblNOlZlBtR4N15yLMr6/nqfVIespre3egl5Zy2yPIJ6c6VMIM21qA50BCkEh3+yxMByHVtBHQju50kLMm0s7yo6SNUuyOw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(36860700016)(376014)(82310400026)(261021123027099003)(10067099003)(11063799006)(56012099006)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 53aVhC83xNfblFQmfrYs0iMWN+7NwfKl59pX0vLYSpG168xi20pSfOA4Bw6EcWJY/TmQQZArMpFaLFFbZtwBMzDJloVAeuSG2+7x9pGoLHUL2tEsixAjfgcPog+mXHrNKPp/CJaUta0UkOh/AkcvaHL70WcfPi3727CQC0lM7C7CD/tCPlF5cb7hRKFIAXKPsiRxbwoGAuNCmzGZWyxWA2Em7mdGPd6GucfkstP6ZqKDkk4+Lm1hJU20QMvRJQOVhp3Q2LiV4MbO3CM+jSiUJ6kUAANNW+ry6FLhuJs1sZ+gIVk6gEfIKIdEq9tN0dXcQAXoI2foEo85QfqgIGQB+cHLb+Ob3sExrHXqCaRHxtZw/qq8M6lJDICnqSSd3VV0owdYALQBxnkwrsRk8+Y8J32lFQSz8Ydbgrif/geE/3WErtwG7N10FmBn1TJL6m8I
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 14:20:20.8369
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c640ee0c-9cfc-48d4-29e7-08df46483e76
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF00026967.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5750
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_062029_352823_84EFB877 
-X-CRM114-Status: GOOD (  13.60  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_062320_528524_EDAFD742 
+X-CRM114-Status: GOOD (  14.65  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,72 +110,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Harini T <harini.t@amd.com>
+Hi Krzysztof,
 
-Add fixed RTC clock nodes at 32.768 kHz for ZynqMP. The RTC driver uses
-this clock to calculate the calibration value, replacing the deprecated
-calibration device tree property.
+Thank you for your feedback. I would like to clarify a few things regarding the patches 
+and the concerns you raised.
 
-Signed-off-by: Harini T <harini.t@amd.com>
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+The code is not entirely AI-written, as you claim. The reason I sent multiple patches on 
+the same day is that I was working on them over time and submitting them as they were ready. 
+They were not all written and sent at once. There was a time gap between the submissions, so 
+please don't assume that I was blindly sending random patches just to get past the review process.
 
- arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 13 +++++++++++++
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi         |  1 -
- 2 files changed, 13 insertions(+), 1 deletion(-)
+Regarding the v2 to v9 revisions, I admit that I blindly trusted your Shashiko reviews. I submitted 
+the patches on my holiday, assuming that Shashiko was properly trained on the latest Linux kernel 
+source code. I also assumed that, since the PCI subsystem uses Shashiko for patch reviews, its 
+feedback would be reliable enough to trust.
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-index 482f432ba7f3..a6e67473a8d9 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-@@ -49,6 +49,14 @@ aux_ref_clk: aux-ref-clk {
- 		clock-frequency = <27000000>;
- 		clock-output-names = "aux_ref_clk";
- 	};
-+
-+	rtc_clk: rtc-clk {
-+		bootph-all;
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "rtc_clk";
-+	};
- };
- 
- &zynqmp_firmware {
-@@ -302,3 +310,8 @@ &zynqmp_dpsub {
- 			  <&zynqmp_clk DP_AUDIO_REF>,
- 			  <&zynqmp_clk DP_VIDEO_REF>;  /* rpll, rpll, vpll */
- };
-+
-+&rtc {
-+	clocks = <&rtc_clk>;
-+	clock-names = "rtc";
-+};
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 29058e633fe9..dfd824fc3e88 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -1004,7 +1004,6 @@ rtc: rtc@ffa60000 {
- 			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "alarm", "sec";
--			calibration = <0x7FFF>;
- 		};
- 
- 		sata: ahci@fd0c0000 {
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+If Shashiko repeatedly reports issues that are incorrect or misleading, why is it being used as a 
+review tool in the first place? Isn't relying on such feedback equally problematic? I trusted its 
+suggestions because I assumed that the review system was reliable and that its feedback had been 
+properly validated.
 
--- 
-2.43.0
+Manivannan Sadhashivam also advised me not to blindly trust automated review tools. However, he 
+explained his concerns constructively and helped me understand where I was going wrong. 
+He understood that I had trusted Shashiko's feedback in good faith. I appreciate that kind of 
+review because it helps contributors learn and improve rather than simply questioning their 
+understanding or dismissing their work as AI-generated slop.
 
+I'm not claiming that my patches are perfect, and I'm willing to take responsibility for genuine 
+mistakes. But dismissing the work as "100% AI-written slop" simply because I submitted multiple 
+revisions is unfair. Humans can also submit multiple patches in a single day. That alone does not 
+prove that the code is AI-generated or that the author doesn't understand it.
+
+I understand your concerns about code quality, and I will take greater care to verify every review 
+comment instead of blindly trusting automated feedback in the future.
+
+I respect your experience and feedback, and I am willing to learn from genuine technical criticism. 
+My intention has always been to contribute quality code to the Linux kernel and improve through the 
+review process. I hope you can understand my perspective as well.
+
+Best regards, 
+Sreeraj
 
