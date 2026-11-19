@@ -2,72 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2FC9606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B2F606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k0jg0whY;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ksN/hkSr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OHa2e4RK;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=auu7G3Kz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bcoYPNQ1e9JiGf7bcR7Apnx0REpWA8L8Z0wsD4xAwOM=; b=k0jg0whYCC9dpO
-	vq3UsPhS+HU7f0dyxgh+WV6nxgEVbtfMREielo/6bYaHSCwtuzBv5FvgubhENZnppv7SG3Ao5+isH
-	iZBulg2oKwAN97h0/kfcPtNgSED3TF/Z+YNUcKbRQFOQhWMlkfqMWOL6Q6sAH5vpabShg5qunDB0f
-	W+UC1vjSGpEodep6dJbGIgT9cbHNZHQdXFoaqkcOaREmMXhDZIct0pW4dsFddXpheRGGmyHDxSc2J
-	7AWmsFO6RVImibLIGvlAN8l6M5/I/IgSL6lczX2Xg5VIK5SwIQvD/hOUf8fxCK+CbK0lKo2hYSoXr
-	/DKaEd3PM/G75HCb0r1A==;
+	List-Owner; bh=Ti7zYfewVTPLw6o7ketmyvxMhRKCPMrEBC1dAP5uxT4=; b=OHa2e4RKz+gcLa
+	4jZGf57zB8eneEDcQdHMxh1slDgfx4uoR2s93zn3t5cyvqb8ocLBEYKkwCohrzS16vFvpFwlYJ6eF
+	8AGNH+y6p3hsvEYH4OyBXNwOMoq2zD5aCuJXKtK38blDHqQlJwzlyUA/4UxZeFc9eAs+QGkjLCrxg
+	sPsW8Q+GvouM1x2HawnZ9oHQrBZozg8PL51rg1qrBpDTH1zy+OBmNVIWTzyrfehvEwuMZy8/M/6zd
+	bG6Q3byVSDgpWYQQB6BvjxNFNDpkj/F2L9lcDZbQhe7MhTgiCnH/hEixcIoEVoRK/yuOHFon14JJX
+	jadCYKixWqhsi1UsZkRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyI0-0000000BN85-0CHH;
-	Thu, 19 Nov 2026 09:18:44 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xTyJI-0000000BNL7-24ZG;
+	Thu, 19 Nov 2026 09:20:04 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyHp-0000000BN6Q-3Z1D;
-	Thu, 19 Nov 2026 09:18:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5D9F540532;
-	Thu, 19 Nov 2026 09:18:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D30331F000C4;
-	Thu, 19 Nov 2026 09:18:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795079913;
-	bh=bcoYPNQ1e9JiGf7bcR7Apnx0REpWA8L8Z0wsD4xAwOM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=ksN/hkSr+gJP5LsCZT870PhevDKD0dgh6KPfF7Yu3TCs91hOP+TjiMrUWdJ5TMam+
-	 dorqqx+axs5BBnLhJtUHA+Wh+mnj5clmKVDmfAOqvPi3IujBmPCTJmuh0MN0D6+ZRq
-	 Tzkb94RPnG1kjxxyaXa5jHlZS6IR/kDwAcsoSUPSMkfbjyqXAihVEtXJCrpBRQ2FZF
-	 5lo5UI78eJta06nxNEWEazfuadfT4uo2gq8M48AMiBaXWoVQij0iib2nvf1pdYoSEm
-	 RgpOa+pzerxevgJI6ivArDbPdrq1dAAw5ypfOvpNFUbRD6lemb71N389D7cWbgNTtR
-	 IpaducJBN3D4g==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org,
-	Mark Brown <broonie@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Gabor Juhos <juhosg@openwrt.org>,
-	Chris Boot <bootc@bootc.net>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	linux-spi@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH 02/10] spi: bcm2835: Store native chip-select GPIO descriptor per device
-Date: Thu, 19 Nov 2026 09:17:14 +0000
-Message-ID: <20261119091810.3440619-3-lee@kernel.org>
-X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
-In-Reply-To: <20261119091810.3440619-1-lee@kernel.org>
-References: <20261119091810.3440619-1-lee@kernel.org>
+	id 1xTyJG-0000000BNKP-2qr6
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 19 Nov 2026 09:20:04 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c50d3ac6b51so143284266b.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 01:20:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795080000; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HnWGEiNycQrBfmIVyuduOO8gvCV5lBTDEjCIwBZ2sV18hfN4pbJGetrngU6R6n0LiE
+         1UR92NcNQxaxP6dXVD2rIw5LmxQoLWXLo9U9iqOdSl+VzcrMWjbsoQ78YXow0E0ho5On
+         MwyYksgytT293A67K0YOs41WTQEvcdiE6F9/yo66JI7v90BlKTY8LHkhZt2X6At0Rpq2
+         or+IC2o0BejAUu/7ke4jnzEUm9xxqC1qmLJl3HKHw9l42/guRLP7Ha4WIxBALNNq3ueS
+         ro+L4prE27kD6yDtJzLxbrLN1HTLA7QWMSL3d8OLf2RQdUXKJ2MuEKuLt6jo8PJkCyez
+         q7mw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Ti7zYfewVTPLw6o7ketmyvxMhRKCPMrEBC1dAP5uxT4=;
+        fh=gxG/mfRviZnC0vcwEOjWNqgtbqCm94WB/ZIRm4/jchc=;
+        b=sXQAjtL+NjKCF4iDzuMaHQVGawogPs9OGEjkYoJflN8xo/Rsre3B8zwFQeZ4MTkSTe
+         roTTHasQfRU82fKBh1u6NwJUMm7MA/0zcXsNrqTmMCHM+dUpOSdBjINJhqVYVOrcF01M
+         Ys1rPVye4rvJDmGZAHAGP0a5JGHUDEInKYfoVx41pv8lMfo0l3lhoV3HU25HlGmDJYD0
+         peoQKt9sGFSq7JWBoFHusQ+e49kwlXBWAU5j0zvFsBMXPodX0zlziXqRR869Br54VtpN
+         7XQ4Z/R6WbMURRR5CRGh4JrTbd1XbNe0rw01793vnwNwc7yH9immnEA/sanPe4KG1mRk
+         iMhg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1795080000; x=1795684800; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Ti7zYfewVTPLw6o7ketmyvxMhRKCPMrEBC1dAP5uxT4=;
+        b=auu7G3KzWTq/HV9mhmxcQ0aPFC6iAMhg79klgaO/deTuT4NUiCbTZU+j/HQlmWHaK3
+         rN1hbIjcBWEGBccNiKxK77wKP4e7umQ0+tr52QzIGnnsrYveBNy+zPGXGT8BSMC6dSl1
+         EsRbRWEDq7meCWTarjLnZAR7DG0AsbyzWSDqzYOSwD8ESGsA/BzcspX4Zfa3GmwH724I
+         jOXfIpNQ4UxEAFCsr0dNmj/fTgtLMUnr3ycw184XtL3S3Uca9/CA8ixL+Zb+l/gBb1Dh
+         tC26loMd23iUG2SamUrjmwchKb3zKhyDq0cexStn8Plp+51ifsMLBoN1y/f8DE5Z3pUe
+         KrYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795080000; x=1795684800;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Ti7zYfewVTPLw6o7ketmyvxMhRKCPMrEBC1dAP5uxT4=;
+        b=TxXDwXtugIgkaoehh2ET8WpfxBL5RYn5NS5hHSJ+xkBeXd9bm6UW5gtMnlk/WZ4iW6
+         yQXWDwP1BHhjO4W8Z8V0Q4dOwP2qYHQLnOqTJ21mw39UN3xmrNne1V4SifvH2aMVT9rD
+         MJoSkc6pW+82OZ2ziyvyL9a6K7yG9JpPvb57AFXsZS1W5F03NuaeHcB6l70kiGO8jYQY
+         GykI1eQ8HUlFYAg1ITiNJ9klDap7nV4U2RS1+KTjrIqmn+U+WC9QPP8WoDrQyBJ9UqVi
+         qtAg1V99DXPdlTRTVsnGrL7CBIPTnxSFlyTZLF3UmSrCzYCWIDff0Fdtt99OD0Kprls3
+         cs1Q==
+X-Forwarded-Encrypted: i=1; AL+hErEImuwRIp3r7opi+qThg+OwIzAkSmTPc5z9KjtaIsdKx+wIDp7JR5nyJdTRBA399c9FsIx+xW7r/8lzQcrezFgy@lists.infradead.org
+X-Gm-Message-State: APuU4Z96WiRRf84hYwxV+u5kkA9EuT+Q65Hjqmf4SKcOnzvQ0XXBhsoZ
+	xZK4db0bjb4PBBvzMq/kCtnl2Ytr8lIGbW4v2SajhJE60bbBu8pIPYwIFgFVVau+mYhB95EZ9jX
+	kpgZa5Z9UiqKTUGeSKMUG8mLDFFPesedt6I7FeDlMpg==
+X-Gm-Gg: AYBFou2b0pGN34QlcitkWK9zkyrmi3CATaHKBj+udbtfTgQrJKswD/ZcRC3pbPw7Bqt
+	4K/MyG6hQKj4zag3ieev1SkTMw2pOUT1AvwpkjouuY1Qm8YXW4Ue9qMhfHM/8I3q8C1WQTMCBmK
+	FS++D/gX+RjxEBevXWZSAoyWZSjctuknPSuchTNoUCjiaiOtBA1ZdsmqJhWx29FEqhO59JlaOm3
+	cd93o/DfG65dwEqbhPI0k/j/5ea/Gg45o0znNTT0zebD36YRq4Q1I5Vdbl3Fd10d3j3LmBV0q8K
+	7i2RPOJj56JnyQOqoNsUfe4cJ0GCRK0C2SNJmjR/FveFZadxEeY+/PXaaQR9vxtVDR9UuAVWgmD
+	Xr/+lWAW5GlQxvbl1yFtVtVrV3MG3yNDSHzi/p131RwMVRiiMVn+RzCb12SsUhmPwfuEROQ==
+X-Received: by 2002:a17:907:9692:b0:c40:9b35:ad91 with SMTP id
+ a640c23a62f3a-c51318163ecmr59215466b.13.1795079999707; Thu, 19 Nov 2026
+ 01:19:59 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20261118184729.2302130-1-m-malladi@ti.com> <20261118184729.2302130-3-m-malladi@ti.com>
+In-Reply-To: <20261118184729.2302130-3-m-malladi@ti.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Thu, 19 Nov 2026 10:19:48 +0100
+X-Gm-Features: AclHuK8e8ffnAD8pzuAiTxnaJvnDKX5k-oyRRYloR7_BmjnaSSX9Hh_xNi7mzEk
+Message-ID: <CAAofZF4XYd5z8X56DRARMxbu3t7QX48T7V69MPBw9TW1BQAmKg@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/2] net: ti: icssg-prueth: Add ethtool RX flow
+ classification support
+To: Meghana Malladi <m-malladi@ti.com>
+Cc: kees+treewide@kernel.org, laixiangwu@cmss.chinamobile.com, 
+	philippe.schenker@impulsing.ch, haokexin@gmail.com, devnexen@gmail.com, 
+	horms@kernel.org, jacob.e.keller@intel.com, sdf@fomichev.me, 
+	john.fastabend@gmail.com, hawk@kernel.org, daniel@iogearbox.net, 
+	ast@kernel.org, pabeni@redhat.com, kuba@kernel.org, edumazet@kernel.org, 
+	davem@davemloft.net, andrew+netdev@lunn.ch, bpf@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, srk@ti.com, 
+	Vignesh Raghavendra <vigneshr@ti.com>, danishanwar@ti.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_012002_765673_2F780834 
+X-CRM114-Status: GOOD (  10.00  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,120 +125,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When a device uses a native chip-select, bcm2835_spi_setup() requests a
-GPIO descriptor for it and stores the result in the controller-wide
-bs->cs_gpio.  A second device using a native chip-select overwrites the
-first device's descriptor, which is then leaked.
+Hi,
 
-bcm2835_spi_cleanup() subsequently calls gpiod_put(bs->cs_gpio) for
-every device, including devices whose chip-select was requested by the
-SPI core from the cs-gpios property.  The same descriptor can therefore
-be released several times, and the descriptor released is not
-necessarily the one which belongs to the device being cleaned up.
+On Wed, Nov 18, 2026 at 7:50=E2=80=AFPM Meghana Malladi <m-malladi@ti.com> =
+wrote:
+> [...]
+> +       mutex_lock(&emac->rxnfc.rxnfc_lock);
+> +
+> +       /* Check max rules */
+> +       if (emac->rxnfc.rxnfc_rule_count >=3D ICSSG_RXNFC_MAX_RULES) {
+> +               ret =3D -ENOSPC;
+> +               goto unlock;
+> +       }
+>  [...]
+> +
+> +unlock:
+> +       mutex_unlock(&emac->rxnfc.rxnfc_lock);
+> +       return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_add);
 
-Move the descriptor into the per-device struct bcm2835_spidev, which is
-zero-initialised, so that each device releases only the descriptor it
-requested itself.
+nit: instead of mutex_lock() you can use guard() [1]:
 
-Fixes: 21f252cd29f0 ("spi: bcm2835: reduce the abuse of the GPIO API")
-Closes: https://sashiko.dev/#/bug/linux-677b4cdb-2c6c-4cad-8a5a-45a24dc5cbab
-Cc: stable@vger.kernel.org
-Signed-off-by: Lee Jones <lee@kernel.org>
----
- drivers/spi/spi-bcm2835.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+    guard(mutex)(&emac->rxnfc.rxnfc_lock)
 
-diff --git a/drivers/spi/spi-bcm2835.c b/drivers/spi/spi-bcm2835.c
-index 9d589df90933..af118cccee1b 100644
---- a/drivers/spi/spi-bcm2835.c
-+++ b/drivers/spi/spi-bcm2835.c
-@@ -85,7 +85,6 @@ MODULE_PARM_DESC(polling_limit_us,
-  * struct bcm2835_spi - BCM2835 SPI controller
-  * @regs: base address of register map
-  * @clk: core clock, divided to calculate serial clock
-- * @cs_gpio: chip-select GPIO descriptor
-  * @clk_hz: core clock cached speed
-  * @irq: interrupt, signals TX FIFO empty or RX FIFO ¾ full
-  * @tfr: SPI transfer currently processed
-@@ -120,7 +119,6 @@ MODULE_PARM_DESC(polling_limit_us,
- struct bcm2835_spi {
- 	void __iomem *regs;
- 	struct clk *clk;
--	struct gpio_desc *cs_gpio;
- 	unsigned long clk_hz;
- 	int irq;
- 	struct spi_transfer *tfr;
-@@ -153,6 +151,7 @@ struct bcm2835_spi {
-  * @clear_rx_desc: preallocated RX DMA descriptor used for TX-only transfers
-  *	(cyclically clears RX FIFO by writing @clear_rx_cs to CS register)
-  * @clear_rx_addr: bus address of @clear_rx_cs
-+ * @cs_gpio: native chip-select GPIO descriptor requested by the driver
-  * @clear_rx_cs: precalculated CS register value to clear RX FIFO
-  *	(uses target-specific clock polarity and phase settings)
-  */
-@@ -160,6 +159,7 @@ struct bcm2835_spidev {
- 	u32 prepare_cs;
- 	struct dma_async_tx_descriptor *clear_rx_desc;
- 	dma_addr_t clear_rx_addr;
-+	struct gpio_desc *cs_gpio;
- 	u32 clear_rx_cs ____cacheline_aligned;
- };
- 
-@@ -1157,7 +1157,6 @@ static void bcm2835_spi_cleanup(struct spi_device *spi)
- {
- 	struct bcm2835_spidev *target = spi_get_ctldata(spi);
- 	struct spi_controller *ctlr = spi->controller;
--	struct bcm2835_spi *bs = spi_controller_get_devdata(ctlr);
- 
- 	if (target->clear_rx_desc)
- 		dmaengine_desc_free(target->clear_rx_desc);
-@@ -1168,8 +1167,7 @@ static void bcm2835_spi_cleanup(struct spi_device *spi)
- 				 sizeof(u32),
- 				 DMA_TO_DEVICE);
- 
--	if (!IS_ERR(bs->cs_gpio))
--		gpiod_put(bs->cs_gpio);
-+	gpiod_put(target->cs_gpio);
- 	spi_set_csgpiod(spi, 0, NULL);
- 
- 	kfree(target);
-@@ -1232,6 +1230,7 @@ static int bcm2835_spi_setup(struct spi_device *spi)
- 	struct bcm2835_spi *bs = spi_controller_get_devdata(ctlr);
- 	struct bcm2835_spidev *target = spi_get_ctldata(spi);
- 	struct gpiod_lookup_table *lookup __free(kfree) = NULL;
-+	struct gpio_desc *cs_gpio;
- 	static const char * const pinctrl_compats[] = {
- 		"brcm,bcm2835-gpio",
- 		"brcm,bcm2711-gpio",
-@@ -1334,14 +1333,15 @@ static int bcm2835_spi_setup(struct spi_device *spi)
- 
- 	gpiod_add_lookup_table(lookup);
- 
--	bs->cs_gpio = gpiod_get(&spi->dev, "cs", GPIOD_OUT_LOW);
-+	cs_gpio = gpiod_get(&spi->dev, "cs", GPIOD_OUT_LOW);
- 	gpiod_remove_lookup_table(lookup);
--	if (IS_ERR(bs->cs_gpio)) {
--		ret = PTR_ERR(bs->cs_gpio);
-+	if (IS_ERR(cs_gpio)) {
-+		ret = PTR_ERR(cs_gpio);
- 		goto err_cleanup;
- 	}
- 
--	spi_set_csgpiod(spi, 0, bs->cs_gpio);
-+	target->cs_gpio = cs_gpio;
-+	spi_set_csgpiod(spi, 0, cs_gpio);
- 
- 	/* and set up the "mode" and level */
- 	dev_info(&spi->dev, "setting up native-CS%i to use GPIO\n",
--- 
-2.56.1.708.g77570a6a1d-goog
+and remove all the "goto unlock", returning directly. This handles the
+automatic cleanup.
 
+Same for other places where you're using mutex_lock() / mutex_unlock().
+
+- [1] https://docs.kernel.org/core-api/cleanup.html
+
+--=20
+
+Marco Crivellari
+
+SUSE Labs
 
