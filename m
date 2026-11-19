@@ -2,81 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B8E606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969DB60A3831
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xpplCgVy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SEdJ2gix
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XzQZh6g9;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZSogWvU5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Y4L+6oVmWqwrFfx2LJ3E+02/7jmDMc+Yi0esheg1PZo=; b=xpplCgVyjWi13jUT8rQcIqcrYX
-	t38/6Muh4gF0zHnJIuBluAQOwsOmIeX+t/o9XZRMTfqzjpcurZFzFoCsHYHQGq5p66qJw/l5FFkFP
-	64ID/3Iu9nIe27n/QuqCHWty9ihh9TaRUPJNJb7b8YNUTmUWBhPravP74yCB3w55UxGleSwcvLGuO
-	UtZjqPBhCPdLvBtgghBs9yYZy6q0XrYsvWpRM/8BKpMku5nMnOX7CS7cIz0MezCMNSK/cIk2QZnJj
-	gOrtlkSWG9GR1+Wn3k16lt2kswwMfkA6Wq1Px7MlpTX1Cm2petp2a4s1sG8JBilABb/AbMSr2T1JF
-	q9WrTF5A==;
+	bh=TASXj8wsMRiuTiWS9CZldYuNl5sRLL8gOkJehr3ZTXs=; b=XzQZh6g9JbIeu0Vb9/+6kgD2gA
+	PsroT4tLZYgeKd0Gpf+ekGIMFh8C7hFX6d2pHIFg9f6uu+x/wqSjEu5vzgx5VB21c9L5WnSiwWwAe
+	fKuClh7onjOn3Sn4Qo0uIoXKFfgke0S/uMEaLi5iJZCope5AJIpUKVipzbe/4skpc4YacDaDFnPm0
+	f3HHNqZWwx5KUnY9Vsxq2b+GwBgmGvRzQXY7747po5Oaf/U5zYq0CSF++fScYAbu1CCa9OD4TuVQk
+	7W9bGHi7tTTuwrbIYgpbv//is7eOmmvpNIlySzvI2yu2KOI0EWCoqQ82tSR3xJ4zhOBpInbQqkA9e
+	2pS54A4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU53N-0000000CeKb-0STi;
-	Thu, 19 Nov 2026 16:32:05 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xU562-0000000Cen8-2msm;
+	Thu, 19 Nov 2026 16:34:50 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU53M-0000000CeKM-0xUl
+	id 1xU561-0000000CemA-2usC
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 16:32:04 +0000
+	Thu, 19 Nov 2026 16:34:49 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7FFB144D2F;
-	Thu, 19 Nov 2026 16:32:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EBC61F000C8;
-	Thu, 19 Nov 2026 16:32:03 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 2EA3944733;
+	Thu, 19 Nov 2026 16:34:49 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795106089;
+	b=L4t5dan3pmX+JnWgTQEFpYut+kUDbNJN7v0yeOwCIHF2EXXvaxNPAFreP5BQGZrsWerl
+	 uGFASlF0Y84quENcIHv9K61Wj8q7BC6R154HQyzcmEaAecFwK8iGSQO5lfrpq5hBlVipT
+	 SrSQ/9Al8lRKuiKvG8L6zYUgSMUnRVjgSsPBCmxhkzOV4Qw+e5/dZlPWj0p0Sz9XYt7jV
+	 vMi4wYUSnBh9dlPrmekCa+FNnBVi7V+MAKCaCR+Q6PjundyLAAf3NcT9+3tLQeeVql/BU
+	 LslHPxkuqda+GKk61qa1m2kjqjFr5gKPnWDONAMhUhoc8oDnzuUReRZyR+k1UQkE6pg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795106089;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=TASXj8wsMRiuTiWS9CZldYuNl5sRLL8gOkJehr3ZTXs=;
+	b=WIDEp6eREEqGEzHyfClIz3gXgirA4U0ijnCzl/GHPCkIdbIVJVn9smKGKjWCFtruEiTe
+	 2UKs81VlsQGFMVIDvaHOcM+Syf1x3OzWIVHmkbyQOBTzOEhtLlCDtADCjTg+nFwA1TGDH
+	 jFWx9Zx1kSKwQz784QDIvqy84JMteU7JMW3rxkZjFY7u2NZiu03JyZ3ajssnJkkgeJpv2
+	 YQC14yjfWDTNPZHAhPD/dFQc9ua3YJTKg+5e0e6wGfyksyxOBEuk2bsr7R2ZovAit3SRn
+	 lcyAqxr6OjrQAMcAgKIVQJJd1SrS9JTAptRLYpRC+P4VL7g+eIHdEOFoqpoH322cB5A==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id E06B21F000C4;
+	Thu, 19 Nov 2026 16:34:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795105923;
-	bh=Y4L+6oVmWqwrFfx2LJ3E+02/7jmDMc+Yi0esheg1PZo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=SEdJ2gixFVuzYzP+ru8fvUB8Cxdv+1ZP3Q959zolej54XHbW4rtTZnq0Ix6KsegGj
-	 OPVIpR0lDjbq0cTNq9cqVCvRO9dN21mIAHyMnjGdEagvszWaPna26n4KeUJN//PiDY
-	 TN7YnyDOOJewc9wkFPhusCjjRHuRfYN5tJagEh4ZyQwpzBeF2rLLF0g0kTgfbQ3TbU
-	 cbwEQHLSiFcijQ7SxQEvzN44a/RwkuO/Aj0wQ+lbp3wOeHETY84qIsAM99zvcL4GX4
-	 663rlB1T0xPt23bVZezzy8uQJjbZoQZOcZimguv3zI7/K5SPxS/dClhuAZbxU0eSfz
-	 Y9tm075JDb0HQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xU53I-00000000Yep-3czz;
-	Thu, 19 Nov 2026 16:32:00 +0000
-Date: Thu, 19 Nov 2026 16:32:00 +0000
-Message-ID: <86wlq8zssf.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Dan Carpenter <dan@pereq.eu>
-Cc: Oliver Upton <oupton@kernel.org>,	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,	Zenghui Yu
- <yuzenghui@huawei.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Will
- Deacon <will@kernel.org>,	Mark Rutland <mark.rutland@arm.com>,	Jintack Lim
- <jintack.lim@linaro.org>,	linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,	Karthik Bhargavan <karthik@pereq.eu>,
-	=?UTF-8?B?Q2zDqW1lbnQ=?= Blaudeau <clement@cryspen.com>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] KVM: arm64: Trap TCR2_EL1 writes when S1PIE or S1POE is hidden
-In-Reply-To: <20261119-nv-tcr2-v2-2-3deb1a6cdba8@pereq.eu>
-References: <20261119-nv-tcr2-v2-0-3deb1a6cdba8@pereq.eu>
-	<20261119-nv-tcr2-v2-2-3deb1a6cdba8@pereq.eu>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20260515; t=1795106089;
+	bh=TASXj8wsMRiuTiWS9CZldYuNl5sRLL8gOkJehr3ZTXs=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=ZSogWvU55Q22Tsn3BTlEV6kFWKjiTpepEeedHaifkNt/JRWfolLvLvivSa+uj8znn
+	 rVDPKkQBkp5ZMRYSUAtkeROF4jSmVHDLmBtMapIOIILlccde7wE6Al6vMamIYt901p
+	 jQoKuSA13+Ave6er+5Nvn8yp5O8mvDNmtbJy7Uce6P3rfZTsAgSuT8gbBCD5DSJ7Xd
+	 rafx5xwKloh4mn9EiHyGQihileZ2gEqq1/7g2tfJrRL6E5szfn9z26O3H0DR0yPyoD
+	 k8D4gHF6xA18wWMTH0X/aiQMhFj01bB/4HD3Zvixl9PLxlx9pbRSmozxUIpR5+DOIH
+	 zlWh5IYInVaGQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 695A74B340;
+	Thu, 19 Nov 2026 16:34:47 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Thu, 19 Nov 2026 16:34:48 +0000
+Subject: [PATCH 2/2] media: cedrus: report only the picture as capture
+ payload
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: dan@pereq.eu, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, jintack.lim@linaro.org, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, karthik@pereq.eu, clement@cryspen.com, stable@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261119-b4-cedrus-generic-fixes-v1-2-f9f50812c85b@gmail.com>
+References: <20261119-b4-cedrus-generic-fixes-v1-0-f9f50812c85b@gmail.com>
+In-Reply-To: <20261119-b4-cedrus-generic-fixes-v1-0-f9f50812c85b@gmail.com>
+To: Maxime Ripard <mripard@kernel.org>, 
+ Paul Kocialkowski <paulk@sys-base.io>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Hans Verkuil <hverkuil@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-staging@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795106086; l=1453;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=lSQqpNTqUN3KRP025JzeD5HjWBP/5kJZvzmwU8xlcgw=;
+ b=00WljHGglT5egohrYdOgq2pH9RldUbgdDe5g5Dz9/47B5lNqevbDqAy08FT/fuUltqaXLfp9B
+ urA326EmJLEBpPXNRX+hE7m800eVBKwNcfw1YYiIYkhBU4UoJ4p/We0
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,67 +113,56 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 19 Nov 2026 13:25:35 +0000,
-Dan Carpenter <dan@pereq.eu> wrote:
-> 
-> A VMM can offer FEAT_TCR2 to a guest but hide FEAT_S1PIE or FEAT_S1POE,
-> for example this is done to keep the VM migratable.  KVM then stops
-> loading the PIR_EL1, PIRE0_EL1 and POR_EL1 registers for that guest.  But
-> the guest's writes to the TCR2_EL1 register don't trap, and the CPU still
-> acts on its PIE, POE and E0POE bits.
-> 
-> If a guest turned these features on, it would run with the permission
-> settings another VM left on the CPU.  Technically this is a kind of
-> information leak and a guest could figure out another guests permission
-> setting based on which accesses fault.
-> 
-> For these VMs, set the TCR_EL1 bit in HFGWTR_EL2 so that writes to
-> TCR_EL1 and TCR2_EL1 trap, and clear the hidden bits in a new
-> access_tcr2_el1() handler.
-> 
-> Fixes: 58627b722ee2 ("KVM: arm64: Make PIR{,E0}_EL1 UNDEF if S1PIE is not advertised to the guest")
-> Fixes: b86c9bea6349 ("KVM: arm64: Save/restore POE registers")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Dan Carpenter <dan@pereq.eu>
-> ---
-> v2: This is a new patch
-> 
-> This is only a partial fix, I will update nested virtualization in the
-> next patch and the !vcpu_has_nv(vcpu) condition in __compute_hfgwtr() will
-> go away.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-No, I really don't want to go down that road.
+For 10-bit H.265 the driver appends the low 2 bits of every sample to
+the capture buffer and counts them in sizeimage (extra_cap_size).
+buf_prepare reports the whole sizeimage as bytesused, so userspace that
+copies the payload gets the private plane as part of the picture.
 
-Trapping TCR_EL1 is an absolute performance sink, and at this point it
-is not worth running VMs (it puts everyone at the level of AmpereOne).
-It also puts the penalty on well behaved guests which should be able
-to access TCR_EL1 as much as they want without penalties.
+Report only the picture; sizeimage stays the allocation size.
 
-Yes, the architecture is terrible, and we have to work around it.  I
-can see two ways to address this:
+Fixes: 65429ba82572 ("media: cedrus: h265: Support decoding 10-bit frames")
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+ drivers/staging/media/sunxi/cedrus/cedrus_video.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-- load PIR/PIRE0/POR unconditionally so that they do not contain any
-  state that logically belong to another guest, preferably with values
-  that prevent any access (0 is a good candidate for the permissions).
-  It means that if the guest plays with us, it will lose permission to
-  its own memory accesses.
-
-- Move TCR2_EL1 to the sanitised set, and make sure that these bits are
-  never evaluated by KVM, and will be cleared on each entry (we
-  already do this for TCR2_EL2).
-
-Thanks,
-
-	M.
+diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_video.c b/drivers/staging/media/sunxi/cedrus/cedrus_video.c
+index 9b2d24e77fdb..b7e0cbe548e6 100644
+--- a/drivers/staging/media/sunxi/cedrus/cedrus_video.c
++++ b/drivers/staging/media/sunxi/cedrus/cedrus_video.c
+@@ -511,8 +511,15 @@ static int cedrus_buf_prepare(struct vb2_buffer *vb)
+ 	 * (for OUTPUT buffers, if userspace passes 0 bytesused, v4l2-core sets
+ 	 * it to buffer length).
+ 	 */
+-	if (V4L2_TYPE_IS_CAPTURE(vq->type))
+-		vb2_set_plane_payload(vb, 0, pix_fmt->sizeimage);
++	if (V4L2_TYPE_IS_CAPTURE(vq->type)) {
++		unsigned int payload = pix_fmt->sizeimage;
++
++		if (ctx->current_codec->extra_cap_size)
++			payload -= ctx->current_codec->extra_cap_size(ctx,
++								     pix_fmt);
++
++		vb2_set_plane_payload(vb, 0, payload);
++	}
+ 
+ 	return 0;
+ }
 
 -- 
-Without deviation from the norm, progress is not possible.
+2.55.0
+
+
 
