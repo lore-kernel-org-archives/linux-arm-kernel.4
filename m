@@ -2,85 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395B8606D6C8
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 20:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C8C606CC6F
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 20:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cHLx7hWB;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XGzroEby
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GHEwo+/s;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V4nEQinT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=fjP62IC7BY5+fCteY4TlTF+5AyEq5vMalnJjs0i2F0k=; b=cHLx7hWB89UEOw850XKZYsQJaS
-	F99thyXFuzHiLn2XuNfb/r1YNT80ZO6sgskje7/WNdT7sCBj9bS3oHRm+f9MEj69LKOpyWdFv9cmV
-	tRj/1hk4IfTrofRdi3mqfWP42xqj3kq9T0dchVmospoRQ1A6byrpWKBVZTTionA50GQ9NgJGLKMSp
-	f8rqTjLzAVDwd0XZhOwtj+ejFUzu+1EpRFWshBWOERFAhVf7hnISKTc++BedtE9so7RuzSEmeCb7j
-	BaK2mM0XyVLqCDaG3XqwXQ5M3PmXP7SWa5e1Z36Ie+lVwxYIke5DYOyohXLJrfSsFaZdL77+e2wLQ
-	y64yMmfA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=wlYjz4H7PCBDiZQa8+1jdG4sriSVI/tDAKiU2tNjwaA=; b=GHEwo+/sLlLEHZ
+	J/EyoAJfS8q2z1Sc3jmAMnmz1URt8IujrpWYnyMaQqW/9rbC9d1O/aS1fs9eN0W5LFVFSM1WVlu81
+	GftRPLtgJ2PBEltWfnBn25Vm/tk064ijoKBO9uyISRBnDNF8brRNl8yfMCFFixlkhwUk22ya6+QU7
+	SXXOs041T/uVnVaaU3EmJhiqzfEI2gWUBRCrHVcynTDfZw/xxPJ5bRV/mRUkcM5RrtdYrUwvg+qnF
+	Obf/6g1/SMY9z2maSdYJf8r5zIOFJuv1HsenSBrka2Ot/uJK4abqFVlCtzgJdbT9zbCZxmOepxKP1
+	VJnlXbPoIrWIwfcjOk+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU92z-0000000DPTM-3t27;
-	Thu, 19 Nov 2026 20:47:57 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xU93L-0000000DPZ2-0LEI;
+	Thu, 19 Nov 2026 20:48:19 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU92y-0000000DPT9-3zhk;
-	Thu, 19 Nov 2026 20:47:57 +0000
+	id 1xU93J-0000000DPYe-1Fon;
+	Thu, 19 Nov 2026 20:48:17 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0C14260D31;
-	Thu, 19 Nov 2026 20:47:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34BE11F000C0;
-	Thu, 19 Nov 2026 20:47:51 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 71AE9609F5;
+	Thu, 19 Nov 2026 20:48:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E1A91F000C0;
+	Thu, 19 Nov 2026 20:48:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795121275;
-	bh=fjP62IC7BY5+fCteY4TlTF+5AyEq5vMalnJjs0i2F0k=;
-	h=From:To:Cc:Subject:Date;
-	b=XGzroEbyIqfu1F020pLEYGri2yRna/SmU4yPDMxz2Wqj/z1KN7rGZn0GSOLhpYq7L
-	 QSg6SjYUgyDMhMEKCg3+aNqudcIsmhBZDWrpZF0/t0mzfhT9gfQZo+Cs/wFoWTSu9x
-	 9EBLqWQ5E+u3MaXNR+uRwGns1MurwMZswQqv+e2FBKtY5mGdGDHx2vU3exEwnSoWZs
-	 juXbrdCssWoAxWX/jyKVWruN+nXmB6x1c/fHuySNxbYGVJn6HPlyDFlIslXaTWVP7x
-	 3no91nBAFXMzjJvLMlgGs9DhKqw8GAlTDwBGfufKDHr6XkdwkYPu2iLKJAmq7Ov3Dl
-	 egQy1lD7u+OLw==
+	s=k20260515; t=1795121296;
+	bh=wlYjz4H7PCBDiZQa8+1jdG4sriSVI/tDAKiU2tNjwaA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=V4nEQinTN3jJh5hGW7AZFmTrf/urY2z6q3EAakxo7y0sapSfJocohchQGbmkT8RYs
+	 YycrpfvSwqBeWFJtWKnYY41PUuazCpXCNzgkd7+QlmtXobWyLcnUlqCMKjauUF1eEh
+	 FYYwLQqOSFNv6jXSy/33mI+14EfbARiFfkW+l6XCiEfhOw1RwPiANBYmEXZrMk25Nn
+	 3EJzXOJ4JjcPy5RBjBuIr26Ywh5I7e6KMOF57PRb4JPvT966ELmyOv6wvO3ssckNIy
+	 uaCcCe2g5wzqdv8VqJ4kuQroVEFCp3hiMgaEPel7iHB5shw3ul0Rlhx/OIEPiZoCtG
+	 QQBhWx/DJS6XA==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org,
+	Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Aaron Kling <webgeek1234@gmail.com>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Hao Chang <ot_chhao.chang@mediatek.com>,
-	"H. Nikolaus Schaller" <hns@goldelico.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Linus Walleij <linusw@kernel.org>,
-	linux-gpio@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	Maoguang Meng <maoguang.meng@mediatek.com>,
-	Nicolas Boichat <drinkcat@chromium.org>,
-	Olivier Louvignes <olivier@mgcrea.io>,
-	Paul Boddie <paul@boddie.org.uk>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Qingliang Li <qingliang.li@mediatek.com>,
-	Rob Herring <robh@kernel.org>,
-	"Ryder.Lee" <ryder.lee@mediatek.com>,
 	Sam Shih <sam.shih@mediatek.com>,
-	Sean Wang <sean.wang@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Thierry Reding <treding@nvidia.com>,
-	zhouyanjie@wanyeetech.com
-Subject: [PATCH v2 0/6] pinctrl: Fix out-of-bounds accesses, divide-by-zero, and error handling
-Date: Thu, 19 Nov 2026 20:47:15 +0000
-Message-ID: <20261119204748.2558209-1-lee@kernel.org>
+	Daniel Golle <daniel@makrotopia.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-mediatek@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH v2 3/6] pinctrl: mediatek: mt7981: Add missing entries to mt7981_ant_sel_funcs
+Date: Thu, 19 Nov 2026 20:47:18 +0000
+Message-ID: <20261119204748.2558209-4-lee@kernel.org>
 X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
+In-Reply-To: <20261119204748.2558209-1-lee@kernel.org>
+References: <20261119204748.2558209-1-lee@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -92,73 +75,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These issues were reported by Sashiko.
+mt7981_ant_sel_pins[] defines 14 pins (pins 14..25, 34, and 35), all of
+which select ANT_SEL at function mux mode 6, but mt7981_ant_sel_funcs[]
+only contains 12 entries.  When mtk_pinmux_set_mux() iterates over
+grp->grp.npins (14), it reads two int elements past the end of
+mt7981_ant_sel_funcs[].
 
-v1 => v2:
- - Drop patches 05/10, 06/10, 07/10, and 10/10, already applied to pinctrl
-   for-next
- - Drop patch 01/10 (sunxi) in favour of the broader Allwinner IRQ-bank
-   rework in flight (Andre, Sashiko)
- - mediatek: Guard against NULL eint in mtk_eint_do_suspend() and
-   mtk_eint_do_resume() before resetting hw->eint to NULL on error (Sashiko)
+Add the two missing mode 6 entries to mt7981_ant_sel_funcs[] so its
+length matches mt7981_ant_sel_pins[].
 
-v1: https://lore.kernel.org/all/20261103213002.1673560-1-lee@kernel.org/
+Fixes: 6c83b2d94fcc ("pinctrl: add mt7981 pinctrl driver")
+Closes: https://sashiko.dev/#/bug/linux-6233f285-1487-4d2d-afe3-d4ce3c445054
+Cc: stable@vger.kernel.org
+Signed-off-by: Lee Jones <lee@kernel.org>
+---
 
-Cc: Aaron Kling <webgeek1234@gmail.com>
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Daniel Golle <daniel@makrotopia.org>
-Cc: Hao Chang <ot_chhao.chang@mediatek.com>
-Cc: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-gpio@vger.kernel.org
-Cc: linux-mediatek@lists.infradead.org
-Cc: linux-mips@vger.kernel.org
-Cc: linux-tegra@vger.kernel.org
-Cc: Maoguang Meng <maoguang.meng@mediatek.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Nicolas Boichat <drinkcat@chromium.org>
-Cc: Olivier Louvignes <olivier@mgcrea.io>
-Cc: Paul Boddie <paul@boddie.org.uk>
-Cc: Paul Cercueil <paul@crapouillou.net>
-Cc: Qingliang Li <qingliang.li@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: "Ryder.Lee" <ryder.lee@mediatek.com>
-Cc: Sam Shih <sam.shih@mediatek.com>
-Cc: Sean Wang <sean.wang@kernel.org>
-Cc: Thierry Reding <thierry.reding@kernel.org>
-Cc: Thierry Reding <treding@nvidia.com>
-Cc: zhouyanjie@wanyeetech.com
+v1 => v2: No changes
 
-Lee Jones (6):
-  pinctrl: tegra186: Fix out-of-bounds register bank index for AON drive
-    groups
-  pinctrl: ingenic: Fix element type of x1600_sfc_funcs array
-  pinctrl: mediatek: mt7981: Add missing entries to mt7981_ant_sel_funcs
-  pinctrl: mediatek: Guard against NULL eint in mtk_eint_do_suspend()
-    and mtk_eint_do_resume()
-  pinctrl: mediatek: Clean up partially initialised hw->eint on error
-  pinctrl: mediatek: Prevent divide-by-zero for pins with fixed drive
-    strength
+ drivers/pinctrl/mediatek/pinctrl-mt7981.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/pinctrl/mediatek/mtk-eint.c           |   6 ++
- drivers/pinctrl/mediatek/pinctrl-mt7981.c     |   2 +-
- .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  |  24 ++++-
- drivers/pinctrl/pinctrl-ingenic.c             |   2 +-
- drivers/pinctrl/tegra/pinctrl-tegra186.c      | 102 +++++++++---------
- 5 files changed, 79 insertions(+), 57 deletions(-)
-
+diff --git a/drivers/pinctrl/mediatek/pinctrl-mt7981.c b/drivers/pinctrl/mediatek/pinctrl-mt7981.c
+index 2325cc8b9345..62fec909408b 100644
+--- a/drivers/pinctrl/mediatek/pinctrl-mt7981.c
++++ b/drivers/pinctrl/mediatek/pinctrl-mt7981.c
+@@ -800,7 +800,7 @@ static int mt7981_mt7531_int_funcs[] = { 1, };
+ 
+ /* ANT_SEL */
+ static int mt7981_ant_sel_pins[] = { 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 34, 35 };
+-static int mt7981_ant_sel_funcs[] = { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 };
++static int mt7981_ant_sel_funcs[] = { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 };
+ 
+ static const struct group_desc mt7981_groups[] = {
+ 	/* @GPIO(0,1): WA_AICE(2) */
 -- 
 2.56.1.750.gf70dc682cf-goog
 
