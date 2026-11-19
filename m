@@ -2,113 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B333E606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2028606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P14YlUpq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=CMMndePN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p6gV30S4;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J3IUvwhj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Type:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To
+	:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LLhomrGYVSXgiL/MtOBi8ccnZatBsLWNQ72z/RjLnI8=; b=P14YlUpqK6Wa5OuTb95PR55oy/
-	3MN6YDG8q6xtdMCMGcBG2p80XP7VFtJNdlT0Ndmg1+X6aIzhLF7/f36V78MffjOGqHzogpFOYszPn
-	8Rpf23qMgA7MGK3qjwWrN5pgxS1Scu1XZeWGF981sY5dP05KHBYxaoGFq+SuUglACESvGqNIIMBxL
-	mqbl3Q4w/6PnouGBc2sKgRwxw9pu1jhyqNrRYywjrrnqyR0OrKbnpJ9fU3EuLn4f38EQ/ctDvvb4p
-	UF8bXoN3lu/ty14AHMyL+BxtBVId1qUvK9fw1YJEeqvBEcajrXav4NW4q2s96SCAZB5vw309n6lP4
-	azRfVp4A==;
+	bh=3ZAGITeIDsUKFb6XuKvNIy4TOQnpcpSLETmJV6zy9Ms=; b=p6gV30S4/0XLhFKonFyLgZX4LV
+	MQCRIPkswnc179ugLGBzmrk4mi6BPvQ2G3zAN20csiqzTn/3DzwPUVL+zthPjCxwatkjeTSxS+jza
+	WDReViicPVMFVb3+Db7EShIju4ULkuFNmaKUOsf7fDJs3S3pestLA8R+CEWaWG8g/q8ze1Af/a7j4
+	+HxK+mOqDPU/Ld7CXURXnoAo1V4c9RpGJLNaD2Ylqu6LOGG7qJ2WQaECeZbF/fluRKIwPOu9OHfz1
+	mxhrB5RAW1Jv+BPdj+cGDgx1zUnJDnkbLe6bVD8Q6K0KUpMTCnV+KlK5SX5+cLb5jP/CUcxGWEXl9
+	WKeBJJKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU56P-0000000Cf0A-1AtV;
-	Thu, 19 Nov 2026 16:35:13 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xU5A4-0000000Cg2y-2gWh;
+	Thu, 19 Nov 2026 16:39:00 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU566-0000000CepH-1dKx;
-	Thu, 19 Nov 2026 16:34:54 +0000
+	id 1xU5A2-0000000Cg2b-2fdS
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 19 Nov 2026 16:38:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id C3C6F6128E;
-	Thu, 19 Nov 2026 16:34:53 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795106093;
-	b=Site0pLdZCEXxQgic45OMgCEhE7BVwafmpgDwimo0pU0PHHRsAuV+NZRDey1Bmi6Gt1W
-	 ficRBVgboSLhmR0NVn0KMN6zTSGrHIIVNaOQsHF+i3aY1qdINKxTdqitlTdx7fBROosB3
-	 TsKUHUlWvMtzpGrEI7xVo7B4uEqpx8Bu6Ylbz0LgyQg3Uxi7YGKhCxBFSPsn10GZMkH55
-	 3BT6JARL/FmvXAgrPvF8JrCzJoLr7GkcUjGScjoPrqNdjnj2rnRMOlVC8Bg4HtgW3vUf+
-	 EJilqEI8Ut0dYB1r1V9WrlVNou41XYBrWKTuXHnDvqH+GoiNm5VqdOsDhw+O+M89XcA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795106093;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=LLhomrGYVSXgiL/MtOBi8ccnZatBsLWNQ72z/RjLnI8=;
-	b=Vla4t3EVZ/p/Mwhj1a8nhvXPefn7k9xZ7dbcDePRGNKEmeD5uEqeObEyOXDs7zkJb0lb
-	 9K7Hs9GoWY/BVCyiFp7ClLU6MA9Y8WZgqCbnZjbfLtaaUfoYFQr+CBwpeV1brHAhB9mqt
-	 kB3p61oai9Y1VfjMiZHGHDVZT1C5NAZDhQyEF9W+nc7kaemWxUhKdLX8B/PxgNQo06b8D
-	 Wur/9H1Zo1Pj5kLpt59GWRxF5CKyFMYa91TfuXwr4oB1OwBhMJkfbRk6Xo5xhd4ka+4Ra
-	 SB7k8CL8b2vjXuy0XFAOzzST0VKtuMIuXMQWIlsn19JSRHU+M+2rRuNGC4ynK1bG3yQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 40E521F000C4;
-	Thu, 19 Nov 2026 16:34:52 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 4A945435A3;
+	Thu, 19 Nov 2026 16:38:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69EC91F000C5;
+	Thu, 19 Nov 2026 16:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795106093;
-	bh=LLhomrGYVSXgiL/MtOBi8ccnZatBsLWNQ72z/RjLnI8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=CMMndePNESjXinXNtamvVKTQZOUkWZ0VFG5AtRSTj3XJqGmYgtj7UynGmM26z8Xgc
-	 NI7CRe7cG8mHYg8JUjFcGzKni/2T34bo00BBMMRnfTzLdSg4QZqMMPbVpq7WUNlhsj
-	 it7atR8URVQxNUXPI4NYFlIaYbzzkC3AM6KbGAboHl8XYD+kpPgI7CwVlnapdBHytX
-	 u8dFIIrXZUYm6YKENxeWNJ+4+5E1sQvnYFBX29ZMliwRgv+YBFGq0bRsZl2qe3t7bM
-	 rjX64OCe1JGExtj9e8uXj1CM5cL8vba6vP5oN8ljUpkNp7+cpaBeGvfDnVKSgejYUM
-	 yQcGa+YY2fdUA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C1EB14B348;
-	Thu, 19 Nov 2026 16:34:51 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 19 Nov 2026 16:34:52 +0000
-Subject: [PATCH RFC 1/2] media: uapi: mpeg2: add MPEG-1 flags and the
- MPEG-1 parsed slice format
+	s=k20260515; t=1795106338;
+	bh=3ZAGITeIDsUKFb6XuKvNIy4TOQnpcpSLETmJV6zy9Ms=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=J3IUvwhjPDet3WjK93G3ukAFMtbyJJWyCUe/BqVKsPtgZVzF0ubWukjBiq8DiUsHq
+	 dLFMFVhelLgLEKp+B7RbHxEaKbKCewxRbaZZOBL2Zvlcs2ayBHeZyEq4ut2tH9O7Xo
+	 I3XFiPW87rQof4LMzdDIEnUe9XFQwE8pxrOCIR2heLtDRXu0x0f+PR4T6hibhM5Y+c
+	 w25cUkwM615YXjykXf0Ymc3dPyjmKikVKHVbuaaWW41j+Lrw+YUC5ylZGWTxxEfkHW
+	 ip9uABnFUSdqDPNQr12aZAqIAYdJ73uzgAUDDoD2LN+cOTbvRqIsS+pU2HbtYxhAyE
+	 6ookO+SUBQ1cg==
+Received: from phl-compute-09.internal (phl-compute-09.internal [10.202.2.49])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 30D8B1980066;
+	Thu, 19 Nov 2026 11:38:54 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-09.internal (MEProxy); Thu, 19 Nov 2026 11:38:56 -0500
+X-ME-Sender: <xms:HSb_aiHbrxg9bRvm1YT6eKGCOBwlxSOOprh7iwTIOAOkXa5EFeWAcg>
+    <xme:HSb_ajy6mD324gDhgtkhSt9nk_cJ_-uNGyxE2_XticbmkiLKrBnjushZPuW19w8eh
+    7Db2eUmdmKqpvpe3WAo8HTZFR92O4UEVNg3iTHkMCC4w6MbjrxHwFFP>
+X-ME-Received: <xmr:HSb_ahl3Z_22p2PfpJRiG5X7UXK0P6dNGcgcV87l7cZ1YH9bzTNhz64KUpo>
+X-ME-Proxy-Cause: dmFkZTFZSPME4wMGk/g+Q0V2ryhRN26AmIB4l8yQaR9e4QC0yJ9iKAPc9jj2r9cDbeh+lu
+    Bcw5Ah2A8acsn3OJpLo+K8yHhnp4IaewNVZj9a6dOhGhe/D3JkeJgWBooRC1GWer0uCIVZ
+    mJi5nbkYy4zPpXJVeP9IDfbrAd6TYSr9cuYtoCgGO7LAWZMuGD24H5N4HmVlJeOwaAbP3U
+    I58b0p9IM6n079Xa8y78u0c5MH/iXEZuBdV6BqErFUqeH/unZ6FkHHmeVxqd2aPBSe3Xk2
+    BY8a7Rrv76xdzyZziiqTWDc3ghjwPkW8NjSo9G9MsdEmFHkMyJNbWs1f7BtXTECL4nDKkD
+    pKL2UkMDmDtAeJ/3mSiyLcgc/cfy6eH/rhSwxPcWwZTICawdsiKy6XEz68e6optHcnu6Rq
+    HoFC2E8U/XlsN8jqAWr6N8EwvqTQIb80OWF5Z4E/bD984mXMl2P2I+IRWGz0YDPIROcR9G
+    bJEemg75aVFD8rNAY2qd7ghMjvks2JF1EDp2AmvFkB7x6xYg+1xp4jf5BrE1F4ZbT+BI7R
+    QXpv5uxVhVZZrpyXDkwvGdf6BBtvmnSDMtNIXU4mASdjdAVsrORLmz6H7L1WcVQPATKISW
+    oKIeV35K7JA+zCIyvP+S5qIx5SAPDbskcHCTdg0E4I8HDt2WHEzjJbM+1xmg
+X-ME-Proxy: <xmx:HSb_aqCCUmnOOSdJ7Ou0451P2gC4cBoMxK804ingspsQviSvAMur_w>
+    <xmx:HSb_asLWtBwJiI-v5JFLyyhaFz9Rru8ThXuyA83AfGUO9nGJRkLVhw>
+    <xmx:HSb_atzDkv5qse1FOD5CBvvw_Gd1d4H2ZI5-aB1D0PLe26AwH6M3QA>
+    <xmx:HSb_agzyBv4m8EjPaR6FXott_skYYIUGH4GhYcrKBTSFiOv8enVDSw>
+    <xmx:HSb_av19jbfjO6QKZKP_J1KIP4ZLoDeyc96g--dN-K34Wq5EbE1ENMMA>
+Feedback-ID: i10464835:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 19 Nov 2026 11:38:52 -0500 (EST)
+Date: Thu, 19 Nov 2026 16:38:51 +0000
+From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
+To: Vladimir Murzin <vladimir.murzin@arm.com>
+Subject: Re: [PATCH v2 00/39] arm64: Add support for FEAT_NMI
+Message-ID: <av8lNnZPXOwlS7au@shutemov.name>
+References: <20261112132042.129062-1-vladimir.murzin@arm.com>
+ <58a4c350-539d-49ca-826f-d19563895a29@huawei.com>
+ <17149b32-6b9c-4364-b664-5789f0633e9d@huawei.com>
+ <57757469-2545-4fc6-a7be-ccc133555052@arm.com>
+ <38d04e8b-2f31-4616-8a8e-2747c7ce114d@huawei.com>
+ <d4bb2979-4bc2-436c-8f4a-c9a5decea900@arm.com>
+ <av8bByU93_nCbPqE@shutemov.name>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261119-b4-cedrus-mpeg1-v1-1-aa5ba1192822@gmail.com>
-References: <20261119-b4-cedrus-mpeg1-v1-0-aa5ba1192822@gmail.com>
-In-Reply-To: <20261119-b4-cedrus-mpeg1-v1-0-aa5ba1192822@gmail.com>
-To: Hans Verkuil <hverkuil@kernel.org>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: Jonas Karlman <jonas@kwiboo.se>, linux-media@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, 
- =?utf-8?q?Christian_Stefan_K=C3=B6v=C3=A9r-Draxl?= <ckoever@outlook.de>, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795106091; l=10856;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=cr1ebbEpYfWsicr/Rh2XWDklPbPQq1/SEj00xW+AuGw=;
- b=YTzvKL1/vIhS7V+WNcIzdm3mzTdaytbUeglRKrle4YvKlRrIG2OTzwAFizgCyoeGQvQAjOfn0
- HkIAv+gc5dyAiLacoGNM9MuZJx7lJ3pYpRxt7PTO2kyxq6Sc7ZE6tXb
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <av8bByU93_nCbPqE@shutemov.name>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,236 +97,250 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
+Cc: mark.rutland@arm.com, catalin.marinas@arm.com, Jinjie Ruan <ruanjinjie@huawei.com>, liaochang1@huawei.com, ashok.raj@oss.qualcomm.com, maz@kernel.org, will@kernel.org, lpieralisi@kernel.org, linux-arm-kernel@lists.infradead.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+On Thu, Nov 19, 2026 at 04:07:19PM +0000, Kiryl Shutsemau (Meta) wrote:
+>   - Kernel: never signal a CPU that has SDEI masked. The signalling CPU
+>     and the cpu_pm notifier can handshake: the sender marks the target
+>     and IPIs it instead if it is already masked, and the notifier
+>     refuses the power-down state while a signal is in flight. SDEI keeps
+>     serving every running CPU, and the race goes away whatever the
+>     firmware does. It needs a hook in arm_sdei.c.
 
-Stateless MPEG-2 decoders can decode MPEG-1, but the uAPI cannot say a
-stream is MPEG-1, and decoding it as MPEG-2 is wrong: MPEG-1 has its own
-inverse quantisation mismatch control, full pel motion vectors and
-D-pictures.
+Here is what I meant.
 
-Add V4L2_MPEG2_SEQ_FLAG_MPEG1, V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD and
-_BACKWARD, and allow V4L2_MPEG2_PIC_CODING_TYPE_D for MPEG-1.
+sdei_event_signal() refuses a masked target with -EAGAIN, and the
+backtrace sends those CPUs the regular IPI. A PE that sees a signal on
+its way stays out of the power-down state; the mask paths that cannot
+fail wait for it, up to a millisecond.
 
-Flags alone are not discoverable (the control framework does not check
-compound control flags, and existing drivers would decode such a stream
-as MPEG-2), so add V4L2_PIX_FMT_MPEG1_SLICE ('MG1S'). It reuses the
-MPEG-2 controls; the MPEG-1 flag is set with this format only. Drivers
-that cannot decode D-pictures reject that coding type, also in
-VIDIOC_TRY_EXT_CTRLS, so applications can check before decoding.
+On QEMU with TF-A minus the v2.13 check, masking a CPU through
+cpu_pm_enter() and then signalling it gets -EAGAIN instead of the wedge,
+and sysrq-l still goes over SDEI to the other CPUs.
 
-hantro has no MPEG-1 mode: reject the MPEG-1 flags and D-pictures
-there, which it would otherwise decode as MPEG-2 inter pictures.
+I can send proper patches if it looks reasonable.
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- .../media/v4l/ext-ctrls-codec-stateless.rst        | 35 ++++++++++++++++++++--
- .../userspace-api/media/v4l/pixfmt-compressed.rst  | 23 ++++++++++++++
- drivers/media/platform/verisilicon/hantro_drv.c    | 12 ++++++++
- drivers/media/v4l2-core/v4l2-ctrls-core.c          |  1 +
- drivers/media/v4l2-core/v4l2-ioctl.c               |  1 +
- include/uapi/linux/v4l2-controls.h                 |  3 ++
- include/uapi/linux/videodev2.h                     |  1 +
- 7 files changed, 74 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
-index d7a3b8ef03a7..afe57be7cb87 100644
---- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
-+++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
-@@ -1317,6 +1317,23 @@ FWHT Flags
-       - 0x01
-       - Indication that all the frames for the sequence are progressive instead
- 	of interlaced.
-+    * - ``V4L2_MPEG2_SEQ_FLAG_MPEG1``
-+      - 0x02
-+      - The sequence is an ISO/IEC 11172-2 (MPEG-1) sequence: the inverse
-+	quantisation uses the MPEG-1 mismatch control, motion vectors may be
-+	full pel and pictures may be D-pictures. Applications set this flag
-+	if and only if the coded format is ``V4L2_PIX_FMT_MPEG1_SLICE``;
-+	drivers reject it with ``V4L2_PIX_FMT_MPEG2_SLICE``. MPEG-1 has no
-+	sequence or picture extensions: applications set the fields that
-+	come from them to chroma_format 1, V4L2_MPEG2_SEQ_FLAG_PROGRESSIVE,
-+	frame pictures with V4L2_MPEG2_PIC_FLAG_FRAME_PRED_DCT and
-+	V4L2_MPEG2_PIC_FLAG_PROGRESSIVE, intra_dc_precision 0, the flags
-+	V4L2_MPEG2_PIC_FLAG_Q_SCALE_TYPE, V4L2_MPEG2_PIC_FLAG_INTRA_VLC,
-+	V4L2_MPEG2_PIC_FLAG_ALT_SCAN, V4L2_MPEG2_PIC_FLAG_CONCEALMENT_MV,
-+	V4L2_MPEG2_PIC_FLAG_TOP_FIELD_FIRST and
-+	V4L2_MPEG2_PIC_FLAG_REPEAT_FIRST cleared, both components of
-+	``f_code[0]`` set to forward_f_code and of ``f_code[1]`` to
-+	backward_f_code.
+diff --git a/arch/arm64/include/asm/nmi.h b/arch/arm64/include/asm/nmi.h
+index 2e8974ff8d63..561d062921e4 100644
+--- a/arch/arm64/include/asm/nmi.h
++++ b/arch/arm64/include/asm/nmi.h
+@@ -44,5 +44,6 @@ static inline void sdei_nmi_stop_cpus(const cpumask_t *mask) { }
+  * Defined in arch/arm64/kernel/smp.c.
+  */
+ void __noreturn arm64_nmi_cpu_stop(struct pt_regs *regs, bool die_on_crash);
++void arm64_backtrace_ipi(cpumask_t *mask);
  
- .. raw:: latex
+ #endif /* __ASM_NMI_H */
+diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
+index 014b163ce658..8369a4cd3e32 100644
+--- a/arch/arm64/kernel/smp.c
++++ b/arch/arm64/kernel/smp.c
+@@ -946,7 +946,7 @@ static void arm64_send_ipi(const cpumask_t *mask, unsigned int nr)
+ 			__ipi_send_single(get_ipi_desc(cpu, nr), cpu);
+ }
  
-@@ -1366,8 +1383,12 @@ FWHT Flags
-     * - __u8
-       - ``picture_coding_type``
-       - Picture coding type for the frame covered by the current slice
--	(V4L2_MPEG2_PIC_CODING_TYPE_I, V4L2_MPEG2_PIC_CODING_TYPE_P or
--	V4L2_MPEG2_PIC_CODING_TYPE_B).
-+	(V4L2_MPEG2_PIC_CODING_TYPE_I, V4L2_MPEG2_PIC_CODING_TYPE_P,
-+	V4L2_MPEG2_PIC_CODING_TYPE_B, or V4L2_MPEG2_PIC_CODING_TYPE_D in MPEG-1
-+	sequences). Decoding D-pictures is optional: drivers that cannot
-+	decode them reject V4L2_MPEG2_PIC_CODING_TYPE_D, also in
-+	``VIDIOC_TRY_EXT_CTRLS``, which applications can use to find out
-+	whether D-pictures are supported.
-     * - __u8
-       - ``picture_structure``
-       - Picture structure (1: interlaced top field, 2: interlaced bottom field,
-@@ -1415,6 +1436,16 @@ FWHT Flags
-     * - ``V4L2_MPEG2_PIC_FLAG_PROGRESSIVE``
-       - 0x00000080
-       - Indicates whether the current frame is progressive.
-+    * - ``V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD``
-+      - 0x00000100
-+      - full_pel_forward_vector of an MPEG-1 picture header: the forward
-+	motion vectors are in full pel units. Only valid with
-+	V4L2_MPEG2_SEQ_FLAG_MPEG1.
-+    * - ``V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD``
-+      - 0x00000200
-+      - full_pel_backward_vector of an MPEG-1 picture header: the backward
-+	motion vectors are in full pel units. Only valid with
-+	V4L2_MPEG2_SEQ_FLAG_MPEG1.
+-static void arm64_backtrace_ipi(cpumask_t *mask)
++void arm64_backtrace_ipi(cpumask_t *mask)
+ {
+ 	arm64_send_ipi(mask, IPI_CPU_BACKTRACE);
+ }
+diff --git a/drivers/firmware/arm_sdei.c b/drivers/firmware/arm_sdei.c
+index e8dd2f0f3919..86f4349fc364 100644
+--- a/drivers/firmware/arm_sdei.c
++++ b/drivers/firmware/arm_sdei.c
+@@ -12,6 +12,7 @@
+ #include <linux/cpuhotplug.h>
+ #include <linux/cpu.h>
+ #include <linux/cpu_pm.h>
++#include <linux/delay.h>
+ #include <linux/errno.h>
+ #include <linux/hardirq.h>
+ #include <linux/kernel.h>
+@@ -32,6 +33,8 @@
+ #include <linux/smp.h>
+ #include <linux/spinlock.h>
  
- .. raw:: latex
- 
-diff --git a/Documentation/userspace-api/media/v4l/pixfmt-compressed.rst b/Documentation/userspace-api/media/v4l/pixfmt-compressed.rst
-index 235f955d3cd5..898bb5393f9f 100644
---- a/Documentation/userspace-api/media/v4l/pixfmt-compressed.rst
-+++ b/Documentation/userspace-api/media/v4l/pixfmt-compressed.rst
-@@ -129,6 +129,29 @@ Compressed Formats
- 	this pixel format. The output buffer must contain the appropriate number
- 	of macroblocks to decode a full corresponding frame to the matching
- 	capture buffer.
-+    * .. _V4L2-PIX-FMT-MPEG1-SLICE:
++#include <asm/smp_plat.h>
 +
-+      - ``V4L2_PIX_FMT_MPEG1_SLICE``
-+      - 'MG1S'
-+      - MPEG-1 parsed slice data, as extracted from the MPEG-1
-+	(ISO/IEC 11172-2) bitstream. This format is adapted for stateless
-+	video decoders that implement a MPEG-1 pipeline with the
-+	:ref:`stateless_decoder`. It uses the controls of
-+	``V4L2_PIX_FMT_MPEG2_SLICE``: metadata associated with the frame to
-+	decode is required to be passed through the
-+	``V4L2_CID_STATELESS_MPEG2_SEQUENCE`` and
-+	``V4L2_CID_STATELESS_MPEG2_PICTURE`` controls, with
-+	``V4L2_MPEG2_SEQ_FLAG_MPEG1`` set in the sequence control and the
-+	fields that come from the MPEG-2 extensions filled as described for
-+	that flag. Quantisation matrices can optionally be specified through
-+	the ``V4L2_CID_STATELESS_MPEG2_QUANTISATION`` control.
-+	See the :ref:`associated Codec Control IDs <v4l2-codec-stateless-mpeg2>`.
-+	Exactly one output and one capture buffer must be provided for use with
-+	this pixel format. The output buffer must contain the appropriate number
-+	of macroblocks to decode a full corresponding frame to the matching
-+	capture buffer. Decoders that enumerate this format decode MPEG-1
-+	sequences; decoders that only enumerate ``V4L2_PIX_FMT_MPEG2_SLICE``
-+	do not.
-     * .. _V4L2-PIX-FMT-MPEG4:
+ /*
+  * The call to use to reach the firmware.
+  */
+@@ -299,10 +302,37 @@ static int sdei_api_get_version(u64 *version)
+ 	return invoke_sdei_fn(SDEI_1_0_FN_SDEI_VERSION, 0, 0, 0, 0, 0, version);
+ }
  
-       - ``V4L2_PIX_FMT_MPEG4``
-diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
-index 26e5d5547466..c910a69e8e3c 100644
---- a/drivers/media/platform/verisilicon/hantro_drv.c
-+++ b/drivers/media/platform/verisilicon/hantro_drv.c
-@@ -264,6 +264,16 @@ static int hantro_try_ctrl(struct v4l2_ctrl *ctrl)
- 		if (sps->bit_depth_luma_minus8 != 0 && sps->bit_depth_luma_minus8 != 2)
- 			/* Only 8-bit and 10-bit are supported */
- 			return -EINVAL;
-+	} else if (ctrl->id == V4L2_CID_STATELESS_MPEG2_SEQUENCE) {
-+		if (ctrl->p_new.p_mpeg2_sequence->flags & V4L2_MPEG2_SEQ_FLAG_MPEG1)
-+			return -EINVAL;
-+	} else if (ctrl->id == V4L2_CID_STATELESS_MPEG2_PICTURE) {
-+		const struct v4l2_ctrl_mpeg2_picture *pic = ctrl->p_new.p_mpeg2_picture;
++/*
++ * Event 0 must not land on a masked PE. The sender and the masking PE
++ * each set their own flag, then read the other's.
++ */
++static DEFINE_PER_CPU(bool, sdei_pe_unmasked);
++static DEFINE_PER_CPU(bool, sdei_signal_pending);
 +
-+		if (pic->picture_coding_type == V4L2_MPEG2_PIC_CODING_TYPE_D ||
-+		    pic->flags & (V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD |
-+				  V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD))
-+			return -EINVAL;
- 	} else if (ctrl->id == V4L2_CID_STATELESS_VP9_FRAME) {
- 		const struct v4l2_ctrl_vp9_frame *dec_params = ctrl->p_new.p_vp9_frame;
++static bool sdei_mark_masked(void)
++{
++	this_cpu_write(sdei_pe_unmasked, false);
++	smp_mb();
++	return this_cpu_read(sdei_signal_pending);
++}
++
++static void sdei_block_signal(void)
++{
++	int i;
++
++	if (!sdei_mark_masked())
++		return;
++
++	for (i = 0; i < USEC_PER_MSEC && this_cpu_read(sdei_signal_pending); i++)
++		udelay(1);
++}
++
+ int sdei_mask_local_cpu(void)
+ {
+ 	int err;
  
-@@ -435,11 +445,13 @@ static const struct hantro_ctrl controls[] = {
- 		.codec = HANTRO_MPEG2_DECODER,
- 		.cfg = {
- 			.id = V4L2_CID_STATELESS_MPEG2_SEQUENCE,
-+			.ops = &hantro_ctrl_ops,
- 		},
- 	}, {
- 		.codec = HANTRO_MPEG2_DECODER,
- 		.cfg = {
- 			.id = V4L2_CID_STATELESS_MPEG2_PICTURE,
-+			.ops = &hantro_ctrl_ops,
- 		},
- 	}, {
- 		.codec = HANTRO_MPEG2_DECODER,
-diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-index 6e751a043a21..a12359626121 100644
---- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
-+++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-@@ -1049,6 +1049,7 @@ static int std_validate_compound(const struct v4l2_ctrl *ctrl, u32 idx,
- 		case V4L2_MPEG2_PIC_CODING_TYPE_I:
- 		case V4L2_MPEG2_PIC_CODING_TYPE_P:
- 		case V4L2_MPEG2_PIC_CODING_TYPE_B:
-+		case V4L2_MPEG2_PIC_CODING_TYPE_D:
- 			break;
- 		default:
- 			return -EINVAL;
-diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
-index b7d248ab7db2..bbe7a0ae75df 100644
---- a/drivers/media/v4l2-core/v4l2-ioctl.c
-+++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-@@ -1507,6 +1507,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
- 		case V4L2_PIX_FMT_H263:		descr = "H.263"; break;
- 		case V4L2_PIX_FMT_MPEG1:	descr = "MPEG-1 ES"; break;
- 		case V4L2_PIX_FMT_MPEG2:	descr = "MPEG-2 ES"; break;
-+		case V4L2_PIX_FMT_MPEG1_SLICE:	descr = "MPEG-1 Parsed Slice Data"; break;
- 		case V4L2_PIX_FMT_MPEG2_SLICE:	descr = "MPEG-2 Parsed Slice Data"; break;
- 		case V4L2_PIX_FMT_MPEG4:	descr = "MPEG-4 Part 2 ES"; break;
- 		case V4L2_PIX_FMT_XVID:		descr = "Xvid"; break;
-diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-index d17e41d51d2e..e7e6030ac00c 100644
---- a/include/uapi/linux/v4l2-controls.h
-+++ b/include/uapi/linux/v4l2-controls.h
-@@ -2007,6 +2007,7 @@ struct v4l2_ctrl_vp8_frame {
- /* Stateless MPEG-2 controls */
++	sdei_block_signal();
++
+ 	err = invoke_sdei_fn(SDEI_1_0_FN_SDEI_PE_MASK, 0, 0, 0, 0, 0, NULL);
+ 	if (err && err != -EIO) {
+ 		pr_warn_once("failed to mask CPU[%u]: %d\n",
+@@ -330,6 +360,7 @@ int sdei_unmask_local_cpu(void)
+ 		return err;
+ 	}
  
- #define V4L2_MPEG2_SEQ_FLAG_PROGRESSIVE	0x01
-+#define V4L2_MPEG2_SEQ_FLAG_MPEG1	0x02
++	this_cpu_write(sdei_pe_unmasked, true);
+ 	return 0;
+ }
  
- #define V4L2_CID_STATELESS_MPEG2_SEQUENCE (V4L2_CID_CODEC_STATELESS_BASE+220)
- /**
-@@ -2055,6 +2056,8 @@ struct v4l2_ctrl_mpeg2_sequence {
- #define V4L2_MPEG2_PIC_FLAG_ALT_SCAN			0x0020
- #define V4L2_MPEG2_PIC_FLAG_REPEAT_FIRST		0x0040
- #define V4L2_MPEG2_PIC_FLAG_PROGRESSIVE			0x0080
-+#define V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD		0x0100
-+#define V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD		0x0200
+@@ -344,10 +375,23 @@ static void _ipi_unmask_cpu(void *ignored)
+  * but the SMC -- no locks, no event lookup -- so it is safe from NMI /
+  * crash context (e.g. the cross-CPU NMI service).
+  */
+-int sdei_event_signal(u32 event_num, u64 mpidr)
++int sdei_event_signal(u32 event_num, unsigned int cpu)
+ {
+-	return invoke_sdei_fn(SDEI_1_0_FN_SDEI_EVENT_SIGNAL, event_num,
+-			      mpidr, 0, 0, 0, NULL);
++	int err;
++
++	WRITE_ONCE(per_cpu(sdei_signal_pending, cpu), true);
++	smp_mb();
++	if (!READ_ONCE(per_cpu(sdei_pe_unmasked, cpu))) {
++		WRITE_ONCE(per_cpu(sdei_signal_pending, cpu), false);
++		return -EAGAIN;
++	}
++
++	err = invoke_sdei_fn(SDEI_1_0_FN_SDEI_EVENT_SIGNAL, event_num,
++			     cpu_logical_map(cpu), 0, 0, 0, NULL);
++	if (err)
++		WRITE_ONCE(per_cpu(sdei_signal_pending, cpu), false);
++
++	return err;
+ }
+ NOKPROBE_SYMBOL(sdei_event_signal);
  
- #define V4L2_CID_STATELESS_MPEG2_PICTURE (V4L2_CID_CODEC_STATELESS_BASE+221)
- /**
-diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-index 5373dba640fa..c7469c01e83f 100644
---- a/include/uapi/linux/videodev2.h
-+++ b/include/uapi/linux/videodev2.h
-@@ -761,6 +761,7 @@ struct v4l2_pix_format {
- #define V4L2_PIX_FMT_MPEG1    v4l2_fourcc('M', 'P', 'G', '1') /* MPEG-1 ES     */
- #define V4L2_PIX_FMT_MPEG2    v4l2_fourcc('M', 'P', 'G', '2') /* MPEG-2 ES     */
- #define V4L2_PIX_FMT_MPEG2_SLICE v4l2_fourcc('M', 'G', '2', 'S') /* MPEG-2 parsed slice data */
-+#define V4L2_PIX_FMT_MPEG1_SLICE v4l2_fourcc('M', 'G', '1', 'S') /* MPEG-1 parsed slice data */
- #define V4L2_PIX_FMT_MPEG4    v4l2_fourcc('M', 'P', 'G', '4') /* MPEG-4 part 2 ES */
- #define V4L2_PIX_FMT_XVID     v4l2_fourcc('X', 'V', 'I', 'D') /* Xvid           */
- #define V4L2_PIX_FMT_VC1_ANNEX_G v4l2_fourcc('V', 'C', '1', 'G') /* SMPTE 421M Annex G compliant stream */
-
+@@ -680,6 +724,8 @@ static int sdei_cpuhp_down(unsigned int cpu)
+ 	struct sdei_event *event;
+ 	int err;
+ 
++	sdei_block_signal();
++
+ 	/* un-register private events */
+ 	spin_lock(&sdei_list_lock);
+ 	list_for_each_entry(event, &sdei_list, list) {
+@@ -702,6 +748,8 @@ static int sdei_cpuhp_up(unsigned int cpu)
+ 	struct sdei_event *event;
+ 	int err;
+ 
++	this_cpu_write(sdei_signal_pending, false);
++
+ 	/* re-register/enable private events */
+ 	spin_lock(&sdei_list_lock);
+ 	list_for_each_entry(event, &sdei_list, list) {
+@@ -739,6 +787,10 @@ static int sdei_pm_notifier(struct notifier_block *nb, unsigned long action,
+ 
+ 	switch (action) {
+ 	case CPU_PM_ENTER:
++		if (sdei_mark_masked()) {
++			this_cpu_write(sdei_pe_unmasked, true);
++			return notifier_from_errno(-EBUSY);
++		}
+ 		rv = sdei_mask_local_cpu();
+ 		break;
+ 	case CPU_PM_EXIT:
+@@ -1114,6 +1166,9 @@ int sdei_event_handler(struct pt_regs *regs,
+ 	int err;
+ 	u32 event_num = arg->event_num;
+ 
++	if (!event_num)
++		__this_cpu_write(sdei_signal_pending, false);
++
+ 	err = arg->callback(event_num, regs, arg->callback_arg);
+ 	if (err)
+ 		pr_err_ratelimited("event %u on CPU %u failed with error: %d\n",
+diff --git a/drivers/firmware/arm_sdei_nmi.c b/drivers/firmware/arm_sdei_nmi.c
+index 038eb79e28ac..9e2ea532888a 100644
+--- a/drivers/firmware/arm_sdei_nmi.c
++++ b/drivers/firmware/arm_sdei_nmi.c
+@@ -125,15 +125,19 @@ static int sdei_nmi_handler(u32 event, struct pt_regs *regs, void *arg)
+ }
+ NOKPROBE_SYMBOL(sdei_nmi_handler);
+ 
+-static void sdei_nmi_fire(unsigned int target_cpu)
++static int sdei_nmi_fire(unsigned int target_cpu)
+ {
+-	int err = sdei_event_signal(SDEI_NMI_EVENT, cpu_logical_map(target_cpu));
++	int err = sdei_event_signal(SDEI_NMI_EVENT, target_cpu);
+ 
+-	if (err)
++	if (err && err != -EAGAIN)
+ 		pr_warn("SDEI_EVENT_SIGNAL to CPU %u failed: %d\n",
+ 			target_cpu, err);
++
++	return err;
+ }
+ 
++static cpumask_t sdei_nmi_ipi_mask;
++
+ /*
+  * Raise callback for nmi_trigger_cpumask_backtrace(): signal event 0
+  * at every CPU still pending in @mask. The framework excludes the local
+@@ -150,8 +154,14 @@ static void sdei_nmi_raise_backtrace(cpumask_t *mask)
+ 	 */
+ 	dsb(ishst);
+ 
+-	for_each_cpu(cpu, mask)
+-		sdei_nmi_fire(cpu);
++	cpumask_clear(&sdei_nmi_ipi_mask);
++	for_each_cpu(cpu, mask) {
++		if (sdei_nmi_fire(cpu) == -EAGAIN)
++			cpumask_set_cpu(cpu, &sdei_nmi_ipi_mask);
++	}
++
++	if (!cpumask_empty(&sdei_nmi_ipi_mask))
++		arm64_backtrace_ipi(&sdei_nmi_ipi_mask);
+ }
+ 
+ /*
+diff --git a/include/linux/arm_sdei.h b/include/linux/arm_sdei.h
+index b9dc21c241be..3f565a0f4a17 100644
+--- a/include/linux/arm_sdei.h
++++ b/include/linux/arm_sdei.h
+@@ -41,7 +41,7 @@ int sdei_event_disable(u32 event_num);
+  * Signal the software-signalled event (event 0) to another PE, NMI-like.
+  * @mpidr is the target's MPIDR affinity.
+  */
+-int sdei_event_signal(u32 event_num, u64 mpidr);
++int sdei_event_signal(u32 event_num, unsigned int cpu);
+ 
+ /* Was SDEI firmware probed and usable? */
+ bool sdei_is_present(void);
 -- 
-2.55.0
-
-
+  Kiryl Shutsemau / Kirill A. Shutemov
 
