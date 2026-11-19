@@ -2,88 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 157D5606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA8F606A330
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 06:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zyy0rn5G;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ma4EZ4Mz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HG/xDqDF;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Nqk91pTM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=P51zQnnlFN29NM1R8E8OMTMjHLC0aAOfMUy/UOhFuHY=; b=Zyy0rn5G7WOhujeDYjAW3woSGc
-	XEqzDVw35lEPXXmE7uJ/N1Pt7+9dnTm/McvD2eITFNyaDyu9teS0Jws29GpzCAMAl5NfEZI7L7VQ4
-	qaJEGoUC33RPfeJAMbzEUyRdThgjyuEjSq6nR9C38Y6E52dS/cazVGhBifes8DmU7/gxlnqrB0ffE
-	2ZqUuluHlD+L3VcnN2o499soablW0WjmJsZN+TiGm7xJNUlIEZa2HlSh8E1WOx3IJ9n0Eq1pycG/f
-	xiVcPbvqSs2CEoPc+MJHxo2vDxpr5sqwiYCpl/iQP3v2oTBBrvcb4snjigRPSLvzsZI21SFkY0lbo
-	qU8XqNWg==;
+	bh=z59izcFqmV87WVb5c9g9cMWduIXw60LHpxtAQlDqhc4=; b=HG/xDqDF9UEha3XNVigcbwvyJI
+	MFYbUMYYxq0KSbRDBXPhAMnk8YvPHafSz4UFZFDmjc7LX067bOe2KnJ7rLvetn54V1oBo9biEgzuE
+	9du5KKWnSqhysEeYTf0WAchYlkulycHPYQEZuXV9CBle1rFb5ntEF41cLbC+4gh5ksHql39E6sXnm
+	aPgSJB213YjTvsxCCA0RZXxJM26sOqj0lyhvUK03ILkObNiElzdSiSHqIHEsdNtscFFNVlsBNQu4P
+	XyhVrIfike7FmYDo13uPTQ0cCBVr6qRZf2k/bLqne5tgfsNBRqya44tXOCdPs0fUvasUFePvxoyEI
+	asS7eT/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTvVC-0000000AynM-2PZv;
+	id 1xTvVC-0000000AynW-32lt;
 	Thu, 19 Nov 2026 06:20:10 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTvVA-0000000Aymr-3v57;
-	Thu, 19 Nov 2026 06:20:08 +0000
+	id 1xTvVB-0000000Aymt-0k7w;
+	Thu, 19 Nov 2026 06:20:09 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6A02B43B55;
+	by sea.source.kernel.org (Postfix) with ESMTP id CA11745F11;
 	Thu, 19 Nov 2026 06:20:08 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795069208;
-	b=Qi/id70l3RB72kxMY9/BLZI9e07QZ7filVhVDTK7iadWz9Fhp/L2cnheQjh15yWfEnNg
-	 FQS35BIvXgjCQWAMTweViqP64ShDeqNSjoSIV1oGuUPl1Rf4ao0xViwHFlnmWBbyxhGH+
-	 cApyP0kC/sQyThEA4ajZ+ZxUAnuu35qVWBZN8QA9PFfZ2iRpsBE8GSptlkFam59Wgt+Os
-	 AXVG7BtTqACTyqXUpCecrlLPxaGaXVBTxycTeiw+q6cgCW3WnUYLHAhH5zG8YAoFkPLNR
-	 VJOIbQlN+cJ9CtobJM5IFoC5niL629pJXHL0lDF7amxeAaDzq3SUX9wf7h14ve9EGiQ==
+	b=cWzz+UYdUY1p2lOskyegZVHVL/DSIcps9zLGsJmwkKEE8cy1M6ro/hEZn6agGwyU1duM
+	 guyaHJ87dRUgI/8taY4ONUm9vcedr8r3Om8GVTIuqwTYJTPeqeB9op/rMnTeIAmZQo3b7
+	 J3/VQ7GWQ3KnrXeRiAVjt58znHJgP5Qp37cXMXTUEr2+rHRc9HaG+Aecn1EE51E7PKLsp
+	 iXp2g7Dvbqp4St4KMuL0hQxlgPfXLB5VudedIfNjkc1YsJVGvYJhETfnwAChbffdKsmGk
+	 VsYBvCAeUXjXsXElb6uXWDig5tJNzmRqHVd6gYQCRi6xMWlSJyGxJ7RgGavlg7iCUgw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795069208;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=P51zQnnlFN29NM1R8E8OMTMjHLC0aAOfMUy/UOhFuHY=;
-	b=AVakpmYKl5HWCI831C0NdDiYD+qT7c6E5/RAKuzwO3tr3YDcMtSqLdpcKRvlCxtMVPnU
-	 5l5vvmRMZ3tcOnx5TdiLTns28SwWMUR2RFwaipQrjyx5Ln41toqz22y94bPO1RCU6Npzm
-	 P7Oa1HIpfUNC5hHsRRGfS3Lqotw4jRGKlRM1aOaeJ2UGSucaNOpY3kAXxzGUcitmUKOah
-	 nNxtDyFQfuLy3b0RN/IEtqDWoZjMTv2uIkaft9jmTmNfmcP7CcPbWcbr7BqLpuQG9TcSC
-	 6liAN6YfkIowHSJ70EIFbkwvS3o2f9MnRUwHEAooNgaGxYcl8QyFm1b4QlGM+oQBQgA==
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=z59izcFqmV87WVb5c9g9cMWduIXw60LHpxtAQlDqhc4=;
+	b=a4kvX/drJG9KyMCK5EjC1CuxdOd3y46URgUt+llnlVW4Qm9/sBAjGGnuGsB3WtKJYXW4
+	 oXFLpoutYkgpsdnhOl9w3unQfGoKLzurVvWq1AN9tglIqGjv4G7jDLtvfrAAFyaTI2ASG
+	 xFJQL8m79l1WXsM/ZnqGnsWgqZ/zAvhm6A6uL43gsPaOUtHC+3LYMBdrrYt0n2NxROmZx
+	 0bigbvl2mgHM2EOQY6+qRsMlJri9Q9aNikmrin9j+g7zBDfS/9BcZUpb3herVOEmEb0ho
+	 FYMQgB+w+gGzxDKVNcUvu+yHdtKMQ+I2FqDYeesan4cvbpS/8KqAoGD6p4ku2GBSJHA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id BC7661F000C9;
+	by smtp.kernel.org (Postfix) with ESMTPS id D0A3D1F000CA;
 	Thu, 19 Nov 2026 06:20:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795069208;
-	bh=P51zQnnlFN29NM1R8E8OMTMjHLC0aAOfMUy/UOhFuHY=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=ma4EZ4MzINVfA6Pkkyhoq9WX4oO0jz4QRd0NedKsHkClM0FuSzkJQzBg94zdaTldQ
-	 YbFKym6983FEj0tl3T2v0OFnqteCehGQiAgGC7MjAWLZISqEBuy9Yy3TcQk2EfNlOE
-	 RvXRBPa0DUOTH5IXKr3R76IQ2Ca0NgGwzPeTK0ibXjmlr+CGEvxtHgNdYpQJVCrmkg
-	 yUySdVXayWgB/jmmOgqN83E7/WNlyCZzv57CNT/hejydRhOI8BkuOP5CsYN37ESac8
-	 Sq815wy2rjYBWw9LZONKpIg7X+pNVrO67g4lTFKtQ454GFDxpStMnSyJGTcd9GgSEj
-	 x/69bpPdIi4rA==
+	bh=z59izcFqmV87WVb5c9g9cMWduIXw60LHpxtAQlDqhc4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=Nqk91pTMLB1F2yBqJVfN2nNZws3FwKm63iBewfKaqNMAHpTNnHyFjO2ubsp7qZghI
+	 RhM7VwnzmtkRnGtMo5iC++PpMQcXVw3qGM0gRzfnXmm6trUrFtjPhJkFnO+RdXr5L5
+	 +bHll+Z7aIUJDCHlS0953//R73aFFdQHHPGNSfJl/OVGB0fh7C0U0gPP7YUpzx9TNw
+	 k851fuj2iLbUCOimHYmwnXavuSQ5YgcTkEVNJ1VB5CnqVgmEBODcJSjdP7ihsPQvYT
+	 U/QWHipsLfSTRs8OnZ3KaNp8t5GDSR+fr+WS6Kt3gVMueZHkT70TWjn/0OkNSEvTEa
+	 yZaYzqK2ezIsQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 1DE334B130;
+	by lkml.kernel.org (Postfix) with ESMTP id 5EADB4B134;
 	Thu, 19 Nov 2026 06:20:07 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Subject: [PATCH 0/2] media: verisilicon: Fix VDPU2 decoder error handling
-Date: Thu, 19 Nov 2026 06:20:06 +0000
-Message-Id: <20261119-vdpu2-errreset-v1-0-f8fa403b6a3a@gmail.com>
+Date: Thu, 19 Nov 2026 06:20:08 +0000
+Subject: [PATCH 2/2] media: verisilicon: Reset the VDPU2 decoder after an
+ error
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMSwqDQBBF0a1IjdPQHzStWwkZ+HmJ5UClSiUg7
- t3WDM/g3p0UwlCqsp0EGytPY4J7ZNT29fiF4S6ZvPWFcy43Wzev3kBEoFhMLGJ8WhvKUAdK0Sz
- 48O8evt5/69oMaJfrQsdxAjWqA61yAAAA
-X-Change-ID: 20261115-vdpu2-errreset-8688700393a3
+Message-Id: <20261119-vdpu2-errreset-v1-2-f8fa403b6a3a@gmail.com>
+References: <20261119-vdpu2-errreset-v1-0-f8fa403b6a3a@gmail.com>
+In-Reply-To: <20261119-vdpu2-errreset-v1-0-f8fa403b6a3a@gmail.com>
 To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
  Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
  Philipp Zabel <p.zabel@pengutronix.de>, 
@@ -95,16 +93,17 @@ Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Arun Iyengar <aiyengar1990@gmail.com>, stable@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795069206; l=1334;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795069206; l=2516;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=2RFAUR3ng5/QnrGOQnWU+xGFztNU4gfgufFi7kzRutU=;
- b=OjJRsu4+0DdVHmvl5f/yUFh9DPg7MhS/pT7qenF5H07QM1yFTfJx6KXvTla6h9Fqw68gjmIuo
- mtkobnUna1sCg+BTTpBZtAsQOddm23UGyyBfLbCHqFHog2CZUfoSsl2
+ bh=sjdfbb38xSnpl2qcZS+zDoOlunwHqKwXDRUV5q2wqsU=;
+ b=WqxcSouqA+T7MzDgKzey3DPKmJA8dW53kZv4m7HQO81sYEsEG+IJCli/vrtWW45S9MVoiAsd6
+ VTWS9aKvOQrA9Hchq40aPRHhC6X+5r+aY/2O3OnU+sNYNNkNS62RQ7Z
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,39 +123,79 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The VDPU2 decoder reports failed decodes as done and is not reset
-after an error, so it can keep accessing freed buffers.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Tested on an Orange Pi 5 (RK3588S), KASAN v7.3 based kernel: 72 H.264
-fluster runs, no IOMMU faults or stalls; with patch 1 alone, an earlier
-run faulted. The VP8 test vectors pass (61/61). Two H.264 vectors
-(FI1_Sony_E, MR8_BT_B) fail in 1 to 4 of 249 runs each, with patch 1
-alone as with both. Build-tested on media next. MPEG-2, RK3399 and
-RK3568 untested.
+After a stream or bus error the decoder can still access the buffers of
+the failed picture. On RK3588 these accesses hit buffers userspace had
+already freed: IOMMU page faults, an IOMMU that can no longer stall and
+corrupted output for the next job.
 
-Independent of "Recover the Rockchip VPUs from faults and timeouts"
-v3 [1]; the two only conflict in one #include line.
+Soft-reset the decoder on every error interrupt, as the vendor driver
+does, and wait for the reset to complete.
 
-Developed with Claude (Anthropic), which wrote the code and the commit
-messages. I reviewed every change.
-
-[1] https://lore.kernel.org/r/20261113-hantro-robust-v3-0-82383c722ad2@gmail.com
-
+Fixes: 879dee56a40c ("media: rockchip/vpu: Add MPEG2 decoding support to RK3399")
+Cc: stable@vger.kernel.org
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
-Arun Iyengar (2):
-      media: verisilicon: Don't report VDPU2 decoder errors as success
-      media: verisilicon: Reset the VDPU2 decoder after an error
+ .../media/platform/verisilicon/rockchip_vpu_hw.c    | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
 
- .../media/platform/verisilicon/rockchip_vpu_hw.c   | 23 +++++++++++++++++++---
- 1 file changed, 20 insertions(+), 3 deletions(-)
----
-base-commit: aa0f4c41d4870a18e65772a1817af16427200371
-change-id: 20261115-vdpu2-errreset-8688700393a3
+diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+index 4bc1bdb41c70..01cd449f3ab2 100644
+--- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
++++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+@@ -7,6 +7,7 @@
+  */
+ 
+ #include <linux/clk.h>
++#include <linux/iopoll.h>
+ 
+ #include "hantro.h"
+ #include "hantro_jpeg.h"
+@@ -384,6 +385,21 @@ static irqreturn_t rockchip_vpu1_vepu_irq(int irq, void *dev_id)
+ 	return IRQ_HANDLED;
+ }
+ 
++/*
++ * After an error the decoder can still have bus accesses of the failed
++ * picture in flight; reset it before its buffers go back to userspace.
++ */
++static void rockchip_vpu2_dec_soft_reset(struct hantro_dev *vpu)
++{
++	u32 val;
++
++	vdpu_write(vpu, 0, VDPU_REG_EN_FLAGS);
++	vdpu_write(vpu, 1, VDPU_REG_SOFT_RESET);
++	if (read_poll_timeout_atomic(vdpu_read, val, !val, 0, 5, false, vpu,
++				     VDPU_REG_SOFT_RESET))
++		dev_warn_ratelimited(vpu->dev, "decoder soft reset timed out\n");
++}
++
+ static irqreturn_t rockchip_vpu2_vdpu_irq(int irq, void *dev_id)
+ {
+ 	struct hantro_dev *vpu = dev_id;
+@@ -396,6 +412,8 @@ static irqreturn_t rockchip_vpu2_vdpu_irq(int irq, void *dev_id)
+ 
+ 	vdpu_write(vpu, 0, VDPU_REG_INTERRUPT);
+ 	vdpu_write(vpu, 0, VDPU_REG_AXI_CTRL);
++	if (state != VB2_BUF_STATE_DONE)
++		rockchip_vpu2_dec_soft_reset(vpu);
+ 
+ 	hantro_irq_done(vpu, state);
+ 
+@@ -482,8 +500,7 @@ static void rockchip_vpu2_dec_reset(struct hantro_ctx *ctx)
+ 	struct hantro_dev *vpu = ctx->dev;
+ 
+ 	vdpu_write(vpu, VDPU_REG_INTERRUPT_DEC_IRQ_DIS, VDPU_REG_INTERRUPT);
+-	vdpu_write(vpu, 0, VDPU_REG_EN_FLAGS);
+-	vdpu_write(vpu, 1, VDPU_REG_SOFT_RESET);
++	rockchip_vpu2_dec_soft_reset(vpu);
+ }
+ 
+ static void rockchip_vpu2_enc_reset(struct hantro_ctx *ctx)
 
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
+-- 
+2.55.0
 
 
 
