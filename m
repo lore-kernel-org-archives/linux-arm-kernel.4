@@ -2,87 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D207C606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669DC606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:54:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zgIlsr0X;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.a=rsa-sha256 header.s=dkim header.b=jxPXT3Io
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KCwaal8S;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=GbdmPxus
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=k1TemjZqZzUtb911eFpFTlr9YVP5j33fp7w/pph9qY8=; b=zgIlsr0XBnvVwp8jaCPpBu0yA8
-	C/2TVfzHZo06rXCfB02iomyQ0IX09a+wJiTRaxJwnl64AFF3kAxN1eMRBkGIw9orqA4mxKAv0kfdC
-	cefEPp94sBA7xg67o90rFKCynBADF5sMr7v6/UZ62Ar9Srpn/geFT01ciKZT2TuOi3IrpnYn2LtYn
-	UpkpxU4qOWt7OqzgdkGtQf9A9LgtndL3y+iDtyE+7jkbtdDVIlLhyZSj7+VXdOE91szB1oYvJvJO5
-	Mca5HDEKxghgrx/AqWlyQtfdWWzRGU8aErPQXUgAWXX8FjA+tRqTzJzDx7xeRpgUnptsS4dT5Ea7y
-	6vWNTvqQ==;
+	bh=P2zzf8FFEBL81oIQV+yxC49Gt94XvsXrSt4IwcmCdEQ=; b=KCwaal8SY4totyok7GUZ0qtPh9
+	BvojCe3E2dMGuGc2/eb2Dwipt5HZ2/C/ovy0ugMVwm2DzEHCdYEIf7FWG0E4Yu6SVlhi76B8QpIx0
+	4g5D0yTNXDiNEpbqHCnMxfCI3mx39t+q+mBbMTCUgPnQyXeKOaq3wbfDxOW1tOp/w72hksgJE6dVx
+	p8dEQN4XrCcaHi6vvJjIvrBHNHc+za751OKc27i5wcpAXCIqmtaqQBz+b3IQiJPYy4GhYFKNiVeam
+	EYYB2bSfjQL5JtJhVDDmf/4XIgwQQeD4UbwdyS11imY9q1pteFbfr49BvDbnZi91hhBe1VstAo+rY
+	5opdQSMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3Vz-0000000CIL9-148V;
-	Thu, 19 Nov 2026 14:53:31 +0000
-Received: from mail.thorsis.com ([217.92.40.78])
+	id 1xU3Wy-0000000CIew-2fx1;
+	Thu, 19 Nov 2026 14:54:32 +0000
+Received: from mail-pl1-x645.google.com ([2607:f8b0:4864:20::645])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3Vl-0000000CIGc-4796
+	id 1xU3Ww-0000000CIdi-0qE0
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:53:23 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2D3E01483022;
-	Thu, 19 Nov 2026 15:53:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1795100002; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=k1TemjZqZzUtb911eFpFTlr9YVP5j33fp7w/pph9qY8=;
-	b=jxPXT3IoGdPzIrANv/1IsOBMFwrG0fKNZ2kYGvul8pZ3lqJ1iIi1uUIwygxseWnUedBX5r
-	pCuASsLWd44+piSPYRDtEFK984UK3DeXNSfymq4rpqEm0tc3uL+JP+VylYDKAEn5KHnYQ4
-	iibgQuY3yubiQZRnJrbmRQCgQ+hKi4V/PZSAn0XcCo1TnFZCud0mK33uX+2zTW9iCZMbkO
-	Gxmv1vu1GzJJPBRgJdi5jWo9hbj4YqyQo8x2XCCkv543CHe1Vi+i7st0+PncjoLhlgLUT7
-	wYczqi14VFFD3TQqFiobiCvpmycHuLH/wZRcAdvOh3DsOjADi+kmiLroe9454A==
-Date: Thu, 19 Nov 2026 15:53:12 +0100
-From: Alexander Dahl <ada@thorsis.com>
-To: Claudiu Beznea <claudiu.beznea@kernel.org>
-Cc: Alexander Dahl <ada@thorsis.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Ryan Wanner <ryan.wanner@microchip.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4 03/16] dt-bindings: clock: at91: Allow referencing
- main rc oscillator in DT
-Message-ID: <20261119-sixfold-tradition-ab9492ca6c2e@thorsis.com>
-Mail-Followup-To: Claudiu Beznea <claudiu.beznea@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Ryan Wanner <ryan.wanner@microchip.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-References: <20261105110715.2486432-1-ada@thorsis.com>
- <20261105110715.2486432-4-ada@thorsis.com>
- <5273baa7-aae5-4364-bb09-dccee581200b@kernel.org>
+	Thu, 19 Nov 2026 14:54:31 +0000
+Received: by mail-pl1-x645.google.com with SMTP id d9443c01a7336-2ee2d612733so8166595ad.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 06:54:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795100069; x=1795704869; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=P2zzf8FFEBL81oIQV+yxC49Gt94XvsXrSt4IwcmCdEQ=;
+        b=GbdmPxustHdbY7YcmcJubCXCUTsoAn/zJ0gd8lKW9kN350AwpRBkS7nly0xo7rQ6JV
+         kYz9uw3iWo8w+edD/IYdfgoVfxgkql0oaEyqRs0M+OP20RUFjry+Uyjv6sukxIlWxALg
+         jkcCSDOyVmE/5Kp4w2GElomPE0nupjq7O+yXXC3ZOAmFXXXzKvfP1zPYV5QvF9e/a7jz
+         jlz0uGU303FXeYikS8+O3Gb11FBEl4gwtsVKKZS2hW0CswPaJLe0kR9a3VQ0n5ei0SXZ
+         q+o1Ykb9qXJaY0MtHDzEE2Oj68u/r9XeicW2zbORaesSsq4z/+CdSHXmPWCUBlEKWz5v
+         SNMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795100069; x=1795704869;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=P2zzf8FFEBL81oIQV+yxC49Gt94XvsXrSt4IwcmCdEQ=;
+        b=lAOof+in6kS2Bsx5bxHJ7LviDXbZiG5qYrwZ0KehftrnAtqrA6aUQQGUt2lnVfkw8x
+         ac8YIekFUH5HeNQbA2ZWQx3snK8TegkoxLRCpGgNqbdjQtk52yEOcbe3+Llpz14UrOJ+
+         KxjL9I7baXwXev/09wFm+FoklzcNYCV37MVlUyXho6f/1lHlDra2dBVTUV2OnziYZ1Xt
+         aLlsCt8Ca9uRe68X/SmGlNtD5YJd2HhltnUQWo+kvZXQBwELM+jHn7bqBU5U81YSGNeb
+         lH/mhJRYEiQ5/MUKgSYNroX2OsZtULRFPgVODMxK6OyPkm2r98RXi1AMVOTQSf16QcoS
+         lzKA==
+X-Forwarded-Encrypted: i=1; AL+hErFD/O33WxYytL+vVa5y+WBrE4QiidOGFiUoQVb4LEuD8v/uiHIwyBQFMpZduoEa2+Y1tGFv/1VlAdW5P+UhFOQx@lists.infradead.org
+X-Gm-Message-State: APuU4Z8GgYWWko/ziqrleAksC7EsESb4kLCnqmNNzF8JSow3vE8V8/yQ
+	U7XlpvdFFzhagrXgS1K2Y8Mwi0W3FJYN5cw+u3e3FMuHZZuKo6Pl2jrODHmkdOu6kId63ZmjTO6
+	+5ka6HA==
+X-Received: from plbkl12.prod.google.com ([2002:a17:903:74c:b0:2ed:4c9b:1bfc])
+ (user=seanjc job=prod-delivery.src-stubby-dispatcher) by 2002:a17:902:e74c:b0:2ef:f2e0:db0
+ with SMTP id d9443c01a7336-2f03f18fb43mr715205ad.10.1795100068394; Thu, 19
+ Nov 2026 06:54:28 -0800 (PST)
+Date: Thu, 19 Nov 2026 06:54:27 -0800
+In-Reply-To: <120ad525-efa5-4129-9d97-fa6fa5db747f@arm.com>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5273baa7-aae5-4364-bb09-dccee581200b@kernel.org>
-User-Agent: Mutt/2.2.13 (2024-03-09)
-X-Last-TLS-Session-Version: TLSv1.3
+Mime-Version: 1.0
+References: <20261116164358.142785-1-steven.price@arm.com> <20261116164358.142785-2-steven.price@arm.com>
+ <CA+EHjTy5xBmavNWSYPjqU9qXtssV3ZHzsUr1s_4bVOt1GnDLVg@mail.gmail.com>
+ <6bb490cd-ebbe-41d7-adf3-d6eaf0e53478@arm.com> <b1ef7241-54b0-4a17-83b6-0008e722f2f6@arm.com>
+ <8a095a42-662a-416d-a5d7-79e10161201c@arm.com> <cc27e6a8-6bfa-4c82-92a7-33175baf6803@arm.com>
+ <120ad525-efa5-4129-9d97-fa6fa5db747f@arm.com>
+Message-ID: <av8No1rvJLXwciId@seanjc-mac.roam.internal>
+Subject: Re: [PATCH v3 01/11] KVM: arm64: guest_memfd: Check mmap support when
+ preparing memslot
+From: Sean Christopherson <seanjc@google.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Steven Price <steven.price@arm.com>, Fuad Tabba <tabba@google.com>, 
+	Ackerley Tng <ackerleytng@google.com>, kvm@vger.kernel.org, kvmarm@lists.linux.dev, 
+	Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, 
+	James Morse <james.morse@arm.com>, Oliver Upton <oliver.upton@linux.dev>, 
+	Zenghui Yu <yuzenghui@huawei.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>, 
+	Alexandru Elisei <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>, 
+	linux-coco@lists.linux.dev, 
+	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>, Gavin Shan <gshan@redhat.com>, 
+	Shanker Donthineni <sdonthineni@nvidia.com>, Alper Gun <alpergun@google.com>, 
+	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>, 
+	Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kohei Enju <enju.kohei@fujitsu.com>
+Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_065318_354525_FB23A4BA 
-X-CRM114-Status: GOOD (  24.98  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_065430_238397_B1813388 
+X-CRM114-Status: GOOD (  18.80  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,106 +105,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello Claudiu,
-
-Am Sun, Nov 15, 2026 at 04:34:30PM +0200 schrieb Claudiu Beznea:
-> Hi, Alexander,
+On Thu, Nov 19, 2026, Suzuki K Poulose wrote:
+> I see, thanks Steven. For context:
 > 
-> On 11/5/26 13:06, Alexander Dahl wrote:
-> > The main rc oscillator will be needed for the OTPC to work properly.
-> > 
-> > The new index introduced here was not used on the four affected SoC
-> > clock drivers before.
-> > 
-> > Link: https://lore.kernel.org/linux-devicetree/20250207-jailbird-circus-bcc04ee90e05@thorsis.com/T/#u
-> > Signed-off-by: Alexander Dahl <ada@thorsis.com>
-> > ---
-> > 
-> > Notes:
-> >      v4:
-> >      - change index for sama7g5 and sama7d65 after re-adding unused PLLs in patch 2
-> >      v3:
-> >      - adapt to different base changes, added lines are the same
-> >      v2:
-> >      - new patch, not present in v1
-> > 
-> >   include/dt-bindings/clock/microchip,sam9x60-pmc.h  | 1 +
-> >   include/dt-bindings/clock/microchip,sam9x7-pmc.h   | 1 +
-> >   include/dt-bindings/clock/microchip,sama7d65-pmc.h | 1 +
-> >   include/dt-bindings/clock/microchip,sama7g5-pmc.h  | 1 +
-> >   4 files changed, 4 insertions(+)
-> > 
-> > diff --git a/include/dt-bindings/clock/microchip,sam9x60-pmc.h b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
-> > index 050e5e774b274..830e247ba2532 100644
-> > --- a/include/dt-bindings/clock/microchip,sam9x60-pmc.h
-> > +++ b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
-> > @@ -10,6 +10,7 @@
-> >   #define SAM9X60_PMC_MCK		1
-> >   #define SAM9X60_PMC_UPLLCK	2
-> >   #define SAM9X60_PMC_MAIN	3
-> > +#define SAM9X60_PMC_MAIN_RC	6
-> >   #define SAM9X60_PMC_PLLACK	7
-> >   #endif
-> > diff --git a/include/dt-bindings/clock/microchip,sam9x7-pmc.h b/include/dt-bindings/clock/microchip,sam9x7-pmc.h
-> > index 292c5873e101e..58d2a08116795 100644
-> > --- a/include/dt-bindings/clock/microchip,sam9x7-pmc.h
-> > +++ b/include/dt-bindings/clock/microchip,sam9x7-pmc.h
-> > @@ -10,6 +10,7 @@
-> >   #define SAM9X7_PMC_MCK		1
-> >   #define SAM9X7_PMC_UPLLCK	2
-> >   #define SAM9X7_PMC_MAIN		3
-> > +#define SAM9X7_PMC_MAIN_RC	6
-> >   #define SAM9X7_PMC_PLLACK	7
-> >   #define SAM9X7_PMC_AUDIOPMCPLL	9
-> >   #define SAM9X7_PMC_AUDIOIOPLL	10
-> > diff --git a/include/dt-bindings/clock/microchip,sama7d65-pmc.h b/include/dt-bindings/clock/microchip,sama7d65-pmc.h
-> > index 08581418b9115..17105a6bedb54 100644
-> > --- a/include/dt-bindings/clock/microchip,sama7d65-pmc.h
-> > +++ b/include/dt-bindings/clock/microchip,sama7d65-pmc.h
-> > @@ -19,6 +19,7 @@
-> >   #define SAMA7D65_PMC_AUDIOIOPLL		10
-> >   #define SAMA7D65_PMC_ETHPLL		11
-> >   #define SAMA7D65_PMC_MCK1		13
-> > +#define SAMA7D65_PMC_MAIN_RC		14
-> >   #define SAMA7D65_PMC_LVDSPLL		15
-> >   #define SAMA7D65_PMC_MCK3		16
-> >   #define SAMA7D65_PMC_MCK5		17
-> > diff --git a/include/dt-bindings/clock/microchip,sama7g5-pmc.h b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> > index 27668634b0a2b..4a1c4af8ecc9a 100644
-> > --- a/include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> > +++ b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> > @@ -19,5 +19,6 @@
-> >   #define SAMA7G5_PMC_AUDIOIOPLL	10
-> >   #define SAMA7G5_PMC_ETHPLL	11
-> >   #define SAMA7G5_PMC_MCK1	13
-> > +#define SAMA7G5_PMC_MAIN_RC	14
+> Arm64 currently (without inplace conversion support) only allows GMEM
+> with MMAP flags only and relies on kvm_slot_gmem_only() to detect that
+> the GMEM has MMAP flag. But, when we enable inplace conversion,
+> we can't reliably reject the slots by kvm_slot_gmem_only(), because
+> all GMEM slots are marked GMEM only with inplace conversion.
 > 
-> I think we can use 12 instead. Correct me if I'm wrong. Otherwise, you
-> should change also driver code to allocate space for this clock. See
-> pmc_data_allocate() in drivers/clk/at91/sama7g5.c
+> Also, from the API Documentation,
+> 
+> "When the KVM MMU performs a PFN lookup to service a guest fault, the fault
+> will always be consumed from guest_memfd, regardless of whether it is a shared
+> or a private fault (unless in-place conversion is disabled and the backing
+> guest_memfd does not have the GUEST_MEMFD_FLAG_MMAP flag set)."
+> 
+> So, in effect, with in-place conversion enabled a KVM_CREATE_GUEST_MEMFD
+> without GUEST_MEMFD_FLAG_MMAP is an error
 
-The old definition had this (with PMC_MAIN = 3):
+It's only an error if (a) the userspace address in the memslot points at the
+gmem fd and (b) something in KVM tries to actually GUP the memslot using the
+userspace virtual address.
 
-    #define PMC_CPU                 (PMC_MAIN + 9)
+> and thats what this patch is trying to fix in arm64 KVM. The question is:
+> 
+> 1) Should this be fixed ? How does TDX/SNP support older VMMs with
+> inplace conversion ? What was the conclusion on this breakage ?
 
-That's the 12 which is missing in the new list.  PMC_CPU was not used
-in the current code base.  Personally I'm fine with using 12 here, but
-I was not sure if this is again some value Microchip wants to keep for
-some reason?
+There is no "breakage".  If userspace doesn't point the userspace address at a
+valid VMA, that userspace's problem.  The only thing the early check would do is
+prevent weird use cases that may or may not be valid (and for which KVM doesn't
+care), and error out earlier if KVM guesses right and userspace really did goof.
 
-The allocation problem was found by sashiko on patch 5.  I already
-fixed that in my working copy for v5 of the series, but will adapt, if
-the value here is changed again.
+> 2) If it should be, then shouldn't it be done in kvm_gmem_create() ?
 
-Greets
-Alex
-
+No.  As above, I don't see any reason to have the check at all.
 
