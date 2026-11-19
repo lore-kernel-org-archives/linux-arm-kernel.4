@@ -2,147 +2,164 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3F760A260A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50CE5606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=igykRIW8;
-	dkim=pass (2048-bit key, unprotected) header.d=chipsnmedia.com header.i=@chipsnmedia.com header.a=rsa-sha256 header.s=selector2 header.b=Mt6PUEQa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r94HUNsG;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=hBKzV7eg;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=EjzYXn+t
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-Id:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ooGTyD9cINo1BOVzIujOSh7E6nNjykPa/1JHAv8torE=; b=igykRIW8Kz1tUm
-	P+2NVBYj4kGinzrrAYFfcIAqet9QypLOpkO4ptb+C9zx/CtcZKPk6XIidyb+0/qbLSJ1+oZO5OOrW
-	aSzWBhep4Y4dzMBm/NxrW+7ZqoB80y+axkQMF9VgSzkHjReNr0RRXgZCw1pAADS4hNmt/SNmgXKon
-	PU1HOvRwK1H74yZ+Bpamuk/xc0GP/hEApdmxvWvbChCi2A8OFVlI36h0D+7ICwc1F04yjsxILUUep
-	PVydPZ9wwQBt1x3uvolF8fr9+lBXhC5K/SfWMfcsGZcqNPwsR9KcCSpz2SW5dl8JSjzG1YjA2Xv0v
-	Ri5IuM9Oeb4GtD517rEA==;
+	List-Owner; bh=oxi+MQ8kXAC6ROWaTRv44mEbXLIae3bz9HNaUOQsmEg=; b=r94HUNsG4YyJI7
+	pM0v7ouGaoE6zRXxldh4/0bSPKfxVw77NV4XQCMwGtTwcV3hz7c9yXKGQrL9N/oxUWzobOV2/zKBq
+	QdjxpuIIPmXYW4kXn9mJxA2NdUyavw7dlHfhmg8dSLDxaKELvL4NdOxIxBF9lmu97O0UyLgWD5Nw2
+	aFwpo/ezpn6RAY2szML9EZAb7358zL+PSfMVfXgwlY/orLJG/1jJfcNtRNy72peDj8iBCuRmcjwnj
+	csngNCqIeTkeRy5USw+ONHTGBvToEUWHSBIcnOjMr1yezokpfFGdmdJ0R024lWbvyBxYrWFdDNbIR
+	tYPcSJcV5hEEycclvwXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTy0z-0000000BIwa-2xEB;
-	Thu, 19 Nov 2026 09:01:09 +0000
-Received: from mail-koreacentralazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c40f::5] helo=SEVP216CU002.outbound.protection.outlook.com)
+	id 1xTy2P-0000000BK1Q-2r7R;
+	Thu, 19 Nov 2026 09:02:37 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTy0i-0000000BIg7-1NDI
+	id 1xTy1a-0000000BJeC-0rJk
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 09:00:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sU+omZFJyuvKmgP8GGc2ihyqS17IV14xBAFCjARtz2EDQwwVUK4zOw9DyO9Z9xlihxoQbWH+5DNhfwupVjcMBJoKpSL34Ih1pJftpx8v9NOiY1uwSPi0+lnKMNXSAqSsvbGn71tJOqlJ5Mjbq1NlQo+aAvf0DgKoLRlGQd7XQCraQ2cv8mlyb7XddqfZNqWzlSIHU+I1h4Z8bcDjAXhOe032394q9IPhSuxQkleXeWGSjp5lWVt0roWDi3+1xGU0GHDHEzWs7lqzQjNHdVZDJX2gtLWwOlQ8XLwpI4OX/yucTBJYjfkcNAt1Xp5lYxgS4ezxD8VVhSnzrlu9XXOOQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ooGTyD9cINo1BOVzIujOSh7E6nNjykPa/1JHAv8torE=;
- b=GwlGco1PD6DZUe/iwXWGLCcQPpIIiar/xkRlGr84FqV7B/shZxhGZvMqLymv0IL5eNlXWGmr1HESipEDYqap/V56gFLAfo1Nm42KzwZqhPADoAkTYBVv5M7vXk6DgbIOgYJH08dcpCQfLB5b6S4ikAyM0gs8vURkdsPcWDr3Y1/kGsFQGzxtpHRJA/WhlyniFLQ2AswB7LBqRWv3EtTfghLiYOuiTVE558pF4kdOHN/tTaqCJOfPUCL6wiw42S8MDa32rQcpl2QTf39ZnVniWNnP9rN5nZ78VuvgZL9X9dIrvZFQZC1fyk8S+vtcU1Gjg8e2PAdQhTa5O0bipJP7oA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=chipsnmedia.com; dmarc=pass action=none
- header.from=chipsnmedia.com; dkim=pass header.d=chipsnmedia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chipsnmedia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ooGTyD9cINo1BOVzIujOSh7E6nNjykPa/1JHAv8torE=;
- b=Mt6PUEQaR0umgPo5xyXz6IZqVqChhTTfBWD48Nmb0BMZXKcYnnotD7cfGV7U3PmtB/LvMJGXNFDFN04+/N1qw7WsP3Sks/Cm6//fMT2rvA1Q4073vL1dzpD8uLOeYDOMVw1y6UwetzHWJn+QVCBpJaULKFXEOzEM4wmbesM9OQWlQzA5U+szP+SuO0P48oscxxFbNDiAi2o+knyCXaXNDw8/RIVl1hKibiZwsDdJMOg2MYLPmsBS1e+bgzF84KKChHdp6fpfIrMhNsoDOUGkSVltKphS74GYgYyYMOAOJw8ktgQHZBDvmGC5WhnkPY4gzwVIou6Ch8MoRICsXk2f2Q==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=chipsnmedia.com;
-Received: from SL2P216MB2441.KORP216.PROD.OUTLOOK.COM (2603:1096:101:1b9::8)
- by SL2P216MB1466.KORP216.PROD.OUTLOOK.COM (2603:1096:101:33::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
- 2026 09:00:31 +0000
-Received: from SL2P216MB2441.KORP216.PROD.OUTLOOK.COM
- ([fe80::f234:3bc6:9197:8232]) by SL2P216MB2441.KORP216.PROD.OUTLOOK.COM
- ([fe80::f234:3bc6:9197:8232%6]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
- 09:00:31 +0000
-From: Nas Chung <nas.chung@chipsnmedia.com>
-To: mchehab@kernel.org,
-	hverkuil@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de
-Cc: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	festevam@gmail.com,
-	kernel@pengutronix.de,
-	nicolas.dufresne@collabora.com,
-	ming.qian@oss.nxp.com,
-	marek.vasut@mailbox.org,
-	jackson.lee@chipsnmedia.com,
-	lafley.kim@chipsnmedia.com,
-	Nas Chung <nas.chung@chipsnmedia.com>
-Subject: [PATCH v8 11/11] arm64: dts: freescale: imx95: Add video codec node
-Date: Thu, 19 Nov 2026 18:00:05 +0900
-Message-Id: <e89f330486c8b986088278b563d0c4364d35f19b.1795075582.git.nas.chung@chipsnmedia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1795075577.git.nas.chung@chipsnmedia.com>
-References: <cover.1795075577.git.nas.chung@chipsnmedia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SEWP216CA0060.KORP216.PROD.OUTLOOK.COM
- (2603:1096:101:2ba::8) To SL2P216MB2441.KORP216.PROD.OUTLOOK.COM
- (2603:1096:101:1b9::8)
+	Thu, 19 Nov 2026 09:01:55 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AJ7Znhv3718100
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:01:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oxi+MQ8kXAC6ROWaTRv44mEbXLIae3bz9HNaUOQsmEg=; b=hBKzV7egc7qpyYFR
+	nAvLlpJdkyF3Idi/vrTGC3XgfocQKJdKyupiPJwEiUr9Rr2TVKxrDMVzKxCmhIFc
+	UO+SJNXIkg4taRp/bs5iN1GWOMBlxoJz/PPEnC6jrpctMaOnBM5zTM5FqgZVLPGY
+	Rx7gwvEmxIUP0yTyrJOZSD09S6Z5Ta1PVwpdN1mlpxZRgWod394uME37eu87xRXv
+	7oOTW5KNTCXJ1UqepvNCIqSrYyluRprQWHKb+XsYlptAAUu6bZY6UqbAyq/oD4Tx
+	HhXQhd5bowZwaWuJ+yHXageksRDkBEy2tTPT0JAQ13O1Of+QRN9esFD3n51knRcN
+	F5SkVA==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j1vv2rc5w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:01:45 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-cc4216aee8fso2431118a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 01:01:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795078904; x=1795683704; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=oxi+MQ8kXAC6ROWaTRv44mEbXLIae3bz9HNaUOQsmEg=;
+        b=EjzYXn+thDbSeoyDeQAJHn+bwE14zd8hHyZjJ9EPE5Bdt2Jh+aeMHOHWu5iMhShGDd
+         rE6l09lP0xss5Bw0fVo95e2LHQ5WuuTPXh4HpBtmT+XCWeZj+a6Z5aIquspgy++GJJph
+         GaZ64Q+0JGfoLdTKM8fo7iM/emmsUBSxL4LClYSZfyeOGs/uerPLtUJIiH8xgI5QmTp8
+         wobyNJowY/lyXPCroG/sOjP2me53PIRqFhklWE8WgsBfI63qAY7eqTeLXHnqM0rcoM1i
+         1H/GXjoLjcigGxSwYIIRUVF3p299tl9/i/aGTfG3rjptIE/PdlqOhhfxfWkhsecrK7ex
+         D6dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795078904; x=1795683704;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=oxi+MQ8kXAC6ROWaTRv44mEbXLIae3bz9HNaUOQsmEg=;
+        b=lEAxKUOPrtzJTtkWKamf1nVhzADgPDP7ypdLD4+KqWTiZkuRCHkIYsTHxRQYrLyBzk
+         gaDbiU/LgrAWotlQ6m/gRgsnDlKSywO4oY5+RlfDv2YBpkee499+2m0RkZkHObsrblzP
+         TqCpw4kEtGlWbLTg7fi/Ojd0HbS1xvRjyz5l/8x3ZrUwMt6f9CMKhezvlI9+Th/rCs84
+         7NLZNHsKJOJK04Eib5Ni/8IYagFlMM7oe7BSh13qjEj3ofF5EwyhnuZPrfTvZQjcANMs
+         rthOn5jPJzYXsmh/1rj5POi3MMNhYq3XB5hG6qj3rfeqYm7P8gu5rP42kFbZm6UVnfqm
+         XKOA==
+X-Forwarded-Encrypted: i=1; AL+hErHTEhlSEM92nqiqeNMJ5vlrBOEEKa3DNQMcE3cPXZi51QoUvK/QjmalFMV4AJh2tVfOrNN2kUfJg6dfe0J4H/Qd@lists.infradead.org
+X-Gm-Message-State: APuU4Z+k3IAkfqh08hno7zqQcsgJcahp3fOcStFHh3GRN2WZ5+kGG5nc
+	neOVH6XUIpVuutjs6VpKVNSzoOM2vCvuHw3SNCbuPeLsHbrHwRzemffh3MC2oSYX56iJ/wq2Adn
+	kL5s3X7sT0lgKHkjd0WJLedKGcdKYbx5fRmwgZd3XwknQq5BMgz65a14au6lEGfXQDuVue5mJJQ
+	fXFbMwtH4VjZ19
+X-Gm-Gg: AZFdTZdJLCpUDCAiX64y21bmHGJRp62KB5SfyEHyR13mthYmVoGzYdECPFQOYIedJTS
+	h+gh9hDOlv+WHW5xU0S+ojq/htRnzi7DYMtBsRP+1Zq0S+RQSpLFmu3nU0OJiiBY1MZ3fyMOWI9
+	Kzttn9t53RN9+mv4/vwE9cwSZvr4NHnW+IF8f8WT3QpBj3cTvin3zpI1izHbO0bn9FWZ+3e+gyB
+	sOFYKfALVbJhE9Xr9jtZ1lOiNvkENhVr+iR6j/LHTK/MIOWwj2WZ4zCQrmdf1ovSfsqvWMbO1XD
+	TY0OXDz8Otnl8LVkNfnVJHUi1ER8oT5j+cr3+N8QwPaHXcYehgXMJkb7rXQpy2pzd6gSm/njpe1
+	bvmMeXDRivSGOs09EyAsWuGE6q9WfLlyDpWYw3QyjgFm4O9xtNWiMcD4oAM4B2xhrPLM2Nsi7Nm
+	rBs6nhN7NOIXRchDklDFuQ69aVP7AnlLSZei5e
+X-Received: by 2002:a17:90b:1fcd:b0:3b3:bf8f:9cce with SMTP id 98e67ed59e1d1-3b3d0764684mr5300471a91.35.1795078904002;
+        Thu, 19 Nov 2026 01:01:44 -0800 (PST)
+X-Received: by 2002:a17:90b:1fcd:b0:3b3:bf8f:9cce with SMTP id 98e67ed59e1d1-3b3d0764684mr5300427a91.35.1795078903441;
+        Thu, 19 Nov 2026 01:01:43 -0800 (PST)
+Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d97356sm1689539a91.13.2026.11.19.01.01.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2026 01:01:42 -0800 (PST)
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+Date: Thu, 19 Nov 2026 17:01:14 +0800
+Subject: [PATCH RFC 1/6] dt-bindings: soc: qcom: add QDCP provider
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SL2P216MB2441:EE_|SL2P216MB1466:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c2b7006-8baa-4685-be0b-08df461b9079
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|52116014|376014|1800799024|366016|22082099003|18002099003|56012099006|10067099003|261026140227099003|261026121527099003|261028144727099003|261022105027099003|261021121427099003|261009223027099003|261102123227099003|38350700014;
-X-Microsoft-Antispam-Message-Info: yIdp84kEqcNCVbAxJfjYUceWEGJNKkYkXSUCVq2+rlzvArnBU9qoeiLTwrVUpeLjH0cKDVqbmIc8Ua4vv7wrXjFZn95xI9GpWMiNnhjwb6zF3b2r2JLe1aJxTaVe2KIuny3V//7t70R993tF0wcaJEmaXmOshKSc3hGrRp0qpCyB/x4w352MzU7i0ol2eq5c/eSPcQn11yQM8N2HThZappU0mf4p3eKUTe0tdEDXKDyBg07SwfSxubj5c71PYYKuIhA75dCY9zD0Pppjkit2fyK/zilnrlSoGm8Gkfwa1qoOjMooKWlx/bi813itsdhPrq6a2YC3WYqUmD0Ok2QoOv+DOr6TdkrOjSn6fFBvbuFV7z1aYu55VqWLOmBXHaJfm6F7f8PRn+sXmS25REaNITL9j8oP4G0Cza/ZL/UNjUdUgU/qSNwFV64tX/ptbRSXX2FtfwAdkvkCW5Wx5NCCSi+Mz7eNsc0fXnrgGsZEivNTVVwhOr/pydgk01DgFUzwxQ4dQNzG9h4OoUOoeZCq+5+a/5MH6aUCfVihSBGavozeaIWijCuNh6lNT8wwxlUL05UQg7x6bhCHu+92uB57rY7Lbgqn+Fn6TP/pnpK5I/uYN6tzTTLO7vwc0niF3wLvzmv9rvS5cp9PQxZWuiQXGkVUbVcI4qagxYc6d8Gq5j1A0e3XxPj9qlG43l5eFnmCBVWyq56B4SpIIhrwSbn+8Shlmez6mr2HHYa0SyF1ejU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2P216MB2441.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(52116014)(376014)(1800799024)(366016)(22082099003)(18002099003)(56012099006)(10067099003)(261026140227099003)(261026121527099003)(261028144727099003)(261022105027099003)(261021121427099003)(261009223027099003)(261102123227099003)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/g3BOJk7x0QKG5KAyLsiL0v8i3z5htUGYdvvHz2d19HVsWW0Aer2BzVM3GjI?=
- =?us-ascii?Q?nUUuTTiqRP9AwgA16UpsWwZ7bWe0pRWbIaFQviW0PNKTqOY34ZUeyM5L9xHQ?=
- =?us-ascii?Q?wFCK/jh0wt4QSHp67GxfPpE9Cfya1q9BqdePlBkIn/+EOscls+wxdRnWVlF3?=
- =?us-ascii?Q?NU60BivWpMNdpAq+obPE4RNEFYOAh9+kOGSaGBHAOkV55t9kP6ONyOdk4Hi1?=
- =?us-ascii?Q?0Z6SGwIcCqSdAP37bmMzkH/3qW5C2c3VRSiysBaEfGeei5r+P1socWVN5mVx?=
- =?us-ascii?Q?lzAKF8sAjBvqz6LEYt9cesWv15SgMmKIFPfCKu8B8Ox90a0iLhkJ5TXcZcwf?=
- =?us-ascii?Q?mGTWQh8Ip6QfGLuZ+l4sH++YBk0BN5Ljczsb+fGWre58U49YVT2zfcs8a25T?=
- =?us-ascii?Q?URHyklXdA2SCqWeD2CHBl9uiBlp89Z+G1D21+MUQDDg79fvZeJLFy4SkufrB?=
- =?us-ascii?Q?6T/2Rr0SWDlgEd9juiP3sH15DqJvNA+OEUyCHH984SXJqDmpB1+fqoGl/YhD?=
- =?us-ascii?Q?ju1dQMkcHcgZxA+zgfCffXkUI7PgwBWYbxtldsVxfJk/ENujU0G+d0N2NuhK?=
- =?us-ascii?Q?8Bi+IF1V+Fn4qhYVNWY3kBe5n8LbbbhZ9TOGGBUkjSQcQ4iVOTJz+LuGeNLl?=
- =?us-ascii?Q?w/9CevJhrYc9J34/8c89wKBgkXhWFi2cP68Saja8LqNaYKcLmTJEHUzLojUt?=
- =?us-ascii?Q?bKEn/FzBGRPtT5hZuqB7GYkEJvC1aSGQ+pUqwH6AZiJrAxBSJODoJr9WKZWV?=
- =?us-ascii?Q?N0fJjHagbYm3xG296HFpxddu6GTVo1vyKj9q3eqZgmpmV90EM0GSkv0v4Bxz?=
- =?us-ascii?Q?zjgsCZUVx3KrrFMNGqfXF9FvdVAAyOCtTZliISC3kEYqWEyrMATYsvBMVTl5?=
- =?us-ascii?Q?6Cvf7fnX5lm0A6v5SxdTaQAUWBnuoQJF4qgeBJYzt5jBXYXSN0HSGxzShDoH?=
- =?us-ascii?Q?XR31omkH9mI7Z6894BK3whaWSVr1wjelxnOuoa1Q3gX/Jsn2oW4WP5xE5F4v?=
- =?us-ascii?Q?wJS3UPVy4Yl0h+JUfhruMFRB98igbZgYhAtHD/VTUY/G3G5YH23cVlA3LZ2A?=
- =?us-ascii?Q?o6pT9TLzL1bCjEa5spZfTMwPHUFY4fql2ELNI58YXqVYfbM37ayMiRfH5s1Y?=
- =?us-ascii?Q?+4Gl/30sqNnTsex5Av3zYflqQB05jRFeEf9p8h7bri7KFh5As0GBJ3yn7NX4?=
- =?us-ascii?Q?yQor81eYRoYJlP/0PyA0Ytzt+EtbRERvpFXOem+793kkuGzqXHXMgYJlbu3e?=
- =?us-ascii?Q?yQJMscSgxeZJAU1lgj47MI+hSPc37UkTL2Y+5Vy8YBGEz1CxlhN8OBALv/1F?=
- =?us-ascii?Q?2tthvCn+Us1Wi8YRYaA0RCpzXEC1BKpUdFa2DO8A/d7vpyQ8HXzlZvA8ImTb?=
- =?us-ascii?Q?a5fyJA1gtLdnPdujxlvnFVzJjKMoIydQVoK6wKGYuv9VjOReWhmxvhEI+rz/?=
- =?us-ascii?Q?/i0lfG/rtcz8xRMW9usJ7KzJ6uBkJmveOcPlET15+NzHqQZK/gKrp+J0Eypr?=
- =?us-ascii?Q?Z+E97gEQ0FZnyRWMvx2gVH9YfKDlHXNGvpKsilVe1ybLLsSfp0Vj/T2n3Toi?=
- =?us-ascii?Q?QP0lLs8uCK4glrnPMb+hGJRx8V1BzVZ68S34jzV8loPbRHpcENORXXuZSnkR?=
- =?us-ascii?Q?/0Y8feH7C9JSina6YyDPSBwthJ5iCPdFv81mOl9As8+TNbUUSOnETPXFnW9m?=
- =?us-ascii?Q?5UZWSffWTfamvbxDALUscO4iY2OVOySQ8DnFTyoiSZLrRUfxRc8OBjVQNsj5?=
- =?us-ascii?Q?opQsJyETDB/3F87yTo1rnCYDFFJfW6I=3D?=
-X-OriginatorOrg: chipsnmedia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c2b7006-8baa-4685-be0b-08df461b9079
-X-MS-Exchange-CrossTenant-AuthSource: SL2P216MB2441.KORP216.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 09:00:31.2773
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4d70c8e9-142b-4389-b7f2-fa8a3c68c467
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: En41O5uiH/FdLm9aAielNyWF2BXgH4OrBx0N9Ov6BM1talq7JoLX7LHQcdW5EaL69gNIpcvo2lMv8Qxqs4YUvEf6Evaq9cWBIRaktW+LzeU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2P216MB1466
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261119-introduce-qcom-qecp-feature-v1-1-b1a730d2c57a@oss.qualcomm.com>
+References: <20261119-introduce-qcom-qecp-feature-v1-0-b1a730d2c57a@oss.qualcomm.com>
+In-Reply-To: <20261119-introduce-qcom-qecp-feature-v1-0-b1a730d2c57a@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
+        Leo Yan <leo.yan@arm.com>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Jie Gan <jie.gan@oss.qualcomm.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795078890; l=3826;
+ i=jie.gan@oss.qualcomm.com; s=20250909; h=from:subject:message-id;
+ bh=C45KpIlwNH/YljdNNGWJBV58QJEhk0JLA42ndKrZbLg=;
+ b=ev1M+t20iPdOBT1JF+M9fv5cK7IESCNZW+J0Xb25OlcWBUp6HxrkiZUYuwxXSwPT6MG2W6Env
+ pau1hGehI26AVrUz+cJSIZHv1oGt+KIKTxSRtZ/hkqz8oZ9sr0m8471
+X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
+ pk=3LxxUZRPCNkvPDlWOvXfJNqNO4SfGdy3eghMb8puHuk=
+X-Proofpoint-GUID: v4YD2zxDBBmQ7Hquwf-B8YncJsnYUJD2
+X-Proofpoint-ORIG-GUID: v4YD2zxDBBmQ7Hquwf-B8YncJsnYUJD2
+X-Authority-Analysis: v=2.4 cv=ZZWIpcVA c=1 sm=1 tr=0 ts=6afebaf9 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=IqNXJOJUzIoeS_XrjnMA:9 a=QEXdDO2ut3YA:10
+ a=x9snwWr2DeNwDh03kgHS:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE5MDAzNSBTYWx0ZWRfX/0OVROFQnhu/
+ Bd1cQNp86RDERZURcTk1ll0Q6OQjjQwyNss3pvR23/O8j4svW4icYNyGdy4MgKI347fZd80QrTJ
+ wXqCiaBfdqG71oYpnoE9V1zv9E4rPBY=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE5MDAzNSBTYWx0ZWRfX2zEkuppK/pzM
+ rfGvw+5dkJsXUcLRyni4gSK8vPthL6MvM+enMElx5PR2pI1SVM6EKBf6kMxnaqGV/x5Eymgoby6
+ 77lKEWwzQcqA8i8PzumRJu1Yub11ooP/ZX2kFoc8VH4BvRUtsRiaH2kpYPHiagKzwbp4uuz3MpI
+ HH5ixBaCexdVTmeJ2AdHaTJWl8iizivjYBjoPAo8bdnfl8DEEei6QBd5uPCclYLpKicJXZlqwKK
+ xx+Kia7bRAT+tInGYaI9jpL63vuP7y18prfOBk/VporiQIemvE/Pmy8c9kwe5l28epRBBDBp+R9
+ gJgKPzpDlU2dzcg0qjX16OM06ugMusCsriIErT74iYFYTi7QsL56d3EwpzgfcHslCgldt3+Jnxs
+ eYeN2isOSIocDOXRQUBdKLrpQeQljPkaEKjkJqwCt6fg/K2CCa8edtTq4kKkUjZEZb/VJSHwpgc
+ FLzAJHY1AN1a+NMHl2A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-19_02,2026-11-16_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0 phishscore=0 bulkscore=0 spamscore=0
+ adultscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611190035
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_010052_371007_91D8C4EC 
-X-CRM114-Status: UNSURE (   8.73  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261119_010146_374960_C7EF99A3 
+X-CRM114-Status: GOOD (  19.64  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -161,88 +178,112 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the Chips and Media wave633 video codec node on IMX95 SoCs.
+Document the Qualcomm Debug Control Protocol (QDCP) firmware provider
+node used by CoreSight debug and trace blocks that are owned by the
+Qualcomm Embedded Co-Processor (QECP), a separate on-die processor that
+runs its own firmware. QDCP is the QMI (Qualcomm MSM Interface) service,
+carried over QRTR (Qualcomm IPC Router), that Linux uses to ask QECP
+firmware to control those blocks.
 
-Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+The provider is a Qualcomm platform/QMI service node, not a CoreSight
+graph device. It exposes the qcom,qdcp compatible along with
+per-connection QMI service/instance identifiers; the QMI service
+version is the only optional identifier, defaulting to 1.
+
+Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 ---
- .../boot/dts/freescale/imx95-19x19-evk.dts    | 10 +++++
- arch/arm64/boot/dts/freescale/imx95.dtsi      | 37 +++++++++++++++++++
- 2 files changed, 47 insertions(+)
+ .../devicetree/bindings/soc/qcom/qcom,qdcp.yaml    | 81 ++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 47ed0ef67611..a15d5b471708 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -143,6 +143,11 @@ vdev0buffer: vdev0buffer@88020000 {
- 			reg = <0 0x88020000 0 0x100000>;
- 			no-map;
- 		};
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,qdcp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,qdcp.yaml
+new file mode 100644
+index 000000000000..ee0a66b12dde
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,qdcp.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/qcom/qcom,qdcp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		vpu_boot: memory@a0000000 {
-+			reg = <0 0xa0000000 0 0x100000>;
-+			no-map;
-+		};
- 	};
- 
- 	flexcan1_phy: can-phy0 {
-@@ -1225,3 +1230,8 @@ &tpm6 {
- 	pinctrl-0 = <&pinctrl_tpm6>;
- 	status = "okay";
- };
++title: Qualcomm Debug Control Protocol (QDCP) provider
 +
-+&vpu {
-+	memory-region = <&vpu_boot>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index d20c2498b9aa..b6323e527ab7 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -2139,6 +2139,43 @@ vpu_blk_ctrl: clock-controller@4c410000 {
- 			assigned-clock-rates = <133333333>, <667000000>, <500000000>;
- 		};
- 
-+		vpu: video-codec@4c4c0000 {
-+			compatible = "nxp,imx95-vpu";
-+			reg = <0x0 0x4c4c0000 0x0 0x10000>;
-+			clocks = <&scmi_clk IMX95_CLK_VPU>,
-+				 <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
-+			clock-names = "core", "vpublk";
-+			power-domains = <&scmi_devpd IMX95_PD_VPU>,
-+					<&scmi_perf IMX95_PERF_VPU>;
-+			power-domain-names = "vpu", "perf";
-+			sram = <&sram1>;
-+			#cooling-cells = <2>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+			status = "disabled";
++maintainers:
++  - Jie Gan <jie.gan@oss.qualcomm.com>
 +
-+			interface@4c480000 {
-+				reg = <0x0 0x4c480000 0x0 0x10000>;
-+				interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
-+			};
++description: |
++  QDCP is a QMI-based firmware provider used to control CoreSight trace
++  blocks that are owned by the Qualcomm Embedded Co-Processor (QECP) rather
++  than the application processor (AP). CoreSight-facing consumers look up
++  the provider through a "qcom,qdcp" phandle, naming a specific
++  "connection-N" child node rather than the top-level provider node, and
++  issue typed firmware requests instead of programming registers directly.
 +
-+			interface@4c490000 {
-+				reg = <0x0 0x4c490000 0x0 0x10000>;
-+				interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-+			};
++  This node does not represent a CoreSight graph device. It is a platform
++  driver that establishes the QMI connections used by consumer drivers such
++  as the Qualcomm QDCP STM source and QDCP-backed TMC/ETR sink.
 +
-+			interface@4c4a0000 {
-+				reg = <0x0 0x4c4a0000 0x0 0x10000>;
-+				interrupts = <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>;
-+			};
++  QECP exposes more than one independent QMI service (for example, a
++  separate service used by remote ETM/diag sources). Each QMI connection is
++  described as a child node of the "qcom,qdcp" node rather than as a
++  property of the node itself, so a single provider device can establish
++  more than one connection. A node without any "connection-N" child is valid
++  but provides nothing for consumers to reference.
 +
-+			interface@4c4b0000 {
-+				reg = <0x0 0x4c4b0000 0x0 0x10000>;
-+				interrupts = <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+		};
++properties:
++  compatible:
++    const: qcom,qdcp
 +
- 		jpegdec: jpegdec@4c500000 {
- 			compatible = "nxp,imx95-jpgdec", "nxp,imx8qxp-jpgdec";
- 			reg = <0x0 0x4C500000 0x0 0x00050000>;
++patternProperties:
++  "^connection-[0-9]+$":
++    type: object
++    description:
++      A single QMI connection established by the QDCP provider. Consumers
++      reference this child node directly via their "qcom,qdcp" phandle, not
++      the top-level provider node.
++
++    properties:
++      qcom,service-id:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description:
++          QMI service identifier for this connection.
++
++      qcom,version:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        default: 1
++        description:
++          QMI service version for this connection.
++
++      qcom,instance-id:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description:
++          QMI instance identifier for this connection.
++
++    required:
++      - qcom,service-id
++      - qcom,instance-id
++
++    additionalProperties: false
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    qdcp: qdcp {
++        compatible = "qcom,qdcp";
++
++        qdcp_coresight: connection-0 {
++            qcom,service-id = <0x453>;
++            qcom,instance-id = <32>;
++        };
++    };
++...
+
 -- 
-2.41.0.windows.3
+2.34.1
 
 
