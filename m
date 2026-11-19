@@ -2,103 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D222F606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B694606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HNcj1CXp;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=C4QcmK4A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4UXXa/+6;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Ukd6Bz4k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/a4yTiu8jgj78aGQImmGD3g9KOfP61dhUZVTXL8q2gw=; b=HNcj1CXpHdxGO7
-	grWLaFV33BRUvS2v766aKInGxN1uU/1nsqJ171LlWFcOj/pACON9Z/aBjRBWZAM5MhZSjpq+ECv0K
-	2+HLl+Vq336ybFbQ3Jk1kuCt+Evu0SphcgB52WCE2ZC3EPaBDt/alUKcgMx7Yt/PQAfQMiDT1wlun
-	eIEBfJyykiKJqyePiat32M23xnWOnc43u8CAX4VJI19pcIoLmjA2zKH2EuMr37KNSOq0ocUZWK5IL
-	cxLlivWUUusSwkOqIezcTFmXsdWcejRf0ITFSP1XaMK8wZcgq+XeZQlM7k+GZ1thkQ2vLsl4lbM68
-	tZL1KdynCOCT4HYuPVuw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=GgDxgmdIK5ZFV6i2LVaxKcVaEgHgnRDEHjSLl+YAUZg=; b=4UXXa/+62sTAaaLw4KAucwCPQb
+	+74XulHfVqlbdNKZ4GPiBs0nOwx2RElR9hgWmI7F4KiqfTEqzv5VS0jeJA8O4l9xOLl+0YZqGVkZc
+	5yR3u9cMTbdIf6TybkEvhuYz39PKhDM8+4yMRY84uMjuU26GTSFj03qfwE05/oPtpIFWvhKC8CQZl
+	NvkwFfUXvmaADteE0rgSe/JZ91pG1aEUyqbdpc4wwQJFl5J5+F/bYCHVa1Qsvk8gghXpvJaHzYa6r
+	WEJIEhOhWHWWJU6D63BUaguB6JGH09ppNCUfS+nHRAFUI/QBBKJUaXiJQKA0kZyFRN5ExOanLT8p+
+	dp32az7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzTq-0000000BZJX-1TZg;
-	Thu, 19 Nov 2026 10:35:02 +0000
-Received: from mail-pl1-x62a.google.com ([2607:f8b0:4864:20::62a])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzTf-0000000BZEB-2bxY
+	id 1xTzUl-0000000BZjx-2nhV;
+	Thu, 19 Nov 2026 10:35:59 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTzUi-0000000BZik-3Yik
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 10:34:55 +0000
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-2efd659464aso8481225ad.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 02:34:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795084491; x=1795689291; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=/a4yTiu8jgj78aGQImmGD3g9KOfP61dhUZVTXL8q2gw=;
-        b=C4QcmK4A4L4Ac3/xB6XLydqasDKyd6Gvgxl/IVPlYpSwblDugQRRb6kmM8RamVjCRa
-         ejWJBz/df1+fKsTc62z3vlJhuboqlbA9cqwmm4aWabfvbCgvVClNp+A0NXX7N/la6r0D
-         SOxYxY13WdGKNgEL8SOEdFrLQrgTaMZ0natXt1b/lWO35cQKnAFgPw80W1PtJ7Wpc4/j
-         xHROOc6Rd2xZh/DKQnG2cIEFqbvNFSRNEvzkaLxWiUByx7qNfdhlL1f2GFvBnO2UU35+
-         lAEbakARrWdN9fAOXF8FVvFPulkGxZQuZDBXeUd10Dq1fF+BqUpyB0Jx8xvXH2x9ePi+
-         WwVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795084491; x=1795689291;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=/a4yTiu8jgj78aGQImmGD3g9KOfP61dhUZVTXL8q2gw=;
-        b=l32F3yWOMYXD+jmm4OH9LAlaDlLu1hJzFOVqXOd+o2eYqlbmhFJsT/ToZ2fu7m4C2z
-         EAvhOs4F+jm22UAoLw2Bn+8Hhdcc6W/FQ6AgrV2yY3VwZILMOm2ej+U8fxyleoIUzznw
-         RCSOuyQLUHEXtc2h0UdCS4BytcnpsN0hQxZED4D28Ur56oE0/brEywfSwYdZtdAXEk3I
-         oiUWDJhLqXx2IEwDNSOpK3GfTL9sY523gAD1KagY/crt3QkQMRpBb1mpNWdQv65qh/op
-         rU4SNd8X/x6X+nP+WD2GcoOi2P+EQnui3ibF+1ysnjcKVjWLyYiRb8l/mKQp75CBxZ8w
-         9oJg==
-X-Forwarded-Encrypted: i=1; AL+hErHlPRLx3/u6tUUIi4NWJtoscp4lB1uDH38orPEgR6Frhr2vERBn6h7C094idWUZEwxY0lvC1A5LPt0vFqQ/SaFY@lists.infradead.org
-X-Gm-Message-State: APuU4Z9pL1zbXENkDumNkRuKGtGn/ckXJ9gruGpClenIuLXdYorkejLT
-	JUh+2pHeBkmtAqEf1X4hOPSMlJ2oXxMpORHw8xsHB5w6x1YxWZhbaXwH
-X-Gm-Gg: AZFdTZd7jWruZ1TmwdcdbQjy/OjPZTTrIyBoJevs9ZpWDIgdPYp14pe5XRIG18JWxqm
-	AU7uoXo+lCrZXZrJrDZG4eJY53/WKlRgs6rFBVqD6J4j1QlLGoxv4KnCF2Tn2ivVmBPYgfKXG62
-	YrqTbCdt2MVzOr/CwfeS3962BbDVjb1XJqKSac67GOQGnMo6PYSdIH8GXFtgsnADaXhU9SSDMrh
-	q6LATAC3evO7cUgYeWFaJafpEO/JCIEYo5Rsyj+kgvFyOzvJ4vi9IMZ63hin5rDTnQpUaWvJ0rR
-	4mfO1BdngwMpnz14SY6TfKvcxOoNDHCaXB8wLXM4zDfAB29OWkCrRYiYJl6qGld1VNt0eE7SS7F
-	y5ZnhAHDTdoN6oxSc30qsNY02pM6+9lctSVYKPKcFjjwrBE8O/Fx0Wit/J/wKauQ375gvVRnx7f
-	lWMC4ssebvudDnGZEMrvwso+IexDWienOKGdp0rGFv89aVM76CPTOWreC0rSHwMePuDx+GtsGYL
-	cexExkTNdubI/wYEKw853iQvsCipnB0d0WGQxGCI/mht1S4hOL9dZgflswU8KwfUn62LNxqaVUl
-	sHFpa7kTyQKlEdEeMcdCfiIcdfoINGgt9XAMw9Zg0QcEh1C0z7axny22H/LbhM8p7g/NtIe8V4u
-	2iN0H0wL3F2sZNGp9prSTwokhb53cN+PSYopO6GtUwelE
-X-Received: by 2002:a17:903:3d0f:b0:2ed:379:1592 with SMTP id d9443c01a7336-2eff740b594mr54610445ad.26.1795084490872;
-        Thu, 19 Nov 2026 02:34:50 -0800 (PST)
-Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2eff6116323sm28617325ad.23.2026.11.19.02.34.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 02:34:50 -0800 (PST)
-From: phucduc.bui@gmail.com
-To: Mark Brown <broonie@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Andrei Simion <andrei.simion@microchip.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH 4/4] ASoC: atmel: mchp-spdifrx: Propagate runtime PM errors in ulock get
-Date: Thu, 19 Nov 2026 17:34:13 +0700
-Message-ID: <20261119103413.31729-5-phucduc.bui@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261119103413.31729-1-phucduc.bui@gmail.com>
-References: <20261119103413.31729-1-phucduc.bui@gmail.com>
+	Thu, 19 Nov 2026 10:35:58 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C2221575;
+	Thu, 19 Nov 2026 02:35:52 -0800 (PST)
+Received: from e129823.arm.com (e129823.arm.com [10.2.213.3])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9E0AD3F632;
+	Thu, 19 Nov 2026 02:35:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795084555; bh=OQ40n8vCPLl2z6BAfUVaBr1U7k9Hcye30/imffmeJkU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ukd6Bz4kAAGvhzWNxydXfeleNFT7s4hkrLTBz8YA0eSfizAgpG284yfj/uWv8Qmg/
+	 GU7Mc3I3LUmAbziW00YfUH2GQnnv/0d7Yj9KSsSxJX/sdAF/1I4qnwOfRpFJksRSS7
+	 /tH7gbrgw7jm7xXpEwdKoFzcCptXzAiwFIlesn2g=
+Date: Thu, 19 Nov 2026 10:35:51 +0000
+From: Yeoreum Yun <yeoreum.yun@arm.com>
+To: Kevin Brodsky <kevin.brodsky@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Linu Cherian <linu.cherian@arm.com>,
+	Mark Brown <broonie@kernel.org>, Shuah Khan <shuah@kernel.org>,
+	Will Deacon <will@kernel.org>, Yeoreum Yun <yeoreum.yun@arm.com>,
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] kselftest/arm64: Add test for atomic futex
+ uaccess with POE
+Message-ID: <av7RB7jJa0PfDsXG@e129823.arm.com>
+References: <20261119-poe_futex-v2-0-244c7a01f788@arm.com>
+ <20261119-poe_futex-v2-2-244c7a01f788@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261119-poe_futex-v2-2-244c7a01f788@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_023451_677873_04093AEA 
-X-CRM114-Status: GOOD (  11.41  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_023556_957665_35BC99B1 
+X-CRM114-Status: GOOD (  27.64  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,49 +75,148 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: bui duc phuc <phucduc.bui@gmail.com>
+Look good to me.
 
-Return the result of pm_runtime_resume_and_get() instead of
-comparing the old and current ulock values.
+Reviewed-by: Yeoreum Yun <yeoreum.yun@arm.com>
 
-This ensures runtime PM errors are propagated to the caller.
+On Thu, Nov 19, 2026 at 09:54:38AM +0000, Kevin Brodsky wrote:
+> Add a new test to ensure that atomic futex uaccess succeeds on
+> memory mapped with a non-default POIndex/pkey.
+> 
+> In the absence of FEAT_LSUI, atomic futex uaccess operations such as
+> those triggered by FUTEX_WAKE_OP use privileged atomic load/store
+> instructions and thus cannot have user permission overlays (POR_EL0)
+> applied. In case the kernel enabled POE at EL1, it is worth
+> checking that kernel overlays (POR_EL1) are not applied to these
+> accesses, as that would fail for non-zero pkeys.
+> 
+> Note that if such misconfiguration occurs, futex_wake_op() may get
+> stuck in an infinite loop because futex_atomic_op_inuser() will fail
+> but fault_in_user_writeable() will still report success.
+> 
+> Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
+> ---
+>  tools/testing/selftests/arm64/Makefile        |  2 +-
+>  tools/testing/selftests/arm64/poe/.gitignore  |  2 +
+>  tools/testing/selftests/arm64/poe/Makefile    |  6 +++
+>  tools/testing/selftests/arm64/poe/poe_futex.c | 62 +++++++++++++++++++++++++++
+>  4 files changed, 71 insertions(+), 1 deletion(-)
+> 
+> diff --git a/tools/testing/selftests/arm64/Makefile b/tools/testing/selftests/arm64/Makefile
+> index e456f3b62fa1..bad5c3b33dce 100644
+> --- a/tools/testing/selftests/arm64/Makefile
+> +++ b/tools/testing/selftests/arm64/Makefile
+> @@ -4,7 +4,7 @@
+>  ARCH ?= $(shell uname -m 2>/dev/null || echo not)
+>  
+>  ifneq (,$(filter $(ARCH),aarch64 arm64))
+> -ARM64_SUBTARGETS ?= tags signal pauth fp mte bti abi gcs
+> +ARM64_SUBTARGETS ?= tags signal pauth fp mte bti abi gcs poe
+>  else
+>  ARM64_SUBTARGETS :=
+>  endif
+> diff --git a/tools/testing/selftests/arm64/poe/.gitignore b/tools/testing/selftests/arm64/poe/.gitignore
+> new file mode 100644
+> index 000000000000..0dce4a3aa38b
+> --- /dev/null
+> +++ b/tools/testing/selftests/arm64/poe/.gitignore
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +poe_futex
+> diff --git a/tools/testing/selftests/arm64/poe/Makefile b/tools/testing/selftests/arm64/poe/Makefile
+> new file mode 100644
+> index 000000000000..2af2bbf3f6d3
+> --- /dev/null
+> +++ b/tools/testing/selftests/arm64/poe/Makefile
+> @@ -0,0 +1,6 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +CFLAGS += $(KHDR_INCLUDES)
+> +TEST_GEN_PROGS := poe_futex
+> +
+> +include ../../lib.mk
+> diff --git a/tools/testing/selftests/arm64/poe/poe_futex.c b/tools/testing/selftests/arm64/poe/poe_futex.c
+> new file mode 100644
+> index 000000000000..21a2e109ee43
+> --- /dev/null
+> +++ b/tools/testing/selftests/arm64/poe/poe_futex.c
+> @@ -0,0 +1,62 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include <stdint.h>
+> +#include <stdlib.h>
+> +#include <unistd.h>
+> +
+> +#include <linux/futex.h>
+> +#include <sys/syscall.h>
+> +
+> +#include "kselftest_harness.h"
+> +
+> +static int sys_pkey_alloc(unsigned long flags, unsigned long init_val)
+> +{
+> +	return syscall(__NR_pkey_alloc, flags, init_val);
+> +}
+> +
+> +static int sys_pkey_mprotect(void *ptr, size_t size, int prot, int pkey)
+> +{
+> +	return syscall(__NR_pkey_mprotect, ptr, size, prot, pkey);
+> +}
+> +
+> +static int futex_wake_op(uint32_t *uaddr, uint32_t val, uint32_t val2,
+> +			 uint32_t *uaddr2, uint32_t val3)
+> +{
+> +	return syscall(SYS_futex, uaddr, FUTEX_WAKE_OP, val, val2,
+> +		       uaddr2, val3);
+> +}
+> +
+> +/*
+> + * Trigger some atomic uaccess on a page mapped with a non-default pkey.
+> + *
+> + * This ensures that such access is not mistakenly checked against the
+> + * kernel's POR_EL1 register.
+> + */
+> +TEST(poe_futex)
+> +{
+> +	int ret, pkey;
+> +	void *ptr;
+> +	size_t size = getpagesize();
+> +
+> +	pkey = sys_pkey_alloc(0, 0);
+> +
+> +	if (pkey == -1 && errno == ENOSPC)
+> +		SKIP(return, "pkeys are not supported");
+> +
+> +	ASSERT_GT(pkey, 0);
+> +
+> +	ptr = mmap(NULL, size, PROT_READ | PROT_WRITE,
+> +		   MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+> +	ASSERT_NE(ptr, MAP_FAILED);
+> +
+> +	ret = sys_pkey_mprotect(ptr, size, PROT_READ | PROT_WRITE, pkey);
+> +	ASSERT_EQ(ret, 0);
+> +
+> +	/*
+> +	 * There is no one to wake up so this syscall boils down to *(ptr+4) = 0
+> +	 * (arch_futex_atomic_op_inuser() called with FUTEX_OP_SET and op_arg=0).
+> +	 */
+> +	ret = futex_wake_op(ptr, 1, 1, ptr + sizeof(uint32_t), 0);
+> +	ASSERT_EQ(ret, 0);
+> +}
+> +
+> +TEST_HARNESS_MAIN
+> 
+> -- 
+> 2.56.0
+> 
 
-Fixes: c7db2a594389 ("ASoC: mchp-spdifrx: add runtime pm support")
-Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
----
- sound/soc/atmel/mchp-spdifrx.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/sound/soc/atmel/mchp-spdifrx.c b/sound/soc/atmel/mchp-spdifrx.c
-index 41c65e835765..632da8d7bc81 100644
---- a/sound/soc/atmel/mchp-spdifrx.c
-+++ b/sound/soc/atmel/mchp-spdifrx.c
-@@ -709,7 +709,6 @@ static int mchp_spdifrx_ulock_get(struct snd_kcontrol *kcontrol,
- 	struct mchp_spdifrx_mixer_control *ctrl = &dev->control;
- 	u32 val;
- 	int ret;
--	bool ulock_old = ctrl->ulock;
- 
- 	mutex_lock(&dev->mlock);
- 
-@@ -735,7 +734,7 @@ static int mchp_spdifrx_ulock_get(struct snd_kcontrol *kcontrol,
- unlock:
- 	mutex_unlock(&dev->mlock);
- 
--	return ulock_old != ctrl->ulock;
-+	return ret;
- }
- 
- static int mchp_spdifrx_badf_get(struct snd_kcontrol *kcontrol,
 -- 
-2.43.0
-
+Sincerely,
+Yeoreum Yun
 
