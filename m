@@ -2,64 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19BAF606CC5E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 20:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C74F606CC61
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 20:48:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H7t2v9WA;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EItI03EO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3XXSG6l2;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UvNfOuGX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=EndSbXDsC0y1ohJLGeRrBlrjI2WFQTAdaGmEEeAXUf8=; b=H7t2v9WA3F1/qQ
-	GAbLfds+T7v6B/sAt78P74S54X9SrQqsDRhibr3uu2OdxXIm8j1lN7RgMWvM33ZRPRVZ4Q0dx4eU3
-	/muQ+5jbKRbS4ULAWt9cwrhMKCG8MJfLjnC48fOVG1wE2KB2ygKtg+PTR+x22GecFF4Fw6a7OR8Ul
-	+vvZ9b1L1eSN2FHpdPqnpLGxSUWBBK3X/2l/FH5Qy2VuYEYwGxqdfaNHK9aDaSX5lDoAqyL2EOsrB
-	oC2y/cGe4Cw0Z9tmx0YKKTrIyCSNM8wzFeuPSHp/C3my+TRxxQ6PV1mhTRbbv6zyjVNZPFKwAJjEB
-	fqFvGQoMvd+y+7gnz9WQ==;
+	List-Owner; bh=OtxuJdycJg4ztQS2bYE6i0u4pJUkPkHwSDNOgdsJ2JA=; b=3XXSG6l2CtUw91
+	0OsV5UsPwjCDdH8RgQh4jejYU5hT6s2TUt8u0rjaMWWmv3DzYUDziy08fxcaGmIo8brMFAxAG5ii2
+	ORv8E5HgsisTGCY0Mspec5dIhgIc2DM6vljko0Wn4JJ4I0LmCh/3VxD6E9p8cGtu/rUsefOnN5wyY
+	Rnvk8r2NS/dPIYIApf91YA8ggZR8WQBsARpbrc/9K3UHqEstGJSoKCBfBhN+GtAx0luSX32tUcf7f
+	3TzHE1WtoPJlONd/cjaMXdFl8vRqlQQ9czVUTqFqtVJHB8PmC/A5+rRTK+JtwgSfx+AMDIBHbvmWF
+	jBkJ7Gzf8f5FYP4GwPjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU93S-0000000DPcV-0vUx;
-	Thu, 19 Nov 2026 20:48:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xU93Z-0000000DPgw-1ZKx;
+	Thu, 19 Nov 2026 20:48:33 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU93Q-0000000DPbH-0jJV;
-	Thu, 19 Nov 2026 20:48:24 +0000
+	id 1xU93W-0000000DPfW-4BB4;
+	Thu, 19 Nov 2026 20:48:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9B882609F5;
-	Thu, 19 Nov 2026 20:48:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1988F1F000C0;
-	Thu, 19 Nov 2026 20:48:20 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7DB6044447;
+	Thu, 19 Nov 2026 20:48:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 475461F000C4;
+	Thu, 19 Nov 2026 20:48:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795121303;
-	bh=EndSbXDsC0y1ohJLGeRrBlrjI2WFQTAdaGmEEeAXUf8=;
+	s=k20260515; t=1795121310;
+	bh=OtxuJdycJg4ztQS2bYE6i0u4pJUkPkHwSDNOgdsJ2JA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=EItI03EOLoaZUJBsGnIempT8JfESUSibqtx3QFNiORQYCOtFwBKn3cIOmHem25V2G
-	 ioqYDVHI4Spy+O37sYF6fl5immdCW9nggS8BzQzsg7gLbmfTd/UR5zQmWGHAC3iEJW
-	 DVGP8ThBAFdQEV0KmT4HrC3bgvh2lVoEzEu+akT1bWF+hsNixqG+28ff/SYbkMtzVV
-	 545QugZgLpja1i3aW72iJn/TD5JNZvKZcBK2SskNsu38NEp4fPiawaL36i1aTljOT5
-	 RHWwoN3wPOXLxo/oKoJyduO5YY09RWL2wq4TMhsetSEpKU0D+l89E9Kq0netIxGBK/
-	 XtNO+3wawbKJQ==
+	b=UvNfOuGXgzOfIW+jo0Cw6IHNlnY5awQimnYd/wa2dMd1iPH9zcI2SS8X5OYP01JHx
+	 ZnsLASdKAtk3zqh3387LMC1+zJ5Hw83sTiBF3jlOqqZivplBrYDb7+2zmmmuJMbrYW
+	 8myd6s9TRh4ZWLiExoycbxEl/FWETDIQGSOiPxJ8+eFTFtYjcPOXfMvKyvmJvIREMm
+	 kGSXJF5MeaabtAxXatcdlygRFRMVfGXC4E8euKlOVL3h8+wttQ9l4dsRjFJicJ8CxB
+	 JSaEH/uXyg5s72EDl1hDz/D3krGbJQQME3MMA7LMlOIta9Z6u+lv32X4Ep8fKNDnln
+	 ArmOke/Ap5B2w==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org,
 	Sean Wang <sean.wang@kernel.org>,
 	Linus Walleij <linusw@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Maoguang Meng <maoguang.meng@mediatek.com>,
+	Bartosz Golaszewski <brgl@kernel.org>,
 	Hao Chang <ot_chhao.chang@mediatek.com>,
 	Qingliang Li <qingliang.li@mediatek.com>,
-	Nicolas Boichat <drinkcat@chromium.org>,
 	linux-mediatek@lists.infradead.org,
 	linux-gpio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
 Cc: stable@vger.kernel.org
-Subject: [PATCH v2 4/6] pinctrl: mediatek: Guard against NULL eint in mtk_eint_do_suspend() and mtk_eint_do_resume()
-Date: Thu, 19 Nov 2026 20:47:19 +0000
-Message-ID: <20261119204748.2558209-5-lee@kernel.org>
+Subject: [PATCH v2 5/6] pinctrl: mediatek: Clean up partially initialised hw->eint on error
+Date: Thu, 19 Nov 2026 20:47:20 +0000
+Message-ID: <20261119204748.2558209-6-lee@kernel.org>
 X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
 In-Reply-To: <20261119204748.2558209-1-lee@kernel.org>
 References: <20261119204748.2558209-1-lee@kernel.org>
@@ -84,52 +83,58 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mtk_paris_pinctrl_probe() treats mtk_build_eint() failure as non-fatal,
-logging a warning and completing probe with hw->eint left as NULL
-whenever EINT initialisation is skipped or fails.  However, the system
-sleep callbacks pass pctl->eint unconditionally to
-mtk_eint_do_suspend() and mtk_eint_do_resume(), both of which
-dereference eint without checking for NULL.
+In mtk_build_eint(), if of_property_count_strings() fails or
+hw->eint->nbase is non-positive, the function returns -EINVAL directly
+after allocating hw->eint without jumping to err_free_base.  Because
+callers such as mtk_paris_pinctrl_probe() and mtk_moore_pinctrl_probe()
+log a warning and continue probing when mtk_build_eint() fails, leaving
+hw->eint non-NULL with hw->eint->domain and hw->eint->hw unset causes
+mtk_gpio_to_irq() and mtk_gpio_set_config() to pass the half-initialised
+structure into mtk_eint_find_irq() and mtk_eint_set_debounce(),
+dereferencing NULL pointers.
 
-Return 0 early from mtk_eint_do_suspend() and mtk_eint_do_resume() when
-eint is NULL.
+Jump to err_free_base on both error paths so hw->eint is freed and
+reset to NULL.
 
-Fixes: 5c0904488a20 ("pinctrl: mediatek: Add pm_ops to pinctrl-paris")
+Fixes: 3ef9f710efcb ("pinctrl: mediatek: Add EINT support for multiple addresses")
+Closes: https://sashiko.dev/#/bug/linux-0689c07e-ef74-4bc2-b5de-bd2f361124bd
 Cc: stable@vger.kernel.org
 Signed-off-by: Lee Jones <lee@kernel.org>
 ---
 
 v1 => v2:
- - New patch, avoiding a NULL dereference on suspend/resume when EINT
-   setup fails (Sashiko)
+ - Clarify the commit message regarding mtk_gpio_to_irq() and
+   mtk_gpio_set_config(), while handling NULL eint on suspend/resume in
+   the preceding patch (Sashiko)
 
- drivers/pinctrl/mediatek/mtk-eint.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/pinctrl/mediatek/mtk-eint.c b/drivers/pinctrl/mediatek/mtk-eint.c
-index 827231dc0d24..ca47a416c666 100644
---- a/drivers/pinctrl/mediatek/mtk-eint.c
-+++ b/drivers/pinctrl/mediatek/mtk-eint.c
-@@ -427,6 +427,9 @@ static void mtk_eint_irq_handler(struct irq_desc *desc)
+diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
+index bf9d20b59213..95d0455f7d53 100644
+--- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
++++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
+@@ -382,12 +382,16 @@ int mtk_build_eint(struct mtk_pinctrl *hw, struct platform_device *pdev)
+ 		return -ENOMEM;
  
- int mtk_eint_do_suspend(struct mtk_eint *eint)
- {
-+	if (!eint)
-+		return 0;
-+
- 	mtk_eint_chip_write_mask(eint, eint->wake_mask);
+ 	count_reg_names = of_property_count_strings(np, "reg-names");
+-	if (count_reg_names < 0)
+-		return -EINVAL;
++	if (count_reg_names < 0) {
++		ret = -EINVAL;
++		goto err_free_base;
++	}
  
- 	return 0;
-@@ -435,6 +438,9 @@ EXPORT_SYMBOL_GPL(mtk_eint_do_suspend);
+ 	hw->eint->nbase = count_reg_names - (int)hw->soc->nbase_names;
+-	if (hw->eint->nbase <= 0)
+-		return -EINVAL;
++	if (hw->eint->nbase <= 0) {
++		ret = -EINVAL;
++		goto err_free_base;
++	}
  
- int mtk_eint_do_resume(struct mtk_eint *eint)
- {
-+	if (!eint)
-+		return 0;
-+
- 	mtk_eint_chip_write_mask(eint, eint->cur_mask);
- 
- 	return 0;
+ 	hw->eint->base = devm_kmalloc_array(&pdev->dev, hw->eint->nbase,
+ 					    sizeof(*hw->eint->base), GFP_KERNEL | __GFP_ZERO);
 -- 
 2.56.1.750.gf70dc682cf-goog
 
