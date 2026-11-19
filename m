@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E470606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 08:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727F4606AED8
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 08:41:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DJT+YClI;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IiR7T7Yt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o5gGoNze;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EI9Gqbdy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8IIfBZwY0/Vipo2nut6FcxyoXPvE65VzNXft8alQwXE=; b=DJT+YClIihbd01W0wqZ4vlCrnj
-	FPF4TNdZWp5yDlXIT6oSaqSCzWpj3vjXgbki74GVLxCU6riA4SeXlyhheoQ/bO4bRke9LcSkdfkka
-	ZbGgMerLHyetR0lchKhzPogKmjs3lA6RK0PGq3z5lELEwJMRYoKhqb9jPv9kOcBUCCFkil/1tkHdn
-	6owScnCXxKAdzh6XEl7oQvM4oey2Abea0Nk93IdRTlrTZRheMzKcmZ/D4O/YWoMgmaY+38iBIMy4U
-	jgtQlp65hrj5lDPNGEeOZhOpzJiuNr4NzYFPopnaDzhkAInHc6lvHXattG4oPfVX+HwqHFsA6CqlR
-	rtJuDv3Q==;
+	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=; b=o5gGoNze2+UA5kO/N3Z6KMHPBi
+	XJYFQyRuSo9J1HAMsPuFk6LvuYC9QGkWlbGahWKXT/Ae0PDKLZw/gprTm+pLVeq4zKYilWu+rsI+k
+	5NddMYudAzirL/Pf/5/uZ9LJrl0X1ccSRoA3CsywumhnoiVCgMCH4IGcopHytBX+kD6U1aH63Rcz9
+	ndumeZDJ52m3Cj8Xwn6LZ/weccu6sS76PTzRGugcbqZ7Jl63Z9SjxruHMu0DEKUmGb/aNM2pDlWgJ
+	pg+cwks1hHlwYFrI5DuNGcGM+oktEbHUCkdJTqCky7dj+8dXozETeZ2V9/Fj1lUTF8+KtrK+dcqhj
+	RkGSKxxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxhI-0000000BDaq-0ql0;
-	Thu, 19 Nov 2026 08:40:50 +0000
+	id 1xTxhT-0000000BDln-1wEg;
+	Thu, 19 Nov 2026 08:40:59 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxgT-0000000BChb-2n2j;
-	Thu, 19 Nov 2026 08:39:57 +0000
+	id 1xTxgQ-0000000BCeL-1lWt;
+	Thu, 19 Nov 2026 08:39:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9A3586279F;
-	Thu, 19 Nov 2026 08:39:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C371F626B3;
+	Thu, 19 Nov 2026 08:39:52 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795077596;
-	b=Dz6woBWFcyf1igbLOIXlp4zQyXP61lDE7LJH5TLb27WQ1tlRe9nQbqLDt9dRI8W18D+d
-	 +erOzLWWRcZoQ0//CyxChXn3jKOJQUHYQSLtL0vs2coKsJEBqGblGJedJWrrQSyRIgI2d
-	 HgCipyrkeuPaUz4z1P9gr+7HuTpentUEAJRHD4HOThpJs/y6QPHde6ljUFKQLVxKKHrL+
-	 ocufzQvCWohwHt4SN6h0YDRowDsZTDmQm2GzmZ56siFFMLr4YZb0FF2tcX9MSzPo0afEs
-	 1oZa3377ZeD/nOEjXPRI0xEv0d2Jmoa/9h0yJ97QOdips7Jy/tGh6X9WPnIU9hOnpdw==
+	t=1795077592;
+	b=cZU8HJQ/c26s6I++r2VtvR/JxhG7b9w/gfJZQVUZf8DDeUkmA4j+k6kdJI5hT5g1B0wv
+	 aBIMdWUIe7OUrULmDYVgHMk+W2KxIi4HRkt1zElwwz6GGJ1u/uLTkoOuNdnX3eNmM69Fg
+	 ZMllygMN/hYG8LNuV66Hy3Gnq2xj2eujc5wNLCri0QFCIfVT+J75SbgFGsnCr4frrl95b
+	 UqvEKGRcVSS4H6+VcHZrhUEarTtV1YIavVBlZuXt/ermvlU2a9LfAD1zbpIR5ybYtJ2Jc
+	 Q9WaDr5PG8TCJma3jHkYAcnhz62ICWIeQ7r1LJspj1PLHyOxiyY6+2CaCzpm4Np1Edg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795077596;
+	c=relaxed/relaxed; t=1795077592;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=8IIfBZwY0/Vipo2nut6FcxyoXPvE65VzNXft8alQwXE=;
-	b=h+WiuwMJGjrOTUmJlRq6g+yyA/EXz41Iq3jzOLVj8Ig0bA7OqmukxaO7f/t2tLcAS9dN
-	 ZkRO0MAZYh8HhoQAKhUYLHrIk7xeBdiyu50lldtjJoTMtkiqfQ//v/Ku109qdOLRXeGV9
-	 uFkGM7q21srYGhez0BupAiJBitw0oKFrs5MPEfEyTP0RdHQYxdENkY9n5lHfvPtvMkPdw
-	 QIS66InBExGAOP1UfnchK7AKqaCVTXgj0rdF9FwCKZE7220/5Lsj53YoegBg0FJYIOksc
-	 FedEjtywImuDD4dQtDHqKiGGUmop7IHNjRJJHcVx1yJElFutnHGmFuxEWSO0eH8lAbQ==
+	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=;
+	b=ZN5LrSWwSljUlKJGnRkERWtcy30UuFEaY9elTPSNLt35HW/miRTCweOzAsvUdvBnGOk/
+	 1yJRLsLtge9B9N33SM447B+hOSQNfX9Nk79ikh34X9cVQFqdF/M1lhljooKlXi4jyEZvJ
+	 YwqXeFVGLd+EJ8t1/G6cgM8jLW2hRnw/qxWpW+MvYQO4jRdlbgmPFzduBgx6PLpFN5mvX
+	 xwrx9ZscwlyHgF8z4JT65c9DOEScHUyWpCzt4mBT61xKmi9JvujYiMXsEywl9GHidaiIu
+	 8JPd3j+g+oy7kQOij8IWA8fQzpLkS0XBCG8mN6DxpG2Y4eHn1pQQ86Rf2LcVN7FIpRg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B6F161F00930;
-	Thu, 19 Nov 2026 08:39:52 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 744C41F00925;
+	Thu, 19 Nov 2026 08:39:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795077596;
-	bh=8IIfBZwY0/Vipo2nut6FcxyoXPvE65VzNXft8alQwXE=;
+	s=k20260515; t=1795077592;
+	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=IiR7T7YtAqEWe+HcqCWx2M6O9uKOPPGmGUsudf7i6oi+twlO3sEP0SBkC+GI9iROD
-	 bMmClxRY/gtilraMR6mwZ30hKF5g0O7gzY0g1uuxYAokxp/Jr7TIhcqf38R7C5u4Av
-	 y5LPxPd1gDDkBLDrc41PyhP/kewFib170WJPxAX6Z1Zqzrr3QcqaVuS82liPuujcVN
-	 NvlpAXfCizyjH5KfqBmAscgqb0krclB61iqLl/bRmOur6mz+mTHgnEIyC/O16poIFI
-	 fWaQLHgSmUYbKGKk4pVY5Cf+dhN3ZIK1JxpjoRZMh3x9qG7akFUFQmEucRJt7ay0KF
-	 ezCVP/QPpfvkA==
+	b=EI9GqbdywzJOt9vLA8fWcc5ykYG1HcvslHycTeHAh44iV2SNafSSDK94P9DfupspN
+	 WuIyg4Ycw5XFLnnmE8jFem5aHPJsMhD6tpEgYXWO+XNoZxvAOTmw6hnLAZKh9R6msi
+	 UkX5tvDsTPbfyBSeuvBTs7bLDPo0O8Hzj0CaK4S+/sJv+wxPSxBKaRy7OZdEi9CnTA
+	 IsU/6EKld7pUftJY9tXUbcHmQOeKYz3lcd0kfprT/8JjUzb7tN/l/DmwrMOU2O0Ury
+	 8zrDHuKSLi3aHTbZvymZNwlYQk56oyYMnfgO31Vo3lNb2o1Rg4j6blIQ/DGuc6S6gU
+	 REzRsB3dZTOsg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3D92C4B1CA;
-	Thu, 19 Nov 2026 08:39:50 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id D50774B1BA;
+	Thu, 19 Nov 2026 08:39:49 +0000 (UTC)
 From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
-Date: Thu, 19 Nov 2026 16:39:51 +0800
-Subject: [PATCH net v10 10/10] can: rockchip_canfd: serialize timecounter
- timestamp conversion
+Date: Thu, 19 Nov 2026 16:39:47 +0800
+Subject: [PATCH net v10 06/10] can: rockchip_canfd: disable RX offload on
+ open failure
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261119-rockchip-canfd-restart-close-v10-10-df23913aa33a@qq.com>
+Message-Id: <20261119-rockchip-canfd-restart-close-v10-6-df23913aa33a@qq.com>
 References: <20261119-rockchip-canfd-restart-close-v10-0-df23913aa33a@qq.com>
 In-Reply-To: <20261119-rockchip-canfd-restart-close-v10-0-df23913aa33a@qq.com>
 To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de, 
@@ -96,11 +96,11 @@ Cc: linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-doc@vger.kernel.org, Cunhao Lu <1579567540@qq.com>, 
  stable@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795077587; l=2925;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795077587; l=1266;
  i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
- bh=+r/q2Rl2I8NQ6adJiGUotbvYu4U8wC9txcC8z+mu+Ic=;
- b=ix+bj2eByxUlMPtJyr+VbT69M5muyWlJq24slJxXeYu686VBrz8FBX6VIAd43F5Bim12v+JMx
- ebL939YJJS/BRtrnI8cw7P6TGMI0jMQI9DvjZnet+AhiMH7POwU0r43
+ bh=cT3cBscQt29TWUgsPQ2sU0B4DpllcnyjvFZowBvWmU4=;
+ b=vEHsYfkz94acrhPXzORPXYuoevt0zK5JcYslhBE6bVxjYVj21Yx9OWfShGTzboi9T+TCHBwBl
+ x+re7aFXhenCHSUrwPskCrO4kLMSEDvM8Vpel56d4iK1vsSBBAEOKCb
 X-Developer-Key: i=1579567540@qq.com; a=ed25519;
  pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
 X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
@@ -128,73 +128,39 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Cunhao Lu <1579567540@qq.com>
 
-The timestamp worker advances the timecounter with timecounter_read()
-while RX, TX completion and error-frame paths use timecounter_cyc2time()
-to convert hardware timestamps without holding timestamp_lock.
+rkcanfd_open() enables RX offload before requesting the IRQ. If
+request_irq() fails, the error path leaves the offload enabled. A later
+open calls napi_enable() on an already enabled NAPI instance.
 
-timecounter_read() updates frac, cycle_last and nsec in separate steps.
-A concurrent conversion can observe the new cycle_last with the old
-nsec and produce an incorrect timestamp.
+Disable RX offload on that error path before stopping the controller and
+releasing the runtime PM reference.
 
-Hold timestamp_lock across timecounter_cyc2time(), using the same lock
-as timecounter_read() and timecounter_init(). Keep the SKB timestamp
-assignment outside the critical section.
-
-TX completion nests timestamp_lock inside tx_lock; no timestamp-lock
-holder acquires tx_lock.
-
-Fixes: 4e1a18bab124 ("can: rockchip_canfd: add hardware timestamping support")
+Fixes: ff60bfbaf67f ("can: rockchip_canfd: add driver for Rockchip CAN-FD controller")
 Cc: stable@vger.kernel.org
 Signed-off-by: Cunhao Lu <1579567540@qq.com>
----
- drivers/net/can/rockchip/rockchip_canfd-timestamp.c | 5 ++++-
- drivers/net/can/rockchip/rockchip_canfd.h           | 4 ++--
- 2 files changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/can/rockchip/rockchip_canfd-timestamp.c b/drivers/net/can/rockchip/rockchip_canfd-timestamp.c
-index 7c7b95343aa8..76d522ee972e 100644
---- a/drivers/net/can/rockchip/rockchip_canfd-timestamp.c
-+++ b/drivers/net/can/rockchip/rockchip_canfd-timestamp.c
-@@ -15,13 +15,16 @@ static u64 rkcanfd_timestamp_read(struct cyclecounter *cc)
- 	return rkcanfd_get_timestamp(priv);
- }
+---
+Changes in v7:
+- Split the open error cleanup into a separate patch.
+
+Changes in v3:
+- Disable RX offload when request_irq() fails during open.
+---
+ drivers/net/can/rockchip/rockchip_canfd-core.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
+index 59a79fe057e6..d05264605efc 100644
+--- a/drivers/net/can/rockchip/rockchip_canfd-core.c
++++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
+@@ -747,6 +747,7 @@ static int rkcanfd_open(struct net_device *ndev)
+ 	return 0;
  
--void rkcanfd_skb_set_timestamp(const struct rkcanfd_priv *priv,
-+void rkcanfd_skb_set_timestamp(struct rkcanfd_priv *priv,
- 			       struct sk_buff *skb, const u32 timestamp)
- {
- 	struct skb_shared_hwtstamps *hwtstamps = skb_hwtstamps(skb);
-+	unsigned long flags;
- 	u64 ns;
- 
-+	spin_lock_irqsave(&priv->timestamp_lock, flags);
- 	ns = timecounter_cyc2time(&priv->tc, timestamp);
-+	spin_unlock_irqrestore(&priv->timestamp_lock, flags);
- 
- 	hwtstamps->hwtstamp = ns_to_ktime(ns);
- }
-diff --git a/drivers/net/can/rockchip/rockchip_canfd.h b/drivers/net/can/rockchip/rockchip_canfd.h
-index 9fa0327b3e74..b84ab01eaab4 100644
---- a/drivers/net/can/rockchip/rockchip_canfd.h
-+++ b/drivers/net/can/rockchip/rockchip_canfd.h
-@@ -477,7 +477,7 @@ struct rkcanfd_priv {
- 
- 	/* Serialize TX submission/completion with bus-off and restart. */
- 	spinlock_t tx_lock;
--	/* Serialize timestamp work with start/stop. */
-+	/* Protects tc and timestamp_active. */
- 	spinlock_t timestamp_lock;
- 	void __iomem *regs;
- 	unsigned int tx_head;
-@@ -561,7 +561,7 @@ void rkcanfd_ethtool_init(struct rkcanfd_priv *priv);
- 
- int rkcanfd_handle_rx_int(struct rkcanfd_priv *priv);
- 
--void rkcanfd_skb_set_timestamp(const struct rkcanfd_priv *priv,
-+void rkcanfd_skb_set_timestamp(struct rkcanfd_priv *priv,
- 			       struct sk_buff *skb, const u32 timestamp);
- void rkcanfd_timestamp_work_init(struct rkcanfd_priv *priv);
- void rkcanfd_timestamp_init(struct rkcanfd_priv *priv);
+ out_rkcanfd_chip_stop:
++	can_rx_offload_disable(&priv->offload);
+ 	rkcanfd_chip_stop_sync(priv, CAN_STATE_STOPPED);
+ 	pm_runtime_put(ndev->dev.parent);
+ out_close_candev:
 
 -- 
 2.34.1
