@@ -2,100 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA014606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E41606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:38:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qi1fXiHX;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jX0bqgSn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gnZSj/jX;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=TSE089Oe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BfuQOTrbBgGM1H6IV66t9dZSuCArSgWVXq1IwDlbWkM=; b=Qi1fXiHX09aq1q5Z7t8Az4hS3t
-	UM7SOsVS/251c1yoC0RF928Rh1wird85m08w9j4nmtX2AcU/7VyVjIYe7bZYEEGOulcfv8H5ma0bR
-	eaZaP9bjqtF87v03CnJ1feaf/RH5Eiynam7F/faOZpKMXN6Yz4MQqMB1DUeSPFXX5YP9ESH79XxH8
-	KcifEv7DV+Vr6YuYqg+KGHyNFFOj7TvsYqVxerQc4jMGbFHP3Fk2ZG3w3foGcOF1tVn6yGUVSYJjW
-	RiiAufbyHUaS8NECmerxSqcb+jzi4N8jshyixnF1LxaojciDMeTORaAM1tcPZ/97Azh74sBlCzSaA
-	FNaz8Www==;
+	bh=s8nhpF/5t21tllE4kNr5hlFkBROVgPAv06E0/X8d27k=; b=gnZSj/jX5QWHqWQ1jtTKtSJkDL
+	Ygdhn2DpdQQrMzHPUjqz3uJm7XC0Wa01bfOdr2vkwekCkhqEQZL6Au9o5Y5KgvQRLE6bne1b2OiiS
+	Kyu915LpW6kYbte4jZPB2VBsRtau34oam8S66yS7XXEeIpb8qjDgv5F7uRNiN7bzoIrYBh5GKTaQQ
+	awDRmwLF98SmPBvGXCFqRCeng8cdnt9P6ngTt5c0jFiKERhry2BciN6OmeT054fm8OzIgB2FqgOjh
+	C8lVh7zgqIZN+Rg9HvmH3/nlHotxqNnYVCN4B+Y6fmv6R9Uu3aA34v0S3iNXUUf54r+MIyN5/dXtk
+	Xg2dwZhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyXm-0000000BPP3-2vIG;
-	Thu, 19 Nov 2026 09:35:02 +0000
-Received: from mail-ej2-x09.google.com ([2a00:1450:4864:34::9])
+	id 1xTybF-0000000BQLA-0YVA;
+	Thu, 19 Nov 2026 09:38:37 +0000
+Received: from mail-qk1-x731.google.com ([2607:f8b0:4864:20::731])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyXj-0000000BPOB-2nvI
+	id 1xTybB-0000000BQJ5-2mmV
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 09:35:01 +0000
-Received: by mail-ej2-x09.google.com with SMTP id a640c23a62f3a-c504a17a455so62264366b.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 01:34:59 -0800 (PST)
+	Thu, 19 Nov 2026 09:38:34 +0000
+Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-93f20b304c0so185742785a.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 01:38:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795081112; cv=none;
+        d=google.com; s=arc-20260327;
+        b=pdzoRn9b28BHx+DIatjXs4bTxvT+9pzqmQ/qELoje9fXjTxp61HFR/awWwf05mwoEj
+         zz3QDyUX+Lkp5CfRfSzHGPPo17CIkXQV9XauqaDpsLFdve13HW/N32guFGjtRgrI4uMB
+         jUDX8H8Dx4phHpwuuDqp/9Qlb+eWUBzo3mhflXKgyTG9iY/uebGgKKGHztUDjOM1uorR
+         86oqpJW3jc8M51PUP1tQ1U95SYT9PSsLzuKDoAicT/p0vaaIXd81F2ftxKBFQvLpPW8S
+         3e1A+JQI+Ea3xqDo1d0Tj2cSdegcY+FKuC1IF07sQOFJdZ1kzp7+EeIU6L4Mk67MoyFh
+         2EUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=s8nhpF/5t21tllE4kNr5hlFkBROVgPAv06E0/X8d27k=;
+        fh=Qm4rBy3Dv+PxLf7HOv78Ruhj7pR5fNHelmceSYMpS8Y=;
+        b=IMbMl18ffsGtNUTB52YIENAvJiN13ahBMKgDre/UxbJp2UZrC06yrm5kH6i2zmVOAj
+         fcIQJ5lBug0Lh3W3IKkBUJlxOz0r9GqnrQL5ihc44S+rdUKEwSjWKhR5Xb4rOcMzkJsy
+         RULY/9i1NOCMh7Yf7peT3KAf47wcaxnhSaocdGTriv7sUuorl7ic7WDE2BkiARz/qHII
+         KBj33cesq/4m+CoUiT88cQ/wwEFv/lc0lo73tPu8QyzOGsh6R2szWYvsu5fv4yTJ18sz
+         5IU1sx1wwrRmqHFeqO779c9y4lbLVHkoviYEM3ZNy+JDXgIqFbZ3s2rhmdGyZ+IL/dst
+         hkFg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795080897; x=1795685697; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=BfuQOTrbBgGM1H6IV66t9dZSuCArSgWVXq1IwDlbWkM=;
-        b=jX0bqgSnEXhGJUCPjlV7EehIfUUCchz78H5edaUvp7zdy1HIpMFMPZWJ9+jB8Ra7Hr
-         HLCaqMP/KQAq3k1FtmDIeknFjDXra8eyCbVKDJ/Dr3QU3UEDqFaWx1LRK+NhCuVy67Fq
-         ifQZ8Hdk6WALCNSrzmy2iz7JwX+4uwqgdV8bQNM8z7kwu3D0n6uA8/YNH+BzwARX1Fkf
-         NtdadbmddebSL0kpMmlSI0KSoV57CJ2LdQ9LSX1YGes0GsHgn3vt/k6W29RXr00rmTpd
-         bPHzX4c5fJZlvvUG9PhU2t/nwuLSNqnld6aaZLQtXrVw2yBuUz7+RbZeHP9LouDDu8Sc
-         vGSw==
+        d=gmail.com; s=20260707; t=1795081112; x=1795685912; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=s8nhpF/5t21tllE4kNr5hlFkBROVgPAv06E0/X8d27k=;
+        b=TSE089OeVekk0pGNHI15kXP0usc50jQW8IfXBoXQiGstG2tMau9JgIFFYnshnIDcw0
+         MuWtrOB+BRkk6Ck0dP6V9IghxkaX5hhu8yWVFvaDR2q+btRx4/EGiXQ+U5fiYooWifHq
+         qIrBXW1LjNF/cCOSJa+zoCCzqqzG2FfhYYTLsRcjAwVzlC3WrbzvBxZRVbuAphu45nKq
+         8BZ7tUK8Nqw7qbrgh+h3X+wnUWrsC50F2k5OEFpR8HvJU4nx+YbN9oZfRr1gg7ehwiFe
+         5n8pmqo8gP/LgXHesCN9Q12pj+1kswkWZg3QX6THvnZHswIxG4nGpF+yAcHKQDR6yZen
+         V6Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795080897; x=1795685697;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=BfuQOTrbBgGM1H6IV66t9dZSuCArSgWVXq1IwDlbWkM=;
-        b=BjRSgI5gjFZMppTvZmQ/iTOuuu/9fetyGVZa+B0RxAnmnpGDzM3bVX+w97eWZevqJK
-         Rx4wTbjATWurWItKIgIwTCfMnHRW2QeenHK4GxemuoTHQnXg4bOOWw3q9hYY+h1qr+M7
-         1J4bAo59Eor0H/JH7Ylcp6S0DwBM5oOYIlPXGaxZlYZmAXPbs8LFDaRgSbvBZfVvEt3u
-         g48D8Feg5GW2mmVFBEvRuLiGfPQdH4YRPeeO0P40/U+NHhwG6xxRoC7F8TASYxyfzn+d
-         DxH2EQDRzjMcnTG4M8VjGx8deH82Qfv/tlpSInD34g33tvwvVAUtGesv4RixSsSH3DEr
-         c7pw==
-X-Forwarded-Encrypted: i=1; AL+hErFxLnIPndTRoYGSEJUKSpiT+2X76G6Glpj/U4gAib+a/WL/v/cH6vWlX4b2x1dMKWYCaGGISjX/L1i5TooEv6qM@lists.infradead.org
-X-Gm-Message-State: APuU4Z+bYkYgJ5SmJirF1em2tdu0Y431Lf21UJtv2EUaIzai31vDeGHC
-	ex4ovyduP3btCBN/h2SFLZfnIcVrTi4TS4r8A2jlIBblXUMBrTolBsoc
-X-Gm-Gg: AYBFou1HjndWszCPslGX1QKRBOUcpTAwUbgDDcCUa9ESFlVOOfyqdGmKMC7i9kDMHEZ
-	aNQ7btyZXbjMMdzbA2tjNZ5dXitMlWHJ/JqZabX9T5TVhB0C0Brs6dZ67eLumnV2tGe69gdj7nO
-	OfNW+CqqxUaD/e4q5PFh3LtKTmj5+tZY7+H65cMn1lKqhLvtXsNwZhWTIJOKxG7lm9SyQJsZl6s
-	7p09VPiqDTx/YEYz1EnxFYqI/iedGWLtY9V208IvI2Vb0/6XMNVxbsZoQB7EPSdKdrqUHKa+diw
-	pVjlv9gGYqjnKDouKzqJ7XIRMR69JcJrvadFfZ7s8yiJGONL7UReOuMIPsFLR5xVxorOHRhhwVt
-	eUl4ES/n15hOc/Bjnmv00EH8TJrfmtiPLhtHg33OKeRL7htnkIUhtyo5JD0sipagAdOo0Ey0BPa
-	Ag4Meemiw4o6yQJ2uXA0NrNYB9k9r97xiBlREwV2UwB++Tak0FWp/gn+vSvsi6DwVL+1jlx8m2S
-	Z372x9kvfqpXTtfcxxiOpsNi8UeyoKKUQL0FYKyQcRm9nbL5ObIoOIx7mxa0gX8/TnE8qhrWwFQ
-	FVUsXndDOR91YmkEQKDvBWINexhKJ3loB7KXH9xRP7tTEGo6N8fFdN7flZzPVKxeLZ1nPy7pDtx
-	UMqN+1nqR7Lq30IQmsbrIv79pK73ciR1SG8Vds7AXkFuCuNZqpuRO8qtf
-X-Received: by 2002:a17:907:6d13:b0:c3f:7e8:235d with SMTP id a640c23a62f3a-c510dec35a4mr480605066b.5.1795080897118;
-        Thu, 19 Nov 2026 01:34:57 -0800 (PST)
-Received: from thi-server.fritz.box (dslb-092-076-089-226.092.076.pools.vodafone-ip.de. [92.76.89.226])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5122e68675sm93767366b.0.2026.11.19.01.34.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 01:34:56 -0800 (PST)
-Date: Thu, 19 Nov 2026 10:34:54 +0100
-From: Thilo Zirnstein <thi.zirnstein@gmail.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: michal.simek@amd.com, linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Subject: Re: [PATCH v4 1/2] i2c: i2c-xiic: fix clearing of bnb irq
-Message-ID: <av7CvgS20rBjsJHx@thi-server.fritz.box>
-References: <20261118101147.3350796-1-thi.zirnstein@gmail.com>
- <20261118101147.3350796-2-thi.zirnstein@gmail.com>
- <av2jSyTFI1VoyGSU@zenone.zhora.eu>
+        d=1e100.net; s=20260707; t=1795081112; x=1795685912;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=s8nhpF/5t21tllE4kNr5hlFkBROVgPAv06E0/X8d27k=;
+        b=mNl5x1uZnQkwF5+ZsIMCTbEwdIT6c3AZDL0pjGLzuzv+T4tcm6v1xhYXIDYFSNIwCq
+         fuDrNaoDlmWW7tGzhv6wbfUivnlbbRW+H9gqzqYQe4c6DSO0jHDuOJ+uZvbOV2wbWii3
+         VDpqNeDfEroRVHgt92xgc0fxjUFLPRHBC5J8I4TgSaQiDeRg1UxRQJt4QDHRGF8eKv55
+         9NT5zeHxPtBdB4zJ0EhjxZdTySD5O6tYiKBGFBpQfN1WAH+gN9R1hvD5efBMbM4AK5ee
+         BPj/rslBHs86dH/vffHnox7QXgyfNnDVaE1/gsmiEipAHJXjQ9ChLey/5KK5ALxJQ99S
+         LM0Q==
+X-Forwarded-Encrypted: i=1; AL+hErGt4LaeiXW4lcafHGKai8B1SPaKvZfforzBta7bGFnpzHWUecFDadLqGupAzN1HaKPlwSlcmNAFGa3qx41OVJf2@lists.infradead.org
+X-Gm-Message-State: APuU4Z8zK4pW+Q4nDBUq6edUtEkwTlHLSMih2AvkMgZWLjFrHE8Hjfsj
+	2BC4duri9wExAS9Kic+6mHuOFCIQogQ9WvYhbSJyrivwFu/KeH7LVNPlbAR+udf4pE0IfPNYcej
+	j0/QcU5zHx2YNXiudUmm6OyANQQOSgZA=
+X-Gm-Gg: AYBFou1j7jCZMQV8UNY4xJm6kmsSaPU7t6eHUqPx7VB9LrFL5KnDprqQl+rv70sVmoz
+	sHLxDHkLRc04HFC0p8SlXS8x56Nu7u4lbLKhBggRSgYox2fzNMXxl2MC/Kj5bgJqIErOp57cwKz
+	xKz62A0xAJl8FD20N1UD6dh6KItxl0lsw9kNWCZbUpc18NdUd+umtLB8lHCNuH3nUthmuwro2pP
+	CmddtfLPlIjJBtsHAHckx/0X0ZgsDYpbrcFNKL6lTlW0dMNdfJp4+2qEXssZjkmOTTOZKKiy9nV
+	6ib7muO3FzMUpZOxXn9qMbpKnLCAWBHm6DOBxwdNM+ENCT3nDUnBxHy7bnT+4ct9FN09+vD2Msu
+	6b9lyPlMUn/w/gx8SG5zOOQcV6YTEi+889bUT13pLU1XBGtVTFhb1iD+PaYN7elr3ZQMKcD8=
+X-Received: by 2002:a05:620a:4809:b0:944:d79:c02 with SMTP id
+ af79cd13be357-949994a8215mr964986285a.10.1795081111763; Thu, 19 Nov 2026
+ 01:38:31 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <av2jSyTFI1VoyGSU@zenone.zhora.eu>
+References: <CAAi4Z-d5eV8FM5sYJj1gqudWyioF++fG8P6uGX_LxbiKSXjekw@mail.gmail.com>
+ <avyZM-6gM4amnQMT@lizhi-Precision-Tower-5810>
+In-Reply-To: <avyZM-6gM4amnQMT@lizhi-Precision-Tower-5810>
+From: Alex Guo <alexguo1023@gmail.com>
+Date: Thu, 19 Nov 2026 17:38:20 +0800
+X-Gm-Features: AclHuK9v7LJbhjVCrFOjeIf_qPnWAg5u9Sv5E5RixcPyL74qGSwBar9TYvQiOSA
+Message-ID: <CAAi4Z-eE=16GBivyAz7=ucsD2eBxR3-qG2KebRvKGJUE=VkLHA@mail.gmail.com>
+Subject: [PATCH v2] dmaengine: owl: Check IRQ lookup result
+To: vkoul@kernel.org, afaerber@suse.de, mani@kernel.org
+Cc: Frank.li@oss.nxp.com, Frank.Li@kernel.org, dmaengine@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-actions@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_013459_726269_F9A3475C 
-X-CRM114-Status: GOOD (  16.88  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_013833_738764_266ADA00 
+X-CRM114-Status: GOOD (  26.29  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,56 +118,92 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 02:22:18PM +0100, Andi Shyti wrote:
+owl_dma_probe() passes the result of platform_get_irq() to
+devm_request_irq() even when the lookup fails. The request can replace
+the original error with -EINVAL.
 
-Hi Andi, 
+Return the lookup error before requesting the DMA interrupt, so a
+deferred probe can be retried.
 
-Thank you for your review and feedback
+Fixes: 47e20577c24d ("dmaengine: Add Actions Semi Owl family S900 DMA driver")
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Alex Guo <alexguo1023@gmail.com>
+---
+Changes in v2:
+- Drop the paragraph referring to the similar Tegra QSPI fix.
+- Add Frank Li's Reviewed-by tag.
 
-> Hi Thilo,
-> 
-> ...
-> 
-> > +	ret = read_poll_timeout_atomic(xiic_getreg8, sr,
-> > +			sr & XIIC_SR_BUS_BUSY_MASK, 0, XIIC_BB_TIMEOUT_US, 0,
-> > +			i2c, XIIC_SR_REG_OFFSET);
-> 
-> this is a bit of an overkill: you are forcing tight loops for
-> 1ms. If you consider that the minimum wait is 1ns, in 1ms you
-> will end up busy looping a lot of time. Please, don't set the
-> delay_us to '0', but calculate a proper waiting time between
-> reads.
-> 
+Build-tested the affected driver object with Clang 18 for arm64.
+No hardware test was performed.
 
-I also had doubts about whether this approach is too heavy. 
-I have general concerns about the busy-waiting in atomic context
-in this patches, though I noticed other I2C adapters wait 
-for relatively long periods there as well. 
-The tight loops in patch 2/2 are even longer.
-Those waits are longer because the code waits for the entire I2C transfer 
-to finish, but polling is unavoidable there since sleeping or scheduling 
-deferred work is not possible in atomic context—is that right?
-So this kind of builtin if doing i2c transfer in atomic context ?
+ drivers/dma/owl-dma.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I will reduce the maximum poll timeout to 4 µs, 
-which matches the minimum I2C START condition hold time 
-in standard mode and seems reasonable.
+diff --git a/drivers/dma/owl-dma.c b/drivers/dma/owl-dma.c
+index 31a6c6e01a75..daea82718229 100644
+--- a/drivers/dma/owl-dma.c
++++ b/drivers/dma/owl-dma.c
+@@ -1156,6 +1156,9 @@ static int owl_dma_probe(struct platform_device *pdev)
+         * simplification.
+         */
+        od->irq = platform_get_irq(pdev, 0);
++       if (od->irq < 0)
++               return od->irq;
++
+        ret = devm_request_irq(&pdev->dev, od->irq, owl_dma_interrupt, 0,
+                               dev_name(&pdev->dev), od);
+        if (ret) {
+--
+2.43.0
 
-I will also increase delay_us. Out of curiosity, 
-what is the reasoning behind the delay interval? 
-I assume we want to avoid hammering shared buses
- or registers with continuous I/O reads.
-
-> Andi
-
-kind regards,
-
-Thilo
+On Tue, 17 Nov 2026 13:13:07 -0500, Frank Li <Frank.li@oss.nxp.com> wrote:
+> On Sun, Nov 15, 2026 at 02:45:05PM +0800, Alex Guo wrote:
+> > owl_dma_probe() passes the result of platform_get_irq() to
+> > devm_request_irq() even when the lookup fails. The request can replace
+> > the original error with -EINVAL.
+> >
+> > Return the lookup error before requesting the DMA interrupt, so a
+> > deferred probe can be retried.
+> >
+> > A similar issue was fixed in commit 47c3e06ed95a
+> > ("spi: tegra210-quad: Fix missing IRQ check in tegra_qspi_probe").
+> >
+>
+> Drop this paragraph.
+>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>
+> > Fixes: 47e20577c24d ("dmaengine: Add Actions Semi Owl family S900 DMA driver")
+> > Signed-off-by: Alex Guo <alexguo1023@gmail.com>
+> > ---
+> > Build-tested the affected driver object with Clang 18 for arm64.
+> > No hardware test was performed.
+> >
+> >  drivers/dma/owl-dma.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/drivers/dma/owl-dma.c b/drivers/dma/owl-dma.c
+> > index 31a6c6e01a75..daea82718229 100644
+> > --- a/drivers/dma/owl-dma.c
+> > +++ b/drivers/dma/owl-dma.c
+> > @@ -1156,6 +1156,9 @@ static int owl_dma_probe(struct platform_device *pdev)
+> >          * simplification.
+> >          */
+> >         od->irq = platform_get_irq(pdev, 0);
+> > +       if (od->irq < 0)
+> > +               return od->irq;
+> > +
+> >         ret = devm_request_irq(&pdev->dev, od->irq, owl_dma_interrupt, 0,
+> >                                dev_name(&pdev->dev), od);
+> >         if (ret) {
+> > --
+> > 2.43.0
 
