@@ -2,74 +2,138 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35856606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 21:03:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59747606A907
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 21:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=waZ6A73a;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ec1yZDgI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cYaDzQPX;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=I3aHFY1e
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sfsFb1aGEKDdDgduNvVaqLPO/+tVEkI1Hc7WtTzriM4=; b=waZ6A73aokgXm0S/Rphep0k3Tp
-	MXCIW4ncPawY2HSBcEkLlyqZlEeY3UVeDp9Z7gjh6K3DLmrgCNhjtSYA5NORIv5nChN48FwgWoDoq
-	VRxoYzu/YYeOYKgFFYuEfzm92l1Z0QxjX4WUhewBn8tGkmfKpXAP+psUuNr205mOAMR8GyRAouoAX
-	Ak3aQ1K+XX3i+kw7Ard3HE9MHwkbVnbwH+O4e0qhkUuqyzQc0tqdg2EIIKSm3143tuGzXNK5XnWJl
-	dWaqtsC2cJkIIy+dPPNIAn/oF2w4oKyZPyBGJ1hz2+z/FSj/MiTfAqnzd3m40YiWbDcuUggN7WVoD
-	uDYlY7Vw==;
+	bh=GyBPI5yvOkE5norKTa2AeBM6X/TZ4IPvBDIYQu/W00k=; b=cYaDzQPXVKUjwugTPJyuAZBgiW
+	xadPPwvHtg0DllXPlNuo1IIG2eIuzjbNrZLpfjub0yADY90n9gcON2vy5c5zvC3a4929QUKabZT+X
+	j3UMw1rQ6DQoM8hAmcLTzO8Tu6Cp7mrI6zbo0+Lbc/kQMJPpX2t//P42BGx+jx+kk0bXigDNc4jV8
+	BWYFzcXp4t72LJeuOpGv9PO23RNhPKvwmhw3i9WwdElLxzof28RxdbvNrwR2FNqzAiG1elS1rCivd
+	LpYNlQK/uyjf6yPNgBmXnCBd0exoCdJpuScHFOhDeM/Ck9x4yKVu8Zat3dAUF+6q4TVpaE1vEqPIl
+	N/vNnGiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU9IB-0000000DRng-0Tux;
-	Thu, 19 Nov 2026 21:03:39 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xU9Ie-0000000DRrt-10Ua;
+	Thu, 19 Nov 2026 21:04:08 +0000
+Received: from mail-swedencentralazon11013071.outbound.protection.outlook.com ([52.101.83.71] helo=GVXPR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU9I9-0000000DRnX-29sJ
+	id 1xU9IH-0000000DRoF-3bzU
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 21:03:37 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9986460202;
-	Thu, 19 Nov 2026 21:03:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 224001F000C0;
-	Thu, 19 Nov 2026 21:03:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795122216;
-	bh=sfsFb1aGEKDdDgduNvVaqLPO/+tVEkI1Hc7WtTzriM4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Ec1yZDgIKaPP2Gg+BMqEMC7B1k7AJQf+XKLHQru6ochjFwVtKC3fb5DUSCBqJrLoz
-	 0v740ceRJMbVFPLVI/cYo+OEFNwQRcYRBU9R1q0EPPenf0xwB+thk7kFbcVB9cDnNs
-	 GeHiRRc/bmoqNKWrgF9g/XgPwuUbkhTwJY6Ccbbt1t6DKP9VqLvbSyc2VOJVTqd3pI
-	 FyH4Ur/ihOix2mwCIzmNbpOQ0KBUs0CW4ZDKi+QSy2TOV7YxRM1yMMdyqXwV4iIodF
-	 FDeKh/Xq3mmZR+ePmEHSoJfbgW7Nb+pQuwmCb4P86wLVs8B3NskO09jSMjnAEazAgj
-	 Nw6e5SM8v8ugA==
-Date: Thu, 19 Nov 2026 15:03:33 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: muhammad.nazim.amirul.nazle.asmade@altera.com
-Cc: linux-arm-kernel@lists.infradead.org,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
+	Thu, 19 Nov 2026 21:03:47 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vnXx5GZ0Vw0zAjThoybI2/9C9UfV/HSL6xoQxBC7pE/3NUFJCybKnockh0BOp17t91l7GqJ+54SNYhG4OdLiscbY+V25tohIFTBG7a/PL2DcGmJkzteopVGJwlig7BcXjIsKIGh6eXP1VhwRKWtoDHmnxy3oRB3bQEU/flU5BN0m3G32N7QH1XDCuV0yIVf4c/E+ksAalWdF9JT7l1CZVi8VJL6WJFdST8OCtjcBMZg8x07wvVS9suGvjUNd9ULUr420g/WuVzEMuguMhw6ISz0LGYOTHAbyz+bnDjqoLEn/maHHqafVyJUMVDAu62Qy/jaAJndBoBOzaOeaL8XBRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GyBPI5yvOkE5norKTa2AeBM6X/TZ4IPvBDIYQu/W00k=;
+ b=gsxT+taEOMLTcoJ6ROY2Spsq9JtUy0aV1VmoZxkeoHdJdlCMsdSPy3GIarAfECWxS96D54RUrpA1qX4RugncCOJ+6pGwxUzBgkgE3kM3ILfIsQhTaDPoDvT8d72dYxg2KV0uTAVK2Mwv/fSUbeslWWDdB/DTshsHy00fFL9WIK3U/RfO1LkUEBJO9pP6ZLRqLW48Rwy4E2u+YEU9PyHLBykfCEBpnryjdbhpV44H+89E7VtkQZTpNtHPWIEIkIPqP4RqXNKkaQ6N6BdFQx7NjCTEpUGekaucIY19TAF9lg8qE3Kzq7k033B63RExKhWubqBOwMfTw251avZiMyBQEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GyBPI5yvOkE5norKTa2AeBM6X/TZ4IPvBDIYQu/W00k=;
+ b=I3aHFY1en5D9gHSh+WdoQ+0D8drq/01K9mDnzVW2m5N83YF4lUmXvFgTItktuA7/Vyx0W4FQaU4eF24HHRTWDlrN89e2hEEGOdmyyL3BRY5EM+B4GyuQ6DOdzSFjDLeQYlig61FOiVjZoFK+T9t3v5WiqQVKthmPlqmGrGWPhXZaRQAgUZXprHVpToVAdz3H/EKF27yFyjUWSLNbb04Gyk/z1d9IQRipcm3Iu/Jwp3lT+Mkq3Y/G4+DZ4EPTu+VpZKXMnVmhihLBwspP2Jiy54LBne5MAWZMHK2BdJDmVxwpDl3nQFo91MO4RjSxArTlsNcO/gd+3paqxegA+QMTSA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by GVXPR04MB10828.eurprd04.prod.outlook.com (2603:10a6:150:227::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
+ 2026 21:03:40 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
+ 21:03:40 +0000
+Date: Thu, 19 Nov 2026 15:03:30 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Nas Chung <nas.chung@chipsnmedia.com>
+Cc: mchehab@kernel.org, hverkuil@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com,
+	s.hauer@pengutronix.de, linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	"David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-	Dinh Nguyen <dinguyen@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: altr,socfpga-stmmac:
- Add altr,socfpga-stmmac-agilex5-tsn compatible
-Message-ID: <179512221319.568679.6038463507415818454.robh@kernel.org>
-References: <20261104040320.18077-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
- <20261104040320.18077-2-muhammad.nazim.amirul.nazle.asmade@altera.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	festevam@gmail.com, kernel@pengutronix.de,
+	nicolas.dufresne@collabora.com, ming.qian@oss.nxp.com,
+	marek.vasut@mailbox.org, jackson.lee@chipsnmedia.com,
+	lafley.kim@chipsnmedia.com
+Subject: Re: [PATCH v8 10/11] media: chips-media: wave6: Add Wave6 thermal
+ cooling device
+Message-ID: <av9kIkW6rYeUGFBE@SMW015318>
+References: <cover.1795075577.git.nas.chung@chipsnmedia.com>
+ <d973e48036b43e9f1e5fc254153303a4c21deebb.1795075582.git.nas.chung@chipsnmedia.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261104040320.18077-2-muhammad.nazim.amirul.nazle.asmade@altera.com>
+In-Reply-To: <d973e48036b43e9f1e5fc254153303a4c21deebb.1795075582.git.nas.chung@chipsnmedia.com>
+X-ClientProxiedBy: PH8PR05CA0006.namprd05.prod.outlook.com
+ (2603:10b6:510:2cc::6) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GVXPR04MB10828:EE_
+X-MS-Office365-Filtering-Correlation-Id: 14e68084-852a-405b-fece-08df46809666
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|1800799024|19092799006|7416014|376014|10067099003|56012099006|5023799004|11063799006|4143699003|261028144727099003|261021121427099003|261026140227099003|261022105027099003|261102123227099003|261026121527099003|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: XBGpqGmDUqpr216jgkgeVqayAvZ0oCWm8To25qWb3wr9UgsjOQtFfRWG2Kors3doDwdZMt/f81afbfZgAb4z825JxFBgWMhXpKtBklHNFOk7QzHUiYlNFkxOPXAZQskmeewa7HlshmQ//JBf1M9pborsxi17XdppkIsC77LRmZmyab9s20VUQtFNXNfXvXRVQ8SGGSMl/FWAxRM83xlOSMO+CrBSQnhcLmuJFf1zSHyzP0c/RHpTYmd5h30wBjkedRrqXyZZG7EYgvNDH8zH1Ezn2zw15Y78cMvjcJKxZyYArlcHWh0N9r3U4L2LMsaBy5DrZIbeN7u5mH5XUi48Wt9AKWJYEQw7AkMJZkPnslydaOcZUU6F9d/kZf7+IoDJRLIDSZWCdjTmy5W1Xn2FRdN3cKD6CxEVUH32fsU9Yc53BlY6XOjyizxbV27ZObn9WzlIqv6bpkHRgITG4HmW9up4KBbveOD5SXvtT6pKGNFG7ubmai2X+k/0h0/mydm5Djk1Qxl4PGo1D+J9NqpYaWNWH75nDPyPt5IBxx8ByAIzM1zEDmODL++ak4MJUud3ohqzaiA0VxKACTQIEG1tC+XmMS5epRQ+MCIG1in2YzT2gMyjtdJh5I0VP2QhckJE1JoImivY21Yanx9se8OmlMhSgTAvrY9PkyR916LUYdw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(19092799006)(7416014)(376014)(10067099003)(56012099006)(5023799004)(11063799006)(4143699003)(261028144727099003)(261021121427099003)(261026140227099003)(261022105027099003)(261102123227099003)(261026121527099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gHvo41Ra5i4rrzZkJWEtd2ARh+wFGa3sQZd9wfwfUogd4UQVvvwmLjbBWfTw?=
+ =?us-ascii?Q?sMlZRX9ce0K3KIjyePh465g/ExCh1l8OqRi92LP32AYA/LpofDOnaYF9XeS/?=
+ =?us-ascii?Q?9hUHsOdhva0VEP26gglDszytD9LFwO4n99USyO97vsnqUQ8lHEA+N+Mc2/VT?=
+ =?us-ascii?Q?1Jt09JU2LX+tCF7FJh8/FFcKh4wvr7z7/IiBsQfvOreVosFxabTPGRJVfVUV?=
+ =?us-ascii?Q?jlW/aGNNI65uI18tZOeiND1CEF8KC0ZOoODb/U7D18SX/HgaYbP+Jh35CEEq?=
+ =?us-ascii?Q?ucABt1iMVJKPg/pbmId9z+GTKvfzdGf9nJWlwGQ7k3lX9ZRSREzXPVzjXEBN?=
+ =?us-ascii?Q?6pSvRkunvEmXgk9f3WIOMOVUARJCn1Tax5dEhf5RsZ0jmEijsJRX/fNeLtl3?=
+ =?us-ascii?Q?uuz6Ao8pT/SVuJ2rVOgKalia1B5iiYd5aiahYpUoLcQu7FsjjLFLTVeEYvZn?=
+ =?us-ascii?Q?m5qAjCCXtLMCt4DytUL2z5uSP1j8vzAQkp2ZwKhUAJmKgBec3g5ju4lGAqnV?=
+ =?us-ascii?Q?UleKs3joceJiZ4XV67D5GGJrbqrMxwwzl49OQ65gaP+k5+FKBTdD0N+vbhwh?=
+ =?us-ascii?Q?aiNXIzDRM+gXPpc0AQvccykpc8TQgEekOCDFdQJfHyw3jg/O3oh0D95nwCcj?=
+ =?us-ascii?Q?lGV9QWj5o8htaCpZp43Gfl4eR4p8HbZUVa8qbqYaT8N9iXPR6JA/idROFZUm?=
+ =?us-ascii?Q?Q1MWgq0tbdHcXolpMH0s86aZKy99osTf9FZtuPUXJyW+t00RgLnNNxewI9LU?=
+ =?us-ascii?Q?R5tUna+FPqf5OtlJnZmKNDCAYQoNwjnAxE5mHIkBqeKci1q+PeBGjlmBV2WX?=
+ =?us-ascii?Q?jYi1X/TIpVQdG5K0ybxVA/HLEgYvggvFVjM8QhKYsLhKU0ZUxTNreHV+iEcX?=
+ =?us-ascii?Q?nCYFXVL17OilWa5KQpTVQl1VyZOaYbmLKBS/ObkrCyKYLkcM2IAIlV1sAlsH?=
+ =?us-ascii?Q?4hJOb2REjk33fgHmS4vdNQEBYcYkgi098tGECdPEOQKAvylIl7r2ZFPb/QA/?=
+ =?us-ascii?Q?+5jaKga+V1ijRyR0ox8q3zH0fj0L0+cWwzFGscxoRxlsFtSGNx7g06Q3WYBe?=
+ =?us-ascii?Q?JAE3rnnhUOtPZVXIb9+VJaphm1stA09vlCcmbkOhvG5G5B+bPQF1vT5lRLD/?=
+ =?us-ascii?Q?X0QgA7qphiWhiJw5BU8XPGLVoPOtE5WZjM4/6LDaalW+9LUGu8N4Wn68SX1/?=
+ =?us-ascii?Q?A7JdQM09m1x6glEUBbXeBxNMUWQcaI9BTjxQJJc/Uo6fBt4Sb9CI82wbWwpG?=
+ =?us-ascii?Q?ls8WNjwI8qMNLg6Qnkmrp2RD/5P24ZvpqCppUxTEHql7lSTP0dcL1apAu1WQ?=
+ =?us-ascii?Q?8dmWEMYRiTewitX1UzZCWUnq6FJ0zflmp7MjZ/gIrPeveGtVHr7KFgyeNs1F?=
+ =?us-ascii?Q?p31FQspumn3SgBmq5sBN/23nkeehKG+DJKASktN6/GgUhci/+1xhYOx+/+bD?=
+ =?us-ascii?Q?ahPJNuIiaG6phAo3XKYyxTd6lXUbTkp9Mff2H4Jg5rzATZiN0w+CNTgKVsSp?=
+ =?us-ascii?Q?rEdbVvRcxij5qR+aTd/i5xEaclEG+Fg7xYiJiECAD2N89BrNJ+pUutiP4xzU?=
+ =?us-ascii?Q?aAIOIOMsLIPpqQxFQvfDHrtFv77H9YL9/s3uiBkTrti3B7wPZHNJJ/hp1fcq?=
+ =?us-ascii?Q?Cn+3sr3G15rfU0qL0DsIFr14CVe9FkVzXmGPeztre49f3JE0LEST6EdmqqYf?=
+ =?us-ascii?Q?2W/mdYTvPOl54D2S0k//RV59Dv2ilfEfT+x6dmuy51pv8mbZa5TqLl2USNpn?=
+ =?us-ascii?Q?PGzIxvHRMkyJlcAmQBkFBU8nlWX3vALFmxewH8TRlaCf0D2CVaCZ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14e68084-852a-405b-fece-08df46809666
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 21:03:40.5200
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: i7IyOQ7/bu7egIdGhUnWOoszj5m7232rDPwfRpVppmqRk6plKXd42gE5Pz4OGuZMQHRVG++MecmAxbr4KI5nu42Sh7mdBgIGuwFlQiS+XhzVp6VEuk0poqwRNBlSTPzK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10828
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_130345_907658_2A9535F4 
+X-CRM114-Status: GOOD (  15.91  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,49 +144,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-On Tue, 03 Nov 2026 20:03:19 -0800, muhammad.nazim.amirul.nazle.asmade@altera.com wrote:
-> From: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
-> 
-> The Agilex5 SoCDK TSN Config2 gmac1 path includes an FPGA soft-IP
-> GMII-to-RGMII converter between the DWXGMAC and the PHY. The converter
-> provides the RGMII TX/RX delays and presents GMII toward the MAC, unlike
-> a plain altr,socfpga-stmmac-agilex5 port with no such converter.
-> 
-> Add altr,socfpga-stmmac-agilex5-tsn for that integration in the same
-> compatible items entry as altr,socfpga-stmmac-agilex5 (shared
-> snps,dwxgmac-2.10). Do not use altr,socfpga-stmmac-agilex5 as a DT
-> fallback for the TSN port; the converter presents GMII to the MAC and
-> supplies the RGMII delays, unlike a plain Agilex5 GMAC port.
-> 
-> The TSN port uses the same DWXGMAC-2.10 core as the plain Agilex5 port,
-> so extend the interrupt/interrupt-names/dma-coherent conditional to
-> match the new compatible as well; otherwise a TSN node would incorrectly
-> fall into the single-interrupt, non-coherent else branch.
-> 
-> Signed-off-by: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
+On Thu, Nov 19, 2026 at 06:00:04PM +0900, Nas Chung wrote:
+> Add a thermal cooling device for the Wave6 VPU, so the thermal
+> framework can lower the VPU performance state when the SoC gets hot.
+>
+> The control driver registers the cooling device on its device tree
+> node. The cooling states are built from the OPP table of the "perf"
+> power domain.
+>
+> Tested-by: Ming Qian <ming.qian@oss.nxp.com>
+> Tested-by: Marek Vasut <marek.vasut@mailbox.org>
+> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
 > ---
-> Previously patch 3 of the v6 board series; split out for net-next.
-> 
-> v2: Extend the interrupt/interrupt-names/dma-coherent allOf conditional to
->     match altr,socfpga-stmmac-agilex5-tsn, per Jakub Kicinski / netdev bot.
-> v6: Put altr,socfpga-stmmac-agilex5-tsn in the same enum as
->     altr,socfpga-stmmac-agilex5, per Krzysztof Kozlowski.
-> v5: Drop altr,socfpga-stmmac-agilex5 fallback and rewrite commit message
->     to explain hardware incompatibility, per Krzysztof Kozlowski.
-> 
->  .../devicetree/bindings/net/altr,socfpga-stmmac.yaml     | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
+>  .../media/platform/chips-media/wave6/Makefile |   1 +
+>  .../chips-media/wave6/wave6-vpu-thermal.c     | 141 ++++++++++++++++++
+>  .../chips-media/wave6/wave6-vpu-thermal.h     |  24 +++
+>  .../platform/chips-media/wave6/wave6-vpu.c    |  22 +++
+>  .../platform/chips-media/wave6/wave6-vpu.h    |   3 +
+>  5 files changed, 191 insertions(+)
+>  create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-thermal.c
+>  create mode 100644 drivers/media/platform/chips-media/wave6/wave6-vpu-thermal.h
+...
+> +
+> +	if (!thermal->thermal_max)
+> +		goto error;
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+nothing clean up at error label, just return ret
 
+> +
+> +	thermal->thermal_event = 0;
+> +	thermal->cooling = devm_thermal_of_child_cooling_device_register(dev,
+> +									 dev->of_node,
+> +									 dev_name(thermal->dev),
+> +									 thermal,
+> +									 &wave6_cooling_ops);
+> +	if (IS_ERR(thermal->cooling)) {
+> +		dev_err(thermal->dev, "register cooling device failed\n");
+> +		ret = PTR_ERR(thermal->cooling);
+> +		goto error;
+
+return dev_err_probe()
+
+Frank
 
