@@ -2,52 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D925360A2611
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F352360A2614
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hjjwJo3c;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=GoapcUJi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3gOUbc06;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=daCgpKin
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=d3xYow8ORTqrFcj+TCUVwlzJAP68PZhkX5ooYPd2dsw=; b=hjjwJo3cUBBh9B
-	flEaVdhtdCpqK5x4Tj2UR7gk+gIK2g4zSeHDK43sPHLiX6rEwk7D9x4xcajVaLhFhG4qzTp9Wse28
-	lObbS+tHmHznD5XGKBnlfy8Wd7BqjZ9k78ElfVapTtSKR1ioJdFDXVtRs8ny4xqHDtheo4338Wju2
-	U2X12g7UeptVYhjKzYVlaN4dJYjSh3EN/AnOfdDbLPG2zGzjpzBpGvCXOqF101hJk5Rikm9vElVxX
-	L1AtWbQg/vwyt6AGRxVfr+bQ+cd/YvHGINPVmA1lXxzPqcNQMjOTujREisiAxelsecHlTOtfPafy4
-	rvX4pleQEZgvwDoclKEg==;
+	List-Owner; bh=CYTdg/ZbWYFGIrC86gz99BU0CGcr9ksMpr62NJg3iH8=; b=3gOUbc06cf5sR/
+	NB+tcJH5+G028NNTUiFb4tMpFcceQKgDZaMntLIhG4YTZzcmPyvFN/ecnNSJ7NbP+3ijArEDNmIZo
+	7pj2Ow2oVFfFgb9kw9xSPABv7NVwfYabYTLFkUV+78V5wCxLsHK9JvkK5l99JCzxHBghl+VyTo47a
+	0OD/31xcGPI/LfhYS8eMW7EunUdSVLnJvu6Bnbgka6dLHiwxmqt46+eYWzKHXexbCxXtjBXgH6Otq
+	GY1EkhSy4F0Gm3VBB3NNUnFn/Le8C9ji4E+AAm7IG443zg8Qi/HZdXDc5+hwb87nWH8mpKr3zOwAP
+	PXpGklAYvzk5MeLMKLJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4Bx-0000000CUYA-0Chz;
+	id 1xU4Bx-0000000CUYb-0m0Q;
 	Thu, 19 Nov 2026 15:36:53 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4Bk-0000000CURH-23MW
+	id 1xU4Bm-0000000CUSz-2WV0
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 15:36:47 +0000
+	Thu, 19 Nov 2026 15:36:48 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 265C619F0;
-	Thu, 19 Nov 2026 07:36:34 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F4F11C00;
+	Thu, 19 Nov 2026 07:36:38 -0800 (PST)
 Received: from e142430.arm.com (e142430.arm.com [10.33.10.110])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4A49F3F882;
-	Thu, 19 Nov 2026 07:36:35 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 914713F882;
+	Thu, 19 Nov 2026 07:36:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795102597; bh=DQpZ0nokIMPkbzWDv1VnKuDKQss11s/mtOoOxrD723Q=;
+	t=1795102601; bh=ibynNGRiusd6ZgkuSuWkJ+rzZqrUZwhkZUAn9KEZDKc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=GoapcUJi0pEeZnV4ebNl7TPRMHBPOxytGhq88+ncGTO6vM1Z1oYs1qIWkfTfxwg71
-	 vKH5zkh5ee4gAY2sV3k5E+jhinc9tjA6zl6cBs/jwfpkRew5OKQCv+uuTJNn8B+K8E
-	 vmghNQuKLsHfYA6LxbJnY1ZWQjQtzk+oSD1in7eA=
+	b=daCgpKinQtU2ezBSqGagx3sjYxrrHHV0pqROpBagBe1GP7ENzKjypG+DIFYumtxbJ
+	 uO0ZaRu2cekIvBa2KeAhYC3zC3Lv5U9J1jGmLisVRcGx1f8L3AudaAxRBeWH/0FEvR
+	 ZH3YF39yJGn8WISAY/T5MwJ9K3FIMabrmCebqzsc=
 From: Ahmed Azeem <ahmed.azeem@arm.com>
-Date: Thu, 19 Nov 2026 15:36:03 +0000
-Subject: [PATCH RFC 1/4] uapi: firmware: arm: Add PFDI userspace ABI
+Date: Thu, 19 Nov 2026 15:36:05 +0000
+Subject: [PATCH RFC 3/4] firmware: arm: Add PFDI run, result, and error
+ injection support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-topics-ahmaze01-upstream-pfdi-rfc-v1-1-4772d18b9115@arm.com>
+Message-Id: <20261119-topics-ahmaze01-upstream-pfdi-rfc-v1-3-4772d18b9115@arm.com>
 References: <20261119-topics-ahmaze01-upstream-pfdi-rfc-v1-0-4772d18b9115@arm.com>
 In-Reply-To: <20261119-topics-ahmaze01-upstream-pfdi-rfc-v1-0-4772d18b9115@arm.com>
 To: linux-arm-kernel@lists.infradead.org, 
@@ -61,8 +62,8 @@ Cc: Jonathan Corbet <corbet@lwn.net>,
  Ahmed Azeem <ahmed.azeem@arm.com>
 X-Mailer: b4 0.13.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_073641_402050_80C27203 
-X-CRM114-Status: GOOD (  28.05  )
+X-CRM114-CacheID: sfid-20261119_073646_705537_5575BCE2 
+X-CRM114-Status: GOOD (  19.62  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,262 +85,321 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Divin Raj <divin.raj@arm.com>
 
-Define the userspace ABI for the Arm Platform Fault Detection
-Interface (PFDI).
+Extend the PFDI driver with ioctls to execute tests and manage results.
 
-Subsequent commits introduce a driver that exposes a per-CPU misc
-device. The ioctl definitions, data structures, and return codes
-must therefore be shared with userspace. Add these definitions to
-a UAPI header and document the ABI for /dev/cpu/<cpu>/pfdi.
-
-Placing the interface under include/uapi ensures availability via
-headers_install and clearly identifies it as a userspace contract.
-
-Link: https://developer.arm.com/documentation/110468/1-0alp0
+Add support for PFDI_IOCTL_PE_TEST_RUN, PFDI_IOCTL_PE_TEST_RESULT, and
+PFDI_IOCTL_FORCE_ERROR, along with per-CPU state to serialize test
+execution. When firmware reports PFDI_RET_FAULT_FOUND, return the
+failing test identifier to userspace.
 
 Signed-off-by: Divin Raj <divin.raj@arm.com>
 Signed-off-by: Ahmed Azeem <ahmed.azeem@arm.com>
 ---
- Documentation/ABI/testing/dev-cpu-pfdi             | 103 +++++++++++++++++++++
- Documentation/userspace-api/ioctl/ioctl-number.rst |   1 +
- MAINTAINERS                                        |   7 ++
- include/uapi/linux/pfdi.h                          |  89 ++++++++++++++++++
- 4 files changed, 200 insertions(+)
+ drivers/firmware/arm_pfdi.c | 225 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 225 insertions(+)
 
-diff --git a/Documentation/ABI/testing/dev-cpu-pfdi b/Documentation/ABI/testing/dev-cpu-pfdi
-new file mode 100644
-index 000000000000..e07ed6baa7f8
---- /dev/null
-+++ b/Documentation/ABI/testing/dev-cpu-pfdi
-@@ -0,0 +1,103 @@
-+What:		/dev/cpu/<cpu>/pfdi
-+Date:		May 2026
-+KernelVersion:	6.18
-+Contact:	Linux ARM Kernel Mailing list <linux-arm-kernel@lists.infradead.org>
-+Reference:	Arm Platform Fault Detection Interface, document 110468,
-+		version 1.0 ALP0
-+Description:	Per-CPU Arm Platform Fault Detection Interface (PFDI) misc
-+		device nodes. Each node targets the CPU encoded in its
-+		path and exposes the PFDI service implemented by firmware.
-+		PFDI uses the Arm SMCCC SMC64 calling convention and is
-+		PE-local. Userspace is therefore expected to bind itself to
-+		the target CPU before opening or issuing ioctls on the
-+		matching device node. Each node is single-open: only one
-+		userspace owner at a time may hold /dev/cpu/<cpu>/pfdi for a
-+		given CPU. Additional open attempts fail with -EBUSY while the
-+		device is already open.
-+
-+		The ABI is defined in <linux/pfdi.h>. The following ioctls
-+		are supported:
-+
-+		* PFDI_IOCTL_VERSION
-+		  Read the PFDI version for the target CPU. On success the
-+		  ioctl returns 0 and copies a 32-bit version value to
-+		  userspace with the following layout:
-+		  Bits[30:16] PFDI major version
-+		  Bits[15:0] PFDI minor version
-+
-+		* PFDI_IOCTL_FEATURES
-+		  Query whether a PFDI function ID is supported on the
-+		  target CPU. Userspace passes a 32-bit PFDI function ID.
-+		  The ioctl returns 0 when the function is supported,
-+		  and -EOPNOTSUPP when it is not supported on the target
-+		  CPU, reserved by the specification, or otherwise not
-+		  recognized by firmware.
-+
-+		* PFDI_IOCTL_PE_TEST_ID
-+		  Read the test engine identifier for the target CPU.
-+		  On success the ioctl returns 0 and copies a 64-bit value to
-+		  userspace with the following layout:
-+		  Bits[63:32] reserved and zero
-+		  Bits[31:24] vendor ID
-+		  Bits[23:20] reserved and zero
-+		  Bits[19:16] vendor-defined implementation ID
-+		  Bits[15:8] major version
-+		  Bits[7:0] minor version
-+
-+		* PFDI_IOCTL_PE_TEST_PART_COUNT
-+		  Read the number of available test parts for the target
-+		  CPU. On success the ioctl returns 0 and copies a signed
-+		  64-bit count to userspace. The smallest schedulable unit is
-+		  a test part, and valid test part indices are in the range 0
-+		  to count - 1.
-+
-+		* PFDI_IOCTL_PE_TEST_RUN
-+		  Run a requested inclusive test part range on the target
-+		  CPU. struct pfdi_test_run.range.start and .end are signed
-+		  64-bit values.
-+		  Passing start = -1 and end = -1 requests execution of all
-+		  available test parts on the target CPU. Any mixed use of
-+		  -1, reversed ranges, out-of-range indices, or non-zero
-+		  reserved arguments is rejected with -EINVAL, either by the
-+		  kernel before the request is issued or by firmware.
-+		  If firmware reports PFDI_RET_FAULT_FOUND, the ioctl returns
-+		  -EFAULT and copies a signed 64-bit failing test part
-+		  identifier to struct pfdi_test_run.ft_id. If the failing
-+		  part cannot be identified, ft_id is set to
-+		  PFDI_RET_UNKNOWN.
-+
-+		* PFDI_IOCTL_PE_TEST_RESULT
-+		  Fetch the stored out-of-reset test result for the target CPU.
-+		  If firmware reports PFDI_RET_FAULT_FOUND, the ioctl returns
-+		  -EFAULT and copies a signed 64-bit failing test part
-+		  identifier to userspace. If the failing part cannot be
-+		  identified, the copied value is PFDI_RET_UNKNOWN. If no
-+		  power-on tests were executed on the target CPU, the ioctl
-+		  returns -EAGAIN.
-+
-+		* PFDI_IOCTL_FW_CHECK
-+		  Ask firmware to execute platform firmware resident software
-+		  integrity checks. The ioctl returns 0 when no fault is
-+		  detected. It returns -EFAULT when firmware reports a fault.
-+		  Platforms that do not implement firmware integrity checks
-+		  still report success.
-+
-+		* PFDI_IOCTL_FORCE_ERROR
-+		  Schedule injection of a specific PFDI return value for the
-+		  next invocation of a selected PFDI function on the same
-+		  CPU. The requested function ID must be a supported PFDI
-+		  function IDs. Only one pending injected error is permitted
-+		  per CPU and function, and a new request replaces any older
-+		  undelivered request for the same pair. When the injection
-+		  is delivered, firmware returns the injected value in x0 and
-+		  zeros x1 to x4.
-+
-+		These device nodes reflect the PFDI 1.0 ALP0 specification.
-+		PFDI state is not persistent across reset or firmware update;
-+		userspace must rediscover capabilities and any test state
-+		after such events.
-+
-+		These nodes are intended for platform bring-up and validation.
-+		Access should therefore be restricted to privileged software.
-+
-+Users:		Platform validation and manufacturing test tools
-diff --git a/Documentation/userspace-api/ioctl/ioctl-number.rst b/Documentation/userspace-api/ioctl/ioctl-number.rst
-index dbe462040999..aa5a6cf20d3c 100644
---- a/Documentation/userspace-api/ioctl/ioctl-number.rst
-+++ b/Documentation/userspace-api/ioctl/ioctl-number.rst
-@@ -170,6 +170,7 @@ Code  Seq#    Include File                                             Comments
- 'I'   all    linux/isdn.h                                              conflict!
- 'I'   00-0F  drivers/isdn/divert/isdn_divert.h                         conflict!
- 'I'   40-4F  linux/mISDNif.h                                           conflict!
-+'J'   01-08  linux/pfdi.h                                              Arm Platform Fault Detection Interface
- 'K'   all    linux/kd.h
- 'L'   00-1F  linux/loop.h                                              conflict!
- 'L'   10-1F  drivers/scsi/mpt3sas/mpt3sas_ctl.h                        conflict!
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d738990161bd..de9c296d1de1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14012,6 +14012,13 @@ F:	drivers/iommu/iova.c
- F:	include/linux/iommu-dma.h
- F:	include/linux/iova.h
+diff --git a/drivers/firmware/arm_pfdi.c b/drivers/firmware/arm_pfdi.c
+index 8c6d315b0572..22a69b12dbc8 100644
+--- a/drivers/firmware/arm_pfdi.c
++++ b/drivers/firmware/arm_pfdi.c
+@@ -18,10 +18,16 @@
+ #include <linux/slab.h>
+ #include <linux/smp.h>
+ #include <linux/uaccess.h>
++#include <linux/wait.h>
  
-+Platform Fault Detection Interface - ARM PFDI
-+M:	Ahmed Azeem <ahmed.azeem@arm.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	Documentation/ABI/testing/dev-cpu-pfdi
-+F:	include/uapi/linux/pfdi.h
+ struct pfdi_per_cpu_info {
++	atomic_t run_inprogress;
+ 	/* Ensures a single userspace owner per CPU while the node is open. */
+ 	struct semaphore open_sem;
++	/* Serializes per-CPU run state and device availability. */
++	struct mutex state_lock;
++	struct pfdi_test_range ongoing_run_range;
++	wait_queue_head_t run_wait;
+ };
+ 
+ struct pfdi_dev_data {
+@@ -36,6 +42,8 @@ struct pfdi_cpu_worker {
+ 	u32 feature_fid;
+ 	/* Protects worker lifetime and in-flight work state. */
+ 	struct mutex worker_lock;
++	struct pfdi_force_error error_info;
++	struct pfdi_test_run test_run;
+ 	struct arm_smccc_res smc_ret;
+ 	int result;
+ };
+@@ -59,6 +67,10 @@ static DEFINE_PER_CPU(struct pfdi_per_cpu_info, pfdi_cpu_info);
+ 
+ static enum cpuhp_state pfdi_cpuhp_state;
+ 
++static unsigned int pfdi_wait_timeout_ms = 60;
++module_param_named(wait_timeout_ms, pfdi_wait_timeout_ms, uint, 0444);
++MODULE_PARM_DESC(wait_timeout_ms,
++		 "Maximum time in ms to wait for an in-progress PFDI run");
+ static int pfdi_to_linux_errno(int err)
+ {
+ 	switch (err) {
+@@ -95,6 +107,18 @@ static int pfdi_smc_feature(u32 smc_fid)
+ 	return (int)pfdi_smc_call(PFDI_FN_FEATURES, smc_fid, 0, 0, 0).a0;
+ }
+ 
++static bool pfdi_fid_supported(u32 smc_fid)
++{
++	unsigned int i;
 +
- IOMMU SUBSYSTEM
- M:	Joerg Roedel (AMD) <joro@8bytes.org>
- M:	Will Deacon <will@kernel.org>
-diff --git a/include/uapi/linux/pfdi.h b/include/uapi/linux/pfdi.h
-new file mode 100644
-index 000000000000..e3b7fe19daf4
---- /dev/null
-+++ b/include/uapi/linux/pfdi.h
-@@ -0,0 +1,89 @@
-+/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
-+/*
-+ * Arm Platform Fault Detection Interface (PFDI) userspace ABI
-+ *
-+ * Copyright (C) 2026 Arm Ltd.
-+ */
++	for (i = 0; i < ARRAY_SIZE(pfdi_supported_fids); i++) {
++		if (pfdi_supported_fids[i] == smc_fid)
++			return true;
++	}
 +
-+#ifndef _UAPI_LINUX_PFDI_H
-+#define _UAPI_LINUX_PFDI_H
++	return false;
++}
 +
-+#include <linux/ioctl.h>
-+#include <linux/types.h>
+ static int pfdi_validate_cpu_features(void)
+ {
+ 	unsigned int i;
+@@ -275,6 +299,172 @@ static int pfdi_pe_fw_check(unsigned int cpu)
+ 	return pfdi_to_linux_errno(per_cpu(pfdi_worker_ctx, cpu).result);
+ }
+ 
++static void pfdi_pe_get_result_fn(struct kthread_work *work)
++{
++	struct pfdi_cpu_worker *worker_ctx;
 +
-+/*
-+ * SMC function IDs for PFDI v1.0.
-+ * These follow the SMCCC fast-call, 64-bit, Standard Secure Service encoding.
-+ */
-+#define PFDI_FN_BASE			0xC40002D0U
-+#define PFDI_FN(n)			(PFDI_FN_BASE + (n))
++	worker_ctx = container_of(work, struct pfdi_cpu_worker, work);
++	worker_ctx->smc_ret = pfdi_smc_call(PFDI_FN_PE_TEST_RESULT,
++					    0, 0, 0, 0);
++	complete(&worker_ctx->done);
++}
 +
-+#define PFDI_FN_VERSION			PFDI_FN(0x00)
-+#define PFDI_FN_FEATURES		PFDI_FN(0x01)
-+#define PFDI_FN_PE_TEST_ID		PFDI_FN(0x02)
-+#define PFDI_FN_PE_TEST_PART_COUNT	PFDI_FN(0x03)
-+#define PFDI_FN_PE_TEST_RUN		PFDI_FN(0x04)
-+#define PFDI_FN_PE_TEST_RESULT		PFDI_FN(0x05)
-+#define PFDI_FN_FW_CHECK		PFDI_FN(0x06)
-+#define PFDI_FN_FORCE_ERROR		PFDI_FN(0x07)
++static int pfdi_pe_get_result(unsigned int cpu, s64 *ft_id)
++{
++	int ret;
++	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
 +
-+#define PFDI_VERSION_MAJOR_SHIFT	16
-+#define PFDI_VERSION_MAJOR_MASK		0x7FFFU
-+#define PFDI_VERSION_MINOR_MASK		0xFFFFU
++	ret = pfdi_thread_worker(cpu, pfdi_pe_get_result_fn,
++				 MAX_SCHEDULE_TIMEOUT);
++	if (ret)
++		return ret;
 +
-+#define PFDI_VERSION_MAJOR(ver) \
-+	(((ver) >> PFDI_VERSION_MAJOR_SHIFT) & PFDI_VERSION_MAJOR_MASK)
-+#define PFDI_VERSION_MINOR(ver)		((ver) & PFDI_VERSION_MINOR_MASK)
-+#define PFDI_VERSION(maj, min) \
-+	((((maj) & PFDI_VERSION_MAJOR_MASK) << PFDI_VERSION_MAJOR_SHIFT) | \
-+	 ((min) & PFDI_VERSION_MINOR_MASK))
++	ret = (int)worker_ctx->smc_ret.a0;
++	if (ret == PFDI_RET_FAULT_FOUND)
++		*ft_id = worker_ctx->smc_ret.a1;
 +
-+/* PFDI return values */
-+#define PFDI_RET_TEST_COUNT_ZERO	(-8)
-+#define PFDI_RET_UNKNOWN		(-7)
-+#define PFDI_RET_NOT_RUN		(-6)
-+#define PFDI_RET_ERROR			(-5)
-+#define PFDI_RET_FAULT_FOUND		(-4)
-+#define PFDI_RET_INVALID_PARAM		(-3)
-+#ifndef SMCCC_RET_NOT_SUPPORTED
-+#define SMCCC_RET_NOT_SUPPORTED		(-1)
-+#endif
-+#ifndef SMCCC_RET_SUCCESS
-+#define SMCCC_RET_SUCCESS		0
-+#endif
++	return pfdi_to_linux_errno(ret);
++}
 +
-+struct pfdi_test_range {
-+	__s64 start;
-+	__s64 end;
-+};
++static void pfdi_pe_force_error_fn(struct kthread_work *work)
++{
++	struct pfdi_cpu_worker *worker_ctx;
 +
-+struct pfdi_test_run {
-+	struct pfdi_test_range range;
-+	__s64 ft_id;
-+};
++	worker_ctx = container_of(work, struct pfdi_cpu_worker, work);
++	worker_ctx->result = pfdi_smc_call(PFDI_FN_FORCE_ERROR,
++					   worker_ctx->error_info.smc_fid,
++					   worker_ctx->error_info.error_id,
++					   0, 0).a0;
++	complete(&worker_ctx->done);
++}
 +
-+struct pfdi_force_error {
-+	__u32 smc_fid;
-+	/* Keep the ioctl layout identical for native and compat userspace. */
-+	__u32 reserved;
-+	__s64 error_id;
-+};
++static int pfdi_pe_force_error(unsigned int cpu,
++			       const struct pfdi_force_error *error_info)
++{
++	int ret;
++	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
 +
-+#define PFDI_IOCTL_VERSION \
-+	_IOR('J', 1, __u32)
-+#define PFDI_IOCTL_FEATURES \
-+	_IOW('J', 2, __u32)
-+#define PFDI_IOCTL_PE_TEST_ID \
-+	_IOR('J', 3, __u64)
-+#define PFDI_IOCTL_PE_TEST_PART_COUNT \
-+	_IOR('J', 4, __s64)
-+#define PFDI_IOCTL_PE_TEST_RUN \
-+	_IOWR('J', 5, struct pfdi_test_run)
-+#define PFDI_IOCTL_PE_TEST_RESULT \
-+	_IOR('J', 6, __s64)
-+#define PFDI_IOCTL_FW_CHECK \
-+	_IO('J', 7)
-+#define PFDI_IOCTL_FORCE_ERROR \
-+	_IOW('J', 8, struct pfdi_force_error)
++	if (!pfdi_fid_supported(error_info->smc_fid))
++		return -EINVAL;
 +
-+#endif /* _UAPI_LINUX_PFDI_H */
++	if (error_info->error_id < PFDI_RET_TEST_COUNT_ZERO ||
++	    error_info->error_id > SMCCC_RET_SUCCESS)
++		return -EINVAL;
++
++	worker_ctx->error_info = *error_info;
++
++	ret = pfdi_thread_worker(cpu, pfdi_pe_force_error_fn,
++				 MAX_SCHEDULE_TIMEOUT);
++	if (ret)
++		return ret;
++
++	return pfdi_to_linux_errno(worker_ctx->result);
++}
++
++static bool pfdi_ranges_equal(const struct pfdi_test_range *lhs,
++			      const struct pfdi_test_range *rhs)
++{
++	return lhs->start == rhs->start && lhs->end == rhs->end;
++}
++
++static bool pfdi_run_available(const struct pfdi_per_cpu_info *cpu_info)
++{
++	return !atomic_read(&cpu_info->run_inprogress);
++}
++
++static int pfdi_validate_test_range(unsigned int cpu,
++				    const struct pfdi_test_range *range)
++{
++	s64 count;
++	int ret;
++
++	if (range->start == -1 || range->end == -1)
++		return pfdi_ranges_equal(range,
++					 &(struct pfdi_test_range){ .start = -1,
++								    .end = -1 }) ?
++		       0 : -EINVAL;
++
++	if (range->start < 0 || range->end < 0 || range->start > range->end)
++		return -EINVAL;
++
++	ret = pfdi_pe_get_test_count(cpu, &count);
++	if (ret)
++		return ret;
++
++	if (range->start >= count || range->end >= count)
++		return -EINVAL;
++
++	return 0;
++}
++
++static void pfdi_pe_run_fn(struct kthread_work *work)
++{
++	struct arm_smccc_res smc_ret;
++	struct pfdi_cpu_worker *worker_ctx;
++
++	worker_ctx = container_of(work, struct pfdi_cpu_worker, work);
++	smc_ret = pfdi_smc_call(PFDI_FN_PE_TEST_RUN,
++				worker_ctx->test_run.range.start,
++				worker_ctx->test_run.range.end, 0, 0);
++
++	if ((int)smc_ret.a0 == PFDI_RET_FAULT_FOUND)
++		worker_ctx->test_run.ft_id = smc_ret.a1;
++
++	worker_ctx->result = (int)smc_ret.a0;
++	complete(&worker_ctx->done);
++}
++
++static int pfdi_pe_run_tests(unsigned int cpu, struct pfdi_test_run *test_run)
++{
++	int ret;
++	unsigned long wait_timeout;
++	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
++	struct pfdi_per_cpu_info *cpu_info = &per_cpu(pfdi_cpu_info, cpu);
++
++	ret = pfdi_validate_test_range(cpu, &test_run->range);
++	if (ret)
++		return ret;
++
++	wait_timeout = msecs_to_jiffies(pfdi_wait_timeout_ms);
++
++	mutex_lock(&cpu_info->state_lock);
++	while (atomic_read(&cpu_info->run_inprogress)) {
++		if (pfdi_ranges_equal(&test_run->range,
++				      &cpu_info->ongoing_run_range)) {
++			mutex_unlock(&cpu_info->state_lock);
++			return -EBUSY;
++		}
++
++		mutex_unlock(&cpu_info->state_lock);
++			ret = wait_event_interruptible_timeout(cpu_info->run_wait,
++							       pfdi_run_available(cpu_info),
++							       wait_timeout);
++		if (ret <= 0)
++			return ret ? ret : -ETIME;
++
++		mutex_lock(&cpu_info->state_lock);
++	}
++
++	atomic_set(&cpu_info->run_inprogress, 1);
++	cpu_info->ongoing_run_range = test_run->range;
++	worker_ctx->test_run = *test_run;
++	mutex_unlock(&cpu_info->state_lock);
++
++	ret = pfdi_thread_worker(cpu, pfdi_pe_run_fn, wait_timeout);
++
++	mutex_lock(&cpu_info->state_lock);
++	if (worker_ctx->result == PFDI_RET_FAULT_FOUND)
++		test_run->ft_id = worker_ctx->test_run.ft_id;
++	atomic_set(&cpu_info->run_inprogress, 0);
++	wake_up_all(&cpu_info->run_wait);
++	mutex_unlock(&cpu_info->state_lock);
++
++	if (ret)
++		return ret;
++
++	return pfdi_to_linux_errno(worker_ctx->result);
++}
++
+ static int arm_pfdi_open(struct inode *inode, struct file *file)
+ {
+ 	struct miscdevice *misc_dev = file->private_data;
+@@ -310,9 +500,12 @@ static long arm_pfdi_ioctl(struct file *file, unsigned int cmd,
+ 	u32 feature_fid;
+ 	u32 version;
+ 	s64 count;
++	s64 ft_id;
+ 	u64 lib_info;
+ 	struct miscdevice *misc_dev = file->private_data;
+ 	struct pfdi_dev_data *device_data;
++	struct pfdi_test_run test_run;
++	struct pfdi_force_error error_info;
+ 	unsigned int cpu;
+ 
+ 	if (!misc_dev || !misc_dev->this_device)
+@@ -350,9 +543,35 @@ static long arm_pfdi_ioctl(struct file *file, unsigned int cmd,
+ 					 sizeof(count)))
+ 			err = -EFAULT;
+ 		break;
++	case PFDI_IOCTL_PE_TEST_RUN:
++		if (copy_from_user(&test_run, (void __user *)arg,
++				   sizeof(test_run)))
++			return -EFAULT;
++
++		err = pfdi_pe_run_tests(cpu, &test_run);
++		if (err == -EFAULT &&
++		    copy_to_user((void __user *)arg, &test_run,
++				 sizeof(test_run)))
++			err = -EFAULT;
++		break;
++	case PFDI_IOCTL_PE_TEST_RESULT:
++		err = pfdi_pe_get_result(cpu, &ft_id);
++		if (err == -EFAULT && copy_to_user((void __user *)arg, &ft_id,
++						   sizeof(ft_id)))
++			err = -EFAULT;
++		break;
+ 	case PFDI_IOCTL_FW_CHECK:
+ 		err = pfdi_pe_fw_check(cpu);
+ 		break;
++	case PFDI_IOCTL_FORCE_ERROR:
++		if (copy_from_user(&error_info, (void __user *)arg,
++				   sizeof(error_info)))
++			return -EFAULT;
++		if (error_info.reserved)
++			return -EINVAL;
++
++		err = pfdi_pe_force_error(cpu, &error_info);
++		break;
+ 	default:
+ 		err = -ENOTTY;
+ 		break;
+@@ -413,6 +632,9 @@ static int arm_pfdi_device_create(unsigned int cpu)
+ 
+ 	sema_init(&per_cpu(pfdi_cpu_info, cpu).open_sem, 1);
+ 	mutex_init(&worker_ctx->worker_lock);
++	atomic_set(&per_cpu(pfdi_cpu_info, cpu).run_inprogress, 0);
++	mutex_init(&per_cpu(pfdi_cpu_info, cpu).state_lock);
++	init_waitqueue_head(&per_cpu(pfdi_cpu_info, cpu).run_wait);
+ 	init_completion(&worker_ctx->done);
+ 	per_cpu(pfdi_worker, cpu) =
+ 		kthread_create_worker_on_cpu(cpu, 0, "pfdi/%u");
+@@ -447,6 +669,9 @@ static int arm_pfdi_device_destroy(unsigned int cpu)
+ {
+ 	struct miscdevice *misc_dev = &per_cpu(pfdi_misc_device, cpu);
+ 
++	if (atomic_read(&per_cpu(pfdi_cpu_info, cpu).run_inprogress) > 0)
++		return -EBUSY;
++
+ 	if (per_cpu(pfdi_worker, cpu)) {
+ 		kthread_flush_worker(per_cpu(pfdi_worker, cpu));
+ 		kthread_destroy_worker(per_cpu(pfdi_worker, cpu));
 
 -- 
 2.43.0
