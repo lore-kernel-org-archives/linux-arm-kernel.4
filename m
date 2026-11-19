@@ -2,51 +2,51 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D10606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7210606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1EO9dulO;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=O0D+63dh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CdZkpYKH;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=NXX6a2Fs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0KsnA1sc2ZPNx4wFgHWHhB+NH0HS9lIKRKe68U1iMk4=; b=1EO9dulOVdHesb
-	0sGBPxCpX8t04P7D9tCjJVZsstjhfZIaFhtKGpkLmqkGZVTVERekEuYjoyFwOcV+0Gh9sSz47N23U
-	hoyApiOYynbEnsLR73HTlBZSWFKYFIcjpuUWUoIsMJGVAle4jNhBhGDt7PDyvNVDr9E9ssr3DGRyl
-	12JPHJGQApkBpq+OJ2nFJm+AK0l5OIKYkGGyUkrYcNFCJYfLz5dkD/tTzRC5wk0Bq3/R8BZxM0cWf
-	/Q1EOeO2nCeJqFDkeI/FYyQgmFMxzRo8kBAh0N6e/kdJ8L4/s+VZfATfaKsW3U0cvLlrJlZLZAJcC
-	GKLv8J7z1gzksQnocCRA==;
+	List-Owner; bh=7v5ZNN63HvHrdbqH3CUQi62kfadGnTXvbl26t53r41k=; b=CdZkpYKHTGPCZE
+	SX5T1VAtfHNDV85KCUUE+nVild95aAosXCzSJeimZfGZ+Ue4vEPl5jc5qjtNUT61UwvovRNvcN7QE
+	a9VsQadF0e4XJs70vsu/SkmB/yWzu3EIxGcHoJIWwmp3FNqGHvKsLy2T54YQvNj+bMUO4TAbyUKST
+	Ah9k7ULky2RyR/AGu92dQadM8jlbepbB74uuA0EgBnnWZuh2vm8JAXRK/k2TUfiPZxAly4+kSugi2
+	nkJHM3AYbPRMVd6Fr1KJDN/73OolF5v/Wj3L8PpyhFueIuaQ8NvVRi+cWC7EjE82COORykk3l31C6
+	tGiUUelLbyYk3wvmWfVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0Au-0000000BgSp-3KUC;
-	Thu, 19 Nov 2026 11:19:32 +0000
+	id 1xU0D1-0000000Bgen-17It;
+	Thu, 19 Nov 2026 11:21:43 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0Ar-0000000BgSP-2khG
+	id 1xU0Cz-0000000BgeS-16pu
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 11:19:31 +0000
+	Thu, 19 Nov 2026 11:21:42 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8A42B1575;
-	Thu, 19 Nov 2026 03:19:22 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CE4301575;
+	Thu, 19 Nov 2026 03:21:36 -0800 (PST)
 Received: from [192.168.178.24] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 84B133F882;
-	Thu, 19 Nov 2026 03:19:23 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C53453F882;
+	Thu, 19 Nov 2026 03:21:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795087165; bh=wni50JqD/rgfdfFKe6pPfOFoW/LymRi2FWik5KqVhC0=;
+	t=1795087299; bh=ryVGJvRFBKaDiggrplKfiWJ6FP8BRQLqWd2Wvok1GeQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O0D+63dhCQU6szFikY+uimE6GKtFQmiJYlRYi+L1o5lauP7FUnaLfkZJw6m6AJoAk
-	 MIOkKY3VaBwMmJO2HpVgxBB+Hs4sYtlmLQ3C7rxYx5mEuWldQ7r57yTy9j8Obb+ByJ
-	 n4/eImI2DTDYhlfYrB0FrLcibzGivAP0/k1eOiAM=
-Message-ID: <e5c405ce-0847-41c5-a936-0d8809f90ae0@arm.com>
-Date: Thu, 19 Nov 2026 12:19:21 +0100
+	b=NXX6a2FszbHwrTzPyuCBWkGsKVFFN9/j1nx5TKJv3bUAJe2mev+0wuSIgDWMjA7JJ
+	 +3u+G6+Xf2wXZjvHMHM2+zy6zAQwdlaRTT7JT1ixLxKuTTK8apBoMmDBObTxJGi03M
+	 Mof15FU0FgTcf5o2MBncHLIGuFsLgRtajtqOXx1U=
+Message-ID: <6064cf83-7cf8-4ac2-b8c6-9745e05d8e3e@arm.com>
+Date: Thu, 19 Nov 2026 12:21:25 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: allwinner: orangepi-zero2: Reference
- the SPI NOR by label
+Subject: Re: [PATCH v2 2/2] arm64: dts: allwinner: orangepi-zero2/zero3: Read
+ the SPI NOR over two lines
 To: aiyengar1990@gmail.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
@@ -55,15 +55,15 @@ To: aiyengar1990@gmail.com, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
 References: <20261119-zero2-spi-nor-dual-read-v2-0-185c87065e39@gmail.com>
- <20261119-zero2-spi-nor-dual-read-v2-1-185c87065e39@gmail.com>
+ <20261119-zero2-spi-nor-dual-read-v2-2-185c87065e39@gmail.com>
 Content-Language: en-GB
 From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20261119-zero2-spi-nor-dual-read-v2-1-185c87065e39@gmail.com>
+In-Reply-To: <20261119-zero2-spi-nor-dual-read-v2-2-185c87065e39@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_031929_808136_BDA1D7B6 
-X-CRM114-Status: GOOD (  16.97  )
+X-CRM114-CacheID: sfid-20261119_032141_371541_914540C8 
+X-CRM114-Status: GOOD (  13.96  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,77 +83,43 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Arun,
-
-thanks for the changes and the respin!
+Hi,
 
 On 11/19/26 06:29, Arun Iyengar via B4 Relay wrote:
 > From: Arun Iyengar <aiyengar1990@gmail.com>
 > 
-> Andre Przywara suggested labelling the flash node, so the Zero2 sets its
-> supply through the label instead of nesting flash@0 in &spi0.
+> WP# and HOLD# are tied to VCC on the Zero2 (schematic v1.3), so read over
+> two lines. Andre Przywara pointed out that the Zero3 is the same.
 > 
 > Suggested-by: Andre Przywara <andre.przywara@arm.com>
 > Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+
+You can drop the Suggested-by:, as the whole thing was your idea, and I 
+just suggested the move.
+
+Feel free to add:
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+Tested-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
 > ---
->   arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi |  2 +-
->   arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 10 ++++------
->   2 files changed, 5 insertions(+), 7 deletions(-)
+>   arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
 > 
 > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-> index 0d3e761f6466..646d92e0f724 100644
+> index 646d92e0f724..4a588c44d029 100644
 > --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
 > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-> @@ -104,7 +104,7 @@ &spi0 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&spi0_pins>, <&spi0_cs0_pin>;
->   
-> -	flash@0 {
-> +	flash: flash@0 {
-
-I feel like "spi_flash" would be a better, more specific label to use, 
-"flash" is a bit generic.
-
->   		#address-cells = <1>;
->   		#size-cells = <1>;
+> @@ -110,6 +110,7 @@ flash: flash@0 {
 >   		compatible = "jedec,spi-nor";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> index 90c25e12e189..59bbb09bcdbf 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> @@ -24,6 +24,10 @@ &emac0 {
->   	phy-supply = <&reg_dcdce>;
+>   		reg = <0>;
+>   		spi-max-frequency = <40000000>;
+> +		spi-rx-bus-width = <2>;
+>   	};
 >   };
 >   
-> +&flash {
-> +	vcc-supply = <&reg_aldo1>;
-> +};
-> +
-
-Could you do me a favour and add the OrangePi Zero3 regulator as well, 
-to sun50i-h618-orangepi-zero3.dts? It's also reg_aldo1, although that's 
-a different PMIC, so actually a different regulator, and so should stay 
-in the board specific .dts (even though the lines look the same).
-That saves me from sending a follow-up patch with a dependency.
-
-Otherwise the patch looks alright!
-
-Thanks,
-Andre.
-
->   &gpu {
->   	mali-supply = <&reg_dcdcc>;
->   };
-> @@ -147,9 +151,3 @@ &pio {
->   	vcc-ph-supply = <&reg_aldo1>;
->   	vcc-pi-supply = <&reg_aldo1>;
->   };
-> -
-> -&spi0 {
-> -	flash@0 {
-> -		vcc-supply = <&reg_aldo1>;
-> -	};
-> -};
 > 
 
 
