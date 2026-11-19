@@ -2,106 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAE2606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 04:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7D7606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 04:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M+35KxFt;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dN7NNFBr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bZVu2UkQ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=yUj1qhby
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=JgaK9RykTE3Nx1Cad/MiTnEkZj3GuQkh9r/+HIVZ4Uc=; b=M+35KxFtU2A1a4lQN6RTp2Nnht
-	FBQjAR+y/K5gSHYF+Apc4DI5FkN5xiTx0+6fANQu+fJee3hzA93U0eXqcFc+uox4pqjzi9go6qk3s
-	xZ2VznnYHlJSOz+qYv22TupfM582Yse+YAxFBMIxHQmGlcJtw8xQkunYr91fft1jlZkATTOK98pPG
-	yyQDnp9axgJh+hBpJWBeTR1SF6W2/zEP8wb7aZo4m02m9/rB3RaO0RJYeUjJkgyszBLxZQVuaAmoD
-	NYkirEoNOzLLcBHy4X2U8F9KxWXUAG2RysTrF8yZCf6gfcKyXTUeIuB1F+lCbb7961lNOaAWJNmre
-	sY+xJPPg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=LkI7Sy95lBvfbQtMVCxtNAxq0Xj/HDOqrG1KSqd25kM=; b=bZVu2UkQJvQ9Ax
+	zAg6sbrGfeeFYQEeDUrh+uoorZP/Im6GRVz9uwpZKwd+oISh8SrkV6sc0h6YNQanZmlt9AYdSC8jV
+	dX3ZATtXNgr+DsGWp2GNy/39mL5gKeKL6GPH67THAsspOBMjZdFeoRJ31gn2qwyuiAXBeqQS5Py/k
+	NAI/iGoExNNDLetGik1hAaGfH+DRfAA5CIqsp7XljLPNJfRHtJqSxbcf3TW6+Sk+/0bTXPYKT+vST
+	A+b5yGpAw4n9RNfST4VYhsMNro6aDL+/YZraxnkEngWtMnsFgQpBck1doM8z28tbVXHvWEBO6emhA
+	6NXZPPRytYPCjCbJAyTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTtwX-0000000Aq5a-1qSk;
-	Thu, 19 Nov 2026 04:40:17 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTu1s-0000000AqaT-1Rj5;
+	Thu, 19 Nov 2026 04:45:48 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTtwQ-0000000Aq2J-0f53;
-	Thu, 19 Nov 2026 04:40:10 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CCFD76193A;
-	Thu, 19 Nov 2026 04:40:08 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795063208;
-	b=hRqmicOnbGuRd9YQ8On8+zfm7dxolR8kQk+yHx9ZbzKjRKrrJsHrtsik4dFL0317Aqmc
-	 +CieLZBIpIETDn6wIzkFpXqkZFk7fmV2Vx0HQlhI1ZRW9sUBRSVnnYL7nIvir/f2u1kZe
-	 KvJD2TxTZLLKV24TK3a03GWzC9zzie92CMud0LqTnUzMvyVpR14mxJlBhOhEkLH4Zk1n3
-	 k9G9r4SALc1Lb21bqJBmx6VKhH16hsUGcV/PDQS/loeBfWrugVT6E2tnCVbheN4Dwxtc8
-	 QR6I1p2b1qMUbO6DvfM9m/Ug8tOUZ4tr51QScxkgbimrqbgTuRZSZEMl49OcGLFPVmQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795063208;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=JgaK9RykTE3Nx1Cad/MiTnEkZj3GuQkh9r/+HIVZ4Uc=;
-	b=yubZd6oZzItpDqpRghebNFYsxxZ/PO1MKsKg1PxFah8Oy2sxhXoUOT6dYDhmT/3mHLbK
-	 h2Bkx3GOMxfjzn3XVPTRzyixh9vZxmPiC+mbUHq0iVCHDVPi5VWEa0YBmM3cmE5EzS4nd
-	 JI6nFkYtkjqqYCOUq55ubG902hPKKkp+t7gb7i2ZPyfsnY+/LElOBsVJnTRF5zE72gfjI
-	 2lC5GtuU0kqHVSfG/wVybglNkLs4O1zOKs0XL37JbFkVzyRZ9q2yKm6EHMX/CyX6quto2
-	 kYBa/a6fs8kS2ZfKof/GxYE/Biuc2C/sXJX96M9MjOaI0M0lCRrOWwD/AZCx7hsbIXg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id BB3481F000C5;
-	Thu, 19 Nov 2026 04:40:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795063208;
-	bh=JgaK9RykTE3Nx1Cad/MiTnEkZj3GuQkh9r/+HIVZ4Uc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=dN7NNFBrek3WitUiQYjQ6WXO1fxeWCQ6GljNhQYfvJtOHKUByq4WGshqOEitdLUD6
-	 OCZx98NpwEYAODug1QQNLIMTxNdWBk19eQsEp2/DrzpdVoVuyL4g1jtDw1VtfQkcpx
-	 XeWkoiXthONGur+Cuepze0n0Vn/qVNeIIFhUW+B8IkuN0YlGA+phAba81Oa91G5q59
-	 AMfRMY0zU1BUtdHdBr3QDKpQIL32q68WokFKNlIE3sOOokTVqYwR7tfMOVyR4NvCuX
-	 Ed8utA2LltNGgMVhlK8654+N8mvudRGWQIEIZOdfK0YcNuVI4GezjNwc9InzdKdouG
-	 l+hNDALES0M/Q==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 4887A4B0E4;
-	Thu, 19 Nov 2026 04:40:07 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 19 Nov 2026 04:40:07 +0000
-Subject: [PATCH v2 1/2] media: verisilicon: av1: Find the reference buffers
- by timestamp
+	id 1xTu1o-0000000Aqa3-3bd9
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 19 Nov 2026 04:45:46 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4a207b02a2cso12476125e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 20:45:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795063542; cv=none;
+        d=google.com; s=arc-20260327;
+        b=BQvPv77zBhXefybqUJw8qaNUQi/1rHkovPeV+beeJBkD3TRfmSUTIrEYwXdcnxuNQy
+         PmROn3qEPAIVudHGwUgWel+JZP+JQF3PTO6mnVC2RIYRrc/zw1orCu/sOr4AJKnoTEbo
+         Q5KHf7jcg8nFpl7JtVHhUBMUN+nteCh5oBOHH+e7hAAKyGpnkj29XJYOxpPM74f5XmIc
+         ZZFvkiGuTT7zTN/TIxjZewaHYKOhLRA+7DBbW3WQHvjwiajh1pJZC346jFCYG59yD11K
+         dQhQ4If3r1NVWFM/xRFAdfHvmLS70QxdIDq/1h6UJjK/EhNYmlTIA6gxX6x53V+cEUDp
+         cUUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=LkI7Sy95lBvfbQtMVCxtNAxq0Xj/HDOqrG1KSqd25kM=;
+        fh=WHnTYi3XgtJQzsw2dA4NKc7+G+WuqWNT5i44M4f69so=;
+        b=pCgcta4CgvkXNJMyX3gqtJdj6aKtBWVN2FWR45dRaKy8y6I3IKwkR0kMmmgwEAxwXC
+         8wWjCCSMTtgcjFR/iMJ9pTzZ97JFjCj11QHRKL9K8IcAR6Ygs2iEJ9RUf9Rn3mm9uM8Q
+         twQsrok2uHc2tMXnvToJLAsyYROQ3OGhgc9qIH86juSuTxVMERJ982kgXXlG9579x0aj
+         gFd/TPipkkqjrKp+7YelCSI9y61wtxOMlMxR7DzdEPCDNKCgk7MyO7DEV4NpiLzJBzRH
+         UM6FjwvQzYiW4s0lLLzFPUZmW3FX9scDn9mnJS8j0ScZQLu/keuFBNdi4aZgXd+uUyjt
+         VzdA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795063542; x=1795668342; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=LkI7Sy95lBvfbQtMVCxtNAxq0Xj/HDOqrG1KSqd25kM=;
+        b=yUj1qhbyZi38PfuXZOiMBPAub+kKcFnoS215MeH08NDF7FKC3oH7v+Wyxa/j7eaZF5
+         AWh0ZjQ9n+9q4hXc7J+d7hrQEzUGnVCLpOXAUnq7pZz0lhT4c6zthjLlYthvYDdM0YkU
+         E848NsJzSRfnOToSrQW14lg/4+6YdC5rg4hucoPBKbkz9RLjTEJ95fi5CcPHNwhQWq7Y
+         I4t99kDeN/VqQTvjKArWj9mC/+LZ25ofCVFMRY5afp5YMsLlTmXkRCNmdATpAZUPxpMw
+         6x5dmdznqG0MAlHezGXMISk/W3f99y+Q8fdxd4NV4aKST63CqAXqxq2B8Ueb5C+E+9Md
+         tlaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795063542; x=1795668342;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=LkI7Sy95lBvfbQtMVCxtNAxq0Xj/HDOqrG1KSqd25kM=;
+        b=mCvLpi6IqG24xwAs/eKwJCWCx7GvzcrfFOCREr9mYKCMG1OtmpGWvmSb97OlW3dmKB
+         y+ajty5SxvTnxNarBtgKrWjmNzLgjYS1W//MO53MWUM0bAIPT4FRZRg60Ulv07bVGEfC
+         dvpNj70eIOkWfxNx/htv5FtZ070uZwrSr2SuWdXpTeCaXYacB5oT9Ex6ys10gek+mV/D
+         UspvptOTkLLk3fe8QnppHW0fCesg3ezjLMv4Hp/1bPuMMMdaHvSjM2z2aPBi7pWAWhPe
+         SH12NvdTIw6CG8yrL9QZ5fBCtc6fq/VxujrXBqMNNcLNaUPnDo4FbO5NJQE+lcNPSSaj
+         5j7w==
+X-Forwarded-Encrypted: i=1; AL+hErGb7Li5QYYvULQiDdrntQBMSfffxU7BA9CzTPKUU4ZFaDFJJO680QhD+dARujhOTTD7Hh8a808UO59vmi0WWvuU@lists.infradead.org
+X-Gm-Message-State: APuU4Z+k3M02XUkC2vKz77vQtmP7lp2rLIsCGU1X34VPqKsnzrHbe3ph
+	z0dREJfaGuYI9WtjKzGL5+krRbuwYQQJrzaG3vOBexMMuLXACRO9IRnuBciD1dI1likoLe+f9jd
+	uKyDGhOppxthwLg2AtK7H/Xv4AB1DTKo=
+X-Gm-Gg: AYBFou32fFAgeKZ6/XRJB6evfqHMLE8EdwpMlsnlGPo4YRyCFBDa0Vrsn+437gIbYa+
+	DY78JGeEcqrLr/objbvB+BTJ00DvUQk+z9yZPRxTTQqpO+3CKxSQWvN8K27TAwLyeHhF+ba/Tjn
+	rFArAqhQeEHlnVZcd/dgWvtNtOJVF9eLn3/dOqbptzv1yfGPoq9xkR/RelDVmp1DrQj1RyCS4/6
+	sO4/BQKFhKnAc0XMALtqxkfWx80Ei/e9C/HbZ/qztqaEt5ViRjjksEUxwKwe0W2oUArNeVq/Rt1
+	FClS6ghkKnaTLTjmjRWWqLFAd3PFe+Th+vyNbq1pG8p828IvGAtr4e3fuk9uJCD35+EVRGfyaoM
+	+UxyBMh1nVdoJ03NlWW4u2EfRfLYgkYjTQ5LrHZrM+eEaVNoJMD4CqMZXZQwZlyaO0dSEt1bNO3
+	NVPGMy81SZt4O1I4Aw8w==
+X-Received: by 2002:a05:600c:8b5c:b0:4a2:397:73f6 with SMTP id
+ 5b1f17b1804b1-4bb7da13a97mr99793645e9.8.1795063542301; Wed, 18 Nov 2026
+ 20:45:42 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261119-b4-vpu981-av1-refs-v2-1-7c270158b20e@gmail.com>
-References: <20261119-b4-vpu981-av1-refs-v2-0-7c270158b20e@gmail.com>
-In-Reply-To: <20261119-b4-vpu981-av1-refs-v2-0-7c270158b20e@gmail.com>
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Hans Verkuil <hverkuil@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- stable@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795063206; l=9612;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=KTseDFHZfflH4HHcBG3Etn8Wr6M60T+VZLsglOe5pjc=;
- b=Ty2fRmhUUe/rrSujhtcELhtn+RCfxwaO13USn31sWjRTI94EDMKrWsDGGgnf0Ow7izHnIrLrS
- pNbzG2W0nKiCB9aesac6iTYUx844ma1SHzNDheOWPy0Si3yK3NDMbUL
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+References: <20261119000112.2377949-1-andrii@kernel.org> <20261119000112.2377949-2-andrii@kernel.org>
+ <DMYSXNCMOF26.38XGLPOW4K29X@gmail.com>
+In-Reply-To: <DMYSXNCMOF26.38XGLPOW4K29X@gmail.com>
+From: Andrii Nakryiko <andrii.nakryiko@gmail.com>
+Date: Wed, 18 Nov 2026 20:45:30 -0800
+X-Gm-Features: Aa3M54ru9v9e2z-jn0buLdaQZSqjE5mLeJ2k6xUEdsRdwJ_B7hJSsTaDWvpbQxk
+Message-ID: <CAEf4BzbcPkqX+YncZ+3ysFnXmJWaAUyZiF9BkhbTW27h7MxPxg@mail.gmail.com>
+Subject: Re: [PATCH bpf-next v2 1/3] arm64: perf: Don't report the caller
+ twice in caller-regs callchains
+To: Alexei Starovoitov <alexei.starovoitov@gmail.com>
+Cc: Andrii Nakryiko <andrii@kernel.org>, bpf@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com, 
+	will@kernel.org, mark.rutland@arm.com, linux-perf-users@vger.kernel.org, 
+	peterz@infradead.org, jolsa@kernel.org, rostedt@goodmis.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_204545_024697_2901F12F 
+X-CRM114-Status: GOOD (  21.31  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,250 +121,71 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+On Wed, Nov 18, 2026 at 5:38=E2=80=AFPM Alexei Starovoitov
+<alexei.starovoitov@gmail.com> wrote:
+>
+> On Wed, Nov 18, 2026 at 04:01 PM Andrii Nakryiko <andrii@kernel.org> wrot=
+e:
+> > Do the same on arm64. Set pstate to PSR_MODE_EL1t, which exceptions
+> > taken from the kernel never have (the kernel runs in EL1h, or EL2h
+> > with VHE), and skip the leaf regs->pc in perf_callchain_kernel() for
+> > regs with that mode. The unwind still starts from regs, with the frame
+> > record at x29 walked by the unwinder.
+>
+> my bot thinks the following will be a more accurate fix...
+>
+> diff --git a/arch/arm64/include/asm/perf_event.h b/arch/arm64/include/asm=
+/perf_event.h
+> index ee45b4e..7c5ab65 100644
+> --- a/arch/arm64/include/asm/perf_event.h
+> +++ b/arch/arm64/include/asm/perf_event.h
+> @@ -13,11 +13,12 @@
+>  #define perf_arch_bpf_user_pt_regs(regs) &regs->user_regs
+>  #endif
+>
+> +/* PSR_MODE_EL1t marks these regs for kunwind_stack_walk() */
+>  #define perf_arch_fetch_caller_regs(regs, __ip) { \
+>         (regs)->pc =3D (__ip);    \
+>         (regs)->regs[29] =3D (unsigned long) __builtin_frame_address(0); =
+\
+>         (regs)->sp =3D current_stack_pointer; \
+> -       (regs)->pstate =3D PSR_MODE_EL1h; \
+> +       (regs)->pstate =3D PSR_MODE_EL1t; \
+>  }
+>
+>  #endif
+> diff --git a/arch/arm64/kernel/stacktrace.c b/arch/arm64/kernel/stacktrac=
+e.c
+> index 3ebcf8c..de394ff 100644
+> --- a/arch/arm64/kernel/stacktrace.c
+> +++ b/arch/arm64/kernel/stacktrace.c
+> @@ -357,6 +357,13 @@ kunwind_stack_walk(kunwind_consume_fn consume_state,
+>                 if (task !=3D current)
+>                         return -EINVAL;
+>                 kunwind_init_from_regs(&state, regs);
+> +               /*
+> +                * With perf_arch_fetch_caller_regs() the PC is a copy of=
+ the
+> +                * LR in the frame record at FP. Start from that record.
+> +                */
+> +               if (processor_mode(regs) =3D=3D PSR_MODE_EL1t &&
+> +                   kunwind_next(&state))
+> +                       return -EINVAL;
 
-frame_refs[] keeps a CAPTURE buffer pointer per reference across jobs.
-VIDIOC_REMOVE_BUFS can free that buffer, and a missing reference falls
-back to slot 0, which can hold a stale pointer.
+if arm folks approve, I'm all for this fix deeper in the generic
+unwinder code, smaller and cleaner change, thanks!
 
-Look the buffer up by timestamp at each job, as the other Hantro codecs
-do. If it is gone or holds a frame of another size, use the current
-CAPTURE buffer and frame size, and set that buffer up first.
-
-Fixes: 727a400686a2 ("media: verisilicon: Add Rockchip AV1 decoder")
-Cc: stable@vger.kernel.org
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- drivers/media/platform/verisilicon/hantro.h        |  2 +
- drivers/media/platform/verisilicon/hantro_hw.h     |  3 -
- .../verisilicon/rockchip_vpu981_hw_av1_dec.c       | 73 ++++++++++++++--------
- 3 files changed, 50 insertions(+), 28 deletions(-)
-
-diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
-index 0353de154a1e..4959872aced7 100644
---- a/drivers/media/platform/verisilicon/hantro.h
-+++ b/drivers/media/platform/verisilicon/hantro.h
-@@ -342,6 +342,8 @@ struct hantro_av1_decoded_buffer_info {
- 	/* Info needed when the decoded frame serves as a reference frame. */
- 	size_t chroma_offset;
- 	size_t mv_offset;
-+	int width;
-+	int height;
- };
- 
- struct hantro_decoded_buffer {
-diff --git a/drivers/media/platform/verisilicon/hantro_hw.h b/drivers/media/platform/verisilicon/hantro_hw.h
-index 13e573f1f19d..51e947848b61 100644
---- a/drivers/media/platform/verisilicon/hantro_hw.h
-+++ b/drivers/media/platform/verisilicon/hantro_hw.h
-@@ -287,7 +287,6 @@ struct hantro_av1_frame_ref {
- 	bool used;
- 	u32 order_hint;
- 	u32 order_hints[V4L2_AV1_TOTAL_REFS_PER_FRAME];
--	struct vb2_v4l2_buffer *vb2_ref;
- };
- 
- /**
-@@ -314,7 +313,6 @@ struct hantro_av1_frame_ref {
-  * @default_cdfs_ndvc:	default mv probabilties structure
-  * @cdfs_last:		stored probabilities structures
-  * @cdfs_last_ndvc:	stored mv probabilities structures
-- * @current_frame_index: index of the current in frame_refs array
-  */
- struct hantro_av1_dec_hw_ctx {
- 	struct hantro_aux_buf db_data_col;
-@@ -339,7 +337,6 @@ struct hantro_av1_dec_hw_ctx {
- 	struct mvcdfs  default_cdfs_ndvc;
- 	struct av1cdfs cdfs_last[NUM_REF_FRAMES];
- 	struct mvcdfs  cdfs_last_ndvc[NUM_REF_FRAMES];
--	int current_frame_index;
- };
- /**
-  * struct hantro_postproc_ctx
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-index 2a145433e6d1..b331ff234878 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-@@ -169,12 +169,10 @@ static int rockchip_vpu981_av1_dec_frame_ref(struct hantro_ctx *ctx,
- 		av1_dec->frame_refs[i].timestamp = timestamp;
- 		av1_dec->frame_refs[i].frame_type = frame->frame_type;
- 		av1_dec->frame_refs[i].order_hint = frame->order_hint;
--		av1_dec->frame_refs[i].vb2_ref = hantro_get_dst_buf(ctx);
- 
- 		for (j = 0; j < V4L2_AV1_TOTAL_REFS_PER_FRAME; j++)
- 			av1_dec->frame_refs[i].order_hints[j] = frame->order_hints[j];
- 		av1_dec->frame_refs[i].used = true;
--		av1_dec->current_frame_index = i;
- 
- 		return i;
- 	}
-@@ -182,6 +180,30 @@ static int rockchip_vpu981_av1_dec_frame_ref(struct hantro_ctx *ctx,
- 	return AV1_INVALID_IDX;
- }
- 
-+/* NULL if the CAPTURE buffer of frame_refs[idx] is gone or holds another frame */
-+static struct hantro_decoded_buffer *
-+rockchip_vpu981_av1_dec_ref_buf(struct hantro_ctx *ctx, int idx)
-+{
-+	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
-+	struct vb2_queue *q = v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx);
-+	struct hantro_decoded_buffer *buf;
-+	struct vb2_buffer *vb;
-+
-+	if (idx < 0)
-+		return NULL;
-+
-+	vb = vb2_find_buffer(q, av1_dec->frame_refs[idx].timestamp);
-+	if (!vb)
-+		return NULL;
-+
-+	buf = vb2_to_hantro_decoded_buf(vb);
-+	if (buf->av1.width != av1_dec->frame_refs[idx].width ||
-+	    buf->av1.height != av1_dec->frame_refs[idx].height)
-+		return NULL;
-+
-+	return buf;
-+}
-+
- static void rockchip_vpu981_av1_dec_frame_unref(struct hantro_ctx *ctx, int idx)
- {
- 	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
-@@ -766,14 +788,14 @@ static void rockchip_vpu981_av1_dec_set_frame_sign_bias(struct hantro_ctx *ctx)
- }
- 
- static bool
--rockchip_vpu981_av1_dec_set_ref(struct hantro_ctx *ctx, int ref, int idx,
-+rockchip_vpu981_av1_dec_set_ref(struct hantro_ctx *ctx, int ref,
-+				struct hantro_decoded_buffer *dst,
- 				int width, int height)
- {
- 	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
- 	struct hantro_av1_dec_ctrls *ctrls = &av1_dec->ctrls;
- 	const struct v4l2_ctrl_av1_frame *frame = ctrls->frame;
- 	struct hantro_dev *vpu = ctx->dev;
--	struct hantro_decoded_buffer *dst;
- 	dma_addr_t luma_addr, chroma_addr, mv_addr = 0;
- 	int cur_width = frame->frame_width_minus_1 + 1;
- 	int cur_height = frame->frame_height_minus_1 + 1;
-@@ -829,7 +851,6 @@ rockchip_vpu981_av1_dec_set_ref(struct hantro_ctx *ctx, int ref, int idx,
- 		pr_warn("AV1 invalid reference frame index\n");
- 	}
- 
--	dst = vb2_to_hantro_decoded_buf(&av1_dec->frame_refs[idx].vb2_ref->vb2_buf);
- 	luma_addr = hantro_get_dec_buf_addr(ctx, &dst->base.vb.vb2_buf);
- 	chroma_addr = luma_addr + dst->av1.chroma_offset;
- 	mv_addr = luma_addr + dst->av1.mv_offset;
-@@ -888,14 +909,13 @@ static void rockchip_vpu981_av1_dec_set_segmentation(struct hantro_ctx *ctx)
- 	if (!!(seg->flags & V4L2_AV1_SEGMENTATION_FLAG_ENABLED) &&
- 	    frame->primary_ref_frame < V4L2_AV1_REFS_PER_FRAME) {
- 		int idx = rockchip_vpu981_get_frame_index(ctx, frame->primary_ref_frame);
-+		struct hantro_decoded_buffer *ref = rockchip_vpu981_av1_dec_ref_buf(ctx, idx);
- 
--		if (idx >= 0) {
-+		if (ref) {
- 			dma_addr_t luma_addr, mv_addr = 0;
--			struct hantro_decoded_buffer *seg;
- 			size_t mv_offset = rockchip_vpu981_av1_dec_chroma_size(ctx);
- 
--			seg = vb2_to_hantro_decoded_buf(&av1_dec->frame_refs[idx].vb2_ref->vb2_buf);
--			luma_addr = hantro_get_dec_buf_addr(ctx, &seg->base.vb.vb2_buf);
-+			luma_addr = hantro_get_dec_buf_addr(ctx, &ref->base.vb.vb2_buf);
- 			mv_addr = luma_addr + mv_offset;
- 
- 			hantro_write_addr(vpu, AV1_SEGMENTATION, mv_addr);
-@@ -1983,22 +2003,24 @@ static void rockchip_vpu981_av1_dec_set_reference_frames(struct hantro_ctx *ctx)
- 
- 	for (i = V4L2_AV1_REF_LAST_FRAME; i < V4L2_AV1_TOTAL_REFS_PER_FRAME; i++) {
- 		u32 ref = i - 1;
--		int idx = 0;
--		int width, height;
-+		struct hantro_decoded_buffer *buf = NULL;
-+		int width = frame->frame_width_minus_1 + 1;
-+		int height = frame->frame_height_minus_1 + 1;
- 
--		if (allow_intrabc) {
--			idx = av1_dec->current_frame_index;
--			width = frame->frame_width_minus_1 + 1;
--			height = frame->frame_height_minus_1 + 1;
-+		if (!allow_intrabc) {
-+			int idx = rockchip_vpu981_get_frame_index(ctx, ref);
-+
-+			buf = rockchip_vpu981_av1_dec_ref_buf(ctx, idx);
-+		}
-+		if (buf) {
-+			width = buf->av1.width;
-+			height = buf->av1.height;
- 		} else {
--			if (rockchip_vpu981_get_frame_index(ctx, ref) > 0)
--				idx = rockchip_vpu981_get_frame_index(ctx, ref);
--			width = av1_dec->frame_refs[idx].width;
--			height = av1_dec->frame_refs[idx].height;
-+			buf = vb2_to_hantro_decoded_buf(&hantro_get_dst_buf(ctx)->vb2_buf);
- 		}
- 
- 		scale_enable |=
--		    rockchip_vpu981_av1_dec_set_ref(ctx, ref, idx, width,
-+		    rockchip_vpu981_av1_dec_set_ref(ctx, ref, buf, width,
- 						    height);
- 
- 		rockchip_vpu981_av1_dec_set_sign_bias(ctx, ref,
-@@ -2185,22 +2207,22 @@ rockchip_vpu981_av1_dec_set_input_buffer(struct hantro_ctx *ctx,
- static void
- rockchip_vpu981_av1_dec_set_output_buffer(struct hantro_ctx *ctx)
- {
--	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
-+	const struct v4l2_ctrl_av1_frame *frame = ctx->av1_dec.ctrls.frame;
- 	struct hantro_dev *vpu = ctx->dev;
- 	struct hantro_decoded_buffer *dst;
--	struct vb2_v4l2_buffer *vb2_dst;
- 	dma_addr_t luma_addr, chroma_addr, mv_addr = 0;
- 	size_t cr_offset = rockchip_vpu981_av1_dec_luma_size(ctx);
- 	size_t mv_offset = rockchip_vpu981_av1_dec_chroma_size(ctx);
- 
--	vb2_dst = av1_dec->frame_refs[av1_dec->current_frame_index].vb2_ref;
--	dst = vb2_to_hantro_decoded_buf(&vb2_dst->vb2_buf);
-+	dst = vb2_to_hantro_decoded_buf(&hantro_get_dst_buf(ctx)->vb2_buf);
- 	luma_addr = hantro_get_dec_buf_addr(ctx, &dst->base.vb.vb2_buf);
- 	chroma_addr = luma_addr + cr_offset;
- 	mv_addr = luma_addr + mv_offset;
- 
- 	dst->av1.chroma_offset = cr_offset;
- 	dst->av1.mv_offset = mv_offset;
-+	dst->av1.width = frame->frame_width_minus_1 + 1;
-+	dst->av1.height = frame->frame_height_minus_1 + 1;
- 
- 	hantro_write_addr(vpu, AV1_TILE_OUT_LU, luma_addr);
- 	hantro_write_addr(vpu, AV1_TILE_OUT_CH, chroma_addr);
-@@ -2228,6 +2250,8 @@ int rockchip_vpu981_av1_dec_run(struct hantro_ctx *ctx)
- 	rockchip_vpu981_av1_dec_clean_refs(ctx);
- 	rockchip_vpu981_av1_dec_frame_ref(ctx, vb2_src->vb2_buf.timestamp);
- 
-+	/* Fallback references use this buffer: set it up first. */
-+	rockchip_vpu981_av1_dec_set_output_buffer(ctx);
- 	rockchip_vpu981_av1_dec_set_parameters(ctx);
- 	rockchip_vpu981_av1_dec_set_global_model(ctx);
- 	rockchip_vpu981_av1_dec_set_tile_info(ctx);
-@@ -2263,7 +2287,6 @@ int rockchip_vpu981_av1_dec_run(struct hantro_ctx *ctx)
- 	hantro_reg_write(vpu, &av1_timeout_cycles, 0xfffffff);
- 	hantro_reg_write(vpu, &av1_timeout_override_e, 1);
- 
--	rockchip_vpu981_av1_dec_set_output_buffer(ctx);
- 	rockchip_vpu981_av1_dec_set_input_buffer(ctx, vb2_src);
- 
- 	hantro_end_prepare_run(ctx);
-
--- 
-2.55.0
-
-
+>         } else if (task =3D=3D current) {
+>                 kunwind_init_from_caller(&state);
+>         } else {
+>
 
