@@ -2,135 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B7A760A2616
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 21:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8153A606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 21:18:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=22rpckb+;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=FQLJC698
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hcX/Opvk;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.a=rsa-sha256 header.s=fe-e1b5cab7be header.b=SspAqPIt;
+	dkim=pass (1024-bit key) header.d=forwardemail.net header.i=@forwardemail.net header.a=rsa-sha256 header.s=default header.b=EHJ1w6Nt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uD/3GGb4aw8jMr2+9K5csmWHvkhaYmWZgQCieDk7sv8=; b=22rpckb+f1cw9IPBUeJ60AYu3A
-	0bNNJlOsEQgbg4i0WDEd2nu1ucPPtzpvSNnK7bgEXUbBW9WIPo/fUxg1PXqMeGRB+Hoxej1c4qp3z
-	2g/66an/UK+x8y5NIq5xfeWWZPLfRE2VrTO2fOb7hj7ozN+WIZsbU6c06jnInXab2SrkPYYLbJx5k
-	jKfsxuxoCd0wS01UBvhUqscD3fPbkTWEZpJgFQjzgn6pG3EyPXCJ1bXNbk0JWU9DI72mY/Ymr2kbQ
-	GHn92EVc/jdbU7M6i/o1JUG9MiO/xdB48NNJZe/zyKRXEEYesOFXQn1Tp14ttXqmhlEL9bbT0yzbe
-	bAh7Y0tg==;
+	bh=BxIuQ0x+zM+x9HyEnukAMenKIXa8hWYpcEyJ67KKCCw=; b=hcX/OpvkGD8Pra4rXcqLDUz18m
+	6WWkrQG029Bat4RrvrgN+nYeliM0/ktgwY8w3iawy/86W/Uhg8puL1yC8d/71XuzQTVdMBw9Mgp7U
+	8JN14Pi9rCDgAf5aWuMNTXw+g0ZhdmJ0FYi0Ojjsygqm8ZKcXqx+YXM5aclVwN5aayh8z8Drf9WtR
+	1knMPJyr6zL6l07fu+su6sGh9Ev1n4+0IVZnE0A+KsQQi+Ly+dllS2WM+C4ML6r2Ur0zu4xFC8VWK
+	WtluXfc8eLEZPcYtkpPsm2m2kG48gQfywGKXnPdz/Ae+XMurJaKC2yuoRTvQyi07kMmC4WlBlphLM
+	rTKpVSbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU9TB-0000000DSPM-04Ky;
-	Thu, 19 Nov 2026 21:15:01 +0000
-Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
+	id 1xU9Vz-0000000DSai-1ctF;
+	Thu, 19 Nov 2026 21:17:55 +0000
+Received: from smtp.forwardemail.net ([121.127.44.73])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU9T8-0000000DSOW-2iWs
+	id 1xU9Vv-0000000DSZy-1rI8
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 21:15:00 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xuk3LqxCLC4mlXFjFK1WZlYP1IfGywqKe7Rsxov9hijMpz8AB8TqTWzRq9qIJ9FcgZ1423todz6k8RmokPgg/WjT75joUer1uNd9yM/8CoS5RTe6/B4I+c2giJkurIlPaGnXZ7uEZvjUcAg9AlQZ8ZQKPxl8CkntJ6eS5YLeUWMoa64+XX9rEyNazKNcMOV/0hep33hmm8PNSsY6cxzXbZ/+1fgJICrM8E3RSFmLZlQZo/IJHF6LcShtFxnu/d2UGHc/O2F/FIkpZKjZPC6N7f2GE7j57Pd+8d0x6B4NWwp/vLipbKtgd65/1tPHJmZpClZF4fL5o05aN2L6q5iwrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uD/3GGb4aw8jMr2+9K5csmWHvkhaYmWZgQCieDk7sv8=;
- b=u2ReYB/me5tvSecYitebamkbEZbr2dXKohPZS5opaPUMOgPXSWnC5/NYUsH2DCbFUIXts9tnVLNBlTLLucxPF5O+8ybW09yD7sInp5IlyxYCaQbWPPgNpvv6kSRQGYR3WzgJ35XctMVx2+l0dw3ZmXS7HghXte/mny45Dzxb7DSOH905occ7mIpLOa+cuMxaWZGsBLXS3zdZHGl0AhIpR2w9RNda4/veCYHUpdB8n0WnjfKMNuSEQC842Z+ddxdEAkORreZBX+/XFnWATJamSc0rRfbiRMa1w2jmP0G1BF4Ra0eeifGwYhfa2+hvU5KVRc9fCnzspLQBeeEXQPByFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uD/3GGb4aw8jMr2+9K5csmWHvkhaYmWZgQCieDk7sv8=;
- b=FQLJC698khwSRn1S3/FDpeNCZkzct9bGzk+6At0SQgsmNc7dRBx2+zH+1anDWMRn06WwjjrkbMG9JxDdMZRyOreesAny1DNqae2KMQ7PPcMFiYL4acxA0sA4bMhTsV1FHms+Jb1QSvZn/wFFnX8j+lLZNiJ/GPl3Sa8Y3G5kL42AI1HPgbasaEIOFCItUNw5kbMPYje50/vFsBDUG+SsjYHJoc1qkvvm9yMsxVIXtS57dW5G3EeHJuM0ssYkCc7cG82+lQVqvs+8beU+QZqJZLkg97nEKnsJR4NKNwncugsxQ6cpQ2qy0y2FgzTXDZ6lUd241z0NFuJQOqO4wvZlyw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by AS4PR04MB9481.eurprd04.prod.outlook.com (2603:10a6:20b:4ea::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Thu, 19 Nov
- 2026 21:14:51 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
- 21:14:51 +0000
-Date: Thu, 19 Nov 2026 16:14:43 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	Thu, 19 Nov 2026 21:17:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From: CFBL-Address: CFBL-Feedback-ID; q=dns/txt; s=fe-e1b5cab7be;
+ t=1795123069; bh=BxIuQ0x+zM+x9HyEnukAMenKIXa8hWYpcEyJ67KKCCw=;
+ b=SspAqPItOXQbwfSifBYdKwM6LuzeRal6WQu708B4QMDGAutv/5yvm3StbGrJcgNSu68iZmv0A
+ x9ABVEHkBmOMMRLTojjD1DDSR83enpFSIm5nmvkADSnI1wSYWcmfZLAIuZDsxDhpss5PFTPJO3O
+ P4nvFcYBvs74NgDnRUPfYJ0nXDgj0KmMBPTd6f8IAMddUW7UiU6RslbhArBSFhPLboNEq1z8seb
+ /ehrNbOR8YbdxZUlO5BSlTj24+3JkuS3ANXg/dsAo9mFp0nnvY2qH4g7UstingD8FVPvDQ8dWEY
+ bsaecjMoazLju61Ch8SeZbC2OfI5Q40LgLogqVDdrwsg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=forwardemail.net;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From: CFBL-Address: CFBL-Feedback-ID; q=dns/txt; s=default;
+ t=1795123069; bh=BxIuQ0x+zM+x9HyEnukAMenKIXa8hWYpcEyJ67KKCCw=;
+ b=EHJ1w6Ntrl1SjotUSbl7o/1gbXUaFeM60wK7VCHEsF+rsYJEtKvxgUoGqaDicOqpr1adWzTUi
+ pX3vd5F9tNWJ0Hfj2QoFBJh4Tu/ZZJsuz/9nL7S+khgcb463R9YIoZa1TwMtxi5cCckDEe5a0gm
+ 76LZJjO62l20Yi1QbhmI2RU=
+CFBL-Feedback-ID: 6aff677a2e4f08e3e6856b7d:717e687073dda47710113f537f5d096f
+CFBL-Address: abuse@forwardemail.net; report=arf
+X-Forward-Email-ID: 6aff677a2e4f08e3e6856b7d
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 2.19.33
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Linus Walleij <linusw@kernel.org>,
+	Ye Zhang <ye.zhang@rock-chips.com>
+Cc: linux-rockchip@lists.infradead.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	linux-gpio@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] media: coda: Fix potential use-after-free after VDOA
- removal
-Message-ID: <av9mwwAmlRoDdU0d@lizhi-Precision-Tower-5810>
-References: <20261107-0d0c29e10a-media-coda-1@mail.sdu.edu.cn>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261107-0d0c29e10a-media-coda-1@mail.sdu.edu.cn>
-X-ClientProxiedBy: PH0PR07CA0109.namprd07.prod.outlook.com
- (2603:10b6:510:4::24) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+Subject: [PATCH] pinctrl: rockchip: Fix RK3506 pinctrl support
+Date: Thu, 19 Nov 2026 21:17:39 +0000
+Message-ID: <20261119211739.566874-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AS4PR04MB9481:EE_
-X-MS-Office365-Filtering-Correlation-Id: 47322d96-a2a7-44be-c3dc-08df4682262d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|23010399003|1800799024|18002099003|22082099003|11063799006|56012099006|10067099003|261026140227099003|261026121527099003|261102130727099003|261102123227099003|261028144727099003|261022105027099003|261022075727099003|261021121427099003|261021123027099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: KJl8T0y+N9K2TDLq0teasWdCRp9/8iPJYshIsn21eWR3efdhybfycB1T2eG/GcWBsj+xW1VER6aCF0W/BKi7t+0GNersPv4xqmO6ITNxwq3brjeOIVp/ZTc9vDz51lvGbOKdQ/VFkQqnaiIOJ0MYyoxmZRxg/3IpCni2rLCkJvuXFtx/JKkUh8nWBpdncq4UwBNRxQKPCWVllHt1fXm3zeSIyCBk/ImFCCjtNUsfY/zLt05IiSX5S5ijKUvGPvxDztdG4iLHTUrNB/jdRrPa36TGRrvCg9w+RG0krHTxBXqakHA7RVR45tPJpCci/wUN1Rd/DaXHb5yxRkLkclkcQFxNLTYm5f8SzcZpx+WzZysFYoGPeSjfdp4uJ1ar540WYOjHb7OM6RFyKomxy+htwWNJV3pdJOlQ4emqbG//mJS6y1pAYkGF7v0s7HPiTJOchl2qMQXIl/MqgA4hjDO/lR/1EesLB3ckpZ0HqLBEohy0Zuel5bgJZ0t509zSkIFyxfIAWfon5jeslbiXm/J6UMzzToqouF3OuS1oHjsEOj+9uQJsrEhVQTJNf7zcT26QNqPbgffBBo3urGUfwrK0+10UjwEIjmLx3KBjqOjOoLlxwnaSqE1xkY+welXQDAxwSSVTP0yqo8L3mqZ3asVo/Jku2oRik3zGuifIADySEiI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(23010399003)(1800799024)(18002099003)(22082099003)(11063799006)(56012099006)(10067099003)(261026140227099003)(261026121527099003)(261102130727099003)(261102123227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261021121427099003)(261021123027099003)(261009223027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/xf/TaFf/hFzsk7aAS4e8HBVAS/kbCFo/zrAI1vvWp7a5nAtasirilHUi3Zb?=
- =?us-ascii?Q?wcCxJtD2lMqeHakVZZPm4pG1jaS7KRqZ+wUrDSIH9It4uT4IlcRoP4oti2fW?=
- =?us-ascii?Q?GGGXxr9OqpaVYyVT/4IMpJQOMKW4jEhbQ5hudxlUND2XuxpC4Y6l3IuHzEh9?=
- =?us-ascii?Q?q+/RHoBvE4+TXo+LYVc71EYPinZ4TJORUn7mqbU8ShhKMQcxU3oUsFvIi4Q+?=
- =?us-ascii?Q?/GOe/LJjqAHaIVTsbC3AkBqOTG49t4v6E5CBuvjc3U86tMG/7aQxLilOWr9H?=
- =?us-ascii?Q?tvifhxrgqEv/1lBsZSbSgIG27dlYfNXetFMqcsai8YL2k54HSob6mCiK7r+Y?=
- =?us-ascii?Q?F9NVUWPIT3iDvKSs82grUKcpjgIwvv5fyI8pfpAjwxH5bX7kTSHLHwRmePYl?=
- =?us-ascii?Q?RvAUcDhGRGynRttA+sg4OoI2qWlSQUcv+0r+OMw25NCYyAd14v7uhBHi02b9?=
- =?us-ascii?Q?AHsM8eqva1n25/XHWkC+42HolzOAX58z/8+9HbM43v6lLlehmtoed65C66ai?=
- =?us-ascii?Q?qNk9YFGP2EhNfZ16hudGMUswkdDUBIDJPjBwUQ2QzNTyivLVsD9OH1R/iQCr?=
- =?us-ascii?Q?wDn7RroFQ2PgDwax5zqx+f7gC4RxGVJ87jumehqROda4b/eESO/26MLFQ+ho?=
- =?us-ascii?Q?Jjd88uxo3vuGvenTAEnsfzj679Bn45fSf09rBPnzJBxRU+F266kjq3DibMdl?=
- =?us-ascii?Q?Y9S+ItKGzAdZqv9e1/e2tcNEPhujI1E9Ry1smrudHs8eHTW65yfkvnGmawWr?=
- =?us-ascii?Q?yapN8pX9vnU8r1LGBm5FjNEaHU5l+B4Y1KZvzPgYi098hOEekRMrvCK9ratU?=
- =?us-ascii?Q?fTUOnr1clYuKXJEq9EGIhHm79tzL0UzSQxYBvlWrSNqU7xg50qHMmc0q7unU?=
- =?us-ascii?Q?IouEb7EoMCSMQbRVXMKWP6fjZDJtI2WAHu49hzIxpyG+H+2tCkacMQQg5X8v?=
- =?us-ascii?Q?eIrK621HaiHJGmS1EejrYngS94qnWOpPlrxb3+qeMnCTngzSHm8ofVC/VKpn?=
- =?us-ascii?Q?I6Vo8fi/y5LSLjeCtd/KYqEyBjO7GV8Ry/KSN3yx/N3jiSQsYLm039wAbK3C?=
- =?us-ascii?Q?YcB27jA2QSvn0pguAFhksSJJcWnCkHw7wbo96gTCm3HNZQIkST3JyYoCFAHL?=
- =?us-ascii?Q?RBX0gArJaBCBrKjCteOYFH2/Hwm/wHjOqUdMK+FFy6uhm7YMs0xv2Z2JY78H?=
- =?us-ascii?Q?bNhrRSyr8WxbcnwyZcSUFgMFvW9MNzVOG9LQMumGh+V5UNfDG15ksMm5oyGi?=
- =?us-ascii?Q?f3W6F1RTUxDxSZFKudr2ssb77kQ2dDKhoce5EdhCDs33Ov6WRvy9a6cUPvF0?=
- =?us-ascii?Q?rflAigxRVeLLDWZM8tcdIDut6lfXW64Eyk83idssky4fjQZdmO8FnyhENutS?=
- =?us-ascii?Q?ps4umxh5HpH/Y6mBczFnOMCr2e/8bxAU/USB0dPDyQ6bAXJdmTT3B9batPhk?=
- =?us-ascii?Q?V0LfQvVm9ZgkK+FOqrfX6CSKrKMn4Kb0UTCTDgAjbMchOR/J/CJcWbR698yf?=
- =?us-ascii?Q?WGacfBA+uBX8kWbUWOW7YstSiwNKDJAK7WJfpSCR8VCfWmNjOupsjiFMT9/E?=
- =?us-ascii?Q?8wPKREgY16besEXHcb0g6AnpfN4AD+7tDd+7RiCcOcyYm+irvMTAXTHUCFLM?=
- =?us-ascii?Q?5LtSD4twmLuoUHKOSTlYqTBQ1VhHoAErSuzN40c0OT+PHwQbbyWP8QN5gjZg?=
- =?us-ascii?Q?wABumBfD1m7TF6zl40GLQQqXa6h0iFtIDSTq0y5ggFhxN5lJ5skUzSyREFtt?=
- =?us-ascii?Q?KfBf8bK1L24+u3M9tOYNQMLtwq6rcEgHA9ppYIFX15b4FhK72aq5?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47322d96-a2a7-44be-c3dc-08df4682262d
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 21:14:51.2427
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zXdaqn+AZNOjkRYhlM+7bUZ2QYXo2dphl75kX40v+h+PSTfqEhShgVRVGce0X49qNS0MVgY1EXb/Ay8y0SijisT1kqZUXycRzZ0JH3gaPNtJRGt2olhgxjXIn9fXBYMB
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9481
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_131458_884349_215DC372 
-X-CRM114-Status: GOOD (  29.30  )
-X-Spam-Score: -1.0 (-)
+X-CRM114-CacheID: sfid-20261119_131751_859276_7D3C8F34 
+X-CRM114-Status: GOOD (  17.76  )
+X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -141,364 +85,259 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 07, 2026 at 02:54:30PM +0800, Guangshuo Li wrote:
-> VDOA can be unbound while CODA still holds its driver data and open
-> contexts. Their next transfer or close then accesses released state
-> and device-managed resources.
->
-> Retain the VDOA state for its consumers and contexts. Serialize hardware
-> access with removal, stop outstanding transfers and balance the clock
-> references before disconnecting the retained contexts. Also release a
-> VDOA context when opening CODA fails.
->
-> This issue was found by our static analysis tool under development.
->
-> Fixes: e7f3c5481035 ("[media] coda: use VDOA for un-tiling custom macroblock format")
-> Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-> ---
-> Validation: x86-64 GCC W=1 changed-object compilation passed. An
-> extracted-code test with mocked services reports an ASan failure before
-> the fix and passes after it; this is not a kernel reproducer. No
-> hardware test, ARM64 build or full linked-kernel build.
-> OpenAI Codex assisted with source review, patch implementation and
-> commit-message drafting. The submitter has reviewed the changes.
->
->  .../platform/chips-media/coda/coda-common.c   |  14 +-
->  .../platform/chips-media/coda/imx-vdoa.c      | 133 ++++++++++++++++--
->  .../platform/chips-media/coda/imx-vdoa.h      |   8 ++
->  3 files changed, 134 insertions(+), 21 deletions(-)
->
-> diff --git a/drivers/media/platform/chips-media/coda/coda-common.c b/drivers/media/platform/chips-media/coda/coda-common.c
-> index be37ea568bfe..b519cf8541de 100644
-> --- a/drivers/media/platform/chips-media/coda/coda-common.c
-> +++ b/drivers/media/platform/chips-media/coda/coda-common.c
-> @@ -396,7 +396,7 @@ const char *coda_product_name(int product)
->  	}
->  }
->
-> -static struct vdoa_data *coda_get_vdoa_data(void)
-> +static struct vdoa_data *coda_get_vdoa_data(struct device *dev)
->  {
->  	struct device_node *vdoa_node;
->  	struct platform_device *vdoa_pdev;
-> @@ -410,9 +410,7 @@ static struct vdoa_data *coda_get_vdoa_data(void)
->  	if (!vdoa_pdev)
->  		goto out;
->
-> -	vdoa_data = platform_get_drvdata(vdoa_pdev);
-> -	if (!vdoa_data)
-> -		vdoa_data = ERR_PTR(-EPROBE_DEFER);
-> +	vdoa_data = devm_vdoa_get(dev, &vdoa_pdev->dev);
->
->  	put_device(&vdoa_pdev->dev);
->  out:
-> @@ -2721,6 +2719,8 @@ static int coda_open(struct file *file)
->  err_clk_enable:
->  	pm_runtime_put_sync(dev->dev);
->  err_pm_get:
-> +	if (ctx->vdoa)
-> +		vdoa_context_destroy(ctx->vdoa);
->  	v4l2_fh_del(&ctx->fh, file);
->  	v4l2_fh_exit(&ctx->fh);
->  err_coda_name_init:
-> @@ -3220,9 +3220,9 @@ static int coda_probe(struct platform_device *pdev)
->  	dev->iram_pool = pool;
->
->  	/* Get vdoa_data if supported by the platform */
-> -	dev->vdoa = coda_get_vdoa_data();
-> -	if (PTR_ERR(dev->vdoa) == -EPROBE_DEFER)
-> -		return -EPROBE_DEFER;
-> +	dev->vdoa = coda_get_vdoa_data(&pdev->dev);
-> +	if (IS_ERR(dev->vdoa))
-> +		return PTR_ERR(dev->vdoa);
->
->  	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
->  	if (ret)
-> diff --git a/drivers/media/platform/chips-media/coda/imx-vdoa.c b/drivers/media/platform/chips-media/coda/imx-vdoa.c
-> index cd085c1c73f4..d9249c943dfa 100644
-> --- a/drivers/media/platform/chips-media/coda/imx-vdoa.c
-> +++ b/drivers/media/platform/chips-media/coda/imx-vdoa.c
-> @@ -9,7 +9,9 @@
->  #include <linux/clk.h>
->  #include <linux/device.h>
->  #include <linux/interrupt.h>
-> +#include <linux/kref.h>
->  #include <linux/module.h>
-> +#include <linux/mutex.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/platform_device.h>
->  #include <linux/videodev2.h>
-> @@ -74,6 +76,12 @@ enum {
->  };
->
->  struct vdoa_data {
-> +	struct kref		ref;
-> +	/* Serializes context hardware access with removal. */
-> +	struct mutex		lock;
-> +	unsigned int		num_contexts;
-> +	bool			removed;
-> +	int			irq;
->  	struct vdoa_ctx		*curr_ctx;
->  	struct device		*dev;
->  	struct clk		*vdoa_clk;
-> @@ -126,7 +134,7 @@ static irqreturn_t vdoa_irq_handler(int irq, void *data)
->  	return IRQ_HANDLED;
->  }
->
-> -int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
-> +static int vdoa_wait(struct vdoa_ctx *ctx)
->  {
->  	struct vdoa_data *vdoa = ctx->vdoa;
->
-> @@ -142,17 +150,43 @@ int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
->
->  	return 0;
->  }
-> +
-> +int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
-> +{
-> +	struct vdoa_data *vdoa = ctx->vdoa;
-> +	int ret;
-> +
-> +	mutex_lock(&vdoa->lock);
-> +	ret = vdoa->removed ? -ENODEV : vdoa_wait(ctx);
-> +	mutex_unlock(&vdoa->lock);
-> +
-> +	return ret;
-> +}
->  EXPORT_SYMBOL(vdoa_wait_for_completion);
->
-> +static void vdoa_stop(struct vdoa_data *vdoa)
-> +{
-> +	if (!vdoa->curr_ctx)
-> +		return;
-> +
-> +	if (vdoa_wait(vdoa->curr_ctx))
-> +		writel(VDOASRR_SWRST, vdoa->regs + VDOASRR);
-> +	writel(0, vdoa->regs + VDOAIE);
-> +	synchronize_irq(vdoa->irq);
-> +	vdoa->curr_ctx = NULL;
-> +}
-> +
->  void vdoa_device_run(struct vdoa_ctx *ctx, dma_addr_t dst, dma_addr_t src)
->  {
->  	struct vdoa_q_data *src_q_data, *dst_q_data;
->  	struct vdoa_data *vdoa = ctx->vdoa;
->  	u32 val;
->
-> -	if (vdoa->curr_ctx)
-> -		vdoa_wait_for_completion(vdoa->curr_ctx);
-> +	mutex_lock(&vdoa->lock);
+The pinctrl driver added in commit dbd2317d7b9f ("pinctrl: rockchip:
+Add rk3506 pinctrl support") depends on a rockchip,ioc1 property not
+documented in dt-bindings to work, i.e. it expects the pinctrl node to
+look something like following:
 
-use cleanup guard()
+  pinctrl {
+	rockchip,pmu = <&gpio0_ioc>;
+	rockchip,ioc1 = <&gpio1_ioc>;
+	rockchip,grf = <&gpio234_ioc>;
 
-> +	if (vdoa->removed)
-> +		goto out_unlock;
->
-> +	vdoa_stop(vdoa);
->  	vdoa->curr_ctx = ctx;
->
->  	reinit_completion(&ctx->completion);
-> @@ -192,9 +226,44 @@ void vdoa_device_run(struct vdoa_ctx *ctx, dma_addr_t dst, dma_addr_t src)
->  	/* Enable interrupts and start transfer */
->  	writel(VDOAIE_EITERR | VDOAIE_EIEOT, vdoa->regs + VDOAIE);
->  	writel(VDOASRR_START, vdoa->regs + VDOASRR);
-> +out_unlock:
-> +	mutex_unlock(&vdoa->lock);
->  }
->  EXPORT_SYMBOL(vdoa_device_run);
->
-> +static void vdoa_release(struct kref *ref)
-> +{
-> +	struct vdoa_data *vdoa = container_of(ref, struct vdoa_data, ref);
-> +
-> +	put_device(vdoa->dev);
-> +	kfree(vdoa);
-> +}
-> +
-> +static void vdoa_put(void *data)
-> +{
-> +	struct vdoa_data *vdoa = data;
-> +
-> +	kref_put(&vdoa->ref, vdoa_release);
-> +}
-> +
-> +struct vdoa_data *devm_vdoa_get(struct device *dev, struct device *supplier)
-> +{
-> +	struct vdoa_data *vdoa;
-> +	int ret;
-> +
-> +	device_lock(supplier);
+	gpio0 { };
+	gpio1 { };
+	gpio2 { };
+  };
 
-why not use device link ?
+With the commit 63113d4fce6c ("pinctrl: rockchip: Add RV1106 pinctrl
+support") the driver gained support for using GPIO bank referenced IO
+control register blocks using the rockchip,grf phandle of the bank node.
 
-> +	vdoa = dev_get_drvdata(supplier);
-> +	if (vdoa)
-> +		kref_get(&vdoa->ref);
-> +	device_unlock(supplier);
-> +	if (!vdoa)
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +
-> +	ret = devm_add_action_or_reset(dev, vdoa_put, vdoa);
-> +	return ret ? ERR_PTR(ret) : vdoa;
-> +}
-> +EXPORT_SYMBOL(devm_vdoa_get);
-> +
->  struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
->  {
->  	struct vdoa_ctx *ctx;
-> @@ -204,16 +273,26 @@ struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
->  	if (!ctx)
->  		return NULL;
->
-> +	mutex_lock(&vdoa->lock);
-> +	if (vdoa->removed)
-> +		goto err_unlock;
-> +
->  	err = clk_prepare_enable(vdoa->vdoa_clk);
-> -	if (err) {
-> -		kfree(ctx);
-> -		return NULL;
-> -	}
-> +	if (err)
-> +		goto err_unlock;
->
-> +	kref_get(&vdoa->ref);
-> +	vdoa->num_contexts++;
->  	init_completion(&ctx->completion);
->  	ctx->vdoa = vdoa;
-> +	mutex_unlock(&vdoa->lock);
->
->  	return ctx;
-> +
-> +err_unlock:
-> +	mutex_unlock(&vdoa->lock);
-> +	kfree(ctx);
-> +	return NULL;
->  }
->  EXPORT_SYMBOL(vdoa_context_create);
->
-> @@ -221,12 +300,15 @@ void vdoa_context_destroy(struct vdoa_ctx *ctx)
->  {
->  	struct vdoa_data *vdoa = ctx->vdoa;
->
-> -	if (vdoa->curr_ctx == ctx) {
-> -		vdoa_wait_for_completion(vdoa->curr_ctx);
-> -		vdoa->curr_ctx = NULL;
-> +	mutex_lock(&vdoa->lock);
-> +	if (!vdoa->removed) {
-> +		if (vdoa->curr_ctx == ctx)
-> +			vdoa_stop(vdoa);
-> +		clk_disable_unprepare(vdoa->vdoa_clk);
-> +		vdoa->num_contexts--;
->  	}
-> -
-> -	clk_disable_unprepare(vdoa->vdoa_clk);
-> +	mutex_unlock(&vdoa->lock);
-> +	vdoa_put(vdoa);
->  	kfree(ctx);
->  }
->  EXPORT_SYMBOL(vdoa_context_destroy);
-> @@ -291,11 +373,16 @@ static int vdoa_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->
-> -	vdoa = devm_kzalloc(&pdev->dev, sizeof(*vdoa), GFP_KERNEL);
-> +	vdoa = kzalloc_obj(*vdoa);
->  	if (!vdoa)
->  		return -ENOMEM;
->
-> -	vdoa->dev = &pdev->dev;
-> +	vdoa->dev = get_device(&pdev->dev);
-> +	kref_init(&vdoa->ref);
-> +	mutex_init(&vdoa->lock);
+Change the driver to work with dt-bindings documented nodes and
+properties, i.e. something like:
 
-devm_mutex_init();
+  pinctrl {
+	rockchip,grf = <&gpio234_ioc>;
 
-Frank
-> +	ret = devm_add_action_or_reset(&pdev->dev, vdoa_put, vdoa);
-> +	if (ret)
-> +		return ret;
->
->  	vdoa->vdoa_clk = devm_clk_get(vdoa->dev, NULL);
->  	if (IS_ERR(vdoa->vdoa_clk)) {
-> @@ -310,6 +397,7 @@ static int vdoa_probe(struct platform_device *pdev)
->  	ret = platform_get_irq(pdev, 0);
->  	if (ret < 0)
->  		return ret;
-> +	vdoa->irq = ret;
->  	ret = devm_request_threaded_irq(&pdev->dev, ret, NULL,
->  					vdoa_irq_handler, IRQF_ONESHOT,
->  					"vdoa", vdoa);
-> @@ -323,6 +411,22 @@ static int vdoa_probe(struct platform_device *pdev)
->  	return 0;
->  }
->
-> +static void vdoa_remove(struct platform_device *pdev)
-> +{
-> +	struct vdoa_data *vdoa = platform_get_drvdata(pdev);
-> +
-> +	platform_set_drvdata(pdev, NULL);
-> +	mutex_lock(&vdoa->lock);
-> +	vdoa_stop(vdoa);
-> +	disable_irq(vdoa->irq);
-> +	while (vdoa->num_contexts) {
-> +		clk_disable_unprepare(vdoa->vdoa_clk);
-> +		vdoa->num_contexts--;
-> +	}
-> +	vdoa->removed = true;
-> +	mutex_unlock(&vdoa->lock);
-> +}
-> +
->  static const struct of_device_id vdoa_dt_ids[] = {
->  	{ .compatible = "fsl,imx6q-vdoa" },
->  	{}
-> @@ -331,6 +435,7 @@ MODULE_DEVICE_TABLE(of, vdoa_dt_ids);
->
->  static struct platform_driver vdoa_driver = {
->  	.probe		= vdoa_probe,
-> +	.remove		= vdoa_remove,
->  	.driver		= {
->  		.name	= VDOA_NAME,
->  		.of_match_table = vdoa_dt_ids,
-> diff --git a/drivers/media/platform/chips-media/coda/imx-vdoa.h b/drivers/media/platform/chips-media/coda/imx-vdoa.h
-> index a62eab476d58..e0ab414ddf5a 100644
-> --- a/drivers/media/platform/chips-media/coda/imx-vdoa.h
-> +++ b/drivers/media/platform/chips-media/coda/imx-vdoa.h
-> @@ -6,11 +6,13 @@
->  #ifndef IMX_VDOA_H
->  #define IMX_VDOA_H
->
-> +struct device;
->  struct vdoa_data;
->  struct vdoa_ctx;
->
->  #if (defined CONFIG_VIDEO_IMX_VDOA || defined CONFIG_VIDEO_IMX_VDOA_MODULE)
->
-> +struct vdoa_data *devm_vdoa_get(struct device *dev, struct device *supplier);
->  struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa);
->  int vdoa_context_configure(struct vdoa_ctx *ctx,
->  			   unsigned int width, unsigned int height,
-> @@ -22,6 +24,12 @@ int vdoa_wait_for_completion(struct vdoa_ctx *ctx);
->
->  #else
->
-> +static inline struct vdoa_data *devm_vdoa_get(struct device *dev,
-> +					      struct device *supplier)
-> +{
-> +	return NULL;
-> +}
-> +
->  static inline struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
->  {
->  	return NULL;
->
-> base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
+	gpio0 {
+		rockchip,grf = <&gpio0_ioc>;
+	};
+	gpio1 {
+		rockchip,grf = <&gpio1_ioc>;
+	};
+	gpio2 { };
+  };
+
+Fixes: dbd2317d7b9f ("pinctrl: rockchip: Add rk3506 pinctrl support")
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+---
+The initial devicetree submitted for RK3506 at [1] uses rockchip,grf
+props in gpio0 and gpio1 nodes together with a rockchip,grf in the
+pinctrl node to work as the fallback for gpio2, gpi3 and gpio4.
+
+[1] http://patch.msgid.link/20261119152055.556266-3-jonas@kwiboo.se/
+---
+ drivers/pinctrl/pinctrl-rockchip.c | 49 ++++++++++++------------------
+ drivers/pinctrl/pinctrl-rockchip.h |  1 -
+ 2 files changed, 19 insertions(+), 31 deletions(-)
+
+diff --git a/drivers/pinctrl/pinctrl-rockchip.c b/drivers/pinctrl/pinctrl-rockchip.c
+index b78be7dd5342..563c3ffcfe4a 100644
+--- a/drivers/pinctrl/pinctrl-rockchip.c
++++ b/drivers/pinctrl/pinctrl-rockchip.c
+@@ -1335,12 +1335,8 @@ static int rockchip_get_mux(struct rockchip_pin_bank *bank, int pin)
+ 	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin >= 12)
+ 		return 0;
+ 
+-	if (ctrl->type == RK3506) {
+-		if (bank->bank_num == 1)
+-			regmap = info->regmap_ioc1;
+-		else if (bank->bank_num == 4)
+-			return 0;
+-	}
++	if (ctrl->type == RK3506 && bank->bank_num == 4)
++		return 0;
+ 
+ 	/* get basic quadrupel of mux registers and the correct reg inside */
+ 	mux_type = bank->iomux[iomux_num].type;
+@@ -1492,12 +1488,8 @@ static int rockchip_set_mux(struct rockchip_pin_bank *bank, int pin, int mux)
+ 	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin >= 12)
+ 		return 0;
+ 
+-	if (ctrl->type == RK3506) {
+-		if (bank->bank_num == 1)
+-			regmap = info->regmap_ioc1;
+-		else if (bank->bank_num == 4)
+-			return 0;
+-	}
++	if (ctrl->type == RK3506 && bank->bank_num == 4)
++		return 0;
+ 
+ 	/* get basic quadrupel of mux registers and the correct reg inside */
+ 	mux_type = bank->iomux[iomux_num].type;
+@@ -2568,9 +2560,13 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 	struct rockchip_pinctrl *info = bank->drvdata;
+ 	int ret = 0;
+ 
++	if (bank->regmap_ioc)
++		*regmap = bank->regmap_ioc;
++	else
++		*regmap = info->regmap_base;
++
+ 	switch (bank->bank_num) {
+ 	case 0:
+-		*regmap = info->regmap_pmu;
+ 		if (pin_num > 24) {
+ 			ret = -EINVAL;
+ 		} else if (pin_num < 24) {
+@@ -2584,7 +2580,6 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 1:
+-		*regmap = info->regmap_ioc1;
+ 		if (pin_num < 28)
+ 			*reg = RK3506_DRV_GPIO1_OFFSET;
+ 		else
+@@ -2592,7 +2587,6 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 2:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 17)
+ 			*reg = RK3506_DRV_GPIO2_OFFSET;
+ 		else
+@@ -2600,7 +2594,6 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 3:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 15)
+ 			*reg = RK3506_DRV_GPIO3_OFFSET;
+ 		else
+@@ -2608,7 +2601,6 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 4:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 8 || pin_num > 11) {
+ 			ret = -EINVAL;
+ 		} else {
+@@ -2653,9 +2645,13 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 	struct rockchip_pinctrl *info = bank->drvdata;
+ 	int ret = 0;
+ 
++	if (bank->regmap_ioc)
++		*regmap = bank->regmap_ioc;
++	else
++		*regmap = info->regmap_base;
++
+ 	switch (bank->bank_num) {
+ 	case 0:
+-		*regmap = info->regmap_pmu;
+ 		if (pin_num > 24) {
+ 			ret = -EINVAL;
+ 		} else if (pin_num < 24) {
+@@ -2669,7 +2665,6 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 1:
+-		*regmap = info->regmap_ioc1;
+ 		if (pin_num < 28)
+ 			*reg = RK3506_PULL_GPIO1_OFFSET;
+ 		else
+@@ -2677,7 +2672,6 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 2:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 17)
+ 			*reg = RK3506_PULL_GPIO2_OFFSET;
+ 		else
+@@ -2685,7 +2679,6 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 3:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 15)
+ 			*reg = RK3506_PULL_GPIO3_OFFSET;
+ 		else
+@@ -2693,7 +2686,6 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 4:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 8 || pin_num > 11) {
+ 			ret = -EINVAL;
+ 		} else {
+@@ -2739,9 +2731,13 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 	struct rockchip_pinctrl *info = bank->drvdata;
+ 	int ret = 0;
+ 
++	if (bank->regmap_ioc)
++		*regmap = bank->regmap_ioc;
++	else
++		*regmap = info->regmap_base;
++
+ 	switch (bank->bank_num) {
+ 	case 0:
+-		*regmap = info->regmap_pmu;
+ 		if (pin_num > 24) {
+ 			ret = -EINVAL;
+ 		} else if (pin_num < 24) {
+@@ -2755,7 +2751,6 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 1:
+-		*regmap = info->regmap_ioc1;
+ 		if (pin_num < 28)
+ 			*reg = RK3506_SMT_GPIO1_OFFSET;
+ 		else
+@@ -2763,7 +2758,6 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 2:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 17)
+ 			*reg = RK3506_SMT_GPIO2_OFFSET;
+ 		else
+@@ -2771,7 +2765,6 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 3:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 15)
+ 			*reg = RK3506_SMT_GPIO3_OFFSET;
+ 		else
+@@ -2779,7 +2772,6 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 4:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 8 || pin_num > 11) {
+ 			ret = -EINVAL;
+ 		} else {
+@@ -5030,9 +5022,6 @@ static int rockchip_pinctrl_probe(struct platform_device *pdev)
+ 	/* try to find the optional reference to the pmu syscon */
+ 	info->regmap_pmu = syscon_regmap_lookup_by_phandle_optional(np, "rockchip,pmu");
+ 
+-	/* try to find the optional reference to the ioc1 syscon */
+-	info->regmap_ioc1 = syscon_regmap_lookup_by_phandle_optional(np, "rockchip,ioc1");
+-
+ 	if (ctrl->type == RK3308) {
+ 		ret = rk3308_soc_data_init(info);
+ 		if (ret)
+diff --git a/drivers/pinctrl/pinctrl-rockchip.h b/drivers/pinctrl/pinctrl-rockchip.h
+index 553197f6dc69..b565f14254d8 100644
+--- a/drivers/pinctrl/pinctrl-rockchip.h
++++ b/drivers/pinctrl/pinctrl-rockchip.h
+@@ -468,7 +468,6 @@ struct rockchip_pinctrl {
+ 	int				reg_size;
+ 	struct regmap			*regmap_pull;
+ 	struct regmap			*regmap_pmu;
+-	struct regmap			*regmap_ioc1;
+ 	struct device			*dev;
+ 	struct rockchip_pin_ctrl	*ctrl;
+ 	struct pinctrl_desc		pctl;
+-- 
+2.56.1
+
 
