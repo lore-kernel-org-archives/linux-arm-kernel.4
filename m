@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4BF560A2617
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5F5606AA83
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:53:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3JtHogic;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=XeaoZ5d9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sZS5emFv;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=pyVk6f8+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=gDyW3lpBDMB0NqyM7GSJ8o96cb3fLFzZmtMS+6iJK0k=; b=3JtHogicFqiGdrMLf6LgNeECvt
-	XrDFX17YbSTjDLEZXxa1Nu9TaIaNZaV4nullTDBiFp1Ur2XjJ+UTN4QevL3TraeUo03nPXwzjaRX1
-	tPlHF6AXnIy4Xir2vVQd4pNeJVBD7Re0GF0Qe/VdTIq9Jg/pV68LuHLm6H/Rsd/ZZdrxA2t4KfcIX
-	fb2fw9WYXiz0JKBhMTmkuj6QVfMbAFSCfUopY1GUxXN5thDgrf02qNNvnnTxxGZCFVOqHWAhIR4Zn
-	IolfuuttCKyB1VE2HTKIpaSXJozBoiW93CZsbJ4VsIPAqZZaJ+UEejCEhZ9RpRZa58dhK36J96QO2
-	q1HSj7bQ==;
+	bh=pLq92bALDfzVSwPCFwlrCOZ9rlSOsAmXjgSBQp7hHGc=; b=sZS5emFvptiwLTsoX2z2dHusZj
+	Lhtn4g/FRF2RFlzwxRk2Jfd2v7kQHKRMSUCILtaDZ2W9Y669unK9BDEPDv1AWHYogielbrnZ7LEH5
+	GMDu28ZLA1xW1jNRbGK2jR1FJgkK+CW8vEVJ+MnAiNVb3tba+PjiwzqkRuDou9n1OkzuJT9A6mSoU
+	6bs294A8er7zhT3ZrtGCg+xt4060A3ogsomOJFbn1/0g1ygOSxBDZvuCq5/iUOXnxlv0s4ZA/V/ke
+	W7nHrImhZ/+plmuQ9BXEMriFv+KnanrHphc83qKf7cYiCvwta6HftJREu/Nk+QlDb6t8QA+WbBEOT
+	QsfD8yNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7FM-0000000D41U-17nw;
-	Thu, 19 Nov 2026 18:52:36 +0000
+	id 1xU7FN-0000000D43l-26DF;
+	Thu, 19 Nov 2026 18:52:37 +0000
 Received: from mail-oi1-x246.google.com ([2607:f8b0:4864:20::246])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7FB-0000000D3qA-16au
+	id 1xU7FB-0000000D3qt-3EjP
 	for linux-arm-kernel@lists.infradead.org;
 	Thu, 19 Nov 2026 18:52:26 +0000
-Received: by mail-oi1-x246.google.com with SMTP id 5614622812f47-4b37620eb73so240215b6e.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:24 -0800 (PST)
+Received: by mail-oi1-x246.google.com with SMTP id 5614622812f47-4e778acdbc6so171525b6e.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795114344; x=1795719144; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795114345; x=1795719145; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=gDyW3lpBDMB0NqyM7GSJ8o96cb3fLFzZmtMS+6iJK0k=;
-        b=XeaoZ5d9hSTAuc7WjkTueOxdscBHjtZyq8LUgYBs9R+ST+o7ZgHWq2NNhYRawWRxZW
-         IAOtN04p8xcVgVp6/gHunPaCApSeo/ep9s7zuL1p4ssgdvpvMfJix9ELAOOyUC7I9TYs
-         iNxhhNMNmNzPEM51BsdV5CSfgbeYqMDTLTPZv0QMWjpGbsNkoqMvsZECaalL/RMduU7w
-         mhTQKTAvaTF8hjLhT7E5Cznl0EJC3UNmoT1ysTn8KLNFnj69kg0eue1K17iJA+C0iXE0
-         Ob9gKEpNQoOrdyQ+WfNF9LsnsxTmu0IVQFhJ62CV8WDF8VSH9q2i3EJR3J3xHSSLNT3p
-         OoyA==
+        bh=pLq92bALDfzVSwPCFwlrCOZ9rlSOsAmXjgSBQp7hHGc=;
+        b=pyVk6f8+jUSJjDR/+rSEXd0hj5N4L2PunLF0AxQGvtRN54TFkpLsoe5ZEAAgC5ACzr
+         iaSRKeX+4deCVmf1R5SiA4CrXkDBHTcsZot+LPDLLJDgRRgsKaSpg1dJEdsH6WGit6nJ
+         HW77eRcTwhOVBAA79BKCeu4LnDmPxmtKa732wdo0ck81WD8u62BvE/TxZ4A6RXhSyl8u
+         C393wyToL221M7557uIrnlIm77nht9tdaxcOKX9saJHHozjAyV2c534LnZdBv7oD+BVy
+         odZ9SkP9yySCit2xHCUM1iky+bO4u98zN83gemnFrd6s8deL0aZuROGNQtGhsT3Wka0C
+         oEzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795114344; x=1795719144;
+        d=1e100.net; s=20260707; t=1795114345; x=1795719145;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=gDyW3lpBDMB0NqyM7GSJ8o96cb3fLFzZmtMS+6iJK0k=;
-        b=TVOh+/QDVgeslQPwUs1PzO4gHfcEViJ50s2w+fHe3RWs7GNNB3I0OK6PrffKLvFl3n
-         ZOakgkk1UiLVBoeoygxZmxvWz1eWyEBP3X2AKT6GImhIZ+DrGN/GNlOCb2iqIIgX9nAH
-         wIt+q1kYBIz6r/XqzDeTbLe0OP+mgp2T+IEhlM0PlPbxN7+2W3OFA5hTZVdGUwkbzsj5
-         5JMDtxbbJMHMYk3elCyyQNoYfZtQ5LltZfQhJEJI5N713WFoRTTLQ2XXwWYoXwXs/bGe
-         D+KjaoGXCSqqdJIxt+b2ZI2D3i+6XML7U+3iijvWD1k01VYreTIy6qaEK2HSm6c2XiSf
-         JngA==
-X-Forwarded-Encrypted: i=1; AL+hErGV3vYfmb7UhwNYpD5HDd9cLkKxQPIzFtqDGlWdz2pX4FBd9WycHhiv/NNwjjli8UwG7kstQZ2wVe13uBtbSk4g@lists.infradead.org
-X-Gm-Message-State: APuU4Z8JaXadIGWPRK89ZkL7cfB1G1TAodJCq5j4cBkll/3s4+zRjmXc
-	4M6TU0dpfdUhRb2shAp/yvFYx8nMNrU2BSsC2laJKioYHW9rbZXSLeqgdumC+LMjy7vGNat9zzs
-	RDeVXyWNhkFNlQthtH+27q1IIgw==
-X-Received: from ilef19-n1.prod.google.com ([2002:a05:6e02:6193:10b0:51f:7667:1233])
+        bh=pLq92bALDfzVSwPCFwlrCOZ9rlSOsAmXjgSBQp7hHGc=;
+        b=PLDWm0m/yUTtfVM8stJ7+6E9YduzOq81ESk5xxwDeGFPiGf1BbG/CLukl9nfUbK31H
+         V6FVfBiQDydV966R+CtCvTFL6DUxbNPydOeW9Y2AQZlFhHLnM/CAsFYYaZl14p/q82zm
+         RaCpD0t6icKn1OG6SY9fPO0rZcFprT4ThgasYHA43j3W3h+HAw2tzhIH4yQqPenEH0iQ
+         8Rm9AAGQ+dOmx740JRfqOSHwnkgVhRcB9XF2zNFe4f2iOq7YI78k4HOQpTraynzQA4v3
+         s37KFylPTDexJ1BKB2LH8kmP7Djl3diX4g6TSXRxT8QGRctR+DlaQEA29uEOYo2mIJuU
+         zhAw==
+X-Forwarded-Encrypted: i=1; AL+hErGqzIUl1YmVxJer/wEr2e7B6GCoCD6nsVYFzsiffsUKyUy2oeDOdr+MnhG/WQgMDvpbA15zd8ZFEksDI3iUux9r@lists.infradead.org
+X-Gm-Message-State: APuU4Z+knLHpbrOWTUXH7j0koxpix0HokKRZ/M++n+stVnnEgZre8rvQ
+	pY8ruHsy9d3kiGM2TUIC7FKolqI7QQFSwkkmGKgvC6Mli1hyA1Y4pGHX6sY20oJ4KC0D5IftnKd
+	k8YA7YKWVQ7ZKrPzN3TV0TVcosA==
+X-Received: from ioo10-n2.prod.google.com ([2002:a05:6602:864a:20b0:9c7:8645:9285])
  (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:3189:b0:4ea:18f:64b0 with SMTP id 5614622812f47-57a0c19af8amr826925b6e.67.1795114343396;
- Thu, 19 Nov 2026 10:52:23 -0800 (PST)
-Date: Thu, 19 Nov 2026 18:51:50 +0000
+ 2002:a05:6808:178b:b0:55c:8ed:4db8 with SMTP id 5614622812f47-57a0cbda8b5mr953892b6e.62.1795114344372;
+ Thu, 19 Nov 2026 10:52:24 -0800 (PST)
+Date: Thu, 19 Nov 2026 18:51:51 +0000
 In-Reply-To: <20261119185215.632334-1-coltonlewis@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261119185215.632334-1-coltonlewis@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261119185215.632334-9-coltonlewis@google.com>
-Subject: [PATCH v10 08/33] perf: arm_pmuv3: Check cntr_mask before using pmccntr
+Message-ID: <20261119185215.632334-10-coltonlewis@google.com>
+Subject: [PATCH v10 09/33] perf: arm_pmuv3: Allocate counter indices from high
+ to low
 From: Colton Lewis <coltonlewis@google.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
 Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
@@ -87,8 +88,8 @@ Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
 	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_105225_310433_849660A5 
-X-CRM114-Status: GOOD (  14.28  )
+X-CRM114-CacheID: sfid-20261119_105225_833985_8D22F449 
+X-CRM114-Status: GOOD (  15.45  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,56 +109,72 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When the PMU is partitioned, PMCCNTR_EL0 is reserved for the guest and
-removed from cpuc->cntr_mask. Move the PMCCNTR_EL0 availability checks
-(cpuc->cntr_mask and cpuc->used_mask) into armv8pmu_can_use_pmccntr()
-and un-nest the 64-bit user-access fallback check in
-armv8pmu_get_event_idx() so host CPU_CYCLES events fall back to
-general-purpose event counters when PMCCNTR_EL0 is unavailable.
+MDCR_EL2.HPMN assigns low-index general-purpose counters (0..HPMN-1) to
+the guest and high-index counters (HPMN..N-1) to the host. Allocate host
+event counters from high index to low index to minimize collisions with
+guest counter partitions and avoid rescheduling host perf events on vCPU
+load when enough upper counters are free.
+
+When allocating a 64-bit chained pair (even counter idx - 1 paired with
+odd counter idx), verify that both idx and idx - 1 are present in
+cpuc->cntr_mask so an odd HPMN boundary cannot allocate a guest-owned
+even counter as the lower half of a host chained event.
 
 Tested-by: James Clark <james.clark@linaro.org>
 Signed-off-by: Colton Lewis <coltonlewis@google.com>
 ---
- drivers/perf/arm_pmuv3.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ drivers/perf/arm_pmuv3.c | 25 ++++++++++++++++---------
+ 1 file changed, 16 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/perf/arm_pmuv3.c b/drivers/perf/arm_pmuv3.c
-index 973d4abcb3a6e..9ce915754b0a5 100644
+index 9ce915754b0a5..667ce27d2347c 100644
 --- a/drivers/perf/arm_pmuv3.c
 +++ b/drivers/perf/arm_pmuv3.c
-@@ -1013,6 +1013,10 @@ static bool armv8pmu_can_use_pmccntr(struct pmu_hw_events *cpuc,
- 	if (cpu_pmu->avoid_pmccntr)
- 		return false;
+@@ -957,10 +957,12 @@ static int armv8pmu_get_single_idx(struct pmu_hw_events *cpuc)
+ {
+ 	int idx;
  
-+	if (!test_bit(ARMV8_PMU_CYCLE_IDX, cpuc->cntr_mask) ||
-+	    test_bit(ARMV8_PMU_CYCLE_IDX, cpuc->used_mask))
-+		return false;
+-	for_each_set_bit(idx, cpuc->cntr_mask, ARMV8_PMU_MAX_GENERAL_COUNTERS) {
+-		if (!test_and_set_bit(idx, cpuc->used_mask))
++	for (idx = ARMV8_PMU_MAX_GENERAL_COUNTERS - 1; idx >= 0; idx--) {
++		if (test_bit(idx, cpuc->cntr_mask) &&
++		    !test_and_set_bit(idx, cpuc->used_mask))
+ 			return idx;
+ 	}
 +
- 	return true;
+ 	return -EAGAIN;
  }
  
-@@ -1025,14 +1029,15 @@ static int armv8pmu_get_event_idx(struct pmu_hw_events *cpuc,
- 
- 	/* Always prefer to place a cycle counter into the cycle counter. */
- 	if (armv8pmu_can_use_pmccntr(cpuc, event)) {
--		if (!test_and_set_bit(ARMV8_PMU_CYCLE_IDX, cpuc->used_mask))
--			return ARMV8_PMU_CYCLE_IDX;
--		else if (armv8pmu_event_is_64bit(event) &&
--			   armv8pmu_event_want_user_access(event) &&
--			   !armv8pmu_has_long_event(cpu_pmu))
--				return -EAGAIN;
-+		set_bit(ARMV8_PMU_CYCLE_IDX, cpuc->used_mask);
-+		return ARMV8_PMU_CYCLE_IDX;
- 	}
- 
-+	if (armv8pmu_event_is_64bit(event) &&
-+	    armv8pmu_event_want_user_access(event) &&
-+	    !armv8pmu_has_long_event(cpu_pmu))
-+		return -EAGAIN;
+@@ -972,17 +974,22 @@ static int armv8pmu_get_chain_idx(struct pmu_hw_events *cpuc)
+ 	 * Chaining requires two consecutive event counters, where
+ 	 * the lower idx must be even.
+ 	 */
+-	for_each_set_bit(idx, cpuc->cntr_mask, ARMV8_PMU_MAX_GENERAL_COUNTERS) {
++	for (idx = ARMV8_PMU_MAX_GENERAL_COUNTERS - 1; idx >= 0; idx--) {
+ 		if (!(idx & 0x1))
+ 			continue;
+-		if (!test_and_set_bit(idx, cpuc->used_mask)) {
+-			/* Check if the preceding even counter is available */
+-			if (!test_and_set_bit(idx - 1, cpuc->used_mask))
+-				return idx;
+-			/* Release the Odd counter */
+-			clear_bit(idx, cpuc->used_mask);
 +
- 	/*
- 	 * Always prefer to place a instruction counter into the instruction counter,
- 	 * but don't expose the instruction counter to userspace access as userspace
++		if (test_bit(idx, cpuc->cntr_mask) &&
++		    test_bit(idx - 1, cpuc->cntr_mask)) {
++			if (!test_and_set_bit(idx, cpuc->used_mask)) {
++				/* Check if the preceding even counter is available */
++				if (!test_and_set_bit(idx - 1, cpuc->used_mask))
++					return idx;
++				/* Release the Odd counter */
++				clear_bit(idx, cpuc->used_mask);
++			}
+ 		}
+ 	}
++
+ 	return -EAGAIN;
+ }
+ 
 -- 
 2.56.1.708.g77570a6a1d-goog
 
