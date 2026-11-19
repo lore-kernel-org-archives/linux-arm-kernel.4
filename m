@@ -2,85 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C372C606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5FE8606A324
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=06h4FW+D;
-	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=QGLRop1U
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H/NHigUz;
+	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=Rzczyjon
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ntk4mAK9p6PJOEu3vzXljUNzscjCYNCzCNuBX536B0c=; b=06h4FW+DwdCzTn
-	32jJsXQ+0pkx3udlXNkw6cPUyuZxAQpCkuKi+b3Muq88hJk6aArJe0uctBmgK8sYxN4AdopEucNH/
-	zGmmi2KVthS/96W8yHhtnBXrIdC/0hglf9Y6p92dgTsaTC3Vs2gTaCR0ncLXjJ+KJ/cT4deRCy6L2
-	etpKMf772Hi2HjWRHD9qg4eCpAS5vojh1AR+0xG/nRIWvs3P9X3nDCf9L04iFuxq3WP5jThoyhhsR
-	o4gRGl1y2rZ/vkTuk6To+qIC7wjIj1LV/ZbaY1IMdxYOhKpaXvWTIkrwAgxnIFHFiDBVdE8ZXFiAE
-	9fj5FouaBBrBhnIdRLCw==;
+	List-Owner; bh=+KzwTxyJe1Er1zgZJn5wO+VPIKKM9MReJr20XBLcIEA=; b=H/NHigUzyEaQ1o
+	bf0ViiTGpV6CUGxiMeMVXieXkFdkV3DluVk07xGTD10rXYiwMepwJ50tXs7qWMB6kL+k8yg1u79SH
+	Cf7tbANeYzYNhJJTk8fAXmPQxQwowVaAvmKR1waTKLNB6B/NLX/YmeCyzr1ipPiLYHOuBng+WfpQx
+	S/dIIKd1yx6Rta43smfgPvXY1thkVK/6nRCaLzg2ddGzH4wAjAEnsUTjFTPwEO00R9QBp8yC7UHY/
+	h+jhNOx0ZEpW2+aIFUeH4PXnMKI4DNbNz3YpdTIdPpLDKjvhAXHthkrgnk9ck0eyFkWzcpA+WzH+g
+	2GiVPpvhwV4/JOt+SPLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU29d-0000000C1ri-0St7;
+	id 1xU29d-0000000C1s1-0u8L;
 	Thu, 19 Nov 2026 13:26:21 +0000
 Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU29S-0000000C1jI-2plQ
+	id 1xU29V-0000000C1lq-2iYm
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 13:26:12 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-49a92144733so1071613f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 05:26:09 -0800 (PST)
+	Thu, 19 Nov 2026 13:26:15 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-498f5fa4f70so2036041f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 05:26:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pereq.eu; s=google; t=1795094768; x=1795699568; darn=lists.infradead.org;
+        d=pereq.eu; s=google; t=1795094771; x=1795699571; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ntk4mAK9p6PJOEu3vzXljUNzscjCYNCzCNuBX536B0c=;
-        b=QGLRop1UvI9pwERCNeR/YK+slk+BVvacoEpodPDZ1qyCNwDDTCpBlx9L6MFz9Hs9DS
-         pQsIq0+3qsKAGSyNjNMDkjiF/Gkm+sX3XeRpHxS8VLwECqIllKz1Zr4YVUG0K2dSebt9
-         MPbwkvXsKg1sXX8UTxEenZtlyx/aY+KINx4JQgiSbVROVlXYZhIU6hrDVWYYwyd0gbJN
-         NZORVgJOT6ydamlGAMdM/5HCl7DK6oZ00r16jhwUPEG2f2F3SGrEy2254pCaIFWwpeQh
-         /xkLQVTPK3y7vReBm0A6yQ6jSsFvatgbEy7meSrqWlFMzIq5QaXlGt14yMDSngSaF9PU
-         pVOQ==
+        bh=+KzwTxyJe1Er1zgZJn5wO+VPIKKM9MReJr20XBLcIEA=;
+        b=RzczyjonHUcLK3HNAgA+6eOYesB1LozjhmtqmqiqVVzptYs7Te2aJy8jL2v5p54Elp
+         jg9Ryj+leGNzAmjRTdWgZOgE1MkG4u5vWVRNS7ta99jP8bsvWkLHhDpHUtJGwl/DgFIC
+         j6xtRebZRw1SRlhYJOxPyKVqHXK4ArUScLYXtNSr6LJ7NTAmgHJvToJYuJNa4XxHlaLL
+         B7aYgWfQfSTOIMb7QKftHkLzVHF0R4c4ernMVn4qhH+wLIyz+iTgqotSm6SaCHWt7stZ
+         s1yXEDVg8qDgFVPFGWZpwnxmpfS8KmunOLoPb8syavemvSyXCd87+6Y7InRGIAUx0txu
+         paxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795094768; x=1795699568;
+        d=1e100.net; s=20260707; t=1795094771; x=1795699571;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ntk4mAK9p6PJOEu3vzXljUNzscjCYNCzCNuBX536B0c=;
-        b=ocWzBF/bB61IJNFgl8XM1ZIYz39EcmmbPydJDMqTeK3utdbLKV5mYR5Xjb3eJmXOVC
-         BvqNELK3DKoxtaX16kxEKWJ0wih8YmP2qNQIA8XLsgc2Fqbo+BvbZhooYBqWOVyQs3/R
-         9JmFIHhqNnaSozTS51ZbHxqrU0XtZPEstvDwmI/QibruloGZlOLWA1guIu4wOP3icLIT
-         hfxtfHfzJu9y3gcW88neiypS9pIel/maYrzjAxll2NvjYM8WaRVFxlTMOp4/QvPQgU54
-         CsKniR81lOBmeeqJY3dqWRJLSbpf1DAXjJIrQ/oeGGnDu+TUvoJ7oqD6R+2Dbg2mOI8x
-         p6tQ==
-X-Gm-Message-State: APuU4Z/c1LXHnOF3fllmrjcVNDd5HzbELbvoIjL2J6s9d7O8K3xqAK4C
-	ZdZZonL+yfp5n5THEdWQVscly187702/bBUj5bROkzRlIMbUfMKI16fR/i+adQ6ktGw=
-X-Gm-Gg: AZFdTZfvPFICAq1CsNIH0zwHQ97yfi/e4ZjtZy/FTwFiOtaCbxGsOBueu7KsO0YADh1
-	U+nMR7q/iJaL59aas5eg5esdmD7PRHRyFmeIMHvcm7Mwp0pgunU7pxxJK0MviYnY8eWOQuDKm3a
-	wFlu8AhOpjYd1MDwA4P+w7Pz88koOhAgVg1wA45S6SHW8MRaAeniKQrK0MNF7cAzWfb6i5l5A+v
-	aZv/iDPh+NEWn3prs6pn2LPshkdmHUr9NsXfRaabQSoVtQGI4T/MxVbP/AcT0KcWadZ0reS7WFn
-	UDcdbdJoXgdmthqS7EcnUBFW8KTYhEWLOASthMR+n+Jma81w37tdu+tYPs/9DZgLGv5Gv4vXrKY
-	IY5dNzpuguNkAY4W69HLGhL1dtBr04QPIq2GJl5kVAuiRB0DERUAyEFsncfOYPZLtsEzbpnUEL5
-	0MhnHiBESGRh/1j4IC68eRmTmSFiiC7cw3MZJUOAfNjQ5O+IKVIhO1aYnrmgwz3ZpgW76ec7q+7
-	1RPlk38+LAm3hqs91/XXJFxRi/fTtEP8guW1mH/k+VJu8e81mF0YGMkBtEl5ntAzFhtUHDsWq5n
-	Ewb43reoTX3LGdKH8Rk=
-X-Received: by 2002:a05:6000:2210:b0:4a7:790c:4a56 with SMTP id ffacd0b85a97d-4a7790c4b2fmr10368485f8f.33.1795094768046;
-        Thu, 19 Nov 2026 05:26:08 -0800 (PST)
+        bh=+KzwTxyJe1Er1zgZJn5wO+VPIKKM9MReJr20XBLcIEA=;
+        b=fqdu5yeoM4FpafJ9597CFFAEvRnW404+iz4529+qIfPBtOOmxq5ZnXZKeWFWZAlChK
+         gvliWH5mamfrYaTdernGiSx8IMHc8MmykKH7AmMo8C1sfXcmQiOSbBhBOKjlZCqRRNP4
+         TjVvQfzJz6CI2FE2jPmynWam5eeQR6SOo1Lp4PWOcBwdFkVe9a7RjFaq9Irc7kGBuYFf
+         KYBgFPeW9MmuslyZ4QgkdxLkdyJ1C/K32XTo8JsRUW5w2IGU+JfbB1MqdwZsxH+Aywnh
+         Vpn0Dx+4h8KwOKORB0dP7rtGykDwSqplCNU85BRaTL+C2vXjjBcL1aZTwquPgjZeXk0H
+         DpSg==
+X-Gm-Message-State: APuU4Z/6j6+B4EP9yrvsEd/HkMDm7wgdKNtvLAZckjzZRCnfey2CQ86D
+	birouqiICKbHnNv3XIqAYt9EZU0yDdC6ioOA4zeYsIFkkitxXPlGM8RqXlUIdEfnIgg=
+X-Gm-Gg: AZFdTZcPwOJ2rJzY6PAJlrJTmAUAQuXV8CbnijhfjiWs6RDfbweHvGLAT2zI2ZjXVRF
+	HKranS9RFlmwADItLNTOKScucvyo9b1s7CVM22mQOZd+ol9228WkmtNu/yvAuAqpdj9EsnBJ2Ou
+	YBtPlAFxQ+PjipZcg+3gzAi/TByXpoK8OWBYo5/xP+PsY8WDZ/meBccixjENpyyQCkmbAg1glIK
+	0deXzxro9V9jABASOdgdF6aes/0MqLvBP9AllnxI5Zhmnbjnn7zzCBQiOxB8oj3YWqg6vEf6+jN
+	AK8qTbiAmoUCV6rzAgB28XyBi409sDAFxEsrFCIUdFmhj18tZNd1BJb90wFbLnVAHkIrxfbd4hV
+	7JFXXpg2u5aX9rkIzKVABqBdgX5zTk/8JKwfH0eimMkfczIeDECJrTrCA7L38/bU3pC1AOi9RsD
+	SNNOYYlZ8syIFm414tryhXseawby5r9BZdJIqYWjVA40JIoLV1l7DjOj2d9T70+3zs7uW87ECOF
+	88kglE57bKnJ/EjQ4a1PnoOuktmtqMey7ywc7/DXSj7kIRhv9ld7Er6Kdkn8E9FauVEQvoruaqp
+	fjKylcCDFH/ourZ4LzU=
+X-Received: by 2002:a05:6000:4555:b0:4a4:7328:21f1 with SMTP id ffacd0b85a97d-4a63ac6be9fmr8858836f8f.24.1795094771068;
+        Thu, 19 Nov 2026 05:26:11 -0800 (PST)
 Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a6573baa9fsm11452563f8f.57.2026.11.19.05.26.06
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a6573bccb0sm10584515f8f.55.2026.11.19.05.26.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 05:26:07 -0800 (PST)
+        Thu, 19 Nov 2026 05:26:10 -0800 (PST)
 From: Dan Carpenter <dan@pereq.eu>
-Date: Thu, 19 Nov 2026 16:25:36 +0300
-Subject: [PATCH v2 3/4] KVM: arm64: nv: Clear hidden TCR2 bits for nested
- guests
+Date: Thu, 19 Nov 2026 16:25:37 +0300
+Subject: [PATCH v2 4/4] KVM: arm64: nv: Update the shadow MMU's VMID for AT
+ emulation
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-nv-tcr2-v2-3-3deb1a6cdba8@pereq.eu>
+Message-Id: <20261119-nv-tcr2-v2-4-3deb1a6cdba8@pereq.eu>
 References: <20261119-nv-tcr2-v2-0-3deb1a6cdba8@pereq.eu>
 In-Reply-To: <20261119-nv-tcr2-v2-0-3deb1a6cdba8@pereq.eu>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
@@ -96,8 +96,8 @@ Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
  stable@vger.kernel.org
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_052611_441495_F4331C59 
-X-CRM114-Status: GOOD (  20.20  )
+X-CRM114-CacheID: sfid-20261119_052613_746779_C9569624 
+X-CRM114-Status: GOOD (  16.97  )
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,115 +117,68 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The previous patch added traps for TCR2_EL1 writes on VMs that have
-FEAT_TCR2 but not FEAT_S1PIE or FEAT_S1POE.  This patch extends that
-fix to cover nested virtualization.
+There is a missing kvm_arm_vmid_update() before the __load_stage2()
+in __kvm_at_s1e01_fast().  The bug affects nested virtualization on
+arm64.
 
-The bug is that a KVM can hide the PIE and POE bits in TCR2_EL1 but a VM
-can still write to them.  It obviously makes no sense to hide a register
-from the VM but still allow writes. The implication of this bug is a
-small information leak because a VM can determine the permission bits of
-another VM's page tables.
+In KVM a "stage 2" refers to the VM's page table mappings. The
+__kvm_at_s1e01_fast() function emulates the AT instruction, which
+translates a virtual address the way the MMU would and returns the
+result.
 
-The previous patch trapped writes to TCR2_EL1 but nested virtualization
-is more complicated because we have to deal with TCR2_EL2 as well.  A
-trapped TCR2_EL1 write has to go to either TCR2_EL2 or TCR2_EL1 depending
-on who made it.  With nested virtualization the hidden bits can reach the
-hardware in three ways:
+Each stage 2 has a VMID, which the hardware uses to tag TLB and
+walk-cache entries, so that one VM never uses another's entries.  There
+are only 2^8 or 2^16 VMIDs, which is quite limited, so vmid.c hands
+them out by generation.  When they run out, a rollover starts a new
+generation and flushes the TLBs: the VMIDs active on a CPU at that
+moment are kept, and every other VMID can be given to another VM.
 
-- A guest hypervisor at vEL2 writes its TCR2_EL2.
-- An L2 writes its own TCR2_EL1.
-- An L1 writes its L2's TCR2_EL1 in the VNCR page, which KVM loads as is.
+The kvm_arm_vmid_update() function checks the VMID's generation, takes
+a new VMID if it is from an old generation, and marks it as active on
+this CPU.  Without this, the shadow MMU's VMID could be an old one that
+now belongs to another VM, or a rollover on another CPU could hand it
+to another VM while we are using it.  Either way the AT fills TLB entries
+tagged with another VM's VMID.
 
-To fix this, remove the vcpu_has_nv() check in __compute_hfgwtr() so that
-these writes are trapped too.  When the guest hypervisor is at vEL2,
-update TCR2_EL2 and TCR_EL2 instead of L2's registers.  Also clear the
-hidden bits in __sysreg_restore_el1_state() when it loads a guest's
-TCR2_EL1.
+To fix this, call kvm_arm_vmid_update() to update the VMID before loading
+the shadow stage 2.  That marks it as active on the CPU.  Then at the end
+of the function, undo that.  Restore the original VMID as active while
+checking for and handling rollover.
 
-Fixes: 58627b722ee2 ("KVM: arm64: Make PIR{,E0}_EL1 UNDEF if S1PIE is not advertised to the guest")
-Fixes: b86c9bea6349 ("KVM: arm64: Save/restore POE registers")
+Fixes: 477e89cabb14 ("KVM: arm64: nv: Add basic emulation of AT S1E{0,1}{R,W}")
 Cc: stable@vger.kernel.org
 Signed-off-by: Dan Carpenter <dan@pereq.eu>
 ---
-v2: This is a new patch
+v2: Unchanged
 ---
- arch/arm64/kvm/config.c                    |  2 +-
- arch/arm64/kvm/hyp/include/hyp/sysreg-sr.h | 10 +++++++++-
- arch/arm64/kvm/sys_regs.c                  | 19 ++++++++++++++++++-
- 3 files changed, 28 insertions(+), 3 deletions(-)
+ arch/arm64/kvm/at.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
-index f756f7c4fdf8..8bde0a5eafb6 100644
---- a/arch/arm64/kvm/config.c
-+++ b/arch/arm64/kvm/config.c
-@@ -1898,7 +1898,7 @@ static void __compute_hfgwtr(struct kvm_vcpu *vcpu)
- 		*vcpu_fgt(vcpu, HFGWTR_EL2) |= HFGWTR_EL2_TCR_EL1;
+diff --git a/arch/arm64/kvm/at.c b/arch/arm64/kvm/at.c
+index 9dfabd0586e2..5924cfa01bd4 100644
+--- a/arch/arm64/kvm/at.c
++++ b/arch/arm64/kvm/at.c
+@@ -1476,6 +1476,7 @@ static u64 __kvm_at_s1e01_fast(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
+ 		}
+ 	}
+ 	write_sysreg_el1(vcpu_read_sys_reg(vcpu, SCTLR_EL1),	SYS_SCTLR);
++	kvm_arm_vmid_update(&mmu->vmid);
+ 	__load_stage2(mmu);
  
- 	/* The CPU acts on hidden TCR2_EL1 bits, so trap writes to clear them */
--	if (!vcpu_has_nv(vcpu) && kvm_has_tcr2(vcpu->kvm) &&
-+	if (kvm_has_tcr2(vcpu->kvm) &&
- 	    (!kvm_has_s1pie(vcpu->kvm) || !kvm_has_s1poe(vcpu->kvm)))
- 		*vcpu_fgt(vcpu, HFGWTR_EL2) |= HFGWTR_EL2_TCR_EL1;
- }
-diff --git a/arch/arm64/kvm/hyp/include/hyp/sysreg-sr.h b/arch/arm64/kvm/hyp/include/hyp/sysreg-sr.h
-index 4a008c8a696b..d6e8bab14ed3 100644
---- a/arch/arm64/kvm/hyp/include/hyp/sysreg-sr.h
-+++ b/arch/arm64/kvm/hyp/include/hyp/sysreg-sr.h
-@@ -261,7 +261,15 @@ static inline void __sysreg_restore_el1_state(struct kvm_cpu_context *ctxt,
- 	write_sysreg_el1(ctxt_sys_reg(ctxt, TTBR0_EL1),	SYS_TTBR0);
- 	write_sysreg_el1(ctxt_sys_reg(ctxt, TTBR1_EL1),	SYS_TTBR1);
- 	if (ctxt_has_tcrx(ctxt)) {
--		write_sysreg_el1(ctxt_sys_reg(ctxt, TCR2_EL1),	SYS_TCR2);
-+		u64 tcr2 = ctxt_sys_reg(ctxt, TCR2_EL1);
-+
-+		if (ctxt_is_guest(ctxt)) {
-+			if (!ctxt_has_s1pie(ctxt))
-+				tcr2 &= ~TCR2_EL1_PIE;
-+			if (!ctxt_has_s1poe(ctxt))
-+				tcr2 &= ~(TCR2_EL1_POE | TCR2_EL1_E0POE);
-+		}
-+		write_sysreg_el1(tcr2, SYS_TCR2);
+ skip_mmu_switch:
+@@ -1523,8 +1524,11 @@ static u64 __kvm_at_s1e01_fast(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
  
- 		if (ctxt_has_s1pie(ctxt)) {
- 			write_sysreg_el1(ctxt_sys_reg(ctxt, PIR_EL1),	SYS_PIR);
-diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
-index 3899702d438b..e4a3beac6ec9 100644
---- a/arch/arm64/kvm/sys_regs.c
-+++ b/arch/arm64/kvm/sys_regs.c
-@@ -624,6 +624,23 @@ static bool access_tcr2_el1(struct kvm_vcpu *vcpu,
- 	if (!kvm_has_s1poe(vcpu->kvm))
- 		p->regval &= ~(TCR2_EL1_POE | TCR2_EL1_E0POE);
+ 	write_sysreg_hcr(HCR_HOST_VHE_FLAGS);
  
-+	if (is_hyp_ctxt(vcpu) && vcpu_el2_e2h_is_set(vcpu)) {
-+		vcpu_write_sys_reg(vcpu, p->regval, TCR2_EL2);
-+		return true;
+-	if (mmu_cs)
++	if (mmu_cs) {
++		kvm_arm_vmid_update(&vcpu->arch.hw_mmu->vmid);
++		config.vttbr = kvm_get_vttbr(vcpu->arch.hw_mmu);
+ 		__mmu_config_restore(&config);
 +	}
-+
-+	return access_vm_reg(vcpu, p, r);
-+}
-+
-+static bool access_tcr_el1(struct kvm_vcpu *vcpu,
-+			   struct sys_reg_params *p,
-+			   const struct sys_reg_desc *r)
-+{
-+	if (is_hyp_ctxt(vcpu) && vcpu_el2_e2h_is_set(vcpu)) {
-+		vcpu_write_sys_reg(vcpu, p->regval, TCR_EL2);
-+		return true;
-+	}
-+
- 	return access_vm_reg(vcpu, p, r);
+ 
+ 	return par;
  }
- 
-@@ -3512,7 +3529,7 @@ static const struct sys_reg_desc sys_reg_descs[] = {
- 	{ SYS_DESC(SYS_SMCR_EL1), undef_access },
- 	{ SYS_DESC(SYS_TTBR0_EL1), access_vm_reg, reset_unknown, TTBR0_EL1 },
- 	{ SYS_DESC(SYS_TTBR1_EL1), access_vm_reg, reset_unknown, TTBR1_EL1 },
--	{ SYS_DESC(SYS_TCR_EL1), access_vm_reg, reset_val, TCR_EL1, 0 },
-+	{ SYS_DESC(SYS_TCR_EL1), access_tcr_el1, reset_val, TCR_EL1, 0 },
- 	{ SYS_DESC(SYS_TCR2_EL1), access_tcr2_el1, reset_val, TCR2_EL1, 0,
- 	  .visibility = tcr2_visibility },
- 
 
 -- 
 2.53.0
