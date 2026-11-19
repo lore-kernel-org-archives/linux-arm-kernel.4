@@ -2,41 +2,40 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72BA160A2601
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 05:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD25606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 05:29:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0nAutosi;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=dCWNjcEE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nhtQJpXw;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=j///4p1S
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=fOct1Oy2zs2ObMlRzcVP+Z//u6uH+3SrxUPuN9hSflg=; b=0nAutosipjbeuR3dvGcpXsOj9C
-	Y6ob5MBwIj8HLP5TKerh1kGvkF9/e4wT7dxO9GvU1JB0zhEfcIYWdkNLyM7ZHKy5doqXb1g+R7Yu4
-	ACy7YK8A2VeYoISbYUlQ5JbHj6VhYhJlMAeGAdakEh6a6r/yW3jFYBj2JGkrxBHuhzWhctsMljjYr
-	uwip9wYzb5/IwYDrXF/LJkc6E3ieaVWC0iDdHJTQC2X0HpiTTmKp03pxDt86oIrERzjQqjWar0KLj
-	VvEnvgmNDS82ES38OziLkOSDskHsTcjCpK4frQ3v/vL9fI7zsno8xawu/D4yKcJ/ei1TuGoIdywYI
-	rfJmPhew==;
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=bD2ax/aLK3TbiC+MuA5c3fv1Msqgl3zH1491fFdGzOw=; b=nhtQJpXwmGMey9
+	H+24jLQHGZXZ7gc8TDu47acJOzdXw5Coxgqx5V3Z4aMeUPlnA58LTZquxtkuQbUuIxJcxwbsBhlRg
+	Vmy/fyvkyVZclPd3+ziXMePr2i1uCXAH75Xdc2QD+up59L//Yql7gOUnyvdfp+cRbFRIVl+ZSG3jk
+	aM93u7MlvwHW2O+UlDEPFctC+6bvMd9aofkINYC8Ku71JRXgERHajVc8+uGn63uwI3CU3H9h39Xvr
+	fLHDPG5Mx0RDrCDnpxD56jY3MdaYLipBUMcps6tNb/oET2qEsDE1XfyB7v5Wr00BU0+9fu+mRatIO
+	/Kn9kl3IFUp316LxaucA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTuhN-0000000Ati3-3LaG;
-	Thu, 19 Nov 2026 05:28:41 +0000
-Received: from m16.mail.163.com ([220.197.31.3])
+	id 1xTuha-0000000AtoI-17YZ;
+	Thu, 19 Nov 2026 05:28:54 +0000
+Received: from m16.mail.163.com ([117.135.210.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTuhK-0000000Atgw-2nra;
-	Thu, 19 Nov 2026 05:28:40 +0000
+	id 1xTuhL-0000000Atgx-2UFP;
+	Thu, 19 Nov 2026 05:28:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=fO
-	ct1Oy2zs2ObMlRzcVP+Z//u6uH+3SrxUPuN9hSflg=; b=dCWNjcEEo0Eep4yh4M
-	1An1BBh9LPhkfTGTd7WaDwrCJciGjQNZyY1d3U3uI1YLWMMjG67Qd429SDffZyeZ
-	s0lNW88bvcisFDJA5hegS9v27ILQ+ftpiC/v+6FoUOfYQd44GsVGyZ9tvLCxa9sq
-	TMAH6HqhjSujyq+ecvic1EyWM=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=bD
+	2ax/aLK3TbiC+MuA5c3fv1Msqgl3zH1491fFdGzOw=; b=j///4p1Sm4iOx1f1x/
+	ZNKs/kBmJhb7QO9N11NByMfu2yCyj/HW7XhsIcavU8JsyGZ9gJAfnu6clN0ZXrVc
+	YUDUGvEAbeWEGJwvenUSV9LO2vSW10pwUNQWUsSFbj/ChKdi2z/1Q675HABETJVu
+	h5HZG/u0AmXYR/y/R9laKmaLo=
 Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wDX3+zviP5qaWbXIA--.59393S2;
-	Thu, 19 Nov 2026 13:28:16 +0800 (CST)
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wDX3+zviP5qaWbXIA--.59393S4;
+	Thu, 19 Nov 2026 13:28:18 +0800 (CST)
 From: Haoxiang Li <haoxiang_li2024@163.com>
 To: viresh.kumar@linaro.org,
 	rafael@kernel.org
@@ -49,23 +48,24 @@ Cc: zhongqiu.han@oss.qualcomm.com,
 	linux-mediatek@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Haoxiang Li <haoxiang_li2024@163.com>
-Subject: [PATCH v2 0/2] cpufreq: mediatek-hw: Fix initialization resource leaks
-Date: Thu, 19 Nov 2026 13:28:09 +0800
-Message-Id: <20261119052811.2877720-1-haoxiang_li2024@163.com>
+Subject: [PATCH v2 2/2] cpufreq: mediatek-hw: Clean up on frequency table creation failure
+Date: Thu, 19 Nov 2026 13:28:11 +0800
+Message-Id: <20261119052811.2877720-3-haoxiang_li2024@163.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20261119052811.2877720-1-haoxiang_li2024@163.com>
+References: <20261119052811.2877720-1-haoxiang_li2024@163.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wDX3+zviP5qaWbXIA--.59393S2
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Gw18Ar17KF4DWr1kGrWUXFb_yoWDtFb_ua
-	yrCryDWr10y3Wvka17KF1DZrZrur4xWFy8JF15JF90yFy7Cwn8WrZaqr13Zr48ua10kr98
-	Ww1qyw18Aw1xCjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7VUUjNt7UUUUU==
-X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/xtbC7hG4J2r+iPFx+gAA3G
+X-CM-TRANSID: _____wDX3+zviP5qaWbXIA--.59393S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW7JrWfZw43Gr17GF45trW7CFg_yoW8JrW7pF
+	W09FWUAry5JFsrXw4kAa1UWas8Aan29rW5ur47W3sIvwnxJFWYva4Fga4jqFZ3urWkAr1Y
+	vrWqyay7uFWUJr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ztjg7bUUUUU=
+X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/xtbC7RK4J2r+iPJhUwAA38
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_212839_131882_B3C8DAC7 
-X-CRM114-Status: UNSURE (   7.36  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261118_212840_059367_D449DF95 
+X-CRM114-Status: GOOD (  10.75  )
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,40 +77,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series fixes two resource cleanup omissions introduced by commit
-d776790a5536 ("cpufreq: mediatek-hw: Fix double devm_remap in hotplug case").
+If mtk_cpu_create_freq_table() fails, mtk_cpu_resources_init() returns
+without unmapping the registers or releasing the memory region it has
+already requested.
 
-Patch 1 releases the resources when the CPUFreq hardware fails to become
-enabled.
+Unmap the registers and fall through to the existing memory-region
+cleanup before returning the original error.
 
-Following Zhongqiu's suggestion during review, patch 2 handles the
-additional failure path where mtk_cpu_create_freq_table() fails after
-the registers have been mapped and the memory region requested.
-Thanks to Zhongqiu for pointing out this omission and suggesting a
-separate fix.
+Fixes: d776790a5536 ("cpufreq: mediatek-hw: Fix double devm_remap in hotplug case")
+Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+---
+ drivers/cpufreq/mediatek-cpufreq-hw.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Changes in v2:
-- Keep the original hardware enable failure fix unchanged as patch 1.
-- Add patch 2 to clean up on frequency table creation failure, using
-  the same Fixes tag.
-
-Haoxiang Li (2):
-  cpufreq: mediatek-hw: Release resources when hardware enable fails
-  cpufreq: mediatek-hw: Clean up on frequency table creation failure
-
- drivers/cpufreq/mediatek-cpufreq-hw.c | 31 ++++++++++++++++-----------
- 1 file changed, 18 insertions(+), 13 deletions(-)
-
-
-base-commit: 666539eecdf4db623f5e3c3e55cf9f2dfad24aa4
+diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
+index 65f15fe935db..3ab139d1a552 100644
+--- a/drivers/cpufreq/mediatek-cpufreq-hw.c
++++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
+@@ -277,13 +277,17 @@ static int mtk_cpu_resources_init(struct platform_device *pdev,
+ 	ret = mtk_cpu_create_freq_table(pdev, data);
+ 	if (ret) {
+ 		dev_info(dev, "Domain-%d failed to create freq table\n", index);
+-		return ret;
++		goto unmap;
+ 	}
+ 
+ 	policy->freq_table = data->table;
+ 	policy->driver_data = data;
+ 
+ 	return 0;
++
++unmap:
++	iounmap(base);
++
+ release_region:
+ 	release_mem_region(res->start, resource_size(res));
+ 	return ret;
 -- 
 2.25.1
 
