@@ -2,35 +2,35 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B73E60A260F
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:41:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B212260A260D
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OzC8zows
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Ck2XMj4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=F1WvOT+hIxrw2MP812Ga5gJUJ5ZKXMTfT+MjkhtVx3c=; b=OzC8zowsAcFk7q
-	eKqf/Q5s829/Ml1b0nzyB7+S3IaSZdBBbuKATI06KpP4m/GjENIaidHI3C4VOZ8lwAubuNyPUEtef
-	Q/6Vd+ibBU1d5hLfORX1Idlmw/wUzVUWn+oVEBXgsQ0YdRHyp6A1yCSU/DXrNjTt+/9sxT/mn4bAE
-	wRkIKmg7BwPLqy4NnYfs+G+Ux53Gn/v70XSR/9noV8uiePxLJaezpPb756aW4ZIdef6+4RCQnQ+36
-	8Yd0dogCDybDB3uXI5i4nvsWbu1mom2KgGyHEmf5iqx4spgccVntSh9Qew87PAbif/mff8SrC6ojI
-	SPmL8+OPzdfACuAEl9IA==;
+	List-Owner; bh=0tdTVZDX49Rm5CCnI7ZG5//mbJBXPyNRQMJJCRmwT94=; b=1Ck2XMj48BlzGH
+	Hfryz3/zvyg1XDDtaJfS1NQuOYdxarNjNwTtgSdW8J4KlLz2zxGn08U92XQeGDGpISGL1mBZWNySW
+	BvLbT+Eyis76zNEdolqyFHjEZOdLSD4mm9qpN+/jiyVPK+9J4AoljTRwJdj4CINRFD3aurIgRTHD5
+	A73IiFUZnzruResp2tgXjVccDUd4T+BWO+cWlq1QmjXvfPADUGjEohvdz8qSwQOAfyZf7N3U/ERQ9
+	TR9WIJi6lFCyoT3uaM/SMWcutIm50nuTK2kDLQjH7OKZuqx/BjG8wiZGmW4mzE7OekEv53tL0kiS6
+	048DP3C0LaYU3rM0i4Cg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2Nx-0000000C5LC-1vrH;
-	Thu, 19 Nov 2026 13:41:09 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xU2OB-0000000C5Yn-0JHD;
+	Thu, 19 Nov 2026 13:41:23 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2Nr-0000000C5HM-0QUp;
-	Thu, 19 Nov 2026 13:41:03 +0000
+	id 1xU2Nz-0000000C5No-0Tf1;
+	Thu, 19 Nov 2026 13:41:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 00EC06299B;
-	Thu, 19 Nov 2026 13:41:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97F551F000C5;
-	Thu, 19 Nov 2026 13:40:57 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id D71EC4749B;
+	Thu, 19 Nov 2026 13:41:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4DF51F000C4;
+	Thu, 19 Nov 2026 13:41:06 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>,
 	Andreas Kemnade <andreas@kemnade.info>,
@@ -54,9 +54,9 @@ Cc: linux-clk@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	linux-pm@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 2/6] clk: Add dev_clk_get_from_provider()
-Date: Thu, 19 Nov 2026 14:40:35 +0100
-Message-ID: <7155949aea78042fd399da5ad23a72765b2b6cc7.1795094688.git.geert+renesas@glider.be>
+Subject: [PATCH 4/6] [RFT] drm/rockchip: dw_hdmi: Convert to dev_clk_get_from_provider()
+Date: Thu, 19 Nov 2026 14:40:37 +0100
+Message-ID: <313d11bdd1dd46e895e34236191e7a3b175d0382.1795094688.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1795094688.git.geert+renesas@glider.be>
 References: <cover.1795094688.git.geert+renesas@glider.be>
@@ -80,84 +80,34 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Clocks obtained through of_clk_get_from_provider() show up as
+The Rockchip Designware HDMI driver uses of_clk_get_from_provider() to
+obtain the clock for the HDMI PHY, so the latter shows up as
 "deviceless" in the consumer column of the clk_summary file in debugfs.
-Add a new variant dev_clk_get_from_provider() that also takes a consumer
-device, so callers can provide it, and consumer's name will be shown in
-the clk_summary output.
 
-Reimplement of_clk_get_from_provider() on top of
-dev_clk_get_from_provider().
+Fix this by using dev_clk_get_from_provider() instead, letting us pass
+the consumer device, too.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- drivers/clk/clk.c   | 11 +++++++----
- include/linux/clk.h | 10 ++++++++--
- 2 files changed, 15 insertions(+), 6 deletions(-)
+Compile-tested only.
+---
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 858f4d60ed2d97c4..195c7d80e4f2b579 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -5377,20 +5377,23 @@ of_clk_get_hw_from_clkspec(struct of_phandle_args *clkspec)
- }
+diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+index b6e154c35e7c290e..a44e4b273924430e 100644
+--- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+@@ -633,7 +633,8 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
  
- /**
-- * of_clk_get_from_provider() - Lookup a clock from a clock provider
-+ * dev_clk_get_from_provider() - Lookup a clock from a clock provider
-+ * @dev: clk consumer device
-  * @clkspec: pointer to a clock specifier data structure
-  *
-  * This function looks up a struct clk from the registered list of clock
-  * providers, an input is a clock specifier data structure as returned
-  * from the OF phandle parser.
-  */
--struct clk *of_clk_get_from_provider(struct of_phandle_args *clkspec)
-+struct clk *dev_clk_get_from_provider(struct device *dev,
-+				      struct of_phandle_args *clkspec)
- {
- 	struct clk_hw *hw = of_clk_get_hw_from_clkspec(clkspec);
-+	const char *name = dev ? dev_name(dev) : NULL;
- 
--	return clk_hw_create_clk(hw, NULL, __func__, NULL);
-+	return clk_hw_create_clk(hw, name, __func__, NULL);
- }
--EXPORT_SYMBOL_GPL(of_clk_get_from_provider);
-+EXPORT_SYMBOL_GPL(dev_clk_get_from_provider);
- 
- struct clk_hw *of_clk_get_hw(struct device_node *np, int index,
- 			     const char *con_id)
-diff --git a/include/linux/clk.h b/include/linux/clk.h
-index db9cf184fd999b85..45c6eb09436036bb 100644
---- a/include/linux/clk.h
-+++ b/include/linux/clk.h
-@@ -1261,7 +1261,8 @@ static inline struct clk *clk_get_optional(struct device *dev, const char *id)
- #if defined(CONFIG_OF) && defined(CONFIG_COMMON_CLK)
- struct clk *of_clk_get(struct device_node *np, int index);
- struct clk *of_clk_get_by_name(struct device_node *np, const char *name);
--struct clk *of_clk_get_from_provider(struct of_phandle_args *clkspec);
-+struct clk *dev_clk_get_from_provider(struct device *dev,
-+				      struct of_phandle_args *clkspec);
- #else
- static inline struct clk *of_clk_get(struct device_node *np, int index)
- {
-@@ -1272,10 +1273,15 @@ static inline struct clk *of_clk_get_by_name(struct device_node *np,
- {
- 	return ERR_PTR(-ENOENT);
- }
--static inline struct clk *of_clk_get_from_provider(struct of_phandle_args *clkspec)
-+static inline struct clk *dev_clk_get_from_provider(struct device *dev,
-+						    struct of_phandle_args *clkspec)
- {
- 	return ERR_PTR(-ENOENT);
- }
- #endif
-+static inline struct clk *of_clk_get_from_provider(struct of_phandle_args *clkspec)
-+{
-+	return dev_clk_get_from_provider(NULL, clkspec);
-+}
- 
- #endif
+ 		if (!of_parse_phandle_with_args(np, "phys", "#phy-cells", index,
+ 						&clkspec)) {
+-			hdmi->hdmiphy_clk = of_clk_get_from_provider(&clkspec);
++			hdmi->hdmiphy_clk = dev_clk_get_from_provider(dev,
++								      &clkspec);
+ 			of_node_put(clkspec.np);
+ 			if (IS_ERR(hdmi->hdmiphy_clk))
+ 				hdmi->hdmiphy_clk = NULL;
 -- 
 2.43.0
 
