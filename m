@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4983606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 12:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0835060A2602
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 12:39:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gOk2mCPb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X79BKMyi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=olAOl9rlOmSSINGFpRQXmItoI09BaEXrfHFxRDgl1W0=; b=gOk2mCPb1lgmQw1n11Kpqc2GEo
-	besEEpp1AfvzDjuAoNb2K6RrNka5V9uRWxeY4oDZ5aw84jnB2TMTNTxzp+xZ4yKFRBAZUY4LdS6+i
-	rrr/Ro/ikh3xRaIb/3mpI58RayZRS+rUc6UIvBEHdjzaVN1NtlsY7JU6qWgIuGbntvSV3e8In1GX3
-	7sfq/qAnpvBkkZVf0JJHHxUlmHZSySldlsLziV4/n7AP9DkezE0Sr35RXYNDHx+3mj4mYi7n0lilW
-	VUW1RHqVJuzAjJoP+YzWSrt0aSbd7QQ0JgCsHvdFHJUIQcsOTbW3gngnIP12PzR9MatCYy6rGMZSN
-	qQ/qfqEQ==;
+	bh=PCl5paKLPQocqQRSpft8gNyTDLgCW5ShPpyIamnv07o=; b=X79BKMyi4d3XMxhsjY39zWkSre
+	VQ+iVasN3mD4pjQZKAdTyODXqOjEpgBuP8Wo2MOaFcCZJhWEsCRbH41moem9KKFYX3at8w00eP1kP
+	Ae24ETaI+xZfggbIF/mxp1VeUZDQN1hIzSPmn5qCF4kcoM+YsCvb9ccG3MvE0Iw9TG42QSP6tXQyr
+	+kmMa9IOcM1fBeGh8ntE1j6Vxsazru+axlbaDfLWWMAOKXjbuyIExCK2NwZ/VJprG8AAuHuP6quDK
+	jopI6KMZTMgCj25pBhQ8yO/5J6A3UfJZn2T2gnlWJ+ozBiWJZ7Bj1k1t7ekApNXeQiSRTzJcg4rq7
+	i21WVMmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU1Q1-0000000BsUr-0hba;
+	id 1xU1Q1-0000000BsVF-1FC1;
 	Thu, 19 Nov 2026 12:39:13 +0000
-Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
+Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU1Pq-0000000BsNN-0yCd
+	id 1xU1Pr-0000000BsOw-2QN1
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 12:39:06 +0000
+	Thu, 19 Nov 2026 12:39:07 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uMJbDgazA6sWIl6w08lVYkmsKdlKF3z1teqJiE6UHDR8yJdUkGAS5Up/DSiI1odr6+UVLep1mH0Lbi8/WIpGQKHmq8Od8bCj35qc3nvATnWpaHfTgxEnH3L5VQi8J5AZHHixQFtqWFtywmsFm3OFZUdLaivAiSgade+J4ekg74sUmsPW5gg+4fgGUHMzE5XliAdaTUgP7YGr088O6iyWGmNxyHauiFs3xSDtGEWHlVMbQJ+eU7Gbgbrr4pnkz5XfnTBKvEyAy1KgOZvjLWqOE7ZcEd1k7B1OzK/DBFsIgPHQ0Z0qTKICVOr+7mtp/2xv297BnKYdN9G1oF2gkZLcXg==
+ b=OMHU1zeHUjgEIjZi/s1YCWwbv4onF7VuSlVFbaMMF7CaHt+DujiU7K/G6a+vtrDyDGPpwG5o4jW8oBpkOUJrfeP2q/OL5ep866iYVrBR6g20OUSBtlSD9rBkQk0/0Zzs1UXGdOAEA7ZKZKi79+KiItys+OEVfS8RUHI0MIuNQ2c1MlqgSAOPmZwx3wNs/aJ0L+z9SRrB0QfT0pqpwXbUkdvdygXZpAb7ZeyIv0y3M8WdO3gf/MnEjErzWChnrN8b2Km437/tZcRPKucwjbwykHeTkgtAjujEeltKqLREQXbYnUtmRYGtYmuLTdJ0shlqTZfzvZbIoWm55roQGzBcqg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=olAOl9rlOmSSINGFpRQXmItoI09BaEXrfHFxRDgl1W0=;
- b=tUVPbhX1z1BC7QsBlHP55MrJVvgEgNt0sV/wrTA7yxdyq11WWfZ62n8/RlL3Tu7QiCIKfml368ORF7lWCc2UFmPOsVUHO5n0Z9YmOHl5QHw3mkMRuRFm/EN/bdXz8hMb+o+oSTxPXJGowHqbfnOPOa6srczOGKGgx+YSunIdCKJgXnONeH0CfJiw7IdQlhnQP1fzNU0zhgqWKaQTdQkerD6X7eOPxKN7BDQjynlnvHuJhJUgCx2CXkJ4sqsdr2taWOtBdk29qZn2fQt+V2ZgYjJlgN3D+LkF255nw+0B/9hzex8Ga8cjF+qdSU8rgVPzepN1MyueF6keCjgg6MDFsQ==
+ bh=PCl5paKLPQocqQRSpft8gNyTDLgCW5ShPpyIamnv07o=;
+ b=LEsDSkRh9S1PY2IgRqeMFaj8uKXgrTr2kJu9ybuQdMQSxyWM1dwVPN4yzKGMOldzWri2PpedtlKV8TO2vk+MT39F53+X6QO3M6PbQEYfQ61jzNRIQh+RMkA9RL4Wp/wSSxpubFxdwrq/2uKKWNrfbVdw8gTnlIz3L3apLm3Bw9C+P8iLLP+0SDUSgui/0J0R/yhbyRmKbuO78KVnJ4ap9QGB+5jiLBdeYwEY/or55gqy81zcRtA3HTSYn+cbvRMwcAvZWHNe1l57sC6FVRq/ydh4gTms0ViyJHYIBSdY03l6ZGbdYB7hqqE58veHQ9mE2I81XfBmmYDbwq45nSrjhw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
  dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
  not signed); arc=none (0)
-Received: from PS2PR03CA0005.apcprd03.prod.outlook.com (2603:1096:300:5b::17)
- by SI4PR06MB8874.apcprd06.prod.outlook.com (2603:1096:4:2b1::24) with
+Received: from TYCPR01CA0157.jpnprd01.prod.outlook.com (2603:1096:400:2b1::10)
+ by SEZPR06MB6302.apcprd06.prod.outlook.com (2603:1096:101:133::14) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.1; Thu, 19 Nov
- 2026 12:38:54 +0000
-Received: from TY2PEPF0000AB86.apcprd03.prod.outlook.com
- (2603:1096:300:5b:cafe::97) by PS2PR03CA0005.outlook.office365.com
- (2603:1096:300:5b::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.1 via Frontend Transport; Thu, 19
- Nov 2026 12:38:53 +0000
+ 2026 12:38:52 +0000
+Received: from TY2PEPF0000AB87.apcprd03.prod.outlook.com
+ (2603:1096:400:2b1:cafe::9) by TYCPR01CA0157.outlook.office365.com
+ (2603:1096:400:2b1::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.12 via Frontend Transport; Thu,
+ 19 Nov 2026 12:38:52 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
  header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
@@ -56,11 +56,11 @@ Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
  222.71.101.198 as permitted sender) receiver=protection.outlook.com;
  client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
 Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB86.mail.protection.outlook.com (10.167.253.10) with Microsoft
+ TY2PEPF0000AB87.mail.protection.outlook.com (10.167.253.6) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 12:38:53 +0000
+ 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 12:38:52 +0000
 Received: from cix (unknown [172.16.66.176])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 2B8B3427EFC3;
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 4370540920E1;
 	Thu, 19 Nov 2026 20:38:51 +0800 (CST)
 From: Cunyuan Liu <cunyuan.liu@cixtech.com>
 To: boris.brezillon@collabora.com,
@@ -83,38 +83,40 @@ Cc: dri-devel@lists.freedesktop.org,
 	cix-kernel-upstream@cixtech.com,
 	robin.wang@cixtech.com,
 	cunyuan.liu@cixtech.com
-Subject: [PATCH v3 0/7] Add initial GPU support for CIX Sky1
-Date: Thu, 19 Nov 2026 20:38:43 +0800
-Message-ID: <20261119123850.2994625-1-cunyuan.liu@cixtech.com>
+Subject: [PATCH v3 2/7] drm/panthor: Allow operation without an OPP table
+Date: Thu, 19 Nov 2026 20:38:45 +0800
+Message-ID: <20261119123850.2994625-3-cunyuan.liu@cixtech.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261119123850.2994625-1-cunyuan.liu@cixtech.com>
+References: <20261119123850.2994625-1-cunyuan.liu@cixtech.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB86:EE_|SI4PR06MB8874:EE_
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB87:EE_|SEZPR06MB6302:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 08518d30-5d29-4a2a-f612-08df463a1224
+X-MS-Office365-Filtering-Correlation-Id: 98a9eacf-8ef3-44d1-d3e5-08df463a116a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|82310400026|376014|7416014|36860700016|23010399003|6133799003|261009223027099003|18002099003|3023799007|261026140227099003|261026121527099003|261028144727099003|921020|261102123227099003|261021121427099003|261021123027099003|261022105027099003|261022075727099003|56012099006|10067099003;
-X-Microsoft-Antispam-Message-Info: 2Q/oej1YCjtAfgQ3N624IbciPCB/up6HX1kMQaTTqaHh2JNdWkilYPD2Sij+tIKK2PgXYy1SgTMb2+sWsPntoXt7qpp9f5y67vtpHmNp93ANoXMGjI2Ci/HdnKA4j1gcArPy7X8fnn0EDFYH5RWDlrtpP97v50zF4gjU7t4AKpXYo1m4KfVNuByc50Fwd9dTqDw6P2zzgHsGpkgrqcxJVQzlcDTm60KNTlLeJWXtrnHguXEep3LVwiIE7rzq+xjoNZ+lPuIw8+zlYrjwQYA5aMYF0K7tZi/PE6HwoxYdy88UH+tUiC+xno/s31SIF9P002CbJbW2lDHo418ivguCiMkccnvtWBEMEqGA5MIoduK1YPkwm7m9HhF4Glpr5C4ycJwaPFDHK4ofwtAfHg7CFRI5JgJszqAnoGCezAkuqyshwZ7tIGqbBGl7icQZo1mRCOv4ZDElx2TLCa4ETxhgK8ZBJEG0L62HsfixzmruyIVr81lxaubxLMSnyTIAVtxbKJ8A/3W1Q8g5bg4lh5DdjJnJ1PlKItx/SyndBSa7NSsyH4Gya1Cmi3QohExPxPpda7EJ57Yc+jI4BG+8+Z7UqxJWakcJzr8j0X5cde8L4PDxOhMiyZy/POdF0SvTGRpMC5jeAxIHHe9n2VvxJzZN8CLkHg36RpOi4bV9rrKVxytQOv22bcbvLLpmde/WQr/J
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(7416014)(36860700016)(23010399003)(6133799003)(261009223027099003)(18002099003)(3023799007)(261026140227099003)(261026121527099003)(261028144727099003)(921020)(261102123227099003)(261021121427099003)(261021123027099003)(261022105027099003)(261022075727099003)(56012099006)(10067099003);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|82310400026|376014|7416014|23010399003|36860700016|22082099003|18002099003|6133799003|921020|10067099003|261026121527099003|261026140227099003|261028144727099003|261022075727099003|261021123027099003|261022105027099003|261021121427099003|56012099006|261102123227099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info: Ob7Yqw0ZFtcti/6y2vWkWHwN28CfHL8dYrToHeNswbzYlq2DUsng/YbFKocRwyK7JFzpnsWpwcw74X7gLqzkAXDnXGc1CurYO8E2AsTNV9opfSch5hCjXPySZdfwyfjwXuyhSjiv1kF4iBI+cUsq1w+QNVewLQkYRa6UwQZsW6mnjj1llWMvuip0FdH7j1h48J21A52y094lABn0FA7aBNs2phLEjAMadvuG2KK+vHRfKx3K/Bi0K50tfNCS/x4ULYfx5xgZ64gt0KdXDINQa74B/h1T3omM41l8Y/iwR6/GgDWJVZpQxhYodJcXhnittGftgiHpzNVEtml4anIVAbmAfIYXMM+PYWp6XDoxYBJIhqRg+wpRhaw+EfUlaWsRf2F0mJytgCK2AVSwCMUSzjldyCrOtGa9pmqedCE1EDu6ergfDjVbH2nXWf33TDTSNWZW0NN1Mi2wvaMptdK8ng/K4hUX6f8iFGr8NoVoQslYNXeGApyMgZ9vLVsMbp4S7G/2xY/eBlQBpqNBBuGzZovSHA/pz1WZz/Q5AZd4InCqw0xjEfaGQD0omrdLQOu2319VILiNXGoNTToB6MMyyZkASFhzeYavHYJB6WqR6V3l70rxrpTWrkhxiTGMN4DM5kk9YJK1wmYG3/YJ5e8MQHNEsI/BOs1jndQCsQl1mvqLIe6olmovyz6TnO0olK9uFaqwDadOrAijOg4OxpmBy8KadCkVrfquV8ezYBgny5TA62XCcXEP5WDD9ve7Asyv
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(7416014)(23010399003)(36860700016)(22082099003)(18002099003)(6133799003)(921020)(10067099003)(261026121527099003)(261026140227099003)(261028144727099003)(261022075727099003)(261021123027099003)(261022105027099003)(261021121427099003)(56012099006)(261102123227099003)(261009223027099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: tQy3VUh181nx/ckEwFn9ChGcqlNatWXm24yopBoDaeVEywZwLDrN7E7Hmlruk70BtLfGuvEeG+HF0w/xOltUPc84xrwvve/WutG74A/fEBBtXuGZOcbPogjILzYuyMueexlIeS4auS7Ofxtf6++RRwS5YEVe7dROHQiEeTk3DegwVDFo06852+j1Dl8OMDHegE3Aq7c/lVo8Y56vyVug/W77hvv0ZqJJ/pPNQ+QHkNzgRWEyY1Qpg+C6HFHjn1u0zsag1YfiX3uuxtJKs9ez4EboSWYPfrWtIhU6ftUZUsAordHqnQimDFycPexQILtS5b7GX3uXJ2A/Lwkk/MUQMxdNokn0BYKxdX2v6+qKyAmrLfgc8pTDBm3mbKpr2m/dmdeAZrBD01mwE2coSNBfhuJnz50Nnk3+UEzhBTlZNAiJ0JQnM81vdreOmRDYe9T/
+X-MS-Exchange-AntiSpam-MessageData-0: y1tDQPFeFRN8s3DScqiRO/G+zZvziCiUV2sDb64gqHvBXemv5geHQ1L2PkMPm5MR6GU4c516Cv0v4eDMt+IQ+MyNHizQyhqI2jhYlJFwJDy26MDLCtOHk1xTq3CUzdzJrI91W7s9NsN2ZYCLnAac6sttjUgl//62d3IyK6UFtjPyA9jRzUu/R5lp22BaBxnes+ixCNDZuzHOyaHvfFkbznpx7nVWKC0AdWW8ybzbhTkpyY1eb6EaMANNU9Cr4jeLb0G4jeaYMq0Eo+VAEsO6eMYXXsbLx3UJ4iZRGVnsPK/2POfYYuGrLuxjtUhx1W/dSVTs2T1TDZJew/DyB5OUZ0MSTCqepOGTx2JMjgjmjcQJqmKqTWq8C3zJNes2RmgbafCA6Pr2xv33Y5nI7mNwVcSNm9Pyrc5TyC7foie5NzksrTi+SPQPA/CeHTgkVDXC
 X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 12:38:53.3076
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 12:38:52.1731
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08518d30-5d29-4a2a-f612-08df463a1224
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98a9eacf-8ef3-44d1-d3e5-08df463a116a
 X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB86.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB87.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI4PR06MB8874
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB6302
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_043902_270853_A20FE983 
-X-CRM114-Status: GOOD (  16.60  )
+X-CRM114-CacheID: sfid-20261119_043904_831673_09C5C401 
+X-CRM114-Status: GOOD (  14.51  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,116 +128,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds initial support for the Mali GPU on CIX Sky1 and
-enables it on the Radxa Orion O6 board.
+Some platforms provide GPU clocks through firmware without an OPP
+table that the driver can use. Failing probe when the DT has no OPP
+table prevents these platforms from using the clock settings already
+provided by firmware.
 
-The GPU requires an external reset before the driver first accesses
-the hardware. Add optional reset support to Panthor to perform this reset
-during initialization.
+Continue without devfreq when devm_pm_opp_of_add_table() returns
+-ENODEV, as Panfrost does. Keep the current core clock rate for
+profiling and report the clock provider's rate when devfreq is not
+registered.
 
-This initial version keeps the PM firmware default clock settings and
-skips devfreq. It does not read OPPs or request a performance level.
-The firmware sets the default GPU frequency to 1 GHz. No devfreq
-governor or GPU cooling device is registered.
+Only allow the fallback when neither mali-supply nor sram-supply is
+present. GPU supply properties require an OPP table to configure and
+enable the supplies. Without these properties, the platform must provide
+a usable clock and power configuration.
 
-Without an OPP table, the driver can only run when neither mali-supply
-nor sram-supply is present and the platform provides working clocks and
-power.
+Signed-off-by: Cunyuan Liu <cunyuan.liu@cixtech.com>
+---
+ drivers/gpu/drm/panthor/panthor_devfreq.c | 13 ++++++++++++-
+ drivers/gpu/drm/panthor/panthor_device.h  |  2 +-
+ 2 files changed, 13 insertions(+), 2 deletions(-)
 
-Configure the system-level cache before L2 power-on using the policies
-from the working CIX Sky1 driver. On Sky1, devices on the MMHUB bus
-cannot access the system-level cache, so buffers shared between the GPU
-and MMHUB devices require a specific system-level cache policy. Without
-this configuration, the GPU display output is corrupted.
-
-The system-cache support is a separate patch and reads the policies from
-DT. The proposed format is <source-id read-policy write-policy>, so the
-DT only lists sources with nonzero policies. When the property is absent,
-the driver leaves the registers unchanged. The format and zero-default
-semantics are included for review.
-
-The series contains seven patches:
-[1/7] drm/panthor: Add optional external reset support
-[2/7] drm/panthor: Allow operation without an OPP table
-[3/7] dt-bindings: gpu: arm,mali-valhall-csf: Add system-cache policies
-[4/7] drm/panthor: Add system-cache allocation policy support
-[5/7] dt-bindings: gpu: Add CIX Sky1 Mali support
-[6/7] drm/panthor: Add CIX Sky1 compatible
-[7/7] arm64: dts: cix: Add GPU support for Sky1 Orion O6
-
-Tested on Radxa Orion O6:
-  - Offscreen rendering with pixel readback
-  - kmscube
-  - glmark2 at 1080p
-  - Runtime suspend and resume with a retained EGL context
-  - Reset-worker operations
-  - Module unload and reload
-
-
-Changes in v3:
-  - Split optional reset, no-OPP operation and system-cache support into
-    separate patches, as suggested by Liviu Dudau.
-  - Remove the Sky1-specific skip_devfreq flag. Use the generic no-OPP
-    path.
-    Limit this fallback to configurations without GPU supply properties,
-    retaining probe failure for supplies without an OPP table.
-  - Move system-cache policies to DT and use separate read/write values,
-    as suggested by Liviu Dudau and Daniel Stone. Add explicit source IDs
-    so that unused entries can be omitted.
-  - Validate the architecture, source IDs and policies. Restore the
-    configuration through the common L2 power-on entry.
-  - Drop Conor Dooley's Acked-by because the Sky1 binding now requires
-    the new arm,sysc-alloc property. Please review the updated binding.
-
-Changes in v2:
-  - Use devm_reset_control_get_optional_exclusive() unconditionally,
-    remove the redundant NULL check before reset_control_reset(), and
-    drop needs_external_reset, as suggested by Philipp Zabel.
-  - Add Conor Dooley's Acked-by to the then-unchanged binding patch.
-
-
-Link to v2:
-https://lore.kernel.org/all/20261109120902.125242-1-cunyuan.liu@cixtech.com/
-
-Link to v1:
-https://lore.kernel.org/all/20261106104735.1651267-1-cunyuan.liu@cixtech.com/
-
-
-Best regards,
-Cunyuan
-
-Cunyuan Liu (7):
-  drm/panthor: Add optional external reset support
-  drm/panthor: Allow operation without an OPP table
-  dt-bindings: gpu: arm,mali-valhall-csf: Add system-cache policies
-  drm/panthor: Add system-cache allocation policy support
-  dt-bindings: gpu: Add CIX Sky1 Mali support
-  drm/panthor: Add CIX Sky1 compatible
-  arm64: dts: cix: Add GPU support for Sky1 Orion O6
-
- .../bindings/gpu/arm,mali-valhall-csf.yaml    |  79 ++++++++
- arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |   4 +
- arch/arm64/boot/dts/cix/sky1.dtsi             |  19 ++
- drivers/gpu/drm/panthor/panthor_devfreq.c     |  13 +-
- drivers/gpu/drm/panthor/panthor_device.c      |  13 ++
- drivers/gpu/drm/panthor/panthor_device.h      |   7 +-
- drivers/gpu/drm/panthor/panthor_drv.c         |   1 +
- drivers/gpu/drm/panthor/panthor_gpu.c         | 187 ++++++++++++++++++
- drivers/gpu/drm/panthor/panthor_gpu.h         |   1 +
- drivers/gpu/drm/panthor/panthor_gpu_regs.h    |  58 ++++++
- drivers/gpu/drm/panthor/panthor_hw.c          |  13 ++
- drivers/gpu/drm/panthor/panthor_hw.h          |   5 +-
- 12 files changed, 394 insertions(+), 6 deletions(-)
-
-
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
+index 2249b41ca4af..778c20f0921a 100644
+--- a/drivers/gpu/drm/panthor/panthor_devfreq.c
++++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
+@@ -6,6 +6,7 @@
+ #include <linux/devfreq_cooling.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_opp.h>
++#include <linux/property.h>
+ 
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+@@ -172,6 +173,16 @@ int panthor_devfreq_init(struct panthor_device *ptdev)
+ 		}
+ 
+ 		ret = devm_pm_opp_of_add_table(dev);
++		if (ret == -ENODEV) {
++			if (device_property_present(dev, "mali-supply") ||
++			    device_property_present(dev, "sram-supply"))
++				return dev_err_probe(dev, -ENODEV,
++						     "GPU supplies require an OPP table\n");
++
++			/* Keep the clock provider's rate when no OPP table is present. */
++			ptdev->fast_rate = clk_get_rate(ptdev->clks.core);
++			return 0;
++		}
+ 		if (ret)
+ 			return ret;
+ 	} else {
+@@ -324,7 +335,7 @@ unsigned long panthor_devfreq_get_freq(struct panthor_device *ptdev)
+ 	int ret;
+ 
+ 	if (!pdevfreq->devfreq)
+-		return 0;
++		return clk_get_rate(ptdev->clks.core);
+ 
+ 	ret = pdevfreq->devfreq->profile->get_cur_freq(ptdev->base.dev, &freq);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/panthor/panthor_device.h b/drivers/gpu/drm/panthor/panthor_device.h
+index adbc2e2f03be..f5353372c1ae 100644
+--- a/drivers/gpu/drm/panthor/panthor_device.h
++++ b/drivers/gpu/drm/panthor/panthor_device.h
+@@ -328,7 +328,7 @@ struct panthor_device {
+ 	/** @profile_mask: User-set profiling flags for job accounting. */
+ 	u32 profile_mask;
+ 
+-	/** @fast_rate: Maximum device clock frequency. Set by DVFS */
++	/** @fast_rate: Maximum OPP frequency, or the clock rate without OPPs. */
+ 	unsigned long fast_rate;
+ 
+ #ifdef CONFIG_DEBUG_FS
 -- 
 2.53.0
 
