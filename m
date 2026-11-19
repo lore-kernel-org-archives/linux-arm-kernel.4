@@ -2,71 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD25606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 05:29:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9CAB606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 05:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nhtQJpXw;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=j///4p1S
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QgC1uhae;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dk9o+8MJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bD2ax/aLK3TbiC+MuA5c3fv1Msqgl3zH1491fFdGzOw=; b=nhtQJpXwmGMey9
-	H+24jLQHGZXZ7gc8TDu47acJOzdXw5Coxgqx5V3Z4aMeUPlnA58LTZquxtkuQbUuIxJcxwbsBhlRg
-	Vmy/fyvkyVZclPd3+ziXMePr2i1uCXAH75Xdc2QD+up59L//Yql7gOUnyvdfp+cRbFRIVl+ZSG3jk
-	aM93u7MlvwHW2O+UlDEPFctC+6bvMd9aofkINYC8Ku71JRXgERHajVc8+uGn63uwI3CU3H9h39Xvr
-	fLHDPG5Mx0RDrCDnpxD56jY3MdaYLipBUMcps6tNb/oET2qEsDE1XfyB7v5Wr00BU0+9fu+mRatIO
-	/Kn9kl3IFUp316LxaucA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=NldOUlPPoxP8dDx4GjLq0MmuALDhkippG7whm70TPAg=; b=QgC1uhaewePg3AFBe+jJtOAhaq
+	lYsQO1ABRUUdB4N0skwfJkE33GJ3JXjEIhMmm78YkuHqIrVMjxwt4JDxxMt7PhIq/fS8ymzLy9x6M
+	2kGblEdNDM12btE0TJ1WOJE8zIYUXPd/yp++TBYb+bRB/7CHmKgn3NsTZaO/K2dLjgqzakHvH5HeR
+	KIFOcBp5ODCixkOUtjHGLEWdFSuvy7MLlE3q6rZokclEEwE4xXnT+zarALqgZG1Zouw8cf1xzULPr
+	qfJcDmnCMEnKae0veROE3DbEnA+SahGawsFmT/VZr3wk2l/W1JDPo/dckZHPCM6g9eMD5XE1m/hYW
+	d97TqiOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTuha-0000000AtoI-17YZ;
-	Thu, 19 Nov 2026 05:28:54 +0000
-Received: from m16.mail.163.com ([117.135.210.5])
+	id 1xTuiI-0000000Au4c-2bK0;
+	Thu, 19 Nov 2026 05:29:38 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTuhL-0000000Atgx-2UFP;
-	Thu, 19 Nov 2026 05:28:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=bD
-	2ax/aLK3TbiC+MuA5c3fv1Msqgl3zH1491fFdGzOw=; b=j///4p1Sm4iOx1f1x/
-	ZNKs/kBmJhb7QO9N11NByMfu2yCyj/HW7XhsIcavU8JsyGZ9gJAfnu6clN0ZXrVc
-	YUDUGvEAbeWEGJwvenUSV9LO2vSW10pwUNQWUsSFbj/ChKdi2z/1Q675HABETJVu
-	h5HZG/u0AmXYR/y/R9laKmaLo=
-Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wDX3+zviP5qaWbXIA--.59393S4;
-	Thu, 19 Nov 2026 13:28:18 +0800 (CST)
-From: Haoxiang Li <haoxiang_li2024@163.com>
-To: viresh.kumar@linaro.org,
-	rafael@kernel.org
-Cc: zhongqiu.han@oss.qualcomm.com,
-	hector.yuan@mediatek.com,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Haoxiang Li <haoxiang_li2024@163.com>
-Subject: [PATCH v2 2/2] cpufreq: mediatek-hw: Clean up on frequency table creation failure
-Date: Thu, 19 Nov 2026 13:28:11 +0800
-Message-Id: <20261119052811.2877720-3-haoxiang_li2024@163.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20261119052811.2877720-1-haoxiang_li2024@163.com>
-References: <20261119052811.2877720-1-haoxiang_li2024@163.com>
+	id 1xTuiG-0000000Au41-2dlG
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 19 Nov 2026 05:29:36 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B935548B80;
+	Thu, 19 Nov 2026 05:29:35 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795066175;
+	b=TlgXeqUvNb7Qg+PkvraTcYGINLgxXJDNmBZs7t9NQ0CSrVn1SFC7+kmd/DFPpx7w86Ny
+	 kzSLYWXbyfXMOGWv9S3QqgRYw9KXIfPVEliMsgybelN6bLCGLUGouEY46141pKHCYc93U
+	 gw2ME/oXmQ6s5tfOASFETNjlf0OgNZrnWUUq2trJQ4KjQxRKjRa+wpyyXeTzUzYsVh7Uy
+	 uZsoEnVWy2Ah/tBVsB+g1bQGC3J/21hklTI8KQ/2q7xhsFyhLknSlXtCLGHiCbdWoncoO
+	 4EAvrmU2YVmEhigBJEt2m8n1s8TnlTXzXpVr+2TUGbPxwP1mPL1GAT3BWnSrEAga6+Q==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795066175;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=NldOUlPPoxP8dDx4GjLq0MmuALDhkippG7whm70TPAg=;
+	b=bT07qzTdrAj8A/bZRGIKxuils/ypWxZ2qKl0+hVlEGjqiBGIRAaB/80LuuJClj+9IIgU
+	 FN+dRelsjkzQqSD8qpbwT1dDrd7MskR90BkVC/7CIyxjQIIo579jomtws82um5NBaBdTD
+	 F2biZMG6p4OCkGspCA7GyhvtwycoJQXgct3lTt9IMVsjtb2DloNxnzje3I5SUzhnRlxl2
+	 PWBsIuA3RPd38L3nKsp6tnEoinxzSwCvkQStf+LnvSxyw/lSIkWtoNDC9Yzi46jtdoDW2
+	 A9q4zpB/me47rreKgYOj/jf3MgJtzUelgxphUG1fI6d6RZrOLOcrHkDHz9CCxwuCVLw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id BD4841F000C6;
+	Thu, 19 Nov 2026 05:29:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795066175;
+	bh=NldOUlPPoxP8dDx4GjLq0MmuALDhkippG7whm70TPAg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=dk9o+8MJfKTKFge48cCUQQFiMfTpvAI+Ee6U3xaD59xBy09p6cbNBAcXvg1IyWWHy
+	 0W7PZhIN38cjYANN5XWdEZ2nvmhD2eiksoWR1IEy+u465WR+xDPnIpUPp0BiQtkUZv
+	 F+JxVmfb7uPr9Njwe5xM6DhwX8Hczx8rd7qaNzOBRdm9lZt8VI86qC2RMX05eOwLuG
+	 rJV4yAbvdW6YRwEZUrdXNmw22TobWyzcE3udOix5/sq4TH0lRYTspvKkz4eTRiXwT1
+	 JtcpWT7BHkam5bCQM5f12JzwQDNM9I3VmApJTmMBdA8oGohg4c3jao8el65ozHtIH9
+	 X69TEi3KGVfQA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 472B64B10D;
+	Thu, 19 Nov 2026 05:29:34 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Thu, 19 Nov 2026 05:29:35 +0000
+Subject: [PATCH v2 2/2] arm64: dts: allwinner: orangepi-zero2/zero3: Read
+ the SPI NOR over two lines
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wDX3+zviP5qaWbXIA--.59393S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7JrWfZw43Gr17GF45trW7CFg_yoW8JrW7pF
-	W09FWUAry5JFsrXw4kAa1UWas8Aan29rW5ur47W3sIvwnxJFWYva4Fga4jqFZ3urWkAr1Y
-	vrWqyay7uFWUJr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ztjg7bUUUUU=
-X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/xtbC7RK4J2r+iPJhUwAA38
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_212840_059367_D449DF95 
-X-CRM114-Status: GOOD (  10.75  )
-X-Spam-Score: -1.8 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261119-zero2-spi-nor-dual-read-v2-2-185c87065e39@gmail.com>
+References: <20261119-zero2-spi-nor-dual-read-v2-0-185c87065e39@gmail.com>
+In-Reply-To: <20261119-zero2-spi-nor-dual-read-v2-0-185c87065e39@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795066173; l=857;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=Q+r4zEIs6OoXjgWsTg14JRKlUB5idFqb5Wum5OUoLAI=;
+ b=64RjdNiTWEOyc/imWHPnWirAAmWbU5eG2Y2HriNa1MjneBj8xG8+WssVODkJpJVzzZ/htz6eg
+ diuEy0yHbMeAazMYr0kuIZMx51+JrXQYOltsFaCRx679k3Ai5zDXIAY
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,53 +111,42 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If mtk_cpu_create_freq_table() fails, mtk_cpu_resources_init() returns
-without unmapping the registers or releasing the memory region it has
-already requested.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Unmap the registers and fall through to the existing memory-region
-cleanup before returning the original error.
+WP# and HOLD# are tied to VCC on the Zero2 (schematic v1.3), so read over
+two lines. Andre Przywara pointed out that the Zero3 is the same.
 
-Fixes: d776790a5536 ("cpufreq: mediatek-hw: Fix double devm_remap in hotplug case")
-Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+Suggested-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/cpufreq/mediatek-cpufreq-hw.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
-index 65f15fe935db..3ab139d1a552 100644
---- a/drivers/cpufreq/mediatek-cpufreq-hw.c
-+++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
-@@ -277,13 +277,17 @@ static int mtk_cpu_resources_init(struct platform_device *pdev,
- 	ret = mtk_cpu_create_freq_table(pdev, data);
- 	if (ret) {
- 		dev_info(dev, "Domain-%d failed to create freq table\n", index);
--		return ret;
-+		goto unmap;
- 	}
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
+index 646d92e0f724..4a588c44d029 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
+@@ -110,6 +110,7 @@ flash: flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <40000000>;
++		spi-rx-bus-width = <2>;
+ 	};
+ };
  
- 	policy->freq_table = data->table;
- 	policy->driver_data = data;
- 
- 	return 0;
-+
-+unmap:
-+	iounmap(base);
-+
- release_region:
- 	release_mem_region(res->start, resource_size(res));
- 	return ret;
+
 -- 
-2.25.1
+2.55.0
+
 
 
