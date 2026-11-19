@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E2B606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:30:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0822E606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mi4lok9g;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=MCO2f6aQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MfprQqN7;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DkO9ZyBD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,66 +14,75 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FEcK1VASWBIoUCoyKyCFXja3r1A/FxKQfO0b3GK01/Q=; b=mi4lok9gSNj3wH0a6yRreKo3+V
-	Kpk7zNpRByWMmn5bnO6wkm48D/WQVHV6Ne8guDzRy9fZ83AuzIWfwvExHW4TtY2h34ZCE+r8JsVLW
-	PZTWwMlbDxcGcHgE3arLz0bByIisXNtEsS00gdUlqelCuD+1/JX8BpC8ILNYpwB7ILZfynPaEeznt
-	K8UUoRDNUMTFZ3+zmkafpOA7oyWY5ATLq1NSd8QosvyuUpAEobaSXN5jALrKgnLicLxpe6ECQOCqD
-	QPpO6cOpN4gegfFzo8/WHn3FgMkbZFXlOyqYPcwb8KkgyLrfEop0616/Gku2VHf4nZicZRZy2Nubu
-	755Q3jbg==;
+	bh=lv3NYu11pHprgRUUKX5nzbXJ9PYh0wkr94sy1z7rgm4=; b=MfprQqN7XxYRcd53R4y2kuyV1m
+	V5qUwjoViqJxHf9jkHTfb58BWPcWTbKv8IFcyHMtc4If+zWj6wpiV2HMrn1aWX8BFAJ3NNlVKKgXm
+	ONOQnnORJO+0jl97sqM4W7Eg3MuxOUcDVLtsK3WZsWdRq5lurnna5TaEQcjOpD118E2f7rraVB6qQ
+	QCrebfDHo+f2G9O9DP4yB9RIE82LYwRYUPPLrja4J5vT+pklhn3yMiWHddmMljZPzKB2s2lhuGPbM
+	Pnbzk5tNObt32+/bcNG0xiFcF8YaEAMXxgyWEPyCSTlyY/HFSAp4GZJ4xOYe3tcnnccHDTVjfTKR6
+	qG2w0eHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU39k-0000000CETh-37Km;
-	Thu, 19 Nov 2026 14:30:32 +0000
-Received: from out-249.mta0.migadu.com ([2001:41d0:1004:224b::f9] helo=mta0.migadu.com)
+	id 1xU3CH-0000000CEkz-0bfc;
+	Thu, 19 Nov 2026 14:33:09 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU39e-0000000CES8-0RQN
+	id 1xU3CG-0000000CEke-1wB7
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:30:31 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=FFz3gGYp69FcAIj4l0Zmahf+dyqjlU9rmv2m5wrHIas=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795098621; v=1; x=1795703421;
- b=MCO2f6aQ7MENRTRxOZSuXhCIHs0kP4m/P2pSRGN0KQ5QH5QW9nTGPRbKwmFOQM7R2mVxlLHu
- 1+NV82S/YGKgNpIXHn8kOlbhKVQKPBcpnZ1/0San3lfWbHiPdY5TVoRBf6wcw3h1yFF9hIA8WX5
- V4Wjn83e6XhdRbq82s+Jk5/Q=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 650b3532e440f0d6;
-	Thu, 19 Nov 2026 14:30:20 +0000
-X-Mizu-Trace-ID: 650b3532e440f0d6
-X-Migadu-Flow: FLOW_OUT
-Date: Thu, 19 Nov 2026 22:30:06 +0800
-From: Peng Fan <peng.fan@linux.dev>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Peng Fan <peng.fan@oss.nxp.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Peng Fan <peng.fan@nxp.com>, linux-remoteproc@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-rt-devel@lists.linux.dev,
-	Bjorn Andersson <andersson@kernel.org>,
-	Clark Williams <clrkwllms@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Steven Rostedt <rostedt@goodmis.org>
-Subject: Re: [PATCH v3 00/10] mailbox: imx: Use threaded handler to avoid
- kworker in imx's remoteproc
-Message-ID: <av8H7l6C8fmiHdbV@fedora>
-References: <av6Wc+kHFKqwFHAR@shlinux89>
- <20261116102331.K8Sc86V9@linutronix.de>
- <20261119114041.GA166708@francesco-nb>
+	Thu, 19 Nov 2026 14:33:08 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with UTF8SMTP id 0AF3260A6D;
+	Thu, 19 Nov 2026 14:33:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 3738E1F000CA;
+	Thu, 19 Nov 2026 14:33:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795098786;
+	bh=lv3NYu11pHprgRUUKX5nzbXJ9PYh0wkr94sy1z7rgm4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=DkO9ZyBD2TgaZMRcs8EgWiOCyNyqCS5GVpH0PIaxsiAxioBTNKOP1wNtv66D5cYUo
+	 SVbW8UDU1ecj5E3RCQAhHUNANk3OefmNfhyVcaUvR0Gz4clykNB0Ug9GoG1Ptr8ZuJ
+	 ONnfC20iTyqzzJ2bUJn6Pg6qw6zmZqZ3ZatVKnDFWAqwRPzMWGYReKxU4oRi50tS1Q
+	 1qTF54aQpt4AAtXTH2qm2wUUGVJhq8ji6yCXpiUz4OvXBnHZfzrVs9GnUElmUD670e
+	 vrz7s2wx6vlq7TxR3Li0W0SBs0mp7rRKPrBjNuC5IHgS3SdNuJjawMEJSGy/3xT0BT
+	 6PR8vQwsFHWZw==
+Date: Thu, 19 Nov 2026 16:33:03 +0200
+From: Jarkko Sakkinen <jarkko@kernel.org>
+To: Rodolfo Giometti <giometti@enneenne.com>
+Cc: Rodolfo Giometti <giometti@enneenne.com>,
+	David Howells <dhowells@redhat.com>, keyrings@vger.kernel.org,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jens Wiklander <jenswi@kernel.org>,
+	Sumit Garg <sumit.garg@kernel.org>,
+	op-tee@lists.trustedfirmware.org,
+	Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
+	Pankaj Gupta <pankaj.gupta@nxp.com>,
+	Sahil Malhotra <sahil.malhotra@nxp.com>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Richard Weinberger <richard@nod.at>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Eric Biggers <ebiggers@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+	"Serge E. Hallyn" <serge@hallyn.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Randy Dunlap <rdunlap@infradead.org>, linux-crypto@vger.kernel.org,
+	linux-integrity@vger.kernel.org,
+	linux-security-module@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-api@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Demi Marie Obenour <demiobenour@gmail.com>
+Subject: Re: [RFC PATCH 0/9] KEYS: keycrypt: keys that user space can use but
+ never read
+Message-ID: <av8In0Xyd5iI9N7K@kernel.org>
+References: <20261118140421.584086-1-giometti@enneenne.com>
+ <650f89ef-9745-4f75-b254-80fa5ac4773d@gmail.com>
+ <av5EyVHnNzT27dyK@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261119114041.GA166708@francesco-nb>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_063026_356163_C03A2E60 
-X-CRM114-Status: GOOD (  23.30  )
-X-Spam-Score: -2.1 (--)
+In-Reply-To: <av5EyVHnNzT27dyK@kernel.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,102 +93,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 19, 2026 at 12:40:41PM +0100, Francesco Dolcini wrote:
->Hello Peng, Sebastian
->
->On Mon, Nov 16, 2026 at 11:23:31AM +0100, Sebastian Andrzej Siewior wrote:
->> On 2026-11-16 10:23:41 [+0100], Francesco Dolcini wrote:
->> > Our CI shows a ~10-15% eMMC sequential read throughput drop on i.MX8QXP
->> > and i.MX8DX (Colibri iMX8X, Cortex-A35), starting with v7.2-rc1 and
->> > still present in v7.4-rc3 (hdparm --direct -t: ~129 MB/s -> 105-120
->> > MB/s on i.MX8DX). i.MX8QM, i.MX8M and i.MX9 are not affected.
->> > 
->> > 5d1c0000.mailbox interrupt count before the test went from ~8k on v6.18
->> > to 60k+ on v7.3/v7.4.
->> > 
->> > Peng: any idea/suggestion? Does it makes any sense to you?
->> 
->> Can you pin point it to a patch in this series? My guess is that
->> something with the masking/ unmasking went wrong. The increase might be
->> result of the interrupt keeping firing while the threaded interrupt did
->> not have a chance to run.
->
->Reverting 36cac4b5101f, 3225a745f517, e55bea377d49 and 692e1bc96a5d
->restores 149 MB/s with schedutil.
->
->
->On Thu, Nov 19, 2026 at 02:25:55PM +0800, Peng Fan wrote:
->> On Mon, Nov 16, 2026 at 10:23:41AM +0100, Francesco Dolcini wrote:
->> >Peng: any idea/suggestion? Does it makes any sense to you?
->> 
->> Please help test whether this helps:
->> 
->> diff --git a/drivers/mailbox/imx-mailbox.c b/drivers/mailbox/imx-mailbox.c
->> index 683ccea6f2ba..e29044cf4b92 100644
->> --- a/drivers/mailbox/imx-mailbox.c
->> +++ b/drivers/mailbox/imx-mailbox.c
->> @@ -635,7 +635,7 @@ static int imx_mu_startup(struct mbox_chan *chan)
->>  {
->>         struct imx_mu_priv *priv = to_imx_mu_priv(chan->mbox);
->>         struct imx_mu_con_priv *cp = chan->con_priv;
->> -       unsigned long irq_flag = IRQF_NO_THREAD;
->> +       unsigned long irq_flag = IRQF_NO_THREAD | IRQF_ONESHOT;
->>         int ret;
->> 
->>         pm_runtime_get_sync(priv->dev);
->
->It does not help.
->	
->The analysis below was done with Claude help, on measurements I took on a
->Colibri iMX8QXP. I hope you can pick it up from there, this is not my
->area of expertise, and the best I can do is to send a revert for those 4
->commits.
->
->Every SCU RPC now wakes the SCHED_FIFO irq thread (TX done and RX), and
->while an RT task is runnable schedutil requests the maximum CPU frequency.
->The A35 clock is CLK_GET_RATE_NOCACHE, so each frequency change is
->followed by an SCU RPC reading the rate back, which wakes the irq thread
->again. The loop never settles, even when idle, and the transitions (ATF +
->SCU) are what costs the eMMC throughput (and I assume there is more
->impact on performance than just this).
+On Thu, Nov 19, 2026 at 02:37:33AM +0200, Jarkko Sakkinen wrote:
+> The exitential problem here is that KEYCTL_CRYPT_OPEN creates a circular
+> relationship between the keyrings API and a specific key type.
+> 
+> At hardware level I did not see any support for TPM, which narrows down
+> the potential user base.
+> 
+> The remaining potential user base is further reduced by those that use
+> trusted keys; leaving out those who need to solve the assumed problem
+> that only this patch set can presumebly sort out.
+> 
+> And we don't really know at this point that cut. This is pretty much
+> the break down of what is wrong here.
+> 
+> If there is/was a problem to sort out, it should be so constrained that
+> it should be as quick to describe as stepping over a nail really.
+> 
+> These are the main topics what I would focus on.
 
-Not sure whether this is root cause, per my understanding, cpu freq update
-is not that high frequency call.
+I'm not disregarding that there might be something; and neither
+disregarding e.g., the use of Claude. Throwing a dice can apply as well
+human made code as for me code is just code. Perhaps using Claude,
+people just tend to have just a itchier trigger finger :-)
 
-Let me setup a i.MX8QXP board and see what's going on there. BTW, i.MX8QM should
-also have same issue, but seems not impact in your report, a bit werid,
-might be because i.MX8QM has more cores :)
+The place where *in my personal opinion*  anyone who uses agents would
+be better to do manual work is the commit message. It enforces to use
+cognitive abilities even more so than writing code, if you with
+absolutely no self-deception, read it all through and write with your
+own words what the heck it does.
 
-Have you tried pin your emmc test thread to core3, or core2, just not core0.
+Usually when hitting the wall doing that leads into better code
+because of the healthy reality check. I'm not a medical doctor but
+I believe at least that thinking more stuff like this is also great
+for long-term health and cognitive abilities.
 
-Regards
-Peng
+AI is for mental health as a car is for physical health; for better or
+worse.
 
->
->v7.4-rc3, 4 CPUs, idle irq/cpufreq transitions per 10s, hdparm --direct -t:
->
->                               irq    trans  schedutil  performance
->  v6.18                          -      -    149.7 MB/s     -
->  v7.4-rc3                   16203  10800    113 MB/s   150 MB/s
->  v7.4-rc3 + IRQF_ONESHOT     7832   7813    113 MB/s   150 MB/s
->  v7.4-rc3 + revert 4 commits   60     36    149 MB/s   150 MB/s
->
->The 4 commits are 36cac4b5101f, 3225a745f517, e55bea377d49 and
->692e1bc96a5d; reverting only the RX part (e55bea377d49) is not enough.
->
->
->#regzbot introduced: 692e1bc96a5d^..36cac4b5101f
->#regzbot title: mailbox: imx: threaded IRQ handling causes a cpufreq transition storm on SCU-based i.MX8
->
->Thanks,
->Francesco
->
->
+Code quality is also over-rated although best effort should be done
+but that's all. If you get it, then it is done. It's harder than it
+sounds without self-deception part.
+
+And yeah, we don't have projected problems. I.e. "no users" is always
+NAK. You have to step on the nail at first.
+
+Just need to clear my thoughts on overall the topic :-) This is I guess
+where I stand now. Hope you find these helpful.
+
+Br, Jarkko
 
