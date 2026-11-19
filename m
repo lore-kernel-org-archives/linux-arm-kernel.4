@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95A1D60A5BE5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA59460A5BC6
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tvyNScCL;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=gPXGtAMS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2WGcEiWL;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=oN8tFfM7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=csLHF3CBUnlXJTptSifuZSIi+Kvqipz6udOO3q4U2lw=; b=tvyNScCLmhu7dQbnXp3jfR8lu7
-	8DVcYPbuM+bEEYHMRiD7N9hbRh5Rbmc5TCwCM2x2xFsoIfQSJAih1c3vldlZ8O1AcJl07FqcRfs7h
-	t3mXS1v8oZXbmIEmCkeIuLVp+ZchhzikDFfWjeMJ4NT3KasDzL11BhOW1QH0pZpb23IuOKNGXu9hX
-	rqhwtt0as968qqC5JcJUDVzagmnaa3N52A1eZrKmL6zYicJoHzQuKbTJmDfrpGEJcHz1O1IT9jVUf
-	lmErA695COYyXkNkoqry8IOx2d27lWXBXxV7OeGNKqMO1ZxqoREB5BXIqyM2ydjsjNiEscgJz07Dh
-	p+6aqOJQ==;
+	bh=Dri93dGf86JD2a4x55noboCN1Q6q179kTQsK767li90=; b=2WGcEiWLvHy9pmjo+02noTi2aY
+	c0txbZaO+hbsut7sNwJDFO/uzDv+wmchT5dqdpkIzcJS8WezaevUB413V3sSkmvkW0JvQexbOYrVU
+	Mxr8FlbOGNal/YLTsN7v4KgaIAB/00NLZZ3q6+3MI/s6rRSb3IuxFU/4+JbUJiHIz4yMc7c4hQNaJ
+	TtI5wK0qxlnx82D0gdoZpMVrT1BR119nIgK1HYtunONwfnfykZPFVXeI+QoTRGFUk1uhoRVOj4tcI
+	xx4l1gW+s64uM4Fch2doTe0zvbi62tgC5I6a15WIfLt/iDy4tMgGVyKTbS2hg85uGF8rHkMfQ13zS
+	8vOaiPRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7FP-0000000D47X-1Z3V;
+	id 1xU7FP-0000000D490-3m2C;
 	Thu, 19 Nov 2026 18:52:39 +0000
-Received: from mail-oi1-x245.google.com ([2607:f8b0:4864:20::245])
+Received: from mail-oa1-x46.google.com ([2001:4860:4864:20::46])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7FE-0000000D3sx-3iG1
+	id 1xU7FG-0000000D3u5-2FK3
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:52:30 +0000
-Received: by mail-oi1-x245.google.com with SMTP id 5614622812f47-574f8578e48so156314b6e.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:28 -0800 (PST)
+	Thu, 19 Nov 2026 18:52:31 +0000
+Received: by mail-oa1-x46.google.com with SMTP id 586e51a60fabf-4ad9bc6aa91so178079fac.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795114348; x=1795719148; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795114349; x=1795719149; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=csLHF3CBUnlXJTptSifuZSIi+Kvqipz6udOO3q4U2lw=;
-        b=gPXGtAMSl4QxITw1ePqF2wA2ayGGYXG+/XbqXcPmZjlRhpXWvTCRkw0nsN3IBl9p8B
-         d5LNxJfIhwyY7Jy7dUIqVP/wbejsCKEnp/8GGruhb4mpeOcQBRQyuuFdouVoDetr+1MD
-         u/nyNZeD2+xDsKtnukDG8704fELtVgNGTaNNFVUJapSXOoZzjrpqeYbwZ4QDVKQRJKB4
-         Tzx9WWyB+GyMOyH3PN678gQffn3VG2O1GPtFM7TNqEK9mk3SY6q9coMlhoUk33R1lUpC
-         /jBUtFTcMMvY2cH9yjGMfhLZrsBWsV1ATZly8AMj8lUyzTfMzCJkG6hsSPMM7wMtravh
-         yp4g==
+        bh=Dri93dGf86JD2a4x55noboCN1Q6q179kTQsK767li90=;
+        b=oN8tFfM7TUgAOCvdDasmz4YBCeJb0S8zLIM19LD2wZv9gPbiYhyAn718WXJsEkqeWb
+         gbo8oNzWGkHjHTx5NzpIRkCGBDG791TjbAxT0mrQNg+tY7vVXdRZNRFWJ6vKQPPiSdtd
+         Sp5yGdWzIA8jKUhl45f+sAerUVVRY4vD+tvLctzUATke3xTMDsi9St9A2jm6qdara0bk
+         XW8CvstbVjmwx1GKZl3BxzzncLzkASdKnihASxSjCLYdfvJTfIWsipTuLvSHnq5iOTze
+         IIg9aiU2XwSGG8szhGz4Z4PQuuKqqP2Weyydi6AFpXdSxZU5l88mzy59AoTFY18J2AOl
+         hiBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795114348; x=1795719148;
+        d=1e100.net; s=20260707; t=1795114349; x=1795719149;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=csLHF3CBUnlXJTptSifuZSIi+Kvqipz6udOO3q4U2lw=;
-        b=ATclsAeO8lYmMdWmK2DZmEX5rS9/TzV3T7MeF2JqPTOSYI073P+hjgtg8rmHxfGcVj
-         clNVptrRL2MUQk7atuajoMhkrYtTHEGhmi+nq13WLp7vmucfbea4IYPbrxM9uP7nuDhJ
-         7n29EWrk/caSJEoXwMK8wnETpsPAjkY2J6wZyCC7gbVFrjsqXiWoJVt5cQlm58IVJjHx
-         eM4/ORj/QTYLQE7NN+J/5p1y+DPQr0ORqRe1GHbk68gyapTKpP4Zyc0w7R2xCMPTEJ5f
-         NhKCOr69syw/horL0caI7TWBpc/9bMaV73+fiA4dwsz6NZYBWGoxA2hE/aEt6XIpF9/K
-         r/8Q==
-X-Forwarded-Encrypted: i=1; AL+hErHupnq9zcnTXyiliQHl8vVAtGRlH2Z5bbx32Hn6fOpmJc6RuGboVkGHv/71QyGVbvg0avoW9zlSaT+aADBZjJOv@lists.infradead.org
-X-Gm-Message-State: APuU4Z9CLQS+/aFtKv0is2TY/ngcwDS4bROyLbrESEra2VpNZLsFUrX2
-	KAVao+Rl2Q3DTMLDYlBonFvA8OBkWor+iBDZBY5id2jBYM3k9TNaoKfw9W71M4LJ6eqBy31+uEE
-	GqCVuy15LBPMeG0M/Ol+dkROlpQ==
-X-Received: from jaaq30.prod.google.com ([2002:a05:6638:c01e:b0:61a:820b:b487])
+        bh=Dri93dGf86JD2a4x55noboCN1Q6q179kTQsK767li90=;
+        b=GFe0djHcAAM6HCIA2yds39nHD23RobGA60MaMyMNVNrknYCOXKwQResK6beNYjHaS0
+         tZJDVT2cvVB2MeM4cjaeZXkPlUw82RaTYq+9zZAy+sCF0eCCSxtD4/ddD4IU2qq2tlk0
+         UGNSFcqZIfeR7Bztole3Sn/H9nXrwquDnaVZaG6mQgUpIX4EfGmqi+MK7MZtkbnwuqBm
+         z+Z6pRUm97CXHzaYENH6tM1jD3pkHD8QGfLScNzCz8X7H+5VK9m6zQUdsjX2Z4r6d5GQ
+         qGNpm/0tNJW2q90BJOKyunrkHlW4bIGeXf6K3+xIwrx4JMHSP5MOvRAlrvfnRpf2xTwt
+         tjiQ==
+X-Forwarded-Encrypted: i=1; AL+hErFaPT/SyxPuGPrIqecfHUXMVv/3dQzDKYbF+7IoLJHJJ5oecEgmUpiLUZoZsZNL7BxdL1rV3zraismMQrcv/yAG@lists.infradead.org
+X-Gm-Message-State: APuU4Z+ql6FQFakDCnxHCvYoJC64Mou4fRyjhdH9vToC6U7y+kY9WM4g
+	XXatJmmHAyra2/fDDIkczyXQBDbFF/SZehjqSDvylm0peza0atxUBgIpRaU4Qy3t5p3T61utXL7
+	VQD25mYMsrXf15o5dD1flw/YL9Q==
+X-Received: from iok4-n1.prod.google.com ([2002:a05:6602:c604:10b0:9cb:3bd8:aa36])
  (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:14c5:b0:4d6:90d3:e189 with SMTP id 5614622812f47-57a0b750822mr928387b6e.50.1795114347371;
- Thu, 19 Nov 2026 10:52:27 -0800 (PST)
-Date: Thu, 19 Nov 2026 18:51:54 +0000
+ 2002:a05:6808:1805:b0:549:572c:fd42 with SMTP id 5614622812f47-57a0bb85010mr976405b6e.47.1795114348499;
+ Thu, 19 Nov 2026 10:52:28 -0800 (PST)
+Date: Thu, 19 Nov 2026 18:51:55 +0000
 In-Reply-To: <20261119185215.632334-1-coltonlewis@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261119185215.632334-1-coltonlewis@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261119185215.632334-13-coltonlewis@google.com>
-Subject: [PATCH v10 12/33] KVM: arm64: Set up FGT for Partitioned PMU
+Message-ID: <20261119185215.632334-14-coltonlewis@google.com>
+Subject: [PATCH v10 13/33] KVM: arm64: Make __vcpu_rmw_sys_reg() atomic
 From: Colton Lewis <coltonlewis@google.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
 Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
@@ -87,8 +87,8 @@ Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
 	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_105228_939205_B49DF0BD 
-X-CRM114-Status: GOOD (  16.28  )
+X-CRM114-CacheID: sfid-20261119_105230_586758_CC574B36 
+X-CRM114-Status: GOOD (  11.68  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,154 +108,43 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In order to gain the best performance benefit from partitioning the
-PMU, utilize fine grain traps (FEAT_FGT and FEAT_FGT2) to avoid
-trapping common PMU register accesses by the guest to remove that
-overhead.
-
-Untrapped:
-- PMCR_EL0
-- PMUSERENR_EL0 (outside nested hypervisor context)
-- PMSELR_EL0
-- PMCCNTR_EL0
-- PMCNTEN_EL0
-- PMINTEN_EL1
-- PMEVCNTRn_EL0
-
-These are safe to untrap because writing MDCR_EL2.HPMN as this series
-will do limits the effect of writes to any of these registers to the
-partition of counters 0..HPMN-1. Reads from these registers will not
-leak information from between guests as all these registers are
-context swapped by a later patch in this series. Reads from these
-registers also do not leak any information about the host's hardware
-beyond what is promised by PMUv3.
-
-Trapped:
-- PMOVS_EL0
-- PMEVTYPERn_EL0
-- PMCCFILTR_EL0
-- PMICNTR_EL0
-- PMICFILTR_EL0
-- PMCEIDn_EL0
-- PMMIR_EL1
-- PMUSERENR_EL0 (in nested hypervisor context: writes always, reads when
-  guest MDCR_EL2.TPM is set)
-
-PMOVS remains trapped so KVM can track overflow IRQs that will need to
-be injected into the guest.
-
-PMICNTR and PMICFILTR remain trapped because KVM is not handling them
-yet.
-
-PMEVTYPERn remains trapped so KVM can limit which events guests can
-count, such as disallowing counting at EL2. PMCCFILTR and PMICFILTR
-are special cases of the same.
-
-PMCEIDn and PMMIR remain trapped because they can leak information
-specific to the host hardware implementation.
-
-Under nested virtualization, a VHE L1 hypervisor executes both vEL2 and
-VHE host EL0 inside is_hyp_ctxt(vcpu) without exiting to L0 across ERET
-and SVC transitions. Trap PMUSERENR_EL0 writes via HDFGWTR_EL2 in
-is_hyp_ctxt() so L0 can recompute MDCR_EL2 traps whenever L1 enables or
-disables EL0 PMU access, and trap PMUSERENR_EL0 reads via HDFGRTR_EL2
-when guest MDCR_EL2.TPM is set so MRS PMUSERENR_EL0 from VHE host EL0 is
-forwarded to L1.
+Use try_cmpxchg_local() in __vcpu_rmw_sys_reg() so read-modify-write
+updates to vCPU system registers are atomic with respect to local
+interrupts and GICv3 pseudo-NMIs. This prevents lost updates when a PMU
+overflow handler (which may run as a pseudo-NMI that is not masked by
+local_irq_save()) updates PMOVSSET_EL0 concurrently with vCPU register
+accesses.
 
 Signed-off-by: Colton Lewis <coltonlewis@google.com>
 ---
- arch/arm64/kvm/config.c | 58 ++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 55 insertions(+), 3 deletions(-)
+ arch/arm64/include/asm/kvm_host.h | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
-index adaf26ab93b85..3220ed6fc9453 100644
---- a/arch/arm64/kvm/config.c
-+++ b/arch/arm64/kvm/config.c
-@@ -1786,12 +1786,64 @@ static void __compute_hfgwtr(struct kvm_vcpu *vcpu)
- 		*vcpu_fgt(vcpu, HFGWTR_EL2) |= HFGWTR_EL2_TCR_EL1;
- }
+diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+index 89683a690828e..103c25001c0d2 100644
+--- a/arch/arm64/include/asm/kvm_host.h
++++ b/arch/arm64/include/asm/kvm_host.h
+@@ -1313,12 +1313,14 @@ u64 kvm_vcpu_apply_reg_masks(const struct kvm_vcpu *, enum vcpu_sysreg, u64);
+ #define __vcpu_rmw_sys_reg(v, r, op, val)				\
+ 	do {								\
+ 		const struct kvm_cpu_context *ctxt = &(v)->arch.ctxt;	\
+-		u64 __v = ctxt_sys_reg(ctxt, (r));			\
+-		__v op (val);						\
+-		if (vcpu_has_nv((v)) && (r) >= __SANITISED_REG_START__)	\
+-			__v = kvm_vcpu_apply_reg_masks((v), (r), __v);	\
+-									\
+-		ctxt_sys_reg(ctxt, (r)) = __v;				\
++		u64 __old = READ_ONCE(ctxt_sys_reg(ctxt, (r)));		\
++		u64 __new;						\
++		do {							\
++			__new = __old;					\
++			__new op (val);					\
++			if (vcpu_has_nv((v)) && (r) >= __SANITISED_REG_START__)	\
++				__new = kvm_vcpu_apply_reg_masks((v), (r), __new); \
++		} while (!try_cmpxchg_local(__ctxt_sys_reg(ctxt, (r)), &__old, __new)); \
+ 	} while (0)
  
-+static void __compute_hdfgrtr(struct kvm_vcpu *vcpu)
-+{
-+	__compute_fgt(vcpu, HDFGRTR_EL2);
-+
-+	if (kvm_pmu_is_partitioned(vcpu->kvm)) {
-+		u64 set = HDFGRTR_EL2_PMOVS |
-+			  HDFGRTR_EL2_PMCCFILTR_EL0 |
-+			  HDFGRTR_EL2_PMEVTYPERn_EL0 |
-+			  HDFGRTR_EL2_PMCEIDn_EL0 |
-+			  HDFGRTR_EL2_PMMIR_EL1;
-+
-+		if (is_hyp_ctxt(vcpu) &&
-+		    (__vcpu_sys_reg(vcpu, MDCR_EL2) & MDCR_EL2_TPM))
-+			set |= HDFGRTR_EL2_PMUSERENR_EL0;
-+
-+		*vcpu_fgt(vcpu, HDFGRTR_EL2) |= set & ~hdfgrtr_masks.res0;
-+	}
-+}
-+
- static void __compute_hdfgwtr(struct kvm_vcpu *vcpu)
- {
- 	__compute_fgt(vcpu, HDFGWTR_EL2);
- 
- 	if (is_hyp_ctxt(vcpu))
- 		*vcpu_fgt(vcpu, HDFGWTR_EL2) |= HDFGWTR_EL2_MDSCR_EL1;
-+
-+	if (kvm_pmu_is_partitioned(vcpu->kvm)) {
-+		u64 set = HDFGWTR_EL2_PMOVS |
-+			  HDFGWTR_EL2_PMCCFILTR_EL0 |
-+			  HDFGWTR_EL2_PMEVTYPERn_EL0;
-+
-+		if (is_hyp_ctxt(vcpu))
-+			set |= HDFGWTR_EL2_PMUSERENR_EL0;
-+
-+		*vcpu_fgt(vcpu, HDFGWTR_EL2) |= set & ~hdfgwtr_masks.res0;
-+	}
-+}
-+
-+static void __compute_hdfgrtr2(struct kvm_vcpu *vcpu)
-+{
-+	__compute_fgt(vcpu, HDFGRTR2_EL2);
-+
-+	if (kvm_pmu_is_partitioned(vcpu->kvm)) {
-+		*vcpu_fgt(vcpu, HDFGRTR2_EL2) &=
-+			~(HDFGRTR2_EL2_nPMICFILTR_EL0 |
-+			  HDFGRTR2_EL2_nPMICNTR_EL0) | hdfgrtr2_masks.res1;
-+	}
-+}
-+
-+static void __compute_hdfgwtr2(struct kvm_vcpu *vcpu)
-+{
-+	__compute_fgt(vcpu, HDFGWTR2_EL2);
-+
-+	if (kvm_pmu_is_partitioned(vcpu->kvm)) {
-+		*vcpu_fgt(vcpu, HDFGWTR2_EL2) &=
-+			~(HDFGWTR2_EL2_nPMICFILTR_EL0 |
-+			  HDFGWTR2_EL2_nPMICNTR_EL0) | hdfgwtr2_masks.res1;
-+	}
- }
- 
- static void __compute_ich_hfgrtr(struct kvm_vcpu *vcpu)
-@@ -1828,7 +1880,7 @@ void kvm_vcpu_load_fgt(struct kvm_vcpu *vcpu)
- 	__compute_fgt(vcpu, HFGRTR_EL2);
- 	__compute_hfgwtr(vcpu);
- 	__compute_fgt(vcpu, HFGITR_EL2);
--	__compute_fgt(vcpu, HDFGRTR_EL2);
-+	__compute_hdfgrtr(vcpu);
- 	__compute_hdfgwtr(vcpu);
- 	__compute_fgt(vcpu, HAFGRTR_EL2);
- 
-@@ -1836,8 +1888,8 @@ void kvm_vcpu_load_fgt(struct kvm_vcpu *vcpu)
- 		__compute_fgt(vcpu, HFGRTR2_EL2);
- 		__compute_fgt(vcpu, HFGWTR2_EL2);
- 		__compute_fgt(vcpu, HFGITR2_EL2);
--		__compute_fgt(vcpu, HDFGRTR2_EL2);
--		__compute_fgt(vcpu, HDFGWTR2_EL2);
-+		__compute_hdfgrtr2(vcpu);
-+		__compute_hdfgwtr2(vcpu);
- 	}
- 
- 	if (cpus_have_final_cap(ARM64_HAS_GICV5_CPUIF)) {
+ #define __vcpu_sys_reg(v,r)						\
 -- 
 2.56.1.708.g77570a6a1d-goog
 
