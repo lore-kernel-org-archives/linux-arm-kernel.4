@@ -2,99 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2445A606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 01:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C4D606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 01:43:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pB8ixAqR;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xqvzk6Xl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GPS3ibiN;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YbqZ2o6L
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:References:In-Reply-To:Subject:Cc:To:From:
-	Message-Id:Date:Content-Type:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=EISx+aUN2h8+Y5wGuLkSbChaUhZOj0j975QB4nl6i2Q=; b=pB8ixAqRqs5sKZ8Z3w7DgfF8jl
-	tbrlKgEcFim3F6touisXONEnSywz6w0jIblVorSDsolNLMsiwzWSoeYnwnYfGJCyZee30Hk6DO3vD
-	10F0RWO5mOKIL1+YPpkqUhK92GOEyUWJXtJgmx2Tc0Qpvm65l1oFBiZTBdb8//FnQNd/8JIe38rtO
-	g+2BM3g2ZnGhTB42gIVfi3LxqKhVIFv676DgvSCHL4hRl1EEwBLtGOkPEBDAt+DOyUtA7vy5KxNd0
-	rX9QqbGFimnX+AL3UduPEyl5SbmcR6pUnQ1TybZIrJfykOFQtttNcfNsd1CkcWhaAeUmA+2uMFDPR
-	FKX7laMg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=TNJqWRDLQtqezoNq5nZn5mof+TYc54a++ODP8eRnVHc=; b=GPS3ibiNe0l2mG
+	zwcMdeJyB+/gtOx2qpja2yofSFoNx77fW+trIosSF4/wXeMYMV5hw5X++6/iItsAuVlsK5H9CyGdR
+	f7eNPUZfVz4qVKkBYvIaFZeR4gagZROut0OLVsIZFL8unyihANxZmsQr9WTrV2lxbxReCfvQtpshL
+	dwYMVjxQRDhSwDARM09pVkk07Gy1lQhw89sOkN5c9RPpx6ZoQ2ldh5O/ipYQfPQmjONb7qeOjOcQ9
+	ShaS8xIT4+B/urOwb4UJR0zKUc4kxwCe9kDixtMZ7HZmjQ+kq0cMNOQs080gjk1UVj87qWCdanBSK
+	dsAbCQ/C41yfVyxo1IOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTr6Y-0000000AdqA-37Pa;
-	Thu, 19 Nov 2026 01:38:26 +0000
-Received: from mail-pg1-x535.google.com ([2607:f8b0:4864:20::535])
+	id 1xTrAw-0000000Ae9O-1K4o;
+	Thu, 19 Nov 2026 01:42:58 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTr6V-0000000Adpj-3wD3
+	id 1xTrAu-0000000Ae9F-0eWg
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 01:38:25 +0000
-Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-cdb15cd8558so1042602a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 17:38:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795052303; x=1795657103; darn=lists.infradead.org;
-        h=mime-version:content-transfer-encoding:references:in-reply-to
-         :subject:cc:to:from:message-id:date:content-type:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=EISx+aUN2h8+Y5wGuLkSbChaUhZOj0j975QB4nl6i2Q=;
-        b=xqvzk6XlJNkhTQOB3GFjbCwNgXLkHuHsz63V81fUrZJmyz4nFh+SBaCivbMj3GAFHh
-         xnMe+EESTxC3XZBivrFoYNOSqk7t/2cO/xENO6dvz9DYGGZnwsJtxDbQQmeRGk74za8S
-         fzNfz2IH8Oh/aaS3dVDlA0oADUEIyI7YEdjs8F3d3wYuq8jaaBeRneEzqdM5FKpgPuaQ
-         hv2qTSx/PvJQwzNp769+pX1DcwAJUWj9Mw5/OkxiBFa4tq9WWeIIHU6W87malzu8+D+h
-         Jggjx92SZXibV1AJUo0MPgLq8Pz3KQDriI7o2y6fnvrC7cyD9KqSlm22TadLFLKw+Er5
-         bagA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795052303; x=1795657103;
-        h=mime-version:content-transfer-encoding:references:in-reply-to
-         :subject:cc:to:from:message-id:date:content-type:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=EISx+aUN2h8+Y5wGuLkSbChaUhZOj0j975QB4nl6i2Q=;
-        b=Noc/97wgIlm82JATsegdC013O4maElNm+kEm6CxrIVHe6113HEWKJ3Ej3+akpgIAAf
-         f0xxjmPr+dIm8M5bx+OIY5jboKFBx+He8ZplnZe10tMN0iwbF6gh+sS+HQ7G0LQXHG3g
-         E/nOjAKsUSdbrXnv/xZjxHDI7OrMHNRIK11g2uaV4g4dWNkEOY+JZtkNFHrMbw0epojA
-         Wbq3TTF2rrg3ohAa5N/qK29s6yF1UDtskji/zoYlVds8XYSJm6dWKy5jJRNxreTrr7jK
-         HgFIJF4XUQTG8F0AzgqscLK23bAM0LluuOM0FZmB0quvNjBkq7ZQAxVWPcywriuqKvjt
-         9iDg==
-X-Forwarded-Encrypted: i=1; AL+hErFAYjFK9ALwtfFZ40H3x7QCzcnoZcCfvnHLBoSxGqIQE7ZHZ3i30NFJOLAO6+iz7iHL+yiM9b56mSxxR5x5wRQ5@lists.infradead.org
-X-Gm-Message-State: APuU4Z+WjQ9S5L6MxPLOLcEi6vUibaV11dsydT1k5aiJ4ME/INw0E3hm
-	Zd12efDnYCYVWLOB6bI99xnIcW3xmQIlBLkOzaXy8aWQfTwK4rq6dcEZ
-X-Gm-Gg: AZFdTZduwipUMdzknBrGUJJAUPrVIEwrko0Wg+P7wFQFLFXGuZ+BrRb+iyPH6RP2ty5
-	P8K21jjUmUAb3964tjWyIoA3MKHMX6r85cBR2rjklFhdf6pAnsxpyR41LZxEpQHXLn5wGbGcPwj
-	19L/1AyGhv39Qz4Rc6mPAgXD+cahKeQLeCCb97Gv3lymrgK/xrazI3k+DnUe8b2iIN0llqONB86
-	3gv/QRxI5dTFy7Tcqkg+bPdOMcNg4sYK+yizhi1xokBzXKekkDp2cl0rivp+BpcObom2VXi8fki
-	y5IvLMJlaLY/bQQEXrom9EUeY1cKqtxz0eY1YHdcvBoe3cjAAMGHo0mY2HVLQ/CsAxAwG61UV4M
-	W5Hzbq3MwOo8zQD9ebLpb8K2V/4gHJbQwsbKK+p7mkP6xwRNRFViNjhSmROtbPMs5fMaClLUJR0
-	utw/NVuwZ5yWBe2vGnmvc0rPxdCp7OFV9tjffy8qu7jaMutv4UWF+Iwt8eiXrQHlRK258PtEnAF
-	GLvpfFfSeP4lJiRT90bGU5Lmmm9abgQiRLQ5NCyFgS5UYkZ/0GFkTEdQYPJm0hTqERNy/kNvdw3
-	lqp2Fm3cchP9H8QLi+BRz3d9+Bjkt5oySUBgIkBZPTGU+oo88PUAk4h0UHGhZ3+TtaMt8oCubBA
-	XZmevkhiFeV0P5gI+CHJxHUnEq4oj3adE1w==
-X-Received: by 2002:a17:90b:2890:b0:3ab:5832:72af with SMTP id 98e67ed59e1d1-3b3d07b99a8mr3639797a91.32.1795052302815;
-        Wed, 18 Nov 2026 17:38:22 -0800 (PST)
-Received: from localhost ([153.61.198.246])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b3fe0b62e7sm685981a91.11.2026.11.18.17.38.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Nov 2026 17:38:22 -0800 (PST)
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 19 Nov 2026 01:38:22 +0000
-Message-Id: <DMYSXNCMOF26.38XGLPOW4K29X@gmail.com>
-From: "Alexei Starovoitov" <alexei.starovoitov@gmail.com>
-To: "Andrii Nakryiko" <andrii@kernel.org>, <bpf@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>
-Cc: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
- <linux-perf-users@vger.kernel.org>, <peterz@infradead.org>,
- <jolsa@kernel.org>, <rostedt@goodmis.org>
-Subject: Re: [PATCH bpf-next v2 1/3] arm64: perf: Don't report the caller
- twice in caller-regs callchains
-In-Reply-To: <20261119000112.2377949-2-andrii@kernel.org>
-References: <20261119000112.2377949-1-andrii@kernel.org> <20261119000112.2377949-2-andrii@kernel.org>
-Content-Transfer-Encoding: 8bit
+	Thu, 19 Nov 2026 01:42:56 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2E4636463B;
+	Thu, 19 Nov 2026 01:42:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55C3D1F000C4;
+	Thu, 19 Nov 2026 01:42:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795052574;
+	bh=TNJqWRDLQtqezoNq5nZn5mof+TYc54a++ODP8eRnVHc=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=YbqZ2o6LybiBta1rVCuHeCUhjeSQM4UAwL8chwlTCTSEP/ugY8MEYxDAT6M7UieQO
+	 U4optAag57zlP6HGMestwOoBI1eaiT0pOUB9CR0Y5P1f4xWXEHQ/xXnvUiXaKZMEAK
+	 8Lcc3M9Cu00ikxCZES/uCbMiA7qiFsdDNfDA/FO2VWnVDUUhUQXP4D53jVnQ/krk+m
+	 AlfjgqJJRuNRjX3LzXj+//gi7dTWPThK6PIUfBgCAJxkAZ6ooxHQ2bsmNBTUUPZuMP
+	 iI6bpL21zUuzj1oLwoxIGzjvFkJbiUnLLxUqQi0uxWoWjKwiy99MdycmpuJXt5swlu
+	 s5DTv37MSkGCQ==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_173824_006803_3A5F5461 
-X-CRM114-Status: GOOD (  14.27  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v4 3/5] clk: cix: Register the Sky1 AUDSS IRQ auxiliary
+ device
+From: Brian Masney <masneyb@kernel.org>
+To: Jelly Jia <Jelly.Jia@cixtech.com>
+Cc: vkoul@kernel.org, Frank.Li@kernel.org, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, robin.murphy@arm.com, 
+ sboyd@kernel.org, bmasney+clk@redhat.com, jbrunet+clk@baylibre.com, 
+ tglx@kernel.org, devicetree@vger.kernel.org, 
+ cix-kernel-upstream@cixtech.com, dmaengine@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, joakim.zhang@cixtech.com, radu@rendec.net, 
+ Brian Masney <masneyb@kernel.org>
+In-Reply-To: <20261117094408.1393837-4-Jelly.Jia@cixtech.com>
+References: <20261117094408.1393837-1-Jelly.Jia@cixtech.com>
+ <20261117094408.1393837-4-Jelly.Jia@cixtech.com>
+Date: Wed, 18 Nov 2026 20:42:47 -0500
+Message-Id: <179505256752.187996.952601612639868708.b4-review@b4>
+X-Mailer: b4 0.17-dev-8145e
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4931; i=masneyb@kernel.org;
+ s=20250903; h=from:subject:message-id;
+ bh=aXJ9C26UieRByax4ACS+gov5jq9nofkOwnsEGr9engA=;
+ b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLL+hUiEcaTk/F45R5EtfaKBzzS9SQLKDzkW/XLqqIn1l
+ j3i+P5DRykLgxgXg6yYIsuSXKOCiNRVtvfuaLLAzGFlAhnCwMUpABNZJ8Hwv5C1M+SA6PnfQYyP
+ vq+c2pon8E9T00sp87RwxCzxTdpCrQz/c2rrq1Vbb3ntWBFsN32me9/bIKNF5lnCm9a1KZ+XLH/
+ CAAA=
+X-Developer-Key: i=masneyb@kernel.org; a=openpgp;
+ fpr=A46D32705865AA3DDEDC2904B7D2DD275D7EC087
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,58 +84,168 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 04:01 PM Andrii Nakryiko <andrii@kernel.org> wrote:
-> Do the same on arm64. Set pstate to PSR_MODE_EL1t, which exceptions
-> taken from the kernel never have (the kernel runs in EL1h, or EL2h
-> with VHE), and skip the leaf regs->pc in perf_callchain_kernel() for
-> regs with that mode. The unwind still starts from regs, with the frame
-> record at x29 walked by the unwinder.
+Hi Jelly,
 
-my bot thinks the following will be a more accurate fix...
+> Register an auxiliary IRQ device for CRU nodes declaring an interrupt
+> controller, following the existing reset device pattern. Share a raw-lock
+> regmap with the IRQ driver and preserve gate/reset context while powering
+> down the CRU. Restore the parent before child IRQ delivery resumes using
+> noirq system-sleep ordering.
+> 
+> The existing reset-sky1-audss.c is unchanged. Auxiliary child teardown must
+> run before parent regmap/runtime-PM cleanup.
+> 
+> Signed-off-by: Jelly Jia <Jelly.Jia@cixtech.com>
+> ---
+>  drivers/clk/cix/clk-sky1-audss.c | 37 +++++++++++++++++++++++++++++---
+>  1 file changed, 34 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/clk/cix/clk-sky1-audss.c b/drivers/clk/cix/clk-sky1-audss.c
+> index e096b8121df3..fa51cdf4f4bd 100644
+> --- a/drivers/clk/cix/clk-sky1-audss.c
+> +++ b/drivers/clk/cix/clk-sky1-audss.c
+> @@ -2,6 +2,7 @@
+>  // Copyright 2026 Cix Technology Group Co., Ltd.
+>  
+>  #include <linux/auxiliary_bus.h>
+> +#include <linux/bits.h>
 
-diff --git a/arch/arm64/include/asm/perf_event.h b/arch/arm64/include/asm/perf_event.h
-index ee45b4e..7c5ab65 100644
---- a/arch/arm64/include/asm/perf_event.h
-+++ b/arch/arm64/include/asm/perf_event.h
-@@ -13,11 +13,12 @@
- #define perf_arch_bpf_user_pt_regs(regs) &regs->user_regs
- #endif
- 
-+/* PSR_MODE_EL1t marks these regs for kunwind_stack_walk() */
- #define perf_arch_fetch_caller_regs(regs, __ip) { \
- 	(regs)->pc = (__ip);    \
- 	(regs)->regs[29] = (unsigned long) __builtin_frame_address(0); \
- 	(regs)->sp = current_stack_pointer; \
--	(regs)->pstate = PSR_MODE_EL1h;	\
-+	(regs)->pstate = PSR_MODE_EL1t;	\
- }
- 
- #endif
-diff --git a/arch/arm64/kernel/stacktrace.c b/arch/arm64/kernel/stacktrace.c
-index 3ebcf8c..de394ff 100644
---- a/arch/arm64/kernel/stacktrace.c
-+++ b/arch/arm64/kernel/stacktrace.c
-@@ -357,6 +357,13 @@ kunwind_stack_walk(kunwind_consume_fn consume_state,
- 		if (task != current)
- 			return -EINVAL;
- 		kunwind_init_from_regs(&state, regs);
-+		/*
-+		 * With perf_arch_fetch_caller_regs() the PC is a copy of the
-+		 * LR in the frame record at FP. Start from that record.
-+		 */
-+		if (processor_mode(regs) == PSR_MODE_EL1t &&
-+		    kunwind_next(&state))
-+			return -EINVAL;
- 	} else if (task == current) {
- 		kunwind_init_from_caller(&state);
- 	} else {
+This doesn't appear to be needed.
 
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+>  #include <linux/device.h>
+> @@ -18,7 +19,9 @@
+>  #define INFO_CLK_GATE				0x10
+>  #define INFO_CLK_DIV				0x14
+>  #define INFO_CLK_MUX				0x18
+> +#define INFO_AP_IRQC				0x54
+>  #define INFO_MCLK				0x70
+> +#define INFO_SW_RESETN				0x78
+>  
+>  #define SKY1_AUDSS_CLK_PARENTS_CNT		4
+>  #define SKY1_AUDSS_NUM_CLKS			(CLK_MCLK4 + 1)
+> @@ -28,7 +31,9 @@ static u32 sky1_reg_save[][2] = {
+>  	{ INFO_CLK_GATE,  0 },
+>  	{ INFO_CLK_DIV, 0 },
+>  	{ INFO_CLK_MUX, 0 },
+> +	{ INFO_AP_IRQC, 0 },
+>  	{ INFO_MCLK, 0 },
+> +	{ INFO_SW_RESETN, 0 },
+
+This, along with the defines should go in a separate commit.
+
+>  };
+>  
+>  static const char * const sky1_audss_clk_names[SKY1_AUDSS_CLK_PARENTS_CNT] = {
+> @@ -519,6 +524,7 @@ static const struct regmap_config sky1_audss_regmap_config = {
+>  	.reg_bits = 32,
+>  	.val_bits = 32,
+>  	.reg_stride = 4,
+> +	.use_raw_spinlock = true,
+>  };
+>  
+>  struct sky1_audss_clks_priv {
+> @@ -928,6 +934,21 @@ static int sky1_audss_clks_enable(struct sky1_audss_clks_priv *priv)
+>  	return err;
+>  }
+>  
+> +static int sky1_audss_irq_controller_register(struct device *dev)
+> +{
+> +	struct auxiliary_device *adev;
+> +
+> +	if (!IS_ENABLED(CONFIG_IRQ_SKY1_AUDSS) ||
+> +	    !of_property_present(dev->of_node, "interrupt-controller"))
+> +		return 0;
+> +
+> +	adev = devm_auxiliary_device_create(dev, "irq", NULL);
+> +	if (!adev)
+> +		return -ENODEV;
+> +
+> +	return 0;
+
+The reset registration code currently has:
+
+    #if IS_ENABLED(CONFIG_RESET_SKY1_AUDSS)
+
+    static int sky1_audss_reset_controller_register(struct device *dev)
+    {
+    ...
+    }
+    #else
+    static int sky1_audss_reset_controller_register(struct device *dev)
+    {
+    	return 0;
+    }
+
+I don't care which pattern you use but make it consistent within this
+driver.
+
+> +}
+> +
+>  static void sky1_audss_clks_disable(struct sky1_audss_clks_priv *priv)
+>  {
+>  	const struct sky1_audss_clks_devtype_data *devtype_data = priv->devtype_data;
+> @@ -1110,6 +1131,13 @@ static int sky1_audss_clk_probe(struct platform_device *pdev)
+>  		goto fail_pm;
+>  	}
+>  
+> +	/* Remove auxiliary children before the parent runtime-PM cleanup. */
+> +	ret = sky1_audss_irq_controller_register(dev);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "failed to set up AUDSS DMA IRQs\n");
+> +		goto fail_pm;
+> +	}
+> +
+>  	pm_runtime_put_sync(dev);
+>  
+>  	return 0;
+> @@ -1125,6 +1153,7 @@ static int __maybe_unused sky1_audss_clk_runtime_suspend(struct device *dev)
+>  	const struct sky1_audss_clks_devtype_data *devtype_data = priv->devtype_data;
+>  	unsigned long flags;
+>  	int i;
+> +	int ret;
+
+The ret can be folded into the line above.
+
+>  
+>  	spin_lock_irqsave(&priv->lock, flags);
+>  	for (i = 0; i < devtype_data->reg_save_size; i++)
+> @@ -1132,7 +1161,9 @@ static int __maybe_unused sky1_audss_clk_runtime_suspend(struct device *dev)
+>  			    devtype_data->reg_save[i][0], &devtype_data->reg_save[i][1]);
+>  	spin_unlock_irqrestore(&priv->lock, flags);
+>  
+> -	reset_control_assert(priv->rst_noc);
+> +	ret = reset_control_assert(priv->rst_noc);
+> +	if (ret)
+> +		return ret;
+
+Should this be a separate patch?
+
+>  
+>  	sky1_audss_clks_disable(priv);
+>  
+> @@ -1170,8 +1201,8 @@ static int __maybe_unused sky1_audss_clk_runtime_resume(struct device *dev)
+>  static const struct dev_pm_ops sky1_audss_clk_pm_ops = {
+>  	SET_RUNTIME_PM_OPS(sky1_audss_clk_runtime_suspend,
+>  			   sky1_audss_clk_runtime_resume, NULL)
+> -	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> -				pm_runtime_force_resume)
+> +	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> +				      pm_runtime_force_resume)
+
+The IRQ driver uses the new pm_ptr(). Please use that.
+
+Brian
+
+-- 
+Brian Masney <masneyb@kernel.org>
 
