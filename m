@@ -2,49 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9062D60A260F
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B582606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pXqT9YeU;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=GjGO65NN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sdtBf2Ez;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=WrJUavH2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=L1YcTl/uYfFtLb4iHc/VuFExeEr6pRbLZWly8UMoO5U=; b=pXqT9YeUKigAeQ
-	YuWQzvVC9TKYh4IsEzcxm33VRCJPe117vjq2YMxM8WfGWaOcDYgeLPDrvzxmlzb2pIZ9BrPGtbvbw
-	EV32VJ3mGKEqXHxFvuV+JVVwtvpMNv5ZT74ReWNNYIJceTvbr3KMCOb/JzcbQl8bbNkW1JVsQB6Hf
-	S4Y33ciLt6HYQ3/9q+e6NaKXXwmcpHQYSA8qc5RP7B1a05J95vPlETAx/fXO0KCsj4oxyk1PRVXyO
-	HEQAYLodtroYFwR8eu0QGEZvNfCo6ZPWMVrZ6gdeDBpnXxWHGR1eA8id2CNogVftR36m8ZB+MXlb5
-	Z864Dtc+Zpb/3WHTw1jQ==;
+	List-Owner; bh=VDLNZ1lzQBUvJntHvmHdJqoj25UewCrSctNLy9rd7c4=; b=sdtBf2EzMjDH6C
+	yfdSAfOLUP+wMHzMf96yRY+eCDL9SVkVdL6uXeSaTRufJR7jM9ktJwLTysS580pW5hFvPHE/pP+gE
+	Yl6HmEaTH4i2sEsP0XkImOzIg8a2c32tybbpPm87AHjB4Q/YvEeuBqnCuByVATWyN2SfHIHpu0EgH
+	voZUZVUOsoxoJQB/cvPV8jyFy3pqiihSrbovum+GJRJPSjYCytPJcRG/wGi+tJfC5KKw2bIGvLY7O
+	ZJqQuBn93vvUygZWCVaq5rNs5oGKaESpVMygxOakAagQt6LDERjqfe6GZfMam+IUXx6aKSpQD4N9y
+	BjRiALSnkrUpzS2vcD0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0TS-0000000BiTI-45JH;
-	Thu, 19 Nov 2026 11:38:42 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xU0Ta-0000000BiXQ-29ih;
+	Thu, 19 Nov 2026 11:38:50 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0TP-0000000BiRL-0Z1A
+	id 1xU0TV-0000000BiUF-1782
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 11:38:41 +0000
+	Thu, 19 Nov 2026 11:38:46 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id B6E3A1A170C;
-	Thu, 19 Nov 2026 11:38:36 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id CBA544E41666;
+	Thu, 19 Nov 2026 11:38:43 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8AF8C60237;
-	Thu, 19 Nov 2026 11:38:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BD25A11BC1249;
-	Thu, 19 Nov 2026 12:38:27 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A08C060237;
+	Thu, 19 Nov 2026 11:38:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8F77911BC1D43;
+	Thu, 19 Nov 2026 12:38:38 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795088311; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1795088321; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=L1YcTl/uYfFtLb4iHc/VuFExeEr6pRbLZWly8UMoO5U=;
-	b=GjGO65NNOSB8ZEHNPWdX+QLZsp0hZ4Zz5l6LH58sZhhekddhSKLcZtO6Eex5P+uASB5uqs
-	noI88Ek4b6WI+9qE8JCCXfCapMCJPynJJ0rCjute/GeoQqDetQq+UsbBJwQSIG4P7dWsqg
-	VdD2hwj4h3akOVu9hme8a8O67I6CpqBzjZZ/thquyJzUVKfcaKRJNIB4L3ybgwoLbp602M
-	VYZ1CqGM86fe4Cdff798vqdKasVkoGFq+nCI2wz6/vMRcoZoSaE7RqhweuhFepV3CLKLbB
-	w1JA0ycEe6u6hSq0zDsYTBmK17aDHY8W6v4Dgq7PPed5S5gvhtfBprQZb2hrBQ==
+	bh=VDLNZ1lzQBUvJntHvmHdJqoj25UewCrSctNLy9rd7c4=;
+	b=WrJUavH28sMiZLpONfRALyvhkxBgfdkZDagrrl3sQR421xc+a2cXpQmS30WYWKs7fiWnJL
+	3CpDo3Em1QUuGkdxbX/W8bG4DzXHXYAgtoeycsrIaEP1uc8HgWvSDr0BNbduhU1giQtFq4
+	H0U4H7MOdaYmxh5vTpJD7jFsUCHDz/O111NsF8OY0/wuDlIAwBzjVMl7Tvmbxj8YP/No6Q
+	rz3g1t9GTYqAZvgSsQoF4ZYGVEaLb5QqcP8hFdEh9WNkIxfd7NB7+Y924C40zi5zv8V80h
+	wq2Ae5yzNTvq/TwPAKJBYYpOvBBM/PMUMuDmZJMP5gQWx+qeCUKUJFT1ye658w==
 From: Herve Codina <herve.codina@bootlin.com>
 To: Andrew Lunn <andrew@lunn.ch>,
 	Rob Herring <robh@kernel.org>,
@@ -73,10 +73,11 @@ Cc: linux-omap@vger.kernel.org,
 	Steen Hegelund <steen.hegelund@microchip.com>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v11 3/5] bus: simple-pm-bus: Remove child devices when the bus is unbound
-Date: Thu, 19 Nov 2026 12:37:54 +0100
-Message-ID: <20261119113758.603074-4-herve.codina@bootlin.com>
+	Herve Codina <herve.codina@bootlin.com>,
+	stable+noautosel@kernel.org
+Subject: [PATCH v11 5/5] bus: simple-pm-bus: Populate child nodes at probe
+Date: Thu, 19 Nov 2026 12:37:56 +0100
+Message-ID: <20261119113758.603074-6-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261119113758.603074-1-herve.codina@bootlin.com>
 References: <20261119113758.603074-1-herve.codina@bootlin.com>
@@ -85,8 +86,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_033839_308493_6AA3FBA2 
-X-CRM114-Status: GOOD (  17.22  )
+X-CRM114-CacheID: sfid-20261119_033845_577073_E509D59C 
+X-CRM114-Status: GOOD (  25.52  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,83 +107,118 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-During its probe, the simple-pm-bus driver (simple-pm-bus compatible
-variant) populates its child devices but it doesn't touch them during
-its removal.
+The simple-pm-bus driver handles several simple busses. When it is used
+with busses other than a compatible "simple-pm-bus", it doesn't populate
+its child devices during its probe.
 
-This leads to bus child devices present and bound to drivers whereas the
-bus itself is unbound.
+This confuses fw_devlink and results in wrong or missing devlinks.
 
-Be consistent and remove child devices when the bus itself is unbound.
+Once a driver is bound to a device and the probe() has been called,
+device_links_driver_bound() is called.
 
+This function performs operation based on the following assumption:
+    If a child firmware node of the bound device is not added as a
+    device, it will never be added.
+
+Among operations done on fw_devlinks of those "never be added" devices,
+device_links_driver_bound() changes their supplier.
+
+With devices attached to a simple-bus compatible device, this change
+leads to wrong devlinks where supplier of devices points to the device
+parent (i.e. simple-bus compatible device) instead of the device itself
+(i.e. simple-bus child).
+
+When the device attached to the simple-bus is removed, because devlinks
+are not correct, its consumers are not removed first.
+
+In order to have correct devlinks created, make the simple-pm-bus driver
+compliant with the devlink assumption and create its child devices
+during its probe.
+
+Fixes: 3a2dbc510c43 ("driver core: fw_devlink: Don't purge child fwnode's consumer links")
+Cc: <stable+noautosel@kernel.org> # Need more devices described in LAN966x PCI dtso
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- drivers/bus/simple-pm-bus.c | 45 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 43 insertions(+), 2 deletions(-)
+ drivers/bus/simple-pm-bus.c | 35 +++++++++++++++++++++++++----------
+ 1 file changed, 25 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
-index e45700156732..23ac18551fd9 100644
+index 23ac18551fd9..6afc992a750f 100644
 --- a/drivers/bus/simple-pm-bus.c
 +++ b/drivers/bus/simple-pm-bus.c
-@@ -22,6 +22,46 @@ struct simple_pm_bus {
- 	int num_clks;
- };
- 
-+static void simple_pm_bus_depopulate(void *data)
-+{
-+	struct device *dev = data;
-+
-+	/*
-+	 * Bus stays on for children
-+	 * This ensure that the bus will not be put in idle asynchronously when
-+	 * all its children are removed.
-+	 */
-+	pm_runtime_get_sync(dev);
-+
-+	/* Let remove children */
-+	of_platform_depopulate(dev);
-+
-+	/*
-+	 * Lets runtime_suspend() calls simple_pm_bus_runtime_suspend() in a
-+	 * synchronous way before disabling runtime pm.
-+	 *
-+	 * This guarantee that clocks are disabled and unprepared before the
-+	 * bus is removed in all cases.
-+	 */
-+	pm_runtime_put_sync(dev);
-+}
-+
-+static int simple_pm_bus_populate(struct device *dev,
-+				  const struct of_dev_auxdata *lookup)
-+{
-+	struct device_node *np = dev->of_node;
-+	int ret;
-+
-+	if (!np)
-+		return 0;
-+
-+	ret = of_platform_populate(np, NULL, lookup, dev);
-+	if (ret)
-+		return ret;
-+
-+	return devm_add_action_or_reset(dev, simple_pm_bus_depopulate, dev);
-+}
-+
- static int simple_pm_bus_probe(struct platform_device *pdev)
+@@ -26,6 +26,12 @@ static void simple_pm_bus_depopulate(void *data)
  {
- 	const struct device *dev = &pdev->dev;
-@@ -71,8 +111,9 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
+ 	struct device *dev = data;
+ 
++	if (!pm_runtime_enabled(dev)) {
++		/* No PM runtime, we can directly depopulate */
++		of_platform_depopulate(dev);
++		return;
++	}
++
+ 	/*
+ 	 * Bus stays on for children
+ 	 * This ensure that the bus will not be put in idle asynchronously when
+@@ -46,7 +52,7 @@ static void simple_pm_bus_depopulate(void *data)
+ 	pm_runtime_put_sync(dev);
+ }
+ 
+-static int simple_pm_bus_populate(struct device *dev,
++static int simple_pm_bus_populate(struct device *dev, bool default_populate,
+ 				  const struct of_dev_auxdata *lookup)
+ {
+ 	struct device_node *np = dev->of_node;
+@@ -55,7 +61,9 @@ static int simple_pm_bus_populate(struct device *dev,
+ 	if (!np)
+ 		return 0;
+ 
+-	ret = of_platform_populate(np, NULL, lookup, dev);
++	ret = default_populate ?
++		of_platform_default_populate(np, lookup, dev) :
++		of_platform_populate(np, NULL, lookup, dev);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -83,16 +91,23 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
+ 	match = of_match_device(dev->driver->of_match_table, dev);
+ 	/*
+ 	 * These are transparent bus devices (not simple-pm-bus matches) that
+-	 * have their child nodes populated automatically.  So, don't need to
+-	 * do anything more. We only match with the device if this driver is
+-	 * the most specific match because we don't want to incorrectly bind to
+-	 * a device that has a more specific driver.
++	 * need to have their child nodes populated. So, don't need to do
++	 * anything more except populate child nodes during this probe(). We
++	 * only match with the device if this driver is the most specific match
++	 * because we don't want to incorrectly bind to a device that has a more
++	 * specific driver.
+ 	 */
+ 	if (match && match->data) {
+-		if (of_property_match_string(np, "compatible", match->compatible) == 0)
+-			return 0;
+-		else
++		if (of_property_match_string(np, "compatible", match->compatible))
+ 			return -ENODEV;
++
++		dev_dbg(&pdev->dev, "%s: populate only\n", __func__);
++
++		ret = simple_pm_bus_populate(&pdev->dev, true, lookup);
++		if (ret)
++			return dev_err_probe(&pdev->dev, ret, "failed to populate\n");
++
++		return 0;
+ 	}
+ 
+ 	bus = devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
+@@ -111,7 +126,7 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
  	if (ret)
  		return dev_err_probe(&pdev->dev, ret, "failed enable pm_runtime\n");
  
--	if (np)
--		of_platform_populate(np, NULL, lookup, &pdev->dev);
-+	ret = simple_pm_bus_populate(&pdev->dev, lookup);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "failed to populate\n");
+-	ret = simple_pm_bus_populate(&pdev->dev, lookup);
++	ret = simple_pm_bus_populate(&pdev->dev, false, lookup);
+ 	if (ret)
+ 		return dev_err_probe(&pdev->dev, ret, "failed to populate\n");
  
- 	return 0;
- }
 -- 
 2.56.0
 
