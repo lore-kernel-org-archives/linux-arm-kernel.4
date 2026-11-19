@@ -2,75 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895AB606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 06:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E44606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 06:13:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Kd0HEexw;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=dQ//ZzV4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C5xiW/h0;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=O8V1n9Tv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YB/cyfjwX/52y3Ipa9lzbgUaTU+EJUYgc2Tz4cscnfI=; b=Kd0HEexwdZERag
-	jyAEGLDZzfPVLboYMi9pSfwZ+OKcwY8fH7IQ4YixTW7gAmxc1Hvqyv3tNGmMa+Y65zL5FqoSQ2ayj
-	Ug7azOkUxNCkCCpIDS3NSxe+RMYn6c2F7kkj7Kb4/NuXWNW6qof1Z1H5XHuJqQShnC6HsGi1SlQVQ
-	Q073hVc9ZpooaqksHrDqLg3Gv5yaDW2+e7llbdzwRyMhJKzzxxWj1SNalUhEeraUa1RQeaN4qRUfB
-	TGgvJTTUW8YAVSr6NRXkE7yM3TwKD0Br6Bu673jCKZzQt4tvbbVFV/1s5QEVXC9KsrTfxaWd/VooF
-	DB3czELDPpNCdectkD0g==;
+	Content-Type:Message-Id:MIME-Version:To:Date:Subject:From:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=sZpF+zLKCg/WORp3mblqhSxB+ZYjA2DRBuvOopXi688=; b=C5xiW/h0EPL1ls3NQ7JYDYimJV
+	O4x1MhHRMT7NBIb3nhjd41J0UOoZuUWIr8rYqCMh/o78Fob5FwVlFiYyog7GsmKQ9xxhUnoNWACl6
+	ZtdaxSDZ0aSF28rKL48qukRYdRht7tcKepZRhWbs+gPv0LZzrEfgoQZwv/2414JbUbi0q6QiCw4Jr
+	a5Z30haELoNMOgFoLtFtBCGNvxdfsRz2uywv9v19pxtnwKIA+Dk8j5GbEj2WDH+2e62fzNp6t1Ixk
+	xWdRlXH6G/ToH+RHaLSXJmVsWA3O2znyyG9u54T+v6vFa6Gh1q8Pvp+kDG2GKCTp5eaSRR3RHgls6
+	4EfH22Yw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTvLA-0000000Axqo-2qYJ;
-	Thu, 19 Nov 2026 06:09:48 +0000
-Received: from cmccmta6.chinamobile.com ([111.22.67.139])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTvL6-0000000Axq8-0nTx
+	id 1xTvOc-0000000Ay1j-0tdW;
+	Thu, 19 Nov 2026 06:13:22 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTvOW-0000000Ay1N-3Hec
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 06:09:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cmss.chinamobile.com; s=default; l=0;
-	h=from:subject:message-id:to:cc:mime-version;
-	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=dQ//ZzV4xlquiGr1FA/sWCa+NdL1j41kQvTmi24R1ZHYIxJeAFA/qpC1K66GgKXKIywwXgrFxQZyf
-	 Z0MD+EiL7pxehlf3eJu/R8dAhsMsjoTM2gIZD0YkAjSOVZIlstW0juPOBfFtAkHunMeRWvFgDAg0iL
-	 dHDIRLnA4zFhZcUs=
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app01-12001 (RichMail) with SMTP id 2ee16afe92956cd-f61f4;
-	Thu, 19 Nov 2026 14:09:26 +0800 (CST)
-X-RM-TRANSID: 2ee16afe92956cd-f61f4
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from DESKTOP-3K8GUTQ (unknown[223.108.79.97])
-	by rmsmtp-syy-appsvr01-12001 (RichMail) with SMTP id 2ee16afe9294463-f1e52;
-	Thu, 19 Nov 2026 14:09:26 +0800 (CST)
-X-RM-TRANSID: 2ee16afe9294463-f1e52
-From: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Antonio Borneo <antonio.borneo@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-gpio@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
-Date: Thu, 19 Nov 2026 14:09:24 +0800
-Message-ID: <20261119060924.675-1-laixiangwu@cmss.chinamobile.com>
-X-Mailer: git-send-email 2.50.1.windows.1
-In-Reply-To: <CAD++jLn1P9hT-YH9vM9VSvoMRei5LJv+hDZMH1en6CfFXPB-5w@mail.gmail.com>
-References: <CAD++jLn1P9hT-YH9vM9VSvoMRei5LJv+hDZMH1en6CfFXPB-5w@mail.gmail.com>
+	Thu, 19 Nov 2026 06:13:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1795068794;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=sZpF+zLKCg/WORp3mblqhSxB+ZYjA2DRBuvOopXi688=;
+	b=O8V1n9TvVy4PrWAAo0KF7jYfYUCLkNAQ+2CSNy9tewEbH69nVpx1n2IatcZ8QKh1ScI5Xj
+	O1vv8eLtDSP0wvUQE3V4nQUPm4qTMvllG472/h6qN9sTwZyeD64dk6CIc+i5y0Ruo1JokR
+	rWKzkjgaISCfyO2YRhI4F1SRZtu+SG8=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-36-vhLDre3VO8-n7u7tXFihbg-1; Thu,
+ 19 Nov 2026 06:13:04 +0000
+X-MC-Unique: vhLDre3VO8-n7u7tXFihbg-1
+X-Mimecast-MFC-AGG-ID: vhLDre3VO8-n7u7tXFihbg_1795068783
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BB5CD1954B20;
+	Thu, 19 Nov 2026 06:13:03 +0000 (UTC)
+Received: from [172.20.214.229] (unknown [10.30.44.123])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 2DCDB18004FE;
+	Thu, 19 Nov 2026 06:13:02 +0000 (UTC)
+From: cki-project@redhat.com
+Subject: =?utf-8?b?4pyF?= PASS (MISSED 4 of 54): Test report for for-kernelci
+ (7.4.0-rc1, upstream-arm-next, a041bdbe)
+Date: Thu, 19 Nov 2026 06:13:02 -0000
+To: linux-arm-kernel@lists.infradead.org, will@kernel.org,
+ catalin.marinas@arm.com
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+Message-Id: <37143.126111901130400483@us-mta-36.us.mimecast.lan>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 4HyxASh4T76AIPMupz4d6m7Yerkmgq9hgVEHRxjAl1g_1795068783
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_220944_843850_66F2D5DD 
-X-CRM114-Status: GOOD (  16.68  )
-X-Spam-Score: -2.4 (--)
+X-CRM114-CacheID: sfid-20261118_221316_966995_9723DBF6 
+X-CRM114-Status: UNSURE (   7.09  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.5 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,88 +84,67 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Linus,
+Hi, we tested your kernel and here are the results:
 
-thanks for taking a look.  For the record, this is about "[PATCH v2]
-pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error
-paths":
+    Overall result: PASSED
+             Merge: OK
+           Compile: OK
+              Test: OK
 
-https://lore.kernel.org/all/20261110083253.1525-1-laixiangwu@cmss.chinamobile.com/
+Tested-by: CKI Project <cki-project@redhat.com>
 
-On Wed, Nov 18, 2026 at 10:09:40PM +0100, Linus Walleij wrote:
-> Fix your email address in .gitconfig please so you don't use
-> your login name as name.
+Kernel information:
+    Commit message: arm64: Drop stdint.h type overrides from asm/neon-intri=
+nsics.h
 
-Sorry about that.  The email address is unchanged, what was wrong is
-that git picked my login handle up as the user name; the .gitconfig
-name is set to "Xiangwu Lai" now, and the patch was already resent
-with the corrected author and sign-off before your reply arrived - it
-is identical to v2 otherwise:
+You can find all the details about the test run at
+    https://datawarehouse.cki-project.org/kcidb/checkouts/redhat:3086968167
 
-[PATCH v3] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
-https://lore.kernel.org/all/20261116031043.502-1-laixiangwu@cmss.chinamobile.com/
+One or more kernel tests failed:
+    We also see the following known issues which are not related to your ch=
+anges:
+        Issue: [upstream] Hardware - Firmware test suite - auto-waive failu=
+res
+            URL: https://gitlab.com/cki-project/infrastructure/-/issues/779
+            Affected tests:
+                Hardware - Firmware test suite [aarch64]
+        Issue: selinux-policy: serge-testsuite: Client ioctl BINDER_WRITE_R=
+EAD error: Invalid argument
+            URL: https://lore.kernel.org/selinux/CAAUqJDt1pXQ2KVBvMoMiDrzz8=
+ishonqhQ0nnQLEppot4nmv9Bw@mail.gmail.com/T/
+            Affected tests:
+                selinux-policy: serge-testsuite [aarch64]
 
-On Wed, Nov 18, 2026 at 10:08:09PM +0100, Linus Walleij wrote:
-> Looks like a bulky fix, what about just stop using
-> of_reset_control_get_exclusive()
-> and use devm_reset_control_get_exclusive(&pdev->dev, ..) hmm?
 
-The managed getter is unfortunately not a drop-in replacement here:
-the reset phandles live in the per-bank child nodes, while
-devm_reset_control_get_exclusive() resolves the "resets" property
-from dev_fwnode(&pdev->dev), that is the pinctrl node itself.  The
-driver fetches one reset line per GPIO bank from each child:
+Tests that were not ran because of internal issues:
+    /distribution/command [aarch64]
+    Reboot test [aarch64]
 
-	bank->rstc = of_reset_control_get_exclusive(np, NULL);
 
-with np = to_of_node(child).  The reset core only provides devm
-variants that take a struct device *; there is no devm getter
-parameterized by a device_node/fwnode, which is what the per-bank
-lookup would need.
+If you find a failure unrelated to your changes, please ask the test mainta=
+iner to review it.
+This will prevent the failures from being incorrectly reported in the futur=
+e.
 
-If you prefer the managed form, the equivalent that keeps the
-child-node lookup would be to register the put as a devm action after
-each successful get:
+Please reply to this email if you have any questions about the tests that w=
+e
+ran or if you have any suggestions on how to make future tests more effecti=
+ve.
 
-	static void stm32_pctl_put_reset_control(void *data)
-	{
-		reset_control_put(data);
-	}
-
-	bank->rstc = of_reset_control_get_exclusive(np, NULL);
-	if (PTR_ERR(bank->rstc) == -EPROBE_DEFER) {
-		...
-		return -EPROBE_DEFER;
-	}
-
-	ret = devm_add_action_or_reset(dev, stm32_pctl_put_reset_control,
-				       bank->rstc);
-
-which turns all the error paths back into plain returns - devres
-releases the rstcs acquired so far - and removes the goto
-err_put_rstcs wiring from v3.  On success the semantics stay as they
-are: the rstcs are held for the lifetime of the device (the driver
-has no .remove) and are still in use, stm32_gpiolib_register_bank()
-deasserts them.  phy-qcom-qmp-pcie-msm8996.c uses the same
-combination for the same reason, a reset phandle living in a
-sub-node.
-
-Philipp, does this look sane from the reset core point of view, or
-would a devm getter that takes a fwnode be something acceptable in
-the core?
-
-I can respin a v4 with the devm action conversion on top of v3, or
-keep the explicit unwind of v3 - let me know which form you prefer.
-
-Best regards,
-Xiangwu Lai
-
+        ,-.   ,-.
+       ( C ) ( K )  Continuous
+        `-',-.`-'   Kernel
+          ( I )     Integration
+           `-'
+___________________________________________________________________________=
+___
 
 
