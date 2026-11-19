@@ -2,49 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5833760A2609
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:38:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9062D60A260F
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nPRPhKjI;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=1YXEjZt4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pXqT9YeU;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=GjGO65NN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SnpBpONi2hKsnLkH7ie4ozWlmqX6tUPpRN0WLEqSj5E=; b=nPRPhKjIIjgc8L
-	M8FDO8JOgtLacTxLW3wgj4bv1Wbt7c72BGfmsDDZwCwmz8G42+Uys/0xPsHs0Ax7PgGM1mC6YNwrk
-	lQDk14P4sea7RblE37ZoBexJPyB3AytlHEpNW98wU1zqpg5bEoHp4pzjrQR9DC2NRI6yR6ENBJmkz
-	hgoB59kDCcStnmkRpLlA1jZD02lnHthWdO45P6cRmAnjOpqEWjNshGSArc1VHW/lsEIZ8dLpuddoQ
-	P07pn08UMmPe+P7ncYKTMzAHUGz99qEvBptvyZAZsvkcUOiVybUM9/Xm4xNwIyHzdvcW0NTHKmlbK
-	ZPJEQcHcI7GYlcriRqeg==;
+	List-Owner; bh=L1YcTl/uYfFtLb4iHc/VuFExeEr6pRbLZWly8UMoO5U=; b=pXqT9YeUKigAeQ
+	YuWQzvVC9TKYh4IsEzcxm33VRCJPe117vjq2YMxM8WfGWaOcDYgeLPDrvzxmlzb2pIZ9BrPGtbvbw
+	EV32VJ3mGKEqXHxFvuV+JVVwtvpMNv5ZT74ReWNNYIJceTvbr3KMCOb/JzcbQl8bbNkW1JVsQB6Hf
+	S4Y33ciLt6HYQ3/9q+e6NaKXXwmcpHQYSA8qc5RP7B1a05J95vPlETAx/fXO0KCsj4oxyk1PRVXyO
+	HEQAYLodtroYFwR8eu0QGEZvNfCo6ZPWMVrZ6gdeDBpnXxWHGR1eA8id2CNogVftR36m8ZB+MXlb5
+	Z864Dtc+Zpb/3WHTw1jQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0TJ-0000000BiPm-3ghr;
-	Thu, 19 Nov 2026 11:38:33 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xU0TS-0000000BiTI-45JH;
+	Thu, 19 Nov 2026 11:38:42 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0TG-0000000BiOM-3msv
+	id 1xU0TP-0000000BiRL-0Z1A
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 11:38:32 +0000
+	Thu, 19 Nov 2026 11:38:41 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 6C6AD4E41665;
-	Thu, 19 Nov 2026 11:38:29 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id B6E3A1A170C;
+	Thu, 19 Nov 2026 11:38:36 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 332DA60237;
-	Thu, 19 Nov 2026 11:38:29 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D718F11BC1F34;
-	Thu, 19 Nov 2026 12:38:20 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8AF8C60237;
+	Thu, 19 Nov 2026 11:38:36 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BD25A11BC1249;
+	Thu, 19 Nov 2026 12:38:27 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795088303; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1795088311; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=SnpBpONi2hKsnLkH7ie4ozWlmqX6tUPpRN0WLEqSj5E=;
-	b=1YXEjZt4qlKrQHOgJzkexU+Iou77czT1vkN8RWuUpEhhYJUcs5+bVi7DhX18y3pTMRv4Bs
-	Xy72gd685wBvNy+uL8t8mKgqLZ7efT46u3iEoqAn70cLhNI10wBllevR2D0PPBo4xeI5Ro
-	S0l4qpp+ci5Bb0UkBiRwOg1xcxQScyJt1N0qaUn/3CwZ22efPrV3mW7RLOWQnB/sglx81J
-	mBAdTTTTuK3utJlkEB8T/wXrZB+V3YyrE+BqrYNI+B4u4CavTNdKmgURAycnjp2cOJoT97
-	a8tjBDwBS4cFou9WBIBdyExxCeLN/k4VTY7mZvp5HXulN2s6gmJ/0yhdvPodxQ==
+	bh=L1YcTl/uYfFtLb4iHc/VuFExeEr6pRbLZWly8UMoO5U=;
+	b=GjGO65NNOSB8ZEHNPWdX+QLZsp0hZ4Zz5l6LH58sZhhekddhSKLcZtO6Eex5P+uASB5uqs
+	noI88Ek4b6WI+9qE8JCCXfCapMCJPynJJ0rCjute/GeoQqDetQq+UsbBJwQSIG4P7dWsqg
+	VdD2hwj4h3akOVu9hme8a8O67I6CpqBzjZZ/thquyJzUVKfcaKRJNIB4L3ybgwoLbp602M
+	VYZ1CqGM86fe4Cdff798vqdKasVkoGFq+nCI2wz6/vMRcoZoSaE7RqhweuhFepV3CLKLbB
+	w1JA0ycEe6u6hSq0zDsYTBmK17aDHY8W6v4Dgq7PPed5S5gvhtfBprQZb2hrBQ==
 From: Herve Codina <herve.codina@bootlin.com>
 To: Andrew Lunn <andrew@lunn.ch>,
 	Rob Herring <robh@kernel.org>,
@@ -74,9 +74,9 @@ Cc: linux-omap@vger.kernel.org,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v11 2/5] bus: simple-pm-bus: Remove the remove() function
-Date: Thu, 19 Nov 2026 12:37:53 +0100
-Message-ID: <20261119113758.603074-3-herve.codina@bootlin.com>
+Subject: [PATCH v11 3/5] bus: simple-pm-bus: Remove child devices when the bus is unbound
+Date: Thu, 19 Nov 2026 12:37:54 +0100
+Message-ID: <20261119113758.603074-4-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261119113758.603074-1-herve.codina@bootlin.com>
 References: <20261119113758.603074-1-herve.codina@bootlin.com>
@@ -85,8 +85,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_033831_075386_4C43D9B6 
-X-CRM114-Status: GOOD (  12.69  )
+X-CRM114-CacheID: sfid-20261119_033839_308493_6AA3FBA2 
+X-CRM114-Status: GOOD (  17.22  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,40 +106,83 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Due to recent modification, the driver remove() function is almost
-empty. It only performs a dev_dbg() call.
+During its probe, the simple-pm-bus driver (simple-pm-bus compatible
+variant) populates its child devices but it doesn't touch them during
+its removal.
 
-Having this remove() function is no more needed. Remove it.
+This leads to bus child devices present and bound to drivers whereas the
+bus itself is unbound.
+
+Be consistent and remove child devices when the bus itself is unbound.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- drivers/bus/simple-pm-bus.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/bus/simple-pm-bus.c | 45 +++++++++++++++++++++++++++++++++++--
+ 1 file changed, 43 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
-index 4322a778e801..e45700156732 100644
+index e45700156732..23ac18551fd9 100644
 --- a/drivers/bus/simple-pm-bus.c
 +++ b/drivers/bus/simple-pm-bus.c
-@@ -77,11 +77,6 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
+@@ -22,6 +22,46 @@ struct simple_pm_bus {
+ 	int num_clks;
+ };
+ 
++static void simple_pm_bus_depopulate(void *data)
++{
++	struct device *dev = data;
++
++	/*
++	 * Bus stays on for children
++	 * This ensure that the bus will not be put in idle asynchronously when
++	 * all its children are removed.
++	 */
++	pm_runtime_get_sync(dev);
++
++	/* Let remove children */
++	of_platform_depopulate(dev);
++
++	/*
++	 * Lets runtime_suspend() calls simple_pm_bus_runtime_suspend() in a
++	 * synchronous way before disabling runtime pm.
++	 *
++	 * This guarantee that clocks are disabled and unprepared before the
++	 * bus is removed in all cases.
++	 */
++	pm_runtime_put_sync(dev);
++}
++
++static int simple_pm_bus_populate(struct device *dev,
++				  const struct of_dev_auxdata *lookup)
++{
++	struct device_node *np = dev->of_node;
++	int ret;
++
++	if (!np)
++		return 0;
++
++	ret = of_platform_populate(np, NULL, lookup, dev);
++	if (ret)
++		return ret;
++
++	return devm_add_action_or_reset(dev, simple_pm_bus_depopulate, dev);
++}
++
+ static int simple_pm_bus_probe(struct platform_device *pdev)
+ {
+ 	const struct device *dev = &pdev->dev;
+@@ -71,8 +111,9 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return dev_err_probe(&pdev->dev, ret, "failed enable pm_runtime\n");
+ 
+-	if (np)
+-		of_platform_populate(np, NULL, lookup, &pdev->dev);
++	ret = simple_pm_bus_populate(&pdev->dev, lookup);
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "failed to populate\n");
+ 
  	return 0;
  }
- 
--static void simple_pm_bus_remove(struct platform_device *pdev)
--{
--	dev_dbg(&pdev->dev, "%s\n", __func__);
--}
--
- static int simple_pm_bus_runtime_suspend(struct device *dev)
- {
- 	struct simple_pm_bus *bus = dev_get_drvdata(dev);
-@@ -150,7 +145,6 @@ MODULE_DEVICE_TABLE(of, simple_pm_bus_of_match);
- 
- static struct platform_driver simple_pm_bus_driver = {
- 	.probe = simple_pm_bus_probe,
--	.remove = simple_pm_bus_remove,
- 	.driver = {
- 		.name = "simple-pm-bus",
- 		.of_match_table = simple_pm_bus_of_match,
 -- 
 2.56.0
 
