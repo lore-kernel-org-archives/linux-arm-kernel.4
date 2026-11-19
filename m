@@ -2,96 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85BA5606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:33:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B11606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=owSRN2Jf;
-	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.a=rsa-sha256 header.s=a1 header.b=iMCz4c4v
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fzxAimeN;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=mfLkeLyp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2TwysOH3jFptJLl7Zh65O6ibU0W1pO9RKYiZ6XUEe4o=; b=owSRN2Jf9uD0Pj
-	f/TYHC+LD+218fBqRuQS3H3pl2FExcO4olF5KMtLYbOJUSHvmw5cMtjPCsS6N/wlyqYGS5yY1lVkn
-	bxkR51AlgG0K+WRNZedGjWY3wdQbsiZZrGMCyMUEBf/qis58HndicG3VL9M5MBDIM3/seA+y/cb7C
-	hI08wHocRwcKmY5CPFnsCF83F/wXmGkbfHLqvDIpO8Uk/ocDErNSwKnd6gLknwobnnr258TlvimMU
-	HAra2TZI9FdxdvqT9SIf4wNsgeZzaRAs8dyit172Lg82w/XyZfvx8q2BXHf/EMgCrKerOQFAHGx8N
-	52+BKkBHx6mO10L8FtJQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=5hBiRR3uvhlqcGyHW7g80rM4DQMM7cCTGVY4OSFhmyo=; b=fzxAimeNhWazB86EPYc6o3BZix
+	51mJWgrV0opQJ1c6EfjDc0EaRhx2aIXh2qDVAmkgBVj2v/gBGpdjven0+y1hmiO2IYkclo3JWthO9
+	Ul9j+RLxrBQ8kkeRhE2BPRae/W7C1pNkdpWJdO+1Rzg14oQzQkyynwzXdffFqpxqDV7+6ZREte1bA
+	C26nHJjntSoNQ2qxUPnEG9tMWIicri8LYHhXxHWPYsTpl03F/PE4VL/dKnlgfNhg1DQFk/8e8lCMq
+	C5W6TZocD0rJCxCaxwO/1dwxKtJHStcA6HCeCZlXdR/9IbLR6NXB4RffpqaHEZXWTvUKibkF/w8MR
+	GFlpxPFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6wv-0000000D17q-25Qa;
-	Thu, 19 Nov 2026 18:33:33 +0000
-Received: from smtpcmd15176.aruba.it ([62.149.156.176])
+	id 1xU6yl-0000000D1QY-2zGG;
+	Thu, 19 Nov 2026 18:35:27 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6wr-0000000D16S-4C3u
+	id 1xU6yi-0000000D1Pe-3vPC
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:33:33 +0000
-Received: from [192.168.0.186] ([101.57.122.26])
-	by Aruba SMTP with ESMTPSA
-	id U6wix2IW175O9U6wix0Oma; Thu, 19 Nov 2026 19:33:23 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1795113203; bh=2t8AtcRowxFNGYE8HteZpHIn9jAWUm8DVCWA8vMMYBE=;
-	h=Date:MIME-Version:Subject:To:From:Content-Type;
-	b=iMCz4c4vXgNfjaVsNwvBuMF7tZY4Yy54lPGmuAGKY6P71MLCV/srwMTceBQ/GAt34
-	 IwJr1uqnf/dmNjlMZQB9cLgUTxbIw6iVRuT9buaKQVDbz3kaNVFEIoEpXvAkCgmyEI
-	 PSFVCiHj3v8SvBzh912x32zMoFnRUAiLuKuPzH9wjTX7qSHSKg+cusdAEfdyhakn6U
-	 MDZ+sXbJbEnEXvAx8A/4DselQVxkwI8uuu0bk6VUSPoq8UUhqONY29s9ATTEIL13dy
-	 Cw/3hrysPCKNiLyF9KsJstL/jDdfxcyJ3j39BP5mlGiBGtXHINn2jlUD38UGg+FRMw
-	 xxp9/W63RlIFw==
-Message-ID: <4ad95ed5-26b6-4871-bcb6-cfebfe73917a@enneenne.com>
-Date: Thu, 19 Nov 2026 19:33:20 +0100
+	Thu, 19 Nov 2026 18:35:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795113322;
+	bh=PtkjMJxHJnazgCHS2pnc/zi0BG90FbjTzcafaQp3k/g=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=mfLkeLypR+LQoCVSxoXfM7L6HGYOOKdDfv4CkkBaVejLFDifoR4yaSPwg638W/Ftp
+	 MC7VhltkNZPC2Gv6//sMXHz9ziRkLeNYXTsZGW4wnZDD4/lHzNZhUxqCI6OzCiyXeb
+	 lsQ/OejEfa1FhAY6HgNEI6t3+o0kaKwHchWo80qVricLa594YxS33h1pjEgYoF4/+p
+	 wXr6zyM/OKtUTP/NWmvWlZ/A261Z4a7D67XUfitb8F7p+dk24S54a8qlFqVr7P7y5O
+	 5V/X5yxk7JcfAFM0VAix5TwKJfuwseFvPwGOmDmy+uKtnsZ0sqx/EIN81OZ2jaui8a
+	 QVO6xEJ3ebQEA==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7AEC717E052F;
+	Thu, 19 Nov 2026 19:35:20 +0100 (CET)
+Message-ID: <e323dfe8a9b848833332599d6d5df6d302b5fd20.camel@collabora.com>
+Subject: Re: [PATCH 3/3] media: mediatek: jpeg: cancel job timeout work
+ before m2m release
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Shengzhuo Wei <me@cherr.cc>, Mirela Rabulea <mirela.rabulea@nxp.com>, 
+ Mauro Carvalho Chehab	 <mchehab@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer	 <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>,  Fabio Estevam <festevam@gmail.com>, Hans Verkuil
+ <hverkuil@kernel.org>, Ming Qian <ming.qian@nxp.com>,  Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Ezequiel Garcia	 <ezequiel@vanguardiasur.com.ar>, Bin Liu
+ <bin.liu@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno	 <angelogioacchino.delregno@collabora.com>, irui
+ wang <irui.wang@mediatek.com>,  kyrie wu <kyrie.wu@mediatek.com>
+Cc: imx@lists.linux.dev, linux-media@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
+Date: Thu, 19 Nov 2026 13:35:18 -0500
+In-Reply-To: <20260825-media-timeout-work-v1-3-ebfebbeb6c31@cherr.cc>
+References: <20260825-media-timeout-work-v1-0-ebfebbeb6c31@cherr.cc>
+	 <20260825-media-timeout-work-v1-3-ebfebbeb6c31@cherr.cc>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-rr4R+OXCofjTXy4WSX5A"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/9] KEYS: keycrypt: keys that user space can use but
- never read
-Content-Language: en-US
-To: Jarkko Sakkinen <jarkko@kernel.org>
-Cc: David Howells <dhowells@redhat.com>, keyrings@vger.kernel.org,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Jens Wiklander <jenswi@kernel.org>,
- Sumit Garg <sumit.garg@kernel.org>, op-tee@lists.trustedfirmware.org,
- =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>,
- Pankaj Gupta <pankaj.gupta@nxp.com>, Sahil Malhotra
- <sahil.malhotra@nxp.com>, Ahmad Fatoum <a.fatoum@pengutronix.de>,
- Richard Weinberger <richard@nod.at>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Eric Biggers <ebiggers@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap
- <rdunlap@infradead.org>, linux-crypto@vger.kernel.org,
- linux-integrity@vger.kernel.org, linux-security-module@vger.kernel.org,
- linux-kselftest@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-api@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- Demi Marie Obenour <demiobenour@gmail.com>
-References: <20261118140421.584086-1-giometti@enneenne.com>
- <650f89ef-9745-4f75-b254-80fa5ac4773d@gmail.com>
- <av5EyVHnNzT27dyK@kernel.org> <av8In0Xyd5iI9N7K@kernel.org>
-From: Rodolfo Giometti <giometti@enneenne.com>
-In-Reply-To: <av8In0Xyd5iI9N7K@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfDXtWOlFTYpyTg35cFi8NKxn6M8tXvqRpaK6Te9d9LP538qpRWPqyhYCRUO7FN90zeUALjH4Pv0kc5qTXvx9JqFIICyIFmy8AMREg/ZL7rPvrVR8BOUd
- cLloYWy2etZ8Iz2Dj35VuyDIDq5OJcXlqCU0GxFuELT2Ll0+SMmq0xT0b1NQ/mGJ1DRr6EgGHmwb1jcrz7jDiFyXggFkpjEOVUfCxm33Z+AP0WZg8zgrFJ0n
- ffHu26kwKFVQdawAYFWmaAXnHN1p0WPTc2eQub+iUcKYdh/LB+1TMtCynW4g+PFuL/Ox/uZYSQ3twHUYmoc0NljKoPOQdr9z82B634PV+Tl5rFaczqEJswvL
- RMT75ziH1aZFGiT3YGWODPXE3kKUfWeYw2ky9PgD86fbcUKc9YG7O6O4C555MM8R18YgP7zwMiMpC0MPLWUV4TYOFHuGzRI3nAMUWf2OAvcXsYsO9EJVC1dZ
- /CJBXkFCk64KKzxL3y8DwpvUb58jZOH5wiXqHdVhVBx7moWR2O7fcnAGvb0ROFigOOWFyNifYgQAUKvRx0Gjo0aKANKYhIDOo9FoNc3nTrLMB+wllSvU908i
- ZvkuwtX35joO+/L82trX60+HcodZHev58cbR0wIdppW64faoXjrD2ty6e3+iNo1wzj4r1WV6hSakPGcj+ITxJAyi+jIfJwOIVZnMMjwKHWWd276ZqiyPHgzR
- tHcGBXPnD0+Y4FdwbDCkcDNcPihbMtNcarY0ckxuc2T0QuwtA6V5JI+qd+13NzNwBNaSBd9q0vR4Houfn0O1tVDSLHjYJhYnCW1hfd8zibQ4R4JUQeDCsiso
- hDRhfUPbEdA73rTyHioYeBE2HST4BYaYzwzPHgFSowkALmKiOo3P6Y+sT2OdjUa1mi5YmmKKNIRc5pqRvd/Poq1X6e5PtLi+bMEeLu/tD0VuL3zYOGxE+sHW
- BTqxG0WyQtxpY++s7NY1cpcH0qqhtrXP08lJaeDotFcKwlEQgSTkroRSzbXG9NMpu/BmvKQiIhI/dqa4MxRp7JEEFN/QNVR7WEj2UU0vqJswExy2aYWzzdw+
- FkBYKTSapeFo97Im9jOUDeTGL1gcFhA/aHSIiD07c4PP/74NLMye+4RTaOnZlsrMaXjbB2/jn6s9k9AKtJfRSJPMFnBj3YyvI3YYi+xduehbptXY4hxkqo3D
- c5x2hRhHNjhs0zg+GpmJGknXwvGaK4l4a6zTOKWmfv7xMtgIZ/Vn9d4GsOJdkemp7e3WX6RGITrcgwSghHENodqP2MvCkuvhyBHE4/kY7pUMNCMYz3xNrYgX
- 6PdBjdKe
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_103330_513345_191FC282 
-X-CRM114-Status: UNSURE (   9.24  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261119_103525_134859_EE249129 
+X-CRM114-Status: GOOD (  17.49  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,41 +99,86 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 15:33, Jarkko Sakkinen wrote:
+--=-rr4R+OXCofjTXy4WSX5A
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-[snip]
+Hi,
 
-> And yeah, we don't have projected problems. I.e. "no users" is always
-> NAK. You have to step on the nail at first.
+Le mardi 25 ao=C3=BBt 2026 =C3=A0 03:34 +0800, Shengzhuo Wei a =C3=A9crit=
+=C2=A0:
+> Each job arms jpeg->job_timeout_work, cancelled only by the IRQ
+> completion path. If a job stalls, mtk_jpeg_remove() frees
+> jpeg->m2m_dev via v4l2_m2m_release() with the timeout still pending,
+> and mtk_jpeg_job_timeout_work() then dereferences the freed m2m_dev
+> and the stale ctx it returns -- a use-after-free.
+>=20
+> Drain the work before the m2m device is released. The device-level
+> job_timeout_work was missed by the earlier fix for ctx->jpeg_work.
+>=20
+> Fixes: 5fb1c2361e56 ("mtk-jpegenc: add jpeg encode worker interface")
+> Fixes: dedc21500334 ("media: mtk-jpegdec: add jpeg decode worker interfac=
+e")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Shengzhuo Wei <me@cherr.cc>
+> Assisted-by: GLM:5.3
+> ---
+>  drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drive=
+rs/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> index d147ec48308110ae8520662e182dc0445447d8d0..f0fe14e83d515f5011cbfe051=
+abbf565568013d0 100644
+> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> @@ -1405,6 +1405,7 @@ static void mtk_jpeg_remove(struct platform_device =
+*pdev)
+> =20
+>  =09pm_runtime_disable(&pdev->dev);
+>  =09video_unregister_device(jpeg->vdev);
+> +=09cancel_delayed_work_sync(&jpeg->job_timeout_work);
 
-A customer of mine stepped on it. Their product, on i.MX6, encrypts its
-rootfs with dm-crypt and a CAAM black key, never in clear. Its backups,
-though, are encrypted in user space with a key kept as a CAAM blob; to
-use it, the blob is opened and the key handed to user space in clear.
+A similar fix was made by Fan We, instead of doing it in remove, it actuall=
+y
+sync on the delayed work in stop streaming:
 
-The next generation is on i.MX93, and the customer now wants the
-backups and other encrypted archives protected like the rootfs: the key
-must never be in clear outside a secure world. The i.MX93 has no CAAM.
-OP-TEE can hold the key, but every way the mainline keyring offers to
-use it (a trusted key, through dm-crypt or AF_ALG) unseals its bytes
-into kernel memory, and AF_ALG no longer reaches hardware drivers.
-keycrypt's OP-TEE backend does not unseal it: a key it generates leaves
-the TA only sealed.
+https://lore.kernel.org/lkml/20260623103031.3051-1-fanwu01@zju.edu.cn/
 
-Ciao,
+This way, whatever gets added in the timeout later won't possibly outlive t=
+he
+instance. Might be just extra cautious for this specific driver, but I'd ra=
+ther
+fix it once, then having this fixed again later.
 
-Rodolfo
+In some ways, your Sashiko review tends to verbosely lean toward this.
 
--- 
-GNU/Linux Solutions                  e-mail: giometti@enneenne.com
-Linux Device Driver                          giometti@linux.it
-Embedded Systems                     phone:  +39 349 2432127
-UNIX programming
+Nicolas
+
+>  =09v4l2_m2m_release(jpeg->m2m_dev);
+>  =09v4l2_device_unregister(&jpeg->v4l2_dev);
+>  }
+
+--=-rr4R+OXCofjTXy4WSX5A
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav9BZgAKCRDZQZRRKWBy
+9GVlAQCOGnpSOIJSn4V/Ho12zuZ5598wym0rXnC1VlAS9AoqvQEAsOTBEYfjI0RJ
+PU17Ybkq4kAlomadhU0ku0C5hgSy+g4=
+=Kc9h
+-----END PGP SIGNATURE-----
+
+--=-rr4R+OXCofjTXy4WSX5A--
 
