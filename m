@@ -2,120 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43304606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD255606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xnF8ZuSc;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qxLvpYBJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KHNWHQn7;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=KjSjqxQ1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HsNd5mHeiYuhW66N7H8r1a49LBtgcNlCSKxp045xerY=; b=xnF8ZuSctThAsA
-	4rA6ICUt5spnH/sT+Sm0Cy+9TbX0bWXHumS9H9p14CUbTvZ5MFJqYK+nWaMbIaEMkgG1If1AARKlS
-	EqsvtAv0MpLTRR08PF0a10ZOn565Gfl7oFts8gC5FNV1ZNe/voPmKPFeST2WyhMJ9VjrVMYBy3HrT
-	I/upVL6hLZjjB7EW4sBw/4jLCFonti+2BfD75x/0asReYimI2CB8MrR1jS/dTal73i2lYy9cHE4r1
-	yAIaEBXBMHWqhkYx96fVBrgcFKqoN2gTLuzIzRB4iFDy2myWX378/0MV9q63P/PVWeloMtOMvblPS
-	IpWlWwF73xWsi/jM2VOA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Fl/qRlVbkzGh5AOELuRmj7c43ed3VCrTc64PhS5Pjy8=; b=KHNWHQn7yR4QFYRFxkE1Hzpqwv
+	yBneRRqBHA/p99UExHCVEvZpwC9Qk+dbdAeZ2510qa8TUbjd8hPpKrUjDza+Mo9ARrnDGJm6bcfvm
+	ChVsk7Yv/WSz6UyyPrWfyg0N4P6VtuatPRgb6JVaItVX4/BPzUiUXWapQlHyOIcVTYgyc9H5rmG++
+	Q0cKuOon5lwd1gfJb5oHk27QoogYHyxo/eYQaF0YvogxM0nCJErnUwF/9CO73Lt2rYvMLpWHwrKmA
+	0UXcPe2LaXqwsCA7H8CVyzLQutvzVfDBq1Flh5UiOgixTNv9sRQSGeFFJFEEjK97Xaxo5hMou/n4/
+	bFGuO8+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5m8-0000000Cog4-3OT0;
-	Thu, 19 Nov 2026 17:18:20 +0000
-Received: from mail-ua1-x931.google.com ([2607:f8b0:4864:20::931])
+	id 1xU5mZ-0000000Colm-05Un;
+	Thu, 19 Nov 2026 17:18:47 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5m5-0000000CofX-3yPV
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 17:18:19 +0000
-Received: by mail-ua1-x931.google.com with SMTP id a1e0cc1a2514c-99e0d9b3438so10138241.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:18:17 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795108696; cv=none;
-        d=google.com; s=arc-20260327;
-        b=UnR1FVtN3T4FtJ5LfiznhRfW+7weUxDSINXi+VW+ipTr8JmKWDhwTu26NHo49ZWsnU
-         4k6Qtk0rm8gYkg75EEpDO9X88T2jW5RpBivTt7zJgue6KQIR3UtqI2Z4+UdTiEngvQfc
-         eN3f7uXTrBcfhaJA6Y+qL6Nn7Q1PhvEhT32zdo/HFIwRbpiqmXM/q829l38UNgsysVcQ
-         N966tDgE0qy0T+WDE76NZQO60EpwmwbENS5RT8VmVCaoIdufDKgeD/SfxZA1aA703pKN
-         rC4ZmWPBOkgNEKUCW6iBFVslKjgXNFMYOIJjtfnkqgUYe2rC8gp/ljf0VGO6UL7dGYM3
-         2yfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=HsNd5mHeiYuhW66N7H8r1a49LBtgcNlCSKxp045xerY=;
-        fh=qVqUsis/hDIb8KhkrNBQIed+/zN+BVHRPdZD5PHytvY=;
-        b=sWsmvK2bteaKbX1TIpGwJlQ0IoIiq1uFIFEwkPMxkR3c5XcJDNT81QVY/6sti/j3q3
-         NlOpnl4WM/KPheVy9gC5kE94qWLTKAgFGXH2n8q0CkIPaNEE23p4/V+6F8HR2Q3nSmLz
-         L3TqG7NuVwaRUuWB2UzoUweisZoCvvA+DNLBJzNURtLXpiz+a2LebSBy/0dcftMouTaE
-         l7YC36AZgFSNrrOw9vwL9c6TEBG7GdSuoUqgfCruVeSSBZLl/I054KnZjZTcwwqJzC/9
-         pqLMHhL4q3vpbyEHcboDIem5RwAiJMJ0iHWgYlzv3d4K5Fu+aFOMG5wi3hA2ZExy+S93
-         edDQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795108696; x=1795713496; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=HsNd5mHeiYuhW66N7H8r1a49LBtgcNlCSKxp045xerY=;
-        b=qxLvpYBJ5XW1LO3C7RW2OjnTWYW7jwqZSFHNC9JJD9ehxEJgkrEIysTzUQfAHDiEoc
-         hnDlXnaIkUVoqf1hBQuAbJA4zD1VO5pC0LziC4Iaa63dq39PGQfO7n8X296YJ6LlGRet
-         LoUcnqf4R/uHXYBs54Q8hpXaU5ppRNyin7dv0dAZb+lLWuOUW/WJNim/fG7M7mnOqBQl
-         SOTxmIGgUQwUQVfaiZYUg6Qh6+7ijY67lfMiW1q3Ma7Y5EWCZTlXtV6UydKaxB/0Igvi
-         lY3obIolIHRz0zRkE+i6fno4i7buSsTnFD0miwGEB1OtqEJS0mafKBP6uYBB2ZfK2W5i
-         w/zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795108696; x=1795713496;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=HsNd5mHeiYuhW66N7H8r1a49LBtgcNlCSKxp045xerY=;
-        b=QW7HeUW2n+TBfNT+cEQ1SGf6tfmykfTdPSk67UTF4z44dqaO1PeMVC8obT87HhV+oA
-         kqBsb08JB9iKwCAEFQCNe48tcWG4azBvtmFSAsCy8yhGgpBe17ivko30G+62hHcXAoyb
-         EZJABtZDTDmaXlSB9gnu5/OzOZUQPQUc8sSWqWQDCjOO5OhIicEnqjKenrsN22kuuxwp
-         xfd1l2I/md9bGXxYT5WcWV4u0o24RGUKsKia7XPXJxpOCyzbqlB6FkzCCd+wGCw/xYNc
-         QEk8W9wiHv6yucKVa0hS3uh5ycwUDL/77H7uRBEIE6z9rEL0vgLrqTgprXF6JdPeALUi
-         xfmg==
-X-Forwarded-Encrypted: i=1; AL+hErEw/2TubPFgzlfsfQhUz/fb0+ZtQH87KzZEArBOQiPO/GdDR1Q2g7rCg5HyH8xjbrXtrF4vcleDkdKH9SaOIV3T@lists.infradead.org
-X-Gm-Message-State: APuU4Z9UTYp+pyLWEd0AM68XSF7Iwf+cRdds/D6Z8pOZVJPYAjEIoYkZ
-	zw+odwnVBuAaaYZDvIqE4L55ZtvKcBZ14eF8VjVvl4C+Kr/cojcXReECc4x4Lzjf9pyUF30FCPM
-	9x/jlUUNfXysWHGfzoKNcD93GKdVXoPM=
-X-Gm-Gg: AYBFou3bzwRjX3hA+wdQPajSNUdrlerUYcKXrrt+HxAKTn6qq8LLNqMjxBhXJny7X/P
-	Ztls4zOsGiyPAVPy0uo/nLkz3YChn2d/xXMVBwty5dTVlIeN3W7zeXUegrtjG8fZpIBdTxsymkx
-	wdf9+MidfcPPN3XwmUV1xeirmYKawpf2hTawKAyT/JxJjIH98Ef0wjneo726eSJ9cjxP+712HS1
-	DxhSA2iWeU5Rbq7+Z6B20IlScGTCCz/EoCVY13ZoCfGH0r9GHPS3buFwTaEktYsy9QNxRxBwas0
-	uMWGLt50axxX5MYOpDzRX7CgVHX+82kdJp5KRb827GusW6ykceXA6Z89XTWiLqSRPPxTq4hGb+Z
-	ZANL5ET80blOb7yDO9L4tMe/yDWjd8E6NmKnadvzgjZlDl28c5hWt+7jsW/eTiQO/fQ5cFVXWcf
-	/P+sOYmevciGOIW6C594efegLDnaSyqLtjK7GUlgq12B44snhxM5O8sVm7x/uFU0V6B0xrJ/0VX
-	0pT57V1bAJ8eherVC6ZUIvvtFvptQ==
-X-Received: by 2002:a05:6102:5813:b0:7b2:508e:3d57 with SMTP id
- ada2fe7eead31-7d72b3688c2mr101327137.4.1795108696380; Thu, 19 Nov 2026
- 09:18:16 -0800 (PST)
+	id 1xU5mW-0000000Coks-1vQL;
+	Thu, 19 Nov 2026 17:18:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795108721;
+	bh=dsEcWBJuX2/l0d2U9vjAUEM3uepRgu228h79+k2iPNk=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=KjSjqxQ1oFQ4LkgrbwOgmsHN23NFs0Y6hdSFuoEEFm2UGesCzlYbnYoyKv3Ot99SB
+	 lQUJ+DaHY/kUrKNNermPHzgWYtmyWlqCYYQpFzuGGWIV9v31JjrZJRuKC6O9c7U9kh
+	 rPvrpqGbq3qlfz5VoQdhfg8Xj3Quta9Uj1xxA59bZ/EnwMGQP7/6rJnBQUzXReTKrf
+	 yjYi50nEQc+ehkKQEH03Fu0wmLHu0atgY08nTuk7IdsuJbYQQctQVFxc784L1IGpJR
+	 rWQGmJBsDrmQ5KRkEdoartLIDnuzzaLmAf5X2t/xhBI3hJbEUS+qug6IrzKS1Q14NU
+	 WkLWP2u2KiajA==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8275D17E0311;
+	Thu, 19 Nov 2026 18:18:40 +0100 (CET)
+Message-ID: <f46de8ba86e45e44a3f26b2eb06627ae57a0064d.camel@collabora.com>
+Subject: Re: [PATCH 2/4] media: rkvdec: Move vp9 functions to common file
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Venkata Atchuta Bheemeswara Sarma Darbha <vdarbha0473@gmail.com>, 
+ Detlev Casanova <detlev.casanova@collabora.com>, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Thu, 19 Nov 2026 12:18:39 -0500
+In-Reply-To: <20260726-b4-add-rkvdec2-vp9-vdpu381-v1-2-180fb2d1f10c@gmail.com>
+References: <20260726-b4-add-rkvdec2-vp9-vdpu381-v1-0-180fb2d1f10c@gmail.com>
+	 <20260726-b4-add-rkvdec2-vp9-vdpu381-v1-2-180fb2d1f10c@gmail.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-MhVtI85+IIjy5xrl3Ple"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261115-submit-sun8i-emac-rx-checksum-v1-v1-1-f186d127b39f@gmail.com>
- <179497442968.3136.18415990643273213851@kernel.org>
-In-Reply-To: <179497442968.3136.18415990643273213851@kernel.org>
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Thu, 19 Nov 2026 10:18:05 -0700
-X-Gm-Features: Aa3M54poH74flJHm30nVUNh5kQyVyqEvjxxcHU_6uijb8f_Ea6AWdb-4l3_B2EM
-Message-ID: <CADvTj4p9bBOTCk5xbiVMRtcv5gL3L8Nn2Umxm4i5VD_6jJBbNg@mail.gmail.com>
-Subject: Re: [PATCH net] net: stmmac: dwmac-sun8i: Honor the RX checksum
- offload setting
-To: netdev-bot+sashiko@kernel.org
-Cc: netdev@vger.kernel.org, maxime.chevallier@bootlin.com, 
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org, 
-	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com, 
-	alexandre.torgue@foss.st.com, wens@kernel.org, jernej.skrabec@gmail.com, 
-	samuel@sholland.org, clabbe.montjoie@gmail.com, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_091818_068598_76B2DF9E 
-X-CRM114-Status: GOOD (  39.80  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261119_091844_854533_91AE9398 
+X-CRM114-Status: GOOD (  22.01  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,161 +91,403 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 9:00=E2=80=AFPM <netdev-bot+sashiko@kernel.org> wro=
-te:
->
-> Thank you for your contribution! Sashiko AI review found 2 potential
-> issue(s) to consider.
->
-> Critical: 0 =C2=B7 High: 0 =C2=B7 Medium: 1 =C2=B7 Low: 1
->
-> If you believe none of the issues are legitimate, please reply to each
-> issue of Medium severity or higher and explain why the AI is wrong.
-> If any of them are legitimate and you plan to respin, please let patchwor=
-k
-> know by including "pw-bot: cr" as a separate line at the end of your repl=
-y
-> (one such reply per series is enough).
->
-> - [Medium] Clearing EMAC_RX_DO_CRC (EMAC_RX_CTL0 bit 27) whenever
->   NETIF_F_RXCSUM is off may also turn off the MAC's Ethernet FCS=E2=80=A6
-> - [Low] When RX checksum offload is turned back on, frames the sun8i MAC
->   received while EMAC_RX_DO_CRC was clear can be marked=E2=80=A6
->
-> --
->
-> net: stmmac: dwmac-sun8i: Honor the RX checksum offload setting
->
-> Before this patch, sun8i_dwmac_rx_ipc_enable() always set
-> EMAC_RX_DO_CRC. With the patch, it sets or clears the bit based on
-> hw->rx_csum, so that turning off RX checksum offload through ethtool
-> also turns off the hardware checksum engine.
->
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/driver=
-s/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> > index 2ece7ba9dd73b..98cc7503bddeb 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> > @@ -705,7 +705,10 @@ static int sun8i_dwmac_rx_ipc_enable(struct mac_de=
-vice_info *hw)
-> >       u32 v;
-> >
-> >       v =3D readl(ioaddr + EMAC_RX_CTL0);
-> > -     v |=3D EMAC_RX_DO_CRC;
-> > +     if (hw->rx_csum)
-> > +             v |=3D EMAC_RX_DO_CRC;
-> > +     else
-> > +             v &=3D ~EMAC_RX_DO_CRC;
->
-> [Severity: Medium]
-> Does clearing bit 27 of EMAC_RX_CTL0 also turn off the MAC's Ethernet
-> FCS check, and not only the IP/L4 checksum engine?
+--=-MhVtI85+IIjy5xrl3Ple
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-It doesn't on H616. I sent 100 frames with a deliberately incorrect
-FCS in each setting and checked that bit 27 changed. With normal
-filtering, none produced an RX descriptor. With error forwarding
-enabled, all 100 produced descriptors with RDES0_CRC_ERROR set in
-both settings, and the driver discarded them. All 100 good-FCS
-controls were received in both settings.
+hi,
 
->
-> The bit is named after the CRC:
->
->     #define EMAC_RX_DO_CRC BIT(27)
->
-> The probe code says the hardware features were "copied from Allwinner
-> drivers". That code sets this bit with the comment "Enable CRC & IPv4
-> Header Checksum". The Allwinner manuals describe CHECK_CRC as "Calculate
-> CRC and check the IPv4 Header Checksum".
->
-> On this path, sun8i does not have the hardware strip the FCS.
-> stmmac_rx() removes it in software without checking it:
->
->     /* ACS is disabled; strip manually. */
->     if (likely(!(status & rx_not_ls)))
->         len -=3D ETH_FCS_LEN;
->
-> The only FCS check left is the hardware RDES0_CRC_ERROR bit, which
-> ndesc_get_rx_status() turns into discard_frame.
->
-> Suppose bit 27 does control CRC calculation. After "ethtool -K ethX rx
-> off", the path is stmmac_set_features() -> hw->rx_csum =3D 0 ->
-> sun8i_dwmac_rx_ipc_enable(). Frames with a corrupted FCS would then no
-> longer set RDES0_CRC_ERROR. They would reach the stack as good frames,
-> with the FCS silently stripped. That behaves like NETIF_F_RXALL rather
-> than "RX checksum offload off".
->
-> Is there a datasheet reference or a bad-FCS test showing that bit 27
-> gates only the L3/L4 checksum? If the hardware ties the two checks
-> together, a different approach may be needed. For example, keep bit 27
-> set and, when rx_csum is 0, stop discarding frames whose only error is
-> the IP or payload checksum.
->
-> [Severity: Low]
-> Can frames that arrive while EMAC_RX_DO_CRC is clear be marked as
-> checksum-verified once RX checksum offload is turned back on?
+Le dimanche 26 juillet 2026 =C3=A0 15:25 -0500, Venkata Atchuta Bheemeswara=
+ Sarma
+Darbha a =C3=A9crit=C2=A0:
+> Refactor common VP9 functions in preparation for adding the VDPU381
+> variant
+>=20
+> Signed-off-by: Venkata Atchuta Bheemeswara Sarma Darbha <vdarbha0473@gmai=
+l.com>
+> ---
+>  drivers/media/platform/rockchip/rkvdec/Makefile    |   1 +
+>  .../platform/rockchip/rkvdec/rkvdec-vp9-common.c   |  65 ++++++++++++
+>  .../platform/rockchip/rkvdec/rkvdec-vp9-common.h   |  92 +++++++++++++++=
+++
+>  .../media/platform/rockchip/rkvdec/rkvdec-vp9.c    | 113 +--------------=
+------
+>  4 files changed, 159 insertions(+), 112 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/rockchip/rkvdec/Makefile b/drivers/me=
+dia/platform/rockchip/rkvdec/Makefile
+> index e629d571e4d8..2bbd67b2db11 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/Makefile
+> +++ b/drivers/media/platform/rockchip/rkvdec/Makefile
+> @@ -12,4 +12,5 @@ rockchip-vdec-y +=3D \
+>  =09=09   rkvdec-vdpu381-hevc.o \
+>  =09=09   rkvdec-vdpu383-h264.o \
+>  =09=09   rkvdec-vdpu383-hevc.o \
+> +=09=09   rkvdec-vp9-common.o \
+>  =09=09   rkvdec-vp9.o
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.c b=
+/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.c
+> new file mode 100644
+> index 000000000000..a802f0acd27b
+> --- /dev/null
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.c
+> @@ -0,0 +1,65 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Rockchip video decoder VP9 common functions
+> + *
+> + * Copyright (C) 2019 Collabora, Ltd.
+> + *=09Boris Brezillon <boris.brezillon@collabora.com>
+> + * Copyright (C) 2021 Collabora, Ltd.
+> + *=09Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+> + *
+> + * Copyright (C) 2016 Rockchip Electronics Co., Ltd.
+> + *=09Alpha Lin <Alpha.Lin@rock-chips.com>
+> + */
+> +#include <linux/v4l2-common.h>
+> +#include <media/v4l2-h264.h>
+> +#include <media/v4l2-mem2mem.h>
+> +
+> +#include "rkvdec.h"
+> +#include "rkvdec-vp9-common.h"
+> +
+> +void write_coeff_plane(const u8 coef[6][6][3], u8 *coeff_plane)
+> +{
+> +=09unsigned int idx =3D 0, byte_count =3D 0;
+> +=09int k, m, n;
+> +=09u8 p;
+> +
+> +=09for (k =3D 0; k < 6; k++) {
+> +=09=09for (m =3D 0; m < 6; m++) {
+> +=09=09=09for (n =3D 0; n < 3; n++) {
+> +=09=09=09=09p =3D coef[k][m][n];
+> +=09=09=09=09coeff_plane[idx++] =3D p;
+> +=09=09=09=09byte_count++;
+> +=09=09=09=09if (byte_count =3D=3D 27) {
+> +=09=09=09=09=09idx +=3D 5;
+> +=09=09=09=09=09byte_count =3D 0;
+> +=09=09=09=09}
+> +=09=09=09}
+> +=09=09}
+> +=09}
+> +}
+> +
+> +struct rkvdec_decoded_buffer *
+> +get_ref_buf_vp9(struct rkvdec_ctx *ctx, struct vb2_v4l2_buffer *dst, u64=
+ timestamp)
+> +{
+> +=09struct v4l2_m2m_ctx *m2m_ctx =3D ctx->fh.m2m_ctx;
+> +=09struct vb2_queue *cap_q =3D &m2m_ctx->cap_q_ctx.q;
+> +=09struct vb2_buffer *buf;
+> +
+> +=09/*
+> +=09 * If a ref is unused or invalid, address of current destination
+> +=09 * buffer is returned.
+> +=09 */
+> +=09buf =3D vb2_find_buffer(cap_q, timestamp);
+> +=09if (!buf)
+> +=09=09buf =3D &dst->vb2_buf;
+> +
+> +=09return vb2_to_rkvdec_decoded_buf(buf);
+> +}
+> +
+> +void update_dec_buf_info(struct rkvdec_decoded_buffer *buf,
+> +=09=09=09 const struct v4l2_ctrl_vp9_frame *dec_params)
+> +{
+> +=09buf->vp9.width =3D dec_params->frame_width_minus_1 + 1;
+> +=09buf->vp9.height =3D dec_params->frame_height_minus_1 + 1;
+> +=09buf->vp9.bit_depth =3D dec_params->bit_depth;
+> +}
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.h b=
+/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.h
+> new file mode 100644
+> index 000000000000..0d042215fad2
+> --- /dev/null
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.h
+> @@ -0,0 +1,92 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Rockchip video decoder VP9 common functions
+> + *
+> + * Copyright (C) 2019 Collabora, Ltd.
+> + *=09Boris Brezillon <boris.brezillon@collabora.com>
+> + * Copyright (C) 2021 Collabora, Ltd.
+> + *=09Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+> + *
+> + * Copyright (C) 2016 Rockchip Electronics Co., Ltd.
+> + *=09Alpha Lin <Alpha.Lin@rock-chips.com>
+> + */
+> +
+> +#include <media/v4l2-h264.h>
+> +#include <media/v4l2-mem2mem.h>
+> +#include <media/v4l2-vp9.h>
+> +
+> +#include "rkvdec.h"
+> +
+> +struct rkvdec_vp9_run {
+> +=09struct rkvdec_run base;
+> +=09const struct v4l2_ctrl_vp9_frame *decode_params;
+> +};
+> +
+> +struct rkvdec_vp9_intra_mode_probs {
+> +=09u8 y_mode[105];
+> +=09u8 uv_mode[23];
+> +};
+> +
+> +struct rkvdec_vp9_intra_only_frame_probs {
+> +=09u8 coef_intra[4][2][128];
+> +=09struct rkvdec_vp9_intra_mode_probs intra_mode[10];
+> +};
+> +
+> +struct rkvdec_vp9_inter_frame_probs {
+> +=09u8 y_mode[4][9];
+> +=09u8 comp_mode[5];
+> +=09u8 comp_ref[5];
+> +=09u8 single_ref[5][2];
+> +=09u8 inter_mode[7][3];
+> +=09u8 interp_filter[4][2];
+> +=09u8 padding0[11];
+> +=09u8 coef[2][4][2][128];
+> +=09u8 uv_mode_0_2[3][9];
+> +=09u8 padding1[5];
+> +=09u8 uv_mode_3_5[3][9];
+> +=09u8 padding2[5];
+> +=09u8 uv_mode_6_8[3][9];
+> +=09u8 padding3[5];
+> +=09u8 uv_mode_9[9];
+> +=09u8 padding4[7];
+> +=09u8 padding5[16];
+> +=09struct {
+> +=09=09u8 joint[3];
+> +=09=09u8 sign[2];
+> +=09=09u8 classes[2][10];
+> +=09=09u8 class0_bit[2];
+> +=09=09u8 bits[2][10];
+> +=09=09u8 class0_fr[2][2][3];
+> +=09=09u8 fr[2][3];
+> +=09=09u8 class0_hp[2];
+> +=09=09u8 hp[2];
+> +=09=09u8 padding6[3];
+> +=09} mv;
+> +};
+> +
+> +struct rkvdec_vp9_probs {
+> +=09u8 partition[16][3];
+> +=09u8 pred[3];
+> +=09u8 tree[7];
+> +=09u8 skip[3];
+> +=09u8 tx32[2][3];
+> +=09u8 tx16[2][2];
+> +=09u8 tx8[2][1];
+> +=09u8 is_inter[4];
+> +=09/* 128 bit alignment */
+> +=09u8 padding0[3];
+> +=09union {
+> +=09=09struct rkvdec_vp9_inter_frame_probs inter;
+> +=09=09struct rkvdec_vp9_intra_only_frame_probs intra_only;
+> +=09};
+> +=09/* 128 bit alignment */
+> +=09u8 padding1[8];
+> +};
+> +
+> +void write_coeff_plane(const u8 coef[6][6][3], u8 *coeff_plane);
+> +
+> +struct rkvdec_decoded_buffer *
+> +get_ref_buf_vp9(struct rkvdec_ctx *ctx, struct vb2_v4l2_buffer *dst, u64=
+ timestamp);
 
-Yes. In a separate test, frames with bad UDP checksums were already
-in the RX ring when offload was turned back on. When NAPI processed
-them, invalid datagrams reached the UDP socket in both the IPv4 and
-IPv6 tests. The driver used the new offload setting for descriptors
-filled under the old one. Changing the order of the register and
-software flag updates would not fix that case.
+This and all the -common are completely inconsistent. We even have twice
+rkvdec_rps. I would personally suggest to do more prep work, and fix
+consistently everything. My personal preference would be to have rkvdec_<co=
+dec>
+namespace everywhere. Not randomly a suffix, or prefix, or nothing.
 
->
-> When "ethtool -K ethX rx on" runs, stmmac_set_features() publishes the
-> software flag before the MMIO write that re-enables the engine:
->
-> stmmac_set_features() {
->     ...
->     if (features & NETIF_F_RXCSUM)
->         priv->hw->rx_csum =3D priv->plat->rx_coe;
->     else
->         priv->hw->rx_csum =3D 0;
->     ...
->     stmmac_rx_ipc(priv, priv->hw);
->     ...
-> }
->
-> NAPI is not disabled, RX DMA is not stopped and the ring is not drained.
-> Meanwhile, stmmac_rx() may run on another CPU and read the flag
-> directly:
->
->     int coe =3D priv->hw->rx_csum;
->     ...
->     if (unlikely(!coe) || !stmmac_has_ip_ethertype(skb) ||
->         (status & csum_none))
->         skb_checksum_none_assert(skb);
->     else
->         skb->ip_summed =3D CHECKSUM_UNNECESSARY;
->
-> sun8i uses normal descriptors. ndesc_get_rx_status() never returns
-> csum_none, so nothing in the descriptor says whether the hardware
-> actually checked a given frame.
->
-> Any unchecked frame still in the RX ring would then be passed up as
-> CHECKSUM_UNNECESSARY. That covers frames received before the writel()
-> in sun8i_dwmac_rx_ipc_enable() and frames received just after it.
-> Before this patch, the bit was never cleared, so this state could not
-> happen on sun8i.
->
-> Swapping the two writes would narrow the window, but it would not cover
-> frames already in the ring. Would RX need to be quiesced or drained
-> across this transition?
->
-> >       writel(v, ioaddr + EMAC_RX_CTL0);
-> >
-> >       return 1;
->
-> --
-> Sashiko AI review =C2=B7 https://netdev-ai.bots.linux.dev/sashiko/#/patch=
-set/20261115-submit-sun8i-emac-rx-checksum-v1-v1-1-f186d127b39f%40gmail.com
+Nicolas
+
+> +
+> +void update_dec_buf_info(struct rkvdec_decoded_buffer *buf,
+> +=09=09=09 const struct v4l2_ctrl_vp9_frame *dec_params);
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c b/driver=
+s/media/platform/rockchip/rkvdec/rkvdec-vp9.c
+> index d4243ce230c7..495738762713 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
+> @@ -23,71 +23,12 @@
+> =20
+>  #include "rkvdec.h"
+>  #include "rkvdec-regs.h"
+> +#include "rkvdec-vp9-common.h"
+> =20
+>  #define RKVDEC_VP9_PROBE_SIZE=09=094864
+>  #define RKVDEC_VP9_COUNT_SIZE=09=0913232
+>  #define RKVDEC_VP9_MAX_SEGMAP_SIZE=0973728
+> =20
+> -struct rkvdec_vp9_intra_mode_probs {
+> -=09u8 y_mode[105];
+> -=09u8 uv_mode[23];
+> -};
+> -
+> -struct rkvdec_vp9_intra_only_frame_probs {
+> -=09u8 coef_intra[4][2][128];
+> -=09struct rkvdec_vp9_intra_mode_probs intra_mode[10];
+> -};
+> -
+> -struct rkvdec_vp9_inter_frame_probs {
+> -=09u8 y_mode[4][9];
+> -=09u8 comp_mode[5];
+> -=09u8 comp_ref[5];
+> -=09u8 single_ref[5][2];
+> -=09u8 inter_mode[7][3];
+> -=09u8 interp_filter[4][2];
+> -=09u8 padding0[11];
+> -=09u8 coef[2][4][2][128];
+> -=09u8 uv_mode_0_2[3][9];
+> -=09u8 padding1[5];
+> -=09u8 uv_mode_3_5[3][9];
+> -=09u8 padding2[5];
+> -=09u8 uv_mode_6_8[3][9];
+> -=09u8 padding3[5];
+> -=09u8 uv_mode_9[9];
+> -=09u8 padding4[7];
+> -=09u8 padding5[16];
+> -=09struct {
+> -=09=09u8 joint[3];
+> -=09=09u8 sign[2];
+> -=09=09u8 classes[2][10];
+> -=09=09u8 class0_bit[2];
+> -=09=09u8 bits[2][10];
+> -=09=09u8 class0_fr[2][2][3];
+> -=09=09u8 fr[2][3];
+> -=09=09u8 class0_hp[2];
+> -=09=09u8 hp[2];
+> -=09} mv;
+> -};
+> -
+> -struct rkvdec_vp9_probs {
+> -=09u8 partition[16][3];
+> -=09u8 pred[3];
+> -=09u8 tree[7];
+> -=09u8 skip[3];
+> -=09u8 tx32[2][3];
+> -=09u8 tx16[2][2];
+> -=09u8 tx8[2][1];
+> -=09u8 is_inter[4];
+> -=09/* 128 bit alignment */
+> -=09u8 padding0[3];
+> -=09union {
+> -=09=09struct rkvdec_vp9_inter_frame_probs inter;
+> -=09=09struct rkvdec_vp9_intra_only_frame_probs intra_only;
+> -=09};
+> -=09/* 128 bit alignment */
+> -=09u8 padding1[11];
+> -};
+> -
+>  /* Data structure describing auxiliary buffer format. */
+>  struct rkvdec_vp9_priv_tbl {
+>  =09struct rkvdec_vp9_probs probs;
+> @@ -136,11 +77,6 @@ struct rkvdec_vp9_intra_frame_symbol_counts {
+>  =09struct rkvdec_vp9_refs_counts ref_cnt[2][4][2][6][6];
+>  };
+> =20
+> -struct rkvdec_vp9_run {
+> -=09struct rkvdec_run base;
+> -=09const struct v4l2_ctrl_vp9_frame *decode_params;
+> -};
+> -
+>  struct rkvdec_vp9_frame_info {
+>  =09u32 valid : 1;
+>  =09u32 segmapid : 1;
+> @@ -166,27 +102,6 @@ struct rkvdec_vp9_ctx {
+>  =09struct rkvdec_regs regs;
+>  };
+> =20
+> -static void write_coeff_plane(const u8 coef[6][6][3], u8 *coeff_plane)
+> -{
+> -=09unsigned int idx =3D 0, byte_count =3D 0;
+> -=09int k, m, n;
+> -=09u8 p;
+> -
+> -=09for (k =3D 0; k < 6; k++) {
+> -=09=09for (m =3D 0; m < 6; m++) {
+> -=09=09=09for (n =3D 0; n < 3; n++) {
+> -=09=09=09=09p =3D coef[k][m][n];
+> -=09=09=09=09coeff_plane[idx++] =3D p;
+> -=09=09=09=09byte_count++;
+> -=09=09=09=09if (byte_count =3D=3D 27) {
+> -=09=09=09=09=09idx +=3D 5;
+> -=09=09=09=09=09byte_count =3D 0;
+> -=09=09=09=09}
+> -=09=09=09}
+> -=09=09}
+> -=09}
+> -}
+> -
+>  static void init_intra_only_probs(struct rkvdec_ctx *ctx,
+>  =09=09=09=09  const struct rkvdec_vp9_run *run)
+>  {
+> @@ -348,24 +263,6 @@ static void init_probs(struct rkvdec_ctx *ctx,
+>  =09=09init_inter_probs(ctx, run);
+>  }
+> =20
+> -static struct rkvdec_decoded_buffer *
+> -get_ref_buf_vp9(struct rkvdec_ctx *ctx, struct vb2_v4l2_buffer *dst, u64=
+ timestamp)
+> -{
+> -=09struct v4l2_m2m_ctx *m2m_ctx =3D ctx->fh.m2m_ctx;
+> -=09struct vb2_queue *cap_q =3D &m2m_ctx->cap_q_ctx.q;
+> -=09struct vb2_buffer *buf;
+> -
+> -=09/*
+> -=09 * If a ref is unused or invalid, address of current destination
+> -=09 * buffer is returned.
+> -=09 */
+> -=09buf =3D vb2_find_buffer(cap_q, timestamp);
+> -=09if (!buf)
+> -=09=09buf =3D &dst->vb2_buf;
+> -
+> -=09return vb2_to_rkvdec_decoded_buf(buf);
+> -}
+> -
+>  static dma_addr_t get_mv_base_addr(struct rkvdec_decoded_buffer *buf)
+>  {
+>  =09unsigned int aligned_pitch, aligned_height, yuv_len;
+> @@ -446,14 +343,6 @@ static void config_seg_registers(struct rkvdec_ctx *=
+ctx, unsigned int segid)
+>  =09=09(seg->flags & V4L2_VP9_SEGMENTATION_FLAG_ABS_OR_DELTA_UPDATE);
+>  }
+> =20
+> -static void update_dec_buf_info(struct rkvdec_decoded_buffer *buf,
+> -=09=09=09=09const struct v4l2_ctrl_vp9_frame *dec_params)
+> -{
+> -=09buf->vp9.width =3D dec_params->frame_width_minus_1 + 1;
+> -=09buf->vp9.height =3D dec_params->frame_height_minus_1 + 1;
+> -=09buf->vp9.bit_depth =3D dec_params->bit_depth;
+> -}
+> -
+>  static void update_ctx_cur_info(struct rkvdec_vp9_ctx *vp9_ctx,
+>  =09=09=09=09struct rkvdec_decoded_buffer *buf,
+>  =09=09=09=09const struct v4l2_ctrl_vp9_frame *dec_params)
+
+--=-MhVtI85+IIjy5xrl3Ple
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav8vbwAKCRDZQZRRKWBy
+9ISpAQC3CBRFoTOTTnkhG1O7ChiQP0FhnEaB9VFgWVZ8inwjxQD/bIlhTC88XWNu
+W8MTN2z+GkLKWSo/7W+VdhjJ4nN71QA=
+=jRd6
+-----END PGP SIGNATURE-----
+
+--=-MhVtI85+IIjy5xrl3Ple--
 
