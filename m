@@ -2,95 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D02606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2FC9606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gQ9XE3wc;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cUlTbof7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k0jg0whY;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ksN/hkSr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=v3bo8ZcbgAObjcXddzvPQDs3qKip3UcYyi2IBIcsxXE=; b=gQ9XE3wc19Lz3RmJ16W+H7Qqgh
-	Jj1dUl+9EfUKzuJjW20+I9vCwL62YWEqA3unXQAJ4PwjPE/Lq3X+d50OAbrUPh45eEY7iiJeu9KK2
-	gknDifb4foLyhrDY5FuLorZw+fEe26GwaXTsv8E+vfzQmsXrnj2PlTO3PzkTmJxVY3EQ26vhkT9lE
-	Wm+OlrlDhlX4q/kUmBXf4OZ0fyj50zpbVLj4s3U4s3dyDcJuLBNXD+2es1MzUoRPw0NoJEKxkb/rU
-	5v64QxuzuFnEgI9dZaYk1i55fqU0+Guzo93kQ2l8v/bbt07M5QMp4No+/SeeM7tGVfMn9B4WOi4Yh
-	AC+otLAQ==;
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=bcoYPNQ1e9JiGf7bcR7Apnx0REpWA8L8Z0wsD4xAwOM=; b=k0jg0whYCC9dpO
+	vq3UsPhS+HU7f0dyxgh+WV6nxgEVbtfMREielo/6bYaHSCwtuzBv5FvgubhENZnppv7SG3Ao5+isH
+	iZBulg2oKwAN97h0/kfcPtNgSED3TF/Z+YNUcKbRQFOQhWMlkfqMWOL6Q6sAH5vpabShg5qunDB0f
+	W+UC1vjSGpEodep6dJbGIgT9cbHNZHQdXFoaqkcOaREmMXhDZIct0pW4dsFddXpheRGGmyHDxSc2J
+	7AWmsFO6RVImibLIGvlAN8l6M5/I/IgSL6lczX2Xg5VIK5SwIQvD/hOUf8fxCK+CbK0lKo2hYSoXr
+	/DKaEd3PM/G75HCb0r1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyHf-0000000BN50-3mB6;
-	Thu, 19 Nov 2026 09:18:23 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTyI0-0000000BN85-0CHH;
+	Thu, 19 Nov 2026 09:18:44 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyHe-0000000BN4n-1yPm;
-	Thu, 19 Nov 2026 09:18:22 +0000
+	id 1xTyHp-0000000BN6Q-3Z1D;
+	Thu, 19 Nov 2026 09:18:36 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A3E4E605F0;
-	Thu, 19 Nov 2026 09:18:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E19B51F000C5;
-	Thu, 19 Nov 2026 09:18:12 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5D9F540532;
+	Thu, 19 Nov 2026 09:18:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D30331F000C4;
+	Thu, 19 Nov 2026 09:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795079899;
-	bh=v3bo8ZcbgAObjcXddzvPQDs3qKip3UcYyi2IBIcsxXE=;
-	h=From:To:Cc:Subject:Date;
-	b=cUlTbof7TRhkdIj9zM4tAOPe0BxnlUOXyAgKKafiWTNT7F37OrMgblULvjHOKHi7B
-	 7kJ68GQ0aMp8WMQbw4aC8lMNrvwUI6lA1C6kJcpAGHDKysiBnB5+FNjwJgiPrnjngT
-	 cYH32bJQ6VPHjApvcg3HgSlzaIRhgMMEeHCf49Zvb0v3zOqVL6NSn2USYZo/llzCNe
-	 uPV6dDgTc8I12wAuxTfy5qWgbfoaFD15SdhpYdz49kFnYyR6s/dTsaIp51i6PrqDSb
-	 2oZ5uY6GET3M+5w2+rb74fN+2RO5sL5kV7Q5hSeu+5/2Gsawym3Srgm4tubLNwcwKF
-	 u1CnU5Mu0dqKg==
+	s=k20260515; t=1795079913;
+	bh=bcoYPNQ1e9JiGf7bcR7Apnx0REpWA8L8Z0wsD4xAwOM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=ksN/hkSr+gJP5LsCZT870PhevDKD0dgh6KPfF7Yu3TCs91hOP+TjiMrUWdJ5TMam+
+	 dorqqx+axs5BBnLhJtUHA+Wh+mnj5clmKVDmfAOqvPi3IujBmPCTJmuh0MN0D6+ZRq
+	 Tzkb94RPnG1kjxxyaXa5jHlZS6IR/kDwAcsoSUPSMkfbjyqXAihVEtXJCrpBRQ2FZF
+	 5lo5UI78eJta06nxNEWEazfuadfT4uo2gq8M48AMiBaXWoVQij0iib2nvf1pdYoSEm
+	 RgpOa+pzerxevgJI6ivArDbPdrq1dAAw5ypfOvpNFUbRD6lemb71N389D7cWbgNTtR
+	 IpaducJBN3D4g==
 From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	Anton Vorontsov <avorontsov@ru.mvista.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	Boris Brezillon <bbrezillon@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Chris Boot <bootc@bootc.net>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Dhruva Gole <d-gole@ti.com>,
-	Felix Gu <ustc.gu@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Foon Tan <lftan@altera.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Gabor Juhos <juhosg@openwrt.org>,
-	Giulio Benetti <giulio.benetti@benettiengineering.com>,
-	Graham Moore <grmoore@opensource.altera.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	Han Xu <han.xu@nxp.com>,
-	imx@lists.linux.dev,
-	Jayshri Pawar <jpawar@cadence.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Johan Hovold <johan@kernel.org>,
-	Johannes Thumshirn <jth@kernel.org>,
-	Konrad Kociolek <konrad@cadence.com>,
-	Linus Walleij <linusw@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-spi@vger.kernel.org,
+To: lee@kernel.org,
 	Mark Brown <broonie@kernel.org>,
-	Murugan R <vadivel.muruganx.ramuthevar@intel.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Parshuram Thombare <pthombar@cadence.com>,
-	Pratyush Yadav <p.yadav@ti.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
 	Ray Jui <rjui@broadcom.com>,
 	Scott Branden <sbranden@broadcom.com>,
-	Suresh Gupta <suresh.gupta@nxp.com>,
-	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
-	Tomoya MORINAGA <tomoya.rohm@gmail.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Weibin Liu <liuwb@xiaopeng.com>,
-	Witold Sadowski <wsadowski@marvell.com>,
-	Yogesh Gaur <yogeshnarayan.gaur@nxp.com>
-Subject: [PATCH 00/10] spi: Fix data corruption, uninitialised data leaks and bounds checks
-Date: Thu, 19 Nov 2026 09:17:12 +0000
-Message-ID: <20261119091810.3440619-1-lee@kernel.org>
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Gabor Juhos <juhosg@openwrt.org>,
+	Chris Boot <bootc@bootc.net>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	linux-spi@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH 02/10] spi: bcm2835: Store native chip-select GPIO descriptor per device
+Date: Thu, 19 Nov 2026 09:17:14 +0000
+Message-ID: <20261119091810.3440619-3-lee@kernel.org>
 X-Mailer: git-send-email 2.56.1.708.g77570a6a1d-goog
+In-Reply-To: <20261119091810.3440619-1-lee@kernel.org>
+References: <20261119091810.3440619-1-lee@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -105,93 +78,119 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These issues were reported by Sashiko.
+When a device uses a native chip-select, bcm2835_spi_setup() requests a
+GPIO descriptor for it and stores the result in the controller-wide
+bs->cs_gpio.  A second device using a native chip-select overwrites the
+first device's descriptor, which is then leaked.
 
-The series is based on spi/for-7.5, since patch 5 relies on the
-following commit, which is not yet in Linus's tree:
+bcm2835_spi_cleanup() subsequently calls gpiod_put(bs->cs_gpio) for
+every device, including devices whose chip-select was requested by the
+SPI core from the cs-gpios property.  The same descriptor can therefore
+be released several times, and the descriptor released is not
+necessarily the one which belongs to the device being cleaned up.
 
-  3515e312e096 ("spi: topcliff-pch: clamp DMA bpw_len by bytes not words")
+Move the descriptor into the per-device struct bcm2835_spidev, which is
+zero-initialised, so that each device releases only the descriptor it
+requested itself.
 
-Witold, patch 10 is derived from the TX-only accounting in the Marvell
-b0 path, so confirmation that it matches the hardware's READ_DATA
-behaviour would be appreciated.
+Fixes: 21f252cd29f0 ("spi: bcm2835: reduce the abuse of the GPIO API")
+Closes: https://sashiko.dev/#/bug/linux-677b4cdb-2c6c-4cad-8a5a-45a24dc5cbab
+Cc: stable@vger.kernel.org
+Signed-off-by: Lee Jones <lee@kernel.org>
+---
+ drivers/spi/spi-bcm2835.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-Cc: Anton Vorontsov <avorontsov@ru.mvista.com>
-Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Boris Brezillon <bbrezillon@kernel.org>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Chris Boot <bootc@bootc.net>
-Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: Dhruva Gole <d-gole@ti.com>
-Cc: Felix Gu <ustc.gu@gmail.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Foon Tan <lftan@altera.com>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc: Gabor Juhos <juhosg@openwrt.org>
-Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc: Graham Moore <grmoore@opensource.altera.com>
-Cc: Grant Likely <grant.likely@secretlab.ca>
-Cc: Han Xu <han.xu@nxp.com>
-Cc: imx@lists.linux.dev
-Cc: Jayshri Pawar <jpawar@cadence.com>
-Cc: Jisheng Zhang <jszhang@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>
-Cc: Johannes Thumshirn <jth@kernel.org>
-Cc: Konrad Kociolek <konrad@cadence.com>
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-rpi-kernel@lists.infradead.org
-Cc: linux-spi@vger.kernel.org
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Murugan R <vadivel.muruganx.ramuthevar@intel.com>
-Cc: Orson Zhai <orsonzhai@gmail.com>
-Cc: Parshuram Thombare <pthombar@cadence.com>
-Cc: Pratyush Yadav <p.yadav@ti.com>
-Cc: Ray Jui <rjui@broadcom.com>
-Cc: Scott Branden <sbranden@broadcom.com>
-Cc: Suresh Gupta <suresh.gupta@nxp.com>
-Cc: "Théo Lebrun" <theo.lebrun@bootlin.com>
-Cc: Tomoya MORINAGA <tomoya.rohm@gmail.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Weibin Liu <liuwb@xiaopeng.com>
-Cc: Witold Sadowski <wsadowski@marvell.com>
-Cc: Yogesh Gaur <yogeshnarayan.gaur@nxp.com>
-
-Lee Jones (10):
-  spi: fsl-cpm: Map the zero page's address, not its struct page
-  spi: bcm2835: Store native chip-select GPIO descriptor per device
-  spi: ch341: Limit transfers to the hardware packet size
-  spi: sprd-adi: Do not copy uninitialised data to rx_buf on read
-    failure
-  spi: topcliff-pch: Advance tx_buf between DMA chunks
-  spi: cadence-quadspi: Bound chip select against f_pdata array size
-  spi: cadence-xspi: Zero the tail word in m_iowriteq()
-  spi: fsl-qspi: Propagate clock errors from fsl_qspi_select_mem()
-  spi: cadence-xspi: Advance tx pointer between Marvell b0 chunks
-  spi: cadence-xspi: Skip tail read for qword-aligned Marvell b0
-    receives
-
- drivers/spi/spi-bcm2835.c         | 18 +++++++++---------
- drivers/spi/spi-cadence-quadspi.c |  8 +++++---
- drivers/spi/spi-cadence-xspi.c    |  8 ++++++--
- drivers/spi/spi-ch341.c           |  6 ++++++
- drivers/spi/spi-fsl-cpm.c         |  3 ++-
- drivers/spi/spi-fsl-qspi.c        | 26 +++++++++++++++++---------
- drivers/spi/spi-sprd-adi.c        |  3 ++-
- drivers/spi/spi-topcliff-pch.c    |  5 +++++
- 8 files changed, 52 insertions(+), 25 deletions(-)
-
-
-base-commit: 9b2d7c8736a6fd27ceda93bd67529758c139e24f
+diff --git a/drivers/spi/spi-bcm2835.c b/drivers/spi/spi-bcm2835.c
+index 9d589df90933..af118cccee1b 100644
+--- a/drivers/spi/spi-bcm2835.c
++++ b/drivers/spi/spi-bcm2835.c
+@@ -85,7 +85,6 @@ MODULE_PARM_DESC(polling_limit_us,
+  * struct bcm2835_spi - BCM2835 SPI controller
+  * @regs: base address of register map
+  * @clk: core clock, divided to calculate serial clock
+- * @cs_gpio: chip-select GPIO descriptor
+  * @clk_hz: core clock cached speed
+  * @irq: interrupt, signals TX FIFO empty or RX FIFO ¾ full
+  * @tfr: SPI transfer currently processed
+@@ -120,7 +119,6 @@ MODULE_PARM_DESC(polling_limit_us,
+ struct bcm2835_spi {
+ 	void __iomem *regs;
+ 	struct clk *clk;
+-	struct gpio_desc *cs_gpio;
+ 	unsigned long clk_hz;
+ 	int irq;
+ 	struct spi_transfer *tfr;
+@@ -153,6 +151,7 @@ struct bcm2835_spi {
+  * @clear_rx_desc: preallocated RX DMA descriptor used for TX-only transfers
+  *	(cyclically clears RX FIFO by writing @clear_rx_cs to CS register)
+  * @clear_rx_addr: bus address of @clear_rx_cs
++ * @cs_gpio: native chip-select GPIO descriptor requested by the driver
+  * @clear_rx_cs: precalculated CS register value to clear RX FIFO
+  *	(uses target-specific clock polarity and phase settings)
+  */
+@@ -160,6 +159,7 @@ struct bcm2835_spidev {
+ 	u32 prepare_cs;
+ 	struct dma_async_tx_descriptor *clear_rx_desc;
+ 	dma_addr_t clear_rx_addr;
++	struct gpio_desc *cs_gpio;
+ 	u32 clear_rx_cs ____cacheline_aligned;
+ };
+ 
+@@ -1157,7 +1157,6 @@ static void bcm2835_spi_cleanup(struct spi_device *spi)
+ {
+ 	struct bcm2835_spidev *target = spi_get_ctldata(spi);
+ 	struct spi_controller *ctlr = spi->controller;
+-	struct bcm2835_spi *bs = spi_controller_get_devdata(ctlr);
+ 
+ 	if (target->clear_rx_desc)
+ 		dmaengine_desc_free(target->clear_rx_desc);
+@@ -1168,8 +1167,7 @@ static void bcm2835_spi_cleanup(struct spi_device *spi)
+ 				 sizeof(u32),
+ 				 DMA_TO_DEVICE);
+ 
+-	if (!IS_ERR(bs->cs_gpio))
+-		gpiod_put(bs->cs_gpio);
++	gpiod_put(target->cs_gpio);
+ 	spi_set_csgpiod(spi, 0, NULL);
+ 
+ 	kfree(target);
+@@ -1232,6 +1230,7 @@ static int bcm2835_spi_setup(struct spi_device *spi)
+ 	struct bcm2835_spi *bs = spi_controller_get_devdata(ctlr);
+ 	struct bcm2835_spidev *target = spi_get_ctldata(spi);
+ 	struct gpiod_lookup_table *lookup __free(kfree) = NULL;
++	struct gpio_desc *cs_gpio;
+ 	static const char * const pinctrl_compats[] = {
+ 		"brcm,bcm2835-gpio",
+ 		"brcm,bcm2711-gpio",
+@@ -1334,14 +1333,15 @@ static int bcm2835_spi_setup(struct spi_device *spi)
+ 
+ 	gpiod_add_lookup_table(lookup);
+ 
+-	bs->cs_gpio = gpiod_get(&spi->dev, "cs", GPIOD_OUT_LOW);
++	cs_gpio = gpiod_get(&spi->dev, "cs", GPIOD_OUT_LOW);
+ 	gpiod_remove_lookup_table(lookup);
+-	if (IS_ERR(bs->cs_gpio)) {
+-		ret = PTR_ERR(bs->cs_gpio);
++	if (IS_ERR(cs_gpio)) {
++		ret = PTR_ERR(cs_gpio);
+ 		goto err_cleanup;
+ 	}
+ 
+-	spi_set_csgpiod(spi, 0, bs->cs_gpio);
++	target->cs_gpio = cs_gpio;
++	spi_set_csgpiod(spi, 0, cs_gpio);
+ 
+ 	/* and set up the "mode" and level */
+ 	dev_info(&spi->dev, "setting up native-CS%i to use GPIO\n",
 -- 
 2.56.1.708.g77570a6a1d-goog
 
