@@ -2,66 +2,125 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD2D606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:46:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD12606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2yYRHYoN;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=hnnHxnJy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H4CXgSGv;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=n3S4YCEd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=zEBJsnluZRqixyE0EwpkFY9o4msyboMbcbtoVXGfSBg=; b=2yYRHYoNxJeFV7
-	VjWLvcUSyFVdNQKPG1YEN3arAVNfUg//ZzZBPSnTXFUMT5xage7RR3rTOq7DmoegTGTk/gEBvwp5Q
-	+3+8YS1B7E0O8iisIvBDQbYWABtgXp+XxMofSPkEIFrmZ3jSU64ChfOux/UK8A9120TZlBm1VreBL
-	wWnOVjV2QeHBD7AyuyEWDqaB9fJuqHA7rrAQ6cQqxLIXTqoJnJfeaVZlzaOyQGa1AgqKkqbdjrzSx
-	iWPHqU8V1HP+Fzc3ZYYvFYerY6fw80BLvQzV2hzQvxWFXpAm7D97E1PSy+vJRefySeruigJ1CruJj
-	vwnEa4/j4P3RGq78ypFg==;
+	List-Owner; bh=vITMaRYl8N/4FX6Ub/CtOdFIyxibL9pIfaPhRC74PEQ=; b=H4CXgSGvDgF0kE
+	XumAzABSUYP5FErFEMg4L3Ef4HTyIB5QDG/2Fw3k++cl4N437W/E0fCbghu2dt08jonrlvWsYIcDm
+	/Mfwci4VNnIWqURGtuprQaytAs8FVmjAjSt6PYdQ1GFaAxaOdvv28wMMU5THVNqYYLIIr/I4bEvq+
+	xps1waicbAipZIPj8VrTZyjBz150DEiPTXOmk0a6hi30rfNsVTQheJQqQfcxF42hJbZOAUcumZ5rj
+	PBXRo3p/OrLJOurF563C1fp03xdkmsgPKfnkOo3GQ3sEGx7T6FWPCnU6uX2PXuzH6zvExfRYuyNhp
+	NJB8GSLeVwB5PzTFoJKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3PR-0000000CGnb-3jVR;
-	Thu, 19 Nov 2026 14:46:45 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3PB-0000000CGii-00ZW
+	id 1xU3Q3-0000000CH0W-0XCS;
+	Thu, 19 Nov 2026 14:47:23 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU3Pz-0000000CGyw-33l6
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:46:30 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A0FC1575;
-	Thu, 19 Nov 2026 06:46:25 -0800 (PST)
-Received: from [10.0.154.42] (e121487-lin.cambridge.arm.com [10.0.154.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 491683F673;
-	Thu, 19 Nov 2026 06:46:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795099588; bh=2LvxOPawC7PnnA6ntJoISpIeoCB7zqM9cbDCet9kLI0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hnnHxnJynKFHxggI9nvGVlD4rKywIVbp2hwl11S1tVL/+8rSgTd6I/3xGh4dNo6Ox
-	 MxENgo5hAin21WMBLCQCTbbeLJ2SgB4y9w1NNR3vBUuNGYk5wD+S+xyt3BY0gMK1du
-	 exZmRrt8qS4xWi26sGo9IO3I2aq9afH5sk4DJvQs=
-Message-ID: <6cbb0f09-fb34-47d7-9c61-a99d97e0805b@arm.com>
-Date: Thu, 19 Nov 2026 14:46:24 +0000
+	Thu, 19 Nov 2026 14:47:22 +0000
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-6ba1e22ff4dso659253a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 06:47:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1795099637; x=1795704437; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=vITMaRYl8N/4FX6Ub/CtOdFIyxibL9pIfaPhRC74PEQ=;
+        b=n3S4YCEd4lYdOH4DbnA99ZPhymyuf8E1OaC3d8wZNEaUZpoykHaIPO2nUIaERtS2TS
+         J3PYRmc4krRKt0LwxbrXmicQjRXcHfhSMh8nWeqiP8PJycSQW48bT/WfilUGrMVjLFGX
+         RoUm+dQMTw8ugibLyBdXRmyUxanPKrR4PTSqLKjmSANrf/pODip3SVwpMaFkk8EPYOdm
+         my/SiKL0VP8f0IKjhw1DG0HbI/dYhKbOBIJg4P9klGWilkV3fNuXNOdNK5IfSeHOnD1t
+         jtWhSAzvttlhaG9GXkdf4yPMH9TYSwwqG2yTtRb9hUl9QJ3SIhShdfS3hn92RMkAciwI
+         Rk8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795099637; x=1795704437;
+        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=vITMaRYl8N/4FX6Ub/CtOdFIyxibL9pIfaPhRC74PEQ=;
+        b=cPKVGIdaoNdyIJSDB2zOKoem6/0iZ7uWtegOSmF8abXKTvVZdPeeJA2nPwpI2Qf1j9
+         EsS+1+6eaf++fT7N10F2sog0jvWQd+8UQMN5DRLbSJ33kIA1hRho2TWGhRg4gHRxJjhg
+         CPSwzwFIgDvPdC1Xbwk65ka9yTC57WG3Dr6pN8zzrFVuvFvpyp3JyZ4oOZpf7yvf767/
+         yYurP/nEm/oIwWf/7J+ORKajEz/0c1Mb4X62NrXG86cfkOAyq1K6rFQerbxImE5AR0ri
+         V6gt7caQ/TdKXIq25QcnmQpvXRbjvmkffvDrFZk2V4yiYEvTuLJ/8sZ1+YMGmxCD8qG+
+         k83A==
+X-Forwarded-Encrypted: i=1; AL+hErH2t1//yjgt7QUZfJFDRMeXdkBwt0Z6C7ZTfliPv4Uj83ysEHDBQE5C92t7vu6NF70FFVfsnNw/rokZcbpt+Gtn@lists.infradead.org
+X-Gm-Message-State: APuU4Z+11yEBfDu1n+7Pls36OuAjPd9ntNINDeHnvj6urO6oWks4g4if
+	/GOtP1/oPSFzfPCSrX6qe8541woDtXHt6puiDUkmdOjG1MkaO+HjaZRUQ6n3Jr5TC5I=
+X-Gm-Gg: AYBFou3sL9Tq3iYgte3RQfOpEYACG9s+e0FY3L9XpxpRR0Kge3CSUVTHxnBPxrrKwF4
+	a9yF/xC6kh+3BPy6SFtuZuBYgJJd4SJz/F5mB6vltTQbMm7Ch2T8xgtFWwdJ8Vh4N2mC99M4DWn
+	7cY+TVt1WK16VFcJuSlhvGvzshlK7Kot3zX35gkhrDjZ5kzDrHGrbT+ExiNdDicj61HdugQjG1j
+	Ek1XzkXclTJxQLEx1LerwbN2WyNMfaayX6fg0G4fEJNYxu8uVzt11Y3dZpSWXJChL7bO159WUgz
+	sGl5xQGb7ZcMW4xxZ9xCaPqvBdsh43Fzvk2vnXEOYDFbPwExStKbJAm4NR+Y89PoU22VV3qhVOh
+	IpYP/2WBJ1xdSgT4xQvaiVFu8RaM7tl3nTLEV+a/fjlOP10npay4TlNOXbeDNp7DNYLww40IQph
+	rdnyTwHUMWSeGrzyNjU/jS10/BbaaH/j3ruszzmybZ6Pdwc+V45JKxBJ/yhTO5+zeJwTXnIBL2d
+	Po2+31Iyhbg7ACPTIj/wN6eGzlCUHrF2hju91LBrbpq38YeS809N+i+SMjrf7Z5TG1JLMak9+au
+	fMr94TpDyESpalwYyX8CFcOleEwYEYxqiAa32t8tg9qjJWfua0h+hDTPZw==
+X-Received: by 2002:aa7:c7d5:0:b0:6b6:ea98:2539 with SMTP id 4fb4d7f45d1cf-6b9095b57admr2564430a12.6.1795099637250;
+        Thu, 19 Nov 2026 06:47:17 -0800 (PST)
+Received: from [192.168.1.62] (140.30.66.37.rev.sfr.net. [37.66.30.140])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b88993e08csm2579854a12.6.2026.11.19.06.47.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Nov 2026 06:47:16 -0800 (PST)
+Message-ID: <1e9c5ac3-d82b-4af9-9946-0302cadf7404@baylibre.com>
+Date: Thu, 19 Nov 2026 15:47:15 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/39] arm64: Add support for FEAT_NMI
-To: Jinjie Ruan <ruanjinjie@huawei.com>, linux-arm-kernel@lists.infradead.org
-Cc: catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com,
- lpieralisi@kernel.org, liaochang1@huawei.com, ashok.raj@oss.qualcomm.com,
- maz@kernel.org
-References: <20261112132042.129062-1-vladimir.murzin@arm.com>
- <58a4c350-539d-49ca-826f-d19563895a29@huawei.com>
- <85958791-2e85-46f3-bc53-6e2ea64e44cb@huawei.com>
-Content-Language: en-GB
-From: Vladimir Murzin <vladimir.murzin@arm.com>
-In-Reply-To: <85958791-2e85-46f3-bc53-6e2ea64e44cb@huawei.com>
+Subject: Re: [PATCH v5 00/15] R-Car X5H Ironhide CPG/MDLC SCMI remapping
+ support
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Ulf Hansson <ulfh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Paul Elder <paul.elder+renesas@ideasonboard.com>,
+ Sudeep Holla <sudeep.holla@kernel.org>,
+ Cristian Marussi <cristian.marussi@arm.com>
+Cc: arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <cover.1795029012.git.geert+renesas@glider.be>
+Content-Language: en-US, fr
+From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
+Autocrypt: addr=clegoffic@baylibre.com; keydata=
+ xjMEafx9bxYJKwYBBAHaRw8BAQdAtc85GIwDXLz0rh9thWXC80Lji0otVDVncXT4qaS4j1fN
+ K0Nsw6ltZW50IExlIEdvZmZpYyA8Y2xlZ29mZmljQGJheWxpYnJlLmNvbT7ClgQTFgoAPhYh
+ BJjMiHuM4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsDBQkJZgGABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEH6EW4KtCh6Tt+sA/jVC35rY1npFlOy7YnncTdrID8Qf855JA78IzXgvzpGp
+ AP9FkuuT80m66PP3DvgYX9kVnG17mSDKO0+v2W18v6ZgCM44BGn8fW8SCisGAQQBl1UBBQEB
+ B0DMwF4u//aQyzsFlO8rPJ/cqsAuPH80IeIA3HOEo5mlVgMBCAfCfgQYFgoAJhYhBJjMiHuM
+ 4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsMBQkJZgGAAAoJEH6EW4KtCh6TdSgBAMDS0MiWCivt
+ LjzZc9bs+P/xdXywUjDKq3lpQGJ6vZ0GAP9vI6DnN7vwVK6jt6/+0aBGkog5Ura9+WwRFEdM
+ vLfPDQ==
+In-Reply-To: <cover.1795029012.git.geert+renesas@glider.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_064629_144260_98D3C6B7 
-X-CRM114-Status: GOOD (  33.98  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261119_064720_130096_DD144EE8 
+X-CRM114-Status: GOOD (  15.76  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,413 +131,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jinjie,
+Hi Geert,
 
-On 11/19/26 11:41, Jinjie Ruan wrote:
+On 11/18/26 8:44 PM, Geert Uytterhoeven wrote:
+> 	Hi all,
 > 
-> 在 2026/11/18 20:17, Jinjie Ruan 写道:
->> Hi Vladimir,
->>
->> I gave the series a test on a Kunpeng HIP12 machine with 384 CPUs,
->> GICv4.2, firmware with SDEI event 0. The PE implements FEAT_NMI and the
->> GIC implements FEAT_GICv3_NMI.
->>
->> Tested-by: Jinjie Ruan <ruanjinjie@huawei.com>
->>
->> Rather than a single boot, I varied the four dimensions that select a
->> different masking path:
->>
->>   - PE FEAT_NMI       : present / masked with id_aa64pfr1.nmi=0
->>   - GIC superpriority : present / disabled
->>   - Pseudo-NMI        : irqchip.gicv3_pseudo_nmi=0/1
->>   - SDEI cross-CPU    : firmware event 0 active / disabled
->>
->> The last one needs a patch to switch attached at the end.
->>
->> # The Results are as below:
->>
->>   Grp  PE GIC pse SDEI | supports active pseudo IRQS_NMI fast  result
->>   ------------------------------------------------------------------
->>   A    y  y   n   y    |   1       1      0        4      y     PASS
->>   A2   y  y   n   n    |   1       1      0        4      y     PASS
->>   A3   y  y   y   n    |   1       0      1        4      y     PASS
->>   B    y  y   y   y    |   1       0      1        4      y     PASS
->>   C    n  y   n   y    |   0       0      0        4      y     PASS
->>   D    n  y   y   y    |   0       0      1        4      y     PASS
->>   E    y  y   n   y    |   0       0      0        0      y *   PASS
->>   F    y  n   n   y    |   1       1      0        0      n     PASS
->>   G    y  n   n   n    |   0       0      0        0      n     PASS
->>   H    y  n   y   n    |   0       0      1        4      y     PASS
->>
->>   supports     system_supports_nmi()
->>   active       system_uses_nmi()
->>   pseudo       system_uses_irq_prio_masking()
->>   IRQS_NMI     IRQ descriptors with IRQS_NMI set (IPIs + arm-pmu)
->>   fast         cpumask_backtrace() at a CPU spinning with local IRQs
->>                disabled returns in ms (NMI delivered) rather than
->>                ~1.5 s (plain IPI)
->>
->> ## IRQS_NMI is 4 means 4 types of NMI Interrupt Tests:
->>
->>      IRQ  hwirq      purpose
->>     ---------------------------------------------------------------
->>       4   0x3  SGI   IPI_CPU_STOP_NMI - stop a CPU on panic
->>       7   0x6  SGI   IPI_KGDB_ROUNDUP - kgdb roundup
->>       8   0x7  SGI   IPI_CPU_BACKTRACE - hardlockup all-CPU backtrace
->>      42   0x17 PPI   arm-pmu (PMUv3) - perf sampling
->>
->>
->>   * E is CONFIG_ARM64_NMI=n plus SDEI. "fast" there comes from SDEI,
->>     not from the architected path; IRQS_NMI=0 says so.
->>
->> # Checks that run on every boot and pass in all applicable groups:
->>
->>   irqflags / exception state
->>       save, restore and nesting round trip for DAIF, PMR and ALLINT;
->>       arch_irqs_disabled_flags() takes ALLINT into account;
->>       local_irq_disable() leaves ALLINT clear, and an NMI is still
->>       delivered inside that window.
->>
->>   exception contexts
->>       arm64_exc_hwstate_of_context() for PROCESS / NOIRQ / NONMI /
->>       ERROR / CRITICAL, including that CRITICAL sets ALLINT and NOIRQ
->>       does not; local_exceptions_save_mask()/restore() for NOIRQ and
->>       CRITICAL; local_exceptions_force_daif_save()/restore() on the
->>       idle/WFI path (pseudo-NMI only).
->>
->>   pstate
->>       regs_irqs_disabled() honours PSR_ALLINT_BIT; the bit survives the
->>       ptrace path.
->>
->>   kprobes
->>       registering a probe does not disturb ALLINT, including when it is
->>       set (so an NMI cannot become deliverable inside a probe); a probe
->>       on the real "msr allint" / "mrs xN, allint" instruction is
->>       rejected with -EINVAL.
->>
->>   adjacent subsystems
->>       an EFI runtime call does not clobber ALLINT; perf events keep
->>       counting across an ALLINT toggle.
->>
->>   genirq
->>       add_interrupt_randomness() is never called in NMI context.
->>
->>   CPU stop
->>       spin one CPU with IRQs disabled, then panic: the stop escalation
->>       reaches the NMI rung, "SMP: retry stop with NMI for CPUs 0".
->>
->> # The problem
->>
->> SDEI wins over the architected IPI path, unconditionally
->>
->> arch_trigger_cpumask_backtrace() returns as soon as
->> sdei_nmi_trigger_cpumask_backtrace() succeeds, so on a platform where
->> firmware offers SDEI event 0 the irqchip NMI path is never reached.
->>
->> More importantly PSTATE.ALLINT has no effect on the backtrace:
->>
->>     SDEI active   : cpumask_backtrace() returns in ~14 ms with ALLINT set
->>     SDEI disabled : the same call takes ~1.5 s   with ALLINT set
->>
->> That is, the NMI delivered by SDEI bypasses the PSTATE.ALLINT masking
->> (the interruption is cleared within 14 ms). The NMI that goes through
->> the GIC superpriority is restricted by ALLINT (the masking is cleared
->> after 1.5s).
-> Hi Vladimir,
+> TL;DR:
 > 
-> Is this expected? Can FEAT_NMI and SDEI cross CPU coexist?
-> 
+>     Describe hardware in DT, and perform mapping to abstractions offered
+>     by SCMI in Linux.
 
-IIUC, this is the nature of SDEI, so it could bypass DAIF in
-the case of pseudo-NMI (I'm not sure whether this scenario is
-covered by your testing)
+A question on the approach
+An SCMI variant DT could mark the CPG and MDLC status = "reserved" and point the consumers at arm,scmi, while the U-Boot IPL keeps the hardware DT.
+Since v4, the series assumes the SCMI ids are stable:
 
-This makes me wonder whether SDEI, pseudo-NMI, and FEAT_NMI
-should be mutually exclusive... meanwhile, let's try to make
-progress with what we already have and figure this out in
-parallel.
+>   - Remove dependencies by making assumptions and dropping disputed
+>     items, to move this series forward:
+>       - Assume all SCMI IDs are stable.
+If they are, why not using them in the DT directly?
 
-Cheers
-Vladimir
+On partitioning, the cover letter says:
 
->> And there is no equivalent of "irqchip.gicv3_pseudo_nmi=" for SDEI NMI.
->>
->> The patch used for the SDEI switch is as below.
->>
->> Best regards,
->> Jinjie
->>
->> diff --git a/drivers/firmware/arm_sdei_nmi.c
->> b/drivers/firmware/arm_sdei_nmi.c
->> index 038eb79e28ac..22e8c3e7aa75 100644
->> --- a/drivers/firmware/arm_sdei_nmi.c
->> +++ b/drivers/firmware/arm_sdei_nmi.c
->> @@ -62,6 +62,24 @@
->>
->>  static bool sdei_nmi_available;
->>
->> +static bool sdei_nmi_disabled __ro_after_init;
->> +
->> +static int __init sdei_nmi_disable_setup(char *str)
->> +{
->> +       return kstrtobool(str, &sdei_nmi_disabled);
->> +}
->> +early_param("sdei_nmi.disabled", sdei_nmi_disable_setup);
->> +
->>  #define SDEI_NMI_EVENT                 0
->>
->>  /*
->> @@ -168,7 +186,7 @@ static void sdei_nmi_raise_backtrace(cpumask_t *mask)
->>   */
->>  bool sdei_nmi_trigger_cpumask_backtrace(const cpumask_t *mask, int
->> exclude_cpu)
->>  {
->> -       if (!sdei_nmi_available)
->> +       if (!sdei_nmi_available || sdei_nmi_disabled)
->>                 return false;
->>
->>         nmi_trigger_cpumask_backtrace(mask, exclude_cpu,
->> @@ -194,6 +212,9 @@ void sdei_nmi_stop_cpus(const cpumask_t *mask)
->>  {
->>         unsigned int cpu;
->>
->> +       if (sdei_nmi_disabled)
->> +               return;
->> +
->>         WRITE_ONCE(sdei_nmi_stopping, true);
->>
->>         /*
->> @@ -238,6 +259,10 @@ static int __init sdei_nmi_init(void)
->>         }
->>
->>         sdei_nmi_available = true;
->> +       if (sdei_nmi_disabled) {
->> +               pr_info("Sdei nmi disabled by sdei_nmi.disabled\n");
->> +               return 0;
->> +       }
->>         pr_info("using SDEI cross-CPU NMI (SDEI_EVENT_SIGNAL, event %u)\n",
->>                 SDEI_NMI_EVENT);
->>
->> 在 2026/11/12 21:20, Vladimir Murzin 写道:
->>> FEAT_NMI provides an architected mechanism for supporting non-maskable
->>> interrupts (NMIs) and less-masked interrupts (LMIs).
->>>
->>> Since we already support pseudo-NMIs via priority masking, introducing
->>> another flavour of NMI on top of the existing infrastructure could
->>> easily become messy, making the code harder to follow and reason
->>> about.
->>>
->>> To avoid that, this series first makes room for the new NMI "tenant"
->>> by restructuring the existing exception masking logic.
->>>
->>> The main idea is to separate the logical view of exception state from
->>> its hardware representation. To achieve this, we introduce logical
->>> exception contexts that can be mapped onto the corresponding hardware
->>> state. This naturally consolidates the hardware-specific handling into
->>> a small number of places, while allowing the rest of the code to
->>> operate purely in terms of logical exception contexts.
->>>
->>> Since this restructuring is non-trivial and carries a risk of subtle
->>> behavioural changes, the series adds extensive debug checks to verify
->>> that the hardware state always matches the expected logical state.
->>>
->>> With this restructuring in place, wiring FEAT_NMI into the new
->>> framework becomes much more manageable. GIC support for NMI is build
->>> on top.
->>>
->>> This work would not have been possible without the contributions of
->>> Ada Couprie Diaz, Mark Brown, and Lorenzo Pieralisi - please credit
->>> them for everything that works well. Any remaining bugs or issues are
->>> entirely my own.
->>>
->>> Most of the testing has been done on QEMU, Fast Model and pre-silicon
->>> environment, so the series definitely benefit from extensive testing
->>> on real hardware (without NMI, with pseudo-NMI, and with FEAT_NMI).
->>>
->>> Patches are organized as follow
->>>
->>> 1 - 15
->>>   Rework of existing pseudo-NMI logic to make room for FEAT_NMI
->>>
->>> 16 - 33
->>>   FEAT_NMI support including some preparation patches which have
->>>   no dependencies:
->>>     - efi/runtime-wrappers: Permit architectures to override IRQ flags checks
->>>     - arm64: smp: Abstract SGI and LPI operations
->>>
->>> 34 - 35
->>>   GICv3 support for NMI
->>>
->>> 36 - 39
->>>   GICv5 support for NMI (including some preparation patches)
->>>
->>> Changelog
->>>
->>>   v1 -> v2
->>>
->>>     - Rebased on v7.4-rc2
->>>     - Select HAVE_PERF_EVENTS_NMI when FEAT_NMI is enabled
->>>     - Reworked APEI SEA handling to mask exceptions sequentially   
->>>     - Updated GICv3 initialization to clear NMI configuration
->>>     - Added Tested-by and Reviewed-by tags where approriate
->>>     - Droped tags due to meaningful changes for:
->>>       + "arm64: replace local_daif helpers"
->>>       + "irqchip/gic-v3: Implement FEAT_GICv3_NMI support"
->>>
->>>   RFC v2 -> v1
->>>
->>>     - Rebased on v7.3-rc3.
->>>     - Dropped RFC tag, have not received objections, at the same time
->>>       got support from Jinjie
->>>     - Dropped prerequisite patches already present in the newer base
->>>     - Added logic to reject probing/stepping over ALLINT
->>>     - Moved addition of arm64_debug_exc_context() in separate patch
->>>     - Reworked debug logic for validating direction of exception
->>>       transition
->>>     - Split support for NMI in GICv5 in 3 separate patches
->>>     - Added review tags
->>>
->>>   RFC v1 -> RFC v2
->>>
->>>     - Rebased on v7.2-rc5.
->>>     - Improved commit descriptions.
->>>     - Split some patches into smaller ones.
->>>     - Added a graceful fallback for IPI requests when FEAT_NMI is
->>>       supported by the CPU but unsupported by the interrupt
->>>       controller.
->>>     - Split the GICv3 preparation from the FEAT_GICv3_NMI
->>>       implementation.
->>>     - Added NMI support to GICv5, primarily as an illustration of the
->>>       implementation, although it also happens to work on Fast Model.
->>>     - Added review tags only to unchanged patches. Review tags were
->>>       intentionally dropped from modified patches to reflect those
->>>       changes and encourage re-review.
->>>
->>> RFC v1:
->>>   https://lore.kernel.org/linux-arm-kernel/20260709121333.23507-1-vladimir.murzin@arm.com/
->>>
->>> RFC v2:
->>>   https://lore.kernel.org/linux-arm-kernel/20260727163453.7969-1-vladimir.murzin@arm.com/
->>>
->>> v1:
->>>   https://lore.kernel.org/linux-arm-kernel/20260914102102.68597-1-vladimir.murzin@arm.com/
->>>
->>> Thanks!
->>> Vladimir
->>>
->>> Ada Couprie Diaz (15):
->>>   arm64: irqflags: Introduce arm64-specific irqflags type
->>>   arm64: irqflags: save and use both DAIF and PMR
->>>   arm64: interrupts: Add common exception state helpers
->>>   arm64: entry: Introduce entry specific exception masking helpers
->>>   arm64: entry: replace DAIF helpers with entry helpers
->>>   arm64: interrupts: Introduce exception masking save/restore helpers
->>>   arm64: interrupts: introduce a helper for GIC priority initialization
->>>   arm64: replace local_daif helpers
->>>   arm64: cpuidle: use new helpers to bypass interrupt priority masking
->>>   arm64: remove daifflags.h
->>>   arm64: gicv3: remove GIC_PRIO_PSR_I_SET
->>>   arm64: ptrace: Add PSR_ALLINT_BIT
->>>   arm64: cpufeature: Detect PE support for FEAT_NMI
->>>   arm64: nmi: Manage masking for superpriority interrupts
->>>   arm64: irq: Report FEAT_NMI masking local IRQs
->>>
->>> Lorenzo Pieralisi (2):
->>>   irqchip/gic-v3: Rename nmi to pseudo_nmi
->>>   irqchip/gic-v3: Implement FEAT_GICv3_NMI support
->>>
->>> Mark Brown (5):
->>>   arm64: booting: Document boot requirements for FEAT_NMI
->>>   arm64: sysreg: Add definitions for immediate versions of MSR ALLINT
->>>   arm64: idreg: Add an override for FEAT_NMI
->>>   arm64: nmi: Add handling of superpriority interrupts as NMIs
->>>   arm64: nmi: Add Kconfig for NMI
->>>
->>> Vladimir Murzin (17):
->>>   arm64: process: Lift check for exception state to generic
->>>     infrastructure
->>>   arm64: cpufeature: Remove system_has_prio_mask_debugging()
->>>   arm64: irqflags: Switch to CONFIG_DEBUG_IRQFLAGS
->>>   arm64: Kconfig: Remove CONFIG_ARM64_DEBUG_PRIORITY_MASKING
->>>   efi/runtime-wrappers: Permit architectures to override IRQ flags
->>>     checks
->>>   arm64/efi: Implement override for IRQ flags checks
->>>   arm64: probes: Reject stepping over ALLINT
->>>   arm64: suspend: Always initialise PSTATE.ALLINT
->>>   arm64/efi: Add ALLINT to IRQ flags checks
->>>   arm64: kprobes: Disable NMIs
->>>   arm64: smp: Abstract SGI and LPI operations
->>>   arm64: smp: Fall back to IRQ when IPI NMI request fails
->>>   arm64: nmi: Select HAVE_PERF_EVENTS_NMI for FEAT_NMI
->>>   arm64: smp: Add NMI support for LPI-backed IPIs
->>>   genirq: Trust local irqchip when considering IRQ for NMI
->>>   genirq: Do not call add_interrupt_randomness() in NMI context
->>>   irqchip/gic-v5: Add NMI support
->>>
->>>  Documentation/arch/arm64/booting.rst          |   6 +
->>>  arch/arm64/Kconfig                            |  31 +-
->>>  arch/arm64/include/asm/assembler.h            |  20 +-
->>>  arch/arm64/include/asm/cpucaps.h              |   2 +
->>>  arch/arm64/include/asm/cpufeature.h           |  14 +-
->>>  arch/arm64/include/asm/cpuidle.h              |  18 +-
->>>  arch/arm64/include/asm/daifflags.h            | 144 --------
->>>  arch/arm64/include/asm/efi.h                  |  42 ++-
->>>  arch/arm64/include/asm/entry-common.h         |   8 +-
->>>  arch/arm64/include/asm/insn.h                 |   1 +
->>>  .../include/asm/interrupts/common_flags.h     | 255 +++++++++++++
->>>  arch/arm64/include/asm/interrupts/entry.h     | 102 ++++++
->>>  arch/arm64/include/asm/interrupts/masking.h   | 166 +++++++++
->>>  arch/arm64/include/asm/irqflags.h             | 150 ++++----
->>>  arch/arm64/include/asm/kvm_host.h             |   1 -
->>>  arch/arm64/include/asm/mmu_context.h          |   1 -
->>>  arch/arm64/include/asm/ptrace.h               |  25 +-
->>>  arch/arm64/include/asm/sysreg.h               |   2 +
->>>  arch/arm64/include/uapi/asm/ptrace.h          |   1 +
->>>  arch/arm64/kernel/acpi.c                      |  43 +--
->>>  arch/arm64/kernel/cpufeature.c                |  68 +++-
->>>  arch/arm64/kernel/debug-monitors.c            |   1 -
->>>  arch/arm64/kernel/entry-common.c              | 335 +++++++++++++-----
->>>  arch/arm64/kernel/entry.S                     |  14 +-
->>>  arch/arm64/kernel/hibernate.c                 |  14 +-
->>>  arch/arm64/kernel/hw_breakpoint.c             |  16 +-
->>>  arch/arm64/kernel/irq.c                       |  45 ++-
->>>  arch/arm64/kernel/machine_kexec.c             |   4 +-
->>>  arch/arm64/kernel/pi/idreg-override.c         |   1 +
->>>  arch/arm64/kernel/probes/decode-insn.c        |  11 +-
->>>  arch/arm64/kernel/probes/kprobes.c            |  24 +-
->>>  arch/arm64/kernel/process.c                   |  24 +-
->>>  arch/arm64/kernel/setup.c                     |   4 +-
->>>  arch/arm64/kernel/signal.c                    |   1 -
->>>  arch/arm64/kernel/smp.c                       | 217 ++++++++----
->>>  arch/arm64/kernel/suspend.c                   |  14 +-
->>>  arch/arm64/kernel/traps.c                     |   1 -
->>>  arch/arm64/kvm/hyp/nvhe/switch.c              |   2 +-
->>>  arch/arm64/kvm/hyp/vgic-v3-sr.c               |   7 +-
->>>  arch/arm64/kvm/hyp/vhe/switch.c               |  14 +-
->>>  arch/arm64/mm/fault.c                         |   1 -
->>>  arch/arm64/mm/mmu.c                           |   7 +-
->>>  arch/arm64/tools/cpucaps                      |   2 +
->>>  drivers/firmware/efi/runtime-wrappers.c       |  32 +-
->>>  drivers/irqchip/irq-gic-v3.c                  | 145 +++++++-
->>>  drivers/irqchip/irq-gic-v5.c                  | 244 ++++++++++++-
->>>  include/linux/irq.h                           |   2 +-
->>>  include/linux/irqchip/arm-gic-v3-prio.h       |   8 -
->>>  include/linux/irqchip/arm-gic-v3.h            |   4 +
->>>  kernel/irq/handle.c                           |   3 +-
->>>  kernel/irq/manage.c                           |   5 -
->>>  51 files changed, 1696 insertions(+), 606 deletions(-)
->>>  delete mode 100644 arch/arm64/include/asm/daifflags.h
->>>  create mode 100644 arch/arm64/include/asm/interrupts/common_flags.h
->>>  create mode 100644 arch/arm64/include/asm/interrupts/entry.h
->>>  create mode 100644 arch/arm64/include/asm/interrupts/masking.h
->>>
+>   - The clock, reset, and power domain IDs are not stable by design,
+>     causing DT incompatibilities.
+>     SCMI requires that the ID space exposed to an agent (i.e. Linux)
+>     starts at zero and is contiguous.  Hence any change in system
+>     partitioning (Application CPU core vs. Realtime CPU core,
+>     virtualization, ...) may mean a renumbering of all SCMI IDs,
+>     implying a massive change to the DT.
 
+SCMI do not mandate that renumbering. The ids start at zero and are sequential, but nothing requires them to cover only the resources of one agent.
+The firmware can keep a single id space for all agents and restrict per agent what each one may use, the rest returning DENIED (SCMI 4.0, section 3.2.1).
+For virtualization, the spec has the hypervisor grant each VM its resources this way. A new VM then changes permissions, not ids.
+
+With a single id space, a software configuration only changes which nodes are enabled, so one DT per software configuration, a base DT plus an overlay, is enough.
+If managing many configurations ever becomes a nightmare, tools exist for it, such as Lopper from devicetree-org [1], which generate one DT per execution domain from a single system DT.
+
+That leaves the missing clock domain, which is a gap in SCMI itself.
+
+[1] https://github.com/devicetree-org/lopper
+
+Best regards,
+Clément
 
