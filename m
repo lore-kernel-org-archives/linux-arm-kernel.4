@@ -2,198 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8A9606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 23:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB420606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 23:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eE2czDfT;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bLzzcYNN;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=kDKcjzSV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2ibscVEy;
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=H1OAbmxz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=YKZNjksr+gQLmbQ8RqiWYDejVUTRGF8MbDFWLPGAhow=; b=eE2czDfTF+XSFUh6IVcDeJmPlC
-	Apo52z6SBgodWEFb7QPmzrmlJUjHVpyT3d5gTr1DC6ASp1VgiBGo0saznvORZIwO5ebmH5q6+pifx
-	g/gsmcAVg2Nx7WyFFSL8BmjeGCpDl/vjrftY8PwUSTcTjxSxiyVjZV7R5X6Mm1u8jRi7jobVnrjOl
-	4EYmZ8XKRKk2XusvCYJp55imEk7Xgdu3+I9RSqklOCVM0R+wTuh1QdIt13mFD4u/A73Asnnj0de1z
-	2f7xFdIX4ZhU39HyaMN0oFU+QzrmvfX/GVWdoEQQyL5boRJ2TseJTg3lXW6e+kJ6xtduDa/lSkK/K
-	EUcrvTkw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=IoabV2VxoUyRhnu9jmXaZBldz5Wr97ijw+Y3IW83qfM=; b=2ibscVEyWA7TlN
+	T5nFyVZ3DLWXYxQ4ZlEQ25B3/dl8CujRseScr64Nw/6B1xblnuq59U80LF0q+nHgv+dkj95UmeQ+9
+	ET2btcRhQGD1UPRqpzOOxOgZl4l/tW8qBD1rNGdbKiWGdkZsnRrItS2kfyG4Ln65zJP3jmueGrHoq
+	g0v00Pse0+UBIh6VT/z/nn16EPJqbyODqpt5vLPioc+N9gD9xyas3rtbIYnzZFqn5Cacq/9rvuIbK
+	N4CxxO4HXjNy97DiyeaesubBC1CxO0K2rWbiH5cyygFznvVkvdkHPS2ZcpmQ0QvAIsFjEW//JilnE
+	0UZ2vd9TTICxdEOtrdoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUBOO-0000000De0h-3AsO;
-	Thu, 19 Nov 2026 23:18:12 +0000
-Received: from mgamail.intel.com ([192.198.163.13])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUBOM-0000000De02-24fz
+	id 1xUBP3-0000000De5H-3jbf;
+	Thu, 19 Nov 2026 23:18:53 +0000
+Received: from linux.microsoft.com ([13.77.154.182])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xUBP1-0000000De4g-3IF6
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 23:18:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795130291; x=1826666291;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=YKZNjksr+gQLmbQ8RqiWYDejVUTRGF8MbDFWLPGAhow=;
-  b=bLzzcYNNW/BM96H7CHTkAhhB6MVob0y0mNtmzZf7sdF9oCXT/yyj+pG7
-   e3ivTljprcmsDr7piVgLjrUz1xXhGYx8ukH1oGb6ZXAi8BAW5x0Xuzw0f
-   cVDLI+cC/KmLhv5TustDhNduwQ8lnal8fhKn8U1XNzK2Tzj1H6NUY7YhO
-   JXrPPaVgT01Q9siSXm3M9L1yErAa2GJUVDFdYW8TvM2k659uzb1Ni0MHS
-   I/nBapNej13/JQ9u2Mgt9K4rizlyzdGN8dLu4T/mdLVZFPUp9FflqTDla
-   Rvpy6Onmd84z7VwoAT29W7UzXuaiorZx3ai1P3/CcoyLiZ/9n+tJystuv
-   w==;
-X-CSE-ConnectionGUID: WeHN/0DiSve3Vkf6dz43lQ==
-X-CSE-MsgGUID: M2KslQEzRQKpy2d5dmiADQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3994802"
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3994802"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 15:18:09 -0800
-X-CSE-ConnectionGUID: trHfm4DiQ4KNFPYfqRMGEQ==
-X-CSE-MsgGUID: jq2RRXp+SVeTLZAcEyAeJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="10548553"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 15:18:09 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 19 Nov 2026 15:18:08 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Thu, 19 Nov 2026 15:18:08 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.60)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 19 Nov 2026 15:18:08 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aw6bXtt4MoEAHbXRwX8XWbbKGnW+KuVVvBy7xg7A5sVWotVdOVhDmPfhg7UEO2foACFjDww4D/kFG+TPkz4v19ao/qzJs+L+JfAsd9dAxdTe7r90sxhG6ZfSxtWO29ONlcQRY6GPh0m2h1QO1DH+rdHFOnZloyJ6iQNjjsDAH+NPiwmqNpIZnoUFBJ65ZWMnJmlkKCu9VD1GfbszwWlPeXzEiNpfWhl7MEGnUgXDJTmrDrbhdsJtCADpzyy8ZdvAukV0ou8xTFrcKgs7fEU7+KXCQl7SjUV5UQgG7Yo/OQWnH/gM3VC/UGhWz+aV4dS0XMVHyaz8ahV0xoOixqmSFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YKZNjksr+gQLmbQ8RqiWYDejVUTRGF8MbDFWLPGAhow=;
- b=CgbLWCU+4kkrFTYufgZ1Djia8SVq82LB+dykOsgEx76C5ENWlGUn9VKkJ5CHvkZdViCzUmK35w00xt1/oT67aGaoGA8YRPBWoHNezSsxFbem7BjzEHpzQ9ENvvDHMW21touWUQh913jXYp4SnHDjr+91P60XuwdGEuUfXETnhJZhgezjgWqhfbY0HNYjKyjTooxj1P8kMj/59XmUukt+OZ1Itgv3nxCfa7oK+cAwSKymKHgFXcnMcAS7bFSqrFX/pK5vpR6OMHfF4S7SlPUcOLliPmZ8g3HN8iLheUerCaFi8oDhQeDp+vxKt9+3Fy3ISm4an+yW+Rk4W8FOBkRj6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YKZNjksr+gQLmbQ8RqiWYDejVUTRGF8MbDFWLPGAhow=;
- b=kDKcjzSVMPNsSTEe92SOBNBW/6IosEfT1WFj7O7+dNlGLnYXSFZzCcsfe84Pb1Fq/kI8Icvz4ZpArQ9tU8fFqG8WOzqoiE3c8N2wGljFTbvCVuR/0dMUlT3zpEM2ekAog0J1Gr9E80CW1W6BF7BV8QhD1F6FvvoFmlDRUGBFAp0=
-Received: from IA3PR11MB634048.namprd11.prod.outlook.com
- (2603:10b6:208:549::23) by CY8PR11MB7171.namprd11.prod.outlook.com
- (2603:10b6:930:92::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
- 2026 23:18:04 +0000
-Received: from IA3PR11MB634048.namprd11.prod.outlook.com
- ([fe80::760f:f0a4:7417:6e57]) by IA3PR11MB634048.namprd11.prod.outlook.com
- ([fe80::760f:f0a4:7417:6e57%5]) with mapi id 15.21.0615.013; Thu, 19 Nov 2026
- 23:18:04 +0000
-From: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
-To: "jgross@suse.com" <jgross@suse.com>, "linux@armlinux.org.uk"
-	<linux@armlinux.org.uk>, "bp@alien8.de" <bp@alien8.de>,
-	"haoxiang_li2024@163.com" <haoxiang_li2024@163.com>, "sstabellini@kernel.org"
-	<sstabellini@kernel.org>, "Ostrovsky, Boris" <boris.ostrovsky@oracle.com>,
-	"mingo@redhat.com" <mingo@redhat.com>, "dave.hansen@linux.intel.com"
-	<dave.hansen@linux.intel.com>, "tglx@kernel.org" <tglx@kernel.org>,
-	"david.vrabel@citrix.com" <david.vrabel@citrix.com>, "hpa@zytor.com"
-	<hpa@zytor.com>, "x86@kernel.org" <x86@kernel.org>,
-	"oleksandr_tyshchenko@epam.com" <oleksandr_tyshchenko@epam.com>,
-	"konrad.wilk@oracle.com" <konrad.wilk@oracle.com>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "xen-devel@lists.xenproject.org"
-	<xen-devel@lists.xenproject.org>
-Subject: Re: [PATCH] xen/grant-table: fix resource leak in gnttab_init()
-Thread-Topic: [PATCH] xen/grant-table: fix resource leak in gnttab_init()
-Thread-Index: AQHdeHw6R1wLhKDc+Uq86658gggviQ==
-Date: Thu, 19 Nov 2026 23:18:03 +0000
-Message-ID: <6e3ed5bd9de1764058a257dca9e8fd6ca9fa1175.camel@intel.com>
-References: <20261117084325.1241735-1-haoxiang_li2024@163.com>
-In-Reply-To: <20261117084325.1241735-1-haoxiang_li2024@163.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2.1 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA3PR11MB634048:EE_|CY8PR11MB7171:EE_
-x-ms-office365-filtering-correlation-id: 80d30ece-43b6-45c1-c9f4-08df46935cc9
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016|23010399003|921020|38070700021|10067099003|261026121527099003|261026140227099003|56012099006|11063799006|261022105027099003|261021121427099003|261102123227099003|261028144727099003|18002099003|22082099003;
-x-microsoft-antispam-message-info: 4mgXARrOFfQHW9WalOIY7NzABe+SkwO2sxECT8x3HS6riJvWnLxweT5irakNq4rSWyA9wsKX7+pe8s03apO6iGZq7YFtLq/MTBAKnF1y1eIPQmCKQ43Z2Cv+jsUl/r7NnyfhreBCGdYX68V/DiR6iBmqPLSIj9rRawPAjkxO9HQtkKU6AZ0Ylxsm7NU7hTS6auhhaacVs+G1jUVdl8KnxBp0Oc3ZrXmlVl8N2pa/CvUcjlervGPtZ9nvP7sJVR+p5kTeGD1Bl4/C0mDl4H8ZbIKJ26OuIvvi/q6K9Y0W6wPQUcF06lZq7u2d/f7OQHS/6Vj6yyVNVcWUfIuRNMyKzbpttWG8WiLg2BwUHK22mIMffu21rcRFKRJ8lD2V50U7K+Cc9tW1tqarQapRrXWGVc4WcqskQ0t9rooeIgTQUhrGQmQwvyz5YfvbpuLPrPtQC5OCUKqmZU4i5au3WMS53BDGFiOxP4YPuxxyYNAKFQXl1yoxKfUy3UNRzLeB4vEwmLVOQqAgcXopd5E6uiKwUrfpEUAbq/7nHnLre81MlO+BFnrR5HMW4mCEt2QpuT/WCN/w84PFRUDelIc2bD9M3RNDur80UIDx4LgO5HqHCSNbbD2IrFHzKYJb424KyqnaigW1nRqiaHfDYy2/ACljTIZU/3zbjdqmB5YDJDyGjBd+S2zu1f8q7/NrOqQQaDGjwZDZcenQ/CRsJRhts1lohMhWr5r4nWDXZz35gZPW/7w=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA3PR11MB634048.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(23010399003)(921020)(38070700021)(10067099003)(261026121527099003)(261026140227099003)(56012099006)(11063799006)(261022105027099003)(261021121427099003)(261102123227099003)(261028144727099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TXdjZ0hkMHR3R3dtQzBCa2ZxUnUya3J5RGlaUkU0M1o4QTJaZkFiK0FrcWRI?=
- =?utf-8?B?QjNNM3hPR1Ftck83MjJWSDZxTHdEaVVURFN0Ylp6bkZxY3drSEZaYXpJU2hp?=
- =?utf-8?B?ZUx2Unl0Zi9MM1A0Ly85amZtMEZrZmlMbUJ2NE83bzByK0FyM1BjalBlR3kv?=
- =?utf-8?B?MzQwZGJTSFk4QUxMVzVTQUd5OTJXZUd2UG5EUmdjWlhBWmNpUWh4VWxCYnJo?=
- =?utf-8?B?NmV0UHRpa1BidWVtMmVHMHF2L2t2QllWb2hINGhXYWM1QTkrN3BKejB1eVdh?=
- =?utf-8?B?bEcwQmUxSWl0Sjg0eWhiOFQ3T2xJZzcxanhXNFdQb1lRSHlOaHRKK1ZUQ2c3?=
- =?utf-8?B?cWpZYjhjK3B1aUdQVzhKOFdhbUF5UGpWbjVHbGc2ZzFQNndLVnBERHZKdmI2?=
- =?utf-8?B?bnZqd08zL1dBVEV4NFFVYlh2T1d1Ky83dnJlMkFVaDhOc2U4RnN2ZFJnZkl1?=
- =?utf-8?B?ZU5iNVVlU1ZqcVBuVHh2TE9kTW5jUGtMM3FwdSs4UzNIVVE0NmRmdXVoVytn?=
- =?utf-8?B?bUdRdkV4b0s0YTNhNjY1NTV1S3NHU2F0U0JrelJDMjhEMFBzWVpMdjVvSjJW?=
- =?utf-8?B?Ynd6cldsRXc2ZU1QYTdsOUhKalpsYWFuL3dpVXU0bDVKMGFyZjIvTnhSeUV6?=
- =?utf-8?B?aEpMeHR2bElKSE9vRmgvZUlXYkYwejJWSzNBeCtObUt1ZkZZOUYzcENiK3dD?=
- =?utf-8?B?bkxLTHZob2Y0SUxGOXNId0ZIK0x3SFo0UXpZSVpYL3lhcWhSUWRjYjN1S0ZO?=
- =?utf-8?B?by9lSkVtczVNZVZjWjZRNDhkaE5uVjRkNFFJWFlRRDh0RFhQR3ZpZEZUcjly?=
- =?utf-8?B?SmgrTzlPL3BZbG5NeUgyNVEwSGVzQXdUWElCMXczcEVqaG8wbWoyUndQZ1BC?=
- =?utf-8?B?MHFVa0N0VGJUOG5jaElNak8wMVQ1OGlrQ2doczVZOWd5dnE3S0RWdXppUG1u?=
- =?utf-8?B?Nm9mU1FkQlF0TWxZUnFhWjdGSGpGYU5BNWNwVWNaSi81T3JwUVhiK09Id1Ry?=
- =?utf-8?B?QkRuWjJrZU43YXVjZFdON2tieHFZQ1VkYit3WXFpakJ3ZGVmTlZ5NEM0eTFq?=
- =?utf-8?B?aGZ0RUdLamE5Rmk2WENkYU1oVUNuaXVGcjJieHhpWFRPbUMxbVgyS2FBcjA3?=
- =?utf-8?B?b1BiWXBsaFdnenlWZkZQQXJ4MFdvdDJDbzR5Yk9wejk5SVNoK1F0cDN4elE5?=
- =?utf-8?B?NGo2VVFrRFc2dWhhcGI5Z04zT3JZRjZxZ1ZiQ1dZejFTbWlBeTRhL01FckRF?=
- =?utf-8?B?VmZGdTRQQWoreEZpSm8xSC9ITjdKeTlmSk95ak5sSExLZU1tMTBWNjNYSEpx?=
- =?utf-8?B?QS9jRmRrTUZHSDRiSjRMRWlCeTVaQ2FQM21QbUVOcGlwVkplYTA0ZHc2NDNO?=
- =?utf-8?B?emo2QlZxQnVyRit2eS9yTkVXRUYxRkRJNXdkdnl4S0U2OVVnYzBWZTh4OHlI?=
- =?utf-8?B?ME5SYlJSelFVRUt0cWpvam42L09oeG5wZ0laZ24xeXVqYzFRbXVWZnlBamlP?=
- =?utf-8?B?Ni9sbFZadmw5TDBOZjF4RkJVelZZQXB1RW9qMjIyNnNONWxQaCsrOWtBR0lP?=
- =?utf-8?B?N042Z3VuRWtIUW9wZFJ4L2dqNk1UZ2hxbXZKWVNXSjFISHcySGdES3plWnJw?=
- =?utf-8?B?Zm1TRm1jUmZtbHhzWnl5Ky80WHNRc0I5THE3aWRuSGRIUGVCMkQvRWVPbUta?=
- =?utf-8?B?dVloYVZZY1k3L2V2RmdGRG9LVSsvdUFYa2Q2eFBtbys2Tkd2QUUzbkNOOHEr?=
- =?utf-8?B?NkJ6bFpBbXhXV2tNZW40TFBQajZOUERyMDc5dEgrcWY1eEdEVUh1Qnc1bUpD?=
- =?utf-8?B?RkpPUjEvYTVhSDdZci83SmEwcjZvMzRpbVhzeG15ZFZpNGZXYll4djJsbDNB?=
- =?utf-8?B?aHhXVGFBcXUwRjVnUWdnSmVpcjMwRVNmKzNnVCs3WElmL0RvMEpBTHc3QXpT?=
- =?utf-8?B?LzU0SFJMYlhpWEFITEhFOTFKeDI5MlpLOXhTMXovN2RJQUx2WE1KR2NBUUpu?=
- =?utf-8?B?VFY2TWI4YXVEWFNoMGtMLzB4Y0h2VFE4YjhsL2hpMUpYeTdnQkNrMUZoMWxK?=
- =?utf-8?B?NU9Sby90aDlESHIrTzRqS0xXcmxmcm94Mmt1Zk5uR002bWFPOXRxamtIblNM?=
- =?utf-8?B?Rzk5RmU5ZFFkaVZnQVJLdUJtRVpWKy9IUDI5QjREMWFsN3FhZGJnaFdUa2VX?=
- =?utf-8?B?Q2hQeGpxWTF4TllZOTFuUm5kS1k0QUU4UXFCTUM2eXBhQnpmRU1zVEdKZTk0?=
- =?utf-8?B?Ui9PRGRaUUttdi9qejA0L1I0bmxNeFRVODhjTEQ5WFRacEhOSDVqK3B4ZWxK?=
- =?utf-8?B?TUc2dy9wVDZ0dXpNcmVHbkwyczRRZStoOFZIRGM4VzFpclpHcVhsbkV6eDhZ?=
- =?utf-8?Q?UDQkqAbjprTUrHu4=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <CCB053130467F440997950F296E22EDE@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	Thu, 19 Nov 2026 23:18:53 +0000
+Received: from [192.168.0.88] (192-184-212-33.fiber.dynamic.sonic.net [192.184.212.33])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 93B9C20B7166;
+	Thu, 19 Nov 2026 15:18:47 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 93B9C20B7166
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1795130328;
+	bh=IoabV2VxoUyRhnu9jmXaZBldz5Wr97ijw+Y3IW83qfM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=H1OAbmxzqQXd4m5xgxOYa9Lc8M4W0KGHhMF8BGhB6RMSjzC1SQd7TCafdyccGls2F
+	 6nwT+n+OjtkIDNHAGdKZKiA1iMkEezYzO9szzMcmIPVVkNqpX/jSvjXlQwnDc/GHk9
+	 fZ7/mXHELX4rc9KBcGZiniFbpcRP+suqjqL+Tm6A=
+Message-ID: <1f486680-f2b2-5967-2cf6-bfbf5fe1fc5f@linux.microsoft.com>
+Date: Thu, 19 Nov 2026 15:18:48 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: GswR2cqEqhKhXwz431ogJT2CZ8YzFgK91kNGw1L6jAngbyuFFCNGzhrQWDpGHxL0gzSmCoej1pffBfGgsvIbhDyEpKpQsZR8UjJbeBskKMVJxjOEiX3tJSI1Vq7AY2KBQii7/R8qDbrWPXmfOqPK0HV/GlL/mF2ZXwXlCD7LRNrXmoArd1vg/1L1DieCFCEfqtEtinnjoNsbmcyB0a+uOBfrspD5VfyQ7DAQQCdOrl5XcWYDxE4DaUZ4FqhqBFM+SEdGwlNmQfyisYZd/PcxyymnN38DNYtkHQW8Fh4EaFjMPoSBE4ds9BIPg5EW1dF/41oEx64Hf4CbCsswFzmMkQ==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB634048.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80d30ece-43b6-45c1-c9f4-08df46935cc9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Nov 2026 23:18:04.0024
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ib6/aMPrkLkrMUE2EtjPHNbSiCPV7rSG5b+U/EF6eFYn+e5ROYdIsxVzHxGcFMwnNbDOq5kD09U8E0KpHuY6QgOI6lr4smlaxEvHJrNJJps=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7171
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v6 4/6] Drivers: hv: Mark shared memory as decrypted for
+ CCA Realms
+Content-Language: en-US
+To: Kameron Carr <kameroncarr@linux.microsoft.com>
+Cc: Michael Kelley <mhklinux@outlook.com>,
+ "decui@microsoft.com" <decui@microsoft.com>,
+ "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
+ "wei.liu@kernel.org" <wei.liu@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
+ "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+ "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "mark.rutland@arm.com" <mark.rutland@arm.com>,
+ "sudeep.holla@kernel.org" <sudeep.holla@kernel.org>,
+ "thuth@redhat.com" <thuth@redhat.com>, "will@kernel.org" <will@kernel.org>
+References: <20261031001412.4150488-1-kameroncarr@linux.microsoft.com>
+ <20261031001412.4150488-5-kameroncarr@linux.microsoft.com>
+ <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
+ <c6b7f583-878d-1f1e-60cc-e602e277d075@linux.microsoft.com>
+ <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
+From: Mukesh R <mrathor@linux.microsoft.com>
+In-Reply-To: <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_151810_546787_E0BE0D11 
-X-CRM114-Status: GOOD (  13.28  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261119_151851_858132_F1477E0E 
+X-CRM114-Status: GOOD (  17.86  )
+X-Spam-Score: -4.5 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -204,26 +93,108 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
 
-T24gVHVlLCAyMDI2LTExLTE3IGF0IDE2OjQzICswODAwLCBIYW94aWFuZyBMaSB3cm90ZToNCj4g
-Rm9yIHg4NiBQViBndWVzdHMsIGFyY2hfZ250dGFiX2luaXQoKSBhbGxvY2F0ZXMgdmlydHVhbCBh
-ZGRyZXNzIGFyZWFzDQo+IGFuZCBQVEUgcG9pbnRlciBhcnJheXMgZm9yIHRoZSBzaGFyZWQgYW5k
-IHN0YXR1cyBmcmFtZXMuIFRoZXNlDQo+IHJlc291cmNlcyBhcmUgbm90IHJlbGVhc2VkIGlmIHRo
-ZSBzdWJzZXF1ZW50IGdudHRhYl9zZXR1cCgpIGNhbGwgZmFpbHMuDQo+IA0KPiBBZGQgYXJjaF9n
-bnR0YWJfZnJlZSgpIGFuZCBjYWxsIGl0IG9uIHRoaXMgZmFpbHVyZSBwYXRoIGJlZm9yZSB0aGUN
-Cj4gZXhpc3RpbmcgY2xlYW51cC4gUHJvdmlkZSBhbiBlbXB0eSBpbXBsZW1lbnRhdGlvbiBmb3Ig
-QVJNLCB3aGljaA0KPiBpcyBhbHNvIHVzZWQgYnkgQVJNNjQuDQo+IA0KPiBGaXhlczogMTYyZTM3
-MTcxMjc2ICgieDg2L3hlbjogc2FmZWx5IG1hcCBhbmQgdW5tYXAgZ3JhbnQgZnJhbWVzIHdoZW4g
-aW4gYXRvbWljIGNvbnRleHQiKQ0KPiBTaWduZWQtb2ZmLWJ5OiBIYW94aWFuZyBMaSA8aGFveGlh
-bmdfbGkyMDI0QDE2My5jb20+DQo+IC0tLQ0KDQpJZiB0aGUgUFYgZ3Vlc3QgaGl0cyB0aGlzIHNj
-ZW5hcmlvIGNhbiBpdCBzdXJ2aXZlPyBJIGRvbid0IGtub3cgeGVuIHB2IHZlcnkNCndlbGwuIERv
-ZXMgdGhpcyBtZWFucyB0aGF0IHRoZSBQViBndWVzdCBoYXMgbm8gZGlzayBvciBuZXR3b3JrLiBJ
-ZiBzbywgdGhlIHVzZXINCmlzIHByb2JhYmx5IG5vdCBjb25jZXJuZWQgd2l0aCBhIG9uZSB0aW1l
-IG1lbW9yeSBsZWFrLg0K
+On 11/12/26 09:49, Kameron Carr wrote:
+> On 11/11/2026 6:43 PM, Mukesh R wrote:
+>> On 11/11/26 10:01, Michael Kelley wrote:
+>>> From: Kameron Carr <kameroncarr@linux.microsoft.com> Sent: Friday, October 30, 2026 5:14 PM
+>>>>
+>>>> In hv_common_cpu_init(), the per-CPU hypercall input/output pages need
+>>>> to be marked as decrypted (shared) for confidential VM isolation types.
+>>>> This is already done for SNP and TDX isolation; extend the same handling
+>>>> to Arm CCA Realm guests so that the host hypervisor can access the
+>>>> shared hypercall buffers.
+>>>>
+>>>> is_realm_world() is declared in include/linux/arm-rsi-cmds.h which only
+>>>> builds on arm64 (it includes <asm/memory.h>), so using it directly in
+>>>> the arch-neutral drivers/hv/hv_common.c would break the x86 build.
+>>>> Introduce a Hyper-V-specific helper following the established
+>>>> hv_isolation_type_snp() / hv_isolation_type_tdx() pattern.
+>>>>
+>>>> On architectures other than arm64 the weak default keeps the existing
+>>>> behaviour.
+>>>>
+>>>> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
+>>>> Signed-off-by: Kameron Carr <kameroncarr@linux.microsoft.com>
+>>>> ---
+>>>>    arch/arm64/hyperv/mshyperv.c   |  5 +++++
+>>>>    drivers/hv/hv_common.c         | 17 +++++++++++++----
+>>>>    include/asm-generic/mshyperv.h |  1 +
+>>>>    3 files changed, 19 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
+>>>> index 46ab2da..da6c3aa0 100644
+>>>> --- a/arch/arm64/hyperv/mshyperv.c
+>>>> +++ b/arch/arm64/hyperv/mshyperv.c
+>>>> @@ -182,3 +182,8 @@ bool hv_is_hyperv_initialized(void)
+>>>>        return hyperv_initialized;
+>>>>    }
+>>>>    EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
+>>>> +
+>>>> +bool hv_isolation_type_cca(void)
+>>>> +{
+>>>> +    return is_realm_world();
+>>>> +}
+
+Hey Kameron,
+
+Since this function is added to check cca and is being used now, there
+are places that still use is_realm_world() in arch/arm64/hyperv/mshyperv.c
+that I think should switch over to hv_isolation_type_cca(). Should be
+quick patch.
+
+Thanks,
+-Mukesh
+
+>>>> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
+>>>> index 31256cb..a60c92c 100644
+>>>> --- a/drivers/hv/hv_common.c
+>>>> +++ b/drivers/hv/hv_common.c
+>>>> @@ -476,6 +476,7 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>        u64 msr_vp_index;
+>>>>        gfp_t flags;
+>>>>        const int pgcount = hv_output_page_exists() ? 2 : 1;
+>>>> +    const size_t alloc_size = ALIGN((size_t)pgcount * HV_HYP_PAGE_SIZE, PAGE_SIZE);
+>>>>        void *mem;
+>>>>        int ret = 0;
+>>>>
+>>>> @@ -489,7 +490,7 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>         * online and then taken offline
+>>>>         */
+>>>>        if (!*inputarg) {
+>>>> -        mem = kmalloc_array(pgcount, HV_HYP_PAGE_SIZE, flags);
+>>>> +        mem = kmalloc(alloc_size, flags);
+>>>>            if (!mem)
+>>>>                return -ENOMEM;
+>>>>
+>>>> @@ -499,14 +500,16 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>            }
+>>>>
+>>>>            if (!ms_hyperv.paravisor_present &&
+>>>> -            (hv_isolation_type_snp() || hv_isolation_type_tdx())) {
+>>>> -            ret = set_memory_decrypted((unsigned long)mem, pgcount);
+>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>>>> +             hv_isolation_type_cca())) {
+>>>
+>>> Could this big "if" statement use "hv_is_isolation_supported()" instead
+>>> of explicitly testing for each CoCo VM type? I ask partly because
+>>> Mukesh Rathor has just submitted a patch [1] that introduces a new
+>>> function that does something almost exactly the same as
+>>> hv_is_isolation_supported() and uses it here.
+>>
+>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>>>> +             hv_isolation_type_cca())) {
+>>
+>> With my change, this will become:
+>>
+>>          (hv_isolation_hw_cvm() || hv_isolation_type_cca())) {
+> 
+> Any reason you wouldn't change hv_isolation_hw_cvm() to
+> 
+>    return hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>      hv_isolation_type_cca()
+> 
+> That would seem more logical to me.
+> 
+
 
