@@ -2,126 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4EE606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B769606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wlt3QtFb;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=YE2brgLH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Jyx4tXE;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=UdcRID8K
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=F7dD34vYVgEIhrODdioIEmA+HIADJyQjsjtb9GQQ3FY=; b=Wlt3QtFbiJICRF7k+hO6vr6ZgI
-	FqhkVGpozRAzKnJoRu9DNaBPSatCrYMKUL/YKTq9DJYH9Nj+QOzQKwfatyEGBY3NjgyAU4eXow2e4
-	FuZ0TxtWlgSTGLIUMHxoo9KcemULeSrBryS1J+UAkXDY/swbjLeTQuzF3ANvuubwongLHZl3n3byd
-	K8VvOH6QV0P28MfeQvvj55BmI5jJSQhwi0kVYFrTocWqfD446SAiVhfQvR5VwdtjytKP0Hltr8aIN
-	fTBAazN4fIw4fd6NyQKpqVC5uROIYFlqajsqgl/+eHZu8xDGreWFtWXRISyo7irPVnUy29/+Q8g//
-	eOdhdkaw==;
+	bh=FpRAw10TJh8yb7R34VwZYYTrEJ2MgNuHTOaOU0kAmbg=; b=1Jyx4tXEU0zPe2I6Sre9i0s+5S
+	pNuybsDUN6Sxrp1FFtCUJH/oyXvdi4bUT2pAvuf0iQbEpSIGUO6haepBlVUGob7yZpd5qMVJlYJ+L
+	MFaK1d224QlPR9YYoDaPcKOwdrV2NgeB7BNrpAL9anrpg8iMnHzRo1t7ww3OeA5mnCvZBsPYwLQIp
+	bklFXzLLwUUQvA0pXlJfZo0mB69t2ZTW6tkPmCMPPCPjjgM4YaUeCPPP6oepcy015alSKOZ9pNsQ8
+	2Y3bafDAikmSEhfsWFb5uA+rVsVvf919nbVM411mPb7oqc2+o7fMWKM9AFhGNXncgqcUbatHALsrf
+	ssxNVzMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5ME-0000000CjNF-0uns;
-	Thu, 19 Nov 2026 16:51:34 +0000
-Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5MB-0000000CjMc-1oXy
+	id 1xU5Ol-0000000Cjpm-08JD;
+	Thu, 19 Nov 2026 16:54:11 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU5Oi-0000000CjpI-0mtu
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 16:51:32 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=t79vv7P+x/qE4WsoAk+ioz9viX4ZRHuPqwh/doYxMbPxF72SybQZPmWvgr08I+0+s0WdNgJ20q1R8g42xiyJIJMct5y3MslMl32iv79if6PI6gZhsEneLbo5GQK9x4cPzgPtcVc76WUce0alJGhkjnXdVIUD7raQKkWfoTbVvvjZ44TSHjpP2y8julaxB77yg2WkJjE5fo2u7p0dVq744AnXiD1M5EX5YO8cujqhK2YaawPnDskzintC0vLl7Esi1eLSZbtZme3UoobHQKre2s8p3MOar2eNwx0CotWdK5ize5jb23sp/zCWOISyXitWkRfd5kRKam3V0rMBH6mc1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F7dD34vYVgEIhrODdioIEmA+HIADJyQjsjtb9GQQ3FY=;
- b=f0Qc+gPS4GA1Ml+C6/nmS5k0D3IM08FuOsNIMQ27sxZSUND9LpIlqF++b22qsdM754Hb+yDmEymueGVbO9GDsI8239OOjsjsWD9gvWRght7DnFa0F3Fzcen0mlPHjZriB2PKuXfDgqlHo1s9nwIVpbFDeejXkeYwo5JAviwadfRA1GxJXiQFM6oeKazQiAhcSuD2d44HFZcx/5Tib6RWHGa0jUIeULnVAK7Ahw6EHiu5e55NJeu5a0GiMcivT8wiabi8IXMFojnwNCX3MVlxr0e/TNiKBybvAmsFkXTJJ5KloaNCpTZSI1chjgLzSggnFXDA9aE1xNgU/3F5V2qjZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=arm.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F7dD34vYVgEIhrODdioIEmA+HIADJyQjsjtb9GQQ3FY=;
- b=YE2brgLHjWv/XMDq8lR3/iu2arg/jvkdyxI6kOo47cf1U+5eTz0eHnLCTIfVT6Nh3znCiPmigzyCopmD43bhxdkyuNYpfvmfotEqsfBrMKvhh1izkwcbolEMKKkWkMUVBUcHwZuX357Xp/AGXYxd26Oz54UAYmLmrBMgKTUyUYA8cWQVnT+AAjEmUCBIsD9ezBILBUiTEI9UpeLQ6V03EpmJL35Oj9sS6xqP7HbicpH4f+7mpjw7129mnIfHFmEnkeWV88So+R+rzf7CPm3g2Ok8t3VYLSTqcp+IBmA9Dg5BeOo+9LqQQSaxmzOnJrjwA+ZKienjWoMrUxrkAe3yIA==
-Received: from BN0PR04CA0151.namprd04.prod.outlook.com (2603:10b6:408:eb::6)
- by DS7PR12MB8204.namprd12.prod.outlook.com (2603:10b6:8:e1::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.14; Thu, 19 Nov 2026 16:51:22 +0000
-Received: from BN7PEPF000000A0.namprd04.prod.outlook.com
- (2603:10b6:408:eb:cafe::33) by BN0PR04CA0151.outlook.office365.com
- (2603:10b6:408:eb::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.10 via Frontend Transport; Thu,
- 19 Nov 2026 16:51:22 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 216.228.118.232) smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- BN7PEPF000000A0.mail.protection.outlook.com (10.167.248.152) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 16:51:22 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
- 2026 08:51:01 -0800
-Received: from drhqmail203.nvidia.com (10.126.190.182) by
- drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 19 Nov 2026 08:51:00 -0800
-Received: from nvidia.com (10.127.8.14) by mail.nvidia.com (10.126.190.182)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57 via Frontend
- Transport; Thu, 19 Nov 2026 08:50:59 -0800
-Date: Thu, 19 Nov 2026 08:50:57 -0800
-From: Nicolin Chen <nicolinc@nvidia.com>
-To: John Garry <john.garry@arm.com>
-CC: <will@kernel.org>, <jgg@nvidia.com>, <robin.murphy@arm.com>,
-	<joro@8bytes.org>, <praan@google.com>, <kevin.tian@intel.com>,
-	<smostafa@google.com>, <linux-arm-kernel@lists.infradead.org>,
-	<iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>, <jamien@nvidia.com>,
-	<kas@kernel.org>, Cristian Prundeanu <cpru@amazon.com>, Breno Leitao
-	<leitao@kernel.org>, <xueshuai@linux.alibaba.com>
-Subject: Re: [PATCH v13 04/12] iommu/arm-smmu-v3: Pack the MSI vectors of the
- used sources
-Message-ID: <av8o8TV3JO9W4dtb@nvidia.com>
-References: <cover.1794942324.git.nicolinc@nvidia.com>
- <40570c344d7fce94c4e80316503a9162bb31cb62.1794942324.git.nicolinc@nvidia.com>
- <dc59b81c-997d-4f79-bd95-be4981e4dd24@arm.com>
+	Thu, 19 Nov 2026 16:54:09 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A8A901575;
+	Thu, 19 Nov 2026 08:54:03 -0800 (PST)
+Received: from localhost (unknown [10.2.196.114])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 360A43F673;
+	Thu, 19 Nov 2026 08:54:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795107246; bh=UH4KDSFam0LfRKFnI3gJVWSsyCyljyOGfCQ7wrragEk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UdcRID8Kz4lZK/h1ThJUkIPZuCu8llRVTIWUol7CEgsEAJDWIJ0dMrQdRTWZMoOz2
+	 XP992aMvTFRo5UvN7IMTff5COtXdHBV8kWVELcF8QaQZkmk72M2pRJtv6Ua4OgHRjd
+	 /qd3KyGzwJg18bFRXM4FHYSooM96/pJ6aeSI40CE=
+Date: Thu, 19 Nov 2026 16:54:04 +0000
+From: Leo Yan <leo.yan@arm.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>, Johan Hovold <johan@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Will Deacon <will@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Jeremy Linton <jeremy.linton@arm.com>,
+	Marc Zyngier <maz@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@arm.com>,
+	James Clark <james.clark@linaro.org>,
+	Anshuman Khandual <anshuman.khandual@arm.com>,
+	Al Grant <al.grant@arm.com>, "Johnny.Fan" <johnny.fan@cixtech.com>,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	driver-core@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org
+Subject: Re: [PATCH 2/8] device property: Add software-node IRQ affinity masks
+Message-ID: <20261119165404.GA9176@e132581.arm.com>
+References: <20261116-acpi_arm_pmu_registration_hmp-v1-0-0371d4eca626@arm.com>
+ <20261116-acpi_arm_pmu_registration_hmp-v1-2-0371d4eca626@arm.com>
+ <avwHQXJxOir8XXxX@ashevche-desk.local>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dc59b81c-997d-4f79-bd95-be4981e4dd24@arm.com>
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN7PEPF000000A0:EE_|DS7PR12MB8204:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e6bdfd8-e984-45b0-198b-08df465d5771
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|36860700016|7416014|82310400026|1800799024|23010399003|261021121427099003|56012099006|11063799006|261022075727099003|4143699003|261021135927099003|261026121527099003|10067099003|261102123227099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: vOkAdZ3eFXyo1vWuUyLid6T1AqDmfH9mefPAzf0foothqHaZzP4O5wPHT2ZpmIKNR2e/f0axH68GUMRE7f74xryZmGG9Vno7xj10spVidfxOjcRmkT9voJ+FizCgqQ5dJOhfkISY8B4d/VvsS0ql3OX3yAjpwoWH8mbokc0FCt/QMZTN4gF5qk14y1tnz1OF3Jwb8kwB58lyyCNLu8fe7yyKD26zuONKgW4oxfDhSLENQvzQOPdoTicO5qa9YKHnSTelJQy9VyuQUHW92M3165PrDGnO0Kdt/UsQZYv3n/0RRyInUfwPIw4/sQdvjFLLSQSZazbmOYhI9tVK6ZoEgpNz1YRTova3rsAt5Cqcip00WdYuqDsaeFJPnuaFh3wvmltM0q0nHgJVxypkWV5Q0kC/uIkuTlEMCXuoZ+VfYhVa8pZzv/ct6HBc2yBOmPugpmS3pCGmb7Bn1Ybqc6OUo4E8BubExXalNAPERnZqvb7Yv1z5mCAU+DXtH1rPXWU2LSXLnVuMzmObv8Vuxs8vttybwSTJn8w6eKUVwfDOjbVRwnfElLoyQFLHul5XEUubvLzy4BCViBbCN4FTsUNuiZYmeHTnIBXzdpewbX2baWIKG+Jac+KpqnP1MYWKpp4uX7/uRHoy1DnQw18d3XzTzVZn1awAVicFBLfoUfgOMYt9ZPFriYEGa+5//LLXc7OI8MZVapZI0gCZTFL0hcCIxA==
-X-Forefront-Antispam-Report: CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(36860700016)(7416014)(82310400026)(1800799024)(23010399003)(261021121427099003)(56012099006)(11063799006)(261022075727099003)(4143699003)(261021135927099003)(261026121527099003)(10067099003)(261102123227099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: hyoqFm/klnxEUVosDXEDkjpSTVecVj9TajRKFuNZWbGupFmuW42jPgc0n3hblF5onAEBozfd1YshcqnXXvzMUXoJ4NmGhhQ9DmpXehZBcHgEw7F0B5ydWIOzZ6FGsYCz3A9fhjcp1VwvUU7+4jch+YZsR8dpG07iZ3eQA0TFc/m0n9fYEhRiaF0k41MbiQ4vruRmOzo6wyEdyC23/np0TEGCpPhWmUR3ESzmmglVdbJatxsGYmOeASVKJu7hghOYINPMKZAp1FH+ioxnspq09qOIHv1v6aKKsRtZOHSetyHxOKBa8Ro0+lEitwga0UEYMlWF2vIUqc7C5yhOOzc9oyB/kQTauYSzTdHfZRS0++mTlAS0OvMTVpN/TNtalcbvF8E2Y8PmQOAXV8qB1/orZTQR3WLWtqmHFZ05LrPOQjyaAOInIHrf/u7TSVLQkj49
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 16:51:22.0947
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e6bdfd8-e984-45b0-198b-08df465d5771
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN7PEPF000000A0.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8204
+In-Reply-To: <avwHQXJxOir8XXxX@ashevche-desk.local>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_085131_494007_E5EBA667 
-X-CRM114-Status: GOOD (  18.19  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_085408_320904_B8CFCC0A 
+X-CRM114-Status: GOOD (  21.37  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,40 +96,76 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 19, 2026 at 10:55:41AM +0000, John Garry wrote:
-> On 11/17/26 19:21, Nicolin Chen wrote:
-> > arm_smmu_setup_msis() skips the PRIQ vector by decreasing nvec, which only
-> > works since PRIQ_MSI_INDEX is the last index. A subsequent change will make
-> > the EVTQ optional for kdump, whose index is 0, so that trick won't work.
+On Tue, Nov 17, 2026 at 09:50:25AM +0200, Andy Shevchenko wrote:
+> On Mon, Nov 16, 2026 at 06:21:29PM +0000, Leo Yan wrote:
+> > Devices created from firmware tables may need CPU affinity information
+> > without a corresponding firmware node. Allow software nodes to supply
+> > this information through the common firmware node IRQ affinity API.
 > > 
-> > Pack the vectors of the used sources instead, and record the source of each
-> > vector in a new msi_map, for arm_smmu_write_msi_msg() to find the register
-> > set, regardless of the sources in use.
-> > 
-> > No functional change intended.
-> > 
-> > Suggested-by: Jason Gunthorpe<jgg@nvidia.com>
-> > Signed-off-by: Nicolin Chen<nicolinc@nvidia.com>
+> > Add software_node_add_irq_affinity() to copy a CPU mask for an IRQ index,
+> > and implement the software node irq_get_affinity callback. Keep each mask
+> > until the node is released and reject replacement so borrowed masks remain
+> > valid for the node's lifetime.
 > 
-> looks ok, so FWIW:
 > 
-> Reviewed-by: John Garry <john.garry@arm.com>
-> > +	/* Map each vector back to its source for arm_smmu_write_msi_msg() */
-> > +	for (i = 0; i < ARM_SMMU_MAX_MSIS; i++)
-> 
-> Some might prefer using brace when body statement(s) covers > 1 line
-> 
-> > +		if (vec[i] < nvec)> +			smmu->msi_map[vec[i]] = i;
-> > +
+> This is definitely not a place where to put that. Are you stating that any
+> software node might find the IRQ affinity information useful? I don't think
+> so. With that in mind this approach looks like a layering violation.
 
-I don't intend to respin the whole series for this nit.
+My intent is to expose optional affinity information through the
+common platform_get_irq_affinity() interface.
 
-But, if there is a more solid reason for a respin, I'll fold it in.
+As an alternative, could we represent the masks in an "irq-affinity"
+property, with one CPU mask per IRQ index? The swnode .irq_get_affinity
+callback would read it, using the existing property storage.
 
-Nicolin
+Would interpreting this property in swnode still be a layering
+violation? See the sample code below.
+
+---8<---
+
++static const struct cpumask *
++software_node_irq_get_affinity(const struct fwnode_handle *fwnode,
++			       unsigned int index)
++{
++	const struct property_entry *prop;
++	const void *masks;
++	size_t size = cpumask_size();
++
++	prop = property_entry_get(to_swnode(fwnode)->node->properties, "irq-affinity");
++	if (!prop || index >= prop->length / size)
++		return NULL;
++
++	masks = property_get_pointer(prop);
++	return masks ? masks + index * size : NULL;
++}
++
+ static const struct fwnode_operations software_node_ops = {
+ 	.get = software_node_get,
+ 	.put = software_node_put,
+@@ -774,6 +796,7 @@ static const struct fwnode_operations software_node_ops = {
+ 	.graph_get_port_parent = software_node_graph_get_port_parent,
+ 	.graph_parse_endpoint = software_node_graph_parse_endpoint,
+ 	.add_links = software_node_add_links,
++	.irq_get_affinity = software_node_irq_get_affinity,
+ };
+
+> ...
+> 
+> And overall, the domain specific (IRQ, DMA, et cetera) topics feels a bit
+> misplaced when one can find that in the generic properties. We also have
+> that PHY thingy, which is complete alien to word 'generic'.
+
+Since software nodes have no standard property specification of their
+own, would this be an appropriate way to define "irq-affinity" as a
+generic swnode property?
+
+Thanks for the review!
+
+Leo
 
