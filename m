@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B769606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109F4606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Jyx4tXE;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=UdcRID8K
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M8FkqdAR;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XyHA6W1w
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,76 +14,83 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FpRAw10TJh8yb7R34VwZYYTrEJ2MgNuHTOaOU0kAmbg=; b=1Jyx4tXEU0zPe2I6Sre9i0s+5S
-	pNuybsDUN6Sxrp1FFtCUJH/oyXvdi4bUT2pAvuf0iQbEpSIGUO6haepBlVUGob7yZpd5qMVJlYJ+L
-	MFaK1d224QlPR9YYoDaPcKOwdrV2NgeB7BNrpAL9anrpg8iMnHzRo1t7ww3OeA5mnCvZBsPYwLQIp
-	bklFXzLLwUUQvA0pXlJfZo0mB69t2ZTW6tkPmCMPPCPjjgM4YaUeCPPP6oepcy015alSKOZ9pNsQ8
-	2Y3bafDAikmSEhfsWFb5uA+rVsVvf919nbVM411mPb7oqc2+o7fMWKM9AFhGNXncgqcUbatHALsrf
-	ssxNVzMg==;
+	bh=76oqwEH/SPEJYq2mPir1GKyIN8scXu14LeMlRXgXqmY=; b=M8FkqdARaQBApbqyd6cTIsmEnF
+	9XxEhM4hbcxAZrRvPotziR3xX6gzqmNsCWphJ8HPDyOX8HDEcgx+CM55cmY9rQEC88VUqLZ4JX9mR
+	I/1PccsimIzYb+1hx/6Fr9togZQxlruOmFnYV4hPlIYWIaPm5Q6+WBZ9y9x9H7tPgQdc8+UpwsnCr
+	6rp157zb30BEKJsVRkdWUKRBEobNELZhXUs/l4pokr1n0LdpgNi+oFZkPj1lcEI5SCYGJOExuVpHI
+	M+KWazYkGtMHQmcBLKHi2LZg7YgWqymTFpWurbnE7cxOtjsJtMGCX4pg5IGPXsJhTEkIjlGwlDvM9
+	RTTDHpKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5Ol-0000000Cjpm-08JD;
-	Thu, 19 Nov 2026 16:54:11 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5Oi-0000000CjpI-0mtu
+	id 1xU5Rw-0000000CkbN-3hbT;
+	Thu, 19 Nov 2026 16:57:28 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU5Rw-0000000Ckb5-0xWm
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 16:54:09 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A8A901575;
-	Thu, 19 Nov 2026 08:54:03 -0800 (PST)
-Received: from localhost (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 360A43F673;
-	Thu, 19 Nov 2026 08:54:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795107246; bh=UH4KDSFam0LfRKFnI3gJVWSsyCyljyOGfCQ7wrragEk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UdcRID8Kz4lZK/h1ThJUkIPZuCu8llRVTIWUol7CEgsEAJDWIJ0dMrQdRTWZMoOz2
-	 XP992aMvTFRo5UvN7IMTff5COtXdHBV8kWVELcF8QaQZkmk72M2pRJtv6Ua4OgHRjd
-	 /qd3KyGzwJg18bFRXM4FHYSooM96/pJ6aeSI40CE=
-Date: Thu, 19 Nov 2026 16:54:04 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>, Johan Hovold <johan@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Will Deacon <will@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Jeremy Linton <jeremy.linton@arm.com>,
-	Marc Zyngier <maz@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@arm.com>,
-	James Clark <james.clark@linaro.org>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	Al Grant <al.grant@arm.com>, "Johnny.Fan" <johnny.fan@cixtech.com>,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	driver-core@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org
-Subject: Re: [PATCH 2/8] device property: Add software-node IRQ affinity masks
-Message-ID: <20261119165404.GA9176@e132581.arm.com>
-References: <20261116-acpi_arm_pmu_registration_hmp-v1-0-0371d4eca626@arm.com>
- <20261116-acpi_arm_pmu_registration_hmp-v1-2-0371d4eca626@arm.com>
- <avwHQXJxOir8XXxX@ashevche-desk.local>
+	Thu, 19 Nov 2026 16:57:28 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 9A53B4414D;
+	Thu, 19 Nov 2026 16:57:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8493B1F000C5;
+	Thu, 19 Nov 2026 16:57:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795107447;
+	bh=76oqwEH/SPEJYq2mPir1GKyIN8scXu14LeMlRXgXqmY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=XyHA6W1wKVMNLYfFY1PAf/Ex4mdE1JcFitb6qqtkgjCTBJaFEcOtED6FxQbEqefL0
+	 Ncgayy7Nw64SclToqro3Ouy/3hd/H0XxSHgFQREhlhAocensYjjBCo5IFWuRIwPs33
+	 JXo39xjAoz59cRTzCjDf8uWvxMkapjWEIVupLCl0Mh77cG+wt1sgJOElJK59winlmK
+	 VwQ5lQNRc63uo6VGe7UqFdToaGqexZDDRmAdk7w2Bp/IYSwOajcT3+Bz3qJekfkWpu
+	 lw1AeLkl0Zz+xi9WOLQaYNCSnaD6FlCHhp1c3boBMrR2MnL4mZwdrayqrq7fuF38GW
+	 l4ZhmFcKcmEHA==
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+	by mailfauth.ams.internal (Postfix) with ESMTP id EA703198003A;
+	Thu, 19 Nov 2026 11:57:21 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-06.internal (MEProxy); Thu, 19 Nov 2026 11:57:24 -0500
+X-ME-Sender: <xms:cSr_ameBHFzvTpO_rIXLLBLXU1EtHVEWsAz5WbTam7k2-UcX2tEZ-Q>
+    <xme:cSr_aiELSNQKkENGP3HW8vjyZECX5yYGKnnsGQbir0ZYCD14tsQ80C5UM_PegQTYl
+    3xX9WuG7w1QIT8XkuUWnqCQOrrT624B54a4tr0RtjKQrIHOnLKl-0ew>
+X-ME-Received: <xmr:cSr_asKf2AeJxBNI7ovLT5AEEGIVGzvlqgo1NZUyJTdeY0FiJzdNb7ZFqGk>
+X-ME-Proxy-Cause: dmFkZTECkGlHxkJe4+gF+AuCoU2k+QynF2HxgU91M7WpbV+jxcinlrLiUAlopmwL7pHS5E
+    LvY6KmYY1CnLULCOYDnE2aQ2kgo6IRkiKhm5LxtPn7IKmVmSl2K8sC9zJ+8pm5OpVnzjuV
+    fRWuCOJXOSfgZZ0NkT7vXFT++F+DtOtufWah4kNGqv0AwZp9zJ7UIAFYHuSk7ZKn+oKO77
+    hexhpL8B097bMkGS9j+v2YfQdGxHotBzVpmnoDqvMgHoIT2OPWTvtsHXVEcKybYF5MiCOu
+    QBbkrn+m9VqknXPorWw0kxlwBeqOuuMMg1FBjguaOglb0CToJNjxQFXxizDM16c5bm81am
+    MQdruA6/0IfuLeflv6gkoGd/RzA33YQ+gVJWyfajlr4b2zUvj7EKK6V6uri26hZLd9Fk07
+    uRye4XSksbK4D7dJTLukd8gIWDKjXBKBQWu5lEK9vXNd8LheaZBcDuADP52l8yEYBUCr+2
+    DDOTfElQhr4JVbCzxUqHvc+6tyt98Kcqpo/VcKjX2Lq7R5OIW9psl9ujJb3DIm04IkPYyP
+    43qVgEm00n+VtDmVU5fl92UBcjQ6g/HCyqDASf14U4YufP/sanWDvA8RoIXG38gG0vwq81
+    CGXsuaIZRC4FvA2NYxcawcSeI50G0guJ56YSlhsow17BXCtkgZyx9HvlWvyQ
+X-ME-Proxy: <xmx:cSr_aieaBQ0adQssbpm_F0KnQw-naYjUY-pfKsIJM6hUXsyMdJ6QYA>
+    <xmx:cSr_aisiYnPHW5UqVSnLtXnONHB5_fQxajEnNOqxKlUlmmm6TklXjQ>
+    <xmx:cSr_amvPG3SzOYQyCtsQtO9lhAl-pv1WMQVs-hObBl4F3kHaz_tyIQ>
+    <xmx:cSr_ap8HNqsgR41UYIHUbDEfE_pga_SiO9X66FWCEcKwQmTU2Ov9sA>
+    <xmx:cSr_an9RX_WxlPHzmJ-uefd-csKOGhiCfcaO5lya0XFI7x-RrfKxX4RP>
+Feedback-ID: i10464835:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 19 Nov 2026 11:57:20 -0500 (EST)
+Date: Thu, 19 Nov 2026 16:57:19 +0000
+From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
+To: Ada Couprie Diaz <ada.coupriediaz@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, Will Deacon <will@kernel.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Vladimir Murzin <vladimir.murzin@arm.com>, Marc Zyngier <maz@kernel.org>, Breno Leitao <leitao@debian.org>, 
+	Jinjie Ruan <ruanjinjie@huawei.com>, Doug Anderson <dianders@chromium.org>, 
+	Linus Walleij <linusw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Thomas Huth <thuth@redhat.com>, Dawei Li <dawei.li@linux.dev>, 
+	mrigendrachaubey <mrigendra.chaubey@gmail.com>, kernel-team@meta.com, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: entry: sdei: always set VBAR_EL1 on SDEI entry
+Message-ID: <av8p2WL4R2tlU1HX@shutemov.name>
+References: <20261117174814.95936-1-ada.coupriediaz@arm.com>
+ <20261117174814.95936-2-ada.coupriediaz@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <avwHQXJxOir8XXxX@ashevche-desk.local>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_085408_320904_B8CFCC0A 
-X-CRM114-Status: GOOD (  21.37  )
-X-Spam-Score: -4.4 (----)
+In-Reply-To: <20261117174814.95936-2-ada.coupriediaz@arm.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,71 +108,47 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 09:50:25AM +0200, Andy Shevchenko wrote:
-> On Mon, Nov 16, 2026 at 06:21:29PM +0000, Leo Yan wrote:
-> > Devices created from firmware tables may need CPU affinity information
-> > without a corresponding firmware node. Allow software nodes to supply
-> > this information through the common firmware node IRQ affinity API.
-> > 
-> > Add software_node_add_irq_affinity() to copy a CPU mask for an IRQ index,
-> > and implement the software node irq_get_affinity callback. Keep each mask
-> > until the node is released and reject replacement so borrowed masks remain
-> > valid for the node's lifetime.
-> 
-> 
-> This is definitely not a place where to put that. Are you stating that any
-> software node might find the IRQ affinity information useful? I don't think
-> so. With that in mind this approach looks like a layering violation.
+On Tue, Nov 17, 2026 at 05:48:12PM +0000, Ada Couprie Diaz wrote:
+> diff --git a/arch/arm64/kernel/entry-common.c b/arch/arm64/kernel/entry-common.c
+> index beb56891fc4f..cb122163a68d 100644
+> --- a/arch/arm64/kernel/entry-common.c
+> +++ b/arch/arm64/kernel/entry-common.c
+> @@ -1079,19 +1079,22 @@ __sdei_handler(struct pt_regs *regs, struct sdei_registered_event *arg)
+>  	far = read_sysreg(far_el1);
+>  
+>  	/*
+> -	 * With KPTI, VBAR_EL1 holds the trampoline vectors from the return to
+> -	 * EL0 until the next exception from EL0 maps the kernel. They only
+> -	 * handle exceptions from EL0: an exception taken here would run their
+> -	 * empty current-EL half and never come back. Switch to the kernel
+> -	 * vectors. The IRQ-like resume keeps using the interrupted VBAR, so it
+> -	 * still goes through the trampoline.
+> +	 * As an SDEI event can take over at any point, VBAR_EL1 might not allow
+> +	 * us to take an exception safely :
+> +	 * - With KPTI, VBAR_EL1 holds the trampoline vectors from the return to
+> +	 *   EL0 until the next exception from EL0 maps the kernel. They only
+> +	 *   handle exceptions from EL0: an exception taken here would run their
+> +	 *   empty current-EL half and never come back ;
+> +	 * - With VHE, the kernel runs at EL2 and VBAR_EL1 accesses VBAR_EL2.
+> +	 *   KVM might be running a guest and switched VBAR_EL2 to the
+> +	 *   hypervisor vectors.
+> +	 *
+> +	 * Switch to the kernel vectors unconditionally and restore
+> +	 * the interrupted VBAR_EL1 before returning.
+>  	 */
+>  	vbar = read_sysreg(vbar_el1);
+> -	if (arm64_kernel_unmapped_at_el0() &&
+> -	    vbar == (unsigned long)raw_cpu_read(this_cpu_vector)) {
+> -		write_sysreg((unsigned long)vectors, vbar_el1);
+> -		isb();
+> -	}
+> +	write_sysreg((unsigned long)vectors, vbar_el1);
+> +	isb();
 
-My intent is to expose optional affinity information through the
-common platform_get_irq_affinity() interface.
+This makes the comment I added in do_sdei_event() wrong: it still says
+that an exception taken during a KVM world switch goes to the hyp
+vectors and hyp-panics. Could you drop it in this patch?
 
-As an alternative, could we represent the masks in an "irq-affinity"
-property, with one CPU mask per IRQ index? The swnode .irq_get_affinity
-callback would read it, using the existing property storage.
-
-Would interpreting this property in swnode still be a layering
-violation? See the sample code below.
-
----8<---
-
-+static const struct cpumask *
-+software_node_irq_get_affinity(const struct fwnode_handle *fwnode,
-+			       unsigned int index)
-+{
-+	const struct property_entry *prop;
-+	const void *masks;
-+	size_t size = cpumask_size();
-+
-+	prop = property_entry_get(to_swnode(fwnode)->node->properties, "irq-affinity");
-+	if (!prop || index >= prop->length / size)
-+		return NULL;
-+
-+	masks = property_get_pointer(prop);
-+	return masks ? masks + index * size : NULL;
-+}
-+
- static const struct fwnode_operations software_node_ops = {
- 	.get = software_node_get,
- 	.put = software_node_put,
-@@ -774,6 +796,7 @@ static const struct fwnode_operations software_node_ops = {
- 	.graph_get_port_parent = software_node_graph_get_port_parent,
- 	.graph_parse_endpoint = software_node_graph_parse_endpoint,
- 	.add_links = software_node_add_links,
-+	.irq_get_affinity = software_node_irq_get_affinity,
- };
-
-> ...
-> 
-> And overall, the domain specific (IRQ, DMA, et cetera) topics feels a bit
-> misplaced when one can find that in the generic properties. We also have
-> that PHY thingy, which is complete alien to word 'generic'.
-
-Since software nodes have no standard property specification of their
-own, would this be an appropriate way to define "irq-affinity" as a
-generic swnode property?
-
-Thanks for the review!
-
-Leo
+-- 
+  Kiryl Shutsemau / Kirill A. Shutemov
 
