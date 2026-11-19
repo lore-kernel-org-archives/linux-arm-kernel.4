@@ -2,74 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07781606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F0D606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gb62FZRx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=naJe9zJl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qE3HbLKl;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=G7wO+0Jd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qukOtTwYNeY65fV7GEd3+hUFNE24AN69HXQ89jir/To=; b=gb62FZRx1ayAMk
-	ZotTvsIMKwXbIIvt2NoNNYo0gOL45Y+uZscQfH1nH4raFgqEbWBQzjM0uhsFefrbG/2oTrkq3Fn+I
-	ZTqmegZgIr7huTZpdVhHD59M6J9PzJjnQOYBHmAQ8bGVH2bjOIMkOfJP8XeNl9FXc0UhKuK2Jm9Y5
-	1FvGfxSTfuNOjF+Evp1RQshE/jAqbtcFkLn3m65cikCpWAli8vMhQXpYetIQ9UhZpMlbLgYk8FnH4
-	N65295B8ikiveGFF/1LAwdC9NqjFuHQwpvMZLRexfnXI3a+gU/5QnmuaFoPOHfRAtli/TcPyfFtKA
-	MNH/6nyWRmhDXDKjDk9Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=RmdpddYozjJPVb6GiCDyPK6GgcDok35FRFm3gKsU32s=; b=qE3HbLKlB0XF5/W7/CfXgXLFGS
+	7esSLPsTA4DXvLIzEuCmFlSE6es2nWl9y6cF+YUwQB095SV2GwQw49lpV/vuAoPhtIwYxmts6rS/8
+	MXPVi4Zq9ag02hwItYTsyYlum7Jw9BBpkWdW73I4uJYOarys9gc4MiVZVErXKoz0y5A6uS8nmfiNQ
+	mMtnQSy5nPkzZJkErLQdivVOWavv0E5lG/6ZdXbYDYrc/CgCUHGYIJQ2qAnrsG902JsWFmdfYqsHq
+	Zr2tZnujsoxybNNru0KKxCl++JTQNy4Iq4IXH9FbKKJBIh8jSlXczIc4JscqFtGoPriCymWnwVQjy
+	c4HZUL+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7Wb-0000000DAJJ-3bHQ;
-	Thu, 19 Nov 2026 19:10:25 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xU7XA-0000000DASk-1oVU;
+	Thu, 19 Nov 2026 19:11:00 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7Wa-0000000DAJ0-3pEb;
-	Thu, 19 Nov 2026 19:10:24 +0000
+	id 1xU7X8-0000000DAS9-25Ne;
+	Thu, 19 Nov 2026 19:10:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 587D34047E;
-	Thu, 19 Nov 2026 19:10:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E0AE1F000C4;
-	Thu, 19 Nov 2026 19:10:21 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C793347217;
+	Thu, 19 Nov 2026 19:10:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82B461F000C8;
+	Thu, 19 Nov 2026 19:10:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795115424;
-	bh=qukOtTwYNeY65fV7GEd3+hUFNE24AN69HXQ89jir/To=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=naJe9zJlPJDbDr9Uzls5auFH8KkqnjthM6eaxXlB8hrSg+hQ8foeq0O4wSfSmyZFy
-	 6XtXt9s6dTzaL72CUzXE1lWAAUjmEsXLrqcw58S6neziNlGosVZ2SLy6Dd/X8RBb+k
-	 UtFhcuUi9hNmuuWtagAKPlPOTde5ayAeemBqG/RUnasBJj18MZh+vYZQwgtjkspv8I
-	 qBRanuyR2zld1GAqteWK721ZZ82Mio95OPV31090Y1BOcmiJ37zKE87440mXfxhUYu
-	 6m6A1bEL9tHjiQSzZujS0X17zKTOuwZZRjcme/O97XvO1mAD0JZxLH7VbXb98KxhMk
-	 sklQSxtzurEhA==
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Valerio Setti <vsetti@baylibre.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
-References: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
-Subject: Re: [PATCH v2 0/2] ASoC: meson: gx-formatter: change stream lock
- from mutex to spinlock
-Message-Id: <179509708687.116416.8043243616213914673.b4-ty@b4>
-Date: Thu, 19 Nov 2026 14:04:46 +0000
+	s=k20260515; t=1795115457;
+	bh=RmdpddYozjJPVb6GiCDyPK6GgcDok35FRFm3gKsU32s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=G7wO+0JdhpiJYvZZBUE7uwCeGyUhReO7BHSnwt+i9vFE/Zvid9NCxYAsqXULdhs33
+	 GMMofY/ROk5vYToVnE3QVvmF8pcXUjkIVC6yODjq9kZtk4DBNE0DRpgnG7DxRrXPw0
+	 NdNBquIzspf4qJGYfCiH/fCYh3khzvSwRdmwZw6QzVJOtVM/TIbnAgrA+wm5vMrFuG
+	 D1o6OEss5IDWm0KP6WjMRzDoKSjLR4oqQhI5GUi/oV/+7HA6DpIznFxeMsbDomJ5nX
+	 kTrad4OnLMeRfEWRuXy7YhWtVpB5nBxM4P/9qq/n4OlikvR6pue9U7rGlNcCKOpdFb
+	 Fl6D+NDyceImQ==
+Date: Thu, 19 Nov 2026 13:10:55 -0600
+From: Rob Herring <robh@kernel.org>
+To: Tiffany Lin <tiffany.lin@mediatek.com>,
+	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+	Yunfei Dong <yunfei.dong@mediatek.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc: Kyrie Wu <kyrie.wu@mediatek.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] media: dt-bindings: mediatek,vcodec-subdev-decoder: Fix
+ child node if/then schemas
+Message-ID: <20261119191055.GA3803102-robh@kernel.org>
+References: <20261019212431.4109371-1-robh@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1516; i=broonie@kernel.org;
- h=from:subject:message-id; bh=mNbQf2yq7zE9LqqFnCB2s6MtlcWOuguvqz25adVY+6E=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLL+e84RWsB8MiHt67zybwFHZLx2hNyZ+s1QXaC06Phdh
- k7mzX+EO0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjCR458ZGY7V7/NXmP6t7Pcz
- jeWJO99/XyxxzWLnxNjWd84qE3quJM5hZPinu1fo7sa60p9casKbFnF18TF8zFX5vsRL30Lv4Er
- jr6wA
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261019212431.4109371-1-robh@kernel.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,52 +79,142 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 11 Nov 2026 11:12:47 +0100, Valerio Setti wrote:
-> ASoC: meson: gx-formatter: change stream lock from mutex to spinlock
+On Mon, Oct 19, 2026 at 04:24:29PM -0500, Rob Herring (Arm) wrote:
+> The if/then schemas in mediatek,vcodec-subdev-decoder are all at the
+> wrong level as they apply to child nodes. The clock-names schemas
+> applies to the parent node, but the clock-names properties are in the
+> child nodes. Move the clock-names definitions to the child node
+> clock-names property. This exposes that the MT8186 clocks are not
+> documented, so add them as well.
 > 
-> Patch 1 fixes a pre-existing bugs, present since v7.3, reported by
-> Sashiko [1] while reviewing the series adding I2S input support for
-> Amlogic GX SoCs [2].
-> [2] depends on patch 1 to address Sashiko's comment.
+> The interrupts if/then schema is never true as the parent compatible
+> will never match the child compatible. The subschema also belongs in the
+> child node.
 > 
-> [...]
+> Fixes: 3fbf1eac01b5 ("media: dt-bindings: media: mediatek: vcodec: Adds decoder dt-bindings for lat soc")
+> Closes: https://sashiko.dev/#/bug/linux-5ab90035-1914-412f-8310-097fb05bda15
+> Fixes: 355e9472ccb0 ("media: dt-bindings: media: mediatek: vcodec: adapt to the 'clock-names' of different platforms")
+> Closes: https://sashiko.dev/#/bug/linux-caa6adb1-38de-4889-9517-2beede7c8f96
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../media/mediatek,vcodec-subdev-decoder.yaml | 77 ++++++++-----------
+>  1 file changed, 31 insertions(+), 46 deletions(-)
 
-Applied to
+Ping! This one needs to be applied before 2 other series posted.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.4
-
-Thanks!
-
-[1/2] ASoC: meson: gx-formatter: change stream lock from mutex to spinlock
-      https://git.kernel.org/broonie/sound/c/0bd345a04dc4
-[2/2] ASoC: meson: gx-formatter: add lockdep_assert_held check
-      https://git.kernel.org/broonie/sound/c/e38a24552453
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> index d1d209cbbd43..6033ecffd707 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> @@ -135,8 +135,26 @@ patternProperties:
+>          maxItems: 5
+>  
+>        clock-names:
+> -        minItems: 4
+> -        maxItems: 5
+> +        oneOf:
+> +          - description: MT8186 clocks
+> +            items:
+> +              - const: vdec-sel
+> +              - const: vdec-soc-vdec
+> +              - const: vdec
+> +              - const: vdec-top
+> +          - description: MT8192 clocks
+> +            items:
+> +              - const: sel
+> +              - const: soc-vdec
+> +              - const: soc-lat
+> +              - const: vdec
+> +              - const: top
+> +          - description: MT8195 clocks
+> +            items:
+> +              - const: sel
+> +              - const: vdec
+> +              - const: lat
+> +              - const: top
+>  
+>        assigned-clocks:
+>          maxItems: 1
+> @@ -159,6 +177,17 @@ patternProperties:
+>  
+>      additionalProperties: false
+>  
+> +    if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mtk-vcodec-core
+> +              - mediatek,mtk-vcodec-lat
+> +    then:
+> +      required:
+> +        - interrupts
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -166,50 +195,6 @@ required:
+>    - mediatek,scp
+>    - ranges
+>  
+> -if:
+> -  properties:
+> -    compatible:
+> -      contains:
+> -        enum:
+> -          - mediatek,mtk-vcodec-core
+> -          - mediatek,mtk-vcodec-lat
+> -
+> -then:
+> -  required:
+> -    - interrupts
+> -
+> -allOf:
+> -  - if:
+> -      properties:
+> -        compatible:
+> -          contains:
+> -            enum:
+> -              - mediatek,mt8192-vcodec-dec
+> -    then:
+> -      properties:
+> -        clock-names:
+> -          items:
+> -            - const: sel
+> -            - const: soc-vdec
+> -            - const: soc-lat
+> -            - const: vdec
+> -            - const: top
+> -
+> -  - if:
+> -      properties:
+> -        compatible:
+> -          contains:
+> -            enum:
+> -              - mediatek,mt8195-vcodec-dec
+> -    then:
+> -      properties:
+> -        clock-names:
+> -          items:
+> -            - const: sel
+> -            - const: vdec
+> -            - const: lat
+> -            - const: top
+> -
+>  additionalProperties: false
+>  
+>  examples:
+> -- 
+> 2.53.0
+> 
+> 
 
