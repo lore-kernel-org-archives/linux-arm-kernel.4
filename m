@@ -2,65 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EA5606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3481E606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P5TNG+oc;
-	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=mwIyDaOr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t5d+2AZ3;
+	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=pSOl9Q2B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PRm3Wwq9NQlmuKonGVqXdDDW70eXnhOzZHSNpZOZBag=; b=P5TNG+oc5zS3HI
-	0An5uE+VMOaGge6QRz+x4FZ3OyWg4UzfcL9ZPvukWdK1X9oICwp7Tk0UgwKxZ5DRRXwGgdC0bpC/J
-	/sI1HVZ+khhZbq/G6ZhIn6axHZHaXmOWN2dZqTzIDWjPpKDZHbPUbpNCYhaCLxBqhd2S4zTrrL/K5
-	J+43oL51E7ndHxPcrcBXSlJbvZleQb/yFILyLYngwhoE3XAPVVG5KGm7+YwhcuVRETM/c4axdZo9K
-	0HGxRLfjPxlYfMHSO1sowqM8+zFvOCn/pKg0IcZEmk9ce79vpxgkPxFl8pBZgD14uvA93n/iy9F1w
-	NCfFQHOGArxxHgLUmsFg==;
+	List-Owner; bh=OKPZQyJsCxKmvcu3evgCAn8bCU003kDuUuvj5pSvgRY=; b=t5d+2AZ318l8vZ
+	wD+AIJebYwFUxLIBvnK1ZXUKFmcyEwnHVbB7/A3eaQqxR4KLrmdqlo4xqaIdd6EMlSx/VIPAWQPSS
+	VL288z1mgjkiJfpun4ztFeFP5Of30O3Wed6/es1tPTfkYrcT9rvc0/CmhKyvWYVgkvVz0fZiYK0OW
+	sIZsWtYNQoFAqAtIGh5PkZ46YYNiPB/YEItzrQR7dWGKsCkGlT4CUQPkgVjBXrcKn83WtEw5qk8Py
+	8GRp+yPLbyOxNBppIjmhrcJdt/53u4+SGTXGrUcXiBDukC2wgr/5OACKw132OSAWDYP8jmHM4JTau
+	oJjKXYT7neqGal1zreRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6Ic-0000000CtPR-0c77;
-	Thu, 19 Nov 2026 17:51:54 +0000
+	id 1xU6Ib-0000000CtON-34I8;
+	Thu, 19 Nov 2026 17:51:53 +0000
 Received: from esa3.hc555-34.eu.iphmx.com ([207.54.77.50])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6IL-0000000CtG7-3bIc
+	id 1xU6IL-0000000CtGJ-2NZg
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 17:51:40 +0000
+	Thu, 19 Nov 2026 17:51:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
-  t=1795110698; x=1826646698;
+  t=1795110697; x=1826646697;
   h=from:date:subject:mime-version:content-transfer-encoding:
    message-id:references:in-reply-to:to:cc;
-  bh=tbxgL7ZsrTWsrmUOa0vRK78LFkh+IqmpmHZmgai13Hk=;
-  b=mwIyDaOrA8S3JyB1+dfT3Rl4j8bBtgWQF0oLYg327Ps8Vcg70uvR/pae
-   n/GplLSOtfa+yK5kjX/Jbp1DAcCJn82UmaUwHBqGSwY8zOWD2VGmN1YAE
-   BmOwOVFEXoXF521LNRYkdJu3oBDcFXzSExLUE1PLyyiU6UgvrqVVL8BdX
-   L2bgVUwt1qeFLty2IR9KNhyG1jA+dmKSRiOfHjBl46YcJeYbqvPzQLw6e
-   zU/mMjy1LavO6GFrfRCimWjRAlmnMbsMrTjLxlIK30mrxfkEbmjZAaKYL
-   GYur23rWHb2Jndvs9bZw53V7f0gTp1ZL7vQ6TBP1vz0IcQs1PdKLzkWEI
-   w==;
-X-CSE-ConnectionGUID: NHm+IBDSSpaVKRb+Ja9T7A==
-X-CSE-MsgGUID: zweesgscSp6pBaQQJvntzg==
+  bh=4V18Tfg9Ly6MPWUMnLZiqruGXQUpnrBi9GEGXYzKK7I=;
+  b=pSOl9Q2BC2z0ClcuXUTmNCiouG7zJqVg65RKq+DmB9DdZXR1ezgR5Ylc
+   KV3NUbHT9D9VgG7nhEGOyG9YYQ+QrqkUEO8UfTD0jLj2w8tvMt3FRiBbe
+   dIzU2RJ6Ie31CcJ/FctOCdRlNw6L7ep314RNUmGSmIjXQ6DMmbq1IfD0z
+   u03koeQ0gMzR7t9QcX92IQYxXzhkkkg464kg9CNIa+HRpPPOT425zLZ3D
+   qJ4BxASx6ZdrRYzhxIlxzorvHJqOJx3zbxdz5CaMaDDk8kiEqPY04URE1
+   gi2iPd77IbRoJ2GBGVbSdojQvUFApZQglSddOhlI/EivA1OkHs4XukT3r
+   Q==;
+X-CSE-ConnectionGUID: auu1PvtJRcOQqeHLNCyrbg==
+X-CSE-MsgGUID: qAJvoc6AR6iA5Oc6jTiG0Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces03_data.me-corp.lan) ([146.255.191.134])
-  by esa3.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 19:51:36 +0200
-X-CSE-ConnectionGUID: NaK7sfVUSV+oJLsBsBliBA==
-X-CSE-MsgGUID: ZLMV7MkCQwq8KSRROYyWWA==
-Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.2])
-  by ces03_data.me-corp.lan with SMTP; 19 Nov 2026 19:59:42 +0200
-Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Thu, 19 Nov 2026 19:51:34 +0200
+Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
+  by esa3.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 19:51:34 +0200
+X-CSE-ConnectionGUID: tengInJhRCa+VsqTvox6mw==
+X-CSE-MsgGUID: klkWn2aISdGzaE5U/QgFbw==
+Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.3])
+  by ces02_data.me-corp.lan with SMTP; 19 Nov 2026 19:59:49 +0200
+Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Thu, 19 Nov 2026 19:51:32 +0200
 From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Date: Thu, 19 Nov 2026 19:51:30 +0200
-Subject: [PATCH v3 4/7] dt-bindings: mips: mti,mips-cm: add performance
- counter interrupt
+Date: Thu, 19 Nov 2026 19:51:28 +0200
+Subject: [PATCH v3 2/7] MIPS: CM: add CM3 performance counter GCR
+ definitions
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-i6500-cm3-pmu-v3-4-c86410934b51@mobileye.com>
+Message-Id: <20261119-i6500-cm3-pmu-v3-2-c86410934b51@mobileye.com>
 References: <20261119-i6500-cm3-pmu-v3-0-c86410934b51@mobileye.com>
 In-Reply-To: <20261119-i6500-cm3-pmu-v3-0-c86410934b51@mobileye.com>
 To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
@@ -80,12 +80,11 @@ Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
  linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-rt-devel@lists.linux.dev, devicetree@vger.kernel.org, 
  linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-perf-users@vger.kernel.org, linux-hardening@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ linux-perf-users@vger.kernel.org, linux-hardening@vger.kernel.org
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_095138_191599_215AE084 
-X-CRM114-Status: GOOD (  12.40  )
+X-CRM114-CacheID: sfid-20261119_095137_888104_D598B3BB 
+X-CRM114-Status: GOOD (  16.89  )
 X-Spam-Score: -4.0 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,35 +103,102 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The CM3 asserts so_cm_perf_cnt_int when one of its performance counters
-overflows. Whether that output is connected to an interrupt controller
-input is up to the SoC integrator, so describe it as an optional
-'interrupts' property of the coherency-manager node. When absent, the
-counters have to be polled by software.
+The CM3 implements two programmable 32-bit performance counters and a
+32-bit cycle counter, controlled through registers in the GCR global
+debug block (GCR_DB_PC_*, offset 0x6100..0x61a8 from GCR_BASE).
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Add GCR_DB_ACCESSOR_{RO,RW} helpers for the debug block and define the
+control, overflow status, event select, cycle counter, qualifier and
+counter registers along with their fields, as described in the I6500
+register reference (MD01189).
+
+Each accessor comes in two flavours, as the CPC ones do: db_<reg> for
+the local cluster and redir_db_<reg> for the debug block of another
+cluster through the redirect block. GCR_Cx_OTHER.BLOCK value 2 selects
+the debug block in the GCR, where the existing _BLOCK_USER name only
+describes its GIC meaning; add CM_GCR_Cx_OTHER_BLOCK_DEBUG for it.
+
 Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 ---
- Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/mips/include/asm/mips-cm.h | 51 ++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 50 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-index d129d6382847..ca7a6717ecdf 100644
---- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-+++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-@@ -38,6 +38,12 @@ properties:
+diff --git a/arch/mips/include/asm/mips-cm.h b/arch/mips/include/asm/mips-cm.h
+index 407f253bb4a1..390d06a8f1d1 100644
+--- a/arch/mips/include/asm/mips-cm.h
++++ b/arch/mips/include/asm/mips-cm.h
+@@ -161,6 +161,20 @@ static inline bool mips_cm_has_l2sync(void)
+ 	CPS_ACCESSOR_RW(gcr, sz, MIPS_CM_CLCB_OFS + off, cl_##name)	\
+ 	CPS_ACCESSOR_RW(gcr, sz, MIPS_CM_COCB_OFS + off, co_##name)
  
-     maxItems: 1
- 
-+  interrupts:
-+    description:
-+      Performance counter overflow interrupt of the CM (so_cm_perf_cnt_int).
-+      When absent, the performance counters are polled by software.
-+    maxItems: 1
++/*
++ * Global debug block registers. The redir_db_* accessors reach the debug
++ * block of another cluster through the redirect block, which must have been
++ * pointed at it with mips_cm_lock_other(cluster, 0, 0,
++ * CM_GCR_Cx_OTHER_BLOCK_DEBUG).
++ */
++#define GCR_DB_ACCESSOR_RO(sz, off, name)				\
++	CPS_ACCESSOR_RO(gcr, sz, MIPS_CM_GDB_OFS + off, db_##name)	\
++	CPS_ACCESSOR_RO(gcr, sz, MIPS_CM_COCB_OFS + off, redir_db_##name)
 +
- required:
-   - compatible
++#define GCR_DB_ACCESSOR_RW(sz, off, name)				\
++	CPS_ACCESSOR_RW(gcr, sz, MIPS_CM_GDB_OFS + off, db_##name)	\
++	CPS_ACCESSOR_RW(gcr, sz, MIPS_CM_COCB_OFS + off, redir_db_##name)
++
+ /* GCR_CONFIG - Information about the system */
+ GCR_ACCESSOR_RO(64, 0x000, config)
+ #define CM_GCR_CONFIG_CLUSTER_COH_CAPABLE	BIT_ULL(43)
+@@ -357,7 +371,8 @@ GCR_CX_ACCESSOR_RW(32, 0x018, other)
+ #define CM_GCR_Cx_OTHER_BLOCK			GENMASK(25, 24)	/* CM >= 3.5 */
+ #define  CM_GCR_Cx_OTHER_BLOCK_LOCAL		0
+ #define  CM_GCR_Cx_OTHER_BLOCK_GLOBAL		1
+-#define  CM_GCR_Cx_OTHER_BLOCK_USER		2
++#define  CM_GCR_Cx_OTHER_BLOCK_USER		2	/* GIC */
++#define  CM_GCR_Cx_OTHER_BLOCK_DEBUG		2	/* GCR */
+ #define  CM_GCR_Cx_OTHER_BLOCK_GLOBAL_HIGH	3
+ #define CM_GCR_Cx_OTHER_CLUSTER			GENMASK(21, 16)	/* CM >= 3.5 */
+ #define CM3_GCR_Cx_OTHER_CORE			GENMASK(13, 8)	/* CM >= 3 */
+@@ -384,6 +399,40 @@ GCR_CX_ACCESSOR_RW(32, 0x030, reset_ext_base)
+ #define CM_GCR_Cx_RESET_EXT_BASE_BEVEXCPA	GENMASK(7, 1)
+ #define CM_GCR_Cx_RESET_EXT_BASE_PRESENT	BIT(0)
  
++/* GCR_DB_PC_CTL - Control of the CM3 performance counters */
++GCR_DB_ACCESSOR_RW(32, 0x100, pc_ctl)
++#define CM_GCR_DB_PC_CTL_PERF_INT_EN		BIT(30)
++#define CM_GCR_DB_PC_CTL_PERF_OVF_STOP		BIT(29)
++#define CM_GCR_DB_PC_CTL_P1_RESET		BIT(9)
++#define CM_GCR_DB_PC_CTL_P1_COUNTON		BIT(8)
++#define CM_GCR_DB_PC_CTL_P0_RESET		BIT(7)
++#define CM_GCR_DB_PC_CTL_P0_COUNTON		BIT(6)
++#define CM_GCR_DB_PC_CTL_CYCL_CNT_RESET		BIT(5)
++#define CM_GCR_DB_PC_CTL_CYCL_CNT_COUNTON	BIT(4)
++#define CM_GCR_DB_PC_CTL_PERF_NUM_CNT		GENMASK(3, 0)
++
++/* GCR_DB_PC_OV - CM3 performance counter overflow status (write 1 to clear) */
++GCR_DB_ACCESSOR_RW(32, 0x120, pc_ov)
++#define CM_GCR_DB_PC_OV_P1_OF			BIT(2)
++#define CM_GCR_DB_PC_OV_P0_OF			BIT(1)
++#define CM_GCR_DB_PC_OV_CYCL_CNT_OF		BIT(0)
++
++/* GCR_DB_PC_EVENT - CM3 performance counter event selection */
++GCR_DB_ACCESSOR_RW(32, 0x130, pc_event)
++#define CM_GCR_DB_PC_EVENT_P1_EVENT		GENMASK(15, 8)
++#define CM_GCR_DB_PC_EVENT_P0_EVENT		GENMASK(7, 0)
++
++/* GCR_DB_PC_CYCL - CM3 performance cycle counter */
++GCR_DB_ACCESSOR_RW(32, 0x180, pc_cycl)
++
++/* GCR_DB_PC_QUALn - CM3 performance counter n event qualifier */
++GCR_DB_ACCESSOR_RW(64, 0x190, pc_qual0)
++GCR_DB_ACCESSOR_RW(64, 0x1a0, pc_qual1)
++
++/* GCR_DB_PC_CNTn - CM3 performance counter n value */
++GCR_DB_ACCESSOR_RW(32, 0x198, pc_cnt0)
++GCR_DB_ACCESSOR_RW(32, 0x1a8, pc_cnt1)
++
+ /**
+  * mips_cm_l2sync - perform an L2-only sync operation
+  *
 
 -- 
 2.43.0
