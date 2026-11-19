@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF57606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708BE606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:54:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ky1WzZRT;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=hd3OX/GE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JyexxsM/;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Ny92pS8Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,64 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=82cYW7HLTfZTtohlxr3vL43foexvbGBlGk9dG99wZpQ=; b=ky1WzZRT4+SS/SoqNf0sayvz7x
-	SdPtG6mh3zn6GHlJuBRbW1Hepk4aCtfAPH8euFkbSAGwrdNnmBCXjzf5l3A6uMqXLvsgPnAeDk19+
-	FSt8bVcwqUjvf09DYNWwI+sL4NEIJW2ETDSmkwpR1Q7IvclHcfjs7ycuZT/fF/yKkd7ky4JDMwCrX
-	WAAzk6viD9lIBUzc+UEdBcN4QUv6JylNdp6aPPI0bOKzJ5bprUrN1vA8hdu7WEhAszRnwkRH2rmok
-	YS4zrebxYkRmgC0KWKN7wniKzLD6JzHQNhRR7ekRLBmDdh4Pmb4Oim/xqwDYhWMrlt1VV+q42xefz
-	FsX6PgGg==;
+	bh=wgoC6kwXy8A/C0dx8SZHvUCPruFTOKn2cEN7Wk/LnjU=; b=JyexxsM/bunyoLNjZ6QrHC56PZ
+	9ORZKD5lKI8Yn6fpec/YO/ycVpyv4iLaNp39YQbT6LjwyCEydJZlN0yjW5Hs8+BD52aiN0Ny8M55c
+	va8gmWmO5cYqbEvI/R/SUFQ8H93Tcp9lYSvHl9FUQGeRbLV3CH/5Bs9+Ub7+25vY4wO+pQ9x4HtpU
+	uP2raSoRso9QfhqeuDuxo7JqHGKZwphgRCp3FdyzaVJHtxSh1+ePxzZA64b5odpNpmDFyuXTqO555
+	fJQTVNI0TSS/eCU0yrJEWVFulHIeJlFxMLiKjfz0awxDMrGNkeiwimUQT3VZt5oMtFRedURK4rdkl
+	BLJPEJbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7Gv-0000000D5aa-2iX6;
-	Thu, 19 Nov 2026 18:54:13 +0000
-Received: from mail-oi1-x247.google.com ([2607:f8b0:4864:20::247])
+	id 1xU7Gz-0000000D5ip-0Upk;
+	Thu, 19 Nov 2026 18:54:17 +0000
+Received: from mail-oi1-x245.google.com ([2607:f8b0:4864:20::245])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7FV-0000000D4IO-0fae
+	id 1xU7FY-0000000D4PW-3CuI
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:52:47 +0000
-Received: by mail-oi1-x247.google.com with SMTP id 5614622812f47-547ae874949so210042b6e.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:44 -0800 (PST)
+	Thu, 19 Nov 2026 18:52:55 +0000
+Received: by mail-oi1-x245.google.com with SMTP id 5614622812f47-4cc89e86e9eso172783b6e.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795114364; x=1795719164; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795114367; x=1795719167; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=82cYW7HLTfZTtohlxr3vL43foexvbGBlGk9dG99wZpQ=;
-        b=hd3OX/GEFtebbVBvL18hAd44PWIHnPfswuZjG6AThigSFPHistNQJDWY2D/Bhkb2zw
-         BCPvy+/mNtwlPCQ+eZ0ZfSMlDL9Rz+0xEjm+GX6NYdSlXJf5mXrodI/XzPPtR5+kiT9O
-         8GeoLRIqm4sCWS3mJrkLYu/KbK+uMm2qwpQeSLcLY89mr2Ha7MGt36Ze8/805h4Lmh8r
-         KiUd3QrZRwOi/YzoLguLs1tCYg/NMSDQN6Ng/OIZqYgg7i9+WB+4M/iWojdmZg7fEcDn
-         X1cPYtB3K4o7XzaqtW3NvckFEtk035MAn8Pxt5HJ7GwKgH1JO9DA721iv8V7T1kvMYqc
-         6jBg==
+        bh=wgoC6kwXy8A/C0dx8SZHvUCPruFTOKn2cEN7Wk/LnjU=;
+        b=Ny92pS8YdBeHBIuJK76igww+/YTldK9BOGKe1IlQNbfzo7uILQI6ZRtikAAV50QefT
+         Q1eA77szXqwNH8iTNseXBT0kqP4BJIeWF4XUePcjjCJ2nSo0mlTmVkJurUPS2vu3NZlo
+         lks76CYloN0mHe7TqpeLjUmfJHrk9r3Iay5+t9puPud2FRoaooWYrqjfiR4Ez7VlMZvh
+         7/N0eFTtuVcLv+b4DtkbB2jDtvf9e8RDlT28Tr6jQClIZb7fGMu3FHcOfZjROxAg3VRC
+         8rkcVScC9xn+CrGC2CTGranCRjLRdFQpFNDjykMROKZdsoFU40b5IwynU7B7StL9zSzY
+         Xrog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795114364; x=1795719164;
+        d=1e100.net; s=20260707; t=1795114367; x=1795719167;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=82cYW7HLTfZTtohlxr3vL43foexvbGBlGk9dG99wZpQ=;
-        b=qVzgms8ewnz6rHP5Yl7qrRDRhWA3WCLjRNmkH5l3em6tbNdu6L1LxjpQRYFJ5myEYK
-         WB1EJkBtxoHkjqWgzZkrX5nE9jcm1X+B0m+wMF2iPFNJ5lkrhaCvbcqlB8WLSgN23rv/
-         cC3sd2ZuaL5kve4wDQ1DkPLTcQVpI7WABq30q5RiaI5cYgxuFuVqXSXFobE2FcM3CSn4
-         6VDQh+ZUVf3a0l7BBaj9bIGSmDxfBCF0z/XnnJtdlgbaNszViQ+1TuGuOJhHICoM14DA
-         a5swImnk7D3xelZtp8SV3s7W4G0bSJ6QEDVQaBLmF2kO2ZfZ83fpwzzmvYST0ekm0Wze
-         HXBQ==
-X-Forwarded-Encrypted: i=1; AL+hErEnPp7h6023aB2rTcHIZC05Oc1Z5wH/LTV9TB/LYnmZDIkEe99Xbzifp35Wt0XtarQ1orLYn5FiE2KfYIXubI1l@lists.infradead.org
-X-Gm-Message-State: APuU4Z9POi4ORHnTPgTTWvz1LrfQ0zTe16RX7RAqJk4dZBwg7hS+jc0R
-	RPNDIj7IAsXXudTu2kbO2pQK3zsumM7Twa1htlAVLzY+K8bWFFoGprgizWCxDiLj3kuKzZyCPVZ
-	dY/z67KF3dfkfYk3vqs8tKJ1cNQ==
-X-Received: from iobgl11.prod.google.com ([2002:a05:6602:4f0b:b0:9cd:a6f7:7b88])
+        bh=wgoC6kwXy8A/C0dx8SZHvUCPruFTOKn2cEN7Wk/LnjU=;
+        b=NGHqehRh5F7bfI1zjdQJsT+A0059GcoYmYJg2YsPoBk0tTU+/tMyITHqBVCzHmFSui
+         e8mlypmxgodJRU25UYE4giCEDBAzTvfun/4fRI2HVMoO+J6jrvhhZTTU7Rh8jSFUtba+
+         ZVJ03ogQ20UwklAQhJJcXMRpkN5Dl//vuOFh7RxEsgcThsjuu/+DTk3QjwLd11U7k+H7
+         GrJTAr7OFIo+pi32dOa0uH/lZFV5VeUOVHSMa4YZDMuJF0bwCdQV7jwT4Ly0x2vOnzMy
+         DhP+hafodedYcg84pT7X+VDJmKoF9haQ7qWs7WkZBokJtj3cYPHAH+NbW+dJZkW4HMZv
+         xx9w==
+X-Forwarded-Encrypted: i=1; AL+hErHztZqDxeOCVaMA3JcRjrYRK5dqQaMWNoVinWt19hzKeC/1avoroe1QgB9b6uE+YY2ojZwj20WzgeeyrWH/Blmb@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Z9k6O4ReBs5XgsBmDUFjwI8TJ26OkeM4Mlzwl6gco3H8Br9pg
+	oQCYEEcaWFxY7WM58moo+5/7VHTKXia/T8mjUtsvzJPqqKyiE19EK7lTMXED/L4zXw6a5+n4WXw
+	C2f5lk+08/32YTCwpBN375FuYMA==
+X-Received: from iloo7-n2.prod.google.com ([2002:a05:6e02:6107:20b0:54e:86af:fe5d])
  (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:15a7:b0:567:caf2:9540 with SMTP id 5614622812f47-57a06d1a857mr871247b6e.1.1795114363292;
- Thu, 19 Nov 2026 10:52:43 -0800 (PST)
-Date: Thu, 19 Nov 2026 18:52:10 +0000
+ 2002:a05:6808:191a:b0:4d5:291b:b850 with SMTP id 5614622812f47-57a0c4b956amr1020128b6e.54.1795114366859;
+ Thu, 19 Nov 2026 10:52:46 -0800 (PST)
+Date: Thu, 19 Nov 2026 18:52:14 +0000
 In-Reply-To: <20261119185215.632334-1-coltonlewis@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261119185215.632334-1-coltonlewis@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261119185215.632334-29-coltonlewis@google.com>
-Subject: [PATCH v10 28/33] KVM: arm64: Emulate trapped PMSWINC_EL0 writes for
- Partitioned PMU
+Message-ID: <20261119185215.632334-33-coltonlewis@google.com>
+Subject: [PATCH v10 32/33] KVM: selftests: Add find_bit to KVM library
 From: Colton Lewis <coltonlewis@google.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
 Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
@@ -88,8 +87,8 @@ Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
 	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_105245_326273_55DE6466 
-X-CRM114-Status: GOOD (  22.14  )
+X-CRM114-CacheID: sfid-20261119_105248_823686_EA8FFD0D 
+X-CRM114-Status: GOOD (  13.90  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,316 +108,38 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Even with a Partitioned PMU, guest writes to PMSWINC_EL0 trap to EL2 in
-four cases:
-1. Hosts without FEAT_FGT, where MDCR_EL2.TPM remains set.
-2. Before lazy PMU activation (VCPU_PMU_ACCESS_FREE, MDCR_EL2.TPM == 1).
-3. Nested L2 execution when L1 sub-partitions counters (vHPMN < N_L1),
-   where MDCR_EL2.TPM is forced to protect L1's hypervisor counters.
-4. Nested L1 execution when L1 sub-partitions counters (vHPMN < N_L1),
-   where HDFGWTR_EL2.PMSWINC_EL0 must trap software increments so an
-   even counter at vHPMN - 1 cannot chain across the sub-partition
-   boundary into L1 counter vHPMN in hardware, and so ovf32_mask
-   counter biasing is preserved.
+Add lib/find_bit.c to the KVM selftests build using the same wrapper
+pattern as lib/rbtree.c so selftests that depend on find_bit helpers
+link cleanly when built standalone.
 
-Trapped PMSWINC_EL0 writes cannot simply execute MSR PMSWINC_EL0 at
-physical EL2 because L0 runs with physical MDCR_EL2.HPMD == 1 and clears
-PMEVTYPER<n>_EL0.NSH on guest counters, causing hardware to ignore the
-software increment (and when not loaded on the CPU, guest counters live
-only in sys_regs[]).
-
-Update kvm_pmu_counter_increment() and kvm_pmu_counter_can_chain() in
-arch/arm64/kvm/pmu-emul.c to check per-counter enablement
-(kvm_pmu_counter_is_enabled(), covering both PMCR_EL0.E and
-MDCR_EL2.HPME), current guest EL filtering for SW_INCR, and
-nr_pmu_counters / sub-partition chaining boundaries. Reuse
-kvm_pmu_software_increment() from kvm_pmu_direct_swinc() by flushing
-live hardware state if loaded, applying the software increment to
-sys_regs[], and reloading hardware.
-
+Tested-by: James Clark <james.clark@linaro.org>
 Signed-off-by: Colton Lewis <coltonlewis@google.com>
 ---
- arch/arm64/kvm/config.c     |   2 +-
- arch/arm64/kvm/pmu-direct.c |  34 ++++++++++
- arch/arm64/kvm/pmu-emul.c   | 120 +++++++++++++++++++++---------------
- arch/arm64/kvm/sys_regs.c   |   5 +-
- include/kvm/arm_pmu.h       |   3 +
- 5 files changed, 113 insertions(+), 51 deletions(-)
+ tools/testing/selftests/kvm/Makefile.kvm   | 1 +
+ tools/testing/selftests/kvm/lib/find_bit.c | 2 ++
+ 2 files changed, 3 insertions(+)
+ create mode 100644 tools/testing/selftests/kvm/lib/find_bit.c
 
-diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
-index a523dde1b57a7..0ec74e45fdbf6 100644
---- a/arch/arm64/kvm/config.c
-+++ b/arch/arm64/kvm/config.c
-@@ -1826,7 +1826,7 @@ static void __compute_hdfgwtr(struct kvm_vcpu *vcpu)
- 			set |= HDFGWTR_EL2_PMUSERENR_EL0;
+diff --git a/tools/testing/selftests/kvm/Makefile.kvm b/tools/testing/selftests/kvm/Makefile.kvm
+index 17a4256e90819..79b67a86208c3 100644
+--- a/tools/testing/selftests/kvm/Makefile.kvm
++++ b/tools/testing/selftests/kvm/Makefile.kvm
+@@ -5,6 +5,7 @@ all:
  
- 		if (kvm_pmu_hyp_counter_mask(vcpu))
--			set |= HDFGWTR_EL2_PMCNTEN;
-+			set |= HDFGWTR_EL2_PMCNTEN | HDFGWTR_EL2_PMSWINC_EL0;
- 		if (kvm_pmu_part_ovf32_mask(vcpu))
- 			set |= HDFGWTR_EL2_PMEVCNTRn_EL0;
- 
-diff --git a/arch/arm64/kvm/pmu-direct.c b/arch/arm64/kvm/pmu-direct.c
-index b7bec06b36b0a..6382233e54c71 100644
---- a/arch/arm64/kvm/pmu-direct.c
-+++ b/arch/arm64/kvm/pmu-direct.c
-@@ -931,6 +931,40 @@ void kvm_pmu_put(struct kvm_vcpu *vcpu)
- 	__kvm_pmu_put(vcpu, release);
- }
- 
-+/**
-+ * kvm_pmu_direct_swinc() - Emulate trapped PMSWINC_EL0 writes
-+ * @vcpu: Pointer to vcpu struct
-+ * @val: Accessible counter bitmask written to PMSWINC_EL0
-+ *
-+ * Executing MSR PMSWINC_EL0 at physical EL2 is ignored by hardware because
-+ * physical MDCR_EL2.HPMD is set and guest PMEVTYPER<n>_EL0.NSH is cleared.
-+ * Flush live hardware state if loaded, apply kvm_pmu_software_increment(),
-+ * and reload hardware.
-+ */
-+void kvm_pmu_direct_swinc(struct kvm_vcpu *vcpu, u64 val)
-+{
-+	bool was_loaded;
-+
-+	guard(preempt)();
-+
-+	val &= kvm_vcpu_pmu_guest_counter_mask(vcpu) &
-+	       ~BIT_ULL(ARMV8_PMU_CYCLE_IDX);
-+	if (!val)
-+		return;
-+
-+	was_loaded = kvm_pmu_part_on_cpu(vcpu);
-+	if (was_loaded)
-+		__kvm_pmu_put(vcpu, false);
-+
-+	kvm_pmu_software_increment(vcpu, val);
-+
-+	if (was_loaded)
-+		__kvm_pmu_load(vcpu, false);
-+
-+	if (kvm_pmu_part_overflow_status(vcpu))
-+		kvm_make_request(KVM_REQ_IRQ_PENDING, vcpu);
-+}
-+
- /**
-  * kvm_pmu_reload_part() - Reload partitioned PMU traps, filters, and state
-  * @vcpu: Pointer to struct kvm_vcpu
-diff --git a/arch/arm64/kvm/pmu-emul.c b/arch/arm64/kvm/pmu-emul.c
-index a72bdc5a0b3ea..b9096e5a4f11d 100644
---- a/arch/arm64/kvm/pmu-emul.c
-+++ b/arch/arm64/kvm/pmu-emul.c
-@@ -19,7 +19,6 @@
- 
- static void kvm_pmu_create_perf_event(struct kvm_pmc *pmc);
- static void kvm_pmu_release_perf_event(struct kvm_pmc *pmc);
--static bool kvm_pmu_counter_is_enabled(struct kvm_pmc *pmc);
- 
- static struct kvm_vcpu *kvm_pmc_to_vcpu(const struct kvm_pmc *pmc)
- {
-@@ -48,6 +47,9 @@ static bool kvm_pmc_has_64bit_overflow(struct kvm_pmc *pmc)
- 	struct kvm_vcpu *vcpu = kvm_pmc_to_vcpu(pmc);
- 	u64 val = kvm_vcpu_read_pmcr(vcpu);
- 
-+	if (!kvm_pmc_is_64bit(pmc))
-+		return false;
-+
- 	if (kvm_pmu_counter_is_hyp(vcpu, pmc->idx))
- 		return __vcpu_sys_reg(vcpu, MDCR_EL2) & MDCR_EL2_HLP;
- 
-@@ -57,8 +59,13 @@ static bool kvm_pmc_has_64bit_overflow(struct kvm_pmc *pmc)
- 
- static bool kvm_pmu_counter_can_chain(struct kvm_pmc *pmc)
- {
--	return (!(pmc->idx & 1) && (pmc->idx + 1) < ARMV8_PMU_CYCLE_IDX &&
--		!kvm_pmc_has_64bit_overflow(pmc));
-+	struct kvm_vcpu *vcpu = kvm_pmc_to_vcpu(pmc);
-+
-+	return !(pmc->idx & 1) &&
-+	       (pmc->idx + 1) < vcpu->kvm->arch.nr_pmu_counters &&
-+	       kvm_pmu_counter_is_hyp(vcpu, pmc->idx) ==
-+	       kvm_pmu_counter_is_hyp(vcpu, pmc->idx + 1) &&
-+	       !kvm_pmc_has_64bit_overflow(pmc);
- }
- 
- static u32 counter_index_to_reg(u64 idx)
-@@ -76,6 +83,60 @@ static u64 kvm_pmc_read_evtreg(const struct kvm_pmc *pmc)
- 	return __vcpu_sys_reg(kvm_pmc_to_vcpu(pmc), counter_index_to_evtreg(pmc->idx));
- }
- 
-+static bool kvm_pmu_counter_is_enabled(struct kvm_pmc *pmc)
-+{
-+	struct kvm_vcpu *vcpu = kvm_pmc_to_vcpu(pmc);
-+	unsigned int mdcr = __vcpu_sys_reg(vcpu, MDCR_EL2);
-+
-+	if (!(__vcpu_sys_reg(vcpu, PMCNTENSET_EL0) & BIT(pmc->idx)))
-+		return false;
-+
-+	if (kvm_pmu_counter_is_hyp(vcpu, pmc->idx))
-+		return mdcr & MDCR_EL2_HPME;
-+
-+	return kvm_vcpu_read_pmcr(vcpu) & ARMV8_PMU_PMCR_E;
-+}
-+
-+static bool kvm_pmc_counts_at_el0(struct kvm_pmc *pmc)
-+{
-+	u64 evtreg = kvm_pmc_read_evtreg(pmc);
-+	bool nsu = evtreg & ARMV8_PMU_EXCLUDE_NS_EL0;
-+	bool u = evtreg & ARMV8_PMU_EXCLUDE_EL0;
-+
-+	return u == nsu;
-+}
-+
-+static bool kvm_pmc_counts_at_el1(struct kvm_pmc *pmc)
-+{
-+	u64 evtreg = kvm_pmc_read_evtreg(pmc);
-+	bool nsk = evtreg & ARMV8_PMU_EXCLUDE_NS_EL1;
-+	bool p = evtreg & ARMV8_PMU_EXCLUDE_EL1;
-+
-+	return p == nsk;
-+}
-+
-+static bool kvm_pmc_counts_at_el2(struct kvm_pmc *pmc)
-+{
-+	struct kvm_vcpu *vcpu = kvm_pmc_to_vcpu(pmc);
-+	u64 mdcr = __vcpu_sys_reg(vcpu, MDCR_EL2);
-+
-+	if (!kvm_pmu_counter_is_hyp(vcpu, pmc->idx) && (mdcr & MDCR_EL2_HPMD))
-+		return false;
-+
-+	return kvm_pmc_read_evtreg(pmc) & ARMV8_PMU_INCLUDE_EL2;
-+}
-+
-+static bool kvm_pmc_counts_at_current_el(struct kvm_pmc *pmc)
-+{
-+	struct kvm_vcpu *vcpu = kvm_pmc_to_vcpu(pmc);
-+
-+	if (!vcpu_mode_priv(vcpu))
-+		return kvm_pmc_counts_at_el0(pmc);
-+	if (unlikely(is_hyp_ctxt(vcpu)))
-+		return kvm_pmc_counts_at_el2(pmc);
-+	return kvm_pmc_counts_at_el1(pmc);
-+}
-+
- static u64 kvm_pmu_get_pmc_value(struct kvm_pmc *pmc)
- {
- 	struct kvm_vcpu *vcpu = kvm_pmc_to_vcpu(pmc);
-@@ -321,9 +382,6 @@ static void kvm_pmu_counter_increment(struct kvm_vcpu *vcpu,
- {
- 	int i;
- 
--	if (!(kvm_vcpu_read_pmcr(vcpu) & ARMV8_PMU_PMCR_E))
--		return;
--
- 	/* Weed out disabled counters */
- 	mask &= __vcpu_sys_reg(vcpu, PMCNTENSET_EL0);
- 
-@@ -331,12 +389,19 @@ static void kvm_pmu_counter_increment(struct kvm_vcpu *vcpu,
- 		struct kvm_pmc *pmc = kvm_vcpu_idx_to_pmc(vcpu, i);
- 		u64 type, reg;
- 
-+		if (!kvm_pmu_counter_is_enabled(pmc))
-+			continue;
-+
- 		/* Filter on event type */
- 		type = __vcpu_sys_reg(vcpu, counter_index_to_evtreg(i));
- 		type &= kvm_pmu_event_mask(vcpu->kvm);
- 		if (type != event)
- 			continue;
- 
-+		if (event == ARMV8_PMUV3_PERFCTR_SW_INCR &&
-+		    !kvm_pmc_counts_at_current_el(pmc))
-+			continue;
-+
- 		/* Increment this counter */
- 		reg = __vcpu_sys_reg(vcpu, counter_index_to_reg(i)) + 1;
- 		if (!kvm_pmc_is_64bit(pmc))
-@@ -454,49 +519,6 @@ void kvm_pmu_handle_pmcr(struct kvm_vcpu *vcpu, u64 val)
- 	}
- }
- 
--static bool kvm_pmu_counter_is_enabled(struct kvm_pmc *pmc)
--{
--	struct kvm_vcpu *vcpu = kvm_pmc_to_vcpu(pmc);
--	unsigned int mdcr = __vcpu_sys_reg(vcpu, MDCR_EL2);
--
--	if (!(__vcpu_sys_reg(vcpu, PMCNTENSET_EL0) & BIT(pmc->idx)))
--		return false;
--
--	if (kvm_pmu_counter_is_hyp(vcpu, pmc->idx))
--		return mdcr & MDCR_EL2_HPME;
--
--	return kvm_vcpu_read_pmcr(vcpu) & ARMV8_PMU_PMCR_E;
--}
--
--static bool kvm_pmc_counts_at_el0(struct kvm_pmc *pmc)
--{
--	u64 evtreg = kvm_pmc_read_evtreg(pmc);
--	bool nsu = evtreg & ARMV8_PMU_EXCLUDE_NS_EL0;
--	bool u = evtreg & ARMV8_PMU_EXCLUDE_EL0;
--
--	return u == nsu;
--}
--
--static bool kvm_pmc_counts_at_el1(struct kvm_pmc *pmc)
--{
--	u64 evtreg = kvm_pmc_read_evtreg(pmc);
--	bool nsk = evtreg & ARMV8_PMU_EXCLUDE_NS_EL1;
--	bool p = evtreg & ARMV8_PMU_EXCLUDE_EL1;
--
--	return p == nsk;
--}
--
--static bool kvm_pmc_counts_at_el2(struct kvm_pmc *pmc)
--{
--	struct kvm_vcpu *vcpu = kvm_pmc_to_vcpu(pmc);
--	u64 mdcr = __vcpu_sys_reg(vcpu, MDCR_EL2);
--
--	if (!kvm_pmu_counter_is_hyp(vcpu, pmc->idx) && (mdcr & MDCR_EL2_HPMD))
--		return false;
--
--	return kvm_pmc_read_evtreg(pmc) & ARMV8_PMU_INCLUDE_EL2;
--}
--
- static int kvm_map_pmu_event(struct kvm *kvm, unsigned int eventsel)
- {
- 	struct arm_pmu *pmu = kvm->arch.arm_pmu;
-diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
-index 24dd878fb58c4..4967954f42b01 100644
---- a/arch/arm64/kvm/sys_regs.c
-+++ b/arch/arm64/kvm/sys_regs.c
-@@ -1543,7 +1543,10 @@ static bool access_pmswinc(struct kvm_vcpu *vcpu, struct sys_reg_params *p,
- 		return false;
- 
- 	mask = kvm_pmu_accessible_counter_mask(vcpu);
--	kvm_pmu_software_increment(vcpu, p->regval & mask);
-+	if (kvm_pmu_is_partitioned(vcpu->kvm))
-+		kvm_pmu_direct_swinc(vcpu, p->regval & mask);
-+	else
-+		kvm_pmu_software_increment(vcpu, p->regval & mask);
- 	return true;
- }
- 
-diff --git a/include/kvm/arm_pmu.h b/include/kvm/arm_pmu.h
-index 13e9230c9c714..0fe4f593d3f9a 100644
---- a/include/kvm/arm_pmu.h
-+++ b/include/kvm/arm_pmu.h
-@@ -110,6 +110,7 @@ u64 kvm_pmu_direct_reg_read(struct kvm_vcpu *vcpu, unsigned int reg);
- void kvm_pmu_direct_reg_write(struct kvm_vcpu *vcpu, unsigned int reg,
- 			      u64 val, bool set);
- u64 kvm_pmu_part_ovf32_mask(struct kvm_vcpu *vcpu);
-+void kvm_pmu_direct_swinc(struct kvm_vcpu *vcpu, u64 val);
- void kvm_pmu_reload_part(struct kvm_vcpu *vcpu);
- u64 kvm_pmu_guest_counter_mask(void);
- void kvm_pmu_load(struct kvm_vcpu *vcpu);
-@@ -179,6 +180,8 @@ static inline u64 kvm_pmu_part_ovf32_mask(struct kvm_vcpu *vcpu)
- {
- 	return 0;
- }
-+
-+static inline void kvm_pmu_direct_swinc(struct kvm_vcpu *vcpu, u64 val) {}
- static inline void kvm_pmu_reload_part(struct kvm_vcpu *vcpu) {}
- static inline void kvm_pmu_load(struct kvm_vcpu *vcpu) {}
- static inline void kvm_pmu_put(struct kvm_vcpu *vcpu) {}
+ LIBKVM += lib/assert.c
+ LIBKVM += lib/elf.c
++LIBKVM += lib/find_bit.c
+ LIBKVM += lib/guest_modes.c
+ LIBKVM += lib/kvm_util.c
+ LIBKVM += lib/lru_gen_util.c
+diff --git a/tools/testing/selftests/kvm/lib/find_bit.c b/tools/testing/selftests/kvm/lib/find_bit.c
+new file mode 100644
+index 0000000000000..5534248c663f7
+--- /dev/null
++++ b/tools/testing/selftests/kvm/lib/find_bit.c
+@@ -0,0 +1,2 @@
++// SPDX-License-Identifier: GPL-2.0
++#include "../../../../lib/find_bit.c"
 -- 
 2.56.1.708.g77570a6a1d-goog
 
