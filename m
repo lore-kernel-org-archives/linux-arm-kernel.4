@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3072606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6964760A2616
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S1InJX6K;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fA2svBB3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RdM75B3z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZNKV+hWh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=63roZ7UxsuRFtVUCrqTnjLwtbzk1EhVzGya0ZF5CON0=; b=S1InJX6K50jyiZ
-	8UnVtCxvqDT5gU1ZhiZ+tfWT+vl/HUhSNuzhUeiwVRG+syg3mU2MzUd5RPXH1dYlg05kCC4laH7TK
-	3pfZyUDy2n2eEEA5oE6iZ8FV/sDCpx/oVi+q8EGiSvXBtUk1cd6zFrkctOt09iJLG/Jp3vDc9dKy4
-	FZKmc0z5LsLHZDSb3oIMxPdP3ICP+RWVKInSggiI0tgRgXsL9HzYsJzT4wtz7MdfgwWgcxLrFE/6m
-	//m3uv1KwVG5PUI5kjHMw1pIyqXKxsZwdp+njMTIBY3NWDQP6IfZLBbVptY9QnAE7GcEWxyymzUdc
-	ahOoljh+AspbM2aj0GGA==;
+	List-Owner; bh=c2aO7oEyelbSnShrfwuUs5AvyqaNfXgLOAQIqhvoEAo=; b=RdM75B3zLKEJ49
+	sBvfkQnjW0X+s1zKTQFHTwFnzLP1/cUFPbAUh5a3ftQfdgunldMTLbf3h+T3d7HAt4vgpPK0cL7LI
+	Qh+Xu5YRj0972zuEUR1baLku0EYFYQ8IwJEcvQwAtGFYpEGTJaO8o3Um9mqXO/3HZLARuziUymF4w
+	fLwcAzHGCy2ZN5JUvD7fzx2H6RadPspbX/BluwhMZU5Cd+rTNHFMfcPUCVYVBiT5J2HZGNo9bew57
+	46v9f7cCaS3640oSCJ8+Z/OIqTKXi0+ukfodWwjdt6glhBDyyvmaKtt9QykFgzMAxkNhY4WiSG6CB
+	PMHuZhKwpTT8sXnljvuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2gW-0000000CAAo-3Aeu;
-	Thu, 19 Nov 2026 14:00:20 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xU2iq-0000000CASf-374n;
+	Thu, 19 Nov 2026 14:02:44 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2gU-0000000CAAV-3r04
+	id 1xU2ip-0000000CASV-47FN
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:00:19 +0000
+	Thu, 19 Nov 2026 14:02:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AFA1061385;
-	Thu, 19 Nov 2026 14:00:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 797EF1F000C5;
-	Thu, 19 Nov 2026 14:00:11 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id BA32F46357;
+	Thu, 19 Nov 2026 14:02:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2401D1F000C4;
+	Thu, 19 Nov 2026 14:02:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795096817;
-	bh=63roZ7UxsuRFtVUCrqTnjLwtbzk1EhVzGya0ZF5CON0=;
+	s=k20260515; t=1795096963;
+	bh=c2aO7oEyelbSnShrfwuUs5AvyqaNfXgLOAQIqhvoEAo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=fA2svBB3UuFv8OwARwy1buyqp/vQyqCcr3OP4LAJg6d6EowBotm87Hia8VxnNWfPn
-	 rHUbu7ejMfn/ocsrp7jordp0fUi6Prjh5h3YTvqzTD4VBDnzT8pCdhAHF+ua8T8Ds8
-	 pmXK7K/s4h7M22riyDlSemaxhD1LDNfW+9wtyB2+O30auf2noONeCZ7AY7XEVe724w
-	 P8EdPrCTejytZ2J0RnY5PdG7gGRT5soXe/tpWSynVwkD/TLfseLzUm0aL+afb8H7jK
-	 iOlJdjHEzA7QXMHeaYafNChFPIebvMPJk3rC5ekwnE817oAHi2kuw2hZYP3jtOj30x
-	 6aTt/I1FBlZww==
-Message-ID: <d0dd4fad-2f56-456a-91ee-737af0f3b4e6@kernel.org>
-Date: Thu, 19 Nov 2026 15:00:08 +0100
+	b=ZNKV+hWhIX4hLcZb5RDIA3sOiRVmfZdRzWaqCzKpLmBs5M2ZuLpKJsUhFmupro5CE
+	 DG14ujYnr85jKHmRvW15BX2J5iC1IdAKxYnSRz961+isIgJigIzTCmLWPIMWeFGlpK
+	 /UAQWdPG+eykYjCzg4Px0J7fB+LrQ1BJ+drPqX6KtNjbvzsUYeYJjjegCr/vRMe/x1
+	 zbtvk39jNbkdH29am9fVm1woiwS8bylGBaCnzvEVEacrBNPYTj+ng2JHiAQz4eqVeP
+	 hJcQiewdbDjgrZuhle+ybAmjr2sh/z1qf52E1elJvH8EEzqjWTYDqDTLiJe6pUh6KS
+	 nm3HlZkugrO3w==
+Message-ID: <30c74f5e-cd18-445a-964b-b839fc077b25@kernel.org>
+Date: Thu, 19 Nov 2026 15:02:35 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/6] dt-bindings: soc: qcom: add QDCP provider
+Subject: Re: [PATCH RFC 3/6] dt-bindings: arm: qcom: add QDCP STM source
 To: Jie Gan <jie.gan@oss.qualcomm.com>, Bjorn Andersson
  <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
  Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -64,7 +64,7 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com
 References: <20261119-introduce-qcom-qecp-feature-v1-0-b1a730d2c57a@oss.qualcomm.com>
- <20261119-introduce-qcom-qecp-feature-v1-1-b1a730d2c57a@oss.qualcomm.com>
+ <20261119-introduce-qcom-qecp-feature-v1-3-b1a730d2c57a@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,7 +110,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261119-introduce-qcom-qecp-feature-v1-1-b1a730d2c57a@oss.qualcomm.com>
+In-Reply-To: <20261119-introduce-qcom-qecp-feature-v1-3-b1a730d2c57a@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -132,99 +132,103 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 19/11/2026 10:01, Jie Gan wrote:
-> Document the Qualcomm Debug Control Protocol (QDCP) firmware provider
-> node used by CoreSight debug and trace blocks that are owned by the
-> Qualcomm Embedded Co-Processor (QECP), a separate on-die processor that
-> runs its own firmware. QDCP is the QMI (Qualcomm MSM Interface) service,
-> carried over QRTR (Qualcomm IPC Router), that Linux uses to ask QECP
-> firmware to control those blocks.
+> Document the Qualcomm QDCP-backed CoreSight STM (System Trace Macrocell)
+> source, for platforms where the STM control registers are owned by
+> Qualcomm Embedded Co-Processor (QECP) firmware instead of the
+> application processor (AP).
 > 
-> The provider is a Qualcomm platform/QMI service node, not a CoreSight
-> graph device. It exposes the qcom,qdcp compatible along with
-> per-connection QMI service/instance identifiers; the QMI service
-> version is the only optional identifier, defaulting to 1.
+> The node describes only the STM stimulus aperture, the MMIO region the
+> AP writes trace data to. Firmware controls the STM through the Qualcomm
+> Debug Control Protocol (QDCP) provider referenced by the qcom,qdcp
+> phandle. Firmware also controls the block's clocks and power, so the
+> binding has no clocks or power-domains properties.
+> 
+> The output port must have an endpoint so the source can be connected to
+> a trace sink.
 > 
 > Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 > ---
->  .../devicetree/bindings/soc/qcom/qcom,qdcp.yaml    | 81 ++++++++++++++++++++++
->  1 file changed, 81 insertions(+)
+>  .../bindings/arm/qcom,coresight-stm-qdcp.yaml      | 111 +++++++++++++++++++++
+>  1 file changed, 111 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,qdcp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,qdcp.yaml
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-stm-qdcp.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-stm-qdcp.yaml
 > new file mode 100644
-> index 000000000000..ee0a66b12dde
+> index 000000000000..f365ce2450ad
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,qdcp.yaml
-> @@ -0,0 +1,81 @@
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-stm-qdcp.yaml
+> @@ -0,0 +1,111 @@
 > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/soc/qcom/qcom,qdcp.yaml#
+> +$id: http://devicetree.org/schemas/arm/qcom,coresight-stm-qdcp.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm Debug Control Protocol (QDCP) provider
+> +title: Qualcomm QDCP-backed CoreSight STM source
 > +
 > +maintainers:
 > +  - Jie Gan <jie.gan@oss.qualcomm.com>
 > +
 > +description: |
-> +  QDCP is a QMI-based firmware provider used to control CoreSight trace
-> +  blocks that are owned by the Qualcomm Embedded Co-Processor (QECP) rather
-> +  than the application processor (AP). CoreSight-facing consumers look up
-> +  the provider through a "qcom,qdcp" phandle, naming a specific
-> +  "connection-N" child node rather than the top-level provider node, and
-> +  issue typed firmware requests instead of programming registers directly.
+> +  The System Trace Macrocell (STM) is a CoreSight trace source designed for
+> +  high-bandwidth trace of software instrumentation, made up of memory-mapped
+> +  writes to the STM stimulus aperture.
 > +
-> +  This node does not represent a CoreSight graph device. It is a platform
-> +  driver that establishes the QMI connections used by consumer drivers such
-> +  as the Qualcomm QDCP STM source and QDCP-backed TMC/ETR sink.
+> +  On Qualcomm platforms where the STM control registers are owned by QECP
+> +  firmware, this binding describes an STM whose stimulus aperture is mapped by
+> +  the application processor for data writes, while enabling and disabling the
+> +  trace path is delegated to firmware over the Qualcomm Debug Control Protocol
+> +  (QDCP). It references a QDCP provider through the "qcom,qdcp" phandle rather
+> +  than exposing the STM programming registers directly.
 > +
-> +  QECP exposes more than one independent QMI service (for example, a
-> +  separate service used by remote ETM/diag sources). Each QMI connection is
-> +  described as a child node of the "qcom,qdcp" node rather than as a
-> +  property of the node itself, so a single provider device can establish
-> +  more than one connection. A node without any "connection-N" child is valid
-> +  but provides nothing for consumers to reference.
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: qcom,coresight-stm-qdcp
+> +  required:
+> +    - compatible
 > +
 > +properties:
+> +  $nodename:
+> +    pattern: "^stm(@[0-9a-f]+)$"
+
+That's RFC, so maybe you do not expect review. Explain in cover letter
+as the most important part what do you expect from us.
+
+Anyway, drop, I do not see how is this conforming to DT spec.
+
+
+> +
 > +  compatible:
-> +    const: qcom,qdcp
-
-Standard comment - compatibles are not supposed to be generic. That's
-why you have entire commit msg to explain any oddities or deviations
-from common rules.
-
-
-No resources here, so this does not look like separate device.
-
+> +    const: qcom,coresight-stm-qdcp
 > +
-> +patternProperties:
-> +  "^connection-[0-9]+$":
-> +    type: object
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-names:
+> +    items:
+> +      - const: stm-stimulus-base
+> +
+> +  qcom,qdcp:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 > +    description:
-> +      A single QMI connection established by the QDCP provider. Consumers
-> +      reference this child node directly via their "qcom,qdcp" phandle, not
-> +      the top-level provider node.
-> +
-> +    properties:
-> +      qcom,service-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          QMI service identifier for this connection.
-> +
-> +      qcom,version:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        default: 1
-> +        description:
-> +          QMI service version for this connection.
-> +
-> +      qcom,instance-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          QMI instance identifier for this connection.
-> +
+> +      Phandle to the specific "connection-N" child node of the QDCP
+> +      provider (see qcom,qdcp.yaml) that owns this STM's control registers
+> +      and services the firmware enable/disable transactions. This must
+> +      reference the connection child node directly, not the top-level
+> +      QDCP provider node itself.
 
-Please don't describe firmware contents as random integers in DT.
+No, the QDCP is just part of this device.
 
+
+> +
+> +  qcom,qdcp-source-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint64
+> +    description:
+> +      QECP firmware source identifier for this STM, used to address it in QDCP
+> +      transactions.
+
+Drop, we don't allow instance IDs.
 
 Best regards,
 Krzysztof
