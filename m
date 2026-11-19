@@ -2,113 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A867C606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC30D606A334
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rW1uRFCR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mauniMpq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zUKUYRzB;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kSgXT4UZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nrKKan4fcwQqO2+IQHN8KIdhVM27xJklMd2gBP7DwN4=; b=rW1uRFCRpSOqnTlMTwY+Kf07h6
-	wSIRMAJllw6ybuEdkCZgTE+TSVz3yMk91LESg7xNiNk8pNezgc2E8bMeuCDC2hv9Jr3wvDS3cH7zR
-	jM/2/feINmXP/A+UgaaCTvHpZ6FiIDeyth1UeIYR5SVOXBzNDGgj7o5BLn2K3rX72F0jYW5etzlTI
-	q9wzd2Y8O5XgStWB9UBuEtdgRe70ZPhhPrjYYvkOuBUGsaU1CjbfvzFti77chS9IdQu3OZxUFtTnR
-	CTaT7GFgmFAotnxy4/QaTqmy2MuYSuh8oDOdVsK7L4nQHZ0lHccAPhr240I72xO8otb8CxeurK7AI
-	EZ6RgBKg==;
+	bh=6DuZj7rpCDJ4RLnqAO8W7jTcTFXU6SWSY1XFYNYKyWY=; b=zUKUYRzBJkEUt93xYa2oaFy0KJ
+	XUR9W6MuhPARdz6X2CfZIZxNBWknw3xVNmctYqyYIxPEdT58c6QtTi0Oy8WeRcySXEt9Y+wgC7QMB
+	sgOMJrDpQDeZthKASy2VIcvOHBGdBzsEidAtbU7qs+eK93sni9i+en39S8JHD7ooExzpwEO1w+Zkz
+	lJ9qcqybPkm23/f86sGeu3VJUjum9gn7oKiROLeuXFpByxTggpZosJQpZsP7Q6mWIewbWTXbf+9qU
+	Z3QS4JPa320yMHpJcRrkjXCIfc2EofhCogzXWJ9DKyuxH+jwU1jCSdGvngpCDjlDiRLFj/XfcHXvW
+	Ts9pUmfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTz9N-0000000BVJa-2xHj;
+	id 1xTz9N-0000000BVK9-3awj;
 	Thu, 19 Nov 2026 10:13:53 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTz94-0000000BVBN-2w2r
+	id 1xTz97-0000000BVCz-2Ejz
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 10:13:34 +0000
+	Thu, 19 Nov 2026 10:13:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6BB0447729;
+	by sea.source.kernel.org (Postfix) with ESMTP id 442ED44FF1;
+	Thu, 19 Nov 2026 10:13:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 653821F00930;
 	Thu, 19 Nov 2026 10:13:34 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795083214;
-	b=LItOd4vHrw7HsmyS/31pjIFwBWXu8W6LPqGMVMg5/1OZ2gLBHKm4JL9KW6uk7lCNpkTH
-	 dRhuCJIPST8fmq17Zyq5t1dtki2BBuTX7FZ3BL4ASOgWOYZVDZz72YttW46sgCzv6fhYq
-	 ny/R13c+Id/UBygR7XB1Oast+WDlGvRTkIyquB4stVrlmbGeol6WMwr3uKuCfEDY0y3Ic
-	 ZAtTbR8JJmp8cgTZwU7hW0P11tDUcXwKMcnXPydL0/p5qz/FY28/jFrVi5+0qgPCNy//P
-	 GMHpvjnW75tQx6s91WNVzBaSEoBArjNhcuAm0kry/ZJrEqSyZwU+NGlRVR4pKW/+REg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795083214;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=nrKKan4fcwQqO2+IQHN8KIdhVM27xJklMd2gBP7DwN4=;
-	b=Nb+2UiDoeztc5PI548UE1uQ03Pbbp6W2fzNbODeY0GpyABHgP1NbBIWWTRFEtzbz5utT
-	 qASnj4/hcuCe05gnt/d+9oLI1jo6bERIrie4TIil9yGk5gBvhUiXDrgGPld/6WdXpTYcv
-	 m/OEJzb3cOpRlmRv2ILoS3RnUIcRRRZPTW5FAyh/h6LQ25Cz/NtdiWQxOrLeRDRdUG8mY
-	 rGUX+fQaHFm2BMdT99OK+0dK+wvzI3gTMLPFUehUPcGQs/8od8X5bIGS/j1fOKpfriJoX
-	 AmH07RM33gkn7RxRCnj7giVAOWJ6M00vOrBpSEEUG6bqDgCprKErWyZp4obsdH7AxGQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6EC0D1F000C4;
-	Thu, 19 Nov 2026 10:13:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795083214;
-	bh=nrKKan4fcwQqO2+IQHN8KIdhVM27xJklMd2gBP7DwN4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=mauniMpqkswQublGGMROV3GxMGf0JEkVvu+dwT+tH8jklQjjH3vn6w9cMAdHgMfDo
-	 7JseutBs1FHrYAz5ZJ64Oa2w6Fe5pwdTl4ZIv/XzM0CkQh5yDTAWqbvXpjZQC2+6um
-	 dhNcheXf+hT8wguBRtb1OzmQ2yDKA9ggfzChfZ3Ml2H+JUb8Hjn3s1SjCtBhmTRVqU
-	 RQQwbxccWkPGMrAFs6wje1oGXbJt9HXlmP0Thc/6a91h/1lxj2kOcLmNd2BSpxr2Cw
-	 D4Uh45qd+1sELHZelJAwtK7KY3xjmJzV0QwGaJqViav0pib4JA+X6pjYiUFyoIp23s
-	 7JysjzUtB6PNg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 505FE4B23C;
-	Thu, 19 Nov 2026 10:13:31 +0000 (UTC)
-From: Long Zhao via B4 Relay <devnull+longzhao.ambarella.com@kernel.org>
-Date: Thu, 19 Nov 2026 18:13:23 +0800
-Subject: [PATCH v12 5/6] arm64: dts: ambarella: add CV75 SoC and EVK
+	s=k20260515; t=1795083217;
+	bh=6DuZj7rpCDJ4RLnqAO8W7jTcTFXU6SWSY1XFYNYKyWY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=kSgXT4UZxO4V1tQsElmCQVnTzGLg/D1NFK8Ql8iz/O/dvvjAYKDsKPeHj4sK4Y0Cn
+	 yRIq6V5QcOhzvt4hASgD+jNOqQs2GkRTh8+oLn3y55zJXIvfFjB1tI1crzzsO3AW9F
+	 wkZ3Ze+me/QgQsFYS8Iq2V5VIp0R9xOLBop+IZZzPmqT1asxSgLVmC45VN/BfQ3LXP
+	 mx24GzFkc3YClfRp4+74alZIFFeDew+fndyg3NTNBhuz1A9Kx88n95mLsqVZDIGnDr
+	 CINZDCPkQTrM8eKXrD2xqOQxAm4pbIsETyowT2iAqnRCKzZ47B87I6BVcoPV/OWmbI
+	 bh+E5gNG7r0bg==
+Date: Thu, 19 Nov 2026 11:13:31 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Sascha Bischoff <sascha.bischoff@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+	Radu Rendec <radu@rendec.net>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Fuad Tabba <fuad.tabba@linux.dev>
+Subject: Re: [PATCH v3 14/14] irqchip/gic-v5: Invalidate the L1 DTE when
+ allocating an L2 device table
+Message-ID: <av7Ly_iLyiOAXQUR@red-moon>
+References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
+ <20261118-host_gicv5_fixes-v3-14-13c1859e8aa3@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261119-cv75-soc-v12-5-e5a03cca8b05@ambarella.com>
-References: <20261119-cv75-soc-v12-0-e5a03cca8b05@ambarella.com>
-In-Reply-To: <20261119-cv75-soc-v12-0-e5a03cca8b05@ambarella.com>
-To: Arnd Bergmann <arnd@arndb.de>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, soc@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, linux-clk@vger.kernel.org, 
- Brian Masney <masneyb@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- devicetree@vger.kernel.org, Long Zhao <longzhao@ambarella.com>, 
- Long Zhao <zl020895@163.com>, linux-kernel@vger.kernel.org, 
- Linus Walleij <linusw@kernel.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795083209; l=7477;
- i=longzhao@ambarella.com; s=20260730; h=from:subject:message-id;
- bh=r8Z+RI7zn8FZlW5uvIfPNOKL1NMli07Z5kwhpKpkQj0=;
- b=+pRH8Z9CewJF4hlc2HOBriCfQOt1FMtf7ohnD1CdHeZ23gywp1PvWLNckRL+0fqcJZbTTjt+q
- iiAFpEqL4iLB/vATGtuLPwBr7t/hPqEj1gx+Lx4LqLD4jV1ip0Ji3RD
-X-Developer-Key: i=longzhao@ambarella.com; a=ed25519;
- pk=/xGhPTOX0/eYsyTWzyjjgAIW1Z/YD+IlnOnvcdRozow=
-X-Endpoint-Received: by B4 Relay for longzhao@ambarella.com/20260730 with
- auth_id=903
-X-Original-From: Long Zhao <longzhao@ambarella.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261118-host_gicv5_fixes-v3-14-13c1859e8aa3@arm.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,286 +74,110 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: longzhao@ambarella.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Long Zhao <longzhao@ambarella.com>
+On Wed, Nov 18, 2026 at 05:35:43PM +0000, Sascha Bischoff wrote:
+> Allocating an L2 device table makes its parent L1 DTE valid, but the
+> single-device invalidation performed during device registration does
+> not invalidate that L1 DTE. An ITS that cached the L1 DTE while it was
+> invalid can therefore continue dropping events for DeviceIDs in its
+> range.
+> 
+> Invalidate the L1 DTE and wait for completion immediately after
+> publishing the new L2 table. This also covers a registration that
+> subsequently fails, leaving the L2 table allocated and its parent L1
+> DTE valid. Keep single-device invalidations for device registration
+> and teardown when updating individual L2 DTEs.
+> 
+> Fixes: 57d72196dfc85 ("irqchip/gic-v5: Add GICv5 ITS support")
+> Reported-by: Fuad Tabba <fuad.tabba@linux.dev>
+> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
+> Cc: stable@vger.kernel.org
+> Link: https://lore.kernel.org/r/20261112145814.853424-1-fuad.tabba@linux.dev
+> ---
+>  drivers/irqchip/irq-gic-v5-its.c | 26 ++++++++++++++++++++------
+>  1 file changed, 20 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
+> index 7fff2db9ae08e..a05417bdd3a19 100644
+> --- a/drivers/irqchip/irq-gic-v5-its.c
+> +++ b/drivers/irqchip/irq-gic-v5-its.c
+> @@ -365,17 +365,17 @@ static __le64 *gicv5_its_device_get_itte_ref(struct gicv5_its_dev *its_dev,
+>  	return &l2_itt[l2_idx];
+>  }
+>  
+> -static int gicv5_its_device_cache_inv(struct gicv5_its_chip_data *its,
+> -				      struct gicv5_its_dev *its_dev)
+> +static int __gicv5_its_device_cache_inv(struct gicv5_its_chip_data *its,
+> +					u32 device_id, u8 event_id_bits, bool l1)
+>  {
+>  	u32 devicer;
+>  	u64 didr;
+>  
+> -	didr = FIELD_PREP(GICV5_ITS_DIDR_DEVICEID, its_dev->device_id);
+> +	didr = FIELD_PREP(GICV5_ITS_DIDR_DEVICEID, device_id);
+>  	devicer = FIELD_PREP(GICV5_ITS_INV_DEVICER_I, 0x1)	|
+>  		  FIELD_PREP(GICV5_ITS_INV_DEVICER_EVENTID_BITS,
+> -			     its_dev->itt_cfg.event_id_bits)	|
+> -		  FIELD_PREP(GICV5_ITS_INV_DEVICER_L1, 0x0);
+> +			     event_id_bits)			|
+> +		  FIELD_PREP(GICV5_ITS_INV_DEVICER_L1, l1);
+>  
+>  	guard(raw_spinlock_irqsave)(&its->inv_lock);
+>  
+> @@ -385,6 +385,19 @@ static int gicv5_its_device_cache_inv(struct gicv5_its_chip_data *its,
+>  	return gicv5_its_cache_sync(its);
+>  }
+>  
+> +static int gicv5_its_device_cache_inv(struct gicv5_its_chip_data *its,
+> +				      struct gicv5_its_dev *its_dev)
+> +{
+> +	return __gicv5_its_device_cache_inv(its, its_dev->device_id,
+> +					    its_dev->itt_cfg.event_id_bits, false);
+> +}
+> +
+> +static int gicv5_its_device_l1_cache_inv(struct gicv5_its_chip_data *its,
+> +					 u32 device_id)
+> +{
+> +	return __gicv5_its_device_cache_inv(its, device_id, 0, true);
 
-Add a minimal CV75 SoC and EVK device tree for console bring-up with
-the RCT clocks, UART, pinctrl and GPIO banks.
+I would highlight why event_id_bits is set to 0 (actually it is irrelevant,
+let's explicitly say so).
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
-Signed-off-by: Long Zhao <longzhao@ambarella.com>
----
- arch/arm64/boot/dts/Makefile               |   1 +
- arch/arm64/boot/dts/ambarella/Makefile     |   3 +
- arch/arm64/boot/dts/ambarella/cv75-evk.dts |  30 +++++
- arch/arm64/boot/dts/ambarella/cv75.dtsi    | 177 +++++++++++++++++++++++++++++
- arch/arm64/configs/defconfig               |   1 +
- 5 files changed, 212 insertions(+)
+> +}
+> +
+>  /*
+>   * Allocate a level 2 device table entry, update L1 parent to reference it.
+>   * Only used for 2-level device tables, and it is called on demand.
+> @@ -424,7 +437,8 @@ static int gicv5_its_alloc_l2_devtab(struct gicv5_its_chip_data *its,
+>  		FIELD_PREP(GICV5_DTL1E_VALID, 0x1);
+>  	its_write_table_entry(its, &l1devtab[l1_index], l1dte);
+>  
+> -	return 0;
+> +	/* Invalidate the cached L1 DTE before using the new L2 table. */
 
-diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-index fc726b215f12..f1709eb5d915 100644
---- a/arch/arm64/boot/dts/Makefile
-+++ b/arch/arm64/boot/dts/Makefile
-@@ -4,6 +4,7 @@ subdir-y += airoha
- subdir-y += allwinner
- subdir-y += altera
- subdir-y += amazon
-+subdir-y += ambarella
- subdir-y += amd
- subdir-y += amlogic
- subdir-y += apm
-diff --git a/arch/arm64/boot/dts/ambarella/Makefile b/arch/arm64/boot/dts/ambarella/Makefile
-new file mode 100644
-index 000000000000..ddca3d7b18cc
---- /dev/null
-+++ b/arch/arm64/boot/dts/ambarella/Makefile
-@@ -0,0 +1,3 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+dtb-$(CONFIG_ARCH_AMBARELLA) += cv75-evk.dtb
-diff --git a/arch/arm64/boot/dts/ambarella/cv75-evk.dts b/arch/arm64/boot/dts/ambarella/cv75-evk.dts
-new file mode 100644
-index 000000000000..42a0fe24b83b
---- /dev/null
-+++ b/arch/arm64/boot/dts/ambarella/cv75-evk.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Ambarella CV75 EVK board
-+ */
-+
-+/dts-v1/;
-+
-+#include "cv75.dtsi"
-+
-+/ {
-+	model = "Ambarella CV75 EVK Board";
-+	compatible = "ambarella,cv75-evk", "ambarella,cv75";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart0;
-+	};
-+
-+	memory@200000 {
-+		device_type = "memory";
-+		reg = <0x0 0x00200000 0x0 0x07e00000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/ambarella/cv75.dtsi b/arch/arm64/boot/dts/ambarella/cv75.dtsi
-new file mode 100644
-index 000000000000..c36b6af48237
---- /dev/null
-+++ b/arch/arm64/boot/dts/ambarella/cv75.dtsi
-@@ -0,0 +1,177 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Ambarella CV75 SoC
-+ *
-+ * Boot peripheral: UART0 console.
-+ * Clocks: a single ambarella,cv75-rct provider.
-+ */
-+
-+#include <dt-bindings/clock/ambarella,cv75-rct.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	compatible = "ambarella,cv75";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu@0 {
-+			compatible = "arm,cortex-a76";
-+			device_type = "cpu";
-+			reg = <0x000>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu@1 {
-+			compatible = "arm,cortex-a76";
-+			device_type = "cpu";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	osc: oscillator {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+		clock-output-names = "osc";
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ahb@ffe0000000 {
-+			compatible = "simple-bus";
-+			reg = <0xff 0xe0000000 0x0 0x01000000>;
-+			ranges = <0xe0000000 0xff 0xe0000000 0x01000000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			s_scratchpad_syscon: scratchpad@e002e000 {
-+				compatible = "ambarella,cv75-sec-scratchpad", "syscon";
-+				reg = <0xe002e000 0x1000>;
-+			};
-+		};
-+
-+		apb@ffe4000000 {
-+			compatible = "simple-bus";
-+			reg = <0xff 0xe4000000 0x0 0x01000000>;
-+			ranges = <0xe4000000 0xff 0xe4000000 0x01000000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			uart0: serial@e4000000 {
-+				compatible = "ambarella,cv75-uart", "snps,dw-apb-uart";
-+				reg = <0xe4000000 0x1000>;
-+				clocks = <&rct CV75_GCLK_UART0>;
-+				interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
-+				reg-shift = <2>;
-+				reg-io-width = <4>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&uart0_pins>;
-+
-+				status = "disabled";
-+			};
-+
-+			pinctrl: pinctrl@e4010000 {
-+				compatible = "ambarella,cv75-pinctrl";
-+				reg = <0xe4010000 0x1000>;
-+				ambarella,drive-strength-syscon = <&rct>;
-+				ambarella,pull-syscon = <&s_scratchpad_syscon>;
-+
-+				uart0_pins: uart0-pins {
-+					function = "uart0";
-+					groups = "uart0";
-+				};
-+			};
-+
-+			gpio0: gpio@e4013000 {
-+				compatible = "ambarella,cv75-gpio", "arm,primecell";
-+				reg = <0xe4013000 0x1000>;
-+				clocks = <&rct CV75_GCLK_APB>;
-+				clock-names = "apb_pclk";
-+				interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				gpio-ranges = <&pinctrl 0 0 32>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				arm,primecell-periphid = <0x000e8061>;
-+			};
-+
-+			gpio1: gpio@e4014000 {
-+				compatible = "ambarella,cv75-gpio", "arm,primecell";
-+				reg = <0xe4014000 0x1000>;
-+				clocks = <&rct CV75_GCLK_APB>;
-+				clock-names = "apb_pclk";
-+				interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				gpio-ranges = <&pinctrl 0 32 32>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				arm,primecell-periphid = <0x000e8061>;
-+			};
-+
-+			gpio2: gpio@e4015000 {
-+				compatible = "ambarella,cv75-gpio", "arm,primecell";
-+				reg = <0xe4015000 0x1000>;
-+				clocks = <&rct CV75_GCLK_APB>;
-+				clock-names = "apb_pclk";
-+				interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				gpio-ranges = <&pinctrl 0 64 32>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				arm,primecell-periphid = <0x000e8061>;
-+			};
-+		};
-+
-+		rct: clock-controller@ffed080000 {
-+			compatible = "ambarella,cv75-rct", "syscon";
-+			reg = <0xff 0xed080000 0x0 0x1000>;
-+			clocks = <&osc>;
-+			clock-names = "osc";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			assigned-clocks = <&rct CV75_GCLK_UART0>;
-+			assigned-clock-parents = <&osc>;
-+			assigned-clock-rates = <24000000>;
-+		};
-+
-+		gic: interrupt-controller@fff0101000 {
-+			compatible = "arm,gic-400";
-+			reg = <0xff 0xf0101000 0x0 0x1000>,
-+			      <0xff 0xf0102000 0x0 0x2000>,
-+			      <0xff 0xf0104000 0x0 0x2000>,
-+			      <0xff 0xf0106000 0x0 0x2000>;
-+			interrupt-controller;
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupts = <GIC_PPI 9
-+				      (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+};
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index ad3bd3d9507b..454f07a6a6a6 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -36,6 +36,7 @@ CONFIG_CRASH_DUMP=y
- CONFIG_ARCH_ACTIONS=y
- CONFIG_ARCH_AIROHA=y
- CONFIG_ARCH_SUNXI=y
-+CONFIG_ARCH_AMBARELLA=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_APPLE=y
- CONFIG_ARCH_ARTPEC=y
+Nit: it is not a given that it is cached.
 
--- 
-2.34.1
+> +	return gicv5_its_device_l1_cache_inv(its, l1_index << l2_bits);
 
+Nit: this l1/l2/deviceid bits/index dance is a bit clumsy (I mean, in
+current code, without taking into account this patch) but we can rework it
+in a follow-up patch to keep this one as simple as possible.
 
+Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+
+>  }
+>  
+>  static __le64 *gicv5_its_devtab_get_dte_ref(struct gicv5_its_chip_data *its,
+> 
+> -- 
+> 2.34.1
+> 
 
