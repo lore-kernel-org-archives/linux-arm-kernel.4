@@ -2,87 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB420606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 23:18:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A0D606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 23:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2ibscVEy;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=H1OAbmxz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FvcY5Uwl;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=exKS5AOW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=IoabV2VxoUyRhnu9jmXaZBldz5Wr97ijw+Y3IW83qfM=; b=2ibscVEyWA7TlN
-	T5nFyVZ3DLWXYxQ4ZlEQ25B3/dl8CujRseScr64Nw/6B1xblnuq59U80LF0q+nHgv+dkj95UmeQ+9
-	ET2btcRhQGD1UPRqpzOOxOgZl4l/tW8qBD1rNGdbKiWGdkZsnRrItS2kfyG4Ln65zJP3jmueGrHoq
-	g0v00Pse0+UBIh6VT/z/nn16EPJqbyODqpt5vLPioc+N9gD9xyas3rtbIYnzZFqn5Cacq/9rvuIbK
-	N4CxxO4HXjNy97DiyeaesubBC1CxO0K2rWbiH5cyygFznvVkvdkHPS2ZcpmQ0QvAIsFjEW//JilnE
-	0UZ2vd9TTICxdEOtrdoA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=EGAR8AwNfaaNnY+c/wiFpYuTC+Sl5mX+8pWJKXAFaeA=; b=FvcY5UwlAeQGAzqHJWM3VArJJu
+	Dj6sFM/ia4JrG8aa125ji4hpp37dsF0K/pKbVym2EDxUYcFXCd5faMY31LbN2gSVMeyR+seBxZMJI
+	+MzGMxs0rDPj23kzyj1TCw5o7nVquUjabCrlQz37L4z3DwGi2FmNFWEcXpvEJ37P8bquhWKVxaYkk
+	jhoUvH7SSyUkiCSMDMkhGXxiQbo8+9VLAEgs58Nd1G4uMdq64curUoVeOtPeRss6vrriLkd8RDxJr
+	FMnOAVooCHabSsnzoEYfgtNOT1u+j7jTxQ0qvA9HIwQlWcIpKaMO6nkleAo25zmAI/yG8iHYooaGh
+	UBBMV1SQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUBP3-0000000De5H-3jbf;
-	Thu, 19 Nov 2026 23:18:53 +0000
-Received: from linux.microsoft.com ([13.77.154.182])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUBP1-0000000De4g-3IF6
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 23:18:53 +0000
-Received: from [192.168.0.88] (192-184-212-33.fiber.dynamic.sonic.net [192.184.212.33])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 93B9C20B7166;
-	Thu, 19 Nov 2026 15:18:47 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 93B9C20B7166
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1795130328;
-	bh=IoabV2VxoUyRhnu9jmXaZBldz5Wr97ijw+Y3IW83qfM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H1OAbmxzqQXd4m5xgxOYa9Lc8M4W0KGHhMF8BGhB6RMSjzC1SQd7TCafdyccGls2F
-	 6nwT+n+OjtkIDNHAGdKZKiA1iMkEezYzO9szzMcmIPVVkNqpX/jSvjXlQwnDc/GHk9
-	 fZ7/mXHELX4rc9KBcGZiniFbpcRP+suqjqL+Tm6A=
-Message-ID: <1f486680-f2b2-5967-2cf6-bfbf5fe1fc5f@linux.microsoft.com>
-Date: Thu, 19 Nov 2026 15:18:48 -0800
+	id 1xUBRw-0000000DeFX-1GAu;
+	Thu, 19 Nov 2026 23:21:52 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xUBRv-0000000DeFO-2SzX;
+	Thu, 19 Nov 2026 23:21:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8B2EA61107;
+	Thu, 19 Nov 2026 23:21:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC1B31F000C4;
+	Thu, 19 Nov 2026 23:21:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795130510;
+	bh=EGAR8AwNfaaNnY+c/wiFpYuTC+Sl5mX+8pWJKXAFaeA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=exKS5AOWd6cAQi3uKf0M74CRJzeUBwGdpYRoTjlYR7fTPEjOcGC4rXhLCfilnGMOj
+	 GbyKnhzg6qW78qHFLa4/ixUSdp5vLI4GUzXd6MiavClaZjFKuf467oG9sF3G3l0hlY
+	 CBhaIimtghJ0QNny8wVb/xbPZmBcPbRbG+h4P5/CGhM7rZip08eVsIa5UoQLhMGQsA
+	 IKNucTsQGrmQSMTcLb0400X5qWSeKCoyoaPE0nnle+m7Y32qNkeR2QYh2lk1W1zmdF
+	 uTcWQw2gZap4gAsBB8JK9G8gOIskT8M4mEXIJUACjZRTuKrcqfH1syxTtOXv4X+0Gd
+	 UETr2tmDegMsQ==
+Date: Thu, 19 Nov 2026 17:21:46 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-aspeed@lists.ozlabs.org, tbevis@amazon.com,
+	Frank Li <Frank.Li@nxp.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	devicetree@vger.kernel.org,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Ryan Chen <ryan_chen@aspeedtech.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Subject: Re: [PATCH v2 2/9] dt-bindings: i3c: Document the AST2700 I3C
+ controller
+Message-ID: <179513050618.1478011.10339945188286451327.robh@kernel.org>
+References: <20261111-b4-i3c-hci-ast2700-v2-0-4d8fff5c5196@aspeedtech.com>
+ <20261111-b4-i3c-hci-ast2700-v2-2-4d8fff5c5196@aspeedtech.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v6 4/6] Drivers: hv: Mark shared memory as decrypted for
- CCA Realms
-Content-Language: en-US
-To: Kameron Carr <kameroncarr@linux.microsoft.com>
-Cc: Michael Kelley <mhklinux@outlook.com>,
- "decui@microsoft.com" <decui@microsoft.com>,
- "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
- "wei.liu@kernel.org" <wei.liu@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "mark.rutland@arm.com" <mark.rutland@arm.com>,
- "sudeep.holla@kernel.org" <sudeep.holla@kernel.org>,
- "thuth@redhat.com" <thuth@redhat.com>, "will@kernel.org" <will@kernel.org>
-References: <20261031001412.4150488-1-kameroncarr@linux.microsoft.com>
- <20261031001412.4150488-5-kameroncarr@linux.microsoft.com>
- <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
- <c6b7f583-878d-1f1e-60cc-e602e277d075@linux.microsoft.com>
- <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
-From: Mukesh R <mrathor@linux.microsoft.com>
-In-Reply-To: <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_151851_858132_F1477E0E 
-X-CRM114-Status: GOOD (  17.86  )
-X-Spam-Score: -4.5 (----)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261111-b4-i3c-hci-ast2700-v2-2-4d8fff5c5196@aspeedtech.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,108 +78,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/12/26 09:49, Kameron Carr wrote:
-> On 11/11/2026 6:43 PM, Mukesh R wrote:
->> On 11/11/26 10:01, Michael Kelley wrote:
->>> From: Kameron Carr <kameroncarr@linux.microsoft.com> Sent: Friday, October 30, 2026 5:14 PM
->>>>
->>>> In hv_common_cpu_init(), the per-CPU hypercall input/output pages need
->>>> to be marked as decrypted (shared) for confidential VM isolation types.
->>>> This is already done for SNP and TDX isolation; extend the same handling
->>>> to Arm CCA Realm guests so that the host hypervisor can access the
->>>> shared hypercall buffers.
->>>>
->>>> is_realm_world() is declared in include/linux/arm-rsi-cmds.h which only
->>>> builds on arm64 (it includes <asm/memory.h>), so using it directly in
->>>> the arch-neutral drivers/hv/hv_common.c would break the x86 build.
->>>> Introduce a Hyper-V-specific helper following the established
->>>> hv_isolation_type_snp() / hv_isolation_type_tdx() pattern.
->>>>
->>>> On architectures other than arm64 the weak default keeps the existing
->>>> behaviour.
->>>>
->>>> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
->>>> Signed-off-by: Kameron Carr <kameroncarr@linux.microsoft.com>
->>>> ---
->>>>    arch/arm64/hyperv/mshyperv.c   |  5 +++++
->>>>    drivers/hv/hv_common.c         | 17 +++++++++++++----
->>>>    include/asm-generic/mshyperv.h |  1 +
->>>>    3 files changed, 19 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
->>>> index 46ab2da..da6c3aa0 100644
->>>> --- a/arch/arm64/hyperv/mshyperv.c
->>>> +++ b/arch/arm64/hyperv/mshyperv.c
->>>> @@ -182,3 +182,8 @@ bool hv_is_hyperv_initialized(void)
->>>>        return hyperv_initialized;
->>>>    }
->>>>    EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
->>>> +
->>>> +bool hv_isolation_type_cca(void)
->>>> +{
->>>> +    return is_realm_world();
->>>> +}
 
-Hey Kameron,
-
-Since this function is added to check cca and is being used now, there
-are places that still use is_realm_world() in arch/arm64/hyperv/mshyperv.c
-that I think should switch over to hv_isolation_type_cca(). Should be
-quick patch.
-
-Thanks,
--Mukesh
-
->>>> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
->>>> index 31256cb..a60c92c 100644
->>>> --- a/drivers/hv/hv_common.c
->>>> +++ b/drivers/hv/hv_common.c
->>>> @@ -476,6 +476,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>        u64 msr_vp_index;
->>>>        gfp_t flags;
->>>>        const int pgcount = hv_output_page_exists() ? 2 : 1;
->>>> +    const size_t alloc_size = ALIGN((size_t)pgcount * HV_HYP_PAGE_SIZE, PAGE_SIZE);
->>>>        void *mem;
->>>>        int ret = 0;
->>>>
->>>> @@ -489,7 +490,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>         * online and then taken offline
->>>>         */
->>>>        if (!*inputarg) {
->>>> -        mem = kmalloc_array(pgcount, HV_HYP_PAGE_SIZE, flags);
->>>> +        mem = kmalloc(alloc_size, flags);
->>>>            if (!mem)
->>>>                return -ENOMEM;
->>>>
->>>> @@ -499,14 +500,16 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>            }
->>>>
->>>>            if (!ms_hyperv.paravisor_present &&
->>>> -            (hv_isolation_type_snp() || hv_isolation_type_tdx())) {
->>>> -            ret = set_memory_decrypted((unsigned long)mem, pgcount);
->>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>> +             hv_isolation_type_cca())) {
->>>
->>> Could this big "if" statement use "hv_is_isolation_supported()" instead
->>> of explicitly testing for each CoCo VM type? I ask partly because
->>> Mukesh Rathor has just submitted a patch [1] that introduces a new
->>> function that does something almost exactly the same as
->>> hv_is_isolation_supported() and uses it here.
->>
->>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>> +             hv_isolation_type_cca())) {
->>
->> With my change, this will become:
->>
->>          (hv_isolation_hw_cvm() || hv_isolation_type_cca())) {
+On Wed, 11 Nov 2026 11:16:30 +0800, Billy Tsai wrote:
+> The AST2700 I3C controller implements the MIPI I3C HCI programming
+> model, extended with an ASPEED in-house control block and a PHY
+> programming window advertised through an HCI vendor extended
+> capability.
 > 
-> Any reason you wouldn't change hv_isolation_hw_cvm() to
+> The controller takes a core clock for PHY timing and two resets,
+> named in reset-names as the controller's own reset and its DMA engine
+> reset.
 > 
->    return hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->      hv_isolation_type_cca()
+> Boards without external I3C pull-up resistors can use the PHY's
+> built-in pull-ups instead, selected with bias-pull-up; the achievable
+> strength set depends on which pin group backs the bus, since that
+> fixes the pin voltage domain. Reuse bias-pull-up (pincfg-node.yaml)
+> for the strength in Ohms; it is declared on this node rather than a
+> pin-config node since the pull-up switch is part of the I3C PHY, not
+> the broader SoC pin control IPs.
 > 
-> That would seem more logical to me.
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
 > 
+> ---
+> We considered expressing bias-pull-up's dependency on a pinctrl state
+> in the schema, but couldn't find a clean way to say "depends on
+> whichever pinctrl-N is active" without hard-coding pinctrl-0
+> specifically, which would be wrong in general (a node's active pin
+> state doesn't have to sit at index 0). We've added pinctrl-0 to the
+> example to illustrate the typical usage instead, without a formal
+> schema-level dependency.
+> ---
+>  .../bindings/i3c/aspeed,ast2700-i3c-hci.yaml       | 89 ++++++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
