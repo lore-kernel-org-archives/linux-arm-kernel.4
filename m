@@ -2,83 +2,143 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C839C606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 02:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48E18606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 02:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e6PQaLMB;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=FQdPA5Pb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3q6S1E8B;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=b7n4f33V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:References:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LUqBzoEbICu2gGjrUri7BM8sDQgcxBg8NEGSqd5VzHY=; b=e6PQaLMBcEk7XH
-	1CywpV33yXytSGhE3iM+ORQi2xjmtnNVm7Cda0IQKH4Btl4ZlNdb3p9d8D3Oq2UB7L39UV3bvV1gz
-	c3iq2UQ2I1QO0uwWDgwdb5oLNSgQDq8riSKKE4XfF9BwpgmGaDJx/aIhFgyfo0YpXqC2ipXyg4yI8
-	Ep2Ji93haF7ApML0ym6jLRRCFxpz1h2NhOldPQsudkHyhmWl9VMPATw74h/H7zFsmKP4spwsBc2BI
-	kz/k4vy4N0TmPMiq4RXKjfLW+SrHwr47BOuZ4138e6rQ57da7XF84atTy+LdYdmT8fKyxqQUdtyMC
-	IyBraRcVEGZY32hL6/hA==;
+	List-Owner; bh=VTw/13oYuLOJUeL3tzDZYQixvUsZprFaay6RceG7kmM=; b=3q6S1E8BLpFjBt
+	Nkj9Ahx5t9zjS55g7HTtAa/7l5A0OT+kbsdVzKB35LF47GLtDI9G6R8qfFLXLCZNRpCFiSeo1806p
+	aJKNLkz+ZNaAB8Q4l/qmBPh/gOZkC5pELBdBB5cuVnI6AjqdU5DIL4xKuPRHiqXCfdtSWRUVLqX/5
+	ZUaFSCbrHqfPyOahgB1Onc0tVKZSRKmHwDQs3GeaAqfZCxwsMF86BmjGE+9dj5FSgK82+CfJiJcPH
+	F26dbkww9IQ4V66NFJ17jKGx0Z/Y1d2xRD47W3QaBC+83jNY61Fj1AuTNHEsE2rJkIImnGunlqlU8
+	qzWSLwV1+5zx5xSQxpMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTsFr-0000000AiX0-1q2A;
-	Thu, 19 Nov 2026 02:52:07 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTsLL-0000000AioK-0YUu;
+	Thu, 19 Nov 2026 02:57:47 +0000
+Received: from mail-northeuropeazon11010063.outbound.protection.outlook.com ([52.101.84.63] helo=DB3PR0202CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTsFq-0000000AiWt-1Tdc
+	id 1xTsLI-0000000Ainx-3NN4
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 02:52:06 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0DE4A647EB;
-	Thu, 19 Nov 2026 02:52:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B5DD1F000C7;
-	Thu, 19 Nov 2026 02:52:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
-	s=korg; t=1795056724;
-	bh=LUqBzoEbICu2gGjrUri7BM8sDQgcxBg8NEGSqd5VzHY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=FQdPA5PbR62M2KAUFLRVkIscuP9wUmqDrYhtPCKCT/droV2whyPJ4S+rF3HIVG1/3
-	 HZf4fk27zjIkcFnHzezfDhECvkL9QTHZqf8lCqfL8zTDfljgQVeIRScpwNhq5ctwgV
-	 mA0FTD62gThyNH651CfsoTB4ptlwsJS/OeA1maPI=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	patches@lists.linux.dev,
-	Ali Saidi <alisaidi@amazon.com>,
-	Leo Yan <leo.yan@linaro.org>,
-	Ian Rogers <irogers@google.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	German Gomez <german.gomez@arm.com>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	James Clark <james.clark@arm.com>,
-	Jiri Olsa <jolsa@kernel.org>,
-	John Garry <john.garry@huawei.com>,
-	Kajol Jain <kjain@linux.ibm.com>,
-	Like Xu <likexu@tencent.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	Namhyung Kim <namhyung@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	Will Deacon <will@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Arnaldo Carvalho de Melo <acme@redhat.com>,
-	Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.15 2091/2214] perf c2c: Use peer as default display for Arm64
-Date: Wed, 18 Nov 2026 16:02:47 +0100
-Message-ID: <20261118150134.267021741@linuxfoundation.org>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261118150009.797899913@linuxfoundation.org>
-References: <20261118150009.797899913@linuxfoundation.org>
-User-Agent: quilt/0.69
-X-stable: review
-X-Patchwork-Hint: ignore
+	Thu, 19 Nov 2026 02:57:45 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=e+PeOuckT4U5qYtLFxpCpy+UuFmQSfY3Oiiy7rSaT428dzS0hhZLchhZ5kUdU9FJYpTBwDosgzejjQs6J9W5R6JIdfgvPXTBulCyMAzCU3RZ6Yq739QNy/HtSJypn35rA4OO+WNfykJZBUgzKJktRHnh84KKMacMzkyA4ETNfsYuUh1OmTo1g5AgJXtqQewSO14VUN8IMSNxH7rZgfq2UNFS9BUK+nVjCSIHWAR+Jpwd+TOIioL1XnD25cY5XguMaHaXK9x8/v9bbK6Ax9jXyXqarlepcZ9HQYdOxdXM3jMYWIvniPsvz4MWCaygSIPja/go6Y6enjxxEm4olWY3hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VTw/13oYuLOJUeL3tzDZYQixvUsZprFaay6RceG7kmM=;
+ b=szlP4cV6thxiCD4ATqcw0IbMTa6r4CZP/Zh64OrrJsPcgvpqb2Wbj66hPNuJ5Wy0/bFqCEP1YoKc3Qxlgd20TnCtkkJJ/zzB5wSWtkZPp28Jc/Diej3ZGCFS7b1+j15juKthK0YE0mo++GIo4rDMeBKy9bEaH1oDaQb928uZ63ZYEXRrRGR4ytEF7zZinHSvSE1ClTZcCNnbNbsBZbkzZM10bubzf+wa5YLhcr2efAtgPq4fbBHlsqw79EwZLiXvFHwgOlqEEDKMa39ee5QbCi4DKNftyI+K+vhPYDRVpkFqsdCpshSy4D/h9BdXQH8HdkxtMqs4+m1Qzo1bR35Ytg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VTw/13oYuLOJUeL3tzDZYQixvUsZprFaay6RceG7kmM=;
+ b=b7n4f33VaN9uLLTj+ATJhHmcDP8s/4ALDqF1vnQUHFRqGU5DlzXaZXyEl0SPMjdfAf1+e2u9uNsXCgXKuVX3Lqby5N99EeXSwM8p85ppSeebxl3x1sbvQv3177AuyFa/zQU4xmdlqvPvoFvoT6HUGMCJb9+JOtakRHhN5bmRgYhpeuz2l7ALSAIw446o4g4V8l3EnfA9F1dBCqZCf8aMDyrWdaCuKFowBXQgDBSh9GE7zm5yH/6XsizVWXHGRh4Ru4kGTFVGMSYXe57XqmyGrHq1T9qJquC1drZfIeKlu638tE/Hear7J4vlzUlsstZ56aQSvEBOUC/1N5pHfmuEMg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by DU2PR04MB8967.eurprd04.prod.outlook.com (2603:10a6:10:2e2::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
+ 2026 02:57:41 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
+ 02:57:41 +0000
+Date: Wed, 18 Nov 2026 20:57:32 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Ulf Hansson <ulfh@kernel.org>,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH] dmaengine: ste_dma40: Use power domain for LCLA SRAM
+Message-ID: <av5kXd5Kp0e24FER@SMW015318>
+References: <20261115-ux500-dma40-powerdomain-v1-1-da8b6e1a0376@kernel.org>
+ <av4CJkri6LQO9FxG@SMW015318>
+ <CAD++jL=ZFJFTV6zY=SA+aHMQyjw4MQ8zFgWmUUBEoH6vKDLTsA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD++jL=ZFJFTV6zY=SA+aHMQyjw4MQ8zFgWmUUBEoH6vKDLTsA@mail.gmail.com>
+X-ClientProxiedBy: PH7P221CA0054.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:33c::34) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DU2PR04MB8967:EE_
+X-MS-Office365-Filtering-Correlation-Id: c4051709-c773-4609-2650-08df45e8e059
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|23010399003|19092799006|366016|376014|10067099003|261028144727099003|261026140227099003|261022075727099003|261026121527099003|261022105027099003|261021135927099003|56012099006|11063799006|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: y/iUblPex/4gDcfpjwDRiogSOWAHkNrNcZUPuA9P8hdtKUIM2Qcf17RpwzkXR6gD2u4LDOSobkysy9BpVeS0yk5/KT2s7ONv+8HDyM2yj4bCVFdFMLBfe3rp5r6egA1i0NTXryeiPWFAP2+NuiLrz790uLeQd8K5LU5CHzrrODvAOLI5wQpE0Fca/zNaH98bBlYrskhVKcFCECVkl51rW2exrANqEaXv3Pe0R5fDpTxhKkpX3CDFqFdPMUyeCjRDdgs3+E0H5jZ1wZxEjxTXma0xbO/4PDlrK4tZDn5kzTEzWQfn5Zbqp2EDk91LwLKMQBby5Oonmbb3ADkzaQJAbO7sEVcgW6DF+GtZ4tuHSX7xB1dhdnJEpypzwJEDXCQexOu8Wcti4to1LSjwOWvxeizz/pQUjYgkgbrQYHw7EQdI4B8Dz8k21MfR72js8O12hWj1N7Ega10Y3jQQAj/Ecx73erbXTB1NtYgC63kMV7QA0Bj4RfcCGuwTPAHzqggzaaJnT1mt0DnRK2T7+bu+PW/viLzwaq4ySIF2vA5lR5UW0/4hfpN1MLWNxcgXHT7bGJXC7AFCJoUHggoyQXkablL8dmKewmvfvrf4Pza1QC4G3Qw4g9YGkeENIBIICUAdyUh2S/ihXSZj6o+mU/O2AKQHxsR+f5wgXMdK4vFhmYg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(19092799006)(366016)(376014)(10067099003)(261028144727099003)(261026140227099003)(261022075727099003)(261026121527099003)(261022105027099003)(261021135927099003)(56012099006)(11063799006)(4143699003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?emZFNlpIWWhQeGNyRGlqR2EyakdNeThUcGIwN2l2Y1FnT2lBQk44SGoraG9p?=
+ =?utf-8?B?NiswQkt2SzUyaXNleEU4TGx4aXBNSTBabkVpNDlCc3BVVTZHS1pySFp4cTQ0?=
+ =?utf-8?B?OWJCdXh0SHRlSWFzV0tlbUpRYmd4cS9kenhJMWpjTWlMUUJLNDZxcVhqUUxo?=
+ =?utf-8?B?M1diTUlJTDBVK0NDUmF6SU5HOE94RENvbVJwWjdIbGZXMjZnU0h3MjhTcmxF?=
+ =?utf-8?B?cHUzRUUrVkRnUDYrNzJVSURvTjd1d2xncU1Hb1FqWlVWa1NocmZWYmNSdks5?=
+ =?utf-8?B?SFhudHdZeFdMMlpmRU5JODV1NHI2dURaYnczOE1uMEE1WXV3cVowOTRlVG1L?=
+ =?utf-8?B?ZkRGU1paemZ3TkxVdmNvTWZMTmYvOGU0aCtCQnhyMllzZ3gvZ2E5TGlmaFhU?=
+ =?utf-8?B?RnZWTnJVSS8yNFI0MDhYM2ViNlBRZ2tqZ2E5enhaUTdxK1F3U254MDZEOWpI?=
+ =?utf-8?B?bEI4bm0zNkVYb2JmWjhSb1d3c3U3WmJiUnVMaHpOWW03d3F5Ui9aQ2dGcjRL?=
+ =?utf-8?B?cmlvdmxIdldCWkxYR1BWWDlqOElPTC8yektBWnJOaUhHa2xuZEliYU1NNmV1?=
+ =?utf-8?B?bmtDZkZZNjB6VncvRlVXUVQxY21CWWo2SGtGbVFHa05sVWNMYXZlMGxkUUJB?=
+ =?utf-8?B?ajNmQTJKd3FIenJBL016d1JSN0NiNkJrZEtPT2prRnVGRTZSeHV1VHdpOXhX?=
+ =?utf-8?B?bVMvZ3o4V0Y4S0VQaVFmZFNzREIwZnJ2dDVtbndvNUdyQmtnQ05mSjlnbmNu?=
+ =?utf-8?B?WXkwcGZ4M1Z4U1RXV3pVZTJiMEhEamJhRDA4V1lDeUFqWUdEWVJFNFVMZXRJ?=
+ =?utf-8?B?aXhXdUZBbWE5WG5vQnFZeUNieTlaUytIVXZHOFEraTZSek0yRm5UcEVCU1ZL?=
+ =?utf-8?B?Q1FaWWo1MC9EWnRhdTg3TGpqRTBqYUhMV2Vic2lCamZPS3ZpNWdranYzNmpr?=
+ =?utf-8?B?dUhEWXU1ajdOMEdsUktGWlpLNDliUGhaUTlGdHh1OGE1aUFhS0xCU3dYdXN4?=
+ =?utf-8?B?YytMcWxOUk82a2wwdUZtNFQvaHpLd1pyNVBEaVBrVlB3d0FRSmxxNmt4TVIv?=
+ =?utf-8?B?bFoyV1owbWROQm5ZanIzVEtMY2c4WG5Da1NkMmlubmZSdGNCbUdhRWlmUkpu?=
+ =?utf-8?B?b2dwSWtTMjM4UVNIL2xkc0RCaUtPQm9wUUhnV3hEYmJ4WlVPUndLYlhWODZF?=
+ =?utf-8?B?enloNEFMYVZuVGFBOFNWWFQrVWV2N2R2ODFOQ2U1K2hUckl0eDlIOXJ2V3RR?=
+ =?utf-8?B?aVIwUkZQZ1VUUlpWS3V1QmdZN1YzQmUyTFNjbndPWlRkZzRIclhVSjB6OEZG?=
+ =?utf-8?B?UlNkSk1sYkpGNTI3SkVNRFliRDZXdWR6M0ZkTkJhbndWNFB2dGlwemlCUFNj?=
+ =?utf-8?B?TDZMc0kyLzdwemhWUlo2eWQwY0dsVE1TSVl6c3NSdnNEYUVqbEdlWU9PM3Fa?=
+ =?utf-8?B?c1RNaE1Gam0ydEMrNGxMd1hMNGxIbkhDTEpRZkIwY0gwRFhNNWhkNWhMSG5h?=
+ =?utf-8?B?cHNnL0RBMFVZV28veDdQT3N4NXNlYjM3Zmp6Y0ZMUktONFVrdmQ1VkN6Umk0?=
+ =?utf-8?B?WG1jaFp3Tm51SGdZVVROZHNVYUd1ZWV3L3ZHYTJtNStCUm1RNFBleDF1UnFK?=
+ =?utf-8?B?bnpMdGU3NjR1RXVmSHdwMjVmRzh0OFlodUhnMVZLUy9BNm41K1ZKeVc3U09X?=
+ =?utf-8?B?Q1FkNGNuT05VdE1CR3dYZFN5QnVaY2xmMVhFdXE4anhYMFRmTEgraVRnT2Ny?=
+ =?utf-8?B?T2I5clZHYXMyNmdWOTdyeFlpcXhwRENCVENqUmpFZG01NFdBbTEwNFFzUWtx?=
+ =?utf-8?B?N1NDdlZpMzJpcmdhMlZTMGpJSVdBdWplTlZQYXY5Y25YR2pTRTE0RHhUa0d3?=
+ =?utf-8?B?ckV4eDRtSVRNbXYzcks5bTVqRk9BUnZzSmdLQXNxaXlaczRxSXNwaXQrTSth?=
+ =?utf-8?B?WkFFTEVnenF2akkrRUc0RVJ6RUpPRDRWbHhiWFZlTHhGeWxLeU9jSWVTeGZr?=
+ =?utf-8?B?dndESHMwVGJoZkJTMHZtWGJsazVpM3RvQjFhWWpRNUJMQ2E2aWY1SGczd2Nq?=
+ =?utf-8?B?VXVKMVcwVWRsb3plWU5WSk1xTW11ZVJRTzJvTGRXaUE1L3l2VjFCYlB0VlNl?=
+ =?utf-8?B?TVB5bTJBMXhTa1pIZGx4dk9McGNUMEIrLzlnOHBQS2JSVGhaZUcvdFJFcDBV?=
+ =?utf-8?B?bSsrYUYzSFB1ZDAvOE5IUmJBUjJ0dlVtcHdTZUxFcjYwenRYQ0xXWkdhdHND?=
+ =?utf-8?B?M29Wcjd1aEl3UlRDdldtalR4RHh5cExHMWVTSnZJMWtiMzZXaVIrTGxEK1N2?=
+ =?utf-8?B?OHdjU3dYRkhVYzBxWmMraVVXU1h4MGR0SHhqd0h2MkdTNkh3YzZQM0FYUDNw?=
+ =?utf-8?Q?rybSgr9k1ZtLbL/d1s+VHE5f8wdqK73lvPnha?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4051709-c773-4609-2650-08df45e8e059
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 02:57:41.0809
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PMdzasrkAs8Ps2rdsj7uR8gdZMu33oGsdQFuKJT2Gtm7VWhReTfv9Rhhr1/SLvcb1Ke7hcvu3uWwX4GCkINPQESv7lAqPYxyU7PuJnCT2csciIWH3n0M3uCTJvYzdtk5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8967
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_185744_874071_7469DEC3 
+X-CRM114-Status: GOOD (  16.04  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,137 +149,39 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-5.15-stable review patch.  If anyone has any objections, please let me know.
+On Wed, Nov 18, 2026 at 09:19:20PM +0100, Linus Walleij wrote:
+> On Wed, Nov 18, 2026 at 8:53 PM Frank Li <Frank.li@oss.nxp.com> wrote:
+>
+> > On Sun, Nov 15, 2026 at 10:26:27PM +0100, Linus Walleij wrote:
+>
+> > > Replace the LCLA ESRAM regulator with runtime PM of the SRAM device
+> > > owning the ESRAM34 power domain.
+> (...)
+> > > -     /* If lcla has to be located in ESRAM we don't need to allocate */
+> > > -     if (base->plat_data->use_esram_lcla) {
+> >
+> > Does it break old dts's back compatiblity?
+>
+> It would if they were using LCLA SRAM but there are no
+> DTS:es that actually define the LCLA SRAM, so we are fine,
 
-------------------
+Please add such information at commit message.
 
-From: Leo Yan <leo.yan@linaro.org>
+Frank
 
-[ Upstream commit ead42a0f9b93c3447a24be08a9e80941e99b8a50 ]
-
-Since Arm64 arch doesn't support HITMs flags, this patch changes to use
-'peer' as default display if user doesn't specify any type; for other
-arches, it still uses 'tot' as default display type if user doesn't
-specify it.
-
-This patch changes to call perf_session__new() in an earlier place, so
-session environment can be initialized ahead and arch info can be used
-for setting display type.
-
-Suggested-by: Ali Saidi <alisaidi@amazon.com>
-Reviewed-by: Ali Saidi <alisaidi@amazon.com>
-Signed-off-by: Leo Yan <leo.yan@linaro.org>
-Tested-by: Ali Saidi <alisaidi@amazon.com>
-Acked-by: Ian Rogers <irogers@google.com>
-Cc: Adrian Hunter <adrian.hunter@intel.com>
-Cc: Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: Anshuman Khandual <anshuman.khandual@arm.com>
-Cc: German Gomez <german.gomez@arm.com>
-Cc: Gustavo A. R. Silva <gustavoars@kernel.org>
-Cc: Ingo Molnar <mingo@redhat.com>
-Cc: James Clark <james.clark@arm.com>
-Cc: Jiri Olsa <jolsa@kernel.org>
-Cc: John Garry <john.garry@huawei.com>
-Cc: Kajol Jain <kjain@linux.ibm.com>
-Cc: Like Xu <likexu@tencent.com>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Mike Leach <mike.leach@linaro.org>
-Cc: Namhyung Kim <namhyung@kernel.org>
-Cc: Peter Zijlstra <peterz@infradead.org>
-Cc: Timothy Hayes <timothy.hayes@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Link: https://lore.kernel.org/r/20220811062451.435810-15-leo.yan@linaro.org
-Signed-off-by: Arnaldo Carvalho de Melo <acme@redhat.com>
-Stable-dep-of: 7d0fe18bc905 ("perf c2c: Fix memory leaks on output fields")
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- tools/perf/builtin-c2c.c | 36 ++++++++++++++++++++++++------------
- 1 file changed, 24 insertions(+), 12 deletions(-)
-
-diff --git a/tools/perf/builtin-c2c.c b/tools/perf/builtin-c2c.c
-index e6f900c3accb0..75fe1f4c6dd03 100644
---- a/tools/perf/builtin-c2c.c
-+++ b/tools/perf/builtin-c2c.c
-@@ -2602,7 +2602,7 @@ static int setup_callchain(struct evlist *evlist)
- 
- static int setup_display(const char *str)
- {
--	const char *display = str ?: "tot";
-+	const char *display = str;
- 
- 	if (!strcmp(display, "tot"))
- 		c2c.display = DISPLAY_TOT;
-@@ -2776,27 +2776,39 @@ static int perf_c2c__report(int argc, const char **argv)
- 	data.path  = input_name;
- 	data.force = symbol_conf.force;
- 
-+	session = perf_session__new(&data, &c2c.tool);
-+	if (IS_ERR(session)) {
-+		err = PTR_ERR(session);
-+		pr_debug("Error creating perf session\n");
-+		goto out;
-+	}
-+
-+	/*
-+	 * Use the 'tot' as default display type if user doesn't specify it;
-+	 * since Arm64 platform doesn't support HITMs flag, use 'peer' as the
-+	 * default display type.
-+	 */
-+	if (!display) {
-+		if (!strcmp(perf_env__arch(&session->header.env), "arm64"))
-+			display = "peer";
-+		else
-+			display = "tot";
-+	}
-+
- 	err = setup_display(display);
- 	if (err)
--		goto out;
-+		goto out_session;
- 
- 	err = setup_coalesce(coalesce, no_source);
- 	if (err) {
- 		pr_debug("Failed to initialize hists\n");
--		goto out;
-+		goto out_session;
- 	}
- 
- 	err = c2c_hists__init(&c2c.hists, "dcacheline", 2);
- 	if (err) {
- 		pr_debug("Failed to initialize hists\n");
--		goto out;
--	}
--
--	session = perf_session__new(&data, &c2c.tool);
--	if (IS_ERR(session)) {
--		err = PTR_ERR(session);
--		pr_debug("Error creating perf session\n");
--		goto out;
-+		goto out_session;
- 	}
- 
- 	session->itrace_synth_opts = &itrace_synth_opts;
-@@ -2804,7 +2816,7 @@ static int perf_c2c__report(int argc, const char **argv)
- 	err = setup_nodes(session);
- 	if (err) {
- 		pr_err("Failed setup nodes\n");
--		goto out;
-+		goto out_session;
- 	}
- 
- 	err = mem2node__init(&c2c.mem2node, &session->header.env);
--- 
-2.53.0
-
-
-
+> all existing deployments put the linked lists in common RAM.
+> It was an oversight or "fix later", "technical debt" that was
+> introduced 15 years ago.
+>
+> After this is fixed properly with power domains I want to turn it on.
+>
+> Yours,
+> Linus Walleij
 
