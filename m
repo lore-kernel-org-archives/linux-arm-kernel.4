@@ -2,113 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE69C606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 07:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D45606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 07:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ozn9jxdF;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=XwXR/MPk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IcmjcX5u;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=JlbLmPyJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Gi93IXFGuN2zmaOXOQorfmKdnukVzvkHHvPulF9dWJ8=; b=Ozn9jxdFGHMm/9l10i8bMOPWz5
-	/f4CDZ6ut+612KwsriOdnB1DaLUW5+SSTiYWetHU7FuRs5VOh4D+ASzOr4GlFlwG7TYMaSj7KX/NE
-	fRa8jn/18TpaSo/4WvgbcpjJ8ghnyyNsx6YVt8ylA5QEgLnDJDo3aKyvkYjJSSPpgyfA3cugvOS2O
-	elQwS4LKEv7eN/S4AFCdogC2REUsOPzN+bu6TNAJdEc4nEC/Yi4NSMlXvruVDdy8fW7bZyzw75ez0
-	UHTdBPnBU5YAR3jgiqBgIHdl1gJHxx1AxbmGAAj04dw9YugFz2yJgzGwL1oDoo5FYAaR45CmGXeR+
-	zNkWancQ==;
+	bh=2EGfK2lZXx7T9MpCgqV5Sq8wrQL5YL7OFsfI7ZoTz+Y=; b=IcmjcX5uic329qkfsGRHP17YcB
+	5JpsU7iOIb9Hzh5YaZw/Kh2W0F2UL4fqha/rguoqXAmY552a+JMkpwYByKyUSqqLVVIvS/NfXf0RD
+	+7RNmcD/tNrzrtfellzHyXGeFFkMLIRjFm+TTQ+C5zBZTOJTO52zleGjtCJqQgs+VrjxUyL0Y4qqh
+	MUnQfDzC331CbBDoUYzekJ6YPsOtg4uoMCT53kv9OKfiWLFQ4ZLl0ufqs+siH4jCma9t1/ZdehB2D
+	7xGyk/2yI0K1eeoOWbBSxBBRL8gzvaYIkhIAUhJ92PfmoFKyr5Sc1GHvhvqBZw1XrT7ZN7LyP+xlu
+	4fKn+hCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTwkz-0000000B5v5-3KJE;
-	Thu, 19 Nov 2026 07:40:33 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTwkv-0000000B5tF-2YtR
+	id 1xTwtE-0000000B6bj-0CZm;
+	Thu, 19 Nov 2026 07:49:04 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTwtA-0000000B6bJ-3eYP
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 07:40:31 +0000
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-c4d427836e9so256899466b.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 23:40:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795074026; cv=none;
-        d=google.com; s=arc-20260327;
-        b=EIpOvXMas/bp2WCd1ZlSiwK85lQVd283rLX6mzhX5FxQX3zFDxTZua9tW5XHQRWG9L
-         7ypfbIsg08EO9D++GvrcmbINlYSaWVLJUDcAMy8A2qqABStnHlpsBhYR+nuxoHgV3QHk
-         glffJTKnXsTXwwvR9qaX2aLlR2OQ3NwdeXHzAhzqiE6LR9/zg+JdeR6o4Gd38yJa4mUs
-         fD6viBzaDJY/fvaCTuKLdypZEFAekNDelgsxBIUrzqsna7TYSf1ZK/3YwNSiI3jnV33E
-         JY5l7g9jI6bAOBUpZSn1vEJis50oQzkNKnQ1WWac3zyC23rgju4EP1hCtd+Y4qIOU/9j
-         DkwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=Gi93IXFGuN2zmaOXOQorfmKdnukVzvkHHvPulF9dWJ8=;
-        fh=ic8E+wFvVTKVp/BevoDes3EfO/DLoWhebCsWQY/AznU=;
-        b=ACejOS1SrhkggCBCfLOGTGuvc4jZME0hxmuQdFjHMtyvtHUNYjY1tKYC+LF7LxsHVC
-         b+irU8fMer/ojSyOj2UHSpWFnunLUzwfWs1OzZNIXNKxH8MdFN4+Qj6nfVL3kzCT4tzg
-         C9wl4KZzXddcWDeWrMUU7LvEXGNIdTte1Z53uV7MKo3UB89jDk7Bmk/f/53D8HrmLHFC
-         xPyqKlLtcTPS82aluk3wyYUB4dK1CICQtABb13tEF5w4KdoefLY3s5/ZETWXj44PQVmf
-         45f1AtK0b+NPUPFRllre1EZ8lted8xN73fhSxO4JKjWjJBkv0/tHXsNXHAh2vle7OulJ
-         IcCg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795074026; x=1795678826; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Gi93IXFGuN2zmaOXOQorfmKdnukVzvkHHvPulF9dWJ8=;
-        b=XwXR/MPkf9ZNWZIfv/qzj/g0AN3+cxE8TwwttpdHYkMtKPhE8tyZoGRQZCtMs9mbmM
-         Ie1jVPxikAsp1+dVw+nn18AA7b6R9ZLSV1aEaTp9+AgvYQsVzEaRTwsKBN+OIJkyLMyd
-         L7t6Zdm0xKr2ANW1e3/GdG/xDThsIWAgcrm76pHYHxlbisZ0EsojGxsAo/w9Otkv6ceq
-         p6k4bHw3DhxBLTa+Biqd5VMM9NHPrGrhLNrUqtmfgHmcd5Alj2zjyRcBEM+WhAbg9CmW
-         w/5Q2IxTzXIT165/odx+1gxX6WAHN5hzd9RS98ebFRXH3lOEeyCFxvW8ag/d07JzT2C0
-         gGNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795074026; x=1795678826;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=Gi93IXFGuN2zmaOXOQorfmKdnukVzvkHHvPulF9dWJ8=;
-        b=TQr2JGUlVpejKQ5wjoxA3l6eWHIjccAh//jTvehFPPp/kkNygk9OTkE9GPMAlDhd2s
-         GOANkldeyQIvR9glqVDab58BVgLLNppiDxsCo6R9u3wauR8J07UXe8FU+d1Ko3NKM/47
-         xQcQPe3UJN6XHgCKWWeoyb4zUo+1a31UHZ4zTRyEoqns65VIsPvZh6tSEYyMcIT5nWmo
-         za+Z1I9/6lR3fc+yd8g53cNB2jPwll3C1Nv5bCG4+UXaXnu6Xdgu2wAXviIlDGYvzJwe
-         oK755jenWd220l1nFOzMmn4giwcoIN4k9WjJk2QOYAUABBHTHyy+4XkIVOkz/OvxE8Tw
-         5beg==
-X-Forwarded-Encrypted: i=1; AL+hErF/L3qfibUjC3AMs7FG+ew/Gijr0v2Ev3anOSujf3/UllJcZtS5/n7azloAh/2VGPjsWuQ34+AwuFR33GIVdpMO@lists.infradead.org
-X-Gm-Message-State: APuU4Z8rA68b47JN84iA5gx4lFdlxMRvoibqhhfKzc4hiu26jRWsoL9I
-	kANNRNgbz7HDG0XLoG6CzXl62k0shO2HsEl6IzkSVFkELrLdo/lvy8YohBNUHQijseF7EOVh8Ga
-	NwLZEJGdyHkI+uNZ6fW+b3TnOlBIuUI8=
-X-Gm-Gg: AYBFou1gXjfszyUkK/rGXSXl1PhY5Xa0IunXbBYEsIjWQLM+WL3UZazKt6mi9SjyzpD
-	jo+lcSy7sJ8bGIsyRUNiwAaWC2PKCs+El0WB0fH3z44F349oHKAW+Ly1Jx4rIZVtb+7M9jEl0aP
-	cwDCZqtWt/Jc/bw+dHl65lUKrpZn9F6Kj288LTGEcZf6oBT0m8yFbHGHD6+PYYL1uCET9BmlgRt
-	hJjc0X8o+D7pAHVjmjgmZmdaB9qraq3kqKmyoVAQKNTyN+k5DchFoRQyw90Ai0wbWQ3D27bNLDX
-	R6ca0MPukdmWbiCTYfCsYv7UbOiLl7jop+OqyhO7+ieG2wLbThUfU5O0Dmek5wWb9Hnb6Cdhm78
-	72TyW6br7YJ23CvMydaKxh5qBOh8lfrehIdaPoA==
-X-Received: by 2002:a17:906:9c95:b0:c49:c76f:dad4 with SMTP id
- a640c23a62f3a-c510e31c90bmr479980066b.31.1795074026314; Wed, 18 Nov 2026
- 23:40:26 -0800 (PST)
+	Thu, 19 Nov 2026 07:49:02 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 486481575;
+	Wed, 18 Nov 2026 23:48:56 -0800 (PST)
+Received: from thinkpad-e142931.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AE43F3FA7A;
+	Wed, 18 Nov 2026 23:48:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795074539; bh=S1M79WGliP/lxWdN+K7Fd2XbTpS9t6SGFAKJuLVpW88=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JlbLmPyJJnCwhWQbsry7xcElMDKIhNCUUl6erCKn7pRLZbkCdGQQ+ASHpd8HVfCma
+	 Vcv6JGFy2v761ROTPdp1/lUnSccJhUDU2BoPDgH4QFTGLcA4xQk5euxGcJlKmSoudW
+	 jqf5AlATFXena9creXGOsHunLkTfsZpKybqEtW34=
+Date: Thu, 19 Nov 2026 07:48:42 +0000
+From: Wei-Lin Chang <weilin.chang@arm.com>
+To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org, 
+	kvmarm@lists.linux.dev
+Cc: Catalin Marinas <catalin.marinas@arm.com>, 
+	Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>, 
+	Oliver Upton <oliver.upton@linux.dev>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Zenghui Yu <yuzenghui@huawei.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>, 
+	Alexandru Elisei <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>, 
+	Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev, 
+	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>, Gavin Shan <gshan@redhat.com>, 
+	Shanker Donthineni <sdonthineni@nvidia.com>, Alper Gun <alpergun@google.com>, 
+	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>, 
+	Vishal Annapurve <vannapurve@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Kohei Enju <enju.kohei@fujitsu.com>
+Subject: Re: [PATCH v3 09/11] KVM: arm64: CCA: Support runtime faulting of
+ memory
+Message-ID: <hwmtiumovuqyu7js5eqd4xt3h2zsuhjwkcygnw62hp5rrar5ph@5fhmv46iio2r>
+References: <20261116164358.142785-1-steven.price@arm.com>
+ <20261116164358.142785-10-steven.price@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261117-hwmon-da9091-v1-1-f55f0af9c6a3@gmail.com> <be16d42f-e6bf-45d5-83a8-28afbe54e3f8@roeck-us.net>
-In-Reply-To: <be16d42f-e6bf-45d5-83a8-28afbe54e3f8@roeck-us.net>
-From: Sander Speetjens <sander.speetjens@gmail.com>
-Date: Thu, 19 Nov 2026 08:40:14 +0100
-X-Gm-Features: AclHuK8v7dApGOktlI0-huzqV5dz05Lcptx7NLQKfF_k22DUFv5_-2WqsvDZTRU
-Message-ID: <CAAOJLPFw1f2v14wtJYt9yqJsTiqJNmkm=dOaAHQ+qeH70NgsiA@mail.gmail.com>
-Subject: Re: [PATCH] hwmon: add Raspberry Pi DA9091 PMIC driver
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, linux-kernel@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-hwmon@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261116164358.142785-10-steven.price@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_234029_680590_91BFAE55 
-X-CRM114-Status: GOOD (  11.78  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261118_234901_007613_F6D71180 
+X-CRM114-Status: GOOD (  30.99  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,34 +81,248 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> >   drivers/hwmon/Kconfig                      |  11 +
-> >   drivers/hwmon/Makefile                     |   1 +
-> >   drivers/hwmon/raspberrypi-da9091.c         | 339 +++++++++++++++++++++++++++++
->
-> This needs to be documented.
+Hi Steven,
 
-Please clarify?
+On Mon, Nov 16, 2026 at 04:43:55PM +0000, Steven Price wrote:
 
-> > +     data->hwmon_dev =
-> > +             devm_hwmon_device_register_with_info(dev,
-> > +                                                  "da9091", data, &rpi_pmic_chip_info, NULL);
-> > +     if (IS_ERR(data->hwmon_dev))
-> > +             return PTR_ERR(data->hwmon_dev);
-> > +
-> > +     platform_set_drvdata(pdev, data);
->
-> I do not see where this is used.
-It is retrieved in rpi_pmic_read and given to rpi_pmic_update to write
-the values to and to put the last_updated variable in
+[...]
 
-Kind regards
-Sander Speetjens
+> @@ -1791,12 +1799,18 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
+>  	void *memcache = NULL;
+>  	gfn_t canonical_gfn;
+>  	int ret;
+> +	bool is_private = false;
+>  
+> -	if (!perm_fault) {
+> +	if (KVM_BUG_ON(!kvm_slot_has_gmem(s2fd->memslot), kvm))
+> +		return -EINVAL;
+
+I feel this is being too cautious, gmem_abort is always run after a
+kvm_slot_has_gmem() check.
+
+> +
+> +	if (!perm_fault || kvm_arch_has_private_mem(kvm)) {
+>  		memcache = get_mmu_memcache(s2fd->vcpu);
+>  		ret = topup_mmu_memcache(s2fd->mmu, memcache);
+>  		if (ret)
+>  			return ret;
+> +	}
+> +	if (!perm_fault) {
+>  		if (kvm_is_nested_s2_mmu(kvm, pgt->mmu)) {
+>  			mapping = kmalloc_obj(struct kvm_guest_s2_mapping, GFP_KERNEL_ACCOUNT);
+>  			if (!mapping)
+> @@ -1805,7 +1819,7 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
+>  	}
+>  
+>  	s2vi.vma_pagesize = PAGE_SIZE;
+> -	s2vi.gfn = ALIGN_DOWN(s2fd->fault_ipa, s2vi.vma_pagesize) >> PAGE_SHIFT;
+> +	s2vi.gfn = gpa_to_gfn(kvm_gpa_from_fault(kvm, s2fd->fault_ipa));
+>  	canonical_gfn = get_canonical_gfn(s2fd, &s2vi);
+>  
+>  	write_fault = kvm_s2_fault_is_write(s2fd);
+> @@ -1817,13 +1831,35 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
+>  	/* Pairs with the smp_wmb() in kvm_mmu_invalidate_end(). */
+>  	smp_rmb();
+>  
+> +	if (kvm_arch_has_private_mem(kvm)) {
+> +		switch (kvm->arch.vm_flavor) {
+> +		case VM_REALM:
+> +			is_private = kvm_realm_is_private_address(&kvm->arch.realm,
+> +								  s2fd->fault_ipa);
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +
+> +		if (is_private != kvm_gmem_is_private_gfn(kvm, canonical_gfn)) {
+> +			if (!result)
+> +				kvm_prepare_memory_fault_exit(s2fd->vcpu,
+> +							      gfn_to_gpa(canonical_gfn),
+> +							      PAGE_SIZE,
+> +							      write_fault, exec_fault,
+> +							      is_private);
+> +			kfree(mapping);
+> +			return -EFAULT;
+> +		}
+> +	}
+> +
+>  	ret = kvm_gmem_get_pfn(kvm, s2fd->memslot, canonical_gfn, &s2vi.pfn, NULL);
+>  	if (ret) {
+>  		/* If result is non-NULL this is a synthetic fault. */
+>  		if (!result)
+>  			kvm_prepare_memory_fault_exit(s2fd->vcpu, gfn_to_gpa(canonical_gfn),
+>  						      s2vi.vma_pagesize, write_fault, exec_fault,
+> -						      false);
+> +						      is_private);
+>  		kfree(mapping);
+>  		return ret;
+>  	}
+> @@ -1846,6 +1882,16 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
+>  		goto out_unlock;
+>  	}
+>  
+> +	switch (kvm->arch.vm_flavor) {
+> +	case VM_REALM:
+> +		prot &= ~KVM_PGTABLE_PROT_X;
+> +		ret = realm_map_ipa(kvm, s2fd->fault_ipa, s2vi.pfn,
+> +				    PAGE_SIZE, prot, memcache);
+> +		goto out_unlock;
+> +	default:
+> +		break;
+> +	}
+> +
+>  	if (perm_fault) {
+>  		/*
+>  		 * Drop the SW bits in favour of those stored in the
+> @@ -2047,7 +2093,8 @@ static int kvm_s2_fault_get_vma_info(const struct kvm_s2_fault_desc *s2fd,
+>  	 * mapping size to ensure we find the right PFN and lay down the
+>  	 * mapping in the right place.
+>  	 */
+> -	s2vi->gfn = ALIGN_DOWN(s2fd->fault_ipa, s2vi->vma_pagesize) >> PAGE_SHIFT;
+> +	s2vi->gfn = kvm_gfn_from_fault(kvm, ALIGN_DOWN(s2fd->fault_ipa,
+> +						       s2vi->vma_pagesize));
+>  
+>  	s2vi->mte_allowed = kvm_vma_mte_allowed(vma);
+>  
+> @@ -2227,7 +2274,7 @@ static int kvm_s2_fault_map(const struct kvm_s2_fault_desc *s2fd,
+>  	 * possible.
+>  	 */
+>  	if (mapping_size == PAGE_SIZE && s2vi->max_map_size != PAGE_SIZE) {
+> -		if (perm_fault_granule > PAGE_SIZE) {
+> +		if (perm_fault_granule > PAGE_SIZE && !kvm_vm_is_realm(kvm)) {
+>  			mapping_size = perm_fault_granule;
+>  		} else {
+>  			mapping_size = transparent_hugepage_adjust(s2fd, &pfn, &gfn);
+> @@ -2242,12 +2289,15 @@ static int kvm_s2_fault_map(const struct kvm_s2_fault_desc *s2fd,
+>  	if (!perm_fault_granule && !s2vi->map_non_cacheable && kvm_has_mte(kvm))
+>  		sanitise_mte_tags(kvm, pfn, mapping_size);
+>  
+> -	/*
+> -	 * Under the premise of getting a FSC_PERM fault, we just need to relax
+> -	 * permissions only if mapping_size equals perm_fault_granule. Otherwise,
+> -	 * kvm_pgtable_stage2_map() should be called to change block size.
+> -	 */
+> -	if (mapping_size == perm_fault_granule) {
+> +	if (kvm_vm_is_realm(kvm)) {
+> +		ret = realm_map_ipa(kvm, s2fd->fault_ipa, pfn, mapping_size,
+> +				    prot, memcache);
+> +	} else if (mapping_size == perm_fault_granule) {
+> +		/*
+> +		 * Under the premise of getting a FSC_PERM fault, we just need to relax
+> +		 * permissions only if mapping_size equals perm_fault_granule. Otherwise,
+> +		 * kvm_pgtable_stage2_map() should be called to change block size.
+> +		 */
+>  		/*
+>  		 * Drop the SW bits in favour of those stored in the
+>  		 * PTE, which will be preserved.
+> @@ -2306,15 +2356,16 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
+>  	/*
+>  	 * Permission faults just need to update the existing leaf entry,
+>  	 * and so normally don't require allocations from the memcache. The
+> -	 * only exception to this is when dirty logging is enabled at runtime
+> +	 * exceptions are when dirty logging is enabled at runtime
+>  	 * and a fault needs to collapse a block entry into a table.
+> +	 * Realms can also require new RTT levels when replacing a mapping.
+>  	 * Under pKVM a permission fault can also collapse pages into a block,
+>  	 * which needs a fresh mapping object, and the hypervisor requires the
+>  	 * min-pages memcache even when the install allocates nothing.
+>  	 */
+>  	memcache = get_mmu_memcache(s2fd->vcpu);
+>  	if (!perm_fault || memslot_is_logging(s2fd->memslot) ||
+> -	    is_protected_kvm_enabled()) {
+> +	    is_protected_kvm_enabled() || kvm_vm_is_realm(s2fd->vcpu->kvm)) {
+>  		ret = topup_mmu_memcache(s2fd->mmu, memcache);
+>  		if (ret)
+>  			return ret;
+> @@ -2340,12 +2391,22 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
+>  	return kvm_s2_fault_map(s2fd, &s2vi, prot, memcache, result);
+>  }
+
+I see that the changes to gmem_abort() and kvm_s2_fault_map() are more
+significant, and can possibly be turned into its realm version leaving
+the original unchanged. With this can we give realm_vm_s2_ops its own
+.vm_mem_abort? Something like:
+
+First, make user_mem_abort() take a function pointer, call it at the
+current kvm_s2_fault_map() place.
+
+Then realm_vm_s2_ops.vm_mem_abort = realm_mem_abort()
+
+And in realm_mem_abort() do:
+
+realm_mem_abort()
+  if gmem slot:    realm_gmem_abort()
+  if regular slot: user_mem_abort(kvm_realm_fault_map)
+
+realm_gmem_abort() and kvm_realm_fault_map() are just the realm version
+of gmem_abort() and kvm_s2_fault_map(). For example they won't need NV
+related code, and vm_flavor switch case.
+
+Proposing this because I think we would like the CCA changes more
+self-contained.
+
+Thanks,
+Wei-Lin Chang
+
+>  
+> +static bool private_ipa_fault(struct kvm *kvm, phys_addr_t fault_ipa)
+> +{
+> +	return kvm_vm_is_realm(kvm) &&
+> +		kvm_realm_is_private_address(&kvm->arch.realm, fault_ipa);
+> +}
+> +
+>  static int kvm_vm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
+>  {
+>  	VM_WARN_ON_ONCE(kvm_s2_fault_is_perm(s2fd) &&
+>  			!esr_abt_is_write_fault(s2fd->esr) &&
+>  			!kvm_s2_fault_is_exec(s2fd));
+>  
+> +	if (private_ipa_fault(s2fd->vcpu->kvm, s2fd->fault_ipa) &&
+> +	    !kvm_slot_has_gmem(s2fd->memslot))
+> +		return -EINVAL;
+> +
+>  	if (kvm_slot_has_gmem(s2fd->memslot))
+>  		return gmem_abort(s2fd, NULL);
+>  	else
+> @@ -2458,10 +2519,10 @@ int kvm_handle_guest_sea(struct kvm_vcpu *vcpu)
+>   */
+>  int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
+>  {
+> +	struct kvm *kvm = vcpu->kvm;
+>  	struct kvm_s2_trans nested_trans, *nested = NULL;
+>  	unsigned long esr = kvm_vcpu_get_esr(vcpu);
+>  	struct kvm_s2_mmu *mmu = vcpu->arch.hw_mmu;
+> -	struct kvm *kvm = vcpu->kvm;
+>  	phys_addr_t fault_ipa; /* The address we faulted on */
+>  	phys_addr_t ipa; /* Always the IPA in the L1 guest phys space */
+>  	struct kvm_memory_slot *memslot;
+> @@ -2554,8 +2615,9 @@ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
+>  		nested = &nested_trans;
+>  	}
+>  
+> -	gfn = ipa >> PAGE_SHIFT;
+> +	gfn = kvm_gfn_from_fault(kvm, ipa);
+>  	memslot = gfn_to_memslot(kvm, gfn);
+> +
+>  	hva = gfn_to_hva_memslot_prot(memslot, gfn, &writable);
+>  	write_fault = esr_abt_is_write_fault(esr);
+>  	if (kvm_is_error_hva(hva) || (write_fault && !writable)) {
+> @@ -2598,7 +2660,7 @@ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
+>  		 * of the page size.
+>  		 */
+>  		ipa |= FAR_TO_FIPA_OFFSET(kvm_vcpu_get_hfar(vcpu));
+> -		ret = io_mem_abort(vcpu, ipa);
+> +		ret = io_mem_abort(vcpu, kvm_gpa_from_fault(kvm, ipa));
+>  		goto out_unlock;
+>  	}
+>  
+
+[...]
 
