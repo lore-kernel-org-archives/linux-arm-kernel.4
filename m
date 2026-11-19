@@ -2,91 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF4F606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501B1606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yvc9sKML;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=vH62IJSf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WhgDkjtf;
+	dkim=pass (2048-bit key, unprotected) header.d=dolcini.it header.i=@dolcini.it header.a=rsa-sha256 header.s=default header.b=iSp5/LpD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sfUMDLC0E22rep4FDmPzBeyywhsxbumM+Fv7jNI+gdQ=; b=yvc9sKMLaJ9sgg
-	8nsfDvXKoLpp0MF1oeiWGpyveFvl/B3ADa4XIuLDb2XvHGPxgKONcwBVR/187hQGPxAUlLbEp+T9i
-	NV+atOJCRtF6JhrWg5IF47HDnTSPU8sZB+3UlLNjZD/3XpmyDQWN6Awv8CEIVWNyWqpK1VqmJD0kI
-	QgJAoQ0sUEfK4bL7ZnSc41o6d6W0t1vC6Hh9h5MP2xDtMaYnQH46II1+SW5BMStF4kc15+7WbK8vF
-	0mkzcfcdEVrGj6aCEkzs35w9Sx0TjvXI+zFqbCqo/AyF4snHuc6M2RHz3XOkKqF1pZHevtpkgKMfS
-	9/VXHrvDFXpgK46othYg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=bUsF2BFmyfh8u4YXfKRfweeg9EbYkyMl9BdaPhOcFI8=; b=WhgDkjtfNC8WvCXWzNdaC8WYAb
+	Jh24tUMw8KqWq2KOcOMsxpBsX5kriYn9blYu3IvPTh4yWizjd7t02n0eyObd1wvbRGOatSJx9vhvT
+	8McZOSKWYsRYBdSTN1pnwv62unkCxnl6kCDfnznF5oes+mdl1V3vXrO9WosXPCjkDed1drh6QaIz2
+	x1ZHee/kIcV4qmsw0pEDqAxrW2eshdLu0lh69gC4m+6ADC8Pn1zN8F7FrHgpGj5mAzf1YPzuQsU/q
+	2Tkrn+ZlwCaYPAddWMvumgAdaCaIFCDiogmB36TUa31vs1ukmOkdIkY9lN8SRBe0kRRcdM5xHnT/A
+	e9+0mnKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0Ta-0000000BiX3-1alm;
-	Thu, 19 Nov 2026 11:38:50 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xU0VZ-0000000BiyZ-3CFP;
+	Thu, 19 Nov 2026 11:40:53 +0000
+Received: from mail11.truemail.it ([217.194.8.81])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0TR-0000000BiSH-2nDX
+	id 1xU0VV-0000000Biy0-2shF
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 11:38:42 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id B59374E41665;
-	Thu, 19 Nov 2026 11:38:39 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8A23260237;
-	Thu, 19 Nov 2026 11:38:39 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9B62511BC1049;
-	Thu, 19 Nov 2026 12:38:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795088318; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=sfUMDLC0E22rep4FDmPzBeyywhsxbumM+Fv7jNI+gdQ=;
-	b=vH62IJSfk2XQNAcZcOawsmDUuKG1V6DF1t78czfPI/wXjtAyyxmZ5g0DsFDmpPai74l5FX
-	xwPr1af83Q2hl7omU7WEDzYUp/lcehTfdJ8QfEZWjVbGfJxDgZtjvw83uPVIPmt6YPg2Gt
-	c8paOuDl5DewOPhtXLTwSJIvD6WKli62bvgXTrVWLpRzuqnuhN8PvHqo8CMgVzhEt16Qaq
-	nKIFrH9nlKTEYyadNR4jw6uVMve1UM9XrODKurMtoh7l9e9xcpVtP+Rw8qvx1Q+qB3dAY0
-	goEfv6piXKEx7Hl3V7uXl7B863e4urBnLgUS0BLYNR8TIVK/We89KMDDKgFtZA==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Kalle Niemi <kaleposti@gmail.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Johan Hovold <johan@kernel.org>
-Cc: linux-omap@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	driver-core@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v11 4/5] ARM: OMAP2+: pdata-quirks: Pass auxdata for simple-bus devices
-Date: Thu, 19 Nov 2026 12:37:55 +0100
-Message-ID: <20261119113758.603074-5-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261119113758.603074-1-herve.codina@bootlin.com>
-References: <20261119113758.603074-1-herve.codina@bootlin.com>
+	Thu, 19 Nov 2026 11:40:52 +0000
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 83B30249CF;
+	Thu, 19 Nov 2026 12:40:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1795088446;
+	bh=bUsF2BFmyfh8u4YXfKRfweeg9EbYkyMl9BdaPhOcFI8=; h=From:To:Subject;
+	b=iSp5/LpDRebEE2dL1d8oR0gjk2x4hoaFOYKH5eR1fQ0XANEJWSMg713KP0F/tTkcH
+	 59X2iUmbKsTrWu9aB78yyv4lens8+4d7a3BUDi69lsiC9kjhcgapB+8UJGr4C3sF1B
+	 t348F4A2tuaWsF9JiNNqO4f9BDonT8YRwzl3kE9gnTtvNeJIow2ljGoscks7QeGG4d
+	 Hrp/mgraJIfLF/crc/xqZT/922etN77mUXUA9ftYZbVh4JoCCAC/lcPjmIvdAQOOfY
+	 5PRacq4vo16f05C6NVv3sEeuSl6dEUt50HfrrnWyDHh2t556GEGpbOgzq8hsgmo8ua
+	 yjP5WVb9mhZ/Q==
+Date: Thu, 19 Nov 2026 12:40:41 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Peng Fan <peng.fan@oss.nxp.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Peng Fan <peng.fan@nxp.com>, linux-remoteproc@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-rt-devel@lists.linux.dev,
+	Bjorn Andersson <andersson@kernel.org>,
+	Clark Williams <clrkwllms@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Steven Rostedt <rostedt@goodmis.org>
+Subject: Re: [PATCH v3 00/10] mailbox: imx: Use threaded handler to avoid
+ kworker in imx's remoteproc
+Message-ID: <20261119114041.GA166708@francesco-nb>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <av6Wc+kHFKqwFHAR@shlinux89>
+ <20261116102331.K8Sc86V9@linutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_033841_880452_A6CD8FCA 
-X-CRM114-Status: GOOD (  14.68  )
+X-CRM114-CacheID: sfid-20261119_034050_631866_82FF3172 
+X-CRM114-Status: GOOD (  24.23  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,52 +80,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The simple-pm-bus driver takes the of_dev_auxdata lookup table from the
-platform data of the bus device, following the convention introduced for
-"simple-pm-bus" by commit eda080eabf5b ("drivers: bus: simple-pm-bus:
-Fix compatibility with simple-bus for auxdata").
+Hello Peng, Sebastian
 
-omap_auxdata_lookup only has an entry for the "simple-pm-bus"
-compatible, so a simple-bus node created by of_platform_populate() with
-this lookup table has no platform data, and the lookup table is not
-available to the driver for that bus.
+On Mon, Nov 16, 2026 at 11:23:31AM +0100, Sebastian Andrzej Siewior wrote:
+> On 2026-11-16 10:23:41 [+0100], Francesco Dolcini wrote:
+> > Our CI shows a ~10-15% eMMC sequential read throughput drop on i.MX8QXP
+> > and i.MX8DX (Colibri iMX8X, Cortex-A35), starting with v7.2-rc1 and
+> > still present in v7.4-rc3 (hdparm --direct -t: ~129 MB/s -> 105-120
+> > MB/s on i.MX8DX). i.MX8QM, i.MX8M and i.MX9 are not affected.
+> > 
+> > 5d1c0000.mailbox interrupt count before the test went from ~8k on v6.18
+> > to 60k+ on v7.3/v7.4.
+> > 
+> > Peng: any idea/suggestion? Does it makes any sense to you?
+> 
+> Can you pin point it to a patch in this series? My guess is that
+> something with the masking/ unmasking went wrong. The increase might be
+> result of the interrupt keeping firing while the threaded interrupt did
+> not have a chance to run.
 
-As a prerequisite for introducing platform device population for
-bus-only devices in the simple-pm-bus driver, the lookup table must also
-be available on simple-bus devices. When the driver populates the
-children of such a bus from its probe(), it takes the lookup table from
-the platform data of the bus device; otherwise those children are created
-without the bus_id and platform_data overrides.
+Reverting 36cac4b5101f, 3225a745f517, e55bea377d49 and 692e1bc96a5d
+restores 149 MB/s with schedutil.
 
-Add the corresponding "simple-bus" entry, mapping it to the same table
-as the "simple-pm-bus" one.
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- arch/arm/mach-omap2/pdata-quirks.c | 1 +
- 1 file changed, 1 insertion(+)
+On Thu, Nov 19, 2026 at 02:25:55PM +0800, Peng Fan wrote:
+> On Mon, Nov 16, 2026 at 10:23:41AM +0100, Francesco Dolcini wrote:
+> >Peng: any idea/suggestion? Does it makes any sense to you?
+> 
+> Please help test whether this helps:
+> 
+> diff --git a/drivers/mailbox/imx-mailbox.c b/drivers/mailbox/imx-mailbox.c
+> index 683ccea6f2ba..e29044cf4b92 100644
+> --- a/drivers/mailbox/imx-mailbox.c
+> +++ b/drivers/mailbox/imx-mailbox.c
+> @@ -635,7 +635,7 @@ static int imx_mu_startup(struct mbox_chan *chan)
+>  {
+>         struct imx_mu_priv *priv = to_imx_mu_priv(chan->mbox);
+>         struct imx_mu_con_priv *cp = chan->con_priv;
+> -       unsigned long irq_flag = IRQF_NO_THREAD;
+> +       unsigned long irq_flag = IRQF_NO_THREAD | IRQF_ONESHOT;
+>         int ret;
+> 
+>         pm_runtime_get_sync(priv->dev);
 
-diff --git a/arch/arm/mach-omap2/pdata-quirks.c b/arch/arm/mach-omap2/pdata-quirks.c
-index b947bacf23a3..f591a94d9c73 100644
---- a/arch/arm/mach-omap2/pdata-quirks.c
-+++ b/arch/arm/mach-omap2/pdata-quirks.c
-@@ -491,6 +491,7 @@ static struct of_dev_auxdata omap_auxdata_lookup[] = {
- #endif
- 	/* Common auxdata */
- 	OF_DEV_AUXDATA("simple-pm-bus", 0, NULL, omap_auxdata_lookup),
-+	OF_DEV_AUXDATA("simple-bus", 0, NULL, omap_auxdata_lookup),
- 	OF_DEV_AUXDATA("ti,sysc", 0, NULL, &ti_sysc_pdata),
- 	OF_DEV_AUXDATA("pinctrl-single", 0, NULL, &pcs_pdata),
- 	OF_DEV_AUXDATA("ti,omap-prm-inst", 0, NULL, &ti_prm_pdata),
--- 
-2.56.0
+It does not help.
+	
+The analysis below was done with Claude help, on measurements I took on a
+Colibri iMX8QXP. I hope you can pick it up from there, this is not my
+area of expertise, and the best I can do is to send a revert for those 4
+commits.
+
+Every SCU RPC now wakes the SCHED_FIFO irq thread (TX done and RX), and
+while an RT task is runnable schedutil requests the maximum CPU frequency.
+The A35 clock is CLK_GET_RATE_NOCACHE, so each frequency change is
+followed by an SCU RPC reading the rate back, which wakes the irq thread
+again. The loop never settles, even when idle, and the transitions (ATF +
+SCU) are what costs the eMMC throughput (and I assume there is more
+impact on performance than just this).
+
+v7.4-rc3, 4 CPUs, idle irq/cpufreq transitions per 10s, hdparm --direct -t:
+
+                               irq    trans  schedutil  performance
+  v6.18                          -      -    149.7 MB/s     -
+  v7.4-rc3                   16203  10800    113 MB/s   150 MB/s
+  v7.4-rc3 + IRQF_ONESHOT     7832   7813    113 MB/s   150 MB/s
+  v7.4-rc3 + revert 4 commits   60     36    149 MB/s   150 MB/s
+
+The 4 commits are 36cac4b5101f, 3225a745f517, e55bea377d49 and
+692e1bc96a5d; reverting only the RX part (e55bea377d49) is not enough.
+
+
+#regzbot introduced: 692e1bc96a5d^..36cac4b5101f
+#regzbot title: mailbox: imx: threaded IRQ handling causes a cpufreq transition storm on SCU-based i.MX8
+
+Thanks,
+Francesco
 
 
