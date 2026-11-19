@@ -2,35 +2,35 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DFE9606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4267460A260E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:41:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tlWM/Seu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=refeQrnh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=p4FAEsQidBpC1UpvncRDg0TRSeb6iFnqZovHCW0yqoA=; b=tlWM/SeuzvhRG/
-	dK2YTbDrKqLR13l4iFMefjIFZO1QAtg2b8gkmp4xjUaewoGpVpCeKJkv4KbDnRKBojVGUoEkwDchH
-	W01IThDMkpZkK4inQH66H3QMnSov5r15QQm4PxgemOEK/qaUZSrIfAP1Az822xYxqptVK93zW4UWH
-	VUu3X+HVnM6Hl+sgWAPPjfhfAsk5w1u7h1vK+DX2LhEDw9tzE+zOjsLVzMcaoFAC22VKNHhfO49DH
-	NNl+0IgJfdjz1rWXJIzHk/2TMoM2KYHQL6j+e254PIeM+viWewKlo2xeEiYW7lMKLoLd4pf9V+TXy
-	ZLqP8X/FRVbBaOH4TGGw==;
+	List-Owner; bh=JNoGiAXrJ60xBE/k7TEkv9UmJyufTjNbXQCoGMPMOGQ=; b=refeQrnhHO8JPk
+	0SZ6EU2j5CXiUvN6UNxOFuVUO32ErdRgnSXqTRUoANFpJy0T2Fk6iCrM1jgOtc9NHd6sm1vP4xglY
+	vgobjBeZSkn1/8+hWov1RtlR3ndPCfPK4K14Y7YxiSY/urT4NhaILFrcV/OTibCcT2IWFEnvxoFgh
+	XCswe+nptUyr2XfinBSVCWAENsQ3sYNpBVkC9/lk0qV/FubNZ3pROYxFGscN13oYeVQhxl/UHkeWp
+	XOiswROZy6K21/KdQgxgWxf36fN3YQs+S1rTpYLfXRATveI+0s2QyuLFNoQtwJ5xsWAwWk57r8xKO
+	Xa+2MBlMd1qQ+1+m7VYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2Np-0000000C5GW-1Dov;
-	Thu, 19 Nov 2026 13:41:01 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xU2Nx-0000000C5Lj-2e5d;
+	Thu, 19 Nov 2026 13:41:09 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2Nm-0000000C5F9-0SOV;
-	Thu, 19 Nov 2026 13:40:58 +0000
+	id 1xU2Nu-0000000C5K4-2ORy;
+	Thu, 19 Nov 2026 13:41:06 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 72E8E611D5;
-	Thu, 19 Nov 2026 13:40:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C58C1F000C5;
-	Thu, 19 Nov 2026 13:40:52 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 540954081D;
+	Thu, 19 Nov 2026 13:41:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22B091F000C4;
+	Thu, 19 Nov 2026 13:41:01 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>,
 	Andreas Kemnade <andreas@kemnade.info>,
@@ -54,9 +54,9 @@ Cc: linux-clk@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	linux-pm@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 1/6] clk: Remove unused clk.dev
-Date: Thu, 19 Nov 2026 14:40:34 +0100
-Message-ID: <a896e5bdb29c7c6de39df9b28b11d55614f2ec2d.1795094688.git.geert+renesas@glider.be>
+Subject: [PATCH 3/6] clk: renesas: Convert to dev_clk_get_from_provider()
+Date: Thu, 19 Nov 2026 14:40:36 +0100
+Message-ID: <55d67b95c675924fb67d13ecbab47bb45c8af372.1795094688.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1795094688.git.geert+renesas@glider.be>
 References: <cover.1795094688.git.geert+renesas@glider.be>
@@ -80,157 +80,93 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This basically reverts commit efa850487a6b6742 ("clk: Inform the core
-about consumer devices").
+Renesas clock domain callbacks use of_clk_get_from_provider() to obtain
+clocks used for power management, so the latter show up as "deviceless"
+in the consumer column of the clk_summary file in debugfs.
 
-This commit added a struct device pointer member to struct clk and a
-parameter to clk_hw_create_clk(), but the new member was never used
-beyond setting.
+Fix this by using dev_clk_get_from_provider() instead, letting us pass
+the consumer device, too.
+
+Sample clk_summary change snippet on R-Car H1 Marzen:
+    - sata 1 1 0 62500000 0 0 50000 Y deviceless    of_clk_get_from_provider
+    + sata 1 1 0 62500000 0 0 50000 Y fc600000.sata dev_clk_get_from_provider
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- drivers/clk/clk.c    | 14 +++++---------
- drivers/clk/clk.h    | 11 ++++-------
- drivers/clk/clkdev.c | 14 ++++----------
- 3 files changed, 13 insertions(+), 26 deletions(-)
+Tested on R-Car H1 and H3.
+---
+ drivers/clk/renesas/clk-mstp.c         | 2 +-
+ drivers/clk/renesas/r9a06g032-clocks.c | 2 +-
+ drivers/clk/renesas/renesas-cpg-mssr.c | 2 +-
+ drivers/clk/renesas/rzg2l-cpg.c        | 2 +-
+ drivers/clk/renesas/rzv2h-cpg.c        | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 673eac47450b1e1c..858f4d60ed2d97c4 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -160,7 +160,6 @@ struct clk_core {
+diff --git a/drivers/clk/renesas/clk-mstp.c b/drivers/clk/renesas/clk-mstp.c
+index 1bd2acb7e175f9c7..79d3a0b9cf7bb08a 100644
+--- a/drivers/clk/renesas/clk-mstp.c
++++ b/drivers/clk/renesas/clk-mstp.c
+@@ -276,7 +276,7 @@ int cpg_mstp_attach_dev(struct generic_pm_domain *unused, struct device *dev)
+ 	return 0;
  
- struct clk {
- 	struct clk_core	*core;
--	struct device *dev;
- 	const char *dev_id;
- 	const char *con_id;
- 	unsigned long min_rate;
-@@ -4249,7 +4248,6 @@ static void free_clk(struct clk *clk)
- /**
-  * clk_hw_create_clk: Allocate and link a clk consumer to a clk_core given
-  * a clk_hw
-- * @dev: clk consumer device
-  * @hw: clk_hw associated with the clk being consumed
-  * @dev_id: string describing device name
-  * @con_id: connection ID string on device
-@@ -4259,9 +4257,8 @@ static void free_clk(struct clk *clk)
-  * consumers. It connects a consumer to the clk_core and clk_hw structures
-  * used by the framework and clk provider respectively.
-  */
--struct clk *clk_hw_create_clk(struct device *dev, struct clk_hw *hw,
--			      const char *dev_id, const char *con_id,
--			      struct module *owner)
-+struct clk *clk_hw_create_clk(struct clk_hw *hw, const char *dev_id,
-+			      const char *con_id, struct module *owner)
- {
- 	struct clk *clk;
- 	struct clk_core *core;
-@@ -4274,7 +4271,6 @@ struct clk *clk_hw_create_clk(struct device *dev, struct clk_hw *hw,
- 	clk = alloc_clk(core, dev_id, con_id);
+ found:
+-	clk = of_clk_get_from_provider(&clkspec);
++	clk = dev_clk_get_from_provider(dev, &clkspec);
+ 	of_node_put(clkspec.np);
+ 
  	if (IS_ERR(clk))
- 		return clk;
--	clk->dev = dev;
+diff --git a/drivers/clk/renesas/r9a06g032-clocks.c b/drivers/clk/renesas/r9a06g032-clocks.c
+index 871a915c24b8b609..9ae716dc6ede3438 100644
+--- a/drivers/clk/renesas/r9a06g032-clocks.c
++++ b/drivers/clk/renesas/r9a06g032-clocks.c
+@@ -748,7 +748,7 @@ static int create_add_module_clock(struct of_phandle_args *clkspec,
+ 	struct clk *clk;
+ 	int error;
  
- 	/*
- 	 * Pin the provider module only when the consumer lives in a different
-@@ -4303,7 +4299,7 @@ struct clk *__clk_hw_get_clk(struct clk_hw *hw, const char *con_id,
- 	struct device *dev = hw->core->dev;
- 	const char *name = dev ? dev_name(dev) : NULL;
+-	clk = of_clk_get_from_provider(clkspec);
++	clk = dev_clk_get_from_provider(dev, clkspec);
+ 	if (IS_ERR(clk))
+ 		return PTR_ERR(clk);
  
--	return clk_hw_create_clk(dev, hw, name, con_id, owner);
-+	return clk_hw_create_clk(hw, name, con_id, owner);
- }
- EXPORT_SYMBOL(__clk_hw_get_clk);
+diff --git a/drivers/clk/renesas/renesas-cpg-mssr.c b/drivers/clk/renesas/renesas-cpg-mssr.c
+index 1ed11ce4a04c8b44..1fc12132acfe4a8b 100644
+--- a/drivers/clk/renesas/renesas-cpg-mssr.c
++++ b/drivers/clk/renesas/renesas-cpg-mssr.c
+@@ -641,7 +641,7 @@ int cpg_mssr_attach_dev(struct generic_pm_domain *unused, struct device *dev)
+ 	return 0;
  
-@@ -5392,7 +5388,7 @@ struct clk *of_clk_get_from_provider(struct of_phandle_args *clkspec)
- {
- 	struct clk_hw *hw = of_clk_get_hw_from_clkspec(clkspec);
+ found:
+-	clk = of_clk_get_from_provider(&clkspec);
++	clk = dev_clk_get_from_provider(dev, &clkspec);
+ 	of_node_put(clkspec.np);
  
--	return clk_hw_create_clk(NULL, hw, NULL, __func__, NULL);
-+	return clk_hw_create_clk(hw, NULL, __func__, NULL);
- }
- EXPORT_SYMBOL_GPL(of_clk_get_from_provider);
- 
-@@ -5420,7 +5416,7 @@ static struct clk *__of_clk_get(struct device_node *np,
- {
- 	struct clk_hw *hw = of_clk_get_hw(np, index, con_id);
- 
--	return clk_hw_create_clk(NULL, hw, dev_id, con_id, NULL);
-+	return clk_hw_create_clk(hw, dev_id, con_id, NULL);
- }
- 
- struct clk *of_clk_get(struct device_node *np, int index)
-diff --git a/drivers/clk/clk.h b/drivers/clk/clk.h
-index 5009380863a9dc6f..ba23700149de0445 100644
---- a/drivers/clk/clk.h
-+++ b/drivers/clk/clk.h
-@@ -5,8 +5,6 @@
-  */
- 
- struct clk_hw;
--struct device;
--struct of_phandle_args;
- 
- #if defined(CONFIG_OF) && defined(CONFIG_COMMON_CLK)
- struct clk_hw *of_clk_get_hw(struct device_node *np,
-@@ -22,15 +20,14 @@ static inline struct clk_hw *of_clk_get_hw(struct device_node *np,
- struct clk_hw *clk_find_hw(const char *dev_id, const char *con_id);
- 
- #ifdef CONFIG_COMMON_CLK
--struct clk *clk_hw_create_clk(struct device *dev, struct clk_hw *hw,
--			      const char *dev_id, const char *con_id,
--			      struct module *owner);
-+struct clk *clk_hw_create_clk(struct clk_hw *hw, const char *dev_id,
-+			      const char *con_id, struct module *owner);
- void __clk_put(struct clk *clk);
- #else
- /* All these casts to avoid ifdefs in clkdev... */
- static inline struct clk *
--clk_hw_create_clk(struct device *dev, struct clk_hw *hw, const char *dev_id,
--		  const char *con_id, struct module *owner)
-+clk_hw_create_clk(struct clk_hw *hw, const char *dev_id, const char *con_id,
-+		  struct module *owner)
- {
- 	return (struct clk *)hw;
- }
-diff --git a/drivers/clk/clkdev.c b/drivers/clk/clkdev.c
-index 919fc680ae4dd6ec..e963f878290564da 100644
---- a/drivers/clk/clkdev.c
-+++ b/drivers/clk/clkdev.c
-@@ -83,17 +83,11 @@ struct clk_hw *clk_find_hw(const char *dev_id, const char *con_id)
- 	return hw;
- }
- 
--static struct clk *__clk_get_sys(struct device *dev, const char *dev_id,
--				 const char *con_id)
-+struct clk *clk_get_sys(const char *dev_id, const char *con_id)
- {
- 	struct clk_hw *hw = clk_find_hw(dev_id, con_id);
- 
--	return clk_hw_create_clk(dev, hw, dev_id, con_id, NULL);
--}
--
--struct clk *clk_get_sys(const char *dev_id, const char *con_id)
--{
--	return __clk_get_sys(NULL, dev_id, con_id);
-+	return clk_hw_create_clk(hw, dev_id, con_id, NULL);
- }
- EXPORT_SYMBOL(clk_get_sys);
- 
-@@ -105,10 +99,10 @@ struct clk *clk_get(struct device *dev, const char *con_id)
- 	if (dev && dev->of_node) {
- 		hw = of_clk_get_hw(dev->of_node, 0, con_id);
- 		if (!IS_ERR(hw) || PTR_ERR(hw) == -EPROBE_DEFER)
--			return clk_hw_create_clk(dev, hw, dev_id, con_id, NULL);
-+			return clk_hw_create_clk(hw, dev_id, con_id, NULL);
- 	}
- 
--	return __clk_get_sys(dev, dev_id, con_id);
-+	return clk_get_sys(dev_id, con_id);
- }
- EXPORT_SYMBOL(clk_get);
- 
+ 	if (IS_ERR(clk))
+diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
+index 06ae7228a95480fd..fb57d26947e1647c 100644
+--- a/drivers/clk/renesas/rzg2l-cpg.c
++++ b/drivers/clk/renesas/rzg2l-cpg.c
+@@ -2557,7 +2557,7 @@ static int rzg2l_cpg_attach_dev(struct generic_pm_domain *domain, struct device
+ 				goto err;
+ 			}
+ 		}
+-		clk = of_clk_get_from_provider(&clkspec);
++		clk = dev_clk_get_from_provider(dev, &clkspec);
+ 		of_node_put(clkspec.np);
+ 		if (IS_ERR(clk)) {
+ 			error = PTR_ERR(clk);
+diff --git a/drivers/clk/renesas/rzv2h-cpg.c b/drivers/clk/renesas/rzv2h-cpg.c
+index fabeaef8e62fba33..4b685f7250f661bd 100644
+--- a/drivers/clk/renesas/rzv2h-cpg.c
++++ b/drivers/clk/renesas/rzv2h-cpg.c
+@@ -1483,7 +1483,7 @@ static int rzv2h_cpg_attach_dev(struct generic_pm_domain *domain, struct device
+ 				goto err;
+ 			}
+ 		}
+-		clk = of_clk_get_from_provider(&clkspec);
++		clk = dev_clk_get_from_provider(dev, &clkspec);
+ 		of_node_put(clkspec.np);
+ 		if (IS_ERR(clk)) {
+ 			error = PTR_ERR(clk);
 -- 
 2.43.0
 
