@@ -2,100 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CA6606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 12:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACF4606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 12:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kaEXRrUF;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=leZm7fKL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DlWyrZ7o;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H1Ck/HHD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Jl9oyBMBlY4JXOrQAW23CuXlJczhQJcy241+h238qgg=; b=kaEXRrUF927Tg3S+zM5JfYzQxD
-	QCyyT77vs8e7uZVMZ05nTUpR+oK2G2D/PbVDkl3twkJ+92+ZDbBeudokcrHENI2ldqtL3pLsXcWz+
-	KHxJW9LhbhWRNBMxNWKW6zfth9TY9M9yr5ONrijPDf1aylPeDkX1+nqmScOLtROVvGn2FyG7CMQDG
-	euaW/NTBuUFPdUtiV7RdXu1IHo3jh6vYsjDfFWMNBVMdGcfvU6kd1OOOfA3iRZZgeuWzdVcPEE1yM
-	ra09AyIqfuhgwSsSNEocGmP2fM2vRcXnpyJWNITPjmzSIhAdqGvB9Qr95GnhHf/0r+jXPDaEy9s5n
-	uboe7/rw==;
+	bh=WNzetZFExbVUnIn8RIkQ20Rzs3Hjz4CEnnAdhS2hOx4=; b=DlWyrZ7oBQ9Ogd0GhSgTuFF7AQ
+	KJKcnO4fED8DoAeNrBHDLxmv7MOdcLv+GEzHAsgSWJ4qiPtEgTey4TeB2EYU/YyEUbBcS66ln1m70
+	MLu691sDW15Z62BGHK0nDxLZdd+budqHeaB45NR6qwOmQs7Aic2Bo49btFfeEAZrkeE/WI9gdQDIl
+	b77tse3Od0z/pfveoClcoBoczBpEUCwqTlTgFiDjMLv35+5B+rx30C31kPJCgvpJfMn6Dd+xFHZDO
+	l8s6dWhreQjD+eXhhNmzPP7efEgiDyTFLg+tmDkhRdDg3uxfMvcaQhHvard6s1zzbq7XoWpDoYCcP
+	BM/ssO6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU1a5-0000000BvXq-1XDM;
-	Thu, 19 Nov 2026 12:49:37 +0000
-Received: from mail-dy1-x1335.google.com ([2607:f8b0:4864:20::1335])
+	id 1xU1ge-0000000BwAc-0tCJ;
+	Thu, 19 Nov 2026 12:56:24 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU1a2-0000000BvVl-1Qiq
+	id 1xU1gc-0000000BwAM-1x4M
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 12:49:35 +0000
-Received: by mail-dy1-x1335.google.com with SMTP id 5a478bee46e88-381d542bc29so4017053eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 04:49:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795092573; x=1795697373; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Jl9oyBMBlY4JXOrQAW23CuXlJczhQJcy241+h238qgg=;
-        b=leZm7fKLy7oSvjzRK6T/nuRxpmigtgZr8GTXo9YOHKO4SSdD5lY+MOgrUf8YbOIg0A
-         t+jLtwX8kTsdKF7nCvJR5In72qLV7+uchCJV0nz/O4EFj3P7RyoWzwgIsZUwq0mjhWsk
-         lnlKMYJNtUvQ3Ei71RU6KNCrVflUNbHORLhGQT/yE/20wMhwr3uM2R/+8+AmoQUhusJj
-         sQxM/AjPVFWBKWFudpSVE1ypB8w510jxMTfl54rUasN28eMyVRHh709+r0UO92OBGv4r
-         rrEmeFbDxnliWiIoXne70l3PWcrH+w1wjCpRxoUJfYGeP0XkoorflIZFz7V6fuUNmiao
-         m/ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795092573; x=1795697373;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Jl9oyBMBlY4JXOrQAW23CuXlJczhQJcy241+h238qgg=;
-        b=Aw0jQxNcC0QDR4/mP+fOc72KowsG+YvoUolS85eh2kIUZyidFeafsD5AJKzgYyKOVB
-         2DmipUqAyPkYeIHP9HLI0mHoA0f1cPvKuL5cknERHVVJ2NZRFLeaK+qZvGiVZW/lF8vM
-         a7yqpeOLxKphkuciXpdEYJ2/6rIUQx9aTQZsDPyHdjI2mrPOUSiBwqkfK6pXE7BAUaZl
-         lWy3Qs46VOoMQcHykivGqI1TbuWm/mO4yFgYq+FI678IgH0AN1sqirgeJWOIB0JhNIia
-         +U5HWnJ1/nJefLoPIJSwLi8P7App6JA9pN34dv6RupkvKgRWPz10yUcbF0jUxUdHsZPE
-         3JbA==
-X-Forwarded-Encrypted: i=1; AL+hErGt6jORG3lz5lqNsTkdBvZyrzGyDHhJCb77z6ncZ9tfVCKuGG0T4MQMMHYOKOOyGR310gVCcwKpvxYZzFIDRN6Y@lists.infradead.org
-X-Gm-Message-State: APuU4Z+w1ArKqzl9/cCCr6C40sWosyODG5BolTYd8rmKq1Wrhk+OBDR0
-	399ro5I5ig+CD9zYh2WGewUEpxLrCiImhIMN//DkS9PSQcWcscdfuYI7
-X-Gm-Gg: AZFdTZfvHuJ32KpvGStm1s3/lyUyedRK8LGB0GvQ47Ge7lfzcHFe07QWZkhZt9XI7g4
-	ucRaCMsc4lx4CG5kii1fJpwg08vhObI+eknup+FVROywSUxvYGB3B8zgoB4LufPlpw2NXENJRMQ
-	nQ4vd9XMJo8O0PELzlDuK1EHFhfQwlsjuD9myTDtVNPmcGBkTb0kPcgXlT3qBGMvjMThdo5xGR8
-	hz1Z0pv1CC96YOapuXH/7TlS1cVW6SY3ktoYoEfI80giCAYFqQgIkpiS8W2l3mQ77bNkl9Yolc6
-	xuMxg0Yc5KJIoBtv5TCX6TlDgNE1YZ1PUa4uy/BUk4mHdgCfTlHVjN02dfy+iLnc0i1p8FmIlVV
-	DtJysInV2qPSN2FM0Fx9swYjhmDPwU2C4ugtr7eRK62cqhVM6m7RFQsLbCO/YUzwbyr3rsFMirL
-	2XUfWfuXkWGYOgh7e4UOpR0sugx+nPlsS96bosescZohXQjLoVQMHQ8JHT34ihsOvmkJIwpFPFK
-	Jz51eegoUymn1MGuysvBc9GBtv6K174D+Wtlfn4Ojr/CcvPGQYcnq9sxCWkQmYHiRtIb47ZXyQZ
-	uLQuL3iYB8reMC47eBGQ6lV42Q5J6546qHzPY4Fcz11coknaWDjwtt21mfXU5DQyUSSfr2Vjirw
-	=
-X-Received: by 2002:a05:7301:1a14:b0:382:5dd0:3bb2 with SMTP id 5a478bee46e88-3827fe7882bmr4750485eec.9.1795092573428;
-        Thu, 19 Nov 2026 04:49:33 -0800 (PST)
-Received: from csl-conti-dell7858.ntu.edu.sg ([155.69.195.57])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-382a7bc05cfsm17909542eec.26.2026.11.19.04.49.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 04:49:32 -0800 (PST)
-From: Maoyi Xie <maoyixie.tju@gmail.com>
-To: Felix Fietkau <nbd@nbd.name>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Ryder Lee <ryder.lee@mediatek.com>
-Cc: Shayne Chen <shayne.chen@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-wireless@vger.kernel.org,
+	Thu, 19 Nov 2026 12:56:22 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 9C1C46185F;
+	Thu, 19 Nov 2026 12:56:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51F611F000C4;
+	Thu, 19 Nov 2026 12:56:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795092981;
+	bh=WNzetZFExbVUnIn8RIkQ20Rzs3Hjz4CEnnAdhS2hOx4=;
+	h=From:To:Cc:Subject:Date;
+	b=H1Ck/HHDHIDm49YTmHflRYG1906MK/bcWcVqx678JA6tbRjT/rMtgbt4vU+uUba/8
+	 j/fYGJQNkgTA7WqJaxFGgpuLHCbyo72isTHLmClaiYbHfVRUAZhGEzeFJ91F2UTPw7
+	 aNIwrL2pHP3LWsv3OqYKbmM/RxFX0c6vNeAdw4xLZBR8/CmyEmA2M3T6wnsMKxRmln
+	 FA/I7lzfPN0rlA8lijj8UhC2Gbwpp+ilYE93zLm0y3gpMt+oM+Hlt/qyynG68O+x/D
+	 +/Rpsm9I+IfZvgFiZZerxn+rSAj4Qw0+voDQRe/ZuDxcjlMYO+IkOLaURT+QZ7JPst
+	 YH25iVN1WVe8A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xU1gY-00000000SEK-31q7;
+	Thu, 19 Nov 2026 12:56:18 +0000
+From: Marc Zyngier <maz@kernel.org>
+To: Paolo Bonzini <pbonzini@redhat.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Colton Lewis <coltonlewis@google.com>,
+	Dan Carpenter <dan@pereq.eu>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Michael Reeves <michael.reeves077@gmail.com>,
+	Mostafa Saleh <smostafa@google.com>,
+	Myria Sarvay <myrialsarvay@gmail.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Vincent Donnefort <vdonnefort@google.com>,
+	Will Deacon <will@kernel.org>,
+	Xuheng Li <xuheng@cs.columbia.edu>,
+	Yureka Lilian <yureka@cyberchaos.dev>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	kvmarm@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	stable@vger.kernel.org
-Subject: [PATCH] wifi: mt76: sdio: check the RX packet length in mt76s_rx_run_queue()
-Date: Thu, 19 Nov 2026 20:49:28 +0800
-Message-Id: <20261119124928.1398520-1-maoyixie.tju@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	kvm@vger.kernel.org
+Subject: [GIT PULL] KVM/arm64 fixes for 7.4, take #3
+Date: Thu, 19 Nov 2026 12:56:08 +0000
+Message-ID: <20261119125608.3939330-1-maz@kernel.org>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_044934_396407_1545EE62 
-X-CRM114-Status: GOOD (  13.23  )
-X-Spam-Score: -2.1 (--)
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: pbonzini@redhat.com, catalin.marinas@arm.com, coltonlewis@google.com, dan@pereq.eu, fuad.tabba@linux.dev, michael.reeves077@gmail.com, smostafa@google.com, myrialsarvay@gmail.com, oupton@kernel.org, vdonnefort@google.com, will@kernel.org, xuheng@cs.columbia.edu, yureka@cyberchaos.dev, seiden@linux.ibm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,53 +92,141 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mt76s_rx_run_queue() reads the packets that the chip announced in the
-interrupt status into one buffer. It then takes the length of each
-packet from the first word of the packet and does not compare it with
-the bytes read. A larger length can make the driver read TX status
-records past the end of the buffer and build an skb that extends past
-it.
+Paolo,
 
-Stop at a packet that does not fit in the bytes read.
+As promissed in my previous missive, I'm back with a few more
+presents...
 
-Found with a CodeQL-based static analysis tool that we are developing.
-Reproduced in a userspace harness under ASan, which reports no such
-read with this patch. Not tested on hardware, only compile-tested with
-W=1 on next-20261116.
+This round of fixes is mostly a Dan Carpenter special, as they seem to
+have hit the jackpot with some new formal analysis tool, and found a
+number of issues in NV. I am very surprised (/s).
 
-Fixes: dacf0acfe2ce ("mt76: sdio: extend sdio module to support CONNAC2")
-Cc: stable@vger.kernel.org
-Signed-off-by: Maoyi Xie <maoyixie.tju@gmail.com>
----
-I used an LLM to help write the harness and this patch.
+The rest is a bunch of pKVM fixes and workarounds for ugly hardware.
 
- drivers/net/wireless/mediatek/mt76/sdio_txrx.c | 2 ++
- 1 file changed, 2 insertions(+)
+I will be back next week same time for more of the same!
 
-diff --git a/drivers/net/wireless/mediatek/mt76/sdio_txrx.c b/drivers/net/wireless/mediatek/mt76/sdio_txrx.c
-index 3f314e8e1e69f92..86dd1165d2c7f1f 100644
---- a/drivers/net/wireless/mediatek/mt76/sdio_txrx.c
-+++ b/drivers/net/wireless/mediatek/mt76/sdio_txrx.c
-@@ -127,6 +127,8 @@ mt76s_rx_run_queue(struct mt76_dev *dev, enum mt76_rxq_id qid,
- 
- 		/* parse rxd to get the actual packet length */
- 		len = le32_get_bits(rxd[0], GENMASK(15, 0));
-+		if (len > end - buf)
-+			break;
- 
- 		/* Optimized path for TXS */
- 		if (!dev->drv->rx_check || dev->drv->rx_check(dev, buf, len)) {
+Please pull,
 
-base-commit: 7e1392a42ea288d70a266f6553fe06f57f8647ea
--- 
-2.34.1
+	M.
 
+The following changes since commit 181a701fc14d3d468c603b5ecfb9f12115c5fb72:
+
+  Merge branch kvm-arm64/misc-7.4-1 into kvmarm-master/fixes (2026-11-03 18:14:37 +0000)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/kvmarm/kvmarm.git tags/kvmarm-fixes-7.4-3
+
+for you to fetch changes up to 3385a832525527801012f5993d1f6a7a3d23092c:
+
+  Merge branch kvm-arm64/mmu-fixes-7.4-2 into kvmarm-master/fixes (2026-11-19 11:16:29 +0000)
+
+----------------------------------------------------------------
+KVM/arm64 fixes for 7.4, take #3
+
+* MMU fixes:
+
+  - Fix arbitrary truncation to 32bit when dealing with pool size
+
+  - Correctly order page pin refconting
+
+  - Prevent a HYP block mapping from being replaced with a table
+
+  - Fix NV Range invalidation by extending the boundaries to the
+    next block mapping
+
+  - Make sure the correct hw_mmu gets picked on the first run,
+    should userspace restore a nested context between init and
+    the first vcpu_load().
+
+  - Reject TLBI IPAS2E1 that fall outside of the S2 range
+
+* System register fixes:
+
+  - Correctly forward POE/PIE/TVAL EL2 register traps
+
+  - Add a sanity check for missing trap forwarding
+
+  - Correctly hide generic PAuth for pKVM protected guests when
+    the feature PAuth has been exluced from the feature set
+
+  - Make sure that HCR_EL2.NV1 is always RES0
+
+* Misc fixes:
+
+  - Flag Apple M3, M4 and M6 CPUs as having a broken vgic and
+    a wonky PMUv3 emulation.
+
+  - Correctly handle 64bit offsets into an MMIO region from
+    userspace
+
+  - Ensure that a vcpu is loaded when injecting an event
+
+----------------------------------------------------------------
+Colton Lewis (2):
+      KVM: arm64: Force HCR_EL2.NV1 to RES0 unconditionally
+      KVM: arm64: selftests: Verify HCR_EL2.NV1 is RES0 when E2H0 is NI_NV1
+
+Dan Carpenter (9):
+      KVM: arm64: nv: Invalidate whole L1 blocks on TLBI RIPAS2E1
+      KVM: arm64: vgic: Don't truncate offsets in vgic_find_mmio_region()
+      KVM: arm64: nv: Initialize hw_mmu to NULL for nested vCPUs
+      KVM: arm64: nv: Forward PIR_EL2, PIRE0_EL2 and POR_EL2 traps
+      KVM: arm64: nv: Forward CNTP_TVAL_EL02 and CNTV_TVAL_EL02 traps
+      KVM: arm64: nv: Report EL2 registers with no trap forwarding
+      KVM: arm64: Load the vcpu in KVM_SET_VCPU_EVENTS
+      KVM: arm64: nv: Fix NULL dereference in kvm_pmu_nested_transition()
+      KVM: arm64: nv: Ignore TLBI IPAS2E1 above the IPA limit
+
+Fuad Tabba (1):
+      KVM: arm64: Hide generic ptrauth from protected VMs without ptrauth
+
+Marc Zyngier (3):
+      Merge branch kvm-arm64/misc-7.4-2 into kvmarm-master/fixes
+      Merge branch kvm-arm64/sysreg-fixes-7.4-2 into kvmarm-master/fixes
+      Merge branch kvm-arm64/mmu-fixes-7.4-2 into kvmarm-master/fixes
+
+Michael Reeves (1):
+      arm64: Apply existing Apple Silicon CPU workarounds to newer CPUs
+
+Mostafa Saleh (1):
+      KVM: arm64: Use consistent type for pool size
+
+Myria Sarvay (1):
+      arm64: Add CPU part numbers for newer Apple Silicon CPUs
+
+Xuheng Li (2):
+      KVM: arm64: Don't replace a valid hyp block mapping with a table
+      KVM: arm64: Order a later pinner's accesses after the hyp mapping
+
+ arch/arm64/include/asm/cputype.h              | 28 +++++++++++++++++++
+ arch/arm64/include/asm/kvm_host.h             |  2 +-
+ arch/arm64/include/asm/kvm_pgtable.h          |  2 +-
+ arch/arm64/kernel/cpu_errata.c                | 12 +++++++++
+ arch/arm64/kernel/cpufeature.c                | 12 +++++++++
+ arch/arm64/kvm/arm.c                          |  8 ++++--
+ arch/arm64/kvm/config.c                       |  7 +----
+ arch/arm64/kvm/emulate-nested.c               | 10 ++++++-
+ arch/arm64/kvm/hyp/include/nvhe/early_alloc.h |  2 +-
+ arch/arm64/kvm/hyp/include/nvhe/gfp.h         |  4 +--
+ arch/arm64/kvm/hyp/nvhe/early_alloc.c         |  2 +-
+ arch/arm64/kvm/hyp/nvhe/mem_protect.c         |  8 ++++++
+ arch/arm64/kvm/hyp/nvhe/page_alloc.c          |  6 ++---
+ arch/arm64/kvm/hyp/nvhe/sys_regs.c            |  4 +--
+ arch/arm64/kvm/hyp/pgtable.c                  | 10 ++++++-
+ arch/arm64/kvm/nested.c                       |  8 ++++++
+ arch/arm64/kvm/pmu-emul.c                     |  3 +++
+ arch/arm64/kvm/sys_regs.c                     | 39 ++++++++++++++++++++++++---
+ arch/arm64/kvm/vgic/vgic-mmio.c               |  4 +--
+ arch/arm64/kvm/vgic/vgic-mmio.h               |  2 +-
+ tools/testing/selftests/kvm/arm64/hello_el2.c | 15 +++++++++++
+ 21 files changed, 161 insertions(+), 27 deletions(-)
 
