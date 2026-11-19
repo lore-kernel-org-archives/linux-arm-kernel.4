@@ -2,66 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A2A8606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4CFA606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GqDr2ZUg;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HlelLrL8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R9wxhkSC;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=R1vhd8AX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=KllBJ9+aHKHmevvfZXj4eWwtwcZanwxTddFWb4nlWzA=; b=GqDr2ZUg/Xp7WV9E7X/Pzdva2p
-	mO3TpiEvJCGW8gUR7UUGrz+/LQ1myCnIiH4fVmkYOwOB9BCZsZshqV0zrZ6SHHhOP8NacbN11q6eS
-	XOEhuh2RvbXXYSWT6EbKi7CWhMlNX5T5EIrzCpaLc37vfQRi/9fd6zHE/mLkBPtLuxlLJhNhKSLAN
-	T4TDHUj3dpNt/7AWh5IsTqeYXml0VNSpQMhK6xqJIdK7I2gsHs6/bUoWRCwGuy+5mHBrh4+bGAJex
-	T2C0B8iGJZRQqJp5bn1Cyr7ByaUx3EDvOMSrnIP3D75nrDvcaydBkN6fkATThuMnvEC3xz3ooOLw6
-	j7Oah/jQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=8nmKNXvKfXVV2+hGJX+cnp3hs/pqFkjNN9NDdDTn1gc=; b=R9wxhkSCBmxSW/
+	g+6JviUFvAaNyF/CHaHXfopqV9ZWTo/srkyFiMyMpWIg/8X9WRa8WJE/ACjp4+a5JjzIHAnXbhRz/
+	YYPluRVhAQ12qhccrqT+0Dv3XKF/gG/kUj+kNVhRd2EK/IdxMz+a6ljNXSRgBLwfzDe0qfKPYmq9i
+	VB6tDMG1nuHzrGZzXTjjCgb5JMjmxycZp0mBBTUn/+Js9Nbeew339DW7MKxSMFwsMun723TCQNWJg
+	yJqlWNJP6CvPXUAWshy5J7ofDmQNWXe8EF9lW1otQbUs6uCJ50GPNH+1jA9vbNJ8tDSYoGXkV7m49
+	P0d/UtlzAR1FGzQ7zsCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7zp-0000000DEIY-1yIY;
-	Thu, 19 Nov 2026 19:40:37 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xU805-0000000DENy-2YX1;
+	Thu, 19 Nov 2026 19:40:53 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7zo-0000000DEIF-0qUr
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 19:40:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id AB8744381E;
-	Thu, 19 Nov 2026 19:40:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E74781F000C6;
-	Thu, 19 Nov 2026 19:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795117235;
-	bh=KllBJ9+aHKHmevvfZXj4eWwtwcZanwxTddFWb4nlWzA=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=HlelLrL8Ng2+24StS3Zy59pXifhMcFRrzQWdbgwGFcZ2c4cc/o+TSmXcJh9cWftJx
-	 FVpLNcPskOkukVpMzAs/fLn54scLX7G9I/yIYilndZ9iIGE+z62R9C3SYni6ci0D7N
-	 ZNFhvxR65Rz+Heqrr/DEcJKd0uEk3Mnn82zSbL1OgpbX76AiQsuDRSAXROU3KZMCcA
-	 YPjZABiuphx9bpwVNQ998Z81J/mEoutyOKFMLPt32mDvVkie2Ur9EO0YkVtf+PhyLk
-	 kj6IclTiME1nNEpEcJkIjl2ARa/EcWr7CafGojxa6KsOx37GY8/CyIig410KAyqt6q
-	 TXeVoW0xZ7iyw==
-Subject: Re: [PATCH net v2] net: stmmac: preserve RX checksum capability when
- offload is disabled
-From: netdev-bot+sashiko@kernel.org
-To: james.hilliard1@gmail.com
-Cc: netdev@vger.kernel.org, maxime.chevallier@bootlin.com,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Thu, 19 Nov 2026 19:40:34 +0000
-Message-ID: <179511723446.3136.5381192433185500992@kernel.org>
-In-Reply-To: <20261117-submit-stmmac-rx-checksum-capability-v1-v2-1-059f9499c386@gmail.com>
-References: <20261117-submit-stmmac-rx-checksum-capability-v1-v2-1-059f9499c386@gmail.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	id 1xU7zz-0000000DEJq-28Zp;
+	Thu, 19 Nov 2026 19:40:48 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795117245;
+	bh=aLQX+yuNJC189MbLKUqIECIf3ahma7TwwXSHD13wOyY=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=R1vhd8AXky+ZV2rYsS+4HjulF+XD0Pt6aMqyGs5LFWhEzdjFsubDDFvLaNpp4tZb5
+	 Mk27wru94iCTNvtR6IcaWCGMtU5Wl2WDxP/QGAv+nYAiVNd0LEaT7xdZLddv3WP9Ds
+	 LQ1w8HLLTSwDPzv1y7S/MW1POA56wcEEEfaiph1TS/4b3N+czGT9cvrEw0hNRCxCmU
+	 rQ3/yOIo42uX41qJ4HBbV6OACaL2bU40eJlrsi2RT4/dPDO9/VRL/HdsIfU5SwBZpK
+	 GuEN+u0B4VANjFToewtRRvB2ZUbr19W0KGVsDW3GnpFAS9d931e0H8H6bjsEHsjSmd
+	 /vgdg/Smnv2GQ==
+Received: from jupiter.universe (unknown [100.64.1.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EF24917E0A27;
+	Thu, 19 Nov 2026 20:40:44 +0100 (CET)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id B3DCB480031; Thu, 19 Nov 2026 20:40:44 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date: Thu, 19 Nov 2026 20:40:31 +0100
+Subject: [PATCH v18 3/7] phy: rockchip: usbdp: Rename mode to hw_mode
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261119-b4-rockchip-usbdp-cleanup-part3-v18-3-fb325e336494@collabora.com>
+References: <20261119-b4-rockchip-usbdp-cleanup-part3-v18-0-fb325e336494@collabora.com>
+In-Reply-To: <20261119-b4-rockchip-usbdp-cleanup-part3-v18-0-fb325e336494@collabora.com>
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Zhang Yubing <yubing.zhang@rock-chips.com>, 
+ Frank Wang <frank.wang@rock-chips.com>
+Cc: Igor Paunovic <royalnet026@gmail.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+ Alexey Charkov <alchark@flipper.net>, 
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, kernel@collabora.com, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7146;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=aLQX+yuNJC189MbLKUqIECIf3ahma7TwwXSHD13wOyY=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr/ULw7/ZADGkr0fu+wobSJAbj765iwyau+D
+ QGUDMmKuq74YYkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq/1C8AAoJENju1/PI
+ O/qaICsP/3K5wvfhZ3gNB2K/I0QlotRuGun5mBWFZeOgGG+Wu0T3PC2Vr+HTb7We6DLDDGYmNna
+ 8Px5Uki7gkSCSCN4Ug8BaNePaJi80z2Z15bri6sV8WiufrBozWB2qdzbYvXmcdLLVeRK0KbV11H
+ C+FHLXl38CrY9XziVMMt2P5pTrrp7wWRvzzWoFpnOY9ty8jAM0sh6WRrf1vwjC0nnUS7Tf911M6
+ 4Kw5vbvRMo77gGu7Q0qNtEIVajEhPTrowqJNh7zQKltD0vOJpswk5eQgnTJZkK3OIrrvwDBQXmj
+ S6+jtpONEDfQEQWAeq2PzW2gzGRIcG1YGZUKPNwKVDCve94awQYkRhnXi/YiXFclf8180f5Nsak
+ YpwrBLKNsLJte5Kg/P085EsYsRVS7D+iAFRnFTxfzPt1HBkITWfmxDAsSeWfcsoDyI+Xjg3MKbU
+ RigWbwOgiP0zlLa8pToj90Qs/dpo76yGEua4Xuyk+W0E951Ca5eb5ZWLVxWMw0ztEOwpyr1U3Bh
+ SqGpTCna3VQrI0nCBeZrKY0r3/0sPs5aq27n9zN/kInbQv5eCa5f3bmX+FwBd59TqhJLau8rYtl
+ 64QwEHw5oo9Jf4TUJI96AIuwVAnB35P8k3pwmW6oqnIg3Lo/Zdn7jnZjDqNbx7K16YnUDlHM1XG
+ 789cRW1DGUePLb/jKLJE1Ag==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_114047_743342_B296C876 
+X-CRM114-Status: GOOD (  17.00  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,161 +100,217 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 2 potential
-issue(s) to consider.
+Rename mode field to hw_mode to make clear that this is the modes
+currently supported by the hardware, but not necessarily requested
+by software. I.e. it is only set by either the USB-C state machine
+or device-tree if the PHY is used in a fixed routing setup.
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 1 (1)
+Tested-by: Igor Paunovic <royalnet026@gmail.com> # Orange Pi 5 Plus
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ drivers/phy/rockchip/phy-rockchip-usbdp.c | 48 +++++++++++++++----------------
+ 1 file changed, 24 insertions(+), 24 deletions(-)
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
-
-- [Medium] After this patch, stmmac_hw_setup()
-  (drivers/net/ethernet/stmicro/stmmac/stmmac_main.c:3725-3729) checks…
-- [Low] The struct stmmac_ops comment for rx_ipc
-  (drivers/net/ethernet/stmicro/stmmac/hwif.h:322) still says "Enable…
-
-Pre-existing issues:
-- [Low] This problem wasn't introduced by this patch, but
-  sun8i_dwmac_rx_ipc_enable()…
-
---
-
-net: stmmac: preserve RX checksum capability when offload is disabled
-
-This patch changes stmmac_hw_setup() so that a zero return from
-stmmac_rx_ipc() clears plat->rx_coe only when RX checksum offload was
-requested, meaning hw->rx_csum is non-zero. Before this, the RX COE
-capability was lost when the interface was reopened after RX checksum
-offload had been turned off with ethtool.
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index 25894771e9e9f..e162976be2e6d 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -3723,7 +3723,7 @@ static int stmmac_hw_setup(struct net_device *dev)
->  	stmmac_safety_feat_configuration(priv);
->  
->  	ret = stmmac_rx_ipc(priv, priv->hw);
-> -	if (!ret) {
-> +	if (priv->hw->rx_csum && !ret) {
-
-[Severity: Medium]
-Can plat->rx_coe now stay unverified when RX checksum offload is off at
-every stmmac_hw_setup() since probe?
-
-For example, if "ethtool -K ethX rx off" runs before the first
-"ip link set up", the readback is never checked. plat->rx_coe then keeps
-whatever value the HW feature register or platform data reported.
-
-If RX checksum is later enabled while the interface is up,
-stmmac_fix_features() keeps NETIF_F_RXCSUM because rx_coe is not
-STMMAC_RX_COE_NONE. stmmac_set_features() then ignores the rx_ipc result:
-
-drivers/net/ethernet/stmicro/stmmac/stmmac_main.c:stmmac_set_features() {
-	if (features & NETIF_F_RXCSUM)
-		priv->hw->rx_csum = priv->plat->rx_coe;
-	else
-		priv->hw->rx_csum = 0;
-	/* No check needed because rx_coe has been set before and it will be
-	 * fixed in case of issue.
-	 */
-	stmmac_rx_ipc(priv, priv->hw);
-	...
-}
-
-That comment assumes the stmmac_hw_setup() check has already run, and
-after this patch that is not guaranteed. Before this patch, any open
-with a zero readback cleared rx_coe. So once the interface had been
-opened, offload could not be enabled at runtime without a check.
-
-Some hardware may advertise RX COE while its IPC bit does not latch. On
-such hardware, hw->rx_csum would be non-zero while the MAC is not
-validating checksums. stmmac_rx() and stmmac_construct_skb_zc() would
-then mark IP frames CHECKSUM_UNNECESSARY based on hw->rx_csum:
-
-drivers/net/ethernet/stmicro/stmmac/stmmac_main.c:stmmac_construct_skb_zc() {
-	...
-	if (unlikely(!coe) || !stmmac_has_ip_ethertype(skb))
-		skb_checksum_none_assert(skb);
-	else
-		skb->ip_summed = CHECKSUM_UNNECESSARY;
-	...
-}
-
-The zero-copy path does not look at descriptor status at all. Split
-header is also enabled from rx_csum > 0.
-
-This would last until the next stmmac_hw_setup() with a non-zero
-rx_csum, for example after down/up, resume or an MTU change.
-
-I could not find a specific part where the IPC bit fails to latch, so
-this depends on the hardware case that the stmmac_hw_setup() check
-exists for.
-
-Would it make sense to check the stmmac_rx_ipc() return in
-stmmac_set_features() when offload is enabled? Another option is to
-verify the capability once, whatever state was requested.
-
-[Severity: Low]
-This isn't a bug, but should the rx_ipc comment in struct stmmac_ops be
-updated to match the contract this check now depends on?
-
-drivers/net/ethernet/stmicro/stmmac/hwif.h:
-	/* Enable and verify that the IPC module is supported */
-	int (*rx_ipc)(struct mac_device_info *hw);
-
-The commit message says the callbacks program the state requested in
-hw->rx_csum and return whether IPC is enabled afterwards.
-dwmac1000_rx_ipc_enable(), dwmac4_rx_ipc_enable() and dwxgmac2_rx_ipc()
-behave that way. The hwif.h comment still reads as if a zero return
-means the IPC module is unsupported.
-
-sun8i_dwmac_rx_ipc_enable() already uses the other reading ("caution
-this function must return non 0 to work") and ignores hw->rx_csum.
-
->  		netdev_warn(priv->dev, "RX IPC Checksum Offload disabled\n");
->  		priv->plat->rx_coe = STMMAC_RX_COE_NONE;
->  		priv->hw->rx_csum = 0;
-
-[Severity: Low]
-This is a pre-existing issue, not one introduced by this patch, but the
-commit message says:
-
-  Keep calling rx_ipc when offload is disabled so that the hardware
-  is still programmed with the requested state.
-
-Does that hold for the sun8i EMAC used on H616? The commit message
-limits this claim to the GMAC, GMAC4 and XGMAC callbacks.
-sun8i_dwmac_rx_ipc_enable() ignores hw->rx_csum and never clears
-EMAC_RX_DO_CRC:
-
-drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c:sun8i_dwmac_rx_ipc_enable() {
-	...
-	v = readl(ioaddr + EMAC_RX_CTL0);
-	v |= EMAC_RX_DO_CRC;
-	writel(v, ioaddr + EMAC_RX_CTL0);
-
-	return 1;
-}
-
-So on sun8i, "ethtool -K ethX rx off" leaves the EMAC checksum engine
-on.
-
-stmmac_rx() still treats these frames as CHECKSUM_NONE because coe is
-0, so I could not find any frames being marked with the wrong checksum
-state. The problem is that the register state does not match the
-requested state.
+diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+index 025c8d52d72c..de8f01bd0467 100644
+--- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
++++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+@@ -174,7 +174,7 @@ struct rk_udphy {
+ 	/* PHY status management */
+ 	bool flip;
+ 	bool phy_needs_reinit;
+-	u8 mode;
++	u8 hw_mode; /* modes currently supported by hardware */
+ 	u8 status;
+ 	u8 sw_mode; /* modes currently requested */
+ 
+@@ -583,18 +583,18 @@ static void rk_udphy_dp_lane_enable(struct rk_udphy *udphy, int dp_lanes)
+ 				   CMN_DP_CMN_RSTN, FIELD_PREP(CMN_DP_CMN_RSTN, 0x0));
+ }
+ 
+-static void rk_udphy_mode_set(struct rk_udphy *udphy, u8 mode)
++static void rk_udphy_mode_set(struct rk_udphy *udphy, u8 hw_mode)
+ {
+-	if (udphy->mode == mode)
++	if (udphy->hw_mode == hw_mode)
+ 		return;
+ 
+ 	udphy->phy_needs_reinit = true;
+-	udphy->mode = mode;
++	udphy->hw_mode = hw_mode;
+ }
+ 
+ static void rk_udphy_set_typec_state(struct rk_udphy *udphy, unsigned long state)
+ {
+-	u8 mode;
++	u8 hw_mode;
+ 
+ 	switch (state) {
+ 	case TYPEC_DP_STATE_C:
+@@ -603,7 +603,7 @@ static void rk_udphy_set_typec_state(struct rk_udphy *udphy, unsigned long state
+ 		udphy->lane_mux_sel[1] = PHY_LANE_MUX_DP;
+ 		udphy->lane_mux_sel[2] = PHY_LANE_MUX_DP;
+ 		udphy->lane_mux_sel[3] = PHY_LANE_MUX_DP;
+-		mode = UDPHY_MODE_DP;
++		hw_mode = UDPHY_MODE_DP;
+ 		udphy->dp_lanes = 4;
+ 		break;
+ 
+@@ -620,12 +620,12 @@ static void rk_udphy_set_typec_state(struct rk_udphy *udphy, unsigned long state
+ 			udphy->lane_mux_sel[2] = PHY_LANE_MUX_DP;
+ 			udphy->lane_mux_sel[3] = PHY_LANE_MUX_DP;
+ 		}
+-		mode = UDPHY_MODE_DP_USB;
++		hw_mode = UDPHY_MODE_DP_USB;
+ 		udphy->dp_lanes = 2;
+ 		break;
+ 	}
+ 
+-	rk_udphy_mode_set(udphy, mode);
++	rk_udphy_mode_set(udphy, hw_mode);
+ }
+ 
+ static void rk_udphy_set_typec_default_mapping(struct rk_udphy *udphy)
+@@ -748,7 +748,7 @@ static int rk_udphy_status_check(struct rk_udphy *udphy)
+ 	int ret;
+ 
+ 	/* LCPLL check */
+-	if (udphy->mode & UDPHY_MODE_USB) {
++	if (udphy->hw_mode & UDPHY_MODE_USB) {
+ 		ret = regmap_read_poll_timeout(udphy->pma_regmap, CMN_ANA_LCPLL_DONE_OFFSET,
+ 					       val, (val & CMN_ANA_LCPLL_AFC_DONE) &&
+ 					       (val & CMN_ANA_LCPLL_LOCK_DONE), 200, 100000);
+@@ -783,15 +783,15 @@ static int rk_udphy_init(struct rk_udphy *udphy)
+ 	int ret;
+ 
+ 	dev_dbg(udphy->dev, "reinit PHY with USB3=%s and DP=%s (%u lanes) flipped=%s\n",
+-		str_on_off(udphy->mode & UDPHY_MODE_USB),
+-		str_on_off(udphy->mode & UDPHY_MODE_DP),
++		str_on_off(udphy->hw_mode & UDPHY_MODE_USB),
++		str_on_off(udphy->hw_mode & UDPHY_MODE_DP),
+ 		udphy->dp_lanes, str_yes_no(udphy->flip));
+ 
+ 	rk_udphy_reset_assert_all(udphy);
+ 	usleep_range(10000, 11000);
+ 
+ 	/* enable rx lfps for usb */
+-	if (udphy->mode & UDPHY_MODE_USB)
++	if (udphy->hw_mode & UDPHY_MODE_USB)
+ 		rk_udphy_grfreg_write(udphy->udphygrf, &cfg->grfcfg.rx_lfps, true);
+ 
+ 	/* Step 1: power on pma and deassert apb rstn */
+@@ -828,13 +828,13 @@ static int rk_udphy_init(struct rk_udphy *udphy)
+ 			   FIELD_PREP(CMN_DP_LANE_EN_ALL, 0));
+ 
+ 	/* Step 4: deassert init rstn and wait for 200ns from datasheet */
+-	if (udphy->mode & UDPHY_MODE_USB) {
++	if (udphy->hw_mode & UDPHY_MODE_USB) {
+ 		ret = rk_udphy_reset_deassert(udphy, "init");
+ 		if (ret)
+ 			goto assert_resets;
+ 	}
+ 
+-	if (udphy->mode & UDPHY_MODE_DP) {
++	if (udphy->hw_mode & UDPHY_MODE_DP) {
+ 		regmap_update_bits(udphy->pma_regmap, CMN_DP_RSTN_OFFSET,
+ 				   CMN_DP_INIT_RSTN,
+ 				   FIELD_PREP(CMN_DP_INIT_RSTN, 0x1));
+@@ -843,7 +843,7 @@ static int rk_udphy_init(struct rk_udphy *udphy)
+ 	udelay(1);
+ 
+ 	/*  Step 5: deassert cmn/lane rstn */
+-	if (udphy->mode & UDPHY_MODE_USB) {
++	if (udphy->hw_mode & UDPHY_MODE_USB) {
+ 		ret = rk_udphy_reset_deassert(udphy, "cmn");
+ 		if (ret)
+ 			goto assert_resets;
+@@ -902,7 +902,7 @@ static int rk_udphy_parse_lane_mux_data(struct rk_udphy *udphy)
+ 	num_lanes = device_property_count_u32(udphy->dev, "rockchip,dp-lane-mux");
+ 	if (num_lanes < 0) {
+ 		dev_dbg(udphy->dev, "no dp-lane-mux, following dp alt mode\n");
+-		udphy->mode = UDPHY_MODE_USB;
++		udphy->hw_mode = UDPHY_MODE_USB;
+ 		return 0;
+ 	}
+ 
+@@ -931,10 +931,10 @@ static int rk_udphy_parse_lane_mux_data(struct rk_udphy *udphy)
+ 		}
+ 	}
+ 
+-	udphy->mode = UDPHY_MODE_DP;
++	udphy->hw_mode = UDPHY_MODE_DP;
+ 	udphy->dp_lanes = num_lanes;
+ 	if (num_lanes == 1 || num_lanes == 2) {
+-		udphy->mode |= UDPHY_MODE_USB;
++		udphy->hw_mode |= UDPHY_MODE_USB;
+ 		udphy->flip = (udphy->lane_mux_sel[0] == PHY_LANE_MUX_DP) ||
+ 			      (udphy->lane_mux_sel[1] == PHY_LANE_MUX_DP);
+ 	}
+@@ -1033,7 +1033,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
+ {
+ 	int ret;
+ 
+-	if (!(udphy->mode & mode)) {
++	if (!(udphy->hw_mode & mode)) {
+ 		dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
+ 		return 0;
+ 	}
+@@ -1050,7 +1050,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
+ 			return ret;
+ 		}
+ 
+-		if (!udphy->hs && udphy->mode & UDPHY_MODE_USB)
++		if (!udphy->hs && udphy->hw_mode & UDPHY_MODE_USB)
+ 			rk_udphy_u3_port_disable(udphy, false);
+ 		udphy->phy_needs_reinit = false;
+ 
+@@ -1067,7 +1067,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
+ 			return ret;
+ 		}
+ 
+-		if (!udphy->hs && udphy->mode & UDPHY_MODE_USB)
++		if (!udphy->hs && udphy->hw_mode & UDPHY_MODE_USB)
+ 			rk_udphy_u3_port_disable(udphy, false);
+ 		udphy->phy_needs_reinit = false;
+ 
+@@ -1081,7 +1081,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
+ 
+ static void rk_udphy_power_off(struct rk_udphy *udphy, u8 mode)
+ {
+-	if (!(udphy->mode & mode)) {
++	if (!(udphy->hw_mode & mode)) {
+ 		dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
+ 		return;
+ 	}
+@@ -1349,7 +1349,7 @@ static int rk_udphy_usb3_phy_init(struct phy *phy)
+ 	udphy->sw_mode |= UDPHY_MODE_USB;
+ 
+ 	/* DP only or high-speed, disable U3 port */
+-	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs) {
++	if (!(udphy->hw_mode & UDPHY_MODE_USB) || udphy->hs) {
+ 		rk_udphy_u3_port_disable(udphy, true);
+ 		return 0;
+ 	}
+@@ -1372,7 +1372,7 @@ static int rk_udphy_usb3_phy_exit(struct phy *phy)
+ 	udphy->sw_mode &= ~UDPHY_MODE_USB;
+ 
+ 	/* DP only or high-speed */
+-	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs)
++	if (!(udphy->hw_mode & UDPHY_MODE_USB) || udphy->hs)
+ 		return 0;
+ 
+ 	rk_udphy_power_off(udphy, UDPHY_MODE_USB);
 
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261117-submit-stmmac-rx-checksum-capability-v1-v2-1-059f9499c386%40gmail.com
+2.53.0
+
 
