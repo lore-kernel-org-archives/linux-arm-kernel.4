@@ -2,118 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B2F606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C59606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OHa2e4RK;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=auu7G3Kz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GkKfUuAM;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=WdYkct6B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Ti7zYfewVTPLw6o7ketmyvxMhRKCPMrEBC1dAP5uxT4=; b=OHa2e4RKz+gcLa
-	4jZGf57zB8eneEDcQdHMxh1slDgfx4uoR2s93zn3t5cyvqb8ocLBEYKkwCohrzS16vFvpFwlYJ6eF
-	8AGNH+y6p3hsvEYH4OyBXNwOMoq2zD5aCuJXKtK38blDHqQlJwzlyUA/4UxZeFc9eAs+QGkjLCrxg
-	sPsW8Q+GvouM1x2HawnZ9oHQrBZozg8PL51rg1qrBpDTH1zy+OBmNVIWTzyrfehvEwuMZy8/M/6zd
-	bG6Q3byVSDgpWYQQB6BvjxNFNDpkj/F2L9lcDZbQhe7MhTgiCnH/hEixcIoEVoRK/yuOHFon14JJX
-	jadCYKixWqhsi1UsZkRQ==;
+	List-Owner; bh=dgcsVJh97AVUtfi+/IriKqXTUvwmDL8uMBe8HU3ivU4=; b=GkKfUuAMA0RnWq
+	vb1Rg4/aCQuy+ZTG/NA2YJmpwnpASJQI8j2+ddNO1RhqMQRIGKVHiGeNALA73oR8isdEhKBx7fxRP
+	m05tVSHbkNA+gYUlGfMhVnuHs+gl6At+UOEcHxDL5k1wihh3szZEAQOc5Sn1HKho84+gn1GinaLlo
+	wQefvQ11YPDcBE5OoVOEvcNMDfXeelwcdzww0m26/8n0K4g/aRpvWi+DsHgIw1IRlvppM/hbLKSkp
+	BdUWfU5bds7+Fym/6tukd5M2lmqyaota0YQwrhm9RFqiVLO7wvZy3Galpo6rnYAQ6ZcW0n3s+tUfl
+	WxsAkGXkcgLxl5PVfSxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyJI-0000000BNL7-24ZG;
-	Thu, 19 Nov 2026 09:20:04 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1xTyNk-0000000BO6M-1TaY;
+	Thu, 19 Nov 2026 09:24:40 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyJG-0000000BNKP-2qr6
+	id 1xTyN3-0000000BNqP-2LIO
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 09:20:04 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c50d3ac6b51so143284266b.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 01:20:01 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795080000; cv=none;
-        d=google.com; s=arc-20260327;
-        b=HnWGEiNycQrBfmIVyuduOO8gvCV5lBTDEjCIwBZ2sV18hfN4pbJGetrngU6R6n0LiE
-         1UR92NcNQxaxP6dXVD2rIw5LmxQoLWXLo9U9iqOdSl+VzcrMWjbsoQ78YXow0E0ho5On
-         MwyYksgytT293A67K0YOs41WTQEvcdiE6F9/yo66JI7v90BlKTY8LHkhZt2X6At0Rpq2
-         or+IC2o0BejAUu/7ke4jnzEUm9xxqC1qmLJl3HKHw9l42/guRLP7Ha4WIxBALNNq3ueS
-         ro+L4prE27kD6yDtJzLxbrLN1HTLA7QWMSL3d8OLf2RQdUXKJ2MuEKuLt6jo8PJkCyez
-         q7mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Ti7zYfewVTPLw6o7ketmyvxMhRKCPMrEBC1dAP5uxT4=;
-        fh=gxG/mfRviZnC0vcwEOjWNqgtbqCm94WB/ZIRm4/jchc=;
-        b=sXQAjtL+NjKCF4iDzuMaHQVGawogPs9OGEjkYoJflN8xo/Rsre3B8zwFQeZ4MTkSTe
-         roTTHasQfRU82fKBh1u6NwJUMm7MA/0zcXsNrqTmMCHM+dUpOSdBjINJhqVYVOrcF01M
-         Ys1rPVye4rvJDmGZAHAGP0a5JGHUDEInKYfoVx41pv8lMfo0l3lhoV3HU25HlGmDJYD0
-         peoQKt9sGFSq7JWBoFHusQ+e49kwlXBWAU5j0zvFsBMXPodX0zlziXqRR869Br54VtpN
-         7XQ4Z/R6WbMURRR5CRGh4JrTbd1XbNe0rw01793vnwNwc7yH9immnEA/sanPe4KG1mRk
-         iMhg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795080000; x=1795684800; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Ti7zYfewVTPLw6o7ketmyvxMhRKCPMrEBC1dAP5uxT4=;
-        b=auu7G3KzWTq/HV9mhmxcQ0aPFC6iAMhg79klgaO/deTuT4NUiCbTZU+j/HQlmWHaK3
-         rN1hbIjcBWEGBccNiKxK77wKP4e7umQ0+tr52QzIGnnsrYveBNy+zPGXGT8BSMC6dSl1
-         EsRbRWEDq7meCWTarjLnZAR7DG0AsbyzWSDqzYOSwD8ESGsA/BzcspX4Zfa3GmwH724I
-         jOXfIpNQ4UxEAFCsr0dNmj/fTgtLMUnr3ycw184XtL3S3Uca9/CA8ixL+Zb+l/gBb1Dh
-         tC26loMd23iUG2SamUrjmwchKb3zKhyDq0cexStn8Plp+51ifsMLBoN1y/f8DE5Z3pUe
-         KrYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795080000; x=1795684800;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Ti7zYfewVTPLw6o7ketmyvxMhRKCPMrEBC1dAP5uxT4=;
-        b=TxXDwXtugIgkaoehh2ET8WpfxBL5RYn5NS5hHSJ+xkBeXd9bm6UW5gtMnlk/WZ4iW6
-         yQXWDwP1BHhjO4W8Z8V0Q4dOwP2qYHQLnOqTJ21mw39UN3xmrNne1V4SifvH2aMVT9rD
-         MJoSkc6pW+82OZ2ziyvyL9a6K7yG9JpPvb57AFXsZS1W5F03NuaeHcB6l70kiGO8jYQY
-         GykI1eQ8HUlFYAg1ITiNJ9klDap7nV4U2RS1+KTjrIqmn+U+WC9QPP8WoDrQyBJ9UqVi
-         qtAg1V99DXPdlTRTVsnGrL7CBIPTnxSFlyTZLF3UmSrCzYCWIDff0Fdtt99OD0Kprls3
-         cs1Q==
-X-Forwarded-Encrypted: i=1; AL+hErEImuwRIp3r7opi+qThg+OwIzAkSmTPc5z9KjtaIsdKx+wIDp7JR5nyJdTRBA399c9FsIx+xW7r/8lzQcrezFgy@lists.infradead.org
-X-Gm-Message-State: APuU4Z96WiRRf84hYwxV+u5kkA9EuT+Q65Hjqmf4SKcOnzvQ0XXBhsoZ
-	xZK4db0bjb4PBBvzMq/kCtnl2Ytr8lIGbW4v2SajhJE60bbBu8pIPYwIFgFVVau+mYhB95EZ9jX
-	kpgZa5Z9UiqKTUGeSKMUG8mLDFFPesedt6I7FeDlMpg==
-X-Gm-Gg: AYBFou2b0pGN34QlcitkWK9zkyrmi3CATaHKBj+udbtfTgQrJKswD/ZcRC3pbPw7Bqt
-	4K/MyG6hQKj4zag3ieev1SkTMw2pOUT1AvwpkjouuY1Qm8YXW4Ue9qMhfHM/8I3q8C1WQTMCBmK
-	FS++D/gX+RjxEBevXWZSAoyWZSjctuknPSuchTNoUCjiaiOtBA1ZdsmqJhWx29FEqhO59JlaOm3
-	cd93o/DfG65dwEqbhPI0k/j/5ea/Gg45o0znNTT0zebD36YRq4Q1I5Vdbl3Fd10d3j3LmBV0q8K
-	7i2RPOJj56JnyQOqoNsUfe4cJ0GCRK0C2SNJmjR/FveFZadxEeY+/PXaaQR9vxtVDR9UuAVWgmD
-	Xr/+lWAW5GlQxvbl1yFtVtVrV3MG3yNDSHzi/p131RwMVRiiMVn+RzCb12SsUhmPwfuEROQ==
-X-Received: by 2002:a17:907:9692:b0:c40:9b35:ad91 with SMTP id
- a640c23a62f3a-c51318163ecmr59215466b.13.1795079999707; Thu, 19 Nov 2026
- 01:19:59 -0800 (PST)
+	Thu, 19 Nov 2026 09:24:38 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id B46144E41663;
+	Thu, 19 Nov 2026 09:23:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 863F060237;
+	Thu, 19 Nov 2026 09:23:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0504111BC0C10;
+	Thu, 19 Nov 2026 10:23:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795080232; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=dgcsVJh97AVUtfi+/IriKqXTUvwmDL8uMBe8HU3ivU4=;
+	b=WdYkct6BVjlKaUeu9qD9uWz3RwoF9BoMegkynIy9pQgGHj8VmmhA/MmFdB8wnEhCwu8yh5
+	5TMkYkhSX1x3uReTch+h8KRSU7p6wElKiFeE2XVSXSTHp5qOGQjkqDsBdWSbnO7Fu2WgV7
+	KVnKN+L58Jz2l5v/dE0+r1oaB3gyeceT3r2cPjrb3ED8MFgfWwy24VGRn94UmnP0ZesqA4
+	gjwrKCjizn6BnaDg9EGPMs6e81g2ct5hsVFEioI5EyY3o/1YzYNgJDejW2lVhGK/qphsMv
+	OSn+UlEelGAlCqTvbFLCuwwimS81QmCPiM2BYyfgPoWa12hFoKmt4e7qiwWLqQ==
+Message-ID: <53f65c05-1c09-410d-8f49-9175f46a0609@bootlin.com>
+Date: Thu, 19 Nov 2026 10:23:47 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261118184729.2302130-1-m-malladi@ti.com> <20261118184729.2302130-3-m-malladi@ti.com>
-In-Reply-To: <20261118184729.2302130-3-m-malladi@ti.com>
-From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Thu, 19 Nov 2026 10:19:48 +0100
-X-Gm-Features: AclHuK8e8ffnAD8pzuAiTxnaJvnDKX5k-oyRRYloR7_BmjnaSSX9Hh_xNi7mzEk
-Message-ID: <CAAofZF4XYd5z8X56DRARMxbu3t7QX48T7V69MPBw9TW1BQAmKg@mail.gmail.com>
-Subject: Re: [PATCH net-next 2/2] net: ti: icssg-prueth: Add ethtool RX flow
- classification support
-To: Meghana Malladi <m-malladi@ti.com>
-Cc: kees+treewide@kernel.org, laixiangwu@cmss.chinamobile.com, 
-	philippe.schenker@impulsing.ch, haokexin@gmail.com, devnexen@gmail.com, 
-	horms@kernel.org, jacob.e.keller@intel.com, sdf@fomichev.me, 
-	john.fastabend@gmail.com, hawk@kernel.org, daniel@iogearbox.net, 
-	ast@kernel.org, pabeni@redhat.com, kuba@kernel.org, edumazet@kernel.org, 
-	davem@davemloft.net, andrew+netdev@lunn.ch, bpf@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, srk@ti.com, 
-	Vignesh Raghavendra <vigneshr@ti.com>, danishanwar@ti.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 13/13] arm64: dts: synaptics: add SL2610 family RDK
+ boards
+To: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20261115102401.3520-1-jszhang@kernel.org>
+ <20261115102401.3520-14-jszhang@kernel.org>
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <20261115102401.3520-14-jszhang@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_012002_765673_2F780834 
-X-CRM114-Status: GOOD (  10.00  )
+X-CRM114-CacheID: sfid-20261119_012357_887938_14CEB036 
+X-CRM114-Status: GOOD (  17.85  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,47 +86,321 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
-
-On Wed, Nov 18, 2026 at 7:50=E2=80=AFPM Meghana Malladi <m-malladi@ti.com> =
-wrote:
-> [...]
-> +       mutex_lock(&emac->rxnfc.rxnfc_lock);
+Le 15/11/2026 à 11:23, Jisheng Zhang a écrit :
+> Add device trees for the SL2611, SL2613, SL2615, SL2617 and SL2619
+> reference development kits. Share their common console, memory, pin
+> configuration and regulator descriptions and enable the populated
+> peripherals.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>   arch/arm64/boot/dts/synaptics/Makefile        |   5 +
+>   arch/arm64/boot/dts/synaptics/sl2611-rdk.dts  |  16 +++
+>   arch/arm64/boot/dts/synaptics/sl2613-rdk.dts  |  16 +++
+>   arch/arm64/boot/dts/synaptics/sl2615-rdk.dts  |  16 +++
+>   arch/arm64/boot/dts/synaptics/sl2617-rdk.dts  |  16 +++
+>   arch/arm64/boot/dts/synaptics/sl2619-rdk.dts  |  16 +++
+>   .../boot/dts/synaptics/sl261x-rdk-common.dtsi | 135 ++++++++++++++++++
+>   7 files changed, 220 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2611-rdk.dts
+>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2613-rdk.dts
+>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2615-rdk.dts
+>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2617-rdk.dts
+>   create mode 100644 arch/arm64/boot/dts/synaptics/sl2619-rdk.dts
+>   create mode 100644 arch/arm64/boot/dts/synaptics/sl261x-rdk-common.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/synaptics/Makefile b/arch/arm64/boot/dts/synaptics/Makefile
+> index de71ddda6835..810d0d08c2de 100644
+> --- a/arch/arm64/boot/dts/synaptics/Makefile
+> +++ b/arch/arm64/boot/dts/synaptics/Makefile
+> @@ -2,3 +2,8 @@
+>   # Berlin SoC Family
+>   dtb-$(CONFIG_ARCH_BERLIN) += berlin4ct-dmp.dtb
+>   dtb-$(CONFIG_ARCH_BERLIN) += berlin4ct-stb.dtb
+> +dtb-$(CONFIG_ARCH_BERLIN) += sl2611-rdk.dtb
+> +dtb-$(CONFIG_ARCH_BERLIN) += sl2613-rdk.dtb
+> +dtb-$(CONFIG_ARCH_BERLIN) += sl2615-rdk.dtb
+> +dtb-$(CONFIG_ARCH_BERLIN) += sl2617-rdk.dtb
+> +dtb-$(CONFIG_ARCH_BERLIN) += sl2619-rdk.dtb
+> diff --git a/arch/arm64/boot/dts/synaptics/sl2611-rdk.dts b/arch/arm64/boot/dts/synaptics/sl2611-rdk.dts
+> new file mode 100644
+> index 000000000000..585872307834
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/synaptics/sl2611-rdk.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 Synaptics Incorporated
+> + *
+> + * Author: Jisheng Zhang <jszhang@kernel.org>
+> + */
 > +
-> +       /* Check max rules */
-> +       if (emac->rxnfc.rxnfc_rule_count >=3D ICSSG_RXNFC_MAX_RULES) {
-> +               ret =3D -ENOSPC;
-> +               goto unlock;
-> +       }
->  [...]
+> +/dts-v1/;
 > +
-> +unlock:
-> +       mutex_unlock(&emac->rxnfc.rxnfc_lock);
-> +       return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_add);
+> +#include "sl2611.dtsi"
+> +#include "sl261x-rdk-common.dtsi"
+> +
+> +/ {
+> +	model = "Synaptics SL2611 RDK";
+> +	compatible = "syna,sl2611-rdk", "syna,sl2611";
+> +};
+> diff --git a/arch/arm64/boot/dts/synaptics/sl2613-rdk.dts b/arch/arm64/boot/dts/synaptics/sl2613-rdk.dts
+> new file mode 100644
+> index 000000000000..de75c9fab6a2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/synaptics/sl2613-rdk.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 Synaptics Incorporated
+> + *
+> + * Author: Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sl2613.dtsi"
+> +#include "sl261x-rdk-common.dtsi"
+> +
+> +/ {
+> +	model = "Synaptics SL2613 RDK";
+> +	compatible = "syna,sl2613-rdk", "syna,sl2613";
+> +};
+> diff --git a/arch/arm64/boot/dts/synaptics/sl2615-rdk.dts b/arch/arm64/boot/dts/synaptics/sl2615-rdk.dts
+> new file mode 100644
+> index 000000000000..ae03638a3a53
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/synaptics/sl2615-rdk.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 Synaptics Incorporated
+> + *
+> + * Author: Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sl2615.dtsi"
+> +#include "sl261x-rdk-common.dtsi"
+> +
+> +/ {
+> +	model = "Synaptics SL2615 RDK";
+> +	compatible = "syna,sl2615-rdk", "syna,sl2615";
+> +};
+> diff --git a/arch/arm64/boot/dts/synaptics/sl2617-rdk.dts b/arch/arm64/boot/dts/synaptics/sl2617-rdk.dts
+> new file mode 100644
+> index 000000000000..ba4ea21ac505
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/synaptics/sl2617-rdk.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 Synaptics Incorporated
+> + *
+> + * Author: Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sl2617.dtsi"
+> +#include "sl261x-rdk-common.dtsi"
+> +
+> +/ {
+> +	model = "Synaptics SL2617 RDK";
+> +	compatible = "syna,sl2617-rdk", "syna,sl2617";
+> +};
+> diff --git a/arch/arm64/boot/dts/synaptics/sl2619-rdk.dts b/arch/arm64/boot/dts/synaptics/sl2619-rdk.dts
+> new file mode 100644
+> index 000000000000..58901ac2a050
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/synaptics/sl2619-rdk.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 Synaptics Incorporated
+> + *
+> + * Author: Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sl2619.dtsi"
+> +#include "sl261x-rdk-common.dtsi"
+> +
+> +/ {
+> +	model = "Synaptics SL2619 RDK";
+> +	compatible = "syna,sl2619-rdk", "syna,sl2619";
+> +};
+> diff --git a/arch/arm64/boot/dts/synaptics/sl261x-rdk-common.dtsi b/arch/arm64/boot/dts/synaptics/sl261x-rdk-common.dtsi
+> new file mode 100644
+> index 000000000000..78a9b28fdf99
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/synaptics/sl261x-rdk-common.dtsi
+> @@ -0,0 +1,135 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 Synaptics Incorporated
+> + *
+> + * Author: Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +
+> +/ {
+> +	aliases {
+> +		serial0 = &sm_uart0;
+> +		serial1 = &sm_uart1;
+> +		serial2 = &sm_uart2;
+> +		serial3 = &sm_uart3;
+> +		serial4 = &soc_uart0;
+> +		serial5 = &soc_uart1;
+> +		serial6 = &soc_uart2;
+> +		serial7 = &soc_uart3;
+> +		i2c0 = &sm_i2c0;
+> +		i2c1 = &sm_i2c1;
+> +		i2c2 = &soc_i2c0;
+> +		i2c3 = &soc_i2c1;
+> +		spi1 = &sm_spi1;
+> +		spi2 = &soc_spi0;
+> +		spi3 = &soc_spi1;
+> +		spi4 = &soc_spi2;
+> +		spi5 = &soc_spi3;
+> +	};
+> +
+> +	cpus {
+> +		cpu@0 {
+> +			cpu0-supply = <&vcore>;
+> +		};
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +		bootargs = "earlycon";
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x00000000 0x0 0x80000000>;
+> +	};
+Some memory is dedicated to the trust zone:
+     tz                      0x00100000 - 0x00600000 (secure)
+     bootloader              0x00600000 - 0x00D00000
+     NonSecure-NonCacheable  0x00D00000 - 0x01500000
+     system                  0x01500000 - 0x7FFFFF00
+(from mr_config)
 
-nit: instead of mutex_lock() you can use guard() [1]:
+Should it be added here as reserved-memory, or it's intended to be set 
+at run time by the bootloader?
+I was thinking of something like:
+	reserved_memory: reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
 
-    guard(mutex)(&emac->rxnfc.rxnfc_lock)
+		tz: tz@100000 {
+			reg = <0x0 0x00100000 0x0 0x00500000>;
+			no-map;
+		};
+	};
 
-and remove all the "goto unlock", returning directly. This handles the
-automatic cleanup.
 
-Same for other places where you're using mutex_lock() / mutex_unlock().
-
-- [1] https://docs.kernel.org/core-api/cleanup.html
-
---=20
-
-Marco Crivellari
-
-SUSE Labs
+> +};
+> +
+> +&osc {
+> +	clock-frequency = <25000000>;
+> +};
+> +
+> +&pinctrl {
+> +	soc_i2c0_pmux: soc_i2c0-pmux {
+> +		groups = "GPIO23", "GPIO24";
+> +		function = "tw2";
+> +		drive-strength = <7>;
+> +	};
+> +};
+> +
+> +&sm_pinctrl {
+> +	sm_i2c0_pmux: i2c0-pmux {
+> +		groups = "SM_GPIO12", "SM_GPIO13";
+> +		function = "tw0";
+> +		drive-strength = <7>;
+> +	};
+> +
+> +	sm_i2c1_pmux: i2c1-pmux {
+> +		groups = "SM_GPIO3", "SM_GPIO4";
+> +		function = "tw1";
+> +		drive-strength = <7>;
+> +	};
+> +
+> +	vcore_gpio_pmux: vcore-gpio-pmux {
+> +		groups = "SM_GPIO5";
+> +		function = "gpio";
+> +	};
+> +};
+> +
+> +&sm_uart0 {
+> +	status = "okay";
+> +};
+> +
+> +&sm_i2c0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sm_i2c0_pmux>;
+> +	clock-frequency = <100000>;
+> +
+> +	expander0: gpio@43 {
+> +		compatible = "fcs,fxl6408";
+> +		reg = <0x43>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
+> +
+> +	expander1: gpio@44 {
+> +		compatible = "fcs,fxl6408";
+> +		reg = <0x44>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
+> +};
+> +
+> +&sm_i2c1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sm_i2c1_pmux>;
+> +	clock-frequency = <100000>;
+> +
+> +	vcore: regulator@60 {
+> +		compatible = "silergy,sy8827n";
+> +		reg = <0x60>;
+> +		regulator-name = "vcore";
+> +		regulator-min-microvolt = <700000>;
+> +		regulator-max-microvolt = <987500>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-active-discharge = <0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vcore_gpio_pmux>;
+> +		enable-gpios = <&portc 5 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&soc_i2c0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&soc_i2c0_pmux>;
+> +	clock-frequency = <100000>;
+> +};
+> +
+> +&sm_uart1 {
+> +	status = "okay";
+> +};
 
