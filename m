@@ -2,85 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD255606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:18:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62A97606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KHNWHQn7;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=KjSjqxQ1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0VPck928;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=oYt4Wa0I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Fl/qRlVbkzGh5AOELuRmj7c43ed3VCrTc64PhS5Pjy8=; b=KHNWHQn7yR4QFYRFxkE1Hzpqwv
-	yBneRRqBHA/p99UExHCVEvZpwC9Qk+dbdAeZ2510qa8TUbjd8hPpKrUjDza+Mo9ARrnDGJm6bcfvm
-	ChVsk7Yv/WSz6UyyPrWfyg0N4P6VtuatPRgb6JVaItVX4/BPzUiUXWapQlHyOIcVTYgyc9H5rmG++
-	Q0cKuOon5lwd1gfJb5oHk27QoogYHyxo/eYQaF0YvogxM0nCJErnUwF/9CO73Lt2rYvMLpWHwrKmA
-	0UXcPe2LaXqwsCA7H8CVyzLQutvzVfDBq1Flh5UiOgixTNv9sRQSGeFFJFEEjK97Xaxo5hMou/n4/
-	bFGuO8+A==;
+	bh=FTLk4NnZeFZmoBRlxFHmqfllD0CM8928NVbyEN0WOsI=; b=0VPck928G0SAj/4Eo0J4o0jy8d
+	iWdag/t3t32F8t+8bCGmDhFLp4guPoIOIxmHSJ4eEkpPMzgXuqr1bdh8J5SL5MyAshiK1UMtqimE7
+	io5WeY+0iKdQjdKc2gRzBo87EPOVRLNS09AkJKpJ1WY3z2ExRGf0KVZBeYtfLEuksrREJthOpk8qh
+	uqIitZ7YWvb0QboNR+YbDlfuZXQKbjAzAFEo8rnMJ+mpn0DJkKuetyuqkyUVZ5MXrmrEl7Cb1ZAUo
+	ooTkrQJar+qoTtvnf3JR4wqQQICKLUuxSz0DJJkQ6g+sBPU+hJuFXgkQmQ1KqLbCM5veGMF2tHeka
+	80fiWbsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5mZ-0000000Colm-05Un;
-	Thu, 19 Nov 2026 17:18:47 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xU5mk-0000000CosV-1Fh2;
+	Thu, 19 Nov 2026 17:18:58 +0000
+Received: from mail-northcentralusazon11010066.outbound.protection.outlook.com ([52.101.193.66] helo=CH1PR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5mW-0000000Coks-1vQL;
-	Thu, 19 Nov 2026 17:18:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795108721;
-	bh=dsEcWBJuX2/l0d2U9vjAUEM3uepRgu228h79+k2iPNk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=KjSjqxQ1oFQ4LkgrbwOgmsHN23NFs0Y6hdSFuoEEFm2UGesCzlYbnYoyKv3Ot99SB
-	 lQUJ+DaHY/kUrKNNermPHzgWYtmyWlqCYYQpFzuGGWIV9v31JjrZJRuKC6O9c7U9kh
-	 rPvrpqGbq3qlfz5VoQdhfg8Xj3Quta9Uj1xxA59bZ/EnwMGQP7/6rJnBQUzXReTKrf
-	 yjYi50nEQc+ehkKQEH03Fu0wmLHu0atgY08nTuk7IdsuJbYQQctQVFxc784L1IGpJR
-	 rWQGmJBsDrmQ5KRkEdoartLIDnuzzaLmAf5X2t/xhBI3hJbEUS+qug6IrzKS1Q14NU
-	 WkLWP2u2KiajA==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8275D17E0311;
-	Thu, 19 Nov 2026 18:18:40 +0100 (CET)
-Message-ID: <f46de8ba86e45e44a3f26b2eb06627ae57a0064d.camel@collabora.com>
-Subject: Re: [PATCH 2/4] media: rkvdec: Move vp9 functions to common file
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Venkata Atchuta Bheemeswara Sarma Darbha <vdarbha0473@gmail.com>, 
- Detlev Casanova <detlev.casanova@collabora.com>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Thu, 19 Nov 2026 12:18:39 -0500
-In-Reply-To: <20260726-b4-add-rkvdec2-vp9-vdpu381-v1-2-180fb2d1f10c@gmail.com>
-References: <20260726-b4-add-rkvdec2-vp9-vdpu381-v1-0-180fb2d1f10c@gmail.com>
-	 <20260726-b4-add-rkvdec2-vp9-vdpu381-v1-2-180fb2d1f10c@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-MhVtI85+IIjy5xrl3Ple"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xU5mh-0000000Coq0-3Zzs
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 19 Nov 2026 17:18:57 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xSlvy+jrntt0Xb+AirMJDzN8UaDQn5akbu3jO+3AUTnEItgKJQ6dC+Y/oIQVzoqF81rXIzlNy4hSFrIidnd60sea888IMnQpWWACY5CzQsdmFbstHAzDEqdFqPqUG0aWugLiHDShHv5VI6+Hxw/nbc3QSRwwZNKzdlCrE4h/IXTtRm/mig/34Ofj3PLWo18CAqcOF/HCW2tmjLRyCVrPuGM0GyO+hCI1rBgnBw+2lZznf4o9jflDRsd3rTT1/sh/c754cfhwby64cYP+hyzQPDDJo48ORviWCM1RnxTyuNAv42kSEnDbnuo2vmoJZN4T7Ykz8MnXgrVRnqmXNN4UtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FTLk4NnZeFZmoBRlxFHmqfllD0CM8928NVbyEN0WOsI=;
+ b=l7TM6m/ic/uyQLfo2JNIZ0nH6Xaslj267e9fbc4T7cKafjqdwOxylSODsYQxbgbmZRhsSK3mCa067TU6AVJACdTDYsOC8LaSbgMHtIPbVYq8PXsvUa9HTxP6Adb/npx9bHRHfmD0bEAkusKnVBNmqQtXSmT7cANcy1g5XSRNVP8azkaGvGVorduanGCnjRgnqLYDv/08LqqC3IMIBS8kWhEBKZ9tKZQsq+euEMz5d0uN/fqz02eP901zDW9i5DVBPpHYA5mSXhvPIEu253b/AfloOkYzenthpU8Dg4LmhL2iPQRUXfCsPtQ3V4KVffuRKUeb6XXL1ztPI8Z/7rWzTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FTLk4NnZeFZmoBRlxFHmqfllD0CM8928NVbyEN0WOsI=;
+ b=oYt4Wa0IRi0eUt7Bamp52c6lDhRPUfr0wLbFFE1XcbWMYpoEPorCIJFDcw3lPXz4V0abPiZ2No5P5pZ7yyTh9os9GQ+rTcBs6ws3WwnmUIcPBBmuVDS1p+Fz2k+pepekinFUfNpTg+dzokz5FpYtvtSXfJzlnpquUClKrW8b8UM=
+Received: from CH0PR03CA0051.namprd03.prod.outlook.com (2603:10b6:610:b3::26)
+ by CY8PR12MB7435.namprd12.prod.outlook.com (2603:10b6:930:51::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.16; Thu, 19 Nov
+ 2026 17:18:35 +0000
+Received: from BN3PEPF00022BC8.namprd05.prod.outlook.com
+ (2603:10b6:610:b3:cafe::54) by CH0PR03CA0051.outlook.office365.com
+ (2603:10b6:610:b3::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Thu,
+ 19 Nov 2026 17:18:35 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN3PEPF00022BC8.mail.protection.outlook.com (10.167.248.214) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 17:18:34 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
+ 2026 11:18:14 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
+ 2026 11:18:13 -0600
+Received: from xhdradheys41.xilinx.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Thu, 19 Nov 2026 11:18:11 -0600
+From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<michal.simek@amd.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<git@amd.com>, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Subject: [PATCH] arm64: dts: versal-net: disable GIC ITS by default
+Date: Thu, 19 Nov 2026 22:47:57 +0530
+Message-ID: <20261119171757.2558318-1-radhey.shyam.pandey@amd.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF00022BC8:EE_|CY8PR12MB7435:EE_
+X-MS-Office365-Filtering-Correlation-Id: d8baf09f-1456-4839-9715-08df4661249c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|23010399003|82310400026|36860700016|10067099003|56012099006|11063799006|261022105027099003|261026140227099003|261028144727099003|261026121527099003|261022075727099003|261021121427099003|261102123227099003|261009223027099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: VFW7NX4LDm1eOWu6ddjaTBud2FsU7w7w6cYW4cTaVp9H0VA+KrZ2sepP569Qei+uLRi2OevdUBEGT0BlR14oFu+v8YnV0chk9gXrm5hKvFRlZpO7eb3AmMbDVyJQR48c+HnXLhyeQe9pzudnOR0GUsxEfC6PxyG99YH19NwFglH/WbJfja/FkLLsAEsCS3RiMEdyO7nDnnWBGCfbV1gIsDn3/XoewmVBrY/8tC1gWD8wAlaRjrveTbS6zIhtdPutua3paPrOETlJ4/eClTNq7DM//jARYgLGkbIRm1mJV0mik1IOzjChluMGYaHa7JRAX7WUtebf5Z/ikw2ca+O2zxmvu4ykh7jDrEOAa4DFWBqLYGo8KgadUKciAwgfBEbUAMeRhfpA5CHnVXos6+tzTK8IdKvVcYfQ3cS/TMHG0q7o/g9hXmoKLOVsfMFuuQEbcSfRJ/+62I4GLCH9ZxLOxO03hbQRfudbeITYcBbq6ULy570P6pJma2OmoPfNhHWTyFlypcwjIy5uMKUAGoeXxJRN/0Uud17oFe8YUudr9uh/iSAvKSo+/BT5WJSmhao0iGBli0HN1XfVt1nGr0NXJeSDScBOvBuarn4YngXom3JLNdpdung1O6rTKRwHGY+blQtET2rI0nUmhq5NljoavztchiDo7HvrPTOQszhhaaxR2Os0qQIqPQrtF7yyUx5T5HPSYz+z3KLbe18VaBsokg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(23010399003)(82310400026)(36860700016)(10067099003)(56012099006)(11063799006)(261022105027099003)(261026140227099003)(261028144727099003)(261026121527099003)(261022075727099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: wBxw2xjrCX8VFrQZyY3z4bBOZus/maoF0269iYRdi2ONAA7iMxAJcFj2fbvUtAphTbUyzF7gUHubX5GL7a/kkFTeuwQmZ68Y1Q+bfcG+sZ6bj4G1q/hl2Xu41XEEsNCKvHEJo6zrct2MktwuzcmyceJkyOXS+xhuVj3I7+VThfaMgFBpqSh4PvyC3T04Fd6HN8dI63Antjy6xloEhdPVFDeMOUW/NiI+8Q6P2u1anlvn6vpEXB2h6rSmAhVLJJg7YBnAivN3LVrm220E46tGSpu6/DGLOuFTuHDpwiFE0thGH8yz+g3RRNRVWUl+rx90UTi4JV9wUA9XIq9vXWLv3pWp8xyHTexT6sAZDWmWLLB8seChPVoaxg5LnUR6qxLz/MybH7yCkHWdHM2VjJPtMJOGzsj0oRGLuk0//VmvGwxSFhtTTD5+987E0lVnU4E3
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 17:18:34.9477
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8baf09f-1456-4839-9715-08df4661249c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF00022BC8.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7435
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_091844_854533_91AE9398 
-X-CRM114-Status: GOOD (  22.01  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_091855_901569_105B0BB8 
+X-CRM114-Status: GOOD (  11.67  )
+X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,403 +123,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-MhVtI85+IIjy5xrl3Ple
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The GIC ITS is only useful when something in the design generates MSIs.
+On Versal NET the default configuration has no MSI producer so disable
+the node in the SoC dtsi and let boards that do have an MSI producer
+turn it back on. versal.dtsi already follows this approach.
 
-hi,
+Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+---
+Disable GIC ITS by default to prevent potential memory corruption during
+kexec. The second kernel can inherit stale LPI configuration pointing to
+memory owned by the first kernel, resulting in warnings and potential
+memory corruption.
 
-Le dimanche 26 juillet 2026 =C3=A0 15:25 -0500, Venkata Atchuta Bheemeswara=
- Sarma
-Darbha a =C3=A9crit=C2=A0:
-> Refactor common VP9 functions in preparation for adding the VDPU381
-> variant
->=20
-> Signed-off-by: Venkata Atchuta Bheemeswara Sarma Darbha <vdarbha0473@gmai=
-l.com>
-> ---
->  drivers/media/platform/rockchip/rkvdec/Makefile    |   1 +
->  .../platform/rockchip/rkvdec/rkvdec-vp9-common.c   |  65 ++++++++++++
->  .../platform/rockchip/rkvdec/rkvdec-vp9-common.h   |  92 +++++++++++++++=
-++
->  .../media/platform/rockchip/rkvdec/rkvdec-vp9.c    | 113 +--------------=
-------
->  4 files changed, 159 insertions(+), 112 deletions(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rkvdec/Makefile b/drivers/me=
-dia/platform/rockchip/rkvdec/Makefile
-> index e629d571e4d8..2bbd67b2db11 100644
-> --- a/drivers/media/platform/rockchip/rkvdec/Makefile
-> +++ b/drivers/media/platform/rockchip/rkvdec/Makefile
-> @@ -12,4 +12,5 @@ rockchip-vdec-y +=3D \
->  =09=09   rkvdec-vdpu381-hevc.o \
->  =09=09   rkvdec-vdpu383-h264.o \
->  =09=09   rkvdec-vdpu383-hevc.o \
-> +=09=09   rkvdec-vp9-common.o \
->  =09=09   rkvdec-vp9.o
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.c b=
-/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.c
-> new file mode 100644
-> index 000000000000..a802f0acd27b
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.c
-> @@ -0,0 +1,65 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Rockchip video decoder VP9 common functions
-> + *
-> + * Copyright (C) 2019 Collabora, Ltd.
-> + *=09Boris Brezillon <boris.brezillon@collabora.com>
-> + * Copyright (C) 2021 Collabora, Ltd.
-> + *=09Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-> + *
-> + * Copyright (C) 2016 Rockchip Electronics Co., Ltd.
-> + *=09Alpha Lin <Alpha.Lin@rock-chips.com>
-> + */
-> +#include <linux/v4l2-common.h>
-> +#include <media/v4l2-h264.h>
-> +#include <media/v4l2-mem2mem.h>
-> +
-> +#include "rkvdec.h"
-> +#include "rkvdec-vp9-common.h"
-> +
-> +void write_coeff_plane(const u8 coef[6][6][3], u8 *coeff_plane)
-> +{
-> +=09unsigned int idx =3D 0, byte_count =3D 0;
-> +=09int k, m, n;
-> +=09u8 p;
-> +
-> +=09for (k =3D 0; k < 6; k++) {
-> +=09=09for (m =3D 0; m < 6; m++) {
-> +=09=09=09for (n =3D 0; n < 3; n++) {
-> +=09=09=09=09p =3D coef[k][m][n];
-> +=09=09=09=09coeff_plane[idx++] =3D p;
-> +=09=09=09=09byte_count++;
-> +=09=09=09=09if (byte_count =3D=3D 27) {
-> +=09=09=09=09=09idx +=3D 5;
-> +=09=09=09=09=09byte_count =3D 0;
-> +=09=09=09=09}
-> +=09=09=09}
-> +=09=09}
-> +=09}
-> +}
-> +
-> +struct rkvdec_decoded_buffer *
-> +get_ref_buf_vp9(struct rkvdec_ctx *ctx, struct vb2_v4l2_buffer *dst, u64=
- timestamp)
-> +{
-> +=09struct v4l2_m2m_ctx *m2m_ctx =3D ctx->fh.m2m_ctx;
-> +=09struct vb2_queue *cap_q =3D &m2m_ctx->cap_q_ctx.q;
-> +=09struct vb2_buffer *buf;
-> +
-> +=09/*
-> +=09 * If a ref is unused or invalid, address of current destination
-> +=09 * buffer is returned.
-> +=09 */
-> +=09buf =3D vb2_find_buffer(cap_q, timestamp);
-> +=09if (!buf)
-> +=09=09buf =3D &dst->vb2_buf;
-> +
-> +=09return vb2_to_rkvdec_decoded_buf(buf);
-> +}
-> +
-> +void update_dec_buf_info(struct rkvdec_decoded_buffer *buf,
-> +=09=09=09 const struct v4l2_ctrl_vp9_frame *dec_params)
-> +{
-> +=09buf->vp9.width =3D dec_params->frame_width_minus_1 + 1;
-> +=09buf->vp9.height =3D dec_params->frame_height_minus_1 + 1;
-> +=09buf->vp9.bit_depth =3D dec_params->bit_depth;
-> +}
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.h b=
-/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.h
-> new file mode 100644
-> index 000000000000..0d042215fad2
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9-common.h
-> @@ -0,0 +1,92 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Rockchip video decoder VP9 common functions
-> + *
-> + * Copyright (C) 2019 Collabora, Ltd.
-> + *=09Boris Brezillon <boris.brezillon@collabora.com>
-> + * Copyright (C) 2021 Collabora, Ltd.
-> + *=09Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-> + *
-> + * Copyright (C) 2016 Rockchip Electronics Co., Ltd.
-> + *=09Alpha Lin <Alpha.Lin@rock-chips.com>
-> + */
-> +
-> +#include <media/v4l2-h264.h>
-> +#include <media/v4l2-mem2mem.h>
-> +#include <media/v4l2-vp9.h>
-> +
-> +#include "rkvdec.h"
-> +
-> +struct rkvdec_vp9_run {
-> +=09struct rkvdec_run base;
-> +=09const struct v4l2_ctrl_vp9_frame *decode_params;
-> +};
-> +
-> +struct rkvdec_vp9_intra_mode_probs {
-> +=09u8 y_mode[105];
-> +=09u8 uv_mode[23];
-> +};
-> +
-> +struct rkvdec_vp9_intra_only_frame_probs {
-> +=09u8 coef_intra[4][2][128];
-> +=09struct rkvdec_vp9_intra_mode_probs intra_mode[10];
-> +};
-> +
-> +struct rkvdec_vp9_inter_frame_probs {
-> +=09u8 y_mode[4][9];
-> +=09u8 comp_mode[5];
-> +=09u8 comp_ref[5];
-> +=09u8 single_ref[5][2];
-> +=09u8 inter_mode[7][3];
-> +=09u8 interp_filter[4][2];
-> +=09u8 padding0[11];
-> +=09u8 coef[2][4][2][128];
-> +=09u8 uv_mode_0_2[3][9];
-> +=09u8 padding1[5];
-> +=09u8 uv_mode_3_5[3][9];
-> +=09u8 padding2[5];
-> +=09u8 uv_mode_6_8[3][9];
-> +=09u8 padding3[5];
-> +=09u8 uv_mode_9[9];
-> +=09u8 padding4[7];
-> +=09u8 padding5[16];
-> +=09struct {
-> +=09=09u8 joint[3];
-> +=09=09u8 sign[2];
-> +=09=09u8 classes[2][10];
-> +=09=09u8 class0_bit[2];
-> +=09=09u8 bits[2][10];
-> +=09=09u8 class0_fr[2][2][3];
-> +=09=09u8 fr[2][3];
-> +=09=09u8 class0_hp[2];
-> +=09=09u8 hp[2];
-> +=09=09u8 padding6[3];
-> +=09} mv;
-> +};
-> +
-> +struct rkvdec_vp9_probs {
-> +=09u8 partition[16][3];
-> +=09u8 pred[3];
-> +=09u8 tree[7];
-> +=09u8 skip[3];
-> +=09u8 tx32[2][3];
-> +=09u8 tx16[2][2];
-> +=09u8 tx8[2][1];
-> +=09u8 is_inter[4];
-> +=09/* 128 bit alignment */
-> +=09u8 padding0[3];
-> +=09union {
-> +=09=09struct rkvdec_vp9_inter_frame_probs inter;
-> +=09=09struct rkvdec_vp9_intra_only_frame_probs intra_only;
-> +=09};
-> +=09/* 128 bit alignment */
-> +=09u8 padding1[8];
-> +};
-> +
-> +void write_coeff_plane(const u8 coef[6][6][3], u8 *coeff_plane);
-> +
-> +struct rkvdec_decoded_buffer *
-> +get_ref_buf_vp9(struct rkvdec_ctx *ctx, struct vb2_v4l2_buffer *dst, u64=
- timestamp);
+Alternative solutions are to reserve memory for the GIC ITS tables using
+a DT reserved-memory node or use EFI to provide dedicated memory for the
+LPI tables.
 
-This and all the -common are completely inconsistent. We even have twice
-rkvdec_rps. I would personally suggest to do more prep work, and fix
-consistently everything. My personal preference would be to have rkvdec_<co=
-dec>
-namespace everywhere. Not randomly a suffix, or prefix, or nothing.
+Since there are no GIC ITS users on this platform, disable GIC ITS by
+default instead. Intentionally not added linux specific details to
+DT patch.
+---
+ arch/arm64/boot/dts/xilinx/versal-net.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Nicolas
+diff --git a/arch/arm64/boot/dts/xilinx/versal-net.dtsi b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
+index 21bb917bcba1..00b857b5c4f2 100644
+--- a/arch/arm64/boot/dts/xilinx/versal-net.dtsi
++++ b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
+@@ -872,6 +872,7 @@ gic: interrupt-controller@e2000000 {
+ 			ranges;
+ 			its: msi-controller@e2040000 {
+ 				compatible = "arm,gic-v3-its";
++				status = "disabled";
+ 				msi-controller;
+ 				#msi-cells = <1>;
+ 				reg = <0 0xe2040000 0 0x20000>;
 
-> +
-> +void update_dec_buf_info(struct rkvdec_decoded_buffer *buf,
-> +=09=09=09 const struct v4l2_ctrl_vp9_frame *dec_params);
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c b/driver=
-s/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-> index d4243ce230c7..495738762713 100644
-> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-> @@ -23,71 +23,12 @@
-> =20
->  #include "rkvdec.h"
->  #include "rkvdec-regs.h"
-> +#include "rkvdec-vp9-common.h"
-> =20
->  #define RKVDEC_VP9_PROBE_SIZE=09=094864
->  #define RKVDEC_VP9_COUNT_SIZE=09=0913232
->  #define RKVDEC_VP9_MAX_SEGMAP_SIZE=0973728
-> =20
-> -struct rkvdec_vp9_intra_mode_probs {
-> -=09u8 y_mode[105];
-> -=09u8 uv_mode[23];
-> -};
-> -
-> -struct rkvdec_vp9_intra_only_frame_probs {
-> -=09u8 coef_intra[4][2][128];
-> -=09struct rkvdec_vp9_intra_mode_probs intra_mode[10];
-> -};
-> -
-> -struct rkvdec_vp9_inter_frame_probs {
-> -=09u8 y_mode[4][9];
-> -=09u8 comp_mode[5];
-> -=09u8 comp_ref[5];
-> -=09u8 single_ref[5][2];
-> -=09u8 inter_mode[7][3];
-> -=09u8 interp_filter[4][2];
-> -=09u8 padding0[11];
-> -=09u8 coef[2][4][2][128];
-> -=09u8 uv_mode_0_2[3][9];
-> -=09u8 padding1[5];
-> -=09u8 uv_mode_3_5[3][9];
-> -=09u8 padding2[5];
-> -=09u8 uv_mode_6_8[3][9];
-> -=09u8 padding3[5];
-> -=09u8 uv_mode_9[9];
-> -=09u8 padding4[7];
-> -=09u8 padding5[16];
-> -=09struct {
-> -=09=09u8 joint[3];
-> -=09=09u8 sign[2];
-> -=09=09u8 classes[2][10];
-> -=09=09u8 class0_bit[2];
-> -=09=09u8 bits[2][10];
-> -=09=09u8 class0_fr[2][2][3];
-> -=09=09u8 fr[2][3];
-> -=09=09u8 class0_hp[2];
-> -=09=09u8 hp[2];
-> -=09} mv;
-> -};
-> -
-> -struct rkvdec_vp9_probs {
-> -=09u8 partition[16][3];
-> -=09u8 pred[3];
-> -=09u8 tree[7];
-> -=09u8 skip[3];
-> -=09u8 tx32[2][3];
-> -=09u8 tx16[2][2];
-> -=09u8 tx8[2][1];
-> -=09u8 is_inter[4];
-> -=09/* 128 bit alignment */
-> -=09u8 padding0[3];
-> -=09union {
-> -=09=09struct rkvdec_vp9_inter_frame_probs inter;
-> -=09=09struct rkvdec_vp9_intra_only_frame_probs intra_only;
-> -=09};
-> -=09/* 128 bit alignment */
-> -=09u8 padding1[11];
-> -};
-> -
->  /* Data structure describing auxiliary buffer format. */
->  struct rkvdec_vp9_priv_tbl {
->  =09struct rkvdec_vp9_probs probs;
-> @@ -136,11 +77,6 @@ struct rkvdec_vp9_intra_frame_symbol_counts {
->  =09struct rkvdec_vp9_refs_counts ref_cnt[2][4][2][6][6];
->  };
-> =20
-> -struct rkvdec_vp9_run {
-> -=09struct rkvdec_run base;
-> -=09const struct v4l2_ctrl_vp9_frame *decode_params;
-> -};
-> -
->  struct rkvdec_vp9_frame_info {
->  =09u32 valid : 1;
->  =09u32 segmapid : 1;
-> @@ -166,27 +102,6 @@ struct rkvdec_vp9_ctx {
->  =09struct rkvdec_regs regs;
->  };
-> =20
-> -static void write_coeff_plane(const u8 coef[6][6][3], u8 *coeff_plane)
-> -{
-> -=09unsigned int idx =3D 0, byte_count =3D 0;
-> -=09int k, m, n;
-> -=09u8 p;
-> -
-> -=09for (k =3D 0; k < 6; k++) {
-> -=09=09for (m =3D 0; m < 6; m++) {
-> -=09=09=09for (n =3D 0; n < 3; n++) {
-> -=09=09=09=09p =3D coef[k][m][n];
-> -=09=09=09=09coeff_plane[idx++] =3D p;
-> -=09=09=09=09byte_count++;
-> -=09=09=09=09if (byte_count =3D=3D 27) {
-> -=09=09=09=09=09idx +=3D 5;
-> -=09=09=09=09=09byte_count =3D 0;
-> -=09=09=09=09}
-> -=09=09=09}
-> -=09=09}
-> -=09}
-> -}
-> -
->  static void init_intra_only_probs(struct rkvdec_ctx *ctx,
->  =09=09=09=09  const struct rkvdec_vp9_run *run)
->  {
-> @@ -348,24 +263,6 @@ static void init_probs(struct rkvdec_ctx *ctx,
->  =09=09init_inter_probs(ctx, run);
->  }
-> =20
-> -static struct rkvdec_decoded_buffer *
-> -get_ref_buf_vp9(struct rkvdec_ctx *ctx, struct vb2_v4l2_buffer *dst, u64=
- timestamp)
-> -{
-> -=09struct v4l2_m2m_ctx *m2m_ctx =3D ctx->fh.m2m_ctx;
-> -=09struct vb2_queue *cap_q =3D &m2m_ctx->cap_q_ctx.q;
-> -=09struct vb2_buffer *buf;
-> -
-> -=09/*
-> -=09 * If a ref is unused or invalid, address of current destination
-> -=09 * buffer is returned.
-> -=09 */
-> -=09buf =3D vb2_find_buffer(cap_q, timestamp);
-> -=09if (!buf)
-> -=09=09buf =3D &dst->vb2_buf;
-> -
-> -=09return vb2_to_rkvdec_decoded_buf(buf);
-> -}
-> -
->  static dma_addr_t get_mv_base_addr(struct rkvdec_decoded_buffer *buf)
->  {
->  =09unsigned int aligned_pitch, aligned_height, yuv_len;
-> @@ -446,14 +343,6 @@ static void config_seg_registers(struct rkvdec_ctx *=
-ctx, unsigned int segid)
->  =09=09(seg->flags & V4L2_VP9_SEGMENTATION_FLAG_ABS_OR_DELTA_UPDATE);
->  }
-> =20
-> -static void update_dec_buf_info(struct rkvdec_decoded_buffer *buf,
-> -=09=09=09=09const struct v4l2_ctrl_vp9_frame *dec_params)
-> -{
-> -=09buf->vp9.width =3D dec_params->frame_width_minus_1 + 1;
-> -=09buf->vp9.height =3D dec_params->frame_height_minus_1 + 1;
-> -=09buf->vp9.bit_depth =3D dec_params->bit_depth;
-> -}
-> -
->  static void update_ctx_cur_info(struct rkvdec_vp9_ctx *vp9_ctx,
->  =09=09=09=09struct rkvdec_decoded_buffer *buf,
->  =09=09=09=09const struct v4l2_ctrl_vp9_frame *dec_params)
+base-commit: 4405c18c95d2d0f99f6c581ef0ee8591a1aa6ccd
+-- 
+2.43.0
 
---=-MhVtI85+IIjy5xrl3Ple
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav8vbwAKCRDZQZRRKWBy
-9ISpAQC3CBRFoTOTTnkhG1O7ChiQP0FhnEaB9VFgWVZ8inwjxQD/bIlhTC88XWNu
-W8MTN2z+GkLKWSo/7W+VdhjJ4nN71QA=
-=jRd6
------END PGP SIGNATURE-----
-
---=-MhVtI85+IIjy5xrl3Ple--
 
