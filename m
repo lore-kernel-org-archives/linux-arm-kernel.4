@@ -2,94 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D88606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 03:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B229F606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 04:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JtDwmkI7;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=scpwGLIa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EY/meV+O;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=h2HXBe5Z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:In-Reply-To:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GItsSVGA+hmlSb3pkjtiaee8VXcySXBDfV85yqW7yYo=; b=JtDwmkI7NlBgiH
-	Tk+FHKK4ytTx27uCsW6Ksv1iDCRhtdjeLshNlTwGS3ZZ3oPrGD8gMJ6yoClyW6JFoX8cmsDpF0Nc3
-	5cVfWzYfIDjKZNfWiuw9f6+Y9kU771KzjyMyl79pKn8ibsLMraIj/AEdzxKG5i+Trh8r7i3HWtck1
-	TwiLLBGl0WqF5OuTm5D02SBwev369+J/czUc/8uC4mb6f9FsXG2vcYlACy/Z01y3QiCUlKaPrYJtj
-	4FMAOwPsgFzQhGCKdbyDPecyWjFz8lUiXz680QxeL6asMt5uGsWVMDmU6ZGPVSz5r8RcxpvpCE+4A
-	U9Hauqs4KRUY9Z9Cmt6g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AeLEfR0KnNKlaC8G66ovz/ybK9uNCCBKCRK1qZnlN/c=; b=EY/meV+OBdQUU27Ch0Pku+IdXq
+	lScWSVBVdxqvaAI8JO9A06qFt4usJ7tmQYPm/wUDOfR1ONfnlaPnK3jClBpaqwnxNKbOfXPUzzl8t
+	Kzi/CYDJMynofJuqNQEB+F2XhUwc9Af9pYwokCSj/+sIUf8dQidaf8m7Zgqnfh8gLKX+0Vq2m+hsS
+	nnQRAiIfUxbVrGAhIK7RHPWp7X9f7h1XJfNdk/JxCPTyIsHxSUqwLFW4rkNcxIPxoML0prMQsjOWP
+	c+AENs2pVufZwH/IySoy5fi/8h6L16glolc/NO4GgE+Dx9LXE412ee6fCGcenP70XX/iaAXQJUWeM
+	fNxkteDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTtCh-0000000AnPa-43Zo;
-	Thu, 19 Nov 2026 03:52:56 +0000
-Received: from mailout4.samsung.com ([203.254.224.34])
+	id 1xTtct-0000000AoSg-41oc;
+	Thu, 19 Nov 2026 04:19:59 +0000
+Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTtCc-0000000AnP9-3uUL
+	id 1xTtcq-0000000AoSE-0Ios
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 03:52:53 +0000
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20261119035244epoutp0438007dd9d5b7fded89f3cd687ed3a64c~pVeQpBpeC1853218532epoutp04e
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 03:52:44 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20261119035244epoutp0438007dd9d5b7fded89f3cd687ed3a64c~pVeQpBpeC1853218532epoutp04e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1795060364;
-	bh=GItsSVGA+hmlSb3pkjtiaee8VXcySXBDfV85yqW7yYo=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=scpwGLIakHKeKIKPnnInJj9UZ5fFCTxB7xV3S4LDd+iGvU5eeir3qtAmIA3KOQ26P
-	 Nnp3qaWtLV8V/eREk/tjeQ2SaDxdF+Soyy96FXSL0BxKTTeBVHXnmz2/y7Yy0Vq+UR
-	 6Y4urXxRRxILNrdIb4nPXenq5jJvAjAqxU6K3PFg=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20261119035243epcas5p454481e6b84a96f7d913461c10bffc693~pVePvEJsS1381613816epcas5p43;
-	Thu, 19 Nov 2026 03:52:43 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.94]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4jVPgb1Y6Xz6B9m5; Thu, 19 Nov
-	2026 03:52:43 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20261119035242epcas5p24269dbcd55378604ded876d89bc24ace~pVeOoguQe1332113321epcas5p2V;
-	Thu, 19 Nov 2026 03:52:42 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20261119035240epsmtip23b287ee79b550d5d99b705423479e030~pVeMci5IC1577115771epsmtip2A;
-	Thu, 19 Nov 2026 03:52:40 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Peter Griffin'" <peter.griffin@linaro.org>, "'Raghav Sharma'"
-	<raghav.s@samsung.com>
-Cc: <krzk@kernel.org>, <s.nawrocki@samsung.com>, <cw00.choi@samsung.com>,
-	<sboyd@kernel.org>, <bmasney+clk@redhat.com>, <jbrunet+clk@baylibre.com>,
-	<robh@kernel.org>, <conor+dt@kernel.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <is.gandhi@samsung.com>,
-	<ts.amit@samsung.com>, <pokala.reddy@samsung.com>
-In-Reply-To: <CADrjBPoR7_LDZmxC_bOFigvqDaagVihmybfX5AdvSPr9-FVb8w@mail.gmail.com>
-Subject: RE: [PATCH v3 06/14 RESEND] clk: samsung: clk-pll: Add support for
- pll_4313
-Date: Thu, 19 Nov 2026 09:22:38 +0530
-Message-ID: <002901dd77d9$6ddef600$499ce200$@samsung.com>
+	Thu, 19 Nov 2026 04:19:57 +0000
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-cd6acc50b8dso1075841a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 20:19:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795061994; x=1795666794; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=AeLEfR0KnNKlaC8G66ovz/ybK9uNCCBKCRK1qZnlN/c=;
+        b=h2HXBe5ZmKDA7yrQaCORCA5Aa6NyU33UQvDUu8mtZ046aCPCgeuLJMkGJ9hxEVayX0
+         ozmLGQ99IluNGSwNjNGykquJmYodloRQXEdeuFjhJ1KnnRbSKU2KICviP18l/R5nJolg
+         gqXyA91Jy9PHfwYcfILr9Rb395RJ0cue4AUSrFOgBYQ1hH4xUAxBkKHUe5sUuRb/ZOjA
+         8HOREm7NaFfKg+AVZkoxCmSDLOeEmiCMOiKir8Ub4t9gES5clXF77KTe2dL1VMqny42u
+         DgSd43v1Ix5Vdn8/qsF/s/xCKfV7apg0yPklTxcavOD2kcXjhvMGQ2C4+DDHA2w/GNoY
+         5mcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795061994; x=1795666794;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=AeLEfR0KnNKlaC8G66ovz/ybK9uNCCBKCRK1qZnlN/c=;
+        b=EmYulBSKhzAwQHLNtqfXCtqrRBtwiExkKyAZT6LzZ5thCaN+SBiA9mQwSyCANBql6o
+         L2knQnbkML7SPa8/pf7UYK6K+CvRXrbsBQDlyGpuMlZ4HAzjAXGAmjLSd1O7iU5cL7D/
+         wK0clQ663wfVmJrRxvNwLmuAwQglHAw+Ic4nqiEodfKRdFOk/5f+e25pZtEffz24BF/E
+         XFWuFKiS9xjO9YrY1qlsVMT/2bHn7gDr5rgIydZE+k9tWhnrT495N9CSbUmEV2fkGk06
+         NC6HpAsRIYJ9qMtFRh5aD25bMJQoUzTT0IzEUZ7YWSnpMiWdEQEi8fsncxCVoZnkv7Tw
+         BP9w==
+X-Forwarded-Encrypted: i=1; AL+hErGly8FyCdzHHn3qK0t1RUuM/OunthKI/33gbrlVx1qBbIZLl8L53YY9m2TkwTE5H+zdOa0ohYqyLm1RSdAfkA/T@lists.infradead.org
+X-Gm-Message-State: APuU4Z8bnc0eJgHFjhnTif9vQ/8s3PQDrHljwXwPB3cFs30l4Q1iKBYn
+	k1U0iDjl1RcG8vhiOH3oVgk1y3RQo3bQGkUpbf99pEHD0DxdKyfh0gCM
+X-Gm-Gg: AZFdTZdvyFykpHq6yZqOsCRCgh5NdX4yr+Wa1mOk+MBMFmZmw/YH+DqAlwtR6hp9kj6
+	rnr8YxpGHP0B0Wxk+auC7ZE6k/ONHXBkeGKUDDpZoOySyTipPnYZc3k0+J0g8vgafGZqD2DUWuO
+	iVjHRGMxA5zks5RVOguf8eOx466iIXwuN2vFsxGoaaL+p9DveAb/x3FePtqWHJzl8ZLgyMoWG4w
+	o/H844O5Qn7YMrhQX8pJHs+JiFo68HrIP1TrToDzgRwlnkruZsvnWbJNzXXu9OYhi4GEY3/V7Ls
+	0woz/24w/nVC6MryhHNws4ExquTjw1k7JUmR5WJvlxziNQgYhHp5xr/BXHD7bCC57PGHIewYp96
+	paxu+nlyP9ogYNQ8ClNOaMRziZMqMlPShhJJhVxVmEERrdTZTMvKTg8BduiN8nyPta7KSSSTIaR
+	YVE+uKRLzav7cPBtsqo5YUAzIKQCwcmNvniUp7zOXaIte9bFDQnm1JfUCMQMJ/fWACtJlXguiR6
+	kuGX/OaJByUqGs0fpqnPcRFg8ZcVcvv5mIX4BsoplcG23gJLkeQlvn8JweJb75z6AoRYwZm5aQH
+	0xOL919Q66U12S+lppzpyifiNamvkxUp2Q==
+X-Received: by 2002:a17:90b:180c:b0:3aa:f2c4:12e9 with SMTP id 98e67ed59e1d1-3b3d06a3a73mr5056391a91.3.1795061994209;
+        Wed, 18 Nov 2026 20:19:54 -0800 (PST)
+Received: from server225.. ([39.170.101.209])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d96bd3sm447764a91.12.2026.11.18.20.19.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2026 20:19:53 -0800 (PST)
+From: Ping Li <leeonion.muyu@gmail.com>
+To: catalin.marinas@arm.com,
+	will@kernel.org
+Cc: mark.rutland@arm.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Ping Li <leeonion.muyu@gmail.com>
+Subject: [PATCH] arm64: boot: handle all compressed image formats on install
+Date: Thu, 19 Nov 2026 12:19:45 +0800
+Message-Id: <20261119041945.3624785-1-leeonion.muyu@gmail.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJMpPSZ0SyccmPoxB6lh4WTmmzUIwGxlKqAAl95c38DMT8uKrYcTHkw
-Content-Language: en-us
-X-CMS-MailID: 20261119035242epcas5p24269dbcd55378604ded876d89bc24ace
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-543,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20261113104847epcas5p1d970255218f1ca78b19690bfd097f303
-References: <CGME20261113104847epcas5p1d970255218f1ca78b19690bfd097f303@epcas5p1.samsung.com>
-	<20261113110612.3265841-1-raghav.s@samsung.com>
-	<20261113110612.3265841-7-raghav.s@samsung.com>
-	<CADrjBPoR7_LDZmxC_bOFigvqDaagVihmybfX5AdvSPr9-FVb8w@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_195251_600173_2C7F2011 
-X-CRM114-Status: GOOD (  25.00  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261118_201956_115575_9FB3134A 
+X-CRM114-Status: GOOD (  11.57  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,103 +100,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	T_PDS_OTHER_BAD_TLD,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thanks Peter for review
+"make install" installs the kernel as vmlinuz-<version> or
+vmlinux-<version> depending on whether the image is compressed,
+but install.sh only recognizes Image.gz and vmlinuz.efi as
+compressed.  Any other compressed image that can be built and
+selected via KBUILD_IMAGE, e.g.:
 
-> -----Original Message-----
-> From: Peter Griffin <peter.griffin=40linaro.org>
-> Sent: Friday, November 13, 2026 5:58 PM
-> To: Raghav Sharma <raghav.s=40samsung.com>
-> Cc: krzk=40kernel.org; s.nawrocki=40samsung.com; cw00.choi=40samsung.com;
-> alim.akhtar=40samsung.com; sboyd=40kernel.org; bmasney+clk=40redhat.com;
-> jbrunet+clk=40baylibre.com; robh=40kernel.org; conor+dt=40kernel.org; lin=
-ux-
-> samsung-soc=40vger.kernel.org; linux-clk=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> kernel=40vger.kernel.org; is.gandhi=40samsung.com; ts.amit=40samsung.com;
-> pokala.reddy=40samsung.com
-> Subject: Re: =5BPATCH v3 06/14 RESEND=5D clk: samsung: clk-pll: Add suppo=
-rt for
-> pll_4313
->=20
-> Hi Raghav,
->=20
-> On Fri, 13 Nov 2026 at 10:53, Raghav Sharma <raghav.s=40samsung.com>
-> wrote:
-> >
-> > From: Alim Akhtar <alim.akhtar=40samsung.com>
-> >
-> > PLLs 4313 are found in the Exynos8855 SoC and it is similar to
-> > pll_531x except for CON8 offset, so re-using code for
-> > pll_4313
-> >
-> > Signed-off-by: Alim Akhtar <alim.akhtar=40samsung.com>
-> > Signed-off-by: Raghav Sharma <raghav.s=40samsung.com>
-> > ---
-> >  drivers/clk/samsung/clk-pll.c =7C 11 ++++++++++-
-> > drivers/clk/samsung/clk-pll.h =7C  1 +
-> >  2 files changed, 11 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/samsung/clk-pll.c
-> > b/drivers/clk/samsung/clk-pll.c index 3d837bd74355..7b0756127306
-> > 100644
-> > --- a/drivers/clk/samsung/clk-pll.c
-> > +++ b/drivers/clk/samsung/clk-pll.c
-> > =40=40 -1306,7 +1306,15 =40=40 static unsigned long
-> samsung_pll531x_recalc_rate(struct clk_hw *hw,
-> >         u64 mdiv, fout =3D parent_rate;
-> >
-> >         pll_con0 =3D readl_relaxed(pll->con_reg);
-> > -       pll_con8 =3D readl_relaxed(pll->con_reg + 20);
-> > +       if (pll->type =3D=3D pll_4313) =7B
-> > +               /* Offset for PLL_CON8 which hold FDIV different for PL=
-L_4313
-> > +                * which is PLL_LOCKTIME_OFFSET - 0x4
-> > +                */
-> > +               pll_con8 =3D readl_relaxed(pll->lock_reg - 4);
-> > +       =7D else =7B
-> > +               pll_con8 =3D readl_relaxed(pll->con_reg + 20);
-> > +       =7D
-> > +
->=20
-> This starts to feel a bit hacky (pll_con8 register being referenced as an=
- offset
-> from lock_reg). Is the register really called pll_con8 on 8855? Or is it =
-called
-> something else, but happens to contain fdiv?
->=20
-Yes, it is named as PLL_CON8_* on 8855, and contain fdiv bit.
+  make KBUILD_IMAGE=arch/arm64/boot/Image.lz4 install
 
-> I think something like this would look cleaner:
->=20
-> u32 fdiv_reg;
-Historically SFR name was used to match with databook naming convention.=20
-Few lines below it does indicate indeed pll_con8 contains fdiv.=20
- fdiv =3D (pll_con8 & PLL531X_FDIV_MASK);
+falls through to the normal path and is installed as
+vmlinux-<version> even though the file is compressed.
 
-I am ok with taking this suggestion.
-Only thing is should we change pll_con0 as well together, or in a separate =
-top-up patch?
+Detect compressed images the same way as RISC-V does
+(arch/riscv/boot/install.sh): an Image.* file is a compressed
+image.  The uncompressed Image and image.fit keep being
+installed as vmlinux-<version>.
 
->=20
->        if (pll->type =3D=3D pll_4313) =7B
->                /* fdiv in <insert name> register
->                fdiv_reg =3D readl_relaxed(pll->lock_reg - 4);
->        =7D else =7B
->                /* fdiv in pll_con8 register */
->                fdiv_reg =3D readl_relaxed(pll->con_reg + 20);
->        =7D
->=20
-> regards,
->=20
-> Peter
+Signed-off-by: Ping Li <leeonion.muyu@gmail.com>
+---
+ arch/arm64/boot/install.sh | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/install.sh b/arch/arm64/boot/install.sh
+index cc2f4ccca6c0..e45d80220702 100755
+--- a/arch/arm64/boot/install.sh
++++ b/arch/arm64/boot/install.sh
+@@ -19,16 +19,18 @@
+ 
+ set -e
+ 
+-if [ "$(basename $2)" = "Image.gz" ] || [ "$(basename $2)" = "vmlinuz.efi" ]
+-then
++case "$(basename $2)" in
+ # Compressed install
++Image.*|vmlinuz.efi)
+   echo "Installing compressed kernel"
+   base=vmlinuz
+-else
++  ;;
+ # Normal install
++*)
+   echo "Installing normal kernel"
+   base=vmlinux
+-fi
++  ;;
++esac
+ 
+ if [ -f $4/$base-$1 ]; then
+   mv $4/$base-$1 $4/$base-$1.old
+
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
+-- 
+2.34.1
 
 
