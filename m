@@ -2,87 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D3C606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 01:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B07606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 01:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1r02Sd0h;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IQv06nro
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EOCERaEP;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QUQRXBSx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=49NXjUTbzL4+xbJpcXKoJd4omTTJA3SheYrgPCgGq84=; b=1r02Sd0h3/D/5bVDH8ETA85F4f
-	P6Uh/rvePkU9dbrgXrgFjNQ9O6dzzdHtMcPFr7O76mg+DhBG/zuQ2BMeVhlOcI/ZGatfwgIwIyrpa
-	BcTx1dKHMOSrAQ0paK4I3cRCnz31NFwnUHLmz7QEpdnOyKpkqZ1xpjtfJRt7I1pUsEUA+2oL9QTf2
-	Z/AmlcBfnfmV4QfYup9sJdeRUAp8a3kmNkhP7N2lhibLO7Kvf21Vm/B1sso7ZIhCszMfbNmiFYyal
-	2+mI6zbPC2HHOGreySsyvAXTSr2QykWxDCB8nmgNif/6tkVdgnf2H1svAb/RP1vph4ohyp39AROfi
-	Kpw+eGEA==;
+	bh=by7fjbTSRtK9qhJcl4QtE4BTB7jqesvx7t7tAFmcyho=; b=EOCERaEPa2ftaPHkrfu+hfJ7Vg
+	z10VvgPx428mWsK5Gg5T5WnFjhV0MPv+BdQHlkcKDZGOdEY7rkPXRHxJ0cDOzpeWQBOsV3zi6uu/z
+	lhdmMi2kCq2D0C7B0Kh8fZ+YbTpejKQfay/E0VcpOvpPBseAVmvJto1Nefk02OkSLdTod4HOMqDHt
+	LMG+BsD2h57HwrOrNcF5LB1yx14pSwS+GyyJQLhPyDNjCmGMXXdzy8qVKPwipbpfVcyl7Y/b8WmDF
+	1kmS7J2rejWVWwV5eqvWVjE9NNTgKHJU+JhD6ofzQLAlDwif8Gc3JgTgBY90/kuuxiQaObuXX/VqV
+	e9VcmU9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTqWV-0000000AbqI-26gg;
-	Thu, 19 Nov 2026 01:01:11 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTqhd-0000000AcFD-39R0;
+	Thu, 19 Nov 2026 01:12:41 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTqWT-0000000Abq9-2Y3p
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 01:01:09 +0000
+	id 1xTqhc-0000000AcEv-2RcT;
+	Thu, 19 Nov 2026 01:12:40 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with UTF8SMTP id E578843726;
-	Thu, 19 Nov 2026 01:01:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 3E62E1F000C4;
-	Thu, 19 Nov 2026 01:01:08 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id AC6E26458C;
+	Thu, 19 Nov 2026 01:12:39 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795050759;
+	b=1Cp7LI4D2BNbbH5s3h249qsx+eoUDFTQbbXJPaoZ18AnH/jLKhFSYE5c9FZgwCvMlmXD
+	 2rGFA5RU78a3pQEhe5BVcx9iHuw9U+z1RjZHrjWqCJi6fg3N829YsQafDmRK+6+bHlqNq
+	 aLHcsGavbmez6b1ra2XdQ4qb/LadPDtueCyP0yyNIWBlJVPfFijCpAone71bvBfI2440o
+	 LSxR578HeIpMax3Qow9tiqOrdzbOB+XivwGf+aLWKIBKugSTOKJeBeIhXoCKjJdoNIaUy
+	 azw9jnmOfq9RuDxQpdqUUUXf7WeXPU/BPZhiDA03IzELjHd9gvRSaYqdsnhYXdFoffA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795050759;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
+	 Content-Transfer-Encoding;
+	bh=by7fjbTSRtK9qhJcl4QtE4BTB7jqesvx7t7tAFmcyho=;
+	b=TXuQLHVh100MYRDOWJYHtoRAc58PtCybC684o9mI1vZl3algjnIACzDa+/EMNqaofuhg
+	 RgovIUDww3HLdrteNUTBeMmxoHRxYjaPkFGirG82i3NqdKv/W0w8ZtavmvyZzImg01oaB
+	 dhnOsrIRNYu8qfjq9aoD9utGSPsVH95Xr6+6Feu636dqkCIxKHoUXKSWOOI1CvEmeE40G
+	 U7t1ubTn9mRxbFGO/G7ocNautH3XHBvhm/XEu4r/Uc3QE0aSyJw85FW9vKA5hnPZAUiTc
+	 xkJ+9oecDLqACv8EY/sbWWkq4JV6JmGJ5uqtzEITdQUZDuMNt0exAR73GCqRKflI0Zw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id C2B8E1F000C5;
+	Thu, 19 Nov 2026 01:12:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795050068;
-	bh=49NXjUTbzL4+xbJpcXKoJd4omTTJA3SheYrgPCgGq84=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=IQv06nrofbIqNARVVWh9JrAgHaEyRWKOud9QvOcchO4KY4ScIzXSqs80rNJ/ht3b1
-	 Tsu7VMYrIh/2Fi+hRTl7qSSsKz4S7jM8ebpPVfo17lwtEFZMdAvwfZsxatV/ZsWAUp
-	 PJgwsXqU+KqK3LvIcvOGucx9P9jANzCFHIamLnf4sC5rVp+bvnrP0sCUChwGa++Hwx
-	 a7awEoAOqry4Xom2vSVycaB2NRS9vG06yCTtwmMYjMTvqtDoBc6hHSkU5Dk5pOb1Ih
-	 GIaqltmVlM6m491tKp84gsZmgrtTNr8xvyupIzrYmeeJ//m5Bn5hJKwuAsDqwP+LxE
-	 +hNKrozwFIXmA==
-Date: Thu, 19 Nov 2026 03:01:05 +0200
-From: Jarkko Sakkinen <jarkko@kernel.org>
-To: Demi Marie Obenour <demiobenour@gmail.com>
-Cc: Rodolfo Giometti <giometti@enneenne.com>,
-	David Howells <dhowells@redhat.com>, keyrings@vger.kernel.org,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	Jens Wiklander <jenswi@kernel.org>,
-	Sumit Garg <sumit.garg@kernel.org>,
-	op-tee@lists.trustedfirmware.org,
-	Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
-	Pankaj Gupta <pankaj.gupta@nxp.com>,
-	Sahil Malhotra <sahil.malhotra@nxp.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	Richard Weinberger <richard@nod.at>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Eric Biggers <ebiggers@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
-	"Serge E. Hallyn" <serge@hallyn.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>, linux-crypto@vger.kernel.org,
-	linux-integrity@vger.kernel.org,
-	linux-security-module@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-api@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 0/9] KEYS: keycrypt: keys that user space can use but
- never read
-Message-ID: <av5KUakRYdiaondn@kernel.org>
-References: <20261118140421.584086-1-giometti@enneenne.com>
- <650f89ef-9745-4f75-b254-80fa5ac4773d@gmail.com>
- <av5EyVHnNzT27dyK@kernel.org>
- <61ca7c37-7b42-48a3-be2e-95deb4d999a2@gmail.com>
+	s=k20260515; t=1795050759;
+	bh=by7fjbTSRtK9qhJcl4QtE4BTB7jqesvx7t7tAFmcyho=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=QUQRXBSxGyQcMeylOT2qYn4VrHPBKaJ+AxBcwIYwVLSogRIC3N5G8Llb7nrBZkPuR
+	 P9wLEw4OiKJUOn7SbL6zBzJgHeKYaIO6AGgfz0pdegx2yN+T6nvL5cMk6/5D+S72J2
+	 c6ukqeC78CHshcLH+k83b7OwLyIZfH4VizurAdSodZEsI0X/WCbOjBj5IlYl+9S2WK
+	 /DgF8O83Nu6o899AZXK9y55dNHf8Phn80rvv8CMUptTQYylHWZ1rz3WAcrA0LPEeoA
+	 mZOObhzhz/oexdaYNxnnRC0fZopFLBYc317as7nQ+DVfPHaXSf/GHcwJU36IWL6Rcg
+	 wwb1XvlEF7JFQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 5092F47D70;
+	Thu, 19 Nov 2026 01:12:38 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Thu, 19 Nov 2026 01:12:36 +0000
+Subject: [PATCH] PCI: rockchip-host: Support hibernation with endpoints in
+ D0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <61ca7c37-7b42-48a3-be2e-95deb4d999a2@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261119-b4-rockchip-pcie-hib-v1-1-05df24cc77e6@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAANN/moC/x3MQQqAIBBA0avErBtwRIK6SrTIccohKFGIQLp70
+ vIt/q9QJKsUmLoKWW4tep0N1HfAcT13QQ3NYI0diGhE7zBffHDUhIlVMKpHY5zQGtgZZ6GlKcu
+ mz7+dl/f9AEvHSUxmAAAA
+To: Shawn Lin <shawn.lin@rock-chips.com>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-pci@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>, 
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3860; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=tt1dbxgPAsX3IFa6cNo4EeAGvruDQ8t+mQUrzu36VIA=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFn/fFkLdjOq/VvaYb5qy+rEVp9/9i1Kum+enHy7OHvJw
+ +56/X8uHaUsDGJcDLJiiiwTDmncylhy9a+/h/kDmDmsTCBDGLg4BWAiW68yMiy6dXtzyes9JYFh
+ EzrObIx5cy/W4desP1GbA59ozX+gZBDGyNCroHr9tm1TxhZNtfNPZ/d6byj5oWV1V2dp3Oftv5e
+ IvmYDAA==
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,87 +114,126 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 07:43:37PM -0500, Demi Marie Obenour wrote:
-> On 11/18/26 7:37 PM, Jarkko Sakkinen wrote:
-> > On Wed, Nov 18, 2026 at 06:42:15PM -0500, Demi Marie Obenour wrote:
-> >> On 11/18/26 9:04 AM, Rodolfo Giometti wrote:
-> >>> This RFC proposes a key type, "keycrypt", whose material user space can
-> >>> use for symmetric operations but never read: AES-256-CBC, HMAC-SHA256
-> >>> and an authenticated AES-256-GCM stream, through a file descriptor that
-> >>> KEYCTL_CRYPT_OPEN returns for one key and one operation.
-> >>
-> >> I haven't looked at the API, but from a cryptographic perspective,
-> >> this encourages very poor practices.  AES-GCM even allows userspace
-> >> to extract the secret authentication key.
-> >>
-> >> AES-256-CBC isn't a suitable mode on its own, unless it's combined
-> >> with a MAC in encrypt-then-MAC.  Even then, it has a 2^64 birthday
-> >> bound, so it should only be used 2^48 times with a single key unless
-> >> the key is ephemeral.
-> >>
-> >> AES-GCM is not a suitable algorithm either.  If you allow encrypting
-> >> with a key loaded from persistent storage, there is no way for the API
-> >> to ensure it is only used with a unique nonce.  Nonce reuse leaks the
-> >> authentication key and allows forgeries.  Using random nonces isn't
-> >> good enough either: NIST only allows 2^32 encryptions in this case,
-> >> and the API can't enforce that limit.
-> >>
-> >> For long-term keys, all of the following are much safer choices.
-> >> They have 192-bit nonces, which means that one can generate them
-> >> at random for each encryption without any problems.
-> >>
-> >> - XAES-256-GCM
-> >> - XChaCha20-Poly1305
-> >> - AEGIS-256
-> >>
-> >> AES-GCM-SIV is also okay, provided that you are fine with occasionally
-> >> leaking if two plaintexts are equal.  This happens whenever there is
-> >> a nonce collision, so with probability 2^-32 after 2^32 encryptions.
-> > 
-> > The exitential problem here is that KEYCTL_CRYPT_OPEN creates a circular
-> > relationship between the keyrings API and a specific key type.
-> > 
-> > At hardware level I did not see any support for TPM, which narrows down
-> > the potential user base.
-> > 
-> > The remaining potential user base is further reduced by those that use
-> > trusted keys; leaving out those who need to solve the assumed problem
-> > that only this patch set can presumebly sort out.
-> > 
-> > And we don't really know at this point that cut. This is pretty much
-> > the break down of what is wrong here.
-> > 
-> > If there is/was a problem to sort out, it should be so constrained that
-> > it should be as quick to describe as stepping over a nail really.
-> > 
-> > These are the main topics what I would focus on.
-> 
-> This whole patchset looks like a solution looking for a problem.
-> 
-> The usual solution to something like this is a userspace service
-> like ssh-agent.  Then you can do whatever key management you want.
-> That doesn't protect against root, but if someone can get root you
-> have bigger problems.
+From: Igor Velkov <iav@iav.lv>
 
-This is true. Even if the code was like it is BUT it had a clear
-motivation, I would likely suggest to the author how to resolve the
-problem more properly.
+The driver runs its suspend callback on every system sleep transition,
+including hibernation freeze and the quiesce step of the kernel that
+loads the image. The PCI core leaves the endpoints in D0 there, the
+link does not enter L2 after PME_Turn_Off, and hibernation aborts:
 
-I.e. bar is not too high in initial code quality but it is steep
-from the get go in the "utility value".
+  rockchip-pcie f8000000.pcie: PCIe link enter L2 timeout!
+  rockchip-pcie f8000000.pcie: PM: failed to freeze noirq: error -110
 
-> -- 
-> Sincerely,
-> Demi Marie Obenour (she/her/hers)
+Keep the link up across freeze and thaw. On restore, power the port
+down and bring it up as on resume, because the kernel that loaded the
+image may have left it in any state. The port may already be down if
+poweroff_noirq ran, so track that state.
+
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+Tested on v7.4-rc3 with this patch, ROCK Pi 4A with a WD SN770 NVMe:
+5 of 5 hibernation cycles restored, the NVMe readable after each.
+---
+ drivers/pci/controller/pcie-rockchip-host.c | 33 +++++++++++++++++++++++++++--
+ drivers/pci/controller/pcie-rockchip.h      |  1 +
+ 2 files changed, 32 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
+index 1e1556e436b8..df4b9b3ec031 100644
+--- a/drivers/pci/controller/pcie-rockchip-host.c
++++ b/drivers/pci/controller/pcie-rockchip-host.c
+@@ -863,6 +863,8 @@ static int rockchip_pcie_suspend_noirq(struct device *dev)
+ 
+ 	regulator_disable(rockchip->vpcie0v9);
+ 
++	rockchip->powered_down = true;
++
+ 	return ret;
+ }
+ 
+@@ -893,6 +895,8 @@ static int rockchip_pcie_resume_noirq(struct device *dev)
+ 	rockchip_pcie_update_txcredit_mui(rockchip);
+ 	rockchip_pcie_enable_interrupts(rockchip);
+ 
++	rockchip->powered_down = false;
++
+ 	return 0;
+ 
+ err_err_deinit_port:
+@@ -904,6 +908,25 @@ static int rockchip_pcie_resume_noirq(struct device *dev)
+ 	return err;
+ }
+ 
++static int rockchip_pcie_restore_noirq(struct device *dev)
++{
++	struct rockchip_pcie *rockchip = dev_get_drvdata(dev);
++
++	/*
++	 * The boot kernel may have left the port in any state, while the image
++	 * holds the enable counts of a running port. Power it down so that
++	 * resume brings it up from scratch.
++	 */
++	if (!rockchip->powered_down) {
++		rockchip_pcie_deinit_phys(rockchip);
++		rockchip_pcie_disable_clocks(rockchip);
++		regulator_disable(rockchip->vpcie0v9);
++		rockchip->powered_down = true;
++	}
++
++	return rockchip_pcie_resume_noirq(dev);
++}
++
+ static int rockchip_pcie_probe(struct platform_device *pdev)
+ {
+ 	struct rockchip_pcie *rockchip;
+@@ -1011,9 +1034,15 @@ static void rockchip_pcie_remove(struct platform_device *pdev)
+ 	regulator_disable(rockchip->vpcie0v9);
+ }
+ 
++/*
++ * Freeze leaves the endpoints in D0 and the link does not reach L2 then,
++ * so keep the link up across freeze and thaw; restore re-inits the port.
++ */
+ static const struct dev_pm_ops rockchip_pcie_pm_ops = {
+-	NOIRQ_SYSTEM_SLEEP_PM_OPS(rockchip_pcie_suspend_noirq,
+-				  rockchip_pcie_resume_noirq)
++	.suspend_noirq = pm_sleep_ptr(rockchip_pcie_suspend_noirq),
++	.resume_noirq = pm_sleep_ptr(rockchip_pcie_resume_noirq),
++	.poweroff_noirq = pm_sleep_ptr(rockchip_pcie_suspend_noirq),
++	.restore_noirq = pm_sleep_ptr(rockchip_pcie_restore_noirq),
+ };
+ 
+ static const struct of_device_id rockchip_pcie_of_match[] = {
+diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
+index b5da15601b58..51877678d3df 100644
+--- a/drivers/pci/controller/pcie-rockchip.h
++++ b/drivers/pci/controller/pcie-rockchip.h
+@@ -324,6 +324,7 @@ struct rockchip_pcie {
+ 	void    __iomem *msg_region;
+ 	phys_addr_t msg_bus_addr;
+ 	bool is_rc;
++	bool powered_down;
+ 	struct resource *mem_res;
+ };
+ 
+
+---
+base-commit: 35f800669ce835aa77364a2ab5b61be19b778d3c
+change-id: 20261119-b4-rockchip-pcie-hib-004e1adc4042
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
 
 
-Br, Jarkko
 
