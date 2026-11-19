@@ -2,130 +2,124 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93D6606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:02:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E32606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x+OLn2Z1;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=QeEtewbL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1CIGqIjC;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jO2yTPl7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=hKkPpNGKPc9dB0PHZyw3/Ep3fUq1c/BlK7UqcWPEb1A=; b=x+OLn2Z1+IbpWdH30JXGxfG4HM
-	lTwLF/bSbx7vvGnNwU38A+dLJ+Rn9O1qemOuoc1c2ShjykkewE6IxehP4j2kVQWE1zi+v/Dk2tX/U
-	ebM7ZCtV2uR9aH3Og83plh0OLbToUnTt75ZWSSBTRrSDM5CMTBATkI7JGYi7TL2N5pcr1+q+temgI
-	ahVanfWqqFdrGab6R62zvALhiWOs8jlmLLb6Mqjk5f4P9kU1iF8f1KAU/nkIQNw3zGu/rZ098Tl3e
-	QnuepX8omWXmBTE97s6Y4YeBOQE6hKTPi8g5DvE90gvJFA8wtU3tkG9dXCpDV7WTeFR8ZRlbvxBbh
-	bXcS4kLQ==;
+	bh=pDDz7EktSP59XcLYqPQZ3j+F7BRb1cRhTmRMviCYCf4=; b=1CIGqIjCRe77wnwLdi1PegZT/C
+	5RDyLRGilzfAd4I92vGC4EWruXIXV74pJ0PZZEbaHEJUNiPMeB2VBW7YSRmYhDhvt5NqDo72/ETsv
+	CxcX6+wBkIl7QOtVp5B9bOYoBoIpE9HV2po5Mz/CSmiILjHaBDZVStMOBpPiTFvSB6veH7Pkq95UA
+	951F9lTXqLwr8G0tFh0XCbfalLSdenuBxL7LgWJ9Mbfqrpna6FfwJIyxAKj+TYEOJrvLXweeljvAx
+	ZatA/22fZr9rwWlJIWUPdNlaBPRp1tYe9A7teqiJmcR4OIPbwXgFNkdRu4EgAKnoB9PDC1Vh0dtn/
+	2vmsl/yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7Ob-0000000D8eX-2Zix;
-	Thu, 19 Nov 2026 19:02:09 +0000
-Received: from mail-ua1-x92b.google.com ([2607:f8b0:4864:20::92b])
+	id 1xU7RG-0000000D99o-1B0v;
+	Thu, 19 Nov 2026 19:04:54 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7OZ-0000000D8dR-0yFw
+	id 1xU7RB-0000000D95y-03nn
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 19:02:08 +0000
-Received: by mail-ua1-x92b.google.com with SMTP id a1e0cc1a2514c-9950a7530d9so65104241.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 11:02:06 -0800 (PST)
+	Thu, 19 Nov 2026 19:04:53 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-48e47347279so23627f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 11:04:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795114926; x=1795719726; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=hKkPpNGKPc9dB0PHZyw3/Ep3fUq1c/BlK7UqcWPEb1A=;
-        b=QeEtewbLp7vZT3bRfBjRClglXbpd8bTR5F9BMK/1nAo8gCTmD7jVnYZ01Oz+EbMJ0K
-         SO9YoBJZ4loqclsBHUlWK0ovuXP1w46NVHoflCxaWg+MggLnjLHj4Oysu6wMI+PrDf7D
-         UKEHN/d8B5jwthUvTvHDmM7cI0azIW2vBjfVbNPOcsm33i5CFEd/Wv1nA+LwhaBH7zRU
-         mUoMx+Xayl0CNJbm5tfWwMjxHRhHGPZmIy0ugxwMd/pIWYNkRwFgOy8IzY+sT9pwf1Mp
-         69c44vIBOsalahYU3esqF/M+1QqpdA2619jR+sYwgTCCW1Y/RMgTz6oikxI/5Ace6zm0
-         SSyQ==
+        d=gmail.com; s=20260707; t=1795115087; x=1795719887; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=pDDz7EktSP59XcLYqPQZ3j+F7BRb1cRhTmRMviCYCf4=;
+        b=jO2yTPl7yfP1Jwi73MvevERYtMYY/o4wkGzobh613gKSxXdTQwGAlkO7XMzbmE4H2i
+         9sZJnQZ+0oNUF4PcxBi4NTBi55lrh+8yUfZ2DqDSkSmVqS5nA9qNjD3hQOiDkls5b1mf
+         /bHj5+UMtuW/yXjCtbhUKXH7AzHrEgwyynOtl1diM+My3YMF03upoxL+EWmLZ0w6V/0j
+         iQszRs+RBMV7vFh/ifqs0YZyKKSvOllAwD7roTEv0AxQClBZPHvuGBBD2bcqVG29FM73
+         eSH2Q8GQyQpjuem/YXRtz13hHgGSpHeXNzDqJbnvy1xrQwd9lH5Lm125eWec6fYxu5PC
+         HVdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795114926; x=1795719726;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=hKkPpNGKPc9dB0PHZyw3/Ep3fUq1c/BlK7UqcWPEb1A=;
-        b=0Fmh1OQKj4bbVEzqDAjWhg/4azLr7m8FdYDV0CE6uBaPH7Z36kUx7QUgih+NVjgDnk
-         LjTWoA8FJDqFGxYzdGyVOKHzz1r5f2CIyNQvJpK7VRKL+551gJE2Ia70ODl5ML7pdNJR
-         6hQSFWzsMOLVXRtrqa/D9h1FSh68PWMK2UYyHfHN0T7QJq3hUf8bqdNhFHTPFZLThvuy
-         T0AQfsHeCPml6rLCXZi+B2c6befF6YXjjVzL45/1n7Bfl/NteboycwAiMGlx5qoESuYN
-         gCAGZVyKfFBORoZpYAt9dZFT8zCDROF0xpqCrdG7ZyTHSBRN4Dz55UMl2pkGyIvglb0Q
-         YyJA==
-X-Forwarded-Encrypted: i=1; AL+hErHfxQIIARQaMGdtNdaQzb6zxX+qEvsoQIXcbgJzyJAGxYc1lcMn8tcQRFOO4vSYhBiP+Opa+eROgKn5hE56RAJg@lists.infradead.org
-X-Gm-Message-State: APuU4Z+U8LMuKT3o86jelDGhwZW+ddcZzez/WMsDqmWWH612vDmDxI5h
-	bI+0WHIbqZt/jO+70SfUyHZNLL7Uz5E9XH5uBqneF/FpiIuT0i/Y516/eMt6KRXaF2E=
-X-Gm-Gg: AZFdTZfzb5lgIxoLffqUfqpDM1YUszi115SGZ4sc11NMOOflS91XKhdg0bvTsN276Ze
-	7GXHowUq8GWIzl/B9uER8WYYNv2/SeSVBwTLNWhKr5ePUjpe3gP3LinuS5+MgsF743zkYnmG2vg
-	rUzpZnV2Yg2xlbJO9pbGCJxVrVn0yLNY6bSecBECh/SqL57BgZdwwT7x6K9Xw+XolbPJtkQmc95
-	s6BbBEyVzYksjJNttcjLmpe/nSyLqF6mo01M1f9+WDO/JB9FcAwEmbJ03N077uwiw8J6mqv/1Gg
-	gprkL38cG+N8o6AOWQHyT8Sapdmkq0N+yZu3gahRvEsMRGy1G8csRsfAdV1O6DlYIvysUbW2g7b
-	aEMC9SOtuh4DSiYKfLB14J7rh4d4UXugeidLpwpMDpYLAZwN2NLNTfictlo9JCyrCSy+mJQio/4
-	17Oa8Kp2vMTaqbr2UEeoeXeIqToKNEDhbst+1i7XyUMHA1Koct14Dyo1m/vY6rv9/CI08ckTQMK
-	+FmKn3x2MJTWajqoYdfx0nOm544F/XLhOrE+LtB5aAzW5y2l2vHaEMKKY2S2GtEmbuSM0rD+vQJ
-	WlZYEmfzp+rBSio4mGr7EQS4A1TEaqC1RJoOF9ojPe5WTZYqixQ+Z58=
-X-Received: by 2002:a05:6122:c88:b0:5ca:f811:25ac with SMTP id 71dfb90a1353d-5ee8aefbb61mr486259e0c.14.1795114925522;
-        Thu, 19 Nov 2026 11:02:05 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99e6df8a28dsm809462241.4.2026.11.19.11.02.02
+        d=1e100.net; s=20260707; t=1795115087; x=1795719887;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=pDDz7EktSP59XcLYqPQZ3j+F7BRb1cRhTmRMviCYCf4=;
+        b=F6LeII009rf0ua37HHpWhI4HkplaoNy3JkVGbGE+SCYzj90UQ4YSNUZ/8rQfbraeW4
+         uPnYU4FLfOIZmps/Uwh2ThA/lFKBiMozt8b1KGDdEsWLnCVkFBHuD6dQ/wf3oRZPKPhz
+         SdKNm84QD4ldKM9pOZg79sdzQmHhjHfYoC2CbfKxyEGKcKE8fgQypbB13YLBY1836f1T
+         7RugYdTMJUTxyYyxA5zFspuAGVOe6JilM+XMnk8RlS8OWYECD2h7psMfL9xzImsfeRhK
+         3m5m5y2GDnXMaMaOO67mhdLquLCEyN9FOg2BPHK5Wb6t9T6XukHRaB19+0A7XsH3Vdxl
+         sVPg==
+X-Forwarded-Encrypted: i=1; AL+hErHkzfxJHRkeA8B5d4enGZY6CewmMJDkLRO5cfoHeAQC3iO3NIi4Fy5mihx1YC3MOWeEN5Fm4RvPOr3HFFtI08LX@lists.infradead.org
+X-Gm-Message-State: APuU4Z+4GlIo6GpXUL+ln/RcIjwAlNuM2W852II7/vWfYDb65ZldTHCz
+	Qn9A0G6U+c/3911KQQjGa7O6YdvjLTQbiEMe+EtW1vc/RpG04w3Xq3O4
+X-Gm-Gg: AYBFou14G7Y3VqrUmzIQiTy1P4OcLfma12xGpAwUTfqy9FIfpG+pCnBWx1Bqu3tnWNX
+	bzQhd+BHbxYpIQvpb39K+5qDycFJGzntwdsZaRw6nRH74HhFXz4cKW+j+GgiId0sly6VN7ys8Sy
+	7oVFCms13TJCw5XCmVIEh2GszH8Ohz/9lvKwdAPFIgI530ouYDPM2AfrkpybXp9VR7e4biKpx32
+	UGFdV+mX4ZqJnjTtLye0j6T1AidYm2nKR58KcjdWskeeyGwmdRu+0pFPS6Gd2LKAVMIMjlmKuiD
+	0Xwxwc6FCtOPLSR6oTg4ra5OunGVlBzd3gHvqyLwZrKNPC+Ig6d/nGxkz9fCPrv9MaBrqUplRPv
+	KATbgqA/fYJLbaGkcSUN4nLtZgcA/NGbM+aihfGiisAVjXIHbEQtHlAcqmm1Bfw1uk7pJUxCyBC
+	SmSZyxFPzPxGs3L80Ptd5bHBl2SfaamqGU9hvqifOuI+NVblNU17QTPJzHYtzSv4myIlX5LOdLq
+	nRJuMdAHfCP+ovU/YizsuOHIvuuRUJxcb18YMyv987JWCM+ztJhI/i86r8oOaRCq5bBAnxfBCaO
+	sbJXxznOPqWFauFSeji3Mf+gE7V+NWxyv8UO1VsveNDk9D/n1u9h6IbZ/m0qPk+btsRpYTk25vx
+	7siFgwAnTWuifWJs=
+X-Received: by 2002:a05:600c:b90:b0:4a7:76fa:87e9 with SMTP id 5b1f17b1804b1-4bb8892cb02mr9574505e9.21.1795115086809;
+        Thu, 19 Nov 2026 11:04:46 -0800 (PST)
+Received: from zeus.unificl3slsbnxe8mz.com (212.71.14.70.adsl.dyn.edpnet.net. [212.71.14.70])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8849247asm19124775e9.7.2026.11.19.11.04.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 11:02:04 -0800 (PST)
-Message-ID: <84fd9703862c225d63d973cf170b06ab7a962312.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 6/6] staging: media: cedrus: Use
- devm_of_reserved_mem_device_init()
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Daniel Scally	
- <dan.scally@ideasonboard.com>, Jacopo Mondi
- <jacopo.mondi@ideasonboard.com>,  Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Eddie James <eajames@linux.ibm.com>, Joel Stanley	
- <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Minghsiu
- Tsai	 <minghsiu.tsai@mediatek.com>, Houlong Wei <houlong.wei@mediatek.com>,
-  Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>, Yunfei Dong	 <yunfei.dong@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,  AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Joseph Liu <kwliu@nuvoton.com>,
- Marvin Lin <kflin@nuvoton.com>,  Dmitry Osipenko
- <dmitry.osipenko@collabora.com>, Maxime Ripard <mripard@kernel.org>, Paul
- Kocialkowski	 <paulk@sys-base.io>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>,  Chen-Yu Tsai <wens@kernel.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland	 <samuel@sholland.org>
-Cc: Ryan Chen <ryan_chen@aspeedtech.com>, Billy Tsai
- <billy_tsai@aspeedtech.com>, 	linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	openbmc@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, 	linux-aspeed@lists.ozlabs.org,
- linux-mediatek@lists.infradead.org, 	kernel@collabora.com,
- linux-staging@lists.linux.dev, linux-sunxi@lists.linux.dev
-Date: Thu, 19 Nov 2026 14:02:01 -0500
-In-Reply-To: <20260902200703.2016410-7-mukesh.ojha@oss.qualcomm.com>
-References: <20260902200703.2016410-1-mukesh.ojha@oss.qualcomm.com>
-	 <20260902200703.2016410-7-mukesh.ojha@oss.qualcomm.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-Zy5+UcnjO9CPStg5/eKL"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+        Thu, 19 Nov 2026 11:04:46 -0800 (PST)
+From: Sander Speetjens <sander.speetjens@gmail.com>
+Subject: [PATCH v2 0/2] hwmon: add Raspberry Pi 5 PMIC driver
+Date: Thu, 19 Nov 2026 20:02:22 +0100
+Message-Id: <20261119-hwmon-da9091-v2-0-d6c624272a9e@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/21QTXODIBD9KwznIJAUiZ76Pzo5LLroTgMaINZOJ
+ v+9o1572/cxb9/ui2dMhJm37MUTLpRpirxl5xPj3QhxQEE9bxk/q3OttbZi/AlTFD00qtHCAiJ
+ 0dX9Ff+UnxueEntY97ut24ISPJ2UqB8kdZBQlIbZsLGXOrZQDleobU8R7NaVBzk8ncxfkneJzl
+ YeweWTEtRys2MZqoMIC5IJpW70Hd1MIVFpme6PRQdN7sP1FgQOnnDXGKmy8rZW51DV+GMe3kiP
+ lMqXf/QWL3lv+f+2ihRbeGK/AN10Nl88hAN2rbgr89n6//wBMnwp1TQEAAA==
+X-Change-ID: 20261117-hwmon-da9091-7aeeac6d8ef8
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Guenter Roeck <linux@roeck-us.net>, Ray Jui <rjui@broadcom.com>, 
+ Scott Branden <sbranden@broadcom.com>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>
+Cc: linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Peter Robinson <pbrobinson@gmail.com>, 
+ Sander Speetjens <sander.speetjens@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2242;
+ i=sander.speetjens@gmail.com; h=from:subject:message-id;
+ bh=fFksgnBQWB00eHnASxdxeUteEXHeuBQCQ15IXKORuiI=;
+ b=owEBbQKS/ZANAwAKAXjNeEUMBchnAcsmYgBq/0hNMInIZvh+foa/m0C+DK7QywAYwMx3Oyj4B
+ jegXlUSgAKJAjMEAAEKAB0WIQRWUkqLABoRw+7JUQF4zXhFDAXIZwUCav9ITQAKCRB4zXhFDAXI
+ Z9WiEACGWtjwPpW1T2M8XP2Z7+frbRA4HCfF+uwJnRlGGWi8nOwaJ1rM2mS8GEUG2rSlU2D4T1Y
+ Hbn2+3uxvs4U4+moO16OYVhh4msOTQY8LwhXGnC5oZ/jMov39laTFEM0Tph66QVcuFsUO7ZbOBY
+ WOb+rZR/xD4zFlWco/b9hDEkk3ANlkxfCOT85yGSRRlcdRn+B/ZDCmezGiolycgL/NpoM5KDTfP
+ qeDnA7rSZS50Zkr8Ok0pU16ic57AdC0pu7CwLC9LzSFB+l/pAYmLZGYUhzCGpsXDLC0KsEpaLy6
+ vuvEUBp3PLtaY/zWlTYak75VJrETb5vR0joP5igmqC4V8fByLLRdvQNFg4n6Tjv0QN1tqyUX9AW
+ 9OOkj2JMQoIZspSFdAlj2EAnxGQ/Yu0FPnE7YX5kBmPGl6WrIsOiw8JB7oxdAswQPX9CqKmrhbC
+ j5BS+E8RK1HrEQvpEN92DL84tOdwG54ODLlHwGAk6LSHbBgy+0Jo0ral7oE7fo9Jm/aGYiRP4ZV
+ +hmfGVSMq+YuUNPuwld5c5WfwtyuzOvaMvBsXRv+7196C0gTMMCmFjou1VZ9Cwh44XaIKHa3wm4
+ DLeUzEUkeLgb5QnL1nuxfhcydWqJv/SmW9gNawjlMpWIbcecbye2KmW7wL1OhKSZCTwuMYAqxt2
+ w9nT+IrdviT/vKg==
+X-Developer-Key: i=sander.speetjens@gmail.com; a=openpgp;
+ fpr=56524A8B001A11C3EEC9510178CD78450C05C867
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_110207_319408_94A4B168 
-X-CRM114-Status: UNSURE (   9.14  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261119_110449_079844_2CC12C22 
+X-CRM114-Status: GOOD (  15.87  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,38 +130,71 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-Zy5+UcnjO9CPStg5/eKL
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This patch adds an hwmon driver for the PMIC used on the
+Raspberry Pi 5.
 
-Le jeudi 03 septembre 2026 =C3=A0 01:37 +0530, Mukesh Ojha a =C3=A9crit=C2=
-=A0:
-> Use the devres-managed devm_of_reserved_mem_device_init() instead of
-> the manual of_reserved_mem_device_init()/of_reserved_mem_device_release()
-> pair, letting the device resource manager handle cleanup automatically.
->=20
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+The PMIC exposes a set of voltage, current and temperature sensors.
+Access is only available through the VideoCore firmware mailbox
+interface; there is no direct register access from the ARM side.
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+A structured property tag (0x0003009f) was recently added to the
+firmware. It returns the ADC values in binary form (index + length +
+array of values), which is much cleaner for a kernel driver than
+parsing the text output of the existing gencmd interface.
 
---=-Zy5+UcnjO9CPStg5/eKL
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+The driver follows the same instantiation pattern as the Raspberry Pi 5
+RTC driver: the raspberrypi-firmware driver creates a platform device
+at runtime, and this driver binds to it. All channels are read in a
+single mailbox call and a short refresh-on-read cache is used.
 
------BEGIN PGP SIGNATURE-----
+The sensors are exposed through the standard hwmon sysfs interface so
+tools such as `sensors`, collectd and node-exporter work without
+modification.
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav9HqQAKCRDZQZRRKWBy
-9KPMAP43HkphsVrqQTwGITR+0glsiS4Fp5Wyse7t/ZPwvyRH2gEA4/6BFP8fPbe6
-9p9JGy6Ck2BZu8qjXZw4UU8oUtkiJgI=
-=GZdK
------END PGP SIGNATURE-----
+Dependencies:
+- Raspberry Pi firmware that implements property 0x0003009f
+- CONFIG_RASPBERRYPI_FIRMWARE
 
---=-Zy5+UcnjO9CPStg5/eKL--
+Tested on a Raspberry Pi 5 with recent firmware.
+
+Signed-off-by: Sander Speetjens <sander.speetjens@gmail.com>
+---
+Changes in v2:
+- Add documenation
+- Split firmware in a separate patch
+- Remove DA9091 mention
+- Remove extra lock
+- Use 64-bit jiffies
+- Remove lookup function
+- Link to v1: https://lore.kernel.org/r/20261117-hwmon-da9091-v1-1-f55f0af9c6a3@gmail.com
+
+---
+Sander Speetjens (2):
+      hwmon: add Raspberry Pi PMIC driver
+      firmware: raspberrypi: Register PMIC hwmon driver on Pi 5
+
+ Documentation/hwmon/index.rst                  |   1 +
+ Documentation/hwmon/raspberrypi-pmic-hwmon.rst |  49 ++++
+ drivers/firmware/raspberrypi.c                 |  21 ++
+ drivers/hwmon/Kconfig                          |  11 +
+ drivers/hwmon/Makefile                         |   1 +
+ drivers/hwmon/raspberrypi-pmic-hwmon.c         | 299 +++++++++++++++++++++++++
+ include/soc/bcm2835/raspberrypi-firmware.h     |   1 +
+ 7 files changed, 383 insertions(+)
+---
+base-commit: 7d51eba9dfa7d30abab0b75570e9f7605366e45b
+change-id: 20261117-hwmon-da9091-7aeeac6d8ef8
+
+Best regards,
+-- 
+Sander Speetjens <sander.speetjens@gmail.com>
+
 
