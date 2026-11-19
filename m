@@ -2,144 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47665606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF1B606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fpCpS9PH;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=3KcN/Sj3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PplIsQEy;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mFVkDPWN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=GjPjHBMAmZfM3O+f2SZaUjFD7rFo9MVIeGz6nUbSYM4=; b=fpCpS9PHpmTLY8IFCmcsXzddl8
-	rH3ozg2bkjqRlTekh/ybEHIg0iVYfMsEypFV6xkL/RKstzViZP78Mq+j4RCuU2Hnq6F1Ak4+k1ZQd
-	AsSDwEWn1ZgkK1JNZ4+4w4olP2ITNv6hj0GfdJWwb1hk//OCMIWcjp3cB5+WZ9RVeXGBGs3TG6wM9
-	WNrNbJR0Jfsn11pGJ9YFZbfbOgYbEFokCHSq5MOqeBtZ41hDRR4HKKtq+j//+GS462r8943vJ/Q7O
-	NP+fWVElCYYgDleLEvfmZx+R3RxAUXqhVQqdZAGOjW++JM7kWIqy1PL0neboeS2fGhae0uq8PT8sz
-	eJgEXVNA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=5cY+QOFSRab+vw7Ar5Uc+Mh1ld4eiD0jvPyComZKkI8=; b=PplIsQEywcoPUB
+	DuG3hVqXGDoDxepDRINW6+yzg92ohzp+1qs527XO99lCnGL+UiOlu6DXAdRgGK9GZUCGUD0Xj86/0
+	jT6M6SrKmmbgoUiXbnvhY+PtOzG/KPHmzCGhVgCXjryZ2ATy8mNpmupgsD95+uAbpTHfNv3k02SMm
+	VT2LkB4IgRhuurs97ME6BekKJJlmI37miFw+9qBu0Dj4Eb0gmV8HKsid4Y3FCBnQOfoQFcRM7dVZ4
+	dH+Yd7wTQTqNxi8TDfwxyaQ7JvgTG7Ww8FCMYNlnT/edGYhs0VvnohT72Ren3FNzKo/PE/Rfa9fNA
+	JD6DV5ACvdbqfvNzfG2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6gD-0000000Cyon-2DcW;
-	Thu, 19 Nov 2026 18:16:17 +0000
-Received: from mail-southcentralusazon11011067.outbound.protection.outlook.com ([40.93.194.67] helo=SN4PR0501CU005.outbound.protection.outlook.com)
+	id 1xU6kd-0000000Cz96-0HZU;
+	Thu, 19 Nov 2026 18:20:51 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6gB-0000000CyoF-2aqc
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:16:17 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W1Kw+SuxeKFKilH6jtQyUbaituGvNKcvNDIpcMkPX/VyDXcS/WUrigEhuU6d+VEYM+6vsA3nL6+ePyZnNN+mihGjAwnNT4CDfxsPbMQwN1qM/us7c/cOYtN/YmEfs304Fd59khIQuyRoRPNNPyyQexv5B1Sxt3B5bxG4tSeE10g71x6XiwLsdsKsr7s9MDhxW1zMCiZTZ58rsvKzqzI00tnx3sypGiAugsAU4I4iRvEa5EZ49wqzUQxLgvNVGpXl85h0CTrT+uz0rD+dB8HfqvmMgEhShY2ZOBMRJXoyWcTZYggN52Og38iYxKg9eiqG3kk1GrfNIdOtTQ+T2vhe2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GjPjHBMAmZfM3O+f2SZaUjFD7rFo9MVIeGz6nUbSYM4=;
- b=MRrWjh2LWit6rQtujwOyUUe0ggEbCAAXrtc7fKFjNEboE/6s60PrN72ABoneN4zWTdYkWdWsPPuCZpig50SBjtfYMKSWI6s8inwbuxspK/PklF47E+NZ/f7GY86JPlB6Dxt2Y0lFGPhBzt4sD4YyDHoX9Lz7nrm4gAnWXKdpGE5e7nrO4EO5XEI2iaktUVNDd2oOuDp9g/61EKe52FBNRBYP7BrLQai46Xi3GQ6jRPM5KiLf8Kx+sGIN5ige59rgMupcQP9pbQ3kma4rqTFw635rw+URntOvna7LQOU3GQnM+tmqOgJVDrj2vIN9Ykm2Y9xmNCk9c0pr81Mt6QNN5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GjPjHBMAmZfM3O+f2SZaUjFD7rFo9MVIeGz6nUbSYM4=;
- b=3KcN/Sj3zN5NIRRWyLm+o6TFAzE5YVuzRWTzG37EVUc0ITfk+D2lgZmihtmzsTl954HR5dnEeoBkC6+AU+ADhpdEDA7LyOh+AQ3n0okChr+Pldd6mdXWZauqY+bJFNe82akfP1ZWrQxxzZm0860KMjUBspa+nBpRPWYC+vcd174=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from AT6PR12MB174769.namprd12.prod.outlook.com
- (2603:10b6:170:116::6) by LV8PR12MB9269.namprd12.prod.outlook.com
- (2603:10b6:408:1fe::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
- 2026 18:16:10 +0000
-Received: from AT6PR12MB174769.namprd12.prod.outlook.com
- ([fe80::3903:e1e2:f33f:ed44]) by AT6PR12MB174769.namprd12.prod.outlook.com
- ([fe80::3903:e1e2:f33f:ed44%5]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
- 18:16:09 +0000
-Message-ID: <91438414-b8a4-4cde-a7b3-6f14b65da5c5@amd.com>
-Date: Thu, 19 Nov 2026 10:16:06 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] dt-bindings: mailbox: Add AMD PL Mailbox IP
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
- Ben Levinsky <ben.levinsky@amd.com>
-Cc: jassisinghbrar@gmail.com, andersson@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, michal.simek@amd.com,
- tanmay.shah@amd.com, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261105051902.1646651-1-ben.levinsky@amd.com>
- <20261105051902.1646651-4-ben.levinsky@amd.com> <av8rBP9x0I-ikEJy@p14s>
-Content-Language: en-US
-From: Ben Levinsky <blevinsk@amd.com>
-In-Reply-To: <av8rBP9x0I-ikEJy@p14s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PH8P223CA0018.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:510:2db::28) To AT6PR12MB174769.namprd12.prod.outlook.com
- (2603:10b6:170:116::6)
+	id 1xU6kc-0000000Cz8s-1SFI;
+	Thu, 19 Nov 2026 18:20:50 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id AB31342AF5;
+	Thu, 19 Nov 2026 18:20:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B0EC1F000C5;
+	Thu, 19 Nov 2026 18:20:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795112449;
+	bh=5cY+QOFSRab+vw7Ar5Uc+Mh1ld4eiD0jvPyComZKkI8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=mFVkDPWNUUaI/lD8LZupI2Dv6P1hrK9IDKEmnqQP3hRcjIokrajVdotKHQAyu0NV/
+	 LRn7QDpEIl7PkujuQRr3JBOYQ+mJ0JJKhFd3EksrdvpLpq/b5w75RdtGldsmRSuWuG
+	 Ej9e2CQPJJ3vc6ty6KfikChr+J+4TieOCN5RUxlTysnTo90F+i3dQL/yhRCP6r9QKI
+	 ZUEOfNqI0qQI7nJ3efrl+mVFZSuYADsTl8cPGElqU4t+ZqtyImk+pdJ6b3Tve3I3qk
+	 6SUHTGBRqWjRzEw9B/SNFUNcnVx4t7sMsIkZvT0Ltu1LVrPnQ/gifStw7uYoI+dALN
+	 894KwzJuU9EZw==
+From: Lee Jones <lee@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Robert Marko <robimarko@gmail.com>, 
+ Guru Das Srinagesh <linux@gurudas.dev>, Thomas Gleixner <tglx@kernel.org>, 
+ Radu Rendec <radu@rendec.net>, Lee Jones <lee@kernel.org>, 
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ "Joerg Roedel (AMD)" <joro@8bytes.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Wesley Cheng <wesley.cheng@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>, 
+ Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ "David S. Miller" <davem@davemloft.net>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Amit Kucheria <amitk@kernel.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Georgi Djakov <djakov@kernel.org>, 
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>, 
+ Stanislav Aleksandrov <lightofmysoul@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, mfd@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
+ linux-usb@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-scsi@vger.kernel.org, linux-crypto@vger.kernel.org, 
+ linux-pm@vger.kernel.org
+In-Reply-To: <20261109-halliday-dts-v1-5-289114ab8197@gmail.com>
+References: <20261109-halliday-dts-v1-5-289114ab8197@gmail.com>
+Subject: Re: (subset) [PATCH 05/17] dt-bindings: mfd: qcom,tcsr: Add
+ Halliday TCSR
+Message-Id: <179511244123.91992.13336083093444200069.b4-ty@b4>
+Date: Thu, 19 Nov 2026 18:20:41 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AT6PR12MB174769:EE_|LV8PR12MB9269:EE_
-X-MS-Office365-Filtering-Correlation-Id: 86443194-d255-468b-977b-08df46692fd2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024|23010399003|261102123227099003|261026121527099003|4143699003|261028144727099003|11063799006|56012099006|261021135927099003|261021121427099003|10067099003|261026140227099003|261022105027099003|261009223027099003|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info: COKeziELlNskAPp2ERCCX/Y6J8vXxc7LwklSUUMaK+AXtolpWuMyW0cZw2QfK2IxAPxzjuaa01yyry9BwfzcE5M+WCV0zXzrhxZ54jGCXFK8sci0LEzL+JvXd0nIRAXp+GQcDEnSiSk3RQsdEN8FiFmYePAmr4t3mxq7T0ZBaYDIzhPaBs5ZEtpF0y3iH/m+sbIA1ZixXweTY4hR2mZ1Ojq0w5OlpSVfL0XEW+fhQd58svSvzNGLTyp5YRcgfXYGSPlWgXnmke3fZ+HPYgNchVH9Mom/Y1t2AybXtnIPBkkoVz0bVmnr3l1u7ygaMZo+HMdFtoIQv9WjwD3mMmNDgeb0Xpqum//sE6qHahX7o9CFvdFG+j+68MRvByT3gn5ucqqTcZnBwYAMvjrovmVTFfD/MiaH0V1ERtZu2/v/udK6VqbK308EZ3jsemIYWucvSWWJLP9cTW0OdikJGoU8U4xcLZvbN3M891frSJIQh3XAShbInFAUb2pt+vgIXsKHNsmckA09BQSKD40dnrSbsRkEdDePJ+lgT5iJmk4n3ylfILEg+gfCNMVdBry5s1XA5OHPVPqo35AaVhImbM51rwljLsL6s6PVkI2Fv+czXvEBlQlu0/G8cs9QBWMqhy39
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AT6PR12MB174769.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(23010399003)(261102123227099003)(261026121527099003)(4143699003)(261028144727099003)(11063799006)(56012099006)(261021135927099003)(261021121427099003)(10067099003)(261026140227099003)(261022105027099003)(261009223027099003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?blZzbEN5Mlh1Uk01MTBhRWtHNEwzWFZveGpvb3JHREZFN2NRTDRMWlpRaTNF?=
- =?utf-8?B?RCtuUmJPODRtbmtYaXZJNHFSSXdTSUlhWmEwWE9Ubkt1REtaM3lnTGZiMXdY?=
- =?utf-8?B?VUg3MkpFUHZia2hSM05heGVkczNIL0ZqY1RtSjFVZndtUUl4SUxseUhOUHJp?=
- =?utf-8?B?L2p2R2lRazZGdVBuK0ZPbGJKRFh4RHNGdUF6U1d4bXlzb0VVc3QwSDMvR21H?=
- =?utf-8?B?d2R6Vk9GMmhaUWVVeHdtMG1oY0xvYTljY2hlZTZCZ1N0dVI3RG42VzJxODRD?=
- =?utf-8?B?ek83c2VCUW5XQ1JDWVh4UU0rWnlSU0g4ZzBiZDU2NldvUURnQUtOazRjUlBK?=
- =?utf-8?B?K2k0bFhNck1sa2tWSlc5dDFQdms3ZkxHZUhZclJlUjdPK09rdVlGQ1JidjV1?=
- =?utf-8?B?TDdLWHQ2RVMvT3oyMVVVVmNVd2s0RXJwWWxtcS9tN3BlYTNlRm5zNVZYUm1U?=
- =?utf-8?B?ZHNvVGRMdVRsSUd6Z1V6b0YwR1laRmwzNXY3MW1WemR0clUzMlo1WitvVTF6?=
- =?utf-8?B?cDVmaDJuWm1qVCtkYlhXUlNrVGJJSFJwdXBNWTlTZWRCZ1ZvaXdUVFBvQmhi?=
- =?utf-8?B?RGtyV2xGTHhTdktxcHJrVm9oMDQ5N2daeW5ZNzFmZ3pQODZGTXlMZFdPelk2?=
- =?utf-8?B?R2xHL0pFeHNHOFk1Wk5EYStyZjhrbE5odlFnVFFFUW9Ubk1iL0NEdHo4eHEw?=
- =?utf-8?B?VXJIdTd3YjF5eENURCtManEzL2ZMVUZzazRlaWNBTnFQVjBBNFhIRk5NUEov?=
- =?utf-8?B?WVREdVl4RkdTWnlRM2pFZ3JMaTVVcXFDdGRaTTg5Q3RRV0o3emExT1BJbGRJ?=
- =?utf-8?B?c3lrMm5YWW02QlU4ejdVZm0wNkowTGlxT08wRW93ellEeGF4ZTVDVTBjRFRN?=
- =?utf-8?B?NEFVK3FKV3pEMWoxMXdIb29Ma0hGd3BSM3hBcE9iTjVnMU5UZWlrbDlaTzND?=
- =?utf-8?B?azh5MVV5UkhqRjJjd0I1Z0pFR0QvemNPUTJwdnR3VitEU2ZsalFRTDBMalZV?=
- =?utf-8?B?VDZ1SUxRVUtqVkduSDRGODFpendlaVBBVlJhZy9pSUZsamxLUzE5OHRXSml4?=
- =?utf-8?B?RnQvbVVrUnQ0MWQ0REJGV0hwamc0My9hUzJPT2pId0FvQ29OUWJ2Y290VnBo?=
- =?utf-8?B?bkw5VEtsRzY5bnpld1d2WFlmNFlYNFQ5b0w5ZXoyQWlMV2hPeEo0MG5CRUdZ?=
- =?utf-8?B?UVZsZVE0WHRWbk5PdnhoUUFIWEFIWWIxbWVwNWxTWVk2bFpFRVF3N1huOThH?=
- =?utf-8?B?bks3RjZ3ZmtQRHIyQ1UyS0QyU0ZxRW9QdzQvS2ErRVFKcU9CUHFsL1JkWFc3?=
- =?utf-8?B?MW9DVTVkYk5rZUVxQjV6RTFxc1NHdDJSTmpIZU5KcUlKRUM4QXlrVWRscURY?=
- =?utf-8?B?eG5nVXBFQm0xVzRTWU5idnNYdDhUNTR4cUpHOUU1bDNpcjYxengrUzB1NVZI?=
- =?utf-8?B?MEhqZXRueHRIa3ZCSnIvL0hBa3orV2JOdmtOd3RZK0h6cG9sakkya05tSWlM?=
- =?utf-8?B?S0VINnM4OWVQeDBVMkRFY0M5N0hlODVpWEpXMVg0N0kyem8zcjQzekdGK1hM?=
- =?utf-8?B?Mlh3MGN2d0RMYTQ1bzI3b0pvelcxZ0dYWk9XN3VWLzYvNG5wYXZwQjNOY3lt?=
- =?utf-8?B?cUpmSDdoYmxvRDN5MXMweGhEUFNKajBwYy9wYmYyYlFDNFZGdWJzZ0RlbFNE?=
- =?utf-8?B?TFlqVm5zaUp0WTczemFBMHlHT2p3VVVmRUxYQjYxMXlYRCsyeHJYYVcwZjV5?=
- =?utf-8?B?ejFlcUxTcTMzbVl2UmJKbHlSMGpOakw1QkdkQWdhVnBwcFpTWC8zRE5SVEpJ?=
- =?utf-8?B?MllCL2lSdWEyMUliRDVSUkZRSDFLNHIxeTNybFNEZmRiU1haQ3BRUzhDQngx?=
- =?utf-8?B?dkI3YXpIL29Ld2toL2JKdVluTWt2aTJsNVBoaW9yaHFNS1BvM1hEMDNrL3hx?=
- =?utf-8?B?WTFEay94ZTNuWnAzbjZGZlRlTy80Nkw1VkJvdFV5NFNwemNnT01HMkZtTUtF?=
- =?utf-8?B?ajdUa202V085aStCcU9pOUJxRUVESDhPK0pOTjB4TlhiUjBKMldLQlZzRHVR?=
- =?utf-8?B?ME9BMVB1RW5ZZGpNUzREd3dSTDROZlgrMlBLYTRtTXBpVlpEZWpreUxoZTla?=
- =?utf-8?B?bFIrWU40VTN3d2IzQ1ZaMmNQM200Z0ttOHdlcHh6bnhTVjByNVlGZTRYZjdx?=
- =?utf-8?B?TkRNUWhoNEhtRWtZYmR4OVltTm1xQXdZUHF2K2Q3akJLQWR0di8yYTFhT3JX?=
- =?utf-8?B?QnkyMUE3b1Z0YmRpUm9YVzMxRm0xV1gzZUtIakV3TjI2NDFTcUhVTGRISFRH?=
- =?utf-8?B?R21BTEZRbVloUkRicno4UFZ6RUFIN0VLSWZzL3FzYmJkTDZQRmlqUT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86443194-d255-468b-977b-08df46692fd2
-X-MS-Exchange-CrossTenant-AuthSource: AT6PR12MB174769.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 18:16:09.8807
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YUgNYuIkNk7QObyJ8VWEtk4Nca6ujq4Ie3SHD6iObTKcE70t5tw8MoKL/4fKtoBM2i19eyNPW0naVT8cj8EFsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9269
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_101615_672634_06F84ECD 
-X-CRM114-Status: GOOD (  23.70  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.16-dev-ad80c
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,156 +93,22 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Mon, 09 Nov 2026 00:33:17 +0000, Stanislav Aleksandrov wrote:
+> Document the TCSR block on the Qualcomm Halliday SoC.
 
+Applied, thanks!
 
-On 11/19/26 8:59 AM, Mathieu Poirier wrote:
-> On Wed, Nov 04, 2026 at 09:18:59PM -0800, Ben Levinsky wrote:
->> Document the AMD programmable-logic Mailbox IP used for bidirectional
->> FIFO communication between two processor-facing interfaces.
->>
->> The Mailbox is a soft IP core instantiated in programmable logic, and the
->> same SoC can carry different versions of it, so it is not a SoC block.
->> Like other PL soft IP bindings, use a single compatible that names the IP
->> core and its version, amd,pl-mailbox-2.1. "pl" distinguishes it from the
->> IPI hardware that can also act as a mailbox.
->>
->> Define the transmit and receive channel indices together with the register
->> aperture, interrupt, and interface clock. Describe the FIFO depth chosen
->> for each IP instance when the design is synthesized. It cannot be read
->> from the registers, and the driver needs it to size received messages.
-> 
-> "register aperture"?  What is that?
+[05/17] dt-bindings: mfd: qcom,tcsr: Add Halliday TCSR
+        commit: 51a1764ff434dff86994f7e03125033deebda6e3
 
-
-Hi Mathieu,
-
-It's the IP's register range, i.e. the reg property.  The term doesn't
-add anything, so v3 says "registers" instead, both in the binding
-description and in the driver.
-
-I also shortened the changelog.  It now only says what the IP is, why
-the compatible names the IP and its version, and why the FIFO depth
-needs a property.
-
-Thanks,
-Ben
-
-> 
->>
->> Assisted-by: Claude:claude-opus-5.5
->> Signed-off-by: Ben Levinsky <ben.levinsky@amd.com>
->> ---
->>  .../bindings/mailbox/amd,pl-mailbox-2.1.yaml  | 73 +++++++++++++++++++
->>  MAINTAINERS                                   |  6 ++
->>  2 files changed, 79 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mailbox/amd,pl-mailbox-2.1.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mailbox/amd,pl-mailbox-2.1.yaml b/Documentation/devicetree/bindings/mailbox/amd,pl-mailbox-2.1.yaml
->> new file mode 100644
->> index 000000000000..dc16a2e1142b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mailbox/amd,pl-mailbox-2.1.yaml
->> @@ -0,0 +1,73 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mailbox/amd,pl-mailbox-2.1.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: AMD Programmable Logic Mailbox IP
->> +
->> +maintainers:
->> +  - Ben Levinsky <ben.levinsky@amd.com>
->> +
->> +description: |
->> +  The AMD Programmable Logic Mailbox IP provides bidirectional message passing
->> +  between two processor-facing interfaces. Each interface writes messages to
->> +  a send FIFO and reads messages from a receive FIFO. The register aperture,
->> +  interrupt, and clock described by a node belong to one processor-facing
->> +  interface. Channel 0 represents transmit and channel 1 represents receive
->> +  for that interface.
->> +
->> +  The Mailbox is a soft IP core instantiated in programmable logic, not a
->> +  SoC block, so the compatible names the IP core and its version (2.1).
->> +  The "pl" part distinguishes it from the IPI hardware that can also be
->> +  used as a mailbox.
->> +
->> +properties:
->> +  compatible:
->> +    const: amd,pl-mailbox-2.1
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  amd,pl-mailbox-depth:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 16
->> +    maximum: 8192
->> +    default: 16
->> +    description:
->> +      Depth of the send and receive FIFOs in 32-bit words. The depth is the
->> +      C_MAILBOX_DEPTH parameter chosen for each IP instance when the design
->> +      is synthesized, so instances in one design can differ, and it cannot
->> +      be read from the registers. Must match the synthesized depth.
->> +
->> +  '#mbox-cells':
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - '#mbox-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    mailbox@b2060000 {
->> +        compatible = "amd,pl-mailbox-2.1";
->> +        reg = <0xb2060000 0x10000>;
->> +        interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
->> +        clocks = <&pl_clk>;
->> +        amd,pl-mailbox-depth = <16>;
->> +        #mbox-cells = <1>;
->> +    };
->> +...
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 1e3f9f2751fe..3722a66b9960 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -1306,6 +1306,12 @@ S:	Supported
->>  T:	git https://gitlab.freedesktop.org/agd5f/linux.git
->>  F:	drivers/gpu/drm/amd/pm/
->>  
->> +AMD PROGRAMMABLE LOGIC MAILBOX DRIVER
->> +M:	Ben Levinsky <ben.levinsky@amd.com>
->> +L:	linux-kernel@vger.kernel.org
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/mailbox/amd,pl-mailbox-2.1.yaml
->> +
->>  AMD PSTATE DRIVER
->>  M:	Huang Rui <ray.huang@amd.com>
->>  M:	Mario Limonciello <mario.limonciello@amd.com>
->> -- 
->> 2.34.1
->>
+--
+Lee Jones [李琼斯]
 
 
