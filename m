@@ -2,152 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7920606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 475EF606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q6d8pfNA;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=hgUCRl0I
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TvOfjsY7;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EvV7duoT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cts4dLYsn8FGH6NTMcBVHYqM+GZNIgB6AoeVN87nofQ=; b=Q6d8pfNA75Ab/liAKD7Kk+eQya
-	09FyxrAMS7TPQt/ttQew2PoQeCqqi8fp5T9vwds+DKeNUZOvzegujTj9IgcmnqDeYsVSf1VUyNM+5
-	e54OC5vfk+ukMRvEJWbR1dVHB5OeFsSX4J9Az+DgpYs/aCQdYDNNUUD+yygavtp3lGv05dBzqxrEs
-	vrPQdNZ/ZpHCX+Gqgd5wYqoDU3CWmruSe5dq8QR5lzkpqHVVyAnFvPQcGxniFLBn3CzqswgcbCNP2
-	UzZfCqm6kgj7ww8lAcdHZlmU+Qf5sYu+QeT2A0Os6qSJLfFyQn09045i5pgnrGqEms9ZmRnels06W
-	j0C2mR1Q==;
+	bh=YqeiPLfNjKXmPyvzUWMnk9Cqa9JDVTCN0McxrwDNA9g=; b=TvOfjsY7zZSC2f7/IWwBq0iirp
+	yggzJVASp6FGczpahufT85mHx9wwjMHB9XjPXGG3C1Va13/z86xKq2zm9TD6/Mpq3JQPGiaoY90yy
+	3YL/+1thewtvESRwyBJ9xZNwJVL500bWfRBc8/b9w0ti+mWRUw34ZxpIoaGayP4wL/QwmDKU2u2ub
+	cJ5lmRKC68bNDrL5zZ7LAe2s105rN8DJTzGblZm92kebxON33kNGj9LSva7FaoUUiK8dXs7lhqEaY
+	fw2j61JOvWa53Cz7mwVwc3w+3w5Wbqwl7C3D21whM7Aj0pMp2pOLVuULChvY5H8IklXPLBfRt6RGb
+	NDq0MFTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTybv-0000000BQXY-1rs8;
-	Thu, 19 Nov 2026 09:39:19 +0000
-Received: from mail-francecentralazon11013033.outbound.protection.outlook.com ([40.107.162.33] helo=PA4PR04CU001.outbound.protection.outlook.com)
+	id 1xTyhS-0000000BR1p-0fYL;
+	Thu, 19 Nov 2026 09:45:02 +0000
+Received: from mgamail.intel.com ([192.198.163.12])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTybt-0000000BQWe-0jLl
+	id 1xTyhN-0000000BR0t-3IOY
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 09:39:18 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I9mJpV2P1C1ZPZ5CviHi3mek5G0lUc7VuXMYFRjj3hElc6FnrulDI4JCNdHxd77GVcXIEJ8r2jkTGD2ij9mZ3617OiiJeQKOUNfpuuhFwUuXnLXUMsRW5b+iG4oMCIRX8sRjC7DrC5Rf6fHjh5ErWM0IrVYyQy9vZmK9pf/eW1R/Fv9CojxpCXErxt37qXMx4yHKLL2QGVCUU/20pPf9kYZQnqG3FCNgoiimpFgqekWQDrJwsz/ayYF3nOIsFVLyk8PCemNPUAnKx5wKiOZtB7TKTgC3pJYcF+96+LfJSGxD40F7pVA0GT9gHVVaENMgadrePZJqD0J5jn/K8ojQLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cts4dLYsn8FGH6NTMcBVHYqM+GZNIgB6AoeVN87nofQ=;
- b=Vq2TEmWWuAKOoYSijflNaGHhub4YEqqc2w32rYxLr8HIePvppdJb1OM3pJ+mFVtw9f09Ns+cGrVsspEuJDaS0qzCLPPUrtwMtJYtoWh5QRtCMUnz45zHJNBqgD71cuCmOm+XnKoF7BzrsJWQL/JRRvsfo5lT1B12zqiwmaUh4Cw+0QrFcb1EyAe5V2HHouwRo68yTSZKg6wXutgyT6XpLiP9wRObYZtDD1OdxECekL4Tylg1UhGoqfv8LfRRqOIShxMMyHVG6koLJ+vYUjczBBRNN8cIDCR/b8xQbQbP4O2G3+uJY/GrrM9LN9PAUPxfbZ15QnIPUMLzmAx4DT4wAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cts4dLYsn8FGH6NTMcBVHYqM+GZNIgB6AoeVN87nofQ=;
- b=hgUCRl0ILa79DAVgADsPw7EJ4UZQgfMF6ZaYKsrvQjF1OIUj7w037wXhRpLbeIwODmrUtI4vfu0zCA/7a8nim6YrBsUSPVO3Gzdy/S+E6eY63dyC+M+p+3gqOOiv0Rk2lWI6K6be2tRP19y8UuddvPrT/BG+0mmK7oBC/mwZH2wv+lYU3LifrBw40NgLRgaG6YGZoZ20zlvtpZA7z1d88F2GSnXCkkNVVjlc3GU83qskzuJl/IlZiPIaSdO3sradbDzeWpxgumpmrrlAA6PKHLji9ObU3iZJj7i1BrpF6MRASrbExwFFYx3sSZeIdy6irgORD1HY8sbsSh7xGqylDw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com (2603:10a6:150:2c6::8)
- by AS8PR04MB8359.eurprd04.prod.outlook.com (2603:10a6:20b:3b3::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
- 2026 09:39:08 +0000
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4]) by GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4%5]) with mapi id 15.21.0615.013; Thu, 19 Nov 2026
- 09:39:08 +0000
-Message-ID: <4a4366e3-a99d-4250-9fb2-c3eb254c06f4@oss.nxp.com>
-Date: Thu, 19 Nov 2026 11:42:54 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] arm64: dts: freescale: imx93-var: Add Cortex-M33
- configurations
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, pierluigi.p@variscite.com,
- Stefano Radaelli <stefano.r@variscite.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20261119090600.9257-1-stefano.r@variscite.com>
- <be20af64-e729-4d1e-aba1-c8512ac6e775@oss.nxp.com>
- <av7BStmo7w4_rPci@Lord-Beerus.station>
-Content-Language: en-US
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-In-Reply-To: <av7BStmo7w4_rPci@Lord-Beerus.station>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P191CA0010.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d5::13) To GVXPR04MB12316.eurprd04.prod.outlook.com
- (2603:10a6:150:2c6::8)
+	Thu, 19 Nov 2026 09:45:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795081498; x=1826617498;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GrxUehPYuAdZ9/RKMpHXF+LGSfBV45QK6OO7c7G2neU=;
+  b=EvV7duoTSpCF2EYDVBraUTAGtYjZBDy3+oMP7jUincYQ1n/pDjZg4pcp
+   mliOjgW7gBX01G4n6Mld9QNGl6rR3i292PPrWLjHdn1oJ6JJjYe2O2zg8
+   pjEYFzusyqSljX1DzRdmg2s5+MUWn2qUcSjHvweaRFeh9hHevhJ+zYLYS
+   k890mwGFG0Van+J2eEwHWIKF350C2cTKC4onAzwqW4ZdnqGK0cJ4eK5TJ
+   57ICZH30DeWdzekAB+3rM2eOI1TdASWNDqI4rLYFRPEAxlz/Q1U0CA6//
+   hrzEmo7GT2E/+eLk0/s4Q1i/rPItAiGNM52tq2yQZUlWj8PdumOgnUAEL
+   A==;
+X-CSE-ConnectionGUID: 7nEcEmI3RQ2GX1mYPOioWg==
+X-CSE-MsgGUID: gDsisPDpTEmV0cnoDMSO3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3815570"
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
+   d="scan'208";a="3815570"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 01:44:54 -0800
+X-CSE-ConnectionGUID: KydEFDI0RQGTZj/DOyvsjA==
+X-CSE-MsgGUID: Sh455h9HQyyJ4OnK67pEcg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
+   d="scan'208";a="10196106"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.61])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 01:44:47 -0800
+Date: Thu, 19 Nov 2026 11:44:45 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Philipp Stanner <phasta@kernel.org>,
+	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH v2 02/11] iio: adc: stm32-mdf: add core registration
+Message-ID: <av7FDVDUH9EvNJmQ@ashevche-desk.local>
+References: <20261118-upstream_mdf_v2-v2-0-7939d3c3720a@foss.st.com>
+ <20261118-upstream_mdf_v2-v2-2-7939d3c3720a@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12316:EE_|AS8PR04MB8359:EE_
-X-MS-Office365-Filtering-Correlation-Id: d9e8cd8c-f1de-4578-6792-08df4620f58c
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|19092799006|366016|23010399003|56012099006|261022105027099003|261026121527099003|4143699003|11063799006|10067099003|261026140227099003|261028144727099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: mFhuz+wRtjDcG2K4t4g57g4GIghcUamiCLfmbMKKbXcqaCEoGZtGYmUDy41MyQremhdfN7u/sEvBL3TPH/aOsm3C2QTMJeePbSWlrRappqXmC46YOkPKTQL3kQoyiQ33GW4daV1NhQp9DGV90D6UcL9SHXcx1Pqk8QYkXCKFjMktWvGD8p/XdBVQ0cBsMeq5D/Yhf9pFNVTahq1dgIcYwVvNjWkZ4HJdRuIduYKSGY50dB+aG9dN5zbyTvSP70ScSeO3K+3akh5eX/aZUe+8XRDe81owbzYbr9OOQKelGDGjhI+HD19JywmcL7TCUXU4if0BXOo46apH0Scvnln2Rh6XConVIS7Vxdhbx0N6pimBHf6pMHmOK1xXs3y44EIi0j2khIsEp8jece1NvhlfAQYXyzzLLZicnB6KhKt0QGFKOJbCgzsdkV/jazCxtmwbSEa2+c7EhTRWCynkIWFxGZ5LzzYKqmn0ntAEb3UGr5PaJWOZarnn+4hJEwQ9fmRn+l70CSayCqGCYJgbPoCVp7B7BNzOEDJiuFWIErkZOpkKun+KhYWFz4xiU4ArT8ZZIJeUVmsl4YKw5bXKcxKsvRR5zBxW0vCQcdQgFa1xSr7FVOYevutB9M2s8sfSBjR6KujeZWbVsGfEbZNG3qr6etJii9+MVK5yPnhdM6rfFTc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12316.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(19092799006)(366016)(23010399003)(56012099006)(261022105027099003)(261026121527099003)(4143699003)(11063799006)(10067099003)(261026140227099003)(261028144727099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R2IxMzVrV29GRS9SVHp0MXhrMDN2RXg3UUVMaG5lVGRvK2NWMVdMTzUvNDRa?=
- =?utf-8?B?SDhKbytzYmVONS9wVDl3OGU2Z2lpRzNpSmlPTDFDOUdUNjRWT3lRTlczZjE1?=
- =?utf-8?B?bzdtc2pubVpRbExoZDNpU0pLTk9VSGZSRVpjWmhUUG8wTEJ3dTk2ZW5iMy9w?=
- =?utf-8?B?ZGRPb0plMWt6RFdYcGhNMGNZejZWdlFwdzVyRFkwOFhLditWbzNEaDZQcnh4?=
- =?utf-8?B?MnBFOHpCdUMyd21mTkd0SHBQOWhvVEovZkVYNkhxTzVnTG9iMXJqcDVndWhp?=
- =?utf-8?B?K2ZwNGJnbEIyR1Vlc2NvdjcvK0VoM25CQ1UwV1lVUGhYRTJDK01ZUDJYbk9z?=
- =?utf-8?B?emxTWjNIaDk2WEVLdE83b1Z0ZDJEbmxDRGtGSWVmK2R0d1lYd1lsRGJOelE5?=
- =?utf-8?B?anBZRk1WbENldU0rVUR6VG51OXJGODREcUZCMlpMTk1hWGZJWnhUN3lLMGVE?=
- =?utf-8?B?YnhWYzdNZHovaUdOdi85UXc4Ri9LWlJHVXByZkZhS1U0N3FFUVpXRDNQZE5u?=
- =?utf-8?B?aGdxcEJQVFRKVnF1RDIwbGp2eHJiVFJuZk1uTUZQRTB0RWpneDRqNTNNRlQr?=
- =?utf-8?B?bmsrRkNpNXhieXRuMWwvczFVVGNNdUg5aWFDaTJ1UmY2UTNVYUJZZHNnb3gw?=
- =?utf-8?B?V1pCZHpOSFZTbkhXbFNpcDBDd2JXbkkrcnVpWDdyUTlnN1M4aUQrV1BXdmIy?=
- =?utf-8?B?V21ZZ1l3dTZMR1dFR1ZyUVN2akJ4OVNoRzhrZ0IrZFcrMDB0VUw2RzNWUmNu?=
- =?utf-8?B?ZUdvMElrWTdWeC9rL21Sdm5VaE02UWFDLzlOTm1TVm82M1UrWXVJYWYyTzZ4?=
- =?utf-8?B?bU9rL0Rudkt1S0VHT1pkUUI2ek0ra2doRTN1SU8xdWdSVHdsV1lXQ3RPa3o4?=
- =?utf-8?B?R3QxQU1VQ0w0YzVRV21CVWRBbnEwcEZlWDhmbkljTzMwSldCdWRtb2xuYXBJ?=
- =?utf-8?B?ekhIK0JUaStpWG1zN3NDM3l6dm5yUkRVODlyY3RMUno2R0xNemFxWEl1eEJJ?=
- =?utf-8?B?TDFYQTVBR2VZcHNVUXZ3cTdjT0drNU5KbnVhNUkxTVVRMGl3ZHZmdHp3Yk1T?=
- =?utf-8?B?RTFMbUNWeUJkSnE0clVST0Y1V0tBRjN4aXhqM0N3SnUxWUlMSUNmM3J2eWxy?=
- =?utf-8?B?R3dOT0xBQlJiNmdiY0JEVkZ0VXhQV0lvKzVsdXNaRFhhVStyc29CYXZQWjNv?=
- =?utf-8?B?cmdnd3hDVTloOER0NHFmbzhhZ3ZRTmVZRU5rN1M1VnZYeUdneU5OcDR5WGZ1?=
- =?utf-8?B?QWt3L3FxQ3ZuN2w2ZldlbkFuci9DVXF2LzM3VlZNeDJPcUduWHZETTlaV1pW?=
- =?utf-8?B?V3pXVzhkYTF6ZTlITzhYd0wrcGI4NUZUTmRTOEpFL21XTU9yN3cwV3VCdlI3?=
- =?utf-8?B?cEpMTElLUFlBUWc5K1FHZ0RrZFcvSlRrcHFwMGR0REZlZWlieDZBMmdvTHMv?=
- =?utf-8?B?WGJSeGY2QWFhajN1ZUN4aS9WL2pHL3RXZDBiNjQ3Z0pUeFdXMDdtYys1Zng4?=
- =?utf-8?B?enQvbWJFK3I4ekM4UUhwd2F3bEExM2ZOVlZrdGoxNmNIMnV5RWtHTHVHcGhk?=
- =?utf-8?B?cXg4bDhEU0txWnJvclFFK0lwa0hvK2w5aHNZbFlFM21vbnV6MWtGeTFNc3p6?=
- =?utf-8?B?dUlGZ1VTSXJOYnRva3NRL1FKdzN3eFI4eU9vWFNvSkRoTGRXQ1h6dFVSMjdl?=
- =?utf-8?B?RzdGd2NNQ2U0aEUvWWlDdm9vVlVrcE5CWEo0aVpGNUJRL053VW1TbGNOV0xH?=
- =?utf-8?B?U1QyS3pvMUwwbnpoOFNKYnpjaTNzRHpaalRYZnMvTWlLMVFPOEwyMUpQeEoy?=
- =?utf-8?B?em5ya2ZaSUV6MTdkZ216SUZyNElmMm8wakhuZjRBSFc1M1ErUE5ZOWdnQlB4?=
- =?utf-8?B?NksvTHV1emhKT3lleFRCTXh1ZmtPRDFnZ1RtdGc0UXYvQWI4ZnUyeGt3WnFQ?=
- =?utf-8?B?MG85enYxcGlBajMvWis2ZEJrZ1AwMW1Sa3UwZG5DSi9zRGZQeXMzRnVhYysx?=
- =?utf-8?B?djArQzk5MnF3UUlwN3RuS2dxM25BOFFpUEZKZnpyUVdPVkkxTEFQb0NqUmF5?=
- =?utf-8?B?T1FLSTJDdW5ZUjEzWEs3NytvSG4xb2dXUlg1bGo4UkUzdXlXdEFlUWdMNHVB?=
- =?utf-8?B?VEw5WWUwQXNsaGlFTUJyOGkyaFg1bGZZV1JJZmtiZ1RXSTFwTVdidDZHODRC?=
- =?utf-8?B?LzgwV2FqMjdyczFCc1V5Mk8rcEszMThvTTZ6TEFhNUxRK0FTcEdZY0Jwdndj?=
- =?utf-8?B?Zk5TQmR3Uno5TVNjOVRKSnYya2tLbCsyVFZFeCs4SmoydHVRTW9mLy9NZG03?=
- =?utf-8?B?Y0NuNDhZRlR3YTNkRFdvalBEcEpkNGpjOHYyd1o4b1FXV0hWRHZGUT09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9e8cd8c-f1de-4578-6792-08df4620f58c
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12316.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 09:39:08.3650
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7nmTWQClQFtYY+4xp5LCbUE25wYDSB2bJG/KwL2C42l5VhxBfsdMubb1OVYv8U0Nd+o5yGc3IZ2TzUpQQwGu9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8359
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261118-upstream_mdf_v2-v2-2-7939d3c3720a@foss.st.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_013917_223014_BE11E789 
-X-CRM114-Status: GOOD (  17.96  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261119_014458_237891_2530D388 
+X-CRM114-Status: GOOD (  34.87  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,36 +106,487 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/19/26 11:28, Stefano Radaelli wrote:
-> On Thu, Nov 19, 2026 at 11:18:45AM +0200, Daniel Baluta wrote:
->>
->> Use "reserved" instead of "disabled" for all the nodes that need not to probe
->> on the Application processor because they are used by the M33 FW.
->>
->> Also, instead of disable in the commit message I think it is better to say "reserve".
->>
+On Wed, Nov 18, 2026 at 04:17:47PM +0100, Olivier Moysan wrote:
+> The STM32 multifunction digital filter (MDF) shares its register bank,
+> kernel clock and power resources between serial interfaces and digital
+> filters. Add a core driver to manage these common resources on STM32MP2.
 > 
-> Hi Daniel,
-> 
-> That makes sense, thank you for your review!
-> 
-> I'll use "reserved" for the peripherals used directly by the Cortex-M
-> firmware, and keep "disabled" for devices that become unavailable as a
-> consequence.
-> For example, Wi-Fi cannot use its reset GPIO because GPIO4 is reserved
-> for the M33.
-> 
-> Does that match what you had in mind?
-Yes, that make sense. I wonder if it is a good idea to split this patch
-into multiple patches each one representing a logical change.
+> Check the number of filter actually supported from identification
+> registers.
 
-The commit message suggests a lot of activities going on with the code which
-makes it harder to understand. Either approach is fine tough, as the changes are not that big.
+...
+
+> +config STM32_MDF_CORE
+> +	tristate "STMicroelectronics STM32 MDF core"
+> +	depends on (ARCH_STM32 && OF) || COMPILE_TEST
+
+Why OF?
+
+> +	depends on COMMON_CLK
+
+> +	select REGMAP
+
+Redundant.
+
+> +	select REGMAP_MMIO
+> +	help
+> +	  Select this option to enable the driver for STMicroelectronics
+> +	  STM32 Multi-function Digital Filter for sigma delta converter.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +		  will be called stm32-mdf.
+
+Broken indentation in the last line.
+
+...
+
+> +/*
+> + * This file is part of STM32 MDF driver
+
+Better to be more explicit. "This is the core part of ..."
+
+> + * Copyright (C) 2023-2026, STMicroelectronics - All Rights Reserved
+> + * Author: Olivier Moysan <olivier.moysan@foss.st.com>.
+> + */
+
+...
+
+> +#include <linux/cleanup.h>
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/list.h>
+> +#include <linux/module.h>
+
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_platform.h>
+
+Oh, really all of them are required?
+
+> +#include <linux/pinctrl/consumer.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+
+Missing types.h at least. Please follow IWYU principle.
+
+> +#include "stm32-mdf.h"
+
+...
+
+> +static bool stm32_mdf_core_volatile_reg(struct device *dev, unsigned int reg)
+> +{
+> +	/*
+> +	 * In MDF_CKGCR_REG register only CKGACTIVE bit is volatile. MDF_CKGCR_REG is not marked
+> +	 * as volatible to ease the suspend/resume case, and benefit from the regcache API.
+> +	 * Access to CKGACTIVE bit is managed specifically instead.
+> +	 */
+
+Why file is using 80 limit and comments 100? Be consistent!
+
+> +	return false;
+> +}
+
+...
+
+> +static const struct regmap_config stm32_mdf_regmap_cfg = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = sizeof(u32),
+> +	.max_register = MDF_SIDR_REG,
+> +	.readable_reg = stm32_mdf_core_readable_reg,
+> +	.volatile_reg = stm32_mdf_core_volatile_reg,
+> +	.writeable_reg = stm32_mdf_core_writeable_reg,
+> +	.num_reg_defaults_raw = MDF_SIDR_REG / sizeof(u32) + 1,
+
+ARRAY_SIZE()?
+
+> +	.fast_io = true,
+> +	.cache_type = REGCACHE_FLAT,
+> +};
+
+...
+
+> +struct stm32_mdf_priv {
+> +	struct stm32_mdf mdf;
+
+> +	struct platform_device *pdev;
+
+Why?!
+
+> +	struct regmap *regmap;
+
+> +	struct clk *kclk;
+> +	void __iomem *base;
+> +	phys_addr_t phys_base;
+> +	atomic_t n_active_ch;
+> +	spinlock_t lock; /* Manage common resources race conditions */
+> +	unsigned long kclk_rate;
+
+Units? _Hz? Why not group it with kclk above?
+
+> +	bool exclusive_flg;
+> +};
+
+...
+
+> +static inline struct stm32_mdf_priv *to_stm32_mdf_priv(struct stm32_mdf *mdf)
+> +{
+> +	return container_of(mdf, struct stm32_mdf_priv, mdf);
+
++ container_of.h
+
+> +}
+
+...
+
+> +int stm32_mdf_core_start_mdf(struct stm32_mdf *mdf)
+> +{
+> +	struct stm32_mdf_priv *priv = to_stm32_mdf_priv(mdf);
+> +	struct device *dev = &priv->pdev->dev;
+> +	int ret;
+
+> +	u32 val;
+
+regmap uses unsigned int.
+
+> +
+> +	if (atomic_inc_return(&priv->n_active_ch) == 1) {
+> +		ret = pm_runtime_resume_and_get(dev);
+> +		if (ret < 0)
+> +			goto err;
+> +
+> +		/* Enable PROCDIV and CCKDIV clock dividers */
+> +		ret = regmap_set_bits(priv->regmap, MDF_CKGCR_REG, MDF_CKG_CKGDEN);
+> +		if (ret < 0)
+> +			goto pm_put;
+> +
+> +		/* Check clock status. Bypass cache to access volatile CKGACTIVE active bit */
+> +		regcache_cache_bypass(priv->regmap, true);
+> +		regmap_read(priv->regmap, MDF_CKGCR_REG, &val);
+> +		regcache_cache_bypass(priv->regmap, false);
+> +		if (!(val & MDF_CKG_ACTIVE)) {
+> +			ret = -EINVAL;
+> +			dev_err(dev, "MDF clock not active\n");
+> +			goto pm_put;
+> +		}
+> +
+> +		if (!priv->exclusive_flg) {
+> +			clk_rate_exclusive_get(priv->kclk);
+> +			priv->exclusive_flg = true;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +pm_put:
+> +	pm_runtime_put_sync(dev);
+> +err:
+> +	atomic_dec(&priv->n_active_ch);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(stm32_mdf_core_start_mdf);
+
+No namespace?
+
+...
+
+> +int stm32_mdf_core_trigger(struct stm32_mdf *mdf)
+> +{
+> +	struct stm32_mdf_priv *priv = to_stm32_mdf_priv(mdf);
+> +	int ret;
+> +	u32 val;
+
+As per above.
+
+> +	guard(spinlock)(&priv->lock);
+> +
+> +	/* Bypass cache to access TRGO volatile bit */
+> +	regcache_cache_bypass(priv->regmap, true);
+> +
+> +	ret = regmap_read(priv->regmap, MDF_GCR_REG, &val);
+> +	if (ret < 0)
+
+Why ' < 0' ?
+
+> +		goto err;
+> +
+> +	if (val & MDF_GCR_TRGO) {
+> +		ret = -EBUSY;
+> +		goto err;
+> +	}
+> +
+> +	ret = regmap_set_bits(priv->regmap, MDF_GCR_REG, MDF_GCR_TRGO);
+> +
+> +err:
+> +	regcache_cache_bypass(priv->regmap, false);
+> +
+> +	return ret;
+> +}
+
+...
+
+> +int stm32_mdf_core_stop_mdf(struct stm32_mdf *mdf)
+> +{
+> +	struct stm32_mdf_priv *priv = to_stm32_mdf_priv(mdf);
+
+> +	int ret = 0;
+
+Top assignments like this one is harder to maintain. And they might
+lead to subtle errors.
+
+> +	if (atomic_dec_and_test(&priv->n_active_ch)) {
+> +		if (priv->exclusive_flg) {
+> +			clk_rate_exclusive_put(priv->kclk);
+> +			priv->exclusive_flg = false;
+> +		}
+> +
+> +		ret = regmap_clear_bits(priv->regmap, MDF_CKGCR_REG, MDF_CKG_CKGDEN);
+> +
+> +		pm_runtime_put_sync(&priv->pdev->dev);
+
+		return ret;
+
+> +	}
+> +
+> +	return ret;
+
+	return 0;
+
+> +}
+
+...
+
+> +static int stm32_mdf_core_parse_of(struct platform_device *pdev, struct stm32_mdf_priv *priv)
+
+Oh my... In the name _of_ is present, in the code device property API is used,
+the inclusion block includes set of rarely required of_*.h! Please, fix this
+mess.
+
+> +{
+> +	struct device_node *node = pdev->dev.of_node;
+
+Why?!
+
+> +	struct reset_control *rst;
+> +	struct device *dev = &pdev->dev;
+> +	u32 count;
+> +	int ret;
+
+> +	if (!node)
+> +		return -EINVAL;
+
+Do we really need this (or at least why here?)?
+
+> +	rst = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
+> +	if (IS_ERR(rst))
+> +		return dev_err_probe(dev, PTR_ERR(rst), "Failed to get reset controller\n");
+> +
+> +	ret = reset_control_reset(rst);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to reset MDF\n");
+> +
+> +	ret = stm32_mdf_core_parse_clocks(pdev, priv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (device_property_present(&pdev->dev, "st,interleave")) {
+> +		ret = device_property_read_u32(dev, "st,interleave", &count);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to read interleaved filter count\n");
+> +
+> +		if (count < 2 || count > 8 || count > priv->mdf.nbf)
+> +			return dev_err_probe(dev, -EINVAL,
+> +					     "Invalid interleaved filter count [%u]\n", count);
+> +
+> +		priv->mdf.nb_interleave = count;
+> +
+> +		/* Configure GCR */
+> +		ret = regmap_update_bits(priv->regmap, MDF_GCR_REG,
+> +					 MDF_GCR_ILVNB_MASK,
+> +					 FIELD_PREP(MDF_GCR_ILVNB_MASK, count - 1));
+> +	}
+
+> +	return ret;
+
+This is unusual. Just make return early and return 0 on success.
+
+> +}
+
+...
+
+> +static const struct of_device_id stm32_mdf_of_match[] = {
+> +	{ .compatible = "st,stm32mp23-mdf", .data = (void *)STM32_MDF_MP23_FILTER_NB },
+> +	{ .compatible = "st,stm32mp25-mdf" },
+
+Make both provide chip_info and not some constant.
+
+> +	{}
+
+Follow the common style (space inside).
+
+> +};
+
+...
+
+> +static int stm32_mdf_core_identification(struct platform_device *pdev, struct stm32_mdf_priv *priv)
+> +{
+> +	struct stm32_mdf *mdf = &priv->mdf;
+> +	u32 val;
+> +	int ret;
+> +
+> +	/* If filter number is explicitly defined, don't check identification registers */
+> +	mdf->nbf = ((unsigned long)device_get_match_data(&pdev->dev));
+
+Outer parentheses make no sense at all.
+
+> +	if (mdf->nbf)
+> +		return 0;
+
+No, return -ENODATA and make sure you provide chip_info for all of
+the components.
+
+> +	ret = regmap_read(priv->regmap, MDF_IPIDR_REG, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val == STM32MP25_MDF_IPIDR_NUMBER) {
+> +		ret = regmap_read(priv->regmap, MDF_HWCFGR_REG, &val);
+> +		if (ret)
+> +			return ret;
+> +
+> +		mdf->nbf = FIELD_GET(MDF_HWCFGR_NBF_MASK, val);
+> +
+> +		ret = regmap_read(priv->regmap, MDF_VERR_REG, &val);
+
+This ret is not used?
+
+> +		dev_dbg(&pdev->dev, "MDF version: %lu.%lu\n", FIELD_GET(MDF_VERR_MAJREV_MASK, val),
+> +			FIELD_GET(MDF_VERR_MINREV_MASK, val));
+> +	} else {
+> +		dev_err(&pdev->dev, "Unexpected ID number: 0x%x\n", val);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int stm32_mdf_core_probe(struct platform_device *pdev)
+> +{
+
+	struct device *dev = &pdev->dev;
+
+> +	struct stm32_mdf_priv *priv;
+> +	struct resource *res;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +	priv->pdev = pdev;
+> +	spin_lock_init(&priv->lock);
+> +
+> +	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +	priv->phys_base = res->start;
+> +
+> +	priv->kclk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(priv->kclk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->kclk),
+> +				     "Failed to get kernel clock\n");
+> +	priv->mdf.kclk = priv->kclk;
+> +
+> +	priv->regmap = stm32_mdf_regmap_init(&pdev->dev, priv->kclk, priv->base,
+> +					     &stm32_mdf_regmap_cfg);
+> +	if (IS_ERR(priv->regmap))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->regmap),
+> +				     "Regmap init error\n");
+> +
+> +	ret = stm32_mdf_core_identification(pdev, priv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = stm32_mdf_core_parse_of(pdev, priv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	INIT_LIST_HEAD(&priv->mdf.filter_list);
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	pm_runtime_get_noresume(&pdev->dev);
+> +	pm_runtime_set_active(&pdev->dev);
+> +	pm_runtime_enable(&pdev->dev);
+
+> +	ret = of_platform_populate(pdev->dev.of_node, NULL, NULL, &pdev->dev);
+
+dev_of_node(dev)
+
+> +	if (ret)
+> +		goto pm_put;
+
+Yeah, if needed, this is the only thing that needs of.h and of_platform.h IIUC.
+
+> +	pm_runtime_put(&pdev->dev);
+> +
+> +	return 0;
+> +
+> +pm_put:
+> +	pm_runtime_disable(&pdev->dev);
+> +	pm_runtime_set_suspended(&pdev->dev);
+> +	pm_runtime_put_noidle(&pdev->dev);
+> +
+> +	return ret;
+> +}
+
+...
+
+> +static const struct dev_pm_ops stm32_mdf_core_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(stm32_mdf_core_suspend, stm32_mdf_core_resume)
+> +	SET_RUNTIME_PM_OPS(stm32_mdf_core_runtime_suspend, stm32_mdf_core_runtime_resume, NULL)
+> +};
+
+Use modern way of representing PM callbacks.
+
+...
+
+> +static struct platform_driver stm32_mdf_driver = {
+> +	.probe = stm32_mdf_core_probe,
+> +	.remove = stm32_mdf_core_remove,
+> +	.driver = {
+> +		.name = "stm32-mdf",
+> +		.of_match_table = stm32_mdf_of_match,
+> +		.pm = &stm32_mdf_core_pm_ops,
+> +	},
+> +};
+
+> +
+
+Drop this blank line.
+
+> +module_platform_driver(stm32_mdf_driver);
+
+...
+
+I stopped here, this series need much more work, please study existing drivers
+in IIO for the modern style and APIs they are using. Also make code be consistent.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
