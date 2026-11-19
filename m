@@ -2,70 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94695606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4E0606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:27:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=APpKX7nY;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=gdzLmp43
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zZbEQK86;
+	dkim=pass (2048-bit key) header.d=brainfault.org header.i=@brainfault.org header.a=rsa-sha256 header.s=google header.b=V61pZgrU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=TzGcuigoI99vvi0jTQ+1RRJQmDFrEo3B9K0Tz4FddVk=; b=APpKX7nYQP6+1FmrI+ecdbNSQ1
-	EG1rvzl/lHeI6hPWk/DwJczteSoD15txa7CLsqgnsusMLN/Pzh9gRT3Ut6wYogOmhbB3UGYEUCUZc
-	y/e9QE9WsdgjCugA5a4aTcOZZaCz4/hyQOk5cGFQ7JZe2oHnWex5kptR4f8uTEgYEo6HB9ZiTydRp
-	mKbpNbkcPh7NTuZnL+me04sw/pkNIB+bD1Iqf0eaNq13SHxsJlMspvWWkFbPUpx6nT/Q1VVB2Uozx
-	wOR0I3ke02/sZb3JsUK/DQ3sOI0306NLRnP8D6tTA56LHZlNeJLFmX4XNFtDv7k0eAUzmhCpq4Agh
-	M+HLtuJw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=CZqy6xFABQEyD7CGf6Z9ErvSDunlUYlFbbHfyyFxeho=; b=zZbEQK86Pny8AC
+	kZ2uTE39TxXpI7hJ4cyq3IFXeMWhCB3pgi7jVGyEuYQRvz6/j37z9UqkWXovVML4P6bL24Ffxq7xs
+	uExMwcu7BNvE+DAmFM21u5OjnqskFEVyZwg0a/Y8mbBlR0XVbmSlkiZXfhKpTN0/Uq6PzEybMJ2f1
+	aruw6Xz0A2lzgopxOlJvpeX2f2+KADPzH7+6awpH3D3ZhS+7sbX1PgdCebbZNFDdjPXNtKmtkY1yX
+	n7JuZI3ZrB9YGGH/KjkidOVqkIu1A4yLFVr/VYaLsxegA8OA3vIg/8dgEE7V5w03zFk1+5f1HIznB
+	gKq2tJKXuQowmRdYaa0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU40d-0000000CRNP-1b8t;
-	Thu, 19 Nov 2026 15:25:11 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU40b-0000000CRMY-2MIz
+	id 1xU42m-0000000CRmC-2Wtr;
+	Thu, 19 Nov 2026 15:27:24 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU42k-0000000CRl8-2IEr
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 15:25:11 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F1F9E1575;
-	Thu, 19 Nov 2026 07:25:02 -0800 (PST)
-Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D21CF3F882;
-	Thu, 19 Nov 2026 07:25:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795101905; bh=20Got6VdPfVmaxBzBWWAavwva4RwxbMx3KZwEJiJ824=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gdzLmp43XvH+kJPQchdfhLTMJqirL8CBgjtxwKYi7l/ramVMHn6NSMLJfaly9tzSf
-	 Cl+PFRxAZhUPxh4qDNrDQj3x9sth7j4F/chNGBKYyRQxw2RUPNPr/zAf0WheBktyGr
-	 lIQb0Mx/kOyw5+gHP/GM1f5rkZPo+lXU42cbDWIA=
-Date: Thu, 19 Nov 2026 15:24:59 +0000
-From: Alexandru Elisei <alexandru.elisei@arm.com>
-To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
-	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
-	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev, will@kernel.org, mark.rutland@arm.com,
-	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
-	james.clark@linaro.org
-Subject: Re: [RFC PATCH v7 00/28] KVM: arm64: Add Statistical Profiling
- Extension (SPE) support
-Message-ID: <av8Uy763VmZPA4RR@raptor>
-References: <20260903160623.315525-1-alexandru.elisei@arm.com>
- <auy-TwnMbIn-r2xl@gremlin>
- <au29ACRXFEOXaWPV@raptor>
- <avs9oxfRNGiIi8an@gremlin>
+	Thu, 19 Nov 2026 15:27:23 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4ac95761c85so19021195e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 07:27:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795102040; cv=none;
+        d=google.com; s=arc-20260327;
+        b=eJl8ht38vTF7AUwX/IJWFfr/zLXDOa59Fv7D19vYv1JN6mfMuJZoVJQkq6q4qCrG8r
+         EY5aG+7EuchMmry2LIdns39nRUc2qJh8IIZHYWIpo6t/PEjVzZkX3Gv/hrV/Dsy0aphU
+         Cu5lsU45XLvcMhHxp5wuoSTB9doWp52L6lrqHJ7baaL0MQ/Ne3g1Yeqo6nQeGF5wIp7Y
+         JOfaU9/BKrrzrrrFP4O3DjWEcNnyp5xcymINe+ODD4MykT19K6if/1FC+gIa5fPC2iPO
+         /PWr63gFUO9pA63BXwXk5RaacH1HWSShazP05c4Mq8KF2jVkorVDP1ek2GuVGkzS1Cy2
+         iPUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=CZqy6xFABQEyD7CGf6Z9ErvSDunlUYlFbbHfyyFxeho=;
+        fh=y7uuiAbCYWBFkLRuZh+gplJbTpB8RMUcPRCemBLfKgk=;
+        b=QK+nIb9dJ6iXIIX6zXU5un7VwcgW40zt6PAeN3lsp59+yZNonksUGtGxTiiWaQKPVu
+         twXz5tJ7diR6G+ztgl3/ZsdbmWOEUO+9PL/eodDK5rHBBLys0EhCMl3KNQfWA4Wyqf7A
+         iBxRMxF3guVLSoJ1kH1GVUt7CYQlxlSAN5waXBBSzPNdEI98iiXxVY7aGfuIMNy/TzXF
+         HpA1Q/8b5TKUck2z2lG7+bsNMwrLcYZN7FLRJL6NTB5uAblh56eXR2kHL3z6DI0GF1ad
+         poEdlqKvjw+SpS1YSMLEN2VWxlZENTFJxvjaJuW7FLf4z4cPqCBVh5ncWGzXkB+qFjcz
+         sCRg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault.org; s=google; t=1795102040; x=1795706840; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=CZqy6xFABQEyD7CGf6Z9ErvSDunlUYlFbbHfyyFxeho=;
+        b=V61pZgrUSYkiWnOd60nD+sFT7bfrdkFqNJcffqVsAYX9R8GY5tjrdeaOyrgUWg0VJ0
+         D4eehhVu5W9Lp8NkpmgrLpBLEQ4rM+lTJ7B2wgOyNF8mqwHPPS76y/LcdTJe0uWQFube
+         9Pycx9VyV3eciRyNV0lq70x0SzCGpEzEOhxTE3y46ddISWSsrUTokla/vtb5drNVnPMx
+         v9ufQRIbH4QUOIfXUHsmvSQYw0D8ttZmlHE0ox4EW6kPBf93YlM6HfGxDdtQvd6vpZ/m
+         9CnsEiyFWursjVORXNC5ph5t1wbF787V/HJvU0ZQigH/a0+tL0i2kwbeW/pQz6Q9w5Nv
+         O9tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795102040; x=1795706840;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=CZqy6xFABQEyD7CGf6Z9ErvSDunlUYlFbbHfyyFxeho=;
+        b=S5Pe/VtPMUHRhkBUXhhHueflSbiobDg5LslVe9LPwRf+aHxOWpL1etr/QuPNTjNvqq
+         tXY3MxKgok09tvneS2mmXtv7nWMyX4I/tFpKzS/fLlBipxWc72k9SoR7piVuEhkuoDMF
+         QLuFNLYzI9WYIOqtdFxEa1EAQ8TiYmeltUI8bzXy3C9LRvMxG4QaRjY7qBppl/EMfUAV
+         +drjzh8haq9oR5eUa8UZHz0ZQw8kUwul/NPs38zqSPNSatvlY/i8niRpqdKyZ+xaZUcb
+         Aq0aH/+uzintI5//Zg3/uzAQFcRuE4RmoH+g2uOGXQx9YaWwEqUHuwgyfcnBrHQZtwfo
+         qpXw==
+X-Forwarded-Encrypted: i=1; AL+hErEjYMNqIQYIgJ5ct1EiKFZSHzqbbh7/k6mE/ScbPx4mPx7+8wSfliXNN/u+s4TIvBrqPrvQbkPBabIOt3bSdDfF@lists.infradead.org
+X-Gm-Message-State: APuU4Z+eOtise6GcdX1aEQ57i15IrDBLCobYxUmal5JL1NCDoV2iQCKX
+	SECWFUo9E91e8uWCCGdqR0D+MeQDPkvS0XMmkQW1cL6BwvcJySfaRszJAGoztas/0gW0zw9yBFP
+	5kqsBUBn+rQFsJI92sYn5boJYVooJ7SXVxeAI6A2Nhg==
+X-Gm-Gg: AYBFou1vt3nguLREC92HMbu6+IEnk3nIgIBrVlUC54YCOC6UnKJcUlMitTEa1RmO6fv
+	KQcCF3gh/Iakj9xC3gYjHpkhCDuDb5DCcgldI0QpGLGYZ2Ln/a2CUiTBswG9fcCBI7ZQHJ/zwoK
+	7acGXlGaRc65s+ycStRScLufmoLFcMTLdxddjgLT7QQKNl7qToOLSRyPIclnp4ZEfVcF2DLX9Kw
+	EXqmxGnvqPsQfGSSvX+jMCz1wiGMkGukTyO4iH/y1FAlliLwMLfQgO+l9pkn/+gkeOFfNPO23Hr
+	9+S6Gsb5dKFoTnt2g9oQgV7NZ8VAqGYwlLdyK5zCoS6wiPIVYB/xK+bj6foLvd7aYi/vUaTwjBo
+	ALS2c08hn4RRMSnPb4JS2ajx+2a/+QfzafV0MzPcpp2k/Z2cwpH8dOyl9mJwdCHyJ4sUcACWzMd
+	fPxsGxrfSG/LYKomGvhfkjcC5jGpDUbjANUxxrldNkcglAYs5Kzch6S8k=
+X-Received: by 2002:a05:600c:154a:b0:4bb:6b6b:fbaa with SMTP id
+ 5b1f17b1804b1-4bb7da12ab1mr128048755e9.16.1795102039017; Thu, 19 Nov 2026
+ 07:27:19 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <avs9oxfRNGiIi8an@gremlin>
+References: <20261118095053.3871267-1-vikram.singh3@oss.qualcomm.com> <20261118095053.3871267-5-vikram.singh3@oss.qualcomm.com>
+In-Reply-To: <20261118095053.3871267-5-vikram.singh3@oss.qualcomm.com>
+From: Anup Patel <anup@brainfault.org>
+Date: Thu, 19 Nov 2026 20:57:07 +0530
+X-Gm-Features: Aa3M54rZEbG4RNdS6O1BRxLO3kDHI5P1qMQJ1pxxqQiXGApFrfCV5-bLcT-cUmk
+Message-ID: <CAAhSdy1fx4uJJTTamoyOjojh+ApdZmPVh9nd==NcfM6fTCoOvQ@mail.gmail.com>
+Subject: Re: [PATCH v5 4/7] riscv: pmu: Add infrastructure for Control
+ Transfer Record
+To: Vikram Singh <vikram.singh3@oss.qualcomm.com>
+Cc: peterz@infradead.org, mingo@redhat.com, acme@kernel.org, 
+	namhyung@kernel.org, mark.rutland@arm.com, alexander.shishkin@linux.intel.com, 
+	jolsa@kernel.org, irogers@google.com, adrian.hunter@intel.com, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	alex@ghiti.fr, atishp@rivosinc.com, anup.patel@oss.qualcomm.com, 
+	will@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	beeman@rivosinc.com, linux-perf-users@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, Conor Dooley <conor@kernel.org>, 
+	devicetree@vger.kernel.org, Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_072509_702266_B7863268 
-X-CRM114-Status: GOOD (  72.41  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261119_072722_666993_73DD8A02 
+X-CRM114-Status: GOOD (  28.11  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,219 +127,253 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Lorenzo,
+On Wed, Nov 18, 2026 at 3:21=E2=80=AFPM Vikram Singh
+<vikram.singh3@oss.qualcomm.com> wrote:
+>
+> To support Control Transfer Records (CTR) extension, we need to extend th=
+e
+> riscv_pmu framework with some basic infrastructure for branch stack
+> sampling. Subsequent patches will use this to add support for CTR in the
+> riscv_pmu_dev driver.
+>
+> With CTR, the branches are stored into a hardware FIFO, which will be
+> sampled by software when perf events overflow. A task may be
+> context-switched between overflows, and to avoid leaking samples we need
+> to clear the last task's records when a task is context-switched in.
+> To do this we will be using the pmu::sched_task() callback added in this
+> patch.
+>
+> Co-developed-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
+> Signed-off-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
+> Signed-off-by: Vikram Singh <vikram.singh3@oss.qualcomm.com>
+> Link: https://lore.kernel.org/r/20261106173942.3175069-5-vikram.singh3@os=
+s.qualcomm.com
+> Signed-off-by: Anup Patel <anup@brainfault.org>
 
-On Mon, Nov 16, 2026 at 05:51:25PM +0000, Lorenzo Stoakes (ARM) wrote:
-> On Fri, Nov 06, 2026 at 11:41:52AM +0000, Alexandru Elisei wrote:
-> > Hi Lorenzo,
-> >
-> > On Thu, Nov 05, 2026 at 05:47:45PM +0000, Lorenzo Stoakes (ARM) wrote:
-[..]
-> > > 3. The entire VM needs to be pre-faulted, but who should do it? - I do
-> > >    think that relying on userland to do this is a little iffy. So I wonder
-> >
-> > There's plenty of iffiness that userspace already handles when it comes to
-> > virtual machines.
-> 
-> Yup, does seem to be a fair bit of implicit assumptions of sanity :)
-> 
-> >
-> > Or, how Oliver put it [1] (regarding migration, but it fits):
-> >
-> > 'My take is that there's no amount of idiot-proofing we can do in KVM to prevent
-> > the VMM from messing this up somehow'.
-> 
-> Haha, right.
-> 
-> I guess fine to require userland to set things up like that, and can always add
-> an option to have it automatically set up for them in future as a nice-to-have.
-> 
-> I want to separate out the gmem bit though, replying below:
-> 
-> >
-> > [1] https://lore.kernel.org/kvm/alE3jRLtYeq-WesA@kernel.org/
-> >
-> > >    whether it might be possible to, on SPE first run, prefault the ranges
-> > >    there, and make that a condition of using it? Relatedly, KVM could
-> > >    reject non-guest_memfd memslots for an SPE VM rather than trusting
-> > >    userspace there too.
-> >
-> > I'm not sure that's the best idea. Mainly two reasons:
-> >
-> > 1. KVM will be imposing the condition that *all* writable memslots be backed by
-> > guest_memfd, and *all* memory backing these memslots be pre-faulted and
-> > effectively pinned.
-> 
-> I mean this really is a requirement for SPE to work at all, since the guest is
+As mentioned in PATCH1, drop the "Link:" and the subsequent
+"Signed-off-by:" lines.
 
-Broadly speaking, yes. The requirement is that when running in a VM, the
-buffer shouldn't encounter faults that wouldn't happen when running on
-baremetal. This translates into when the guest attempts to write a record
-to memory that is valid and writable from the guest's point of view, there
-shouldn't be any faults due to that memory not being mapped at stage 2.
+> ---
+>  drivers/perf/riscv_pmu.c        | 19 +++++++++++++++++++
+>  drivers/perf/riscv_pmu_legacy.c |  2 ++
+>  drivers/perf/riscv_pmu_sbi.c    | 17 +++++++++++++++++
+>  include/linux/perf/riscv_pmu.h  | 23 +++++++++++++++++++++--
+>  4 files changed, 59 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/perf/riscv_pmu.c b/drivers/perf/riscv_pmu.c
+> index 8e3cd0f35336..d4826eb73b16 100644
+> --- a/drivers/perf/riscv_pmu.c
+> +++ b/drivers/perf/riscv_pmu.c
+> @@ -157,6 +157,19 @@ u64 riscv_pmu_ctr_get_width_mask(struct perf_event *=
+event)
+>         return GENMASK_ULL(cwidth, 0);
+>  }
+>
+> +static void riscv_pmu_sched_task(struct perf_event_pmu_context *pmu_ctx,=
+ struct task_struct *task,
+> +                                bool sched_in)
+> +{
+> +       struct riscv_pmu *pmu;
+> +
+> +       if (!pmu_ctx)
+> +               return;
+> +
+> +       pmu =3D to_riscv_pmu(pmu_ctx->pmu);
+> +       if (pmu->sched_task)
+> +               pmu->sched_task(pmu_ctx, task, sched_in);
+> +}
+> +
+>  u64 riscv_pmu_event_update(struct perf_event *event)
+>  {
+>         struct riscv_pmu *rvpmu =3D to_riscv_pmu(event->pmu);
+> @@ -269,6 +282,8 @@ static int riscv_pmu_add(struct perf_event *event, in=
+t flags)
+>         cpuc->events[idx] =3D event;
+>         cpuc->n_events++;
+>         hwc->state =3D PERF_HES_UPTODATE | PERF_HES_STOPPED;
+> +       if (rvpmu->ctr_add)
+> +               rvpmu->ctr_add(event, flags);
+>         if (flags & PERF_EF_START)
+>                 riscv_pmu_start(event, PERF_EF_RELOAD);
+>
+> @@ -290,6 +305,8 @@ static void riscv_pmu_del(struct perf_event *event, i=
+nt flags)
+>         if (rvpmu->ctr_stop)
+>                 rvpmu->ctr_stop(event, RISCV_PMU_STOP_FLAG_RESET);
+>         cpuc->n_events--;
+> +       if (rvpmu->ctr_del)
+> +               rvpmu->ctr_del(event, flags);
+>         if (rvpmu->ctr_clear_idx)
+>                 rvpmu->ctr_clear_idx(event);
+>         perf_event_update_userpage(event);
+> @@ -402,6 +419,7 @@ struct riscv_pmu *riscv_pmu_alloc(void)
+>         for_each_possible_cpu(cpuid) {
+>                 cpuc =3D per_cpu_ptr(pmu->hw_events, cpuid);
+>                 cpuc->n_events =3D 0;
+> +               cpuc->ctr_users =3D 0;
+>                 for (i =3D 0; i < RISCV_MAX_COUNTERS; i++)
+>                         cpuc->events[i] =3D NULL;
+>                 cpuc->snapshot_addr =3D NULL;
+> @@ -416,6 +434,7 @@ struct riscv_pmu *riscv_pmu_alloc(void)
+>                 .start          =3D riscv_pmu_start,
+>                 .stop           =3D riscv_pmu_stop,
+>                 .read           =3D riscv_pmu_read,
+> +               .sched_task     =3D riscv_pmu_sched_task,
+>         };
+>
+>         return pmu;
+> diff --git a/drivers/perf/riscv_pmu_legacy.c b/drivers/perf/riscv_pmu_leg=
+acy.c
+> index 1b8e4789cb3c..5214e90c61a6 100644
+> --- a/drivers/perf/riscv_pmu_legacy.c
+> +++ b/drivers/perf/riscv_pmu_legacy.c
+> @@ -115,6 +115,8 @@ static void pmu_legacy_init(struct riscv_pmu *pmu)
+>         set_bit(RISCV_PMU_LEGACY_INSTRET, pmu->cmask);
+>         pmu->ctr_start =3D pmu_legacy_ctr_start;
+>         pmu->ctr_stop =3D NULL;
+> +       pmu->ctr_add =3D NULL;
+> +       pmu->ctr_del =3D NULL;
+>         pmu->event_map =3D pmu_legacy_event_map;
+>         pmu->ctr_get_idx =3D pmu_legacy_ctr_get_idx;
+>         pmu->ctr_get_width =3D pmu_legacy_ctr_get_width;
+> diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
+> index 21a2078eab98..b14b3acf7567 100644
+> --- a/drivers/perf/riscv_pmu_sbi.c
+> +++ b/drivers/perf/riscv_pmu_sbi.c
+> @@ -825,6 +825,14 @@ static void pmu_sbi_reset_scounteren(void *arg)
+>                           csr_read(CSR_SCOUNTEREN) & ~BIT(pmu_sbi_csr_ind=
+ex(event)));
+>  }
+>
+> +static void pmu_sbi_ctr_add(struct perf_event *event, int flags)
+> +{
+> +}
+> +
+> +static void pmu_sbi_ctr_del(struct perf_event *event, int flags)
+> +{
+> +}
+> +
+>  static void pmu_sbi_ctr_start(struct perf_event *event, u64 ival)
+>  {
+>         struct sbiret ret;
+> @@ -885,6 +893,12 @@ static void pmu_sbi_ctr_stop(struct perf_event *even=
+t, unsigned long flag)
+>         }
+>  }
+>
+> +static void pmu_sbi_sched_task(struct perf_event_pmu_context *pmu_ctx, s=
+truct task_struct *task,
+> +                              bool sched_in)
+> +{
+> +       /* Call CTR specific Sched hook. */
+> +}
+> +
+>  static int pmu_sbi_find_num_ctrs(void)
+>  {
+>         struct sbiret ret;
+> @@ -1506,6 +1520,8 @@ static int pmu_sbi_device_probe(struct platform_dev=
+ice *pdev)
+>         pmu->pmu.attr_groups =3D riscv_pmu_attr_groups;
+>         pmu->pmu.parent =3D &pdev->dev;
+>         bitmap_copy(pmu->cmask, cmask, RISCV_MAX_COUNTERS);
+> +       pmu->ctr_add =3D pmu_sbi_ctr_add;
+> +       pmu->ctr_del =3D pmu_sbi_ctr_del;
+>         pmu->ctr_start =3D pmu_sbi_ctr_start;
+>         pmu->ctr_stop =3D pmu_sbi_ctr_stop;
+>         pmu->event_map =3D pmu_sbi_event_map;
+> @@ -1517,6 +1533,7 @@ static int pmu_sbi_device_probe(struct platform_dev=
+ice *pdev)
+>         pmu->event_mapped =3D pmu_sbi_event_mapped;
+>         pmu->event_unmapped =3D pmu_sbi_event_unmapped;
+>         pmu->csr_index =3D pmu_sbi_csr_index;
+> +       pmu->sched_task =3D pmu_sbi_sched_task;
+>
+>         ret =3D riscv_pm_pmu_register(pmu);
+>         if (ret)
+> diff --git a/include/linux/perf/riscv_pmu.h b/include/linux/perf/riscv_pm=
+u.h
+> index ecaa40370830..c748a06ad751 100644
+> --- a/include/linux/perf/riscv_pmu.h
+> +++ b/include/linux/perf/riscv_pmu.h
+> @@ -28,6 +28,15 @@
+>
+>  #define RISCV_PMU_CONFIG1_GUEST_EVENTS 0x1
+>
+> +struct sse_event;
+> +
 
-The only reasonable way for KVM to achieve this with the current
-architecture is to map at stage 2 all the memory that the SPE buffer might
-be expected to use.
+Drop this forward declaration of "struct sse_event" and the
+subsequent newline.
 
-> effectively deciding which memory is being used for SPE (I think it's perf AUX
-> memory right?)
+> +#define MAX_BRANCH_RECORDS 256
+> +
+> +struct branch_records {
+> +       struct perf_branch_stack branch_stack;
+> +       struct perf_branch_entry branch_entries[MAX_BRANCH_RECORDS];
+> +};
+> +
+>  struct cpu_hw_events {
+>         /* currently enabled events */
+>         int                     n_events;
+> @@ -47,6 +56,11 @@ struct cpu_hw_events {
+>         bool snapshot_set_done;
+>         /* A shadow copy of the counter values to avoid clobbering during=
+ multiple SBI calls */
+>         u64 snapshot_cval_shcopy[RISCV_MAX_COUNTERS];
+> +       /* Saved branch records. */
+> +       struct branch_records *branches;
+> +
 
-Yes, it's from the AUX buffer, and in the current version of Linux, perf
-core hands it over to the SPE driver to program the buffer with.
+Drop the redundant newline.
 
-> 
-> I think given that it's guest-designated _and_ the guest has no idea which parts
-> of memory are 'SPE safe' and 'SPE unsafe', this is a requirement.
+> +       /* Active events requesting branch records */
+> +       int ctr_users;
+>  };
+>
+>  struct riscv_pmu {
+> @@ -60,17 +74,22 @@ struct riscv_pmu {
+>         int             (*ctr_get_idx)(struct perf_event *event);
+>         int             (*ctr_get_width)(int idx);
+>         void            (*ctr_clear_idx)(struct perf_event *event);
+> +       void            (*ctr_add)(struct perf_event *event, int flags);
+> +       void            (*ctr_del)(struct perf_event *event, int flags);
+>         void            (*ctr_start)(struct perf_event *event, u64 init_v=
+al);
+>         void            (*ctr_stop)(struct perf_event *event, unsigned lo=
+ng flag);
+>         int             (*event_map)(struct perf_event *event, u64 *confi=
+g);
+> -       void            (*event_init)(struct perf_event *event);
+> +       int             (*event_init)(struct perf_event *event);
+>         void            (*event_mapped)(struct perf_event *event, struct =
+mm_struct *mm);
+>         void            (*event_unmapped)(struct perf_event *event, struc=
+t mm_struct *mm);
+>         uint8_t         (*csr_index)(struct perf_event *event);
+> -
+> +       void            (*sched_task)(struct perf_event_pmu_context *ctx,=
+ struct task_struct *task,
+> +                                     bool sched_in);
+>         struct cpu_hw_events    __percpu *hw_events;
+>         struct hlist_node       node;
+>         struct notifier_block   riscv_pm_nb;
+> +
+> +       unsigned int    ctr_depth;
+>  };
+>
+>  #define to_riscv_pmu(p) (container_of(p, struct riscv_pmu, pmu))
+> --
+> 2.43.0
+>
 
-KVM's job, broadly speaking, is to virtualize the architecture. KVM doesn't
-get to decide what guest is running, that is all on the host userspace.
-Host userspace can run a version of Linux much older than the host, or much
-newer. Host userspace can run another operation system (Windows, FreeBSD,
-etc), or something that is not a conventional operating system at all (like
-kvm-unit-tests). Host userspace is also responsible for configuring the
-guest VM, and describing the virtualized hardware to the guest.
-
-Can you guarantee that such a guest, that doesn't know which memory is safe
-for SPE, doesn't exist and will never exist?
-
-Because without that guarantee, my point is that userspace is in the best
-position to know what a guest can, and cannot do, and I think it's best to
-let userspace decide which memslots to pre-fault.
-
-I guess this all sounds theoretical and quite thin. So, an example, though
-a rather hand-wavy one: add a new command line parameter in Linux that
-works somewhat similar to hugetlb_cma, but for aux buffer allocations, and
-use it to describe a slice of guest physical memory which will be used by
-the SPE buffer. KVM will be none the wiser about all of this, because it's
-the host userspace that decides what operating system to run inside a VM
-and how command line parameters are supplied to the guest OS. With this
-approach, host userspace can decide to create a separate memslot to
-describe this guest memory, use guest_memfd as the memory provider for the
-memslot, and pre-fault this memslot only, not the other memslots that
-describe system memory.
-
-> 
-> >
-> > There are use cases for writable memslots to describe guest memory that won't be
-> > used by SPE. First thing that comes to mind would be paravirtualized interfaces
-> > between host userspace and the guest. For example, pvtime - kvmtool creates a
-> > RAM memslot for pvtime (i.e, non-read-only memslot), and it looks to me that
-> > qemu does the same (but my knowledge of qemu is severely limited, so I might be
-> > completely wrong).
-> 
-> I don't think any of this is disallowed by the gmem requirement.
-
-It's not, but why should all of the virtual machine managers that have
-these paravirtualized interfaces, interfaces that have worked just fine
-until now, be required to modify them just so they can enable SPE?
-
-Or have I misunderstood what you are proposing?
-
-> 
-> >
-> > Then there's also the possibility that a guest might want to assign a slice of
-> > RAM for use by SPE, to avoid pre-faulting and pinning the entire VM memory. In
-> > this case, userspace will want to have *only* the memslot describing that slice
-> > pre-faulted and pinned, and not the rest of system memory.
-> 
-> As above, there's just no way for userspace to know which bits of memory are SPE
-> safe and which are not. So I don't think this works.
-
-As above, I disagree :P.
-
-> 
-> >
-> > 2. Perfomance - userspace can pre-fault in parallel, KVM cannot easily do that.
-> >
-> > arm64 now has support for KVM_PRE_FAULT_MEMORY, I say let's use that :)
-> 
-> :) right.
-> 
-> OK, so maybe the right path then is to keep the prefaulting with userspace, but
-> I really do think we have to have KVM reject a writable non-gmem memslot once
-> SPE is enabled for the VM (and reject enabling SPE if one already exists).
-> 
-> That should be relatively straightforward and avoids at least the most broken
-> userland mistakes.
-
-I understand where you're coming from, and I do agree that KVM should do
-something if userspace doesn't pre-fault guest memory. But I think we have
-different opinions about what exactly KVM should do in this case.
-
-I had a chat with Mark Rutland about patch #26 from this series ("KVM:
-arm64: Map memory on a SPE stage 2 fault"), and he suggested something that
-I find very appealing, which I think solves this problem: when SPE reports
-a stage 2 fault, instead of KVM mapping the memory at stage 2 and trying to
-pretend like it never happened, KVM_RUN returns to userspace with an error
-describing the fault.
-
-If the stage 2 fault was caused by a bug in KVM, then this lets userspace
-know that something is wrong with KVM and SPE might be unreliable.
-
-If the fault was caused by a bug in the virtual machine manager (by not
-pre-faulting the memory, or because it punched a hole in the guest_memfd
-file, or something else) then userspace will know that something is wrong
-with the virtual machine manager.
-
-It might even be on purpose - for example, host userspace wasn't sure that
-the guest will use SPE and didn't want to pay the cost of pinning the
-memory upfront. Now that the guest has started using SPE, userspace can
-pre-fault that memory.
-
-In all cases, userspace will be in the best position to take corrective
-measures - resume (and possibly log the error to be investigated later),
-kill the VM, or anything else in between.
-
-I really like this idea. Thoughts?
-
-> 
-> >
-> > >
-> > > 4. Dirty page logging - patch 27/28 relies on series [1] being landed,
-> > >    which is also an RFC, and allows migration of SPE VMs. So we need to
-> > >    decide - do we want this migration? Additionally, I think it's
-> > >    reasonable to, if we want it, send both [1] and patch 27/28 as a follow
-> > >    up separate from the v1 non-RFC of the series.
-> >
-> > For background, I started this conversation in the LOG_DIRTY_PAGES support for
-> > guest_memfd series [2]. Oliver had some concerns, but he didn't follow up on my
-> > explanations, so I decided to send migration support as part of SPE so people
-> > can have a more complete picture of how everything fits together.
-> >
-> > I would be very happy to get basic support for SPE merged in KVM, and, if we
-> > decide it's useful, migration implemented as a follow up, as that involves
-> > landing dirty page logging support for guest_memfd.
-> 
-> Ack, thanks, let's treat that as a follow-up then, I think best thing here is
-> definitely to focus on getting the fundamental bits in for SPE first.
-> 
-> >
-> > [2] https://lore.kernel.org/kvm/alAFmiAsNf6Xm49_@kernel.org/
-> >
-> > >
-> > > 5. Errata handling - the default already disallows SPE on the affected
-> > >    silicon, which seems right. I wonder whether kvm-arm.ignore_spe_errata
-> > >    should exist at all though, other than in some sort of debug mode.
-> >
-> > It is intended as a debug/development option, to be used only when the VMs are
-> > trusted. As to why it's there, it's there because without it, SPE would be
-> > disabled on all the machines that I have access to, and I suspect systems not
-> > affected are few and rare between.
-> 
-> Ack ok that clarifies that :) let's then clearly mark that as such
-> e.g. 'debug/development only, trusted VMs only' in the documentation, and
-> tainting the kernel if it's enabled, I think, would be sensible.
-
-Agreed, this needs better documentation :)
-
-Thanks,
-Alex
+Regards,
+Anup
 
