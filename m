@@ -2,78 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7248A606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 12:33:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E5A6606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 12:33:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S4Z7s1ra;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=TGiY7gaz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3qbvABpk;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=m0b8hBMx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=As0pSkQfRuyVRW7pQpIjiCQPFSszS7hItKK7eHAl2ZY=; b=S4Z7s1ra191Btxhev+X8fhMq68
-	vdP9OhKXNgmIVxShYaZdTOTspCa35f5kOAg1cwOwoJCHKaJwQWgG2TCvsY6/0UNMVZPnw+H1gJM/a
-	FMv0GtlQCwyLPWKSm6Ww0H74Xm+raBp12Y9Rd5Z8NWMjmlLUzyiSK5CcRag/45HPH7+f+uM0TXclO
-	vhOftFviko9T5CvG8vzlury+m0JUMxR8wZyWStTb1PsccAy1SDve9O03PVgjSetjeF8e++LVJ9BNv
-	RxoC/idNRhR8Ygy9dsmYdsy7qqZWQoEiOvqvGBRXUjaqB0D3QoulattqjXDOUGQgPhIj9VBwy8yma
-	KKE/60Dg==;
+	bh=tASzR4wXMMc0YCUiYCKzn7cgOIVewXX+hCln4mp/s0Y=; b=3qbvABpkUiujDUcIK9XiTbOapJ
+	Ed9K2wFhwtAurAjrzYN4JctNjvX/agd3wdPy3cVWG2fMZZ0UxFABdc4mnYQUoDp4x86JwA99Y3jfh
+	kfHmbZ+DmPp+XfU6i/vqGMT/pdazHOOhj/RsVPcdicFahu8UYtFX2e2FCjT2ePhvmm09F0w4i4Bxi
+	L5oc/pwCV3EqqvJ6aeJDUvx4jJg97oKlRED0p2tAbNjkfGbcqSz/8T3OK2yZ+1uRsf4bg2n4sbQo1
+	D8f/4ZnFee2zY2764SA1fakhqUiRxu/ckdSJrX6Zd9s5ypanFxnRjiueOs5Ypv2mKr5oeEO5gbgn4
+	UonA7OfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU1Kf-0000000BqjC-1KLH;
-	Thu, 19 Nov 2026 12:33:41 +0000
-Received: from out-237.mta0.migadu.com ([2001:41d0:1004:224b::ed] helo=mta0.migadu.com)
+	id 1xU1Kn-0000000BqlW-1nUi;
+	Thu, 19 Nov 2026 12:33:49 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU1Kb-0000000BqiK-36fj
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 12:33:39 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=Z7HDvtgI5fJMIwpmLPbYZhshXtdnLS2aVD3lUUBYUWk=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795091614; v=1; x=1795696414;
- b=TGiY7gazCxQFjLgL97BhxN/PE5ElPypG2sHIzmst8xObdi7AkyKlhdB00pi6C83V0+QOCgDo
- PxR+HFVRpjlmFRM+Tk4emj9+jwqPYTxkBQBmo/L7Do+j6dMglvrByQOrBqDgvl63bXUVS8fJMQq
- s3S/9apxXoJSRiuE3kHcurns=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 3bef69361d380ae0;
-	Thu, 19 Nov 2026 12:33:34 +0000
-X-Mizu-Trace-ID: 3bef69361d380ae0
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5c144eb2f43so5680e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 04:33:33 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFN3iFO7vS27A+w5hslLwfVBUAB4zyKDEKm/o62yF0YZMRidEBT+VfQw8sfnse2jyW2tGtzrNbJ1Fq9XQ9xK0oT@lists.infradead.org
-X-Gm-Message-State: APuU4Z+gckLRX5ul4Km+m6P2gb/0Ndt6z0abln+zVEwzzEZ5Wo63lXXW
-	MgqTTg7AB7l0Ako0pPaPbrUObQFiZUv5hDLEVDIiNaUC/RnAJiwzAb79NU5n5XgOXpSfaiOKsdl
-	Z/s7kFDrJ8wTkx6Xc7TT+s3YME0zUcxjk7egPC74W
-X-Received: by 2002:a05:6512:6ce:b0:5bf:f81a:f24e with SMTP id
- 2adb3069b0e04-5c1b6701822mr67836e87.10.1795091612777; Thu, 19 Nov 2026
- 04:33:32 -0800 (PST)
+	id 1xU1Kk-0000000BqkQ-1msl;
+	Thu, 19 Nov 2026 12:33:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=tASzR4wXMMc0YCUiYCKzn7cgOIVewXX+hCln4mp/s0Y=; b=m0b8hBMxJPiifKd5Vrc1LUdxvo
+	C/9lFoUO7AwB5+4VNJDtVLiKW6e1/PvUg3h8YwNppqqGxD8J9FtBKkVzaQRwg6u+ATgOmBW1Am/Sr
+	spKP/EE+/EncvF2JkAQa6cc5Gj9tXjblT39lDR1BeR5G3HLX/hd//ePFePfNtvUQf5A/5+lVmVn+m
+	bR09+Oj5XOHHN6qpeDZ1fBfcYu+f9LWA8KrWVbRbp3+ZntukKDgjqWugwDHYKOxEJWh2adqw3x6a3
+	2OcYfOo/ejFAcVtfn15LA5q9btjRrwChiYIb5NpEywE+++Yjf+szUWO0v+8jfBNSFyXSxARb+l90a
+	dXi+CK4w==;
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Ulf Hansson <ulfh@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Peter Geis <pgwipeout@gmail.com>, 1579567540@qq.com
+Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Cunhao Lu <1579567540@qq.com>
+Subject: Re: [PATCH v2] pmdomain: rockchip: Roll back power-on when leaving idle fails
+Date: Thu, 19 Nov 2026 13:33:40 +0100
+Message-ID: <X4VYa84sR92_76QOKnT74g@sntech.de>
+In-Reply-To: <20261118-fix-rockchip-pmdomain-power-on-rollback-v2-1-3e4e93a19996@qq.com>
+References: <20261118-fix-rockchip-pmdomain-power-on-rollback-v2-1-3e4e93a19996@qq.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
- <20261118-host_gicv5_fixes-v3-14-13c1859e8aa3@arm.com> <av7Ly_iLyiOAXQUR@red-moon>
-In-Reply-To: <av7Ly_iLyiOAXQUR@red-moon>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Thu, 19 Nov 2026 12:32:56 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTxTaEj25Ts-67B6nwxF_x1_ZTik6tg_a4sDbU+7B=FmEw@mail.gmail.com>
-X-Gm-Features: AclHuK-kHPtLBsCsAc1hYRee8NulrRKXzvQw07qjT3a5lYkuN2Xo98WRZLt3QVE
-Message-ID: <CA+EHjTxTaEj25Ts-67B6nwxF_x1_ZTik6tg_a4sDbU+7B=FmEw@mail.gmail.com>
-Subject: Re: [PATCH v3 14/14] irqchip/gic-v5: Invalidate the L1 DTE when
- allocating an L2 device table
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Sascha Bischoff <sascha.bischoff@arm.com>, Marc Zyngier <maz@kernel.org>, 
-	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, Timothy Hayes <timothy.hayes@arm.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Jonathan Cameron <jic23@kernel.org>, 
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_043338_152642_DF8D2F3B 
-X-CRM114-Status: UNSURE (   8.53  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261119_043346_486659_BA577308 
+X-CRM114-Status: GOOD (  30.41  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,28 +75,139 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 19 Nov 2026 10:13:31 +0000, Lorenzo Pieralisi
-<lpieralisi@kernel.org> wrote:
-[...]
->> diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
-[...]
->> +static int gicv5_its_device_l1_cache_inv(struct gicv5_its_chip_data *its,
->> +                                         u32 device_id)
->> +{
->> +        return __gicv5_its_device_cache_inv(its, device_id, 0, true);
->
-> I would highlight why event_id_bits is set to 0 (actually it is irrelevant,
-> let's explicitly say so).
+Am Mittwoch, 18. November 2026, 10:03:46 Mitteleurop=C3=A4ische Normalzeit =
+schrieb Cunhao Lu via B4 Relay:
+> From: Cunhao Lu <1579567540@qq.com>
+>=20
+> When NIU idle exit fails after PMU power-on, clocks and the regulator
+> reference are released while the domain remains powered. genpd treats
+> it as off and may power off its parents.
+>=20
+> Request idle again and, if successful, use the low-level power-off path
+> before releasing resources. This preserves saved QoS and notifies
+> firmware while retaining the original error.
+>=20
+> If rollback fails, resources are still released and genpd may power off
+> the parents.
+>=20
+> Fixes: 6b2690df3f03 ("pmdomain: rockchip: fix rockchip_pd_power error han=
+dling")
+> Signed-off-by: Cunhao Lu <1579567540@qq.com>
 
-With L1 set, the effective value of ITS_INV_DEVICER.EVENTID_BITS is
-the maximum in ITS_IDR2.EVENTID_BITS, whatever was written.
 
-nit: this helper has a single caller, so could you call
-__gicv5_its_device_cache_inv() directly from
-gicv5_its_alloc_l2_devtab() and put Lorenzo's comment on that call?
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
+> ---
+> This pre-existing idle-exit failure case was reported by Sashiko AI
+> during the RK3572 mainlining work:
+> https://sashiko.dev/#/patchset/20261022-add-board-ok3572-c-v1-0-0b0fd85a3=
+1ee@qq.com?part=3D10
+>=20
+> If leaving NIU idle fails after PMU power-on, the domain remains powered
+> while genpd treats it as off. The error path releases the clocks and
+> regulator reference, and genpd may power off the parent domains.
+>=20
+> This patch requests idle again and, if successful, powers the domain
+> off before releasing those resources. It preserves the saved QoS state
+> and original error, and uses the low-level path to notify firmware.
+>=20
+> Validation:
+>=20
+> - All 48 host simulations passed, covering power cycles, idle-exit and
+>   rollback failures, QoS preservation and error propagation. No sanitizer
+>   findings.
+>=20
+> - Hardware testing on OK3572-C: 20 patched and 50 unpatched NVM1 power
+>   cycles passed. Request-write injection caused native idle-exit polling
+>   timeouts. The fix powered the domain off in 3/3 cases; the original
+>   driver left it ON. QoS and the original error were preserved, and
+>   retries succeeded after removing the injection.
+>=20
+> Persistent rollback idle and power-off timeouts were also tested:
+> resources were still released with the domain ON and genpd OFF. These
+> failure paths remain unresolved, and genpd may still power off the parent=
+s.
+>=20
+> AI assistance:
+>=20
+> - Codex / DeepSeek V4.1 Flash were used for:
+>   - Reviewing and adjusting code style to follow community conventions
+>   - Automating tests
+>   - Collecting data
+> ---
+> Changes in v2:
+> - Rebase onto the next branch of Ulf Hansson's linux-pm.git tree.
+> - Link to v1:
+>   https://patch.msgid.link/20261101-fix-rockchip-pmdomain-power-on-rollba=
+ck-v1-1-59a45783e33e@qq.com
+> ---
+>  drivers/pmdomain/rockchip/pm-domains.c | 27 ++++++++++++++++++++++++++-
+>  1 file changed, 26 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/ro=
+ckchip/pm-domains.c
+> index 6abef60a5b4c..2c021784316a 100644
+> --- a/drivers/pmdomain/rockchip/pm-domains.c
+> +++ b/drivers/pmdomain/rockchip/pm-domains.c
+> @@ -648,6 +648,29 @@ static int rockchip_do_pmu_set_power_domain(struct r=
+ockchip_pm_domain *pd,
+>  	return 0;
+>  }
+> =20
+> +/*
+> + * The caller holds the PMU lock and transition resources. Use the low-l=
+evel
+> + * power-off path to avoid overwriting the saved QoS state.
+> + */
+> +static void rockchip_pd_power_on_rollback(struct rockchip_pm_domain *pd)
+> +{
+> +	int ret;
+> +
+> +	ret =3D rockchip_pmu_set_idle_request(pd, true);
+> +	if (ret < 0) {
+> +		dev_err(pd->pmu->dev,
+> +			"failed to idle domain '%s' on rollback: %d\n",
+> +			pd->genpd.name, ret);
+> +		return;
+> +	}
+> +
+> +	ret =3D rockchip_do_pmu_set_power_domain(pd, false);
+> +	if (ret < 0)
+> +		dev_err(pd->pmu->dev,
+> +			"failed to power off domain '%s' on rollback: %d\n",
+> +			pd->genpd.name, ret);
+> +}
+> +
+>  static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power_o=
+n)
+>  {
+>  	struct rockchip_pmu *pmu =3D pd->pmu;
+> @@ -682,8 +705,10 @@ static int rockchip_pd_power(struct rockchip_pm_doma=
+in *pd, bool power_on)
+>  	if (power_on) {
+>  		/* if powering up, leave idle mode */
+>  		ret =3D rockchip_pmu_set_idle_request(pd, false);
+> -		if (ret < 0)
+> +		if (ret < 0) {
+> +			rockchip_pd_power_on_rollback(pd);
+>  			goto out;
+> +		}
+> =20
+>  		rockchip_pmu_restore_qos(pd);
+>  	}
+>=20
+> ---
+> base-commit: 6f5c8ec9302c5ad8904dbdfe8cf2a538ff835572
+> change-id: 20261101-fix-rockchip-pmdomain-power-on-rollback-c11e1014ef11
+>=20
+> Best regards,
+> -- =20
+> Cunhao Lu <1579567540@qq.com>
+>=20
+>=20
+>=20
 
-Cheers,
-/fuad
+
+
+
 
