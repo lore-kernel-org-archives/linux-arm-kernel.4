@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013E16073171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4BF560A2617
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D2nrf79d;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=gZ1dkcdW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3JtHogic;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=XeaoZ5d9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=B71Ljk+UIM1gXp9I8DKkVnuHdcZAuyllvZTiO1ZgbS8=; b=D2nrf79dAqHblvsg6FunJDgNP7
-	2K7KLOgH3+bWdacLkSKyLBCuMikI9pp55RE5zRtD9nVrhKjby69+I+Ie1ii1TvwpoRzD3HwdCaM8i
-	Wsw/r3eBNtzJPO+bXNWDU5oOEKVBsHJ9es3oq/8Mgfcvd8kvqnI9WNUbgElJKmwAFYgk9ND2SW9b9
-	XWvJ52oxSHgp6qAOO2d7TShLIsFH9i1c8YItdkkBL6dUyhd4OqaWAsTjdaW9wosnXapoSvt90JWml
-	QlL7lZvm+wH97LmlmiZ3PjDWCzwbOVe2cF/442UaMNWxjyuTlDlMpHArxPS7OYNP4P3ZySLVsx2Q6
-	Y/5pshIQ==;
+	bh=gDyW3lpBDMB0NqyM7GSJ8o96cb3fLFzZmtMS+6iJK0k=; b=3JtHogicFqiGdrMLf6LgNeECvt
+	XrDFX17YbSTjDLEZXxa1Nu9TaIaNZaV4nullTDBiFp1Ur2XjJ+UTN4QevL3TraeUo03nPXwzjaRX1
+	tPlHF6AXnIy4Xir2vVQd4pNeJVBD7Re0GF0Qe/VdTIq9Jg/pV68LuHLm6H/Rsd/ZZdrxA2t4KfcIX
+	fb2fw9WYXiz0JKBhMTmkuj6QVfMbAFSCfUopY1GUxXN5thDgrf02qNNvnnTxxGZCFVOqHWAhIR4Zn
+	IolfuuttCKyB1VE2HTKIpaSXJozBoiW93CZsbJ4VsIPAqZZaJ+UEejCEhZ9RpRZa58dhK36J96QO2
+	q1HSj7bQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7FL-0000000D40W-3Slz;
-	Thu, 19 Nov 2026 18:52:35 +0000
-Received: from mail-ot1-x345.google.com ([2607:f8b0:4864:20::345])
+	id 1xU7FM-0000000D41U-17nw;
+	Thu, 19 Nov 2026 18:52:36 +0000
+Received: from mail-oi1-x246.google.com ([2607:f8b0:4864:20::246])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7F9-0000000D3ot-2mPG
+	id 1xU7FB-0000000D3qA-16au
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:52:25 +0000
-Received: by mail-ot1-x345.google.com with SMTP id 46e09a7af769-847e2926d94so279573a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:22 -0800 (PST)
+	Thu, 19 Nov 2026 18:52:26 +0000
+Received: by mail-oi1-x246.google.com with SMTP id 5614622812f47-4b37620eb73so240215b6e.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795114342; x=1795719142; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795114344; x=1795719144; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=B71Ljk+UIM1gXp9I8DKkVnuHdcZAuyllvZTiO1ZgbS8=;
-        b=gZ1dkcdWQt42wbTAjpr5LrHalP7VBz/50+2sr9z1GEtIrxmZi5Q5fcoH3MwQOGfkC5
-         8e9h53FL5Yy70d2mLWb9OpoRoMlZQH5mo/fEBL8+3rQiirlRWf2pGTklrIxVBYAhvTVo
-         HbEs+SQ5LhaBccqWuX3l0V0jFbIhX74YgOyo+nemc7KjajqhQSnIlF2da2sSvfKR8wBf
-         drPVJcelLhSL+rGEPvNfZjvto5UDSRWTPB0on5WR76TvAgTtZrnkcC3gjhPEqqfEByKY
-         0V9iTTJEHhrJS6yRz01TXClmwwc7ddUVHjf5yEpmDLgGaN7OL+Ql8Zi4y5tNcj8JehKA
-         fYTg==
+        bh=gDyW3lpBDMB0NqyM7GSJ8o96cb3fLFzZmtMS+6iJK0k=;
+        b=XeaoZ5d9hSTAuc7WjkTueOxdscBHjtZyq8LUgYBs9R+ST+o7ZgHWq2NNhYRawWRxZW
+         IAOtN04p8xcVgVp6/gHunPaCApSeo/ep9s7zuL1p4ssgdvpvMfJix9ELAOOyUC7I9TYs
+         iNxhhNMNmNzPEM51BsdV5CSfgbeYqMDTLTPZv0QMWjpGbsNkoqMvsZECaalL/RMduU7w
+         mhTQKTAvaTF8hjLhT7E5Cznl0EJC3UNmoT1ysTn8KLNFnj69kg0eue1K17iJA+C0iXE0
+         Ob9gKEpNQoOrdyQ+WfNF9LsnsxTmu0IVQFhJ62CV8WDF8VSH9q2i3EJR3J3xHSSLNT3p
+         OoyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795114342; x=1795719142;
+        d=1e100.net; s=20260707; t=1795114344; x=1795719144;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=B71Ljk+UIM1gXp9I8DKkVnuHdcZAuyllvZTiO1ZgbS8=;
-        b=naFPxEfIvE7cbZnhk+HB1uVHYpSFl9lmtYstJzu7wV5KX6DV+ziNYD6fRtVCRbvNJZ
-         wTExnjT+TQM5HtwKL98ckRkIZy00ZgZZMp2GwhoHyEJZUbQdiWZ137pXy6355zWTSK82
-         FSbN1UX4h0xIbcJcE3TFA2UVRk9CJKa/9tSKWCHSX0E6mZHeKrG6Smvdt1vFcnsF4IJR
-         ziufKEKX6Ba6RGv9oGnWUOztuQKyb8CDmIyhfrYo9X3iGGpIkq0lZ1LIz53zZ/z4FnYn
-         ShkJh6dzq0C1Ez49DKvuxhCdyThSxwbypZqE2muSzxH/zfX18p65kVBrrSYrjLJhDyvB
-         Vctw==
-X-Forwarded-Encrypted: i=1; AL+hErEr4GzBsxPlUlW5wJrLjkxCk8rYXRrcl9GlX95EiPrR/ONQFbsiBXVB7zSB47Hy1u+teUwpNOdoiOJRikibaErK@lists.infradead.org
-X-Gm-Message-State: APuU4Z+cLEhKKMsSdPXzcWWAD5jkge5QM2jkZcHQpbobe4V8q6K1YeOf
-	AwRt1rUiyIeJL9S/VvXo5IwafPJ3MCAS86gJH5C1nBDRP+cTHnA9RTOKnMpkMV74iFHemrFWLf7
-	Srlpkx9l/4ajupDGxp4YDYzesKg==
-X-Received: from ilpp13.prod.google.com ([2002:a92:d28d:0:b0:53b:ef4a:649b])
+        bh=gDyW3lpBDMB0NqyM7GSJ8o96cb3fLFzZmtMS+6iJK0k=;
+        b=TVOh+/QDVgeslQPwUs1PzO4gHfcEViJ50s2w+fHe3RWs7GNNB3I0OK6PrffKLvFl3n
+         ZOakgkk1UiLVBoeoygxZmxvWz1eWyEBP3X2AKT6GImhIZ+DrGN/GNlOCb2iqIIgX9nAH
+         wIt+q1kYBIz6r/XqzDeTbLe0OP+mgp2T+IEhlM0PlPbxN7+2W3OFA5hTZVdGUwkbzsj5
+         5JMDtxbbJMHMYk3elCyyQNoYfZtQ5LltZfQhJEJI5N713WFoRTTLQ2XXwWYoXwXs/bGe
+         D+KjaoGXCSqqdJIxt+b2ZI2D3i+6XML7U+3iijvWD1k01VYreTIy6qaEK2HSm6c2XiSf
+         JngA==
+X-Forwarded-Encrypted: i=1; AL+hErGV3vYfmb7UhwNYpD5HDd9cLkKxQPIzFtqDGlWdz2pX4FBd9WycHhiv/NNwjjli8UwG7kstQZ2wVe13uBtbSk4g@lists.infradead.org
+X-Gm-Message-State: APuU4Z8JaXadIGWPRK89ZkL7cfB1G1TAodJCq5j4cBkll/3s4+zRjmXc
+	4M6TU0dpfdUhRb2shAp/yvFYx8nMNrU2BSsC2laJKioYHW9rbZXSLeqgdumC+LMjy7vGNat9zzs
+	RDeVXyWNhkFNlQthtH+27q1IIgw==
+X-Received: from ilef19-n1.prod.google.com ([2002:a05:6e02:6193:10b0:51f:7667:1233])
  (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:1b87:b0:576:217a:6740 with SMTP id 5614622812f47-57a0a60d756mr914272b6e.22.1795114341585;
- Thu, 19 Nov 2026 10:52:21 -0800 (PST)
-Date: Thu, 19 Nov 2026 18:51:48 +0000
+ 2002:a05:6808:3189:b0:4ea:18f:64b0 with SMTP id 5614622812f47-57a0c19af8amr826925b6e.67.1795114343396;
+ Thu, 19 Nov 2026 10:52:23 -0800 (PST)
+Date: Thu, 19 Nov 2026 18:51:50 +0000
 In-Reply-To: <20261119185215.632334-1-coltonlewis@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261119185215.632334-1-coltonlewis@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261119185215.632334-7-coltonlewis@google.com>
-Subject: [PATCH v10 06/33] perf: arm_pmuv3: Generalize counter bitmasks
+Message-ID: <20261119185215.632334-9-coltonlewis@google.com>
+Subject: [PATCH v10 08/33] perf: arm_pmuv3: Check cntr_mask before using pmccntr
 From: Colton Lewis <coltonlewis@google.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
 Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
@@ -87,8 +87,8 @@ Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
 	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_105223_745107_1EC1E6CC 
-X-CRM114-Status: GOOD (  13.28  )
+X-CRM114-CacheID: sfid-20261119_105225_310433_849660A5 
+X-CRM114-Status: GOOD (  14.28  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,90 +108,56 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The OVSR bitmasks are valid for enable and interrupt registers as well as
-overflow registers. Generalize the names.
+When the PMU is partitioned, PMCCNTR_EL0 is reserved for the guest and
+removed from cpuc->cntr_mask. Move the PMCCNTR_EL0 availability checks
+(cpuc->cntr_mask and cpuc->used_mask) into armv8pmu_can_use_pmccntr()
+and un-nest the 64-bit user-access fallback check in
+armv8pmu_get_event_idx() so host CPU_CYCLES events fall back to
+general-purpose event counters when PMCCNTR_EL0 is unavailable.
 
-Acked-by: Mark Rutland <mark.rutland@arm.com>
 Tested-by: James Clark <james.clark@linaro.org>
 Signed-off-by: Colton Lewis <coltonlewis@google.com>
 ---
- drivers/perf/arm_pmuv3.c       |  4 ++--
- include/linux/perf/arm_pmuv3.h | 14 +++++++-------
- tools/include/perf/arm_pmuv3.h | 12 +++++++-----
- 3 files changed, 16 insertions(+), 14 deletions(-)
+ drivers/perf/arm_pmuv3.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/perf/arm_pmuv3.c b/drivers/perf/arm_pmuv3.c
-index fbd631ec71a65..4a6c1f3bcea1f 100644
+index 973d4abcb3a6e..9ce915754b0a5 100644
 --- a/drivers/perf/arm_pmuv3.c
 +++ b/drivers/perf/arm_pmuv3.c
-@@ -535,7 +535,7 @@ static void armv8pmu_pmcr_write(u64 val)
+@@ -1013,6 +1013,10 @@ static bool armv8pmu_can_use_pmccntr(struct pmu_hw_events *cpuc,
+ 	if (cpu_pmu->avoid_pmccntr)
+ 		return false;
  
- static int armv8pmu_has_overflowed(u64 pmovsr)
- {
--	return !!(pmovsr & ARMV8_PMU_OVERFLOWED_MASK);
-+	return !!(pmovsr & ARMV8_PMU_CNT_MASK_ALL);
++	if (!test_bit(ARMV8_PMU_CYCLE_IDX, cpuc->cntr_mask) ||
++	    test_bit(ARMV8_PMU_CYCLE_IDX, cpuc->used_mask))
++		return false;
++
+ 	return true;
  }
  
- static int armv8pmu_counter_has_overflowed(u64 pmnc, int idx)
-@@ -771,7 +771,7 @@ static u64 armv8pmu_getreset_flags(void)
- 	value = read_pmovsclr();
+@@ -1025,14 +1029,15 @@ static int armv8pmu_get_event_idx(struct pmu_hw_events *cpuc,
  
- 	/* Write to clear flags */
--	value &= ARMV8_PMU_OVERFLOWED_MASK;
-+	value &= ARMV8_PMU_CNT_MASK_ALL;
- 	write_pmovsclr(value);
+ 	/* Always prefer to place a cycle counter into the cycle counter. */
+ 	if (armv8pmu_can_use_pmccntr(cpuc, event)) {
+-		if (!test_and_set_bit(ARMV8_PMU_CYCLE_IDX, cpuc->used_mask))
+-			return ARMV8_PMU_CYCLE_IDX;
+-		else if (armv8pmu_event_is_64bit(event) &&
+-			   armv8pmu_event_want_user_access(event) &&
+-			   !armv8pmu_has_long_event(cpu_pmu))
+-				return -EAGAIN;
++		set_bit(ARMV8_PMU_CYCLE_IDX, cpuc->used_mask);
++		return ARMV8_PMU_CYCLE_IDX;
+ 	}
  
- 	return value;
-diff --git a/include/linux/perf/arm_pmuv3.h b/include/linux/perf/arm_pmuv3.h
-index d698efba28a27..fd2a34b4a64d1 100644
---- a/include/linux/perf/arm_pmuv3.h
-+++ b/include/linux/perf/arm_pmuv3.h
-@@ -224,14 +224,14 @@
- 				 ARMV8_PMU_PMCR_LC | ARMV8_PMU_PMCR_LP)
- 
- /*
-- * PMOVSR: counters overflow flag status reg
-+ * Counter bitmask layouts for overflow, enable, and interrupts
-  */
--#define ARMV8_PMU_OVSR_P		GENMASK(30, 0)
--#define ARMV8_PMU_OVSR_C		BIT(31)
--#define ARMV8_PMU_OVSR_F		BIT_ULL(32) /* arm64 only */
--/* Mask for writable bits is both P and C fields */
--#define ARMV8_PMU_OVERFLOWED_MASK	(ARMV8_PMU_OVSR_P | ARMV8_PMU_OVSR_C | \
--					ARMV8_PMU_OVSR_F)
-+#define ARMV8_PMU_CNT_MASK_P		GENMASK(30, 0)
-+#define ARMV8_PMU_CNT_MASK_C		BIT(31)
-+#define ARMV8_PMU_CNT_MASK_F		BIT_ULL(32) /* arm64 only */
-+#define ARMV8_PMU_CNT_MASK_ALL		(ARMV8_PMU_CNT_MASK_P | \
-+					 ARMV8_PMU_CNT_MASK_C | \
-+					 ARMV8_PMU_CNT_MASK_F)
- 
- /*
-  * PMXEVTYPER: Event selection reg
-diff --git a/tools/include/perf/arm_pmuv3.h b/tools/include/perf/arm_pmuv3.h
-index 1e397d55384ed..d045b0f3b93fe 100644
---- a/tools/include/perf/arm_pmuv3.h
-+++ b/tools/include/perf/arm_pmuv3.h
-@@ -226,12 +226,14 @@
- 				 ARMV8_PMU_PMCR_LC | ARMV8_PMU_PMCR_LP)
- 
- /*
-- * PMOVSR: counters overflow flag status reg
-+ * Counter bitmask layouts for overflow, enable, and interrupts
-  */
--#define ARMV8_PMU_OVSR_P		GENMASK(30, 0)
--#define ARMV8_PMU_OVSR_C		BIT(31)
--/* Mask for writable bits is both P and C fields */
--#define ARMV8_PMU_OVERFLOWED_MASK	(ARMV8_PMU_OVSR_P | ARMV8_PMU_OVSR_C)
-+#define ARMV8_PMU_CNT_MASK_P		GENMASK(30, 0)
-+#define ARMV8_PMU_CNT_MASK_C		BIT(31)
-+#define ARMV8_PMU_CNT_MASK_F		BIT_ULL(32) /* arm64 only */
-+#define ARMV8_PMU_CNT_MASK_ALL		(ARMV8_PMU_CNT_MASK_P | \
-+					 ARMV8_PMU_CNT_MASK_C | \
-+					 ARMV8_PMU_CNT_MASK_F)
- 
- /*
-  * PMXEVTYPER: Event selection reg
++	if (armv8pmu_event_is_64bit(event) &&
++	    armv8pmu_event_want_user_access(event) &&
++	    !armv8pmu_has_long_event(cpu_pmu))
++		return -EAGAIN;
++
+ 	/*
+ 	 * Always prefer to place a instruction counter into the instruction counter,
+ 	 * but don't expose the instruction counter to userspace access as userspace
 -- 
 2.56.1.708.g77570a6a1d-goog
 
