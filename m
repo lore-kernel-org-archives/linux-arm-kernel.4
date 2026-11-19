@@ -2,125 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD12606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3567D606BA90
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H4CXgSGv;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=n3S4YCEd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2w6CJ0YO;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Ppl3Ddsr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vITMaRYl8N/4FX6Ub/CtOdFIyxibL9pIfaPhRC74PEQ=; b=H4CXgSGvDgF0kE
-	XumAzABSUYP5FErFEMg4L3Ef4HTyIB5QDG/2Fw3k++cl4N437W/E0fCbghu2dt08jonrlvWsYIcDm
-	/Mfwci4VNnIWqURGtuprQaytAs8FVmjAjSt6PYdQ1GFaAxaOdvv28wMMU5THVNqYYLIIr/I4bEvq+
-	xps1waicbAipZIPj8VrTZyjBz150DEiPTXOmk0a6hi30rfNsVTQheJQqQfcxF42hJbZOAUcumZ5rj
-	PBXRo3p/OrLJOurF563C1fp03xdkmsgPKfnkOo3GQ3sEGx7T6FWPCnU6uX2PXuzH6zvExfRYuyNhp
-	NJB8GSLeVwB5PzTFoJKw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=yv1N0djmZyEGMIYg7VXKeF/ldKuiOCcGdsOrrzCOVrk=; b=2w6CJ0YOQldTp2Iuqko1ZvukXd
+	Q9z2QbED6IaxAROcOYQwKgG/CJNEpEQMltU3KqMA5dM4r756TmFUdS9rAL6fPDsHoz5p156Nvh0V1
+	vhMH+kLoI7RyGbhqsjVTOEzjBQP0lzCWdCRGmPSTBlPryTmJEfWK0ZU16CYqcFx/jlOScY2tgSCzx
+	TfsF0XpLvfsx+z4IPBOuDesp7ylyV6sCdOX88iKzw5ySSFsmpNQFm+tcxznPZzGHA99bLXShlDvvM
+	Fsj+kg1jQh+JRcHhAfBlJ86WI6Xp7IxgYQM8vzpXmHuCmLs6B4TFtkLqKbmhC/jm5fWSzF+Wfh2wu
+	G/P4wIUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3Q3-0000000CH0W-0XCS;
-	Thu, 19 Nov 2026 14:47:23 +0000
-Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3Pz-0000000CGyw-33l6
+	id 1xU3Sh-0000000CHYY-1j5y;
+	Thu, 19 Nov 2026 14:50:07 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU3Sf-0000000CHXa-1CFY
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:47:22 +0000
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-6ba1e22ff4dso659253a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 06:47:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795099637; x=1795704437; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=vITMaRYl8N/4FX6Ub/CtOdFIyxibL9pIfaPhRC74PEQ=;
-        b=n3S4YCEd4lYdOH4DbnA99ZPhymyuf8E1OaC3d8wZNEaUZpoykHaIPO2nUIaERtS2TS
-         J3PYRmc4krRKt0LwxbrXmicQjRXcHfhSMh8nWeqiP8PJycSQW48bT/WfilUGrMVjLFGX
-         RoUm+dQMTw8ugibLyBdXRmyUxanPKrR4PTSqLKjmSANrf/pODip3SVwpMaFkk8EPYOdm
-         my/SiKL0VP8f0IKjhw1DG0HbI/dYhKbOBIJg4P9klGWilkV3fNuXNOdNK5IfSeHOnD1t
-         jtWhSAzvttlhaG9GXkdf4yPMH9TYSwwqG2yTtRb9hUl9QJ3SIhShdfS3hn92RMkAciwI
-         Rk8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795099637; x=1795704437;
-        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=vITMaRYl8N/4FX6Ub/CtOdFIyxibL9pIfaPhRC74PEQ=;
-        b=cPKVGIdaoNdyIJSDB2zOKoem6/0iZ7uWtegOSmF8abXKTvVZdPeeJA2nPwpI2Qf1j9
-         EsS+1+6eaf++fT7N10F2sog0jvWQd+8UQMN5DRLbSJ33kIA1hRho2TWGhRg4gHRxJjhg
-         CPSwzwFIgDvPdC1Xbwk65ka9yTC57WG3Dr6pN8zzrFVuvFvpyp3JyZ4oOZpf7yvf767/
-         yYurP/nEm/oIwWf/7J+ORKajEz/0c1Mb4X62NrXG86cfkOAyq1K6rFQerbxImE5AR0ri
-         V6gt7caQ/TdKXIq25QcnmQpvXRbjvmkffvDrFZk2V4yiYEvTuLJ/8sZ1+YMGmxCD8qG+
-         k83A==
-X-Forwarded-Encrypted: i=1; AL+hErH2t1//yjgt7QUZfJFDRMeXdkBwt0Z6C7ZTfliPv4Uj83ysEHDBQE5C92t7vu6NF70FFVfsnNw/rokZcbpt+Gtn@lists.infradead.org
-X-Gm-Message-State: APuU4Z+11yEBfDu1n+7Pls36OuAjPd9ntNINDeHnvj6urO6oWks4g4if
-	/GOtP1/oPSFzfPCSrX6qe8541woDtXHt6puiDUkmdOjG1MkaO+HjaZRUQ6n3Jr5TC5I=
-X-Gm-Gg: AYBFou3sL9Tq3iYgte3RQfOpEYACG9s+e0FY3L9XpxpRR0Kge3CSUVTHxnBPxrrKwF4
-	a9yF/xC6kh+3BPy6SFtuZuBYgJJd4SJz/F5mB6vltTQbMm7Ch2T8xgtFWwdJ8Vh4N2mC99M4DWn
-	7cY+TVt1WK16VFcJuSlhvGvzshlK7Kot3zX35gkhrDjZ5kzDrHGrbT+ExiNdDicj61HdugQjG1j
-	Ek1XzkXclTJxQLEx1LerwbN2WyNMfaayX6fg0G4fEJNYxu8uVzt11Y3dZpSWXJChL7bO159WUgz
-	sGl5xQGb7ZcMW4xxZ9xCaPqvBdsh43Fzvk2vnXEOYDFbPwExStKbJAm4NR+Y89PoU22VV3qhVOh
-	IpYP/2WBJ1xdSgT4xQvaiVFu8RaM7tl3nTLEV+a/fjlOP10npay4TlNOXbeDNp7DNYLww40IQph
-	rdnyTwHUMWSeGrzyNjU/jS10/BbaaH/j3ruszzmybZ6Pdwc+V45JKxBJ/yhTO5+zeJwTXnIBL2d
-	Po2+31Iyhbg7ACPTIj/wN6eGzlCUHrF2hju91LBrbpq38YeS809N+i+SMjrf7Z5TG1JLMak9+au
-	fMr94TpDyESpalwYyX8CFcOleEwYEYxqiAa32t8tg9qjJWfua0h+hDTPZw==
-X-Received: by 2002:aa7:c7d5:0:b0:6b6:ea98:2539 with SMTP id 4fb4d7f45d1cf-6b9095b57admr2564430a12.6.1795099637250;
-        Thu, 19 Nov 2026 06:47:17 -0800 (PST)
-Received: from [192.168.1.62] (140.30.66.37.rev.sfr.net. [37.66.30.140])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b88993e08csm2579854a12.6.2026.11.19.06.47.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Nov 2026 06:47:16 -0800 (PST)
-Message-ID: <1e9c5ac3-d82b-4af9-9946-0302cadf7404@baylibre.com>
-Date: Thu, 19 Nov 2026 15:47:15 +0100
+	Thu, 19 Nov 2026 14:50:06 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 98A5C19F0;
+	Thu, 19 Nov 2026 06:49:58 -0800 (PST)
+Received: from localhost (unknown [10.2.196.114])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 328963F673;
+	Thu, 19 Nov 2026 06:50:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795099801; bh=Fnun0mKomugL954yD61XjX3IYKj8R0xQ7sSqlxsYi10=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ppl3DdsrKLxJa9EorrCawTo3PVOa+dqBTLIDO1g1YaqKxXwd3exOmLETdTJmmm38/
+	 6gBdrHM0rGvCqo3SM8Ws3CEPUhmynHWyrc8SvQZUuQI7tw3OD1VmdwTSrGczBUoVuA
+	 R5FeC/DY4BmgofCQIcXJcFSVConvO6G/Ku6WYPFc=
+Date: Thu, 19 Nov 2026 14:49:59 +0000
+From: Leo Yan <leo.yan@arm.com>
+To: Kepplinger-Novakovic Martin <Martin.Kepplinger-Novakovic@ginzinger.com>
+Cc: "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
+	"mike.leach@arm.com" <mike.leach@arm.com>,
+	"james.clark@linaro.org" <james.clark@linaro.org>,
+	"alexander.shishkin@linux.intel.com" <alexander.shishkin@linux.intel.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"coresight@lists.linaro.org" <coresight@lists.linaro.org>,
+	Roosen Henri <Henri.Roosen@ginzinger.com>
+Subject: Re: [BUG] coresight: during reboot-loop-test, boot hangs during 1st
+ us
+Message-ID: <20261119144959.GY9176@e132581.arm.com>
+References: <f3e3c30ef76310fb6fb7d00019a8ef11e91ee1e1.camel@ginzinger.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 00/15] R-Car X5H Ironhide CPG/MDLC SCMI remapping
- support
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>, Ulf Hansson <ulfh@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>,
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Paul Elder <paul.elder+renesas@ideasonboard.com>,
- Sudeep Holla <sudeep.holla@kernel.org>,
- Cristian Marussi <cristian.marussi@arm.com>
-Cc: arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <cover.1795029012.git.geert+renesas@glider.be>
-Content-Language: en-US, fr
-From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
-Autocrypt: addr=clegoffic@baylibre.com; keydata=
- xjMEafx9bxYJKwYBBAHaRw8BAQdAtc85GIwDXLz0rh9thWXC80Lji0otVDVncXT4qaS4j1fN
- K0Nsw6ltZW50IExlIEdvZmZpYyA8Y2xlZ29mZmljQGJheWxpYnJlLmNvbT7ClgQTFgoAPhYh
- BJjMiHuM4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsDBQkJZgGABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEH6EW4KtCh6Tt+sA/jVC35rY1npFlOy7YnncTdrID8Qf855JA78IzXgvzpGp
- AP9FkuuT80m66PP3DvgYX9kVnG17mSDKO0+v2W18v6ZgCM44BGn8fW8SCisGAQQBl1UBBQEB
- B0DMwF4u//aQyzsFlO8rPJ/cqsAuPH80IeIA3HOEo5mlVgMBCAfCfgQYFgoAJhYhBJjMiHuM
- 4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsMBQkJZgGAAAoJEH6EW4KtCh6TdSgBAMDS0MiWCivt
- LjzZc9bs+P/xdXywUjDKq3lpQGJ6vZ0GAP9vI6DnN7vwVK6jt6/+0aBGkog5Ura9+WwRFEdM
- vLfPDQ==
-In-Reply-To: <cover.1795029012.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f3e3c30ef76310fb6fb7d00019a8ef11e91ee1e1.camel@ginzinger.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_064720_130096_DD144EE8 
-X-CRM114-Status: GOOD (  15.76  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_065005_412651_9F16C8F5 
+X-CRM114-Status: GOOD (  17.89  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,54 +75,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Geert,
+Hi,
 
-On 11/18/26 8:44 PM, Geert Uytterhoeven wrote:
-> 	Hi all,
+On Thu, Nov 19, 2026 at 11:10:50AM +0000, Kepplinger-Novakovic Martin wrote:
+> hi Suzuki, Mike and others,
 > 
-> TL;DR:
+> I don't really know the coresight hardware but with CORESIGHT enabled, when I do
+> "reboot tests" on imx8mp, I see the kernel hang after (randomly) 200 to 2000 (sometimes
+> a hang was seen even later) reboots at *about* the line below. But indeed not exactly
+> that line. sometimes it stops 4-7 lines earlier!
+
+Could you enable earlycon together with ignore_loglevel and initcall_debug?
+So far, the info is too limited to give any useful hints.
+
+> [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+> [    0.000000] Linux version 6.18.63-ge-26.10+-ge_bep4-eta-1-00195-gb8bebc692f96 (root@ginzinger) (aarch64-buildroot-linux-gnu-gcc.br_real (Buildroot
+> -gf002287f) 13.4.0, GNU ld (GNU Binutils) 2.43.1) #41 SMP PREEMPT Thu Nov 12 09:08:03 CET 2026
+> [    0.000000] KASLR disabled due to lack of seed
+> [    0.000000] Machine model: BE-P4 i.MX8MPlus in NDM
+> [    0.000000] NUMA: Faking a node at [mem 0x0000000040000000-0x000000007fffffff]
+> [    0.000000] NODE_DATA(0) allocated [mem 0x7fdb6e80-0x7fdb9b7f]
+> [    0.000000] Zone ranges:
+> [    0.000000]   DMA      [mem 0x0000000040000000-0x000000007fffffff]
+> [    0.000000]   DMA32    empty
+> [    0.000000]   Normal   empty
+> [    0.000000] Movable zone start for each node
+> [    0.000000] Early memory node ranges
+> [    0.000000]   node   0: [mem 0x0000000040000000-0x000000007fffffff]
+> [    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000007fffffff]
+> [    0.000000] cma: Reserved 32 MiB at 0x000000007cc00000
+> [    0.000000] psci: probing for conduit method from DT.
+> [    0.000000] psci: PSCIv1.1 detected in firmware.
+> [    0.000000] psci: Using standard PSCI v0.2 function IDs
+> [    0.000000] psci: MIGRATE_INFO_TYPE not supported.
 > 
->     Describe hardware in DT, and perform mapping to abstractions offered
->     by SCMI in Linux.
+> The kernel does not panic. It hangs. The problem goes away and it reboots indefinitely
+> when I disable coresight in the config.
 
-A question on the approach
-An SCMI variant DT could mark the CPG and MDLC status = "reserved" and point the consumers at arm,scmi, while the U-Boot IPL keeps the hardware DT.
-Since v4, the series assumes the SCMI ids are stable:
+Could you confirm what exactly CoreSight modules have been enabled?
 
->   - Remove dependencies by making assumptions and dropping disputed
->     items, to move this series forward:
->       - Assume all SCMI IDs are stable.
-If they are, why not using them in the DT directly?
+> I sometimes need to run an old v5.10-imx based kernel, where I've *not* reproduced
+> this hang with coresight enabled.
+> 
+> Was there a regression in mainline or does NXP have a fix in their tree? Have you see
+> something like this before?
 
-On partitioning, the cover letter says:
+I am not aware of a CoreSight regression. I cannot comment on NXP
+board as I don't have it.
 
->   - The clock, reset, and power domain IDs are not stable by design,
->     causing DT incompatibilities.
->     SCMI requires that the ID space exposed to an agent (i.e. Linux)
->     starts at zero and is contiguous.  Hence any change in system
->     partitioning (Application CPU core vs. Realtime CPU core,
->     virtualization, ...) may mean a renumbering of all SCMI IDs,
->     implying a massive change to the DT.
+As separate diagnostic tests, could you try clk_ignore_unused and
+nohlt, one at a time, to see whether unused-clock disabling or
+CPU idle affects reproduction?
 
-SCMI do not mandate that renumbering. The ids start at zero and are sequential, but nothing requires them to cover only the resources of one agent.
-The firmware can keep a single id space for all agents and restrict per agent what each one may use, the rest returning DENIED (SCMI 4.0, section 3.2.1).
-For virtualization, the spec has the hypervisor grant each VM its resources this way. A new VM then changes permissions, not ids.
-
-With a single id space, a software configuration only changes which nodes are enabled, so one DT per software configuration, a base DT plus an overlay, is enough.
-If managing many configurations ever becomes a nightmare, tools exist for it, such as Lopper from devicetree-org [1], which generate one DT per execution domain from a single system DT.
-
-That leaves the missing clock domain, which is a gap in SCMI itself.
-
-[1] https://github.com/devicetree-org/lopper
-
-Best regards,
-Clément
+Thanks,
+Leo
 
