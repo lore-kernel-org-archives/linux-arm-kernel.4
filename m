@@ -2,68 +2,126 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB60F60A2610
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4EE606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:51:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QgmyrdAh;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mavax59V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wlt3QtFb;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=YE2brgLH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	MIME-Version:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=hkL6LCpwsy5aui12YKRbGKekStF7qkr49f4TEB6Q6ko=; b=QgmyrdAhMung3zGoHTMwwW7ZYC
-	R6oRfcC3bPp/gUwlkmbFHM/n3YngaquLp38LLaNqFjv7msJzJLEl4eUREgfPjH++mlew3RopRok+q
-	byCo2D/Is/gTjqD01+ikLTu2NYl1JurV0PFAp/+VGQc/mwvbqPbNU3zOfdIZb+RR+mGrw6xZ8a21A
-	qHsG04OAEChutPY8K5Yx/n/UtKEnI7XyuSre/Kl2aGwjj2oxTDZOOn3VA6QFeQgWj6yHbKsJluRcK
-	mRYX91sNK/ixYDPZCER+0p4Wz/xBJjO50VnYfJselTejHylELa1qYDfVzxupa1HOBnUzY1dEgVm92
-	2L3p/2jg==;
+	bh=F7dD34vYVgEIhrODdioIEmA+HIADJyQjsjtb9GQQ3FY=; b=Wlt3QtFbiJICRF7k+hO6vr6ZgI
+	FqhkVGpozRAzKnJoRu9DNaBPSatCrYMKUL/YKTq9DJYH9Nj+QOzQKwfatyEGBY3NjgyAU4eXow2e4
+	FuZ0TxtWlgSTGLIUMHxoo9KcemULeSrBryS1J+UAkXDY/swbjLeTQuzF3ANvuubwongLHZl3n3byd
+	K8VvOH6QV0P28MfeQvvj55BmI5jJSQhwi0kVYFrTocWqfD446SAiVhfQvR5VwdtjytKP0Hltr8aIN
+	fTBAazN4fIw4fd6NyQKpqVC5uROIYFlqajsqgl/+eHZu8xDGreWFtWXRISyo7irPVnUy29/+Q8g//
+	eOdhdkaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5Kf-0000000Cj4V-3sbL;
-	Thu, 19 Nov 2026 16:49:57 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xU5ME-0000000CjNF-0uns;
+	Thu, 19 Nov 2026 16:51:34 +0000
+Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU5Ke-0000000Cj3X-1TCs;
-	Thu, 19 Nov 2026 16:49:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 03B9546EEC;
-	Thu, 19 Nov 2026 16:49:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A7B41F000C7;
-	Thu, 19 Nov 2026 16:49:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795106995;
-	bh=hkL6LCpwsy5aui12YKRbGKekStF7qkr49f4TEB6Q6ko=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=mavax59Vne56Zps4+bvprTLE46rKCX62u98fBxOxfLfnO0nahuq5QaI6aykEWgaKK
-	 ykigUTOYJqPhcEZh2Zr4PJB6JWz3uKvpsXYREBCtHfuc2+9QMbK4nL6cGklNffbIo2
-	 KBFMU63s1N4169vgRGr1tZ1MuFFGHVtXNZvZB15ILEDLokYffguf35OryUYXEeZrLj
-	 FUjbMo4G5OBFHAijoBPrXjCx2jM/YerFjtY63m4j6bAObmOWXZ4RCEYpguatDboyRt
-	 VAmhoYOyZf0j4IZMKee7Tt9wEkw+hUVJEixuBaLBasLz8RElAe+OUoOOLQfMTD76Rl
-	 Ui3wUdwuWIgnQ==
-Date: Thu, 19 Nov 2026 17:49:53 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Maoyi Xie <maoyixie.tju@gmail.com>
-Cc: Felix Fietkau <nbd@nbd.name>, Ryder Lee <ryder.lee@mediatek.com>,
-	Shayne Chen <shayne.chen@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-wireless@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, stable@vger.kernel.org
-Subject: Re: [PATCH] wifi: mt76: sdio: check the RX packet length in
- mt76s_rx_run_queue()
-Message-ID: <av8osemFMD6C2EdK@lore-qca>
-References: <20261119124928.1398520-1-maoyixie.tju@gmail.com>
+	id 1xU5MB-0000000CjMc-1oXy
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 19 Nov 2026 16:51:32 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=t79vv7P+x/qE4WsoAk+ioz9viX4ZRHuPqwh/doYxMbPxF72SybQZPmWvgr08I+0+s0WdNgJ20q1R8g42xiyJIJMct5y3MslMl32iv79if6PI6gZhsEneLbo5GQK9x4cPzgPtcVc76WUce0alJGhkjnXdVIUD7raQKkWfoTbVvvjZ44TSHjpP2y8julaxB77yg2WkJjE5fo2u7p0dVq744AnXiD1M5EX5YO8cujqhK2YaawPnDskzintC0vLl7Esi1eLSZbtZme3UoobHQKre2s8p3MOar2eNwx0CotWdK5ize5jb23sp/zCWOISyXitWkRfd5kRKam3V0rMBH6mc1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F7dD34vYVgEIhrODdioIEmA+HIADJyQjsjtb9GQQ3FY=;
+ b=f0Qc+gPS4GA1Ml+C6/nmS5k0D3IM08FuOsNIMQ27sxZSUND9LpIlqF++b22qsdM754Hb+yDmEymueGVbO9GDsI8239OOjsjsWD9gvWRght7DnFa0F3Fzcen0mlPHjZriB2PKuXfDgqlHo1s9nwIVpbFDeejXkeYwo5JAviwadfRA1GxJXiQFM6oeKazQiAhcSuD2d44HFZcx/5Tib6RWHGa0jUIeULnVAK7Ahw6EHiu5e55NJeu5a0GiMcivT8wiabi8IXMFojnwNCX3MVlxr0e/TNiKBybvAmsFkXTJJ5KloaNCpTZSI1chjgLzSggnFXDA9aE1xNgU/3F5V2qjZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=arm.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F7dD34vYVgEIhrODdioIEmA+HIADJyQjsjtb9GQQ3FY=;
+ b=YE2brgLHjWv/XMDq8lR3/iu2arg/jvkdyxI6kOo47cf1U+5eTz0eHnLCTIfVT6Nh3znCiPmigzyCopmD43bhxdkyuNYpfvmfotEqsfBrMKvhh1izkwcbolEMKKkWkMUVBUcHwZuX357Xp/AGXYxd26Oz54UAYmLmrBMgKTUyUYA8cWQVnT+AAjEmUCBIsD9ezBILBUiTEI9UpeLQ6V03EpmJL35Oj9sS6xqP7HbicpH4f+7mpjw7129mnIfHFmEnkeWV88So+R+rzf7CPm3g2Ok8t3VYLSTqcp+IBmA9Dg5BeOo+9LqQQSaxmzOnJrjwA+ZKienjWoMrUxrkAe3yIA==
+Received: from BN0PR04CA0151.namprd04.prod.outlook.com (2603:10b6:408:eb::6)
+ by DS7PR12MB8204.namprd12.prod.outlook.com (2603:10b6:8:e1::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.14; Thu, 19 Nov 2026 16:51:22 +0000
+Received: from BN7PEPF000000A0.namprd04.prod.outlook.com
+ (2603:10b6:408:eb:cafe::33) by BN0PR04CA0151.outlook.office365.com
+ (2603:10b6:408:eb::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.10 via Frontend Transport; Thu,
+ 19 Nov 2026 16:51:22 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 216.228.118.232) smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ BN7PEPF000000A0.mail.protection.outlook.com (10.167.248.152) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 16:51:22 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
+ 2026 08:51:01 -0800
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Thu, 19 Nov 2026 08:51:00 -0800
+Received: from nvidia.com (10.127.8.14) by mail.nvidia.com (10.126.190.182)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57 via Frontend
+ Transport; Thu, 19 Nov 2026 08:50:59 -0800
+Date: Thu, 19 Nov 2026 08:50:57 -0800
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: John Garry <john.garry@arm.com>
+CC: <will@kernel.org>, <jgg@nvidia.com>, <robin.murphy@arm.com>,
+	<joro@8bytes.org>, <praan@google.com>, <kevin.tian@intel.com>,
+	<smostafa@google.com>, <linux-arm-kernel@lists.infradead.org>,
+	<iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>, <jamien@nvidia.com>,
+	<kas@kernel.org>, Cristian Prundeanu <cpru@amazon.com>, Breno Leitao
+	<leitao@kernel.org>, <xueshuai@linux.alibaba.com>
+Subject: Re: [PATCH v13 04/12] iommu/arm-smmu-v3: Pack the MSI vectors of the
+ used sources
+Message-ID: <av8o8TV3JO9W4dtb@nvidia.com>
+References: <cover.1794942324.git.nicolinc@nvidia.com>
+ <40570c344d7fce94c4e80316503a9162bb31cb62.1794942324.git.nicolinc@nvidia.com>
+ <dc59b81c-997d-4f79-bd95-be4981e4dd24@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="J99XZwWZUsYwxxM/"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20261119124928.1398520-1-maoyixie.tju@gmail.com>
+In-Reply-To: <dc59b81c-997d-4f79-bd95-be4981e4dd24@arm.com>
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN7PEPF000000A0:EE_|DS7PR12MB8204:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2e6bdfd8-e984-45b0-198b-08df465d5771
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|36860700016|7416014|82310400026|1800799024|23010399003|261021121427099003|56012099006|11063799006|261022075727099003|4143699003|261021135927099003|261026121527099003|10067099003|261102123227099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: vOkAdZ3eFXyo1vWuUyLid6T1AqDmfH9mefPAzf0foothqHaZzP4O5wPHT2ZpmIKNR2e/f0axH68GUMRE7f74xryZmGG9Vno7xj10spVidfxOjcRmkT9voJ+FizCgqQ5dJOhfkISY8B4d/VvsS0ql3OX3yAjpwoWH8mbokc0FCt/QMZTN4gF5qk14y1tnz1OF3Jwb8kwB58lyyCNLu8fe7yyKD26zuONKgW4oxfDhSLENQvzQOPdoTicO5qa9YKHnSTelJQy9VyuQUHW92M3165PrDGnO0Kdt/UsQZYv3n/0RRyInUfwPIw4/sQdvjFLLSQSZazbmOYhI9tVK6ZoEgpNz1YRTova3rsAt5Cqcip00WdYuqDsaeFJPnuaFh3wvmltM0q0nHgJVxypkWV5Q0kC/uIkuTlEMCXuoZ+VfYhVa8pZzv/ct6HBc2yBOmPugpmS3pCGmb7Bn1Ybqc6OUo4E8BubExXalNAPERnZqvb7Yv1z5mCAU+DXtH1rPXWU2LSXLnVuMzmObv8Vuxs8vttybwSTJn8w6eKUVwfDOjbVRwnfElLoyQFLHul5XEUubvLzy4BCViBbCN4FTsUNuiZYmeHTnIBXzdpewbX2baWIKG+Jac+KpqnP1MYWKpp4uX7/uRHoy1DnQw18d3XzTzVZn1awAVicFBLfoUfgOMYt9ZPFriYEGa+5//LLXc7OI8MZVapZI0gCZTFL0hcCIxA==
+X-Forefront-Antispam-Report: CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(36860700016)(7416014)(82310400026)(1800799024)(23010399003)(261021121427099003)(56012099006)(11063799006)(261022075727099003)(4143699003)(261021135927099003)(261026121527099003)(10067099003)(261102123227099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: hyoqFm/klnxEUVosDXEDkjpSTVecVj9TajRKFuNZWbGupFmuW42jPgc0n3hblF5onAEBozfd1YshcqnXXvzMUXoJ4NmGhhQ9DmpXehZBcHgEw7F0B5ydWIOzZ6FGsYCz3A9fhjcp1VwvUU7+4jch+YZsR8dpG07iZ3eQA0TFc/m0n9fYEhRiaF0k41MbiQ4vruRmOzo6wyEdyC23/np0TEGCpPhWmUR3ESzmmglVdbJatxsGYmOeASVKJu7hghOYINPMKZAp1FH+ioxnspq09qOIHv1v6aKKsRtZOHSetyHxOKBa8Ro0+lEitwga0UEYMlWF2vIUqc7C5yhOOzc9oyB/kQTauYSzTdHfZRS0++mTlAS0OvMTVpN/TNtalcbvF8E2Y8PmQOAXV8qB1/orZTQR3WLWtqmHFZ05LrPOQjyaAOInIHrf/u7TSVLQkj49
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 16:51:22.0947
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e6bdfd8-e984-45b0-198b-08df465d5771
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN7PEPF000000A0.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8204
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_085131_494007_E5EBA667 
+X-CRM114-Status: GOOD (  18.19  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,97 +132,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---J99XZwWZUsYwxxM/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Nov 19, 2026 at 10:55:41AM +0000, John Garry wrote:
+> On 11/17/26 19:21, Nicolin Chen wrote:
+> > arm_smmu_setup_msis() skips the PRIQ vector by decreasing nvec, which only
+> > works since PRIQ_MSI_INDEX is the last index. A subsequent change will make
+> > the EVTQ optional for kdump, whose index is 0, so that trick won't work.
+> > 
+> > Pack the vectors of the used sources instead, and record the source of each
+> > vector in a new msi_map, for arm_smmu_write_msi_msg() to find the register
+> > set, regardless of the sources in use.
+> > 
+> > No functional change intended.
+> > 
+> > Suggested-by: Jason Gunthorpe<jgg@nvidia.com>
+> > Signed-off-by: Nicolin Chen<nicolinc@nvidia.com>
+> 
+> looks ok, so FWIW:
+> 
+> Reviewed-by: John Garry <john.garry@arm.com>
+> > +	/* Map each vector back to its source for arm_smmu_write_msi_msg() */
+> > +	for (i = 0; i < ARM_SMMU_MAX_MSIS; i++)
+> 
+> Some might prefer using brace when body statement(s) covers > 1 line
+> 
+> > +		if (vec[i] < nvec)> +			smmu->msi_map[vec[i]] = i;
+> > +
 
-> mt76s_rx_run_queue() reads the packets that the chip announced in the
-> interrupt status into one buffer. It then takes the length of each
-> packet from the first word of the packet and does not compare it with
-> the bytes read. A larger length can make the driver read TX status
-> records past the end of the buffer and build an skb that extends past
-> it.
->=20
-> Stop at a packet that does not fit in the bytes read.
->=20
-> Found with a CodeQL-based static analysis tool that we are developing.
-> Reproduced in a userspace harness under ASan, which reports no such
-> read with this patch. Not tested on hardware, only compile-tested with
-> W=3D1 on next-20261116.
->=20
-> Fixes: dacf0acfe2ce ("mt76: sdio: extend sdio module to support CONNAC2")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Maoyi Xie <maoyixie.tju@gmail.com>
-> ---
-> I used an LLM to help write the harness and this patch.
->=20
->  drivers/net/wireless/mediatek/mt76/sdio_txrx.c | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/drivers/net/wireless/mediatek/mt76/sdio_txrx.c b/drivers/net=
-/wireless/mediatek/mt76/sdio_txrx.c
-> index 3f314e8e1e69f92..86dd1165d2c7f1f 100644
-> --- a/drivers/net/wireless/mediatek/mt76/sdio_txrx.c
-> +++ b/drivers/net/wireless/mediatek/mt76/sdio_txrx.c
-> @@ -127,6 +127,8 @@ mt76s_rx_run_queue(struct mt76_dev *dev, enum mt76_rx=
-q_id qid,
-> =20
->  		/* parse rxd to get the actual packet length */
->  		len =3D le32_get_bits(rxd[0], GENMASK(15, 0));
-> +		if (len > end - buf)
-> +			break;
-> =20
->  		/* Optimized path for TXS */
->  		if (!dev->drv->rx_check || dev->drv->rx_check(dev, buf, len)) {
->=20
-> base-commit: 7e1392a42ea288d70a266f6553fe06f57f8647ea
-> --=20
-> 2.34.1
->=20
+I don't intend to respin the whole series for this nit.
 
-I do not think this patch is correct since we actually consume just len -
-MT_SKB_HEAD_LEN bytes at most, right? I guess we should add something simil=
-ar
-to the patch below, what do you think?
+But, if there is a more solid reason for a respin, I'll fold it in.
 
-Regards,
-Lorenzo
-
-diff --git a/drivers/net/wireless/mediatek/mt76/sdio_txrx.c b/drivers/net/w=
-ireless/mediatek/mt76/sdio_txrx.c
-index 3f314e8e1e69..4f01d239e0ac 100644
---- a/drivers/net/wireless/mediatek/mt76/sdio_txrx.c
-+++ b/drivers/net/wireless/mediatek/mt76/sdio_txrx.c
-@@ -62,6 +62,9 @@ mt76s_build_rx_skb(void *data, int data_len, int buf_len)
- 	int len =3D min_t(int, data_len, MT_SKB_HEAD_LEN);
- 	struct sk_buff *skb;
-=20
-+	if (data_len > len && data_len - len > buf_len)
-+		return NULL;
-+
- 	skb =3D alloc_skb(len, GFP_KERNEL);
- 	if (!skb)
- 		return NULL;
-
---J99XZwWZUsYwxxM/
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCav8osQAKCRA6cBh0uS2t
-rF6mAP9G+ttPFkNFhkiPa7VBvasY41dns0pz/vyoWO+cyHp5fwEAij8Ipf+yBgyX
-v0TxuSeQI9EqJUr3hFvIkzgWGVL+YwI=
-=SZYg
------END PGP SIGNATURE-----
-
---J99XZwWZUsYwxxM/--
+Nicolin
 
