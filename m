@@ -2,120 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4E0606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383AD606A33D
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zZbEQK86;
-	dkim=pass (2048-bit key) header.d=brainfault.org header.i=@brainfault.org header.a=rsa-sha256 header.s=google header.b=V61pZgrU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CYlQSISS;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=pTLeWf2C
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CZqy6xFABQEyD7CGf6Z9ErvSDunlUYlFbbHfyyFxeho=; b=zZbEQK86Pny8AC
-	kZ2uTE39TxXpI7hJ4cyq3IFXeMWhCB3pgi7jVGyEuYQRvz6/j37z9UqkWXovVML4P6bL24Ffxq7xs
-	uExMwcu7BNvE+DAmFM21u5OjnqskFEVyZwg0a/Y8mbBlR0XVbmSlkiZXfhKpTN0/Uq6PzEybMJ2f1
-	aruw6Xz0A2lzgopxOlJvpeX2f2+KADPzH7+6awpH3D3ZhS+7sbX1PgdCebbZNFDdjPXNtKmtkY1yX
-	n7JuZI3ZrB9YGGH/KjkidOVqkIu1A4yLFVr/VYaLsxegA8OA3vIg/8dgEE7V5w03zFk1+5f1HIznB
-	gKq2tJKXuQowmRdYaa0w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=KnbdfePd50cx23JvpChjt9LYDM6NifugSVoKNVLpHBY=; b=CYlQSISSjLX0w6JQxvgV9FBHSQ
+	MWfSXswDX1yniqJyaZYihnZU9jt9SwkSWdNVLh2fYcoHqGsM2uTRnoH5mtvosz4goNCS3z4D5X5K6
+	Ub4i4jBP0Kih3hcL1AzAe7gtcWmaqk0kCH1qMcO5Hn8goIIT1W1Bw+saFP1530aowcGVeiWoUm0Tl
+	ek5F3RE3Ru0PZZnln5vyKk/icn9QdJpeLIypiXhlZndUp7RnabKK8VZzyVcGTAT4ZeqD2oEWjDJ6H
+	DLY79jNdvyUmmhCa3dTiFFZZkGe7lQzDONO2Ii84MlaZzVmfaMMvQ8N4ea4EyrVR9gq8aQcfQ+ctY
+	p6pM5FsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU42m-0000000CRmC-2Wtr;
-	Thu, 19 Nov 2026 15:27:24 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1xU45C-0000000CSK5-0WXx;
+	Thu, 19 Nov 2026 15:29:54 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU42k-0000000CRl8-2IEr
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 15:27:23 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4ac95761c85so19021195e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 07:27:21 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795102040; cv=none;
-        d=google.com; s=arc-20260327;
-        b=eJl8ht38vTF7AUwX/IJWFfr/zLXDOa59Fv7D19vYv1JN6mfMuJZoVJQkq6q4qCrG8r
-         EY5aG+7EuchMmry2LIdns39nRUc2qJh8IIZHYWIpo6t/PEjVzZkX3Gv/hrV/Dsy0aphU
-         Cu5lsU45XLvcMhHxp5wuoSTB9doWp52L6lrqHJ7baaL0MQ/Ne3g1Yeqo6nQeGF5wIp7Y
-         JOfaU9/BKrrzrrrFP4O3DjWEcNnyp5xcymINe+ODD4MykT19K6if/1FC+gIa5fPC2iPO
-         /PWr63gFUO9pA63BXwXk5RaacH1HWSShazP05c4Mq8KF2jVkorVDP1ek2GuVGkzS1Cy2
-         iPUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=CZqy6xFABQEyD7CGf6Z9ErvSDunlUYlFbbHfyyFxeho=;
-        fh=y7uuiAbCYWBFkLRuZh+gplJbTpB8RMUcPRCemBLfKgk=;
-        b=QK+nIb9dJ6iXIIX6zXU5un7VwcgW40zt6PAeN3lsp59+yZNonksUGtGxTiiWaQKPVu
-         twXz5tJ7diR6G+ztgl3/ZsdbmWOEUO+9PL/eodDK5rHBBLys0EhCMl3KNQfWA4Wyqf7A
-         iBxRMxF3guVLSoJ1kH1GVUt7CYQlxlSAN5waXBBSzPNdEI98iiXxVY7aGfuIMNy/TzXF
-         HpA1Q/8b5TKUck2z2lG7+bsNMwrLcYZN7FLRJL6NTB5uAblh56eXR2kHL3z6DI0GF1ad
-         poEdlqKvjw+SpS1YSMLEN2VWxlZENTFJxvjaJuW7FLf4z4cPqCBVh5ncWGzXkB+qFjcz
-         sCRg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault.org; s=google; t=1795102040; x=1795706840; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=CZqy6xFABQEyD7CGf6Z9ErvSDunlUYlFbbHfyyFxeho=;
-        b=V61pZgrUSYkiWnOd60nD+sFT7bfrdkFqNJcffqVsAYX9R8GY5tjrdeaOyrgUWg0VJ0
-         D4eehhVu5W9Lp8NkpmgrLpBLEQ4rM+lTJ7B2wgOyNF8mqwHPPS76y/LcdTJe0uWQFube
-         9Pycx9VyV3eciRyNV0lq70x0SzCGpEzEOhxTE3y46ddISWSsrUTokla/vtb5drNVnPMx
-         v9ufQRIbH4QUOIfXUHsmvSQYw0D8ttZmlHE0ox4EW6kPBf93YlM6HfGxDdtQvd6vpZ/m
-         9CnsEiyFWursjVORXNC5ph5t1wbF787V/HJvU0ZQigH/a0+tL0i2kwbeW/pQz6Q9w5Nv
-         O9tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795102040; x=1795706840;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=CZqy6xFABQEyD7CGf6Z9ErvSDunlUYlFbbHfyyFxeho=;
-        b=S5Pe/VtPMUHRhkBUXhhHueflSbiobDg5LslVe9LPwRf+aHxOWpL1etr/QuPNTjNvqq
-         tXY3MxKgok09tvneS2mmXtv7nWMyX4I/tFpKzS/fLlBipxWc72k9SoR7piVuEhkuoDMF
-         QLuFNLYzI9WYIOqtdFxEa1EAQ8TiYmeltUI8bzXy3C9LRvMxG4QaRjY7qBppl/EMfUAV
-         +drjzh8haq9oR5eUa8UZHz0ZQw8kUwul/NPs38zqSPNSatvlY/i8niRpqdKyZ+xaZUcb
-         Aq0aH/+uzintI5//Zg3/uzAQFcRuE4RmoH+g2uOGXQx9YaWwEqUHuwgyfcnBrHQZtwfo
-         qpXw==
-X-Forwarded-Encrypted: i=1; AL+hErEjYMNqIQYIgJ5ct1EiKFZSHzqbbh7/k6mE/ScbPx4mPx7+8wSfliXNN/u+s4TIvBrqPrvQbkPBabIOt3bSdDfF@lists.infradead.org
-X-Gm-Message-State: APuU4Z+eOtise6GcdX1aEQ57i15IrDBLCobYxUmal5JL1NCDoV2iQCKX
-	SECWFUo9E91e8uWCCGdqR0D+MeQDPkvS0XMmkQW1cL6BwvcJySfaRszJAGoztas/0gW0zw9yBFP
-	5kqsBUBn+rQFsJI92sYn5boJYVooJ7SXVxeAI6A2Nhg==
-X-Gm-Gg: AYBFou1vt3nguLREC92HMbu6+IEnk3nIgIBrVlUC54YCOC6UnKJcUlMitTEa1RmO6fv
-	KQcCF3gh/Iakj9xC3gYjHpkhCDuDb5DCcgldI0QpGLGYZ2Ln/a2CUiTBswG9fcCBI7ZQHJ/zwoK
-	7acGXlGaRc65s+ycStRScLufmoLFcMTLdxddjgLT7QQKNl7qToOLSRyPIclnp4ZEfVcF2DLX9Kw
-	EXqmxGnvqPsQfGSSvX+jMCz1wiGMkGukTyO4iH/y1FAlliLwMLfQgO+l9pkn/+gkeOFfNPO23Hr
-	9+S6Gsb5dKFoTnt2g9oQgV7NZ8VAqGYwlLdyK5zCoS6wiPIVYB/xK+bj6foLvd7aYi/vUaTwjBo
-	ALS2c08hn4RRMSnPb4JS2ajx+2a/+QfzafV0MzPcpp2k/Z2cwpH8dOyl9mJwdCHyJ4sUcACWzMd
-	fPxsGxrfSG/LYKomGvhfkjcC5jGpDUbjANUxxrldNkcglAYs5Kzch6S8k=
-X-Received: by 2002:a05:600c:154a:b0:4bb:6b6b:fbaa with SMTP id
- 5b1f17b1804b1-4bb7da12ab1mr128048755e9.16.1795102039017; Thu, 19 Nov 2026
- 07:27:19 -0800 (PST)
+	id 1xU45A-0000000CSJT-07Ii;
+	Thu, 19 Nov 2026 15:29:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795102189;
+	bh=Y31Aqu/ldrVNOH8NWT+K15XwnhuT0aa2J5qcnZjNsQE=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=pTLeWf2CvggpnVn6mgPTtu2P5jyV8zAI42CrI5UNI+np2uaeGTE210VX3NcyYAPBf
+	 j0cZWJWKPf9ytklQUgkU9dJA+MJryEXSZwOKWfjdGWM/+IlWTHNqic0aYE91nM75LZ
+	 6p0LsNcqvQ6qI5PYa37igU29lzp8KNuq2uTAe3aTF3XlLSGQQLnqEONqUAA6Fr3iRz
+	 anuFN+n0URkv2ho/ZsdlTqqWc/3nSTe7Kti1RhIlrgsJYgQ7MvIp7AXTtT0wlcNJdK
+	 mf8s51IAGpzpFK7SWw3JYfTWd9V2QT6BsdnNJKTKjtfITMbMi1Pat2ChxyQDFZde1f
+	 XcJ7GYTz+mRig==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 25DD317E0A27;
+	Thu, 19 Nov 2026 16:29:48 +0100 (CET)
+Message-ID: <b1aeedac26af03a4b1bd25d5f062f9efb7c04639.camel@collabora.com>
+Subject: Re: [PATCH 2/2] media: verisilicon: Reset the VDPU2 decoder after
+ an error
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: aiyengar1990@gmail.com, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner	
+ <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>, Boris Brezillon	
+ <boris.brezillon@collabora.com>, Hans Verkuil <hverkuil@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org
+Date: Thu, 19 Nov 2026 10:29:46 -0500
+In-Reply-To: <20261119-vdpu2-errreset-v1-2-f8fa403b6a3a@gmail.com>
+References: <20261119-vdpu2-errreset-v1-0-f8fa403b6a3a@gmail.com>
+	 <20261119-vdpu2-errreset-v1-2-f8fa403b6a3a@gmail.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-VNfhIxJwLPoRKtgwmuvP"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261118095053.3871267-1-vikram.singh3@oss.qualcomm.com> <20261118095053.3871267-5-vikram.singh3@oss.qualcomm.com>
-In-Reply-To: <20261118095053.3871267-5-vikram.singh3@oss.qualcomm.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Thu, 19 Nov 2026 20:57:07 +0530
-X-Gm-Features: Aa3M54rZEbG4RNdS6O1BRxLO3kDHI5P1qMQJ1pxxqQiXGApFrfCV5-bLcT-cUmk
-Message-ID: <CAAhSdy1fx4uJJTTamoyOjojh+ApdZmPVh9nd==NcfM6fTCoOvQ@mail.gmail.com>
-Subject: Re: [PATCH v5 4/7] riscv: pmu: Add infrastructure for Control
- Transfer Record
-To: Vikram Singh <vikram.singh3@oss.qualcomm.com>
-Cc: peterz@infradead.org, mingo@redhat.com, acme@kernel.org, 
-	namhyung@kernel.org, mark.rutland@arm.com, alexander.shishkin@linux.intel.com, 
-	jolsa@kernel.org, irogers@google.com, adrian.hunter@intel.com, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	alex@ghiti.fr, atishp@rivosinc.com, anup.patel@oss.qualcomm.com, 
-	will@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	beeman@rivosinc.com, linux-perf-users@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, Conor Dooley <conor@kernel.org>, 
-	devicetree@vger.kernel.org, Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_072722_666993_73DD8A02 
-X-CRM114-Status: GOOD (  28.11  )
+X-CRM114-CacheID: sfid-20261119_072952_240363_74162E25 
+X-CRM114-Status: GOOD (  24.13  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -135,245 +102,116 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 3:21=E2=80=AFPM Vikram Singh
-<vikram.singh3@oss.qualcomm.com> wrote:
->
-> To support Control Transfer Records (CTR) extension, we need to extend th=
-e
-> riscv_pmu framework with some basic infrastructure for branch stack
-> sampling. Subsequent patches will use this to add support for CTR in the
-> riscv_pmu_dev driver.
->
-> With CTR, the branches are stored into a hardware FIFO, which will be
-> sampled by software when perf events overflow. A task may be
-> context-switched between overflows, and to avoid leaking samples we need
-> to clear the last task's records when a task is context-switched in.
-> To do this we will be using the pmu::sched_task() callback added in this
-> patch.
->
-> Co-developed-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
-> Signed-off-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
-> Signed-off-by: Vikram Singh <vikram.singh3@oss.qualcomm.com>
-> Link: https://lore.kernel.org/r/20261106173942.3175069-5-vikram.singh3@os=
-s.qualcomm.com
-> Signed-off-by: Anup Patel <anup@brainfault.org>
+--=-VNfhIxJwLPoRKtgwmuvP
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-As mentioned in PATCH1, drop the "Link:" and the subsequent
-"Signed-off-by:" lines.
+Le jeudi 19 novembre 2026 =C3=A0 06:20 +0000, Arun Iyengar via B4 Relay a =
+=C3=A9crit=C2=A0:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+>=20
+> After a stream or bus error the decoder can still access the buffers of
+> the failed picture. On RK3588 these accesses hit buffers userspace had
+> already freed: IOMMU page faults, an IOMMU that can no longer stall and
+> corrupted output for the next job.
+>=20
+> Soft-reset the decoder on every error interrupt, as the vendor driver
+> does, and wait for the reset to complete.
 
+Its not because the vendor use a big hammer that we should use it upstream.=
+ We
+fixed a lot of these driver bugs by handling specific error correctly. When=
+ the
+TRM says the IP will self reset, it does, and you should not add extra over=
+head
+there unless you can prove something is broken.
+
+Please check G2 IRQ handler, its more aligned to were we want to bring all =
+the
+IRQ handlers in this driver.
+
+Nicolas
+
+>=20
+> Fixes: 879dee56a40c ("media: rockchip/vpu: Add MPEG2 decoding support to =
+RK3399")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 > ---
->  drivers/perf/riscv_pmu.c        | 19 +++++++++++++++++++
->  drivers/perf/riscv_pmu_legacy.c |  2 ++
->  drivers/perf/riscv_pmu_sbi.c    | 17 +++++++++++++++++
->  include/linux/perf/riscv_pmu.h  | 23 +++++++++++++++++++++--
->  4 files changed, 59 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/perf/riscv_pmu.c b/drivers/perf/riscv_pmu.c
-> index 8e3cd0f35336..d4826eb73b16 100644
-> --- a/drivers/perf/riscv_pmu.c
-> +++ b/drivers/perf/riscv_pmu.c
-> @@ -157,6 +157,19 @@ u64 riscv_pmu_ctr_get_width_mask(struct perf_event *=
-event)
->         return GENMASK_ULL(cwidth, 0);
+>  .../media/platform/verisilicon/rockchip_vpu_hw.c    | 21 +++++++++++++++=
+++++--
+>  1 file changed, 19 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drive=
+rs/media/platform/verisilicon/rockchip_vpu_hw.c
+> index 4bc1bdb41c70..01cd449f3ab2 100644
+> --- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+> +++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+> @@ -7,6 +7,7 @@
+>   */
+> =20
+>  #include <linux/clk.h>
+> +#include <linux/iopoll.h>
+> =20
+>  #include "hantro.h"
+>  #include "hantro_jpeg.h"
+> @@ -384,6 +385,21 @@ static irqreturn_t rockchip_vpu1_vepu_irq(int irq, v=
+oid *dev_id)
+>  =09return IRQ_HANDLED;
 >  }
->
-> +static void riscv_pmu_sched_task(struct perf_event_pmu_context *pmu_ctx,=
- struct task_struct *task,
-> +                                bool sched_in)
+> =20
+> +/*
+> + * After an error the decoder can still have bus accesses of the failed
+> + * picture in flight; reset it before its buffers go back to userspace.
+> + */
+> +static void rockchip_vpu2_dec_soft_reset(struct hantro_dev *vpu)
 > +{
-> +       struct riscv_pmu *pmu;
+> +=09u32 val;
 > +
-> +       if (!pmu_ctx)
-> +               return;
-> +
-> +       pmu =3D to_riscv_pmu(pmu_ctx->pmu);
-> +       if (pmu->sched_task)
-> +               pmu->sched_task(pmu_ctx, task, sched_in);
+> +=09vdpu_write(vpu, 0, VDPU_REG_EN_FLAGS);
+> +=09vdpu_write(vpu, 1, VDPU_REG_SOFT_RESET);
+> +=09if (read_poll_timeout_atomic(vdpu_read, val, !val, 0, 5, false, vpu,
+> +=09=09=09=09     VDPU_REG_SOFT_RESET))
+> +=09=09dev_warn_ratelimited(vpu->dev, "decoder soft reset timed out\n");
 > +}
 > +
->  u64 riscv_pmu_event_update(struct perf_event *event)
+>  static irqreturn_t rockchip_vpu2_vdpu_irq(int irq, void *dev_id)
 >  {
->         struct riscv_pmu *rvpmu =3D to_riscv_pmu(event->pmu);
-> @@ -269,6 +282,8 @@ static int riscv_pmu_add(struct perf_event *event, in=
-t flags)
->         cpuc->events[idx] =3D event;
->         cpuc->n_events++;
->         hwc->state =3D PERF_HES_UPTODATE | PERF_HES_STOPPED;
-> +       if (rvpmu->ctr_add)
-> +               rvpmu->ctr_add(event, flags);
->         if (flags & PERF_EF_START)
->                 riscv_pmu_start(event, PERF_EF_RELOAD);
->
-> @@ -290,6 +305,8 @@ static void riscv_pmu_del(struct perf_event *event, i=
-nt flags)
->         if (rvpmu->ctr_stop)
->                 rvpmu->ctr_stop(event, RISCV_PMU_STOP_FLAG_RESET);
->         cpuc->n_events--;
-> +       if (rvpmu->ctr_del)
-> +               rvpmu->ctr_del(event, flags);
->         if (rvpmu->ctr_clear_idx)
->                 rvpmu->ctr_clear_idx(event);
->         perf_event_update_userpage(event);
-> @@ -402,6 +419,7 @@ struct riscv_pmu *riscv_pmu_alloc(void)
->         for_each_possible_cpu(cpuid) {
->                 cpuc =3D per_cpu_ptr(pmu->hw_events, cpuid);
->                 cpuc->n_events =3D 0;
-> +               cpuc->ctr_users =3D 0;
->                 for (i =3D 0; i < RISCV_MAX_COUNTERS; i++)
->                         cpuc->events[i] =3D NULL;
->                 cpuc->snapshot_addr =3D NULL;
-> @@ -416,6 +434,7 @@ struct riscv_pmu *riscv_pmu_alloc(void)
->                 .start          =3D riscv_pmu_start,
->                 .stop           =3D riscv_pmu_stop,
->                 .read           =3D riscv_pmu_read,
-> +               .sched_task     =3D riscv_pmu_sched_task,
->         };
->
->         return pmu;
-> diff --git a/drivers/perf/riscv_pmu_legacy.c b/drivers/perf/riscv_pmu_leg=
-acy.c
-> index 1b8e4789cb3c..5214e90c61a6 100644
-> --- a/drivers/perf/riscv_pmu_legacy.c
-> +++ b/drivers/perf/riscv_pmu_legacy.c
-> @@ -115,6 +115,8 @@ static void pmu_legacy_init(struct riscv_pmu *pmu)
->         set_bit(RISCV_PMU_LEGACY_INSTRET, pmu->cmask);
->         pmu->ctr_start =3D pmu_legacy_ctr_start;
->         pmu->ctr_stop =3D NULL;
-> +       pmu->ctr_add =3D NULL;
-> +       pmu->ctr_del =3D NULL;
->         pmu->event_map =3D pmu_legacy_event_map;
->         pmu->ctr_get_idx =3D pmu_legacy_ctr_get_idx;
->         pmu->ctr_get_width =3D pmu_legacy_ctr_get_width;
-> diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
-> index 21a2078eab98..b14b3acf7567 100644
-> --- a/drivers/perf/riscv_pmu_sbi.c
-> +++ b/drivers/perf/riscv_pmu_sbi.c
-> @@ -825,6 +825,14 @@ static void pmu_sbi_reset_scounteren(void *arg)
->                           csr_read(CSR_SCOUNTEREN) & ~BIT(pmu_sbi_csr_ind=
-ex(event)));
+>  =09struct hantro_dev *vpu =3D dev_id;
+> @@ -396,6 +412,8 @@ static irqreturn_t rockchip_vpu2_vdpu_irq(int irq, vo=
+id *dev_id)
+> =20
+>  =09vdpu_write(vpu, 0, VDPU_REG_INTERRUPT);
+>  =09vdpu_write(vpu, 0, VDPU_REG_AXI_CTRL);
+> +=09if (state !=3D VB2_BUF_STATE_DONE)
+> +=09=09rockchip_vpu2_dec_soft_reset(vpu);
+> =20
+>  =09hantro_irq_done(vpu, state);
+> =20
+> @@ -482,8 +500,7 @@ static void rockchip_vpu2_dec_reset(struct hantro_ctx=
+ *ctx)
+>  =09struct hantro_dev *vpu =3D ctx->dev;
+> =20
+>  =09vdpu_write(vpu, VDPU_REG_INTERRUPT_DEC_IRQ_DIS, VDPU_REG_INTERRUPT);
+> -=09vdpu_write(vpu, 0, VDPU_REG_EN_FLAGS);
+> -=09vdpu_write(vpu, 1, VDPU_REG_SOFT_RESET);
+> +=09rockchip_vpu2_dec_soft_reset(vpu);
 >  }
->
-> +static void pmu_sbi_ctr_add(struct perf_event *event, int flags)
-> +{
-> +}
-> +
-> +static void pmu_sbi_ctr_del(struct perf_event *event, int flags)
-> +{
-> +}
-> +
->  static void pmu_sbi_ctr_start(struct perf_event *event, u64 ival)
->  {
->         struct sbiret ret;
-> @@ -885,6 +893,12 @@ static void pmu_sbi_ctr_stop(struct perf_event *even=
-t, unsigned long flag)
->         }
->  }
->
-> +static void pmu_sbi_sched_task(struct perf_event_pmu_context *pmu_ctx, s=
-truct task_struct *task,
-> +                              bool sched_in)
-> +{
-> +       /* Call CTR specific Sched hook. */
-> +}
-> +
->  static int pmu_sbi_find_num_ctrs(void)
->  {
->         struct sbiret ret;
-> @@ -1506,6 +1520,8 @@ static int pmu_sbi_device_probe(struct platform_dev=
-ice *pdev)
->         pmu->pmu.attr_groups =3D riscv_pmu_attr_groups;
->         pmu->pmu.parent =3D &pdev->dev;
->         bitmap_copy(pmu->cmask, cmask, RISCV_MAX_COUNTERS);
-> +       pmu->ctr_add =3D pmu_sbi_ctr_add;
-> +       pmu->ctr_del =3D pmu_sbi_ctr_del;
->         pmu->ctr_start =3D pmu_sbi_ctr_start;
->         pmu->ctr_stop =3D pmu_sbi_ctr_stop;
->         pmu->event_map =3D pmu_sbi_event_map;
-> @@ -1517,6 +1533,7 @@ static int pmu_sbi_device_probe(struct platform_dev=
-ice *pdev)
->         pmu->event_mapped =3D pmu_sbi_event_mapped;
->         pmu->event_unmapped =3D pmu_sbi_event_unmapped;
->         pmu->csr_index =3D pmu_sbi_csr_index;
-> +       pmu->sched_task =3D pmu_sbi_sched_task;
->
->         ret =3D riscv_pm_pmu_register(pmu);
->         if (ret)
-> diff --git a/include/linux/perf/riscv_pmu.h b/include/linux/perf/riscv_pm=
-u.h
-> index ecaa40370830..c748a06ad751 100644
-> --- a/include/linux/perf/riscv_pmu.h
-> +++ b/include/linux/perf/riscv_pmu.h
-> @@ -28,6 +28,15 @@
->
->  #define RISCV_PMU_CONFIG1_GUEST_EVENTS 0x1
->
-> +struct sse_event;
-> +
+> =20
+>  static void rockchip_vpu2_enc_reset(struct hantro_ctx *ctx)
 
-Drop this forward declaration of "struct sse_event" and the
-subsequent newline.
+--=-VNfhIxJwLPoRKtgwmuvP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-> +#define MAX_BRANCH_RECORDS 256
-> +
-> +struct branch_records {
-> +       struct perf_branch_stack branch_stack;
-> +       struct perf_branch_entry branch_entries[MAX_BRANCH_RECORDS];
-> +};
-> +
->  struct cpu_hw_events {
->         /* currently enabled events */
->         int                     n_events;
-> @@ -47,6 +56,11 @@ struct cpu_hw_events {
->         bool snapshot_set_done;
->         /* A shadow copy of the counter values to avoid clobbering during=
- multiple SBI calls */
->         u64 snapshot_cval_shcopy[RISCV_MAX_COUNTERS];
-> +       /* Saved branch records. */
-> +       struct branch_records *branches;
-> +
+-----BEGIN PGP SIGNATURE-----
 
-Drop the redundant newline.
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav8V6gAKCRDZQZRRKWBy
+9E1/AQCQ/OEC7goF6NstMHroyb/dSBFTJpopbeXazJtj+GWl+QD+PV71UkvRHlSI
+DHHIB57bxeLUtYz/8hJRQEs2dAGUmAw=
+=zEAS
+-----END PGP SIGNATURE-----
 
-> +       /* Active events requesting branch records */
-> +       int ctr_users;
->  };
->
->  struct riscv_pmu {
-> @@ -60,17 +74,22 @@ struct riscv_pmu {
->         int             (*ctr_get_idx)(struct perf_event *event);
->         int             (*ctr_get_width)(int idx);
->         void            (*ctr_clear_idx)(struct perf_event *event);
-> +       void            (*ctr_add)(struct perf_event *event, int flags);
-> +       void            (*ctr_del)(struct perf_event *event, int flags);
->         void            (*ctr_start)(struct perf_event *event, u64 init_v=
-al);
->         void            (*ctr_stop)(struct perf_event *event, unsigned lo=
-ng flag);
->         int             (*event_map)(struct perf_event *event, u64 *confi=
-g);
-> -       void            (*event_init)(struct perf_event *event);
-> +       int             (*event_init)(struct perf_event *event);
->         void            (*event_mapped)(struct perf_event *event, struct =
-mm_struct *mm);
->         void            (*event_unmapped)(struct perf_event *event, struc=
-t mm_struct *mm);
->         uint8_t         (*csr_index)(struct perf_event *event);
-> -
-> +       void            (*sched_task)(struct perf_event_pmu_context *ctx,=
- struct task_struct *task,
-> +                                     bool sched_in);
->         struct cpu_hw_events    __percpu *hw_events;
->         struct hlist_node       node;
->         struct notifier_block   riscv_pm_nb;
-> +
-> +       unsigned int    ctr_depth;
->  };
->
->  #define to_riscv_pmu(p) (container_of(p, struct riscv_pmu, pmu))
-> --
-> 2.43.0
->
-
-Regards,
-Anup
+--=-VNfhIxJwLPoRKtgwmuvP--
 
