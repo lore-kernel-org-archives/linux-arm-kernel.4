@@ -2,104 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3B2606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA34606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tGluv3/W;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hae0IY6Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d/CPTk1m;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oB2tNkd8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Type:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To
+	:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=G96VJts1v3/6sj9M5CAvHWlJcDFh4oPkNZ60e98HLbE=; b=tGluv3/WN7krvpjgNzUsKqf55S
-	Wg77jyujjbbUq8UXJh5Q9McOl1oDN2NCGt3nsDz7jnARjLgBftsqgQC0lOz0W0riTgVWE2GVdzkdP
-	nNNbGif8jsdF/pNPK7zQ3CahaWFTa7Zq7pMbwUKANpGPsKexnoYNwM/OPkVhTqrg41IXOaFctzlt6
-	aN6TBg21UURkzthPH2ejjDn53W8Z0gR3eebBM5vheN99R/K5cwdaTI4EzsDmxkQk3j86Ws/DUC+Mp
-	Qi/eOLkPrT8MxogrT3LhnJm7NLppiY75+11emrhTRZ8P+EwjWbFTi0AHRgNb6nruS1N1Ecf3NkmWs
-	bcJLMjOg==;
+	bh=j29SAb8EvttOzVITE2CaOHnF65j/VwFfLdLmsnjzJTw=; b=d/CPTk1muZsCb2aLQTCsG/Do54
+	ksh06F3h1HgdqvFYGF6NBQXoQgF+BW5hU6cm++x1ILFYRJEhIhSxYdHtcR6sq3VZLCXByqAcYIxjR
+	hIYB4Y0eOFBq7cOZ7NxX8ttWSnqdAd/LSGO648/5e+RHATiR3zHrzdn6wHzKPeCuwd/x3h2VdL6qc
+	u1ZrK3EAivLfwnZdn8g0Egw5ImKWNiNzf+q+gSH+nSRL8HFwCXjLKdZAW7ZLYPndC7DHGdrpyOV1j
+	EqwPATXHN3MDv4d6n9tpXxSgwBvQpmrF3fcHsoWY/ZosPR+WZH4fT6+Mv4ikt38IxwfdPOCYMeTUp
+	tCy7wE/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4Zp-0000000CZOp-0Rad;
-	Thu, 19 Nov 2026 16:01:33 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1xU4fY-0000000CaCR-08zD;
+	Thu, 19 Nov 2026 16:07:28 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4ZR-0000000CZGP-1xQU
+	id 1xU4fW-0000000CaCJ-3CQN
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 16:01:10 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4bb70074ab2so25924695e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 08:01:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795104067; x=1795708867; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=G96VJts1v3/6sj9M5CAvHWlJcDFh4oPkNZ60e98HLbE=;
-        b=hae0IY6Yjxj7eTulMS1V0g87uxGTM9S6SoLCsGh1PbNUluw6sWR7p2p7FLYvbXOk66
-         uowzcMMqf+ql1BjNyfl9QAe+f/cK1/dFcVa+V4dvljB3T3S/m7fYUwNjYRq+SZQIIbYX
-         r6FOnepLO4UbUGm/gUSshxvAuAtlrVTTv8wcnCa2YsP7bLFfGNAbogXowrxeZ6jbkp/p
-         Dkcf3H1Nx0fqZaMWbH0MTIH7QbbW3kl08BclJPkqQcXX3pJYNhVonyYOU6m5Iwovs9dq
-         p6tT+Bj1EdHrvtSoTtwWKEi637I+404Tc3t7Lk4ODOkGsebfVBbqUVtHc+xE+bBhzmK0
-         IPfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795104067; x=1795708867;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=G96VJts1v3/6sj9M5CAvHWlJcDFh4oPkNZ60e98HLbE=;
-        b=z58uX7mQ8yHTHz7gdURu3bMucL9nGc5VMhwV4Jj/Oftp3x0wv090yUQ9Rfyxucty5U
-         /DFDKfbFW6SL2hRZql7wvX2okGi+CYO/dFu2remY7uvpSW5voNa4YMnyY3UbOzeL0R0P
-         ZD0wZkD2C1CHHW+mmDPaW5EmS4lXb3VEB69GYrp5P+niJ2n/YR/wKXif16IRrlUyIvXY
-         3wa+UWBEMLtDBo3JaJm0B1tzh6ERZxaGJ48/zPquNC0x14vrXQQmgT2v8+4/N72/o20U
-         li2Mycng6+eHIlHDVyjaH14oqNvXKNG7/lN4udYqkh4hXWI4G/vLvFkjo9dPIbDXvE9M
-         zOxg==
-X-Forwarded-Encrypted: i=1; AL+hErHJkwzkcbz4wqkr26vtWLQ28iZRHULnAsM/17wKVvHwzEFgzXGayPZBFT0HBDGl7aJOgL/LF7WcRFF+XW9ZyQg1@lists.infradead.org
-X-Gm-Message-State: APuU4Z9s2u7DjiCr0qJ6HoVQVub01OrqH7U+Eh4SiRToktQwQ39NNaLe
-	OhBcUz+JHO2HPJCAJD88PgPSy8nWBIY1zvR65BVEv6NcrVl6XPs0deH9
-X-Gm-Gg: AYBFou3+lWepfIR4/KCgzcL1+hutpbXf1Nwf7otoQz6Ahje3le723fO+3w2OTlz2ZmP
-	Ui8lap03qAbkbPyh59csJjAmb4+blDt5GgaAMjoo2LiGkBBQFUyIeiR3lYql3+Qx1rFyINS8fbI
-	11qIf9/p3PcgVb2IsDZE3ladU785ChOPBZ/Jl9ydHf1HcgnJNR5GcZbVl6F/XLNgoNiF5BqUpmG
-	oNqLqZFWcvofmxL4dPE7COfkWVBWDWd1vN+Ngi876FDwLfWFdFHjhOjBdqj6RmmcebLr/wn02rU
-	n4ClaOCFs6EvGKKUaIbS1tmnpIvHS5P6y3cIYGtEIOHdq+P40ACIMRpLkPFmOZTO9lYYb7cAuea
-	tT4W5qhLteP8mblwZDGnHvI68opt4zujfEM2LXtf1vdnHJXjL7+a8LQR/0EmEbukMQx49KNkl9X
-	SdFeEUlpohNkU5hx/9R2x3F7RC3YrxZ6YorjtHw8sLEba/NRDN56sukR9CH+xVR9bXItzt4FlOs
-	6Ih7hW1af/wrwYrPJSuwYuefQ5IDJESOCIqYJwjZpfxljS9qWr2HbB2IZwtAiHP2UVfklxzwLB2
-	QK8vF+dcxEqBWGFAb9f2266ijBvjz150zE/abAvChMabBhpEg5Wv+0S08QVsTgPoaT+zrJ/qgef
-	aeVZd1eRUGFTJ9oWFwF44xCiziIQYFFD+6wIs1Vjk5GA8tXyq/0Ez5xU=
-X-Received: by 2002:a05:600c:4f0d:b0:4bb:6f41:399f with SMTP id 5b1f17b1804b1-4bb7da2ba1bmr145169935e9.24.1795104066898;
-        Thu, 19 Nov 2026 08:01:06 -0800 (PST)
-Received: from Lord-Beerus.station ([93.146.104.162])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b9add26sm323784f8f.44.2026.11.19.08.01.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 08:01:06 -0800 (PST)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH v3 0/2] arm64: dts: freescale: imx93-var: Add Cortex-M33 configurations
-Date: Thu, 19 Nov 2026 17:00:52 +0100
-Message-ID: <cover.1795103362.git.stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
+	Thu, 19 Nov 2026 16:07:26 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3148140A6D;
+	Thu, 19 Nov 2026 16:07:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48B0F1F000C6;
+	Thu, 19 Nov 2026 16:07:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795104446;
+	bh=j29SAb8EvttOzVITE2CaOHnF65j/VwFfLdLmsnjzJTw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=oB2tNkd81qDgc1xAqwbzSPP9GlHDuIuGyCMbpR1kMGA56iCQrX6lOWXZVfdedVMBA
+	 MGOZKVIdhJEyeVEOBmvrRQaV9sGvCcobHzbr3g0a3ckDYo9Vx1pm/NqPXtISiYZF1q
+	 JDCMd3tQi9adV4gCUn8XJqUs/QWjV1EfxeicqHFGML9uIprYVaZ1P4klWCB7Vy+AGt
+	 3XfVCHdOsLxAjOge6fm1uj+6pyHpE3DQjaC86HtKH2w2+AGFczRMhzGNPvD7w6DO1c
+	 imNUk4pg+gkw2HzBgQsbGIOgHNSE+5jYi6NF8MUGqKHA02tFQFKyOelfYuPuQGaybX
+	 1COIfJEZalpLw==
+Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
+	by mailfauth.ams.internal (Postfix) with ESMTP id DEB88198003A;
+	Thu, 19 Nov 2026 11:07:21 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-03.internal (MEProxy); Thu, 19 Nov 2026 11:07:23 -0500
+X-ME-Sender: <xms:uR7_ajFv6OL4CpdUy_FIy296c2g6Re8mydHWaQMZYo-UTWtQlOdIkg>
+    <xme:uR7_agwldovTu_dW7dvu_TgABclj-p_lLDYPooPlaOZjjEC5F4-vKi6lwLP7u6_s-
+    l7eXRGgTp6cr2yQ9ohbunWkV10PjTrvTRWKYEH5G0T2M-VEfxWXAy3r>
+X-ME-Received: <xmr:uR7_aqnRZOo4M5bsuoIgfqR-x9kby_P24P-Vz8sQ7wpIsA7dRMfY9PDgYmE>
+X-ME-Proxy-Cause: dmFkZTFm0lYATStNIOABOpxqkau+yCPNey2OosqNHPZKxhPtD7wvr6Y76D+MC68PZNdkj6
+    m1BZqkcynDzYwqcq5z5jlBzCaWzMrQz017P5oQLszBw3cLuuKBmyUv7gqQ2Z9E4syY/uMl
+    96uoo9DAlI0Iq2RxKMGkHrqrm930MfQ3yqN/DaYUgc+eNUiq3dC2rjWQDDBdsPZExWmZzr
+    bckN1JLS1Kg65dVfO0Cnjw2KVLenDCDZDgoktI0KDtChzk5mLkg9P32K+luEoP15tLd6y7
+    7iXRLpOWscCnZ9CodeEdi9uC6LTfqsfeKkED8QRuYp1GBqE7N1NZ6IVzzSQLBjGlxSaAFB
+    58uJaeeWvApciGPkEMLCvrNPjKEjPH0S8/42lRh/j8S3dkrofW7lCeGpvWVHtVrnY5gtmz
+    n4UmZ7CfdaUdvhtzu+l7g0UwHMyxOQBo6nYUm+uaiZQynm/TZmCg1ih7vCSAJBdKQKRa5R
+    4zeTO8IMaWSK1HDO4QqgCT+U5pZUwGkvxmFAleXqtgBsznaBiDsXAu0OV5u/UqCkC5TjZq
+    v8kaboU/PUMM8hF+1GJwkzqwn9aMaT9AhHZctt1NWQEFHPUZm9vuf6WePlZJaqoKBqkT1X
+    U80O3pGpklnnfN/0vjOnAN4146Dg1nXgrVARagvCWcKj9OxURiKZr1+P+cEiFk1VBNlvJM
+    9XJBnEc5wpcKwOcYn/13kVJpfuFa8O8R1IuLhJyyGk4BkiRFhw5zx3yfKPdc/aFiZHlkuU
+    ptvog1bcCv4E83NeS9Z56mvtZTM5w6IyFZpU5E42Jsa5MIUsHUwGQDEG2wdcinE+UFNwl6
+    CIgA2AEQ/hW8UN0+aS0roo9ghyr0XEg3n9rszFllxxWqqOheBIC6dDOUqkrEITHndl+nbq
+    exewjqPxiHT89JrhkqDt5mzpQJAVUr//4Xpyv7zKzz1T2wo/x2HXrziPxfFTLRokj6ey4j
+    fNXdEtCq8RCIWl2MAyKxONS+mTRv9HToEnIxAopHDK2F3wUNKos
+X-ME-Proxy: <xmx:uR7_avBxT01Fr2KvUXBPZShEfjk7JAjet3So9ofYaJ8k7YYadIqLiA>
+    <xmx:uR7_atKbKGz-MkHgvKG3QK7FaEprVA66N0giFGKlKEAKN597BMnnMA>
+    <xmx:uR7_aqwLqmA3FoQyeN1RNMrm40PfZjg4M1M3qc0bSMXX0qXly9-Y-Q>
+    <xmx:uR7_apxlNUCSujTF36IPlGoJtZdUPh_UtThzcv_Ue6I97Brc0qxvPg>
+    <xmx:uR7_ak0S6AlojHFO-lqz-cdlChB1dubIE_pcKDwxDq8_tU5Lb_KB1J8w>
+Feedback-ID: i10464835:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 19 Nov 2026 11:07:20 -0500 (EST)
+Date: Thu, 19 Nov 2026 16:07:19 +0000
+From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
+To: Vladimir Murzin <vladimir.murzin@arm.com>
+Subject: Re: [PATCH v2 00/39] arm64: Add support for FEAT_NMI
+Message-ID: <av8bByU93_nCbPqE@shutemov.name>
+References: <20261112132042.129062-1-vladimir.murzin@arm.com>
+ <58a4c350-539d-49ca-826f-d19563895a29@huawei.com>
+ <17149b32-6b9c-4364-b664-5789f0633e9d@huawei.com>
+ <57757469-2545-4fc6-a7be-ccc133555052@arm.com>
+ <38d04e8b-2f31-4616-8a8e-2747c7ce114d@huawei.com>
+ <d4bb2979-4bc2-436c-8f4a-c9a5decea900@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_080109_536169_08FC668B 
-X-CRM114-Status: GOOD (  13.27  )
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d4bb2979-4bc2-436c-8f4a-c9a5decea900@arm.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,66 +101,96 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: mark.rutland@arm.com, catalin.marinas@arm.com, Jinjie Ruan <ruanjinjie@huawei.com>, liaochang1@huawei.com, ashok.raj@oss.qualcomm.com, maz@kernel.org, will@kernel.org, lpieralisi@kernel.org, linux-arm-kernel@lists.infradead.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds Cortex-M33 overlays and combined DTBs for DART-MX93 on
-Sonata and VAR-SOM-MX93 on Symphony.
+On Thu, Nov 19, 2026 at 02:50:50PM +0000, Vladimir Murzin wrote:
+> Any chance you can attach debugger or collect traces so we know what those
+> CPUs are doing?
 
-The first patch extracts the existing DART-MX93 remoteproc configuration
-into a common include without changing the resulting DTB. The second adds
-the M33 variants, reserving the peripherals used by the firmware and
-keeping dependent devices disabled. Remoteproc and MU1 are then enabled
-only through the M33 overlays.
+I think they are idle with SDEI masked when the broadcast lands, and
+the firmware leaves them unable to take interrupts.
 
-Changes in v3:
-- Split the common configuration extraction and the M33 overlays into two
-  patches
-- Use "reserved" for peripherals assigned to the M33 firmware; keep
-  "disabled" for dependent devices.
+A CPU entering a power-down idle state masks SDEI from the cpu_pm
+notifier. If event 0 lands on it while it is masked, TF-A's
+handle_masked_trigger() returns for event 0 without EOI:
 
-Changes in v2:
-- Enable cm33 and MU1 only through the M33 overlay on DART-MX93.
+    CPU A                           CPU B (power-down idle)
+                                    cpu_pm_enter()
+                                      sdei_mask_local_cpu()
+    sdei_nmi_raise_backtrace()
+      SDEI_EVENT_SIGNAL(0, CPU B)
+                                    EL3: sdei_intr_handler()
+                                      acknowledge the SGI
+                                      handle_masked_trigger()
+                                        // event 0: return, no EOI
+                                    cpu_pm_exit()
+                                      sdei_unmask_local_cpu()
 
-Patch 2 uses the following binding and driver commits, already in
-linux-next:
+The SGI stays active, so CPU B runs at the SDEI priority from then on:
+no Non-secure interrupts and no more event 0. Other CPUs then hang in
+csd_lock_wait() on their next synchronous cross-call to it.
 
-- ebb21cc5d1c0 ("dt-bindings: remoteproc: imx_rproc: Document
-  memory-region-names to avoid implicit ABI")
-- 8396089f91fa ("remoteproc: imx_rpoc: Use memory-region-names to avoid
-  implicit ABI")
+I reproduced it on QEMU with TF-A v2.15 minus the check described below.
 
-Validation used the remoteproc binding update and cebd1c0961d8
-("dt-bindings: gpio: vf610: fix clock requirements per SoC"), which fixes
-pre-existing GPIO schema errors. The base and M33 DTBs build and pass
-schema validation.
-No hardware testing was performed.
+After event 0 lands on a masked CPU, ICC_RPR_EL1 there reads 0 and stays
+0 after SDEI_PE_UNMASK, and RCU reports "1-...!: ... idle=c078/0/0x0 ...
+(false positive?)" as in Jinjie's rc3 log. With an EOI added on that
+path, the same test passes.
 
-Stefano Radaelli (2):
-  arm64: dts: freescale: imx93-var: Extract common Cortex-M33
-    configuration
-  arm64: dts: freescale: imx93-var: Add Cortex-M33 configurations
+That path has been in TF-A since the SDEI dispatcher was added and is
+still in master. TF-A v2.13 made SDEI_EVENT_SIGNAL refuse a masked
+target, which leaves only a race with a target that masks after the
+check.
 
- arch/arm64/boot/dts/freescale/Makefile        |  9 +++
- .../dts/freescale/imx93-var-common-m33.dtsi   | 24 ++++++++
- .../freescale/imx93-var-dart-sonata-m33.dtso  | 55 +++++++++++++++++++
- .../dts/freescale/imx93-var-dart-sonata.dts   |  2 +-
- .../boot/dts/freescale/imx93-var-dart.dtsi    | 14 -----
- .../freescale/imx93-var-som-symphony-m33.dtso | 50 +++++++++++++++++
- 6 files changed, 139 insertions(+), 15 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-common-m33.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-dart-sonata-m33.dtso
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-som-symphony-m33.dtso
+A fix is under review:
 
+  https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55414
 
-base-commit: 33adc96ac217d6e95b7c44ac383c19ca4ae2ff52
+Jinjie, what is your firmware based on?
+
+Two checks would confirm it:
+
+  - does dmesg show "SDEI_EVENT_SIGNAL to CPU N failed" after the
+    sysrq-l? None means the firmware accepted the signals to masked
+    CPUs;
+
+  - does the broadcast work with cpuidle.off=1? Without power-down idle
+    nothing masks SDEI, so all CPUs should answer.
+
+Ways out I see:
+
+  - Firmware: end the interrupt on that path, or keep event 0 pending
+    until unmask as 55414 does. That is the real fix, but deployed
+    firmware will not have it for a while.
+
+  - Kernel: never signal a CPU that has SDEI masked. The signalling CPU
+    and the cpu_pm notifier can handshake: the sender marks the target
+    and IPIs it instead if it is already masked, and the notifier
+    refuses the power-down state while a signal is in flight. SDEI keeps
+    serving every running CPU, and the race goes away whatever the
+    firmware does. It needs a hook in arm_sdei.c.
+
+  - Kernel: send the IPI first and SDEI only to the CPUs that do not
+    answer, as smp_send_stop() does. Simple, but then SDEI runs only
+    when a CPU is really stuck, and a problem like this one stays hidden
+    until the day it is needed.
+
+  - Kernel: use the NMI IPI when there is one, as you suggested. That
+    takes SDEI out of the picture where FEAT_NMI or pseudo-NMI is in use,
+    but not on machines without them, which are the ones SDEI is for.
+
+  - A switch to turn SDEI NMI off, like Jinjie's patch, as an escape
+    hatch whichever way this goes.
+
+Any comments?
+
 -- 
-2.47.3
-
+  Kiryl Shutsemau / Kirill A. Shutemov
 
