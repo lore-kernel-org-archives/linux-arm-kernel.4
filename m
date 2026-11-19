@@ -2,93 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69213606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD2D606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nwhdRhTW;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.a=rsa-sha256 header.s=dkim header.b=fCrb/VIV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2yYRHYoN;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=hnnHxnJy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=mjnwJhgivOtcVF1fvsobspXXgbNjrXo23hOqgODgs+4=; b=nwhdRhTWAn8dqHiwLnGcWoB8fJ
-	eGI6CsxAxx0LNDq+Bsoub8emmqdblPZW0e5tzcFunb6DraMHx/X1EsAJQJRfKLZ954MHEDkJpw4Hr
-	14cCYNxfIpByqmkHYPpOYkF5Eb0vVS4A1mKR/E6VjXcd2XbQsia9g0y4pqK2pLTjv1lO/HsLi/TbX
-	pR2RbgHy9FplXBHxrbEnfcEhmoZ5jr9lJddjIEv+gaDXDXoQA1xVP+WNvOFZIO7BKVEw2LTk8bems
-	fvb2ERjVBAA3Nzpg4OtIGXvi5KB2LemJIOtUy5KXVVbomOz1rekbFBt7P9YEFB/w7Tr4dysLBoUXz
-	DAH/V1Jw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=zEBJsnluZRqixyE0EwpkFY9o4msyboMbcbtoVXGfSBg=; b=2yYRHYoNxJeFV7
+	VjWLvcUSyFVdNQKPG1YEN3arAVNfUg//ZzZBPSnTXFUMT5xage7RR3rTOq7DmoegTGTk/gEBvwp5Q
+	+3+8YS1B7E0O8iisIvBDQbYWABtgXp+XxMofSPkEIFrmZ3jSU64ChfOux/UK8A9120TZlBm1VreBL
+	wWnOVjV2QeHBD7AyuyEWDqaB9fJuqHA7rrAQ6cQqxLIXTqoJnJfeaVZlzaOyQGa1AgqKkqbdjrzSx
+	iWPHqU8V1HP+Fzc3ZYYvFYerY6fw80BLvQzV2hzQvxWFXpAm7D97E1PSy+vJRefySeruigJ1CruJj
+	vwnEa4/j4P3RGq78ypFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3P8-0000000CGhu-36Xj;
-	Thu, 19 Nov 2026 14:46:26 +0000
-Received: from mail.thorsis.com ([217.92.40.78])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3P3-0000000CGg5-3s0M
+	id 1xU3PR-0000000CGnb-3jVR;
+	Thu, 19 Nov 2026 14:46:45 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU3PB-0000000CGii-00ZW
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:46:25 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4B9BE1483638;
-	Thu, 19 Nov 2026 15:46:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1795099583; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=mjnwJhgivOtcVF1fvsobspXXgbNjrXo23hOqgODgs+4=;
-	b=fCrb/VIVTWaNGQl9fgtlyLOU+Rq2w+qEzTSqxh3/njn+IeyBA56fMqPkY0CCZgzMtECFQm
-	1OiPLwIArYkxsrYrlRHzI+aUH9wK2QQYxlCu3aKInZ8/jBSeBxX6YjwNqjUJ2OHCVW59hY
-	icri4rUwWpQUiAIupc/KOYpsK6RNnKNARTk3m/UO1pXqJVmmNMwbW50V9sOBrM2eecic6i
-	oWKIMzcjzQRuF+CW50waJWV09jBdt3uxnuCFgt9GtnRjW5pmYDisr9jKCNwvdXbk8t6toe
-	722kOloQYJSoWe/wEC5ootIzoIOp+fcg0ug5xASQiSUwa4TCxqDtPxgwe36F8A==
-Date: Thu, 19 Nov 2026 15:46:12 +0100
-From: Alexander Dahl <ada@thorsis.com>
-To: Claudiu Beznea <claudiu.beznea@kernel.org>
-Cc: Alexander Dahl <ada@thorsis.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Ryan Wanner <ryan.wanner@microchip.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
-Subject: Re: [PATCH v4 02/16] dt-bindings: clock: at91: Split up per SoC
- partially
-Message-ID: <20261119-bruising-peroxide-4f2c3211155a@thorsis.com>
-Mail-Followup-To: Claudiu Beznea <claudiu.beznea@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Ryan Wanner <ryan.wanner@microchip.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
-References: <20261105110715.2486432-1-ada@thorsis.com>
- <20261105110715.2486432-3-ada@thorsis.com>
- <0f0cc1da-46dc-431e-a10d-dcbbf7419960@kernel.org>
+	Thu, 19 Nov 2026 14:46:30 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A0FC1575;
+	Thu, 19 Nov 2026 06:46:25 -0800 (PST)
+Received: from [10.0.154.42] (e121487-lin.cambridge.arm.com [10.0.154.42])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 491683F673;
+	Thu, 19 Nov 2026 06:46:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795099588; bh=2LvxOPawC7PnnA6ntJoISpIeoCB7zqM9cbDCet9kLI0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hnnHxnJynKFHxggI9nvGVlD4rKywIVbp2hwl11S1tVL/+8rSgTd6I/3xGh4dNo6Ox
+	 MxENgo5hAin21WMBLCQCTbbeLJ2SgB4y9w1NNR3vBUuNGYk5wD+S+xyt3BY0gMK1du
+	 exZmRrt8qS4xWi26sGo9IO3I2aq9afH5sk4DJvQs=
+Message-ID: <6cbb0f09-fb34-47d7-9c61-a99d97e0805b@arm.com>
+Date: Thu, 19 Nov 2026 14:46:24 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0f0cc1da-46dc-431e-a10d-dcbbf7419960@kernel.org>
-User-Agent: Mutt/2.2.13 (2024-03-09)
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/39] arm64: Add support for FEAT_NMI
+To: Jinjie Ruan <ruanjinjie@huawei.com>, linux-arm-kernel@lists.infradead.org
+Cc: catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com,
+ lpieralisi@kernel.org, liaochang1@huawei.com, ashok.raj@oss.qualcomm.com,
+ maz@kernel.org
+References: <20261112132042.129062-1-vladimir.murzin@arm.com>
+ <58a4c350-539d-49ca-826f-d19563895a29@huawei.com>
+ <85958791-2e85-46f3-bc53-6e2ea64e44cb@huawei.com>
+Content-Language: en-GB
+From: Vladimir Murzin <vladimir.murzin@arm.com>
+In-Reply-To: <85958791-2e85-46f3-bc53-6e2ea64e44cb@huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_064622_765313_6F09D175 
-X-CRM114-Status: GOOD (  31.01  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_064629_144260_98D3C6B7 
+X-CRM114-Status: GOOD (  33.98  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,357 +80,405 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello Claudiu,
+Hi Jinjie,
 
-Am Sun, Nov 15, 2026 at 04:35:23PM +0200 schrieb Claudiu Beznea:
-> Hi, Alexaner,
+On 11/19/26 11:41, Jinjie Ruan wrote:
 > 
-> On 11/5/26 13:06, Alexander Dahl wrote:
-> > Before adding even more new indexes creating more holes in the
-> > clk at91 drivers pmc_data->chws arrays, split this up.
-> > 
-> > This is a partial split up only for some of the old PMC definitions.
-> > 
-> > Binding splitup was proposed for several reasons:
-> > 
-> > 1) keep the driver code simple, readable, and efficient
-> > 2) avoid accidental array index duplication
-> > 3) avoid memory waste by creating more and more unused array members.
-> > 
-> > Old values are kept to not break dts, and to maintain dt ABI.
-> > 
-> > Link: https://lore.kernel.org/linux-devicetree/20250207-jailbird-circus-bcc04ee90e05@thorsis.com/T/#u
-> > Signed-off-by: Alexander Dahl <ada@thorsis.com>
-> > ---
-> > 
-> > Notes:
-> >      v4:
-> >      - "re-added" some definitions present in hardware but not used in dt
-> >      - reword header comment (at91 -> Microchip) for newer SoCs
-> >      - PMC_UTMI was renamed where appropriate according to datasheets
-> >      v3:
-> >      - full splitup for all at91 family SoCs instead of just a few
-> >      v2:
-> >      - new patch, not present in v1
-> > 
-> >   .../reset/atmel,at91sam9260-reset.yaml        |  3 ++-
-> >   .../bindings/usb/atmel,at91sam9rl-udc.yaml    |  3 ++-
-> >   .../dt-bindings/clock/atmel,at91rm9200-pmc.h  | 16 ++++++++++++
-> >   .../dt-bindings/clock/atmel,at91sam9260-pmc.h | 16 ++++++++++++
-> >   .../dt-bindings/clock/atmel,at91sam9g45-pmc.h | 16 ++++++++++++
-> >   .../dt-bindings/clock/atmel,at91sam9n12-pmc.h | 16 ++++++++++++
-> >   .../dt-bindings/clock/atmel,at91sam9rl-pmc.h  | 16 ++++++++++++
-> >   .../dt-bindings/clock/atmel,at91sam9x5-pmc.h  | 16 ++++++++++++
-> >   include/dt-bindings/clock/atmel,sama5d2-pmc.h | 20 ++++++++++++++
-> >   include/dt-bindings/clock/atmel,sama5d3-pmc.h | 16 ++++++++++++
-> >   include/dt-bindings/clock/atmel,sama5d4-pmc.h | 17 ++++++++++++
-> >   .../dt-bindings/clock/microchip,sam9x60-pmc.h | 15 +++++++++++
-> >   .../dt-bindings/clock/microchip,sam9x7-pmc.h  | 19 ++++++++++++++
-> >   .../clock/microchip,sama7d65-pmc.h            | 26 +++++++++++++++++++
-> >   .../dt-bindings/clock/microchip,sama7g5-pmc.h | 23 ++++++++++++++++
-> >   15 files changed, 236 insertions(+), 2 deletions(-)
-> >   create mode 100644 include/dt-bindings/clock/atmel,at91rm9200-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/atmel,at91sam9260-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/atmel,at91sam9g45-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/atmel,at91sam9n12-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/atmel,at91sam9rl-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/atmel,at91sam9x5-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/atmel,sama5d2-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/atmel,sama5d3-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/atmel,sama5d4-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/microchip,sam9x60-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/microchip,sam9x7-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/microchip,sama7d65-pmc.h
-> >   create mode 100644 include/dt-bindings/clock/microchip,sama7g5-pmc.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml b/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
-> > index 84c4801df8d9a..8c89ccc3d6393 100644
-> > --- a/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
-> > +++ b/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
-> > @@ -67,9 +67,10 @@ additionalProperties: false
-> >   examples:
-> >     - |
-> >       #include <dt-bindings/clock/at91.h>
-> > +    #include <dt-bindings/clock/atmel,at91sam9260-pmc.h>
-> >       reset-controller@fffffd00 {
-> >           compatible = "atmel,at91sam9260-rstc";
-> >           reg = <0xfffffd00 0x10>;
-> > -        clocks = <&pmc PMC_TYPE_CORE PMC_SLOW>;
-> > +        clocks = <&pmc PMC_TYPE_CORE AT91SAM9260_PMC_SLOW>;
-> >       };
-> > diff --git a/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml b/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml
-> > index cdbbd17f80363..15f5bb51fd8a7 100644
-> > --- a/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml
-> > @@ -61,13 +61,14 @@ examples:
-> >     - |
-> >       #include <dt-bindings/interrupt-controller/irq.h>
-> >       #include <dt-bindings/clock/at91.h>
-> > +    #include <dt-bindings/clock/atmel,at91sam9rl-pmc.h>
-> >       #include <dt-bindings/gpio/gpio.h>
-> >       gadget@fff78000 {
-> >           compatible = "atmel,at91sam9g45-udc";
-> >           reg = <0x00600000 0x80000
-> >                  0xfff78000 0x400>;
-> >           interrupts = <27 IRQ_TYPE_LEVEL_HIGH 0>;
-> > -        clocks = <&pmc PMC_TYPE_PERIPHERAL 27>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
-> > +        clocks = <&pmc PMC_TYPE_PERIPHERAL 27>, <&pmc PMC_TYPE_CORE AT91SAM9RL_PMC_UTMI>;
-> >           clock-names = "pclk", "hclk";
-> >           atmel,vbus-gpio = <&pioC 15 GPIO_ACTIVE_HIGH>;
-> >       };
-> > diff --git a/include/dt-bindings/clock/atmel,at91rm9200-pmc.h b/include/dt-bindings/clock/atmel,at91rm9200-pmc.h
-> > new file mode 100644
-> > index 0000000000000..35fce34e00b82
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,at91rm9200-pmc.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91rm9200 clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_AT91RM9200_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_AT91RM9200_PMC_H
-> > +
-> > +#define AT91RM9200_PMC_SLOW	0
+> 在 2026/11/18 20:17, Jinjie Ruan 写道:
+>> Hi Vladimir,
+>>
+>> I gave the series a test on a Kunpeng HIP12 machine with 384 CPUs,
+>> GICv4.2, firmware with SDEI event 0. The PE implements FEAT_NMI and the
+>> GIC implements FEAT_GICv3_NMI.
+>>
+>> Tested-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>>
+>> Rather than a single boot, I varied the four dimensions that select a
+>> different masking path:
+>>
+>>   - PE FEAT_NMI       : present / masked with id_aa64pfr1.nmi=0
+>>   - GIC superpriority : present / disabled
+>>   - Pseudo-NMI        : irqchip.gicv3_pseudo_nmi=0/1
+>>   - SDEI cross-CPU    : firmware event 0 active / disabled
+>>
+>> The last one needs a patch to switch attached at the end.
+>>
+>> # The Results are as below:
+>>
+>>   Grp  PE GIC pse SDEI | supports active pseudo IRQS_NMI fast  result
+>>   ------------------------------------------------------------------
+>>   A    y  y   n   y    |   1       1      0        4      y     PASS
+>>   A2   y  y   n   n    |   1       1      0        4      y     PASS
+>>   A3   y  y   y   n    |   1       0      1        4      y     PASS
+>>   B    y  y   y   y    |   1       0      1        4      y     PASS
+>>   C    n  y   n   y    |   0       0      0        4      y     PASS
+>>   D    n  y   y   y    |   0       0      1        4      y     PASS
+>>   E    y  y   n   y    |   0       0      0        0      y *   PASS
+>>   F    y  n   n   y    |   1       1      0        0      n     PASS
+>>   G    y  n   n   n    |   0       0      0        0      n     PASS
+>>   H    y  n   y   n    |   0       0      1        4      y     PASS
+>>
+>>   supports     system_supports_nmi()
+>>   active       system_uses_nmi()
+>>   pseudo       system_uses_irq_prio_masking()
+>>   IRQS_NMI     IRQ descriptors with IRQS_NMI set (IPIs + arm-pmu)
+>>   fast         cpumask_backtrace() at a CPU spinning with local IRQs
+>>                disabled returns in ms (NMI delivered) rather than
+>>                ~1.5 s (plain IPI)
+>>
+>> ## IRQS_NMI is 4 means 4 types of NMI Interrupt Tests:
+>>
+>>      IRQ  hwirq      purpose
+>>     ---------------------------------------------------------------
+>>       4   0x3  SGI   IPI_CPU_STOP_NMI - stop a CPU on panic
+>>       7   0x6  SGI   IPI_KGDB_ROUNDUP - kgdb roundup
+>>       8   0x7  SGI   IPI_CPU_BACKTRACE - hardlockup all-CPU backtrace
+>>      42   0x17 PPI   arm-pmu (PMUv3) - perf sampling
+>>
+>>
+>>   * E is CONFIG_ARM64_NMI=n plus SDEI. "fast" there comes from SDEI,
+>>     not from the architected path; IRQS_NMI=0 says so.
+>>
+>> # Checks that run on every boot and pass in all applicable groups:
+>>
+>>   irqflags / exception state
+>>       save, restore and nesting round trip for DAIF, PMR and ALLINT;
+>>       arch_irqs_disabled_flags() takes ALLINT into account;
+>>       local_irq_disable() leaves ALLINT clear, and an NMI is still
+>>       delivered inside that window.
+>>
+>>   exception contexts
+>>       arm64_exc_hwstate_of_context() for PROCESS / NOIRQ / NONMI /
+>>       ERROR / CRITICAL, including that CRITICAL sets ALLINT and NOIRQ
+>>       does not; local_exceptions_save_mask()/restore() for NOIRQ and
+>>       CRITICAL; local_exceptions_force_daif_save()/restore() on the
+>>       idle/WFI path (pseudo-NMI only).
+>>
+>>   pstate
+>>       regs_irqs_disabled() honours PSR_ALLINT_BIT; the bit survives the
+>>       ptrace path.
+>>
+>>   kprobes
+>>       registering a probe does not disturb ALLINT, including when it is
+>>       set (so an NMI cannot become deliverable inside a probe); a probe
+>>       on the real "msr allint" / "mrs xN, allint" instruction is
+>>       rejected with -EINVAL.
+>>
+>>   adjacent subsystems
+>>       an EFI runtime call does not clobber ALLINT; perf events keep
+>>       counting across an ALLINT toggle.
+>>
+>>   genirq
+>>       add_interrupt_randomness() is never called in NMI context.
+>>
+>>   CPU stop
+>>       spin one CPU with IRQs disabled, then panic: the stop escalation
+>>       reaches the NMI rung, "SMP: retry stop with NMI for CPUs 0".
+>>
+>> # The problem
+>>
+>> SDEI wins over the architected IPI path, unconditionally
+>>
+>> arch_trigger_cpumask_backtrace() returns as soon as
+>> sdei_nmi_trigger_cpumask_backtrace() succeeds, so on a platform where
+>> firmware offers SDEI event 0 the irqchip NMI path is never reached.
+>>
+>> More importantly PSTATE.ALLINT has no effect on the backtrace:
+>>
+>>     SDEI active   : cpumask_backtrace() returns in ~14 ms with ALLINT set
+>>     SDEI disabled : the same call takes ~1.5 s   with ALLINT set
+>>
+>> That is, the NMI delivered by SDEI bypasses the PSTATE.ALLINT masking
+>> (the interruption is cleared within 14 ms). The NMI that goes through
+>> the GIC superpriority is restricted by ALLINT (the masking is cleared
+>> after 1.5s).
+> Hi Vladimir,
 > 
-> This is not used anywhere anywhere accross the current code base. Let's drop it.
+> Is this expected? Can FEAT_NMI and SDEI cross CPU coexist?
+> 
 
-Fine.  I added this after your feedback on v3 of the series [1],
-probably misinterpreted what you meant.  v5 will be reduced by some
-definitions again and keep the PLLs in the sama7 SoCs.
+IIUC, this is the nature of SDEI, so it could bypass DAIF in
+the case of pseudo-NMI (I'm not sure whether this scenario is
+covered by your testing)
 
-> > +#define AT91RM9200_PMC_MCK	1
-> > +#define AT91RM9200_PMC_MAIN	3
-> > +#define AT91RM9200_PMC_PLLACK	7
-> > +#define AT91RM9200_PMC_PLLBCK	8
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/clock/atmel,at91sam9260-pmc.h b/include/dt-bindings/clock/atmel,at91sam9260-pmc.h
-> > new file mode 100644
-> > index 0000000000000..6a5453cf70954
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,at91sam9260-pmc.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91sam9260 clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9260_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9260_PMC_H
-> > +
-> > +#define AT91SAM9260_PMC_SLOW	0
-> > +#define AT91SAM9260_PMC_MCK	1
-> > +#define AT91SAM9260_PMC_MAIN	3
-> > +#define AT91SAM9260_PMC_PLLACK	7
-> > +#define AT91SAM9260_PMC_PLLBCK	8
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/clock/atmel,at91sam9g45-pmc.h b/include/dt-bindings/clock/atmel,at91sam9g45-pmc.h
-> > new file mode 100644
-> > index 0000000000000..44a804ff96fff
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,at91sam9g45-pmc.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91sam9g45 clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9G45_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9G45_PMC_H
-> > +
-> > +#define AT91SAM9G45_PMC_SLOW	0
-> 
-> This is not used. Lets introduce it when needed
-> 
-> > +#define AT91SAM9G45_PMC_MCK	1
-> > +#define AT91SAM9G45_PMC_UPLLCK	2
-> > +#define AT91SAM9G45_PMC_MAIN	3
-> > +#define AT91SAM9G45_PMC_PLLACK	7
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/clock/atmel,at91sam9n12-pmc.h b/include/dt-bindings/clock/atmel,at91sam9n12-pmc.h
-> > new file mode 100644
-> > index 0000000000000..6eaef69242ee8
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,at91sam9n12-pmc.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91sam9n12 clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9N12_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9N12_PMC_H
-> > +
-> > +#define AT91SAM9N12_PMC_SLOW	0
-> 
-> Not used.
-> 
-> > +#define AT91SAM9N12_PMC_MCK	1
-> > +#define AT91SAM9N12_PMC_MAIN	3
-> > +#define AT91SAM9N12_PMC_PLLACK	7
-> > +#define AT91SAM9N12_PMC_PLLBCK	8
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/clock/atmel,at91sam9rl-pmc.h b/include/dt-bindings/clock/atmel,at91sam9rl-pmc.h
-> > new file mode 100644
-> > index 0000000000000..0bb195712f785
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,at91sam9rl-pmc.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91sam9rl clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9RL_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9RL_PMC_H
-> > +
-> > +#define AT91SAM9RL_PMC_SLOW	0
-> 
-> Not used.
-> 
-> > +#define AT91SAM9RL_PMC_MCK	1
-> > +#define AT91SAM9RL_PMC_UTMI	2
-> 
-> Manual also refers to this as UPLL (UTMI PLL). E.g.
-> 
-> "26.5 Main Oscillator
-> The Main Oscillator is designed for a 12 MHz fundamental crystal. The 12 MHz
-> is also used to
-> generate the 480 MHz USB High Speed Clock (HSCK) thanks to the UTMI PLL (UPLL)."
-> 
-> [1] https://ww1.microchip.com/downloads/en/DeviceDoc/doc6289.pdf
+This makes me wonder whether SDEI, pseudo-NMI, and FEAT_NMI
+should be mutually exclusive... meanwhile, let's try to make
+progress with what we already have and figure this out in
+parallel.
 
-Well, that old datasheet is full of variants for this, we have UPLL,
-HSCK, UTMI PLL, USBHSCK, and UTMI Clock.  I rename it to
-AT91SAM9RL_PMC_UPLLCK so it is in line with the other old SoCs.
+Cheers
+Vladimir
 
-> 
-> > +#define AT91SAM9RL_PMC_MAIN	3
-> > +#define AT91SAM9RL_PMC_PLLACK	7
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/clock/atmel,at91sam9x5-pmc.h b/include/dt-bindings/clock/atmel,at91sam9x5-pmc.h
-> > new file mode 100644
-> > index 0000000000000..d095dcc9b29ff
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,at91sam9x5-pmc.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91sam9x5 clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9X5_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_AT91SAM9X5_PMC_H
-> > +
-> > +#define AT91SAM9X5_PMC_SLOW	0
-> 
-> Not used.
-> 
-> > +#define AT91SAM9X5_PMC_MCK	1
-> > +#define AT91SAM9X5_PMC_UPLLCK	2
-> > +#define AT91SAM9X5_PMC_MAIN	3
-> > +#define AT91SAM9X5_PMC_PLLACK	7
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/clock/atmel,sama5d2-pmc.h b/include/dt-bindings/clock/atmel,sama5d2-pmc.h
-> > new file mode 100644
-> > index 0000000000000..51bb410c699e2
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,sama5d2-pmc.h
-> > @@ -0,0 +1,20 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91 sama5d2 clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_SAMA5D2_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_SAMA5D2_PMC_H
-> > +
-> > +#define SAMA5D2_PMC_MCK		1
-> > +#define SAMA5D2_PMC_UPLLCK	2
-> > +#define SAMA5D2_PMC_MAIN	3
-> > +#define SAMA5D2_PMC_MCK2	4
-> > +#define SAMA5D2_PMC_I2S0_MUX	5
-> > +#define SAMA5D2_PMC_I2S1_MUX	6
-> > +#define SAMA5D2_PMC_PLLACK	7
-> > +#define SAMA5D2_PMC_AUDIOPLLCK	9
-> > +#define SAMA5D2_PMC_AUDIOPINCK	10
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/clock/atmel,sama5d3-pmc.h b/include/dt-bindings/clock/atmel,sama5d3-pmc.h
-> > new file mode 100644
-> > index 0000000000000..92210969104d6
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,sama5d3-pmc.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91 sama5d3 clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_SAMA5D3_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_SAMA5D3_PMC_H
-> > +
-> > +#define SAMA5D3_PMC_SLOW	0
-> 
-> Not used.
-> 
-> > +#define SAMA5D3_PMC_MCK		1
-> > +#define SAMA5D3_PMC_UPLLCK	2
-> > +#define SAMA5D3_PMC_MAIN	3
-> 
-> Not used.
-> 
-> > +#define SAMA5D3_PMC_PLLACK	7
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/clock/atmel,sama5d4-pmc.h b/include/dt-bindings/clock/atmel,sama5d4-pmc.h
-> > new file mode 100644
-> > index 0000000000000..53870448d6a1d
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/atmel,sama5d4-pmc.h
-> > @@ -0,0 +1,17 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +/*
-> > + * The constants defined in this header are being used in dts and in
-> > + * at91 sama5d4 clock driver.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_ATMEL_SAMA5D4_PMC_H
-> > +#define _DT_BINDINGS_CLOCK_ATMEL_SAMA5D4_PMC_H
-> > +
-> > +#define SAMA5D4_PMC_SLOW	0
-> 
-> Not used.
-> 
-> > +#define SAMA5D4_PMC_MCK		1
-> > +#define SAMA5D4_PMC_UPLLCK	2
-> > +#define SAMA5D4_PMC_MAIN	3
-> 
-> Not used.
-> 
-> Thank you,
-> Claudiu
-
-Thanks for your review.
-
-Greets
-Alex
-
-[1] https://lore.kernel.org/linux-devicetree/1f25e668-ff04-4fa7-a7fd-3ed3286edbe6@tuxon.dev/
+>> And there is no equivalent of "irqchip.gicv3_pseudo_nmi=" for SDEI NMI.
+>>
+>> The patch used for the SDEI switch is as below.
+>>
+>> Best regards,
+>> Jinjie
+>>
+>> diff --git a/drivers/firmware/arm_sdei_nmi.c
+>> b/drivers/firmware/arm_sdei_nmi.c
+>> index 038eb79e28ac..22e8c3e7aa75 100644
+>> --- a/drivers/firmware/arm_sdei_nmi.c
+>> +++ b/drivers/firmware/arm_sdei_nmi.c
+>> @@ -62,6 +62,24 @@
+>>
+>>  static bool sdei_nmi_available;
+>>
+>> +static bool sdei_nmi_disabled __ro_after_init;
+>> +
+>> +static int __init sdei_nmi_disable_setup(char *str)
+>> +{
+>> +       return kstrtobool(str, &sdei_nmi_disabled);
+>> +}
+>> +early_param("sdei_nmi.disabled", sdei_nmi_disable_setup);
+>> +
+>>  #define SDEI_NMI_EVENT                 0
+>>
+>>  /*
+>> @@ -168,7 +186,7 @@ static void sdei_nmi_raise_backtrace(cpumask_t *mask)
+>>   */
+>>  bool sdei_nmi_trigger_cpumask_backtrace(const cpumask_t *mask, int
+>> exclude_cpu)
+>>  {
+>> -       if (!sdei_nmi_available)
+>> +       if (!sdei_nmi_available || sdei_nmi_disabled)
+>>                 return false;
+>>
+>>         nmi_trigger_cpumask_backtrace(mask, exclude_cpu,
+>> @@ -194,6 +212,9 @@ void sdei_nmi_stop_cpus(const cpumask_t *mask)
+>>  {
+>>         unsigned int cpu;
+>>
+>> +       if (sdei_nmi_disabled)
+>> +               return;
+>> +
+>>         WRITE_ONCE(sdei_nmi_stopping, true);
+>>
+>>         /*
+>> @@ -238,6 +259,10 @@ static int __init sdei_nmi_init(void)
+>>         }
+>>
+>>         sdei_nmi_available = true;
+>> +       if (sdei_nmi_disabled) {
+>> +               pr_info("Sdei nmi disabled by sdei_nmi.disabled\n");
+>> +               return 0;
+>> +       }
+>>         pr_info("using SDEI cross-CPU NMI (SDEI_EVENT_SIGNAL, event %u)\n",
+>>                 SDEI_NMI_EVENT);
+>>
+>> 在 2026/11/12 21:20, Vladimir Murzin 写道:
+>>> FEAT_NMI provides an architected mechanism for supporting non-maskable
+>>> interrupts (NMIs) and less-masked interrupts (LMIs).
+>>>
+>>> Since we already support pseudo-NMIs via priority masking, introducing
+>>> another flavour of NMI on top of the existing infrastructure could
+>>> easily become messy, making the code harder to follow and reason
+>>> about.
+>>>
+>>> To avoid that, this series first makes room for the new NMI "tenant"
+>>> by restructuring the existing exception masking logic.
+>>>
+>>> The main idea is to separate the logical view of exception state from
+>>> its hardware representation. To achieve this, we introduce logical
+>>> exception contexts that can be mapped onto the corresponding hardware
+>>> state. This naturally consolidates the hardware-specific handling into
+>>> a small number of places, while allowing the rest of the code to
+>>> operate purely in terms of logical exception contexts.
+>>>
+>>> Since this restructuring is non-trivial and carries a risk of subtle
+>>> behavioural changes, the series adds extensive debug checks to verify
+>>> that the hardware state always matches the expected logical state.
+>>>
+>>> With this restructuring in place, wiring FEAT_NMI into the new
+>>> framework becomes much more manageable. GIC support for NMI is build
+>>> on top.
+>>>
+>>> This work would not have been possible without the contributions of
+>>> Ada Couprie Diaz, Mark Brown, and Lorenzo Pieralisi - please credit
+>>> them for everything that works well. Any remaining bugs or issues are
+>>> entirely my own.
+>>>
+>>> Most of the testing has been done on QEMU, Fast Model and pre-silicon
+>>> environment, so the series definitely benefit from extensive testing
+>>> on real hardware (without NMI, with pseudo-NMI, and with FEAT_NMI).
+>>>
+>>> Patches are organized as follow
+>>>
+>>> 1 - 15
+>>>   Rework of existing pseudo-NMI logic to make room for FEAT_NMI
+>>>
+>>> 16 - 33
+>>>   FEAT_NMI support including some preparation patches which have
+>>>   no dependencies:
+>>>     - efi/runtime-wrappers: Permit architectures to override IRQ flags checks
+>>>     - arm64: smp: Abstract SGI and LPI operations
+>>>
+>>> 34 - 35
+>>>   GICv3 support for NMI
+>>>
+>>> 36 - 39
+>>>   GICv5 support for NMI (including some preparation patches)
+>>>
+>>> Changelog
+>>>
+>>>   v1 -> v2
+>>>
+>>>     - Rebased on v7.4-rc2
+>>>     - Select HAVE_PERF_EVENTS_NMI when FEAT_NMI is enabled
+>>>     - Reworked APEI SEA handling to mask exceptions sequentially   
+>>>     - Updated GICv3 initialization to clear NMI configuration
+>>>     - Added Tested-by and Reviewed-by tags where approriate
+>>>     - Droped tags due to meaningful changes for:
+>>>       + "arm64: replace local_daif helpers"
+>>>       + "irqchip/gic-v3: Implement FEAT_GICv3_NMI support"
+>>>
+>>>   RFC v2 -> v1
+>>>
+>>>     - Rebased on v7.3-rc3.
+>>>     - Dropped RFC tag, have not received objections, at the same time
+>>>       got support from Jinjie
+>>>     - Dropped prerequisite patches already present in the newer base
+>>>     - Added logic to reject probing/stepping over ALLINT
+>>>     - Moved addition of arm64_debug_exc_context() in separate patch
+>>>     - Reworked debug logic for validating direction of exception
+>>>       transition
+>>>     - Split support for NMI in GICv5 in 3 separate patches
+>>>     - Added review tags
+>>>
+>>>   RFC v1 -> RFC v2
+>>>
+>>>     - Rebased on v7.2-rc5.
+>>>     - Improved commit descriptions.
+>>>     - Split some patches into smaller ones.
+>>>     - Added a graceful fallback for IPI requests when FEAT_NMI is
+>>>       supported by the CPU but unsupported by the interrupt
+>>>       controller.
+>>>     - Split the GICv3 preparation from the FEAT_GICv3_NMI
+>>>       implementation.
+>>>     - Added NMI support to GICv5, primarily as an illustration of the
+>>>       implementation, although it also happens to work on Fast Model.
+>>>     - Added review tags only to unchanged patches. Review tags were
+>>>       intentionally dropped from modified patches to reflect those
+>>>       changes and encourage re-review.
+>>>
+>>> RFC v1:
+>>>   https://lore.kernel.org/linux-arm-kernel/20260709121333.23507-1-vladimir.murzin@arm.com/
+>>>
+>>> RFC v2:
+>>>   https://lore.kernel.org/linux-arm-kernel/20260727163453.7969-1-vladimir.murzin@arm.com/
+>>>
+>>> v1:
+>>>   https://lore.kernel.org/linux-arm-kernel/20260914102102.68597-1-vladimir.murzin@arm.com/
+>>>
+>>> Thanks!
+>>> Vladimir
+>>>
+>>> Ada Couprie Diaz (15):
+>>>   arm64: irqflags: Introduce arm64-specific irqflags type
+>>>   arm64: irqflags: save and use both DAIF and PMR
+>>>   arm64: interrupts: Add common exception state helpers
+>>>   arm64: entry: Introduce entry specific exception masking helpers
+>>>   arm64: entry: replace DAIF helpers with entry helpers
+>>>   arm64: interrupts: Introduce exception masking save/restore helpers
+>>>   arm64: interrupts: introduce a helper for GIC priority initialization
+>>>   arm64: replace local_daif helpers
+>>>   arm64: cpuidle: use new helpers to bypass interrupt priority masking
+>>>   arm64: remove daifflags.h
+>>>   arm64: gicv3: remove GIC_PRIO_PSR_I_SET
+>>>   arm64: ptrace: Add PSR_ALLINT_BIT
+>>>   arm64: cpufeature: Detect PE support for FEAT_NMI
+>>>   arm64: nmi: Manage masking for superpriority interrupts
+>>>   arm64: irq: Report FEAT_NMI masking local IRQs
+>>>
+>>> Lorenzo Pieralisi (2):
+>>>   irqchip/gic-v3: Rename nmi to pseudo_nmi
+>>>   irqchip/gic-v3: Implement FEAT_GICv3_NMI support
+>>>
+>>> Mark Brown (5):
+>>>   arm64: booting: Document boot requirements for FEAT_NMI
+>>>   arm64: sysreg: Add definitions for immediate versions of MSR ALLINT
+>>>   arm64: idreg: Add an override for FEAT_NMI
+>>>   arm64: nmi: Add handling of superpriority interrupts as NMIs
+>>>   arm64: nmi: Add Kconfig for NMI
+>>>
+>>> Vladimir Murzin (17):
+>>>   arm64: process: Lift check for exception state to generic
+>>>     infrastructure
+>>>   arm64: cpufeature: Remove system_has_prio_mask_debugging()
+>>>   arm64: irqflags: Switch to CONFIG_DEBUG_IRQFLAGS
+>>>   arm64: Kconfig: Remove CONFIG_ARM64_DEBUG_PRIORITY_MASKING
+>>>   efi/runtime-wrappers: Permit architectures to override IRQ flags
+>>>     checks
+>>>   arm64/efi: Implement override for IRQ flags checks
+>>>   arm64: probes: Reject stepping over ALLINT
+>>>   arm64: suspend: Always initialise PSTATE.ALLINT
+>>>   arm64/efi: Add ALLINT to IRQ flags checks
+>>>   arm64: kprobes: Disable NMIs
+>>>   arm64: smp: Abstract SGI and LPI operations
+>>>   arm64: smp: Fall back to IRQ when IPI NMI request fails
+>>>   arm64: nmi: Select HAVE_PERF_EVENTS_NMI for FEAT_NMI
+>>>   arm64: smp: Add NMI support for LPI-backed IPIs
+>>>   genirq: Trust local irqchip when considering IRQ for NMI
+>>>   genirq: Do not call add_interrupt_randomness() in NMI context
+>>>   irqchip/gic-v5: Add NMI support
+>>>
+>>>  Documentation/arch/arm64/booting.rst          |   6 +
+>>>  arch/arm64/Kconfig                            |  31 +-
+>>>  arch/arm64/include/asm/assembler.h            |  20 +-
+>>>  arch/arm64/include/asm/cpucaps.h              |   2 +
+>>>  arch/arm64/include/asm/cpufeature.h           |  14 +-
+>>>  arch/arm64/include/asm/cpuidle.h              |  18 +-
+>>>  arch/arm64/include/asm/daifflags.h            | 144 --------
+>>>  arch/arm64/include/asm/efi.h                  |  42 ++-
+>>>  arch/arm64/include/asm/entry-common.h         |   8 +-
+>>>  arch/arm64/include/asm/insn.h                 |   1 +
+>>>  .../include/asm/interrupts/common_flags.h     | 255 +++++++++++++
+>>>  arch/arm64/include/asm/interrupts/entry.h     | 102 ++++++
+>>>  arch/arm64/include/asm/interrupts/masking.h   | 166 +++++++++
+>>>  arch/arm64/include/asm/irqflags.h             | 150 ++++----
+>>>  arch/arm64/include/asm/kvm_host.h             |   1 -
+>>>  arch/arm64/include/asm/mmu_context.h          |   1 -
+>>>  arch/arm64/include/asm/ptrace.h               |  25 +-
+>>>  arch/arm64/include/asm/sysreg.h               |   2 +
+>>>  arch/arm64/include/uapi/asm/ptrace.h          |   1 +
+>>>  arch/arm64/kernel/acpi.c                      |  43 +--
+>>>  arch/arm64/kernel/cpufeature.c                |  68 +++-
+>>>  arch/arm64/kernel/debug-monitors.c            |   1 -
+>>>  arch/arm64/kernel/entry-common.c              | 335 +++++++++++++-----
+>>>  arch/arm64/kernel/entry.S                     |  14 +-
+>>>  arch/arm64/kernel/hibernate.c                 |  14 +-
+>>>  arch/arm64/kernel/hw_breakpoint.c             |  16 +-
+>>>  arch/arm64/kernel/irq.c                       |  45 ++-
+>>>  arch/arm64/kernel/machine_kexec.c             |   4 +-
+>>>  arch/arm64/kernel/pi/idreg-override.c         |   1 +
+>>>  arch/arm64/kernel/probes/decode-insn.c        |  11 +-
+>>>  arch/arm64/kernel/probes/kprobes.c            |  24 +-
+>>>  arch/arm64/kernel/process.c                   |  24 +-
+>>>  arch/arm64/kernel/setup.c                     |   4 +-
+>>>  arch/arm64/kernel/signal.c                    |   1 -
+>>>  arch/arm64/kernel/smp.c                       | 217 ++++++++----
+>>>  arch/arm64/kernel/suspend.c                   |  14 +-
+>>>  arch/arm64/kernel/traps.c                     |   1 -
+>>>  arch/arm64/kvm/hyp/nvhe/switch.c              |   2 +-
+>>>  arch/arm64/kvm/hyp/vgic-v3-sr.c               |   7 +-
+>>>  arch/arm64/kvm/hyp/vhe/switch.c               |  14 +-
+>>>  arch/arm64/mm/fault.c                         |   1 -
+>>>  arch/arm64/mm/mmu.c                           |   7 +-
+>>>  arch/arm64/tools/cpucaps                      |   2 +
+>>>  drivers/firmware/efi/runtime-wrappers.c       |  32 +-
+>>>  drivers/irqchip/irq-gic-v3.c                  | 145 +++++++-
+>>>  drivers/irqchip/irq-gic-v5.c                  | 244 ++++++++++++-
+>>>  include/linux/irq.h                           |   2 +-
+>>>  include/linux/irqchip/arm-gic-v3-prio.h       |   8 -
+>>>  include/linux/irqchip/arm-gic-v3.h            |   4 +
+>>>  kernel/irq/handle.c                           |   3 +-
+>>>  kernel/irq/manage.c                           |   5 -
+>>>  51 files changed, 1696 insertions(+), 606 deletions(-)
+>>>  delete mode 100644 arch/arm64/include/asm/daifflags.h
+>>>  create mode 100644 arch/arm64/include/asm/interrupts/common_flags.h
+>>>  create mode 100644 arch/arm64/include/asm/interrupts/entry.h
+>>>  create mode 100644 arch/arm64/include/asm/interrupts/masking.h
+>>>
 
 
