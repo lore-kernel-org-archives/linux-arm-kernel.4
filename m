@@ -2,49 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 684A9606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5833760A2609
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 11:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F+pRMLvU;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=1l7Upd4u
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nPRPhKjI;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=1YXEjZt4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BwG6pO180ts3EsXk8dPvrXRrI1JUEETTIVLE0jahKVc=; b=F+pRMLvU953h0f
-	th8TYG4PShxR/E+Ei9ejdNqLXOAwYHLH3ZATKg8VqPvHVQMq1YGRlbwCDzVjl2nsyDTZoPrVteys8
-	A37UnwITVxopZSwOzJkPCdmNMKJxstJUULZupWNpijAyQjgN0IUDLK1R4kZNX0spehOhFvXaB41hr
-	zYG8irylyt7v6rC57gtFQYzH2lQ4Ax7S37yRO5psvVvERXV7YrMZoWYGGJiXqUtm4M6lsbPn6OjDb
-	9Ph3CMQX/ISDISdMG7XwnybuwSvMS3trt+si2Uato4w0IXLs7ERB+3BY7BB3arlLoBbkAAKkS7wkJ
-	oyBidKJBo4RhphZucM1g==;
+	List-Owner; bh=SnpBpONi2hKsnLkH7ie4ozWlmqX6tUPpRN0WLEqSj5E=; b=nPRPhKjIIjgc8L
+	M8FDO8JOgtLacTxLW3wgj4bv1Wbt7c72BGfmsDDZwCwmz8G42+Uys/0xPsHs0Ax7PgGM1mC6YNwrk
+	lQDk14P4sea7RblE37ZoBexJPyB3AytlHEpNW98wU1zqpg5bEoHp4pzjrQR9DC2NRI6yR6ENBJmkz
+	hgoB59kDCcStnmkRpLlA1jZD02lnHthWdO45P6cRmAnjOpqEWjNshGSArc1VHW/lsEIZ8dLpuddoQ
+	P07pn08UMmPe+P7ncYKTMzAHUGz99qEvBptvyZAZsvkcUOiVybUM9/Xm4xNwIyHzdvcW0NTHKmlbK
+	ZPJEQcHcI7GYlcriRqeg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0TE-0000000BiNb-3Ig6;
-	Thu, 19 Nov 2026 11:38:28 +0000
+	id 1xU0TJ-0000000BiPm-3ghr;
+	Thu, 19 Nov 2026 11:38:33 +0000
 Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU0TA-0000000BiMH-1b66
+	id 1xU0TG-0000000BiOM-3msv
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 11:38:27 +0000
+	Thu, 19 Nov 2026 11:38:32 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 662694E41666;
-	Thu, 19 Nov 2026 11:38:22 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 6C6AD4E41665;
+	Thu, 19 Nov 2026 11:38:29 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3AE7E60237;
-	Thu, 19 Nov 2026 11:38:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4409411BC1249;
-	Thu, 19 Nov 2026 12:38:12 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 332DA60237;
+	Thu, 19 Nov 2026 11:38:29 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D718F11BC1F34;
+	Thu, 19 Nov 2026 12:38:20 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795088296; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1795088303; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=BwG6pO180ts3EsXk8dPvrXRrI1JUEETTIVLE0jahKVc=;
-	b=1l7Upd4uTZdbbbvfHSuMTHUhvapkpfFGqkwgtq7Fn6XGui7RzpF++cOrWUJLq5hs+RTtKi
-	DIBLjOIpJ2KpU0aumygE6CBmMVJ21lCP5/ur7i1672TBxmHOBkk9coN917WZ/dGlBLBDIe
-	2Xbys0dC3kMrFUyOipQg8sIqz2XQzDaw5Dt+htEBYweJQ4w3Enl3Msf2MUNPZzYoABmtAG
-	F4nQiCERIut8IPSfoN+E+XD82HkeSPSmf7RiJLzV84IvkKF+G8iq80TfkzBH166U561hpq
-	23qojzjxRpovEOTdataKYcH5eUedT9kb3+PHF6w+7fazvuHSYFz6MD2e1Jo3Cg==
+	bh=SnpBpONi2hKsnLkH7ie4ozWlmqX6tUPpRN0WLEqSj5E=;
+	b=1YXEjZt4qlKrQHOgJzkexU+Iou77czT1vkN8RWuUpEhhYJUcs5+bVi7DhX18y3pTMRv4Bs
+	Xy72gd685wBvNy+uL8t8mKgqLZ7efT46u3iEoqAn70cLhNI10wBllevR2D0PPBo4xeI5Ro
+	S0l4qpp+ci5Bb0UkBiRwOg1xcxQScyJt1N0qaUn/3CwZ22efPrV3mW7RLOWQnB/sglx81J
+	mBAdTTTTuK3utJlkEB8T/wXrZB+V3YyrE+BqrYNI+B4u4CavTNdKmgURAycnjp2cOJoT97
+	a8tjBDwBS4cFou9WBIBdyExxCeLN/k4VTY7mZvp5HXulN2s6gmJ/0yhdvPodxQ==
 From: Herve Codina <herve.codina@bootlin.com>
 To: Andrew Lunn <andrew@lunn.ch>,
 	Rob Herring <robh@kernel.org>,
@@ -73,12 +73,10 @@ Cc: linux-omap@vger.kernel.org,
 	Steen Hegelund <steen.hegelund@microchip.com>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Sashiko <sashiko-bot@kernel.org>,
-	stable@vger.kernel.org
-Subject: [PATCH v11 1/5] bus: simple-pm-bus: Avoid inconsistencies between probe() and remove()
-Date: Thu, 19 Nov 2026 12:37:52 +0100
-Message-ID: <20261119113758.603074-2-herve.codina@bootlin.com>
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v11 2/5] bus: simple-pm-bus: Remove the remove() function
+Date: Thu, 19 Nov 2026 12:37:53 +0100
+Message-ID: <20261119113758.603074-3-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261119113758.603074-1-herve.codina@bootlin.com>
 References: <20261119113758.603074-1-herve.codina@bootlin.com>
@@ -87,8 +85,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_033825_487492_E975C216 
-X-CRM114-Status: GOOD (  16.56  )
+X-CRM114-CacheID: sfid-20261119_033831_075386_4C43D9B6 
+X-CRM114-Status: GOOD (  12.69  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,71 +106,40 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-At probe(), operations done depends on device_has_driver_override().
+Due to recent modification, the driver remove() function is almost
+empty. It only performs a dev_dbg() call.
 
-At remove() a call to device_has_driver_override() is also present to
-identify operations that need to be done in order to revert operations
-previously done at probe().
+Having this remove() function is no more needed. Remove it.
 
-Nothing prevents device_has_driver_override() to return a different
-value when called at probe() and when called at remove(). Indeed, a user
-can set driver_override (or clear it) after the probe() call and before
-the remove() call.
-
-In that case, inconsistencies are present between pm_runtime_enable()
-called at probe() and pm_runtime_disable() called at remove().
-
-In order to ensure that pm_runtime_disable() is called only if
-pm_runtime_enable() has been called at probe(), use the devres version
-of pm_runtime_enable().
-
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Link: https://lore.kernel.org/all/20260630105701.7D0471F00A3A@smtp.kernel.org/
-Fixes: 98e96cf80045 ("drivers: bus: simple-pm-bus: Add support for probing simple bus only devices")
-Cc: stable@vger.kernel.org
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- drivers/bus/simple-pm-bus.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ drivers/bus/simple-pm-bus.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
 diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
-index c920bd6fbaaf..4322a778e801 100644
+index 4322a778e801..e45700156732 100644
 --- a/drivers/bus/simple-pm-bus.c
 +++ b/drivers/bus/simple-pm-bus.c
-@@ -29,6 +29,7 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
- 	struct device_node *np = dev->of_node;
- 	const struct of_device_id *match;
- 	struct simple_pm_bus *bus;
-+	int ret;
- 
- 	/*
- 	 * Allow user to use driver_override to bind this driver to a
-@@ -66,7 +67,9 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
- 
- 	dev_dbg(&pdev->dev, "%s\n", __func__);
- 
--	pm_runtime_enable(&pdev->dev);
-+	ret = devm_pm_runtime_enable(&pdev->dev);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "failed enable pm_runtime\n");
- 
- 	if (np)
- 		of_platform_populate(np, NULL, lookup, &pdev->dev);
-@@ -76,14 +79,7 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
- 
- static void simple_pm_bus_remove(struct platform_device *pdev)
- {
--	const void *data = of_device_get_match_data(&pdev->dev);
--
--	if (device_has_driver_override(&pdev->dev) || data)
--		return;
--
- 	dev_dbg(&pdev->dev, "%s\n", __func__);
--
--	pm_runtime_disable(&pdev->dev);
+@@ -77,11 +77,6 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
+ 	return 0;
  }
  
+-static void simple_pm_bus_remove(struct platform_device *pdev)
+-{
+-	dev_dbg(&pdev->dev, "%s\n", __func__);
+-}
+-
  static int simple_pm_bus_runtime_suspend(struct device *dev)
+ {
+ 	struct simple_pm_bus *bus = dev_get_drvdata(dev);
+@@ -150,7 +145,6 @@ MODULE_DEVICE_TABLE(of, simple_pm_bus_of_match);
+ 
+ static struct platform_driver simple_pm_bus_driver = {
+ 	.probe = simple_pm_bus_probe,
+-	.remove = simple_pm_bus_remove,
+ 	.driver = {
+ 		.name = "simple-pm-bus",
+ 		.of_match_table = simple_pm_bus_of_match,
 -- 
 2.56.0
 
