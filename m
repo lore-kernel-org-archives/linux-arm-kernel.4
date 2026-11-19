@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768D760A260F
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 21:05:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B7A760A2616
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 21:15:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c46+fi+V;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=TUZbzPFY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=22rpckb+;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=FQLJC698
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
@@ -14,126 +14,123 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=+bJSqbq3SCV9gTf5E1IeKtVMmsmZ7O4WIKwi+u3mup8=; b=c46+fi+Vqzi7neBkvCQmvu0Z0y
-	o2fcO1et+ReH23UI80Ajtn214FNxP8VUZjhP7jsZkuvNZW8mcV5pCiKrHsh3t0F6sBHJJzB9hTG7k
-	yjUPGkqmIusV7M3Y1kSDdqaxCqmYbe2neiomY+uJnzBZI1v4X16MS/DrSWWM4gWMf4r2zI6Vzo+wl
-	rWI6Sp5JFBjDHEZRRGAyX+lTnS1wqlKFaQ4H7n5h/CBk2eqU43yH1kXTSshlWGEtiqmfpmA1/KZ+8
-	XEH4lfYGeW4zqQ2nlNpwiNJ3y14nE7a5SKwY2iwm0aqI8Ia/rZt29deaeod/F61M9AY+E5VRc7mrY
-	5p8ISbFA==;
+	bh=uD/3GGb4aw8jMr2+9K5csmWHvkhaYmWZgQCieDk7sv8=; b=22rpckb+f1cw9IPBUeJ60AYu3A
+	0bNNJlOsEQgbg4i0WDEd2nu1ucPPtzpvSNnK7bgEXUbBW9WIPo/fUxg1PXqMeGRB+Hoxej1c4qp3z
+	2g/66an/UK+x8y5NIq5xfeWWZPLfRE2VrTO2fOb7hj7ozN+WIZsbU6c06jnInXab2SrkPYYLbJx5k
+	jKfsxuxoCd0wS01UBvhUqscD3fPbkTWEZpJgFQjzgn6pG3EyPXCJ1bXNbk0JWU9DI72mY/Ymr2kbQ
+	GHn92EVc/jdbU7M6i/o1JUG9MiO/xdB48NNJZe/zyKRXEEYesOFXQn1Tp14ttXqmhlEL9bbT0yzbe
+	bAh7Y0tg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU9Ju-0000000DS2W-1j1a;
-	Thu, 19 Nov 2026 21:05:26 +0000
-Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
+	id 1xU9TB-0000000DSPM-04Ky;
+	Thu, 19 Nov 2026 21:15:01 +0000
+Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU9Jr-0000000DS23-3RjS
+	id 1xU9T8-0000000DSOW-2iWs
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 21:05:24 +0000
+	Thu, 19 Nov 2026 21:15:00 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ctWN51ovVrNotQ2iJ5uFJD+nHqP+LxMbgHbFvmivKGteIvHv5uLvpPobSk6JQGfvzsO4WBy+tl10wtMZytwpm8fvfALaBSCu1ObhMiPW2ltoOSU0MtnoB2g+38slINhsbonnMZgAVv2ZM5vG0ju8vx+3wowzUHXMkSHsQcSLopcyy8GjKMUgLmByM+llA3+jUIjDxO6yu9MkL9XIU44wcQ5AQtR6/QPIYOzjANGjFIBNGQjaJ2Z9gmdmHgSWMcXs3Sen6axEMJ4FxUALgA69gmKr04PjcrKzRIhtaL8RhTRAHrEU2+VewofULPLe+zjFuiaDo3/ILoYPo+aTIm7EkA==
+ b=xuk3LqxCLC4mlXFjFK1WZlYP1IfGywqKe7Rsxov9hijMpz8AB8TqTWzRq9qIJ9FcgZ1423todz6k8RmokPgg/WjT75joUer1uNd9yM/8CoS5RTe6/B4I+c2giJkurIlPaGnXZ7uEZvjUcAg9AlQZ8ZQKPxl8CkntJ6eS5YLeUWMoa64+XX9rEyNazKNcMOV/0hep33hmm8PNSsY6cxzXbZ/+1fgJICrM8E3RSFmLZlQZo/IJHF6LcShtFxnu/d2UGHc/O2F/FIkpZKjZPC6N7f2GE7j57Pd+8d0x6B4NWwp/vLipbKtgd65/1tPHJmZpClZF4fL5o05aN2L6q5iwrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+bJSqbq3SCV9gTf5E1IeKtVMmsmZ7O4WIKwi+u3mup8=;
- b=wtEp5eccsF/7UgvzhA2cg9G3bvRH/Q1vxhwZ78FQoJSWYCEOJjgLiBNvuYqLNmXcosQ/mBt0yuweCxbgYICwPL9KsHNyWeiwW5i8ifo78K42JiP0VkzZ7dqjceB1dbg/yfp42SIfA6sctK8YIm3wmM/q5EMl6YHHImSxfXkXKZORozBkwsXOR2rTgbrjSGAhhECweBrjVQkeo9DzV5ip1AXRuLfz1GHmepAVLSPKG3qoAuxOmNPb4qxlkvpHEPtC5B3tRPZwiJtZLMkZFO1jcrPswtLkodPSxtGFLEpYXY+DpX7dQA6ihrje88OQus0kVXYKpwaTCVn8XMT3/tsANg==
+ bh=uD/3GGb4aw8jMr2+9K5csmWHvkhaYmWZgQCieDk7sv8=;
+ b=u2ReYB/me5tvSecYitebamkbEZbr2dXKohPZS5opaPUMOgPXSWnC5/NYUsH2DCbFUIXts9tnVLNBlTLLucxPF5O+8ybW09yD7sInp5IlyxYCaQbWPPgNpvv6kSRQGYR3WzgJ35XctMVx2+l0dw3ZmXS7HghXte/mny45Dzxb7DSOH905occ7mIpLOa+cuMxaWZGsBLXS3zdZHGl0AhIpR2w9RNda4/veCYHUpdB8n0WnjfKMNuSEQC842Z+ddxdEAkORreZBX+/XFnWATJamSc0rRfbiRMa1w2jmP0G1BF4Ra0eeifGwYhfa2+hvU5KVRc9fCnzspLQBeeEXQPByFw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
  dkim=pass header.d=oss.nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
  s=selector1-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+bJSqbq3SCV9gTf5E1IeKtVMmsmZ7O4WIKwi+u3mup8=;
- b=TUZbzPFYAdp6Qm2Orq69DfQjx4dt1TDY89mKLMBlMa52UKkHaA1xa+HWSgAEfZSFkM6erao+y2MGyKGx+fUBU+C0f7PXyUuA4f6h5yRzF4qv6eXBlAMpbLHan2bUo9Liuemn63ct1+wlYLTmKzGhXNR6OA5ckSt+7T/iabW0kMPsQlgqUjSD5i59CZ8ys+iLNiM6JqpyUlPcWgTQUDJZZoUWgu7XE+CNrYmgMJaU0e0tAHXgSgy2mGXtoJqzdO6ZH8v2PwZTQSaZ7/goqhn82+bJpdOUPvwKmnWGIc1uQy+HPml7HD7UMoS3gbTAbe95Da2WNFzBceJlO1Yd3OurQA==
+ bh=uD/3GGb4aw8jMr2+9K5csmWHvkhaYmWZgQCieDk7sv8=;
+ b=FQLJC698khwSRn1S3/FDpeNCZkzct9bGzk+6At0SQgsmNc7dRBx2+zH+1anDWMRn06WwjjrkbMG9JxDdMZRyOreesAny1DNqae2KMQ7PPcMFiYL4acxA0sA4bMhTsV1FHms+Jb1QSvZn/wFFnX8j+lLZNiJ/GPl3Sa8Y3G5kL42AI1HPgbasaEIOFCItUNw5kbMPYje50/vFsBDUG+SsjYHJoc1qkvvm9yMsxVIXtS57dW5G3EeHJuM0ssYkCc7cG82+lQVqvs+8beU+QZqJZLkg97nEKnsJR4NKNwncugsxQ6cpQ2qy0y2FgzTXDZ6lUd241z0NFuJQOqO4wvZlyw==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=oss.nxp.com;
 Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV4PR04MB11752.eurprd04.prod.outlook.com (2603:10a6:150:2dc::5) with
+ by AS4PR04MB9481.eurprd04.prod.outlook.com (2603:10a6:20b:4ea::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
- 2026 21:05:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Thu, 19 Nov
+ 2026 21:14:51 +0000
 Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
  ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
  ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
- 21:05:16 +0000
-Date: Thu, 19 Nov 2026 15:05:06 -0600
+ 21:14:51 +0000
+Date: Thu, 19 Nov 2026 16:14:43 -0500
 From: Frank Li <Frank.li@oss.nxp.com>
-To: Nas Chung <nas.chung@chipsnmedia.com>
-Cc: mchehab@kernel.org, hverkuil@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com,
-	s.hauer@pengutronix.de, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	festevam@gmail.com, kernel@pengutronix.de,
-	nicolas.dufresne@collabora.com, ming.qian@oss.nxp.com,
-	marek.vasut@mailbox.org, jackson.lee@chipsnmedia.com,
-	lafley.kim@chipsnmedia.com
-Subject: Re: [PATCH v8 11/11] arm64: dts: freescale: imx95: Add video codec
- node
-Message-ID: <av9kgix0B4irkC1h@SMW015318>
-References: <cover.1795075577.git.nas.chung@chipsnmedia.com>
- <e89f330486c8b986088278b563d0c4364d35f19b.1795075582.git.nas.chung@chipsnmedia.com>
+To: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] media: coda: Fix potential use-after-free after VDOA
+ removal
+Message-ID: <av9mwwAmlRoDdU0d@lizhi-Precision-Tower-5810>
+References: <20261107-0d0c29e10a-media-coda-1@mail.sdu.edu.cn>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e89f330486c8b986088278b563d0c4364d35f19b.1795075582.git.nas.chung@chipsnmedia.com>
-X-ClientProxiedBy: PH2PEPF00003859.namprd17.prod.outlook.com
- (2603:10b6:518:1::7b) To MI3PR04MB12438.eurprd04.prod.outlook.com
+In-Reply-To: <20261107-0d0c29e10a-media-coda-1@mail.sdu.edu.cn>
+X-ClientProxiedBy: PH0PR07CA0109.namprd07.prod.outlook.com
+ (2603:10b6:510:4::24) To MI3PR04MB12438.eurprd04.prod.outlook.com
  (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV4PR04MB11752:EE_
-X-MS-Office365-Filtering-Correlation-Id: 684053d3-474d-4bf5-9e29-08df4680cf97
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AS4PR04MB9481:EE_
+X-MS-Office365-Filtering-Correlation-Id: 47322d96-a2a7-44be-c3dc-08df4682262d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|23010399003|366016|376014|1800799024|7416014|18002099003|22082099003|261009223027099003|4143699003|56012099006|11063799006|261026140227099003|261102123227099003|261028144727099003|261021121427099003|261022105027099003|10067099003|261026121527099003;
-X-Microsoft-Antispam-Message-Info: uWy1rRiA06yCKFuzpjl7e81B0onVz6XNg6BbohgOVO00scAdhxeK+mW+ZgAXZEJ5ENg6i0ckZVecm9rsrpQHxacdRZsWSh3IAO8y00tohCTRKeFRy1nRJcpMSRtJJC0+NjxdEpdSi0m1RV5mgPk8tVmYkT2FnN0vra2fLTr3XG/N+Wv1ghP1Y1VpP/YXO1bLnGNqofP0g8EJw4GyN88xXTC+h0gWh0Vhig/PFWaSY4OWZO7mWBzPB4sJbIJc16NyZa6OFgNfyBS0ud1VfvT2tYFz+RcpQGret+tW3JR9LXFmeYf/itqHgSVhY8OXavJssiva2ffJMwJDJvcsT4do16KfadYT1gI6P3P9hkJktjq8lfQeL52F4mcqnFEpF8H+4snH2YR7DF9KGEuY2xRmNnFy0ZH/W8heC5bUIfAGxQnq0ZHeDQtlvL6oaPL97u+shJdqyRbx3m4LUzJ17DIKBxBJmhyVHPU6KxpskrcdOdAdgxaTuNHZMS7c/0nkQ7Z9WMZj5DYclZSaxog2XD7utzSoTHea1m8HhNw8nQSk2QCGYEKnKusR8RoyGCGlqu1wV4i2Bxola9RNBroZpuWFBcAvUDLroywB32xrECpfFEi/aUO+8i9uEUivPQXpdF4/ZKTMlQ4NV2SvqtBDnuTf3cF1kl4stwLInmY/Se5XAeM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(23010399003)(366016)(376014)(1800799024)(7416014)(18002099003)(22082099003)(261009223027099003)(4143699003)(56012099006)(11063799006)(261026140227099003)(261102123227099003)(261028144727099003)(261021121427099003)(261022105027099003)(10067099003)(261026121527099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|23010399003|1800799024|18002099003|22082099003|11063799006|56012099006|10067099003|261026140227099003|261026121527099003|261102130727099003|261102123227099003|261028144727099003|261022105027099003|261022075727099003|261021121427099003|261021123027099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info: KJl8T0y+N9K2TDLq0teasWdCRp9/8iPJYshIsn21eWR3efdhybfycB1T2eG/GcWBsj+xW1VER6aCF0W/BKi7t+0GNersPv4xqmO6ITNxwq3brjeOIVp/ZTc9vDz51lvGbOKdQ/VFkQqnaiIOJ0MYyoxmZRxg/3IpCni2rLCkJvuXFtx/JKkUh8nWBpdncq4UwBNRxQKPCWVllHt1fXm3zeSIyCBk/ImFCCjtNUsfY/zLt05IiSX5S5ijKUvGPvxDztdG4iLHTUrNB/jdRrPa36TGRrvCg9w+RG0krHTxBXqakHA7RVR45tPJpCci/wUN1Rd/DaXHb5yxRkLkclkcQFxNLTYm5f8SzcZpx+WzZysFYoGPeSjfdp4uJ1ar540WYOjHb7OM6RFyKomxy+htwWNJV3pdJOlQ4emqbG//mJS6y1pAYkGF7v0s7HPiTJOchl2qMQXIl/MqgA4hjDO/lR/1EesLB3ckpZ0HqLBEohy0Zuel5bgJZ0t509zSkIFyxfIAWfon5jeslbiXm/J6UMzzToqouF3OuS1oHjsEOj+9uQJsrEhVQTJNf7zcT26QNqPbgffBBo3urGUfwrK0+10UjwEIjmLx3KBjqOjOoLlxwnaSqE1xkY+welXQDAxwSSVTP0yqo8L3mqZ3asVo/Jku2oRik3zGuifIADySEiI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(23010399003)(1800799024)(18002099003)(22082099003)(11063799006)(56012099006)(10067099003)(261026140227099003)(261026121527099003)(261102130727099003)(261102123227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261021121427099003)(261021123027099003)(261009223027099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OGhco1VUcivQrvVJPQwWp0BPTD2rFzFePCO9DydOTdfewZNZtUJCM8uJYYNV?=
- =?us-ascii?Q?OJsKHNf7HwzvYbb3dy4Ozc8NRNyko2Mf78LZx4Z8iv2XNFdFv/Vw1e8PGoCT?=
- =?us-ascii?Q?oGIzzpI10VnLdEtwvXZwunO5adMBuac6IkyTPM3UEKYX1Jn8GomdLojjl6yZ?=
- =?us-ascii?Q?+gs3JZaKFlMpgSxXZpoQ+OaG2wcK+UwikhQ7A/F0erEFV0rblyailk/DQ8k9?=
- =?us-ascii?Q?W1w3vhq9REAsXGMPI9/z/AtrAKATspLCWH37TxoDT3R2ejfHMJCRJgv374Hx?=
- =?us-ascii?Q?MAda4Xu6XdJ6IpO/E2l5wwKay/vrKDfvjxaTZ7Xa0LXIl0Y9SeuoQPUxPKEP?=
- =?us-ascii?Q?eoiYNepLc/b4J+FUUkuowtmRvKGoDnLctCDVwJ/d/Wg+Am9pW5S/GLMSRPnV?=
- =?us-ascii?Q?Uu3PEypWSmp4rfHn1zMBj8oxKnWr2LrxZBz1LihHznDfsZiE0N1Rd49sa4I8?=
- =?us-ascii?Q?iJ4X1mhOSZFAynvamuoIx1T/OEflSdxYRkluPEYbgY0uwrLuSMTXnqULtmmb?=
- =?us-ascii?Q?I9v5gF4vQuNYOrwMU7yzlECGamrm0PMgGlnc+xu3MVciA42tAW8ObZ7DWWsw?=
- =?us-ascii?Q?u43Thk5+kc6SlFSmTsJz7jIAItNvTn4sUrnhyUvAF6k/e/hpDBTcoJV6CeTI?=
- =?us-ascii?Q?OyFTcNqMcEWrC/VdXUXMSdcFPV8YTmmstczKK4TnhiTrz7+fzKLJ89Dgyqxu?=
- =?us-ascii?Q?kO6yAGHecjtZucX5z/8mhSWmOOT+EA6cij5Jc7r/ocEjvXBbLugTW09VSCgI?=
- =?us-ascii?Q?pKIbzDvZ/ZYl0mHJEQGW+qsRfBYkdgejhyu2bit8NepUorpjuaoCjBsn5HaZ?=
- =?us-ascii?Q?rzz+YrN6iXd0oW9nvPfOC7Kyy3PCOEdTQFUQajX5x+1z6gxGizgS2aYH/xvF?=
- =?us-ascii?Q?xvEcHXTwVpNgsobMJzhEOFQBkQmGWKhtDDwgcaj0MJRGaHbzBYRfRfyEsRgb?=
- =?us-ascii?Q?lPhOLGpt8DD80JVPRpRQ0SY7gDr05eUf+nfdDjj8nimKDJ6d36JJ4k3+iY+T?=
- =?us-ascii?Q?4Oa5+/MBmSiesgnMntz7Vk/d1RM1QLqo0H6M94h0w2jA7vYARlGoIstvwZ40?=
- =?us-ascii?Q?G7lnohj+Kljck/gRwVoeeH/GxFwoX64gIZTY7ui9oNQ9rU8KAqzbJOKtd8R6?=
- =?us-ascii?Q?+MQe3A0f+v3OEoGhYO/kCj5n7CVquRl0eOKesVxUETBXB75qdA4WZWvzUEjF?=
- =?us-ascii?Q?BlNaxvLnjKWZIrYdhyVmCcaOqMeAhNy4q6a+I0T7Qu19Py23ZD5vS6FxZpL1?=
- =?us-ascii?Q?njQmds1c1RRXrjrOJzO9v1Ec0NAvfhyW8Py97n0ix06yT+cO0ssNol81KtnO?=
- =?us-ascii?Q?kcWYcLHbBpQmxhHxW7FtbNRU5RZ14GXIH5bnxn/0/kWT8oBnihBYHevdy1Vp?=
- =?us-ascii?Q?5StYQj3T6+ntFVsFczsmvmqFOXvLds2YjWsADeQNrF+GkLg3JOij7ASkKVdF?=
- =?us-ascii?Q?/bxlmlGgN9NtS4o66KvELZmlLFjoaCG/ZOiNzdGMcZ0iC3EuARhvDJu5wbwh?=
- =?us-ascii?Q?grMUBSABTnwi3Vq20sIvEzuWYFM2Tvlf9A3LqrlOyp/XlWX0UTpHkBd9ZzVd?=
- =?us-ascii?Q?L5Rwr2AlBxny3Hy8tQakH0TzgsosuSmGj755xgFSaOIDmwn2ufTd/hBFVHaN?=
- =?us-ascii?Q?x8KgWIiyNN0/DF5fL7Ik1EWasdw+2TBRRU0idW+u0U4C0KxQPxkVTEfREsh8?=
- =?us-ascii?Q?e6GYmTs3Ho4eexAgxs4OsVv/GXDSSCFwyTt0oUYng8LpthH3b9YQzPwS44je?=
- =?us-ascii?Q?DzrVaKX8jVjOs1Ory+490YUoT56v3GttZAu/0YMe8Mr3gbpkj3b1?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/xf/TaFf/hFzsk7aAS4e8HBVAS/kbCFo/zrAI1vvWp7a5nAtasirilHUi3Zb?=
+ =?us-ascii?Q?wcCxJtD2lMqeHakVZZPm4pG1jaS7KRqZ+wUrDSIH9It4uT4IlcRoP4oti2fW?=
+ =?us-ascii?Q?GGGXxr9OqpaVYyVT/4IMpJQOMKW4jEhbQ5hudxlUND2XuxpC4Y6l3IuHzEh9?=
+ =?us-ascii?Q?q+/RHoBvE4+TXo+LYVc71EYPinZ4TJORUn7mqbU8ShhKMQcxU3oUsFvIi4Q+?=
+ =?us-ascii?Q?/GOe/LJjqAHaIVTsbC3AkBqOTG49t4v6E5CBuvjc3U86tMG/7aQxLilOWr9H?=
+ =?us-ascii?Q?tvifhxrgqEv/1lBsZSbSgIG27dlYfNXetFMqcsai8YL2k54HSob6mCiK7r+Y?=
+ =?us-ascii?Q?F9NVUWPIT3iDvKSs82grUKcpjgIwvv5fyI8pfpAjwxH5bX7kTSHLHwRmePYl?=
+ =?us-ascii?Q?RvAUcDhGRGynRttA+sg4OoI2qWlSQUcv+0r+OMw25NCYyAd14v7uhBHi02b9?=
+ =?us-ascii?Q?AHsM8eqva1n25/XHWkC+42HolzOAX58z/8+9HbM43v6lLlehmtoed65C66ai?=
+ =?us-ascii?Q?qNk9YFGP2EhNfZ16hudGMUswkdDUBIDJPjBwUQ2QzNTyivLVsD9OH1R/iQCr?=
+ =?us-ascii?Q?wDn7RroFQ2PgDwax5zqx+f7gC4RxGVJ87jumehqROda4b/eESO/26MLFQ+ho?=
+ =?us-ascii?Q?Jjd88uxo3vuGvenTAEnsfzj679Bn45fSf09rBPnzJBxRU+F266kjq3DibMdl?=
+ =?us-ascii?Q?Y9S+ItKGzAdZqv9e1/e2tcNEPhujI1E9Ry1smrudHs8eHTW65yfkvnGmawWr?=
+ =?us-ascii?Q?yapN8pX9vnU8r1LGBm5FjNEaHU5l+B4Y1KZvzPgYi098hOEekRMrvCK9ratU?=
+ =?us-ascii?Q?fTUOnr1clYuKXJEq9EGIhHm79tzL0UzSQxYBvlWrSNqU7xg50qHMmc0q7unU?=
+ =?us-ascii?Q?IouEb7EoMCSMQbRVXMKWP6fjZDJtI2WAHu49hzIxpyG+H+2tCkacMQQg5X8v?=
+ =?us-ascii?Q?eIrK621HaiHJGmS1EejrYngS94qnWOpPlrxb3+qeMnCTngzSHm8ofVC/VKpn?=
+ =?us-ascii?Q?I6Vo8fi/y5LSLjeCtd/KYqEyBjO7GV8Ry/KSN3yx/N3jiSQsYLm039wAbK3C?=
+ =?us-ascii?Q?YcB27jA2QSvn0pguAFhksSJJcWnCkHw7wbo96gTCm3HNZQIkST3JyYoCFAHL?=
+ =?us-ascii?Q?RBX0gArJaBCBrKjCteOYFH2/Hwm/wHjOqUdMK+FFy6uhm7YMs0xv2Z2JY78H?=
+ =?us-ascii?Q?bNhrRSyr8WxbcnwyZcSUFgMFvW9MNzVOG9LQMumGh+V5UNfDG15ksMm5oyGi?=
+ =?us-ascii?Q?f3W6F1RTUxDxSZFKudr2ssb77kQ2dDKhoce5EdhCDs33Ov6WRvy9a6cUPvF0?=
+ =?us-ascii?Q?rflAigxRVeLLDWZM8tcdIDut6lfXW64Eyk83idssky4fjQZdmO8FnyhENutS?=
+ =?us-ascii?Q?ps4umxh5HpH/Y6mBczFnOMCr2e/8bxAU/USB0dPDyQ6bAXJdmTT3B9batPhk?=
+ =?us-ascii?Q?V0LfQvVm9ZgkK+FOqrfX6CSKrKMn4Kb0UTCTDgAjbMchOR/J/CJcWbR698yf?=
+ =?us-ascii?Q?WGacfBA+uBX8kWbUWOW7YstSiwNKDJAK7WJfpSCR8VCfWmNjOupsjiFMT9/E?=
+ =?us-ascii?Q?8wPKREgY16besEXHcb0g6AnpfN4AD+7tDd+7RiCcOcyYm+irvMTAXTHUCFLM?=
+ =?us-ascii?Q?5LtSD4twmLuoUHKOSTlYqTBQ1VhHoAErSuzN40c0OT+PHwQbbyWP8QN5gjZg?=
+ =?us-ascii?Q?wABumBfD1m7TF6zl40GLQQqXa6h0iFtIDSTq0y5ggFhxN5lJ5skUzSyREFtt?=
+ =?us-ascii?Q?KfBf8bK1L24+u3M9tOYNQMLtwq6rcEgHA9ppYIFX15b4FhK72aq5?=
 X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 684053d3-474d-4bf5-9e29-08df4680cf97
+X-MS-Exchange-CrossTenant-Network-Message-Id: 47322d96-a2a7-44be-c3dc-08df4682262d
 X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 21:05:16.4567
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 21:14:51.2427
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vTN2/nZgstcskEGwf3m+UjteprBokz3dJj/VKwBijzwPvyNNGQR4uiAAWeqD3nlr+/ioGFYbIbTRSGvVvyD79SXBmiVMX1YgtAPuHWwvJB860e0QQxp5YmuDp1/XCLi0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV4PR04MB11752
+X-MS-Exchange-CrossTenant-UserPrincipalName: zXdaqn+AZNOjkRYhlM+7bUZ2QYXo2dphl75kX40v+h+PSTfqEhShgVRVGce0X49qNS0MVgY1EXb/Ay8y0SijisT1kqZUXycRzZ0JH3gaPNtJRGt2olhgxjXIn9fXBYMB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9481
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_130523_867664_EC50BE95 
-X-CRM114-Status: GOOD (  14.18  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261119_131458_884349_215DC372 
+X-CRM114-Status: GOOD (  29.30  )
+X-Spam-Score: -1.0 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,95 +148,357 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 19, 2026 at 06:00:05PM +0900, Nas Chung wrote:
-> Add the Chips and Media wave633 video codec node on IMX95 SoCs.
+On Sat, Nov 07, 2026 at 02:54:30PM +0800, Guangshuo Li wrote:
+> VDOA can be unbound while CODA still holds its driver data and open
+> contexts. Their next transfer or close then accesses released state
+> and device-managed resources.
 >
-> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+> Retain the VDOA state for its consumers and contexts. Serialize hardware
+> access with removal, stop outstanding transfers and balance the clock
+> references before disconnecting the retained contexts. Also release a
+> VDOA context when opening CODA fails.
+>
+> This issue was found by our static analysis tool under development.
+>
+> Fixes: e7f3c5481035 ("[media] coda: use VDOA for un-tiling custom macroblock format")
+> Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
 > ---
->  .../boot/dts/freescale/imx95-19x19-evk.dts    | 10 +++++
->  arch/arm64/boot/dts/freescale/imx95.dtsi      | 37 +++++++++++++++++++
+> Validation: x86-64 GCC W=1 changed-object compilation passed. An
+> extracted-code test with mocked services reports an ASan failure before
+> the fix and passes after it; this is not a kernel reproducer. No
+> hardware test, ARM64 build or full linked-kernel build.
+> OpenAI Codex assisted with source review, patch implementation and
+> commit-message drafting. The submitter has reviewed the changes.
+>
+>  .../platform/chips-media/coda/coda-common.c   |  14 +-
+>  .../platform/chips-media/coda/imx-vdoa.c      | 133 ++++++++++++++++--
+>  .../platform/chips-media/coda/imx-vdoa.h      |   8 ++
+>  3 files changed, 134 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/media/platform/chips-media/coda/coda-common.c b/drivers/media/platform/chips-media/coda/coda-common.c
+> index be37ea568bfe..b519cf8541de 100644
+> --- a/drivers/media/platform/chips-media/coda/coda-common.c
+> +++ b/drivers/media/platform/chips-media/coda/coda-common.c
+> @@ -396,7 +396,7 @@ const char *coda_product_name(int product)
+>  	}
+>  }
+>
+> -static struct vdoa_data *coda_get_vdoa_data(void)
+> +static struct vdoa_data *coda_get_vdoa_data(struct device *dev)
+>  {
+>  	struct device_node *vdoa_node;
+>  	struct platform_device *vdoa_pdev;
+> @@ -410,9 +410,7 @@ static struct vdoa_data *coda_get_vdoa_data(void)
+>  	if (!vdoa_pdev)
+>  		goto out;
+>
+> -	vdoa_data = platform_get_drvdata(vdoa_pdev);
+> -	if (!vdoa_data)
+> -		vdoa_data = ERR_PTR(-EPROBE_DEFER);
+> +	vdoa_data = devm_vdoa_get(dev, &vdoa_pdev->dev);
+>
+>  	put_device(&vdoa_pdev->dev);
+>  out:
+> @@ -2721,6 +2719,8 @@ static int coda_open(struct file *file)
+>  err_clk_enable:
+>  	pm_runtime_put_sync(dev->dev);
+>  err_pm_get:
+> +	if (ctx->vdoa)
+> +		vdoa_context_destroy(ctx->vdoa);
+>  	v4l2_fh_del(&ctx->fh, file);
+>  	v4l2_fh_exit(&ctx->fh);
+>  err_coda_name_init:
+> @@ -3220,9 +3220,9 @@ static int coda_probe(struct platform_device *pdev)
+>  	dev->iram_pool = pool;
+>
+>  	/* Get vdoa_data if supported by the platform */
+> -	dev->vdoa = coda_get_vdoa_data();
+> -	if (PTR_ERR(dev->vdoa) == -EPROBE_DEFER)
+> -		return -EPROBE_DEFER;
+> +	dev->vdoa = coda_get_vdoa_data(&pdev->dev);
+> +	if (IS_ERR(dev->vdoa))
+> +		return PTR_ERR(dev->vdoa);
+>
+>  	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
+>  	if (ret)
+> diff --git a/drivers/media/platform/chips-media/coda/imx-vdoa.c b/drivers/media/platform/chips-media/coda/imx-vdoa.c
+> index cd085c1c73f4..d9249c943dfa 100644
+> --- a/drivers/media/platform/chips-media/coda/imx-vdoa.c
+> +++ b/drivers/media/platform/chips-media/coda/imx-vdoa.c
+> @@ -9,7 +9,9 @@
+>  #include <linux/clk.h>
+>  #include <linux/device.h>
+>  #include <linux/interrupt.h>
+> +#include <linux/kref.h>
+>  #include <linux/module.h>
+> +#include <linux/mutex.h>
+>  #include <linux/dma-mapping.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/videodev2.h>
+> @@ -74,6 +76,12 @@ enum {
+>  };
+>
+>  struct vdoa_data {
+> +	struct kref		ref;
+> +	/* Serializes context hardware access with removal. */
+> +	struct mutex		lock;
+> +	unsigned int		num_contexts;
+> +	bool			removed;
+> +	int			irq;
+>  	struct vdoa_ctx		*curr_ctx;
+>  	struct device		*dev;
+>  	struct clk		*vdoa_clk;
+> @@ -126,7 +134,7 @@ static irqreturn_t vdoa_irq_handler(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
+>
+> -int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
+> +static int vdoa_wait(struct vdoa_ctx *ctx)
+>  {
+>  	struct vdoa_data *vdoa = ctx->vdoa;
+>
+> @@ -142,17 +150,43 @@ int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
+>
+>  	return 0;
+>  }
+> +
+> +int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
+> +{
+> +	struct vdoa_data *vdoa = ctx->vdoa;
+> +	int ret;
+> +
+> +	mutex_lock(&vdoa->lock);
+> +	ret = vdoa->removed ? -ENODEV : vdoa_wait(ctx);
+> +	mutex_unlock(&vdoa->lock);
+> +
+> +	return ret;
+> +}
+>  EXPORT_SYMBOL(vdoa_wait_for_completion);
+>
+> +static void vdoa_stop(struct vdoa_data *vdoa)
+> +{
+> +	if (!vdoa->curr_ctx)
+> +		return;
+> +
+> +	if (vdoa_wait(vdoa->curr_ctx))
+> +		writel(VDOASRR_SWRST, vdoa->regs + VDOASRR);
+> +	writel(0, vdoa->regs + VDOAIE);
+> +	synchronize_irq(vdoa->irq);
+> +	vdoa->curr_ctx = NULL;
+> +}
+> +
+>  void vdoa_device_run(struct vdoa_ctx *ctx, dma_addr_t dst, dma_addr_t src)
+>  {
+>  	struct vdoa_q_data *src_q_data, *dst_q_data;
+>  	struct vdoa_data *vdoa = ctx->vdoa;
+>  	u32 val;
+>
+> -	if (vdoa->curr_ctx)
+> -		vdoa_wait_for_completion(vdoa->curr_ctx);
+> +	mutex_lock(&vdoa->lock);
 
-Please split two patch, one patch touch soc dtsi, the another touch board.
+use cleanup guard()
+
+> +	if (vdoa->removed)
+> +		goto out_unlock;
+>
+> +	vdoa_stop(vdoa);
+>  	vdoa->curr_ctx = ctx;
+>
+>  	reinit_completion(&ctx->completion);
+> @@ -192,9 +226,44 @@ void vdoa_device_run(struct vdoa_ctx *ctx, dma_addr_t dst, dma_addr_t src)
+>  	/* Enable interrupts and start transfer */
+>  	writel(VDOAIE_EITERR | VDOAIE_EIEOT, vdoa->regs + VDOAIE);
+>  	writel(VDOASRR_START, vdoa->regs + VDOASRR);
+> +out_unlock:
+> +	mutex_unlock(&vdoa->lock);
+>  }
+>  EXPORT_SYMBOL(vdoa_device_run);
+>
+> +static void vdoa_release(struct kref *ref)
+> +{
+> +	struct vdoa_data *vdoa = container_of(ref, struct vdoa_data, ref);
+> +
+> +	put_device(vdoa->dev);
+> +	kfree(vdoa);
+> +}
+> +
+> +static void vdoa_put(void *data)
+> +{
+> +	struct vdoa_data *vdoa = data;
+> +
+> +	kref_put(&vdoa->ref, vdoa_release);
+> +}
+> +
+> +struct vdoa_data *devm_vdoa_get(struct device *dev, struct device *supplier)
+> +{
+> +	struct vdoa_data *vdoa;
+> +	int ret;
+> +
+> +	device_lock(supplier);
+
+why not use device link ?
+
+> +	vdoa = dev_get_drvdata(supplier);
+> +	if (vdoa)
+> +		kref_get(&vdoa->ref);
+> +	device_unlock(supplier);
+> +	if (!vdoa)
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	ret = devm_add_action_or_reset(dev, vdoa_put, vdoa);
+> +	return ret ? ERR_PTR(ret) : vdoa;
+> +}
+> +EXPORT_SYMBOL(devm_vdoa_get);
+> +
+>  struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
+>  {
+>  	struct vdoa_ctx *ctx;
+> @@ -204,16 +273,26 @@ struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
+>  	if (!ctx)
+>  		return NULL;
+>
+> +	mutex_lock(&vdoa->lock);
+> +	if (vdoa->removed)
+> +		goto err_unlock;
+> +
+>  	err = clk_prepare_enable(vdoa->vdoa_clk);
+> -	if (err) {
+> -		kfree(ctx);
+> -		return NULL;
+> -	}
+> +	if (err)
+> +		goto err_unlock;
+>
+> +	kref_get(&vdoa->ref);
+> +	vdoa->num_contexts++;
+>  	init_completion(&ctx->completion);
+>  	ctx->vdoa = vdoa;
+> +	mutex_unlock(&vdoa->lock);
+>
+>  	return ctx;
+> +
+> +err_unlock:
+> +	mutex_unlock(&vdoa->lock);
+> +	kfree(ctx);
+> +	return NULL;
+>  }
+>  EXPORT_SYMBOL(vdoa_context_create);
+>
+> @@ -221,12 +300,15 @@ void vdoa_context_destroy(struct vdoa_ctx *ctx)
+>  {
+>  	struct vdoa_data *vdoa = ctx->vdoa;
+>
+> -	if (vdoa->curr_ctx == ctx) {
+> -		vdoa_wait_for_completion(vdoa->curr_ctx);
+> -		vdoa->curr_ctx = NULL;
+> +	mutex_lock(&vdoa->lock);
+> +	if (!vdoa->removed) {
+> +		if (vdoa->curr_ctx == ctx)
+> +			vdoa_stop(vdoa);
+> +		clk_disable_unprepare(vdoa->vdoa_clk);
+> +		vdoa->num_contexts--;
+>  	}
+> -
+> -	clk_disable_unprepare(vdoa->vdoa_clk);
+> +	mutex_unlock(&vdoa->lock);
+> +	vdoa_put(vdoa);
+>  	kfree(ctx);
+>  }
+>  EXPORT_SYMBOL(vdoa_context_destroy);
+> @@ -291,11 +373,16 @@ static int vdoa_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>
+> -	vdoa = devm_kzalloc(&pdev->dev, sizeof(*vdoa), GFP_KERNEL);
+> +	vdoa = kzalloc_obj(*vdoa);
+>  	if (!vdoa)
+>  		return -ENOMEM;
+>
+> -	vdoa->dev = &pdev->dev;
+> +	vdoa->dev = get_device(&pdev->dev);
+> +	kref_init(&vdoa->ref);
+> +	mutex_init(&vdoa->lock);
+
+devm_mutex_init();
 
 Frank
-
->  2 files changed, 47 insertions(+)
+> +	ret = devm_add_action_or_reset(&pdev->dev, vdoa_put, vdoa);
+> +	if (ret)
+> +		return ret;
 >
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> index 47ed0ef67611..a15d5b471708 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> @@ -143,6 +143,11 @@ vdev0buffer: vdev0buffer@88020000 {
->  			reg = <0 0x88020000 0 0x100000>;
->  			no-map;
->  		};
-> +
-> +		vpu_boot: memory@a0000000 {
-> +			reg = <0 0xa0000000 0 0x100000>;
-> +			no-map;
-> +		};
->  	};
+>  	vdoa->vdoa_clk = devm_clk_get(vdoa->dev, NULL);
+>  	if (IS_ERR(vdoa->vdoa_clk)) {
+> @@ -310,6 +397,7 @@ static int vdoa_probe(struct platform_device *pdev)
+>  	ret = platform_get_irq(pdev, 0);
+>  	if (ret < 0)
+>  		return ret;
+> +	vdoa->irq = ret;
+>  	ret = devm_request_threaded_irq(&pdev->dev, ret, NULL,
+>  					vdoa_irq_handler, IRQF_ONESHOT,
+>  					"vdoa", vdoa);
+> @@ -323,6 +411,22 @@ static int vdoa_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
 >
->  	flexcan1_phy: can-phy0 {
-> @@ -1225,3 +1230,8 @@ &tpm6 {
->  	pinctrl-0 = <&pinctrl_tpm6>;
->  	status = "okay";
->  };
+> +static void vdoa_remove(struct platform_device *pdev)
+> +{
+> +	struct vdoa_data *vdoa = platform_get_drvdata(pdev);
 > +
-> +&vpu {
-> +	memory-region = <&vpu_boot>;
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> index d20c2498b9aa..b6323e527ab7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -2139,6 +2139,43 @@ vpu_blk_ctrl: clock-controller@4c410000 {
->  			assigned-clock-rates = <133333333>, <667000000>, <500000000>;
->  		};
+> +	platform_set_drvdata(pdev, NULL);
+> +	mutex_lock(&vdoa->lock);
+> +	vdoa_stop(vdoa);
+> +	disable_irq(vdoa->irq);
+> +	while (vdoa->num_contexts) {
+> +		clk_disable_unprepare(vdoa->vdoa_clk);
+> +		vdoa->num_contexts--;
+> +	}
+> +	vdoa->removed = true;
+> +	mutex_unlock(&vdoa->lock);
+> +}
+> +
+>  static const struct of_device_id vdoa_dt_ids[] = {
+>  	{ .compatible = "fsl,imx6q-vdoa" },
+>  	{}
+> @@ -331,6 +435,7 @@ MODULE_DEVICE_TABLE(of, vdoa_dt_ids);
 >
-> +		vpu: video-codec@4c4c0000 {
-> +			compatible = "nxp,imx95-vpu";
-> +			reg = <0x0 0x4c4c0000 0x0 0x10000>;
-> +			clocks = <&scmi_clk IMX95_CLK_VPU>,
-> +				 <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
-> +			clock-names = "core", "vpublk";
-> +			power-domains = <&scmi_devpd IMX95_PD_VPU>,
-> +					<&scmi_perf IMX95_PERF_VPU>;
-> +			power-domain-names = "vpu", "perf";
-> +			sram = <&sram1>;
-> +			#cooling-cells = <2>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			status = "disabled";
-> +
-> +			interface@4c480000 {
-> +				reg = <0x0 0x4c480000 0x0 0x10000>;
-> +				interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +
-> +			interface@4c490000 {
-> +				reg = <0x0 0x4c490000 0x0 0x10000>;
-> +				interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +
-> +			interface@4c4a0000 {
-> +				reg = <0x0 0x4c4a0000 0x0 0x10000>;
-> +				interrupts = <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +
-> +			interface@4c4b0000 {
-> +				reg = <0x0 0x4c4b0000 0x0 0x10000>;
-> +				interrupts = <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +		};
-> +
->  		jpegdec: jpegdec@4c500000 {
->  			compatible = "nxp,imx95-jpgdec", "nxp,imx8qxp-jpgdec";
->  			reg = <0x0 0x4C500000 0x0 0x00050000>;
-> --
-> 2.41.0.windows.3
+>  static struct platform_driver vdoa_driver = {
+>  	.probe		= vdoa_probe,
+> +	.remove		= vdoa_remove,
+>  	.driver		= {
+>  		.name	= VDOA_NAME,
+>  		.of_match_table = vdoa_dt_ids,
+> diff --git a/drivers/media/platform/chips-media/coda/imx-vdoa.h b/drivers/media/platform/chips-media/coda/imx-vdoa.h
+> index a62eab476d58..e0ab414ddf5a 100644
+> --- a/drivers/media/platform/chips-media/coda/imx-vdoa.h
+> +++ b/drivers/media/platform/chips-media/coda/imx-vdoa.h
+> @@ -6,11 +6,13 @@
+>  #ifndef IMX_VDOA_H
+>  #define IMX_VDOA_H
 >
+> +struct device;
+>  struct vdoa_data;
+>  struct vdoa_ctx;
 >
+>  #if (defined CONFIG_VIDEO_IMX_VDOA || defined CONFIG_VIDEO_IMX_VDOA_MODULE)
+>
+> +struct vdoa_data *devm_vdoa_get(struct device *dev, struct device *supplier);
+>  struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa);
+>  int vdoa_context_configure(struct vdoa_ctx *ctx,
+>  			   unsigned int width, unsigned int height,
+> @@ -22,6 +24,12 @@ int vdoa_wait_for_completion(struct vdoa_ctx *ctx);
+>
+>  #else
+>
+> +static inline struct vdoa_data *devm_vdoa_get(struct device *dev,
+> +					      struct device *supplier)
+> +{
+> +	return NULL;
+> +}
+> +
+>  static inline struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
+>  {
+>  	return NULL;
+>
+> base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
 
