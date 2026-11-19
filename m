@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB76860A261F
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 08:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D512360A2609
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 08:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G3HIkOCN;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IKN98pP2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KvRB9WvV;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YMP0sIz+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=X92Y8+q760KTTL4n4XSfmzYYpr3dLaACGp8eBo1xrHI=; b=G3HIkOCN2Pbm+H
-	B7asR4mo9SfCMSNjFm27Dx2RdJoeMRME8qCGMaVOwoX2h3ab6m9H7Up3tR9gclqS1tTc7kPVrgn1w
-	+vvH+FQd49ec26E6ya+03lfxs1mJfxU5KRNDUzjw11sZvLV7NYddnzNIWpWMTDi0G4NBtX19yQz3T
-	4C/ljUpyp9Qq7dHQO2BbxKeKFTpJSlqOAEWtNqwPfcUE3jptslaPhm0nxSyKzUzAcjb1NVhKkALOE
-	k/crRcFT76m1b6EFgjNz4XwleeBf1gxrL5086VOxpsz8Zs1B/ML+yo/m3nNkqngCW2rZl3tZufQLr
-	L4Nr1jwH0wHQXoD81a8g==;
+	List-Owner; bh=QE7ZF+eIOkDqPsqdXYso0HkQT1OPcmclWJ4l96GctkY=; b=KvRB9WvVfT0Y4K
+	ciuibNj4xNY0quJKJVdHtmKZ8i7IRsGHi6dFHmkC748GCGtyljip5+fV8PYi5NfFPOXzfplsJSS1q
+	zV4DoG8r/viMbI2NAYs6hqK/AP5xnZ+dY4B2hcBiAz7iT5CuHqB0eDGJm3dlEqXClK8m4kKu2fr56
+	l1MKDxgMKmWRXcDpAG/RJwFYK057Uh7/3LyDSI2pg4CskSqj09LvPYU0N7ZZ9mtunv+J6oOuuy3x6
+	7UcxRAv7vkeC/DQ7qs4S/X/ZKBo5C0AWnmVRPgID26+T+Rt3oRS+xY3v8Hv1OEourUL2WiL+0M4af
+	lsTkoo6eIjHkXMBeI3Pw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxYZ-0000000BBEo-49Dh;
-	Thu, 19 Nov 2026 08:31:47 +0000
-Received: from mail-dy1-x132a.google.com ([2607:f8b0:4864:20::132a])
+	id 1xTxYg-0000000BBHj-0eE9;
+	Thu, 19 Nov 2026 08:31:54 +0000
+Received: from mail-dy1-x1329.google.com ([2607:f8b0:4864:20::1329])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxYW-0000000BBDq-1t1B
+	id 1xTxYd-0000000BBG3-0Drx
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 08:31:46 +0000
-Received: by mail-dy1-x132a.google.com with SMTP id 5a478bee46e88-382f4710a17so2637585eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 00:31:43 -0800 (PST)
+	Thu, 19 Nov 2026 08:31:52 +0000
+Received: by mail-dy1-x1329.google.com with SMTP id 5a478bee46e88-37198ed3727so808432eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 00:31:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795077103; x=1795681903; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795077110; x=1795681910; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=X92Y8+q760KTTL4n4XSfmzYYpr3dLaACGp8eBo1xrHI=;
-        b=IKN98pP28kwd1PYRpWSpa5BpomVlqRKbhXPx5bQYSP5a+5M4Vu98lC93TnvlxhWd4o
-         9d/ZlxCV4/AyOAeUlXEN1yMEQkn2iiC3Rn14/ViKbZj3+UNVX8V/IXd6UIGxNLS5Mu7y
-         shiSMg8qX118SJip2CNlSVG74cu+yz0TeT42LUyON9hk5Tvur5NyJfVEkiJFspTOEo+s
-         SJAKYN+yFUSzm1jWShK250QH1FTNP2t4yCfo4vzzsGB3ljer16SQCqnysbGuWhh3c3wQ
-         9PmfxvDqjevep59JFhKSqyNZYzuCYFX/crLfvbGJ9Ck56dEh2eRcdw6/jk7Hak/bi5+Q
-         5DPw==
+        bh=QE7ZF+eIOkDqPsqdXYso0HkQT1OPcmclWJ4l96GctkY=;
+        b=YMP0sIz+41lbagCAUg0Q5VVHCMR1ysMlxYoMsXm8FS1HvRmsc9+6FqKhtiVkTSwFQY
+         kLrVWWKTIROWpB3S/GGug2I09cP9s9wfP2g85v5z4o+ZJx70cPw1MMBvVuLPgaIKdhCp
+         XwqKTdRaP4MR9X7OQwUOETztexXpPmCzRVxxKFTklGbgUx9/yCN80FM9bqr0DVz7y3H1
+         XpliQ6OCKEFIS8WJaBYFgPD4hXA7lShzs/lD0QKpOFnJZpHbbULFiEIq3kMAACJgBCA+
+         zdw29AqdlvngLu0Dv7XU/NGf59qAl44h/8nxCKzi2APrE3tW0coQHwC7unzmZPQ1hBSf
+         ARoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795077103; x=1795681903;
+        d=1e100.net; s=20260707; t=1795077110; x=1795681910;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=X92Y8+q760KTTL4n4XSfmzYYpr3dLaACGp8eBo1xrHI=;
-        b=H5MO5OApR2AwAdM5KJvw6h0ETtXEFeGghCiFc5R9NdPlLGINlrtzTnM+yodM1fAIY8
-         10nY+oqBVKz1sqqeMOHpE0emJgsqyDh4pFdpjdi21XY0o+EzaS+DBEKbgEOyuMt5WNBo
-         XWptac2QcZehwPQjawOHsgkNllcLjEL55PY47yFmoTh7nbX7fLMA3Bq5AgivHEHrwKP+
-         SwW11I/JJEwfftjkjuet1qquIgRNToHx0WunrQOA9I6e7OLMkgB8kkGFkhPrlYhZIY10
-         pOEB/h5u4Ksx/k76/vpU3NTbt0mXWn3xerlDFR5yK9E4YMtXa74/KCt/XJFs6PvN+6Vr
-         blBQ==
-X-Forwarded-Encrypted: i=1; AL+hErEDLyVqjRh53SsY9o7fbiP8rE6ycj4iO2pC8vbE04n2goihf9+9xG9eQ/CdPu0yNjEDGP0xNQdtbgwk62fisuxu@lists.infradead.org
-X-Gm-Message-State: APuU4Z/U9G8PzKMX3EKrK1AKHKMIehRv1RWCgpzF+AaLLSfnUd/BWlWF
-	31wSnS3GGX9ZlrhBegpQRNyQEm9PZPjJ5pWJVQwzYfwCiY3XmByHfL3A
-X-Gm-Gg: AZFdTZcZ4l+wwp2yWWLYMgqzEPlxlnnUkTq5ycapYK/TJj5CtMc0Gb8KiD/fc/43fdQ
-	5LBv9h5S4BFtHqRSm4r93oje1wOSl7T6HoPxNQFz5GV5XhOazz2BznBuFySOq6PEJ/Kn6kr/Cv1
-	kq6ktrDKLVC9UIciqQfUx/EaRQlYBF/5N2/y6zdD9Hy9kCoVWIsp3gGm9Tn28zCMzo9EtCL+Dq0
-	2sqYt3CI2X/ip0xLl7hoNkxprHw9jGIidGTZlViZrG+GukMHXJwqSAtNxEt00MKh81XxNTkfUOW
-	oUozoB0QpUshkSOvO+sydhFOAoynEdL2xZrwVKLyHuM9H5ZrBz5Wzy0Uc9nAKr/bpNHYS3ylmrp
-	GZURmlMjbO07GsRuDjiFFJ26zX0ya7L7lTcd5fnLpL547p5TOLDS+a0046Rb0WWVuYXr7sJvGOS
-	W52yk1AiOpvmO14/49qnlxhCstyRBZ8l411S1kW8J5tQH7P94VtlNPAYn0MY4uH1ec9ivysydeh
-	R16ZtJIIgLDgJhmx+95yvE3obt+Zs/K1dIXDQzj5Ckq0ubGNmmKVpVOelLxWnH0MCVsITk7q0/q
-	rH2ENy2kWWhS50mQFzY9a2st6hXJ1oxrOEMWpkdZ34j1Ds0rvkccGsv1iQzVV0H5TsYvSygBdsF
-	0IzRZoxZqr6qnJXUxtOPHXuZt0OVDcueQRx/4rWv/B0+yzG0=
-X-Received: by 2002:a05:693c:62ce:b0:384:7b5b:e1d4 with SMTP id 5a478bee46e88-3847b5be8fcmr703529eec.17.1795077103060;
-        Thu, 19 Nov 2026 00:31:43 -0800 (PST)
+        bh=QE7ZF+eIOkDqPsqdXYso0HkQT1OPcmclWJ4l96GctkY=;
+        b=ueVYBFJJKhpmqBFcRjXbGkTbBZVR4+NvA9ugCyT9iuGu1xAgFfauaDoW1lDCMezlRt
+         UDqqZ/u/PZ1JGQCckP94KesC/ltrTODNir6DqcfO3SrdOFs0YLn0kKOnP2Vxojy0bNwR
+         tHW0shGxApd4Pcl975RuQUJNpumk8pZo2F8BrWM67bg1ZR+7gdYlfQi+jN27D19rf9kj
+         igF8+HEDnrYfV05J2gRwLdWwiJPkv/oT9FAvIXP5rO9abim3D2/AcuNFjfMoHH1M8XMs
+         x1LOCvPbZTNxDo7u1Gra+hwr/f+jwQ2+TgoUAVtkSZBZGhOwlrNzUdrkdhU6n6B6Wu4V
+         /Sew==
+X-Forwarded-Encrypted: i=1; AL+hErHdti1Q3F0h864v8AzJp+vSFnvYgyDHnTuvNYnnKT3hKLdUw54is9sP9TrpmG8x0ENe5zQU6Ay/2m6t5riw0vZL@lists.infradead.org
+X-Gm-Message-State: APuU4Z8XioCtoteAnMmZuP8QdTZN3wxJ1ZifYR2+XMEKZ24A1k2P+hbn
+	l66Px6dHwoEUi7uf/b0svM444Gw+iUlN1uQnReSErU9BZyjoXNsfIqN3
+X-Gm-Gg: AZFdTZcwOi4ZU/RKSdPDfkzMbW7S/xmRVGzKVr0UvDuY9mDTftEAJBQRuPvrFpxbUo4
+	og3uWNfJlXog5JYjDaacmgN8ss/J7y9jx3egmQU8o6W99r/WM2RdnenSe1vAOJDoiAb2VUhtOsu
+	H/1Nj/2MeoltPID7epqH4rl6goeGi4VURbOMBxKgnzJ/eW6K00SKtyTOlkXQ9lCBfNOEIyDhsS1
+	o2aGJgVyNzf7vZmBVotJ4OehGffMLOBHcZ9nuqARGaAebvTXYdETVMlHRngi2HJVnKsQvbgTYN1
+	nb2Lsfbm3KSILSDzjhLyNGAkOQHD0x4htIUj7WZiNLaGxFkUJKhyIjhA3F8tpdkjBUBtC9zf4WC
+	fytEnK6TtWTBGlI/dGQgoIQ1LwmZhRJwLk9B3E2FTUR2RZ+xp+Q9L8PkXmPhrpl+8PYMYipeIDG
+	fps821dVgCmRzuUDivrhvXHwj7ASWobiOAKDNU0OuSAuB7jHmL0MLoTczxaFwghnEHzoHh3+7Ws
+	DBQYKzDr/ccLZw9oWvBj+ohmZ0zsqeXF/FAeoYjdHgIXWTtqP/wOYZdlFJeXEAnl+MZJZLFBDD9
+	iqo3VNb91bWWDDQBZm2hcgYSfpRv5psubQFqjTkC+lnC3rDriHAN9HMuIeKpZsxJTxHomQITW7h
+	zPQ+Q2+AeJ6fVkEzwXl+KmnQYTYqZ/71PvVuaUxXDjOdgsB/Z
+X-Received: by 2002:a05:7301:188e:b0:381:685a:e1ee with SMTP id 5a478bee46e88-384b3e78a26mr413843eec.12.1795077110279;
+        Thu, 19 Nov 2026 00:31:50 -0800 (PST)
 Received: from lwq-server.tail118c18.ts.net ([74.176.208.23])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-382a63054ddsm16553792eec.4.2026.11.19.00.31.36
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-382a63054ddsm16553792eec.4.2026.11.19.00.31.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 00:31:42 -0800 (PST)
+        Thu, 19 Nov 2026 00:31:49 -0800 (PST)
 From: Yaohan Li <shunsheng1218@gmail.com>
 To: Rob Clark <robin.clark@oss.qualcomm.com>,
 	Dmitry Baryshkov <lumag@kernel.org>,
@@ -94,18 +94,19 @@ Cc: Abhinav Kumar <abhinav.kumar@linux.dev>,
 	linux-rockchip@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v2 1/2] drm/msm: release the cursor flip work before the KMS is torn down
-Date: Thu, 19 Nov 2026 16:31:32 +0800
-Message-Id: <20261119083133.3437277-1-shunsheng1218@gmail.com>
+Subject: [RFC PATCH v2 2/2] drm/flip: drain the flip work on cleanup
+Date: Thu, 19 Nov 2026 16:31:33 +0800
+Message-Id: <20261119083133.3437277-2-shunsheng1218@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261119023604.1495603-1-shunsheng1218@gmail.com>
+In-Reply-To: <20261119083133.3437277-1-shunsheng1218@gmail.com>
 References: <20261119023604.1495603-1-shunsheng1218@gmail.com>
+ <20261119083133.3437277-1-shunsheng1218@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_003144_500592_BE252466 
-X-CRM114-Status: GOOD (  27.88  )
+X-CRM114-CacheID: sfid-20261119_003151_122925_C06E79AC 
+X-CRM114-Status: GOOD (  25.34  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,251 +126,174 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mdp4 and mdp5 queue the BO of every cursor update on a drm_flip_work and
-release it from unref_cursor_worker() once a vblank interrupt has
-committed it.  The work is cleaned up by a DRM-managed action, so it
-runs at the final drm_dev_put(), while msm_drm_uninit() destroys the KMS
-and its VM in msm_drm_kms_uninit() and only then drops the reference.
+drm_flip_work_cleanup() only warns when the queued or the committed list
+is not empty.  Nothing cancels the worker and nothing runs the tasks
+that are still queued, so the caller silently leaks whatever the tasks
+hold (framebuffer references, vblank references, ...) and, if the
+worker is still pending, it can run after the structure embedding the
+flip work has been freed.
 
-A cursor update that was queued but never committed - no vblank
-interrupt after the last atomic commit - is still in the flip work at
-teardown.  Releasing it needs the VM that unref_cursor_worker() reads
-through the KMS, so the cleanup has to run before the KMS goes away and
-not after.
+Cancel the worker and run the remaining tasks from
+drm_flip_work_cleanup().  The work item is the only producer of the
+committed list, so after cancel_work_sync() the two lists can be
+spliced out and iterated without holding the lock.
 
-Run the cleanup from the KMS destroy path, which is after the interrupts
-and the KMS workqueue have been stopped and before drm_gpuvm_put(), and
-remove the managed action so that it cannot run a second time.  The
-action is only released for a CRTC that registered it: a partially
-failed init can leave CRTCs behind that never added one.
+The helper only drains the work items that exist when it is called, so
+the callers have to make sure that no new item can be queued and that
+the objects the tasks still use are alive:
 
-Guard the new CRTC traversal when the KMS has not got its drm_device yet:
-the teardown can run on a partly initialised KMS.  This does not make
-mdp4_destroy() safe for every such state - it dereferences mdp4_kms->dev
-before the loop - and the separate KMS-init error handling series is what
-reworks that lifecycle.
+ - Rockchip VOP: vop_unbind() unregisters the shared interrupt with
+   devm_free_irq() before the runtime PM is disabled and before the CRTC
+   and its flip work are cleaned up.  Disabling runtime PM is not a
+   barrier: vop_isr() bails out when pm_runtime_get_if_in_use() fails, but
+   that helper returns -EINVAL once runtime PM is disabled rather than a
+   "not in use" value, and the line is shared, so another user can still
+   get the handler invoked.  Removing it from the descriptor waits for the
+   invocation that is running and keeps new ones from starting, which is
+   what makes the drain that follows safe.  The bind error path that fails
+   after the interrupt was requested frees it the same way, so every
+   request is released exactly once.
 
-This prepares for draining the queued tasks in drm_flip_work_cleanup():
-running them from the managed action, after the KMS and its VM are gone,
-would dereference the freed KMS.
+ - MSM mdp4/mdp5: mdp4_destroy() and mdp5_kms_destroy() release the flip
+   work from the KMS destroy path, after the interrupt and the KMS
+   workqueue have been stopped and before drm_gpuvm_put() releases the
+   VM the worker needs.  The DRM-managed action is removed there, so it
+   cannot run later against a KMS that no longer exists.
 
+Rockchip VOP called drm_flip_work_cleanup() after drm_crtc_cleanup(),
+which memsets the CRTC.  Its worker calls drm_crtc_vblank_put() on that
+CRTC, so the drain has to happen before the CRTC is cleaned up.
+
+Fixes: cabaafc78935 ("drm: add flip-work helper")
+Fixes: 47a7eb459777 ("drm/rockchip: Unreference framebuffers from flip work")
 Signed-off-by: Yaohan Li <shunsheng1218@gmail.com>
 
 ---
 Changes in v2:
-  - New patch.  drm_flip_work_cleanup() is about to run the tasks that are
-    still queued, and for mdp4/mdp5 those tasks unpin a cursor BO through
-    the KMS and its VM, which msm_drm_kms_uninit() destroys long before the
-    DRM-managed action would run.  Release the action from the KMS destroy
-    path, before drm_gpuvm_put(), instead.  Reported by Sashiko.
-  - Only walk the CRTCs when the KMS already has its drm_device; this
-    covers the new traversal only.  The existing partial-initialisation
-    path in mdp4_destroy() still dereferences mdp4_kms->dev before the loop
-    and is left to the in-flight "drm/msm: fix the error handling of the
-    KMS init" series, which is not merged in msm-next yet.
+  - Split the MSM preparation out into patch 1; the generic helper keeps
+    draining the queued tasks here.
+  - Add the Fixes: tags for the flip-work helper and for the Rockchip
+    ordering.
+  - Describe the MSM callers by the new KMS-destroy call site instead of
+    the managed action, which now runs earlier.
+  - Rockchip: drop the pm_runtime_get_if_in_use() change.  Unregister the
+    shared interrupt before the runtime PM is disabled and before the CRTC
+    is destroyed, and release it on the probe path that fails after the
+    handler was registered.
   - Checked as a series: both patches apply in order on msm-next
     (d024361c631b) and on drm-misc-next (fac7a5f16230).
 Prepared against v7.4-rc1-1969-g666539eecdf4.
 
 Compile tested only: arm64 with aarch64-linux-gnu-gcc 11.4
-and CONFIG_DRM_MSM=m.  The affected hardware was not available, so the
-teardown path was not exercised and no fault or race injection was run.
+and CONFIG_DRM_ROCKCHIP=m, CONFIG_DRM_MSM=m.  The affected hardware was not
+available, so the teardown path was not exercised and no fault or
+race injection was run.
 
-Checked against msm-next (d024361c631b): the patch applies there, as part of
-the series it also applies on drm-misc-next (fac7a5f16230), and Dmitry
-Baryshkov's "drm/msm: fix the error handling of the KMS init" series is not
-merged yet, so mdp4_destroy() still dereferences mdp4_kms->dev before the
-new loop.  The guard added here covers the new CRTC traversal only; the
-existing partial-initialisation path keeps its current behaviour and is left
-to that series.
+Checked as a series against the target trees: both patches apply in order on
+msm-next (d024361c631b) and on drm-misc-next (fac7a5f16230).
 
 AI assistance: the analysis, the change and its review notes were
 prepared with Claude (Anthropic) as a coding assistant.  The author
 reviewed the reasoning and takes responsibility for the content.
 ---
- drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c | 26 ++++++++++++++++++++++
- drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c  | 13 +++++++++++
- drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h  |  1 +
- drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c | 27 +++++++++++++++++++++++
- drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c  | 13 +++++++++++
- drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.h  |  1 +
- 6 files changed, 81 insertions(+)
+ drivers/gpu/drm/drm_flip_work.c             | 23 +++++++++++++++++++--
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c | 21 +++++++++++++++++--
+ 2 files changed, 40 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c
-index 93050b3c3548c..9767d9aef43d6 100644
---- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c
-@@ -54,6 +54,9 @@ struct mdp4_crtc {
- 	/* for unref'ing cursor bo's after scanout completes: */
- 	struct drm_flip_work unref_cursor_work;
- 
-+	/* the flip cleanup action is registered on the DRM device */
-+	bool flip_cleanup_registered;
+diff --git a/drivers/gpu/drm/drm_flip_work.c b/drivers/gpu/drm/drm_flip_work.c
+index 52c437746d483..b8ce3966fa9ab 100644
+--- a/drivers/gpu/drm/drm_flip_work.c
++++ b/drivers/gpu/drm/drm_flip_work.c
+@@ -149,10 +149,29 @@ EXPORT_SYMBOL(drm_flip_work_init);
+  * drm_flip_work_cleanup - cleans up flip-work
+  * @work: the flip-work to cleanup
+  *
+- * Destroy resources allocated for the flip-work
++ * Cancel the worker and run the tasks that are still queued, so that the
++ * resources they hold are released even if the work never made it to the
++ * workqueue.  Must be called before the object embedding @work is freed and
++ * after the driver has stopped the code that calls drm_flip_work_queue()
++ * and drm_flip_work_commit(): only the work items that exist when this
++ * function is called are drained.
+  */
+ void drm_flip_work_cleanup(struct drm_flip_work *work)
+ {
+-	WARN_ON(!list_empty(&work->queued) || !list_empty(&work->commited));
++	struct drm_flip_task *task, *tmp;
++	LIST_HEAD(tasks);
++	unsigned long flags;
 +
- 	struct mdp_irq vblank;
- 	struct mdp_irq err;
- };
-@@ -622,6 +625,27 @@ static void mdp4_crtc_flip_cleanup(struct drm_device *dev, void *ptr)
- 	drm_flip_work_cleanup(&mdp4_crtc->unref_cursor_work);
++	cancel_work_sync(&work->worker);
++
++	spin_lock_irqsave(&work->lock, flags);
++	list_splice_tail_init(&work->queued, &tasks);
++	list_splice_tail_init(&work->commited, &tasks);
++	spin_unlock_irqrestore(&work->lock, flags);
++
++	list_for_each_entry_safe(task, tmp, &tasks, node) {
++		work->func(work, task->data);
++		kfree(task);
++	}
+ }
+ EXPORT_SYMBOL(drm_flip_work_cleanup);
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+index 69e72727da24f..c10ad16147a54 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+@@ -1990,12 +1990,19 @@ static void vop_destroy_crtc(struct vop *vop)
+ 				 head)
+ 		drm_plane_cleanup(plane);
+ 
++	/*
++	 * The flip work drops the vblank reference taken when the framebuffer
++	 * was queued, so it has to be drained while the CRTC is still valid.
++	 * The CRTC has been shut down and runtime PM disabled by the time this
++	 * runs, so no new work item can be queued anymore.
++	 */
++	drm_flip_work_cleanup(&vop->fb_unref_work);
++
+ 	/*
+ 	 * Destroy CRTC after vop_plane_destroy() since vop_disable_plane()
+ 	 * references the CRTC.
+ 	 */
+ 	drm_crtc_cleanup(crtc);
+-	drm_flip_work_cleanup(&vop->fb_unref_work);
  }
  
-+/*
-+ * Run the cursor flip cleanup now instead of at the final drm_dev_put().
-+ * msm_drm_kms_uninit() destroys the KMS and its VM long before that, and
-+ * unref_cursor_worker() needs both to release the BOs of the cursor updates
-+ * that were queued but never committed by a vblank interrupt.
-+ */
-+void mdp4_crtc_release_flip_work(struct drm_crtc *crtc)
-+{
-+	struct mdp4_crtc *mdp4_crtc;
-+
-+	if (crtc->funcs != &mdp4_crtc_funcs)
-+		return;
-+
-+	mdp4_crtc = to_mdp4_crtc(crtc);
-+	if (!mdp4_crtc->flip_cleanup_registered)
-+		return;
-+
-+	mdp4_crtc->flip_cleanup_registered = false;
-+	drmm_release_action(crtc->dev, mdp4_crtc_flip_cleanup, mdp4_crtc);
-+}
-+
- /* initialize crtc */
- struct drm_crtc *mdp4_crtc_init(struct drm_device *dev,
- 		struct drm_plane *plane, int ovlp_id,
-@@ -659,6 +683,8 @@ struct drm_crtc *mdp4_crtc_init(struct drm_device *dev,
- 	if (ret)
- 		return ERR_PTR(ret);
+ static int vop_initial(struct vop *vop)
+@@ -2259,7 +2266,7 @@ static int vop_bind(struct device *dev, struct device *master, void *data)
+ 		vop->rgb = rockchip_rgb_init(dev, &vop->crtc, vop->drm_dev, 0);
+ 		if (IS_ERR(vop->rgb)) {
+ 			ret = PTR_ERR(vop->rgb);
+-			goto err_disable_pm_runtime;
++			goto err_free_irq;
+ 		}
+ 	}
  
-+	mdp4_crtc->flip_cleanup_registered = true;
-+
- 	drm_crtc_helper_add(crtc, &mdp4_crtc_helper_funcs);
+@@ -2267,6 +2274,8 @@ static int vop_bind(struct device *dev, struct device *master, void *data)
  
- 	return crtc;
-diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-index ab7b62381685f..3fd528eeff0e3 100644
---- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-+++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
-@@ -136,6 +136,19 @@ static void mdp4_destroy(struct msm_kms *kms)
- {
- 	struct mdp4_kms *mdp4_kms = to_mdp4_kms(to_mdp_kms(kms));
- 	struct device *dev = mdp4_kms->dev->dev;
-+	struct drm_crtc *crtc;
-+
+ 	return 0;
+ 
++err_free_irq:
++	devm_free_irq(dev, vop->irq, vop);
+ err_disable_pm_runtime:
+ 	pm_runtime_disable(&pdev->dev);
+ 	vop_destroy_crtc(vop);
+@@ -2280,6 +2289,14 @@ static void vop_unbind(struct device *dev, struct device *master, void *data)
+ 	if (vop->rgb)
+ 		rockchip_rgb_fini(vop->rgb);
+ 
 +	/*
-+	 * Release the cursor flip work while the VM is still alive.  The
-+	 * cleanup is registered as a DRM-managed action, so it would only run
-+	 * at the final drm_dev_put(), long after drm_gpuvm_put() below has
-+	 * destroyed the VM that unref_cursor_worker() needs.  The interrupts
-+	 * and the KMS workqueue have been stopped at this point, so no new
-+	 * cursor update can be queued any more.
++	 * Unregister the shared handler before the runtime PM is disabled and
++	 * before the CRTC and its flip work are cleaned up: disabling runtime
++	 * PM does not keep vop_isr() from running, and the flip work the
++	 * handler commits has to be drained afterwards.
 +	 */
-+	if (mdp4_kms->dev)
-+		drm_for_each_crtc(crtc, mdp4_kms->dev)
-+			mdp4_crtc_release_flip_work(crtc);
- 
- 	if (mdp4_kms->blank_cursor_iova)
- 		msm_gem_unpin_iova(mdp4_kms->blank_cursor_bo, kms->vm);
-diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-index 06458d4ee48c9..48cb2b9d896b8 100644
---- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-+++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.h
-@@ -184,6 +184,7 @@ uint32_t mdp4_crtc_vblank(struct drm_crtc *crtc);
- void mdp4_crtc_set_config(struct drm_crtc *crtc, uint32_t config);
- void mdp4_crtc_set_intf(struct drm_crtc *crtc, enum mdp4_intf intf, int mixer);
- void mdp4_crtc_wait_for_commit_done(struct drm_crtc *crtc);
-+void mdp4_crtc_release_flip_work(struct drm_crtc *crtc);
- struct drm_crtc *mdp4_crtc_init(struct drm_device *dev,
- 		struct drm_plane *plane, int ovlp_id,
- 		enum mdp4_dma dma_id);
-diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c b/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-index 1e1fff37380c7..2d457311a3ef5 100644
---- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
-@@ -53,6 +53,9 @@ struct mdp5_crtc {
- 
- 	bool lm_cursor_enabled;
- 
-+	/* the flip cleanup action is registered on the DRM device */
-+	bool flip_cleanup_registered;
++	devm_free_irq(dev, vop->irq, vop);
 +
- 	struct {
- 		/* protect REG_MDP5_LM_CURSOR* registers and cursor scanout_bo*/
- 		spinlock_t lock;
-@@ -1316,6 +1319,28 @@ void mdp5_crtc_wait_for_commit_done(struct drm_crtc *crtc)
- }
+ 	pm_runtime_disable(dev);
+ 	vop_destroy_crtc(vop);
  
- /* initialize crtc */
-+/*
-+ * Run the cursor flip cleanup now instead of at the final drm_dev_put().
-+ * msm_drm_kms_uninit() destroys the KMS and its VM long before that, and
-+ * unref_cursor_worker() needs both to release the BOs of the cursor updates
-+ * that were queued but never committed by a vblank interrupt.
-+ */
-+void mdp5_crtc_release_flip_work(struct drm_crtc *crtc)
-+{
-+	struct mdp5_crtc *mdp5_crtc;
-+
-+	if (crtc->funcs != &mdp5_crtc_funcs &&
-+	    crtc->funcs != &mdp5_crtc_no_lm_cursor_funcs)
-+		return;
-+
-+	mdp5_crtc = to_mdp5_crtc(crtc);
-+	if (!mdp5_crtc->flip_cleanup_registered)
-+		return;
-+
-+	mdp5_crtc->flip_cleanup_registered = false;
-+	drmm_release_action(crtc->dev, mdp5_crtc_flip_cleanup, mdp5_crtc);
-+}
-+
- struct drm_crtc *mdp5_crtc_init(struct drm_device *dev,
- 				struct drm_plane *plane,
- 				struct drm_plane *cursor_plane, int id)
-@@ -1353,6 +1378,8 @@ struct drm_crtc *mdp5_crtc_init(struct drm_device *dev,
- 	if (ret)
- 		return ERR_PTR(ret);
- 
-+	mdp5_crtc->flip_cleanup_registered = true;
-+
- 	drm_crtc_helper_add(crtc, &mdp5_crtc_helper_funcs);
- 
- 	return crtc;
-diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c b/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c
-index ff6751b2ae626..834faf9c886ad 100644
---- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c
-+++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c
-@@ -201,6 +201,19 @@ static void mdp5_destroy(struct mdp5_kms *mdp5_kms);
- static void mdp5_kms_destroy(struct msm_kms *kms)
- {
- 	struct mdp5_kms *mdp5_kms = to_mdp5_kms(to_mdp_kms(kms));
-+	struct drm_crtc *crtc;
-+
-+	/*
-+	 * Release the cursor flip work while the VM is still alive.  The
-+	 * cleanup is registered as a DRM-managed action, so it would only run
-+	 * at the final drm_dev_put(), long after drm_gpuvm_put() below has
-+	 * destroyed the VM that unref_cursor_worker() needs.  The interrupts
-+	 * and the KMS workqueue have been stopped at this point, so no new
-+	 * cursor update can be queued any more.
-+	 */
-+	if (mdp5_kms->dev)
-+		drm_for_each_crtc(crtc, mdp5_kms->dev)
-+			mdp5_crtc_release_flip_work(crtc);
- 
- 	if (kms->vm) {
- 		struct msm_mmu *mmu = to_msm_vm(kms->vm)->mmu;
-diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.h b/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.h
-index 7bf2172fce0bd..b8b8c23b58500 100644
---- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.h
-+++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.h
-@@ -284,6 +284,7 @@ struct mdp5_hw_mixer *mdp5_crtc_get_mixer(struct drm_crtc *crtc);
- struct mdp5_pipeline *mdp5_crtc_get_pipeline(struct drm_crtc *crtc);
- void mdp5_crtc_set_pipeline(struct drm_crtc *crtc);
- void mdp5_crtc_wait_for_commit_done(struct drm_crtc *crtc);
-+void mdp5_crtc_release_flip_work(struct drm_crtc *crtc);
- struct drm_crtc *mdp5_crtc_init(struct drm_device *dev,
- 				struct drm_plane *plane,
- 				struct drm_plane *cursor_plane, int id);
 -- 
 2.34.1
 
