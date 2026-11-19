@@ -2,78 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E44606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 06:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 157D5606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 06:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C5xiW/h0;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=O8V1n9Tv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zyy0rn5G;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ma4EZ4Mz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Message-Id:MIME-Version:To:Date:Subject:From:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sZpF+zLKCg/WORp3mblqhSxB+ZYjA2DRBuvOopXi688=; b=C5xiW/h0EPL1ls3NQ7JYDYimJV
-	O4x1MhHRMT7NBIb3nhjd41J0UOoZuUWIr8rYqCMh/o78Fob5FwVlFiYyog7GsmKQ9xxhUnoNWACl6
-	ZtdaxSDZ0aSF28rKL48qukRYdRht7tcKepZRhWbs+gPv0LZzrEfgoQZwv/2414JbUbi0q6QiCw4Jr
-	a5Z30haELoNMOgFoLtFtBCGNvxdfsRz2uywv9v19pxtnwKIA+Dk8j5GbEj2WDH+2e62fzNp6t1Ixk
-	xWdRlXH6G/ToH+RHaLSXJmVsWA3O2znyyG9u54T+v6vFa6Gh1q8Pvp+kDG2GKCTp5eaSRR3RHgls6
-	4EfH22Yw==;
+	bh=P51zQnnlFN29NM1R8E8OMTMjHLC0aAOfMUy/UOhFuHY=; b=Zyy0rn5G7WOhujeDYjAW3woSGc
+	XEqzDVw35lEPXXmE7uJ/N1Pt7+9dnTm/McvD2eITFNyaDyu9teS0Jws29GpzCAMAl5NfEZI7L7VQ4
+	qaJEGoUC33RPfeJAMbzEUyRdThgjyuEjSq6nR9C38Y6E52dS/cazVGhBifes8DmU7/gxlnqrB0ffE
+	2ZqUuluHlD+L3VcnN2o499soablW0WjmJsZN+TiGm7xJNUlIEZa2HlSh8E1WOx3IJ9n0Eq1pycG/f
+	xiVcPbvqSs2CEoPc+MJHxo2vDxpr5sqwiYCpl/iQP3v2oTBBrvcb4snjigRPSLvzsZI21SFkY0lbo
+	qU8XqNWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTvOc-0000000Ay1j-0tdW;
-	Thu, 19 Nov 2026 06:13:22 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1xTvVC-0000000AynM-2PZv;
+	Thu, 19 Nov 2026 06:20:10 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTvOW-0000000Ay1N-3Hec
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 06:13:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1795068794;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=sZpF+zLKCg/WORp3mblqhSxB+ZYjA2DRBuvOopXi688=;
-	b=O8V1n9TvVy4PrWAAo0KF7jYfYUCLkNAQ+2CSNy9tewEbH69nVpx1n2IatcZ8QKh1ScI5Xj
-	O1vv8eLtDSP0wvUQE3V4nQUPm4qTMvllG472/h6qN9sTwZyeD64dk6CIc+i5y0Ruo1JokR
-	rWKzkjgaISCfyO2YRhI4F1SRZtu+SG8=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-36-vhLDre3VO8-n7u7tXFihbg-1; Thu,
- 19 Nov 2026 06:13:04 +0000
-X-MC-Unique: vhLDre3VO8-n7u7tXFihbg-1
-X-Mimecast-MFC-AGG-ID: vhLDre3VO8-n7u7tXFihbg_1795068783
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	id 1xTvVA-0000000Aymr-3v57;
+	Thu, 19 Nov 2026 06:20:08 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 6A02B43B55;
+	Thu, 19 Nov 2026 06:20:08 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795069208;
+	b=Qi/id70l3RB72kxMY9/BLZI9e07QZ7filVhVDTK7iadWz9Fhp/L2cnheQjh15yWfEnNg
+	 FQS35BIvXgjCQWAMTweViqP64ShDeqNSjoSIV1oGuUPl1Rf4ao0xViwHFlnmWBbyxhGH+
+	 cApyP0kC/sQyThEA4ajZ+ZxUAnuu35qVWBZN8QA9PFfZ2iRpsBE8GSptlkFam59Wgt+Os
+	 AXVG7BtTqACTyqXUpCecrlLPxaGaXVBTxycTeiw+q6cgCW3WnUYLHAhH5zG8YAoFkPLNR
+	 VJOIbQlN+cJ9CtobJM5IFoC5niL629pJXHL0lDF7amxeAaDzq3SUX9wf7h14ve9EGiQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795069208;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=P51zQnnlFN29NM1R8E8OMTMjHLC0aAOfMUy/UOhFuHY=;
+	b=AVakpmYKl5HWCI831C0NdDiYD+qT7c6E5/RAKuzwO3tr3YDcMtSqLdpcKRvlCxtMVPnU
+	 5l5vvmRMZ3tcOnx5TdiLTns28SwWMUR2RFwaipQrjyx5Ln41toqz22y94bPO1RCU6Npzm
+	 P7Oa1HIpfUNC5hHsRRGfS3Lqotw4jRGKlRM1aOaeJ2UGSucaNOpY3kAXxzGUcitmUKOah
+	 nNxtDyFQfuLy3b0RN/IEtqDWoZjMTv2uIkaft9jmTmNfmcP7CcPbWcbr7BqLpuQG9TcSC
+	 6liAN6YfkIowHSJ70EIFbkwvS3o2f9MnRUwHEAooNgaGxYcl8QyFm1b4QlGM+oQBQgA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BB5CD1954B20;
-	Thu, 19 Nov 2026 06:13:03 +0000 (UTC)
-Received: from [172.20.214.229] (unknown [10.30.44.123])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 2DCDB18004FE;
-	Thu, 19 Nov 2026 06:13:02 +0000 (UTC)
-From: cki-project@redhat.com
-Subject: =?utf-8?b?4pyF?= PASS (MISSED 4 of 54): Test report for for-kernelci
- (7.4.0-rc1, upstream-arm-next, a041bdbe)
-Date: Thu, 19 Nov 2026 06:13:02 -0000
-To: linux-arm-kernel@lists.infradead.org, will@kernel.org,
- catalin.marinas@arm.com
+	by smtp.kernel.org (Postfix) with ESMTPS id BC7661F000C9;
+	Thu, 19 Nov 2026 06:20:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795069208;
+	bh=P51zQnnlFN29NM1R8E8OMTMjHLC0aAOfMUy/UOhFuHY=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=ma4EZ4MzINVfA6Pkkyhoq9WX4oO0jz4QRd0NedKsHkClM0FuSzkJQzBg94zdaTldQ
+	 YbFKym6983FEj0tl3T2v0OFnqteCehGQiAgGC7MjAWLZISqEBuy9Yy3TcQk2EfNlOE
+	 RvXRBPa0DUOTH5IXKr3R76IQ2Ca0NgGwzPeTK0ibXjmlr+CGEvxtHgNdYpQJVCrmkg
+	 yUySdVXayWgB/jmmOgqN83E7/WNlyCZzv57CNT/hejydRhOI8BkuOP5CsYN37ESac8
+	 Sq815wy2rjYBWw9LZONKpIg7X+pNVrO67g4lTFKtQ454GFDxpStMnSyJGTcd9GgSEj
+	 x/69bpPdIi4rA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 1DE334B130;
+	Thu, 19 Nov 2026 06:20:07 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Subject: [PATCH 0/2] media: verisilicon: Fix VDPU2 decoder error handling
+Date: Thu, 19 Nov 2026 06:20:06 +0000
+Message-Id: <20261119-vdpu2-errreset-v1-0-f8fa403b6a3a@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
-Message-Id: <37143.126111901130400483@us-mta-36.us.mimecast.lan>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 4HyxASh4T76AIPMupz4d6m7Yerkmgq9hgVEHRxjAl1g_1795068783
-X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_221316_966995_9723DBF6 
-X-CRM114-Status: UNSURE (   7.09  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 0.5 (/)
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMSwqDQBBF0a1IjdPQHzStWwkZ+HmJ5UClSiUg7
+ t3WDM/g3p0UwlCqsp0EGytPY4J7ZNT29fiF4S6ZvPWFcy43Wzev3kBEoFhMLGJ8WhvKUAdK0Sz
+ 48O8evt5/69oMaJfrQsdxAjWqA61yAAAA
+X-Change-ID: 20261115-vdpu2-errreset-8688700393a3
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Hans Verkuil <hverkuil@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Arun Iyengar <aiyengar1990@gmail.com>, stable@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795069206; l=1334;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=2RFAUR3ng5/QnrGOQnWU+xGFztNU4gfgufFi7kzRutU=;
+ b=OjJRsu4+0DdVHmvl5f/yUFh9DPg7MhS/pT7qenF5H07QM1yFTfJx6KXvTla6h9Fqw68gjmIuo
+ mtkobnUna1sCg+BTTpBZtAsQOddm23UGyyBfLbCHqFHog2CZUfoSsl2
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,68 +114,49 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi, we tested your kernel and here are the results:
+The VDPU2 decoder reports failed decodes as done and is not reset
+after an error, so it can keep accessing freed buffers.
 
-    Overall result: PASSED
-             Merge: OK
-           Compile: OK
-              Test: OK
+Tested on an Orange Pi 5 (RK3588S), KASAN v7.3 based kernel: 72 H.264
+fluster runs, no IOMMU faults or stalls; with patch 1 alone, an earlier
+run faulted. The VP8 test vectors pass (61/61). Two H.264 vectors
+(FI1_Sony_E, MR8_BT_B) fail in 1 to 4 of 249 runs each, with patch 1
+alone as with both. Build-tested on media next. MPEG-2, RK3399 and
+RK3568 untested.
 
-Tested-by: CKI Project <cki-project@redhat.com>
+Independent of "Recover the Rockchip VPUs from faults and timeouts"
+v3 [1]; the two only conflict in one #include line.
 
-Kernel information:
-    Commit message: arm64: Drop stdint.h type overrides from asm/neon-intri=
-nsics.h
+Developed with Claude (Anthropic), which wrote the code and the commit
+messages. I reviewed every change.
 
-You can find all the details about the test run at
-    https://datawarehouse.cki-project.org/kcidb/checkouts/redhat:3086968167
+[1] https://lore.kernel.org/r/20261113-hantro-robust-v3-0-82383c722ad2@gmail.com
 
-One or more kernel tests failed:
-    We also see the following known issues which are not related to your ch=
-anges:
-        Issue: [upstream] Hardware - Firmware test suite - auto-waive failu=
-res
-            URL: https://gitlab.com/cki-project/infrastructure/-/issues/779
-            Affected tests:
-                Hardware - Firmware test suite [aarch64]
-        Issue: selinux-policy: serge-testsuite: Client ioctl BINDER_WRITE_R=
-EAD error: Invalid argument
-            URL: https://lore.kernel.org/selinux/CAAUqJDt1pXQ2KVBvMoMiDrzz8=
-ishonqhQ0nnQLEppot4nmv9Bw@mail.gmail.com/T/
-            Affected tests:
-                selinux-policy: serge-testsuite [aarch64]
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+Arun Iyengar (2):
+      media: verisilicon: Don't report VDPU2 decoder errors as success
+      media: verisilicon: Reset the VDPU2 decoder after an error
 
+ .../media/platform/verisilicon/rockchip_vpu_hw.c   | 23 +++++++++++++++++++---
+ 1 file changed, 20 insertions(+), 3 deletions(-)
+---
+base-commit: aa0f4c41d4870a18e65772a1817af16427200371
+change-id: 20261115-vdpu2-errreset-8688700393a3
 
-Tests that were not ran because of internal issues:
-    /distribution/command [aarch64]
-    Reboot test [aarch64]
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
-
-If you find a failure unrelated to your changes, please ask the test mainta=
-iner to review it.
-This will prevent the failures from being incorrectly reported in the futur=
-e.
-
-Please reply to this email if you have any questions about the tests that w=
-e
-ran or if you have any suggestions on how to make future tests more effecti=
-ve.
-
-        ,-.   ,-.
-       ( C ) ( K )  Continuous
-        `-',-.`-'   Kernel
-          ( I )     Integration
-           `-'
-___________________________________________________________________________=
-___
 
 
