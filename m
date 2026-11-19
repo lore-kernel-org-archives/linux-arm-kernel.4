@@ -2,149 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5268E606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5AC606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:55:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tp79q/lv;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=VISeIn9d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xL0KVVLw;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=C/sbStvA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ArEyaqIv7KnV6fEPDVmQ96OJMVlwGJ4MYjU0NepYoVQ=; b=tp79q/lvVQLd7An1fsOkcLZtQT
-	sFT1il1c8Z0w1kWCUhKb4vxo7u+SbZlN8+KG6jO4g07JL+DIwgKyWQVU0svmdN7hCg0b72G6hXEV7
-	7tbmTLsHQOnqvw2nMeYTSXUEZWMlw4kBZ4ZuvvobC9gxVGuqGw/tmmd6IwxBKdZWJmP+iTWvfJyVR
-	wTbndaX0SImM9e6RVomPyDHYJN+/j3KZVQRcCIppmn8/0tZaysDI5r4Tl27IgC1AEjPneZeW6MQzV
-	EX9T+WR4WMh4aAvaibqOqDuZ6EXV3BG4FSiegEz2hCA7V3XdpKZ4zBNVcxS74S7MzKiYs/XAVUIHO
-	TjJXopdg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=XIB6M4Pn7MaMbV0LjTjtc8YsdU+Og6VyAOfbG5hYnZs=; b=xL0KVVLwSVTo/5
+	1knV/ZwrQt57VuzQaZvVWgdvxwkcPCifNod/ZF0wJchum1fEZI+58NoO+1WIZC1/xpDlb/Dqdz7nJ
+	qfHN0PSBb5/vZK/4qfFZXtqxxQe62+ow6IepV8jDXN7pJeh2i6LTvg5UFE01X7sD8+gBztEqmPi8N
+	eOt6xLS2V1R5SUuH02koSX43zGrIzvPbYQ2/qwEnYFgRoxdvrT2+9ZLzJQHbBdZo7d+kB5aQcX805
+	SCq1W1rEcLR4Pr6BrPYbxmONss/WyFXthFY+dDQeIW1riZNnTuv8JviWodxuDTW/hBQhUQTW5n1su
+	YejF/3Zku47Ixh/bNSVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyot-0000000BS9R-21m0;
-	Thu, 19 Nov 2026 09:52:43 +0000
-Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyop-0000000BS8r-17Dv
+	id 1xTyrg-0000000BSaR-3YvF;
+	Thu, 19 Nov 2026 09:55:36 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTyrd-0000000BSY2-2tCz
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 09:52:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FjXH6gd32YOvxEG23fOznyA7wmCHOL2JRhdhniSjF0AfEqg5Nfw2Cz+F7V6lvqEsRoCW1sZU1aS0Q/XPpELrjB6DQlf5EUOjeIt1GjqdRYvDi1zVpWuLY9+daaMgJ4hP2R0YThbophMcvPR263spdMN0+z8aEVKorcXnCJlMiGTHcN7qS/6AuM7x57nz3sjBYkGcsNupCQ8uius6orBaCZT1TTh7+wI2F6YHB/tRLX7KrMhxdQSYcXrG3BUgvFFpOXf6jc+sj80+C6+vnWWMo6QRNOrVgkg3of7l8p3f4tkiy+PrYhEVMC6lday94jVt66Muo8duANpMLtZSegrX7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ArEyaqIv7KnV6fEPDVmQ96OJMVlwGJ4MYjU0NepYoVQ=;
- b=uqjOmI7M70G5creaRtANE7ezsHAwSSvPfIr1C4KBIQk4hKDvvBnjeJT73McCDa2IYFVQYny7WrqLoNx6k1ozW9A47I4jL4G43In4PgcOkE3ivSECgfo+f0VH1CxiQDO9hNt5cy80AAIKk+QyAZY/ndQSCLhNycd18aGQozlJxT1E2XvXDQUOONJj2O48/t1yrfY0LUrCMRvyZqpHNqGEmNPumpiW6Z7UUyZ2kChlOXSNAIm2IrJlElR4pLRROlmzsqWgUWfhFUr1SbGNoJ8n3OkHo+jDLmMo0CzzJPiczxQ/CAfrWV9kZTtQ6DcsKOO3iWI57Dbfz9wzGEb4r5+9Tg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ArEyaqIv7KnV6fEPDVmQ96OJMVlwGJ4MYjU0NepYoVQ=;
- b=VISeIn9dqQ8pYox++SknECbxJS2lK89li4j6lwrmMHXhSN1423q4hajRbiHdo0i8gp0AJ+Q/dPqTX8+p/ebUoYxG0Fcy8z1ff3Sco5uRpZEvczu8UA80v6kX5PbqCsnH38ur0EmkWDGDcYTmNwqdi+lKP9CWz6ta1BJ/oioz4vA=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA1PR12MB6798.namprd12.prod.outlook.com (2603:10b6:806:25a::22)
- by CH3PR12MB8536.namprd12.prod.outlook.com (2603:10b6:610:15e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
- 2026 09:52:32 +0000
-Received: from SA1PR12MB6798.namprd12.prod.outlook.com
- ([fe80::e317:e4a3:6ae9:8c54]) by SA1PR12MB6798.namprd12.prod.outlook.com
- ([fe80::e317:e4a3:6ae9:8c54%5]) with mapi id 15.21.0615.013; Thu, 19 Nov 2026
- 09:52:32 +0000
-Message-ID: <2768d57d-9012-4f97-a89f-9562c8fc3939@amd.com>
-Date: Thu, 19 Nov 2026 15:22:23 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v5 2/6] dt-bindings: net: xlnx,xxv-ethernet: Add
- Xilinx XXV 10G/25G Ethernet
-To: Rob Herring <robh@kernel.org>
-Cc: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261114182947.2908628-1-suraj.gupta2@amd.com>
- <20261114182947.2908628-3-suraj.gupta2@amd.com>
- <20261118162847.GA2433918-robh@kernel.org>
-Content-Language: en-US
-From: "Gupta, Suraj" <suraj.gupta2@amd.com>
-In-Reply-To: <20261118162847.GA2433918-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0198.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b2::8) To SA1PR12MB6798.namprd12.prod.outlook.com
- (2603:10b6:806:25a::22)
+	Thu, 19 Nov 2026 09:55:35 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AD87F19F0;
+	Thu, 19 Nov 2026 01:55:27 -0800 (PST)
+Received: from localhost.localdomain (e123572-lin.cambridge.arm.com [10.2.208.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 59E003F882;
+	Thu, 19 Nov 2026 01:55:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795082130; bh=syb2Id5d1NmBSpb67maJTDdXcKDxidynmk4E6xC0f6Q=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=C/sbStvACwh4293rdqcZbO7A20EUjzcMPsjbu2yAehjXdu26ZKoSFbWmVya/qVnqP
+	 /KFPZtZIYPQNAqJDBSEweqQENBb7FZFvJc7AC3Dn0sPenaEoAApZ5dNueUA1gnRLiC
+	 m0wXfHZ42I5n6x8cx+VCjAyJL1BIFBfTAsavjgSA=
+From: Kevin Brodsky <kevin.brodsky@arm.com>
+Date: Thu, 19 Nov 2026 09:54:37 +0000
+Subject: [PATCH v2 1/2] arm64: mm: Add note about overlays in PIE_EL1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR12MB6798:EE_|CH3PR12MB8536:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34144d24-8563-4d47-db26-08df4622d4dc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|1800799024|7416014|376014|22082099003|18002099003|6133799003|3023799007|11063799006|4143699003|56012099006|10067099003|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261021121427099003|261022075727099003|261102123227099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: oy110Z5c72A+avcKlZDro0NjPc0pTJW0y4Kx9/U7TisvYt+9KxLkxpBWqF3m8tKuYvsXG675tkFTQhjRk5mcU2zoRtdxJm9eTBocD/UzzKNZk4JbMnxW9FYsmdA4uuua++a4H0S6zpDoJDBAeFzP3t6LkH5kFcYOclZz9BD7FtqzSmcECc7MyXq4APuS5gr28Eas5Y8V2rgefehQkAl52LPzFzLIWdizpdJMPOWq7CSLPPj/2f/PEM/Wcd3SaQXBlJLT8HsJosZtWtmIoLAU0Je4Z3Zup2jQ0knDrNXuC1znnx5ZbN2AHwIZfruQpg6ORCw614xqNkpvcflj3rsz7BmGrkd11pUpfJOuYpX4FgRXMNDqO1Tux9dCSXLVP+prxS+BI4+bCD/kaZyQ2e/msrL17Sts329nKk4pHUhxej8/kK6SpcKOM3va15x/cVp8YrBBcNfqeBRgc4lL0FtD3h0n9i4Sq98dET6O+jQ21tpaAyq6zNQ9FMelLOxaQIZCp+Gu6DKLEnXftRENJPd544i4FxlA2nUUIoemSoC87EJLhT15e+9KpTQ5COOAHKY450X5PvQuK3llpCqeKQVPlogSsWd0sPoWbsOPEmKrmfU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR12MB6798.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(1800799024)(7416014)(376014)(22082099003)(18002099003)(6133799003)(3023799007)(11063799006)(4143699003)(56012099006)(10067099003)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261021121427099003)(261022075727099003)(261102123227099003)(261009223027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djdXZ3V5RS9nOXlCZmJ0Uitxc0loNDdvbWhrS2c5NHVhaHdRQlZOb2FQMFNN?=
- =?utf-8?B?NXQyQng5bDRYTkUyOVVIay9TbU9kUVlqdEYwY1RWQ1MrL0pEMHBDQmJ1eTdi?=
- =?utf-8?B?YVl2Q3RRTE80TGFOSVRHbU9YQkIyc2tQd3M5cFNhM1FBSXVScHVmZG5hYWtI?=
- =?utf-8?B?ZFBSY2RKSDhEaVMvODNuNjBtVnUxbUdtWVJadEMxbEFYZzA5N2VNbkNHaHR4?=
- =?utf-8?B?d21rQnFEQnVmOTBiZTIrb0pRRHNGeEJncnk4MDhnVC9UT0xMZ3VpWEM5dnpy?=
- =?utf-8?B?T1E0VEEzakJkRHExRHcxSmx5VDVScW9KZ0xHWk5qdWNITkpmekJ5MllmUFcv?=
- =?utf-8?B?SnNIMjQyUzVWWlhkdVZwZkF1UWZYWVI2R2JNbU1pa1VzY1hJZ2xpL0d1bEo1?=
- =?utf-8?B?TG5yaTlZOEtQVkQzNkVuUnBRa1pYT3MxWmF5cGNlM3lmakdhQkswNkNjdEpW?=
- =?utf-8?B?cmJQRUg3RnVSd1oxdUhnL2lONTZWOS9SaGRLaHdhd2VMbzVIR3BLSlJHeXY5?=
- =?utf-8?B?Z3hmOURndHYyZ0JDcVYyQzROdkZRUVFiK3RmMEFPTm1kU2swNUJjWktsd2x6?=
- =?utf-8?B?Z0ZoWHBJSEVRWjc4SWo5M29HL2xZVEZIYmo2b3Q1SWw0YUlPMFNrWWhlUFZ6?=
- =?utf-8?B?aHhyVDRENkpnSWFBVjRCRlpVQndYWE54SERIcldyZ2IzVFk4aFZVVVF2MEE1?=
- =?utf-8?B?elE5dFh3Yjl5QnZDUU12U3pIb2ZXakpPYThYNlBST20rQjhtZ0huU1E1OTVB?=
- =?utf-8?B?SFp3cFFyd0JMRXdFenNmVTY0TnJMUG1tL2pDSXpiUmFNaVRQdUZDdFhENHN4?=
- =?utf-8?B?eGZlZWFqb3IvczdZZVhoUzg0RWhUcDBLMUt1aHRkek42eXdlYUU5SGZwNXN4?=
- =?utf-8?B?OXVTNkV6VDhrVmZXOUJIVDQvOUVWbll5RTRFMHRqMWZTTk5sS1IrYW9FMjlq?=
- =?utf-8?B?NEE1RVRjVzlhQlkwWVM4R1RQb2FiS1ZjaDFiZ1k1VWRIMUFiOGkvZWxRTTFO?=
- =?utf-8?B?RHBRak1jeUU0MjlQSjBkM2lRek1BWGRtZkJKbUl4a1JBam5HWGFGVTV5MzRS?=
- =?utf-8?B?VVlXd2FsRElvQUhIdE9rT3lVRUM0TTYxRHJReW5tVzFDcnlSaVlHS2YzamNa?=
- =?utf-8?B?ZmtzYmFJa2E4VWxBN3BJR1M3SUhvRk42NTNSM0t6TEZ4UERNdEJZR1RlaEhT?=
- =?utf-8?B?b1Q5cHRrdC9jZjBLTEtEa1pRUkdRb1JaY1hZNTRmbjB3VzhnS3o0QmVjZlBk?=
- =?utf-8?B?M0tLaU0ybkpRRW9wZGE4cWgydCtnekEyeSsvbVErUTlYMVJQb0tKT1lBdDdq?=
- =?utf-8?B?aDlHK1VEWXRlSUY2dC8vN05jTElvdnRqb3M2RkswWkxhbklFZHRGNkF1d2g5?=
- =?utf-8?B?Z0RGdms3VUpTS0dLMXBKK0dPVFZxR0pCMXltQVltT1dkcWI4a3RQeGtVWEJv?=
- =?utf-8?B?eGtSWGd2SFc3Y0JMK0JIQUhjMXZRUVdJM2ZvT2I0QTNNU09pSDU3QWxORVVY?=
- =?utf-8?B?VWE5aUdWNmtuQnhLeFVVVm9jSTFyTk5oRHcwQWhwWWl5N0ZjNnNTWGlqNUp3?=
- =?utf-8?B?YlI2L0xvajNFdlBvakZjN2QrUVQwT2lnSDNOR3FiVysrcVFzK0tUMUU5dlBG?=
- =?utf-8?B?QWhrZ01maWJaWUdNZkw3U3dPaVFPdStraGNQeHlETnlFbTVWdm9YaTFxQWg2?=
- =?utf-8?B?Qm9IOU5acEExM3BMQitLaEp4bDVQN2grYVN6S2R5cmZHMTBYSlVoRjhqc21P?=
- =?utf-8?B?MVcvbEt2VjVOWC9FdkU4VytUSnlPM0R3c01jV0s0K2gxaXMzZkdlY1Z5WGNG?=
- =?utf-8?B?SFJSK0Ywc1hNUkxtcnJaL3NTUVY3YzYvNW03QUpZSkJ1SENPT0FQUmcvbyti?=
- =?utf-8?B?MEZFZUh5Y1daOHhDcHg0RlB3MDk5YTNzUC9JNUp3dXU2NGg3VU9ES3BmT3Ji?=
- =?utf-8?B?SjZSQ2dLWDVOUVVyeEtGYjRsTTIvRy8yY3laVTFRclFlODFWN1p6MnFUOXpj?=
- =?utf-8?B?NHB0M2l4eHNXQkF4cEJCb2tCVkVYMEhzOUY5d091T1BRVlNpdDY2K1hnbXJu?=
- =?utf-8?B?emF4c2d4SjBMek1zZmNYWis0YjU2aFVwYlIxSndhTlNmcUJEY2plNWxQRkd6?=
- =?utf-8?B?MDlTYzYyVElXVzVaRGVQZTU1S1RsRjRNQlFGNlZDcks2TUR2TnpreXkvZFpG?=
- =?utf-8?B?ZkMxMU9GL2VRem50UHh1b2xUbTQwcnNwUnVuL1hsdlpyeUs4SllZMkYrN24v?=
- =?utf-8?B?Mm11L0FkSHJ6R0I5clJSVDlFTlBvQU80eWN4aVQweEtMYU5PaGRzR0NQWVhO?=
- =?utf-8?B?NVg2U0YrK3NnSmlZS3dyMnBUUnZXQkxSNnlIdWp6N2NFTkVZTjlRUT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34144d24-8563-4d47-db26-08df4622d4dc
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB6798.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 09:52:32.6797
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EQ76N6fqbRfQo0njZENXR3Ju3KJFtR+axLlMEUNa7fie49voNal4ffKreYOdaiXmwsVxO/WOdVBzeC7pBODuuw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8536
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261119-poe_futex-v2-1-244c7a01f788@arm.com>
+References: <20261119-poe_futex-v2-0-244c7a01f788@arm.com>
+In-Reply-To: <20261119-poe_futex-v2-0-244c7a01f788@arm.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Kevin Brodsky <kevin.brodsky@arm.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
+ Linu Cherian <linu.cherian@arm.com>, Mark Brown <broonie@kernel.org>, 
+ Shuah Khan <shuah@kernel.org>, Will Deacon <will@kernel.org>, 
+ Yeoreum Yun <yeoreum.yun@arm.com>, linux-kernel@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795082127; l=1292;
+ i=kevin.brodsky@arm.com; s=20260427; h=from:subject:message-id;
+ bh=syb2Id5d1NmBSpb67maJTDdXcKDxidynmk4E6xC0f6Q=;
+ b=QU0NeRBExCgHLxzTpAHbmIHRYXfarCeSXRfSgUtH54+6hKG2x7PQrwZ2hKaKesjyq5aDJvLKE
+ rHf3XYRde3oBzBxD1cj+kk3FXugea5QA7duibMWapyIW/fawi49cT4z
+X-Developer-Key: i=kevin.brodsky@arm.com; a=ed25519;
+ pk=N2QG+eJKrvkNovwhhwJhnJ4+ScVfsGCHldmqLfcMTFs=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_015239_318707_CBFDA504 
-X-CRM114-Status: GOOD (  30.54  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_015533_773618_885AD85E 
+X-CRM114-Status: GOOD (  10.37  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,123 +79,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+It isn't completely obvious why user page types do not have overlays
+applied in PIE_EL1. Add a comment to that effect, to avoid
+unpleasant surprises in the future.
 
-Hi Rob,
-On 11/18/2026 9:58 PM, Rob Herring wrote:
-> On Sat, Nov 14, 2026 at 11:59:43PM +0530, Suraj Gupta wrote:
->> The XXV Ethernet IP integrates a 10G/25G Ethernet MAC with an in-core
->> PCS/PMA driving a high-speed serial transceiver. Its payload is moved by
->> an external AXI DMA (or multichannel DMA) controller referenced through
->> the dmas/dma-names properties. Document the IP in a dedicated schema
->> file.
->>
->> Add the "xlnx,xxv-ethernet-1.0" compatible with the 10gbase-r and
->> 25gbase-r phy-modes, the rx_core/drp/s_axi clocks and the AXI DMA
->> channel properties. The GT transceiver reference clock is described as
->> an optional fourth "ref" clock, for boards where it is supplied by a
->> Linux-managed clock provider rather than a fixed oscillator.
->>
->> Add "xlnx,has-statistics-counters" as well. The statistics counters are
->> an optional part of the IP, selected by the "Include Statistics Counters"
->> build option (PG210), and unlike the 1G MAC the subsystem has no ability
->> register that reports whether they were included, so the devicetree has
->> to describe it.
->>
->> Require "xlnx,rxmem". The driver reads it unconditionally at probe time
->> and fails if it is absent, and the value is what bounds the largest frame
->> the device accepts, both when validating a new MTU and when deciding
->> whether jumbo frames can be enabled.
->>
->> Disallow phy-handle, its deprecated phy and phy-device spellings, and
->> pcs-handle. All are inherited from ethernet-controller.yaml, so
->> unevaluatedProperties does not reject them, but the subsystem has no MDIO
->> bus master and its PCS is in-core, so neither an external PHY nor an
->> external PCS can be attached. Constrain managed to in-band-status for the
->> same reason; it stays optional, as the link is always managed in-band.
->>
->> Signed-off-by: Suraj Gupta <suraj.gupta2@amd.com>
->> ---
->>   .../bindings/net/xlnx,xxv-ethernet.yaml       | 146 ++++++++++++++++++
->>   MAINTAINERS                                   |   1 +
->>   2 files changed, 147 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
->> new file mode 100644
->> index 000000000000..caf582c72a8d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/xlnx,xxv-ethernet.yaml
->> @@ -0,0 +1,146 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/xlnx,xxv-ethernet.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Xilinx XXV 10G/25G Ethernet Subsystem
->> +
->> +maintainers:
->> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
->> +  - Suraj Gupta <suraj.gupta2@amd.com>
->> +
->> +description:
->> +  The Xilinx XXV Ethernet Subsystem implements a 10G/25G Ethernet MAC with an
->> +  in-core PCS/PMA driving a high-speed serial transceiver. It supports the
->> +  10GBASE-R and 25GBASE-R line rates, with 25G operation following the 25G
->> +  Ethernet Consortium specification. Because the PCS/PMA is integrated into
->> +  the IP, the subsystem has no MDIO bus master and is not managed through an
->> +  external MDIO PHY; link state is read from the MAC's own status registers.
->> +  As there is no PHY to manage, the link is always managed in-band.
->> +  Any SFP module management (e.g. I2C) is handled by separate IP outside this
->> +  binding. Its payload is moved by an external AXI DMA (or multichannel DMA)
->> +  controller referenced through the "dmas" property.
->> +
->> +properties:
->> +  compatible:
->> +    const: xlnx,xxv-ethernet-1.0
-> 
-> I hope you based 1.0 on something? Looks made up to me.
-> 
->  From here[1], looks like you are missing some versions:
-> 
-> The offset of user configuration registers in the IP was updated (and
-> removed in case of USER_REG_1) which breaks backward compatibility of
-> any custom user config application code with newer versions of the IP.
-> Please make sure to use the correct offset as per the IP version as
-> specific below and ignore "XXE_USR0_OFFSET". Please note that this has
-> NO impact on the example as this definition is not used.
-> 
->      Upto IP Version 2.2 https://docs.xilinx.com/v/u/2.2-English/pg210-25g-ethernet, USER_REG_0 is at offset 0x184 and USER_REG_1 is at offset 0x188
-> 
->      IP Version 2.3 and above https://docs.xilinx.com/v/u/2.3-English/pg210-25g-ethernet, USER_REG_0 is at offset 0x134 and USER_REG_1 is removed
-> 
-> Rob
-> 
-> [1] https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842542/Baremetal+XXV+Ethernet+driver
+Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
+---
+ arch/arm64/include/asm/pgtable-prot.h | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-1.0 is the initial release of this IP: PG210 v1.0, 2015-09-30, "Initial 
-release" [1]. The compatible names that version. Newer cores are handled 
-from the revision register (CONFIGURATION_REVISION_REG, 0x24), read into 
-lp->xxv_ip_version. Today that gates only the GT status registers, which 
-PG210 adds in v3.2.
-The same v3.2 changelog adds bit 0 of STAT_RX_STATUS_REG1 (0x404). v5 
-reads that bit unconditionally for the link state, so I will gate it on 
-v3.2 and later in v6.
-The driver does not use USER_REG_0, so the v2.3 move (0x184 to 0x134) 
-and the removal of USER_REG_1 do not affect it. The wiki pointed above 
-describes the baremetal XXV driver.
+diff --git a/arch/arm64/include/asm/pgtable-prot.h b/arch/arm64/include/asm/pgtable-prot.h
+index 590ef4328f12..e6788e2e23bf 100644
+--- a/arch/arm64/include/asm/pgtable-prot.h
++++ b/arch/arm64/include/asm/pgtable-prot.h
+@@ -175,6 +175,13 @@ static inline bool __pure lpa2_is_enabled(void)
+ 	PIRx_ELx_PERM_PREP(pte_pi_index(_PAGE_READONLY),      PIE_R_O)   | \
+ 	PIRx_ELx_PERM_PREP(pte_pi_index(_PAGE_SHARED),        PIE_RW_O))
+ 
++/*
++ * Regular user page types such as _PAGE_SHARED must not have overlays applied
++ * in PIE_EL1. If POE is enabled at EL1, and in the absence of FEAT_LSUI, this
++ * would break futex atomic operations on user memory with a non-default
++ * POIndex; the privileged atomic load/store instructions would be mistakenly
++ * checked against POR_EL1.
++ */
+ #define PIE_E1	( \
+ 	PIRx_ELx_PERM_PREP(pte_pi_index(_PAGE_GCS),           PIE_NONE_O) | \
+ 	PIRx_ELx_PERM_PREP(pte_pi_index(_PAGE_GCS_RO),        PIE_NONE_O) | \
 
-[1] https://docs.amd.com/r/en-US/pg210-25g-ethernet/Revision-History
+-- 
+2.56.0
 
-
-Regards,
-Suraj
 
