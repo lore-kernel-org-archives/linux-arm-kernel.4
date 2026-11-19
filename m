@@ -2,120 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA8D60A262B
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0352960A6F4A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rjSYcwip;
-	dkim=pass (2048-bit key) header.d=brainfault.org header.i=@brainfault.org header.a=rsa-sha256 header.s=google header.b=FBWA+95+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hvk4pynU;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nWGDqYNC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=drywv9X/QD6GTy9pDjLa5PABODeuHIP48aMyKh24UjM=; b=rjSYcwipsGqx2Y
-	kSmzm1utq224eu7zaX2Hz+PS5ofd4EdFffNGEVyTJQW9VG1N15pGuHlWEVJiC5w1xTF6wcGNg3ADD
-	Q2qv+KgSPb8JgZwWAGpPhytGzHg/efzV045mMJ5rzeNJm1INbD0ID6EJeXxMGaA6DvV6lAEZH0mKR
-	7JokWhuSbD88F82Xb4NEZDUU+xW/LcCtRddgSTqDgRvItegO4E0LrPe2mvHqT8PezErYeH3ZCgvgp
-	UgQUcndJFp51X/e1Aotq2cNuYN0cUjphirVEGIgrK86HCiRrjQVbwlWe45XPqT+Eh7PvCLZQo2UpW
-	U6kzOUe1wf2eQFuMg8aw==;
+	List-Owner; bh=WGQr9homvcBDDaDNFjGaP7bjHcrXtaqxHaJKTI0quEg=; b=Hvk4pynUchP3AV
+	BWliuMgHW08Lku3OGdjNI5y6ZOIsXVnMNl1v5LdaROHolQXoorEy0jUoBLDr1XIQixaFXI45F1NRH
+	UwovTNkCyMrSnio+disFRgEF1OFVZc6S52Bi1Cxp99E0dC5ELZTjjTaTV1GL1vQWZsCtr4GJBmP4N
+	PJERKomt/KLk+vYJ+qxLv5VMEQepHz3VZ5gClJzeFbNhVToTVZUyu5LlMSHHQ+75KEwGOilVvPC/M
+	soirQVZvdQUncH8pNQbC0SGz9oe5NOdvCOlcP413JCJRjVd8oaOgtEohj+Wt6mKl4DTweBYBK0arL
+	Ssw0+kq0j7KArw9UMqtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4DN-0000000CVCB-0edr;
-	Thu, 19 Nov 2026 15:38:21 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1xU4DZ-0000000CVGV-19aW;
+	Thu, 19 Nov 2026 15:38:33 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4DH-0000000CVAu-10L9
+	id 1xU4DV-0000000CVEe-0Eue
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 15:38:16 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-48dee593f18so2386018f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 07:38:14 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795102693; cv=none;
-        d=google.com; s=arc-20260327;
-        b=Ve4dHG5Ra4bP8SuAi8mOwrcGFDf3Fif+ZK8h4b6xLpDzEXHwjkCGigJw1mRtMo0v73
-         kSFMqgyLS7gMo81Q0k6Bq5pLedt2jL/PF4SkylkXe2Zic7/S2FsjdV2uDM0MqtDxwHp6
-         ZtboT2DuIq1tLLfjyNRAc7ihM4yCmd9dejROxqtrcubfc4TiqwUZPOUEqpQVZY0KSxww
-         6Land2Gf1bCXFSKiR6EsPM8y38TKMbnIWqHX99LIfKMa0iKRIrjdnTWnyPogstPxqVQg
-         TpJRcxW720k060HCTSJUlfuX+8bWveZNRXeJH96IUmwpeAzwuLoCH4ZE57w1eZrwcH+s
-         dFtw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=drywv9X/QD6GTy9pDjLa5PABODeuHIP48aMyKh24UjM=;
-        fh=LEkltJwd9/nib4I4N/pw84mAlD2H/ChO4ZWLmS/oLVw=;
-        b=TpoeO5uDcfCzkviYa67rmTq2/B/brZUdUYrZFryKapzIo7HINwpQVUL8QwtzPU7Trx
-         qj8tNPDuWPWtMwT/DMKfvGsfClkFVhEg1iZTJw2FLJACYxHME7yYnnwpRICtkMwwpFlr
-         XYu92WPPbtTeeRTTzcJ74DTAbx42DIHJVQ+nqVZs+S2J/s/hfeceW4Bkxqv9fthEZDIM
-         aODkolr9KRIuLG8osMOwYAaYpqda+a34mhCLXOlq5LdEOYZ+NZ5mlhIdDbG7dYB89PSJ
-         PJ9kY7Dn3FT2QnDIjSUG1PvBnjDeNteCNoGokD03Z04Y+OVdrYZ7E/Y0pCTmk4V0JSSR
-         pbsA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault.org; s=google; t=1795102693; x=1795707493; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=drywv9X/QD6GTy9pDjLa5PABODeuHIP48aMyKh24UjM=;
-        b=FBWA+95+6gSQSbg+9a54rHm3J5N2gmMQ3SjlnojzwwFh1yWKRKjEWjytlhNTeooKaO
-         QMVPmocX3CL9ZqGM/qGtllEYc0z8+bcsdtI0GLUVWR98thmGTm2nqVgKTCkkdDTz1PWt
-         rA2sz0XXt6NH+rNEpNM6brW33rqZH4mxM6NKbpGufFrCOLChhv4cc/1qX1cmrEUn23PO
-         2/AmI2EdQWX/Qox6U/3ll84EhP0HObUDz0DzbudAzF8MUEO2l2zNly3kWOJOupKH4kQU
-         jtC4CMpY7s99Khhmo/TeEPqfypMQRJXJtzS8PUzsVCvpuKknvWgVK4VU33LeX1dAcD2l
-         49eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795102693; x=1795707493;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=drywv9X/QD6GTy9pDjLa5PABODeuHIP48aMyKh24UjM=;
-        b=EP0LdroVKxQgoBXCCl4V1dHZFlmylojv4vRR2KsC2ZsP036XzsdE+wVeyszlPnmiCL
-         Sz1SIxIC6EfCUuPLm4mrOMa1H1WMC0a2jhcaRVHZ+LpZBGwY+Cy12I4etPSGT/bwxuix
-         lbC5cbExKpw82gqIxo0IU/WfgofbCjP+0Znq5up/usJZIBqQxnG+toVgsbu7CpDKToNZ
-         E3rGT1ZZmltV3mmDW5bTqBBmizRhqXVtsyKfi07XQtrZwWFHqJcILXdCJ75p7JNLA4Rq
-         xdk7SrfUbnQIkEoavrXJ73atQAbDYBXuWym9/ij2KtCpV+MQu4HqN8Sqq/jU3Hc5DQhk
-         C4Bw==
-X-Forwarded-Encrypted: i=1; AL+hErF1atbqy+JhtmSdCwehLS1ynmrme2BM/f9IMvsPwaK3VYTeEXuzdrpW2QlBjXjoKc/wLu/E07Btxb0AriOVv28q@lists.infradead.org
-X-Gm-Message-State: APuU4Z9nIh606ahackeQFYhEwX4lY1snomaVw1HbGiZ5TIlvcuqlezuY
-	dDIi/eTEdzLlBIIqyyXHw6YIvDAopQugunolc5UMZrviWLAw/ja/ITT+vyLo0zx1M46Wq7es96h
-	7CywBsnJwdRQ3MO/Fn0Xah5izjAbwFBu6oYOwQoc/Aw==
-X-Gm-Gg: AZFdTZd2IkNMCqBk/6ViK0nQKrHEoZ/M9rH9UnR0gTCMIJTFzvt0XBFjZ5RrMz0j3jE
-	tjPn8F3yga6hWelKlsLPPfpPOG7Xy/qpUTmPy4sZh/qP1h1SRFtW0SwChTTInZyWCU5g7Byv53Z
-	bQDoV2shDGU/86C7m3g45nJSfBU3IT+1f9FWwkX0atRQZiJgv5oz2/0mkFUHAo2ARz48UMyO1w+
-	IsPwfubLUxhRYchYAdkt2XWXyVdf0xkUCn5CXqm4ztdIxEROxMuXyKjbOKaW3iVJZJjNhDXJc+b
-	nqavaheXtS9mzTl6cuDJ7j2TAZS7jAyR1ue5JIXRvJWbVTdz6j/vhBsmDZ1V851bHSMjY3U89Z1
-	PQgYuweiVHv+V2F6qrExhpDGV6Q6E04LW9lr/4W8OyWpyLCcI8BgJw/Yu2EO+kfMz1KOjjPPnkI
-	hFYQxXiMfWkUAh39UaHrZdbasZbFvIB7/nSrcSyydy6p+J8ts8ft8cQYYb
-X-Received: by 2002:adf:e009:0:20b0:490:1881:80ec with SMTP id
- ffacd0b85a97d-4a63a895742mr10073341f8f.36.1795102692730; Thu, 19 Nov 2026
- 07:38:12 -0800 (PST)
+	Thu, 19 Nov 2026 15:38:29 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id F1BC66331D;
+	Thu, 19 Nov 2026 15:38:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 971581F000C5;
+	Thu, 19 Nov 2026 15:38:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795102707;
+	bh=WGQr9homvcBDDaDNFjGaP7bjHcrXtaqxHaJKTI0quEg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject;
+	b=nWGDqYNCGgY6EsYektk0F3ocquHXbRy1fnBV1cjg2r5M/i1bmrbziHyQsCLWESUdJ
+	 opBWD9W5X5P5mOOl4X7/vqsOz5egFXFqJAoPrL4wF2t4goJ4HyOW0XVMH95ZFst1+K
+	 zMl6ZnTfRZ3zlTPlIVDjv/wCnHDmdeEMZiGZi3Oz2oDcuTE9oVH8vy/+c97AqyrB06
+	 qfAK6S6U9Kmd9ZtWqMyHpCYtStkgZRJhpi9hovItWRr9tH5NJJXztFH0dK+aOhgXFI
+	 5abk/OIW6k2WsjCfCEqMkNRBGtntyyVmO0X4Bua4NEszIh6DdRYDzmfJ3kdQhFCz/+
+	 HsHGJtTPB/JZg==
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfauth.ams.internal (Postfix) with ESMTP id BDA09198003A;
+	Thu, 19 Nov 2026 10:38:24 -0500 (EST)
+Received: from ams-imap-11 ([10.64.2.31])
+  by ams-compute-02.internal (MEProxy); Thu, 19 Nov 2026 10:38:24 -0500
+X-ME-Sender: <xms:7Rf_ahjoSDHuY-li6z80mwYOQLNJTGQf1s9UH2cE69IDojYofOJwPg>
+    <xme:7Rf_ag02Px5PS4iBvm_FnNjsIZ6ZtHQjpcHB8i3JsRRyvwbq0U9FF8ofWY68gj4vd
+    ihV1_A3F1imUG4RxW7k_Qc7xhu6BK1y-71x4MxdUuBj2ooChhuX7UHh>
+X-ME-Proxy-Cause: dmFkZTFjUXYloFjoDllRlpZzwX+Mr2aQT9ODXP8XGqHiLINShhj92g8SnoXLjarMGxqFOO
+    oMDZM9EMatC8AGeg/TSMAdaFkP0NJsv1RNjS5Z5wWE7XSkhmx4jF+oLRVh3mFvSxwbe+xk
+    nU298dZTxAa+bh/zAwbQbFPI3xyGDOOUS+385VVsVL1+gnA2mILXuFwfM0DajlGwagkkBS
+    u27MEZWc8i8uC/2bF9euzQlyo4MLEJN8OuSZrtvxdRVK1sYclzWbHdRfR72lilcXQx0dLz
+    i3W7h3MPidwET8W+CEXkC+RoWeLCGzPYlagVwS2A5U3Y11yanQZV1s6/vZkWj53tyOy2AD
+    pzA9vLhqXXaM9bjhj4TJ+RCvFGC+1d+/mxLqU4jENV6V9cg2cbVPnjK017AVB0ZjBJVpr3
+    s6siunXhUGx205Yl44urUhkqQpwryhaQ70MGhoa6F+xWX5jg7c8biylL5yT1OMtAuJGuqr
+    MwQHxiAoZwbrPftISKaf60cnPvn9tGs3EH+fVmm7/OTXfIjBXcfKM2Nm7amnjiiHF8O+nt
+    od6D2ndZV4Tg8t2DNQYZ07MeZfFHqEw2FGpeLs+MY2H7cWkgrlHEGVW6tk8MNmtCZI2VbU
+    zrEFfeiZRVlvNisMmkmYFY6hsVs+/dc+sZkZ36SJx+rOx3TOi3fFB/o/OTfw
+X-ME-Proxy: <xmx:8Bf_ailq9KZsUJBEpXUEZIDn32ElvnIruMtxjDCpKznCpT1ZTkVThA>
+    <xmx:8Bf_akG8_SUQdfXtfWLssOzQRlbG3JFU89ndf_BfWHbWgGdCiKq6Vw>
+    <xmx:8Bf_amEpQKt3967seOdLahbvyYJbpHiNLFsWPrFIeR0LP7WwCukBZw>
+    <xmx:8Bf_as3jiR3CjL8AoEsqrCL3Ad7TrusWoiXyrbNpceBqdUwceNWKtg>
+    <xmx:8Bf_aofDdp_XnT9_bucLRcIiGEv1YKmTwbaVBT6hJMDgjrNll8blkGpU>
+Feedback-ID: ice86485a:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id BEF05F80093; Thu, 19 Nov 2026 10:38:21 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261118095053.3871267-1-vikram.singh3@oss.qualcomm.com> <20261118095053.3871267-8-vikram.singh3@oss.qualcomm.com>
-In-Reply-To: <20261118095053.3871267-8-vikram.singh3@oss.qualcomm.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Thu, 19 Nov 2026 21:08:01 +0530
-X-Gm-Features: Aa3M54qqVopLHoNkItX81APze_rfhpoAK0QlJ8DY6gdjSieSVn8liCJp7Smx0no
-Message-ID: <CAAhSdy3KUqSqERnw6khG13mXKcaCf3UeG+FqQAZzeeNZ7S7GfQ@mail.gmail.com>
-Subject: Re: [PATCH v5 7/7] dt-bindings: riscv: add Sxctr ISA extension description
-To: Vikram Singh <vikram.singh3@oss.qualcomm.com>
-Cc: peterz@infradead.org, mingo@redhat.com, acme@kernel.org, 
-	namhyung@kernel.org, mark.rutland@arm.com, alexander.shishkin@linux.intel.com, 
-	jolsa@kernel.org, irogers@google.com, adrian.hunter@intel.com, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	alex@ghiti.fr, atishp@rivosinc.com, anup.patel@oss.qualcomm.com, 
-	will@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	beeman@rivosinc.com, linux-perf-users@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, Conor Dooley <conor@kernel.org>, 
-	devicetree@vger.kernel.org, Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_073815_504050_C5C1F102 
-X-CRM114-Status: GOOD (  16.67  )
-X-Spam-Score: -2.1 (--)
+Date: Thu, 19 Nov 2026 16:38:00 +0100
+From: "Ard Biesheuvel" <ardb@kernel.org>
+To: "Sven Peter" <sven@kernel.org>, "Will Deacon" <will@kernel.org>
+Cc: "Mark Rutland" <mark.rutland@arm.com>,
+ "Lorenzo Pieralisi" <lpieralisi@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Ilias Apalodimas" <ilias.apalodimas@linaro.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Sudeep Holla" <sudeep.holla@kernel.org>, "Janne Grunau" <j@jannau.net>,
+ "Neal Gompa" <neal@gompa.dev>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-efi@vger.kernel.org, asahi@lists.linux.dev
+Message-Id: <a1b18224-4171-4702-acb2-cef994dd9921@app.fastmail.com>
+In-Reply-To: <ef76e141-491d-44a9-90a6-e9cd54526012@kernel.org>
+References: <20260708-efi-psci-v1-0-9efb3abf0e4c@kernel.org>
+ <9c53cfd7-e193-4441-83ca-7710060225b7@app.fastmail.com>
+ <apldL6Ml91GW-tE9@J2N7QTR9R3.cambridge.arm.com>
+ <aplk2hHRB7Yw9FWW@willie-the-truck>
+ <eb75b82a-8910-4198-b89a-5c8b487c0fd5@app.fastmail.com>
+ <cadadedb-1de1-46f0-9bfd-35eb8bdfa85b@kernel.org>
+ <avxETlOGyr_WQ2zp@willie-the-truck>
+ <ef76e141-491d-44a9-90a6-e9cd54526012@kernel.org>
+Subject: Re: [PATCH RFC 0/6] PSCI-via-EFI to support firmware and kernel sharing EL2
+ for Apple Silicon
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,105 +109,137 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 3:21=E2=80=AFPM Vikram Singh
-<vikram.singh3@oss.qualcomm.com> wrote:
->
-> Add the S[m|s]ctr ISA extension description.
->
-> Co-developed-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
-> Signed-off-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
-> Signed-off-by: Vikram Singh <vikram.singh3@oss.qualcomm.com>
-> Link: https://lore.kernel.org/r/20261106173942.3175069-8-vikram.singh3@os=
-s.qualcomm.com
-> Signed-off-by: Anup Patel <anup@brainfault.org>
 
-As mentioned in PATCH1, drop the "Link:" and the subsequent
-"Signed-off-by:" lines.
 
-> ---
->  .../devicetree/bindings/riscv/extensions.yaml | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
+On Tue, 17 Nov 2026, at 16:25, Sven Peter wrote:
+> On 17.11.26 13:10, Will Deacon wrote:
+>> On Sun, Nov 15, 2026 at 07:38:35PM +0100, Sven Peter wrote:
+>>>
+>>>
+>>> On 03.09.26 15:25, Ard Biesheuvel wrote:
+>>>> On Thu, 3 Sep 2026, at 14:15, Will Deacon wrote:
+>>>>> On Thu, Sep 03, 2026 at 12:42:39PM +0100, Mark Rutland wrote:
+>>>>>> On Thu, Sep 03, 2026 at 01:34:56PM +0200, Ard Biesheuvel wrote:
+>>>>>>> On Wed, 8 Jul 2026, at 09:15, Sven Peter wrote:
+>>>>>>>> This series adds a custom EFI table that points to a PSCI entry point
+>>>>>>>> (plus some other stuff that has to be available before EFI runtime
+>>>>>>>> services are set up) and adds support for this new conduit to the psci
+>>>>>>>> code. We can't directly use the normal EFI runtime path because that one
+>>>>>>>> takes a sleeping lock and we need to be able to call into PSCI from
+>>>>>>>> atomic context during e.g. cpu bringup or during idle.
+>>>>>>>> It also adds support for specifying the specific MAIR attributes for EFI
+>>>>>>>> runtime mappings as defined in the latest UEFI spec since Apple Silicon
+>>>>>>>> is rather allergic to using Device-nGnRnE vs. Device-nGnRE for its MMIO.
+>>>>>>
+>>>>>>>>         dt-bindings: arm: psci: Add EFI conduit
+>>>>>>>>         arm64/efi: Add and parse custom PSCI EFI configuration table
+>>>>>>>>         efi: Add EFI_MEMORY_ISA_{MASK,VALID}
+>>>>>>>>         arm64/efi: Honor EFI_MEMORY_ISA_MASK for Device-nGnRnE vs -nGnRE
+>>>>>>>>         firmware/psci: Add EFI runtime conduit
+>>>>>>>>         arm64: dts: apple: t8103: Add PSCI and CPU idle states
+>>>>>>>>
+>>>>>>>
+>>>>>>> I've picked up patches #3 and #4, which are useful in their own right.
+>>>>>>>
+>>>>>>> I'm not sure if the arm64 maintainers will want to consider this, but
+>>>>>>> I think it's a reasonable compromise, as it puts the abstraction in
+>>>>>>> the right place.
+>>>>>>
+>>>>>> Sorry for the late reply; I've been away almost all of August and I'm
+>>>>>> slowly catching up on things.
+>>>>>>
+>>>>>> As with last time this was proposed (in abstract), I am not happy about
+>>>>>> bodging an EFI conduit into PSCI, given that the manner in which state
+>>>>>> is managed is completely different from SMCCC.
+>>>>>>
+>>>>>> If we need a mechanism for doing hotplug and/or idle without HVC/SMC,
+>>>>>> that's one thing we can consider. I don't think we should pretend that
+>>>>>> it is PSCI.
+>>>>>
+>>>>> What do you have in mind for an alternative mechanism? I understand your
+>>>>> objection to this proposal, but at least it keeps the interface fairly
+>>>>> high-level and avoids opening the flood gates for a bunch of SoC-specific
+>>>>> idle routines. Are you thinking of extensions to the PSCI spec or
+>>>>> something else?
+>>>>>
+>>>>
+>>>> I can't speak for Mark, of course, but I could imagine EFI being used as a
+>>>> conduit to provide a callable set of interfaces (with a rigorously defined
+>>>> set of constraints such as the ones in this patch, i.e., reentrancy, no FP
+>>>> or SIMD, not relying on ISA features that the OS needs to know about and
+>>>> enable, etc).
+>>>>
+>>>> There is prior art here in ACPI PRM, which does something similar, and this
+>>>> also relies on EFI runtime services.
+>>>>
+>>>> You'd still need to implement the CPU ops and a cpuidle driver afaict (no
+>>>> expert here), but at least those would be coded against an interface that
+>>>> the kernel itself specified, and can be made as generic as we choose to.
+>>>>
+>>>> Not saying this is all great, but it might be a worthwhile compromise to
+>>>> consider.
+>>>
+>>> Finally getting back to this series...
+>>>
+>>>
+>>> I'd definitely like to keep mapping the resident firmware using EFI runtime
+>>> services because otherwise I'd have to duplicate a whole lot of tricky code
+>>> to do the same thing via some other means (e.g. a device tree nodes that
+>>> contains all mappings + callbacks) and I just don't see much value in that.
+>>>
+>>> I'm happy to just drop the PSCI part though and replace that with a simple
+>>> and somewhat generic "efi-rt" (or similar) cpuidle driver and make that one
+>>> have similar requirements like I added for this RFC series and expose bunch
+>>> of generic callbacks (that will just happen to resemble PSCI functions very
+>>> much ;)) via a custom EFI table. That would keep PSCI out of all of this but
+>>> come at the cost of an additional cpuidle driver.
+>>>
+>>> I don't think that would open any flood gates for SoC-specific drivers since
+>>> we could just point them to the generic one and tell them to use that one if
+>>> they can't do PSCI for some reason.
+>>>
+>>>
+>>> Now before I go off and prototype this: Would this approach be fine in
+>>> general with you, Mark and Will?
+>> 
+>> tbh, if the "efi-rt" thing is just PSCI with a different conduit and that
+>> conduit is properly documented, then I really don't see the point in keeping
+>> it separate. However. I suspect that we probably all have slightly different
+>> opinions here which isn't going to help you very much :(
 >
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index 79491ef8f86a..dde2f28cfda5 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -202,6 +202,13 @@ properties:
->              mechanism in M-mode as ratified in the 20240326 version of t=
-he
->              privileged ISA specification.
->
-> +        - const: smctr
-> +          description: |
-> +            The standard Smctr supervisor-level extension for the machin=
-e mode
-> +            to enable recording limited branch history in a register-acc=
-essible
-> +            internal core storage as ratified at commit 9c87013 ("Merge =
-pull
-> +            request #44 from riscv/issue-42-fix") of riscv-control-trans=
-fer-records.
-> +
->          - const: smmpm
->            description: |
->              The standard Smmpm extension for M-mode pointer masking as
-> @@ -263,6 +270,13 @@ properties:
->              mechanism in S-mode as ratified in the 20240326 version of t=
-he
->              privileged ISA specification.
->
-> +        - const: ssctr
-> +          description: |
-> +            The standard Ssctr supervisor-level extension for recording =
-limited
-> +            branch history in a register-accessible internal core storag=
-e as
-> +            ratified at commit 9c87013 ("Merge pull request #44 from
-> +            riscv/issue-42-fix") of riscv-control-transfer-records.
-> +
->          - const: ssnpm
->            description: |
->              The standard Ssnpm extension for next-mode pointer masking a=
-s
-> @@ -1189,6 +1203,21 @@ properties:
->              - contains:
->                  const: zicntr
->
-> +      # Smctr depends on Sscsrind
-> +      - if:
-> +          contains:
-> +            const: smctr
-> +        then:
-> +          contains:
-> +            const: sscsrind
-> +      # Ssctr depends on Sscsrind
-> +      - if:
-> +          contains:
-> +            const: ssctr
-> +        then:
-> +          contains:
-> +            const: sscsrind
-> +
->  allOf:
->    # Zcf extension does not exist on rv64
->    - if:
-> --
-> 2.43.0
+> Yeah, well, I agree but I really don't have a strong opinion or any good 
+> argument if either "efi-rt" vs "psci-via-efi" is better or worse. I only 
+> think both are better than SoC-specific cpuidle and cpu_ops drivers and 
+> I have no idea how else we could do this. (We could drop the kernel to 
+> EL1 and do "normal" PSCI in EL2 then but that would be much worse than 
+> either of those options imho)
 >
 
-Otherwise, LGTM.
+I agree with Mark that implementing a pseudo-PSCI that can never quite
+comply with everything in the PSCI spec is probably not a great idea
+unless we actually need it.
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+> And especially with M4+ I'd like to have something that can go upstream 
+> because normal wfi loses most general purpose regs there and has to be 
+> disabled which is not great.
+>
+> I can also just prototype the efi-rt cpuidle+cpu_ops thing and then we 
+> can take a look at it as well and see if that's better than what I have 
+> in this series if that helps but I'd rather not spend that time if that 
+> has no chance of being accepted either.
+>
 
-Regards,
-Anup
+I think a consistent approach for both secondary bringup (+teardown?) and
+cpuidle that is based on the same efi-runtime layer is perfectly acceptable,
+and allows us to define it as narrowly as we can, rather than having to
+consider what shared code might assume once it sees enable-method=psci on
+a CPU, or a PSCI conduit (SMCCC detection, mitigations, etc etc)
+
 
