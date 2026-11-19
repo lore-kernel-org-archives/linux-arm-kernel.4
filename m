@@ -2,69 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52B8606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA8D60A262B
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 15:38:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dZRmnnSC;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=GbqnWalR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rjSYcwip;
+	dkim=pass (2048-bit key) header.d=brainfault.org header.i=@brainfault.org header.a=rsa-sha256 header.s=google header.b=FBWA+95+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/nVmRQY/vXeDckaLsEBZ3X40t7zF05PmudVPaoNdkas=; b=dZRmnnSCTb9Em0
-	yil39FkxIReWE27Lx6iEXuYCwY3WhzCAw/uRRz7VbfAgynWPkxDR8uIV0B3VEsLFnPE5G/Qy/sV8U
-	FtJDN4avxQ10NF7dSI+0he8bh0UkUr8/0k1UpfrhEQ0P/cOMux7bcp/nWcgS7WTy6rR7wDZKAH0si
-	bH2IvtI0QkdOhg1GicwZ7tuhojc4fU38Xl/wKo3cYlKv2iSUWwtqUcv3+85KhWT0+RZdC4GlkhaFq
-	gTLYsebnqNTHZ6/dkY4+VeL9xE0LZ9OkJIHDLDkOZQS/AaXXsIpzsrM6tpCfUg5p3d6X69swTWNgE
-	3rgoqXJeGczEzg0vrxng==;
+	List-Owner; bh=drywv9X/QD6GTy9pDjLa5PABODeuHIP48aMyKh24UjM=; b=rjSYcwipsGqx2Y
+	kSmzm1utq224eu7zaX2Hz+PS5ofd4EdFffNGEVyTJQW9VG1N15pGuHlWEVJiC5w1xTF6wcGNg3ADD
+	Q2qv+KgSPb8JgZwWAGpPhytGzHg/efzV045mMJ5rzeNJm1INbD0ID6EJeXxMGaA6DvV6lAEZH0mKR
+	7JokWhuSbD88F82Xb4NEZDUU+xW/LcCtRddgSTqDgRvItegO4E0LrPe2mvHqT8PezErYeH3ZCgvgp
+	UgQUcndJFp51X/e1Aotq2cNuYN0cUjphirVEGIgrK86HCiRrjQVbwlWe45XPqT+Eh7PvCLZQo2UpW
+	U6kzOUe1wf2eQFuMg8aw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4Bx-0000000CUZ1-1GiG;
-	Thu, 19 Nov 2026 15:36:53 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4Bn-0000000CUTH-47xo
+	id 1xU4DN-0000000CVCB-0edr;
+	Thu, 19 Nov 2026 15:38:21 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU4DH-0000000CVAu-10L9
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 15:36:48 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D9CE1575;
-	Thu, 19 Nov 2026 07:36:40 -0800 (PST)
-Received: from e142430.arm.com (e142430.arm.com [10.33.10.110])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AFFD53F882;
-	Thu, 19 Nov 2026 07:36:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795102603; bh=bWqbG7nMrp9zDdEPwBDWvJaqjRCBwTLQZuz2dcCDj7g=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=GbqnWalRko6o6LlFKSeLPQt2U5JRc08zNPvyUKSxlWmf1B+mTdIwfCcwpZDzC696Q
-	 GrZcMqyv/t7MPVrnoLU11MsiReZpE77BvnFeYe2BkTad3rjRf8IHDxHatCDR512l+o
-	 irPsse3jX3kbFLSfzkqtFsczI1DuUuEsBU6od9PM=
-From: Ahmed Azeem <ahmed.azeem@arm.com>
-Date: Thu, 19 Nov 2026 15:36:06 +0000
-Subject: [PATCH RFC 4/4] firmware: arm: Harden PFDI worker and hotplug
- handling
+	Thu, 19 Nov 2026 15:38:16 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-48dee593f18so2386018f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 07:38:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795102693; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Ve4dHG5Ra4bP8SuAi8mOwrcGFDf3Fif+ZK8h4b6xLpDzEXHwjkCGigJw1mRtMo0v73
+         kSFMqgyLS7gMo81Q0k6Bq5pLedt2jL/PF4SkylkXe2Zic7/S2FsjdV2uDM0MqtDxwHp6
+         ZtboT2DuIq1tLLfjyNRAc7ihM4yCmd9dejROxqtrcubfc4TiqwUZPOUEqpQVZY0KSxww
+         6Land2Gf1bCXFSKiR6EsPM8y38TKMbnIWqHX99LIfKMa0iKRIrjdnTWnyPogstPxqVQg
+         TpJRcxW720k060HCTSJUlfuX+8bWveZNRXeJH96IUmwpeAzwuLoCH4ZE57w1eZrwcH+s
+         dFtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=drywv9X/QD6GTy9pDjLa5PABODeuHIP48aMyKh24UjM=;
+        fh=LEkltJwd9/nib4I4N/pw84mAlD2H/ChO4ZWLmS/oLVw=;
+        b=TpoeO5uDcfCzkviYa67rmTq2/B/brZUdUYrZFryKapzIo7HINwpQVUL8QwtzPU7Trx
+         qj8tNPDuWPWtMwT/DMKfvGsfClkFVhEg1iZTJw2FLJACYxHME7yYnnwpRICtkMwwpFlr
+         XYu92WPPbtTeeRTTzcJ74DTAbx42DIHJVQ+nqVZs+S2J/s/hfeceW4Bkxqv9fthEZDIM
+         aODkolr9KRIuLG8osMOwYAaYpqda+a34mhCLXOlq5LdEOYZ+NZ5mlhIdDbG7dYB89PSJ
+         PJ9kY7Dn3FT2QnDIjSUG1PvBnjDeNteCNoGokD03Z04Y+OVdrYZ7E/Y0pCTmk4V0JSSR
+         pbsA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault.org; s=google; t=1795102693; x=1795707493; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=drywv9X/QD6GTy9pDjLa5PABODeuHIP48aMyKh24UjM=;
+        b=FBWA+95+6gSQSbg+9a54rHm3J5N2gmMQ3SjlnojzwwFh1yWKRKjEWjytlhNTeooKaO
+         QMVPmocX3CL9ZqGM/qGtllEYc0z8+bcsdtI0GLUVWR98thmGTm2nqVgKTCkkdDTz1PWt
+         rA2sz0XXt6NH+rNEpNM6brW33rqZH4mxM6NKbpGufFrCOLChhv4cc/1qX1cmrEUn23PO
+         2/AmI2EdQWX/Qox6U/3ll84EhP0HObUDz0DzbudAzF8MUEO2l2zNly3kWOJOupKH4kQU
+         jtC4CMpY7s99Khhmo/TeEPqfypMQRJXJtzS8PUzsVCvpuKknvWgVK4VU33LeX1dAcD2l
+         49eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795102693; x=1795707493;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=drywv9X/QD6GTy9pDjLa5PABODeuHIP48aMyKh24UjM=;
+        b=EP0LdroVKxQgoBXCCl4V1dHZFlmylojv4vRR2KsC2ZsP036XzsdE+wVeyszlPnmiCL
+         Sz1SIxIC6EfCUuPLm4mrOMa1H1WMC0a2jhcaRVHZ+LpZBGwY+Cy12I4etPSGT/bwxuix
+         lbC5cbExKpw82gqIxo0IU/WfgofbCjP+0Znq5up/usJZIBqQxnG+toVgsbu7CpDKToNZ
+         E3rGT1ZZmltV3mmDW5bTqBBmizRhqXVtsyKfi07XQtrZwWFHqJcILXdCJ75p7JNLA4Rq
+         xdk7SrfUbnQIkEoavrXJ73atQAbDYBXuWym9/ij2KtCpV+MQu4HqN8Sqq/jU3Hc5DQhk
+         C4Bw==
+X-Forwarded-Encrypted: i=1; AL+hErF1atbqy+JhtmSdCwehLS1ynmrme2BM/f9IMvsPwaK3VYTeEXuzdrpW2QlBjXjoKc/wLu/E07Btxb0AriOVv28q@lists.infradead.org
+X-Gm-Message-State: APuU4Z9nIh606ahackeQFYhEwX4lY1snomaVw1HbGiZ5TIlvcuqlezuY
+	dDIi/eTEdzLlBIIqyyXHw6YIvDAopQugunolc5UMZrviWLAw/ja/ITT+vyLo0zx1M46Wq7es96h
+	7CywBsnJwdRQ3MO/Fn0Xah5izjAbwFBu6oYOwQoc/Aw==
+X-Gm-Gg: AZFdTZd2IkNMCqBk/6ViK0nQKrHEoZ/M9rH9UnR0gTCMIJTFzvt0XBFjZ5RrMz0j3jE
+	tjPn8F3yga6hWelKlsLPPfpPOG7Xy/qpUTmPy4sZh/qP1h1SRFtW0SwChTTInZyWCU5g7Byv53Z
+	bQDoV2shDGU/86C7m3g45nJSfBU3IT+1f9FWwkX0atRQZiJgv5oz2/0mkFUHAo2ARz48UMyO1w+
+	IsPwfubLUxhRYchYAdkt2XWXyVdf0xkUCn5CXqm4ztdIxEROxMuXyKjbOKaW3iVJZJjNhDXJc+b
+	nqavaheXtS9mzTl6cuDJ7j2TAZS7jAyR1ue5JIXRvJWbVTdz6j/vhBsmDZ1V851bHSMjY3U89Z1
+	PQgYuweiVHv+V2F6qrExhpDGV6Q6E04LW9lr/4W8OyWpyLCcI8BgJw/Yu2EO+kfMz1KOjjPPnkI
+	hFYQxXiMfWkUAh39UaHrZdbasZbFvIB7/nSrcSyydy6p+J8ts8ft8cQYYb
+X-Received: by 2002:adf:e009:0:20b0:490:1881:80ec with SMTP id
+ ffacd0b85a97d-4a63a895742mr10073341f8f.36.1795102692730; Thu, 19 Nov 2026
+ 07:38:12 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-topics-ahmaze01-upstream-pfdi-rfc-v1-4-4772d18b9115@arm.com>
-References: <20261119-topics-ahmaze01-upstream-pfdi-rfc-v1-0-4772d18b9115@arm.com>
-In-Reply-To: <20261119-topics-ahmaze01-upstream-pfdi-rfc-v1-0-4772d18b9115@arm.com>
-To: linux-arm-kernel@lists.infradead.org, 
- Sudeep Holla <sudeep.holla@kernel.org>
-Cc: Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, Mark Rutland <mark.rutland@arm.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, linux-api@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Divin Raj <divin.raj@arm.com>, Bertrand Marquis <Bertrand.Marquis@arm.com>, 
- Ahmed Azeem <ahmed.azeem@arm.com>
-X-Mailer: b4 0.13.0
+References: <20261118095053.3871267-1-vikram.singh3@oss.qualcomm.com> <20261118095053.3871267-8-vikram.singh3@oss.qualcomm.com>
+In-Reply-To: <20261118095053.3871267-8-vikram.singh3@oss.qualcomm.com>
+From: Anup Patel <anup@brainfault.org>
+Date: Thu, 19 Nov 2026 21:08:01 +0530
+X-Gm-Features: Aa3M54qqVopLHoNkItX81APze_rfhpoAK0QlJ8DY6gdjSieSVn8liCJp7Smx0no
+Message-ID: <CAAhSdy3KUqSqERnw6khG13mXKcaCf3UeG+FqQAZzeeNZ7S7GfQ@mail.gmail.com>
+Subject: Re: [PATCH v5 7/7] dt-bindings: riscv: add Sxctr ISA extension description
+To: Vikram Singh <vikram.singh3@oss.qualcomm.com>
+Cc: peterz@infradead.org, mingo@redhat.com, acme@kernel.org, 
+	namhyung@kernel.org, mark.rutland@arm.com, alexander.shishkin@linux.intel.com, 
+	jolsa@kernel.org, irogers@google.com, adrian.hunter@intel.com, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	alex@ghiti.fr, atishp@rivosinc.com, anup.patel@oss.qualcomm.com, 
+	will@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	beeman@rivosinc.com, linux-perf-users@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, Conor Dooley <conor@kernel.org>, 
+	devicetree@vger.kernel.org, Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_073646_714375_04277BBF 
-X-CRM114-Status: GOOD (  22.97  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261119_073815_504050_C5C1F102 
+X-CRM114-Status: GOOD (  16.67  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,741 +126,105 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Divin Raj <divin.raj@arm.com>
+On Wed, Nov 18, 2026 at 3:21=E2=80=AFPM Vikram Singh
+<vikram.singh3@oss.qualcomm.com> wrote:
+>
+> Add the S[m|s]ctr ISA extension description.
+>
+> Co-developed-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
+> Signed-off-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
+> Signed-off-by: Vikram Singh <vikram.singh3@oss.qualcomm.com>
+> Link: https://lore.kernel.org/r/20261106173942.3175069-8-vikram.singh3@os=
+s.qualcomm.com
+> Signed-off-by: Anup Patel <anup@brainfault.org>
 
-Tighten lifetime rules for the per-CPU worker and misc devices.
+As mentioned in PATCH1, drop the "Link:" and the subsequent
+"Signed-off-by:" lines.
 
-Do not reuse worker state after a timeout, as the SMC may still be
-executing in firmware after wait_for_completion_timeout() expires.
-Track in-flight work explicitly, prevent reuse until completion, and
-reject teardown while work is active.
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index 79491ef8f86a..dde2f28cfda5 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -202,6 +202,13 @@ properties:
+>              mechanism in M-mode as ratified in the 20240326 version of t=
+he
+>              privileged ISA specification.
+>
+> +        - const: smctr
+> +          description: |
+> +            The standard Smctr supervisor-level extension for the machin=
+e mode
+> +            to enable recording limited branch history in a register-acc=
+essible
+> +            internal core storage as ratified at commit 9c87013 ("Merge =
+pull
+> +            request #44 from riscv/issue-42-fix") of riscv-control-trans=
+fer-records.
+> +
+>          - const: smmpm
+>            description: |
+>              The standard Smmpm extension for M-mode pointer masking as
+> @@ -263,6 +270,13 @@ properties:
+>              mechanism in S-mode as ratified in the 20240326 version of t=
+he
+>              privileged ISA specification.
+>
+> +        - const: ssctr
+> +          description: |
+> +            The standard Ssctr supervisor-level extension for recording =
+limited
+> +            branch history in a register-accessible internal core storag=
+e as
+> +            ratified at commit 9c87013 ("Merge pull request #44 from
+> +            riscv/issue-42-fix") of riscv-control-transfer-records.
+> +
+>          - const: ssnpm
+>            description: |
+>              The standard Ssnpm extension for next-mode pointer masking a=
+s
+> @@ -1189,6 +1203,21 @@ properties:
+>              - contains:
+>                  const: zicntr
+>
+> +      # Smctr depends on Sscsrind
+> +      - if:
+> +          contains:
+> +            const: smctr
+> +        then:
+> +          contains:
+> +            const: sscsrind
+> +      # Ssctr depends on Sscsrind
+> +      - if:
+> +          contains:
+> +            const: ssctr
+> +        then:
+> +          contains:
+> +            const: sscsrind
+> +
+>  allOf:
+>    # Zcf extension does not exist on rv64
+>    - if:
+> --
+> 2.43.0
+>
 
-Gate open() against CPU teardown, preserve the full 64-bit failing test
-identifier returned by firmware, and ensure device removal does not race
-with open file descriptors or in-progress requests.
+Otherwise, LGTM.
 
-Signed-off-by: Divin Raj <divin.raj@arm.com>
-Signed-off-by: Ahmed Azeem <ahmed.azeem@arm.com>
----
- drivers/firmware/arm_pfdi.c | 406 ++++++++++++++++++++++++++++++++++----------
- 1 file changed, 320 insertions(+), 86 deletions(-)
+Reviewed-by: Anup Patel <anup@brainfault.org>
 
-diff --git a/drivers/firmware/arm_pfdi.c b/drivers/firmware/arm_pfdi.c
-index 22a69b12dbc8..34ccbb7724e6 100644
---- a/drivers/firmware/arm_pfdi.c
-+++ b/drivers/firmware/arm_pfdi.c
-@@ -24,10 +24,13 @@ struct pfdi_per_cpu_info {
- 	atomic_t run_inprogress;
- 	/* Ensures a single userspace owner per CPU while the node is open. */
- 	struct semaphore open_sem;
-+	/* Bumped on each device recreation so stale file contexts can be rejected. */
-+	unsigned int generation;
- 	/* Serializes per-CPU run state and device availability. */
- 	struct mutex state_lock;
- 	struct pfdi_test_range ongoing_run_range;
- 	wait_queue_head_t run_wait;
-+	bool online;
- };
- 
- struct pfdi_dev_data {
-@@ -36,9 +39,17 @@ struct pfdi_dev_data {
- 	char nodename[24];
- };
- 
-+struct pfdi_file_ctx {
-+	unsigned int cpu;
-+	/* Snapshot of cpu_info->generation taken when the file was opened. */
-+	unsigned int generation;
-+};
-+
- struct pfdi_cpu_worker {
- 	struct kthread_work work;
- 	struct completion done;
-+	/* Serializes request staging and result extraction around the worker. */
-+	struct mutex op_lock;
- 	u32 feature_fid;
- 	/* Protects worker lifetime and in-flight work state. */
- 	struct mutex worker_lock;
-@@ -46,6 +57,9 @@ struct pfdi_cpu_worker {
- 	struct pfdi_test_run test_run;
- 	struct arm_smccc_res smc_ret;
- 	int result;
-+	bool work_inflight;
-+	bool shutting_down;
-+	wait_queue_head_t worker_wait;
- };
- 
- static const u32 pfdi_supported_fids[] = {
-@@ -141,32 +155,80 @@ static int pfdi_validate_cpu_features(void)
- 	return 0;
- }
- 
--static int pfdi_thread_worker(unsigned int cpu,
--			      void (*handler)(struct kthread_work *work),
--			      unsigned long timeout)
-+static int pfdi_reserve_worker(unsigned int cpu, unsigned long timeout)
- {
- 	int ret = 0;
- 	struct kthread_worker *worker;
- 	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 
-+retry:
- 	mutex_lock(&worker_ctx->worker_lock);
--	worker = per_cpu(pfdi_worker, cpu);
--	if (!worker) {
-+	worker = READ_ONCE(per_cpu(pfdi_worker, cpu));
-+	if (!worker || worker_ctx->shutting_down) {
- 		mutex_unlock(&worker_ctx->worker_lock);
- 		return -ENODEV;
- 	}
- 
-+	if (worker_ctx->work_inflight) {
-+		mutex_unlock(&worker_ctx->worker_lock);
-+		ret =
-+			wait_event_interruptible_timeout(worker_ctx->worker_wait,
-+							 !READ_ONCE(worker_ctx->work_inflight) ||
-+							 READ_ONCE(worker_ctx->shutting_down),
-+							 timeout);
-+		if (ret < 0)
-+			return ret;
-+		if (!ret)
-+			return -ETIME;
-+		goto retry;
-+	}
-+
- 	reinit_completion(&worker_ctx->done);
-+	WRITE_ONCE(worker_ctx->work_inflight, true);
-+	mutex_unlock(&worker_ctx->worker_lock);
-+
-+	return 0;
-+}
-+
-+static int pfdi_queue_worker(unsigned int cpu,
-+			     void (*handler)(struct kthread_work *work),
-+			     unsigned long timeout)
-+{
-+	struct kthread_worker *worker;
-+	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
-+
-+	mutex_lock(&worker_ctx->worker_lock);
-+	worker = READ_ONCE(per_cpu(pfdi_worker, cpu));
-+	if (!worker || worker_ctx->shutting_down || !worker_ctx->work_inflight) {
-+		mutex_unlock(&worker_ctx->worker_lock);
-+		return -ENODEV;
-+	}
-+
- 	kthread_init_work(&worker_ctx->work, handler);
- 	kthread_queue_work(worker, &worker_ctx->work);
-+	mutex_unlock(&worker_ctx->worker_lock);
- 
--	if (!wait_for_completion_timeout(&worker_ctx->done, timeout)) {
--		ret = -ETIME;
--		kthread_cancel_work_sync(&worker_ctx->work);
--	}
-+	if (!wait_for_completion_timeout(&worker_ctx->done, timeout))
-+		return -ETIME;
-+
-+	return 0;
-+}
- 
-+static void pfdi_complete_worker(struct pfdi_cpu_worker *worker_ctx)
-+{
-+	/*
-+	 * Signal the current request before making the worker available again.
-+	 * Otherwise a timed-out caller can release op_lock, a new caller can
-+	 * reuse the shared completion, and this completion can satisfy the new
-+	 * request before its work has run.
-+	 */
-+	complete(&worker_ctx->done);
-+
-+	mutex_lock(&worker_ctx->worker_lock);
-+	WRITE_ONCE(worker_ctx->work_inflight, false);
- 	mutex_unlock(&worker_ctx->worker_lock);
--	return ret;
-+
-+	wake_up(&worker_ctx->worker_wait);
- }
- 
- static void pfdi_pe_get_test_id_fn(struct kthread_work *work)
-@@ -175,7 +237,7 @@ static void pfdi_pe_get_test_id_fn(struct kthread_work *work)
- 
- 	worker_ctx = container_of(work, struct pfdi_cpu_worker, work);
- 	worker_ctx->smc_ret = pfdi_smc_call(PFDI_FN_PE_TEST_ID, 0, 0, 0, 0);
--	complete(&worker_ctx->done);
-+	pfdi_complete_worker(worker_ctx);
- }
- 
- static void pfdi_pe_get_version_fn(struct kthread_work *work)
-@@ -184,7 +246,7 @@ static void pfdi_pe_get_version_fn(struct kthread_work *work)
- 
- 	worker_ctx = container_of(work, struct pfdi_cpu_worker, work);
- 	worker_ctx->smc_ret = pfdi_smc_call(PFDI_FN_VERSION, 0, 0, 0, 0);
--	complete(&worker_ctx->done);
-+	pfdi_complete_worker(worker_ctx);
- }
- 
- static int pfdi_pe_get_version(unsigned int cpu, u32 *version)
-@@ -192,14 +254,24 @@ static int pfdi_pe_get_version(unsigned int cpu, u32 *version)
- 	s64 ret;
- 	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 
--	ret = pfdi_thread_worker(cpu, pfdi_pe_get_version_fn,
--				 MAX_SCHEDULE_TIMEOUT);
--	if (ret)
-+	mutex_lock(&worker_ctx->op_lock);
-+	ret = pfdi_reserve_worker(cpu, MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
- 		return ret;
-+	}
- 
--	ret = (int)worker_ctx->smc_ret.a0;
-+	ret = pfdi_queue_worker(cpu, pfdi_pe_get_version_fn,
-+				MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
-+		return ret;
-+	}
-+
-+	ret = (s64)worker_ctx->smc_ret.a0;
- 	if (ret >= 0)
- 		*version = (u32)ret;
-+	mutex_unlock(&worker_ctx->op_lock);
- 
- 	if (ret >= 0)
- 		return 0;
-@@ -215,7 +287,7 @@ static void pfdi_pe_get_features_fn(struct kthread_work *work)
- 	worker_ctx->result = pfdi_smc_call(PFDI_FN_FEATURES,
- 					   worker_ctx->feature_fid,
- 					   0, 0, 0).a0;
--	complete(&worker_ctx->done);
-+	pfdi_complete_worker(worker_ctx);
- }
- 
- static int pfdi_pe_get_features(unsigned int cpu, u32 fid)
-@@ -223,13 +295,25 @@ static int pfdi_pe_get_features(unsigned int cpu, u32 fid)
- 	int ret;
- 	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 
-+	mutex_lock(&worker_ctx->op_lock);
-+	ret = pfdi_reserve_worker(cpu, MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
-+		return ret;
-+	}
-+
- 	worker_ctx->feature_fid = fid;
--	ret = pfdi_thread_worker(cpu, pfdi_pe_get_features_fn,
--				 MAX_SCHEDULE_TIMEOUT);
--	if (ret)
-+	ret = pfdi_queue_worker(cpu, pfdi_pe_get_features_fn,
-+				MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
- 		return ret;
-+	}
- 
--	return pfdi_to_linux_errno(worker_ctx->result);
-+	ret = worker_ctx->result;
-+	mutex_unlock(&worker_ctx->op_lock);
-+
-+	return pfdi_to_linux_errno(ret);
- }
- 
- static int pfdi_pe_get_test_id(unsigned int cpu, u64 *lib_info)
-@@ -237,14 +321,24 @@ static int pfdi_pe_get_test_id(unsigned int cpu, u64 *lib_info)
- 	int ret;
- 	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 
--	ret = pfdi_thread_worker(cpu, pfdi_pe_get_test_id_fn,
--				 MAX_SCHEDULE_TIMEOUT);
--	if (ret)
-+	mutex_lock(&worker_ctx->op_lock);
-+	ret = pfdi_reserve_worker(cpu, MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
- 		return ret;
-+	}
-+
-+	ret = pfdi_queue_worker(cpu, pfdi_pe_get_test_id_fn,
-+				MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
-+		return ret;
-+	}
- 
- 	ret = (int)worker_ctx->smc_ret.a0;
- 	if (!ret)
- 		*lib_info = worker_ctx->smc_ret.a1;
-+	mutex_unlock(&worker_ctx->op_lock);
- 
- 	return pfdi_to_linux_errno(ret);
- }
-@@ -256,7 +350,7 @@ static void pfdi_pe_get_test_count_fn(struct kthread_work *work)
- 	worker_ctx = container_of(work, struct pfdi_cpu_worker, work);
- 	worker_ctx->smc_ret = pfdi_smc_call(PFDI_FN_PE_TEST_PART_COUNT,
- 					    0, 0, 0, 0);
--	complete(&worker_ctx->done);
-+	pfdi_complete_worker(worker_ctx);
- }
- 
- static int pfdi_pe_get_test_count(unsigned int cpu, s64 *count)
-@@ -264,12 +358,22 @@ static int pfdi_pe_get_test_count(unsigned int cpu, s64 *count)
- 	s64 ret;
- 	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 
--	ret = pfdi_thread_worker(cpu, pfdi_pe_get_test_count_fn,
--				 MAX_SCHEDULE_TIMEOUT);
--	if (ret)
-+	mutex_lock(&worker_ctx->op_lock);
-+	ret = pfdi_reserve_worker(cpu, MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
- 		return ret;
-+	}
-+
-+	ret = pfdi_queue_worker(cpu, pfdi_pe_get_test_count_fn,
-+				MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
-+		return ret;
-+	}
- 
- 	ret = (s64)worker_ctx->smc_ret.a0;
-+	mutex_unlock(&worker_ctx->op_lock);
- 	if (ret >= 0) {
- 		*count = ret;
- 		return 0;
-@@ -285,18 +389,32 @@ static void pfdi_pe_fw_check_fn(struct kthread_work *work)
- 	worker_ctx = container_of(work, struct pfdi_cpu_worker, work);
- 	worker_ctx->result = pfdi_smc_call(PFDI_FN_FW_CHECK,
- 					   0, 0, 0, 0).a0;
--	complete(&worker_ctx->done);
-+	pfdi_complete_worker(worker_ctx);
- }
- 
- static int pfdi_pe_fw_check(unsigned int cpu)
- {
- 	int ret;
-+	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 
--	ret = pfdi_thread_worker(cpu, pfdi_pe_fw_check_fn, MAX_SCHEDULE_TIMEOUT);
--	if (ret)
-+	mutex_lock(&worker_ctx->op_lock);
-+	ret = pfdi_reserve_worker(cpu, MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
-+		return ret;
-+	}
-+
-+	ret = pfdi_queue_worker(cpu, pfdi_pe_fw_check_fn,
-+				MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
- 		return ret;
-+	}
- 
--	return pfdi_to_linux_errno(per_cpu(pfdi_worker_ctx, cpu).result);
-+	ret = worker_ctx->result;
-+	mutex_unlock(&worker_ctx->op_lock);
-+
-+	return pfdi_to_linux_errno(ret);
- }
- 
- static void pfdi_pe_get_result_fn(struct kthread_work *work)
-@@ -306,7 +424,7 @@ static void pfdi_pe_get_result_fn(struct kthread_work *work)
- 	worker_ctx = container_of(work, struct pfdi_cpu_worker, work);
- 	worker_ctx->smc_ret = pfdi_smc_call(PFDI_FN_PE_TEST_RESULT,
- 					    0, 0, 0, 0);
--	complete(&worker_ctx->done);
-+	pfdi_complete_worker(worker_ctx);
- }
- 
- static int pfdi_pe_get_result(unsigned int cpu, s64 *ft_id)
-@@ -314,14 +432,24 @@ static int pfdi_pe_get_result(unsigned int cpu, s64 *ft_id)
- 	int ret;
- 	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 
--	ret = pfdi_thread_worker(cpu, pfdi_pe_get_result_fn,
--				 MAX_SCHEDULE_TIMEOUT);
--	if (ret)
-+	mutex_lock(&worker_ctx->op_lock);
-+	ret = pfdi_reserve_worker(cpu, MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
- 		return ret;
-+	}
-+
-+	ret = pfdi_queue_worker(cpu, pfdi_pe_get_result_fn,
-+				MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
-+		return ret;
-+	}
- 
- 	ret = (int)worker_ctx->smc_ret.a0;
- 	if (ret == PFDI_RET_FAULT_FOUND)
- 		*ft_id = worker_ctx->smc_ret.a1;
-+	mutex_unlock(&worker_ctx->op_lock);
- 
- 	return pfdi_to_linux_errno(ret);
- }
-@@ -335,7 +463,7 @@ static void pfdi_pe_force_error_fn(struct kthread_work *work)
- 					   worker_ctx->error_info.smc_fid,
- 					   worker_ctx->error_info.error_id,
- 					   0, 0).a0;
--	complete(&worker_ctx->done);
-+	pfdi_complete_worker(worker_ctx);
- }
- 
- static int pfdi_pe_force_error(unsigned int cpu,
-@@ -351,14 +479,26 @@ static int pfdi_pe_force_error(unsigned int cpu,
- 	    error_info->error_id > SMCCC_RET_SUCCESS)
- 		return -EINVAL;
- 
-+	mutex_lock(&worker_ctx->op_lock);
-+	ret = pfdi_reserve_worker(cpu, MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
-+		return ret;
-+	}
-+
- 	worker_ctx->error_info = *error_info;
- 
--	ret = pfdi_thread_worker(cpu, pfdi_pe_force_error_fn,
--				 MAX_SCHEDULE_TIMEOUT);
--	if (ret)
-+	ret = pfdi_queue_worker(cpu, pfdi_pe_force_error_fn,
-+				MAX_SCHEDULE_TIMEOUT);
-+	if (ret) {
-+		mutex_unlock(&worker_ctx->op_lock);
- 		return ret;
-+	}
- 
--	return pfdi_to_linux_errno(worker_ctx->result);
-+	ret = worker_ctx->result;
-+	mutex_unlock(&worker_ctx->op_lock);
-+
-+	return pfdi_to_linux_errno(ret);
- }
- 
- static bool pfdi_ranges_equal(const struct pfdi_test_range *lhs,
-@@ -397,6 +537,18 @@ static int pfdi_validate_test_range(unsigned int cpu,
- 	return 0;
- }
- 
-+static bool pfdi_file_ctx_valid(const struct pfdi_file_ctx *ctx)
-+{
-+	bool valid;
-+	struct pfdi_per_cpu_info *cpu_info = &per_cpu(pfdi_cpu_info, ctx->cpu);
-+
-+	mutex_lock(&cpu_info->state_lock);
-+	valid = cpu_info->online && ctx->generation == cpu_info->generation;
-+	mutex_unlock(&cpu_info->state_lock);
-+
-+	return valid;
-+}
-+
- static void pfdi_pe_run_fn(struct kthread_work *work)
- {
- 	struct arm_smccc_res smc_ret;
-@@ -411,12 +563,12 @@ static void pfdi_pe_run_fn(struct kthread_work *work)
- 		worker_ctx->test_run.ft_id = smc_ret.a1;
- 
- 	worker_ctx->result = (int)smc_ret.a0;
--	complete(&worker_ctx->done);
-+	pfdi_complete_worker(worker_ctx);
- }
- 
- static int pfdi_pe_run_tests(unsigned int cpu, struct pfdi_test_run *test_run)
- {
--	int ret;
-+	int ret, result;
- 	unsigned long wait_timeout;
- 	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 	struct pfdi_per_cpu_info *cpu_info = &per_cpu(pfdi_cpu_info, cpu);
-@@ -447,14 +599,26 @@ static int pfdi_pe_run_tests(unsigned int cpu, struct pfdi_test_run *test_run)
- 
- 	atomic_set(&cpu_info->run_inprogress, 1);
- 	cpu_info->ongoing_run_range = test_run->range;
--	worker_ctx->test_run = *test_run;
-+	mutex_lock(&worker_ctx->op_lock);
- 	mutex_unlock(&cpu_info->state_lock);
- 
--	ret = pfdi_thread_worker(cpu, pfdi_pe_run_fn, wait_timeout);
-+	/*
-+	 * wait_timeout_ms limits how long a caller waits behind another run.
-+	 * Once this run is selected to execute, wait for the worker to really
-+	 * become available and for the firmware operation to complete.
-+	 */
-+	ret = pfdi_reserve_worker(cpu, MAX_SCHEDULE_TIMEOUT);
-+	if (!ret) {
-+		worker_ctx->test_run = *test_run;
-+		ret = pfdi_queue_worker(cpu, pfdi_pe_run_fn, MAX_SCHEDULE_TIMEOUT);
-+	}
- 
- 	mutex_lock(&cpu_info->state_lock);
--	if (worker_ctx->result == PFDI_RET_FAULT_FOUND)
-+	if (!ret && worker_ctx->result == PFDI_RET_FAULT_FOUND)
- 		test_run->ft_id = worker_ctx->test_run.ft_id;
-+	if (!ret)
-+		result = worker_ctx->result;
-+	mutex_unlock(&worker_ctx->op_lock);
- 	atomic_set(&cpu_info->run_inprogress, 0);
- 	wake_up_all(&cpu_info->run_wait);
- 	mutex_unlock(&cpu_info->state_lock);
-@@ -462,14 +626,16 @@ static int pfdi_pe_run_tests(unsigned int cpu, struct pfdi_test_run *test_run)
- 	if (ret)
- 		return ret;
- 
--	return pfdi_to_linux_errno(worker_ctx->result);
-+	return pfdi_to_linux_errno(result);
- }
- 
- static int arm_pfdi_open(struct inode *inode, struct file *file)
- {
- 	struct miscdevice *misc_dev = file->private_data;
- 	struct pfdi_dev_data *data;
--	unsigned int cpu;
-+	struct pfdi_per_cpu_info *cpu_info;
-+	struct pfdi_file_ctx *ctx;
-+	unsigned int cpu, generation;
- 
- 	if (!misc_dev || !misc_dev->this_device)
- 		return -ENODEV;
-@@ -478,18 +644,38 @@ static int arm_pfdi_open(struct inode *inode, struct file *file)
- 	if (!data)
- 		return -ENODEV;
- 
-+	ctx = kzalloc_obj(*ctx, GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
- 	cpu = get_cpu();
- 	if (data->cpu_id != cpu) {
- 		put_cpu();
-+		kfree(ctx);
- 		return -EPERM;
- 	}
-+	cpu_info = &per_cpu(pfdi_cpu_info, cpu);
-+	put_cpu();
- 
--	if (down_trylock(&per_cpu(pfdi_cpu_info, cpu).open_sem)) {
--		put_cpu();
-+	mutex_lock(&cpu_info->state_lock);
-+	if (!cpu_info->online) {
-+		mutex_unlock(&cpu_info->state_lock);
-+		kfree(ctx);
-+		return -ENODEV;
-+	}
-+
-+	if (down_trylock(&cpu_info->open_sem)) {
-+		mutex_unlock(&cpu_info->state_lock);
-+		kfree(ctx);
- 		return -EBUSY;
- 	}
-+	generation = cpu_info->generation;
- 
--	put_cpu();
-+	mutex_unlock(&cpu_info->state_lock);
-+
-+	ctx->cpu = cpu;
-+	ctx->generation = generation;
-+	file->private_data = ctx;
- 	return 0;
- }
- 
-@@ -502,21 +688,18 @@ static long arm_pfdi_ioctl(struct file *file, unsigned int cmd,
- 	s64 count;
- 	s64 ft_id;
- 	u64 lib_info;
--	struct miscdevice *misc_dev = file->private_data;
--	struct pfdi_dev_data *device_data;
- 	struct pfdi_test_run test_run;
-+	struct pfdi_file_ctx *ctx = file->private_data;
- 	struct pfdi_force_error error_info;
- 	unsigned int cpu;
- 
--	if (!misc_dev || !misc_dev->this_device)
-+	if (!ctx)
- 		return -ENODEV;
- 
--	device_data = dev_get_drvdata(misc_dev->this_device);
--	if (!device_data)
-+	cpu = ctx->cpu;
-+	if (!pfdi_file_ctx_valid(ctx))
- 		return -ENODEV;
- 
--	cpu = device_data->cpu_id;
--
- 	switch (cmd) {
- 	case PFDI_IOCTL_VERSION:
- 		err = pfdi_pe_get_version(cpu, &version);
-@@ -582,16 +765,18 @@ static long arm_pfdi_ioctl(struct file *file, unsigned int cmd,
- 
- static int arm_pfdi_release(struct inode *inode, struct file *file)
- {
--	struct miscdevice *misc_dev = file->private_data;
--	struct pfdi_dev_data *data;
--	unsigned int cpu;
-+	struct pfdi_file_ctx *ctx = file->private_data;
-+	struct pfdi_per_cpu_info *cpu_info;
- 
--	if (!misc_dev || !misc_dev->this_device)
-+	if (!ctx)
- 		return 0;
- 
--	data = dev_get_drvdata(misc_dev->this_device);
--	cpu = data ? data->cpu_id : raw_smp_processor_id();
--	up(&per_cpu(pfdi_cpu_info, cpu).open_sem);
-+	cpu_info = &per_cpu(pfdi_cpu_info, ctx->cpu);
-+	mutex_lock(&cpu_info->state_lock);
-+	if (cpu_info->online && ctx->generation == cpu_info->generation)
-+		up(&cpu_info->open_sem);
-+	mutex_unlock(&cpu_info->state_lock);
-+	kfree(ctx);
- 
- 	return 0;
- }
-@@ -625,22 +810,31 @@ static int arm_pfdi_device_create(unsigned int cpu)
- 	int ret;
- 	struct miscdevice *misc_dev = &per_cpu(pfdi_misc_device, cpu);
- 	struct pfdi_dev_data *dev_data = &per_cpu(pfdi_device_data, cpu);
-+	struct pfdi_per_cpu_info *cpu_info = &per_cpu(pfdi_cpu_info, cpu);
- 	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
- 
- 	memset(misc_dev, 0, sizeof(*misc_dev));
- 	arm_pfdi_device_init(misc_dev, dev_data, cpu);
- 
--	sema_init(&per_cpu(pfdi_cpu_info, cpu).open_sem, 1);
--	mutex_init(&worker_ctx->worker_lock);
--	atomic_set(&per_cpu(pfdi_cpu_info, cpu).run_inprogress, 0);
--	mutex_init(&per_cpu(pfdi_cpu_info, cpu).state_lock);
--	init_waitqueue_head(&per_cpu(pfdi_cpu_info, cpu).run_wait);
--	init_completion(&worker_ctx->done);
--	per_cpu(pfdi_worker, cpu) =
--		kthread_create_worker_on_cpu(cpu, 0, "pfdi/%u");
--	if (IS_ERR(per_cpu(pfdi_worker, cpu))) {
--		ret = PTR_ERR(per_cpu(pfdi_worker, cpu));
--		per_cpu(pfdi_worker, cpu) = NULL;
-+	ret = pfdi_validate_cpu_features();
-+	if (ret)
-+		return ret;
-+
-+	mutex_lock(&cpu_info->state_lock);
-+	atomic_set(&cpu_info->run_inprogress, 0);
-+	cpu_info->online = false;
-+	cpu_info->generation++;
-+	mutex_unlock(&cpu_info->state_lock);
-+
-+	mutex_lock(&worker_ctx->worker_lock);
-+	WRITE_ONCE(worker_ctx->work_inflight, false);
-+	WRITE_ONCE(worker_ctx->shutting_down, false);
-+	mutex_unlock(&worker_ctx->worker_lock);
-+	WRITE_ONCE(per_cpu(pfdi_worker, cpu),
-+		   kthread_create_worker_on_cpu(cpu, 0, "pfdi/%u"));
-+	if (IS_ERR(READ_ONCE(per_cpu(pfdi_worker, cpu)))) {
-+		ret = PTR_ERR(READ_ONCE(per_cpu(pfdi_worker, cpu)));
-+		WRITE_ONCE(per_cpu(pfdi_worker, cpu), NULL);
- 		return ret;
- 	}
- 
-@@ -654,6 +848,9 @@ static int arm_pfdi_device_create(unsigned int cpu)
- 	}
- 
- 	dev_set_drvdata(misc_dev->this_device, dev_data);
-+	mutex_lock(&cpu_info->state_lock);
-+	cpu_info->online = true;
-+	mutex_unlock(&cpu_info->state_lock);
- 
- 	return 0;
- 
-@@ -668,28 +865,65 @@ static int arm_pfdi_device_create(unsigned int cpu)
- static int arm_pfdi_device_destroy(unsigned int cpu)
- {
- 	struct miscdevice *misc_dev = &per_cpu(pfdi_misc_device, cpu);
-+	struct kthread_worker *worker;
-+	struct pfdi_cpu_worker *worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
-+	struct pfdi_per_cpu_info *cpu_info = &per_cpu(pfdi_cpu_info, cpu);
-+
-+	mutex_lock(&cpu_info->state_lock);
-+	if (atomic_read(&cpu_info->run_inprogress) > 0) {
-+		mutex_unlock(&cpu_info->state_lock);
-+		return -EBUSY;
-+	}
-+	if (down_trylock(&cpu_info->open_sem)) {
-+		mutex_unlock(&cpu_info->state_lock);
-+		return -EBUSY;
-+	}
-+	cpu_info->online = false;
-+	mutex_unlock(&cpu_info->state_lock);
- 
--	if (atomic_read(&per_cpu(pfdi_cpu_info, cpu).run_inprogress) > 0)
-+	mutex_lock(&worker_ctx->worker_lock);
-+	if (worker_ctx->work_inflight) {
-+		mutex_unlock(&worker_ctx->worker_lock);
-+		mutex_lock(&cpu_info->state_lock);
-+		cpu_info->online = true;
-+		mutex_unlock(&cpu_info->state_lock);
-+		up(&cpu_info->open_sem);
- 		return -EBUSY;
-+	}
-+	WRITE_ONCE(worker_ctx->shutting_down, true);
-+	mutex_unlock(&worker_ctx->worker_lock);
- 
--	if (per_cpu(pfdi_worker, cpu)) {
--		kthread_flush_worker(per_cpu(pfdi_worker, cpu));
--		kthread_destroy_worker(per_cpu(pfdi_worker, cpu));
--		per_cpu(pfdi_worker, cpu) = NULL;
-+	worker = READ_ONCE(per_cpu(pfdi_worker, cpu));
-+	if (worker) {
-+		kthread_flush_worker(worker);
-+		kthread_destroy_worker(worker);
-+		WRITE_ONCE(per_cpu(pfdi_worker, cpu), NULL);
- 	}
- 
--	dev_set_drvdata(misc_dev->this_device, NULL);
- 	misc_deregister(misc_dev);
-+	up(&cpu_info->open_sem);
- 	return 0;
- }
- 
- static int __init arm_pfdi_init(void)
- {
-+	unsigned int cpu;
- 	int ret;
--
--	ret = pfdi_validate_cpu_features();
--	if (ret)
--		return ret;
-+	struct pfdi_cpu_worker *worker_ctx;
-+	struct pfdi_per_cpu_info *cpu_info;
-+
-+	for_each_possible_cpu(cpu) {
-+		cpu_info = &per_cpu(pfdi_cpu_info, cpu);
-+		worker_ctx = &per_cpu(pfdi_worker_ctx, cpu);
-+
-+		mutex_init(&cpu_info->state_lock);
-+		sema_init(&cpu_info->open_sem, 1);
-+		init_waitqueue_head(&cpu_info->run_wait);
-+		mutex_init(&worker_ctx->op_lock);
-+		mutex_init(&worker_ctx->worker_lock);
-+		init_completion(&worker_ctx->done);
-+		init_waitqueue_head(&worker_ctx->worker_wait);
-+	}
- 
- 	ret = cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "firmware/arm-pfdi:online",
- 				arm_pfdi_device_create, arm_pfdi_device_destroy);
-
--- 
-2.43.0
-
+Regards,
+Anup
 
