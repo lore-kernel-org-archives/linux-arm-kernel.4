@@ -2,86 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37EC8606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 03:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E56B606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 03:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JdLydAjq;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YgBFc99g
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=INxYaiqR;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=J5cJw6kp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=gR1qLIaMHhI3YBZAln/1xyLff0Ct3bEmnohy1kd4w4Q=; b=JdLydAjqsFt9m/PinCW4b3bl0O
-	Ul51uRnIK3onPu36dZTcV1f4ryA3+9fKDTwpmE7gGJsA54RwwnWI9eOWnqjSHCEzV0G76dUMDEV8m
-	IukdcRdvjm6HzVE/SZp1u2L2UJa8JdpuGFkIb/AbZZfHoJgEVLpEx9A6IGnfQA9URMaekIFT/pM3j
-	GhAK7K5/5wsvQ4OimKrcRG+BS1Gxu1XifhJ5+0kVHa66Glg040OmIQW+EaYswqdjJH91g2vssA3io
-	oyyNaPbnti5yjblncCIcOIjPWlhB9USpjKxzEFFMwEqHCbsxqQ8682vGSQKz2Hc6eorBcHUElNyKL
-	4EoHA5Vg==;
+	bh=nzumizWeRahFF6SbXg6af2NSKWXv+aezI70WP4j1Pos=; b=INxYaiqRNWtqs1sLKwLT5IOvwZ
+	aZcyzrLRFBGUHelHYSMDpsS9xCZC9F2sco/+/V3KupvohtCvlCSu4kawictLkOGh7JnerPRfSMim4
+	k6iRHHW847zvuwIyUiGr29Mf90vjwjOPUAfz1jhUPgze2z4U6Ip9qHAl2qVMTY+UcRt6iSnGv3LfK
+	TUfqprq/hCgFb5oZophe4JKvQOZkVZUVRM7cW8cbw85DQwCgvalDpf6mJdPsXOsxRje7s2YY/QNGQ
+	AUVOKwuR5Bwvzan7QfxYvSDTj+i4XFL3NEA447Aby5WpBLkolgYU59vxju5r1LQE67bGNIGsf3lo1
+	Lcwx6KaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTsTx-0000000AkPV-23Qe;
-	Thu, 19 Nov 2026 03:06:41 +0000
-Received: from mgamail.intel.com ([192.198.163.15])
+	id 1xTsf4-0000000Akz0-3BkB;
+	Thu, 19 Nov 2026 03:18:10 +0000
+Received: from m16.mail.163.com ([117.135.210.2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTsTt-0000000AkP3-4AGZ
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 03:06:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795057598; x=1826593598;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EfvJartN0GQTYOS8WukorNhnfCAqMp3jN6Awhu42mQU=;
-  b=YgBFc99g8/l5ijzZsatR81z5IRdQhtcT9N2fsU6wAqEZKBdXDEm+QBD9
-   AWkw+2OEFdSt61GjMOhd2p0GuJMG4mT4jYBrlSIWGoKS9p889zAElPBV3
-   wjRcAPnD+wUnjw7K1UbDWjgaLPINgNknfwVhPcdnRrQJnK9Enh4C9Yivw
-   lxTVpnGIUmBCoBMuJYkVR0HIR2tVtqqXc1eiNoB9xfL7gcUyHLibISi1h
-   tg9nCVusw3Cu6KdnYNMV3A/uinWMnSzBoZIXtvusHdgALwwUUrPljBRZ/
-   VlMKZ0eh7mxt2Dky7VT2B5e3EgWUwPzsny6Yav4dfOPOwGC0v/bD+pL8t
-   w==;
-X-CSE-ConnectionGUID: Qy7qIlKYTY+8zaIoGj52mQ==
-X-CSE-MsgGUID: 6lHqwYfZS16xTvbB7ATlFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3906183"
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="3906183"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2026 19:06:36 -0800
-X-CSE-ConnectionGUID: t+eZmWpVQtWw0a8Ltad/lg==
-X-CSE-MsgGUID: cTqBNtlNTRSr8YPa6eNoPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="10190438"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 18 Nov 2026 19:06:34 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xTsTn-00000001Ev8-1pXM;
-	Thu, 19 Nov 2026 03:06:31 +0000
-Date: Thu, 19 Nov 2026 11:06:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Simek <monstr@monstr.eu>, linux-kernel@vger.kernel.org,
-	michal.simek@amd.com, git@amd.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-media@vger.kernel.org,
-	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] media: xilinx: vip: Make use of the
- devm_clk_get_enabled()
-Message-ID: <202611191027.Md4LUs3M-lkp@intel.com>
-References: <abfe9f93f9f93d256b0d60d081e6111d7169c08f.1794994290.git.michal.simek@amd.com>
+	id 1xTsf1-0000000AkyU-1vlJ;
+	Thu, 19 Nov 2026 03:18:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=nz
+	umizWeRahFF6SbXg6af2NSKWXv+aezI70WP4j1Pos=; b=J5cJw6kpHgyFz+DwZC
+	iGQDN9hqkKtTWX8TsphzxnVIoMeY6X0zoOt6h+8xj8GP75rd4Vqr3h79yrd3D7kj
+	Z2WaYZrWL6VERXYtU9fSPsDFf/L1WZZNqPGCyx3qN2czhs6bJE/HhqyJNXy2FqI+
+	CHaSggwD3+I3pVzBVNbTeRu9E=
+Received: from localhost.localdomain (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id PSgvCgBX7xNQav5q3MyXGQ--.21624S2;
+	Thu, 19 Nov 2026 11:17:38 +0800 (CST)
+From: Haoxiang Li <haoxiang_li2024@163.com>
+To: chunkuang.hu@kernel.org,
+	p.zabel@pengutronix.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	junzhi.zhao@mediatek.com,
+	jie.qiu@mediatek.com
+Cc: dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Haoxiang Li <haoxiang_li2024@163.com>
+Subject: [PATCH] drm/mediatek: mtk_hdmi_common: Fix clock reference leaks
+Date: Thu, 19 Nov 2026 11:17:34 +0800
+Message-Id: <20261119031734.2797802-1-haoxiang_li2024@163.com>
+X-Mailer: git-send-email 2.25.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <abfe9f93f9f93d256b0d60d081e6111d7169c08f.1794994290.git.michal.simek@amd.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: PSgvCgBX7xNQav5q3MyXGQ--.21624S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJrW8Kry7JrykXrWftF47urg_yoW8Zr4fpF
+	47G34YyFy7Ar4jgr1qyr1xXFnYkw17uFW3GrW3Wwn3Crn8XFyrtF13ta45ZFWSkr97Z39I
+	yrZ0ka4fXa4UuFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0piGjg7UUUUU=
+X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/xtbC7hIJd2r+alIOmgAA36
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_190638_067925_2264E61D 
-X-CRM114-Status: GOOD (  13.19  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261118_191807_901613_064AEF7E 
+X-CRM114-Status: GOOD (  10.68  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,73 +78,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Michal,
+mtk_hdmi_get_all_clk() acquires clock references using
+of_clk_get_by_name(), but these references are never released.
+They leak when a later clock lookup or subsequent probe step
+fails, as well as on driver unbind.
 
-kernel test robot noticed the following build errors:
+Use devm_clk_get() to automatically release each successfully acquired
+clock reference on probe failure or driver unbind. Remove the now
+unused device-node parameter from mtk_hdmi_get_all_clk() and update
+its caller.
 
-[auto build test ERROR on v7.4-rc3]
-[also build test ERROR on linus/master next-20261116]
-[cannot apply to xilinx-xlnx/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Fixes: 8f83f26891e1 ("drm/mediatek: Add HDMI support")
+Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+---
+ drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Simek/media-xilinx-vip-Make-use-of-the-devm_clk_get_enabled/20261118-103132
-base:   v7.4-rc3
-patch link:    https://lore.kernel.org/r/abfe9f93f9f93d256b0d60d081e6111d7169c08f.1794994290.git.michal.simek%40amd.com
-patch subject: [PATCH] media: xilinx: vip: Make use of the devm_clk_get_enabled()
-config: loongarch-randconfig-1001-20261119 (https://download.01.org/0day-ci/archive/20261119/202611191027.Md4LUs3M-lkp@intel.com/config)
-compiler: clang version 24.0.0git (https://github.com/llvm/llvm-project 67ab6538dff0ed2593b90166214d93e992c74905)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261119/202611191027.Md4LUs3M-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202611191027.Md4LUs3M-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/media/platform/xilinx/xilinx-vip.c:215:14: error: call to undeclared function 'devm_clk_get_enable'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     215 |         xvip->clk = devm_clk_get_enable(xvip->dev, NULL);
-         |                     ^
-   drivers/media/platform/xilinx/xilinx-vip.c:215:14: note: did you mean 'devm_clk_get_enabled'?
-   include/linux/clk.h:632:13: note: 'devm_clk_get_enabled' declared here
-     632 | struct clk *devm_clk_get_enabled(struct device *dev, const char *id);
-         |             ^
->> drivers/media/platform/xilinx/xilinx-vip.c:215:12: error: incompatible integer to pointer conversion assigning to 'struct clk *' from 'int' [-Wint-conversion]
-     215 |         xvip->clk = devm_clk_get_enable(xvip->dev, NULL);
-         |                   ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   2 errors generated.
-
-
-vim +/devm_clk_get_enable +215 drivers/media/platform/xilinx/xilinx-vip.c
-
-   206	
-   207	int xvip_init_resources(struct xvip_device *xvip)
-   208	{
-   209		struct platform_device *pdev = to_platform_device(xvip->dev);
-   210	
-   211		xvip->iomem = devm_platform_ioremap_resource(pdev, 0);
-   212		if (IS_ERR(xvip->iomem))
-   213			return PTR_ERR(xvip->iomem);
-   214	
- > 215		xvip->clk = devm_clk_get_enable(xvip->dev, NULL);
-   216		if (IS_ERR(xvip->clk))
-   217			return PTR_ERR(xvip->clk);
-   218	
-   219		return 0;
-   220	}
-   221	EXPORT_SYMBOL_GPL(xvip_init_resources);
-   222	
-
+diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+index a36d8dd6b761..8e8ea4111351 100644
+--- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
++++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+@@ -199,13 +199,13 @@ void mtk_hdmi_audio_set_plugged_cb(struct mtk_hdmi *hdmi, hdmi_codec_plugged_cb
+ }
+ EXPORT_SYMBOL_NS_GPL(mtk_hdmi_audio_set_plugged_cb, "DRM_MTK_HDMI");
+ 
+-static int mtk_hdmi_get_all_clk(struct mtk_hdmi *hdmi, struct device_node *np,
++static int mtk_hdmi_get_all_clk(struct mtk_hdmi *hdmi,
+ 				const char * const *clock_names, size_t num_clocks)
+ {
+ 	int i;
+ 
+ 	for (i = 0; i < num_clocks; i++) {
+-		hdmi->clk[i] = of_clk_get_by_name(np, clock_names[i]);
++		hdmi->clk[i] = devm_clk_get(hdmi->dev, clock_names[i]);
+ 
+ 		if (IS_ERR(hdmi->clk[i]))
+ 			return PTR_ERR(hdmi->clk[i]);
+@@ -305,7 +305,7 @@ static int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platform_device
+ 	struct device_node *remote, *i2c_np;
+ 	int ret;
+ 
+-	ret = mtk_hdmi_get_all_clk(hdmi, np, clk_names, num_clocks);
++	ret = mtk_hdmi_get_all_clk(hdmi, clk_names, num_clocks);
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "Failed to get clocks\n");
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
