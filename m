@@ -2,108 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7145560A382C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B986606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lm4G21cq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GKDLrQKe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5AUHoUra;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Htsh/5Y6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=TaoNleEXGo6xiBeA10auiejfA5+WdvUEBOEnJYwo0bA=; b=lm4G21cq8PAEl34ba1+4PNG1YG
-	1jWr43nTqRI4sxU2JMTC3QDGAtNTrlXPSYmupAK3kpzMn//2MBLtH1xyPNPzHoFQr8vI1qv5kOrq+
-	noPruvGi8zucdeBwJnAl2dL9Mmj2WMY2EZ6knAqjLg2c2NF8h7KbVC7Jm2J2KA7gNEnusxwb3kDJC
-	3Mk7413At7bjEobufWpqVJVFWhKmS0ZokL2Bs7LbROccuY5EJFsQf2sSWxIWFHX7uWNoCMkJ5Gqfe
-	Hy9VoZYSUGqEgs3SgSBwp/+YQAzziHqkVTDw58Iultff82vRZMD7VA2mOv/xmdCPm7swLjsqKWDpZ
-	kMU1AThA==;
+	bh=UKimyI/UHlRpxqjgUHmyLOIFBaaEPfjcq4wI8Pw7Jjw=; b=5AUHoUratRQtrgxcyD/ni7KTxi
+	jKfR3XR0bIjk0ToYesjEmkE2K10ZHxr+nRegb3D7NsB9m9nhP/8vPlbdbWIkOZedah9+WxHMAa69N
+	ajSvelGNIuosfuSlyNCAygtb4ccG+L+7w12zYqBs5r4mwc542ZcGWOBuWmo4Vrg5JEfy1MtHGVlmk
+	4Idcd2itAEZTgBdpFb1Knw8co9D+iEsw+zXKO0ueJQkjyWe3Va72hG2fCHpSLNJKrRiS6pex5e8mM
+	+zblnpJYW5ha4tRRYGNTpzePUwg7ztB2DhhAcv3YajpharzWJN6o6UVOoVyfEFLVp0v0M1xF1k9Ua
+	zcrLfaqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU562-0000000Cemo-2MIK;
-	Thu, 19 Nov 2026 16:34:50 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xU56O-0000000Cez4-3iv1;
+	Thu, 19 Nov 2026 16:35:12 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU561-0000000Cem8-2PAJ
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 16:34:49 +0000
+	id 1xU565-0000000CeoO-1vQc;
+	Thu, 19 Nov 2026 16:34:53 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0BADB620A5;
-	Thu, 19 Nov 2026 16:34:49 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 1F6ED45698;
+	Thu, 19 Nov 2026 16:34:53 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795106088;
-	b=SZw+JHV8nZe69Ln3WOZ+eMwEzBO9+/UMt9nZ9AOvxYdrsdCKjeAjrw/FxQtD2OkJTK8F
-	 OW8gu/oQRjyg+FObI/4qrWidpyRO4la9akixH6SU7vh0TDdcQVxrvgKVD13m+rX8lqNY7
-	 njFR+p3p+G7dRiCLXxPXub1Frl6IxrVZ0nOte8tWtZSIcPHlYU+w3HRqWjwdIjQ2im1xD
-	 gJp0wIu3D9/YHQjx06/VOyVk8jWyeJkwjD4FDHNl3rV78e2kFjtlJAkqee5djOcrJrQNR
-	 b/PIn9xF2okpi4DZJ03QgrKS/0eIdLQA5SxH+W4c8oWblRyck2ShqWhEpUtkT4jolEA==
+	t=1795106093;
+	b=NEMbay6VlCdZyMBLRnuEWqpxKcuhDUHhLWDwsTgspZvvyNyGr/y0mw+q/qcO4wkM0IW7
+	 jA0I7W1M5ohibNZLHVQTideChlnDCfBu2kHGrn+g9avpFrOVuMR7qJ4I7zMqMBUu0OEho
+	 XToFm2z7sfbkeL7lXQvQRxNV2XuAnzdBQS9Aj6BCor7XouQbSlgn2L5fJqGrJ5G1EBChL
+	 VDWKQUnN03gt28Sm9OEB+aRLVqUMnPxFGo02a/ea3ijvgCoNAvJU9EGMHasCSYXbk9t2K
+	 e1CFPKDcJ3nXc/5n1Xv1JUpDgQCFDSmIoMPmkiGnR4Y8Y6n1gZwUZYN4m/aG1AZ4l/w==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795106088;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=TaoNleEXGo6xiBeA10auiejfA5+WdvUEBOEnJYwo0bA=;
-	b=iDUrt/PooCOMi5LzeCkro1PhLhCvWyF/k3PVzHV/ddWcHeQsanpe27bHQi2ZIlCRahQ5
-	 v1+lygyvPDMH6nM8DZyIgfFFsrBpJqbh8uvGoLwlSgvRBu4K87cEmynIMlby3AHnQae8R
-	 JT0a5VdSQ6d1ZLqaAoreg0ssrO4ql+eCN71RvqWRKtOSCYip6sK6HtGbL9a+jVdg3DXS9
-	 KjUz9NCOblkG7d3NiYkde+orQVl3xq7pYcwm44v2Ce9F04Y7nKuZO/lOWm7BEWlv2R6Vl
-	 tK/t5GlDhD1JEfzcXTmwplzksK82EM/9vyDOqFjrgFHtzdA81uaW5bO7D7ZWZvPK7BQ==
+	c=relaxed/relaxed; t=1795106093;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=UKimyI/UHlRpxqjgUHmyLOIFBaaEPfjcq4wI8Pw7Jjw=;
+	b=NfTwsqgTWgdlaKAPWKgOpB7KIBHbYaU7a8nhWAwTNUVeWNbGSMTLjhiRgGDWxYLLeB/n
+	 jXdZ+tlqz+MEvXie6qozbvyr2pqhpiIOuQCbNlq68ImAGwF4Z7RkiBqNv5oH9qyA6CRlF
+	 TnQlcrmFLGg1QA6lG1HyP7WxQQscaozVBg/06Q1i06gXA1tJ4pjECt3oDdrNrTbhYi6iD
+	 UXwaYPNf4TkYiRfs3nLfMt1hzq31f6dOEGLdjAFmEba/v7O+3p7HLSUZdUEhhN32ecdTv
+	 wUYrR1+nUw+6ipeBIHAAGIrxypNpUUqD+y9QCtJkBCsDPXPK8P8QjQWYShSyo37HIlA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id CEDE91F000C6;
-	Thu, 19 Nov 2026 16:34:47 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 27BCE1F000CB;
+	Thu, 19 Nov 2026 16:34:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795106088;
-	bh=TaoNleEXGo6xiBeA10auiejfA5+WdvUEBOEnJYwo0bA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=GKDLrQKeoUs2pL9ZWUdejcIvVzAMVAbwgRZJNrecBnF9l08ug5ahCbKg8Df/BCkIH
-	 GZe1ZjnzOSGp52qlxUNLNQfrI8FYAvzfSDdQo8xFqIF5hK5nO7oe3bV6A/eFnxUZSl
-	 l1bPtcPJ9sO5p5TcH5hSwUYHEhSxbykWgEXC+/qBjuP6XqbC/MQrfZQ5nrMYXWtb3f
-	 nAWPh8OMUmPU8LTn4GNsFQWVBAYnDjYlnDS31IBVUyaNgaRfnTpEVMpbMwOzSqDr8i
-	 t0vriXInakWmClNCiizCQ804PizW4GV9bsw651Q7lEiMTnkFsLz9oebGVAaM4tSzet
-	 /iJy1Ay5KzCiA==
+	s=k20260515; t=1795106092;
+	bh=UKimyI/UHlRpxqjgUHmyLOIFBaaEPfjcq4wI8Pw7Jjw=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=Htsh/5Y6p+adSvuKLKaSXxGoaPpkzke7i2/JgR4IhkAhAMGhgNEJnHIap1ITUUmqV
+	 mzdh5GXiziCgzJScV7YwUvp7LelC2Zs8IEZ1FJO+hi+5V6n7av/IwxDjUJBoMjzluq
+	 OO8caOoF6SqATjQF+It3fA7d2uK1/M/LXW21UxHlt2nM2uLMVK0oUThYK7BoYz8q3s
+	 29I6J2RA0k2M1l+YIYP1bHQgMHLgErY/lmGRjy+bW3WsOkb/oG+vKIr2lxO0ndA9Df
+	 0keXyIsH6vAbeKmePeK6bilwlqTveftmNiEQuYKe/9zgRr2dOdZVKj9IFDWhIJsILE
+	 r7Oo8PGb/rdNg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 504654B336;
-	Thu, 19 Nov 2026 16:34:47 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id A907F4B337;
+	Thu, 19 Nov 2026 16:34:51 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 19 Nov 2026 16:34:47 +0000
-Subject: [PATCH 1/2] media: cedrus: fail buffer allocations that do not fit
- with -ENOMEM
+Subject: [PATCH RFC 0/2] media: stateless MPEG-1 decoding, cedrus support
+Date: Thu, 19 Nov 2026 16:34:51 +0000
+Message-Id: <20261119-b4-cedrus-mpeg1-v1-0-aa5ba1192822@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261119-b4-cedrus-generic-fixes-v1-1-f9f50812c85b@gmail.com>
-References: <20261119-b4-cedrus-generic-fixes-v1-0-f9f50812c85b@gmail.com>
-In-Reply-To: <20261119-b4-cedrus-generic-fixes-v1-0-f9f50812c85b@gmail.com>
-To: Maxime Ripard <mripard@kernel.org>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWMQQuCQBBG/4rMuQFn0RCvQT+ga3TYXT91gkx2M
+ gTxv7fV8T14byNDUhi1xUYJbzV9ThnkUFAc/TSAtctMrnRHEak4VBzRpcX4MWMQboL3qL0DelC
+ u5oRe19/xSpfziW5/aUu4I76+L9r3D2CfiaF4AAAA
+X-Change-ID: 20261114-b4-cedrus-mpeg1-8baae5a2eefe
+To: Hans Verkuil <hverkuil@kernel.org>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
  Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
+ Paul Kocialkowski <paulk@sys-base.io>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Hans Verkuil <hverkuil@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-staging@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
+ Samuel Holland <samuel@sholland.org>
+Cc: Jonas Karlman <jonas@kwiboo.se>, linux-media@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, 
+ =?utf-8?q?Christian_Stefan_K=C3=B6v=C3=A9r-Draxl?= <ckoever@outlook.de>, 
+ Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795106086; l=1226;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795106091; l=2835;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=hXtCMT/F7gvoSbtMOmEiwBTiT/kPdUTePkmZB9JuFUw=;
- b=fEDYH/5HHKubMaENR7u9rph7nZG63AHPy5b8HSHLPNedtjbePrQRi2t02aSp4EGbBxLMAOYJV
- gLjsIxuv7HIC9eP9/IQHJtmPMyw2WzkR6/iQUVdPhdcwVcQA8unkQqG
+ bh=QsCl51k6uk/8eEVXP0Noi7pULDA/cGnoC7OzqiRMj5g=;
+ b=MYPO5m+L0jmlqTvYEY0eCmCBMWbjwjJHDslt1mReSBrEQU7MTDgJ1D3KZkcUhztoSEOsBraMV
+ xTNroU694dVBGFSp+ZoGG2ldSZGOKMDVuVi8/YwrZytRZTyKa5S1TKc
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,45 +124,66 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+Builds on Jernej Skrabec's cedrus work; tested with an FFmpeg hwaccel
+on top of Jonas Karlman's V4L2 request API series (FFmpeg PR 20847).
 
-vb2-dma-contig allocates with GFP_KERNEL, so a buffer pool that does
-not fit in memory invokes the OOM killer. Set __GFP_RETRY_MAYFAIL on
-both queues: the request returns fewer buffers or -ENOMEM instead.
+MPEG-1 decoded as MPEG-2 is wrong: the mismatch control differs, and
+MPEG-1 has full pel motion vectors and D-pictures. Patch 1 adds
+V4L2_PIX_FMT_MPEG1_SLICE, which reuses the MPEG-2 controls with one
+sequence flag and two picture flags; hantro rejects the new flags and
+D-pictures (compile tested only). Patch 2 implements it in cedrus.
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+RFC questions:
+- Is a separate pixel format the right way to make MPEG-1
+  discoverable? Christian's Amlogic series decodes MPEG-1 through
+  V4L2_PIX_FMT_MPEG2_SLICE.
+- V4L2_MPEG2_SEQ_FLAG_MPEG1 is redundant with the format. I kept it so
+  that the controls describe the bitstream on their own; happy to drop
+  it.
+
+FFmpeg patches (the second corrects D-picture handling of the first):
+https://github.com/SomeComputerGuy/orangepizero2/blob/7ed24f39cbf0f4b285cd142c291267c9cfb818f4/patches/ffmpeg/0304-avcodec-add-V4L2-Request-API-MPEG-1-hwaccel.patch
+https://github.com/SomeComputerGuy/orangepizero2/blob/7ed24f39cbf0f4b285cd142c291267c9cfb818f4/patches/ffmpeg/0309-avcodec-mpeg12dec-hand-D-pictures-only-to-hwaccels-t.patch
+
+Tested on H616 only, on media-committers next: MPEG-1 (D-pictures
+included), MPEG-2, H.264 and H.265 decode bit-exact against FFmpeg
+software decoding; v4l2-compliance 49 of 49 with the v4l-utils patch
+that teaches it the new format (sent separately).
+
+Developed with Claude (Anthropic) as a coding assistant, which wrote
+the code and the commit messages. I reviewed and tested them as
+described above.
+
 ---
- drivers/staging/media/sunxi/cedrus/cedrus_video.c | 2 ++
- 1 file changed, 2 insertions(+)
+Arun Iyengar (2):
+      media: uapi: mpeg2: add MPEG-1 flags and the MPEG-1 parsed slice format
+      media: cedrus: mpeg2: decode MPEG-1 as V4L2_PIX_FMT_MPEG1_SLICE
 
-diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_video.c b/drivers/staging/media/sunxi/cedrus/cedrus_video.c
-index ad4ec3490775..9b2d24e77fdb 100644
---- a/drivers/staging/media/sunxi/cedrus/cedrus_video.c
-+++ b/drivers/staging/media/sunxi/cedrus/cedrus_video.c
-@@ -602,6 +602,7 @@ int cedrus_queue_init(void *priv, struct vb2_queue *src_vq,
- 	src_vq->dev = ctx->dev->dev;
- 	src_vq->supports_requests = true;
- 	src_vq->requires_requests = true;
-+	src_vq->gfp_flags = __GFP_RETRY_MAYFAIL;
- 
- 	ret = vb2_queue_init(src_vq);
- 	if (ret)
-@@ -616,6 +617,7 @@ int cedrus_queue_init(void *priv, struct vb2_queue *src_vq,
- 	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
- 	dst_vq->lock = &ctx->dev->dev_mutex;
- 	dst_vq->dev = ctx->dev->dev;
-+	dst_vq->gfp_flags = __GFP_RETRY_MAYFAIL;
- 
- 	return vb2_queue_init(dst_vq);
- }
+ .../media/v4l/ext-ctrls-codec-stateless.rst        | 35 ++++++++++++++++++--
+ .../userspace-api/media/v4l/pixfmt-compressed.rst  | 23 +++++++++++++
+ drivers/media/platform/verisilicon/hantro_drv.c    | 12 +++++++
+ drivers/media/v4l2-core/v4l2-ctrls-core.c          |  1 +
+ drivers/media/v4l2-core/v4l2-ioctl.c               |  1 +
+ drivers/staging/media/sunxi/cedrus/cedrus.c        | 22 +++++++++++++
+ drivers/staging/media/sunxi/cedrus/cedrus_dec.c    |  1 +
+ drivers/staging/media/sunxi/cedrus/cedrus_hw.c     |  1 +
+ drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c  | 38 +++++++++++++++++++---
+ drivers/staging/media/sunxi/cedrus/cedrus_video.c  |  7 ++++
+ include/uapi/linux/v4l2-controls.h                 |  3 ++
+ include/uapi/linux/videodev2.h                     |  1 +
+ 12 files changed, 139 insertions(+), 6 deletions(-)
+---
+base-commit: aa0f4c41d4870a18e65772a1817af16427200371
+change-id: 20261114-b4-cedrus-mpeg1-8baae5a2eefe
 
--- 
-2.55.0
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
 
 
