@@ -2,97 +2,61 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C07606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 12:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69397606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 12:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lZpv1h7d;
-	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.a=rsa-sha256 header.s=a1 header.b=CycFhd9A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m+SHi2eR;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=nTyJfWrW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4+hewYS5Xc85XMsrC6qSZHgaMk+5vxcwYlnKkuazLe8=; b=lZpv1h7dqruZTr
-	LG4M/JJ1n+J2m602V5mZRenRBy3xEXelSaMUNUzZeEKZyH2JffeD/j+Xm9mHi8sGgVGZ7DoL/b6KU
-	Y39IHYkLH/FXqvpVM7mbL3T65I9Ca9W7jDFfuGNf3OwkdUsTI87Y8mJ6mD96icYr0+oEKed9sh8lq
-	//35F4qnzLPYV13LAMXdL38a6Ys35DmKJAzp+oEs1YeCn75vk9UkIc0RzEKUAKXedVX24FfD+WWHO
-	I3nQBX0XalWsRxdthA7a5qgLik4KQhca7hxJsJwG8ub2xh7IIpyR3OT7YQ4Lmp/3WEkYhy0JhEvrD
-	WVpjtW6jqQtX6gLDnn5g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=SXp9CsGNZ9198vKxlERJhM6rRFDt3TB+h3sLDmsTvqY=; b=m+SHi2eRQir7q133W4lJr3Kp/B
+	O/iE4X5bktgJuvhomF3mjtfFqAv+vu2hnKFIEocn2N2BaVslEzPk/Shhbogd165P5Rji/Z+MfHnt1
+	ewMpHUi4czOZtUHudzUcarFbxznyLPIcvcsQ2tcAFi34cjI13cp6DHcMYiBZYO/zWCEsiCiidAyWK
+	4Pa9ZcSlyUMfa7YeDkhl5V0W28QZhODRo+pkNb7j5C8PPiU9LP/ey2qIiwHyiwvcCXECzEOVaxAFh
+	00RimLXn9RPqWb4VGo7Y/MXdBiq+fC+0TpbT9fN/g2k5zHuAp2hN53UwbxycKl50uBkqJDAzLhrdW
+	nRky3jgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU159-0000000BpFq-1H7U;
-	Thu, 19 Nov 2026 12:17:39 +0000
-Received: from smtpcmd11116.aruba.it ([62.149.156.116])
+	id 1xU1AA-0000000Bpaq-4A7Y;
+	Thu, 19 Nov 2026 12:22:50 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU155-0000000BpF1-1GVa
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 12:17:37 +0000
-Received: from [192.168.0.186] ([101.57.122.26])
-	by Aruba SMTP with ESMTPSA
-	id U14zxDwan6VShU14zxRiua; Thu, 19 Nov 2026 13:17:31 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1795090651; bh=V3OZh4icVrzbMI2k6cXTPEjlLw6DW6zRycuz+4CAfec=;
-	h=Date:MIME-Version:Subject:To:From:Content-Type;
-	b=CycFhd9A1catDJK8mSVVnIjyH5ROQd1v+wC5+drY99wllUzOcvv0JnbleYae1QyWl
-	 BfXvel5+GlGK/smjYdZVOsE8ifTJ+aNn92e3/PHwymqXJ9vopCmtPNtiJdDDxgFhXQ
-	 gH0O5LL0GqGBMM5zzAqHd0YcDoUE/TebWvQKcOdv9bAt/QbHhwHYpgUqx3x1h4Ldgp
-	 75NfGZPT+sNKTTrA02giDUkiO0gk016/Jf4H4Ha37Gpw+3d0e3MxEHOw+7cjazCAy7
-	 12PcNhVzIViATgQFKluA/RK3kpXudgDDYCPNifgplaPxzA8PVajw1Iru4DOG02ulfO
-	 Vnl/JByjL9DVw==
-Message-ID: <10d27c34-72d7-4380-abc9-6f8eddc6c08c@enneenne.com>
-Date: Thu, 19 Nov 2026 13:17:29 +0100
+	id 1xU1A8-0000000BpZw-0LTM;
+	Thu, 19 Nov 2026 12:22:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=SXp9CsGNZ9198vKxlERJhM6rRFDt3TB+h3sLDmsTvqY=; b=nTyJfWrWs9J3Bu0dcnPPw1Xcqx
+	ZO2GJv25OsuW9y9A57I18j8nIIfCDI7VHEQv86ieSX7TES3LM+hYTzU7SymfMmFvB9BdEeM2gqV6r
+	HTu2YbhRKfMz6brmeSa/unjcrRJAO8UCQyFKRExx3QqpOLnpwcNSJh8UKqO1eKB4HF6JgbwH5FLi+
+	1+ORZqXIYASY4NsdhOC8TfulyD9jNrTj8Qf6J7mKNhjp/n/mkfSC4HUK5YOykRaLQPupkehsn67LI
+	osXstr2pmhNujJ5cis957d8XLpXXkoBMvjBCxBp+NSqHha4HCFUFTXaSeV9OZH3XtUCrjFersvJEL
+	zfMJGMVQ==;
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Coia Prant <coiaprant@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, netdev@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Coia Prant <coiaprant@gmail.com>
+Subject: Re: [PATCH net-next] net: stmmac: dwmac-rk: split gmac_clk_enable into
+ enable/disable
+Date: Thu, 19 Nov 2026 13:22:38 +0100
+Message-ID: <Jocs6e4zRiOpvEViMS_OjA@sntech.de>
+In-Reply-To: <20261117182502.3045841-2-coiaprant@gmail.com>
+References: <20261117182502.3045841-2-coiaprant@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/9] KEYS: keycrypt: keys that user space can use but
- never read
-Content-Language: en-US
-To: Demi Marie Obenour <demiobenour@gmail.com>,
- Jarkko Sakkinen <jarkko@kernel.org>
-Cc: David Howells <dhowells@redhat.com>, keyrings@vger.kernel.org,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Jens Wiklander <jenswi@kernel.org>,
- Sumit Garg <sumit.garg@kernel.org>, op-tee@lists.trustedfirmware.org,
- =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>,
- Pankaj Gupta <pankaj.gupta@nxp.com>, Sahil Malhotra
- <sahil.malhotra@nxp.com>, Ahmad Fatoum <a.fatoum@pengutronix.de>,
- Richard Weinberger <richard@nod.at>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Eric Biggers <ebiggers@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap
- <rdunlap@infradead.org>, linux-crypto@vger.kernel.org,
- linux-integrity@vger.kernel.org, linux-security-module@vger.kernel.org,
- linux-kselftest@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-api@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20261118140421.584086-1-giometti@enneenne.com>
- <650f89ef-9745-4f75-b254-80fa5ac4773d@gmail.com>
- <av5EyVHnNzT27dyK@kernel.org>
- <61ca7c37-7b42-48a3-be2e-95deb4d999a2@gmail.com>
- <01692969-8e92-4a08-bde9-aad86674504f@gmail.com>
-From: Rodolfo Giometti <giometti@enneenne.com>
-In-Reply-To: <01692969-8e92-4a08-bde9-aad86674504f@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfKBPrYJ2CDN4f71Kap/ixDsQG8LCW21ix5G/r+qduPuGoKFzPku3ui/3D6NrDy/I4fLjS/AZ5x4bSLPCyVIF0to5TjSclhUTdSU4uon2/XK98GioKEpu
- t0DAXGgZowfR8EBdb4xlQI1aOmtiyouqFm6ozJqENawyIYsyVwWUPVtIrxKIMh6tgg2DcE0bNvKSfTxI4E/KX6og6HQ36T9SsUF5L6ywvP0CPLLtoj3XfOJK
- KK6OL4sQiUzIGXyKYC/g5t6eDL7TGBKZYqtynb/EnlVDCDMoH+BMpug/FQzubq89PMXLKw1FzF7r79429pnKXBHAlDBdAGSZfIFNS5uHsw8Ky4Ryb//LMK9V
- xLfwyhC5KBHWow0xsn0MR7mF6xbrK8rHOP6EY/6N+7N/mkYzZW0dxG31VP79/qgd0FE+u/f6bwMdsGglkPiv7Y+X/kQhNQovCMTLqK/xd4/A1//iDD4ibkuq
- 1/kQFk3iW8okXGDrlVnZ6UkHWDYJU0H4V33JM+dA1KrG1s5yxelszfrfDGYXDXRvM9MRXG2C0JJFVnXDW1DBfX7oruz0XIMBt6ZuUqYpwYoCJYgDT8/Y94gB
- RtndS527vikEPvkczW3D2qQoIsrt4+TG4WSJC3lfoPhIyloLUzoc3clohznlcZ5d41rbBCRbfQ1vSp4l+bVmTsLWseSQTZKxyCBx5FWky+xTaEm69CxDc2nW
- HxMYdlYxr4DwnIfL+x2fqCJ5RbC7gBciMQd6ihsH1iadIXHfBcS4KhXDviVzexL7jL7TLPHnlpjTAhT/rODrCAAiT5G8Le0zqKlXI3LhP81Ke0+765dQ0e9y
- vgu5MhNb82zl8mX48OJ9rhfGTJKQP6C/S1uHuzQOV8VuqFJx7jL006rc7ZGJIcc4/bSi4OzRvFhFOgNVnMJP+jAWIUvBJtJS4o9aDPfIoaC0wUPeec7ltUUx
- 3YAptj8Js+/LJy8wIk8KSIHNu1+DIrXnbtSxZ48rdWX3ylBXpUU2OdzVbAPjylucDm+hVHDEnZGmwM4stN3z19Ce9cCXkLIDcyAWyz9J1zqQ0O2bu0XmE7hv
- 9+HAxJgOrvm6fyiIZnDN/P7bOyh6SKydeOvoEul+E155hehVkqO41wFNa7awsiPXufzyRwo7sKbPtMCbyJ4P/mnlwQSbOC29VJQeoCboPfyks3hw+p1gJkwG
- UStDxD9YrJOkVXUS048vbJ5rbuI5vxFjkO5bxo7Dsgk2WyJjnWav55v2ahPGzLX0t+XZEaY1n4iDLxnooNN/H35sYauqbDVs3RMMPG938OJL4wUKNVf/6fDh
- Y3+0UYag
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_041735_813088_7741E0AE 
-X-CRM114-Status: GOOD (  19.05  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261119_042248_218261_A6BA293C 
+X-CRM114-Status: GOOD (  12.19  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,68 +67,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 05:35, Demi Marie Obenour wrote:
-> On 11/18/26 7:43 PM, Demi Marie Obenour wrote:
->> On 11/18/26 7:37 PM, Jarkko Sakkinen wrote:
->>> On Wed, Nov 18, 2026 at 06:42:15PM -0500, Demi Marie Obenour wrote:
->>>> AES-256-CBC isn't a suitable mode on its own, unless it's combined
->>>> with a MAC in encrypt-then-MAC.  Even then, it has a 2^64 birthday
->>>> bound, so it should only be used 2^48 times with a single key unless
->>>> the key is ephemeral.
+Am Dienstag, 17. November 2026, 19:25:03 Mitteleurop=C3=A4ische Normalzeit =
+schrieb Coia Prant:
+> As the great Linus Torvalds once said in
+> Documentation/process/coding-style.rst:
+>=20
+>   "If you need more than 3 levels of indentation, you're screwed anyway,
+>    and should fix your program."
+>=20
+> The gmac_clk_enable() function previously used a 'bool enable' parameter
+> to handle both clock enabling and disabling. This resulted in deeply
+> nested if/else blocks, which made the error handling and rollback paths
+> cumbersome and prone to bugs.
+>=20
+> This complexity has led to bugs, such as the bulk clock leak fixed by
+> commit 8db67bb6a1ff ("net: ethernet: stmmac: dwmac-rk: fix bulk clock lea=
+k when the PHY clock fails").
+>=20
+> Split the function into two distinct helpers: gmac_clk_enable() and
+> gmac_clk_disable(). This flattens the code, removes the boolean flag,
+> makes the caller's intent much clearer, and simplifies the error
+> unwinding logic.
+>=20
+> Additionally, this refactoring aids compiler inlining and CPU branch
+> prediction (trust me). The reason is simple: no branch, no prediction.
+> While the compiler might optimize it, there's no guarantee it will :P
+>=20
+> Signed-off-by: Coia Prant <coiaprant@gmail.com>
 
-CBC is there for existing formats (craf writes files that openssl enc
-can read) and because the CAAM path is CBC only. I take your points
-on it.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
->>>> AES-GCM is not a suitable algorithm either.  If you allow encrypting
->>>> with a key loaded from persistent storage, there is no way for the API
->>>> to ensure it is only used with a unique nonce.  Nonce reuse leaks the
->>>> authentication key and allows forgeries.  Using random nonces isn't
->>>> good enough either: NIST only allows 2^32 encryptions in this case,
->>>> and the API can't enforce that limit.
 
-You are right that a construction of our own is the wrong choice:
-patch 9, the only GCM in the series, has no user yet and can go.
-
-[snip]
-
->> The usual solution to something like this is a userspace service
->> like ssh-agent.  Then you can do whatever key management you want.
->> That doesn't protect against root, but if someone can get root you
->> have bigger problems.
-
-The threat here is root, on devices where root eventually falls: a
-key root can copy decrypts that device's data offline and forever. A
-service that holds the key in its memory gives that away. keycrypt
-with the OP-TEE backend does not: the TA keeps the key and checks the
-purpose sealed with it at every use, so even a compromised kernel can
-only use it on that device, and only for that purpose.
-
-> Also, if you need keys stored in hardware for some reason (compliance,
-> time-limited exfiltration), you can use a userspace library or
-> daemon that abstracts over whatever the hardware-specific API is.
-
-Yes, that is the case I mean, and a daemon over a TEE would not give
-the key away either. What it costs here is, for OP-TEE's PKCS#11 TA,
-secure storage before the root filesystem exists; for the CAAM, the
-only user-space path is AF_ALG cbc(paes), the one off-CPU exception
-left in an interface the kernel documents as deprecated, privileged by
-default, with a key format per driver and no purpose.
-
-Ciao,
-
-Rodolfo
-
--- 
-GNU/Linux Solutions                  e-mail: giometti@enneenne.com
-Linux Device Driver                          giometti@linux.it
-Embedded Systems                     phone:  +39 349 2432127
-UNIX programming
 
