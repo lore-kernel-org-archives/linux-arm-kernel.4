@@ -2,110 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F925606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:09:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F99606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lYRSChiM;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IEzLWqUd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VFf9c9H1;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=aWqlKegI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Content-Type:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6LpUWSQfpzuimr5UJ1RUHtokD4yvNzLYRTwB5Co/Fic=; b=lYRSChiMtIEGP5
-	lYA/vYvpBofVvO8t/2AtpFohdEJOmNx9wZIp+mAw8kybl90yZ1jO+wEqvAPN05IKvkKxc7kOjuvBt
-	gH+0lotSXakLHoy3fJ0FeNG1PEeS1OEZ6zRQS+R5xdX9WtaGZkGYopYur25J3sB/pPmpP4WtBW2YQ
-	v3hJd/pAfxI7VT8QcUwb9rIt+c/qQt9b1Yh4brVvtIwWWeT+pezNHV7fKJ8Y8kxs7eTAhHXnOYkI9
-	TmWbj0WbiWDOCcUeQYz95PWruHZFJa+xr/ZpdnzD/YJs1cH+De6YdHkMYpPPGXTDtnCxp6D1M06vS
-	7k1BPoKHOzjRt8yShuWw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=riIxevLtmh113kjXf3hz67f6LG0ighcE4qfi4P9Sfbk=; b=VFf9c9H1QIjxuK9vVHEoWEeMZo
+	skLQ2faPJ5zvUduj0ShisYxCr7YX1TTCOXKx5GtN52mKv27TZ/aadGvxgwYb//KNGajCYXTgzlbSC
+	pxdrMnI0iCTPt51ztzYV4mqA2qAx3o3nsEn0wX1Timvu0wUNuSZFB7gcoC+/lmiQRF9sJTaVsljIc
+	MudJ17eDRHkxpgTDhIU4ECWdFOPOL+h/mGytRy4nrY+4HXny3m73ihrDdsoa0+ELwfbc2tn0B1528
+	AtQE5IX1hzPq0vFLKQ5qDsI+elcCziQt/8/odZuF6BawGHQ2fwCtNaVlT1jgUsrS1uVqGf9Sp0f6A
+	YgUuE/xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6ZE-0000000CxRF-0vjX;
+	id 1xU6ZE-0000000CxQp-05Xe;
 	Thu, 19 Nov 2026 18:09:04 +0000
-Received: from mail-oa1-x33.google.com ([2001:4860:4864:20::33])
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6ZB-0000000CxPL-023a
-	for linux-arm-kernel@lists.infradead.org;
+	id 1xU6ZA-0000000CxOy-22cq;
 	Thu, 19 Nov 2026 18:09:02 +0000
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-499f20c7054so67521fac.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:09:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795111740; x=1795716540; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=6LpUWSQfpzuimr5UJ1RUHtokD4yvNzLYRTwB5Co/Fic=;
-        b=IEzLWqUd9qdyDepIHrjnL50GB/v3a4pdbo63wLo0VD4Tiq3cKhc+XsMm/NNtW78ZrA
-         kGbvg1SxyHU2sod+u/AuQf9xBx8qAwb5MJdds9XlxNRUWn2uDI/Zqa5Qi0IDUkRtofIJ
-         SmQfemOwfqxFgBmYXuj1K/Zy4Tg9duufnPFtNeFHBR1njzNr+xR5NdZOLc6BPTHKu16W
-         SFHOjMBi71EIoeFKedANx8U0cU1rb5oiWAmzsf/F1qcfE06hOerVT1x9Gu1bXGBocCe2
-         czjX8OBk88KninJF5DNBFWu+Vmnw/AqEQoNwfEgqjv96rm+LcwxrFIgYPUOHWyJk7N6E
-         XZNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795111740; x=1795716540;
-        h=content-transfer-encoding:mime-version:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=6LpUWSQfpzuimr5UJ1RUHtokD4yvNzLYRTwB5Co/Fic=;
-        b=eKV8AnpvZ5XQcfY/jd32yqd8ob6ufanLRD2kxYr97/NqaDullKerXeDrq0uNLH9Oc/
-         9web5JtEVULOUKUKWa7liq0DTvHupghG9KQdE3S4R7xTxCYSy4KvjmlU6xR9rxSmrX6z
-         jf92WU/E8o7SVKlUo1K4L4EBRwaSlfOqK/ztDfVVbWJQvmYUGpRPUHhcJQTJTOe/GzIV
-         4LJ0FKEj9/es5vYXcywQ/zOSlvkcB8HXIxl5LDKfPpwS/EiC1gno6lmByGsqR7qZ3rI1
-         ezGzQEQejHdp8XfDvwMdHF6RY2+0vrRchuDQc4HvBmpb+Q6wM6LqybiOFaVkuj3xYFx8
-         iddA==
-X-Forwarded-Encrypted: i=1; AL+hErHlFeSyy0vMqd8ApiFo+sADvccmtvtuTKRxp5tg5ci1pkWHFOctzsT3X7/MJnrmZTbFFS+QY3hF99OTckxv8IVW@lists.infradead.org
-X-Gm-Message-State: APuU4Z/SsrbRe9nd2xeXk9cl9lxVo5ysWB/yWiJpvuosSbvHCJE2RU5q
-	0MF0tWvDN3pYVbe2SBRxS5SZ1FYeXSSd5ow0/hFarbKvnUVcetk+Fg0Y
-X-Gm-Gg: AYBFou2YcbVoga/6yAYlZp3L2vzmfoZsDn+d3T8k9JlmLBI9AtjX6ZTp+oGW/w42zyy
-	9MqEjWalEq3kZ8HCuEYxtLBMcid6sBL4FwJVt2jWOm9t7r2JMh8elFlVZP4hAAc6zSDIP8/lILX
-	35QKBtxuwegO05dJWiOjlIrr3cppLQ6DDCEnXvCfJ2ZJ8KDx9XsoB0eHbRovz0C7A25qWGpaZmd
-	fNCH3upcL6WTrKlXrQ8hISuZkncHpRuNBVabFOtT3i7z+5ekvXsPKxOWsxyNOgE/X6C01GeeHfe
-	gSx5ytzUdBcnY4LG9mYjWV2QX5y71DoYRQzws/B+VPCGOqO4UKyLGElIP0oZ4jBx7rwlhtjV1JX
-	5JU1SsaEAJUIdRXc7dW8A5w7vM5r6gbjGmo0U4C9G0E+6tZSCTZSTk96z2c3Q6bg4ajz30ZQwLn
-	AmSEjAJc8P06Jr/CtlreknAzoG6akGTG6Cx4dfEvR/JHw43cDB5sAZ67EfKq0DaiY3cHKraGRFy
-	dkmyOVdEKTQiPdbvNVp+MPb8Cg6s2bAUJiMeA0T1+Rm65bygHuCTjSOIf0vPxgzxhhchxUd+RuA
-	WfdYUCMhtdQtI/LJrI2K5Ijn5Q8Pv9o8FSVdjqIg9vY1cQIblme0MpgpcVpC7pynq6vjT6OcpRQ
-	j
-X-Received: by 2002:a05:6870:dc48:b0:491:47e1:6283 with SMTP id 586e51a60fabf-4bc810b3516mr386675fac.27.1795111739744;
-        Thu, 19 Nov 2026 10:08:59 -0800 (PST)
-Received: from AMD.home.local (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bc61081159sm452437fac.15.2026.11.19.10.08.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 10:08:59 -0800 (PST)
-From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: andre.przywara@arm.com,
-	wens@kernel.org
-Cc: sboyd@kernel.org,
-	bmasney+clk@redhat.com,
-	jbrunet+clk@baylibre.com,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
-Subject: Re: [PATCH v2] clk: sunxi-ng: a733: Keep SCP firmware bus clocks enabled
-Date: Thu, 19 Nov 2026 13:08:57 -0500
-Message-ID: <20261118-a733-fwclk-v2-reply@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <35a06829-dd6d-4ef1-aadf-245d1e7ca433@arm.com>
-References: <20261112-a733-fwclk-v2@gmail.com> <2374cc08-fd47-435a-b1e8-c7e9a61954c4@arm.com> <CAGb2v66w9XYO7CUFrvJq2HL7ELABptg=3Bs4XbZxMh7VU0pepw@mail.gmail.com> <124bb855-f2f6-4b10-b0be-99fb53cc2ee8@arm.com> <CAGb2v65A4rAFTFYyB_sZBC9O7fb0TJWE1YRjdGrLeNgwyVzcSw@mail.gmail.com> <35a06829-dd6d-4ef1-aadf-245d1e7ca433@arm.com>
-Content-Type: text/plain; charset="us-ascii"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795111737;
+	bh=BYxW1dyP/HTBSJvGLJteQTwymgi/5NPfXG2gt/edaeY=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=aWqlKegIGSAuLo9z14DX7n8HcdvNV9DU6wpoQCMpStm4E1UtOlblflFI5G/ZJrgzr
+	 vgQqlCIcOraVxyfqR0IMn3o/YncbU79PstRuiD0Ax2uH7KGozfcM7P2H7ne4xeR995
+	 rsCgL9aVdG3HbrDm4Cm/lZDhbSal0cAddKuffpe3mfVW07VVoHhgqV0MYz/yPfkst9
+	 q9Iihza4h+8leWGfJqUDmG5fxDw3DjdafwlonKsPjKS2fdOepfXFm/EuDAvc9CzXHS
+	 DOdL9fBJc9qMViotnvXmlLFM2G9pH95k5Waa1pdsPKExNZfBh0dSDUV7IVt0bdm0og
+	 aeig57dR5XQ0g==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4007117E052F;
+	Thu, 19 Nov 2026 19:08:56 +0100 (CET)
+Message-ID: <fcb9cd01bd333b3f92f000d48adf2d00359398d4.camel@collabora.com>
+Subject: Re: [PATCH v2 5/5] media: rkvdec: Add multicore support
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Detlev Casanova <detlev.casanova@collabora.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Heiko Stuebner <heiko@sntech.de>, Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>
+Cc: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, 
+	kernel@collabora.com, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Date: Thu, 19 Nov 2026 13:08:54 -0500
+In-Reply-To: <20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com>
+References: <20260810-rkvdec-multicore-v2-0-986f89d22cdc@collabora.com>
+	 <20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-CfWuqYFhGQ8bM6+JFjJk"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_100901_072143_99B3A1F5 
-X-CRM114-Status: GOOD (  17.12  )
+X-CRM114-CacheID: sfid-20261119_100900_877694_6D331F05 
+X-CRM114-Status: GOOD (  40.46  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,56 +93,410 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Chen-Yu, Andre,
+--=-CfWuqYFhGQ8bM6+JFjJk
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->>> But I think there is still the arisc on
->>> the A733, so this would more likely run the management processor (SCP) code?
+Hi,
 
-The A733 CPUS domain has both an E902 and an OR100 (manual section 1.2,
-figure 1-1). The vendor SCP firmware Radxa ships for Cubie A7S, called
-"arisc" by Allwinner, runs on the E902: vendor BL31 writes its entry
-point to E902_RST_START_ADDR_REG at 0x07032204 (manual section 5.2.3).
-Radxa's BL31, in its system reset path, sends a reboot request to the
-E902 through the CPUX-to-CPUS msgbox. Exactly where the no-flag reboot
-stalls is not known.
+Le lundi 10 ao=C3=BBt 2026 =C3=A0 11:22 -0400, Detlev Casanova a =C3=A9crit=
+=C2=A0:
+> Rockchip SoCs like the RK3588 have multiple independent decoder cores
+> defined in the device tree as separate nodes sharing the same
+> compatible.
+> Extend the component-based driver to actually drive all of them from the
+> same v4l2 device.
 
-> The question now is whether this SCP use case is something we deem 
-> useful, for mainline. If it's just about to run the BSP firmware, I 
-> think we shouldn't bother, we just don't support that. But if we end up 
-> running something like crust on the E902, then it's a different story.
+Either combine and add blank between paragraph please.
 
-For me this is only about the vendor BSP firmware; I have no other SCP
-firmware for the E902 to test with. Upstream Crust has no A733 target,
-and the A733 TF-A port under review resets through the watchdog, not
-the msgbox [1].
+>=20
+> It uses the v4l2_m2m_set_max_parallel_jobs() function to set the number
+> of available cores, making sure that only 1 job per m2m context is
+> running at a given time.
+> This is crucial for a stateless decoder as each job may depend on the
+> completion of previous jobs.
+> This avoids adding a complex scheduler that iwould have to ensure that
+> all needed reference frames are fully decoded before decoding a frame.
+> Instead, cores will work in parallel on different streams.
+>=20
+> As each core has its own IOMMU core, buffers must be mapped in each
+> core's IOMMU so that any run() call can use any core without having to
+> remap everything.
 
->>>> So, not a fan of this. If the loaded firmware somehow needs some resources
->>>> then perhaps the software that loaded it needs to somehow tell the kernel
->>>> they are needed, like the bootloader patching the DT passed to the kernel.
+That was done in previous patch.
 
-Vendor U-Boot already applies DT fixups, but the A733 CCU binding and
-driver do not accept protected-clocks today. A loader-declared handoff
-would need a new binding and driver support, plus loader changes.
+>=20
+> To do that, we use rockchip iommu domain's iommu devices list.
+> With that, one IOMMU domain can be mapped on multiple devices, meaning
+> that each call to iommu_map() will flush the new mapping on all devices
+> in the list.
+> The IOMMU domain that will have all devices in its list is the first
+> core's default domain.
+>=20
+> Another domain cannot be used because VB2 allocates buffers through the
+> DMA engine, which uses iommu_get_dma_domain() to find the domain to map
+> buffers through.
+>=20
+> The IOMMU restore function can still work as before, but needs to be more
+> explicit in what domain to attach the device to.
+> That is because detaching the empty domain will reattach the core's defau=
+lt
+> domain, which is wrong (except for the first "main" core).
+>=20
+> The RCB temporary buffers are allocated in a dedicated SRAM, and each
+> core has its own SRAM, so the mapping for each core's SRAM is added in th=
+e
+> global domain.
+>=20
+> Everything else is mapped through the first core's default domain, making
+> the driver write the mappings on both IOMMU cores.
+>=20
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  .../media/platform/rockchip/rkvdec/rkvdec-rcb.c    |  12 +--
+>  drivers/media/platform/rockchip/rkvdec/rkvdec.c    | 104 +++++++++++++++=
+++++--
+>  drivers/media/platform/rockchip/rkvdec/rkvdec.h    |   8 ++
+>  3 files changed, 107 insertions(+), 17 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-rcb.c b/driver=
+s/media/platform/rockchip/rkvdec/rkvdec-rcb.c
+> index 44df5b6df80c..977e37cf209b 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-rcb.c
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-rcb.c
+> @@ -76,9 +76,8 @@ void rkvdec_free_rcb(struct rkvdec_dev *rkvdec, struct =
+rkvdec_core *core)
+>  =09=09case RKVDEC_ALLOC_SRAM:
+>  =09=09=09virt_addr =3D (unsigned long)cfg->rcb_bufs[i].cpu;
+> =20
+> -=09=09=09if (iommu_get_domain_for_dev(core->dev))
+> -=09=09=09=09iommu_unmap(iommu_get_domain_for_dev(core->dev),
+> -=09=09=09=09=09    virt_addr, rcb_size);
+> +=09=09=09if (rkvdec->iommu_global_domain)
+> +=09=09=09=09iommu_unmap(rkvdec->iommu_global_domain, virt_addr, rcb_size=
+);
 
-> So I wonder if we should just pragmatically add CLK_IGNORE_UNUSED, to 
-> not shut on the door on this SCP use case later.
-> If we ever only want to use remoteproc, I think we don't need this patch.
+So you just wrongly ported it in previous patch and I missed it. Please squ=
+ash
+this in previous commit.
 
-CLK_IGNORE_UNUSED would also leave a future remoteproc driver free to
-gate the core. Chen-Yu, if you are fine with it, I will test it on A7S
-and send v3 based on linux-sunxi for-next, with Andre's comment wording
-and a short test note. Otherwise I will drop the patch.
+>  =09=09=09gen_pool_free(core->sram_pool, virt_addr, rcb_size);
+>  =09=09=09break;
+>  =09=09case RKVDEC_ALLOC_DMA:
+> @@ -134,7 +133,7 @@ int rkvdec_allocate_rcb(struct rkvdec_dev *rkvdec, st=
+ruct rkvdec_core *core,
+> =20
+>  =09=09/* Try allocating an SRAM buffer */
+>  =09=09if (core->sram_pool) {
+> -=09=09=09if (iommu_get_domain_for_dev(core->dev))
+> +=09=09=09if (rkvdec->iommu_global_domain)
+>  =09=09=09=09rcb_size =3D ALIGN(rcb_size, SZ_4K);
+> =20
+>  =09=09=09cpu =3D gen_pool_dma_zalloc_align(core->sram_pool,
+> @@ -144,12 +143,11 @@ int rkvdec_allocate_rcb(struct rkvdec_dev *rkvdec, =
+struct rkvdec_core *core,
+>  =09=09}
+> =20
+>  =09=09/* If an IOMMU is used, map the SRAM address through it */
+> -=09=09if (cpu && iommu_get_domain_for_dev(core->dev)) {
+> +=09=09if (cpu && rkvdec->iommu_global_domain) {
+>  =09=09=09unsigned long virt_addr =3D (unsigned long)cpu;
+>  =09=09=09phys_addr_t phys_addr =3D dma;
+> =20
+> -=09=09=09ret =3D iommu_map(iommu_get_domain_for_dev(core->dev),
+> -=09=09=09=09=09virt_addr, phys_addr,
+> +=09=09=09ret =3D iommu_map(rkvdec->iommu_global_domain, virt_addr, phys_=
+addr,
+>  =09=09=09=09=09rcb_size, IOMMU_READ | IOMMU_WRITE, 0);
+>  =09=09=09if (ret) {
+>  =09=09=09=09gen_pool_free(core->sram_pool,
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/me=
+dia/platform/rockchip/rkvdec/rkvdec.c
+> index d3b13132b751..35850231922e 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+> @@ -1058,6 +1058,37 @@ static const struct media_device_ops rkvdec_media_=
+ops =3D {
+>  =09.req_queue =3D v4l2_m2m_request_queue,
+>  };
+> =20
+> +/**
+> + * Return a core that is available for decoding or null if no core is fo=
+und.
+> + * The caller should make sure to call release_core() when the core is n=
+o longer needed.
+> + */
+> +static struct rkvdec_core *acquire_core(struct rkvdec_dev *rkvdec, struc=
+t rkvdec_ctx *ctx)
+> +{
+> +=09struct rkvdec_core *core =3D NULL;
+> +
+> +=09guard(spinlock_irqsave)(&rkvdec->cores_lock);
+> +
+> +=09if (rkvdec->available_core_count) {
+> +=09=09core =3D rkvdec->available_cores[--rkvdec->available_core_count];
+> +
+> +=09=09// Set the current core's ctx to this ctx
+> +=09=09core->curr_ctx =3D ctx;
+> +=09}
+> +
+> +=09return core;
+> +}
+> +
+> +/**
+> + * Release the core to make it available for a next job.
+> + */
+> +static void release_core(struct rkvdec_dev *rkvdec, struct rkvdec_core *=
+core)
+> +{
+> +=09guard(spinlock_irqsave)(&rkvdec->cores_lock);
+> +
+> +=09core->curr_ctx =3D NULL;
+> +=09rkvdec->available_cores[rkvdec->available_core_count++] =3D core;
+> +}
+> +
+>  static void rkvdec_job_finish_no_pm(struct rkvdec_ctx *ctx,
+>  =09=09=09=09  enum vb2_buffer_state result)
+>  {
+> @@ -1072,6 +1103,11 @@ static void rkvdec_job_finish_no_pm(struct rkvdec_=
+ctx *ctx,
+>  =09=09ctx->coded_fmt_desc->ops->done(ctx, src_buf, dst_buf, result);
+>  =09}
+> =20
+> +=09if (ctx->core) {
+> +=09=09release_core(ctx->dev, ctx->core);
+> +=09=09ctx->core =3D NULL;
+> +=09}
+> +
+>  =09v4l2_m2m_buf_done_and_job_finish(m2m_dev, m2m_ctx, result);
+>  }
+> =20
+> @@ -1153,8 +1189,9 @@ static void rkvdec_device_run(void *priv)
+>  =09if (WARN_ON(!desc))
+>  =09=09return;
+> =20
+> -=09ctx->core =3D ctx->dev->main_core;
+> -=09ctx->core->curr_ctx =3D ctx;
+> +=09ctx->core =3D acquire_core(ctx->dev, ctx);
+> +=09if (WARN_ON(!ctx->core))
+> +=09=09return;
+> =20
+>  =09ret =3D pm_runtime_resume_and_get(ctx->core->dev);
+>  =09if (ret < 0) {
+> @@ -1424,6 +1461,7 @@ static void rkvdec_v4l2_cleanup(struct rkvdec_dev *=
+rkvdec)
+> =20
+>  static void rkvdec_iommu_restore(struct rkvdec_core *core)
+>  {
+> +=09int ret;
+>  =09if (core->empty_domain) {
+>  =09=09/*
+>  =09=09 * To rewrite mapping into the attached IOMMU core, attach a new e=
+mpty domain that
+> @@ -1432,8 +1470,14 @@ static void rkvdec_iommu_restore(struct rkvdec_cor=
+e *core)
+>  =09=09 * This is safely done in this interrupt handler to make sure no m=
+emory get mapped
+>  =09=09 * through the IOMMU while the empty domain is attached.
+>  =09=09 */
+> -=09=09iommu_attach_device(core->empty_domain, core->dev);
+> +=09=09iommu_detach_device(core->curr_ctx->dev->iommu_global_domain, core=
+->dev);
+> +=09=09ret =3D iommu_attach_device(core->empty_domain, core->dev);
+> +=09=09if (ret)
+> +=09=09=09dev_warn(core->dev, "Cannot attach empty domain: %d\n", ret);
+>  =09=09iommu_detach_device(core->empty_domain, core->dev);
+> +=09=09ret =3D iommu_attach_device(core->curr_ctx->dev->iommu_global_doma=
+in, core->dev);
+> +=09=09if (ret)
+> +=09=09=09dev_warn(core->dev, "Cannot attach global domain: %d\n", ret);
 
-[1] https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55200
+Ah, I made a comment about that in previous patch ... Its a bit confusing .=
+..
 
-Thanks,
-Enzo
+>  =09}
+>  }
+> =20
+> @@ -1724,14 +1768,35 @@ static int rkvdec_core_bind(struct device *dev, s=
+truct device *master, void *dat
+>  =09struct platform_device *pdev =3D to_platform_device(dev);
+>  =09struct rkvdec_core *core =3D platform_get_drvdata(pdev);
+>  =09struct rkvdec_dev *rkvdec =3D data;
+> +=09int id, ret;
+> +
+> +=09id =3D rkvdec->core_count;
+> +=09core->id =3D id;
+> +=09rkvdec->cores[id] =3D core;
+> +
+> +=09if (id =3D=3D 0)
+> +=09=09rkvdec->main_core =3D core;
+> +
+> +=09if (iommu_get_domain_for_dev(dev)) {
+> +=09=09if (!rkvdec->iommu_global_domain) {
+> +=09=09=09rkvdec->iommu_global_domain =3D iommu_get_domain_for_dev(dev);
+> +=09=09=09if (IS_ERR(rkvdec->iommu_global_domain)) {
+
+You do if() above, and if (IS_ERR()) here. I think the second is correct, t=
+he
+first is broken.
+
+> +=09=09=09=09rkvdec->iommu_global_domain =3D NULL;
+> +=09=09=09=09dev_warn_once(dev, "cannot get global domain\n");
+> +=09=09=09}
+> +=09=09}
+> =20
+> -=09if (rkvdec->main_core)
+> -=09=09return dev_err_probe(dev, -EBUSY,
+> -=09=09=09=09     "rkvdec already has a bound core\n");
+> +=09=09if (rkvdec->iommu_global_domain) {
+> +=09=09=09ret =3D iommu_attach_device(rkvdec->iommu_global_domain, dev);
+> +=09=09=09if (ret)
+> +=09=09=09=09dev_warn(dev, "cannot attach global domain to core %d\n", id=
+);
+> +=09=09}
+> +=09}
+> =20
+> -=09rkvdec->main_core =3D core;
+> +=09release_core(rkvdec, core);
+> +=09rkvdec->core_count++;
+> =20
+> -=09dev_info(dev, "Registered core\n");
+> +=09dev_info(dev, "Registered core %d\n", id);
+> =20
+>  =09return 0;
+>  }
+> @@ -1900,6 +1965,8 @@ static int rkvdec_bind(struct device *dev)
+>  =09if (ret)
+>  =09=09goto err_unbind;
+> =20
+> +=09v4l2_m2m_set_max_parallel_jobs(rkvdec->m2m_dev, rkvdec->core_count);
+> +
+>  =09return 0;
+> =20
+>  err_unbind:
+> @@ -1910,12 +1977,15 @@ static int rkvdec_bind(struct device *dev)
+>  static void rkvdec_unbind(struct device *dev)
+>  {
+>  =09struct rkvdec_dev *rkvdec =3D dev_get_drvdata(dev);
+> +=09int i;
+> =20
+> -=09cancel_delayed_work_sync(&rkvdec->main_core->watchdog_work);
+> +=09for (i =3D 0; i < rkvdec->core_count; i++)
+> +=09=09cancel_delayed_work_sync(&rkvdec->cores[i]->watchdog_work);
+> =20
+>  =09rkvdec_v4l2_cleanup(rkvdec);
+> =20
+> -=09rkvdec_free_rcb(rkvdec, rkvdec->main_core);
+> +=09for (i =3D 0; i < rkvdec->core_count; i++)
+> +=09=09rkvdec_free_rcb(rkvdec, rkvdec->cores[i]);
+> =20
+>  =09component_unbind_all(dev, NULL);
+>  }
+> @@ -1932,6 +2002,7 @@ static int rkvdec_probe(struct platform_device *pde=
+v)
+>  =09struct component_match *match =3D NULL;
+>  =09struct device_node *core_node;
+>  =09struct rkvdec_dev *rkvdec;
+> +=09unsigned int num_cores =3D 0;
+> =20
+>  =09if (!match_desc)
+>  =09=09return dev_err_probe(dev, -ENODEV, "missing platform data\n");
+> @@ -1943,6 +2014,7 @@ static int rkvdec_probe(struct platform_device *pde=
+v)
+>  =09=09of_node_get(core_node);
+>  =09=09component_match_add_release(dev, &match, component_release_of,
+>  =09=09=09=09=09    component_compare_of, core_node);
+> +=09=09num_cores++;
+>  =09}
+> =20
+>  =09if (!match)
+> @@ -1953,11 +2025,23 @@ static int rkvdec_probe(struct platform_device *p=
+dev)
+>  =09if (!rkvdec)
+>  =09=09return -ENOMEM;
+> =20
+> +=09rkvdec->cores =3D devm_kcalloc(dev, num_cores, sizeof(*rkvdec->cores)=
+,
+> +=09=09=09=09     GFP_KERNEL);
+> +=09if (!rkvdec->cores)
+> +=09=09return -ENOMEM;
+> +
+> +=09rkvdec->available_cores =3D devm_kcalloc(dev, num_cores,
+> +=09=09=09=09=09       sizeof(*rkvdec->available_cores),
+> +=09=09=09=09=09       GFP_KERNEL);
+> +=09if (!rkvdec->available_cores)
+> +=09=09return -ENOMEM;
+> +
+>  =09rkvdec->variant =3D match_desc->data;
+>  =09if (!rkvdec->variant)
+>  =09=09return dev_err_probe(dev, -ENODEV, "failed to get match data\n");
+> =20
+>  =09mutex_init(&rkvdec->vdev_lock);
+> +=09spin_lock_init(&rkvdec->cores_lock);
+> =20
+>  =09dev_set_drvdata(dev, rkvdec);
+> =20
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.h b/drivers/me=
+dia/platform/rockchip/rkvdec/rkvdec.h
+> index 36eadcfcabdb..d5977cef6df7 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.h
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.h
+> @@ -15,6 +15,7 @@
+>  #include <linux/videodev2.h>
+>  #include <linux/wait.h>
+>  #include <linux/clk.h>
+> +#include <linux/spinlock.h>
+> =20
+>  #include <media/v4l2-ctrls.h>
+>  #include <media/v4l2-device.h>
+> @@ -137,6 +138,7 @@ struct rkvdec_core {
+>  =09struct iommu_domain *empty_domain;
+>  =09struct rkvdec_rcb_config *rcb_config;
+>  =09struct rkvdec_ctx *curr_ctx;
+> +=09int id;
+>  };
+> =20
+>  struct rkvdec_dev {
+> @@ -146,7 +148,13 @@ struct rkvdec_dev {
+>  =09struct v4l2_m2m_dev *m2m_dev;
+>  =09struct mutex vdev_lock; /* serializes ioctls */
+>  =09const struct rkvdec_variant *variant;
+> +=09struct rkvdec_core **cores;
+> +=09int core_count;
+> +=09struct rkvdec_core **available_cores;
+> +=09unsigned int available_core_count;
+> +=09spinlock_t cores_lock; /* serializes core list access */
+>  =09struct rkvdec_core *main_core;
+> +=09struct iommu_domain *iommu_global_domain;
+>  };
+> =20
+>  struct rkvdec_ctx {
+
+So if you can avoid the iommu part being into that patch, we could focus on
+acquire/release mechanism. I think its overall fine.
+
+Nicolas
+
+--=-CfWuqYFhGQ8bM6+JFjJk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav87NgAKCRDZQZRRKWBy
+9ICSAP92Cy35bU935q2UWvI5xwJ72eJmGX85XrNqJ7lmveA6KgD+OKmofFSGoZcN
+UZn9Uf13SnxIs6qU+5LroOGT57ZfOwk=
+=qr4a
+-----END PGP SIGNATURE-----
+
+--=-CfWuqYFhGQ8bM6+JFjJk--
 
