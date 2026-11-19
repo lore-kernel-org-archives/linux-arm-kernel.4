@@ -2,82 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BBE60A2600
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3713606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hKDDoviY;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V9/QmJnN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Qrj9CG4;
+	dkim=pass (2048-bit key, unprotected) header.d=amazon.de header.i=@amazon.de header.a=rsa-sha256 header.s=amazoncorp2 header.b=VcrTYhxN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=gLO/oqmV4DgN6TSlCCTIto3brNJsLk1Z5wCWirBFpeQ=; b=hKDDoviYs8ESwzNk00+FN+op64
-	5xRtRmhS12KbKYdNKonMvrcSL62I4mxwHuQWVh0Vj8pXddjjncg+AeZWPZO84pHlSx4hWyDZfZoB0
-	7cEMjnreErxUGTJamKmAwb3yiFlfltFNaQeoBCc1WC2wXTvtkxVPRgKQ2fq2YVu5cruZ4Sz/rCgFZ
-	Z4MU6uF7f8pamKdtdPoan111l5FvtrA0XHxGQZmMCE1HhT/cKr1DAQFtoPFpZwGTBS7w42WVVOQ2V
-	njnuJnuHJBg03giCyrfoQcOQU/9sbVHhLc65knSY0/iGCyHoIp4JOM67lR/H7npJmzLPLCxq/CDZD
-	bENEBkxQ==;
+	bh=Zfbl7z+Ezff8RKjY41cGTXI7HmNsjcTB1S41dIhkeYk=; b=1Qrj9CG4RbTaVBSWfn+wAZiX/n
+	bEvaYS/SBaiaCHbB8zPBIZ2nC2u8A5NODXKOAOk6FE6sJx5aygz2zsfXo7ieR/veyDdr31KmdHnCd
+	zjOflIU+QlfbyuSD+R07riK62qc9Vd8tSwFonWuIIY1EGtN6okfUi2M1+/XYRMzXYsSPMC52kB4Oc
+	mWVvxLVkqgnQuCOg7hM9VnQf4ZC5mYkbUcwqdIajrYY0Ktj6UM3Ot8gXYFXc1rSxvAH7IOV2NLji3
+	S9dDpui7uH2kSDk2XDw8X55orDlTJkBGDZBuV5UHwIuxqAkLqPAVAxHo4WFLTT7Vc+M71XqJI6U1F
+	edDvBsng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU71A-0000000D1qJ-0keK;
-	Thu, 19 Nov 2026 18:37:56 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xU75q-0000000D2Qo-40Pg;
+	Thu, 19 Nov 2026 18:42:46 +0000
+Received: from pdx-out-015.esa.us-west-2.outbound.mail-perimeter.amazon.com ([50.112.246.219])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU719-0000000D1q9-0WD3
+	id 1xU75o-0000000D2QK-26uJ
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:37:55 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6D5B861B7D;
-	Thu, 19 Nov 2026 18:37:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA1761F000C7;
-	Thu, 19 Nov 2026 18:37:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795113474;
-	bh=gLO/oqmV4DgN6TSlCCTIto3brNJsLk1Z5wCWirBFpeQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=V9/QmJnN2JlChDE1K/HsoFTxGK8BUntAFRsQKrrwAQ13j2/3wadDh4OnJkqW+pux6
-	 bZ3lbbHiovC3hstNVVKyFWze8GZYT6RS6h4CezG1VghnqLkdj8odVKmNP1o56t+WVK
-	 qRJ8ASFD14PTrrW9HutLbcH9djJujhcYKKkW9zrIFErzeCfdRUUcwLmFmofeNNMW8O
-	 N9Wm1QM96dx1beV6qK9srRD5Q3l0Lj+nOsKF5U4xSBFq2U3jgj5UxlM96qNfNbH/eG
-	 sbsmHAuwwvMwzwlv54x+i9tF537LfR4fFDFJhhW4tAatXHjVk/SL256cJmhKMDrJHY
-	 LAu/xtTf2NXiQ==
-Date: Thu, 19 Nov 2026 18:37:46 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Philipp Stanner <phasta@kernel.org>,
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 00/11] iio: adc: stm32: add mdf support for stm32mp2
-Message-ID: <20261119-stick-armored-64cd8e1cea62@spud>
-References: <20261118-upstream_mdf_v2-v2-0-7939d3c3720a@foss.st.com>
+	Thu, 19 Nov 2026 18:42:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazoncorp2;
+  t=1795113764; x=1826649764;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Zfbl7z+Ezff8RKjY41cGTXI7HmNsjcTB1S41dIhkeYk=;
+  b=VcrTYhxNM116REU1CIWZ4C7zHUa9Nbqmn+KNzrW+rJM+clTTIRlzp7w9
+   ncd8s2s2IsQrLvEQOVWEPyDtohJrp+Hg+3e/xCfY6F25H66LrF5iEDHNA
+   K3HOfN/RdaQ1RyoAjQUyvPHnYSmPQSFS6m6EPuvnUCYfDPVk8MV03oZVc
+   l5TNNHOpEOt/n+WzxkVbWEBhb7xogr+S/tG8RWvNxolDQeYfpdbp5PLTq
+   Duo7jzOM8bHn/JrYUCirMUygIoko//5FeZGZSdWM02z8mD2MOPXx39P3J
+   6iX1rY2sZq2ktd3/kisb/dJEFzIjJq4NprG+FDi4FVALBSlK4B4xi+6Iv
+   A==;
+X-CSE-ConnectionGUID: hqUjQN9/QcqZrgGk5zQFFw==
+X-CSE-MsgGUID: gDvD7OBNT+mKq0LFeqrgDQ==
+X-IronPort-AV: E=Sophos;i="6.27,221,1787011200"; 
+   d="scan'208";a="34426166"
+Received: from ip-10-5-0-115.us-west-2.compute.internal (HELO smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.0.115])
+  by internal-pdx-out-015.esa.us-west-2.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 18:42:39 +0000
+Received: from EX19MTAUWA002.ant.amazon.com [205.251.233.178:16553]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.46.128:2525] with esmtp (Farcaster)
+ id 07449928-09f5-4e12-b385-e2495c4c75b7; Thu, 19 Nov 2026 18:42:38 +0000 (UTC)
+X-Farcaster-Flow-ID: 07449928-09f5-4e12-b385-e2495c4c75b7
+Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
+ EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.56;
+ Thu, 19 Nov 2026 18:42:38 +0000
+Received: from dev-dsk-machaujo-1c-d6b511e2.eu-west-1.amazon.com
+ (10.253.100.8) by EX19D001UWA001.ant.amazon.com (10.13.138.214) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.57; Thu, 19 Nov 2026
+ 18:42:36 +0000
+From: Joshua Machauer <machaujo@amazon.de>
+To: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>
+CC: Radu Rendec <radu@rendec.net>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <nh-open-source@amazon.com>
+Subject: [PATCH v2] irqchip/gic-v3: Fill in each CPU's redistributor from the init walk
+Date: Thu, 19 Nov 2026 18:42:29 +0000
+Message-ID: <20261119184229.57556-1-machaujo@amazon.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <867bj6ys1q.wl-maz@kernel.org>
+References: <867bj6ys1q.wl-maz@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LpL/rArroYRlxrrz"
-Content-Disposition: inline
-In-Reply-To: <20261118-upstream_mdf_v2-v2-0-7939d3c3720a@foss.st.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EX19D031UWA004.ant.amazon.com (10.13.139.19) To
+ EX19D001UWA001.ant.amazon.com (10.13.138.214)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_104244_645034_CCDB1DA4 
+X-CRM114-Status: GOOD (  24.60  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,251 +91,273 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---LpL/rArroYRlxrrz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+A CPU coming online finds its redistributor by walking the frames from
+the first one until GICR_TYPER matches its affinity. CPU n therefore
+performs O(n) MMIO reads, and bringing up N CPUs costs O(N^2).
+Secondary CPUs boot serially, so all of it adds to boot time.
 
-On Wed, Nov 18, 2026 at 04:17:45PM +0100, Olivier Moysan wrote:
-> This series adds support for the STM32 Multi-function Digital Filter
-> (MDF) found on STM32MP2 SoCs. MDF converts bitstreams from external
-> sigma-delta modulators and PDM microphones into samples for IIO and
-> ASoC consumers.
->=20
-> The drivers support direct IIO conversions, cyclic DMA acquisition,
-> CIC configuration and scaling, synchronized and interleaved filters,
-> and external timer triggers. An ASoC DAI provides PDM microphone capture.
->=20
-> This revision addresses the v1 review comments listed below and splits
-> the driver patch into smaller functional patches for readability.
-> It retains the existing IIO backend interface for external sigma-delta
-> modulators, pending agreement on the preferred abstraction.
->=20
-> These changes do not resolve all v1 review comments. In particular, the
-> frontend/backend architecture, DT child-node model and complete clock
-> topology remain open discussion points.
->=20
-> * Open questions: MDF topology (backend/frontend)
->=20
-> In Analog Devices use of the IIO backend framework, the AXI ADC is a
-> hardware backend, while the AD9467 is a hardware frontend. The external
-> sigma-delta modulator is actually a hardware frontend in the MDF signal
-> chain. The difference from the AD9467 use case is which driver owns the
-> aggregate IIO device.
+gic_update_rdist_properties() already walks every frame once at boot.
+Give each frame to the possible CPU it belongs to there, by setting that
+CPU's rd_base and phys_base and initialising its rd_lock. A CPU coming
+online then finds its frame assigned and does no MMIO at all. A CPU
+absent at init, such as an ACPI online-capable CPU, still scans.
 
-My red line here, that I probably made pretty clear on v1, is that what
-is done needs to make sense when the ADC is feeding the MDF, it cannot
-only work for the data coming in from sd modulators or w/e you connect
-to the SITFx inputs.
+Finding the CPU compares each frame's affinity against that of every
+possible CPU. That is still O(N^2) work at init, but it reads
+cpu_logical_map[], which stays in the cache, instead of device memory.
 
-> Option 1:
-> One option would be to generalize the existing backend abstraction to
-> represent components contributing to an aggregate IIO device,
-> independently of their position in the signal chain.
->=20
-> The existing framework appears to provide the required mechanisms. None
-> of these mechanisms inherently requires the provider to be a hardware bac=
-kend.
-> A generic component/provider model would support both topologies without
-> duplicating interfaces or requiring reciprocal dependencies. The key
-> point here is to preserve the compatibility of APIs and DT bindings.
->=20
-> Option 2:
-> Alternatively, if the backend abstraction should retain its hardware
-> meaning, we could introduce an explicit frontend-provider abstraction
-> sharing the existing infrastructure. Frontend operations would cover
-> analog-side control and conversion parameters.
->=20
-> Would generalizing the existing abstraction be acceptable, or would a
-> separate frontend interface built on shared infrastructure be preferred?
+inherit_vpe_l1_table_from_rd() and allocate_vpe_l2_table() take a
+non-NULL rd_base to mean that the CPU has come up. Mark that with a new
+RD_LOCAL_POPULATED flag instead, set in gic_populate_rdist(), and move
+the RD_LOCAL_* flags to irq-gic-common.h so that both drivers see them.
 
-For either of these options, do you envisage the data being retrieved
-=66rom the mdf sysfs files rather than from the modulator?
+NVIDIA Vera, 352 CPUs in two redistributor regions, 73 ms faster.
+Without this patch:
 
->=20
-> Option 3:
-> An aggregate IIO device based on the component framework, as discussed
-> in previous threads, could also be considered. I currently regard this
-> as a fallback solution:
-> https://lore.kernel.org/all/ec411432-4b77-4410-b0aa-b29f73b82c84@foss.st.=
-com/
+  [    0.007441] GICv3: CPU1: found redistributor 20000 region 0:0x0000fe0040180000
+  [    0.873847] GICv3: CPU351: found redistributor 100600001 region 1:0x0000fe40430c0000
 
-You option 2 in the earlier thread had:
-| 2 - DFSDM managed as a "hardware accelerator"
-|=20
-|=20
-|    +-------------+
-|    | Sysfs       |
-|    | - Scale     | +---------------+
-|    | - Raw data  | | IIO char dev  |
-|    +-------------+ +---------------+
-|             ^             /\
-|             |             ||
-|             |             ||                         Userland
-|   -----------------------------------------------------------
-|             |             ||                         IIO fw
-|             |             ||
-|             |             ||
-|   -----------------------------------------------------------
-|             |             ||
-|          +--|-------------||--+     +----------------+
-|          |  |             ||  |     |                | Drivers
-|          |  |             =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D    |
-|          |  |                 |     |           ||   |
-|          |  +-----------------+-----+--+        ||   |
-|          |          +---------+-----+--+        ||   |
-|          +----------|---------+     +-----------||---+
-|                     |                           ||
-|   -----------------------------------------------------------
-|                     |                           ||
-|          +----------|---------+     +-----------||---+
-|          |                    |     |           ||   | Hardware
-|          |    sd modulator    |     |  DFSDM    ||   |
-|      =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D   |
-|          |                    |     |                |
-|          +----------+---------+     +----------------+
-|                     |
-|                     |
-|                    Vref
-|=20
-| The DFSDM is a consumer of the SD modulator.
-|=20
-| In addition to its complexity, the main drawback of this approach is=20
-| that it is unsuitable for interleaved mode.
+With it:
 
-Two mails prior I had theorised a way to deal with the interleaved mode
-https://lore.kernel.org/all/20261015-attentive-conflict-1a1f538de77d@spud/
-but I never saw a response from you as to why something like that cannot
-work. That's twice in that thread you said it was unsuitable without
-providing the actual explanation for why?
+  [    0.006401] GICv3: CPU1: found redistributor 20000 region 0:0x0000fe0040180000
+  [    0.800722] GICv3: CPU351: found redistributor 100600001 region 1:0x0000fe40430c0000
 
-Cheers,
-Conor.
+KVM guest with 352 vCPUs on that Vera system, where every GICR_TYPER
+read traps to the hypervisor, 139 ms faster. Without this patch:
 
->=20
-> * Driver implementation
->=20
-> Serial interfaces (SITF) are shared resources managed directly by the
-> MDF core and no longer have separate platform devices. This revision
-> retains their DT nodes to describe configuration and clock connections,
-> and to allow filters to reference their input bitstreams without
-> duplicating shared settings.
->=20
-> This revision also retains a platform device for each MDF filter, as
-> each filter manages its own registers, interrupt, DMA channel and IIO
-> acquisition state, with a separate suspend/resume lifecycle.
->=20
-> * Clock management
->=20
-> Several clock-management review comments are addressed in this revision:
-> - The provider-side clock-frequency property has been removed. Consumers
->   request CCK rates through assigned-clocks and assigned-clock-rates.
-> - The clock-names property has been removed. The core acquires its single
->   input clock by index, and CCK gating uses regmap-based clock operations.
-> - Remove the unused clock-ranges property, as the core now explicitly
->   shares the kernel clock with the serial interfaces and filters instead
->   of relying on parent clock lookup.
->=20
-> Clock topology point remains open, awaiting clarification of the MDF topo=
-logy.
->=20
-> Changes since v1:
-> - Split the large IIO driver patch into smaller functional patches.
-> - Replace provider-side clock-frequency with consumer-assigned CCK rates
->   through the common clock framework.
-> - Remove the platform devices for serial interfaces.
-> - Replace the interleave phandle list with a filter count, covering
->   consecutive filters starting at filter 0.
-> - Simplify clock-output-names, remove clock-names, reset-names and
->   filter-level clock properties, and move mdf-dai into an explicit
->   property outside the conditional schema.
-> - Rename the binding to match the STM32MP25 compatible, sort compatible
->   entries, and simplify the binding patch subject.
-> - Use unsigned long for match data, improve probe error reporting and
->   wrapping, remove a probe-success debug message, and add kernel-doc for
->   exported core functions.
-> - Use scoped spinlock guards.
-> - Remove empty serial-interface runtime-PM callbacks.
-> - Remove the redundant ASoC platform module alias.
->=20
-> Additional fixes since v1 (following Sashiko review):
-> - Compute the settling-time discard count with 64-bit arithmetic.
-> - Size cyclic DMA periods in complete scans and validate buffer and
->   period alignment before starting DMA.
-> - Fix backend-enable rollback so backend zero is disabled as well.
-> - Use managed allocation for the conversion buffer and managed IIO
->   triggered-buffer setup.
-> - Release temporary synchronization and serial-interface firmware-node
->   references. Replacing interleave phandles also removes the associated
->   stored node references.
-> - Avoid unregistering secondary interleaved filters that were never
->   registered as IIO devices.
-> - Use managed acquisition of the optional serial clock.
-> - Replace the GCD-based CCK divider selection with a search for the
->   largest valid divisor, allowing non-power-of-two divider values.
-> - Remove the selection of the undefined COMMON_CLK_REGMAP symbol.
->=20
-> Previous discussion:
-> https://lore.kernel.org/all/20261001145702.2628429-1-olivier.moysan@foss.=
-st.com/
->=20
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> ---
-> Olivier Moysan (11):
->       dt-bindings: iio: adc: add stm32mp2 mdf filter
->       iio: adc: stm32-mdf: add core registration
->       iio: adc: stm32-mdf: add cck clocks provider
->       iio: adc: stm32-mdf: add serial interfaces support
->       iio: adc: stm32-mdf: add digital filter device support
->       iio: adc: stm32-mdf: configure cic filters and sample rates
->       iio: adc: stm32-mdf: add direct iio conversion support
->       iio: adc: stm32-mdf: add dma buffered acquisition support
->       iio: adc: stm32-mdf: add external timer trigger support
->       iio: adc: stm32-mdf: add dmic audio filter support
->       ASoC: stm32: add mdf dai support
->=20
->  .../bindings/iio/adc/st,stm32mp25-mdf.yaml         |  341 ++++
->  drivers/iio/adc/Kconfig                            |   29 +
->  drivers/iio/adc/Makefile                           |    3 +
->  drivers/iio/adc/stm32-mdf-adc.c                    | 2080 ++++++++++++++=
-++++++
->  drivers/iio/adc/stm32-mdf-core.c                   |  899 +++++++++
->  drivers/iio/adc/stm32-mdf-serial.c                 |  223 +++
->  drivers/iio/adc/stm32-mdf.h                        |  275 +++
->  include/linux/iio/adc/stm32-mdf-adc.h              |   19 +
->  sound/soc/stm/Kconfig                              |   15 +
->  sound/soc/stm/Makefile                             |    3 +
->  sound/soc/stm/stm32_amdf.c                         |  375 ++++
->  11 files changed, 4262 insertions(+)
-> ---
-> base-commit: d922ed738439e1d5b4701df7f4cdd49a09925624
-> change-id: 20261112-upstream_mdf_v2-76040d99138e
->=20
-> Best regards,
-> -- =20
-> Olivier Moysan <olivier.moysan@foss.st.com>
->=20
+  [    0.023483] GICv3: CPU1: found redistributor 100 region 0:0x0000000010240000
+  [    0.433820] GICv3: CPU351: found redistributor 15701 region 0:0x0000000012de0000
 
---LpL/rArroYRlxrrz
-Content-Type: application/pgp-signature; name=signature.asc
+With it:
 
------BEGIN PGP SIGNATURE-----
+  [    0.023817] GICv3: CPU1: found redistributor 100 region 0:0x0000000010240000
+  [    0.295205] GICv3: CPU351: found redistributor 15701 region 0:0x0000000012de0000
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCav9B+gAKCRB4tDGHoIJi
-0nrLAP0dW7n5X9s3iyUz2lxPDPplj9Was9TElWS7BopK6xw12AD9FHCRYp+BpumB
-phGv0h7oTawzrzkeZT7WJK6s4SXVGQM=
-=/5Gs
------END PGP SIGNATURE-----
+Signed-off-by: Joshua Machauer <machaujo@amazon.de>
+---
+An LLM coding assistant drafted the code and this changelog and ran the
+boot measurements. I reviewed and edited the result.
 
---LpL/rArroYRlxrrz--
+v2:
+  - Fill in rd_base and phys_base instead of keeping a separate per-CPU
+    copy of the frame (Marc)
+  - Add RD_LOCAL_POPULATED for the two users that took a non-NULL
+    rd_base to mean the CPU has come up
+  - Initialise rd_lock once, where the frame is assigned, instead of
+    each time the CPU comes online
+  - Drop the qualifier about systems with one redistributor per CPU,
+    which is every GICv3 system (Marc)
+  - Rebase onto tip irq/core (v7.4-rc1)
+  - Trim the test results to the NVIDIA Vera runs, remeasured on v2
+---
+ drivers/irqchip/irq-gic-common.h |   7 ++
+ drivers/irqchip/irq-gic-v3-its.c |  11 ++-
+ drivers/irqchip/irq-gic-v3.c     | 113 +++++++++++++++++++++----------
+ 3 files changed, 90 insertions(+), 41 deletions(-)
+
+diff --git a/drivers/irqchip/irq-gic-common.h b/drivers/irqchip/irq-gic-common.h
+index 710cab61d9195..ffe5546d6189b 100644
+--- a/drivers/irqchip/irq-gic-common.h
++++ b/drivers/irqchip/irq-gic-common.h
+@@ -33,4 +33,11 @@ void gic_enable_of_quirks(const struct device_node *np,
+ #define RDIST_FLAGS_RD_TABLES_PREALLOCATED     (1 << 1)
+ #define RDIST_FLAGS_FORCE_NON_SHAREABLE        (1 << 2)
+ 
++/* Per-CPU redistributor flags, in struct rdists::rdist->flags */
++#define RD_LOCAL_LPI_ENABLED                    BIT(0)
++#define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
++#define RD_LOCAL_MEMRESERVE_DONE                BIT(2)
++/* The CPU has come up */
++#define RD_LOCAL_POPULATED                      BIT(3)
++
+ #endif /* _IRQ_GIC_COMMON_H */
+diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+index 282e4bafb084f..ba6a6edf34230 100644
+--- a/drivers/irqchip/irq-gic-v3-its.c
++++ b/drivers/irqchip/irq-gic-v3-its.c
+@@ -50,10 +50,6 @@
+ #define ITS_FLAGS_FORCE_NON_SHAREABLE		(1ULL << 3)
+ #define ITS_FLAGS_WORKAROUND_HISILICON_162100801	(1ULL << 4)
+ 
+-#define RD_LOCAL_LPI_ENABLED                    BIT(0)
+-#define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
+-#define RD_LOCAL_MEMRESERVE_DONE                BIT(2)
+-
+ static u32 lpi_id_bits;
+ 
+ /*
+@@ -2802,7 +2798,8 @@ static u64 inherit_vpe_l1_table_from_rd(cpumask_t **mask)
+ 	for_each_possible_cpu(cpu) {
+ 		void __iomem *base = gic_data_rdist_cpu(cpu)->rd_base;
+ 
+-		if (!base || cpu == smp_processor_id())
++		if (!(gic_data_rdist_cpu(cpu)->flags & RD_LOCAL_POPULATED) ||
++		    cpu == smp_processor_id())
+ 			continue;
+ 
+ 		val = gic_read_typer(base + GICR_TYPER);
+@@ -2839,8 +2836,8 @@ static bool allocate_vpe_l2_table(int cpu, u32 id)
+ 	if (!gic_rdists->has_rvpeid)
+ 		return true;
+ 
+-	/* Skip non-present CPUs */
+-	if (!base)
++	/* Skip CPUs that have not come up yet */
++	if (!(gic_data_rdist_cpu(cpu)->flags & RD_LOCAL_POPULATED))
+ 		return true;
+ 
+ 	val  = gicr_read_vpropbaser(base + SZ_128K + GICR_VPROPBASER);
+diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
+index 94873646d46fb..a507d84bf8dbc 100644
+--- a/drivers/irqchip/irq-gic-v3.c
++++ b/drivers/irqchip/irq-gic-v3.c
+@@ -1019,51 +1019,94 @@ static int gic_iterate_rdists(int (*fn)(struct redist_region *, void __iomem *))
+ 	return ret ? -ENODEV : 0;
+ }
+ 
+-static int __gic_populate_rdist(struct redist_region *region, void __iomem *ptr)
++/*
++ * Convert a CPU's affinity to a 32bit value that can be matched to
++ * GICR_TYPER bits [63:32].
++ */
++static u32 gic_cpu_to_rdist_aff(int cpu)
+ {
+-	unsigned long mpidr;
+-	u64 typer;
+-	u32 aff;
++	u64 mpidr = gic_cpu_to_affinity(cpu);
+ 
+-	/*
+-	 * Convert affinity to a 32bit value that can be matched to
+-	 * GICR_TYPER bits [63:32].
+-	 */
+-	mpidr = gic_cpu_to_affinity(smp_processor_id());
++	return (MPIDR_AFFINITY_LEVEL(mpidr, 3) << 24 |
++		MPIDR_AFFINITY_LEVEL(mpidr, 2) << 16 |
++		MPIDR_AFFINITY_LEVEL(mpidr, 1) << 8 |
++		MPIDR_AFFINITY_LEVEL(mpidr, 0));
++}
+ 
+-	aff = (MPIDR_AFFINITY_LEVEL(mpidr, 3) << 24 |
+-	       MPIDR_AFFINITY_LEVEL(mpidr, 2) << 16 |
+-	       MPIDR_AFFINITY_LEVEL(mpidr, 1) << 8 |
+-	       MPIDR_AFFINITY_LEVEL(mpidr, 0));
++/* Give @cpu the redistributor frame at @ptr */
++static void gic_assign_rdist(int cpu, struct redist_region *region,
++			     void __iomem *ptr)
++{
++	raw_spin_lock_init(&per_cpu_ptr(gic_data.rdists.rdist, cpu)->rd_lock);
++	per_cpu_ptr(gic_data.rdists.rdist, cpu)->rd_base = ptr;
++	per_cpu_ptr(gic_data.rdists.rdist, cpu)->phys_base =
++		region->phys_base + (ptr - region->redist_base);
++}
+ 
+-	typer = gic_read_typer(ptr + GICR_TYPER);
+-	if ((typer >> 32) == aff) {
+-		u64 offset = ptr - region->redist_base;
+-		raw_spin_lock_init(&gic_data_rdist()->rd_lock);
+-		gic_data_rdist_rd_base() = ptr;
+-		gic_data_rdist()->phys_base = region->phys_base + offset;
+-
+-		pr_info("CPU%d: found redistributor %lx region %d:%pa\n",
+-			smp_processor_id(), mpidr,
+-			(int)(region - gic_data.redist_regions),
+-			&gic_data_rdist()->phys_base);
+-		return 0;
++static int __gic_find_rdist(struct redist_region *region, void __iomem *ptr)
++{
++	u64 typer = gic_read_typer(ptr + GICR_TYPER);
++
++	if ((typer >> 32) != gic_cpu_to_rdist_aff(smp_processor_id()))
++		return 1;	/* Try next one */
++
++	gic_assign_rdist(smp_processor_id(), region, ptr);
++	return 0;
++}
++
++/* The region holding @ptr: the one with the highest base not above it */
++static int gic_rdist_region_index(void __iomem *ptr)
++{
++	int i, idx = 0;
++
++	for (i = 1; i < gic_data.nr_redist_regions; i++) {
++		if (gic_data.redist_regions[i].redist_base <= ptr &&
++		    gic_data.redist_regions[i].redist_base >
++		    gic_data.redist_regions[idx].redist_base)
++			idx = i;
+ 	}
+ 
+-	/* Try next one */
+-	return 1;
++	return idx;
+ }
+ 
+ static int gic_populate_rdist(void)
+ {
+-	if (gic_iterate_rdists(__gic_populate_rdist) == 0)
+-		return 0;
++	/*
++	 * The frame is normally assigned at init by
++	 * gic_update_rdist_properties(). A CPU that was absent then, such as
++	 * an ACPI online-capable CPU, scans for its frame instead.
++	 */
++	if (!gic_data_rdist_rd_base() &&
++	    gic_iterate_rdists(__gic_find_rdist)) {
++		/* We couldn't even deal with ourselves... */
++		WARN(true, "CPU%d: mpidr %lx has no re-distributor!\n",
++		     smp_processor_id(),
++		     (unsigned long)cpu_logical_map(smp_processor_id()));
++		return -ENODEV;
++	}
+ 
+-	/* We couldn't even deal with ourselves... */
+-	WARN(true, "CPU%d: mpidr %lx has no re-distributor!\n",
+-	     smp_processor_id(),
+-	     (unsigned long)cpu_logical_map(smp_processor_id()));
+-	return -ENODEV;
++	gic_data_rdist()->flags |= RD_LOCAL_POPULATED;
++
++	pr_info("CPU%d: found redistributor %lx region %d:%pa\n",
++		smp_processor_id(),
++		(unsigned long)gic_cpu_to_affinity(smp_processor_id()),
++		gic_rdist_region_index(gic_data_rdist_rd_base()),
++		&gic_data_rdist()->phys_base);
++	return 0;
++}
++
++/* Give the frame at @ptr to the possible CPU whose affinity it reports */
++static void gic_find_rdist_cpu(struct redist_region *region, void __iomem *ptr,
++			       u64 typer)
++{
++	int cpu;
++
++	for_each_possible_cpu(cpu) {
++		if (gic_cpu_to_rdist_aff(cpu) == (typer >> 32)) {
++			gic_assign_rdist(cpu, region, ptr);
++			return;
++		}
++	}
+ }
+ 
+ static int __gic_update_rdist_properties(struct redist_region *region,
+@@ -1072,6 +1115,8 @@ static int __gic_update_rdist_properties(struct redist_region *region,
+ 	u64 typer = gic_read_typer(ptr + GICR_TYPER);
+ 	u32 ctlr = readl_relaxed(ptr + GICR_CTLR);
+ 
++	gic_find_rdist_cpu(region, ptr, typer);
++
+ 	/* Boot-time cleanup */
+ 	if ((typer & GICR_TYPER_VLPIS) && (typer & GICR_TYPER_RVPEID)) {
+ 		u64 val;
+-- 
+2.47.3
+
 
