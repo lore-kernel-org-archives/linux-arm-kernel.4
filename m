@@ -2,69 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366EA606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 00:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A984606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 00:01:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LHIOehd+;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fA+aN76e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rj/Sytoz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=S0twXbQr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1/9FVMg6kywcce5P8F50oXpupxOmDgZiF5njySBM1es=; b=LHIOehd+ETobsK
-	2toTaZCDoPKGj23YmP45xsjjk29KtUPffmFfkv6WgqaAC45Xj4CcxkBNbpWkQZsPg6GKSdpns65Ps
-	9ohBpUEQr4jbdKKeSSDRCHkl8Js0vPTwhraE7St+BxqSS7KxQEsSMRJIHk0+Fn8nxVlYKwrGbes3I
-	850hgzkcu6kJSD0JTGpO76aZFg/oPaDzbMh5d69bh+2hpMX7mG8D+CU5yyvIgey5WdPIwbgcwwatS
-	AZBtYYeI34b5KrumjkvhyxRx2wtgfRP7rh2orswvjKx3hbKGTKjypvbuLCiZ6aKQFWsXxoh5vkMAa
-	qjCfQkuzJWAjyttCOLEw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=QlaFXh2FSXbQ/e8h1gUNCb/cTAUZrL7gz15TDUrTHDo=; b=rj/SytozZEJkC7BCUkbAzEB8KT
+	Nwb+OMDaKCRBX3miuQqJ0QF4y1B2F3f8uRvKN4UtjrRNQ2HKDvDoEARN59YECgJCc12d9agKX4h3q
+	tdgsEUFzZCQw57bdQWfxJU/wAtHn7crNszOQN2onjwzAFp2dYR7guanQZdzAYer3MdpN3WNhGsGCZ
+	+SQ/nnxenubbvyg4RjTRl9ofeJN5l3lK976zlCZsR28N2SyUX/O/6G2HP3s9shXQIZjE/AY9Tuoyj
+	btbLTsl5+ZxK6xMwGoxxTLhz8f1W5y+yDAa2cVfdyfZEp2+7wT5WQV+EbNiwzzCUrCh2FAZTdZJ8m
+	h/+F0X4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTpZR-0000000AXTM-38ZC;
-	Thu, 19 Nov 2026 00:00:09 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTpaW-0000000AXfx-21KG;
+	Thu, 19 Nov 2026 00:01:16 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTpZP-0000000AXTG-38JN
+	id 1xTpaV-0000000AXf9-1FRY
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 00:00:07 +0000
+	Thu, 19 Nov 2026 00:01:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CB8CC61F9D;
-	Thu, 19 Nov 2026 00:00:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F1C1F000C6;
-	Thu, 19 Nov 2026 00:00:06 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 7A9EB61EED;
+	Thu, 19 Nov 2026 00:01:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14B931F000C4;
+	Thu, 19 Nov 2026 00:01:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795046406;
-	bh=1/9FVMg6kywcce5P8F50oXpupxOmDgZiF5njySBM1es=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=fA+aN76eXvZMhSHhMmaricbYXvgI4y198sLkyXqF54ORYmglTp/wE9V/2Q9J85OKD
-	 gAY0l4YsEKQtbpzCBnLrf/qSVwv1v6yHIYSma/ad6Jdch8HHTB+N72wU71eso8pvwn
-	 omPS9C0HDlhHBRmWsIhhbFhNqHn0uV88TI42f4Aef6jtQMBgWRT+lWRPwGbZKijFEa
-	 e1i3ZMmiKZselfoJt6quqfCnesypkmzrB6SNWC8uJuEFksWfX5sfQ/Ch+MYBSpWewz
-	 rgSQGWmKOcg0pv6YEVY0tzwnCB3W9+/8BTFuRI/cdAI5hAvbMjfkQ9hBXEgR9A90pQ
-	 tkHrwZB9XG6Jw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 7730F3808210;
-	Thu, 19 Nov 2026 00:00:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20260515; t=1795046474;
+	bh=QlaFXh2FSXbQ/e8h1gUNCb/cTAUZrL7gz15TDUrTHDo=;
+	h=From:To:Cc:Subject:Date;
+	b=S0twXbQr4u2IJOiRn5N+OC9gyAeUuO0PL6Pt1+zVwnEV8sL6rMWgtoqxuWIuduG9e
+	 5SbOnLg3KBXCzfSD9UbYIi1lprqaaw8QnWhGzPgC2YZo8tlefEuai3vx+wjJu5Cf7d
+	 Qgutj122XMIYlRgY65CMe5Ka6y55/xrq/wBT7EheqI9S9fIX4qHdIvm9qiTZhJM9Fj
+	 JL/j7J34GNIlpgOCoGmK/IeyE9aO4qYOpn+xdDq/hzeJO0ChyWPylMhlpFI1Tqhd0d
+	 kaJrafb9uCWzoMbQKbY+6oqUF7M+w0b6llOHlmvzrkUHQZg+6pldFPdLu6dXUp/acV
+	 /Xe3h9SbcVlnA==
+From: Andrii Nakryiko <andrii@kernel.org>
+To: bpf@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	linux-perf-users@vger.kernel.org,
+	peterz@infradead.org,
+	jolsa@kernel.org,
+	rostedt@goodmis.org,
+	Andrii Nakryiko <andrii@kernel.org>
+Subject: [PATCH bpf-next v2 0/3] Fix duplicate caller frame in arm64 stack traces
+Date: Wed, 18 Nov 2026 16:01:09 -0800
+Message-ID: <20261119000112.2377949-1-andrii@kernel.org>
+X-Mailer: git-send-email 2.53.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net] net: stmmac: drop the rest of the frame when
- napi_build_skb() fails
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179504640528.2628008.5659141402667774044.git-patchwork-notify@kernel.org>
-Date: Thu, 19 Nov 2026 00:00:05 +0000
-References: <20261113-stmmac-rx-skb-fail-v1-1-fcaae89f2d2c@gmail.com>
-In-Reply-To: <20261113-stmmac-rx-skb-fail-v1-1-fcaae89f2d2c@gmail.com>
-To: Arun Iyengar <aiyengar1990@gmail.com>
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- Jose.Abreu@synopsys.com, lorenzo@kernel.org, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- lorenzo.bianconi@oss.qualcomm.com, stable@vger.kernel.org
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,38 +72,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+On arm64 the caller is reported twice when the kernel builds a callchain for
+the current task from regs filled by perf_fetch_caller_regs(), instead of regs
+saved by a real exception. There was a similar problem on x86-64, but it was
+since fixed. Now it's time for arm64.
 
-This patch was applied to netdev/net.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Patch 1 has the fix, patches 2-3 add BPF selftests for this.
 
-On Fri, 13 Nov 2026 17:13:40 +0000 you wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> If napi_build_skb() fails on the first buffer of a frame that spans
-> several descriptors, stmmac_rx() drops that buffer but goes on with the
-> next descriptor of the same frame as if a new frame started there. The
-> rest of the frame is then passed up the stack as a frame of its own. A
-> frame spans several descriptors when it does not fit in the RX buffers
-> of one descriptor.
-> 
-> [...]
+I'm targeting bpf-next because of BPF selftests and to have BPF CI test
+everything. Patch 1 doesn't have to go through bpf-next, but it's simple enough,
+so if arm64 folks are ok with that, please ack and then we'll land everything
+in one go into bpf-next.
 
-Here is the summary with links:
-  - [net] net: stmmac: drop the rest of the frame when napi_build_skb() fails
-    https://git.kernel.org/netdev/net/c/ece404eac250
+v1->v2:
+  - keep __builtin_frame_address(0) in perf_arch_fetch_caller_regs(), mark
+    these regs with PSR_MODE_EL1t instead, and have perf_callchain_kernel()
+    skip the duplicate leaf regs->pc for them, like x86 does with
+    perf_hw_regs() (Will);
 
-You are awesome, thank you!
+v1: https://lore.kernel.org/bpf/20261114001846.873499-1-andrii@kernel.org/
+
+Andrii Nakryiko (3):
+  arm64: perf: Don't report the caller twice in caller-regs callchains
+  selftests/bpf: Add stacktrace_ips test for tracepoint
+  selftests/bpf: Run stacktrace_ips raw_tp, tp and fentry tests on arm64
+
+ arch/arm64/include/asm/perf_event.h           |  2 +-
+ arch/arm64/kernel/perf_callchain.c            | 33 ++++++++-
+ .../selftests/bpf/prog_tests/stacktrace_ips.c | 67 ++++++++++++++++++-
+ .../selftests/bpf/progs/stacktrace_ips.c      | 18 ++++-
+ 4 files changed, 113 insertions(+), 7 deletions(-)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.53.1-Meta
 
 
