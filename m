@@ -2,75 +2,132 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79638606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:15:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C59A2606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gOK67oHg;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=All8TMmr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OfuIj3K9;
+	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=EoIUktnj;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=h2KrdnBD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=FSijPhhRa1sylue+Xngi69obQ3Cz7DJerakSbhJI/xQ=; b=gOK67oHgzFFvJJiueQmnlzxXlC
-	1CWZCj9s3KnCHFFUDxnytIngSVj92vjSYOzaIDcNnyIYDeLibo1gXQ0ZpFlWBJ7DdmdiZZbRoW9Ds
-	t1jg02BdhCIxd/+HXErBLz1DAEC+530Pes5t20baOpulvO48HEK8NttPM6NYNUUWD3AhcunxPveBV
-	ghs6KANFGdKFYf5ywSfIoNiKdDa2+ZUWe85fHzVw1DeDp60UiMUzCOdo8K6qZ6WaHYbuQOfSlNXLZ
-	7jtupUpd6KrqXxy6wUJ/rafSUTKJy0Fl2baX64H3/sJLJ0EKImpaz7KNTQvl8tTdUb+F4I3QKpREC
-	J4zkd6rw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=01otf33RxSte8QwJA3GEyoCTItE4iig/ZqEIZE6AbO8=; b=OfuIj3K99auSC9
+	ZOFtH9eW6BP1DmqGP27lGXeq6Eas+ovSHndpqvi1tSXn1daV7WG0knpwcfYsBM8u0fzn4QRZdT5en
+	M0UkZHVVUyUO3xYBHeC08NdzfQwbZJt+Uz25lp4SbOwAreMZqwxMMYdZYx+euhaw4Ge0subddPzQI
+	IvgAyrc7nF+KgUjB43/NHlw3Ckzqeq/T+LGYOTyGnLWQmB32vp2yiSfw5zC6ZjtfkKz0ELN7wInBr
+	0li4muQaaoAb+5oKbdvORM+cq0cE9jmxkPgi479lVvl0iOw72RkpSGjSx7p3+cMBf3SbjgWyylz5x
+	l6znfi3uwYmtfv1vfEMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2v8-0000000CBzm-46uQ;
-	Thu, 19 Nov 2026 14:15:26 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xU2yt-0000000CCPs-0EXW;
+	Thu, 19 Nov 2026 14:19:19 +0000
+Received: from fhigh-a7-smtp.messagingengine.com ([103.168.172.158])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2v7-0000000CBzg-3IwK
+	id 1xU2yn-0000000CCOH-4901
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:15:25 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7FD6746699;
-	Thu, 19 Nov 2026 14:15:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A869A1F000C6;
-	Thu, 19 Nov 2026 14:15:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795097725;
-	bh=FSijPhhRa1sylue+Xngi69obQ3Cz7DJerakSbhJI/xQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=All8TMmr/Keh3K1xwi5Ldk1VYiZvjF+dSBPD0KJ9At1KNNTcbCCkj48CoYsBri23r
-	 KjvbopJhKPAsqf5U/86rrOMEbem/XRpW5ezqU/R25L1udyNlJrhorZEs8RCpN9+9BV
-	 wD+ZBBj5LWo5RqiTm1X8ly5n6QP1shllNCf9Rb44oJFGsp2dpp/x2Kx/thi6s3+kGV
-	 Z0b6Xj1z1ts7jo7Fr0aXQJNvAGRezLhukj64iCoYcb9BsY9RXGx4Dow+uwpcfHzv0I
-	 hq5PXnHUs+TO6gzYyNVzPkhk+2j/TDvLPTo7aZXggiPSn78Xp0KgT/DOUqUgHsgCaW
-	 Tu31Dqhd9an5Q==
-Date: Thu, 19 Nov 2026 14:15:19 +0000
-From: Sudeep Holla <sudeep.holla@kernel.org>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
-	james.quinlan@broadcom.com, f.fainelli@gmail.com,
-	vincent.guittot@linaro.org, etienne.carriere@st.com,
-	peng.fan@oss.nxp.com, michal.simek@amd.com, d-gole@ti.com,
-	elif.topuz@arm.com, lukasz.luba@arm.com, philip.radford@arm.com,
-	david@kernel.org, souvik.chakravarty@arm.com, leitao@kernel.org,
-	kas@kernel.org, puranjay@kernel.org, usama.arif@linux.dev,
-	kernel-team@meta.com
-Subject: Re: [PATCH v15 00/35] Introduce SCMI Telemetry support
-Message-ID: <20261119-ruddy-honorable-bustard-ac2b4c@sudeepholla>
-References: <20261109091221.2532706-1-cristian.marussi@arm.com>
- <20261117170709.00002088@oss.qualcomm.com>
- <20261118-poetic-robust-raptor-bcff2b@sudeepholla>
- <20261118093203.000069f1@oss.qualcomm.com>
- <av3w1CbwYxFRPStZ@pluto>
+	Thu, 19 Nov 2026 14:19:18 +0000
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 5CBD01400130
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:19:12 -0500 (EST)
+Received: from ams-imap-03 ([10.64.2.23])
+  by ams-compute-02.internal (MEProxy); Thu, 19 Nov 2026 09:19:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1795097944;
+	 x=1795184344; bh=01otf33RxSte8QwJA3GEyoCTItE4iig/ZqEIZE6AbO8=; b=
+	EoIUktnjNoXwzv8dS6zIUjbqeifiPckygpbEgoj6jRRcoK34T29u7nMhNhKYF9Ao
+	ElQgRp6/UiJLdioJ1Uw9NXUq7InWrJaGXtRicuvCwlls4sPG1fy9/9w8de14d6Xz
+	prFerkCzfFFyNUj0VQJ+Cf2CxZY8xlK+OQAIkBSQas51pKRvZ+vjIwkb2MXQ9eTw
+	JZFc2e9hYG4Qh3ayGiM7DygA6+zYV2Bq3C7k+rjrTb6z41AgPe+FkYRRtKZNbrFR
+	Qfvm9/6S8rXBlcbkmXKLRHhtY9t0y4/LJ+aam+11oeTEHiIEp2opVuqZOjrxkY5s
+	+XnBwBeSuYGeoALqdmqasA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1795097944; x=
+	1795184344; bh=01otf33RxSte8QwJA3GEyoCTItE4iig/ZqEIZE6AbO8=; b=h
+	2KrdnBD4oHFdj0rLXsqfNDuxtnGUP1LJU9wXMuoBdjK/QRcMkLk+AJDyvGZ2H5Xr
+	48tJ97KYUHNWFeyM5skPiEgwGj3pwCeu974bBNVs1CEev1RdXwl+Xs3+/Cax9Jmn
+	i3TnZAp+mg7tXKmNIo33v+QH2mjFlfUZXMYIN9iv7HusnVkP6h74oXSuBMV7W8D+
+	QOQa6v81f1H0N0/P55oyG9719WJJPyqU/e3BXpjJR77L8RHNRcfYvV9o3jGE7wX7
+	AIFSJ67ZuUJHsEStMbTuapuPQManwvq6Cd7QNdbOliG8Z2WpH1HkNts0qSmBfls6
+	YTrXsm+S+ZyvUsDy9ZT7A==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=arndb.de a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1795097944; d=arndb.de;
+	mf=PGFybmRAYXJuZGIuZGU+;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm2:rsa-sha256:NHpMkMyHMZtLniKELvhwQStwL8975AY3yQJntFVO3NejGBb
+	P01+A6zxp+Ml3re6wW1Ga404mWVG3onHHx29oOcx3YsTwAhUgokxRXYa6PzU2TlL
+	+2LpC8FmBm9g0qoyu02xgnhtr046WkWuimbM4VrcMdpqfuIkeIYNeEQohkrJPAfg
+	xJUcT0Q3U8BpBLaJmHtnQpnx1Nokq1zS1cXpVR8HjDXBGY8144uCGEFYVs7Z3tWQ
+	jHJiZECzYUSulKcpkH5deOUspkapMWP4tw0xPC/htkGQqa5AjYyrHdVAN5RciAvW
+	9VAHQdT/XFJQydpH2B74EQaedECly8hXaHi5DCg==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=12;
+	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
+	from,in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1; h=sha256:krR0+YczFIO3+zdXy7Z/za6sK29LTPNQ/dPu1fbwuUE=:wrF4KQUa30FhL8Dr9keH2zmryDL7ZnCEKnekfBbv8Pk=;
+X-ME-Sender: <xms:UAX_aqUwwYD29dnpJKfOnOqiOeeYmLycCx51Wm7kuD7rCfg4ezzOFw>
+    <xme:UAX_ahbIoC1FHKNXhWwlYyrtoGYG6NDcIafBcpMy1XDFy9PlgvU26tzm92-8QQUmf
+    nwGCPwhmW-x9JRJ1fJtprwt4vDrkhCCZ3ElJaNNBTtgddvtEqurPMmV>
+X-ME-Proxy-Cause: dmFkZTERVl3HBLVOrb/B5W9SlCiGjcntYqbjfg2rc15q2Ityk3ssPrEgzYujGztlf0+i5y
+    IUePtGtYcnB/oLsKiZjiV9ueq+oUrcMKwKJTDDqxuPSA/hy/FzPBrOKEcnLDWsbGzDryD9
+    Zg2g9MKRlsfGLNeDKBJjkfK6s7NMH7UNYZ1eklYmKbno76Im0PjniL5ON/XVUGePe810Lf
+    CQZIof1fML+kMgA208+AsvWtltCKuIDdFaCpFOAd7MCUoa/+TmRphnpjHilFEddz3Bk4Pj
+    J4ICYtjHSS4AVOVCSDLUmQ3hWo8yqZ8bbxZsj8jM19cSWbJWi6uwTJLEghGJx01Fkmo2aQ
+    JWkIMc+IzNqIgGCokQFd6rtQfeU/H9NOcj86/7PGyNR47Iq5ERKUDJPD0/dX7+2Pczq+cQ
+    DHWPzBfYOke+EsTg8eEpWMH1X+cbPwywgCFSzVBCePBDne0z74e+y46Wpnm2y7RCppAbsE
+    6xkC4pU+s2LwHUVGWzSC6viDczmwndPe7y1YDFaeJ+qWsVHmH5pfpOvv6WSzW8oslzvApA
+    bISG02sOsFYEvdO5nq3Yzd3ZX+GXyIW5MslSF3U06KM6NA2quAwNJWkseqHCG/Mc4l7s3D
+    cuILIX4Y2T/8DXDGBxUqYcB1/n/pTANF8nbNX4gwHawqOLMsipIvdVUXAulA
+X-ME-Proxy: <xmx:VAX_aolMXSEpB77rIdMNX6Sq20r5bJvHfE0yr2-ifV9atgGlX1bj5Q>
+    <xmx:VAX_alADAXppjckRX-rOXY3QsRH9NwwF9Zvxqx3SskCN6nIayoEI2w>
+    <xmx:VAX_arLB30Ba-F0LXA5lIoXGOV_V6KNAv33Xgyx4azBpodr9T5bZoQ>
+    <xmx:VAX_agxsLKnP0wF2ZPyiHy_qXWqwmJkxhT4jXtBqAjcvKcrJim1Alw>
+    <xmx:WAX_atkZJp_YLsE5qL5ixsu0-xtRySH1ySqOzfHN1s8DsOLObf2lzhMq>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id D0F9D32A0099; Thu, 19 Nov 2026 09:18:56 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <av3w1CbwYxFRPStZ@pluto>
+X-ThreadId: A-12XcIUUc5R
+Date: Thu, 19 Nov 2026 15:18:26 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Long Zhao" <longzhao@ambarella.com>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>, soc@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>
+Cc: "Jerome Brunet" <jbrunet@baylibre.com>, linux-clk@vger.kernel.org,
+ "Brian Masney" <masneyb@kernel.org>,
+ "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ devicetree@vger.kernel.org, "Long Zhao" <zl020895@163.com>,
+ linux-kernel@vger.kernel.org, "Linus Walleij" <linusw@kernel.org>
+Message-Id: <1148990d-dfa6-489d-99f8-4bf4417b2c4c@app.fastmail.com>
+In-Reply-To: <20261119-cv75-soc-v12-0-e5a03cca8b05@ambarella.com>
+References: <20261119-cv75-soc-v12-0-e5a03cca8b05@ambarella.com>
+Subject: Re: [PATCH v12 0/6] arm64: add Ambarella CV75 SoC support
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_061914_611190_D3EEFE5C 
+X-CRM114-Status: GOOD (  14.65  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,90 +138,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 06:39:16PM +0000, Cristian Marussi wrote:
-> On Wed, Nov 18, 2026 at 09:32:03AM -0800, Jonathan Cameron wrote:
-> > On Wed, 18 Nov 2026 09:33:44 +0000
-> > Sudeep Holla <sudeep.holla@kernel.org> wrote:
-> > 
-> > > On Tue, Nov 17, 2026 at 05:07:09PM -0800, Jonathan Cameron wrote:
-> > > > On Mon,  9 Nov 2026 09:11:46 +0000
-> > > > Cristian Marussi <cristian.marussi@arm.com> wrote:
-> > > >   
-> > > > > Hi all,
-> > > > > 
-> > > > > [TLDR Summary]
-> > > > >  [V15 highlights]
-> > > > >  - general cleanup and hardening driven by reviews
-> > > > >  - improved TDCF access routines to minimize lost samples under load
-> > > > >  - completed ABI docs
-> > > > > 
-> > > > >  [V16 TODO]
-> > > > >   - address any remaining V15 outstanding Sashiko/reviewers issues
-> > > > > 
-> > > > > The upcoming SCMI v4.0 specification [0] introduces a new SCMI protocol
-> > > > > dedicated to System Telemetry.  
-> > > > 
-> > > > This is one from the family of issues you find when reviewing ones own
-> > > > (well LLM generated) emulation, realizing it doesn't match the spec,
-> > > > and yet works.
-> > > > 
-> > > > This works fine without the required SCMI protocol property in ACPI.
-> > > > 2.2.2 of ACPI for System Control and Management Interface 1.0
-> > > > Platform Design Document. 111115A 1.0
-> > > > 
-> > > > Now, in here is an informative statement...
-> > > > 
-> > > > Protocols not listed using a property may not be enumerate by the operating system.
-> > > > 
-> > > > But they are... 
-> > > >  
-> > > 
-> > > Correct, I intentionally left that out. I do have a patch that restricts it
-> > > strictly to the listed property. However, I held off on pushing it because of
-> > > an issue we saw on an internal test platform.
-> > > 
-> > > On that platform, the firmware advertised the protocol to the OSPM via the
-> > > base protocol, even though it wasn't functional at all. Once they realized
-> > > this, they simply dropped the entry from the ACPI SCMI device as a workaround
-> > > instead of properly fixing the base protocol discovery. While understandable,
-> > > relying on that workaround delays proper firmware fixes.
-> > > 
-> > > That is why I went with the non-mandatory "may not be" wording. I am happy to
-> > > merge that restriction patch if a real production platform actually needs it,
-> > > but until then, leaving it open helps catch and fix broken firmware
-> > > implementations 😄.
-> > 
-> > You can't merge it safely as at a later date because chances are high
-> > someone is relying on the current behavior and not presenting that
-> > (currently pointless) package in ACPI for some protocol or other.
-> > 
-> > I'm fine with a permanent decision not to check this but I don't see it
-> > as a thing that can ever change (except maybe now whilst there are not
-> > that many platforms out there using it!)
-> > 
-> 
-> Even though the change would be at the transport layer, given that it is
-> NOT impacting the Base protocol, cant we anyway quirk it later on based on FW
-> vendor/version as an extrema ratio so as to support anyway older FW
-> leveraging the current behaviour ? (not ideal I agree...and I have to
-> double check what changes could be needed in the quirk framework..)
-> 
+On Thu, Nov 19, 2026, at 11:13, Long Zhao via B4 Relay wrote:
+> Add the Ambarella CV75 SoC and EVK support: the board binding, the
+> RCT clock binding and driver, ARCH_AMBARELLA, the devicetree and
+> MAINTAINERS.
+>
+> Apply the patches in this order:
+>
+> 1. board binding
+> 2. RCT clock binding and clock ID header
+> 3. ARCH_AMBARELLA
+> 4. RCT clock driver
+> 5. CV75 SoC and EVK device tree, plus defconfig
+> 6. MAINTAINERS
+>
+> The ambarella vendor prefix and the CV75 secure scratchpad syscon
+> binding are already in linux-next. This series does not repeat
+> either of them.
+>
+> GPIO, UART and pinctrl bindings and drivers are separate series.
+> This devicetree references those compatibles.
+>
+> Tested on the CV75 EVK. The board boots. That boot used a local tree
+> that also includes the GPIO, UART and pinctrl patches.
 
-Equally good point. I am worried as Jonathan say what we many platforms
-start to depend on current logic and end up skipping the ACPI property
-in the firmware which can be problematic to address in the future.
+I merged this into the soc/newsoc branch now, which may get
+additional SoCs from other vendors for the merge window. This
+should be in linux-next starting tomorrow.
 
-Let me think about it so that we can address possible f/w bug issue as
-well.
+I also pushed the contents out in two branches:
 
--- 
-Regards,
-Sudeep
+https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/log/?h=newsoc/ambarella
+
+contains all six patches, while
+
+https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/log/?h=ambarella/common
+
+contains only the first three and can be merged into the other
+subsystems. As expected, I got warnings about the uart and gpio
+device bindings not being present, as they are getting merged
+through other trees:
+
+WARNING: DT compatible string "ambarella,cv75-uart" appears un-documented -- check ./Documentation/devicetree/bindings/
+#152: FILE: arch/arm64/boot/dts/ambarella/cv75.dtsi:76:
++				compatible = "ambarella,cv75-uart", "snps,dw-apb-uart";
+
+WARNING: DT compatible string "ambarella,cv75-gpio" appears un-documented -- check ./Documentation/devicetree/bindings/
+#177: FILE: arch/arm64/boot/dts/ambarella/cv75.dtsi:101:
++				compatible = "ambarella,cv75-gpio", "arm,primecell";
+
+     Arnd
 
