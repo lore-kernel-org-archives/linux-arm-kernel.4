@@ -2,85 +2,163 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3713606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1AB2606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Qrj9CG4;
-	dkim=pass (2048-bit key, unprotected) header.d=amazon.de header.i=@amazon.de header.a=rsa-sha256 header.s=amazoncorp2 header.b=VcrTYhxN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lWiU9NrH;
+	dkim=pass (2048-bit key, unprotected) header.d=kontron.de header.i=@kontron.de header.a=rsa-sha256 header.s=selector1 header.b=a4o+E2f5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Zfbl7z+Ezff8RKjY41cGTXI7HmNsjcTB1S41dIhkeYk=; b=1Qrj9CG4RbTaVBSWfn+wAZiX/n
-	bEvaYS/SBaiaCHbB8zPBIZ2nC2u8A5NODXKOAOk6FE6sJx5aygz2zsfXo7ieR/veyDdr31KmdHnCd
-	zjOflIU+QlfbyuSD+R07riK62qc9Vd8tSwFonWuIIY1EGtN6okfUi2M1+/XYRMzXYsSPMC52kB4Oc
-	mWVvxLVkqgnQuCOg7hM9VnQf4ZC5mYkbUcwqdIajrYY0Ktj6UM3Ot8gXYFXc1rSxvAH7IOV2NLji3
-	S9dDpui7uH2kSDk2XDw8X55orDlTJkBGDZBuV5UHwIuxqAkLqPAVAxHo4WFLTT7Vc+M71XqJI6U1F
-	edDvBsng==;
+	bh=KEv0asmb+0QOlA2ySlZMQOAzyYmRGy1vWCjXK709IGE=; b=lWiU9NrH3as/lPuXcM9IC0AwwP
+	11DyPuHAXn481izXIxqkc/VsCZAUAPaCZ4DupKahizJpmAngEe36WJcyFs0fxDZGrACXUWZS/E+zM
+	NVuDcn6bq1z+rjKIkJns0G0v9XMyrBmB59/rkaDMG3VMU7cE8R81THXtFx/SLrHoFlzDE5147YWBV
+	XkdP3ROvCNmOpV0kAULkZTR6+wG5OWlA8tFlMFWqntQeUUOQfJnQozLUX1V1bKZZNcNRg+tD2pKSO
+	g/Hji40f73r+H/026Y6T5PaRv39ATATPIOHi+rJZtMOZKH+29k9Fqr/XSw9aoaoovNIaS0LYSj11f
+	aAni3Egw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU75q-0000000D2Qo-40Pg;
-	Thu, 19 Nov 2026 18:42:46 +0000
-Received: from pdx-out-015.esa.us-west-2.outbound.mail-perimeter.amazon.com ([50.112.246.219])
+	id 1xU7Cc-0000000D38B-4B7w;
+	Thu, 19 Nov 2026 18:49:47 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU75o-0000000D2QK-26uJ
+	id 1xU7CZ-0000000D37C-3SiE
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:42:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazoncorp2;
-  t=1795113764; x=1826649764;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Zfbl7z+Ezff8RKjY41cGTXI7HmNsjcTB1S41dIhkeYk=;
-  b=VcrTYhxNM116REU1CIWZ4C7zHUa9Nbqmn+KNzrW+rJM+clTTIRlzp7w9
-   ncd8s2s2IsQrLvEQOVWEPyDtohJrp+Hg+3e/xCfY6F25H66LrF5iEDHNA
-   K3HOfN/RdaQ1RyoAjQUyvPHnYSmPQSFS6m6EPuvnUCYfDPVk8MV03oZVc
-   l5TNNHOpEOt/n+WzxkVbWEBhb7xogr+S/tG8RWvNxolDQeYfpdbp5PLTq
-   Duo7jzOM8bHn/JrYUCirMUygIoko//5FeZGZSdWM02z8mD2MOPXx39P3J
-   6iX1rY2sZq2ktd3/kisb/dJEFzIjJq4NprG+FDi4FVALBSlK4B4xi+6Iv
-   A==;
-X-CSE-ConnectionGUID: hqUjQN9/QcqZrgGk5zQFFw==
-X-CSE-MsgGUID: gDvD7OBNT+mKq0LFeqrgDQ==
-X-IronPort-AV: E=Sophos;i="6.27,221,1787011200"; 
-   d="scan'208";a="34426166"
-Received: from ip-10-5-0-115.us-west-2.compute.internal (HELO smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.0.115])
-  by internal-pdx-out-015.esa.us-west-2.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 18:42:39 +0000
-Received: from EX19MTAUWA002.ant.amazon.com [205.251.233.178:16553]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.46.128:2525] with esmtp (Farcaster)
- id 07449928-09f5-4e12-b385-e2495c4c75b7; Thu, 19 Nov 2026 18:42:38 +0000 (UTC)
-X-Farcaster-Flow-ID: 07449928-09f5-4e12-b385-e2495c4c75b7
-Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
- EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.56;
- Thu, 19 Nov 2026 18:42:38 +0000
-Received: from dev-dsk-machaujo-1c-d6b511e2.eu-west-1.amazon.com
- (10.253.100.8) by EX19D001UWA001.ant.amazon.com (10.13.138.214) with
+	Thu, 19 Nov 2026 18:49:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SRafyHTCStP/Le/VjnDOMPJUG8N80L2t9cRFjxVdKqa4UOQJ1AKG2N1pJCAS/6x5vsSxBxl3x6qu1Z6BE9bJJP6gngTBH4bkL9k37X1V0ucz3fpEBHe/qMPBDzBjovic0rl0MlEbEfRxVpLT380TozWDZiwpYdwzkR7lWD8EH25v1VnSjmJWQkwQs5fIPxoNUx8qaU0dI/RhADBZm8TTnR4lq8UPoEo8pVkNTkns6MAneFqLj/1zR12Tp+lE3JYJY292uiHDY4O8zWDX072ae2rmFNNl5j7V1WUcOxCG5/61nem7PIBfLZ8fcA6qLDRii7HZPqV0Qs+QUbtD5B8sXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KEv0asmb+0QOlA2ySlZMQOAzyYmRGy1vWCjXK709IGE=;
+ b=DL3Rh0swCAHE+3k8kM3jWlQkQrnEQdTw3LkvRBNbk9q/C6NaW+24PTd2hpDkD8YjYD9MIa1MvqzaXRy+qAWFOjR6DFiXIzdOe8ACE6WuZt4yjFBJrYCvsKWMCiV7JLgn9IUeVIib+CmonbzuxgUYm7qC3MZ4pTyTYbrUAiowkIlFa5jZ3dYE2RJ+H1Lie40JKxOyGX4ywruD/daPfrybkzoUViXi1EF1BmBztpaDh69ymS4fq2GyWeJZPCD8xYRCctpohq8/w7NeHagzBD6BblFao/D4A0foTCZ+mrCvP9Qt42Ker7TJeKBkmBuvzzpKF9Dd9umIxmnukqVljsDW8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kontron.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KEv0asmb+0QOlA2ySlZMQOAzyYmRGy1vWCjXK709IGE=;
+ b=a4o+E2f5KgY3VEo5AkrFQUExi1hsf1NVQac5rYyGTSkchPc92fmXVHdGf3fjwRXzzSIZKBmuKXCBBePvGD3yQDVGA0D+M/Vv+6G5AVywKxaAdICjZTAqQ6iz1oCLECL5o4qJx+ksZc+9dPPPrWLBJlJJ0W1h3OyV21kTNoECLGoZGq+V2hgfLWqUceZ71dzAGT8N73lzpMaSWfAtarVGslHWD/E2Cuu4uoFTerzwgkPk+yyhoreV3sNYQFi/SqB0HAzardWTLoNSF3+GqkW8FvHkArGSh2rpsj0jUL130Ujj8cnwBD9X5dZMt3r9CSRmdwhJBdzVjPZu3R0/6yggCA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fb::23)
+ by AS4PR10MB5600.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4f2::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.57; Thu, 19 Nov 2026
- 18:42:36 +0000
-From: Joshua Machauer <machaujo@amazon.de>
-To: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>
-CC: Radu Rendec <radu@rendec.net>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <nh-open-source@amazon.com>
-Subject: [PATCH v2] irqchip/gic-v3: Fill in each CPU's redistributor from the init walk
-Date: Thu, 19 Nov 2026 18:42:29 +0000
-Message-ID: <20261119184229.57556-1-machaujo@amazon.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <867bj6ys1q.wl-maz@kernel.org>
-References: <867bj6ys1q.wl-maz@kernel.org>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.1; Thu, 19 Nov
+ 2026 18:49:34 +0000
+Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a276:4ad7:962:da22]) by AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a276:4ad7:962:da22%3]) with mapi id 15.21.0662.001; Thu, 19 Nov 2026
+ 18:49:34 +0000
+Message-ID: <463b3707-4126-4f32-990e-e8f02d278695@kontron.de>
+Date: Thu, 19 Nov 2026 19:49:33 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [EXT] Re: [PATCH v51 5/7] firmware: imx: adds miscdev
+To: Pankaj Gupta <pankaj.gupta@nxp.com>, "Frank Li (OSS)"
+ <frank.li@oss.nxp.com>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+ "Pankaj Gupta (OSS)" <pankaj.gupta@oss.nxp.com>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Randy Dunlap <rdunlap@infradead.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Peng Fan <peng.fan@nxp.com>
+References: <20260915-imx-se-if-v51-0-4a7dac612cb5@nxp.com>
+ <20260915-imx-se-if-v51-5-4a7dac612cb5@nxp.com>
+ <2034fb2f-f169-46a5-85e8-fa723ddb0360@app.fastmail.com>
+ <aqqqDnOMmlfqit6u@SMW015318>
+ <f3e1e3de-6abf-48cb-aba7-7b231c38ec5c@kontron.de>
+ <180d2335-e328-48a4-b376-a90464279027@kontron.de>
+ <3acc652b-d2e2-4a18-b70a-2656b309d798@kontron.de>
+ <av3KA89WuUc5GdZj@SMW015318>
+ <a2d7056c-602b-4c6b-bb14-211843aa3183@kontron.de>
+ <GV2PR04MB12271E129EDA863074E4807B895792@GV2PR04MB12271.eurprd04.prod.outlook.com>
+Content-Language: en-US, de-DE
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
+In-Reply-To: <GV2PR04MB12271E129EDA863074E4807B895792@GV2PR04MB12271.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0019.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::6) To AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:1fb::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EX19D031UWA004.ant.amazon.com (10.13.139.19) To
- EX19D001UWA001.ant.amazon.com (10.13.138.214)
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR10MB4277:EE_|AS4PR10MB5600:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9d629a00-da0b-4560-6993-08df466ddaa1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|7416014|366016|1800799024|18002099003|22082099003|4143699003|56012099006|11063799006|261026140227099003|261026121527099003|261022105027099003|10067099003|261022075727099003|261028144727099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info: q31J+nS17P1tq2zFVCMm+lxYWcim0N3J/Qmo/gLnyPheVEDirBP1I63H6GBlum7abw/iVrf8VqBDLlmRDw2lq45b4HK6QqlR+045F4wf9TPD3zUmJJMDE+/MWvlDBiFG1dyD0KJgOe0JVpBllCCp2ZCDRXQXvknw1s2f6Bfkd0p8Y6BUaOayI8t+CzBie4dwoYzmU11Yd+ZucNkp58PIYVZ3CVCK9GQQYppnl1Xdq0SKjX98ZlasEmzBCjj7cgy812ege6b5guL8oBJS4s8pq7gDxIxrIOo/EIiQrs9UN6HYbSfWymxT1KwHF4817Wo2cIumVN567pxbDnki4yGgbgl/uL/y+UybQh5j4yTlQZXOUnbAPr/3ws/MfyUv0tQp36d4JiFK0cvjXY0V1DwROGkUgRl1/sx/YtPoEL18v1nfMzGKb4flR5eojRqUVVoGXx3NnG58p8PJwa2ULalqm2Qqmny5ToUMeS7JghgRgwNmp2gOji/VGf0Unv4OJu9ZbbX0EG6+EeJehD/ZFkQlS0FP//gB94JDeoZl0/O8jCEj1BaxlI2lAgGWQaCAHRlaZREmEUrqCr9TjSX8nrK71ryqQMu6afi2ucEt7hYQsczcr8OoQ4qn7jyNTOoqMoOB
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(7416014)(366016)(1800799024)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006)(261026140227099003)(261026121527099003)(261022105027099003)(10067099003)(261022075727099003)(261028144727099003)(261009223027099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SW5ZVkxsNlBZVVFNQUIvRWdyVDhES0tNYU9hUjNMdlQwM2l2RnkzbmZ3VDRX?=
+ =?utf-8?B?RE5scEhjcWRxTkt0bVRVcU9lVFgrSGRGYk5iMThPemRTaERtcmkzYUI3WGJ3?=
+ =?utf-8?B?TWROeGlhSFBsd2hGOFIxalBmc05EVjVPK3RjQTdMblR2K05FUWxaWXZQTmdH?=
+ =?utf-8?B?SmRWV1NpZXpyeldlUGZzdm9hUkhOWWhkUzVZZWpzZHpsUmdzMVNzdDNUL0M1?=
+ =?utf-8?B?TkNLSzkyZHlWV3F4a1Y2eGJ1aE1Uczl3WTN2SDJtNFlaVVc3RW1OTm1jdy93?=
+ =?utf-8?B?RDBUenh5VkVNMHJBRE1Ma3VEQmtNRFpxRkpkTnMwTW1FRzg4SmdIY1NPOWda?=
+ =?utf-8?B?VXdoK1R1Y3lESmNzWTRGSUxhZVpHeUpIbERXWVo3TkNvd2UwQXVZNDJDWDBJ?=
+ =?utf-8?B?WGxiTSt0eTROaVFEWGN5dGluMlIvL3AyTUwwb1kyd0lmVzZuSEgwSHE4M25M?=
+ =?utf-8?B?MGNXRzd3OEcrLzd0b0o2a3M1QU1FeCtTakc5b3hKOGRza1liZmdBMmdQaUZr?=
+ =?utf-8?B?Uk1mM1U3TnB2bnlPVld2N24rNS9YR2lBeGJEWktwbnYvbWs0eUc1RmxkUVhm?=
+ =?utf-8?B?WHlIanFUWWF1dEZJYTd6ZHpBRHVOWC9VTFVqU2xacTlnMHZXUlZlZ2J2akhO?=
+ =?utf-8?B?d0kybzNyczhtL3F5SkFrT3NsWmJueExMYzZLa2dtSm1kbGtPQS9mR0tTUDd2?=
+ =?utf-8?B?Mk5PcldieE9PNVB5QWdZOFJONGxsK2xZUXU3L01GcDZEVmkxeWVDVmVsQnRa?=
+ =?utf-8?B?d0xmRmFRQzJYNU02TFZjMXdvWmR2YWY2RU13Z0s1dUN2aHFJSjlMWHQ3di9N?=
+ =?utf-8?B?UHM4bDY4aHZRTmUyaE4ydUNBQ25KZmx1dzNsTC9EaTA4K0F6blE2Uk5ZTnFH?=
+ =?utf-8?B?ajNEMHd1S0tiYXIrMUZYWDJ4NFN0T1FwcDVwbGc3Qk5NVlpEZGNSelg1TXR0?=
+ =?utf-8?B?U3cvVmVIU1d6Ulp2Y0VCcm8zRDBmd0VjdUdzVGRLWUR1dFFRWWtGSjlMa3pX?=
+ =?utf-8?B?ZGE2aS8wQXN6Z3pEOVJYYVA2MlJyQ05hQ1FYQ1IvTzU5YzJacEFSaVZORFdQ?=
+ =?utf-8?B?RDhPN2hybE8vQnZwSnZER0dsT2RpVUpVTVFVZHJKTk4zMlFGVWo1dmo4Ynla?=
+ =?utf-8?B?Nkg5VzBpWjdFRkdLVGdXSE1TR25oMmZNYW00RmRwc0J4VytQTnU4VnhDNGtD?=
+ =?utf-8?B?cHBXSE1EVVQrcHA0aktaK0dWZVVhRG1QSi9mcm94R1d0WjMzWmhtMjliT1ZZ?=
+ =?utf-8?B?dWxaWkVqVWlnMWlYY05yWU1yME1HcXNnbU12bDFoSUNYY1h3ejcva0NwbFlJ?=
+ =?utf-8?B?MWpUWkI0WXpQL0tGOUgrRG5aT0ovM1VFUUZZem9XL1NueWY4Z1dXeDBVSmll?=
+ =?utf-8?B?YVFpbzlpMUczZGYrdGdDR3NPQytLMHczemtqSDFYUjJBRWFWWk9PYm53MStO?=
+ =?utf-8?B?KzRKUk9CU2hmQjNTSGNpTTRFcjUrdVRZZzd2MXFDaVRDNEdGQXNYcExYcDkw?=
+ =?utf-8?B?ZDZYQ0dpTW9FcEdWVVVnd2FrK09BSEdPbGJLdlJmaE41b0dEL3c1SmtvVVp1?=
+ =?utf-8?B?MjFoc2VzWGk4VHdkMkFyMkNBTkR6RG5TZ3hiSXJxUW8xN3VxcHhUT05SOEtn?=
+ =?utf-8?B?RWFOT3lDVnpZWHZsRlBnaDVPK3BXUWNjRXRFa0dFeitMY0ZTbW1DS1U4QURV?=
+ =?utf-8?B?a2hiYmR1YmtXOU5KU2x3UXI1a1FyTGNkYmhuZWR6bDY0dFhKelRGUjI2VFRa?=
+ =?utf-8?B?VnlqcFo1aTlmWHNkRDdMWU5KUjV6VHZUMHhrdHVlRngwN0E4RHliL2tHdE5m?=
+ =?utf-8?B?eFlYUUR0dDU3enF4akhMUVNWTE1VMlg2Y2prMWNWdnZlb2FTZ2Fja1RLeWpv?=
+ =?utf-8?B?aGNEbE9IVHkrUWc2ZUp0MEpmaEorbDFWQkpybGx1dEFaWE1lN2R2NXRMTnBW?=
+ =?utf-8?B?TlJqVzJJb3JhSmY1QVNjYzd0ejFhYmg1eFNTMjRsaVE3M3BibktwN2hHYzZT?=
+ =?utf-8?B?WTR4azVWSnlxRWUzQ1RST21XOHRyeUNnS2JGeXpGOGtpK3Z1eWowZFFSbFgv?=
+ =?utf-8?B?b0x3d2d3SVFlSEF6U3FRaFhGbXg2YVRsMzJ0NzBFa2dFaHFrODU0cWRSSDZP?=
+ =?utf-8?B?a2l3M2FBK0dYQlZ2aDFLZ3NuSE1GWmJqSmNLdE1aSUphaGVQS1o4Q3hBalZI?=
+ =?utf-8?B?THJsenBRcW9wanNQMWNQbFJMNzk2Q1NQTjI1cWVsaElnejM4c1JVSXJQcGJl?=
+ =?utf-8?B?UTFPVXNTVmNuY0xIVDR1dWdVZ3RkTUZVaDZGdzZzZkk0SXlyWjFrcFlKQnZJ?=
+ =?utf-8?B?NEtxL1BBOXRxY2hwSGw0Vm94R1N5ZXlHTWhSQ1dTL2VPQWUvVVlKcXpDbXQ2?=
+ =?utf-8?Q?+LunzZOOQUJIlgFc=3D?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d629a00-da0b-4560-6993-08df466ddaa1
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 18:49:34.4692
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: deaWrQduM1ZhyylbaKIJxWj7NtxaGzcoWucDefs1moKjBlKb2iiPZ7yexB2t5hVMR3IBwoc+ozuY8yHCykl/UZhqRp1iSEnngb9sh8IB6PM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR10MB5600
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_104244_645034_CCDB1DA4 
-X-CRM114-Status: GOOD (  24.60  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261119_104944_355855_7FDB1754 
+X-CRM114-Status: GOOD (  28.07  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,273 +169,96 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A CPU coming online finds its redistributor by walking the frames from
-the first one until GICR_TYPER matches its affinity. CPU n therefore
-performs O(n) MMIO reads, and bringing up N CPUs costs O(N^2).
-Secondary CPUs boot serially, so all of it adds to boot time.
+On 19.11.26 18:47, Pankaj Gupta wrote:
+>>>>>>>
+>>>>>>> It is in linux-next about v37, but build bot find many problems, I
+>>>>>>> dropped it and request to fix it. And sashiko is online recently
+>>>>>>> and also find many risk. I request to clean up it, and local AI
+>>>>>>> environment have difference with sashiko, so bump to v51.
+>>>>>>>
+>>>>>>> I put to linux-next again to make sure that pass all build test.
+>>>>>>>
+>>>>>>> Other two problems, need more time to check whole review history.
+>>>>>>> reply you later.
+>>>>>>
+>>>>>> So this is still in linux-next, but was not sent in the pull
+>>>>>> request for 7.4. It's rather confusing to me that maintainers add
+>>>>>> stuff to linux-next for build-testing and then leave it there,
+>>>>>> neither removing it, nor continuing the mainlining process.
+>>>>>>
+>>>>>> Frank, what is the plan?
+>>>>>>
+>>>>>> I'm currently rebasing my work for the NVMEM driver onto
+>>>>>> linux-next, but as there have been so many iterations and this
+>>>>>> whole thing took so long, I want to make sure that this is not
+>>>>>> another dead end where I'm wasting my time on.
+>>>>>
+>>>>> I need to ping here, again. What is the plan at NXP to move on with
+>>>>> this? This is blocking multiple features that depend on ELE firmware
+>>>>> support for i.MX9 and similar platforms from being upstreamed.
+>>>> To be more constructive, here is a proposal: let's get the
+>>>> kernel-internal part of this series merged first (patch 2-4, DT
+>>>> patches 6-7, doc patch 1 reduced to kernel side). I currently don't
+>>>> see any objections or issues with those.
+>>>>
+>>>> This would unblock drivers using the in-kernel API, such as the NVMEM
+>>>> driver and this is also the part I already tested when working on [1].
+>>>>
+>>>> The somewhat more controversial uAPI in patch 5 can then be further
+>>>> discussed until there is a consensus on it.
+>>>>
+>>>> Arnd, Frank, would that work for you?
+>>>
+>>> It needs at least one user for the in-kernel API.
+>>
+>> I can provide the NVMEM driver as user. I just need to rebase my series on the
+>> new reduced firmware driver patchset once that has been posted.
+>>
+>> Or if you want to have this all in one series, maybe someone at NXP
+>> (Pankaj?) can provide the firmware driver as proposed above in a public git tree
+>> somewhere or send it as RFC. Then I will provide the NVMEM patches on top of
+>> this for you to pick up and send in a combined series.
+>>
+>> Just let me know what works best for you.
+>>
+>>>>
+>>>> Pankaj, can you prepare such a reduced series?
+> 
+> Hi Frieder,
+> 
+> Thanks for the proposal, and sorry that you had to ping more than once.
+> 
+> Yes, I will prepare the reduced series as you describe:
+> 
+>  - patches 2-4 (in-kernel interface only),
+>  - DT patches 6-7,
+>  - patch 1 cut down to the kernel side,
+>  - patch 5 (the uAPI / character device) dropped from this series. It
+>    will be posted separately so the uAPI discussion can continue
+>    without blocking the in-kernel users.
+> 
+> It will include an in-kernel user from our side, OCOTP/NVMEM support
+> for i.MX8ULP, and I will make it available on a public branch so you
+> have a fixed base to rebase your i.MX93 NVMEM series [1] onto.
+> 
+> I will reply here with the links once it is out.
 
-gic_update_rdist_properties() already walks every frame once at boot.
-Give each frame to the possible CPU it belongs to there, by setting that
-CPU's rd_base and phys_base and initialising its rd_lock. A CPU coming
-online then finds its frame assigned and does no MMIO at all. A CPU
-absent at init, such as an ACPI online-capable CPU, still scans.
+Ok, great! Thanks!
 
-Finding the CPU compares each frame's affinity against that of every
-possible CPU. That is still O(N^2) work at init, but it reads
-cpu_logical_map[], which stays in the cache, instead of device memory.
+If you include the OCOTP NVMEM driver for i.MX8ULP, feel free to pick up
+and adapt patches from my v4 patchset [1]. Especially patch 7 [2] might
+be what you would also need.
 
-inherit_vpe_l1_table_from_rd() and allocate_vpe_l2_table() take a
-non-NULL rd_base to mean that the CPU has come up. Mark that with a new
-RD_LOCAL_POPULATED flag instead, set in gic_populate_rdist(), and move
-the RD_LOCAL_* flags to irq-gic-common.h so that both drivers see them.
-
-NVIDIA Vera, 352 CPUs in two redistributor regions, 73 ms faster.
-Without this patch:
-
-  [    0.007441] GICv3: CPU1: found redistributor 20000 region 0:0x0000fe0040180000
-  [    0.873847] GICv3: CPU351: found redistributor 100600001 region 1:0x0000fe40430c0000
-
-With it:
-
-  [    0.006401] GICv3: CPU1: found redistributor 20000 region 0:0x0000fe0040180000
-  [    0.800722] GICv3: CPU351: found redistributor 100600001 region 1:0x0000fe40430c0000
-
-KVM guest with 352 vCPUs on that Vera system, where every GICR_TYPER
-read traps to the hypervisor, 139 ms faster. Without this patch:
-
-  [    0.023483] GICv3: CPU1: found redistributor 100 region 0:0x0000000010240000
-  [    0.433820] GICv3: CPU351: found redistributor 15701 region 0:0x0000000012de0000
-
-With it:
-
-  [    0.023817] GICv3: CPU1: found redistributor 100 region 0:0x0000000010240000
-  [    0.295205] GICv3: CPU351: found redistributor 15701 region 0:0x0000000012de0000
-
-Signed-off-by: Joshua Machauer <machaujo@amazon.de>
----
-An LLM coding assistant drafted the code and this changelog and ran the
-boot measurements. I reviewed and edited the result.
-
-v2:
-  - Fill in rd_base and phys_base instead of keeping a separate per-CPU
-    copy of the frame (Marc)
-  - Add RD_LOCAL_POPULATED for the two users that took a non-NULL
-    rd_base to mean the CPU has come up
-  - Initialise rd_lock once, where the frame is assigned, instead of
-    each time the CPU comes online
-  - Drop the qualifier about systems with one redistributor per CPU,
-    which is every GICv3 system (Marc)
-  - Rebase onto tip irq/core (v7.4-rc1)
-  - Trim the test results to the NVIDIA Vera runs, remeasured on v2
----
- drivers/irqchip/irq-gic-common.h |   7 ++
- drivers/irqchip/irq-gic-v3-its.c |  11 ++-
- drivers/irqchip/irq-gic-v3.c     | 113 +++++++++++++++++++++----------
- 3 files changed, 90 insertions(+), 41 deletions(-)
-
-diff --git a/drivers/irqchip/irq-gic-common.h b/drivers/irqchip/irq-gic-common.h
-index 710cab61d9195..ffe5546d6189b 100644
---- a/drivers/irqchip/irq-gic-common.h
-+++ b/drivers/irqchip/irq-gic-common.h
-@@ -33,4 +33,11 @@ void gic_enable_of_quirks(const struct device_node *np,
- #define RDIST_FLAGS_RD_TABLES_PREALLOCATED     (1 << 1)
- #define RDIST_FLAGS_FORCE_NON_SHAREABLE        (1 << 2)
- 
-+/* Per-CPU redistributor flags, in struct rdists::rdist->flags */
-+#define RD_LOCAL_LPI_ENABLED                    BIT(0)
-+#define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
-+#define RD_LOCAL_MEMRESERVE_DONE                BIT(2)
-+/* The CPU has come up */
-+#define RD_LOCAL_POPULATED                      BIT(3)
-+
- #endif /* _IRQ_GIC_COMMON_H */
-diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-index 282e4bafb084f..ba6a6edf34230 100644
---- a/drivers/irqchip/irq-gic-v3-its.c
-+++ b/drivers/irqchip/irq-gic-v3-its.c
-@@ -50,10 +50,6 @@
- #define ITS_FLAGS_FORCE_NON_SHAREABLE		(1ULL << 3)
- #define ITS_FLAGS_WORKAROUND_HISILICON_162100801	(1ULL << 4)
- 
--#define RD_LOCAL_LPI_ENABLED                    BIT(0)
--#define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
--#define RD_LOCAL_MEMRESERVE_DONE                BIT(2)
--
- static u32 lpi_id_bits;
- 
- /*
-@@ -2802,7 +2798,8 @@ static u64 inherit_vpe_l1_table_from_rd(cpumask_t **mask)
- 	for_each_possible_cpu(cpu) {
- 		void __iomem *base = gic_data_rdist_cpu(cpu)->rd_base;
- 
--		if (!base || cpu == smp_processor_id())
-+		if (!(gic_data_rdist_cpu(cpu)->flags & RD_LOCAL_POPULATED) ||
-+		    cpu == smp_processor_id())
- 			continue;
- 
- 		val = gic_read_typer(base + GICR_TYPER);
-@@ -2839,8 +2836,8 @@ static bool allocate_vpe_l2_table(int cpu, u32 id)
- 	if (!gic_rdists->has_rvpeid)
- 		return true;
- 
--	/* Skip non-present CPUs */
--	if (!base)
-+	/* Skip CPUs that have not come up yet */
-+	if (!(gic_data_rdist_cpu(cpu)->flags & RD_LOCAL_POPULATED))
- 		return true;
- 
- 	val  = gicr_read_vpropbaser(base + SZ_128K + GICR_VPROPBASER);
-diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
-index 94873646d46fb..a507d84bf8dbc 100644
---- a/drivers/irqchip/irq-gic-v3.c
-+++ b/drivers/irqchip/irq-gic-v3.c
-@@ -1019,51 +1019,94 @@ static int gic_iterate_rdists(int (*fn)(struct redist_region *, void __iomem *))
- 	return ret ? -ENODEV : 0;
- }
- 
--static int __gic_populate_rdist(struct redist_region *region, void __iomem *ptr)
-+/*
-+ * Convert a CPU's affinity to a 32bit value that can be matched to
-+ * GICR_TYPER bits [63:32].
-+ */
-+static u32 gic_cpu_to_rdist_aff(int cpu)
- {
--	unsigned long mpidr;
--	u64 typer;
--	u32 aff;
-+	u64 mpidr = gic_cpu_to_affinity(cpu);
- 
--	/*
--	 * Convert affinity to a 32bit value that can be matched to
--	 * GICR_TYPER bits [63:32].
--	 */
--	mpidr = gic_cpu_to_affinity(smp_processor_id());
-+	return (MPIDR_AFFINITY_LEVEL(mpidr, 3) << 24 |
-+		MPIDR_AFFINITY_LEVEL(mpidr, 2) << 16 |
-+		MPIDR_AFFINITY_LEVEL(mpidr, 1) << 8 |
-+		MPIDR_AFFINITY_LEVEL(mpidr, 0));
-+}
- 
--	aff = (MPIDR_AFFINITY_LEVEL(mpidr, 3) << 24 |
--	       MPIDR_AFFINITY_LEVEL(mpidr, 2) << 16 |
--	       MPIDR_AFFINITY_LEVEL(mpidr, 1) << 8 |
--	       MPIDR_AFFINITY_LEVEL(mpidr, 0));
-+/* Give @cpu the redistributor frame at @ptr */
-+static void gic_assign_rdist(int cpu, struct redist_region *region,
-+			     void __iomem *ptr)
-+{
-+	raw_spin_lock_init(&per_cpu_ptr(gic_data.rdists.rdist, cpu)->rd_lock);
-+	per_cpu_ptr(gic_data.rdists.rdist, cpu)->rd_base = ptr;
-+	per_cpu_ptr(gic_data.rdists.rdist, cpu)->phys_base =
-+		region->phys_base + (ptr - region->redist_base);
-+}
- 
--	typer = gic_read_typer(ptr + GICR_TYPER);
--	if ((typer >> 32) == aff) {
--		u64 offset = ptr - region->redist_base;
--		raw_spin_lock_init(&gic_data_rdist()->rd_lock);
--		gic_data_rdist_rd_base() = ptr;
--		gic_data_rdist()->phys_base = region->phys_base + offset;
--
--		pr_info("CPU%d: found redistributor %lx region %d:%pa\n",
--			smp_processor_id(), mpidr,
--			(int)(region - gic_data.redist_regions),
--			&gic_data_rdist()->phys_base);
--		return 0;
-+static int __gic_find_rdist(struct redist_region *region, void __iomem *ptr)
-+{
-+	u64 typer = gic_read_typer(ptr + GICR_TYPER);
-+
-+	if ((typer >> 32) != gic_cpu_to_rdist_aff(smp_processor_id()))
-+		return 1;	/* Try next one */
-+
-+	gic_assign_rdist(smp_processor_id(), region, ptr);
-+	return 0;
-+}
-+
-+/* The region holding @ptr: the one with the highest base not above it */
-+static int gic_rdist_region_index(void __iomem *ptr)
-+{
-+	int i, idx = 0;
-+
-+	for (i = 1; i < gic_data.nr_redist_regions; i++) {
-+		if (gic_data.redist_regions[i].redist_base <= ptr &&
-+		    gic_data.redist_regions[i].redist_base >
-+		    gic_data.redist_regions[idx].redist_base)
-+			idx = i;
- 	}
- 
--	/* Try next one */
--	return 1;
-+	return idx;
- }
- 
- static int gic_populate_rdist(void)
- {
--	if (gic_iterate_rdists(__gic_populate_rdist) == 0)
--		return 0;
-+	/*
-+	 * The frame is normally assigned at init by
-+	 * gic_update_rdist_properties(). A CPU that was absent then, such as
-+	 * an ACPI online-capable CPU, scans for its frame instead.
-+	 */
-+	if (!gic_data_rdist_rd_base() &&
-+	    gic_iterate_rdists(__gic_find_rdist)) {
-+		/* We couldn't even deal with ourselves... */
-+		WARN(true, "CPU%d: mpidr %lx has no re-distributor!\n",
-+		     smp_processor_id(),
-+		     (unsigned long)cpu_logical_map(smp_processor_id()));
-+		return -ENODEV;
-+	}
- 
--	/* We couldn't even deal with ourselves... */
--	WARN(true, "CPU%d: mpidr %lx has no re-distributor!\n",
--	     smp_processor_id(),
--	     (unsigned long)cpu_logical_map(smp_processor_id()));
--	return -ENODEV;
-+	gic_data_rdist()->flags |= RD_LOCAL_POPULATED;
-+
-+	pr_info("CPU%d: found redistributor %lx region %d:%pa\n",
-+		smp_processor_id(),
-+		(unsigned long)gic_cpu_to_affinity(smp_processor_id()),
-+		gic_rdist_region_index(gic_data_rdist_rd_base()),
-+		&gic_data_rdist()->phys_base);
-+	return 0;
-+}
-+
-+/* Give the frame at @ptr to the possible CPU whose affinity it reports */
-+static void gic_find_rdist_cpu(struct redist_region *region, void __iomem *ptr,
-+			       u64 typer)
-+{
-+	int cpu;
-+
-+	for_each_possible_cpu(cpu) {
-+		if (gic_cpu_to_rdist_aff(cpu) == (typer >> 32)) {
-+			gic_assign_rdist(cpu, region, ptr);
-+			return;
-+		}
-+	}
- }
- 
- static int __gic_update_rdist_properties(struct redist_region *region,
-@@ -1072,6 +1115,8 @@ static int __gic_update_rdist_properties(struct redist_region *region,
- 	u64 typer = gic_read_typer(ptr + GICR_TYPER);
- 	u32 ctlr = readl_relaxed(ptr + GICR_CTLR);
- 
-+	gic_find_rdist_cpu(region, ptr, typer);
-+
- 	/* Boot-time cleanup */
- 	if ((typer & GICR_TYPER_VLPIS) && (typer & GICR_TYPER_RVPEID)) {
- 		u64 val;
--- 
-2.47.3
-
+[1]
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20260727-upstreaming-next-20260609-imx-ocotp-ele-v4-0-1a515de33093@kontron.de/
+[2]
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20260727-upstreaming-next-20260609-imx-ocotp-ele-v4-7-1a515de33093@kontron.de/
 
