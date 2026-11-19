@@ -2,117 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE1C606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B513B606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 16:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kDgWDiNS;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=foNL6Lik
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=38okJW3O;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IlNUlO1d
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=KfDm1ombW4h++zCNnSHkepgC1bowgwnhqlH8xoC2Q4M=; b=kDgWDiNSK+OqsfT6VrhPS1sf+4
-	sQLWcYe8ZwAOl+nxi13yFaF+MOSNJ2AmbfzZVJIYEj2qM7FXQMehdza4hRwWWO2JcWmWtLwipKKsh
-	4Ge6eOUOW+nunh3qZaUScFe0u1Km7aFUmySTZT0T/ES4pJWYMliT7MYlzvPKuFiif3M/yw+zGS8eI
-	aDyeoII+LgDqYz6ZuqMOmX9pkvGF+nZ6NLKUAXXWJi86wI/KuybiJr43yXgiNuoC3+92zNMHAoY+4
-	uyquqs5F5lUMfjOoIoXnrbtrHtnrh36HLuTr8uFdhxuetkmJW8XfiIYgu6JkXkBF8NYjWIpuDYs+V
-	UivVlW4Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=rxJXN0Nt7oYy+tJJbFLjVXtftovgM21mUjgHjNU5vMA=; b=38okJW3OsG/xY3
+	75OCYxHuXZMBj8e7myDU+knsL03ggaRcVtHYBs0HEUOjBpw3PuVDdFsy7BplfBz/no8RkylNP0KBU
+	Vf5igGJ6vQ3oMkReJRuCV0IRjVwocdNWRNhn1NauPn0G86EusuB3QzXEXfeDDkFZmrfsQd5vWGw2U
+	gmSidwBsbF2+IWAdA6nYgcA2ZM30r9gwxtbpCJOxDSq5TDBaewhBGiPjVRr6zLYKkqznFeSWzMXUx
+	tx42cmo32EEQDJNgz4aul5lywwiZE8mNDBKI9JxbEYy3NAThqXlWH0WQIOP2lZ1rjTxRAV5/DQMcS
+	qq7G9kqh0W4eqhZRL5UQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4ZS-0000000CZHm-3izd;
-	Thu, 19 Nov 2026 16:01:10 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1xU4Zp-0000000CZPF-1whw;
+	Thu, 19 Nov 2026 16:01:33 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU4ZP-0000000CZG3-32lH
+	id 1xU4ZS-0000000CZH1-3jZr
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 16:01:09 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-c4d28f75d62so414314366b.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 08:01:06 -0800 (PST)
+	Thu, 19 Nov 2026 16:01:12 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-492690dd5daso2080226f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 08:01:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795104065; x=1795708865; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=KfDm1ombW4h++zCNnSHkepgC1bowgwnhqlH8xoC2Q4M=;
-        b=foNL6Liky63WmgynSmeK2resB3WR93fzYet+vaUB1Ketbhj3jgpBF7545tKNkEEyCT
-         5Y+bekrQobhN6vb7ZZ/pLXAXes/M2t9FT6wd3dqYjheP/VmnQs4Fdcw0FPTS5/2DLgIw
-         Otj0YpLd0SxsjKUpuKDyEmshrR5Xvt+I4aL9kb/U/xCQ6ind/cThe4S7VWyW+ooy7gBT
-         KTHIMhkG+ZLsmBp6ezYtPSkl8o8PNVzBXzxr7WuXDfxnpFav7NrI+Qj2f7BTkbyJ0k22
-         kY3Zw3LEbUXo42/0ItsTyBJa7dMWbD7+W344qO85vkdbmI0EnG17ZZpsQdNo1g/X0gij
-         qgbA==
+        d=gmail.com; s=20260707; t=1795104068; x=1795708868; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=rxJXN0Nt7oYy+tJJbFLjVXtftovgM21mUjgHjNU5vMA=;
+        b=IlNUlO1dtxShdd/f/vspk8R/4xRL6bDz5lWVD2bfDYHwKFHi2chgbPJ4Z6RpdCqNVV
+         thxCM+cDqZny/H/IhxtKlyzlauXZA02kwabEZfJYRo8OYhKoV2Js3g5DMJDNA5kWur7G
+         tjLjxK2AZYHcZXXFNCeLDUso3q01vD2Lm2E4lc+UkWACAaNR0z39lDdnSKcv0boK5Kj5
+         jxUczO1OjQspECMu9o1J+wbaZe6NqIVhfKYu9lKCTl3a23XKWPr73mTz5LA1TSL4ONUA
+         ++dVK+M+rbLC9QGrlRoMsQtgPs/wmCIJTc90uv1uBwkhCpkG4vdqgfAORjxT9P9cVEon
+         sZVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795104065; x=1795708865;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=KfDm1ombW4h++zCNnSHkepgC1bowgwnhqlH8xoC2Q4M=;
-        b=VVhiMV+0SIr8nMn64uhnpWt77njUUc8keGyGw72NdzCk0cmPBB9HbBSg5VNcqnvLvx
-         IlNn1bhmc3O8jadNkVyEKU+IoyaJq0s2KTCcESgPPSt2WpqSlBGGl4SNE7xuaS3tPh1C
-         n0PiBfILaitxLgRDwZRlINhlAsVXjwMoxQ0pwzrykswx0HM7/J6cIsbqpOQBBOVRDQU8
-         OnBmQz03VkQIQCBCeIVfoN6qIV+sgAr5mIMC2OMbMBzgp7TLNxXcYd6hdMjRzKz53uD6
-         pWfNTpDl29ovFhx0KXLoqgpimNYQfxH/0eeD/K1HpJ7hl77+VqXJEH/Hh+uUZpfDMT5L
-         49jg==
-X-Forwarded-Encrypted: i=1; AL+hErFxvzOYos3Ybj/atjvUt49E1KGV8Msi2IvFDGMbsPQU5dDvMef5umIGRgz+TwyUQonIBojFjNLHZjSS89/0FIKi@lists.infradead.org
-X-Gm-Message-State: APuU4Z/e9Tcx3CxhxyK/11Aqf88/LBxRY65ywrZqZ5RLHIgtMamCRX55
-	5gk1t89P3o+Id+85oCzCfl00Lqbayf6/It+uIp5ej0xIIkSja8MQwwQqedhqnrNQx0w=
-X-Gm-Gg: AYBFou32RhQXgoa5/zvr2LKU+zgIxQS5JbTDEgz4HSB5Ry7RCEyVJAA8ODIYgUIrQyo
-	f9GO+nvNgckkpO72v4P7JvFKysDgvM13Oy9spRxcjbVSliqoYmJ7sdxPuHOdpIgL0DYY5EcPuEj
-	iwS5kXzMx1/+KvfyBh/Zpxv2j4zCy9z4xzD8sAKSvi0jImHo1zNLklDp3umcblxkjQUnFuF7NZ5
-	3Jyr4+/Kq1XjWg6+P3c1/fI+hAr4eg28RPQ0mpwFgJV3eDLTWad/LubmpnE8cVWO/TFeStUTwhh
-	IFlmVR4Uj1/FadgninzQPsTUdi0YyrOHRgrQE1SElPmjhDNTlDun+d497n0UmINpTNpv5g7JwR5
-	iyKvCTu0sDxQ/QPEGjU1tpwCL/rNvYr4tYUO870Pr05DUHs7mssojgHwxg00y/tE4Mo/lSPYGF6
-	fcInX7rMxP65jZmOQqx+i1LeY2dobkZy5L7728jc8v9otkhtFcJnNifxS1jW7nduC5BUfqksj7g
-	SR96orMyIPcTJGPlN+HyyUTgZP7ryU7K8Ut4yXLtmDHMOHI4Qjv2B+gLqt7Sryy4l/c5RHtyZw+
-	d6640RBubnJq7SVHYqSHai64UWlf5a6gP1GCtUSvV+KmTN9ai58oinI=
-X-Received: by 2002:a17:907:a4cb:b0:c4c:ddd1:cffa with SMTP id a640c23a62f3a-c513ab48b7emr32560666b.29.1795104064176;
-        Thu, 19 Nov 2026 08:01:04 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513afdee81sm9308166b.66.2026.11.19.08.01.01
+        d=1e100.net; s=20260707; t=1795104068; x=1795708868;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=rxJXN0Nt7oYy+tJJbFLjVXtftovgM21mUjgHjNU5vMA=;
+        b=wTS69AfxiPyoEDXh4ng/1eCOabkxH+cnM1b5pwyNkworttMlMqVmwVcc9GNohox4X6
+         +z/GjRLFgdfQwE+eLv1qcP5BXMb2RTUKuLMjCN8Oyqj8tgkF8hty0ELlc5fzggOWH9k7
+         4VGxJ0+RDd1H/ZAJXjMZ3DhQkFbmRrRGPJW84icb7UFi1FtEwwcgemKCOqrkJfQRYPsA
+         TW1hgy4GrpFsmKA3c857JcS3Zl0aPu6AKQ+hJ4C9f1tzlP3Tdz7pU9WCYckVZ3plH3wn
+         Ot/lXGb50EHFSoPApPqebxE5WEJFMOxY7ONmpIBt/PViRCRXs0Jz9iKUAStfeS2P4cfp
+         JA9Q==
+X-Forwarded-Encrypted: i=1; AL+hErGR29uEGh229pK7eKS9iaOzFmTzlr+xDtdkm1Ez8E5foC1AmuOPcnQGlrfo9rwP9Ieu7+XadDo8Pnwp9n/tqrIi@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Q9VENooYD8+VpqxmP7iSnNQhv/O6to3blGHz/jmXhlNXHUgsd
+	a1v59BfpLbp+nV1PcOv7QShHi9h/u//dZ0HpoP6UoDlzagAaPtVHf2ZX
+X-Gm-Gg: AZFdTZe2syV4K2iuatQszjJYcHGW8mcaXOHmMRPkyZ28f5MJo9Y+Zil1SvJK7PppjfG
+	fXNy92MYrSxAXx8gPBHHStjMUEfClsO2aaF4QGaP4Rt9tTkoJl9wcJlnXYA7Hj3gujBARMyqAtG
+	Tiamtu+FCZXRNQXqD7KoLUylyspvgiMDfwyPN0HEwGuXbtpjBYTMLjMc0c1WkZlYYGLsn1DOMID
+	hTtRtT9mNwrykT+n54dnni2v0WJNXieDtR9howzSm4LK5cX2BfbLyRLh8bmSNGMmqIzNL+GtNOY
+	NOBq2zu4ppeZS6WA2V7QrSqtnwzX0ir/1Eot7HjzmSZ25vm/JUMDso0Ho+50ULXU+R7uDbISvwd
+	0WrPMRuA5wM3NPk1sDtLYgA1vFDC/SSytprYowbeatFvurbLjLjWv+8rY7M4yovoLnXe3Fw5waZ
+	5tTObAtd0gZffhxDEvR5x9nEP5GUHc9pOlpX7VCSMwnrKwCO3lR9mEPabFVrFtEJAXJFpziB0zW
+	YLy6NuNv7/FT5VEkaRH6J9pZjjvfTUWhx8E1MUgO8e1usNxiajPyn1Nfys1H+rDcPPjxvPyduJo
+	lXYRjXoaCTnmG4VaxaPC422tEfpSu/te0Cyd7tk8ghq7j+qaYbdmVgZp8DgsOzUwkFXoYJ2d88d
+	QaInD1VRoyc2/0sQuyIlvENeC94GHQztqHroe6gVD4P8X2sVEfnIijMc=
+X-Received: by 2002:a05:6000:2403:b0:4a6:dfe3:fd93 with SMTP id ffacd0b85a97d-4a6dfe3fecemr11577697f8f.40.1795104068125;
+        Thu, 19 Nov 2026 08:01:08 -0800 (PST)
+Received: from Lord-Beerus.station ([93.146.104.162])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b9add26sm323784f8f.44.2026.11.19.08.01.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 08:01:03 -0800 (PST)
-Message-ID: <41e428a6fcdcf3d0c10cada8743231797b3dd5f4.camel@ndufresne.ca>
-Subject: Re: [PATCH v7 2/4] media: rockchip: Add JPEG decoder driver
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sascha Hauer <s.hauer@pengutronix.de>, Sergei Khomenkov
-	 <shomenkow@gmail.com>
-Cc: Lucas Sinn <lucas.sinn@wolfvision.net>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
-	 <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Date: Thu, 19 Nov 2026 11:00:59 -0500
-In-Reply-To: <85353f59-52a0-446d-ace3-65e2d03d0d0b@pengutronix.de>
-References: <20261022-rockchip-jpegdec-v7-0-3fd7dd55f408@pengutronix.de>
-	 <20261022-rockchip-jpegdec-v7-2-3fd7dd55f408@pengutronix.de>
-	 <596F6C9E-4A5D-4AE8-8D26-7A7247050D7D@gmail.com>
-	 <85353f59-52a0-446d-ace3-65e2d03d0d0b@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-sAMgqgjjNcbq4UuGGMyk"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+        Thu, 19 Nov 2026 08:01:07 -0800 (PST)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: Frank Li <Frank.Li@nxp.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH v3 1/2] arm64: dts: freescale: imx93-var: Extract common Cortex-M33 configuration
+Date: Thu, 19 Nov 2026 17:00:53 +0100
+Message-ID: <deeb0fa8588673f063b14c34a7aa59efb1521b39.1795103362.git.stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1795103362.git.stefano.r@variscite.com>
+References: <cover.1795103362.git.stefano.r@variscite.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_080107_945075_F2F0C09F 
-X-CRM114-Status: GOOD (  16.16  )
+X-CRM114-CacheID: sfid-20261119_080110_961469_31840F9D 
+X-CRM114-Status: GOOD (  17.45  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,53 +112,102 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-sAMgqgjjNcbq4UuGGMyk
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-Le mercredi 18 novembre 2026 =C3=A0 14:27 +0000, Sascha Hauer a =C3=A9crit=
-=C2=A0:
-> > Would 3 bytes per pixel be acceptable as the default, and as a floor
-> > for smaller requests, like the 2 bytes per pixel floor in 6/7 of your
-> > hantro-based v1? 4:4:4 at quality 100 would still not fit, but the
-> > subsampling is not known before the header is parsed.
->=20
-> I haven't been affected by this issue lately, but saw it when the series
-> was still based on the hantro driver. Yes, I'll change to 3 bytes per
-> pixel next round and make that the floor of sizeimage. Would be nice to
-> have a proper solution for this rather than either wasting tons of
-> memory or risk having too small buffers.
+Move the DART-MX93 remoteproc and MU1 configuration into a common include
+so it can be reused by the Variscite Cortex-M33 overlays.
 
-The hantro HW can run in ring buffer mode, that forces us to copy, but I th=
-ink
-you can then perform decode without actually having the entire image in RAM=
-.
-Would need some experimentation. We probably don't want copy to mmap + copy=
- to
-ring buffer (double copy), and V4L2 read/write are deprecated. Note sure wh=
-at to
-propose really.
+Keep the common file included from imx93-var-dart.dtsi to preserve the
+existing configuration.
 
-Nicolas
+Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
+---
+Changes in v3:
+- Split the common configuration extraction into a separate patch,
+  preserving the existing DART-MX93 configuration.
 
---=-sAMgqgjjNcbq4UuGGMyk
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+ .../dts/freescale/imx93-var-common-m33.dtsi   | 22 +++++++++++++++++++
+ .../boot/dts/freescale/imx93-var-dart.dtsi    | 15 +------------
+ 2 files changed, 23 insertions(+), 14 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-common-m33.dtsi
 
------BEGIN PGP SIGNATURE-----
+diff --git a/arch/arm64/boot/dts/freescale/imx93-var-common-m33.dtsi b/arch/arm64/boot/dts/freescale/imx93-var-common-m33.dtsi
+new file mode 100644
+index 000000000000..de0e56f322a2
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx93-var-common-m33.dtsi
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Common Cortex-M33 configuration for Variscite i.MX93 modules
++ *
++ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
++ *
++ */
++
++/* Use the reserved memory and resource table address from the carrier DTS. */
++&cm33 {
++	mbox-names = "tx", "rx", "rxdb";
++	mboxes = <&mu1 0 1
++		  &mu1 1 1
++		  &mu1 3 1>;
++	memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
++			<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>;
++	status = "okay";
++};
++
++&mu1 {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx93-var-dart.dtsi b/arch/arm64/boot/dts/freescale/imx93-var-dart.dtsi
+index 69495bb7fc9f..4ee4d74cadea 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-var-dart.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-var-dart.dtsi
+@@ -12,6 +12,7 @@
+ 
+ #include <dt-bindings/usb/pd.h>
+ #include "imx93.dtsi"
++#include "imx93-var-common-m33.dtsi"
+ 
+ / {
+ 	model = "Variscite DART-MX93 Module";
+@@ -54,16 +55,6 @@ wifi_pwrseq: wifi-pwrseq {
+ 	};
+ };
+ 
+-&cm33 {
+-	mbox-names = "tx", "rx", "rxdb";
+-	mboxes = <&mu1 0 1>,
+-		 <&mu1 1 1>,
+-		 <&mu1 3 1>;
+-	memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
+-			<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>;
+-	status = "okay";
+-};
+-
+ &eqos {
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <&pinctrl_eqos>;
+@@ -221,10 +212,6 @@ bluetooth {
+ 	};
+ };
+ 
+-&mu1 {
+-	status = "okay";
+-};
+-
+ &mu2 {
+ 	status = "okay";
+ };
+-- 
+2.47.3
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav8dOwAKCRDZQZRRKWBy
-9HpfAP91JjxhDbtoQ02FbQ9AFuc/QS5L4xa8oYqNcrceAeaDzAEAtc4iVSLgSAv/
-fkehBAsK40dvdlTFZHBgCbrfEIFuTQ0=
-=0Ehx
------END PGP SIGNATURE-----
-
---=-sAMgqgjjNcbq4UuGGMyk--
 
