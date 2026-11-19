@@ -2,72 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234E360A260A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3B2606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JUoU7U6G;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.a=rsa-sha256 header.s=mail header.b=bIJ0EY4+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HNqcKzlm;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NMOt9Gjl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=JJGLYPHzddrv19l+Wt/RsAOZQA+9iUUhc2s8/QuRBZA=; b=JUoU7U6GGkgXCD
-	RHzd8ORNu38QtoG4VnlmZ1nxYzkKGI+ZCuRiHw6Na/2FlNqdKBRpC8r6quvVExDim6a1X3C1sKzH7
-	PQnIExJGKexC+wJBBshO/YiUgK1Nps0mVrui3pEImBb8oMd3i6C7Gv9g36Hn3eaUe+kVythgAp2w3
-	ART1Z0Y6+msKBqfs2+BmbAFsM1m1VMzMEaK1htWluXwj+TbFfv9D5xYMzeces3ds9DKa3pvG4M5Li
-	h9a7GTDlo0FEmOfErtZwaqnwct78YbicNr+6+uimvR+2VrlkJcAe/JPNN2JnYrkJL2GA+ewR2Eubt
-	QiQe6JZKmRgbhxeOgoGw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=y+h4fRI4yRVpiPesILTBbabP6MDYvi3n/RVdn2AnFOs=; b=HNqcKzlmwAf+71vd5LSTb6/VQo
+	WoBcGRaOAnaCnS66VaimIqvwyfXZggac3HIZdWHNa46bb8lcDfFukeW6NzF+pFawJABhZJMashbK0
+	4G2+Ws14rhPs7vlioCXmjErs9R+Mt1F7rpbsvMDj47mU9CK6Y+OOU1hT5odTXr2ZvEUWfR3ToB0QG
+	KpJngH4wz1JiQzEKSWkcqRPLZfdrMJmQp3Fw2tKGoB396SrQNvKH59OfYXW6T/udoZc3r1EQ1IqZu
+	bPKk+8bybcr+8uPf1ZDc/Xx19atF0wPJr2QnSAuuaRM2epta7VnE8TxZ7OAlrRdhVyAkg2fc3xDcf
+	Si8bKr4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTz0Z-0000000BTkA-1wyP;
-	Thu, 19 Nov 2026 10:04:47 +0000
-Received: from layka.disroot.org ([178.21.23.139])
+	id 1xTz1m-0000000BTtu-2woq;
+	Thu, 19 Nov 2026 10:06:02 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTz0W-0000000BTjP-2XHX;
-	Thu, 19 Nov 2026 10:04:46 +0000
-Received: from mail01.layka.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 1B39D80BE4;
-	Thu, 19 Nov 2026 11:04:41 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id CwzlICTmi4r9; Thu, 19 Nov 2026 11:04:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1795082680; bh=JJGLYPHzddrv19l+Wt/RsAOZQA+9iUUhc2s8/QuRBZA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=bIJ0EY4+XIAASk4SLBZy8dy4H/Ry3xo38MZDSvT1Hjo+i6dgyDZ7X7IhTqXwCOKoH
-	 YrFGvCEgNBraIpbpIgRxgzWxIy3GMH3c0BZ4C2Q+3w96UAZsnaqMTD+W+RMgApCifj
-	 ZvDXByOjb1sFXMFsqARxOv6jEpuEugcgN7PrwOM+il3aZch17EFmgmGg6wyvnF5zdD
-	 UBs4YBQoT4F6dGWe0lgV908l/D10QgzZrnYISC7vdQzOdAvJJP1SB0J0llXxm6bbjL
-	 OrqdWjfH1nEMlTshteWqyqQ6AwborlBTis2moIYGxrwkf/MqADB9x9202G7atQjYo5
-	 htrkMgUkkGnvQ==
-From: Florian Maurer <fmaurer@disroot.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Florian Maurer <fmaurer@disroot.org>,
-	Felix Fietkau <nbd@nbd.name>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Shayne Chen <shayne.chen@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-wireless@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] wifi: mt76: npu: fix RX packet reassembly across NAPI polls
-Date: Thu, 19 Nov 2026 10:04:20 +0000
-Message-ID: <20261119100421.1963265-1-fmaurer@disroot.org>
-In-Reply-To: <20261117-mt76-npu-fixes-v1-1-11bf744747f2@kernel.org>
-References: <20261117-mt76-npu-fixes-v1-1-11bf744747f2@kernel.org>
+	id 1xTz1l-0000000BTti-299z;
+	Thu, 19 Nov 2026 10:06:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id ED20547322;
+	Thu, 19 Nov 2026 10:06:00 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795082760;
+	b=3i+wF8cCvvEFpiACK0yU15WU+oUA6IEKg3MrOocLmtVnf9uHkNO+gIbc9ktlYv5S52Bf
+	 gVwNghaySLBEk0148uA0VjCW3vfNSxBF21pAbsBPb1w3H566aW/aVzHPPkRXvZ2DR9Tyo
+	 Qxae+MoKgpTYXldm6OdDonDn6mumgxUDpsPgIyIT0Zizbm74OU74pFAWhxYzPZ6hdz5Vl
+	 qGvo1pWW3vTFDA43zVZipALcF+Bg+SOlGi37Cag+pz6WNCcQBIkWuBuJvbJpxt2v3+qb1
+	 NHGQ5ei2fgjfGjkx3DyEnQcZvtYVQIw8AlIwIgaSfLA58X2xh7N2/9hQhVzuDlgKuDw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795082760;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=y+h4fRI4yRVpiPesILTBbabP6MDYvi3n/RVdn2AnFOs=;
+	b=acV+2uZq5ffRWcfh8RN2NNsgm/GaNYm/tEg7JM70y8YhanrD6h6zz/LlPGpvoHivZSD7
+	 P8//xkZ/Ffqndh4Pj+d+UhiCI7bhqMjledKvwl2uQoCUzyY6gf6hSzWPqu5vQu1PQ9bcv
+	 SzAD9zYWOsClMGexUTdf+I7llugYeA8cGQ/UaBWsuesv8aPWG6EW5cq11TiUs/jX6j13J
+	 VOwxuApVJ07Pt7md5glpT/h/0wmXTiJ+YsxwHXkwIhDYCzB1COU67w7g+SL3desJaS3YP
+	 AKWiC/hD6+a0yjziElAGi3kiQDAZLLmC42IevlRkVKrvf7ccOTECCnU+dgMP1kyYFmA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 4C9B01F000C8;
+	Thu, 19 Nov 2026 10:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795082760;
+	bh=y+h4fRI4yRVpiPesILTBbabP6MDYvi3n/RVdn2AnFOs=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=NMOt9GjlqONaxyR2U01FyLL5gDDNTgMeNc77AhcZQN9B2UNPRul1I8iUqMcHgvzJA
+	 980y7jA3eZ2yeRd51/JHDk1mWCZlW5PBGnkrapbJi2zFOF8YVBL4qpc2yGlwRgf/Wc
+	 EqscP4TSoGpwiYKmW3oje8XJZ8/5lMZuTsPokrlPUrscpFHxMXfmbp312Qpe27aiA+
+	 GdDugRGUPafIZsfuU8WptbSu4E8B+U5cfg85MAx+2HVDt7Oup+Hvf4jft+k3M7hej4
+	 zA14hQznbFdvIg8Plz0hJzPhww+iXsdjBSJbk+oFIi+02v2F9wP41oekJQfcmf5g3J
+	 bRqS1daJpJuAw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id BB5394B1FE;
+	Thu, 19 Nov 2026 10:05:59 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Subject: [PATCH 0/2] drm/rockchip: RK3588 HDMI interlaced modes
+Date: Thu, 19 Nov 2026 10:05:59 +0000
+Message-Id: <20261119-rk3588-interlace-v1-0-993212e389cd@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_020444_960666_3CB40945 
-X-CRM114-Status: UNSURE (   7.62  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ6CMBBA0auQWdOEaZUUr0JYlHYqg6aQKRoSw
+ t2tunyL/w/IJEwZbtUBQm/OvKQCrCvwk0t3UhyKQTe6RcROycNcrVWcNpKn86R8i11jo72YGKB
+ kq1Dk/bfsh7/za5zJb98PnOcHiCJyo3QAAAA=
+X-Change-ID: 20261119-rk3588-interlace-c61908f843fd
+To: Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andyshrk@163.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+ Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795082759; l=1081;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=R9RXsFkub066PZWp+rp0tXeW89o/uXELOYPZveB+DEc=;
+ b=jMxdtnlAV5oAn1dA1lIoCpHGxLQHES3il63J5mA6kBBuRjlxCuCM0pBo5ZPk+7fIIJZ528iEi
+ 4q+fsLrFqE8DWA7cka6E9VwR/QzXnr3EddCMClhWMIWOnnwv0vWheZN
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,28 +119,44 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 02:43:46PM +0100, Lorenzo Bianconi wrote:
-> Tested-by: Florian Maurer <fmaurer@disroot.org>
+Patch 1 rejects the pixel repeated modes (480i, 576i, 240p, 288p) that
+RK3588 cannot send. Patch 2 lets dw-hdmi-qp keep the interlaced modes of
+the sink; VOP2 already generates the fields.
 
-Thanks for posting. I ran the posted patch on mt76 467ae2e3
-(W1700K, kernel 6.18.55) for another hour of iperf3.
-There are no oops, no page_pool warning, no refill or skb failure.
+Tested on an Orange Pi 5 (RK3588S, 7.3-based kernel): 1080i60, 1080i59.94
+and 1080i50 on an HDMI TV show a correct picture with the right field rate
+and AVI VIC; 1080p60 unchanged. With an EDID override listing 480i and
+576i, both modes are pruned. RK3576 uses the same bridge and was not
+tested.
 
-Tested-by: Florian Maurer <fmaurer@disroot.org>
+Developed with Claude (Anthropic), which wrote the code and the commit
+messages. I reviewed every change.
 
-The missing rx slots from my mail of Nov 16 are still there (232 frames
-without LAST on their last slot, 7 unreadable tx-free events), but that
-is not caused by this patch. I will send the [BUG] report separately.
+---
+Arun Iyengar (2):
+      drm/rockchip: vop2: Reject double clocked modes on RK3588
+      drm/bridge: synopsys: dw-hdmi-qp: Allow interlaced modes
 
-Thanks,
-Florian
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 1 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 5 +++++
+ 2 files changed, 6 insertions(+)
+---
+base-commit: fac7a5f16230779cfb0d50ca49e9467cc94a2ea9
+change-id: 20261119-rk3588-interlace-c61908f843fd
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
+
+
 
