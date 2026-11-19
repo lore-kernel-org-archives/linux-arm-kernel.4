@@ -2,59 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C912606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 20:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861A3606A911
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 20:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c7+XaPCO;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k7n02MHz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YfpLbcJ8;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=CgWgPwRF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FDB56P32FDl6bNezdwAQqP1h7o3uxulTq1XdU+fw3Dc=; b=c7+XaPCO/WfqhB
-	jr6n0ByApjxX29utfvEjFO5s6VQQTUKzqbnkFNC/rARu3RwUcAUUHf+SE6zPlrKP/vfLdKB8oGWy9
-	mQiV5b+FIOEtgm2fkJ2EYlsOwmQEK3TOmzT88qLsMg85SGYKp4M8H3mcXm9T3wBvTd1LUmqubjTs2
-	VRXx1w/y9aQiEwtjQTTO+y9LXBJKnr7svEMC/bohchd90iAWfpsjvBGlRtnURGEmPWQDg3dJOXCl9
-	ECbhe43PcKndxbpA8EFJ42ec7JP+V/CWohg2IsUAxh0bM9xxzu6vioKZ4YZrNuTf7E1/vZPC/YpId
-	3xUruRK2cLIU1Oeq0PFQ==;
+	List-Owner; bh=NAbaLn8TdjdIV7Xo1u11Mt4D9oXgJ+jd79pxsi7Y87k=; b=YfpLbcJ8JfMJuF
+	2M/CCOwcfLfaRA99aCCTrHlBAZ8aTIASckrvwN7RbrtNk7x25uyVbBYC+55hxRap0kD7NqSjphFJK
+	xZJuX6SAUgmvF5t3MOAlbAd7ooiMXVGjMZ2FaCE8Y8zlESHb2BXTEyXBG1uNy0Z/Lrg+07nJmwQo6
+	/Y97XGz7V7DU567es89PEvkP2CeU+sE6CtqR4GlpPU0WddU7BeBz69p8x7k+/vTY83I9caiv6HPa9
+	c61cSGGzqT7xkXYWRovBUeVjnhWpTH7uv44pudqcYabNv62wqWSpBjZEA3tGzJCI53Potd24GobUv
+	ds6xyyisZUjoQcnL+STQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU95m-0000000DQO4-2DPm;
-	Thu, 19 Nov 2026 20:50:50 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xU95u-0000000DQTA-2fBb;
+	Thu, 19 Nov 2026 20:50:58 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU95h-0000000DQKX-1pCu
+	id 1xU95o-0000000DQPC-1J7B
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 20:50:45 +0000
+	Thu, 19 Nov 2026 20:50:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 355C740D96;
-	Thu, 19 Nov 2026 20:50:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACA301F000C4;
-	Thu, 19 Nov 2026 20:50:43 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id BE8CC62857;
+	Thu, 19 Nov 2026 20:50:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9E9D1F000CA;
+	Thu, 19 Nov 2026 20:50:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795121445;
-	bh=FDB56P32FDl6bNezdwAQqP1h7o3uxulTq1XdU+fw3Dc=;
+	s=k20260515; t=1795121451;
+	bh=NAbaLn8TdjdIV7Xo1u11Mt4D9oXgJ+jd79pxsi7Y87k=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=k7n02MHztF0PvsBN+690dzA3kvbjK4CRb1fMM0D3f0cFAmO5F267CgygHQZ9Z0/AC
-	 jIDOp9koldOGaQcEwCo92stfsidMLOcD3n3w3Id07rWsw6q3fm2/gpeSHTR1wgastJ
-	 mY/1XbhhrF0xC4sudKcprrg7SVuGwklHHxSdhJe4Mpvc9e4gv1SLLXZF5lkvfMp1oO
-	 Zsyn/1p51f0X2s7/pAUjTSpjYshV0sC8SQ2zXJz7Ejg/JrfQp3b5+hVz38bzQwVzzV
-	 IPRScHZgjSYZ0u5V8ljPaFELbkHtoONu28JUxQJWlN2TYUlWjNfhGMjkZAqWLcfYT5
-	 rfjdaF4pyYKPQ==
+	b=CgWgPwRFr2ako7TveUhLXhNrzitfBeCb2Y+IMK8imEzw8ylJXdOOrq5eK26ZYSeEX
+	 pZjCZSRLCgKgexHyFivzzejiaBRoR6uuxdEy5/DvrIOwtLvrFm3Nl+bvFVpxjTd68c
+	 Fr3WlTdRm3M4JGY65SQsGoqsa4q77Ts+U7y+bsVOLyLHbXk8ssM2kadikIWfBUwHyc
+	 fb/mVrFk2pEaP/C49Y43ukSrdoMj+Y3/aMX8hdunexdNrBmO5HJB3zIsMlkFw2B/n7
+	 7RB9Va/YG6u0SZkPNVRKH4rjvKieKZ64Zja2DDxA4a96QFtFpWaHzm/qwUxqui4foh
+	 o6iwI3d+QpGyQ==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org,
 	Jacky Huang <ychuang3@nuvoton.com>,
 	Shan-Chun Hung <schung@nuvoton.com>,
 	Linus Walleij <linusw@kernel.org>,
+	Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-gpio@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: stable@vger.kernel.org
-Subject: [PATCH v2 04/12] pinctrl: nuvoton: ma35: Assign fwnode to gpio_chip in ma35_gpiolib_register()
-Date: Thu, 19 Nov 2026 20:49:00 +0000
-Message-ID: <20261119205013.2563811-5-lee@kernel.org>
+Subject: [PATCH v2 05/12] pinctrl: nuvoton: ma35: Avoid leaking map when parent node is missing
+Date: Thu, 19 Nov 2026 20:49:01 +0000
+Message-ID: <20261119205013.2563811-6-lee@kernel.org>
 X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
 In-Reply-To: <20261119205013.2563811-1-lee@kernel.org>
 References: <20261119205013.2563811-1-lee@kernel.org>
@@ -79,38 +80,58 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ma35_gpiolib_register() registers all 14 GPIO banks under the same
-parent platform device without setting bank->chip.fwnode to the child
-bank node.  Consequently, all GPIO banks share the parent pinctrl node
-for OF/fwnode lookups, preventing consumer drivers from resolving
-phandles to individual GPIO bank child nodes (&gpiob, &gpioc, etc.).
+Commit 3fd976afe974 ("pinctrl: nuvoton: fix a double free in
+ma35_pinctrl_dt_node_to_map_func()") switched new_map from
+devm_kcalloc() to unmanaged kcalloc() without freeing new_map on the
+!parent error path.  Because pinctrl_dt_to_map() does not invoke
+dt_free_map() when dt_node_to_map() returns an error, new_map is leaked
+if of_get_parent() returns NULL.
 
-Set bank->chip.fwnode to bank->fwnode before registering each GPIO
-chip.
+Look up the parent node before allocating new_map, and release the
+parent node reference if the allocation fails.
 
-Fixes: f805e356313b ("pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO driver")
-Closes: https://sashiko.dev/#/bug/linux-cbafd8f2-6541-4311-b97b-f7285d2e1992
+Fixes: 3fd976afe974 ("pinctrl: nuvoton: fix a double free in ma35_pinctrl_dt_node_to_map_func()")
+Closes: https://sashiko.dev/#/bug/linux-ae0c2737-0408-4808-9bae-f7389beb51d0
 Cc: stable@vger.kernel.org
 Signed-off-by: Lee Jones <lee@kernel.org>
 ---
 
-v1 => v2: No changes
+v1 => v2:
+ - Correct description of commit 3fd976afe974 in commit message
+   (Sashiko)
 
- drivers/pinctrl/nuvoton/pinctrl-ma35.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/pinctrl/nuvoton/pinctrl-ma35.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/pinctrl/nuvoton/pinctrl-ma35.c b/drivers/pinctrl/nuvoton/pinctrl-ma35.c
-index c9e09c14a101..a92945b7821f 100644
+index a92945b7821f..92c1c40339f1 100644
 --- a/drivers/pinctrl/nuvoton/pinctrl-ma35.c
 +++ b/drivers/pinctrl/nuvoton/pinctrl-ma35.c
-@@ -519,6 +519,7 @@ static int ma35_gpiolib_register(struct platform_device *pdev, struct ma35_pinct
- 		bank->irqinten = 0;
- 		bank->chip.label = bank->name;
- 		bank->chip.parent = &pdev->dev;
-+		bank->chip.fwnode = bank->fwnode;
- 		bank->chip.request = ma35_gpio_core_to_request;
- 		bank->chip.direction_input = ma35_gpio_core_direction_in;
- 		bank->chip.direction_output = ma35_gpio_core_direction_out;
+@@ -202,17 +202,19 @@ static int ma35_pinctrl_dt_node_to_map_func(struct pinctrl_dev *pctldev,
+ 		return -EINVAL;
+ 	}
+ 
++	parent = of_get_parent(np);
++	if (!parent)
++		return -EINVAL;
++
+ 	map_num += grp->grp.npins;
+ 	new_map = kzalloc_objs(*new_map, map_num);
+-	if (!new_map)
++	if (!new_map) {
++		of_node_put(parent);
+ 		return -ENOMEM;
++	}
+ 
+ 	*map = new_map;
+ 	*num_maps = map_num;
+-	/* create mux map */
+-	parent = of_get_parent(np);
+-	if (!parent)
+-		return -EINVAL;
+ 
+ 	setting = grp->data;
+ 
 -- 
 2.56.1.750.gf70dc682cf-goog
 
