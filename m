@@ -2,117 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6964760A2616
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37CE6606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RdM75B3z;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZNKV+hWh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NXOpUcnc;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=XBD9TLT3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=c2aO7oEyelbSnShrfwuUs5AvyqaNfXgLOAQIqhvoEAo=; b=RdM75B3zLKEJ49
-	sBvfkQnjW0X+s1zKTQFHTwFnzLP1/cUFPbAUh5a3ftQfdgunldMTLbf3h+T3d7HAt4vgpPK0cL7LI
-	Qh+Xu5YRj0972zuEUR1baLku0EYFYQ8IwJEcvQwAtGFYpEGTJaO8o3Um9mqXO/3HZLARuziUymF4w
-	fLwcAzHGCy2ZN5JUvD7fzx2H6RadPspbX/BluwhMZU5Cd+rTNHFMfcPUCVYVBiT5J2HZGNo9bew57
-	46v9f7cCaS3640oSCJ8+Z/OIqTKXi0+ukfodWwjdt6glhBDyyvmaKtt9QykFgzMAxkNhY4WiSG6CB
-	PMHuZhKwpTT8sXnljvuw==;
+	List-Owner; bh=885O//4TNWmICaXvaoWhD9ON/DN8BkJX8bU3kObVRv8=; b=NXOpUcncGl/Qs5
+	u2H7ZtKVmOh+OMQitnuSjMzEmvpG3SaO9av2YplIhNMd/6TBhl0QUxDp8pLo1nuOYnmQrhJTPt0lY
+	uMLqH7Q75OU63PjfOWeukF0kXcXUZRkwyUPk7j/KGTLwtRT7Jt64rFhEqUfz4TpvVrBcqTDeS2KoP
+	R5V9tXGBR3gG5em09HyGFf5AZ+b/aE12LFLrvNr3KbHHCuWwi7z+RbRHYZTjxLchpavcVnEEYabqk
+	5KZVJTay/8wxWWSMZPsnDXeCN3cfzV0deEZGfzWgIEmsA0IYHctE6Y/r77PNdIO/0HiDA2m/Q70OQ
+	kIKjw6mMQsfFxBkBuPzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2iq-0000000CASf-374n;
-	Thu, 19 Nov 2026 14:02:44 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xU2q0-0000000CB1r-27c1;
+	Thu, 19 Nov 2026 14:10:08 +0000
+Received: from m16.mail.163.com ([220.197.31.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2ip-0000000CASV-47FN
+	id 1xU2pv-0000000CAzZ-3y1J
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:02:44 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BA32F46357;
-	Thu, 19 Nov 2026 14:02:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2401D1F000C4;
-	Thu, 19 Nov 2026 14:02:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795096963;
-	bh=c2aO7oEyelbSnShrfwuUs5AvyqaNfXgLOAQIqhvoEAo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=ZNKV+hWhIX4hLcZb5RDIA3sOiRVmfZdRzWaqCzKpLmBs5M2ZuLpKJsUhFmupro5CE
-	 DG14ujYnr85jKHmRvW15BX2J5iC1IdAKxYnSRz961+isIgJigIzTCmLWPIMWeFGlpK
-	 /UAQWdPG+eykYjCzg4Px0J7fB+LrQ1BJ+drPqX6KtNjbvzsUYeYJjjegCr/vRMe/x1
-	 zbtvk39jNbkdH29am9fVm1woiwS8bylGBaCnzvEVEacrBNPYTj+ng2JHiAQz4eqVeP
-	 hJcQiewdbDjgrZuhle+ybAmjr2sh/z1qf52E1elJvH8EEzqjWTYDqDTLiJe6pUh6KS
-	 nm3HlZkugrO3w==
-Message-ID: <30c74f5e-cd18-445a-964b-b839fc077b25@kernel.org>
-Date: Thu, 19 Nov 2026 15:02:35 +0100
+	Thu, 19 Nov 2026 14:10:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=88
+	5O//4TNWmICaXvaoWhD9ON/DN8BkJX8bU3kObVRv8=; b=XBD9TLT34HGRFYTGYE
+	zJUQD3TaQIwiUnmo6JmWUYvSiCtguu5zh2CHqLJ4UPQOdX5g7TOVVnz+lsAfSIOU
+	CjPT6yH7q1KwltnSbkj1hQWHid+SMVJbkSppu9FzH+1sE+unmOb2t2YZ73iVnp+2
+	d0Ir3jl5rOGIUS2XiQ8zrSB64=
+Received: from 4CV529F122.company.local (unknown [])
+	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wB3Zjj_Av9qQc93Iw--.13924S5;
+	Thu, 19 Nov 2026 22:09:30 +0800 (CST)
+From: Ding Hui <dinghui1111@163.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org (open list:STMMAC ETHERNET DRIVER),
+	linux-stm32@st-md-mailman.stormreply.com (moderated list:ARM/STM32 ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/STM32 ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Cc: dinghui@lixiang.com,
+	xiasanbo@lixiang.com,
+	yangchen11@lixiang.com,
+	liuxuanjun@lixiang.com,
+	fujiahui@lixiang.com,
+	zhoujing3@lixiang.com
+Subject: [PATCH net v8 3/4] net: stmmac: restore RX descriptor buffer addresses on resume
+Date: Thu, 19 Nov 2026 22:08:59 +0800
+Message-Id: <52672e4d879760b1434a92e12f3c7d5b2287e086.1795096430.git.dinghui@lixiang.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1795096430.git.dinghui@lixiang.com>
+References: <cover.1795096430.git.dinghui@lixiang.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 3/6] dt-bindings: arm: qcom: add QDCP STM source
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
- Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
- Leo Yan <leo.yan@arm.com>, Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20261119-introduce-qcom-qecp-feature-v1-0-b1a730d2c57a@oss.qualcomm.com>
- <20261119-introduce-qcom-qecp-feature-v1-3-b1a730d2c57a@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261119-introduce-qcom-qecp-feature-v1-3-b1a730d2c57a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: _____wB3Zjj_Av9qQc93Iw--.13924S5
+X-Coremail-Antispam: 1Uf129KBjvJXoW3ur17JFyfKrWDGryUAw1rtFb_yoWkXw4Upa
+	1akw4DK3ykJr13Gw4DJr48ZFyaya43tFWUWa1fWw4a9r4akr9a9F1FqFy5ZFyxJr1q9r4S
+	yF4DC3Z8CF4DXrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07b20eLUUUUU=
+X-CM-SenderInfo: pglqwx1xlriiqr6rljoofrz/xtbC9BphjWr-Axo-qQAA3Y
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_061004_428738_9B383FDF 
+X-CRM114-Status: GOOD (  20.73  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,113 +85,344 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 10:01, Jie Gan wrote:
-> Document the Qualcomm QDCP-backed CoreSight STM (System Trace Macrocell)
-> source, for platforms where the STM control registers are owned by
-> Qualcomm Embedded Co-Processor (QECP) firmware instead of the
-> application processor (AP).
-> 
-> The node describes only the STM stimulus aperture, the MMIO region the
-> AP writes trace data to. Firmware controls the STM through the Qualcomm
-> Debug Control Protocol (QDCP) provider referenced by the qcom,qdcp
-> phandle. Firmware also controls the block's clocks and power, so the
-> binding has no clocks or power-domains properties.
-> 
-> The output port must have an endpoint so the source can be connected to
-> a trace sink.
-> 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->  .../bindings/arm/qcom,coresight-stm-qdcp.yaml      | 111 +++++++++++++++++++++
->  1 file changed, 111 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-stm-qdcp.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-stm-qdcp.yaml
-> new file mode 100644
-> index 000000000000..f365ce2450ad
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-stm-qdcp.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-stm-qdcp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm QDCP-backed CoreSight STM source
-> +
-> +maintainers:
-> +  - Jie Gan <jie.gan@oss.qualcomm.com>
-> +
-> +description: |
-> +  The System Trace Macrocell (STM) is a CoreSight trace source designed for
-> +  high-bandwidth trace of software instrumentation, made up of memory-mapped
-> +  writes to the STM stimulus aperture.
-> +
-> +  On Qualcomm platforms where the STM control registers are owned by QECP
-> +  firmware, this binding describes an STM whose stimulus aperture is mapped by
-> +  the application processor for data writes, while enabling and disabling the
-> +  trace path is delegated to firmware over the Qualcomm Debug Control Protocol
-> +  (QDCP). It references a QDCP provider through the "qcom,qdcp" phandle rather
-> +  than exposing the STM programming registers directly.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: qcom,coresight-stm-qdcp
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^stm(@[0-9a-f]+)$"
+From: Ding Hui <dinghui@lixiang.com>
 
-That's RFC, so maybe you do not expect review. Explain in cover letter
-as the most important part what do you expect from us.
+Suspend disables NAPI before stopping RX DMA. Hardware can complete RX
+descriptors in between, overwriting GMAC4/XGMAC buffer addresses with
+writeback status. Resume currently rearms those descriptors without
+restoring their addresses, leading to a fatal bus error.
 
-Anyway, drop, I do not see how is this conforming to DT spec.
+Share buffer preparation with the refill paths and restore addresses
+from attached buffers. Allocate missing primary and secondary pages
+independently with GFP_KERNEL. If allocation fails, return the error
+without restarting DMA and leave the device detached.
 
+For XSK queues, restore a contiguous populated prefix and leave the rest
+CPU-owned in the pending refill region. Preserve attached buffers beyond
+the prefix for later refill. Recompute the initial tail and pending count
+rather than retaining the allocation count from open.
 
-> +
-> +  compatible:
-> +    const: qcom,coresight-stm-qdcp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-names:
-> +    items:
-> +      - const: stm-stimulus-base
-> +
-> +  qcom,qdcp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the specific "connection-N" child node of the QDCP
-> +      provider (see qcom,qdcp.yaml) that owns this STM's control registers
-> +      and services the firmware enable/disable transactions. This must
-> +      reference the connection child node directly, not the top-level
-> +      QDCP provider node itself.
+Rebuild chain pointers and use stmmac_reset_rx_queue() to discard partial
+receive state from before the DMA reset. Initialize RX descriptors after
+restoring their addresses,
+using the existing per-queue initializer to preserve the watchdog policy
+and legacy control fields. Keep the unpopulated XSK suffix CPU-owned when
+DMA restarts. This replaces the separate final ownership-setting loop.
 
-No, the QDCP is just part of this device.
+Collect the resume work in stmmac_resume_descriptors(), with one loop over
+TX queues and one over RX queues. Free outstanding TX buffers before
+initializing each TX ring, and remove the now-unused all-queue TX wrapper.
+The RX rings no longer undergo initialization before address restoration.
 
+Unlike the reverted commit 9c63faaa931e ("net: stmmac: re-init rx buffers
+when mac resume back"), retain attached buffers and their DMA mappings.
 
-> +
-> +  qcom,qdcp-source-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint64
-> +    description:
-> +      QECP firmware source identifier for this STM, used to address it in QDCP
-> +      transactions.
+Fixes: f748be531d70 ("stmmac: support new GMAC4")
+Signed-off-by: Ding Hui <dinghui@lixiang.com>
+---
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c | 221 +++++++++++++-----
+ 1 file changed, 158 insertions(+), 63 deletions(-)
 
-Drop, we don't allow instance IDs.
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+index f9ac82d2e726..1508cf08f03b 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+@@ -1677,6 +1677,40 @@ static bool stmmac_rx_check_buf2_cap(struct stmmac_priv *priv)
+ 	return priv->hw->desc && priv->hw->desc->set_sec_addr;
+ }
+ 
++static int stmmac_prepare_rx_buffer(struct stmmac_priv *priv,
++				    struct stmmac_rx_queue *rx_q,
++				    struct stmmac_rx_buffer *buf,
++				    struct dma_desc *p, gfp_t flags)
++{
++	gfp_t gfp = flags;
++
++	if (priv->dma_cap.host_dma_width <= 32)
++		gfp |= GFP_DMA32;
++
++	if (!buf->page) {
++		buf->page = page_pool_alloc_pages(rx_q->page_pool, gfp);
++		if (!buf->page)
++			return -ENOMEM;
++		buf->page_offset = stmmac_rx_offset(priv);
++	}
++
++	if (stmmac_rx_check_buf2_cap(priv) && !buf->sec_page) {
++		buf->sec_page = page_pool_alloc_pages(rx_q->page_pool, gfp);
++		if (!buf->sec_page)
++			return -ENOMEM;
++
++		buf->sec_addr = page_pool_get_dma_addr(buf->sec_page);
++	}
++
++	buf->addr = page_pool_get_dma_addr(buf->page) + buf->page_offset;
++
++	stmmac_set_desc_addr(priv, p, buf->addr);
++	stmmac_set_desc_sec_addr(priv, p, buf->sec_addr,
++				 stmmac_rx_check_buf2_cap(priv));
++
++	return 0;
++}
++
+ /**
+  * stmmac_init_rx_buffers - init the RX descriptor buffer.
+  * @priv: driver private structure
+@@ -1695,32 +1729,100 @@ static int stmmac_init_rx_buffers(struct stmmac_priv *priv,
+ {
+ 	struct stmmac_rx_queue *rx_q = &dma_conf->rx_queue[queue];
+ 	struct stmmac_rx_buffer *buf = &rx_q->buf_pool[i];
+-	gfp_t gfp = flags;
++	int ret;
+ 
+-	if (priv->dma_cap.host_dma_width <= 32)
+-		gfp |= GFP_DMA32;
++	ret = stmmac_prepare_rx_buffer(priv, rx_q, buf, p, flags);
++	if (ret)
++		return ret;
+ 
+-	if (!buf->page) {
+-		buf->page = page_pool_alloc_pages(rx_q->page_pool, gfp);
+-		if (!buf->page)
++	if (dma_conf->dma_buf_sz == BUF_SIZE_16KiB)
++		stmmac_init_desc3(priv, p);
++
++	return 0;
++}
++
++static int stmmac_prepare_rx_buffer_zc(struct stmmac_priv *priv,
++				       struct stmmac_rx_queue *rx_q,
++				       struct stmmac_rx_buffer *buf,
++				       struct dma_desc *p)
++{
++	if (!buf->xdp) {
++		buf->xdp = xsk_buff_alloc(rx_q->xsk_pool);
++		if (!buf->xdp)
+ 			return -ENOMEM;
+-		buf->page_offset = stmmac_rx_offset(priv);
+ 	}
+ 
+-	if (stmmac_rx_check_buf2_cap(priv) && !buf->sec_page) {
+-		buf->sec_page = page_pool_alloc_pages(rx_q->page_pool, gfp);
+-		if (!buf->sec_page)
+-			return -ENOMEM;
++	stmmac_set_desc_addr(priv, p, xsk_buff_xdp_get_dma(buf->xdp));
++	stmmac_set_desc_sec_addr(priv, p, 0, false);
+ 
+-		buf->sec_addr = page_pool_get_dma_addr(buf->sec_page);
+-		stmmac_set_desc_sec_addr(priv, p, buf->sec_addr, true);
++	return 0;
++}
++
++/**
++ * stmmac_reinit_rx_descriptors - restore RX descriptors before restarting DMA
++ * @priv: driver private structure
++ * @dma_conf: DMA configuration
++ * @queue: RX queue index
++ *
++ * Restore addresses overwritten by hardware writeback, retaining attached
++ * buffers and allocating missing page_pool buffers with GFP_KERNEL. Keep
++ * descriptors CPU-owned until addresses and chain pointers are restored.
++ *
++ * For XSK, publish only the contiguous populated prefix. The remainder is
++ * left in the refill region, including any buffers already attached there,
++ * and can be populated by NAPI when userspace supplies more fill buffers.
++ *
++ * Return: 0 on success, or -ENOMEM if a required page cannot be allocated.
++ */
++static int stmmac_reinit_rx_descriptors(struct stmmac_priv *priv,
++					struct stmmac_dma_conf *dma_conf,
++					u32 queue)
++{
++	struct stmmac_rx_queue *rx_q = &dma_conf->rx_queue[queue];
++	struct dma_desc *p;
++	int i, ret;
++
++	for (i = 0; i < dma_conf->dma_rx_size; i++) {
++		p = stmmac_get_rx_desc(priv, rx_q, i);
++		stmmac_clear_rx_owner(priv, p);
+ 	}
+ 
+-	buf->addr = page_pool_get_dma_addr(buf->page) + buf->page_offset;
++	rx_q->buf_alloc_num = 0;
++	for (i = 0; i < dma_conf->dma_rx_size; i++) {
++		struct stmmac_rx_buffer *buf = &rx_q->buf_pool[i];
+ 
+-	stmmac_set_desc_addr(priv, p, buf->addr);
+-	if (dma_conf->dma_buf_sz == BUF_SIZE_16KiB)
+-		stmmac_init_desc3(priv, p);
++		p = stmmac_get_rx_desc(priv, rx_q, i);
++		if (rx_q->xsk_pool) {
++			ret = stmmac_prepare_rx_buffer_zc(priv, rx_q, buf, p);
++			if (ret)
++				break;
++		} else {
++			ret = stmmac_init_rx_buffers(priv, dma_conf, p, i,
++						     GFP_KERNEL, queue);
++			if (ret)
++				return ret;
++		}
++		rx_q->buf_alloc_num++;
++	}
++
++	/* Hardware timestamp writeback may have overwritten chain pointers. */
++	if (priv->descriptor_mode == STMMAC_CHAIN_MODE) {
++		void *des = priv->extend_desc ? (void *)rx_q->dma_erx :
++					      (void *)rx_q->dma_rx;
++
++		stmmac_mode_init(priv, des, rx_q->dma_rx_phy,
++				 dma_conf->dma_rx_size, priv->extend_desc);
++	}
++
++	rx_q->rx_count_frames = 0;
++	stmmac_reset_rx_queue(priv, queue);
++
++	/* Initialize control fields and publish ownership only after restoring
++	 * addresses and chain pointers. DMA is stopped; initialization also
++	 * clears OWN again for the unpopulated XSK suffix before DMA restarts.
++	 */
++	dma_wmb();
++	stmmac_clear_rx_descriptors(priv, dma_conf, queue);
+ 
+ 	return 0;
+ }
+@@ -2157,16 +2259,37 @@ static void dma_free_tx_skbufs(struct stmmac_priv *priv,
+ }
+ 
+ /**
+- * stmmac_free_tx_skbufs - free TX skb buffers
+- * @priv: private structure
++ * stmmac_resume_descriptors - prepare TX and RX rings before restarting DMA
++ * @priv: driver private structure
++ *
++ * Release outstanding TX buffers before initializing each TX ring. Restore
++ * RX buffer addresses before initializing RX descriptors and their ownership.
++ * All DMA channels must be stopped throughout this operation.
++ *
++ * Return: 0 on success, or a negative errno if RX restoration fails.
+  */
+-static void stmmac_free_tx_skbufs(struct stmmac_priv *priv)
++static int stmmac_resume_descriptors(struct stmmac_priv *priv)
+ {
+-	u8 tx_queue_cnt = priv->plat->tx_queues_to_use;
+-	u8 queue;
++	struct stmmac_dma_conf *dma_conf = &priv->dma_conf;
++	u32 queue;
++	int ret;
+ 
+-	for (queue = 0; queue < tx_queue_cnt; queue++)
+-		dma_free_tx_skbufs(priv, &priv->dma_conf, queue);
++	for (queue = 0; queue < priv->plat->tx_queues_to_use; queue++) {
++		stmmac_reset_tx_queue(priv, queue);
++		dma_free_tx_skbufs(priv, dma_conf, queue);
++		stmmac_clear_tx_descriptors(priv, dma_conf, queue);
++	}
++
++	for (queue = 0; queue < priv->plat->rx_queues_to_use; queue++) {
++		ret = stmmac_reinit_rx_descriptors(priv, dma_conf, queue);
++		if (ret) {
++			netdev_err(priv->dev, "Failed to restore RX queue %u: %d\n",
++				   queue, ret);
++			return ret;
++		}
++	}
++
++	return 0;
+ }
+ 
+ /**
+@@ -5172,10 +5295,6 @@ static inline void stmmac_rx_refill(struct stmmac_priv *priv, u32 queue)
+ 	struct stmmac_rx_queue *rx_q = &priv->dma_conf.rx_queue[queue];
+ 	int dirty = stmmac_rx_dirty(priv, queue);
+ 	unsigned int entry = rx_q->dirty_rx;
+-	gfp_t gfp = (GFP_ATOMIC | __GFP_NOWARN);
+-
+-	if (priv->dma_cap.host_dma_width <= 32)
+-		gfp |= GFP_DMA32;
+ 
+ 	while (dirty-- > 0) {
+ 		struct stmmac_rx_buffer *buf = &rx_q->buf_pool[entry];
+@@ -5184,25 +5303,9 @@ static inline void stmmac_rx_refill(struct stmmac_priv *priv, u32 queue)
+ 
+ 		p = stmmac_get_rx_desc(priv, rx_q, entry);
+ 
+-		if (!buf->page) {
+-			buf->page = page_pool_alloc_pages(rx_q->page_pool, gfp);
+-			if (!buf->page)
+-				break;
+-		}
+-
+-		if (stmmac_rx_check_buf2_cap(priv) && !buf->sec_page) {
+-			buf->sec_page = page_pool_alloc_pages(rx_q->page_pool, gfp);
+-			if (!buf->sec_page)
+-				break;
+-
+-			buf->sec_addr = page_pool_get_dma_addr(buf->sec_page);
+-		}
+-
+-		buf->addr = page_pool_get_dma_addr(buf->page) + buf->page_offset;
+-
+-		stmmac_set_desc_addr(priv, p, buf->addr);
+-		stmmac_set_desc_sec_addr(priv, p, buf->sec_addr,
+-					 stmmac_rx_check_buf2_cap(priv));
++		if (stmmac_prepare_rx_buffer(priv, rx_q, buf, p,
++					     GFP_ATOMIC | __GFP_NOWARN))
++			break;
+ 		stmmac_refill_desc3(priv, rx_q, p);
+ 
+ 		use_rx_wd = !stmmac_rx_need_ic(priv, rx_q, queue);
+@@ -5609,22 +5712,15 @@ static bool stmmac_rx_refill_zc(struct stmmac_priv *priv, u32 queue, u32 budget)
+ 
+ 	while (budget-- > 0) {
+ 		struct stmmac_rx_buffer *buf = &rx_q->buf_pool[entry];
+-		dma_addr_t dma_addr;
++		struct dma_desc *p = stmmac_get_rx_desc(priv, rx_q, entry);
+ 		bool use_rx_wd;
+ 
+-		if (!buf->xdp) {
+-			buf->xdp = xsk_buff_alloc(rx_q->xsk_pool);
+-			if (!buf->xdp) {
+-				ret = false;
+-				break;
+-			}
++		if (stmmac_prepare_rx_buffer_zc(priv, rx_q, buf, p)) {
++			ret = false;
++			break;
+ 		}
+ 
+-		rx_desc = stmmac_get_rx_desc(priv, rx_q, entry);
+-
+-		dma_addr = xsk_buff_xdp_get_dma(buf->xdp);
+-		stmmac_set_desc_addr(priv, rx_desc, dma_addr);
+-		stmmac_set_desc_sec_addr(priv, rx_desc, 0, false);
++		rx_desc = p;
+ 		stmmac_refill_desc3(priv, rx_q, rx_desc);
+ 
+ 		use_rx_wd = !stmmac_rx_need_ic(priv, rx_q, queue);
+@@ -8563,10 +8659,9 @@ int stmmac_resume(struct device *dev)
+ 
+ 	mutex_lock(&priv->lock);
+ 
+-	stmmac_reset_queues_param(priv);
+-
+-	stmmac_free_tx_skbufs(priv);
+-	stmmac_clear_descriptors(priv, &priv->dma_conf);
++	ret = stmmac_resume_descriptors(priv);
++	if (ret)
++		goto error_unlock;
+ 
+ 	ret = stmmac_hw_setup(ndev);
+ 	if (ret < 0) {
+-- 
+2.34.1
 
-Best regards,
-Krzysztof
 
