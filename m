@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572E5606A335
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90F2606A324
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kLMa/Wkk;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=j+hr+GcZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w39/kk2F;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jXgxK+eA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=03N+1oTleZgKa9Qt+3r1LOaqyq+wwqvkfR03GB3AqD8=; b=kLMa/WkkJ2lMdp
-	hryKkA/iaWS4ea2sfOk/LyGVdJzzynPEqx9nf0xGVKurvvG4UT0nZ/A0HJ4C5PqmXM7vaRVcLcshA
-	8iT4qrQQnMHS11OOWtxRlR33vHZP7mtozAbOPZ58wJIVsD19d1eyMM/9sBZQkZoWV/9BbZJMY5yfI
-	dQUMJl0jjpo+vHJmO+/BQdIiaFHr/MncNTqMvOmL1+HOsPzTkwQiQgYHaaHSBqJy27Y5aYTTNFGJa
-	Esm5xnvm3sBUSoxiOrdCEx5S6HoTW3zO+XFoh1Po0X5uldtLg2+2PixBQfJrkFg+IxE6ryui9mIe4
-	/x9oq2ZbqiwBAclPGxlw==;
+	List-Owner; bh=bV4UJVZ9NL/7DCp8HEJshTGUvYsQkJNidhWUdfBTaSM=; b=w39/kk2FKn+2fu
+	i7nvSzd1HEGt32+Vp+33g28RVZG/4ELzfbe+QSn0vtUXkEyodhkF6kJRPTCINFvjtszKOHK8hO7xO
+	pyde4ZiQG+xi6WYHIDgTPryEy+t/ENrui+S1OvPiDdPZo/ZBTqDXTUYlfvJRY5tZpexIkmXJllh5P
+	iSOh8tyJhUWtuzN9MJ0iCxSMcV5IHz3ZuBWdP7OUdnVRAdD7m5qMr0GSY/AI12xPaX+FjlurZHMpS
+	ZiiHP8ia47kOfQHs49pYaOTwsQb6xTiuxV4VBR6GSPooHZWt+xxZkOEoqeTTw5Pg31LhVxuOpwYza
+	9uIkFMQUYnupu/RWRS/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2PP-0000000C6IV-1Tqe;
-	Thu, 19 Nov 2026 13:42:39 +0000
+	id 1xU2PP-0000000C6Ix-1yix;
+	Thu, 19 Nov 2026 13:42:40 +0000
 Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2PH-0000000C6Dl-06GQ
+	id 1xU2PI-0000000C6EV-3bvW
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 13:42:32 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-48e47347279so1349976f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 05:42:30 -0800 (PST)
+	Thu, 19 Nov 2026 13:42:34 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-490d59c3edaso691981f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 05:42:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795095749; x=1795700549; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795095751; x=1795700551; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=03N+1oTleZgKa9Qt+3r1LOaqyq+wwqvkfR03GB3AqD8=;
-        b=j+hr+GcZycDf75BV58KR0BL26QwXlkyd9Sfbx4iSQDUvf+SQGR7JBYvgozsNgc4kO2
-         fY+aVgmCdfOGc4E5wtVgI6z0LO2USVxujlaohs24cQg/7RSx8jFrueAQGZuWAo0Cz6VA
-         Lw8WkvMLnwsjim+gR1TpDhhuwFqtUfQhf1pAG4OBAoVMoh7Wb97kCtvsVbUzaVz6jUNt
-         cMfwI7fLocCC76l5bq8m1CBzHh0nFy+JKJcfCZPKZr/WirmiLvYjbJ+AhK42jfL6tW92
-         iPAS4eXS878T81EvDXZ6Z9JV0b5pigwVT5LAsSx65FSaF9hHrUzOaPA0qXIa+5xh1ArG
-         xB6Q==
+        bh=bV4UJVZ9NL/7DCp8HEJshTGUvYsQkJNidhWUdfBTaSM=;
+        b=jXgxK+eASXrP+dpam7YQMEX6Zwud2AckJcMVdVQWUhW845o5tKRG216lNvf8GtzXuR
+         wENcDSLSiE/XJ6X0Vyo1+cRaPo+gF6tD9PQL4nCxQx0wxwjz1ObIK/LMeXgR+TsZjL/J
+         YteSl/X+JCMNS8+bEPlfRcbZB+SIuVLY4yOuyRxmQQ+NP15oNqjFzyZwHY450vBOWcIo
+         /WOfYaxOLAtIOs33/uX/QFIMDtsPZrBF0JWUTK8TVRWs0EXNmUC77rpXgsABtGSozubd
+         c5eDeJfAia1NTe7FYVxwGSBetf4fUoOlUBgXz+WHexHbJ6sdUV/A1P9VbLyDlfk6FA0Q
+         duEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795095749; x=1795700549;
+        d=1e100.net; s=20260707; t=1795095751; x=1795700551;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=03N+1oTleZgKa9Qt+3r1LOaqyq+wwqvkfR03GB3AqD8=;
-        b=pu+wuKl6Vqobs1qCgMrZ8XQwW3sGMtVeIHlos8rd8uMWpE+B2LiS1jLDlPpNsWN9Kn
-         XNjGYd8JSQMoufHSILmuFXrkUh+sPlpnSV3LuJXn7A+YKkIPdGX/gDKb9BENIqc96eBK
-         7OZKsWVj5+8NK+SoAwwrfPmezILNRO5fNXraU2A1cZyPXEAV9vso+DDpy0/N93SKhmHX
-         rlcYiyVdW0ZwCZ4Rq7mvcJZ5Jk1/DOCoyxo0aZHnYqwowxDm+vlNVdM+G5HGmdOLBoaj
-         bMc96FHr0rvCkvtOk/X/ataw9hhBiENtccirRKJ7HCMrev+Q5vdSuO2mcHsu5g+IoPfQ
-         D5TA==
-X-Forwarded-Encrypted: i=1; AL+hErEUYoTz3B3YZ6GLBcqOuNPPRr+ClvSlrl/CHABUuvvHZJmYDQgjVrWKk84f1GNBBjX+6rl1js977QkM8Ozu/1x+@lists.infradead.org
-X-Gm-Message-State: APuU4Z/VMp/0EVkMkEOA79YBhZ3UMWjSY1feol12FwbI0TLcZAerEJer
-	+XVORTOusW0WI66AvQRnaF2J/8//IyZ3VT85XJdHQVNLENt3Aiv5/VTd
-X-Gm-Gg: AZFdTZd6SBDRbr5BmiEiuGqufk8pqd0RrKP/Z6HTvnZsLu8riVDSAWodkaJLky/9HIh
-	DdbDefymewTpSF1hI/kzIbOUgIU6ZsPpM6JuuAHefaBPNwj1ELdUvQ1MoIEtvkjl2jipytNHXT1
-	YX+3r/jW7niHE0+JTIhmAZ2AK4SMgfEsu8vf7f/kLIIir/5ei+EPIg1K6i4Nn/T/8GTDOSdFw6e
-	ueyGL5YVXLsHV+rwzb/hN4Z/zHtN4iXCpaWiR2upw1n0fcfcxjpQ1cTn+GlXEnB3p29Wodzm9/X
-	6Y6ebHbW2XpsDyeMGzsWz0AUA3wUgCr5WVyWVtllvLxCUtHq4S10Ibn34ihvoCzgIVv5jUi8nnH
-	GiKNH0dYKJY3Mmg/MvWPSSr6c/YOHLlnxSV/sFfuvI6zg+NTkpryWuwXrTHFumEJpa8rxfj8BKA
-	2JQom1Dy9cJdJ/2vQeyMaGiJRUysx90OYdhqZNqGMLnql5vYSBV6H3cyn2itf8qSXJ52QWK5sYF
-	9CGFQhbfWZxw+o7DgG3K2apGeTSnW+OIHokfQEuoebGAarqKpgV6F9jnSjDLSXoqPzmK44gFlYR
-	HstMhWkbZaIKk7fERU7CR8rRhkUWOrimPpQ=
-X-Received: by 2002:a05:6000:4815:b0:4a6:bc53:247f with SMTP id ffacd0b85a97d-4a6bc6269c3mr11252717f8f.48.1795095748613;
-        Thu, 19 Nov 2026 05:42:28 -0800 (PST)
+        bh=bV4UJVZ9NL/7DCp8HEJshTGUvYsQkJNidhWUdfBTaSM=;
+        b=r0tO0FCIl6dmL+cA/2rYLiERrA1FbLKGvuQYxjmP94afFUifwsRmquv+/WLvLVceWw
+         U9lUqmdlsEFzjJnwfRtIf831D/OTz67VC5I8oDPcVH0uH1gBkwk0H3DNqs8MIq4e3z4b
+         4EF76g4XSan2wrwb/qNlZN70SicYXGcTa3NcYVsomY6n88MHARMtnaOI5bF7k6Rjzarh
+         yjYZBe2hp/4tEJJlHLbP7GfFAi3vFt+OcsjwyHLqvn1GRK6+ylQ2nJbbwPWUyb2d9tai
+         9ENmnyrT/pP6hTk2Sk3Q5Nw/MwnOANCUM8o3E2h62KVLt/kaZLDVMDXPrqjddh5FGrfl
+         P8sQ==
+X-Forwarded-Encrypted: i=1; AL+hErGR3YWVE63VuuqvxsR8k1LLat7evgWB3wrI1Jg5maAtd+uCnRw4eug1EfLOffYqdey9sh3YwEdXaLp0G34qeQaT@lists.infradead.org
+X-Gm-Message-State: APuU4Z+s49bLCxwFLzVd7ETpIxZb4EODK/f9uuuKmL6hl1XDKwP1yPiI
+	YGn6Qqp9+jViS6z5sMvDDCfAotf5qjvQfepcZrnf/FpU6aVUFCgWP2eN
+X-Gm-Gg: AZFdTZer1MoynR0KaePQDWX97unsrCaHhO8ERPxyyA5TBHImsoZP1sWLj9kf0Y6UiXA
+	w17daeE6MlK3yNrE+wgFT8dvyMnVsLjA4ixEwdKMAmigzdokQMDtx7sgCJoO9Ez48pHbZO0D6vA
+	AcZnBOAlFkatsRjzzEGWNNXcpgfoNlu4mLe4uv9+i5H5qvaMaaefRrwhEyJiI4ECTAEYe7q3Qkx
+	3uqfDlO+sijtkAmSzWYieC4852f0NUsN65BRpGKGM78n0VvFeWQvWSutRpcwhFz6nwSC+jT3iy2
+	dTnlEIcVwORdrhfuUze8zbPsZze93IaXKyH+WgNwx1aBLoZKVjQZj1YTd5xFM+9Nrin+QwMKvBa
+	RqikBnAQH8HpY+gNY7Vsmda9KYuk9lElxnJmUAqxHN3Ncafa3KwrO4CQfnPWEgKT+ongQhg2GLM
+	RX7p1yf9SLdpyO6hVuC3uGVBgkZfJ3twIqjUn9W26jK7B2TeQHHKKXfiQ9Kuh2ZNUlwyRfk81N7
+	pD7rF2tVA9zmmmzi6c7VBDHEx/vmeXifVWqJL5+TsBcxtLOu45yAYsHbFJhapsPusBdmzJB9ESB
+	5iyrr1ByEnd5nMpmg2oKT/P64GC/udo2y7o=
+X-Received: by 2002:a5d:64c4:0:b0:4a8:647c:f962 with SMTP id ffacd0b85a97d-4aa573ee4c2mr3035038f8f.23.1795095750641;
+        Thu, 19 Nov 2026 05:42:30 -0800 (PST)
 Received: from deb05.proceq.com ([213.160.61.66])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a656095e98sm9437971f8f.42.2026.11.19.05.42.27
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a656095e98sm9437971f8f.42.2026.11.19.05.42.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 05:42:28 -0800 (PST)
+        Thu, 19 Nov 2026 05:42:29 -0800 (PST)
 From: Mehmet Fide <mehmet.fide@gmail.com>
 To: Andi Shyti <andi.shyti@kernel.org>,
 	Oleksij Rempel <o.rempel@pengutronix.de>
@@ -88,9 +88,9 @@ Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
 	linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org,
 	mehmet.fide@screeningeagle.com
-Subject: [PATCH v2 1/3] i2c: imx: do not carry the interrupt status over to the next transfer
-Date: Thu, 19 Nov 2026 14:42:23 +0100
-Message-ID: <20261119134225.265242-2-mehmet.fide@gmail.com>
+Subject: [PATCH v2 2/3] i2c: imx: unmap the DMA buffer when a transfer is terminated
+Date: Thu, 19 Nov 2026 14:42:24 +0100
+Message-ID: <20261119134225.265242-3-mehmet.fide@gmail.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261119134225.265242-1-mehmet.fide@gmail.com>
 References: <20261119134225.265242-1-mehmet.fide@gmail.com>
@@ -98,9 +98,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_054231_089424_D9B540A2 
-X-CRM114-Status: GOOD (  13.25  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_054233_038375_2F98DDC5 
+X-CRM114-Status: GOOD (  15.79  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,52 +111,113 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Mehmet Fide <mehmet.fide@screeningeagle.com>
 
-In DMA mode the interrupt handler stores I2SR in i2c_imx->i2csr and only
-i2c_imx_trx_complete() clears it. A DMA transfer that fails returns
-without doing so, for example a DMA write whose address is not
-acknowledged.
+The buffer of a DMA transfer is unmapped in the DMA completion callback
+only. When the wait for the completion times out the transfer is
+terminated, the callback does not run and the mapping is never released.
 
-The stale status stays until the next DMA read. There
-i2c_imx_prepare_read() calls i2c_imx_trx_complete(), which finds IIF set
-and returns before the address byte has been sent, so the read returns
-0xff for every byte without an error:
-
-  i2ctransfer -a -y 0 w20@0x03 0x00-     # unused address, -ETIMEDOUT
-  i2ctransfer -y 0 w1@0x54 0x00 r32      # 32 times 0xff
-  i2ctransfer -y 0 w1@0x54 0x00 r32      # correct data
-
-Clear the status when a transfer starts.
+Unmap the buffer where the transfer is waited for, after the transfer
+has completed or has been terminated.
 
 Fixes: ce1a78840ff7 ("i2c: imx: add DMA support for freescale i2c driver")
 Cc: stable@vger.kernel.org
 Signed-off-by: Mehmet Fide <mehmet.fide@screeningeagle.com>
 ---
- drivers/i2c/busses/i2c-imx.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/i2c/busses/i2c-imx.c | 41 ++++++++++++++++++++----------------
+ 1 file changed, 23 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-imx.c b/drivers/i2c/busses/i2c-imx.c
-index 89f2b764bbc4..f20727ffb5ce 100644
+index f20727ffb5ce..fbfabceb29ac 100644
 --- a/drivers/i2c/busses/i2c-imx.c
 +++ b/drivers/i2c/busses/i2c-imx.c
-@@ -1657,6 +1657,8 @@ static int i2c_imx_xfer_common(struct i2c_adapter *adapter,
+@@ -469,11 +469,26 @@ static void i2c_imx_dma_callback(void *arg)
+ 	struct imx_i2c_struct *i2c_imx = (struct imx_i2c_struct *)arg;
+ 	struct imx_i2c_dma *dma = i2c_imx->dma;
+ 
+-	dma_unmap_single(dma->chan_using->device->dev, dma->dma_buf,
+-			dma->dma_len, dma->dma_data_dir);
+ 	complete(&dma->cmd_complete);
+ }
+ 
++static int i2c_imx_dma_wait(struct imx_i2c_struct *i2c_imx)
++{
++	struct imx_i2c_dma *dma = i2c_imx->dma;
++	int result = 0;
++
++	if (!wait_for_completion_timeout(&dma->cmd_complete,
++					 msecs_to_jiffies(DMA_TIMEOUT)))
++		result = -ETIMEDOUT;
++
++	if (result)
++		dmaengine_terminate_sync(dma->chan_using);
++	dma_unmap_single(dma->chan_using->device->dev, dma->dma_buf,
++			 dma->dma_len, dma->dma_data_dir);
++
++	return result;
++}
++
+ static int i2c_imx_dma_xfer(struct imx_i2c_struct *i2c_imx,
+ 					struct i2c_msg *msgs)
+ {
+@@ -1192,7 +1207,6 @@ static int i2c_imx_dma_write(struct imx_i2c_struct *i2c_imx,
+ 					struct i2c_msg *msgs)
+ {
+ 	int result;
+-	unsigned long time_left;
+ 	unsigned int temp = 0;
+ 	unsigned long orig_jiffies = jiffies;
+ 	struct imx_i2c_dma *dma = i2c_imx->dma;
+@@ -1217,13 +1231,9 @@ static int i2c_imx_dma_write(struct imx_i2c_struct *i2c_imx,
+ 	 * The first byte must be transmitted by the CPU.
+ 	 */
+ 	imx_i2c_write_reg(i2c_imx_addr_byte(msgs), i2c_imx, IMX_I2C_I2DR);
+-	time_left = wait_for_completion_timeout(
+-				&i2c_imx->dma->cmd_complete,
+-				msecs_to_jiffies(DMA_TIMEOUT));
+-	if (time_left == 0) {
+-		dmaengine_terminate_sync(dma->chan_using);
+-		return -ETIMEDOUT;
+-	}
++	result = i2c_imx_dma_wait(i2c_imx);
++	if (result)
++		return result;
+ 
+ 	/* Waiting for transfer complete. */
+ 	while (1) {
+@@ -1298,7 +1308,6 @@ static int i2c_imx_dma_read(struct imx_i2c_struct *i2c_imx,
+ 			struct i2c_msg *msgs, bool is_lastmsg)
+ {
+ 	int result;
+-	unsigned long time_left;
+ 	unsigned int temp;
+ 	unsigned long orig_jiffies = jiffies;
+ 	struct imx_i2c_dma *dma = i2c_imx->dma;
+@@ -1321,13 +1330,9 @@ static int i2c_imx_dma_read(struct imx_i2c_struct *i2c_imx,
  	if (result)
  		return result;
  
-+	i2c_imx->i2csr = 0;
-+
- 	/* Start I2C transfer */
- 	result = i2c_imx_start(i2c_imx, atomic);
- 	if (result) {
+-	time_left = wait_for_completion_timeout(
+-				&i2c_imx->dma->cmd_complete,
+-				msecs_to_jiffies(DMA_TIMEOUT));
+-	if (time_left == 0) {
+-		dmaengine_terminate_sync(dma->chan_using);
+-		return -ETIMEDOUT;
+-	}
++	result = i2c_imx_dma_wait(i2c_imx);
++	if (result)
++		return result;
+ 
+ 	/* waiting for transfer complete. */
+ 	while (1) {
 -- 
 2.56.0
 
