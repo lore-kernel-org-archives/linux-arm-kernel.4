@@ -2,106 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 568F2606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 01:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A29606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 01:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E/a0k8ZE;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=E9kNPUMs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mlSmhoPA;
+	dkim=pass (1024-bit key, unprotected) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=reGLz+wF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:References:CC:To:From:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=k+WMPALfSKiMPy/d/A+agv70fM3OBBS8SZaWeV0CxA4=; b=E/a0k8ZE6m5wPx
-	SMaefe6WYCuUDUifGkJy8DnguZrEi9P5QkEduZgAVN4Bq2tJM5rqNuI18e8rt/JLNu63+1kcjoPXy
-	wGQ2owg7ZvTc2XHR9ZOjR4IKOZQ51/DSjOQ8YQxz5pGmyDC0yycJS1kv+pv2VEZvPiz86jSYxb26N
-	V5ubzqc1UZhu8K6qb81z/EOCxG6Il6vxo3PYsiQJaQTDKLiTNpRybbeGwHx4cUqOOrzbS0T4vLQqh
-	iIzz7cBg/TPSbtIztG2PxX+EsybLAFN3FvBpPGuQHcvRzP9t81cWY5JRIO3u196nHZNsM25o+GAvo
-	J2HCN1Wmxl3TLThf5q1Q==;
+	List-Owner; bh=RTX2XNOmvLz6sSliqNONnLC86OnpmkdpkV/3z2QlCR8=; b=mlSmhoPAZTA9Yw
+	1CQk2HEj6n4ndWgoHEDYumxrSzPWuuVojmjMrOLCuG0UoXWHEmwTUaOjfJkfu8zndVHMY9STv0MN3
+	YXXWrPS7AzLlK++Imd08yIoyYvv2DnRWaREDWlhH7rPL9W8eV8jadIXc061dBbu5l/px/pxWuuS9S
+	FA7yLc2HdiJQZH1U0o3KyOX/lkOypBAcjqEqc4oplhRrjwj9RXG4YmsZCieMKlHXqHu8jaqMd3NJ2
+	5XjnYLmdce9+Y0jvL2qIDZcwKBuKDQlcs3A8JyW4D0qtJxBw22lKWOporWv8rwYOFz5gYX+ded2Gn
+	HX4nLFWMPX+jc3q0Vsig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTrMi-0000000Aetq-1EVE;
-	Thu, 19 Nov 2026 01:55:08 +0000
-Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
+	id 1xTrMv-0000000Aexz-2dFJ;
+	Thu, 19 Nov 2026 01:55:21 +0000
+Received: from canpmsgout01.his.huawei.com ([113.46.200.216])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTrMe-0000000AesH-1EKG
+	id 1xTrMg-0000000Aeru-2IYG
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 01:55:05 +0000
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-3b09a83d12aso1226943a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 17:55:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795053303; x=1795658103; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=k+WMPALfSKiMPy/d/A+agv70fM3OBBS8SZaWeV0CxA4=;
-        b=E9kNPUMs6s+KlCUXcrH2rT66fjCSRzuY4lBHv1Mhevgkoo6ZP+CVVenWRzDKWqTsdz
-         jGv/J2qkyn8lPoqHuvePV9osUeHigY+pysvrFwGZVyG7j1HmKtvXZJ9byCXpsYEz1NZG
-         +xkVYO5ob3lMp4KRGCA66PKY7OjEuhOYixyflKJsVAuXNovnOFDlC0VufoXCwFVoYCAC
-         2L8ntLmeus3FBr+/ewjXERu5308gGISieVpgjad6ZtOXU/Gc0rQxBxmNZJSjQibbZk2h
-         PHdEvJC1ywlmaSUK8jmHiDUOQr7bgaC37mLcIEVRh3UEHDWx4M5v1B0FGqBYJYYd1Jao
-         Fn1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795053303; x=1795658103;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=k+WMPALfSKiMPy/d/A+agv70fM3OBBS8SZaWeV0CxA4=;
-        b=HbAxZuyUkSshoDh9ixnqHiHLs6sCGTrXtYhPtauce7D2/UXICTs2xY1tF4+VQj3BMC
-         CITbVvvtHbM+/ti5p1hnWz27HCT4lI/wkHf4jkotraLkBQz6v53qMJubWGLFv1K0+xXt
-         7xxTYL+IbeJe3L8QUW2VTbmsHN6m16Asy3Tr9VjOTFdetvzZDu8FUtMe/BJqBEu2uXR8
-         OWSu23jx+UUD0hne2BlT8NPCE+quD5ay+Tm9oDo88stNdf6wY5LYrSrqRDcigvxNnmip
-         X+2bpPfGWmgBiJq5+BVkk8+0RvnTSZ6xxYIaZ8ZqDroTyT3UTQT1Fg+dg1SxQSpvHLzR
-         oH5w==
-X-Forwarded-Encrypted: i=1; AL+hErFxdNqMBXzKwFrvfzPe1Y41EcZngQw9fI63VpVydC6vBjWONubzTzyVZK+oPz+sK+/hOLlPm4Sa/0KNAyBYGtZf@lists.infradead.org
-X-Gm-Message-State: APuU4Z+YSaDWGYCRqnv5j8EfA+jTHe/T2GhnxC3Oyu/PnYX/38Du7z0U
-	vbAJzuPpkY2oUWiHUjI4DId6RBt4M8yXHv1fEowldoyyB6wmG6wnuk6A
-X-Gm-Gg: AZFdTZctYPJ9VV/NrMmzQOwYVF2jlB2ziFTsGVPKnyeFT4mQwP13eDAuoWSr2Y9uPI4
-	i+0j0Il6SQdWdxYSf+Y6scwnhH3g+R7bK3kxT0wIh+CMe94R79LUxIJYwVYzhpa+2R2fB6/tV0U
-	o7f5zw4rTw/7113NzPwf4/3pmsw5hy1Hp1A68kQfVA/ME5/WfIib/NVJ8UMslssHmwTUx8q0yoE
-	1O5KL5YzvWorh0caxm6ZjUtpky8Cob5OQHhv73iK7ix0zxHu6qGVj2sDZIF4rpXrfez7zvE6380
-	YDtoWXggxTWaKxwhvJEvmKIJQfNLA3MSnhKaquivWsSHtOmudC+Mc2FQgN3TzfJ5ImbrEwlSLG/
-	a/mzJuq0OXgscTrhapkGnUQPD9SUG3/ZAhIgj5gPpz0uJu3O/qfiI+t+x/eQ0pag0i+b2DdZmFa
-	tISjNWDqRQvBKljD4oOnxXYiEPp/2+UJMgInZL5KA8lp+6yZrE030IyWmQXqcY7IsGawJtxJhe3
-	kDGjdcpHCr0OFqhGJTQT6oo+L1XboWghzCuw9CC1/HEANhZaDdaKaoZfqvFEODhDBdGpM32iPBa
-	wGEdCech/ChY5ENbrQX11e2JizJgWB7IH5fMLMEeHPOI1AMGHi8s/jGVvaD5r5gs61bLgVpnFXv
-	3cFS4ckjyOlm6EqY=
-X-Received: by 2002:a17:90b:56d0:b0:3ac:7c52:fae5 with SMTP id 98e67ed59e1d1-3b3d07d4ecfmr4226653a91.50.1795053303195;
-        Wed, 18 Nov 2026 17:55:03 -0800 (PST)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b3fe03c3d4sm773081a91.14.2026.11.18.17.54.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 17:55:02 -0800 (PST)
-From: Shan-Chun Hung <shanchun1218@gmail.com>
-To: ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	vkoul@kernel.org,
-	Frank.Li@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	kees@kernel.org,
-	gustavoars@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Cc: Shan-Chun Hung <shanchun1218@gmail.com>
-Subject: [PATCH v3 2/2] dmaengine: ma35d1-pdma: Add MA35D1 PDMA driver
-Date: Thu, 19 Nov 2026 09:54:47 +0800
-Message-Id: <20261119015447.160470-3-shanchun1218@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20261119015447.160470-1-shanchun1218@gmail.com>
-References: <20261119015447.160470-1-shanchun1218@gmail.com>
+	Thu, 19 Nov 2026 01:55:10 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=RTX2XNOmvLz6sSliqNONnLC86OnpmkdpkV/3z2QlCR8=;
+	b=reGLz+wFQIpvyUvLQeS6XLtUeY/jYIjEAAoFpXY5nOJI/T/8zbwwDuukodlXMxPC4U3efB/8v
+	nboKkiBovKEiu5/kxXS4AbdoBEH8oflAQudVSmSY4ZtZB/RpPD9YO1PrngzqovyRITu9KfGn2Xh
+	KuS3j9ltkQIg1+g8E/7g34M=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout01.his.huawei.com (SkyGuard) with ESMTPS id 4jVM2v5W6cz1T4GV;
+	Thu, 19 Nov 2026 09:54:15 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 75BEF202E6;
+	Thu, 19 Nov 2026 09:54:56 +0800 (CST)
+Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 19 Nov
+ 2026 09:54:55 +0800
+Message-ID: <17149b32-6b9c-4364-b664-5789f0633e9d@huawei.com>
+Date: Thu, 19 Nov 2026 09:54:55 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/39] arm64: Add support for FEAT_NMI
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: Vladimir Murzin <vladimir.murzin@arm.com>,
+	<linux-arm-kernel@lists.infradead.org>, <kirill@shutemov.name>
+CC: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
+	<lpieralisi@kernel.org>, <liaochang1@huawei.com>,
+	<ashok.raj@oss.qualcomm.com>, <maz@kernel.org>
+References: <20261112132042.129062-1-vladimir.murzin@arm.com>
+ <58a4c350-539d-49ca-826f-d19563895a29@huawei.com>
+In-Reply-To: <58a4c350-539d-49ca-826f-d19563895a29@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_175504_377931_04C2A307 
-X-CRM114-Status: GOOD (  27.28  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261118_175507_861418_B9C628F9 
+X-CRM114-Status: GOOD (  48.06  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,730 +78,434 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a driver for the PDMA controller found in the Nuvoton MA35D1 SoC.
-It supports up to 10 channels with memory-to-memory, slave scatter-gather
-and cyclic transfers.
 
-Signed-off-by: Shan-Chun Hung <shanchun1218@gmail.com>
----
- drivers/dma/Kconfig       |  12 +
- drivers/dma/Makefile      |   1 +
- drivers/dma/ma35d1-pdma.c | 662 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 675 insertions(+)
- create mode 100644 drivers/dma/ma35d1-pdma.c
 
-diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index 01f96a8257e5..3d4d09e459f1 100644
---- a/drivers/dma/Kconfig
-+++ b/drivers/dma/Kconfig
-@@ -404,6 +404,18 @@ config LPC32XX_DMAMUX
- 	  Support for PL080 multiplexed DMA request lines on
- 	  LPC32XX platrofm.
- 
-+config MA35D1_PDMA
-+	tristate "Nuvoton MA35D1 PDMA Engine"
-+	depends on ARCH_MA35 || COMPILE_TEST
-+	select DMA_ENGINE
-+	select DMA_VIRTUAL_CHANNELS
-+	help
-+	  Support the Nuvoton MA35D1 PDMA engine. This engine is integrated
-+	  into Nuvoton MA35D1 chips. This DMA controller can transfer data
-+	  from memory to memory, memory to peripheral and peripheral to memory.
-+	  If you have a board based on such a SoC and wish to use DMA, say Y
-+	  or M here.
-+
- config MCF_EDMA
- 	tristate "Freescale eDMA engine support, ColdFire mcf5441x SoCs"
- 	depends on M5441x || (COMPILE_TEST && FSL_EDMA=n)
-diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-index f62d12b08e15..dd99f7d12d4d 100644
---- a/drivers/dma/Makefile
-+++ b/drivers/dma/Makefile
-@@ -52,6 +52,7 @@ obj-y += idxd/
- obj-$(CONFIG_K3_DMA) += k3dma.o
- obj-$(CONFIG_LPC18XX_DMAMUX) += lpc18xx-dmamux.o
- obj-$(CONFIG_LPC32XX_DMAMUX) += lpc32xx-dmamux.o
-+obj-$(CONFIG_MA35D1_PDMA) += ma35d1-pdma.o
- obj-$(CONFIG_MILBEAUT_HDMAC) += milbeaut-hdmac.o
- obj-$(CONFIG_MILBEAUT_XDMAC) += milbeaut-xdmac.o
- obj-$(CONFIG_MMP_PDMA) += mmp_pdma.o
-diff --git a/drivers/dma/ma35d1-pdma.c b/drivers/dma/ma35d1-pdma.c
-new file mode 100644
-index 000000000000..0d6a74404321
---- /dev/null
-+++ b/drivers/dma/ma35d1-pdma.c
-@@ -0,0 +1,662 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Nuvoton MA35D1 PDMA controller driver
-+ *
-+ * Copyright (C) 2026 Nuvoton Technology Corp.
-+ *
-+ * Author: Shan-Chun Hung <shanchun1218@gmail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/dmaengine.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/list.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_dma.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+#include <linux/slab.h>
-+#include <linux/spinlock.h>
-+#include <linux/types.h>
-+
-+#include "virt-dma.h"
-+
-+/* PDMA registers */
-+#define PDMA_DSCT_CTL		0x000
-+#define PDMA_DSCT_SA		0x004
-+#define PDMA_DSCT_DA		0x008
-+#define PDMA_DSCT_NEXT		0x00c
-+#define PDMA_CHCTL		0x400
-+#define PDMA_SWREQ		0x408
-+#define PDMA_INTEN		0x418
-+#define PDMA_ABTSTS		0x420
-+#define PDMA_TDSTS		0x424
-+#define PDMA_CHRST		0x460
-+#define PDMA_REQSEL		0x480
-+
-+/* Bitfields in PDMA registers */
-+#define PDMA_OP_BASIC		BIT(0)
-+#define PDMA_OP_SCATTER		BIT(1)
-+#define PDMA_OP_MSK		GENMASK(1, 0)
-+#define PDMA_TXTYPE		BIT(2)
-+#define PDMA_TBINTDIS		BIT(7)
-+#define PDMA_SAFIX		GENMASK(9, 8)
-+#define PDMA_DAFIX		GENMASK(11, 10)
-+
-+#define PDMA_MAX_CHANS		10
-+#define PDMA_MAX_CHAN_BEATS	(U16_MAX + 1)
-+
-+#define PDMA_WIDTH(w)		FIELD_PREP(GENMASK(13, 12), (w) >> 1)
-+#define PDMA_TXCNT(cnt)		FIELD_PREP(GENMASK(31, 16), (cnt) - 1)
-+#define PDMA_CH_OFFSET(ch)	((ch) * 0x10)
-+
-+#define PDMA_SLAVE_BUSWIDTHS	(BIT(DMA_SLAVE_BUSWIDTH_1_BYTE)  | \
-+				 BIT(DMA_SLAVE_BUSWIDTH_2_BYTES) | \
-+				 BIT(DMA_SLAVE_BUSWIDTH_4_BYTES))
-+
-+struct ma35d1_sg {
-+	u32 ctl;
-+	u32 src;
-+	u32 dst;
-+	u32 next;
-+};
-+
-+struct ma35d1_desc {
-+	struct ma35d1_chan *ch;
-+	bool cyclic;
-+	struct virt_dma_desc vd;
-+	dma_addr_t dma_addr;
-+	size_t dma_len;
-+	u32 sg_len;
-+	struct ma35d1_sg *sg;
-+};
-+
-+struct ma35d1_chan {
-+	struct device *dev;
-+	struct ma35d1_pdmadev *pdmadev;
-+	struct virt_dma_chan vc;
-+	void __iomem *base;
-+	int id;
-+	struct ma35d1_desc *desc;
-+	struct dma_slave_config cfg;
-+	/* second #dma-cells argument from devicetree */
-+	u32 request;
-+};
-+
-+struct ma35d1_pdmadev {
-+	struct dma_device ddev;
-+	/* protects read-modify-write of shared controller registers */
-+	spinlock_t lock;
-+	int irq;
-+	struct ma35d1_chan channels[PDMA_MAX_CHANS];
-+};
-+
-+static inline struct ma35d1_chan *to_ma35d1_pdma_chan(struct dma_chan *c)
-+{
-+	return container_of(c, struct ma35d1_chan, vc.chan);
-+}
-+
-+static inline struct ma35d1_desc *to_ma35d1_pdma_desc(struct virt_dma_desc *vd)
-+{
-+	return container_of(vd, struct ma35d1_desc, vd);
-+}
-+
-+static inline void ma35d1_pdma_reg_set(struct ma35d1_chan *ch, u32 offset, u32 mask)
-+{
-+	writel(readl(ch->base + offset) | mask, ch->base + offset);
-+}
-+
-+static inline void ma35d1_pdma_reg_clear(struct ma35d1_chan *ch, u32 offset, u32 mask)
-+{
-+	writel(readl(ch->base + offset) & ~mask, ch->base + offset);
-+}
-+
-+static void ma35d1_pdma_desc_free(struct virt_dma_desc *vd)
-+{
-+	struct ma35d1_desc *d = to_ma35d1_pdma_desc(vd);
-+
-+	dma_free_coherent(d->ch->dev, d->dma_len, d->sg, d->dma_addr);
-+	kfree(d);
-+}
-+
-+static int ma35d1_terminate_all(struct dma_chan *chan)
-+{
-+	LIST_HEAD(head);
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+	unsigned long flags, pdmadev_flags;
-+
-+	spin_lock_irqsave(&ch->vc.lock, flags);
-+
-+	spin_lock_irqsave(&ch->pdmadev->lock, pdmadev_flags);
-+	ma35d1_pdma_reg_clear(ch, PDMA_CHCTL, BIT(ch->id));
-+	spin_unlock_irqrestore(&ch->pdmadev->lock, pdmadev_flags);
-+
-+	writel(BIT(ch->id), ch->base + PDMA_TDSTS);
-+	writel(BIT(ch->id), ch->base + PDMA_ABTSTS);
-+
-+	if (ch->desc) {
-+		vchan_terminate_vdesc(&ch->desc->vd);
-+		ch->desc = NULL;
-+	}
-+
-+	vchan_get_all_descriptors(&ch->vc, &head);
-+	list_splice_tail(&head, &ch->vc.desc_terminated);
-+	spin_unlock_irqrestore(&ch->vc.lock, flags);
-+
-+	return 0;
-+}
-+
-+static void ma35d1_synchronize(struct dma_chan *chan)
-+{
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+
-+	vchan_synchronize(&ch->vc);
-+}
-+
-+static void ma35d1_pdma_setup_channel(struct ma35d1_chan *ch)
-+{
-+	u32 offset, reg, shift;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ch->pdmadev->lock, flags);
-+
-+	if ((readl(ch->base + PDMA_CH_OFFSET(ch->id)) & GENMASK(1, 0)) != 0) {
-+		reg = readl(ch->base + PDMA_CHCTL);
-+		writel(0, ch->base + PDMA_CH_OFFSET(ch->id));
-+		ma35d1_pdma_reg_set(ch, PDMA_CHRST, BIT(ch->id));
-+		writel(reg | BIT(ch->id), ch->base + PDMA_CHCTL);
-+	} else {
-+		writel(0, ch->base + PDMA_CH_OFFSET(ch->id));
-+		ma35d1_pdma_reg_set(ch, PDMA_CHCTL, BIT(ch->id));
-+	}
-+	ma35d1_pdma_reg_set(ch, PDMA_INTEN, BIT(ch->id));
-+
-+	offset = PDMA_REQSEL + (ch->id & ~GENMASK(1, 0));
-+	shift = (ch->id & GENMASK(1, 0)) * 8;
-+	ma35d1_pdma_reg_clear(ch, offset, GENMASK(7, 0) << shift);
-+	ma35d1_pdma_reg_set(ch, offset, ch->request << shift);
-+
-+	spin_unlock_irqrestore(&ch->pdmadev->lock, flags);
-+}
-+
-+static int ma35d1_slave_config(struct dma_chan *chan, struct dma_slave_config *cfg)
-+{
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+
-+	memcpy(&ch->cfg, cfg, sizeof(*cfg));
-+
-+	return 0;
-+}
-+
-+static int ma35d1_slave_width(struct ma35d1_chan *ch, enum dma_transfer_direction dir)
-+{
-+	enum dma_slave_buswidth width;
-+
-+	if (dir == DMA_MEM_TO_DEV) {
-+		width = ch->cfg.dst_addr_width;
-+	} else if (dir == DMA_DEV_TO_MEM) {
-+		width = ch->cfg.src_addr_width;
-+	} else {
-+		dev_err(ch->dev, "invalid DMA direction %d\n", dir);
-+		return -EINVAL;
-+	}
-+
-+	if (width != DMA_SLAVE_BUSWIDTH_1_BYTE && width != DMA_SLAVE_BUSWIDTH_2_BYTES &&
-+	    width != DMA_SLAVE_BUSWIDTH_4_BYTES) {
-+		dev_err(ch->dev, "invalid DMA width %d\n", width);
-+		return -EINVAL;
-+	}
-+
-+	return width;
-+}
-+
-+static struct ma35d1_desc *ma35d1_desc_alloc(struct ma35d1_chan *ch, u32 sg_len)
-+{
-+	struct ma35d1_desc *d;
-+
-+	d = kzalloc_obj(*d, GFP_NOWAIT);
-+	if (!d)
-+		return NULL;
-+
-+	d->sg_len = sg_len;
-+	d->dma_len = sizeof(*d->sg) * sg_len;
-+	d->sg = dma_alloc_coherent(ch->dev, d->dma_len, &d->dma_addr, GFP_NOWAIT);
-+	if (!d->sg) {
-+		kfree(d);
-+		return NULL;
-+	}
-+
-+	return d;
-+}
-+
-+static struct dma_async_tx_descriptor *
-+ma35d1_desc_prep_done(struct ma35d1_chan *ch, struct ma35d1_desc *d, bool cyclic,
-+		      unsigned long tx_flags)
-+{
-+	d->cyclic = cyclic;
-+	d->ch = ch;
-+
-+	return vchan_tx_prep(&ch->vc, &d->vd, tx_flags);
-+}
-+
-+static struct dma_async_tx_descriptor *
-+ma35d1_prep_dma_memcpy(struct dma_chan *chan, dma_addr_t dst, dma_addr_t src,
-+		       size_t len, unsigned long tx_flags)
-+{
-+	int i;
-+	size_t tlen, max_chunk;
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+	struct ma35d1_desc *d;
-+	u32 sg_len, width = 1;
-+
-+	if (ch->request != 0) {
-+		dev_err(ch->dev, "%s: channel is bound to a peripheral request\n", __func__);
-+		return NULL;
-+	}
-+
-+	if (!len) {
-+		dev_err(ch->dev, "invalid memcpy length\n");
-+		return NULL;
-+	}
-+
-+	/* Use 32-bit transfers when possible for higher throughput. */
-+	if (IS_ALIGNED(src, 4) && IS_ALIGNED(dst, 4) && IS_ALIGNED(len, 4))
-+		width = 4;
-+
-+	max_chunk = (size_t)PDMA_MAX_CHAN_BEATS * width;
-+
-+	sg_len = DIV_ROUND_UP_ULL(len, max_chunk);
-+	d = ma35d1_desc_alloc(ch, sg_len);
-+	if (!d)
-+		return NULL;
-+
-+	for (i = 0; i < sg_len; i++) {
-+		tlen = min_t(size_t, len, max_chunk);
-+		d->sg[i].src = src;
-+		d->sg[i].dst = dst;
-+		d->sg[i].ctl = PDMA_WIDTH(width) | PDMA_TXCNT(tlen / width) | PDMA_TBINTDIS |
-+				PDMA_OP_SCATTER;
-+		d->sg[i].next = d->dma_addr + PDMA_CH_OFFSET(i + 1);
-+		src += tlen;
-+		dst += tlen;
-+		len -= tlen;
-+	}
-+	d->sg[sg_len - 1].ctl &= ~(PDMA_OP_MSK | PDMA_TBINTDIS);
-+	d->sg[sg_len - 1].ctl |= PDMA_OP_BASIC;
-+
-+	return ma35d1_desc_prep_done(ch, d, false, tx_flags);
-+}
-+
-+static struct dma_async_tx_descriptor *
-+ma35d1_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
-+		     u32 sg_len, enum dma_transfer_direction dir,
-+		     unsigned long tx_flags, void *context)
-+{
-+	int i, width;
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+	struct ma35d1_desc *d;
-+	struct scatterlist *sgent;
-+
-+	width = ma35d1_slave_width(ch, dir);
-+	if (width < 0)
-+		return NULL;
-+
-+	if (!sg_len) {
-+		dev_err(ch->dev, "SG entry length is zero\n");
-+		return NULL;
-+	}
-+
-+	for_each_sg(sgl, sgent, sg_len, i) {
-+		unsigned int len = sg_dma_len(sgent);
-+
-+		if (!len || len % width || len / width > PDMA_MAX_CHAN_BEATS) {
-+			dev_err(ch->dev, "invalid SG segment length %u\n", len);
-+			return NULL;
-+		}
-+
-+		if (!IS_ALIGNED(sg_dma_address(sgent), width)) {
-+			dev_err(ch->dev, "SG address not aligned to DMA width\n");
-+			return NULL;
-+		}
-+	}
-+
-+	d = ma35d1_desc_alloc(ch, sg_len);
-+	if (!d)
-+		return NULL;
-+
-+	for_each_sg(sgl, sgent, sg_len, i) {
-+		if (dir == DMA_MEM_TO_DEV) {
-+			d->sg[i].ctl = PDMA_WIDTH(width) | PDMA_DAFIX;
-+			d->sg[i].src = sg_dma_address(sgent);
-+			d->sg[i].dst = ch->cfg.dst_addr;
-+		} else {
-+			d->sg[i].ctl = PDMA_WIDTH(width) | PDMA_SAFIX;
-+			d->sg[i].src = ch->cfg.src_addr;
-+			d->sg[i].dst = sg_dma_address(sgent);
-+		}
-+		d->sg[i].ctl |= PDMA_TXCNT(sg_dma_len(sgent) / width) | PDMA_TBINTDIS |
-+				PDMA_TXTYPE | PDMA_OP_SCATTER;
-+		d->sg[i].next = d->dma_addr + PDMA_CH_OFFSET(i + 1);
-+	}
-+
-+	d->sg[sg_len - 1].ctl &= ~(PDMA_OP_MSK | PDMA_TBINTDIS);
-+	d->sg[sg_len - 1].ctl |= PDMA_OP_BASIC;
-+
-+	return ma35d1_desc_prep_done(ch, d, false, tx_flags);
-+}
-+
-+static struct dma_async_tx_descriptor *
-+ma35d1_prep_dma_cyclic(struct dma_chan *chan, dma_addr_t dma_addr, size_t buf_len,
-+		       size_t period_len, enum dma_transfer_direction dir,
-+		       unsigned long flags)
-+{
-+	int i, sg_len, width;
-+	size_t offset = 0;
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+	struct ma35d1_desc *d;
-+
-+	width = ma35d1_slave_width(ch, dir);
-+	if (width < 0)
-+		return NULL;
-+
-+	if (!buf_len || !period_len || period_len / width > PDMA_MAX_CHAN_BEATS) {
-+		dev_err(ch->dev, "Invalid buffer/period length\n");
-+		return NULL;
-+	}
-+
-+	if (buf_len % period_len) {
-+		dev_err(ch->dev, "Buffer length not multiple of period length\n");
-+		return NULL;
-+	}
-+
-+	if (period_len % width) {
-+		dev_err(ch->dev, "Period length must be a multiple of DMA width\n");
-+		return NULL;
-+	}
-+
-+	if (!IS_ALIGNED(dma_addr, width)) {
-+		dev_err(ch->dev, "Buffer address not aligned to DMA width\n");
-+		return NULL;
-+	}
-+
-+	sg_len = buf_len / period_len;
-+	d = ma35d1_desc_alloc(ch, sg_len);
-+	if (!d)
-+		return NULL;
-+
-+	/* Split the buffer into period size chunks. */
-+	for (offset = 0, i = 0; offset < buf_len; offset += period_len, i++) {
-+		if (dir == DMA_MEM_TO_DEV) {
-+			d->sg[i].ctl = PDMA_WIDTH(width) | PDMA_TXCNT(period_len / width) |
-+					PDMA_DAFIX;
-+			d->sg[i].src = dma_addr + offset;
-+			d->sg[i].dst = ch->cfg.dst_addr;
-+		} else {
-+			d->sg[i].ctl = PDMA_WIDTH(width) | PDMA_TXCNT(period_len / width) |
-+					PDMA_SAFIX;
-+			d->sg[i].src = ch->cfg.src_addr;
-+			d->sg[i].dst = dma_addr + offset;
-+		}
-+		d->sg[i].ctl |= PDMA_TXTYPE | PDMA_OP_SCATTER;
-+		d->sg[i].next = d->dma_addr + PDMA_CH_OFFSET(i + 1);
-+	}
-+	d->sg[sg_len - 1].next = d->dma_addr;
-+
-+	return ma35d1_desc_prep_done(ch, d, true, flags);
-+}
-+
-+static struct dma_chan *ma35d1_of_xlate(struct of_phandle_args *dma_spec, struct of_dma *of)
-+{
-+	struct ma35d1_pdmadev *pdmadev = of->of_dma_data;
-+	struct dma_chan *chan;
-+	unsigned int chan_id, reqsel;
-+
-+	if (dma_spec->args_count != 2)
-+		return NULL;
-+
-+	chan_id = dma_spec->args[0];
-+	reqsel = dma_spec->args[1];
-+	if (chan_id >= PDMA_MAX_CHANS || reqsel > GENMASK(7, 0))
-+		return NULL;
-+
-+	chan = dma_get_slave_channel(&pdmadev->channels[chan_id].vc.chan);
-+	if (chan)
-+		pdmadev->channels[chan_id].request = reqsel;
-+
-+	return chan;
-+}
-+
-+static void ma35d1_free_chan_resources(struct dma_chan *chan)
-+{
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+
-+	ma35d1_terminate_all(chan);
-+	vchan_free_chan_resources(&ch->vc);
-+	ch->request = 0;
-+	memset(&ch->cfg, 0, sizeof(ch->cfg));
-+}
-+
-+static void ma35d1_pdma_start(struct ma35d1_chan *ch)
-+{
-+	struct ma35d1_desc *d = ch->desc;
-+
-+	if (d->sg_len == 1 && !d->cyclic) {
-+		writel(d->sg[0].src, ch->base + PDMA_CH_OFFSET(ch->id) + PDMA_DSCT_SA);
-+		writel(d->sg[0].dst, ch->base + PDMA_CH_OFFSET(ch->id) + PDMA_DSCT_DA);
-+		writel(d->sg[0].ctl, ch->base + PDMA_CH_OFFSET(ch->id) + PDMA_DSCT_CTL);
-+	} else {
-+		writel(d->dma_addr, ch->base + PDMA_CH_OFFSET(ch->id) + PDMA_DSCT_NEXT);
-+		ma35d1_pdma_reg_clear(ch, PDMA_CH_OFFSET(ch->id) + PDMA_DSCT_CTL, PDMA_OP_MSK);
-+		ma35d1_pdma_reg_set(ch, PDMA_CH_OFFSET(ch->id) + PDMA_DSCT_CTL, PDMA_OP_SCATTER);
-+	}
-+
-+	/* Memory-to-memory has no peripheral request, so trigger it by software. */
-+	if (ch->request == 0)
-+		writel(BIT(ch->id), ch->base + PDMA_SWREQ);
-+}
-+
-+static void ma35d1_pdma_start_desc(struct dma_chan *chan)
-+{
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+	struct virt_dma_desc *vd;
-+
-+	vd = vchan_next_desc(&ch->vc);
-+	if (!vd) {
-+		ch->desc = NULL;
-+		return;
-+	}
-+
-+	list_del(&vd->node);
-+	ch->desc = to_ma35d1_pdma_desc(vd);
-+	ma35d1_pdma_setup_channel(ch);
-+	ma35d1_pdma_start(ch);
-+}
-+
-+static void ma35d1_issue_pending(struct dma_chan *chan)
-+{
-+	struct ma35d1_chan *ch = to_ma35d1_pdma_chan(chan);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ch->vc.lock, flags);
-+
-+	if (vchan_issue_pending(&ch->vc) && !ch->desc)
-+		ma35d1_pdma_start_desc(chan);
-+
-+	spin_unlock_irqrestore(&ch->vc.lock, flags);
-+}
-+
-+static void ma35d1_pdma_complete(struct ma35d1_chan *ch)
-+{
-+	if (!ch->desc)
-+		return;
-+
-+	vchan_cookie_complete(&ch->desc->vd);
-+	ma35d1_pdma_start_desc(&ch->vc.chan);
-+}
-+
-+static irqreturn_t ma35d1_pdma_interrupt(int irq, void *devid)
-+{
-+	struct ma35d1_pdmadev *pdmadev = devid;
-+	unsigned long pending, done, abort;
-+	struct ma35d1_chan *ch;
-+	unsigned long flags;
-+	int i;
-+
-+	done = readl(pdmadev->channels[0].base + PDMA_TDSTS);
-+	abort = readl(pdmadev->channels[0].base + PDMA_ABTSTS);
-+	pending = done | abort;
-+	if (!pending)
-+		return IRQ_NONE;
-+
-+	writel(done, pdmadev->channels[0].base + PDMA_TDSTS);
-+	writel(abort, pdmadev->channels[0].base + PDMA_ABTSTS);
-+
-+	for_each_set_bit(i, &pending, PDMA_MAX_CHANS) {
-+		ch = &pdmadev->channels[i];
-+
-+		spin_lock_irqsave(&ch->vc.lock, flags);
-+
-+		if (ch->desc) {
-+			if (test_bit(i, &abort) && ch->desc->cyclic) {
-+				vchan_terminate_vdesc(&ch->desc->vd);
-+				ch->desc = NULL;
-+			} else if (test_bit(i, &abort)) {
-+				ch->desc->vd.tx_result.result = DMA_TRANS_ABORTED;
-+				ma35d1_pdma_complete(ch);
-+			} else if (ch->desc->cyclic) {
-+				vchan_cyclic_callback(&ch->desc->vd);
-+			} else {
-+				ma35d1_pdma_complete(ch);
-+			}
-+		}
-+
-+		spin_unlock_irqrestore(&ch->vc.lock, flags);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void ma35d1_pdma_teardown(void *data)
-+{
-+	struct ma35d1_pdmadev *pdmadev = data;
-+	void __iomem *base = pdmadev->channels[0].base;
-+	int i;
-+
-+	writel(0, base + PDMA_CHCTL);
-+	writel(0, base + PDMA_INTEN);
-+
-+	for (i = 0; i < PDMA_MAX_CHANS; i++)
-+		tasklet_kill(&pdmadev->channels[i].vc.task);
-+}
-+
-+static int ma35d1_pdma_probe(struct platform_device *pdev)
-+{
-+	int i, ret;
-+	struct clk *pdma_clk;
-+	struct reset_control *rst;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
-+	struct ma35d1_chan *ch;
-+	struct ma35d1_pdmadev *pdmadev;
-+	void __iomem *reg_base;
-+
-+	pdma_clk = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(pdma_clk))
-+		return dev_err_probe(dev, PTR_ERR(pdma_clk), "Failed to get clk\n");
-+
-+	rst = devm_reset_control_get_optional_exclusive_deasserted(dev, NULL);
-+	if (IS_ERR(rst))
-+		return dev_err_probe(dev, PTR_ERR(rst), "Failed to get reset\n");
-+
-+	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
-+	if (ret)
-+		return ret;
-+
-+	pdmadev = devm_kzalloc(dev, sizeof(*pdmadev), GFP_KERNEL);
-+	if (!pdmadev)
-+		return -ENOMEM;
-+
-+	pdmadev->irq = platform_get_irq(pdev, 0);
-+	if (pdmadev->irq < 0)
-+		return pdmadev->irq;
-+
-+	reg_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(reg_base))
-+		return dev_err_probe(dev, PTR_ERR(reg_base),
-+				     "Failed to map pdma global registers\n");
-+
-+	dma_cap_zero(pdmadev->ddev.cap_mask);
-+	dma_cap_set(DMA_SLAVE, pdmadev->ddev.cap_mask);
-+	dma_cap_set(DMA_PRIVATE, pdmadev->ddev.cap_mask);
-+	dma_cap_set(DMA_MEMCPY, pdmadev->ddev.cap_mask);
-+	dma_cap_set(DMA_CYCLIC, pdmadev->ddev.cap_mask);
-+
-+	pdmadev->ddev.dev = dev;
-+	pdmadev->ddev.copy_align = DMAENGINE_ALIGN_1_BYTE;
-+	pdmadev->ddev.src_addr_widths = PDMA_SLAVE_BUSWIDTHS;
-+	pdmadev->ddev.dst_addr_widths = PDMA_SLAVE_BUSWIDTHS;
-+	pdmadev->ddev.directions = BIT(DMA_MEM_TO_DEV) | BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_MEM);
-+	pdmadev->ddev.device_prep_dma_memcpy = ma35d1_prep_dma_memcpy;
-+	pdmadev->ddev.device_prep_slave_sg = ma35d1_prep_slave_sg;
-+	pdmadev->ddev.device_prep_dma_cyclic = ma35d1_prep_dma_cyclic;
-+	pdmadev->ddev.device_free_chan_resources = ma35d1_free_chan_resources;
-+	pdmadev->ddev.device_issue_pending = ma35d1_issue_pending;
-+	pdmadev->ddev.device_tx_status = dma_cookie_status;
-+	pdmadev->ddev.device_config = ma35d1_slave_config;
-+	pdmadev->ddev.device_terminate_all = ma35d1_terminate_all;
-+	pdmadev->ddev.device_synchronize = ma35d1_synchronize;
-+
-+	spin_lock_init(&pdmadev->lock);
-+	INIT_LIST_HEAD(&pdmadev->ddev.channels);
-+	for (i = 0; i < PDMA_MAX_CHANS; i++) {
-+		ch = &pdmadev->channels[i];
-+		ch->dev = dev;
-+		ch->pdmadev = pdmadev;
-+		ch->id = i;
-+		ch->base = reg_base;
-+		ch->vc.desc_free = ma35d1_pdma_desc_free;
-+		vchan_init(&ch->vc, &pdmadev->ddev);
-+	}
-+
-+	ret = devm_add_action_or_reset(dev, ma35d1_pdma_teardown, pdmadev);
-+	if (ret)
-+		return ret;
-+
-+	ret = dmaenginem_async_device_register(&pdmadev->ddev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register DMA device\n");
-+
-+	ret = devm_request_irq(dev, pdmadev->irq, ma35d1_pdma_interrupt, 0, pdev->name, pdmadev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to request IRQ\n");
-+
-+	ret = devm_of_dma_controller_register(dev, node, ma35d1_of_xlate, pdmadev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "of_dma_controller_register failed\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ma35d1_pdma_match[] = {
-+	{ .compatible = "nuvoton,ma35d1-pdma" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ma35d1_pdma_match);
-+
-+static struct platform_driver ma35d1_pdma_driver = {
-+	.probe = ma35d1_pdma_probe,
-+	.driver = {
-+		.name = "ma35d1-pdma",
-+		.of_match_table = ma35d1_pdma_match,
-+	},
-+};
-+module_platform_driver(ma35d1_pdma_driver);
-+
-+MODULE_DESCRIPTION("PDMA controller driver for Nuvoton MA35D1");
-+MODULE_AUTHOR("Shan-Chun Hung <shanchun1218@gmail.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+在 2026/11/18 20:17, Jinjie Ruan 写道:
+> Hi Vladimir,
+> 
+> I gave the series a test on a Kunpeng HIP12 machine with 384 CPUs,
+> GICv4.2, firmware with SDEI event 0. The PE implements FEAT_NMI and the
+> GIC implements FEAT_GICv3_NMI.
+> 
+> Tested-by: Jinjie Ruan <ruanjinjie@huawei.com>
+> 
+> Rather than a single boot, I varied the four dimensions that select a
+> different masking path:
+> 
+>   - PE FEAT_NMI       : present / masked with id_aa64pfr1.nmi=0
+>   - GIC superpriority : present / disabled
+>   - Pseudo-NMI        : irqchip.gicv3_pseudo_nmi=0/1
+>   - SDEI cross-CPU    : firmware event 0 active / disabled
+
+Hi Vladimir,
+
+It appears that SDEI cross-CPU has more issues. On our 384-CPU HIP12
+with SDEI event 0 active, a single
+
+      echo l > /proc/sysrq-trigger
+
+stuck the machine. Concretely, we see:
+
+- only 8-23 of the 384 CPUs answer the broadcast, the rest never do;
+
+- the framework's 10-second wait then expires for them:
+
+  After 10 seconds, these CPUS still haven't responded to the NMI:
+  3-9,11-45,47-261,263-339,341-351,353-383
+
+- the hardlockup detector fires on the stuck CPUs one watchdog
+  period later, and with hardlockup_panic=1 the box panics:
+
+  watchdog: CPU9: Watchdog detected hard LOCKUP on cpu 9
+  Kernel panic - not syncing: Hard LOCKUP
+
+- the stop escalation cannot rescue it either:
+
+   SMP: retry stop with SDEI NMI for CPUs 194
+   SMP: failed to stop secondary CPUs 194
+
+  so kdump reports "Some CPUs may be stale, kdump will be unreliable".
+
+The same kernel booted with sdei_nmi.disabled=1 answers 384/384 in 47-60
+ms with no warnings at all, and a single-target SDEI backtrace is fine
+at ~14 ms -- so what breaks is the broadcast form specifically, not SDEI
+delivery as such.
+
+Best regards,
+Jinjie
+
+> 
+> The last one needs a patch to switch attached at the end.
+> 
+> # The Results are as below:
+> 
+>   Grp  PE GIC pse SDEI | supports active pseudo IRQS_NMI fast  result
+>   ------------------------------------------------------------------
+>   A    y  y   n   y    |   1       1      0        4      y     PASS
+>   A2   y  y   n   n    |   1       1      0        4      y     PASS
+>   A3   y  y   y   n    |   1       0      1        4      y     PASS
+>   B    y  y   y   y    |   1       0      1        4      y     PASS
+>   C    n  y   n   y    |   0       0      0        4      y     PASS
+>   D    n  y   y   y    |   0       0      1        4      y     PASS
+>   E    y  y   n   y    |   0       0      0        0      y *   PASS
+>   F    y  n   n   y    |   1       1      0        0      n     PASS
+>   G    y  n   n   n    |   0       0      0        0      n     PASS
+>   H    y  n   y   n    |   0       0      1        4      y     PASS
+> 
+>   supports     system_supports_nmi()
+>   active       system_uses_nmi()
+>   pseudo       system_uses_irq_prio_masking()
+>   IRQS_NMI     IRQ descriptors with IRQS_NMI set (IPIs + arm-pmu)
+>   fast         cpumask_backtrace() at a CPU spinning with local IRQs
+>                disabled returns in ms (NMI delivered) rather than
+>                ~1.5 s (plain IPI)
+> 
+> ## IRQS_NMI is 4 means 4 types of NMI Interrupt Tests:
+> 
+>      IRQ  hwirq      purpose
+>     ---------------------------------------------------------------
+>       4   0x3  SGI   IPI_CPU_STOP_NMI - stop a CPU on panic
+>       7   0x6  SGI   IPI_KGDB_ROUNDUP - kgdb roundup
+>       8   0x7  SGI   IPI_CPU_BACKTRACE - hardlockup all-CPU backtrace
+>      42   0x17 PPI   arm-pmu (PMUv3) - perf sampling
+> 
+> 
+>   * E is CONFIG_ARM64_NMI=n plus SDEI. "fast" there comes from SDEI,
+>     not from the architected path; IRQS_NMI=0 says so.
+> 
+> # Checks that run on every boot and pass in all applicable groups:
+> 
+>   irqflags / exception state
+>       save, restore and nesting round trip for DAIF, PMR and ALLINT;
+>       arch_irqs_disabled_flags() takes ALLINT into account;
+>       local_irq_disable() leaves ALLINT clear, and an NMI is still
+>       delivered inside that window.
+> 
+>   exception contexts
+>       arm64_exc_hwstate_of_context() for PROCESS / NOIRQ / NONMI /
+>       ERROR / CRITICAL, including that CRITICAL sets ALLINT and NOIRQ
+>       does not; local_exceptions_save_mask()/restore() for NOIRQ and
+>       CRITICAL; local_exceptions_force_daif_save()/restore() on the
+>       idle/WFI path (pseudo-NMI only).
+> 
+>   pstate
+>       regs_irqs_disabled() honours PSR_ALLINT_BIT; the bit survives the
+>       ptrace path.
+> 
+>   kprobes
+>       registering a probe does not disturb ALLINT, including when it is
+>       set (so an NMI cannot become deliverable inside a probe); a probe
+>       on the real "msr allint" / "mrs xN, allint" instruction is
+>       rejected with -EINVAL.
+> 
+>   adjacent subsystems
+>       an EFI runtime call does not clobber ALLINT; perf events keep
+>       counting across an ALLINT toggle.
+> 
+>   genirq
+>       add_interrupt_randomness() is never called in NMI context.
+> 
+>   CPU stop
+>       spin one CPU with IRQs disabled, then panic: the stop escalation
+>       reaches the NMI rung, "SMP: retry stop with NMI for CPUs 0".
+> 
+> # The problem
+> 
+> SDEI wins over the architected IPI path, unconditionally
+> 
+> arch_trigger_cpumask_backtrace() returns as soon as
+> sdei_nmi_trigger_cpumask_backtrace() succeeds, so on a platform where
+> firmware offers SDEI event 0 the irqchip NMI path is never reached.
+> 
+> More importantly PSTATE.ALLINT has no effect on the backtrace:
+> 
+>     SDEI active   : cpumask_backtrace() returns in ~14 ms with ALLINT set
+>     SDEI disabled : the same call takes ~1.5 s   with ALLINT set
+> 
+> That is, the NMI delivered by SDEI bypasses the PSTATE.ALLINT masking
+> (the interruption is cleared within 14 ms). The NMI that goes through
+> the GIC superpriority is restricted by ALLINT (the masking is cleared
+> after 1.5s).
+> 
+> And there is no equivalent of "irqchip.gicv3_pseudo_nmi=" for SDEI NMI.
+> 
+> The patch used for the SDEI switch is as below.
+> 
+> Best regards,
+> Jinjie
+> 
+> diff --git a/drivers/firmware/arm_sdei_nmi.c
+> b/drivers/firmware/arm_sdei_nmi.c
+> index 038eb79e28ac..22e8c3e7aa75 100644
+> --- a/drivers/firmware/arm_sdei_nmi.c
+> +++ b/drivers/firmware/arm_sdei_nmi.c
+> @@ -62,6 +62,24 @@
+> 
+>  static bool sdei_nmi_available;
+> 
+> +static bool sdei_nmi_disabled __ro_after_init;
+> +
+> +static int __init sdei_nmi_disable_setup(char *str)
+> +{
+> +       return kstrtobool(str, &sdei_nmi_disabled);
+> +}
+> +early_param("sdei_nmi.disabled", sdei_nmi_disable_setup);
+> +
+>  #define SDEI_NMI_EVENT                 0
+> 
+>  /*
+> @@ -168,7 +186,7 @@ static void sdei_nmi_raise_backtrace(cpumask_t *mask)
+>   */
+>  bool sdei_nmi_trigger_cpumask_backtrace(const cpumask_t *mask, int
+> exclude_cpu)
+>  {
+> -       if (!sdei_nmi_available)
+> +       if (!sdei_nmi_available || sdei_nmi_disabled)
+>                 return false;
+> 
+>         nmi_trigger_cpumask_backtrace(mask, exclude_cpu,
+> @@ -194,6 +212,9 @@ void sdei_nmi_stop_cpus(const cpumask_t *mask)
+>  {
+>         unsigned int cpu;
+> 
+> +       if (sdei_nmi_disabled)
+> +               return;
+> +
+>         WRITE_ONCE(sdei_nmi_stopping, true);
+> 
+>         /*
+> @@ -238,6 +259,10 @@ static int __init sdei_nmi_init(void)
+>         }
+> 
+>         sdei_nmi_available = true;
+> +       if (sdei_nmi_disabled) {
+> +               pr_info("Sdei nmi disabled by sdei_nmi.disabled\n");
+> +               return 0;
+> +       }
+>         pr_info("using SDEI cross-CPU NMI (SDEI_EVENT_SIGNAL, event %u)\n",
+>                 SDEI_NMI_EVENT);
+> 
+> 在 2026/11/12 21:20, Vladimir Murzin 写道:
+>> FEAT_NMI provides an architected mechanism for supporting non-maskable
+>> interrupts (NMIs) and less-masked interrupts (LMIs).
+>>
+>> Since we already support pseudo-NMIs via priority masking, introducing
+>> another flavour of NMI on top of the existing infrastructure could
+>> easily become messy, making the code harder to follow and reason
+>> about.
+>>
+>> To avoid that, this series first makes room for the new NMI "tenant"
+>> by restructuring the existing exception masking logic.
+>>
+>> The main idea is to separate the logical view of exception state from
+>> its hardware representation. To achieve this, we introduce logical
+>> exception contexts that can be mapped onto the corresponding hardware
+>> state. This naturally consolidates the hardware-specific handling into
+>> a small number of places, while allowing the rest of the code to
+>> operate purely in terms of logical exception contexts.
+>>
+>> Since this restructuring is non-trivial and carries a risk of subtle
+>> behavioural changes, the series adds extensive debug checks to verify
+>> that the hardware state always matches the expected logical state.
+>>
+>> With this restructuring in place, wiring FEAT_NMI into the new
+>> framework becomes much more manageable. GIC support for NMI is build
+>> on top.
+>>
+>> This work would not have been possible without the contributions of
+>> Ada Couprie Diaz, Mark Brown, and Lorenzo Pieralisi - please credit
+>> them for everything that works well. Any remaining bugs or issues are
+>> entirely my own.
+>>
+>> Most of the testing has been done on QEMU, Fast Model and pre-silicon
+>> environment, so the series definitely benefit from extensive testing
+>> on real hardware (without NMI, with pseudo-NMI, and with FEAT_NMI).
+>>
+>> Patches are organized as follow
+>>
+>> 1 - 15
+>>   Rework of existing pseudo-NMI logic to make room for FEAT_NMI
+>>
+>> 16 - 33
+>>   FEAT_NMI support including some preparation patches which have
+>>   no dependencies:
+>>     - efi/runtime-wrappers: Permit architectures to override IRQ flags checks
+>>     - arm64: smp: Abstract SGI and LPI operations
+>>
+>> 34 - 35
+>>   GICv3 support for NMI
+>>
+>> 36 - 39
+>>   GICv5 support for NMI (including some preparation patches)
+>>
+>> Changelog
+>>
+>>   v1 -> v2
+>>
+>>     - Rebased on v7.4-rc2
+>>     - Select HAVE_PERF_EVENTS_NMI when FEAT_NMI is enabled
+>>     - Reworked APEI SEA handling to mask exceptions sequentially   
+>>     - Updated GICv3 initialization to clear NMI configuration
+>>     - Added Tested-by and Reviewed-by tags where approriate
+>>     - Droped tags due to meaningful changes for:
+>>       + "arm64: replace local_daif helpers"
+>>       + "irqchip/gic-v3: Implement FEAT_GICv3_NMI support"
+>>
+>>   RFC v2 -> v1
+>>
+>>     - Rebased on v7.3-rc3.
+>>     - Dropped RFC tag, have not received objections, at the same time
+>>       got support from Jinjie
+>>     - Dropped prerequisite patches already present in the newer base
+>>     - Added logic to reject probing/stepping over ALLINT
+>>     - Moved addition of arm64_debug_exc_context() in separate patch
+>>     - Reworked debug logic for validating direction of exception
+>>       transition
+>>     - Split support for NMI in GICv5 in 3 separate patches
+>>     - Added review tags
+>>
+>>   RFC v1 -> RFC v2
+>>
+>>     - Rebased on v7.2-rc5.
+>>     - Improved commit descriptions.
+>>     - Split some patches into smaller ones.
+>>     - Added a graceful fallback for IPI requests when FEAT_NMI is
+>>       supported by the CPU but unsupported by the interrupt
+>>       controller.
+>>     - Split the GICv3 preparation from the FEAT_GICv3_NMI
+>>       implementation.
+>>     - Added NMI support to GICv5, primarily as an illustration of the
+>>       implementation, although it also happens to work on Fast Model.
+>>     - Added review tags only to unchanged patches. Review tags were
+>>       intentionally dropped from modified patches to reflect those
+>>       changes and encourage re-review.
+>>
+>> RFC v1:
+>>   https://lore.kernel.org/linux-arm-kernel/20260709121333.23507-1-vladimir.murzin@arm.com/
+>>
+>> RFC v2:
+>>   https://lore.kernel.org/linux-arm-kernel/20260727163453.7969-1-vladimir.murzin@arm.com/
+>>
+>> v1:
+>>   https://lore.kernel.org/linux-arm-kernel/20260914102102.68597-1-vladimir.murzin@arm.com/
+>>
+>> Thanks!
+>> Vladimir
+>>
+>> Ada Couprie Diaz (15):
+>>   arm64: irqflags: Introduce arm64-specific irqflags type
+>>   arm64: irqflags: save and use both DAIF and PMR
+>>   arm64: interrupts: Add common exception state helpers
+>>   arm64: entry: Introduce entry specific exception masking helpers
+>>   arm64: entry: replace DAIF helpers with entry helpers
+>>   arm64: interrupts: Introduce exception masking save/restore helpers
+>>   arm64: interrupts: introduce a helper for GIC priority initialization
+>>   arm64: replace local_daif helpers
+>>   arm64: cpuidle: use new helpers to bypass interrupt priority masking
+>>   arm64: remove daifflags.h
+>>   arm64: gicv3: remove GIC_PRIO_PSR_I_SET
+>>   arm64: ptrace: Add PSR_ALLINT_BIT
+>>   arm64: cpufeature: Detect PE support for FEAT_NMI
+>>   arm64: nmi: Manage masking for superpriority interrupts
+>>   arm64: irq: Report FEAT_NMI masking local IRQs
+>>
+>> Lorenzo Pieralisi (2):
+>>   irqchip/gic-v3: Rename nmi to pseudo_nmi
+>>   irqchip/gic-v3: Implement FEAT_GICv3_NMI support
+>>
+>> Mark Brown (5):
+>>   arm64: booting: Document boot requirements for FEAT_NMI
+>>   arm64: sysreg: Add definitions for immediate versions of MSR ALLINT
+>>   arm64: idreg: Add an override for FEAT_NMI
+>>   arm64: nmi: Add handling of superpriority interrupts as NMIs
+>>   arm64: nmi: Add Kconfig for NMI
+>>
+>> Vladimir Murzin (17):
+>>   arm64: process: Lift check for exception state to generic
+>>     infrastructure
+>>   arm64: cpufeature: Remove system_has_prio_mask_debugging()
+>>   arm64: irqflags: Switch to CONFIG_DEBUG_IRQFLAGS
+>>   arm64: Kconfig: Remove CONFIG_ARM64_DEBUG_PRIORITY_MASKING
+>>   efi/runtime-wrappers: Permit architectures to override IRQ flags
+>>     checks
+>>   arm64/efi: Implement override for IRQ flags checks
+>>   arm64: probes: Reject stepping over ALLINT
+>>   arm64: suspend: Always initialise PSTATE.ALLINT
+>>   arm64/efi: Add ALLINT to IRQ flags checks
+>>   arm64: kprobes: Disable NMIs
+>>   arm64: smp: Abstract SGI and LPI operations
+>>   arm64: smp: Fall back to IRQ when IPI NMI request fails
+>>   arm64: nmi: Select HAVE_PERF_EVENTS_NMI for FEAT_NMI
+>>   arm64: smp: Add NMI support for LPI-backed IPIs
+>>   genirq: Trust local irqchip when considering IRQ for NMI
+>>   genirq: Do not call add_interrupt_randomness() in NMI context
+>>   irqchip/gic-v5: Add NMI support
+>>
+>>  Documentation/arch/arm64/booting.rst          |   6 +
+>>  arch/arm64/Kconfig                            |  31 +-
+>>  arch/arm64/include/asm/assembler.h            |  20 +-
+>>  arch/arm64/include/asm/cpucaps.h              |   2 +
+>>  arch/arm64/include/asm/cpufeature.h           |  14 +-
+>>  arch/arm64/include/asm/cpuidle.h              |  18 +-
+>>  arch/arm64/include/asm/daifflags.h            | 144 --------
+>>  arch/arm64/include/asm/efi.h                  |  42 ++-
+>>  arch/arm64/include/asm/entry-common.h         |   8 +-
+>>  arch/arm64/include/asm/insn.h                 |   1 +
+>>  .../include/asm/interrupts/common_flags.h     | 255 +++++++++++++
+>>  arch/arm64/include/asm/interrupts/entry.h     | 102 ++++++
+>>  arch/arm64/include/asm/interrupts/masking.h   | 166 +++++++++
+>>  arch/arm64/include/asm/irqflags.h             | 150 ++++----
+>>  arch/arm64/include/asm/kvm_host.h             |   1 -
+>>  arch/arm64/include/asm/mmu_context.h          |   1 -
+>>  arch/arm64/include/asm/ptrace.h               |  25 +-
+>>  arch/arm64/include/asm/sysreg.h               |   2 +
+>>  arch/arm64/include/uapi/asm/ptrace.h          |   1 +
+>>  arch/arm64/kernel/acpi.c                      |  43 +--
+>>  arch/arm64/kernel/cpufeature.c                |  68 +++-
+>>  arch/arm64/kernel/debug-monitors.c            |   1 -
+>>  arch/arm64/kernel/entry-common.c              | 335 +++++++++++++-----
+>>  arch/arm64/kernel/entry.S                     |  14 +-
+>>  arch/arm64/kernel/hibernate.c                 |  14 +-
+>>  arch/arm64/kernel/hw_breakpoint.c             |  16 +-
+>>  arch/arm64/kernel/irq.c                       |  45 ++-
+>>  arch/arm64/kernel/machine_kexec.c             |   4 +-
+>>  arch/arm64/kernel/pi/idreg-override.c         |   1 +
+>>  arch/arm64/kernel/probes/decode-insn.c        |  11 +-
+>>  arch/arm64/kernel/probes/kprobes.c            |  24 +-
+>>  arch/arm64/kernel/process.c                   |  24 +-
+>>  arch/arm64/kernel/setup.c                     |   4 +-
+>>  arch/arm64/kernel/signal.c                    |   1 -
+>>  arch/arm64/kernel/smp.c                       | 217 ++++++++----
+>>  arch/arm64/kernel/suspend.c                   |  14 +-
+>>  arch/arm64/kernel/traps.c                     |   1 -
+>>  arch/arm64/kvm/hyp/nvhe/switch.c              |   2 +-
+>>  arch/arm64/kvm/hyp/vgic-v3-sr.c               |   7 +-
+>>  arch/arm64/kvm/hyp/vhe/switch.c               |  14 +-
+>>  arch/arm64/mm/fault.c                         |   1 -
+>>  arch/arm64/mm/mmu.c                           |   7 +-
+>>  arch/arm64/tools/cpucaps                      |   2 +
+>>  drivers/firmware/efi/runtime-wrappers.c       |  32 +-
+>>  drivers/irqchip/irq-gic-v3.c                  | 145 +++++++-
+>>  drivers/irqchip/irq-gic-v5.c                  | 244 ++++++++++++-
+>>  include/linux/irq.h                           |   2 +-
+>>  include/linux/irqchip/arm-gic-v3-prio.h       |   8 -
+>>  include/linux/irqchip/arm-gic-v3.h            |   4 +
+>>  kernel/irq/handle.c                           |   3 +-
+>>  kernel/irq/manage.c                           |   5 -
+>>  51 files changed, 1696 insertions(+), 606 deletions(-)
+>>  delete mode 100644 arch/arm64/include/asm/daifflags.h
+>>  create mode 100644 arch/arm64/include/asm/interrupts/common_flags.h
+>>  create mode 100644 arch/arm64/include/asm/interrupts/entry.h
+>>  create mode 100644 arch/arm64/include/asm/interrupts/masking.h
+>>
+> 
 
 
