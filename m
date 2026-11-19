@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982DF606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 20:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708F4606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 20:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c4hnRaO5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dhzhEF87
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4XR+VdFz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HAh2ouit
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,61 +14,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ohflwTIw+Y1tH/9jqyoPDqwznuFbRi/wcTKWRmCALvw=; b=c4hnRaO5LhMMKqGfihCP7vImC4
-	nTTbGP68kfdDFOnq3LbUyEc4nnKm96FVXh9My17nNGCV4+6BRHcrtA4iRYicVtil2Ltsq3GXL49t6
-	HZM5CN83cqKIvwS1dVlOoPZPBP3cIn9HxQ1DzBISXxW3x8+lVkBajxQ7wzGvGz5jWvhMNXGkOc5Fx
-	69+UWEajGORYfMdXydazpcMeo/duydSDYDxZ75mKEtsTSTF1gihZKsg5+HoM1TtuP54m99SUHU4B9
-	dWp3haVlWZDr320r4AHebbXqL4w23hpvI1OEuAzUZkiXA8tBSfF/8WGATPNAKWrdFrUuPUxhmePdA
-	GhOfszOg==;
+	bh=XKumCsCaH0lj1dxSbsxBeXzvCOozfBVKXT4C1iY5aH8=; b=4XR+VdFzyMDgsqTIZRCfI12ps1
+	/d1wwRjqzi4k7yxHrmPY/ge8SOlBPwemEZ6sXPCY2vZbf/yUSXxEk3a23GINy4TWweNtIlztWz+Ei
+	jW5Q260bJvsaG5brQRcebea7eOnyGYLkpRLLoJOBT8XEYZZNGFF2fyDb0wno8XKO23r9QMxovHyHr
+	Q1sr+lohl13cnd8Ao3LzDDwHgVg+m/AJGFPCTn9Uf9EtAiDuKc51L3+2cXs7h702ExgJUPI/YWSrg
+	DiLRjgbiXEncsE/UUpkW6eE3oQwDCXx1oq+FeuTD7/L2QE2r0fvJSHlf565bGhjC1wkVJcezYnRB1
+	4iUvTJQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU8W7-0000000DKOt-0XOg;
-	Thu, 19 Nov 2026 20:13:59 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xU8Ze-0000000DKga-2FJX;
+	Thu, 19 Nov 2026 20:17:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU8W6-0000000DKOl-139Y
+	id 1xU8Zc-0000000DKgS-3BlX
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 20:13:58 +0000
+	Thu, 19 Nov 2026 20:17:36 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6013660D26;
-	Thu, 19 Nov 2026 20:13:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE8B41F000C0;
-	Thu, 19 Nov 2026 20:13:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E8B646219D;
+	Thu, 19 Nov 2026 20:17:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CAD61F000C0;
+	Thu, 19 Nov 2026 20:17:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795119237;
-	bh=ohflwTIw+Y1tH/9jqyoPDqwznuFbRi/wcTKWRmCALvw=;
+	s=k20260515; t=1795119455;
+	bh=XKumCsCaH0lj1dxSbsxBeXzvCOozfBVKXT4C1iY5aH8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=dhzhEF87IGe3TrNLOmhv16gsGf5lfuG+STVwpK5CqftHhPorjQKUxxSHqAjtItPWB
-	 0abKTfoUZqNz/Cwf0DdRveogQxxuB4RIkh/GSZQWOi93Z4ot/YmpbCvxO/esCJy8FI
-	 b4hC+z09jr7OJdQm9Bez6HfjW75l3lYBnbLF23V4Q+XFWaAaow6X6Uq4T8qCCsenNc
-	 kwSIHlAt+fwq3xeFZraigJmho4grycYNxl8SZSO7p4BosbIMy1aZ1ElSvNEkNjPfxM
-	 3x0CRqORhKH9wNJ2MvEG8zfl2H/KaEiA5VRAkbTcomeOXZ7KLsdlY7RhHwva0VXqRd
-	 aGtLxIrPMjMZw==
-Date: Thu, 19 Nov 2026 14:13:54 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Mark Rutland <mark.rutland@arm.com>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-	Besar Wicaksono <bwicaksono@nvidia.com>,
-	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
-	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Randy Dunlap <rdunlap@infradead.org>, Will Deacon <will@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: perf: Describe the Broadcom BCM5301X
- AXI PMU
-Message-ID: <179511923403.118198.12888677660376650016.robh@kernel.org>
-References: <20261027175124.3518239-1-florian.fainelli@broadcom.com>
- <20261027175124.3518239-2-florian.fainelli@broadcom.com>
+	b=HAh2ouitAFQ5kfBDvfqdyjrFEdUpe/89ciImmGG6bRtTXD28LE/6tX3z0CpBDECwR
+	 fvwOEJ0v9jswcEXvtVPUySbrChR5BRJNGEInU0R6ysGxQJIj+3K1wqYWVZubGYVKfS
+	 Qdu9je1lI2Nska9swcJGS8GER1FZkbzCK9z9ZxjLMEWA0AIa1nC0Ph1+R3cXLy45bw
+	 ophWAN5UvLq59KrH2tIcI4ZPOLs5xLeaninEu59x9+3o34UYMsz4wlIqRxQIJMtBmS
+	 wSDkVRbPR2uXZE05bNgXYjyFcOi/SXcId8Sukj7u7GRUju6WgVKR03XHcuOmVWz70a
+	 F7hpN17wqmM8Q==
+Date: Thu, 19 Nov 2026 20:17:31 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Kevin Brodsky <kevin.brodsky@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] docs: arm64: Document booting requirements for POE
+ at EL0
+Message-ID: <4a860ab6-c43b-4ed5-b4b3-d831bd15b7f1@sirena.org.uk>
+References: <20261119-poe_booting_rst-v1-0-bbae0ab68498@arm.com>
+ <20261119-poe_booting_rst-v1-2-bbae0ab68498@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wlnQNiizsQKfjQKB"
 Content-Disposition: inline
-In-Reply-To: <20261027175124.3518239-2-florian.fainelli@broadcom.com>
+In-Reply-To: <20261119-poe_booting_rst-v1-2-bbae0ab68498@arm.com>
+X-Cookie: I'm into SOFTWARE!
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,27 +73,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Tue, 27 Oct 2026 10:51:22 -0700, Florian Fainelli wrote:
-> Describe one APB register window per AXI Trace Module. The counters are
-> have no overflow IRQ.
-> 
-> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> ---
->  .../bindings/perf/brcm,bcm5301x-axi-pmu.yaml  | 43 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/brcm,bcm5301x-axi-pmu.yaml
-> 
+--wlnQNiizsQKfjQKB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On Thu, Nov 19, 2026 at 06:02:43PM +0000, Kevin Brodsky wrote:
+> Add missing boot requirements for the kernel to enable FEAT_S1POE at
+> EL0 (POE is currently unused at EL1). SCR_EL3.PIEn controls trapping
+> for both PIE and POE registers.
 
+> +  For CPUs with the Stage 1 Permission Overlay Extension feature (FEAT_S1POE):
+> +
+> +  - If EL3 is present:
+> +
+> +    - SCR_EL3.PIEn (bit 45) must be initialised to 0b1.
+> +
+> +  - If the kernel is entered at EL1 and EL2 is present:
+> +
+> +    - HFGRTR_EL2.nPOR_EL0 (bit 59) must be initialised to 0b1.
+> +
+> +    - HFGWTR_EL2.nPOR_EL0 (bit 59) must be initialised to 0b1.
+> +
+
+Looks like everything I'd expect is covered:
+
+Reviewed-by: Mark Brown <broonie@kernel.org>
+
+--wlnQNiizsQKfjQKB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmr/WVoACgkQJNaLcl1U
+h9ARDQf/cOmSUTuflIn3yOghuYacUiaUjwsZFmbPD/VKABjZujTKky8uaLd4EVWv
+LppAEajdN6b55IEpLqB2VD63ct3lnse7qMLb+4vhjDB660t1OGM3cHbA/Qckgqdq
+yyTKqqxhIxTKYJltSnN+StsU+94avJKp51zteYqFMV08O+jkHA7VJidBYHVahHSU
+7IqEJQ9eXgcJR1xwl+PtJCzv6yUQ8Z1CLwD1eE0H/BHDqtFPFIuh72BGycdHSgDy
+6+EOoytYdv8lbwRFqeKHQVY5Phe8SbEkp/cw3okfO2RpxjQN+ialT4PJmL4BYdfg
+s+1hiKAxyGIGl6g8QtMLH+CKkwUDfA==
+=+P7h
+-----END PGP SIGNATURE-----
+
+--wlnQNiizsQKfjQKB--
 
