@@ -2,105 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7D00606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:02:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73767606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ReffkzhZ;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=IyOcC/Qe;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=U0/3aqEl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y0yRA+DX;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=AgSkwaNf;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=WVflymRl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Yu1WLyNNBdbDCqNMuhUSjTu+NdHjQ3H5qJLnUEQKfTs=; b=ReffkzhZAh6skL
-	+5H+Kep7Jyunky/N8boqaaPUo9sy1Tyl5d2ISOi8wrFaLJ7LCelhHZbaxCsEYELzRiGmxve7ejdj9
-	Ejskv6bareFvfiOLw55zq5JnxdbThu71TOxaG0dhgg/7v5Q2N9r8vzDPvn7AERF/NRenP4LHWeE2v
-	2h6wvcH10pFhxgcDcU078pQx61i080lUE0ZHBDVqoOYi+V28dzfCp3eTsaE07refpH2119s1ijM0r
-	ve5GNPKd3QadlebSC1R0oVCtnILHYDrDoWSjWw393d4+u/XmxPYo4pLohqbAwE/sqdkx9rUAAXxje
-	rl6WC6MngQ0zn/eMf9TA==;
+	List-Owner; bh=ILRTbzz5mM6FG39d3EHIF0OsxuK1Xd1REe2fkUSjIBo=; b=Y0yRA+DX7KztLh
+	X7x5ETeKZi1oJSxAF3t+kb6VpbRB/Z5vnOQh9r9C6405+9xg9mDjEcksz46EtlUy1yHkcmPfxq5p2
+	DxX42l+yyqkWR5JieoBT7nYe9yxSDzrxbzfSd+V24l0/AA+GD86x0aKhZ83vt8E6uAI7bWHBV7JLD
+	6HXHAoscMY4SVR2JXJEhB+8Xlrk4FBN3zU+l9Bf/YnFyCsK7lFL9MkshDyOKcD4oeFD+TeVog2GZz
+	ChA0la04UsQTTwUxB9anO3pArsur80sohkt5+eA4EUXIdHgA2aSaaGqVIpFbQsTdGfdgZFFKOwsIK
+	n6VrueLk397jE7lA/FsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTy2V-0000000BK5Q-0M1x;
+	id 1xTy2V-0000000BK61-1P8D;
 	Thu, 19 Nov 2026 09:02:43 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTy1s-0000000BJoC-3lVx
+	id 1xTy23-0000000BJsd-3OK3
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 09:02:31 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AJ7tdZl1696562
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:02:04 GMT
+	Thu, 19 Nov 2026 09:02:36 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AJ6vZGV330777
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:02:15 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Yu1WLyNNBdbDCqNMuhUSjTu+NdHjQ3H5qJLnUEQKfTs=; b=IyOcC/QeS26j2m6D
-	6UExrSdZMEX+sKo6XTKluQ+cvXDO3SBTgoKd9EhNMRWOCO463A4+J6ZQSuvzBjzV
-	4D00laecQgfe4oAXcXK1g4TvlQRMPyzlym0H+YIuRxPl3mY1cyBEQyci7ilg3BUu
-	oRRrYcuRq6T4Q4xAWM6fxdriQiwMQY59c/FQhtdUS4lOWeossmUJTHi1XhcipyFj
-	23j33KiG6Fkdz1z3FkLOcexjsh0d/O+yprNkBveyWJ7FFQTvwFNdJ67/qJzAQNLT
-	hjnwKRpcXOKGQI7qhvittLkIrvvZf3MzzgK96gNLfZYBfo5vRcC5wnCKe4PWo0lM
-	GhKX/w==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j1uux8nm9-1
+	ILRTbzz5mM6FG39d3EHIF0OsxuK1Xd1REe2fkUSjIBo=; b=AgSkwaNfu734tnwD
+	V9z87b8dS1A7XeSV0NdJBrLMMbju6nO3DL6mTywmWUL27KJgCNFRdgE9NJAGtYjM
+	JRE+v9ufs9RrlDV6Dmte6F/u2R5ju6znysqhy8h74ueXM3XUHG/QFqplh3xcYeQq
+	EAOnl1T55h00gwsmveGk9+hTURg4bn8jhQyPqV/2N9qR7N3908Ujb/Uw4g4jYKEt
+	o/kMtn33i7X0zeWs79zdHzjMeeRNpLb6ZKc5B6rpTJzpLvCjQFUVvcWu/NWuXU+r
+	r+cxuqxd5IRHLDmloxTkqPnzvgB7rnS1p9aUECVkYq76jgnrdmODCBlJkLl/XO5K
+	/mgtuQ==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j1fpnknee-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:02:03 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3b191f8a9b3so2709087a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 01:02:03 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:02:15 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3ae72da2f57so2782837a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 01:02:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795078922; x=1795683722; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1795078934; x=1795683734; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Yu1WLyNNBdbDCqNMuhUSjTu+NdHjQ3H5qJLnUEQKfTs=;
-        b=U0/3aqElT/1PXzdDR1/it1EH+smEV0bvcnqkJnfFz2jMNZrIKp6uFmEYYPVonIRgdF
-         1awSpkr0MSJZ4ho6TmGY/MoJH8KHen13kd2qAKV90euiKTeuKrFp0bpjtoApLVEgAWlQ
-         vv4T6OdpO2+UFVrlbtb4sNp9QeQNU2hgx9VdV1fOPQvcC3kJMOrX6e3xPTzLLXYy3qjW
-         3dXfeLgGkpcsm47duLn/nciGu/rkrUxelgJOAk5TqGLGJlMvZ48883g7rkFCTDloXD5X
-         +PrGqp7F0Lw85ciD3SwZ0OhND+YIicOML2qyy+EvQ3eMekK0t80aTHMQrUTOIKs9N+bL
-         qX2A==
+        bh=ILRTbzz5mM6FG39d3EHIF0OsxuK1Xd1REe2fkUSjIBo=;
+        b=WVflymRldThPqOj6dEhM+ckSFQOz25vlgcl9D7ZnhBLUTV2xBL0BDyKP7MNztn6o3b
+         qhgf/aNRsngKsqI8ZbJn2YFu6qOyjKFt8Y3+qQBSn/RrXKHrktsBOsVoglkPIsyDjUqn
+         NZPPlf6PQvmD4eG5fBdtpLVsHf7R+jAInIZc1Nntb51dLGok4griDRCpWDb6LtnpTQI6
+         I+4qfjojCgnYmVfuGuQ1SjUbTctmA6cmdA/grY7U1DWMnUBgH30ehUo33MNMo7tTC4zm
+         cea+PzcsB/RmUXdblSLL1+qX7CFUeqchsCwXD9powg06+UicXlFxlEYJvbJJp5uBvfKT
+         XWFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795078922; x=1795683722;
+        d=1e100.net; s=20260707; t=1795078934; x=1795683734;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Yu1WLyNNBdbDCqNMuhUSjTu+NdHjQ3H5qJLnUEQKfTs=;
-        b=dkmxKHd339sB5+Z4gpcUbNMNgUz9t/dTMYlwDHD7Rm+8Dn5mbxQh/NvtAs2NBCxrPx
-         Z4yQpb7IAOrE4/swuBZNKPp+NGC4DuxjDQhHimxb3BOuCeA1La9RHxCe/okzywA2Bam/
-         S+Gc+szwnANV2fCswUIBapwLhNBiHeO9A2WtybNfzEbG9HvOskg/2XLPItcOWHispllB
-         qD8fmv4UBgUp5Z7ZmixUVmhhzgJ18qJn4A0uR2kYIY6Hc+YA7ORcgTtRzIlCwdr688pp
-         egu84Ql/wxj/WwAQOUWHZlFefDwHKgFSwnTsJLuAuAXpC5x19l0xKE8R4AD4ozOP8ZpQ
-         TRvQ==
-X-Forwarded-Encrypted: i=1; AL+hErHkbOfTHDB7L7sRXfMKE68U1IRAg0a7DEwUKmfiYE7Fh+v3Spx1cXx1EhEolm6HUAzdlgPEqEgeOz7tv2wKPOCv@lists.infradead.org
-X-Gm-Message-State: APuU4Z8rieidOpZgJUjCVZ2x+DtlhNkJROEWfFYCX8dBlHgaMK8bQkJj
-	fcDfdRIqejCrCE0iPE0SpkJWRM/LOAnMM1qflaqyRF5MmBYxtor1dVkU2zqbfrefZ6f8y9Vlf39
-	wv5gGYghVOXGv3F2IYVm5hbRL2OleNbKC93IJ1tbALG0QsotdIdwKmTIuwOTg9UTIS/GkIfLZIv
-	MAxV2A4ktm0das
-X-Gm-Gg: AZFdTZcTfyOOjIbhyszUF2RDyu88VDw9Q6g2KSFJtiKPzJWntB7LErEy+dQCVsg6uKE
-	WbeAu5U2ZjOeQF3yZp7MFfmBttJjU1MOBa3xDMeSLpfrCR1I6V3A9xsAJIMSxZfQPS+td6so1m8
-	Pmx06h+cxvDyBWplTnL0f1kGntsNDfueCkWQ37xJtQ1exf7D2rQPXjrT2n/hMuIVVPm9tdh7gqr
-	d1sZDX5aC7GhlnGjUsVY5C4jonCeZsrHNJXI7ccbQmVZhm0e6Gx7yZw51bUXaqPTg/KeSDUtoqK
-	4oamy6HBUbE7QtHVFFh8wZLa/Av/Ss1ZAc/HGY75jNCGbBHcz9eOL+2j23sHbnG07SwLF5qRmYA
-	LuU6uaawatobnfWBnGkZeSatjbc92K/vd9Q93sThuz0LBF2r37JLf0C+W2168b0+qzr7teXyB2I
-	XA564PR5m8Drl5JFkGovKgCY/kkCnnwtL7qT8p
-X-Received: by 2002:a17:90b:1b07:b0:39e:6c6a:6580 with SMTP id 98e67ed59e1d1-3b3d07d92a8mr5185171a91.67.1795078922281;
-        Thu, 19 Nov 2026 01:02:02 -0800 (PST)
-X-Received: by 2002:a17:90b:1b07:b0:39e:6c6a:6580 with SMTP id 98e67ed59e1d1-3b3d07d92a8mr5185093a91.67.1795078921470;
-        Thu, 19 Nov 2026 01:02:01 -0800 (PST)
+        bh=ILRTbzz5mM6FG39d3EHIF0OsxuK1Xd1REe2fkUSjIBo=;
+        b=V/9yOf+eiSPKfnklAJLWQzvrZbQyESSUGx0vE9nzbfOv0QPpAifFl4fxeHph+0GvqE
+         ZdWMcZ683tJheCCSswq5wgycJJVph08sdlM/OfdG+2JDygZBihB6J1tjQlIKGxy3YawA
+         sPd5AabfVXBCdFKzFEZn4ugWEavVRoPWPx3r6rYyteKBB/jTkrXxg6z6cF6wLuR2XRl/
+         q/MQv6zteucTh7FMQ2VrMUhtuHOQsLBtsJg+Ihq3vp8cMcpstTPJZJOArpSEykBn0YsG
+         DpoQ1AVFy0vd4bIaKaVslNRsGncJCVCTCjerEL35QLarj92LgmVF2dFaOZ52PxC4w9kP
+         ksYA==
+X-Forwarded-Encrypted: i=1; AL+hErGKAseKJPLMIbgWpzrZOL3NyeGlL7KNh7HRysshKfi7EbSXZSwhzmGNNzGBtwI0/dqeLH5cGbwVkjAPWrwb6f+/@lists.infradead.org
+X-Gm-Message-State: APuU4Z+cgnUNnFqZ8geqyH2GHzyzkP5HQb4WIUI8pGnTNhUQGx2YUoXU
+	B06+y672TILyCucl975d5/a6AArx4jWEvw/FE+AlYda0p+VIT0RkMFA95mXkIBkSc2YI5mH3X7U
+	e4U8xGTzSOEjWijxqEznueyAIsBQ6TrdnYy3nJR/EPbqn+D76fFDj20NrbpuKby6omP7G3smDZR
+	UvE3gmWKBwpXAW
+X-Gm-Gg: AZFdTZcg9DPmLKrLc7nqt8ayYgD/mBI+e0Tc/g0mGowvPZgB22f6DPmyLkO2yDFWzfr
+	1CqpRhQGQCLz1Xr/TN32uwnj2aTlMSlNM2Oc+IbX9wDAHbt8poSevGJPU2MU2xQAlZVKykud4P8
+	cc+zjO1DAO7OZbNgRu+J6qVnHMnXqB/M/alPUUjkVGCZBrE0nPmZO42QF7dcIrn0vrGojN1/3pD
+	5FGk0ksvodpLltXIW1rk6S5JOkUR3a5L3/dlO2rT6qWqXCVmN88DCOPZoc3s7RXFgaSEX3in01r
+	IHpRkugs2ycHRjz93/uV9rsRkhNXlRH64eBRK2Xk4I796CK13brQReh9fA94NjAweoEto1itM8U
+	7C3J4h2BbXJnvVp0/SAioLpE8U1K3KL7Mni3zfYjL/Jt09SsPxrDSEuWMfuV+yvkq43b7Jth8gF
+	l/f7JfRvaMils2uShLcMm4g2aM2Gqje7vFV3rG
+X-Received: by 2002:a17:90a:da83:b0:3b4:a90:7f2e with SMTP id 98e67ed59e1d1-3b40a908039mr436159a91.5.1795078934027;
+        Thu, 19 Nov 2026 01:02:14 -0800 (PST)
+X-Received: by 2002:a17:90a:da83:b0:3b4:a90:7f2e with SMTP id 98e67ed59e1d1-3b40a908039mr436091a91.5.1795078933169;
+        Thu, 19 Nov 2026 01:02:13 -0800 (PST)
 Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d97356sm1689539a91.13.2026.11.19.01.01.55
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d97356sm1689539a91.13.2026.11.19.01.02.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 01:02:00 -0800 (PST)
+        Thu, 19 Nov 2026 01:02:12 -0800 (PST)
 From: Jie Gan <jie.gan@oss.qualcomm.com>
-Date: Thu, 19 Nov 2026 17:01:17 +0800
-Subject: [PATCH RFC 4/6] coresight: qcom: add QDCP STM source
+Date: Thu, 19 Nov 2026 17:01:19 +0800
+Subject: [PATCH RFC 6/6] coresight: tmc: add QDCP ETR sysfs support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-introduce-qcom-qecp-feature-v1-4-b1a730d2c57a@oss.qualcomm.com>
+Message-Id: <20261119-introduce-qcom-qecp-feature-v1-6-b1a730d2c57a@oss.qualcomm.com>
 References: <20261119-introduce-qcom-qecp-feature-v1-0-b1a730d2c57a@oss.qualcomm.com>
 In-Reply-To: <20261119-introduce-qcom-qecp-feature-v1-0-b1a730d2c57a@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -121,43 +121,44 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         Jie Gan <jie.gan@oss.qualcomm.com>
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795078891; l=19952;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795078891; l=29760;
  i=jie.gan@oss.qualcomm.com; s=20250909; h=from:subject:message-id;
- bh=SOdqfn7WryU5tL/vCm93fFlg3ZhfwFM5nHhVipZGvUQ=;
- b=glFTJhhSN6rEHAdp8G/cwOC3y6lWeFf/FJ+ceSGsh/+aPznJQUhQ51wVurHdL4+vhktT9ie7u
- G77W27A5VmQCHPWpcy3tTpnhQ5idtiiHlE+2lKwYfaD0kE/TA26/aXp
+ bh=feCXXGcr1x8DHATtojA+lvjjUQCCuRTLz4OX5F02vlE=;
+ b=yBJb35xJlthePVFzD/B6Q5qqonLQwXwb1rUQ9TjZOMFLG+NqNJs3MNPTi02YxRODJNyB5l1gE
+ 1tmm1i+kqX4AvWvVIv3AeU5MHQHC57L8J1sFDe2Vi5WlajsQ14T6toa
 X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
  pk=3LxxUZRPCNkvPDlWOvXfJNqNO4SfGdy3eghMb8puHuk=
-X-Proofpoint-ORIG-GUID: HwK5gJUluiwKYqRRAhUw36-fbSONmm0i
-X-Proofpoint-GUID: HwK5gJUluiwKYqRRAhUw36-fbSONmm0i
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE5MDAzNSBTYWx0ZWRfXwX6DnxXbzyWw
- GqRqdvlj+3C20YvQbsDbp3QwKUDtT4Y7RN92QhZ5Bn/CzAqqJKlSvk3KOWSJdxKSx2uW61067PU
- D8ObxAGLycmp6H/p4zDuL4X62+JB+Uo=
-X-Authority-Analysis: v=2.4 cv=Q89HcI2a c=1 sm=1 tr=0 ts=6afebb0b cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+X-Proofpoint-GUID: oG6SUtFVrVndukih582q3XWKiqLwR9-j
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE5MDAzNSBTYWx0ZWRfX6UcwX0VDchlu
+ DxH7EEzW7rTsTD4KlmW68dJmfSmejUR6iFLpG/x3u0IAACJd/Pjewws1Q88sCMkSDx0VT7uaG7X
+ 6ZgGjD33WptqeRkIVe/tnNIXVF4AW1v03MaTyfwiWY7VZQpaEOKe22bLGEAefaG9bdmh+RGQngG
+ iiWvnaBE+IEWEeDK4I+6ZgX5mqOoASqEQR6tyPkdMHX9xTMJw6le1m2rQRXZQK+xWEMyBxmsB7U
+ DQRRcgP+qNW9+ClMItI/LBh9U0J4UX1KoexDT+dfil7cURp/O/lxz4qpxCDjdUT/Sb2q1ISrhFH
+ jMQ3dJvZw4W4CsUusTbWRhm52993Ci5ljKyI6eztIOHanrqDnUwTX+tnxDsgGBAYRsS1IsPdyS5
+ S0GA1lkEFLDb1JADNZ51fwIFvjZGYAk8dtkfYLUZMuk6GY6F+n1e4YDBb+QBEX+lAru/VNMYB5m
+ IMZaa2Y4sTuGm8nzGXA==
+X-Proofpoint-ORIG-GUID: oG6SUtFVrVndukih582q3XWKiqLwR9-j
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE5MDAzNSBTYWx0ZWRfX1bvD+Ln98o6L
+ lTF8Q5EwrHrMocyVi5K7YILFY4vdUia5EeK3P0eAur+HlhZOWn/j6w0iEk9XVGjSe5yEWipYiCs
+ 6fzGlQXFFY8KcYge7qasPFYISXXFzNg=
+X-Authority-Analysis: v=2.4 cv=PJ6aavqC c=1 sm=1 tr=0 ts=6afebb17 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=5ao-vDG7CpaozfWT88cA:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE5MDAzNSBTYWx0ZWRfXyN0h5raWFGUb
- C5q+Ttcw9hPvmbOkXF/8zijaJ3xfE29CDl2RJLIpD7lZTHynfECCmz8Wj/TXXkvPyq0ILT6WQ3c
- OkcIB8klqx8/Vl28JlYItCeUP/big3fliXTYVT8VGdIaE0bwvWjL/j1LeeBgB8sBrjNLt/CH9gE
- DHAn8okYx9qxUvSJcxB1TfB0UAaZwMxAM37WLWXJbnC9jn8B59hk2XZCW8vl10k1lJ++4wqBqCB
- 5ELeErRuMWaCCqXj1A67S5GFl3nTZqgINCnQ7vU8zFsMmtT3ylJAMC37YREAW6c9hKqhq0SBLTz
- j33Uj5aQhuOpXkLp+RRhS6f3kC0Tekeo8qTz/g9YnsSdesVZgXosT3mGVX2TLsSpVisHtQ3w+9V
- MxsSvyg3guPwtrZSDDYY5A9zBZ3O9apyq/w/HO+yKfsH7z5mW8uozfAEV0JiHaDyFLIAq6SPUIC
- lrkXMf7Dvabkytd9mOg==
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=EUspDBNiAAAA:8 a=TrYCCRAG2pICcn2ChSUA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-19_02,2026-11-16_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0 clxscore=1015
- priorityscore=1501 spamscore=0 bulkscore=0 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611190035
+ bulkscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0
+ priorityscore=1501 phishscore=0 spamscore=0 adultscore=0 impostorscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611190035
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_010205_225530_D12A7629 
-X-CRM114-Status: GOOD (  26.21  )
+X-CRM114-CacheID: sfid-20261119_010215_937145_BEB6CE2C 
+X-CRM114-Status: GOOD (  27.63  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -177,629 +178,892 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a Qualcomm-specific CoreSight STM (System Trace Macrocell) source
-for platforms where the Qualcomm Embedded Co-Processor (QECP) firmware
-owns the STM control registers.
+Add support for TMC (Trace Memory Controller) instances configured as
+an ETR (Embedded Trace Router) whose control registers are owned by the
+Qualcomm Embedded Co-Processor (QECP) instead of the application
+processor (AP). Since the AP has no MMIO access to these registers,
+probing, sysfs sink enable/disable, and RRP/RWP/STS (RAM read pointer,
+RAM write pointer and status) synchronization are carried out over the
+Qualcomm Debug Control Protocol (QDCP), a firmware RPC interface,
+instead of direct register access. Linux still allocates and owns the
+ETR trace buffer as usual.
 
-The driver maps only the AP-visible STM stimulus aperture. Enable and
-disable operations go through the Qualcomm Debug Control Protocol
-(QDCP) provider referenced by qcom,qdcp, keeping the generic CoreSight
-STM driver untouched. Firmware controls the block's clocks and power,
-so the driver does no clock handling or runtime PM.
+QDCP-owned ETR probe, buffer handoff, sysfs enable/disable, and read
+prepare/unprepare are implemented in a new coresight-tmc-etr-qdcp.c.
+coresight-tmc-core.c and coresight-tmc-etr.c gain the probe-time checks
+needed to detect a QECP-owned ETR and dispatch into it.
 
-The CoreSight source disable operation cannot fail. If firmware does
-not confirm a stop, the source is still marked disabled and a warning
-is logged, and the failure is remembered. On removal the trace ID then
-stays allocated, so no other source can reuse an ID that firmware may
-still be applying. On removal the STM device is unregistered before the
-CoreSight device, so its unlink callback never runs on a freed
-CoreSight device.
+Firmware may write into the trace buffer until it confirms a stop, so
+drvdata->etr_buf is cleared only after a confirmed stop. If a stop is
+not confirmed, including after an enable request that failed or timed
+out and may still have been executed, the buffer is not synced, freed
+or replaced. The stop is retried on the next enable, the next open of
+the device node, or removal. A failed RRP/RWP/STS read invalidates the
+buffer contents instead of leaving the previous capture readable.
 
 Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 ---
- drivers/hwtracing/coresight/Kconfig                |  11 +
- drivers/hwtracing/coresight/Makefile               |   2 +
- .../hwtracing/coresight/coresight-qcom-qdcp-stm.c  | 550 +++++++++++++++++++++
- 3 files changed, 563 insertions(+)
+ drivers/hwtracing/coresight/Makefile               |   2 +-
+ drivers/hwtracing/coresight/coresight-tmc-core.c   | 145 ++++++--
+ .../hwtracing/coresight/coresight-tmc-etr-qdcp.c   | 379 +++++++++++++++++++++
+ drivers/hwtracing/coresight/coresight-tmc-etr.c    |  46 ++-
+ drivers/hwtracing/coresight/coresight-tmc.h        |  46 +++
+ 5 files changed, 570 insertions(+), 48 deletions(-)
 
-diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
-index 6a4239ebb582..f6ad698344fe 100644
---- a/drivers/hwtracing/coresight/Kconfig
-+++ b/drivers/hwtracing/coresight/Kconfig
-@@ -119,6 +119,17 @@ config ETM4X_IMPDEF_FEATURE
- 	  ETM 4.x tracer module that can't reduce commit rate automatically.
- 	  This avoids overflow between the ETM tracer module and the cpu core.
- 
-+config CORESIGHT_QCOM_QDCP_STM
-+	tristate "Qualcomm QDCP CoreSight STM source driver"
-+	depends on QCOM_QDCP
-+	select CORESIGHT_LINKS_AND_SINKS
-+	select STM
-+	help
-+	  This driver provides a Qualcomm QDCP-backed CoreSight STM source.
-+	  It maps the AP-visible STM stimulus aperture but asks QECP firmware
-+	  to enable and disable STM tracing through QDCP instead of touching
-+	  STM control registers directly.
-+
- config CORESIGHT_STM
- 	tristate "CoreSight System Trace Macrocell driver"
- 	depends on (ARM && !(CPU_32v3 || CPU_32v4 || CPU_32v4T)) || ARM64
 diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-index ab16d06783a5..d97e334fe1fc 100644
+index d97e334fe1fc..4a5ed093d226 100644
 --- a/drivers/hwtracing/coresight/Makefile
 +++ b/drivers/hwtracing/coresight/Makefile
-@@ -23,6 +23,7 @@ condflags := \
- subdir-ccflags-y += $(condflags)
+@@ -32,7 +32,7 @@ coresight-y := coresight-core.o  coresight-etm-perf.o coresight-platform.o \
+ 		coresight-syscfg-configfs.o coresight-trace-id.o
+ obj-$(CONFIG_CORESIGHT_LINK_AND_SINK_TMC) += coresight-tmc.o
+ coresight-tmc-y := coresight-tmc-core.o coresight-tmc-etf.o \
+-		      coresight-tmc-etr.o
++		      coresight-tmc-etr.o coresight-tmc-etr-qdcp.o
+ obj-$(CONFIG_CORESIGHT_SINK_TPIU) += coresight-tpiu.o
+ obj-$(CONFIG_CORESIGHT_SINK_ETBV10) += coresight-etb10.o
+ obj-$(CONFIG_CORESIGHT_LINKS_AND_SINKS) += coresight-funnel.o \
+diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
+index 0ef4b817b297..9b6871c51057 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc-core.c
++++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
+@@ -565,10 +565,27 @@ static struct attribute *coresight_tmc_attrs[] = {
+ 	NULL,
+ };
  
- CFLAGS_coresight-stm.o := -D__DISABLE_TRACE_MMIO__
-+CFLAGS_coresight-qcom-qdcp-stm.o := -D__DISABLE_TRACE_MMIO__
+-static const struct attribute_group coresight_tmc_group = {
++const struct attribute_group coresight_tmc_group = {
+ 	.attrs = coresight_tmc_attrs,
+ };
  
- obj-$(CONFIG_CORESIGHT) += coresight.o
- coresight-y := coresight-core.o  coresight-etm-perf.o coresight-platform.o \
-@@ -43,6 +44,7 @@ coresight-etm3x-y := coresight-etm3x-core.o coresight-etm-cp14.o \
- obj-$(CONFIG_CORESIGHT_SOURCE_ETM4X) += coresight-etm4x.o
- coresight-etm4x-y := coresight-etm4x-core.o coresight-etm4x-sysfs.o \
- 			coresight-etm4x-cfg.o
-+obj-$(CONFIG_CORESIGHT_QCOM_QDCP_STM) += coresight-qcom-qdcp-stm.o
- obj-$(CONFIG_CORESIGHT_STM) += coresight-stm.o
- obj-$(CONFIG_CORESIGHT_CPU_DEBUG) += coresight-cpu-debug.o
- obj-$(CONFIG_CORESIGHT_CATU) += coresight-catu.o
-diff --git a/drivers/hwtracing/coresight/coresight-qcom-qdcp-stm.c b/drivers/hwtracing/coresight/coresight-qcom-qdcp-stm.c
++/*
++ * trigger_cntr has no QDCP equivalent: the local-MMIO path writes it
++ * straight to the TMC_TRG register in __tmc_etr_enable_hw(), but
++ * qdcp_tmc_cfg has no field for it and no QDCP_TMC_SET_PARAM
++ * parameter ID conveys it to firmware. Omit it here instead of exposing a
++ * sysfs knob that silently does nothing for a QDCP-owned ETR.
++ */
++static struct attribute *coresight_qdcp_tmc_attrs[] = {
++	&dev_attr_buffer_size.attr,
++	&dev_attr_stop_on_flush.attr,
++	NULL,
++};
++
++const struct attribute_group coresight_qdcp_tmc_group = {
++	.attrs = coresight_qdcp_tmc_attrs,
++};
++
+ static const struct attribute_group coresight_tmc_mgmt_group = {
+ 	.attrs = coresight_tmc_mgmt_attrs,
+ 	.name = "mgmt",
+@@ -676,25 +693,18 @@ static void tmc_get_reserved_region(struct device *parent)
+ 	drvdata->crash_mdata.size  = resource_size(&res);
+ }
+ 
+-/* Detect and initialise the capabilities of a TMC ETR */
+-static int tmc_etr_setup_caps(struct device *parent, u32 devid,
+-			      struct csdev_access *access)
++/*
++ * Detect ETR scatter-gather support from devid and configure the DMA mask.
++ * Shared by the local-MMIO and QDCP firmware-owned ETR probe paths, which
++ * differ only in how they obtain devid and the unadvertised capabilities.
++ */
++int tmc_etr_setup_sg_and_dma_mask(struct device *dev,
++				  struct tmc_drvdata *drvdata, u32 devid)
+ {
+ 	int rc;
+-	u32 tmc_pid, dma_mask = 0;
+-	struct tmc_drvdata *drvdata = dev_get_drvdata(parent);
+-	void *dev_caps;
++	u32 dma_mask = 0;
+ 
+-	if (!tmc_etr_has_non_secure_access(drvdata))
+-		return -EACCES;
+-
+-	tmc_pid = coresight_get_pid(access);
+-	dev_caps = coresight_get_uci_data_from_amba(tmc_ids, tmc_pid);
+-
+-	/* Set the unadvertised capabilities */
+-	tmc_etr_init_caps(drvdata, (u32)(unsigned long)dev_caps);
+-
+-	if (!(devid & TMC_DEVID_NOSCAT) && tmc_etr_can_use_sg(parent))
++	if (!(devid & TMC_DEVID_NOSCAT) && tmc_etr_can_use_sg(dev))
+ 		tmc_etr_set_cap(drvdata, TMC_ETR_SG);
+ 
+ 	/* Check if the AXI address width is available */
+@@ -712,18 +722,38 @@ static int tmc_etr_setup_caps(struct device *parent, u32 devid,
+ 	case 44:
+ 	case 48:
+ 	case 52:
+-		dev_info(parent, "Detected dma mask %dbits\n", dma_mask);
++		dev_info(dev, "Detected dma mask %dbits\n", dma_mask);
+ 		break;
+ 	default:
+ 		dma_mask = 40;
+ 	}
+ 
+-	rc = dma_set_mask_and_coherent(parent, DMA_BIT_MASK(dma_mask));
++	rc = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(dma_mask));
+ 	if (rc)
+-		dev_err(parent, "Failed to setup DMA mask: %d\n", rc);
++		dev_err(dev, "Failed to setup DMA mask: %d\n", rc);
+ 	return rc;
+ }
+ 
++/* Detect and initialise the capabilities of a TMC ETR */
++static int tmc_etr_setup_caps(struct device *parent, u32 devid,
++			      struct csdev_access *access)
++{
++	u32 tmc_pid;
++	struct tmc_drvdata *drvdata = dev_get_drvdata(parent);
++	void *dev_caps;
++
++	if (!tmc_etr_has_non_secure_access(drvdata))
++		return -EACCES;
++
++	tmc_pid = coresight_get_pid(access);
++	dev_caps = coresight_get_uci_data_from_amba(tmc_ids, tmc_pid);
++
++	/* Set the unadvertised capabilities */
++	tmc_etr_init_caps(drvdata, (u32)(unsigned long)dev_caps);
++
++	return tmc_etr_setup_sg_and_dma_mask(parent, drvdata, devid);
++}
++
+ static u32 tmc_etr_get_default_buffer_size(struct device *dev)
+ {
+ 	u32 size;
+@@ -786,20 +816,30 @@ static int __tmc_probe(struct device *dev, struct resource *res)
+ 
+ 	ret = -ENOMEM;
+ 
+-	/* Validity for the resource is already checked by the AMBA core */
+-	base = devm_ioremap_resource(dev, res);
+-	if (IS_ERR(base)) {
+-		ret = PTR_ERR(base);
+-		goto out;
++	if (device_property_present(dev, "qcom,qdcp")) {
++		ret = tmc_qdcp_etr_probe_setup(dev, drvdata, &devid);
++		if (ret)
++			goto out;
++	} else {
++		/* Validity for the resource is already checked by the AMBA core */
++		base = devm_ioremap_resource(dev, res);
++		if (IS_ERR(base)) {
++			ret = PTR_ERR(base);
++			goto out;
++		}
++
++		drvdata->base = base;
++		desc.access = CSDEV_ACCESS_IOMEM(base);
++		devid = readl_relaxed(drvdata->base + CORESIGHT_DEVID);
+ 	}
+ 
+-	drvdata->base = base;
+-	desc.access = CSDEV_ACCESS_IOMEM(base);
+-
+ 	raw_spin_lock_init(&drvdata->spinlock);
+-
+-	devid = readl_relaxed(drvdata->base + CORESIGHT_DEVID);
++	mutex_init(&drvdata->qdcp.lock);
+ 	drvdata->config_type = BMVAL(devid, 6, 7);
++	if (tmc_has_qdcp(drvdata) && drvdata->config_type != TMC_CONFIG_TYPE_ETR) {
++		ret = -EOPNOTSUPP;
++		goto out;
++	}
+ 	drvdata->memwidth = tmc_get_memwidth(devid);
+ 	/* This device is not associated with a session */
+ 	drvdata->pid = -1;
+@@ -812,7 +852,8 @@ static int __tmc_probe(struct device *dev, struct resource *res)
+ 		drvdata->size = readl_relaxed(drvdata->base + TMC_RSZ) * 4;
+ 	}
+ 
+-	tmc_get_reserved_region(dev);
++	if (!tmc_has_qdcp(drvdata))
++		tmc_get_reserved_region(dev);
+ 
+ 	desc.dev = dev;
+ 
+@@ -825,11 +866,25 @@ static int __tmc_probe(struct device *dev, struct resource *res)
+ 		dev_list = "tmc_etb";
+ 		break;
+ 	case TMC_CONFIG_TYPE_ETR:
+-		desc.groups = coresight_etr_groups;
++		if (tmc_has_qdcp(drvdata)) {
++			ret = tmc_qdcp_etr_sink_setup(dev, drvdata, devid, &desc);
++			/*
++			 * The TMC control registers are firmware-owned and
++			 * are not accessible from the panic handler, so
++			 * QDCP-owned ETRs have no panic_ops and trace data
++			 * captured by QECP firmware is not preserved on
++			 * panic.
++			 */
++			dev_notice(dev,
++				   "QDCP TMC-ETR: trace data not preserved on panic\n");
++		} else {
++			desc.groups = coresight_etr_groups;
++			desc.ops = &tmc_etr_cs_ops;
++			drvdata->etr_get_state = tmc_etr_mmio_get_state;
++			ret = tmc_etr_setup_caps(dev, devid, &desc.access);
++		}
+ 		desc.type = CORESIGHT_DEV_TYPE_SINK;
+ 		desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_SYSMEM;
+-		desc.ops = &tmc_etr_cs_ops;
+-		ret = tmc_etr_setup_caps(dev, devid, &desc.access);
+ 		if (ret)
+ 			goto out;
+ 		idr_init(&drvdata->idr);
+@@ -864,7 +919,8 @@ static int __tmc_probe(struct device *dev, struct resource *res)
+ 	dev->platform_data = pdata;
+ 	desc.pdata = pdata;
+ 
+-	coresight_clear_self_claim_tag(&desc.access);
++	if (!tmc_has_qdcp(drvdata))
++		coresight_clear_self_claim_tag(&desc.access);
+ 	drvdata->csdev = coresight_register(&desc);
+ 	if (IS_ERR(drvdata->csdev)) {
+ 		ret = PTR_ERR(drvdata->csdev);
+@@ -881,7 +937,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
+ 	}
+ 
+ out:
+-	if (is_tmc_crashdata_valid(drvdata) &&
++	if (!tmc_has_qdcp(drvdata) && is_tmc_crashdata_valid(drvdata) &&
+ 	    !tmc_prepare_crashdata(drvdata))
+ 		register_crash_dev_interface(drvdata, desc.name);
+ 	return ret;
+@@ -932,6 +988,16 @@ static void __tmc_remove(struct device *dev)
+ 	misc_deregister(&drvdata->miscdev);
+ 	if (drvdata->crashdev.fops)
+ 		misc_deregister(&drvdata->crashdev);
++
++	/*
++	 * coresight_unregister() does not invoke sink_ops->disable(). An
++	 * active QDCP-owned ETR must be stopped and have its firmware-DMA
++	 * target quiesced explicitly, or QECP firmware can keep writing into
++	 * the trace buffer after it is freed below.
++	 */
++	if (tmc_has_qdcp(drvdata))
++		tmc_qdcp_etr_shutdown(drvdata);
++
+ 	coresight_unregister(drvdata->csdev);
+ }
+ 
+@@ -1041,12 +1107,19 @@ static const struct acpi_device_id tmc_acpi_ids[] = {
+ MODULE_DEVICE_TABLE(acpi, tmc_acpi_ids);
+ #endif
+ 
++static const struct of_device_id tmc_platform_match[] = {
++	{ .compatible = "qcom,coresight-tmc-qdcp" },
++	{}
++};
++MODULE_DEVICE_TABLE(of, tmc_platform_match);
++
+ static struct platform_driver tmc_platform_driver = {
+ 	.probe	= tmc_platform_probe,
+ 	.remove = tmc_platform_remove,
+ 	.driver	= {
+ 		.name			= "coresight-tmc-platform",
+ 		.acpi_match_table	= ACPI_PTR(tmc_acpi_ids),
++		.of_match_table		= tmc_platform_match,
+ 		.suppress_bind_attrs	= true,
+ 		.pm			= &tmc_dev_pm_ops,
+ 	},
+diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr-qdcp.c b/drivers/hwtracing/coresight/coresight-tmc-etr-qdcp.c
 new file mode 100644
-index 000000000000..39c6a2798a0f
+index 000000000000..db94bce76f15
 --- /dev/null
-+++ b/drivers/hwtracing/coresight/coresight-qcom-qdcp-stm.c
-@@ -0,0 +1,550 @@
++++ b/drivers/hwtracing/coresight/coresight-tmc-etr-qdcp.c
+@@ -0,0 +1,379 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 + *
-+ * Qualcomm QDCP-backed CoreSight STM source driver.
++ * Support for QDCP firmware-owned TMC-ETR instances. The TMC control
++ * registers are owned by QECP firmware and are not accessible from the AP;
++ * Linux still allocates and owns the ETR trace buffer using the normal
++ * CoreSight sysfs buffer lifetime, handing the buffer address/size off to
++ * firmware over the Qualcomm Debug Control Protocol (QDCP).
 + */
 +
-+#include <linux/bitmap.h>
 +#include <linux/coresight.h>
-+#include <linux/coresight-stm.h>
++#include <linux/dma-mapping.h>
 +#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/log2.h>
-+#include <linux/mm.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/perf_event.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/stm.h>
-+#include <linux/string.h>
++#include <linux/iommu.h>
++#include <linux/mutex.h>
++#include <linux/property.h>
++#include <linux/soc/qcom/qdcp.h>
++#include <linux/types.h>
 +
 +#include "coresight-priv.h"
-+#include <linux/soc/qcom/qdcp.h>
-+#include "coresight-trace-id.h"
++#include "coresight-tmc.h"
 +
-+#define QDCP_STM_BYTES_PER_CHANNEL	256
-+#define QDCP_STM_PKT_TYPE_DATA		0x98
-+#define QDCP_STM_PKT_TYPE_FLAG		0xe8
-+
-+#define qdcp_stm_channel_addr(drvdata, channel) \
-+	((drvdata)->stimulus_base + \
-+	 ((channel) * QDCP_STM_BYTES_PER_CHANNEL))
-+#define qdcp_stm_channel_off(type, options)	((type) & ~(options))
-+
-+/**
-+ * struct qcom_qdcp_stm_drvdata - QDCP STM source data.
-+ * @stm: generic STM interface handle.
-+ * @csdev: CoreSight source device.
-+ * @stimulus_base: mapped AP-visible STM stimulus aperture.
-+ * @stimulus_phys: physical base of the STM stimulus aperture.
-+ * @guaranteed: per-channel guaranteed/invariant delivery bitmap.
-+ * @qdcp: QDCP connection state; @qdcp.id is the QECP firmware source
-+ *	identifier, @qdcp.lock serializes sleeping QDCP operations.
-+ * @traceid: CoreSight ATID assigned to this source.
-+ * @fw_stop_failed: the last firmware stop was not confirmed, so firmware may
-+ *	still be tagging trace with @traceid. Updated under @qdcp.lock; read
-+ *	without it only on removal, when nothing else can use the source.
-+ * @numsp: number of stimulus ports.
-+ * @write_bytes: maximum naturally aligned stimulus write size.
-+ * @port_mask: stimulus port enable mask sent to firmware. Like the STMSPER
-+ *	register it mirrors, this is a 32-bit mask applied per 32-port group,
-+ *	so enabling every bit covers all ports regardless of @numsp.
-+ */
-+struct qcom_qdcp_stm_drvdata {
-+	struct stm_data		stm;
-+	struct coresight_device	*csdev;
-+	void __iomem		*stimulus_base;
-+	phys_addr_t		stimulus_phys;
-+	unsigned long		*guaranteed;
-+	struct qdcp_consumer	qdcp;
-+	u8			traceid;
-+	bool			fw_stop_failed;
-+	u32			numsp;
-+	u32			write_bytes;
-+	u32			port_mask;
++static const struct attribute_group *coresight_qdcp_etr_groups[] = {
++	&coresight_etr_group,
++	&coresight_qdcp_tmc_group,
++	NULL,
 +};
 +
-+static bool qdcp_stm_addr_unaligned(const void *addr, u8 write_bytes)
++static int tmc_qdcp_get_param(struct tmc_drvdata *drvdata,
++			      enum qdcp_tmc_param param, u64 *value)
 +{
-+	return (unsigned long)addr & (write_bytes - 1);
++	return qdcp_tmc_get_param(drvdata->qdcp.provider,
++					    drvdata->qdcp.id, param, value);
 +}
 +
-+static void qdcp_stm_send(void __iomem *addr, const void *data,
-+			  u32 size, u8 write_bytes)
++int tmc_qdcp_etr_probe_setup(struct device *dev, struct tmc_drvdata *drvdata,
++			     u32 *devid)
 +{
-+	u8 payload[8];
++	struct qdcp_data *qdcp;
++	u64 value;
++	int ret;
 +
-+	if (qdcp_stm_addr_unaligned(data, write_bytes)) {
-+		memcpy(payload, data, size);
-+		data = payload;
++	qdcp = devm_qdcp_get(dev, "qcom,qdcp");
++	if (IS_ERR(qdcp)) {
++		if (PTR_ERR(qdcp) == -EOPNOTSUPP)
++			dev_err(dev, "QDCP provider unavailable, is QCOM_QDCP a module while TMC is built in?\n");
++		else
++			dev_err(dev, "failed to get QDCP provider: %pe\n", qdcp);
++		return PTR_ERR(qdcp);
 +	}
 +
-+	switch (size) {
-+#ifdef CONFIG_64BIT
-+	case 8:
-+		writeq_relaxed(*(u64 *)data, addr);
-+		break;
-+#endif
-+	case 4:
-+		writel_relaxed(*(u32 *)data, addr);
-+		break;
-+	case 2:
-+		writew_relaxed(*(u16 *)data, addr);
-+		break;
-+	case 1:
-+		writeb_relaxed(*(u8 *)data, addr);
-+		break;
-+	default:
-+		break;
++	ret = fwnode_property_read_u64(dev->fwnode, "qcom,qdcp-tmc-id",
++				       &drvdata->qdcp.id);
++	if (ret) {
++		dev_err(dev, "missing QDCP TMC id: %d\n", ret);
++		return ret;
 +	}
++
++	drvdata->qdcp.provider = qdcp;
++	ret = tmc_qdcp_get_param(drvdata, QDCP_TMC_PARAM_DEVID,
++				 &value);
++	if (ret) {
++		/*
++		 * -EAGAIN means the QDCP QMI service has not registered yet;
++		 * retry via probe deferral. Any other error, including
++		 * -ENODEV from a dying provider, is a permanent failure.
++		 */
++		if (ret == -EAGAIN)
++			ret = -EPROBE_DEFER;
++		else
++			dev_err(dev, "failed to read QDCP TMC DEVID: %d\n", ret);
++		return ret;
++	}
++
++	*devid = value;
++	return 0;
 +}
 +
-+static ssize_t notrace qdcp_stm_packet(struct stm_data *stm_data,
-+				       unsigned int master, unsigned int channel,
-+				       unsigned int packet, unsigned int flags,
-+				       unsigned int size,
-+				       const unsigned char *payload)
++static int tmc_etr_qdcp_get_state(struct tmc_drvdata *drvdata, u64 *rrp,
++				  u64 *rwp, u32 *status)
 +{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+	void __iomem *channel_addr;
-+	unsigned int stm_flags;
++	u64 value;
++	int ret;
 +
-+	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-+	if (!coresight_get_mode(drvdata->csdev))
-+		return -EACCES;
++	ret = tmc_qdcp_get_param(drvdata, QDCP_TMC_PARAM_RRP,
++				 rrp);
++	if (ret)
++		goto err;
 +
-+	if (channel >= drvdata->numsp)
++	ret = tmc_qdcp_get_param(drvdata, QDCP_TMC_PARAM_RWP,
++				 rwp);
++	if (ret)
++		goto err;
++
++	ret = tmc_qdcp_get_param(drvdata, QDCP_TMC_PARAM_STS,
++				 &value);
++	if (ret)
++		goto err;
++
++	*status = value;
++	return 0;
++
++err:
++	/*
++	 * tmc_sync_etr_buf() returns without syncing on error. Invalidate the
++	 * buffer so a reused one doesn't present the previous capture as new.
++	 */
++	dev_err(&drvdata->csdev->dev, "failed to read QDCP ETR state: %d\n", ret);
++	if (drvdata->etr_buf) {
++		drvdata->etr_buf->len = 0;
++		drvdata->etr_buf->full = false;
++	}
++	return ret;
++}
++
++static void tmc_etr_qdcp_get_buffer_addr(struct tmc_drvdata *drvdata,
++					 struct etr_buf *etr_buf,
++					 phys_addr_t *paddr, dma_addr_t *iaddr)
++{
++	struct device *real_dev = drvdata->csdev->dev.parent;
++	struct iommu_domain *domain = iommu_get_domain_for_dev(real_dev);
++
++	*iaddr = etr_buf->hwaddr;
++
++	/*
++	 * etr_buf->hwaddr is the DMA address handed to the ETR/QECP AXI
++	 * master. When an IOMMU sits on that path it is an IOVA rather than
++	 * the CPU physical address, and QECP firmware needs the real
++	 * physical address separately for its own bus/master view of memory.
++	 * Without an IOMMU domain, the DMA address already is the physical
++	 * address.
++	 */
++	if (domain)
++		*paddr = iommu_iova_to_phys(domain, etr_buf->hwaddr);
++	else
++		*paddr = etr_buf->hwaddr;
++}
++
++static int tmc_etr_qdcp_enable_hw(struct tmc_drvdata *drvdata,
++				  struct etr_buf *etr_buf)
++{
++	struct qdcp_tmc_cfg cfg = { 0 };
++	int ret;
++
++	if (WARN_ON(!etr_buf))
 +		return -EINVAL;
 +
-+	channel_addr = qdcp_stm_channel_addr(drvdata, channel);
-+	stm_flags = flags & STP_PACKET_TIMESTAMPED ? STM_FLAG_TIMESTAMPED : 0;
-+	stm_flags |= test_bit(channel, drvdata->guaranteed) ?
-+		     STM_FLAG_GUARANTEED : 0;
++	if (etr_buf->mode == ETR_MODE_ETR_SG &&
++	    WARN_ON(!tmc_etr_has_cap(drvdata, TMC_ETR_SG)))
++		return -EINVAL;
 +
-+	switch (packet) {
-+	case STP_PACKET_FLAG:
-+		channel_addr += qdcp_stm_channel_off(QDCP_STM_PKT_TYPE_FLAG,
-+							 stm_flags);
-+		qdcp_stm_send(channel_addr, payload, 1, drvdata->write_bytes);
-+		return 1;
-+	case STP_PACKET_DATA:
-+		if (!size)
-+			return 0;
-+		if (size > drvdata->write_bytes)
-+			size = drvdata->write_bytes;
-+		else
-+			size = rounddown_pow_of_two(size);
++	if (WARN_ON(drvdata->etr_buf))
++		return -EBUSY;
 +
-+		stm_flags |= flags & STP_PACKET_MARKED ? STM_FLAG_MARKED : 0;
-+		channel_addr += qdcp_stm_channel_off(QDCP_STM_PKT_TYPE_DATA,
-+							 stm_flags);
-+		qdcp_stm_send(channel_addr, payload, size, drvdata->write_bytes);
-+		return size;
++	cfg.tmc_id = drvdata->qdcp.id;
++	tmc_etr_qdcp_get_buffer_addr(drvdata, etr_buf, &cfg.paddr, &cfg.iaddr);
++	cfg.size = etr_buf->size;
++	cfg.sg_mode = etr_buf->mode == ETR_MODE_ETR_SG;
++	cfg.ffcr = tmc_etr_default_ffcr(drvdata);
++
++	drvdata->etr_buf = etr_buf;
++	ret = qdcp_tmc_etr_enable(drvdata->qdcp.provider, &cfg);
++	/*
++	 * A failed or timed-out request may still have been executed, so
++	 * firmware may be writing into the buffer. Only release it once a
++	 * stop is confirmed, else keep it pinned for a later retry.
++	 */
++	if (ret && !qdcp_tmc_etr_disable(drvdata->qdcp.provider, drvdata->qdcp.id))
++		drvdata->etr_buf = NULL;
++	return ret;
++}
++
++/*
++ * drvdata->etr_buf is the buffer firmware may be writing into. It is only
++ * cleared once firmware has confirmed the stop, so a non-NULL etr_buf with the
++ * sink disabled means a stop is still pending and the buffer must not be freed
++ * or replaced.
++ */
++static int tmc_etr_qdcp_disable_hw(struct tmc_drvdata *drvdata)
++{
++	int ret;
++
++	if (!drvdata->etr_buf)
++		return 0;
++
++	ret = qdcp_tmc_etr_disable(drvdata->qdcp.provider, drvdata->qdcp.id);
++	if (ret) {
++		dev_err(&drvdata->csdev->dev,
++			"failed to stop QDCP ETR: %d\n", ret);
++		return ret;
++	}
++
++	tmc_etr_sync_sysfs_buf(drvdata);
++	drvdata->etr_buf = NULL;
++	return 0;
++}
++
++static int tmc_enable_etr_sink_sysfs_qdcp(struct coresight_device *csdev)
++{
++	struct tmc_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
++	struct etr_buf *sysfs_buf;
++	int ret = 0;
++
++	/*
++	 * tmc_etr_get_sysfs_buffer() takes drvdata->spinlock internally to
++	 * read/install drvdata->sysfs_buf, but every other QDCP path
++	 * (read_prepare/read_unprepare/disable) serializes that same field
++	 * through drvdata->qdcp.lock instead. Call it with qdcp.lock already
++	 * held so qdcp.lock is the single lock protocol for sysfs_buf/
++	 * etr_buf/reading from the QDCP driver's point of view; spinlock
++	 * nests safely inside the mutex.
++	 */
++	mutex_lock(&drvdata->qdcp.lock);
++
++	/* Retry an unconfirmed stop before the buffer can be replaced. */
++	if (drvdata->etr_buf && coresight_get_mode(csdev) == CS_MODE_DISABLED) {
++		ret = tmc_etr_qdcp_disable_hw(drvdata);
++		if (ret) {
++			mutex_unlock(&drvdata->qdcp.lock);
++			return ret;
++		}
++	}
++
++	sysfs_buf = tmc_etr_get_sysfs_buffer(csdev);
++	if (IS_ERR(sysfs_buf)) {
++		mutex_unlock(&drvdata->qdcp.lock);
++		return PTR_ERR(sysfs_buf);
++	}
++
++	if (coresight_get_mode(csdev) == CS_MODE_SYSFS) {
++		csdev->refcnt++;
++		goto out;
++	}
++
++	if (coresight_get_mode(csdev) != CS_MODE_DISABLED) {
++		drvdata->sysfs_buf = NULL;
++		mutex_unlock(&drvdata->qdcp.lock);
++		tmc_etr_free_sysfs_buf(sysfs_buf);
++		return -EBUSY;
++	}
++
++	ret = tmc_etr_qdcp_enable_hw(drvdata, sysfs_buf);
++	if (!ret) {
++		coresight_set_mode(csdev, CS_MODE_SYSFS);
++		csdev->refcnt++;
++	}
++
++out:
++	mutex_unlock(&drvdata->qdcp.lock);
++	if (!ret)
++		dev_dbg(&csdev->dev, "TMC-ETR enabled\n");
++	return ret;
++}
++
++static int tmc_disable_etr_sink_qdcp(struct coresight_device *csdev)
++{
++	struct tmc_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
++	int ret;
++
++	mutex_lock(&drvdata->qdcp.lock);
++	if (drvdata->reading) {
++		mutex_unlock(&drvdata->qdcp.lock);
++		return -EBUSY;
++	}
++
++	csdev->refcnt--;
++	if (csdev->refcnt) {
++		mutex_unlock(&drvdata->qdcp.lock);
++		return -EBUSY;
++	}
++
++	/*
++	 * The core drops the path whatever is returned here, so nobody is left
++	 * to retry. If the stop is not confirmed the buffer stays pinned and
++	 * the next enable, read or removal retries it.
++	 */
++	ret = tmc_etr_qdcp_disable_hw(drvdata);
++	drvdata->pid = -1;
++	coresight_set_mode(csdev, CS_MODE_DISABLED);
++	mutex_unlock(&drvdata->qdcp.lock);
++
++	if (!ret)
++		dev_dbg(&csdev->dev, "TMC-ETR disabled\n");
++	return ret;
++}
++
++void tmc_qdcp_etr_shutdown(struct tmc_drvdata *drvdata)
++{
++	mutex_lock(&drvdata->qdcp.lock);
++	if (tmc_etr_qdcp_disable_hw(drvdata))
++		dev_warn(&drvdata->csdev->dev,
++			 "QDCP ETR did not stop, leaving trace buffer allocated\n");
++	coresight_set_mode(drvdata->csdev, CS_MODE_DISABLED);
++	mutex_unlock(&drvdata->qdcp.lock);
++}
++
++static int tmc_enable_qdcp_etr_sink(struct coresight_device *csdev,
++				    enum cs_mode mode,
++				    struct coresight_path *path)
++{
++	switch (mode) {
++	case CS_MODE_SYSFS:
++		return tmc_enable_etr_sink_sysfs_qdcp(csdev);
 +	default:
 +		return -EOPNOTSUPP;
 +	}
 +}
 +
-+static phys_addr_t qdcp_stm_mmio_addr(struct stm_data *stm_data,
-+				      unsigned int master, unsigned int channel,
-+				      unsigned int nr_chans)
++static const struct coresight_ops_sink tmc_qdcp_etr_sink_ops = {
++	.enable		= tmc_enable_qdcp_etr_sink,
++	.disable	= tmc_disable_etr_sink_qdcp,
++};
++
++static const struct coresight_ops tmc_qdcp_etr_cs_ops = {
++	.sink_ops	= &tmc_qdcp_etr_sink_ops,
++};
++
++int tmc_qdcp_etr_sink_setup(struct device *dev, struct tmc_drvdata *drvdata,
++			    u32 devid, struct coresight_desc *desc)
 +{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+	phys_addr_t addr;
++	desc->groups = coresight_qdcp_etr_groups;
++	desc->ops = &tmc_qdcp_etr_cs_ops;
++	drvdata->etr_get_state = tmc_etr_qdcp_get_state;
 +
-+	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-+	addr = drvdata->stimulus_phys +
-+	       channel * QDCP_STM_BYTES_PER_CHANNEL;
++	tmc_etr_init_caps(drvdata, 0);
 +
-+	if (offset_in_page(addr) ||
-+	    offset_in_page(nr_chans * QDCP_STM_BYTES_PER_CHANNEL))
-+		return 0;
-+
-+	return addr;
++	return tmc_etr_setup_sg_and_dma_mask(dev, drvdata, devid);
 +}
 +
-+static int qdcp_stm_link(struct stm_data *stm_data, unsigned int master,
-+			 unsigned int channel)
++int tmc_qdcp_etr_read_prepare(struct tmc_drvdata *drvdata)
 +{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+
-+	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-+	if (!drvdata->csdev)
-+		return -EINVAL;
-+
-+	return coresight_enable_sysfs(drvdata->csdev);
-+}
-+
-+static void qdcp_stm_unlink(struct stm_data *stm_data, unsigned int master,
-+			    unsigned int channel)
-+{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+
-+	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-+	if (drvdata->csdev)
-+		coresight_disable_sysfs(drvdata->csdev);
-+}
-+
-+static long qdcp_stm_set_options(struct stm_data *stm_data,
-+				 unsigned int master, unsigned int channel,
-+				 unsigned int nr_chans, unsigned long options)
-+{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+
-+	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-+	if (!coresight_get_mode(drvdata->csdev))
-+		return -EINVAL;
-+
-+	if (channel >= drvdata->numsp)
-+		return -EINVAL;
-+
-+	switch (options) {
-+	case STM_OPTION_GUARANTEED:
-+		set_bit(channel, drvdata->guaranteed);
-+		break;
-+	case STM_OPTION_INVARIANT:
-+		clear_bit(channel, drvdata->guaranteed);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int qdcp_stm_enable(struct coresight_device *csdev,
-+			   struct perf_event *event, enum cs_mode mode,
-+			   struct coresight_path *path)
-+{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+	int ret;
-+
-+	if (mode != CS_MODE_SYSFS)
-+		return -EINVAL;
-+
-+	if (!coresight_take_mode(csdev, mode))
-+		return -EBUSY;
-+
-+	drvdata = dev_get_drvdata(csdev->dev.parent);
++	int ret = 0;
 +
 +	mutex_lock(&drvdata->qdcp.lock);
-+	ret = qdcp_stm_source_enable(drvdata->qdcp.provider, drvdata->qdcp.id,
-+				     drvdata->traceid, drvdata->port_mask,
-+				     false);
-+	if (!ret)
-+		drvdata->fw_stop_failed = false;
-+	mutex_unlock(&drvdata->qdcp.lock);
-+	if (ret) {
-+		coresight_set_mode(csdev, CS_MODE_DISABLED);
-+		return ret;
++	if (drvdata->reading) {
++		ret = -EBUSY;
++		goto out;
 +	}
 +
-+	dev_dbg(&csdev->dev, "QDCP STM tracing enabled\n");
++	if (!drvdata->sysfs_buf) {
++		ret = -EINVAL;
++		goto out;
++	}
++
++	ret = tmc_etr_qdcp_disable_hw(drvdata);
++	if (ret)
++		goto out;
++
++	drvdata->reading = true;
++out:
++	mutex_unlock(&drvdata->qdcp.lock);
++	return ret;
++}
++
++int tmc_qdcp_etr_read_unprepare(struct tmc_drvdata *drvdata)
++{
++	struct etr_buf *sysfs_buf = NULL;
++	int ret = 0;
++
++	mutex_lock(&drvdata->qdcp.lock);
++	if (coresight_get_mode(drvdata->csdev) == CS_MODE_SYSFS) {
++		/*
++		 * If firmware does not resume, stay in SYSFS mode: the core
++		 * still holds its sink reference, and the final disable()
++		 * drops it.
++		 */
++		ret = tmc_etr_qdcp_enable_hw(drvdata, drvdata->sysfs_buf);
++	} else {
++		sysfs_buf = drvdata->sysfs_buf;
++		drvdata->sysfs_buf = NULL;
++	}
++	drvdata->reading = false;
++	mutex_unlock(&drvdata->qdcp.lock);
++
++	if (sysfs_buf)
++		tmc_etr_free_sysfs_buf(sysfs_buf);
++	return ret;
++}
+diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+index 361a433e6f0c..c53a1ee8b1fd 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
++++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+@@ -911,7 +911,8 @@ static void get_etr_buf_hw(struct device *dev, struct etr_buf_hw *buf_hw)
+ 
+ 	buf_hw->has_iommu = iommu_get_domain_for_dev(dev->parent);
+ 	buf_hw->has_etr_sg = tmc_etr_has_cap(drvdata, TMC_ETR_SG);
+-	buf_hw->has_catu = !!tmc_etr_get_catu_device(drvdata);
++	buf_hw->has_catu = !tmc_has_qdcp(drvdata) &&
++				    !!tmc_etr_get_catu_device(drvdata);
+ 	buf_hw->has_resrv = tmc_has_reserved_buffer(drvdata);
+ }
+ 
+@@ -1019,6 +1020,15 @@ tmc_etr_buf_insert_barrier_packet(struct etr_buf *etr_buf, u64 offset)
+ 	return offset + CORESIGHT_BARRIER_PKT_SIZE;
+ }
+ 
++int tmc_etr_mmio_get_state(struct tmc_drvdata *drvdata, u64 *rrp,
++			   u64 *rwp, u32 *status)
++{
++	*rrp = tmc_read_rrp(drvdata);
++	*rwp = tmc_read_rwp(drvdata);
++	*status = readl_relaxed(drvdata->base + TMC_STS);
 +	return 0;
 +}
++
+ /*
+  * tmc_sync_etr_buf: Sync the trace buffer availability with drvdata.
+  * Makes sure the trace data is synced to the memory for consumption.
+@@ -1030,10 +1040,11 @@ static void tmc_sync_etr_buf(struct tmc_drvdata *drvdata)
+ 	struct etr_buf *etr_buf = drvdata->etr_buf;
+ 	u64 rrp, rwp;
+ 	u32 status;
++	int ret;
+ 
+-	rrp = tmc_read_rrp(drvdata);
+-	rwp = tmc_read_rwp(drvdata);
+-	status = readl_relaxed(drvdata->base + TMC_STS);
++	ret = drvdata->etr_get_state(drvdata, &rrp, &rwp, &status);
++	if (ret)
++		return;
+ 
+ 	/*
+ 	 * If there were memory errors in the session, truncate the
+@@ -1054,6 +1065,16 @@ static void tmc_sync_etr_buf(struct tmc_drvdata *drvdata)
+ 	etr_buf->ops->sync(etr_buf, rrp, rwp);
+ }
+ 
++u32 tmc_etr_default_ffcr(struct tmc_drvdata *drvdata)
++{
++	u32 ffcr = TMC_FFCR_EN_FMT | TMC_FFCR_EN_TI | TMC_FFCR_FON_FLIN |
++		   TMC_FFCR_FON_TRIG_EVT | TMC_FFCR_TRIGON_TRIGIN;
++
++	if (drvdata->stop_on_flush)
++		ffcr |= TMC_FFCR_STOP_ON_FLUSH;
++	return ffcr;
++}
++
+ static int __tmc_etr_enable_hw(struct tmc_drvdata *drvdata)
+ {
+ 	u32 axictl, sts, ffcr;
+@@ -1102,10 +1123,7 @@ static int __tmc_etr_enable_hw(struct tmc_drvdata *drvdata)
+ 		writel_relaxed(sts, drvdata->base + TMC_STS);
+ 	}
+ 
+-	ffcr = TMC_FFCR_EN_FMT | TMC_FFCR_EN_TI | TMC_FFCR_FON_FLIN |
+-		TMC_FFCR_FON_TRIG_EVT | TMC_FFCR_TRIGON_TRIGIN;
+-	if (drvdata->stop_on_flush)
+-		ffcr |= TMC_FFCR_STOP_ON_FLUSH;
++	ffcr = tmc_etr_default_ffcr(drvdata);
+ 	writel_relaxed(ffcr, drvdata->base + TMC_FFCR);
+ 
+ 	writel_relaxed(drvdata->trigger_cntr, drvdata->base + TMC_TRG);
+@@ -1180,14 +1198,14 @@ tmc_etr_setup_sysfs_buf(struct tmc_drvdata *drvdata)
+ 				 0, cpu_to_node(0), NULL);
+ }
+ 
+-static void
++void
+ tmc_etr_free_sysfs_buf(struct etr_buf *buf)
+ {
+ 	if (buf)
+ 		tmc_free_etr_buf(buf);
+ }
+ 
+-static void tmc_etr_sync_sysfs_buf(struct tmc_drvdata *drvdata)
++void tmc_etr_sync_sysfs_buf(struct tmc_drvdata *drvdata)
+ {
+ 	struct etr_buf *etr_buf = drvdata->etr_buf;
+ 
+@@ -1232,7 +1250,7 @@ void tmc_etr_disable_hw(struct tmc_drvdata *drvdata)
+ 	drvdata->etr_buf = NULL;
+ }
+ 
+-static struct etr_buf *tmc_etr_get_sysfs_buffer(struct coresight_device *csdev)
++struct etr_buf *tmc_etr_get_sysfs_buffer(struct coresight_device *csdev)
+ {
+ 	int ret = 0;
+ 	unsigned long flags;
+@@ -1927,6 +1945,9 @@ int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
+ 	if (WARN_ON_ONCE(drvdata->config_type != TMC_CONFIG_TYPE_ETR))
+ 		return -EINVAL;
+ 
++	if (tmc_has_qdcp(drvdata))
++		return tmc_qdcp_etr_read_prepare(drvdata);
++
+ 	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+ 	if (drvdata->reading) {
+ 		ret = -EBUSY;
+@@ -1963,6 +1984,9 @@ int tmc_read_unprepare_etr(struct tmc_drvdata *drvdata)
+ 	if (WARN_ON_ONCE(drvdata->config_type != TMC_CONFIG_TYPE_ETR))
+ 		return -EINVAL;
+ 
++	if (tmc_has_qdcp(drvdata))
++		return tmc_qdcp_etr_read_unprepare(drvdata);
++
+ 	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+ 
+ 	/* RE-enable the TMC if need be */
+diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
+index 319a354ede9f..bb30957af1e3 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc.h
++++ b/drivers/hwtracing/coresight/coresight-tmc.h
+@@ -13,6 +13,7 @@
+ #include <linux/mutex.h>
+ #include <linux/refcount.h>
+ #include <linux/crc32.h>
++#include <linux/soc/qcom/qdcp.h>
+ 
+ #define TMC_RSZ			0x004
+ #define TMC_STS			0x00c
+@@ -166,6 +167,18 @@ enum etr_mode {
+ };
+ 
+ struct etr_buf_operations;
++struct tmc_drvdata;
 +
 +/*
-+ * The CoreSight source disable op returns void and the user has already torn
-+ * the path down, so the source always ends up disabled from Linux's point of
-+ * view. Return the firmware result so the caller can at least report it.
++ * tmc_etr_get_state_fn - read back {rrp, rwp, status} for an ETR sink.
++ * Resolved once at probe time to either the local-MMIO or QDCP firmware
++ * implementation, so tmc_sync_etr_buf() does not need to branch on
++ * tmc_has_qdcp() on every buffer sync. Returns 0 on success; the local-MMIO
++ * implementation always succeeds, the QDCP implementation may fail if the
++ * firmware transaction fails.
 + */
-+static int qdcp_stm_disable_source(struct coresight_device *csdev)
++typedef int (*tmc_etr_get_state_fn)(struct tmc_drvdata *drvdata, u64 *rrp,
++				     u64 *rwp, u32 *status);
+ 
+ /**
+  * struct etr_buf - Details of the buffer used by ETR
+@@ -245,6 +258,14 @@ struct tmc_resrv_buf {
+  *		(after crash) by default.
+  * @crash_mdata: Reserved memory for storing tmc crash metadata.
+  *		 Used by ETR/ETF.
++ * @qdcp:	QDCP connection state for firmware-owned ETR instances.
++ *		@qdcp.id is the QDCP TMC identifier. @qdcp.lock does more than
++ *		its name in struct qdcp_consumer suggests: QDCP enable/
++ *		disable makes a sleeping firmware RPC, so it cannot share
++ *		@spinlock, and instead serialises those calls together with
++ *		the csdev->refcnt/mode transitions they guard.
++ * @etr_get_state: resolved at probe time to the local-MMIO or QDCP ETR
++ *		 {rrp, rwp, status} readback implementation.
+  */
+ struct tmc_drvdata {
+ 	struct clk		*atclk;
+@@ -275,8 +296,15 @@ struct tmc_drvdata {
+ 	struct etr_buf		*perf_buf;
+ 	struct tmc_resrv_buf	resrv_buf;
+ 	struct tmc_resrv_buf	crash_mdata;
++	struct qdcp_consumer	qdcp;
++	tmc_etr_get_state_fn	etr_get_state;
+ };
+ 
++static inline bool tmc_has_qdcp(struct tmc_drvdata *drvdata)
 +{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+	struct qdcp_data *qdcp;
-+	u64 source_id;
-+	u8 traceid;
-+	int ret;
-+
-+	if (coresight_get_mode(csdev) != CS_MODE_SYSFS)
-+		return 0;
-+
-+	drvdata = dev_get_drvdata(csdev->dev.parent);
-+	qdcp = drvdata->qdcp.provider;
-+	source_id = drvdata->qdcp.id;
-+	traceid = drvdata->traceid;
-+
-+	mutex_lock(&drvdata->qdcp.lock);
-+	ret = qdcp_stm_source_disable(qdcp, source_id, traceid, false);
-+	drvdata->fw_stop_failed = !!ret;
-+	mutex_unlock(&drvdata->qdcp.lock);
-+
-+	coresight_set_mode(csdev, CS_MODE_DISABLED);
-+	dev_dbg(&csdev->dev, "QDCP STM tracing disabled\n");
-+	return ret;
++	return !!drvdata->qdcp.provider;
 +}
 +
-+static void qdcp_stm_disable(struct coresight_device *csdev,
-+			     struct perf_event *event)
-+{
-+	int ret = qdcp_stm_disable_source(csdev);
-+
-+	if (ret)
-+		dev_warn(&csdev->dev,
-+			 "firmware did not confirm QDCP STM disable: %d\n",
-+			 ret);
-+}
-+
-+static int qdcp_stm_trace_id(struct coresight_device *csdev,
-+			     enum cs_mode mode, struct coresight_device *sink)
-+{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+
-+	drvdata = dev_get_drvdata(csdev->dev.parent);
-+	return drvdata->traceid;
-+}
-+
-+static const struct coresight_ops_source qdcp_stm_source_ops = {
-+	.enable		= qdcp_stm_enable,
-+	.disable	= qdcp_stm_disable,
-+};
-+
-+static const struct coresight_ops qdcp_stm_cs_ops = {
-+	.trace_id	= qdcp_stm_trace_id,
-+	.source_ops	= &qdcp_stm_source_ops,
-+};
-+
-+static ssize_t traceid_show(struct device *dev,
-+			    struct device_attribute *attr, char *buf)
-+{
-+	struct qcom_qdcp_stm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-+
-+	return sysfs_emit(buf, "%#x\n", drvdata->traceid);
-+}
-+static DEVICE_ATTR_RO(traceid);
-+
-+static struct attribute *qdcp_stm_attrs[] = {
-+	&dev_attr_traceid.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group qdcp_stm_group = {
-+	.attrs = qdcp_stm_attrs,
-+};
-+
-+static const struct attribute_group *qdcp_stm_groups[] = {
-+	&qdcp_stm_group,
-+	NULL,
-+};
-+
-+static int qdcp_stm_get_stimulus_area(struct platform_device *pdev,
-+				      struct resource **res)
-+{
-+	/*
-+	 * The binding requires reg-names = "stm-stimulus-base"; there is no
-+	 * documented unnamed-resource form, so don't silently accept one.
-+	 */
-+	*res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-+					    "stm-stimulus-base");
-+	return *res ? 0 : -EINVAL;
-+}
-+
-+static void qdcp_stm_init_stm_data(struct qcom_qdcp_stm_drvdata *drvdata,
-+				   const char *name)
-+{
-+	struct stm_data *stm = &drvdata->stm;
-+
-+	stm->name = name;
-+	stm->sw_start = 1;
-+	stm->sw_end = 1;
-+	stm->hw_override = true;
-+	stm->sw_nchannels = drvdata->numsp;
-+	stm->sw_mmiosz = QDCP_STM_BYTES_PER_CHANNEL;
-+	stm->packet = qdcp_stm_packet;
-+	stm->mmio_addr = qdcp_stm_mmio_addr;
-+	stm->link = qdcp_stm_link;
-+	stm->unlink = qdcp_stm_unlink;
-+	stm->set_options = qdcp_stm_set_options;
-+}
-+
-+static int qdcp_stm_probe(struct platform_device *pdev)
-+{
-+	struct qcom_qdcp_stm_drvdata *drvdata;
-+	struct coresight_platform_data *pdata;
-+	struct coresight_desc desc = { 0 };
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	const char *name;
-+	u32 numsp;
-+	int trace_id;
-+	int ret;
-+
-+	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-+	if (!drvdata)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, drvdata);
-+
-+	drvdata->qdcp.provider = devm_qdcp_get(dev, "qcom,qdcp");
-+	if (IS_ERR(drvdata->qdcp.provider)) {
-+		dev_err(dev, "failed to get QDCP provider: %pe\n",
-+			drvdata->qdcp.provider);
-+		return PTR_ERR(drvdata->qdcp.provider);
-+	}
-+
-+	ret = fwnode_property_read_u64(dev->fwnode, "qcom,qdcp-source-id",
-+				       &drvdata->qdcp.id);
-+	if (ret) {
-+		dev_err(dev, "missing QDCP STM source id: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = qdcp_stm_get_stimulus_area(pdev, &res);
-+	if (ret) {
-+		dev_err(dev, "missing STM stimulus aperture: %d\n", ret);
-+		return ret;
-+	}
-+
-+	drvdata->stimulus_phys = res->start;
-+	drvdata->stimulus_base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(drvdata->stimulus_base))
-+		return PTR_ERR(drvdata->stimulus_base);
-+
-+	ret = fwnode_property_read_u32(dev->fwnode, "qcom,num-stimulus-ports",
-+				       &numsp);
-+	if (ret) {
-+		numsp = resource_size(res) / QDCP_STM_BYTES_PER_CHANNEL;
-+		if (!numsp) {
-+			dev_err(dev, "stimulus aperture of %llu bytes holds no channels\n",
-+				(u64)resource_size(res));
-+			return -EINVAL;
-+		}
-+	} else if (!numsp ||
-+		   (u64)numsp * QDCP_STM_BYTES_PER_CHANNEL > resource_size(res)) {
-+		/*
-+		 * A DT-provided port count that doesn't fit the mapped
-+		 * stimulus aperture would let channel addressing in
-+		 * qdcp_stm_packet()/qdcp_stm_mmio_addr() compute offsets past
-+		 * the end of what devm_ioremap_resource() actually mapped.
-+		 */
-+		dev_err(dev, "qcom,num-stimulus-ports %u exceeds stimulus aperture of %llu bytes\n",
-+			numsp, (u64)resource_size(res));
-+		return -EINVAL;
-+	}
-+
-+	drvdata->numsp = numsp;
-+	drvdata->write_bytes = IS_ENABLED(CONFIG_64BIT) ? 8 : 4;
-+	/*
-+	 * STMSPER-style mask: enable all ports in every 32-port group. The
-+	 * firmware applies it to whichever group is active, so this covers
-+	 * all ports irrespective of numsp.
-+	 */
-+	drvdata->port_mask = U32_MAX;
-+	drvdata->guaranteed = devm_bitmap_zalloc(dev, numsp, GFP_KERNEL);
-+	if (!drvdata->guaranteed)
-+		return -ENOMEM;
-+
-+	mutex_init(&drvdata->qdcp.lock);
-+
-+	name = coresight_alloc_device_name("qdcp_stm", dev);
-+	if (!name)
-+		return -ENOMEM;
-+
-+	trace_id = coresight_trace_id_get_system_id();
-+	if (trace_id < 0)
-+		return trace_id;
-+	drvdata->traceid = trace_id;
-+
-+	pdata = coresight_get_platform_data(dev);
-+	if (IS_ERR(pdata)) {
-+		ret = PTR_ERR(pdata);
-+		goto err_trace_id_put;
-+	}
-+	dev->platform_data = pdata;
-+
-+	desc.name = name;
-+	desc.type = CORESIGHT_DEV_TYPE_SOURCE;
-+	desc.subtype.source_subtype = CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE;
-+	desc.ops = &qdcp_stm_cs_ops;
-+	desc.pdata = pdata;
-+	desc.dev = dev;
-+	desc.groups = qdcp_stm_groups;
-+	/*
-+	 * The STM control registers are owned by QECP firmware and are not
-+	 * AP-accessible; only the stimulus aperture is mapped (for data
-+	 * writes, not CoreSight management access). Leave desc.access unset
-+	 * so the core never tries to touch programming registers directly.
-+	 */
-+	drvdata->csdev = coresight_register(&desc);
-+	if (IS_ERR(drvdata->csdev)) {
-+		ret = PTR_ERR(drvdata->csdev);
-+		goto err_trace_id_put;
-+	}
-+
-+	/*
-+	 * csdev and traceid must both be valid before the STM char device
-+	 * is live, since stm_register_device() makes drvdata->stm's
-+	 * callbacks (packet(), set_options(), ...) reachable immediately via
-+	 * /dev/<name> ioctls and writes, and those callbacks dereference
-+	 * drvdata->csdev and drvdata->traceid.
-+	 */
-+	qdcp_stm_init_stm_data(drvdata, name);
-+	ret = stm_register_device(dev, &drvdata->stm, THIS_MODULE);
-+	if (ret) {
-+		dev_err(dev, "failed to register STM: %d\n", ret);
-+		goto err_coresight_unregister;
-+	}
-+
-+	dev_info(&drvdata->csdev->dev, "QDCP STM initialized\n");
-+	return 0;
-+
-+err_coresight_unregister:
-+	coresight_unregister(drvdata->csdev);
-+err_trace_id_put:
-+	coresight_trace_id_put_system_id(drvdata->traceid);
-+	return ret;
-+}
-+
-+static void qdcp_stm_remove(struct platform_device *pdev)
-+{
-+	struct qcom_qdcp_stm_drvdata *drvdata = platform_get_drvdata(pdev);
-+
-+	/*
-+	 * Unregister the STM first: its unlink callback disables the source
-+	 * through drvdata->csdev, which must still be live.
-+	 */
-+	stm_unregister_device(&drvdata->stm);
-+
-+	/*
-+	 * No-op unless the source is still in CS_MODE_SYSFS. Without it,
-+	 * removing an enabled source would leave firmware STM enabled.
-+	 */
-+	qdcp_stm_disable_source(drvdata->csdev);
-+
-+	/*
-+	 * A stop that failed here or earlier (fw_stop_failed) means firmware
-+	 * may still be tagging trace with this ID. Keep it allocated rather
-+	 * than let another source reuse it.
-+	 */
-+	if (drvdata->fw_stop_failed)
-+		dev_warn(&pdev->dev,
-+			 "QDCP STM not confirmed stopped, leaking trace ID %u\n",
-+			 drvdata->traceid);
-+	else
-+		coresight_trace_id_put_system_id(drvdata->traceid);
-+
-+	coresight_unregister(drvdata->csdev);
-+}
-+
-+static const struct of_device_id qdcp_stm_match[] = {
-+	{ .compatible = "qcom,coresight-stm-qdcp" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, qdcp_stm_match);
-+
-+static struct platform_driver qdcp_stm_driver = {
-+	.probe = qdcp_stm_probe,
-+	.remove = qdcp_stm_remove,
-+	.driver = {
-+		.name = "coresight-qcom-qdcp-stm",
-+		.of_match_table = qdcp_stm_match,
-+		.suppress_bind_attrs = true,
-+	},
-+};
-+module_platform_driver(qdcp_stm_driver);
-+
-+MODULE_DESCRIPTION("Qualcomm QDCP CoreSight STM source driver");
-+MODULE_AUTHOR("Jie Gan <jie.gan@oss.qualcomm.com>");
-+MODULE_LICENSE("GPL");
+ struct etr_buf_operations {
+ 	int (*alloc)(struct tmc_drvdata *drvdata, struct etr_buf *etr_buf,
+ 		     int node, void **pages);
+@@ -339,9 +367,27 @@ int tmc_read_prepare_etr(struct tmc_drvdata *drvdata);
+ int tmc_read_unprepare_etr(struct tmc_drvdata *drvdata);
+ void tmc_etr_disable_hw(struct tmc_drvdata *drvdata);
+ extern const struct coresight_ops tmc_etr_cs_ops;
++int tmc_etr_mmio_get_state(struct tmc_drvdata *drvdata, u64 *rrp, u64 *rwp,
++			   u32 *status);
+ ssize_t tmc_etr_get_sysfs_trace(struct tmc_drvdata *drvdata,
+ 				loff_t pos, size_t len, char **bufpp);
++struct etr_buf *tmc_etr_get_sysfs_buffer(struct coresight_device *csdev);
++void tmc_etr_free_sysfs_buf(struct etr_buf *buf);
++void tmc_etr_sync_sysfs_buf(struct tmc_drvdata *drvdata);
++u32 tmc_etr_default_ffcr(struct tmc_drvdata *drvdata);
++int tmc_etr_setup_sg_and_dma_mask(struct device *dev,
++				  struct tmc_drvdata *drvdata, u32 devid);
++extern const struct attribute_group coresight_tmc_group;
++extern const struct attribute_group coresight_qdcp_tmc_group;
+ 
++/* QDCP-owned ETR functions, see coresight-tmc-etr-qdcp.c */
++int tmc_qdcp_etr_probe_setup(struct device *dev, struct tmc_drvdata *drvdata,
++			     u32 *devid);
++int tmc_qdcp_etr_sink_setup(struct device *dev, struct tmc_drvdata *drvdata,
++			    u32 devid, struct coresight_desc *desc);
++int tmc_qdcp_etr_read_prepare(struct tmc_drvdata *drvdata);
++int tmc_qdcp_etr_read_unprepare(struct tmc_drvdata *drvdata);
++void tmc_qdcp_etr_shutdown(struct tmc_drvdata *drvdata);
+ 
+ #define TMC_REG_PAIR(name, lo_off, hi_off)				\
+ static inline u64							\
 
 -- 
 2.34.1
