@@ -2,113 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A84E60A3804
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF932606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VrxSQTgS;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=amef0XUq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uIkRS3WE;
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=lezu00V8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oYsF550BKQfD0j7JfAbm7aTzYOcUaHqA28bpz7Hm6Kg=; b=VrxSQTgSRNBART
-	IIC+BdEyaZEdUOZptiSQppen9n2Dkt8hDsbzVKfzp7sxF+7nzbfzi+SldqXBOM2qYyEpMRtoHPu2z
-	9QBLL8UZ40Kn1e6PRjx+l8AQleV9nzuqvIELBJHQ8Nt5SW1SpDjfy41XRG76sINYI4V7EZR3RK6Kt
-	s7eI1K6qbPi6RWIAlOQnfJUStRXClsTnAEnyFtnlPgTeNIT+ifg2fKJR2LcwVYFmr//hi7J4wu9Mi
-	UbOqgPDsnlYBgI3I1Je6omwXLtjMa0R0tmq0U4gep1CME6Cyy/e/xZedOnYUup6jLioRXBO/vsYCI
-	UYOVSfGj6L7d6lgU+3wQ==;
+	List-Owner; bh=TzPHAIt7G9f+FpKmfm1zo12EV1nvo35s0k9nQGlDh38=; b=uIkRS3WEX5Ultx
+	roQ7CeWOIBRAg4JOndoYynEbB4oQQLi6Vj6TQZecoFK0wd5l0iKyL5HJz0MtRdfbFQRJ7ISvGCdmH
+	epPIfo4GWrOBWkBq8anB1q4J33h6HhTYEkBoEzkn+pZhACCQG9opD3QqfvcDxggcc1Z3p+cmO5fBn
+	uqDN2VO62hUuFLEaCOjWJ6+hbq9XP2L2WeCdz9hc6HBUUk8jSEZFpAyz7yhuPI7kg4cnGG6WDsGME
+	wMglW9J4bSh5CrW1+kodaKs/JfPoWP45UDqUTO3nc12XGgsz1ocEGaVxONhiC9bvGXjIxEzB5HNcv
+	rg6IUfZiRSlm8Y77MFfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU88K-0000000DGY0-3MSw;
-	Thu, 19 Nov 2026 19:49:24 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU88J-0000000DGWm-122d;
-	Thu, 19 Nov 2026 19:49:23 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C30E54559D;
-	Thu, 19 Nov 2026 19:49:22 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795117762;
-	b=FPhqopQPF1bedJGGGX5g9orw1xspN58iIsJ1Kec1VQYkiAbLqJFx4l3eaQbOnGjqTigk
-	 GpjOor+U9B0PqZdtGGn1qOi/8zg9BzJw3n2j/Kw1j/wanxQQ8gje53G2+7XwFi2zEjAiL
-	 7Y4WnP0ikLXAb76Mv5mF2OOnNoO3UaEKYDc+sSaZLajyQs4gElgFI5YIEUC4pRsLAQp3e
-	 U8GO2CLe3v0yzXwhZAIkLifsxGoFUTfEt78nJGO/uAO8GqDaq5A1QhQ0jfKxMTntceaXD
-	 b6WeqBnygRZFxlOFnZSg57ARjS33Ert+Nncji/KauJ9ochjumJAhCAsPWkgHNKfmjtA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795117762;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
-	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=oYsF550BKQfD0j7JfAbm7aTzYOcUaHqA28bpz7Hm6Kg=;
-	b=x3K+m43iBhfUAMwH0DvsPdzrRtApgJGcF0P/61cXF0Dut409djYiVrgpJv62At46Nf8z
-	 JBtTxjwR/icraU8MuODJ1S9XeSJ++xCAPeRiBVcDfuZqDt7eZPMcbuMpXTW11Q34223XL
-	 A44LqF3Pj+tWo66ifEnhrCSwVROphAegC/DwZVI8XCHa/Jn3W5pqH7fMHQCwFEYUICFzo
-	 r1BKj5ag0ukJo/8IlZUkqlATuDhPKmuANfn/r0zg/4CJ/PHaBea7OOevO8ZqTIZ4pb5Vw
-	 n6ZU3dPhrfiVuZVhYGFIe4LsZqxzVAR5EhGYHZoz9upw6WwWnOZCqfKsGdxGU+3GKpw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id C538D1F000C9;
-	Thu, 19 Nov 2026 19:49:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795117762;
-	bh=oYsF550BKQfD0j7JfAbm7aTzYOcUaHqA28bpz7Hm6Kg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=amef0XUquXJyPkEXncgm2Adqdwxb0MNPVluOCxXD7B5vKPzOXrKy9h5pvQWZL7bD/
-	 McDgFweh7ePUAn3edL8pQIBTr7ycHl9nOoo9IB+0a7hbzLtqpFqfwNp3BAsiPtHuOZ
-	 EGwTB9La2LxC8NsBGcyBKV9jucJh2B0dCt3aG0PFjXQdGXM0ayBzuX5RPOwoTZqO7V
-	 B3wlfTJXcIl+3NCZYwjaCZ1fo06eWgCcgjVdy9svSL5n7i6fdAW/y6h6LxL4E9zWTF
-	 kG5PZH9oyOJA4mk3Wk2uMXL6T4DBRBxDRFDD9ASOUyBjyv7mMesLTxTkhiCE5mxKEX
-	 lrcV+BKbflrrA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 523BB4B408;
-	Thu, 19 Nov 2026 19:49:21 +0000 (UTC)
-From: Umer Uddin via B4 Relay <devnull+umer.uddin.mentallysanemainliners.org@kernel.org>
-Date: Thu, 19 Nov 2026 19:49:19 +0000
-Subject: [PATCH 3/6] phy: exynos5-usbdrd: support Exynos7885 USB PHY
+	id 1xU89v-0000000DHID-25BF;
+	Thu, 19 Nov 2026 19:51:03 +0000
+Received: from linux.microsoft.com ([13.77.154.182])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU89s-0000000DHHb-36N1
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 19 Nov 2026 19:51:02 +0000
+Received: from localhost (unknown [4.194.122.170])
+	by linux.microsoft.com (Postfix) with ESMTPSA id B05A720B7166;
+	Thu, 19 Nov 2026 11:50:44 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com B05A720B7166
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1795117857;
+	bh=TzPHAIt7G9f+FpKmfm1zo12EV1nvo35s0k9nQGlDh38=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=lezu00V8AX0KS8edVg+tWvDvdbLFzEAt0p2MIZEeobg6bgTiqM6svd+xkQrzwEz9J
+	 qsN5+IyRULTA/PqNSTtGWNxaKVTe5ERmTVPeYJ+R4+fvRAhesFfV2Kzwr1UVqC4uTy
+	 hBI7zCH6TnQ9X994l9o2Cu683jOlx8PWvSe0RWdY=
+Date: Thu, 19 Nov 2026 11:50:41 -0800
+From: Jacob Pan <jacob.pan@linux.microsoft.com>
+To: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>
+Cc: linux-coco@lists.linux.dev, Alex Williamson <alex@shazbot.org>, Alexey
+ Kardashevskiy <aik@amd.com>, Bjorn Helgaas <bhelgaas@google.com>, Catalin
+ Marinas <catalin.marinas@arm.com>, Jason Gunthorpe <jgg@ziepe.ca>, Joerg
+ Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>, Jonathan
+ Hunter <jonathanh@nvidia.com>, Kevin Tian <kevin.tian@intel.com>, Krishna
+ Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>, Nicolin Chen
+ <nicolinc@nvidia.com>, Robin Murphy <robin.murphy@arm.com>, Samuel Ortiz
+ <sameo@rivosinc.com>, Shameer Kolothum
+ <shameerali.kolothum.thodi@huawei.com>, Steven Price
+ <steven.price@arm.com>, Suravee Suthikulpanit
+ <suravee.suthikulpanit@amd.com>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Thierry Reding <thierry.reding@kernel.org>, Vasant Hegde
+ <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>, Xu Yilun
+ <yilun.xu@linux.intel.com>, Ashish Kalra <ashish.kalra@amd.com>, Herbert Xu
+ <herbert@gondor.apana.org.au>, iommu@lists.linux.dev, Jonathan Cameron
+ <jonathan.cameron@huawei.com>, Tom Lendacky <thomas.lendacky@amd.com>,
+ kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org, linux-tegra@vger.kernel.org,
+ patches@lists.linux.dev, jacob.pan@linux.microsoft.com
+Subject: Re: [PATCH v9 10/13] iommufd/viommu: Allow PCI TSM backends to
+ provide vIOMMU operations
+Message-ID: <20261119115041.00007215@linux.microsoft.com>
+In-Reply-To: <20261116081935.85372-11-aneesh.kumar@kernel.org>
+References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
+	<20261116081935.85372-11-aneesh.kumar@kernel.org>
+Organization: LSG
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-w64-mingw32)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-gta3xllte-usb-battery-v1-3-0cf5f763522e@mentallysanemainliners.org>
-References: <20261119-gta3xllte-usb-battery-v1-0-0cf5f763522e@mentallysanemainliners.org>
-In-Reply-To: <20261119-gta3xllte-usb-battery-v1-0-0cf5f763522e@mentallysanemainliners.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, 
- Umer Uddin <umer.uddin@mentallysanemainliners.org>, 
- David Virag <virag.david003@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795117759; l=4041;
- i=umer.uddin@mentallysanemainliners.org; s=20261109;
- h=from:subject:message-id;
- bh=0vg/X3UExBZ1rUkseyLY5OJLxLcF7MB1/Qmq/onbtak=;
- b=9OthLMMVqY+YTTHZvjYUSjxbFnYEGcuT6VI0DHA0eiiVbF8M2VWKX8BSxVVy5tltkkoQ4um1p
- UV6Jtx1R3ceDGmOqOOVak2DLMEoBUo6kT1JaUOt0Q44fnvanfVPSQ3J
-X-Developer-Key: i=umer.uddin@mentallysanemainliners.org; a=ed25519;
- pk=Hsgrt4A72CFTe27AI1AAWlnLsiQrlb4+T+cbrfWDhUA=
-X-Endpoint-Received: by B4 Relay for
- umer.uddin@mentallysanemainliners.org/20261109 with auth_id=1466
-X-Original-From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_115100_850787_EAB09049 
+X-CRM114-Status: GOOD (  40.90  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,120 +93,391 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: umer.uddin@mentallysanemainliners.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
 
-From: David Virag <virag.david003@gmail.com>
+Hi Aneesh,
 
-The Exynos7885 SoC has an Exynos USB PHY that theoretically supports
-USB3 SuperSpeed, but all known devices using it only have USB2 and the
-vendor driver has USB3 function stubbed out, so we'll only support USB2.
+On Mon, 16 Nov 2026 13:49:32 +0530
+"Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org> wrote:
 
-Apart from this mysterious USB3 capability, it's the closest to Exynos850
-out of those supported. Unlike other SoCs though, this one doesn't set
-the reference clock by default, so we have to set it manually.
+> In confidential-computing configurations, a vIOMMU may be implemented
+> by a TSM driver rather than by the physical IOMMU driver. Such an
+> implementation also needs the TSM identity when creating and
+> validating vdevices.
+> 
+> Allow VIOMMU_ALLOC to first query the TSM associated with the target
+> PCI device for vIOMMU operations. Fall back to the physical IOMMU
+> driver when the TSM does not provide operations for the requested
+> vIOMMU type.
+> 
+> Resolve the PCI TSM association under pci_tsm_rwsem, take a TSM device
+> reference, and pin the module providing the operations. Store the TSM
+> device in the vIOMMU. Release the device reference and module pin on
+> allocation failure, fallback to the physical IOMMU driver, or vIOMMU
+> destruction. Drop the device reference before releasing the module
+> pin, since the final put may call into the backend module.
+> 
+> The device reference preserves the TSM allocation. Backends providing
+> vIOMMU operations must not unregister their TSM while the module is
+> pinned, since the reference does not prevent backend resource
+> teardown.
+> 
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Kevin Tian <kevin.tian@intel.com>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Alexey Kardashevskiy <aik@amd.com>
+> Cc: Lukas Wunner <lukas@wunner.de>
+> Cc: Xu Yilun <yilun.xu@linux.intel.com>
+> Cc: iommu@lists.linux.dev
+> Cc: linux-pci@vger.kernel.org
+> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
+> ---
+>  drivers/iommu/iommufd/viommu.c | 35 +++++++++++++++++++++++++++-----
+>  drivers/pci/tsm/core.c         | 22 ++++++++++++++++++++
+>  drivers/virt/coco/tsm-core.c   | 37
+> ++++++++++++++++++++++++++++++++++ include/linux/iommufd.h        |
+> 2 ++ include/linux/pci-tsm.h        | 24 ++++++++++++++++++++++
+>  include/linux/tsm.h            | 25 +++++++++++++++++++++++
+>  6 files changed, 140 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/iommu/iommufd/viommu.c
+> b/drivers/iommu/iommufd/viommu.c index 2eba1562a704..7e74d3992ae4
+> 100644 --- a/drivers/iommu/iommufd/viommu.c
+> +++ b/drivers/iommu/iommufd/viommu.c
+> @@ -15,6 +15,8 @@ void iommufd_viommu_destroy(struct iommufd_object
+> *obj) 
+>  	if (viommu->ops && viommu->ops->destroy)
+>  		viommu->ops->destroy(viommu);
+> +	if (viommu->tsm_dev)
+> +		tsm_put_device(viommu->tsm_dev);
+>  	refcount_dec(&viommu->hwpt->common.obj.users);
+>  	if (viommu->kvm_file)
+>  		fput(viommu->kvm_file);
+> @@ -30,6 +32,7 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd
+> *ucmd) .len = cmd->data_len,
+>  	};
+>  	struct iommufd_hwpt_paging *hwpt_paging;
+> +	struct tsm_dev *tsm_dev = NULL;
+>  	struct iommufd_viommu *viommu;
+>  	struct iommufd_device *idev;
+>  	struct iommu_device *iommu_dev;
+> @@ -49,15 +52,33 @@ int iommufd_viommu_alloc_ioctl(struct
+> iommufd_ucmd *ucmd) rc = -EOPNOTSUPP;
+>  		goto out_put_idev;
+>  	}
+> -	if (!iommu_dev->ops->get_viommu_ops) {
+> -		rc = -EOPNOTSUPP;
+> +	tsm_dev = tsm_get_device(idev->dev);
+> +	if (IS_ERR(tsm_dev)) {
+> +		rc = PTR_ERR(tsm_dev);
+> +		tsm_dev = NULL;
+>  		goto out_put_idev;
+>  	}
+> -	ops = iommu_dev->ops->get_viommu_ops(idev->dev, cmd->type);
+> -	if (!ops) {
+> -		rc = -EOPNOTSUPP;
+> +	ops = tsm_dev ? tsm_viommu_get_ops(tsm_dev, idev->dev,
+> cmd->type) : NULL;
+> +	if (IS_ERR(ops)) {
+> +		rc = PTR_ERR(ops);
+>  		goto out_put_idev;
+>  	}
+> +	if (!ops) {
+> +		if (tsm_dev) {
+> +			tsm_put_device(tsm_dev);
+nit: Since tsm_get_device() may legitimately return NULL, maybe you can
+make tsm_put_device NULL safe, then you can avoid this check and other
+places.
 
-For this, create a set_ref_clk_rate property in drvdata that can be set
-to a predefined value to set the clockrate to.
+> +			tsm_dev = NULL;
+nit: maybe a candidate for cleanup helper? if tsm_put_device is null
+safe. then:
+           tsm_put_device(no_free_ptr(tsm_dev));
 
-Signed-off-by: David Virag <virag.david003@gmail.com>
-[Umer Uddin: Rebased onto krzk for-next branch]
-Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
----
- drivers/phy/samsung/phy-exynos5-usbdrd.c    | 27 +++++++++++++++++++++++++++
- include/linux/soc/samsung/exynos-regs-pmu.h |  3 +++
- 2 files changed, 30 insertions(+)
+> +		}
+> +		if (!iommu_dev->ops->get_viommu_ops) {
+> +			rc = -EOPNOTSUPP;
+> +			goto out_put_idev;
+> +		}
+> +		ops = iommu_dev->ops->get_viommu_ops(idev->dev,
+> cmd->type);
+> +		if (!ops) {
+> +			rc = -EOPNOTSUPP;
+> +			goto out_put_idev;
+> +		}
+> +	}
+> +
+>  	/*
+>  	 * It is a driver bug to omit the required operations or
+> provide a size
+>  	 * smaller than the core vIOMMU structure.
+> @@ -95,6 +116,8 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd
+> *ucmd) viommu->kvm_file = get_file(idev->kvm_file);
+>  	viommu->type = cmd->type;
+>  	viommu->ictx = ucmd->ictx;
+> +	viommu->tsm_dev = tsm_dev;
+> +	tsm_dev = NULL;
+   viommu->tsm_dev = no_free_ptr(tsm_dev)
 
-diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-index 087d552eb511..8f00586f11a6 100644
---- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-+++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-@@ -23,6 +23,7 @@
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/soc/samsung/exynos-regs-pmu.h>
-+#include <linux/units.h>
- #include <linux/usb/typec.h>
- #include <linux/usb/typec_mux.h>
- 
-@@ -483,6 +484,7 @@ struct exynos5_usbdrd_phy_drvdata {
- 	int n_clks;
- 	const char * const *core_clk_names;
- 	int n_core_clks;
-+	u32 set_ref_clk_rate;
- 	const char * const *regulator_names;
- 	int n_regulators;
- 	u32 pmu_offset_usbdrd0_phy;
-@@ -1847,6 +1849,15 @@ static int exynos5_usbdrd_phy_clk_handle(struct exynos5_usbdrd_phy *phy_drd)
- 			return dev_err_probe(phy_drd->dev, -ENODEV,
- 					     "failed to find phy reference clock\n");
- 
-+		/* Some SoCs (e.g. Exynos7885) leave the reference clock unset */
-+		if (phy_drd->drv_data->set_ref_clk_rate) {
-+			ret = clk_set_rate(ref_clk,
-+					   phy_drd->drv_data->set_ref_clk_rate);
-+			if (ret)
-+				return dev_err_probe(phy_drd->dev, ret,
-+						     "failed to set ref clock rate\n");
-+		}
-+
- 		ref_rate = clk_get_rate(ref_clk);
- 		ret = exynos5_rate_to_clk(ref_rate, &phy_drd->extrefclk);
- 		if (ret)
-@@ -2107,6 +2118,19 @@ static const struct exynos5_usbdrd_phy_drvdata exynos850_usbdrd_phy = {
- 	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
- };
- 
-+static const struct exynos5_usbdrd_phy_drvdata exynos7885_usbdrd_phy = {
-+	.phy_cfg		= phy_cfg_exynos850,
-+	.phy_ops		= &exynos850_usbdrd_phy_ops,
-+	.pmu_offset_usbdrd0_phy	= EXYNOS7885_PHY_CTRL_USB20,
-+	.clk_names		= exynos5_clk_names,
-+	.n_clks			= ARRAY_SIZE(exynos5_clk_names),
-+	.core_clk_names		= exynos5_core_clk_names,
-+	.n_core_clks		= ARRAY_SIZE(exynos5_core_clk_names),
-+	.regulator_names	= exynos5_regulator_names,
-+	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
-+	.set_ref_clk_rate	= 50 * HZ_PER_MHZ,
-+};
-+
- static const struct exynos5_usbdrd_phy_tuning exynos990_tunes_utmi_postinit[] = {
- 	PHY_TUNING_ENTRY_PHY(EXYNOS850_DRD_HSPPARACON,
- 			     (HSPPARACON_TXVREF |
-@@ -2929,6 +2953,9 @@ static const struct of_device_id exynos5_usbdrd_phy_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynos7870-usbdrd-phy",
- 		.data = &exynos7870_usbdrd_phy
-+	}, {
-+		.compatible = "samsung,exynos7885-usbdrd-phy",
-+		.data = &exynos7885_usbdrd_phy
- 	}, {
- 		.compatible = "samsung,exynos850-usbdrd-phy",
- 		.data = &exynos850_usbdrd_phy
-diff --git a/include/linux/soc/samsung/exynos-regs-pmu.h b/include/linux/soc/samsung/exynos-regs-pmu.h
-index db8a7ca81080..73d9c509dae6 100644
---- a/include/linux/soc/samsung/exynos-regs-pmu.h
-+++ b/include/linux/soc/samsung/exynos-regs-pmu.h
-@@ -665,6 +665,9 @@
- /* For Exynos990 */
- #define EXYNOS990_PHY_CTRL_USB20				(0x72C)
- 
-+/* For Exynos7885 */
-+#define EXYNOS7885_PHY_CTRL_USB20				(0x674)
-+
- /* For Exynos7870 */
- #define EXYNOS7870_MIPI_PHY_CONTROL0				(0x070c)
- #define EXYNOS7870_MIPI_PHY_CONTROL1				(0x0714)
+>  	viommu->hwpt = hwpt_paging;
+>  	refcount_inc(&viommu->hwpt->common.obj.users);
+>  	INIT_LIST_HEAD(&viommu->veventqs);
+> @@ -119,6 +142,8 @@ int iommufd_viommu_alloc_ioctl(struct
+> iommufd_ucmd *ucmd) out_put_hwpt:
+>  	iommufd_put_object(ucmd->ictx, &hwpt_paging->common.obj);
+>  out_put_idev:
+> +	if (tsm_dev)
+> +		tsm_put_device(tsm_dev);
+ditto, can be unconditional.
 
--- 
-2.56.1
+>  	iommufd_put_object(ucmd->ictx, &idev->obj);
+>  	return rc;
+>  }
+> diff --git a/drivers/pci/tsm/core.c b/drivers/pci/tsm/core.c
+> index 8f0e5af808a5..4107ff443228 100644
+> --- a/drivers/pci/tsm/core.c
+> +++ b/drivers/pci/tsm/core.c
+> @@ -9,6 +9,8 @@
+>  #define dev_fmt(fmt) "PCI/TSM: " fmt
+>  
+>  #include <linux/bitfield.h>
+> +#include <linux/iommufd.h>
+> +#include <linux/module.h>
+>  #include <linux/pci.h>
+>  #include <linux/pci-doe.h>
+>  #include <linux/pci-tsm.h>
+> @@ -36,6 +38,26 @@ static const struct pci_tsm_ops
+> *to_pci_tsm_ops(struct pci_tsm *tsm) return tsm->tsm_dev->pci_ops;
+>  }
+>  
+> +struct tsm_dev *pci_tsm_get_device(struct pci_dev *pdev)
+> +{
+> +	const struct pci_tsm_ops *ops;
+> +	struct tsm_dev *tsm_dev;
+> +
+> +	guard(rwsem_read)(&pci_tsm_rwsem);
+> +	if (!pdev->tsm)
+> +		return NULL;
+> +
+> +	tsm_dev = pdev->tsm->tsm_dev;
+> +	ops = tsm_dev->pci_ops;
+> +	if (!ops->viommu_get_ops)
+> +		return NULL;
+> +	if (!try_module_get(ops->owner))
+> +		return ERR_PTR(-ENODEV);
+> +	get_device(&tsm_dev->dev);
+what if tsm_unregister() is called directly? without protection from
+tsm_dev->users, unregister can succeed tearing down backend while this
+reference is held.
 
+For bisectable result, maybe you can move tsm_get() and wait patch
+before this one?
 
+> +	return tsm_dev;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_tsm_get_device);
+> +
+>  static inline bool is_dsm(struct pci_dev *pdev)
+>  {
+>  	return pdev->tsm && pdev->tsm->dsm_dev == pdev;
+> diff --git a/drivers/virt/coco/tsm-core.c
+> b/drivers/virt/coco/tsm-core.c index 181d6114086f..766f4ad67ed7 100644
+> --- a/drivers/virt/coco/tsm-core.c
+> +++ b/drivers/virt/coco/tsm-core.c
+> @@ -9,6 +9,16 @@
+>  #include <linux/cleanup.h>
+>  #include <linux/pci-tsm.h>
+>  
+> +/* The caller must hold a tsm_get_device() reference for the entire
+> use. */ +const struct iommufd_viommu_ops *tsm_viommu_get_ops(struct
+> tsm_dev *tsm_dev,
+> +		struct device *dev, enum iommu_viommu_type type)
+> +{
+> +	if (!tsm_dev->pci_ops->viommu_get_ops)
+> +		return NULL;
+> +	return tsm_dev->pci_ops->viommu_get_ops(dev, type);
+> +}
+> +EXPORT_SYMBOL_GPL(tsm_viommu_get_ops);
+> +
+>  static void tsm_release(struct device *);
+>  static const struct class tsm_class = {
+>  	.name		= "tsm",
+> @@ -16,6 +26,33 @@ static const struct class tsm_class = {
+>  };
+>  static DEFINE_IDA(tsm_ida);
+>  
+> +/**
+> + * tsm_get_device() - Pin the TSM attached to a device
+> + * @dev: device whose TSM is to be pinned
+> + *
+> + * A successful lookup takes a TSM device reference and pins the
+> backend
+> + * module. Release both with tsm_put_device(). Backends providing
+> vIOMMU
+> + * operations must not unregister their TSM independently of module
+> unload.
+> + * Return: NULL if no vIOMMU-capable TSM is attached, an error if
+> the module
+> + * cannot be pinned, or the TSM device associated with the pinned
+> backend.
+> + */
+> +struct tsm_dev *tsm_get_device(struct device *dev)
+> +{
+> +	if (!dev_is_pci(dev))
+> +		return NULL;
+> +	return pci_tsm_get_device(to_pci_dev(dev));
+> +}
+> +EXPORT_SYMBOL_GPL(tsm_get_device);
+> +
+> +void tsm_put_device(struct tsm_dev *tsm_dev)
+> +{
+> +	struct module *owner = tsm_dev->pci_ops->owner;
+> +
+> +	put_device(&tsm_dev->dev);
+> +	module_put(owner);
+> +}
+> +EXPORT_SYMBOL_GPL(tsm_put_device);
+> +
+>  static int match_id(struct device *dev, const void *data)
+>  {
+>  	struct tsm_dev *tsm_dev = container_of(dev, struct tsm_dev,
+> dev); diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
+> index 5f5c67b24134..a4b29915d0ca 100644
+> --- a/include/linux/iommufd.h
+> +++ b/include/linux/iommufd.h
+> @@ -23,6 +23,7 @@ struct iommufd_access;
+>  struct iommufd_ctx;
+>  struct iommufd_device;
+>  struct iommufd_viommu_ops;
+> +struct tsm_dev;
+>  struct page;
+>  
+>  enum iommufd_object_type {
+> @@ -104,6 +105,7 @@ struct iommufd_viommu {
+>  	struct iommu_device *iommu_dev;
+>  	struct iommufd_hwpt_paging *hwpt;
+>  	struct file *kvm_file;
+> +	struct tsm_dev *tsm_dev;
+>  
+>  	const struct iommufd_viommu_ops *ops;
+>  
+> diff --git a/include/linux/pci-tsm.h b/include/linux/pci-tsm.h
+> index 1458935234a4..27a76aeedf50 100644
+> --- a/include/linux/pci-tsm.h
+> +++ b/include/linux/pci-tsm.h
+> @@ -3,7 +3,10 @@
+>  #define __PCI_TSM_H
+>  #include <linux/mutex.h>
+>  #include <linux/pci.h>
+> +#include <uapi/linux/iommufd.h>
+>  
+> +struct iommufd_viommu_ops;
+> +struct module;
+>  struct pci_tsm;
+>  struct pci_tsm_context;
+>  struct tsm_dev;
+> @@ -16,12 +19,27 @@ struct tsm_dev;
+>   * @devsec_ops: Lock, unlock, and interrogate the security state of
+> the
+>   *		function via the platform TSM (typically virtual
+> function
+>   *		operations).
+> + * @viommu_get_ops: Return operations for a supported TSM-owned
+> vIOMMU type,
+> + *		  or NULL if unsupported
+> + * @owner: Module providing the vIOMMU operations, if built as a
+> module
+> + *
+> + * The vIOMMU owner holds a TSM device reference and pins the
+> backend module
+> + * before querying @viommu_get_ops, releasing both after vIOMMU
+> destruction.
+> + * A backend providing this callback must not unregister its TSM
+> while the
+> + * module is pinned.
+>   *
+>   * This operations are mutually exclusive either a tsm_dev instance
+>   * manages physical link properties or it manages function security
+>   * states like TDISP lock/unlock.
+> + *
+> + * @viommu_get_ops runs with the backend module pinned. The PCI/TSM
+> + * association is checked during acquisition under pci_tsm_rwsem.
+>   */
+>  struct pci_tsm_ops {
+> +	struct module *owner;
+> +	const struct iommufd_viommu_ops *(*viommu_get_ops)(
+> +		struct device *dev, enum iommu_viommu_type type);
+> +
+>  	/*
+>  	 * struct pci_tsm_link_ops - Manage physical link and the
+> TSM/DSM session
+>  	 * @probe: establish context with the TSM (allocate / wrap
+> 'struct @@ -151,6 +169,7 @@ struct pci_tsm_pf0
+> *pci_tsm_context_pf0(struct pci_tsm_context *context); struct pci_dev
+> *pci_tsm_context_dsm_dev(struct pci_tsm_context *context); bool
+> pci_tsm_context_match_device(struct pci_tsm_context *context, struct
+> pci_dev *pdev); +struct tsm_dev *pci_tsm_get_device(struct pci_dev
+> *pdev); #else
+>  static inline int pci_tsm_register(struct tsm_dev *tsm_dev)
+>  {
+> @@ -165,6 +184,11 @@ static inline bool pci_tsm_is_configured(struct
+> pci_dev *pdev) return false;
+>  }
+>  
+> +static inline struct tsm_dev *pci_tsm_get_device(struct pci_dev
+> *pdev) +{
+> +	return NULL;
+> +}
+> +
+>  static inline struct pci_tsm_context *
+>  pci_tsm_context_get(struct pci_dev *pdev, struct tsm_dev *tsm_dev)
+>  {
+> diff --git a/include/linux/tsm.h b/include/linux/tsm.h
+> index 19dedf971f14..3d5286aeaa42 100644
+> --- a/include/linux/tsm.h
+> +++ b/include/linux/tsm.h
+> @@ -110,6 +110,8 @@ struct tsm_report_ops {
+>  };
+>  
+>  struct pci_tsm_ops;
+> +struct iommufd_viommu_ops;
+> +
+>  struct tsm_dev {
+>  	struct device dev;
+>  	int id;
+> @@ -124,4 +126,27 @@ int tsm_report_unregister(const struct
+> tsm_report_ops *ops); struct tsm_dev *tsm_register(struct device
+> *parent, struct pci_tsm_ops *ops); void tsm_unregister(struct tsm_dev
+> *tsm_dev); struct tsm_dev *find_tsm_dev(int id);
+> +
+> +#ifdef CONFIG_TSM
+> +struct tsm_dev *tsm_get_device(struct device *dev);
+> +void tsm_put_device(struct tsm_dev *tsm_dev);
+> +const struct iommufd_viommu_ops *tsm_viommu_get_ops(struct tsm_dev
+> *tsm_dev,
+> +		struct device *dev, enum iommu_viommu_type type);
+> +#else
+> +static inline struct tsm_dev *tsm_get_device(struct device *dev)
+> +{
+> +	return NULL;
+> +}
+> +
+> +static inline void tsm_put_device(struct tsm_dev *tsm_dev)
+> +{
+> +}
+> +
+> +static inline const struct iommufd_viommu_ops *
+> +tsm_viommu_get_ops(struct tsm_dev *tsm_dev, struct device *dev,
+> +		enum iommu_viommu_type type)
+> +{
+> +	return NULL;
+> +}
+> +#endif
+>  #endif /* __TSM_H */
+With the above addressed,
+
+Reviewed-by: Jacob Pan <jacob.pan@linux.microsoft.com>
 
