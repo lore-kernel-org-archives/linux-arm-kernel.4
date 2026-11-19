@@ -2,90 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3481E606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CEC60A3810
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t5d+2AZ3;
-	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=pSOl9Q2B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LFn+Ra5E;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=E2VVkTEz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=OKPZQyJsCxKmvcu3evgCAn8bCU003kDuUuvj5pSvgRY=; b=t5d+2AZ318l8vZ
-	wD+AIJebYwFUxLIBvnK1ZXUKFmcyEwnHVbB7/A3eaQqxR4KLrmdqlo4xqaIdd6EMlSx/VIPAWQPSS
-	VL288z1mgjkiJfpun4ztFeFP5Of30O3Wed6/es1tPTfkYrcT9rvc0/CmhKyvWYVgkvVz0fZiYK0OW
-	sIZsWtYNQoFAqAtIGh5PkZ46YYNiPB/YEItzrQR7dWGKsCkGlT4CUQPkgVjBXrcKn83WtEw5qk8Py
-	8GRp+yPLbyOxNBppIjmhrcJdt/53u4+SGTXGrUcXiBDukC2wgr/5OACKw132OSAWDYP8jmHM4JTau
-	oJjKXYT7neqGal1zreRg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=0nkkB75c4xO0BDbMTd+oRdUsHv55miDUR/T7l+kfobY=; b=LFn+Ra5E6IAdT1+E5ccwEegl8A
+	2amIroGZwuuCsDwuakYLlpoDbi5qgexFx7oH8cPaLP45SclT9wzXbxSGZeESG27qgvWoduaw6eqpY
+	3i8gpOClNTpPaL3otPXnL0MSUuyot5NYaMWUrEFa20+hNcTR47H9VRstuUeFn4NoGyKpiJ6WUszf2
+	f/rcwpiMbFKX4UFuhvN5VHBHquJQEQgHL7Ug0dqfECu/QvahEsVGXGhkEwrW6gc6IIeNlyroqzQWV
+	AOnR1N/1NRB+jX7UeUCyc1iuhdaLxXS1af8Egc1oaTKQPm6UijaF1HmaIx2DGsLtV8CzhZ8ux2Vv/
+	eUg4Q80g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6Ib-0000000CtON-34I8;
-	Thu, 19 Nov 2026 17:51:53 +0000
-Received: from esa3.hc555-34.eu.iphmx.com ([207.54.77.50])
+	id 1xU6LP-0000000CuE8-10dR;
+	Thu, 19 Nov 2026 17:54:47 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6IL-0000000CtGJ-2NZg
+	id 1xU6LM-0000000CuDB-2XYR
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 17:51:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
-  t=1795110697; x=1826646697;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=4V18Tfg9Ly6MPWUMnLZiqruGXQUpnrBi9GEGXYzKK7I=;
-  b=pSOl9Q2BC2z0ClcuXUTmNCiouG7zJqVg65RKq+DmB9DdZXR1ezgR5Ylc
-   KV3NUbHT9D9VgG7nhEGOyG9YYQ+QrqkUEO8UfTD0jLj2w8tvMt3FRiBbe
-   dIzU2RJ6Ie31CcJ/FctOCdRlNw6L7ep314RNUmGSmIjXQ6DMmbq1IfD0z
-   u03koeQ0gMzR7t9QcX92IQYxXzhkkkg464kg9CNIa+HRpPPOT425zLZ3D
-   qJ4BxASx6ZdrRYzhxIlxzorvHJqOJx3zbxdz5CaMaDDk8kiEqPY04URE1
-   gi2iPd77IbRoJ2GBGVbSdojQvUFApZQglSddOhlI/EivA1OkHs4XukT3r
-   Q==;
-X-CSE-ConnectionGUID: auu1PvtJRcOQqeHLNCyrbg==
-X-CSE-MsgGUID: qAJvoc6AR6iA5Oc6jTiG0Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
-  by esa3.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 19:51:34 +0200
-X-CSE-ConnectionGUID: tengInJhRCa+VsqTvox6mw==
-X-CSE-MsgGUID: klkWn2aISdGzaE5U/QgFbw==
-Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.3])
-  by ces02_data.me-corp.lan with SMTP; 19 Nov 2026 19:59:49 +0200
-Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Thu, 19 Nov 2026 19:51:32 +0200
-From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Date: Thu, 19 Nov 2026 19:51:28 +0200
-Subject: [PATCH v3 2/7] MIPS: CM: add CM3 performance counter GCR
- definitions
+	Thu, 19 Nov 2026 17:54:46 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4bb70074ab2so27696995e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:54:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795110882; x=1795715682; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=0nkkB75c4xO0BDbMTd+oRdUsHv55miDUR/T7l+kfobY=;
+        b=E2VVkTEzguTVn612OKHZFUGzoyfluESfgyeXTC8jHlWUtq0WK4mAiUjFl6ijPK/R7I
+         aiysGcGAkLec7NKwQNzEjju3d62ZGC/VwpmgtThd/ZZctIaNd9FAgqq/yS2Mi3giFNeZ
+         72KHbfDxWABPolTKqMqwLXSNcjvqjwKciENwuaFg6rrheQ5iNX9nfVEdSQ2+kFlJBbni
+         gEv39k8HqhIfguI7cz0ekFV60R2z2T8VCxFEstWEg/JzywleJMpTwZVSQBgwIPhkaDvy
+         xqc+D3/x1LbiNa7IgrRIg0BsWH4GZzR/94gMfiJ3KomVK/IfMH7vg0yMoIAVzs9pJFYw
+         k9rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795110882; x=1795715682;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=0nkkB75c4xO0BDbMTd+oRdUsHv55miDUR/T7l+kfobY=;
+        b=FiUILhpmrOdmEie79YGw1CeibRCASEN8vv4hV0MEnDx06sSLzAvkAjOuL4gfZ2+ONI
+         Sk9g01T0T4y0dPUPFHL/N5gAfQpBhJWVyEzOmpaVmPBBEKHAbeUKYS8rEXtRub/MRpql
+         IIwcPupDqISHZbZsVfAEBgFVUJtheWwO5J7rBJK4MAu9qGQDYaKnAi2GBulaW0Y8GTNp
+         KtiR6JHKhwUHvxMUFf5fVcoh1jIDs1YPqve6Z2zi1G5cFo9xCLIYbveK43mvWeAXxZV5
+         oN6DacMsifkNBUmQWX0q6HODyt3ZIycGLwgkLU/DKkbn59QlVCrEKAwPBSgttwaD3BnL
+         /5ug==
+X-Forwarded-Encrypted: i=1; AL+hErERmjf9IAsyGZGUeLOz6F3FgL8z6rbZNvUXX/D0xFIPZtqq9aYzjY4+ee13/EbkHoSeuQQllpfmRwcOySisUrwv@lists.infradead.org
+X-Gm-Message-State: APuU4Z9giidehNp/TVXD70aCkN+HvRujjfTqFw/Jaa79OpLwNEuIV7Tj
+	WcnQ+7OL/IAOG0xJS8soJ2UsyNOWbhEujsCsaClAEP51qV+Zp2/OHJPj
+X-Gm-Gg: AYBFou3QABVLnD3c+ZybGc2zNc8ardNtXaKMKIj+3jsctX7KlKGKFxHbhxol9Ur7W2p
+	GTnPtrRK5n3T4ARImrfgZR5OMT643WNz6Gi+43p/GCYSzLA+puj1Ie6ndwH+JlbWqQP89o6rdwj
+	xQ3vBJxw/Tm+3kqT7LzTLwD63fIrorcKboxDqndvH55Hazgh5RaKwwCvP2k2niXCRlcj7x8sG7z
+	6mfhsV/Ua025TyGzxqBlEaGUA5BG2leY+spjudNaXGseeL5Yf2JyVx+lTcnV/fjCTDRv2q5zeeH
+	+ToMYhrQU/IW/FK/uJzkJ/+is58vukBKMj0NT2hGQg0lF6O9//ErLhhq8P9GQhDQljCsWdrGV5u
+	+nBEiuruuW5BJOJOZnZqP/Fh6nYGM1VHrhQ2IK8T6hsH4aywruQnR3OccBt3Memp7Mi9OFrZ6N4
+	Ech21Bf7Ew4Kg4t+R9qcmZbyetuPzW83lFarHazhclf7j0oOTwwzmTkoyiFrgSVBNr3rwADclEJ
+	edvDnSOXgi99NjKvhQff1ykcoRBL8L1q3HwpF1RzaIBVmhyJb5OsxgSi52m8ZA9nP5PIH8NFfd8
+	629Lc8AiJyG/No9ZBA4Qi81Irx9onEjXyDWDERApAmUSrcMpxHFm169LlK98J7YE+binbeduJYE
+	F0/LW57HIqO1cP1j69yi0mZPjKq8EUAwWI6Beaqr0Sp17b7y9nJWGIUzahuRs4GqwBq6k5yivpP
+	y21Qm8oWAHOJ9t0NAPkPk0O/KPYfmb88jWM98nTj7wBUcH13KL+Nwl4laE0CKDm+fZqC18Ta9AF
+	eLbewB/pHH6GkJdZeeBTei1Og+RP49BRt6IIDT/XO+DP9hJpvXnmMSk
+X-Received: by 2002:a05:600c:1548:b0:4bb:7347:d5df with SMTP id 5b1f17b1804b1-4bb88814405mr6842365e9.13.1795110881961;
+        Thu, 19 Nov 2026 09:54:41 -0800 (PST)
+Received: from jernej-laptop (95-143-148-21.dynamic.telemach.net. [95.143.148.21])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb84e50512sm29390035e9.3.2026.11.19.09.54.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2026 09:54:40 -0800 (PST)
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Chen-Yu Tsai <wens@kernel.org>,
+	Samuel Holland <samuel@sholland.org>
+Cc: mripard@kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Andre Przywara <andre.przywara@arm.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/5] drm/sun4i: update DE33 support
+Date: Thu, 19 Nov 2026 18:54:32 +0100
+Message-ID: <20261119175437.2520400-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-i6500-cm3-pmu-v3-2-c86410934b51@mobileye.com>
-References: <20261119-i6500-cm3-pmu-v3-0-c86410934b51@mobileye.com>
-In-Reply-To: <20261119-i6500-cm3-pmu-v3-0-c86410934b51@mobileye.com>
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, Will Deacon <will@kernel.org>, 
- Mark Rutland <mark.rutland@arm.com>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Fu Chao-Ying <chao-ying.fu@globalfoundries.com>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-rt-devel@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-perf-users@vger.kernel.org, linux-hardening@vger.kernel.org
-X-Mailer: b4 0.16.0
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_095137_888104_D598B3BB 
-X-CRM114-Status: GOOD (  16.89  )
-X-Spam-Score: -4.0 (----)
+X-CRM114-CacheID: sfid-20261119_095444_690263_FBDB23B7 
+X-CRM114-Status: GOOD (  15.15  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,110 +113,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The CM3 implements two programmable 32-bit performance counters and a
-32-bit cycle counter, controlled through registers in the GCR global
-debug block (GCR_DB_PC_*, offset 0x6100..0x61a8 from GCR_BASE).
+This is second series out of three which aims at properly introducing
+support for H616 Display Engine 3.3. Previous series [1] reorganized
+driver so proper DE33 support can be easily implemented.
 
-Add GCR_DB_ACCESSOR_{RO,RW} helpers for the debug block and define the
-control, overflow status, event select, cycle counter, qualifier and
-counter registers along with their fields, as described in the I6500
-register reference (MD01189).
+H616 DE33 support was actually introduced a while back, but it was done
+without fully understanding hardware design. Issue with existing binding
+is that it considers planes as resource which is hardwired to each mixer
+as it was done on older Display Engine generations (DE3 and lower). That
+is not the case anymore. This series introduces new driver for planes
+management, which allows doing proper plane assignments.
 
-Each accessor comes in two flavours, as the CPC ones do: db_<reg> for
-the local cluster and redir_db_<reg> for the debug block of another
-cluster through the redirect block. GCR_Cx_OTHER.BLOCK value 2 selects
-the debug block in the GCR, where the existing _BLOCK_USER name only
-describes its GIC meaning; add CM_GCR_Cx_OTHER_BLOCK_DEBUG for it.
+Note that this series intentionally breaks existing H616 DE33 mixer
+binding, which was released in v6.17. Old binding can't describe shared
+planes, so second mixer can't be supported with it, and it never had any
+user - there is no H616 Display Engine node in upstream DT, rest of H616
+display pipeline is not upstream yet and no other known DT consumer
+implements it. Reasons are documented in patch 4 and driver prints error
+asking to update DT if old binding is detected (patch 5).
 
-Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
----
- arch/mips/include/asm/mips-cm.h | 51 ++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 50 insertions(+), 1 deletion(-)
+Patches 1-4 from v3 were already applied (clk patches to sunxi
+clk-for-7.5, CSC and VI format patches to drm-misc-next). Plane driver
+depends at runtime on commit 63a29fbb4ecd ("clk: sunxi-ng: de2: Export
+register regmap for DE33") from sunxi tree, otherwise it defers probe.
 
-diff --git a/arch/mips/include/asm/mips-cm.h b/arch/mips/include/asm/mips-cm.h
-index 407f253bb4a1..390d06a8f1d1 100644
---- a/arch/mips/include/asm/mips-cm.h
-+++ b/arch/mips/include/asm/mips-cm.h
-@@ -161,6 +161,20 @@ static inline bool mips_cm_has_l2sync(void)
- 	CPS_ACCESSOR_RW(gcr, sz, MIPS_CM_CLCB_OFS + off, cl_##name)	\
- 	CPS_ACCESSOR_RW(gcr, sz, MIPS_CM_COCB_OFS + off, co_##name)
- 
-+/*
-+ * Global debug block registers. The redir_db_* accessors reach the debug
-+ * block of another cluster through the redirect block, which must have been
-+ * pointed at it with mips_cm_lock_other(cluster, 0, 0,
-+ * CM_GCR_Cx_OTHER_BLOCK_DEBUG).
-+ */
-+#define GCR_DB_ACCESSOR_RO(sz, off, name)				\
-+	CPS_ACCESSOR_RO(gcr, sz, MIPS_CM_GDB_OFS + off, db_##name)	\
-+	CPS_ACCESSOR_RO(gcr, sz, MIPS_CM_COCB_OFS + off, redir_db_##name)
-+
-+#define GCR_DB_ACCESSOR_RW(sz, off, name)				\
-+	CPS_ACCESSOR_RW(gcr, sz, MIPS_CM_GDB_OFS + off, db_##name)	\
-+	CPS_ACCESSOR_RW(gcr, sz, MIPS_CM_COCB_OFS + off, redir_db_##name)
-+
- /* GCR_CONFIG - Information about the system */
- GCR_ACCESSOR_RO(64, 0x000, config)
- #define CM_GCR_CONFIG_CLUSTER_COH_CAPABLE	BIT_ULL(43)
-@@ -357,7 +371,8 @@ GCR_CX_ACCESSOR_RW(32, 0x018, other)
- #define CM_GCR_Cx_OTHER_BLOCK			GENMASK(25, 24)	/* CM >= 3.5 */
- #define  CM_GCR_Cx_OTHER_BLOCK_LOCAL		0
- #define  CM_GCR_Cx_OTHER_BLOCK_GLOBAL		1
--#define  CM_GCR_Cx_OTHER_BLOCK_USER		2
-+#define  CM_GCR_Cx_OTHER_BLOCK_USER		2	/* GIC */
-+#define  CM_GCR_Cx_OTHER_BLOCK_DEBUG		2	/* GCR */
- #define  CM_GCR_Cx_OTHER_BLOCK_GLOBAL_HIGH	3
- #define CM_GCR_Cx_OTHER_CLUSTER			GENMASK(21, 16)	/* CM >= 3.5 */
- #define CM3_GCR_Cx_OTHER_CORE			GENMASK(13, 8)	/* CM >= 3 */
-@@ -384,6 +399,40 @@ GCR_CX_ACCESSOR_RW(32, 0x030, reset_ext_base)
- #define CM_GCR_Cx_RESET_EXT_BASE_BEVEXCPA	GENMASK(7, 1)
- #define CM_GCR_Cx_RESET_EXT_BASE_PRESENT	BIT(0)
- 
-+/* GCR_DB_PC_CTL - Control of the CM3 performance counters */
-+GCR_DB_ACCESSOR_RW(32, 0x100, pc_ctl)
-+#define CM_GCR_DB_PC_CTL_PERF_INT_EN		BIT(30)
-+#define CM_GCR_DB_PC_CTL_PERF_OVF_STOP		BIT(29)
-+#define CM_GCR_DB_PC_CTL_P1_RESET		BIT(9)
-+#define CM_GCR_DB_PC_CTL_P1_COUNTON		BIT(8)
-+#define CM_GCR_DB_PC_CTL_P0_RESET		BIT(7)
-+#define CM_GCR_DB_PC_CTL_P0_COUNTON		BIT(6)
-+#define CM_GCR_DB_PC_CTL_CYCL_CNT_RESET		BIT(5)
-+#define CM_GCR_DB_PC_CTL_CYCL_CNT_COUNTON	BIT(4)
-+#define CM_GCR_DB_PC_CTL_PERF_NUM_CNT		GENMASK(3, 0)
-+
-+/* GCR_DB_PC_OV - CM3 performance counter overflow status (write 1 to clear) */
-+GCR_DB_ACCESSOR_RW(32, 0x120, pc_ov)
-+#define CM_GCR_DB_PC_OV_P1_OF			BIT(2)
-+#define CM_GCR_DB_PC_OV_P0_OF			BIT(1)
-+#define CM_GCR_DB_PC_OV_CYCL_CNT_OF		BIT(0)
-+
-+/* GCR_DB_PC_EVENT - CM3 performance counter event selection */
-+GCR_DB_ACCESSOR_RW(32, 0x130, pc_event)
-+#define CM_GCR_DB_PC_EVENT_P1_EVENT		GENMASK(15, 8)
-+#define CM_GCR_DB_PC_EVENT_P0_EVENT		GENMASK(7, 0)
-+
-+/* GCR_DB_PC_CYCL - CM3 performance cycle counter */
-+GCR_DB_ACCESSOR_RW(32, 0x180, pc_cycl)
-+
-+/* GCR_DB_PC_QUALn - CM3 performance counter n event qualifier */
-+GCR_DB_ACCESSOR_RW(64, 0x190, pc_qual0)
-+GCR_DB_ACCESSOR_RW(64, 0x1a0, pc_qual1)
-+
-+/* GCR_DB_PC_CNTn - CM3 performance counter n value */
-+GCR_DB_ACCESSOR_RW(32, 0x198, pc_cnt0)
-+GCR_DB_ACCESSOR_RW(32, 0x1a8, pc_cnt1)
-+
- /**
-  * mips_cm_l2sync - perform an L2-only sync operation
-  *
+Remaining patches, which introduce all the missing bits to fully support
+display pipeline on H616 SoC, will be sent once this series is merged.
+WIP patches, which can be used for testing purposes, can be found at [2].
 
+Please take a look.
+
+Best regards,
+Jernej
+
+Changes since v3:
+- dropped already applied patches 1-4
+- new patch 1: reject fractional source coordinates on channels
+  without scaler (suggested by Chen-Yu)
+- patch 3: mention in commit message that driver is hooked up only in
+  last patch, update copyright year, drop unused of_graph.h include,
+  use dev_err_probe() and MAX_DISP bound, collected Chen-Yu's R-b
+- patch 4: collected Chen-Yu's and Rob's R-b
+- patch 5: fix include order, use device_is_bound() under device lock,
+  guard put_device() in error path, drop stale @map kernel-doc, rename
+  planes platform device variable, mention missing scaling in commit
+  message, collected Chen-Yu's R-b
+
+Link to v3: https://lore.kernel.org/linux-sunxi/20261115061102.229680-1-jernej.skrabec@gmail.com/
+Link to v2: https://lore.kernel.org/linux-sunxi/20260509190015.79086-1-jernej.skrabec@siol.net/
+Link to v1: https://lore.kernel.org/linux-sunxi/20251115141347.13087-1-jernej.skrabec@gmail.com/
+
+[1] https://lore.kernel.org/linux-sunxi/20251104180942.61538-1-jernej.skrabec@gmail.com/T/#t
+[2] https://github.com/jernejsk/linux-1/commits/sun4i-drm-refactor/
+
+Jernej Skrabec (5):
+  drm/sun4i: Reject fractional source coordinates without scaler
+  dt-bindings: display: allwinner: Add DE33 planes
+  drm/sun4i: Add DE33 shared plane driver
+  dt-bindings: display: allwinner: Split H616 DE33 layer reg space
+  drm/sun4i: Switch DE33 to split plane bindings
+
+ .../allwinner,sun50i-h616-de33-planes.yaml    |  46 ++++
+ .../allwinner,sun8i-a83t-de2-mixer.yaml       |  16 +-
+ drivers/gpu/drm/sun4i/Makefile                |   3 +-
+ drivers/gpu/drm/sun4i/sun50i_planes.c         | 209 ++++++++++++++++++
+ drivers/gpu/drm/sun4i/sun50i_planes.h         |  43 ++++
+ drivers/gpu/drm/sun4i/sun8i_mixer.c           | 191 +++++++++++-----
+ drivers/gpu/drm/sun4i/sun8i_mixer.h           |  11 +-
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c        |  24 +-
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c        |  24 +-
+ 9 files changed, 486 insertions(+), 81 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
+ create mode 100644 drivers/gpu/drm/sun4i/sun50i_planes.c
+ create mode 100644 drivers/gpu/drm/sun4i/sun50i_planes.h
+
+
+base-commit: 8e2afcd2b57990465f132367fd8fdc2e55c1adad
 -- 
 2.43.0
 
