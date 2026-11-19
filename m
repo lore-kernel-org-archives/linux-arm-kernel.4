@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708BE606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47F3606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JyexxsM/;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Ny92pS8Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s6xGyHYX;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=dnMMFDpv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wgoC6kwXy8A/C0dx8SZHvUCPruFTOKn2cEN7Wk/LnjU=; b=JyexxsM/bunyoLNjZ6QrHC56PZ
-	9ORZKD5lKI8Yn6fpec/YO/ycVpyv4iLaNp39YQbT6LjwyCEydJZlN0yjW5Hs8+BD52aiN0Ny8M55c
-	va8gmWmO5cYqbEvI/R/SUFQ8H93Tcp9lYSvHl9FUQGeRbLV3CH/5Bs9+Ub7+25vY4wO+pQ9x4HtpU
-	uP2raSoRso9QfhqeuDuxo7JqHGKZwphgRCp3FdyzaVJHtxSh1+ePxzZA64b5odpNpmDFyuXTqO555
-	fJQTVNI0TSS/eCU0yrJEWVFulHIeJlFxMLiKjfz0awxDMrGNkeiwimUQT3VZt5oMtFRedURK4rdkl
-	BLJPEJbg==;
+	bh=prmoIohS2xA8jaHyxKChBFBZwGVjZr06KfXp8bLe77w=; b=s6xGyHYX9V+C4WxtjEsQZkVD0M
+	juquVbAgDnW4IBwBJijUtYSN6A4n3MXi/xM6o7IP+OI5U+0aD1jiise6THKqUs2lUglNecy327VTX
+	xAnS4OyXQo7buSQlAOEE2QWzv98rgEfhgO6C2rNpGreQMEKexS1xfXzBMm6k8Z0jNCF4a4NDYFwGH
+	eJ6qHfUYT4ei/3R2LWjmIPdYOLfuQziXUAcgcKG2GFzc51p7uJk8Kk/ipBISj/pum/OMqLesKh4rf
+	6hj27fbN1OStHIEEN3G8aNsEfoknYmd65wF5IcLan2J0C6Gm89+0atC9o7kPraapPQbP9ZZSL7qke
+	sJAmTvUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7Gz-0000000D5ip-0Upk;
-	Thu, 19 Nov 2026 18:54:17 +0000
-Received: from mail-oi1-x245.google.com ([2607:f8b0:4864:20::245])
+	id 1xU7Gr-0000000D5Sf-2XxO;
+	Thu, 19 Nov 2026 18:54:09 +0000
+Received: from mail-oa1-x48.google.com ([2001:4860:4864:20::48])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7FY-0000000D4PW-3CuI
+	id 1xU7FL-0000000D3xz-2BwA
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:52:55 +0000
-Received: by mail-oi1-x245.google.com with SMTP id 5614622812f47-4cc89e86e9eso172783b6e.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:48 -0800 (PST)
+	Thu, 19 Nov 2026 18:52:37 +0000
+Received: by mail-oa1-x48.google.com with SMTP id 586e51a60fabf-45ecb9dd589so137204fac.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795114367; x=1795719167; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795114354; x=1795719154; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=wgoC6kwXy8A/C0dx8SZHvUCPruFTOKn2cEN7Wk/LnjU=;
-        b=Ny92pS8YdBeHBIuJK76igww+/YTldK9BOGKe1IlQNbfzo7uILQI6ZRtikAAV50QefT
-         Q1eA77szXqwNH8iTNseXBT0kqP4BJIeWF4XUePcjjCJ2nSo0mlTmVkJurUPS2vu3NZlo
-         lks76CYloN0mHe7TqpeLjUmfJHrk9r3Iay5+t9puPud2FRoaooWYrqjfiR4Ez7VlMZvh
-         7/N0eFTtuVcLv+b4DtkbB2jDtvf9e8RDlT28Tr6jQClIZb7fGMu3FHcOfZjROxAg3VRC
-         8rkcVScC9xn+CrGC2CTGranCRjLRdFQpFNDjykMROKZdsoFU40b5IwynU7B7StL9zSzY
-         Xrog==
+        bh=prmoIohS2xA8jaHyxKChBFBZwGVjZr06KfXp8bLe77w=;
+        b=dnMMFDpvt+86hnf5Yw7vwV4LH8IZQqUxYu9MeiFl6omAq/caa7DaxM1hdJfTdA73Bf
+         j4qTVGAnTzC9k9mtBauzY4JEwBdMcHv8jdGc70jZsaX5ZuXqh+weLrFEOew9vADt8sy5
+         i82Cg0fy2oOxsWzqTQKSQKm7gyI/0xkny8WjhiGZ3d5MiHd0JjHXyHpVmWUwOklA5KG0
+         2UKQnFJLxhr5MVx68PhOptwf4Sm3AzFpkjTYRLNK6RzsZF/IVdzhaxbjlZGaUPTDQal7
+         k2cNGSNdYJSy+nRpBOXRkvogWd2OtoknBOwo7Ymd12aepN9rOkKImRtbWuMH7oyy2wM7
+         Rs9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795114367; x=1795719167;
+        d=1e100.net; s=20260707; t=1795114354; x=1795719154;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=wgoC6kwXy8A/C0dx8SZHvUCPruFTOKn2cEN7Wk/LnjU=;
-        b=NGHqehRh5F7bfI1zjdQJsT+A0059GcoYmYJg2YsPoBk0tTU+/tMyITHqBVCzHmFSui
-         e8mlypmxgodJRU25UYE4giCEDBAzTvfun/4fRI2HVMoO+J6jrvhhZTTU7Rh8jSFUtba+
-         ZVJ03ogQ20UwklAQhJJcXMRpkN5Dl//vuOFh7RxEsgcThsjuu/+DTk3QjwLd11U7k+H7
-         GrJTAr7OFIo+pi32dOa0uH/lZFV5VeUOVHSMa4YZDMuJF0bwCdQV7jwT4Ly0x2vOnzMy
-         DhP+hafodedYcg84pT7X+VDJmKoF9haQ7qWs7WkZBokJtj3cYPHAH+NbW+dJZkW4HMZv
-         xx9w==
-X-Forwarded-Encrypted: i=1; AL+hErHztZqDxeOCVaMA3JcRjrYRK5dqQaMWNoVinWt19hzKeC/1avoroe1QgB9b6uE+YY2ojZwj20WzgeeyrWH/Blmb@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Z9k6O4ReBs5XgsBmDUFjwI8TJ26OkeM4Mlzwl6gco3H8Br9pg
-	oQCYEEcaWFxY7WM58moo+5/7VHTKXia/T8mjUtsvzJPqqKyiE19EK7lTMXED/L4zXw6a5+n4WXw
-	C2f5lk+08/32YTCwpBN375FuYMA==
-X-Received: from iloo7-n2.prod.google.com ([2002:a05:6e02:6107:20b0:54e:86af:fe5d])
+        bh=prmoIohS2xA8jaHyxKChBFBZwGVjZr06KfXp8bLe77w=;
+        b=yRnp6SMIMA+i1HFzna4Et7TXJI73D+qUgfLZgr7J2QKag/9v8K+ebSuTsyFpUeYd9a
+         rhUbIZykvxEWyMwSKsCCbLpiTBmMol4YqHWOrl8yHiH9t2bPi3SyBBb2SD4lRuxCCVSj
+         4mMGAO43nouhxATGA0cHaKdsQT3bl+wMe7HYRqaWRMilRFzTGA94dfLkvxQnSDkcY9L6
+         OJlh4p9q6lM3DIwABQ5c15v5wwGBNnEQPlfFB2WpiKMxnL0HqEFoNL3EMpPz/Mzqjpxk
+         MUwoVUa7Mz9stloIADzCZEwoLA6yNe78WeFxnrVSIaHSekHJkaNla+NZ4yb2zVr+D0/X
+         r7xQ==
+X-Forwarded-Encrypted: i=1; AL+hErEN/PpFsyl32NDEP0bahBzvHjj1A1STcx2AGtBEzAUH1Wm3/hfGoGPoLiStFdNffeg5nQ9E2iNnNCjDnhLr1LID@lists.infradead.org
+X-Gm-Message-State: APuU4Z+FA+6SeZqyZ2B1sdNwpKXopZVSTSJDZxu7anpsvAT+ymQz+Ynt
+	sS5bGUrT+KoL3cntzoC6OIMlXoH79hhXxumhJnCSd0DzDt6cZsTb74eY/PYq9EfP3lWeSMySm4o
+	BeKMd9FcpYo5YXuOIZiRibNqnMg==
+X-Received: from iljy19.prod.google.com ([2002:a05:6e02:f53:b0:54e:9371:e0d7])
  (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:191a:b0:4d5:291b:b850 with SMTP id 5614622812f47-57a0c4b956amr1020128b6e.54.1795114366859;
- Thu, 19 Nov 2026 10:52:46 -0800 (PST)
-Date: Thu, 19 Nov 2026 18:52:14 +0000
+ 2002:a05:6808:244d:b0:55b:f88d:6e8b with SMTP id 5614622812f47-57a0a10c8b9mr1106549b6e.13.1795114353687;
+ Thu, 19 Nov 2026 10:52:33 -0800 (PST)
+Date: Thu, 19 Nov 2026 18:52:00 +0000
 In-Reply-To: <20261119185215.632334-1-coltonlewis@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261119185215.632334-1-coltonlewis@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261119185215.632334-33-coltonlewis@google.com>
-Subject: [PATCH v10 32/33] KVM: selftests: Add find_bit to KVM library
+Message-ID: <20261119185215.632334-19-coltonlewis@google.com>
+Subject: [PATCH v10 18/33] KVM: arm64: Enforce PMU event filter at vcpu_load()
 From: Colton Lewis <coltonlewis@google.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
 Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
@@ -87,8 +87,8 @@ Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
 	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_105248_823686_EA8FFD0D 
-X-CRM114-Status: GOOD (  13.90  )
+X-CRM114-CacheID: sfid-20261119_105235_650182_59E992E8 
+X-CRM114-Status: GOOD (  15.47  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,38 +108,133 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add lib/find_bit.c to the KVM selftests build using the same wrapper
-pattern as lib/rbtree.c so selftests that depend on find_bit helpers
-link cleanly when built standalone.
+The KVM PMU event filter uAPI requires disallowed events not to count.
+Because userspace can install or update the event filter independently
+of guest register writes, re-apply the filter on every vCPU load as well
+as on trapped PMEVTYPER<n>_EL0 and PMCCFILTR_EL0 writes, excluding all
+exception levels in hardware whenever the selected event is blocked.
 
-Tested-by: James Clark <james.clark@linaro.org>
+When running in a nested hypervisor context (is_hyp_ctxt(vcpu)), L1
+vEL2 executes at physical NS-EL1: remap guest ARMV8_PMU_INCLUDE_EL2 onto
+physical EL1 (clearing ARMV8_PMU_EXCLUDE_NS_EL1 so P == NSK) and honor
+guest MDCR_EL2.HPMD for event counters 0..HPMN-1 and MDCR_EL2.HCCD for
+PMCCNTR_EL0.
+
 Signed-off-by: Colton Lewis <coltonlewis@google.com>
 ---
- tools/testing/selftests/kvm/Makefile.kvm   | 1 +
- tools/testing/selftests/kvm/lib/find_bit.c | 2 ++
- 2 files changed, 3 insertions(+)
- create mode 100644 tools/testing/selftests/kvm/lib/find_bit.c
+ arch/arm64/kvm/pmu-direct.c | 78 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 78 insertions(+)
 
-diff --git a/tools/testing/selftests/kvm/Makefile.kvm b/tools/testing/selftests/kvm/Makefile.kvm
-index 17a4256e90819..79b67a86208c3 100644
---- a/tools/testing/selftests/kvm/Makefile.kvm
-+++ b/tools/testing/selftests/kvm/Makefile.kvm
-@@ -5,6 +5,7 @@ all:
+diff --git a/arch/arm64/kvm/pmu-direct.c b/arch/arm64/kvm/pmu-direct.c
+index 5c8a8c42e353d..ace3e8e781538 100644
+--- a/arch/arm64/kvm/pmu-direct.c
++++ b/arch/arm64/kvm/pmu-direct.c
+@@ -242,6 +242,67 @@ u64 kvm_pmu_direct_reg_read(struct kvm_vcpu *vcpu, unsigned int reg)
+ 	}
+ }
  
- LIBKVM += lib/assert.c
- LIBKVM += lib/elf.c
-+LIBKVM += lib/find_bit.c
- LIBKVM += lib/guest_modes.c
- LIBKVM += lib/kvm_util.c
- LIBKVM += lib/lru_gen_util.c
-diff --git a/tools/testing/selftests/kvm/lib/find_bit.c b/tools/testing/selftests/kvm/lib/find_bit.c
-new file mode 100644
-index 0000000000000..5534248c663f7
---- /dev/null
-+++ b/tools/testing/selftests/kvm/lib/find_bit.c
-@@ -0,0 +1,2 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include "../../../../lib/find_bit.c"
++static void kvm_pmu_apply_single_event_filter(struct kvm_vcpu *vcpu, u8 idx)
++{
++	u64 guest_counters;
++	u64 evtyper_set = ARMV8_PMU_EXCLUDE_EL0 |
++		ARMV8_PMU_EXCLUDE_EL1;
++	u64 evtyper_clr = ARMV8_PMU_INCLUDE_EL2;
++	bool guest_include_el2;
++	u64 val;
++	u64 evsel;
++
++	guard(preempt)();
++
++	if (!kvm_pmu_part_on_cpu(vcpu))
++		return;
++
++	guest_counters = kvm_vcpu_pmu_guest_counter_mask(vcpu);
++	if (!test_bit(idx, (unsigned long *)&guest_counters))
++		return;
++
++	if (idx == ARMV8_PMU_CYCLE_IDX) {
++		val = __vcpu_sys_reg(vcpu, PMCCFILTR_EL0);
++		val &= kvm_pmu_evtyper_mask(vcpu->kvm) &
++		       ~kvm_pmu_event_mask(vcpu->kvm);
++		evsel = ARMV8_PMUV3_PERFCTR_CPU_CYCLES;
++	} else {
++		val = __vcpu_sys_reg(vcpu, PMEVTYPER0_EL0 + idx);
++		val &= kvm_pmu_evtyper_mask(vcpu->kvm);
++		evsel = val & kvm_pmu_event_mask(vcpu->kvm);
++	}
++
++	guest_include_el2 = (val & ARMV8_PMU_INCLUDE_EL2);
++	val &= ~evtyper_clr;
++
++	if (unlikely(is_hyp_ctxt(vcpu))) {
++		u64 mdcr = __vcpu_sys_reg(vcpu, MDCR_EL2);
++		bool hpmd = (idx == ARMV8_PMU_CYCLE_IDX) ?
++			    (mdcr & MDCR_EL2_HCCD) :
++			    (!kvm_pmu_counter_is_hyp(vcpu, idx) &&
++			     (mdcr & MDCR_EL2_HPMD));
++
++		val &= ~ARMV8_PMU_EXCLUDE_NS_EL1;
++		if (guest_include_el2 && !hpmd)
++			val &= ~ARMV8_PMU_EXCLUDE_EL1;
++		else
++			val |= ARMV8_PMU_EXCLUDE_EL1;
++	}
++
++	if (vcpu->kvm->arch.pmu_filter &&
++	    evsel != ARMV8_PMUV3_PERFCTR_SW_INCR &&
++	    evsel != ARMV8_PMUV3_PERFCTR_CHAIN &&
++	    !test_bit(evsel, vcpu->kvm->arch.pmu_filter)) {
++		val |= evtyper_set;
++		val &= ~(ARMV8_PMU_EXCLUDE_NS_EL0 | ARMV8_PMU_EXCLUDE_NS_EL1);
++	}
++
++	if (idx == ARMV8_PMU_CYCLE_IDX)
++		write_pmccfiltr(val);
++	else
++		write_pmevtypern(idx, val);
++}
++
+ /**
+  * kvm_pmu_direct_reg_write() - Write a guest PMU register for Partitioned PMU
+  * @vcpu: Pointer to vcpu struct
+@@ -281,6 +342,7 @@ void kvm_pmu_direct_reg_write(struct kvm_vcpu *vcpu, unsigned int reg,
+ 		if (reg == PMCCFILTR_EL0)
+ 			mask &= ~kvm_pmu_event_mask(vcpu->kvm);
+ 		__vcpu_assign_sys_reg(vcpu, reg, val & mask);
++		kvm_pmu_apply_single_event_filter(vcpu, reg - PMEVTYPER0_EL0);
+ 		break;
+ 	case PMCNTENSET_EL0:
+ 		val &= kvm_vcpu_pmu_guest_counter_mask(vcpu);
+@@ -345,6 +407,21 @@ u64 kvm_pmu_guest_counter_mask(void)
+ 	return kvm_vcpu_pmu_guest_counter_mask(kvm_get_running_vcpu());
+ }
+ 
++static void kvm_pmu_apply_event_filter(struct kvm_vcpu *vcpu)
++{
++	struct arm_pmu *pmu = vcpu->kvm->arch.arm_pmu;
++	unsigned long guest_counters;
++	u8 i;
++
++	if (!pmu)
++		return;
++
++	guest_counters = kvm_vcpu_pmu_guest_counter_mask(vcpu);
++
++	for_each_set_bit(i, &guest_counters, ARMPMU_MAX_HWEVENTS)
++		kvm_pmu_apply_single_event_filter(vcpu, i);
++}
++
+ /**
+  * kvm_pmu_load() - Load untrapped PMU registers
+  * @vcpu: Pointer to struct kvm_vcpu
+@@ -376,6 +453,7 @@ void kvm_pmu_load(struct kvm_vcpu *vcpu)
+ 	}
+ 
+ 	guest_counters = kvm_vcpu_pmu_guest_counter_mask(vcpu);
++	kvm_pmu_apply_event_filter(vcpu);
+ 
+ 	for_each_set_bit(i, &guest_counters, ARMPMU_MAX_HWEVENTS) {
+ 		val = __vcpu_sys_reg(vcpu, PMEVCNTR0_EL0 + i);
 -- 
 2.56.1.708.g77570a6a1d-goog
 
