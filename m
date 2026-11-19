@@ -2,152 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1F7606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 21:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA38C60A260B
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 22:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mQcvtKW4;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=ZL4v7jQH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lFHhEZRs;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=nO0aGLkN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=QTFT8HnJZOHrpWR9ei3rYrrfiOvmIdaTYg853ANCdzA=; b=mQcvtKW4Vid0gah43g+1aeGocT
-	Hb9QHvommEcfCQnNBixJbBbfngjLB1mlBtt6YZg/2coxXIaw/e6Cbold3AXPuRs0j88Vx7C5wzM+S
-	KnD9er0Y6yvzfVau65WSO4znJQHHlgWu3bh9TrRTXVtrqd5EVtbkuCitouwOUTLryeLCnWCn9s9YZ
-	Jkc+pv2x920srosY3YsaG2tObnd0i0YqnHmNFvSbXeUsg56ngrkjDipvBZOVwTnpAz4XUZmaeLNbE
-	/IzBkPb3gfBCgqRymYuvsxi2gflK+GKYruSV+zPiy2+SMxl92A5TB3J0EDv09apyyrutxYrbwaIZh
-	GvlwBdBA==;
+	bh=RYWNR0h0liD1qdkAYXsnTwsbXEEFmaCq5YohX+Uco70=; b=lFHhEZRsbGzEQ4CuJDbp5CjxK2
+	xPTdAWxrdx7HRQsYMma38K8MdLlSyiLunruWYLO0LO+ulfOB1d1j9wqB9YB0tFimolGb0P69teBzy
+	tMZf7KV7+GiqmcHPwq61QZNb3O1T7xfOIaGk6XcRcSremdjiynV4WjHLj8LP1USwpONPCz2ZkNnOI
+	6+EVOsi9LMHj0GZnOIBt0p4J/YHaOJtan+CzuZtHud02p5vTlqRsJQwhBd/iwqlvdSviNXEfOF0m3
+	DNYvGtoDGFTEkUgoIapTpjfElnw+bhdcUlVErD/Q/A0W5VoUdkqoqaIZfKMLKjMVo0mkRxj+U2N44
+	ATDv/LQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUA9w-0000000DWbw-3Sa7;
-	Thu, 19 Nov 2026 21:59:12 +0000
-Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
+	id 1xUAEy-0000000DXEj-15RN;
+	Thu, 19 Nov 2026 22:04:24 +0000
+Received: from mail-northcentralusazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c105::1] helo=CH1PR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUA9t-0000000DWbL-3REJ
+	id 1xUAEu-0000000DXDT-2aGf
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 21:59:10 +0000
+	Thu, 19 Nov 2026 22:04:22 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tvQjVl6MHuFdKgnoJ/DT+yLcqjDi2dSfQdUOg8PnIMkyK1GG6A1Aiw0JGxye2sJboib85yORJSpbUl+DH6c8SlDmVyhF8aNJtWreKI8uOMicL3SIzET5MOupwBFbS6PQraRTnzKnnpZfOIiRiFrFr+T38zLDGhdH7e6qEnho/OdNRxUDEwy71QH4Hdg6uodtq5iUwB3i0Vx2rYSYmcr4dtSQq9IG5bWWTYaXYU0vJikbgKy7hH/Kr1551RyX7TmncXwQqGjfUC1MIqa88RDbIeWh6YJzFypylZIx9AtWZ4DIGKyp1FlV8gQ1MtU86zEObl426y4yMH1RNpCQP1sz1w==
+ b=MRDFyZPs5PNspwCfj+F5+x08P6WzOE+DH929i2Mdvhcmku9EjxtsyyZHrjOdVh+K3Sgxtnqb2Q0Tnh5CxCTcQnbu7uCZWLxjehunfxpnOmY5/69a81ujzW3e4BNnUL6/K2RL+bjMvYKpMX8AV2oatT8wb++ywFyZGR0OUYy3lDQo4EsNmBCANzpoRVkJOdhQf/3jeHzdJ53Q7WjH94ahkg8f++ef4i0Vt+sqtdbJVog37rlO05mkzjF/zUdIPnXLw37mknQKtW4CufNkCqI5NhMYAP2aRP8g1OKBiJRIR6Z7Wxjlz4xuAaOAkMa13d80ly+h7BptnFPVYCtHtoH43Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QTFT8HnJZOHrpWR9ei3rYrrfiOvmIdaTYg853ANCdzA=;
- b=Idzviaa5x9wbtnlSDenttqk2VMS0HMIzac8Jd0antSvx80et/yviX9LOlgtM4cjL6iW/QeAxXO6dpAUGQHfBGPDXyfF1MJYQqPFPVhHWH3+P1hOI7kJIFxgFLV4czts1yxVQhv3K0uB1B9gt50yRW539fiC0DCQqnW1yl6HYdwyY6auy5cQTXR5WT4yaoYGokgJ98UqBV2/HQhgsiCmNcv3Es5kUtlRBubcvzJbPwl6zXByrV5zxrGdMKBQSseSISny96mvz1T3ylWMbrghd+jgoKSRVUsovLDdX9Oe0LRGXKwffRismMTc9JH6zFNL0pOA1Pv9Bb57F9tfCAN9OUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
+ bh=RYWNR0h0liD1qdkAYXsnTwsbXEEFmaCq5YohX+Uco70=;
+ b=vx1L+3a5tvlKcWgjwS0f5UH+fY9sVDcHlS3zEKk+/4ADi9HFlo+FSiBU525FAoCxKiVcV9XlI7TzH8Ostj/0XNMjCKTVhUcL3/6milhyS2hfjun1d05swmjlh7r2ifsmVl/JBlHJ7qVX4SilnYxTIS01n6AY3kh1l9lrJ1wCQQqpPKqQ9l8OuOchrDs9OvI9bY6su6i6NxBuiKSg0BLJLaXXlLVpBpNlEtAI4IfTRV8MUULLSLTheS79D6KISsx0sjwHDtmG/KMa0tcvyy8jGbgxFjQtnR5cQ/nV9g29nniFB70NWJBBaHyTP+Dp8Q5yIGmD5o6wa89aMI4awq0SdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QTFT8HnJZOHrpWR9ei3rYrrfiOvmIdaTYg853ANCdzA=;
- b=ZL4v7jQHKzKCVVhKwE14alOEdY9RWv1oA9r/RW5FqlyRSRt4qKJfprcgQds3fLi8rU4pOuq5mS/ZkF4x/pfa1GPQZFN+CZ7YdydxQPmrwNprHZ3ePb7PEvo7wizlkwr+2EgQeqdAcCbS6GCFD9egtUQmZ68TwsWeRGWBYYX6buRuq96sQI2xFI5rPCNny+DbaLl/6RL0aaTqTKyHmXgtcwwGI7W3I/3B41if94I1RjMcGBH4E/zwBwSmq5TxgedKNX9Tg5ZQmvnftvew/pnwMo05fa5EOpBQWoT6mYI0+K1UhVGXXMze9eqivS9VtkeMW9c57nCPDjMraVLrh5Op1w==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by VI0PR04MB11918.eurprd04.prod.outlook.com (2603:10a6:800:306::22) with
+ bh=RYWNR0h0liD1qdkAYXsnTwsbXEEFmaCq5YohX+Uco70=;
+ b=nO0aGLkNgQ26BDeblmm21D4p/LEsWn0CcOhtX17aSGp57bJUyCCYGOOAOG8TxAUsI37ITFrtsqyW3vOiwYkZ+6APc49Oa0Z5BWco+Z+UBVqtH0m3m6JHt3M2OECg1pldTzrdqVUMs/9D3S2PewDCGxk7SvxihiTlfbOh068qjhk=
+Received: from CH0PR13CA0060.namprd13.prod.outlook.com (2603:10b6:610:b2::35)
+ by SN7PR12MB8147.namprd12.prod.outlook.com (2603:10b6:806:32e::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
- 2026 21:59:02 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
- 21:59:02 +0000
-From: Frank.Li@oss.nxp.com
-To: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Francesco Dolcini <francesco@dolcini.it>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	linux-bsp@toradex.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 00/11] arm64: dts: freescale: Add SPI aliases to Toradex SoMs
-Date: Thu, 19 Nov 2026 16:58:55 -0500
-Message-ID: <179512551116.1936329.866731338009326452.b4-ty@b4>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261112150236.164850-1-francesco@dolcini.it>
-References: <20261112150236.164850-1-francesco@dolcini.it>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PH7P221CA0089.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:328::7) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+ 2026 22:04:11 +0000
+Received: from BN1PEPF00018548.namprd05.prod.outlook.com
+ (2603:10b6:610:b2:cafe::51) by CH0PR13CA0060.outlook.office365.com
+ (2603:10b6:610:b2::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.7 via Frontend Transport; Thu, 19
+ Nov 2026 22:04:10 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN1PEPF00018548.mail.protection.outlook.com (10.167.248.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 22:04:10 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
+ 2026 16:04:10 -0600
+Received: from xsjblevinsk51.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Thu, 19 Nov 2026 16:04:09 -0600
+From: Ben Levinsky <ben.levinsky@amd.com>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>, Bjorn Andersson
+	<andersson@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: <michal.simek@amd.com>, <tanmay.shah@amd.com>, <ben.levinsky@amd.com>,
+	<linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 4/4] remoteproc: amd_mbv_bram: Add RPMsg support
+Date: Thu, 19 Nov 2026 14:04:05 -0800
+Message-ID: <20261119220405.2838553-5-ben.levinsky@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261119220405.2838553-1-ben.levinsky@amd.com>
+References: <20261119220405.2838553-1-ben.levinsky@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|VI0PR04MB11918:EE_
-X-MS-Office365-Filtering-Correlation-Id: 74ca32dc-af21-4ccf-2c33-08df46885299
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-TrafficTypeDiagnostic: BN1PEPF00018548:EE_|SN7PR12MB8147:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67e902ea-8d40-405e-0fa6-08df46890a6a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|19092799006|7416014|1800799024|376014|18002099003|261009221227099003|22082099003|261009223027099003|56012099006|11063799006|260925021311599003|260925021911599003|261026140227099003|260925022911599003|10067099003|261026121527099003|261028144727099003|261022075727099003|261022105027099003;
-X-Microsoft-Antispam-Message-Info: kA7cs8iaTVRAL7aipkQ+fk02fTScsRtllGC26veo3/GfcqUJMO8av6yjc8SR7VNFlyrIAfV9ocP1QCXVNfrbnalK5QO0EiLez9OlfDBPhG6fZDMdvm2kbT7CAkl0mYp9TdB1OBE1DxBYp4TCnLgyZWwf/M1ANVUa5X2XL25LV3RSC3+tYxEVYUohdwyXWtro7Xu7lzw8DwuQ3gb+7pZzRBmznUY8X/xBaWKyDwftwYhkBzlVnR0lEx6H6UUvHWagWyhBKpOxQ9aeJbKClPZBLRYy6vtBO9m51wCpWiCCySCbjwvkqgVlzDhHfUFKPS4pw074MvSBf1qbFyYIiuhwZojjpgixNCZZEIPO+V7GZY9AyFs3mLfTogjsQkeb1lkJweC6FfEB/tUCFVS3MrW1wHCOyp57OYDJ0UGONHt71xjoOaJeQm8OZWXGOV8C4zGPn6xc3AzayAyi4c1zQYcWB5oLFPyy+gR2ddSonrsWYJk5sc87MpZWm9fyP+O34Fi4cB1Absqtdq3ca4+/zRTR7lP9y+2Bojat321u7p+uAzEPksXb5RpkOlQhA6tR9qp+jV3QPy54WT/4/Yw8QACjzO2oW0m3VbgocxIuQjbbeOm0xb6RSUEOi8nrDVvzZ/HXeOcvRjV+Eyc0nSj3LAQo1xhBpHn/iqksSLNPH8RvSj0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(19092799006)(7416014)(1800799024)(376014)(18002099003)(261009221227099003)(22082099003)(261009223027099003)(56012099006)(11063799006)(260925021311599003)(260925021911599003)(261026140227099003)(260925022911599003)(10067099003)(261026121527099003)(261028144727099003)(261022075727099003)(261022105027099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|1800799024|82310400026|7416014|23010399003|376014|261009223327099003|6133799003|22082099003|18002099003|261009221227099003|261009221727099003|261009223027099003|261009220027099003|56012099006|261026121527099003|5023799004|261026140227099003|11063799006|261028144727099003|261022115727099003|261021135927099003|261022105027099003|261021133027099003|261022113327099003|261021130227099003|261026130827099003|261026135527099003|261021121427099003|261021123027099003|261022075727099003|261102123227099003|10067099003;
+X-Microsoft-Antispam-Message-Info: iz2I2oq6Ftk5GNG6v+DZbAHiFtWz9wUhkVKvlnhdINV6VqVZ01kah9DYYsiPM0o4ybELA4NLjJDKuRWFZPzMgxrdoDOR992l4y2o4p5LyJ1uglh0VzOWKmwRQS5vzvf65f454cB3zqkegFAiz0dpIeJNPRLWGpikoLAmbnaY5pYLipXMmJxWaHbAibXux3heuVtaDd2+o2+k1c1v2NX3WDHLn4Rf7kDAL8umhej4O1lLVF/FRwx3ELoMUoQ1AZL6yzg4sJTECWqc/WOBK8eESa2L573O/cvzU4QzBm7/B06kEuqPpUr0cZrM/c10I7QCoXDIQ1t9Wna32JU00xYzw+Vl/Oyy/6SPhHV1qm2/ck4BuhkngDfhbmxTKoNno36ToAmHtDC7sxRW9Vi/PDBOMTyj6l+YKjDe0HUsmjnG4S9ZjTHHgHq+YlbddyAMJpHjsjGuuaDuZRf3NvQgJCCu4KxRQtpSWyLXSyM+KZsW2SfenQn55/QXIBkL1PfDMGRXkD0Yjsm678Jfg0tx9bw4N0ZCH2M9noj6j9ufVkYkr7vH77Xpd+R7xhSPMQY7COShPvreTHTqglu/j5nkQkDH1GcCm/w9DlaEdZ3uEq6vbrQgx/lqmDRR0ffvQ+aTkjfS4/WiMN1jlhgbhCuVMCUuT/1tJAeeEa/K/I/WxD8BGJMTXaJPUZqugK874kmVK92CZv1LHZ9ZIKLbrzAMRmCZSQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(7416014)(23010399003)(376014)(261009223327099003)(6133799003)(22082099003)(18002099003)(261009221227099003)(261009221727099003)(261009223027099003)(261009220027099003)(56012099006)(261026121527099003)(5023799004)(261026140227099003)(11063799006)(261028144727099003)(261022115727099003)(261021135927099003)(261022105027099003)(261021133027099003)(261022113327099003)(261021130227099003)(261026130827099003)(261026135527099003)(261021121427099003)(261021123027099003)(261022075727099003)(261102123227099003)(10067099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MTRLcG9GbERaWXpOSG9EN2xMdmRqNE81SjcxTVdnU0lhZ0c3cEdHN1Y3YkFG?=
- =?utf-8?B?K0tLeEpGdERaZTYxaUFPcjVBTDlLQXQyaUw3QUFJUEh1WE1sbEJYejF1RXpI?=
- =?utf-8?B?YzhHT3hxOXBNSjRhVjg5QU5xRHhRamZ0WHN5a0VQdFltTGt2cmxndzBVY3Rw?=
- =?utf-8?B?NHgxa3RJRFRmdHVpT0pCd0dWS09yWmo2T2NKemNVeXdMWDRpQlhqUk53RENE?=
- =?utf-8?B?Tm9WSyt0MVlmMG1JS3NJWWdMS0Q1WmNvdGpudi85QW9BakRCSkhvNEpnUlky?=
- =?utf-8?B?U25IT2xtRjN3MnphREFjUUhwQWw3SEFDU3BVd0k0b293ODA5SEtLdVpteHpE?=
- =?utf-8?B?ZlBieE1xVXo4UGxIbGtmVTFOdlEzdlNJbDlmLzkxN2Q3Wm1JSmtTR25vMlo3?=
- =?utf-8?B?Vjh1TFFWMjhTa2FNdWdFNkcvM24vQnZta3poL0YxUTFWNE83Zm5NYkJjNU0x?=
- =?utf-8?B?U0FTd05kVFhnUzZxWlN0TC9lZW94SEEraDNEQ3UxQzRtcUJxZEJ2KzlrK0tD?=
- =?utf-8?B?Q3EzWDVkZHlsNXo2ZWovM1RtM3J1bmt3cGt4cEN4YWlhcU5yNEhsQUtHYXY4?=
- =?utf-8?B?TlFHaFlJUkR6UVNJU1lmZ3FhcTZ4MHpFNmJVLzRtblRsaTh2eWFWMCtnRUNy?=
- =?utf-8?B?VkRJdFlZVWUvTHF3MzBxRy9Xbm1jK3hTeXBZazB6NlBYNks4UitxOWc4M1lw?=
- =?utf-8?B?YVRSMGhnZFBOd2NrdjBZY0Z1M1VITlY0Z25maTV2Vi9tRDFBQnN1eGlIMXJw?=
- =?utf-8?B?N21GZW1DZjFHWWRZcE5KS0F2M3hIK1gzeGZnenZESVU0OXR0VGRkVzhMRkNR?=
- =?utf-8?B?cThhZlZERVFJcVhMTWZEcy9DaHBjSVVHQmJ3YldqWmg1NkVsRHgrdkZydm5L?=
- =?utf-8?B?RlBCcEprekpUejlGYWxXWlFsK1BLa3M0V2tiRkNMR1RVUmZtU2t0MFZURjZQ?=
- =?utf-8?B?aTl0MDFJUGlYU3NQZUtIQUZ3OFB5L1BjL3RSTXpHdElhR3F0WEhyWDJTV0wv?=
- =?utf-8?B?Y3VCQUJDUFhaT2lFOUorMmtwZmFzcVR4bkYzeDQ3dVJqWk1qVU9acVh4c3dj?=
- =?utf-8?B?OUhnOEowTTdqWXdjdGdCd2hGU0tBSGx5T1AyODZmZzhYQzl3b3JBTXE3RVgy?=
- =?utf-8?B?SVRnb3lYYitwRW0vUDFEN0dzU3d2dlpxL2U0VmRnUFlPOFFFdHJUNHRnVWhI?=
- =?utf-8?B?aldBUExqVGNkTkFpOVpXVC9aY2Y2S1VoOUdSelkxQisxbW9RcVVCQnE4UlZD?=
- =?utf-8?B?K0tPcHpTK0xOU0xPZWxhbW9ncnN5b3ZYWVlFYUdob01KQW9yQmY1TGNRNW9E?=
- =?utf-8?B?ME50cC9USkZoSUtNZW5Kelg4by9NV2d3aHVZNFB3QWVnVFBydkNMWUNmelJu?=
- =?utf-8?B?NU1FUGtvN1IrNGxmYXlLNjRkak1Vd0xaV1RGOHhzUXYxbTNPcXcwSXRudnU0?=
- =?utf-8?B?MkUvT0lOZjQ5ejZ0YWp2cTEyL3ZBcTRvRmJleFNPSWZkdGs5aElvL0lXNUlo?=
- =?utf-8?B?RzhWcy9YRTF5UlFZek5ldFdFbGg2SXdJMWNINXNwclRaNVgzOThEQkpjVHR2?=
- =?utf-8?B?K3ZEOWNERmJiQjRySEVTNC9iOHlWd1hjNElNUjNIa09mM252Wmx1MkkzRlZx?=
- =?utf-8?B?UXVrWFF3WkNiUytYcVI3c25vUEcrbnRWVE1aZU8vUmNKdEtUM2dWKzRhU1li?=
- =?utf-8?B?QjBTMXhqTWtBU2RENkRCTUM0LzljYVRSQWlsYWFrV216aUhQdWlvS2UzWnRq?=
- =?utf-8?B?S2xnSzA0V2c2dDdhRHhKbUpBWkFFOURaTlRTb0sxMTd0OUhYVWlFd09TLzll?=
- =?utf-8?B?MWd4azEwLzlvdE53VHBzUzc3LzMzYWNaTVZkRmFmOS9kSU5HNFdnR25Ib3pS?=
- =?utf-8?B?MEthUlNrTS9YZlFPcXpsRXdqSzRPenlHdG9DZUZIQ3V1NGZmRmJJT2ZjcXFV?=
- =?utf-8?B?NXdEeDlCMkM1SEp0WWdWcUg2aXAwdFpFaTdNMzNvS01tNmJlS3lLbEx2QmtM?=
- =?utf-8?B?VjYwbGFsUnVWNDNvNGh6eWF2UlZncjJzaWY4QXBoTk1BTUpSbElRQ25xL2FO?=
- =?utf-8?B?eG9xTUg4VVFxeHQzc0JWaVNKYnJRd2ZOQXJuM0hBQUhIeGx3OVMvOGI4bkR6?=
- =?utf-8?B?NytWUGhwelI5bXNaWFc4aW0vQmtkekRsY1NaTmZnN3VyR2dsSkpVa0JyZTFu?=
- =?utf-8?B?TE5VQk9sWTFsWFJCZUJLV0dvdzFMeCtYd1cvOGxDMzEyRW9tanhjNGp3NGNC?=
- =?utf-8?B?Y2p5b3VORFRYbDNkVE8yOUN1NHJ1RzB4eUREU3lWY1R5TWRXbU1XL0lTUVBy?=
- =?utf-8?B?UURVRXlpUkhIN1M2WUhEOHU3VTFRUXJrcnRuMnlaNC90WmFUUjFWcDFyT3NX?=
- =?utf-8?Q?H3RRBG5CFpCFIH7UtIym6kbQnMBijU4pbuN97?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74ca32dc-af21-4ccf-2c33-08df46885299
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 21:59:02.6222
+X-MS-Exchange-AntiSpam-MessageData-0: 3t3xUa1dL+6T0YE/9fTpSadrIPuQTrei5JCsndBW+0SzAb+yafqs2rIfOvFXVEjgqWwLzkaGVuOmo05eWueyn3wOcCUcmwJXIJLECOGw9XYOjXbbn037tL/EwcuoLi88qJ9aob1BU/tZGxQRajpqUytVRSQbvM86iiNHoEEUbZDxymWx1BGgKW2nXBL2P50eoj8bOG0uERAVju0hsHl+2GWZc8KfQ3MKUGTNF7+HFgZC/qXwb7LTySBMCnEFfDBNneLPob6fInop3vd7kw5SCxhgdQHiiQhfyT58JjnVaarCgWCOeqLzh35x+VUDCZwO3mjpze/ZiwAvMvIxTD1rir0j5vLpYK/FxbzjZtx6Nxr0HVuYBdNQX+K1CPPWpKBKnX1nornuh3rzCEADncsEN9oj/OnZWez9+jLPPi/GJGa64/SJb9MD6rhmY37YO7L+
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 22:04:10.8664
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZfM+BMOk8pg+kO6sZEQukKOMpBzExM3ZGjBnIOk+LIe6RiD8VZmhMrRxZh7W15vYUTzdm3m8x3+4tShyEhTLlFVNjMPpYsQYxqy6qRM2jqsdwCQR73vgOJ2F5OiYqx2B
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11918
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67e902ea-8d40-405e-0fa6-08df46890a6a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00018548.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8147
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_135909_868305_862C5A57 
-X-CRM114-Status: GOOD (  10.97  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261119_140420_751336_CA7E6DC4 
+X-CRM114-Status: GOOD (  23.18  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,55 +124,431 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Frank Li <Frank.Li@nxp.com>
+Add RPMsg support using the mailbox framework for virtqueue
+notifications and reserved memory regions for the vrings and buffer
+pool.  Both are optional, the driver can still be used to only load,
+start and stop the remote processor.
 
+Received notifications are processed in a work item since the mailbox
+RX callback may run in atomic context and the virtio RPMsg receive path
+takes a mutex.
 
-On Thu, 12 Nov 2026 16:02:22 +0100, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> Toradex SoM families (Verdin, Apalis, Colibri, Aquila, Lino) and the
-> SMARC and OSM standards define the interfaces available to the carrier
-> board and their numbering or naming as part of the module pinout. The
-> Linux SPI bus number instead follows the SoC dtsi aliases where they
-> exist (i.MX8MM, i.MX8MP, i.MX8QM, i.MX8QXP) or is assigned dynamically
-> (i.MX91, i.MX93, i.MX95), so the bus number in sysfs and the spidev
-> device name do not match the module interface.
-> 
-> [...]
+The mailbox client API doesn't provide stubs when MAILBOX is not
+enabled, hence the new Kconfig dependency.
 
-Applied, thanks!
+Assisted-by: Claude:claude-opus-5.5
+Signed-off-by: Ben Levinsky <ben.levinsky@amd.com>
+---
+ drivers/remoteproc/Kconfig              |   5 +
+ drivers/remoteproc/amd_mbv_bram_rproc.c | 295 +++++++++++++++++++++++-
+ 2 files changed, 299 insertions(+), 1 deletion(-)
 
-[01/11] arm64: dts: freescale: imx8mm-verdin: Add SPI alias
-        commit: 67ede8e4f5817d98872a1bb224175a61d6faec0a
-[02/11] arm64: dts: freescale: imx8mp-verdin: Add SPI alias
-        commit: fd2a135b8352aecf1a35489c6848f106425ce61c
-[03/11] arm64: dts: freescale: imx95-verdin: Add SPI alias
-        commit: 67f5f1827d8559de3d8589a39e3bdc70b02abc5f
-[04/11] arm64: dts: freescale: imx8x-colibri: Add SPI alias
-        commit: ff2dde060fbc8febe8284d2e7c79617a464bdd6c
-[05/11] arm64: dts: freescale: imx8mp-toradex-smarc: Add SPI aliases
-        commit: 782ccc9fff4394dac008a96082bfc4aaabcab3a4
-[06/11] arm64: dts: freescale: imx95-toradex-smarc: Add SPI aliases
-        commit: 41d378d964d35a8dfa50bbe6f4598f5a6e61f27a
-[07/11] arm64: dts: freescale: imx95-aquila: Add SPI aliases
-        commit: cc5bac3261178499bc158aeee21c1848e14c31f1
-[08/11] arm64: dts: freescale: imx8-apalis: Add SPI aliases
-        commit: 5854bd6007ca4a25a14f146a00f555c9a6f871a9
-[09/11] arm64: dts: freescale: imx93-imx91-lino-common: Add SPI aliases
-        commit: 7a5680d5875f8a9bf17a0c732bfaf67be947ac9c
-[10/11] arm64: dts: freescale: imx93-imx91-toradex-osm-common: Add SPI aliases
-        commit: fe7b0e32a0acf0072ab8289d9ff7a3a1ccd0780a
-[11/11] arm64: dts: freescale: imx95-toradex-osm: Add SPI aliases
-        commit: ec598555334cfb04ff734f1872f3693236a8f28a
-
-Best regards,
+diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+index 70dec8c3fe4e..2d3c51cbcbad 100644
+--- a/drivers/remoteproc/Kconfig
++++ b/drivers/remoteproc/Kconfig
+@@ -26,10 +26,15 @@ config REMOTEPROC_CDEV
+ config AMD_MBV_BRAM_REMOTEPROC
+ 	tristate "AMD MicroBlaze/V BRAM-based remoteproc support"
+ 	depends on OF && COMMON_CLK && (GPIOLIB || COMPILE_TEST)
++	depends on MAILBOX
+ 	help
+ 	  Say y or m here to support a MicroBlaze/V BRAM-based remote
+ 	  processor managed through the remoteproc framework.
+ 
++	  RPMsg communication additionally needs the mailbox controller
++	  referenced by the mboxes property, such as AMD_PL_MAILBOX, and
++	  RPMSG_VIRTIO.
++
+ 	  If unsure, say N.
+ 
+ config IMX_REMOTEPROC
+diff --git a/drivers/remoteproc/amd_mbv_bram_rproc.c b/drivers/remoteproc/amd_mbv_bram_rproc.c
+index e4a103cf8455..0b54a6cc3e62 100644
+--- a/drivers/remoteproc/amd_mbv_bram_rproc.c
++++ b/drivers/remoteproc/amd_mbv_bram_rproc.c
+@@ -15,14 +15,19 @@
+  * Reset is controlled via GPIO connected to Processor System Reset IP.
+  */
+ 
++#include <linux/bitmap.h>
+ #include <linux/clk.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/gpio/consumer.h>
++#include <linux/mailbox/zynqmp-ipi-message.h>
++#include <linux/mailbox_client.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
++#include <linux/of_reserved_mem.h>
+ #include <linux/platform_device.h>
+ #include <linux/remoteproc.h>
++#include <linux/workqueue.h>
+ 
+ #include "remoteproc_internal.h"
+ 
+@@ -31,13 +36,266 @@
+  * @dev: device pointer
+  * @reset: GPIO descriptor for reset control (active-low)
+  * @clk: processor clock
++ * @rproc: remote processor instance
++ * @tx_client: mailbox client used for virtqueue kicks
++ * @rx_client: mailbox client used for remote notifications
++ * @tx_chan: transmit mailbox channel
++ * @rx_chan: receive mailbox channel
++ * @notify_msgs: persistent mailbox payload storage indexed by notify ID
++ * @pending_notify_ids: notifications awaiting process-context dispatch
++ * @rx_work: work item that dispatches received virtqueue notifications
+  */
+ struct amd_bram_rproc {
+ 	struct device *dev;
+ 	struct gpio_desc *reset;
+ 	struct clk *clk;
++	struct rproc *rproc;
++	struct mbox_client tx_client;
++	struct mbox_client rx_client;
++	struct mbox_chan *tx_chan;
++	struct mbox_chan *rx_chan;
++	struct zynqmp_ipi_message *notify_msgs[256];
++	DECLARE_BITMAP(pending_notify_ids, 256);
++	struct work_struct rx_work;
+ };
+ 
++static void amd_bram_rproc_rx_work(struct work_struct *work)
++{
++	struct amd_bram_rproc *priv =
++		container_of(work, struct amd_bram_rproc, rx_work);
++	unsigned long notifyid;
++
++	for_each_set_bit(notifyid, priv->pending_notify_ids,
++			 ARRAY_SIZE(priv->notify_msgs)) {
++		clear_bit(notifyid, priv->pending_notify_ids);
++		if (rproc_vq_interrupt(priv->rproc, notifyid) == IRQ_NONE)
++			dev_dbg(priv->dev, "no virtqueue for notifyid %lu\n",
++				notifyid);
++	}
++}
++
++static void amd_bram_rproc_rx_callback(struct mbox_client *client, void *msg)
++{
++	struct amd_bram_rproc *priv =
++		container_of(client, struct amd_bram_rproc, rx_client);
++	struct zynqmp_ipi_message *mb_msg = msg;
++	size_t offset;
++	u32 notifyid;
++
++	if (!msg) {
++		dev_warn_ratelimited(priv->dev,
++				     "received mailbox notification without data\n");
++		return;
++	}
++
++	/* Each notification is one 32-bit notify ID. */
++	if (!mb_msg->len || mb_msg->len % sizeof(u32)) {
++		dev_warn_ratelimited(priv->dev,
++				     "malformed mailbox notification: %zu bytes\n",
++				     mb_msg->len);
++		return;
++	}
++
++	for (offset = 0; offset < mb_msg->len; offset += sizeof(u32)) {
++		memcpy(&notifyid, &mb_msg->data[offset], sizeof(notifyid));
++		if (notifyid >= ARRAY_SIZE(priv->notify_msgs)) {
++			dev_warn_ratelimited(priv->dev, "invalid notify id %u\n",
++					     notifyid);
++			continue;
++		}
++
++		set_bit(notifyid, priv->pending_notify_ids);
++	}
++
++	schedule_work(&priv->rx_work);
++}
++
++static void amd_bram_rproc_kick(struct rproc *rproc, int vqid)
++{
++	struct amd_bram_rproc *priv = rproc->priv;
++	struct zynqmp_ipi_message *msg;
++	int ret;
++
++	if (!priv->tx_chan) {
++		dev_warn_ratelimited(priv->dev,
++				     "cannot kick vq%d: no TX mailbox\n", vqid);
++		return;
++	}
++
++	if (vqid < 0 || vqid >= ARRAY_SIZE(priv->notify_msgs)) {
++		dev_err_ratelimited(priv->dev, "invalid notify id %d\n", vqid);
++		return;
++	}
++
++	/*
++	 * The mailbox core queues message pointers. Keep each notification word
++	 * in persistent storage until the controller reports TX completion.
++	 */
++	msg = priv->notify_msgs[vqid];
++	msg->len = sizeof(u32);
++	memcpy(msg->data, &vqid, sizeof(u32));
++	/* Order writes to WC vring mappings before notifying the remote. */
++	wmb();
++	ret = mbox_send_message(priv->tx_chan, msg);
++	if (ret < 0)
++		dev_err_ratelimited(priv->dev, "failed to kick vq%d: %d\n",
++				    vqid, ret);
++}
++
++static void amd_bram_rproc_free_mboxes(struct amd_bram_rproc *priv)
++{
++	if (priv->rx_chan) {
++		mbox_free_channel(priv->rx_chan);
++		priv->rx_chan = NULL;
++	}
++	if (priv->tx_chan) {
++		mbox_free_channel(priv->tx_chan);
++		priv->tx_chan = NULL;
++	}
++}
++
++static int amd_bram_rproc_request_mboxes(struct amd_bram_rproc *priv)
++{
++	int ret;
++
++	/* Without mailboxes the driver supports load, start, and stop only. */
++	if (!of_property_present(priv->dev->of_node, "mboxes"))
++		return 0;
++
++	priv->tx_chan = mbox_request_channel_byname(&priv->tx_client, "tx");
++	if (IS_ERR(priv->tx_chan)) {
++		ret = PTR_ERR(priv->tx_chan);
++		priv->tx_chan = NULL;
++		return dev_err_probe(priv->dev, ret,
++				     "failed to request tx mailbox\n");
++	}
++
++	priv->rx_chan = mbox_request_channel_byname(&priv->rx_client, "rx");
++	if (IS_ERR(priv->rx_chan)) {
++		ret = PTR_ERR(priv->rx_chan);
++		priv->rx_chan = NULL;
++		mbox_free_channel(priv->tx_chan);
++		priv->tx_chan = NULL;
++		return dev_err_probe(priv->dev, ret,
++				     "failed to request rx mailbox\n");
++	}
++
++	return 0;
++}
++
++static void amd_bram_rproc_release_mboxes(void *data)
++{
++	struct amd_bram_rproc *priv = data;
++
++	/*
++	 * Free the channels before cancelling the receive work. RX channel
++	 * shutdown disables the controller interrupt synchronously, so no
++	 * notification can queue the work again once it has been cancelled.
++	 */
++	amd_bram_rproc_free_mboxes(priv);
++	cancel_work_sync(&priv->rx_work);
++}
++
++static int amd_bram_rproc_reserved_mem_count(struct amd_bram_rproc *priv)
++{
++	struct device_node *np = priv->dev->of_node;
++
++	if (!of_property_present(np, "memory-region"))
++		return 0;
++
++	return of_reserved_mem_region_count(np);
++}
++
++static int amd_bram_rproc_get_reserved_mem(struct amd_bram_rproc *priv, int i,
++					   const char **name,
++					   struct resource *res)
++{
++	struct device_node *np = priv->dev->of_node;
++	int ret;
++
++	ret = of_property_read_string_index(np, "memory-region-names", i, name);
++	if (ret)
++		return dev_err_probe(priv->dev, ret,
++				     "failed to read memory-region name %d\n", i);
++
++	ret = of_reserved_mem_region_to_resource(np, i, res);
++	if (ret)
++		return dev_err_probe(priv->dev, ret,
++				     "failed to parse memory-region %d\n", i);
++
++	/* The remote uses the physical address as device address. */
++	if (res->end > U32_MAX)
++		return dev_err_probe(priv->dev, -EINVAL,
++				     "memory-region %d %pR is above 4 GiB\n",
++				     i, res);
++
++	return 0;
++}
++
++/* Validate all regions so that nothing is registered if one is invalid. */
++static int amd_bram_rproc_check_reserved_mem(struct amd_bram_rproc *priv)
++{
++	struct resource res;
++	const char *name;
++	int count;
++	int ret;
++	int i;
++
++	count = amd_bram_rproc_reserved_mem_count(priv);
++	if (count < 0)
++		return count;
++
++	for (i = 0; i < count; i++) {
++		ret = amd_bram_rproc_get_reserved_mem(priv, i, &name, &res);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int amd_bram_rproc_add_reserved_mem(struct rproc *rproc)
++{
++	struct amd_bram_rproc *priv = rproc->priv;
++	struct rproc_mem_entry *mem;
++	int count;
++	int ret;
++	int i;
++
++	count = amd_bram_rproc_reserved_mem_count(priv);
++	if (count < 0)
++		return count;
++
++	for (i = 0; i < count; i++) {
++		struct resource res;
++		const char *name;
++
++		ret = amd_bram_rproc_get_reserved_mem(priv, i, &name, &res);
++		if (ret)
++			return ret;
++
++		if (!strcmp(name, "vdev0buffer"))
++			mem = rproc_of_resm_mem_entry_init(priv->dev, i,
++							   resource_size(&res),
++							   res.start, name);
++		else
++			mem = rproc_mem_entry_init(priv->dev, NULL,
++						   (dma_addr_t)res.start,
++						   resource_size(&res), res.start,
++						   rproc_mem_entry_ioremap_wc,
++						   rproc_mem_entry_iounmap,
++						   "%s", name);
++		if (!mem)
++			return -ENOMEM;
++
++		rproc_add_carveout(rproc, mem);
++		rproc_coredump_add_segment(rproc, res.start, resource_size(&res));
++		dev_dbg(priv->dev, "reserved memory carveout %pR\n", &res);
++	}
++
++	return 0;
++}
++
+ static int amd_bram_rproc_prepare(struct rproc *rproc)
+ {
+ 	struct amd_bram_rproc *priv = rproc->priv;
+@@ -68,6 +326,10 @@ static int amd_bram_rproc_prepare(struct rproc *rproc)
+ 		return ret;
+ 	}
+ 
++	ret = amd_bram_rproc_check_reserved_mem(priv);
++	if (ret)
++		return ret;
++
+ 	mem = rproc_mem_entry_init(priv->dev, NULL, (dma_addr_t)res.start,
+ 				   resource_size(&res), da,
+ 				   rproc_mem_entry_ioremap_wc,
+@@ -79,7 +341,7 @@ static int amd_bram_rproc_prepare(struct rproc *rproc)
+ 	rproc_add_carveout(rproc, mem);
+ 	rproc_coredump_add_segment(rproc, da, resource_size(&res));
+ 
+-	return 0;
++	return amd_bram_rproc_add_reserved_mem(rproc);
+ }
+ 
+ static int amd_bram_rproc_start(struct rproc *rproc)
+@@ -116,6 +378,9 @@ static int amd_bram_rproc_stop(struct rproc *rproc)
+ 		dev_err(priv->dev, "failed to assert reset: %d\n", ret);
+ 		return ret;
+ 	}
++	cancel_work_sync(&priv->rx_work);
++	bitmap_zero(priv->pending_notify_ids,
++		    ARRAY_SIZE(priv->notify_msgs));
+ 
+ 	/* Disable clock after asserting reset */
+ 	clk_disable_unprepare(priv->clk);
+@@ -139,6 +404,8 @@ static const struct rproc_ops amd_bram_rproc_ops = {
+ 	.sanity_check	= rproc_elf_sanity_check,
+ 	.get_boot_addr	= rproc_elf_get_boot_addr,
+ 	.parse_fw	= amd_bram_rproc_parse_fw,
++	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
++	.kick		= amd_bram_rproc_kick,
+ };
+ 
+ static int amd_bram_rproc_probe(struct platform_device *pdev)
+@@ -148,6 +415,7 @@ static int amd_bram_rproc_probe(struct platform_device *pdev)
+ 	const char *fw_name = NULL;
+ 	struct rproc *rproc;
+ 	int ret;
++	int i;
+ 
+ 	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
+ 	if (ret < 0 && ret != -EINVAL)
+@@ -161,6 +429,8 @@ static int amd_bram_rproc_probe(struct platform_device *pdev)
+ 
+ 	priv = rproc->priv;
+ 	priv->dev = dev;
++	priv->rproc = rproc;
++	INIT_WORK(&priv->rx_work, amd_bram_rproc_rx_work);
+ 
+ 	/* Get the processor clock */
+ 	priv->clk = devm_clk_get(dev, NULL);
+@@ -178,6 +448,29 @@ static int amd_bram_rproc_probe(struct platform_device *pdev)
+ 		return dev_err_probe(dev, PTR_ERR(priv->reset),
+ 				     "failed to get reset gpio\n");
+ 
++	priv->tx_client.dev = dev;
++	priv->tx_client.tx_block = false;
++	priv->tx_client.knows_txdone = false;
++	priv->rx_client.dev = dev;
++	priv->rx_client.rx_callback = amd_bram_rproc_rx_callback;
++	for (i = 0; i < ARRAY_SIZE(priv->notify_msgs); i++) {
++		priv->notify_msgs[i] =
++			devm_kzalloc(dev, struct_size(priv->notify_msgs[i],
++						      data, sizeof(u32)),
++				     GFP_KERNEL);
++		if (!priv->notify_msgs[i])
++			return -ENOMEM;
++	}
++
++	ret = amd_bram_rproc_request_mboxes(priv);
++	if (ret)
++		return ret;
++
++	/* Registered before the rproc, so it runs after the rproc is stopped. */
++	ret = devm_add_action_or_reset(dev, amd_bram_rproc_release_mboxes, priv);
++	if (ret)
++		return ret;
++
+ 	rproc->auto_boot = false;
+ 
+ 	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
 -- 
-Frank Li <Frank.Li@nxp.com>
+2.34.1
+
 
