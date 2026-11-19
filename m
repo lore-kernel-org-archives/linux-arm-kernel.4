@@ -2,108 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB78606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B38606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z6h0UJ/W;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aCpWxHc9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a7ievg7p;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Mu/lHTgV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iGRAZkIuP1YtokXXzVpaqN0uz+iGToylhe2xYT/d790=; b=Z6h0UJ/Wygzd55
-	jo0sEfuzPncvwNetelQ/dM+93Zyn2M0gmGRikgzCGq3Z0AX5K8P40R8gPAPR3oZvVsQ39/GBw1mmO
-	TONQB2SaAOtW1pxRQczb7Q9OmdwmH8RtlWA77l1XVIrnNoPigrIO0slJqjKpXSMUrASn7jYT31zBU
-	H6UxrIw7a9EnD3JaH4i7oFGZ4kWrPd+N/o8NR6Fh9GlMbmEFYkfRUuS8/NPK1JF02AwurWButntQU
-	eKByOgjMDb4JDuyXHxcdZ2VlYx1kXmYCwuHEbeIxyQ5VGUXIrPYZd6tW67rgSnVIghsQlO0D+qrJH
-	SP4ffzX5CAIJrCmkhs0A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=BTy58CI235BOpxJ6pfHU71EFz0mw9uHArXMAsUbTzDY=; b=a7ievg7pTnr5Q7Vol43yghf6GD
+	HhmLmgs6YpA5boOeLqYGl0H81Vkt46lhzNRedcWy2yZMM5vCdRBM1bish0RHtOqqbwMEvgvzFByWs
+	p5Dbg6KNzWUYM3oYBOvm5rzH2qtQwmudvD0JL39BGZJbXIzlxgdEpOXRyKeujypD0b78rcl+0Bjb3
+	LnR7IRt0A58a2V0pUtjN9QDhgaC7srxkkjHqyFDDjHFNC3PduU1dymbBEZXCMHxHSCftPn0ejP6aK
+	Nx5DEYulXCewaspAj6PuYZux5U6X0SDKFUV3aOmkp/v/+W6CoYaZh+9xSG1eVRk0lO1p9kH9hXMua
+	FUOPS0fQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2K2-0000000C4r7-2Hdk;
-	Thu, 19 Nov 2026 13:37:06 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xU2Ms-0000000C55P-3W7t;
+	Thu, 19 Nov 2026 13:40:02 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2Jz-0000000C4qN-3EN6;
-	Thu, 19 Nov 2026 13:37:05 +0000
+	id 1xU2Mr-0000000C54z-2Mek;
+	Thu, 19 Nov 2026 13:40:01 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id BDD5762690;
-	Thu, 19 Nov 2026 13:37:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 422281F000C5;
-	Thu, 19 Nov 2026 13:36:59 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 1A5CD448CA;
+	Thu, 19 Nov 2026 13:40:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 104771F000C4;
+	Thu, 19 Nov 2026 13:39:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795095422;
-	bh=iGRAZkIuP1YtokXXzVpaqN0uz+iGToylhe2xYT/d790=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=aCpWxHc9pB8sLSB/toFJ4tqtw5h4OJnZaSHGfzZo5WRfQNwLEhBMvbWLck+b3rhiD
-	 u1HJszsTab/EZMtyXIPNZZWz9O+ry63dz97VcANSUWKqfY2kg1fq3rjROus+qY7fzZ
-	 9iFnpMxnddef3XoWPS/TIeR5fYu5bFcAaRtJ+JuBifJbNwK3uMQBMmGAfTcelWDXGR
-	 +GE2KSSMyoCXSSV3IIaAn3RhivFyrmxwJCidYvi0Kzu9U7jffiU/dU8bcSnInXBB4E
-	 J8j+cwjKDlGfksKhBuPZ7Qr4gTKk5WiEctz2RE9N8fwMPh1HHcxspSGY4JS4J+Qr2+
-	 7yOqQRxAwqkKw==
-Message-ID: <d24ace05-d008-4d5d-aa69-d0883af0c589@kernel.org>
-Date: Thu, 19 Nov 2026 14:36:58 +0100
+	s=k20260515; t=1795095601;
+	bh=BTy58CI235BOpxJ6pfHU71EFz0mw9uHArXMAsUbTzDY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Mu/lHTgVB/oWGvFcRqxmEVXLTJBen/gJctOYSQrvcX7Uy1EwGPhUyohO6kZmHncVd
+	 3ybMPxb8UZfahZLlJ0zSDNcO1UxlSHGcKg8ZziOZOqez2pnKlM/XMf7mE8CakVsthd
+	 8RAygp1nwC6Du6tjc6XkvK1uiNDv4EpclUKdlrR70RMW7RYtsEccxb3vLFbBgkEzYy
+	 XjGNIJaH1+eJ5ILdjhDmy4EOkE/jf8H+Ia+Ug1iCqSfZEro9XSHBzZZnaeF5CMTbQS
+	 j5Yn3yk/bnAsv8Rd2E0NWAey9R3sbaX46Nu/YvZAi88AmWx5Llu/NNL2hfeyAELwpc
+	 AVYk2T+I1wEww==
+Date: Thu, 19 Nov 2026 19:09:56 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Alan Stern <stern@rowland.harvard.edu>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Yendapally Reddy Dhananjaya Reddy <yendapally.reddy@broadcom.com>,
+	"open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH 3/9] phy: broadcom: ns-usb3: Coordinate NSP USB2 and USB3
+ initialization
+Message-ID: <av78LMnP2ck168mC@parshuram>
+References: <20261021172819.668120-1-florian.fainelli@broadcom.com>
+ <20261021172819.668120-4-florian.fainelli@broadcom.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add FriendlyElec NanoPi
- NEO3 Plus
-To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261119121433.550704-1-jonas@kwiboo.se>
- <20261119121433.550704-2-jonas@kwiboo.se>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261119121433.550704-2-jonas@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261021172819.668120-4-florian.fainelli@broadcom.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,26 +83,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 13:14, Jonas Karlman wrote:
-> The NanoPi NEO3 Plus is a compact headless SBC based on the Rockchip
-> RK3528A SoC. It shares its base devicetree with the NanoPi R28S and
-> Zero2.
+Hi,
+
+On 21-10-26, 10:28, Florian Fainelli wrote:
+> The iProc SDK holds both USB2 and USB3 cores in reset while programming
+> the USB3 PLL, then releases USB2 before USB3. It also enables the USB2
+> IDM interface clock. The Northstar Bx initialization used by NSP does
+> not perform the USB2 setup or retain the SDK settling intervals.
 > 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Implement an NSP variant with the coordinated reset sequence and
+> interface clock enable. Sharing one PHY between the HCDs lets the PHY
+> core serialize and reference-count initialization, preventing a later
+> host probe from resetting an already active USB2 controller.
+> 
+> Retain the downstream delays around reset and MDIO operations, and
+> leave both NSP cores reset if programming fails. Keep existing
+> Northstar Ax and Bx reset behavior unchanged.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+This fails to apply for me on phy/next. can you please rebase the phy
+parts and send
 
-Best regards,
-Krzysztof
+-- 
+~Vinod
 
