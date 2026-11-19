@@ -2,149 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06810606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D207C606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wFXfOmJs;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=z5CxNlw+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zgIlsr0X;
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.a=rsa-sha256 header.s=dkim header.b=jxPXT3Io
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=nfJhYX22jSAAiaBk+SqAbu1NDfuZVyc3nbzrRPVYhBs=; b=wFXfOmJs4ZddQQ
-	xm/FHhrdNGqBHyljtkPSQOHTnzqj6Ycu1q+hG41GMKwgu0YCSs9FrLiZKUNsh3DMqF5NPY5aBSRjm
-	zFG4UEjDBZjrpEj1Zp3IMJLrtMWyKaGN+9Mcueqfr39QDsfBJfTeIKsAe6tFKN245sOETQxOZDiA+
-	9fYPL8QKNfkeev+1Nc4KOO4WYstyid5E6pFyHHHtu7+qaDFuypONC8VgHplV2SFOa6YBt4mJjRSf0
-	q0IPH/AvirXHd7WygCM06BiasE6r7BSOFONRbXvuvgsanckUmXSwJf3N9OwpoyNM4lAEm2ZPvu6wp
-	Te/P08cz8vc85XHC9jyw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=k1TemjZqZzUtb911eFpFTlr9YVP5j33fp7w/pph9qY8=; b=zgIlsr0XBnvVwp8jaCPpBu0yA8
+	C/2TVfzHZo06rXCfB02iomyQ0IX09a+wJiTRaxJwnl64AFF3kAxN1eMRBkGIw9orqA4mxKAv0kfdC
+	cefEPp94sBA7xg67o90rFKCynBADF5sMr7v6/UZ62Ar9Srpn/geFT01ciKZT2TuOi3IrpnYn2LtYn
+	UpkpxU4qOWt7OqzgdkGtQf9A9LgtndL3y+iDtyE+7jkbtdDVIlLhyZSj7+VXdOE91szB1oYvJvJO5
+	Mca5HDEKxghgrx/AqWlyQtfdWWzRGU8aErPQXUgAWXX8FjA+tRqTzJzDx7xeRpgUnptsS4dT5Ea7y
+	6vWNTvqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3Vh-0000000CIEw-0D4M;
-	Thu, 19 Nov 2026 14:53:13 +0000
-Received: from omta36.uswest2.a.cloudfilter.net ([35.89.44.35])
+	id 1xU3Vz-0000000CIL9-148V;
+	Thu, 19 Nov 2026 14:53:31 +0000
+Received: from mail.thorsis.com ([217.92.40.78])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU3Vd-0000000CIAq-0h5e
+	id 1xU3Vl-0000000CIGc-4796
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:53:10 +0000
-Received: from eig-obgw-5003b.ext.cloudfilter.net ([10.0.29.155])
-	by cmsmtp with ESMTPS
-	id TlpCxZRYiRiNxU3VRxtULc; Thu, 19 Nov 2026 14:52:57 +0000
-Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
-	by cmsmtp with ESMTPS
-	id U3VQxXjSkSgq1U3VQxhyO8; Thu, 19 Nov 2026 14:52:56 +0000
-X-Authority-Analysis: v=2.4 cv=c8KrQQ9l c=1 sm=1 tr=0 ts=6aff0d48
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10
- a=u-UsL3SEqrz3hooSf8oA:9 a=QEXdDO2ut3YA:10 a=KPbNTLLc3YvdawN95zVk:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:
-	List-Archive; bh=nfJhYX22jSAAiaBk+SqAbu1NDfuZVyc3nbzrRPVYhBs=; b=z5CxNlw+dFjA
-	/JKtiYy93D6xThHxgzsfsSKmRw07b46SISGTSDBL+Txxgyks5TfFisfVQQE8upHOT88vFcuPGPlb0
-	N6y/Ox+DqWRn008PCaNIczw3tXj0ZUUqlZsQSwmd1qrMCkO2VR49ssPXM/RR7BpBD0Ul+/4ANDtIf
-	qIY7CMG1Cf1TyD8AK69irAL8OMltt6/Shm+LYoFmW+WU3oBZ/+B67L499R+cQ7nCJ/rMUtntKjFta
-	A8Zy4/Oe3dM0Q1mOEbJ1VVH6vVTX4L6rhQKAlPha6cg+CiugzQ4oHLRjL72Vz7zRamAdL5gXISrSB
-	YfQLr4mK7ZrZ1e44gBbfbg==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:39308)
-	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <linux@roeck-us.net>)
-	id 1xU3VP-00000002RRT-2NwE;
-	Thu, 19 Nov 2026 20:22:55 +0530
-Message-ID: <5b4634b1-824d-4922-b74b-942b6a2f29c6@roeck-us.net>
-Date: Thu, 19 Nov 2026 06:52:53 -0800
+	Thu, 19 Nov 2026 14:53:23 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2D3E01483022;
+	Thu, 19 Nov 2026 15:53:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1795100002; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=k1TemjZqZzUtb911eFpFTlr9YVP5j33fp7w/pph9qY8=;
+	b=jxPXT3IoGdPzIrANv/1IsOBMFwrG0fKNZ2kYGvul8pZ3lqJ1iIi1uUIwygxseWnUedBX5r
+	pCuASsLWd44+piSPYRDtEFK984UK3DeXNSfymq4rpqEm0tc3uL+JP+VylYDKAEn5KHnYQ4
+	iibgQuY3yubiQZRnJrbmRQCgQ+hKi4V/PZSAn0XcCo1TnFZCud0mK33uX+2zTW9iCZMbkO
+	Gxmv1vu1GzJJPBRgJdi5jWo9hbj4YqyQo8x2XCCkv543CHe1Vi+i7st0+PncjoLhlgLUT7
+	wYczqi14VFFD3TQqFiobiCvpmycHuLH/wZRcAdvOh3DsOjADi+kmiLroe9454A==
+Date: Thu, 19 Nov 2026 15:53:12 +0100
+From: Alexander Dahl <ada@thorsis.com>
+To: Claudiu Beznea <claudiu.beznea@kernel.org>
+Cc: Alexander Dahl <ada@thorsis.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Ryan Wanner <ryan.wanner@microchip.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v4 03/16] dt-bindings: clock: at91: Allow referencing
+ main rc oscillator in DT
+Message-ID: <20261119-sixfold-tradition-ab9492ca6c2e@thorsis.com>
+Mail-Followup-To: Claudiu Beznea <claudiu.beznea@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Ryan Wanner <ryan.wanner@microchip.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+References: <20261105110715.2486432-1-ada@thorsis.com>
+ <20261105110715.2486432-4-ada@thorsis.com>
+ <5273baa7-aae5-4364-bb09-dccee581200b@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] hwmon: add Raspberry Pi DA9091 PMIC driver
-To: Sander Speetjens <sander.speetjens@gmail.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>, linux-kernel@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-hwmon@vger.kernel.org
-References: <20261117-hwmon-da9091-v1-1-f55f0af9c6a3@gmail.com>
- <be16d42f-e6bf-45d5-83a8-28afbe54e3f8@roeck-us.net>
- <CAAOJLPFw1f2v14wtJYt9yqJsTiqJNmkm=dOaAHQ+qeH70NgsiA@mail.gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <CAAOJLPFw1f2v14wtJYt9yqJsTiqJNmkm=dOaAHQ+qeH70NgsiA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1xU3VP-00000002RRT-2NwE
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:39308
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 3
-X-Org: HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfFDm3lccpi/hJfh/j1TCvTDJtNmPfiYQq8C7j8v/MxjjwTfKxtlhNCJOHk7Sz03XN2MfH5OfD3A1G652KDfU+RnNOXaoamyzKTqfvuw6Ro5AiKAbY94H
- 7YyCiY05z20eEdv8gyTKwFfHbbP9PSjfOBBcxBqmlUMVyvPM1bPkBMoGR6bgFA6y3BQ2pt7EJZ6dyaM8wZz955YUmIgfDl67jz67tDsSPxL2UaeEgQyk60se
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5273baa7-aae5-4364-bb09-dccee581200b@kernel.org>
+User-Agent: Mutt/2.2.13 (2024-03-09)
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_065309_276857_05F4BE6D 
-X-CRM114-Status: UNSURE (   7.97  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -0.1 (/)
+X-CRM114-CacheID: sfid-20261119_065318_354525_FB23A4BA 
+X-CRM114-Status: GOOD (  24.98  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,45 +93,106 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/18/26 23:40, Sander Speetjens wrote:
->>>    drivers/hwmon/Kconfig                      |  11 +
->>>    drivers/hwmon/Makefile                     |   1 +
->>>    drivers/hwmon/raspberrypi-da9091.c         | 339 +++++++++++++++++++++++++++++
->>
->> This needs to be documented.
+Hello Claudiu,
+
+Am Sun, Nov 15, 2026 at 04:34:30PM +0200 schrieb Claudiu Beznea:
+> Hi, Alexander,
 > 
-> Please clarify?
+> On 11/5/26 13:06, Alexander Dahl wrote:
+> > The main rc oscillator will be needed for the OTPC to work properly.
+> > 
+> > The new index introduced here was not used on the four affected SoC
+> > clock drivers before.
+> > 
+> > Link: https://lore.kernel.org/linux-devicetree/20250207-jailbird-circus-bcc04ee90e05@thorsis.com/T/#u
+> > Signed-off-by: Alexander Dahl <ada@thorsis.com>
+> > ---
+> > 
+> > Notes:
+> >      v4:
+> >      - change index for sama7g5 and sama7d65 after re-adding unused PLLs in patch 2
+> >      v3:
+> >      - adapt to different base changes, added lines are the same
+> >      v2:
+> >      - new patch, not present in v1
+> > 
+> >   include/dt-bindings/clock/microchip,sam9x60-pmc.h  | 1 +
+> >   include/dt-bindings/clock/microchip,sam9x7-pmc.h   | 1 +
+> >   include/dt-bindings/clock/microchip,sama7d65-pmc.h | 1 +
+> >   include/dt-bindings/clock/microchip,sama7g5-pmc.h  | 1 +
+> >   4 files changed, 4 insertions(+)
+> > 
+> > diff --git a/include/dt-bindings/clock/microchip,sam9x60-pmc.h b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+> > index 050e5e774b274..830e247ba2532 100644
+> > --- a/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+> > +++ b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+> > @@ -10,6 +10,7 @@
+> >   #define SAM9X60_PMC_MCK		1
+> >   #define SAM9X60_PMC_UPLLCK	2
+> >   #define SAM9X60_PMC_MAIN	3
+> > +#define SAM9X60_PMC_MAIN_RC	6
+> >   #define SAM9X60_PMC_PLLACK	7
+> >   #endif
+> > diff --git a/include/dt-bindings/clock/microchip,sam9x7-pmc.h b/include/dt-bindings/clock/microchip,sam9x7-pmc.h
+> > index 292c5873e101e..58d2a08116795 100644
+> > --- a/include/dt-bindings/clock/microchip,sam9x7-pmc.h
+> > +++ b/include/dt-bindings/clock/microchip,sam9x7-pmc.h
+> > @@ -10,6 +10,7 @@
+> >   #define SAM9X7_PMC_MCK		1
+> >   #define SAM9X7_PMC_UPLLCK	2
+> >   #define SAM9X7_PMC_MAIN		3
+> > +#define SAM9X7_PMC_MAIN_RC	6
+> >   #define SAM9X7_PMC_PLLACK	7
+> >   #define SAM9X7_PMC_AUDIOPMCPLL	9
+> >   #define SAM9X7_PMC_AUDIOIOPLL	10
+> > diff --git a/include/dt-bindings/clock/microchip,sama7d65-pmc.h b/include/dt-bindings/clock/microchip,sama7d65-pmc.h
+> > index 08581418b9115..17105a6bedb54 100644
+> > --- a/include/dt-bindings/clock/microchip,sama7d65-pmc.h
+> > +++ b/include/dt-bindings/clock/microchip,sama7d65-pmc.h
+> > @@ -19,6 +19,7 @@
+> >   #define SAMA7D65_PMC_AUDIOIOPLL		10
+> >   #define SAMA7D65_PMC_ETHPLL		11
+> >   #define SAMA7D65_PMC_MCK1		13
+> > +#define SAMA7D65_PMC_MAIN_RC		14
+> >   #define SAMA7D65_PMC_LVDSPLL		15
+> >   #define SAMA7D65_PMC_MCK3		16
+> >   #define SAMA7D65_PMC_MCK5		17
+> > diff --git a/include/dt-bindings/clock/microchip,sama7g5-pmc.h b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
+> > index 27668634b0a2b..4a1c4af8ecc9a 100644
+> > --- a/include/dt-bindings/clock/microchip,sama7g5-pmc.h
+> > +++ b/include/dt-bindings/clock/microchip,sama7g5-pmc.h
+> > @@ -19,5 +19,6 @@
+> >   #define SAMA7G5_PMC_AUDIOIOPLL	10
+> >   #define SAMA7G5_PMC_ETHPLL	11
+> >   #define SAMA7G5_PMC_MCK1	13
+> > +#define SAMA7G5_PMC_MAIN_RC	14
 > 
+> I think we can use 12 instead. Correct me if I'm wrong. Otherwise, you
+> should change also driver code to allocate space for this clock. See
+> pmc_data_allocate() in drivers/clk/at91/sama7g5.c
 
-I would suggest to read and follow
-Documentation/hwmon/submitting-patches.rst
-which says:
+The old definition had this (with PMC_MAIN = 3):
 
-* Document the driver in Documentation/hwmon/<driver_name>.rst.
+    #define PMC_CPU                 (PMC_MAIN + 9)
 
->>> +     data->hwmon_dev =
->>> +             devm_hwmon_device_register_with_info(dev,
->>> +                                                  "da9091", data, &rpi_pmic_chip_info, NULL);
->>> +     if (IS_ERR(data->hwmon_dev))
->>> +             return PTR_ERR(data->hwmon_dev);
->>> +
->>> +     platform_set_drvdata(pdev, data);
->>
->> I do not see where this is used.
-> It is retrieved in rpi_pmic_read and given to rpi_pmic_update to write
-> the values to and to put the last_updated variable in
-> 
+That's the 12 which is missing in the new list.  PMC_CPU was not used
+in the current code base.  Personally I'm fine with using 12 here, but
+I was not sure if this is again some value Microchip wants to keep for
+some reason?
 
-rpi_pmic_read() calls dev_get_drvdata() on the hardware monitoring device,
-not on the platform device.
+The allocation problem was found by sashiko on patch 5.  I already
+fixed that in my working copy for v5 of the series, but will adapt, if
+the value here is changed again.
 
-Guenter
+Greets
+Alex
 
 
