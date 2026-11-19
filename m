@@ -2,64 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9DDB606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BFAE606A32F
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TqrIMbRc;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ola3z5aN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F7YA/MAS;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=JmJ/VG88
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Jxqitei9n4jTIEvLaRLKlJWrH7A0OCWEQUnpoPUhO5Y=; b=TqrIMbRcvNPHt8YHYjaD8KXbc4
-	SAsmJWELqxbush3k07IRJReC6sK8dzTo3hxIPfQiKS3s0bUMwQ5gk71mx/ln4i0YssmspLsExYJ3k
-	tOtxvN148Uu30xW1obpqgUlgDUMWlJrDqwzM+4NgxdEsehAo7mrRy9F/f3ihjQTVMz87AzJ89j9go
-	Nhpx8W9rM1cqZfOXsf3/kJ6XsgiDs0IbATLEuQd5iuNERkPpMTnkDl7iTgiyAHW6/Lv59cmSiRR8h
-	AXuOmePoMn0sI2pvBGPFpyy+8dqTNaFkYo9AUOIct9GmAXjXu148LsnWrQ8A39mTAGmOjBL5ott2s
-	XWay4lCA==;
+	bh=2BJlLviIlo2L+CB1E1yEnGBnM12+e15DyXb6ICfwQJk=; b=F7YA/MASOLIELYKAWnCeiMp5dB
+	UFKhmO1kurZKhBYQasC+t7plU1aUBvr7wlpLMMI9OO25W1YM2mXChqdKDGABcfuGBSH9X+jxbOcKd
+	rX3xueJy8Pis+QYLnH70kAFNdKIXqEhyr5K7IdYovUuTePZd5YKN84JjWH7Mc2BPh6zFuXu73PyEs
+	gNVTgaicLNVisG3wCspi3DXJE/7insw6pz2G+Gu2FPij6hVM86uBRt9xnykfSfaPj6EqUtecR9zF1
+	r/jmRf9ddBoYJ8Z3AKJjOd5TPBb7JcQfcGp4b4CJ3v9ObrexaeyFwrmWfJk/1th3P6bwpFwLhqeNK
+	f8fKcyxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzRR-0000000BYom-0uCZ;
-	Thu, 19 Nov 2026 10:32:33 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTzTN-0000000BZ4E-2EEL;
+	Thu, 19 Nov 2026 10:34:33 +0000
+Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzRP-0000000BYoc-3E9q
+	id 1xTzTK-0000000BZ3b-3WXB
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 10:32:31 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with UTF8SMTP id 693F96122A;
-	Thu, 19 Nov 2026 10:32:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 70EAF1F000C8;
-	Thu, 19 Nov 2026 10:32:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795084350;
-	bh=Jxqitei9n4jTIEvLaRLKlJWrH7A0OCWEQUnpoPUhO5Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ola3z5aN3akS10EcfjC4l+IeVZCeKiIcr+JOyPMGC6YqTmdZXAm7MVtszMOyqM+lt
-	 MwDCVAytM1MkH2+OHj/l76KqistiZOE5eYfI2vSmammm5jtkzzlb+K5zcNj/JbVnf0
-	 o6hEhleT2ZL2jtHk3ukaTwG+q3AaEMtU1udHyj6sJZpQ9Nkem7+rKrFobw8nZQE7TS
-	 GVAOTuZpQgUCI+vkz5tQc2CxkyI0d8YkC+Q14OEOrXj+wLRgrmT3S/sQP+Ug6H5g/h
-	 jIjwkZJgmJ6KM0BRSgF54m5ySxYaaaVC0BmUTQxGpRk1Y2fbmG02w+Vzw/4KinVqVu
-	 FKnhnoupiQPIw==
-Date: Thu, 19 Nov 2026 11:32:23 +0100
-From: Bartosz Golaszewski <brgl@kernel.org>
-To: filipp.dunsky@gmail.com
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/2] gpio: Add Cortina Systems CS75xx GPIO driver
-Message-ID: <ndapsfnk4wdon57ihawkorz5rwrhxsb7ql3mujqvuu6ixi4sbc@ugtxsjqt7gcc>
-References: <20261116-cs75xx-gpio-v4-0-ad80a944e966@gmail.com>
- <20261116-cs75xx-gpio-v4-2-ad80a944e966@gmail.com>
+	Thu, 19 Nov 2026 10:34:32 +0000
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-2eff92780daso12201915ad.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 02:34:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795084470; x=1795689270; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=2BJlLviIlo2L+CB1E1yEnGBnM12+e15DyXb6ICfwQJk=;
+        b=JmJ/VG88DUNNAeUYhKCattPMTkn7ox7Bjq1jXy7ULJydD46s72lwbl6pFffnxVl/XD
+         wrdE4Ean9lT8p0tWwwUkS5VYxlxkW6OhORMUpeI8LVoK+R8WChwtqrXgLk0LP7wHHfL7
+         r60cAf9U4/NkC5SrmqnyxEwwQaDJmIkOTCu+pmz8T6sY4dAZyQwkvOktE2ZyRMN94Ssp
+         JO9tz2NyjRcU6rnEo5yuScu5m9bUNZbBMMf+ogSe9NI0+DW5ihKYEiZnOV4yqWZ+U6bF
+         G/jK7oyuAssepeCLObikH/TZNVnx02NCf3mDwtlXx4c5kUrNAMsrHDlhp+JM82ziN3Fq
+         nphg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795084470; x=1795689270;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=2BJlLviIlo2L+CB1E1yEnGBnM12+e15DyXb6ICfwQJk=;
+        b=zNg26WbV2Pz3hEEwxegOuq4epXjTejGCvZOvHTETqC4w4h2teHAi9htqcwPwTelerC
+         Vv61hDbZJJWKGTTiDlSjfbpZyrkz6oufnS8FB9qG6EuobbqyPYs+kgvp2Vd6yLp9G8xY
+         ydKYvOTgaw7DLwDR9i+DT4rtzBsiDjKHtmRAEHOCLbnNmZxkiTSDxN4HGgvJg8ckT7TB
+         MfDi3LXMalPO3gkJntNFGu/LbgIMWnL5SV5N9cXOpZY4XPjPKk/CPBU/pyWsmhtqaXZi
+         RcsdBAskzT+5lJK9hqWg5hT4qzg5I/WA8UagPNkmbOGODEpSrF+zLx/yP2vQwsYhIe0o
+         8EiQ==
+X-Forwarded-Encrypted: i=1; AL+hErH3tAoPVgBc7JEs/s7nr3/IdTz62eIopNaJTUc3UfBRwtWYYSPaSXZxrA5/wnKR9u1cw8UMoTB5tUt6UbafRqfZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z+c5ajUaW0YV506paAf5BC/ENqDYdpth23CthyCfCpu9jA9ok4/
+	md3Ubc47qnRmugRNfX+bEdqbVyD1w7gUUcLWgQyvHIV3Exd9z9Lf8RPk
+X-Gm-Gg: AZFdTZcKgqrw4Pbh5lKRHdVTtaP9DOG2B4mF4AvnqwZGtJBygYMQcLmhD/YbI38xgVc
+	mf418Kp0wdI+L5HEhoNEtNw6PJeUp2v5h8XruxiUrc3PNs8Umxw1kOWCcpgv+a2gX5grh6wS3oW
+	awg/nAx1s1Pn2Tz3TLkcrRKk7dSrCrwWIfbjHnuB5XYfhMjrWbUqb7F5WhojSgJkCLhE1fxQHZ2
+	KYcHZIVBytZEYdJhtNmI9+4mR/JST5V0GemQbY2gm53rE06yjqIEvyf9F61pC/en1zbLvbqLFEO
+	ZvWTNYeRwObjNHkwRPeXghaLoFnPrYKXLyCud628P8uto8WF9sx3DUJQiDbSHuXqGvjHDSmtFBZ
+	dHBKRKss8TT0w3B4zHweHu5vFzf5R9mQGrVTkSrXUnwdFnyquqZB8QAPzRiY5rPC2wdDFQn0ASP
+	jDIRihMft45PPBq1ZsqVGPlkp4KFLMlmtyFuk/w6oRkF8zTRiq2ZL6Yu0fVpaduhl7A4D+iSMF8
+	UkaDJus+G5hSCxH49iacTyFsPuVouT4rYPVfrizB7L3sqDhkoSvlu/vWIFL0qPTz3qZUPjo24np
+	K2yiDwFMdSWbP/7QP+lgV2Z/jCuv0k/gB4F7PLaep91Sz9zKLYQI4gR2FKB/6MR6VRSa5b12wYe
+	kkqJMqH/I3LxhLpZFeRbgED++xpefvyxxrvUO2HP6utTb
+X-Received: by 2002:a17:902:e94c:b0:2ed:fd0:e736 with SMTP id d9443c01a7336-2eff70fdc62mr50594715ad.6.1795084469832;
+        Thu, 19 Nov 2026 02:34:29 -0800 (PST)
+Received: from phuc-desktop.. ([183.91.15.56])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2eff6116323sm28617325ad.23.2026.11.19.02.34.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2026 02:34:29 -0800 (PST)
+From: phucduc.bui@gmail.com
+To: Mark Brown <broonie@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Andrei Simion <andrei.simion@microchip.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	bui duc phuc <phucduc.bui@gmail.com>
+Subject: [PATCH 0/4]  ASoC: atmel: mchp-spdifrx: Improve driver cleanup and error handling
+Date: Thu, 19 Nov 2026 17:34:09 +0700
+Message-ID: <20261119103413.31729-1-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261116-cs75xx-gpio-v4-2-ad80a944e966@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_023430_878016_23F099F0 
+X-CRM114-Status: UNSURE (   8.31  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,29 +108,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 05:08:17AM +0300, Fil Dunsky via B4 Relay wrote:
-> From: Fil Dunsky <filipp.dunsky@gmail.com>
-> 
-> Add a driver for the GPIO banks of the Cortina Systems CS75xx SoCs. The
-> data and direction registers are handled by gpio-mmio; each bank has its
-> own interrupt with level and edge triggers, both edges are emulated by
-> flipping the polarity.
-> 
-> A pin only works as a GPIO when the pin mux in the global control block
-> selects the GPIO function. That is not part of the GPIO controller and
-> is left to the boot loader until there is a pin controller driver.
-> 
-> Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
-> ---
+From: bui duc phuc <phucduc.bui@gmail.com>
 
-Can you please address sashiko comments?
+Hi all,
 
-Bart
+This series improves probe error handling and runtime PM cleanup, 
+adjusts IRQ registration order, and fixes error propagation in the 
+ulock get callback.
+
+Compile-tested only.
+
+Best regards,
+Phuc
+
+bui duc phuc (4):
+  ASoC: atmel: mchp-spdifrx: Improve probe error handling
+  ASoC: atmel: mchp-spdifrx: Use devm helpers for runtime PM
+  ASoC: atmel: mchp-spdifrx: Move IRQ request after runtime PM setup
+  ASoC: atmel: mchp-spdifrx: Propagate runtime PM errors in ulock get
+
+ sound/soc/atmel/mchp-spdifrx.c | 81 ++++++++++++++++------------------
+ 1 file changed, 39 insertions(+), 42 deletions(-)
+
+-- 
+2.43.0
+
 
