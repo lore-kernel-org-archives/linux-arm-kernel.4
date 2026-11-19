@@ -2,77 +2,127 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B63606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9146606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 09:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AWkqWQzw;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=tKQ+e8VU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5FtlPI+5;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=Fv08jMWl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=AxSC+w8x0YAa+WYP18l1ZPv/YFow1+6R8vR4hxYt+Bw=; b=AWkqWQzw6mLw6RcfgjRWcSXmYl
-	26PluXl2uspDoVwn8V2brwcaFM6CsiBJXra1PTvcI6CgbUBZec0MDBJj7f3IPKyvameFHqSqmZk+8
-	KAJX/7XYj7EbnjW7C+ImAYlLl7tJ5tOpFA/LS4rZ0Xz+7sBZdeyqOs6D7aU+K50ADBcRMldGPNaJB
-	GZ85W5NRJwVSuBknyd9JHLgbIQoVeHyPd5lXXL+1gLh6jV08glCUyCsXowqqCu66DskQ3TmqBA89W
-	j/b1oVDb3wxAgSQ3DUtpPMQ90xH/A7r8+KTxbC84x24MMPGXmTNJlaYAnvpUnzfSbKuwdrrWOSmY9
-	Y2oMtowg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=b2QezWeiVFYsJboBAIsoq7MakzArc8NMkVawPLKeFdE=; b=5FtlPI+5kzhGTc
+	WLtFoZ3t+UCDuQtjFCLzVTT8PcNeVNExGzFxF1UuVOCcG6P4mfM3Rq2dPFjLkO4BB5iMpgdjJwVaJ
+	qBVpq5ReuHO6PovI435mTI9JGB3i5j4ZKulhWBC/kgYKpy+YETl8PkfAC8bw+HIUrRabgMRg3O329
+	PDN9QQzhszcRPWiCLg8vJSZ5zzpSWt6S6XA0bG57N6bHxG4Uv20ZhBWOLBC/+vVQFY7/QaIfnvRFQ
+	DLkR2RpNXuGK62jZA8vnEIn6DEfNZD0jDaM1gYV7EgkxGJbc218EPFzh3ec0+9D5h2PeW1g4ig7+s
+	D9bLVpXTkIa2cY2c300A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyrg-0000000BSaa-3zvP;
-	Thu, 19 Nov 2026 09:55:36 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTyrc-0000000BSXi-3AD4
+	id 1xTyuN-0000000BSy7-3qrG;
+	Thu, 19 Nov 2026 09:58:23 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTyuK-0000000BSxc-2yUt
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 09:55:35 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 28F5B1575;
-	Thu, 19 Nov 2026 01:55:26 -0800 (PST)
-Received: from localhost.localdomain (e123572-lin.cambridge.arm.com [10.2.208.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C47B63F882;
-	Thu, 19 Nov 2026 01:55:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795082129; bh=XnvXsUW1gUuUzwBbY6mC1a/ISYdUqQlfMdRPPyf+7Wg=;
-	h=From:Subject:Date:To:Cc:From;
-	b=tKQ+e8VUbuWgfkDx6ru6jIval1/jR7JAZfOJiuTz3yv2IWpBPoD4au4HjJGxxC5a8
-	 69u0NrknPInh9hz4V1RjaMChsSc/K1sm3uMMnkEQuN6fA4CjEet2cQUzJa79sROpqJ
-	 N9+dW3kYN6Pg8AW/FwDR9crF8i7Igj0xOsJGpjwo=
-From: Kevin Brodsky <kevin.brodsky@arm.com>
-Subject: [PATCH v2 0/2] Add test for atomic uaccess with permission overlay
-Date: Thu, 19 Nov 2026 09:54:36 +0000
-Message-Id: <20261119-poe_futex-v2-0-244c7a01f788@arm.com>
+	Thu, 19 Nov 2026 09:58:22 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OeEe16Gog6CQHsiwpfrZkJ5SqeCuGkmPWV7r78YUu/rcCFZ45or9+fP1730kz4YxDGrchGO8oCq9c8c65ESZDckOuKfDNUUPSog1RgRrNB30B5UE87tbl/IB5g9PBBgUAZNBKYPTsMB9yN8clgtKzpLWxRG+yBDDYQbOsG2fMNi57asKQlNz67PUovf6+BvwYIoEXuo/EeMazTfsBiKL7irH7x6jDsdBVcsVtkLsiY5qenHETawEqjav0LWSj/C2a44uHZvAdw9XIrqN413q6KQ8VEgpvrISQvjC9Hm58rZftBOp4ebGuniwCp+Y6j/E1qfED/7hr4GqJvRCe+Mhvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b2QezWeiVFYsJboBAIsoq7MakzArc8NMkVawPLKeFdE=;
+ b=bzMQrujdLEQCQF9nFbtHK927bPSXqYUpxgqIg9VZNbBs3KgaSnkjtOffg/ucP8KlAFU0kBQ1IV/QEH0L9HmPo0FNzvWRkyxdpPOeqfC4/m272e9S1tOHTocN32qyYGCd9+Hp06XOJDy6BSKtFk5p/pxetwDohrMICvEh0FCfzU4XfYAhI0vB8BXMtHlGZIX2rfQt/6H+HOGPPBbQOjRMsSOM6iL9uaVMxPkC+I2zAW2joP/oBXy1OQh7F/gwGo5J/km9hxQvtve4UzKXDcXXQsGRCPjPr8GlsqrOMvMUwdaDHRth8+/XyVdi82CTcLfFjC3GxmI2p1Qxt+RsjSJHwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b2QezWeiVFYsJboBAIsoq7MakzArc8NMkVawPLKeFdE=;
+ b=Fv08jMWlblzr+nap+peUaiCtNwovhY6idLK9cn7n173OymnA2kXTk59ybG615k2te959ALNlckqtu0ddC34pHEwBWuylkMey31zmgfxGXC6yVocwAXmNGZUPIhHdhw2i9yl5ecc5bfyI//+f17ar4OKVgCzxocuvPFSMowjBrU3BfOyS2pyOdesFbaMFdrk0091CtJteTkpNP/1aYkCEPwLjX/8jIdQKoit1XaAStQOha3kuH1PcTu9LpoNbOzqfXzVvhzHGRqfTlHU1NlhW/69y73VCsrxeTcL8JHv14QIhFCNPB4f4ajNJGsRqYVzi1+zTGIVFWY70X8GlHCOJWw==
+Received: from DUZPR01CA0182.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b3::16) by BR0PR10MB218156.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:2c8:62::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.8; Thu, 19 Nov
+ 2026 09:58:12 +0000
+Received: from DB1PEPF000509F6.eurprd02.prod.outlook.com
+ (2603:10a6:10:4b3:cafe::7b) by DUZPR01CA0182.outlook.office365.com
+ (2603:10a6:10:4b3::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.10 via Frontend Transport; Thu,
+ 19 Nov 2026 09:58:12 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DB1PEPF000509F6.mail.protection.outlook.com (10.167.242.152) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 09:58:11 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Thu, 19 Nov
+ 2026 10:58:55 +0100
+Received: from [10.48.87.14] (10.48.87.14) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Thu, 19 Nov
+ 2026 10:58:09 +0100
+Message-ID: <dd470f94-3082-4930-9d7e-25402e9c4456@foss.st.com>
+Date: Thu, 19 Nov 2026 10:58:09 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/02N0QqCMBRAf0Xuc4vtUmv21H+ExDbvcoFONhVD/
- PecEfR44HDOAomipwTXYoFIk08+dBvgoQDb6O5JzNcbA3KU/Iyc9YEebhxoZmSNsogXqcoTbH4
- fyfl5b92rL6fRvMgOOZCNxqchxPc+m0T2fl3x150E40zUGpU0ypUGbzq2RxtaqNZ1/QBf+LZFs
- gAAAA==
-X-Change-ID: 20260520-poe_futex-ecb8c2276894
-To: linux-arm-kernel@lists.infradead.org
-Cc: Kevin Brodsky <kevin.brodsky@arm.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
- Linu Cherian <linu.cherian@arm.com>, Mark Brown <broonie@kernel.org>, 
- Shuah Khan <shuah@kernel.org>, Will Deacon <will@kernel.org>, 
- Yeoreum Yun <yeoreum.yun@arm.com>, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795082127; l=2982;
- i=kevin.brodsky@arm.com; s=20260427; h=from:subject:message-id;
- bh=XnvXsUW1gUuUzwBbY6mC1a/ISYdUqQlfMdRPPyf+7Wg=;
- b=KzXi28O/LORXd1ZnBo5RRf+ai10+nAvgWThW6Ufdj9lweOHQhENbuK3911HITCreWAAeySeji
- XkqMNd4OCKmAOczY1/RA/G79vqnZ3jPnCv4e7kPzm0FhWlRrCLV1MjF
-X-Developer-Key: i=kevin.brodsky@arm.com; a=ed25519;
- pk=N2QG+eJKrvkNovwhhwJhnJ4+ScVfsGCHldmqLfcMTFs=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] clk: stm32: Add the STM32MP2 SYSCFG LTDC pixel
+ clock mux
+To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, Christophe Roullier
+	<christophe.roullier@foss.st.com>, <patrick.delaunay@foss.st.com>,
+	<yannick.fertre@foss.st.com>
+CC: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20261118-ups_mp25_clk_syscfg-v3-0-935de791a4ce@foss.st.com>
+Content-Language: en-US
+From: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+In-Reply-To: <20261118-ups_mp25_clk_syscfg-v3-0-935de791a4ce@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509F6:EE_|BR0PR10MB218156:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8ace7496-cce4-4569-4fff-08df46239f44
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|36860700016|7416014|376014|1800799024|82310400026|921020|260925021311599003|260925021911599003|261009221227099003|261022075727099003|260925022911599003|261022105027099003|5023799004|56012099006|11063799006|261026121527099003|261102123227099003|261021121427099003|10067099003|261009223027099003|261021123027099003|261026140227099003|261028144727099003|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: Y7eX6SVE0Huqr0K5YDUXZoIYI2KNHCzHkTo4tYNylDrR+6HaGpWY3grAnIhMBwDCvXURM+LXWuUoSUnl9P3GAjys8mzl8dPTZM8qgvcU8jaSV7xqqP2iW6sAUmN0zMSTNs3PlcC9NISpMv/kXQWVED7xJ3bfGLIKr+igu5ZmXDXFpcgeJgOyzoeBdhD76C0uhCj5i3JOidMfb4WgG1aEc+ZeX7wGjmJj7eyWFpVvluyegUWh20uOP625tdGvqhTZpcNwSrkrva5abX+9b5bMnNxFhhRYkhRff+XDE9l3u6QytCMFjGk5Las95zxRtUXoSW8I9IEYbDm8ywh3+O5Gf8JS19J7VGZPV+SWiLgiYyCwKzgbzb5oh6smCFrwXjf+EOrqx6zUdGJnfQf9qEXYmZj0JM1Rd6+DMUASN1JOnpxk1PZ1ZNUdBGR1FVQiIHUK7Nc/ewkfvKIIxm9/6hqURHp1Zte6TUHDI/Mz5CMOR/he6n01WpxshBZKmZ2qZHmRHqxVnlcCapqirkrxuzfUoLiu0uisz6yj0v2jAmARkyVMf8v5CNvWBoLqx4YPt90/iXLMbGnpvfogkf7sqimX/TCJaGmjicAyFAq5bv7SMdXZwCHFqRZtfOk8iZsm8ULoPW1mtA0vD91Z6Dy1sAVanYZemjmaR4TaU992q9RwhBSaNLxlqQBql71itQujzRwteLKZshP/2PLSZULcjf1prQ==
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(7416014)(376014)(1800799024)(82310400026)(921020)(260925021311599003)(260925021911599003)(261009221227099003)(261022075727099003)(260925022911599003)(261022105027099003)(5023799004)(56012099006)(11063799006)(261026121527099003)(261102123227099003)(261021121427099003)(10067099003)(261009223027099003)(261021123027099003)(261026140227099003)(261028144727099003)(22082099003)(18002099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: BgH9RL/pj/SGKo0mQMEIrowpJHK4BAA87mSELfe9WORAnh/xtO1dRbo8BUiD0cRrF25lq/eKVlG+snE6uMoiegvqSVayQbOuECuxVDZgbEy/rOfrQMD36TDGKO22J05J1/BaDjS3IIBISQv4KIjST9Qsj/fyrx7WHLkQARBOWu/bE9/yBCcA+Ek8xt833D/cS57CDigpxA+XJ8rcUlxu4rxg5025OhYeEQ3Fp71/hgWGa4EaEJ1Qkd5rEJqr6i96VkaOuqGKtLiI15d7t1s+BYrb5MSNusKn6D7q+cbHf9KYbsu7fmmEFjZnqVOciGHgY7HmUQClYOIsPooshJH320YMaLJkwm6NKYpVCMQcNv1Q5mI11HB5gWF74UkupeQo9Ggyi1DhocYEod2J1+NRBDuxUg8NuJQNfcuVbBErGkH+X52CZC/2BRL4aco2sFfj
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 09:58:11.8643
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ace7496-cce4-4569-4fff-08df46239f44
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509F6.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR0PR10MB218156
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_015532_887679_59069BA2 
-X-CRM114-Status: GOOD (  15.48  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261119_015821_004883_A6B33B1B 
+X-CRM114-Status: GOOD (  27.28  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,84 +133,111 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-POE is not currently enabled at EL1, but my series [1] protecting
-page tables does exactly that, and it has revealed an interesting
-issue.
+Sorry, I made a mistake with |'b4 send'| and sent v3 too early. I’ll fix 
+the issues flagged by sashiko-bot and send out v4.
 
-Regular uaccess uses unprivileged loads/stores, which have overlays
-applied and are checked against the user's POR_EL0 as intended (same
-restrictions as when accessing memory from userspace). In some
-cases, such as atomic operations when FEAT_LSUI isn't available, we
-need to use privileged L/S with PAN disabled instead; overlays are
-not applied in that case.
+Best Regards.
 
-Once POE is enabled at EL1, we have to ensure that overlays are
-still not applied to these accesses. Otherwise, they will be checked
-against POR_EL1, which is completely invalid as kernel
-pkeys/POIndices are unrelated to user pkeys.
+Gabriel
 
-If PIE is used, then we have to ensure that user memory types do not
-have overlays applied in POR_EL1, as Sashiko reported [2] on an
-earlier version of my series protecting page tables. Patch 1 tries
-to preempt such errors by adding a comment. If PIE isn't available,
-then... we're out of luck, as Sashiko reported later on [3]: we
-cannot prevent overlays from being applied to user memory. We'll
-most likely have to require PIE at least when POE is enabled at
-EL1.
 
-To avoid accidents in the future, patch 2 adds a kselftest to ensure
-that atomic futex uaccess (which uses privileged loads/stores unless
-FEAT_LSUI is available) does work on memory mapped with a
-non-default pkey. 
 
-Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
 
-[1] https://lore.kernel.org/r/20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com
-[2] https://sashiko.dev/#/patchset/20260505-kpkeys-v7-0-20c0bdd97197%40arm.com?part=3
-[3] https://lore.kernel.org/r/sashiko-outbox-207324@kernel.org
 
----
-v1..v2:
 
-* Reworded the cover letter and the commit message of patch 2 in
-  light of Sashiko's new findings (when PIE isn't available).
-* Rebased on v7.4-rc3
-
-v1: https://lore.kernel.org/all/20260521-poe_futex-v1-0-1da286b8f9b2@arm.com/
-
----
-To: linux-arm-kernel@lists.infradead.org
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Joey Gouly <joey.gouly@arm.com>
-Cc: Linu Cherian <linu.cherian@arm.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Shuah Khan <shuah@kernel.org>
-Cc: Will Deacon <will@kernel.org>
-Cc: Yeoreum Yun <yeoreum.yun@arm.com>
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-kselftest@vger.kernel.org
-
----
-Kevin Brodsky (2):
-      arm64: mm: Add note about overlays in PIE_EL1
-      kselftest/arm64: Add test for atomic futex uaccess with POE
-
- arch/arm64/include/asm/pgtable-prot.h         |  7 +++
- tools/testing/selftests/arm64/Makefile        |  2 +-
- tools/testing/selftests/arm64/poe/.gitignore  |  2 +
- tools/testing/selftests/arm64/poe/Makefile    |  6 +++
- tools/testing/selftests/arm64/poe/poe_futex.c | 62 +++++++++++++++++++++++++++
- 5 files changed, 78 insertions(+), 1 deletion(-)
----
-base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
-change-id: 20260520-poe_futex-ecb8c2276894
-
+On 11/18/26 12:59, Gabriel Fernandez wrote:
+> On STM32MP23x and STM32MP25x, the LTDC pixel clock is selected in the
+> SYSCFG DISPLAYCLKCR register among the LTDC kernel clock (RGB output),
+> the LVDS PHY pixel clock (reset value) and the DSI PHY byte lane clock.
+> The SYSCFG node is already described as the provider of this clock, used
+> as the LTDC "ref" clock, but no driver registers it, so the RGB output
+> can't be used.
+>
+> This series adds a clock driver for this mux. It is based on the RFC
+> sent by Dario [1] and on the driver delivered in the ST downstream
+> kernel.
+>
+> The SYSCFG node remains the clock provider ('#clock-cells = <0>'), and
+> the inputs of the mux are described by its "clocks" property, so the
+> ones which don't exist on a SoC (no LVDS/DSI on STM32MP231/233 and
+> STM32MP251/253) are simply omitted. As the SYSCFG node is bound to the
+> STM32MP2 SYSCFG driver, the clock driver is an auxiliary driver, whose
+> device is created by the SYSCFG driver. The LTDC "ref" clock is left
+> unchanged.
+>
+> As the SYSCFG node is a syscon, the syscon core would take the first
+> clock of the node, i.e. the LTDC kernel clock, as the clock of the SYSCFG
+> registers. The SYSCFG driver therefore creates the SYSCFG regmap itself
+> and registers it with the syscon core, without any clock.
+>
+> Changes compared to the RFC [1]:
+> - parents described by clocks/clock-names instead of global names
+> - auxiliary device created on STM32MP23x too
+> - SoC devicetrees updated, Engicam board patches dropped
+>
+> [1] https://lore.kernel.org/all/20261028135915.2665857-1-dario.binacchi@amarulasolutions.com/
+>
+> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+> ---
+> Changes in v3:
+> - Drop the clock-controller sub-node, its binding and the dt-bindings
+>    header: describe the mux inputs in the SYSCFG node, which remains the
+>    clock provider with '#clock-cells = <0>' (Krzysztof, Conor)
+> - Keep '#clock-cells' in the SoC devicetrees and the SYSCFG node as LTDC
+>    "ref" clock, not to break the existing users (Krzysztof)
+> - Make the clock driver an auxiliary driver, whose device is created by
+>    the STM32MP2 SYSCFG driver (RFC patch 3/4 from Dario)
+> - New patch: create the SYSCFG regmap in the STM32MP2 SYSCFG driver, so
+>    that the syscon core doesn't attach the LTDC kernel clock to it
+> - clk driver: depend on SOC_STM32MP2 || COMPILE_TEST, check the
+>    regmap_read() return value, drop the redundant CLK_SET_RATE_NO_REPARENT
+>    flag, fix the copyright year and the order of the local variables
+>    (Brian). The of_get_parent() change doesn't apply anymore, the driver
+>    using the SYSCFG node directly
+> - clk driver: drop <linux/mod_devicetable.h> (Uwe)
+> - Link to v2: https://lore.kernel.org/r/20261110-ups_mp25_clk_syscfg-v2-0-624559bb8ec7@foss.st.com
+>
+> Changes in v2:
+> - Deprecate the '#clock-cells' property of the SYSCFG node and remove it
+>    from the SoC devicetrees, the clock-controller sub-node being the only
+>    provider of the LTDC pixel clock (Sashiko)
+> - Explain why the mux needs a sub-node: its inputs can't be described by
+>    the "clocks" property of the SYSCFG node, which is a syscon (Sashiko)
+> - Link to v1: https://lore.kernel.org/r/20261110-ups_mp25_clk_syscfg-v1-0-667829cd290a@foss.st.com
+>
+> ---
+> Dario Binacchi (1):
+>        soc: st: stm32mp2-syscfg: register the clock device
+>
+> Gabriel Fernandez (5):
+>        dt-bindings: arm: stm32: Add clock inputs to STM32MP2 SYSCFG
+>        soc: st: stm32mp2-syscfg: register the syscon regmap
+>        clk: stm32: Add STM32MP25 SYSCFG clock driver
+>        arm64: dts: st: add LTDC pixel clock mux inputs on stm32mp23
+>        arm64: dts: st: add LTDC pixel clock mux inputs on stm32mp25
+>
+>   .../bindings/arm/stm32/st,stm32-syscon.yaml        |  28 ++++-
+>   arch/arm64/boot/dts/st/stm32mp231.dtsi             |   2 +
+>   arch/arm64/boot/dts/st/stm32mp235.dtsi             |   5 +
+>   arch/arm64/boot/dts/st/stm32mp251.dtsi             |   2 +
+>   arch/arm64/boot/dts/st/stm32mp255.dtsi             |   7 +-
+>   drivers/clk/stm32/Kconfig                          |  13 +++
+>   drivers/clk/stm32/Makefile                         |   1 +
+>   drivers/clk/stm32/clk-stm32mp25-syscfg.c           | 125 +++++++++++++++++++++
+>   drivers/soc/st/Kconfig                             |   5 +-
+>   drivers/soc/st/stm32mp2-syscfg.c                   |  57 +++++++++-
+>   10 files changed, 240 insertions(+), 5 deletions(-)
+> ---
+> base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
+> change-id: 20261103-ups_mp25_clk_syscfg-6a4224156431
+>
+> Best regards,
 
