@@ -2,64 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD682606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D54606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BAmegBmm;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hMxP0eev
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kAe/n8Af;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=N3cJTdKy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6OcUjZbeewnbF2w76nF4BzgSzm7/aBPsfjvddk/XGKE=; b=BAmegBmm72Ozrf
-	qGAL8B2Bpq9QxoC30BHCmlUUSIOS4xPazP7534VFEYBnWElySI/Z+b4xwBm7diM489VWP9InkpclW
-	KW6KCxQjom+WZstXCnz5h7EM9XpxcJIHytbZjC81SldMscNclWKMmysWmuwtCfkLsRqxSU5sW/wGE
-	Zvbc3hJ19g2ssWcD0eMHNB2kwetY0UfRU5oTfrx0g7HVlG6mb/hGC0yZHZJVDjyrub07y7Z5RWfuS
-	7pmg2fN6/VlDEk07hFEQoOAkDh1mwzmtjJwAViv/xJRGUtgAskhaEa8OV0ESQzpgqtvq0qZ8QR2S+
-	SFi8CowDPpP59yhctNVQ==;
+	List-Owner; bh=7d2Kk7WcyF8PRkP72zbhRGMkbN0Tb+b+QibWkFY2CgE=; b=kAe/n8AfjhG1W4
+	X3mENfMGKGLJDQ3zPaKAR86DqW4Ly2VGVI2ZZTEBYU2YRbfLkgpQ/RF8jgjhs2Y4kVlgcoueVHjUE
+	Xr/ifADL9wT+dE0vAVJSuTD5YtT0tUn5W9Pg2OFndmUyFSMRhakSbE3wPsJxhd6il4eTN6EAxl99j
+	EPVvlbQjkW//ZJNqDz6MGhptipb3ngieQi/P3L7q6rfQ+v1fIlSVX/f9wISzF4pEhzvrqT71KRFrZ
+	/HuNnFl0Rz73H1V5ge9qoU036DQYz7E0Cm77iW5UZlV/4pl6IFQ7dlHKsXAeLyw0h5vQ5jYs2QiPH
+	Yaiu/yMczF/9P3R6ihGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2bl-0000000C8fH-3Z0O;
-	Thu, 19 Nov 2026 13:55:25 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xU2ei-0000000C9C7-1NKJ;
+	Thu, 19 Nov 2026 13:58:28 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2bk-0000000C8ew-2q3y
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 13:55:24 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A29D260D0F;
-	Thu, 19 Nov 2026 13:55:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41FF31F000C5;
-	Thu, 19 Nov 2026 13:55:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795096523;
-	bh=6OcUjZbeewnbF2w76nF4BzgSzm7/aBPsfjvddk/XGKE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=hMxP0eevmtddEQR0d36kdAvQSPcV0SSMj4z4xfc9UZDgUfebbXO/cYiaJ7S8QZr4N
-	 p/rouCuF9juLTu0uXk9HyLVl9/3G+rogh9UZTz+yjzTxp/irXWYeFvZhDioX5aaXEs
-	 zl1iaU/RDOzlqbB/iBojpGux8uepI91KObo2+KT7VnuY47brIAb0SXwBLM/jYWluNx
-	 E4nO8WoJvR0HRyj9CubDbfvOo18nG8LxbGkSEPvXpsPw9CFxYxwqOAEtf98tEjzxEj
-	 5jiXYRqeUMQPXiOcC6Nn4k0rz3G4x65UXljm6zYAQdCIpolkkzQRPcJdLXXE2szfR6
-	 3AUNSthC7V3qw==
-From: Sudeep Holla <sudeep.holla@kernel.org>
-To: linux-kernel@vger.kernel.org,
+	id 1xU2ef-0000000C9A8-2Xsh;
+	Thu, 19 Nov 2026 13:58:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
+	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type;
+	bh=7d2Kk7WcyF8PRkP72zbhRGMkbN0Tb+b+QibWkFY2CgE=; b=N3cJTdKy6IMcl2NcMZXMfS08Ul
+	mfH1xM/q6PPSgZ9I6LIGHpYjuZQkFWRz02xZq/KJyqivipYk4W+aUC8MSO5d9DVCvjZ0zS7euxgp5
+	UNUw26+sVBrTkNCUU9lD8GISFqdaXtpg4zvFk2n2UADIaC9HbYM5Cy0wEx6AaurkY4PUlFP9Ur2fI
+	aI2p0JvNP9NM2TvV34cjaf8XSeTcK9axhywJ67pFsRFwk/6amjHhMEE1aZsydgE9dksF30Cp9/KXd
+	t9/6I7RI88//kefaq7jnBD8kVaNtZrfzL5z2PqetlAdJYdvC29Y5F/N90v+BwV926Dn5Kt5yQysx8
+	5X0Ik+Pg==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: broonie@kernel.org
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-spi@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org,
-	Philip Radford <philip.radford@arm.com>
-Cc: Sudeep Holla <sudeep.holla@kernel.org>,
-	cristian.marussi@arm.com
-Subject: Re: [PATCH 0/2] firmware: arm_scmi: fix shared memory and protocol table
-Date: Thu, 19 Nov 2026 13:55:17 +0000
-Message-ID: <179509633637.1254008.1621228754406865513.b4-ty@b4>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261116123153.2672631-1-philip.radford@arm.com>
-References: <20261116123153.2672631-1-philip.radford@arm.com>
+	linux-rockchip@lists.infradead.org,
+	quentin.schulz@cherry.de,
+	Lee Jones <lee@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: [PATCH v4 1/6] spi: Allow spi_toggle_csgpiod() to get called from atomic contexts
+Date: Thu, 19 Nov 2026 14:58:03 +0100
+Message-ID: <20261119135808.2377849-2-heiko@sntech.de>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261119135808.2377849-1-heiko@sntech.de>
+References: <20261119135808.2377849-1-heiko@sntech.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_055825_989363_80A559DC 
+X-CRM114-Status: GOOD (  13.93  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,41 +69,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 16 Nov 2026 12:31:51 +0000, Philip Radford wrote:
-> Here is a short seires to address two SCMI bugs reported by Sashiko.
-> 
-> Patch [1/2] slightly alters logic to avoid using an uninitialized
-> reg_io_width value when selecting shared memory accessors.
-> 
-> Patch [2/2] handles missing SCMI protocol ID tables in registration and
-> unregistration paths.
-> 
-> [...]
+From: Heiko Stuebner <heiko.stuebner@cherry.de>
 
-Hi Philip,
+spi_toggle_csgpiod() by default allows for sleeping gpio controllers.
+In the upcoming atomic mode for late stage systems,
 
-Please avoid using bug report as subject line also. I have rebased the
-change on for-next/arm_fw/updates as I have moved files. Also I did
-rewrite a bit of commit message and kept !id_table check consistent
-across register and unregister. Please check the branch and shout if
-you disagree.
+So determine which stage the system is at and select an appropriate
+gpio_set_value function to use.
 
-Applied to sudeep.holla/linux (for-next/arm_fw/updates), thanks!
+If for whatever reason a sleeping gpio controller is combined with
+an atomic operation using a gpio-chipselect, this will cause a warning.
 
-[1/2] firmware: arm_scmi: uninitialized reg_io_width in shmem_setup_iomap()
-      https://git.kernel.org/sudeep.holla/c/8db620083cf2
-[2/2] firmware: arm_scmi: null pointer dereference in scmi_protocol_table_register()
-      https://git.kernel.org/sudeep.holla/c/99e55aac0f9c
+This also introduces a helper spi_in_atomic() to determine when that is
+the case. While the upcoming atomic transfer should really only be used
+during late system states, this helper just makes sure to distinguish
+between sleeping / non-sleeping.
+
+Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+---
+ drivers/spi/spi.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+index a6a9aaa47fde..5e05f2fef12e 100644
+--- a/drivers/spi/spi.c
++++ b/drivers/spi/spi.c
+@@ -1244,8 +1244,18 @@ static inline bool spi_is_last_cs(struct spi_device *spi)
+ 	return last;
+ }
+ 
++/* Check if sleeping is allowed */
++static inline bool spi_in_atomic(void)
++{
++	return IS_ENABLED(CONFIG_PREEMPT_COUNT) ? !preemptible() : irqs_disabled();
++}
++
+ static void spi_toggle_csgpiod(struct spi_device *spi, u8 idx, bool enable, bool activate)
+ {
++	/* Will complain if atomic transfer is combined with sleeping gpio */
++	int (*gpio_func)(struct gpio_desc *desc, int value) =
++		spi_in_atomic() ? gpiod_set_value : gpiod_set_value_cansleep;
++
+ 	/*
+ 	 * Historically ACPI has no means of the GPIO polarity and
+ 	 * thus the SPISerialBus() resource defines it on the per-chip
+@@ -1257,10 +1267,10 @@ static void spi_toggle_csgpiod(struct spi_device *spi, u8 idx, bool enable, bool
+ 	 * into account.
+ 	 */
+ 	if (is_acpi_device_node(dev_fwnode(&spi->dev)))
+-		gpiod_set_value_cansleep(spi_get_csgpiod(spi, idx), !enable);
++		gpio_func(spi_get_csgpiod(spi, idx), !enable);
+ 	else
+ 		/* Polarity handled by GPIO library */
+-		gpiod_set_value_cansleep(spi_get_csgpiod(spi, idx), activate);
++		gpio_func(spi_get_csgpiod(spi, idx), activate);
+ 
+ 	if (activate)
+ 		spi_delay_exec(&spi->cs_setup, NULL);
 -- 
-Regards,
-Sudeep
+2.53.0
 
 
