@@ -2,95 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA440606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A02606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 10:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FAdvRinD;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Fg63I1oK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qL6eBz8a;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=bDpd4c76
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0xZimawL2d6s5mil9vXgjgzQ+qS8guj7DlGNFL3/c9I=; b=FAdvRinDiQLX+n
-	A9Z6ZSA/OpTIqR+rMwzoEyeAFyh8nAfd+m3AJXrVrnlgPYrgPPXq70cMAgR5skhppR+0ykzUYOcqP
-	Z/wCvCDNZvCfi5Xsj6Hq7U6KVW3Qt5E/SkVrkq/jgCyQGWDshUQzRvb6n476r42GrURA2aHFEFltw
-	uzbcuoukULsFenF62Yg90izAZgLja3KMq5JIU+srQ8b8/6MxsMug1hZjTxiSlOZmtqZGHePj7tDhb
-	M42U8O0BEHAWeFr7BQp/9/e32fNb+bmCj3S3rRTBKiwlXwpmbQGQEEhsa+feTOoT45UNZgxceOU4U
-	kWS+ESmno+yWwMBEZowQ==;
+	List-Owner; bh=1E9aeKD0ViG7J+qDgtkquYRiN07MXNXZrVg0YWEXHdA=; b=qL6eBz8ac/yWPp
+	Gpvl6wg6q4zfunTKrWKVgsaknbcor0b99AfcTPpkELgyxUfQwiYyivdrLajB2wk8zGlvHerLsvsut
+	XBsl+QKywsgUCZpv3dvQ/QK54iHIhPYdne2JgNRpXlEc1X2I6CiArhA7BpdxsgGbo2etyTmb53g+i
+	KsUtNt4KIZcYS4UQWllYiC/1iz1HVoz2w2q0DBocG8tBnAV8P1L+Bom20L9QtjpsmGY1UCo/P+Auj
+	iwiSACI/CQXcsNSleT5uySAc4OD505AdOY2ajB7sVJ6UcJVpKpzKwmcVO5YzpULtE2PALs0jLrtLM
+	z3Kmam2af5CauIZb5lyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzWS-0000000Ba36-3kaF;
-	Thu, 19 Nov 2026 10:37:44 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTzWQ-0000000Ba2G-1avP
+	id 1xTzXI-0000000BaBO-0FyW;
+	Thu, 19 Nov 2026 10:38:36 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTzXF-0000000BaAK-35LZ
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 10:37:43 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a2153c8525so15235165e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 02:37:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795084660; x=1795689460; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=0xZimawL2d6s5mil9vXgjgzQ+qS8guj7DlGNFL3/c9I=;
-        b=Fg63I1oKU2APSLDnpGtwaid0QRdL4TCf9ky2Tsb4J+KwZvJWF8Yvx84NNlJkk8gVJF
-         kq6uesWiMtNSocz3Ncx1wno0df0cNEeqSzZYgjv49eAMBZGdl+vo1tnYoPUJVGzR+X4j
-         LgWWmxgLJFoxanHJokwf2F+a7Y5Io88T+Og5tBSWxjZuXj6f2+aeqt0pWdP3jQ0R0GAX
-         bCG3Mp6sPT36o3wFxiaCSTS5odNi17wh7QQcq8myyHmafUwISTZ26X+WTaqJi+3hgc94
-         wnNYarZQ/TlRQXkEWI1b0l+3mns73GHIpVbXM2nBpGU67FPTFo9jPueX7j05I5vp03U7
-         2hGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795084660; x=1795689460;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=0xZimawL2d6s5mil9vXgjgzQ+qS8guj7DlGNFL3/c9I=;
-        b=gwU+SYKXDAQO2uY0b+vn7ubOVDBleDtwmlCRHxOU66ogJ60HVhRtsJjrPDPmrJLUBB
-         MrlXeoq5oJg6NxYqklZEQBs67Kl94onIBYs/AJnHPMM4/yvCYWh+e1GWpNVn6C5eKkM/
-         W6FGFZB134H5+Klj33OXm44/BJXgWdhL85/1Fk742s8l5kMOWSjkT9uLU7GmvjTsEVL+
-         F392hsiBP2F1mlVjHivPYPEQfoh3YTFYRPgmhyrCCzaqcKbxi/ylzWOZHY0QPvUSKEIU
-         RyDnp5Bzyf+vIeWSYRJc1y+sY1L49OlhoW/jckoHK+hCLViIR4mAd01SzhYxIztPmXCJ
-         Mv3w==
-X-Forwarded-Encrypted: i=1; AL+hErHmyhhxsMXCAuNu/yhCnwVyErp4rgCX2Pzc2zNv8b6UKp7aBLac1KxIVFdbg1XeuUsGfkRHXY/YynqgOn5R9tmc@lists.infradead.org
-X-Gm-Message-State: APuU4Z9EZIBo0fh2te/Vl9h+MM4buaJLk9/B+M1NLcEQ9SHvpbUBpGzJ
-	zruSyzmRI+dPQL6CO05qdpQQar21U+MTzpIJXPMDYpKHUjHz5pD04PJL
-X-Gm-Gg: AYBFou2zkZlOPu9lG7RlDl91DEUjz+EMjNV4M1W2T0bSpPveV0XojwtRCHFQxjGREEq
-	1ObHmnvIjLw5qs0o2PqQ9PdJJHeSrwvJBWFNWnXPzqZaVArBMeHItjXDjUJ7vC0fZFWBguNTaJy
-	2GyROPgTiS1wwqMqQ9KRVmOtt+KPeggwaLUcbU7MgPR8Okz5Z0ixK+pl9EBegma98cE2SiZn3Am
-	iK/5/YB/1qnzqYmvAVlWt82EWNiQmvo3lp7w6yCYc7XSNy2VwRQBSRfRa/nRMWK1kHPOHEcrLk+
-	ElEkHcmAiNu23GLE/oAUHPIKT9UtgWjrfpPQzKLWDl1fbT0ZTR3E7p2OWXsYwIW2kGtt1ptFdoQ
-	2Nsqsw6/N/13NbIkZGCCMRKHlQRrRR/l5DIlrNo6exK/4P4VJBkVUGVqIN1pARwwdUWmYRJA0HG
-	HpXC+Gz16/fvQnfEcQzuKtnyq9AbNccXQXkk0RqmZNtnej6LBUJT6kBLYPvNvMcFk4VrsD3oOc1
-	0/MJXqcp3gxdOOy3MWnGCBeTVArO1Eq+O3MX6cQY13KJG/EkknFr3kLzvxyfAF9Sd1WaIrewn1C
-	HgT5LKHj569k4jXpXROfBrqV2VKhHe9l/SLJY4o=
-X-Received: by 2002:a05:600c:501f:b0:4bb:6f67:ca0b with SMTP id 5b1f17b1804b1-4bb7da462b2mr109990135e9.29.1795084659786;
-        Thu, 19 Nov 2026 02:37:39 -0800 (PST)
-Received: from dev.Default ([2a0c:5a86:4d09:3a00:3c0f:a5ff:fe86:2946])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8532f1a9sm24290945e9.3.2026.11.19.02.37.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 02:37:39 -0800 (PST)
-From: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
-To: Navid Ghahremani <ghahramani.navid@gmail.com>
-Cc: stefandoesinger@gmail.com,
-	linux-arm-kernel@lists.infradead.org,
-	arnd@arndb.de,
-	krzk@kernel.org
-Subject: Re: [PATCH v2 00/24] ARM: zte: Add support for Sanechips ZX279128S and ZTE ZXHN H3600
-Date: Thu, 19 Nov 2026 11:37:38 +0100
-Message-Id: <20261119103738.3525992-1-isasmendi.agus@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20261113003635.3664249-1-ghahramani.navid@gmail.com>
-References: <20261014072109.1759502-1-ghahramani.navid@gmail.com> <20261106190828.3823287-1-isasmendi.agus@gmail.com> <taToYWqTRsyGXzOXNcd5Qw@gmail.com> <20261110153522.1620088-1-isasmendi.agus@gmail.com> <20261113003635.3664249-1-ghahramani.navid@gmail.com>
+	Thu, 19 Nov 2026 10:38:35 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B2CC61575;
+	Thu, 19 Nov 2026 02:38:29 -0800 (PST)
+Received: from [10.43.16.22] (unknown [10.43.16.22])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 048213F632;
+	Thu, 19 Nov 2026 02:38:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795084712; bh=x1fzo650tskHuvw39pi4izoFCVukJDZuJ4305LusYok=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bDpd4c76baiHnPktB9iWk7TmT3YJu9ALX+K4/DuzM0re9Yr3YRDWuxopWtg2m5zET
+	 HLVBz8WXXiC2a+J7ABKE16mDFkiEBXfpr9XI7WnIqIX/IpIM7MVn4cPEKXWKwspzrv
+	 vR9QP5Xroxlu9V4bdWCKE9UuhZ4ZGN2v9WtiBBAY=
+Message-ID: <243812f7-3883-4225-8f46-aa2a5face413@arm.com>
+Date: Thu, 19 Nov 2026 11:38:27 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] Add test for atomic uaccess with permission
+ overlay
+To: linux-arm-kernel@lists.infradead.org
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Joey Gouly
+ <joey.gouly@arm.com>, Linu Cherian <linu.cherian@arm.com>,
+ Mark Brown <broonie@kernel.org>, Shuah Khan <shuah@kernel.org>,
+ Will Deacon <will@kernel.org>, Yeoreum Yun <yeoreum.yun@arm.com>,
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+References: <20261119-poe_futex-v2-0-244c7a01f788@arm.com>
+From: Kevin Brodsky <kevin.brodsky@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20261119-poe_futex-v2-0-244c7a01f788@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_023742_464714_B7D9486D 
-X-CRM114-Status: GOOD (  13.81  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261119_023833_981606_8E993683 
+X-CRM114-Status: GOOD (  22.67  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,59 +73,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Navid,
+On 19/11/2026 10:54, Kevin Brodsky wrote:
+> POE is not currently enabled at EL1, but my series [1] protecting
+> page tables does exactly that, and it has revealed an interesting
+> issue.
+>
+> Regular uaccess uses unprivileged loads/stores, which have overlays
+> applied and are checked against the user's POR_EL0 as intended (same
+> restrictions as when accessing memory from userspace). In some
+> cases, such as atomic operations when FEAT_LSUI isn't available, we
+> need to use privileged L/S with PAN disabled instead; overlays are
+> not applied in that case.
+>
+> Once POE is enabled at EL1, we have to ensure that overlays are
+> still not applied to these accesses. Otherwise, they will be checked
+> against POR_EL1, which is completely invalid as kernel
+> pkeys/POIndices are unrelated to user pkeys.
+>
+> If PIE is used, then we have to ensure that user memory types do not
+> have overlays applied in POR_EL1, as Sashiko reported [2] on an
+> earlier version of my series protecting page tables. Patch 1 tries
+> to preempt such errors by adding a comment. If PIE isn't available,
+> then... we're out of luck, as Sashiko reported later on [3]: we
+> cannot prevent overlays from being applied to user memory. We'll
+> most likely have to require PIE at least when POE is enabled at
+> EL1.
+>
+> To avoid accidents in the future, patch 2 adds a kselftest to ensure
+> that atomic futex uaccess (which uses privileged loads/stores unless
+> FEAT_LSUI is available) does work on memory mapped with a
+> non-default pkey. 
+>
+> Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
+>
+> [1] https://lore.kernel.org/r/20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com
+> [2] https://sashiko.dev/#/patchset/20260505-kpkeys-v7-0-20c0bdd97197%40arm.com?part=3
+> [3] https://lore.kernel.org/r/sashiko-outbox-207324@kernel.org
+>
+> ---
+> v1..v2:
+>
+> * Reworded the cover letter and the commit message of patch 2 in
+>   light of Sashiko's new findings (when PIE isn't available).
+> * Rebased on v7.4-rc3
+>
+> v1: https://lore.kernel.org/all/20260521-poe_futex-v1-0-1da286b8f9b2@arm.com/
+>
+> ---
+> To: linux-arm-kernel@lists.infradead.org
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Joey Gouly <joey.gouly@arm.com>
+> Cc: Linu Cherian <linu.cherian@arm.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Shuah Khan <shuah@kernel.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Yeoreum Yun <yeoreum.yun@arm.com>
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-kselftest@vger.kernel.org
+>
+> ---
+> Kevin Brodsky (2):
+>       arm64: mm: Add note about overlays in PIE_EL1
+>       kselftest/arm64: Add test for atomic futex uaccess with POE
 
-Thanks for the tests and the numbers.
+I completely forgot to address Mark's comment from v1... Please ignore
+this for now, sending a v3 soon.
 
-On Fri, Nov 13, 2026 at 00:36, Navid Ghahremani wrote:
-> With the lock on both sides, PCIe config reads of the MT7915 still hang
-> my unit.
-
-That fits: a config read is a PCIe read like any other.  I hadn't
-covered them in my lock either; when they were left unprotected in one
-of my tests the board hung the same way.
-
-> Because of these numbers OpenWrt will keep the cache on with the lock.
-
-Makes sense.  Two things that may help there.
-
-The stock kernel makes the PCIe DMA hardware-coherent: in
-zx279128_init_machine it writes
-
-  0x00a20080 = 0x40000001, 0x00a20084 = 0xbfffffff,
-  0x00a20078 = 0x00a20088 = 0x1f0f1f0f, 0x00a20000 = 0x0d000000
-
-and mt7915.ko uses the coherent DMA ops.  With those writes and
-dma-coherent on the PCIe nodes the mt7915 needs no cache maintenance
-(md5-checked transfers, L2 on and off); without them its firmware does
-not load.  The switch DMA stays non-coherent.  The same setting also
-makes the IDM ring coherent (stock uses it through the cacheable alias
-with no maintenance), so the WiFi offload RFC has to treat the ring as
-coherent when this is on.
-
-On my unit, with the L2 on and the lock (Mbit/s):
-
-                         plain   coherent   coherent + offload
-  TCP router->phone       432      525          530
-  TCP phone->router       235      283          288
-  routed WAN->WiFi        253      237          270 (CPU 46% -> 16%)
-
-And the lock: I reworked ours so that only a small hook is left in
-mt76 and the rest lives in platform code, which may suit your OpenWrt
-PR.  The L2C side wraps outer_cache in mach-zte (cache-l2x0.c
-untouched), config accesses take the lock in the PCIe host driver
-(your lspci case), and mt76 only calls a small outer_io_lock() pair
-around its register reads.  Your config-read test with WiFi and
-Ethernet ran 3 x 10 minutes without a hang, with the same throughput as
-the old lock.  I can send it to you.
-
-Agustin
+- Kevin
 
