@@ -2,79 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEFB606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6678B606A335
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 17:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wxYLTn1I;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hoSF4ZBK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yx97Ex83;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=s/HPKC4Z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=JZeXMm6AAi44BWshE63wgfUA4zyj+3ZnN7hXQLNUFPk=; b=wxYLTn1Ixpubpt
-	sTiXhdCYCXweGB3KsBawHCkRyVNShbt+seA+p/pFX4d8Cs2bbXvFhN+pUV79IDBRBxhtSTgJY2zKC
-	KRSF13zbNlfzOBZKU2GmCXZVQU0B0j+vzAOeKC8xIBVx2YfL6xtrZzM8DeSGUC1IAak0t+pWnL5ZG
-	gaBFQ6290N+T6BJGd1t7BmlmFc7T+VvhkqggluMvT+ZelGc4ZKgzfyvrRqgyyrMWpvD7fMc+ylf/0
-	mlCAk40ngnejib7JQo37QgJ2bw4nazNP2ItuNN36WH4K9DxZhFgIyxwSBRAWkmro2lwlpYLKelOVC
-	CanxK5EDH6n8mGiArQkw==;
+	List-Owner; bh=HyRQC7LCLt2aLLScf7p5/WBb90iUzNQpHgR+zoYi5DQ=; b=yx97Ex834SCpFV
+	unKWLvFE4RIWlAozm/YZB+dSXKzTzBbFadRUEklWJMZmj5BM44azYvkv70vOMKLsxnGHpJeZHIKtD
+	eGsp76+R7q0MRcMgm5kYH4dSPcI6f0eBwZwnZZn3SerwUKeNh5QQ/Uip+6qHv+nAU1CY5luVoQhit
+	36iDHLMD6wToT1hNsYubz5mnbrHTzWjp2CD2eYoyHR4zOlTEXz5EZpDdc3K1TPn+k7e0vhis/XlMC
+	E8Xkcsdd3Q1XXDXdI90U9El2i9y+4XMF0JUFs8LQAdlvJhTjq73fWo+AxYpqrTp10W1ID5hPDmWRv
+	TpYUg84KAdtO6GA6MMRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6LW-0000000CuGi-1RJa;
+	id 1xU6LW-0000000CuH5-1pSm;
 	Thu, 19 Nov 2026 17:54:54 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU6LO-0000000CuDh-0FL1
+	id 1xU6LQ-0000000CuE6-01VD
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 17:54:47 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4bb6ba3b244so27228615e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:54:45 -0800 (PST)
+	Thu, 19 Nov 2026 17:54:49 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-4a9be758734so734494f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 09:54:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795110884; x=1795715684; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795110886; x=1795715686; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=JZeXMm6AAi44BWshE63wgfUA4zyj+3ZnN7hXQLNUFPk=;
-        b=hoSF4ZBKxf9mQ2NtCJeDFQ+j2j3xUw6c4ENzObn2YNyO22l9XyPoWSklzInfQsaRF4
-         vRPfVK5TAvGM9KunT/3WqS85fa+d8xEWpPfL22Rmyiv4ZGlBaIs4yRKWE4BCDTDiWcd0
-         e+d/qyw3erkaL8FLHTjpeA1n+ycRnEFGGx/yf6Iq5PtkBSYinDYAJW2VB+rExdIFvUoC
-         /GEY7Qxjbq4YpI2V/V2hWBdTOHxu3yndBUdAGEpWmSs5U/VbwcGlKrsxiJ+XxoUS3whH
-         qJTYceE5fo/zLfBA7ELKVyQwg9SlXeQH8otvPJbx167V5UiJ+stwau12h8tNPm+8PYMe
-         +tPw==
+        bh=HyRQC7LCLt2aLLScf7p5/WBb90iUzNQpHgR+zoYi5DQ=;
+        b=s/HPKC4Z0F/UfE+RqXfr7zoh6JyB1X9vo7QrZtEZ6/8FMOqAV5KEj3pdLU6W7uKBak
+         Kj5RRwd7Y1R9JZngXP48/t/6MwsRyBm5/W+7DHusSIepyw7RZ1lnhH37cqWEj3Odl6Nd
+         DSN5woA8g076mT2PfLkXZvBjVANhmZBNna4uAhQfMSzaNIb/xKNZqldhoeVZ8cA7kJZG
+         NiNlLuvayNJSigIXAMNaTw6sgeOUpBwAL/tXLgWTsAYc/WfZ56gE4hjStbgVcyX9pBlx
+         NPYRuIt9VygclBbvr0fkiuFjyXSlDLLqCpWpiBOr7o2oRnPOS99uPmU5OelmL9g5kZ6Y
+         OFOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795110884; x=1795715684;
+        d=1e100.net; s=20260707; t=1795110886; x=1795715686;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=JZeXMm6AAi44BWshE63wgfUA4zyj+3ZnN7hXQLNUFPk=;
-        b=H7Gr9k9o10LcCH6Bmc92XqtHVQP9+0g5Zxvb25qgImhbnsf9Q3+n2zjMo1tsCkfqT2
-         9ONQGF1RWrg83ND03j7DrK90e/ayu73mW1YYmGME/DIF4GDhH8qXUdwnwkYXo/LTPuSg
-         UTugmJOFNe4G1j9OJuI+72mSzM5O5Bi3g6iAnNOPwH4C9DE5Vgg29w/7dJDZOCyUA9/E
-         eFy8bgoVR/W/CkQ89N9O6YO2HzXJKh1yc7NoOxUjyzyRA09CX8q0dJ+Nh/8U5b5ceZg0
-         HYGrpXUJClbB37SBYgeJe2AwhY0oERuQDMqWbMT8y6E0ZxpkKgYzKqZCyKnms7bH1Bds
-         VJwQ==
-X-Forwarded-Encrypted: i=1; AL+hErE5kx2pfJKjiB25PLYWHLo1aw80iCR4ig7Z/ZfzysVXN2eF3XEnGwMIzBUvZP7VtjvW8Fz7EQ2CiPRWFdaTxXGA@lists.infradead.org
-X-Gm-Message-State: APuU4Z8l4RlFJwbrOSahyD7apDvoNBHivPAkxE0pLjNSKn2tMFsyw8K4
-	8s650qCcBSbEl0mtyrzjmjSrTcnZmhxkxIi3TdonDd5nMsvLiXbDmhKE
-X-Gm-Gg: AYBFou3qbt4htSM0Ah2zWaspo1KlrUkCZsvsmPYNQZ+YQfcyplTVlflZacE9l9+KkeC
-	yl4jcyzBXEkXkz//ajScG0RhTlDTzTlOGW2EEhi1d5IhhlAxHezwygVP/Yrkx0KBQrBKCz7qSyc
-	W3Wdj2G3QfrNUmHTVoKLNn7KVw2TNXxg4B0H9IiXebnVGiK4cOgIZ1nQ3bsOqi9HdhM/kUkNcIu
-	BB2y4c7yuoCZsg8B80qpyNcYn5GCQJXI5i6HCiBPX6iLMGP55AuPmwDczX1EmeitW1CX5a8Y6m+
-	Vns/aqbnQf/AJaiu/rpV0eMvumNW/insP/MIPPr3igKDyzLyoD1TGPXKMQcesrEZeLJFHwdI/Rf
-	eZ/83Qqh8VKzdBwmszpGks/wTwBHLIl7PdbPEXR4GbfbO8C2qVac68hMipFoyPg5jHS7XC2CwQl
-	z/xwCn1Kb6Vl68RlWtRnK5qJ3g4P4VWUXsZ2er5Pr+r+0/B90oDJ8vjCMxP0F0nNEYohwgjbhJf
-	BpXZ1kCDFSWfo6o+kxG21WeC3/dCJ2qxrn6x5hSl2aM/GZm9d1rsMg3i2P0/BSq2S/w+kCFXDtS
-	JG35H26ejITuUSalZc6Al1Ad7F5QFVsao4xv8tUUPQe8x0poZXtfn3L+/tyvCaCFitHopuYKtjT
-	0+9jxr+tlop6bHnzf+hh/Za/558evWzTru5iEHFG8DotkpZIqrkprhM6/IuwL+kw0jLIDd3Ec5e
-	WNAUXxqKBo37oMQmGYW+hBwfTCirpyPB7e2friWsW51B3dwQy2hSFOfSJAnSt9zcYW68QAQQl2f
-	NRD0Oq+m9iholNY035VPl2FB9+CHyPDtWTiXq4tRiN6VT2IhG/bT7DV
-X-Received: by 2002:a05:600c:a08e:b0:4bb:647d:dabe with SMTP id 5b1f17b1804b1-4bb887c3afamr8512525e9.3.1795110884056;
-        Thu, 19 Nov 2026 09:54:44 -0800 (PST)
+        bh=HyRQC7LCLt2aLLScf7p5/WBb90iUzNQpHgR+zoYi5DQ=;
+        b=1Zdap4P6uXlEFUcoskGD6QJFmLK13rnYP7j7dbQr/loBSdlfH2ag/vRvb5lYM0k+k9
+         ID2NAtbrMLXTMqG0kboKT6GAZQg5EsjNBA7i3CqqZX2uplPoDX5x03EAispkTcrio5bM
+         9x6vBDyIciuUAINcc9hgrYp1+KZq9FxK0qYsdMJd05LZjWmt0uAHRGblvZAHyvBhXrSQ
+         IEl2AyA1Exg4N+M3u5AC5qIQo4nQAEFnZBxELDzlKb7a0P1wzyNT8WPxiNCbM75qvwLq
+         C0vrOXGlM9cSGGrda4t6jxnmZRMvJkhKwKvoI3rBuzUU1jmQKKV+oPvY7tRnXvHmMy64
+         MdtQ==
+X-Forwarded-Encrypted: i=1; AL+hErEX4kzmjrGuzyoUdi88z9qHzt1Ce1eCICThNqAeEEXtH21RHDQeRdPXvBV9QbnYzutCs6l7pqY9q4JnZ3deDrvJ@lists.infradead.org
+X-Gm-Message-State: APuU4Z/bIpqQMxUvQF2ld7u73tLVp06CgS1y8TvGY0oNSOWf5he7SgMb
+	CLQCEE6hKDPQcmSOmH4/xwM9N6HTONBpKVpE3oPY17HQaL5/upyyxNKQ
+X-Gm-Gg: AYBFou3YrZ1r2c1vvzrs9TEBUnpbaw6uLcR4SC4rTKPs2h3lV4GARFJ5UyDawGGKgOv
+	IwTzyLZ2bCOZD3yfGPJpVSzjLnaWKdYJAMo3pQyzv29uZ+7aRnYGVmAaDVa3Vm9PzyQTFuIWKUQ
+	85BrJaaZCb3EwBtCHByjHp+2YszCRpGOW5jrd6f8gO0+4gQys6qZUlXeAGTGoF/OFN7y0qVKh8/
+	3B1c7td967fH8B7bDZmM50hXZCjL9QXDDlvaJOm1x1YekdT/91r2S40J0gp0BFaYWAfY33xeYgg
+	1cDExacJ1z3rDQC00cQ09GbqdZVkBACIG1x2odqRd8B8WZ19YncECjAhzTbpPxQ8IOtqYpdhJsv
+	UkOo8gw5L1SUu4/uL2eOTRjbjEdOCIJfmTgGwDMvdRqZixrLgXGqZ7QwQlVO4cT2ywQxx03khB0
+	dlgc4jjmoZqgg5r/8xqNpWccY0HtyrdDBC8ii8UpCPGLy5ZidhjhC4/aiLo6GLevo21dHQV2blQ
+	jWjkcuRd2q8XhGl/b/ycdBExvwIlURmGIvQXNWZQ1X9YBm/NpsVubwsap6XegFNha57VOc2kOwI
+	IVMxXpJVuXEzKBZNB9CCIHR71K+LIWjn5AvA7PumI4v2hfCanV5h4r+OIw304B1tTKsY2DqXWI1
+	h1Jh84j3oY9hwGq6cii+7OV6DtJ0Pi+gRwQ3zFCyuFZnGQCbUTfwFPr3glfUTfen9z3XbdXYgtx
+	xQqr/viZqbqeOIFZiSAf82tOF5VvhH/viUdN7XnqJEy8BOeleYtWE+ipqXJ8/yT5Alh51BQUso5
+	CdMY0lqhdfY8vRO3Sn+EZvx2vSPbLYaZf2/YG7QgWO2I99WSAI9qPiu
+X-Received: by 2002:a05:600c:a55:b0:49f:ce78:356d with SMTP id 5b1f17b1804b1-4bb88827db0mr6257205e9.30.1795110886049;
+        Thu, 19 Nov 2026 09:54:46 -0800 (PST)
 Received: from jernej-laptop (95-143-148-21.dynamic.telemach.net. [95.143.148.21])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb84e50512sm29390035e9.3.2026.11.19.09.54.42
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb84e50512sm29390035e9.3.2026.11.19.09.54.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 09:54:42 -0800 (PST)
+        Thu, 19 Nov 2026 09:54:44 -0800 (PST)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 To: Chen-Yu Tsai <wens@kernel.org>,
 	Samuel Holland <samuel@sholland.org>
@@ -91,10 +91,11 @@ Cc: mripard@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/5] drm/sun4i: Reject fractional source coordinates without scaler
-Date: Thu, 19 Nov 2026 18:54:33 +0100
-Message-ID: <20261119175437.2520400-2-jernej.skrabec@gmail.com>
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v4 2/5] dt-bindings: display: allwinner: Add DE33 planes
+Date: Thu, 19 Nov 2026 18:54:34 +0100
+Message-ID: <20261119175437.2520400-3-jernej.skrabec@gmail.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261119175437.2520400-1-jernej.skrabec@gmail.com>
 References: <20261119175437.2520400-1-jernej.skrabec@gmail.com>
@@ -102,8 +103,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_095446_122848_DE1724BA 
-X-CRM114-Status: GOOD (  15.14  )
+X-CRM114-CacheID: sfid-20261119_095448_059204_0C344701 
+X-CRM114-Status: GOOD (  13.81  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,92 +124,71 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The layer code programs the scaler whenever the source rectangle has a
-fractional offset, since only the scaler can apply a sub-pixel phase.
-drm_atomic_helper_check_plane_state() with DRM_PLANE_NO_SCALING doesn't
-catch that: it only compares the scaling factor, which may still be
-exactly 1.0 with fractional source coordinates.
+Allwinner Display Engine 3.3 contains planes, which are shared resources
+between all mixers present in SoC. They can be assigned to specific
+mixer by using registers which reside in display clocks MMIO.
 
-Channels without a scaler would thus have the non-existent scaler
-programmed instead of an error being returned. Reject fractional source
-coordinates on such channels.
+Add a binding for them.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- drivers/gpu/drm/sun4i/sun8i_ui_layer.c | 24 ++++++++++++++++++++----
- drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 24 ++++++++++++++++++++----
- 2 files changed, 40 insertions(+), 8 deletions(-)
+ .../allwinner,sun50i-h616-de33-planes.yaml    | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
-index cf66f676824e..f9c7f28f9fa2 100644
---- a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
-@@ -179,10 +179,26 @@ static int sun8i_ui_layer_atomic_check(struct drm_plane *plane,
- 		max_scale = SUN8I_UI_SCALER_SCALE_MAX;
- 	}
- 
--	return drm_atomic_helper_check_plane_state(new_plane_state,
--						   crtc_state,
--						   min_scale, max_scale,
--						   true, true);
-+	ret = drm_atomic_helper_check_plane_state(new_plane_state,
-+						  crtc_state,
-+						  min_scale, max_scale,
-+						  true, true);
-+	if (ret)
-+		return ret;
+diff --git a/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml b/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
+new file mode 100644
+index 000000000000..0a07cb8a5f79
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/allwinner,sun50i-h616-de33-planes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/*
-+	 * Fractional source coordinates can only be handled by the scaler,
-+	 * so reject them on channels without one.
-+	 */
-+	if (new_plane_state->visible &&
-+	    !(layer->cfg->scaler_mask & BIT(layer->channel)) &&
-+	    ((new_plane_state->src.x1 | new_plane_state->src.y1 |
-+	      new_plane_state->src.x2 | new_plane_state->src.y2) & 0xffff)) {
-+		DRM_DEBUG_DRIVER("Fractional source coordinates need scaler\n");
-+		return -EINVAL;
-+	}
++title: Allwinner H616 Display Engine 3.3 planes
 +
-+	return 0;
- }
- 
- 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-index 09d94f7f9977..4d3fc03f9877 100644
---- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-@@ -259,10 +259,26 @@ static int sun8i_vi_layer_atomic_check(struct drm_plane *plane,
- 		max_scale = SUN8I_VI_SCALER_SCALE_MAX;
- 	}
- 
--	return drm_atomic_helper_check_plane_state(new_plane_state,
--						   crtc_state,
--						   min_scale, max_scale,
--						   true, true);
-+	ret = drm_atomic_helper_check_plane_state(new_plane_state,
-+						  crtc_state,
-+						  min_scale, max_scale,
-+						  true, true);
-+	if (ret)
-+		return ret;
++maintainers:
++  - Jernej Skrabec <jernej.skrabec@gmail.com>
 +
-+	/*
-+	 * Fractional source coordinates can only be handled by the scaler,
-+	 * so reject them on channels without one.
-+	 */
-+	if (new_plane_state->visible &&
-+	    !(layer->cfg->scaler_mask & BIT(layer->channel)) &&
-+	    ((new_plane_state->src.x1 | new_plane_state->src.y1 |
-+	      new_plane_state->src.x2 | new_plane_state->src.y2) & 0xffff)) {
-+		DRM_DEBUG_DRIVER("Fractional source coordinates need scaler\n");
-+		return -EINVAL;
-+	}
++description:
++  Display Engine 3.3 planes are independent of mixers, contrary to
++  previous generations of Display Engine. Planes can be assigned to
++  mixers independently and even dynamically during runtime.
 +
-+	return 0;
- }
- 
- static void sun8i_vi_layer_atomic_update(struct drm_plane *plane,
++properties:
++  compatible:
++    enum:
++      - allwinner,sun50i-h616-de33-planes
++
++  reg:
++    maxItems: 1
++
++  allwinner,plane-mapping:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle of the device responsible for assigning (mapping) planes
++      between mixers.
++
++required:
++  - compatible
++  - reg
++  - allwinner,plane-mapping
++
++additionalProperties: false
++
++examples:
++  - |
++    planes: planes@100000 {
++        compatible = "allwinner,sun50i-h616-de33-planes";
++        reg = <0x100000 0x180000>;
++        allwinner,plane-mapping = <&display_clocks>;
++    };
++
++...
 -- 
 2.43.0
 
