@@ -2,142 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063C0606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 06:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D1560A2606
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 06:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YMVGId7X;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=GImiJJmB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mg306kty;
+	dkim=pass (2048-bit key) header.d=jclark-com.20260707.gappssmtp.com header.i=@jclark-com.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=UuPqSXrX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=rCjeiacuUpZ/vyNwbk4Tm084Y06xMs9behKISfu6BUc=; b=YMVGId7XPTEAYsfzxX+8H8MHdR
-	niu2lW6Gs7WJhY40STJdxr4tNbt50MPtKx3j6i9PcBuUvPQsjo2dY6zaUtU2+mpgjhQibniRw55+W
-	O+yRYlSvifsC+MxiYBU6xCVMFVyGZk3GmPRdBYNsGaiehEVTfLDP/v5rSkXvM7nk+HG8xEsOhZdy/
-	oTbVY0ABK6HXXNhbAxuecjW9hqixVFPWnCO2fkgoDziXpt9b14F9d31ETxoYSHBRuQMx+BKWdhBHP
-	DeiCltqix/fM3TESziBH4Mt1fKmeMhTFPyDl0Tyo+cbcVG6pK86zUS78mEe35cBo0CFviTU0OGNIu
-	Hsajh4BQ==;
+	bh=vIyXTGC5+88ay5cdcjaG1P2/fm08Yk80tNUxmrQFq58=; b=mg306ktyGgTMAER5v+Qfbjv1ab
+	Oof8ijOeTPKZ/yJGJX+I3TfKrDDocqSKcxWNhPxs2uXSGKdvI3b9bfYEacdktLkEt1bxJXwXtVkOf
+	Lo5hPCp6COPsdX1wMME1fn+2Mjl1fiXauLqkyhTHMLdWGkPFd8eb0Kpa82z9ovGk3/pWf0vhBqptt
+	iY+Au0+TvlUXNrPMgcPUG8c1nhU3XeKqnWPzLeT5sPwRoQMme1Bx/GGP+WpgIthu+JESyKBVveUDR
+	JKcAfbeJU0o5p8LpCYj+TLSBic+GRLN+i8+nOXjjf9Gj9HI6oJQeXVTx3+riDhc47td5+pe9XVagL
+	I1oI6SNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTvWC-0000000AzDo-1qfJ;
-	Thu, 19 Nov 2026 06:21:12 +0000
-Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
+	id 1xTvY7-0000000AzUD-3SGg;
+	Thu, 19 Nov 2026 06:23:11 +0000
+Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTvW8-0000000AzBt-0eTi
+	id 1xTvY4-0000000AzTr-2d5w
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 06:21:11 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BsG7YU9Nxbn3ka1iK0z7eLt8Puft+Il8ylar4RtdO62qcP3d6neBobkghOGACvUnbCTzxtRaN339GGsVKsUcMWiU3eCj7BUkX923Wu+MKPlHMzUIflixFoCStHi3HEMZanzzSOGcyzK0x1D3Dc1CD5/7TakWb2zVDAixKW0TFgU4iQ+LlAdyIFU2uhkzA0tio8jcxe3UVfmBDZ8kNXoPBtGn9qLdzEJwkKunOvLytURJXVB+QXKahzAQHxYoWZkG+xv6whJKBQQ/RShRG1ptnG/w1eQZ9kLKZb+hxjSUY9f5ZberQWmKLeaLha9DyFbkag3epgvn+FxVkCLrqtobFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rCjeiacuUpZ/vyNwbk4Tm084Y06xMs9behKISfu6BUc=;
- b=BlgiZFYDa7RjsvGsAQ+MgoCCWrRbOc7SJ5NfV3X2KGUrECdGz8hWUVdQVWjVstADlyB4TVxQB85ZEolqJWkO21c3WAsj6JHTbJf/fiXCQaO0sGeWNXIQYMWamYlaN+diOEtKHJ+iamP9THdnFDBfDzN58f7A/3tS77ZJ4ZqaQ3oEF+nQnzRlPmn83GY2el4K6qY4XW5r8Iwy/WrnIK5xOAlQyJX7ELQzcKI9hY//6ck1lHCiwt4jzBAImBfQ9jCCKJLPDRYMR5MZIIXGTdjZ6yeoyLgn7Iz8FdzFjmB9VnSuiUT5a54UV2D3n6xjunvjZxLPDkdGHswAUabSG+0fiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rCjeiacuUpZ/vyNwbk4Tm084Y06xMs9behKISfu6BUc=;
- b=GImiJJmBd1iV50DE9Fw++sP0uXwNluOst2GqjeUz/3V5Lx96wnqt6BPnjdJGy8B9Ni9ux7RlioPWqgQLaJ/jdQM85NRSPcm7GwMGsB/73EsUQuKZl4fz5nnGGGAa1RXMRiljVywBXCuzzz+U6Dx2pOXt3/+j+59qJZPxUtnOLi7SnkhVSWK3dzqlw85mw+V3vFLp+qRiWusqFd1LMqsHwq0zI2mF9jnOkCB9XwyvvB9tmkUbU3ijuoV9ul4bU00l/0wRRl+hbkFzFXUzBApZ2xc7xwEwJskTcKYTlDrVL76ZNOV54IYNybSMIMOgu3BclOwdjtpGXtdD5Tex57+MNA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DBBPR04MB7883.eurprd04.prod.outlook.com (2603:10a6:10:1e9::23)
- by BR0PR04MB263363.eurprd04.prod.outlook.com (2603:10a6:2c8:4c::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
- 2026 06:20:58 +0000
-Received: from DBBPR04MB7883.eurprd04.prod.outlook.com
- ([fe80::3a91:cf25:36c9:c3bb]) by DBBPR04MB7883.eurprd04.prod.outlook.com
- ([fe80::3a91:cf25:36c9:c3bb%7]) with mapi id 15.21.0615.009; Thu, 19 Nov 2026
- 06:20:58 +0000
-Date: Thu, 19 Nov 2026 14:25:55 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Peng Fan <peng.fan@nxp.com>, linux-remoteproc@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-rt-devel@lists.linux.dev,
-	Bjorn Andersson <andersson@kernel.org>,
-	Clark Williams <clrkwllms@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Steven Rostedt <rostedt@goodmis.org>
-Subject: Re: [PATCH v3 00/10] mailbox: imx: Use threaded handler to avoid
- kworker in imx's remoteproc
-Message-ID: <av6Wc+kHFKqwFHAR@shlinux89>
-References: <20260617-imx_mbox_rproc-v3-0-77948112defc@linutronix.de>
- <avrLnVFtgobyTwN1@francesco-nb>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <avrLnVFtgobyTwN1@francesco-nb>
-X-ClientProxiedBy: JH0PR03CA0027.apcprd03.prod.outlook.com
- (2603:1096:990:74::10) To PA4PR04MB7885.eurprd04.prod.outlook.com
- (2603:10a6:102:ce::14)
+	Thu, 19 Nov 2026 06:23:10 +0000
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-2ed08b07213so8785435ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 18 Nov 2026 22:23:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jclark-com.20260707.gappssmtp.com; s=20260707; t=1795069387; x=1795674187; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=vIyXTGC5+88ay5cdcjaG1P2/fm08Yk80tNUxmrQFq58=;
+        b=UuPqSXrXj4aTSQ4Tl4UC/iPGdexV7kAoZN1ub4pHMF0KJBG43PXf2ZDLpwbFFgKd7A
+         /e50l/bN1vnHoLapscDoFf2zv7jn8uUckK4pKS7S+uUNxfa07aPJO5vMGPEA2+83Q8ih
+         6DKbJbZwbTIxS216Fzceads9z7CBLGYAfo9fuBHmijruCcJ6uiIvHzXmrTVFxr3a4HEf
+         qnv83dbPx2hLHkoWZ90T8qDkSHhJZNoVfokHULVQ2458XvmKHLvjVcP8bgAw06XxLh4K
+         DNNzPcL+iEhwJI20IIiLlMVmavjzbRa8SB48qlFXNz5ebjqWC/bCPhw569h4caUMlWAn
+         uu6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795069387; x=1795674187;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=vIyXTGC5+88ay5cdcjaG1P2/fm08Yk80tNUxmrQFq58=;
+        b=tqzggsPGXVwRNjefW4wYlFyPSjBAwJFl8nDGTRt/5n9P6ul3lwWCf+tF6xBKgyFf1c
+         C95Dzk8FxwLytybntFivJx5ypmn47oQhN+oh3FFrPsvea9wd2cAYFzDDXwnPDiREFVef
+         O/2h1A5moyFIyhYxVI4eCNguccfoKMiU5C9g50dm7cEMN0J6PAGpcODFj+8STQPm1kbt
+         uCzItQMVVhkfjVInrQKcNILC4jKuUzu5Z1EO2I6L0eHhvmAQPh36BnubERZiup2rbvKD
+         BHIugVzHCUESMi/YZbMlDwTnsGtmQmNqno0ja7NItSj1rUF0CwZWT+EaAovyClL/rXlq
+         sjXg==
+X-Forwarded-Encrypted: i=1; AL+hErFso4/wHiWMGxVZryGY6s53AGgAmcHiVgJnvrwoq6DOB0vKkrCy3ssca46A0FthhkSTWkzsZ5RrpPQWk0NEwxZr@lists.infradead.org
+X-Gm-Message-State: APuU4Z/Q8PhM+J/31jr+vWoci9y4kShsCVoPnFaTcUuYCHx6MZC8unpH
+	GjfymDAgfKPAeCr1r0CFJPiVALGeyBloiEtCGiMzAONQ8D1bronicX7ePVqIB+VedQ==
+X-Gm-Gg: AZFdTZdKmRaMug3a2uZ6YIaoPuUxA65tagp1WkRXJOT2zrK2xtw4JvPcxVIVrCL9WW8
+	D18vOlTZJoHrNVpyjjxupYBh7XPjD8nWFfJ5YhUrEXtGaGU/TJahKmXkpkxMmAWuz3H+FL+zc7R
+	bD81GESMMxj1wsmIMTGRqB92+dJ8z0bmsRYeAiNqU4yuYRPNntjJmZvJhg7yF4XDD7XLtyXfYY9
+	hWTrc9ptKVJ0eQS+Q1yXqq72gH1zm75FT0eEQ+DUWWo2Ydj62y2KEwwrpvg81miEgaGGZaPQWEk
+	jEKDN1B/+mcpCHQQpWfSP7CaFeVWSbOOfBTz9IjQuREPvVqEjUHlnyEdAgmoy5S5O/N6MP0FKKV
+	6rmcIg3+18s1ykEPUhB6x6qJmtzTPChwGHwXoeF4hpJW5XpeyiisqyTiSgi5Tk4/ylr6uifDLil
+	hZePkFhdOeVmjX+vdcu2ffEml9Bho9aEf9zVjOHdQU71HyVuH9SVSALspeBGYBmUoDb2/teA4NY
+	tMhkNuAPtLEErxa+Rdo7Qgm4iuLkBerTi9oMqaFLvYjAZqT9wrLmImg/z6nTiM+Vktwz7N3Bprd
+	9ayX2KSJuu7kJgftn5dTBuX1MHKzuXVsDU8tXsaxTcA4rTTsUP3dUzQjk9ipxW7MSEoAy9sOU9N
+	ojzuy8nvJI6K89m8ixiugszATBQaIxUoKCVISPQ==
+X-Received: by 2002:a17:902:d48e:b0:2f0:20cc:32fd with SMTP id d9443c01a7336-2f020cc33e9mr13953395ad.51.1795069386749;
+        Wed, 18 Nov 2026 22:23:06 -0800 (PST)
+Received: from cantal.lan ([58.136.72.57])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2eff627f421sm24292605ad.57.2026.11.18.22.23.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2026 22:23:06 -0800 (PST)
+From: James Clark <jjc@jclark.com>
+To: Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp-frdm: Add overlay for EQOS PTP event pins
+Date: Thu, 19 Nov 2026 13:23:01 +0700
+Message-ID: <20261119062301.1778558-1-jjc@jclark.com>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DBBPR04MB7883:EE_|BR0PR04MB263363:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1500e1db-242b-4802-c09e-08df46054497
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|23010399003|7416014|376014|366016|1800799024|6133799003|18002099003|22082099003|4143699003|11063799006|5023799004|10067099003|56012099006|261022075727099003|261026140227099003|261022105027099003|261026121527099003|261028144727099003|261021123027099003|261021121427099003|261009223027099003|261102123227099003;
-X-Microsoft-Antispam-Message-Info: 0QMFVA2a9/m/6GGo8RarPteYt+jx7hYgEL1sYSjmoyMBlasnbOe5c8KP7TUhia6PSTMKk25S/obgF5mXqZz44Ecw2hZcz8tIvYzmG0GT5ChU3C+TcEC13MRF0pWSFQEg50eYivqG8bDgIbHct9ufw03A1ZJGpbpHmRkizAPVZ9ORpXRVvMbGHqa4jv4DjOADL6eFwonW7xzFgBMfpjY3vFgoy3Bh0ujTowTzKfAZgNFdbkC9Nogl7vLZaxPZa7313Oaer5mCyKCOrZ/yksByyPrEK8ZHbXpfOUKq6n8MEvfyDuhJj/tT3p8z4QW4pfxcj3b+PTeI9unt3ez1uBwgsRcSW1EqwqoMOu9XyWvR8e2ZKDoALfcFIpDiOFadsR7VGlMbZV8G8kiYy3QA0sj+mFRRsUoC9qxFb9Dc+jhmz1rpny2uSL4AWqkjgnF6Fsm73c45ygZvDEEN+RrNr+ZRA1zSii0nidILMYl6FYh5oTcq6TSAnz+8ydqLAxOb7/52tXG2Rp+518NH/LKTk36cgcJoEIzu8606YnkjcnbudjjGoF5G0lLty831LJzuB+qcecDfApJMCHVe6eRAFu0dtnY6DRR0akNF+f0kGvTHrGMvbVquSRQbPf862g86lF9FdmNvdbQUyZsKIbzNIAgLzloutDoLT+rbEIbn6pT6cfE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7883.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(23010399003)(7416014)(376014)(366016)(1800799024)(6133799003)(18002099003)(22082099003)(4143699003)(11063799006)(5023799004)(10067099003)(56012099006)(261022075727099003)(261026140227099003)(261022105027099003)(261026121527099003)(261028144727099003)(261021123027099003)(261021121427099003)(261009223027099003)(261102123227099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/Ltx5NgroBLOm1F2jT2VCVcBw5GirLG6dZbgg4i6tgc6EMJGUuZ6+wpZUjCm?=
- =?us-ascii?Q?6jM75Vmu98XVChck1GXU1NkpG0STx5erCtM5EUTydh4caai08K7tRkUJoRTU?=
- =?us-ascii?Q?BZmWhwAngZUwciuorfQ9bV6UxYdqBUStmTDi1PrvK5j8QAjTGjmapDIgeXTe?=
- =?us-ascii?Q?RD3HuAx1iH38x5p2qK4HktTW8+hyvHFDQU1NJ7SLfFkLm6sMX+BMlUHoL67V?=
- =?us-ascii?Q?jTzKSCPJD0i2mshq/zmfFWVCapum7lhfpGO9C9LiFUAgg3gRwCPmG6PiIOxN?=
- =?us-ascii?Q?ueiOj4GlJkCzsucrXqKmUU7tuFwAdft3dHAebv1QXJF2SsyweARM3KXY5NuM?=
- =?us-ascii?Q?XZDShfi8muLvuJY7fga6bGWJdbTH4yXi2UYfZO9EfEW8ZBQcyA7VEAb0e8Jm?=
- =?us-ascii?Q?T5OHI/mzsG1TyixRH8y5XOCAyfdZkt98xOTAAKkfPYbtHMuGF9cTN9zlmWaX?=
- =?us-ascii?Q?v1KPsi/VZSGUKljBn5TApgOrfI8MBmdHhWD3HuVNk1o4Wf278SdnX/Qs9+9u?=
- =?us-ascii?Q?+SgzaDVBQCkEEhU1TSVplLrzMSlZWk6GrkGWAFCEk0ttMGb2l/Wv0MQoOlyl?=
- =?us-ascii?Q?gEV0+8Bm70OIAC6nVU8/JFQMJnhhF2VrMm9OiAOkZTA6qDjLTIZpZQrXaSbh?=
- =?us-ascii?Q?jxuYYU5LAWo9d29NGjz+C+LCt/iKh+XUC3vvtGPPe1Y3EYntzMKYM36+TmtR?=
- =?us-ascii?Q?uo/n2D6ObQy/+Z/bu70UnZ4b13eSrFDlwlNYrw9qO281Y/hz+I90AufieUMw?=
- =?us-ascii?Q?xvSZ++aBI4LCJplyEz2RWhL8ZEAhDcBTFkraBzXAICZwzRU0ZN8q2nOJY3SN?=
- =?us-ascii?Q?1IOUPKCsVMtbr+A3srB0eL6+NPu05DTVQS6EulpF0atse++W1Jh5lOsn9CZW?=
- =?us-ascii?Q?hhMmgh0rLLLQ9JJu+gPYG1spKBan2hpiuwBtGCC8Zxujazmg7lWLEGGevw5m?=
- =?us-ascii?Q?/6jxVgxRganSQd2Vj+teJicMjygR6/SIEffjgkK5Fd1kVRv7fY2fdh5JmHO+?=
- =?us-ascii?Q?2odiHKso0ROch08nMOtQL0t2X9EmfABlQkAkHXC11mujZYvyK8kqsmdGcTSt?=
- =?us-ascii?Q?LAd9luyzD/w5RDqiRhng9ryTIGdvlwWCsFM2clHS4Eevdt22w7tEms/emHwR?=
- =?us-ascii?Q?XGSsNXmKCwtGpF8q8XsMV5hFb/4eIA/QZzHfJ8oVW6cvw7ZNUzlKGjRzcl+a?=
- =?us-ascii?Q?VRj1lIuxS27t0r2o53sqNFBxPdBssr+glCxGBJpPP6+FHHspj2aZppj4enrq?=
- =?us-ascii?Q?RU5lUw3p3zSPHjKQPbJlhDcmGev4mnIqZjsWzA1UnElBzPaR0tKQtKIkh+iJ?=
- =?us-ascii?Q?aX+IhuB5b84XnSoeLbKZbboBdHccTES7Baz2e1d3greJgD19hxwJLK8mEetu?=
- =?us-ascii?Q?9tq2R9yzEYgD+enI16tnvSqXGzNtUIZRYk70I+msXVz1jbLnxbtnmVtXKsBz?=
- =?us-ascii?Q?K4W1dt8ObD3i/bPPOTTrsdKDYGu2/ZDxFwL3bjeyxoS1/alQgc8+oylS07yz?=
- =?us-ascii?Q?yHSAMu2vYqJTbmWKQJN5/076L8ooKQkd3OMElTqxcTMPlhw6bcKfYxWmdX9x?=
- =?us-ascii?Q?aCvPF/aXo+hhHArGBqVROBwplqjr/bF3xrSIapXA77t+8iZP3JwXQ7IPeATG?=
- =?us-ascii?Q?cXV8EjL1oX85P8ZmuvSj7XdQDQik57w9cfEcNwS/UJTwyuLfn+UIKXio8MAg?=
- =?us-ascii?Q?/x0bb5HUm1eep8dMc8GeFns1Rw0nhvATTo30/P09HJNsESzBQ80ZdstNlIS4?=
- =?us-ascii?Q?m6G7b7Cly5RiqCNambt6YqrepNp1YOOQOwCW3Kb+At3tFQmaNKyZ?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1500e1db-242b-4802-c09e-08df46054497
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB7885.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 06:20:58.0923
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GVScRHXigI6yy2bLI9TCpDIzFBLMyOJgKqGODHrlHVWlaFbDkSboBZKOnImFynjoFPxNgUHOFzjzE0sUPfAFOxfxKCf5hcHuz1H850xOrNd4gcZOA64rydQi/uKaiTni
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR0PR04MB263363
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_222108_297505_F69DACE2 
-X-CRM114-Status: GOOD (  20.56  )
-X-Spam-Score: -1.0 (-)
+X-CRM114-CacheID: sfid-20261118_222308_767492_9DD7C662 
+X-CRM114-Status: GOOD (  16.29  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -148,78 +107,88 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Francesco,
+On the FRDM-IMX8MPLUS, pins 13 and 28 of the J18 expansion header are
+wired to the SoC pads GPIO1_IO08 and GPIO1_IO09. Very few boards
+bring PTP event signals out to a header, so this is a valuable feature
+for PTP work. Add an overlay that connects the two pads to PTP event
+channel 0 of the EQOS Ethernet controller:
 
-On Mon, Nov 16, 2026 at 10:23:41AM +0100, Francesco Dolcini wrote:
->Hello Sebastian, Peng
->
->On Wed, Jun 17, 2026 at 08:55:25AM +0200, Sebastian Andrzej Siewior wrote:
->> The imx's remoteproc driver uses a kworker from its mailbox callback to
->> complete the request. The reason is that the imx mailbox driver invokes
->> the callback from its interrupt handler and the remoteproc callback (at
->> least the rpmsg-tty) requires a preemptible context.
->> 
->> This works but is problematic in a PREEMPT_RT environment where the
->> latency of the invocation is important. By scheduling a kworker the
->> high task priority from the threaded handler is lost and the kworker
->> competes for CPU ressources with every SCHED_OTHER task in the system.
->> This can lead to long delays on a busy system with other RT threads
->> which are less important than the completion of this request.
->> 
->> Looking over other mailbox driver, like the arm_mhu for instance, they
->> use a threaded interrupt handler to invoke the callback. This avoids the
->> kworker detour.
->> 
->> The here suggested change utilises a threaded interrupt to invoke the
->> callback. The primary handler mask the interrupt source so that the
->> handler can run without getting interrupted by the interrupt again.
->> Doing so avoids marking the interrupt IRQF_ONESHOT so that in a
->> shared-interrupt environment the other interrupt can still fire while
->> the first is masked.
->> 
->> The first four patches are result of the sashiko review. Does not look
->> critical.
->> 
->> This change was tested on a im93 board with rpmsg-tty driver.
->
->Our CI shows a ~10-15% eMMC sequential read throughput drop on i.MX8QXP
->and i.MX8DX (Colibri iMX8X, Cortex-A35), starting with v7.2-rc1 and
->still present in v7.4-rc3 (hdparm --direct -t: ~129 MB/s -> 105-120
->MB/s on i.MX8DX). i.MX8QM, i.MX8M and i.MX9 are not affected.
->
->5d1c0000.mailbox interrupt count before the test went from ~8k on v6.18
->to 60k+ on v7.3/v7.4.
->
->Peng: any idea/suggestion? Does it makes any sense to you?
+  J18 pin 13 (GPIO1_IO08): ENET_QOS_1588_EVENT0_AUX_IN, external
+                           timestamp input
+  J18 pin 28 (GPIO1_IO09): ENET_QOS_1588_EVENT0_OUT, periodic output
 
-Please help test whether this helps:
+The input must be EVENT0_AUX_IN, not EVENT0_IN: the stmmac driver
+timestamps external events with the auxiliary snapshot; with EVENT0_IN
+no timestamps are captured.
 
-diff --git a/drivers/mailbox/imx-mailbox.c b/drivers/mailbox/imx-mailbox.c
-index 683ccea6f2ba..e29044cf4b92 100644
---- a/drivers/mailbox/imx-mailbox.c
-+++ b/drivers/mailbox/imx-mailbox.c
-@@ -635,7 +635,7 @@ static int imx_mu_startup(struct mbox_chan *chan)
- {
-        struct imx_mu_priv *priv = to_imx_mu_priv(chan->mbox);
-        struct imx_mu_con_priv *cp = chan->con_priv;
--       unsigned long irq_flag = IRQF_NO_THREAD;
-+       unsigned long irq_flag = IRQF_NO_THREAD | IRQF_ONESHOT;
-        int ret;
+Tested with pin 28 wired to pin 13: a 1 Hz periodic output on channel
+0 was timestamped on external timestamp channel 0.
 
-        pm_runtime_get_sync(priv->dev);
+Signed-off-by: James Clark <jjc@jclark.com>
+---
+I used an LLM coding assistant to help prepare this patch.
 
-Regards
-Peng
+ arch/arm64/boot/dts/freescale/Makefile        |  5 ++++
+ .../dts/freescale/imx8mp-frdm-eqos-ptp.dtso   | 26 +++++++++++++++++++
+ 2 files changed, 31 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-frdm-eqos-ptp.dtso
 
->
->Francesco
->
->
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index cfd548284358..5cdad9dbda8c 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -633,6 +633,11 @@ imx8mp-evk-flexcan2-dtbs += imx8mp-evk.dtb imx8mp-evk-flexcan2.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-flexcan2.dtb
+ 
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-frdm.dtb
++
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-frdm-eqos-ptp.dtbo
++imx8mp-frdm-eqos-ptp-dtbs += imx8mp-frdm.dtb imx8mp-frdm-eqos-ptp.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-frdm-eqos-ptp.dtb
++
+ DTC_FLAGS_imx8mp-hummingboard-iiot := -@
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-hummingboard-iiot.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtbo
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-frdm-eqos-ptp.dtso b/arch/arm64/boot/dts/freescale/imx8mp-frdm-eqos-ptp.dtso
+new file mode 100644
+index 000000000000..15d0efc30243
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-frdm-eqos-ptp.dtso
+@@ -0,0 +1,26 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Overlay for the NXP FRDM-IMX8MPLUS board: connect PTP event channel 0
++ * of the EQOS Ethernet controller to the J18 expansion header.
++ *
++ *   J18 pin 13 (GPIO1_IO08): external timestamp input (EXTTS 0)
++ *   J18 pin 28 (GPIO1_IO09): periodic output (PEROUT 0)
++ */
++
++#include "imx8mp-pinfunc.h"
++
++/dts-v1/;
++/plugin/;
++
++&eqos {
++	pinctrl-0 = <&pinctrl_eqos>, <&pinctrl_eqos_1588_event>;
++};
++
++&iomuxc {
++	pinctrl_eqos_1588_event: eqos1588eventgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO08__ENET_QOS_1588_EVENT0_AUX_IN	(MX8MP_PULL_ENABLE | MX8MP_HYS_SCHMITT)
++			MX8MP_IOMUXC_GPIO1_IO09__ENET_QOS_1588_EVENT0_OUT	(MX8MP_DSE_X6 | MX8MP_FSEL_FAST)
++		>;
++	};
++};
+-- 
+2.56.0
+
 
