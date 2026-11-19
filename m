@@ -2,110 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64790606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 05:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40009606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 05:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zStqzGMD;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=E39OKXP7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TFG6DfxN;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=T2bh1TRo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FdgDfWHn+CQINgL4Pcimx+RwFaofGoA3my9IfcCmuK4=; b=zStqzGMDjb5rgJzFlC1Lm4gGf6
-	rTNLLy59bodIfZ5yXp8Qy74wnHcKB/sligweYFDmSVKe4ZC9aUQ9v7VkRPa3Ot4NUZQ3Uo5u4msXm
-	ECM9E0wePsyoFz8UK3XKj9zsDaHhct4fjNNCLvJ28HfPn35nZW1kutyo3zBn0W6731o8NDmO4RM7j
-	LsKm6ACDj70wwmNch6LMkrTXsV0jPy4Z4zOz4kULhzC6CMacS5AgHucloDAz8JrW3n2O0bBE0Le8/
-	hyfhoTPHPg5dTF1WUSckRWHKa6WRreLWzgiRCO6F1jTpK0ko2zbiCz6w5NH7Zgi+Zoj71fmnzl0/6
-	jZyBJqIA==;
+	bh=gIpm5b69SXnoYlgJ/Q1AQIZEgsYclfbcWKuRM/5sVI4=; b=TFG6DfxNZ9g5fqcI6U5JxF9mpm
+	mjUCezyKmo0C9QumEAPc+fmuTjFhQzgBDbPPkiXnpOKMd/JjSdHSrUV7yu2E2BZ5daUvoGH8roDME
+	I/fiUInbHPJ6da19tBwJttAMS/CLn1jYoATiKyjARitkyNFAXSg/+fRNXi8P7Pgy/Fy9cHiXCRjXe
+	5H4or09k4pR7rpFXIgK2DcEedAdYs/c5MIHCW3wgj9OXLA9T6VInJE57BVBI8UtNKpaP96gaChaLN
+	QPiE2naDZHTv1Gpv+kYzyWmgaUTOYocvNO8w3zYA0v1wUm5Pj6raxTcRSKd2HUHCrlQqqIJggCrp4
+	S2i3iAjw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTuiI-0000000Au4w-3R8P;
-	Thu, 19 Nov 2026 05:29:38 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTuwm-0000000AwUO-0xDn;
+	Thu, 19 Nov 2026 05:44:36 +0000
+Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTuiG-0000000Au40-3Ur8
+	id 1xTuwi-0000000AwTz-3J2V
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 05:29:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 025A461B63;
-	Thu, 19 Nov 2026 05:29:36 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795066175;
-	b=kjVJXWebTV+Y8a1oi36QW4slGXnMDVxhiLFJ7Beb8u0ih7DHsGm8BZHquZz0Y4H3b8PP
-	 KTlu3VEIlrVBl07mnvfebeuHN2DvfmnGQcWcDPwy2NPRDpfVhMBKeEfjdgvCJP3tjU9ZA
-	 3iS8rhKWgGDQGEC0SfS//1GHWxc/xGtvXE7XP3YowEIJsInZ5+LqMdLINTljR0zHpHl90
-	 FmECrtEPEGPNXPxCByFqshiCKqilejSAGgurVWmt458MiX/t5Ko1EHaHLAL9fm6MI4FhZ
-	 4OVndmyCsn2wcXYwaOI3bg2cRlhXYijysD4udl8bU4rxYs6QFJ3RRNHDVARzxO2H4JQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795066175;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=FdgDfWHn+CQINgL4Pcimx+RwFaofGoA3my9IfcCmuK4=;
-	b=DLujdHCTAZlYOKn9LTwkhcx4xDfHWpyCTa4Q4MN8kexhfihrw34B2DbvzKEVTH9R3jcp
-	 mwRk8L6xjvdrQZfxTJTI51x4yGoRRIQi1Se4MIB9t8Ux9Ghd4zs5YIl9GKLNYfTPyQIDF
-	 hJTeMnZZvnNYNOW0U5CpHXP9vUuH/UfDQgIvxF817WQRvX+VWDh1rqGzpYAm+qP+hzYGN
-	 dsiB23bFKnvxrT5+0wPLBIs93GyTNjTl1uEz6j6gK8KqrYa11eWh8CrtsTAvgj0NfjNV9
-	 vt+U7wMCmLJzS2y6sghkxjZcOgrlOqWPdxgcYDeklrl46fOkx4zqVsmzWT6tsESmH+w==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B4A6F1F000C4;
-	Thu, 19 Nov 2026 05:29:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795066175;
-	bh=FdgDfWHn+CQINgL4Pcimx+RwFaofGoA3my9IfcCmuK4=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=E39OKXP791VOkK8vo7vv7/q3AExhRKG1LmcDYCg9TV7jd0lSt7JiCy7kmKB+T1X5l
-	 9bKGdpgQh2NTKxCJo0gqSfOtivsz+W6rW1PAtyv1mBmA14AKwQhi3Q3nxx3CcUhq9b
-	 YmtqMcCgZWE6Z4J3e8HgSQTqxaL6JTivJxdui9O5an6EPZHqzdaRUGwfgWAzFPJuSf
-	 IcsxJ2pXJntEMZQT5MGDbpscS/0IkNdnKc28ECIn7ysKeSWUu2Rqy5UummoFZiYPjV
-	 YDUIGbeqpJ3CvhRfB4Z3MOJ/1BKXAwRiuPJrKO54k98DX8us7sBtmoOuycGyte1Gwh
-	 zT3NHDYbwiI1w==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 118BB4B0F0;
-	Thu, 19 Nov 2026 05:29:34 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Subject: [PATCH v2 0/2] arm64: dts: allwinner: orangepi-zero2/zero3: Read
- the SPI NOR over two lines
-Date: Thu, 19 Nov 2026 05:29:33 +0000
-Message-Id: <20261119-zero2-spi-nor-dual-read-v2-0-185c87065e39@gmail.com>
+	Thu, 19 Nov 2026 05:44:34 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lwbWgDLAqaz5Mfm2y9rqoK+IO08WPXFYvv3Cc9Sl8Ml6FYdqFBiNr8PcytrSS++TSWKAxTdNrT3/4VWnaQdGPCCbLF6QUcvDqxU8iOSZDSSFc+YtZ5JMyBFb/gfHlneDOM2RG/hHoau34tpAFZUJg1Auy2BN/nX/YJ4DXyrEpbP+9DppScieCSRH+Tvy6ytr9P8kx3lorfZMwAx1qGrB8Jx4woPmageyyoQjBwVmfWfiqC14qIWVhf7Loi8nnQMLCIYgcCN2bWzRH2cvFFIVCV/iy6dqU71WLCpAkl+KNu+xzQFXbVLyTGunYXBmddx/q4intprOVFB7VKWgDOaB5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gIpm5b69SXnoYlgJ/Q1AQIZEgsYclfbcWKuRM/5sVI4=;
+ b=HtOetB08MVLVPgB5dlpjz/oZwMJWETtEXG65/7R4v1k5zQ7WFsXD9Ei0Hmq+hRlSinVqa5rOslMYwEvZSR/fa/9tG3NtYvqPGW9077LOtmeuvHs3hU697bLV80b+IlkH+74GnXMTidon68kz8d2hDsVTVNWEEvLJZyGEUGrEuzYHCXfm9dTERlr4rNfRIqyCKEHAu4JhgrPbKJQoOKTqMVCKiIs95YAVPe7Wq1/yR1hk1PGaRSxk8wXXjnRW6zRy35ClRzyGWM5Lfw/EMqOWZaDk7NoEHsUlWY58v2lvHkvKzHKnefOxx/UWJWB9tOG7CqL89KnfycDt0J6CHL+qzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gIpm5b69SXnoYlgJ/Q1AQIZEgsYclfbcWKuRM/5sVI4=;
+ b=T2bh1TRoJg9o7+G2HdUPkmb7F6mJA2oKKi209Wdgd5b6aMzLM4Vk3by0WScEnO0k5UFQDKj8HsMrDpKnKGYm8xT/tbAanNt14sP85+XKygVURLGiNN4K2HDAfZ9QcAH446TX/77Ljfo/1h1xrLUXWq6GU1qq+oqYBUXUp9ZGoxU=
+Received: from BN9PR03CA0310.namprd03.prod.outlook.com (2603:10b6:408:112::15)
+ by SJ0PR12MB8090.namprd12.prod.outlook.com (2603:10b6:a03:4ea::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
+ 2026 05:44:26 +0000
+Received: from BN2PEPF0000A895.namprd04.prod.outlook.com
+ (2603:10b6:408:112:cafe::21) by BN9PR03CA0310.outlook.office365.com
+ (2603:10b6:408:112::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Thu,
+ 19 Nov 2026 05:44:25 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN2PEPF0000A895.mail.protection.outlook.com (10.167.248.187) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 05:44:25 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 18 Nov
+ 2026 23:44:24 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 18 Nov
+ 2026 23:44:23 -0600
+Received: from xhdakumarma40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Wed, 18 Nov 2026 23:44:20 -0600
+From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+To: Michal Simek <michal.simek@amd.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<git@amd.com>, <amitrkcian2002@gmail.com>, Amit Kumar Mahapatra
+	<amit.kumar-mahapatra@amd.com>
+Subject: [PATCH v2] arm64: versal-net: Add SysMon and thermal zone
+Date: Thu, 19 Nov 2026 11:14:18 +0530
+Message-ID: <20261119054418.3740755-1-amit.kumar-mahapatra@amd.com>
+X-Mailer: git-send-email 2.44.4
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WPQW7CMBBFr4JmzVS2GycOK+5RsbA9E2IEcbCTq
- C3K3WsC2y6f9Of9Pw/InAJnOOwekHgJOcShgNrvwPd2ODMGKgxKqFpKqfGXU1SYx4BDTEizvWJ
- iS1hX2tbESrORUK7HxF343sxfpxfn2V3YT0/dO5H4PpfK6RWD0U6+L4Wl3zhZadE2JDqjW9aOV
- OO810IZEq3U3aezlSN4qvuQp5h+th8WuZnec82/cxeJEp0n77rGaMfieL7ZcP3w8QandV3/AFC
- vskkZAQAA
-X-Change-ID: 20261115-zero2-spi-nor-dual-read-645a6de25e81
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795066173; l=1665;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=dSUlrtuj/XZo8LVxmrqcGVmatGiczTvRbXzsTOXBhPM=;
- b=p6DGgixcbBrVaXI7ubEA+MhLxvzD4Dcd9aRiJTYGBG7qLklgmmtb9PJolIxZuNYvkR4bst+X4
- fdvV+6DSPb4DvykJXBJKX7CCREZBaoG/ELg1mT5uhdZUjIAe9pTTaem
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF0000A895:EE_|SJ0PR12MB8090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 33063ad7-73d7-4923-275b-08df46002bcc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|82310400026|36860700016|23010399003|376014|261009223027099003|6133799003|18002099003|13003099007|56012099006|11063799006|261026140227099003|261102123227099003|261022075727099003|261028144727099003|261021123027099003|261022105027099003|261021121427099003|10067099003;
+X-Microsoft-Antispam-Message-Info: 8UreLJJa4c5ZkPqbMafqLBUG5XrL4k3js2+XYkwx26YTV2bYtlaTLcnb+I++0AWkbU6JcMiR2NpF2q0Q1wBOZRH5sWszslkxRk1WwkUqTggV79O4pOed4/OfbINZSCBZo5EE5khs3w3kt31/zVE59Av8TS3R9eMIP9V3Icc9PolXDkkM4kOGXzvFgl3Hpnj3rPFjp0Jt8uH0BAD/iTmbAhKql3wnXWY6xtBhDp7K5Yz8loLQ60ppVsB3C0Q6hF51P6HXcGXEMK9FP+olFdzZ5VUD2G7JNk7Z4SJihcewOLBtiSskb7RjtHgFd9/LweFQf/cD/XgLWy1+d8FMhoaRKZHDC70lgRXQ/YVVIS6Lo+LumSp5FhafgYzrfmB/Ruf6MQA5BB9/2RReVmVO3FUMjwXJbzhQeyeGOgvpy/g7kz2UzGo9IGXo5VaINPpZMs5ohhPOg1sHyRrWT/r0DnqHy7gQhK0VKOBRqTnMDHEny+dMoMJFBa/jhpsdvhacNn9JSUXzUP+ukQ98LOszamMDq6qNQqh57bwVU14O4abGTVPIGT2UlhdisqbUK0vZh9r+yveRu6tcEUM0+ZYk483KIP6w5XPFq4TFz6m87uOzyahCAocb2mP67A/mtvF+LCtcM3QrLGC4zduzjGwxExEFFA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(23010399003)(376014)(261009223027099003)(6133799003)(18002099003)(13003099007)(56012099006)(11063799006)(261026140227099003)(261102123227099003)(261022075727099003)(261028144727099003)(261021123027099003)(261022105027099003)(261021121427099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: N7VuWH47JM9WjnHRI02Osn3WFb7TKAfdi5iXxeVQcZ3lqxXfn1yq06Otcdbzfa1jSnG9SwqLY737O2rntZyksTztOAnE0YugwgVu4fkP9jeOdmvafQywinDqywA1xkHZvl6DWPUjnR3lw12OslMo/wP0GPcW3njzcUpwKV7rzISnYwdgFZuIWog9Y9ohawLpbvwNVFmv9amy03iVxF4bEUVCijskO25Yk+k+XjRL/v/TcUEw90wNGlCuaTmlPtaFKCaT3rFnBEB+tzzHd5CqqqG/TqMJ7IPL3y1AbTtzOFfhF2LahJtj46D/E5b6kkGI0YtkaQmeWc9fV8t3LaVDaHHtVztme5emRXwTevUVc1RbW2hB/jQ3WPG8cArbByH0ViUlmCgjleJCi6zA6LYdAKTBwdFESW6X2kAxRwc4E3TeGHCimY8ZwOmJgbNen/7o
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 05:44:25.8216
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33063ad7-73d7-4923-275b-08df46002bcc
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF0000A895.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8090
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261118_214432_982562_D19622D0 
+X-CRM114-Status: GOOD (  15.58  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,55 +124,91 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Andre Przywara reviewed v1 and suggested labelling the flash node (patch
-1) and setting spi-rx-bus-width in the dtsi shared with the Zero3 (patch 2).
+Describe the System Monitor (SysMon) block in the PMC, which provides
+on-chip voltage and temperature monitoring, and use its device
+temperature channel as the sensor for a thermal zone.
 
-spi-rx-bus-width = <2> needs the binding patch of [1] (acked, not applied
-yet) to pass dtbs_check.
-Without the driver patch of [1] the driver ignores the setting.
+SysMon channel 0 is the current maximum temperature across all active
+satellites.
 
-Tested on an Orange Pi Zero2 only, with [1]: 1-1-2 reads (opcode 0x3b),
-two 2 MiB reads identical to an earlier dump.
+The thermal zone has a critical trip at 125C. Passive trips and cooling
+maps, voltage channels and per-satellite temperature channels depend on
+the design and are left to board files.
 
-[1] https://lore.kernel.org/r/20261116-spi-sun6i-h616-dual-read-v2-0-e0c66eb71e20@gmail.com
+SysMon availability depends on the design configuration, and it may not
+be accessible over MMIO, so the SysMon node is disabled by default.
+Boards that use it enable it.
 
-Developed with Claude (Anthropic), which wrote the patches and commit
-messages. I reviewed them.
-
+Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
 ---
 Changes in v2:
-- Label the flash node, no nested &spi0 override (Andre)
-- spi-rx-bus-width moved to the shared dtsi, Zero3 included (Andre;
-  he read 16 MB on a Zero3 in 1.8 s instead of 3.5 s)
-- Dropped the driver dependency (Andre); the binding is still needed for dtbs_check
-- Link to v1: https://patch.msgid.link/20261118-zero2-spi-nor-dual-read-v1-1-bcdcbf785be0@gmail.com
+- Split out of the versal-sysmon series and sent separately, as there
+  is no dependency on it (Michal).
+- Add status = "disabled" to the sysmon0 node (Michal).
 
----
-Arun Iyengar (2):
-      arm64: dts: allwinner: orangepi-zero2: Reference the SPI NOR by label
-      arm64: dts: allwinner: orangepi-zero2/zero3: Read the SPI NOR over two lines
+v1: https://lore.kernel.org/all/20261102122112.1723130-6-amit.kumar-mahapatra@amd.com/
 
- arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi |  3 ++-
- arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 10 ++++------
- 2 files changed, 6 insertions(+), 7 deletions(-)
----
-base-commit: 90e0d3fd460ec365617982b56bd7ea5179b36197
-change-id: 20261115-zero2-spi-nor-dual-read-645a6de25e81
-prerequisite-patch-id: 28b145097d0f859e5bd27bcc5028d0915f3ba4bd
+ arch/arm64/boot/dts/xilinx/versal-net.dtsi | 30 ++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
-
+diff --git a/arch/arm64/boot/dts/xilinx/versal-net.dtsi b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
+index 9b74e59fd64a..fd976a577b18 100644
+--- a/arch/arm64/boot/dts/xilinx/versal-net.dtsi
++++ b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
+@@ -706,6 +706,28 @@ versal_fpga: versal-fpga {
+ 		compatible = "xlnx,versal-fpga";
+ 	};
+ 
++	sysmon_temp: thermal-sensor {
++		compatible = "generic-adc-thermal";
++		#thermal-sensor-cells = <0>;
++		io-channels = <&sysmon0 0>;
++		io-channel-names = "sensor-channel";
++	};
++
++	thermal-zones {
++		versal_thermal: versal-thermal {
++			polling-delay = <1000>; /* milliseconds */
++			thermal-sensors = <&sysmon_temp>;
++
++			trips {
++				ot_crit: ot-crit {
++					temperature = <125000>; /* millicelsius */
++					hysteresis = <0>; /* millicelsius */
++					type = "critical";
++				};
++			};
++		};
++	};
++
+ 	amba: axi {
+ 		compatible = "simple-bus";
+ 		bootph-all;
+@@ -1004,6 +1026,14 @@ spi1: spi@f1970000 {
+ 			clock-names = "ref_clk", "pclk";
+ 		};
+ 
++		sysmon0: sysmon@f1270000 {
++			compatible = "xlnx,versal-sysmon";
++			status = "disabled";
++			reg = <0 0xf1270000 0 0x4000>;
++			interrupts = <0 202 4>;
++			#io-channel-cells = <1>;
++		};
++
+ 		ttc0: timer@f1dc0000 {
+ 			compatible = "cdns,ttc";
+ 			status = "disabled";
+-- 
+2.44.4
 
 
