@@ -2,80 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF6160A2607
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:27:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E2B606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OW/Tq6hT;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=IiJEDUwp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mi4lok9g;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=MCO2f6aQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=I7lrxp74JF6rLBz5kJks2GO3qiUA5k9sDt906Hjos7g=; b=OW/Tq6hTMlWZLd
-	XMA/SYczhV2GrKLHUAyT00L7azqLErzLqrrinU77nQmz04a7WMwQFZkMOoOisaodwiHEnBUCdU5y6
-	iReNOMmyv73osQ5SNJJVTQdStIm+5wJn4BUKeh8xdFQ7ZM6hy9eJ7u4GxCr7+2PjnM9ekJVPSWWy9
-	58a9gi3eqOM0Lk/H8uH1FTeq88DQ0DqlexbAVbAS2NVwGhtRC+u/zRAVyOqtdkaqjSqiQeBYP+Dun
-	OGdk5bMtQTzcInRKPXUWZn40lmkUhPIue3/Nnj6P4RzkMqVbdOnLHCpFWs2GJgZjlJ0cZkWIMnD73
-	RPjscGdUhGLsmJXmN6GQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=FEcK1VASWBIoUCoyKyCFXja3r1A/FxKQfO0b3GK01/Q=; b=mi4lok9gSNj3wH0a6yRreKo3+V
+	Kpk7zNpRByWMmn5bnO6wkm48D/WQVHV6Ne8guDzRy9fZ83AuzIWfwvExHW4TtY2h34ZCE+r8JsVLW
+	PZTWwMlbDxcGcHgE3arLz0bByIisXNtEsS00gdUlqelCuD+1/JX8BpC8ILNYpwB7ILZfynPaEeznt
+	K8UUoRDNUMTFZ3+zmkafpOA7oyWY5ATLq1NSd8QosvyuUpAEobaSXN5jALrKgnLicLxpe6ECQOCqD
+	QPpO6cOpN4gegfFzo8/WHn3FgMkbZFXlOyqYPcwb8KkgyLrfEop0616/Gku2VHf4nZicZRZy2Nubu
+	755Q3jbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU377-0000000CE2s-1Egt;
-	Thu, 19 Nov 2026 14:27:49 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU373-0000000CE1n-2AOy
+	id 1xU39k-0000000CETh-37Km;
+	Thu, 19 Nov 2026 14:30:32 +0000
+Received: from out-249.mta0.migadu.com ([2001:41d0:1004:224b::f9] helo=mta0.migadu.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xU39e-0000000CES8-0RQN
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:27:47 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 07DB01575;
-	Thu, 19 Nov 2026 06:27:38 -0800 (PST)
-Received: from [10.0.129.37] (e122027.cambridge.arm.com [10.0.129.37])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 88C713F673;
-	Thu, 19 Nov 2026 06:27:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795098460; bh=TPH+gGsCDlptdg7kFjkz3WGkd+BFmi72TWE+YB/dBuA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IiJEDUwp06Jg4RJQIwDNwU5oIfYuzAhSfy9B3SouH7nn1pSpvohYzq02irGG8KhGC
-	 GmMcNuwqVX6NWogbnVwmRw2vevojx6QIgDgHcErE+hqhcotFo+VePsGio0uDiqMzso
-	 /5pYF73aqo+SSnS7ug0S/oCJUykjDrNq6d8BRzlo=
-Message-ID: <7871ecc1-277c-4231-8fa3-74c0085d01fb@arm.com>
-Date: Thu, 19 Nov 2026 14:27:32 +0000
+	Thu, 19 Nov 2026 14:30:31 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=FFz3gGYp69FcAIj4l0Zmahf+dyqjlU9rmv2m5wrHIas=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795098621; v=1; x=1795703421;
+ b=MCO2f6aQ7MENRTRxOZSuXhCIHs0kP4m/P2pSRGN0KQ5QH5QW9nTGPRbKwmFOQM7R2mVxlLHu
+ 1+NV82S/YGKgNpIXHn8kOlbhKVQKPBcpnZ1/0San3lfWbHiPdY5TVoRBf6wcw3h1yFF9hIA8WX5
+ V4Wjn83e6XhdRbq82s+Jk5/Q=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 650b3532e440f0d6;
+	Thu, 19 Nov 2026 14:30:20 +0000
+X-Mizu-Trace-ID: 650b3532e440f0d6
+X-Migadu-Flow: FLOW_OUT
+Date: Thu, 19 Nov 2026 22:30:06 +0800
+From: Peng Fan <peng.fan@linux.dev>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Peng Fan <peng.fan@oss.nxp.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Peng Fan <peng.fan@nxp.com>, linux-remoteproc@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-rt-devel@lists.linux.dev,
+	Bjorn Andersson <andersson@kernel.org>,
+	Clark Williams <clrkwllms@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Steven Rostedt <rostedt@goodmis.org>
+Subject: Re: [PATCH v3 00/10] mailbox: imx: Use threaded handler to avoid
+ kworker in imx's remoteproc
+Message-ID: <av8H7l6C8fmiHdbV@fedora>
+References: <av6Wc+kHFKqwFHAR@shlinux89>
+ <20261116102331.K8Sc86V9@linutronix.de>
+ <20261119114041.GA166708@francesco-nb>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/11] KVM: arm64: CCA: Tear down RTTs
-To: Wei-Lin Chang <weilin.chang@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu
- <yuzenghui@huawei.com>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>,
- Alexandru Elisei <alexandru.elisei@arm.com>,
- Christoffer Dall <christoffer.dall@arm.com>, Fuad Tabba <tabba@google.com>,
- linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261116164358.142785-1-steven.price@arm.com>
- <20261116164358.142785-6-steven.price@arm.com>
- <atrbfcxjasnyv2fx7gsy3cgrefvftsvq2h4ef6r7zmejmbwxjy@tofm65sb4frl>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <atrbfcxjasnyv2fx7gsy3cgrefvftsvq2h4ef6r7zmejmbwxjy@tofm65sb4frl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261119114041.GA166708@francesco-nb>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_062745_725297_977BB4C2 
-X-CRM114-Status: GOOD (  41.04  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261119_063026_356163_C03A2E60 
+X-CRM114-Status: GOOD (  23.30  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,393 +84,102 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 03:39, Wei-Lin Chang wrote:
-> Hi Steven,
-> 
-> On Mon, Nov 16, 2026 at 04:43:51PM +0000, Steven Price wrote:
->> The RMM owns the stage 2 page tables for a realm, and KVM must request
->> that the RMM creates/destroys entries as necessary. The physical pages
->> to store the page tables are delegated to the realm as required, and can
->> be undelegated when no longer used.
->>
->> Creating new RTTs is the easy part, tearing down is a little more
->> tricky. The result of realm_rtt_destroy() can be used to effectively
->> walk the tree and destroy the entries (undelegating pages that were
->> given to the realm).
->>
->> Tear down a created Realm whether it is still new or has been activated.
->> Unmap the Realm IPA space once during stage-2 teardown. Defer
->> destruction of non-root RTTs until final Realm destruction, after
->> REALM_TERMINATE and before destroying the RD; root RTTs remain until the
->> RD has gone away.
->>
->> Signed-off-by: Steven Price <steven.price@arm.com>
->>
->> ---
->> Changes since v2:
->> - Use the actual stage-2 start level and correct the RTT skip
->>   granularity. Free SRO state on final teardown errors.
->>
->> Changes since v1:
->> - Tear down created Realms in both NEW and ACTIVE states. Fix the
->>   RTT start level, page accounting on failed undelegation, and
->>   handling of RTT granules returned by RMI.
->> ---
->>  arch/arm64/include/asm/kvm_rmi.h |   9 ++
->>  arch/arm64/kvm/mmu.c             |  18 ++-
->>  arch/arm64/kvm/rmi.c             | 194 +++++++++++++++++++++++++++++++
->>  3 files changed, 220 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/asm/kvm_rmi.h
->> index 6994756a14e6..dd16c004b831 100644
->> --- a/arch/arm64/include/asm/kvm_rmi.h
->> +++ b/arch/arm64/include/asm/kvm_rmi.h
->> @@ -57,6 +57,7 @@ enum realm_state {
->>   * @sro: Preallocated SRO state context for Realm MMU operations
->>   * @state: The lifetime state machine for the realm
->>   * @ia_bits: Number of valid Input Address bits in the IPA
->> + * @stage2_unmapped: The Realm stage-2 mappings have been removed
->>   */
->>  struct realm {
->>  	phys_addr_t rd_phys;
->> @@ -70,11 +71,19 @@ struct realm {
->>  	struct rmi_sro_state *sro;
->>  	enum realm_state state;
->>  	unsigned int ia_bits;
->> +	bool stage2_unmapped;
->>  };
->>  
->>  u32 kvm_rmm_ipa_limit(void);
->>  
->>  int kvm_init_realm(struct kvm *kvm);
->>  void kvm_destroy_realm(struct kvm *kvm);
->> +int kvm_realm_teardown_stage2(struct kvm *kvm);
->> +
->> +static inline bool kvm_realm_is_private_address(struct realm *realm,
->> +						unsigned long addr)
->> +{
->> +	return !(addr & BIT(realm->ia_bits - 1));
->> +}
-> 
-> Maybe move this to patch 9?
-
-Yes that makes sense.
-
->>  
->>  #endif /* __ASM_KVM_RMI_H */
->> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
->> index ac72db3d4505..9baf2352d2a8 100644
->> --- a/arch/arm64/kvm/mmu.c
->> +++ b/arch/arm64/kvm/mmu.c
->> @@ -1145,9 +1145,25 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu, unsigned long t
->>  	return err;
->>  }
->>  
->> +static void kvm_realm_uninit_stage2(struct kvm_s2_mmu *mmu)
->> +{
->> +	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
->> +
->> +	mutex_lock(&kvm->arch.config_lock);
-> 
-> Use guard(mutex)(&kvm->arch.config_lock); here?
-
-Ack.
-
->> +	if (kvm_realm_state(kvm) == REALM_STATE_NEW ||
->> +	    kvm_realm_state(kvm) == REALM_STATE_ACTIVE) {
->> +		kvm_set_realm_state(kvm, REALM_STATE_DYING);
->> +		WARN_ON(kvm_realm_teardown_stage2(kvm));
-> 
-> "teardown" here means unmap, but below like in
-> realm_tear_down_rtt_level(), it means destroy.
-> 
-> This creates ambiguity and is confusing, can we avoid using "teardown"
-> completely? Or at least make its meaning consistent.
-
-There are two operations here:
-
- * Unmapping (e.g. RMI_RTT_DATA_UNMAP) where the VM's mapping is removed.
-
- * Destroying (e.g. RMI_RTT_DESTROY) where the VM's page tables are removed.
-
-"Teardown" (or "tear down" - I seem to be inconsistent) really meant a
-combination of the two - i.e. unmapping everything and destroying the
-page tables.
-
-But as you note the usage in the code isn't very consistent and it's
-more confusing that helpful. So I'll reword things to avoid "teardown"
-which will hopefully make things clearer.
-
->> +	}
->> +	mutex_unlock(&kvm->arch.config_lock);
->> +}
->> +
->>  void kvm_uninit_stage2_mmu(struct kvm *kvm)
+On Thu, Nov 19, 2026 at 12:40:41PM +0100, Francesco Dolcini wrote:
+>Hello Peng, Sebastian
+>
+>On Mon, Nov 16, 2026 at 11:23:31AM +0100, Sebastian Andrzej Siewior wrote:
+>> On 2026-11-16 10:23:41 [+0100], Francesco Dolcini wrote:
+>> > Our CI shows a ~10-15% eMMC sequential read throughput drop on i.MX8QXP
+>> > and i.MX8DX (Colibri iMX8X, Cortex-A35), starting with v7.2-rc1 and
+>> > still present in v7.4-rc3 (hdparm --direct -t: ~129 MB/s -> 105-120
+>> > MB/s on i.MX8DX). i.MX8QM, i.MX8M and i.MX9 are not affected.
+>> > 
+>> > 5d1c0000.mailbox interrupt count before the test went from ~8k on v6.18
+>> > to 60k+ on v7.3/v7.4.
+>> > 
+>> > Peng: any idea/suggestion? Does it makes any sense to you?
+>> 
+>> Can you pin point it to a patch in this series? My guess is that
+>> something with the masking/ unmasking went wrong. The increase might be
+>> result of the interrupt keeping firing while the threaded interrupt did
+>> not have a chance to run.
+>
+>Reverting 36cac4b5101f, 3225a745f517, e55bea377d49 and 692e1bc96a5d
+>restores 149 MB/s with schedutil.
+>
+>
+>On Thu, Nov 19, 2026 at 02:25:55PM +0800, Peng Fan wrote:
+>> On Mon, Nov 16, 2026 at 10:23:41AM +0100, Francesco Dolcini wrote:
+>> >Peng: any idea/suggestion? Does it makes any sense to you?
+>> 
+>> Please help test whether this helps:
+>> 
+>> diff --git a/drivers/mailbox/imx-mailbox.c b/drivers/mailbox/imx-mailbox.c
+>> index 683ccea6f2ba..e29044cf4b92 100644
+>> --- a/drivers/mailbox/imx-mailbox.c
+>> +++ b/drivers/mailbox/imx-mailbox.c
+>> @@ -635,7 +635,7 @@ static int imx_mu_startup(struct mbox_chan *chan)
 >>  {
->> -	kvm_free_stage2_pgd(&kvm->arch.mmu);
->> +	if (kvm_realm_is_created(kvm))
->> +		kvm_realm_uninit_stage2(&kvm->arch.mmu);
->> +	else
->> +		kvm_free_stage2_pgd(&kvm->arch.mmu);
->>  	kvm_mmu_free_memory_cache(&kvm->arch.mmu.split_page_cache);
->>  }
->>  
->> diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
->> index 57f59b618a96..74b89da4e801 100644
->> --- a/arch/arm64/kvm/rmi.c
->> +++ b/arch/arm64/kvm/rmi.c
->> @@ -16,22 +16,213 @@ u32 kvm_rmm_ipa_limit(void)
->>  	return u64_get_bits(rmi_feat_reg(0), RMI_FEATURE_REGISTER_0_S2SZ);
->>  }
->>  
->> +static int get_start_level(struct realm *realm)
->> +{
->> +	/*
->> +	 * kvm_init_ipa_range() enforces a minimum of 32 IPA bits
->> +	 * (ARM64_MIN_PARANGE_BITS).
->> +	 */
->> +	return 4 - stage2_pgtable_levels(realm->ia_bits);
->> +}
->> +
->> +static void free_rtt(phys_addr_t phys)
->> +{
->> +	kvm_account_pgtable_pages(phys_to_virt(phys), -1);
->> +	if (rmi_free_delegated_page(phys))
->> +		kvm_account_pgtable_pages(phys_to_virt(phys), 1);
->> +}
->> +
->> +/*
->> + * realm_rtt_destroy - Destroy an RTT at @level for @addr.
->> + *
->> + * Returns - Result of the RMI_RTT_DESTROY call, and:
->> + * @rtt_granule:	RTT granule, if the RTT was destroyed.
->> + * @next_addr:		IPA corresponding to the next possible valid entry we
->> + *			can target
->> + */
->> +static long realm_rtt_destroy(struct realm *realm, unsigned long addr,
->> +			      int level, phys_addr_t *rtt_granule,
->> +			      unsigned long *next_addr)
->> +{
->> +	unsigned long out_rtt;
->> +	long ret;
->> +
->> +	ret = rmi_rtt_destroy(realm->rd_phys, addr, level,
->> +			      &out_rtt, next_addr);
->> +
->> +	if (ret == RMI_SUCCESS)
->> +		*rtt_granule = out_rtt;
->> +
->> +	return ret;
->> +}
->> +
->> +static int realm_tear_down_rtt_level(struct realm *realm, int level,
->> +				     unsigned long start, unsigned long end)
->> +{
->> +	ssize_t map_size;
->> +	unsigned long addr, next_addr;
->> +
->> +	if (WARN_ON(level > KVM_PGTABLE_LAST_LEVEL))
->> +		return -EINVAL;
->> +
->> +	map_size = kvm_granule_size(level - 1);
->> +	if (WARN_ON(!IS_ALIGNED(start, map_size)))
->> +		return -EINVAL;
->> +
->> +	for (addr = start; addr < end; addr = next_addr) {
->> +		phys_addr_t rtt_granule;
->> +		long ret;
->> +		unsigned long align_addr = ALIGN(addr, map_size);
->> +
->> +		next_addr = ALIGN(addr + 1, map_size);
->> +
->> +		if (next_addr > end || align_addr != addr) {
->> +			/*
->> +			 * The target range is smaller than what this level
->> +			 * covers, recurse deeper.
->> +			 */
->> +			ret = realm_tear_down_rtt_level(realm,
->> +							level + 1,
->> +							addr,
->> +							min(next_addr, end));
->> +			if (ret)
->> +				return ret;
->> +			continue;
->> +		}
->> +
->> +		ret = realm_rtt_destroy(realm, addr, level,
->> +					&rtt_granule, &next_addr);
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		switch (RMI_RESULT_STATUS(ret)) {
->> +		case RMI_SUCCESS:
->> +			free_rtt(rtt_granule);
->> +			break;
->> +		case RMI_ERROR_RTT:
->> +			if (next_addr > addr) {
->> +				/* Missing RTT, skip */
->> +				break;
->> +			}
->> +			/*
->> +			 * We tear down the RTT range for the full IPA
->> +			 * space, after everything is unmapped. Also we
->> +			 * descend down only if we cannot tear down a
->> +			 * top level RTT. Thus RMM must be able to walk
->> +			 * to the requested level. e.g., a block mapping
->> +			 * exists at L1 or L2.
->> +			 */
->> +			if (WARN_ON(RMI_RESULT_DATA_LEVEL(ret) != level))
->> +				return -EBUSY;
->> +			if (WARN_ON(level == KVM_PGTABLE_LAST_LEVEL))
->> +				return -EBUSY;
->> +
->> +			/*
->> +			 * The table has active entries in it, recurse deeper
->> +			 * and tear down the RTTs.
->> +			 */
->> +			next_addr = ALIGN(addr + 1, map_size);
->> +			ret = realm_tear_down_rtt_level(realm,
->> +							level + 1,
->> +							addr,
->> +							next_addr);
->> +			if (ret)
->> +				return ret;
->> +			/*
->> +			 * Now that the child RTTs are destroyed,
->> +			 * retry at this level.
->> +			 */
->> +			next_addr = addr;
->> +			break;
->> +		default:
->> +			WARN_ON(1);
->> +			return -ENXIO;
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int realm_tear_down_rtt_range(struct realm *realm,
->> +				     unsigned long start, unsigned long end)
->> +{
->> +	/*
->> +	 * Root level RTTs can only be destroyed after the RD is destroyed. So
->> +	 * tear down everything below the root level
->> +	 */
->> +	return realm_tear_down_rtt_level(realm, get_start_level(realm) + 1,
->> +					 start, end);
->> +}
->> +
->> +static int realm_destroy_rtts(struct kvm *kvm)
->> +{
->> +	struct realm *realm = &kvm->arch.realm;
->> +	unsigned int ia_bits = realm->ia_bits;
->> +
->> +	lockdep_assert_held(&kvm->arch.config_lock);
->> +
->> +	return realm_tear_down_rtt_range(realm, 0, (1UL << ia_bits));
->> +}
->> +
->> +static void realm_unmap_stage2(struct kvm *kvm)
-> 
-> Can we call this kvm_realm_unmap_stage2_all, expose this..
-> 
->> +{
->> +	struct realm *realm = &kvm->arch.realm;
->> +
->> +	lockdep_assert_held(&kvm->arch.config_lock);
->> +
->> +	if (realm->stage2_unmapped)
->> +		return;
->> +
->> +	write_lock(&kvm->mmu_lock);
->> +	kvm_stage2_unmap_range(&kvm->arch.mmu, 0,
->> +			       BIT(realm->ia_bits - 1), true);
->> +	write_unlock(&kvm->mmu_lock);
->> +
->> +	realm->stage2_unmapped = true;
->> +}
->> +
->> +int kvm_realm_teardown_stage2(struct kvm *kvm)
-> 
-> and remove this? I feel this function doesn't add much.
+>>         struct imx_mu_priv *priv = to_imx_mu_priv(chan->mbox);
+>>         struct imx_mu_con_priv *cp = chan->con_priv;
+>> -       unsigned long irq_flag = IRQF_NO_THREAD;
+>> +       unsigned long irq_flag = IRQF_NO_THREAD | IRQF_ONESHOT;
+>>         int ret;
+>> 
+>>         pm_runtime_get_sync(priv->dev);
+>
+>It does not help.
+>	
+>The analysis below was done with Claude help, on measurements I took on a
+>Colibri iMX8QXP. I hope you can pick it up from there, this is not my
+>area of expertise, and the best I can do is to send a revert for those 4
+>commits.
+>
+>Every SCU RPC now wakes the SCHED_FIFO irq thread (TX done and RX), and
+>while an RT task is runnable schedutil requests the maximum CPU frequency.
+>The A35 clock is CLK_GET_RATE_NOCACHE, so each frequency change is
+>followed by an SCU RPC reading the rate back, which wakes the irq thread
+>again. The loop never settles, even when idle, and the transitions (ATF +
+>SCU) are what costs the eMMC throughput (and I assume there is more
+>impact on performance than just this).
 
-Yes kvm_realm_teardown_stage2() is a bit pointless now - I think I must
-have refactored this over time down to nothing but not spotted that it's
-now not needed. I've also got a WARN_ON() that the function returns 0
-which seems somewhat pointless! I'll refactor some more ;)
+Not sure whether this is root cause, per my understanding, cpu freq update
+is not that high frequency call.
 
-Thanks for the review!
+Let me setup a i.MX8QXP board and see what's going on there. BTW, i.MX8QM should
+also have same issue, but seems not impact in your report, a bit werid,
+might be because i.MX8QM has more cores :)
 
-Steve
+Have you tried pin your emmc test thread to core3, or core2, just not core0.
 
-> Thanks,
-> Wei-Lin Chang
-> 
->> +{
->> +	lockdep_assert_held(&kvm->arch.config_lock);
->> +
->> +	realm_unmap_stage2(kvm);
->> +	return 0;
->> +}
->> +
->>  void kvm_destroy_realm(struct kvm *kvm)
->>  {
->>  	struct realm *realm = &kvm->arch.realm;
->>  	size_t pgd_size = kvm_pgtable_stage2_pgd_size(kvm->arch.mmu.vtcr);
->>  
->> +	/*
->> +	 * Serialize final RMM teardown with Realm creation and stage-2 teardown,
->> +	 * which also access Realm state under config_lock.
->> +	 */
->> +	guard(mutex)(&kvm->arch.config_lock);
->> +
->>  	if (!kvm_realm_is_created(kvm))
->>  		goto out_free_sro;
->>  
->>  	kvm_set_realm_state(kvm, REALM_STATE_DYING);
->>  
->> +	/*
->> +	 * REALM_DESTROY requires the realm to be non-live: all RECs must have
->> +	 * been destroyed and the root RTTs must be empty. Unmap the IPA space
->> +	 * and destroy any non-root RTTs before tearing down the RD. The root
->> +	 * RTT pages are still owned by the RMM at this point, so keep the KVM
->> +	 * pgtable alive until after REALM_DESTROY and undelegation.
->> +	 */
->> +	realm_unmap_stage2(kvm);
->> +
->>  	if (realm->rd_phys) {
->>  		phys_addr_t rd_phys = realm->rd_phys;
->>  
->>  		if (WARN_ON(rmi_realm_terminate(rd_phys, realm->sro)))
->>  			goto out_free_sro;
->>  
->> +		if (WARN_ON(realm_destroy_rtts(kvm)))
->> +			goto out_free_sro;
->> +
->>  		if (WARN_ON(rmi_realm_destroy(rd_phys, realm->sro)))
->>  			goto out_free_sro;
->>  		rmi_free_delegated_page(rd_phys);
->> @@ -44,6 +235,9 @@ void kvm_destroy_realm(struct kvm *kvm)
->>  
->>  	kvm_set_realm_state(kvm, REALM_STATE_DEAD);
->>  
->> +	/* Now that the realm is destroyed, free the entry-level RTTs. */
->> +	kvm_free_stage2_pgd(&kvm->arch.mmu);
->> +
->>  out_free_sro:
->>  	kfree(realm->sro);
->>  	realm->sro = NULL;
->> -- 
->> 2.43.0
->>
+Regards
+Peng
 
+>
+>v7.4-rc3, 4 CPUs, idle irq/cpufreq transitions per 10s, hdparm --direct -t:
+>
+>                               irq    trans  schedutil  performance
+>  v6.18                          -      -    149.7 MB/s     -
+>  v7.4-rc3                   16203  10800    113 MB/s   150 MB/s
+>  v7.4-rc3 + IRQF_ONESHOT     7832   7813    113 MB/s   150 MB/s
+>  v7.4-rc3 + revert 4 commits   60     36    149 MB/s   150 MB/s
+>
+>The 4 commits are 36cac4b5101f, 3225a745f517, e55bea377d49 and
+>692e1bc96a5d; reverting only the RX part (e55bea377d49) is not enough.
+>
+>
+>#regzbot introduced: 692e1bc96a5d^..36cac4b5101f
+>#regzbot title: mailbox: imx: threaded IRQ handling causes a cpufreq transition storm on SCU-based i.MX8
+>
+>Thanks,
+>Francesco
+>
+>
 
