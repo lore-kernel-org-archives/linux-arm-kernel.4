@@ -2,78 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85ED060A2630
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF888606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 14:11:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PY3/VgNR;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=ZzJnGKPf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DFyrlZdu;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=SoPw2bI2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qSeQWfW0DSREzAYhhuANudEgRSYnH2LPaXTjqxZ8DuU=; b=PY3/VgNRMF3DuIAaJbARcmPWBO
-	cjo1KVx3ds6IUB+4jzoV4bXlnuon22HyhiuZE/ueF/Q8ZNUtNO5LHdPOKrrJIxDy2O/KVI6ktgc2L
-	Dq83a8fKYsYTuu0Mvl7wqCT0LwxUbRSxLPqZKkJZ9gqK9Nlr6nXQ0vmHiBQimtd0+MFlCsVKCHDtk
-	xj6j82pBNvt0NTbYdBV76ACYlOqgCgTsq+tSSdaT6uayMXpEZ/o93o7/X6co9BAKq6nwCr7oHRQjo
-	IpqEEUxi2b2+Alg40H2Z7q1Qmcx/ZxG1RNUpXvTN+E8RXrYeNBsSDVxoRQfMhar9ZwbaWMbfKiywE
-	CTh88snA==;
+	bh=tjwBrxu6kChXxohWi61PRkXDbDFsaneYyYkynhYDCr8=; b=DFyrlZdu97QRna/aToHDAOXFva
+	OlxoLn71D76IAwAvKhD8r+y7XzuYmAoU7wUJK51yu7wI7RnJCZB2UAA3c4TDxovgmq4ZZSExwUgDT
+	qNHjVnAtqwh+kO6DhmLV3xCSsKZBUimHPgKJ3Lx/dO4OCYfSt7g5l0cpUkA0f0XMRNEE2S4pXBV4t
+	muXd9AZjVrkAKG/B4hhVx43p/aa2R5ajXp7Gxmo8NSeV4+i1kdYCihAQ08GEiBPObt6cXhaRRY4C/
+	23JLFAWH9mi28WiKDtoi8/cRRtWLnPPrilCw2qXw0iPY+Y37DKF+1JsFst1fxp44KOvzf8HRMKZpx
+	fHd42Qeg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2qP-0000000CB9x-3yrX;
-	Thu, 19 Nov 2026 14:10:33 +0000
-Received: from m16.mail.163.com ([220.197.31.2])
+	id 1xU2qj-0000000CBIx-0qX5;
+	Thu, 19 Nov 2026 14:10:53 +0000
+Received: from mail-southcentralusazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c10d::3] helo=SN4PR0501CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2px-0000000CAzi-0icz
+	id 1xU2qf-0000000CBHb-34kx
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 14:10:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=qS
-	eQWfW0DSREzAYhhuANudEgRSYnH2LPaXTjqxZ8DuU=; b=ZzJnGKPfPRVFtoZjJG
-	xbXaS+9BCUxBkmzdC6A3jw8+PR+ziBGaFX66D7pwOp5JVM2yjYJ8bxb2hDVwl4oP
-	HKM7+b2sNfboaNjiQNyqanHTU644GoCox+Brj3soeKyZuN0MFBBPJdqkJHnNgXnT
-	0YrUg4lxYkZMiv4sS2Pi+i+dM=
-Received: from 4CV529F122.company.local (unknown [])
-	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wB3Zjj_Av9qQc93Iw--.13924S2;
-	Thu, 19 Nov 2026 22:09:20 +0800 (CST)
-From: Ding Hui <dinghui1111@163.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org (open list:STMMAC ETHERNET DRIVER),
-	linux-stm32@st-md-mailman.stormreply.com (moderated list:ARM/STM32 ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/STM32 ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Cc: dinghui@lixiang.com,
-	xiasanbo@lixiang.com,
-	yangchen11@lixiang.com,
-	liuxuanjun@lixiang.com,
-	fujiahui@lixiang.com,
-	zhoujing3@lixiang.com
-Subject: [PATCH net v8 0/4] net: stmmac: fix RX descriptors and XSK TX on resume
-Date: Thu, 19 Nov 2026 22:08:56 +0800
-Message-Id: <cover.1795096430.git.dinghui@lixiang.com>
-X-Mailer: git-send-email 2.34.1
+	Thu, 19 Nov 2026 14:10:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cJVvnogOvwyP9CYvA40HfK2JeBpk6Lrm7NTx3S434JXcWiR9a4KmFxymuipKbq88DwdtI6fvRnDEQVfRgFxEHgNzwVMkk48E+hw4fdfZVUwj4CQUDfWIwLNnYugLAb2J4FO95WpMI0WQHO9Cl4xiTicl5PlYxzoYaZpGhNWybEdJPY4cH+HsLnSqqEUq+bg5Shrovh/8GCYWZWGFhmnnVLQ4/t7D9zhP0c+gjcEGMuHVnW9AI2/5CHdb6qRfvursSR9jUqthaDJVDqkrFHog9vHD2yP5j3XooilM/IcRmJeoDXVcqKMZ5DhUOauI7NNC9TSu+kH1V2k6fqKSyv7PEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tjwBrxu6kChXxohWi61PRkXDbDFsaneYyYkynhYDCr8=;
+ b=e+v/q4lWKmjiAwO8ZyMLuWd2eyEzfJojJZ5n5CAk84mX1SqtTd7OyyOerNpVVEYcpcuQI8nJa/DypxKpT5k3R2GV59cO7Bvy364qROewMld4oR7htbTVkYs6oMRmHnNvKlFAYd2mjNXa8/rWsnqf/z33TfDQz6BTlJxln+hLTdpuVDANu0ufUfsPDnkbBhGKRcBxgDYV3MrKEaD5V1EY3FxZ7osFgXIp3UKvNjGMP4Vs/kAuONSz7SWQYSYo3RajCXBdMT5Gn6CfwXasamx8hS4En8Ogzs/Av+FRrHMXYK8Xvp0zqffvQVkMlw4YqGdI2w84DiLKl+mTBiipXfzK/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tjwBrxu6kChXxohWi61PRkXDbDFsaneYyYkynhYDCr8=;
+ b=SoPw2bI26ogu8Jjpu+pYvCwPbPkkPXe36I0mhOwU8L0rDbxNaoKXfs9D0LInuqPLnobxNlcIsSUZyUjN5qkCLsis4FMsGv2dTVvGLP/jmJ8fk1umqXAioZFuOwvqUrbZWqPjsT+1RXwBOO2gm1/4+lyIl9hMaDE+oc+Ia5rVFaw=
+Received: from PH0PR07CA0092.namprd07.prod.outlook.com (2603:10b6:510:4::7) by
+ DSAPR12MB473869.namprd12.prod.outlook.com (2603:10b6:8:518::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
+ 2026 14:10:44 +0000
+Received: from PH1PEPF00062F24.namprd02.prod.outlook.com
+ (2603:10b6:510:4:cafe::9c) by PH0PR07CA0092.outlook.office365.com
+ (2603:10b6:510:4::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Thu,
+ 19 Nov 2026 14:10:44 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ PH1PEPF00062F24.mail.protection.outlook.com (10.167.243.53) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 14:10:44 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
+ 2026 08:10:40 -0600
+Received: from localhost (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57 via Frontend
+ Transport; Thu, 19 Nov 2026 08:10:38 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@amd.com>, <git@amd.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
+ list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: zynqmp: dts: Drop incorrect #phy-cells from eth phy on KD240-revA
+Date: Thu, 19 Nov 2026 15:10:32 +0100
+Message-ID: <c3cca9923c2cb23ed17970f7ca12d597a7027142.1795097431.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1094; i=michal.simek@amd.com; h=from:subject:message-id; bh=pD/ITgwzcYROZqQKTMQKjynMuyjLAFmqv6b/+VKjQv8=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWT9Z44yFwm7ZXtJgL/Z0KhQPuVST61R0Xk2q7LI6UtFr 5uvcE/uKGVhEONgkBVTZJnOpOOw5tu1pWLLI/Nh5rAygQxh4OIUgImIFjMyrNp3Y1bfjF1sLdyb ZCN3yTXai6T4zTRylv1zinOiSemV54wMq0Ort8/RO/PZ6eW2rdl9vxfvWX7YTe1yUJ6A3JSdPvU 9PAA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wB3Zjj_Av9qQc93Iw--.13924S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxuFWfGw4xJry7Cw4kXry8uFg_yoW3Wr47pF
-	Z5Ka1Yyw1kJr18Jws5uw4IqFyrKa9YyrWagrWrJ3yF9FW5WF9IqrWakF4Yqa4DCrs7G3W2
-	vr4UuanrCFn8Zr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jNxhdUUUUU=
-X-CM-SenderInfo: pglqwx1xlriiqr6rljoofrz/xtbC8xFfi2r-AxFIvwAA3G
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH1PEPF00062F24:EE_|DSAPR12MB473869:EE_
+X-MS-Office365-Filtering-Correlation-Id: cfb89f22-ab2a-44fe-ffca-08df4646e6b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|36860700016|1800799024|82310400026|23010399003|10067099003|56012099006|11063799006|261021123027099003|261009223027099003|261026121527099003|18002099003;
+X-Microsoft-Antispam-Message-Info: F6kWVfzmapS5aemoXFV8EtS5K7uja/hcTf5F5e82CWRrcu4lbBbzc5Eo/TZLVPcOr98Uqjwg/Bdd3TIwyVUjBIzm/K2tMqZ2BuqWnrEXCHGjCZVQ1qLDHtrFH3PL3mfjZ+Fepv5TXjBbwHdWWAulrKKQO0cT96uX1f1QfahCxWD/8NGwfqYVD8Fvw/DoN4WLZzo/S6U/SHIdXsfHAOwpRZ6sZ9AGDDanRyeO4keMjW6r9Fmwt+WgED6XjhtbODp/8cjeRwdVfM4a5PyTpijBMYzLRQ7DVCdlT3FQDgviyf+IaLsY8EmxsbM5WjagNK1EOszAsieIL6dB35Uu1skL9x4VjIu4RUBj8CnlBSv9Jl2DsjVukYQ8THBhkoNP8Ms4x9gITv3Cnn/FjvdtvMaKrfEIXQKJFGKK/N2jg7GXhC9V2t+6NpS/ht1efyYHoouwHVETJa3YhfMKl1uevg1+fycdGBZ/VppoZtKCh7hiEzdxun+dRtDzIa94yVA3EVeZ1fyLVSpvX2PYgWWxkbIDp/eGiQ+yI0DOsPO3eWgYdXacpi0qsszYl24576osfFzhlhr61pfSGUT/VJx25djooLedWWZyN4DVjoWRYzYv2kraQEPXqQ7k2PGMBIaNjacJlg03eNkyN4nXn1uMVM1msg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700016)(1800799024)(82310400026)(23010399003)(10067099003)(56012099006)(11063799006)(261021123027099003)(261009223027099003)(261026121527099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: CKh1UbzGHaxavI1dMpfPtz0tBLsbQ/LshDy/UGWKXLD23zk2lDsHrGb/jZ6DHUFCTF9pFjm7YI4HWw63h70gbzMhMbXXR9yhy2horO1N4MZkwmq5YstMl+h4mjvrcSsphmG6WwvTNCWXWo1znXUt0jzDLtb9hML792VuUfk+K9pCL2u1gvVVY3MJM99ApYwpjc7CuE2BnYqWBJi1XSrS9dwZyEMfhA1mNTol8n6Sfp+IoK2fNJxVybcORiatz8bghisKWLHFUt4Sfj4KX0J5P7GKFibr/b+dxurJJnsm/VdaEyMMzDbAnjbtiQ+0SmhYi0ZcnV/8tnxX5HqdQqR7Uz16WF9XoTr/K1n6O145tB5LCYVLHK8lBHvbaBU6Ja/ikTxHJr1xPL5b8OR4fWkUlOS8ZcqCG4zuvzjaIzTLye2XbJHzt5/b+Fo0tn07MYiv
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 14:10:44.1212
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cfb89f22-ab2a-44fe-ffca-08df4646e6b8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: PH1PEPF00062F24.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSAPR12MB473869
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_061005_823709_A52CF921 
-X-CRM114-Status: GOOD (  17.31  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261119_061049_804257_368C287F 
+X-CRM114-Status: GOOD (  10.26  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,173 +124,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ding Hui <dinghui@lixiang.com>
+The #phy-cells property is meant for generic PHY providers
+(Documentation/devicetree/bindings/phy/phy-bindings.txt) and is not a
+valid property for ethernet-phy nodes.
 
-This series restores RX descriptor addresses overwritten by hardware
-writeback between disabling NAPI and stopping RX DMA during suspend. It
-also fixes an AF_XDP TX-only resume stall found while testing the
-series.
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-Patch 1 honors RX allocation flags. Patch 2 keeps unfilled XSK slots
-CPU-owned and tracks pending refills explicitly, including an empty ring
-and short refills. Patch 3 restores RX addresses from retained buffers,
-rebuilds chain pointers and initializes descriptor control fields. It
-publishes a contiguous XSK prefix and recomputes the tail and pending
-region. Patch 4 restores the bound XSK TX pool after TX buffer cleanup;
-otherwise zero-copy transmission can stop after resume.
+The same change was done here but KD240 was missing there.
+https://patch.msgid.link/20261110-v7-4-topic-zynqmp-dp83867-v1-1-04500475a560@pengutronix.de
+---
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso | 1 -
+ 1 file changed, 1 deletion(-)
 
-Commit 9c63faaa931e ("net: stmmac: re-init rx buffers when mac resume
-back") was reverted by commit 00423969d806 ("Revert "net: stmmac:
-re-init rx buffers when mac resume back"") after a Jetson TX2
-suspend/resume regression. This series retains existing buffers and DMA
-mappings instead of recycling and reallocating every buffer. Jetson TX2
-has not been tested.
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
+index 23f6695d86b4..ffc14b1f871f 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
+@@ -140,7 +140,6 @@ mdio: mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		phy0: ethernet-phy@8 { /* Adin u31 */
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id0283.bc30";
+ 			reg = <8>;
+ 			adi,rx-internal-delay-ps = <2000>;
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 
-Hardware validation used backports on our XGMAC platform with a vendor
-kernel based on Linux 6.12.41, not these upstream commits as-is:
-- Receiving iperf traffic from a PC while suspending and resuming caused
-  a fatal bus error after resume in almost every run without the RX fix.
-  The same test no longer showed that failure with the fix.
-- Native XDP/AF_XDP zero-copy RX continued after two suspend/resume
-  cycles with the receive socket kept open.
-- Zero-copy TX-only, with no RX fill buffers, passed one suspend/resume
-  cycle with no fatal bus error.
-- Pausing the receive application with SIGSTOP and resuming it with
-  SIGCONT recovered RX without recreating the socket.
-- xdpsock is used for native XDP testing.
-
-Additional testing would be welcome for RX sockets initially supplied
-with 0/1/8/15 fill buffers, replenishment in batches below 16, and those
-states across suspend/resume. These differ from TX-only with no RX fill
-buffers. Legacy descriptor cores, GMAC4, chain mode, timestamp-specific
-descriptor paths, multiple XSK queues and long suspend/resume runs
-remain untested.
-
-Missing page_pool buffers are still allocated during resume. Allocation
-failure returns -ENOMEM without restarting DMA and leaves the device
-detached. This adds a trigger for existing resume error-recovery
-problems; full close/open recovery, including NAPI and platform power
-handling, is separate work. The Medium-severity AI review on failure
-recovery is not fully resolved by this revision.
-
-Changes in v8:
-- Define RDES0_OWN, RDES3_OWN and XGMAC_RDES3_OWN as ((u32)BIT(31)),
-  following the existing TX OWN mask convention, to avoid the four sparse
-  constant-truncation warnings in the RX ownership-clearing callbacks.
-- Fold the type correction into patch 2; the other patches and the
-  net/main base are unchanged from v7.
-
-Link to v7:
-https://lore.kernel.org/netdev/cover.1794646293.git.dinghui@lixiang.com/
-
-Changes in v7:
-- Rebase onto net/main at aa40afa831eb.
-- Adapt the XSK pending-refill accounting to the upstream split-frame
-  and error paths, preserving extended descriptor status handling and
-  the existing per-frame drop accounting.
-- Use the upstream stmmac_reset_rx_queue() saved-state cleanup instead
-  of freeing the saved skb separately in the resume helper, avoiding a
-  double free with the new baseline. Update the commit description
-  accordingly.
-- Recheck ARM64 STMMAC builds with XDP_SOCKETS enabled and disabled.
-  Hardware validation remains from the Linux 6.12.41 vendor backports;
-  the rebased series has not been retested on hardware.
-
-Link to v6:
-https://lore.kernel.org/netdev/cover.1794311618.git.dinghui@lixiang.com/
-
-Changes in v6:
-- Add a separate fix to restore the bound XSK TX pool after resume
-  cleanup, addressing TX-only stalls found during XGMAC validation.
-- Factor resume descriptor work into one TX queue loop and one RX loop,
-  following Thomas's review, and use common error cleanup.
-- Restore addresses and chain pointers before initializing RX control
-  fields, preserving legacy fields and RIWT/IOC policy without a
-  separate OWN loop.
-- Add format-specific RX ownership clearing for unfilled XSK
-  descriptors.
-- Track pending XSK refills independently of circular index equality;
-  retry short refills and prevent consumption of unfilled descriptors.
-- Restore a populated XSK prefix and retain later attached buffers for
-  refill; recompute the allocation count, initial tail and pending
-  region.
-- Select XSK buffer size independently of the initial allocation count.
-- Discard any partially assembled RX frame before resetting the RX ring
-  after resume.
-
-Link to v5:
-https://lore.kernel.org/netdev/20261025100636.613670-1-dinghui1111@163.com/
-
-Changes in v5:
-- Target net and add Fixes tags to both patches.
-- Split the allocation-flags fix into a separate patch, with a Fixes tag
-  identifying the page_pool conversion that stopped honoring the flags.
-- Share page_pool and XSK buffer preparation with the RX refill paths.
-- Allocate missing secondary pages even when the primary page exists,
-  using the current baseline's buffer2 capability check.
-- Condense the reinitialization kernel-doc to two paragraphs.
-- Restore descriptor addresses before the final dma_wmb()/OWN pass.
-- Clarify that unavailable XSK slots remain CPU-owned and may stop DMA
-  with RBU, rather than claiming that hardware skips them.
-- Power down legacy SerDes if RX descriptor restoration fails.
-
-Link to v4:
-https://lore.kernel.org/netdev/20260627122533.1165324-1-dinghui1111@163.com/
-
-Changes in v4:
-- Document the return value of stmmac_reinit_rx_descriptors().
-
-Link to v3:
-https://lore.kernel.org/netdev/20260604144557.3175399-1-dinghui1111@163.com/
-
-Changes in v3:
-- Allocate missing page_pool buffers with GFP_KERNEL and abort resume on
-  allocation failure.
-- Try to allocate missing XSK buffers and clear descriptors when the
-  fill ring cannot supply a buffer.
-- Restore OWN after programming addresses and rebuilding chain pointers.
-- Honor the flags argument of stmmac_init_rx_buffers().
-- Restore RX descriptors after stmmac_clear_descriptors().
-
-Link to v2:
-https://lore.kernel.org/netdev/20260526022620.501229-1-dinghui1111@163.com/
-
-Changes in v2:
-- Introduce a helper to restore addresses from existing RX buffers.
-- Update the commit message.
-
-Link to v1:
-https://lore.kernel.org/netdev/20260515053856.2310369-1-dinghui1111@163.com/
-
-Ding Hui (4):
-  net: stmmac: honor allocation flags when initializing RX buffers
-  net: stmmac: track unfilled XSK RX descriptors explicitly
-  net: stmmac: restore RX descriptor buffer addresses on resume
-  net: stmmac: restore the XSK TX pool on resume
-
- drivers/net/ethernet/stmicro/stmmac/descs.h   |   4 +-
- .../ethernet/stmicro/stmmac/dwmac4_descs.c    |   6 +
- .../ethernet/stmicro/stmmac/dwmac4_descs.h    |   2 +-
- .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |   2 +-
- .../ethernet/stmicro/stmmac/dwxgmac2_descs.c  |   6 +
- .../net/ethernet/stmicro/stmmac/enh_desc.c    |   6 +
- drivers/net/ethernet/stmicro/stmmac/hwif.h    |   3 +
- .../net/ethernet/stmicro/stmmac/norm_desc.c   |   6 +
- drivers/net/ethernet/stmicro/stmmac/stmmac.h  |   2 +
- .../net/ethernet/stmicro/stmmac/stmmac_main.c | 273 +++++++++++++-----
- 10 files changed, 228 insertions(+), 82 deletions(-)
-
-
-base-commit: aa40afa831ebfe45e40a23721711059f2ac584d4
 -- 
-2.34.1
+2.43.0
 
 
