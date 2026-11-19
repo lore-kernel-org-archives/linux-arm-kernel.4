@@ -2,94 +2,130 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BC2606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 18:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93D6606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 19:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WpDxNVGU;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=TxQOADK1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x+OLn2Z1;
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=QeEtewbL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nV3ZauVP4dhg+DnvUVPzUXSu4/5yW2ysB5SIRrxUiJA=; b=WpDxNVGUYXztQfVpc8UpDqg28V
-	oM3H+msTH7aeiXMW3fpdGrGsIqsHMAZ4yzgAZzRFZoJqQvKqfaMA/3zjMIY7Hw1bO4jD2GZ6OdtUX
-	GOj09awXcseE8Zfc8Be7L4tLn6YA9gNrn9tj5muHpQOk43s0bdLr7TurEijAsFlRh3GAtCY5AujWM
-	PLgk2n8A/ScNKLyky7vw4tr1vq/0vfM8r4HIDh4uqlA39PnvFfA0VfBTzc2rwc7GzSeL65ZZ0bpnl
-	F2eS23rJV5Si8fmrK/tzbfuofzHbQudU4fzAEkCBhDusOvrSVGtMt6Om7fsPp4hsYz0HNzpNdkZs3
-	4GzjssoQ==;
+	bh=hKkPpNGKPc9dB0PHZyw3/Ep3fUq1c/BlK7UqcWPEb1A=; b=x+OLn2Z1+IbpWdH30JXGxfG4HM
+	lTwLF/bSbx7vvGnNwU38A+dLJ+Rn9O1qemOuoc1c2ShjykkewE6IxehP4j2kVQWE1zi+v/Dk2tX/U
+	ebM7ZCtV2uR9aH3Og83plh0OLbToUnTt75ZWSSBTRrSDM5CMTBATkI7JGYi7TL2N5pcr1+q+temgI
+	ahVanfWqqFdrGab6R62zvALhiWOs8jlmLLb6Mqjk5f4P9kU1iF8f1KAU/nkIQNw3zGu/rZ098Tl3e
+	QnuepX8omWXmBTE97s6Y4YeBOQE6hKTPi8g5DvE90gvJFA8wtU3tkG9dXCpDV7WTeFR8ZRlbvxBbh
+	bXcS4kLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7Gy-0000000D5hq-22E6;
-	Thu, 19 Nov 2026 18:54:16 +0000
-Received: from mail-oi1-x248.google.com ([2607:f8b0:4864:20::248])
+	id 1xU7Ob-0000000D8eX-2Zix;
+	Thu, 19 Nov 2026 19:02:09 +0000
+Received: from mail-ua1-x92b.google.com ([2607:f8b0:4864:20::92b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU7FX-0000000D4Nq-1Htl
+	id 1xU7OZ-0000000D8dR-0yFw
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 19 Nov 2026 18:52:53 +0000
-Received: by mail-oi1-x248.google.com with SMTP id 5614622812f47-4c55ba309c2so198969b6e.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 10:52:47 -0800 (PST)
+	Thu, 19 Nov 2026 19:02:08 +0000
+Received: by mail-ua1-x92b.google.com with SMTP id a1e0cc1a2514c-9950a7530d9so65104241.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 11:02:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795114366; x=1795719166; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=nV3ZauVP4dhg+DnvUVPzUXSu4/5yW2ysB5SIRrxUiJA=;
-        b=TxQOADK1YdSHH8xibmfyXvpOlfdwsm56wikCivGQnwh9A2as21cilcSSzmev6r33nZ
-         JsEZBS/8LvNs9693i6PtUquGXhM5dTDe7WawZFY12jzrQSynplkXOLfvxKwNFohfJy42
-         H5zvsOwi3ZmILzk43j0zOzeayLZRZzRAZ73FQiwoB09QUkJLxmTnp3TCXUtayaCqVctt
-         OYqHmmcviT1SoX6eatWT4itxFwjdaRxLYWUyftmVGCI0J5CGOm7a0hbDDUqr5Im/iaYK
-         baHQBgqPXQ3g05ZM2kc7L9s5ycnpcTg7yD+336/knk3V2ZdoAFxQDsKUTIdKLiDTTXNk
-         NEQA==
+        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795114926; x=1795719726; darn=lists.infradead.org;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=hKkPpNGKPc9dB0PHZyw3/Ep3fUq1c/BlK7UqcWPEb1A=;
+        b=QeEtewbLp7vZT3bRfBjRClglXbpd8bTR5F9BMK/1nAo8gCTmD7jVnYZ01Oz+EbMJ0K
+         SO9YoBJZ4loqclsBHUlWK0ovuXP1w46NVHoflCxaWg+MggLnjLHj4Oysu6wMI+PrDf7D
+         UKEHN/d8B5jwthUvTvHDmM7cI0azIW2vBjfVbNPOcsm33i5CFEd/Wv1nA+LwhaBH7zRU
+         mUoMx+Xayl0CNJbm5tfWwMjxHRhHGPZmIy0ugxwMd/pIWYNkRwFgOy8IzY+sT9pwf1Mp
+         69c44vIBOsalahYU3esqF/M+1QqpdA2619jR+sYwgTCCW1Y/RMgTz6oikxI/5Ace6zm0
+         SSyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795114366; x=1795719166;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=nV3ZauVP4dhg+DnvUVPzUXSu4/5yW2ysB5SIRrxUiJA=;
-        b=VY76KAgzKs52x859J1ovGb8BJEdVzwNAFjumUBnaApbiQJUjo3DM4iSEIezWApUCSY
-         TeI+yR+WbqdCvNpeJYUd0TBGLlQ5aqLRFDM6wNoX+TlOwJQdfEXn23L5Cgf5VFtXnRX3
-         zONU+8Iox4V9pQHNtdMdQAI+H/zLhgOddWeTO9CE9/KC+YmlSlpdhTacZMIRecLTih24
-         jZxa/Iew/JtXpg4zJJua4MKfc/F4Jl8l7w7QKGzimIG9SRGICiqyjwKqqtZFkFDu995p
-         p+AULn0UQ+KRE9/yuQnjenzHU2tVTVpdyaRsUikGNnfz0yp03byZbZN1lQTf1KwIPaMY
-         qp0Q==
-X-Forwarded-Encrypted: i=1; AL+hErFNmUS4cBJYBKEKb0pOJTHXK0Pgy+N4LRJ/tYdWRHH2h61udwqYosuHImbl8c6pp9/XI1sMQrdByo29nfheTRpW@lists.infradead.org
-X-Gm-Message-State: APuU4Z8SnM0v0dDi6Qnwd945EIaet6m0UDuAQYC7gY1ORRmlipDIetQF
-	yfWNiGtJQyHfZuRsxxHIEA3L5M1NWiK9HynVo81Y4AvbR6MIdJp/MtG8MSRehHdWroE32twOZyT
-	gqJC/96hUw8+ugjNOnAt8UjaJIA==
-X-Received: from iodz8.prod.google.com ([2002:a05:6602:6f48:b0:9c7:a5de:745e])
- (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:14ca:b0:4f3:e98f:fa26 with SMTP id 5614622812f47-57a0d0e3264mr899339b6e.58.1795114365963;
- Thu, 19 Nov 2026 10:52:45 -0800 (PST)
-Date: Thu, 19 Nov 2026 18:52:13 +0000
-In-Reply-To: <20261119185215.632334-1-coltonlewis@google.com>
+        d=1e100.net; s=20260707; t=1795114926; x=1795719726;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hKkPpNGKPc9dB0PHZyw3/Ep3fUq1c/BlK7UqcWPEb1A=;
+        b=0Fmh1OQKj4bbVEzqDAjWhg/4azLr7m8FdYDV0CE6uBaPH7Z36kUx7QUgih+NVjgDnk
+         LjTWoA8FJDqFGxYzdGyVOKHzz1r5f2CIyNQvJpK7VRKL+551gJE2Ia70ODl5ML7pdNJR
+         6hQSFWzsMOLVXRtrqa/D9h1FSh68PWMK2UYyHfHN0T7QJq3hUf8bqdNhFHTPFZLThvuy
+         T0AQfsHeCPml6rLCXZi+B2c6befF6YXjjVzL45/1n7Bfl/NteboycwAiMGlx5qoESuYN
+         gCAGZVyKfFBORoZpYAt9dZFT8zCDROF0xpqCrdG7ZyTHSBRN4Dz55UMl2pkGyIvglb0Q
+         YyJA==
+X-Forwarded-Encrypted: i=1; AL+hErHfxQIIARQaMGdtNdaQzb6zxX+qEvsoQIXcbgJzyJAGxYc1lcMn8tcQRFOO4vSYhBiP+Opa+eROgKn5hE56RAJg@lists.infradead.org
+X-Gm-Message-State: APuU4Z+U8LMuKT3o86jelDGhwZW+ddcZzez/WMsDqmWWH612vDmDxI5h
+	bI+0WHIbqZt/jO+70SfUyHZNLL7Uz5E9XH5uBqneF/FpiIuT0i/Y516/eMt6KRXaF2E=
+X-Gm-Gg: AZFdTZfzb5lgIxoLffqUfqpDM1YUszi115SGZ4sc11NMOOflS91XKhdg0bvTsN276Ze
+	7GXHowUq8GWIzl/B9uER8WYYNv2/SeSVBwTLNWhKr5ePUjpe3gP3LinuS5+MgsF743zkYnmG2vg
+	rUzpZnV2Yg2xlbJO9pbGCJxVrVn0yLNY6bSecBECh/SqL57BgZdwwT7x6K9Xw+XolbPJtkQmc95
+	s6BbBEyVzYksjJNttcjLmpe/nSyLqF6mo01M1f9+WDO/JB9FcAwEmbJ03N077uwiw8J6mqv/1Gg
+	gprkL38cG+N8o6AOWQHyT8Sapdmkq0N+yZu3gahRvEsMRGy1G8csRsfAdV1O6DlYIvysUbW2g7b
+	aEMC9SOtuh4DSiYKfLB14J7rh4d4UXugeidLpwpMDpYLAZwN2NLNTfictlo9JCyrCSy+mJQio/4
+	17Oa8Kp2vMTaqbr2UEeoeXeIqToKNEDhbst+1i7XyUMHA1Koct14Dyo1m/vY6rv9/CI08ckTQMK
+	+FmKn3x2MJTWajqoYdfx0nOm544F/XLhOrE+LtB5aAzW5y2l2vHaEMKKY2S2GtEmbuSM0rD+vQJ
+	WlZYEmfzp+rBSio4mGr7EQS4A1TEaqC1RJoOF9ojPe5WTZYqixQ+Z58=
+X-Received: by 2002:a05:6122:c88:b0:5ca:f811:25ac with SMTP id 71dfb90a1353d-5ee8aefbb61mr486259e0c.14.1795114925522;
+        Thu, 19 Nov 2026 11:02:05 -0800 (PST)
+Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99e6df8a28dsm809462241.4.2026.11.19.11.02.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2026 11:02:04 -0800 (PST)
+Message-ID: <84fd9703862c225d63d973cf170b06ab7a962312.camel@ndufresne.ca>
+Subject: Re: [PATCH v2 6/6] staging: media: cedrus: Use
+ devm_of_reserved_mem_device_init()
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Daniel Scally	
+ <dan.scally@ideasonboard.com>, Jacopo Mondi
+ <jacopo.mondi@ideasonboard.com>,  Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Eddie James <eajames@linux.ibm.com>, Joel Stanley	
+ <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Minghsiu
+ Tsai	 <minghsiu.tsai@mediatek.com>, Houlong Wei <houlong.wei@mediatek.com>,
+  Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Tiffany Lin
+ <tiffany.lin@mediatek.com>, Yunfei Dong	 <yunfei.dong@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,  AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Joseph Liu <kwliu@nuvoton.com>,
+ Marvin Lin <kflin@nuvoton.com>,  Dmitry Osipenko
+ <dmitry.osipenko@collabora.com>, Maxime Ripard <mripard@kernel.org>, Paul
+ Kocialkowski	 <paulk@sys-base.io>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>,  Chen-Yu Tsai <wens@kernel.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland	 <samuel@sholland.org>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>, Billy Tsai
+ <billy_tsai@aspeedtech.com>, 	linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	openbmc@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-aspeed@lists.ozlabs.org,
+ linux-mediatek@lists.infradead.org, 	kernel@collabora.com,
+ linux-staging@lists.linux.dev, linux-sunxi@lists.linux.dev
+Date: Thu, 19 Nov 2026 14:02:01 -0500
+In-Reply-To: <20260902200703.2016410-7-mukesh.ojha@oss.qualcomm.com>
+References: <20260902200703.2016410-1-mukesh.ojha@oss.qualcomm.com>
+	 <20260902200703.2016410-7-mukesh.ojha@oss.qualcomm.com>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-Zy5+UcnjO9CPStg5/eKL"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261119185215.632334-1-coltonlewis@google.com>
-X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261119185215.632334-32-coltonlewis@google.com>
-Subject: [PATCH v10 31/33] KVM: arm64: Add vCPU device attr to partition the PMU
-From: Colton Lewis <coltonlewis@google.com>
-To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Peter Zijlstra <peterz@infradead.org>, 
-	Ingo Molnar <mingo@redhat.com>, Paolo Bonzini <pbonzini@redhat.com>, 
-	Russell King <linux@armlinux.org.uk>, Jonathan Corbet <corbet@lwn.net>, 
-	Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
-	Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
-	Shuah Khan <skhan@linuxfoundation.org>, James Clark <james.clark@linaro.org>, 
-	Alexandru Elisei <alexandru.elisei@arm.com>, Mingwei Zhang <mizhang@google.com>, 
-	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, 
-	linux-perf-users@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_105247_423773_EE89F54A 
-X-CRM114-Status: GOOD (  28.81  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261119_110207_319408_94A4B168 
+X-CRM114-Status: UNSURE (   9.14  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,338 +136,38 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the KVM_ARM_VCPU_PMU_V3_ENABLE_PARTITION vCPU device attribute to
-enable a Partitioned PMU on hosts with VHE and PMUv3 support.
+--=-Zy5+UcnjO9CPStg5/eKL
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-When partitioning is enabled (KVM_ARCH_FLAG_PARTITION_PMU_ENABLED),
-userspace must configure guest general-purpose counters via
-KVM_ARM_VCPU_PMU_V3_SET_NR_COUNTERS before KVM_ARM_VCPU_PMU_V3_INIT:
-- Require kvm_arm_pmu_part_hpmn(n) < max_counters so at least one
-  general-purpose counter remains available for host profiling.
-- Allow n == 0 (cycle counter only) on hosts without FEAT_HPMN0 when
-  max_counters >= 2, reserving physical counter 0 (MDCR_EL2.HPMN = 1)
-  and hiding it from the guest via traps.
+Le jeudi 03 septembre 2026 =C3=A0 01:37 +0530, Mukesh Ojha a =C3=A9crit=C2=
+=A0:
+> Use the devres-managed devm_of_reserved_mem_device_init() instead of
+> the manual of_reserved_mem_device_init()/of_reserved_mem_device_release()
+> pair, letting the device resource manager handle cleanup automatically.
+>=20
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 
-Because PMU attributes are invoked per-vCPU while arm_pmu,
-nr_pmu_counters, and partitioning state are VM-wide, VMMs such as QEMU
-iterate over vCPUs (CPU_FOREACH) and call KVM_ARM_VCPU_PMU_V3_INIT on
-vCPU 0 before configuring vCPU 1..N. Allow SET_PMU, SET_NR_COUNTERS, and
-ENABLE_PARTITION to succeed when a vCPU PMU is already initialized as
-long as the requested value matches the VM's existing configuration, and
-return -EBUSY on conflicting changes.
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 
-Signed-off-by: Colton Lewis <coltonlewis@google.com>
----
- Documentation/virt/kvm/devices/vcpu.rst | 57 +++++++++++++++--
- arch/arm64/include/asm/kvm_host.h       |  1 +
- arch/arm64/include/uapi/asm/kvm.h       |  2 +
- arch/arm64/kvm/pmu.c                    | 83 ++++++++++++++++++++++++-
- arch/arm64/kvm/sys_regs.c               |  5 +-
- include/kvm/arm_pmu.h                   |  6 ++
- 6 files changed, 148 insertions(+), 6 deletions(-)
+--=-Zy5+UcnjO9CPStg5/eKL
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
-diff --git a/Documentation/virt/kvm/devices/vcpu.rst b/Documentation/virt/kvm/devices/vcpu.rst
-index 7e23584fd74aa..1140c1d731d63 100644
---- a/Documentation/virt/kvm/devices/vcpu.rst
-+++ b/Documentation/virt/kvm/devices/vcpu.rst
-@@ -57,6 +57,9 @@ Returns:
-                   hardware PMU, or interrupt number not set (non-GICv5
-                   guests, only)
- 	 -EBUSY   PMUv3 already initialized
-+	 -EINVAL  Partitioning enabled without explicitly configuring
-+		  a valid counter count via
-+		  KVM_ARM_VCPU_PMU_V3_SET_NR_COUNTERS
- 	 =======  ======================================================
- 
- Request the initialization of the PMUv3.  If using the PMUv3 with an in-kernel
-@@ -161,16 +164,62 @@ the cpu field to the processor id.
-                   an event filter has already been set
- 	 -EFAULT  Error accessing the value pointed to by addr
- 	 -ENODEV  PMUv3 not supported or GIC not initialized
--	 -EINVAL  No PMUv3 explicitly selected, or value of N out of
--	 	  range
-+	 -EINVAL  No PMUv3 explicitly selected, or value of N > max_counters,
-+		  or N > max_counters - 1 (or N == 0 when max_counters < 2
-+		  without FEAT_HPMN0) when partitioning is enabled
- 	 =======  ====================================================
- 
- Set the number of implemented event counters in the virtual PMU. This
- mandates that a PMU has explicitly been selected via
- KVM_ARM_VCPU_PMU_V3_SET_PMU, and will fail when no PMU has been
- explicitly selected, or the number of counters is out of range for the
--selected PMU. Selecting a new PMU cancels the effect of setting this
--attribute.
-+selected PMU. The maximum number of general-purpose counters (max_counters)
-+implemented by a PMU can be queried from sysfs at
-+/sys/bus/event_source/devices/<pmu>/caps/num_counters. Selecting a new PMU
-+cancels the effect of setting this attribute.
-+
-+1.6 ATTRIBUTE: KVM_ARM_VCPU_PMU_V3_ENABLE_PARTITION
-+---------------------------------------------------
-+
-+:Parameters: in kvm_device_attr.addr the address to an unsigned int (u32)
-+	     boolean value (non-zero to enable PMU partitioning, 0 to disable)
-+
-+:Returns:
-+
-+	 =======  ========================================================
-+	 -EBUSY   PMUv3 already initialized or a VCPU has already run
-+	 -EFAULT  Error accessing the value pointed to by addr
-+	 -ENODEV  KVM_ARM_VCPU_PMU_V3 feature missing from VCPU
-+	 -EPERM   Host hardware or kernel configuration does not support
-+		  PMU partitioning (requires ARM64 VHE mode and PMUv3)
-+	 -EINVAL  No PMUv3 associated with the VM, or
-+		  KVM_ARM_VCPU_PMU_V3_SET_NR_COUNTERS was already set to
-+		  > max_counters - 1 (or 0 when max_counters < 2 without
-+		  FEAT_HPMN0)
-+	 -ENXIO   Returned by KVM_HAS_DEVICE_ATTR when PMU partitioning is
-+		  unsupported on host hardware
-+	 =======  ========================================================
-+
-+Enable or disable hardware PMU partitioning for the VM. When enabled, physical
-+PMUv3 hardware counters are partitioned between the guest and host using
-+MDCR_EL2.HPMN (and FEAT_FGT fine-grained traps when supported by hardware).
-+This grants the guest direct, untrapped EL0/EL1 hardware access to event
-+counters 0..HPMN-1 and the cycle counter (PMCCNTR_EL0), and restricts the VM's
-+supported physical CPUs to those associated with the VM's PMU.
-+
-+When PMU partitioning is enabled, userspace must explicitly configure the
-+number of guest event counters via KVM_ARM_VCPU_PMU_V3_SET_NR_COUNTERS with a
-+value strictly less than the maximum number of general-purpose counters
-+implemented by the PMU (leaving at least one general-purpose counter reserved
-+for host profiling) prior to calling KVM_ARM_VCPU_PMU_V3_INIT. Configuring 0
-+event counters (cycle counter only) on hosts without FEAT_HPMN0 programs
-+MDCR_EL2.HPMN = 1, reserves physical counter 0 in addition to PMCCNTR_EL0
-+while hiding it from the guest via traps, and therefore requires at least two
-+implemented general-purpose counters (max_counters >= 2) so at least one
-+remains for host profiling. Note that KVM_ARM_VCPU_PMU_V3_SET_NR_COUNTERS
-+configures general-purpose event counters (PMCR_EL0.N / MDCR_EL2.HPMN); the
-+dedicated cycle counter (PMCCNTR_EL0) is unconditionally assigned to the
-+guest partition when partitioning is enabled.
- 
- 2. GROUP: KVM_ARM_VCPU_TIMER_CTRL
- =================================
-diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-index 1fcb12995c34c..01f26a37c7f9c 100644
---- a/arch/arm64/include/asm/kvm_host.h
-+++ b/arch/arm64/include/asm/kvm_host.h
-@@ -472,6 +472,7 @@ struct kvm_arch {
- 
- 	/* Maximum number of counters for the guest */
- 	u8 nr_pmu_counters;
-+	bool pmu_nr_counters_specified;
- 
- 	/* PMMIR_EL1.SLOTS value exposed to the guest. */
- 	u8 pmmir_slots;
-diff --git a/arch/arm64/include/uapi/asm/kvm.h b/arch/arm64/include/uapi/asm/kvm.h
-index 65ee09bd14636..80e2504c1d9fb 100644
---- a/arch/arm64/include/uapi/asm/kvm.h
-+++ b/arch/arm64/include/uapi/asm/kvm.h
-@@ -453,6 +453,8 @@ struct kvm_vgic_v5_ist {
- #define   KVM_ARM_VCPU_PMU_V3_FILTER		2
- #define   KVM_ARM_VCPU_PMU_V3_SET_PMU		3
- #define   KVM_ARM_VCPU_PMU_V3_SET_NR_COUNTERS	4
-+#define   KVM_ARM_VCPU_PMU_V3_ENABLE_PARTITION	5
-+
- #define KVM_ARM_VCPU_TIMER_CTRL		1
- #define   KVM_ARM_VCPU_TIMER_IRQ_VTIMER		0
- #define   KVM_ARM_VCPU_TIMER_IRQ_PTIMER		1
-diff --git a/arch/arm64/kvm/pmu.c b/arch/arm64/kvm/pmu.c
-index 02a1968bd6cb1..e11f54a92ecfe 100644
---- a/arch/arm64/kvm/pmu.c
-+++ b/arch/arm64/kvm/pmu.c
-@@ -479,12 +479,22 @@ int kvm_arm_pmu_v3_enable(struct kvm_vcpu *vcpu)
- 	return 0;
- }
- 
-+bool kvm_arm_pmu_part_nr_valid(struct kvm *kvm, unsigned int n)
-+{
-+	return kvm_arm_pmu_part_hpmn(n) < kvm_arm_pmu_get_max_counters(kvm);
-+}
-+
- static int kvm_arm_pmu_v3_init(struct kvm_vcpu *vcpu)
- {
- 	/* Only possible when using KVM_ARM_VCPU_PMU_V3_STRICT */
- 	if (!vcpu->kvm->arch.arm_pmu)
- 		return -ENXIO;
- 
-+	if (kvm_pmu_is_partitioned(vcpu->kvm) &&
-+	    (!vcpu->kvm->arch.pmu_nr_counters_specified ||
-+	     !kvm_arm_pmu_part_nr_valid(vcpu->kvm, vcpu->kvm->arch.nr_pmu_counters)))
-+		return -EINVAL;
-+
- 	if (irqchip_in_kernel(vcpu->kvm)) {
- 		int ret;
- 
-@@ -596,11 +606,25 @@ static void kvm_arm_set_nr_counters(struct kvm *kvm, unsigned int nr)
- 	}
- }
- 
-+static bool kvm_arm_pmu_any_vcpu_created(struct kvm *kvm)
-+{
-+	struct kvm_vcpu *vcpu;
-+	unsigned long i;
-+
-+	kvm_for_each_vcpu(i, vcpu, kvm) {
-+		if (vcpu->arch.pmu.created)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
- static void kvm_arm_set_pmu(struct kvm *kvm, struct arm_pmu *arm_pmu)
- {
- 	lockdep_assert_held(&kvm->arch.config_lock);
- 
- 	kvm->arch.arm_pmu = arm_pmu;
-+	kvm->arch.pmu_nr_counters_specified = false;
- 	kvm_arm_set_nr_counters(kvm, kvm_arm_pmu_get_max_counters(kvm));
- }
- 
-@@ -647,6 +671,11 @@ static int kvm_arm_pmu_v3_set_pmu(struct kvm_vcpu *vcpu, int pmu_id)
- 				break;
- 			}
- 
-+			if (kvm_arm_pmu_any_vcpu_created(kvm)) {
-+				ret = (kvm->arch.arm_pmu == arm_pmu) ? 0 : -EBUSY;
-+				break;
-+			}
-+
- 			kvm_arm_set_pmu(kvm, arm_pmu);
- 			cpumask_copy(kvm->arch.supported_cpus, &arm_pmu->supported_cpus);
- 
-@@ -672,14 +701,31 @@ static int kvm_arm_pmu_v3_set_pmu(struct kvm_vcpu *vcpu, int pmu_id)
- static int kvm_arm_pmu_v3_set_nr_counters(struct kvm_vcpu *vcpu, unsigned int n)
- {
- 	struct kvm *kvm = vcpu->kvm;
-+	unsigned int max_counters;
-+
-+	if (kvm_vm_has_ran_once(kvm))
-+		return -EBUSY;
-+
-+	if (kvm_arm_pmu_any_vcpu_created(kvm)) {
-+		if (!kvm->arch.pmu_nr_counters_specified ||
-+		    kvm->arch.nr_pmu_counters != n)
-+			return -EBUSY;
-+		return 0;
-+	}
- 
- 	if (!kvm->arch.arm_pmu)
- 		return -EINVAL;
- 
--	if (n > kvm_arm_pmu_get_max_counters(kvm))
-+	max_counters = kvm_arm_pmu_get_max_counters(kvm);
-+	if (n > max_counters)
-+		return -EINVAL;
-+
-+	if (kvm_pmu_is_partitioned(kvm) &&
-+	    !kvm_arm_pmu_part_nr_valid(kvm, n))
- 		return -EINVAL;
- 
- 	kvm_arm_set_nr_counters(kvm, n);
-+	kvm->arch.pmu_nr_counters_specified = true;
- 	return 0;
- }
- 
-@@ -791,6 +837,36 @@ int kvm_arm_pmu_v3_set_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
- 
- 		return kvm_arm_pmu_v3_set_nr_counters(vcpu, n);
- 	}
-+	case KVM_ARM_VCPU_PMU_V3_ENABLE_PARTITION: {
-+		unsigned int __user *uaddr = (unsigned int __user *)(long)attr->addr;
-+		u32 val;
-+
-+		if (get_user(val, uaddr))
-+			return -EFAULT;
-+
-+		if (!has_kvm_pmu_partition_support())
-+			return -EPERM;
-+
-+		if (kvm_vm_has_ran_once(kvm))
-+			return -EBUSY;
-+
-+		if (kvm_arm_pmu_any_vcpu_created(kvm))
-+			return kvm_pmu_is_partitioned(kvm) == !!val ? 0 : -EBUSY;
-+
-+		if (!kvm->arch.arm_pmu)
-+			return -EINVAL;
-+
-+		if (val && kvm->arch.pmu_nr_counters_specified &&
-+		    !kvm_arm_pmu_part_nr_valid(kvm, kvm->arch.nr_pmu_counters))
-+			return -EINVAL;
-+
-+		if (val)
-+			cpumask_copy(kvm->arch.supported_cpus,
-+				     &kvm->arch.arm_pmu->supported_cpus);
-+
-+		kvm_pmu_partition_enable(kvm, val);
-+		return 0;
-+	}
- 	case KVM_ARM_VCPU_PMU_V3_INIT:
- 		return kvm_arm_pmu_v3_init(vcpu);
- 	}
-@@ -832,6 +908,11 @@ int kvm_arm_pmu_v3_has_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
- 	case KVM_ARM_VCPU_PMU_V3_SET_NR_COUNTERS:
- 		if (kvm_vcpu_has_pmu(vcpu))
- 			return 0;
-+		break;
-+	case KVM_ARM_VCPU_PMU_V3_ENABLE_PARTITION:
-+		if (kvm_vcpu_has_pmu(vcpu) && has_kvm_pmu_partition_support())
-+			return 0;
-+		break;
- 	}
- 
- 	return -ENXIO;
-diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
-index 4967954f42b01..22d78605b8f65 100644
---- a/arch/arm64/kvm/sys_regs.c
-+++ b/arch/arm64/kvm/sys_regs.c
-@@ -1591,7 +1591,10 @@ static int set_pmcr(struct kvm_vcpu *vcpu, const struct sys_reg_desc *r,
- 	if (!kvm_vm_has_ran_once(kvm) &&
- 	    !vcpu_has_nv(vcpu)	      &&
- 	    !kvm_vcpu_has_pmuv3_strict(vcpu) &&
--	    new_n <= kvm_arm_pmu_get_max_counters(kvm))
-+	    !kvm->arch.pmu_nr_counters_specified &&
-+	    new_n <= kvm_arm_pmu_get_max_counters(kvm) &&
-+	    (!kvm_pmu_is_partitioned(kvm) ||
-+	     kvm_arm_pmu_part_nr_valid(kvm, new_n)))
- 		kvm->arch.nr_pmu_counters = new_n;
- 
- 	mutex_unlock(&kvm->arch.config_lock);
-diff --git a/include/kvm/arm_pmu.h b/include/kvm/arm_pmu.h
-index bebf981855040..479eabc96b412 100644
---- a/include/kvm/arm_pmu.h
-+++ b/include/kvm/arm_pmu.h
-@@ -138,6 +138,7 @@ u64 kvm_pmu_evtyper_mask(struct kvm *kvm);
- int kvm_arm_set_default_pmu(struct kvm *kvm);
- u8 kvm_arm_pmu_get_max_counters(struct kvm *kvm);
- unsigned int kvm_arm_pmu_part_hpmn(unsigned int n);
-+bool kvm_arm_pmu_part_nr_valid(struct kvm *kvm, unsigned int n);
- 
- u64 kvm_vcpu_read_pmcr(struct kvm_vcpu *vcpu);
- bool kvm_pmu_counter_is_hyp(struct kvm_vcpu *vcpu, unsigned int idx);
-@@ -283,6 +284,11 @@ static inline unsigned int kvm_arm_pmu_part_hpmn(unsigned int n)
- 	return n;
- }
- 
-+static inline bool kvm_arm_pmu_part_nr_valid(struct kvm *kvm, unsigned int n)
-+{
-+	return false;
-+}
-+
- static inline u64 kvm_vcpu_read_pmcr(struct kvm_vcpu *vcpu)
- {
- 	return 0;
--- 
-2.56.1.708.g77570a6a1d-goog
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCav9HqQAKCRDZQZRRKWBy
+9KPMAP43HkphsVrqQTwGITR+0glsiS4Fp5Wyse7t/ZPwvyRH2gEA4/6BFP8fPbe6
+9p9JGy6Ck2BZu8qjXZw4UU8oUtkiJgI=
+=GZdK
+-----END PGP SIGNATURE-----
+
+--=-Zy5+UcnjO9CPStg5/eKL--
 
