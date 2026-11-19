@@ -2,111 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F420606AED9
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 08:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58062606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 08:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OrJFhjJB;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OtuFythm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1ijqFTnC;
+	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=UYFRPMY3;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=1lzFt6eB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ZiLoLmU3ej16vGNuZXg1NNjxseA9K6QpUjZSYUoSksI=; b=OrJFhjJBwkuoqMlxFVEqcjJfP6
-	TzVKfkM7l9lOf89a/bu1ORngpj62M7i8LbXwC8LUsv2p/yIuIeeBQluMivTws0T8iB5P/Jiv/KwXk
-	Q1DEc1SjFNOcz5hUMr/mpzV+B7wNUZE+4AGN3UEx6Ymy0EI3alr67W8oaq+aRCNwBGX7uylEUsjT3
-	mmPbnN/W3xrLmXakWESa8RLl2+uu6LohetZJ4Sd9Q+VJ/UZVUrVEh95g1m9A9OQFgZGnt49AHWadx
-	JMyUFh/L4e9o85ucJ00p2iiRHSEvlvrvo5Wn9L3XRFqtQUMXaEKhrxm2tStGkpiD2j20n8REGyPG8
-	LwuLNNRw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=WW2blqW/7siEgeA3QhLwyU83G3vWkab0u6sANyXaeO8=; b=1ijqFTnCFUjZh/
+	6cRImu5BD8FoymQwXWNDzjL030FNjCfPbgg1bEWCS5Nny5uO6q73JR/dt4BMnDI4+ZFjItZLBUKX/
+	5pN1s5+ZbmZY1OZTSbwftgog3D9BmJlp5hRdc+WUAwgEr0kfbBzGj0Mnt78v3TQTjGtEkAvLNnKfa
+	/a6th045NWihOOqYYPCwo6zRp3kczRrmUqSWF9JFsV1cHnNbkWkot0rdYVt3/RVvHoewOSrn70ayb
+	4N5v40JzP+pV/TNpWYms1KIlTG2FPclU3/p6JzCxQpwXshnVDrN/TAzgxOucGhvE9N6iQvNnwhP7A
+	Dz5VhNwoPMCy/QlNYBAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxhT-0000000BDmi-3PUU;
-	Thu, 19 Nov 2026 08:40:59 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTxn1-0000000BF0U-0I07;
+	Thu, 19 Nov 2026 08:46:43 +0000
+Received: from fhigh-b5-smtp.messagingengine.com ([202.12.124.156])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxgU-0000000BCi7-0yqU;
-	Thu, 19 Nov 2026 08:39:58 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9E151628B5;
-	Thu, 19 Nov 2026 08:39:57 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795077597;
-	b=YZweZSltCbxzYg3gIFFkstptEhqB5/nwNkojg1jO/zaOdEFrVr2bckQgIm5cTLJrTWUt
-	 ymOnYcKlIY5eVOsQyCxTf8htiWdzbWF/p58o9OyFZ2TBaTDFNgKdJidAVIevLldzq+rSk
-	 znRBIsGabzsqhOxNc+ltCiAdMDEawtUGHWWqSSK7TRJPw/qpxCJR59zAiMmF9H7Bkjk7a
-	 IFZx3O0yY+pOPNASa3PkRUavHEWA1FXs/6W8zjDir0ni5hhL3kXMLLDjoC5OICubO4Lfq
-	 qlM944UDqKQd0n7VRzkO5asEPFPWwqZ+vOPMONtHH2sxV4sy+O3YQ3wDeuUOGsT6wIA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795077597;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=ZiLoLmU3ej16vGNuZXg1NNjxseA9K6QpUjZSYUoSksI=;
-	b=OJvKyrc6uftavVDVaSQD/Pmej3os4jIvqztzEqOteHTe4VBmgOEGrqMEaQwuhZw+b73A
-	 D+u6aiPUja/bZoJVHiS6f4XD9nf0VqPdDqNURtjVeOG3S4aqfeAzDF5QWL5Zb4+k4zieu
-	 rcXkGGSrRnojGr4CTAD7c8pLmvTzoWUzIRWo8kAsFI8ikPuOyGAahlHqxmz7+P50fWX4A
-	 wWbZSW/GBwo3APYS/AV+b9jXYR7SFkTBgcRRQLfyZPKGcqeKuc+Mb27IjFBXlF2fYJpOz
-	 FpMUbpu5VnpvbkCrdnoAz1ynXBohhAY0vF5S8FCnbHn/zaydn0NviXg4eQveEw7dgtA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5ED1E1F00929;
-	Thu, 19 Nov 2026 08:39:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795077597;
-	bh=ZiLoLmU3ej16vGNuZXg1NNjxseA9K6QpUjZSYUoSksI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=OtuFythmLOh0Qhhv9A178iPwCFOjLj6dDSvpvhvk8cp3q8pmjVLaqzByDP7FhOtX5
-	 tCP04nItfhUzVSb/IFFxe0wopybyQ/yPpy78Z5ALz8b3TMvFpWa6xn06BAWLXRCfmG
-	 vEtZ7xjw/pQlSMeBkivVVYH0miZ0XcmsoWneH24ai1WlPT22TI5HIxFbAkrZgRUiuD
-	 9PCkRmMMoIeIyWW/p8Rc25n+QoZ40p8ddkBt0kJtd3nZDL93zGK2SY/Xt1vxKEa3FZ
-	 Di0kd423+UpzXN/reNl02BOGJqEP0OLv+aXtvrH+9QWWhGOCTEH6dPeMjJSbFJ2IEx
-	 PnKf13sUOpbrQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 0F9384B1C2;
-	Thu, 19 Nov 2026 08:39:50 +0000 (UTC)
-From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
-Date: Thu, 19 Nov 2026 16:39:49 +0800
-Subject: [PATCH net v10 08/10] can: rockchip_canfd: retry the outstanding
- TX buffer
+	id 1xTxmy-0000000BF05-2PDa
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 19 Nov 2026 08:46:42 +0000
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 60DF87A02FC
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 03:46:39 -0500 (EST)
+Received: from ams-imap-03 ([10.64.2.23])
+  by ams-compute-02.internal (MEProxy); Thu, 19 Nov 2026 03:46:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1795077989;
+	 x=1795164389; bh=WW2blqW/7siEgeA3QhLwyU83G3vWkab0u6sANyXaeO8=; b=
+	UYFRPMY3/jzs0xi1mXQbVIg7KpGY0usB1jjHmn3po658+6DjKILjMz+IhDaC+cBE
+	ps3He7mIolsqRniMEqAIOzT5m15/fzra7M2klC+0HbBcMBZULlWXoN4F5ASza3yg
+	q+3NpmS01SnuxB/RGfrKCxcdAycw4LmsaiAfzcA8Q05GKNrXpJ0NOVf9VxqEOjW8
+	jVXfmZw7JQEVHOQhJpOZQQ5dyhx/8TD0oUrqbf5DcxZtvDC9UPwj4hH2APLLO246
+	bfNxn9FkVoEZ15ETvCIbxiWbWCHTHo9Y5lLPg3eXBJgVjWzzNwy9xfse9NJsCPDl
+	hMEbJoitweGY4/ou+I15Yg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1795077989; x=
+	1795164389; bh=WW2blqW/7siEgeA3QhLwyU83G3vWkab0u6sANyXaeO8=; b=1
+	lzFt6eBLruf12W8oA4MHDTJYYaNKfluVXK014wD2AE5/PkKRNmvaNXs6OtZD06cP
+	qARJrNv/xRZt9AogIDvj35Req9DPilSnlIblee0aYsm2ntqn7fbUcq/xS0JTanKL
+	2Du/EiNpwKhlnRKBelx+XDAkKuI4faM7ec8LPebuct9VwwneeHVVF4dny2cKDuez
+	pdbsJ5PrEYbPOqy61dw/3MSxYA3yUoq49jgVgLjTpTwMcwOy7TKCEfG7wGIfNL9p
+	zRq+GT/zgjo8yFFfGzAuaWl3sOj1zkv3jrFwPygrNsJjyffOo10Hm4d0Q0dgCs5V
+	wd4lMLkk3SAI9joAN/o3Q==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=arndb.de a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1795077989; d=arndb.de;
+	mf=PGFybmRAYXJuZGIuZGU+;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm2:rsa-sha256:TqgXPxN/A/cdcGkLresiwuYw3OQXxnzdb8FuTAYGhtEdfRr
+	RdS8u76Y1TEAwLZT2EPbMZSwGY9v80KmNLwte8NxRoxuFtsnQn+zDTRfLhc0/WiE
+	PKoC/vK+jvwP0XdXPbcekmq65d7xbUfWpFtdnz4aE/gtXkcnE0KTCCKFqKjIu7ad
+	MCElwYn0tlClbsEl1qITSFfPaCddctJ/TUqljpNNcgSZ1KkvH27KFNY2+XBdM1Gf
+	wBiH4j64JaSibKQx8YUqmOVmyWehT6Ww1L9ClJPaK8+ouBx2Dw6vvseiplOAS4lv
+	FFMJMHHX1V+3oSCQuqoP6uh5B15NsBVfJD/zLQg==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=12;
+	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
+	from,in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1; h=sha256:yHHEsa1F/yfYCs90xpNsERTHqBBu4lUbLy1LnnHw6Xk=:gUUvC0d3DXsIVObCQRNT9BOZ11HTUi7uu67Hd2r4Lys=;
+X-ME-Sender: <xms:Xrf-apO2eZFEucASI6Z-iV3CNj11pQgRm7s87ifIoT3yRijzcQmpRg>
+    <xme:Xrf-amyi7e9qiqX7gmNP4WTxg_MbzQiDZecDe3v_gxW7PrrnRFDcxzNqy2q0JFHoN
+    fp81TAY_BnVsc1eCXapy6fNezXHD47G7-KpFpTuHCNcd5ev0kD6g19XfQ>
+X-ME-Proxy-Cause: dmFkZTGV31TGU0zONOkJ/gBT4mhriliTNuQFY+d8+N+bTlJoW0nxIyUhLgf15xdQFnCpZF
+    9Jdi9ioVT+ArUJtExz3P/QC8IyLdAftkr1Wq16l2yCdO5JQ38cqo75FJ5tNzR0b2nUbcxk
+    GZbcqERGkx5Ta1opOW8Y57lemjWOUY2k5j74bKsnyV9KP9DtIA+lqR33B6KFt4lHZaTcDx
+    lQ2oXBNJp2LMQKvX6SkMo7pSxJyoS4jDrVgl44HQ7DI37WrXmxv7vS/8QKBcvXc0sUClTi
+    cS58SfLhGvF48w1OwGTpvIVhEIvatCY3HXo6+0Vz9gaXZ7TzA+hgU6NG1Mv3OiaUslusDi
+    3T2GvrXnApIMkjt9XqvrL6oXS5qb+9k7ziRwXOYDVHgtgNTuv6D6tvGQCN1j8lr5nqgZCN
+    MaeknzCilXGRLUxFGiJ9VCNSBaJMrIZdV0SjyNV3CqQoa0zbkih9vD3I8t0eNFAXjbpngj
+    AhAXMpl7NEOz8ey49XMybjheyeyYnBmgGy1eLkDwl498HdPtVCVizXXzvQ13k8OrDDq/y9
+    lXU4OBqi1Wj2mKykStwGX3yX+TEP4/CLLyMFQxfx0jDZiZdaRs6nonLloJTwyFBUSuKkJn
+    G98cdGW1XrPwWm//oUpWUlsaTPqzapGM3/Z8LB78Klyo9e7/liYHGbaAwUkQ
+X-ME-Proxy: <xmx:Ybf-amO7wLTg3t2P81VHzE2AxuUjkmN9b3yR1mTkfnVDq-xLyxI0BA>
+    <xmx:Ybf-ap2u_7nYAD4T1Mkv08l-ABAHYfNieXgsEMydL-YhuDcJi2PZCA>
+    <xmx:Ybf-aq13pl-t08t_dbneajYh6a3iSv704hi2unh58z0XSlYSZIdMpg>
+    <xmx:Ybf-aowyha8MxnAMV5wnHNBt5XRGuMTECRpthTTTw2e0J-4Gjm0qag>
+    <xmx:Zbf-anLwbR9PDmLBERtIf9SECCIy3j9-aMZ-xG_EavHOI2-v177KPQbr>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 6974332A0099; Thu, 19 Nov 2026 03:46:22 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261119-rockchip-canfd-restart-close-v10-8-df23913aa33a@qq.com>
-References: <20261119-rockchip-canfd-restart-close-v10-0-df23913aa33a@qq.com>
-In-Reply-To: <20261119-rockchip-canfd-restart-close-v10-0-df23913aa33a@qq.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de, 
- Vincent Mailhol <mailhol@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Oliver Hartkopp <socketcan@hartkopp.net>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, 
- Wolfgang Grandegger <wg@grandegger.com>
-Cc: linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-doc@vger.kernel.org, Cunhao Lu <1579567540@qq.com>, 
- stable@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795077587; l=9789;
- i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
- bh=kBKb8AmgJ6pzOGhAXdb9opycixy8N3evuqoCl84o4lQ=;
- b=zz5c2loXtLfCkdXEablUzfT0ucsZLa4P3XwhbTrxM6/kbLnFsIQfyN4e3JJYQP6hi3whgo8zz
- F8NLbln+BtCCV6SzDCnrhLuH/cZ6U3WClcyvtXXhEDEy9UnSfIsaU8d
-X-Developer-Key: i=1579567540@qq.com; a=ed25519;
- pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
-X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
- auth_id=1177
-X-Original-From: Cunhao Lu <1579567540@qq.com>
+X-ThreadId: A4QaHkHhrVgc
+Date: Thu, 19 Nov 2026 09:46:02 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Brian Masney" <bmasney@redhat.com>, "Long Zhao" <zl020895@163.com>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: "Brian Masney" <masneyb@kernel.org>,
+ "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+ "Long Zhao" <longzhao@ambarella.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>, soc@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Jerome Brunet" <jbrunet@baylibre.com>,
+ linux-clk@vger.kernel.org, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "Linus Walleij" <linusw@kernel.org>
+Message-Id: <d2cb7e5e-9c39-4534-9ed8-a5e2b6074dc1@app.fastmail.com>
+In-Reply-To: <avslH10GRqkVT9fU@redhat.com>
+References: <20261105-cv75-soc-v11-0-aa6ee0b2380d@ambarella.com>
+ <179427375370.1061670.4050288038934218487.b4-review@b4>
+ <20261110-interesting-hilarious-shark-2dbfc0@quoll>
+ <7eeaf54d-2d7d-420c-a34e-eebc6dd0effe@app.fastmail.com>
+ <bbc16906-45e2-4d81-ae81-ad93e87b13be@kernel.org>
+ <c67939c7-9725-459e-97dd-e104f3b14022@app.fastmail.com>
+ <avMM8z-LYncKS8ip@x1g10> <avMmKJpczepWTRdc@ashevche-desk.local>
+ <avReozTC_GEmfIxG@x1g10> <2b30e92.3c75.1a1e2828c3a.Coremail.zl020895@163.com>
+ <avslH10GRqkVT9fU@redhat.com>
+Subject: Re: [PATCH v11 0/5] arm64: add Ambarella CV75 SoC support
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_004641_252820_DC37ECDB 
+X-CRM114-Status: GOOD (  15.07  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,275 +146,40 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: 1579567540@qq.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Cunhao Lu <1579567540@qq.com>
+On Mon, Nov 16, 2026, at 16:45, Brian Masney wrote:
+> Hi Long (and Arnd/Krzysztof),
+>
+> On Mon, Nov 16, 2026 at 11:59:28AM +0800, zl020895 wrote:
+>> At 2026-11-11 20:25:07, "Brian Masney" <masneyb@kernel.org> wrote:
+>> >So how about this:
+>> >
+>> >- Have Long post a new version that splits out the creation of the new
+>> >  Kconfig symbol ARCH_AMBARELLA into it's own patch. I assume Arnd could
+>> >  provide an ACK on this?
+>> >
+>> >- I create an immutable branch that contains that the two dt-binding
+>> >  patches, plus the ARCH_AMBARELLA Kconfig patch.
+>> 
+>> Just checking in -- there hasn't been further feedback from
+>> Arnd/Krzysztof on the plan yet.
+>> 
+>> Should I go ahead and prepare that split for v12, or hold
+>> off until Arnd/Krzysztof chime in?
+>
+> I haven't heard back from Arnd/Krzysztof yet. How about wait 48 hours to
+> see if they respond, and if they don't respond within that timeframe,
+> then go ahead about post a v12 with the ARCH_AMBARELLA split out into
+> it's own patch. I think that's a good change to make anyways.
 
-rkcanfd_xmit_retry() uses tx_head to select the buffer for an erratum 6
-retransmission. With two buffers and one outstanding frame, this selects
-the next submission slot instead of the slot holding that frame.
+Sorry about missing your question, this sounds fine to me.
 
-A standard frame from another node can match the erratum 6 check while
-the original extended frame is still pending: its ID matches the low
-11 ID bits, and both have the same RTR flag and length. Data frames must
-also have matching payloads. The retry loads the extended frame from the
-shared TX registers into the other buffer. In RK3588 tests, the peer
-received the current extended frame twice and local sockets received the
-extra copy as ordinary RX. When a queued successor reused the buffer
-while the retry was active, it was lost, leaving its echo and BQL
-accounting pending and the TX queue stopped.
-
-Use tx_tail to retry the original slot. The original request may have
-completed by the time the driver processes the matching standard frame,
-with its echo still in the RX FIFO. Processing that echo can wake the
-queue while the retry is active, allowing a successor to overwrite the
-shared TX registers.
-
-Stop the queue and mark the retry pending under tx_lock before issuing
-it. Complete the original echo and BQL accounting normally, but return
-NETDEV_TX_BUSY for new submissions without consuming their skbs. A worker
-polls both TX request bits with a one-jiffy delay, so progress does not
-depend on another RX interrupt. Once both bits clear, it releases the
-guard and wakes the queue if space is available. Repeated matches do not
-postpone a pending check, but worker scheduling can delay the next TX.
-
-Disable retries before publishing BUS_OFF and at close entry so the
-retry worker cannot read TX request bits, requeue itself or wake the
-queue. Close frees the IRQ before draining the worker. Restart waits
-for in-flight IRQ handlers, then drains the worker before resetting the
-controller. Both paths wait for the worker outside tx_lock.
-
-On RK3588 with PREEMPT_RT, a higher-priority userspace task delayed the
-CAN IRQ thread. The peer had already received the original extended frame
-when the driver processed the matching standard frame. With only the
-tx_tail change, the peer received a frame with the original CAN ID and
-a payload containing bytes from a queued successor. The TX queue stalled.
-With new submissions blocked until both TX request bits cleared, the peer
-received all queued successors and no mixed frames in the same test.
-
-The guard prevents later submissions from overwriting the shared TX
-registers during a retry, but the driver can still filter out a matching
-standard frame from another node and send a second complete copy of the
-original extended frame.
-
-Fixes: a5605d61c7dd ("can: rockchip_canfd: enable full TX-FIFO depth of 2")
-Cc: stable@vger.kernel.org
-Signed-off-by: Cunhao Lu <1579567540@qq.com>
-
----
-Changes in v10:
-- Block new submissions until both TX request bits clear after a retry.
-- Move this patch after the TX/IRQ lifecycle synchronization.
-
-Changes in v8:
-- Apply the retry-slot correction after TX serialization.
----
- drivers/net/can/rockchip/rockchip_canfd-core.c | 10 ++++
- drivers/net/can/rockchip/rockchip_canfd-tx.c   | 77 +++++++++++++++++++++++++-
- drivers/net/can/rockchip/rockchip_canfd.h      |  7 +++
- 3 files changed, 92 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
-index a5c6331191d1..38ffd06768a3 100644
---- a/drivers/net/can/rockchip/rockchip_canfd-core.c
-+++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
-@@ -270,6 +270,8 @@ static void rkcanfd_chip_start(struct rkcanfd_priv *priv)
- {
- 	u32 reg;
- 
-+	rkcanfd_tx_retry_stop_sync(priv);
-+
- 	rkcanfd_chip_set_reset_mode(priv);
- 
- 	/* Receiving Filter: accept all */
-@@ -329,12 +331,15 @@ static void rkcanfd_chip_start(struct rkcanfd_priv *priv)
- 
- 	netdev_dbg(priv->ndev, "%s: reg_mode=0x%08x\n", __func__,
- 		   rkcanfd_read(priv, RKCANFD_REG_MODE));
-+	rkcanfd_tx_retry_start(priv);
- }
- 
- static void rkcanfd_tx_disable(struct rkcanfd_priv *priv)
- {
- 	unsigned long flags;
- 
-+	rkcanfd_tx_retry_stop(priv);
-+
- 	spin_lock_irqsave(&priv->tx_lock, flags);
- 	priv->tx_enabled = false;
- 	netif_stop_queue(priv->ndev);
-@@ -377,6 +382,8 @@ static void rkcanfd_chip_stop(struct rkcanfd_priv *priv, const enum can_state st
- 
- static void rkcanfd_chip_stop_sync(struct rkcanfd_priv *priv, const enum can_state state)
- {
-+	rkcanfd_tx_retry_stop_sync(priv);
-+
- 	priv->can.state = state;
- 
- 	rkcanfd_timestamp_stop_sync(priv);
-@@ -811,6 +818,8 @@ static int rkcanfd_stop(struct net_device *ndev)
- {
- 	struct rkcanfd_priv *priv = netdev_priv(ndev);
- 
-+	rkcanfd_tx_retry_stop(priv);
-+
- 	close_candev_cancel_restart_sync(ndev);
- 	rkcanfd_tx_disable(priv);
- 
-@@ -976,6 +985,7 @@ static int rkcanfd_probe(struct platform_device *pdev)
- 	priv->can.do_get_berr_counter = rkcanfd_get_berr_counter;
- 	priv->ndev = ndev;
- 	spin_lock_init(&priv->tx_lock);
-+	rkcanfd_tx_retry_init(priv);
- 
- 	match = device_get_match_data(&pdev->dev);
- 	if (match) {
-diff --git a/drivers/net/can/rockchip/rockchip_canfd-tx.c b/drivers/net/can/rockchip/rockchip_canfd-tx.c
-index 7e3f478422e0..745029c23645 100644
---- a/drivers/net/can/rockchip/rockchip_canfd-tx.c
-+++ b/drivers/net/can/rockchip/rockchip_canfd-tx.c
-@@ -39,6 +39,10 @@ unsigned int rkcanfd_get_effective_tx_free(const struct rkcanfd_priv *priv)
- {
- 	lockdep_assert_held(&priv->tx_lock);
- 
-+	/* The original echo can precede completion of a retry. */
-+	if (!priv->tx_retry_enabled || priv->tx_retry_pending)
-+		return 0;
-+
- 	if (priv->devtype_data.quirks & RKCANFD_QUIRK_RK3568_ERRATUM_6 &&
- 	    rkcanfd_tx_tail_is_eff(priv))
- 		return 0;
-@@ -46,6 +50,68 @@ unsigned int rkcanfd_get_effective_tx_free(const struct rkcanfd_priv *priv)
- 	return rkcanfd_get_tx_free(priv);
- }
- 
-+static void rkcanfd_tx_retry_work(struct work_struct *work)
-+{
-+	struct rkcanfd_priv *priv = container_of(to_delayed_work(work),
-+						 struct rkcanfd_priv, tx_retry_work);
-+	const u32 tx_req = RKCANFD_REG_CMD_TX0_REQ | RKCANFD_REG_CMD_TX1_REQ;
-+	unsigned long flags;
-+	u32 reg_cmd;
-+
-+	spin_lock_irqsave(&priv->tx_lock, flags);
-+	if (!priv->tx_retry_enabled || !priv->tx_retry_pending)
-+		goto out_unlock;
-+
-+	reg_cmd = rkcanfd_read(priv, RKCANFD_REG_CMD);
-+
-+	if (reg_cmd & tx_req) {
-+		schedule_delayed_work(&priv->tx_retry_work, 1);
-+		goto out_unlock;
-+	}
-+
-+	priv->tx_retry_pending = false;
-+
-+	if (rkcanfd_get_effective_tx_free(priv) >= RKCANFD_TX_START_THRESHOLD)
-+		netif_wake_queue(priv->ndev);
-+
-+out_unlock:
-+	spin_unlock_irqrestore(&priv->tx_lock, flags);
-+}
-+
-+void rkcanfd_tx_retry_init(struct rkcanfd_priv *priv)
-+{
-+	INIT_DELAYED_WORK(&priv->tx_retry_work, rkcanfd_tx_retry_work);
-+}
-+
-+void rkcanfd_tx_retry_start(struct rkcanfd_priv *priv)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&priv->tx_lock, flags);
-+	priv->tx_retry_enabled = netif_running(priv->ndev);
-+	priv->tx_retry_pending = false;
-+	spin_unlock_irqrestore(&priv->tx_lock, flags);
-+}
-+
-+void rkcanfd_tx_retry_stop(struct rkcanfd_priv *priv)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&priv->tx_lock, flags);
-+	priv->tx_retry_enabled = false;
-+	priv->tx_retry_pending = false;
-+	netif_stop_queue(priv->ndev);
-+	spin_unlock_irqrestore(&priv->tx_lock, flags);
-+
-+	cancel_delayed_work(&priv->tx_retry_work);
-+}
-+
-+void rkcanfd_tx_retry_stop_sync(struct rkcanfd_priv *priv)
-+{
-+	rkcanfd_tx_retry_stop(priv);
-+	cancel_delayed_work_sync(&priv->tx_retry_work);
-+}
-+
- static void rkcanfd_start_xmit_write_cmd(const struct rkcanfd_priv *priv,
- 					 const u32 reg_cmd)
- {
-@@ -63,12 +129,19 @@ static void rkcanfd_start_xmit_write_cmd(const struct rkcanfd_priv *priv,
- 
- void rkcanfd_xmit_retry(struct rkcanfd_priv *priv)
- {
--	const unsigned int tx_head = rkcanfd_get_tx_head(priv);
--	const u32 reg_cmd = RKCANFD_REG_CMD_TX_REQ(tx_head);
-+	const unsigned int tx_tail = rkcanfd_get_tx_tail(priv);
-+	const u32 reg_cmd = RKCANFD_REG_CMD_TX_REQ(tx_tail);
- 
- 	lockdep_assert_held(&priv->tx_lock);
- 
-+	if (!priv->tx_retry_enabled)
-+		return;
-+
-+	priv->tx_retry_pending = true;
-+	netif_stop_queue(priv->ndev);
-+
- 	rkcanfd_start_xmit_write_cmd(priv, reg_cmd);
-+	schedule_delayed_work(&priv->tx_retry_work, 1);
- }
- 
- netdev_tx_t rkcanfd_start_xmit(struct sk_buff *skb, struct net_device *ndev)
-diff --git a/drivers/net/can/rockchip/rockchip_canfd.h b/drivers/net/can/rockchip/rockchip_canfd.h
-index 8fdb59025bfa..07fc5bc605df 100644
---- a/drivers/net/can/rockchip/rockchip_canfd.h
-+++ b/drivers/net/can/rockchip/rockchip_canfd.h
-@@ -487,10 +487,13 @@ struct rkcanfd_priv {
- 
- 	bool tx_enabled;
- 	bool irq_suspended;
-+	bool tx_retry_enabled;
-+	bool tx_retry_pending;
- 
- 	struct cyclecounter cc;
- 	struct timecounter tc;
- 	struct delayed_work timestamp;
-+	struct delayed_work tx_retry_work;
- 	unsigned long work_delay_jiffies;
- 
- 	struct can_berr_counter bec;
-@@ -564,6 +567,10 @@ void rkcanfd_timestamp_stop(struct rkcanfd_priv *priv);
- void rkcanfd_timestamp_stop_sync(struct rkcanfd_priv *priv);
- 
- unsigned int rkcanfd_get_effective_tx_free(const struct rkcanfd_priv *priv);
-+void rkcanfd_tx_retry_init(struct rkcanfd_priv *priv);
-+void rkcanfd_tx_retry_start(struct rkcanfd_priv *priv);
-+void rkcanfd_tx_retry_stop(struct rkcanfd_priv *priv);
-+void rkcanfd_tx_retry_stop_sync(struct rkcanfd_priv *priv);
- void rkcanfd_xmit_retry(struct rkcanfd_priv *priv);
- netdev_tx_t rkcanfd_start_xmit(struct sk_buff *skb, struct net_device *ndev);
- void rkcanfd_handle_tx_done_one(struct rkcanfd_priv *priv, const u32 ts,
-
--- 
-2.34.1
-
-
+      Arnd
 
