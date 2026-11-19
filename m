@@ -2,40 +2,40 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C264606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5893606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 19 Nov 2026 13:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uCL9P9rx;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=WiFLSo2p
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uJN0aftz;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=0vfJiQpn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=M476Q33nlRwB1R+3UL8yZ5jRuXymmTFCNXnivKPO8dA=; b=uCL9P9rxpv6jxW
-	8dpNekBQnEo4gAuwG24la5l+GnQ9k8KtW85ZZU7ub5j25H//uaPqvx8VWbU94LzMd3SkQk/0faYU2
-	rosdDvk5sys5lNOqX1v1vxVEO0rOoLSR+/24iKvoGt0cYDyaAQPeMJ5DO/b6d0BTA6DXWLv3qI9Ea
-	gFcBLTTfmp4SMppvR9x3IbmD4g36XKoc8xcayxtENnxCv3vemAzs5aVThqeIe7V4YqRpewMJxB5og
-	cVtbrRW2rzg0Bnt7mXb6c6i1+AX5iD9ZWgREiz6TnBbip243ZRLDMGbqkR211mlAMiffiOMvJZx6t
-	v1Se+po6+DA9GdU21wxg==;
+	List-Owner; bh=R26qmzEd6p1E3qSds2/i4/loBhNjXQNm0755urC7HDI=; b=uJN0aftz+fxRP6
+	R7cNE93Y72RCB9rqeIppzaAXrlRWWIp+suMqLyzuOaLfi8qsnuEHgNMuamyFiA8fLdpXy/+5Soz1n
+	5edAteGyY1VYuvG0NyADXv/eDLKEm1a9LmRYDd0We75ffOtIhRij8Lyl/aizbfWGqTGYRywqAo2R/
+	Zud+PZbqPV5ElOVOIpI4uVR40bbyXYU2FCOuWrGQUAzvrhKipP04HKwtnf/XGD/yr+XKxJ5TonMNN
+	qSbvPndZ61kP2OZ8yzUW+PVXedMwpBe9pNfa7oPJlld9TErr6vSmmCGVyUsd1dZHhJ+DXgLmb2Kfd
+	amkIJM60k4r/ELziGqDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2f6-0000000C9UT-2Q50;
-	Thu, 19 Nov 2026 13:58:52 +0000
+	id 1xU2fI-0000000C9dO-0rbK;
+	Thu, 19 Nov 2026 13:59:04 +0000
 Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU2eg-0000000C9AE-0xd4;
-	Thu, 19 Nov 2026 13:58:29 +0000
+	id 1xU2ef-0000000C9AC-2XyY;
+	Thu, 19 Nov 2026 13:58:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
 	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type;
-	bh=M476Q33nlRwB1R+3UL8yZ5jRuXymmTFCNXnivKPO8dA=; b=WiFLSo2p6fRabiUBAS37jw0acJ
-	xNEYRxbe7b2siovhSluaqNOqLGcS2IxPH6Mofc62LT942SFP4NkT4FlIWLibcaDazGcjgNYt8gtif
-	PmLLOday3uXy3u//z92Ots+S+DfeZz7k0sF93J/n+cVRm12hcKGSrpoFMNo6Ozr3ZkjKIibNBqhuR
-	Wy/lw8+eUmRx7pISfFPd4BnWO13Wcd1myzhNJH/dR5t69Bd+9nZy4Rdd35D8uEn8nkNMWVR8pz5q0
-	nVWcfAay71lJLeXchQ4CMubPGAAiS2XIQLv78LMq1ZXjdIHnasPVB9hp6sJcxrfz7AnR41c1A9epn
-	fnAPQfTw==;
+	bh=R26qmzEd6p1E3qSds2/i4/loBhNjXQNm0755urC7HDI=; b=0vfJiQpnJT00KWB8dY7BeGFaId
+	I5XZTSAF7fnwGul2Vl52LtGB34gkfjgaF5yH5/iI+0fYbjOj8Bmdxc8SU+tl9UujPUTT3oLWACDyC
+	PJC+IDFOX+INSpnm9ynHNjEeUbDD3mlpiCFa8pnuzBLL0tqpHVM41uZbphLvR05IkuwgyKWqalxXR
+	MhPfg8m+6zqy9DqNuem7Hq6oVNJ/v+HPP7YdD53qZdjjM981JWZ7jqNAeQQe2YTRtKYZYJ9MG5G9r
+	o871gUtOgZKfHgrmruYzjZpsZ0LAi138Ly+DfYhX0Bql8OnS03nfS4yJ7MPZoIH0uQeqPKyT8dunx
+	arKLAKFg==;
 From: Heiko Stuebner <heiko@sntech.de>
 To: broonie@kernel.org
 Cc: Heiko Stuebner <heiko@sntech.de>,
@@ -46,9 +46,9 @@ Cc: Heiko Stuebner <heiko@sntech.de>,
 	Lee Jones <lee@kernel.org>,
 	Sebastian Reichel <sebastian.reichel@collabora.com>,
 	Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: [PATCH v4 6/6] spi: rockchip: Add an atomic transfer function
-Date: Thu, 19 Nov 2026 14:58:08 +0100
-Message-ID: <20261119135808.2377849-7-heiko@sntech.de>
+Subject: [PATCH v4 4/6] spi: Add infrastructure for atomic sync transfers
+Date: Thu, 19 Nov 2026 14:58:06 +0100
+Message-ID: <20261119135808.2377849-5-heiko@sntech.de>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261119135808.2377849-1-heiko@sntech.de>
 References: <20261119135808.2377849-1-heiko@sntech.de>
@@ -56,8 +56,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_055826_290544_3F56948C 
-X-CRM114-Status: GOOD (  19.64  )
+X-CRM114-CacheID: sfid-20261119_055826_015250_DE4AB5E8 
+X-CRM114-Status: GOOD (  26.09  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,190 +79,171 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Heiko Stuebner <heiko.stuebner@cherry.de>
 
-Rockchip SPI controllers are often used to handle SPI connected PMICs that
-also handle system power-off events, like the RK806.
+There are cases where SPI transfers are needed during times without
+interrupts like shutdown when a PMIC should turn off the system.
 
-When the kernel signals the power-off, all the interrupts are already
-disabled, so regular SPI with its mutexes and DMA transfers does not
-work anymore.
+I2C already has atomic transfers for exactly that case, so introduce a
+similar concept for SPI. Similar to I2C, this is and should stay a
+corner-case, so is only allowed during the shutdown stages of the kernel,
+when interrupts are already turned off.
 
-Implement an atomic transfer function that does SPI transfers polling the
-controller in a loop without any DMA or IRQ.
+So add an optional transfer_atomic callback, drivers can implement to do
+immediate uninterrupted transfers and let spi_sync() determine if the
+state is late enough to use it.
 
-This can successfully handle the power-off command to RK806, but also
-read back the 2 chip-id registers just fine before that, as a test.
+For drivers without a transfer_atomic callback defined, the previous
+behaviour is kept for backwards compatibility and a helper
+spi_in_atomic_sync_mode() makes sure to only ever use this atomic mode
+during late system stages.
+
+spi_async() does not require a sleeping context for itself, so while it
+could in theory also be included, its caller waiting for the completion
+can sleep, so would still cause the splat about it.
 
 Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
 ---
- drivers/spi/spi-rockchip.c | 121 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 121 insertions(+)
+ drivers/spi/spi.c       | 68 ++++++++++++++++++++++++++++++++++++++---
+ include/linux/spi/spi.h | 11 +++++++
+ 2 files changed, 75 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/spi/spi-rockchip.c b/drivers/spi/spi-rockchip.c
-index cc6bd7d8f877..2cd2af3eb28f 100644
---- a/drivers/spi/spi-rockchip.c
-+++ b/drivers/spi/spi-rockchip.c
-@@ -7,12 +7,14 @@
- #include <linux/clk.h>
- #include <linux/dmaengine.h>
- #include <linux/interrupt.h>
-+#include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/pinctrl/consumer.h>
- #include <linux/platform_device.h>
- #include <linux/spi/spi.h>
- #include <linux/pm_runtime.h>
-+#include <linux/reboot.h>
- #include <linux/scatterlist.h>
- 
- #define DRIVER_NAME "rockchip-spi"
-@@ -218,6 +220,19 @@ static inline void wait_for_tx_idle(struct rockchip_spi *rs, bool target_mode)
- 	dev_warn(rs->dev, "spi controller is in busy state!\n");
+diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+index 0b0bc093e01f..0569f30785e9 100644
+--- a/drivers/spi/spi.c
++++ b/drivers/spi/spi.c
+@@ -5073,6 +5073,47 @@ static int __spi_sync(struct spi_device *spi, struct spi_message *message)
+ 	return status;
  }
  
-+/* atomic transfers only in host-mode */
-+static inline void wait_for_tx_idle_atomic(struct rockchip_spi *rs)
++/*
++ * We only allow atomic transfers for very late communication, e.g. to access a
++ * PMIC when powering down. Atomic transfers are a corner case and not for
++ * generic use!
++ */
++static inline bool spi_in_atomic_sync_mode(void)
 +{
-+	u32 sr;
-+	int ret;
-+
-+	ret = readl_relaxed_poll_timeout_atomic(rs->regs + ROCKCHIP_SPI_SR, sr,
-+						!(sr & SR_BUSY),
-+						10, 5 * USEC_PER_MSEC);
-+	if (ret)
-+		dev_warn(rs->dev, "spi controller still in busy state!\n");
++	return system_state > SYSTEM_RUNNING && spi_in_atomic();
 +}
 +
- static u32 get_fifo_len(struct rockchip_spi *rs)
- {
- 	u32 ver;
-@@ -722,6 +737,74 @@ static bool rockchip_spi_can_dma(struct spi_controller *ctlr,
- 	return xfer->len / bytes_per_word >= rs->fifo_len;
- }
- 
-+static int rockchip_spi_transfer_atomic(struct spi_device *spi, struct spi_message *msg)
++static int __spi_sync_atomic(struct spi_device *spi, struct spi_message *message)
 +{
 +	struct spi_controller *ctlr = spi->controller;
-+	struct rockchip_spi *rs = spi_controller_get_devdata(ctlr);
-+	struct spi_transfer *xfer;
-+	int ret = 0;
++	unsigned long flags;
++	int status;
 +
-+	if (!pm_runtime_active(rs->dev)) {
-+		dev_err(rs->dev, "Failed to do atomic SPI transfer due to runtime suspend\n");
-+		return -EIO;
++	if (!ctlr->transfer_atomic) {
++		dev_err(&ctlr->dev, "No atomic transfer handler defined\n");
++		return -EOPNOTSUPP;
 +	}
 +
-+	spi_set_cs(spi, true, false);
-+
-+	/* make sure all interrupts are masked and status cleared */
-+	writel_relaxed(0, rs->regs + ROCKCHIP_SPI_IMR);
-+	writel_relaxed(0xffffffff, rs->regs + ROCKCHIP_SPI_ICR);
-+
-+	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
-+		WARN_ON(readl_relaxed(rs->regs + ROCKCHIP_SPI_SSIENR) &&
-+			(readl_relaxed(rs->regs + ROCKCHIP_SPI_SR) & SR_BUSY));
-+
-+		rs->n_bytes = xfer->bits_per_word <= 8 ? 1 : 2;
-+
-+		ret = rockchip_spi_config(rs, spi, xfer, false, false);
-+		if (ret < 0)
-+			goto out_disable;
-+
-+		writel_relaxed(0, rs->regs + ROCKCHIP_SPI_RXFTLR);
-+
-+		rs->tx = xfer->tx_buf;
-+		rs->rx = xfer->rx_buf;
-+		rs->tx_left = rs->tx ? xfer->len / rs->n_bytes : 0;
-+		rs->rx_left = xfer->len / rs->n_bytes;
-+
-+		spi_enable_chip(rs, true);
-+
-+		while (rs->tx_left || rs->rx_left) {
-+			u32 status = readl_relaxed(rs->regs + ROCKCHIP_SPI_SR);
-+
-+			if (rs->tx_left && !(status & SR_TF_FULL))
-+				rockchip_spi_pio_writer(rs);
-+
-+			if (rs->rx_left && !(status & SR_RF_EMPTY))
-+				rockchip_spi_pio_reader(rs);
-+		}
-+
-+		wait_for_tx_idle_atomic(rs);
-+
-+		spi_enable_chip(rs, false);
-+
-+		if (xfer->cs_change && !list_is_last(&xfer->transfer_list, &msg->transfers)) {
-+			spi_set_cs(spi, false, false);
-+			spi_transfer_cs_change_delay_exec(msg, xfer);
-+			spi_set_cs(spi, true, false);
-+		}
++	if (__spi_check_suspended(ctlr)) {
++		dev_warn_once(&spi->dev, "Attempted to sync while suspend\n");
++		return -ESHUTDOWN;
 +	}
 +
-+out_disable:
-+	spi_set_cs(spi, false, false);
-+	msg->status = ret;
++	/* Not using spi_maybe_optimize_message, so just validate */
++	status = __spi_validate(spi, message);
++	if (status)
++		return status;
 +
-+	if (msg->complete)
-+		msg->complete(msg->context);
++	spin_lock_irqsave(&ctlr->bus_lock_spinlock, flags);
++	status = ctlr->transfer_atomic(spi, message);
++	spin_unlock_irqrestore(&ctlr->bus_lock_spinlock, flags);
 +
-+	return ret;
++	if (status == 0)
++		status = message->status;
++
++	return status;
 +}
 +
- static int rockchip_spi_setup(struct spi_device *spi)
+ /**
+  * spi_sync - blocking/synchronous SPI data transfers
+  * @spi: device with which data will be exchanged
+@@ -5083,6 +5124,10 @@ static int __spi_sync(struct spi_device *spi, struct spi_message *message)
+  * is non-interruptible, and has no timeout.  Low-overhead controller
+  * drivers may DMA directly into and out of the message buffers.
+  *
++ * During the time when the system is being shutdown and a transfer_atomic
++ * function is set, this call may also be used from a context that does
++ * not allow sleeping, i.e. with disabled interrupts.
++ *
+  * Note that the SPI device's chip select is active during the message,
+  * and then is normally disabled between messages.  Drivers for some
+  * frequently-used devices may want to minimize costs of selecting a chip,
+@@ -5096,11 +5141,17 @@ static int __spi_sync(struct spi_device *spi, struct spi_message *message)
+  */
+ int spi_sync(struct spi_device *spi, struct spi_message *message)
  {
- 	struct rockchip_spi *rs = spi_controller_get_devdata(spi->controller);
-@@ -750,6 +833,19 @@ static int rockchip_spi_setup(struct spi_device *spi)
- 	return 0;
++	struct spi_controller *ctlr = spi->controller;
+ 	int ret;
+ 
+-	mutex_lock(&spi->controller->bus_lock_mutex);
+-	ret = __spi_sync(spi, message);
+-	mutex_unlock(&spi->controller->bus_lock_mutex);
++	/* Keep old behaviour for clients that tolerate the warnings */
++	if (spi_in_atomic_sync_mode() && ctlr->transfer_atomic) {
++		ret = __spi_sync_atomic(spi, message);
++	} else {
++		mutex_lock(&spi->controller->bus_lock_mutex);
++		ret = __spi_sync(spi, message);
++		mutex_unlock(&spi->controller->bus_lock_mutex);
++	}
+ 
+ 	return ret;
  }
- 
-+static int rockchip_spi_power_off(struct sys_off_data *data)
-+{
-+	struct rockchip_spi *rs = data->cb_data;
-+	int ret;
-+
-+	/* enable controller for possible calls from shutdown handlers */
-+	ret = pm_runtime_resume_and_get(rs->dev);
-+	if (ret)
-+		dev_warn(rs->dev, "spi controller failed to runtime resume: %d\n", ret);
-+
-+	return 0;
-+}
-+
- static int rockchip_spi_probe(struct platform_device *pdev)
+@@ -5116,6 +5167,10 @@ EXPORT_SYMBOL_GPL(spi_sync);
+  * is non-interruptible, and has no timeout.  Low-overhead controller
+  * drivers may DMA directly into and out of the message buffers.
+  *
++ * During the time when the system is being shutdown and a transfer_atomic
++ * function is set, this call may also be used from a context that does
++ * not allow sleeping, i.e. with disabled interrupts.
++ *
+  * This call should be used by drivers that require exclusive access to the
+  * SPI bus. It has to be preceded by a spi_bus_lock call. The SPI bus must
+  * be released by a spi_bus_unlock call when the exclusive access is over.
+@@ -5124,7 +5179,12 @@ EXPORT_SYMBOL_GPL(spi_sync);
+  */
+ int spi_sync_locked(struct spi_device *spi, struct spi_message *message)
  {
- 	struct device_node *np = pdev->dev.of_node;
-@@ -858,6 +954,31 @@ static int rockchip_spi_probe(struct platform_device *pdev)
- 	ctlr->max_transfer_size = rockchip_spi_max_transfer_size;
- 	ctlr->handle_err = rockchip_spi_handle_err;
+-	return __spi_sync(spi, message);
++	struct spi_controller *ctlr = spi->controller;
++
++	if (spi_in_atomic_sync_mode() && ctlr->transfer_atomic)
++		return __spi_sync_atomic(spi, message);
++	else
++		return __spi_sync(spi, message);
+ }
+ EXPORT_SYMBOL_GPL(spi_sync_locked);
  
-+	/* Only register atomic transfer in host-mode */
-+	if (!target_mode) {
-+		ctlr->transfer_atomic = rockchip_spi_transfer_atomic;
+diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+index 0bf31776c54c..f62b21af5d75 100644
+--- a/include/linux/spi/spi.h
++++ b/include/linux/spi/spi.h
+@@ -461,6 +461,8 @@ extern struct spi_device *devm_spi_new_ancillary_device(struct spi_device *spi,
+  * controller for configuring specific CS setup time, hold time and inactive
+  * delay in terms of clock counts
+  * @transfer: adds a message to the controller's transfer queue.
++ * @transfer_atomic: transfer a message immediately from a late-stage
++ *	synchronous transfer
+  * @cleanup: frees controller-specific state
+  * @can_dma: determine whether this controller supports DMA
+  * @dma_map_dev: device which can be used for DMA mapping
+@@ -721,6 +723,15 @@ struct spi_controller {
+ 	int			(*transfer)(struct spi_device *spi,
+ 						struct spi_message *mesg);
+ 
++	/*
++	 * Bidirectional bulk atomic transfers
++	 *
++	 * Special function that allows transfers in contexts where
++	 * no interrupts nor DMA are available.
++	 */
++	int			(*transfer_atomic)(struct spi_device *spi,
++						   struct spi_message *mesg);
 +
-+		ret = devm_register_sys_off_handler(&pdev->dev,
-+						    SYS_OFF_MODE_POWER_OFF_PREPARE,
-+						    SYS_OFF_PRIO_DEFAULT,
-+						    &rockchip_spi_power_off, rs);
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret,
-+				     "failed to register poweroff handler\n");
-+			goto err_disable_pm_runtime;
-+		}
-+
-+		ret = devm_register_sys_off_handler(&pdev->dev,
-+						    SYS_OFF_MODE_RESTART_PREPARE,
-+						    SYS_OFF_PRIO_DEFAULT,
-+						    &rockchip_spi_power_off, rs);
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret,
-+				     "failed to register restart handler\n");
-+			goto err_disable_pm_runtime;
-+		}
-+	}
-+
- 	ctlr->dma_tx = dma_request_chan(rs->dev, "tx");
- 	if (IS_ERR(ctlr->dma_tx)) {
- 		/* Check tx to see if we need to defer driver probing */
+ 	/* Called on deregistration to free memory provided by spi_controller */
+ 	void			(*cleanup)(struct spi_device *spi);
+ 
 -- 
 2.53.0
 
