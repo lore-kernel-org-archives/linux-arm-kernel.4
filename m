@@ -2,110 +2,194 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B0860A3826
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4399606A325
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Tzn4JW5j;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Zr4HWIUA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aWDUgrjV;
+	dkim=pass (1024-bit key, unprotected) header.d=cherry.de header.i=@cherry.de header.a=rsa-sha256 header.s=selector1 header.b=FnvX5oM4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3/jsMe/Qc48pu/imVYvdVloDOJ6fnxt5dXnAjgruQUk=; b=Tzn4JW5jMvQyFw
-	MHgXA9j8ZlWUil9ne1d/bdlGXXUFIhxpzLtWyl3tbgcJpvL4+IDETXgRxeDie113o+KT4IRvwPnMJ
-	99PqhGwIIfIL3KRcKP8P8xagnZBYqXy0XxFiipNQP9yVzdnA2qMnjS2j/UOOp+oZxdYorgqSHRpd0
-	+ljxIJB4GbZA3U5s0P2iCk1t2QgG5HJ1HITFjnpCv37/5FugMEXOXkZuCTxUvaturaDN7DNcW4UyC
-	NMV6G8Jw5sEOs4GhWixGm8qquPx7U7XdqdI559A3sf+9LZ18NBnfBnsJ1GRdJLMF85kOmYt4YLAbL
-	Q9JMvYy00y8vDlUC4Ahw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=q78t59WfVpvCxgLqXsoLMVuo11RK6A9rnfepJ9lCCuM=; b=aWDUgrjVDSsl0+8g71EzdyhNxZ
+	AU5JcDN8ZuWl1mKyr9SHwW4jE5KQRLOjq6vNord0ZG/oryB554oyGbKoeAzG9VD8j9JQE058GlgH3
+	BADucHhjCswUPus6dDa/FDApBnaGvu3imnWMnPj79+stxIKKQLKENFcqRT3ViAN9TOevTCt+Olzkd
+	3vgwHj4ZS/wLSgeIAlLvMMIEf2gvXcSMV1kfMpNXyO8iN0IBMdKncqaHI/LrqI9+ScZ2SA0/F2vAr
+	YMJQyLK3L3nIPnPoATiUVEyOOGww87WbB0qJ/kDBYWCHsMuNMxGcVkitdbH07HFQzK+PjWJKpizUb
+	+yzWna0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOtf-0000000F7we-0C7H;
+	id 1xUOtf-0000000F7yC-3MZw;
 	Fri, 20 Nov 2026 13:43:23 +0000
-Received: from mail-dy1-x1331.google.com ([2607:f8b0:4864:20::1331])
+Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOtJ-0000000F7cB-0wis
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 13:43:02 +0000
-Received: by mail-dy1-x1331.google.com with SMTP id 5a478bee46e88-372bdb942dbso1193673eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 05:43:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795182180; x=1795786980; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=3/jsMe/Qc48pu/imVYvdVloDOJ6fnxt5dXnAjgruQUk=;
-        b=Zr4HWIUAI08Q2PM81CWbmdjcAy4gVrkKQLnOv4dM1uifsOhtFwEXM5uzqfXBsgEx+m
-         JfSeMCbT4kpQjvs2ISadyc9sXVQe08tV615KVlUp25JXQb86Z4K+sFTRswHDij/KSHEY
-         hQrOWWjimx6qoCeX6Dhocg7vd4uRXBxckDi01P7pdVdGxAulqE/tRjdV6J9imuoVJE5o
-         gwMPYNBiOAAuB7Xtgb9JKlGiIQ31DpfjAVlPaUrzKHWsp5mXBn9A9E1k9fYAffmlCTXL
-         lXQmJGsMcFV7bhttBDGzHcLn9nCXmGSx6dnyVCrwEwBsIUbDKUq+UClgb1rDUAfPT0Ax
-         dQPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795182180; x=1795786980;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=3/jsMe/Qc48pu/imVYvdVloDOJ6fnxt5dXnAjgruQUk=;
-        b=rqNmAY0JAD6QlCR8XUHLUTLRo66QXJznpLAU9iuxM8gwrGNBbc0S3mRpTr8C3EDdpg
-         SsTW9XVmc8VgnK6wX1riGJ9lTb9TSp8DnqotmQhFJolB0sBcD/6M5JTsSYmUw3vOuKRs
-         gKrnyTl2T4mCAVyshi8n8hE8Vcikmd3AY89wfK+jrAwthT9dGT7AXONwgjz10VugX3rO
-         lHnR0lbVXaJkj4mliUAQut0MsVwyUERDK5yjhfOi77QqiY4m8AU78p7Fp3XP7ixpQjvo
-         x7Q/r3Uw7vPDrOKL6VyYIkNPTn/gZqpoh/GfMsz6EFzrnHxD6W1OYVu3Ez6iaE8/hkKE
-         S1dw==
-X-Forwarded-Encrypted: i=1; AL+hErGJguf2zk5MRuhYnDlkGNd6ZPsx0h/RLRZnsxwh+HeCX9gfZhIfTSSAxZ6l/Lx6svqsexphQInc7neQQILYXNZT@lists.infradead.org
-X-Gm-Message-State: APuU4Z9pTE9PkqUNXVXv6o93N7d0/px8dXNYtmhkKst7Yu0lMos4v+Bf
-	R0Gv6GFjSVUAvaxoiPFgc1gq/ZyIs+ebWvHUDioAfQfFQ9Y0ksWCbbZv
-X-Gm-Gg: AZFdTZdryJOrhug4sMRsliwMT1ML+Msq2v87CwVQns4OyM+qKK6MC80P/7QeSsjtCl9
-	W4sYii2P162JjKQJJrSZaEsc1h8+kXMkmVXrN7fK6LbUVb/H3rQY9uROFYuTyxMZDLojkzqI8/K
-	fvld5AYogkueq3gV0JNlO7wBnaemrqokl2DjivMT31G/BKDeONyn0msUB/5L9oQuou3RTaH6tTk
-	6OSpGm+9BBYPidxBgqi44D2802mbMAnfNRsQ4KAUPKGpm4DsyZdeYkh4zcZu8RM/L7KyrAtHekE
-	bzS5duO7JR1qcYU+/Pg1vT+CIuMKsNMkTtJlJw2ea3e48rE5w/6gMbesGXvKNAJD4MEzZ1YWoBa
-	MakiLu79c9wl+xdJoL1+eOO73cjLqEt7B+ouuL8jwKuDDQq7SyuC9Rk97uZI7DP5OLNjwMYMd35
-	8k3m9eaCVBNYmGfc8u9x2u4jCja3xR/yEjjAHKUVqczrILslWVzQBiVT+3wOrdpcspUYh1fwKv9
-	vsnDsPPtcPl3R4mWt72vm8Xo1W/AAmsdWEXZABH3XAUvHdSzeN3C5kYTBVvGkxEfGJEH7CbUk19
-	XVcFhzDkC/2Tp/IxUnxh
-X-Received: by 2002:a05:693c:87d2:20b0:381:ad6f:75ea with SMTP id 5a478bee46e88-3856f14748amr2810204eec.13.1795182179979;
-        Fri, 20 Nov 2026 05:42:59 -0800 (PST)
-Received: from a1-free ([161.33.196.121])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38567daaf70sm9590857eec.28.2026.11.20.05.42.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 05:42:59 -0800 (PST)
-From: TAKANO Mitsuhiro <takano32@gmail.com>
-To: linux-perf-users@vger.kernel.org,
-	Ingo Molnar <mingo@redhat.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>
-Cc: Ian Rogers <irogers@google.com>,
-	James Clark <james.clark@linaro.org>,
-	John Garry <john.garry@linux.dev>,
-	linux-arm-kernel@lists.infradead.org,
-	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
-	linux-kernel@vger.kernel.org,
-	TAKANO Mitsuhiro <takano32@gmail.com>,
-	Will Deacon <will@kernel.org>,
-	Mike Leach <mike.leach@arm.com>,
-	Leo Yan <leo.yan@linux.dev>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Jiri Olsa <jolsa@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>
-Subject: [PATCH v12 1/2] perf vendor events: Fix misspelled keys in the event tables
-Date: Fri, 20 Nov 2026 13:42:51 +0000
-Message-ID: <20261120134252.1036963-2-takano32@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261120134252.1036963-1-takano32@gmail.com>
-References: <20261120060931.711483-1-takano32@gmail.com>
- <20261120134252.1036963-1-takano32@gmail.com>
+	id 1xUOtQ-0000000F7g7-1422;
+	Fri, 20 Nov 2026 13:43:10 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aelO+7PHjC8tZ9cTLueuF3rrarpIuYTZC6gO1flBFanHS/WcRNl9RMIKTvaSbSM4VryIMhFX/U8aPMRUXccFMKlv9cmPt96HRib2rdjXRBnphe6zNdA18i8yqyde5jNcPZupAD+PaFWNZsBXPMKmodpeCiZix/iIMSeU9/m0kHjM9199gsilB7cJor43k14BEnm2NNaf6tDeOtPtdgNH444ZKXyzrW+tryuLq47S9ncbD6nVoJg5v88tR6cd94Eo26zmOKTp1HjxFN6PMMM+NezyebdD0Y9Uwr8FgyozZ03zvuT8HavNuNW62Rq916W68osrFwnDVGj+HfH8qWMwrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q78t59WfVpvCxgLqXsoLMVuo11RK6A9rnfepJ9lCCuM=;
+ b=Pjf4Th8fDfGaOmSC5qgL+62SPnK3bXi4Bpv5BFmMAqzoDWtMCWL89wvQDPovn5fk31fL+6vAH1J0FFIXREQR20sgcdy+4gE7pgSejf8iMcprHN3wceEVb9JjCDM4BQEaP3lZtl5lNYmDxZV6OuDV5y4/CjA1kJ7hk8BQg1plaKr22ZVJY3CPtRiTkc82mvuZlAN5m1sNZlEeGmK19gsQaIsa0r+3G4gOEN1wClieWidOu75l/tM2VnS1zdvjfetTr4EhwWkI7pdD90cwxzJrrL3cI4BKP4ZX9/X+CZlOHh1JJDssNd96XWCPZ+30haEq9iQ73TEyESXNv+0NZujWAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q78t59WfVpvCxgLqXsoLMVuo11RK6A9rnfepJ9lCCuM=;
+ b=FnvX5oM41hs5nuCX+3rcrXshvHpCLfU5UUJ5KKaVk7kTO3nOYOy7zzkBHzeRg9I9s8xOl3MbcGHEBNLxkLoyVmzPdWLqOPOOEz9aiFZr9zNLqIXYdxeBn1eKfrtjlYlc67i1GS3XcbipY3t9s7autzVUkNKyCQRt54hNLoXs+Lk=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from GVXPR04MB12016.eurprd04.prod.outlook.com (2603:10a6:150:335::6)
+ by VI1PR04MB7023.eurprd04.prod.outlook.com (2603:10a6:800:12f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
+ 2026 13:42:59 +0000
+Received: from GVXPR04MB12016.eurprd04.prod.outlook.com
+ ([fe80::f2d4:9db8:9a4e:b0bd]) by GVXPR04MB12016.eurprd04.prod.outlook.com
+ ([fe80::f2d4:9db8:9a4e:b0bd%4]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
+ 13:42:59 +0000
+Message-ID: <7bec766f-14b1-4eac-96c7-d7f1cf38021d@cherry.de>
+Date: Fri, 20 Nov 2026 14:42:57 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] Input: rk805-pwrkey - enable the wakeup interrupt
+ during system suspend
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Jakob Unterwurzacher <jakobunt@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Tony Lindgren <tony@atomide.com>
+Cc: Joseph Chen <chenjh@rock-chips.com>, Lee Jones <lee@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ mfd@lists.linux.dev, devicetree@vger.kernel.org
+References: <20261029-dev-tiger-v7-4-pre-20261028-tiger-suspend-b4-v1-0-cb12621c1fb4@cherry.de>
+ <20261029-dev-tiger-v7-4-pre-20261028-tiger-suspend-b4-v1-1-cb12621c1fb4@cherry.de>
+ <avUGEQhSKlko0Fm9@google.com>
+Content-Language: en-US
+From: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
+Autocrypt: addr=jakob.unterwurzacher@cherry.de; keydata=
+ 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
+ ldPHIqbIwpfecQ==
+In-Reply-To: <avUGEQhSKlko0Fm9@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR10CA0088.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:803:28::17) To GVXPR04MB12016.eurprd04.prod.outlook.com
+ (2603:10a6:150:335::6)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12016:EE_|VI1PR04MB7023:EE_
+X-MS-Office365-Filtering-Correlation-Id: fbbb4ddb-1f11-4414-461c-08df470c307e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|366016|1800799024|10067099003|4143699003|11063799006|5023799004|56012099006|261022105027099003|261022075727099003|261026140227099003|261021121427099003|261026121527099003|261028144727099003|261102123227099003|261009221227099003|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: mYGwrL/jF2wClmba4invmpcRcCaKkqRU39Oc1sboB3Dund/sqknR038o5Qq3D+ycB6DLWbWspuTKngJsV1AXDGhmMWZ6i1qVIvbTUqq9piviSOYFe4yta9DKCHi+eF/VpkXPU5HvgVlKYESFSKvQpS4vWurQuY41uTOO7+eGZocVg8tO0pqcH9UyV+Ml3gi6etYNub/MpOoxPDdzfshpKqMLBSCMXmgyxholG94qHPoIN1IaWspKD/dRTGfxlCYsCMT2tPh+xtkVLC6esb3FeGj6uRqMObbJU8Y1fjOXuyNVPYScLQCDmqNS1pY1lDiPnGKsvGFaQA2wP1PeZrkdl6RfLoZ0vXTIeyxBy383TcV02Hue8jFbq9lcoMUbPEArwxO2aQcwLSsXKrDZnx4hAGp/eOHhEFiNxIbWsZCYgSzUK5uA1pGJe05GbbpGfGkA1mIeV9I0i3b8jPlPqUS6uEXB6dPDB70QmcOH6aONUAOONX6+NHfQi3SiibFzBoAb4uBoFLaCF2NG941WpT1W/ESwbp9Ul/Os524F6nb2msmqQC7CNAYVSQJFnbRU4yLF0L0W5RdaZEMQtPr3rKh69J/ahoJO3tqAzcL5ayrO5IRzwmhBz9xGZ7BgSSCnOMB+qkJkhAjBM7mkbmrNAWKrcnjecMpJsDPcbpzgwmnfFF8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12016.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(366016)(1800799024)(10067099003)(4143699003)(11063799006)(5023799004)(56012099006)(261022105027099003)(261022075727099003)(261026140227099003)(261021121427099003)(261026121527099003)(261028144727099003)(261102123227099003)(261009221227099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?STlJVjF1OEtFRlJOZ0xzMUNZTUJCb0lkTlJIKzdsNms1ZEtEdFR5aFE4RnpG?=
+ =?utf-8?B?UjBjcFpXMVFsK2J1djFIR3VIOUplbm9NTGFnMnN5S3dQV1kxTEw2ZWdCK01y?=
+ =?utf-8?B?SWNGVEZCaGlNNnJtYlhYWXFDc0QwajA3N3N6T09lM0tqZXVIbnZ5bFR4ZkxT?=
+ =?utf-8?B?SkFxc29KM2NhSjk3Y3FETWZaUTFYTUV6MGhVWDlKZURjYlVoVzlVVnVhNU1J?=
+ =?utf-8?B?M2RNT0oyVXRsUnlXMitDZ1dmcnZsMkFoaFhuT2UxSDRZSkdraHRJU3cvUVJ6?=
+ =?utf-8?B?RzZvSVp5dmxyb05VNEowV2F6OEdTTStBc2dMTkF1OWtGeWoyLzA5c3M3eXRt?=
+ =?utf-8?B?ZytyMEFjblpSdndWMjNxLzRBR0RyV1ZYUDZ4eForMlJxdjBMakcxK082T2kv?=
+ =?utf-8?B?MnFKNFVhQkhxY3FMdTBGNmovQ0JzMGN5OUhPYWtacS9aWjhvbGFtUXBmUDJB?=
+ =?utf-8?B?dHpmMmlwQno4SjdvTG1JbWpFRWxuZTFqaEtlQ0p1L3dzUWJJYXpsaWVMczZa?=
+ =?utf-8?B?RFJJUmlKc3FUTUVad2IvQkZ1RzhCbmxCb3MrZW9aaVpYbm5uQ1NZclFZSHVx?=
+ =?utf-8?B?eGMzYzN5YlVMaWxhUlBUc3hma205MmMvV3h4K3JHc2QrV0tHamVtTnJzcUdX?=
+ =?utf-8?B?ZWRvTVltUm10eVNIQ0ttOGxqV0pyUU1ualdub1RhMXo2d0N5UjhWS29wRXVm?=
+ =?utf-8?B?bHB6Qkk4clp2SlJ0RFA3TjdFVEEwbGZESGRtNmZqNGZ4ODdKN2ZRZHdpV3lK?=
+ =?utf-8?B?bEpFV1NQOSsySGxtbVZTelZEQ21YY21LSG9mNjhBMHZuUWpvQXd1TnFxSEtK?=
+ =?utf-8?B?R05OeHl4RG41SEE5cm9NSGs4Y2gyYk9tMGJ3aU0wSEtVNTc5YTAwelhlTnp0?=
+ =?utf-8?B?TitvZzhNWXJBbDZDZnJQcm94aEFIcjl5NVN1ZThNVE9HbUhra0NQa2Z2NENz?=
+ =?utf-8?B?UGlSTEM4bk5KQk81eC9nWjhieUs4OS9vVzhCa2NZQVRlNGppTWx5UndQVHZn?=
+ =?utf-8?B?L1RVUUNhUklMTHE1Y3V4dVlhNTFyWDRlNUtSOEhJOTZNUlVCOTJwdHIyd2p4?=
+ =?utf-8?B?SWFhc09LS0szamt5eTl2RGE1ZFY4V3dxdVdna054MzNhOUhEenBDYXorSXps?=
+ =?utf-8?B?VnJabS9qdE9JWG9JL3NwYm5YOS9mUGd3ck1oT3QvaG01ZjdsSEdwRVcvN3BT?=
+ =?utf-8?B?U3ozYUlNWGNUeXRoZEZ1NVdtbFhaT1Z3VnhsVnpuWU1vc1BSU2hWNG9NWmpZ?=
+ =?utf-8?B?WlVEQVhzbENyczVQUjN2YUVqUjd3bWgwSG1hejE4K08xNGhya2FVbzAxUmJ3?=
+ =?utf-8?B?QWZVOG1DdjJHdlRwR2RxbU5haU5jbGNqd2xaQlFCTnJYV29RQWhDR1RNVjVa?=
+ =?utf-8?B?eks0dVJxMTlIbmZacVV1MHdoVjgxVEwvV3FNZUhKN0lLZUhFMWdlZ3pvUUti?=
+ =?utf-8?B?R3B5YlVXU29oK0pzQUEvZnFtWHl5c0dIeW1UMldkM2xETmRBc1RuR2FhN0ZJ?=
+ =?utf-8?B?eVl0czRVZHZmTG41QlR5UkNRVXBoYjM4U3RUUVdQcG90ZHVSYVFJTGFDc2p1?=
+ =?utf-8?B?Uy9aV0R4N0doOFJ1clJHemRlaEF6TVo3R012eWVEOTJ3OHROSUJtR0F5NTB3?=
+ =?utf-8?B?dzNiS0ZWcHE5cEdZMGVjUTdmb1VLRVFCaXV6b0lJaUNraGVhK0NjRUQxWFJO?=
+ =?utf-8?B?aTNqVVJMQ1ZpRWJKSW56NVdyK0Y0bFhiVjRDWkJhQ1BNMmY2T2JtSXZWclFh?=
+ =?utf-8?B?WHcwSTZtdjJxcDIwYjNWWDlyYWk1RUdGMVk4VERYdTZSVU5vYUZiQi9vUmIy?=
+ =?utf-8?B?UDlOaVFYb1lGNldIUEVYT1VvdUR4WW1xckYvZ3Z0MDhqZHlJM2YrT2ZOSWU4?=
+ =?utf-8?B?STBGZitDd05VVzNpSklTcVlOQ2V3NFM1dFFvRzc0a2h0Y0dGSCtzTzNrWHVX?=
+ =?utf-8?B?WFdDUzc3L2tMMHB3anJncldwYmo2ajJaemhsY082REd2TjZtRCtvTGFEaU1G?=
+ =?utf-8?B?Mm9rbVFiall5Qjgyd0YzSy9CTktXaERIVUtYKzZ2WXJ0a3FselQxZTN1VVZW?=
+ =?utf-8?B?OXF6dmdubFdJeXB4Y3ZZTEQ2SUt1QllQQXg3SFBMQzFqQmM4UHdPOHd5TmFL?=
+ =?utf-8?B?MU9TdjJaSjhscTVsbEZ5NlZxbHpzNFJwTGt1eGkvL2F1dFJucXd1OXQyOHlK?=
+ =?utf-8?B?SDlCak5iZVRMT0h6cEMyZzFvcnhlVDVSbWlNK08rOUxieUFSNDNTdEhxcW1l?=
+ =?utf-8?B?akEwZGl4MkJOUDVYOFJON1gvamxCUjhIMkE1MVhTS213eWpXc3BtOGZjckVD?=
+ =?utf-8?B?S3VkSCt2Kzc1NVlwUmllZFhQNnc0ODBFZGRlU0l3bnRKNXVlaERGUkphckJB?=
+ =?utf-8?Q?C3sS0THCevhZBN7I=3D?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbbb4ddb-1f11-4414-461c-08df470c307e
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12016.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 13:42:59.0426
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: e1t342ixbZCpj/5uXgRSTbNEXYBUXChq3w7hfroxvNASNY0RqZa78fC/dl3ztDFbOY4C4ZStcmNs7kN+QG+09RtvEayu210iizFCfYqYeak=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7023
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_054301_297499_1CF365BD 
-X-CRM114-Status: GOOD (  14.60  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261120_054308_497017_53864CC0 
+X-CRM114-Status: GOOD (  25.17  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,208 +200,133 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Sixteen objects in arch/arm64/ampere/ampereonex/mmu.json carry
-"PublicDescrition" and one object in each of amdzen4/cache.json,
-amdzen5/load-store.json and amdzen6/load-store.json carries
-"BriefDescript6ion".  jevents.py reads only the keys it knows by name, so
-these fields have no effect: the text is dropped without a word and never
-reaches the generated tables.
+Hi,
 
-For the three AMD events that leaves them with no description at all, and
-the text comes back.  The AmpereOneX events carry the same text in
-BriefDescription and the generator drops a duplicate long description, so
-the generated arm64 tables are unchanged.
+On 11/12/26 01:25, Dmitry Torokhov wrote:
+> [You don't often get email from dmitry.torokhov@gmail.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> Hi Jakob,
+> 
+> On Thu, Oct 29, 2026 at 11:06:23AM +0100, Jakob Unterwurzacher wrote:
+>> From: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
+>>
+>> The driver marks the device as wakeup capable, but never enables the
+>> power key interrupt as a wakeup interrupt. As a consequence, the PMIC
+>> interrupt line is masked during system suspend and the power key cannot
+>> wake up the system, e.g. from suspend-to-ram on RK3588 with an RK806.
+>>
+>> Enable the interrupt as wakeup interrupt in the suspend callback if the
+>> device may wake up the system, and disable it again on resume.
+>>
+>> This is done in the regular suspend phase on purpose, rather than with
+>> dev_pm_set_wake_irq(), which arms the wakeup in the noirq phase: there,
+>> enabling it updates the PMIC's interrupt registers through regmap-irq,
+>> which fails when the PMIC is connected via SPI:
+>>
+>>    spi_master spi2: Failed to power device: -13
+>>    rk8xx-spi spi2.0: Failed to sync masks in 7a
+> 
+> Sounds like this needs to be solved in PM core rather than hacked around
+> in individual driver? Let's CC Tony and Rafael.
 
-This is the same change as "perf vendor events arm64 AmpereOneX: Fix
-misspelled PublicDescription keys" (Message-ID
-<20261113065253.746615-1-takano32@gmail.com>) and "perf vendor events amd:
-Fix a misspelled JSON key" (<20261108184600.3810059-1-takano32@gmail.com>),
-squashed into one patch so that this series applies on its own.
+How about something like this, copy-pasted below? If no immediate 
+objections I'll post it as a proper patch.
 
-Written with Hermes Agent, an LLM assistant; the author reviewed it and
-ran the generator as described.
+With this, rk805-pwrkey can use dev_pm_set_wake_irq with no issues 
+(tested on RK3588-Tiger).
 
-Fixes: 16438b652b46 ("perf vendor events arm64 AmpereOneX: Add core PMU events and metrics")
-Fixes: 658448281d19 ("perf vendor events amd: Add Zen 4 core events")
-Fixes: 45c072f2537a ("perf vendor events amd: Add Zen 5 core events")
-Fixes: 2f42fb0661d9 ("perf vendor events amd: Add Zen 6 core events")
-Acked-by: Ilkka Koskinen <ilkka@os.amperecomputing.com>
-Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
----
- .../arch/arm64/ampere/ampereonex/mmu.json     | 32 +++++++++----------
- .../pmu-events/arch/x86/amdzen4/cache.json    |  2 +-
- .../arch/x86/amdzen5/load-store.json          |  2 +-
- .../arch/x86/amdzen6/load-store.json          |  2 +-
- 4 files changed, 19 insertions(+), 19 deletions(-)
+Thanks,
+Jakob
 
-diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
-index 66d83b680651..9457f9be4ecc 100644
---- a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
-+++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
-@@ -30,37 +30,37 @@
-         "BriefDescription": "Data TLB translation cache hit on S2L2 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Data TLB translation cache hit on S2L1 walk cache entry",
-+        "PublicDescription": "Data TLB translation cache hit on S2L1 walk cache entry",
-         "EventCode": "0xd805",
-         "EventName": "MMU_D_TRANS_CACHE_HIT_S2L1_WALK",
-         "BriefDescription": "Data TLB translation cache hit on S2L1 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Data TLB translation cache hit on S2L0 walk cache entry",
-+        "PublicDescription": "Data TLB translation cache hit on S2L0 walk cache entry",
-         "EventCode": "0xd806",
-         "EventName": "MMU_D_TRANS_CACHE_HIT_S2L0_WALK",
-         "BriefDescription": "Data TLB translation cache hit on S2L0 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Data-side S1 page walk cache lookup",
-+        "PublicDescription": "Data-side S1 page walk cache lookup",
-         "EventCode": "0xd807",
-         "EventName": "MMU_D_S1_WALK_CACHE_LOOKUP",
-         "BriefDescription": "Data-side S1 page walk cache lookup"
-     },
-     {
--        "PublicDescrition": "Data-side S1 page walk cache refill",
-+        "PublicDescription": "Data-side S1 page walk cache refill",
-         "EventCode": "0xd808",
-         "EventName": "MMU_D_S1_WALK_CACHE_REFILL",
-         "BriefDescription": "Data-side S1 page walk cache refill"
-     },
-     {
--        "PublicDescrition": "Data-side S2 page walk cache lookup",
-+        "PublicDescription": "Data-side S2 page walk cache lookup",
-         "EventCode": "0xd809",
-         "EventName": "MMU_D_S2_WALK_CACHE_LOOKUP",
-         "BriefDescription": "Data-side S2 page walk cache lookup"
-     },
-     {
--        "PublicDescrition": "Data-side S2 page walk cache refill",
-+        "PublicDescription": "Data-side S2 page walk cache refill",
-         "EventCode": "0xd80a",
-         "EventName": "MMU_D_S2_WALK_CACHE_REFILL",
-         "BriefDescription": "Data-side S2 page walk cache refill"
-@@ -90,61 +90,61 @@
-         "BriefDescription": "Level 2 instruction translation buffer allocation"
-     },
-     {
--        "PublicDescrition": "Instruction TLB translation cache hit on S1L2 walk cache entry",
-+        "PublicDescription": "Instruction TLB translation cache hit on S1L2 walk cache entry",
-         "EventCode": "0xd901",
-         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L2_WALK",
-         "BriefDescription": "Instruction TLB translation cache hit on S1L2 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Instruction TLB translation cache hit on S1L1 walk cache entry",
-+        "PublicDescription": "Instruction TLB translation cache hit on S1L1 walk cache entry",
-         "EventCode": "0xd902",
-         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L1_WALK",
-         "BriefDescription": "Instruction TLB translation cache hit on S1L1 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Instruction TLB translation cache hit on S1L0 walk cache entry",
-+        "PublicDescription": "Instruction TLB translation cache hit on S1L0 walk cache entry",
-         "EventCode": "0xd903",
-         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L0_WALK",
-         "BriefDescription": "Instruction TLB translation cache hit on S1L0 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Instruction TLB translation cache hit on S2L2 walk cache entry",
-+        "PublicDescription": "Instruction TLB translation cache hit on S2L2 walk cache entry",
-         "EventCode": "0xd904",
-         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L2_WALK",
-         "BriefDescription": "Instruction TLB translation cache hit on S2L2 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Instruction TLB translation cache hit on S2L1 walk cache entry",
-+        "PublicDescription": "Instruction TLB translation cache hit on S2L1 walk cache entry",
-         "EventCode": "0xd905",
-         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L1_WALK",
-         "BriefDescription": "Instruction TLB translation cache hit on S2L1 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Instruction TLB translation cache hit on S2L0 walk cache entry",
-+        "PublicDescription": "Instruction TLB translation cache hit on S2L0 walk cache entry",
-         "EventCode": "0xd906",
-         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L0_WALK",
-         "BriefDescription": "Instruction TLB translation cache hit on S2L0 walk cache entry"
-     },
-     {
--        "PublicDescrition": "Instruction-side S1 page walk cache lookup",
-+        "PublicDescription": "Instruction-side S1 page walk cache lookup",
-         "EventCode": "0xd907",
-         "EventName": "MMU_I_S1_WALK_CACHE_LOOKUP",
-         "BriefDescription": "Instruction-side S1 page walk cache lookup"
-     },
-     {
--        "PublicDescrition": "Instruction-side S1 page walk cache refill",
-+        "PublicDescription": "Instruction-side S1 page walk cache refill",
-         "EventCode": "0xd908",
-         "EventName": "MMU_I_S1_WALK_CACHE_REFILL",
-         "BriefDescription": "Instruction-side S1 page walk cache refill"
-     },
-     {
--        "PublicDescrition": "Instruction-side S2 page walk cache lookup",
-+        "PublicDescription": "Instruction-side S2 page walk cache lookup",
-         "EventCode": "0xd909",
-         "EventName": "MMU_I_S2_WALK_CACHE_LOOKUP",
-         "BriefDescription": "Instruction-side S2 page walk cache lookup"
-     },
-     {
--        "PublicDescrition": "Instruction-side S2 page walk cache refill",
-+        "PublicDescription": "Instruction-side S2 page walk cache refill",
-         "EventCode": "0xd90a",
-         "EventName": "MMU_I_S2_WALK_CACHE_REFILL",
-         "BriefDescription": "Instruction-side S2 page walk cache refill"
-diff --git a/tools/perf/pmu-events/arch/x86/amdzen4/cache.json b/tools/perf/pmu-events/arch/x86/amdzen4/cache.json
-index e6d710cf3ce2..01c848a9dbb3 100644
---- a/tools/perf/pmu-events/arch/x86/amdzen4/cache.json
-+++ b/tools/perf/pmu-events/arch/x86/amdzen4/cache.json
-@@ -182,7 +182,7 @@
-   {
-     "EventName": "ls_inef_sw_pref.all",
-     "EventCode": "0x52",
--    "BriefDescript6ion": "Software prefetches that did not fetch data outside of the processor core for any reason.",
-+    "BriefDescription": "Software prefetches that did not fetch data outside of the processor core for any reason.",
-     "UMask": "0x03"
-   },
-   {
-diff --git a/tools/perf/pmu-events/arch/x86/amdzen5/load-store.json b/tools/perf/pmu-events/arch/x86/amdzen5/load-store.json
-index b1994539ece8..774da0bfa0dd 100644
---- a/tools/perf/pmu-events/arch/x86/amdzen5/load-store.json
-+++ b/tools/perf/pmu-events/arch/x86/amdzen5/load-store.json
-@@ -351,7 +351,7 @@
-   {
-     "EventName": "ls_inef_sw_pref.all",
-     "EventCode": "0x52",
--    "BriefDescript6ion": "Software prefetches that did not fetch data outside of the processor core for any reason.",
-+    "BriefDescription": "Software prefetches that did not fetch data outside of the processor core for any reason.",
-     "UMask": "0x03"
-   },
-   {
-diff --git a/tools/perf/pmu-events/arch/x86/amdzen6/load-store.json b/tools/perf/pmu-events/arch/x86/amdzen6/load-store.json
-index 4291eb59426f..4adba70bffb1 100644
---- a/tools/perf/pmu-events/arch/x86/amdzen6/load-store.json
-+++ b/tools/perf/pmu-events/arch/x86/amdzen6/load-store.json
-@@ -351,7 +351,7 @@
-   {
-     "EventName": "ls_inef_sw_pref.all",
-     "EventCode": "0x52",
--    "BriefDescript6ion": "Software prefetches that did not fetch data outside of the processor core for any reason.",
-+    "BriefDescription": "Software prefetches that did not fetch data outside of the processor core for any reason.",
-     "UMask": "0x03"
-   },
-   {
--- 
-2.53.0
+> commit ad2298eb4cf079b087a590231f09e7cb3ed594d1
+> Author: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
+> Date:   Thu Nov 19 12:03:24 2026 +0100
+> 
+>     spi: rockchip: keep the controller active during system sleep transitions
+>     
+>     The controller is suspended in the noirq phase of system suspend, after
+>     its child devices. Runtime PM is disabled from the late suspend phase
+>     until the early resume phase, so a transfer in that window can only work
+>     if the controller is still runtime-active. If it has already been
+>     autosuspended, pm_runtime_get_sync() fails with -EACCES.
+>     
+>     Child devices do need the bus in that window. With an RK806 PMIC on SPI,
+>     arming its power key as a wakeup interrupt in the noirq phase (e.g. with
+>     dev_pm_set_wake_irq()) writes the PMIC's interrupt mask registers, and a
+>     wakeup by the power key is handled as soon as interrupts are re-enabled
+>     at the end of the noirq resume phase. On RK3588-Tiger we get this:
+>     
+>       spi_master spi2: Failed to power device: -13
+>       spi_master spi2: noqueue transfer failed
+>       rk8xx-spi spi2.0: Failed to read IRQ status: -13
+>     
+>     Take a runtime PM reference in the regular suspend phase and drop it on
+>     resume. This keeps the controller usable until its noirq suspend
+>     callback, and since it was active then, pm_runtime_force_resume()
+>     restores it in the noirq resume phase, before interrupts of child
+>     devices are handled again.
+>     
+>     Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
+> 
+> diff --git a/drivers/spi/spi-rockchip.c b/drivers/spi/spi-rockchip.c
+> index 1a81fd94b4396..504068b15c184 100644
+> --- a/drivers/spi/spi-rockchip.c
+> +++ b/drivers/spi/spi-rockchip.c
+> @@ -938,7 +938,27 @@ static void rockchip_spi_remove(struct platform_device *pdev)
+>                 dma_release_channel(ctlr->dma_rx);
+>  }
+>  
+> +/*
+> + * Child devices (e.g. an RK806 PMIC with its interrupt controller and wakeup
+> + * interrupts) can still need the bus during the late and noirq phases of
+> + * system suspend and resume, while runtime PM is disabled. Keep the controller
+> + * runtime-active from the regular suspend phase on, so that such transfers
+> + * work and pm_runtime_force_resume() restores the controller in the noirq
+> + * resume phase, before child device interrupts are handled again.
+> + */
+>  static int rockchip_spi_suspend(struct device *dev)
+> +{
+> +       return pm_runtime_resume_and_get(dev);
+> +}
+> +
+> +static int rockchip_spi_resume(struct device *dev)
+> +{
+> +       pm_runtime_put_autosuspend(dev);
+> +
+> +       return 0;
+> +}
+> +
+> +static int rockchip_spi_suspend_noirq(struct device *dev)
+>  {
+>         int ret;
+>         struct spi_controller *ctlr = dev_get_drvdata(dev);
+> @@ -958,7 +978,7 @@ static int rockchip_spi_suspend(struct device *dev)
+>         return 0;
+>  }
+>  
+> -static int rockchip_spi_resume(struct device *dev)
+> +static int rockchip_spi_resume_noirq(struct device *dev)
+>  {
+>         int ret;
+>         struct spi_controller *ctlr = dev_get_drvdata(dev);
+> @@ -1001,7 +1021,9 @@ static int rockchip_spi_runtime_resume(struct device *dev)
+>  }
+>  
+>  static const struct dev_pm_ops rockchip_spi_pm = {
+> -       NOIRQ_SYSTEM_SLEEP_PM_OPS(rockchip_spi_suspend, rockchip_spi_resume)
+> +       SYSTEM_SLEEP_PM_OPS(rockchip_spi_suspend, rockchip_spi_resume)
+> +       NOIRQ_SYSTEM_SLEEP_PM_OPS(rockchip_spi_suspend_noirq,
+> +                                 rockchip_spi_resume_noirq)
+>         RUNTIME_PM_OPS(rockchip_spi_runtime_suspend,
+>                        rockchip_spi_runtime_resume, NULL)
+>  };
 
 
