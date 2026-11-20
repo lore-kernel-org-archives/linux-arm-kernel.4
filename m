@@ -2,129 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC3E606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F386D606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dEFPRWkg;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=HY/9h7rK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dbEW3yAy;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Zk5fViLS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=92f6NRETdzojaigU8EyzxjI/4N0lXsB5qD5xAdIQvbI=; b=dEFPRWkgD0xdO5
-	lxitHxG9/yHPNmLGnPdKqo1Os+IBBZxeV+6wyY4ttNj5d5Gv5+ynFEH4UOA2DSdUSzj5hhKWGVPLb
-	LJ12S71RgVFoLEu0XTAYE5bWZJnO9vh7D1PKE7T2FCe1t6qtyOlbLwKU/uI1PpL22XOmXRD49AGJK
-	uI5QLLkPAekfxCmqF4cBkxivs0iWqU3XKB8pS6Eq6u1IoH43MAIDAVoAsoJuR2hCPTVbrJqDQVCVw
-	VfikNseGkeRiWf8/ye+ryU3JANSEE2n1ythxsX8b9Qxv2QDGh4Rskmp2HlmAM94eHgoXIXPcffBlB
-	O+lT52AQQbYTcDhoJmug==;
+	List-Owner; bh=x54vwkGJvh84znXoJKgRSdPvks6XuVGgKq/gJmPTfQE=; b=dbEW3yAyp24JbE
+	Y9yn9j/MSatkUQNDPnms5i8d5+bWdDGCThUiymCdN1yx47kdU9r2V0ED0gSSu/TI81b1UJFxAZ7GG
+	e20UaDYiQbC3AoggdfWLLkvdr5/1fi4FU72PewYhDVaq8MnlcsLPOU7e1QE+1MZuNhqUAyaX7quD4
+	BT+JnWx0Onq33kTYG2f0MrPHEFNfdt8pgCRjvq5lLV0zLoSquKeP6JVrsU+k3FeOdHyiTHiUNrN/h
+	GOGhIggTD8U0rYSar7s1cEeM69du1N+SQEsYp/+ezGp4JilQcX/OOX+Gv45cqzvFndMtfbBQX5s8V
+	kdIK786hvMJ0MeXobfAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPfz-0000000FGV7-0gdf;
-	Fri, 20 Nov 2026 14:33:19 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1xUPjf-0000000FGya-3NSR;
+	Fri, 20 Nov 2026 14:37:07 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPfu-0000000FGTs-2aRy
+	id 1xUPjd-0000000FGyP-3y2K
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 14:33:18 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-498f5fa5103so572368f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 06:33:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795185193; x=1795789993; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=92f6NRETdzojaigU8EyzxjI/4N0lXsB5qD5xAdIQvbI=;
-        b=HY/9h7rK46ju0o7WyXYMvZIJ9r8COLdr8rnr4kZlIVtrqxgxJATHklgjWTRq1k3czA
-         t0wzD6IqhTSnLf0Wz6/XF4CGA6EYF/0P1ak8/qbYjnz+gjVLeSvYFY6j5nmU9omTPqcB
-         MdHX00NIIvj6xH8Y5kGTGqmddpFqxOhYEu/85KgmBhGH+V/hTo+PU8q6N86uwWrZMrIx
-         ULZNLgEMUacgS9RpTESuTMe677uwPzOcVUkzwk7si5o/Fd/n6KxXjZbPDzn2aom90RqK
-         BsTbxY2uUpbLkQR1JDLfEPB4U1Fr+o5QmZBfF2J0XG6AcWroIWB4oStVcW52y0dKYsQW
-         uoBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795185193; x=1795789993;
-        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=92f6NRETdzojaigU8EyzxjI/4N0lXsB5qD5xAdIQvbI=;
-        b=Hp9om5qE++PWoz2a6DtpvSlLUIqp/veaUW1m9tULAxjVk5168afocVSmgXISnb9dlJ
-         KJJJ5zPaeF9NNGpZCiUicXAs1VLjNGKu1fWyTVIXu2vCnD8K7SVuxhjtaioKfNlX9gFv
-         PzL7W18WliXMPu6FblZ5AET8PG0tix1qW/yG4mXB7SBjBl33shB9R0Sc0jJMkTmWULZT
-         5MT5JfJj5H0fAF3kRmDOnCyg53fdCbAKKnftkkAryM7SoYfGVEZD9Cld8M11+BelXHip
-         fnTxSet0NMOTBgVALpz+tnf2YmT48d9Y9XEBRDLMFI860Fdf5maCw1MheKyaC+G1uUxr
-         GbzQ==
-X-Forwarded-Encrypted: i=1; AL+hErH2arxNvUbi+m4t+1mXCxjQ+K9JbDjhP54ewfiFDLLPmn28JZLW1JUXff9HZsvX7Vj/eqPh/MIFQ9AlGlfhiuaO@lists.infradead.org
-X-Gm-Message-State: APuU4Z/nCf/0eURM4jRhKfmVA4mfuS5BKh0hHYiAaxY+gE5phts9gYzw
-	1WwNvrHhCVpC7YTg86bbvWmDbVQbYd0CQV5l1ivVFMFZ4adA/3JQmNzTkQYrwNAE+pE=
-X-Gm-Gg: AZFdTZc2pqr3vXFpz7kCGds50o0Sea6L8zNe72vwlD8auVEkJJsmHyR1MehjmLMYMMq
-	2hv5dwAhXHdXfMZuZ+lfEXfgHvufSFBwSLcBLm0S2cOCI68SpiO9TGvU4vJ4bR6iWl8IOQHTjFs
-	vzyvpbpOiD5x4aJ1XpUamoW+5K3wxuyO81uW/Zcx5ql8tRtydG64nc5/ECrHhbWlTOxbJwNHhKY
-	w8788OSqArPLz0+jLwqA6z/ch8GWgb0QAAe/Empv5eTofl1MDnVE81X2O9iyhIkCrCTvBV9txUU
-	/QtQx8kEfJ6Wr5/1c06JZcAo98P9lxAvp0gEnpZd7MvE1eIEvbVhFowFYSWhDYFPFLpR1V3ItFc
-	s8kE1HofOFe+9jbMxK4g6kJfYNFeP2fyWSOAvX785rBj+7g9SnF5EjN/ASOwSMiMa0x/Nq9ubwl
-	J29HmNH9hDqnaVL8heiTXMPg9dxXeyPmFDlOwgXTJ7DrVJWh6Q0frbAhQLk29AnSSk+tqp3M1Ys
-	RapUCLXybgJSr1JXErKjcSrC21KxWUvdPi1dywR4gF8TFrmj+u8xPXmDJo8RDTnPqI0Vu3JK46Q
-	U9MJ4IXLPsawo9jqivo1YQELo7a6OEMoItEAgaYcKALiQlE9HsSRYJq5tA==
-X-Received: by 2002:a05:6000:400b:b0:4a8:dbbd:69ab with SMTP id ffacd0b85a97d-4abb4f58c75mr6786554f8f.27.1795185192603;
-        Fri, 20 Nov 2026 06:33:12 -0800 (PST)
-Received: from [192.168.1.62] (140.30.66.37.rev.sfr.net. [37.66.30.140])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110d56sm5978154f8f.40.2026.11.20.06.33.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Nov 2026 06:33:12 -0800 (PST)
-Message-ID: <d94ad9ca-afdd-4301-a69c-0bbad5b334fa@baylibre.com>
-Date: Fri, 20 Nov 2026 15:33:11 +0100
+	Fri, 20 Nov 2026 14:37:05 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B283F4633B;
+	Fri, 20 Nov 2026 14:37:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B81A31F000C0;
+	Fri, 20 Nov 2026 14:37:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795185425;
+	bh=x54vwkGJvh84znXoJKgRSdPvks6XuVGgKq/gJmPTfQE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=Zk5fViLSIEPPjIhstwdcljs1mhbKQbngrYvTCsgddI719IHlwxGN7Pq161/T3IClb
+	 4AuSD63fjJVLZ3dHl8E4Xraq0eJMJUTk2BhYYF72f6hI9VW7rXShkFqFSfRDyA8f8l
+	 GK0GJeKScktiQ8GuTc3uF82I98/w8+OP+J5JZ3u79GUZBPrs+qAsFCuNC3nJJRkVun
+	 DH9Kw4Zz2Dh7f3eDQ2EmiDEJpgQQFNnw+4LEIMGHt9PexnDHmAMZJG5czSNEjPFLf/
+	 pj3RZNODT7nk5aUjlcrkKRFpW2crlu9yUxP4hpqHeOooTKwBVHKyIg13VDBWbxVN5D
+	 iHWMFfgw1MfoQ==
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <b1477db70b5a068c7ed3276cac906836031214db.1795096443.git.geert+renesas@glider.be>
+References: <b1477db70b5a068c7ed3276cac906836031214db.1795096443.git.geert+renesas@glider.be>
+Subject: Re: [PATCH v4] arm64: dts: exynos: gs101: Drop CPU masks from
+ GICv3 PPI interrupts
+Message-Id: <179518541714.24590.13840055240522607419.b4-ty@b4>
+Date: Fri, 20 Nov 2026 15:36:57 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 00/15] R-Car X5H Ironhide CPG/MDLC SCMI remapping
- support
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>, Ulf Hansson <ulfh@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>,
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Paul Elder <paul.elder+renesas@ideasonboard.com>,
- Sudeep Holla <sudeep.holla@kernel.org>,
- Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <cover.1795029012.git.geert+renesas@glider.be>
- <1e9c5ac3-d82b-4af9-9946-0302cadf7404@baylibre.com>
- <20261119234759.GB2324725@killaraus.ideasonboard.com>
- <19c3745a-6308-46ff-bb37-3acc88fe22e2@baylibre.com>
- <awAqqg6F2Z1t55x2@ninjato>
-Content-Language: en-US, fr
-From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
-Autocrypt: addr=clegoffic@baylibre.com; keydata=
- xjMEafx9bxYJKwYBBAHaRw8BAQdAtc85GIwDXLz0rh9thWXC80Lji0otVDVncXT4qaS4j1fN
- K0Nsw6ltZW50IExlIEdvZmZpYyA8Y2xlZ29mZmljQGJheWxpYnJlLmNvbT7ClgQTFgoAPhYh
- BJjMiHuM4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsDBQkJZgGABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEH6EW4KtCh6Tt+sA/jVC35rY1npFlOy7YnncTdrID8Qf855JA78IzXgvzpGp
- AP9FkuuT80m66PP3DvgYX9kVnG17mSDKO0+v2W18v6ZgCM44BGn8fW8SCisGAQQBl1UBBQEB
- B0DMwF4u//aQyzsFlO8rPJ/cqsAuPH80IeIA3HOEo5mlVgMBCAfCfgQYFgoAJhYhBJjMiHuM
- 4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsMBQkJZgGAAAoJEH6EW4KtCh6TdSgBAMDS0MiWCivt
- LjzZc9bs+P/xdXywUjDKq3lpQGJ6vZ0GAP9vI6DnN7vwVK6jt6/+0aBGkog5Ura9+WwRFEdM
- vLfPDQ==
-In-Reply-To: <awAqqg6F2Z1t55x2@ninjato>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_063314_686041_ED7C61D6 
-X-CRM114-Status: GOOD (  21.39  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=376; i=krzk@kernel.org;
+ h=from:subject:message-id; bh=u7FKdVi4iwFQV3UicTf2xfX6Ejre3/Bp3Tj21sO7nvg=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBrAFsKig/ws+ZeUZlxD/tQYesOJHYiRTvZ727g+
+ 6ryO65dMR+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCawBbCgAKCRDBN2bmhouD
+ 15JND/9LcLiYB00Y5FXKJjesB0i5tqx0mhcB3NhM7QBkwc1/KJZZ0RfHDcOi5a4V62U7/5g0NmU
+ DAe+IMo3ZyiPM8Kc0JM5O4gR0yQG5Y/z5GWr+cjH3+v85hZ5QiYXUbu05onKqQUR823d2/kFOi+
+ gIF32D7jeaXJU2szZAE7Ai7YIUQorM1jGeqUsiubzAsdilHhhFsYrLT1K1PJXVV5Ira/+WAt3xs
+ xrTSOM3CuvzV2DT/gFHDWrmgHxtiJtEzSuBnyoFDBGNw6+kUARFzhSYZ4SOcbTomMMXyN0K3/6J
+ BZHddHc5YVFHhO8oePnCnD/wuLp0qys3wGu9tpyna4NTL6S5mSbqJqGj3lj49yFVbSjcuaCxbTd
+ 2g7yhu5p8jTvvssw1CekJcbQwzCIvNedqalR9XWePONVYq6lSqqgOtvX59sJQAAR6aPvjhqS+Zv
+ uurTZaRPnzhiL2rn9FR1mA7ppbh3nM8PHs9RHjrLFY3r6hWFjD7mOz5dPjiFegTVF1s12M11qvr
+ FUcv9nimh47lvhYFVJn2f+IvaJClO4e1FH8Jfp0Sy3ZmNkykXIWtMIdfypp+c7PT/2rtzPlKrL3
+ p1LXUNeGf9dao8ieUjXjLsaPZZs4/2+UIUqhvkIO3wmpwOds/Wuqychb633idDn4v/C0iPe9ObL
+ 3b5qa7uVQ/kMV3Q==
+X-Developer-Key: i=krzk@kernel.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,65 +89,25 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Wolfram,
 
-Thank you for the rewording, it is clear
+On Thu, 19 Nov 2026 14:54:56 +0100, Geert Uytterhoeven wrote:
+> arm64: dts: exynos: gs101: Drop CPU masks from GICv3 PPI interrupts
 
-On 11/20/26 12:10 PM, Wolfram Sang wrote:
-> In the past, we wanted to support all kinds of firmware. Sadly, each new
-> firmware introduced different IDs here and there. So, we came up with
-> some stable IDs ourselves and mapped them to the IDs per firmware. This
-> is a n:1-mapping of firmware IDs to our stable IDs.
+Applied, thanks!
 
-Sure, that is part of firmware development.
-I know several SDK versions exist, and supporting several of them is work for a vendor tree.
-As Geert's cover says, "While upstream Linux must only support sufficiently mature firmware versions, vendor trees (e.g. renesas-lts) may still want to support development firmware versions".
-Each SDK version can then have its own DT there.
-
-> The support for <n> firmware versions got serious opposition from
-> upstream. We concluded that supporting only the latest firmware will
-> make most controversial discussion points vanish. So, we now have a
-> 1:1-mapping of (the latest) firmware IDs to our stable IDs.
-
-Agreed, supporting several numbering upstream for the same chip only brings confusion.
-But then, why can't that one mapping be one DT?
-
-> I guess this is what Geert means with IDs becoming "stable". <n>
-> firmware versions might return <n> IDs, but supporting only one firmware
-> we get the same "stable" ID from it.
-> 
-> Sadly, of course, with the next firmware update, we still might get a
-> different ID all the time. So, not stable in that regard and we still
-> need the mapping :(
-
-When the firmware can be updated, I think an id change should be fixed there first.
-That is what I would do in the open-source SCMI server firmware I am writing for this chip.
-
-> Yes, this means the driver is then tied to a specific firmware version
-> because it only has this mapping. Not nice for a user. But we didn't see
-> another way moving things forward for now.
-I think the DT is that other way.
-With the SCMI ids in DT, only the DT is tied to a firmware version, not the drivers.
-If a release that changes ids is already out, it needs a new DT, or a quirk for that one release when the DT cannot be updated.
-
-The hardware stays described
-The CPG and MDLC belong to the SCMI server, so the DT should mark them status = "reserved", and the consumers use the SCMI clock, power domain and reset providers.
-
-The Devicetree Specification v0.4 define "reserved" for this case (section 2.3.4, Table 2.4):
-"Typically this is used for devices that are controlled by another software component, such as platform firmware."
-
-Zephyr also uses SCMI on this chip, and it already keeps the SCMI ids in its X5H DT
-Juno and STM32MP15 handle their firmware differences the same way, with separate -scmi DT variants that simply include the board DT and an SCMI .dtsi.
-If the number of variants grows, tools such as Lopper, which I mentioned before, can help manage them.
+[1/1] arm64: dts: exynos: gs101: Drop CPU masks from GICv3 PPI interrupts
+      https://git.kernel.org/krzk/linux/c/306301ca9340a6c7ceb14d735abb9cc380933a7a
 
 Best regards,
-Clément
+-- 
+Krzysztof Kozlowski <krzk@kernel.org>
+
 
