@@ -2,110 +2,127 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9AF5606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:15:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406D7606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wTU7DVdO;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.a=rsa-sha256 header.s=google header.b=MkilFKre
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S08WrXtT;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=ZVJmLWRQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sPLFwhIcT/MvzLNNSK/4rlL74eBqG/2kXsTllYHm22A=; b=wTU7DVdOBIdtfP
-	8mw9sGyYHCgrFd6YgcrifhOzW6KzYS6GmoKOXtgsvVxl7ztapYKmWAjJo1NrLI7ErsPtrfN1MrAAa
-	VAhhkiBsjapfifFLSrr/zdtSywWfLyBctAoBvcpeO49WHqMHBS+u+YSfewSAE4Z2mA7gRnbb5jCxY
-	Jec87jUuPy5BnPw/c4c+qOKQhXGH/xT/dRjgFfynAAU9YXnPHhAPssfZnQyPizeXgPsYFKocichwD
-	I6RsLsSWIQRK2rZaJFNeuKW1NhzRGiJ1xLV9y9nocPGWpoubXZ+2SxFAjGKGi1PDtg/7PNAGvdMK+
-	9TrmIlQVBR9iXFweVuhg==;
+	List-Owner; bh=bEpii6cdlCphRzX12KymX/PlYQnXf7sDL0nHny5wUWA=; b=S08WrXtTRb7TWT
+	CQKYOcEz2cyIsEfPs6FvZZDxADaZ/C1LuwPUaycjsphzpL6cg9/WjfdDSwLOeY2ZLXTeAVcqMNTo0
+	zkbovyEzb+Xvpb2SSvdjynk44zXKxL6OcPZ+KRpHVj9k2wELMPv5msUyRMpLcQicU140uoJ1ru61Z
+	jK0/o/6QCtDyaGbJfCq7GRme0RAm63F/HMkIPi/TDnVddly7sTUCYyaPIpHR/9BH+u74XCxAlxGCp
+	VxpraqiA5HDGXEHMKkngsWArywDQRPaEtzVsxM9Oi6gjHw9cDTMOHJ7tnau7QRQEylNSUceYa1f7S
+	nEkSKbyqYkQTVzsrmtpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMae-0000000ElVc-1SFG;
-	Fri, 20 Nov 2026 11:15:36 +0000
-Received: from mail-yw1-x112a.google.com ([2607:f8b0:4864:20::112a])
+	id 1xUMm6-0000000EmzU-1mlM;
+	Fri, 20 Nov 2026 11:27:26 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMaW-0000000ElR5-0TBG
+	id 1xUMm4-0000000Emyc-0BdL
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:15:34 +0000
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-8b0ca1ebc8bso6593797b3.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:15:27 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795173327; cv=none;
-        d=google.com; s=arc-20260327;
-        b=eLCBoRKa/Mt6kQME6KMyz5Lo9/OtbDnymzk9yIibOblsnKpJ+OaOGuhBwOPmOqXOXf
-         yX9H+uspZDzbno6q4ZMpcSLqA3WwvkeSmfh52UVHGbaYQgWuqVWBv1v7BWARfrN4PxQu
-         dxt5nMwyX47HAgrRy3XclItnUqdRu/Opj78dr7YSVw2IDUPqHVNTIaghL9yN1ehtkRXI
-         9j9h8ttnJp1zY/kGZhJSXjk9IxlcZQwdGC47SD3V8v/9JSZ68AlUfkjogLs3t39c96+6
-         efoziAsRAQZHjGObRoAv8CWnQA/CXzZ8Rg0K++qnINSslw/3Qw852tR7Y/wtsPRFAl40
-         0Ilg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=sPLFwhIcT/MvzLNNSK/4rlL74eBqG/2kXsTllYHm22A=;
-        fh=OTULFEzWNJq/wIlDgtrMY2r7+Ust4P4lWj1WvuHPoYM=;
-        b=fyk6UVBi3Y7Qps4tQ/eHhXOztCnORBfUe8paXk+mx24LNKzYup84h6wI/TC2U6+Gyp
-         AtcQkxkNvC4tSKyCSnnBNJX31HOVFpeRuzAY057oMHW5fRoIwcDE/Ug9kl3Tw+GP3xit
-         0WntcF80YovsqGGLzauD8aVy6JPonqgwZxPqxmEKK4xT2B7wT+ATKMzRKjV5Zc3uH5C4
-         DEoNUD6Vuv+dYTmMaDlnbP1cTrcwV/VbAnyFTzpWWaZPzdenrllThy5n+rGe8w6I9XI6
-         rZg/ai/gGZDOaX61Xr7JbbzOQGCnUJwWTLkiuC6/9PAzJL8yZ6XS147x3Qs9xNE592ZW
-         e+Ew==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1795173327; x=1795778127; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=sPLFwhIcT/MvzLNNSK/4rlL74eBqG/2kXsTllYHm22A=;
-        b=MkilFKreZ2GHrlrYyd/l5LoUbISzGMYZ8EaPSJJIOrdFqmTC/WNqTy7R2BSKJ0AR3Q
-         0hvZIZsmmnnCeO5ZHXAoudbFoJQdCk4f38392yd223cM/NFV2VoPw2fO8iNnE6ZG8s5E
-         snYQW8l0jEcTInB/v6u0qi3MiYgKC2tMOyy+Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795173327; x=1795778127;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=sPLFwhIcT/MvzLNNSK/4rlL74eBqG/2kXsTllYHm22A=;
-        b=0u7zgF98OFVicrrygjunec0OGFkLILO7jKhsvBQnfhjwNxOQdm7PIaKQnXS4uEqClM
-         JRjBU/Gm78/zKkSbUKQsD3nEx/z2a9ynbXB96d/9yF3tfCREVKSmG1nesX52DXHit0az
-         rnIDzZnp4jA7as0hR87jP23RRM27cGRgidVHD/5HUV/cEMKFVwpzip6qGipzfOC4hu6G
-         QHhHMeHWb05Ni2f53D+63rZK6oywZWoDUJu5+Xz8vMBMr3Uq4k1NPKUmm6fARB3Ylzcd
-         7NxcXMk+JDZLLE65NqDar7y3syHxILljhYb48D75dnVlchdNElqp0N+aUmefKxuDUYA+
-         WLwQ==
-X-Forwarded-Encrypted: i=1; AL+hErG0Cbzp07iLtCv36wauhJUBAWRvYmw78dabhU7cbWuVvh7DHmIVU7B5+t0Ief9MDqMfZc07ZJpWwGtHluf7s6cq@lists.infradead.org
-X-Gm-Message-State: APuU4Z8FOTpdjGkXWugh9sAyFojO/tIOYn+wgzHioSaxB6s+tjxG3Z22
-	W68TZ9qTPtECWmX+584/Qk66VNWm4CItA4ngwHeGYefKe+pruDKPhkjlJbH52UbcApT7IkeKgCq
-	RkK1Rx4C2Sh/k9hmV45owZFSKDHUJt1bFWXZ+6IQWSw==
-X-Gm-Gg: AZFdTZc0qeEL0LSWp4dd5LtPt8EHZ21/KFAjl9NuVD2jaTjQpf4bJwFUugKkrRSPWuK
-	8p0SP8G6ZMO/Mr7tEUUBUtwK0jhRdn1jlH601G4ze4dyV//0LSAL5O5gwkYOVpYXItUtD3HJ7FC
-	xvdIniCdYHXDckAJRpOJFWuzgzDhoVvlOIATMrn9c8Hg8gYV3a3Vh1+jueP9wK+aGL2NT0V/j1W
-	xlMNHu01Rr+OQMy7es9FMh9pJhoG+a2kemYPPRlfgTVl7tYWlZp6TMU0sDZ1o7yf/0eD0rfghDG
-	E97buJXr2HQZ8dNdCCCbShWnAp8Csdd/roYJskCTZY4Pm6T9ggAFdsQHLTjSBrsq+ChBy3xrXUQ
-	6CimMyJCox9le7PDaBF/jY0mp4p6tl0Cj5S3jrVZ53Bh+0g3QTYGfWyPlZR78unWrL0k=
-X-Received: by 2002:a05:690c:f0a:b0:8b0:a8c1:b203 with SMTP id
- 00721157ae682-8b5204a4d62mr11865107b3.29.1795173326740; Fri, 20 Nov 2026
- 03:15:26 -0800 (PST)
+	Fri, 20 Nov 2026 11:27:25 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NZiECy2ICJF0QkSzI+D2yiRrvlQfd9rrc2JruR6yRneC0S/KGZX/CInakGfVrFr0wvT9eKsgvS/ksHueK9+j3wK615cvAvAr/20faRLviIpaF4vi4EeqwwxN10EXcmgniK/9uamLqNYwf1lt+tsAMtmsJLu6jyZMeOEeHaiXbppuuF2Rv5pFumUhQCwo3i/+B20sbWqX2RG/3Tnizl1XYI9WX8YgQ3LbtmL0m059TMG/nuYRXqcfmTGzkluu3daera6EonNp6pzM8q+Nll2uAZjFydvkvjRspuLb4OGHFTM/JDMkFMcGCSn6PhuHjeyxZNRcOdyW1mT5RqEp/GUFHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bEpii6cdlCphRzX12KymX/PlYQnXf7sDL0nHny5wUWA=;
+ b=avIksY9kkhWLlD98/WKuW/UV5TggWNXcbkVbvDRxg8kXTx6icN1x9AFkMgBOGC61Y3ZXVPUws7cn023ijCe2Ty1W/jBQdzTgCvMQqKsJOPXLY9mFTnChInhMOW1TIIxzh0Z/hAL0WS4IkNUFG/v/qDG2LJfdvQEIqaLt6WSos2/e/VgtoBWRcQTmJK1IqsxJUHJI5Y83WcWvr7GU4jICVwbWjnlvd5vx9K0/WJLU6K0U3i+WulERCprLD4FDyqCCZDchRKU/UwlkSeLVz/LJScWJwW+OaFVEmoDxhJ5dfn2zrsgpsbFCsODlwqqjVnqS6U1TUXOXPxgOgEi/hXqRDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=amarulasolutions.com
+ smtp.mailfrom=foss.st.com; dmarc=fail (p=none sp=none pct=100) action=none
+ header.from=foss.st.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bEpii6cdlCphRzX12KymX/PlYQnXf7sDL0nHny5wUWA=;
+ b=ZVJmLWRQDmscT0pMAz6RAlTgyeqv6njM+C7ld4eRgRj7ODk/PN5F1ZReP4sCzcZQ8c7DOc9XurSI1DT/uQu/orWQZfm+y9nnZkdaWmxlujG957ZUmKByF4+hf7cwjTfPPCArEWx66kczrud52mddDYRZm3btzTjp01p6isUoaEaKxCRU60w4MsHXueB0+SLLzVpoFsW8wpM67XHowGMBtdz6le64A2xNWEx53936raIO+Cx0sM9WJsEOgTmBbbPfVp/M37a/c6pnx9WPYgfY/5a7uO1ZlqqoCaFUS7MVB7Z93EicqJ8C6aNrNjyKaZGkiVCo2ydgSEjYomE3dtFhdg==
+Received: from DUZPR01CA0201.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b6::12) by PA4PR10MB5706.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:102:264::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Fri, 20 Nov
+ 2026 11:27:16 +0000
+Received: from MAD0EPF000008BD.eurprd04.prod.outlook.com
+ (2603:10a6:10:4b6:cafe::aa) by DUZPR01CA0201.outlook.office365.com
+ (2603:10a6:10:4b6::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.12 via Frontend Transport; Fri,
+ 20 Nov 2026 11:27:16 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ MAD0EPF000008BD.mail.protection.outlook.com (10.167.241.164) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Fri, 20 Nov 2026 11:27:16 +0000
+Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 20 Nov
+ 2026 12:28:18 +0100
+Received: from [10.252.3.211] (10.252.3.211) by STKDAG1NODE1.st.com
+ (10.75.128.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 20 Nov
+ 2026 12:27:14 +0100
+Message-ID: <5dd92812-f44c-47aa-a8e5-94b0c1fd018a@foss.st.com>
+Date: Fri, 20 Nov 2026 12:27:13 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261028105807.2567225-1-dario.binacchi@amarulasolutions.com>
-In-Reply-To: <20261028105807.2567225-1-dario.binacchi@amarulasolutions.com>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Fri, 20 Nov 2026 12:15:16 +0100
-X-Gm-Features: AclHuK_lul2WkB_GKijVQqX2Biher4WJINl3HIKsyICsb3rvDVwYFNAUZr7v3UE
-Message-ID: <CABGWkvq_iUWQCVphJa1yuCJpekseUEHwme-Uj2Wpq7z8A2TKag@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: st: add firmware reserved memory to Engicam MicroGEA-STM32MP257
-To: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: linux-amarula@amarulasolutions.com, michael@amarulasolutions.com, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/stm: ltdc: create blend mode property
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>, Yannick Fertre
+	<yannick.fertre@foss.st.com>, Philippe Cornu <philippe.cornu@foss.st.com>
+CC: <michael@amarulasolutions.com>, <linux-amarula@amarulasolutions.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Daniel Stone
+	<daniels@collabora.com>, David Airlie <airlied@gmail.com>, Leandro Ribeiro
+	<leandro.ribeiro@collabora.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Maxime Ripard <mripard@kernel.org>, "Pekka
+ Paalanen" <pekka.paalanen@collabora.com>, Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>, <dri-devel@lists.freedesktop.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>
+References: <20261028131823.2649142-1-dario.binacchi@amarulasolutions.com>
+Content-Language: en-US
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <20261028131823.2649142-1-dario.binacchi@amarulasolutions.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE1.st.com
+ (10.75.128.132)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MAD0EPF000008BD:EE_|PA4PR10MB5706:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a370496-6fd3-42ab-8b6b-08df46f93b37
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|82310400026|36860700016|1800799024|376014|7416014|18002099003|22082099003|6133799003|11063799006|10067099003|261026140227099003|56012099006|261021121427099003|261028144727099003|261102123227099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: Vvrjwgz2dvwTy3bInW07vLwJiEAuZp7kwF4GgpfaD1lsVMEklKZ34ugwdl28fZZm09Dmk/xmJShvxJA7iDZ7VlgxUZsyTM+P55CppF19e9O08KzXgTb6pbSFxa/I0pUGncgZcGV6V9Mp9iXARrU6jApeA1JVDSj81KjCz6X+vPxqg1NZBJVkiRvMrece2jTv6HNuScreuJquH2t3l2F+pGm/MfiXHvtT5R+wr1r55rDCaAIxTb56ikYQMDp8qiFDMHP5pUtY+dzoDRDRzH4z5JHnsswUoKY6eyrSgeAICu+ZgKk1dsykzk/m5nhAnRStqG1GYIGwVJw6AmafaOaLnzSAF7iuehhA6y9SxxNMG1BWcHkB49TZmb/DhIi/ZDVdHYtl1d2L2EfG+YkCNdxqpcAbnW5CZQQmWsY40iafhYBoD3L8ZcrSEsBOc2H3EyG52vR3yCCM8065vsqbodtwO72UWS1lk/IQSfCYiWR2Y9bySR5wE2ouWH74E/VQt4gxjv81/19qSltU3O6u4uwvGgHqGQ3iEkxZJVMXUoyetcbwUtA35RDAb36VXS2JqwT7RLvYzEM++Zau8EX5gwY4WFMtIA6iPHXaBe38z/udqwaM67gpT6tMmmd6wxSfKeh4T7KhePcaeXsE5jbM4k6oGVgtzQOVZu0drZwLSWueJ5QLUebzzaYrzP15zuh76vpG
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(36860700016)(1800799024)(376014)(7416014)(18002099003)(22082099003)(6133799003)(11063799006)(10067099003)(261026140227099003)(56012099006)(261021121427099003)(261028144727099003)(261102123227099003)(261022105027099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: IplYWouaCDpX55SCDGxByJIXTfT6rpY5AK9bfKoMVur8cyps6arw1w9yuDzyN0BeKtxQZrg0NmhcCGjsOY67iQBQ5ySroc+NpduGosscJ2V58eV08iNSwmwN7hjbxVm3sMSDW8Lxg0hopXyFvmKm/6/8PdVY5vMHulSZskYIKC0z5QZA1OQEvPfSx2rFYxy9Sf260wLWnAqrtns9x5YwbItqGnicmKVwz6b+97Yu/++U5HRofgHVKX4cw8zvTab6QzRuTHlCmmaYcsRqubHkMYRzgfnRCSepjnxwWjF7PCvrnAeafyimukISuZ3R21Qer3S9cirdGyBSB6pTJ2gDlHKgGkLzdzDBFcD018mIU09FNcDE+GJvcrOr3QTqRbSR2H4rayWgzWbo2nfkrPnmmF3BxMlZ9dF3rUOhxcnC3F1SWa3WUv3z4Gz9LTelKXbk
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 11:27:16.3031
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a370496-6fd3-42ab-8b6b-08df46f93b37
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: MAD0EPF000008BD.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR10MB5706
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_031528_342535_CE06D5BD 
-X-CRM114-Status: GOOD (  18.17  )
+X-CRM114-CacheID: sfid-20261120_032724_333648_11E62D75 
+X-CRM114-Status: UNSURE (   5.16  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,87 +134,35 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Alexandre,
 
-Gentle ping on this patch. Could it be queued as a fix for v7.4?
-The SoM support went into v7.4-rc1.
 
-Thanks and regards,
-Dario
-
-On Wed, Oct 28, 2026 at 11:58=E2=80=AFAM Dario Binacchi
-<dario.binacchi@amarulasolutions.com> wrote:
+On 10/28/26 14:18, Dario Binacchi wrote:
+> After commit 860e748bddcc ("drm: ensure blend mode supported if pixel
+> format with alpha exposed") we get warnings at boot:
 >
-> The first 64 MiB of the DDR are used by the secure firmware (TF-M,
-> Cortex-M33 firmware, BL31 and OP-TEE) and are protected by the RISAF
-> firewall. Without a reserved-memory node Linux allocates pages there,
-> and the first access triggers an IAC exception and an OP-TEE panic:
+> stm32-display 48010000.display-controller: [drm] [PLANE:37:plane-0] pixel format with alpha exposed but blend mode not setup. Please fix.
 >
->   E/TC:0   stm32_iac_itr:197 IAC exception ID: 137
->   Faulty address (IADDR0): 0x80000060
->   E/TC:0   Panic at core/drivers/firewall/stm32_iac.c:212 <stm32_iac_itr>
+> The LTDC blends the pixel formats with alpha by straight alpha, the
+> only mode implemented in the driver. Create the blend mode property
+> with DRM_MODE_BLEND_COVERAGE only.
 >
-> Reserve the region, as done for the stm32mp257f-ev1 board.
->
-> Fixes: c5ce8d7bcc78 ("arm64: dts: st: support Engicam MicroGEA-STM32MP257=
- SoM")
+> Fixes: 860e748bddcc ("drm: ensure blend mode supported if pixel format with alpha exposed")
 > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 >
 > ---
 >
->  .../boot/dts/st/stm32mp257-engicam-microgea.dtsi     | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi b/ar=
-ch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
-> index 5b4287e86def..6cd64587ecdc 100644
-> --- a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
-> +++ b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
-> @@ -19,6 +19,18 @@ memory@80000000 {
->                 device_type =3D "memory";
->                 reg =3D <0x0 0x80000000 0x0 0x80000000>;
->         };
-> +
-> +       reserved-memory {
-> +               #address-cells =3D <2>;
-> +               #size-cells =3D <2>;
-> +               ranges;
-> +
-> +               fw@80000000 {
-> +                       compatible =3D "shared-dma-pool";
-> +                       reg =3D <0x0 0x80000000 0x0 0x4000000>;
-> +                       no-map;
-> +               };
-> +       };
->  };
->
->  &scmi_regu {
-> ---
-> base-commit: 65ba8f34ec886ec72b2c07ddc8cf3d815c32869d
-> branch: stm32mp257-engicam-microgea-fw-reserved-memory
->
-> --
-> 2.43.0
->
+Hi Dario, 
 
+Reviewed-by: Raphaël Gallais-Pou <raphael.gallais-pou@foss.st.com>
 
---=20
-Dario Binacchi
-Senior Embedded Software Engineer
-M. +39 328 0625246
-dario.binacchi@amarulasolutions.com
-=E2=80=95=E2=80=95=E2=80=95=E2=80=95=E2=80=95=E2=80=95=E2=80=95=E2=80=95=E2=
-=80=95=E2=80=95=E2=80=95=E2=80=95=E2=80=95=E2=80=95=E2=80=95
-Amarula Solutions SRL
- Via Felice Cavallotti 25D, 41012 Carpi, MO, IT
-info@amarulasolutions.com
-www.amarulasolutions.com
+Best regards,
+Raphaël
 
