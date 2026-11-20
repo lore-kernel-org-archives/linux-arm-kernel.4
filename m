@@ -2,140 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39EB9606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:14:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D74606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PTUtof0l;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=B5DXBemK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Xh9NdnVj;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=b0YMUC/+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=PvPx8KemO0xcM9BvIjOEVvpcXVwQS3ehLVp+q+/Y12c=; b=PTUtof0lODxchJAuqtoSVRSAjW
-	Kck1alPMypcuzFDiKmz1YkKDTdKxGgRPM8HcZNLbTeI+i3hIVO23cqv6lAo9iaQZLfi/H+f6PzHYC
-	D8LcdknpO+KsRDMKwfBpbHknno8yUszuPmA0slhNtvOMFqbZ5cNAvCXM7EtsrpW9/SIIrij1kZTJA
-	ZHE0nv75oyj+ZYRzxqhAHRd3mHZnFPqo5n0wbDau6Ou6oR8bfvWp4zdTPYVt+iAJiItus7NetxyYW
-	PU/DxoFpqMNwVoVwrj47vS3HlC+74izbjI5/A4GtXWjooZpI0EbNd1ZShwtFMb0BY+qHjNdiqXNYq
-	QbKvuxAg==;
+	bh=4Vx4X2Fvkx/Dd8Nyf178SX35TtePddMWESDoKM0WmL0=; b=Xh9NdnVjtv/5YpZ8ydpLnzGQNz
+	wBx7hQwB9vr23F5UktTPV5X4ESDdAZ1lAUxTvqadLGC3dmacphgIyi1nYvuuXEHVbvxxV74da1GxP
+	dGa44ulBegIWmlBbLY2UkAdC/LenkWyLnUjsJsETf0/05vqh12hb+fn4MyHS5R2rV9klzfXmBkkEv
+	VM5KuWF2Z+uyxs6zKdD+Lm1jllE/HvZjj/RyacP/XYUHjYmgmgr00jtJ1+cPBNl2gqW87Rb7KHeb9
+	yAzFCncSQtlq92/fjsyyjAqDgQ0bu25IjhAUqV3ofxD2pmmg3R3RLqwQw0iEbh0ECKysyvVpHRxEJ
+	Cjbxhrjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPNh-0000000FDuc-1WUI;
-	Fri, 20 Nov 2026 14:14:25 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1xUPOx-0000000FE9R-1cJy;
+	Fri, 20 Nov 2026 14:15:43 +0000
+Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPNe-0000000FDuC-1PrE
+	id 1xUPOu-0000000FE8w-2ulH
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 14:14:23 +0000
-Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AKAueo32861278;
-	Fri, 20 Nov 2026 14:13:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pp1; bh=PvPx8KemO0xcM9BvIjOEVvpcXVwQS3
-	ehLVp+q+/Y12c=; b=B5DXBemKh9Lh8Rak/aftkySB8nUn7NsasM5g/+jda1/202
-	SNHoaGCp4T50AfG5uoLucmeIAlvT28FDySN7p1NkD6ZtwATMuH03SW5Q07GNENBL
-	LZ8crLwhAp9yp516a+PR34CiZCkRsP1Uzum3VC3B7DLgM9v/MJ96zLNFPPuer3MJ
-	EzzVOF0TcZzPwB++1501FHuJDNsHZ1mUAKrl8Wz5m6WwODC8ajQQvRUHTNfQLbnV
-	D65Zv3Pw8HNWgu/r8A+wSIjspJXowyQ/dbRGgq/UWQbIwNf2dkuwF5eWySI59VZ0
-	ecI6tQDSJ7Zbd3DNa6/jIzSO/ax9WVj+5PFGXxHw==
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j105x8hq4-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 20 Nov 2026 14:13:49 +0000 (GMT)
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AKDVBTa1220811;
-	Fri, 20 Nov 2026 14:13:48 GMT
-Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j2q5ng6nn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Nov 2026 14:13:48 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6AKEDdaU47513900
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 20 Nov 2026 14:13:40 GMT
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id DDBFB20043;
-	Fri, 20 Nov 2026 14:13:39 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id B608F20040;
-	Fri, 20 Nov 2026 14:13:38 +0000 (GMT)
-Received: from osiris (unknown [9.111.86.180])
-	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Fri, 20 Nov 2026 14:13:38 +0000 (GMT)
-Date: Fri, 20 Nov 2026 15:13:37 +0100
-From: Steffen Eiden <seiden@linux.ibm.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
-        Joey Gouly <joey.gouly@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Zenghui Yu <yuzenghui@huawei.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Andreas Grapentin <gra@linux.ibm.com>,
-        Christian Borntraeger <borntraeger@linux.ibm.com>,
-        Janosch Frank <frankja@linux.ibm.com>,
-        Claudio Imbrenda <imbrenda@linux.ibm.com>,
-        David Hildenbrand <david@kernel.org>,
-        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
-        Alexander Gordeev <agordeev@linux.ibm.com>,
-        Sven Schnelle <svens@linux.ibm.com>,
-        Friedrich Welter <fritz@linux.ibm.com>,
-        Gautam Gala <ggala@linux.ibm.com>,
-        Hariharan Mari <hari55@linux.ibm.com>,
-        Hendrik Brueckner <brueckner@linux.ibm.com>,
-        Nico Boehr <nrb@linux.ibm.com>,
-        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>,
-        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-        linux-s390@vger.kernel.org,
-        Nina Schoetterl-Glausch <nsg@linux.ibm.com>
-Subject: Re: [PATCH v3 01/23] KVM: arm64: Refactor idreg caching into
- dedicated structure
-Message-ID: <20261120141337.222720-A-seiden@linux.ibm.com>
-References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
- <20261106-sysreg-v3-1-75e95980fb10@linux.ibm.com>
- <87ik1z8gsy.wl-maz@kernel.org>
+	Fri, 20 Nov 2026 14:15:41 +0000
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-2f03f3631b2so5232415ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 06:15:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795184139; x=1795788939; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=4Vx4X2Fvkx/Dd8Nyf178SX35TtePddMWESDoKM0WmL0=;
+        b=b0YMUC/+dIy0DiRrydGgJ/ehV0lZJXfKIoqdij6/bZJAW929qXYTyc8Vj4Cpmv4wOS
+         XQFO4wSWPht3YmBVkYIc/wgn1w2KMmNB91oVd34dh6ev0EvLHQiXf+EUeZ3OhI2kwGJV
+         l31UZMnKqLplcPteYO8GRgJu/6TLj4CJVsNl64iQ74H85AJ4fLVNRPnZLjouPfeVodBE
+         P4CjG0Swb0MdbQSjiO7cuoT+coqJGoUlGa+1dtqaX46ZTXTAFa8MxI4ZnOBMeWsmp6O5
+         YsE5KXLTdCfTmWOxUiAQAG58C/ECbW/iHW7d6AHdFjvxYiqf3JANxnLUjYOZftbb+bOq
+         L7mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795184139; x=1795788939;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=4Vx4X2Fvkx/Dd8Nyf178SX35TtePddMWESDoKM0WmL0=;
+        b=d2SYtq+Ar4lC4CV6ElDY2dDUNU0dVdy/YB0eb0MNxWdS+Xm15P8tF36+Mp+Ye3egDu
+         /d8amF8o2MIft8QcxMHWQE9eJZFaEELLa76vsyHfV8sUCl1BUSs87+V3KDaneRSDu78n
+         CayGyot3eLlISORu+OrT9XDNWwg5gpJZedIPcAxagcm5YYtZCINNgYxSFCCfE899EQUb
+         xaidxumQ5VG07UFir79jGeAMrs2WrmMYRYSOVw96ifvSEt8YbhG/xAx2eCfU+BX6Qx41
+         Gz69tKeeUnUV6k1jp8vLNVbZ7mdVls8H0wKn/nLgnn4G5Qxw0fx2uTOr1hvbLaKciuME
+         kRKw==
+X-Gm-Message-State: APuU4Z9wkLkfQ2WlSvvCUONQgLszQr8NUtashS0ihB8QBBtueTzuX3vI
+	ibmrBjefGA1eVyEMBIZi6rFwynSaBkBw67JFC7h2u+7qsBAlEHyGdJ63
+X-Gm-Gg: AZFdTZe81KBMGJ+XjU9sAgHZKwTK6++3pkrEIC4PD+X6pqZrd5AY6yXx5y85vW0g3x9
+	yAX5rn/99ONAnNglRL013LuUdbPJtOLCWR0uhNvd3sotzaXfc0c41bVRcX6Y4i2i/gJHha8o4cN
+	V0jKQuOZrgKF+I7QeIk/c+Sigz67v6oieXA1WZ7xtJXuSy6hTGT//ECNp3NylFfeKpwla0F1JVY
+	5NN2QTGlel/Y2tRHq4BFo3q4trwGnkI0asy6PS5xzLnDLCsDycsVAkYXZZAw/vFw7fC6DfjvsCl
+	6RmNYXw9u82xmTh1KcTm1HDukw4X/ZZwoz2loJmeSPk8YmAgbhbccg6iz0kSaTMJ0Ltf4CHnVqh
+	1K/iK54nYUe9fjgtAoOifbC3qpksKLv8IOA4yZLLLqmLop1kUzLptS9mYLLl0VLXc7W0vkpm4OT
+	E0yBsjon0ZOeQth4k33ByBjdbL3m+vBUXthHyzLiW5iuV22ZMkUObDQSu+oSoavYcWhBcDhIqph
+	U3nz2luqILYzg7kDTRN9JASyA4BnQdvzYHTPMs+gsJc9iwFsRuKER37PVSCRMKOQ3c1pwagdmIb
+	V0Fg88Tr2uaG57eOI87ihwW/C34ermER+sUYQ8NyLUHOSIo=
+X-Received: by 2002:a17:902:d60e:b0:2e9:7dda:bfc7 with SMTP id d9443c01a7336-2f03f27062fmr30969925ad.66.1795184139137;
+        Fri, 20 Nov 2026 06:15:39 -0800 (PST)
+Received: from localhost.localdomain ([115.73.20.187])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03f0c1f2csm14852005ad.22.2026.11.20.06.15.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 06:15:38 -0800 (PST)
+From: Nhat Tran <nhat.tranminhk2@gmail.com>
+To: Nishanth Menon <nm@ti.com>,
+	Santosh Shilimkar <ssantosh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-omap@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Nhat Tran <nhat.tranminhk2@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] soc: ti: wkup_m3_ipc: Use the device's own state in remove()
+Date: Fri, 20 Nov 2026 21:11:39 +0700
+Message-Id: <20261120141139.55783-1-nhat.tranminhk2@gmail.com>
+X-Mailer: git-send-email 2.25.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87ik1z8gsy.wl-maz@kernel.org>
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: ifAOkSVLFCM3CzBERqJcC9NJg_rpimD7
-X-Proofpoint-GUID: ifAOkSVLFCM3CzBERqJcC9NJg_rpimD7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDA1NSBTYWx0ZWRfX1grFYOpSlxGw
- 8U9gaIC7JaaXQFyArTP2A4hWJieHkkamYfmrPYx3g789KdPdqcGyBy/D//k1xZUO/aKYRm7wd94
- Ku39vjASwOWmvQOP1BiIQYSMpAUaNbyY8cGOnYjdniXsPxKNBnpOpKq0IbNmOjW7h+mOMIFqlZ2
- D12fcqRyN0Q8Dzpj8uJsm81mAiWtP2HGXzHwX3OfxYVDev84qTYQIpoaWWxXpALxsgvrJq2feQu
- 7Y2foONElooJcrbPU0AEp8si+PAHtwolJRuL0i+rxnPZ3u0oYpRL6JFfrFEQTKkA/Gpyojc0CQP
- Qs0WuDmgkafbkyu4WHYIPYbPbYBtDgw3G4s+VhNuZ8c4vlsihN57gNFQ4mGErRqUWeOOsPPwxCu
- T0zJosPU7KFjQ8NQWg3bsRtOp8XlW+gn9R35ybhBCRVuPDgOP3/TWmIq7PE3KuASaFl27PvPeYB
- YH0n81NxFpODIyhAqMQ==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDA1NSBTYWx0ZWRfX7PEZIeKNrAen
- Ko9rFLMVrRfFLFVd1IbxaNDtLwwIRNzqqlwdxybsCQ/kVtWEXSxjeCUfFIm6G/pC8kyzqQzy/4L
- MjqKT4QezrVLsftKJw8+LmRsM8tmVwo=
-X-Authority-Analysis: v=2.4 cv=K+m3jCWI c=1 sm=1 tr=0 ts=6b00559d cx=c_pps
- a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=Y2IxJ9c9Rs8Kov3niI8_:22 a=VnNF1IyMAAAA:8
- a=5Px26FCybgXTlaf_HfoA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-20_04,2026-11-19_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 clxscore=1015 adultscore=0 spamscore=0
- priorityscore=1501 impostorscore=0 phishscore=0 lowpriorityscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611200055
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_061422_500972_A745870A 
-X-CRM114-Status: GOOD (  14.84  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261120_061540_737120_4A3FAE2F 
+X-CRM114-Status: GOOD (  15.49  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,30 +100,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 14, 2026 at 05:27:09PM +0000, Marc Zyngier wrote:
-> On Fri, 06 Nov 2026 16:07:34 +0000,
-> Steffen Eiden <seiden@linux.ibm.com> wrote:
-> > 
+wkup_m3_ipc_remove() tears down the driver through the global
+m3_ipc_state pointer. That pointer is only set by the rproc boot thread
+once rproc_boot() succeeds, while probe returns success regardless of
+the boot result. If the wkup_m3 firmware cannot be loaded, for example
+because the driver is built in and probes before the root filesystem
+holding am335x-pm-firmware.elf is mounted, m3_ipc_state stays NULL and
+unbinding the driver dereferences it.
 
-...
+On a BeagleBone Black (AM335x):
 
-> 
-> Overall, I'd like to see a first patch introducing helpers that the
-> code uses everywhere possible, then another patch that introduces the
-> structure, the renaming, and changes the accessors without touching
-> the rest of the code.
+  wkup_m3_ipc 44e11324.wkup_m3_ipc: rproc_boot failed
+  # cd /sys/bus/platform/drivers/wkup_m3_ipc
+  # echo 44e11324.wkup_m3_ipc > unbind
+  Unable to handle kernel NULL pointer dereference at virtual address 00000064 when read
+  Internal error: Oops: 5 [#1] SMP ARM
+  PC is at wkup_m3_ipc_remove+0xc/0x48
+  LR is at device_release_driver_internal+0xbc/0x144
+  Call trace:
+   wkup_m3_ipc_remove from device_release_driver_internal+0xbc/0x144
+   device_release_driver_internal from unbind_store+0x50/0x74
+   unbind_store from kernfs_fop_write_iter+0x11c/0x1d4
+   kernfs_fop_write_iter from vfs_write+0x2a8/0x3f8
+   vfs_write from ksys_write+0x60/0xe0
+   ksys_write from ret_fast_syscall+0x0/0x54
 
-Sounds good. I'll implement that.
+The same happens when the mailbox the driver depends on is unbound.
 
-Thank you!
+Store the per-device state as driver data in probe and use it in
+remove(), so the debugfs entries, the mailbox channel and the rproc
+reference taken in probe are released whether or not the M3 was
+booted. rproc_shutdown() already returns -EINVAL for a remote processor
+that is not running.
 
-	Steffen
+Tested on a BeagleBone Black with the firmware not loaded at probe
+time: unbinding the driver directly or through the mailbox no longer
+oopses, and repeated unbind/bind cycles rebind and boot the M3 again.
+
+Fixes: cdd5de500b2c ("soc: ti: Add wkup_m3_ipc driver")
+Cc: stable@vger.kernel.org
+Signed-off-by: Nhat Tran <nhat.tranminhk2@gmail.com>
+---
+ drivers/soc/ti/wkup_m3_ipc.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/soc/ti/wkup_m3_ipc.c b/drivers/soc/ti/wkup_m3_ipc.c
+index eb6074a67ba3..224651955cda 100644
+--- a/drivers/soc/ti/wkup_m3_ipc.c
++++ b/drivers/soc/ti/wkup_m3_ipc.c
+@@ -695,6 +695,7 @@ static int wkup_m3_ipc_probe(struct platform_device *pdev)
+ 		goto err_put_rproc;
+ 	}
+ 
++	platform_set_drvdata(pdev, m3_ipc);
+ 	wkup_m3_ipc_dbg_init(m3_ipc);
+ 
+ 	return 0;
+@@ -708,12 +709,14 @@ static int wkup_m3_ipc_probe(struct platform_device *pdev)
+ 
+ static void wkup_m3_ipc_remove(struct platform_device *pdev)
+ {
+-	wkup_m3_ipc_dbg_destroy(m3_ipc_state);
++	struct wkup_m3_ipc *m3_ipc = platform_get_drvdata(pdev);
+ 
+-	mbox_free_channel(m3_ipc_state->mbox);
++	wkup_m3_ipc_dbg_destroy(m3_ipc);
+ 
+-	rproc_shutdown(m3_ipc_state->rproc);
+-	rproc_put(m3_ipc_state->rproc);
++	mbox_free_channel(m3_ipc->mbox);
++
++	rproc_shutdown(m3_ipc->rproc);
++	rproc_put(m3_ipc->rproc);
+ 
+ 	m3_ipc_state = NULL;
+ }
+-- 
+2.25.1
 
 
