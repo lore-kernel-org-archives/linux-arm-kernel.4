@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF31606A334
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F372C606A32A
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:41:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YDtM6+/A;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PbenfX9G
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jP4x0FOz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=R24ohYu5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NkWuAoktz2jsTqcUkYdJz0Wvs9+5SwEtBq+3WiZduJ4=; b=YDtM6+/AcGJwmy+oPcJQHtFhEv
-	BsabJCuIyZqvNFeHPCx8C/Mm3gn9/Sokh/UGjcGxThEitHRTFUo8rtOh+yhsJjfv0KYj5Gq+mWekd
-	q1t02rSQWivoKpQyZGN6p/KuBCo8ALdjIG7Ifo68k6gqh1EYD4Tn3cdvMJPwMi7aYLpK1U39J8Uer
-	V+4CueMxW3NvVhRLbJ+fqz7sIpZLBasU8u6+HgzrN/ybAcZiIraLtLVaUP9iSlQTnnLAPl0TDMqHo
-	e3mxN8Il4JrepGlosQMFf43oOKUECAsIv/alzOkilDfmtAxF0Zoi4YfMltboGSjHXI8blBJqOdpSx
-	BK/zVOHA==;
+	bh=5sTfjmvRmInRg9bzSas7Pj5tLY1aYw/Q3j6D0qSG5DA=; b=jP4x0FOzP1vid7vWuKGRdSLhro
+	MJSlhqgVQg238t9VM3EA2r4HcOjeCsRu50pjx6UxjF3sXbMz27afgxca0aBxNdZAhcQWcCdze82W+
+	DzUFiOYOJdjIDyf0zybM1A0FMCz2LnYmHhrJOf/pLext/aQkTgjpQ2Y9JwJveG45TRKE43bL/Vy0H
+	x/rVkBFCIfc/u11vSdHkvTioUVSKdcfTB0/3kuOcw0apBL8OU9G344huXoZk+/MY6bXqpdpDleOcD
+	3212Qlbibg4OCD6IFU68ss1+mvKOJnKXpwC7C3LwKYLPwj2fVAFOdmVHO85S7TXwyVyfOJSPb6ch1
+	0POVmGsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMzJ-0000000Eq0U-0RA7;
+	id 1xUMzJ-0000000Eq10-1mY1;
 	Fri, 20 Nov 2026 11:41:05 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMzB-0000000EpwJ-1WaR
+	id 1xUMzD-0000000Epx2-0Pne
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:40:57 +0000
+	Fri, 20 Nov 2026 11:41:00 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0B0074626B;
-	Fri, 20 Nov 2026 11:40:57 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 2C3456265B;
+	Fri, 20 Nov 2026 11:40:58 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795174856;
-	b=jYqdgRzMX9QqPLIdRRJY1k9EC8ysvfZ00noaym9gb9NZXG8zvl5BjvX+BbCAR7uq+Qoc
-	 A+CUrRv8jYfUcAFNACn/7luQMLndfXjgXejw1nibm8dKxoYR1MCF7uBwba++8Hkn0Di9v
-	 IUZu7GAhz1iaxQB8escDE3LzGk34isy9ve9B3chpvi39DKAjVunXBkwFkx4lxG3e1nFec
-	 WTsr1kQ0g0qq5nCYysZ2d5wgTp/61Sg2+6Z7NnU2FyAl1tiker0PW4hf5kuqdeZ3RYA7w
-	 Fh1tY0NlJaqDvjpfXcBk4VPYXIRBgpAxuegJ4EYkqw2WDvnNQ2DfutetAjRp5WCuX1g==
+	t=1795174857;
+	b=fUGt+OKQRNKz/1th9wppEZt1u8YXemp90wMSR9TauROKSI9EWd19ntEayufc3xRf0wkY
+	 niFaACZZlBSUUSrUYdNqf3F3odmywYpf0pobgsF6PotoQjRfT75orYLfWeiY1MHb0XpzX
+	 2Cr3Wx69TveAvWzUDkZl0G72T7i/M9k6tnrvGgZZQfkFnvvDjmS8W4b+zuqHjLbAUX8al
+	 9eBAvoWOcn1TnD/XAi2FRn+IgJV0psCwaPEqijmNF9tnotAXv8aVUd0z4pCfucTMO2V6/
+	 9t524WrG3VJPGMmLoctGyhrtEZ/hBW+CBwF+VCyP5APO+5PKX7PLALxvlsDPpW07f1A==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795174856;
+	c=relaxed/relaxed; t=1795174857;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=NkWuAoktz2jsTqcUkYdJz0Wvs9+5SwEtBq+3WiZduJ4=;
-	b=Gll36bTveYl1MluAo/92V5ABAjf8tDsp2qq3EWVtz6JM9cB+1Ur16Fj2wuEjAspqDLqp
-	 TUe3UiQIx40FJhu7AmOO4MLXutk5FkUCD7UTbMqUd4J6EMLjtWV+82KZid1jvw3ni5O4q
-	 WXTJ/ZIibs9wW/6YuHEGOgMgU41t3OLgTjD/MsOvDKGYszrxnBZ79rhQOy9jl6a1YkVjL
-	 FlzvufIX6/+nEALfZwHmirwb6GGRqODNVB1wr0XDzbgF8xxe+4XrfGA1/SlRSo/+im2Kw
-	 8LMuRvYrqdU02hmlMqDg37jGGXV5oS/l367G0Fo6xVvJ6IZPLOgZUdiK/yeBrMetelA==
+	bh=5sTfjmvRmInRg9bzSas7Pj5tLY1aYw/Q3j6D0qSG5DA=;
+	b=o41U0kZrcYis4PmfFam5gh0uK1m+Of+zV8EMIQhpL3DVVKPYuDLMXCb2mrPeWotGtg3j
+	 RrMKELRUMSj3IevzY9tDjUgy5BrYJdb3s9UlkCkgvUkC/7mfS0bhN7HZWQO3kic0A+VxS
+	 Q8wB8iCgBigBH3JKu1IJjVOHxtNK6g7cR4a8U0Juh8uQY3j+gaZ6o3/xf9Wd99ISNY/Gy
+	 7k1x4pczKWcKQ2VMiaS65kITtjdZTdSmGq79yCexqBFGk+W5p2SacfkxwHGJ2nh8TphxM
+	 PAL9l96Bi3OKJHSv2bqniBekwBgzKdPhaLXkdXkM0CsopcjmZuCVUOjVvlxoKcbv3tw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1D0C01F000D3;
+	by smtp.kernel.org (Postfix) with ESMTPS id 352CB1F000D8;
 	Fri, 20 Nov 2026 11:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795174856;
-	bh=NkWuAoktz2jsTqcUkYdJz0Wvs9+5SwEtBq+3WiZduJ4=;
+	s=k20260515; t=1795174857;
+	bh=5sTfjmvRmInRg9bzSas7Pj5tLY1aYw/Q3j6D0qSG5DA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=PbenfX9GLeOTyFDhCVDKorRlqAYPx+nFW873xbSzeq/jCeDm3HUaL/UI0ObSS2aDh
-	 bhDpnkGTFXBI5Y3NFlkUxqtRHRAGg0vCNgaU4AsN6qTgwr+RCJRXDrGUmi1ciJ/H6H
-	 sJXiY4KBtnWY6rSQdGIqmCnsArLxJI4mIRWf4F5TDPyPkFejhSWXNVGjj7ys07td02
-	 /DktCh1Js1sQCxzP93WhXvRaPXqOMdtBIX1pn6X35bfjBnpep40OeGu73jJYVNG+At
-	 Tsu+GzSPYa4zXb8e8tBxKznec01VksNTigHsk9K4OFF2tv0Cj9bfd0xcDT6zZl/9p9
-	 1/XDOC4Y/NKMA==
+	b=R24ohYu5kb/29/Mjxeu6qbnW+AxltB3RBuDFqYc9cz9O+2PUIVz+CW8SfGWTA7I7p
+	 3Wvp0HRdKK2OnxhUZBSS6yM8MPtMHQByDGg8vqUsjuOGdkqR/h19QTHdNoilLCCckA
+	 xMGl9f94+TSatX/2i/T9/i+zzOoULO0PIt+N9DUF5750Ga18xe6l6/cuOvGUz6vE30
+	 VKdt/DWsqNxI3g4V5LX6wujxEW0uR7EOLyPd9ZVACsJtbd/U718LYKEgB8CCDVdGqn
+	 /0VoLij2eP/LfcNMdBywNI9flmQELRS1sBD9/sAH8JHc7598UXhxIpEBvtuvwS8XnV
+	 Ni3sY3SyswH9Q==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A7F474986B;
+	by lkml.kernel.org (Postfix) with ESMTP id C039E4986F;
 	Fri, 20 Nov 2026 11:40:46 +0000 (UTC)
 From: Ivan Pfarher via B4 Relay <devnull+ipfarher.gmail.com@kernel.org>
-Date: Fri, 20 Nov 2026 12:40:46 +0100
-Subject: [PATCH 2/4] arm64: dts: allwinner: h5: orangepi-zero-plus2: Add
- AP6212 Bluetooth
+Date: Fri, 20 Nov 2026 12:40:47 +0100
+Subject: [PATCH 3/4] arm64: dts: allwinner: h5: orangepi-zero-plus2: Fix
+ USB peripheral mode
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261120-orangepi-zero-plus2-fixes-v1-2-ecd792189f27@gmail.com>
+Message-Id: <20261120-orangepi-zero-plus2-fixes-v1-3-ecd792189f27@gmail.com>
 References: <20261120-orangepi-zero-plus2-fixes-v1-0-ecd792189f27@gmail.com>
 In-Reply-To: <20261120-orangepi-zero-plus2-fixes-v1-0-ecd792189f27@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -90,11 +90,11 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-sunxi@lists.linux.dev, Ivan Pfarher <ipfarher@gmail.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795174845; l=2073;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795174845; l=2079;
  i=ipfarher@gmail.com; s=20261120; h=from:subject:message-id;
- bh=N+gCZKSFdjvJNosqW8VyXfcloLRjV1OkNZSQDadOkiI=;
- b=tPfPEbATNv3mq+JDkKPCdtxG1k6VqvAhezObKAw6Yhbn9XisANtaKSEEGKFjIVb+0f4xtEo0b
- W/VY2mu9j1PDB5pZlH6mVg2X4CnPeiiXqlDLPeTr2H3lhmcb/StPSvF
+ bh=xNp8GjP59av7t0jD0DKAR+qLGNBv0iVBKlMlHOJX/bQ=;
+ b=LYdIeAg0Z6D9hFAlocH2PSZCyaBHHy6WLerO7QNpZyL8gPTX5MGhRlVA/p/PhMwtgBawPihCa
+ rdmDDcSs/jAA4Ylcsg0pIyPD2nV8r7aCpwj4HNwPn8qfRJX8icDs9kq
 X-Developer-Key: i=ipfarher@gmail.com; a=ed25519;
  pk=3DMYyz/xl+KRAx2TNGJpheG+5QUm7lqHhKXFqVu2TmY=
 X-Endpoint-Received: by B4 Relay for ipfarher@gmail.com/20261120 with
@@ -122,58 +122,64 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ivan Pfarher <ipfarher@gmail.com>
 
-UART1 is connected to the Bluetooth part of the AP6212 module, but the
-controller itself is not described, so nothing powers it up and the
-kernel never registers it.
+The micro USB port is set to dr_mode = "peripheral" because it cannot
+supply VBUS, but EHCI0/OHCI0, which share USB PHY 0 with the MUSB
+controller, are enabled too.
 
-Add it as a serdev child of UART1. BT_REG_ON is connected to PA10:
-on the board, driving PA10 low makes the controller drop CTS and stop
-answering, driving it high brings it back. It uses the same RTC LPO
-clock as the WiFi part. The wake-up lines are not described because
-they could not be identified.
+When they register, usb_add_hcd() asks the shared PHY for host mode
+(since commit e671765e521c ("usb: core: Try generic PHY_MODE_USB_HOST
+if usb_phy_roothub_set_mode fails")), and phy-sun4i-usb switches PHY 0
+to host ("Changing dr_mode to 1"). MUSB then stays in a_wait_vrise, the
+UDC stays "not attached", and a gadget never shows up on the host.
+
+The port cannot work as a host on this board anyway, so drop EHCI0 and
+OHCI0.
 
 Tested on an Orange Pi Zero Plus2 (H5) running Linux 6.6.160 with this
-change applied: hci_bcm powers the controller, loads
-brcm/BCM43430A1.hcd, switches the UART to 1.5 Mbaud and the adapter
-works with BlueZ (scan finds nearby devices):
+change applied: g_cdc enumerates on the PC (CDC ECM + ACM), the UDC
+state is "configured" and MUSB is in b_peripheral. Build-tested only
+against current mainline.
 
-  Bluetooth: hci0: BCM43430A1 'brcm/BCM43430A1.hcd' Patch
-  Bluetooth: hci0: BCM43438A1 26MHz AP6212A1_CL1 BT4.0 OTP-BD-0034
-
-Build-tested only against current mainline.
+The H3 version of the board (sun8i-h3-orangepi-zero-plus2.dts) has the
+same setup from the same commit but is not changed here, as it could
+not be tested.
 
 This problem was investigated, and the patch drafted, in an interactive
 session with an AI coding assistant (Claude by Anthropic). The submitter
 reviewed the change and ran the tests described above.
 
+Fixes: 43aad09c7928 ("ARM: dts: orange-pi-zero-plus2: enable USB OTG port")
 Signed-off-by: Ivan Pfarher <ipfarher@gmail.com>
 ---
- .../boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts      | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts | 8 --------
+ 1 file changed, 8 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-index 34d6c1468..5697251b9 100644
+index 5697251b9..892723b46 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-@@ -128,7 +128,18 @@
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
+@@ -66,10 +66,6 @@
  	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		max-speed = <1500000>;
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "lpo";
-+		vbat-supply = <&reg_vcc3v3>;
-+		vddio-supply = <&reg_vcc3v3>;
-+		shutdown-gpios = <&pio 0 10 GPIO_ACTIVE_HIGH>; /* PA10 */
-+	};
  };
  
- &usb_otg {
+-&ehci0 {
+-	status = "okay";
+-};
+-
+ &hdmi {
+ 	status = "okay";
+ };
+@@ -115,10 +111,6 @@
+ 	status = "okay";
+ };
+ 
+-&ohci0 {
+-	status = "okay";
+-};
+-
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_pa_pins>;
 
 -- 
 2.43.0
