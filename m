@@ -2,100 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08061606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7111606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hhbYXCFj;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O2v2vwEF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TODRpxrX;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=YmrxRN5B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=jTT7ZQT/IeZuZXnF5eJK7WIKxpNbB7mlhkfRnq9M/Fg=; b=hhbYXCFjAa7lHG
-	rJNFRBXZzkMawiClXQs5b8HQaaQGnATnjYYXXcX4HAUjo7CiTab5TEttleaogui/QxPOZVsRqmoh8
-	4cYNRsv/IeSyTQgwDjtzvJD1PErOc/4BgkQKWfDQerkz2L+3cQCU5kQWzQE9WBtsEvA/NX7gLdocE
-	0b8VRFF63A2DUyHuYlKx3P/qAB47hSemE+lINsDKLvx5lS2S1IvEtsEOLDTKLsL1Ec+iqejiXW63A
-	8nUzU7IHgscY+DQpTcaU0joEbEiDrH9iCFyxEPCdo3bi4Kgpu/XaJ1b8jaFoBLW4xW343iuUuPjDr
-	y8SjNi4LgH/AjQBkOzww==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Cc:To:Subject:
+	From:Message-ID:Reply-To:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=PSHSxED65AnpWskI+zndcsoj9vhLG7Y6yB7a+EXXCRI=; b=TODRpxrXS1nApt0bOJ1emBp7rx
+	8xsDJHcznFWogZjOZK+1gz5kKL5y9Yh9vn56Qb2QgsNLQ40F18UfQKbQvTLAbI0lvvRsyxJnWjjD9
+	ZFGpQs0v/wSyO4uu8FSz7HsnruZSOVtyJx6w/HSnxCkx74an6nbp26ENWEleusNohjK6tBD13E+pq
+	W6r9Ok1Am7KPW4iO8zXkJD+7yQDkgziaJFCKdeWf9k0heehlzBBZCqe8d6RXfWxl83E7u/ZS3K6hE
+	t+D3Oop35vg2YIJDAbsqsFBdrHOlnoNqzkvulCTStH6v74qARcmGF0G0FwghDnwYx5K4BatJaHNsL
+	Au+Z0M+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOxv-0000000FAb4-31tD;
-	Fri, 20 Nov 2026 13:47:47 +0000
-Received: from mgamail.intel.com ([198.175.65.16])
+	id 1xUOzH-0000000FApL-0PgV;
+	Fri, 20 Nov 2026 13:49:11 +0000
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOxs-0000000FAaK-2e60
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 13:47:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795182465; x=1826718465;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=kP2SPO5/6lORcTqOAcqARY5ZCI7i60ffA/JZ/vM2yOo=;
-  b=O2v2vwEFfcj6tH++svvvT5+bQOEfg/MmQ5nlwm7sYSf8kagiy/rmchnm
-   jFP+Yc3tF3kEGzrkFqJxdJbvfKbpluxQFjmKRiCaD3sFcFiCQzQDd3VW3
-   wSbY4bLE3Q4TdizrBHZosfXphMBX/nwlDfBhI1kKE5ktIDGbObJU2okZA
-   +hdkL49k0rnfU6qiWP3qVhcYH/Yi3gapAOWDWKslDFoETN4f9vh+k7YoA
-   sScN2QsA98Wc5RwjPM9fyBpTc7bydDZZ9mscCmKSl2TJvTjyJanTPoDE7
-   q478OpGbQt1fbsK3oHnmDYjXGMTWV8D1SmCRZJAOmjq+iVQ19azw5gO5W
-   g==;
-X-CSE-ConnectionGUID: AONVwMTGTR+Yl4MMNOn94w==
-X-CSE-MsgGUID: U4JupFQJSw26M1INRwqBpQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4052857"
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4052857"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 05:47:43 -0800
-X-CSE-ConnectionGUID: DGbbw3DBQwm7faPJizsrJA==
-X-CSE-MsgGUID: jGL/RBZuTbOQudBjx7Vs5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="11277400"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.16])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 05:47:34 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	"Rafael J. Wysocki (Intel)" <rafael@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Greg Ungerer <gerg@linux-m68k.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Yoshinori Sato <ysato@users.sourceforge.jp>,
-	Rich Felker <dalias@libc.org>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	"James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
-	Helge Deller <deller@gmx.de>,
-	Len Brown <lenb@kernel.org>,
-	Dominik Brodowski <linux@dominikbrodowski.net>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-m68k@lists.linux-m68k.org,
-	linux-mips@vger.kernel.org,
-	linux-sh@vger.kernel.org,
-	linux-parisc@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v2 01/16] PCI: Add pci_bus_size_and_assign_resources()
-Date: Fri, 20 Nov 2026 15:46:56 +0200
-Message-ID: <20261120134716.3027-2-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261120134716.3027-1-ilpo.jarvinen@linux.intel.com>
-References: <20261120134716.3027-1-ilpo.jarvinen@linux.intel.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+	id 1xUOzD-0000000FAoE-2psT;
+	Fri, 20 Nov 2026 13:49:09 +0000
+Received: from [127.0.0.1] (unknown [IPv6:2a02:560:5c0a:3200:9ebf:dff:fe00:fdb5])
+	(Authenticated sender: sha@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id C891C202284;
+	Fri, 20 Nov 2026 14:49:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795182543;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PSHSxED65AnpWskI+zndcsoj9vhLG7Y6yB7a+EXXCRI=;
+	b=YmrxRN5BlxHFPxY2kfXI38ZIFzr/mftDDptQVVgALq8EGk9KFpm/BSUUTumF7A8Lg40Z5t
+	voMLta3CKVM3VysCnjW4vOnfG5m0WR8auBgrCLd4902vrffq0E6qONyaZGNTDA9Wmssr0d
+	cxvfRY70R2A/nmWpFrfE4D/MpBNK+NQudVO2OtTMWrtHZqbj8qMzXXzVoYwzX1gG4K11Ei
+	PIecDc56J4CrUHlPxBLdHKAE7Sp0NZ3/CXF9b8Wa3Kjiec9xaMBNhIb0X8lq9InAkfvK2c
+	pOuVFmkOgf69YS+uGAdE4oELkAKSiMjCsyhMqRCq9sAR010D/CrwWmos3LAh9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795182543;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PSHSxED65AnpWskI+zndcsoj9vhLG7Y6yB7a+EXXCRI=;
+	b=RMJ//48gHnP/MWe0w62kRSDg6IbkJw6cekgiRaswZ9QGQZtBRCtu2/xUY9ch/Df8k5ktJV
+	EJ+pFcoz4KjIzNUYZ3OcA41zWU6kftNV/WgufDUgzDEneTy2XyoAmgszrHx3c/uBXXXa2R
+	QKh8NFp4tXVElNIGOwDY+4Ow1jnr2bNhM4N05Vr/dpX6ZxqTy7F97KM7MDPl/o0FlcU858
+	18u+v4coNkBtex8Tx+EPPEYZNPv5EZab4nptBKnbdaIFIrxOyU4ykp0yF0IMoo8nCo2OjO
+	0IKculyiRnGLXttfpTfWvGkyWUQiorjWNzWySMPu7zZjYOvyHZd258v48FRCzA==
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795182543; a=rsa-sha256;
+	cv=none;
+	b=f8N6LrVJ/HxgbB54m+tOKZ9deaW+Yb9M9s+xMyzEl6SXLcRkLuj/z1ISJJ22V+uab16Jte
+	VCEbxmoMRdGC0GgPrzIT9gygOJVPtNvbkSVGjUhwaO7YkxNDN5DNoVk5lyk0+fuWQh7tVx
+	7hxpwv/x46dlr0iO6mI9okNgDlpjlyck9T8jiL+pPT63ZIN6V6IgUXsZPH6ZDhePLdeRxv
+	xHldrd4+hl6h8LFaIPfaYyRWAzq5/vaUbnkuXDgPpsBa8Yc+ckqrDyHJO43+LLqlkpOco6
+	BG/3hMDUmDoX7bmV3jMQ1g8YJuP+moBMEf88hcC4/FHlGHcF9DGXsVOnM9upDQ==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sha@pengutronix.de smtp.mailfrom=s.hauer@pengutronix.de
+Message-ID: <8bc5870a-2b38-4e3a-9f93-76b2673a79dd@pengutronix.de>
+From: "Sascha Hauer" <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v7 2/4] media: rockchip: Add JPEG decoder driver
+To: "Nicolas Dufresne" <nicolas@ndufresne.ca>
+Cc: "Sascha Hauer" <s.hauer@pengutronix.de>, "Sergei Khomenkov" <shomenkow@gmail.com>, "Lucas
+ Sinn" <lucas.sinn@wolfvision.net>, "Mauro Carvalho Chehab" <mchehab@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Philipp
+ Zabel" <p.zabel@pengutronix.de>, linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <41e428a6fcdcf3d0c10cada8743231797b3dd5f4.camel@ndufresne.ca>
+References: <20261022-rockchip-jpegdec-v7-0-3fd7dd55f408@pengutronix.de>
+ <20261022-rockchip-jpegdec-v7-2-3fd7dd55f408@pengutronix.de>
+ <596F6C9E-4A5D-4AE8-8D26-7A7247050D7D@gmail.com>
+ <85353f59-52a0-446d-ace3-65e2d03d0d0b@pengutronix.de>
+ <41e428a6fcdcf3d0c10cada8743231797b3dd5f4.camel@ndufresne.ca>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 20 Nov 2026 13:49:03 +0000
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_054744_750875_83EF34DF 
-X-CRM114-Status: GOOD (  14.48  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261120_054907_860030_5AE3AC49 
+X-CRM114-Status: GOOD (  20.82  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,185 +98,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-Bridge window sizing and resource assignment must not run concurrently
-with another sizing and assignment pass or with device removal.
-Preventing that requires holding locks across both phases. Many callers
-outside of PCI core call pci_bus_size_bridges() immediately followed by
-pci_bus_assign_resources() and cannot hold the PCI core internal locks
-across the two calls.
+Hi Nicolas,
 
-Add pci_bus_size_and_assign_resources() into PCI core which combines
-these two operations and convert the callers that call them back to
-back.
+On 2026-11-19 11:00, Nicolas Dufresne wrote:
+> Le mercredi 18 novembre 2026 =C3=A0 14:27 +0000, Sascha Hauer a =C3=A9cri=
+t=C2=A0:
+> > > Would 3 bytes per pixel be acceptable as the default, and as a floor
+> > > for smaller requests, like the 2 bytes per pixel floor in 6/7 of your
+> > > hantro-based v1? 4:4:4 at quality 100 would still not fit, but the
+> > > subsampling is not known before the header is parsed.
+> >=20
+> > I haven't been affected by this issue lately, but saw it when the series
+> > was still based on the hantro driver. Yes, I'll change to 3 bytes per
+> > pixel next round and make that the floor of sizeimage. Would be nice to
+> > have a proper solution for this rather than either wasting tons of
+> > memory or risk having too small buffers.
+>=20
+> The hantro HW can run in ring buffer mode, that forces us to copy, but I =
+think
+> you can then perform decode without actually having the entire image in R=
+AM.
+> Would need some experimentation. We probably don't want copy to mmap + co=
+py to
+> ring buffer (double copy), and V4L2 read/write are deprecated. Note sure =
+what to
+> propose really.
 
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
-Cc: stable@vger.kernel.org
----
- arch/arm/kernel/bios32.c           | 5 ++---
- arch/m68k/coldfire/pci.c           | 3 +--
- arch/mips/pci/pci-legacy.c         | 5 ++---
- arch/sh/drivers/pci/pci.c          | 3 +--
- drivers/parisc/lba_pci.c           | 7 ++-----
- drivers/pci/hotplug/acpiphp_glue.c | 3 +--
- drivers/pci/setup-bus.c            | 7 +++++++
- drivers/pcmcia/cardbus.c           | 3 +--
- include/linux/pci.h                | 1 +
- 9 files changed, 18 insertions(+), 19 deletions(-)
+The Rockchip JPEG decoder can stop on buffer ends and I just managed to
+resume operation on the next buffer afterwards, so in principle we could
+implement streaming mode.
 
-diff --git a/arch/arm/kernel/bios32.c b/arch/arm/kernel/bios32.c
-index ac0e890510da..555bfb091d30 100644
---- a/arch/arm/kernel/bios32.c
-+++ b/arch/arm/kernel/bios32.c
-@@ -510,15 +510,14 @@ void pci_common_init_dev(struct device *parent, struct hw_pci *hw)
- 		/*
- 		 * We insert PCI resources into the iomem_resource and
- 		 * ioport_resource trees in either pci_bus_claim_resources()
--		 * or pci_bus_assign_resources().
-+		 * or pci_bus_size_and_assign_resources().
- 		 */
- 		if (pci_has_flag(PCI_PROBE_ONLY)) {
- 			pci_bus_claim_resources(bus);
- 		} else {
- 			struct pci_bus *child;
- 
--			pci_bus_size_bridges(bus);
--			pci_bus_assign_resources(bus);
-+			pci_bus_size_and_assign_resources(bus);
- 
- 			list_for_each_entry(child, &bus->children, node)
- 				pcie_bus_configure_settings(child);
-diff --git a/arch/m68k/coldfire/pci.c b/arch/m68k/coldfire/pci.c
-index 5afb207ccc51..dd21c77c43a6 100644
---- a/arch/m68k/coldfire/pci.c
-+++ b/arch/m68k/coldfire/pci.c
-@@ -250,8 +250,7 @@ static int __init mcf_pci_init(void)
- 	rootbus->resource[0] = &mcf_pci_io;
- 	rootbus->resource[1] = &mcf_pci_mem;
- 
--	pci_bus_size_bridges(rootbus);
--	pci_bus_assign_resources(rootbus);
-+	pci_bus_size_and_assign_resources(rootbus);
- 	pci_bus_add_devices(rootbus);
- 	return 0;
- }
-diff --git a/arch/mips/pci/pci-legacy.c b/arch/mips/pci/pci-legacy.c
-index dae6dafdd6e0..ec0e42d9a895 100644
---- a/arch/mips/pci/pci-legacy.c
-+++ b/arch/mips/pci/pci-legacy.c
-@@ -129,15 +129,14 @@ static void pcibios_scanbus(struct pci_controller *hose)
- 	/*
- 	 * We insert PCI resources into the iomem_resource and
- 	 * ioport_resource trees in either pci_bus_claim_resources()
--	 * or pci_bus_assign_resources().
-+	 * or pci_bus_size_and_assign_resources().
- 	 */
- 	if (pci_has_flag(PCI_PROBE_ONLY)) {
- 		pci_bus_claim_resources(bus);
- 	} else {
- 		struct pci_bus *child;
- 
--		pci_bus_size_bridges(bus);
--		pci_bus_assign_resources(bus);
-+		pci_bus_size_and_assign_resources(bus);
- 		list_for_each_entry(child, &bus->children, node)
- 			pcie_bus_configure_settings(child);
- 	}
-diff --git a/arch/sh/drivers/pci/pci.c b/arch/sh/drivers/pci/pci.c
-index 878a27a1acfb..c91ca8f4cb1c 100644
---- a/arch/sh/drivers/pci/pci.c
-+++ b/arch/sh/drivers/pci/pci.c
-@@ -81,8 +81,7 @@ static void pcibios_scanbus(struct pci_channel *hose)
- 		need_domain_info = 1;
- 	}
- 
--	pci_bus_size_bridges(hose->bus);
--	pci_bus_assign_resources(hose->bus);
-+	pci_bus_size_and_assign_resources(hose->bus);
- 	pci_bus_add_devices(hose->bus);
- }
- 
-diff --git a/drivers/parisc/lba_pci.c b/drivers/parisc/lba_pci.c
-index 5197a3c93c70..39ab93ba458b 100644
---- a/drivers/parisc/lba_pci.c
-+++ b/drivers/parisc/lba_pci.c
-@@ -1639,11 +1639,8 @@ lba_driver_probe(struct parisc_device *dev)
- 	if (is_pdc_pat()) {
- 		/* assign resources to un-initialized devices */
- 
--		DBG_PAT("LBA pci_bus_size_bridges()\n");
--		pci_bus_size_bridges(lba_bus);
--
--		DBG_PAT("LBA pci_bus_assign_resources()\n");
--		pci_bus_assign_resources(lba_bus);
-+		DBG_PAT("LBA pci_bus_size_and_assign_resources()\n");
-+		pci_bus_size_and_assign_resources(lba_bus);
- 
- #ifdef DEBUG_LBA_PAT
- 		DBG_PAT("\nLBA PIOP resource tree\n");
-diff --git a/drivers/pci/hotplug/acpiphp_glue.c b/drivers/pci/hotplug/acpiphp_glue.c
-index 78e3effbb32d..632344f34cae 100644
---- a/drivers/pci/hotplug/acpiphp_glue.c
-+++ b/drivers/pci/hotplug/acpiphp_glue.c
-@@ -465,8 +465,7 @@ static void acpiphp_native_scan_bridge(struct pci_dev *bridge)
- 		max = pci_scan_bridge(bus, dev, max, 1);
- 		if (dev->subordinate) {
- 			pcibios_resource_survey_bus(dev->subordinate);
--			pci_bus_size_bridges(dev->subordinate);
--			pci_bus_assign_resources(dev->subordinate);
-+			pci_bus_size_and_assign_resources(dev->subordinate);
- 		}
- 	}
- }
-diff --git a/drivers/pci/setup-bus.c b/drivers/pci/setup-bus.c
-index ed16ef7c26fa..29ec9ba59d92 100644
---- a/drivers/pci/setup-bus.c
-+++ b/drivers/pci/setup-bus.c
-@@ -2492,3 +2492,10 @@ void pci_assign_unassigned_bus_resources(struct pci_bus *bus)
- 	__pci_bus_assign_resources(bus, &add_list, NULL);
- }
- EXPORT_SYMBOL_GPL(pci_assign_unassigned_bus_resources);
-+
-+void pci_bus_size_and_assign_resources(struct pci_bus *bus)
-+{
-+	pci_bus_size_bridges(bus);
-+	__pci_bus_assign_resources(bus, NULL, NULL);
-+}
-+EXPORT_SYMBOL_GPL(pci_bus_size_and_assign_resources);
-diff --git a/drivers/pcmcia/cardbus.c b/drivers/pcmcia/cardbus.c
-index 5e5cf2c3e2c8..19df3f9228a7 100644
---- a/drivers/pcmcia/cardbus.c
-+++ b/drivers/pcmcia/cardbus.c
-@@ -81,8 +81,7 @@ int __ref cb_alloc(struct pcmcia_socket *s)
- 	/*
- 	 * Size all resources below the CardBus controller.
- 	 */
--	pci_bus_size_bridges(bus);
--	pci_bus_assign_resources(bus);
-+	pci_bus_size_and_assign_resources(bus);
- 	cardbus_config_irq_and_cls(bus, s->pci_irq);
- 
- 	/* socket specific tune function */
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index aa3765a20a96..d89aeb7c9ff7 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1569,6 +1569,7 @@ resource_size_t pcibios_retrieve_fw_addr(struct pci_dev *dev, int idx);
- void pci_bus_assign_resources(const struct pci_bus *bus);
- void pci_bus_claim_resources(struct pci_bus *bus);
- void pci_bus_size_bridges(struct pci_bus *bus);
-+void pci_bus_size_and_assign_resources(struct pci_bus *bus);
- int pci_claim_resource(struct pci_dev *, int);
- int pci_claim_bridge_resource(struct pci_dev *bridge, int i);
- void pci_assign_unassigned_resources(void);
--- 
-2.47.3
+Anyway, I'd say it's not worth adding the complexity to the driver to
+handle that.
+
+Sascha
+
+--=20
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
 
