@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC69606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 07:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA88606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 07:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u8/V7B3k
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y5gmgFd3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
@@ -13,87 +13,86 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Vu6IMQbhyMpXX+yWtY4enAtEpk8kj3N3fFV230nsSvs=; b=u8/V7B3k6inTTSAUw0NOVgqhmf
-	xfu8IGpXDyyW3CvbtJViOEd80bITTdmP4DI9Obmlb8c0zmrHNK3hHAtARD3E00rgzPbzpw0cCSc2e
-	tmlNFTEsBQxNQhH5tsgBhj0K8iFCBuDpUijiTeSo+2m/HtysPAMxRAGgeUwEGmNsXpPfc+Uob2q1P
-	gzTAo4EzT1vDT4+lMbq5cWMtY//uRE5tdYPTpBOEy1OhzDGdciA2qqRaEDktl/BVeVFgmU4RgU5Py
-	tHsnHD93pba6TNLrW6W87lnNb5858AbZZ1rj/xI/FV0pk7L8lKHie9nfOEsFtX2OW56QWdbLr4/Vw
-	UoiT9uYg==;
+	bh=xKnU/TldM314xEN7UqLDGvv/eDTZSOGz68aX0N6/qi4=; b=y5gmgFd3H/kj1Fx8jiBwswORxf
+	UnE3OMdSS3jZeaafDovrfPVEs1UNLIckQykBGEDirYNWDxPCm7RhfOwnvZJRQT2ku8YQNswFfa4PZ
+	V6My7rqS6NqtlyhiBsW1cQcPnCPVSN0xFQeXKhzgUwjAxHYBUXmfGQSDO0QmA2kCdgDVcyj4Nh7wi
+	U/OswQgQWVzfvPVc4+VBX/fo6kTwfVHDyro/h5Cmzqa7QfpPBjE6BBFPsvfjJjIrD3Lgw391TXcuS
+	jZ2vKGk2T3U3WWDjc6DYWiTsayDg/yK5fxf7xAwYcONvafJWs72EFIE+IU9iUbJi9o3wQT2clvmrs
+	RWw5apOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUJIf-0000000EGil-17o6;
-	Fri, 20 Nov 2026 07:44:49 +0000
-Received: from mail-vs1-f45.google.com ([209.85.217.45])
+	id 1xUJN3-0000000EH9w-0B2F;
+	Fri, 20 Nov 2026 07:49:21 +0000
+Received: from mail-vk1-f169.google.com ([209.85.221.169])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUJIc-0000000EGhh-09pc
+	id 1xUJN0-0000000EH93-1Cvw
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 07:44:47 +0000
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-74ab99038afso397527137.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 23:44:42 -0800 (PST)
+	Fri, 20 Nov 2026 07:49:19 +0000
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5ea969fafeeso184341e0c.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 23:49:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795160682; x=1795765482;
+        d=1e100.net; s=20260707; t=1795160957; x=1795765757;
         h=content-type:cc:to:subject:message-id:date:from:in-reply-to
          :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=Vu6IMQbhyMpXX+yWtY4enAtEpk8kj3N3fFV230nsSvs=;
-        b=WdCAHwGlPvLGC+sUJz8p6C/tA3phIcWLONNrc/cBhdK1DG3AAdlfQD50O6B1234pFG
-         Fe6dLyyb6ThnuHv2qO2w+dp9IsOl5KPab15WsK7m4/+OZ1rJ7fkDKsXKkT5KLXr0kY57
-         BB8oqBzjNH0S4NcZAI6jjzknLrt7RQsDkttXhv1dP3L+WJssDvlecDUl6ps1sHkC4W56
-         EFI2FdmBr9bgbzsxH4STVOpw2PKUUl9eIul+oMKpKTJpSExfeOzfLLiC4s2TRLK80Bd7
-         AbhV32Q0WawyhikyHKcWEA8VUDw9i8jCIAX9nyO4WB4csxlGUQFqYE2zxK5/BBOLwpNe
-         gOVQ==
-X-Forwarded-Encrypted: i=1; AL+hErGPN3Nz0i9gR7d+iL+VThZcps9G93U61XZlUKojCyea0bH15yN3pjZzYxet/0Vncvua/LNRvNOGBO6j+XeTgR05@lists.infradead.org
-X-Gm-Message-State: APuU4Z+TzlzFfyRwJ/4lYpt9dYaAWFUX3lRJ2CQC1akzKFtXIbq0vK7X
-	tLzLeu8nqBCEDX+XiicSHT1mkcqa7A8HpRE0q60mUVXePX6Z4k1agT4DAuaKIwil
-X-Gm-Gg: AZFdTZfDyiyoplZapaBXDjR7QlkPnxmpwHzSKpHJ9+IUYUW2Gn+8xL4qPEKYSBka09O
-	pBbYmXAtcF6/fcH7P7kguqOrqqrRbyF4ksagMIAKvZbpbUZpq8s7wDKQkGOmAs4pAY+rNnVobgo
-	3Iq3VLq2S5KO83dtN0qtM7Cv4ZiyAGqiz7KPrMu4b4eTULRIRRgmJqTCiRg/5gD8/BB/9p8FOJN
-	qDxgOUXPIDWdezrqt2Cwm1J/tj1y3I2fVuAFZaT4R4nVBf/95QFH7izMT4vIWxyn2iKBAorYys4
-	++3tklWINFy8y8k4z+xcfeA27RCMsHEe1WFuDhPP9/gNSvqe1zKz7snYPojBzNhcoiNqDwSldZo
-	ahn09jK/iQcnz4E/wO4OE12jSN4LbSjSLaMIDG2P2OEIhnUymNH/dROJLHa/jm0p3NtP7xNvBd7
-	3oh1wjHoenIT/MHA8XrDiJRO3q1IX+MBi/AbBy41No/QJkDZ2abWYYVN+YvgyNPwSu+x41riTeV
-	XhG0J61l2BNIh0cj+l6JMT8a5p4VxIqOdlnC+iN0EuGlfHgPorPJzcEbXi2yUZStkF6LawIiKJj
-	DhrxsIuLOw0lpxaEq176kpIhzjf3qPwdAbZs0rHN7FHAs9HvwTUzbuyVEFUDpp1M5+s=
-X-Received: by 2002:a05:6102:951:b0:7cc:1192:5636 with SMTP id ada2fe7eead31-7d73939011emr875548137.12.1795160681637;
-        Thu, 19 Nov 2026 23:44:41 -0800 (PST)
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5ee8b4335e1sm1895533e0c.1.2026.11.19.23.44.41
+        bh=xKnU/TldM314xEN7UqLDGvv/eDTZSOGz68aX0N6/qi4=;
+        b=H+NBa9lq9WtGc0WZ1lbnDgSTkgpqEwcbFIv/uD6P4M+RPWLMCk9ShRFcNTW4jW9VpI
+         Hc9Br7qFuFwxkDnDM16JMKO/DSF6esbRehFFGZCv7NdcM313MO0iq5RmvZBNnee1EZzV
+         cAAHJks7yKx80U5cQ7ukC0PzvAi8wTycwNAJLPntabKUsDp2GDQSTkAT+EveTC/z9cru
+         Le9/nl9ttgg0Gh4qmLYomXA7huHCkUrHRt3Yb++B2bTZ7x8++lUDhauZ/RsP97IcGTji
+         7pCjEwtjH9wNFbx4YS/DHST1HjgqSRPqkV2V/r4jw2sXvA7kY3CrAmevKN/P2M74qSrm
+         uZbg==
+X-Forwarded-Encrypted: i=1; AL+hErF4qcT8Gjcs8nHNfCa+ccqyyD4xAkQMpCAXIxZ0uME3KiG96Z+i0zD8cNdI6bOOAZOmAgy+O7BdLDZS1YeHnVVY@lists.infradead.org
+X-Gm-Message-State: APuU4Z8gGVexZhwfsDePnDHMKLh0grhBcZfj/hghhlC1aabHcZexbE1J
+	o/pvmDsTCSOm8ocTl4fnzcnDeBPnIn8Yacxi6WbJBKn8yWnO2mXLo304/F7HK4lY
+X-Gm-Gg: AZFdTZdQLKoasLcqh9i6NrjGh/zgDNx5QaYEjlamWpKpSFbmjrHUFaoz+CViEh4bpBp
+	KSDYVSn+JCVmi0ruIsVwaB1wYAZHxAYOr0cdqnnNAAvgb38K7QhohObGpEayvEziaMSihsX8RWz
+	mL4dNamjk8/gLj26ctfmNDlS4I43UvFj8LeSVh5M09r6mNY6+03hi9DWCNjFcFSXgIrIlCR9af/
+	lTXN+UMYkKX+whhrMe0bCQzLBl3jOGUihhYx++HXMkXKlmzMU8EP9gpQT7bc9ct5UmXLJFob96y
+	OkeP/f/RSBEDVxQ0EUNLdIpkeKP8Dno5MGfKyG5BcFmMjAzpVXJ5fFGGqVAefPBkDvZk++U5I/J
+	yt6d4QWGYRIO3zv6SYduZBb1JYTlyLx/DD6r02sUonLqFeUetBbgMsPJehYvLsYQP5/IeDz2hUp
+	U8dxly6aRgoiyEzifQhqlD0Gu5Y0gWh2skxgbZ0eGpMldYAPzrWztphOt8A0JlxEPf/W40M2ZFS
+	gLZlQFBAYoISdUl3EcPU45xQW3Tzr5menPvCC2rkWQMbgh2XQ2EoPoHSLRFLddbCDaXrV5Qpn98
+	tPPu3xYCzxf+1u6ycT5BqU/0wkMjm1aoTUe4EnPUtyhe0ESqFRitJtABUpmUOvYAMA4=
+X-Received: by 2002:a05:6122:4890:b0:5ea:c77f:2f22 with SMTP id 71dfb90a1353d-5ee8af637fcmr983653e0c.22.1795160956735;
+        Thu, 19 Nov 2026 23:49:16 -0800 (PST)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5ee8b5a91bdsm1867232e0c.9.2026.11.19.23.49.16
         for <linux-arm-kernel@lists.infradead.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Nov 2026 23:44:41 -0800 (PST)
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-7d2eba2b74aso338050137.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 23:44:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHo2jRTEcVwnbKNoD3xF5Zp5K7J6mp+h2j1AYQxSDTJ0sXUcmllLKVIDW4l7GucS6RGvkrD7evUqRpg+EyBOh6Q@lists.infradead.org
-X-Received: by 2002:a05:6102:441e:b0:7cb:bda3:27ab with SMTP id
- ada2fe7eead31-7d7393925f5mr941037137.13.1795160681386; Thu, 19 Nov 2026
- 23:44:41 -0800 (PST)
+        Thu, 19 Nov 2026 23:49:16 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-7d2db1b9bf2so178554137.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 23:49:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGBeL2wi11CW3pt2KFDwNXSazH0/wc6mE+sDUhQtn8uiDOCwEiYbq3wQissMkGYa1hjowrpKZMrgE7xsv7WF1h2@lists.infradead.org
+X-Received: by 2002:a05:6102:6c4:b0:7b3:8f0a:f76c with SMTP id
+ ada2fe7eead31-7d7393caab1mr683612137.13.1795160956421; Thu, 19 Nov 2026
+ 23:49:16 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <cover.1795094688.git.geert+renesas@glider.be> <a896e5bdb29c7c6de39df9b28b11d55614f2ec2d.1795094688.git.geert+renesas@glider.be>
- <179513882271.284394.17357508909448455391.b4-review@b4>
-In-Reply-To: <179513882271.284394.17357508909448455391.b4-review@b4>
+References: <cover.1795094688.git.geert+renesas@glider.be> <683b5b189409e5ee04100044fb615b01cb877f3d.1795094688.git.geert+renesas@glider.be>
+ <20261119225017.15a7b5cc@kemnade.info>
+In-Reply-To: <20261119225017.15a7b5cc@kemnade.info>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 20 Nov 2026 08:44:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWJ8zK+kzcznM7FJ3JCo1xWzjRZ5MQz9jhSUcYQfO5rBA@mail.gmail.com>
-X-Gm-Features: Aa3M54p6yw1Lhc431P_jQfP5g0YMf_od8mct8UUR6SclOJC7dcSgYi-awR9w8qQ
-Message-ID: <CAMuHMdWJ8zK+kzcznM7FJ3JCo1xWzjRZ5MQz9jhSUcYQfO5rBA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] clk: Remove unused clk.dev
-To: Brian Masney <masneyb@kernel.org>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
-	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, Russell King <linux@armlinux.org.uk>, Paul Walmsley <paul@pwsan.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Sandy Huang <hjc@rock-chips.com>, 
-	=?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andyshrk@163.com>, 
-	Ulf Hansson <ulfh@kernel.org>, linux-clk@vger.kernel.org, 
+Date: Fri, 20 Nov 2026 08:49:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVbgGV_6yjOip4xT3YhBgaOveHzSRbw9e_cHen9NRZqmw@mail.gmail.com>
+X-Gm-Features: Aa3M54rfGlA3UrmhLbFF7B0m1MfxoFvw1pyboKcP24dUngkkG_fWLkpDdrOnbn8
+Message-ID: <CAMuHMdVbgGV_6yjOip4xT3YhBgaOveHzSRbw9e_cHen9NRZqmw@mail.gmail.com>
+Subject: Re: [PATCH 5/6] [RFT] ARM: OMAP2+: Convert to dev_clk_get_from_provider()
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+	Russell King <linux@armlinux.org.uk>, Paul Walmsley <paul@pwsan.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
+	Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+	Andy Yan <andyshrk@163.com>, Ulf Hansson <ulfh@kernel.org>, linux-clk@vger.kernel.org, 
 	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
 	linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_234446_311888_391F3D3A 
-X-CRM114-Status: GOOD (  22.60  )
-X-Spam-Score: -0.7 (/)
+X-CRM114-CacheID: sfid-20261119_234918_350887_28A753DF 
+X-CRM114-Status: GOOD (  27.35  )
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,31 +110,62 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Brian,
+Hi Andreas,
 
-On Fri, 20 Nov 2026 at 02:40, Brian Masney <masneyb@kernel.org> wrote:
-> > This basically reverts commit efa850487a6b6742 ("clk: Inform the core
-> > about consumer devices").
+On Thu, 19 Nov 2026 at 22:50, Andreas Kemnade <andreas@kemnade.info> wrote:
+> On Thu, 19 Nov 2026 14:40:38 +0100
+> Geert Uytterhoeven <geert+renesas@glider.be> wrote:
+>
+> > OMAP2+ clock handling uses of_clk_get_from_provider() to obtain clocks
+> > used for power management, so the latter show up as "deviceless" in the
+> > consumer column of the clk_summary file in debugfs.
 > >
-> > This commit added a struct device pointer member to struct clk and a
-> > parameter to clk_hw_create_clk(), but the new member was never used
-> > beyond setting.
+> > Fix this by using dev_clk_get_from_provider() instead, letting us pass
+> > the consumer device, too.
 > >
 > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> > --- a/drivers/clk/clk.h
-> > +++ b/drivers/clk/clk.h
-> > @@ -5,8 +5,6 @@
-> >   */
+> > ---
+> > Compile-tested only.
 > >
-> >  struct clk_hw;
-> > -struct device;
-> > -struct of_phandle_args;
+> > The first change is probably OK.  The second change may fail if anything
+> > in the oh->od->pdev->dev chain is not available yet at this point.
 >
-> Did you mean to remove of_phandle_args?
+> Test on OMAP3:
 
-Yes, it was added by efa850487a6b6742, too (although it was
-used in that header file before). Currently it's not used.
+Thanks for testing!
+
+> --- clk-old     2026-11-19 22:44:59.810807920 +0100
+> +++ clk-new     2026-11-19 22:26:52.862531880 +0100
+> @@ -1,17 +1,17 @@
+>                                   enable  prepare  protect                                duty  hardware                            connection
+>     clock                          count    count    count        rate   accuracy phase  cycle    enable   consumer                         id
+>  ---------------------------------------------------------------------------------------------------------------------------------------------
+> - oscillator                          0       0        0        26000000    0          0     50000      Y   deviceless                      of_clk_get_from_provider
+> + oscillator                          0       0        0        26000000    0          0     50000      Y   deviceless                      dev_clk_get_from_provider
+>                                                                                                             deviceless                      no_connection_id
+> - secure_32k_fck                      0       1        0        32768       0          0     50000      Y   deviceless                      of_clk_get_from_provider
+> + secure_32k_fck                      0       1        0        32768       0          0     50000      Y   deviceless                      dev_clk_get_from_provider
+>                                                                                                             deviceless                      no_connection_id
+> -    wdt1_fck                         0       0        0        32768       0          0     50000      Y      deviceless                      of_clk_get_from_provider
+> +    wdt1_fck                         0       0        0        32768       0          0     50000      Y      deviceless                      dev_clk_get_from_provider
+>                                                                                                                deviceless                      no_connection_id
+>      gpt12_fck                        0       1        0        32768       0          0     50000      Y      48304000.timer                  fck
+>                                                                                                                48304000.target-module          fck
+> -                                                                                                              deviceless                      of_clk_get_from_provider
+> +                                                                                                              deviceless                      dev_clk_get_from_provider
+>                                                                                                                deviceless                      no_connection_id
+> - dummy_ck                            0       0        0        0           0          0     50000      Y   deviceless                      of_clk_get_from_provider
+> + dummy_ck                            0       0        0        0           0          0     50000      Y   deviceless                      dev_clk_get_from_provider
+>                                                                                                             deviceless                      no_connection_id
+>   mcbsp_clks                          0       5        0        0           0          0     50000      Y   deviceless                      mcbsp_clks
+>                                                                                                             deviceless                      mcbsp_clks
+
+Hmm, so the passed device is always NULL, and thus there is no point
+in making the change.
+Do you know if these come from the first or second change in my patch
+(I guess the second)?
+
+Thanks again!
 
 Gr{oetje,eeting}s,
 
