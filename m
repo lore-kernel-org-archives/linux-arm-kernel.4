@@ -2,159 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE5D606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B562606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mYbEvcYX;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ggyc8/hy;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=X8Z4j6Ux
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cAqIXv8Z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AMikXPr3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=drpSu4HheKaqlFGXfa2FVpmGxrRLS+U8hS+KH99KJHU=; b=mYbEvcYXznE8cV
-	rv2TjY6ItKlhO7faWRF9TUnDu0TXUEu89Why/n2TknsVn8zgaAzmUfwW7lPSpI2Qlp2Ok24k7hAL4
-	5IwxsrIym2Kpf26d8EAs2mqpB3juP+qZUsP4BYHRovZZFlyI2Pth6sigPc+IeIeupGY6K+nN/o7b7
-	yFbWFP7KKS5QPvD16v9P8YITNulUxwPlFUX0JCwdxa1zWkOS8/kIPprbYxxOj39yS1t5uLoaQBECn
-	X+cn4kXMvG8l/TvUSErluwJbNB4YH4eYgH3Zog+V5fVPZkkng3OXkB8OrMZNDz7hvHfFLvufBFTmb
-	rScD1vfoOG/iUmzUQI/Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=2RuimmOKEdckylLVvtsFC7k8j+dPt2aTJXFr5gsiNwk=; b=cAqIXv8ZTRgCgHX/rAgCNzcEo5
+	hzs1xKWp60moaXFie+xVXJIUcoWUAATrWgh6QHrN0457Q0OGUe4SVW4BsinvLmZ6yxM9Per1ujXeI
+	wUQ0rtEWszGXHzMz955UU07EfKvQL+E/v+UbbRK8AB+GISd5lgcUgvpStXl7209fddUKKopwUVo8p
+	1nRFJ7cDmfqb21W021tQJGBGHY6yOas/mykAHffJq3VjW9i2LwmjF1BQhsd8e6povARcZLKnBJKDL
+	3rW35kYqhz3Sancky6/2yqFulxdot3A7wYDF1F8TrPOpmsitg2U8IJ6kLBkpQmSy58QwYjiqajb/g
+	hCiaMtAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMV5-0000000Ej3O-4BNq;
-	Fri, 20 Nov 2026 11:09:52 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xUMV9-0000000Ej8g-3YDV;
+	Fri, 20 Nov 2026 11:09:55 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMTN-0000000EiUG-1LFv
+	id 1xUMV0-0000000Ej26-3Tpc
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:08:15 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AKB5scT1105352
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 11:08:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	drpSu4HheKaqlFGXfa2FVpmGxrRLS+U8hS+KH99KJHU=; b=ggyc8/hyxmlWS//p
-	IvODsdges0NNEEIs43B2ATBJOjzvWfwHStiFyHfdclZtyYmrcTVan/UBSiHQPiBa
-	pmXLOae1fWbk/32MeJlctcEPkuIMSxbMywnbCUSY+HmnoJjt3/kMtGJwmQg1GPi2
-	LDFYYFBreFl3GDYzDzum3yJtPAEaRcU4u8COdKB7jjj/Wb5xGaAg2yX0CasB8QP4
-	fDAxoXG+cC/xd75ozCAYeK/hIqrqHIggVHmH9iUqprcFZy1Pua9rTq9BloUsEvCi
-	sMLxmlbxFsWJAUbIhPhe0fxgI1PXerT7PRRYYsLz/OxfZBcc3oR6yIJn6GYqAMEB
-	5BtBBA==
-Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j27fykbbw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 11:08:04 +0000 (GMT)
-Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-383435e46f9so605114eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:08:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795172883; x=1795777683; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=drpSu4HheKaqlFGXfa2FVpmGxrRLS+U8hS+KH99KJHU=;
-        b=X8Z4j6UxdsQfGgNGNDFjfszJX/RNpSO53feCvVLriiFZXoa8AsRNB5PbAnEQxI7vch
-         1z3VsScIj2kozwyCQ8WUg/YXdqnsCt9rDCb1nbCkfQfdbVv73VutM2eeOmWjJ1B/yyuP
-         USZ3zXjQm2/1vzryFKQrD0fI17EcjL8VDMXZOjI918keKXq0mY3GU+uVtWyCbv+4LIXi
-         jMytfSKW0IRczJ2kyCsdfOd+MXxDAYTJ6HYvTqohKuonvwiaPhp1/lQmNttD2A5GIz/z
-         pu60MIu493eNAM/zgVWKfTl4GC/cn/niL+VCHmM66IHPYsXz0WIMFstnfm3YKF3rQ3fF
-         nNuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795172883; x=1795777683;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=drpSu4HheKaqlFGXfa2FVpmGxrRLS+U8hS+KH99KJHU=;
-        b=Q/RvJ4QLn50ZmHrg/hxWzndKwi2SOXO8lS0AuSqQsOZzFlXGZRZkkcW3/O2Loauz5O
-         wPIh0fUh7aNUPx+2AljlHAW9ewulez1JM21dPvXAN0mZ9nUCSLoC8AMPjZAKT7U4LrdQ
-         zVkzXpg2urqC95HficNNundLfGH6BhJnrvfCedUbczovGvjbgnTITWMezlj+VoRFh+E6
-         3A/suYBx+RMg4N/IJf7TSRK4thy0HvXE1bjVMPPB4z1i63EdNciirTtwbEzwMHpFne2N
-         OufudGAlqd2kJhlGvkDU1r0lsABoF6sEr3JrMmPfoYihaP1N35IT+40BefzopIjNskP9
-         5Xew==
-X-Gm-Message-State: APuU4Z8Yta71JscUOdDhi22LbXimzWQ/X24u8RlKjczgRO9TNW9QL64C
-	frpQCZoNkLjXhvOn3pO3bVVccUi913IGAhYUxfekPwMnmhrwlzsdjNNZnSvh1jk1nZIWan3B+Jf
-	KRmyhUp7K7oRg5hf3p4JEHgmbNTxFCtZbsVVM9q8TPJyDuPeIa11nYNYErgp1kaiYHzXEXo39+t
-	UeDgvgz8lNOg==
-X-Gm-Gg: AZFdTZdMBOOYhQxDdZlWAQG0N0YAKBf3fd7U+noJUCRnl3DCD6WPObz5sv1ic55BIXc
-	WFYrXCSkpqBjbbz06XYSXNv1KHfVgUJUXpQxeinhFy13+17PmQU000j5RmJh5+Fai6Sx0wXJzrh
-	JN/Pp3VHCk9ZqK+cfWB8nk5nkj1/ZGy8QDxsaPQuBL2DBRfTtfWcwN8HnZ6PGuQ9ciodqHWpS27
-	fwfXU79hU/ksFrlWMhvqb1zG0liC5Z60xjzMOl0+H42w8VK+D7QyOmPglhoFdzm7sHN0v6X9c+J
-	DpS4NDBmE08pjtnY7qyvYklhtYjo3914TZE/bhPOBhWz18QeZudpDEXlj76XDVPONNXNCznCbfz
-	7EbVfoIenqYcon7scx0IOaBHuXEFSfMqQLekTsjLSG94ezYVSxD/VTzJGe0rddn1MNTbq5ofpKk
-	A6Gd+B
-X-Received: by 2002:a05:7301:6182:20b0:381:fe77:7d31 with SMTP id 5a478bee46e88-3856f14707amr2344799eec.12.1795172883011;
-        Fri, 20 Nov 2026 03:08:03 -0800 (PST)
-X-Received: by 2002:a05:7301:6182:20b0:381:fe77:7d31 with SMTP id 5a478bee46e88-3856f14707amr2344752eec.12.1795172882285;
-        Fri, 20 Nov 2026 03:08:02 -0800 (PST)
-Received: from hu-bibekkum-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385666e99fdsm9252594eec.5.2026.11.20.03.07.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 03:08:01 -0800 (PST)
-From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-Date: Fri, 20 Nov 2026 16:35:55 +0530
-Subject: [PATCH v4 14/20] arm64: dts: qcom: sm8650: Add GEM_NOC
- interconnect for adreno SMMU
+	Fri, 20 Nov 2026 11:09:46 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id DDD116283E;
+	Fri, 20 Nov 2026 11:09:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08D051F000C4;
+	Fri, 20 Nov 2026 11:09:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795172985;
+	bh=2RuimmOKEdckylLVvtsFC7k8j+dPt2aTJXFr5gsiNwk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=AMikXPr37HdnbqD8nENh/uDeTqYDteieNAvjGhJ1zvCMDR2DGqHUYAtV/5oG6jK8M
+	 UeFx8bmTJ7V/EOoasqkHLStLmdwhiQWF/y72dJt6TYp7dtqGyY/UUW9jH4wvA+fjLx
+	 CaryP2Y4Ld6Cv5dSsGqPfucT8Puw48jyy2OSGXPuig012l6JTHfWaJcTwpEl63dn08
+	 hbgyBHXzdPPdZgPHS4dyjiXLFfRHAPkHfQiYj5Uq8g1g32ndGfyuffKHEGmWUwC97a
+	 dXkKduKi24RxjMbYZVw0s8r9ID+2L2xBkod6s6aR5r2+Utc6lWtoSo+vEmwEwYwo1u
+	 SKUDMOC/zQEUQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xUMUw-00000000wOs-3zvf;
+	Fri, 20 Nov 2026 11:09:43 +0000
+Date: Fri, 20 Nov 2026 11:13:09 +0000
+Message-ID: <87cxrz92nu.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Colton Lewis <coltonlewis@google.com>
+Cc: Oliver Upton <oupton@kernel.org>,
+	Wei-Lin Chang <weilin.chang@arm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	kvm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] KVM: arm64: nv: Fix guest stage-2 mapping leak on sub-block unmap
+In-Reply-To: <20261119185105.626343-1-coltonlewis@google.com>
+References: <20261119185105.626343-1-coltonlewis@google.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-smmu_interconnect_addition-v4-14-cab8ee8be0b3@oss.qualcomm.com>
-References: <20261120-smmu_interconnect_addition-v4-0-cab8ee8be0b3@oss.qualcomm.com>
-In-Reply-To: <20261120-smmu_interconnect_addition-v4-0-cab8ee8be0b3@oss.qualcomm.com>
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        "Joerg Roedel (AMD)" <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abel Vesa <abelvesa@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795172803; l=1282;
- i=bibek.patro@oss.qualcomm.com; s=20260617; h=from:subject:message-id;
- bh=nRKWODwhqsti/JCMKzfpHOUMvXfhBSP+GT/cARrj/+0=;
- b=c5WtPJ0sQu94WJMaTQu9JE5PzvJ7kuyQVvPNmn3/oAka+ojdMg0UnobB5jSbCZWOdUIE7w8Oj
- i7g0V7lmEc9BM4/rk317+KDNiQCg0iQXHuwtIRhaaPXA8Cy9CozEvTO
-X-Developer-Key: i=bibek.patro@oss.qualcomm.com; a=ed25519;
- pk=DkrbE5dhskZJmBAKR5LygWRsAydEOSN+T0/YxNYxDLM=
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDA0NCBTYWx0ZWRfX0qtrIjLnKjju
- 9ad/AKylNJ5RJXsFP3UdceeFEwtS7deh97WMWUfjN1RIS6PRuOeM8oXBcsUSFamXAXn/jizuALf
- VHli/0Rbzt32a8HHcFB52kXi6N+Vf98=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDA0NCBTYWx0ZWRfXxFo8c6k5LrgI
- /1gJwaMV2SudjmQg9ys1oR4OHYhuzHlvUEgLQI1yiIV4/YGvl1DDmMyLGKI1nvQN5gYUxcON6y1
- utj+9bfU9Myifz+M1IZXg4NrcwgLbloN9nBCJ5l/X9xEjmS92WAvrjVnhVG+gWP/Tr9rSM+5K24
- c8CAd5CfrT2m/Ch+e5YvhF5uMW42ESoHS3fYLVs9jvCf5s7phA7+YTrU9zZ5TXhyaZN4ecc+eKm
- I7OVXsi9q5+QEVxUw9/iqrGkaCx0xt9LsrqR6p1qpHJxDVKelYd+aJSJPKolopgBRHSd1Xg076j
- nsHO2HyXSgqlX8xBwSnYkRGkEec1sYiZ+xhr8L6HLtpALvRwwJ3DoFy+zMXpXPQ1PMajaK7mwZt
- Wday/X2zFZnrJfk8Pc8Iqy8jGRtpN4W5kKZLH3c6nCOmpL94GZiUXjayHNFTx2BrvCdODb3zo76
- /9p2ITmdgQvXal5nhtQ==
-X-Authority-Analysis: v=2.4 cv=GZKCDgXL c=1 sm=1 tr=0 ts=6b002a14 cx=c_pps
- a=Uww141gWH0fZj/3QKPojxA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=UZQlob4mJqq41ALSq9YA:9 a=QEXdDO2ut3YA:10
- a=PxkB5W3o20Ba91AHUih5:22
-X-Proofpoint-ORIG-GUID: 7lF18ym-1-KrnoX25k2ChTJMKNlxYlVU
-X-Proofpoint-GUID: 7lF18ym-1-KrnoX25k2ChTJMKNlxYlVU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-20_04,2026-11-19_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 lowpriorityscore=0 priorityscore=1501
- suspectscore=0 impostorscore=0 bulkscore=0 adultscore=0 spamscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611200044
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_030805_531121_CF28962B 
-X-CRM114-Status: GOOD (  13.00  )
-X-Spam-Score: -2.8 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: coltonlewis@google.com, oupton@kernel.org, weilin.chang@arm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, fuad.tabba@linux.dev, seiden@linux.ibm.com, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -165,50 +88,75 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On SM8650 the Adreno SMMU GPU TCU is a separate hardware block with a
-dedicated alm_gpu_tcu master port on GEM_NOC. Without an explicit
-interconnect bandwidth vote, the GEM_NOC path to DDR can be left
-unvoted during sleep/wakeup transitions, causing intermittent SMMU
-register access failures.
+On Thu, 19 Nov 2026 18:51:05 +0000,
+Colton Lewis <coltonlewis@google.com> wrote:
+> 
+> When a shadow stage-2 block mapping (for example, 2M at PMD level) is
+> partially invalidated by a smaller guest unmap such as a 4K TLBI
+> IPAS2E1IS,
 
-Add the required interconnect to ensure reliable register access.
+What does that mean? If we have a 2MB shadow mapping, then the guest
+cannot have something smaller in its own PTs. And how do you get a "4K
+TLBI IPAS2E1IS"? TTL == {4kB, L3}? If that's the case, we have every
+right to *ignore* this TLBI, because it cannot possibly reflect the
+original state of the PTs. If this is an unqualified address (no TTL),
+then the whole block *must* go.
 
-Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+There is no such thing as "partial invalidation".
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 5a030f9646c8..86b3fa4cf05a 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -4214,7 +4214,6 @@ gpu: gpu@3d00000 {
- 
- 			interconnects = <&gem_noc MASTER_GFX3D QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
--			interconnect-names = "gfx-mem";
- 
- 			status = "disabled";
- 
-@@ -4413,6 +4412,8 @@ adreno_smmu: iommu@3da0000 {
- 				      "ahb";
- 			power-domains = <&gpucc GPU_CX_GDSC>;
- 			dma-coherent;
-+			interconnects = <&gem_noc MASTER_GPU_TCU QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 		};
- 
- 		ipa: ipa@3f40000 {
+> kvm_pgtable_stage2_unmap() shatters and clears the entire
+> block descriptor in mmu->pgt.
+
+Shatters? Or clears the entire block? It cannot be "and" because the
+two are polar opposites.
+
+> However, kvm_remove_guest_s2_mappings()
+> only removes a struct kvm_guest_s2_mapping node when its entire
+> [nested_start, nested.last] span lies within the unmap range.
+
+What do you call "the unmap range"? What we have removed from the
+shadow S2? What the guest gives us as part of the TLBI instruction?
+Something else?
+
+> As a
+> result, every sub-block invalidation followed by a re-fault leaks a
+> stale block-sized tracking node in mmu->guest_s2_mappings and
+> kvm->arch.mmu.guest_s2_mappings until the shadow MMU is destroyed,
+
+Leaks? A leak is something that is still allocated, but not linked to
+an existing data structure, and therefore not recoverable. This looks
+to me like exact opposite of a leak...
+
+> allowing an L1 guest to grow host kernel memory and degrade subsequent
+> TLBI IPAS2E1IS walks to O(N) under write_lock(&kvm->mmu_lock).
+
+Honestly, this wall of text is not an explanation. That's just a whole
+lot of LLM gunk that you have generously copy pasted.
+
+>
+> Conversely, unconditionally removing any overlapping tracking node on a
+> sub-block unmap would be unsafe when a shadow block mapping has been
+> split into a child table (such as on a page-granule fault under dirty
+> logging or a racing shared walk returning -EAGAIN), because sibling
+> sub-page PTEs outside the unmapped range remain live in mmu->pgt and
+> still rely on the block-sized tracking node for host MMU notifier
+> unmaps.
+
+-ENOPARSE. Sub-page PTEs sounds like a great idea.
+
+I stopped reading here. Please come back with an actual description of
+the problem that you will have produced yourself, or provide the
+original LLM report (it cannot be much worse than the above).
+
+	M.
 
 -- 
-2.34.1
-
+Jazz isn't dead. It just smells funny.
 
