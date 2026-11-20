@@ -2,80 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A92E606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CA4606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:23:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a+Yh2r0f;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=ZN3+qJR6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=isfq7PW5;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JmTsHqyN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=aB08wIcpTTI3vXC9jSzOsNIg7/liyFIa40MeOk7LpRI=; b=a+Yh2r0foffuLy
-	+K3iFw8t6bLIOu2Xk8XXTyTfzuI11LvuVa0SPqoZolYEoRm+9DRaG1wrZ67bGMTrsEGvvWUqnNeGF
-	YA4k5qOL9NID99QypOPF9TJ9IHx/Jj3GtkdWma9BKlX11uV1reESI51BpS5HDERpgAOEk9+TUpRyz
-	n+w3BiVEfGLL9zjXiWydl2w6CHOEz/Gkg0qnS3/XStaZvday44EFnkj5Jw+uVNsmBCQy/8Ide33sU
-	4QY83eB32jCvW4Khx9x7NxZS9/MUHuq6QRqC+akawutBGm1tMgzrrJhlxvNO+OkSYQHcp63fmgMAI
-	8QyNTDQ9yaK7nmUgLK7A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=9Yave6DZDGUUAvsSfmLDal9WFXgDPPi+dD/iYkllA/8=; b=isfq7PW5XJY+Aet58PStgKrlEb
+	8z6xtjPviX7Q+h6yq2KGo2iVip5fvW72giRixQ9GQTj5lyLvYN5ovYglR2ScwJ8wrHoyZUkfJJ2bu
+	nbaJkWNv1Sh8HE8aiKSpTs7AFp+1+Ihhu/dQqr4pnrEZznTJAtE64i6KejBN32kqsFm5TtMelSUzK
+	Vj6whflbbphBh5ChRIYxwoQ8KnV+Tn+5KIjatvHErKYxYnJnhDK1oozJJWwW/yaZhgUeKldXNy4JU
+	opEFdp4IFpc2ssM4/dwlhDzw4mofelQZglIHhCUaO+cCbKUcEi7MXuGtkWW8jAHEmtZ9CmUogOpJB
+	OTNSAm1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOVP-0000000F52q-3L8u;
-	Fri, 20 Nov 2026 13:18:19 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOVM-0000000F522-2njQ
+	id 1xUOaW-0000000F5Uj-23Dd;
+	Fri, 20 Nov 2026 13:23:36 +0000
+Received: from mgamail.intel.com ([192.198.163.14])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xUOaS-0000000F5UE-3NGY
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 13:18:18 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 90FE315A1;
-	Fri, 20 Nov 2026 05:18:09 -0800 (PST)
-Received: from [192.168.4.157] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 799703F632;
-	Fri, 20 Nov 2026 05:18:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795180692; bh=F5YnqOcI8fB8gJNDD5T+aF8BJp8UgeC/aXT/5d2Gp3k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZN3+qJR66dri/0+NUvwBInoznarAVBvAJIVTfX6WozKtCSQ5F/crXbYOcZL9T5uhy
-	 lgy67dYhHkqQr5NVWE/rrfKRgGSqwJJwMNtByGyoYyqweYxEqUtDMT96OHbpVieqmx
-	 0imtJe+Fq9DEtacTxhhlsjp5PSCcfwtx5G/wRseU=
-Message-ID: <b21faaee-921d-40bc-b084-1cb77538dd07@arm.com>
-Date: Fri, 20 Nov 2026 13:18:08 +0000
+	Fri, 20 Nov 2026 13:23:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795181013; x=1826717013;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cJJw5vbcJuFQOpdae3ptvun5p75snXhnCZwChzdLyPk=;
+  b=JmTsHqyNgjcsZ3KorIrQa45x1ep2vbv3MJkc8xi6pqzsZy9Qux4LuAE6
+   FRzqgnC6fzSDLzAITYd8Yqe8CiHgeHqB007pLikPM3DG3sYQ+Uy4hh3Ee
+   7SOCqfG+o4vO0SM4cubpOCRem2JZReZDtvE4EY7T79WIv1IqIeeHlv1MH
+   KFZlRGRALMvlv3fSPZbzoZ5AopgkigkLguA23PBV28OEpOOvsRSwMlzXc
+   jhP1M10mUAYn2mtasxuZMCpo2bKv8XPtG/xosWVhRUsys/5RP24NJXiT1
+   AJEZvmki6SIimF2EJJgxdxYhbasGXc2nYTOs7wIg5ve024lzCCdtnVrL3
+   g==;
+X-CSE-ConnectionGUID: IAP54H+EQcaRXQyk/lpgnA==
+X-CSE-MsgGUID: QLiRUD9fQa+Nsv4nI7SQFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3945346"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
+   d="scan'208";a="3945346"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 05:23:32 -0800
+X-CSE-ConnectionGUID: +D3uAwM0Ql+ilvQ35dXt6w==
+X-CSE-MsgGUID: LFt9NXU/RaC7A91NKsxlkg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
+   d="scan'208";a="11035886"
+Received: from black.igk.intel.com ([10.91.253.5])
+  by fmviesa006.fm.intel.com with ESMTP; 20 Nov 2026 05:23:29 -0800
+Received: by black.igk.intel.com (Postfix, from userid 1008)
+	id 0BF6799; Fri, 20 Nov 2026 14:23:28 +0100 (CET)
+Date: Fri, 20 Nov 2026 14:23:28 +0100
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Keisuke Tsukuda <tkdkei@outlook.jp>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Neal Gompa <neal@gompa.dev>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	"asahi@lists.linux.dev" <asahi@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] usb: roles: wait for callbacks on unregister
+Message-ID: <awBJ0NDCvbznrBjk@black.igk.intel.com>
+References: <20261117125825.27629-1-tkdkei@outlook.jp>
+ <20261117125825.27629-3-tkdkei@outlook.jp>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/11] KVM: arm64: CCA: Support runtime faulting of
- memory
-Content-Language: en-GB
-To: Steven Price <steven.price@arm.com>, Wei-Lin Chang
- <weilin.chang@arm.com>, kvm@vger.kernel.org, kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261116164358.142785-1-steven.price@arm.com>
- <20261116164358.142785-10-steven.price@arm.com>
- <hwmtiumovuqyu7js5eqd4xt3h2zsuhjwkcygnw62hp5rrar5ph@5fhmv46iio2r>
- <bf4da8b7-0714-4253-9841-cf83cb65b92d@arm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <bf4da8b7-0714-4253-9841-cf83cb65b92d@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261117125825.27629-3-tkdkei@outlook.jp>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_051816_936191_A2EE2012 
-X-CRM114-Status: GOOD (  29.40  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261120_052332_859268_0E5F7304 
+X-CRM114-Status: GOOD (  22.12  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,268 +92,97 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 17:01, Steven Price wrote:
-> On 19/11/2026 07:48, Wei-Lin Chang wrote:
->> Hi Steven,
->>
->> On Mon, Nov 16, 2026 at 04:43:55PM +0000, Steven Price wrote:
->>
->> [...]
->>
->>> @@ -1791,12 +1799,18 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
->>>   	void *memcache = NULL;
->>>   	gfn_t canonical_gfn;
->>>   	int ret;
->>> +	bool is_private = false;
->>>   
->>> -	if (!perm_fault) {
->>> +	if (KVM_BUG_ON(!kvm_slot_has_gmem(s2fd->memslot), kvm))
->>> +		return -EINVAL;
->>
->> I feel this is being too cautious, gmem_abort is always run after a
->> kvm_slot_has_gmem() check.
+On Tue, Nov 17, 2026 at 01:00:20PM +0000, Keisuke Tsukuda wrote:
+> usb_role_switch_set_role() and usb_role_switch_get_role() check the
+> registered flag before taking the switch lock. If a provider is
+> unregistered during a role request, unregister can return while its
+> callback is still running. The provider may then free memory used by
+> the callback, causing a use-after-free. A caller that passed the check
+> can also enter a callback after unregister returns.
 > 
-> Fair point - I'll drop that.
+> Move the registered checks under the switch lock and clear the flag while
+> holding the same lock on unregister. This waits for active callbacks and
+> rejects callers that acquire the lock after the flag is cleared. The
+> preceding Apple DWC3 change avoids a lock inversion in its remove path.
 > 
->>> +
->>> +	if (!perm_fault || kvm_arch_has_private_mem(kvm)) {
->>>   		memcache = get_mmu_memcache(s2fd->vcpu);
->>>   		ret = topup_mmu_memcache(s2fd->mmu, memcache);
->>>   		if (ret)
->>>   			return ret;
->>> +	}
->>> +	if (!perm_fault) {
->>>   		if (kvm_is_nested_s2_mmu(kvm, pgt->mmu)) {
->>>   			mapping = kmalloc_obj(struct kvm_guest_s2_mapping, GFP_KERNEL_ACCOUNT);
->>>   			if (!mapping)
->>> @@ -1805,7 +1819,7 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
->>>   	}
->>>   
->>>   	s2vi.vma_pagesize = PAGE_SIZE;
->>> -	s2vi.gfn = ALIGN_DOWN(s2fd->fault_ipa, s2vi.vma_pagesize) >> PAGE_SHIFT;
->>> +	s2vi.gfn = gpa_to_gfn(kvm_gpa_from_fault(kvm, s2fd->fault_ipa));
->>>   	canonical_gfn = get_canonical_gfn(s2fd, &s2vi);
->>>   
->>>   	write_fault = kvm_s2_fault_is_write(s2fd);
->>> @@ -1817,13 +1831,35 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
->>>   	/* Pairs with the smp_wmb() in kvm_mmu_invalidate_end(). */
->>>   	smp_rmb();
->>>   
->>> +	if (kvm_arch_has_private_mem(kvm)) {
->>> +		switch (kvm->arch.vm_flavor) {
->>> +		case VM_REALM:
->>> +			is_private = kvm_realm_is_private_address(&kvm->arch.realm,
->>> +								  s2fd->fault_ipa);
->>> +			break;
->>> +		default:
->>> +			break;
->>> +		}
->>> +
->>> +		if (is_private != kvm_gmem_is_private_gfn(kvm, canonical_gfn)) {
->>> +			if (!result)
->>> +				kvm_prepare_memory_fault_exit(s2fd->vcpu,
->>> +							      gfn_to_gpa(canonical_gfn),
->>> +							      PAGE_SIZE,
->>> +							      write_fault, exec_fault,
->>> +							      is_private);
->>> +			kfree(mapping);
->>> +			return -EFAULT;
->>> +		}
->>> +	}
->>> +
->>>   	ret = kvm_gmem_get_pfn(kvm, s2fd->memslot, canonical_gfn, &s2vi.pfn, NULL);
->>>   	if (ret) {
->>>   		/* If result is non-NULL this is a synthetic fault. */
->>>   		if (!result)
->>>   			kvm_prepare_memory_fault_exit(s2fd->vcpu, gfn_to_gpa(canonical_gfn),
->>>   						      s2vi.vma_pagesize, write_fault, exec_fault,
->>> -						      false);
->>> +						      is_private);
->>>   		kfree(mapping);
->>>   		return ret;
->>>   	}
->>> @@ -1846,6 +1882,16 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
->>>   		goto out_unlock;
->>>   	}
->>>   
->>> +	switch (kvm->arch.vm_flavor) {
->>> +	case VM_REALM:
->>> +		prot &= ~KVM_PGTABLE_PROT_X;
->>> +		ret = realm_map_ipa(kvm, s2fd->fault_ipa, s2vi.pfn,
->>> +				    PAGE_SIZE, prot, memcache);
->>> +		goto out_unlock;
->>> +	default:
->>> +		break;
->>> +	}
->>> +
->>>   	if (perm_fault) {
->>>   		/*
->>>   		 * Drop the SW bits in favour of those stored in the
->>> @@ -2047,7 +2093,8 @@ static int kvm_s2_fault_get_vma_info(const struct kvm_s2_fault_desc *s2fd,
->>>   	 * mapping size to ensure we find the right PFN and lay down the
->>>   	 * mapping in the right place.
->>>   	 */
->>> -	s2vi->gfn = ALIGN_DOWN(s2fd->fault_ipa, s2vi->vma_pagesize) >> PAGE_SHIFT;
->>> +	s2vi->gfn = kvm_gfn_from_fault(kvm, ALIGN_DOWN(s2fd->fault_ipa,
->>> +						       s2vi->vma_pagesize));
->>>   
->>>   	s2vi->mte_allowed = kvm_vma_mte_allowed(vma);
->>>   
->>> @@ -2227,7 +2274,7 @@ static int kvm_s2_fault_map(const struct kvm_s2_fault_desc *s2fd,
->>>   	 * possible.
->>>   	 */
->>>   	if (mapping_size == PAGE_SIZE && s2vi->max_map_size != PAGE_SIZE) {
->>> -		if (perm_fault_granule > PAGE_SIZE) {
->>> +		if (perm_fault_granule > PAGE_SIZE && !kvm_vm_is_realm(kvm)) {
->>>   			mapping_size = perm_fault_granule;
->>>   		} else {
->>>   			mapping_size = transparent_hugepage_adjust(s2fd, &pfn, &gfn);
->>> @@ -2242,12 +2289,15 @@ static int kvm_s2_fault_map(const struct kvm_s2_fault_desc *s2fd,
->>>   	if (!perm_fault_granule && !s2vi->map_non_cacheable && kvm_has_mte(kvm))
->>>   		sanitise_mte_tags(kvm, pfn, mapping_size);
->>>   
->>> -	/*
->>> -	 * Under the premise of getting a FSC_PERM fault, we just need to relax
->>> -	 * permissions only if mapping_size equals perm_fault_granule. Otherwise,
->>> -	 * kvm_pgtable_stage2_map() should be called to change block size.
->>> -	 */
->>> -	if (mapping_size == perm_fault_granule) {
->>> +	if (kvm_vm_is_realm(kvm)) {
->>> +		ret = realm_map_ipa(kvm, s2fd->fault_ipa, pfn, mapping_size,
->>> +				    prot, memcache);
->>> +	} else if (mapping_size == perm_fault_granule) {
->>> +		/*
->>> +		 * Under the premise of getting a FSC_PERM fault, we just need to relax
->>> +		 * permissions only if mapping_size equals perm_fault_granule. Otherwise,
->>> +		 * kvm_pgtable_stage2_map() should be called to change block size.
->>> +		 */
->>>   		/*
->>>   		 * Drop the SW bits in favour of those stored in the
->>>   		 * PTE, which will be preserved.
->>> @@ -2306,15 +2356,16 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
->>>   	/*
->>>   	 * Permission faults just need to update the existing leaf entry,
->>>   	 * and so normally don't require allocations from the memcache. The
->>> -	 * only exception to this is when dirty logging is enabled at runtime
->>> +	 * exceptions are when dirty logging is enabled at runtime
->>>   	 * and a fault needs to collapse a block entry into a table.
->>> +	 * Realms can also require new RTT levels when replacing a mapping.
->>>   	 * Under pKVM a permission fault can also collapse pages into a block,
->>>   	 * which needs a fresh mapping object, and the hypervisor requires the
->>>   	 * min-pages memcache even when the install allocates nothing.
->>>   	 */
->>>   	memcache = get_mmu_memcache(s2fd->vcpu);
->>>   	if (!perm_fault || memslot_is_logging(s2fd->memslot) ||
->>> -	    is_protected_kvm_enabled()) {
->>> +	    is_protected_kvm_enabled() || kvm_vm_is_realm(s2fd->vcpu->kvm)) {
->>>   		ret = topup_mmu_memcache(s2fd->mmu, memcache);
->>>   		if (ret)
->>>   			return ret;
->>> @@ -2340,12 +2391,22 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
->>>   	return kvm_s2_fault_map(s2fd, &s2vi, prot, memcache, result);
->>>   }
->>
->> I see that the changes to gmem_abort() and kvm_s2_fault_map() are more
->> significant, and can possibly be turned into its realm version leaving
->> the original unchanged. With this can we give realm_vm_s2_ops its own
->> .vm_mem_abort? Something like:
->>
->> First, make user_mem_abort() take a function pointer, call it at the
->> current kvm_s2_fault_map() place.
->>
->> Then realm_vm_s2_ops.vm_mem_abort = realm_mem_abort()
->>
->> And in realm_mem_abort() do:
->>
->> realm_mem_abort()
->>    if gmem slot:    realm_gmem_abort()
->>    if regular slot: user_mem_abort(kvm_realm_fault_map)
->>
->> realm_gmem_abort() and kvm_realm_fault_map() are just the realm version
->> of gmem_abort() and kvm_s2_fault_map(). For example they won't need NV
->> related code, and vm_flavor switch case.
->>
->> Proposing this because I think we would like the CCA changes more
->> self-contained.
-> 
-> It's a little marginal - there's quite a bit of common code between the
-> realm path and the normal path. But it does have the advantage that you
-> mention of making CCA more self contained. So it's probably worth it.
+> Fixes: fde0aa6c175a ("usb: common: Small class for USB role switches")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Keisuke Tsukuda <tkdkei@outlook.jp>
 
-The only odd bit would be handling the permission fault separately for
-Realms ?
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-Suzuki
+> ---
+>  drivers/usb/roles/class.c | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/roles/class.c b/drivers/usb/roles/class.c
+> --- a/drivers/usb/roles/class.c
+> +++ b/drivers/usb/roles/class.c
+> @@ -79,10 +79,11 @@
+>  	if (IS_ERR_OR_NULL(sw))
+>  		return 0;
+>  
+> -	if (!sw->registered)
+> -		return -EOPNOTSUPP;
+> -
+>  	mutex_lock(&sw->lock);
+> +	if (!sw->registered) {
+> +		ret = -EOPNOTSUPP;
+> +		goto unlock;
+> +	}
+>  
+>  	ret = sw->set(sw, role);
+>  	if (!ret) {
+> @@ -90,6 +91,7 @@
+>  		kobject_uevent(&sw->dev.kobj, KOBJ_CHANGE);
+>  	}
+>  
+> +unlock:
+>  	mutex_unlock(&sw->lock);
+>  
+>  	return ret;
+> @@ -107,16 +109,21 @@
+>  {
+>  	enum usb_role role;
+>  
+> -	if (IS_ERR_OR_NULL(sw) || !sw->registered)
+> +	if (IS_ERR_OR_NULL(sw))
+>  		return USB_ROLE_NONE;
+>  
+>  	mutex_lock(&sw->lock);
+> +	if (!sw->registered) {
+> +		role = USB_ROLE_NONE;
+> +		goto unlock;
+> +	}
+>  
+>  	if (sw->get)
+>  		role = sw->get(sw);
+>  	else
+>  		role = sw->role;
+>  
+> +unlock:
+>  	mutex_unlock(&sw->lock);
+>  
+>  	return role;
+> @@ -423,7 +430,10 @@
+>  {
+>  	if (IS_ERR_OR_NULL(sw))
+>  		return;
+> +	/* Wait for in-flight set/get callbacks before unregistering. */
+> +	mutex_lock(&sw->lock);
+>  	sw->registered = false;
+> +	mutex_unlock(&sw->lock);
+>  	if (dev_fwnode(&sw->dev))
+>  		component_del(&sw->dev, &connector_ops);
+>  	device_unregister(&sw->dev);
 
-> 
-> Thanks,
-> Steve
-> 
->> Thanks,
->> Wei-Lin Chang
->>
->>>   
->>> +static bool private_ipa_fault(struct kvm *kvm, phys_addr_t fault_ipa)
->>> +{
->>> +	return kvm_vm_is_realm(kvm) &&
->>> +		kvm_realm_is_private_address(&kvm->arch.realm, fault_ipa);
->>> +}
->>> +
->>>   static int kvm_vm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
->>>   {
->>>   	VM_WARN_ON_ONCE(kvm_s2_fault_is_perm(s2fd) &&
->>>   			!esr_abt_is_write_fault(s2fd->esr) &&
->>>   			!kvm_s2_fault_is_exec(s2fd));
->>>   
->>> +	if (private_ipa_fault(s2fd->vcpu->kvm, s2fd->fault_ipa) &&
->>> +	    !kvm_slot_has_gmem(s2fd->memslot))
->>> +		return -EINVAL;
->>> +
->>>   	if (kvm_slot_has_gmem(s2fd->memslot))
->>>   		return gmem_abort(s2fd, NULL);
->>>   	else
->>> @@ -2458,10 +2519,10 @@ int kvm_handle_guest_sea(struct kvm_vcpu *vcpu)
->>>    */
->>>   int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
->>>   {
->>> +	struct kvm *kvm = vcpu->kvm;
->>>   	struct kvm_s2_trans nested_trans, *nested = NULL;
->>>   	unsigned long esr = kvm_vcpu_get_esr(vcpu);
->>>   	struct kvm_s2_mmu *mmu = vcpu->arch.hw_mmu;
->>> -	struct kvm *kvm = vcpu->kvm;
->>>   	phys_addr_t fault_ipa; /* The address we faulted on */
->>>   	phys_addr_t ipa; /* Always the IPA in the L1 guest phys space */
->>>   	struct kvm_memory_slot *memslot;
->>> @@ -2554,8 +2615,9 @@ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
->>>   		nested = &nested_trans;
->>>   	}
->>>   
->>> -	gfn = ipa >> PAGE_SHIFT;
->>> +	gfn = kvm_gfn_from_fault(kvm, ipa);
->>>   	memslot = gfn_to_memslot(kvm, gfn);
->>> +
->>>   	hva = gfn_to_hva_memslot_prot(memslot, gfn, &writable);
->>>   	write_fault = esr_abt_is_write_fault(esr);
->>>   	if (kvm_is_error_hva(hva) || (write_fault && !writable)) {
->>> @@ -2598,7 +2660,7 @@ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
->>>   		 * of the page size.
->>>   		 */
->>>   		ipa |= FAR_TO_FIPA_OFFSET(kvm_vcpu_get_hfar(vcpu));
->>> -		ret = io_mem_abort(vcpu, ipa);
->>> +		ret = io_mem_abort(vcpu, kvm_gpa_from_fault(kvm, ipa));
->>>   		goto out_unlock;
->>>   	}
->>>   
->>
->> [...]
-> 
-
+-- 
+heikki
 
