@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834D4606A68F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 23:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EA4606A6A3
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 23:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2hv7NAZy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rZKwsYIl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -13,27 +13,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XklkwbJvpSMa1UIUNZWOZidyZsUbNUw0lk5xd4FvB3c=; b=2hv7NAZydNZHbBpLYFfexT1oM7
-	MRUH/B0ZlFmAKn8Qg3USGb4N2+Wg8HmP20zRc2AC5b0s7hvVsCMZ0M5tSMAfL3bcwklh88phpGxwH
-	wWFA+vADoHA+N39UpcKdfNCPfWauR5rt3ZGMjN/FOlG5rsgqS16n13m3VmDVlqrq98bCkwrUabArZ
-	WsoAC1CGmnJ1ikYXtx4wiBHVdu49nTZ/rdUVXPyhaXV2muVYB7M5cP7yGdf7RXwnPGCJARI+iXzv5
-	edrClorc5A/OaBxkm/cXKbuVJbVWUfI0/oU9IcUTGTvUIuhub70IEQwU0zBSEVmTUveiBJoE7UrpP
-	mjvRkzaQ==;
+	bh=LJpIE8ztP+KbGnnCOb1LC8LShPiTmCttfBKwQc2Yr7s=; b=rZKwsYIl2k8hcvJuINUyJnyIhX
+	oVwUpc9ldNviIHjM8tXA5vb0jBbb1mYaOb1KAPUrHvL2hvhkDoP0kgc8nboZgh0NTmuHdDttMZtu0
+	JEdJMNZFZBghAzXT91DYXG3bdkpy+sI6gi0KKCXUFEfbIoF0ljcxzCzT9Fn4nN4ARurp71TFim+6W
+	Jkpv3TgC1BHF4QjXjlbYebedrB3hGvepTFbl+sSIdajYxue9tWBkigHHxO2cWlQIxjLc+7ZWxYUr2
+	hgdW4o4VGq2BV58FS0qaeU+OTJxuGLPHoPtNG1svr8SFHs1DXqkqz749/MChGicqBB030rh4uxIFr
+	gMfxhz5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUYHG-0000000GRrF-0F1j;
-	Fri, 20 Nov 2026 23:44:22 +0000
+	id 1xUYHS-0000000GRyG-2Biz;
+	Fri, 20 Nov 2026 23:44:34 +0000
 Received: from pidgin.makrotopia.org ([2a07:2ec0:3002::65])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUYH0-0000000GRiv-2uEd;
-	Fri, 20 Nov 2026 23:44:08 +0000
+	id 1xUYHF-0000000GRqK-00wS;
+	Fri, 20 Nov 2026 23:44:22 +0000
 Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256:X25519MLKEM768)
 	 (Exim 4.100.1)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1xUYGt-000000002fz-3IEG;
-	Fri, 20 Nov 2026 23:43:59 +0000
-Date: Fri, 20 Nov 2026 23:43:51 +0000
+	id 1xUYH8-000000002gK-0Biv;
+	Fri, 20 Nov 2026 23:44:14 +0000
+Date: Fri, 20 Nov 2026 23:44:05 +0000
 From: Daniel Golle <daniel@makrotopia.org>
 To: Detlev Casanova <detlev.casanova@collabora.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
@@ -46,8 +46,8 @@ To: Detlev Casanova <detlev.casanova@collabora.com>,
 	Sebastian Fricke <sebastian.fricke@collabora.com>,
 	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/7] media: rkvdec: hevc: cache every short-term RPS set
-Message-ID: <1628863e476edf7ea506eb269a742449721bbfbd.1795217229.git.daniel@makrotopia.org>
+Subject: [PATCH v2 7/7] media: rkvdec: hevc: check the RPS scratch allocation
+Message-ID: <4644e528c71a780a238edb23e41f54f1359e1c3d.1795217229.git.daniel@makrotopia.org>
 References: <cover.1795217229.git.daniel@makrotopia.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
@@ -55,8 +55,8 @@ Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <cover.1795217229.git.daniel@makrotopia.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_154406_760629_6E31D5E9 
-X-CRM114-Status: GOOD (  17.76  )
+X-CRM114-CacheID: sfid-20261120_154421_047773_795A8484 
+X-CRM114-Status: GOOD (  15.84  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -71,130 +71,153 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The driver rebuilds the short-term RPS table of the hardware only when
-the EXT_SPS_ST_RPS control changed, but it compares just the first set
-with a cached copy. A change in a later set or in the number of sets
-goes unnoticed, and the hardware keeps the old table. As the cache
-starts zeroed, a stream whose first set is all zero never gets a table
-at all. Inter pictures are then decoded with wrong references, as seen
-with JCT-VC DELTAQP_A_BRCM_4 on an RK3568.
-
-Cache all sets together with their number. The control framework limits
-the number of sets to 64, which is the size of the cache.
+The buffer for the calculated short-term sets is used without checking
+that its allocation succeeded. Return -ENOMEM and fail the decode job
+in both back ends.
 
 Fixes: c9a59dc2acc7 ("media: rkvdec: Add HEVC support for the VDPU381 variant")
-Cc: stable@vger.kernel.org
 Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
 Changes since v1:
 - Rewrite the commit message
 - No code change
 
- .../platform/rockchip/rkvdec/rkvdec-hevc-common.c    | 12 ++++++++----
- .../platform/rockchip/rkvdec/rkvdec-hevc-common.h    |  9 ++++++++-
- .../platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c   |  2 +-
- .../platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c   |  2 +-
- 4 files changed, 18 insertions(+), 7 deletions(-)
+ .../rockchip/rkvdec/rkvdec-hevc-common.c      | 26 ++++++++++++++-----
+ .../rockchip/rkvdec/rkvdec-hevc-common.h      |  4 +--
+ .../rockchip/rkvdec/rkvdec-vdpu381-hevc.c     |  7 ++++-
+ .../rockchip/rkvdec/rkvdec-vdpu383-hevc.c     |  7 ++++-
+ 4 files changed, 33 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-index 3b281c16a75ed..e3449ab0d415b 100644
+index e3449ab0d415b..80df05bacaeba 100644
 --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
 +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-@@ -330,14 +330,17 @@ static void st_ref_pic_set_calculate(struct rkvdec_hevc_run *run, int idx,
+@@ -329,24 +329,27 @@ static void st_ref_pic_set_calculate(struct rkvdec_hevc_run *run, int idx,
+ 	st_rps->num_delta_pocs = st_rps->num_positive_pics + st_rps->num_negative_pics;
  }
  
- static void rkvdec_hevc_prepare_hw_st_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
--					  struct v4l2_ctrl_hevc_ext_sps_st_rps *cache)
-+					  struct rkvdec_hevc_st_rps_cache *cache)
+-static void rkvdec_hevc_prepare_hw_st_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
+-					  struct rkvdec_hevc_st_rps_cache *cache)
++static int rkvdec_hevc_prepare_hw_st_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
++					 struct rkvdec_hevc_st_rps_cache *cache)
  {
-+	u8 num_sets = run->sps->num_short_term_ref_pic_sets;
-+	size_t size;
+ 	u8 num_sets = run->sps->num_short_term_ref_pic_sets;
+ 	size_t size;
  	int idx;
  
  	if (!run->ext_sps_st_rps)
- 		return;
+-		return;
++		return 0;
  
--	if (!memcmp(cache, run->ext_sps_st_rps, sizeof(struct v4l2_ctrl_hevc_ext_sps_st_rps)))
-+	size = num_sets * sizeof(*cache->sets);
-+	if (cache->num_sets == num_sets && !memcmp(cache->sets, run->ext_sps_st_rps, size))
- 		return;
+ 	size = num_sets * sizeof(*cache->sets);
+ 	if (cache->num_sets == num_sets && !memcmp(cache->sets, run->ext_sps_st_rps, size))
+-		return;
++		return 0;
  
  	struct calculated_rps_st_set *calculated_rps_st_sets =
-@@ -357,11 +360,12 @@ static void rkvdec_hevc_prepare_hw_st_rps(struct rkvdec_hevc_run *run, struct rk
+ 		kzalloc(sizeof(struct calculated_rps_st_set) *
+ 			run->sps->num_short_term_ref_pic_sets, GFP_KERNEL);
  
- 	kfree(calculated_rps_st_sets);
++	if (!calculated_rps_st_sets)
++		return -ENOMEM;
++
+ 	for (idx = 0; idx < run->sps->num_short_term_ref_pic_sets; idx++) {
+ 		const struct v4l2_ctrl_hevc_ext_sps_st_rps *rps_data = &run->ext_sps_st_rps[idx];
  
--	memcpy(cache, run->ext_sps_st_rps, sizeof(struct v4l2_ctrl_hevc_ext_sps_st_rps));
-+	memcpy(cache->sets, run->ext_sps_st_rps, size);
-+	cache->num_sets = num_sets;
+@@ -362,13 +365,22 @@ static void rkvdec_hevc_prepare_hw_st_rps(struct rkvdec_hevc_run *run, struct rk
+ 
+ 	memcpy(cache->sets, run->ext_sps_st_rps, size);
+ 	cache->num_sets = num_sets;
++
++	return 0;
  }
  
- void rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
--				 struct v4l2_ctrl_hevc_ext_sps_st_rps *st_cache)
-+				 struct rkvdec_hevc_st_rps_cache *st_cache)
+-void rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
+-				 struct rkvdec_hevc_st_rps_cache *st_cache)
++int rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
++				struct rkvdec_hevc_st_rps_cache *st_cache)
  {
- 	rkvdec_hevc_prepare_hw_st_rps(run, rps, st_cache);
+-	rkvdec_hevc_prepare_hw_st_rps(run, rps, st_cache);
++	int ret;
++
++	ret = rkvdec_hevc_prepare_hw_st_rps(run, rps, st_cache);
++	if (ret)
++		return ret;
++
  	rkvdec_hevc_assemble_hw_lt_rps(run, rps);
++
++	return 0;
+ }
+ 
+ struct vb2_buffer *
 diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.h b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.h
-index 2a9b7719ab2d5..f6a3dec6ff4ad 100644
+index f6a3dec6ff4ad..32f192743c8c8 100644
 --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.h
 +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.h
-@@ -35,10 +35,17 @@
- 
- #define RKVDEC_RPS_HEVC_SIZE		ALIGN(1032 + 64 * 384, 128)
- 
-+#define RKVDEC_HEVC_MAX_SHORT_TERM_REF_PIC_SETS	64
-+
- struct rkvdec_rps {
- 	u32 info[RKVDEC_RPS_HEVC_SIZE / 8 / 4];
- } __packed;
- 
-+struct rkvdec_hevc_st_rps_cache {
-+	struct v4l2_ctrl_hevc_ext_sps_st_rps sets[RKVDEC_HEVC_MAX_SHORT_TERM_REF_PIC_SETS];
-+	u8 num_sets;
-+};
-+
- struct rkvdec_hevc_run {
- 	struct rkvdec_run base;
- 	const struct v4l2_ctrl_hevc_slice_params *slices_params;
-@@ -65,7 +72,7 @@ void compute_tiles_non_uniform(struct rkvdec_hevc_run *run, u16 log2_min_cb_size
+@@ -71,8 +71,8 @@ void compute_tiles_uniform(struct rkvdec_hevc_run *run, u16 log2_min_cb_size,
+ void compute_tiles_non_uniform(struct rkvdec_hevc_run *run, u16 log2_min_cb_size,
  			       u16 width, u16 height, s32 pic_in_cts_width,
  			       s32 pic_in_cts_height, u16 *column_width, u16 *row_height);
- void rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
--				 struct v4l2_ctrl_hevc_ext_sps_st_rps *st_cache);
-+				 struct rkvdec_hevc_st_rps_cache *st_cache);
+-void rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
+-				 struct rkvdec_hevc_st_rps_cache *st_cache);
++int rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
++				struct rkvdec_hevc_st_rps_cache *st_cache);
  void rkvdec_hevc_assemble_hw_scaling_list(struct rkvdec_ctx *ctx,
  					  struct rkvdec_hevc_run *run,
  					  struct scaling_factor *scaling_factor,
 diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-index db836536e601b..8388421a68a48 100644
+index 8388421a68a48..2a239114759a2 100644
 --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
 +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-@@ -117,7 +117,7 @@ struct rkvdec_hevc_priv_tbl {
- struct rkvdec_hevc_ctx {
- 	struct rkvdec_aux_buf			priv_tbl;
- 	struct v4l2_ctrl_hevc_scaling_matrix	scaling_matrix_cache;
--	struct v4l2_ctrl_hevc_ext_sps_st_rps	st_cache;
-+	struct rkvdec_hevc_st_rps_cache		st_cache;
- 	struct rkvdec_vdpu381_regs_hevc		regs;
- };
+@@ -593,6 +593,7 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+ 	struct rkvdec_hevc_run run;
+ 	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
+ 	struct rkvdec_hevc_priv_tbl *tbl = hevc_ctx->priv_tbl.cpu;
++	int ret;
+ 
+ 	rkvdec_hevc_run_preamble(ctx, &run);
+ 
+@@ -606,7 +607,11 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+ 	rkvdec_hevc_assemble_hw_scaling_list(ctx, &run, &tbl->scaling_list,
+ 					     &hevc_ctx->scaling_matrix_cache);
+ 	assemble_hw_pps(ctx, &run);
+-	rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
++	ret = rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
++	if (ret) {
++		rkvdec_run_postamble(ctx, &run.base);
++		return ret;
++	}
+ 
+ 	config_registers(ctx, &run);
  
 diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-index c409d21c08598..47f236295f1e5 100644
+index 47f236295f1e5..52554c75f47f4 100644
 --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
 +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-@@ -124,7 +124,7 @@ struct rkvdec_hevc_priv_tbl {
- struct rkvdec_hevc_ctx {
- 	struct rkvdec_aux_buf			priv_tbl;
- 	struct v4l2_ctrl_hevc_scaling_matrix	scaling_matrix_cache;
--	struct v4l2_ctrl_hevc_ext_sps_st_rps	st_cache;
-+	struct rkvdec_hevc_st_rps_cache		st_cache;
- 	struct vdpu383_regs_h26x		regs;
- };
+@@ -542,6 +542,7 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+ 	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
+ 	struct rkvdec_hevc_priv_tbl *tbl = hevc_ctx->priv_tbl.cpu;
+ 	u32 timeout_threshold;
++	int ret;
+ 
+ 	rkvdec_hevc_run_preamble(ctx, &run);
+ 
+@@ -560,7 +561,11 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+ 	rkvdec_hevc_assemble_hw_scaling_list(ctx, &run, &tbl->scaling_list,
+ 					     &hevc_ctx->scaling_matrix_cache);
+ 	assemble_hw_pps(ctx, &run);
+-	rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
++	ret = rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
++	if (ret) {
++		rkvdec_run_postamble(ctx, &run.base);
++		return ret;
++	}
+ 
+ 	config_registers(ctx, &run);
  
 -- 
 2.56.1
