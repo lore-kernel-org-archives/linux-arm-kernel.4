@@ -2,74 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558A8606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF96760A5BFC
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ASgBAODc;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=ehbxFn6Q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lnj98+eI;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=pVHY+S0u
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:References:In-Reply-To:Message-ID:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sf4AH1zOcw+3m6cCakkCBTqDSIqFr2QBiWyWayVrX3Q=; b=ASgBAODcQSBAmt
-	hzT4iwzmBGFoQZgjrUduPGC0hEgrBoMI3vYPgGCiWDLM4VJUEIKrayvMayWo0fzDncIXCbLNWdybt
-	/IoRLToVSpzSxzVfkUPtlKnZdvSkD5AWHYVuYzYLzVauPSShuwUJW0BHR3LxHOp0m4GI8EGZdOHKC
-	DYRKiwjRE1bqRlrrh2FkDwcYtBY893odBsxb410aoCF3E9W3SXOdORgQHUtm6UuCnTBbsuWlgcuer
-	JBRPi5yoxJuC/xS13FkdPk4gPQwCcxpXB3epqnKDN4KvHpX8xJAj37hvzEHdGFFLQBnUinw4ZrI/p
-	dtp2V1D3s2dIR4miWuVQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=PpEHmlaRUkDXxpGvranXTA8vWqHmYOzyD7cdKeA7b38=; b=lnj98+eIb2NdfAywF8uCFWC9VN
+	NrAIaldAGTPX7K+MgGO0HVSJRdaH92CMm+9WtGbKwpU/fOZLAm3G8D/FKwix6OS9MQ3SWoovRWk8t
+	aTm1BJk0co06rhfsD/+6n3JtyJ/PkcTMQ25IVQN6lmG1rkDfYNcXaFhWsIhA1KhjW5YW+SbMXW6S2
+	NbZGCMNqkDJlULQKoT2tzNtMxx17ULuNnHL/jkjzJoH6hjIK3yKWR4htiDh/DC/NVuRbvQKSZgRli
+	MekF2+xTtiawoYe7Z1huY6NAzMVQAMWmHYUw7gLv+PkdYt3dkH6llxftf0yGsFbqbWHbtQwjqGIKl
+	KR69sr2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOMQ-0000000F3HP-1aD6;
-	Fri, 20 Nov 2026 13:09:02 +0000
-Received: from sender5-op-o11.zoho.com ([165.173.182.11])
+	id 1xUOOo-0000000F3ed-3Ip1;
+	Fri, 20 Nov 2026 13:11:30 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOMN-0000000F3Gv-3SFb;
-	Fri, 20 Nov 2026 13:09:01 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795180132; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=FYuT9fhElAX47KBGkB2SllZszrMGccBSGnyXiMEX3YyCdM+qz2KtfxinqDTV0gnBxd7yL1QjJk62yM6TZYzHg7HN8T0fwLQvz8MlW3Nh/5Z8Fmfsk0rFHXd7i7DT1Nz40qqIUfmm42YhlDKF3hcOZiBttATAo9+v27L9plRC+H8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1795180132; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=sf4AH1zOcw+3m6cCakkCBTqDSIqFr2QBiWyWayVrX3Q=; 
-	b=ZvoUZTyPgb2vfXKImZEhHSAbdbVhjmCzBRjYcu6VXR90/d3TPkzip110xHwT9jQopXhZZyymkcmaT+hs2loUQtQJNdUao3WN0bJBD5ToCXonxp7vH/9WwJUypvvvngNIyFQ2ODELpu9gb2gKFl6HcsFWy+Vycxb2Lwe5ACDY4cU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.dufresne@collabora.com;
-	dmarc=pass header.from=<nicolas.dufresne@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=ehbxFn6Q8yTrPbnsU7wE9E48PYRCjMfiX6+/+ropJDEv7ZZJUwwiOwqGBdAKwHfXE50PWuhmohKp7qW3kRr5IezHe5AfOzOAWWZ0ENmw8J/IIAJQS9I2Ndy6j11Wd4BteUiDNonSiNc+Ny8gPbFJcnssEkziiKPJBPidYaiBhew=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=sf4AH1zOcw+3m6cCakkCBTqDSIqFr2QBiWyWayVrX3Q=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: from mail.zoho.com by mx.zohomail.com
-	with SMTP id 1795180130356352.2454153669245; Fri, 20 Nov 2026 05:08:50 -0800 (PST)
-Date: Fri, 20 Nov 2026 08:08:50 -0500
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: <aiyengar1990@gmail.com>
-Cc: <hverkuil@kernel.org>, <mchehab@kernel.org>,
-	<benjamin.gaignard@collabora.com>, <p.zabel@pengutronix.de>,
-	<mripard@kernel.org>, <paulk@sys-base.io>,
-	<gregkh@linuxfoundation.org>, <wens@kernel.org>,
-	<jernej.skrabec@gmail.com>, <samuel@sholland.org>, <jonas@kwiboo.se>,
-	<linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-rockchip@lists.infradead.org>,
-	<linux-staging@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <ckoever@outlook.de>,
-	<aiyengar1990@gmail.com>
-Message-ID: <1a1f912f033.2efff015191157.7190884739957848478@collabora.com>
-In-Reply-To: <20261119-b4-cedrus-mpeg1-v1-2-aa5ba1192822@gmail.com>
-References: <20261119-b4-cedrus-mpeg1-v1-0-aa5ba1192822@gmail.com> <20261119-b4-cedrus-mpeg1-v1-2-aa5ba1192822@gmail.com>
-Subject: =?UTF-8?Q?Re:=C2=A0[PATCH_RFC_2/2]_media:_cedrus:_mpeg2:?=
- =?UTF-8?Q?_decode_MPEG-1_as_V4L2=5FPIX=5FFMT=5FMPEG1=5FSLICE?=
+	id 1xUOOk-0000000F3aJ-3Kyc
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 13:11:28 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4b79502c27aso8013115e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 05:11:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1795180284; x=1795785084; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=PpEHmlaRUkDXxpGvranXTA8vWqHmYOzyD7cdKeA7b38=;
+        b=pVHY+S0uzjJsBvf2cqoUx/UrZ/+vYC2HAONqEGfOjgUL3jhElRQQ9OMcYKk0Icc8Bh
+         eIBcTAroFRstOv/Z/ae0coLkFYjJq0F3Kqpm+BBLufq17A01Xif1ltJw51klQUJ3JoKe
+         LCeN/TrpNQmW94tRcptvKipLHBa/c5QRsbhplglupNKroSAd9O3Oo1T58xKGU4CuB/tB
+         pIWgr3DisYBjljA/5p2HzFf4cFlAtSN7kmlLFQH1x2RFKfc225Z3unnIOtdaakIXdX8G
+         2EDPXrgkoQsKu9V6LoGQZTY27Q4we6sH/azJ5zLeAUWlJ9qBx+sG7/oTF9VLrTS6XwYI
+         7BqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795180284; x=1795785084;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=PpEHmlaRUkDXxpGvranXTA8vWqHmYOzyD7cdKeA7b38=;
+        b=TGOlbC558x6ydyvWHa/HcL4HNol4rWuywBX9Oeo1HPuzQ9Muq01YRav8/7h707d36K
+         /dJ6SGiMSUrXf1K8n+V04QLcne7AL9CZe9Sy3AaCLXIx0DpA2aqGmv/BZaJEo6D24oPC
+         vQKqsrcQqsgog82cv78/soPBKuqleYFx92MG89F/g5PVbPBkAx7jrxQ7Fq1mbR4aQHSZ
+         Wz+R/7m2/VeUEiydn+lUuyf0o6jzW2DEHZ9mXH7UKu95JXl7A/Y1lJZImpsAy2kkX0KN
+         7Sl5PEGfPz2CJOx/6GsAHeZJxsaIVt2348H56eH77YdhKsrq3akCIiP9MO79RQctENxR
+         jeSA==
+X-Forwarded-Encrypted: i=1; AL+hErEgETaI+JG+yDJ8CxgGOlww7wrsZjxdpSmEXz3yDCb+bVQ2TaxasKz3E9IlP3izXKj97K6GV2K0k4kI9kqRkDT5@lists.infradead.org
+X-Gm-Message-State: APuU4Z8CkRP8FSPZ9jvV2LEQgQlJ1XgqAHBl1lwSSRv2KtG/F7RIKdu4
+	7IdzetotKywk1/iShCYe0hQPkBEFvg7S6sI3gQJSiiWV6TRtStMSEk7q4z8E0VP0Oak=
+X-Gm-Gg: AYBFou3IqovcBdhEWePHCuiP8k78UnGvFdmVWhYQ8e/52NQggYMpNOuLloDaqT692e0
+	2YrViQZTaRIRnkUskf3xVpAZRPArYsBybWQALGjq6tjRukZvwBMyfAUOmsfI/OdwDgJMmsPYyET
+	d3bea7sVkflivoeGYdTOaaQ6M5MF247LQHqLoYQdMgxyXyKpCTiSw6TY/EsoYJ7P+mx+D5VE1jd
+	sUcCwIslki2iAIwN3WfDgOrVmqCzTAVU0QceP21+szWLNxO5go+4bGhzz3xL7mVn54+r4GubFjh
+	TLj7fgCNGvuxoOTDUU8c7bgbX+BJBWcOPgJzZwT/20rsn0J6qNECgGme0D12v8m3DHKfiWfyXAP
+	rb+Mi9QsTdXYzKAYkxQhGenxKHuLRhSZlDO4XEeIbDERELA0rVxuTYqfw9ZY4+iFNXh098SFWGw
+	e14/0ZfW61MkFF3zdQqAJ/waBZcX3JLo74RRSQ1+YhTOwNYcM7E28wgMjqFHC9ljruOuYDzm+rA
+	/N+L3d8tpLeNGAVKCzOiOzwNDcLr4Y3WLRBZWkFWuoL4aKosyY/tagEjLpkOgnuVxpE8MKuQPPs
+	hP2r7NHC2wHRmTNI8LSxKHoBY7tIZMlEzYVuSuTI4+bVznF7Jvgv155gj+SUEkruU9aOL/Fy+xz
+	ctqPV3rJZZw0YdoOw+lv+xd+zh2XAbHV9bUpTyO+RM32YBA==
+X-Received: by 2002:a05:600c:6749:b0:4a2:d99:3171 with SMTP id 5b1f17b1804b1-4bb8881b52dmr64713635e9.23.1795180284211;
+        Fri, 20 Nov 2026 05:11:24 -0800 (PST)
+Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8960110fsm43497995e9.0.2026.11.20.05.11.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 05:11:22 -0800 (PST)
+From: Carlo Caione <ccaione@baylibre.com>
+Subject: [PATCH v2 0/6] Add Amlogic S7 clock controllers
+Date: Fri, 20 Nov 2026 14:11:03 +0100
+Message-Id: <20261120-upstream-s7-clk-v2-0-856cece3b9f2@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Importance: Normal
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/2WOyw6CMBBFf4V0bU1bQklc+R+GRR9TGeVlW4iE8
+ O8WMHHhYhZncueeWUgAjxDIJVuIhwkD9l0CccqIqVV3B4o2MRFMSJ6GjkOIHlRLQ0lN86S50yB
+ dnstCWJKuBg8O33vjrTo4jPoBJm4134SH15hU8RerMcTez/sfE9+2h5Kzf+XEKaOlLRi3UkjB3
+ VWruUHt4Wz6llTrun4AhMrrGdgAAAA=
+X-Change-ID: 20261026-upstream-s7-clk-3fbe6f33652d
+To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Carlo Caione <ccaione@baylibre.com>
+Cc: Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_050859_949188_47D56ADB 
-X-CRM114-Status: GOOD (  20.00  )
+X-CRM114-CacheID: sfid-20261120_051126_857861_7AC8DBB6 
+X-CRM114-Status: GOOD (  12.08  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,306 +116,68 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+This series adds the clock controllers of the Amlogic S7 SoC family
+(S905Y5, S805X3): the PLL clock controller and the peripherals clock
+controller.
 
+The peripherals controller is close to the S4 one. Two changes to the
+common code come with the PLL controller: clk-pll handles PLLs without
+a pre-divider and PLLs with an active-low reset, like the HDMI PLL.
 
----- Le jeu., 19 nov. 2026 11:34:53 -0500
-devnull+aiyengar1990.gmail.com@kernel.org a =C3=A9crit ----
+---
+Changes in v2:
+- Drop the SCMI clock IDs patch: the IDs move to the DT series and the
+  binding examples use raw SCMI clock cells (Conor, Jerome)
+- Use exclusive or for the active-low reset (Jerome)
+- Use absolute addresses in the binding examples (Conor)
+- Rename the HIFI PLL to HIFI0, as in the datasheet (Jerome)
+- Model div0p5 of the GP0, HIFI0 and HIFI1 PLLs as a read-only divider
+  instead of a fixed /2 (Jerome)
+- Swap the VCO and div0p5 clock IDs of each PLL, so the VCO init runs
+  before the div0p5 divider reads its register (Jerome)
+- Drop CLK_MESON_PLL_NOINIT_ENABLED from the HIFI0 and HIFI1 PLLs (Jerome)
+- Declare one clock per line in the fclk macros and drop the default
+  GP0 frac_max (Jerome)
+- Clarify the fclk_en and HDMIPLL_CTRL2 comments (Jerome)
+- Say why PWM H and J are read-only (Jerome)
+- Fold the video and eth_rmii clocks with the composite helpers and
+  local macros (Jerome)
+- Add Conor's Acked-by and Jerome's Reviewed-by
+- Link to v1: https://patch.msgid.link/20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com
 
+---
+Carlo Caione (6):
+      clk: meson: pll: Support PLLs without a pre-divider
+      clk: meson: pll: Support active-low resets
+      dt-bindings: clock: Add Amlogic S7 PLL clock controller
+      clk: amlogic: Add S7 PLL clock controller driver
+      dt-bindings: clock: Add Amlogic S7 peripherals clock controller
+      clk: amlogic: Add S7 peripherals clock controller driver
 
-> From: Arun Iyengar
->
-> The engine has an MPEG-1 mode, selected with the MPEG-1 decoder type in
-> the trigger register, and takes the full pel flags and the picture
-> coding type (D-pictures included) in the picture header register.
->
-> Enumerate V4L2_PIX_FMT_MPEG1_SLICE on every variant with the MPEG-2
-> decoder (tested on H616 only), with the MPEG-2 limits, and select the
-> MPEG-1 mode from the coded format. try_ctrl accepts the MPEG-1 flag, the
-> full pel flags and D-pictures only with the MPEG-1 format. A job whose
-> sequence control does not match the coded format fails, as do field
-> pictures in MPEG-1 sequences.
+ .../clock/amlogic,s7-peripherals-clkc.yaml         |  125 ++
+ .../bindings/clock/amlogic,s7-pll-clkc.yaml        |   71 +
+ drivers/clk/meson/Kconfig                          |   30 +
+ drivers/clk/meson/Makefile                         |    2 +
+ drivers/clk/meson/clk-pll.c                        |   51 +-
+ drivers/clk/meson/clk-pll.h                        |    1 +
+ drivers/clk/meson/s7-peripherals.c                 | 1637 ++++++++++++++++++++
+ drivers/clk/meson/s7-pll.c                         |  696 +++++++++
+ .../clock/amlogic,s7-peripherals-clkc.h            |  245 +++
+ include/dt-bindings/clock/amlogic,s7-pll-clkc.h    |   42 +
+ 10 files changed, 2885 insertions(+), 15 deletions(-)
+---
+base-commit: 363f97a1ce635b86be7fd263d56a040fbd87bdbb
+change-id: 20261026-upstream-s7-clk-3fbe6f33652d
 
+Best regards,
+--  
+Carlo Caione <ccaione@baylibre.com>
 
-MPEG2 requires MPEG1 support. The new format simply add noise, you can fix =
-cedrus with V4L2_MPEG2_SEQ_FLAG_MPEG1 alone.
-
-
-Nicolas
-
-
-
->
-> Signed-off-by: Arun Iyengar
->
-> ---
-> drivers/staging/media/sunxi/cedrus/cedrus.c | 22 +++++++++++++
-> drivers/staging/media/sunxi/cedrus/cedrus_dec.c | 1 +
-> drivers/staging/media/sunxi/cedrus/cedrus_hw.c | 1 +
-> drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c | 38 ++++++++++++++++++=
-++---
-> drivers/staging/media/sunxi/cedrus/cedrus_video.c | 7 +++++
-> 5 files changed, 65 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.c
-> b/drivers/staging/media/sunxi/cedrus/cedrus.c
-> index c3331b4f3f02..60b296032a90 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus.c
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus.c
-> @@ -77,6 +77,26 @@ static int cedrus_try_ctrl(struct v4l2_ctrl *ctrl)
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0c=
-tx->bit_depth =3D bit_depth;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0c=
-edrus_reset_cap_format(ctx);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
-> +=C2=A0=C2=A0=C2=A0=C2=A0} else if (ctrl->id =3D=3D V4L2_CID_STATELESS_MP=
-EG2_SEQUENCE) {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0const struct v4l2_ctrl_m=
-peg2_sequence *seq =3D
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-ctrl->p_new.p_mpeg2_sequence;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct cedrus_ctx *ctx =
-=3D container_of(ctrl->handler,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st=
-ruct cedrus_ctx, hdl);
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (seq->flags & V4L2_MP=
-EG2_SEQ_FLAG_MPEG1 &&
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->src_fmt.pixelforma=
-t !=3D V4L2_PIX_FMT_MPEG1_SLICE)
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-return -EINVAL;
-> +=C2=A0=C2=A0=C2=A0=C2=A0} else if (ctrl->id =3D=3D V4L2_CID_STATELESS_MP=
-EG2_PICTURE) {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0const struct v4l2_ctrl_m=
-peg2_picture *pic =3D
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-ctrl->p_new.p_mpeg2_picture;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct cedrus_ctx *ctx =
-=3D container_of(ctrl->handler,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st=
-ruct cedrus_ctx, hdl);
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ctx->src_fmt.pixelfo=
-rmat !=3D V4L2_PIX_FMT_MPEG1_SLICE &&
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (pic->picture_coding_ty=
-pe =3D=3D V4L2_MPEG2_PIC_CODING_TYPE_D ||
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pic->flags & (V4L2_MPEG=
-2_PIC_FLAG_FULL_PEL_FORWARD |
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD)))
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-return -EINVAL;
-> =C2=A0=C2=A0=C2=A0=C2=A0}
->
-> =C2=A0=C2=A0=C2=A0=C2=A0return 0;
-> @@ -90,12 +110,14 @@ static const struct cedrus_control cedrus_controls[]=
- =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0{
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.cfg =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.=
-id=C2=A0=C2=A0=C2=A0=C2=A0=3D V4L2_CID_STATELESS_MPEG2_SEQUENCE,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-.ops=C2=A0=C2=A0=C2=A0=C2=A0=3D &cedrus_ctrl_ops,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.capabilities=C2=A0=C2=A0=
-=C2=A0=C2=A0=3D CEDRUS_CAPABILITY_MPEG2_DEC,
-> =C2=A0=C2=A0=C2=A0=C2=A0},
-> =C2=A0=C2=A0=C2=A0=C2=A0{
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.cfg =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.=
-id=C2=A0=C2=A0=C2=A0=C2=A0=3D V4L2_CID_STATELESS_MPEG2_PICTURE,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-.ops=C2=A0=C2=A0=C2=A0=C2=A0=3D &cedrus_ctrl_ops,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.capabilities=C2=A0=C2=A0=
-=C2=A0=C2=A0=3D CEDRUS_CAPABILITY_MPEG2_DEC,
-> =C2=A0=C2=A0=C2=A0=C2=A0},
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
-> b/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
-> index 9f8b0555b7dc..6657d6060c39 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_dec.c
-> @@ -41,6 +41,7 @@ void cedrus_device_run(void *priv)
->
-> =C2=A0=C2=A0=C2=A0=C2=A0switch (ctx->src_fmt.pixelformat) {
-> =C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_MPEG2_SLICE:
-> +=C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_MPEG1_SLICE:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0run.mpeg2.sequence =3D ce=
-drus_find_control_data(ctx,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0V=
-4L2_CID_STATELESS_MPEG2_SEQUENCE);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0run.mpeg2.picture =3D ced=
-rus_find_control_data(ctx,
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-> b/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-> index 444fb53878d1..fd3ee8f5e9a5 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-> @@ -44,6 +44,7 @@ int cedrus_engine_enable(struct cedrus_ctx *ctx)
->
-> =C2=A0=C2=A0=C2=A0=C2=A0switch (ctx->src_fmt.pixelformat) {
-> =C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_MPEG2_SLICE:
-> +=C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_MPEG1_SLICE:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg |=3D VE_MODE_DEC_MPEG=
-;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0break;
->
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-> b/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-> index 10e98f08aafc..18d91b9b1e4a 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-> @@ -48,6 +48,30 @@ static void cedrus_mpeg2_irq_disable(struct cedrus_ctx
-> *ctx)
-> =C2=A0=C2=A0=C2=A0=C2=A0cedrus_write(dev, VE_DEC_MPEG_CTRL, reg);
-> }
->
-> +static bool cedrus_mpeg2_is_mpeg1(struct cedrus_ctx *ctx)
-> +{
-> +=C2=A0=C2=A0=C2=A0=C2=A0return ctx->src_fmt.pixelformat =3D=3D V4L2_PIX_=
-FMT_MPEG1_SLICE;
-> +}
-> +
-> +static bool
-> +cedrus_mpeg2_format_matches(struct cedrus_ctx *ctx,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- const struct v4l2_ctrl_mpeg2_sequence *seq,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- const struct v4l2_ctrl_mpeg2_picture *pic)
-> +{
-> +=C2=A0=C2=A0=C2=A0=C2=A0bool mpeg1 =3D cedrus_mpeg2_is_mpeg1(ctx);
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0/* try_ctrl checked the controls against the for=
-mat set at that time. */
-> +=C2=A0=C2=A0=C2=A0=C2=A0if (mpeg1 !=3D !!(seq->flags & V4L2_MPEG2_SEQ_FL=
-AG_MPEG1))
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0if (mpeg1)
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return pic->picture_stru=
-cture =3D=3D V4L2_MPEG2_PIC_FRAME;
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0return pic->picture_coding_type !=3D V4L2_MPEG2_=
-PIC_CODING_TYPE_D &&
-> +=C2=A0=C2=A0=C2=A0=C2=A0 !(pic->flags & (V4L2_MPEG2_PIC_FLAG_FULL_PEL_FO=
-RWARD |
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD));
-> +}
-> +
-> static int cedrus_mpeg2_setup(struct cedrus_ctx *ctx, struct cedrus_run *=
-run)
-> {
-> =C2=A0=C2=A0=C2=A0=C2=A0const struct v4l2_ctrl_mpeg2_sequence *seq;
-> @@ -63,6 +87,9 @@ static int cedrus_mpeg2_setup(struct cedrus_ctx *ctx, s=
-truct
-> cedrus_run *run)
-> =C2=A0=C2=A0=C2=A0=C2=A0seq =3D run->mpeg2.sequence;
-> =C2=A0=C2=A0=C2=A0=C2=A0pic =3D run->mpeg2.picture;
->
-> +=C2=A0=C2=A0=C2=A0=C2=A0if (!cedrus_mpeg2_format_matches(ctx, seq, pic))
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return -EINVAL;
-> +
-> =C2=A0=C2=A0=C2=A0=C2=A0quantisation =3D run->mpeg2.quantisation;
->
-> =C2=A0=C2=A0=C2=A0=C2=A0/* Activate MPEG engine. */
-> @@ -101,8 +128,10 @@ static int cedrus_mpeg2_setup(struct cedrus_ctx *ctx=
-,
-> struct cedrus_run *run)
-> =C2=A0=C2=A0=C2=A0=C2=A0reg |=3D VE_DEC_MPEG_MP12HDR_Q_SCALE_TYPE(pic->fl=
-ags &
-> V4L2_MPEG2_PIC_FLAG_Q_SCALE_TYPE);
-> =C2=A0=C2=A0=C2=A0=C2=A0reg |=3D VE_DEC_MPEG_MP12HDR_INTRA_VLC_FORMAT(pic=
-->flags &
-> V4L2_MPEG2_PIC_FLAG_INTRA_VLC);
-> =C2=A0=C2=A0=C2=A0=C2=A0reg |=3D VE_DEC_MPEG_MP12HDR_ALTERNATE_SCAN(pic->=
-flags &
-> V4L2_MPEG2_PIC_FLAG_ALT_SCAN);
-> -=C2=A0=C2=A0=C2=A0=C2=A0reg |=3D VE_DEC_MPEG_MP12HDR_FULL_PEL_FORWARD_VE=
-CTOR(0);
-> -=C2=A0=C2=A0=C2=A0=C2=A0reg |=3D VE_DEC_MPEG_MP12HDR_FULL_PEL_BACKWARD_V=
-ECTOR(0);
-> +=C2=A0=C2=A0=C2=A0=C2=A0reg |=3D VE_DEC_MPEG_MP12HDR_FULL_PEL_FORWARD_VE=
-CTOR(pic->flags &
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD);
-> +=C2=A0=C2=A0=C2=A0=C2=A0reg |=3D VE_DEC_MPEG_MP12HDR_FULL_PEL_BACKWARD_V=
-ECTOR(pic->flags &
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD);
->
-> =C2=A0=C2=A0=C2=A0=C2=A0cedrus_write(dev, VE_DEC_MPEG_MP12HDR, reg);
->
-> @@ -183,8 +212,9 @@ static void cedrus_mpeg2_trigger(struct cedrus_ctx *c=
-tx)
-> =C2=A0=C2=A0=C2=A0=C2=A0u32 reg;
->
-> =C2=A0=C2=A0=C2=A0=C2=A0/* Trigger MPEG engine. */
-> -=C2=A0=C2=A0=C2=A0=C2=A0reg =3D VE_DEC_MPEG_TRIGGER_HW_MPEG_VLD | VE_DEC=
-_MPEG_TRIGGER_MPEG2 |
-> -=C2=A0=C2=A0=C2=A0=C2=A0 VE_DEC_MPEG_TRIGGER_MB_BOUNDARY;
-> +=C2=A0=C2=A0=C2=A0=C2=A0reg =3D VE_DEC_MPEG_TRIGGER_HW_MPEG_VLD | VE_DEC=
-_MPEG_TRIGGER_MB_BOUNDARY;
-> +=C2=A0=C2=A0=C2=A0=C2=A0reg |=3D cedrus_mpeg2_is_mpeg1(ctx) ? VE_DEC_MPE=
-G_TRIGGER_MPEG1 :
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 VE_DEC_MPEG_TRIGGER_MPEG2;
->
-> =C2=A0=C2=A0=C2=A0=C2=A0cedrus_write(dev, VE_DEC_MPEG_TRIGGER, reg);
-> }
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_video.c
-> b/drivers/staging/media/sunxi/cedrus/cedrus_video.c
-> index ad4ec3490775..8979693e9109 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus_video.c
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_video.c
-> @@ -40,6 +40,11 @@ static struct cedrus_format cedrus_formats[] =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.directions=C2=A0=C2=A0=
-=C2=A0=C2=A0=3D CEDRUS_DECODE_SRC,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.capabilities=C2=A0=C2=A0=
-=C2=A0=C2=A0=3D CEDRUS_CAPABILITY_MPEG2_DEC,
-> =C2=A0=C2=A0=C2=A0=C2=A0},
-> +=C2=A0=C2=A0=C2=A0=C2=A0{
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.pixelformat=C2=A0=C2=A0=
-=C2=A0=C2=A0=3D V4L2_PIX_FMT_MPEG1_SLICE,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.directions=C2=A0=C2=A0=
-=C2=A0=C2=A0=3D CEDRUS_DECODE_SRC,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.capabilities=C2=A0=C2=
-=A0=C2=A0=C2=A0=3D CEDRUS_CAPABILITY_MPEG2_DEC,
-> +=C2=A0=C2=A0=C2=A0=C2=A0},
-> =C2=A0=C2=A0=C2=A0=C2=A0{
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.pixelformat=C2=A0=C2=A0=
-=C2=A0=C2=A0=3D V4L2_PIX_FMT_H264_SLICE,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.directions=C2=A0=C2=A0=
-=C2=A0=C2=A0=3D CEDRUS_DECODE_SRC,
-> @@ -125,6 +130,7 @@ void cedrus_prepare_format(struct v4l2_pix_format
-> *pix_fmt)
->
-> =C2=A0=C2=A0=C2=A0=C2=A0switch (pix_fmt->pixelformat) {
-> =C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_MPEG2_SLICE:
-> +=C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_MPEG1_SLICE:
-> =C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_H264_SLICE:
-> =C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_HEVC_SLICE:
-> =C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_VP8_FRAME:
-> @@ -352,6 +358,7 @@ static int cedrus_s_fmt_vid_out_p(struct cedrus_ctx *=
-ctx,
->
-> =C2=A0=C2=A0=C2=A0=C2=A0switch (ctx->src_fmt.pixelformat) {
-> =C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_MPEG2_SLICE:
-> +=C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_MPEG1_SLICE:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ctx->current_codec =3D &c=
-edrus_dec_ops_mpeg2;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0break;
-> =C2=A0=C2=A0=C2=A0=C2=A0case V4L2_PIX_FMT_H264_SLICE:
->
-> --
-> 2.55.0
 
