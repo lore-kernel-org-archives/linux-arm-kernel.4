@@ -2,101 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4867606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F826606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P4tnwzfv;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VCiRVKD7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q9YzEMpW;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=W9dfn1oh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=m9qCn8tiC9eOR+AeR03URThDVh6TlV82DdOIxf2Zrx4=; b=P4tnwzfv1Id8xd
-	CtKs6Dqt3dtPqEACPCfdkFOE1KJtfa2avpLBbaT07I462IOcAwRvVuI+k7dRfpmA4Kev6ibDKQPHT
-	wEQ9LRzuGpbsr0V/38geMba6pOVuTJ9aBjgi1fvG5r4gcq/2GbUIVC5Z7B642wrmCt2abv1qCNwTw
-	EXc8EZcbI5Q/Ac+ihy+cd/orZR0wEuGXhG3MBorFGpg2vf9qlyRCZaQ/cF4s4J/nLDvGYbp1uPHHh
-	AM9VzH8Mv8PBJx7bs6klGOltZlzhALlDPdZd4tBVMwfytDQ4EWRgcUWzszUv8yS1Mt/8NInoorpxJ
-	1/Lx2os8y/1exJaoPeHQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=GA+rgY4utwY9kf5LrkartVA8tfESwwP7tCFlkDbq27U=; b=Q9YzEMpW77slprCKl4qi90BmVg
+	vU4w1PqpWBfzOPm8K2EvA6yo7csgWhQkX22sgQhOzBVvXxgURIGJV9KuFa//5Q0wepVWO08tnccI8
+	vELjNjkccS8Oe+TnQa1qfVFSmTaDXS3bO9lUHEhs0TELRi1PyQuxe44Qfc6QtZO5fT0pzXqOy3lTV
+	s+M+sUmiD1sEiT/So3Q0+sVC+4TFL6clCaX7LudusmLhivU0patm1k8zon3vCEVXqeWv/Hgwub7Xb
+	5FQocN1bZLDL9+l3NsJYBZtsgB77pUGcurUuMYGFaBGZXD4fZSy+RD+c6TS8jgatF5sjYguoe/fn8
+	n4N8u0EQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUM4O-0000000Ed1x-1AIK;
-	Fri, 20 Nov 2026 10:42:16 +0000
-Received: from mail-pg1-x52c.google.com ([2607:f8b0:4864:20::52c])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUM4M-0000000Ed1d-1pbj
+	id 1xUM4Z-0000000Ed40-2Qsw;
+	Fri, 20 Nov 2026 10:42:30 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xUM4U-0000000Ed2r-3Y8t
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 10:42:15 +0000
-Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-cdb2dfcca94so328505a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 02:42:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795171333; x=1795776133; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=m9qCn8tiC9eOR+AeR03URThDVh6TlV82DdOIxf2Zrx4=;
-        b=VCiRVKD7EIvnT9TAWTr4ZRhnSVRKp1OK5OVp2o5MuI/mX89eZ73Pahu0fg/ZMXg/PY
-         VXX+18XoT6iXFjhH5FuhjbN5c7zYVHpBogieJn7UNHF4piGkDc42/sKt7AW6GdpIQPdi
-         5wD2r8FdbWAoPXlr7123MOQT+R1eI3jfkRCdDUrePjz+Y36Gjxi8tQ82x3a9rX71BpRa
-         2H4VVlJjp/+MDYKJKYr2P3VqQFkI7nBENzaL2DO+GUK1Lue5PUPYpz+smOKZ7/Hzc184
-         xddc18QPmcGhzCqO4mf8JHvbGP1DO9FLJhnNvs9s6bQQmYn/r5Fcj5wPpJXGLFknUcns
-         7a+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795171333; x=1795776133;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=m9qCn8tiC9eOR+AeR03URThDVh6TlV82DdOIxf2Zrx4=;
-        b=RihUl3LfxW1UcuJzMnKJAzDt0cahGq/uggmBcL1DylUyF7sJ/y18UdZyIF/BO1IU4H
-         qA00+vzzi0fx+6qNgAuVzPvTocisWKiojUHFXx6AP9+w5bVBeX8Vhdz43lxCa3k+RS3E
-         vPA7xx1x0eIyoZts/grOSdukBigQWJmottb5BBvWd/gdXT/7F+vSNAVceO23IXOokK4J
-         f+djxppUgV1GHYZ6+kvM6JCtwWGmblFz4S7tYBZpl+Ygf8ED+uqJHywcS37pt7FPkTkG
-         FqLkY/ZLKYEtx2BaMTG6gWTfX7j0e0Y9k59AMWQMxtp9pWGjqzHkZi7QxZjcQGQj4kJy
-         skng==
-X-Forwarded-Encrypted: i=1; AL+hErF86JYwY6P+f6W1Wo1n0zgN/gQJDAX1EcHBOtbHdxATWHyhYC6BYM97G5NCPi9b0bJhFCd8qSyM5KtNnnEjNm+B@lists.infradead.org
-X-Gm-Message-State: APuU4Z+uKUjOojdXndKmOwzGm6qKZttEw53/ObW7Yqg2RxUR5X8MdgYN
-	GVP/i00cpGLxdivSBigA6m4TmYtQ9/dfE6uptLGgxQPrcZqu+Z8omWkA
-X-Gm-Gg: AZFdTZfJpJcSZd1BzO+DFoRAS7D3B/zRMTk0c0R1D4+AjByZ9/OJEDCnNCKXqfDbBKN
-	cMKauyfFkryHpwy8pDDaUEg13Q9Kk0XNNTjIR+T6SiFaa9LNm8ZuvEVkjQPVdIUAEd2pllaqQae
-	sopgoOT1/Waqe6R+bB+dxOZe4Jt9k8bzS84FR3evkX+epPNNoD/FnE5WRE5FB83dC1NgUwzDzbX
-	1DKdMUhW+5htGleCBTDggFESWHQoBoZqXQuZKRP13ghfHGKlicLiVXcFjwj8JIUhpBT5BmQro3z
-	+4g00rblobA30KBm2I/w/yfSc+1b38JF+aSYvgzvm2Hw1QupA3GKuItU1I90yvbtBSmXLz2ewD2
-	3YQWhEVwBeAiHk98fYwapZESiVl+26hZCDwC4nz8A6gSZ5VfWsFwOH+2DyoGG/OhFj6h14+CB2L
-	C3QTG200gKwnmhjjV8WazATs0TZ3ScIEecb73FvtTHbPTUvQ6wqfURGwHQihljHb5qKUVxi7LRq
-	LA9vCDFtKxRT5/y0OmwImhSGi7pkIUmTnAWDhP1TJ9Z0vyJ21ifgUxPkpUrLRjyNd/yLwYqq6i4
-	9to76cxxhp3m8py1+vAX/AiqiBS2RIb9BJpkq3j90cOVjY/I+9lVE83IPwXN+ZIhrHWBs2U=
-X-Received: by 2002:a17:90b:248e:b0:3b3:a9d8:ed2b with SMTP id 98e67ed59e1d1-3b41c8fe24bmr1594114a91.14.1795171333416;
-        Fri, 20 Nov 2026 02:42:13 -0800 (PST)
-Received: from [10.25.164.32] ([128.77.72.132])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0b52dsm4115150a91.5.2026.11.20.02.42.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 02:42:12 -0800 (PST)
-Message-ID: <fa77b633-2c99-46fc-ab36-03f6b5653262@gmail.com>
-Date: Fri, 20 Nov 2026 18:42:06 +0800
+	Fri, 20 Nov 2026 10:42:25 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 430201477;
+	Fri, 20 Nov 2026 02:42:18 -0800 (PST)
+Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 402D33F632;
+	Fri, 20 Nov 2026 02:42:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795171341; bh=KZjE07y4SmOyc71lJCM0v3KfRKAEC8tpOiHDkICt3Nc=;
+	h=Date:From:To:Cc:Subject:From;
+	b=W9dfn1oh5FlzZ73WblhD+zWKPJ7uT5LolA/jic0JijGNPiGabqk6eYLevYw1FHokE
+	 LvueUommEyQ/clmqLH0a663hprd6eMCuR+huVn+B/4ytt7i3IFpfCJ73wRkmHQ3nzZ
+	 zaEugB1c7WMtqdqvYsVIaTSiHYV1gaMzmAE5nx0E=
+Date: Fri, 20 Nov 2026 10:42:17 +0000
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Ard Biesheuvel <ardb@kernel.org>,
+	Eric Biggers <ebiggers@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>
+Subject: [GIT PULL] arm64 fixes for 7.4-rc4
+Message-ID: <awAkCf3K4x8CtoKf@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] arm64: dts: imx93-9x9-qsb: Add DMIC codec to replace
- dummy codec for micfil
-To: shengjiu.wang@oss.nxp.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Frank.Li@nxp.com, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, shawnguo@kernel.org,
- daniel.baluta@nxp.com, chancel.liu@nxp.com, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20261120031853.1175454-1-shengjiu.wang@oss.nxp.com>
- <20261120031853.1175454-4-shengjiu.wang@oss.nxp.com>
-Content-Language: en-US
-From: Chancel Liu <chancel.liu@gmail.com>
-In-Reply-To: <20261120031853.1175454-4-shengjiu.wang@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_024214_552015_55CF1B94 
-X-CRM114-Status: UNSURE (   8.14  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_024222_984046_947F7914 
+X-CRM114-Status: GOOD (  11.43  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,27 +68,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
 	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/20/2026 11:18 AM, shengjiu.wang@oss.nxp.com wrote:
-> From: Shengjiu Wang <shengjiu.wang@nxp.com>
-> 
-> The "fsl,imx-audio-card" machine driver uses a dummy codec by default
-> which does not allow configuring the channel number according to the
-> board design. Replace it with a proper "dmic-codec" node configured
-> for 4 channels to match the DMIC hardware layout on the i.MX93 9x9
-> QSB board.
-> 
-> Fixes: 31b2f4e4c4f7 ("arm64: dts: imx93-9x9-qsb: Add PDM microphone sound card support")
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Reviewed-by: Chancel Liu <chancel.liu@gmail.com>
+Hi Linus,
 
-Regards,
-Chancel Liu
+Please pull the arm64 fixes below: BBML3 allow-list corrections for
+Cortex-X4 and Neoverse-V3/V3AE following updated errata, a kCFI oops
+during kexec relocation and NEON intrinsics type mismatches causing
+CRC64 and XOR build failures with tip-of-tree Clang.
+
+Thanks.
+
+The following changes since commit ad3fc05c7e65009355effeea06aa629a687acef2:
+
+  arm64: suspend: Only track cpuidle context for idle tasks (2026-11-13 17:12:34 +0000)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux tags/arm64-fixes
+
+for you to fetch changes up to a041bdbe1f3a8efa8a527a89c84d3771232b4942:
+
+  arm64: Drop stdint.h type overrides from asm/neon-intrinsics.h (2026-11-19 00:10:15 +0000)
+
+----------------------------------------------------------------
+arm64 fixes:
+
+ - Remove Cortex-X4 and Neoverse-V3/V3AE from the BBML3 allow list.
+   Updated errata documents show that revisions previously reported as
+   fixed remain affected by load/store livelocks when changing mapping
+   sizes without break-before-make
+
+ - Fix a kCFI oops during kexec image relocation. Give the relocation
+   routine a type hash and enter the copied code at the correct offset
+
+ - Fix the build with recent Clang versions by removing the stdint.h
+   type overrides for NEON intrinsics. The CRC64 and XOR intrinsics code
+   no longer includes the kernel's type headers
+
+----------------------------------------------------------------
+Ard Biesheuvel (3):
+      lib/crc: Don't include <linux/types.h> in NEON intrinsics code
+      xor: arm/arm64: Move NEON xor_gen() dispatch into the glue code
+      arm64: Drop stdint.h type overrides from asm/neon-intrinsics.h
+
+Ben Cressey (1):
+      arm64: kexec: use a typed entry to fix kCFI oops
+
+Ryan Roberts (2):
+      arm64: cpufeature: Remove Neoverse-V3/AE from the BBML3 allow list
+      arm64: cpufeature: Remove Cortex-X4 from the BBML3 allow list
+
+ Documentation/arch/arm64/silicon-errata.rst |  6 ++++++
+ arch/arm64/include/asm/kexec.h              |  2 ++
+ arch/arm64/include/asm/neon-intrinsics.h    | 24 +++++-----------------
+ arch/arm64/kernel/cpufeature.c              |  3 ---
+ arch/arm64/kernel/machine_kexec.c           |  7 +++++--
+ arch/arm64/kernel/relocate_kernel.S         | 11 ++++++----
+ arch/arm64/kernel/vmlinux.lds.S             |  5 +++--
+ lib/crc/crc64-neon.c                        | 10 +++++-----
+ lib/raid/xor/arm/xor-neon-glue.c            |  3 +++
+ lib/raid/xor/arm/xor-neon.h                 | 16 +++++++++++++--
+ lib/raid/xor/arm64/xor-eor3.c               | 15 +++-----------
+ lib/raid/xor/arm64/xor-neon-glue.c          |  5 +++++
+ lib/raid/xor/arm64/xor-neon.h               | 31 +++++++++++++++++++++++++----
+ lib/raid/xor/xor-neon.c                     | 16 ++++-----------
+ 14 files changed, 89 insertions(+), 65 deletions(-)
+
+-- 
+Catalin
 
