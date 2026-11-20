@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69592606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:54:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCE4606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 07:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J47ZHl7D;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aGgu+SeY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ap16awJ4;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GZZnNoGa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,50 +14,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wP737PCJGYShOq4BRXU6RG/HvtngMGBhbdjrd3PF9kU=; b=J47ZHl7DvCfNnNwjLbkWcCnQEv
-	Gybjt2Uwd8MIAU7eXeX1ZvSwvJtagG2UhfrIqsqIJ7KTSCut74ZzWsEHp3TljAfwhu7aOJdsar8hS
-	uwcbK2aBYWk4vYOPX3OAWajH9Z/gKdZ9Uz9QjRfmNStlhV1J7XPK8D2W3j4WDE/Scm6268olq+dB1
-	un0pXpUxWM49YldROlv2I+l+w3VcXL6nk5EvsDK7/dmdfYsUdn6+JL2KRbDfLDXp170BRiY4V/CgG
-	DdhFGbXAPpo1nv10L65bmAxiDW32mOnbj3sL+SnnyD426NG2EpOvwSQWZ+tPg2+d/hF++PcieDkpV
-	wTZexHlA==;
+	bh=n2W9ZCbVVoNPmdewBS11YOnEJAFNDq3Tlc6gPAtTTl0=; b=Ap16awJ4+N0X5q+y9EBsLha0Aq
+	00WzNHarKhR0AtG4VK4+/eXCV9mesFCYYIOQt97kmgOqd4OtqwqUH8/Y2Ywl3xtcGuwbcTpVgIRPz
+	cdlV0R+AT56sVuGc27gQ44LQOrqY5jMldM2rDUNisHDjPexTBr6wy2fQA5PJVC9DaSgaxhrczGkMw
+	Lm6dasHcIW1uIILCtv/Q/4lpUQohPtWWYP6JaFyEGxKVUqLrPPS05c7mu6aXUcppFPzPlOdqdEd53
+	x5+zopORsHWpqqOq5KcePfhZVR40EHgnOwXHdQ8q08XElIgRKBJ3TycLHXoUjYi2941R3fKjC9qSP
+	8DYmkIzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUIW6-0000000EC4X-1dAC;
-	Fri, 20 Nov 2026 06:54:38 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xUIuZ-0000000EDMs-1CCW;
+	Fri, 20 Nov 2026 07:19:55 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUIW5-0000000EC4Q-1mG5
+	id 1xUIuX-0000000EDMi-1EC2
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 06:54:37 +0000
+	Fri, 20 Nov 2026 07:19:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id C208061D17;
-	Fri, 20 Nov 2026 06:54:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 799FC1F000C4;
-	Fri, 20 Nov 2026 06:54:35 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 5CDD562418;
+	Fri, 20 Nov 2026 07:19:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 388871F000C4;
+	Fri, 20 Nov 2026 07:19:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795157676;
-	bh=wP737PCJGYShOq4BRXU6RG/HvtngMGBhbdjrd3PF9kU=;
+	s=k20260515; t=1795159192;
+	bh=n2W9ZCbVVoNPmdewBS11YOnEJAFNDq3Tlc6gPAtTTl0=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=aGgu+SeYwfCyfdb2jIb4Zma8mdFEyiqEdQoX4JgSKyUjB+x5sinccKalBgNjapIKn
-	 JgtX756vIw8UTUHyjjI4cHrmDvGOI/dfIct+RVgHz42oobfzOhi6KE8unCowBoQpQa
-	 Vr5de9g6e1/fvgJcqvxUtlp2wyYc1hkCkIRNoYMuPediZE+bpaB8X7VhZpbmNq7GfG
-	 kEsNpRs6fFAD6G/ciWM3muNNBpx22pO9n88TDoij1GFSvK0uwjLCJpf7Omfb+KPJoc
-	 4cWfDFbG80nci+4T7r0lJiDxN7RHI/zwvNDPGzaYxpTFa24XitRcQQ7ZjpVlKAibVk
-	 hUlkXdVxCXXDw==
-Subject: Re: [PATCH net] net: stmmac: fix num tx queues in stmmac_xdp_get_tx_queue()
+	b=GZZnNoGaCjPiI7bsTsmYMCUUt9kOh7QQRXTHzoCJhi7J5IOWdLnScVoI8H3g+7xOV
+	 klP5Ka1JFpluxAiZe0rcE7Qx1GnfT3iZrLvQRoz+hqVj+oCUd09Rk/9ezN5xbEPwy1
+	 /CPQYIOXYNV+yxiJhyWc+Ei5cyOAP7NUZeX5/HZsYa6xPuQPDEeFsekdrbd9H4XMZc
+	 7O0s6icikWy6Hal+pq5wzp5glw95jWDvwwAN14S7yE8nDEeqxZ4s88Vs7NwLBJr1sD
+	 l3Rt0UpT+oP2oGIwUwXUC/Y6/RfuQuQJhksPtBvFFvqIspcAl+mUb8rlxUnNp3Ul9K
+	 3PaiSSUUrurAw==
+Subject: Re: [PATCH net-next v3 3/3] net: sparx5: keep router legs in sync
+ with the bridge
 From: netdev-bot+sashiko@kernel.org
-To: lorenzo.bianconi@oss.qualcomm.com
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
- daniel@iogearbox.net, hawk@kernel.org, john.fastabend@gmail.com,
- sdf@fomichev.me, olteanv@gmail.com, 0x1207@gmail.com, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
-Date: Fri, 20 Nov 2026 06:54:35 +0000
-Message-ID: <179515767503.3136.16869341951535795256@kernel.org>
-In-Reply-To: <20261117-stmmac-fix-xdp_get_tx_queue-v1-1-4cd74ee7a76c@oss.qualcomm.com>
-References: <20261117-stmmac-fix-xdp_get_tx_queue-v1-1-4cd74ee7a76c@oss.qualcomm.com>
-X-sashiko-severity: Medium
+To: jensemil.schulzostergaard@microchip.com
+Cc: horatiu.vultur@microchip.com, UNGLinuxDriver@microchip.com,
+ andrew+netdev@lunn.ch, davem@davemloft.net, kuba@kernel.org,
+ pabeni@redhat.com, daniel.machon@microchip.com, Steen.Hegelund@microchip.com,
+ kees@kernel.org, gustavoars@kernel.org, robert.marko@sartura.hr,
+ edumazet@kernel.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org
+Date: Fri, 20 Nov 2026 07:19:50 +0000
+Message-ID: <179515919073.3136.18115865975545072840@kernel.org>
+In-Reply-To: <20261117-sparx5_l3_routing-v3-3-e680ed79c7dc@microchip.com>
+References: <20261117-sparx5_l3_routing-v3-3-e680ed79c7dc@microchip.com>
+X-sashiko-severity: High
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -79,10 +80,10 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 5 potential
+Thank you for your contribution! Sashiko AI review found 4 potential
 issue(s) to consider.
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 4
+Critical: 0 · High: 1 (1) · Medium: 1 · Low: 2
 
 If you believe none of the issues are legitimate, please reply to each
 issue of Medium severity or higher and explain why the AI is wrong.
@@ -90,201 +91,273 @@ If any of them are legitimate and you plan to respin, please let patchwork
 know by including "pw-bot: cr" as a separate line at the end of your reply
 (one such reply per series is enough).
 
-- [Medium] The commit message says a TX queue passed to
-  netdev_get_tx_queue() must be below dev->real_num_tx_queues while…
-- [Low] The commit message's reason for the change is technically wrong.
-- [Low] stmmac_xdp_get_tx_queue() now bounds the queue index by
-  priv->xmit_qdisc.num_tx_queues and assumes it equals…
-- [Low] stmmac_xdp_get_tx_queue() (stmmac_main.c:5411) reads
-  priv->xmit_qdisc.num_tx_queues with a plain load from NAPI softirq and…
-- [Low] For XDP_TX, the TX queue is computed twice per RX NAPI poll: -
-  stmmac_xdp_xmit_back() (stmmac_main.c:5436) calls…
+- [High] sparx5_rr_legs_reconcile() now walks
+  netdev_for_each_upper_dev_rcu(sparx5->hw_bridge_dev, ...) from the…
+- [Medium] Contrary to the commit message, a router leg can be lost while
+  its upper is down.
+- [Low] In sparx5_rr_router_init() the new comment says "The exported
+  helpers use leg_list once sparx5->router is set".
+- [Low] The function comment above sparx5_rr_bridge_legs_flush() still
+  reads "Tear down the router legs of a bridge that is no longer…
+
+Pre-existing issues:
+- [High] This problem wasn't introduced by this patch, but this patch
+  extends the affected code.
 
 --
 
-net: stmmac: fix num tx queues in stmmac_xdp_get_tx_queue()
+net: sparx5: keep router legs in sync with the bridge
 
-This commit makes stmmac_xdp_get_tx_queue() wrap the CPU index by
-priv->xmit_qdisc.num_tx_queues instead of plat->tx_queues_to_use. The goal
-is to keep XDP TX inside the real TX queue set when mqprio offload has
-reduced real_num_tx_queues.
+This commit makes the sparx5 L3 router legs follow later changes to the
+bridge and the vlan upper. A leg is destroyed when vlan filtering is
+disabled, when the bridge moves to a non-802.1Q protocol, when the upper
+is linked to a master, or when the upper's MAC changes. Ingress routing
+on a leg is limited to when the upper is up and the bridge carries the
+vid tagged, and the reconcile now also creates legs for eligible uppers
+of the offloaded bridge.
 
-> The TX queue returned by stmmac_xdp_get_tx_queue() is passed to
-> netdev_get_tx_queue(), so it must be lower than dev->real_num_tx_queues.
+> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_router.c b/drivers/net/ethernet/microchip/sparx5/sparx5_router.c
+> index 26aeee17733cd..7412db7a6e7b4 100644
+> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_router.c
+> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_router.c
 
-[Severity: Low]
-Is this reasoning accurate? netdev_get_tx_queue() only requires the index
-to be below num_tx_queues, not real_num_tx_queues:
+[ ... ]
 
-include/linux/netdevice.h:netdev_get_tx_queue() {
-	DEBUG_NET_WARN_ON_ONCE(index >= dev->num_tx_queues);
-	return &dev->_tx[index];
-}
+> @@ -568,19 +650,66 @@ static void sparx5_rr_router_legs_flush(struct sparx5 *sparx5)
 
-The old index always had a DMA ring behind it as well, because
-tc_setup_dwmac510_mqprio() caps the mqprio queue range at
-tx_queues_to_use:
+[ ... ]
 
-	if (qopt->offset[i] + qopt->count[i] >
-	    priv->plat->tx_queues_to_use) {
-
-As far as I can tell, what users see with the old code is XDP frames
-bypassing the mqprio/FPE TC-to-queue mapping. In channel mode they can land
-on unmapped queues, which tc_mqprio_config_queue_prio() sets to prio 0
-under strict priority.
-
-Could the commit message describe that impact instead, so stable
-backporters can judge it?
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index 25894771e9e9f..cf87afd273439 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -5408,13 +5408,14 @@ static int stmmac_xdp_xmit_xdpf(struct stmmac_priv *priv, int queue,
->  static int stmmac_xdp_get_tx_queue(struct stmmac_priv *priv,
->  				   int cpu)
+> +void sparx5_rr_legs_reconcile(struct sparx5 *sparx5)
 >  {
-> +	unsigned int num_tx_queues = priv->xmit_qdisc.num_tx_queues;
-
-[Severity: Low]
-Can this value get out of sync with dev->real_num_tx_queues while the tc
-mqprio configuration is being changed?
-
-In tc_setup_dwmac510_mqprio(), real_num_tx_queues is lowered (with
-synchronize_net()) before the shadow copy is updated:
-
-	err = netif_set_real_num_tx_queues(ndev, num_tx_queues);
-	...
-		tc_mqprio_config_queue_prio(priv, qopt);
-
-	priv->xmit_qdisc.num_tx_queues = num_tx_queues;
-
-No grace period follows the store. XDP_TX in NAPI and stmmac_xdp_xmit()
-can therefore still pick a queue that was just removed from the real set,
-and call netdev_get_tx_queue()/__netif_tx_lock() on it.
-
-stmmac_reset_tc_mqprio() does the updates in the opposite order, and it
-ignores the return value of the grow:
-
-	priv->xmit_qdisc.num_tx_queues = priv->plat->tx_queues_to_use;
-	priv->xmit_qdisc.enabled = false;
-
-	netdev_reset_tc(ndev);
-	netif_set_real_num_tx_queues(ndev, priv->plat->tx_queues_to_use);
-
-If netif_set_real_num_tx_queues() fails here, the shadow stays above
-real_num_tx_queues until the next stmmac_hw_setup(). That is the mismatch
-this patch is trying to avoid.
-
-Would it be simpler to read READ_ONCE(priv->dev->real_num_tx_queues)
-directly, since that follows the core's publish-then-synchronize_net()
-ordering?
-
-[Severity: Low]
-This is a plain load from NAPI softirq and ndo_xdp_xmit context.
-tc_setup_dwmac510_mqprio() and stmmac_reset_tc_mqprio() write the field
-with plain stores under RTNL while the device is up. Will KCSAN report
-this as a data race?
-
-This path already uses READ_ONCE() for other values that can be tuned at
-runtime, for example in stmmac_xdp_xmit_xdpf():
-
-	tx_coal = READ_ONCE(priv->tx_coal_frames[queue]);
-
-Without an annotation, the compiler may re-load the field inside the loop
-below. Suppose a re-load during stmmac_reset_tc_mqprio() returns a larger
-value than the one used in the loop test. Then index goes negative, and
-the mixed int/unsigned comparison treats it as a very large value.
-
-I have no evidence that any compiler actually does this here. Would it
-still be worth adding READ_ONCE() here and WRITE_ONCE() at both writers?
-
-Before this patch the divisor was plat->tx_queues_to_use. That value only
-changes in stmmac_reinit_queues(), while the device is released and NAPI
-is deleted.
-
->  	int index = cpu;
+>  	struct sparx5_rr_router_leg *leg, *tmp;
+> +	struct net_device *bridge, *dev;
+>  	struct sparx5_router *router;
+> +	struct list_head *iter;
 >  
->  	if (unlikely(index < 0))
->  		index = 0;
+>  	ASSERT_RTNL();
 >  
-> -	while (index >= priv->plat->tx_queues_to_use)
-> -		index -= priv->plat->tx_queues_to_use;
-> +	while (index >= num_tx_queues)
-> +		index -= num_tx_queues;
+>  	router = sparx5->router;
+> +	if (!router)
+> +		return;
 >  
->  	return index;
->  }
-
-[Severity: Low]
-The divisor can now change at runtime. Can the two calls to this helper
-in one RX NAPI poll then return different queues for XDP_TX?
-
-stmmac_xdp_xmit_back() picks the queue for each frame, posts descriptors
-and flushes the tail pointer. It does not arm the coalescing timer:
-
-	queue = stmmac_xdp_get_tx_queue(priv, cpu);
-	nq = netdev_get_tx_queue(priv->dev, queue);
-	...
-		stmmac_flush_tx_descriptors(priv, queue);
-
-stmmac_finalize_xdp_rx() then computes the queue again at the end of
-stmmac_rx()/stmmac_rx_zc(), and arms the timer on that result:
-
-	queue = stmmac_xdp_get_tx_queue(priv, cpu);
-
-	if (xdp_status & STMMAC_XDP_TX)
-		stmmac_tx_timer_arm(priv, queue);
-
-If tc_setup_dwmac510_mqprio() changes xmit_qdisc.num_tx_queues between the
-two calls, the frames sit on ring A while the timer is armed on ring B.
-
-stmmac_xdp_xmit_xdpf() only sets IC periodically:
-
-	if (tx_coal && (tx_q->tx_count_frames % tx_coal) < num_frames) {
-
-So up to tx_coal - 1 descriptors on ring A may get neither a completion
-interrupt nor a timer to schedule stmmac_tx_clean().
-
-After a shrink, ring A can be outside the new real set and may not be used
-again. In that case the page_pool pages and DMA buffers stay held until
-ifdown, or until the queue is used again.
-
-stmmac_xdp_xmit() arms the timer on the same queue it flushes, so only
-the split XDP_TX path appears to be affected.
+>  	mutex_lock(&router->lock);
+>  	list_for_each_entry_safe(leg, tmp, &router->leg_list, leg_list_node) {
+> -		if (sparx5_rr_dev_addr_list_empty(leg->dev))
+> +		if (sparx5_rr_dev_addr_list_empty(leg->dev) ||
+> +		    !sparx5_rr_dev_real_is_vlan_aware(sparx5, leg->dev)) {
+>  			sparx5_rr_router_leg_destroy(leg);
+> +			continue;
+> +		}
 
 [Severity: Medium]
-The commit message says the TX queue must be lower than
-real_num_tx_queues. Does the AF_XDP zero-copy TX path still violate that?
+The commit message says:
 
-stmmac_tx_clean() calls stmmac_xdp_xmit_zc() for any queue whose
-tx_q->xsk_pool is set, and stmmac_xdp_xmit_zc() uses the queue id
-directly:
+  "A leg with an IPv4 address is kept while the upper is down, so it is
+  available again when the interface comes back up."
 
-	struct netdev_queue *nq = netdev_get_tx_queue(priv->dev, queue);
-	struct stmmac_tx_queue *tx_q = &priv->dma_conf.tx_queue[queue];
+Does this still hold if the bridge MAC changes while a NET_ADDR_STOLEN vlan
+upper is down?
 
-The queue id is only checked against plat->tx_queues_to_use, in both
-stmmac_xdp_enable_pool() and stmmac_xsk_wakeup():
+When the bridge sends NETDEV_CHANGEADDR, vlan_device_event() in
+net/8021q/vlan.c skips uppers that are not IFF_UP. A down upper therefore
+keeps the old MAC, and sparx5_rr_dev_real_is_vlan_aware() then fails here:
 
-	if (queue >= priv->plat->rx_queues_to_use ||
-	    queue >= priv->plat->tx_queues_to_use)
-		return -EINVAL;
+	if (dev->addr_assign_type != NET_ADDR_STOLEN ||
+	    !ether_addr_equal(dev->dev_addr, vlan_rdev->dev_addr))
+		return false;
 
-The core's xsk_reg_pool_at_qid() accepts any queue_id below
-max(real_num_rx_queues, real_num_tx_queues). stmmac_hw_setup() keeps
-real_num_rx_queues at rx_queues_to_use.
+On the next reconcile, the new check above destroys the down upper's IPv4
+leg and frees its VMID.
 
-For example, take tx = rx = 4 and mqprio with 2 TCs on queues 0 and 1.
-real_num_tx_queues is then 2. An AF_XDP zero-copy socket bound to queue 3
-still transmits on TX queue 3, outside the mqprio TC set.
+Unrelated events can queue that reconcile: an inet6addr UP/DOWN on any vlan
+device, a bridge vlan add or del, or the VLAN_FILTERING attr that is sent
+when a sparx5 port joins. For example, a port with a lower MAC joins the
+bridge. That queues the reconcile, and br_stp_recalculate_bridge_id()
+changes the bridge MAC before the reconcile runs.
 
-tc_setup_dwmac510_mqprio() does not check af_xdp_zc_qps either, so
-shrinking the queue set after the bind gives the same result.
+Suppose the bridge MAC then changes back before the upper comes up, for
+example because the port leaves again or after ip link set br0 address
+<old>. What recreates the leg then? The bridge NETDEV_CHANGEADDR in
+sparx5_rr_netdevice_event() does not queue a reconcile, because
+is_vlan_dev(bridge) is false:
 
-Should stmmac_xdp_enable_pool(), stmmac_xsk_wakeup() and the mqprio setup
-also check against xmit_qdisc.num_tx_queues?
+	case NETDEV_CHANGEADDR:
+		mutex_lock(&router->lock);
+		if (sparx5_rr_bridge_has_legs(sparx5, dev))
+			sparx5_rr_leg_base_mac_set(sparx5, dev->dev_addr);
+		mutex_unlock(&router->lock);
+		if (is_vlan_dev(dev))
+			sparx5_rr_legs_reconcile_schedule(sparx5);
+
+When the upper is later brought up, the MACs already match, so no
+CHANGEADDR is sent. The NETDEV_UP case only refreshes an existing leg. The
+IPv4 address already exists, so the validator does not run either. With
+IPv6 disabled on the upper (disable_ipv6, or addr_gen_mode none), no
+link-local NETDEV_UP arrives.
+
+Wouldn't the upper then stay without a leg until something unrelated
+triggers a reconcile?
+
+Now take the case where the upper comes up while the bridge still has the
+new MAC. vlan_dev_open()->vlan_dev_inherit_address() does queue a reconcile.
+But if another upper has taken the freed VMID in the meantime, creating the
+leg fails, and only a ratelimited warning is printed.
+
+> +
+> +		bridge = vlan_dev_real_dev(leg->dev);
+> +		leg->vlan_present = sparx5_rr_bridge_vlan_present(bridge,
+> +								  leg->vid);
+> +		sparx5_rr_leg_hw_uc_update(sparx5, leg);
+> +	}
+> +
+> +	bridge = sparx5->hw_bridge_dev;
+> +	if (!bitmap_empty(sparx5->bridge_mask, SPX5_PORTS) && bridge) {
+> +		netdev_for_each_upper_dev_rcu(bridge, dev, iter) {
+
+[Severity: High]
+Can this walk a bridge that has already been freed during driver removal?
+
+The driver holds no reference on hw_bridge_dev. Only
+sparx5_port_bridge_leave() clears hw_bridge_dev and bridge_mask, and it runs
+from the main sparx5 netdevice notifier on NETDEV_CHANGEUPPER. Before this
+patch, the reconcile walked only leg_list, whose entries hold netdev
+references.
+
+mchp_sparx5_remove() unregisters that notifier before the router notifiers:
+
+	sparx5_unregister_notifier_blocks(sparx5);
+	sparx5_rr_router_deinit(sparx5);
+
+Suppose ip link del br0 runs in that window. del_nbp() unlinks the ports,
+but hw_bridge_dev and bridge_mask stay set. The router notifiers are still
+registered, so addrconf_ifdown() on the bridge's vlan uppers can, for
+example, send inet6addr NETDEV_DOWN, and sparx5_rr_inet6addr_event() queues
+legs_work. After rtnl_unlock(), netdev_run_todo() frees the bridge.
+
+legs_work can then run, including during the drain in
+sparx5_rr_router_deinit(), while sparx5->router is still set:
+
+	destroy_workqueue(router->sparx5_router_owq);
+	sparx5_rr_router_legs_flush(sparx5);
+	sparx5_rr_router_hw_deinit(sparx5);
+	sparx5->router = NULL;
+
+The bridge_mask/hw_bridge_dev check passes on this stale state, and
+netdev_for_each_upper_dev_rcu() reads the adj_list of the freed bridge.
+Could a garbage dev then reach __sparx5_rr_inetaddr_event(), which may call
+netdev_hold() on it and program hardware?
+
+> +			if (!is_vlan_dev(dev) ||
+> +			    sparx5_rr_dev_addr_list_empty(dev))
+> +				continue;
+> +			if (__sparx5_rr_inetaddr_event(sparx5, dev, NETDEV_UP,
+> +						       NULL) && net_ratelimit())
+> +				netdev_warn(dev,
+> +					    "Failed to offload L3 router leg\n");
+> +		}
+>  	}
+>  	mutex_unlock(&router->lock);
+>  }
+> @@ -681,6 +810,7 @@ int sparx5_rr_router_init(struct sparx5 *sparx5)
+>  
+>  	INIT_LIST_HEAD(&r->leg_list);
+>  
+> +	/* The exported helpers use leg_list once sparx5->router is set. */
+>  	sparx5->router = r;
+>  
+>  	r->sparx5_router_owq = alloc_ordered_workqueue("sparx5_router_owq", 0);
+
+[Severity: Low]
+Is this comment complete? sparx5_rr_legs_reconcile_schedule() is now
+exported and is also called from sparx5_rr_bridge_vlan_clear(). It checks
+only sparx5->router, but it also uses router->sparx5_router_owq and
+router->legs_work, which are set up after this assignment.
+
+Teardown has the same gap. sparx5_rr_router_deinit() and the init error
+path both destroy the workqueue before they clear sparx5->router.
+
+Today this is safe only because of the call order: mchp_sparx5_probe()
+registers the switchdev/netdevice notifiers after router init, and
+mchp_sparx5_remove() unregisters them before router deinit.
+
+Should this ordering dependency be documented? Alternatively, the pointer
+could be published after alloc_ordered_workqueue() and INIT_WORK().
+
+> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_switchdev.c b/drivers/net/ethernet/microchip/sparx5/sparx5_switchdev.c
+> index 46b3351f717ff..baa46d21e7bad 100644
+> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_switchdev.c
+> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_switchdev.c
+> @@ -152,6 +152,11 @@ static int sparx5_port_attr_set(struct net_device *dev, const void *ctx,
+>  		sparx5_port_attr_ageing_set(port, attr->u.ageing_time);
+>  		break;
+>  	case SWITCHDEV_ATTR_ID_BRIDGE_VLAN_FILTERING:
+> +		/* L3 offload requires a VLAN aware bridge. */
+> +		if (!attr->u.vlan_filtering)
+> +			sparx5_rr_bridge_legs_flush(port->sparx5,
+> +						    attr->orig_dev);
+
+[Severity: Low]
+This isn't a bug, but the comment above sparx5_rr_bridge_legs_flush() still
+reads:
+
+	/* Tear down the router legs of a bridge that is no longer offloaded. */
+
+Here, and in the new SWITCHDEV_ATTR_ID_BRIDGE_VLAN_PROTOCOL case, the
+function is called for a bridge that is still offloaded, with hw_bridge_dev
+and bridge_mask unchanged. Should that comment be updated?
+
+[ ... ]
+
+> @@ -448,6 +466,10 @@ static int sparx5_handle_port_vlan_add(struct net_device *dev,
+>  		/* Flood broadcast to CPU */
+>  		sparx5_mact_learn(sparx5, sparx5_get_pgid(sparx5, PGID_BCAST),
+>  				  dev->broadcast, v->vid);
+> +		if (v->flags & BRIDGE_VLAN_INFO_UNTAGGED)
+> +			sparx5_rr_bridge_vlan_clear(sparx5, dev, v->vid);
+> +		else
+> +			sparx5_rr_legs_reconcile_schedule(sparx5);
+>  		return 0;
+>  	}
+>  
+
+[ ... ]
+
+> @@ -683,6 +705,7 @@ static int sparx5_handle_port_vlan_del(struct net_device *dev,
+>  				     switchdev_blocking_nb);
+>  
+>  		sparx5_mact_forget(sparx5, dev->broadcast, vid);
+> +		sparx5_rr_bridge_vlan_clear(sparx5, dev, vid);
+>  		return 0;
+>  	}
+
+[Severity: High]
+This is a pre-existing issue that this patch did not introduce, but the
+patch extends the affected branches. The bridge-master paths of
+sparx5_handle_port_vlan_add() and sparx5_handle_port_vlan_del() never check
+dev == sparx5->hw_bridge_dev, or the netns. The switchdev blocking notifier
+chain is global.
+
+Can a software-only bridge in another namespace remove the broadcast entry
+here? The bridge sends master VLAN add/del notifications for every bridge.
+A user with CAP_NET_ADMIN only in its own user namespace can run:
+
+  ip link add br0 type bridge
+  bridge vlan add vid X dev br0 self
+  bridge vlan del vid X dev br0 self
+
+sparx5_mact_forget() then deletes the chip-wide (ff:ff:ff:ff:ff:ff, X)
+entry that points at PGID_BCAST. PGID_BCAST is the only flood group that
+sparx5_start() sets up with CPU copy enabled. After that, broadcasts on vid
+X of the offloaded bridge no longer reach the CPU, so ARP fails for host
+interfaces and for the router legs on that vid.
+
+The new sparx5_rr_bridge_vlan_clear() and
+sparx5_rr_legs_reconcile_schedule() calls are added to the same unfiltered
+branches. Would an early check like this be appropriate?
+
+	if (dev != sparx5->hw_bridge_dev)
+		return 0;
 
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261117-stmmac-fix-xdp_get_tx_queue-v1-1-4cd74ee7a76c%40oss.qualcomm.com
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261117-sparx5_l3_routing-v3-0-e680ed79c7dc%40microchip.com
 
