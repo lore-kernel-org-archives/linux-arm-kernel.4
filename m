@@ -2,103 +2,61 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED4C606A68F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 23:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781A7606A33D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 23:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WyRdJjSr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kPrgk4/c
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fXL3JrpM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=d5UxhRENKrjN2WqdptUK5eL7RckbgwjJ8al7suyNLmw=; b=WyRdJjSrgp/odC
-	UlEyl/jBgEB+BGp3Zg0al9+ZA1fGbpQ0QoDib/okSxq9U2+s6o1zmnEVJDEuyBhFs1qak0+ZMItRm
-	u5qyXPgIXNq4FaWcbhYwVT292aoMwi0nW5Mi7wmr3NmHnWvLLaSVarkP38muY8Vw3MIox5Ga/zcJE
-	fPY5ac6f1twr6ZSUwC9bWjaDJQDbVuyLuPVigsSDA2IOhCa126pyDsknrsYHJp/h+4VOxZ3MBgrCR
-	cdmSOkw4Lx5YZq9Zw/3LZywA9VzhqoR4ABp0sAI7BxNKQHxJA7VKOLUcvCcrx64rhhkB0cX3KB+u9
-	WSxddGFPLl72xiE2O9WA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Subject:To:From:Date:Reply-To:Cc:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=oTx65kyCa42G6SI64CZNh6VFuumNKrrKM3+P3eJrU1M=; b=fXL3JrpMSWKPVsp6RrjccY10/r
+	3WiOBu+lvjem4AV0U51PGFhrwSTur9TgGEFrHGRPDr12NRLvgOLkHHZODQYca03PWeV046SKHbv5H
+	MG1i9jEZ2gYbUsCjYCle2BECbfGTJiwDvFzU/xxoeZb+LXY/QfjVuk5m2oCw6X3v26phOskd0WzcY
+	vtMymvSd4hJ4Oy8wZ4A6Xjc2HPSemBYmQd00qCS2AKj5mG2ZxGU1U9R6zPI1Ak2TltNdKCAf7xeAJ
+	3DTUH8yITJMOvxl5XUK29VDJ27RTip5G3tBRz+RpwjCi4+Gx60RimWuPRS6J0Rjn3UpiPoWSmQE0B
+	0En5w3GQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUY7g-0000000GQEO-3llL;
-	Fri, 20 Nov 2026 23:34:28 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xUYEL-0000000GQxj-3inR;
+	Fri, 20 Nov 2026 23:41:21 +0000
+Received: from pidgin.makrotopia.org ([2a07:2ec0:3002::65])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUY7f-0000000GQED-0oZf
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 23:34:27 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9D48E41096;
-	Fri, 20 Nov 2026 23:34:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62B661F000C6;
-	Fri, 20 Nov 2026 23:34:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795217666;
-	bh=d5UxhRENKrjN2WqdptUK5eL7RckbgwjJ8al7suyNLmw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject;
-	b=kPrgk4/c9iGM7d9omUE7JaPkkuE4JeyTzm9y0r1D5O/JrECRYDQvPeP1BbMl8ciqk
-	 8TCLIMZGVUGGgg4QuP4XMgmo64/zsUkKTewyF0A2dy1ssZ2HTqiGrd3V6r2Y+C2C7I
-	 II/c0bF/VPCB/WbMMGSil6/nXU52M405WuoIaqVEJSLej7Ao1pCEB/0REFefZ5zH+d
-	 ZdYPcwP5GVJDVYWxFd8iCyg9f/WwmGSjr+mrhKQDaHQB46TTVxXNvtPQXW8gdEA1tJ
-	 3ed6bbLji/Tj4a6Ya8zgXPxTltDkg/nd+mS2SxxhMpjX/gEKMICeT/nXycy2mTnNc6
-	 DBzTCnMfxQLfg==
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfauth.ams.internal (Postfix) with ESMTP id 93458198003A;
-	Fri, 20 Nov 2026 18:34:23 -0500 (EST)
-Received: from ams-imap-11 ([10.64.2.31])
-  by ams-compute-02.internal (MEProxy); Fri, 20 Nov 2026 18:34:23 -0500
-X-ME-Sender: <xms:-tgAa40WMd_EPWFNg07JZwyPJcDR9Hl4neZG2sZ60S43JjZakvJQFw>
-    <xme:-tgAa94btA2FcjGmKSDp7fs53-xd9zJUgeojcI1BpmZaQ8Kz0eLzPAdMkS9qQ_7FU
-    OZr59jIhg8MHlYyQnwbZeEYlF7PpV4Vxlr8KoLe3U5t0r5NWyCYNKk>
-X-ME-Proxy-Cause: dmFkZTFL9seTInIL2hUW1OvhO1WNW9/yDQMQ3sNpaBykWH23VqJykrvUISWN+rBSHQ+5bq
-    /JQwHxFYPIkL2Xu86dfOWtqtRPVNB/qIKe2+3mjFHHflxOdiuobuj78Hw/FMM8RVcs5xMb
-    dS/DET/rxsPx6SEKm1JZ2K/buPZvqwh9FNjgcHALkKy/XLVkevo5sDDIARq2Z//kZnp9CA
-    rSEoHmeWmhoezQror9Ty81ka79pfF/gOgXmZ1GkKqAi2/yxezmh6ijdV1UEGYFqsznmeWL
-    g6Y1Onmgdfw7a6cltPUu6V6KYEQymMJvNVprAPmF42FlCo/F4k4Y9IbQe/ue2Z+ZHcN6bR
-    AVBfQNgkF9KQh6PxBWA+qfee9aUYQOqptwYa8VjqHfwnjVYok5TV5bLTBLvGn0rIl/+57i
-    WO2CFNlMLurWUHycX9pn9FDh03suHQbu/a60gn8A1Unl1x/x+0E2LPeaCXK7ov30TPL9HY
-    o2ezFIxHQHCXTJI7edwpEegWtCs0Eg73XGWZUHhg6NY3KaNTAF6vI4OBcklGStE1NtEpHe
-    N3vHrVedPTfuvnZlHDtl4lFSJEfm8EUJI7Pvrs07l9xMCrxgGBfUi29jmIbjOM3Gg8ZgCg
-    sI/r+DEJkCrbUJ/3Cs8u1BxQF8UUwcuBBDKvKM9/eCBqk19JS3CGIDZU1VMg
-X-ME-Proxy: <xmx:_9gAa8qH40BxQBQvJaXjFARB-PhdRsMar2JTklrPA3z4SJQHVTmxBQ>
-    <xmx:_9gAa3xjvPAkaVp2Sku5NRZNcCLQid1uQn0F3mHKuHRTI4Ze8YW5dw>
-    <xmx:_9gAa4fNmE8P0lI-MJYK8bBx9g6OJsEHDExPpHD4o_STbil2bs93ag>
-    <xmx:_9gAa7et2LQJdchwIic0GV_SClr-FVPrJ93hKkhrIDg8-j26-Wdt_A>
-    <xmx:_9gAaya0K8B0H7iHsoh_BofrwBklH8I5ogjHkW64OyKf3gN1PHCDP1na>
-Feedback-ID: ice86485a:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id CDCA4F80093; Fri, 20 Nov 2026 18:34:18 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	id 1xUYEH-0000000GQwx-3qbK;
+	Fri, 20 Nov 2026 23:41:19 +0000
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256:X25519MLKEM768)
+	 (Exim 4.100.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1xUYE8-000000002dn-3NMw;
+	Fri, 20 Nov 2026 23:41:08 +0000
+Date: Fri, 20 Nov 2026 23:41:00 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Alex Bee <knaerzche@gmail.com>,
+	Hans Verkuil <hverkuil+cisco@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] media: rkvdec: Fix the HEVC reference picture set
+ handling
+Message-ID: <cover.1795217229.git.daniel@makrotopia.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 21 Nov 2026 00:33:58 +0100
-From: "Ard Biesheuvel" <ardb@kernel.org>
-To: "Jason Gunthorpe" <jgg@nvidia.com>, "Alexandre Ghiti" <alex@ghiti.fr>,
- "Albert Ou" <aou@eecs.berkeley.edu>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Jonathan Corbet" <corbet@lwn.net>,
- "Ilias Apalodimas" <ilias.apalodimas@linaro.org>,
- "Justin Stitt" <justinstitt@google.com>,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-efi@vger.kernel.org, linux-riscv@lists.infradead.org,
- llvm@lists.linux.dev, "Mark Rutland" <mark.rutland@arm.com>,
- "Bill Wendling" <morbo@google.com>, "Nathan Chancellor" <nathan@kernel.org>,
- "Nick Desaulniers" <ndesaulniers@google.com>,
- "Palmer Dabbelt" <palmer@dabbelt.com>, "Paul Walmsley" <pjw@kernel.org>,
- "Randy Dunlap" <rdunlap@infradead.org>,
- "Shuah Khan" <skhan@linuxfoundation.org>, "Will Deacon" <will@kernel.org>
-Cc: "Jonathan Cameron" <jonathan.cameron@oss.qualcomm.com>,
- linux-integrity@vger.kernel.org, patches@lists.linux.dev,
- =?UTF-8?Q?Piotr_Kr=C3=B3l?= <piotr.krol@3mdeb.com>,
- "Ross Philipson" <ross.philipson@gmail.com>
-Message-Id: <243c6d70-7c81-4ad3-9a67-eb8cfbf454d9@app.fastmail.com>
-In-Reply-To: <3-v3-22d1a1eb7d2e+17de-arm64_drtm_jgg@nvidia.com>
-References: <3-v3-22d1a1eb7d2e+17de-arm64_drtm_jgg@nvidia.com>
-Subject: Re: [PATCH v3 03/11] efi/libstub: Have efi_kaslr_relocate_kernel() handle
- extra_size
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_154117_968171_AD8E0648 
+X-CRM114-Status: GOOD (  19.47  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,21 +67,95 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jason,
+This series fixes how the VDPU381 and VDPU383 HEVC back ends of the
+rkvdec driver handle the EXT_SPS_ST_RPS and EXT_SPS_LT_RPS controls.
+The defects were found while bringing up the VDPU346 of the RK3568,
+which uses the VDPU381 back end, on top of Christian Hewitt's VDPU346
+series [1], which has since been continued in [2].
 
-On Fri, 20 Nov 2026, at 18:51, Jason Gunthorpe wrote:
-> extra_size is additional memory required that must be immediately after
-> the image.
->
+Patch 1 looks up the controls after the request was applied instead of
+before, which fixes a use-after-free.
 
-Given how extra BSS memory is essentially free at boot, is there no way
-we can establish a worst case upper bound for this memory, and just add
-it to the image unconditionally for DRTM capable kernels?
+Patches 2 and 3 are about jobs which cannot be decoded because the RPS
+controls are missing. The VDPU383 back end now completes the request
+when it refuses such a job, and the VDPU381 back end refuses the job
+as well instead of starting the hardware.
+
+Patch 4 refuses RPS controls with fewer elements than the SPS counts,
+and patch 5 limits the size of predicted short-term sets. Both fix out
+of bounds accesses which userspace can trigger.
+
+Patch 6 fixes wrong decoding caused by a short-term RPS cache which
+only looked at the first set, and patch 7 adds a missing allocation
+check.
+
+Patches 1 to 6 carry Cc: stable, like the EXT SPS RPS bounds merged in
+v7.3 (f0b9d7e5be06, 796b5c6d4f16, 052c5ed5a1d9).
+
+Tested on a NanoPi R5C (RK3568) with Linux 6.18 and the VDPU346 series
+backported: GStreamer fluster JCT-VC-HEVC_V1 stays at 140/147, an FFmpeg
+v4l2request build that sets the RPS controls confirms the reads and the
+short-term set cache, and the VDPU381 refusal removes a watchdog reset
+of the RK3568. The same VDPU381 back end was exercised on a Radxa ROCK
+5B (RK3588): H.264, HEVC and VP9 decode through rkvdec with no kernel
+message across the fluster runs (HEVC 146/147), a per-patch A/B sweep
+and a 30-minute stability run, at the baseline throughput. The VDPU383
+back end has no hardware here, the code-only patches have no reproducer,
+and nothing was tested on an RK3576.
+
+All of this was done with v1. v2 changes the order of the patches and
+the commit messages, the code after the series is the same as in v1,
+and the tests were not repeated.
+
+An LLM coding agent did the analysis, and helped with writing the
+patches. A second instance, given only the code, reviewed the series,
+and has tested and validated it on real hardware independently.
+
+Changes since v1:
+- Move "media: rkvdec: vdpu381: refuse HEVC jobs without RPS sets"
+  before the check of the control size (5/7 -> 3/7). A control which is
+  too short is handled like a missing one, and this way that means a
+  refused job in both back ends as soon as the check exists, instead
+  of a decode with a stale RPS table on the VDPU381 (Nicolas Dufresne)
+- Rename "media: rkvdec: hevc: bound the RPS reads by the control size"
+  to "media: rkvdec: hevc: refuse RPS controls shorter than the SPS
+  counts" (3/7 -> 4/7)
+- Rewrite all commit messages: say what is wrong and what the patch
+  achieves, without walking through the code (Nicolas Dufresne)
+- State in patch 4 why the size cannot be checked when the control is
+  set (Nicolas Dufresne)
+- Rebase on linux-next
+- No change to the code after the series
+
+v1: https://lore.kernel.org/r/cover.1794645268.git.daniel@makrotopia.org
+
+[1] https://lore.kernel.org/r/20260110053727.2295260-1-christianshewitt@gmail.com
+[2] https://lore.kernel.org/r/cover.1794654074.git.daniel@makrotopia.org
+
+Daniel Golle (7):
+  media: rkvdec: hevc: apply request controls first
+  media: rkvdec: vdpu383: complete refused HEVC requests
+  media: rkvdec: vdpu381: refuse HEVC jobs without RPS sets
+  media: rkvdec: hevc: refuse RPS controls shorter than the SPS counts
+  media: rkvdec: hevc: bound predicted short-term RPS sets
+  media: rkvdec: hevc: cache every short-term RPS set
+  media: rkvdec: hevc: check the RPS scratch allocation
+
+ .../rockchip/rkvdec/rkvdec-hevc-common.c      | 52 +++++++++++++------
+ .../rockchip/rkvdec/rkvdec-hevc-common.h      | 11 +++-
+ .../rockchip/rkvdec/rkvdec-vdpu381-hevc.c     | 24 +++++----
+ .../rockchip/rkvdec/rkvdec-vdpu383-hevc.c     | 14 +++--
+ 4 files changed, 67 insertions(+), 34 deletions(-)
+
+
+base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
+-- 
+2.56.1
 
