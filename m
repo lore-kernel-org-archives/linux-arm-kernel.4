@@ -2,115 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382E1606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 15:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D0D60A2600
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 15:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h6gjELIT;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=i8UNnQWs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fRsR5A46;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kdOjy646
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=zL2uwwgfk8i7RgCoE5FcFfUq5QLlEXIJG136T9/1M30=; b=h6gjELITAkD16b
-	6Wl9xqBvEuaIvlsx0WKsnmJir5TEaUN4+Mq/GjEsiCslZmROr74WKgVQHMZhwFl8hXvzuddBQJxlm
-	UDY1TXVUTff+Bum64FZata6lESJqtaFcyNFvNUhNEsMi7cSrdpbtoMkYE5k5FzDrOD/5ZlPaDabr6
-	sv7bUOcDRv43Ivm97t71VcxkjMEEOuWxWTnYElcdOfHxZkLkkX0/rbNoILjVhfPqTH1gmsU5EMZzL
-	F2+S4PbPfUOAeiUHKNT/en4dJLWnEw71g14mhxAkh1myiz9td+QOHBvF9v1+5GgGClrqeFFUqOFM/
-	k/SC6GRg0cCSBLMwNl5A==;
+	List-Owner; bh=tHeZv3ZliFEJTukVqg7SMz1pDdq8S6Vyf0qNndIQL6A=; b=fRsR5A46TOMb8B
+	J4m3dw/81j892NCkWA0O8PIUeBesEdWBCPXdCpsbNGH1xAPu3HiYEc6Wtp9LXnwYi4/4PMAQd+Euj
+	Atdv1F/Vm318Du3owVpEUqXhF+bFCYteGbERjYWIimEOfSpoy8H0P0NKJppwjBnfBF02dYaNOSQMX
+	VkoIRgXpW47gUg0ktx0E0mS3vq9KsXDli4mHAa2rC40oXdGW2JcJ+8nXrY/iyvzfiPTXkizyj63Hf
+	t7JTcKTfFlKDGIvNs84micP7vw904Fp2E94a4miH20GFY0v3Gei8ZcHB2vGiSMKY6Y9rsZ8pWpKvq
+	4iQlclZGXVNvGojnFHFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUQXf-0000000FQYT-2SVS;
+	id 1xUQXe-0000000FQY1-3YQZ;
 	Fri, 20 Nov 2026 15:28:47 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUQXS-0000000FQVN-2AIo
+	id 1xUQXC-0000000FQPu-0azv
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 15:28:34 +0000
+	Fri, 20 Nov 2026 15:28:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2C70E441C9;
-	Fri, 20 Nov 2026 15:28:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58C1B1F00A19;
-	Fri, 20 Nov 2026 15:28:23 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C0B8B44310;
+	Fri, 20 Nov 2026 15:28:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF5861F000C4;
+	Fri, 20 Nov 2026 15:28:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795188513;
-	bh=zL2uwwgfk8i7RgCoE5FcFfUq5QLlEXIJG136T9/1M30=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=i8UNnQWsrlA1p3mv4luD04DtjjOOxq2L1sxmYNsgKJDOZ8C0Ty4Gm2D0cSyw6Iueb
-	 559zgsEGLPuOcXyRIEePeZeXS/h5M6gujntZKtLX629fDohTWEKN67CSQB/9f3iVKD
-	 7iHTTfb+WEZyeea+V0NyLSDOgMugIablUc15iDoRvRsms4IBTK6ydxyQN7k7Db62LD
-	 AYSUAAN4flQW9l4gTmMMKFZa+glJdbfekaiu6r9MwFlDLcrA5h3xYEfnc3f8XlvPcC
-	 unTfz8NOCRYARdDOfbbYWXm+AtYoxLe5F3g+ohO9kA5S2E/UsZWTZRWu6LClULYAOT
-	 1XJnTj65d0fLQ==
-Message-ID: <59b8e9df-0f78-49eb-a23a-2b352a4a2333@kernel.org>
-Date: Fri, 20 Nov 2026 16:28:19 +0100
+	s=k20260515; t=1795188497;
+	bh=tHeZv3ZliFEJTukVqg7SMz1pDdq8S6Vyf0qNndIQL6A=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=kdOjy646UeKmckP9axiN38fK0EIoqnI43F7Enwwln9V5btURw8JkwmPFb1godRbQN
+	 JVO46Exg6f60GsDKV+Jk46WbQ/D9h+Qpo6wxseY0JQYIRxj1uSj1KHcS/qpIelPR6S
+	 rrNouzuXLbmv7M8B5PlxRXUnt37itM5+nf4xpBAN258j0kRgpZNa9uQCaTHoHhANHP
+	 FE/Jp3/M+HBUjBvKW32hk6K/+aJffUGPnNkAQaRbSVhl5f9Rt2ke3eoRPjOITSnXAv
+	 bk+lZIkfWQpoSBUNDlg49gcjgDnvTHA32NfHFlRHd+J0Vf1q9F0NvaHF5EpowhweKV
+	 ++uXyovi5rb/A==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: configs: defconfig: Convert TISCI to modules
-To: Wadim Egorov <w.egorov@phytec.de>, Nishanth Menon <nm@ti.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Siddharth Vadapalli <s-vadapalli@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Bjorn Andersson <andersson@kernel.org>, alexander.sverdlin@siemens.com,
- jan.kiszka@siemens.com, ayush@beagleboard.org, robertcnelson@gmail.com,
- upstream@lists.phytec.de, francesco.dolcini@toradex.com,
- leonardo.costa@toradex.com, matthias.schiffer@ew.tq-group.com,
- stefano.r@variscite.com, eblanc@baylibre.com, msp@baylibre.com,
- thomas.richard@bootlin.com, miquel.raynal@bootlin.com, mwalle@kernel.org
-References: <20260910134409.1713610-1-nm@ti.com>
- <53d50a7c-4318-4705-ae21-780b04628742@phytec.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <53d50a7c-4318-4705-ae21-780b04628742@phytec.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 20/24] spi: zx: Add ZTE ZX family SPI flash
+ controller driver
+From: Mark Brown <broonie@kernel.org>
+To: Navid Ghahremani <ghahramani.navid@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, arnd@arndb.de, 
+ stefandoesinger@gmail.com, krzk@kernel.org, Mark Brown <broonie@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, 
+ linux-spi@vger.kernel.org
+In-Reply-To: <20261014072109.1759502-21-ghahramani.navid@gmail.com>
+References: <20261014072109.1759502-1-ghahramani.navid@gmail.com>
+ <20261014072109.1759502-21-ghahramani.navid@gmail.com>
+Date: Fri, 20 Nov 2026 15:28:09 +0000
+Message-Id: <179518848943.6016.13945215542092138415.b4-review@b4>
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8606; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=ycCsxp5E+ZtDP/02xjAzwX77w+/YdEWtSaGWhSDPgJA=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLIZ0rkPxuZvzgh/Nznpz/XfO3gatk38z9+wJDrxScira
+ aLBER6GHaUsDGJcDLJiiixxWdwv60ter+E7uLANZg4rE8gQBi5OAZhIzn1Ghj07kwv1Nof6nbrk
+ mddwdHpaxg8mpncp0g0JP83OXHNM3cjwT9nw7a+ZdbPCcr+ZrfEx793TJ9DeuOhse1XRqzJHyZx
+ gJgA=
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,55 +79,261 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 20/11/2026 15:42, Wadim Egorov wrote:
-> 
-> 
-> On 9/10/26 4:44 PM, Nishanth Menon wrote:
->> Now that all relevant drivers have are ready, convert the
->> TISCI drivers to modules. This impacts all K3 platforms for
->> boot, recommendation (based on empirical evidence) is to use
->> deferred_probe_timeout=60 in kernel command line to allow for driver
->> probes to complete successfully based on the initrd used.
->>
->> NET Savings: (Ubuntu Clang 23.0.0)
->> ./scripts/bloat-o-meter vmlinux_previous vmlinux
->> add/remove: 4/380 grow/shrink: 0/5 up/down: 32/-143248 (-143216)
->>
->> Signed-off-by: Nishanth Menon <nm@ti.com>
->> ---
->>
->> NOTE:
->> a) This patch is based off v7.3-rc1 and will create a merge conflict
->>   in linux-next (next-20260909), but the resolution is trivial (vs
->>   bd94bea7165be450903c6d64bbcb4862e36798f9).
->> b) Emperical experiments that Siddharth Vadapalli did,
->>   it seems like some driver probes might be taking much
->>   longer than the default deferred_probe_timeout of 10
->>   seconds that is used when CONFIG_MODULES=y. Testing log[1]
->>   a deferred_probe_timeout=60 seems to have worked fine.
->> c) Full bloatometer report is available in [1] as well.
->> d) related lore discussions[2]
->>
->> [1] https://gist.github.com/nmenon/5f1587b373e6ca27170593010188d968
->> [2] https://lore.kernel.org/all/20260429-defconfig-v2-5-e4ed4186028b@oss.qualcomm.com/
->>     See headsup I gave on #linux-ti irc channel https://libera.catirclogs.org/linux-ti/2026-05-20
->>     https://lore.kernel.org/linux-arm-kernel/20240821110054.35u5ubgaogzjv6c4@rover/
->>     (original thread that triggered various changes)
-> 
-> I can't boot our boards anymore using the default defconfig. Is this forcing us to switch to an initramfs?
+> Add support for the SPI flash controller found on ZTE ZX family SoCs
+> (ZX297520V3, ZX279128S). Implement tuned PIO to avoid redundant FIFO
+> depth reads, dynamic CCF clock scaling, 4KB operation chunking, and
+> optional DMA support.
 
-arm64 targets long time ago were supposed to use initramfs. It's pretty
-easy to switch, honestly, yocto can give you a very small initramfs
-which will you can also extend to copy the modules to rootfs, if needed.
+> +config SPI_ZX
+> +	tristate "ZTE ZX family SPI flash controller"
+> +	depends on ARCH_ZTE || COMPILE_TEST
+> +	depends on OF && HAS_IOMEM
 
-Best regards,
-Krzysztof
+There's no build time dependency on OF, it should have an ||
+COMPILE_TEST.  The whole subsystem depends on HAS_IOMEM alraedy.
+
+> @@ -0,0 +1,728 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) ZTE (for HW register defines and initial PIO implementation)
+> + * Copyright (C) Stefan Dösinger 2026
+> + * Author: Stefan Dösinger <stefandoesinger@gmail.com>
+> + *
+> + * This device has certain similarities to stm32-qspi, but it isn't as simple as remapping register
+> + * offsets.
+> + */
+
+Please keep the entire comment block a C++ one.
+
+> +//#define DEBUG
+
+Shouldn't be upstream.
+
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/dmaengine.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/errno.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/pinctrl/consumer.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/sizes.h>
+> +#include <linux/spi/spi-mem.h>
+
+gpio/consumer.h, mutex.h, pinctrl/consumer.h, pm_runtime.h and sizes.h
+are not used.
+
+> +static irqreturn_t zx_qspi_irq(int irq, void *dev_id)
+> +{
+> +	struct zx_qspi *qspi = dev_id;
+> +	struct device *dev = &qspi->ctrl->dev;
+> +	u32 sw, raw = 0;
+> +	/* The RAW_REG register reports the unmodified hardware status while the SW/CLR reg reports
+> +	 * RAW_REG & INT_EN_REG.
+> +	 *
+> +	 * Beware that clearing a FIFO flag here doesn't do much - the RX fifo will still have data
+> +	 * and the TX fifo will still have room, so it will re-raise the same int again. The
+> +	 * solution is to mask the RX/TX ints and re-enable them after reading or filling the fifo.
+> +	 *
+> +	 * By and large IRQs from this controller are not very helpful. If we're in PIO mode we are
+> +	 * forced to do a lot of busy waiting anyway because we have to drain/fill FIFOs every 64
+> +	 * bytes. In ad-hoc benchmarking, doing PIO with IRQ notifications resulted in both slower
+> +	 * reads as well as slower parallel CPU computation.
+> +	 *
+> +	 * In DMA mode we just piggypack on the DMA IRQ.
+> +	 */
+> +	sw = readl_relaxed(qspi->io_base + ZX_QSPI_INT_SW_CLR_REG);
+> +	raw = readl_relaxed(qspi->io_base + ZX_QSPI_INT_RAW_REG);
+> +
+> +	dev_dbg(dev, "Got an IRQ, sw %x raw %x\n", sw, raw);
+> +
+> +	writel_relaxed(0, qspi->io_base + ZX_QSPI_INT_EN_REG);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+This doesn't check that it actually got an interrupt, it should return
+IRQ_NONE if sw is clear.  If the interrupts are truly useless just don't
+request the interrupt line.
+
+> +/* IRQs for PIO aren't worth the bother. The hardware is sloppy with IRQs in larger (>2000 byte)
+> + * transfers and in my testing it does not free up measurable amounts of CPU resources. DMA is the
+> + * answer to better performance, not tuning PIO.
+> + *
+> + * To get IRQs for PIO operations set ZX_QSPI_{R/T}XFIFO_THRES to a non-zero value and enable
+> + * ZX_QSPI_INT_{R/T}X_BYD_THES in ZX_QSPI_INT_EN_REG. Beware that the TX fifo will report empty
+> + * until it is fed with data, so only unmask this interrupt after the pipe is full. Then either
+> + * signal completion from zx_qspi_irq when it sees ZX_QSPI_INT_{R/T}X_BYD_THES and command
+> + * completion or fill new data from the IRQ handler.
+> + */
+> +static int zx_qspi_read_fifo(struct zx_qspi *qspi, u32 len, u8 *val)
+> +{
+> +	struct device *dev = &qspi->ctrl->dev;
+> +	u32 *p = (uint32_t *)val;
+> +	u32 fifo, readval;
+> +	u32 cnt = 0;
+> +	int ret;
+> +
+> +	len = ALIGN(len, 4) >> 2;
+
+This will read beyond the end of the buffer for anything that's not a
+multiple of 4.  You should memcpy() the data into a local variable, and
+use readsl()/writesl() for the I/O.
+
+Similar issues on the write side.
+
+> +static u32 zx_qspi_setup_dma(struct zx_qspi *qspi, const struct spi_mem_op *op)
+> +{
+> +	struct device *dev = &qspi->ctrl->dev;
+> +	enum dma_transfer_direction dma_dir;
+> +	u32 ctrl0 = 0;
+> +	int ret;
+> +
+> +	qspi->cur_dma_ch = NULL;
+> +	qspi->dma_desc = NULL;
+> +	if (op->data.nbytes < ZX_QSPI_FIFO_SIZE * 4)
+> +		return 0;
+> +
+> +	if (op->data.dir == SPI_MEM_DATA_IN && qspi->ctrl->dma_rx) {
+> +		dma_dir = DMA_DEV_TO_MEM;
+> +		ctrl0 |= ZX_QSPI_RX_DMA_EN;
+> +		qspi->cur_dma_ch = qspi->ctrl->dma_rx;
+> +	} else if (qspi->ctrl->dma_tx) {
+
+We check the direction in the above branch but not here?
+
+> +static int zx_qspi_set_speed(struct zx_qspi *qspi, unsigned int max_hz)
+> +{
+> +	unsigned long rate;
+> +	long rounded;
+> +	int ret;
+> +
+> +	if (!max_hz)
+> +		return -EINVAL;
+> +	if (qspi->speed_hz == max_hz)
+> +		return 0;
+
+Note that we'll store the speed we actually set, not the speed that was
+requested, so if we don't achieve the requested speed we'll always try
+again.  Perhaps it might work on retries if the rest of the clock tree
+changes?
+
+> +static int zx_qspi_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
+> +{
+> +	struct zx_qspi *qspi = spi_controller_get_devdata(mem->spi->controller);
+> +	u32 ctrl0, ctrl1 = 0, ctrl2 = 0, txstatus;
+> +	struct device *dev = &qspi->ctrl->dev;
+> +	dma_cookie_t cookie;
+> +	int ret;
+
+> +	if (op->addr.nbytes && op->addr.buswidth) {
+> +		ctrl1 |= ZX_QSPI_ADDR_TX_EN;
+> +		switch (op->addr.buswidth * op->addr.nbytes) {
+
+Why do we multiply by buswidth here?
+
+> +	/* dummy config */
+> +	if (op->dummy.nbytes && op->dummy.buswidth) {
+> +		ctrl1 |= ZX_QSPI_DUMMY_TX_EN;
+> +		ctrl2 |= (0x1 << ZX_QSPI_DUMMY_BYTE_NUM);
+
+This ignores nbytes, and we accept up to 15.
+
+> +	if (op->data.nbytes && ctrl0 & (ZX_QSPI_TX_DMA_EN | ZX_QSPI_RX_DMA_EN)) {
+> +		dev_dbg(dev, "Attempting DMA %x %s qspi 0x%08x...\n",
+> +			ctrl0, ctrl0 & ZX_QSPI_TX_DMA_EN ? "tx" : "rx",
+> +			(unsigned int)qspi);
+
+If you need the cast something is wrong; print pointers with %p.
+
+> +		} else {
+> +			dma_async_issue_pending(qspi->cur_dma_ch);
+> +
+> +			if (!wait_for_completion_io_timeout(&qspi->dma_completion,
+> +					 msecs_to_jiffies(2000))) {
+> +				dev_err(dev, "DMA timed out\n");
+> +				spi_controller_dma_unmap_mem_op_data(qspi->ctrl, op, &qspi->sgt);
+> +				return -EIO;
+
+We need dmaengine_terminate_sync() to clean up the DMA.
+
+> +	ret = readl_relaxed_poll_timeout_atomic(qspi->io_base + ZX_QSPI_INT_RAW_REG,
+> +						txstatus, txstatus & ZX_QSPI_INT_CMD_END, 1,
+> +						1000);
+> +	if (ret) {
+> +		dev_err(dev, "Wait for transfer end failed: %u.\n", ret);
+
+ret is signed.
+
+> +static int zx_qspi_probe(struct platform_device *pdev)
+> +{
+> +	struct dma_slave_config dma_cfg = {0};
+> +	struct device *dev = &pdev->dev;
+> +	struct spi_controller *ctrl;
+> +	struct zx_qspi *qspi;
+> +	struct resource *res;
+> +	int irq, ret;
+> +	u32 reg;
+> +
+> +	dev_info(dev, "ZX QSPI Controller driver initializing\n");
+
+This has no information, drop it.
+
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	qspi->phys_base = res->start;
+
+We didn't check the return value before using it.
+
+> +	qspi->rstc = devm_reset_control_get_optional_exclusive(dev, NULL);
+
+The binding doesn't have any resets.
+
+> +	dma_cfg.direction = DMA_DEV_TO_MEM;
+> +	qspi->ctrl->dma_rx = devm_dma_request_chan(dev, "rx");
+
+Nor DMAs. 
+
+> +	if (IS_ERR(qspi->ctrl->dma_rx)) {
+> +		dev_info(dev, "Cannot get RX DMA, using PIO\n");
+> +		qspi->ctrl->dma_rx = NULL;
+> +	} else {
+> +		if (dmaengine_slave_config(qspi->ctrl->dma_rx, &dma_cfg)) {
+> +			dev_info(dev, "Cannot configure RX DMA, using PIO\n");
+> +			dma_release_channel(qspi->ctrl->dma_rx);
+
+This was requested using devm so this will cause a double free.
+
+> +	ctrl->bus_num = -1;
+> +	ctrl->dev.of_node = dev->of_node;
+
+These are configured by the core.
+
+> +static void zx_qspi_remove(struct platform_device *pdev)
+> +{
+> +	struct zx_qspi *qspi = platform_get_drvdata(pdev);
+> +
+> +	writel_relaxed(~ZX_QSPI_EN, qspi->io_base + ZX_QSPI_EN_REG);
+
+You used devm_spi_register_controller() so the controller is still live
+at this point.
+
+-- 
+Mark Brown <broonie@kernel.org>
 
