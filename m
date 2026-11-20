@@ -2,125 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8C960A2616
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DABC60A261F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HA93Z02j;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=hvU9SGoe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JJ0TM892;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gZhN+++4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=jPtMMj+TNQI4z5t6onBp93FYMjBvk5RvCFaoZZ65vCY=; b=HA93Z02jp6q8LT3t4C6pqXrLDA
-	5cB+9W1EGGd6Bk7n+flkdTFhlwY8xL8Nwqr8tpJyqFSgynQ4H9kO6h9iEr11efM17TnC1RszRR0OA
-	a6bYMRNBjJbF2fhzD+WuvohQFU/QvdTSR1riZxGTxXxFr69PJeMPQcdxNbbjG06pmkmtHIUur3uJU
-	VcUnF9eXC78XZlqITHJ0aQFndGNCXSbDgv5vOWDc0ijAdLAz1+Hlk+AN4ezRUpm/+Kx4qmL8ZMxc1
-	QPeWq3GPIkB7hX8mEg0GeBYF5tqt5UjExMZgGjwT66mTe68+GW45GN/gq7iFHG3SJqZwCCHQ3f8GC
-	L8zbgaWg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=yh+8+SwLk5Q55HtZNGGsREJIH5CMKWnk0ZRZ1TLMdIU=; b=JJ0TM892LXK1SB
+	FtAUwXDkFlGL/hx+95dY7oNqKE2siQAlkcgVj9NhMObtHGYdmVHdAf/E8oFC56ngzbu4ZJxkkK7Bi
+	SpzxifRhfj5KRNwqvVGcj2t77D1jGc0mC8QD0Y+D30rFPtRn0AFqJroav4bYqmPs+Au56dvi3itqH
+	Kgm9DwyM0X0yWgwGXYyQTZq3vdYQ7EtCvgmVmHwXv8BXkjvXw7BGu1ItcVag0JJx5dsKcAXpzSqrw
+	JyIkJkpwa9+UM6Lv+OKYMQIyuzTyjzH23RVol5lmWJVRYMu7S2MsDdxMlHvbMx0Bw4zUef33nOfg3
+	7IMlP9KmyNbUU+xDA+ig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUTRv-0000000FxIq-0tza;
-	Fri, 20 Nov 2026 18:35:03 +0000
-Received: from mail-qv1-xf31.google.com ([2607:f8b0:4864:20::f31])
+	id 1xUTd2-0000000FySs-17AT;
+	Fri, 20 Nov 2026 18:46:32 +0000
+Received: from mail-vk1-xa33.google.com ([2607:f8b0:4864:20::a33])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUTRs-0000000FxHn-0eIB
+	id 1xUTcu-0000000FyS9-2etZ
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 18:35:02 +0000
-Received: by mail-qv1-xf31.google.com with SMTP id 6a1803df08f44-91c1f548f87so17266816d6.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 10:34:59 -0800 (PST)
+	Fri, 20 Nov 2026 18:46:31 +0000
+Received: by mail-vk1-xa33.google.com with SMTP id 71dfb90a1353d-5ea969fafeeso425600e0c.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 10:46:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795200383; cv=none;
+        d=google.com; s=arc-20260327;
+        b=hihY3lDjQOmBrQag1h36SYGa6/4JnmoIAjUPD6xFLaZofaqxe88YPHoakrS0RYFkvI
+         Z+53e8FJ9EXN74/crojRfEdAUWokR6hwxGM9bKdg1CddHex54sS1bsfxQi5npsppautq
+         YEbaaPrf6fxzsXF2qbXiTHdQ7rDh2Db14+rxBT86pDIpQ2WsRYvAc69Q4UHFUBZJ+H5n
+         Tz85FndH68nN8iMpzfH+EJLXMQx+RNZJ7O7rYjK2APSDDEzOv3tFYOoXDt55U45zISoz
+         /QtuXBeQD8iaG1hnQsnMyvqb19wBxV9R5w87+/xXQyVdv35ERMMuGpB2SCw/bNnPVHhi
+         Z9Ew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=yh+8+SwLk5Q55HtZNGGsREJIH5CMKWnk0ZRZ1TLMdIU=;
+        fh=95ESchJLTVQtgH5uSMbAzZvsW9+WF++fb4wBwTu5Zao=;
+        b=RsTvFHzS9xEvnXiJSleoBQsyduSXVbMOBseFvDvwoG332ODcmD6B/9yhkoxyF5kvfT
+         lOW0ctLJ11jTarLMW80PrkHLXGi00vyHlZagRuadx4Rw4IZ1vensYaleVsnesYM4yPN+
+         u3uUdG5qV1FDOZq8yrnqP4DYA02u0BKS81CqPW1yfauTkRQGp7W3dt4+0Y87OvbBPkom
+         BFNKNP6PkzgGNfVAQlv/ExJLojT+a9w0SAWnobJX8P5ylZOaodHLhob96ay61tTNDM7Y
+         AzFcn0+rRgI6b389S4KNDmauaZ7Zo9+FFMQvPXrn3ZDp9saVHcDkCLu+cm+9qoVRJzxE
+         cBUg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1795199699; x=1795804499; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+        d=gmail.com; s=20260707; t=1795200383; x=1795805183; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=jPtMMj+TNQI4z5t6onBp93FYMjBvk5RvCFaoZZ65vCY=;
-        b=hvU9SGoeIashWVW7NbdqKyzHlBUXNz8rFVceaYhew6j46mMGsTnCGb57QJL4b5rzh1
-         kboNGOLYkvyclvqkFkYKQg2JNwBVcfW0PJUtdCoh4yygNQSn918iQcvSVg0m+4slZoiF
-         bFQ0bh1GTSbhBgJlbRBBBio2ePd1GxsbNN4Xz44/fTin0o5SfPU61OXSjtOcLjxdRASi
-         PyWvRwoo0yEi3aNUnc+209/5GqvE28NZHTUteW1z3I19ejnDP1Q/EtMxnIAnRIwtt0XM
-         WyyE9dSts3LL62uWX/RD1kyuiBC7HKm5ZDDuuKSApjaLyEoaA5qIxQSiGkCZ/GwVE9zK
-         cR+g==
+        bh=yh+8+SwLk5Q55HtZNGGsREJIH5CMKWnk0ZRZ1TLMdIU=;
+        b=gZhN+++43NTdrMR6fvbjOgHd2opvRwiCrjFV3WKXUmKw4ESsE1Xlw5Q9JEL647hlQ4
+         nWhlh4rpC0pNF9aS2dotlVOUbQRX5jWw7ocjr36PZ9Qb/oiG2GRlxOiq5g6htPXSEAro
+         /bNBs4Yu+eFP+GqUaeLS0eSO9cawovK/WYyvtumF+L5uNr9VrA17CfJhz+NIsKKufYPr
+         VsoL0vuoaZn5nvAPml22w+kzb57+iZ1dEprjB5kCZWpznR/MazclY3HQ1jbN71AHjgri
+         3P0KI11pXsTdJwMCIvGYhFfAZSRdfhfhPTBh29FkjAwYXG6R+srgdnTAm77JHvppIJYu
+         vsIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795199699; x=1795804499;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
+        d=1e100.net; s=20260707; t=1795200383; x=1795805183;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=jPtMMj+TNQI4z5t6onBp93FYMjBvk5RvCFaoZZ65vCY=;
-        b=obPu/ueYq7CdlTd2rrMMvPasJqyn2/tGtSIbM0Ed88UReEFnyhsyKSWm8sVdSC2r2c
-         wsysAOcX+ukAlxvCTQy3i/y9fqKHwSqIw7pcc8qYgkVLRZ7elwi+lhWe6DFliCNDX9cK
-         D04A56+UaLtliC13rghf7N6fvlxdkTKJpvbIm97D87jg0Kg0nwMGQw7U4IGZa6K6/B3w
-         cPAlKQwlLOzNUXF+Q4G9M2WqLxcMa/dtk96dEqQiHXK8iFM51DsCky4ooEft8fcHTk7R
-         e3leodAA78V9gThHz7EUpm+l3knItpkW/Y/EpeTvizqwSUH3W8az5fiOsRXoY6mJkLhO
-         dzqA==
-X-Forwarded-Encrypted: i=1; AL+hErGu8iJ+SfWacEdaCSYSmm1NmocRNwX9H8+jnTGxFHQGVpKBCFMHoe8dGNp0Yn9iuUNSbd2mMnhKgyNx9qO7hOfo@lists.infradead.org
-X-Gm-Message-State: APuU4Z8ZwHVzdWLUp5UGswDmn12un9mwn/w/1HcIa/eAj6n66NPrjHnr
-	BvLPMDJR3p9y+3YS6uaKM2hD17doPbrAva5artaoVtrnykYc2rZqzYS5i+Ect8S1KsU=
-X-Gm-Gg: AZFdTZedtD5LxiXfLlW4oH2PTVxVcRh0YjBrCEqn5I6cRiagmxJYBF56PExPOAoawJ2
-	YdDl+AARanJ+1hxXAXZYCsUX2iHpik4e/OSXN7rLVR1IU29S/GVC3zXlebpTvk5imOwb0JsmtAM
-	vinv6TYZQ39TNbV9yzIImy5AHhZVtuVRCbrTw9AeI/mVzByW+whTTYN1Ov1Id9yo3bel/GQMity
-	fa+aRp1JkIhN2vsPjRgmFa+1yiWk8t57ItSiuvSJUMgkDkwr4rRekyxOT8CcmMWzF2U7L2TT7an
-	5ydxXLIO64bW+VwiWkxOt2XMrOq2HXjnMmW6lll6uDNsxF54iOmxMR5Se9pt5u+6FfpxtRNglvS
-	68Zwsb5ReDgZXhvbS4vsXc8BWxTvua1ezkvwpdJC3Kj85/Ku4Eq1Lcc9ceJQG20UtsPsJB9OwqP
-	SMupGqMfyluWsGginNbESRB300w1N8H9G4EHA9iSE8FLI7y2GRFBgJiIl4XjZhAlRCBUx0joUJB
-	TojqtstCclVEifOHCo3b4b5tgDvED8xuUSGMi94Gx8jzZ03fmID3sqnQqd0DMz32fnTJhEZfPSr
-	qkjg5w==
-X-Received: by 2002:a05:6214:4881:b0:921:152a:4e48 with SMTP id 6a1803df08f44-92134b1abb5mr65747176d6.32.1795199698766;
-        Fri, 20 Nov 2026 10:34:58 -0800 (PST)
-Received: from ziepe.ca ([142.166.156.71])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-92134a16754sm32821016d6.39.2026.11.20.10.34.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 10:34:58 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1xUTRp-00000004jZ9-0OT6;
-	Fri, 20 Nov 2026 14:34:57 -0400
-Date: Fri, 20 Nov 2026 14:34:57 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Jacob Pan <jacob.pan@linux.microsoft.com>
-Cc: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
-	linux-coco@lists.linux.dev, Alex Williamson <alex@shazbot.org>,
-	Alexey Kardashevskiy <aik@amd.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
-	Nicolin Chen <nicolinc@nvidia.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Steven Price <steven.price@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
-	Xu Yilun <yilun.xu@linux.intel.com>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>, iommu@lists.linux.dev,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-tegra@vger.kernel.org, patches@lists.linux.dev
-Subject: Re: [PATCH v9 09/13] iommufd/viommu: Select vIOMMU operations before
- allocation
-Message-ID: <20261120183457.GQ3115493@ziepe.ca>
-References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <20261116081935.85372-10-aneesh.kumar@kernel.org>
- <20261120094207.00002e89@linux.microsoft.com>
+        bh=yh+8+SwLk5Q55HtZNGGsREJIH5CMKWnk0ZRZ1TLMdIU=;
+        b=Xypti/R7FSTtB4IACC8iTClcREPvtnqeU/KcJJVIejfQVCxIvSxENKDbLhU4Q6cUOg
+         8kq6vPCMKo7lZMSljBWfVuPPw+oUsLfTWTx7dSXKR0v91m0+TsGsKHvJT3Jp9xWbICE0
+         pBndtPQWjO1Ji8pZTXGtNRxfY5MzQKQn1hnzreqVgVO4+8ctxJssr4sSz1XUCMoxCIas
+         xeCMznhZBMl7Xkwwl1WGw8d+1k/0cUj1rCnf7z/enxtFNW6OSuftSvAOUKqJDOowfsUG
+         i032dypWIcZebMiYaUbb0uFJU8++qbIjMMKxBLBlImdbFtJ4Tu6FA69cnmgWJqj6ymNk
+         j6GQ==
+X-Forwarded-Encrypted: i=1; AL+hErHOU/6XAxZI0feybRvvRf5aKTzJyG5EzHYgw70BRhf9/SwMHVWIUQw1i0aoqX01fw2+e3npverRwLcQZQuwfyb1@lists.infradead.org
+X-Gm-Message-State: APuU4Z8siiZFcN+FCuHDo5xNez3cuyWQlc7AR2ePqfzpUR01k1cUBD+n
+	L/oXtEpvThk2TOA+qYp3293MuoO04Dno3aWt/sbS/pVyVz3gmfJK1gU6gS7lLnNRA+FZ5hgrBbC
+	l3RkRFEt7WZ8Sir3oropqc+nokbLREbZTWHhn
+X-Gm-Gg: AZFdTZd1PFqxTjRdm53Rp04Fm7CSyhXmaAqXshm9lBlmgMbie1K00785UPCqA0CNFcn
+	okHF/D5p7hSXRUJ38uPPcM2PHXEU87DY9e5in8+od7OsJ835PyGihBGowLGV/4xGqOrO6xY1SDF
+	lrYgyA2OLCRpzWi5qswaMuPk8Wditd4skWEGctpX/Yww39PRdgb5PL8qzBscEtUv0dMk3Ra19x6
+	rlab9jLhsGI1yHeN20q3D/MnQYAaiKkrAYUMBzHeL4eAQuvuzXY2bygOA716JoPMaZHL6dTNRHp
+	4JpstqO/dp6BLF0ZTM4H1bb5DXb2NC8i5pELeqZbVhHWIh/klGSSVrR4Vpy9ikj7tSiipPxAzCs
+	6NTpAj3hvSGKke5zpfyx/NBQuPkwdjgeHyECtkN2KwR1EA3RSPeP4xcUZXuDvra5h9B5mXTxpg/
+	0wHEEmmxlWMRbIPFC2UapNxu3qR58isPtmP/ge7S3IJ4qO4n6dYyzPHZE0qK485KYaV2ytapAMR
+	0Lx+p14YDdeP9B/srHxucHYDgDrJg==
+X-Received: by 2002:a05:6122:9003:b0:5ec:41df:f110 with SMTP id
+ 71dfb90a1353d-5ee8af6c74amr2016084e0c.23.1795200382307; Fri, 20 Nov 2026
+ 10:46:22 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261120094207.00002e89@linux.microsoft.com>
+References: <20261120-submit-sun8i-rx-features-v1-v1-0-5058fecba6b3@gmail.com>
+ <20261120-submit-sun8i-rx-features-v1-v1-2-5058fecba6b3@gmail.com> <a91278be-9c14-4769-81f1-38497c38c47b@bootlin.com>
+In-Reply-To: <a91278be-9c14-4769-81f1-38497c38c47b@bootlin.com>
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Fri, 20 Nov 2026 11:46:10 -0700
+X-Gm-Features: Aa3M54rJ5Y8qFUvIsWTDnCsT7oGEaCdkKyaPFOPkJ_ACUKYfdbfqerO9yZONmfs
+Message-ID: <CADvTj4r-KPM6GB7UyDK=XF-D9mvOy9m7EvC3qzznz9VKvFLw6A@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/2] net: stmmac: dwmac-sun8i: support ethtool rx-all
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Ong Boon Leong <boon.leong.ong@intel.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, LABBE Corentin <clabbe.montjoie@gmail.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_103501_489832_D172EF6E 
-X-CRM114-Status: GOOD (  11.44  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_104627_763227_B494C169 
+X-CRM114-Status: GOOD (  23.82  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,23 +126,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 20, 2026 at 09:42:07AM -0800, Jacob Pan wrote:
-> > Temporarily disable AMD vIOMMU allocation by returning NULL from
-> > amd_iommufd_get_viommu_ops() while the vIOMMU interfaces are being
-> > updated.
-> > 
-> why? if this merged, it would break AMD driver vIOMMU functionality.
-> And not temporary as I didn't see enabling in this set.
+On Fri, Nov 20, 2026 at 11:30=E2=80=AFAM Maxime Chevallier
+<maxime.chevallier@bootlin.com> wrote:
+>
+> Hi,
+>
+> On 11/20/26 16:32, James Hilliard wrote:
+> > Packet captures on sun8i cannot currently inspect frames the driver
+> > discards for Ethernet errors. Add opt-in rx-all support for complete
+> > frames with a reported wire error and for runts the MAC can forward.
+> >
+> > Set the runt-forwarding bit at hardware initialization and when rx-all
+> > changes. Serialize live updates with the DMA controls in the same
+> > register. Deliver these frames without claiming a verified checksum or
+> > including them in the good-packet and good-byte totals. Keep counting
+> > the wire errors even when the frames are delivered.
+>
+> This deserves a series on its own. it's not only about sun8i, it add the
+> whole plumbing to stmmac itself. Is it something you've used and needed ?
 
-It is broken already, it is missing some series to finish it. It was a
-mistake to leave it on like this.
+I used the hardware error-forwarding controls on H616 while comparing
+the AC200 PHY's CRC error counter with what the MAC delivered to DMA.
+For example, the PHY counted both 63-byte and 64-byte frames with a bad
+FCS, but only the 64-byte frames reached DMA. The use case for rx-all
+is to inspect the frames the MAC can forward with a normal packet
+capture. It isn't needed for normal reception.
 
-Jason
+> This feels a bit strange as you answer to the series info bot that this
+> comes from Jakub's comment on the previous series, but I don't really
+> see the connection except that Jakub mentions RX_ALL.
+
+My reply to the bot was about the checksum fix in patch 1. Jakub's point
+was that a bad transport checksum alone shouldn't cause a packet to be
+dropped. On sun8i the same hardware bit forwards both checksum and
+Ethernet errors to DMA, so patch 1 enables forwarding and lets the
+driver discard bad-FCS frames. That addresses his comment without
+needing rx-all.
+
+> If you want and need this feature, you can submit that separately.
+
+I'll send the checksum fix on its own and keep the rx-all support for a
+separate net-next series.
+
+>
+> Maxime
+>
 
