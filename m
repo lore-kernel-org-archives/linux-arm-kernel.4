@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847A9606A335
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2D2606A33A
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p0F2kNLu;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cSEUQoLD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gtsaZsqz;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=U82QAX9X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=P3CbdVECzHkNah5hBh+CX5V1muidzZFJcZgyMPPIoGM=; b=p0F2kNLunKU250
-	0YPAVaJTqa92rwADVdfEqBWkqXsMLnrAFagYIGk1Jo/8bfj5UnywGG9Azid/l5F5OfgtGnhLvKp+Q
-	GPTuNiGUZkAtNVIJw9mCpYZHCX0BccEGAkLK+nqH3qyvgcHrvTkoQgFA/OhVhQ4YPsZP6YD7PuVjU
-	V3M/WQXvNq8NgSoFPP74bpYCR/DP7qAelskUotWDGnrrooIHrbOBBPBZ5LJhmqzXbo/0JrSxDtXBa
-	kaAKLzM+jeCIEc97E9M2246BWQMYF9eFI1LF6sabb/0fmE/B8DA1UNLrlVHlyhNo3yTAifkKAzUtZ
-	cjEjc/elr/sVromtNrKw==;
+	List-Owner; bh=3cCgqwbNvrgOhuXLkkf/Vlhr66lfaezWECzWianZik4=; b=gtsaZsqzjfAckn
+	B31fZkmevSZ2ExNpZYvGO8iTmV7XdU8REEPDPFsqQOzlxIxfnbO9ZoCxOKqQu1O6dgXvAvmsrjcoh
+	6kc8GBgXnzwCFtYAmdD0wdfSGPJ2pKX6qxK8MnWX2Tr8ecpXhA9NN1dAlxY5ajMI973DNinl6olVI
+	GyxLlvoMpteWrIAhsZSw2wiL3QxHTipPiKRS+RdmrAn6rb/RWkUZ4wIB5ZpZNbSTBVj52l2bRVFOA
+	r6aaymAwgmy3QIzMjL/OC8UBuxQRZgbcJJTLMJoiLvxSCLIdJzLbh1MGvcMlZU9w5D2Sj5bjslG5R
+	GHaunNU2wrQ9WaaGAv7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xULAT-0000000EV4M-2CfH;
+	id 1xULAT-0000000EV4X-2XwK;
 	Fri, 20 Nov 2026 09:44:29 +0000
-Received: from mail-dy1-x132a.google.com ([2607:f8b0:4864:20::132a])
+Received: from mail-dy1-x1331.google.com ([2607:f8b0:4864:20::1331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xULAK-0000000EV21-43DI
+	id 1xULAQ-0000000EV3d-1JU9
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 09:44:22 +0000
-Received: by mail-dy1-x132a.google.com with SMTP id 5a478bee46e88-382c3c9671fso945109eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 01:44:20 -0800 (PST)
+	Fri, 20 Nov 2026 09:44:28 +0000
+Received: by mail-dy1-x1331.google.com with SMTP id 5a478bee46e88-382ecd5cf2cso682065eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 01:44:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795167860; x=1795772660; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795167865; x=1795772665; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=P3CbdVECzHkNah5hBh+CX5V1muidzZFJcZgyMPPIoGM=;
-        b=cSEUQoLDTM3xdxKU29PooBteoTVlwN5EtQIvueqxaZE9P4DdLgG/7jPhbEAlAtUgTL
-         0bp0yqFgKXumZGyiOX7LbcZVU4973H499eCf/ot4YvGr0Mdoiyxrfcfh9Qhz9SCe/Nza
-         LmYUsbCs6FdrOwAEDV2/3OCovmSQ7zMNDv8U73+a6667Su+ShVNcgPHIHWUPXJAvqma1
-         LQ1cr9gkcR1KKahsP8n8A0VSeDzEu4CvbT0f9FGdcHZGaOqYxYU7l7IPZm8aXWepx7e7
-         6mwSgKfNtDtTPYDtUQ/d1CNzSESpc5HfZo3zKAr7qZ4iUIX6+E4oREblBeyRXQ62cyAH
-         QNBQ==
+        bh=3cCgqwbNvrgOhuXLkkf/Vlhr66lfaezWECzWianZik4=;
+        b=U82QAX9XsMaJb+wSUAAvzg1z6DiGGiBsAfRJjrRW6K8iaQnoWBuR6XCsRoxUUbW767
+         TkZ3N/bpwQt6DSwz7Sp5Zb4w+yX8gdlUSNvgZlDrZfRBNSWJ0/gnvE4dnIFeOa17znXE
+         iMPMQSLGqwG/Yk/k01va5iq2FfSY31a/lS9sZjClaeqDqw4mmlaecaL/jFn81OHZCSQp
+         0Ia3shw5c3ErogHumZlF3kMvfceyTCKBcx/vRQw83xtV1Luu4eKvbcU1RIo0/11Mg9an
+         Z4tmS9mjdoGs8uK3cFaQREn+klWtCbrYrNLSkDCifXrQBeBaqHGA/2+xie+ecaF5IbIy
+         hM0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795167860; x=1795772660;
+        d=1e100.net; s=20260707; t=1795167865; x=1795772665;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=P3CbdVECzHkNah5hBh+CX5V1muidzZFJcZgyMPPIoGM=;
-        b=HwLef7PHtraF2+NHq9ALHWvrk+B+Si7/rirZxgGcbRr7oQgWohXxPUQcA838SQeWRA
-         wAilhf0qSmfhAEDGbfysk6flDX66+hSzNhyOlrBUSxFczGhhVIHZMwqnd5T4XP8ILVUT
-         XxMvGxMQ8NcArhOT7bOpKI7AeBgKEK2ZZ0ZHgxjn5LCDHZAVbfm2K/3fHdhqCQ52mpBa
-         nBLe4F5nrCVMDkd/p+a8tGFhzjzrkkJblAZcVLBlU8y1JMCGqs2U7cLsKxobdrpYvPEw
-         2wavbJ7knPBITWi5zOSGG/98tJz2sykOyoKtAZq4iUA5X3u+MpKXSwrqABA50GzCyLzg
-         bYAQ==
-X-Forwarded-Encrypted: i=1; AL+hErGL/56rDJLcBEX7Bonu6vBylr7NEQf7ko4jSlq4qPV0XFRVDnkuGk/zYXqd6gHxBTkLqaZ/gfMTFhKHL8vLjyi0@lists.infradead.org
-X-Gm-Message-State: APuU4Z+2LEg3zH/ImcbZfNEkLJ9twqmgUaF+fE84Cn3/ip/019kcArj1
-	rv2JxxqLQ+9U+LYyMQrZ/zbLD90vqeHu1Fkv/sh6LGQGJG+KqYUNEGC3
-X-Gm-Gg: AZFdTZcKIglg5UrMFXreiJ1V7rwBZF58YFLCMxJKjzHYGDFr0F5SKrm2cx9IrgaNjch
-	geAiVOV8IvMs+XcsoS5tMposIKM4Jc886/iyzSpaUB98YYyiUsTABodKpllc/0NJFMttdznRj3I
-	IKFkF434+mevRJd0Q8IZeOeoqTZ6rnoXjX5XQj/wdb8c/ofrKmDq3OZHZ6lpPi2qtZgOMtZ/42o
-	5uY8OlM8SfidDo5aZ2eH0wUUNk5M60K2f4CouPaYWX3O0TmBhvM4dQfNUGSZ4TJR04o7H0dj8d8
-	H2wAkjwRknIVgAs4E2Umr2uJPonEu7FboZYCUeVW6uZawR8ESVxkBDUq0uXtvm8YfyxI+xXS4W3
-	RYDg1jZXG/UuJY1op+AoW0Y70trZqsSsi/rJhWHp6V2cllr9M2/KNVkQmezVgWLMsAactX6TW1F
-	7vLd3PPZMtfW0W383QZCkdAVoL++eW/aaJxJvKAzTZT8sYoxJKdW80wFHGTBwW8z5cVXIiqAS5e
-	XlpBOhoPdsQs7cewv3858QJyKYR5JBbVOVszQUltg0Lql53olg2pRqRYl2qfpe5JClci+hZCncq
-	DJg/IOqdod2pN2fjuKEg+zyJ8CxEYqvJ3vScTcPICAHoWDTfmiJJWW6r4Q64v5/SMOu7kF4lsno
-	TPcpRThiq2Wor0Y+/Eok+dmRA/12AEVtJO8KIv8x+Vl0N
-X-Received: by 2002:a05:7301:a0d:b0:369:fa21:ba0b with SMTP id 5a478bee46e88-38570847a85mr2483136eec.33.1795167859917;
-        Fri, 20 Nov 2026 01:44:19 -0800 (PST)
+        bh=3cCgqwbNvrgOhuXLkkf/Vlhr66lfaezWECzWianZik4=;
+        b=yisKisvQ9OolOqk9w3/gxirY9N0/ve1VhxjSZLnLtKHKrJUMLUS19KGYhesOQu3AeH
+         p70ZAEunDvur2Z8StADdmVk6bBrHoRGpIaNyzQnoqX3wtSoabEZ/WGu/XU6yz6x/OYo9
+         /qjZztwYjy3CgfcdyaTAX2DOu3IVkJnDY85ORRgDqotMe85rxnaTltny1aMHsvJ/lhal
+         6uu01QdoKfTQKspW41q6gqIe5ZfS92ggH1HU5VaVRpsZSWYOcW/QBuDHCEhQcXm3720N
+         +B/gqkWnjc9hrAsl+LxUkYRZkvBjgIP75wZ+HzzrVhllb68jO7VzdmH9PZTGbeBx0Q0c
+         R1kQ==
+X-Forwarded-Encrypted: i=1; AL+hErFS2ce40QdcabhUtCW0apf4X+pG5JjHJmPNjXwuzKGL4UFSj8LPgC4ps7xcRZATIxQT1uoDDciPe76N4TF77ShH@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Pttep1wM3aDvWKX24aWVi+7CyhWbZhAswri8fmv4mNqjI0er0
+	/whap/5d670iDBjQ8n0df9gUfIAXriDNnk+pOEJrYvEHpDIDM8eyyjdy
+X-Gm-Gg: AYBFou0QnZoPqfkPeUWp5hYCXg0pbO1MYYf1WWmhYgk/RdvTqqR8UM44yWvV6P3oaH9
+	9gtoBSY86V63E5y3sDY7KJwP6hIk3Cte/TKAxHYKyUmnKxohx+MJ+F0yVJ+Au7DIWW4SInVPp1k
+	YajjImyZu9ZNMr9jUH7O953wcztiwJl2uV17zu8U6qDC7y/CNtXTIT6KJ/csveQnFay4sdN/83w
+	EZhV2OfzRCQD00EoG9Lg/j7d+RlsZB91j27Da8x0WXkZOdrJ942iGfcncC4zN06q3+DRWTtzyES
+	zmF2HipcUcCVcDX8bFDskBpVDQknxQC8ZZLS7QY6HO/1mYdPtkv8uB+yCqYufuBFYd1HZ9vGZX3
+	DhrQS7Un4tmvjs38jDRcJEDMbnuug7IKZvQmNdKw5fSHh/MgE+g9mYU+5D9CrDFUB8lyTTVZm/C
+	zbcb0T52JJFsfIKPoF2xyOOihTox/BKh0rj/oY5WFYpD8RXNRRIb53ApgfQeVoXMOvwHY+0wk41
+	KE06n+sGeZZgAac2/h3WQqn3Ewa5oLcsVGzbCK0yZ9fKcF67IVAUwfbadlfJThx9zzGv0yHYOc+
+	DKFBpHOJQ3sSj4LJnFwFkKu41S9ZYrEoJSDWqPcvr6OJRtJQ4xrTb76foV9tmcS/Nqs8r6Hvfqa
+	+ZnhF8R6MigS67nbxAd0ERQ8Apw3612KmdfJAcoTLH7qNJDWBhEy8u23cszyjUAgteA==
+X-Received: by 2002:a05:7301:dd8e:b0:386:6c8e:b4f7 with SMTP id 5a478bee46e88-3866c8ebd4bmr51424eec.12.1795167865186;
+        Fri, 20 Nov 2026 01:44:25 -0800 (PST)
 Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385f68bc0adsm3982974eec.13.2026.11.20.01.44.17
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385f68bc0adsm3982974eec.13.2026.11.20.01.44.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 01:44:19 -0800 (PST)
+        Fri, 20 Nov 2026 01:44:24 -0800 (PST)
 From: phucduc.bui@gmail.com
 To: Mark Brown <broonie@kernel.org>,
 	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
@@ -86,9 +86,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH 1/3] ASoC: atmel: mchp-spdiftx: Improve probe error handling
-Date: Fri, 20 Nov 2026 16:43:52 +0700
-Message-ID: <20261120094354.6814-2-phucduc.bui@gmail.com>
+Subject: [PATCH 2/3] ASoC: atmel: mchp-spdiftx: Use devm helpers for runtime PM
+Date: Fri, 20 Nov 2026 16:43:53 +0700
+Message-ID: <20261120094354.6814-3-phucduc.bui@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261120094354.6814-1-phucduc.bui@gmail.com>
 References: <20261120094354.6814-1-phucduc.bui@gmail.com>
@@ -96,8 +96,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_014421_010755_98F7A75E 
-X-CRM114-Status: GOOD (  10.68  )
+X-CRM114-CacheID: sfid-20261120_014427_042395_B7333878 
+X-CRM114-Status: GOOD (  16.11  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,46 +119,105 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: bui duc phuc <phucduc.bui@gmail.com>
 
-Use dev_err_probe() when retrieving clocks to avoid logging errors
-for deferred probes.
+Use devm_pm_runtime_enable() and a devm action to handle runtime PM
+cleanup automatically.
+
+This removes the manual runtime PM cleanup from the probe error
+paths and the remove callback.
 
 Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 ---
- sound/soc/atmel/mchp-spdiftx.c | 18 ++++++------------
- 1 file changed, 6 insertions(+), 12 deletions(-)
+ sound/soc/atmel/mchp-spdiftx.c | 46 ++++++++++++++++++----------------
+ 1 file changed, 24 insertions(+), 22 deletions(-)
 
 diff --git a/sound/soc/atmel/mchp-spdiftx.c b/sound/soc/atmel/mchp-spdiftx.c
-index fc635ed6856e..6ab32f0b8b8e 100644
+index 6ab32f0b8b8e..b034bd46cd5a 100644
 --- a/sound/soc/atmel/mchp-spdiftx.c
 +++ b/sound/soc/atmel/mchp-spdiftx.c
-@@ -815,21 +815,15 @@ static int mchp_spdiftx_probe(struct platform_device *pdev)
+@@ -778,6 +778,15 @@ static const struct dev_pm_ops mchp_spdiftx_pm_ops = {
+ 		       NULL)
+ };
  
- 	/* Get the peripheral clock */
- 	dev->pclk = devm_clk_get(&pdev->dev, "pclk");
--	if (IS_ERR(dev->pclk)) {
--		err = PTR_ERR(dev->pclk);
--		dev_err(&pdev->dev,
--			"failed to get the peripheral clock: %d\n", err);
--		return err;
--	}
-+	if (IS_ERR(dev->pclk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(dev->pclk),
-+				     "failed to get the peripheral clock\n");
++/* Runtime suspend the device on cleanup if necessary */
++static void mchp_spdiftx_runtime_suspend_action(void *data)
++{
++	struct device *dev = data;
++
++	if (!pm_runtime_status_suspended(dev))
++		mchp_spdiftx_runtime_suspend(dev);
++}
++
+ static int mchp_spdiftx_probe(struct platform_device *pdev)
+ {
+ 	struct mchp_spdiftx_dev *dev;
+@@ -836,11 +845,22 @@ static int mchp_spdiftx_probe(struct platform_device *pdev)
+ 	dev->regmap = regmap;
+ 	platform_set_drvdata(pdev, dev);
  
- 	/* Get the generic clock */
- 	dev->gclk = devm_clk_get(&pdev->dev, "gclk");
--	if (IS_ERR(dev->gclk)) {
--		err = PTR_ERR(dev->gclk);
--		dev_err(&pdev->dev,
--			"failed to get the PMC generic clock: %d\n", err);
--		return err;
--	}
-+	if (IS_ERR(dev->gclk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(dev->gclk),
-+				     "failed to get the PMC generic clock\n");
+-	pm_runtime_enable(dev->dev);
++	err = devm_add_action(dev->dev, mchp_spdiftx_runtime_suspend_action,
++			      dev->dev);
++	if (err)
++		return err;
++
++	err = devm_pm_runtime_enable(dev->dev);
++	if (err)
++		return err;
+ 	if (!pm_runtime_enabled(dev->dev)) {
+ 		err = mchp_spdiftx_runtime_resume(dev->dev);
+-		if (err)
++		if (err) {
++			devm_remove_action(dev->dev,
++					   mchp_spdiftx_runtime_suspend_action,
++					   dev->dev);
+ 			return err;
++		}
+ 	}
  
- 	ctrl = &dev->control;
- 	spin_lock_init(&ctrl->lock);
+ 	dev->playback.addr = (dma_addr_t)mem->start + SPDIFTX_CDR;
+@@ -849,7 +869,7 @@ static int mchp_spdiftx_probe(struct platform_device *pdev)
+ 	err = devm_snd_dmaengine_pcm_register(&pdev->dev, NULL, 0);
+ 	if (err) {
+ 		dev_err(&pdev->dev, "failed to register PMC: %d\n", err);
+-		goto pm_runtime_suspend;
++		return err;
+ 	}
+ 
+ 	err = devm_snd_soc_register_component(&pdev->dev,
+@@ -857,32 +877,14 @@ static int mchp_spdiftx_probe(struct platform_device *pdev)
+ 					      &mchp_spdiftx_dai, 1);
+ 	if (err) {
+ 		dev_err(&pdev->dev, "failed to register component: %d\n", err);
+-		goto pm_runtime_suspend;
++		return err;
+ 	}
+ 
+ 	return 0;
+-
+-pm_runtime_suspend:
+-	if (!pm_runtime_status_suspended(dev->dev))
+-		mchp_spdiftx_runtime_suspend(dev->dev);
+-	pm_runtime_disable(dev->dev);
+-
+-	return err;
+-}
+-
+-static void mchp_spdiftx_remove(struct platform_device *pdev)
+-{
+-	struct mchp_spdiftx_dev *dev = platform_get_drvdata(pdev);
+-
+-	if (!pm_runtime_status_suspended(dev->dev))
+-		mchp_spdiftx_runtime_suspend(dev->dev);
+-
+-	pm_runtime_disable(dev->dev);
+ }
+ 
+ static struct platform_driver mchp_spdiftx_driver = {
+ 	.probe	= mchp_spdiftx_probe,
+-	.remove = mchp_spdiftx_remove,
+ 	.driver	= {
+ 		.name	= "mchp_spdiftx",
+ 		.of_match_table = mchp_spdiftx_dt_ids,
 -- 
 2.43.0
 
