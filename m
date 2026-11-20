@@ -2,71 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9413606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6525606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ka6qKvv7;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=K8TjtE2k
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dTU+pN9A;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=J4zidpMg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gU+N4i8XXaaCHLQytPV366YHYYBxjCiyyNiSynfO6vU=; b=Ka6qKvv7J0tMr4
-	uJNI52OQI86l+nb5/XauJ1deCq+v7UxbBm40VbwCgGNA6Fd1K5DT7jZdEsb9P4xTV4fpjl/9czV99
-	byxp13oOjDXIGdP1ZO2r3ZicxhIAo0o9O6kXuHmOoJYj9UjPa5axVhYmcBYRCx4+CFwPkh6v5gNtC
-	bMFPmfGAz45M2kUMKjcrsBqmd1N8ZaqZTZXWtdXVKtM8hP0U9KWeeQxz8go56l5aBNh3sL1Wm86zs
-	WX6WKDh0FV/XM3/87DqnVJyaSIIhBe9WseFVr29Ewd1YOoVvxk1o7upnalhhG0qRVOzzLD6JdgpqC
-	Q7s1/LB+VMf5kdIvQjBQ==;
+	List-Owner; bh=kAjfZmpoMLius2h0qf7UyM5X6PZN8hIm4whLsR5o7qk=; b=dTU+pN9ALVVf28
+	NhehiQsfllWl8B62zHlz4wtcSNyVHh80LjXs8Jk4irA1lqlk5QGlLSBcFt2LY54/a9v30RvomPGrT
+	rKdAw5RIdSR2HrfbLKSOwmrQoQoyy6yMCEmXdQ5W/1GiEq94I18f/Q/+OIK8WzqVCVs8ZzSKIExe3
+	we2NP5nK3PRzsmDmU34dRhVPhQaNXERFExt78yWK6ZQGezFqAY7szGa9RuNum8LaLS3S6Pp/aGFPJ
+	Hp6kJkuKIn0AuhkSDo4JtNdprqlVS29Hlv9anjFzc3SHozWIGgEe0plw0jF35cnTsA5hoUUmiF/Na
+	9QBJAQgTyBRvIT038UqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOBj-0000000F1ud-0yEw;
-	Fri, 20 Nov 2026 12:57:59 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xUOBw-0000000F20Q-2L7q;
+	Fri, 20 Nov 2026 12:58:12 +0000
+Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOBb-0000000F1rk-2xOL
+	id 1xUOBk-0000000F1uS-3qFX
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 12:57:53 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 7BA8BC62216;
-	Fri, 20 Nov 2026 12:57:55 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BBC2C601B9;
-	Fri, 20 Nov 2026 12:57:49 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC5FB11BC00D4;
-	Fri, 20 Nov 2026 13:57:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795179468; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=gU+N4i8XXaaCHLQytPV366YHYYBxjCiyyNiSynfO6vU=;
-	b=K8TjtE2k7nphcv59TzpTsej47eYhvzxLt4JBJkmH56cJ5plr/uYnvKLLKO1G2T2wxlS7fw
-	P/vaPItZXqHYzReUHDkHiJj5H+AjCNcoxEFAQJyw08NIf0byLcGL2tKCNuIxlQWpRlRALQ
-	5MWvPxFEYTyPA+xdTX+0LvmglEZw246V4C8dQWumHZIabIevjjWPkExYRXhbCtId2nmF9A
-	Dj0+Dqu/m2ALl5K2FEsBDzw4ROhTOACi4AJmMx4tVipg87CsZZ+Ll9nF+xxbRM6rzjpvGz
-	v8ZVOCpdyFk3iP4MM+6xLEaJfS3iWipYBUBgq/6VPJU1irpj+QmwBYhU46s4Iw==
-From: Paul Cercueil <paul.cercueil@bootlin.com>
-To: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Russell King <linux@armlinux.org.uk>
-Cc: linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Paul Cercueil <paul.cercueil@bootlin.com>
-Subject: [PATCH v4 1/2] clkdev: Improve clock discovery with clk_find()
-Date: Fri, 20 Nov 2026 13:57:21 +0100
-Message-ID: <20261120125722.209609-2-paul.cercueil@bootlin.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261120125722.209609-1-paul.cercueil@bootlin.com>
-References: <20261120125722.209609-1-paul.cercueil@bootlin.com>
+	Fri, 20 Nov 2026 12:58:02 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AXTnM9PlmRqt6Dog00SVKQH+Kx+dQG5pt/u/m80tYPT+9OgJoSWW2jvo7SQhcV+E8PUMp+ZyHPwCyv91dQb8ON3Ceid1FhSFbTD960lSQCYTYYxF5WD5OFmiPoMQD2Xh1qLcsO6ovg8+DSzEzcCVjnQCx76jotytz09eGH+seRqxekpy6/U7kOTfjN9Y8L86ANwC2y0UpvF+UhxQGUOVNivAbRpNNoKZ9xzNRjIK5EXO0C/6Xf2lXRmjc7mMyjLTHZusVkbM77Ynf/Sx3ugjWeb1jtb7AkUYIP9Xlv5XrdX5NnzJgMJBtoOrijXQKZ9e/4Hpm+rbUGrMUaY/7WEqYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kAjfZmpoMLius2h0qf7UyM5X6PZN8hIm4whLsR5o7qk=;
+ b=uOhw2nb1TO3+f1R1Rz/JNag6cWzaYpho+nZQOJyx8s6VEjod5ltIJCVE3LJDW8SjKr+ajQS+xddbU2KXPk6m47AIx8HfuuzSGhhbgTI5xkKNyyQAP7lnNM+wgtVJZ8+j27b10OUtBw6WExz4f89EjTzFAUleMYRpgW/77MfE8bhB6DkXr9v2pb0KKF1ZY/9AfYOw7fMTLogqtDEDRZCqfBQcOX0u2HsGaVRlAYed3ZzHGmJx0wtFeQ2W4JiNCmIP+afMg7b2aMa6alGkRIP5XyO9P/sVoVVw7QbJWf2JS4eP5nJXW16k+OR7A168vRJ9YTk7usDUiUJT/BD0FlkNZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kAjfZmpoMLius2h0qf7UyM5X6PZN8hIm4whLsR5o7qk=;
+ b=J4zidpMgX99PaAzjsjUG0AQap/FjBlC1PrdkOMTFNMcirrbaoxQkyYquqLnTGL+c7jyJx1BP3MiE9TZrjtHfiIpS9BkYbE39a7nfG0pcyJZa5QtOpo8SpOsi61Gr1a0krM6BQLhit0ndFwM/HW1ZOt1pMbUvL+LAzsfQiUpbcmEvwvdoEggMcov9cK+HKZZprdDEnpfHwxq4Wyop4GXOa83ya2JhENiUUfYzh30iMJux4nZkjTbnmlVXu1A/9BtuEXV7yQTztt+mw8g7nK9gFCLLq9jx0w/KfDbjcR/+dYzNeTrKj7OUKvi5yqI7AjVQaXxAiEGBTxYxOu3mGNYLKA==
+Received: from OS6P279CA0008.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:30::9) by
+ PAVPR10MB7306.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:31d::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.2; Fri, 20 Nov 2026 12:57:53 +0000
+Received: from CPH1EPF0000052A.eurprd05.prod.outlook.com
+ (2603:10a6:e10:30:cafe::a7) by OS6P279CA0008.outlook.office365.com
+ (2603:10a6:e10:30::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.12 via Frontend Transport; Fri,
+ 20 Nov 2026 12:57:53 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ CPH1EPF0000052A.mail.protection.outlook.com (10.167.241.165) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Fri, 20 Nov 2026 12:57:53 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 20 Nov
+ 2026 13:58:39 +0100
+Received: from [10.48.87.222] (10.48.87.222) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 20 Nov
+ 2026 13:57:52 +0100
+Message-ID: <9be9dfec-50ea-456e-8c70-61e4bd9d338b@foss.st.com>
+Date: Fri, 20 Nov 2026 13:57:51 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: st: mark STM32MP23 timer as stopping in
+ suspend
+To: Patrick Delaunay <patrick.delaunay@foss.st.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	"Alexandre Torgue" <alexandre.torgue@foss.st.com>
+CC: Linux STM32 <linux-stm32@st-md-mailman.stormreply.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+References: <20261030102907.1.I0ef2a7ac525ef18fa683368382d93e98cc36ee25@changeid>
+Content-Language: en-US
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+In-Reply-To: <20261030102907.1.I0ef2a7ac525ef18fa683368382d93e98cc36ee25@changeid>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CPH1EPF0000052A:EE_|PAVPR10MB7306:EE_
+X-MS-Office365-Filtering-Correlation-Id: d603dc6e-23ff-4a0b-2c53-08df4705e3d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700016|23010399003|18002099003|6133799003|22082099003|261009223027099003|56012099006|11063799006|261022075727099003|261102123227099003|261021121427099003|261021123027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: XI5yZjqwgJOgFa/vuQf0SWej8k1XfVairC/K5RO+xIaQzh07Kev0E0PnuJZE+Ow9SbNxE+3C5DtlUh1LBUBCkk6QvlxZK0ir48eZFhpOQ+MPErM9/0NQD0+gDIOgfs8o9maZ5QbwkQuPCtyOyM2ogQl7qY546GyJPspG6a0GQatyEGL4qsGRODW4azqUeKAxrg6aVTczLExiBWO5TXW9qZccMM4EleLIDqCOYn1S7TL+h8I36S/qSvmeTQ4POBk2rInU+3coNvGmPPufUrFb8e21PzrHISoph7apMeGO7AbX0n3dWJV+OzaB56/HlqTuckOFpfYVFSRvOwmCBI71+IQwsJTNwFweTeD8KKVDLmruauiHr+/eSyNAv9XTUdiimcE/8qCMKenLJpN7Zmqgjpmc1fwATLNEf0E7kV0DKPSWjy0EAPPgCS/tkebZlY0cMx2qUj4nilG4HXD45q8cEd2FvivLiXs8R7IORt6Dv0+zPBvuGVrYBIY8m5hfzoNOwrvAcxbcx+CTVVxG46xCtdQ4xDnozHWr4Qn0UdcNPqSQdEv42PJ41HufjThm8DeAKZ1wlm7NS6WL16l+FY/VQytmTBHjTNP5USZhzfSMBj9yJeZrXARtTttiEfmghrNitvQmHeWXtA93usm6E8eZF5PPlI7/RBegbangNRiPSydhS7Xc9W/NNZyaDftjP2oEItvWxedjuB78JJc37osetA==
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(23010399003)(18002099003)(6133799003)(22082099003)(261009223027099003)(56012099006)(11063799006)(261022075727099003)(261102123227099003)(261021121427099003)(261021123027099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: p/jDrmYU+T1aKMoLPdPyNe/2lMVoqJwcHil+DNyiXbai7gG8fFj1b2XFLp4PZbX9yUsUdVCRMYPidEHQYy7B65v00+NqFfGoX4PIsWQSoScifPrPDLFQDyfIa/fIW69uetPS2idzmaJ8hFK2SpoY94AsndRuxZNhg0phS8CGQRWupwkJ1mxGux6p8yRQtEodkOWoL7P7JhjxixaBGbdm+xpprU6N8Bm8kr+xJXUnpez2l+mdSwWTGDtNz7uPHS3COhza0uiNCvXdQIxsk5gwlWw09mKqaQj95bH0ZkMyoBppqLZdjdQHmVULGgoqyIyOSgVXdkucqRLlMRTO9iRm9fPGiNno3syQBlwclHR212/gV4d51YF/TR3isGZj9gPCCAhVKO0SbQNCnVAB/+hK4c888o+CASbTJbq62Zq2uzyAYxAAj5f4vvMUmdT8TQBC
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 12:57:53.1927
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d603dc6e-23ff-4a0b-2c53-08df4705e3d9
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: CPH1EPF0000052A.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR10MB7306
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_045751_896549_785953B1 
-X-CRM114-Status: GOOD (  12.83  )
+X-CRM114-CacheID: sfid-20261120_045801_204619_5503998B 
+X-CRM114-Status: GOOD (  12.01  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,58 +128,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With a setup where a clock provider registers a clock with a device name
-"mydev" and a clock name "myclk", calling clk_find("mydev", NULL) would
-not actually return any match.
+On 10/30/26 10:29, Patrick Delaunay wrote:
+> The generic ARM timer, based on STGEN, stops ticking in low-power
+> states such as Stop1. Replace the always-on property with
+> arm,no-tick-in-suspend in the STM32MP23 timer node, matching the
+> STM32MP25 configuration.
+> 
+> Fixes: e9b03ef21386 ("arm64: dts: st: introduce stm32mp23 SoCs family")
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
 
-Update the code so that we can support this while maintaining the
-existing behaviour:
+Reviewed-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
 
-- clk_find("dev", "con") matches in order of priority ("dev", "con"),
-  ("dev", *) and (*, "con");
-- clk_find(NULL, "con") matches (*, "con");
-- clk_find("dev", NULL) matches the first case of ("dev", *).
-  Note that in that case we don't handle wildcards for the device name
-  or it would end up matching everything.
-
-Signed-off-by: Paul Cercueil <paul.cercueil@bootlin.com>
----
-
-v4: No change
-
-v3: New patch. Imported from
-    https://lore.kernel.org/linux-arm-kernel/20261103084915.8405-1-paul.cercueil@bootlin.com/T/
-
-    Originally sent separately to go through different trees, but the
-    context was lost which didn't help reviewing.
----
- drivers/clk/clkdev.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clk/clkdev.c b/drivers/clk/clkdev.c
-index 919fc680ae4d..ee6c0afd6ec0 100644
---- a/drivers/clk/clkdev.c
-+++ b/drivers/clk/clkdev.c
-@@ -53,7 +53,9 @@ static struct clk_lookup *clk_find(const char *dev_id, const char *con_id)
- 			match += 2;
- 		}
- 		if (p->con_id) {
--			if (!con_id || strcmp(p->con_id, con_id))
-+			if (!con_id && !p->dev_id)
-+				continue;
-+			if (con_id && strcmp(p->con_id, con_id))
- 				continue;
- 			match += 1;
- 		}
--- 
-2.47.3
+> ---
+> 
+>   arch/arm64/boot/dts/st/stm32mp231.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/st/stm32mp231.dtsi b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> index fefbf6f4f153..a7970fdebec7 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> @@ -143,7 +143,7 @@ timer {
+>   			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+>   			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+>   			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+> -		always-on;
+> +		arm,no-tick-in-suspend;
+>   	};
+>   
+>   	soc@0 {
+> ---
+> base-commit: c339f4010dea8b0d754f84ace70cd1b089878ef8
+> branch: sdfsdfssfdfsd
+> 
 
 
