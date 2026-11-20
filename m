@@ -2,177 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B771F606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9262760A2606
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:27:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=17A2Qfi4;
-	dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.a=rsa-sha256 header.s=proofpoint-05-2026 header.b=gNeleXk1;
-	dkim=pass (1024-bit key) header.d=ticloud.onmicrosoft.com header.i=@ticloud.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-ticloud-onmicrosoft-com header.b=UIvn2q7i
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1k59OiHf;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=a+l/+NdJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:CC:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pyDcnrlS5/irH7o6JfuzWdo80KPJ0w+BAvdQtGaE/+o=; b=17A2Qfi49FjqCv
-	6kGOZ7LIA/r7FA5qhlu9afBn4VP/gPpFDNqnWZrAsvGVDwdI6Bafrble+xxMae5KP0cTkKWm3ZckK
-	akglCFIdRB5GFuKC0onv+n/fw222goqU7BspMS5jzhZjsF9N7OIvgW3AVQXpYs8PvuxsyI5s1TCXB
-	INrce1fEiBYe9k8Fv9Vc/l07L2TDtogK996uo54BmKSNqyYbF7wHaQ1Pz90ipSxn76QZN7IDVhFxR
-	431/ikHfPAOB2XE8IpCYMd1Xn205HtCmdOCMqCO2nZ56sPdTHzro6RFfkXu6RodC8s61vKQ2+YcDe
-	qofqrMsj3r5J0BkNyKPQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AcAKXow4k7nAsz4NvTf98ZQKCNLbRCZ9q0bbUe/mxCg=; b=1k59OiHfYsJJQElFtjY/WSGgyd
+	MQ00AAirShjSd/xb7hVBq5Nu57hkuuE/zOzOZs9M8P1wGw3jD3QOUC2CFnHn786qFNQher1a7axPo
+	zb3HoF+GR+pICKRdKOWBnVjA8mkyvkhXqCT0ux5z2UA0NTA7b0SEKndhhYIBF8287gvP+LKJQ2fUY
+	alzs6IVODHVHlr8fJz/K8YGsK6jj15iklalP8axca8H5Qxw0Xgf2fzYX5F5IVGV54B/D/ucdWZIif
+	brcZhbubp3a1s+dFwmMKiL0n6vzf8rI41YzgB0T3zHOjbo6vYHKPIMv0CPEIxZ1HdYNxM8LfLIm0Q
+	GyT0VL3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUNhT-0000000Ex1j-3Dpy;
-	Fri, 20 Nov 2026 12:26:43 +0000
-Received: from mx0a-0002e601.pphosted.com ([148.163.150.75])
+	id 1xUNi4-0000000Ex9R-4255;
+	Fri, 20 Nov 2026 12:27:20 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUNhR-0000000Ex0S-18Us
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 12:26:42 +0000
-Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
-	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 6AKCMsW7372358;
-	Fri, 20 Nov 2026 06:26:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	proofpoint-05-2026; bh=pyDcnrlS5/irH7o6JfuzWdo80KPJ0w+BAvdQtGaE/
-	+o=; b=gNeleXk1mKzp+/7DmL5U9R2Mb7L2JzYSzeqBmF2/jk9wAfbZjkAgwLEDO
-	8bYFX2L9a75HVT93tssn8vaqS32CNAkNkLNZ1HDH0Ys8FZREWHT2kKqwY9y0uuXF
-	D4HJrDKDoP1KNchpstIZRUp3s2W6G/2gjo70WD6OHQmha6rxh7jps6CSIUltyWoe
-	7f2A3MqF1BpFcyEH9d4i9IVUFUO8TXzVBQjrEE+6WuAabvDxTyLy2iytY9Dw+xcO
-	//yTPFtBPqKm9D9mDulADjnkfAswtAhzel5QIuACHMQbKL0tJsIdqP38FDcnd82D
-	OguntI9Rv2iOd7gAQkQx9RBoURS4A==
-Received: from co1pr03cu002.outbound.protection.outlook.com (mail-westus2azon11010042.outbound.protection.outlook.com [52.101.46.42])
-	by m0384305.ppops.net (PPS) with ESMTPS id 4j2k2cgwv1-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 20 Nov 2026 06:26:31 -0600 (CST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=p9LJHoWtLODI/7NF8BhiQqkMCz3Xux+H25yrfieoQYaOIbXpdPaUPHwsGPylPHT187i6TRU/hhOnbGPxMNtc4wUXjFJX7yUTZ1ZGeeOHlquSCHqBjMigvpISfK7GTTaii8axvYDZxfjk0w26Yu5HkM+sdQY57zOLYnbv4qA3VlmMCL/B250q/UGRBT01gLYRR2tK9WHcPt29ak1WvHGYdwzghkdQ6i87EHx1ZDO53dwiAvKurCDFU+VHQlbO25fQV5gXWguZiiHfdnaP7RBLQ6Jlx8TbtiA0jlAJndT/7Ur9yoS4irTIWRUJO8tVepPhGvqGyt+FELzxeLHD8ZCTcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pyDcnrlS5/irH7o6JfuzWdo80KPJ0w+BAvdQtGaE/+o=;
- b=YigJBMR4U1CwZOsj/s6G7EwQXt9pDQPbGC78vQj2I1LJ1O64ccADCarBBDn6eT7DZs6GBBLSAFsyev0TQW1wkFZ+HG4FQYCPaY0Ce2PwHph/J7Ak43csVu/SZJtqREPVB3gFTqkokgX+WHJr1XW9QTqSEAGk8dbxy2W6oK3VYYSBrzHILHfcnuXXBZilC0H8Y03QrFodDO10md0ncOctnqdk/n2XXN6QDZwqaW81TMtRteA1QE2NXwNdStwwv8Czqa8e5TAeVhD7kWucn4Sk+Ibvz+X919AVw9Ax3gkl5lrbkxfsaB4rhgL3DtO/Giv1hUXkRIi6baOBKS4ETIwmnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ticloud.onmicrosoft.com; s=selector1-ticloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pyDcnrlS5/irH7o6JfuzWdo80KPJ0w+BAvdQtGaE/+o=;
- b=UIvn2q7ipJhy+mdcF0mFwm1DMIjkDltav7mwRBF6Gyw/mkxc+AKc61EccND6JxZRHqWNhfljyDZxkq9QROm/nvHfOtmi+Ed7EwcMgk3HP1ld8M4wHWAjwY279I3OsQW2YUUzHaHnvgZyNjF1G13hygmMmzT7GmDf5qRCS1lYC74=
-Received: from CY5PR13CA0043.namprd13.prod.outlook.com (2603:10b6:930:11::33)
- by CH4PR10MB8196.namprd10.prod.outlook.com (2603:10b6:610:246::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
- 2026 12:26:28 +0000
-Received: from CY7PEPF000000F6.namprd05.prod.outlook.com
- (2603:10b6:930:11:cafe::4e) by CY5PR13CA0043.outlook.office365.com
- (2603:10b6:930:11::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.2 via Frontend Transport; Fri, 20
- Nov 2026 12:26:28 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 198.47.23.194) smtp.mailfrom=ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CY7PEPF000000F6.mail.protection.outlook.com (10.167.247.154) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Fri, 20 Nov 2026 12:26:27 +0000
-Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Fri, 20 Nov
- 2026 06:26:14 -0600
-Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Fri, 20 Nov
- 2026 06:26:14 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45 via Frontend
- Transport; Fri, 20 Nov 2026 06:26:14 -0600
-Received: from [10.24.68.238] (uhda0492258.dhcp.ti.com [10.24.68.238])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6AKCQB4l2096492;
-	Fri, 20 Nov 2026 06:26:11 -0600
-Message-ID: <e3ab607d-577c-4e34-bd76-565c6e640f03@ti.com>
-Date: Fri, 20 Nov 2026 17:56:10 +0530
+	id 1xUNi3-0000000Ex8o-2YeU;
+	Fri, 20 Nov 2026 12:27:19 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 18F424417F;
+	Fri, 20 Nov 2026 12:27:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 174611F000C4;
+	Fri, 20 Nov 2026 12:27:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+	s=korg; t=1795177638;
+	bh=AcAKXow4k7nAsz4NvTf98ZQKCNLbRCZ9q0bbUe/mxCg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=a+l/+NdJlosvbvrFz8skxFt+7lH/BYqPvJI/SIcdwvR35/YhtHI7xEaNR9/SQwDck
+	 OoIenHKHOWWbZUzANxx/C2LIM3aPEhDag+j8O3HOCKVuRuQ5ofCbLJQGgQsjZzwR+r
+	 ooAKISbCoLcv8rQ3xxP8xWsrEuXt8CeRSaJKKObE=
+Date: Fri, 20 Nov 2026 13:27:16 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Fangwen Deng <fangwen.deng@mediatek.com>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	jarried.lin@mediatek.com, vince-wl.liu@mediatek.com,
+	justin.yeh@mediatek.com
+Subject: Re: [PATCH] usb: mtu3: cancel EP0 requests to prevent use-after-free
+Message-ID: <2026112053-curtain-astound-bf4e@gregkh>
+References: <20261106080140.342107-1-fangwen.deng@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j722s-evm: Fix USB2.0_MUX_SEL hog
- polarity for Type-C
-To: MD Danish Anwar <danishanwar@ti.com>
-References: <20261120122303.38795-1-danishanwar@ti.com>
-Content-Language: en-US
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <20261120122303.38795-1-danishanwar@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY7PEPF000000F6:EE_|CH4PR10MB8196:EE_
-X-MS-Office365-Filtering-Correlation-Id: 54f0b317-f9e5-4fda-0917-08df4701801f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|36860700016|1800799024|82310400026|10067099003|261022075727099003|56012099006|261009223027099003|261021123027099003|261102123227099003|261021121427099003|261026121527099003|18002099003|22082099003|13003099007|3023799007;
-X-Microsoft-Antispam-Message-Info: DByoi8lZ/3Eu7tz2Uf+yWAQdVl6xV1OFa2DnMxXPmkKLcGb/IfPCqyypmjhT30PoF3QAr63j8gKMYGyhUitPGCeUwJa3G/tsToUVLiWBVcXSiOV0gygb+wk9YSgu32xa2MmbdBJ2dv9VaezgGyyBtpIhlVU+91Gdf0auY4mgHj4FgNFQ//Js7NCTobBO9Sn+COyyVSp4hrFOxpXXu7xd2Qv4+B1UKD3paGwnvQu8L4p+WbKN7pJAUjLgGClE7RwW1U0cV5kNhqlX4PLs6yaoceAFg2TUOhTV41hHlckr9NtKkxSki1C5TOr1h7jY3+MPbKoX9X6tAdhpOVvPeQ1OAM98hWsdi1Z8rbi+oysQua+stQgZhUlz2pbA7n2XGYZn5ICodYzUs5vsIlDleyTp/Khj4Xy2UZdnx6auR1WFOI8SLSuUwWsVfHg2b0Rj7tFoWc+8fu+0xO+PmIwKOUPuW70SdcT+lGNb5tiyeW1DfoiF5O076R9Yyg5zVOU3krG/zAWwzx9hsGZNqwXi2TAOuEQiAll8WhvRvlXHVsMdEeLsyvh5JraiK+3VWxcmtMO74CJE3nwBINw9IX0F29gelZDWAzUg84tiJCHNKCOf+XC58xyUKgbdJRxVujFX8MEgEY918nkjYHdfw5bzUIaRDKktKFG3B3RdlCKkzeossFP0Bw7jMC75F2efmbUdcdvc5cV1UbneTt/e7ktIcJ4Kqw==
-X-Forefront-Antispam-Report: CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(376014)(36860700016)(1800799024)(82310400026)(10067099003)(261022075727099003)(56012099006)(261009223027099003)(261021123027099003)(261102123227099003)(261021121427099003)(261026121527099003)(18002099003)(22082099003)(13003099007)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: gPlt8gvE2r/ZYHi13jogT6WOfMxoxsg9L6ZWAt6rFC5lYby/X3BWrvr14i4O1P4kCW3DY1Eerp1fZ4Y7bvBCNyPfUOWhBgYy7p0wntPb5m1HsSFJEzxRiHTVI/0Sf0wX78ZSG0IHLZfOeUtFxx7osIDGskJ1Zyuj1D+DFMbv2pXrKFSOYDmc9M6e3/30BuGA/qfIBLcN5/Wwz+yo9rWWfaYMkaUx2pwsGiQJXPV9Yror8iFrKMMoH9Djro12YYRclMZQCgpevijJsL+APSNdP7iyiDFVcyOEFnkwEUtP+8r9EZwnNKIkKpjoWFz4iHbcJLEKpoJkopDcVDhThDnZJ5bqodCrp3mom0Clk8R48QbLWwRvvhtmwmuQEbeqx8GluzrbnQXnRN2z4DC0ZFduwChW7FWtFG1G3Y3mP2QJj751oci8444vfIHcULWwNCS9
-X-Exchange-RoutingPolicyChecked: gJY9gCEk1dPNq24aiOiYcLoIPmUEFoQZ7o4QlNwpTOff8fjWYZ39kTMSktw9X51vu8LFFgqLH5lkmqDhL4qaAfDsEPqH8Ije8jzTOjGylcL95YIgRXI3wIUdlrEDI+3FyImoLP6arW3LFdsKJVk6zOa3Yi5MEXTP/gMtDm6bxBJ+lA0kxfxRWqqqQh6J6zDkewjlxYbEu3SLitcogqGIyQAw4hoP46bSYYe8qqMtaCzGG2KrVFP7nYNQzPctn3xeNNUBj0M0qEGZMji6Z5kjSpsWv5ifFujpdn8xA95VgoHYhD9Ek0EWbV5TsTPMy6UOHUX1WQ+vABZjNp6TwI6Q5Q==
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 12:26:27.9063
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54f0b317-f9e5-4fda-0917-08df4701801f
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY7PEPF000000F6.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH4PR10MB8196
-X-Authority-Analysis: v=2.4 cv=NYZzRGD4 c=1 sm=1 tr=0 ts=6b003c77 cx=c_pps
- a=kAM6CeFpMxeFc5AoNv8A9w==:117 a=WotqVVQAdb04rnGuttW3Kw==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
- a=s63m1ICgrNkA:10 a=AlMIdn_sM9wA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Z8NIEmU8O1QQgoT56wFK:22 a=taLDd7a_hP9WKsMzeGRc:22 a=sozttTNsAAAA:8
- a=5KZdJ7p0Qn4X2XobdQgA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDA0OSBTYWx0ZWRfXye87LbfrTcIN
- GvBwMsyfhGyrotXePfT10P7fvIKQfSNOp3M+XeyUG9owq8Z9H7qBqos+sK2lOcqqm4mwx/Zy+6l
- gzLodDM9FoyPqr7m1cuu0kejhiB+liMPlGeF5GPrSxtLhkbwrS1T39sbshmfGDACLQGesHIOh1P
- VV6JAQrU9NlPp2P1APwS12uU838uNXGof/j8dvvnFXlml6GNdJqKI26QxpBBIY79GM4a/zNJZFn
- wg41ptNNPD69WzdVA3i8kXb3Snmm7+qFotGfSN7qkAd0yLVzxCspzd/9H1k04n5w4pKRXhtIsa+
- ghH+/T9sEWFLrB68dH81WhNPxzUmomuSOf9LcHfdwnFKzcT3Q4cajib5yaET46w3/V4KCn69YL2
- 27DBh54lRBuepjVL+83T+gUjEXzBQPhHZyNkov5QkvcGf6M11rMy1ur1UoJxW9PE8GD2fVlC05t
- kjfpPJxgKdX4wGBEwpA==
-X-Proofpoint-ORIG-GUID: Fs354NB-HI5JovHEDM5zcm7oim2OwCvc
-X-Proofpoint-GUID: Fs354NB-HI5JovHEDM5zcm7oim2OwCvc
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDA0OSBTYWx0ZWRfX+zqoG4/v5osD
- Y6IA6ImkthE04Vfr/92zZAAjHqabKFww5rl/nbbbTLLqao8DpfCQVS6VmvIjBKHodD0CpFJaoGH
- yTCTzDomkHlASHeYTOqDoYUygunIx0c=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-20_04,2026-11-19_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
- phishscore=0 spamscore=0 malwarescore=0 clxscore=1015 adultscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611200049
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_042641_320258_EB656B1C 
-X-CRM114-Status: GOOD (  18.57  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261106080140.342107-1-fangwen.deng@mediatek.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -183,61 +69,84 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/20/26 5:53 PM, MD Danish Anwar wrote:
-> According to the "USB Type-C Mux" section of the J722S EVM Schematic
-> within the Evaluation Module Design Files package [0], the Type-C
-> connector is connected to USB0 when USB2.0_MUX_SEL, Pin P05 of GPIO
-> Expander 1 (I2C0/0x23), is low.
+On Fri, Nov 06, 2026 at 04:00:58PM +0800, Fangwen Deng wrote:
+> mtu3_ep0_dequeue() always returns -EINVAL and leaves the request on
+> mep->req_list without unlinking or completing it, so an EP0 request
+> can never be cancelled.
 > 
-> Commit 65ba2a6e77e9 ("arm64: dts: ti: k3-j722s-evm: Fix USB gpio-hog
-> level for Type-C") changed the p05-hog from output-high to output-low
-> while keeping GPIO_ACTIVE_LOW. As the polarity flag is applied before the
-> level, output-low with GPIO_ACTIVE_LOW drives the pin physically high.
-> USB0 then does not work on the Type-C port: with the gadget bound, the UDC
-> stays "not attached" and the host sees no device.
+> FunctionFS assigns its temporary read buffer to ep0req and waits in
+> __ffs_ep0_queue_wait(). When that wait is interrupted by a signal it
+> calls usb_ep_dequeue(), does not check the return value, and its
+> caller ffs_ep0_read() frees the buffer on every exit path. With
+> -EINVAL returned the request stays queued and MTU3 still owns it.
+> When the host then sends the OUT data stage, ep0_rx_state() writes
+> the received bytes through the stale req->buf, giving the host a
+> content-controlled write into freed kernel memory. That corrupts
+> whichever object reuses the slab and can panic the kernel.
 > 
-> Use GPIO_ACTIVE_HIGH with output-low, so that P05 is driven physically
-> low as the schematic requires to select Type-C, and the devicetree reads
-> the same as the schematic.
+> Implement mtu3_ep0_dequeue() following mtu3_gadget_dequeue() but
+> without QMU flush/start since EP0 uses PIO: validate the request
+> under mtu->lock, unlink it once and give it back with -ECONNRESET,
+> so ownership of the buffer returns to FunctionFS before it is freed.
 > 
-> [0]: https://www.ti.com/lit/zip/sprr495
+> Cancelling the request that backed the data stage also leaves the
+> transfer unable to finish, so retire the aborted transaction with a
+> protocol stall. That returns ep0_state to SETUP and stops a later
+> ep0_queue() from reading this transaction's leftover FIFO data into
+> the next request's buffer. The stall is skipped when the controller
+> is already powered down or no data stage is in flight.
 > 
-> Fixes: 65ba2a6e77e9 ("arm64: dts: ti: k3-j722s-evm: Fix USB gpio-hog level for Type-C")
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-
-Thank you for fixing this.
-
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-
-Regards,
-Siddharth.
-
+> The same stub is why functionfs_unbind() cannot cancel a pending EP0
+> request, which deadlocks against the FunctionFS thread holding
+> ffs->mutex.
+> 
+> Fixes: df2069acb005 ("usb: Add MediaTek USB3 DRD driver")
+> Signed-off-by: Fangwen Deng <fangwen.deng@mediatek.com>
 > ---
->   arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/usb/mtu3/mtu3_gadget_ep0.c | 55 ++++++++++++++++++++++++++++--
+>  1 file changed, 53 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> index c6486cf5a05c..80a915925c1c 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> @@ -586,7 +586,7 @@ exp1: gpio@23 {
->   		p05-hog {
->   			/* P05 - USB2.0_MUX_SEL */
->   			gpio-hog;
-> -			gpios = <5 GPIO_ACTIVE_LOW>;
-> +			gpios = <5 GPIO_ACTIVE_HIGH>;
->   			output-low;
->   		};
->   
-> 
-> base-commit: adcad7f4e6332cff3d6d7165f41584899f598534
+> diff --git a/drivers/usb/mtu3/mtu3_gadget_ep0.c b/drivers/usb/mtu3/mtu3_gadget_ep0.c
+> index e4fd1bb14a55..73a1af8b6c65 100644
+> --- a/drivers/usb/mtu3/mtu3_gadget_ep0.c
+> +++ b/drivers/usb/mtu3/mtu3_gadget_ep0.c
+> @@ -857,8 +857,59 @@ static int mtu3_ep0_queue(struct usb_ep *ep,
+>  
+>  static int mtu3_ep0_dequeue(struct usb_ep *ep, struct usb_request *req)
+>  {
+> -	/* we just won't support this */
+> -	return -EINVAL;
+> +	struct mtu3_ep *mep;
+> +	struct mtu3_request *mreq = NULL;
+> +	struct mtu3_request *r = NULL;
+> +	struct mtu3 *mtu;
+> +	unsigned long flags;
+> +	int ret = 0;
+> +
+> +	if (!ep || !req)
+> +		return -EINVAL;
+> +
+> +	mep = to_mtu3_ep(ep);
+> +	mtu = mep->mtu;
+> +
+> +	spin_lock_irqsave(&mtu->lock, flags);
+> +
+> +	mreq = to_mtu3_request(req);
+> +
+> +	dev_dbg(mtu->dev, "%s : req=%p\n", __func__, req);
 
+Don't add "trace" calls like this.  And __func__ is NEVER needed for a
+dev_dbg() call.
+
+thanks,
+
+greg k-h
 
