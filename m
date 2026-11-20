@@ -2,109 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D14C606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A84360A260C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AKcV0zMT;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QHHehkhZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i6VXUars;
+	dkim=pass (2048-bit key) header.d=fb.com header.i=@fb.com header.a=rsa-sha256 header.s=pps82601-s2048-2026-q3 header.b=rRMx4XDW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qZ9jzXfe0GCatNSfKrBc0n0QBd0Pvv8QJi5/jcS/n8w=; b=AKcV0zMTEADEsL4Z9eCwSJTTBV
-	QuJuajNPduhi9os6nAwbce/SN85Smn3NPNBwt/Wcw3+HusjyRyiMRrLyiiyYQuCWRCOywGBxk4PWt
-	nD9eCQVzerT0DxGqT4NoFRe1Z3TOwGg0MnZqZL8e4je5Z8TejFNRC+BWTfhLR2C8PEORWXzCGkStj
-	kK/eo78qd+k9ItVAuv7dt/DaLvcYyX/WECeP9M4Ny/NI4zqHxsXsved81qChoEepHGkmqevEt+k1T
-	BLL56EcfaGgvEXog0UouoNr7vf+jXhlw0MXbfCeR7iZMnG4FBBstXOT3L0vD41FZ5KHJ9p7uOPkXP
-	8XQu8cUA==;
+	bh=h7926tjNaBzEKmN+2n0WSpOiLds05PYiq+BYnAZbPcM=; b=i6VXUarseVpUVvSnxMHBNFyOsG
+	Je3HyafP+PrQ4IDSQQCFrfwE3o0p6jFcgZ1x88mAgKLocYBtBBIrDjQ0IrFqsUBr3NtghZX1EN5xW
+	DrN3S1SeCGs+hZHGGVM8fVdHH4vZe/pkA90sbKOdmT9JR4w74IGkbMhkXE40X0ZVQOb/DDAaJgnje
+	G2uuG58+Ag9jEIWdUGxBqsvuS+fpdT0XyjHdB6f7GMEEIi+znCZjD7OLADd3qvN/GjS0I2PUIwMEy
+	t9zF2dJDsqS0aIAqJS379TjBLX1OA4lkX+MufQI92e9e439HeuW4ZZOvNaalFxU4fOxL/g0YMQhS6
+	aCIJQ2fA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUTkw-0000000FzHE-3Q6l;
-	Fri, 20 Nov 2026 18:54:42 +0000
-Received: from mail-ot1-x32f.google.com ([2607:f8b0:4864:20::32f])
+	id 1xUToT-0000000FzjF-3Dks;
+	Fri, 20 Nov 2026 18:58:21 +0000
+Received: from mx0b-00082601.pphosted.com ([67.231.153.30])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUTko-0000000FzG6-2PoX
+	id 1xUTo8-0000000FzdX-0wL2
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 18:54:41 +0000
-Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-843cf077f10so1618028a34.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 10:54:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795200873; x=1795805673; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=qZ9jzXfe0GCatNSfKrBc0n0QBd0Pvv8QJi5/jcS/n8w=;
-        b=QHHehkhZdzzpr/wUvtPtxGwpHP3v/MsATwzdi6m0gTPK1BYiQ7NDQ9Wb8XCzFkSpHo
-         O0CDLMB1Gf2XZrBlA/h/dwkk9WVjsWE4ixLoHKWx7JO8IDWXaHmXdI/FJAj/JYHtXVSr
-         8//EkvwhFfVIew2R2jmRj7lL4FqjkWdTTBDZ58brScGHb06WIg13AeOBiDrwExCzEtrZ
-         VXx4Dd4uORHBkVT2yhiJECwqfZ0EGiX81ub5k4ip+yOtzaU1jtDGVOjKPbuu7G/lRx3n
-         NFnlyKE5XNnpW9kSstNpgLAvz21RJL9+IZgDxcN4Wi02KMuxr8Ca4It0CReKAWL3frUU
-         iqgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795200873; x=1795805673;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=qZ9jzXfe0GCatNSfKrBc0n0QBd0Pvv8QJi5/jcS/n8w=;
-        b=Q4d3mKnD8PiT4CxRXvzkkO0pOlQ78DV5XOYH1z8lIvtC7ykaqYx5tRGwFb1q68SInq
-         qU0g1G9wQs9qX+7UhOsmvnM62XcVP8LGMHIT2wTCLHaZkHA+ZXSwVFL44yUL/jD0D6PL
-         WYXK+yUN6Dht5nnawIB+sZR48cey1LC4NyBUGRdhjJ1t8ce6RGKHvJajOUY/r5DIkn6h
-         1rgRkYVwg6rdVoNFuGIjmLVTRhItiHLIOlkyVw4o5Cr10vOxdoIV+6DSioSoAigxmxkc
-         Q+RWRrOHYkKwTEA3tM6EdfCGWJiQDTY0gap11O7vQfOAwiBiDTzqtqOuYeO/OD78t9u/
-         T7Ug==
-X-Gm-Message-State: APuU4Z+0HIrYIc/QXAFy+nDlA6g7p39wRCv9EKvUWHrWPxXMd6hVJzO8
-	EbAKKPlwqaBroqA3ASRydzb944aemyHvwso9pKRpfF63byDuAFIbAaqG
-X-Gm-Gg: AYBFou1v5BcibEgA3amw2CZq6pA/iK3ipuaNlSXka+b5AtOyW0wMzrFjzdi5EeDgfGW
-	lCgFLBfvKFqqCNYXLds0rm4nEKPnggurHxljSfADMK3RwKhKQzHcVO0dvknB9ZeT1kAFd7Cj2t5
-	OLvqIAhwhF5XY2A12ZOYv+TkYmL32nOFSXyJT3ObBX6BNnRB27yg3E3/aA8XP6zpUXpN5p1Vn7a
-	/eN9rWMJNS4Q3UnOdkjo41juFw/A7owXEZ5MB/plZxxfVU2wVtQcvsO52eFT+jGPu3pmZAghPGx
-	NfRCdSq5e5VH+VJpexI1JRWjIbtAOYYIDEp1uRk6wBf5FMnCGQy5ModfYQ2RwkUGKLDU2q0mU1W
-	OdgfNvmI/RzomELOC54WwGDZ2iFiQPDnWbxt75rMgZXCzawpDKEaa17AhpUr/cozUq2Doj+pbOT
-	xKdDiKiFo3PG+rOPDKISzq/5WbTpJp/W0tNwDdgUfjW+K3s9NHaUQTpWhT83dZfnQzHVMW5HLoh
-	cR6ZTpofXVpDusCOWDv8l8uwtJw8wg5u6dRDtxS7NvbaOjfWh4/55muvpAeEl6UGYvKR6V45py7
-	X4OSBAzXDH3tgPmNq12exXLYZnP8gt9BtoXkLgVmDehzX+7l4bfTGIm/wn0XOTDw+9O2snu32f/
-	Zf7R9Ed4ko3ISkrRcBsaXrZ26267pQq4rTQxwvSGDTqDa0dylzig1dRDQOnf9dM4Ac1wG/GIPjK
-	gNpM6iP3KfYYr8wcfRjOVnYc6fvBG9y3yL50YXNUIMKZTdNyUhFyU=
-X-Received: by 2002:a05:6830:2709:b0:862:c9e8:576e with SMTP id 46e09a7af769-863158eca20mr4479904a34.21.1795200873213;
-        Fri, 20 Nov 2026 10:54:33 -0800 (PST)
-Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-863168f6d9asm2812296a34.17.2026.11.20.10.54.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 10:54:32 -0800 (PST)
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Fri, 20 Nov 2026 11:54:28 -0700
-Subject: [PATCH net v3] net: stmmac: preserve RX checksum capability when
- offload is disabled
+	Fri, 20 Nov 2026 18:58:09 +0000
+Received: from pps.filterd (m0109332.ppops.net [127.0.0.1])
+	by mx0a-00082601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AKH3dMK2027799;
+	Fri, 20 Nov 2026 10:57:39 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	pps82601-s2048-2026-q3; bh=h7926tjNaBzEKmN+2n0WSpOiLds05PYiq+BYn
+	AZbPcM=; b=rRMx4XDWXaiqjhY6GFvQvVY4lCMI6yz9d5r9gYiupbG0U2JveFm16
+	rOfL3L8aY8j2khQNOaJRNZS8IYqgj+y8f5BBMBa0v7Q6LhRzB2VK+YW+ViQ8ozp5
+	seGFB95SZRpEnKNIvw1Jar0x8g+GJp0+KAhilCz4FOK3C3QcjttgBdGkiHNNe1sc
+	LZmrZRSgy7CQlORdEzhhJ9JljNTCvxW7SmEdMr4LOnYEz+h3s8BDwQ/8FnCzitFh
+	4d7oLYLXw/Pm92e8ttCMdetGrnbCS5lEP071c+KYOXrZ4w0rFEFp5KB5qO1A0m91
+	HKdfRUCrr6pxJ3U/Yfe8lU5CrkiJS7RUQ==
+Received: from mail.thefacebook.com ([163.114.134.16])
+	by mx0a-00082601.pphosted.com (PPS) with ESMTPS id 4j2t99ryh3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Fri, 20 Nov 2026 10:57:39 -0800 (PST)
+Received: from localhost (2620:10d:c085:208::f) by mail.thefacebook.com
+ (2620:10d:c08b:78::c78f) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.56; Fri, 20 Nov
+ 2026 18:57:38 +0000
+From: Amir Ayupov <aaupov@fb.com>
+To: James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
+        Suzuki K
+ Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@arm.com>,
+        Alexander
+ Shishkin <alexander.shishkin@linux.intel.com>
+CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Randy Dunlap
+	<rdunlap@infradead.org>,
+        Shuah Khan <skhan@linuxfoundation.org>,
+        Daniel
+ Pereira <danielmaraboo@gmail.com>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-perf-users@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v6 1/4] coresight: etm4x: Fix event count decoding
+Date: Fri, 20 Nov 2026 10:54:31 -0800
+Message-ID: <7dbbb1306371bed56e3af4dabf88d3c18f471dd8.1795196854.git.aaupov@fb.com>
+X-Mailer: git-send-email 2.52.1
+In-Reply-To: <cover.1795196854.git.aaupov@fb.com>
+References: <cover.1795196854.git.aaupov@fb.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-submit-stmmac-rx-checksum-capability-v1-v3-1-e9e1fd85f380@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/5WOQQ6CMBBFr0K6toYWKNSV9zAuSh1klAJpC4EQ7
- m7BDUtNZvN/ft6bhTiwCI5cooVYGNFh14aQnCKia9U+geIjZMJjLhhjGXVDadBT541RmtqJ6hr
- 02w2GatWrEhv0Mx0ZhUqINMuLQkpOAq23UOG0m26kBU/u3zLwXqD95thmNTrf2Xn/Z2T7+G91u
- OBXXFQqEYUs4fo0Cpuz7sxuHfmRm//O5YEbZ7KSqZQ6KcSRu67rByFuJbRNAQAA
-X-Change-ID: 20261115-submit-stmmac-rx-checksum-capability-v1-ef6645788992
-To: netdev@vger.kernel.org, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Giuseppe CAVALLARO <peppe.cavallaro@st.com>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-sunxi@lists.linux.dev, James Hilliard <james.hilliard1@gmail.com>
-X-Mailer: b4 0.17-dev
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Authority-Analysis: v=2.4 cv=LvQHWXdc c=1 sm=1 tr=0 ts=6b009823 cx=c_pps
+ a=CB4LiSf2rd0gKozIdrpkBw==:117 a=CB4LiSf2rd0gKozIdrpkBw==:17
+ a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22 a=7x6HtfJdh03M6CCDgxCd:22
+ a=xtH7KyWI9dI7BmFOsl-x:22 a=7CQSdrXTAAAA:8 a=KKAkSRfTAAAA:8 a=FOH2dFAWAAAA:8
+ a=nO7UQp2L8s1CClaFxKwA:9 a=a-qgeE7W1pNrGK8U0ZQC:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: pkagRf47_O5J1yTQE88O4qQ0dMsMkujU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDA3NSBTYWx0ZWRfX7Le/D8bVFi9j
+ rmyhMtbgf449VUDpSe+GaSxjcstEEOBeXPtURh3mqjoSvNxNQl/LIoGFt33ccrz/Ofgm3mBvN/K
+ NnGA7OYKpXG7biJ61ELT2QgxX5Cxec9bO/hazDstKYtW54vF6nChlid+0IQFylG3RhKf0NukCY1
+ aeHNJ4oLovkodTzDR6qKNKrEb1weqLMcUe5v0Hz362x4R0tT+6alwL2PZ1QkO5gadmPidaBz1Tb
+ sZVZ9oB504WaUZGnI7JxLlx66W6kQbqXUuP70oWpQ4M2Pwo5JDvmTaT7V0DvoMq9LjAGZDdJq3b
+ fxlBqqVRcYi7nqjJPka0FBNCb0KP5D0rZWO9C8zRnq0cIt+Flu4J1WvXLLbSN2gm6MV+zhsTbPl
+ KHNKfp8OCVDixFsWKLpEiBW5UzC7CvrB9F/91v2CvZz/WVErG4sv5neZixb88E3leLMC+HhHMeD
+ QPwmXj/fMs23ZlkXUVQ==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDA3NSBTYWx0ZWRfX8JEW35zy4lpC
+ P0fTTbLJCK7dUMxT3X9rLwiA+KsImFBLaNayvUtXlngST/yE7IVmXdpGo6D/ZVcPCtX6ziVplRO
+ 35SyWhP+M3lTZCQKh90Qma+jhc17Ui8=
+X-Proofpoint-GUID: pkagRf47_O5J1yTQE88O4qQ0dMsMkujU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-20_05,2026-11-19_01,2025-10-01_01
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_105435_858999_979EF4F6 
-X-CRM114-Status: GOOD (  27.25  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261120_105800_771075_2121A735 
+X-CRM114-Status: GOOD (  18.12  )
+X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,400 +115,139 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Disabling RX checksum offload with ethtool and reopening the interface
-can make it impossible to enable offload again. GMAC, GMAC4 and XGMAC
-return the IPC enable bit after programming it. A clear bit is expected
-on disable, but stmmac_hw_setup() treats it as a missing capability and
-discards the detected checksum type.
+From: Leo Yan <leo.yan@arm.com>
 
-Keep the detected type and pass the requested setting directly to the
-MAC. Check the result of an enable before allowing RX to mark packets
-CHECKSUM_UNNECESSARY, including when the checker is first enabled on a
-running interface.
+TRCIDR0.NUMEVENT normally encodes the number of events minus one.
+From ETMv4.3 onwards, including ETE, a zero TRCIDR4.NUMRSPAIR instead
+means that no events are implemented and NUMEVENT is zero. The sysfs
+event controls currently interpret this combination as one event and
+allow writes to unsupported event fields.
 
-If the MAC fails to enable the checker, mask RXCSUM in feature
-negotiation until the next MAC reset. This leaves unrelated changes,
-such as VLAN stripping, available even when RXCSUM is still requested.
-On open and resume, reconcile the active features before starting RX
-so ethtool reports a failed enable as off and a reset can restore
-offload if it is still wanted.
+Decode NUMEVENT after NUMRSPAIR and store the actual number of events
+in nr_event. Use the decoded resource count so that older ETM versions,
+where a zero NUMRSPAIR represents one resource pair, still report at
+least one event. Update both sysfs event controls to use the actual
+count and clear their event fields when no events are implemented.
 
-Found while investigating RX checksum offload on H616. Maxime
-Chevallier reproduced the capability loss on AgileX5, CycloneV and
-STM32MP1.
+Also correct the instruction event enable mask for the single-event
+case to use INSTEN[0]. The existing mask uses INSTEN[1], preventing
+event 0 from being enabled.
 
-Fixes: d2afb5bdffde3 ("stmmac: fix the rx csum feature")
-Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+This change depends on the recent driver refactoring. With no reported
+failures, it is not intended for stable backporting.
+
+Signed-off-by: Leo Yan <leo.yan@arm.com>
+Reviewed-by: James Clark <james.clark@linaro.org>
+Tested-by: Leo Yan <leo.yan@arm.com>
+Signed-off-by: Amir Ayupov <aaupov@fb.com>
 ---
-The sun8i net-next series [0] overlaps here. When merging the two, keep
-the enable argument on the renamed sun8i callback and apply RXALL only
-after the RX checksum change succeeds.
+ .../coresight/coresight-etm4x-core.c          | 13 +++++++--
+ .../coresight/coresight-etm4x-sysfs.c         | 29 ++++++++++---------
+ 2 files changed, 27 insertions(+), 15 deletions(-)
 
-[0] https://lore.kernel.org/r/20261120-submit-sun8i-rx-features-v1-v1-0-5058fecba6b3@gmail.com/
-
-Changes in v3:
-- Check a live enable before reporting hardware-verified checksums;
-  defer requests made while down to hardware setup.
-- Keep a failed enable from blocking unrelated feature changes and
-  recheck the saved request before RX starts on open and resume.
-- Pass the requested state directly to the MAC and document the
-  callback's return value.
-- Link to v2: https://patch.msgid.link/20261117-submit-stmmac-rx-checksum-capability-v1-v2-1-059f9499c386@gmail.com
-
-Changes in v2:
-- Correct the Fixes tag to reference the mainline commit.
-- Add Maxime Chevallier's Reviewed-by and Tested-by tags.
-- Include the discovery and hardware confirmation context.
-- Link to v1: https://patch.msgid.link/20261115-submit-stmmac-rx-checksum-capability-v1-v1-1-ea26fa3689be@gmail.com
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c  |   2 +-
- .../net/ethernet/stmicro/stmmac/dwmac1000_core.c   |   4 +-
- .../net/ethernet/stmicro/stmmac/dwmac100_core.c    |   2 +-
- drivers/net/ethernet/stmicro/stmmac/dwmac4_core.c  |   4 +-
- .../net/ethernet/stmicro/stmmac/dwxgmac2_core.c    |   4 +-
- drivers/net/ethernet/stmicro/stmmac/hwif.h         |   4 +-
- drivers/net/ethernet/stmicro/stmmac/stmmac.h       |   1 +
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c  | 114 ++++++++++++++-------
- 8 files changed, 86 insertions(+), 49 deletions(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-index 2ece7ba9dd73..d7dd6c5d95d4 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-@@ -699,7 +699,7 @@ static void sun8i_dwmac_get_umac_addr(struct mac_device_info *hw,
- }
- 
- /* caution this function must return non 0 to work */
--static int sun8i_dwmac_rx_ipc_enable(struct mac_device_info *hw)
-+static int sun8i_dwmac_rx_ipc_enable(struct mac_device_info *hw, bool enable)
- {
- 	void __iomem *ioaddr = hw->pcsr;
- 	u32 v;
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac1000_core.c b/drivers/net/ethernet/stmicro/stmmac/dwmac1000_core.c
-index 66337cfd9824..767836e75a10 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac1000_core.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac1000_core.c
-@@ -77,12 +77,12 @@ static void dwmac1000_irq_modify(struct mac_device_info *hw, u32 disable,
- 	spin_unlock_irqrestore(&hw->irq_ctrl_lock, flags);
- }
- 
--static int dwmac1000_rx_ipc_enable(struct mac_device_info *hw)
-+static int dwmac1000_rx_ipc_enable(struct mac_device_info *hw, bool enable)
- {
- 	void __iomem *ioaddr = hw->pcsr;
- 	u32 value = readl(ioaddr + GMAC_CONTROL);
- 
--	if (hw->rx_csum)
-+	if (enable)
- 		value |= GMAC_CONTROL_IPC;
- 	else
- 		value &= ~GMAC_CONTROL_IPC;
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac100_core.c b/drivers/net/ethernet/stmicro/stmmac/dwmac100_core.c
-index 94d24d355d95..e9492a853c0d 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac100_core.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac100_core.c
-@@ -48,7 +48,7 @@ static void dwmac100_dump_mac_regs(struct mac_device_info *hw, u32 *reg_space)
- 	reg_space[MAC_VLAN2 / 4] = readl(ioaddr + MAC_VLAN2);
- }
- 
--static int dwmac100_rx_ipc_enable(struct mac_device_info *hw)
-+static int dwmac100_rx_ipc_enable(struct mac_device_info *hw, bool enable)
- {
- 	return 0;
- }
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac4_core.c b/drivers/net/ethernet/stmicro/stmmac/dwmac4_core.c
-index 259e2ebed8c1..87b25b3d9c3b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac4_core.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac4_core.c
-@@ -329,12 +329,12 @@ static void dwmac4_dump_regs(struct mac_device_info *hw, u32 *reg_space)
- 		reg_space[i] = readl(ioaddr + i * 4);
- }
- 
--static int dwmac4_rx_ipc_enable(struct mac_device_info *hw)
-+static int dwmac4_rx_ipc_enable(struct mac_device_info *hw, bool enable)
- {
- 	void __iomem *ioaddr = hw->pcsr;
- 	u32 value = readl(ioaddr + GMAC_CONFIG);
- 
--	if (hw->rx_csum)
-+	if (enable)
- 		value |= GMAC_CONFIG_IPC;
- 	else
- 		value &= ~GMAC_CONFIG_IPC;
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-index 6b2bfc241109..e76294120bbb 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-@@ -65,13 +65,13 @@ static void dwxgmac2_set_mac(void __iomem *ioaddr, bool enable)
- 	writel(rx, ioaddr + XGMAC_RX_CONFIG);
- }
- 
--static int dwxgmac2_rx_ipc(struct mac_device_info *hw)
-+static int dwxgmac2_rx_ipc(struct mac_device_info *hw, bool enable)
- {
- 	void __iomem *ioaddr = hw->pcsr;
- 	u32 value;
- 
- 	value = readl(ioaddr + XGMAC_RX_CONFIG);
--	if (hw->rx_csum)
-+	if (enable)
- 		value |= XGMAC_CONFIG_IPC;
- 	else
- 		value &= ~XGMAC_CONFIG_IPC;
-diff --git a/drivers/net/ethernet/stmicro/stmmac/hwif.h b/drivers/net/ethernet/stmicro/stmmac/hwif.h
-index 8ae95e91a36a..e7eeaa83acfb 100644
---- a/drivers/net/ethernet/stmicro/stmmac/hwif.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/hwif.h
-@@ -319,8 +319,8 @@ struct stmmac_ops {
- 	void (*irq_modify)(struct mac_device_info *hw, u32 disable, u32 enable);
- 	/* Enable the MAC RX/TX */
- 	void (*set_mac)(void __iomem *ioaddr, bool enable);
--	/* Enable and verify that the IPC module is supported */
--	int (*rx_ipc)(struct mac_device_info *hw);
-+	/* Configure RX checksum offload and return whether the checker is enabled. */
-+	int (*rx_ipc)(struct mac_device_info *hw, bool enable);
- 	/* Enable RX Queues */
- 	void (*rx_queue_enable)(struct mac_device_info *hw, u8 mode, u32 queue);
- 	/* RX Queues Priority */
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-index b76acfe0d958..042a78ebbee4 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-@@ -269,6 +269,7 @@ struct stmmac_priv {
- 	bool tx_path_in_lpi_mode;
- 	bool sph_active;
- 	bool sph_capable;
-+	bool rx_csum_failed;
- 	u32 sarc_type;
- 	u32 rx_riwt[MTL_MAX_RX_QUEUES];
- 	u32 tx_threshold[MTL_MAX_TX_QUEUES];
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index a685ce4638f6..786eb089dc2b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -3675,25 +3675,51 @@ static bool stmmac_tso_channel_permitted(struct stmmac_priv *priv,
- 	return !(priv->dma_conf.tx_queue[chan].tbs & STMMAC_TBS_AVAIL);
- }
- 
-+static int stmmac_set_rx_csum(struct stmmac_priv *priv, unsigned int rx_csum)
-+{
-+	int ret;
+diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+index e21be6468e9544..af017bd8a54773 100644
+--- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
++++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+@@ -1451,8 +1451,6 @@ static void etm4_init_arch_data(void *info)
+ 	caps->trccci = !!(etmidr0 & TRCIDR0_TRCCCI);
+ 	/* RETSTACK, bit[9] Return stack bit */
+ 	caps->retstack = !!(etmidr0 & TRCIDR0_RETSTACK);
+-	/* NUMEVENT, bits[11:10] Number of events field */
+-	caps->nr_event = FIELD_GET(TRCIDR0_NUMEVENT_MASK, etmidr0);
+ 	/* QSUPP, bits[16:15] Q element support field */
+ 	caps->q_support = FIELD_GET(TRCIDR0_QSUPP_MASK, etmidr0);
+ 	if (caps->q_support)
+@@ -1519,6 +1517,17 @@ static void etm4_init_arch_data(void *info)
+ 	caps->nr_resource = FIELD_GET(TRCIDR4_NUMRSPAIR_MASK, etmidr4);
+ 	if ((drvdata->arch < ETM_ARCH_V4_3) || (caps->nr_resource > 0))
+ 		caps->nr_resource += 1;
 +
-+	if (!rx_csum) {
-+		WRITE_ONCE(priv->hw->rx_csum, 0);
-+		stmmac_rx_ipc(priv, priv->hw, false);
-+		return 0;
-+	}
++	/*
++	 * NUMEVENT encodes the number of events minus one. From ETMv4.3,
++	 * including ETE, NUMRSPAIR == 0 means no events are implemented.
++	 * nr_resource already accounts for the pre-ETMv4.3 encoding.
++	 */
++	if (caps->nr_resource)
++		caps->nr_event = FIELD_GET(TRCIDR0_NUMEVENT_MASK, etmidr0) + 1;
++	else
++		caps->nr_event = 0;
 +
-+	ret = stmmac_rx_ipc(priv, priv->hw, true);
-+	if (ret <= 0) {
-+		WRITE_ONCE(priv->hw->rx_csum, 0);
-+		priv->rx_csum_failed = true;
-+		return ret ?: -EIO;
-+	}
-+
-+	WRITE_ONCE(priv->hw->rx_csum, rx_csum);
-+	return 0;
-+}
-+
-+/* Recheck the wanted features if this reset clears or uncovers a failure. */
-+static bool stmmac_init_rx_csum(struct net_device *dev)
-+{
-+	struct stmmac_priv *priv = netdev_priv(dev);
-+	bool was_failed = priv->rx_csum_failed;
-+	unsigned int rx_csum;
-+
-+	priv->rx_csum_failed = false;
-+	rx_csum = dev->features & NETIF_F_RXCSUM ? priv->plat->rx_coe : 0;
-+	if (stmmac_set_rx_csum(priv, rx_csum))
-+		netdev_warn(dev, "RX IPC Checksum Offload disabled\n");
-+
-+	return was_failed || priv->rx_csum_failed;
-+}
-+
- /**
-- * stmmac_hw_setup - setup mac in a usable state.
-- *  @dev : pointer to the device structure.
-- *  Description:
-- *  this is the main function to setup the HW in a usable state because the
-- *  dma engine is reset, the core registers are configured (e.g. AXI,
-- *  Checksum features, timers). The DMA is ready to start receiving and
-- *  transmitting.
-- *  Return value:
-- *  0 on success and an appropriate (-)ve integer as defined in errno.h
-- *  file on failure.
-+ * stmmac_hw_setup - reset and configure the MAC before starting RX/TX
-+ * @dev: network device
-+ *
-+ * Return: 0 on success or a negative error on failure.
-  */
- static int stmmac_hw_setup(struct net_device *dev)
- {
- 	struct stmmac_priv *priv = netdev_priv(dev);
--	u8 rx_cnt = priv->plat->rx_queues_to_use;
--	u8 tx_cnt = priv->plat->tx_queues_to_use;
--	bool sph_en;
--	u8 chan;
- 	int ret;
+ 	/*
+ 	 * NUMSSCC, bits[23:20] the number of single-shot
+ 	 * comparator control for tracing. Read any status regs as these
+diff --git a/drivers/hwtracing/coresight/coresight-etm4x-sysfs.c b/drivers/hwtracing/coresight/coresight-etm4x-sysfs.c
+index db9e603f97ba82..fb38f0102290a5 100644
+--- a/drivers/hwtracing/coresight/coresight-etm4x-sysfs.c
++++ b/drivers/hwtracing/coresight/coresight-etm4x-sysfs.c
+@@ -513,19 +513,22 @@ static ssize_t event_store(struct device *dev,
  
- 	/* Make sure RX clock is enabled */
-@@ -3738,12 +3764,16 @@ static int stmmac_hw_setup(struct net_device *dev)
- 	/* Initialize Safety Features */
- 	stmmac_safety_feat_configuration(priv);
- 
--	ret = stmmac_rx_ipc(priv, priv->hw);
--	if (!ret) {
--		netdev_warn(priv->dev, "RX IPC Checksum Offload disabled\n");
--		priv->plat->rx_coe = STMMAC_RX_COE_NONE;
--		priv->hw->rx_csum = 0;
--	}
-+	return 0;
-+}
-+
-+static void stmmac_hw_start(struct net_device *dev)
-+{
-+	struct stmmac_priv *priv = netdev_priv(dev);
-+	u8 rx_cnt = priv->plat->rx_queues_to_use;
-+	u8 tx_cnt = priv->plat->tx_queues_to_use;
-+	bool sph_en;
-+	u8 chan;
- 
- 	/* Enable the MAC Rx/Tx */
- 	stmmac_mac_set(priv, priv->ioaddr, true);
-@@ -3806,8 +3836,6 @@ static int stmmac_hw_setup(struct net_device *dev)
- 	phylink_rx_clk_stop_block(priv->phylink);
- 	stmmac_set_hw_vlan_mode(priv, priv->hw);
- 	phylink_rx_clk_stop_unblock(priv->phylink);
--
--	return 0;
- }
- 
- static void stmmac_free_irq(struct net_device *dev,
-@@ -4216,6 +4244,9 @@ static int __stmmac_open(struct net_device *dev,
- 		netdev_err(priv->dev, "%s: Hw setup failed\n", __func__);
- 		return ret;
- 	}
-+	if (stmmac_init_rx_csum(dev))
-+		netdev_update_features(dev);
-+	stmmac_hw_start(dev);
- 
- 	ret = stmmac_setup_ptp(priv);
- 	if (ret)
-@@ -5233,7 +5264,7 @@ static unsigned int stmmac_rx_buf1_len(struct stmmac_priv *priv,
- 				       int status, unsigned int len)
- {
- 	unsigned int plen = 0, hlen = 0;
--	int coe = priv->hw->rx_csum;
-+	int coe = READ_ONCE(priv->hw->rx_csum);
- 
- 	/* Not first descriptor, SPH enabled: buffer1 only carries the
- 	 * split header of the first descriptor, so it is zero here.
-@@ -5264,7 +5295,7 @@ static unsigned int stmmac_rx_buf2_len(struct stmmac_priv *priv,
- 				       struct dma_desc *p,
- 				       int status, unsigned int len)
- {
--	int coe = priv->hw->rx_csum;
-+	int coe = READ_ONCE(priv->hw->rx_csum);
- 	unsigned int plen = 0;
- 
- 	if (!stmmac_rx_check_buf2_cap(priv))
-@@ -5569,7 +5600,7 @@ static void stmmac_dispatch_skb_zc(struct stmmac_priv *priv, u32 queue,
- 	struct stmmac_channel *ch = &priv->channel[queue];
- 	unsigned int len = xdp->data_end - xdp->data;
- 	enum pkt_hash_types hash_type;
--	int coe = priv->hw->rx_csum;
-+	int coe = READ_ONCE(priv->hw->rx_csum);
- 	struct sk_buff *skb;
- 	u32 hash;
- 
-@@ -5872,7 +5903,7 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 	unsigned int next_entry = rx_q->cur_rx;
- 	bool in_progress = rx_q->state_saved;
- 	enum dma_data_direction dma_dir;
--	int coe = priv->hw->rx_csum;
-+	int coe = READ_ONCE(priv->hw->rx_csum);
- 	unsigned int desc_size;
- 	struct sk_buff *skb = NULL;
- 	struct stmmac_xdp_buff ctx;
-@@ -6372,7 +6403,7 @@ static netdev_features_t stmmac_fix_features(struct net_device *dev,
- {
- 	struct stmmac_priv *priv = netdev_priv(dev);
- 
--	if (priv->plat->rx_coe == STMMAC_RX_COE_NONE)
-+	if (!priv->plat->rx_coe || priv->rx_csum_failed)
- 		features &= ~NETIF_F_RXCSUM;
- 
- 	if (!priv->plat->tx_coe)
-@@ -6400,18 +6431,18 @@ static int stmmac_set_features(struct net_device *netdev,
- 			       netdev_features_t features)
- {
- 	struct stmmac_priv *priv = netdev_priv(netdev);
-+	bool running = netif_running(netdev);
-+	unsigned int rx_csum;
-+	int ret;
- 
--	/* Keep the COE Type in case of csum is supporting */
--	if (features & NETIF_F_RXCSUM)
--		priv->hw->rx_csum = priv->plat->rx_coe;
--	else
--		priv->hw->rx_csum = 0;
--	/* No check needed because rx_coe has been set before and it will be
--	 * fixed in case of issue.
--	 */
--	stmmac_rx_ipc(priv, priv->hw);
-+	rx_csum = features & NETIF_F_RXCSUM ? priv->plat->rx_coe : 0;
-+	if (running && rx_csum != priv->hw->rx_csum) {
-+		ret = stmmac_set_rx_csum(priv, rx_csum);
-+		if (ret)
-+			return ret;
-+	}
- 
--	if (priv->sph_capable) {
-+	if (running && priv->sph_capable) {
- 		bool sph_en = (priv->hw->rx_csum > 0) && priv->sph_active;
- 		u8 chan;
- 
-@@ -7650,10 +7681,9 @@ static int stmmac_hw_init(struct stmmac_priv *priv)
- 	}
- 
- 	if (priv->plat->rx_coe) {
--		priv->hw->rx_csum = priv->plat->rx_coe;
- 		dev_info(priv->device, "RX Checksum Offload Engine supported\n");
- 		if (priv->synopsys_id < DWMAC_CORE_4_00)
--			dev_info(priv->device, "COE Type %d\n", priv->hw->rx_csum);
-+			dev_info(priv->device, "COE Type %d\n", priv->plat->rx_coe);
- 	}
- 	if (priv->plat->tx_coe)
- 		dev_info(priv->device, "TX Checksum insertion supported\n");
-@@ -8575,6 +8605,12 @@ int stmmac_resume(struct device *dev)
- 		netdev_err(priv->dev, "%s: Hw setup failed\n", __func__);
- 		goto error_unlock;
- 	}
-+	if (stmmac_init_rx_csum(ndev)) {
-+		mutex_unlock(&priv->lock);
-+		netdev_update_features(ndev);
-+		mutex_lock(&priv->lock);
-+	}
-+	stmmac_hw_start(ndev);
- 
- 	if (priv->ptp_enabled) {
- 		if (stmmac_init_ptp_clk_freq(priv))
-
----
-base-commit: d7f2d9b6c7d0ff0af7d19d889810d35dfe07da90
-base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git main
-change-id: 20261115-submit-stmmac-rx-checksum-capability-v1-ef6645788992
-
-Best regards,
---  
-James Hilliard <james.hilliard1@gmail.com>
+ 	raw_spin_lock(&drvdata->spinlock);
+ 	switch (caps->nr_event) {
+-	case 0x0:
++	case 0:
++		sysfs_config->eventctrl0 = 0;
++		break;
++	case 1:
+ 		/* EVENT0, bits[7:0] */
+ 		sysfs_config->eventctrl0 = val & 0xFF;
+ 		break;
+-	case 0x1:
+-		 /* EVENT1, bits[15:8] */
++	case 2:
++		/* EVENT1, bits[15:8] */
+ 		sysfs_config->eventctrl0 = val & 0xFFFF;
+ 		break;
+-	case 0x2:
++	case 3:
+ 		/* EVENT2, bits[23:16] */
+ 		sysfs_config->eventctrl0 = val & 0xFFFFFF;
+ 		break;
+-	case 0x3:
++	case 4:
+ 		/* EVENT3, bits[31:24] */
+ 		sysfs_config->eventctrl0 = val;
+ 		break;
+@@ -565,22 +568,22 @@ static ssize_t event_instren_store(struct device *dev,
+ 	/* start by clearing all instruction event enable bits */
+ 	sysfs_config->eventctrl1 &= ~TRCEVENTCTL1R_INSTEN_MASK;
+ 	switch (caps->nr_event) {
+-	case 0x0:
+-		/* generate Event element for event 1 */
+-		sysfs_config->eventctrl1 |= val & TRCEVENTCTL1R_INSTEN_1;
++	case 1:
++		/* generate Event element for event 0 */
++		sysfs_config->eventctrl1 |= val & TRCEVENTCTL1R_INSTEN_0;
+ 		break;
+-	case 0x1:
+-		/* generate Event element for event 1 and 2 */
++	case 2:
++		/* generate Event element for events 0 and 1 */
+ 		sysfs_config->eventctrl1 |= val & (TRCEVENTCTL1R_INSTEN_0 |
+ 						   TRCEVENTCTL1R_INSTEN_1);
+ 		break;
+-	case 0x2:
+-		/* generate Event element for event 1, 2 and 3 */
++	case 3:
++		/* generate Event element for events 0, 1 and 2 */
+ 		sysfs_config->eventctrl1 |= val & (TRCEVENTCTL1R_INSTEN_0 |
+ 					     TRCEVENTCTL1R_INSTEN_1 |
+ 					     TRCEVENTCTL1R_INSTEN_2);
+ 		break;
+-	case 0x3:
++	case 4:
+ 		/* generate Event element for all 4 events */
+ 		sysfs_config->eventctrl1 |= val & (TRCEVENTCTL1R_INSTEN_0 |
+ 					     TRCEVENTCTL1R_INSTEN_1 |
+-- 
+2.52.1
 
 
