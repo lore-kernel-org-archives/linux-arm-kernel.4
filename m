@@ -2,100 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 023F560A2606
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FDD606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GNeRYoTc;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BYnIkn7R
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cNlike+B;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fZvaVtMl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wkd4nqwFfR5tsb8FGSQqj7aBv7pRJtWn5SfKVCnGq1M=; b=GNeRYoTc7J/yXq
-	bBkXF6fCd1LYIJOjjDw0wwh79g/y5zo3ff6xOjLAUgkm5VXWJzaI8GrdSlRfruwaOysoTp6Pg++IY
-	CyPh597ucZkstEW0v3ckApofRQOQ1ZmmRq3uvoBUhAAH2S4RQ24C02SI/fPECvO9wF+q5FMdwXXKt
-	Ei0+d8TrhA2EwqmrjGvfoTAXlG4uvUcsBo/ja2pzHjpnvWHceuJMHlgAxwSTI3DObJB9PZQAt6fkg
-	3LD8U0s4r5KCjUUxJgEauGX9Wedgm12V8PtoD25dCwdQe4TyI+PShLJPnOzG8IFFYt3tE0V8bM+QD
-	+/WhHheV2S6+5v1G9mWg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=TmLbNp9FmvVCacx0hXUW2e/WeZlhNb0IQkuIZ37F3Ic=; b=cNlike+BvJMCab7/AxzXOtV+Di
+	1nLpsI2hIwMu1jJPQqT4a7m3dPN2+tJXtF7g8U4pjSYeu/30bZzMQmUCdmVIoXxozSmWfkprYLbP0
+	YSg924bkNUjOJ0auCql4iae7e2g3iHArgZsaf0rQre2mur33aCEYhtFaXCzaU8m9P0lrYr1ZxasOn
+	soOuM7lEfGOo+jpo7/bsOAQwFi0xN/V30Ci4PWcwtL9cFrDbmUmM5n5+JB/dYShkIAs2nACqUYTw/
+	p+yncZlU38ePGrvjPJlEwBflhLV+kAjVkgWDg3JMOU3k7HaD3VFq6Ou1byacmbuAY4Y+rALdpJJhE
+	JR+UGnkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUIRm-0000000EBOO-3G8Y;
-	Fri, 20 Nov 2026 06:50:10 +0000
-Received: from mgamail.intel.com ([198.175.65.17])
+	id 1xUIS0-0000000EBST-3sW6;
+	Fri, 20 Nov 2026 06:50:25 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUIRk-0000000EBNX-0O67
+	id 1xUIRq-0000000EBPn-0dwZ
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 06:50:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795157408; x=1826693408;
-  h=message-id:date:mime-version:cc:subject:to:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=mhxWMgCH5HMfkFHe/VNr+MzQbbFwX222p1eoUESgZ50=;
-  b=BYnIkn7RUaJYFf5fgEbMbzu35xQH/8A68XqM6R+VR9g+/Irn2ilus1f0
-   JgwVRPxX3nc0PuIhSMGxECj85+i3poWPuHjjp1I9EzGygWB6hbLvzZy9W
-   ItutUyyIdqB7FTWzqNYPNLUnJwSRk+UcStw8PTqB+1JL8KftE1/nrgYmT
-   ODI5uu6zdwifZ8L9E3gMB10J1w2ZqH542DB6/41kYcVxDoK2+wf2eXZHj
-   W3j1xJe1m3sQLNpWI/vbeukR48FuNPhk9UQ/j0fvTBY+fu7CgJaTGchZt
-   VDJz+zWG9R8IsRWedSQdKsD+odtC685hWCpAk9ELJVQhwa9FkF41CFA+l
-   w==;
-X-CSE-ConnectionGUID: WiZEfvqUQpGNWDpERIWjqA==
-X-CSE-MsgGUID: tuDEw+nxSE6mOmjNeuiCFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4037351"
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="4037351"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 22:50:05 -0800
-X-CSE-ConnectionGUID: Y2qOi1RRQBGJruwAMXvr9Q==
-X-CSE-MsgGUID: spG0wXLKRgukaky3T7VPjg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="10525531"
-Received: from unknown (HELO [10.238.1.144]) ([10.238.1.144])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 22:49:58 -0800
-Message-ID: <620712ae-e21e-4daa-9cd3-0c5d06ffb67f@linux.intel.com>
-Date: Fri, 20 Nov 2026 14:49:56 +0800
+	Fri, 20 Nov 2026 06:50:14 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 89ED562167;
+	Fri, 20 Nov 2026 06:50:13 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795157413;
+	b=sBfGNON/Kw6lEODOQjCljTaFUS4GiurAll6giE5xIsMb5iaedMwMcA9J9tvS0xmnhQbR
+	 uOU0JQ8/CScsdehRtZzCxx7fbzDgibVnPwJUTPyF1we+O3hIeCO5Ok82JYAslp10CODph
+	 L9qqUmRmbrg5/fJN/18MOXvvXJ1Po8c758TLN5GaX7AfCwem3NAnl+9R5jKoUEuSrkQcO
+	 RUn0SJCf/o6IOkqjKxq30u3WOGi2BJk8hBO/iarzyUttf1hhqbz0lF4i5nwJHqAQBAtTV
+	 ksW+JEsNwx6xYWJ8oFFQLNyW5JaJnuSQLN/P0W0AXXPS00isxzEeewYNJRQ77Hj4v4A==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795157413;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=TmLbNp9FmvVCacx0hXUW2e/WeZlhNb0IQkuIZ37F3Ic=;
+	b=Ve6QWSvNzBQwnIUmHmtzWObw8MZlFLVsUTG941AN860f3JowhQYBIAD7NHU/rCjmCT7B
+	 zU4gs8hFoBySfjmHgtLM+xPYxtnIzkFLL+vSZfhVwXK4P0O+w/sVzYvxFq1tCK1fYWGdl
+	 hvX3Z+Uy0+q0VvVVverKrlXr5rtMvQwpd+B9uLOwnGAPB8ZgZbkW4RiE0XPXEIi/U4WgM
+	 jcsnb5CsKD/cvRsHuzew9LVuS1NkRg4zshq2dW63+UrXYNFb3IespV7fs0eYHtzjrDv6y
+	 yXQzHABu6z23e3QAP5Da0XVS2L0NUpmRjxpypUOsW6P2Ol6PNaW5SlnI0si2MGKpvwQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id CDDEB1F000D1;
+	Fri, 20 Nov 2026 06:50:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795157413;
+	bh=TmLbNp9FmvVCacx0hXUW2e/WeZlhNb0IQkuIZ37F3Ic=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=fZvaVtMlvYiZgoD25bHPo2KnBC6Df465zSdARlDw+n30s40YPxoplhQhUpBGByefr
+	 /ga6Pz6cHa3G7OfBpjRO3MbxNxiPQRvDeg1r1UhDtlIpWI03iW30NP1hvXqBoVc11t
+	 ToWdDmm+FhDmxEbTNbCAi/tJz9J+WOPdNvbyeaFSfyY3YZMOxfPZpbqP7zpqGKCBJv
+	 nbLjTlt8kh0EZM6rlZYQ0Zvj8fBaNOISaHakq13IFaINsdaI9SCOSTm2zh6uEpQBt3
+	 oASm3Fl7Dgnm0U3+k57BAWQuswkvn+mvd6oDc+owjXwg1cygGGL3jymaQsSH+wOld0
+	 VtQp4N2eEpq4w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 5F65449729;
+	Fri, 20 Nov 2026 06:50:11 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Fri, 20 Nov 2026 09:49:45 +0300
+Subject: [PATCH v5 2/2] i2c: Add Cortina Systems CS75xx I2C controller
+ driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: baolu.lu@linux.intel.com, Alex Williamson <alex@shazbot.org>,
- Alexey Kardashevskiy <aik@amd.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Jacob Pan <jacob.pan@linux.microsoft.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
- Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
- Nicolin Chen <nicolinc@nvidia.com>, Robin Murphy <robin.murphy@arm.com>,
- Samuel Ortiz <sameo@rivosinc.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Steven Price <steven.price@arm.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
- Xu Yilun <yilun.xu@linux.intel.com>, Ashish Kalra <ashish.kalra@amd.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, iommu@lists.linux.dev,
- Jonathan Cameron <jonathan.cameron@huawei.com>,
- Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- linux-tegra@vger.kernel.org, patches@lists.linux.dev
-Subject: Re: [PATCH v9 11/13] iommufd/viommu: Allow vIOMMUs without a parent
- HWPT
-To: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
- linux-coco@lists.linux.dev
-References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <20261116081935.85372-12-aneesh.kumar@kernel.org>
-Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <20261116081935.85372-12-aneesh.kumar@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261120-cs75xx-i2c-v5-2-03bec242a549@gmail.com>
+References: <20261120-cs75xx-i2c-v5-0-03bec242a549@gmail.com>
+In-Reply-To: <20261120-cs75xx-i2c-v5-0-03bec242a549@gmail.com>
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Fil Dunsky <filipp.dunsky@gmail.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795157410; l=12881;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=wJ2Qx6HOwQuY7acJYgFs1hNLThm1J5ItlGz4cMHw2qI=;
+ b=URjX37csoCsBsKTTC6xDyhNcEt2jc/lw4TuVRhsZj6I1GmDstZrV9jODfIed1MLPTqy565Q04
+ i2YsGR4KS2JDeJJONQrODJpaDtQWhIYzRWgtfaosKlCFQ7H2f/TY0ce
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_225008_223461_BE2FFFBB 
-X-CRM114-Status: GOOD (  25.08  )
-X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,254 +110,475 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/2026 4:19 PM, Aneesh Kumar K.V (Arm) wrote:
-> VIOMMU_ALLOC currently requires a nesting parent HWPT_PAGING even when
-> the selected vIOMMU implementation has no use for one. This would force
-> implementations such as the following Arm Realm vIOMMU to create an
-> unused parent.
-> 
-> Add IOMMUFD_VIOMMU_NO_HWPT so an implementation can opt out. Require
-> hwpt_id to be zero in that case and pass a NULL parent domain to its
-> initialization callback. For implementations that require a HWPT, verify
-> that the parent supports nesting and its domain belongs to the device's
-> physical IOMMU driver before invoking viommu_init().
-> 
-> Reject nested domain and hardware queue allocation for a vIOMMU without
-> a parent, and document the two allocation modes in the UAPI.
-> 
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Kevin Tian <kevin.tian@intel.com>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Robin Murphy <robin.murphy@arm.com>
-> Cc: iommu@lists.linux.dev
-> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
-> ---
->   Documentation/userspace-api/iommufd.rst | 44 +++++++++---------
->   drivers/iommu/iommufd/hw_pagetable.c    | 14 ++++--
->   drivers/iommu/iommufd/viommu.c          | 62 +++++++++++++++----------
->   include/linux/iommufd.h                 | 13 ++++--
->   include/uapi/linux/iommufd.h            |  3 +-
->   5 files changed, 81 insertions(+), 55 deletions(-)
-> 
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-[...]
+The I2C ("Bi-Wire") controller of the Cortina Systems CS75xx SoCs
+transfers one byte per command, with a command register much like the
+OpenCores one (start, stop, read, write, acknowledge), and raises an
+interrupt when a command has completed.
 
-> diff --git a/drivers/iommu/iommufd/hw_pagetable.c b/drivers/iommu/iommufd/hw_pagetable.c
-> index ae62db50885c..52e52ef089a2 100644
-> --- a/drivers/iommu/iommufd/hw_pagetable.c
-> +++ b/drivers/iommu/iommufd/hw_pagetable.c
-> @@ -306,6 +306,10 @@ iommufd_viommu_alloc_hwpt_nested(struct iommufd_viommu *viommu, u32 flags,
->   		return ERR_PTR(-EOPNOTSUPP);
->   	if (!user_data->len)
->   		return ERR_PTR(-EOPNOTSUPP);
-> +	if (!viommu->hwpt)
-> +		return ERR_PTR(-EOPNOTSUPP);
-> +	if (!viommu->iommu_dev)
-> +		return ERR_PTR(-EOPNOTSUPP);
->   	if (!viommu->ops || !viommu->ops->alloc_domain_nested)
->   		return ERR_PTR(-EOPNOTSUPP);
->   
-> @@ -404,10 +408,12 @@ int iommufd_hwpt_alloc(struct iommufd_ucmd *ucmd)
->   		struct iommufd_viommu *viommu;
->   
->   		viommu = container_of(pt_obj, struct iommufd_viommu, obj);
-> -		iommu_dev = iommufd_device_get_iommu_dev(idev);
-> -		if (!iommu_dev || viommu->iommu_dev != iommu_dev) {
-> -			rc = -EINVAL;
-> -			goto out_unlock;
-> +		if (viommu->iommu_dev) {
-> +			iommu_dev = iommufd_device_get_iommu_dev(idev);
-> +			if (!iommu_dev || viommu->iommu_dev != iommu_dev) {
-> +				rc = -EINVAL;
-> +				goto out_unlock;
-> +			}
+Messages are sent with a repeated start between them and a stop after
+the last one. Every message needs at least one data byte, so SMBus quick
+commands are not supported. Arbitration loss is reported as -EAGAIN and
+retried by the core.
 
-Is it intended that every tsm-provided viommu has viommu->iommu_dev ==
-NULL?
+The driver depends on OF and HAS_IOMEM and uses generic platform and
+I2C APIs, so it can be enabled without the CS75xx platform series.
 
-If so, could the tsm-provider patch make provider selection exclusive by
-looking up the physical iommu only on the fallback path? All checks
-against viommu->iommu_dev should be in that patch. This non-parent-hwpt
-viommu support patch should no longer check viommu->iommu_dev.
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+ drivers/i2c/busses/Kconfig      |  11 ++
+ drivers/i2c/busses/Makefile     |   1 +
+ drivers/i2c/busses/i2c-cs75xx.c | 394 ++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 406 insertions(+)
 
-Also, if viommu->iommu_dev and viommu->tsm_dev are mutually exclusive,
-could that be made explicit in a comment or by using a tagged union?
+diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+index 275aaa7f3..1bebffc7d 100644
+--- a/drivers/i2c/busses/Kconfig
++++ b/drivers/i2c/busses/Kconfig
+@@ -550,6 +550,17 @@ config I2C_CPM
+ 	  This driver can also be built as a module.  If so, the module
+ 	  will be called i2c-cpm.
+ 
++config I2C_CS75XX
++	tristate "Cortina Systems CS75xx I2C controller"
++	depends on OF
++	depends on HAS_IOMEM
++	help
++	  Say yes here to support the I2C ("Bi-Wire") controller of the
++	  Cortina Systems CS75xx SoCs.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called i2c-cs75xx.
++
+ config I2C_DAVINCI
+ 	tristate "DaVinci I2C driver"
+ 	depends on ARCH_DAVINCI || ARCH_KEYSTONE || COMPILE_TEST
+diff --git a/drivers/i2c/busses/Makefile b/drivers/i2c/busses/Makefile
+index e5440de0f..f19df25eb 100644
+--- a/drivers/i2c/busses/Makefile
++++ b/drivers/i2c/busses/Makefile
+@@ -49,6 +49,7 @@ obj-$(CONFIG_I2C_CADENCE)	+= i2c-cadence.o
+ obj-$(CONFIG_I2C_CBUS_GPIO)	+= i2c-cbus-gpio.o
+ obj-$(CONFIG_I2C_CGBC)		+= i2c-cgbc.o
+ obj-$(CONFIG_I2C_CPM)		+= i2c-cpm.o
++obj-$(CONFIG_I2C_CS75XX)	+= i2c-cs75xx.o
+ obj-$(CONFIG_I2C_DAVINCI)	+= i2c-davinci.o
+ obj-$(CONFIG_I2C_DESIGNWARE_CORE)			+= i2c-designware-core.o
+ i2c-designware-core-y					:= i2c-designware-common.o
+diff --git a/drivers/i2c/busses/i2c-cs75xx.c b/drivers/i2c/busses/i2c-cs75xx.c
+new file mode 100644
+index 000000000..69e4c9b01
+--- /dev/null
++++ b/drivers/i2c/busses/i2c-cs75xx.c
+@@ -0,0 +1,394 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Cortina Systems CS75xx I2C ("Bi-Wire") controller
++ *
++ * The controller works one byte at a time: software writes the byte to
++ * transmit and a command (start, stop, read, write, acknowledge) and gets
++ * an interrupt when the command has completed.
++ */
++
++#include <linux/bitfield.h>
++#include <linux/bits.h>
++#include <linux/cleanup.h>
++#include <linux/clk.h>
++#include <linux/completion.h>
++#include <linux/delay.h>
++#include <linux/i2c.h>
++#include <linux/interrupt.h>
++#include <linux/io.h>
++#include <linux/iopoll.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/property.h>
++#include <linux/spinlock.h>
++
++#define CS75XX_I2C_CFG		0x00
++#define CS75XX_I2C_CTRL		0x04
++#define CS75XX_I2C_TXR		0x08
++#define CS75XX_I2C_RXR		0x0c
++#define CS75XX_I2C_ACK		0x10
++#define CS75XX_I2C_IE		0x14
++#define CS75XX_I2C_INT		0x18
++
++#define CS75XX_I2C_CFG_EN	BIT(0)
++#define CS75XX_I2C_CFG_PRER	GENMASK(31, 16)
++
++#define CS75XX_I2C_CTRL_DONE	BIT(0)
++#define CS75XX_I2C_CTRL_NACK	BIT(3)
++#define CS75XX_I2C_CTRL_WRITE	BIT(4)
++#define CS75XX_I2C_CTRL_READ	BIT(5)
++#define CS75XX_I2C_CTRL_STOP	BIT(6)
++#define CS75XX_I2C_CTRL_START	BIT(7)
++
++#define CS75XX_I2C_ACK_AL	BIT(0)
++#define CS75XX_I2C_ACK_BUSY	BIT(1)
++#define CS75XX_I2C_ACK_NACK	BIT(2)
++
++#define CS75XX_I2C_INT_DONE	BIT(0)
++
++enum cs75xx_i2c_state {
++	CS75XX_I2C_IDLE,
++	CS75XX_I2C_ADDR,
++	CS75XX_I2C_WRITE,
++	CS75XX_I2C_READ,
++	CS75XX_I2C_STOP,
++};
++
++struct cs75xx_i2c {
++	struct i2c_adapter adap;
++	struct device *dev;
++	void __iomem *base;
++	int irq;
++	u32 prer;
++
++	spinlock_t lock;	/* protects the transfer state */
++	struct completion done;
++	enum cs75xx_i2c_state state;
++	struct i2c_msg *msg;
++	unsigned int pos;
++	bool last;
++	int err;
++};
++
++static void cs75xx_i2c_hw_init(struct cs75xx_i2c *i2c)
++{
++	if (readl(i2c->base + CS75XX_I2C_CFG) & CS75XX_I2C_CFG_EN) {
++		writel(0, i2c->base + CS75XX_I2C_CFG);
++		fsleep(5000);
++	}
++
++	writel(FIELD_PREP(CS75XX_I2C_CFG_PRER, i2c->prer) | CS75XX_I2C_CFG_EN,
++	       i2c->base + CS75XX_I2C_CFG);
++	fsleep(5000);
++}
++
++/*
++ * Reset the controller and enable its interrupt again, with the handler
++ * kept away from the registers meanwhile
++ */
++static void cs75xx_i2c_reset(struct cs75xx_i2c *i2c)
++{
++	disable_irq(i2c->irq);
++	cs75xx_i2c_hw_init(i2c);
++	writel(CS75XX_I2C_INT_DONE, i2c->base + CS75XX_I2C_INT);
++	writel(CS75XX_I2C_INT_DONE, i2c->base + CS75XX_I2C_IE);
++	enable_irq(i2c->irq);
++}
++
++static void cs75xx_i2c_finish(struct cs75xx_i2c *i2c, int err)
++{
++	i2c->err = err;
++	i2c->state = CS75XX_I2C_IDLE;
++	complete(&i2c->done);
++}
++
++/*
++ * End the transfer with a stop condition and complete it only once the
++ * stop is done, so that its interrupt cannot be taken for the next one
++ */
++static void cs75xx_i2c_abort(struct cs75xx_i2c *i2c, int err)
++{
++	i2c->err = err;
++	i2c->state = CS75XX_I2C_STOP;
++	writel(CS75XX_I2C_CTRL_STOP, i2c->base + CS75XX_I2C_CTRL);
++}
++
++/* Start the transfer of the next data byte of the message */
++static void cs75xx_i2c_next_byte(struct cs75xx_i2c *i2c)
++{
++	struct i2c_msg *msg = i2c->msg;
++	bool last_byte = i2c->pos == msg->len - 1;
++	u32 cmd;
++
++	if (msg->flags & I2C_M_RD) {
++		i2c->state = CS75XX_I2C_READ;
++		cmd = CS75XX_I2C_CTRL_READ;
++		/* Do not acknowledge the last byte of a read */
++		if (last_byte)
++			cmd |= CS75XX_I2C_CTRL_NACK;
++	} else {
++		i2c->state = CS75XX_I2C_WRITE;
++		writel(msg->buf[i2c->pos++], i2c->base + CS75XX_I2C_TXR);
++		cmd = CS75XX_I2C_CTRL_WRITE;
++	}
++
++	if (last_byte && i2c->last)
++		cmd |= CS75XX_I2C_CTRL_STOP;
++
++	writel(cmd, i2c->base + CS75XX_I2C_CTRL);
++}
++
++static void cs75xx_i2c_process(struct cs75xx_i2c *i2c, u32 ack)
++{
++	struct i2c_msg *msg = i2c->msg;
++
++	/* Late interrupt of a transfer that timed out */
++	if (i2c->state == CS75XX_I2C_IDLE)
++		return;
++
++	if (i2c->state == CS75XX_I2C_STOP) {
++		cs75xx_i2c_finish(i2c, i2c->err);
++		return;
++	}
++
++	if (ack & CS75XX_I2C_ACK_AL) {
++		cs75xx_i2c_abort(i2c, -EAGAIN);
++		return;
++	}
++
++	switch (i2c->state) {
++	case CS75XX_I2C_ADDR:
++		if (ack & CS75XX_I2C_ACK_NACK) {
++			cs75xx_i2c_abort(i2c, -ENXIO);
++			return;
++		}
++		cs75xx_i2c_next_byte(i2c);
++		break;
++
++	case CS75XX_I2C_WRITE:
++		if (ack & CS75XX_I2C_ACK_NACK) {
++			/* The last byte of the last message carried the stop */
++			if (i2c->pos == msg->len && i2c->last)
++				cs75xx_i2c_finish(i2c, -EIO);
++			else
++				cs75xx_i2c_abort(i2c, -EIO);
++			return;
++		}
++		if (i2c->pos == msg->len) {
++			cs75xx_i2c_finish(i2c, 0);
++			return;
++		}
++		cs75xx_i2c_next_byte(i2c);
++		break;
++
++	case CS75XX_I2C_READ:
++		msg->buf[i2c->pos++] = readl(i2c->base + CS75XX_I2C_RXR);
++		if (i2c->pos == msg->len) {
++			cs75xx_i2c_finish(i2c, 0);
++			return;
++		}
++		cs75xx_i2c_next_byte(i2c);
++		break;
++
++	default:
++		break;
++	}
++}
++
++static irqreturn_t cs75xx_i2c_isr(int irq, void *dev_id)
++{
++	struct cs75xx_i2c *i2c = dev_id;
++	u32 ctrl, ack;
++
++	guard(spinlock)(&i2c->lock);
++
++	if (!(readl(i2c->base + CS75XX_I2C_INT) & CS75XX_I2C_INT_DONE))
++		return IRQ_NONE;
++
++	writel(CS75XX_I2C_INT_DONE, i2c->base + CS75XX_I2C_INT);
++
++	/* The done flag is cleared by writing it back */
++	ctrl = readl(i2c->base + CS75XX_I2C_CTRL);
++	writel(ctrl, i2c->base + CS75XX_I2C_CTRL);
++
++	ack = readl(i2c->base + CS75XX_I2C_ACK);
++	cs75xx_i2c_process(i2c, ack);
++
++	return IRQ_HANDLED;
++}
++
++static int cs75xx_i2c_xfer_msg(struct cs75xx_i2c *i2c, struct i2c_msg *msg,
++			       bool last)
++{
++	unsigned long time_left;
++
++	spin_lock_irq(&i2c->lock);
++	reinit_completion(&i2c->done);
++	i2c->msg = msg;
++	i2c->pos = 0;
++	i2c->last = last;
++	i2c->err = 0;
++	i2c->state = CS75XX_I2C_ADDR;
++	writel(i2c_8bit_addr_from_msg(msg), i2c->base + CS75XX_I2C_TXR);
++	writel(CS75XX_I2C_CTRL_START | CS75XX_I2C_CTRL_WRITE,
++	       i2c->base + CS75XX_I2C_CTRL);
++	spin_unlock_irq(&i2c->lock);
++
++	time_left = wait_for_completion_timeout(&i2c->done, i2c->adap.timeout);
++	if (!time_left) {
++		spin_lock_irq(&i2c->lock);
++		i2c->state = CS75XX_I2C_IDLE;
++		spin_unlock_irq(&i2c->lock);
++		dev_err(i2c->dev, "transfer timed out, resetting the controller\n");
++		cs75xx_i2c_reset(i2c);
++		return -ETIMEDOUT;
++	}
++
++	return i2c->err;
++}
++
++static int cs75xx_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
++			   int num)
++{
++	struct cs75xx_i2c *i2c = i2c_get_adapdata(adap);
++	u32 val;
++	int i, ret;
++
++	/* Another master may hold the bus for a whole transfer */
++	if (readl_poll_timeout(i2c->base + CS75XX_I2C_ACK, val,
++			       !(val & CS75XX_I2C_ACK_BUSY), 100,
++			       jiffies_to_usecs(adap->timeout))) {
++		cs75xx_i2c_reset(i2c);
++		if (readl(i2c->base + CS75XX_I2C_ACK) & CS75XX_I2C_ACK_BUSY)
++			return -EBUSY;
++	}
++
++	for (i = 0; i < num; i++) {
++		ret = cs75xx_i2c_xfer_msg(i2c, &msgs[i], i == num - 1);
++		if (ret)
++			return ret;
++	}
++
++	return num;
++}
++
++static u32 cs75xx_i2c_func(struct i2c_adapter *adap)
++{
++	return I2C_FUNC_I2C | (I2C_FUNC_SMBUS_EMUL & ~I2C_FUNC_SMBUS_QUICK);
++}
++
++static const struct i2c_algorithm cs75xx_i2c_algo = {
++	.xfer = cs75xx_i2c_xfer,
++	.functionality = cs75xx_i2c_func,
++};
++
++/* A message always carries at least one data byte after the address */
++static const struct i2c_adapter_quirks cs75xx_i2c_quirks = {
++	.flags = I2C_AQ_NO_ZERO_LEN,
++};
++
++static void cs75xx_i2c_disable(void *data)
++{
++	struct cs75xx_i2c *i2c = data;
++
++	writel(0, i2c->base + CS75XX_I2C_IE);
++	writel(0, i2c->base + CS75XX_I2C_CFG);
++}
++
++static int cs75xx_i2c_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct cs75xx_i2c *i2c;
++	unsigned long ref_rate;
++	struct clk *clk;
++	u32 bus_rate;
++	u64 div;
++	int ret;
++
++	i2c = devm_kzalloc(dev, sizeof(*i2c), GFP_KERNEL);
++	if (!i2c)
++		return -ENOMEM;
++
++	i2c->dev = dev;
++	spin_lock_init(&i2c->lock);
++	init_completion(&i2c->done);
++
++	i2c->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(i2c->base))
++		return PTR_ERR(i2c->base);
++
++	i2c->irq = platform_get_irq(pdev, 0);
++	if (i2c->irq < 0)
++		return i2c->irq;
++
++	clk = devm_clk_get_enabled(dev, NULL);
++	if (IS_ERR(clk))
++		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
++
++	ref_rate = clk_get_rate(clk);
++	if (device_property_read_u32(dev, "clock-frequency", &bus_rate))
++		bus_rate = I2C_MAX_STANDARD_MODE_FREQ;
++	if (!bus_rate || bus_rate > I2C_MAX_FAST_MODE_FREQ)
++		return dev_err_probe(dev, -EINVAL,
++				     "unsupported bus frequency %u Hz\n",
++				     bus_rate);
++
++	div = DIV_ROUND_UP_ULL(ref_rate, 5ULL * bus_rate);
++	if (!div || div - 1 > FIELD_MAX(CS75XX_I2C_CFG_PRER))
++		return dev_err_probe(dev, -EINVAL,
++				     "cannot derive %u Hz from %lu Hz\n",
++				     bus_rate, ref_rate);
++	i2c->prer = div - 1;
++
++	cs75xx_i2c_hw_init(i2c);
++
++	writel(0, i2c->base + CS75XX_I2C_IE);
++	writel(CS75XX_I2C_INT_DONE, i2c->base + CS75XX_I2C_INT);
++
++	ret = devm_add_action_or_reset(dev, cs75xx_i2c_disable, i2c);
++	if (ret)
++		return ret;
++
++	ret = devm_request_irq(dev, i2c->irq, cs75xx_i2c_isr, 0, dev_name(dev),
++			       i2c);
++	if (ret)
++		return ret;
++
++	writel(CS75XX_I2C_INT_DONE, i2c->base + CS75XX_I2C_IE);
++
++	i2c->adap.owner = THIS_MODULE;
++	i2c->adap.algo = &cs75xx_i2c_algo;
++	i2c->adap.quirks = &cs75xx_i2c_quirks;
++	i2c->adap.retries = 3;
++	i2c->adap.dev.parent = dev;
++	device_set_node(&i2c->adap.dev, dev_fwnode(dev));
++	strscpy(i2c->adap.name, dev_name(dev), sizeof(i2c->adap.name));
++	i2c_set_adapdata(&i2c->adap, i2c);
++
++	ret = devm_i2c_add_adapter(dev, &i2c->adap);
++	if (ret)
++		return ret;
++
++	dev_dbg(dev, "bus %u Hz, reference %lu Hz\n", bus_rate,
++		ref_rate);
++
++	return 0;
++}
++
++static const struct of_device_id cs75xx_i2c_of_match[] = {
++	{ .compatible = "cortina,cs7542-i2c" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, cs75xx_i2c_of_match);
++
++static struct platform_driver cs75xx_i2c_driver = {
++	.probe = cs75xx_i2c_probe,
++	.driver = {
++		.name = "cs75xx-i2c",
++		.of_match_table = cs75xx_i2c_of_match,
++	},
++};
++module_platform_driver(cs75xx_i2c_driver);
++
++MODULE_DESCRIPTION("Cortina Systems CS75xx I2C controller driver");
++MODULE_LICENSE("GPL");
 
->   		}
->   		hwpt_nested = iommufd_viommu_alloc_hwpt_nested(
->   			viommu, cmd->flags, &user_data);
-> diff --git a/drivers/iommu/iommufd/viommu.c b/drivers/iommu/iommufd/viommu.c
-> index 7e74d3992ae4..cadd8a5ca912 100644
-> --- a/drivers/iommu/iommufd/viommu.c
-> +++ b/drivers/iommu/iommufd/viommu.c
-> @@ -17,7 +17,8 @@ void iommufd_viommu_destroy(struct iommufd_object *obj)
->   		viommu->ops->destroy(viommu);
->   	if (viommu->tsm_dev)
->   		tsm_put_device(viommu->tsm_dev);
-> -	refcount_dec(&viommu->hwpt->common.obj.users);
-> +	if (viommu->hwpt)
-> +		refcount_dec(&viommu->hwpt->common.obj.users);
->   	if (viommu->kvm_file)
->   		fput(viommu->kvm_file);
->   	xa_destroy(&viommu->vdevs);
-> @@ -31,11 +32,11 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   		.uptr = u64_to_user_ptr(cmd->data_uptr),
->   		.len = cmd->data_len,
->   	};
-> -	struct iommufd_hwpt_paging *hwpt_paging;
-> +	struct iommufd_hwpt_paging *hwpt_paging = NULL;
->   	struct tsm_dev *tsm_dev = NULL;
->   	struct iommufd_viommu *viommu;
->   	struct iommufd_device *idev;
-> -	struct iommu_device *iommu_dev;
-> +	struct iommu_device *iommu_dev = NULL;
->   	const struct iommufd_viommu_ops *ops;
->   	size_t viommu_size;
->   	int rc;
-> @@ -47,11 +48,6 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   	if (IS_ERR(idev))
->   		return PTR_ERR(idev);
->   
-> -	iommu_dev = iommufd_device_get_iommu_dev(idev);
-> -	if (!iommu_dev) {
-> -		rc = -EOPNOTSUPP;
-> -		goto out_put_idev;
-> -	}
->   	tsm_dev = tsm_get_device(idev->dev);
->   	if (IS_ERR(tsm_dev)) {
->   		rc = PTR_ERR(tsm_dev);
-> @@ -68,6 +64,11 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   			tsm_put_device(tsm_dev);
->   			tsm_dev = NULL;
->   		}
-> +		iommu_dev = iommufd_device_get_iommu_dev(idev);
-> +		if (!iommu_dev) {
-> +			rc = -EOPNOTSUPP;
-> +			goto out_put_idev;
-> +		}
->   		if (!iommu_dev->ops->get_viommu_ops) {
->   			rc = -EOPNOTSUPP;
->   			goto out_put_idev;
-> @@ -93,15 +94,22 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   		goto out_put_idev;
->   	}
->   
-> -	hwpt_paging = iommufd_get_hwpt_paging(ucmd, cmd->hwpt_id);
-> -	if (IS_ERR(hwpt_paging)) {
-> -		rc = PTR_ERR(hwpt_paging);
-> -		goto out_put_idev;
-> -	}
-> -
-> -	if (!hwpt_paging->nest_parent) {
-> -		rc = -EINVAL;
-> -		goto out_put_hwpt;
-> +	if (ops->flags & IOMMUFD_VIOMMU_NO_HWPT) {
-> +		if (cmd->hwpt_id) {
-> +			rc = -EINVAL;
-> +			goto out_put_idev;
-> +		}
-> +	} else {
-> +		hwpt_paging = iommufd_get_hwpt_paging(ucmd, cmd->hwpt_id);
-> +		if (IS_ERR(hwpt_paging)) {
-> +			rc = PTR_ERR(hwpt_paging);
-> +			goto out_put_idev;
-> +		}
-> +		if (!hwpt_paging->nest_parent || !iommu_dev ||
-> +		    hwpt_paging->common.domain->owner != iommu_dev->ops) {
-> +			rc = -EINVAL;
-> +			goto out_put_hwpt;
-> +		}
->   	}
->   
->   	viommu = (struct iommufd_viommu *)_iommufd_object_alloc_ucmd(
-> @@ -119,7 +127,8 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   	viommu->tsm_dev = tsm_dev;
->   	tsm_dev = NULL;
->   	viommu->hwpt = hwpt_paging;
-> -	refcount_inc(&viommu->hwpt->common.obj.users);
-> +	if (viommu->hwpt)
-> +		refcount_inc(&viommu->hwpt->common.obj.users);
->   	INIT_LIST_HEAD(&viommu->veventqs);
->   	init_rwsem(&viommu->veventqs_rwsem);
->   	/*
-> @@ -130,7 +139,7 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   	viommu->iommu_dev = iommu_dev;
->   
->   	rc = ops->viommu_init(viommu, idev->dev,
-> -			      hwpt_paging->common.domain,
-> +			      hwpt_paging ? hwpt_paging->common.domain : NULL,
->   			      user_data.len ? &user_data : NULL);
->   	if (rc)
->   		goto out_put_hwpt;
-> @@ -140,7 +149,8 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   	rc = iommufd_ucmd_respond(ucmd, sizeof(*cmd));
->   
->   out_put_hwpt:
-> -	iommufd_put_object(ucmd->ictx, &hwpt_paging->common.obj);
-> +	if (hwpt_paging)
-> +		iommufd_put_object(ucmd->ictx, &hwpt_paging->common.obj);
->   out_put_idev:
->   	if (tsm_dev)
->   		tsm_put_device(tsm_dev);
-> @@ -240,10 +250,12 @@ int iommufd_vdevice_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   		goto out_put_idev;
->   	}
->   
-> -	iommu_dev = iommufd_device_get_iommu_dev(idev);
-> -	if (!iommu_dev || viommu->iommu_dev != iommu_dev) {
-> -		rc = -EINVAL;
-> -		goto out_put_idev;
-> +	if (viommu->iommu_dev) {
-> +		iommu_dev = iommufd_device_get_iommu_dev(idev);
-> +		if (!iommu_dev || viommu->iommu_dev != iommu_dev) {
-> +			rc = -EINVAL;
-> +			goto out_put_idev;
-> +		}
->   	}
->   
->   	mutex_lock(&idev->igroup->lock);
-> @@ -463,7 +475,7 @@ int iommufd_hw_queue_alloc_ioctl(struct iommufd_ucmd *ucmd)
->   	if (IS_ERR(viommu))
->   		return PTR_ERR(viommu);
->   
-> -	if (!viommu->ops || !viommu->ops->get_hw_queue_size ||
-> +	if (!viommu->hwpt || !viommu->ops || !viommu->ops->get_hw_queue_size ||
->   	    !viommu->ops->hw_queue_init_phys) {
->   		rc = -EOPNOTSUPP;
->   		goto out_put_viommu;
-> diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
-> index a4b29915d0ca..4d5995956cce 100644
-> --- a/include/linux/iommufd.h
-> +++ b/include/linux/iommufd.h
-> @@ -6,6 +6,7 @@
->   #ifndef __LINUX_IOMMUFD_H
->   #define __LINUX_IOMMUFD_H
->   
-> +#include <linux/bits.h>
->   #include <linux/err.h>
->   #include <linux/errno.h>
->   #include <linux/iommu.h>
-> @@ -102,6 +103,7 @@ void iommufd_ctx_get(struct iommufd_ctx *ictx);
->   struct iommufd_viommu {
->   	struct iommufd_object obj;
->   	struct iommufd_ctx *ictx;
-> +	/* Physical IOMMU backing, or NULL. */
->   	struct iommu_device *iommu_dev;
->   	struct iommufd_hwpt_paging *hwpt;
->   	struct file *kvm_file;
+-- 
+2.53.0
 
-[...]
 
-Thanks,
-baolu
 
