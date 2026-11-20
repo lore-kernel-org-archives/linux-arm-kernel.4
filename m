@@ -2,102 +2,151 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58244606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 657C7606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XriuHFa5;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=FenyOCU9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kkCw5FiY;
+	dkim=pass (2048-bit key, unprotected) header.d=phytec.de header.i=@phytec.de header.a=rsa-sha256 header.s=selector2 header.b=XEo0Q+Rh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eTmGpAk5ApLPXB7Y5muckWXrGowRihIuOzQJLQl8RgA=; b=XriuHFa5rGlKSm
-	xvuC6p4EMYlbdhSvlmOh+t5z2glGR2niIyNDBudYTgAGCDLxdZVuKjRqGjdI0prTdI/Kd5uDR1Zj9
-	Y8glAEF0EihW+bDgfshwQyQPsdXs4xc8Fz4qA/FUoE+kg20Doi1wMA3DeOWNujkhfBLgCV/4C0qtp
-	zmf9fGBOZqFyC8L3ie/SkNIA1C/N+ykY7ldSqI/lr23naqY2OtfUm8dasnv3O7Rn5INerW6AmLotz
-	viBa1TudHhWikZNbCWh4iwU/9TCUcxmkMC8RT4hHh8PGk+Uunx0Mf6c8vrSv+te9bnBwzSABFHM2I
-	aonPlHDmp6TYqgg6yOnQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AF0bWb9jav2RleGGBmJMqnsL/EYfHcUe8tIfTHZyoBQ=; b=kkCw5FiYKerue+CZWqEXMjL7tn
+	cL1nYDS9MGVk6hvmQbh+u+d8O1ojHepoZnszVVHszkiBSJpJi7QBLZU6lllRbdTjkJNfReaOI9KcV
+	p7+TdKLKOz5bbkeHATECF/ATgP8+N1Dn85maGmofdTY+qIOyzgv1jFT7GiNWgqEpBhb4NAfSS/tLd
+	f2PWBN09NsBtfJt7lDQwiOSVlmsvC8gCBv+OnfGxf9x4cS0L/eOOn3Wh8LPR4UqyGZ8poZCLNoVLf
+	boqU44VubDfDmkAvAFYdwwO/K/GiWP2OFmAoDkrpQKTFEv4zE0ftGqJzRcIUsZOo2nFAbU25sMZ7x
+	Jq8zxrhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPoY-0000000FHnW-1Bsz;
-	Fri, 20 Nov 2026 14:42:10 +0000
-Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
+	id 1xUPoj-0000000FHsa-00aX;
+	Fri, 20 Nov 2026 14:42:21 +0000
+Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPoV-0000000FHmC-2BmA
+	id 1xUPof-0000000FHp4-0pNj
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 14:42:09 +0000
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-2f00fc215f9so6508155ad.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 06:42:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795185727; x=1795790527; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=eTmGpAk5ApLPXB7Y5muckWXrGowRihIuOzQJLQl8RgA=;
-        b=FenyOCU95v2PNVbeiFZJYql8nzHJ1JdcSq5Rk1zfE8hYHhmdlh8DahO6uQIabhR65I
-         FnSsaduKdXaHolbmUyCllg/Z69dsbpexYhxYvEtV60OZwupLkfp2Ee85UWo3Ipxa1QGD
-         V0Sj0yeEQcoZCFWy7zQcWysMH+Po69HlkIu51+uh3/JXIwDLC6rdrI83gO1c+144d3t1
-         2lnhaEvDdO+niC56L4S6zyNF2PM/VzkCC4+/kBZoVLHQwWplLPaHDSh9rHd0GTf/C0GE
-         SanEgwxgJ2XuR5joustaDyYFduVIQwAwkEDcKTrsELufiwh4+N7FhDFo1+I++UmdlfXD
-         hEsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795185727; x=1795790527;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=eTmGpAk5ApLPXB7Y5muckWXrGowRihIuOzQJLQl8RgA=;
-        b=j+L+QjAfuvERXcJsex53YafRgCHIEhDgwECXIeJfxVRrdUCSG0i//sZoJooKQld1Yh
-         GDNEscsqdRImZKxBsemUaRG2sNLCfNlu7mbfKEu/7UzBx9r4JNmgylOyplvdomruiqTR
-         MD119+L/0gDwTlNg4+BK1nQedBQCL4x/TFfrth76JUiiud0xblwsuYMwwSUdatasxdS4
-         YidSScPOmZ52UeixmRX+W7extYQGYjQQl/LeFiOrB+DtQ/usBh/0OFkwmin5KgJIOEHn
-         K5wJW9M67ln0m4kIBY6YrgORts8LBLX9M8tAUsliELKC4guMNhpKwOfkJyw77MPpbh4R
-         Rdfw==
-X-Forwarded-Encrypted: i=1; AL+hErEPQcfp6CKDRjGJCE2eOzx+q9XSYMijyqlWcMDh/O44yQouQ6DnIXBEvvN2awxVTF+1ZBiM+zHSORNpkTkObvi8@lists.infradead.org
-X-Gm-Message-State: APuU4Z/OX8dk4q4y9VgdqdDqolJhp7pp7NmJIZAj7h4pINkRZmOqSbos
-	UIm9sE+uSIqJ9WcKjxB0C2sLUx4q3Ei7UhXWgmHoDgYA5YqZPaOCBLlh
-X-Gm-Gg: AZFdTZdmwcLYV2eJ73YaVwoQH7qvEDB+r8RIviv0BNuwN78Uf7Rr9f7DZI837gV7Vik
-	Sn6pxDZ6u0oYHH63LCtOvUun5aqfNdgsYiXQdDNs8sV0FQlmTCmjJ9A1/1UhEjOZmkfpgqFXw3a
-	YNDCaajnXD9cKrP1M8ipR/B5cqL/LgerIdfe5W5PnaSx62+Pdw7TIo9KXFT/KCcCsYlbx4YWGnv
-	8Ftv2le7rEFKoG3ewSlwjJjBHYUv5irEw7V1JWnccmmQmJadNBNIXJpr5eeP0CcVPoCLNy7ipHy
-	urtp82GO0TYuf2sSD6BJVnGEE8pTkYkkIYAc1z967wmak9wcizDWKFur1yXWhw9UceW5m7QnxL2
-	h2arqI/k9KFGfc84DNcTosUjv0pSx07W0kKFCmg4pnuTx1mdKbF6qzubRIRgtwf1dsm+SUactOB
-	CT5VigNW6DobLKzsAz5KwOmmXIM1MJBluuKdm8xLzX7X7MnATUhpy9krly1AgrZpcBh8gCEikoZ
-	z6Yo9fk+hKGnsh4au5iaR7GK30UXx70WfT6jLoM72BI7seTbkUP7YaoVjugOvowTdXBFycuSypm
-	YSUvEbmKQor5qOOkq44lLsafS7O3wNrT0kjWew==
-X-Received: by 2002:a17:902:eccf:b0:2e9:64b9:a333 with SMTP id d9443c01a7336-2f03f17c766mr37267005ad.19.1795185726811;
-        Fri, 20 Nov 2026 06:42:06 -0800 (PST)
-Received: from [10.98.15.223] ([2a09:bac1:6500::19b:170])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee848c1sm15346435ad.10.2026.11.20.06.41.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 06:42:06 -0800 (PST)
-From: Chuanhong Guo <gch981213@gmail.com>
-Date: Fri, 20 Nov 2026 22:41:44 +0800
-Subject: [PATCH v2 1/3] clk: mediatek: mt7629: move clock counts out of DT
- bindings
+	Fri, 20 Nov 2026 14:42:19 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KMYlWAo+xRh2bmYhE7Z7Q+fn9rhKzK4CiechDYrg4lFCdKq1GhOBxnR7QO6XRRp9z7zkyxiihjY4+GIinZTYqSurXQoKS9ol9SL22zk0Qx50xtGQFl+TPnl8h2HAaFP44XGIFXubmReUGlcKEHlgvGqVoYsIALPsNDH4AQvNswpxbNjeK+53wLFxpVvTTFOP0Kjd1kdQBnsM0/Ux1WJNfGhjCDlhzKbFO7B+Dwyju6v/zA+7JcO+qGEm0V9H0H4yfTFOmG/2t7ULcNNtOEt/oKXQnIgp3j3lgK5A1jRnsML+/u+zJKUsQhVnGFSZ6VaNyTT8hMQGtIm72+UgvPirSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AF0bWb9jav2RleGGBmJMqnsL/EYfHcUe8tIfTHZyoBQ=;
+ b=ASAE8WOxsTqh9gvUiSALwOcmTlU85fLe9vnZXxCwh0kQlJ+DRumaHIoRrwkwgCjal/0j7699KYdHpFIMEOSTACXYcisga1J5deygrbG6M8TCl56SlmXn8hzkw7Xx8pta33veIKPiYv2oUyQnkLo6VDk5lo7HdEV6xuzrrgBj/4/kGAZE9VhLDAAg3VYtHaKpruiFRt+Qkph9CjyC+6W54P14hi7PAXgluYlILoviNwNsVI75AAs1Jf4JR10CUfM/3g5GJLuYYx/AlY/dgNUZHXfBY9sG0q5/1FmyB5lAk3GJ1TsjO8IP+hPgWFBSpowp6uKKWs19C9FP1jjLOYJZLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
+ dkim=pass header.d=phytec.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AF0bWb9jav2RleGGBmJMqnsL/EYfHcUe8tIfTHZyoBQ=;
+ b=XEo0Q+RhHw3MmdIReEtFXBqmDXPzGMM7R1FPDCr4YXkOb50CqmLWviKm878g6UnWcjKP1ToQ8r7LZzVc/nTbvMHK3hsuPywmi0hOWj/iqvwX6dvYXZT5baLeHGpHllfwIn1KT45QlLPakM2LCdzexnzK0/mHUSH7HCU3Ph5IvLIX1iz946FhXhnpwQ9q6pZ0mrfoul+McOlCOPrdHeJXh4fqJoIiR/KEMkKSf01DTgmdX/d3fJaTQHwcoOwVB/hBjQYOXZyJ9MujqfcFoPOr6IWn2uRAy4iObIIZH1ZeR1popumQLvCcHRQjiSURHw5mWXkAwntwB489VLxj1wGmhg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.de;
+Received: from AS4P195MB1456.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:4b3::21)
+ by AMCP195MB976615.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:783::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
+ 2026 14:42:08 +0000
+Received: from AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
+ ([fe80::295f:9a59:b66a:621a]) by AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
+ ([fe80::295f:9a59:b66a:621a%5]) with mapi id 15.21.0639.011; Fri, 20 Nov 2026
+ 14:42:08 +0000
+Message-ID: <53d50a7c-4318-4705-ae21-780b04628742@phytec.de>
+Date: Fri, 20 Nov 2026 16:42:05 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: configs: defconfig: Convert TISCI to modules
+To: Nishanth Menon <nm@ti.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Siddharth Vadapalli <s-vadapalli@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Bjorn Andersson <andersson@kernel.org>, alexander.sverdlin@siemens.com,
+ jan.kiszka@siemens.com, ayush@beagleboard.org, robertcnelson@gmail.com,
+ upstream@lists.phytec.de, francesco.dolcini@toradex.com,
+ leonardo.costa@toradex.com, matthias.schiffer@ew.tq-group.com,
+ stefano.r@variscite.com, eblanc@baylibre.com, msp@baylibre.com,
+ thomas.richard@bootlin.com, miquel.raynal@bootlin.com, mwalle@kernel.org
+References: <20260910134409.1713610-1-nm@ti.com>
+From: Wadim Egorov <w.egorov@phytec.de>
+Content-Language: en-US
+In-Reply-To: <20260910134409.1713610-1-nm@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR2P281CA0184.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9f::16) To AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:4b3::21)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-b4-mt7629-rtc-v2-1-cd877cd496ae@gmail.com>
-References: <20261120-b4-mt7629-rtc-v2-0-cd877cd496ae@gmail.com>
-In-Reply-To: <20261120-b4-mt7629-rtc-v2-0-cd877cd496ae@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Chuanhong Guo <gch981213@gmail.com>
-X-Mailer: b4 0.14.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4P195MB1456:EE_|AMCP195MB976615:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ff9bd51-2f06-4a85-4b9f-08df4714743b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|10070799003|23010399003|1800799024|376014|7416014|366016|261028144727099003|261026140227099003|261021121427099003|261026121527099003|261021123027099003|261022105027099003|261022075727099003|261102123227099003|11063799006|56012099006|10067099003|261009223027099003|22082099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: MihGZb4kqtj8J+m5mM6SjLrleZzqy09rLtNH1a544YG13Y3H6D1nWnjvHQvUWX9tf4gpwLW0l8/9EoYIT3oqSQ4qUcVqdINVjcypB68d8JwnIpJ+xsKliR6w7Q3hbDyTtR1ZrzQlQfu9ZIk2FJmr4yQpQFJpkBPuAuB2e8Ccl+Wy2xfDStdYSOAE1nNBc4hy8kewC87F9ERZ6nN81Og7suvT/UZ8/7/JLmma1vZYDB/HVlSnW7WcgCqLc7BYJMPbN0ic+tsN/p1faIp3UopMPt6vFCskj9pssf19xO9+7cmsx1s/X0UZJf5/RSS5pcBUIketk/Ic29SxjRMKnRx7KvNXZm0yuPVOuNhCUnVMhFnDH8ovb21eelyr6QrOEGClEPoD/VhKaHEcBiiVCnRuV5xI4FLSQIwJ8xrRHk6sBLrSw+qKKslchvv5McK5acGPswQ62TllRRiHeZw1YQ1JnhQlWt6w/DOqIsvscqTOYd4L4FmAMVUibvIEsUDxDpq1IoIR16HYQACc6F3hejf4e3YCGh892T5kn9KVFNAQNQ80C/rVY+c6tZVvZuwwm+kpu6k/0qx9XOqArg82Mxc1d0Y3eiNFPDMWr3Hz+pydk2GY4Ka6qOLQe73TUvSL8NIX
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4P195MB1456.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(23010399003)(1800799024)(376014)(7416014)(366016)(261028144727099003)(261026140227099003)(261021121427099003)(261026121527099003)(261021123027099003)(261022105027099003)(261022075727099003)(261102123227099003)(11063799006)(56012099006)(10067099003)(261009223027099003)(22082099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aTg1dHNaV2RLYWljMkFiUFlhSjFyQ2FSeitGRks2Q082TThlT0dobkN6YTBj?=
+ =?utf-8?B?ZHpXWXNYamp4a0xXV3JRV2dsbFhGalpjcWJzK2Q0elMyVHNXZ1diNHJrWFl3?=
+ =?utf-8?B?Y3Q3V2x4bndIQ2dkbVF1UHF1OHJHaFowV3EvZkhuRnlJd21nbkY5R2prUWxS?=
+ =?utf-8?B?RTJ2dmJ4SFN0cUNPaitlTVJQc2FFM09xS0g3Y3FUNDFVM2ZQWDZCR1o5ckQw?=
+ =?utf-8?B?UVV3QjNPOHk5NXRnbk1wV0tQSW0zY054cFRlMlJyaEFSODdYaVFscU12UnIv?=
+ =?utf-8?B?elJGTkpJcU9ObHZncTNtVkN4dGFZaDZ2TEN0ek13QWVIYk1PbmFFRW5JS0N2?=
+ =?utf-8?B?WlY1cU5kME80YnJHN1dqTWhlKzh1MkxHZmk4eU4yMXlRcWZLVm82SE52Qzhw?=
+ =?utf-8?B?bWJDQ2YvWnRGR2VNYlB4dnJncUdMZWR2VE5GVW45TGJkZTBLY0FWYlBPY0VH?=
+ =?utf-8?B?c2JlMUFJM2FPTmZqajk2QnJsRlp2Z2Nsc0xkV2IvTy9YRFg4VGJHWU9DZVVr?=
+ =?utf-8?B?dkRkNHFRUzkyNUNvZjFaSG52KzlUQ0hySGFaM2FuM3ptSmF5U3U5eTZYYzVL?=
+ =?utf-8?B?V2FSTkJSaDY4aVhrNnhuWHFCTTdpNHQ2cllaM2R4Q3V4dXVHUG9vYWhEMzMr?=
+ =?utf-8?B?VzFRN1ZROXNUa0tMT0M0K1RYTzFka1ZHaWNyUzE1WWJrS3hCaEIxYStLaCsz?=
+ =?utf-8?B?dVFNNVFnWWdaTjkxejVXK0I0bVJUWk9PazFuMmxCSjJTQTA1ZU1mTDh0SkR4?=
+ =?utf-8?B?R1hMRXFWSkthZDhscEU0bDlNcCsyOVc1Y2tMeFYzc1oxZVRKVnVDTjdBWE12?=
+ =?utf-8?B?NXhaKy9hTHkwQzdacUkyZWtRbG81M1dITysvejlIbEtMcXA3WlpnNHFjdlRl?=
+ =?utf-8?B?bEczZTQ4cnl3RVVzdnZYbTVUb0tIbzF3YlBESERLemhnTnFJdldhd0tCVzFW?=
+ =?utf-8?B?K01OM1RZRklpSThzUTRVWUl5SHBscml4VEFWOHh2VWpzRFpKZTVsZ05rc3cv?=
+ =?utf-8?B?cjZYYnI3YXQxUXF2a1Jaa2dnekhmS2pqeUZRTTV3dTE4c2lMbDdaaU9qaTRp?=
+ =?utf-8?B?UHYxYWRUdi93dDNjemFUeWdLdDRUbVRIQ3ExS3RtZE43alVQZmIyeWpjVWhk?=
+ =?utf-8?B?ZUpVOVZVQmZnRWV6MkZYdG9OcDJVdnVaN1h6U1QwNTdVb2tvc2VBMXFaellU?=
+ =?utf-8?B?aXEwYjJZUVFxRytSaXRPK2ZlWDFTZXNnU2RlMFpzTUR6bURtMkIwUGZNTlFF?=
+ =?utf-8?B?WEQrQ3hOM0h2c3ppQnNXSEN3NXV1MENtaW5MbnhHL3hNMzlTa0VUb0ZFeFN0?=
+ =?utf-8?B?c3kwT2dwcTFXRVJvK2ZJUTF2VGtCeTVoVU45S3UyQjlYUzM0RWhyQ2pJQXR0?=
+ =?utf-8?B?UzdEQnZrWWR0ckRCd1FjNjQ5TGZvWW96WVhPdDVkYUFEOXBpRUhWdjlmL05L?=
+ =?utf-8?B?YlZCVFhJZ21IMEMwRXJVOWl4bVJ0elk5U1JnakkxUVdMR04xeWxNOURDUmVU?=
+ =?utf-8?B?Y3JRamtOcWkyYkdhcFNxUk02SGFJaDZNMkpJcTBKUGdSTUkxbGZPZkNkNXd6?=
+ =?utf-8?B?bVpvWWt5TXpybGQ2UU9NbGEwN2J5aVdkYnNVVzZDcXkvMC9wOFNNZEcxOXR3?=
+ =?utf-8?B?Tms1bnRTYlZaejVjUWJZWGxQMzhKSWt0S1RMeTJUTm1NOWZDcEtibFhXMGxj?=
+ =?utf-8?B?ZWFYc2J6TUtnaUUvaXh0RldHK2tUNXhhVy9ENUNXblFiMHFuUTdhNm1YZEM4?=
+ =?utf-8?B?V1ByMHU4WE5NQkI4QnIydmRhU2UwVU1kcUpkc2dxZ0VwamtOcjVDTWk3THFl?=
+ =?utf-8?B?aERra0dyQ0ZqWlpISTdnbk9SYTFJQ0JFbGc3RUlKRHhTdytueXhWdlh1M28z?=
+ =?utf-8?B?R2dLeXFvaDN6UGsybzBUSUgxd3FCRkdDR3p0Z1dGTU9peTlKUFA4engzZjQw?=
+ =?utf-8?B?MWxvRjBRU1dzMi95dGRueXpxMmk2LzAvL2lmOGJrY2JjbGYweExpMnBuRGFs?=
+ =?utf-8?B?NGlnYTVFSnZQTVJsL05mV0dnc3Q0SnpuWkFPTVdJY1BuMCtVeXlLeWhhcG9O?=
+ =?utf-8?B?b0JtU1ZRZEx4a01VMDJuYUdGVDhoZExyWitWSExOVE94ZVc1WWRiKzRoRjcx?=
+ =?utf-8?B?SnRQRkQxbzZuNW55OU1KYXlCOVRFKzJhaUtZdmtENHp3RDdGcXlhTm1EaS9u?=
+ =?utf-8?B?TnlIVFVEVUtOVk9xQnlLaEZZcVJWdXVLVytrakxQdEpaOVBGSDN0TllKa0hl?=
+ =?utf-8?B?NjljaDFaRElsWGExMW0wY2Y4Wm42b1hQeHBDTldMajdxZFFjblBwVTF6aTV4?=
+ =?utf-8?B?bzB3RTBhNlQvQThGN1ZpNGl2bXA5SHNJSHR2OWVrWDBDTERLZitVQ2h0NUNt?=
+ =?utf-8?Q?7CKhXLb3Es5DKlPxXN9426nARoxVAceroOr4n6zARzLL0?=
+X-MS-Exchange-AntiSpam-MessageData-1: ilyqhKlFwPsUFQ==
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ff9bd51-2f06-4a85-4b9f-08df4714743b
+X-MS-Exchange-CrossTenant-AuthSource: AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 14:42:08.5978
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RmszvhwsCm+D3hZ0nOcwO80TyK9ZqjSVUjjVZGS8GnJTq7VW6r6yScYxPxjnbLk8k8OvNVCe2qNeMdbet+WnVQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMCP195MB976615
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_064207_615349_C3C0AA8C 
-X-CRM114-Status: GOOD (  12.02  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261120_064217_286657_E772739B 
+X-CRM114-Status: GOOD (  18.84  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,82 +157,135 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The clock counts used by clk-mt7629.c size the clock provider arrays.
-They are driver implementation details rather than clock IDs used by
-device tree consumers.
 
-Move CLK_TOP_NR_CLK, CLK_INFRA_NR_CLK, CLK_PERI_NR_CLK and
-CLK_APMIXED_NR_CLK into the driver. Keep their values and all clock IDs
-unchanged.
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
- drivers/clk/mediatek/clk-mt7629.c      | 5 +++++
- include/dt-bindings/clock/mt7629-clk.h | 4 ----
- 2 files changed, 5 insertions(+), 4 deletions(-)
+On 9/10/26 4:44 PM, Nishanth Menon wrote:
+> Now that all relevant drivers have are ready, convert the
+> TISCI drivers to modules. This impacts all K3 platforms for
+> boot, recommendation (based on empirical evidence) is to use
+> deferred_probe_timeout=60 in kernel command line to allow for driver
+> probes to complete successfully based on the initrd used.
+> 
+> NET Savings: (Ubuntu Clang 23.0.0)
+> ./scripts/bloat-o-meter vmlinux_previous vmlinux
+> add/remove: 4/380 grow/shrink: 0/5 up/down: 32/-143248 (-143216)
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+> 
+> NOTE:
+> a) This patch is based off v7.3-rc1 and will create a merge conflict
+>   in linux-next (next-20260909), but the resolution is trivial (vs
+>   bd94bea7165be450903c6d64bbcb4862e36798f9).
+> b) Emperical experiments that Siddharth Vadapalli did,
+>   it seems like some driver probes might be taking much
+>   longer than the default deferred_probe_timeout of 10
+>   seconds that is used when CONFIG_MODULES=y. Testing log[1]
+>   a deferred_probe_timeout=60 seems to have worked fine.
+> c) Full bloatometer report is available in [1] as well.
+> d) related lore discussions[2]
+> 
+> [1] https://gist.github.com/nmenon/5f1587b373e6ca27170593010188d968
+> [2] https://lore.kernel.org/all/20260429-defconfig-v2-5-e4ed4186028b@oss.qualcomm.com/
+>     See headsup I gave on #linux-ti irc channel https://libera.catirclogs.org/linux-ti/2026-05-20
+>     https://lore.kernel.org/linux-arm-kernel/20240821110054.35u5ubgaogzjv6c4@rover/
+>     (original thread that triggered various changes)
 
-diff --git a/drivers/clk/mediatek/clk-mt7629.c b/drivers/clk/mediatek/clk-mt7629.c
-index e154771b1b8b..517c43b19f18 100644
---- a/drivers/clk/mediatek/clk-mt7629.c
-+++ b/drivers/clk/mediatek/clk-mt7629.c
-@@ -17,6 +17,11 @@
- 
- #include <dt-bindings/clock/mt7629-clk.h>
- 
-+#define CLK_TOP_NR_CLK		108
-+#define CLK_INFRA_NR_CLK		6
-+#define CLK_PERI_NR_CLK		22
-+#define CLK_APMIXED_NR_CLK		7
-+
- #define MT7629_PLL_FMAX		(2500UL * MHZ)
- #define CON0_MT7629_RST_BAR	BIT(24)
- 
-diff --git a/include/dt-bindings/clock/mt7629-clk.h b/include/dt-bindings/clock/mt7629-clk.h
-index ad8e6d7f0154..cff9a02e8302 100644
---- a/include/dt-bindings/clock/mt7629-clk.h
-+++ b/include/dt-bindings/clock/mt7629-clk.h
-@@ -115,7 +115,6 @@
- #define CLK_TOP_CRYPTO_SEL		105
- #define CLK_TOP_SGMII_REF_1_SEL		106
- #define CLK_TOP_10M_SEL			107
--#define CLK_TOP_NR_CLK			108
- 
- /* INFRACFG */
- #define CLK_INFRA_MUX1_SEL		0
-@@ -124,7 +123,6 @@
- #define CLK_INFRA_DEVAPC_PD		3
- #define CLK_INFRA_APXGPT_PD		4
- #define CLK_INFRA_SEJ_PD		5
--#define CLK_INFRA_NR_CLK		6
- 
- /* PERICFG */
- #define CLK_PERIBUS_SEL			0
-@@ -149,7 +147,6 @@
- #define CLK_PERI_NFI_PD			19
- #define CLK_PERI_NFIECC_PD		20
- #define CLK_PERI_FLASH_PD		21
--#define CLK_PERI_NR_CLK			22
- 
- /* APMIXEDSYS */
- #define CLK_APMIXED_ARMPLL		0
-@@ -159,7 +156,6 @@
- #define CLK_APMIXED_ETH2PLL		4
- #define CLK_APMIXED_SGMIPLL		5
- #define CLK_APMIXED_MAIN_CORE_EN	6
--#define CLK_APMIXED_NR_CLK		7
- 
- /* SSUSBSYS */
- #define CLK_SSUSB_U2_PHY_1P_EN		0
+I can't boot our boards anymore using the default defconfig. Is this forcing us to switch to an initramfs?
 
--- 
-2.56.1
+
+> 
+> Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: alexander.sverdlin@siemens.com
+> Cc: jan.kiszka@siemens.com
+> Cc: ayush@beagleboard.org
+> Cc: robertcnelson@gmail.com
+> Cc: upstream@lists.phytec.de
+> Cc: francesco.dolcini@toradex.com
+> Cc: leonardo.costa@toradex.com
+> Cc: matthias.schiffer@ew.tq-group.com
+> Cc: stefano.r@variscite.com
+> Cc: eblanc@baylibre.com
+> Cc: msp@baylibre.com
+> Cc: thomas.richard@bootlin.com
+> Cc: miquel.raynal@bootlin.com
+> Cc: mwalle@kernel.org
+> 
+>  arch/arm64/configs/defconfig | 15 ++++++++-------
+>  1 file changed, 8 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 6ec8d3a69c98..ed5aebf96080 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -267,6 +267,7 @@ CONFIG_RASPBERRYPI_FIRMWARE=y
+>  CONFIG_INTEL_STRATIX10_SERVICE=y
+>  CONFIG_INTEL_STRATIX10_RSU=m
+>  CONFIG_MTK_ADSP_IPC=m
+> +CONFIG_TI_SCI_PROTOCOL=m
+>  CONFIG_GOOGLE_FIRMWARE=y
+>  CONFIG_GOOGLE_CBMEM=m
+>  CONFIG_GOOGLE_COREBOOT_TABLE=m
+> @@ -1403,8 +1404,8 @@ CONFIG_DW_EDMA=m
+>  CONFIG_RCAR_DMAC=y
+>  CONFIG_RENESAS_USB_DMAC=m
+>  CONFIG_RZ_DMAC=y
+> -CONFIG_TI_K3_UDMA=y
+> -CONFIG_TI_K3_UDMA_GLUE_LAYER=y
+> +CONFIG_TI_K3_UDMA=m
+> +CONFIG_TI_K3_UDMA_GLUE_LAYER=m
+>  CONFIG_STM32_DMA3=m
+>  CONFIG_DMABUF_HEAPS=y
+>  CONFIG_DMABUF_HEAPS_SYSTEM=m
+> @@ -1456,7 +1457,7 @@ CONFIG_CLK_IMX8QXP=y
+>  CONFIG_CLK_IMX8ULP=y
+>  CONFIG_CLK_IMX93=y
+>  CONFIG_CLK_IMX95_BLK_CTL=y
+> -CONFIG_TI_SCI_CLK=y
+> +CONFIG_TI_SCI_CLK=m
+>  CONFIG_COMMON_CLK_MT8192_AUDSYS=y
+>  CONFIG_COMMON_CLK_MT8192_CAMSYS=y
+>  CONFIG_COMMON_CLK_MT8192_IMGSYS=y
+> @@ -1678,7 +1679,7 @@ CONFIG_QCOM_CPR=y
+>  CONFIG_QCOM_RPMHPD=y
+>  CONFIG_QCOM_RPMPD=y
+>  CONFIG_ROCKCHIP_PM_DOMAINS=y
+> -CONFIG_TI_SCI_PM_DOMAINS=y
+> +CONFIG_TI_SCI_PM_DOMAINS=m
+>  CONFIG_ARM_IMX_BUS_DEVFREQ=y
+>  CONFIG_ARM_IMX8M_DDRC_DEVFREQ=m
+>  CONFIG_ARM_MEDIATEK_CCI_DEVFREQ=m
+> @@ -1745,15 +1746,15 @@ CONFIG_SL28CPLD_INTC=y
+>  CONFIG_XILINX_INTC=y
+>  CONFIG_QCOM_PDC=y
+>  CONFIG_QCOM_MPM=y
+> -CONFIG_TI_SCI_INTR_IRQCHIP=y
+> -CONFIG_TI_SCI_INTA_IRQCHIP=y
+> +CONFIG_TI_SCI_INTR_IRQCHIP=m
+> +CONFIG_TI_SCI_INTA_IRQCHIP=m
+>  CONFIG_RESET_GPIO=m
+>  CONFIG_RESET_IMX7=y
+>  CONFIG_RESET_QCOM_AOSS=y
+>  CONFIG_RESET_QCOM_PDC=m
+>  CONFIG_RESET_RZG2L_USBPHY_CTRL=y
+>  CONFIG_RESET_RZV2H_USB2PHY=m
+> -CONFIG_RESET_TI_SCI=y
+> +CONFIG_RESET_TI_SCI=m
+>  CONFIG_PHY_CAN_TRANSCEIVER=m
+>  CONFIG_PHY_NXP_PTN3222=m
+>  CONFIG_PHY_SNPS_EUSB2=m
 
 
