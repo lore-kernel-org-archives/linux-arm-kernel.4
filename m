@@ -2,69 +2,139 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C74606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 03:10:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53B8606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 03:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PMXjw1iw;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A+NYSCYz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s6AJW7y+;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=CX2Hlt/I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ukKJgUBAL20jCzTZgargorWA+q45FyRreSUu86drbqA=; b=PMXjw1iwXOul8U
-	+rfYt+66bvc4/8Nhf5cGWI36hACtIbLwq/Wg76uruMkWIe/evo4DIAuordX0ZcwaSqTZXqOqw+Ts7
-	xxreNgAeHbcIe9xUX+Z0g3CCMSpVCzJzv4pVxu41A6BBsn2vU/TrnvhyTQ0qQ/Uuraorb5WXrw8F7
-	ZLOndYwsMSYqY4SXSXGU2wPL5lMRR+oc+0AK+lO3rypQ/zWQaSS/qr/pg51PSt6Vn0KgS5u6t7xd7
-	/p1vp5Jaw9/5LXqWmzuGE0CbtQsxbZV4jpPTZtpRnYFYkBFNnbIO1PQ9luk1V2Kx8DQFm2R9ltMNi
-	5mcBivMtEElb89pIwmTQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Message-Id:Date:Subject:To:From:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=/G5OjGi8cBmhZJc/JJABreADWSjQyEOOUMQAUj+noSo=; b=s6AJW7y+7zwK0r0EwiWHc1rEkA
+	fCBNaws8Ex0boTiAw9vSA38GPwS4+kr/LxoqmAUAOqjwcgyN0LkVIvgGH+iDZ45APYthByx1UbYK+
+	6OKyq0BTmvaMDR1E+JqUz165Ikej4tukKlcfdbTqK/YntAeqH2ptLeG0ijv1lnHQwO4eTFq3mZK4e
+	8Yvc7YA/rqUfJ/QKVYNiHwdOOw4Nwj2K7XyRTQ3l8QwGZAPSjJxtHaOPprsk7xSHNVDdYsCTpXSU0
+	FXQhG8SvR657FemSHj3eYtmdM9fMdSkNdKpb9utjgUD6fbjEvffbOkKpEBTcSF8lLkGEFsoh+1cWs
+	O87cHfTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUF0t-0000000Dvdb-0lrN;
-	Fri, 20 Nov 2026 03:10:11 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUF6r-0000000Dw6k-0NJ1;
+	Fri, 20 Nov 2026 03:16:21 +0000
+Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUF0r-0000000DvdO-0ybw;
-	Fri, 20 Nov 2026 03:10:09 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E097943701;
-	Fri, 20 Nov 2026 03:10:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BED4A1F000C6;
-	Fri, 20 Nov 2026 03:10:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795144207;
-	bh=ukKJgUBAL20jCzTZgargorWA+q45FyRreSUu86drbqA=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=A+NYSCYzxpFujYYuRndjloCnPVEaFUrzzOY+sPGtiCaNkfQMZL4RW5J7zlE8h/8Wo
-	 YY2xfK2Nb8RE03jG/M5FkNbQJvhGsim0HM9jwxdEBopzfjMVPVwXpN0HsNkY45YHQV
-	 2Wx7Jk9oJCdPhX9itaSw308WYP2UNknHUdN6B1SWOfuEd/mJZRitPCNPCFJGKRhQdX
-	 KNW7JzubPKk7mchgpWFRM39CBp/YbZbhUts7n4OFI84ZZB0JDiJCVwh0U5s4H0eDPd
-	 1qrYVdUZipHul8Q9zaGp331aIvvPOaULtLIa1hKKyaNtl4zbQBL8+d5ebVDrJRCw0l
-	 8QrB0Oa3WimGQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id B44333808209;
-	Fri, 20 Nov 2026 03:10:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	id 1xUF6p-0000000Dw6F-0j9n
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 03:16:20 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BVrmEfvE98YsRJinheLAsvSVDcYNm95Wd/MO4JeuyENq0OGCGkCLyZdfR4r6vBVXt/acww4O+KFUNJH1s5rYHzODhlDYsXeTdt7pIxJWCjLSE8rUGsqTM2Ll3ixH65o+g/yiGsI1+SbYga9ZlA+lKI1UlMJ/kcynjq84nCmkVNx6ddKCBRCOn4eFx89FQ6oFNmtIsbasIJKbzpsDHmkhj1PUc45v/5wRj2teXr7d6B0ZYJLGrURqmXHt3pvX66Y7IJYNHqjvZqCVGwSPL3OmWJQISJdEdh73AfryV80ePEWds4bzABc74+koaKynGccK1o8J/iheq/S7ipwEyll12Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/G5OjGi8cBmhZJc/JJABreADWSjQyEOOUMQAUj+noSo=;
+ b=WcLtXgqkDjMECIPxICrAoWbTjWB8R+cu/YKLB4L19xAJAWNa5i4l49ezJ56m+lCqrqzWsXeTCVDvKtSPCFoy+4FAdySiYyUnN7q+lAaECm9nP4x411K8UYL6dsKhKBUPutALDMf5RLLRsU3RsWXKq2kN5QpWTOq9HrLsNdFDehPgJsllZeHmf4ckouHX04Aww/aTHa0zoe0rCKgbV1MmhtvMEHMT8DTe7uwu29YK3w558m92L2eUcxzKU7KlzQzFS6T2dK1q2VYM0xbaiAzxF5HiHZt+ToP/dWY3U4F/C+en6MkcTfuLm5lAhssJTIk9Qq36W11LDveKjQcS8vuOnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/G5OjGi8cBmhZJc/JJABreADWSjQyEOOUMQAUj+noSo=;
+ b=CX2Hlt/IdTurfmx9nQ0XJ0g81t9InyBj+lYscht9KZrKisqpNy4l/eaOBUXgMVVRQ7X/hLtKmEwFWk+DXYMTmJw18qf1CDAZI4iZYbTU9amWz1gtkmzojUSufkkc2ZaiffTqjaqHOddz2Sl8Co8hwo6YMQZML/elg3LskNmWO4MSz/g/+KMRuq0Jq+2Ht0fZbl7nogZgUWAs1lH2BhwpFdzheDIbX8NYMqdQFX3gkSn6WnZ9iqf1izz4QzzDwdFeChBl99CqJIH3XD/hyiHhCln2/LZqeW7MGZkgdyICfNd7BBb3u7zCvjO2L/sDD2st57MS159IHRZdi5xU32OGSQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB9351.eurprd04.prod.outlook.com (2603:10a6:102:2b6::17)
+ by GV1PR04MB10522.eurprd04.prod.outlook.com (2603:10a6:150:1ce::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
+ 2026 03:16:09 +0000
+Received: from PAXPR04MB9351.eurprd04.prod.outlook.com
+ ([fe80::1058:a430:52c1:5aa]) by PAXPR04MB9351.eurprd04.prod.outlook.com
+ ([fe80::1058:a430:52c1:5aa%5]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
+ 03:16:09 +0000
+From: shengjiu.wang@oss.nxp.com
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	shawnguo@kernel.org,
+	daniel.baluta@nxp.com,
+	chancel.liu@nxp.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/7] arm64: dts: imx: Add DMIC codec to replace dummy codec for micfil
+Date: Fri, 20 Nov 2026 11:18:46 +0800
+Message-Id: <20261120031853.1175454-1-shengjiu.wang@oss.nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0014.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::17) To PAXPR04MB9351.eurprd04.prod.outlook.com
+ (2603:10a6:102:2b6::17)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v7 0/7] Add ethernet support for the Amlogic T7
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179514420653.3998775.15150461070796128263.git-patchwork-notify@kernel.org>
-Date: Fri, 20 Nov 2026 03:10:06 +0000
-References: <20261113121852.334604-1-tanure@linux.com>
-In-Reply-To: <20261113121852.334604-1-tanure@linux.com>
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, maxime.chevallier@bootlin.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9351:EE_|GV1PR04MB10522:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0b3f399-02d1-45e7-35c9-08df46b49f3f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|1800799024|7416014|376014|23010399003|366016|18002099003|6133799003|261009223027099003|921020|11063799006|56012099006|261102123227099003|261021121427099003|261026121527099003|261022075727099003|10067099003;
+X-Microsoft-Antispam-Message-Info: OA6VHNDmYr6vylAzz19jb7qnjTL5jnJyUAlGZmbaM9P3blxTZXdEllJgV1yOfycSe0PWaKdNSVnGPAdkYQJdkC/djdHN3iXV2s4QNeoPqAcUwhwCx2UgOcN+9BJAIpfNW6bcGcMgTGIyaTs3PAeemMAN+oDDw2fnY5YJecdNhjJ0T85deSgYl9xbkYpKokhvelzw20DeRVrxNktsr5wbKjp0Y2pMkGDk3vxtRAZECzIneeP4dx3SXY6poXv/o7k3zQrGcElBisinEJB57D6mrm9LEYRyDqaU8wavecy8YII2kEqTqy5i7S6SZi3jF9LC0kaa1pU31D22EQzp7tkMoyoA2DM8VL9o0jR5pD6zZWZb7CmU6acWYsBP1ET8qv2YeJS6MJoyBBpoeLmpxoPDbA7FMpb2cSOZgzB/dCm4igW3V4AvouOZwmI2okvw67RP8sRM+zh7malfsK4x2Ne7Ju5g3xQ8drtISVuwNQ8ZQk/e6N8mviDK+W2MRi7MAuX7qtUfsY+3r+cIxkOt/JLLjVcV1uuyrIHrvwkl4WCijX24J7NiX369Teej4SJn1RJcMvmWyG+6nVKMk7nySFsE9K8E76lROLcrALETjGLbeejK/VWbVvuRQ4/ceFc8uz2/bXgzCb0Cf4g6Svhln7W++sEfAlD9kX2YY2waALIwe5DdDOXx2kIZOD63u0nk6kdn/El+laxp94RIhBV3jOLDZA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9351.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(7416014)(376014)(23010399003)(366016)(18002099003)(6133799003)(261009223027099003)(921020)(11063799006)(56012099006)(261102123227099003)(261021121427099003)(261026121527099003)(261022075727099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pnmiM+p1jGv8DP1Z2OuBCbihDqBQzxCvSnYj+Be+GJg7nNzBNCbWdIslUqlj?=
+ =?us-ascii?Q?vA9nb05Zn/roUPaVh6j6MPOZ6yzWvrD087SNpCGy5WVkD2tA4v1zF+RGkgqZ?=
+ =?us-ascii?Q?yfw5zIzvjA4JaoHEfGrl+pRwXh8s6KHRov67TXSrt5SBp6D93CrsxAYCNo2d?=
+ =?us-ascii?Q?Y4Iv8JaFX2YFPe0GZjz0F1S9R/eii9KoU43gcIWqPBVS4v9jxuwTygLHyACm?=
+ =?us-ascii?Q?3TYWSHkBQvYbdd0qkJivSIjrO1GnbIuKBJsyR7mZKlG7MBXkZkSTS+3M6Yld?=
+ =?us-ascii?Q?GhA7jxJ4EUjiKuDVz/YKxA4RmLdFXX0Mjw69i4aUYOgcdWm0AnWFoZKc5kab?=
+ =?us-ascii?Q?MVLQnshL30wRf5p5tMfqtJWmnqII3U3EkQghqgisXNLehW9fEeBCozuV03oH?=
+ =?us-ascii?Q?Pi+L8gJL840Nbm1Zk+4bXnebssWC8MYDIw1ceN76t0Ry4+y+Ogc9Jok9Z09W?=
+ =?us-ascii?Q?Er2kXcQukbb3k/4BSZ9w5eHWYtMIFOq1J97O+kPi5mnCJvIDf1rc0iXKM0rG?=
+ =?us-ascii?Q?DuyvV7C4yxkxS/Kq9lExyZTff/9Eo1pNAsz56b4sbcKQ4/gilj8ukX4HaIYP?=
+ =?us-ascii?Q?wuA+e5dF3hHvnoVH8FocV5Puo0JfvUdVaNopWX7FGMY0YAuGEawGzpwfVJWX?=
+ =?us-ascii?Q?J/B7m6+wYCTmPJchhiqo5iRrd9ig6pdXAhVgwTrZiQ23yUwoMLx5ZYGwlxWj?=
+ =?us-ascii?Q?5TpOkfBJ68fkwOETVO2TThwIJ/JgI+fjFpw2MKdTM21h7RlE2d88y+k1/7x5?=
+ =?us-ascii?Q?ujecaeucjZB2aDoh2NWQkf1FIy5RvWbaV0RNj8mGu1nATgaZp9PjwdXyRUg/?=
+ =?us-ascii?Q?ulZvL9VKMgwFZXVSsceCp9c5xbtWNSoHFdm8NRzhjDr1YRqkRAhKlz38HIRc?=
+ =?us-ascii?Q?mEIBOz6vC/Bkrw/+FtAjZAM6hshl3Mpl3Mmmb4Ims96q6mauJO2TmQZlqyi2?=
+ =?us-ascii?Q?M5dGJ8rVf9pYDIChxzKBhRgjD1cPQ8a0F4N2ObjFW183eVWBZzkrAXWEdSjm?=
+ =?us-ascii?Q?wGVn0mGPryws/oBOug1t4ZwSf0fLYmoqf9ZMhP0bwefxWMSvrsVLvREiTDZx?=
+ =?us-ascii?Q?MSb95q2KPZepg/OKCtcgh4mJuVZVyqsXo3LRb+tRao0dVlRhT09rMdIPhPbI?=
+ =?us-ascii?Q?BaHXYo9cq1/hmzRXg4u8Vojb8jFy+0ovXKcJxiuL4UqCSMB8k5g+d+a7xjYw?=
+ =?us-ascii?Q?3c0khGBkafKXoAFr3YmICCCJOeKK7L3OGzkqLpMGPNGPBiRTSKiXKhqewiKI?=
+ =?us-ascii?Q?Px0JkEh4ToBE56o1s+e8j/KpduFvX4X7RJI2+okcFmPRVGI1fmoPPQVmyQBp?=
+ =?us-ascii?Q?gDwhy83lfiAXhnokMslgMPJZP0yZy+zJ7cC4buch3KlTYTAtd/0/iL6Asno+?=
+ =?us-ascii?Q?MCm8idtH3VLMGT9j9QBPon2YbeBDLMu1qhluRdvZ1VlztoKyNJB0I7HThyvJ?=
+ =?us-ascii?Q?cUrzPr4YTheRfoYeCgr797n7pWAcfRn/AHssuGuQgfUd3yTh0x8v32vG6Hbr?=
+ =?us-ascii?Q?UpxTaywQxe8Egd+0ub+3oRUurlcxRc2/N33hDD6xO4jsYgtAejA+AKKGqYXO?=
+ =?us-ascii?Q?hAmf3J5q2SfuLPVr1ux9kNO7tRIGjFftdG4s5/lSGIpHxGUB+TLVNbuliPnE?=
+ =?us-ascii?Q?dvtalqV8dt6I7QnkJojO4Lfv8m6Xc0ebojep/z0aJSIGFV/DvoTJLujtyUmO?=
+ =?us-ascii?Q?ji1EWHPQBUmRvSjNUap/dvWmZYajz2Bg2tnVvXkeEeWPmcgKAJA0W6vKkiWe?=
+ =?us-ascii?Q?/RkihVJswGn8poqu5zv+9aj6OXTFknGWpxXbaYDRuiBAEdwWrsnD?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0b3f399-02d1-45e7-35c9-08df46b49f3f
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9351.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 03:16:09.5335
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Lq7/Bzo5JZW7/sc/NB4QZlq6KAhPQOo6yZySoBAHAd03XsnVnokLfwgtNzf6DZetnY0p2rVZoiFT5HJYUKAbjWBuKTqOaUGGIaaw+MvI/3F2ETpVmy6UyDRDBD9t6332
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10522
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_191619_235964_618E473B 
+X-CRM114-Status: UNSURE (   8.75  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,51 +145,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+The micfil audio nodes on several i.MX SoC-based boards were previously
+using a generic dummy codec as a placeholder. This patch series replaces
+the dummy codec with the proper DMIC (Digital Microphone) codec node,
+which accurately represents the PDM microphones connected to the MICFIL
+(PDM microphone interface).
 
-On Fri, 13 Nov 2026 12:18:45 +0000 you wrote:
-> The T7 has the same ethernet glue as the G12A. This adds the binding,
-> the driver support and the device tree nodes, and enables the port on
-> the Khadas VIM4.
-> 
-> Two clocks are new. The pipeline stage between the controller and the
-> DRAM has its own gate, which nothing else claims. The glue registers
-> sit in a block gated by sys_ethphy, so far claimed only by the MDIO
-> mux, which probes after the glue is programmed: every write to
-> PRG_ETH0/1 was lost. The T7 node lists that clock as "pclk".
-> 
-> [...]
+Using the DMIC codec ensures proper audio routing, channel configuration,
+and compatibility with the ASoC framework, rather than relying on a
+generic placeholder that does not reflect the actual hardware.
 
-Here is the summary with links:
-  - [v7,1/7] dt-bindings: net: amlogic,meson-dwmac: list the compatible combinations
-    https://git.kernel.org/netdev/net-next/c/2297f88ce0b8
-  - [v7,2/7] dt-bindings: net: add amlogic,t7-dwmac
-    https://git.kernel.org/netdev/net-next/c/18029931478b
-  - [v7,3/7] net: stmmac: dwmac-meson8b: add support for the Amlogic T7
-    https://git.kernel.org/netdev/net-next/c/c4c851a3325e
-  - [v7,4/7] net: stmmac: dwmac-meson8b: follow the generic RGMII delay rules on the T7
-    https://git.kernel.org/netdev/net-next/c/4fdc7da7e13d
-  - [v7,5/7] arm64: dts: amlogic: t7: add the ethernet pinctrl nodes
-    (no matching commit)
-  - [v7,6/7] arm64: dts: amlogic: t7: add the ethernet controller
-    (no matching commit)
-  - [v7,7/7] arm64: dts: amlogic: t7: khadas-vim4: enable the ethernet port
-    (no matching commit)
+The i.MX943 EVK patch adds the missing num-channels property to the
+already existing DMIC codec node, aligning it with the rest of the
+boards covered in this series.
 
-You are awesome, thank you!
+This series covers the following boards:
+  - i.MX91 11x11 EVK
+  - i.MX93 11x11 EVK
+  - i.MX93 9x9 QSB
+  - i.MX943 EVK
+  - i.MX95 15x15 EVK
+  - i.MX95 19x19 EVK
+  - i.MX95 19x19 FRDM PRO
+
+Shengjiu Wang (7):
+  arm64: dts: imx91-11x11-evk: Add DMIC codec to replace dummy codec for
+    micfil
+  arm64: dts: imx93-11x11-evk: Add DMIC codec to replace dummy codec for
+    micfil
+  arm64: dts: imx93-9x9-qsb: Add DMIC codec to replace dummy codec for
+    micfil
+  arm64: dts: imx943-evk: Add num-channels to DMIC codec node
+  arm64: dts: imx95-15x15-evk: Add DMIC codec to replace dummy codec for
+    micfil
+  arm64: dts: imx95-19x19-evk: Add DMIC codec to replace dummy codec for
+    micfil
+  arm64: dts: imx95-19x19-frdm-pro: Add DMIC codec to replace dummy
+    codec for micfil
+
+ arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts     | 10 ++++++++++
+ arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts     | 10 ++++++++++
+ arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts       | 10 ++++++++++
+ arch/arm64/boot/dts/freescale/imx943-evk.dts          |  1 +
+ arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts     | 10 ++++++++++
+ arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts     | 11 +++++++++++
+ .../arm64/boot/dts/freescale/imx95-19x19-frdm-pro.dts | 10 ++++++++++
+ 7 files changed, 62 insertions(+)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.34.1
 
 
