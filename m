@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 048FF606A51C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84D5606A51B
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Md49O43f;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=INwmqJ6d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w4fsA41u;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=EMc9z+Ba
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RcHTKgC3tArjDxrWuo6tbizL56S6DluuwiuXlvWfhT0=; b=Md49O43fSbzTQ3
-	rewvFKimFJ+r5im4T1JgSJxBfVjDOrfF5aM5zYfa/6SAZ0gI8eBMMzST4kTYrOCUg4Z3/ysSE5zES
-	3vmqnpK2SJpzbLyHkrfwCq9S2CoSqBF6vCJKZ+GlDRISNyjxMO6kGZggPwwc/DrCX6QZecHfP9VBn
-	L9Rgztxh8dVs8igvAYEOKD1C9ZVcOhn13MnZHE1PuMt2mCf+k8JGvs7Q/AU8WPM8y/Qtvanzx37Ry
-	xzqnhRZ6DFJfEutNqmm4FDCSEJlVR3YyQFAr1LSXOa0AjYrxzCc44e255izjUVRWhFQZT1ZqjzaIL
-	yU6eUsBwRSKuO0X/rHLA==;
+	List-Owner; bh=3/jsMe/Qc48pu/imVYvdVloDOJ6fnxt5dXnAjgruQUk=; b=w4fsA41uMS2xAS
+	Fp51Qe9JccCFGgUc9TAzznapF2yHOTepbbMWYQsW4b2lfpwmNwbpb41TlESmS073zjHs6voXrNMNr
+	KhHDC5Suhk/OUwRiqFzevHRJYlinGfCy0IZacYb09+TwhdJKCqqQ6CxbtmCTeaprF9dHPMgGxSeJ+
+	2mSfm6LN4VJxCt1NZFAmYwuB/gDw/pH/yNIDwbZDkfrU1HDaoLzIRYP9CVCk3a46hSQfAAnAejUMy
+	sxVqb2GfU7vVovn2/zx36eCJ4PlTlWR8Zaw2wyeE8m70eXa6YwL8OtRVuktQOhCpoWh2bA9n3IuE8
+	o03NS8mm/mxfL6xbWkhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUHog-0000000E8JK-2pd3;
+	id 1xUHog-0000000E8J9-2KrC;
 	Fri, 20 Nov 2026 06:09:46 +0000
-Received: from mail-dy1-x132e.google.com ([2607:f8b0:4864:20::132e])
+Received: from mail-dy1-x132b.google.com ([2607:f8b0:4864:20::132b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUHoc-0000000E8IU-3C8m
+	id 1xUHoZ-0000000E8Hj-2bin
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 06:09:44 +0000
-Received: by mail-dy1-x132e.google.com with SMTP id 5a478bee46e88-38587f3de36so572545eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 22:09:42 -0800 (PST)
+	Fri, 20 Nov 2026 06:09:41 +0000
+Received: by mail-dy1-x132b.google.com with SMTP id 5a478bee46e88-38190551625so848699eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 22:09:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795154982; x=1795759782; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795154979; x=1795759779; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=RcHTKgC3tArjDxrWuo6tbizL56S6DluuwiuXlvWfhT0=;
-        b=INwmqJ6d5pzE8jkzToMpUTVcKb5LZeQNMxEOwx8/Fdeu7rMhW9oue9ZDjGlFSGraxT
-         nxixTUQ6rq4FZ5z3p4xPXVJm9kL8hIeG/Gx6bz4iH1VJ+DCeL1tHmDX2gG5/OtHNpzmY
-         2XvG2GreNHevRnkwW7nPiCPaLnsYvymoV7wvAEhSSulwsstQShamAbyOUAoQVRJBowGb
-         1Eve5HpPiQuwRqMUBmQRqKnSUoDHORPmQ+cZTi5G15RWzJdBF83fZnIs7EU9/lhIKAhk
-         TboRa2b36AUisLP+bv+FkMjv4HzEeL28MC8mFW0fi4k0aUTGH72lb2Itzi+/HfPYmkGu
-         hyZw==
+        bh=3/jsMe/Qc48pu/imVYvdVloDOJ6fnxt5dXnAjgruQUk=;
+        b=EMc9z+BaVwmDhvM6twLRoBWGWJ3vYw0ddeaiE7X2I1u7skWIEtjiVW2vKUTgI474j4
+         yGAaAkaB/xFBpBYPj2fMgWaOzyBPTCFVJwxQSbe6/hbiYahRQsMyZzJdaj+p5EEy2dFU
+         ab6Zsd52kKGfX71pmvYj58bLHW7rBTgkRgc/weJjuCJatk33mUfEHht8d8Q/qzSV9hPn
+         vMDEK6DY03FUh7OcPZqgkE4f7FrWBG3DRGBRq4JOuO4FszJog6KpdMZPCju5Mo/e4zhx
+         EU63aEPWdSVVZG2FOvbvBcbEeThyso3bTPyd9/qLIeardwANbtAJPMYIfJb5bDIUh3EK
+         ZKiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795154982; x=1795759782;
+        d=1e100.net; s=20260707; t=1795154979; x=1795759779;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=RcHTKgC3tArjDxrWuo6tbizL56S6DluuwiuXlvWfhT0=;
-        b=TeoPrZunsj0KSUi/h2onK5UsXF4Rfak8xOdwNl5OldTNoFln50K6nc1legC+WQ91G4
-         nCxLf7HOy+YszMHR7dnWJL9IH4jx57tINgx9+VbQ9Z6NcJkYuechgivHb85CxqC1TqPW
-         2GuCaNlQ+P7WKLQU0cdHbtv47kSy9GjwB+LdySsnb8VYsSE2O6sKCUQXhDpk809MSnu2
-         tGJRxI58z700/IyFws5WU9tNw12S+Y1xhQNTjiRUvPRPRD/nQvWxXwxa4612VJbjqM6T
-         yLdUhoFajehDOhOa7kKEEIDreHvLFFw09NSI6wLTTmIh6hkKKVGyjB/jOSwTIsjt26Vz
-         T56A==
-X-Forwarded-Encrypted: i=1; AL+hErHxn85rwQGrouM3Y6L23ZSapFYb1V1jnAd3EFIjKmkPntXNks0LkfBIqPok8g8z6+nffiFcIG1VKfiuSLb22MTC@lists.infradead.org
-X-Gm-Message-State: APuU4Z+FMbtVSy3fPucV4cRcrIfRzfazUcyBJIw4X/3GLJhPE9QxcBTw
-	yzLprbT9s8R7asOVzY7fEaNInn9esTcX49xZhKxvKCJ+tyQZC7gGw9cI
-X-Gm-Gg: AZFdTZfXwckjvttf/4sVEh6bNLWVQuuT5StgL0z3baP9ko3kQSuvvbYjH2k1AlsIWPa
-	2BaGiYb7o5wOYLSJDi5dcTOMz3J1whs0gpCcxbywhcMpakP8CIPSalOFuQrLUgpfohqSq38O/oN
-	yuefb34dbt9+trEnVyk8z0uQ3J6dsfI0JW8DPSXTAL2T+1nxTe1oqejCw1hFbckq6y0ov5MnZxJ
-	/8MnFun4YdR20Sz54JchBM2sxGYFYgRJzLHNn3gXJq3AvpoXZC5PH1G1Fs3nwHrRU/Tr3W9D1UZ
-	ywWYkyxhaKZwNbFmnaWTvfdVPBxTORgK9Sqgbs8aSyiZQyimZroFz/iCZsdQHZ8InQ1pWX0Xsau
-	9Hwbhj/iJivVIQps/M7lqD3QXlTBoxz/D8XLQCbcnTIDZHMMtc1sz0kJzq3OkNAC5RMBq64mL8v
-	aawhYp0hkrmQU3A8LP3UnFv3bVB7icdmEtP3ZSd6eucqwLOANWOqzZjYIZFTwNqywzIt24Mks9F
-	H4Fm0NvzfOZeFtNlmhqXRLoNwhGOfdnUCEcKPIv/177v9u2a5EYuaesVcRlYtyuM6aIg+yanJHp
-	C2vs80xfbXnuBJ8RzXFm
-X-Received: by 2002:a05:693c:880d:10b0:380:fd90:e660 with SMTP id 5a478bee46e88-3856f653c9bmr1790201eec.14.1795154981605;
-        Thu, 19 Nov 2026 22:09:41 -0800 (PST)
+        bh=3/jsMe/Qc48pu/imVYvdVloDOJ6fnxt5dXnAjgruQUk=;
+        b=Y2TlRnJcTmcG7IHzojHp6M5C/iml0VQIDpec+U5rUNnnSY1Ai9+77zuWeLEnEDMuJN
+         gCO7c7iIX+cDMLNnnaOpme5p66ekzJzeQr+WAn3M8IppLtlJgA9O87HBuYFQsDpCPSxK
+         FdiuvZGKdxkNcu6ANLYpXH1hlBbtm9WpEg3Zx0bCl3Yt8meKBGWm+Wy3KAG7DyRJv96l
+         OvJVikwFALxKmMDHcrW4lG7s7BheJuGzuaOBrRaGXAahBd9KQlGSvOhlBR5WoTImw0nN
+         GgkQpXpW77hAtJMrvHnrYHQhNwXEWpVaVECVLWDAyxauiwdUMg2qBilNnLEXvvstdche
+         XPlA==
+X-Forwarded-Encrypted: i=1; AL+hErES7dDhDWMqBFAhFyBhykz5cj72ScjC6PyRwpXCxqsNy3LkvcKkMLn9unziyxjcWqgVc0xDAxTDgucyfAl7AucY@lists.infradead.org
+X-Gm-Message-State: APuU4Z9u9X8ox4W4Dvgc1pj+XOaGFM9VVwaHW415ER/d0dQ7A3FjalhD
+	32OMlm9c4NHv9KAkJ4YebHpUDQJGhQzDN95jB86fCk45HqbDCMHlMsQH
+X-Gm-Gg: AZFdTZfNmmp4dcoZKFAZ5R5X8n5FvJtgNjXHD4cwvdjnkyfhEc4BvQz4H+PXswQLOtb
+	f+qnIFiqwfJP1bCNR/VZuP9fnsWP8oO7zpHI172HoBQgVQt9mMrGrjkGvFlr5NZXpjFWlCZctos
+	SNnsv+l7stRVuLqI4py0+dMXQN/nvP+5veuEsbhYssuQFB5058Yo2WurlBMJgy0NJxJCZLMB1Bz
+	ztUPNDX+zrI3+rw0y3LaKXEwI2hRoI8SOiWZzGtzAodJ2Ea2WpfUcFsiJBnUSboRS3cxPfk6cfn
+	WveJDgbPKTlbYfbvuakbOH/mYv/7p/QHyep0kKA53dAdLC3/AuYtCg14cfpopSZSIAAs4FzXIMw
+	hSHRGL6ppI6JoF7JQw+h7mCEz1NmJoQFhDKwKptDkxzSTMOwtl0TNyC54DaVqaTs3bgU3pxyf6y
+	pytXYszVX3qbsewR3ylp6qtUDjiEQ3/WdebKGtsjOoeIujg9H+CPa/JHC7kks6zkseptQP+DmF2
+	pvsthWH8n2F/+HRlaO5REOJf5xRifoeRSFqz5kmyH9RtiEwy1xgdWG/S8xadWApsyt5u1tumPTr
+	OYbjO59ShF1a/LKyC/wn
+X-Received: by 2002:a05:693c:83cf:10b0:376:b957:c01 with SMTP id 5a478bee46e88-3856f755152mr1860396eec.16.1795154978549;
+        Thu, 19 Nov 2026 22:09:38 -0800 (PST)
 Received: from a1-free ([161.33.196.121])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385677c0c1dsm4609725eec.21.2026.11.19.22.09.38
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385677c0c1dsm4609725eec.21.2026.11.19.22.09.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 22:09:41 -0800 (PST)
+        Thu, 19 Nov 2026 22:09:38 -0800 (PST)
 From: TAKANO Mitsuhiro <takano32@gmail.com>
 To: linux-perf-users@vger.kernel.org,
 	Ingo Molnar <mingo@redhat.com>,
@@ -92,9 +92,9 @@ Cc: Ian Rogers <irogers@google.com>,
 	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
 	Jiri Olsa <jolsa@kernel.org>,
 	Adrian Hunter <adrian.hunter@intel.com>
-Subject: [PATCH v11 2/2] perf jevents: Fail the build on a key the tables may not carry
-Date: Fri, 20 Nov 2026 06:09:31 +0000
-Message-ID: <20261120060931.711483-3-takano32@gmail.com>
+Subject: [PATCH v11 1/2] perf vendor events: Fix misspelled keys in the event tables
+Date: Fri, 20 Nov 2026 06:09:30 +0000
+Message-ID: <20261120060931.711483-2-takano32@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261120060931.711483-1-takano32@gmail.com>
 References: <20261113032927.634183-1-takano32@gmail.com>
@@ -103,8 +103,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_220942_843496_5DB895FE 
-X-CRM114-Status: GOOD (  24.88  )
+X-CRM114-CacheID: sfid-20261119_220939_690911_6727192F 
+X-CRM114-Status: GOOD (  14.72  )
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,199 +124,199 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-jevents.py takes the fields it wants out of each JSON object by name and
-ignores the rest, so a key that is spelled differently is dropped without
-a word and the object is built without whatever that field held.
+Sixteen objects in arch/arm64/ampere/ampereonex/mmu.json carry
+"PublicDescrition" and one object in each of amdzen4/cache.json,
+amdzen5/load-store.json and amdzen6/load-store.json carries
+"BriefDescript6ion".  jevents.py reads only the keys it knows by name, so
+these fields have no effect: the text is dropped without a word and never
+reaches the generated tables.
 
-Compare the keys of each object with _valid_keys, the keys a table may
-carry, and fail on anything else.  The error is one line naming the file
-and the key:
+For the three AMD events that leaves them with no description at all, and
+the text comes back.  The AmpereOneX events carry the same text in
+BriefDescription and the generator drops a duplicate long description, so
+the generated arm64 tables are unchanged.
 
-  jevents.py: <path>: unknown key(s): ['BriefDescript6ion']
+This is the same change as "perf vendor events arm64 AmpereOneX: Fix
+misspelled PublicDescription keys" (Message-ID
+<20261113065253.746615-1-takano32@gmail.com>) and "perf vendor events amd:
+Fix a misspelled JSON key" (<20261108184600.3810059-1-takano32@gmail.com>),
+squashed into one patch so that this series applies on its own.
 
 Written with Hermes Agent, an LLM assistant; the author reviewed it and
-ran the generator on every arch directory, with and without a key the
-tables may not carry.
+ran the generator as described.
 
+Fixes: 16438b652b46 ("perf vendor events arm64 AmpereOneX: Add core PMU events and metrics")
+Fixes: 658448281d19 ("perf vendor events amd: Add Zen 4 core events")
+Fixes: 45c072f2537a ("perf vendor events amd: Add Zen 5 core events")
+Fixes: 2f42fb0661d9 ("perf vendor events amd: Add Zen 6 core events")
+Acked-by: Ilkka Koskinen <ilkka@os.amperecomputing.com>
 Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
 ---
- tools/perf/pmu-events/jevents.py          | 70 ++++++++++++++++++-----
- tools/perf/tests/shell/jevents_bad_key.sh | 43 ++++++++++++++
- 2 files changed, 98 insertions(+), 15 deletions(-)
- create mode 100755 tools/perf/tests/shell/jevents_bad_key.sh
+ .../arch/arm64/ampere/ampereonex/mmu.json     | 32 +++++++++----------
+ .../pmu-events/arch/x86/amdzen4/cache.json    |  2 +-
+ .../arch/x86/amdzen5/load-store.json          |  2 +-
+ .../arch/x86/amdzen6/load-store.json          |  2 +-
+ 4 files changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/tools/perf/pmu-events/jevents.py b/tools/perf/pmu-events/jevents.py
-index 080e04b51b8c..65e51dafd42b 100755
---- a/tools/perf/pmu-events/jevents.py
-+++ b/tools/perf/pmu-events/jevents.py
-@@ -63,6 +63,27 @@ _json_metric_attributes = [
- # Attributes that are bools or enum int values, encoded as '0', '1',...
- _json_enum_attributes = ['aggr_mode', 'deprecated', 'event_grouping', 'perpkg',
-                          'default_show_events']
-+# Keys a table under arch/ may carry.  jevents.py takes the fields it wants by
-+# name and drops the rest without a word, so a key that is spelled differently
-+# is only visible as a field that went missing; a table carrying anything else
-+# is an error.  The list holds the keys jevents.py reads, plus the ones the
-+# tables carry and it does not read: Counter, CountersNumFixed and
-+# CountersNumGeneric (read by nothing) and Experimental (read by metric.py).
-+_valid_keys: Set[str] = {
-+    'AggregationMode', 'AnyThread', 'ArchStdEvent', 'BriefDescription',
-+    'Compat', 'ConfigCode', 'Counter', 'CounterMask',
-+    'CountersNumFixed', 'CountersNumGeneric', 'Data_LA', 'DefaultMetricgroupName',
-+    'DefaultShowEvents', 'Deprecated', 'EdgeDetect', 'EnAllCores',
-+    'EnAllSlices', 'Errata', 'EventCode', 'EventidCode',
-+    'EventName', 'Experimental', 'ExtSel', 'FCMask',
-+    'Filter', 'Invert', 'LegacyCacheCode', 'LegacyConfigCode',
-+    'MetricConstraint', 'MetricExpr', 'MetricGroup', 'MetricgroupNoGroup',
-+    'MetricName', 'MetricThreshold', 'MSRIndex', 'MSRValue',
-+    'NodeType', 'PEBS', 'PerPkg', 'PortMask',
-+    'PublicDescription', 'RdWrMask', 'RetirementLatencyMax', 'RetirementLatencyMean',
-+    'RetirementLatencyMin', 'SampleAfterValue', 'ScaleUnit', 'SliceId',
-+    'ThreadMask', 'UMask', 'Unit',
-+}
- 
- def file_name_to_table_name(prefix: str, parents: Sequence[str],
-                             dirname: str) -> str:
-@@ -196,6 +217,9 @@ class JsonEvent:
-   def __init__(self, jd: dict):
-     """Constructor passed the dictionary of parsed json values."""
- 
-+    if extra := set(jd) - _valid_keys:
-+      raise ValueError(f'unknown key(s): {sorted(extra)}')
-+
-     def llx(x: int) -> str:
-       """Convert an int to a string similar to a printf modifier of %#llx."""
-       return str(x) if x >= 0 and x < 10 else hex(x)
-@@ -459,6 +483,8 @@ def _read_json_events_impl(path: str, topic: str) -> Sequence[JsonEvent]:
-   try:
-     with open(path, encoding='utf-8') as f:
-       events = json.load(f, object_hook=JsonEvent)
-+  except ValueError as exc:
-+    raise ValueError(f'{path}: {exc}') from exc
-   except BaseException:
-     print(f"Exception processing {path}")
-     raise
-@@ -492,6 +518,8 @@ def preprocess_arch_std_files(archpath: str) -> None:
-           _arch_std_events[event.name.lower()] = event
-         if event.metric_name:
-           _arch_std_events[event.metric_name.lower()] = event
-+    except ValueError:
-+        raise
-     except Exception as e:
-         raise RuntimeError(f'Failure processing \'{item.name}\' in \'{archpath}\'') from e
- 
-@@ -643,7 +671,10 @@ def preprocess_one_file(parents: Sequence[str], item: os.DirEntry) -> None:
-   assert _bcs is not None
-   if item.name.endswith('metricgroups.json'):
-     with open(item.path, encoding='utf-8') as f:
--      metricgroup_descriptions = json.load(f)
-+      try:
-+        metricgroup_descriptions = json.load(f)
-+      except ValueError as exc:
-+        raise ValueError(f'{item.path}: {exc}') from exc
-     for mgroup in metricgroup_descriptions:
-       assert len(mgroup) > 1, parents
-       description = f"{metricgroup_descriptions[mgroup]}\\000"
-@@ -1473,6 +1504,8 @@ def main() -> None:
-             continue
-       try:
-         action(parents, item)
-+      except ValueError:
-+        raise
-       except Exception as e:
-         raise RuntimeError(f'Action failure for \'{item.name}\' in {parents}') from e
-       if item.is_dir():
-@@ -1536,20 +1569,27 @@ struct pmu_table_entry {
-     if item.is_file() and item.name.endswith('.json') and not item.name.endswith('metricgroups.json'):
-       tasks.append((item.path, get_topic(item.name)))
- 
--  for arch in archs:
--    arch_path = f'{_args.starting_dir}/{arch}'
--    preprocess_arch_std_files(arch_path)
--    ftw(arch_path, [], collect_json)
--
--  with concurrent.futures.ProcessPoolExecutor(max_workers=_parallel_worker_count(len(tasks)),
--                                              initializer=_init_worker,
--                                              initargs=(_arch_std_events,)) as executor:
--    for path, topic, events in executor.map(_parallel_read_json_events, tasks):
--      _json_cache[(path, topic)] = events
--
--  for arch in archs:
--    arch_path = f'{_args.starting_dir}/{arch}'
--    ftw(arch_path, [], preprocess_one_file)
-+  try:
-+    for arch in archs:
-+      arch_path = f'{_args.starting_dir}/{arch}'
-+      preprocess_arch_std_files(arch_path)
-+      ftw(arch_path, [], collect_json)
-+
-+    with concurrent.futures.ProcessPoolExecutor(max_workers=_parallel_worker_count(len(tasks)),
-+                                                initializer=_init_worker,
-+                                                initargs=(_arch_std_events,)) as executor:
-+      for path, topic, events in executor.map(_parallel_read_json_events, tasks):
-+        _json_cache[(path, topic)] = events
-+
-+    for arch in archs:
-+      arch_path = f'{_args.starting_dir}/{arch}'
-+      ftw(arch_path, [], preprocess_one_file)
-+  except ValueError as exc:
-+    # A worker's traceback is three levels of ProcessPoolExecutor noise around
-+    # the one line that matters, so say it here and stop.  make deletes the
-+    # target it failed to build (.DELETE_ON_ERROR), so the next run reads the
-+    # JSON again rather than a half-written table.
-+    sys.exit(f'jevents.py: {exc}')
- 
-   assert _bcs is not None
-   _bcs.compute()
-diff --git a/tools/perf/tests/shell/jevents_bad_key.sh b/tools/perf/tests/shell/jevents_bad_key.sh
-new file mode 100755
-index 000000000000..7848e60b8b4a
---- /dev/null
-+++ b/tools/perf/tests/shell/jevents_bad_key.sh
-@@ -0,0 +1,43 @@
-+#!/bin/sh
-+# SPDX-License-Identifier: GPL-2.0
-+# Check jevents.py reports unknown keys as errors (no_mlock)
-+#
-+# A key that is spelled differently is dropped without a word, so jevents.py
-+# compares the keys of each object in a table against the keys it reads and
-+# fails on anything else.
-+
-+jevents=$(dirname "$0")/../../pmu-events/jevents.py
-+python=${PYTHON:-python3}
-+
-+# An installed perf has the test but not the generator, and a python that is
-+# not there or too old to run it is a skip, not a failure of the check.
-+[ -r "${jevents}" ] || exit 2
-+[ "$("${python}" -c 'import sys; print(sys.version_info >= (3, 9))' 2>/dev/null)" = True ] \
-+  || exit 2
-+
-+tmp=$(mktemp -d) || exit 2
-+trap 'rm -rf "${tmp}"' EXIT HUP INT TERM
-+tables="${tmp}/arch/x86/model"
-+mkdir -p "${tables}" "${tmp}/arch/common"
-+printf '[]\n' > "${tmp}/arch/common/empty.json"
-+printf 'Family-model,Version,Filename,EventType\nGenuineIntel-6-97,v1.0,model,core\n' \
-+  > "${tmp}/arch/x86/mapfile.csv"
-+printf '[{"EventName": "a", "NotAKey": "x"}]\n' > "${tables}/events.json"
-+
-+if "${python}" -B "${jevents}" x86 all "${tmp}/arch" \
-+    "${tmp}/pmu-events.c" "${tmp}/pmu-events-string.c" 2> "${tmp}/err"; then
-+  echo "jevents.py accepted a key it does not read" >&2
-+  exit 1
-+fi
-+grep -qF -- "NotAKey" "${tmp}/err" || {
-+  echo "jevents.py failed without naming the key" >&2
-+  cat "${tmp}/err" >&2
-+  exit 1
-+}
-+grep -qF -- "${tables}/events.json" "${tmp}/err" || {
-+  echo "jevents.py failed without naming the file" >&2
-+  cat "${tmp}/err" >&2
-+  exit 1
-+}
-+
-+exit 0
+diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
+index 66d83b680651..9457f9be4ecc 100644
+--- a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
++++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
+@@ -30,37 +30,37 @@
+         "BriefDescription": "Data TLB translation cache hit on S2L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data TLB translation cache hit on S2L1 walk cache entry",
++        "PublicDescription": "Data TLB translation cache hit on S2L1 walk cache entry",
+         "EventCode": "0xd805",
+         "EventName": "MMU_D_TRANS_CACHE_HIT_S2L1_WALK",
+         "BriefDescription": "Data TLB translation cache hit on S2L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data TLB translation cache hit on S2L0 walk cache entry",
++        "PublicDescription": "Data TLB translation cache hit on S2L0 walk cache entry",
+         "EventCode": "0xd806",
+         "EventName": "MMU_D_TRANS_CACHE_HIT_S2L0_WALK",
+         "BriefDescription": "Data TLB translation cache hit on S2L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data-side S1 page walk cache lookup",
++        "PublicDescription": "Data-side S1 page walk cache lookup",
+         "EventCode": "0xd807",
+         "EventName": "MMU_D_S1_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Data-side S1 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Data-side S1 page walk cache refill",
++        "PublicDescription": "Data-side S1 page walk cache refill",
+         "EventCode": "0xd808",
+         "EventName": "MMU_D_S1_WALK_CACHE_REFILL",
+         "BriefDescription": "Data-side S1 page walk cache refill"
+     },
+     {
+-        "PublicDescrition": "Data-side S2 page walk cache lookup",
++        "PublicDescription": "Data-side S2 page walk cache lookup",
+         "EventCode": "0xd809",
+         "EventName": "MMU_D_S2_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Data-side S2 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Data-side S2 page walk cache refill",
++        "PublicDescription": "Data-side S2 page walk cache refill",
+         "EventCode": "0xd80a",
+         "EventName": "MMU_D_S2_WALK_CACHE_REFILL",
+         "BriefDescription": "Data-side S2 page walk cache refill"
+@@ -90,61 +90,61 @@
+         "BriefDescription": "Level 2 instruction translation buffer allocation"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L2 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L2 walk cache entry",
+         "EventCode": "0xd901",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L2_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L1 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L1 walk cache entry",
+         "EventCode": "0xd902",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L1_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L0 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L0 walk cache entry",
+         "EventCode": "0xd903",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L0_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L2 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L2 walk cache entry",
+         "EventCode": "0xd904",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L2_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L1 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L1 walk cache entry",
+         "EventCode": "0xd905",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L1_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L0 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L0 walk cache entry",
+         "EventCode": "0xd906",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L0_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S1 page walk cache lookup",
++        "PublicDescription": "Instruction-side S1 page walk cache lookup",
+         "EventCode": "0xd907",
+         "EventName": "MMU_I_S1_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Instruction-side S1 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S1 page walk cache refill",
++        "PublicDescription": "Instruction-side S1 page walk cache refill",
+         "EventCode": "0xd908",
+         "EventName": "MMU_I_S1_WALK_CACHE_REFILL",
+         "BriefDescription": "Instruction-side S1 page walk cache refill"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S2 page walk cache lookup",
++        "PublicDescription": "Instruction-side S2 page walk cache lookup",
+         "EventCode": "0xd909",
+         "EventName": "MMU_I_S2_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Instruction-side S2 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S2 page walk cache refill",
++        "PublicDescription": "Instruction-side S2 page walk cache refill",
+         "EventCode": "0xd90a",
+         "EventName": "MMU_I_S2_WALK_CACHE_REFILL",
+         "BriefDescription": "Instruction-side S2 page walk cache refill"
+diff --git a/tools/perf/pmu-events/arch/x86/amdzen4/cache.json b/tools/perf/pmu-events/arch/x86/amdzen4/cache.json
+index e6d710cf3ce2..01c848a9dbb3 100644
+--- a/tools/perf/pmu-events/arch/x86/amdzen4/cache.json
++++ b/tools/perf/pmu-events/arch/x86/amdzen4/cache.json
+@@ -182,7 +182,7 @@
+   {
+     "EventName": "ls_inef_sw_pref.all",
+     "EventCode": "0x52",
+-    "BriefDescript6ion": "Software prefetches that did not fetch data outside of the processor core for any reason.",
++    "BriefDescription": "Software prefetches that did not fetch data outside of the processor core for any reason.",
+     "UMask": "0x03"
+   },
+   {
+diff --git a/tools/perf/pmu-events/arch/x86/amdzen5/load-store.json b/tools/perf/pmu-events/arch/x86/amdzen5/load-store.json
+index b1994539ece8..774da0bfa0dd 100644
+--- a/tools/perf/pmu-events/arch/x86/amdzen5/load-store.json
++++ b/tools/perf/pmu-events/arch/x86/amdzen5/load-store.json
+@@ -351,7 +351,7 @@
+   {
+     "EventName": "ls_inef_sw_pref.all",
+     "EventCode": "0x52",
+-    "BriefDescript6ion": "Software prefetches that did not fetch data outside of the processor core for any reason.",
++    "BriefDescription": "Software prefetches that did not fetch data outside of the processor core for any reason.",
+     "UMask": "0x03"
+   },
+   {
+diff --git a/tools/perf/pmu-events/arch/x86/amdzen6/load-store.json b/tools/perf/pmu-events/arch/x86/amdzen6/load-store.json
+index 4291eb59426f..4adba70bffb1 100644
+--- a/tools/perf/pmu-events/arch/x86/amdzen6/load-store.json
++++ b/tools/perf/pmu-events/arch/x86/amdzen6/load-store.json
+@@ -351,7 +351,7 @@
+   {
+     "EventName": "ls_inef_sw_pref.all",
+     "EventCode": "0x52",
+-    "BriefDescript6ion": "Software prefetches that did not fetch data outside of the processor core for any reason.",
++    "BriefDescription": "Software prefetches that did not fetch data outside of the processor core for any reason.",
+     "UMask": "0x03"
+   },
+   {
 -- 
 2.53.0
 
