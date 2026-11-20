@@ -2,91 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B43606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21AFB606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N8ZyA4Wp;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=asvW1+3c
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AhgEOSB/;
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=jPXawbVW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=jg4X90e3zV23j2h+WGmYwC1M03nD+Yo2HGjKpBKNeHk=; b=N8ZyA4WpaNzhMEmAlbJE6V3HwG
-	UJZlkv6+pG9H8i94RhgDvGWDR5dO/J862yuVe/fMgHl6lEdadIjZkjUoDGVWLTjUP23UW/8gdHl5m
-	MOm6lsiXw7GJE3BhS/1hmYipeh8VX9emBkN0fVBeCojrnvF+9pxMnr7ykEzagjSbblRtTOJuVqU/T
-	PK92IS4Pss0wEQ9VNs+whnyu9sv0fTaRm6+Rey6TSJV7mb6IGDgueJ+KcKl1zdKWAaMAXGYKxsAa8
-	KntaOtjQdsD84jeqiTT8mAzJKscplrxGdhv3THcBq71img0Yb2yW5nM7STzPpP1Q0jwUGR+d4HCSr
-	oGb1sv8A==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=soyV8ujwdcUS92i+ptIIRwGgm+3063ycjFG8wPF9I2s=; b=AhgEOSB/gMdYFW
+	90KiHCgad+cSl/R9bpuI8EjyF+nEm6EfipIvDwpm20NqxtsjvdgJHQ9jDmyT0OusVu/jTI2+tVdNX
+	f8SJ33BuB5NVBFB0SQKnb6fceSkg8tRMh7QonuhGW1zDEIvJwz43k9GFmuTvo5ilolbYo82L+cpg0
+	bkXZxH3BKJBAgBbPRY879NvOQ17BnEQeUn+bJXzf/nBwiEPFi+h9qGWA5i9gIX1gMW/v0hU8PJ0HH
+	Ggq1AsAkkoKBXoZyO7NO2+SYfohunz7i34gP7wmAc3D+0RNJCz9t18XjcOg87zphIE/JZ9kZnAUcE
+	hXmU1NnIluSTjOGe7zBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMAS-0000000EeXC-0ZV2;
-	Fri, 20 Nov 2026 10:48:32 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1xUMAm-0000000EegQ-1Nv2;
+	Fri, 20 Nov 2026 10:48:54 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMAF-0000000EeQP-1q7C
+	id 1xUMAH-0000000EeRS-194C
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 10:48:21 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-48e3b22e971so367713f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 02:48:18 -0800 (PST)
+	Fri, 20 Nov 2026 10:48:27 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-4ad6219f7d8so135549f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 02:48:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1795171697; x=1795776497; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=jg4X90e3zV23j2h+WGmYwC1M03nD+Yo2HGjKpBKNeHk=;
-        b=asvW1+3c+MvNj+gkGlbWujAloDIHmApIY0YMf0FHli6n5TjLZ5feTiDQw0x1LCskGl
-         eu7KlQuVTybsuNhket7j6uyawXw3z6vORcPboZuwgL3jjB3/WVTFxR6LA3hXcoqbjFuP
-         nUKqKlWbhu+55iKAQxNJcf4VSTn80zfs4Ydi9QhEmcM+wUaHLymy4qp6+bz4ywg9d55w
-         VkPVjAI9KBJSOAsxe6UshnYozTTi13CoNkNGVPfeEanz/+I+QKdf/WiJ3BN2bgWrJjYz
-         Q7wDjwq5Ia8n/FQPyv9fSIz1DaHu37rpl+58N2bRNtHoMP8NoMNG6bgrhWBa8uowg3T0
-         Z96Q==
+        d=flipper.net; s=google; t=1795171699; x=1795776499; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=soyV8ujwdcUS92i+ptIIRwGgm+3063ycjFG8wPF9I2s=;
+        b=jPXawbVWOgdT55uLHMNKmYaGRnP9nRhQYv+oju2dDXquAK59UBHIWeilO2sP/rFdjl
+         8+FpUwaozzTgxmON4nfv/gFAmfdqRyk05Twyg9b/3hC9ecSRpsaVMt+4B25s8GWFN9eC
+         UKcnJjCgRUnjwZGD37351dp/Yhf64I/dVSb5sroaSty28PsceuECFmY5SZILBr13AVrH
+         UJ9EnVQiQbWZMGHPPSjqZfNYfmKNSKPmHfSe3gIyTe91MSbFC3BABG8Jwevl4EJ0Tjv3
+         d80MKHi5+ygP7zL9vQR0MROS1hp7U0hcvk2qcdbErDyOHlQ1ogaaL7DBOFiec7wfcZg9
+         +Gpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795171697; x=1795776497;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=jg4X90e3zV23j2h+WGmYwC1M03nD+Yo2HGjKpBKNeHk=;
-        b=lg4HOPbG4I2UrbK0Or7iyzv//AVuCd7i4ik/nF45hhUhfhGL5aCMKxWI2v1f4nZnrP
-         1nEeM9G/k5wRYfRKykpBw/118xAUcC56rij967H7jRb7Fi0F8n05Ahasg/NYQmkHYIGN
-         DKYzo56hpA32beAjHDXyaRrPrxWOtV/0wV/rKwyH8VS0LT6QX3z2XYrBGygpzDCYvkMo
-         X5IS28XKFmkDivxvJbGDB/m5bb1AqiXVkKjn2RqPCK11vJlv0kFhb28dDQw4Fn4hgOHc
-         AKyaJcY0hM4hgp7p+gFcmnth4Xq4yVtLUe4T3Fl8xsEdTb2vN/kLX22g2QNhF5qFhvzQ
-         401g==
-X-Forwarded-Encrypted: i=1; AL+hErGCcTMAaT5ZVR2IF3PUNIIUIdkOkK5GbXvMX1x+hn9nJLi9iF7aj9A6IFL18q8sznh9P81M4e2fJEFIhQv7k4o9@lists.infradead.org
-X-Gm-Message-State: APuU4Z/tdusoJ7UDgMHF8mBOvF2blKlDX7TRyUoaipQtBg6iKB4Jbjw4
-	DowH2SorCRe2KWJpmXCmbehAalffaAKsOSxcZhD2y/9/cXYLe5osjUpSbsfeC7TfGRo=
-X-Gm-Gg: AYBFou2wvtY6k/Zby0LnTO2pA6BROtHL93gyOuttmhskrILmap6Dqt6dhBgTlwiCSQK
-	Jd+0pBoxduJ8rmGlx3pvDg3AObywz5hQmkZN5kdwugbL99rAdgIN+jVbH3RJacZRcyd/SzutlQd
-	SLOfM6q9RhB7DV2jNpmUvZfoUy4HPFrw8qUMhRocXxvh2wWRUVTIlooPqzaEChihl/r75lR3v6R
-	ivHKBFco6AH1lUw+ypFjXk1Poddm2YOyxq72uuK6nBGiQ1ZUe8CfsEciDYqWR4+hAjW+oD64oRE
-	uQa4URD5t4aDiOcx4gXrlNO4TpLqziEHwJA3eWTHf4vaM0WvzGxGHFmY99XofJjWYxDBIvkGqhP
-	VoDpcKaddd19aN8MLPC9PopecZurz4BxjHs5Gazp2fd+vlbwQ1F4E02mtA7DXeH317YgWrEok4/
-	mNGRxWwBFJzPHr7dALl+TfjxrzQ/BwLUORDdL/TIbxMbV6sHHhi6B1zlt7+qDJEploMSzMxQu7M
-	gfHg8jZIr//3URceQKlhc4zdkp8rhDd5jVA5Ue1QNn6+NTFRCjuI52jq8/C5CH/02Nx8drhbPch
-	HNPeORRNg/MnqdfNsyWPJMJm3SRYRWSgG21pYEMse8UrE5O060KugbymFHHQ2obkQxMA6HvnT9k
-	1rtKF1MWk
-X-Received: by 2002:a05:600c:4e0b:b0:4bb:68f1:5bc0 with SMTP id 5b1f17b1804b1-4bb88920967mr58829305e9.33.1795171696983;
-        Fri, 20 Nov 2026 02:48:16 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795171699; x=1795776499;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=soyV8ujwdcUS92i+ptIIRwGgm+3063ycjFG8wPF9I2s=;
+        b=gTb2DVDOpcTCXbhKaWHpBXBhxC+FyqpZzkzB+h2bmBkEq6E9EYPM29DCSvuDLrlT+1
+         OZ89Ic0g+OCBPiqy+VJvr7pWy3Y1ecquVwaTRoa2UH1VGhGCFYfJC37ncQeRuUZL8J+e
+         x5DfXwjOdM2XF9Zne6HWMGq3yOhqUXQDHGYUswKOBqq5rhCHFKMGNy6UvCdPWIgIbHL/
+         jbvgyDRGAtZNS2Gx4b9H35/bGW25SQWiF41buai0djHNe2YbQvjnerS1k5zH3Ago3ZHq
+         SbHhDhKUSFAF6OSd6jmTmanO1vVCvpSAB86/xzRsifcC3IQE8dLE7s8t0ZryTPvWZiJ1
+         DLyQ==
+X-Forwarded-Encrypted: i=1; AL+hErHjnbsD/RWuiUQtz8mL6JwMsi4iM+2YfsmU6WZ+cntE45+XwXoZ4zOjfEU+kCaFaXaoESjxFHwIEvo+iW8gZ5NO@lists.infradead.org
+X-Gm-Message-State: APuU4Z+wbT8y+9BPqDWdJshVCA3KhAdqsmHP0XrfY2bMzRqugF46CFNt
+	5b+RXbblsI4fdTO7t34fcC5MKKgcBk6ZiAlQ8CRYJ2/ZXQGf2EIJk5o4HooRjOHIbcbH4nVG0ol
+	H6BzpDJhXpg==
+X-Gm-Gg: AYBFou0+Cxuf3XCsGTSgfdGHHdslTycuKh90HNTCs/QWIhB81laqywnDyU7QLSgzVN6
+	7nodx5/Szb0poh+lFzJj7x6tHHC0R6c9l+8iq8/Fk4pUqLyz+l2t9YxH66g/XAT6/e0DqM0Q8Pn
+	LL4uo22VSiTVaUsPvwEmEGxWd/fQFB+DECONY9pgJWlUSjmXUduYk9ifm2CtrzWLljZE/eY8H+B
+	7+vYA8Kwuinu7D8LO9c9hfMVZeUmy5dbVJbvqmP1WTENivp+Dklq+gIMprTSUAF4EyMunJhaxZN
+	kGv6WkzVX707cYeU2+Nou15gMmT+qqbg/mDvvx4/1zJYigVZInlZ/F6Gt6O46wOzSECyEpZzcp7
+	RpdjnAo5I6jSNCARteBKVuQpUHRD5y7/nFo2CMkOsy5IoAWe9m7RnmcICQvRtFou0pZlGHgNwnF
+	2G+QFGumHk7b6Gk3wNEPdc+gwqAvqOFH3g69eZf8aMCEHLx+Zqp3Z0HY3Ufi/5a40cBrGEw85Rn
+	ADsSm9jX4x4Lkj1moZtuzT3Tk/1vKwbb0n+Mtil9uv4Eqpg6xKUCV9fG/rM+1Hm+onqFwN+SHtm
+	ODxbnlz8QUwU/ieGzwGgtSSNUnX2caFNRCwT1IXpqv0tlt9pELr+C56W1IMpVcgBoW5tU73nbpV
+	BBFZGisRE
+X-Received: by 2002:a05:600c:3ba9:b0:4a2:1050:aff with SMTP id 5b1f17b1804b1-4bb8881c741mr66087065e9.6.1795171699317;
+        Fri, 20 Nov 2026 02:48:19 -0800 (PST)
 Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb88f14f1esm38161425e9.2.2026.11.20.02.48.13
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb88f14f1esm38161425e9.2.2026.11.20.02.48.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 02:48:15 -0800 (PST)
+        Fri, 20 Nov 2026 02:48:19 -0800 (PST)
 From: Alexey Charkov <alchark@flipper.net>
-Subject: [PATCH 0/7] arm64: dts: rockchip: Updates to RGMII PHYs on Sige5
- and NanoPi M5
-Date: Fri, 20 Nov 2026 14:48:08 +0400
-Message-Id: <20261120-rk3576-phys-v1-0-6382cd14e3dc@flipper.net>
+Date: Fri, 20 Nov 2026 14:48:09 +0400
+Subject: [PATCH 1/7] arm64: dts: rockchip: Describe NanoPi M5 Ethernet PHYs
+ by their ID
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzNDQyMD3aJsY1NzM92CjMpiXSNzczMLg0QLc/MUcyWgjoKi1LTMCrBp0bE
- QfnFpUlZqcgnICKXaWgAJfcibbwAAAA==
-X-Change-ID: 20261120-rk3576-phys-277680a877d7
+Message-Id: <20261120-rk3576-phys-v1-1-6382cd14e3dc@flipper.net>
+References: <20261120-rk3576-phys-v1-0-6382cd14e3dc@flipper.net>
+In-Reply-To: <20261120-rk3576-phys-v1-0-6382cd14e3dc@flipper.net>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
  John Clark <inindev@gmail.com>, 
@@ -94,18 +93,17 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-rockchip@lists.infradead.org, Alexey Charkov <alchark@flipper.net>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2101; i=alchark@flipper.net;
- h=from:subject:message-id; bh=5sdbEL5GXTFR6FwhqPpfL+d2C9hL8olV/xv+pbxWIgo=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWQzqOa83X/p5+Hdf6QYbtcl7MnLMPMpkrVNqZGMX/vZO
- XL3wjM5HRNZGMS4GCzFFFnmfltiO9WIb9YuD4+vMHNYmUCGSIs0MAABCwNfbmJeqZGOkZ6ptqGe
- oZGOsY4RAxenAEz1qdkM/31T1u/Ku+Mo29m+48QCYVGeRT/fVDT0XBN4vC77QxRv4UWG/wXinNK
- rVhwMf1V8uTqMR06Sq+fuhprm52yME779v277igUA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1793; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=8iZDArBxSAUmGNv6IPTGJGDjztGubBmXvBlIYDN4D+g=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWQzqOaGLDxxZU/I9L2m66UKdBJ6fbnlWCZ8ufqQ53iy2
+ 5OgF/+UOyayMIhxMViKKbLM/bbEdqoR36xdHh5fYeawMoEMkRZpYAACFga+3MS8UiMdIz1TbUM9
+ QyMdYx0jBi5OAZhqvuWMDH8Mb1WZb/I3251nW1YhNEub963Z6dUSbM9/akXO+b+pw57hvxPjw6w
+ X3PNV3nFoci3Itdvq+6vOvOZp0ibVdRNk7gmt5AIA
 X-Developer-Key: i=alchark@flipper.net; a=openpgp;
  fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_024819_537932_BB1D80ED 
-X-CRM114-Status: UNSURE (   9.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261120_024823_515905_56DC022A 
+X-CRM114-Status: GOOD (  12.37  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,45 +123,52 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Both ArmSoM Sige5 and NanoPi M5 boards use the same Realtek RGMII PHYs
-which currently share an issue preventing them from enumeration unless an
-earlier boot stage left them out of reset: at power-on, their reset lines
-are asserted, so they cannot answer an MDIO probe. Until they answer, the
-OS cannot look up the ID to match a driver. And until the OS has a driver,
-nothing releases their reset line.
+Both NanoPi M5 GMACs connect to an RTL8211F PHY with its reset line in
+the PHY node. With only the generic C22 compatible, an OS has to read the
+PHY ID registers before it can bind a driver, and only that driver
+releases the reset line. Unless an earlier boot stage has already
+released it, the PHY stays in reset, never answers on MDIO, and neither
+Ethernet port comes up. Booting straight from U-Boot SPL in Falcon mode
+hits exactly that.
 
-Fix this by using their known PHY IDs instead of the generic compatible,
-so that the deadlock is broken. This also opens up the possibility to
-enable the Realtek-specific ALDPS feature (automatic link-down power
-saving), which saves around 400 mW for each PHY with no cable attached.
+Name the PHY by its ID, so it binds without the ID read and comes out of
+reset as it does. Name the node ethernet-phy@1 as well, as the Realtek
+PHY binding the ID compatible selects requires.
 
-While here, also do a couple of minor cleanups: NanoPi M5 uses a dedicated
-crystal to derive the 25MHz reference clock, so it doesn't use the SoC
-provided clock, and the current DT property is superfluous and misleading.
-RTL8211F datasheet also specifies much shorter reset assertion and
-deassertion times than currently used in the DT, so adjust those, too, to
-avoid wasting unnecessary time during the reset sequence.
-
+Fixes: 96cbdfdd3ac2 ("arm64: dts: rockchip: Add FriendlyElec NanoPi M5 support")
 Signed-off-by: Alexey Charkov <alchark@flipper.net>
 ---
-Alexey Charkov (7):
-      arm64: dts: rockchip: Describe NanoPi M5 Ethernet PHYs by their ID
-      arm64: dts: rockchip: Describe Sige5 Ethernet PHYs by their ID
-      arm64: dts: rockchip: Drop NanoPi M5 PHY reference clocks
-      arm64: dts: rockchip: Enable ALDPS on NanoPi M5 Ethernet PHYs
-      arm64: dts: rockchip: Enable ALDPS on Sige5 Ethernet PHYs
-      arm64: dts: rockchip: Shorten NanoPi M5 Ethernet PHY reset to datasheet timing
-      arm64: dts: rockchip: Shorten Sige5 Ethernet PHY reset to datasheet timing
+ arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
- arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 18 ++++++++++--------
- arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts    | 20 ++++++++++----------
- 2 files changed, 20 insertions(+), 18 deletions(-)
----
-base-commit: adcad7f4e6332cff3d6d7165f41584899f598534
-change-id: 20261120-rk3576-phys-277680a877d7
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
+index c84afecd6e2a..49bbef5730d2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
+@@ -802,8 +802,8 @@ rt5616: audio-codec@1b {
+ };
+ 
+ &mdio0 {
+-	rgmii_phy0: phy@1 {
+-		compatible = "ethernet-phy-ieee802.3-c22";
++	rgmii_phy0: ethernet-phy@1 {
++		compatible = "ethernet-phy-id001c.c916";
+ 		reg = <0x1>;
+ 		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
+ 		interrupt-parent = <&gpio2>;
+@@ -817,8 +817,8 @@ rgmii_phy0: phy@1 {
+ };
+ 
+ &mdio1 {
+-	rgmii_phy1: phy@1 {
+-		compatible = "ethernet-phy-ieee802.3-c22";
++	rgmii_phy1: ethernet-phy@1 {
++		compatible = "ethernet-phy-id001c.c916";
+ 		reg = <0x1>;
+ 		clocks = <&cru REFCLKO25M_GMAC1_OUT>;
+ 		interrupt-parent = <&gpio3>;
 
-Best regards,
---  
-Alexey Charkov <alchark@flipper.net>
+-- 
+2.56.0
 
 
