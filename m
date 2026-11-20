@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF655606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5E560A2603
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1LdQxQ5u;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=nnx0aNUo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rpfpT0hD;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=N4QDfg9H
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DmIn60Bw6yfoa+kgHyaYUXoyqvtZFdxTT5HNPi8NO+U=; b=1LdQxQ5ugQi3pq
-	D+J2WvEViZbV3yZia4SuC/AHSxoYfbcBTqn+4areRLb2KGTOGukBuobNhc+4Mz1DzmWS5Jl9vz3OZ
-	AW5xTc5jqpUlu3b0v8RKAjZF4bs4Q7baaH4OfDyKxhtxja391HMovUReVufUzlgIFvP2Z//mxO0oe
-	kQPysfu/CevJwDwX377atrmvKyhSpzWknlOK06kbEGfr5bsOltung8ym1iGNPhw2l8+REbiY3OGX2
-	1c6SL/cr/IEM6iMnmNIw+HPzfBLBElEM+c6lZCbk4gO6qt8PiFQPzoJd5HiO7bvbRCX5QuHQlSeRV
-	FspxD1UZENQxWoAtWpWw==;
+	List-Owner; bh=a0pVAM4i2Q/5zRFX/d555/UXNJbQv06b7Ai2U1kyUQw=; b=rpfpT0hDOrarRe
+	wu2XMKY+L/goOCN5fhVrOHqioofuMc0XAPr54DOnKcVPfgKXoI0zwW9r46LfbuO/8xhhmqjUBHT8R
+	S57QnQSd6sZAUIWaT/EKGh0iPsEx7ADpumeWV6F8phVToJEQMMlJpPRXneJehFJQh3bJBC54OHxh7
+	iTNmmHzXYvX9M0/hkI0wCkvdtXJvrwB3AvydWIT16KdFcjdVqgIEapuC6m2GxWI2qL7lLL9vLCOVt
+	CuotmwUaHSIb3zyVzzaXQ1oW8xgZG2unlcJuF6ckdiY+2nw4KNKWVWXW28cjAb3zwecBbjxqqJEP+
+	5hJP9Is3hdlLZ0LKW6TQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOAF-0000000F1LV-03yj;
-	Fri, 20 Nov 2026 12:56:27 +0000
+	id 1xUOAR-0000000F1PS-1vc8;
+	Fri, 20 Nov 2026 12:56:39 +0000
 Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOA8-0000000F1Ik-3NjH
+	id 1xUOAI-0000000F1Mk-3Sln
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 12:56:22 +0000
+	Fri, 20 Nov 2026 12:56:32 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id EBA2FC6221F;
-	Fri, 20 Nov 2026 12:56:24 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id DC506C62216;
+	Fri, 20 Nov 2026 12:56:34 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 40073601B9;
-	Fri, 20 Nov 2026 12:56:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DABB711BC0089;
-	Fri, 20 Nov 2026 13:56:06 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2D644601B9;
+	Fri, 20 Nov 2026 12:56:29 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B7E3B11BC003E;
+	Fri, 20 Nov 2026 13:56:16 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795179372; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795179382; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=DmIn60Bw6yfoa+kgHyaYUXoyqvtZFdxTT5HNPi8NO+U=;
-	b=nnx0aNUoBzznBrc1wZZc8tT8dsAsn3b4mMknXkFVIZ/kaboJDGfvD/cevEPPDr45zyo/+a
-	Jo8pcxMnpGtugalkiaBUNilnKH36mSHFyUFY0imI4vDDPPWt3C+6wbEvB18HekBkzUMIv9
-	ogtJLpBd0q0q3qKsSWNCe+gkmIdNLxbfPwVo5G6twsp83D+5cYZp2QLjvx8aD6cXN2LQNb
-	nFKPwV5s/UO8jTBQwQT/mJIPkdLKavN53N69KhG5PxccSSi9LAU244+rVGHW3InPcHz7EX
-	20yDqeFD0vfG+kUPc5HkaT2/KhHIsmcKP1q6XFvHriGB3RF6ye5D9U7VQWfj7g==
+	bh=a0pVAM4i2Q/5zRFX/d555/UXNJbQv06b7Ai2U1kyUQw=;
+	b=N4QDfg9HzUsmfowSwbd0ENGWDUnrPtjb+QVmhdIQGdRN2UsgjJm3/aRR1kflioXQA++Z/s
+	3pG8QdQLYczgWZLqvA59ZxoQ+gY2pvcXu+GE96ti07bysdSKoxkRAMqTy0CARIOl7573ky
+	nswJgW1Fc7TykA4MhpidOToUBzLtsBtOtUKSvlMVP4b9gvs5mA+yYVh9YyGAtaQg7VyGov
+	lvlgr1TDgHMaJF/IXNbROSrw0OX4hshI3/EVZnui8l2Wjn1P+kus+ab4XH/CVDdGna/wv8
+	Bcl8sYcllG21J7G/euALbxoXu+Glevx1xmE1a2D9dKcbzH60bF4ygNynHodOkg==
 From: Benjamin Robin <benjamin.robin@bootlin.com>
-Date: Fri, 20 Nov 2026 13:55:49 +0100
-Subject: [PATCH 1/4] arm64: dts: ti: k3-j7200: Fix QSGMII overlay by adding
- SERDES PHY
+Date: Fri, 20 Nov 2026 13:55:50 +0100
+Subject: [PATCH 2/4] dt-bindings: phy: cadence-torrent: drop cdns,num-lanes
+ default value
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-phy-cadence-torrent-ng-v1-1-da2db7125cd7@bootlin.com>
+Message-Id: <20261120-phy-cadence-torrent-ng-v1-2-da2db7125cd7@bootlin.com>
 References: <20261120-phy-cadence-torrent-ng-v1-0-da2db7125cd7@bootlin.com>
 In-Reply-To: <20261120-phy-cadence-torrent-ng-v1-0-da2db7125cd7@bootlin.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -86,8 +86,8 @@ Cc: Vinod Koul <vkoul@kernel.org>, Chintan Vankar <c-vankar@ti.com>,
 X-Mailer: b4 0.15.2
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_045621_003262_A6D362B6 
-X-CRM114-Status: GOOD (  10.10  )
+X-CRM114-CacheID: sfid-20261120_045631_021940_6C0598E0 
+X-CRM114-Status: GOOD (  11.32  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,32 +107,33 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Chintan Vankar <c-vankar@ti.com>
+The driver treats cdns,num-lanes as mandatory and refuses to probe a PHY
+sub-node that does not provide it, logging:
 
-For CPSW5G QSGMII ports, CPSW assumes SERDES to be configured. Since it
-may not be always true, add SERDES phys to guarantee it.
+  No "cdns,num-lanes"-property.
 
-Fixes: 496cdc82e05f ("arm64: dts: ti: k3-j7200: Add overlay to enable CPSW5G ports in QSGMII mode")
-Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+A default value in the schema wrongly suggests that the property is
+optional, which it is not since it is listed as required. Remove the
+"default: 4" so the binding reflects the actual driver behavior and the
+mandatory nature of the property.
+
 Signed-off-by: Benjamin Robin <benjamin.robin@bootlin.com>
 ---
- arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso b/arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso
-index 6432ca08ee8e..4824d53c95bb 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso
-@@ -32,7 +32,8 @@ &cpsw0_port1 {
- 	phy-handle = <&cpsw5g_phy0>;
- 	phy-mode = "qsgmii";
- 	mac-address = [00 00 00 00 00 00];
--	phys = <&cpsw0_phy_gmii_sel 1>;
-+	phys = <&cpsw0_phy_gmii_sel 1>, <&serdes0_qsgmii_link>;
-+	phy-names = "mac", "serdes";
- };
+diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+index 9af39b33646a..8e845e2373ac 100644
+--- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
++++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+@@ -106,7 +106,6 @@ patternProperties:
+           Number of lanes.
+         $ref: /schemas/types.yaml#/definitions/uint32
+         enum: [1, 2, 3, 4]
+-        default: 4
  
- &cpsw0_port2 {
+       cdns,ssc-mode:
+         description:
 
 -- 
 2.56.1
