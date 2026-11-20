@@ -2,100 +2,135 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D41D960A2611
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:00:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A51560A2609
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:03:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zr45VKW9;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P5mkqwGq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nkXsoRMO;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=AwVRPTfw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=aWDQDm7LuQie9jvzV6uB014UdAyJXJaIz6fRdlyOS1c=; b=Zr45VKW9Rcmufybbp/3vfIU8Dj
-	5OURxsN/2ckbkyrYZ2t+cU1Nzs7JliV3Gelik9/+RTysoL3DBL4PcGlyO6UjV2Q91XBIiSWnoZyPg
-	OzwJ6V+kYK6uKRUnjnl+5fRy/ySMm4OnTcC8uPtaaMmfYOwftHbb7k4OdcmPc+dlaYN5TUfUWlylo
-	ejF9eOjELpohZdBhvuYCKod5gJL7KBZc8ReI7OaTS9nJPT2OYTiOyysv1n+oK//b+qkdSwGkSBv+t
-	6tk8wTqqUI+F3uH2KacKbM6+E+V7UjF5GkcL1siQeqGKCDrbzfcEMKgGC7jb49aQpZBMgSvEegZji
-	tRfaWOwA==;
+	bh=ha1goxV1uznv7FYwU3jGyeseBGJWBh1KQjmGUUraPrg=; b=nkXsoRMOgqNwa3Z3ORepHzII6z
+	4WdCjg0GVw2/qCiugA5hjhIw72mLfa+V4DnSks55WIJz6/6xNoxQNg1JTQTiQaGvPOqjbqtYY26er
+	ndj/G5/9lt0zB8TRORRF4KNHap2RhKA0BjH1ed+3tlGsn3I79gdbgTSy6ixj6w0zYeJVhSNAae36x
+	0piNg6NjR6eSyGa6K8zX5WzuGETNfTMVZRplLPYSacubFL4GOzkUhIC45q6C7t0iMhF5yzGZTNWBm
+	rL65uE0Kw1JaWp02y/5SBRFh0sdVy0a8Fzr7ONaGGX8ifudgjPAgYoX1uXUFjD5HDfwvba2qqE7a4
+	bZo6okBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSug-0000000FqOw-1Sbm;
-	Fri, 20 Nov 2026 18:00:42 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xUSxD-0000000Fqs4-3Nor;
+	Fri, 20 Nov 2026 18:03:21 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSuf-0000000FqOf-1w5K;
-	Fri, 20 Nov 2026 18:00:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D1621440D4;
-	Fri, 20 Nov 2026 18:00:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF2F61F000E6;
-	Fri, 20 Nov 2026 18:00:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795197640;
-	bh=aWDQDm7LuQie9jvzV6uB014UdAyJXJaIz6fRdlyOS1c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=P5mkqwGqab+KQfWEfEH4mmcGEw6tOW3qm6uvmVNmNnR+GzzxXVkIdUySNuc32vLc0
-	 q31FmpssPWpu0Q0701/2KM+kgiJvkQeROnbFBI/6oZ0XIWMdH/TRqoJRA56olYaWYW
-	 6sckacjB2oiIkTR6cFalvpY3OG8+9vBEABBa8mPfnBQDyQFQb9GpyeuXO6/H4Hsxc7
-	 r057Siz8DIpUlqoO1uqHmWLR0dPkKtgaXHxx+DiDE/T/jrcn+qbpB4oejbh4rAIM+X
-	 nfVNM38HAe0awFXGnv2Hk87AJ60ZrMYfMBsoNpwPtGgOEBEkecr7rs5EqAM+rI876q
-	 Z24xn6pr9lUSQ==
-Date: Fri, 20 Nov 2026 18:00:29 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Heiko Stuebner <heiko@sntech.de>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Dominique Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Yakir Yang <kuankuan.y@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	William Qiu <william.qiu@starfivetech.com>,
-	Xingyu Wu <xingyu.wu@starfivetech.com>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Manivannan Sadhasivam <mani@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Maud Spierings <maud_spierings@murena.io>,
-	Graham Markall <hello@big-grey.co.uk>,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Joshua Peisach <jpeisach@ubuntu.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Byron Stanoszek <gandalf@winds.org>, OOHehir <oo.hehir@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v7 00/19] drm: starfive: jh7110: Enable display subsystem
-Message-ID: <20261120-lagged-aorta-a5799cab633a@spud>
-References: <CGME20261106135849eucas1p242718d72fa1f38e31477210fd9ee30bc@eucas1p2.samsung.com>
- <20261106-jh7110-clean-send-v7-0-68f7ea9913db@samsung.com>
- <d21992c9-9e60-4613-b7cd-8e324d214a48@samsung.com>
+	id 1xUSx7-0000000Fqqw-1G7v
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 18:03:14 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=C2tvPmS3BxhoAsjFrYFwAO+CIwK3GIPNlhq1nUyLbkeQveHil+gCd2ZUvw2jz82yF9DW2fbtwth0H2dLacFUuYrKRmtyAvkCWbb2gVFE9ihhpnzXYJisXVRP86kB84kPZf2c3srHs5G4Su/pGBQ/Lilv1yrEhP9pjWp5FNQrWoiDlAfsgcDntabwaCygM+zMzURZ8rrNg7fakoCLcEnn2Z1u3KwMHFrrcOk5UhSiNVteLVycM+/xkfywa4zPsCnvzuviDy8wP2v/5u3MObVLE2wB2sH67Lrc/gm5uX/pLefs6lhdmWzsZ/+ZGwLX2+vzYXWN8cy7S6AJJb4qd8pK4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ha1goxV1uznv7FYwU3jGyeseBGJWBh1KQjmGUUraPrg=;
+ b=cK8RGv7dnbyIXgZ/Lo4176epTmTvpYPvKA1qwdmefjVVdm+DtrnCi2gy0n2NTmJMhM/jp1jAg5EnL6UAV7tbFo8D5ytFF/372hAOIJbY/73z0Fw3pl0dXTSpQIo9zIb4iXaJ8dMMMdrWE4X/NDgWoG3BtL+fALafoX5j3731r8vyVM8Le4QBOBVbeP7ep8FRAqDunqxpHc6Pufif+VvWlvL1sfUJFfI4/o+zZEBGzMhlDQQGuNiJ0sIJzGLFn7gUAQr6eKjE5KpaTQcNHxLsPLCu+mC+m1DHYcsOcNg0xq6Y3YvdlBbRW8SpX6/oILlaxKlYovEshn15MyrwZReoqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ha1goxV1uznv7FYwU3jGyeseBGJWBh1KQjmGUUraPrg=;
+ b=AwVRPTfw5iSjujgKZDdtDp/a/xLGvNXKDqK1kU9uMqX+ziHpyTLGt6AqUwxmG8FrLXUvJ7xySPYTAQST4Aakw/qh5V/DIOjjgW8lASP7r7sRJJOB+mFzfg+nNtd6AqIn5Mnr9Z2XC82YNNvdaltDj0YO99O94u9O861Frwrvbl5PCrzdAsRPqAM6oELnaU8mObz61dvMLmLC/DZ0/0j9uNUx9glA5tAuPdNl6dY/EfFiAz/tV/hVewdqww4Pc7/z5UIuKT+/NXBag/LNY86rMqwOMwFxnjv8OU1TElEcxixMT3rBUZgintV/MHc/lEBzhQJII+xxtoVCo255xOdqPg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by BR2PR04MB834250.eurprd04.prod.outlook.com (2603:10a6:2c8::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
+ 2026 18:03:07 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
+ 18:03:07 +0000
+Date: Fri, 20 Nov 2026 12:02:57 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	dmaengine@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 3/4] dmaengine: stm32-dma3: validate LLI pool allocations
+ and fix cleanup
+Message-ID: <awCLUSCKqsBDF5g3@SMW015318>
+References: <20261120-dma3-fixes-v1-0-f29c1f437399@foss.st.com>
+ <20261120-dma3-fixes-v1-3-f29c1f437399@foss.st.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261120-dma3-fixes-v1-3-f29c1f437399@foss.st.com>
+X-ClientProxiedBy: PH8P223CA0001.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:510:2db::32) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9Y3BF9tXWb3jCBuR"
-Content-Disposition: inline
-In-Reply-To: <d21992c9-9e60-4613-b7cd-8e324d214a48@samsung.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|BR2PR04MB834250:EE_
+X-MS-Office365-Filtering-Correlation-Id: 40f0cc9a-0a5a-47be-7b88-08df473087cf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|19092799006|23010399003|7416014|376014|366016|18002099003|22082099003|261009223027099003|6133799003|56012099006|11063799006|10067099003|4143699003|261102124527099003|261102123227099003|261026121527099003|261022075727099003|261026140227099003|261022105027099003|261028144727099003|261021121427099003|261021123027099003;
+X-Microsoft-Antispam-Message-Info: 1jXf84XSfQNRoC1DbcSdaltwe3ePAKv2RcwfSyL+nLExlGjJjkYvo22fmcSJ3Nem1q96jGelQ1iczeawWWHX3VOLZZXre5leMX4JjVJSPBJYMAMr+o1BcyM7DM0yF6JKZiHnGC4jmgE+LoxvZCb6PJ610VPgxsFraQUVu72f+0b7fAhfqXz2TO5lmOmfDUdkFmIBgV5Uapocfns0mNO+VBFd+BoPt28rCedQAwvLMTsSsg3oxgdWbkYoppO7IGJ5vln3+vV/74S6T+pjzRHW0v7/6B/TZepX+SLefBV+m0GAOM52jOHT+RDiePj+rDbxbTiiDZzTNslbGhg8EwBMQhK7uITGGadEnla6qnE1DHvzcnRW+pHyxnXvqlMCKoyWcfSWwH5wVsSsZ3chr9ZsreaTk1RhNvzOmBZcOArusSf9R9xNBpcCSG/A8WN89c+wxW5jBTWmsVi8ME9Y4KFgVhVhQ0e+YQSpL2nmt+3/8zn1H/1xxjMEX7Bc2M9v24+Adv8qQzHbitYMP4abDortVAqnO/LIiNUhp0Mem7PZkcUHlIq8op+XDPd1rsSaAM800z9ekKLaqqWkARtSycl+2oBjQFfKzBRG3l+FUxfvgl6PS1epRpc6NYL+g59j2jTt6Wkv2J0vjLOAw8MPSiZjCh+N3c6MnuWmLHGU/vlKdzc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(23010399003)(7416014)(376014)(366016)(18002099003)(22082099003)(261009223027099003)(6133799003)(56012099006)(11063799006)(10067099003)(4143699003)(261102124527099003)(261102123227099003)(261026121527099003)(261022075727099003)(261026140227099003)(261022105027099003)(261028144727099003)(261021121427099003)(261021123027099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nu0x8FYE4uO8Ekvk4fvK9wgzCFtaIEfpElSKoZQ+o72exA4TZ5VAvEcjUmCH?=
+ =?us-ascii?Q?ULmaSylYbI+py77WAf8xIO0YzzEPX9vES8xS77+zL6klWi9Ak8Jit/159E6b?=
+ =?us-ascii?Q?ahqENakPRHmzOeOqnuwbGRQLIoAf7IQjAHQgh+IFQLrQQXzA+Xz7wtvDO3Wy?=
+ =?us-ascii?Q?sqlRfq6OD+yoChjrCEHBB0ZWgYqAAgBuvlJ30vlEGA8otwtRHXvdxOJgQ/zz?=
+ =?us-ascii?Q?0TRw7br8hcZ5P1DnefFRCHYFXruhwgXzo1xUVkKUuUiNXpScKPLPaoy6RCV+?=
+ =?us-ascii?Q?GnSb74MSTx9XBqZNtdxemobk9JL/ShcvYMD/tMd9M/CuDsN2A+VKqZi00DjA?=
+ =?us-ascii?Q?OcG+RF9IXgKlWX3YG7iOnFJZknjr3404FLKjYSaOf8Frf3oiVoBLnammR7Y8?=
+ =?us-ascii?Q?VI5Xb/IK/YL/l1UinRE/zYHKQpSzhWuN2qML/TTnNvQ5fiQzBry1AwvjxtlA?=
+ =?us-ascii?Q?faXi1lxUwmqgqMC85nzCsYHCqTBBfEjwbcAZw48E5Eq9cZgft/ZYZDq1gfaF?=
+ =?us-ascii?Q?PTG2ND8gIgtOP2AcxmlYrCgL9q9pR5hhUPqWo4AIksEgT9pNVNYMlRinaBIR?=
+ =?us-ascii?Q?QxtQksZZmYTLY1UXdAGcF/+ncNjwwCv0TUwNnHwxQh6eYhDoHoIufuNow5S+?=
+ =?us-ascii?Q?wZqKQF/6rWcIh1+azRspB1J4SKpU1xiILzoD0mmm9TD2SjP4vXVrO7CChsN8?=
+ =?us-ascii?Q?9963X9mj4gNF41rnulJHEL2R/7lqJaN6L4NcHcuBXdFUQo/iF/l8XBd9YITs?=
+ =?us-ascii?Q?jsFUgapLIkK0k1KDOvCkbaoCtjkt9tbde2OGEhgQI+y/sSN9ay6saAWKP/hd?=
+ =?us-ascii?Q?ui2sIpH+zXkO4EfFiMl1xK+T5YC/JOygg+J0i7LdgBEfboSM1S/ouXYrVsJG?=
+ =?us-ascii?Q?ask0cjG/8STfZ7FBMBsRU1lw0KjVZJ3ojSgxi3aohhFyEhZadP6Dyhe20+V+?=
+ =?us-ascii?Q?wS0bRQgn2y6k4TNO9O14GhDa2QkkjXo/qxYJlMratYtZaa53QNhIfYRvIWrk?=
+ =?us-ascii?Q?J7uJKdLz+ry52mjnclAcQVbkVu0WfvG1zMt9Dp09DFEVWEWYS1OPfKrcEMtg?=
+ =?us-ascii?Q?Q20IDQuWNxc/QBd1UsH5ix82I7IEeLZhGXgGjd790RDYW8uxChGTFj0Tuc6Z?=
+ =?us-ascii?Q?v0vTa6Mv/2/fKAoSJLDvdj98RkqYTNaMkwsx7q9tafj2BzxIMBhnY0cXYJs1?=
+ =?us-ascii?Q?MC8w5dMQDNsAPsNmO9uQhsOLA0BFbjGkWA++N/S2av3Kcz8ue7CzZUghU9fG?=
+ =?us-ascii?Q?VYn+dDyJ+Brc42qppWXIzA4yAhHFjsWfL3Hg2EiDCKd7dny8a8hSUcO7QENO?=
+ =?us-ascii?Q?YG/AQ2tMdkwMSH7e176Qbxo6Cjd96hmosPuhUlOMDstnVnT7GaAJDP8hHt4K?=
+ =?us-ascii?Q?2mdgpoGDctY7LvxjPSE1bBuLWD4aCEBrCNnRytS7WRjWeTWxmjqp4CeJkWDn?=
+ =?us-ascii?Q?MrD6LdjVdX6Gk8AFjw0un9qizLWzhnpbZdL2xQHNqEAyyxi8kPJcXiUcV4Bz?=
+ =?us-ascii?Q?cBCgFGC8bmrQHMNPdr6yAnRnDTM/eWSo9NcAC402XtKww9frfP7vnvChS2c9?=
+ =?us-ascii?Q?FJi7fFmQ1ZTsbpzL2L5MKawjyaFlVshYj4U/dusraro+5RNBSJ/l+VwotEjV?=
+ =?us-ascii?Q?ciw327ynh3dHlZYq7b1umU5BHBE/VfRvMQI5LExCiM5wHg+6YrJA5xoeujZu?=
+ =?us-ascii?Q?k+47Hg7rgJ5jXP1T5v/5iB5bi3/Py5bysmPpKuwtFyGpz5YSmJgNVH9tzEJq?=
+ =?us-ascii?Q?HowoUnSsuPB189pnKzmeXMbP7MMhbhydy0uyA/eh1jNqCaI+uW9c?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40f0cc9a-0a5a-47be-7b88-08df473087cf
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 18:03:07.4441
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eQGsJ2fbR+cY+oOrAmFUyMoYqRpvForlmA8kjxHAEJcdpDIrkM7yESF/KtEhRWNqdOoVV7eCs5UP1vcRug2icRyEcpCvC6ic0PUtirM7mzGDlTwa3P44AKueaLvTUvXe
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR2PR04MB834250
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_100313_351806_E524B663 
+X-CRM114-Status: GOOD (  27.75  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,70 +141,119 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---9Y3BF9tXWb3jCBuR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Nov 20, 2026 at 10:18:03AM +0100, Amelie Delaunay wrote:
+> All descriptors in a linked list must share the same 64 KiB address
+> window because CLBAR provides the common upper address bits. The DMA pool
+> boundary only constrains individual allocations, not the whole list, so
+> descriptors in a single list may be allocated from different pool pages in
+> different windows.
 
-On Fri, Nov 20, 2026 at 03:02:35PM +0100, Michal Wilczynski wrote:
-> On 11/6/26 14:58, Michal Wilczynski wrote:
-> > This series enables the display subsystem on the StarFive JH7110.
-> >=20
-> > Merging: the series splits by subsystem, there is no build dependency
-> > between the blocks, and each block lands in the tree that already owns
-> > those files:
-> >=20
-> >   drm-misc                     1-3, 6, 8-14, 17
-> >     drivers/gpu/drm/bridge/, include/drm/bridge/ and the display
-> >     bindings. Patches 1 and 2 are inno-hdmi fixes with Fixes: tags;
-> >     they apply to Rockchip as much as to StarFive and are independent
-> >     of the rest, so they can go on their own.
-> >=20
+/**
+ * dmam_pool_create - Managed dma_pool_create()
+ * @name: name of pool, for diagnostics
+ * @dev: device that will be doing the DMA
+ * @size: size of the blocks in this pool.
+ * @align: alignment requirement for blocks; must be a power of two
+ * @allocation: returned blocks won't cross this boundary (or zero)
 
-> >   Conor's tree                 4, 5, 7, 15-16, 18
-> >     drivers/soc/starfive/, together with
-> >     the bindings for its two drivers (patches 4 and 7, under
-> >     bindings/display/starfive/) and the vout-syscon compatible in
-> >     bindings/soc/starfive/ (STARFIVE SOC DRIVERS), and
-> >     arch/riscv/boot/dts/starfive/ (STARFIVE DEVICETREES).
+suppose you can set allocation to 64K to avoid cross 64K boundary.
 
-Other than for the dts patch,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+ *
+ * Managed dma_pool_create().  DMA pool created with this function is
+ * automatically destroyed on driver detach.
+ *
+ * Return: a managed dma allocation pool with the requested
+ * characteristics, or %NULL if one can't be created.
+ */
+struct dma_pool *dmam_pool_create(const char *name, struct device *dev,
+				  size_t size, size_t align, size_t allocation)
 
-I don't want to take the display binding because I won't have the child
-nodes, and I won't take the driver without the binding for it. At then
-at that point, the remaining trivial binding and driver may as well go
-with the rest of the code.
 
-Please resubmit the dts patch to me individually when the rest of this
-has been applied.
+Frank
 
->=20
-> Gentle ping on this series. It depends on the Innosilicon HDMI PHY
-> series [1], but only for dt_binding_check/dtbs_check (the PHY binding
-> is referenced from the jh7110-hdmi-subsystem binding) and at runtime.
-> Everything else builds and can be reviewed independently.
->=20
-> Any comments on the DRM bridge / inno-hdmi parts would be much
-> appreciated.
-
---9Y3BF9tXWb3jCBuR
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCawCKvQAKCRB4tDGHoIJi
-0qj8AP0ZaeGM0TZcGSFuopE9ZeecanF/1QUS00H2PGlontmwXQEA3BQeYKyiBSs4
-lx/sKFxuXkEXlgn/ah1AzWlf0uWxDQg=
-=XGjQ
------END PGP SIGNATURE-----
-
---9Y3BF9tXWb3jCBuR--
+>
+> Check each descriptor's base address and reject lists that span multiple
+> windows, instead of letting the hardware fetch descriptors from wrong
+> addresses. Track the last allocated entry so that the error path frees
+> exactly the descriptors that were allocated, including the one that
+> failed the window check.
+>
+> While at it, simplify the ccr initialisation, which is functionnaly
+> equivalent to the previous code.
+>
+> Fixes: f561ec8b2b33 ("dmaengine: Add STM32 DMA3 support")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> ---
+>  drivers/dma/stm32/stm32-dma3.c | 31 ++++++++++++++++++++++++++-----
+>  1 file changed, 26 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/dma/stm32/stm32-dma3.c b/drivers/dma/stm32/stm32-dma3.c
+> index a056f73fbe02..7c509a69f5e5 100644
+> --- a/drivers/dma/stm32/stm32-dma3.c
+> +++ b/drivers/dma/stm32/stm32-dma3.c
+> @@ -397,7 +397,8 @@ static void stm32_dma3_chan_dump_hwdesc(struct stm32_dma3_chan *chan,
+>  static struct stm32_dma3_swdesc *stm32_dma3_chan_desc_alloc(struct stm32_dma3_chan *chan, u32 count)
+>  {
+>  	struct stm32_dma3_swdesc *swdesc;
+> -	int i;
+> +	int i, last_alloc_idx = -1;
+> +	dma_addr_t base_addr = 0;
+>
+>  	/*
+>  	 * If the memory to be allocated for the number of hwdesc (6 u32 members but 32-bytes
+> @@ -419,18 +420,38 @@ static struct stm32_dma3_swdesc *stm32_dma3_chan_desc_alloc(struct stm32_dma3_ch
+>  							&swdesc->lli[i].hwdesc_addr);
+>  		if (!swdesc->lli[i].hwdesc)
+>  			goto err_pool_free;
+> +
+> +		last_alloc_idx = i;
+> +
+> +		if (i == 0) {
+> +			base_addr = swdesc->lli[0].hwdesc_addr & CLBAR_LBA;
+> +			continue;
+> +		}
+> +
+> +		/*
+> +		 * dma_pool boundary=SZ_64K only guarantees that one allocation does not span a 64KB
+> +		 * boundary. It does not guarantee that all allocations of a given linked-list land
+> +		 * in the same 64KB address window required by CLBAR/CLLR addressing.
+> +		 */
+> +		if (base_addr != (swdesc->lli[i].hwdesc_addr & CLBAR_LBA)) {
+> +			dev_err(vchan_chan_dev(&chan->vchan), "LLI crosses a 64KB window (%pad)\n",
+> +				&swdesc->lli[i].hwdesc_addr);
+> +			goto err_pool_free;
+> +		}
+>  	}
+> -	swdesc->ccr = 0;
+>
+>  	/* Set LL allocated port */
+> -	swdesc->ccr &= ~CCR_LAP;
+> +	swdesc->ccr = FIELD_PREP(CCR_LAP, 0);
+>
+>  	return swdesc;
+>
+>  err_pool_free:
+>  	dev_err(vchan_chan_dev(&chan->vchan), "Failed to alloc descriptors\n");
+> -	while (--i >= 0)
+> -		dma_pool_free(chan->lli_pool, swdesc->lli[i].hwdesc, swdesc->lli[i].hwdesc_addr);
+> +	while (last_alloc_idx >= 0) {
+> +		dma_pool_free(chan->lli_pool, swdesc->lli[last_alloc_idx].hwdesc,
+> +			      swdesc->lli[last_alloc_idx].hwdesc_addr);
+> +		last_alloc_idx--;
+> +	}
+>  	kfree(swdesc);
+>
+>  	return NULL;
+>
+> --
+> 2.43.0
+>
 
