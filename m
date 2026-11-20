@@ -2,86 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5E4606AB98
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC0C6606ABAC
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 13:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XKifRVOh;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=hk7ohV3C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QYs1WzK9;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=WIXDKCzf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Oz3DzHqzANRXdOf1qOfILmgSuOIeY8r0MCU4DvwHK+g=; b=XKifRVOhU1ZUwe
-	84B++V14U/UFY03Z98ngk/9Oo2cbvFt7RLOQj/PPLid2XhnIB5YfkDxSBDvz4dODjylrCybDyVqg0
-	uTuocVm6hCGFYt/+HNk4gA0z2zWT1QkfQDJVEcvrpxXOH30NI3eOdx2NqB35GXyuYMae7Zw2eWVqe
-	xai1Dmy8yQGjv+pOZs4COTEcGYTKqu577LmH3G9u8hZXBRTmONJ3bV1/e4xyOcqm5Wa0GwEdCZnJx
-	h5uk1C668ZRSXVGMjXc0ovaSqh4Kx/tJqiMIh/jM2UVBHNP9fMbrm/dwRmzqRmmcccMXtBU8FEnOc
-	QMAhB/cEszLn5K/x7SFQ==;
+	List-Owner; bh=YGPwgitGH1vHfSUVtrdf8gHd8o5UWGYODuFwUGcBJIU=; b=QYs1WzK9/AvaqC
+	ZyBf3+ThmYuIXBqiKwpuPv6goCHCRjLYNO/6HMIEsJw12O+tGN68MR+WC+QUNls5dEJNdIX6cmQOu
+	XnEUOawcolPEVcOCxdY8vmyZuzXDGzEiAqS2MD57OmwdcnQvgm/hOarp77bvSHoQdwaFIVWn6Quih
+	+7nxWQrqmKrJq8BFTuhSAWSGjQkDVR0/aodbVT29llh0Efnk53mQNi4K3ijYPWZM11Zrt38G6BZuz
+	sqO9PhRoiIvGtQukJYLJ642I18bA+HUD01SI9EiyfqBrrLHavojN+A82MUcq3fd0E5Lx2nxZI4NpN
+	tDSv3hZ3eFja1wbPUncA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOOy-0000000F3mZ-3lO2;
-	Fri, 20 Nov 2026 13:11:40 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1xUOP0-0000000F3pN-0rc3;
+	Fri, 20 Nov 2026 13:11:42 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOOp-0000000F3e5-2EXZ
+	id 1xUOOs-0000000F3gF-12bB
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 13:11:33 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-4a2f4ca0dcfso460447f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 05:11:30 -0800 (PST)
+	Fri, 20 Nov 2026 13:11:38 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4bb6ba3b244so7691925e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 05:11:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795180289; x=1795785089; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1795180292; x=1795785092; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Oz3DzHqzANRXdOf1qOfILmgSuOIeY8r0MCU4DvwHK+g=;
-        b=hk7ohV3C6PqyJKRH2URa4YNlCgzMLAho4eLgK+wbgGDSt2G2QlFlmhY+ZlYiz7jBwW
-         8Lj27G9yIvJ4CkxeUUYiXGqQN4xsXF/DuwiqIqj4B/nrR+PQ3O8hcndgSdn0ITnlD2ju
-         xKkwdixaYQ63sY95yJMsCr2SKFI/00KtBfl+4wSD8mGA7/6TA9BcaaZYkOve3rXt+AXk
-         ddFeK31NgHkwN8vKpd2jSD00rBbaThjNm0ByGgNOaIMOwOxoS+LS38zg3tSUlvE4XUqX
-         dMUsaQRiIZnhqc61apcfjtK+gJWGB7N0et7uOwSn7urxugC83E2Vi14bsDW6x2xpxOeX
-         P3eA==
+        bh=YGPwgitGH1vHfSUVtrdf8gHd8o5UWGYODuFwUGcBJIU=;
+        b=WIXDKCzfYvzCJWGjAkf/9EV4NiwtG09BPE3GNfcwr71/c3TtDMZW+7U8kaZYHSfXz4
+         5FhLvzQZIushsWTb4AFL473mLapdlvcJHRo00gOnPVMwllND5wMWRiuXEHfi0BNZyBpu
+         q8FGh4PWkGCkUgvrNRWgDz7QOxp7w1t+eMKk1Aa0aI/r2JyZDNWIYEbFwoBklrAfEmD+
+         1VKqEv2NdxCknnQ1Lu2/iGoszBpM53fDL3ptBDlz9NSRf2Jc//x+cO1OTbwW6PjmY31h
+         pTd32gR+N2qwZDjI8Kj7qfFj+LXDU3xznFLOzGIumUNINeqB6K1e246mzsE2cVaZnEGi
+         /i0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795180289; x=1795785089;
+        d=1e100.net; s=20260707; t=1795180292; x=1795785092;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Oz3DzHqzANRXdOf1qOfILmgSuOIeY8r0MCU4DvwHK+g=;
-        b=1HosHiRArSCcpcm4svrWqThc/CF92aK7SRUN99ijX4mu4vxnIPpL5jZqQUjTxiyiyH
-         kFoj9oNlATKgeyo+xQeTy4ugHPxBtmrrsjUyI3GrmNCuWJVtnaW2r2ZhPeFRc5GWTOAZ
-         WbXyuxO1JdX5/OrmCC5q1c684PZ/9O4pic2aJUQXBdmWTGuBKFlM7w8RO75jmyMnORpA
-         w4ULBD1DqrKe3uFp7PzxRaCJIOGC0E2o4fiqRdutare5+8WlkdCe8gpOTXmPW6Ty2mf0
-         X/zZn0PoN/qwaaTfuDBNrwGdeKIN7cjX8OvPrMKjdO59jG0x19/v244dP60VBqByjQ5D
-         i5pQ==
-X-Forwarded-Encrypted: i=1; AL+hErFgfqyOcgRJO1ELYMtbMCNR60vYiMhsC+qvBT+bIV3L1kQbDrqfx/xuCuceSsGkokeKY0jZk3TPRpVrNd314FiQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+eaitgqI9LveDu4CLAicbtHIxAOVDicOvfUpU75rK4JNj+q5m1
-	O838m2vkWqpHQRlsw3wWZnAeGUDhuBZB4ekYActThHW5ETlGEBoYkoPzZn/0RKsezkM=
-X-Gm-Gg: AYBFou2EPkPmpiUoaErmAyiKEdy2ZbKu2pJtQSyaldJ0OAB9E8+nvb2klsq/O+/wktT
-	tU0YVohP5WLZcF3KYktkTHPgI1ZiTp5hKfY43ny5EmBlyPfJnxSMIWFZjaBcfpEQpSigWQMBPfV
-	CRKw0h7jqYfnjJkROo37TzorAkwoALietL+kKsSMKRnGdn6LNpGDlHljLVWy9LU+bWmhIebZSwT
-	xxygESfz2eYkasjUfAkQkvSFSQ/dHyvWCm91LvDr4ONtwIztzTwTF16Z9Brx5ZTYUxZiJ7hc+wD
-	e7RaHevwg4S2rbgrtyvpvBZ6r6kejlb/uwhMISXubB8K6Xa+ySY0M4J/EeI2Wh5mhM9FTK5BWiu
-	XCJBxfwcKBTQKPa5AlFdNEpR2tEq5x+j46vj8RzoMfVNFnM9haXNUEpd6Mkf+Bee3HZjPUpcJz4
-	pyjqAYGDxfede7oiD8+pOlSTM4VlrpgUQ7RIHUAKKrGMaaqUM+IC4kqMJH6qVlq+V4h8H19DUC6
-	wty9+lJEnbXb+fgp6bL2LzQ8kWjJbNfK4V8NozXgoVnBcQ8eU8lpZXp6JvFt73c692mQ/CU8EGq
-	m66/4862O/uOOtN9sZc8zdIzVRMZHjs6jZDyyDg3lh4hj9RxoAk61rPx8LMBJpWf+uC6Ne75y9k
-	1zQZPXkBl88RqPb2I2IeUS9cdxP61JI05rqMvukhZNFg6Mw==
-X-Received: by 2002:a05:600c:820d:b0:4a1:dfaf:f465 with SMTP id 5b1f17b1804b1-4bb887c2ca3mr72990565e9.4.1795180289461;
-        Fri, 20 Nov 2026 05:11:29 -0800 (PST)
+        bh=YGPwgitGH1vHfSUVtrdf8gHd8o5UWGYODuFwUGcBJIU=;
+        b=FZGX1oifSX6WLs3VaRnxWloxB7HoJk8PIFpwUAYefPImlK+AVAePCikD/vQEHO0SZH
+         p1cEZFTv7POj8525vsQt28XH+q6AJzUy3JtauVxfNTHMVLoz/9GwI83XmEAVNuNCowPG
+         EY+NHkdeShiEd9KsT4KzaB7UVSAVjczYOaoKFaOmHismvH/mX5F9rtvFDtvn9P8RkVcH
+         emVnGpsaDm31rdwVdNgUdoMvDx1rpACEtM3C+RboGtx4Hb+a9/WDYVNjrtcOkHALoqvD
+         tPqXi5gfSakPtVY12ZdUOjAvRN8Zfd6oIKasC9Z0zRR9RgNxrn+R5wugzth0uBps5iyg
+         p3Yg==
+X-Forwarded-Encrypted: i=1; AL+hErFXKTm1jzUoapb+u/SR4GtYvcIhulC5kHtQU4twn026LZTzBBu191vyHpptDtj1TU4fkr/jTSp13k7VTE76Nld+@lists.infradead.org
+X-Gm-Message-State: APuU4Z8wv6Di861M8QL7P+AVi3WAJTS0yzwErIHvbrpSmUj8dhmn+g4v
+	iiDfKdZCDoQ307uIj1zHLeVaHWrtXdboRcIi9y75I5T/WYdphnWogRzUADAOjaaDaZw=
+X-Gm-Gg: AYBFou0H8k1LsXgPttdFec1ij91fhty8/91/ZbLnuZBO7IxktlM/R0NBu1fxWs5NctE
+	Ifc38xgQ4UOZwwOY1NbSzTifIx+uwk6ILFA9m00+3owIYRhrDyjyx2KsBKL2AslGCs7uiSJhFZJ
+	25YER7NhXlU8J7/3czsKVp9uVM/+7XHH8wJOKJttyMb9Vf98LKpzf38KhE/3xuIZWSCEMT0Ywko
+	dvEiS/2cOM18fQj6RUcuwd3C4Ezvwm8B5E8rnaKztOWhrxqrEou8tl5knXH6iuuAYeAeC6he7TA
+	XD3AVYWoL52ZXhhFGjlXDStnSO6Ux4eDMvf8R4Ue8tmGJCrkKUHNaUCs7VsfwKBxfHleevM33Yr
+	dtkYfpbTDeraZWnCdNSUDau5eYIlEdutPd+mPjQQnfZydN/ePngkgJK+dPt7Yq74OEm2gcasW7b
+	nUqkkH1Oe27QdRQNf9XJma3/tTNh7jy1Swh+4e9hxr2CBpWd51V/EPz17iWzO+4mU02ROSU6OSY
+	PI56NOHfZ3GUXMsuN12CAgjklszQbn+SXRsMFn+AgYfiA9LTT4XF/fv9+MbBSIVFVchiTlNfffK
+	3dzIjNDdbYbykeRVD+Je+TEcOwWUX45ZO0/WwdDJlDHfOpKjjweutHy5u8NT2R5m7vW4/lZ/cXU
+	xIOTIXTld6N4oI1wApLAUtFSLvdPS2suW6YD1Z+IOZB+6Nw==
+X-Received: by 2002:a05:600c:4e0c:b0:4bb:875b:f23f with SMTP id 5b1f17b1804b1-4bb88827f0bmr67081455e9.33.1795180291999;
+        Fri, 20 Nov 2026 05:11:31 -0800 (PST)
 Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8960110fsm43497995e9.0.2026.11.20.05.11.28
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8960110fsm43497995e9.0.2026.11.20.05.11.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 05:11:29 -0800 (PST)
+        Fri, 20 Nov 2026 05:11:31 -0800 (PST)
 From: Carlo Caione <ccaione@baylibre.com>
-Date: Fri, 20 Nov 2026 14:11:07 +0100
-Subject: [PATCH v2 4/6] clk: amlogic: Add S7 PLL clock controller driver
+Date: Fri, 20 Nov 2026 14:11:09 +0100
+Subject: [PATCH v2 6/6] clk: amlogic: Add S7 peripherals clock controller
+ driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-upstream-s7-clk-v2-4-856cece3b9f2@baylibre.com>
+Message-Id: <20261120-upstream-s7-clk-v2-6-856cece3b9f2@baylibre.com>
 References: <20261120-upstream-s7-clk-v2-0-856cece3b9f2@baylibre.com>
 In-Reply-To: <20261120-upstream-s7-clk-v2-0-856cece3b9f2@baylibre.com>
 To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
@@ -98,8 +99,8 @@ Cc: Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>,
  linux-arm-kernel@lists.infradead.org
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_051131_771986_51A0C099 
-X-CRM114-Status: GOOD (  21.92  )
+X-CRM114-CacheID: sfid-20261120_051134_811000_903D46E3 
+X-CRM114-Status: GOOD (  17.56  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,172 +120,815 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The S7 PLL controller provides the fixed PLL with its fclk dividers,
-the GP0, HIFI0 and HIFI1 PLLs, and the HDMI PLL.
+The S7 peripheral clock tree is derived from S4, but its clock sources
+and routing differ.
 
-Add a driver for it. The GP0 and HIFI PLLs are expected to run with
-their input divided by 2 (div0p5) and the HDMI PLL without it, as the
-firmware and the init sequences set them up.
+Add support for the S7 controller so peripheral drivers can obtain
+and manage their clocks through the common clock framework.
 
 Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 ---
- drivers/clk/meson/Kconfig  |  14 +
- drivers/clk/meson/Makefile |   1 +
- drivers/clk/meson/s7-pll.c | 696 +++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 711 insertions(+)
+ drivers/clk/meson/Kconfig          |   16 +
+ drivers/clk/meson/Makefile         |    1 +
+ drivers/clk/meson/s7-peripherals.c | 1637 ++++++++++++++++++++++++++++++++++++
+ 3 files changed, 1654 insertions(+)
 
 diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index d460514bb8a1..35f2971448af 100644
+index 35f2971448af..43de3653afc3 100644
 --- a/drivers/clk/meson/Kconfig
 +++ b/drivers/clk/meson/Kconfig
-@@ -229,6 +229,20 @@ config COMMON_CLK_S4_PERIPHERALS
+@@ -229,6 +229,22 @@ config COMMON_CLK_S4_PERIPHERALS
  	  Support for the peripherals clock controller on Amlogic S805X2 and S905Y4
  	  devices, AKA S4. Say Y if you want S4 peripherals clock controller to work.
  
-+config COMMON_CLK_S7_PLL
-+	tristate "Amlogic S7 SoC PLL controller support"
++config COMMON_CLK_S7_PERIPHERALS
++	tristate "Amlogic S7 SoC peripherals clock controller support"
 +	depends on ARM64 || COMPILE_TEST
 +	default ARCH_MESON
 +	select COMMON_CLK_MESON_REGMAP
 +	select COMMON_CLK_MESON_CLKC_UTILS
-+	select COMMON_CLK_MESON_PLL
++	select COMMON_CLK_MESON_DUALDIV
++	select COMMON_CLK_MESON_VID_PLL_DIV
 +	imply COMMON_CLK_SCMI
 +	help
-+	  Support for the PLL clock controller on Amlogic S805X3 based
-+	  devices, AKA S7. This controller provides the fixed PLL and its
-+	  dividers, the GP0, HIFI0 and HIFI1 PLLs and the HDMI PLL. Say Y if
-+	  you want the S7 PLL clock controller to work.
++	  Support for the peripherals clock controller on Amlogic S805X3 based
++	  devices, AKA S7. This controller provides the clocks of most
++	  peripherals (eMMC/SD, PWM, SPI, I2C, UART, Ethernet, video and
++	  multimedia blocks). Say Y if you want S7 peripherals clock
++	  controller to work.
 +
- config COMMON_CLK_T7_PLL
- 	tristate "Amlogic T7 SoC PLL controller support"
- 	depends on ARM64
+ config COMMON_CLK_S7_PLL
+ 	tristate "Amlogic S7 SoC PLL controller support"
+ 	depends on ARM64 || COMPILE_TEST
 diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 56b04254eb1a..9d439106d11c 100644
+index 9d439106d11c..5a684f4d6a6c 100644
 --- a/drivers/clk/meson/Makefile
 +++ b/drivers/clk/meson/Makefile
-@@ -28,5 +28,6 @@ obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+@@ -28,6 +28,7 @@ obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
  obj-$(CONFIG_COMMON_CLK_S4_PLL) += s4-pll.o
  obj-$(CONFIG_COMMON_CLK_S4_PERIPHERALS) += s4-peripherals.o
-+obj-$(CONFIG_COMMON_CLK_S7_PLL) += s7-pll.o
++obj-$(CONFIG_COMMON_CLK_S7_PERIPHERALS) += s7-peripherals.o
+ obj-$(CONFIG_COMMON_CLK_S7_PLL) += s7-pll.o
  obj-$(CONFIG_COMMON_CLK_T7_PLL) += t7-pll.o
  obj-$(CONFIG_COMMON_CLK_T7_PERIPHERALS) += t7-peripherals.o
-diff --git a/drivers/clk/meson/s7-pll.c b/drivers/clk/meson/s7-pll.c
+diff --git a/drivers/clk/meson/s7-peripherals.c b/drivers/clk/meson/s7-peripherals.c
 new file mode 100644
-index 000000000000..737420027d83
+index 000000000000..dbd2d41eebe2
 --- /dev/null
-+++ b/drivers/clk/meson/s7-pll.c
-@@ -0,0 +1,696 @@
++++ b/drivers/clk/meson/s7-peripherals.c
+@@ -0,0 +1,1637 @@
 +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
 +/*
-+ * Amlogic S7 PLL Clock Controller Driver
++ * Amlogic S7 Peripherals Clock Controller Driver
 + *
 + * Copyright (c) 2026 BayLibre, SAS.
 + * Author: Carlo Caione <ccaione@baylibre.com>
 + */
 +
++#include <dt-bindings/clock/amlogic,s7-peripherals-clkc.h>
 +#include <linux/clk-provider.h>
 +#include <linux/module.h>
 +#include <linux/platform_device.h>
 +#include "clk-regmap.h"
-+#include "clk-pll.h"
++#include "clk-dualdiv.h"
 +#include "meson-clkc-utils.h"
-+#include <dt-bindings/clock/amlogic,s7-pll-clkc.h>
++#include "vid-pll-div.h"
 +
-+#define FIXPLL_CTRL0			0x040
-+#define FIXPLL_CTRL1			0x044
-+#define FIXPLL_STS			0x05c
-+#define GP0PLL_CTRL0			0x080
-+#define GP0PLL_CTRL1			0x084
-+#define GP0PLL_CTRL2			0x088
-+#define GP0PLL_CTRL3			0x08c
-+#define GP0PLL_STS			0x09c
-+#define HIFI0PLL_CTRL0			0x100
-+#define HIFI0PLL_CTRL1			0x104
-+#define HIFI0PLL_CTRL2			0x108
-+#define HIFI0PLL_CTRL3			0x10c
-+#define HIFI1PLL_CTRL0			0x110
-+#define HIFI1PLL_CTRL1			0x114
-+#define HIFI1PLL_CTRL2			0x118
-+#define HIFI1PLL_CTRL3			0x11c
-+#define HIFI0PLL_STS			0x120
-+#define HIFI1PLL_STS			0x124
-+#define HDMIPLL_CTRL0			0x1c0
-+#define HDMIPLL_CTRL1			0x1c4
-+#define HDMIPLL_CTRL2			0x1c8
-+#define HDMIPLL_CTRL3			0x1cc
-+#define HDMIPLL_STS			0x1dc
++#define RTC_BY_OSCIN_CTRL0			0x008
++#define RTC_BY_OSCIN_CTRL1			0x00c
++#define RTC_CTRL				0x010
++#define SYS_CLK_CTRL0				0x040
++#define SYS_CLK_EN0_REG0			0x044
++#define SYS_CLK_EN0_REG1			0x048
++#define SYS_CLK_EN0_REG2			0x04c
++#define SYS_CLK_EN0_REG3			0x050
++#define AXI_CLK_CTRL0				0x06c
++#define CECB_CTRL0				0x090
++#define CECB_CTRL1				0x094
++#define SC_CLK_CTRL				0x098
++#define CLK12_24_CTRL				0x0a8
++#define AXI_CLK_EN0				0x0ac
++#define VID_CLK_CTRL				0x0c0
++#define VID_CLK_CTRL2				0x0c4
++#define VID_CLK_DIV				0x0c8
++#define VIID_CLK_DIV				0x0cc
++#define VIID_CLK_CTRL				0x0d0
++#define HDMI_CLK_CTRL				0x0e0
++#define VID_PLL_CLK_DIV				0x0e4
++#define VPU_CLK_CTRL				0x0e8
++#define VPU_CLKB_CTRL				0x0ec
++#define VPU_CLKC_CTRL				0x0f0
++#define VID_LOCK_CLK_CTRL			0x0f4
++#define VDIN_MEAS_CLK_CTRL			0x0f8
++#define VAPB_CLK_CTRL				0x0fc
++#define CDAC_CLK_CTRL				0x108
++#define HTX_CLK_CTRL0				0x11c
++#define HTX_CLK_CTRL1				0x120
++#define VDEC_CLK_CTRL				0x140
++#define VDEC2_CLK_CTRL				0x144
++#define VDEC3_CLK_CTRL				0x148
++#define VDEC4_CLK_CTRL				0x14c
++#define TS_CLK_CTRL				0x158
++#define MALI_CLK_CTRL				0x15c
++#define ETH_CLK_CTRL				0x164
++#define NAND_CLK_CTRL				0x168
++#define SD_EMMC_CLK_CTRL			0x16c
++#define SPICC_CLK_CTRL				0x174
++#define GEN_CLK_CTRL				0x178
++#define SAR_CLK_CTRL0				0x17c
++#define PWM_CLK_AB_CTRL				0x180
++#define PWM_CLK_CD_CTRL				0x184
++#define PWM_CLK_EF_CTRL				0x188
 +
-+static struct clk_regmap s7_fixed_pll_vco = {
-+	.data = &(struct meson_clk_pll_data) {
-+		.en = {
-+			.reg_off = FIXPLL_CTRL0,
++#define S7_COMP_SEL(_name, _reg, _shift, _mask, _pdata, _table) \
++	MESON_COMP_SEL(s7_, _name, _reg, _shift, _mask, _pdata, _table, 0, 0)
++
++#define S7_COMP_DIV(_name, _reg, _shift, _width) \
++	MESON_COMP_DIV(s7_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
++
++#define S7_COMP_GATE(_name, _reg, _bit, _iflags) \
++	MESON_COMP_GATE(s7_, _name, _reg, _bit, CLK_SET_RATE_PARENT | (_iflags))
++
++static struct clk_regmap s7_rtc_dualdiv_in = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = RTC_BY_OSCIN_CTRL0,
++		.bit_idx = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "rtc_dualdiv_in",
++		.ops = &clk_regmap_gate_ops,
++		.parent_data = &(const struct clk_parent_data) {
++			.fw_name = "xtal",
++		},
++		.num_parents = 1,
++	},
++};
++
++static const struct meson_clk_dualdiv_param s7_32k_div_table[] = {
++	{ 733, 732, 8, 11, 1 },
++	{ /* sentinel */ }
++};
++
++static struct clk_regmap s7_rtc_dualdiv_div = {
++	.data = &(struct meson_clk_dualdiv_data) {
++		.n1 = {
++			.reg_off = RTC_BY_OSCIN_CTRL0,
++			.shift   = 0,
++			.width   = 12,
++		},
++		.n2 = {
++			.reg_off = RTC_BY_OSCIN_CTRL0,
++			.shift   = 12,
++			.width   = 12,
++		},
++		.m1 = {
++			.reg_off = RTC_BY_OSCIN_CTRL1,
++			.shift   = 0,
++			.width   = 12,
++		},
++		.m2 = {
++			.reg_off = RTC_BY_OSCIN_CTRL1,
++			.shift   = 12,
++			.width   = 12,
++		},
++		.dual = {
++			.reg_off = RTC_BY_OSCIN_CTRL0,
 +			.shift   = 28,
 +			.width   = 1,
 +		},
-+		.m = {
-+			.reg_off = FIXPLL_CTRL0,
-+			.shift   = 0,
-+			.width   = 9,
-+		},
-+		.n = {
-+			.reg_off = FIXPLL_CTRL0,
-+			.shift   = 11,
-+			.width   = 5,
-+		},
-+		.l = {
-+			.reg_off = FIXPLL_STS,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = FIXPLL_CTRL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
++		.table = s7_32k_div_table,
 +	},
 +	.hw.init = &(struct clk_init_data) {
-+		.name = "fixed_pll_vco",
-+		.ops = &meson_clk_pll_ro_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "fix",
++		.name = "rtc_dualdiv_div",
++		.ops = &meson_clk_dualdiv_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_rtc_dualdiv_in.hw
 +		},
 +		.num_parents = 1,
 +	},
 +};
 +
-+static struct clk_regmap s7_fixed_pll = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = FIXPLL_CTRL0,
-+		.shift = 9,
-+		.width = 2,
-+		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
++static struct clk_regmap s7_rtc_dualdiv_sel = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = RTC_BY_OSCIN_CTRL1,
++		.mask = 0x1,
++		.shift = 24,
 +	},
 +	.hw.init = &(struct clk_init_data) {
-+		.name = "fixed_pll",
++		.name = "rtc_dualdiv_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_rtc_dualdiv_div.hw,
++			&s7_rtc_dualdiv_in.hw,
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap s7_rtc_dualdiv = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = RTC_BY_OSCIN_CTRL0,
++		.bit_idx = 30,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "rtc_dualdiv",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_rtc_dualdiv_sel.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap s7_rtc = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = RTC_CTRL,
++		.mask = 0x3,
++		.shift = 0,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "rtc",
++		.ops = &clk_regmap_mux_ops,
++		.parent_data = (const struct clk_parent_data []) {
++			{ .fw_name = "xtal", },
++			{ .hw = &s7_rtc_dualdiv.hw },
++			{ .fw_name = "ext_32k", },
++		},
++		.num_parents = 3,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static u32 s7_sysclk_parents_val_table[] = { 0, 1, 2, 3, 4, 5, 7 };
++static const struct clk_parent_data s7_sysclk_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .fw_name = "fclk_div2", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "axi_frcpu", },
++	{ .hw = &s7_rtc.hw }
++};
++
++static struct clk_regmap s7_sysclk_a_sel = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = SYS_CLK_CTRL0,
++		.mask = 0x7,
++		.shift = 10,
++		.table = s7_sysclk_parents_val_table,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "sysclk_a_sel",
++		.ops = &clk_regmap_mux_ro_ops,
++		.parent_data = s7_sysclk_parents,
++		.num_parents = ARRAY_SIZE(s7_sysclk_parents),
++	},
++};
++
++static struct clk_regmap s7_sysclk_a_div = {
++	.data = &(struct clk_regmap_div_data) {
++		.offset = SYS_CLK_CTRL0,
++		.shift = 0,
++		.width = 10,
++		.flags = CLK_DIVIDER_READ_ONLY,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "sysclk_a_div",
 +		.ops = &clk_regmap_divider_ro_ops,
 +		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_fixed_pll_vco.hw
++			&s7_sysclk_a_sel.hw
 +		},
 +		.num_parents = 1,
 +	},
 +};
 +
-+#define S7_FCLK_DIV(_name, _mult, _divider)				\
-+struct clk_fixed_factor s7_##_name##_div = {				\
-+	.mult = (_mult),						\
-+	.div = (_divider),						\
-+	.hw.init = &(struct clk_init_data) {				\
-+		.name = #_name "_div",					\
-+		.ops = &clk_fixed_factor_ops,				\
-+		.parent_hws = (const struct clk_hw *[]) {		\
-+			&s7_fixed_pll.hw				\
-+		},							\
-+		.num_parents = 1,					\
-+	},								\
-+}
++static struct clk_regmap s7_sysclk_a = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = SYS_CLK_CTRL0,
++		.bit_idx = 13,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "sysclk_a",
++		.ops = &clk_regmap_gate_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_sysclk_a_div.hw
++		},
++		.num_parents = 1,
++	},
++};
 +
-+#define S7_FCLK(_name, _reg, _bit)					\
++static struct clk_regmap s7_sysclk_b_sel = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = SYS_CLK_CTRL0,
++		.mask = 0x7,
++		.shift = 26,
++		.table = s7_sysclk_parents_val_table,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "sysclk_b_sel",
++		.ops = &clk_regmap_mux_ro_ops,
++		.parent_data = s7_sysclk_parents,
++		.num_parents = ARRAY_SIZE(s7_sysclk_parents),
++	},
++};
++
++static struct clk_regmap s7_sysclk_b_div = {
++	.data = &(struct clk_regmap_div_data) {
++		.offset = SYS_CLK_CTRL0,
++		.shift = 16,
++		.width = 10,
++		.flags = CLK_DIVIDER_READ_ONLY,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "sysclk_b_div",
++		.ops = &clk_regmap_divider_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_sysclk_b_sel.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_sysclk_b = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = SYS_CLK_CTRL0,
++		.bit_idx = 29,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "sysclk_b",
++		.ops = &clk_regmap_gate_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_sysclk_b_div.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_sys_clk = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = SYS_CLK_CTRL0,
++		.mask = 0x1,
++		.shift = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "sys_clk",
++		.ops = &clk_regmap_mux_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_sysclk_a.hw,
++			&s7_sysclk_b.hw
++		},
++		.num_parents = 2,
++	},
++};
++
++static struct clk_regmap s7_axiclk_a_sel = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = AXI_CLK_CTRL0,
++		.mask = 0x7,
++		.shift = 10,
++		.table = s7_sysclk_parents_val_table,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "axiclk_a_sel",
++		.ops = &clk_regmap_mux_ro_ops,
++		.parent_data = s7_sysclk_parents,
++		.num_parents = ARRAY_SIZE(s7_sysclk_parents),
++	},
++};
++
++static struct clk_regmap s7_axiclk_a_div = {
++	.data = &(struct clk_regmap_div_data) {
++		.offset = AXI_CLK_CTRL0,
++		.shift = 0,
++		.width = 10,
++		.flags = CLK_DIVIDER_READ_ONLY,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "axiclk_a_div",
++		.ops = &clk_regmap_divider_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_axiclk_a_sel.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_axiclk_a = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = AXI_CLK_CTRL0,
++		.bit_idx = 13,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "axiclk_a",
++		.ops = &clk_regmap_gate_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_axiclk_a_div.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_axiclk_b_sel = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = AXI_CLK_CTRL0,
++		.mask = 0x7,
++		.shift = 26,
++		.table = s7_sysclk_parents_val_table,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "axiclk_b_sel",
++		.ops = &clk_regmap_mux_ro_ops,
++		.parent_data = s7_sysclk_parents,
++		.num_parents = ARRAY_SIZE(s7_sysclk_parents),
++	},
++};
++
++static struct clk_regmap s7_axiclk_b_div = {
++	.data = &(struct clk_regmap_div_data) {
++		.offset = AXI_CLK_CTRL0,
++		.shift = 16,
++		.width = 10,
++		.flags = CLK_DIVIDER_READ_ONLY,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "axiclk_b_div",
++		.ops = &clk_regmap_divider_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_axiclk_b_sel.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_axiclk_b = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = AXI_CLK_CTRL0,
++		.bit_idx = 29,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "axiclk_b",
++		.ops = &clk_regmap_gate_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_axiclk_b_div.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_axi_clk = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = AXI_CLK_CTRL0,
++		.mask = 0x1,
++		.shift = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "axi_clk",
++		.ops = &clk_regmap_mux_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_axiclk_a.hw,
++			&s7_axiclk_b.hw
++		},
++		.num_parents = 2,
++	},
++};
++
++static const struct clk_parent_data s7_sys_pclk_parents = { .hw = &s7_sys_clk.hw };
++
++#define S7_SYS_PCLK(_name, _reg, _bit, _flags) \
++	MESON_PCLK(s7_##_name, _reg, _bit, &s7_sys_pclk_parents, _flags)
++
++#define S7_SYS_PCLK_RO(_name, _reg, _bit) \
++	MESON_PCLK_RO(s7_##_name, _reg, _bit, &s7_sys_pclk_parents, 0)
++
++/* Named ddr in S4 and in older datasheets: the Amlogic bus to AXI bridge clock */
++static S7_SYS_PCLK(sys_am_axi,		SYS_CLK_EN0_REG0, 0, 0);
++static S7_SYS_PCLK(sys_dos,		SYS_CLK_EN0_REG0, 1, 0);
++static S7_SYS_PCLK(sys_eth_phy,		SYS_CLK_EN0_REG0, 4, 0);
++static S7_SYS_PCLK(sys_mali,		SYS_CLK_EN0_REG0, 6, 0);
++/* The always-on co-processor runs its own firmware, which needs this clock */
++static S7_SYS_PCLK(sys_aocpu,		SYS_CLK_EN0_REG0, 13, CLK_IS_CRITICAL);
++static S7_SYS_PCLK(sys_aucpu,		SYS_CLK_EN0_REG0, 14, 0);
++static S7_SYS_PCLK(sys_cec,		SYS_CLK_EN0_REG0, 16, 0);
++static S7_SYS_PCLK(sys_sd_emmc_a,	SYS_CLK_EN0_REG0, 24, 0);
++static S7_SYS_PCLK(sys_sd_emmc_b,	SYS_CLK_EN0_REG0, 25, 0);
++static S7_SYS_PCLK(sys_sd_emmc_c,	SYS_CLK_EN0_REG0, 26, 0);
++static S7_SYS_PCLK(sys_sc,		SYS_CLK_EN0_REG0, 27, 0);
++static S7_SYS_PCLK(sys_acodec,		SYS_CLK_EN0_REG0, 28, 0);
++static S7_SYS_PCLK(sys_msr,		SYS_CLK_EN0_REG0, 30, 0);
++static S7_SYS_PCLK(sys_ir_ctrl,		SYS_CLK_EN0_REG0, 31, 0);
++static S7_SYS_PCLK(sys_audio,		SYS_CLK_EN0_REG1, 0, 0);
++static S7_SYS_PCLK(sys_eth,		SYS_CLK_EN0_REG1, 3, 0);
++static S7_SYS_PCLK(sys_uart_a,		SYS_CLK_EN0_REG1, 5, 0);
++static S7_SYS_PCLK(sys_uart_b,		SYS_CLK_EN0_REG1, 6, 0);
++static S7_SYS_PCLK(sys_uart_c,		SYS_CLK_EN0_REG1, 7, 0);
++static S7_SYS_PCLK(sys_uart_d,		SYS_CLK_EN0_REG1, 8, 0);
++static S7_SYS_PCLK(sys_uart_e,		SYS_CLK_EN0_REG1, 9, 0);
++static S7_SYS_PCLK(sys_ts_pll,		SYS_CLK_EN0_REG1, 16, 0);
++static S7_SYS_PCLK(sys_ge2d,		SYS_CLK_EN0_REG1, 20, 0);
++static S7_SYS_PCLK(sys_spicc,		SYS_CLK_EN0_REG1, 21, 0);
++static S7_SYS_PCLK(sys_usb,		SYS_CLK_EN0_REG1, 26, 0);
++static S7_SYS_PCLK(sys_i2c_m_a,		SYS_CLK_EN0_REG1, 30, 0);
++static S7_SYS_PCLK(sys_i2c_m_b,		SYS_CLK_EN0_REG1, 31, 0);
++static S7_SYS_PCLK(sys_i2c_m_c,		SYS_CLK_EN0_REG2, 0, 0);
++static S7_SYS_PCLK(sys_i2c_m_d,		SYS_CLK_EN0_REG2, 1, 0);
++static S7_SYS_PCLK(sys_i2c_m_e,		SYS_CLK_EN0_REG2, 2, 0);
++static S7_SYS_PCLK(sys_hdmitx_apb,	SYS_CLK_EN0_REG2, 4, 0);
++static S7_SYS_PCLK(sys_i2c_s_a,		SYS_CLK_EN0_REG2, 5, 0);
++static S7_SYS_PCLK(sys_hdmi20_aes,	SYS_CLK_EN0_REG2, 9, 0);
++/* APB clock of the DDR PHY and controller ("MMC" is the memory controller) */
++static S7_SYS_PCLK_RO(sys_mmc_apb,	SYS_CLK_EN0_REG2, 11);
++static S7_SYS_PCLK(sys_cpu_apb,		SYS_CLK_EN0_REG2, 19, 0);
++static S7_SYS_PCLK(sys_vpu_intr,	SYS_CLK_EN0_REG2, 25, 0);
++static S7_SYS_PCLK(sys_sar_adc,		SYS_CLK_EN0_REG2, 28, 0);
++/* The firmware owns PWM J, which drives the VDD_CPU regulator */
++static S7_SYS_PCLK_RO(sys_pwm_j,	SYS_CLK_EN0_REG2, 29);
++/* The GIC driver does not claim its clock, and interrupts need it */
++static S7_SYS_PCLK(sys_gic,		SYS_CLK_EN0_REG2, 30, CLK_IS_CRITICAL);
++static S7_SYS_PCLK(sys_pwm_i,		SYS_CLK_EN0_REG2, 31, 0);
++/* The firmware owns PWM H, which drives the VDD_EE regulator */
++static S7_SYS_PCLK_RO(sys_pwm_h,	SYS_CLK_EN0_REG3, 0);
++static S7_SYS_PCLK(sys_pwm_g,		SYS_CLK_EN0_REG3, 1, 0);
++static S7_SYS_PCLK(sys_pwm_f,		SYS_CLK_EN0_REG3, 2, 0);
++static S7_SYS_PCLK(sys_pwm_e,		SYS_CLK_EN0_REG3, 3, 0);
++static S7_SYS_PCLK(sys_pwm_d,		SYS_CLK_EN0_REG3, 4, 0);
++static S7_SYS_PCLK(sys_pwm_c,		SYS_CLK_EN0_REG3, 5, 0);
++static S7_SYS_PCLK(sys_pwm_b,		SYS_CLK_EN0_REG3, 6, 0);
++static S7_SYS_PCLK(sys_pwm_a,		SYS_CLK_EN0_REG3, 7, 0);
++
++static const struct clk_parent_data s7_axi_pclk_parents = { .hw = &s7_axi_clk.hw };
++
++static MESON_PCLK_RO(s7_axi_sys_nic, AXI_CLK_EN0, 0, &s7_axi_pclk_parents, 0);
++static MESON_PCLK_RO(s7_axi_sram, AXI_CLK_EN0, 1, &s7_axi_pclk_parents, 0);
++static MESON_PCLK_RO(s7_axi_dev0_mmc, AXI_CLK_EN0, 2, &s7_axi_pclk_parents, 0);
++
++static struct clk_regmap s7_cecb_dualdiv_in = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = CECB_CTRL0,
++		.bit_idx = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "cecb_dualdiv_in",
++		.ops = &clk_regmap_gate_ops,
++		.parent_data = &(const struct clk_parent_data) {
++			.fw_name = "xtal",
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_cecb_dualdiv_div = {
++	.data = &(struct meson_clk_dualdiv_data) {
++		.n1 = {
++			.reg_off = CECB_CTRL0,
++			.shift   = 0,
++			.width   = 12,
++		},
++		.n2 = {
++			.reg_off = CECB_CTRL0,
++			.shift   = 12,
++			.width   = 12,
++		},
++		.m1 = {
++			.reg_off = CECB_CTRL1,
++			.shift   = 0,
++			.width   = 12,
++		},
++		.m2 = {
++			.reg_off = CECB_CTRL1,
++			.shift   = 12,
++			.width   = 12,
++		},
++		.dual = {
++			.reg_off = CECB_CTRL0,
++			.shift   = 28,
++			.width   = 1,
++		},
++		.table = s7_32k_div_table,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "cecb_dualdiv_div",
++		.ops = &meson_clk_dualdiv_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_cecb_dualdiv_in.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_cecb_dualdiv_sel = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = CECB_CTRL1,
++		.mask = 0x1,
++		.shift = 24,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "cecb_dualdiv_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_cecb_dualdiv_div.hw,
++			&s7_cecb_dualdiv_in.hw,
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap s7_cecb_dualdiv = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = CECB_CTRL0,
++		.bit_idx = 30,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "cecb_dualdiv",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_cecb_dualdiv_sel.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap s7_cecb = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = CECB_CTRL1,
++		.mask = 0x1,
++		.shift = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "cecb",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_cecb_dualdiv.hw,
++			&s7_rtc.hw,
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++/* Unlike S4, channel 0 is fclk_div2 (the datasheet table says fclk_div4) */
++static const struct clk_parent_data s7_sc_parents[] = {
++	{ .fw_name = "fclk_div2", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "xtal", }
++};
++
++static S7_COMP_SEL(sc_pre, SC_CLK_CTRL, 9, 0x3, s7_sc_parents, NULL);
++static S7_COMP_DIV(sc_pre, SC_CLK_CTRL, 0, 8);
++static S7_COMP_GATE(sc_pre, SC_CLK_CTRL, 8, 0);
++
++static struct clk_regmap s7_sc = {
++	.data = &(struct clk_regmap_div_data) {
++		.offset = SC_CLK_CTRL,
++		.shift = 16,
++		.width = 4,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "sc",
++		.ops = &clk_regmap_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_sc_pre.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap s7_24m_in = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = CLK12_24_CTRL,
++		.bit_idx = 11,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "24m_in",
++		.ops = &clk_regmap_gate_ops,
++		.parent_data = &(const struct clk_parent_data) {
++			.fw_name = "xtal",
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_12_24m = {
++	.data = &(struct clk_regmap_div_data) {
++		.offset = CLK12_24_CTRL,
++		.shift = 10,
++		.width = 1,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "12_24m",
++		.ops = &clk_regmap_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_24m_in.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static u32 s7_sd_emmc_parents_val_table[] = { 0, 1, 2, 3, 4, 6, 7 };
++static const struct clk_parent_data s7_sd_emmc_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .fw_name = "fclk_div2", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "hifi0_pll", },
++	{ .fw_name = "fclk_div2p5", },
++	{ .fw_name = "gp1_pll", },
++	{ .fw_name = "gp0_pll", }
++};
++
++static S7_COMP_SEL(sd_emmc_a, SD_EMMC_CLK_CTRL, 9, 0x7, s7_sd_emmc_parents,
++		   s7_sd_emmc_parents_val_table);
++static S7_COMP_DIV(sd_emmc_a, SD_EMMC_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(sd_emmc_a, SD_EMMC_CLK_CTRL, 7, 0);
++
++static S7_COMP_SEL(sd_emmc_b, SD_EMMC_CLK_CTRL, 25, 0x7, s7_sd_emmc_parents,
++		   s7_sd_emmc_parents_val_table);
++static S7_COMP_DIV(sd_emmc_b, SD_EMMC_CLK_CTRL, 16, 7);
++static S7_COMP_GATE(sd_emmc_b, SD_EMMC_CLK_CTRL, 23, 0);
++
++static S7_COMP_SEL(sd_emmc_c, NAND_CLK_CTRL, 9, 0x7, s7_sd_emmc_parents,
++		   s7_sd_emmc_parents_val_table);
++static S7_COMP_DIV(sd_emmc_c, NAND_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(sd_emmc_c, NAND_CLK_CTRL, 7, 0);
++
++static const struct clk_parent_data s7_spicc_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .hw = &s7_sys_clk.hw },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div2", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", },
++	{ .fw_name = "gp1_pll", }
++};
++
++static S7_COMP_SEL(spicc, SPICC_CLK_CTRL, 7, 0x7, s7_spicc_parents, NULL);
++static S7_COMP_DIV(spicc, SPICC_CLK_CTRL, 0, 6);
++static S7_COMP_GATE(spicc, SPICC_CLK_CTRL, 6, 0);
++
++static struct clk_regmap s7_vid_pll_div = {
++	.data = &(struct meson_vid_pll_div_data) {
++		.val = {
++			.reg_off = VID_PLL_CLK_DIV,
++			.shift   = 0,
++			.width   = 15,
++		},
++		.sel = {
++			.reg_off = VID_PLL_CLK_DIV,
++			.shift   = 16,
++			.width   = 2,
++		},
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vid_pll_div",
++		.ops = &meson_vid_pll_div_ro_ops,
++		.parent_data = &(const struct clk_parent_data) {
++			.fw_name = "hdmi_pll",
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_vid_pll_sel = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = VID_PLL_CLK_DIV,
++		.mask = 0x1,
++		.shift = 18,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vid_pll_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_data = (const struct clk_parent_data []) {
++			{ .hw = &s7_vid_pll_div.hw },
++			{ .fw_name = "hdmi_pll", }
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap s7_vid_pll = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = VID_PLL_CLK_DIV,
++		.bit_idx = 19,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vid_pll",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_vid_pll_sel.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++#define S7_VCLK_GATE(_name, _reg, _bit, _parent)			\
 +struct clk_regmap s7_##_name = {					\
 +	.data = &(struct clk_regmap_gate_data) {			\
 +		.offset = (_reg),					\
@@ -292,582 +936,882 @@ index 000000000000..737420027d83
 +	},								\
 +	.hw.init = &(struct clk_init_data) {				\
 +		.name = #_name,						\
-+		.ops = &clk_regmap_gate_ro_ops,				\
++		.ops = &clk_regmap_gate_ops,				\
 +		.parent_hws = (const struct clk_hw *[]) {		\
-+			&s7_##_name##_div.hw				\
++			&s7_##_parent.hw				\
 +		},							\
 +		.num_parents = 1,					\
++		.flags = CLK_SET_RATE_PARENT,				\
 +	},								\
 +}
 +
-+/*
-+ * The datasheet documents FIXPLL_CTRL1[30:26] as a single fclk_en field, but
-+ * each bit enables one divider.
-+ */
-+static S7_FCLK_DIV(fclk_div2, 1, 2);
-+static S7_FCLK(fclk_div2, FIXPLL_CTRL1, 30);
-+static S7_FCLK_DIV(fclk_div3, 1, 3);
-+static S7_FCLK(fclk_div3, FIXPLL_CTRL1, 26);
-+static S7_FCLK_DIV(fclk_div4, 1, 4);
-+static S7_FCLK(fclk_div4, FIXPLL_CTRL1, 27);
-+static S7_FCLK_DIV(fclk_div5, 1, 5);
-+static S7_FCLK(fclk_div5, FIXPLL_CTRL1, 28);
-+static S7_FCLK_DIV(fclk_div7, 1, 7);
-+static S7_FCLK(fclk_div7, FIXPLL_CTRL1, 29);
-+static S7_FCLK_DIV(fclk_div2p5, 2, 5);
-+static S7_FCLK(fclk_div2p5, FIXPLL_CTRL0, 25);
++#define S7_VCLK_FIXED_DIV(_name, _div)					\
++struct clk_fixed_factor s7_##_name = {					\
++	.mult = 1,							\
++	.div = (_div),							\
++	.hw.init = &(struct clk_init_data) {				\
++		.name = #_name,						\
++		.ops = &clk_fixed_factor_ops,				\
++		.parent_hws = (const struct clk_hw *[]) {		\
++			&s7_##_name##_en.hw				\
++		},							\
++		.num_parents = 1,					\
++		.flags = CLK_SET_RATE_PARENT,				\
++	},								\
++}
 +
-+static const struct pll_mult_range s7_pll_mult_range = {
-+	.min = 134,
-+	.max = 265,
++static const struct clk_parent_data s7_vclk_parents[] = {
++	{ .hw = &s7_vid_pll.hw },
++	{ .fw_name = "gp1_pll", },
++	{ .fw_name = "hifi0_pll", },
++	{ .fw_name = "vid_pix", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", }
 +};
 +
-+/*
-+ * BIG FAT WARNING: each VCO must be registered before its div0p5 divider.
-+ *
-+ * div0p5 divides the PLL input by 2 when set. Linux doesn't change it at
-+ * runtime, but the VCO init sequence writes it (set for GP0, HIFI0 and HIFI1,
-+ * clear for HDMI) unless the PLL is running and has
-+ * CLK_MESON_PLL_NOINIT_ENABLED. A divider registered before that would keep
-+ * the power-on value as its rate.
-+ *
-+ * meson_clkc_mmio_probe() registers the clocks in ID order, so each VCO has a
-+ * lower ID than its divider: the VCO init runs at registration while the VCO
-+ * is still an orphan, then the divider reads the final value and the framework
-+ * recalculates the VCO rate. CLK_GET_RATE_NOCACHE makes the divider read the
-+ * register again whenever its rate is queried.
-+ *
-+ * WARNING: the multiplier ranges assume the init values, div0p5 set for GP0,
-+ * HIFI0 and HIFI1 and clear for HDMI. A PLL the firmware leaves running with
-+ * the other setting is reported correctly, but the same multipliers then give
-+ * twice (GP0/HIFI) or half (HDMI) the DCO rate, possibly outside the hardware
-+ * limits, and the driver still accepts them.
-+ */
-+static const struct clk_div_table s7_pll_div0p5_table[] = {
-+	{ .val = 0, .div = 1 },
-+	{ .val = 1, .div = 2 },
-+	{ /* sentinel */ }
-+};
++static S7_COMP_SEL(vclk, VID_CLK_CTRL, 16, 0x7, s7_vclk_parents, NULL);
++static S7_VCLK_GATE(vclk_input, VID_CLK_DIV, 16, vclk_sel);
 +
-+static const struct reg_sequence s7_gp0_pll_init_regs[] = {
-+	{ .reg = GP0PLL_CTRL0,	.def = 0x02520800 },
-+	{ .reg = GP0PLL_CTRL1,	.def = 0x09900322 },
-+	{ .reg = GP0PLL_CTRL2,	.def = 0x00000000 },
-+	{ .reg = GP0PLL_CTRL3,	.def = 0x00000006 },
-+};
-+
-+static struct clk_regmap s7_gp0_pll_div0p5 = {
++static struct clk_regmap s7_vclk_div = {
 +	.data = &(struct clk_regmap_div_data) {
-+		.offset = GP0PLL_CTRL1,
-+		.shift = 27,
-+		.width = 1,
-+		.table = s7_pll_div0p5_table,
-+		.flags = CLK_DIVIDER_READ_ONLY,
++		.offset = VID_CLK_DIV,
++		.shift = 0,
++		.width = 8,
 +	},
 +	.hw.init = &(struct clk_init_data) {
-+		.name = "gp0_pll_div0p5",
-+		.ops = &clk_regmap_divider_ro_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "gp0",
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_GET_RATE_NOCACHE,
-+	},
-+};
-+
-+static struct clk_regmap s7_gp0_pll_vco = {
-+	.data = &(struct meson_clk_pll_data) {
-+		.en = {
-+			.reg_off = GP0PLL_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.m = {
-+			.reg_off = GP0PLL_CTRL0,
-+			.shift   = 0,
-+			.width   = 9,
-+		},
-+		.frac = {
-+			.reg_off = GP0PLL_CTRL2,
-+			.shift   = 0,
-+			.width   = 17,
-+		},
-+		.l = {
-+			.reg_off = GP0PLL_STS,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = GP0PLL_CTRL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
-+		.range = &s7_pll_mult_range,
-+		.init_regs = s7_gp0_pll_init_regs,
-+		.init_count = ARRAY_SIZE(s7_gp0_pll_init_regs),
-+		.flags = CLK_MESON_PLL_NOINIT_ENABLED,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "gp0_pll_vco",
-+		.ops = &meson_clk_pll_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_gp0_pll_div0p5.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap s7_gp0_pll = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = GP0PLL_CTRL0,
-+		.shift = 9,
-+		.width = 2,
-+		.flags = CLK_DIVIDER_POWER_OF_TWO |
-+			 CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "gp0_pll",
++		.name = "vclk_div",
 +		.ops = &clk_regmap_divider_ops,
 +		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_gp0_pll_vco.hw
++			&s7_vclk_input.hw
 +		},
 +		.num_parents = 1,
 +		.flags = CLK_SET_RATE_PARENT,
 +	},
 +};
 +
-+static const struct reg_sequence s7_hifi0_pll_init_regs[] = {
-+	{ .reg = HIFI0PLL_CTRL0,	.def = 0x02520800 },
-+	{ .reg = HIFI0PLL_CTRL1,	.def = 0x09900322 },
-+	{ .reg = HIFI0PLL_CTRL2,	.def = 0x00000000 },
-+	{ .reg = HIFI0PLL_CTRL3,	.def = 0x00000006 },
-+};
++static S7_VCLK_GATE(vclk, VID_CLK_CTRL, 19, vclk_div);
++static S7_VCLK_GATE(vclk_div1, VID_CLK_CTRL, 0, vclk);
++static S7_VCLK_GATE(vclk_div2_en, VID_CLK_CTRL, 1, vclk);
++static S7_VCLK_GATE(vclk_div4_en, VID_CLK_CTRL, 2, vclk);
++static S7_VCLK_GATE(vclk_div6_en, VID_CLK_CTRL, 3, vclk);
++static S7_VCLK_GATE(vclk_div12_en, VID_CLK_CTRL, 4, vclk);
++static S7_VCLK_FIXED_DIV(vclk_div2, 2);
++static S7_VCLK_FIXED_DIV(vclk_div4, 4);
++static S7_VCLK_FIXED_DIV(vclk_div6, 6);
++static S7_VCLK_FIXED_DIV(vclk_div12, 12);
 +
-+static struct clk_regmap s7_hifi0_pll_div0p5 = {
++static S7_COMP_SEL(vclk2, VIID_CLK_CTRL, 16, 0x7, s7_vclk_parents, NULL);
++static S7_VCLK_GATE(vclk2_input, VIID_CLK_DIV, 16, vclk2_sel);
++
++static struct clk_regmap s7_vclk2_div = {
 +	.data = &(struct clk_regmap_div_data) {
-+		.offset = HIFI0PLL_CTRL1,
-+		.shift = 27,
-+		.width = 1,
-+		.table = s7_pll_div0p5_table,
-+		.flags = CLK_DIVIDER_READ_ONLY,
++		.offset = VIID_CLK_DIV,
++		.shift = 0,
++		.width = 8,
 +	},
 +	.hw.init = &(struct clk_init_data) {
-+		.name = "hifi0_pll_div0p5",
-+		.ops = &clk_regmap_divider_ro_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "hifi0",
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_GET_RATE_NOCACHE,
-+	},
-+};
-+
-+static struct clk_regmap s7_hifi0_pll_vco = {
-+	.data = &(struct meson_clk_pll_data) {
-+		.en = {
-+			.reg_off = HIFI0PLL_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.m = {
-+			.reg_off = HIFI0PLL_CTRL0,
-+			.shift   = 0,
-+			.width   = 9,
-+		},
-+		.frac = {
-+			.reg_off = HIFI0PLL_CTRL2,
-+			.shift   = 0,
-+			.width   = 17,
-+		},
-+		.l = {
-+			.reg_off = HIFI0PLL_STS,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = HIFI0PLL_CTRL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
-+		.frac_max = 100000,
-+		.range = &s7_pll_mult_range,
-+		.init_regs = s7_hifi0_pll_init_regs,
-+		.init_count = ARRAY_SIZE(s7_hifi0_pll_init_regs),
-+		.flags = CLK_MESON_PLL_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hifi0_pll_vco",
-+		.ops = &meson_clk_pll_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hifi0_pll_div0p5.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap s7_hifi0_pll = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = HIFI0PLL_CTRL0,
-+		.shift = 9,
-+		.width = 2,
-+		.flags = CLK_DIVIDER_POWER_OF_TWO |
-+			 CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hifi0_pll",
++		.name = "vclk2_div",
 +		.ops = &clk_regmap_divider_ops,
 +		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hifi0_pll_vco.hw
++			&s7_vclk2_input.hw
 +		},
 +		.num_parents = 1,
 +		.flags = CLK_SET_RATE_PARENT,
 +	},
 +};
 +
-+static const struct reg_sequence s7_hifi1_pll_init_regs[] = {
-+	{ .reg = HIFI1PLL_CTRL0,	.def = 0x02520800 },
-+	{ .reg = HIFI1PLL_CTRL1,	.def = 0x09900322 },
-+	{ .reg = HIFI1PLL_CTRL2,	.def = 0x00000000 },
-+	{ .reg = HIFI1PLL_CTRL3,	.def = 0x00000006 },
++static S7_VCLK_GATE(vclk2, VIID_CLK_CTRL, 19, vclk2_div);
++static S7_VCLK_GATE(vclk2_div1, VIID_CLK_CTRL, 0, vclk2);
++static S7_VCLK_GATE(vclk2_div2_en, VIID_CLK_CTRL, 1, vclk2);
++static S7_VCLK_GATE(vclk2_div4_en, VIID_CLK_CTRL, 2, vclk2);
++static S7_VCLK_GATE(vclk2_div6_en, VIID_CLK_CTRL, 3, vclk2);
++static S7_VCLK_GATE(vclk2_div12_en, VIID_CLK_CTRL, 4, vclk2);
++static S7_VCLK_FIXED_DIV(vclk2_div2, 2);
++static S7_VCLK_FIXED_DIV(vclk2_div4, 4);
++static S7_VCLK_FIXED_DIV(vclk2_div6, 6);
++static S7_VCLK_FIXED_DIV(vclk2_div12, 12);
++
++static u32 s7_cts_parents_val_table[] = { 0, 1, 2, 3, 4, 8, 9, 10, 11, 12 };
++static const struct clk_parent_data s7_cts_parents[] = {
++	{ .hw = &s7_vclk_div1.hw },
++	{ .hw = &s7_vclk_div2.hw },
++	{ .hw = &s7_vclk_div4.hw },
++	{ .hw = &s7_vclk_div6.hw },
++	{ .hw = &s7_vclk_div12.hw },
++	{ .hw = &s7_vclk2_div1.hw },
++	{ .hw = &s7_vclk2_div2.hw },
++	{ .hw = &s7_vclk2_div4.hw },
++	{ .hw = &s7_vclk2_div6.hw },
++	{ .hw = &s7_vclk2_div12.hw }
 +};
 +
-+static struct clk_regmap s7_hifi1_pll_div0p5 = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = HIFI1PLL_CTRL1,
-+		.shift = 27,
-+		.width = 1,
-+		.table = s7_pll_div0p5_table,
-+		.flags = CLK_DIVIDER_READ_ONLY,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hifi1_pll_div0p5",
-+		.ops = &clk_regmap_divider_ro_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "hifi1",
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_GET_RATE_NOCACHE,
-+	},
-+};
++static S7_COMP_SEL(enci, VID_CLK_DIV, 28, 0xf, s7_cts_parents,
++		   s7_cts_parents_val_table);
++static S7_COMP_SEL(encp, VID_CLK_DIV, 24, 0xf, s7_cts_parents,
++		   s7_cts_parents_val_table);
++static S7_COMP_SEL(encl, VIID_CLK_DIV, 12, 0xf, s7_cts_parents,
++		   s7_cts_parents_val_table);
++static S7_COMP_SEL(vdac, VIID_CLK_DIV, 28, 0xf, s7_cts_parents,
++		   s7_cts_parents_val_table);
++static S7_COMP_SEL(hdmitx_pixel, HDMI_CLK_CTRL, 16, 0xf, s7_cts_parents,
++		   s7_cts_parents_val_table);
++static S7_COMP_SEL(hdmitx_fe, HDMI_CLK_CTRL, 20, 0xf, s7_cts_parents,
++		   s7_cts_parents_val_table);
 +
-+static struct clk_regmap s7_hifi1_pll_vco = {
-+	.data = &(struct meson_clk_pll_data) {
-+		.en = {
-+			.reg_off = HIFI1PLL_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.m = {
-+			.reg_off = HIFI1PLL_CTRL0,
-+			.shift   = 0,
-+			.width   = 9,
-+		},
-+		.frac = {
-+			.reg_off = HIFI1PLL_CTRL2,
-+			.shift   = 0,
-+			.width   = 17,
-+		},
-+		.l = {
-+			.reg_off = HIFI1PLL_STS,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = HIFI1PLL_CTRL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
-+		.frac_max = 100000,
-+		.range = &s7_pll_mult_range,
-+		.init_regs = s7_hifi1_pll_init_regs,
-+		.init_count = ARRAY_SIZE(s7_hifi1_pll_init_regs),
-+		.flags = CLK_MESON_PLL_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hifi1_pll_vco",
-+		.ops = &meson_clk_pll_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hifi1_pll_div0p5.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap s7_hifi1_pll = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = HIFI1PLL_CTRL0,
-+		.shift = 9,
-+		.width = 2,
-+		.flags = CLK_DIVIDER_POWER_OF_TWO |
-+			 CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hifi1_pll",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hifi1_pll_vco.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static const struct pll_mult_range s7_hdmi_pll_mult_range = {
-+	.min = 125,
-+	.max = 249,
-+};
-+
-+static const struct reg_sequence s7_hdmi_pll_init_regs[] = {
-+	{ .reg = HDMIPLL_CTRL0,	.def = 0x00881000 },
-+	{ .reg = HDMIPLL_CTRL1,	.def = 0x2c6011cc },
-+	{ .reg = HDMIPLL_CTRL2,	.def = 0x86801000 },
-+	{ .reg = HDMIPLL_CTRL3,	.def = 0x00000000 },
-+};
-+
-+static struct clk_regmap s7_hdmi_pll_div0p5 = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = HDMIPLL_CTRL1,
-+		.shift = 19,
-+		.width = 1,
-+		.table = s7_pll_div0p5_table,
-+		.flags = CLK_DIVIDER_READ_ONLY,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll_div0p5",
-+		.ops = &clk_regmap_divider_ro_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "hdmi",
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_GET_RATE_NOCACHE,
-+	},
-+};
-+
-+static struct clk_regmap s7_hdmi_pll_vco = {
-+	.data = &(struct meson_clk_pll_data) {
-+		.en = {
-+			.reg_off = HDMIPLL_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.m = {
-+			.reg_off = HDMIPLL_CTRL0,
-+			.shift   = 0,
-+			.width   = 9,
-+		},
-+		.frac = {
-+			.reg_off = HDMIPLL_CTRL3,
-+			.shift   = 0,
-+			.width   = 17,
-+		},
-+		.l = {
-+			.reg_off = HDMIPLL_STS,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = HDMIPLL_CTRL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
-+		.range = &s7_hdmi_pll_mult_range,
-+		.init_regs = s7_hdmi_pll_init_regs,
-+		.init_count = ARRAY_SIZE(s7_hdmi_pll_init_regs),
-+		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
-+			 CLK_MESON_PLL_NOINIT_ENABLED,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll_vco",
-+		.ops = &meson_clk_pll_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hdmi_pll_div0p5.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+/*
-+ * The datasheet documents HDMIPLL_CTRL2[22:19] and [18:15] as single fields.
-+ * [22:19] holds two cascaded power-of-two dividers, od0 [20:19] and od1
-+ * [22:21]. [18:15] holds two parallel ones: [16:15] is hdmi_pll, [18:17]
-+ * feeds the PHY and is not modelled.
-+ */
-+static struct clk_regmap s7_hdmi_pll_od0 = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = HDMIPLL_CTRL2,
-+		.shift = 19,
-+		.width = 2,
-+		.flags = CLK_DIVIDER_POWER_OF_TWO,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll_od0",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hdmi_pll_vco.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap s7_hdmi_pll_od1 = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = HDMIPLL_CTRL2,
-+		.shift = 21,
-+		.width = 2,
-+		.flags = CLK_DIVIDER_POWER_OF_TWO,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll_od1",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hdmi_pll_od0.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap s7_hdmi_pll = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = HDMIPLL_CTRL2,
-+		.shift = 15,
-+		.width = 2,
-+		.flags = CLK_DIVIDER_POWER_OF_TWO,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hdmi_pll_od1.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_fixed_factor s7_hdmi_pll_pix_div5 = {
-+	.mult = 1,
-+	.div = 5,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll_pix_div5",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hdmi_pll.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_fixed_factor s7_hdmi_pll_pix_div6p25 = {
-+	.mult = 4,
-+	.div = 25,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll_pix_div6p25",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hdmi_pll.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_fixed_factor s7_hdmi_pll_pix_div7p5 = {
-+	.mult = 2,
-+	.div = 15,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll_pix_div7p5",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hdmi_pll.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap s7_hdmi_pll_pix = {
++/* VIID_CLK_DIV[19] (documented as adc_pll_clk_b2) selects fclk_div7 for the VDAC */
++static struct clk_regmap s7_vdac_pre_sel = {
 +	.data = &(struct clk_regmap_mux_data) {
-+		.offset = HDMIPLL_CTRL0,
-+		.mask = 0x3,
-+		.shift = 9,
++		.offset = VIID_CLK_DIV,
++		.mask = 0x1,
++		.shift = 19,
 +	},
 +	.hw.init = &(struct clk_init_data) {
-+		.name = "hdmi_pll_pix",
++		.name = "vdac_pre_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_data = (const struct clk_parent_data []) {
++			{ .hw = &s7_vdac_sel.hw },
++			{ .fw_name = "fclk_div7", }
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static S7_VCLK_GATE(enci, VID_CLK_CTRL2, 0, enci_sel);
++static S7_VCLK_GATE(encp, VID_CLK_CTRL2, 2, encp_sel);
++static S7_VCLK_GATE(encl, VID_CLK_CTRL2, 3, encl_sel);
++static S7_VCLK_GATE(vdac, VID_CLK_CTRL2, 4, vdac_pre_sel);
++static S7_VCLK_GATE(hdmitx_pixel, VID_CLK_CTRL2, 5, hdmitx_pixel_sel);
++static S7_VCLK_GATE(hdmitx_fe, VID_CLK_CTRL2, 9, hdmitx_fe_sel);
++
++static const struct clk_parent_data s7_vid_lock_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .hw = &s7_encl.hw },
++	{ .hw = &s7_enci.hw },
++	{ .hw = &s7_encp.hw }
++};
++
++static S7_COMP_SEL(vid_lock, VID_LOCK_CLK_CTRL, 8, 0x3, s7_vid_lock_parents, NULL);
++static S7_COMP_DIV(vid_lock, VID_LOCK_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(vid_lock, VID_LOCK_CLK_CTRL, 7, 0);
++
++static const struct clk_parent_data s7_pwm_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .hw = &s7_vid_pll.hw },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div3", }
++};
++
++static S7_COMP_SEL(pwm_a, PWM_CLK_AB_CTRL, 9, 0x3, s7_pwm_parents, NULL);
++static S7_COMP_DIV(pwm_a, PWM_CLK_AB_CTRL, 0, 8);
++static S7_COMP_GATE(pwm_a, PWM_CLK_AB_CTRL, 8, 0);
++
++static S7_COMP_SEL(pwm_b, PWM_CLK_AB_CTRL, 25, 0x3, s7_pwm_parents, NULL);
++static S7_COMP_DIV(pwm_b, PWM_CLK_AB_CTRL, 16, 8);
++static S7_COMP_GATE(pwm_b, PWM_CLK_AB_CTRL, 24, 0);
++
++static S7_COMP_SEL(pwm_c, PWM_CLK_CD_CTRL, 9, 0x3, s7_pwm_parents, NULL);
++static S7_COMP_DIV(pwm_c, PWM_CLK_CD_CTRL, 0, 8);
++static S7_COMP_GATE(pwm_c, PWM_CLK_CD_CTRL, 8, 0);
++
++static S7_COMP_SEL(pwm_d, PWM_CLK_CD_CTRL, 25, 0x3, s7_pwm_parents, NULL);
++static S7_COMP_DIV(pwm_d, PWM_CLK_CD_CTRL, 16, 8);
++static S7_COMP_GATE(pwm_d, PWM_CLK_CD_CTRL, 24, 0);
++
++static S7_COMP_SEL(pwm_e, PWM_CLK_EF_CTRL, 9, 0x3, s7_pwm_parents, NULL);
++static S7_COMP_DIV(pwm_e, PWM_CLK_EF_CTRL, 0, 8);
++static S7_COMP_GATE(pwm_e, PWM_CLK_EF_CTRL, 8, 0);
++
++static S7_COMP_SEL(pwm_f, PWM_CLK_EF_CTRL, 25, 0x3, s7_pwm_parents, NULL);
++static S7_COMP_DIV(pwm_f, PWM_CLK_EF_CTRL, 16, 8);
++static S7_COMP_GATE(pwm_f, PWM_CLK_EF_CTRL, 24, 0);
++
++static const struct clk_parent_data s7_sar_adc_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .hw = &s7_sys_clk.hw }
++};
++
++static S7_COMP_SEL(sar_adc, SAR_CLK_CTRL0, 9, 0x3, s7_sar_adc_parents, NULL);
++static S7_COMP_DIV(sar_adc, SAR_CLK_CTRL0, 0, 8);
++static S7_COMP_GATE(sar_adc, SAR_CLK_CTRL0, 8, 0);
++
++static u32 s7_gen_parents_val_table[] = { 0, 1, 4, 5, 6, 7, 8, 16, 19, 20, 21,
++					  22, 23, 24 };
++static const struct clk_parent_data s7_gen_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .hw = &s7_rtc.hw },
++	{ .hw = &s7_vid_pll.hw },
++	{ .fw_name = "gp0_pll", },
++	{ .fw_name = "hifi1_pll", },
++	{ .fw_name = "hifi0_pll", },
++	{ .fw_name = "gp1_pll", },
++	{ .fw_name = "acodec_dac", },
++	{ .fw_name = "fclk_div2", },
++	{ .fw_name = "fclk_div2p5", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", }
++};
++
++static S7_COMP_SEL(gen, GEN_CLK_CTRL, 12, 0x1f, s7_gen_parents,
++		   s7_gen_parents_val_table);
++static S7_COMP_DIV(gen, GEN_CLK_CTRL, 0, 11);
++static S7_COMP_GATE(gen, GEN_CLK_CTRL, 11, 0);
++
++static struct clk_regmap s7_ts_div = {
++	.data = &(struct clk_regmap_div_data) {
++		.offset = TS_CLK_CTRL,
++		.shift = 0,
++		.width = 8,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "ts_div",
++		.ops = &clk_regmap_divider_ops,
++		.parent_data = &(const struct clk_parent_data) {
++			.fw_name = "xtal",
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_ts = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = TS_CLK_CTRL,
++		.bit_idx = 8,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "ts",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_ts_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_fixed_factor s7_eth_125m_div = {
++	.mult = 1,
++	.div = 8,
++	.hw.init = &(struct clk_init_data) {
++		.name = "eth_125m_div",
++		.ops = &clk_fixed_factor_ops,
++		.parent_data = &(const struct clk_parent_data) {
++			.fw_name = "fclk_div2",
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap s7_eth_125m = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = ETH_CLK_CTRL,
++		.bit_idx = 7,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "eth_125m",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_eth_125m_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static u32 s7_eth_rmii_parents_val_table[] = { 0, 7 };
++static const struct clk_parent_data s7_eth_rmii_parents[] = {
++	{ .fw_name = "fclk_div2", },
++	{ .fw_name = "ext_rmii", }
++};
++
++static MESON_COMP_SEL(s7_, eth_rmii, ETH_CLK_CTRL, 9, 0x7, s7_eth_rmii_parents,
++		      s7_eth_rmii_parents_val_table, 0, CLK_SET_RATE_NO_REPARENT);
++static S7_COMP_DIV(eth_rmii, ETH_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(eth_rmii, ETH_CLK_CTRL, 8, 0);
++
++static const struct clk_parent_data s7_mali_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .fw_name = "gp1_pll", },
++	{ .fw_name = "hifi0_pll", },
++	{ .fw_name = "fclk_div2p5", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", }
++};
++
++static S7_COMP_SEL(mali_0, MALI_CLK_CTRL, 9, 0x7, s7_mali_parents, NULL);
++static S7_COMP_DIV(mali_0, MALI_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(mali_0, MALI_CLK_CTRL, 8, CLK_SET_RATE_GATE);
++
++static S7_COMP_SEL(mali_1, MALI_CLK_CTRL, 25, 0x7, s7_mali_parents, NULL);
++static S7_COMP_DIV(mali_1, MALI_CLK_CTRL, 16, 7);
++static S7_COMP_GATE(mali_1, MALI_CLK_CTRL, 24, CLK_SET_RATE_GATE);
++
++static struct clk_regmap s7_mali = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = MALI_CLK_CTRL,
++		.mask = 0x1,
++		.shift = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "mali",
 +		.ops = &clk_regmap_mux_ops,
 +		.parent_hws = (const struct clk_hw *[]) {
-+			&s7_hdmi_pll_pix_div5.hw,
-+			&s7_hdmi_pll_pix_div6p25.hw,
-+			&s7_hdmi_pll_pix_div7p5.hw
++			&s7_mali_0.hw,
++			&s7_mali_1.hw
 +		},
-+		.num_parents = 3,
++		.num_parents = 2,
 +		.flags = CLK_SET_RATE_PARENT,
 +	},
 +};
 +
-+static struct clk_hw *s7_pll_hws[] = {
-+	[CLKID_FIXED_PLL_VCO]		= &s7_fixed_pll_vco.hw,
-+	[CLKID_FIXED_PLL]		= &s7_fixed_pll.hw,
-+	[CLKID_FCLK_DIV2_DIV]		= &s7_fclk_div2_div.hw,
-+	[CLKID_FCLK_DIV2]		= &s7_fclk_div2.hw,
-+	[CLKID_FCLK_DIV3_DIV]		= &s7_fclk_div3_div.hw,
-+	[CLKID_FCLK_DIV3]		= &s7_fclk_div3.hw,
-+	[CLKID_FCLK_DIV4_DIV]		= &s7_fclk_div4_div.hw,
-+	[CLKID_FCLK_DIV4]		= &s7_fclk_div4.hw,
-+	[CLKID_FCLK_DIV5_DIV]		= &s7_fclk_div5_div.hw,
-+	[CLKID_FCLK_DIV5]		= &s7_fclk_div5.hw,
-+	[CLKID_FCLK_DIV7_DIV]		= &s7_fclk_div7_div.hw,
-+	[CLKID_FCLK_DIV7]		= &s7_fclk_div7.hw,
-+	[CLKID_FCLK_DIV2P5_DIV]		= &s7_fclk_div2p5_div.hw,
-+	[CLKID_FCLK_DIV2P5]		= &s7_fclk_div2p5.hw,
-+	[CLKID_GP0_PLL_VCO]		= &s7_gp0_pll_vco.hw,
-+	[CLKID_GP0_PLL_DIV0P5]		= &s7_gp0_pll_div0p5.hw,
-+	[CLKID_GP0_PLL]			= &s7_gp0_pll.hw,
-+	[CLKID_HIFI0_PLL_VCO]		= &s7_hifi0_pll_vco.hw,
-+	[CLKID_HIFI0_PLL_DIV0P5]	= &s7_hifi0_pll_div0p5.hw,
-+	[CLKID_HIFI0_PLL]		= &s7_hifi0_pll.hw,
-+	[CLKID_HIFI1_PLL_VCO]		= &s7_hifi1_pll_vco.hw,
-+	[CLKID_HIFI1_PLL_DIV0P5]	= &s7_hifi1_pll_div0p5.hw,
-+	[CLKID_HIFI1_PLL]		= &s7_hifi1_pll.hw,
-+	[CLKID_HDMI_PLL_VCO]		= &s7_hdmi_pll_vco.hw,
-+	[CLKID_HDMI_PLL_DIV0P5]		= &s7_hdmi_pll_div0p5.hw,
-+	[CLKID_HDMI_PLL_OD0]		= &s7_hdmi_pll_od0.hw,
-+	[CLKID_HDMI_PLL_OD1]		= &s7_hdmi_pll_od1.hw,
-+	[CLKID_HDMI_PLL]		= &s7_hdmi_pll.hw,
-+	[CLKID_HDMI_PLL_PIX_DIV5]	= &s7_hdmi_pll_pix_div5.hw,
-+	[CLKID_HDMI_PLL_PIX_DIV6P25]	= &s7_hdmi_pll_pix_div6p25.hw,
-+	[CLKID_HDMI_PLL_PIX_DIV7P5]	= &s7_hdmi_pll_pix_div7p5.hw,
-+	[CLKID_HDMI_PLL_PIX]		= &s7_hdmi_pll_pix.hw,
++static const struct clk_parent_data s7_dec_parents[] = {
++	{ .fw_name = "fclk_div2p5", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", },
++	{ .fw_name = "hifi0_pll", },
++	{ .fw_name = "gp1_pll", },
++	{ .fw_name = "xtal", }
 +};
 +
-+static const struct meson_clkc_data s7_pll_clkc_data = {
-+	.hw_clks = {
-+		.hws = s7_pll_hws,
-+		.num = ARRAY_SIZE(s7_pll_hws),
++static S7_COMP_SEL(vdec_0, VDEC_CLK_CTRL, 9, 0x7, s7_dec_parents, NULL);
++static S7_COMP_DIV(vdec_0, VDEC_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(vdec_0, VDEC_CLK_CTRL, 8, CLK_SET_RATE_GATE);
++
++static S7_COMP_SEL(vdec_1, VDEC3_CLK_CTRL, 9, 0x7, s7_dec_parents, NULL);
++static S7_COMP_DIV(vdec_1, VDEC3_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(vdec_1, VDEC3_CLK_CTRL, 8, CLK_SET_RATE_GATE);
++
++static struct clk_regmap s7_vdec = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = VDEC3_CLK_CTRL,
++		.mask = 0x1,
++		.shift = 15,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vdec",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_vdec_0.hw,
++			&s7_vdec_1.hw
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
 +	},
 +};
 +
-+static const struct of_device_id s7_pll_clkc_match_table[] = {
++static S7_COMP_SEL(hevcf_0, VDEC2_CLK_CTRL, 9, 0x7, s7_dec_parents, NULL);
++static S7_COMP_DIV(hevcf_0, VDEC2_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(hevcf_0, VDEC2_CLK_CTRL, 8, CLK_SET_RATE_GATE);
++
++static S7_COMP_SEL(hevcf_1, VDEC4_CLK_CTRL, 9, 0x7, s7_dec_parents, NULL);
++static S7_COMP_DIV(hevcf_1, VDEC4_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(hevcf_1, VDEC4_CLK_CTRL, 8, CLK_SET_RATE_GATE);
++
++static struct clk_regmap s7_hevcf = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = VDEC4_CLK_CTRL,
++		.mask = 0x1,
++		.shift = 15,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "hevcf",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_hevcf_0.hw,
++			&s7_hevcf_1.hw
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static const struct clk_parent_data s7_vpu_parents[] = {
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", },
++	{ .fw_name = "fclk_div2", },
++	{ .hw = &s7_vid_pll.hw },
++	{ .fw_name = "hifi0_pll", },
++	{ .fw_name = "gp1_pll", }
++};
++
++static S7_COMP_SEL(vpu_0, VPU_CLK_CTRL, 9, 0x7, s7_vpu_parents, NULL);
++static S7_COMP_DIV(vpu_0, VPU_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(vpu_0, VPU_CLK_CTRL, 8, CLK_SET_RATE_GATE);
++
++static S7_COMP_SEL(vpu_1, VPU_CLK_CTRL, 25, 0x7, s7_vpu_parents, NULL);
++static S7_COMP_DIV(vpu_1, VPU_CLK_CTRL, 16, 7);
++static S7_COMP_GATE(vpu_1, VPU_CLK_CTRL, 24, CLK_SET_RATE_GATE);
++
++static struct clk_regmap s7_vpu = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = VPU_CLK_CTRL,
++		.mask = 0x1,
++		.shift = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vpu",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_vpu_0.hw,
++			&s7_vpu_1.hw
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static const struct clk_parent_data s7_vpu_clkb_tmp_parents[] = {
++	{ .hw = &s7_vpu.hw },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", }
++};
++
++static S7_COMP_SEL(vpu_clkb_tmp, VPU_CLKB_CTRL, 20, 0x3, s7_vpu_clkb_tmp_parents, NULL);
++static S7_COMP_DIV(vpu_clkb_tmp, VPU_CLKB_CTRL, 16, 4);
++static S7_COMP_GATE(vpu_clkb_tmp, VPU_CLKB_CTRL, 24, 0);
++
++static struct clk_regmap s7_vpu_clkb_div = {
++	.data = &(struct clk_regmap_div_data) {
++		.offset = VPU_CLKB_CTRL,
++		.shift = 0,
++		.width = 8,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vpu_clkb_div",
++		.ops = &clk_regmap_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_vpu_clkb_tmp.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap s7_vpu_clkb = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = VPU_CLKB_CTRL,
++		.bit_idx = 8,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vpu_clkb",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_vpu_clkb_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static const struct clk_parent_data s7_vpu_clkc_parents[] = {
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", },
++	{ .fw_name = "fclk_div2", },
++	{ .hw = &s7_vid_pll.hw },
++	{ .fw_name = "hifi0_pll", },
++	{ .fw_name = "gp1_pll", }
++};
++
++static S7_COMP_SEL(vpu_clkc_0, VPU_CLKC_CTRL, 9, 0x7, s7_vpu_clkc_parents, NULL);
++static S7_COMP_DIV(vpu_clkc_0, VPU_CLKC_CTRL, 0, 7);
++static S7_COMP_GATE(vpu_clkc_0, VPU_CLKC_CTRL, 8, CLK_SET_RATE_GATE);
++
++static S7_COMP_SEL(vpu_clkc_1, VPU_CLKC_CTRL, 25, 0x7, s7_vpu_clkc_parents, NULL);
++static S7_COMP_DIV(vpu_clkc_1, VPU_CLKC_CTRL, 16, 7);
++static S7_COMP_GATE(vpu_clkc_1, VPU_CLKC_CTRL, 24, CLK_SET_RATE_GATE);
++
++static struct clk_regmap s7_vpu_clkc = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = VPU_CLKC_CTRL,
++		.mask = 0x1,
++		.shift = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vpu_clkc",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_vpu_clkc_0.hw,
++			&s7_vpu_clkc_1.hw
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static const struct clk_parent_data s7_vapb_parents[] = {
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div5", },
++	{ .fw_name = "fclk_div7", },
++	{ .fw_name = "fclk_div2", },
++	{ .hw = &s7_vid_pll.hw },
++	{ .fw_name = "hifi0_pll", },
++	{ .fw_name = "fclk_div2p5", }
++};
++
++static S7_COMP_SEL(vapb_0, VAPB_CLK_CTRL, 9, 0x7, s7_vapb_parents, NULL);
++static S7_COMP_DIV(vapb_0, VAPB_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(vapb_0, VAPB_CLK_CTRL, 8, CLK_SET_RATE_GATE);
++
++static S7_COMP_SEL(vapb_1, VAPB_CLK_CTRL, 25, 0x7, s7_vapb_parents, NULL);
++static S7_COMP_DIV(vapb_1, VAPB_CLK_CTRL, 16, 7);
++static S7_COMP_GATE(vapb_1, VAPB_CLK_CTRL, 24, CLK_SET_RATE_GATE);
++
++static struct clk_regmap s7_vapb = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = VAPB_CLK_CTRL,
++		.mask = 0x1,
++		.shift = 31,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vapb",
++		.ops = &clk_regmap_mux_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_vapb_0.hw,
++			&s7_vapb_1.hw
++		},
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap s7_ge2d = {
++	.data = &(struct clk_regmap_gate_data) {
++		.offset = VAPB_CLK_CTRL,
++		.bit_idx = 30,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "ge2d",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&s7_vapb.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static const struct clk_parent_data s7_hdmi_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div5", }
++};
++
++static S7_COMP_SEL(hdmitx_sys, HDMI_CLK_CTRL, 9, 0x3, s7_hdmi_parents, NULL);
++static S7_COMP_DIV(hdmitx_sys, HDMI_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(hdmitx_sys, HDMI_CLK_CTRL, 8, 0);
++
++static S7_COMP_SEL(hdmitx_prif, HTX_CLK_CTRL0, 9, 0x3, s7_hdmi_parents, NULL);
++static S7_COMP_DIV(hdmitx_prif, HTX_CLK_CTRL0, 0, 7);
++static S7_COMP_GATE(hdmitx_prif, HTX_CLK_CTRL0, 8, 0);
++
++static S7_COMP_SEL(hdmitx_200m, HTX_CLK_CTRL0, 25, 0x3, s7_hdmi_parents, NULL);
++static S7_COMP_DIV(hdmitx_200m, HTX_CLK_CTRL0, 16, 7);
++static S7_COMP_GATE(hdmitx_200m, HTX_CLK_CTRL0, 24, 0);
++
++static S7_COMP_SEL(hdmitx_aud, HTX_CLK_CTRL1, 9, 0x3, s7_hdmi_parents, NULL);
++static S7_COMP_DIV(hdmitx_aud, HTX_CLK_CTRL1, 0, 7);
++static S7_COMP_GATE(hdmitx_aud, HTX_CLK_CTRL1, 8, 0);
++
++static const struct clk_parent_data s7_vdin_meas_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .fw_name = "fclk_div4", },
++	{ .fw_name = "fclk_div3", },
++	{ .fw_name = "fclk_div5", },
++	{ .hw = &s7_vid_pll.hw }
++};
++
++static S7_COMP_SEL(vdin_meas, VDIN_MEAS_CLK_CTRL, 9, 0x7, s7_vdin_meas_parents, NULL);
++static S7_COMP_DIV(vdin_meas, VDIN_MEAS_CLK_CTRL, 0, 7);
++static S7_COMP_GATE(vdin_meas, VDIN_MEAS_CLK_CTRL, 8, 0);
++
++static const struct clk_parent_data s7_cdac_parents[] = {
++	{ .fw_name = "xtal", },
++	{ .fw_name = "fclk_div5", }
++};
++
++static S7_COMP_SEL(cdac, CDAC_CLK_CTRL, 16, 0x3, s7_cdac_parents, NULL);
++static S7_COMP_DIV(cdac, CDAC_CLK_CTRL, 0, 16);
++static S7_COMP_GATE(cdac, CDAC_CLK_CTRL, 20, 0);
++
++static struct clk_hw *s7_peripherals_hw_clks[] = {
++	[CLKID_SYS_AM_AXI]		= &s7_sys_am_axi.hw,
++	[CLKID_SYS_DOS]			= &s7_sys_dos.hw,
++	[CLKID_SYS_ETH_PHY]		= &s7_sys_eth_phy.hw,
++	[CLKID_SYS_MALI]		= &s7_sys_mali.hw,
++	[CLKID_SYS_AOCPU]		= &s7_sys_aocpu.hw,
++	[CLKID_SYS_AUCPU]		= &s7_sys_aucpu.hw,
++	[CLKID_SYS_CEC]			= &s7_sys_cec.hw,
++	[CLKID_SYS_SD_EMMC_A]		= &s7_sys_sd_emmc_a.hw,
++	[CLKID_SYS_SD_EMMC_B]		= &s7_sys_sd_emmc_b.hw,
++	[CLKID_SYS_SD_EMMC_C]		= &s7_sys_sd_emmc_c.hw,
++	[CLKID_SYS_SC]			= &s7_sys_sc.hw,
++	[CLKID_SYS_ACODEC]		= &s7_sys_acodec.hw,
++	[CLKID_SYS_MSR]			= &s7_sys_msr.hw,
++	[CLKID_SYS_IR_CTRL]		= &s7_sys_ir_ctrl.hw,
++	[CLKID_SYS_AUDIO]		= &s7_sys_audio.hw,
++	[CLKID_SYS_ETH]			= &s7_sys_eth.hw,
++	[CLKID_SYS_UART_A]		= &s7_sys_uart_a.hw,
++	[CLKID_SYS_UART_B]		= &s7_sys_uart_b.hw,
++	[CLKID_SYS_UART_C]		= &s7_sys_uart_c.hw,
++	[CLKID_SYS_UART_D]		= &s7_sys_uart_d.hw,
++	[CLKID_SYS_UART_E]		= &s7_sys_uart_e.hw,
++	[CLKID_SYS_TS_PLL]		= &s7_sys_ts_pll.hw,
++	[CLKID_SYS_GE2D]		= &s7_sys_ge2d.hw,
++	[CLKID_SYS_SPICC]		= &s7_sys_spicc.hw,
++	[CLKID_SYS_USB]			= &s7_sys_usb.hw,
++	[CLKID_SYS_I2C_M_A]		= &s7_sys_i2c_m_a.hw,
++	[CLKID_SYS_I2C_M_B]		= &s7_sys_i2c_m_b.hw,
++	[CLKID_SYS_I2C_M_C]		= &s7_sys_i2c_m_c.hw,
++	[CLKID_SYS_I2C_M_D]		= &s7_sys_i2c_m_d.hw,
++	[CLKID_SYS_I2C_M_E]		= &s7_sys_i2c_m_e.hw,
++	[CLKID_SYS_HDMITX_APB]		= &s7_sys_hdmitx_apb.hw,
++	[CLKID_SYS_I2C_S_A]		= &s7_sys_i2c_s_a.hw,
++	[CLKID_SYS_HDMI20_AES]		= &s7_sys_hdmi20_aes.hw,
++	[CLKID_SYS_MMC_APB]		= &s7_sys_mmc_apb.hw,
++	[CLKID_SYS_CPU_APB]		= &s7_sys_cpu_apb.hw,
++	[CLKID_SYS_VPU_INTR]		= &s7_sys_vpu_intr.hw,
++	[CLKID_SYS_SAR_ADC]		= &s7_sys_sar_adc.hw,
++	[CLKID_SYS_PWM_J]		= &s7_sys_pwm_j.hw,
++	[CLKID_SYS_GIC]			= &s7_sys_gic.hw,
++	[CLKID_SYS_PWM_I]		= &s7_sys_pwm_i.hw,
++	[CLKID_SYS_PWM_H]		= &s7_sys_pwm_h.hw,
++	[CLKID_SYS_PWM_G]		= &s7_sys_pwm_g.hw,
++	[CLKID_SYS_PWM_F]		= &s7_sys_pwm_f.hw,
++	[CLKID_SYS_PWM_E]		= &s7_sys_pwm_e.hw,
++	[CLKID_SYS_PWM_D]		= &s7_sys_pwm_d.hw,
++	[CLKID_SYS_PWM_C]		= &s7_sys_pwm_c.hw,
++	[CLKID_SYS_PWM_B]		= &s7_sys_pwm_b.hw,
++	[CLKID_SYS_PWM_A]		= &s7_sys_pwm_a.hw,
++	[CLKID_RTC_DUALDIV_IN]		= &s7_rtc_dualdiv_in.hw,
++	[CLKID_RTC_DUALDIV_DIV]		= &s7_rtc_dualdiv_div.hw,
++	[CLKID_RTC_DUALDIV_SEL]		= &s7_rtc_dualdiv_sel.hw,
++	[CLKID_RTC_DUALDIV]		= &s7_rtc_dualdiv.hw,
++	[CLKID_RTC]			= &s7_rtc.hw,
++	[CLKID_SYSCLK_A_SEL]		= &s7_sysclk_a_sel.hw,
++	[CLKID_SYSCLK_A_DIV]		= &s7_sysclk_a_div.hw,
++	[CLKID_SYSCLK_A]		= &s7_sysclk_a.hw,
++	[CLKID_SYSCLK_B_SEL]		= &s7_sysclk_b_sel.hw,
++	[CLKID_SYSCLK_B_DIV]		= &s7_sysclk_b_div.hw,
++	[CLKID_SYSCLK_B]		= &s7_sysclk_b.hw,
++	[CLKID_SYS_CLK]			= &s7_sys_clk.hw,
++	[CLKID_AXICLK_A_SEL]		= &s7_axiclk_a_sel.hw,
++	[CLKID_AXICLK_A_DIV]		= &s7_axiclk_a_div.hw,
++	[CLKID_AXICLK_A]		= &s7_axiclk_a.hw,
++	[CLKID_AXICLK_B_SEL]		= &s7_axiclk_b_sel.hw,
++	[CLKID_AXICLK_B_DIV]		= &s7_axiclk_b_div.hw,
++	[CLKID_AXICLK_B]		= &s7_axiclk_b.hw,
++	[CLKID_AXI_CLK]			= &s7_axi_clk.hw,
++	[CLKID_AXI_SYS_NIC]		= &s7_axi_sys_nic.hw,
++	[CLKID_AXI_SRAM]		= &s7_axi_sram.hw,
++	[CLKID_AXI_DEV0_MMC]		= &s7_axi_dev0_mmc.hw,
++	[CLKID_CECB_DUALDIV_IN]		= &s7_cecb_dualdiv_in.hw,
++	[CLKID_CECB_DUALDIV_DIV]	= &s7_cecb_dualdiv_div.hw,
++	[CLKID_CECB_DUALDIV_SEL]	= &s7_cecb_dualdiv_sel.hw,
++	[CLKID_CECB_DUALDIV]		= &s7_cecb_dualdiv.hw,
++	[CLKID_CECB]			= &s7_cecb.hw,
++	[CLKID_SC_PRE_SEL]		= &s7_sc_pre_sel.hw,
++	[CLKID_SC_PRE_DIV]		= &s7_sc_pre_div.hw,
++	[CLKID_SC_PRE]			= &s7_sc_pre.hw,
++	[CLKID_SC]			= &s7_sc.hw,
++	[CLKID_CLK24M_IN]		= &s7_24m_in.hw,
++	[CLKID_CLK12_24M]		= &s7_12_24m.hw,
++	[CLKID_SD_EMMC_A_SEL]		= &s7_sd_emmc_a_sel.hw,
++	[CLKID_SD_EMMC_A_DIV]		= &s7_sd_emmc_a_div.hw,
++	[CLKID_SD_EMMC_A]		= &s7_sd_emmc_a.hw,
++	[CLKID_SD_EMMC_B_SEL]		= &s7_sd_emmc_b_sel.hw,
++	[CLKID_SD_EMMC_B_DIV]		= &s7_sd_emmc_b_div.hw,
++	[CLKID_SD_EMMC_B]		= &s7_sd_emmc_b.hw,
++	[CLKID_SD_EMMC_C_SEL]		= &s7_sd_emmc_c_sel.hw,
++	[CLKID_SD_EMMC_C_DIV]		= &s7_sd_emmc_c_div.hw,
++	[CLKID_SD_EMMC_C]		= &s7_sd_emmc_c.hw,
++	[CLKID_SPICC_SEL]		= &s7_spicc_sel.hw,
++	[CLKID_SPICC_DIV]		= &s7_spicc_div.hw,
++	[CLKID_SPICC]			= &s7_spicc.hw,
++	[CLKID_PWM_A_SEL]		= &s7_pwm_a_sel.hw,
++	[CLKID_PWM_A_DIV]		= &s7_pwm_a_div.hw,
++	[CLKID_PWM_A]			= &s7_pwm_a.hw,
++	[CLKID_PWM_B_SEL]		= &s7_pwm_b_sel.hw,
++	[CLKID_PWM_B_DIV]		= &s7_pwm_b_div.hw,
++	[CLKID_PWM_B]			= &s7_pwm_b.hw,
++	[CLKID_PWM_C_SEL]		= &s7_pwm_c_sel.hw,
++	[CLKID_PWM_C_DIV]		= &s7_pwm_c_div.hw,
++	[CLKID_PWM_C]			= &s7_pwm_c.hw,
++	[CLKID_PWM_D_SEL]		= &s7_pwm_d_sel.hw,
++	[CLKID_PWM_D_DIV]		= &s7_pwm_d_div.hw,
++	[CLKID_PWM_D]			= &s7_pwm_d.hw,
++	[CLKID_PWM_E_SEL]		= &s7_pwm_e_sel.hw,
++	[CLKID_PWM_E_DIV]		= &s7_pwm_e_div.hw,
++	[CLKID_PWM_E]			= &s7_pwm_e.hw,
++	[CLKID_PWM_F_SEL]		= &s7_pwm_f_sel.hw,
++	[CLKID_PWM_F_DIV]		= &s7_pwm_f_div.hw,
++	[CLKID_PWM_F]			= &s7_pwm_f.hw,
++	[CLKID_SAR_ADC_SEL]		= &s7_sar_adc_sel.hw,
++	[CLKID_SAR_ADC_DIV]		= &s7_sar_adc_div.hw,
++	[CLKID_SAR_ADC]			= &s7_sar_adc.hw,
++	[CLKID_GEN_SEL]			= &s7_gen_sel.hw,
++	[CLKID_GEN_DIV]			= &s7_gen_div.hw,
++	[CLKID_GEN]			= &s7_gen.hw,
++	[CLKID_TS_DIV]			= &s7_ts_div.hw,
++	[CLKID_TS]			= &s7_ts.hw,
++	[CLKID_ETH_125M_DIV]		= &s7_eth_125m_div.hw,
++	[CLKID_ETH_125M]		= &s7_eth_125m.hw,
++	[CLKID_ETH_RMII_SEL]		= &s7_eth_rmii_sel.hw,
++	[CLKID_ETH_RMII_DIV]		= &s7_eth_rmii_div.hw,
++	[CLKID_ETH_RMII]		= &s7_eth_rmii.hw,
++	[CLKID_MALI_0_SEL]		= &s7_mali_0_sel.hw,
++	[CLKID_MALI_0_DIV]		= &s7_mali_0_div.hw,
++	[CLKID_MALI_0]			= &s7_mali_0.hw,
++	[CLKID_MALI_1_SEL]		= &s7_mali_1_sel.hw,
++	[CLKID_MALI_1_DIV]		= &s7_mali_1_div.hw,
++	[CLKID_MALI_1]			= &s7_mali_1.hw,
++	[CLKID_MALI]			= &s7_mali.hw,
++	[CLKID_VDEC_0_SEL]		= &s7_vdec_0_sel.hw,
++	[CLKID_VDEC_0_DIV]		= &s7_vdec_0_div.hw,
++	[CLKID_VDEC_0]			= &s7_vdec_0.hw,
++	[CLKID_VDEC_1_SEL]		= &s7_vdec_1_sel.hw,
++	[CLKID_VDEC_1_DIV]		= &s7_vdec_1_div.hw,
++	[CLKID_VDEC_1]			= &s7_vdec_1.hw,
++	[CLKID_VDEC]			= &s7_vdec.hw,
++	[CLKID_HEVCF_0_SEL]		= &s7_hevcf_0_sel.hw,
++	[CLKID_HEVCF_0_DIV]		= &s7_hevcf_0_div.hw,
++	[CLKID_HEVCF_0]			= &s7_hevcf_0.hw,
++	[CLKID_HEVCF_1_SEL]		= &s7_hevcf_1_sel.hw,
++	[CLKID_HEVCF_1_DIV]		= &s7_hevcf_1_div.hw,
++	[CLKID_HEVCF_1]			= &s7_hevcf_1.hw,
++	[CLKID_HEVCF]			= &s7_hevcf.hw,
++	[CLKID_VPU_0_SEL]		= &s7_vpu_0_sel.hw,
++	[CLKID_VPU_0_DIV]		= &s7_vpu_0_div.hw,
++	[CLKID_VPU_0]			= &s7_vpu_0.hw,
++	[CLKID_VPU_1_SEL]		= &s7_vpu_1_sel.hw,
++	[CLKID_VPU_1_DIV]		= &s7_vpu_1_div.hw,
++	[CLKID_VPU_1]			= &s7_vpu_1.hw,
++	[CLKID_VPU]			= &s7_vpu.hw,
++	[CLKID_VPU_CLKB_TMP_SEL]	= &s7_vpu_clkb_tmp_sel.hw,
++	[CLKID_VPU_CLKB_TMP_DIV]	= &s7_vpu_clkb_tmp_div.hw,
++	[CLKID_VPU_CLKB_TMP]		= &s7_vpu_clkb_tmp.hw,
++	[CLKID_VPU_CLKB_DIV]		= &s7_vpu_clkb_div.hw,
++	[CLKID_VPU_CLKB]		= &s7_vpu_clkb.hw,
++	[CLKID_VPU_CLKC_0_SEL]		= &s7_vpu_clkc_0_sel.hw,
++	[CLKID_VPU_CLKC_0_DIV]		= &s7_vpu_clkc_0_div.hw,
++	[CLKID_VPU_CLKC_0]		= &s7_vpu_clkc_0.hw,
++	[CLKID_VPU_CLKC_1_SEL]		= &s7_vpu_clkc_1_sel.hw,
++	[CLKID_VPU_CLKC_1_DIV]		= &s7_vpu_clkc_1_div.hw,
++	[CLKID_VPU_CLKC_1]		= &s7_vpu_clkc_1.hw,
++	[CLKID_VPU_CLKC]		= &s7_vpu_clkc.hw,
++	[CLKID_VAPB_0_SEL]		= &s7_vapb_0_sel.hw,
++	[CLKID_VAPB_0_DIV]		= &s7_vapb_0_div.hw,
++	[CLKID_VAPB_0]			= &s7_vapb_0.hw,
++	[CLKID_VAPB_1_SEL]		= &s7_vapb_1_sel.hw,
++	[CLKID_VAPB_1_DIV]		= &s7_vapb_1_div.hw,
++	[CLKID_VAPB_1]			= &s7_vapb_1.hw,
++	[CLKID_VAPB]			= &s7_vapb.hw,
++	[CLKID_GE2D]			= &s7_ge2d.hw,
++	[CLKID_HDMITX_SYS_SEL]		= &s7_hdmitx_sys_sel.hw,
++	[CLKID_HDMITX_SYS_DIV]		= &s7_hdmitx_sys_div.hw,
++	[CLKID_HDMITX_SYS]		= &s7_hdmitx_sys.hw,
++	[CLKID_HDMITX_PRIF_SEL]		= &s7_hdmitx_prif_sel.hw,
++	[CLKID_HDMITX_PRIF_DIV]		= &s7_hdmitx_prif_div.hw,
++	[CLKID_HDMITX_PRIF]		= &s7_hdmitx_prif.hw,
++	[CLKID_HDMITX_200M_SEL]		= &s7_hdmitx_200m_sel.hw,
++	[CLKID_HDMITX_200M_DIV]		= &s7_hdmitx_200m_div.hw,
++	[CLKID_HDMITX_200M]		= &s7_hdmitx_200m.hw,
++	[CLKID_HDMITX_AUD_SEL]		= &s7_hdmitx_aud_sel.hw,
++	[CLKID_HDMITX_AUD_DIV]		= &s7_hdmitx_aud_div.hw,
++	[CLKID_HDMITX_AUD]		= &s7_hdmitx_aud.hw,
++	[CLKID_VDIN_MEAS_SEL]		= &s7_vdin_meas_sel.hw,
++	[CLKID_VDIN_MEAS_DIV]		= &s7_vdin_meas_div.hw,
++	[CLKID_VDIN_MEAS]		= &s7_vdin_meas.hw,
++	[CLKID_CDAC_SEL]		= &s7_cdac_sel.hw,
++	[CLKID_CDAC_DIV]		= &s7_cdac_div.hw,
++	[CLKID_CDAC]			= &s7_cdac.hw,
++	[CLKID_VID_PLL_DIV]		= &s7_vid_pll_div.hw,
++	[CLKID_VID_PLL_SEL]		= &s7_vid_pll_sel.hw,
++	[CLKID_VID_PLL]			= &s7_vid_pll.hw,
++	[CLKID_VCLK_SEL]		= &s7_vclk_sel.hw,
++	[CLKID_VCLK2_SEL]		= &s7_vclk2_sel.hw,
++	[CLKID_VCLK_INPUT]		= &s7_vclk_input.hw,
++	[CLKID_VCLK2_INPUT]		= &s7_vclk2_input.hw,
++	[CLKID_VCLK_DIV]		= &s7_vclk_div.hw,
++	[CLKID_VCLK2_DIV]		= &s7_vclk2_div.hw,
++	[CLKID_VCLK]			= &s7_vclk.hw,
++	[CLKID_VCLK2]			= &s7_vclk2.hw,
++	[CLKID_VCLK_DIV1]		= &s7_vclk_div1.hw,
++	[CLKID_VCLK_DIV2_EN]		= &s7_vclk_div2_en.hw,
++	[CLKID_VCLK_DIV4_EN]		= &s7_vclk_div4_en.hw,
++	[CLKID_VCLK_DIV6_EN]		= &s7_vclk_div6_en.hw,
++	[CLKID_VCLK_DIV12_EN]		= &s7_vclk_div12_en.hw,
++	[CLKID_VCLK2_DIV1]		= &s7_vclk2_div1.hw,
++	[CLKID_VCLK2_DIV2_EN]		= &s7_vclk2_div2_en.hw,
++	[CLKID_VCLK2_DIV4_EN]		= &s7_vclk2_div4_en.hw,
++	[CLKID_VCLK2_DIV6_EN]		= &s7_vclk2_div6_en.hw,
++	[CLKID_VCLK2_DIV12_EN]		= &s7_vclk2_div12_en.hw,
++	[CLKID_VCLK_DIV2]		= &s7_vclk_div2.hw,
++	[CLKID_VCLK_DIV4]		= &s7_vclk_div4.hw,
++	[CLKID_VCLK_DIV6]		= &s7_vclk_div6.hw,
++	[CLKID_VCLK_DIV12]		= &s7_vclk_div12.hw,
++	[CLKID_VCLK2_DIV2]		= &s7_vclk2_div2.hw,
++	[CLKID_VCLK2_DIV4]		= &s7_vclk2_div4.hw,
++	[CLKID_VCLK2_DIV6]		= &s7_vclk2_div6.hw,
++	[CLKID_VCLK2_DIV12]		= &s7_vclk2_div12.hw,
++	[CLKID_ENCI_SEL]		= &s7_enci_sel.hw,
++	[CLKID_ENCP_SEL]		= &s7_encp_sel.hw,
++	[CLKID_ENCL_SEL]		= &s7_encl_sel.hw,
++	[CLKID_VDAC_SEL]		= &s7_vdac_sel.hw,
++	[CLKID_VDAC_PRE_SEL]		= &s7_vdac_pre_sel.hw,
++	[CLKID_HDMITX_PIXEL_SEL]	= &s7_hdmitx_pixel_sel.hw,
++	[CLKID_HDMITX_FE_SEL]		= &s7_hdmitx_fe_sel.hw,
++	[CLKID_ENCI]			= &s7_enci.hw,
++	[CLKID_ENCP]			= &s7_encp.hw,
++	[CLKID_ENCL]			= &s7_encl.hw,
++	[CLKID_VDAC]			= &s7_vdac.hw,
++	[CLKID_HDMITX_PIXEL]		= &s7_hdmitx_pixel.hw,
++	[CLKID_HDMITX_FE]		= &s7_hdmitx_fe.hw,
++	[CLKID_VID_LOCK_SEL]		= &s7_vid_lock_sel.hw,
++	[CLKID_VID_LOCK_DIV]		= &s7_vid_lock_div.hw,
++	[CLKID_VID_LOCK]		= &s7_vid_lock.hw,
++};
++
++static const struct meson_clkc_data s7_peripherals_clkc_data = {
++	.hw_clks = {
++		.hws = s7_peripherals_hw_clks,
++		.num = ARRAY_SIZE(s7_peripherals_hw_clks),
++	},
++};
++
++static const struct of_device_id s7_peripherals_clkc_match_table[] = {
 +	{
-+		.compatible = "amlogic,s7-pll-clkc",
-+		.data = &s7_pll_clkc_data,
++		.compatible = "amlogic,s7-peripherals-clkc",
++		.data = &s7_peripherals_clkc_data,
 +	},
 +	{ /* sentinel */ }
 +};
-+MODULE_DEVICE_TABLE(of, s7_pll_clkc_match_table);
++MODULE_DEVICE_TABLE(of, s7_peripherals_clkc_match_table);
 +
-+static struct platform_driver s7_pll_clkc_driver = {
++static struct platform_driver s7_peripherals_clkc_driver = {
 +	.probe		= meson_clkc_mmio_probe,
 +	.driver		= {
-+		.name	= "s7-pll-clkc",
-+		.of_match_table = s7_pll_clkc_match_table,
++		.name	= "s7-peripherals-clkc",
++		.of_match_table = s7_peripherals_clkc_match_table,
 +	},
 +};
-+module_platform_driver(s7_pll_clkc_driver);
++module_platform_driver(s7_peripherals_clkc_driver);
 +
-+MODULE_DESCRIPTION("Amlogic S7 PLL Clock Controller driver");
++MODULE_DESCRIPTION("Amlogic S7 Peripherals Clock Controller driver");
 +MODULE_AUTHOR("Carlo Caione <ccaione@baylibre.com>");
 +MODULE_LICENSE("GPL");
 +MODULE_IMPORT_NS("CLK_MESON");
