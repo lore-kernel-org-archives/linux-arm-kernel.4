@@ -2,109 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19798606A6D9
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 20:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A91606A6D5
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 20:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H3MuoeoR;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=sDYGS9tU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zeJF9bKB;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.a=rsa-sha256 header.s=fe-e1b5cab7be header.b=KPVEzt7V;
+	dkim=pass (1024-bit key) header.d=forwardemail.net header.i=@forwardemail.net header.a=rsa-sha256 header.s=default header.b=YmjCu5BL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=T9Xx4usP8rm74KCRP+cc35Zk5oNMrUUP5XG8xRlvNZA=; b=H3MuoeoREVZ0pY3ENSQ1H+wemI
-	PkZeh7z+MbEAqSRmmg/ghynh2rvAMXTIcu58vvo+FP5P6aagOVYPfNMzRoaoo6F4vkrxWu6m7ZcW8
-	6VHmwLfYjxsuW9dKlpmmCikhGP9qisW+z9g+1BxMY2O7C1eot43I50nSPy5fF0oVgdrVSiHppqvFR
-	BMuaC2gKNaHdYg6UniPPno37LUOCMt0pIEkLNEt4tihe3T1ch5tzNDB4BCsws+4a1li/5INgXu2xJ
-	epI50G/CpU8APA9u8JA99k++nFtuzcR8GOPmApqklH547MJnD7Qyc64xrzRBcEkoRkmpfSjWWRLCj
-	r4o+4yRQ==;
+	bh=n/hZHGeIt+h+WZIRaIc6xW62uzKvAoC1A95prVUGR50=; b=zeJF9bKBE734KH20VwMVbBMugT
+	75RK11wpLIG/EP43qZAnK4E7HH2AZ7wGMH3OL2mRVvnH1DL4CQ1m6BaCi/9jU4J/XfSwDFYWxsukW
+	987ozZyaDLXAtDRzOJEr9KvrPwKgBJcjGYdqMQz+WYhoxv1TOm2wR4iFiGsMLzHePr1CUmcofI8BA
+	Dt5EbIjmdfYcm2cFfh84cdsXFFZbP1lxgURagjJ5Z0RfGGZtepEW61Fj7co1SxWEtf/j5E2wHhIqS
+	505GLKv+oaUpEyroKwmzqLKuuvNYstDnqJpKNKsnD/AvxWqjHlF3MklPNCCAPWDD4f7sZGen516t4
+	MCP9qfcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUUrL-0000000GBa6-3Zs0;
-	Fri, 20 Nov 2026 20:05:24 +0000
-Received: from mail-oa1-x29.google.com ([2001:4860:4864:20::29])
+	id 1xUV1Z-0000000GDLS-1AN4;
+	Fri, 20 Nov 2026 20:15:57 +0000
+Received: from smtp.forwardemail.net ([121.127.44.73])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUUrH-0000000GBYi-31So
+	id 1xUV1U-0000000GDJS-0vmC
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 20:05:22 +0000
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-4932b13c4ccso801658fac.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 12:05:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795205118; x=1795809918; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=T9Xx4usP8rm74KCRP+cc35Zk5oNMrUUP5XG8xRlvNZA=;
-        b=sDYGS9tUIkpfLQ2TABnAvK6KkAblfCwqrC/jsRJtjLDnbmPcDOIZwLtAOxCDCcHKBT
-         fBYFf9YEqqTE022KCN3tdx2jo/K/2LoBxJgPUE/61pLOx4cS/pRPgFLbh9gJ/+MlxBf1
-         LhiI+fCBiqwo+IWhVlilLRvrA22jp4RbXFMYTQOoDMN+Ol5vdLCI3PWYlQ3aqw6Y5SgG
-         OFyGJnoi6CKTDiFK1Hx4OXRFKTj/pffbrpIaNaZIHXoGcowZkW/Jm3LKBaS3jTRbQTUd
-         lvQ/IuGmxk9KyqXw5LuJyjUFAs4b8x+dFYhQmwtJj+QRHVrorbmwpIvZaSKdFGeuWUSm
-         yK+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795205118; x=1795809918;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=T9Xx4usP8rm74KCRP+cc35Zk5oNMrUUP5XG8xRlvNZA=;
-        b=OPzz/Ph6GSfL8BvMmeeEouuQD1CJs92f8Q5ZcS1GwCyWcSgw/eXXyiNRCE24tmmHkO
-         tJzD1Tn2+6n7dPqzCSdEDGUiowl/Zc3U6w+2v9hlsQeQMyDyiwsWnFmh0cFTOpyzIwiU
-         6/Koyy+Y3hRyFE5h6qE8SEx28KlwmcmiLngh4f573Vfl6ZdbqsZJv7llmnpb347Y0cAA
-         rOqEVMOIsC8ckf1aAA+MB60VZQ90MYZA7aRUEke9pndangQgKp5FK0WMrJXVV+ijZ0rj
-         mkjpA/pPBlSDyACX94+PXfSW0ptsteFHQTaljnUSORqD12zsetNYQ5+lfRPEgUOxtvf+
-         Q39Q==
-X-Forwarded-Encrypted: i=1; AL+hErG43VNKipP3erD7xAQ97QUMntkI1mUIgFZknxLn8o+A2VNWnJVrHbCdUUXJuVwmB2B1YULTqJG9klBqN6aMKfmL@lists.infradead.org
-X-Gm-Message-State: APuU4Z8iTUoY7b45LLl1BFE0fBk6xRfYLrzBh6ECE8iQG8C3SO9MzNig
-	GR14R3l31QcxxDgSRL9uMYMQaBb3Wzawq05sAaSDnKyolOKYHAOkPDu7
-X-Gm-Gg: AZFdTZedGgWW686riJxmYeMW0pdEhxlBOP+m7drL3uRM9VhsZx0gOtR2rYrphTdxGKV
-	eEk3eM14phKRwrovrWClEMrT37S0t6bt0/syCREhaifD3ArEup6QrR8rwjdiFnZh/j3kZ6Rovu6
-	6fHxoj0c1hKUnKgt3wBbZ4uvXWqt4G71/bBedkqgTED25KqXMCwBb03JuV/jg9HS5azNI+nXEDs
-	OZcc+89pQD04OAFcXI9kAeayZbt4h7scMBChrsi9mzi4ZBqGMkXcSkkiSLfCim0EY6Olo7z4XCn
-	6G96JTTBRKOnG+2shRdjKeVo8ApQERMDPTcOFXhH4rCebi7XHiy042LiWhxKJq7wzRLzHjq9cK7
-	lzYcSk5si9iGQ4FfT1ywpnOjHe+N+e0oRBKvphlB/c2ueqBIj3EhImhZoz+WsCdeVksUTen94Vz
-	nxYCKpohKslKK4X8Jy6dLHAhBtGDRFYwEeWOOcZQ1HoZ3UrX28fZOBEWYpyTCrs5AFxdly9lXp2
-	c4Xw8Yb09I+8lQrjkdcOSG8xYvE90WlrLkOepkIfiz82HZWw+vo9dhNqAeDRSlYWgfdwrsyamgC
-	L49sKZGnZlpHQvmlgliSCWxBw1bv08MJ23THWBgW2zeKNNLFakuJqBjFBLqB6tCs8fCEmxyJjpt
-	y1rg+W/bQzgopDYX4wFA=
-X-Received: by 2002:a05:6870:4db:b0:4ad:8d9f:98a3 with SMTP id 586e51a60fabf-4bc87de13e3mr3153094fac.35.1795205118467;
-        Fri, 20 Nov 2026 12:05:18 -0800 (PST)
-Received: from [10.10.18.223] (wsip-64-207-253-118.tu.ok.cox.net. [64.207.253.118])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bc5edc52aasm4122200fac.4.2026.11.20.12.05.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 12:05:17 -0800 (PST)
-From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Fri, 20 Nov 2026 14:05:16 -0600
-Subject: [PATCH] drm/mediatek: ovl: Report coverage blending on older SoCs
+	Fri, 20 Nov 2026 20:15:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From: CFBL-Address: CFBL-Feedback-ID; q=dns/txt; s=fe-e1b5cab7be;
+ t=1795205749; bh=n/hZHGeIt+h+WZIRaIc6xW62uzKvAoC1A95prVUGR50=;
+ b=KPVEzt7VroJH8q02nVl7UaJZDofOz/192ra6kzUrOckFpglwQ9c3DLlUcbn+RGm7dGTepSibA
+ TCLwjH/cbuyxhutRIdc4buuPkbJY1YvHIZWPLKzbTzMqYASQN4SL7rUOSu/mlm/afJ7bsPIWpE9
+ yve6TcxcqjdJDdJutNgJhe4JOQLXcDoBOStDS7EVP7zassAXfx3gAeMnq//JU++HTXqQ/CODQ6k
+ U2EKufEZKP0BRm8/I9bwlGjAX5GzoigmCnK0PzfW6iohr4ckdZDg/97DUQAqGFjmZjEMwIge5WQ
+ H/1I3qN7LZrKNMcPL8QvBh8Zgs99GNaz4MzR3zIzzNYg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=forwardemail.net;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From: CFBL-Address: CFBL-Feedback-ID; q=dns/txt; s=default;
+ t=1795205749; bh=n/hZHGeIt+h+WZIRaIc6xW62uzKvAoC1A95prVUGR50=;
+ b=YmjCu5BLlmO7qvc2DzdYNJVXvChHahJZPmPz/pT44Ri73pBKmBejooZxoQl87rfxdghA+7a+S
+ Dag+G9HmuUbfGVUhHKISchylpgXbLmWxSw6wg6GTX4KZyUk+9L/bwu0eDLSxReGVEjXHvNrIWQU
+ VjKTafxTEapA6/OmCJ2zsYc=
+CFBL-Feedback-ID: 6b00aa72774eddf080e7f073:e7410673846c8ea6efcb7b8d7722dfd8
+CFBL-Address: abuse@forwardemail.net; report=arf
+X-Forward-Email-ID: 6b00aa72774eddf080e7f073
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 2.19.33
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Linus Walleij <linusw@kernel.org>,
+	Ye Zhang <ye.zhang@rock-chips.com>
+Cc: linux-rockchip@lists.infradead.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] pinctrl: rockchip: Fix RK3506 pinctrl support
+Date: Fri, 20 Nov 2026 20:15:39 +0000
+Message-ID: <20261120201540.672016-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-rbrue-suez-mtk-ovl-coverage-v1-1-35040085fc37@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MUQrCMAwG4KuEPC9ghkjtVcSHtv7OoK6SuiKO3
- V3wO8C3coMbGkda2dGtWZ05kg7E5ZbmCWIXjsTjbjyoahDPvkDagq8833ep/SGldniaIHoMRTW
- nkHXPA/HLcbXPfz+dt+0HCGu2Qm0AAAA=
-X-Change-ID: 20261118-rbrue-suez-mtk-ovl-coverage-198c11ba8b14
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Ryan Brue <ryanbrue.dev@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795205116; l=4367;
- i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=h4Tvd2gLk6BmOFdUxw3JC3W2Yz6nDyqzW/jYqV5h1bo=;
- b=jygRYnIZ6A4BG1IGZuzzTo8JDeciKHrqpHygmrw7zjCsTulx4jjcQ4bzto4hZFbM6Q7yhLwFt
- 4qkyVhGaLPOCo2whLDjeAKzLnJWJLoLWJ/JFUVijZG41BSFtOvQ8ye8
-X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
- pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_120520_537323_11E2EC72 
-X-CRM114-Status: GOOD (  17.02  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_121552_316330_9B8411BB 
+X-CRM114-Status: GOOD (  17.89  )
+X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,116 +85,280 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since commit 860e748bddcc ("drm: ensure blend mode supported if pixel
-format with alpha exposed"), every OVL plane on MT2701, MT8167, MT8173
-and MT8183 warns at boot:
+The pinctrl driver added in commit dbd2317d7b9f ("pinctrl: rockchip:
+Add rk3506 pinctrl support") depends on a rockchip,ioc1 property not
+documented in dt-bindings to work, i.e. it expects the pinctrl node to
+look something like following:
 
-  [drm] [PLANE:37:plane-0] pixel format with alpha exposed but blend
-  mode not setup. Please fix.
+  pinctrl {
+	rockchip,pmu = <&gpio0_ioc>;
+	rockchip,ioc1 = <&gpio1_ioc>;
+	rockchip,grf = <&gpio234_ioc>;
 
-These OVLs expose ARGB formats but don't have blend_modes in their driver
-data, so no "pixel blend mode" property is created. They can't blend
-premultiplied pixels: mtk_ovl_fmt_convert() always selects the
-non-premultiplied color formats for them, which is the DRM "Coverage"
-equation. Since commit 9813e158d13d ("drm/drm_blend: allow blend mode
-property without PREMULTI") a coverage-only property is allowed, so
-advertise it and drop the comment saying it couldn't be created.
+	gpio0 { };
+	gpio1 { };
+	gpio2 { };
+  };
 
-The plane state now defaults to Coverage instead of Pre-multiplied. Both
-are non-zero, so mtk_ovl_layer_config() programs the same registers as
-before.
+With the commit 63113d4fce6c ("pinctrl: rockchip: Add RV1106 pinctrl
+support") the driver gained support for using GPIO bank referenced IO
+control register blocks using the rockchip,grf phandle of the bank node.
 
-Tested on MT8173 (Amazon Fire HD 10 2017). The warning is gone, every
-plane reports a "pixel blend mode" of Coverage, and the OVL0 layer
-registers are unchanged.
+Change the driver to work with dt-bindings documented nodes and
+properties, i.e. something like:
 
-Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
+  pinctrl {
+	rockchip,grf = <&gpio234_ioc>;
+
+	gpio0 {
+		rockchip,grf = <&gpio0_ioc>;
+	};
+	gpio1 {
+		rockchip,grf = <&gpio1_ioc>;
+	};
+	gpio2 { };
+  };
+
+Fixes: dbd2317d7b9f ("pinctrl: rockchip: Add rk3506 pinctrl support")
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 ---
-Since 7.3, MT8173 and the other OVLs without premultiplied alpha log
-"pixel format with alpha exposed but blend mode not setup" for every
-plane at boot. They blend in coverage mode, and the blend mode helper
-now accepts a coverage-only property, so this patch advertises that.
-No register changes; tested on MT8173 (Amazon Fire HD 10 2017).
+The initial devicetree submitted for RK3506 at [1] uses rockchip,grf
+props in gpio0 and gpio1 nodes together with a rockchip,grf in the
+pinctrl node to work as the fallback for gpio2, gpio3 and gpio4.
 
-This patch was developed with the help of an LLM.
+[1] https://patch.msgid.link/20261119152055.556266-3-jonas@kwiboo.se/
+
+Changes in v2:
+- Drop IOMUX_SOURCE_PMU flag
+- Collect r-b tag
+Link to v1: https://patch.msgid.link/20261119211739.566874-1-jonas@kwiboo.se/
 ---
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/pinctrl/pinctrl-rockchip.c | 57 ++++++++++++------------------
+ drivers/pinctrl/pinctrl-rockchip.h |  1 -
+ 2 files changed, 23 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-index 5445870716f9..81a4143f294d 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-@@ -412,12 +412,8 @@ static unsigned int mtk_ovl_fmt_convert(struct mtk_disp_ovl *ovl,
- 	 * and supports premultiplied color formats, such as OVL_CON_CLRFMT_PARGB8888.
- 	 *
- 	 * Check blend_modes in the driver data to see if premultiplied mode is supported.
--	 * If not, use coverage mode instead to set it to the supported color formats.
--	 *
--	 * Current DRM assumption is that alpha is default premultiplied, so the bitmask of
--	 * blend_modes must include BIT(DRM_MODE_BLEND_PREMULTI). Otherwise, mtk_plane_init()
--	 * will get an error return from drm_plane_create_blend_mode_property() and
--	 * state->base.pixel_blend_mode should not be used.
-+	 * If not, the hardware only blends in coverage mode, which is the only mode
-+	 * those platforms advertise.
- 	 */
- 	if (ovl->data->blend_modes & BIT(DRM_MODE_BLEND_PREMULTI))
- 		blend_mode = state->base.pixel_blend_mode;
-@@ -667,6 +663,7 @@ static const struct mtk_disp_ovl_data mt2701_ovl_driver_data = {
- 	.gmc_bits = 8,
- 	.layer_nr = 4,
- 	.fmt_rgb565_is_0 = false,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-@@ -677,6 +674,7 @@ static const struct mtk_disp_ovl_data mt8167_ovl_driver_data = {
- 	.layer_nr = 4,
- 	.fmt_rgb565_is_0 = true,
- 	.smi_id_en = true,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-@@ -686,6 +684,7 @@ static const struct mtk_disp_ovl_data mt8173_ovl_driver_data = {
- 	.gmc_bits = 8,
- 	.layer_nr = 4,
- 	.fmt_rgb565_is_0 = true,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-@@ -695,6 +694,7 @@ static const struct mtk_disp_ovl_data mt8183_ovl_driver_data = {
- 	.gmc_bits = 10,
- 	.layer_nr = 4,
- 	.fmt_rgb565_is_0 = true,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-@@ -704,6 +704,7 @@ static const struct mtk_disp_ovl_data mt8183_ovl_2l_driver_data = {
- 	.gmc_bits = 10,
- 	.layer_nr = 2,
- 	.fmt_rgb565_is_0 = true,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-
----
-base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
-change-id: 20261118-rbrue-suez-mtk-ovl-coverage-198c11ba8b14
-
-Best regards,
+diff --git a/drivers/pinctrl/pinctrl-rockchip.c b/drivers/pinctrl/pinctrl-rockchip.c
+index b78be7dd5342..97a73f8c4f6e 100644
+--- a/drivers/pinctrl/pinctrl-rockchip.c
++++ b/drivers/pinctrl/pinctrl-rockchip.c
+@@ -1335,12 +1335,8 @@ static int rockchip_get_mux(struct rockchip_pin_bank *bank, int pin)
+ 	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin >= 12)
+ 		return 0;
+ 
+-	if (ctrl->type == RK3506) {
+-		if (bank->bank_num == 1)
+-			regmap = info->regmap_ioc1;
+-		else if (bank->bank_num == 4)
+-			return 0;
+-	}
++	if (ctrl->type == RK3506 && bank->bank_num == 4)
++		return 0;
+ 
+ 	/* get basic quadrupel of mux registers and the correct reg inside */
+ 	mux_type = bank->iomux[iomux_num].type;
+@@ -1492,12 +1488,8 @@ static int rockchip_set_mux(struct rockchip_pin_bank *bank, int pin, int mux)
+ 	if (ctrl->type == RV1103B && bank->bank_num == 2 && pin >= 12)
+ 		return 0;
+ 
+-	if (ctrl->type == RK3506) {
+-		if (bank->bank_num == 1)
+-			regmap = info->regmap_ioc1;
+-		else if (bank->bank_num == 4)
+-			return 0;
+-	}
++	if (ctrl->type == RK3506 && bank->bank_num == 4)
++		return 0;
+ 
+ 	/* get basic quadrupel of mux registers and the correct reg inside */
+ 	mux_type = bank->iomux[iomux_num].type;
+@@ -2568,9 +2560,13 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 	struct rockchip_pinctrl *info = bank->drvdata;
+ 	int ret = 0;
+ 
++	if (bank->regmap_ioc)
++		*regmap = bank->regmap_ioc;
++	else
++		*regmap = info->regmap_base;
++
+ 	switch (bank->bank_num) {
+ 	case 0:
+-		*regmap = info->regmap_pmu;
+ 		if (pin_num > 24) {
+ 			ret = -EINVAL;
+ 		} else if (pin_num < 24) {
+@@ -2584,7 +2580,6 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 1:
+-		*regmap = info->regmap_ioc1;
+ 		if (pin_num < 28)
+ 			*reg = RK3506_DRV_GPIO1_OFFSET;
+ 		else
+@@ -2592,7 +2587,6 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 2:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 17)
+ 			*reg = RK3506_DRV_GPIO2_OFFSET;
+ 		else
+@@ -2600,7 +2594,6 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 3:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 15)
+ 			*reg = RK3506_DRV_GPIO3_OFFSET;
+ 		else
+@@ -2608,7 +2601,6 @@ static int rk3506_calc_drv_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 4:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 8 || pin_num > 11) {
+ 			ret = -EINVAL;
+ 		} else {
+@@ -2653,9 +2645,13 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 	struct rockchip_pinctrl *info = bank->drvdata;
+ 	int ret = 0;
+ 
++	if (bank->regmap_ioc)
++		*regmap = bank->regmap_ioc;
++	else
++		*regmap = info->regmap_base;
++
+ 	switch (bank->bank_num) {
+ 	case 0:
+-		*regmap = info->regmap_pmu;
+ 		if (pin_num > 24) {
+ 			ret = -EINVAL;
+ 		} else if (pin_num < 24) {
+@@ -2669,7 +2665,6 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 1:
+-		*regmap = info->regmap_ioc1;
+ 		if (pin_num < 28)
+ 			*reg = RK3506_PULL_GPIO1_OFFSET;
+ 		else
+@@ -2677,7 +2672,6 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 2:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 17)
+ 			*reg = RK3506_PULL_GPIO2_OFFSET;
+ 		else
+@@ -2685,7 +2679,6 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 3:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 15)
+ 			*reg = RK3506_PULL_GPIO3_OFFSET;
+ 		else
+@@ -2693,7 +2686,6 @@ static int rk3506_calc_pull_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 4:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 8 || pin_num > 11) {
+ 			ret = -EINVAL;
+ 		} else {
+@@ -2739,9 +2731,13 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 	struct rockchip_pinctrl *info = bank->drvdata;
+ 	int ret = 0;
+ 
++	if (bank->regmap_ioc)
++		*regmap = bank->regmap_ioc;
++	else
++		*regmap = info->regmap_base;
++
+ 	switch (bank->bank_num) {
+ 	case 0:
+-		*regmap = info->regmap_pmu;
+ 		if (pin_num > 24) {
+ 			ret = -EINVAL;
+ 		} else if (pin_num < 24) {
+@@ -2755,7 +2751,6 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 1:
+-		*regmap = info->regmap_ioc1;
+ 		if (pin_num < 28)
+ 			*reg = RK3506_SMT_GPIO1_OFFSET;
+ 		else
+@@ -2763,7 +2758,6 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 2:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 17)
+ 			*reg = RK3506_SMT_GPIO2_OFFSET;
+ 		else
+@@ -2771,7 +2765,6 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 3:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 15)
+ 			*reg = RK3506_SMT_GPIO3_OFFSET;
+ 		else
+@@ -2779,7 +2772,6 @@ static int rk3506_calc_schmitt_reg_and_bit(struct rockchip_pin_bank *bank,
+ 		break;
+ 
+ 	case 4:
+-		*regmap = info->regmap_base;
+ 		if (pin_num < 8 || pin_num > 11) {
+ 			ret = -EINVAL;
+ 		} else {
+@@ -5030,9 +5022,6 @@ static int rockchip_pinctrl_probe(struct platform_device *pdev)
+ 	/* try to find the optional reference to the pmu syscon */
+ 	info->regmap_pmu = syscon_regmap_lookup_by_phandle_optional(np, "rockchip,pmu");
+ 
+-	/* try to find the optional reference to the ioc1 syscon */
+-	info->regmap_ioc1 = syscon_regmap_lookup_by_phandle_optional(np, "rockchip,ioc1");
+-
+ 	if (ctrl->type == RK3308) {
+ 		ret = rk3308_soc_data_init(info);
+ 		if (ret)
+@@ -5651,10 +5640,10 @@ static struct rockchip_pin_ctrl rk3399_pin_ctrl = {
+ 
+ static struct rockchip_pin_bank rk3506_pin_banks[] = {
+ 	PIN_BANK_IOMUX_FLAGS_OFFSET_DRV_FLAGS_PULL_FLAGS(0, 32, "gpio0",
+-				    IOMUX_WIDTH_4BIT | IOMUX_SOURCE_PMU,
+-				    IOMUX_WIDTH_4BIT | IOMUX_SOURCE_PMU,
+-				    IOMUX_WIDTH_4BIT | IOMUX_SOURCE_PMU,
+-				    IOMUX_WIDTH_2BIT | IOMUX_SOURCE_PMU,
++				    IOMUX_WIDTH_4BIT,
++				    IOMUX_WIDTH_4BIT,
++				    IOMUX_WIDTH_4BIT,
++				    IOMUX_WIDTH_2BIT,
+ 				    0x0, 0x8, 0x10, 0x830,
+ 				    DRV_TYPE_IO_LEVEL_8_BIT,
+ 				    DRV_TYPE_IO_LEVEL_8_BIT,
+diff --git a/drivers/pinctrl/pinctrl-rockchip.h b/drivers/pinctrl/pinctrl-rockchip.h
+index 553197f6dc69..b565f14254d8 100644
+--- a/drivers/pinctrl/pinctrl-rockchip.h
++++ b/drivers/pinctrl/pinctrl-rockchip.h
+@@ -468,7 +468,6 @@ struct rockchip_pinctrl {
+ 	int				reg_size;
+ 	struct regmap			*regmap_pull;
+ 	struct regmap			*regmap_pmu;
+-	struct regmap			*regmap_ioc1;
+ 	struct device			*dev;
+ 	struct rockchip_pin_ctrl	*ctrl;
+ 	struct pinctrl_desc		pctl;
 -- 
-Ryan Brue <ryanbrue.dev@gmail.com>
+2.56.1
 
 
