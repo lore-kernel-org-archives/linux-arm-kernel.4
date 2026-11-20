@@ -2,59 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F9F60A2605
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43DE60A2638
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yIYO7kja
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ISwTWsdh;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=WzEb2hi3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LTpEanqIs/x2VUdKV8xemUfWXMl0QdH7PU5aERK6XR8=; b=yIYO7kjaFDS4Gy
-	59j27txu3OrZbCPiqPaMMb2a/AKI8Rg9gkzmybhl5xvg0pqf9FuZ06FZTlL08bM3TYunXzlVI+RqO
-	yvKBaZV29cH0GQ/VqzaDPetFiTc5kD/xHpm2A5DXsRIWGnlXpuH39ZDiI6D+KtWGaxTi8/8FYg1PE
-	HoT8iwpRbBOyCWoG7KFfJXmxx8suMqWTYctqcIJqQVcVt7GE5zZ9W0FejAqzIbZ+CVpNA/6ByiAmy
-	CdWpKgyIQ08m4FAJZOZBCyd01qDjA95B96GCzTvv8sNkQNggu5ny7P9jZADNbZT0yZT6+8fze5pzz
-	uk2HuHxnvr4kB4r3K3aQ==;
+	List-Owner; bh=uh0h/NWGZB0gU+Sbi2kIhBH4+D7ZPc0i9Ti7NLqxMvk=; b=ISwTWsdhrZB9+b
+	R3aVjcdj4zTwfWcOjPCj4ghZH9kUdKmq5Uw9u0qU1MfSrSJKNeNWbkvLE6iaxk9sQYh6ctP6R7AFe
+	Urwzm864ULDhk9G6epPLE4jrCQaPJjbhpYbJvjcbflwKKg+6/3KoN6dNqmrjLOihGf9R7iRY95q1H
+	81dOjPFVpD5cOdGcNfsmUPBKue+qpH5EwYD+wZ4PRYVb2oZBk/e1VxrEt4v9Ioctu/wZLfVtdV1sd
+	WleE7kB4QdpsBh7xu0vKUvtIKtx8s0txY5EvR+o+fT4iu5hZqfaMlKLqPtzpFthZWXMs6sB72HURQ
+	EWWY49xFJFvCej1yCFmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSGw-0000000FfAC-3yxH;
-	Fri, 20 Nov 2026 17:19:42 +0000
-Received: from mx.gpxsee.org ([37.205.14.76])
+	id 1xUSIn-0000000FfS6-1QoB;
+	Fri, 20 Nov 2026 17:21:33 +0000
+Received: from mgamail.intel.com ([198.175.65.21])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSGn-0000000Ff8P-3LSu
+	id 1xUSIf-0000000FfQo-19if
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 17:19:32 +0000
-Received: from [192.168.4.18] (unknown [62.77.71.229])
-	by mx.gpxsee.org (Postfix) with ESMTPSA id 75176C1028;
-	Fri, 20 Nov 2026 18:19:25 +0100 (CET)
-Message-ID: <9da149b2-8735-4910-b1eb-70a297d34ca3@gpxsee.org>
-Date: Fri, 20 Nov 2026 18:19:24 +0100
+	Fri, 20 Nov 2026 17:21:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795195285; x=1826731285;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Wt/0GyyCP/XOuyFnf358qLapGc12smKbmHr+dLhaH+c=;
+  b=WzEb2hi3WDuXDW1cNcWNSziOaWcyjHucxLMnpQrGzrsE4xDnYnOW0jOt
+   O75RXFcbQU1ogLuaNjxSfXEySOmKWFJHArdPs7fvEMv+For4m52fBH2OS
+   72md9LrvmAp9mAAmJiz7bjPble+YN89KjVHcs02WPHVuaJozNTo/AAnF7
+   O7LMcXUlWaNlgcnNU/7aO3GcuNe06cUZIcL2j/3GgvvK4k8HEuVO6v1DI
+   ffz2VZ9vxM3P3i+cwYMvvOcg8BYPORFgNMGInc3zSa4E5qiihDSVFT+Y8
+   2exdoyHZl2HJJMKOHtQpB76w9iHPKX/eTi0taegEwod54DN2u+Y7JXeOc
+   Q==;
+X-CSE-ConnectionGUID: 4gezjx6BSn6w0dstcopWpw==
+X-CSE-MsgGUID: daEVuSfiQq6xGmXiARsDXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4157486"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
+   d="scan'208";a="4157486"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 09:21:24 -0800
+X-CSE-ConnectionGUID: HnNbQEwlRCK5akyr6REZAg==
+X-CSE-MsgGUID: Mdg61pORTJuETMA7oVNI0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
+   d="scan'208";a="10868156"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO wieczorr-mobl1.intel.com) ([10.245.245.215])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 09:21:20 -0800
+From: Maciej Wieczor-Retman <maciej.wieczor-retman@intel.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Maciej Wieczor-Retman <maciej.wieczor-retman@intel.com>,
+	Pawel Chmielewski <pawel.chmielewski@intel.com>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	acpica-devel@lists.linux.dev
+Subject: [PATCH v2 26/42] ACPICA: actbl2: MPAM: adapt to MPAM ACPI spec v3.1
+Date: Fri, 20 Nov 2026 18:18:47 +0100
+Message-ID: <28fcfb138c8630dd69e738306a79afb3dae29410.1795194329.git.maciej.wieczor-retman@intel.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <cover.1795194329.git.maciej.wieczor-retman@intel.com>
+References: <cover.1795194329.git.maciej.wieczor-retman@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dmaengine: xilinx: xdma: Fix broken PM
- suspend/resume
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: Lizhi Hou <lizhi.hou@amd.com>, Brian Xu <brian.xu@amd.com>,
- Raj Kumar Rampelli <raj.kumar.rampelli@amd.com>,
- Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
- Michal Simek <michal.simek@amd.com>, dmaengine@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- =?UTF-8?Q?Martin_T=C5=AFma?= <martin.tuma@digiteqautomotive.com>
-References: <20261120155924.5785-1-tumic@gpxsee.org>
- <20261120155924.5785-2-tumic@gpxsee.org> <awB7zvk3iRr6NmPS@SMW015318>
-Content-Language: en-US
-From: =?UTF-8?Q?Martin_T=C5=AFma?= <tumic@gpxsee.org>
-In-Reply-To: <awB7zvk3iRr6NmPS@SMW015318>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_091930_004595_D9960811 
-X-CRM114-Status: GOOD (  23.67  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261120_092127_437697_5ADE4EFD 
+X-CRM114-Status: GOOD (  16.75  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,214 +93,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/20/26 5:56 PM, Frank Li wrote:
-> On Fri, Nov 20, 2026 at 04:59:24PM +0100, tumic@gpxsee.org wrote:
->> [You don't often get email from tumic@gpxsee.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>
->> From: Martin Tůma <martin.tuma@digiteqautomotive.com>
->>
->> Add the missing PM suspend/resume callbacks that properly reconfigure
->> the XDMA HW on PCIe suspend/resume.
-> 
-> why need reconfigure irq ?
+From: Andre Przywara <andre.przywara@arm.com>
 
-Because the PCIe card looses power during suspend and all configured 
-FPGA registers are gone (in fact the whole FPGA configuration/LUTs is 
-gone, but that's the HW's job to reconfigure the FPGA when power is 
-restored like it does it on boot. From the OS point of view only the 
-register reconfiguration must be restored).
+The latest edition of the "ACPI for MPAM Platform Design Document" (ARM
+DEN0065C [1]) re-purposes the current Reserved2 field in the MPAM ACPI
+table to hold an offset value for the MPAM Firmware backed interface.
+Also the MSC structure gets abstracted a bit, which renames the Reserved
+field to type, although it stays at 0, for the time being.
 
-M.
+Rename and describe the new fields in the table struct definition.
 
-> 
-> Frank
-> 
->>
->> Signed-off-by: Martin Tůma <martin.tuma@digiteqautomotive.com>
->> ---
->>   drivers/dma/xilinx/xdma.c | 121 ++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 121 insertions(+)
->>
->> diff --git a/drivers/dma/xilinx/xdma.c b/drivers/dma/xilinx/xdma.c
->> index 9d827c9a1267..fa006c9bae23 100644
->> --- a/drivers/dma/xilinx/xdma.c
->> +++ b/drivers/dma/xilinx/xdma.c
->> @@ -123,6 +123,7 @@ struct xdma_desc {
->>    * @irq_start: Start IRQ assigned to device
->>    * @irq_num: Number of IRQ assigned to device
->>    * @status: Initialization status
->> + * @pm_usr_irq: User IRQ vector storage for PM suspend/resume
->>    */
->>   struct xdma_device {
->>          struct platform_device  *pdev;
->> @@ -135,6 +136,7 @@ struct xdma_device {
->>          u32                     irq_start;
->>          u32                     irq_num;
->>          u32                     status;
->> +       u32                     pm_usr_irq;
->>   };
->>
->>   #define xdma_err(xdev, fmt, args...)                                   \
->> @@ -398,6 +400,28 @@ static int xdma_xfer_stop(struct xdma_chan *xchan)
->>                              CHAN_CTRL_RUN_STOP);
->>   }
->>
->> +/**
->> + * xdma_reconfig_channels - Reconfigure DMA channels
->> + * @xdev: DMA device pointer
->> + * @chans: channels configuration
->> + * @chan_num: number of channels
->> + */
->> +static int xdma_reconfig_channels(struct xdma_device *xdev,
->> +                                 struct xdma_chan *chans,
->> +                                 u32 chan_num)
->> +{
->> +       int i, ret;
->> +
->> +       for (i = 0; i < chan_num; i++) {
->> +               /* init channel hardware */
->> +               ret = xdma_channel_init(&(chans[i]));
->> +               if (ret)
->> +                       return ret;
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->>   /**
->>    * xdma_alloc_channels - Detect and allocate DMA channels
->>    * @xdev: DMA device pointer
->> @@ -1018,6 +1042,53 @@ static int xdma_set_vector_reg(struct xdma_device *xdev, u32 vec_tbl_start,
->>          return 0;
->>   }
->>
->> +/**
->> + * xdma_irq_reconfig - Reconfigure IRQs
->> + * @xdev: DMA device pointer
->> + */
->> +static int xdma_irq_reconfig(struct xdma_device *xdev)
->> +{
->> +       u32 user_irq_start;
->> +       int ret;
->> +
->> +       /* reconfigure hardware IRQ registers */
->> +       ret = xdma_set_vector_reg(xdev, XDMA_IRQ_CHAN_VEC_NUM, 0,
->> +                                 XDMA_CHAN_NUM(xdev));
->> +       if (ret) {
->> +               xdma_err(xdev, "failed to reset channel vectors: %d", ret);
->> +               return ret;
->> +       }
->> +
->> +       /* reconfigure user IRQ registers if needed */
->> +       user_irq_start = XDMA_CHAN_NUM(xdev);
->> +       if (xdev->irq_num > user_irq_start) {
->> +               ret = xdma_set_vector_reg(xdev, XDMA_IRQ_USER_VEC_NUM,
->> +                                         user_irq_start,
->> +                                         xdev->irq_num - user_irq_start);
->> +               if (ret) {
->> +                       xdma_err(xdev, "failed to reset user vectors: %d", ret);
->> +                       return ret;
->> +               }
->> +       }
->> +
->> +       /* reenable channels interrupts */
->> +       ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1S, ~0);
->> +       if (ret) {
->> +               xdma_err(xdev, "failed to reenable channel IRQs: %d", ret);
->> +               return ret;
->> +       }
->> +
->> +       /* reenable user interrupts */
->> +       ret = regmap_write(xdev->rmap, XDMA_IRQ_USER_INT_EN_W1S,
->> +                          xdev->pm_usr_irq);
->> +       if (ret) {
->> +               xdma_err(xdev, "failed to reenable user IRQs: %d", ret);
->> +               return ret;
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->>   /**
->>    * xdma_irq_init - initialize IRQs
->>    * @xdev: DMA device pointer
->> @@ -1297,15 +1368,65 @@ static int xdma_probe(struct platform_device *pdev)
->>          return ret;
->>   }
->>
->> +/**
->> + * xdma_suspend - PM suspend callback
->> + * @dev: XDMA device pointer
->> + */
->> +static int xdma_suspend(struct device *dev)
->> +{
->> +       struct xdma_device *xdev = dev_get_drvdata(dev);
->> +       int ret;
->> +
->> +       ret = regmap_read(xdev->rmap, XDMA_IRQ_USER_INT_EN,
->> +                         &xdev->pm_usr_irq);
->> +       if (ret) {
->> +               xdma_err(xdev, "User IRQ vector backup failed: %d", ret);
->> +               return ret;
->> +       }
->> +
->> +       ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1C, ~0);
->> +       if (ret)
->> +               xdma_err(xdev, "DMA channels IRQ disable failed: %d", ret);
->> +
->> +       return ret;
->> +}
->> +
->> +/**
->> + * xdma_resume - PM resume callback
->> + * @dev: XDMA device pointer
->> + */
->> +static int xdma_resume(struct device *dev)
->> +{
->> +       struct xdma_device *xdev = dev_get_drvdata(dev);
->> +       int ret;
->> +
->> +       ret = xdma_reconfig_channels(xdev, xdev->h2c_chans, xdev->h2c_chan_num);
->> +       if (ret) {
->> +               xdma_err(xdev, "H2C channels reconfiguration failed: %d", ret);
->> +               return ret;
->> +       }
->> +
->> +       ret = xdma_reconfig_channels(xdev, xdev->c2h_chans, xdev->c2h_chan_num);
->> +       if (ret) {
->> +               xdma_err(xdev, "C2H channels reconfiguration failed: %d", ret);
->> +               return ret;
->> +       }
->> +
->> +       return xdma_irq_reconfig(xdev);
->> +}
->> +
->>   static const struct platform_device_id xdma_id_table[] = {
->>          { "xdma", 0},
->>          { },
->>   };
->>   MODULE_DEVICE_TABLE(platform, xdma_id_table);
->>
->> +static DEFINE_NOIRQ_DEV_PM_OPS(xdma_dev_pm_ops, xdma_suspend, xdma_resume);
->> +
->>   static struct platform_driver xdma_driver = {
->>          .driver         = {
->>                  .name = "xdma",
->> +               .pm = pm_sleep_ptr(&xdma_dev_pm_ops),
->>          },
->>          .id_table       = xdma_id_table,
->>          .probe          = xdma_probe,
->> --
->> 2.56.1
->>
-> 
+[1] https://support.arm.com/documentation/den0065/latest
+
+Link: https://github.com/acpica/acpica/commit/4f4a36a99c1d
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Maciej Wieczor-Retman <maciej.wieczor-retman@intel.com>
+---
+ drivers/acpi/arm64/mpam.c | 6 +++---
+ include/acpi/actbl2.h     | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/acpi/arm64/mpam.c b/drivers/acpi/arm64/mpam.c
+index c57bd367922b..671ba501379a 100644
+--- a/drivers/acpi/arm64/mpam.c
++++ b/drivers/acpi/arm64/mpam.c
+@@ -331,14 +331,14 @@ static int __init acpi_mpam_parse(void)
+ 		table_offset += tbl_msc->length;
+ 
+ 		/*
+-		 * If any of the reserved fields are set, make no attempt to
+-		 * parse the MSC structure. This MSC will still be counted by
++		 * If the reserved1 field is set, make no attempt to parse the
++		 * MSC structure. This MSC will still be counted by
+ 		 * acpi_mpam_count_msc(), meaning the MPAM driver can't probe
+ 		 * against all MSC, and will never be enabled. There is no way
+ 		 * to enable it safely, because we cannot determine safe
+ 		 * system-wide partid and pmg ranges in this situation.
+ 		 */
+-		if (tbl_msc->reserved || tbl_msc->reserved1 || tbl_msc->reserved2) {
++		if (tbl_msc->reserved1) {
+ 			pr_err_once("Unrecognised MSC, MPAM not usable\n");
+ 			pr_debug("MSC.%u: reserved field set\n", tbl_msc->identifier);
+ 			continue;
+diff --git a/include/acpi/actbl2.h b/include/acpi/actbl2.h
+index 9af7c51d1297..8e0d5156e6d6 100644
+--- a/include/acpi/actbl2.h
++++ b/include/acpi/actbl2.h
+@@ -2004,7 +2004,7 @@ struct acpi_mpam_resource_node {
+ struct acpi_mpam_msc_node {
+ 	u16 length;
+ 	u8 interface_type;
+-	u8 reserved;
++	u8 type;
+ 	u32 identifier;
+ 	u64 base_address;
+ 	u32 mmio_size;
+@@ -2014,7 +2014,7 @@ struct acpi_mpam_msc_node {
+ 	u32 overflow_interrupt_affinity;
+ 	u32 error_interrupt;
+ 	u32 error_interrupt_flags;
+-	u32 reserved2;
++	u32 mpam_fb_offset;
+ 	u32 error_interrupt_affinity;
+ 	u32 max_nrdy_usec;
+ 	u64 hardware_id_linked_device;
+-- 
+2.56.0
 
 
