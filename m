@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D50D606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 07:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E0A606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 07:22:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eko58Myy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AR6hGc0F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0l3jqPXX;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KddBGkPR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KwRrc7jJFjacNOYQ22+KumrrMJDm4/e2Aq0/zpjEOGY=; b=eko58MyyxjB+Q1LoWjhogy9fLn
-	tgIB6AtpIDUgD2I3TuyKMllGbuTzj8xrQs9stLpsrm96SNCMxrLMzPFFGqA66uR2tB3tcZ+w7kOKg
-	6wS89j162m/T+QcidwtW7fjkCv2emOHSFLiFO2N57KEXTOKebScB+jl2bqRl5XbdKXvBs5sxwPO9B
-	gcg4lMfiFBNynONazTphRvR0Nw7b3pnSfITKaXwQpSV+M8pcm+WI08zvcbXHlTkJSMzIRa/QU92OX
-	Dp4BJhxK2bNjd0c/deC9El4gw1AR4o7t9cY+yNic1NS+D3ejbHiwV8W/LBNVuksUXoF/DM7JoZ9pi
-	kPI29LrQ==;
+	bh=6PV0I3fyfn8zBfMmYUBIzSZOXpy2iut4tvAaW/Eyfo4=; b=0l3jqPXXsjCPliFYEnUUVW8w9G
+	baM81FCjwNtXOmFQA/uMFkvGbk9WfXuetjd12vwxmrOCCX9OzOyQIannUV+QZ0dyN8ALqpmGPW0J6
+	/O2EOoKASPlfQLhyJytNxqiI6XKaFgK51mU/PzmJfVeXgEmxFDi2IXi6HVMGkLGE65r9Fvwx3O8Bb
+	tm0TuLZ0MeO2pAlSdTQoo0Wbxx9fVxgTvfssXyf5n8F4i8fsexlrvv1/fjIrbvDBRu/bo4z39ljtt
+	DhVBA+ag+zhqKcyqmBmyoRYvrOsOVxMnlhBnH9sTXoK0NU8kTFC+Pq43n5ogOs/S5p9/fEDM06wNy
+	vkhZnDbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUIxF-0000000EDjR-2OJu;
-	Fri, 20 Nov 2026 07:22:41 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUIxF-0000000EDjc-2l7d;
+	Fri, 20 Nov 2026 07:22:43 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUIwp-0000000EDed-29r1
+	id 1xUIwq-0000000EDel-0PVf
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 07:22:15 +0000
+	Fri, 20 Nov 2026 07:22:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DB8EF42D66;
-	Fri, 20 Nov 2026 07:22:14 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8295A46710;
+	Fri, 20 Nov 2026 07:22:15 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795159334;
-	b=KfofeOJVDifvWALXiZJy8vrJ05YiIVAPycKrn1+oh32oz/a9U/58pUQHDl1EJxwfVZUD
-	 v7PfVNlyPBZfcJpE/KpSy4yzKIzlu6pJ71ug2+WwoWiS0Ld0i54MwgPyGrn3OLl6iFXiP
-	 swTmyW3klxp+VgPqSEUH/DhzvdXBPHh7qfJ8J6sXX7b43OGjJqqAexRqgnxXYVy3XWniQ
-	 hVuzjFRwyDivSBKmSaPcyjK6/8NqWS5+xDojjyupD11CeL+QMHqznU3+Vq2aMI8GdIZkv
-	 SBbmU+7o8PuczaeA+s2f4ovGygwGG4OMpSjbc9iVllMb9lhETfYMhlX8Zsoutxcri7A==
+	t=1795159335;
+	b=3iOeObrae4QCEXCeupgh/QdJh+1MzlB6MXmVqG05wn2wYMTEB4h0FMkJLtAl1svMFalK
+	 aETYIlLU/4rdehxXoSJJBUhjA1r9+okEURmweH+grGErFAhNcjQEbJqOikZHbTbe7gC/S
+	 ZW7EOVDEHS3lpiGmUJH4Z4ND3rcnKRdws/5Qdy/UmcBpfktA1ug9bmpfa0G5LkuC3YqJy
+	 9L29BW71NWUhe2m0o0ySOdxywPS43aOD5OBNbnUXKvSEG9nvHgYa6IEnclzvf32kDaKI/
+	 Ap6Z0QYeqV8qZqfSlvnhnJvJLxx21trrM4lFeqIdSBGi8/JaiDIKgdREMVJyF4dmKvg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795159334;
+	c=relaxed/relaxed; t=1795159335;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=KwRrc7jJFjacNOYQ22+KumrrMJDm4/e2Aq0/zpjEOGY=;
-	b=BIejPMlC5Rn6Ks4XsZKVXpk0lNEj+ZFnm2rq2gJarLMqdK3yO/4FNuQ0cXx2mb7ntdYD
-	 6jWwcaDHyHZkrjx9J8nNTwblGeLHu0VWaG0YfxqBUGsyNajbZUUloEqCnAQ4P82rKO4AN
-	 SfhZzXfPG4xRe4Ms+sItCnbQj77gMBc490shay27BybN5zt7JrAR5b1oxyTsTyEBV0yrj
-	 iV9MsXUa/iWvmkcghz0UYc2vycjzlMjq6FSFINLntoy0DFSZcodgL6UGZVQQyFVuE+0cu
-	 3IRRQ1ab/DbjpXdrQHkny8Jp1ddNnAiK0aQW9Dd78seAR0xL2fFu6l5H+icVNqAio3A==
+	bh=6PV0I3fyfn8zBfMmYUBIzSZOXpy2iut4tvAaW/Eyfo4=;
+	b=V6s4PwZ6qj7VWnWLhkI+zEj8O8z6ssckMFjoFUFkeyUQKflxQuxBmDJf+6FhvQ5xDf8F
+	 engFYUIQ7Asb2fjo5n2vsK/Smhwzd/LBC5hDpsRzT8zmQBSmINiEk0PAJm6BhlQKwJTQ8
+	 vsoLc5EXuiOho5XzFHWCsu6nZnFJXysOS7NJbwBqA5jhZILBYGj75qNNFnvGfG3ZMSm8R
+	 fV1+0c20YQSMNEREh7yEeOrACbQIthGdcUFjuhWA3U8ov1nNdvpo1wUYZb2omZb5BtUbb
+	 CVAJ7FsOHTOYWaUtNJdS1pdOjxSTzy79avZvUaZ7LRNwjNTZJ+0sbeJ11SK1x03PRrQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 391361F000C6;
+	by smtp.kernel.org (Postfix) with ESMTPS id 53DA31F000CF;
 	Fri, 20 Nov 2026 07:22:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795159334;
-	bh=KwRrc7jJFjacNOYQ22+KumrrMJDm4/e2Aq0/zpjEOGY=;
+	s=k20260515; t=1795159335;
+	bh=6PV0I3fyfn8zBfMmYUBIzSZOXpy2iut4tvAaW/Eyfo4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=AR6hGc0FWWvzA7TxqsXIQFaJwAxG9t/GiRMKFboQjVVH+1ivnk0Tsb912GOCfiVeB
-	 z4YzxeUEE1te3BrBtEzhohNjNSFpfor4SQVTeKFLEVr0P9uk7TmBdJLJrez2b9GTIi
-	 N4IMOE3kkLqGcfBAM1P7e73YsQcxnmAKZoDQPJvbeojxQ4uWnxnduGDApJM2ZO5Q8k
-	 zlZO0MEvhPv2r0SCttYHrVQyNhQu7D6eExMcO+lFi1flxmIohrMfWMNl9wFy8c0bvy
-	 dTuCOXSluqCirN/10wMe7Ze7X1QLx4BG48Claue9KxMSanOjM6D3YHwtdwyzpirpqj
-	 Oeubqqpcwm0lw==
+	b=KddBGkPRtLiRVpVibud/8Iq5qIK0ridPFQO4uyysEJh/jxwo8nORV+0IImg3iV160
+	 X3QbjI+Dw9RHM3SyZrv3K726NZ4baUoh1IO96XStkbqprgPn91Ha7qyQq14Ug8fNBL
+	 fbQ/Gh6PnhNKjtjLm4+zcsf2O1WWYJJTJjuCxZbBKsc/3Bn7kNXCHKUiwle4EVgGRA
+	 nPzPh1bb7visPTG7SPevrnjosmA2MJ6qRzrk38GRkSzDqoRHl6eaglq7w75SsKds4L
+	 XVcV/RBxeah81p3lhx1qZKSZihPxUOurtufbMLpn2FQU0UOKQdm/7Ysr/A4Bb4gbw2
+	 CKhW49QYSbgPw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id BD00D4975B;
+	by lkml.kernel.org (Postfix) with ESMTP id D572A4975C;
 	Fri, 20 Nov 2026 07:22:13 +0000 (UTC)
 From: Rajan Yadav via B4 Relay <devnull+rajanyadav0307.gmail.com@kernel.org>
-Date: Fri, 20 Nov 2026 01:22:13 -0600
-Subject: [PATCH 1/4] dt-bindings: vendor-prefixes: Add Shenzhen Kickpi
- Digital Technology
+Date: Fri, 20 Nov 2026 01:22:14 -0600
+Subject: [PATCH 2/4] dt-bindings: arm: sunxi: Add KickPi K5C
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261120-k5c-dt-v1-v1-1-d9681df67bc0@gmail.com>
+Message-Id: <20261120-k5c-dt-v1-v1-2-d9681df67bc0@gmail.com>
 References: <20261120-k5c-dt-v1-v1-0-d9681df67bc0@gmail.com>
 In-Reply-To: <20261120-k5c-dt-v1-v1-0-d9681df67bc0@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -93,11 +92,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  Paul Kocialkowski <paulk@sys-base.io>, 
  Rajan Yadav <rajanyadav0307@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795159332; l=1286;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795159332; l=1161;
  i=rajanyadav0307@gmail.com; s=20261103; h=from:subject:message-id;
- bh=gFo6j59NzHKrlOvLgDxrGptA4LIjDH4Hdw5hr398y8U=;
- b=fFpAMIAg/lv2xBPfX2kce0TU5AiNuFAAajV4OUITbIHuTYyxTXr5MeOoYbe4kC1sej5l5Qq7W
- 6WdSvsIj/s1Acp0v5kKMtccaa7nlP+78pRUp8XmFIMVrfZTnqcAY8Qf
+ bh=I6vTUiLrsSlHBFAWdmnCYgV4zJVZLtmnTrmixiYpI3k=;
+ b=ivPANXo15cQvw/pll2FSLMB+F0n4tBG0M/5PnBd34+VGKE4ZuaF0S5IqXfE3QqBq2Calcjhe5
+ eZ93q4HzeKqAz9m66TJSwX3+ay9dM9EDtKE7xdq6G50kPZxVbAVnmQK
 X-Developer-Key: i=rajanyadav0307@gmail.com; a=ed25519;
  pk=4ZPeiP5qrv2b44q/Obxi2koUS70Q6npbttJnpUoTlgg=
 X-Endpoint-Received: by B4 Relay for rajanyadav0307@gmail.com/20261103 with
@@ -125,36 +124,37 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Rajan Yadav <rajanyadav0307@gmail.com>
 
-Shenzhen Kickpi Digital Technology Co., Ltd. makes single board
-computers under the KickPi name, such as the KickPi K5C with an
-Allwinner A133 SoC. Add a vendor prefix for them.
+The KickPi K5C is a single board computer with an Allwinner A133 SoC,
+2 GB of DDR3 DRAM, eMMC, an SD card slot, Gigabit Ethernet, a Wi-Fi/BT
+module, USB host ports and a USB-C OTG port.
 
-The company name is the one KickPi uses on its documentation site
-(doc.kickpi.com) and as the registered owner of the KICKPI trademark
-(US registration 7747802); their e-mail and web domain is kickpi.com.
+Add its compatible. Like the Teclast P80, it names the SoC as
+allwinner,sun50i-a133.
 
 Claude Code (Anthropic) drafted this change and its message; I
 reviewed it and checked it with dt_binding_check.
 
-Link: https://www.kickpi.com/
 Signed-off-by: Rajan Yadav <rajanyadav0307@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 5471a06f93f..a67f9c1c896 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -919,6 +919,8 @@ patternProperties:
-     description: Keymile GmbH
-   "^khadas,.*":
-     description: Khadas
-+  "^kickpi,.*":
-+    description: Shenzhen Kickpi Digital Technology Co., Ltd.
-   "^kiebackpeter,.*":
-     description: Kieback & Peter GmbH
-   "^kinetic,.*":
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 7da84e2de74..b21205f327f 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -405,6 +405,11 @@ properties:
+           - const: jesurun,q5
+           - const: allwinner,sun4i-a10
+ 
++      - description: KickPi K5C
++        items:
++          - const: kickpi,k5c
++          - const: allwinner,sun50i-a133
++
+       - description: Lamobo R1
+         items:
+           - const: lamobo,lamobo-r1
 
 -- 
 2.34.1
