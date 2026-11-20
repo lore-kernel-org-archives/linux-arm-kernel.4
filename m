@@ -2,82 +2,138 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B623D606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:00:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58DCC606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zLKQ3X6o;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=stzhKg/l
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=09jJEATB;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=BH7TorCz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=WPz9ZJgzuBEKAb5zeoxlqov20rYNodQR3Ms4u1ebahc=; b=zLKQ3X6oMIf3tUldSszCaWfUK2
-	ZyxwUntv71s52Lj7y8Dl9E8mkYna6V61v+7HqOFxU/FE3nb3L6/xBoekzlbtRhAoc4Cxyi2wRqjXg
-	WxGv0bmxfLy/2M3eM4sZRVGsR3UcTW+vgpA/Pot28k3o1wg41Mmxt05iFO61PG/PcpungC3dvDWM8
-	SfYSkUO9C6AqsexGWGYYHq0vzaOpw5jYWM5XoQCWq1EAGtpKTVZ3ukF6yG/N4GJzwTt7ji7Ooq2A9
-	aA+8qMmbfG2PRDWhGnbSR5p3OUPKxw6/Dap6+dvY1VezQA+0Rx90B12bad7L7xTNqZZQ7mTV40yGS
-	p2sRDiFw==;
+	bh=73kSPIhjwHR+t6uQutBhZdY29OusxG8GZPqjN35maIw=; b=09jJEATBbLIpJFNmS/2+GaAOs+
+	3aTfkLmCDOSz2j35zflgUu3uStFj3ZFvh2aBkKYAh+vs/rI09bZsobv33Vp4aw5IQNd3+6k9mOC4F
+	gQlsCmJ94MfvaiBzzcqRq5+zdqJH011GUiDlGSqRiR5w9uH85k78Xkbd+fKin3O93PxG8ZpP1346g
+	3EI4bMk0V/2WNZsRagQFLM0Lb+GJAS7lfna0V+/sBlF7+0WklD/eu+AidsuFkitG8EsieuMP4cvPK
+	o/6A7ywI4nJADUV9hJ2wMM2xrCcuYv5QF2fIRYkCSJNAybV15JHwdXsbwgy+m/gww9lUm1S91bcJ+
+	YQ3mFUGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xURxo-0000000Fc6X-0E3M;
-	Fri, 20 Nov 2026 16:59:59 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1xUS5y-0000000Fcun-1cp0;
+	Fri, 20 Nov 2026 17:08:18 +0000
+Received: from mail-francecentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20a::7] helo=PA4PR04CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xURxa-0000000Fc4t-0uX7;
-	Fri, 20 Nov 2026 16:59:39 +0000
-X-UUID: c2b59e12e50311f1afed4741b24580c9-20261120
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=WPz9ZJgzuBEKAb5zeoxlqov20rYNodQR3Ms4u1ebahc=;
-	b=stzhKg/lXJuWIyXK2ULsXiAQAYbZaBut71had5pah6Px331bnnH71ukNHEfNQA3hLbXzeaTXSddpz2RXM2rYON33uNidNTnT0P0x7AUcZ8nMVx3Y1+nVbfd999TTzBf7uBkGT9H52I4P5JyLeUw504p9L6UEithVnVoi9Fomgt8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:85bfd918-7cd8-4d0c-b89d-30a077dadcd7,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:b0318ac,CLOUDID:edf39266-4b51-4c95-bb1b-80ac6aad9c96,B
-	ulkID:nil,BulkQuantity:0,SF:102|836|865|888|898,TC:-5,Content:0|15|50|99,E
-	DM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: c2b59e12e50311f1afed4741b24580c9-20261120
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <shubham.paralikar@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 146350089; Fri, 20 Nov 2026 09:59:33 -0700
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.53; Sat, 21 Nov 2026 00:59:16 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Sat, 21 Nov 2026 00:59:16 +0800
-From: Shubham Paralikar <shubham.paralikar@mediatek.com>
-To: Sean Wang <sean.wang@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Bartosz Golaszewski
-	<brgl@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<Arnab.Layek@mediatek.com>, <Fred-WY.Chen@mediatek.com>, Shubham Paralikar
-	<shubham.paralikar@mediatek.com>
-Subject: [PATCH v4 0/1] pinctrl: mediatek: Add MT8901/MT8971 ACPI driver
-Date: Sat, 21 Nov 2026 00:58:31 +0800
-Message-ID: <20261120165908.3204369-1-shubham.paralikar@mediatek.com>
-X-Mailer: git-send-email 2.45.2
+	id 1xUS5v-0000000Fctz-3Fl4
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 17:08:17 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JJEgIb2GHBiY9AmWjs96u3XJjUKaE3MATn4eOXifKqccZEjQcB1LppfAr8XgpWgqiyZ9zHnZw+zLBDLOmKtJWWv1xTToFleskUv5ib46xSHjmElW/AgMzaL0ILY/GjoYz1LMZuwm2c8oRd99Qb53Pn4ubVviwL8PsJMsKT2D6jMLLZfrtUOaaiKfEEE4BDpoZ0HCMYdByiCLHjNW31wemGOMYOV5P/q26Fe/BwuSpXxIKz6cAo46S+VldobIt2WVMFmS5k3dWG/kJozK0PRjZWvNxhZRQK6BrtX5JBtuDt8E/oRcE79eZf5z/zQDNqEbxx4Zmgf8xwivaqFS2Ci1fA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=73kSPIhjwHR+t6uQutBhZdY29OusxG8GZPqjN35maIw=;
+ b=qnd4+NTCivwTIkLm1J/v1ZmykIi+kKvyeDXHCjTOtzKof/B4brV0+HBzw7olFoDB4IJEE2+xvvz5Zuq4HHLXEV2Gi0GtqLykT51EaTaM76E6vZ76gmPm9SG8udJz9Z5oWDh9TfDukOYJyezIKeOlPXPasUPb1XVrIz4kE963nx7XfByEjyZADSE3S7SSIFxqPrwzCm59qcVgPS+AH4LHHcEzS/z5ELW5J8XPR18EHVIzYrUFwaciOdyDLD7IlzPl3PNd/bYb6V/SPDhh5ztq33vvboRJbwBxEj0ny8hx5603EMGO4/jpLfSYw9O6deR3X3i82uHG9brotObCsxTZNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=73kSPIhjwHR+t6uQutBhZdY29OusxG8GZPqjN35maIw=;
+ b=BH7TorCzW4uuSod6YuxkJJ6Jz7zmduFUPiCuqhSCSBpm+UviLGvPWCNkJgF0x3JHWfW0A7auklkbHY9saf0aL4JlTka33PKT3PvxRqc5M/10TxK7ruNIHKNhALQKvlnIPw//nJVFiJjChieL1VeBYvbXrUQrQIRIXg5lsGgmCBh1JqUCJvKnOE/dFz1tla/mLqJzcw4SDWaua5CQv/YKyjmLK7b9jAapIUrDCKP/zCmVqh0uNOrsI7d57KXbFjhREqayPrU9Qa+fsg0CZeokFgjJtvdwQwY5TBUPdF7+5Ffs5geP6JeJ5cEEBiNd2cWR7ZuPc/c/hWbk/iLZzbJrBw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by DBBPR04MB7513.eurprd04.prod.outlook.com (2603:10a6:10:20a::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
+ 2026 17:08:11 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
+ 17:08:10 +0000
+Date: Fri, 20 Nov 2026 11:07:59 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v1 1/1] arm64: dts: freescale: imx8mp-var: Add Cortex-M7
+ support
+Message-ID: <awB-b1P9sX1FwNeT@SMW015318>
+References: <20261120143241.17297-1-stefano.r@variscite.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261120143241.17297-1-stefano.r@variscite.com>
+X-ClientProxiedBy: PH0P220CA0024.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:d3::29) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DBBPR04MB7513:EE_
+X-MS-Office365-Filtering-Correlation-Id: c6ed6024-550a-42fa-899f-08df4728daec
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|1800799024|23010399003|7416014|376014|366016|22082099003|6133799003|18002099003|261009223027099003|261009221227099003|3023799007|13003099007|56012099006|261022075727099003|10067099003|11063799006|261102123227099003|261021121427099003|261021135927099003;
+X-Microsoft-Antispam-Message-Info: 6kRsnfRl6DeX0LrZ4XhnxZynj8XyMRc+NANZP+CW2zAWDZd9DXxRXWQhKUpsszWl8Kvg8ga0/dqm0IX6wl1n0UfPgg/bZSwZz4hZcqbDl4/p6/p8pxoUIDFuyk9wuqM2u8XWMk80y2mjEn0pK0LfXhHYq2yDMjI4CQESRBLzYla83m2OH6LfuhIZ+r9tPLG6YqMHcn2pLxZbWS1h+rjzylhyRI5It3sJ6j4WeU60XE6RMfbaxWFOBtEi0J1iNqWrT2Ic5evKmRtPtzhiTeu2G2HYX27pv7ZPgiOtfpkrqwc5okCpuo2HHtq6/NR7LZsh6r9To3alSYtGUVt8LVqN714PNjGss1F+Xz/Ix8K+KuiiZO/VRcNglk0nqJiySefV/lA/sEK0/OYEh59GqkcmbTwYcq+uRoBjPS7hKemXOGMN7XhIO2iBR2joE165/1Y/nCID0mv3nt6sSOKk8oxn/maOmohYryqhUZR7xWbWZciNMIuwdMgDRGeNgTVtXY/NHrRY63tZiW//pf5XdVtPhGD5sg3Voj13B0bViuCN33KvhMh8K65oEj3o/Y2lFfjM8P+nLBrYU1WuQSRgEdiMg4QCQ0kLdBEA6qGo+9mPyrk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(23010399003)(7416014)(376014)(366016)(22082099003)(6133799003)(18002099003)(261009223027099003)(261009221227099003)(3023799007)(13003099007)(56012099006)(261022075727099003)(10067099003)(11063799006)(261102123227099003)(261021121427099003)(261021135927099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9xIC3RSCg1QIxe6gTL9chnwB0QoHeIuoNVktIPYA0aIu8CGp2Cp1iKNhM3WR?=
+ =?us-ascii?Q?LL/QO1PCuTV3vCeKVLqsXbrW8H63tF3urY8yCW+/uhiGshL9nCBcZC3rnbHM?=
+ =?us-ascii?Q?7mazinvWDdNwznVGaarz7L10QLexvY/2FHayblzrv4y7fPg4JT2W2CEN79Ai?=
+ =?us-ascii?Q?tuMgC2GNMhJtxwPlIqFIzJeG6/533tQLIg3iswQ2+i9bGSWyINmoGFf4dJSY?=
+ =?us-ascii?Q?/82Kbd2YQ7qx0RweZUn1DjYJYtXRlqNXbCULHClzQxKzE51sR33zRFqAuzcN?=
+ =?us-ascii?Q?CAb7ey8rpCZLKilDzvm62feK2158r063fL93/twBhOV3VTAJpnJY8G6hiMqJ?=
+ =?us-ascii?Q?7/GAcm3pbLpxsI50pGf4VpzW63a+Qp337oxCPgKJgB/jsojDTmLEWvWKCc1F?=
+ =?us-ascii?Q?U6jagN5Q2VoMR7BpsOFTK8FLJPD+h4XTGTmAPxSU9q+ROlZu9rIEa31Yyuj8?=
+ =?us-ascii?Q?iPFNmV6IDZKTcOPF4b1Zi8uRKqEheod/v9V+AdbX5x0PcZtK+Blwq5sIz/xM?=
+ =?us-ascii?Q?/vUUHfrYECEm3T7kbys42KddIsye1AW/nETvVDxnMrPUxkGQoHLVcWAvgACv?=
+ =?us-ascii?Q?eKBaZHtiI7DUpfsewa9b//sLEQhlebwIZY20KzgT7Vq+f2EQEcvzej2b2yfP?=
+ =?us-ascii?Q?URdmVbRIE+rx0W+aLr+q5F1zwsooB8bKFEqeyw41R+gcVK/YyI40XnrJjrIk?=
+ =?us-ascii?Q?SK5c8RmR5BycHI58NLLylNSqN3mSdOYKL9veGSLEbB2ZZeueXj0eVlezlCQb?=
+ =?us-ascii?Q?KzK63Gm3wW/qmklflSl2tehc7TLnS45JnmQoKm1xScZuwH9sP8l0l3KcIL8t?=
+ =?us-ascii?Q?35Th8kK1RqAFWJr8Ex6qjnfP9uD85lkvpBKDLy1ITxdeA/QQNsqw5A2K6m8Q?=
+ =?us-ascii?Q?qatP1rREbKJp5+u6W++FnENCOkTLoL9vcI2LyJI4CLqrLMQ6Z4szkReajaqq?=
+ =?us-ascii?Q?r37hBIXkZP+Lc3LzVbvNfawtuIQ5nWu5M5Zy1vz+Cv5wi/r9WingExriOByl?=
+ =?us-ascii?Q?+D25/SSupBOMEsG/9KVnXkML1UwLxR45wFt6DJnkNLYefK3+7kZYWdpfOXqg?=
+ =?us-ascii?Q?4ZEtxfpVOCmPXMO4SZwgv48pAxtWg9Ye2pH35STz44amsoxS1DbbebujZV68?=
+ =?us-ascii?Q?rk3SLdb+9Vqd/gl8PDCAKoTfh4QNlj4OQw8oC8aLyMvv0j3O9KY9WtlVUz6v?=
+ =?us-ascii?Q?bW28yJcxCm55Z/FissNaOfrz27axrpkhVSrMttSNxjiJENaW2/911SN8NeE+?=
+ =?us-ascii?Q?WKpmLT6XtsRGxHRtWXqaYZRQFAFzBLE4GvF2eyzxt+E4Ho+wB3QKSmnh65iT?=
+ =?us-ascii?Q?d1blFUcz8nycUOmYXovTrqDxhtBpFvfl/ipnHT71zTc3MeK5JJYDpxCHq3TU?=
+ =?us-ascii?Q?hEsCal1TqdLjD1TKl7mdGYOEiDY9/omXRgFdJ2LTPk28BVRtBHp1IJ1DRkE9?=
+ =?us-ascii?Q?Unz6s29kXTeZAH48TVVdWtrkRWYcG4YJRUHg7oiKDfN/CvtWOvaooHMpsuyB?=
+ =?us-ascii?Q?9OwQnCKnlhF/ulkXZxDQaLaTiC5vOxp0TtyZGEAg7d4D+P3wVbXD4UcwXMyC?=
+ =?us-ascii?Q?3vqcxLyc/AeeuSqA74Kx6R9Hlh7nptKxE6TuSHUMZnTzmb+LFYJpjMgwwavo?=
+ =?us-ascii?Q?s1MWp1yAXfPeS81VZeasI1wi04pQSfBf4BBscE0O/15+F/9Ay2KQ8m1ECSHL?=
+ =?us-ascii?Q?eho94KbMzy++tiVU6/Qn1Ldw5BLT64S7OjGrWCkOcyZj2xIFaN1YRpWBTobZ?=
+ =?us-ascii?Q?h3696g+8zTb1ekv8ezWaguDx2SfhaKr+ryord/01Kkv/Uh10laLi?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6ed6024-550a-42fa-899f-08df4728daec
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 17:08:10.9429
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: msNe0GPWXzS1hCxd7pCQhkOODDzhQglQrBiULB5CVpdZDvokXFAZC2QonJ5/Jk/HW/jp+S+3vQXQcy+fuqunC2rkQsic6XWmhDyO6uXUT8MZdyFl4/n+fm+Urvg0mzBe
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7513
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_085938_299772_7DD3DCEF 
-X-CRM114-Status: GOOD (  12.92  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_090816_046855_CCDCF683 
+X-CRM114-Status: GOOD (  21.00  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,70 +144,130 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-MT8901 and MT8971 boot with ACPI firmware and both describe their
-GPIO/pinctrl controller with the same _HID, NVDA9221. The existing
-MediaTek Paris pinctrl drivers only probe from devicetree, so neither
-SoC gets pin control, GPIOs or EINT interrupts.
+On Fri, Nov 20, 2026 at 03:32:41PM +0100, Stefano Radaelli wrote:
+> From: Stefano Radaelli <stefano.r@variscite.com>
+>
+> Add Cortex-M7 configurations for DART-MX8M-PLUS on Sonata,
+> VAR-SOM-MX8M-PLUS on Symphony and VAR-SMARC-MX8M-PLUS on Echo.
+>
+> Share the reserved memory and remoteproc configuration through a common
+> include, and add board overlays and combined -m7 DTBs for remoteproc and
+> RPMsg support.
+>
+> Mark the UART, I2C, SPI and CAN controllers used by the Cortex-M7 firmware
+> with "reserved" status. Disable PCIe on Symphony and USB-C on Echo,
+> since their reset and role controllers depend on the I2C buses reserved
+> for the M7.
+>
+> Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        | 13 ++++
+>  .../dts/freescale/imx8mp-var-common-m7.dtsi   | 68 +++++++++++++++++++
+>  .../freescale/imx8mp-var-dart-sonata-m7.dtso  | 31 +++++++++
+>  .../freescale/imx8mp-var-smarc-echo-m7.dtso   | 36 ++++++++++
+>  .../freescale/imx8mp-var-som-symphony-m7.dtso | 36 ++++++++++
+>  5 files changed, 184 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-common-m7.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata-m7.dtso
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-smarc-echo-m7.dtso
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony-m7.dtso
+>
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index ae28e6b02a5c..3745688a5b4a 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -723,9 +723,22 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tx8p-ml81-moduline-display-106-av101hdt-a10.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtb
+>
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-ultra-mach-sbc.dtb
+> +
+> +imx8mp-var-dart-sonata-m7-dtbs := imx8mp-var-dart-sonata.dtb imx8mp-var-dart-sonata-m7.dtbo
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-sonata.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-sonata-m7.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-sonata-m7.dtbo
+> +
+> +imx8mp-var-smarc-echo-m7-dtbs := imx8mp-var-smarc-echo.dtb imx8mp-var-smarc-echo-m7.dtbo
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-smarc-echo.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-smarc-echo-m7.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-smarc-echo-m7.dtbo
+> +
+> +imx8mp-var-som-symphony-m7-dtbs := imx8mp-var-som-symphony.dtb imx8mp-var-som-symphony-m7.dtbo
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-som-symphony.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-som-symphony-m7.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-som-symphony-m7.dtbo
+> +
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw71xx-2x.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw72xx-2x.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw73xx-2x.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-common-m7.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-common-m7.dtsi
+> new file mode 100644
+> index 000000000000..9d554a175fbf
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-common-m7.dtsi
+> @@ -0,0 +1,68 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Common Cortex-M7 configuration for Variscite i.MX8M Plus modules
+> + *
+> + * Link: https://www.variscite.com/
+> + *
+> + * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
+> + *
+> + */
+> +
+> +#include <dt-bindings/clock/imx8mp-clock.h>
+> +
+> +&{/} {
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		vdev0vring0: vdev0vring0@40000000 {
+> +			reg = <0 0x40000000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring1: vdev0vring1@40008000 {
+> +			reg = <0 0x40008000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		rsc_table: rsc-table@400ff000 {
+> +			reg = <0 0x400ff000 0 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0buffer: vdev0buffer@40400000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0 0x40400000 0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		/*
+> +		 * Keep this region aligned with the Cortex-M7 DDR region in the
+> +		 * boot firmware's RDC configuration.
+> +		 *
+> +		 * RDC DDR addresses are encoded as:
+> +		 * (physical address - 0x40000000) >> 1.
+> +		 */
+> +		m7_reserved: m7@7b000000 {
+> +			reg = <0 0x7b000000 0 0x1000000>;
+> +			no-map;
+> +		};
 
-This patch adds pinctrl-mtk-acpi, a small ACPI probe helper for Paris
-pin controllers, and two SoC drivers on top of it, pinctrl-mt8901 and
-pinctrl-mt8971. Each driver matches NVDA9221 and passes its own SoC
-data to the helper, which reads the "ChipId" from the controller's
-vendor _DSD and returns -ENODEV when the device belongs to the other
-SoC, so the matching driver binds.
+because we already use memory-region-names, node name can use common node name
+memory@...
 
-It also extends the shared Paris, common-v2 and EINT code for ACPI and
-for these SoCs: resources mapped by index, ACPI _AEI event interrupts,
-fixed-stride pin register layouts (MT8971), skip-listed EINTs (MT8971
-PROCHOT), wake-event EINTs, EINT-only virtual GPIOs and bus-hold bias.
-
-v4 reworks the driver structure following AngeloGioacchino's review of
-v3 and fixes the problems reported by the Sashiko AI review of v3. The
-full changelog is in the patch.
-
-Known issue: MT8971 suspend behaviour of EINT215 (PROCHOT, owned by
-firmware) is still under investigation.
-
-Build tested on arm64 with both drivers as modules and built-in, with
-W=1 for drivers/pinctrl/mediatek/.
-
-Shubham Paralikar (1):
-  pinctrl: mediatek: Add MT8901/MT8971 ACPI driver
-
- drivers/pinctrl/mediatek/Kconfig              |   33 +-
- drivers/pinctrl/mediatek/Makefile             |    3 +
- drivers/pinctrl/mediatek/mtk-eint.c           |  217 +-
- drivers/pinctrl/mediatek/mtk-eint.h           |   16 +-
- drivers/pinctrl/mediatek/pinctrl-mt8901.c     | 1471 +++++++++++
- drivers/pinctrl/mediatek/pinctrl-mt8971.c     |   91 +
- drivers/pinctrl/mediatek/pinctrl-mtk-acpi.c   |  153 ++
- drivers/pinctrl/mediatek/pinctrl-mtk-acpi.h   |   17 +
- .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  |  124 +-
- .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |   31 +
- drivers/pinctrl/mediatek/pinctrl-mtk-mt8901.h | 2296 +++++++++++++++++
- drivers/pinctrl/mediatek/pinctrl-mtk-mt8971.h | 1646 ++++++++++++
- drivers/pinctrl/mediatek/pinctrl-paris.c      |   95 +-
- drivers/pinctrl/mediatek/pinctrl-paris.h      |    2 +
- include/linux/gpio/driver.h                   |    5 +
- 15 files changed, 6162 insertions(+), 38 deletions(-)
- create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8901.c
- create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8971.c
- create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-acpi.c
- create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-acpi.h
- create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8901.h
- create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8971.h
-
-
-base-commit: adcad7f4e6332cff3d6d7165f41584899f598534
--- 
-2.45.2
-
+Frank
 
