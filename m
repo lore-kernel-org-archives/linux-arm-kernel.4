@@ -2,114 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD042606A88A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3D6606A336
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BLePaum2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PTKttV9i
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AkygOErI;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=eXUqRErj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=y8B3yYureNWw/gPn5TmCorzbaVWuAnwa7i0qf1DFZYY=; b=BLePaum2GRONfVNhalmexD8C3o
-	DzAMGPRfGNtbVxjIBBuFRX9COYNeIvw+lEn2E8zWVYXNKl253RS/gIKFsbWJoBu1psml9m0pgnymz
-	y2UeTaiOFqSe9w4XDS/cDiDN+u1hXNL+S99yCaLb9VhV6aj+9oqXqsIfSkVuolTrCuSRlqW/CFW1W
-	pNwgcnlPRQe4I6juYu6Sp4fkAc3YlcUvZ+I3IM6DlQcSfibBWmrOIE3L8AvJDkr3H9hVnMtTGlAmq
-	i/AdRfjZ41J7X5AajSh6FJr93/Y7Z6SCbxH6ZadfNXvHMqG0A30HEDS4onOAkqfFqdBv6u6KdbghS
-	2GjJX6tQ==;
+	bh=F+kfwwjCYMQqRtD6fmxwn5boEWQH1gRaWvH/BgGTxxw=; b=AkygOErI/Qfpl/wWvMpUoP3iwd
+	oahpDNJzdlpdBhHZCv0Tjea9aE/IWEMwkxL9qgDJdQaCPhycq4gdGVzsoxaa9v26vmbt3+7ad00/v
+	MT98MCdi7PzfNilpTzp01PKvIW37eUVvoVPW6m1SQTtrJmYOam5i4iezXzWg4sksBkeQ1PPeKC3WD
+	X7tH5bsNFFgAvfm8Oqd6ygvjW1ZkGjXoR5W3WV4okXXCcaRW8IDEjXn0RAJm8Tgo5vGeilf+mDR9L
+	d3F0P8bJHTzD9K02KPFjz6z88P0VvF6jZKoWTNUJAuiz6OGGjNPn/yb1R6sL2W93+7H7l4MhtOQMD
+	ogqQbG6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUTEl-0000000Fuao-0Pxo;
-	Fri, 20 Nov 2026 18:21:27 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xUTEm-0000000Fubz-1vLh;
+	Fri, 20 Nov 2026 18:21:28 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUTAZ-0000000FtFn-3MKI;
-	Fri, 20 Nov 2026 18:17:07 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id BEB4E63481;
-	Fri, 20 Nov 2026 18:17:06 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795198626;
-	b=jvVxcEjXCbvhwEL53D9LBoYvNRjD01vEIprgCgaPSnxWgRIiN4tBLDPhC6vV/CrVSbc5
-	 mHTtQktcnCw5JTFQgt2wBhiM7OfDVGCFo7JEhlt/ohEUAotjAWHO5S2Z372Wrzyf701ej
-	 Wpi1mx7jz/vPM0cXcj/zSHzvrEtj9YQrOp4g/jp63lf1FqVi1g5OqeHiPYDzbbfITtaSL
-	 lr8K9s9xpaidZL+7VXFCijS2BkDPcsr1usZRy9upTDvQ6JthSPqsN7hdUlvbcKGhUQIOC
-	 iCA0SSaQXxIxglp9yf1GpSqQznExo0VLe+6gVByDkOzenBoLCKy4hhbrLTLgBEZjjyw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795198626;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=y8B3yYureNWw/gPn5TmCorzbaVWuAnwa7i0qf1DFZYY=;
-	b=RKveoIwfbtT3CxTIrVojJ5li9VV8pLD1ddfpLBkK1DHsZJhueGOJh94A9hXs566xkApx
-	 +QTAup4Ezb3PpecDHt1IT8dFTd1CvzR3NCGFGGM5QCrF+MY2j7fxM8MQa0sjWw8E6crdg
-	 fk/7nppLKa9S092sura2+8RhDJ2yfw7U2YPmXj9W90EllMcJAmreemrBIRkF9sLWyOXpL
-	 1t/Qksw2b5Me7ewH2akg8hcMDLKxy2KvnHN6+1WaKYO3I2lhZD1vYI0xf7wRJ/6wGw9/P
-	 zX1GS4U3z/Lmf6UuC0BlFiACbb/lBivIEoklXi8GFmq9B//rAhHmFRzpnnDE01Ib9BQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E392B1F0157A;
-	Fri, 20 Nov 2026 18:16:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795198626;
-	bh=y8B3yYureNWw/gPn5TmCorzbaVWuAnwa7i0qf1DFZYY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=PTKttV9iq7cIau5tOrVZR5Xdhd1o3syY74rb8vqaJh7emR/8kY1tcZUVQpf7QA3in
-	 V2KXz3G5LUkxYKHZn0he019m0nKbaLJ2nlr1xC4NgI5Vvdz//YQ5iahQRsHFguo4nE
-	 bx5Cwu0JpSOnjB9XK0PQMkdd26HCk2iMHIknbqutxe1KE2LEM3fyYcOMZ7Wc9Nkebr
-	 5m623iFySBWM9NKPfhZ4QddfceZMVSB1QWHm4G61PPJBdfeo+rrCmVC1S+8TAv9L1N
-	 saGpE0jxG5SX70KNs72fqBjeS5G3DMRnB8cN3lX4jD/aeN9bioZVBFks+AcJD43FUk
-	 fY4ggGWyWzbNw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 06E234B919;
-	Fri, 20 Nov 2026 18:16:33 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Fri, 20 Nov 2026 19:15:44 +0100
-Subject: [PATCH v2 05/11] dt-bindings: display: amlogic,meson-dw-hdmi: Add
- phys
+	id 1xUTBn-0000000FtfD-2sqh
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 18:18:36 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4bb6886d30aso11486545e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 10:18:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795198702; x=1795803502; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=F+kfwwjCYMQqRtD6fmxwn5boEWQH1gRaWvH/BgGTxxw=;
+        b=eXUqRErjU1S5PE08n2tVgKxlFqlOXS16P5sNoty4Ev7n6Pr4r6CKUrouTG0OFW6z5K
+         okLrUcGlhl5kptd+cJp7SwvUrrf1zLhSxWTUUYEkLtGuPnHokQazHIOUAJQ6FJPQr+ND
+         D43eDlwPERFBf+1ajvl7yYBP6fdcrlJ941YFKlLLwBpXWN4I2hCtkiBZjAtFWpSlJlKL
+         yyojiYe5xrvLsnAJUSFmQgptn0Mi3Js8cT9shD5vFr3d/VLAhbwMYv7r7MEpBqQRQpzZ
+         QVZstFLLOu9KvcpgRdYlflvTwq7zFHRkzsbwABldgIOB2ky96wBEEUY3XxA+GoqRND9g
+         BKnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795198702; x=1795803502;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=F+kfwwjCYMQqRtD6fmxwn5boEWQH1gRaWvH/BgGTxxw=;
+        b=KK1YCE3OhZN8M9sIRrakID9sRbDCrikQOnoniINW9WaFmaolvQ6as0A/GrdfKdLFCK
+         jWzJFhKeNiJ5bbb32M45ziE9aw6X0UhdCx92XXBPEO6dftUVKEjPK0tRgxST1TqBTl59
+         jJbVpQ6XbYrSUTQrQFkV9DFm6uhLOrAbHJQveeGiiCx6OqaXQJ2tfvHHN18o4UYbAVlt
+         DF+vMkzXEPtqbAkjV3RQ9NJ+7qHEQjFX6sNCKivq1zkVFdT8kVBr21HEqupeZCJQ7UW3
+         5qCKn1pDgrBZxEkYwZtUc6DQeOmcv6XyDcxeHpQ+JX9EHDKtrDjCTeoZfr93mXAjWIJR
+         IIpA==
+X-Forwarded-Encrypted: i=1; AL+hErHKp6p3sjDZ0toY1B489sfS0mq3f480kuQmy+z3eDBGsfX84pYBWLwGw8ihjbV5DAkuSwPFDeMwP7krxj1uAXNO@lists.infradead.org
+X-Gm-Message-State: APuU4Z8wkQv1d0ePJ+wH9KTjPgb3A2c9gDBeKx04tA90iXgOfJSmoIzD
+	UQvhaex6eTd4VTILj1fmc9sgWhj0WIXy/R1cnWH3tfPqz9KAWm9sy4aK
+X-Gm-Gg: AYBFou13+eELM4/V2pcnpxvdyTgdCW9Z70+66bdj8OeJG+qPiNB294pLtOOxEH/nMEg
+	gkeZQLlYDlQ0thVv4utF7ej2WeKjOx2oJaGNRuwoDZ7dtS02auEVxo+y3Hc7dASuTDRxqwnubTC
+	sM94Jxdzho226oMcGYLOpWTZs2Wpf/Rx8AEOhnXh9s243vWvfBlUTes4dJbt0qxuhltYYd15Egs
+	bcbH5GwwSqTOIWcvOt6Oa/y+nun8ADmSl/5Fhr2qrtklky61f5ZOrMs3ZdldMA5ZAL88g52Y6X/
+	FMgZVNhklHshw+9plMXrN6MC8at9tut2S6jTn3xFJ/9jN6mAltP4Gl6HvgUbrz5MGqRRIOu9O6t
+	MSRV20EGOnoeXbdtCn0EVFkGhJV7II25NwnQoKvBhoWgwHZ0G+RpYnWGHG18jnGnQQXmkd6X4dZ
+	zaMetMI/eGqKfsBrcUzbB0bP9xYQAeNx3guRhWVNSFj+TcK288+DUBkBZnQ0Hxs5dg19YZcKER2
+	+jz8dS6AucA5EKtdxU12j1f8WqJzlohrlfhWBErlBjxBn0BZjgzD0u4aBUeIPNQqCJx+JuQV+58
+	OD2AIW5zoJIIIOOj8drDGio+bo+tyoHf9abJoEByhu+VLbAq5gFiPBMjy08rzvMbSTg+WKxeq4Q
+	JkZUIA1rBSKjWU3X4x3T1nhm3t7HtRV1xguEZ9Dspa4If+YU3MNzWKwDuV5Yxi/JrUNb8
+X-Received: by 2002:a05:600c:1548:b0:4a1:e00b:a10b with SMTP id 5b1f17b1804b1-4bb88800020mr98021205e9.7.1795198701398;
+        Fri, 20 Nov 2026 10:18:21 -0800 (PST)
+Received: from GLaDOS.station ([193.207.36.37])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb895eec06sm34756025e9.2.2026.11.20.10.18.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 10:18:20 -0800 (PST)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: Frank Li <Frank.Li@nxp.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v4 1/1] arm64: dts: imx8mm-var: Add Cortex-M4 support
+Date: Fri, 20 Nov 2026 19:18:16 +0100
+Message-ID: <20261120181816.33455-1-stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261120-meson-drm-create-hdmitx-phy-v2-5-93d622d9bb07@aliel.fr>
-References: <20261120-meson-drm-create-hdmitx-phy-v2-0-93d622d9bb07@aliel.fr>
-In-Reply-To: <20261120-meson-drm-create-hdmitx-phy-v2-0-93d622d9bb07@aliel.fr>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Ulf Hansson <ulfh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>, linux-pm@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1278;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=gEM9bIkhQe1Q+n5KKc7w/RzPzlM5UABBv5gf7bLSb8c=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQzZDX/bk3+ePHb89WyPSYJnD4w2ZPgL/LfR2BOha7zqxL
- 3H2xwcdHaUsDGJcDLJiiiz9cy1PvLt89MzXPeopMHNYmUCGMHBxCsBEnJQYGR4xbb61aP/Vxb+2
- HDjaMnuxuF3egasWCT3Tvh6fceFeoN5DRoYDTr++iG/Wv6B9/f6Sp1dbvDdqvri5pe6jn2lPz4m
- Kq++5AQ==
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_101825_821946_615AA316 
+X-CRM114-Status: GOOD (  19.08  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,56 +108,239 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-The HDMI TX PHY now has its own binding and driver. Describe the link
-between the HDMI TX controller and its PHY with a "phys" property
-holding a single phandle, and update the example accordingly.
+Add Cortex-M4 configurations for DART-MX8M-MINI on Sonata and
+VAR-SOM-MX8M-MINI on Symphony.
 
-The property is optional so that existing DT, which do not describe
-the PHY, keep validating; the driver falls back to creating the PHY
-itself in that case.
+Share the reserved memory and remoteproc configuration through a common
+include, and add overlays and combined -m4 DTBs for remoteproc and RPMsg
+support.
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Reserve ECSPI1, I2C4, PWM3 and UART3 for the Cortex-M4 firmware. On Sonata,
+also disable the buttons and PCIe, which depend on GPIO expanders on
+I2C4.
+
+Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
- Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+v3->v4:
+ - Use common node names for memory regions
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-index 416fe263ac92..7ece4ea262bd 100644
---- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-@@ -108,6 +108,9 @@ properties:
- 
-   sound-name-prefix: true
- 
-+  phys:
-+    maxItems: 1
+v2->v3:
+ - Change disabled status for peripherals reserved to m4
+
+This patch depends on commit ebb21cc5d1c0
+("dt-bindings: remoteproc: imx_rproc: Document memory-region-names to avoid implicit ABI")
+for validation of the new memory-region-names property:
+https://lore.kernel.org/r/20261023-memory-region-name-v9-1-ad597887dfe9@nxp.com
+
+v1->v2:
+ - Add memory-region-names as requested by Frank Li.
+ - Convert the Sonata M4 configuration to an overlay, so both boards use
+   the same approach and the overlays can be reused across board variants.
+
+ arch/arm64/boot/dts/freescale/Makefile        |  9 +++
+ .../dts/freescale/imx8mm-var-common-m4.dtsi   | 62 +++++++++++++++++++
+ .../freescale/imx8mm-var-dart-sonata-m4.dtso  | 49 +++++++++++++++
+ .../freescale/imx8mm-var-som-symphony-m4.dtso | 31 ++++++++++
+ 4 files changed, 151 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-common-m4.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-dart-sonata-m4.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony-m4.dtso
+
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index cfd548284358..c542613ed3ea 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -245,9 +245,18 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-prt8mm.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-tx8m-1610-moduline-iv-306-d.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-tx8m-1610-moduline-mini-111.dtb
 +
- required:
-   - compatible
-   - reg
-@@ -136,6 +139,7 @@ examples:
-         power-domains = <&pd_vpu>;
-         #address-cells = <1>;
-         #size-cells = <0>;
-+        phys = <&hdmi_tx_phy>;
- 
-         /* VPU VENC Input */
-         hdmi_tx_venc_port: port@0 {
-
++imx8mm-var-dart-sonata-m4-dtbs := imx8mm-var-dart-sonata.dtb imx8mm-var-dart-sonata-m4.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-dart-sonata.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-dart-sonata-m4.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-dart-sonata-m4.dtbo
++
++imx8mm-var-som-symphony-m4-dtbs := imx8mm-var-som-symphony.dtb imx8mm-var-som-symphony-m4.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony-legacy.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony-m4.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony-m4.dtbo
++
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-common-m4.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-common-m4.dtsi
+new file mode 100644
+index 000000000000..e2f369e2ef26
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-common-m4.dtsi
+@@ -0,0 +1,62 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Common Cortex-M4 configuration for Variscite i.MX8M Mini modules
++ *
++ * Link: https://www.variscite.com/
++ *
++ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
++ *
++ */
++
++#include <dt-bindings/clock/imx8mm-clock.h>
++
++&{/} {
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		vdev0vring0: memory@40000000 {
++			reg = <0 0x40000000 0 0x8000>;
++			no-map;
++		};
++
++		vdev0vring1: memory@40008000 {
++			reg = <0 0x40008000 0 0x8000>;
++			no-map;
++		};
++
++		rsc_table: memory@400ff000 {
++			reg = <0 0x400ff000 0 0x1000>;
++			no-map;
++		};
++
++		vdev0buffer: memory@40400000 {
++			compatible = "shared-dma-pool";
++			reg = <0 0x40400000 0 0x100000>;
++			no-map;
++		};
++
++		m4_reserved: memory@7e000000 {
++			reg = <0 0x7e000000 0 0x1000000>;
++			no-map;
++		};
++	};
++
++	imx8mm-cm4 {
++		compatible = "fsl,imx8mm-cm4";
++		clocks = <&clk IMX8MM_CLK_M4_CORE>;
++		mbox-names = "tx", "rx", "rxdb";
++		mboxes = <&mu 0 1
++			  &mu 1 1
++			  &mu 3 1>;
++		memory-region = <&vdev0buffer>, <&vdev0vring0>, <&vdev0vring1>,
++				<&m4_reserved>, <&rsc_table>;
++		memory-region-names = "vdev0buffer", "vdev0vring0", "vdev0vring1",
++				      "m4-reserved-ddr", "rsc-table";
++		syscon = <&src>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-dart-sonata-m4.dtso b/arch/arm64/boot/dts/freescale/imx8mm-var-dart-sonata-m4.dtso
+new file mode 100644
+index 000000000000..2f290c3ae467
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-dart-sonata-m4.dtso
+@@ -0,0 +1,49 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Cortex-M4 support for Variscite DART-MX8M-MINI on Sonata-Board
++ *
++ * Link: https://variscite.com/carrier-boards/sonata-board/
++ *
++ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
++ *
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include "imx8mm-var-common-m4.dtsi"
++
++/* The buttons use a GPIO expander on I2C4. */
++&{/gpio-keys} {
++	status = "disabled";
++};
++
++/* Reserve the peripherals used by the Cortex-M4 firmware. */
++&ecspi1 {
++	status = "reserved";
++};
++
++/*
++ * Keep the touchscreen enabled without its optional reset GPIO, since the
++ * GPIO expander on I2C4 is unavailable to Linux.
++ */
++&ft5x06_ts {
++	reset-gpios = <0>;
++};
++
++&i2c4 {
++	status = "reserved";
++};
++
++/* The PCIe reset uses a GPIO expander on I2C4. */
++&pcie0 {
++	status = "disabled";
++};
++
++&pwm3 {
++	status = "reserved";
++};
++
++&uart3 {
++	status = "reserved";
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony-m4.dtso b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony-m4.dtso
+new file mode 100644
+index 000000000000..ff5675cfc191
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony-m4.dtso
+@@ -0,0 +1,31 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Cortex-M4 support for Variscite VAR-SOM-MX8M-MINI on Symphony-Board
++ *
++ * Link: https://variscite.com/carrier-boards/symphony-board/
++ *
++ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
++ *
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include "imx8mm-var-common-m4.dtsi"
++
++/* Reserve the peripherals used by the Cortex-M4 firmware. */
++&ecspi1 {
++	status = "reserved";
++};
++
++&i2c4 {
++	status = "reserved";
++};
++
++&pwm3 {
++	status = "reserved";
++};
++
++&uart3 {
++	status = "reserved";
++};
 -- 
-2.56.1
-
+2.47.3
 
 
