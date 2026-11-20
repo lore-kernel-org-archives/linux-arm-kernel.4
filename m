@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93443606A684
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 23:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1503606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 23:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NPJcEgy3;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=TqK5GInv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n//YbCG2;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YS0cl4YU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Subject:Cc:To:
@@ -14,62 +14,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0YN5gpHUf+4979nhLuj6MtG1zKStOTnRBK8O21x05wA=; b=NPJcEgy3ZbLsKNKQjjI+TOB8rq
-	fo9Pk2F4lmMM9ISyuw3+YSeswHxbGtiRWJPAznJSaPyQd6BEvXFoKklN2vkv1NDIuSLl9xtbqxYQN
-	Sr34q20eSSZhjHYTyP0QvGCy7OEn9GoqEJd91o0vQZnLDj/u9NDWERzEFrTJfbmgutK2Ae/trZUQ+
-	kK0cxTQlM+UBd4wL6NHV83YSAUlheMeoFIiH2CuZIpKgDCSAICc9vUUKsthIK+OaBKipEY877Qr7I
-	KEvMFM90Rka5ypo/IMyj7LTJuKk7g1hBk312/Rw22VpAOf102dW2d64lYSTkagP7vCyb3DiYp6kFW
-	6YwMcEhw==;
+	bh=Kqbo7R8qL/rKPAfMv0x6vvSqBrLxVBA4TPQgwNY2K+I=; b=n//YbCG2Muzv7NJhDJd7byq9KG
+	cdgcs1l7XI0Ahjwi5Ww4wO8yTzYm3Vf3skV2RVqcWy3FSqaN0c3vkYx3/pceuadDkaS3xVZBAY8RD
+	eKHcT/SS3OMeOFh+QQHp/LQodF5maKlwoypp4GC06Ga9YrxrrJrj/04afuix4+nqCtStp5lOC1T1+
+	Qmma7KtfzBxFWSyEZkQDzSyrhXeaJfxlCekz2VxYM8emTjrAbr9FiVIxvfolPVbXM5WQ0GaI71bdC
+	mm978O484LdP1nqlxX8sh4TEhUIZyH/ihrY71qRqf6TeeUkeqmhGh/j95lZI2YgUeQZBToj8H2PjN
+	toOvK99w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUXo3-0000000GOhb-2s1i;
-	Fri, 20 Nov 2026 23:14:11 +0000
-Received: from mgamail.intel.com ([198.175.65.13])
+	id 1xUXq0-0000000GOr4-1ES3;
+	Fri, 20 Nov 2026 23:16:12 +0000
+Received: from mgamail.intel.com ([192.198.163.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUXo0-0000000GOhH-37ZJ
+	id 1xUXpx-0000000GOqG-0ebX
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 23:14:10 +0000
+	Fri, 20 Nov 2026 23:16:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795216448; x=1826752448;
+  t=1795216569; x=1826752569;
   h=date:from:to:cc:subject:message-id;
-  bh=pWOhDvougdXDSk9LQNmgYGZHGg5VNGpyTRzRJk0Rg9Y=;
-  b=TqK5GInvsXdjb+WsIt0E34r0eOl37yUcC9gaoZJxvKHT+1bxABSmJ59S
-   IG7xnSaPKYwR9oYpHUXnHQBnvNJchZz/FK3KI6NAAACeCUcHnyJLODoGz
-   Ltw9aBpOZzxgzfNjdSwdYlYK2y+kdPIazt+U5uMWb64ky6TXGp9qslUou
-   RycHzgKGQHeG3RD20Z84HDMbXwJF3K4/mul9WSu4+/QytCUowioR5VlqF
-   ri9sQXxfQWEvYo5myTzlWWMl4cJy0+PGuKfOcSUPmSLNSfJWec3djdus1
-   jyNYPEK3+A17DaY1zBvBbdcCLMhid7ZLeHFyrD7++FFXByMlBl0lVXSn2
-   g==;
-X-CSE-ConnectionGUID: jLiOiLJ8Rk+YHQr6LtSuAw==
-X-CSE-MsgGUID: NwFmLVjLQMuyi0fqpFvaNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="3994868"
+  bh=c8gBKrtQLaYfvZRcNeWBb53kUl2SHQi2Il+44JM/T34=;
+  b=YS0cl4YUdGuIphK3wg1KN5TtR+M93eii6FRrJAeX27qolg2Blg67UTC+
+   0xGbvhwriCFEJYGXMY3agP3U/WYthrwe7TzdwJPyXuQZlGBxHlVYbC73V
+   wqc+kcAPfb1kx12BN6vhyD8Gns0us6/+0d7vzeWy9kB4reTx9aD9H9/Kx
+   K3Otj8/7DskFwrb9HbUjxAHd0pBsiWU+hc1YQKjv8sAozjldL/lC+Ajwk
+   qhkDcrMJ3cbMngGwFIdRQp1fOoBJtGLTx0ofVUvCpKaC/Skbi2uZr3UDd
+   zcyFgHoLW6h8KkMxMVgxwU1eXfZh1OvKU/mr9CgIA5LXi3NpVl8IUGFxF
+   Q==;
+X-CSE-ConnectionGUID: o7qhsE/ITout8+LxduvrPQ==
+X-CSE-MsgGUID: NigH6J1fR3Cd3B4mH32t5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4097757"
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="3994868"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 15:14:08 -0800
-X-CSE-ConnectionGUID: h4Zq8+Q/Tled76sUkBMkTA==
-X-CSE-MsgGUID: DQThO4qlT1KF/fmcx8Go5A==
+   d="scan'208";a="4097757"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 15:16:08 -0800
+X-CSE-ConnectionGUID: PtMdVncxQhKGNcSFysGBxA==
+X-CSE-MsgGUID: HIjPMjWzR0GNs1lvaw29ZA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="10701698"
+   d="scan'208";a="10803836"
 Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 20 Nov 2026 15:14:07 -0800
+  by orviesa006.jf.intel.com with ESMTP; 20 Nov 2026 15:16:07 -0800
 Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
 	(envelope-from <lkp@intel.com>)
-	id 1xUXnw-00000001IuP-17D0;
-	Fri, 20 Nov 2026 23:14:04 +0000
-Date: Sat, 21 Nov 2026 07:13:24 +0800
+	id 1xUXps-00000001Iv9-2YIX;
+	Fri, 20 Nov 2026 23:16:04 +0000
+Date: Sat, 21 Nov 2026 07:15:54 +0800
 From: kernel test robot <lkp@intel.com>
 To: Arnd Bergmann <arnd@arndb.de>
 Cc: linux-arm-kernel@lists.infradead.org, arm@kernel.org
-Subject: [soc:for-next] BUILD SUCCESS
- 23422f7cf8c251e846f70770a61cb945cf16ba7c
-Message-ID: <20261121071324.LWkqTBhy-lkp@intel.com>
+Subject: [soc:soc:newsoc] BUILD SUCCESS
+ 210b99d3bf032594ef6beec3221d46946f4320e6
+Message-ID: <20261121071554.WltmPw0C-lkp@intel.com>
 User-Agent: s-nail v14.9.25
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_151408_922070_0DD8CEAC 
-X-CRM114-Status: UNSURE (   5.36  )
+X-CRM114-CacheID: sfid-20261120_151609_252074_111870BE 
+X-CRM114-Status: UNSURE (   5.15  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -90,12 +90,12 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
-branch HEAD: 23422f7cf8c251e846f70770a61cb945cf16ba7c  soc: document merges
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git soc/newsoc
+branch HEAD: 210b99d3bf032594ef6beec3221d46946f4320e6  Merge branch 'newsoc/ambarella' into soc/newsoc
 
-elapsed time: 1080m
+elapsed time: 1081m
 
-configs tested: 765
+configs tested: 773
 configs skipped: 12
 
 The following configs have been built successfully.
@@ -148,6 +148,7 @@ arc                   randconfig-2200-20261120    gcc-15.3.0 smatch
 arc                  randconfig-r2101-20261120    gcc-16.2.0 cocci
 arc                  randconfig-r2104-20261119    clang-22   cocci
 arc                  randconfig-r2105-20261120    gcc-8.5.0  cocci
+arm                               alldefconfig    gcc-16.2.0
 arm                                allnoconfig    gcc-16.2.0
 arm                               allyesconfig    clang-24
 arm                          bcm2835_defconfig    clang-24
@@ -189,6 +190,7 @@ arm                  randconfig-r2309-20261120    clang-22   sparse
 arm                  randconfig-r2311-20261119    clang-17   sparse
 arm                  randconfig-r2311-20261120    clang-22   sparse
 arm                              rpc_defconfig    gcc-16.2.0
+arm                            sama7_defconfig    gcc-16.2.0
 arm                         shmobile_defconfig    gcc-16.2.0
 arm                         spear3xx_defconfig    gcc-16.2.0
 arm                         vexpress_defconfig    gcc-16.2.0
@@ -370,6 +372,7 @@ m68k                           hp300_defconfig    gcc-16.2.0
 m68k                        m5275evb_defconfig    clang-17
 m68k                        m5275evb_defconfig    clang-24
 m68k                        m5275evb_defconfig    gcc-16.2.0
+m68k                        m5282evb_defconfig    gcc-16.2.0
 m68k                         mvme147_defconfig    gcc-16.2.0
 m68k                         mvme16x_defconfig    gcc-16.2.0
 m68k                  randconfig-2000-20261119    gcc-8.5.0
@@ -426,6 +429,7 @@ mips                            ip30_defconfig    clang-24
 mips                            ip32_defconfig    clang-17
 mips                      loongson2k_defconfig    gcc-16.2.0
 mips                       maltasmvp_defconfig    gcc-16.2.0
+mips                         qi_lb60_defconfig    gcc-16.2.0
 mips                  randconfig-2000-20261119    gcc-16.2.0
 mips                  randconfig-2000-20261120    gcc-9.5.0
 mips                  randconfig-2001-20261119    gcc-16.2.0
@@ -532,6 +536,7 @@ powerpc                      mpc5200_defconfig    clang-24
 powerpc                  mpc834x_itx_defconfig    gcc-16.2.0
 powerpc                     mvme5100_defconfig    gcc-16.2.0
 powerpc                       pmac32_defconfig    gcc-16.2.0
+powerpc                      ppa8548_defconfig    gcc-16.2.0
 powerpc               randconfig-1000-20261120    gcc-11.5.0
 powerpc               randconfig-1000-20261121    gcc-10.5.0
 powerpc               randconfig-1001-20261120    gcc-11.5.0
@@ -555,6 +560,7 @@ powerpc              randconfig-r2307-20261119    clang-24   sparse
 powerpc              randconfig-r2311-20261120    clang-22   sparse
 powerpc                      skiroot_defconfig    clang-24
 powerpc                      taishan_defconfig    gcc-16.2.0
+powerpc                      tqm5200_defconfig    gcc-16.2.0
 powerpc                      tqm8548_defconfig    clang-24
 powerpc64             randconfig-1000-20261120    gcc-11.5.0
 powerpc64             randconfig-1000-20261121    gcc-10.5.0
@@ -679,6 +685,7 @@ sh                   randconfig-r2300-20261119    gcc-16.2.0 sparse
 sh                   randconfig-r2303-20261119    gcc-16.2.0 sparse
 sh                   randconfig-r2308-20261120    clang-22   sparse
 sh                   randconfig-r2309-20261120    gcc-13.5.0 sparse
+sh                            se7712_defconfig    gcc-16.2.0
 sh                            se7780_defconfig    clang-17
 sh                    secureedge5410_defconfig    gcc-16.2.0
 sh                         sh7785lcr_defconfig    gcc-16.2.0
@@ -736,6 +743,7 @@ um                    randconfig-2000-20261119    clang-21
 um                    randconfig-2000-20261120    gcc-8.5.0
 um                    randconfig-2001-20261119    clang-21
 um                    randconfig-2001-20261120    gcc-8.5.0
+um                    randconfig-2200-20261119    clang-24   smatch
 um                    randconfig-2200-20261120    clang-24   smatch
 um                   randconfig-r2104-20261119    gcc-10.5.0 cocci
 um                   randconfig-r2106-20261119    clang-24   cocci
